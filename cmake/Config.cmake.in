@@ -1,0 +1,17 @@
+# Configuration file for the "@PROJECT_NAME@" package
+# It defines the following variables:
+#   @PROJECT_NAME_LOWERCASE@_INCLUDE_DIRS   - header include directories
+#   @PROJECT_NAME_LOWERCASE@_LIBRARIES      - library to link against
+
+
+# Specify the include directory
+set(@PROJECT_NAME_LOWERCASE@_INCLUDE_DIRS @INCLUDE_INSTALL_DIR@)
+
+# Import the exported targets
+include(@CMAKE_INSTALL_DIR@/@PROJECT_NAME@Targets.cmake)
+
+# Specify the library value
+set(@PROJECT_NAME_LOWERCASE@_LIBRARIES @LIBRARY_NAME@)
+
+# Output the library version
+message(STATUS "@PROJECT_NAME_LOWERCASE@ version: @PROJECT_VERSION@")

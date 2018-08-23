@@ -1,0 +1,44 @@
+@startuml
+
+
+namespace namespace1 {
+
+
+namespace namespace2 {
+
+        abstract class BaseClass {
+            == protected constructors ==
+                # explicit **BaseClass**(size_t dim)
+            == destructor ==
+                {abstract} virtual **~BaseClass**() = default
+            __ public virtual methods __
+                + {abstract} virtual void **doSomething**() = 0
+            __ public methods __
+                + **get_gettertarget**() const
+                + **set_settertarget**() const
+        }
+        DerivedClass --|> BaseClass
+        class DerivedClass {
+            == constructors ==
+                explicit **DerivedClass**(size_t dim)
+            == destructor ==
+                 **~DerivedClass**() override = default
+        }
+    }
+}
+
+
+
+namespace namespace3 {
+
+    class Class {
+        == constructors ==
+            **Class**(size_t K, size_t N)
+        __ public methods __
+            + const namespace3::Matrixi **get_vertex_weights**() const
+    }
+}
+
+
+
+@enduml
