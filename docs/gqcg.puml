@@ -1,0 +1,86 @@
+@startuml
+
+namespace gqcg {
+
+    class Atom
+    class Molecule
+    abstract class IntegralCalculator
+    class Basis {
+        // Change the Name to integral evaluation?
+        // hamiltonian one particle evaluation?
+        // up for debate
+        == constructors ==
+           **Basis**(IntegralCalculator, string basisSet, Molecule)
+           **Basis**(h_matrix, g_tensor, s_matrix)
+           **Basis**(filename)
+        __public__
+           +transform
+   }
+
+    abstract class QCM {
+        __public__
+        +get_energy
+        +get_wavefunction
+        __private__
+        -param
+
+    }
+
+    abstract AllNumoptSolverInterface
+
+    gqcg.Basis ..> gqcg.IntegralCalculator
+    gqcg.Basis ..> gqcg.Molecule
+    gqcg.Molecule o--> gqcg.Atom
+    gqcg.QCM ..> gqcg.Basis
+
+
+
+}
+
+namespace libwint {
+    class Libwint
+}
+
+libwint.Libwint --|> gqcg.IntegralCalculator
+
+namespace oo {
+    abstract class OO {
+        ==constructor==
+         **OO**(QCM)
+    }
+    class OOjacobi {
+
+    }
+}
+
+
+oo.OO o--> gqcg.QCM
+oo.OO o--> gqcg.Basis
+oo.OOjacobi --|> oo.OO
+
+namespace ci {
+    abstract class BaseCI
+    class DOCI
+    class FCI
+    class OODOCI
+    class SelectedCI
+}
+
+ci.BaseCI --|> gqcg.QCM
+ci.OODOCI --|> oo.OO
+ci.DOCI --|> ci.BaseCI
+ci.FCI --|> ci.BaseCI
+ci.SelectedCI --|> ci.BaseCI
+ci.BaseCI o--> gqcg.AllNumoptSolverInterface
+
+namespace rdm {
+}
+namespace constraints {
+}
+
+namespace hf {
+}
+
+
+@enduml
+
