@@ -3,8 +3,8 @@
 cmake_minimum_required(VERSION 3.9 FATAL_ERROR)
 
 # Specify the project, its version and the used language
-project(GQCG_TEMP
-        VERSION 1.2.1
+project(gqcg
+        VERSION 0.0.1
         LANGUAGES CXX)
 
 # To enable the C++11 standard, we have to add flags like -std=gnu+11 or so. CMake can take care of this:
@@ -45,8 +45,3 @@ add_subdirectory(${PROJECT_SOURCE_FOLDER})
 # Set up testing
 enable_testing()
 add_subdirectory(${PROJECT_TESTS_FOLDER})
-
-
-
-# Make the executables
-add_subdirectory(${PROJECT_EXECUTABLES_FOLDER})
