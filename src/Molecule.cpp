@@ -10,12 +10,16 @@
 namespace GQCG {
 
 
+/*
+ *  PRIVATE METHODS
+ */
+
 /**
  *  Parse a @param xyz_filename to @return a std::vector<GQCG::Atom>.
  *
  *  The coordinates in the .xyz-file should be in Angstrom: this function converts them immediately to Bohr (a.u.)
  */
-std::vector<GQCG::Atom> Molecule::parseXYZFile(const std::string& xyz_filename) const {
+std::vector<GQCG::Atom> Molecule::parseXYZFile(const std::string& xyz_filename) {
 
     // Find the extension of the given path (https://stackoverflow.com/a/51992)
     std::string extension;
@@ -73,6 +77,85 @@ std::vector<GQCG::Atom> Molecule::parseXYZFile(const std::string& xyz_filename) 
             return atoms;
         }
     }
+}
+
+
+
+/*
+ *  CONSTRUCTORS
+ */
+
+/**
+ *  Constructor from a @param atoms: a given std::vector of GQCG::Atoms and a @param molecular_charge
+ *      The constructed molecule instance corresponds to an ion:
+ *          charge = +1 -> cation (one electron less than the neutral molecule)
+ *          charge = 0  -> neutral molecule
+ *          charge = -1 -> anion (one electron more than the neutral molecule)
+ *
+ *  IMPORTANT!!! The coordinates of the atoms should be input in Bohr.
+ */
+Molecule::Molecule(const std::vector<GQCG::Atom>& atoms, int molecular_charge) :
+    atoms (atoms),
+    N (this->calculateTotalNucleicCharge() - molecular_charge)
+{
+    if (molecular_charge > 0) {
+        if (this->calculateTotalNucleicCharge() < molecular_charge) {
+            throw std::invalid_argument("You cannot create a molecule with these atoms and this much of a total positive charge.");
+        }
+    }
+}
+
+
+/**
+ *  Constructor from a @param atoms: a given std::vector of GQCG::Atoms
+ *
+ *  IMPORTANT!!! The coordinates of the atoms should be input in Bohr.
+ */
+Molecule::Molecule(const std::vector<GQCG::Atom>& atoms) :
+    Molecule (atoms, 0)
+{}
+
+
+/**
+ *  Constructor from a given @param xyz_filename and a @param molecular_charge
+ *      The constructed molecule instance corresponds to an ion:
+ *          charge = +1 -> cation (one electron less than the neutral molecule)
+ *          charge = 0  -> neutral molecule
+ *          charge = -1 -> anion (one electron more than the neutral molecule)
+ *
+ *  IMPORTANT!!! The coordinates of the atoms in the .xyz-file should be in Angstrom, but we convert them internally to Bohr
+ */
+Molecule::Molecule(const std::string& xyz_filename, int molecular_charge) :
+    Molecule (Molecule::parseXYZFile(xyz_filename), molecular_charge)
+{}
+
+
+/**
+ *  Constructor from a given @param xyz_filename
+ *      The constructed molecule instance corresponds to a neutral atom (i.e. N = sum of nucleus charges)
+ *
+ *  IMPORTANT!!! The coordinates of the atoms in the .xyz-file should be in Angstrom, but we convert them internally to Bohr
+ */
+Molecule::Molecule(const std::string& xyz_filename) :
+    Molecule (xyz_filename, 0)
+{}
+
+
+/*
+ *  PUBLIC METHODS
+ */
+/**
+ * @return the sum of all the charges of the nuclei
+ */
+size_t Molecule::calculateTotalNucleicCharge() const {
+
+    size_t nucleic_charge = 0;
+
+    for (const auto& atom : this->atoms) {
+        nucleic_charge += atom.atomic_number;
+    }
+
+    return nucleic_charge;
 }
 
 
