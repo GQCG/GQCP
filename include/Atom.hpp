@@ -21,18 +21,9 @@ public:
 
 public:
     /**
-     *  A standard constructor to be able to use emplace_back
-     * @param atomic_number
-     * @param x
-     * @param y
-     * @param z
+     *  Constructor based on a given @param atomic_number and the coordinates @param x, @param y, @param z
      */
-    Atom (size_t atomic_number, double x, double y, double z) :
-        atomic_number (atomic_number),
-        x (x),
-        y (y),
-        z (z)
-    {}
+    Atom (size_t atomic_number, double x, double y, double z);
 };
 
 

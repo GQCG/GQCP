@@ -23,6 +23,7 @@ set(PROJECT_SOURCE_FOLDER ${CMAKE_SOURCE_DIR}/src)
 
 # Find the source files
 set(PROJECT_SOURCE_FILES
+        ${PROJECT_SOURCE_FOLDER}/Atom.cpp
         ${PROJECT_SOURCE_FOLDER}/elements.cpp
         ${PROJECT_SOURCE_FOLDER}/Molecule.cpp)
 
