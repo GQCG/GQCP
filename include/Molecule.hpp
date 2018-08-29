@@ -16,15 +16,15 @@ namespace GQCG {
 
 class Molecule {
 private:
-    const size_t N;  // number of electrons
     const std::vector<GQCG::Atom> atoms;
+    const size_t N;  // number of electrons
 
     /**
      *  Parse a @param xyz_filename to @return a std::vector<GQCG::Atom>.
      *
      *  The coordinates in the .xyz-file should be in Angstrom: this function converts them immediately to Bohr (a.u.)
      */
-    std::vector<GQCG::Atom> parseXYZFile(const std::string& xyz_filename) const;
+    static std::vector<GQCG::Atom> parseXYZFile(const std::string& xyz_filename);
 
 
 public:
@@ -35,7 +35,48 @@ public:
      *
      *  IMPORTANT!!! The coordinates of the atoms in the .xyz-file should be in Angstrom, but we convert them internally to Bohr
      */
-    Molecule(std::string xyz_filename);
+    Molecule(const std::string& xyz_filename);
+
+    /**
+     *  Constructor from a given @param xyz_filename and a @param molecular_charge
+     *      The constructed molecule instance corresponds to an ion:
+     *          charge = +1 -> cation (one electron less than the neutral molecule)
+     *          charge = 0  -> neutral molecule
+     *          charge = -1 -> anion (one electron more than the neutral molecule)
+     *
+     *  IMPORTANT!!! The coordinates of the atoms in the .xyz-file should be in Angstrom, but we convert them internally to Bohr
+     */
+    Molecule(const std::string& xyz_filename, int molecular_charge);
+
+    /**
+     *  Constructor from a @param atoms: a given std::vector of GQCG::Atoms
+     *
+     *  IMPORTANT!!! The coordinates of the atoms should be input in Bohr.
+     */
+    Molecule(const std::vector<GQCG::Atom>& atoms);
+
+    /**
+     *  Constructor from a @param atoms: a given std::vector of GQCG::Atoms and a @param molecular_charge
+     *      The constructed molecule instance corresponds to an ion:
+     *          charge = +1 -> cation (one electron less than the neutral molecule)
+     *          charge = 0  -> neutral molecule
+     *          charge = -1 -> anion (one electron more than the neutral molecule)
+     *
+     *  IMPORTANT!!! The coordinates of the atoms should be input in Bohr.
+     */
+    Molecule(const std::vector<GQCG::Atom>& atoms, int molecular_charge);
+
+
+    // GETTERS
+    size_t get_N() const { return this->N; }
+
+
+
+    // PUBLIC METHODS
+    /**
+     * @return the sum of all the charges of the nuclei
+     */
+    size_t calculateTotalNucleicCharge() const;
 };
 
 
