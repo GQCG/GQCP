@@ -20,10 +20,18 @@ public:
     double z;
 
 public:
+    // CONSTRUCTORS
     /**
      *  Constructor based on a given @param atomic_number and the coordinates @param x, @param y, @param z
      */
     Atom (size_t atomic_number, double x, double y, double z);
+
+
+    // PUBLIC METHODS
+    /**
+     *  @return if this is equal to @param other, within the given @param tolerance for the coordinates
+     */
+    bool isEqualTo(const GQCG::Atom& other, double tolerance=1.0e-08) const;
 };
 
 
