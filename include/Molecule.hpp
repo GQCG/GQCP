@@ -35,7 +35,7 @@ public:
      *
      *  IMPORTANT!!! The coordinates of the atoms in the .xyz-file should be in Angstrom, but we convert them internally to Bohr
      */
-    Molecule(const std::string& xyz_filename);
+    explicit Molecule(const std::string& xyz_filename);
 
     /**
      *  Constructor from a given @param xyz_filename and a @param molecular_charge
@@ -53,7 +53,7 @@ public:
      *
      *  IMPORTANT!!! The coordinates of the atoms should be input in Bohr.
      */
-    Molecule(const std::vector<GQCG::Atom>& atoms);
+    explicit Molecule(const std::vector<GQCG::Atom>& atoms);
 
     /**
      *  Constructor from a @param atoms: a given std::vector of GQCG::Atoms and a @param molecular_charge
