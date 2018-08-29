@@ -42,6 +42,7 @@ set(PROJECT_TESTS_FOLDER ${CMAKE_SOURCE_DIR}/tests)
 
 # Find the source files for the tests
 set(PROJECT_TEST_SOURCE_FILES
+        ${PROJECT_TESTS_FOLDER}/Atom_test.cpp
         ${PROJECT_TESTS_FOLDER}/elements_test.cpp
         ${PROJECT_TESTS_FOLDER}/Molecule_test.cpp)
 

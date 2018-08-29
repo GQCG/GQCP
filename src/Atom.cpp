@@ -1,5 +1,7 @@
 #include "Atom.hpp"
 
+#include <cmath>
+
 
 namespace GQCG {
 
@@ -18,6 +20,21 @@ Atom::Atom(size_t atomic_number, double x, double y, double z) :
     z (z)
 {}
 
+
+
+/*
+ *  PUBLIC METHODS
+ */
+
+/**
+ *  @return if this is equal to @param other, within the given @param tolerance for the coordinates
+ */
+bool Atom::isEqualTo(const GQCG::Atom& other, double tolerance) const {
+    return (this->atomic_number == other.atomic_number) &&
+           (std::abs(this->x - other.x) < tolerance) &&
+           (std::abs(this->y - other.y) < tolerance) &&
+           (std::abs(this->z - other.z) < tolerance);
+}
 
 
 }  // namespace GQCG
