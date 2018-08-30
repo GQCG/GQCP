@@ -2,6 +2,7 @@
 #define GQCG_ATOM_HPP
 
 
+#include <iostream>
 #include <stdlib.h>
 
 
@@ -36,6 +37,11 @@ public:
 
 
 }  // namespace GQCG
+
+/**
+ *  operator<< for a GQCG::Atom
+ */
+std::ostream& operator<<(std::ostream& os, const GQCG::Atom& atom);
 
 
 #endif  // GQCG_ATOM_HPP
