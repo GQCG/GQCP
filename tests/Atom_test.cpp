@@ -33,3 +33,11 @@ BOOST_AUTO_TEST_CASE ( Atom_isEqualTo ) {
     // Check if the tolerance works as expected
     BOOST_CHECK(atom1.isEqualTo(atom4, 0.5));
 }
+
+
+BOOST_AUTO_TEST_CASE ( operator_ostream ) {
+
+    GQCG::Atom atom1 {1, 0.0, 0.1, 0.2};
+
+    std::cout << atom1 << std::endl;
+}

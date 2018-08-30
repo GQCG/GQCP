@@ -2,6 +2,8 @@
 
 #include <cmath>
 
+#include "elements.hpp"
+
 
 namespace GQCG {
 
@@ -38,3 +40,12 @@ bool Atom::isEqualTo(const GQCG::Atom& other, double tolerance) const {
 
 
 }  // namespace GQCG
+
+
+/**
+ *  operator<< for a GQCG::Atom
+ */
+std::ostream& operator<<(std::ostream& os, const GQCG::Atom& atom) {
+    os << GQCG::elements::atomicNumberToElement(atom.atomic_number) << ": (" << atom.x << ", " << atom.y << ", " << atom.z << ")\n";
+    return os;
+}
