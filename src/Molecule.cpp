@@ -67,7 +67,7 @@ std::vector<GQCG::Atom> Molecule::parseXYZFile(const std::string& xyz_filename) 
             double y_bohr = GQCG::units::angstrom_to_bohr(y_angstrom);
             double z_bohr = GQCG::units::angstrom_to_bohr(z_angstrom);
 
-            atoms.emplace_back(GQCG::elements::element_to_atomic_number(symbol), x_bohr, y_bohr, z_bohr);
+            atoms.emplace_back(GQCG::elements::elementToAtomicNumber(symbol), x_bohr, y_bohr, z_bohr);
         }
 
 
@@ -141,11 +141,51 @@ Molecule::Molecule(const std::string& xyz_filename) :
 {}
 
 
+
+/*
+ *  OPERATORS
+ */
+
+/**
+ *  Overloading of operator<< for a GQCG::Molecule to be used with streams
+ */
+std::ostream& operator<<(std::ostream& os, const GQCG::Molecule& molecule) {
+
+    for (const auto& atom : molecule.atoms) {
+        os << atom;
+    }
+
+    return os;
+}
+
+
+
 /*
  *  PUBLIC METHODS
  */
+
 /**
- * @return the sum of all the charges of the nuclei
+ *  @return if this is equal to @param other, within the given @param tolerance for the coordinates of the GQCG::Atoms
+ */
+bool Molecule::isEqualTo(const GQCG::Molecule& other, double tolerance) const {
+
+    if (this->N != other.get_N()) {
+        std::cout << "different number of N" << std::endl;
+        return false;
+    }
+
+    for (size_t i = 0; i < this->atoms.size(); i++) {
+        if (!this->atoms[i].isEqualTo(other.atoms[i], tolerance)) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+
+/**
+ *  @return the sum of all the charges of the nuclei
  */
 size_t Molecule::calculateTotalNucleicCharge() const {
 
@@ -160,3 +200,5 @@ size_t Molecule::calculateTotalNucleicCharge() const {
 
 
 }  // namespace GQCG
+
+
