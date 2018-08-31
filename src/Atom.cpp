@@ -1,6 +1,7 @@
 #include "Atom.hpp"
 
 #include <cmath>
+#include <iomanip>
 
 #include "elements.hpp"
 
@@ -32,7 +33,7 @@ Atom::Atom(size_t atomic_number, double x, double y, double z) :
  *  Overloading of operator<< for a GQCG::Atom to be used with streams
  */
 std::ostream& operator<<(std::ostream& os, const GQCG::Atom& atom) {
-    os << GQCG::elements::atomicNumberToElement(atom.atomic_number) << ": (" << atom.x << ", " << atom.y << ", " << atom.z << ")\n";
+    os << std::left << std::setw(3) << GQCG::elements::atomicNumberToElement(atom.atomic_number) << '(' << atom.x << ", " << atom.y << ", " << atom.z << ")\n";
     return os;
 }
 

@@ -38,6 +38,9 @@ BOOST_AUTO_TEST_CASE ( Atom_isEqualTo ) {
 BOOST_AUTO_TEST_CASE ( Atom_operator_ostream ) {
 
     GQCG::Atom atom1 {1, 0.0, 0.1, 0.2};
+    GQCG::Atom atom2 {2, 0.1, 0.2, 0.3};
+
 
     std::cout << atom1 << std::endl;
+    std::cout << atom2 << std::endl;
 }
