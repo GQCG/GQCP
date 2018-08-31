@@ -8,7 +8,7 @@
 
 
 
-BOOST_AUTO_TEST_CASE ( constructor ) {
+BOOST_AUTO_TEST_CASE ( Atom_constructor ) {
 
     GQCG::Atom atom {1, 0.0, 0.1, 0.2};
 }
@@ -35,7 +35,7 @@ BOOST_AUTO_TEST_CASE ( Atom_isEqualTo ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( operator_ostream ) {
+BOOST_AUTO_TEST_CASE ( Atom_operator_ostream ) {
 
     GQCG::Atom atom1 {1, 0.0, 0.1, 0.2};
 

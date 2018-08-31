@@ -25,6 +25,20 @@ Atom::Atom(size_t atomic_number, double x, double y, double z) :
 
 
 /*
+ *  OPERATORS
+ */
+
+/**
+ *  Overloading of operator<< for a GQCG::Atom to be used with streams
+ */
+std::ostream& operator<<(std::ostream& os, const GQCG::Atom& atom) {
+    os << GQCG::elements::atomicNumberToElement(atom.atomic_number) << ": (" << atom.x << ", " << atom.y << ", " << atom.z << ")\n";
+    return os;
+}
+
+
+
+/*
  *  PUBLIC METHODS
  */
 
@@ -42,10 +56,3 @@ bool Atom::isEqualTo(const GQCG::Atom& other, double tolerance) const {
 }  // namespace GQCG
 
 
-/**
- *  operator<< for a GQCG::Atom
- */
-std::ostream& operator<<(std::ostream& os, const GQCG::Atom& atom) {
-    os << GQCG::elements::atomicNumberToElement(atom.atomic_number) << ": (" << atom.x << ", " << atom.y << ", " << atom.z << ")\n";
-    return os;
-}
