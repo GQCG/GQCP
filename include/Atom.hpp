@@ -28,6 +28,13 @@ public:
     Atom (size_t atomic_number, double x, double y, double z);
 
 
+    // OPERATORS
+    /**
+     *  Overloading of operator<< for a GQCG::Atom to be used with streams
+     */
+    friend std::ostream& operator<<(std::ostream& os, const GQCG::Atom& atom);
+
+
     // PUBLIC METHODS
     /**
      *  @return if this is equal to @param other, within the given @param tolerance for the coordinates
@@ -38,10 +45,6 @@ public:
 
 }  // namespace GQCG
 
-/**
- *  operator<< for a GQCG::Atom
- */
-std::ostream& operator<<(std::ostream& os, const GQCG::Atom& atom);
 
 
 #endif  // GQCG_ATOM_HPP
