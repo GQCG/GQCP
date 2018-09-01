@@ -147,6 +147,25 @@ Molecule::Molecule(const std::string& xyz_filename) :
  */
 
 /**
+ *  @return if this is equal to @param other, within the given @param tolerance for the coordinates of the GQCG::Atoms
+ */
+bool Molecule::operator==(const GQCG::Molecule& other) const {
+
+    if (this->N != other.get_N()) {
+        std::cout << "different number of N" << std::endl;
+        return false;
+    }
+
+    for (size_t i = 0; i < this->atoms.size(); i++) {
+        if (!(this->atoms[i] == other.atoms[i])) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+/**
  *  Overloading of operator<< for a GQCG::Molecule to be used with streams
  */
 std::ostream& operator<<(std::ostream& os, const GQCG::Molecule& molecule) {
@@ -163,26 +182,6 @@ std::ostream& operator<<(std::ostream& os, const GQCG::Molecule& molecule) {
 /*
  *  PUBLIC METHODS
  */
-
-/**
- *  @return if this is equal to @param other, within the given @param tolerance for the coordinates of the GQCG::Atoms
- */
-bool Molecule::isEqualTo(const GQCG::Molecule& other, double tolerance) const {
-
-    if (this->N != other.get_N()) {
-        std::cout << "different number of N" << std::endl;
-        return false;
-    }
-
-    for (size_t i = 0; i < this->atoms.size(); i++) {
-        if (!this->atoms[i].isEqualTo(other.atoms[i], tolerance)) {
-            return false;
-        }
-    }
-
-    return true;
-}
-
 
 /**
  *  @return the sum of all the charges of the nuclei
