@@ -69,6 +69,11 @@ public:
 
     // OPERATORS
     /**
+     *  @return if this is equal to @param other
+     */
+    bool operator==(const GQCG::Molecule& other) const;
+
+    /**
      *  Overloading of operator<< for a GQCG::Molecule to be used with streams
      */
     friend std::ostream& operator<<(std::ostream& os, const GQCG::Molecule& molecule);
@@ -79,11 +84,6 @@ public:
 
 
     // PUBLIC METHODS
-    /**
-     *  @return if this is equal to @param other, within the given @param tolerance for the coordinates of the GQCG::Atoms
-     */
-    bool isEqualTo(const GQCG::Molecule& other, double tolerance=1.0e-08) const;
-
     /**
      *  @return the sum of all the charges of the nuclei
      */
