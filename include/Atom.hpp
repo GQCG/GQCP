@@ -20,6 +20,8 @@ public:
     double y;
     double z;
 
+    static constexpr double tolerance_for_comparison = 1.0e-08;
+
 public:
     // CONSTRUCTORS
     /**
@@ -30,16 +32,21 @@ public:
 
     // OPERATORS
     /**
+     *  @return if this is equal to @param other, within the @member tolerance_for_comparison for the coordinates
+     */
+    bool operator==(const GQCG::Atom& other) const;
+
+    /**
+     *  @return if this is smaller than @param other, within the @member tolerance_for_comparison for the coordinates
+     *
+     *  @member atomic_number takes precedence over @member x, over @member y, over @member z
+     */
+    bool operator<(const GQCG::Atom& other) const;
+
+    /**
      *  Overloading of operator<< for a GQCG::Atom to be used with streams
      */
     friend std::ostream& operator<<(std::ostream& os, const GQCG::Atom& atom);
-
-
-    // PUBLIC METHODS
-    /**
-     *  @return if this is equal to @param other, within the given @param tolerance for the coordinates
-     */
-    bool isEqualTo(const GQCG::Atom& other, double tolerance=1.0e-08) const;
 };
 
 
