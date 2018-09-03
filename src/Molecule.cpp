@@ -161,25 +161,13 @@ Molecule::Molecule(const std::string& xyz_filename) :
  */
 
 /**
- *  @return if this is equal to @param other, within the given @param tolerance for the coordinates of the GQCG::Atoms
+ *  @return if this is equal to @param other, within the default GQCG::Atom::tolerance_for_comparison for the coordinates of the atoms
  */
 bool Molecule::operator==(const GQCG::Molecule& other) const {
 
-    if (this->N != other.get_N()) {
-        return false;
-    }
-
-    // We don't want the order of the atoms to matter in a GQCG::Molecule comparison
-    // We have implemented a custom GQCG::Atom::operator< so we can sort std::vectors of GQCG::Atoms
-    // Make a copy of the atoms because std::sort modifies
-    auto this_atoms = this->atoms;
-    auto other_atoms = other.atoms;
-
-    std::sort(this_atoms.begin(), this_atoms.end());
-    std::sort(other_atoms.begin(), other_atoms.end());
-
-    return this_atoms == other_atoms;
+    return this->isEqualTo(other, GQCG::Atom::tolerance_for_comparison);
 }
+
 
 /**
  *  Overloading of operator<< for a GQCG::Molecule to be used with streams
@@ -200,6 +188,34 @@ std::ostream& operator<<(std::ostream& os, const GQCG::Molecule& molecule) {
  */
 
 /**
+ *  @return if this is equal to @param other, within the given @param tolerance for the coordinates of the atoms
+ */
+bool Molecule::isEqualTo(const GQCG::Molecule& other, double tolerance) const {
+
+    if (this->N != other.get_N()) {
+        return false;
+    }
+
+    // We don't want the order of the atoms to matter in a GQCG::Molecule comparison
+    // We have implemented a custom GQCG::Atom::operator< so we can sort std::vectors of GQCG::Atoms
+    // Make a copy of the atoms because std::sort modifies
+    auto this_atoms = this->atoms;
+    auto other_atoms = other.atoms;
+
+
+    // Make lambda expressions for the comparators, since we want to hand over the tolerance argument
+    auto smaller_than_atom = [this, tolerance](const GQCG::Atom& lhs, const GQCG::Atom& rhs) { return lhs.isSmallerThan(rhs, tolerance); };
+    auto equal_atom = [this, tolerance](const GQCG::Atom& lhs, const GQCG::Atom& rhs) { return lhs.isEqualTo(rhs, tolerance); };
+
+
+    std::sort(this_atoms.begin(), this_atoms.end(), smaller_than_atom);
+    std::sort(other_atoms.begin(), other_atoms.end(), smaller_than_atom);
+
+    return std::equal(this_atoms.begin(), this_atoms.end(), other_atoms.begin(), equal_atom);
+}
+
+
+/**
  *  @return the sum of all the charges of the nuclei
  */
 size_t Molecule::calculateTotalNucleicCharge() const {
@@ -215,5 +231,3 @@ size_t Molecule::calculateTotalNucleicCharge() const {
 
 
 }  // namespace GQCG
-
-

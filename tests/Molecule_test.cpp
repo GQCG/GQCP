@@ -104,7 +104,21 @@ BOOST_AUTO_TEST_CASE ( molecule_ion_constructor ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( Molecule_operator_equals ) {
+BOOST_AUTO_TEST_CASE ( Molecule_operator_ostream ) {
+
+    std::vector<GQCG::Atom> atoms = {
+        {1, 0, 3, 0},
+        {2, 0, 0, 4},
+        {3, 3, 0, 0},
+        {4, 0, 0, 5}
+    };
+    GQCG::Molecule molecule (atoms);
+
+    std::cout << molecule << std::endl;
+}
+
+
+BOOST_AUTO_TEST_CASE ( Molecule_isEqualTo ) {
 
     // Create some Atoms and Molecules
     GQCG::Atom atom1 {1, 0.0, 0.1, 0.2};
@@ -121,40 +135,40 @@ BOOST_AUTO_TEST_CASE ( Molecule_operator_equals ) {
     GQCG::Molecule molecule6 {{atom1, atom2, atom3, atom4}};
 
     // Check if they're equal
-    BOOST_CHECK(molecule1 == molecule2);
+    BOOST_CHECK(molecule1.isEqualTo(molecule2));
 
     // Check if a different charge but same atoms causes inequality
-    BOOST_CHECK(!(molecule1 == molecule3));
+    BOOST_CHECK(!(molecule1.isEqualTo(molecule3)));
 
     // Check if different atoms but an equal total charge cause inequality
-    BOOST_CHECK(!(molecule1 == molecule4));
+    BOOST_CHECK(!(molecule1.isEqualTo(molecule4)));
 
     // Check if a different ordering doesn't cause inequality
-    BOOST_CHECK(molecule1 == molecule5);
+    BOOST_CHECK(molecule1.isEqualTo(molecule5));
 
     // Check if a different number of atoms causes inequality
-    BOOST_CHECK(!(molecule1 == molecule6));
+    BOOST_CHECK(!(molecule1.isEqualTo(molecule6)));
+
+
+    // Check if the tolerance argument works
+    BOOST_CHECK(molecule1.isEqualTo(molecule4, 0.2));
 }
 
 
-BOOST_AUTO_TEST_CASE ( Molecule_operator_ostream ) {
+BOOST_AUTO_TEST_CASE ( Molecule_operator_equals ) {
 
-    std::vector<GQCG::Atom> atoms = {
-        {1, 0, 3, 0},
-        {2, 0, 0, 4},
-        {3, 3, 0, 0},
-        {4, 0, 0, 5}
-    };
-    GQCG::Molecule molecule (atoms);
+    // Create some Atoms and Molecules
+    GQCG::Atom atom1 {1, 0.0, 0.1, 0.2};
+    GQCG::Atom atom2 {2, 0.0, 0.1, 0.2};
+    GQCG::Atom atom3 {3, 0.0, 0.1, 0.2};
+    GQCG::Atom atom4 {3, 0.1, 0.2, 0.3};
 
-    std::cout << molecule << std::endl;
+    GQCG::Molecule molecule1 {{atom1, atom2, atom3}};
+    GQCG::Molecule molecule2 {{atom1, atom2, atom3}};
+    GQCG::Molecule molecule3 {{atom1, atom2, atom4}};
+
+
+    // Check if we can call operator==
+    BOOST_CHECK(molecule1 == molecule2);
+    BOOST_CHECK(!(molecule2 == molecule3));
 }
-
-
-BOOST_AUTO_TEST_CASE ( xyz_filename_constructor ) {
-
-
-
-}
-
-
