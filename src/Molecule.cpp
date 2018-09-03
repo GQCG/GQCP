@@ -98,10 +98,24 @@ Molecule::Molecule(const std::vector<GQCG::Atom>& atoms, int molecular_charge) :
     atoms (atoms),
     N (this->calculateTotalNucleicCharge() - molecular_charge)
 {
+    // Check if the total positive charge is valid, e.g. H^(2+) does not exist
     if (molecular_charge > 0) {
         if (this->calculateTotalNucleicCharge() < molecular_charge) {
             throw std::invalid_argument("You cannot create a molecule with these atoms and this much of a total positive charge.");
         }
+    }
+
+    // Check if there are no duplicate atoms
+    // The atoms are const, so we will make a copy to check if there are duplicates
+    auto atoms_copy = this->atoms;
+
+    // Sort and unique
+    std::sort(atoms_copy.begin(), atoms_copy.end());
+    auto last_it = std::unique(atoms_copy.begin(), atoms_copy.end());
+
+    // If the iterator returned from unique is the same as the end iterator, there are no duplicate items
+    if (last_it != atoms_copy.end()) {
+        throw std::invalid_argument("There can't be two equal atoms on the same position.");
     }
 }
 
@@ -152,17 +166,19 @@ Molecule::Molecule(const std::string& xyz_filename) :
 bool Molecule::operator==(const GQCG::Molecule& other) const {
 
     if (this->N != other.get_N()) {
-        std::cout << "different number of N" << std::endl;
         return false;
     }
 
-    for (size_t i = 0; i < this->atoms.size(); i++) {
-        if (!(this->atoms[i] == other.atoms[i])) {
-            return false;
-        }
-    }
+    // We don't want the order of the atoms to matter in a GQCG::Molecule comparison
+    // We have implemented a custom GQCG::Atom::operator< so we can sort std::vectors of GQCG::Atoms
+    // Make a copy of the atoms because std::sort modifies
+    auto this_atoms = this->atoms;
+    auto other_atoms = other.atoms;
 
-    return true;
+    std::sort(this_atoms.begin(), this_atoms.end());
+    std::sort(other_atoms.begin(), other_atoms.end());
+
+    return this_atoms == other_atoms;
 }
 
 /**

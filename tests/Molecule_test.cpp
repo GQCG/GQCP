@@ -41,6 +41,24 @@ BOOST_AUTO_TEST_CASE ( constructor_atoms ) {
 }
 
 
+BOOST_AUTO_TEST_CASE ( duplicate_atoms_constructor ) {
+
+    // Make some atoms
+    GQCG::Atom atom1 {1, 0.0, 0.0, 0.0};
+    GQCG::Atom atom2 {1, 1.0, 0.0, 0.0};
+
+    std::vector<GQCG::Atom> atoms1 {atom1, atom1};
+    std::vector<GQCG::Atom> atoms2 {atom1, atom2};
+
+
+    // Check if we can't create a Molecule with duplicate atoms
+    BOOST_CHECK_THROW(GQCG::Molecule molecule (atoms1), std::invalid_argument);
+
+    // Check if a correct argument doesn't throw
+    BOOST_CHECK_NO_THROW(GQCG::Molecule molecule (atoms2));
+}
+
+
 BOOST_AUTO_TEST_CASE ( calculateTotalNucleicCharge ) {
 
     // Create a fictitious molecule from some Atoms (charge, x, y ,z)
@@ -90,24 +108,25 @@ BOOST_AUTO_TEST_CASE ( Molecule_operator_equals ) {
 
     // Create some Atoms and Molecules
     GQCG::Atom atom1 {1, 0.0, 0.1, 0.2};
-    GQCG::Atom atom2 {1, 0.0, 0.1, 0.2};
-    GQCG::Atom atom3 {2, 0.0, 0.1, 0.2};
-    GQCG::Atom atom4 {1, 0.1, 0.2, 0.3};
+    GQCG::Atom atom2 {2, 0.0, 0.1, 0.2};
+    GQCG::Atom atom3 {3, 0.0, 0.1, 0.2};
+    GQCG::Atom atom4 {4, 0.1, 0.2, 0.3};
+    GQCG::Atom atom5 {3, 0.1, 0.2, 0.3};
 
     GQCG::Molecule molecule1 {{atom1, atom2, atom3}};
     GQCG::Molecule molecule2 {{atom1, atom2, atom3}};
     GQCG::Molecule molecule3 {{atom1, atom2, atom3}, -1};
-    GQCG::Molecule molecule4 {{atom1, atom2, atom4}};
+    GQCG::Molecule molecule4 {{atom1, atom2, atom5}};
     GQCG::Molecule molecule5 {{atom1, atom3, atom2}};
     GQCG::Molecule molecule6 {{atom1, atom2, atom3, atom4}};
 
     // Check if they're equal
     BOOST_CHECK(molecule1 == molecule2);
 
-    // Check if a different charge causes inequality
+    // Check if a different charge but same atoms causes inequality
     BOOST_CHECK(!(molecule1 == molecule3));
 
-    // Check if different atoms cause inequality
+    // Check if different atoms but an equal total charge cause inequality
     BOOST_CHECK(!(molecule1 == molecule4));
 
     // Check if a different ordering doesn't cause inequality
