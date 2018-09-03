@@ -47,6 +47,20 @@ public:
      *  Overloading of operator<< for a GQCG::Atom to be used with streams
      */
     friend std::ostream& operator<<(std::ostream& os, const GQCG::Atom& atom);
+
+
+    // PUBLIC METHODS
+    /**
+     *  @return if this is equal to @param other, within the given @param tolerance for the coordinates
+     */
+    bool isEqualTo(const GQCG::Atom& other, double tolerance=Atom::tolerance_for_comparison) const;
+
+    /**
+     *  @return if this is smaller than @param other, within the given @param tolerance for the coordinates
+     *
+     *  @member atomic_number takes precedence over @member x, over @member y, over @member z
+     */
+    bool isSmallerThan(const GQCG::Atom& other, double tolerance=Atom::tolerance_for_comparison) const;
 };
 
 
