@@ -69,7 +69,7 @@ public:
 
     // OPERATORS
     /**
-     *  @return if this is equal to @param other
+     *  @return if this is equal to @param other, within the default GQCG::Atom::tolerance_for_comparison for the coordinates of the atoms
      */
     bool operator==(const GQCG::Molecule& other) const;
 
@@ -84,6 +84,11 @@ public:
 
 
     // PUBLIC METHODS
+    /**
+     *  @return if this is equal to @param other, within the given @param tolerance for the coordinates of the atoms
+     */
+    bool isEqualTo(const GQCG::Molecule& other, double tolerance=GQCG::Atom::tolerance_for_comparison) const;
+
     /**
      *  @return the sum of all the charges of the nuclei
      */
