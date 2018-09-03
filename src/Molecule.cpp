@@ -230,4 +230,18 @@ size_t Molecule::calculateTotalNucleicCharge() const {
 }
 
 
+/**
+ * @return the distance between two the two atoms at @param index1 and @param index2
+ */
+double Molecule::calculateInternuclearDistance(size_t index1, size_t index2) const {
+
+    // Check if the indices are within bounds
+    if (index1 > this->atoms.size() || index2 > this->atoms.size()) {
+        throw std::invalid_argument("At least one of the given indices is out of bounds.");
+    }
+
+    return this->atoms[index1].calculateDistance(this->atoms[index2]);
+}
+
+
 }  // namespace GQCG
