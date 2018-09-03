@@ -81,6 +81,7 @@ public:
 
     // GETTERS
     size_t get_N() const { return this->N; }
+    size_t numberOfAtoms() const { return this->atoms.size(); }
 
 
     // PUBLIC METHODS
@@ -95,9 +96,14 @@ public:
     size_t calculateTotalNucleicCharge() const;
 
     /**
-     * @return the distance between two the two atoms at @param index1 and @param index2
+     *  @return the distance between two the two atoms at @param index1 and @param index2
      */
     double calculateInternuclearDistance(size_t index1, size_t index2) const;
+
+    /**
+     *  @return the internuclear repulsion energy due to the nuclear framework
+     */
+    double calculateInternuclearRepulsionEnergy() const;
 };
 
 

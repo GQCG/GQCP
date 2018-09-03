@@ -244,4 +244,27 @@ double Molecule::calculateInternuclearDistance(size_t index1, size_t index2) con
 }
 
 
+/**
+ *  @return the internuclear repulsion energy due to the nuclear framework
+ */
+double Molecule::calculateInternuclearRepulsionEnergy() const {
+
+    double internuclear_repulsion_energy = 0.0;
+
+    // Sum over every unique nucleus pair
+    auto natoms = this->numberOfAtoms();
+    for (size_t i = 0; i < natoms; i++) {
+        for (size_t j = i + 1; j < natoms; j++ ) {
+            const auto atom1 = this->atoms[i];
+            const auto atom2 = this->atoms[j];
+
+            // The internuclear repulsion energy (Coulomb) for every nucleus pair is Z1 * Z2 / |R1 - R2|
+            internuclear_repulsion_energy += atom1.atomic_number * atom2.atomic_number / this->calculateInternuclearDistance(i, j);
+        }
+    }
+
+    return internuclear_repulsion_energy;
+}
+
+
 }  // namespace GQCG
