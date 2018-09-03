@@ -93,6 +93,11 @@ public:
      *  @return the sum of all the charges of the nuclei
      */
     size_t calculateTotalNucleicCharge() const;
+
+    /**
+     * @return the distance between two the two atoms at @param index1 and @param index2
+     */
+    double calculateInternuclearDistance(size_t index1, size_t index2) const;
 };
 
 

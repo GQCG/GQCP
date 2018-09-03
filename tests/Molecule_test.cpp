@@ -188,3 +188,27 @@ BOOST_AUTO_TEST_CASE ( xyz_filename_constructor ) {
     // Check if the conversion from Bohr to Angstrom is correct
     BOOST_CHECK(molecule_atoms.isEqualTo(molecule_xyz, 1.0e-05));
 }
+
+
+BOOST_AUTO_TEST_CASE ( calculateInternuclearDistance ) {
+
+    // Create a fictitious molecule from some Atoms (charge, x, y ,z)
+    std::vector<GQCG::Atom> atoms = {
+        {1, 0, 3, 0},
+        {2, 0, 0, 4},
+        {3, 3, 0, 0},
+        {4, 0, 0, 5}
+    };
+    GQCG::Molecule molecule (atoms);
+
+
+    // Check if we get throws when the indices are out of bounds
+    BOOST_CHECK_THROW(molecule.calculateInternuclearDistance(0, 5), std::invalid_argument);
+    BOOST_CHECK_THROW(molecule.calculateInternuclearDistance(8, 2), std::invalid_argument);
+
+    // Check if we don't get throws when the indices behave correctly
+    BOOST_CHECK_NO_THROW(molecule.calculateInternuclearDistance(0, 0));
+
+    // Check if the function works
+    BOOST_CHECK(std::abs(molecule.calculateInternuclearDistance(1, 3) - 1) < 1.0e-12);
+}
