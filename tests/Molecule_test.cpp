@@ -172,3 +172,19 @@ BOOST_AUTO_TEST_CASE ( Molecule_operator_equals ) {
     BOOST_CHECK(molecule1 == molecule2);
     BOOST_CHECK(!(molecule2 == molecule3));
 }
+
+
+BOOST_AUTO_TEST_CASE ( xyz_filename_constructor ) {
+
+    std::vector<GQCG::Atom> atoms {
+        {8,  0.0,     -0.143222, 0.0},
+        {1,  1.63803,  1.13656,  0.0},
+        {1, -1.63803,  1.13656,  0.0}
+    };
+    GQCG::Molecule molecule_atoms (atoms);
+
+    GQCG::Molecule molecule_xyz ("../tests/data/h2o.xyz");
+
+    // Check if the conversion from Bohr to Angstrom is correct
+    BOOST_CHECK(molecule_atoms.isEqualTo(molecule_xyz, 1.0e-05));
+}
