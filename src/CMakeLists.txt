@@ -1,7 +1,7 @@
 # src-level CMakeLists.txt
 
 
-# We want to make a static library target called "GQCG_TEMP", based on the project source files
+# We want to make a static library target called "gqcg", based on the project source files
 add_library(${LIBRARY_NAME} ${LIBRARY_TYPE} ${PROJECT_SOURCE_FILES} ${PROJECT_INCLUDE_FILES})
 
 

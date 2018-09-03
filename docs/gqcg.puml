@@ -2,8 +2,33 @@
 
 namespace gqcg {
 
-    class Atom
-    class Molecule
+    class GQCG::Atom {
+        __ public members __
+            + unsigned atomic_number
+            + double x, y, z
+    }
+
+    GQCG::Molecule o--> GQCG::Atom
+    class GQCG::Molecule {
+        __ private members __
+            - const std::vector<GQCG::Atom> atoms
+            - size_t N
+        __ private methods __
+            - std::vector<GQCG::Atom> parseXYZFile(std::string filename) const
+        == constructors ==
+            **Molecule**(std::string xyz_filename)
+            **Molecule**(std::string xyz_filename, int molecular_charge)
+            **Molecule**(const std::vector<GQCG::Atom>& atoms)
+            **Molecule**(const std::vector<GQCG::Atom>& atoms, int molecular_charge)
+        __ public methods __
+            + site_t **get_N** () const
+
+            + size_t **numberOfAtoms**() const
+            + size_t **calculateTotalNucleicCharge**() const
+            + double **calculateInternuclearDistance**(size_t index1, size_t index2) const
+            + double **calculateInternuclearRepulsionEnergy**() const
+    }
+
     abstract class IntegralCalculator
     class Basis {
         // Change the Name to integral evaluation?
@@ -30,7 +55,7 @@ namespace gqcg {
 
     gqcg.Basis ..> gqcg.IntegralCalculator
     gqcg.Basis ..> gqcg.Molecule
-    gqcg.Molecule o--> gqcg.Atom
+
     gqcg.QCM ..> gqcg.Basis
 
 
