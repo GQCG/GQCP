@@ -48,20 +48,28 @@ bool Atom::operator==(const GQCG::Atom& other) const {
  */
 bool Atom::operator<(const GQCG::Atom& other) const {
 
-
     if (this->atomic_number < other.atomic_number) {
         return true;
-    }
+    } else if (this->atomic_number > other.atomic_number) {
+        return false;
+    } else {  // the atomic numbers are equal
 
-    if (std::abs(this->x - other.x) < Atom::tolerance_for_comparison) {
-        return true;
-    }
+        if (std::abs(this->x - other.x) > Atom::tolerance_for_comparison) {  // the difference is meaningful
+            return (this->x < other.x);
+        } else {  // the x-coordinates are considered equal
 
-    if (std::abs(this->y - other.y) < Atom::tolerance_for_comparison) {
-        return true;
-    }
+            if (std::abs(this->y - other.y) > Atom::tolerance_for_comparison) {  // the difference is meaningful
+                return (this->y < other.y);
+            } else {  // the y-coordinates are considered equal
 
-    return (std::abs(this->z - other.z) < Atom::tolerance_for_comparison);  // small simplification of logic expression at the end
+                if (std::abs(this->z - other.z) > Atom::tolerance_for_comparison) {  // the difference is meaningful
+                    return (this->z < other.z);
+                } else {  // the z-coordinates are considered equal
+                    return false;
+                }
+            }  // else y
+        }  // else x
+    }  // else atomic_number
 }
 
 

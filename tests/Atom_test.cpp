@@ -44,6 +44,10 @@ BOOST_AUTO_TEST_CASE ( Atom_operator_smaller_than ) {
     BOOST_CHECK(atom1 < atom2);
     BOOST_CHECK(atom2 < atom3);
     BOOST_CHECK(atom3 < atom4);
+
+    BOOST_CHECK(!(atom2 < atom1));
+    BOOST_CHECK(!(atom3 < atom2));
+    BOOST_CHECK(!(atom4 < atom3));
 }
 
 
