@@ -61,6 +61,7 @@ std::ostream& operator<<(std::ostream& os, const GQCG::Atom& atom) {
 /*
  *  PUBLIC METHODS
  */
+
 /**
  *  @return if this is equal to @param other, within the given @param tolerance for the coordinates
  */
@@ -103,5 +104,17 @@ bool Atom::isSmallerThan(const GQCG::Atom& other, double tolerance) const {
         }  // else x
     }  // else atomic_number
 }
+
+
+/**
+ * @return the distance between this and @param other
+ */
+double Atom::calculateDistance(const GQCG::Atom& other) const {
+
+    return std::sqrt(std::pow(this->x - other.x, 2)
+                     + std::pow(this->y - other.y, 2)
+                     + std::pow(this->z - other.z, 2));
+}
+
 
 }  // namespace GQCG

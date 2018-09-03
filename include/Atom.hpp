@@ -61,6 +61,11 @@ public:
      *  @member atomic_number takes precedence over @member x, over @member y, over @member z
      */
     bool isSmallerThan(const GQCG::Atom& other, double tolerance=Atom::tolerance_for_comparison) const;
+
+    /**
+     * @return the distance between this and @param other
+     */
+    double calculateDistance(const GQCG::Atom& other) const;
 };
 
 

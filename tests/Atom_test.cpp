@@ -89,3 +89,26 @@ BOOST_AUTO_TEST_CASE ( Atom_operator_ostream ) {
     std::cout << atom1 << std::endl;
     std::cout << atom2 << std::endl;
 }
+
+
+BOOST_AUTO_TEST_CASE ( calculateDistance ) {
+
+    // Create some atoms
+    GQCG::Atom atom1 {1, 0, 3, 0};
+    GQCG::Atom atom2 {1, 0, 0, 4};
+    GQCG::Atom atom3 {1, 3, 0, 0};
+    GQCG::Atom atom4 {1, 0, 0, 5};
+
+
+    // Check their distances
+    BOOST_CHECK(std::abs(atom1.calculateDistance(atom2) - 5) < 1.0e-12);
+    BOOST_CHECK(std::abs(atom1.calculateDistance(atom3) - std::sqrt(18.0)) < 1.0e-12);
+    BOOST_CHECK(std::abs(atom1.calculateDistance(atom2) - atom2.calculateDistance(atom3)) < 1.0e-12);
+    BOOST_CHECK(std::abs(atom2.calculateDistance(atom3) - 5) < 1.0e-12);
+    BOOST_CHECK(std::abs(atom2.calculateDistance(atom4) - 1) < 1.0e-12);
+
+    // Check that the distances are symmetric
+    BOOST_CHECK(std::abs(atom1.calculateDistance(atom2) - atom2.calculateDistance(atom1)) < 1.0e-12);
+    BOOST_CHECK(std::abs(atom1.calculateDistance(atom3) - atom3.calculateDistance(atom1)) < 1.0e-12);
+    BOOST_CHECK(std::abs(atom2.calculateDistance(atom3) - atom3.calculateDistance(atom2)) < 1.0e-12);
+}
