@@ -62,8 +62,9 @@ set(PROJECT_TEST_SOURCE_FILES
         ${PROJECT_TESTS_FOLDER}/elements_test.cpp
         ${PROJECT_TESTS_FOLDER}/JacobiRotationParameters_test.cpp
         ${PROJECT_TESTS_FOLDER}/LibintCommunicator_test.cpp
+        ${PROJECT_TESTS_FOLDER}/miscellaneous_test.cpp
         ${PROJECT_TESTS_FOLDER}/Molecule_test.cpp
-        ${PROJECT_TESTS_FOLDER}/miscellaneous_test.cpp)
+        ${PROJECT_TESTS_FOLDER}/units_test.cpp)
 
 
 # Give the user the option to specify an installation prefix. If not given as -DINSTALLATION_PREFIX, defaults to /usr/local.
