@@ -1,9 +1,13 @@
 # gqcg 0.0.1
+[![Build Status](https://travis-ci.org/GQCG/gqcg.svg?branch=master)](https://travis-ci.org/GQCG/gqcg)
 
 A C++ library that provides the glue code for our other libraries/modules.
 
 
 ## Dependencies
+
+[![Boost Dependency](https://img.shields.io/badge/Boost-1.65.1+-000000.svg)](http://www.boost.org)
+[![Eigen3 Dependency](https://img.shields.io/badge/Eigen-3.3.4+-000000.svg)](http://eigen.tuxfamily.org/index.php?title=Main_Page)
 
 
 ## Installation
