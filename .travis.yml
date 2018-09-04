@@ -35,7 +35,7 @@ before_install:
 # Install general dependencies
 install:
   # Install Boost before Eigen
-  - conda install -c conda-forg boost-cpp
+  - conda install -c conda-forge boost-cpp
 
   # Install Eigen
   - conda install -c conda-forge eigen
