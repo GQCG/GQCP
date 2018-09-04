@@ -1,7 +1,9 @@
 #include "Molecule.hpp"
 
+#include <algorithm>
 #include <fstream>
 #include <sstream>
+#include <stdexcept>
 
 #include "elements.hpp"
 #include "units.hpp"
