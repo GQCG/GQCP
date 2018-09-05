@@ -4,26 +4,41 @@ namespace gqcg {
 
     class GQCG::Atom {
         __ public members __
-            + unsigned atomic_number
+            + size_t atomic_number
             + double x, y, z
+            + {static} constexpr double tolerance_for_comparison = 1.0e-08
+        == constructors ==
+            **Atom** (size_t atomic_number, double x, double y, double z)
+        __ operators __
+            + bool **operator==**(const GQCG::Atom& other) const
+            + bool **operator<(const GQCG::Atom& other) const
+            + friend std::ostream& **operator<<**(std::ostream& os, const GQCG::Atom& atom)
+        __ public methods __
+            + bool **isEqualTo**(const GQCG::Atom& other, double tolerance=Atom::tolerance_for_comparison) const
+            + bool **isSmallerThan**(const GQCG::Atom& other, double tolerance=Atom::tolerance_for_comparison) const
+            + double **calculateDistance**(const GQCG::Atom& other) const
     }
 
-    GQCG::Molecule o--> GQCG::Atom
+    GQCG::Molecule *--> "vector of ..." GQCG::Atom
     class GQCG::Molecule {
         __ private members __
             - const std::vector<GQCG::Atom> atoms
-            - size_t N
+            - const size_t N
         __ private methods __
-            - std::vector<GQCG::Atom> parseXYZFile(std::string filename) const
+            - {static} std::vector<GQCG::Atom> parseXYZFile(const std::string& xyz_filename)
         == constructors ==
-            **Molecule**(std::string xyz_filename)
-            **Molecule**(std::string xyz_filename, int molecular_charge)
-            **Molecule**(const std::vector<GQCG::Atom>& atoms)
+            explicit **Molecule**(const std::string& xyz_filename)
+            **Molecule**(const std::string& xyz_filename, int molecular_charge)
+            explicit **Molecule**(const std::vector<GQCG::Atom>& atoms)
             **Molecule**(const std::vector<GQCG::Atom>& atoms, int molecular_charge)
+        __ operators __
+            + bool **operator==**(const GQCG::Molecule& other) const
+            + friend std::ostream& **operator<<**(std::ostream& os, const GQCG::Molecule& molecule)
         __ public methods __
-            + site_t **get_N** () const
-
+            + size_t **get_N**() const
             + size_t **numberOfAtoms**() const
+
+            + bool **isEqualTo**(const GQCG::Molecule& other, double tolerance=GQCG::Atom::tolerance_for_comparison) const
             + size_t **calculateTotalNucleicCharge**() const
             + double **calculateInternuclearDistance**(size_t index1, size_t index2) const
             + double **calculateInternuclearRepulsionEnergy**() const
