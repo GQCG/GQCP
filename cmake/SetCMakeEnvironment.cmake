@@ -25,6 +25,7 @@ set(PROJECT_SOURCE_FOLDER ${CMAKE_SOURCE_DIR}/src)
 set(PROJECT_SOURCE_FILES
         ${PROJECT_SOURCE_FOLDER}/Atom.cpp
         ${PROJECT_SOURCE_FOLDER}/elements.cpp
+        ${PROJECT_SOURCE_FOLDER}/JacobiRotationParameters.cpp
         ${PROJECT_SOURCE_FOLDER}/Molecule.cpp)
 
 # Find the header folder
@@ -33,7 +34,9 @@ set(PROJECT_INCLUDE_FOLDER ${CMAKE_SOURCE_DIR}/include)
 # Find the header files
 set(PROJECT_INCLUDE_FILES
         ${PROJECT_INCLUDE_FOLDER}/Atom.hpp
+        ${PROJECT_INCLUDE_FOLDER}/BaseElectronIntegrals.hpp
         ${PROJECT_INCLUDE_FOLDER}/elements.hpp
+        ${PROJECT_INCLUDE_FOLDER}/JacobiRotationParameters.hpp
         ${PROJECT_INCLUDE_FOLDER}/Molecule.hpp
         ${PROJECT_INCLUDE_FOLDER}/units.hpp)
 
@@ -44,6 +47,7 @@ set(PROJECT_TESTS_FOLDER ${CMAKE_SOURCE_DIR}/tests)
 set(PROJECT_TEST_SOURCE_FILES
         ${PROJECT_TESTS_FOLDER}/Atom_test.cpp
         ${PROJECT_TESTS_FOLDER}/elements_test.cpp
+        ${PROJECT_TESTS_FOLDER}/JacobiRotationParameters_test.cpp
         ${PROJECT_TESTS_FOLDER}/Molecule_test.cpp)
 
 

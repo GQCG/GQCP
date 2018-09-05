@@ -61,8 +61,8 @@ namespace gqcg {
     abstract class GQCG::BaseElectronIntegrals {
         __ public methods __
             + void **transform**(const Eigen::MatriXd& T)
-            + void **rotate**(const Eigen::MatrixXd& U)
-            + void **rotateJacobi**(const GQCG::JacobiRotationParameters& jacobi_parameters)
+            + void **rotate**(const Eigen::MatrixXd& U) = 0
+            + void **rotate**(const GQCG::JacobiRotationParameters& jacobi_parameters) = 0
     }
 
     GQCG::OneElectronIntegrals --|> GQCG::BaseElectronIntegrals
