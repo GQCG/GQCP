@@ -1,0 +1,7 @@
+package:
+  name: gqcg
+  version: 0.0.1
+
+
+source:
+  path: ../../
