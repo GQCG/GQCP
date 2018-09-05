@@ -14,128 +14,36 @@ notifications:
     email: false
 
 
-# Before installing, we need a never version of CMake.
+# Install Miniconda and CMake
 before_install:
-  #   Travis CI's CMake version is only 3.2.2.
-  #   This is a workaround that upgrades to a newer version of CMake.
-  #   Credits to (https://github.com/travis-ci/travis-ci/issues/7437)
-  - mkdir ${HOME}/usr
-  - export PATH="$HOME/usr/bin:$PATH"
-  - wget https://cmake.org/files/v3.9/cmake-3.9.1-Linux-x86_64.sh
-  - chmod +x cmake-3.9.1-Linux-x86_64.sh
-  - ./cmake-3.9.1-Linux-x86_64.sh --prefix=$HOME/usr --exclude-subdir --skip-license
+  # Install Miniconda
+  - if [[ "${TRAVIS_PYTHON_VERSION}" == "2.7" ]]; then
+      wget wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O miniconda.sh;
+    else
+      wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
+    fi
+  - bash miniconda.sh -b -p ${HOME}/miniconda
+  - export PATH="${HOME}/miniconda/bin:${PATH}"
+  - hash -r
+  - conda config --set always_yes yes --set changeps1 no
+  - conda update -q conda
+
+  # Install a recent version of CMake
+  - conda install -c conda-forge cmake
 
 
-# Install dependencies
+# Install general dependencies
 install:
+  # Install Boost before Eigen
+  - conda install -c conda-forge boost-cpp
 
-  # We need a recent version of Eigen3, but this is not available through APT.
-  - mkdir /tmp/eigen && cd /tmp/eigen
-  - curl -OL "http://bitbucket.org/eigen/eigen/get/3.3.4.tar.bz2"
-  - tar --bzip2 -xf 3.3.4.tar.bz2
-  - mkdir /tmp/build-eigen && cd /tmp/build-eigen
-  - cmake . /tmp/eigen/eigen-eigen-5a0156e40feb
-  - make && sudo make install
-
-  # We need relatively recent boost libraries, and APT doesn't provide these.
-  # since compiling Boost takes around 15 minutes on Travis, it is a good idea to cache it (see also below)
-  - |
-    if [ ! -d /tmp/boost/boost_1_65_1 ]; then
-       mkdir -p /tmp/boost && cd /tmp/boost
-       curl -OL "https://dl.bintray.com/boostorg/release/1.65.1/source/boost_1_65_1.tar.bz2"
-       sudo tar --bzip2 -xf boost_1_65_1.tar.bz2
-       cd boost_1_65_1
-       sudo ./bootstrap.sh --prefix=/usr/local/boost_1_65_1
-       sudo ./b2 install
-    else
-       cd /tmp/boost/boost_1_65_1
-       sudo ./b2 install
-    fi
-  - export BOOST_ROOT=/usr/local/boost_1_65_1
-
-
-  # We can't install libint2 (2.2.0+) through APT.
-  # Since compiling libint2 takes around 15 minutes on Travis, it is a good idea to cache it (see also below)
-  - |
-    if [ ! -d /tmp/libint/libint-2.3.1 ]; then
-       mkdir -p /tmp/libint && cd /tmp/libint
-       curl -OL "https://github.com/evaleev/libint/archive/v2.3.1.tar.gz"
-       tar -xvzf v2.3.1.tar.gz
-       cd libint-2.3.1
-       ./autogen.sh
-       mkdir build && cd build
-       ../configure CXXFLAGS=-I${BOOST_ROOT}/include
-       make export
-       tar -xvzf libint-2.3.1.tgz
-       cd libint-2.3.1
-       ./configure CXXFLAGS=-I${BOOST_ROOT}/include
-       make
-       sudo make install
-    else
-      cd /tmp/libint/libint-2.3.1/build/libint-2.3.1
-      sudo make install
-    fi
-
-  # Finally, since libint often complains about reading the basis sets, specify a LIBINT_DATA_PATH to help libint find the files.
-  - export LIBINT_DATA_PATH=/usr/local/libint/2.3.1/share/libint/2.3.1/basis
-
-
-  # Install the cpputil library
-  - mkdir /tmp/cpputil && cd /tmp/cpputil
-  - git clone https://github.com/GQCG/cpputil.git --branch master --single-branch
-  - cd cpputil
-  - mkdir build && cd build
-  - cmake .. && make && make test && sudo make install
-
-
-  # Install the libint wrapper
-  - mkdir /tmp/libwint && cd /tmp/libwint
-  - git clone https://github.com/GQCG/libwint.git --branch master --single-branch
-  - cd libwint
-  - mkdir build && cd build
-  - cmake .. && make && make test && sudo make install
-
-
-  # Install the hf library
-  - mkdir /tmp/hf && cd /tmp/hf
-  - git clone https://github.com/GQCG/hf.git --branch master --single-branch
-  - cd hf
-  - mkdir build && cd build
-  - cmake .. && make && make test && sudo make install
-
-
-  # Install bmqc
-  - mkdir /tmp/bmqc && cd /tmp/bmqc
-  - git clone https://github.com/GQCG/bmqc.git --branch master --single-branch
-  - cd bmqc
-  - mkdir build && cd build
-  - cmake .. && make && make test && sudo make install
-
-
-  # Install Spectra
-  - cd /usr/local/
-  - sudo git clone https://github.com/yixuan/spectra.git
-
-
-  # Install the numopt library
-  - mkdir /tmp/numopt && cd /tmp/numopt
-  - git clone https://github.com/GQCG/numopt.git --branch master --single-branch
-  - cd numopt
-  - mkdir build && cd build
-  - cmake .. && make && make test && sudo make install
-
+  # Install Eigen
+  - conda install -c conda-forge eigen
 
 
 # Run the build script
 script:
-  - cd /home/travis/build/GQCG/ci
+  - cd /home/travis/build/GQCG/gqcg
   - mkdir build && cd build
   - cmake ..
-  - make
-  - travis_wait 120 make test
-  - sudo make install
-
-cache:
-  directories:
-    - /tmp/libint  # add the libint compilation to the cache
-    - /tmp/boost  # add the Boost compilation to the cache
+  - make && make test && sudo make install
