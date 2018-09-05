@@ -44,6 +44,44 @@ namespace gqcg {
             + double **calculateInternuclearRepulsionEnergy**() const
     }
 
+
+    class GQCG::JacobiRotationParameters {
+        __ private members __
+            - size_t p
+            - size_t q
+            - double angle
+        == constructors ==
+            **JacobiRotationParameters**(size_t p, size_t q, double angle)
+        __ getters __
+            + size_t get_p() const
+            + size_t get_q() const
+            + size_t get_angle() const
+    }
+
+    abstract class GQCG::BaseElectronIntegrals {
+        __ public methods __
+            + void **transform**(const Eigen::MatriXd& T)
+            + void **rotate**(const Eigen::MatrixXd& U)
+            + void **rotateJacobi**(const GQCG::JacobiRotationParameters& jacobi_parameters)
+    }
+
+    GQCG::OneElectronIntegrals --|> GQCG::BaseElectronIntegrals
+    class GQCG::OneElectronIntegrals {
+        __ private members __
+            - Eigen::MatrixXd matrix
+        __ public methods __
+            - Eigen::MatrixXd **get_matrix_representation**() const
+    }
+
+    GQCG::TwoElectronIntegrals --|> GQCG::BaseElectronIntegrals
+    class GQCG::TwoElectronIntegrals {
+        __ private members __
+            - Eigen::Tensor<double, 4> tensor
+        __ public methods __
+            - Eigen::Tensor<double, 4> **get_matrix_representation**() const
+    }
+
+
     abstract class IntegralCalculator
     class Basis {
         // Change the Name to integral evaluation?
