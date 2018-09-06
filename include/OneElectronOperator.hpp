@@ -13,7 +13,7 @@ namespace GQCG {
 
 class OneElectronOperator : public GQCG::BaseOperator {
 private:
-    Eigen::MatrixXd matrix;
+    Eigen::MatrixXd matrix;  // the matrix representation of the one-electron operator
 
 
 public:
@@ -21,7 +21,7 @@ public:
     /**
      *  Constructor based on a given @param matrix
      */
-    explicit OneElectronOperator (const Eigen::MatrixXd& matrix);
+    explicit OneElectronOperator(const Eigen::MatrixXd& matrix);
 
 
     // GETTERS
