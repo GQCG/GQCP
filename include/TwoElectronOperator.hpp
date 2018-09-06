@@ -1,0 +1,10 @@
+#ifndef GQCG_TWOELECTRONOPERATOR_HPP
+#define GQCG_TWOELECTRONOPERATOR_HPP
+
+
+class TwoElectronOperator {
+
+};
+
+
+#endif  // GQCG_TWOELECTRONOPERATOR_HPP

@@ -1,5 +1,5 @@
-#ifndef GQCG_BASEELECTRONINTEGRALS_HPP
-#define GQCG_BASEELECTRONINTEGRALS_HPP
+#ifndef GQCG_BASEOPERATOR_HPP
+#define GQCG_BASEOPERATOR_HPP
 
 
 #include <Eigen/Dense>
@@ -11,7 +11,7 @@
 namespace GQCG {
 
 
-class BaseElectronIntegrals {
+class BaseOperator {
 public:
     /**
      *  Transform the integrals using the transformation matrix @param T
@@ -47,4 +47,4 @@ public:
 }  // namespace GQCG
 
 
-#endif  // GQCG_BASEELECTRONINTEGRALS_HPP
+#endif  // GQCG_BASEOPERATOR_HPP
