@@ -27,3 +27,36 @@ BOOST_AUTO_TEST_CASE ( OneElectronOperator_getters ) {
 
     O.get_matrix_representation();
 }
+
+
+BOOST_AUTO_TEST_CASE ( OneElectronOperator_transform_trivial ) {
+
+    // Let's test a trivial transformation: i.e. with T being a unit matrix
+    Eigen::MatrixXd h = Eigen::MatrixXd::Random(3, 3);
+    GQCG::OneElectronOperator H (h);
+
+    Eigen::MatrixXd T = Eigen::MatrixXd::Identity(3, 3);
+    H.transform(T);
+
+    BOOST_CHECK(H.get_matrix_representation().isApprox(h, 1.0e-12));
+}
+
+
+BOOST_AUTO_TEST_CASE ( OneElectronOperator_transform_and_inverse ) {
+
+    // Let's test if, if we transform h with T and then with T_inverse, we get effectively do nothing
+    Eigen::MatrixXd h = Eigen::MatrixXd::Random(3, 3);
+    GQCG::OneElectronOperator H (h);
+
+    Eigen::MatrixXd T (3, 3);
+    T << 1,  0,  0,
+         0, -2,  0,
+         0,  0,  3;
+    Eigen::MatrixXd T_inverse = T.inverse();
+
+
+    H.transform(T);
+    H.transform(T_inverse);
+
+    BOOST_CHECK(H.get_matrix_representation().isApprox(h, 1.0e-12));
+}

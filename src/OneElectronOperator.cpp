@@ -35,7 +35,7 @@ OneElectronOperator::OneElectronOperator(const Eigen::MatrixXd& matrix) :
  *  in which the basis functions are collected as elements of a row vector b
  */
 void OneElectronOperator::transform(const Eigen::MatrixXd& T) {
-
+    this->matrix = T.adjoint() * this->matrix * T;
 }
 
 
