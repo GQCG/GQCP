@@ -28,7 +28,7 @@ OneElectronOperator::OneElectronOperator(const Eigen::MatrixXd& matrix) :
  */
 
 /**
- *  Transform the one-electron integrals using the transformation matrix @param T
+ *  Transform the matrix representation of a one-electron operator using the transformation matrix @param T
  *
  *  Note that the transformation matrix @param T is used as
  *      b' = b T ,
@@ -40,7 +40,7 @@ void OneElectronOperator::transform(const Eigen::MatrixXd& T) {
 
 
 /**
- *  Rotate the one-electron integrals using a unitary rotation matrix @param U
+ *  Rotate the matrix representation of a one-electron operator using a unitary rotation matrix @param U
  *
  *  Note that the rotation matrix @param U is used as
  *      b' = b U ,
@@ -52,7 +52,7 @@ void OneElectronOperator::rotate(const Eigen::MatrixXd& U) {
 
 
 /**
- *  Rotate the one-electron integrals using the unitary Jacobi rotation matrix U constructed from the @param jacobi_rotation_parameters
+ *  Rotate the matrix representation of a one-electron operator using the unitary Jacobi rotation matrix U constructed from the @param jacobi_rotation_parameters
  *
  *  Note that
  *      - the rotation matrix @param U is used as

@@ -30,7 +30,7 @@ public:
 
     // PUBLIC METHODS
     /**
-     *  Transform the two-electron integrals using the transformation matrix @param T
+     *  Transform the matrix representation of a two-electron operator using the transformation matrix @param T
      *
      *  Note that the transformation matrix @param T is used as
      *      b' = b T ,
@@ -39,7 +39,7 @@ public:
     void transform(const Eigen::MatrixXd& T) override;
 
     /**
-     *  Rotate the two-electron integrals using a unitary rotation matrix @param U
+     *  Rotate the matrix representation of a two-electron operator using a unitary rotation matrix @param U
      *
      *  Note that the rotation matrix @param U is used as
      *      b' = b U ,
@@ -48,7 +48,7 @@ public:
     void rotate(const Eigen::MatrixXd& U) override;
 
     /**
-     *  Rotate the two-electron integrals using the unitary Jacobi rotation matrix U constructed from the @param jacobi_rotation_parameters
+     *  Rotate the matrix representation of a two-electron operator using the unitary Jacobi rotation matrix U constructed from the @param jacobi_rotation_parameters
      *
      *  Note that
      *      - the rotation matrix @param U is used as

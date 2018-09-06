@@ -14,7 +14,7 @@ namespace GQCG {
 class BaseOperator {
 public:
     /**
-     *  Transform the integrals using the transformation matrix @param T
+     *  Transform the matrix representation of an operator using the transformation matrix @param T
      *
      *  Note that the transformation matrix @param T is used as
      *      b' = b T ,
@@ -23,7 +23,7 @@ public:
     virtual void transform(const Eigen::MatrixXd& T) = 0;
 
     /**
-     *  Rotate the integrals using a unitary rotation matrix @param U
+     *  Rotate the matrix representation of an operator using a unitary rotation matrix @param U
      *
      *  Note that the rotation matrix @param U is used as
      *      b' = b U ,
@@ -32,7 +32,7 @@ public:
     virtual void rotate(const Eigen::MatrixXd& U) = 0;
 
     /**
-     *  Rotate the integrals using the unitary Jacobi rotation matrix U constructed from the @param jacobi_rotation_parameters
+     *  Rotate the matrix representation of an operator using the unitary Jacobi rotation matrix U constructed from the @param jacobi_rotation_parameters
      *
      *  Note that
      *      - the rotation matrix @param U is used as
