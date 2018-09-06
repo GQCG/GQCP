@@ -22,7 +22,6 @@ public:
      */
     virtual void transform(const Eigen::MatrixXd& T) = 0;
 
-
     /**
      *  Rotate the integrals using a unitary rotation matrix @param U
      *
@@ -31,7 +30,6 @@ public:
      *  in which the basis functions are collected as elements of a row vector b.
      */
     virtual void rotate(const Eigen::MatrixXd& U) = 0;
-
 
     /**
      *  Rotate the integrals using the unitary Jacobi rotation matrix U constructed from the @param jacobi_rotation_parameters

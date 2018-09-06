@@ -26,7 +26,7 @@ include(${CMAKE_SOURCE_DIR}/cmake/SetCMakeEnvironment.cmake)
 
 
 
-message(STATUS "Building ${LIBRARY_NAME} for ${CMAKE_BUILD_TYPE}")
+message(STATUS "Building ${LIBRARY_NAME} in ${CMAKE_BUILD_TYPE} mode")
 
 
 
