@@ -40,6 +40,9 @@ install:
   # Install Eigen
   - conda install -c conda-forge eigen
 
+  # Install cpputil
+  - conda install -c gqcg cpputil
+
 
 # Run the build script
 script:
