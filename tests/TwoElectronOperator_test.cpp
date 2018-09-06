@@ -26,3 +26,17 @@ BOOST_AUTO_TEST_CASE ( TwoElectronOperator_getters ) {
 
     O.get_matrix_representation();
 }
+
+
+BOOST_AUTO_TEST_CASE ( TwoElectronOperator_transform_trivial ) {
+
+    // Let's test a trivial transformation: i.e. with T being a unit matrix
+    Eigen::Tensor<double, 4> g (3, 3, 3, 3);
+    g.setRandom();
+    GQCG::TwoElectronOperator G (g);
+
+    Eigen::MatrixXd T = Eigen::MatrixXd::Identity(3, 3);
+    G.transform(T);
+
+    BOOST_CHECK(cpputil::linalg::areEqual(g, g_transformed, 1.0e-12));
+}
