@@ -3,6 +3,8 @@
 
 #include "TwoElectronOperator.hpp"
 
+#include <cpputil.hpp>
+
 #include <boost/test/unit_test.hpp>
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
 
@@ -38,5 +40,5 @@ BOOST_AUTO_TEST_CASE ( TwoElectronOperator_transform_trivial ) {
     Eigen::MatrixXd T = Eigen::MatrixXd::Identity(3, 3);
     G.transform(T);
 
-    BOOST_CHECK(cpputil::linalg::areEqual(g, g_transformed, 1.0e-12));
+    BOOST_CHECK(cpputil::linalg::areEqual(g, G.get_matrix_representation(), 1.0e-12));
 }
