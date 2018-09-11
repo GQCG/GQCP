@@ -15,14 +15,3 @@ BOOST_AUTO_TEST_CASE ( JacobiRotationParameters_constructor ) {
     // Check if we can't construct when p > q
     BOOST_CHECK_THROW(GQCG::JacobiRotationParameters(3, 1, 0.5), std::invalid_argument);
 }
-
-
-BOOST_AUTO_TEST_CASE ( JacobiRotationParameters_getters ) {
-
-    GQCG::JacobiRotationParameters jacobi_parameters (1, 3, 0.5);
-
-    // Check if the getters work
-    jacobi_parameters.get_p();
-    jacobi_parameters.get_q();
-    jacobi_parameters.get_angle();
-}
