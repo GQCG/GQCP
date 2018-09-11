@@ -4,6 +4,8 @@
 
 #include <stdlib.h>
 
+#include <Eigen/Dense>
+
 
 namespace GQCG {
 
@@ -13,12 +15,12 @@ namespace GQCG {
  *
  *  Note that:
  *      - @member p and @member q are indices that start from 0
- *      - @member p must always be smaller than @member q
+ *      - @member p must always be larger than @member q
  *      - @member angle is expressed in radians
  */
 class JacobiRotationParameters {
 private:
-    const size_t p;  // p < q
+    const size_t p;  // p > q
     const size_t q;
     const double angle;
 
@@ -28,6 +30,9 @@ public:
      *  Constructor based on a given @param p, @param q and a @param angle expressed in radians
      */
     JacobiRotationParameters(size_t p, size_t q, double angle);
+
+    // FRIEND FUNCTIONS
+    friend Eigen::MatrixXd jacobiRotationMatrix(const GQCG::JacobiRotationParameters& jacobi_rotation_parameters, size_t M);
 };
 
 
