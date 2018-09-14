@@ -29,7 +29,54 @@ namespace gqcg {
             + double **calculateInternuclearRepulsionEnergy**() const
     }
 
-    abstract class IntegralCalculator
+
+
+    class AOBasis {
+        __ private members __
+            - libint2::BasisSet basis_functions
+            - GQCG::Overlap S
+        == constructors ==
+            **AOBasis**(const GQCG::Molecule& molecule, std::string basis_set)
+    }
+
+
+    enum OneElectronGOBasisOperator {
+        Overlap
+        Kinetic
+        Nuclear
+    }
+
+    enum TwoElectronGOBasisOperator {
+        CoulombRepulsion
+    }
+
+
+    note top of OneElectronIntegralCalculator
+        Instances can be made inside the
+        constructor of OneElectronOperator
+        to calculate AO representations
+    end note
+    OneElectronIntegralCalculator o--> OneElectronGOBasisOperator
+    class OneElectronIntegralCalculator {
+        __ private members __
+            - OneElectronGOBasisOperator operator_type
+        == constructors ==
+            **OneElectronIntegralCalculator**(GQCG::OneElectronGOBasisOperator operator_type)
+        __ public methods __
+            + Eigen::Matrix calculate() const
+    }
+
+    TwoElectronIntegralCalculator o--> TwoElectronGOBasisOperator
+    class TwoElectronIntegralCalculator {
+        __ private members __
+            - TwoElectronGOBasisOperator operator_type
+        == constructors ==
+           **TwoElectronIntegralCalculator**(GQCG::TwoElectronGOBasisOperator operator_type)
+        __ public methods __
+            + Eigen::Tensor<double, 4> calculate() const
+    }
+
+
     class Basis {
         // Change the Name to integral evaluation?
         // hamiltonian one particle evaluation?
@@ -52,8 +99,6 @@ namespace gqcg {
     }
 
     abstract AllNumoptSolverInterface
-
-    gqcg.Basis ..> gqcg.IntegralCalculator
     gqcg.Basis ..> gqcg.Molecule
 
     gqcg.QCM ..> gqcg.Basis
@@ -61,12 +106,6 @@ namespace gqcg {
 
 
 }
-
-namespace libwint {
-    class Libwint
-}
-
-libwint.Libwint --|> gqcg.IntegralCalculator
 
 namespace oo {
     abstract class OO {
