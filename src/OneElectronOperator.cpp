@@ -48,6 +48,12 @@ void OneElectronOperator::transform(const Eigen::MatrixXd& T) {
  */
 void OneElectronOperator::rotate(const Eigen::MatrixXd& U) {
 
+    // Check if the given matrix is actually unitary
+    if (!U.isUnitary(1.0e-12)) {
+        throw std::invalid_argument("The given matrix is not unitary.");
+    }
+
+    this->transform(U);
 }
 
 
@@ -62,6 +68,19 @@ void OneElectronOperator::rotate(const Eigen::MatrixXd& U) {
  */
 void OneElectronOperator::rotate(const GQCG::JacobiRotationParameters& jacobi_rotation_parameters) {
 
+    auto p = jacobi_rotation_parameters.p;
+    auto q = jacobi_rotation_parameters.q;
+    auto angle = jacobi_rotation_parameters.angle;
+
+    double c = std::cos(angle);
+    double s = std::sin(angle);
+
+
+    // Use Eigen's Jacobi module to apply the Jacobi rotations directly (cfr. T.adjoint() * h * T)
+    Eigen::JacobiRotation<double> jacobi (c, s);
+
+    this->matrix.applyOnTheLeft(p, q, jacobi.adjoint());
+    this->matrix.applyOnTheRight(p, q, jacobi);
 }
 
 

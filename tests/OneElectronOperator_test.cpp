@@ -3,6 +3,9 @@
 
 #include "OneElectronOperator.hpp"
 
+#include "JacobiRotationParameters.hpp"
+#include "miscellaneous.hpp"
+
 #include <boost/test/unit_test.hpp>
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
 
@@ -59,4 +62,45 @@ BOOST_AUTO_TEST_CASE ( OneElectronOperator_transform_and_inverse ) {
     H.transform(T_inverse);
 
     BOOST_CHECK(H.get_matrix_representation().isApprox(h, 1.0e-12));
+}
+
+
+BOOST_AUTO_TEST_CASE ( OneElectronOperator_rotate_throws ) {
+
+    // Create a random OneElectronOperator
+    size_t dim = 3;
+    GQCG::OneElectronOperator M (Eigen::MatrixXd::Random(dim, dim));
+
+
+    // Check if a non-unitary matrix as transformation matrix causes a throw
+    Eigen::MatrixXd U (Eigen::MatrixXd::Random(dim, dim));
+    BOOST_CHECK_THROW(M.rotate(U), std::invalid_argument);
+
+
+    // Check if a unitary matrix as transformation matrix is accepted
+    M.rotate(Eigen::MatrixXd::Identity(dim, dim));
+}
+
+
+BOOST_AUTO_TEST_CASE ( rotate_JacobiRotationParameters ) {
+
+    // Create a random OneElectronOperator
+    size_t dim = 5;
+    Eigen::MatrixXd m = Eigen::MatrixXd::Random(dim, dim);
+    GQCG::OneElectronOperator M1 (m);
+    GQCG::OneElectronOperator M2 (m);
+
+
+    // Check that using a Jacobi transformation (rotation) matrix as U is equal to the custom transformation (rotation)
+    // with custom JacobiRotationParameters
+    GQCG::JacobiRotationParameters jacobi_rotation_parameters (4, 2, 56.81);
+
+    auto U = GQCG::jacobiRotationMatrix(jacobi_rotation_parameters, dim);
+
+
+    M1.rotate(jacobi_rotation_parameters);
+    M2.rotate(U);
+
+
+    BOOST_CHECK(M1.get_matrix_representation().isApprox(M2.get_matrix_representation(), 1.0e-12));
 }

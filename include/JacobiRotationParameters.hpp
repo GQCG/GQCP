@@ -31,6 +31,10 @@ public:
      */
     JacobiRotationParameters(size_t p, size_t q, double angle);
 
+
+    // FRIEND CLASSES
+    friend class OneElectronOperator;
+
     // FRIEND FUNCTIONS
     friend Eigen::MatrixXd jacobiRotationMatrix(const GQCG::JacobiRotationParameters& jacobi_rotation_parameters, size_t M);
 };
