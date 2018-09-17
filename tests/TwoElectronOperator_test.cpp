@@ -5,6 +5,8 @@
 
 #include <cpputil.hpp>
 
+#include "miscellaneous.hpp"
+
 #include <boost/test/unit_test.hpp>
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
 
@@ -68,5 +70,49 @@ BOOST_AUTO_TEST_CASE ( TwoElectronOperator_transform_olsens ) {
     GQCG::TwoElectronOperator G (g);
     G.transform(T);
 
-//    BOOST_CHECK(cpputil::linalg::areEqual(G.get_matrix_representation(), g_transformed_ref, 1.0e-12));
+    BOOST_CHECK(cpputil::linalg::areEqual(G.get_matrix_representation(), g_transformed_ref, 1.0e-12));
+}
+
+
+BOOST_AUTO_TEST_CASE ( TwoElectronOperator_rotate_throws ) {
+
+    // Create a random TwoElectronOperator
+    size_t dim = 3;
+    Eigen::Tensor<double, 4> g (dim, dim, dim, dim);
+    g.setRandom();
+    GQCG::TwoElectronOperator G (g);
+
+
+    // Check if a non-unitary matrix as transformation matrix causes a throw
+    Eigen::MatrixXd U (Eigen::MatrixXd::Random(dim, dim));
+    BOOST_CHECK_THROW(G.rotate(U), std::invalid_argument);
+
+
+    // Check if a unitary matrix as transformation matrix is accepted
+    G.rotate(Eigen::MatrixXd::Identity(dim, dim));
+}
+
+
+BOOST_AUTO_TEST_CASE ( TwoElectronOperator_rotate_JacobiRotationParameters ) {
+
+    // Create a random TwoElectronOperator
+    size_t dim = 5;
+    Eigen::Tensor<double, 4> g (dim, dim, dim, dim);
+    g.setRandom();
+    GQCG::TwoElectronOperator G1 (g);
+    GQCG::TwoElectronOperator G2 (g);
+
+
+    // Check that using a Jacobi transformation (rotation) matrix as U is equal to the custom transformation (rotation)
+    // with custom JacobiRotationParameters
+    GQCG::JacobiRotationParameters jacobi_rotation_parameters (4, 2, 56.81);
+
+    auto U = GQCG::jacobiRotationMatrix(jacobi_rotation_parameters, dim);
+
+
+    G1.rotate(jacobi_rotation_parameters);
+    G2.rotate(U);
+
+
+    BOOST_CHECK(cpputil::linalg::areEqual(G1.get_matrix_representation(), G2.get_matrix_representation(), 1.0e-12));
 }

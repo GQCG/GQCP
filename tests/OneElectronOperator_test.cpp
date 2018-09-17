@@ -82,7 +82,7 @@ BOOST_AUTO_TEST_CASE ( OneElectronOperator_rotate_throws ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( rotate_JacobiRotationParameters ) {
+BOOST_AUTO_TEST_CASE ( OneElectronOperator_rotate_JacobiRotationParameters ) {
 
     // Create a random OneElectronOperator
     size_t dim = 5;

@@ -1,8 +1,9 @@
 #include "TwoElectronOperator.hpp"
 
-
-
 #include <iostream>
+
+#include "miscellaneous.hpp"
+
 
 namespace GQCG {
 
@@ -69,6 +70,7 @@ void TwoElectronOperator::transform(const Eigen::MatrixXd& T) {
     this->tensor = g_transformed;
 }
 
+
 /**
  *  Rotate the matrix representation of a two-electron operator using a unitary rotation matrix @param U
  *
@@ -78,7 +80,14 @@ void TwoElectronOperator::transform(const Eigen::MatrixXd& T) {
  */
 void TwoElectronOperator::rotate(const Eigen::MatrixXd& U) {
 
+    // Check if the given matrix is actually unitary
+    if (!U.isUnitary(1.0e-12)) {
+        throw std::invalid_argument("The given matrix is not unitary.");
+    }
+
+    this->transform(U);
 }
+
 
 /**
  *  Rotate the matrix representation of a two-electron operator using the unitary Jacobi rotation matrix U constructed from the @param jacobi_rotation_parameters
@@ -91,6 +100,15 @@ void TwoElectronOperator::rotate(const Eigen::MatrixXd& U) {
  */
 void TwoElectronOperator::rotate(const GQCG::JacobiRotationParameters& jacobi_rotation_parameters) {
 
+    /**
+     *  While waiting for an analogous Eigen::Tensor Jacobi module, we implement this rotation by constructing a
+     *  Jacobi rotation matrix and then doing a rotation with it
+     */
+
+    auto dim = static_cast<size_t>(this->tensor.dimension(0));  // .dimension() returns a long
+    Eigen::MatrixXd J = jacobiRotationMatrix(jacobi_rotation_parameters, dim);
+
+    this->rotate(J);
 }
 
 
