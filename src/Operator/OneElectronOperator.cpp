@@ -1,4 +1,4 @@
-#include "OneElectronOperator.hpp"
+#include "Operator/OneElectronOperator.hpp"
 
 #include <stdexcept>
 

@@ -9,7 +9,7 @@
 
 
 namespace GQCG {
-namespace Operator {
+
 
 
 class BaseOperator {
@@ -45,7 +45,7 @@ public:
 };
 
 
-}  // namespace Operator
+
 }  // namespace GQCG
 
 

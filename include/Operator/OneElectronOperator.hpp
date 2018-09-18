@@ -11,7 +11,7 @@ namespace GQCG {
 
 
 
-class OneElectronOperator : public GQCG::BaseOperator {
+class OneElectronOperator : public BaseOperator {
 private:
     Eigen::MatrixXd matrix;  // the matrix representation of the one-electron operator
 

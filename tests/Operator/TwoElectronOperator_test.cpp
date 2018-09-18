@@ -1,7 +1,7 @@
 #define BOOST_TEST_MODULE "TwoElectronOperator"
 
 
-#include "TwoElectronOperator.hpp"
+#include "Operator/TwoElectronOperator.hpp"
 
 #include <cpputil.hpp>
 

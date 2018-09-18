@@ -1,7 +1,7 @@
 #define BOOST_TEST_MODULE "OneElectronOperator"
 
 
-#include "OneElectronOperator.hpp"
+#include "Operator/OneElectronOperator.hpp"
 
 #include "JacobiRotationParameters.hpp"
 #include "miscellaneous.hpp"
