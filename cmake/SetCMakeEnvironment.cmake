@@ -29,6 +29,7 @@ set(PROJECT_SOURCE_FILES
         ${PROJECT_SOURCE_FOLDER}/AOBasis.cpp
         ${PROJECT_SOURCE_FOLDER}/elements.cpp
         ${PROJECT_SOURCE_FOLDER}/JacobiRotationParameters.cpp
+        ${PROJECT_SOURCE_FOLDER}/LibintCommunicator.cpp
         ${PROJECT_SOURCE_FOLDER}/miscellaneous.cpp
         ${PROJECT_SOURCE_FOLDER}/Molecule.cpp)
 
@@ -44,6 +45,7 @@ set(PROJECT_INCLUDE_FILES
         ${PROJECT_INCLUDE_FOLDER}/AOBasis.hpp
         ${PROJECT_INCLUDE_FOLDER}/elements.hpp
         ${PROJECT_INCLUDE_FOLDER}/JacobiRotationParameters.hpp
+        ${PROJECT_INCLUDE_FOLDER}/LibintCommunicator.hpp
         ${PROJECT_INCLUDE_FOLDER}/miscellaneous.hpp
         ${PROJECT_INCLUDE_FOLDER}/Molecule.hpp
         ${PROJECT_INCLUDE_FOLDER}/units.hpp)
@@ -59,6 +61,7 @@ set(PROJECT_TEST_SOURCE_FILES
         ${PROJECT_TESTS_FOLDER}/AOBasis_test.cpp
         ${PROJECT_TESTS_FOLDER}/elements_test.cpp
         ${PROJECT_TESTS_FOLDER}/JacobiRotationParameters_test.cpp
+        ${PROJECT_TESTS_FOLDER}/LibintCommunicator_test.cpp
         ${PROJECT_TESTS_FOLDER}/Molecule_test.cpp
         ${PROJECT_TESTS_FOLDER}/miscellaneous_test.cpp)
 

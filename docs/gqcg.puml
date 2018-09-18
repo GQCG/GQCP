@@ -128,7 +128,7 @@ namespace gqcg {
         == constructors ==
             **OneElectronIntegralCalculator**(GQCG::OneElectronGOBasisOperator operator_type)
         __ public methods __
-            + Eigen::Matrix calculate() const
+            + Eigen::Matrix **calculate**(const AOBasis& ao_basis) const
     }
 
     TwoElectronIntegralCalculator o--> TwoElectronGOBasisOperator
@@ -138,7 +138,23 @@ namespace gqcg {
         == constructors ==
            **TwoElectronIntegralCalculator**(GQCG::TwoElectronGOBasisOperator operator_type)
         __ public methods __
-            + Eigen::Tensor<double, 4> calculate() const
+            + Eigen::Tensor<double, 4> **calculate**(const AOBasis& ao_basis) const
+    }
+
+
+
+    class LibintCommunicator {
+        __ private constructor __
+            - **LibintCommunicator**()
+        == private destructor ==
+            ~ **~LibintCommunicator**()
+        __ public methods __
+            + {static} LibintCommunicator& **get**()
+            + **LibintCommunicator**(LibintCommunicator const& libint_communicator) = delete
+            + void **operator=**(LibintCommunicator const& libint_communicator) = delete
+
+            + OneElectronOperator **calculateOneElectronIntegrals**(libint2::Operator operator_type, const GQCG::AOBasis& ao_basis) const
+            + TwoElectronOperator **calculateTwoElectronIntegrals**(libint2::Operator operator_type, const GQCG::AOBasis& ao_basis) const
     }
 
 
