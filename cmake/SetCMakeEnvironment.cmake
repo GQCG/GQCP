@@ -23,12 +23,12 @@ set(PROJECT_SOURCE_FOLDER ${CMAKE_SOURCE_DIR}/src)
 
 # Find the source files
 set(PROJECT_SOURCE_FILES
+        ${PROJECT_SOURCE_FOLDER}/operator/OneElectronOperator.cpp
+        ${PROJECT_SOURCE_FOLDER}/operator/TwoElectronOperator.cpp
         ${PROJECT_SOURCE_FOLDER}/Atom.cpp
         ${PROJECT_SOURCE_FOLDER}/elements.cpp
         ${PROJECT_SOURCE_FOLDER}/JacobiRotationParameters.cpp
         ${PROJECT_SOURCE_FOLDER}/miscellaneous.cpp
-        ${PROJECT_SOURCE_FOLDER}/OneElectronOperator.cpp
-        ${PROJECT_SOURCE_FOLDER}/TwoElectronOperator.cpp
         ${PROJECT_SOURCE_FOLDER}/Molecule.cpp)
 
 # Find the header folder
@@ -36,14 +36,14 @@ set(PROJECT_INCLUDE_FOLDER ${CMAKE_SOURCE_DIR}/include)
 
 # Find the header files
 set(PROJECT_INCLUDE_FILES
+        ${PROJECT_INCLUDE_FOLDER}/operator/BaseOperator.hpp
+        ${PROJECT_INCLUDE_FOLDER}/operator/OneElectronOperator.hpp
+        ${PROJECT_INCLUDE_FOLDER}/operator/TwoElectronOperator.hpp
         ${PROJECT_INCLUDE_FOLDER}/Atom.hpp
-        ${PROJECT_INCLUDE_FOLDER}/BaseOperator.hpp
         ${PROJECT_INCLUDE_FOLDER}/elements.hpp
         ${PROJECT_INCLUDE_FOLDER}/JacobiRotationParameters.hpp
         ${PROJECT_INCLUDE_FOLDER}/miscellaneous.hpp
         ${PROJECT_INCLUDE_FOLDER}/Molecule.hpp
-        ${PROJECT_INCLUDE_FOLDER}/OneElectronOperator.hpp
-        ${PROJECT_INCLUDE_FOLDER}/TwoElectronOperator.hpp
         ${PROJECT_INCLUDE_FOLDER}/units.hpp)
 
 # Find the tests folder
@@ -51,13 +51,13 @@ set(PROJECT_TESTS_FOLDER ${CMAKE_SOURCE_DIR}/tests)
 
 # Find the source files for the tests
 set(PROJECT_TEST_SOURCE_FILES
+        ${PROJECT_TESTS_FOLDER}/operator/OneElectronOperator_test.cpp
+        ${PROJECT_TESTS_FOLDER}/operator/TwoElectronOperator_test.cpp
         ${PROJECT_TESTS_FOLDER}/Atom_test.cpp
         ${PROJECT_TESTS_FOLDER}/elements_test.cpp
         ${PROJECT_TESTS_FOLDER}/JacobiRotationParameters_test.cpp
         ${PROJECT_TESTS_FOLDER}/Molecule_test.cpp
-        ${PROJECT_TESTS_FOLDER}/miscellaneous_test.cpp
-        ${PROJECT_TESTS_FOLDER}/OneElectronOperator_test.cpp
-        ${PROJECT_TESTS_FOLDER}/TwoElectronOperator_test.cpp)
+        ${PROJECT_TESTS_FOLDER}/miscellaneous_test.cpp)
 
 
 # Give the user the option to specify an installation prefix. If not given as -DINSTALLATION_PREFIX, defaults to /usr/local.
