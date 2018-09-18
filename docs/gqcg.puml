@@ -58,7 +58,7 @@ namespace gqcg {
             + size_t **get_angle**() const
     }
 
-    namespace operator {
+    namespace Operator {
 
         abstract class Operator {
             __ public methods __
