@@ -53,32 +53,46 @@ namespace gqcg {
         == constructors ==
             **JacobiRotationParameters**(size_t p, size_t q, double angle)
         __ getters __
-            + size_t get_p() const
-            + size_t get_q() const
-            + size_t get_angle() const
+            + size_t **get_p**() const
+            + size_t **get_q**() const
+            + size_t **get_angle**() const
     }
 
-    abstract class GQCG::Operator {
-        __ public methods __
-            + void **transform**(const Eigen::MatriXd& T)
-            + void **rotate**(const Eigen::MatrixXd& U) = 0
-            + void **rotate**(const GQCG::JacobiRotationParameters& jacobi_parameters) = 0
-    }
+    namespace operator {
 
-    GQCG::OneElectronOperator --|> GQCG::Operator
-    class GQCG::OneElectronOperator {
-        __ private members __
-            - Eigen::MatrixXd matrix
-        __ public methods __
-            - Eigen::MatrixXd **get_matrix_representation**() const
-    }
+        abstract class Operator {
+            __ public methods __
+                + void **transform**(const Eigen::MatriXd& T)
+                + void **rotate**(const Eigen::MatrixXd& U) = 0
+                + void **rotate**(const GQCG::JacobiRotationParameters& jacobi_parameters) = 0
+        }
 
-    GQCG::TwoElectronOperator --|> GQCG::Operator
-    class GQCG::TwoElectronOperator {
-        __ private members __
-            - Eigen::Tensor<double, 4> tensor
-        __ public methods __
-            - Eigen::Tensor<double, 4> **get_matrix_representation**() const
+        BaseOneElectronOperator --|> Operator
+        abstract class BaseOneElectronOperator {
+            __ protected members __
+                - Eigen::MatrixXd matrix
+            __ public methods __
+                - Eigen::MatrixXd **get_matrix_representation**() const
+        }
+
+        note right of OneElectronOperator
+            This operator is constrainable
+        end note
+        OneElectronOperator --|> BaseOneElectronOperator
+        class OneElectronOperator
+
+
+        Overlap --|> BaseOneElectronOperator
+        class Overlap
+
+        TwoElectronOperator --|> Operator
+        class TwoElectronOperator {
+            __ private members __
+                - Eigen::Tensor<double, 4> tensor
+            __ public methods __
+                - Eigen::Tensor<double, 4> **get_matrix_representation**() const
+        }
+
     }
 
 
