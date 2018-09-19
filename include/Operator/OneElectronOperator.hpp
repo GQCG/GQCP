@@ -60,6 +60,10 @@ public:
      *      - we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
      */
     void rotate(const GQCG::JacobiRotationParameters& jacobi_rotation_parameters) override;
+
+
+    // FRIEND CLASSES
+    friend class HamiltonianParameters;
 };
 
 
