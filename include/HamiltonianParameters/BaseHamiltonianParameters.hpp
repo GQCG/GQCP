@@ -2,8 +2,6 @@
 #define GQCG_BASEHAMILTONIANPARAMETERS_HPP
 
 
-#include <memory>
-
 #include "AOBasis.hpp"
 
 
@@ -12,7 +10,7 @@ namespace GQCG {
 
 class BaseHamiltonianParameters {
 protected:
-    std::shared_ptr<GQCG::AOBasis> ao_basis_ptr;
+    GQCG::AOBasis ao_basis_ptr;
 
 public:
     /**
