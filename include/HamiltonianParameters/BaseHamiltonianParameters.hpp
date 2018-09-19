@@ -10,9 +10,17 @@ namespace GQCG {
 
 class BaseHamiltonianParameters {
 protected:
-    GQCG::AOBasis ao_basis_ptr;
+    const GQCG::AOBasis ao_basis;  // the initial atomic orbitals
 
 public:
+    // CONSTRUCTOR
+    /**
+     *  Constructor based on a given @param ao_basis
+     */
+    BaseHamiltonianParameters(const AOBasis& ao_basis);
+
+
+    // DESTRUCTOR
     /**
      *  Provide a pure virtual destructor to make the class abstract
      */
