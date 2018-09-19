@@ -40,6 +40,13 @@ install:
   # Install Eigen
   - conda install -c conda-forge eigen
 
+  # Install cpputil
+  - mkdir /tmp/cpputil && cd /tmp/cpputil
+  - git clone https://github.com/GQCG/cpputil.git --branch master --single-branch
+  - cd cpputil
+  - mkdir build && cd build
+  - cmake .. && make && make test && sudo make install
+
 
 # Run the build script
 script:

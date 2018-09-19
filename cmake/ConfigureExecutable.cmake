@@ -16,4 +16,9 @@ function(configure_executable EXECUTABLE_NAME)
     # Include Eigen
     target_link_libraries(${EXECUTABLE_NAME} PUBLIC Eigen3::Eigen)
 
+
+    # Include cpputil
+    target_include_directories(${EXECUTABLE_NAME} PRIVATE ${cpputil_INCLUDE_DIRS})
+    target_link_libraries(${EXECUTABLE_NAME} PRIVATE cpputil)
+
 endfunction(configure_executable)
