@@ -216,11 +216,11 @@ BOOST_AUTO_TEST_CASE ( calculateInternuclearDistance ) {
 
 BOOST_AUTO_TEST_CASE ( methods_h2 ) {
 
-    // We have reference internuclear repulsion energy from Horton
+    // We have reference internuclear repulsion energy from HORTON
     double ref_internuclear_repulsion_energy = 0.714285658963;
 
     // Create the hydrogen gas molecule
-    GQCG::Molecule h2 ("../tests/data/h2.xyz");
+    GQCG::Molecule h2 ("../tests/data/h2_szabo.xyz");
 
     // Test the basic methods
     BOOST_CHECK_EQUAL(h2.numberOfAtoms(), 2);
@@ -233,7 +233,7 @@ BOOST_AUTO_TEST_CASE ( methods_h2 ) {
 
 BOOST_AUTO_TEST_CASE ( methods_water ) {
 
-    // We have reference internuclear repulsion energy from Horton
+    // We have reference internuclear repulsion energy from HORTON
     double ref_internuclear_repulsion_energy = 8.00236693455;
 
     // Create the water molecule

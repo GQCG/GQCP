@@ -104,6 +104,10 @@ public:
      *  @return the internuclear repulsion energy due to the nuclear framework
      */
     double calculateInternuclearRepulsionEnergy() const;
+
+
+    // FRIEND CLASSES
+    friend class AOBasis;
 };
 
 

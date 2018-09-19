@@ -66,23 +66,13 @@ namespace gqcg {
             + void **rotate**(const GQCG::JacobiRotationParameters& jacobi_parameters) = 0
     }
 
-    BaseOneElectronOperator --|> Operator
-    abstract class BaseOneElectronOperator {
+    OneElectronOperator --|> Operator
+    class OneElectronOperator {
         __ protected members __
             - Eigen::MatrixXd matrix
         __ public methods __
             - Eigen::MatrixXd **get_matrix_representation**() const
     }
-
-    note right of OneElectronOperator
-        This operator is constrainable
-    end note
-    OneElectronOperator --|> BaseOneElectronOperator
-    class OneElectronOperator
-
-
-    Overlap --|> BaseOneElectronOperator
-    class Overlap
 
     TwoElectronOperator --|> Operator
     class TwoElectronOperator {
@@ -92,9 +82,33 @@ namespace gqcg {
             - Eigen::Tensor<double, 4> **get_matrix_representation**() const
     }
 
+    class AOBasis {
+        __ private members __
+            - const std::vector<GQCG::Atom> atoms
+            - const libint2::BasisSet basis_functions
+            - const size_t number_of_basis_functions
+        == constructors ==
+            **AOBasis**(const GQCG::Molecule& molecule, std::string basis_set)
+        __ public methods __
+            size_t **get_number_of_basis_functions**() const
+    }
+
+    class LibintCommunicator {
+        __ private constructor __
+            - **LibintCommunicator**()
+        == private destructor ==
+            ~ **~LibintCommunicator**()
+        __ public methods __
+            + {static} LibintCommunicator& **get**()
+            + **LibintCommunicator**(LibintCommunicator const& libint_communicator) = delete
+            + void **operator=**(LibintCommunicator const& libint_communicator) = delete
+
+            + std::vector<libint2::Atom> **interface**(const std::vector<GQCG::Atom>& atoms) const
+            + OneElectronOperator **calculateOneElectronIntegrals**(libint2::Operator operator_type, const GQCG::AOBasis& ao_basis) const
+            + TwoElectronOperator **calculateTwoElectronIntegrals**(libint2::Operator operator_type, const GQCG::AOBasis& ao_basis) const
+    }
 
 
-    abstract class IntegralCalculator
     class Basis {
         // Change the Name to integral evaluation?
         // hamiltonian one particle evaluation?
@@ -117,8 +131,6 @@ namespace gqcg {
     }
 
     abstract AllNumoptSolverInterface
-
-    gqcg.Basis ..> gqcg.IntegralCalculator
     gqcg.Basis ..> gqcg.Molecule
 
     gqcg.QCM ..> gqcg.Basis
@@ -126,12 +138,6 @@ namespace gqcg {
 
 
 }
-
-namespace libwint {
-    class Libwint
-}
-
-libwint.Libwint --|> gqcg.IntegralCalculator
 
 namespace oo {
     abstract class OO {

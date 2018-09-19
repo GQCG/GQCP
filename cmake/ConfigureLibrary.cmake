@@ -4,9 +4,12 @@
 # Include this project's headers
 target_include_directories(${LIBRARY_NAME} PRIVATE ${PROJECT_INCLUDE_FOLDER})
 
-# Include the boost headers (dynamic bitset)
+# Include the boost headers
 target_include_directories(${LIBRARY_NAME} PUBLIC ${Boost_INCLUDE_DIRS})
 
 # Include Eigen
 target_link_libraries(${LIBRARY_NAME} PUBLIC Eigen3::Eigen)
 
+# Include libint2
+target_include_directories(${LIBRARY_NAME} PUBLIC ${libint2_INCLUDE_DIRS})
+target_link_libraries(${LIBRARY_NAME} PUBLIC ${libint2_LIBRARIES})
