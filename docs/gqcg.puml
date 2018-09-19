@@ -155,6 +155,7 @@ namespace gqcg {
 
             + OneElectronOperator **calculateOneElectronIntegrals**(libint2::Operator operator_type, const GQCG::AOBasis& ao_basis) const
             + TwoElectronOperator **calculateTwoElectronIntegrals**(libint2::Operator operator_type, const GQCG::AOBasis& ao_basis) const
+            + Eigen::Tensor<double, 4> calculate() const
     }
 
 
