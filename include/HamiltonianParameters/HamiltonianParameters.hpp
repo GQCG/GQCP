@@ -21,10 +21,23 @@ private:
     OneElectronOperator h;  // one-electron interactions (i.e. the core Hamiltonian)
     TwoElectronOperator g;  // two-electron interactions
 
-    Eigen::MatrixXd C;  // total transformation matrix between the (restricted) molecular orbitals and the atomic orbitals
+    Eigen::MatrixXd C;  // total transformation matrix between the current (restricted) molecular orbitals and the atomic orbitals
 
 
 public:
+    // CONSTRUCTORS
+    /**
+     *  Constructor based on a given @param ao_basis_ptr, overlap @param S, one-electron operator @param h, two-electron
+     *  operator @param g and a transformation matrix between the current molecular orbitals and the atomic orbitals
+     *  @param C
+     */
+    HamiltonianParameters(std::shared_ptr<GQCG::AOBasis> ao_basis_ptr, const GQCG::OneElectronOperator& S, const GQCG::OneElectronOperator& h, const GQCG::TwoElectronOperator& g, const Eigen::MatrixXd& C);
+
+
+    // DESTRUCTORS
+    ~HamiltonianParameters() override =default;
+
+
     // PUBLIC METHODS
     /**
      *  Given a transformation matrix @param T that links the new molecular orbital basis to the old molecular orbital basis,

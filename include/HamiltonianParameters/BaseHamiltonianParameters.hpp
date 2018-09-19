@@ -2,6 +2,8 @@
 #define GQCG_BASEHAMILTONIANPARAMETERS_HPP
 
 
+#include <memory>
+
 #include "AOBasis.hpp"
 
 
@@ -10,14 +12,14 @@ namespace GQCG {
 
 class BaseHamiltonianParameters {
 protected:
-    const GQCG::AOBasis ao_basis;  // the initial atomic orbitals
+    std::shared_ptr<GQCG::AOBasis> ao_basis_ptr;  // the initial atomic orbitals
 
 public:
     // CONSTRUCTOR
     /**
-     *  Constructor based on a given @param ao_basis
+     *  Constructor based on a given @param ao_basis_ptr
      */
-    BaseHamiltonianParameters(const AOBasis& ao_basis);
+    BaseHamiltonianParameters(std::shared_ptr<GQCG::AOBasis> ao_basis_ptr);
 
 
     // DESTRUCTOR
