@@ -53,6 +53,55 @@ BOOST_AUTO_TEST_CASE ( atoms_interface ) {
 }
 
 
+BOOST_AUTO_TEST_CASE( Szabo_integrals_h2_sto3g ) {
+
+    // We will follow the example in Szabo, section 3.5.2, where it is stated that R = 1.4 a.u. = 0.740848 Angstrom
+    GQCG::Molecule h2 ("../tests/data/h2_szabo.xyz");
+    GQCG::AOBasis basis (h2, "STO-3G");
+    BOOST_CHECK_EQUAL(basis.get_number_of_basis_functions(), 2);
+
+
+    // Calculate some integrals
+    auto S = GQCG::LibintCommunicator::get().calculateOneElectronIntegrals(libint2::Operator::overlap, basis);
+
+    auto T = GQCG::LibintCommunicator::get().calculateOneElectronIntegrals(libint2::Operator::kinetic, basis);
+    auto V = GQCG::LibintCommunicator::get().calculateOneElectronIntegrals(libint2::Operator::nuclear, basis);
+    auto H_core = GQCG::OneElectronOperator(T.get_matrix_representation() + V.get_matrix_representation());
+
+    auto g = GQCG::LibintCommunicator::get().calculateTwoElectronIntegrals(libint2::Operator::coulomb, basis);
+
+
+    // Fill in the reference values from Szabo
+    Eigen::MatrixXd ref_S (2, 2);
+    ref_S << 1.0,    0.6593,
+            0.6593, 1.0;
+
+    Eigen::MatrixXd ref_T (2, 2);
+    ref_T << 0.7600, 0.2365,
+            0.2365, 0.7600;
+
+    Eigen::MatrixXd ref_H_core (2, 2);
+    ref_H_core << -1.1204, -0.9584,
+            -0.9584, -1.1204;
+
+    BOOST_CHECK(S.get_matrix_representation().isApprox(ref_S, 1.0e-04));
+    BOOST_CHECK(T.get_matrix_representation().isApprox(ref_T, 1.0e-04));
+    BOOST_CHECK(H_core.get_matrix_representation().isApprox(ref_H_core, 1.0e-04));
+
+
+    // The two-electron integrals in Szabo are given in chemist's notation, so this confirms that the LibintCommunicator gives them in chemist's notation as well
+    BOOST_CHECK(std::abs(g.get_matrix_representation()(0,0,0,0) - 0.7746) < 1.0e-04);
+    BOOST_CHECK(std::abs(g.get_matrix_representation()(0,0,0,0) - g.get_matrix_representation()(1,1,1,1)) < 1.0e-12);
+
+    BOOST_CHECK(std::abs(g.get_matrix_representation()(0,0,1,1) - 0.5697) < 1.0e-04);
+
+    BOOST_CHECK(std::abs(g.get_matrix_representation()(1,0,0,0) - 0.4441) < 1.0e-04);
+    BOOST_CHECK(std::abs(g.get_matrix_representation()(1,0,0,0) - g.get_matrix_representation()(1,1,1,0)) < 1.0e-12);
+
+    BOOST_CHECK(std::abs(g.get_matrix_representation()(1,0,1,0) - 0.2970) < 1.0e-04);
+}
+
+
 BOOST_AUTO_TEST_CASE( HORTON_integrals_h2o_sto3g ) {
 
     // Set up a basis
@@ -87,3 +136,5 @@ BOOST_AUTO_TEST_CASE( HORTON_integrals_h2o_sto3g ) {
     BOOST_CHECK(V.get_matrix_representation().isApprox(ref_V, 1.0e-08));
     BOOST_CHECK(cpputil::linalg::areEqual(g.get_matrix_representation(), ref_g, 1.0e-06));
 }
+
+
