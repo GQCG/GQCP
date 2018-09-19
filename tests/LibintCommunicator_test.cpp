@@ -3,6 +3,7 @@
 
 #include "LibintCommunicator.hpp"
 
+#include <cpputil.hpp>
 
 #include <boost/test/unit_test.hpp>
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
@@ -49,4 +50,40 @@ BOOST_AUTO_TEST_CASE ( atoms_interface ) {
     // Check if the interfacing between the Atom types works
     BOOST_CHECK((ref_libint_atoms.size() == test_libint_atoms.size()) &&
                 std::equal(ref_libint_atoms.begin(), ref_libint_atoms.end(), test_libint_atoms.begin(), LibintAtomEqual(1.0e-08)));
+}
+
+
+BOOST_AUTO_TEST_CASE( HORTON_integrals_h2o_sto3g ) {
+
+    // Set up a basis
+    GQCG::Molecule water ("../tests/data/h2o.xyz");
+    GQCG::AOBasis basis (water, "STO-3G");
+    auto nbf = basis.get_number_of_basis_functions();
+
+
+    // Calculate some integrals
+    auto S = GQCG::LibintCommunicator::get().calculateOneElectronIntegrals(libint2::Operator::overlap, basis);
+    auto T = GQCG::LibintCommunicator::get().calculateOneElectronIntegrals(libint2::Operator::kinetic, basis);
+    auto V = GQCG::LibintCommunicator::get().calculateOneElectronIntegrals(libint2::Operator::nuclear, basis);
+
+    auto g = GQCG::LibintCommunicator::get().calculateTwoElectronIntegrals(libint2::Operator::coulomb, basis);
+
+
+    // Read in reference data from HORTON
+    Eigen::MatrixXd ref_S (nbf, nbf);
+    Eigen::MatrixXd ref_T (nbf, nbf);
+    Eigen::MatrixXd ref_V (nbf, nbf);
+    Eigen::Tensor<double, 4> ref_g (nbf, nbf, nbf, nbf);
+
+    cpputil::io::readArrayFromFile("../tests/data/h2o_sto-3g_overlap_horton.data", ref_S);
+    cpputil::io::readArrayFromFile("../tests/data/h2o_sto-3g_kinetic_horton.data", ref_T);
+    cpputil::io::readArrayFromFile("../tests/data/h2o_sto-3g_nuclear_horton.data", ref_V);
+    cpputil::io::readArrayFromFile("../tests/data/h2o_sto-3g_coulomb_horton.data", ref_g);
+
+
+    // Check if the calculated integrals are equal to those of HORTON
+    BOOST_CHECK(S.get_matrix_representation().isApprox(ref_S, 1.0e-08));
+    BOOST_CHECK(T.get_matrix_representation().isApprox(ref_T, 1.0e-08));
+    BOOST_CHECK(V.get_matrix_representation().isApprox(ref_V, 1.0e-08));
+    BOOST_CHECK(cpputil::linalg::areEqual(g.get_matrix_representation(), ref_g, 1.0e-06));
 }
