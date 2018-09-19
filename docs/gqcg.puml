@@ -66,23 +66,13 @@ namespace gqcg {
             + void **rotate**(const GQCG::JacobiRotationParameters& jacobi_parameters) = 0
     }
 
-    BaseOneElectronOperator --|> Operator
-    abstract class BaseOneElectronOperator {
+    OneElectronOperator --|> Operator
+    class OneElectronOperator {
         __ protected members __
             - Eigen::MatrixXd matrix
         __ public methods __
             - Eigen::MatrixXd **get_matrix_representation**() const
     }
-
-    note right of OneElectronOperator
-        This operator is constrainable
-    end note
-    OneElectronOperator --|> BaseOneElectronOperator
-    class OneElectronOperator
-
-
-    Overlap --|> BaseOneElectronOperator
-    class Overlap
 
     TwoElectronOperator --|> Operator
     class TwoElectronOperator {
@@ -91,10 +81,6 @@ namespace gqcg {
         __ public methods __
             - Eigen::Tensor<double, 4> **get_matrix_representation**() const
     }
-
-
-
-    abstract class IntegralCalculator
 
     class AOBasis {
         __ private members __
@@ -106,45 +92,6 @@ namespace gqcg {
         __ public methods __
             size_t **get_number_of_basis_functions**() const
     }
-
-
-    enum OneElectronGOBasisOperator {
-        Overlap
-        Kinetic
-        Nuclear
-    }
-
-    enum TwoElectronGOBasisOperator {
-        CoulombRepulsion
-    }
-
-
-    note top of OneElectronIntegralCalculator
-        Instances can be made inside the
-        constructor of OneElectronOperator
-        to calculate AO representations
-    end note
-    OneElectronIntegralCalculator o--> OneElectronGOBasisOperator
-    class OneElectronIntegralCalculator {
-        __ private members __
-            - OneElectronGOBasisOperator operator_type
-        == constructors ==
-            **OneElectronIntegralCalculator**(GQCG::OneElectronGOBasisOperator operator_type)
-        __ public methods __
-            + Eigen::Matrix **calculate**(const AOBasis& ao_basis) const
-    }
-
-    TwoElectronIntegralCalculator o--> TwoElectronGOBasisOperator
-    class TwoElectronIntegralCalculator {
-        __ private members __
-            - TwoElectronGOBasisOperator operator_type
-        == constructors ==
-           **TwoElectronIntegralCalculator**(GQCG::TwoElectronGOBasisOperator operator_type)
-        __ public methods __
-            + Eigen::Tensor<double, 4> **calculate**(const AOBasis& ao_basis) const
-    }
-
-
 
     class LibintCommunicator {
         __ private constructor __
