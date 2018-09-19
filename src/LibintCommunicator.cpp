@@ -64,33 +64,22 @@ std::vector<libint2::Atom> LibintCommunicator::interface(const std::vector<GQCG:
  */
 GQCG::OneElectronOperator LibintCommunicator::calculateOneElectronIntegrals(libint2::Operator operator_type, const GQCG::AOBasis& ao_basis) const {
 
-    // Disable libint's output "Will read ..." (https://stackoverflow.com/a/8246536/7930415)
-//    std::streambuf *old = std::cout.rdbuf();  // save the std::cout streambuffer
-//    std::stringstream ss;
-//    std::cout.rdbuf (ss.rdbuf());  // redirect the std::cout streambuffer to point to the (temporary) 'ss' stringstream
-//
-//    libint2::BasisSet basisset (basisset_name, atoms);  // now libint gets silenced from std::cout
-//
-//    std::cout.rdbuf (old);  // restore the std::cout streambuffer
-
-
+    // Use the basis_functions that is currently a libint2::BasisSet
     auto libint_basisset = ao_basis.basis_functions;
+    const auto nbf = static_cast<size_t>(libint_basisset.nbf());  // nbf: number of basis functions in the basisset
 
-
-    const auto nsh = static_cast<size_t>(libint_basisset.size());    // number of shells in the basis_set
-    const auto nbf = static_cast<size_t>(libint_basisset.nbf());     // nbf: number of basis functions in the basisset
-
-    // Initialize the eigen matrix:
-    //  Since the matrices we will encounter (S, T, V) are symmetric, the issue of row major vs column major doesn't matter.
     Eigen::MatrixXd matrix = Eigen::MatrixXd::Zero(nbf, nbf);
 
+
     // Construct the libint2 engine
-    libint2::Engine engine (operator_type, libint_basisset.max_nprim(), static_cast<int>(libint_basisset.max_l()));  // libint2 requires an int
-    //  Something extra for the nuclear attraction integrals
+    libint2::Engine engine (operator_type, libint_basisset.max_nprim(), static_cast<int>(libint_basisset.max_l()));
+
+    // Something extra for the nuclear attraction integrals
     if (operator_type == libint2::Operator::nuclear) {
         auto atoms = this->interface(ao_basis.atoms);  // convert from GQCG::Atoms to libint2::atoms
         engine.set_params(make_point_charges(atoms));
     }
+
 
     const auto shell2bf = libint_basisset.shell2bf();  // maps shell index to bf index
 
@@ -99,8 +88,10 @@ GQCG::OneElectronOperator LibintCommunicator::calculateOneElectronIntegrals(libi
     //      the first calculated integral of these specific shells
     // the values that buffer[0] points to will change after every compute() call
 
-    // One-body integrals are between two basis functions, so we'll need two loops.
-    // However, LibInt calculates integrals between libint2::Shells, we will loop over the shells (sh) in the basis_set
+
+    // One-electron integrals are between two basis functions, so we'll need two loops
+    // Libint calculates integrals between libint2::Shells, so we will loop over the shells (sh) in the basisset
+    const auto nsh = static_cast<size_t>(libint_basisset.size());  // nsh: number of shells in the basisset
     for (auto sh1 = 0; sh1 != nsh; ++sh1) {  // sh1: shell 1
         for (auto sh2 = 0; sh2 != nsh; ++sh2) {  // sh2: shell 2
             // Calculate integrals between the two shells (basis_set is a decorated std::vector<libint2::Shell>)
@@ -114,23 +105,23 @@ GQCG::OneElectronOperator LibintCommunicator::calculateOneElectronIntegrals(libi
                 continue;
             }
 
-            // Extract the calculated integrals from calculated_integrals.
-            // In calculated_integrals, the integrals are stored in row major form.
+            // Extract the calculated integrals from calculated_integrals
+            // In calculated_integrals, the integrals are stored in row major form
             auto bf1 = shell2bf[sh1];  // (index of) first bf in sh1
             auto bf2 = shell2bf[sh2];  // (index of) first bf in sh2
 
             auto nbf_sh1 = libint_basisset[sh1].size();  // number of basis functions in first shell
             auto nbf_sh2 = libint_basisset[sh2].size();  // number of basis functions in second shell
 
-            for (auto f1 = 0; f1 != nbf_sh1; ++f1) {     // f1: index of basis function within shell 1
+            for (auto f1 = 0; f1 != nbf_sh1; ++f1) {  // f1: index of basis function within shell 1
                 for (auto f2 = 0; f2 != nbf_sh2; ++f2) { // f2: index of basis function within shell 2
                     double computed_integral = calculated_integrals[f2 + f1 * nbf_sh2];  // integrals are packed in row-major form
                     matrix(bf1 + f1, bf2 + f2) = computed_integral;
                 }
-            }
+            }  // data access loops
 
         }
-    }
+    }  // shell loops
 
     return GQCG::OneElectronOperator(matrix);
 }
@@ -142,28 +133,15 @@ GQCG::OneElectronOperator LibintCommunicator::calculateOneElectronIntegrals(libi
  */
 GQCG::TwoElectronOperator LibintCommunicator::calculateTwoElectronIntegrals(libint2::Operator operator_type, const GQCG::AOBasis& ao_basis) const {
 
-    // Disable libint's output "Will read ..." (https://stackoverflow.com/a/8246536/7930415)
-//    std::streambuf *old = std::cout.rdbuf();  // save the std::cout streambuffer
-//    std::stringstream ss;
-//    std::cout.rdbuf (ss.rdbuf());  // redirect the std::cout streambuffer to point to the (temporary) 'ss' stringstream
-//
-//    libint2::BasisSet basisset (basisset_name, atoms);  // now libint gets silenced from std::cout
-//
-//    std::cout.rdbuf (old);  // restore the std::cout streambuffer
-
+    // Use the basis_functions that is currently a libint2::BasisSet
     auto libint_basisset = ao_basis.basis_functions;
+    const auto nbf = static_cast<size_t>(libint_basisset.nbf());  // nbf: number of basis functions in the basisset
 
 
-    // We have to static_cast to LONG, as clang++ else gives the following errors:
-    //  error: non-constant-expression cannot be narrowed from type 'unsigned long' to 'value_type' (aka 'long') in initializer list
-    //  note: insert an explicit cast to silence this issue
-
-    const auto nsh = static_cast<size_t>(libint_basisset.size());
-    const auto nbf = static_cast<size_t>(libint_basisset.nbf());
-
-    // Initialize the rank-4 two-electron integrals Tensor
+    // Initialize the rank-4 two-electron integrals tensor and set to zero
     Eigen::Tensor<double, 4> tensor (nbf, nbf, nbf, nbf);
     tensor.setZero();
+
 
     // Construct the libint2 engine
     libint2::Engine engine(libint2::Operator::coulomb, libint_basisset.max_nprim(), static_cast<int>(libint_basisset.max_l()));  // libint2 requires an int
@@ -175,8 +153,10 @@ GQCG::TwoElectronOperator LibintCommunicator::calculateTwoElectronIntegrals(libi
     //      the first calculated integral of these specific shells
     // the values that buffer[0] points to will change after every compute() call
 
-    // Two-electron integrals are between four basis functions, so we'll need four loops.
-    // However, LibInt calculates integrals between libint2::Shells, we will loop over the shells (sh) in the obs
+
+    // Two-electron integrals are between four basis functions, so we'll need four loops
+    // Libint calculates integrals between libint2::Shells, so we will loop over the shells (sh) in the basisset
+    const auto nsh = static_cast<size_t>(libint_basisset.size());  // nsh: number of shells in the basisset
     for (auto sh1 = 0; sh1 != nsh; ++sh1) {  // sh1: shell 1
         for (auto sh2 = 0; sh2 != nsh; ++sh2) {  // sh2: shell 2
             for (auto sh3 = 0; sh3 != nsh; ++sh3) {  // sh3: shell 3
@@ -209,19 +189,19 @@ GQCG::TwoElectronOperator LibintCommunicator::calculateTwoElectronIntegrals(libi
                         for (auto f2 = 0L; f2 != nbf_sh2; ++f2) {
                             for (auto f3 = 0L; f3 != nbf_sh3; ++f3) {
                                 for (auto f4 = 0L; f4 != nbf_sh4; ++f4) {
-                                    auto computed_integral = calculated_integrals[f4 + nbf_sh4 * (f3 + nbf_sh3 * (f2 + nbf_sh2 * (f1)))];  // row-major storage accessing
+                                    auto computed_integral = calculated_integrals[f4 + nbf_sh4 * (f3 + nbf_sh3 * (f2 + nbf_sh2 * (f1)))];  // integrals are packed in row-major form
 
-                                    // The two-electron integrals are given in CHEMIST'S: (11|22)
+                                    // Two-electron integrals are given in CHEMIST'S notation: (11|22)
                                     tensor(f1 + bf1, f2 + bf2, f3 + bf3, f4 + bf4) = computed_integral;
                                 }
                             }
                         }
-                    } // data access loop
+                    } // data access loops
 
                 }
             }
         }
-    } // shell loop
+    } // shell loops
 
     return GQCG::TwoElectronOperator(tensor);
 };

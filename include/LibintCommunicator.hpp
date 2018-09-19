@@ -34,7 +34,7 @@ private:
 
 public:
     /**
-     *  @return the singleton instance
+     *  @return the static singleton instance
      */
     static LibintCommunicator& get();
 
@@ -51,8 +51,8 @@ public:
      *  @return a std::vector<libint2::Atom> based on a given std::vector<GQCG::Atom> @param atoms
      */
     std::vector<libint2::Atom> interface(const std::vector<GQCG::Atom>& atoms) const;
-    
-    
+
+
     /**
      *  @return the OneElectronOperator corresponding to the matrix representation of @param operator_type in the given
      *  @param ao_basis. The corresponding @param molecule is also given as an argument, to be able to access
