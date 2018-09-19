@@ -14,6 +14,7 @@ namespace GQCG {
  *  Constructor based on a given @param matrix
  */
 OneElectronOperator::OneElectronOperator(const Eigen::MatrixXd& matrix) :
+    BaseOperator(matrix.cols()),
     matrix (matrix)
 {
     // Check if the one-electron integrals are represented as a square matrix
