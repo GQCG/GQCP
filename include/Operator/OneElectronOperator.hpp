@@ -11,6 +11,9 @@ namespace GQCG {
 
 
 
+/**
+ *  A class that holds the matrix representation of a one-electron operator in an orbital basis
+ */
 class OneElectronOperator : public BaseOperator {
 private:
     Eigen::MatrixXd matrix;  // the matrix representation of the one-electron operator
