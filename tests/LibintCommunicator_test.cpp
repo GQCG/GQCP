@@ -26,22 +26,27 @@ BOOST_AUTO_TEST_CASE ( atoms_interface ) {
     };
 
 
-    /**
-     *  Function object for (libint_atom) == (gqcg_atom)
-     */
-    struct AtomEqual {
-        double tolerance;
-        explicit AtomEqual(double tolerance) : tolerance (tolerance) {};
+    // Use the Libint interface to obtain a std::vector<libint2::Atom> from the GQCG ones
+    auto test_libint_atoms = GQCG::LibintCommunicator::get().interface(gqcg_atoms);
 
-        bool operator()(const libint2::Atom& libint_atom, const GQCG::Atom& gqcg_atom) {
-            return (gqcg_atom.atomic_number == libint_atom.atomic_number) &&
-                   (std::abs(gqcg_atom.x - libint_atom.x) < tolerance) &&
-                   (std::abs(gqcg_atom.y - libint_atom.y) < tolerance) &&
-                   (std::abs(gqcg_atom.z - libint_atom.z) < tolerance);
+
+    /**
+     *  Implement a function object to compare (libint_atom) == (libint_atom)
+     */
+    struct LibintAtomEqual {
+        double tolerance;
+        explicit LibintAtomEqual(double tolerance) : tolerance (tolerance) {};
+
+        bool operator()(const libint2::Atom& lhs, const libint2::Atom& rhs) {
+            return (lhs.atomic_number == rhs.atomic_number) &&
+                   (std::abs(lhs.x - rhs.x) < tolerance) &&
+                   (std::abs(lhs.y - rhs.y) < tolerance) &&
+                   (std::abs(lhs.z - rhs.z) < tolerance);
         }
     };
 
 
     // Check if the interfacing between the Atom types works
-    BOOST_CHECK(std::equal(ref_libint_atoms.begin(), ref_libint_atoms.end(), gqcg_atoms.begin(), AtomEqual(1.0e-08)));
+    BOOST_CHECK((ref_libint_atoms.size() == test_libint_atoms.size()) &&
+                std::equal(ref_libint_atoms.begin(), ref_libint_atoms.end(), test_libint_atoms.begin(), LibintAtomEqual(1.0e-08)));
 }

@@ -47,14 +47,10 @@ LibintCommunicator& LibintCommunicator::get() {  // need to return by reference 
  */
 std::vector<libint2::Atom> LibintCommunicator::interface(const std::vector<GQCG::Atom>& atoms) const {
 
-    std::vector<libint2::Atom> libint_vector (atoms.size());
+    std::vector<libint2::Atom> libint_vector;  // start with an empty vector, we're doing push_backs later
 
     for (const auto& atom : atoms) {
-        libint2::Atom libint_atom;
-        libint_atom.atomic_number = static_cast<int>(atom.atomic_number);
-        libint_atom.x = atom.x;
-        libint_atom.y = atom.y;
-        libint_atom.z = atom.z;
+        libint2::Atom libint_atom {static_cast<int>(atom.atomic_number), atom.x, atom.y, atom.z};
         libint_vector.push_back(libint_atom);
     }
 
