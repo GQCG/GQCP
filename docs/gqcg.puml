@@ -127,7 +127,7 @@ namespace gqcg {
     BaseHamiltonianParameters o--> AOBasis
     abstract class BaseHamiltonianParameters {
         __ private members __
-            - std::shared_ptr<GQCG::AOBasis> ao_basis
+            - GQCG::AOBasis ao_basis
 
     }
 
