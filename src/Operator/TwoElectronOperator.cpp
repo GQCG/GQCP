@@ -12,6 +12,7 @@ namespace GQCG {
  *  Constructor based on a given @param tensor
  */
 TwoElectronOperator::TwoElectronOperator(const Eigen::Tensor<double, 4>& tensor) :
+    BaseOperator(tensor.dimensions()[0]),
     tensor (tensor)
 {
     // Check if the given tensor is 'square'
