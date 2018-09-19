@@ -3,6 +3,8 @@
 #include <iostream>
 #include <sstream>
 
+
+
 namespace GQCG {
 
 
@@ -10,48 +12,91 @@ namespace GQCG {
  *  PRIVATE METHODS
  */
 
-// Constructor
+/**
+ *  Private constructor as required by the singleton class design
+ */
 LibintCommunicator::LibintCommunicator() {
     libint2::initialize();
 }
 
 
-// Destructor: we don't want anyone else to possibly delete the singleton object
+/**
+ *  Private destructor as required by the singleton class design
+ */
 LibintCommunicator::~LibintCommunicator() {
     libint2::finalize();
 }
 
 
-/**
- *  Calculate the one-body integrals associated to a given @param: operator_type for the given @param: atoms for the basisset with name @param: basisset_name
+
+/*
+ *  PUBLIC METHODS
  */
-Eigen::MatrixXd LibintCommunicator::calculateOneBodyIntegrals(libint2::Operator operator_type, std::string basisset_name, const std::vector<libint2::Atom>& atoms) const {
+
+/**
+ *  @return the static singleton instance
+ */
+LibintCommunicator& LibintCommunicator::get() {  // need to return by reference since we deleted the relevant constructor
+    static LibintCommunicator singleton_instance;  // instantiated on first use and guaranteed to be destroyed
+    return singleton_instance;
+}
+
+
+/**
+ *  @return a std::vector<libint2::Atom> based on a given std::vector<GQCG::Atom> @param atoms
+ */
+std::vector<libint2::Atom> LibintCommunicator::interface(const std::vector<GQCG::Atom>& atoms) const {
+
+    std::vector<libint2::Atom> libint_vector (atoms.size());
+
+    for (const auto& atom : atoms) {
+        libint2::Atom libint_atom;
+        libint_atom.atomic_number = static_cast<int>(atom.atomic_number);
+        libint_atom.x = atom.x;
+        libint_atom.y = atom.y;
+        libint_atom.z = atom.z;
+        libint_vector.push_back(libint_atom);
+    }
+
+    return libint_vector;
+}
+
+
+/**
+ *  @return the OneElectronOperator corresponding to the matrix representation of @param operator_type in the given
+ *  @param ao_basis
+ */
+GQCG::OneElectronOperator LibintCommunicator::calculateOneElectronIntegrals(libint2::Operator operator_type, const GQCG::AOBasis& ao_basis) const {
 
     // Disable libint's output "Will read ..." (https://stackoverflow.com/a/8246536/7930415)
-    std::streambuf *old = std::cout.rdbuf();  // save the std::cout streambuffer
-    std::stringstream ss;
-    std::cout.rdbuf (ss.rdbuf());  // redirect the std::cout streambuffer to point to the (temporary) 'ss' stringstream
+//    std::streambuf *old = std::cout.rdbuf();  // save the std::cout streambuffer
+//    std::stringstream ss;
+//    std::cout.rdbuf (ss.rdbuf());  // redirect the std::cout streambuffer to point to the (temporary) 'ss' stringstream
+//
+//    libint2::BasisSet basisset (basisset_name, atoms);  // now libint gets silenced from std::cout
+//
+//    std::cout.rdbuf (old);  // restore the std::cout streambuffer
 
-    libint2::BasisSet basisset (basisset_name, atoms);  // now libint gets silenced from std::cout
 
-    std::cout.rdbuf (old);  // restore the std::cout streambuffer
+    auto libint_basisset = ao_basis.basis_functions;
 
 
-    const auto nsh = static_cast<size_t>(basisset.size());    // number of shells in the basis_set
-    const auto nbf = static_cast<size_t>(basisset.nbf());     // nbf: number of basis functions in the basisset
+    const auto nsh = static_cast<size_t>(libint_basisset.size());    // number of shells in the basis_set
+    const auto nbf = static_cast<size_t>(libint_basisset.nbf());     // nbf: number of basis functions in the basisset
 
     // Initialize the eigen matrix:
     //  Since the matrices we will encounter (S, T, V) are symmetric, the issue of row major vs column major doesn't matter.
-    Eigen::MatrixXd M_result = Eigen::MatrixXd::Zero(nbf, nbf);
+    Eigen::MatrixXd matrix = Eigen::MatrixXd::Zero(nbf, nbf);
 
     // Construct the libint2 engine
-    libint2::Engine engine (operator_type, basisset.max_nprim(), static_cast<int>(basisset.max_l()));  // libint2 requires an int
+    libint2::Engine engine (operator_type, libint_basisset.max_nprim(), static_cast<int>(libint_basisset.max_l()));  // libint2 requires an int
     //  Something extra for the nuclear attraction integrals
     if (operator_type == libint2::Operator::nuclear) {
+        auto atoms = this->interface(ao_basis.atoms);  // convert from GQCG::Atoms to libint2::atoms
         engine.set_params(make_point_charges(atoms));
     }
 
-    const auto shell2bf = basisset.shell2bf();  // maps shell index to bf index
+    const auto shell2bf = libint_basisset.shell2bf();  // maps shell index to bf index
 
     const auto& buffer = engine.results();  // vector that holds pointers to computed shell sets
     // actually, buffer.size() is always 1, so buffer[0] is a pointer to
@@ -63,7 +108,7 @@ Eigen::MatrixXd LibintCommunicator::calculateOneBodyIntegrals(libint2::Operator 
     for (auto sh1 = 0; sh1 != nsh; ++sh1) {  // sh1: shell 1
         for (auto sh2 = 0; sh2 != nsh; ++sh2) {  // sh2: shell 2
             // Calculate integrals between the two shells (basis_set is a decorated std::vector<libint2::Shell>)
-            engine.compute(basisset[sh1], basisset[sh2]);
+            engine.compute(libint_basisset[sh1], libint_basisset[sh2]);
 
             auto calculated_integrals = buffer[0];  // is actually a pointer: const double *
 
@@ -78,53 +123,56 @@ Eigen::MatrixXd LibintCommunicator::calculateOneBodyIntegrals(libint2::Operator 
             auto bf1 = shell2bf[sh1];  // (index of) first bf in sh1
             auto bf2 = shell2bf[sh2];  // (index of) first bf in sh2
 
-            auto nbf_sh1 = basisset[sh1].size();  // number of basis functions in first shell
-            auto nbf_sh2 = basisset[sh2].size();  // number of basis functions in second shell
+            auto nbf_sh1 = libint_basisset[sh1].size();  // number of basis functions in first shell
+            auto nbf_sh2 = libint_basisset[sh2].size();  // number of basis functions in second shell
 
             for (auto f1 = 0; f1 != nbf_sh1; ++f1) {     // f1: index of basis function within shell 1
                 for (auto f2 = 0; f2 != nbf_sh2; ++f2) { // f2: index of basis function within shell 2
                     double computed_integral = calculated_integrals[f2 + f1 * nbf_sh2];  // integrals are packed in row-major form
-                    M_result(bf1 + f1, bf2 + f2) = computed_integral;
+                    matrix(bf1 + f1, bf2 + f2) = computed_integral;
                 }
             }
 
         }
     }
 
-    return M_result;
+    return GQCG::OneElectronOperator(matrix);
 }
 
 
 /**
- *  Calculate the two-body integrals IN CHEMIST'S NOTATION (11|22) for the given @param: atoms for the basisset with name @param: basisset_name
+ *  @return the TwoElectronOperator corresponding to the matrix representation of @param operator_type in the given
+ *  @param ao_basis
  */
-Eigen::Tensor<double, 4> LibintCommunicator::calculateTwoBodyIntegrals(std::string basisset_name, const std::vector<libint2::Atom>& atoms) const {
+GQCG::TwoElectronOperator LibintCommunicator::calculateTwoElectronIntegrals(libint2::Operator operator_type, const GQCG::AOBasis& ao_basis) const {
 
     // Disable libint's output "Will read ..." (https://stackoverflow.com/a/8246536/7930415)
-    std::streambuf *old = std::cout.rdbuf();  // save the std::cout streambuffer
-    std::stringstream ss;
-    std::cout.rdbuf (ss.rdbuf());  // redirect the std::cout streambuffer to point to the (temporary) 'ss' stringstream
+//    std::streambuf *old = std::cout.rdbuf();  // save the std::cout streambuffer
+//    std::stringstream ss;
+//    std::cout.rdbuf (ss.rdbuf());  // redirect the std::cout streambuffer to point to the (temporary) 'ss' stringstream
+//
+//    libint2::BasisSet basisset (basisset_name, atoms);  // now libint gets silenced from std::cout
+//
+//    std::cout.rdbuf (old);  // restore the std::cout streambuffer
 
-    libint2::BasisSet basisset (basisset_name, atoms);  // now libint gets silenced from std::cout
-
-    std::cout.rdbuf (old);  // restore the std::cout streambuffer
+    auto libint_basisset = ao_basis.basis_functions;
 
 
     // We have to static_cast to LONG, as clang++ else gives the following errors:
     //  error: non-constant-expression cannot be narrowed from type 'unsigned long' to 'value_type' (aka 'long') in initializer list
     //  note: insert an explicit cast to silence this issue
 
-    const auto nsh = static_cast<size_t>(basisset.size());
-    const auto nbf = static_cast<size_t>(basisset.nbf());
+    const auto nsh = static_cast<size_t>(libint_basisset.size());
+    const auto nbf = static_cast<size_t>(libint_basisset.nbf());
 
     // Initialize the rank-4 two-electron integrals Tensor
-    Eigen::Tensor<double, 4> g (nbf, nbf, nbf, nbf);
-    g.setZero();
+    Eigen::Tensor<double, 4> tensor (nbf, nbf, nbf, nbf);
+    tensor.setZero();
 
     // Construct the libint2 engine
-    libint2::Engine engine(libint2::Operator::coulomb, basisset.max_nprim(), static_cast<int>(basisset.max_l()));  // libint2 requires an int
+    libint2::Engine engine(libint2::Operator::coulomb, libint_basisset.max_nprim(), static_cast<int>(libint_basisset.max_l()));  // libint2 requires an int
 
-    const auto shell2bf = basisset.shell2bf();  // maps shell index to bf index
+    const auto shell2bf = libint_basisset.shell2bf();  // maps shell index to bf index
 
     const auto &buffer = engine.results();  // vector that holds pointers to computed shell sets
     // actually, buffer.size() is always 1, so buffer[0] is a pointer to
@@ -138,7 +186,7 @@ Eigen::Tensor<double, 4> LibintCommunicator::calculateTwoBodyIntegrals(std::stri
             for (auto sh3 = 0; sh3 != nsh; ++sh3) {  // sh3: shell 3
                 for (auto sh4 = 0; sh4 != nsh; ++sh4) {  //sh4: shell 4
                     // Calculate integrals between the two shells (obs is a decorated std::vector<libint2::Shell>)
-                    engine.compute(basisset[sh1], basisset[sh2], basisset[sh3], basisset[sh4]);
+                    engine.compute(libint_basisset[sh1], libint_basisset[sh2], libint_basisset[sh3], libint_basisset[sh4]);
 
                     auto calculated_integrals = buffer[0];
 
@@ -156,10 +204,10 @@ Eigen::Tensor<double, 4> LibintCommunicator::calculateTwoBodyIntegrals(std::stri
                     auto bf4 = static_cast<long>(shell2bf[sh4]);  // (index of) first bf in sh4
 
 
-                    auto nbf_sh1 = static_cast<long>(basisset[sh1].size());  // number of basis functions in first shell
-                    auto nbf_sh2 = static_cast<long>(basisset[sh2].size());  // number of basis functions in second shell
-                    auto nbf_sh3 = static_cast<long>(basisset[sh3].size());  // number of basis functions in third shell
-                    auto nbf_sh4 = static_cast<long>(basisset[sh4].size());  // number of basis functions in fourth shell
+                    auto nbf_sh1 = static_cast<long>(libint_basisset[sh1].size());  // number of basis functions in first shell
+                    auto nbf_sh2 = static_cast<long>(libint_basisset[sh2].size());  // number of basis functions in second shell
+                    auto nbf_sh3 = static_cast<long>(libint_basisset[sh3].size());  // number of basis functions in third shell
+                    auto nbf_sh4 = static_cast<long>(libint_basisset[sh4].size());  // number of basis functions in fourth shell
 
                     for (auto f1 = 0L; f1 != nbf_sh1; ++f1) {
                         for (auto f2 = 0L; f2 != nbf_sh2; ++f2) {
@@ -168,7 +216,7 @@ Eigen::Tensor<double, 4> LibintCommunicator::calculateTwoBodyIntegrals(std::stri
                                     auto computed_integral = calculated_integrals[f4 + nbf_sh4 * (f3 + nbf_sh3 * (f2 + nbf_sh2 * (f1)))];  // row-major storage accessing
 
                                     // The two-electron integrals are given in CHEMIST'S: (11|22)
-                                    g(f1 + bf1, f2 + bf2, f3 + bf3, f4 + bf4) = computed_integral;
+                                    tensor(f1 + bf1, f2 + bf2, f3 + bf3, f4 + bf4) = computed_integral;
                                 }
                             }
                         }
@@ -178,21 +226,9 @@ Eigen::Tensor<double, 4> LibintCommunicator::calculateTwoBodyIntegrals(std::stri
             }
         }
     } // shell loop
-    return g;
+
+    return GQCG::TwoElectronOperator(tensor);
 };
 
 
-/*
- *  PUBLIC METHODS
- */
-
-/**
- *  @return the static singleton instance
- */
-LibintCommunicator& LibintCommunicator::get() {  // need to return by reference since we deleted the relevant constructor
-    static LibintCommunicator singleton_instance;  // instantiated on first use and guaranteed to be destroyed
-    return singleton_instance;
-}
-
-
-}
+}  // namespace GQCG

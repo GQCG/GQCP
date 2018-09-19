@@ -3,6 +3,9 @@
 
 
 #include "AOBasis.hpp"
+#include "Molecule.hpp"
+#include "Operator/OneElectronOperator.hpp"
+#include "Operator/TwoElectronOperator.hpp"
 
 #include <Eigen/Dense>
 #include <unsupported/Eigen/CXX11/Tensor>
@@ -39,27 +42,32 @@ public:
     /**
      *  Remove the public copy constructor and a public assignment operator
      */
-    // Delete the following methods (as required by the singleton class design).
     LibintCommunicator(LibintCommunicator const& libint_communicator) = delete;
     void operator=(LibintCommunicator const& libint_communicator) = delete;
 
 
-    // METHODS
+    // PUBLIC METHODS
+    /**
+     *  @return a std::vector<libint2::Atom> based on a given std::vector<GQCG::Atom> @param atoms
+     */
+    std::vector<libint2::Atom> interface(const std::vector<GQCG::Atom>& atoms) const;
+    
+    
     /**
      *  @return the OneElectronOperator corresponding to the matrix representation of @param operator_type in the given
-     *  @param ao_basis
+     *  @param ao_basis. The corresponding @param molecule is also given as an argument, to be able to access
      */
-    Eigen::MatrixXd calculateOneElectronIntegrals(libint2::Operator operator_type, const GQCG::AOBasis& ao_basis) const;
+    GQCG::OneElectronOperator calculateOneElectronIntegrals(libint2::Operator operator_type, const GQCG::AOBasis& ao_basis) const;
 
     /**
      *  @return the TwoElectronOperator corresponding to the matrix representation of @param operator_type in the given
      *  @param ao_basis
      */
-    Eigen::Tensor<double, 4> calculateTwoElectronIntegrals(libint2::Operator operator_type, const GQCG::AOBasis& ao_basis) const;
+    GQCG::TwoElectronOperator calculateTwoElectronIntegrals(libint2::Operator operator_type, const GQCG::AOBasis& ao_basis) const;
 };
 
 
-}
+}  // namespace GQCG
 
 
 #endif  // GQCG_LIBINTCOMMUNICATOR_HPP

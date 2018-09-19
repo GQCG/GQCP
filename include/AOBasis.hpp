@@ -2,6 +2,7 @@
 #define GQCG_AOBASIS_HPP
 
 
+#include "Atom.hpp"
 #include "Molecule.hpp"
 
 #include <Eigen/Dense>
@@ -20,11 +21,16 @@ namespace GQCG {
  */
 class AOBasis {
 private:
-    libint2::BasisSet basis_functions;
+    const std::vector<GQCG::Atom> atoms;
+    const libint2::BasisSet basis_functions;
 
 public:
     // CONSTRUCTOR
     AOBasis(const GQCG::Molecule& molecule, std::string basis_set);
+
+
+    // FRIEND CLASSES
+    friend class LibintCommunicator;
 };
 
 

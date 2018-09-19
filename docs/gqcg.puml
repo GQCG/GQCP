@@ -98,8 +98,8 @@ namespace gqcg {
 
     class AOBasis {
         __ private members __
-            - libint2::BasisSet basis_functions
-            - GQCG::Overlap S
+            - const std::vector<GQCG::Atom> atoms
+            - const libint2::BasisSet basis_functions
         == constructors ==
             **AOBasis**(const GQCG::Molecule& molecule, std::string basis_set)
     }
@@ -153,9 +153,9 @@ namespace gqcg {
             + **LibintCommunicator**(LibintCommunicator const& libint_communicator) = delete
             + void **operator=**(LibintCommunicator const& libint_communicator) = delete
 
+            + std::vector<libint2::Atom> **interface**(const std::vector<GQCG::Atom>& atoms) const
             + OneElectronOperator **calculateOneElectronIntegrals**(libint2::Operator operator_type, const GQCG::AOBasis& ao_basis) const
             + TwoElectronOperator **calculateTwoElectronIntegrals**(libint2::Operator operator_type, const GQCG::AOBasis& ao_basis) const
-            + Eigen::Tensor<double, 4> calculate() const
     }
 
 
