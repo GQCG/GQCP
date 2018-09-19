@@ -11,7 +11,9 @@
 namespace GQCG {
 
 
-
+/**
+ *  A base class for the representation of operators in an orbital basis
+ */
 class BaseOperator {
 public:
     /**
