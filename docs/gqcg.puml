@@ -100,8 +100,11 @@ namespace gqcg {
         __ private members __
             - const std::vector<GQCG::Atom> atoms
             - const libint2::BasisSet basis_functions
+            - const size_t number_of_basis_functions
         == constructors ==
             **AOBasis**(const GQCG::Molecule& molecule, std::string basis_set)
+        __ public methods __
+            size_t **get_number_of_basis_functions**() const
     }
 
 
