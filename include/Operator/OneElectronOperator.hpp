@@ -29,6 +29,14 @@ public:
 
     // GETTERS
     Eigen::MatrixXd get_matrix_representation() const { return this->matrix; }
+    
+    
+    // OPERATORS
+    /**
+     *  @return the sum of two OneElectronOperators, i.e. a OneElectronOperator whose matrix representation is the sum
+     *  of the two matrix representations of the given OneElectronOperators
+     */
+    GQCG::OneElectronOperator operator+(const GQCG::OneElectronOperator& other);
 
 
     // PUBLIC METHODS

@@ -24,6 +24,22 @@ OneElectronOperator::OneElectronOperator(const Eigen::MatrixXd& matrix) :
 }
 
 
+
+/*
+ *  OPERATORS
+ */
+
+/**
+ *  @return the sum of two OneElectronOperators, i.e. a OneElectronOperator whose matrix representation is the sum
+ *  of the two matrix representations of the given OneElectronOperators
+ */
+GQCG::OneElectronOperator OneElectronOperator::operator+(const GQCG::OneElectronOperator& other) {
+    
+    return OneElectronOperator(this->matrix + other.matrix);
+}
+
+
+
 /*
  *  PUBLIC METHODS
  */
