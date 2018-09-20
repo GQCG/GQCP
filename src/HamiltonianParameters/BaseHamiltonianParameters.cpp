@@ -9,10 +9,10 @@ namespace GQCG {
  */
 
 /**
- *  Constructor based on a given @param ao_basis_ptr
+ *  Constructor based on a given @param ao_basis_sptr
  */
-BaseHamiltonianParameters::BaseHamiltonianParameters(std::shared_ptr<GQCG::AOBasis> ao_basis_ptr) :
-    ao_basis_ptr (std::move(ao_basis_ptr))
+BaseHamiltonianParameters::BaseHamiltonianParameters(std::shared_ptr<GQCG::AOBasis> ao_basis_sptr) :
+    ao_basis_sptr (std::move(ao_basis_sptr))
 {}
 
 
