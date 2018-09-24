@@ -11,6 +11,9 @@ namespace GQCG {
 
 
 
+/**
+ *  A class that holds the matrix representation of a two-electron operator in an orbital basis
+ */
 class TwoElectronOperator : public BaseOperator {
 private:
     Eigen::Tensor<double, 4> tensor;  // the matrix representation of the two-electron operator
@@ -57,6 +60,10 @@ public:
      *      - we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
      */
     void rotate(const GQCG::JacobiRotationParameters& jacobi_rotation_parameters) override;
+
+
+    // FRIEND CLASSES
+    friend class HamiltonianParameters;
 };
 
 

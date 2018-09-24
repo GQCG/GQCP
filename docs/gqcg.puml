@@ -60,6 +60,10 @@ namespace gqcg {
 
 
     abstract class Operator {
+        __ private methods __
+            - const size_t dim
+        == constructor ==
+            explicit **BaseOperator**(size_t dimension)
         __ public methods __
             + void **transform**(const Eigen::MatriXd& T)
             + void **rotate**(const Eigen::MatrixXd& U) = 0
@@ -123,17 +127,50 @@ namespace gqcg {
             + size_t **get_N**() const
     }
 
-    class Basis {
-        // Change the Name to integral evaluation?
-        // hamiltonian one particle evaluation?
-        // up for debate
+
+    BaseHamiltonianParameters o--> AOBasis
+    abstract class BaseHamiltonianParameters {
+        __ private members __
+            - std::shared_ptr<GQCG::AOBasis> ao_basis_sptr
+    }
+
+
+    HamiltonianParameters --|> BaseHamiltonianParameters
+    class HamiltonianParameters {
+        __ private members __
+            - OneElectronOperator S
+            - OneElectronOperator h
+            - OneElectronOperator g
+            - Eigen::MatrixXd C
         == constructors ==
-           **Basis**(IntegralCalculator, string basisSet, Molecule)
-           **Basis**(h_matrix, g_tensor, s_matrix)
-           **Basis**(filename)
-        __public__
-           +transform
-   }
+            **HamiltonianParameters**(std::shared_ptr<GQCG::AOBasis> ao_basis_sptr, const GQCG::OneElectronOperator& S, const GQCG::OneElectronOperator& h, const GQCG::TwoElectronOperator& g, const Eigen::MatrixXd& C)
+        __ public methods __
+            + void **transform**(const Eigen::MatriXd& T)
+            + void **rotate**(const Eigen::MatrixXd& U)
+            + void **rotate**(const GQCG::JacobiRotationParameters& jacobi_parameters)
+    }
+
+    UnrestrictedHamiltonianParameters --|> BaseHamiltonianParameters
+    class UnrestrictedHamiltonianParameters {
+        __ private members __
+            - OneElectronOperator S_alpha
+            - OneElectronOperator S_beta
+            - OneElectronOperator h_alpha
+            - OneElectronOperator h_beta
+            - TwoElectronOperator g_aaaa
+            - TwoElectronOperator g_aabb
+            - TwoElectronOperator g_bbaa
+            - TwoElectronOperator g_bbbb
+            - Eigen::MatrixXd C_alpha
+            - Eigen::MatrixXd C_beta
+        __ public methods __
+            + void **transformAlpha**(const Eigen::MatrixXd& T_alpha)
+            + void **transformBeta**(const Eigen::MatrixXd& T_alpha)
+            + void **rotateAlpha**(const Eigen::MatrixXd& U_alpha)
+            + void **rotateBeta**(const Eigen::MatrixXd& U_beta)
+            + void **rotateAlpha**(const GQCG::JacobiRotationParameters& jacobi_parameters_alpha)
+            + void **rotateBeta**(const GQCG::JacobiRotationParameters& jacobi_parameters_beta)
+    }
 
     abstract class QCM {
         __public__
@@ -145,12 +182,8 @@ namespace gqcg {
     }
 
     abstract AllNumoptSolverInterface
-    gqcg.Basis ..> gqcg.Molecule
 
     gqcg.QCM ..> gqcg.Basis
-
-
-
 }
 
 namespace oo {

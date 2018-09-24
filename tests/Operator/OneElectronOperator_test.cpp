@@ -23,6 +23,22 @@ BOOST_AUTO_TEST_CASE ( OneElectronOperator_constructor ) {
 }
 
 
+BOOST_AUTO_TEST_CASE ( operator_plus ) {
+    
+    // Construct two OneElectronOperators
+    size_t K = 5;
+    Eigen::MatrixXd matrix1 = Eigen::MatrixXd::Random(K, K);
+    Eigen::MatrixXd matrix2 = Eigen::MatrixXd::Random(K, K);
+    
+    GQCG::OneElectronOperator M1 (matrix1);
+    GQCG::OneElectronOperator M2 (matrix2);
+    
+    
+    // Check if operator+ works
+    BOOST_CHECK((M1 + M2).get_matrix_representation().isApprox(matrix1 + matrix2, 1.0e-12));
+}
+
+
 BOOST_AUTO_TEST_CASE ( OneElectronOperator_getters ) {
 
     Eigen::MatrixXd matrix = Eigen::MatrixXd::Zero(4, 4);

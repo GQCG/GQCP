@@ -11,6 +11,9 @@ namespace GQCG {
 
 
 
+/**
+ *  A class that holds the matrix representation of a one-electron operator in an orbital basis
+ */
 class OneElectronOperator : public BaseOperator {
 private:
     Eigen::MatrixXd matrix;  // the matrix representation of the one-electron operator
@@ -26,6 +29,14 @@ public:
 
     // GETTERS
     Eigen::MatrixXd get_matrix_representation() const { return this->matrix; }
+    
+    
+    // OPERATORS
+    /**
+     *  @return the sum of two OneElectronOperators, i.e. a OneElectronOperator whose matrix representation is the sum
+     *  of the two matrix representations of the given OneElectronOperators
+     */
+    GQCG::OneElectronOperator operator+(const GQCG::OneElectronOperator& other);
 
 
     // PUBLIC METHODS
@@ -57,6 +68,10 @@ public:
      *      - we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
      */
     void rotate(const GQCG::JacobiRotationParameters& jacobi_rotation_parameters) override;
+
+
+    // FRIEND CLASSES
+    friend class HamiltonianParameters;
 };
 
 

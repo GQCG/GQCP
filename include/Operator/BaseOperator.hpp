@@ -11,9 +11,23 @@
 namespace GQCG {
 
 
-
+/**
+ *  A base class for the representation of operators in an orbital basis
+ */
 class BaseOperator {
+protected:
+    const size_t dim;  // dimension of the matrix representation of the operator
+
+
 public:
+    // CONSTRUCTORS
+    /**
+     *  Constructor based on a given @param dimension
+     */
+    explicit BaseOperator(size_t dimension);
+
+
+    // PUBLIC METHODS
     /**
      *  Transform the matrix representation of an operator using the transformation matrix @param T
      *

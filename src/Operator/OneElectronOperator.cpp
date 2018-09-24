@@ -14,6 +14,7 @@ namespace GQCG {
  *  Constructor based on a given @param matrix
  */
 OneElectronOperator::OneElectronOperator(const Eigen::MatrixXd& matrix) :
+    BaseOperator(matrix.cols()),
     matrix (matrix)
 {
     // Check if the one-electron integrals are represented as a square matrix
@@ -21,6 +22,22 @@ OneElectronOperator::OneElectronOperator(const Eigen::MatrixXd& matrix) :
         throw std::invalid_argument("One-electron integrals have to be represented as a square matrix.");
     }
 }
+
+
+
+/*
+ *  OPERATORS
+ */
+
+/**
+ *  @return the sum of two OneElectronOperators, i.e. a OneElectronOperator whose matrix representation is the sum
+ *  of the two matrix representations of the given OneElectronOperators
+ */
+GQCG::OneElectronOperator OneElectronOperator::operator+(const GQCG::OneElectronOperator& other) {
+    
+    return OneElectronOperator(this->matrix + other.matrix);
+}
+
 
 
 /*

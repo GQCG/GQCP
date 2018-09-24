@@ -33,6 +33,7 @@ public:
 
 
     // FRIEND CLASSES
+    friend class HamiltonianParameters;
     friend class LibintCommunicator;
 };
 
