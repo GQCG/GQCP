@@ -109,6 +109,20 @@ namespace gqcg {
     }
 
 
+    class AddressingScheme {
+        __ private members __
+            - const size_t K
+            - const size_t N
+            - GQCG::Matrixu vertex_weights
+        == constructors ==
+            **AddressingScheme**(size_t K, size_t N)
+        __ public methods __
+            + GQCG::Matrixu **get_vertex_weights**() const
+            + size_t **get_vertex_weights**(size_t p, size_t m) const
+            + size_t **get_K**() const
+            + size_t **get_N**() const
+    }
+
     class Basis {
         // Change the Name to integral evaluation?
         // hamiltonian one particle evaluation?
