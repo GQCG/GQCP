@@ -23,7 +23,12 @@ HamiltonianParameters::HamiltonianParameters(std::shared_ptr<GQCG::AOBasis> ao_b
     C (C)
 {
     // Check if the dimensions of all matrix representations are compatible
-    auto K = this->ao_basis_sptr->number_of_basis_functions;
+    size_t K = 0;
+    if (!(this->ao_basis_sptr == nullptr)) {
+        K = this->ao_basis_sptr->number_of_basis_functions;
+    } else {  // we don't have an AOBasis
+        K = S.dim;
+    }
 
     if ((S.dim != K) || (h.dim != K) || (g.dim != K) || (C.cols() != K) || (C.rows() != K)) {
         throw std::invalid_argument("The dimensions of the operators and coefficient matrix are incompatible.");

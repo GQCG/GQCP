@@ -26,6 +26,12 @@ namespace GQCG {
 GQCG::HamiltonianParameters constructMolecularHamiltonianParameters(std::shared_ptr<GQCG::AOBasis> ao_basis_sptr);
 
 
+/**
+ *  @return HamiltonianParameters corresponding to the contents of an @param fcidump_file
+ */
+GQCG::HamiltonianParameters readFCIDUMPFile(const std::string& fcidump_file);
+ 
+ 
 
 
 }  // namespace GQCG
