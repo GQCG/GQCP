@@ -37,7 +37,12 @@ public:
     // DESTRUCTORS
     ~HamiltonianParameters() override =default;
 
+    
+    // GETTERS
+    GQCG::OneElectronOperator get_h() const { return this->h; }
+    GQCG::TwoElectronOperator get_g() const { return this->g; }
 
+    
     // PUBLIC METHODS
     /**
      *  Given a transformation matrix @param T that links the new molecular orbital basis to the old molecular orbital basis,
