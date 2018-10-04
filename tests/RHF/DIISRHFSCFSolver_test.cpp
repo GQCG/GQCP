@@ -1,6 +1,6 @@
-#define BOOST_TEST_MODULE "PlainRHFSCFSolver"
+#define BOOST_TEST_MODULE "DIISRHFSCFSolver"
 
-#include "PlainRHFSCFSolver.hpp"
+#include "RHF/DIISRHFSCFSolver.hpp"
 #include "HamiltonianParameters/HamiltonianParameters_constructors.hpp"
 
 #include <cpputil.hpp>
@@ -10,7 +10,7 @@
 
 
 
-BOOST_AUTO_TEST_CASE ( h2_sto3g_szabo_plain ) {
+BOOST_AUTO_TEST_CASE ( h2_sto3g_szabo_DIIS ) {
 
     // In this test case, we will follow section 3.5.2 in Szabo.
     double ref_total_energy = -1.1167;
@@ -25,9 +25,9 @@ BOOST_AUTO_TEST_CASE ( h2_sto3g_szabo_plain ) {
 
 
     // Create a plain RHF SCF solver and solve the SCF equations
-    GQCG::PlainRHFSCFSolver plain_scf_solver (mol_ham_par, h2);
-    plain_scf_solver.solve();
-    auto rhf = plain_scf_solver.get_solution();
+    GQCG::DIISRHFSCFSolver diis_scf_solver (mol_ham_par, h2);
+    diis_scf_solver.solve();
+    auto rhf = diis_scf_solver.get_solution();
 
 
     // Check the total energy
@@ -36,7 +36,7 @@ BOOST_AUTO_TEST_CASE ( h2_sto3g_szabo_plain ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( h2o_sto3g_horton_plain ) {
+BOOST_AUTO_TEST_CASE ( h2o_sto3g_horton_DIIS ) {
 
     // We have some reference data from horton
     double ref_total_energy = -74.942080055631;
@@ -59,9 +59,9 @@ BOOST_AUTO_TEST_CASE ( h2o_sto3g_horton_plain ) {
     auto ao_basis = std::make_shared<GQCG::AOBasis>(water, "STO-3G");
     auto mol_ham_par = GQCG::constructMolecularHamiltonianParameters(ao_basis);
 
-    GQCG::PlainRHFSCFSolver plain_scf_solver (mol_ham_par, water);
-    plain_scf_solver.solve();
-    auto rhf = plain_scf_solver.get_solution();
+    GQCG::DIISRHFSCFSolver diis_scf_solver (mol_ham_par, water);
+    diis_scf_solver.solve();
+    auto rhf = diis_scf_solver.get_solution();
 
     // Check the total energy
     double total_energy = rhf.get_electronic_energy() + water.calculateInternuclearRepulsionEnergy();
@@ -74,7 +74,7 @@ BOOST_AUTO_TEST_CASE ( h2o_sto3g_horton_plain ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( crawdad_h2o_sto3g_plain ) {
+BOOST_AUTO_TEST_CASE ( crawdad_h2o_sto3g_DIIS ) {
 
     // This example is taken from (http://sirius.chem.vt.edu/wiki/doku.php?id=crawdad:programming:project3), but the input .xyz-file was converted to Angstrom.
     double ref_total_energy = -74.9420799281920;
@@ -88,9 +88,9 @@ BOOST_AUTO_TEST_CASE ( crawdad_h2o_sto3g_plain ) {
     auto ao_basis = std::make_shared<GQCG::AOBasis>(water, "STO-3G");
     auto mol_ham_par = GQCG::constructMolecularHamiltonianParameters(ao_basis);
 
-    GQCG::PlainRHFSCFSolver plain_scf_solver (mol_ham_par, water);
-    plain_scf_solver.solve();
-    auto rhf = plain_scf_solver.get_solution();
+    GQCG::DIISRHFSCFSolver diis_scf_solver (mol_ham_par, water);
+    diis_scf_solver.solve();
+    auto rhf = diis_scf_solver.get_solution();
 
 
     // Check the total energy
@@ -99,7 +99,7 @@ BOOST_AUTO_TEST_CASE ( crawdad_h2o_sto3g_plain ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( crawdad_ch4_sto3g_plain ) {
+BOOST_AUTO_TEST_CASE ( crawdad_ch4_sto3g_DIIS ) {
 
     // This example is taken from (http://sirius.chem.vt.edu/wiki/doku.php?id=crawdad:programming:project3), but the input .xyz-file was converted to Angstrom.
     double ref_total_energy = -39.726850324347;
@@ -112,9 +112,9 @@ BOOST_AUTO_TEST_CASE ( crawdad_ch4_sto3g_plain ) {
     auto ao_basis = std::make_shared<GQCG::AOBasis>(methane, "STO-3G");
     auto mol_ham_par = GQCG::constructMolecularHamiltonianParameters(ao_basis);
 
-    GQCG::PlainRHFSCFSolver plain_scf_solver (mol_ham_par, methane);
-    plain_scf_solver.solve();
-    auto rhf = plain_scf_solver.get_solution();
+    GQCG::DIISRHFSCFSolver diis_scf_solver (mol_ham_par, methane);
+    diis_scf_solver.solve();
+    auto rhf = diis_scf_solver.get_solution();
 
     // Check the total energy
     double total_energy = rhf.get_electronic_energy() + methane.calculateInternuclearRepulsionEnergy();
@@ -122,7 +122,7 @@ BOOST_AUTO_TEST_CASE ( crawdad_ch4_sto3g_plain ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( h2_631gdp_plain ) {
+BOOST_AUTO_TEST_CASE ( h2_631gdp_DIIS ) {
 
     // We have some reference data from olsens: H2@RHF//6-31G** orbitals
     double ref_electronic_energy = -1.84444667247;
@@ -133,9 +133,9 @@ BOOST_AUTO_TEST_CASE ( h2_631gdp_plain ) {
     auto ao_basis = std::make_shared<GQCG::AOBasis>(h2, "6-31g**");
     auto mol_ham_par = GQCG::constructMolecularHamiltonianParameters(ao_basis);
 
-    GQCG::PlainRHFSCFSolver plain_scf_solver (mol_ham_par, h2);
-    plain_scf_solver.solve();
-    auto rhf = plain_scf_solver.get_solution();
+    GQCG::DIISRHFSCFSolver diis_scf_solver (mol_ham_par, h2);
+    diis_scf_solver.solve();
+    auto rhf = diis_scf_solver.get_solution();
 
     // Check the electronic energy
     BOOST_CHECK(std::abs(rhf.get_electronic_energy() - ref_electronic_energy) < 1.0e-06);
