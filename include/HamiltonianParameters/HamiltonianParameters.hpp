@@ -88,6 +88,7 @@ public:
 
     // FRIEND CLASSES
     friend class RHFSCFSolver;
+    friend class DIISRHFSCFSolver;
 };
 
 

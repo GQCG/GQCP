@@ -14,7 +14,7 @@ namespace GQCG {
 class PlainRHFSCFSolver : public GQCG::RHFSCFSolver {
 private:
     /**
-     *  Calculate a new Fock matrix (in AO basis)
+     *  Calculate a new Fock matrix (in AO basis), i.e. this is the 'plain' RHF SCF step
      */
     Eigen::MatrixXd calculateNewFockMatrix(const Eigen::MatrixXd& D_AO) override;
 

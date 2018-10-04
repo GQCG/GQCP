@@ -8,7 +8,7 @@ namespace GQCG {
  */
 
 /**
- *  Calculate a new Fock matrix (in AO basis)
+ *  Calculate a new Fock matrix (in AO basis), i.e. this is the 'plain' RHF SCF step
  */
 Eigen::MatrixXd PlainRHFSCFSolver::calculateNewFockMatrix(const Eigen::MatrixXd& D_AO) {
     return GQCG::calculateRHFAOFockMatrix(D_AO, this->ham_par);
