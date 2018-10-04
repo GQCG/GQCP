@@ -36,6 +36,7 @@ before_install:
 install:
   # Install Boost before Eigen
   - conda install -c conda-forge boost-cpp
+  - export BOOST_ROOT=${HOME}/miniconda/include
 
   # Install Eigen
   - conda install -c conda-forge eigen
