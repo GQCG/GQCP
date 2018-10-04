@@ -58,7 +58,7 @@ install:
        ./autogen.sh
        mkdir build && cd build
        ../configure CXXFLAGS=-I${BOOST_ROOT}
-       make export
+       make export VERBOSE=1
        tar -xvzf libint-2.3.1.tgz
        cd libint-2.3.1
        ./configure CXXFLAGS=-I${BOOST_ROOT}
