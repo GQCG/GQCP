@@ -81,6 +81,13 @@ public:
      *  Furthermore @member C is updated to reflect the total transformation between the new molecular orbital basis and the initial atomic orbitals
      */
     void rotate(const GQCG::JacobiRotationParameters& jacobi_rotation_parameters);
+
+
+    // FRIEND FUNCTIONS
+    friend Eigen::MatrixXd calculateRHFAOFockMatrix(const Eigen::MatrixXd& D_AO, GQCG::HamiltonianParameters ham_par);
+
+    // FRIEND CLASSES
+    friend class RHFSCFSolver;
 };
 
 
