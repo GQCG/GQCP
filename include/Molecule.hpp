@@ -108,6 +108,7 @@ public:
 
     // FRIEND CLASSES
     friend class AOBasis;
+    friend class RHFSCFSolver;
 };
 
 
