@@ -16,7 +16,7 @@ void ONV::update(){
     size_t l = this->unsigned_representation;
     int i = 0;
     while(l != 0){
-        this->occupation_indexes.get()[i] = __builtin_ctzl(l);
+        this->occupation_indexes(i) = __builtin_ctzl(l);
         i++;
         l ^= (l & -l);
     }
@@ -46,7 +46,7 @@ void ONV::is_compatible(size_t l){
  *  Constructor from a @param K orbitals, N electrons and a representation for the ONV
  */
 ONV::ONV(size_t K, size_t N, size_t representation): K(K), N(N), unsigned_representation(representation){
-    occupation_indexes = size_t_sptr(new size_t[N]);
+    occupation_indexes = Eigen::VectorXd::Zero(N);
     is_compatible(this->unsigned_representation);  // throws error if the constructor parameters are not compatible;
     update();
 }
@@ -87,7 +87,7 @@ void ONV::set_representation(size_t unsigned_representation) {
  *  @return occupied orbital based on the electron index
  */
 size_t ONV::get_occupied_orbital(size_t electron_index) {
-    return occupation_indexes.get()[electron_index];
+    return occupation_indexes(electron_index);
 }
 
 
@@ -97,7 +97,7 @@ size_t ONV::get_occupied_orbital(size_t electron_index) {
  *  @return if the index is occupied (i.e. 1) for the @param p-th spatial orbital, starting from 0
  *  @param p is the lexical index (i.e. read from right to left)
  */
-bool isOccupied(size_t p) const{
+bool ONV::isOccupied(size_t p) const{
     if (p > this->K-1) {
         throw std::invalid_argument("The index is out of the bitset bounds");
     }
@@ -114,7 +114,7 @@ bool isOccupied(size_t p) const{
  *  !!! IMPORTANT: does not update the occupation array if required call "update()" !!!
  *  !!! IMPORTANT: does not update the occupation array if required call "update()" !!!
  */
-bool annihilate(size_t p){
+bool ONV::annihilate(size_t p){
 
     if (this->isOccupied(p)) {
         size_t operator_string = 1U << p;
@@ -134,7 +134,7 @@ bool annihilate(size_t p){
  *  !!! IMPORTANT: does not update the occupation array if required call "update()" !!!
  *  !!! IMPORTANT: performs the annihilation in place !!!
  */
-bool annihilate(size_t p, int& sign) {
+bool ONV::annihilate(size_t p, int& sign) {
 
     if (this->annihilate(p)) {  // we have to first check if we can annihilate before applying the phase factor
         sign *= this->operatorPhaseFactor(p);
@@ -151,7 +151,7 @@ bool annihilate(size_t p, int& sign) {
  *  !!! IMPORTANT: does not update the occupation array if required call "update()" !!!
  *  !!! IMPORTANT: does not update the occupation array if required call "update()" !!!
  */
-bool create(size_t p) {
+bool ONV::create(size_t p) {
     if (!this->isOccupied(p)) {
         size_t operator_string = 1U << p;
         this->unsigned_representation ^= operator_string;
@@ -170,7 +170,7 @@ bool create(size_t p) {
  *  !!! IMPORTANT: does not update the occupation array if required call "update()" !!!
  *  !!! IMPORTANT: performs the creation in place !!!
  */
-bool create(size_t p, int& sign) {
+bool ONV::create(size_t p, int& sign) {
 
     if (this->create(p)) {  // we have to first check if we can create before applying the phase factor
         sign *= this->operatorPhaseFactor(p);
@@ -185,7 +185,7 @@ bool create(size_t p, int& sign) {
  *
  *  Let's say that there are m electrons in the orbitals up to p (not included). If m is even, the phase factor is (+1) and if m is odd, the phase factor is (-1), since electrons are fermions.
  */
-int operatorPhaseFactor(size_t p) const {
+int ONV::operatorPhaseFactor(size_t p) const {
 
     if (p == 0) {  // we can't give this to this->slice(0, 0)
         return 1;
@@ -211,7 +211,7 @@ int operatorPhaseFactor(size_t p) const {
  *          "010011".slice(1, 4) => "01[001]1" -> "001"
  *
  */
-size_t slice(size_t index_start, size_t index_end) const {
+size_t ONV::slice(size_t index_start, size_t index_end) const {
 
     // First, do some checks
     if (index_end <= index_start) {

@@ -52,7 +52,7 @@ BOOST_AUTO_TEST_CASE ( address_onv ) {
     // The address of the string "010011" (19) should be 4
     GQCG::ONV onv(6,3,19);
 
-    BOOST_CHECK_EQUAL(fock_space.get_address(onv), 4);
+    BOOST_CHECK_EQUAL(fock_space.getAddress(onv), 4);
 }
 
 BOOST_AUTO_TEST_CASE ( set_Next_onv ) {
@@ -217,7 +217,7 @@ BOOST_AUTO_TEST_CASE ( ONV_address_setNext_fullspace ) {
     const size_t dimension_fock_space = 3003;
     bool is_correct = true;
     for(int i = 0;i<dimension_fock_space;i++){
-        if(i != fock_space.get_address(onv_test)){
+        if(i != fock_space.getAddress(onv_test)){
             is_correct = false;
         }
         fock_space.setNext(onv_test);

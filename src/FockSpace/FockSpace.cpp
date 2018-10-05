@@ -152,7 +152,7 @@ void FockSpace::setNext(ONV &onv) {
 /**
  *  @return the address (i.e. the ordering number) of the @param onv in reverse lexical ordering, in the fock space.
  */
-size_t FockSpace::get_address(ONV &onv){
+size_t FockSpace::getAddress(ONV &onv){
     // An implementation of the formula in Helgaker, starting the addressing count from zero
     size_t address = 0;
     size_t m = 0;  // counts the number of electrons in the spin string up to orbital p

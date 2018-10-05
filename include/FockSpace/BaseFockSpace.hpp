@@ -44,7 +44,7 @@ public:
     /**
      *  @return the address (i.e. the ordering number) of the @param onv in reverse lexical ordering, in the fock space.
      */
-    virtual size_t get_address(ONV &onv) = 0;
+    virtual size_t getAddress(ONV &onv) = 0;
 };
 
 

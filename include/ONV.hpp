@@ -2,7 +2,7 @@
 #define GQCG_ONV_HPP
 
 
-#include "common.hpp"
+#include <Eigen/Dense>
 
 
 
@@ -14,7 +14,7 @@ private:
     const size_t K;  // number of spatial orbitals
     const size_t N;  // number of electrons
     size_t unsigned_representation;  // unsigned representation
-    size_t_sptr occupation_indexes;  // the occupied orbital electron indexes
+    Eigen::VectorXd occupation_indexes;  // the occupied orbital electron indexes
 
 
     // PRIVATE METHODS
