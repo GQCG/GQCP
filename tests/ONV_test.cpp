@@ -22,6 +22,14 @@ BOOST_AUTO_TEST_CASE ( ONV_constructor ) {
     // Check if both unsigned representations match (are equal to 31 and have the same considered bits)
     BOOST_CHECK(onv1 == onv2);
     BOOST_CHECK(onv1.get_urepresentation() == 31);
+
+    // Test if the occupation numbers are correct.
+    GQCG::VectorXs x(5);
+    x << 0, 1, 2, 3, 4;
+    BOOST_CHECK(x.isApprox(onv1.get_occupations()));
+
+    // Test if setting incompatible representation throws an error
+    BOOST_CHECK_THROW(onv1.set_representation(1), std::invalid_argument);
 }
 
 
@@ -65,12 +73,21 @@ BOOST_AUTO_TEST_CASE ( set_Next_onv ) {
 
     fock_space.setNext(spin_string);  // "01011" (11)
     BOOST_CHECK_EQUAL(spin_string.get_urepresentation(), 11);
+    GQCG::VectorXs x1(3);
+    x1 << 0, 1, 3;
+    BOOST_CHECK(x1.isApprox(spin_string.get_occupations()));
 
     fock_space.setNext(spin_string);  // "01101" (13)
     BOOST_CHECK_EQUAL(spin_string.get_urepresentation(), 13);
+    GQCG::VectorXs x2(3);
+    x2 << 0, 2, 3;
+    BOOST_CHECK(x2.isApprox(spin_string.get_occupations()));
 
     fock_space.setNext(spin_string);  // "01110" (14)
     BOOST_CHECK_EQUAL(spin_string.get_urepresentation(), 14);
+    GQCG::VectorXs x3(3);
+    x3 << 1, 2, 3;
+    BOOST_CHECK(x3.isApprox(spin_string.get_occupations()));
 }
 
 
@@ -131,6 +148,8 @@ BOOST_AUTO_TEST_CASE ( annihilate_onv ) {
     // We can annihilate on index 1
     BOOST_CHECK(spin_string.annihilate(1));  // "1010" (10) -> "1000" (8)
     BOOST_CHECK_EQUAL(spin_string.get_urepresentation(), 8);
+    // Test if updating throws an error (no longer 2 electrons)
+    BOOST_CHECK_THROW(spin_string.update(), std::invalid_argument);
 }
 
 

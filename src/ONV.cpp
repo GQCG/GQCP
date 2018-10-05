@@ -20,22 +20,10 @@ void ONV::update(){
         i++;
         l ^= (l & -l);
     }
-}
-
-/**
- *  Tests whether the assigned amount of electrons N and the amount of set bits in the representation match
- */
-void ONV::is_compatible(size_t l){
-    int i = 0;
-    while(l != 0){
-        if(i == this->N){
-            throw std::invalid_argument("representation and electron count are not compatible");
-        }
-        i++;
-        l ^= (l & -l);
+    if(i != this->N){
+        throw std::invalid_argument("current representation and electron count are not compatible");
     }
 }
-
 
 
 /*
@@ -46,9 +34,8 @@ void ONV::is_compatible(size_t l){
  *  Constructor from a @param K orbitals, N electrons and a representation for the ONV
  */
 ONV::ONV(size_t K, size_t N, size_t representation): K(K), N(N), unsigned_representation(representation){
-    occupation_indexes = Eigen::VectorXd::Zero(N);
-    is_compatible(this->unsigned_representation);  // throws error if the constructor parameters are not compatible;
-    update();
+    occupation_indexes = VectorXs::Zero(N);
+    update();  // throws error if the representation and N are not compatible
 }
 
 

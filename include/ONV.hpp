@@ -3,6 +3,7 @@
 
 
 #include <Eigen/Dense>
+#include "common.hpp"
 
 
 
@@ -14,20 +15,7 @@ private:
     const size_t K;  // number of spatial orbitals
     const size_t N;  // number of electrons
     size_t unsigned_representation;  // unsigned representation
-    Eigen::VectorXd occupation_indexes;  // the occupied orbital electron indexes
-
-
-    // PRIVATE METHODS
-    /**
-     *  Extracts the positions of the set bits from the representation and places them in an array
-     */
-    void update();
-
-    /**
-     *  Tests whether the assigned amount of electrons N and the amount of set bits in the representation match
-     */
-    void is_compatible(size_t l);
-
+    VectorXs occupation_indexes;  // the occupied orbital electron indexes
 
 
 public:
@@ -58,14 +46,23 @@ public:
         return !(this->operator==(other));
     }
 
+
     // GETTERS & SETTERS
     void set_representation(size_t unsigned_representation);
     size_t get_urepresentation(){ return unsigned_representation;}
+    VectorXs get_occupations(){ return occupation_indexes;}
 
     /**
      *  @return occupied orbital based on the electron index
      */
     size_t get_occupied_orbital(size_t electron_index);
+
+
+    // PUBLIC METHODS
+    /**
+     *  Extracts the positions of the set bits from the representation and places them in an array
+     */
+    void update();
 
 
     // PUBLIC METHODS (PREVIOUS SPIN STRING FUNCTIONALITY)
