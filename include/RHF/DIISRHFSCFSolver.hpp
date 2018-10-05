@@ -17,7 +17,7 @@
 
 
 /**
- *  A DIIS RHF SCF solver
+ *  A DIIS RHF SCF solver.
  */
 namespace GQCG {
 
@@ -30,14 +30,14 @@ private:
 
     // PRIVATE METHODS
     /**
-     *  Calculate a new Fock matrix (in AO basis), i.e. this is the 'DIIS' RHF SCF step
+     *  Calculate a new Fock matrix (in AO basis), i.e. this is the 'DIIS' RHF SCF step.
      */
     Eigen::MatrixXd calculateNewFockMatrix(const Eigen::MatrixXd& D_AO) override;
 
 public:
     // CONSTRUCTORS
     /**
-     *  Constructor based on given @param hamiltonian parameters, @param molecule, @param maximum_number_of_iterations and @param SCF threshold
+     *  Constructor based on given Hamiltonian parameters @param ham_par, @param molecule, @param maximum_number_of_iterations and @param SCF threshold
      */
     DIISRHFSCFSolver(GQCG::HamiltonianParameters ham_par, GQCG::Molecule molecule, size_t maximum_subspace_dimension = 6, double threshold=1.0e-08, size_t maximum_number_of_iterations=128);
 };
