@@ -60,7 +60,7 @@ public:
      *  @return ONV with the corresponding address in the considered space
      */
     ONV get_ONV(size_t address) override;
-    
+
     /**
      *  sets @param ONV to the next ONV in the space
      *  performs the ulongNextPermutation() function
@@ -79,7 +79,6 @@ public:
     friend class FCI;
 };
 
-typedef std::shared_ptr<GQCG::FockSpace> FockSpace_sptr;
 
 }  // namespace GQCG
 
