@@ -28,7 +28,6 @@ private:
     size_t ulongNextPermutation(size_t representation) ;
 
 
-
 public:
     // CONSTRUCTORS
     /**
@@ -37,28 +36,21 @@ public:
     explicit FockSpace(size_t K, size_t N);
 
 
-    // DESTRUCTOR
+    // DESTRUCTORS
     ~FockSpace() override = default;
 
+
     // GETTERS
-    /**
-     *  @return weights as size_t from the vertex_weight matrix associated with the ONVs in the Fock space
-     */
     size_t get_vertex_weights(size_t p, size_t m) const { return this->vertex_weights[p][m];}
     Matrixu get_vertex_weights() const { return this->vertex_weights;}
-
     size_t get_dimension(){ return dim;}
-
-    /**
-     *  @return the address (i.e. the ordering number) of the @param onv in reverse lexical ordering, in the fock space.
-     */
-    size_t get_address(ONV &onv);
 
 
     // STATIC PUBLIC METHODS
     /**
-     *  Given a number of spatial orbitals @param K and a number of electrons  @param N, @return the dimension of
-     *  the Fock space.
+     *  Given a number of spatial orbitals @param K
+     *  and a number of electrons  @param N,
+     *  @return the dimension of the Fock space
      */
     static size_t calculateDimension(size_t K, size_t N);
 
@@ -68,13 +60,18 @@ public:
      *  @return ONV with the corresponding address in the considered space
      */
     ONV get_ONV(size_t address) override;
-
+    
     /**
      *  sets @param ONV to the next ONV in the space
      *  performs the ulongNextPermutation() function
      *  and updates the corresponding occupation indexes
      */
     void setNext(ONV &onv) override;
+
+    /**
+     *  @return the address (i.e. the ordering number) of the @param onv in reverse lexical ordering, in the fock space.
+     */
+    size_t getAddress(ONV &onv) override;
 
 
     // FRIEND CLASSES

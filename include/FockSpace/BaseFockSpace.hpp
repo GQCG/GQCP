@@ -5,6 +5,8 @@
 #include "ONV.hpp"
 #include "common.hpp"
 
+
+
 namespace GQCG {
 
 
@@ -20,7 +22,6 @@ protected:
     explicit BaseFockSpace(size_t K):K(K){};
 
 
-
 public:
     // DESTRUCTOR
     /**
@@ -31,7 +32,7 @@ public:
 
     // PURE VIRTUAL PUBLIC METHODS
     /**
-     *  @return ONV with the corresponding address in the considered space
+     *  @return ONV with the corresponding @param address in the considered space
      */
     virtual ONV get_ONV(size_t address) = 0;
 
@@ -40,7 +41,10 @@ public:
      */
     virtual void setNext(ONV &onv) = 0;
 
-
+    /**
+     *  @return the address (i.e. the ordering number) of the @param onv in reverse lexical ordering, in the fock space.
+     */
+    virtual size_t get_address(ONV &onv) = 0;
 };
 
 
