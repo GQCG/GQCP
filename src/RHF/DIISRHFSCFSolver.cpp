@@ -17,29 +17,30 @@ namespace GQCG {
  */
 
 /**
- *  Calculate a new Fock matrix (in AO basis), i.e. this is the 'DIIS' RHF SCF step
+ *  Calculate a new Fock matrix (in AO basis), i.e. this is the 'DIIS' RHF SCF step.
  */
 Eigen::MatrixXd DIISRHFSCFSolver::calculateNewFockMatrix(const Eigen::MatrixXd& D_AO) {
 
-    // Calculate the current Fock matrix based off the current density matrix
+    Eigen::MatrixXd S = this->ham_par.S.get_matrix_representation();
+
+    // Calculate the Fock matrix based off the density matrix
     auto f_AO = GQCG::calculateRHFAOFockMatrix(D_AO, this->ham_par);
 
 
     // Update deques for the DIIS procedure
     this->fock_matrix_deque.emplace_back(f_AO);
-
-    Eigen::MatrixXd error_matrix = f_AO * D_AO * this->ham_par.S.get_matrix_representation() - this->ham_par.S.get_matrix_representation() * D_AO * f_AO;
+    Eigen::MatrixXd error_matrix = f_AO * D_AO * S - S * D_AO * f_AO;
     this->error_matrix_deque.emplace_back(error_matrix);
 
 
-    // Do DIIS when the current subspace dimension is large enough and collapse the subspace, if needed
+    // Do DIIS when the current subspace dimension is large enough
+    // Collapse the subspace, if needed
     size_t n = error_matrix_deque.size();  // n is the current subspace dimension
     if (n == this->maximum_subspace_dimension) {
 
-        // Initialize the augmented B matrix
+        // Initialize and calculate the augmented B matrix
         Eigen::MatrixXd B = -1 * Eigen::MatrixXd::Ones(n+1,n+1);  // +1 for the multiplier
         B(n,n) = 0;
-
         for (size_t i = 0; i < n; i++) {
             for (size_t j = 0; j < n; j++) {
                 // B(i,j) = Tr(e_i^T e_j)
@@ -57,8 +58,8 @@ Eigen::MatrixXd DIISRHFSCFSolver::calculateNewFockMatrix(const Eigen::MatrixXd& 
 
 
         // Use the coefficients that are in y to construct 'the best' Fock matrix as a linear combination of previous Fock matrices
-        f_AO = Eigen::MatrixXd::Zero(this->ham_par.S.get_matrix_representation().cols(), this->ham_par.S.get_matrix_representation().cols());
-        for (size_t i = 0; i < n; i++) {  // n is the dimension of the subspace (not equal to the size of the augmented B matrix)
+        f_AO = Eigen::MatrixXd::Zero(S.cols(), S.cols());
+        for (size_t i = 0; i < n; i++) {  // n is the current subspace dimension (not equal to the size of the augmented B matrix)
             f_AO += y(i) * this->fock_matrix_deque[i];
         }
 
@@ -76,15 +77,12 @@ Eigen::MatrixXd DIISRHFSCFSolver::calculateNewFockMatrix(const Eigen::MatrixXd& 
  *  CONSTRUCTORS
  */
 /**
- *  Constructor based on given @param hamiltonian parameters, @param molecule, @param maximum_number_of_iterations and @param SCF threshold
+ *  Constructor based on given Hamiltonian parameters @param ham_par, @param molecule, @param maximum_number_of_iterations and @param SCF threshold
  */
 DIISRHFSCFSolver::DIISRHFSCFSolver(GQCG::HamiltonianParameters ham_par, GQCG::Molecule molecule, size_t maximum_subspace_dimension, double threshold, size_t maximum_number_of_iterations) :
     RHFSCFSolver(ham_par, molecule, threshold, maximum_number_of_iterations),
     maximum_subspace_dimension (maximum_subspace_dimension)
 {}
-
-
-
 
 
 }  // namespace GQCG
