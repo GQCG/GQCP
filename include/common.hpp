@@ -4,6 +4,7 @@
 
 #include <cstdlib>
 #include <vector>
+#include <Eigen/Dense>
 
 
 namespace GQCG {
@@ -11,6 +12,7 @@ namespace GQCG {
 
 typedef std::vector<size_t> Vectoru;
 typedef std::vector<Vectoru> Matrixu;
+typedef Eigen::Matrix<size_t,Eigen::Dynamic,1> VectorXs;
 
 
 }  // namespace GQCG
