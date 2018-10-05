@@ -1,4 +1,4 @@
-#include "RHFSCFSolver.hpp"
+#include "RHF/RHFSCFSolver.hpp"
 
 
 namespace GQCG {

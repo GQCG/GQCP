@@ -1,4 +1,4 @@
-#include "RHF.hpp"
+#include "RHF/RHF.hpp"
 
 
 namespace GQCG {
