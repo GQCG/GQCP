@@ -6,7 +6,7 @@
 //  Copyright © 2018 Ghent Quantum Chemistry Group. All rights reserved.
 //
 
-#include "DIISRHFSCFSolver.hpp"
+#include "RHF/DIISRHFSCFSolver.hpp"
 
 
 namespace GQCG {
