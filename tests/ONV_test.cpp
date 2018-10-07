@@ -227,20 +227,31 @@ BOOST_AUTO_TEST_CASE ( create_sign_onv ) {
     BOOST_CHECK_EQUAL(sign, 1);
 }
 
+
 BOOST_AUTO_TEST_CASE ( ONV_address_setNext_fullspace ) {
     // Here we will test a full permutation through a Fock space of K = 15, N = 5
     GQCG::FockSpace fock_space(15,5);
 
-
+    // Retrieve the first ONV of the Fock space
     GQCG::ONV onv_test = fock_space.get_ONV(0);
+
     const size_t dimension_fock_space = 3003;
-    bool is_correct = true;
-    for(int i = 0;i<dimension_fock_space;i++){
-        if(i != fock_space.getAddress(onv_test)){
+    bool is_correct = true;  // variable that is updated to false if an unexpected result occurs
+
+    // Iterate through the Fock space in reverse lexicographical order and test whether address matches
+    for(int i = 0; i<dimension_fock_space; i++) {
+
+        // Tests address
+        if (i != fock_space.getAddress(onv_test)) {
             is_correct = false;
         }
-        fock_space.setNext(onv_test);
-    }
-    BOOST_CHECK(is_correct);
 
+        // transforms the given ONV to the next ONV in the Fock space
+        if (i < dimension_fock_space - 1) {
+            fock_space.setNext(onv_test);
+        }
+    }
+
+    // Checks if no unexpected results occured in a full iteration
+    BOOST_CHECK(is_correct);
 }

@@ -61,7 +61,6 @@ set(PROJECT_INCLUDE_FILES
         ${PROJECT_INCLUDE_FOLDER}/RHF/PlainRHFSCFSolver.hpp
         ${PROJECT_INCLUDE_FOLDER}/RHF/RHF.hpp
         ${PROJECT_INCLUDE_FOLDER}/RHF/RHFSCFSolver.hpp
-        ${PROJECT_INCLUDE_FOLDER}/AddressingScheme.hpp
         ${PROJECT_INCLUDE_FOLDER}/AOBasis.hpp
         ${PROJECT_INCLUDE_FOLDER}/Atom.hpp
         ${PROJECT_INCLUDE_FOLDER}/common.hpp
