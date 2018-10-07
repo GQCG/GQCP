@@ -3,6 +3,17 @@
 
 namespace GQCG {
 
+/*
+ * PROTECTED CONSTRUCTORS
+ */
+
+/*
+ *  Protected constructor given a @param K
+ */
+BaseFockSpace::BaseFockSpace(size_t K)
+:K(K){};
+
+
 
 /*
  *  DESTRUCTOR

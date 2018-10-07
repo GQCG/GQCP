@@ -32,8 +32,10 @@ size_t FockSpace::ulongNextPermutation(size_t representation) {
  */
 
 /**
- *  Constructor based on a given @param K and @param N on which the dimension of the fock space is based.
+ *  Constructor given a @param K (spatial orbitals), N (electrons)
+ *  on which the dimensions of the Fock space are based
  */
+
 FockSpace::FockSpace(size_t K, size_t N) :
         BaseFockSpace(K), N(N), dim(FockSpace::calculateDimension(K,N)) {
     // Create a zero matrix of dimensions (K+1)x(N+1)
@@ -107,7 +109,7 @@ size_t FockSpace::calculateDimension(size_t K, size_t N) {
  */
 
 /**
- *  @return ONV with the corresponding address in the considered space
+ *  @return the ONV with the corresponding address in the considered space
  */
 ONV FockSpace::get_ONV(size_t address){
     size_t representation;
@@ -150,7 +152,7 @@ void FockSpace::setNext(ONV &onv) {
 
 
 /**
- *  @return the address (i.e. the ordering number) of the @param onv in reverse lexical ordering, in the fock space.
+ *  @return the Fock space address (i.e. the ordering number) of the @param onv in reverse lexical ordering, in the fock space.
  */
 size_t FockSpace::getAddress(ONV &onv){
     // An implementation of the formula in Helgaker, starting the addressing count from zero

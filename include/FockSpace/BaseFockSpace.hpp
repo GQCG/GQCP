@@ -9,6 +9,7 @@
 
 namespace GQCG {
 
+
 /**
  *  A base class for the Fock space
  *  Interfacing requires the Fock space to generated an ONV from a given address
@@ -17,14 +18,14 @@ namespace GQCG {
  */
 class BaseFockSpace {
 protected:
-    const size_t K;  // number spatial orbitals
+    const size_t K;  // number of spatial orbitals
 
 
     // PROTECTED CONSTRUCTORS
     /**
      *  Protected constructor given a @param K
      */
-    explicit BaseFockSpace(size_t K):K(K){};
+    explicit BaseFockSpace(size_t K);
 
 
 public:
@@ -37,23 +38,23 @@ public:
 
     // PURE VIRTUAL PUBLIC METHODS
     /**
-     *  @return ONV with the corresponding @param address in the considered space
+     *  @return the ONV with the corresponding @param address in the considered space
      */
     virtual ONV get_ONV(size_t address) = 0;
 
     /**
      *  sets @param ONV to the next ONV in the space
      */
-    virtual void setNext(ONV &onv) = 0;
+    virtual void setNext(ONV& onv) = 0;
 
     /**
-     *  @return the address (i.e. the ordering number) of the @param onv in reverse lexical ordering, in the fock space.
+     *  @return the Fock space address (i.e. the ordering number) of the @param onv in reverse lexical ordering, in the fock space.
      */
-    virtual size_t getAddress(ONV &onv) = 0;
+    virtual size_t getAddress(ONV& onv) = 0;
 };
 
 
 }  // namespace GQCG
 
 
-#endif //GQCG_BASEFOCKSPACE_HPP
+#endif  // GQCG_BASEFOCKSPACE_HPP

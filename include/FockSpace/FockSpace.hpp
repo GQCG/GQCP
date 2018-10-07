@@ -3,6 +3,7 @@
 
 
 #include "FockSpace/BaseFockSpace.hpp"
+
 #include <boost/numeric/conversion/converter.hpp>
 #include <boost/math/special_functions.hpp>
 
@@ -10,30 +11,39 @@
 namespace GQCG {
 
 
+/**
+ *  The full Fock space for given set of orbitals and number of electrons
+ *  where the ONV's and addresses are linked
+ *  through a hashing function calculated with an addressing scheme,
+ *  Implementation of the addressing scheme from :
+ *      Molecular Electronic-Structure Theory (August 2000) by Trygve Helgaker, Poul Jorgensen, and Jeppe Olsen
+ */
 class FockSpace: public GQCG::BaseFockSpace {
 private:
     const size_t N;  // number of electrons
     const size_t dim;  // dimension of the Fock space
-    Matrixu vertex_weights;
+
+    Matrixu vertex_weights;  // vertex_weights of the addressing scheme
 
 
     // PRIVATE METHODS
     /**
-     *  In-place permute the representation, giving the next bitstring permutation in reverse lexical ordering.
+     *  @returns a permutation of the representation, giving the next bitstring permutation in reverse lexical ordering.
      *
      *      Examples:
      *          011 -> 101
      *          101 -> 110
      */
-    size_t ulongNextPermutation(size_t representation) ;
+    size_t ulongNextPermutation(size_t representation);
 
 
 public:
     // CONSTRUCTORS
     /**
-     *  Constructor given a @param K, N
+     *  Constructor given a @param K (spatial orbitals), N (electrons)
+     *  on which the dimensions of the Fock space are based
      */
-    explicit FockSpace(size_t K, size_t N);
+    FockSpace(size_t K, size_t N);
 
 
     // DESTRUCTORS
@@ -41,9 +51,9 @@ public:
 
 
     // GETTERS
-    size_t get_vertex_weights(size_t p, size_t m) const { return this->vertex_weights[p][m];}
-    Matrixu get_vertex_weights() const { return this->vertex_weights;}
-    size_t get_dimension(){ return dim;}
+    size_t get_vertex_weights(size_t p, size_t m) const { return this->vertex_weights[p][m]; }
+    Matrixu get_vertex_weights() const { return this->vertex_weights; }
+    size_t get_dimension(){ return dim; }
 
 
     // STATIC PUBLIC METHODS
@@ -57,7 +67,7 @@ public:
 
     // OVERRIDDEN PUBLIC METHODS
     /**
-     *  @return ONV with the corresponding address in the considered space
+     *  @return the ONV with the corresponding address in the considered space
      */
     ONV get_ONV(size_t address) override;
 
@@ -65,13 +75,14 @@ public:
      *  sets @param ONV to the next ONV in the space
      *  performs the ulongNextPermutation() function
      *  and updates the corresponding occupation indexes
+     *  of the ONV occupation array
      */
-    void setNext(ONV &onv) override;
+    void setNext(ONV& onv) override;
 
     /**
-     *  @return the address (i.e. the ordering number) of the @param onv in reverse lexical ordering, in the fock space.
+     *  @return the Fock space address (i.e. the ordering number) of the @param onv in reverse lexical ordering, in the fock space.
      */
-    size_t getAddress(ONV &onv) override;
+    size_t getAddress(ONV& onv) override;
 
 
     // FRIEND CLASSES
@@ -83,4 +94,4 @@ public:
 }  // namespace GQCG
 
 
-#endif //GQCG_FOCKSPACE_HPP
+#endif  // GQCG_FOCKSPACE_HPP

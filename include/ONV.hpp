@@ -3,6 +3,7 @@
 
 
 #include <Eigen/Dense>
+
 #include "common.hpp"
 
 
@@ -10,18 +11,28 @@
 namespace GQCG {
 
 
+/**
+ *      An ONV in quantum chemistry is a string of creation operators acting on top of a vacuum state.
+ *      An example for 3 alpha electrons in a Fock space spanned by 4 spatial orbitals is
+ *          a_1^\dagger a_2^\dagger a_3^\dagger |vac> = |1,1,1,0>
+ *
+ *      In this code, we are using REVERSE LEXICAL notation, i.e. bitstrings are read from right to left. This means that the
+ *      least significant bit relates to the first orbital. Using this notation is how normally bits are read, leading
+ *      to more efficient code. As is also usual, the least significant bit has index 0.
+ *          The previous example is then represented by the bit string "0111" (7).
+ */
 class ONV {
 private:
     const size_t K;  // number of spatial orbitals
     const size_t N;  // number of electrons
     size_t unsigned_representation;  // unsigned representation
-    VectorXs occupation_indexes;  // the occupied orbital electron indexes
+    VectorXs occupation_indices;  // the occupied orbital electron indexes
 
 
 public:
     // CONSTRUCTORS
     /**
-     *  Constructor from a @param K orbitals, N electrons and a representation for the ONV
+     *  Constructor from a @param K orbitals, N electrons and an @param unsigned_representation
      */
     ONV(size_t K, size_t N, size_t unsigned_representation);
 
@@ -50,7 +61,7 @@ public:
     // GETTERS & SETTERS
     void set_representation(size_t unsigned_representation);
     size_t get_urepresentation(){ return unsigned_representation;}
-    VectorXs get_occupations(){ return occupation_indexes;}
+    VectorXs get_occupations(){ return occupation_indices;}
 
     /**
      *  @return occupied orbital based on the electron index

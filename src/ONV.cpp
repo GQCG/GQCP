@@ -16,7 +16,7 @@ void ONV::update(){
     size_t l = this->unsigned_representation;
     int i = 0;
     while(l != 0){
-        this->occupation_indexes(i) = __builtin_ctzl(l);
+        this->occupation_indices(i) = __builtin_ctzl(l);
         i++;
         l ^= (l & -l);
     }
@@ -34,7 +34,7 @@ void ONV::update(){
  *  Constructor from a @param K orbitals, N electrons and a representation for the ONV
  */
 ONV::ONV(size_t K, size_t N, size_t representation): K(K), N(N), unsigned_representation(representation){
-    occupation_indexes = VectorXs::Zero(N);
+    occupation_indices = VectorXs::Zero(N);
     update();  // throws error if the representation and N are not compatible
 }
 
@@ -74,7 +74,7 @@ void ONV::set_representation(size_t unsigned_representation) {
  *  @return occupied orbital based on the electron index
  */
 size_t ONV::get_occupied_orbital(size_t electron_index) {
-    return occupation_indexes(electron_index);
+    return occupation_indices(electron_index);
 }
 
 
