@@ -10,13 +10,13 @@
 BOOST_AUTO_TEST_CASE ( constructor ) {
 
     GQCG::AP1roGGeminalCoefficients g (4, 6);
-    GQCG::AP1roG ap1rog (g);
+    GQCG::AP1roG ap1rog (g, 0.0);
 }
 
 
 BOOST_AUTO_TEST_CASE ( get_geminal_coefficients ) {
 
     GQCG::AP1roGGeminalCoefficients g (4, 6);
-    GQCG::AP1roG ap1rog (g);
+    GQCG::AP1roG ap1rog (g, 0.0);
     ap1rog.get_geminal_coefficients();
 }
