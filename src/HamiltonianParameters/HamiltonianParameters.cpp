@@ -15,23 +15,25 @@ namespace GQCG {
  *  operator @param g and a transformation matrix between the current molecular orbitals and the atomic orbitals
  *  @param C
  */
-HamiltonianParameters::HamiltonianParameters(std::shared_ptr<GQCG::AOBasis> ao_basis_sptr, const GQCG::OneElectronOperator& S, const GQCG::OneElectronOperator& h, const GQCG::TwoElectronOperator& g, const Eigen::MatrixXd& C) :
-    BaseHamiltonianParameters(std::move(ao_basis_sptr)),
+HamiltonianParameters::HamiltonianParameters(std::shared_ptr<GQCG::AOBasis> ao_basis, const GQCG::OneElectronOperator& S, const GQCG::OneElectronOperator& h, const GQCG::TwoElectronOperator& g, const Eigen::MatrixXd& C) :
+    BaseHamiltonianParameters(std::move(ao_basis)),
+    K (S.dim),
     S (S),
     h (h),
     g (g),
     C (C)
 {
     // Check if the dimensions of all matrix representations are compatible
-    size_t K = 0;
-    if (!(this->ao_basis_sptr == nullptr)) {
-        K = this->ao_basis_sptr->number_of_basis_functions;
-    } else {  // we don't have an AOBasis
-        K = S.dim;
+    auto error = std::invalid_argument("The dimensions of the operators and coefficient matrix are incompatible.");
+
+    if (this->ao_basis) {  // ao_basis is not nullptr
+        if (this->K != this->ao_basis->number_of_basis_functions) {
+            throw error;
+        }
     }
 
-    if ((S.dim != K) || (h.dim != K) || (g.dim != K) || (C.cols() != K) || (C.rows() != K)) {
-        throw std::invalid_argument("The dimensions of the operators and coefficient matrix are incompatible.");
+    if ((h.dim != this->K) || (g.dim != this->K) || (C.cols() != this->K) || (C.rows() != this->K)) {
+        throw error;
     }
 }
 
