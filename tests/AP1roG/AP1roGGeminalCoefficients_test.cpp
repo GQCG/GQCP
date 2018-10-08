@@ -7,6 +7,11 @@
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
 
 
+BOOST_AUTO_TEST_CASE ( default_constructor ) {
+    GQCG::AP1roGGeminalCoefficients gem_coeff;
+}
+
+
 BOOST_AUTO_TEST_CASE ( constructor ) {
 
     // Check a correct constructor
