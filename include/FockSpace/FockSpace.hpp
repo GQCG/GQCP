@@ -12,9 +12,9 @@ namespace GQCG {
 
 
 /**
- *  The full Fock space for given set of orbitals and number of electrons
- *  where the ONV's and addresses are linked
- *  through a hashing function calculated with an addressing scheme,
+ *  The full Fock space for a given set of orbitals and number of electrons
+ *  where the ONVs and addresses are linked
+ *  through a hashing function calculated with an addressing scheme.
  *  Implementation of the addressing scheme from :
  *      Molecular Electronic-Structure Theory (August 2000) by Trygve Helgaker, Poul Jorgensen, and Jeppe Olsen
  */
@@ -53,7 +53,7 @@ public:
     // GETTERS
     size_t get_vertex_weights(size_t p, size_t m) const { return this->vertex_weights[p][m]; }
     Matrixu get_vertex_weights() const { return this->vertex_weights; }
-    size_t get_dimension(){ return dim; }
+    size_t get_dimension() const { return dim; }
 
 
     // STATIC PUBLIC METHODS

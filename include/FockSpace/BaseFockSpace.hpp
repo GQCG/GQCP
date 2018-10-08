@@ -12,9 +12,9 @@ namespace GQCG {
 
 /**
  *  A base class for the Fock space
- *  Interfacing requires the Fock space to generated an ONV from a given address
+ *  Interfacing requires the Fock space to generate an ONV from a given address
  *  transform a given ONV into the next ONV (in the full or selected space)
- *  and retrieve in the address of a given ONV in the space
+ *  and retrieve the address of a given ONV in the space
  */
 class BaseFockSpace {
 protected:

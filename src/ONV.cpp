@@ -16,7 +16,8 @@ namespace GQCG {
 ONV::ONV(size_t K, size_t N, size_t representation):
     K(K),
     N(N),
-    unsigned_representation(representation) {
+    unsigned_representation(representation)
+{
     occupation_indices = VectorXs::Zero(N);
     this->updateOccupationIndices();  // throws error if the representation and N are not compatible
 }
@@ -31,18 +32,18 @@ ONV::ONV(size_t K, size_t N, size_t representation):
  *  Overloading of operator<< for a GQCG::ONV to be used with streams
  */
 std::ostream& operator<<(std::ostream& os, const GQCG::ONV& onv) {
-    return (os<<boost::dynamic_bitset<> (onv.K, onv.unsigned_representation));
+    return os<<boost::dynamic_bitset<> (onv.K, onv.unsigned_representation);
 }
 
 /**
- *  @return if this->unsigned_representations equals @param other.unsigned_representation
+ *  @return if this->unsigned_representation equals @param other.unsigned_representation
  */
 bool ONV::operator==(ONV& other) const {
     return this->unsigned_representation == other.unsigned_representation && this->K == other.K;  // this ensures that N, K and representation are equal
 }
 
 /**
- *  @return if this->unsigned_representations does not equal @param other.unsigned_representation
+ *  @return if this->unsigned_representation does not equal @param other.unsigned_representation
  */
 bool ONV::operator!=(ONV& other) const {
     return !(this->operator==(other));

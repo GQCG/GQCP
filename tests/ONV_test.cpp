@@ -27,7 +27,7 @@ BOOST_AUTO_TEST_CASE ( ONV_constructor ) {
     GQCG::FockSpace fock_space (10, 5);
 
     // Ask for the first ONV in reverse lexicographic order : "0000011111" = 31
-    GQCG::ONV onv2 = fock_space.get_ONV (0);
+    GQCG::ONV onv2 = fock_space.get_ONV(0);
 
     // Check if both unsigned representations match (are equal to 31 and have the same considered bits)
     BOOST_CHECK(onv1 == onv2);
@@ -235,13 +235,13 @@ BOOST_AUTO_TEST_CASE ( ONV_address_setNext_fullspace ) {
     GQCG::FockSpace fock_space (15, 5);
 
     // Retrieve the first ONV of the Fock space
-    GQCG::ONV onv_test = fock_space.get_ONV (0);
+    GQCG::ONV onv_test = fock_space.get_ONV(0);
 
     const size_t dimension_fock_space = 3003;
     bool is_correct = true;  // variable that is updated to false if an unexpected result occurs
 
     // Iterate through the Fock space in reverse lexicographical order and test whether address matches
-    for(int i = 0; i<dimension_fock_space; i++) {
+    for (int i = 0; i<dimension_fock_space; i++) {
 
         // Tests address
         if (i != fock_space.getAddress(onv_test)) {

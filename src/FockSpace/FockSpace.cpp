@@ -37,7 +37,10 @@ size_t FockSpace::ulongNextPermutation(size_t representation) {
  */
 
 FockSpace::FockSpace(size_t K, size_t N) :
-        BaseFockSpace(K), N(N), dim(FockSpace::calculateDimension(K,N)) {
+        BaseFockSpace(K),
+        N(N),
+        dim(FockSpace::calculateDimension(K,N))
+{
     // Create a zero matrix of dimensions (K+1)x(N+1)
     this->vertex_weights = GQCG::Matrixu(this->K + 1, GQCG::Vectoru(this->N + 1, 0));
 
@@ -143,8 +146,8 @@ ONV FockSpace::get_ONV(size_t address) {
 /**
  *  sets @param ONV to the next ONV in the space
  *  performs the ulongNextPermutation() function
- *  and updates the corresponding occupation indexes
- *  of the ONV occupation array
+ *  and updates the corresponding occupation indices
+ *  of the ONV occupation vector
  */
 void FockSpace::setNext(ONV& onv) {
     onv.set_representation(ulongNextPermutation(onv.unsigned_representation));

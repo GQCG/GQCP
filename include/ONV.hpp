@@ -26,7 +26,9 @@ private:
     const size_t K;  // number of spatial orbitals
     const size_t N;  // number of electrons
     size_t unsigned_representation;  // unsigned representation
-    VectorXs occupation_indices;  // the occupied orbital electron indexes (of length N)
+    VectorXs occupation_indices;  // the occupied orbital electron indexes
+                                  // it is a vector of N elements in which occupation_indices[j]
+                                  // gives the occupied orbital index for electron j
 
 
 public:
@@ -44,12 +46,12 @@ public:
     friend std::ostream& operator<<(std::ostream& os, const GQCG::ONV& onv);
 
     /**
-     *  @return if this->unsigned_representations equals @param other.unsigned_representation
+     *  @return if this->unsigned_representation equals @param other.unsigned_representation
      */
     bool operator==(ONV& other) const;
 
     /**
-     *  @return if this->unsigned_representations does not equal @param other.unsigned_representation
+     *  @return if this->unsigned_representation does not equal @param other.unsigned_representation
      */
     bool operator!=(ONV& other) const;
 
