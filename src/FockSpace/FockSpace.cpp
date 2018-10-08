@@ -112,7 +112,7 @@ size_t FockSpace::calculateDimension(size_t K, size_t N) {
 /**
  *  @return the ONV with the corresponding address in the considered space
  */
-ONV FockSpace::get_ONV(size_t address){
+ONV FockSpace::get_ONV(size_t address) {
     size_t representation;
     if (this->N == 0) {
         representation = 0;
@@ -146,7 +146,7 @@ ONV FockSpace::get_ONV(size_t address){
  *  and updates the corresponding occupation indexes
  *  of the ONV occupation array
  */
-void FockSpace::setNext(ONV &onv) {
+void FockSpace::setNext(ONV& onv) {
     onv.set_representation(ulongNextPermutation(onv.unsigned_representation));
 }
 
@@ -154,7 +154,7 @@ void FockSpace::setNext(ONV &onv) {
 /**
  *  @return the Fock space address (i.e. the ordering number) of the @param onv in reverse lexical ordering, in the fock space.
  */
-size_t FockSpace::getAddress(ONV &onv){
+size_t FockSpace::getAddress(ONV& onv) {
     // An implementation of the formula in Helgaker, starting the addressing count from zero
     size_t address = 0;
     size_t electron_count = 0;  // counts the number of electrons in the spin string up to orbital p

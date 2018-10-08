@@ -10,7 +10,7 @@
 
 BOOST_AUTO_TEST_CASE ( FockSpace_constructor ) {
 
-    BOOST_CHECK_NO_THROW(GQCG::FockSpace (10,5));
+    BOOST_CHECK_NO_THROW(GQCG::FockSpace (10, 5));
 }
 
 
