@@ -1,29 +1,9 @@
-#include <bitset>
 #include "ONV.hpp"
+
+#include <boost/dynamic_bitset.hpp>
 
 
 namespace GQCG {
-
-
-/*
- *  PRIVATE METHODS
- */
-
-/**
- *  Extracts the positions of the set bits from the representation and places them in an array
- */
-void ONV::update(){
-    size_t l = this->unsigned_representation;
-    int i = 0;
-    while(l != 0){
-        this->occupation_indices(i) = __builtin_ctzl(l);
-        i++;
-        l ^= (l & -l);
-    }
-    if(i != this->N){
-        throw std::invalid_argument("current representation and electron count are not compatible");
-    }
-}
 
 
 /*
@@ -33,9 +13,12 @@ void ONV::update(){
 /**
  *  Constructor from a @param K orbitals, N electrons and a representation for the ONV
  */
-ONV::ONV(size_t K, size_t N, size_t representation): K(K), N(N), unsigned_representation(representation){
+ONV::ONV(size_t K, size_t N, size_t representation):
+    K(K),
+    N(N),
+    unsigned_representation(representation) {
     occupation_indices = VectorXs::Zero(N);
-    update();  // throws error if the representation and N are not compatible
+    this->updateOccupationIndices();  // throws error if the representation and N are not compatible
 }
 
 
@@ -48,12 +31,21 @@ ONV::ONV(size_t K, size_t N, size_t representation): K(K), N(N), unsigned_repres
  *  Overloading of operator<< for a GQCG::ONV to be used with streams
  */
 std::ostream& operator<<(std::ostream& os, const GQCG::ONV& onv) {
-    const char* begin = reinterpret_cast<const char*>(&onv.unsigned_representation);
-    const char* end = begin + onv.K;
-    while(begin != end) {
-        os << std::bitset<CHAR_BIT>(*begin++);
-    }
-    return os;
+    return (os<<boost::dynamic_bitset<> (onv.K, onv.unsigned_representation));
+}
+
+/**
+ *  @return if this->unsigned_representations equals @param other.unsigned_representation
+ */
+bool ONV::operator==(ONV& other) const {
+    return this->unsigned_representation == other.unsigned_representation && this->K == other.K;  // this ensures that N, K and representation are equal
+}
+
+/**
+ *  @return if this->unsigned_representations does not equal @param other.unsigned_representation
+ */
+bool ONV::operator!=(ONV& other) const {
+    return !(this->operator==(other));
 }
 
 
@@ -63,63 +55,74 @@ std::ostream& operator<<(std::ostream& os, const GQCG::ONV& onv) {
  */
 
 /**
- *  @set to a new representation
+ *  @set to a new representation and calls this->updateOccupationIndices()
  */
 void ONV::set_representation(size_t unsigned_representation) {
     this->unsigned_representation = unsigned_representation;
-    update();
+    this->updateOccupationIndices();
 }
 
-/**
- *  @return occupied orbital based on the electron index
+
+
+/*
+ *  PUBLIC METHODS
  */
-size_t ONV::get_occupied_orbital(size_t electron_index) {
-    return occupation_indices(electron_index);
+
+/**
+ *  Extracts the positions of the set bits from the this->unsigned_representation
+ *  and places them in the this->occupation_indices
+ */
+void ONV::updateOccupationIndices() {
+    size_t l = this->unsigned_representation;
+    int representation_electron = 0;
+    while (l != 0) {
+        this->occupation_indices(representation_electron) = __builtin_ctzl(l);  // retrieves occupation index
+        representation_electron++;
+        l ^= (l & -l);  // flip the least significant bit
+    }
+    if (representation_electron != this->N) {
+        throw std::invalid_argument("The current representation and electron count are not compatible");
+    }
 }
 
-
-
-// PUBLIC METHODS (PREVIOUS SPIN STRING FUNCTIONALITY)
 /**
- *  @return if the index is occupied (i.e. 1) for the @param p-th spatial orbital, starting from 0
+ *  @return if the @param p-th spatial orbital is occupied, starting from 0
  *  @param p is the lexical index (i.e. read from right to left)
  */
-bool ONV::isOccupied(size_t p) const{
+bool ONV::isOccupied(size_t p) const {
+
     if (p > this->K-1) {
         throw std::invalid_argument("The index is out of the bitset bounds");
     }
-
     size_t operator_string = 1U << p;
     return this->unsigned_representation & operator_string;
 }
 
 
 /**
- *  @return if we can apply the annihilation operator (i.e. 1->0) for the @param p-th spatial orbital, starting from 0
- *  performs an annihilation @param p
+ *  @return if we can apply the annihilation operator (i.e. 1->0) for the @param p-th spatial orbital
+ *  Subsequently perform an in-place annihilation on the orbital @param p
  *
- *  !!! IMPORTANT: does not update the occupation array if required call "update()" !!!
- *  !!! IMPORTANT: does not update the occupation array if required call "update()" !!!
+ *  !!! IMPORTANT: does not update this->occupation_indices if required call this->updateOccupationIndices !!!
  */
-bool ONV::annihilate(size_t p){
+bool ONV::annihilate(size_t p) {
 
     if (this->isOccupied(p)) {
         size_t operator_string = 1U << p;
         this->unsigned_representation &= ~operator_string;
         return true;
-    }else{
+    } else {
         return false;
     }
 }
 
 /**
- *  @return if we can apply the annihilation operator (i.e. 1->0) for the @param p-th spatial orbital, starting from 0
- *  @param p is the lexical index (i.e. read from right to left)
+ *  @return if we can apply the annihilation operator (i.e. 1->0) for the @param p-th spatial orbital
+ *  Subsequently perform an in-place annihilation on the orbital @param p
  *
  *  Furthermore, the @param sign is changed according to the sign change (+1 or -1) of the spin string after annihilation.
  *
- *  !!! IMPORTANT: does not update the occupation array if required call "update()" !!!
- *  !!! IMPORTANT: performs the annihilation in place !!!
+ *  !!! IMPORTANT: does not update this->occupation_indices if required call this->updateOccupationIndices !!!
  */
 bool ONV::annihilate(size_t p, int& sign) {
 
@@ -132,13 +135,13 @@ bool ONV::annihilate(size_t p, int& sign) {
 }
 
 /**
- * @return if we can apply the creation operator (i.e. 0->1) for the @param p-th spatial orbital, starting from 0
- *  performs a creation @param p
+ * @return if we can apply the creation operator (i.e. 0->1) for the @param p-th spatial orbital
+ * Subsequently perform an in-place creation on the orbital @param p
  *
- *  !!! IMPORTANT: does not update the occupation array if required call "update()" !!!
- *  !!! IMPORTANT: does not update the occupation array if required call "update()" !!!
+ *  !!! IMPORTANT: does not update this->occupation_indices if required call this->updateOccupationIndices !!!
  */
 bool ONV::create(size_t p) {
+
     if (!this->isOccupied(p)) {
         size_t operator_string = 1U << p;
         this->unsigned_representation ^= operator_string;
@@ -149,13 +152,12 @@ bool ONV::create(size_t p) {
 }
 
 /**
- *  @return if we can apply the creation operator (i.e. 0->1) for the @param p-th spatial orbital, starting from 0
- *  @param p is the lexical index (i.e. read from right to left)
+ *  @return if we can apply the creation operator (i.e. 0->1) for the @param p-th spatial orbital
+ *  Subsequently perform an in-place creation on the orbital @param p
  *
  *  Furthermore, the @param sign is changed according to the sign change (+1 or -1) of the spin string after annihilation.
  *
- *  !!! IMPORTANT: does not update the occupation array if required call "update()" !!!
- *  !!! IMPORTANT: performs the creation in place !!!
+ *  !!! IMPORTANT: does not update this->occupation_indices if required call this->updateOccupationIndices !!!
  */
 bool ONV::create(size_t p, int& sign) {
 
@@ -224,7 +226,6 @@ size_t ONV::slice(size_t index_start, size_t index_end) const {
     // Use the mask
     return u & mask;
 }
-
 
 
 }  // namespace GQCG

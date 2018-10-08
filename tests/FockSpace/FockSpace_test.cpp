@@ -8,16 +8,19 @@
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
 
 
-
 BOOST_AUTO_TEST_CASE ( FockSpace_constructor ) {
+
     BOOST_CHECK_NO_THROW(GQCG::FockSpace (10,5));
 }
 
+
 BOOST_AUTO_TEST_CASE ( FockSpace_dimension) {
+
     BOOST_CHECK_EQUAL(GQCG::FockSpace::calculateDimension(10, 1), 10);
     BOOST_CHECK_EQUAL(GQCG::FockSpace::calculateDimension(6, 2), 15);
     BOOST_CHECK_EQUAL(GQCG::FockSpace::calculateDimension(8, 3), 56);
 }
+
 
 BOOST_AUTO_TEST_CASE ( vertex_weights_K5_N3 ) {
 
