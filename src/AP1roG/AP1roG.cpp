@@ -10,7 +10,7 @@ namespace GQCG {
  *  Default constructor setting everything to zero
  */
 AP1roG::AP1roG() :
-    geminal_coefficients (AP1roGGeminalCoefficients(0, 0)),
+    geminal_coefficients (AP1roGGeminalCoefficients()),
     electronic_energy (0.0)
 {}
 
