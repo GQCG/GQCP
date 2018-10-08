@@ -18,7 +18,12 @@ private:
 public:
     // CONSTRUCTORS
     /**
-     *  Default constructor setting the geminal coefficients to zero, based on the number of orbitals @param K and number of electron pairs @param N_P
+     *  Default constructor setting everything to zero
+     */
+    AP1roGGeminalCoefficients();
+    
+    /**
+     *  Constructor setting the geminal coefficients to zero, based on the number of orbitals @param K and number of electron pairs @param N_P
      */
     AP1roGGeminalCoefficients(size_t N_P, size_t K);
 

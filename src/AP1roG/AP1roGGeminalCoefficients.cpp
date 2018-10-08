@@ -1,5 +1,13 @@
-#include "AP1roGGeminalCoefficients.hpp"
+//
+//  AP1roGGeminalCoefficients.cpp
+//  gqcg
+//
+//  Created by Laurent Lemmens on 05/10/2018.
+//  Copyright © 2018 Ghent Quantum Chemistry Group. All rights reserved.
+//
 
+#include "AP1roGGeminalCoefficients.hpp"
+#include <iostream>
 
 namespace GQCG {
 
@@ -7,17 +15,7 @@ namespace GQCG {
  *  CONSTRUCTORS
  */
 /**
- *  Default constructor setting everything to zero
- */
-AP1roGGeminalCoefficients::AP1roGGeminalCoefficients() :
-    N_P (0),
-    K (0),
-    g (Eigen::VectorXd::Zero(0))
-{}
-
-
-/**
- *  Constructor setting the geminal coefficients to zero, based on the number of orbitals @param K and number of electron pairs @param N_P
+ *  Default constructor setting the geminal coefficients to zero, based on the number of orbitals @param K and number of electron pairs @param N_P
  */
 AP1roGGeminalCoefficients::AP1roGGeminalCoefficients(size_t N_P, size_t K) :
     N_P (N_P),

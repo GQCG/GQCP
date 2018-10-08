@@ -15,24 +15,17 @@ class AP1roG {
 private:
     GQCG::AP1roGGeminalCoefficients geminal_coefficients;
 
-    double electronic_energy;
 
 public:
     // CONSTRUCTORS
     /**
-     *  Default constructor setting everything to zero
+     *  Constructor based on given @param geminal_coefficients
      */
-    AP1roG();
-
-    /**
-     *  Constructor based on given @param geminal_coefficients and @param electronic_energy
-     */
-    AP1roG(const GQCG::AP1roGGeminalCoefficients& geminal_coefficients, double electronic_energy);
+    AP1roG(const GQCG::AP1roGGeminalCoefficients& geminal_coefficients);
 
 
     // GETTERS
     GQCG::AP1roGGeminalCoefficients get_geminal_coefficients() const { return this->geminal_coefficients; }
-    double get_electronic_energy() const { return this->electronic_energy; }
 };
 
 
