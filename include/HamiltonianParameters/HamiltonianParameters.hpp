@@ -16,6 +16,8 @@ namespace GQCG {
 
 class HamiltonianParameters : public BaseHamiltonianParameters {
 private:
+    const size_t K;  // the number of spatial orbitals
+
     OneElectronOperator S;  // overlap
 
     OneElectronOperator h;  // one-electron interactions (i.e. the core Hamiltonian)
