@@ -63,7 +63,7 @@ BOOST_AUTO_TEST_CASE ( constructor_C ) {
 
     Eigen::MatrixXd C = Eigen::MatrixXd::Random(K, K);
 
-    GQCG::HamiltonianParameters random_hamiltonian_parameters (ao_basis_ptr, S, H_core, g, C);
+    GQCG::HamiltonianParameters random_hamiltonian_parameters (ao_basis, S, H_core, g, C);
 
 
     // Check if we can create transformed Hamiltonian parameters
