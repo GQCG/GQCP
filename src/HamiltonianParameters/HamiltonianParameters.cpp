@@ -36,6 +36,22 @@ HamiltonianParameters::HamiltonianParameters(std::shared_ptr<GQCG::AOBasis> ao_b
 }
 
 
+/**
+ *  Constructor based on given Hamiltonian parameters @param ham_par and a transformation matrix @param C.
+ *
+ *  If the initial Hamiltonian parameters @param ham_par are expressed in the basis B, the constructed instance represents the Hamiltonian parameters in the transformed basis B'. The basis transformation between B and B' is given by the transformation matrix @param C.
+ */
+HamiltonianParameters::HamiltonianParameters(const GQCG::HamiltonianParameters& ham_par, const Eigen::MatrixXd& C) :
+    BaseHamiltonianParameters(ham_par.ao_basis_sptr),
+    S (ham_par.S),
+    h (ham_par.h),
+    g (ham_par.g),
+    C (ham_par.C)
+{
+    // We have now initialized the new Hamiltonian parameters to be a copy of the given Hamiltonian parameters, so now we will transform
+    this->transform(C);
+}
+
 
 /*
  *  PUBLIC METHODS

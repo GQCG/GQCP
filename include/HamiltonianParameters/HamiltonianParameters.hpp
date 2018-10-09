@@ -34,6 +34,14 @@ public:
     HamiltonianParameters(std::shared_ptr<GQCG::AOBasis> ao_basis_sptr, const GQCG::OneElectronOperator& S, const GQCG::OneElectronOperator& h, const GQCG::TwoElectronOperator& g, const Eigen::MatrixXd& C);
 
 
+    /**
+     *  Constructor based on given Hamiltonian parameters @param ham_par and a transformation matrix @param C.
+     *
+     *  If the initial Hamiltonian parameters @param ham_par are expressed in the basis B, the constructed instance represents the Hamiltonian parameters in the transformed basis B'. The basis transformation between B and B' is given by the transformation matrix @param C.
+     */
+    HamiltonianParameters(const GQCG::HamiltonianParameters& ham_par, const Eigen::MatrixXd& C);
+
+
     // DESTRUCTORS
     ~HamiltonianParameters() override =default;
 
