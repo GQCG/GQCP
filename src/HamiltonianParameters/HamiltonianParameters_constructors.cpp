@@ -32,7 +32,7 @@ GQCG::HamiltonianParameters constructMolecularHamiltonianParameters(std::shared_
     Eigen::MatrixXd C = Eigen::MatrixXd::Identity(nbf, nbf);
     
     
-    return HamiltonianParameters(ao_basis_sptr, S, H, g, C);
+    return HamiltonianParameters(ao_basis, S, H, g, C);
 }
 
     
