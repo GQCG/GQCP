@@ -12,7 +12,7 @@ namespace GQCG {
  *  Protected constructor given a @param hamiltonian_parameters
  */
 RestrictedHamiltonianBuilder::RestrictedHamiltonianBuilder(HamiltonianParameters hamiltonian_parameters) :
-    hamiltonian_parameters(hamiltonian_parameters)
+    hamiltonian_parameters (hamiltonian_parameters)
 {}
 
 

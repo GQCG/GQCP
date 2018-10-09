@@ -13,20 +13,20 @@ namespace GQCG {
 
 
 /**
- *  RestrictedHamiltonianBuilder is an abstract base class for quantum chemical methods performed with restricted hamiltonian parameters
+ *  RestrictedHamiltonianBuilder is an abstract base class for quantum chemical methods performed with restricted Hamiltonian parameters
  *  for which the Hamiltonian is preferably expressed as a Hermitian matrix
- *  so that the corresponding eigen-values and -vectors can be retrieved through diagonalisation of this matrix.
+ *  so that the corresponding eigenvalues and -vectors can be retrieved through diagonalisation of this matrix.
  */
 class RestrictedHamiltonianBuilder {
 protected:
-    HamiltonianParameters hamiltonian_parameters;  // the hamiltonian parameters passed for the calculations
+    HamiltonianParameters hamiltonian_parameters;  // the Hamiltonian parameters passed for the calculations
 
-    Eigen::VectorXd diagonal;  // the diagonal of the hamiltonian matrix
+    Eigen::VectorXd diagonal;  // the diagonal of the Hamiltonian matrix
 
 
     // PROTECTED CONSTRUCTORS
     /**
-     *  Protected constructor given a @param HamiltonianParameters
+     *  Protected constructor given a @param hamiltonian_parameters
      */
     explicit RestrictedHamiltonianBuilder(HamiltonianParameters hamiltonian_parameters);
 

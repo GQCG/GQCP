@@ -11,14 +11,14 @@ namespace GQCG {
 /**
  *  Constructor given a @param hamiltonian_parameters and @param fock_space
  */
-DOCI::DOCI(HamiltonianParameters hamiltonian_parameters, FockSpace fock_space):
-    RestrictedHamiltonianBuilder(hamiltonian_parameters),
-    fock_space(fock_space),
-    dim(fock_space.get_dimension())
+DOCI::DOCI(HamiltonianParameters hamiltonian_parameters, FockSpace fock_space) :
+    RestrictedHamiltonianBuilder (hamiltonian_parameters),
+    fock_space (fock_space),
+    dim (fock_space.get_dimension())
 {
     auto K = this->hamiltonian_parameters.get_h().get_dim();
     if (K != this->fock_space.K) {
-        throw std::invalid_argument("Basis functions of the Fock space and AObasis are incompatible.");
+        throw std::invalid_argument("Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
     }
     this->diagonal = calculateDiagonal();
 }
