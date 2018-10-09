@@ -23,6 +23,8 @@ set(PROJECT_SOURCE_FOLDER ${CMAKE_SOURCE_DIR}/src)
 
 # Find the source files
 set(PROJECT_SOURCE_FILES
+        ${PROJECT_SOURCE_FOLDER}/FockSpace/BaseFockSpace.cpp
+        ${PROJECT_SOURCE_FOLDER}/FockSpace/FockSpace.cpp
         ${PROJECT_SOURCE_FOLDER}/HamiltonianParameters/BaseHamiltonianParameters.cpp
         ${PROJECT_SOURCE_FOLDER}/HamiltonianParameters/HamiltonianParameters.cpp
         ${PROJECT_SOURCE_FOLDER}/HamiltonianParameters/HamiltonianParameters_constructors.cpp
@@ -33,20 +35,22 @@ set(PROJECT_SOURCE_FILES
         ${PROJECT_SOURCE_FOLDER}/RHF/PlainRHFSCFSolver.cpp
         ${PROJECT_SOURCE_FOLDER}/RHF/RHF.cpp
         ${PROJECT_SOURCE_FOLDER}/RHF/RHFSCFSolver.cpp
-        ${PROJECT_SOURCE_FOLDER}/AddressingScheme.cpp
         ${PROJECT_SOURCE_FOLDER}/AOBasis.cpp
         ${PROJECT_SOURCE_FOLDER}/Atom.cpp
         ${PROJECT_SOURCE_FOLDER}/elements.cpp
         ${PROJECT_SOURCE_FOLDER}/JacobiRotationParameters.cpp
         ${PROJECT_SOURCE_FOLDER}/LibintCommunicator.cpp
         ${PROJECT_SOURCE_FOLDER}/miscellaneous.cpp
-        ${PROJECT_SOURCE_FOLDER}/Molecule.cpp)
+        ${PROJECT_SOURCE_FOLDER}/Molecule.cpp
+        ${PROJECT_SOURCE_FOLDER}/ONV.cpp)
 
 # Find the header folder
 set(PROJECT_INCLUDE_FOLDER ${CMAKE_SOURCE_DIR}/include)
 
 # Find the header files
 set(PROJECT_INCLUDE_FILES
+        ${PROJECT_INCLUDE_FOLDER}/FockSpace/BaseFockSpace.hpp
+        ${PROJECT_INCLUDE_FOLDER}/FockSpace/FockSpace.hpp
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianParameters/BaseHamiltonianParameters.hpp
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianParameters/HamiltonianParameters.hpp
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianParameters/HamiltonianParameters_constructors.hpp
@@ -57,7 +61,6 @@ set(PROJECT_INCLUDE_FILES
         ${PROJECT_INCLUDE_FOLDER}/RHF/PlainRHFSCFSolver.hpp
         ${PROJECT_INCLUDE_FOLDER}/RHF/RHF.hpp
         ${PROJECT_INCLUDE_FOLDER}/RHF/RHFSCFSolver.hpp
-        ${PROJECT_INCLUDE_FOLDER}/AddressingScheme.hpp
         ${PROJECT_INCLUDE_FOLDER}/AOBasis.hpp
         ${PROJECT_INCLUDE_FOLDER}/Atom.hpp
         ${PROJECT_INCLUDE_FOLDER}/common.hpp
@@ -66,6 +69,7 @@ set(PROJECT_INCLUDE_FILES
         ${PROJECT_INCLUDE_FOLDER}/LibintCommunicator.hpp
         ${PROJECT_INCLUDE_FOLDER}/miscellaneous.hpp
         ${PROJECT_INCLUDE_FOLDER}/Molecule.hpp
+        ${PROJECT_INCLUDE_FOLDER}/ONV.hpp
         ${PROJECT_INCLUDE_FOLDER}/units.hpp)
 
 # Find the tests folder
@@ -73,13 +77,13 @@ set(PROJECT_TESTS_FOLDER ${CMAKE_SOURCE_DIR}/tests)
 
 # Find the source files for the tests
 set(PROJECT_TEST_SOURCE_FILES
+        ${PROJECT_TESTS_FOLDER}/FockSpace/FockSpace_test.cpp
         ${PROJECT_TESTS_FOLDER}/HamiltonianParameters/HamiltonianParameters_test.cpp
         ${PROJECT_TESTS_FOLDER}/HamiltonianParameters/HamiltonianParameters_constructors_test.cpp
         ${PROJECT_TESTS_FOLDER}/Operator/OneElectronOperator_test.cpp
         ${PROJECT_TESTS_FOLDER}/Operator/TwoElectronOperator_test.cpp
         ${PROJECT_TESTS_FOLDER}/RHF/DIISRHFSCFSolver_test.cpp
         ${PROJECT_TESTS_FOLDER}/RHF/PlainRHFSCFSolver_test.cpp
-        ${PROJECT_TESTS_FOLDER}/AddressingScheme_test.cpp
         ${PROJECT_TESTS_FOLDER}/AOBasis_test.cpp
         ${PROJECT_TESTS_FOLDER}/Atom_test.cpp
         ${PROJECT_TESTS_FOLDER}/elements_test.cpp
@@ -87,6 +91,7 @@ set(PROJECT_TEST_SOURCE_FILES
         ${PROJECT_TESTS_FOLDER}/LibintCommunicator_test.cpp
         ${PROJECT_TESTS_FOLDER}/miscellaneous_test.cpp
         ${PROJECT_TESTS_FOLDER}/Molecule_test.cpp
+        ${PROJECT_TESTS_FOLDER}/ONV_test.cpp
         ${PROJECT_TESTS_FOLDER}/units_test.cpp)
 
 
