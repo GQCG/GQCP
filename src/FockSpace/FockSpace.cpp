@@ -1,4 +1,4 @@
-#include <FockSpace/FockSpace.hpp>
+#include "FockSpace/FockSpace.hpp"
 
 
 namespace GQCG {
