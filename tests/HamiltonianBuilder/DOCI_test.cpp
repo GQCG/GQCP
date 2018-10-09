@@ -3,6 +3,8 @@
 
 #include "HamiltonianBuilder/DOCI.hpp"
 #include "HamiltonianParameters/HamiltonianParameters_constructors.hpp"
+#include "RHF/PlainRHFSCFSolver.hpp"
+#include <numopt.hpp>
 
 #include <boost/test/unit_test.hpp>
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
@@ -151,6 +153,45 @@ BOOST_AUTO_TEST_CASE ( DOCI_li2_klaas_dense ) {
 
     // Calculate the total energy
     double internuclear_repulsion_energy =  3.0036546888874875e+00;  // this comes straight out of the FCIDUMP file
+    double test_doci_energy = doci_eigenvalue + internuclear_repulsion_energy;
+
+    BOOST_CHECK(std::abs(test_doci_energy - (reference_doci_energy)) < 1.0e-9);
+}
+
+
+// dim = 21
+BOOST_AUTO_TEST_CASE ( DOCI_h2o_sto3g_klaas_Davidson ) {
+
+    // Klaas' reference DOCI energy for H2O@STO-3G
+    double reference_doci_energy = -74.9671366903;
+
+
+    // Do a DOCI calculation based on a given FCIDUMP file
+    // Create the Hamiltonian Parameters
+    auto mol_ham_par = GQCG::readFCIDUMPFile("../tests/data/h2o_sto3g_klaas.FCIDUMP");
+
+    // The species contains 10 electrons and 7 basis functions, this requires a single Fock Space of 7 orbitals and 5 electrons
+    GQCG::FockSpace fock_space (7, 5);  // dim = 21
+
+    // Create the DOCI module
+    GQCG::DOCI doci (mol_ham_par, fock_space);
+
+    // Davidson Solver requires us to specify the macvec:
+    numopt::VectorFunction matrixVectorProduct = [&doci](const Eigen::VectorXd& x) { return doci.matrixVectorProduct(x); };
+
+    // Davidson Solver requires initial guess
+    Eigen::VectorXd initial_guess = Eigen::VectorXd::Zero(21);
+    initial_guess(0) = 1;
+
+    // Davidson Solver requires diagonal of the DOCI Hamiltonian
+    Eigen::VectorXd diagonal = doci.calculateDiagonal();
+    numopt::eigenproblem::DavidsonSolver davidson_solver (matrixVectorProduct, diagonal, initial_guess);
+    davidson_solver.solve();
+
+    auto doci_eigenvalue = davidson_solver.get_lowest_eigenvalue();
+
+    // Calculate the total energy
+    double internuclear_repulsion_energy =  9.7794061444134091E+00;  // this comes straight out of the FCIDUMP file
     double test_doci_energy = doci_eigenvalue + internuclear_repulsion_energy;
 
     BOOST_CHECK(std::abs(test_doci_energy - (reference_doci_energy)) < 1.0e-9);
