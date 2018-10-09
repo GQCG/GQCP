@@ -10,8 +10,8 @@ namespace GQCG {
 
 class AP1roGGeminalCoefficients {
 private:
-    const size_t N_P;  // the number of electron pairs (= the number of geminals)
-    const size_t K;  // the number of orbitals
+    size_t N_P;  // the number of electron pairs (= the number of geminals)
+    size_t K;  // the number of orbitals
     Eigen::VectorXd g;
 
 

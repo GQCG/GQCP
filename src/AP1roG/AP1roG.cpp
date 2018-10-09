@@ -15,7 +15,6 @@ AP1roG::AP1roG() :
 {}
 
 
-
 /**
  *  Constructor based on given @param geminal_coefficients and @param electronic_energy
  */
