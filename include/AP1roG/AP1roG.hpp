@@ -29,6 +29,11 @@ public:
      */
     AP1roG(const GQCG::AP1roGGeminalCoefficients& geminal_coefficients, double electronic_energy);
 
+    /**
+     *  Copy assignment
+     */
+    AP1roG& operator=(const AP1roG& ap1rog) = default;
+
 
     // GETTERS
     GQCG::AP1roGGeminalCoefficients get_geminal_coefficients() const { return this->geminal_coefficients; }

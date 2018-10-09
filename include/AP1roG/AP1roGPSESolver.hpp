@@ -64,6 +64,40 @@ public:
      *          - a is in [N_P ... K[       is the 'minor' index (i.e. changes in a are contiguous)
      */
     size_t vectorIndex(size_t i, size_t a) const;
+
+    /**
+     *  Calculate the Jacobian element with compound indices (i,a) and (k,c) at the given geminal coefficients @param g
+     *
+     *      i and k are subscripts, a and c are superscripts
+     */
+    double calculateJacobianElement(const Eigen::VectorXd& g, size_t i, size_t a, size_t k, size_t c) const;
+
+    /**
+     *  Calculate and return the Jacobian at the given geminal coefficients @param g
+     */
+    Eigen::MatrixXd calculateJacobian(const Eigen::VectorXd& g) const;
+
+    /**
+     *  Calculate the coordinate function at the given geminal coefficients @param g, with given indices.
+     *
+     *      i is the subscript and a is the superscript
+     */
+    double calculateCoordinateFunction(const Eigen::VectorXd& g, size_t i, size_t a) const;
+
+    /**
+     *  Calculate the coordinate functions for the pSEs at the given geminal coefficients @param g. This returns a vector F in which every entry is one of the coordinate functions
+     */
+    Eigen::VectorXd calculateCoordinateFunctions(const Eigen::VectorXd& g) const;
+
+    /**
+     *  Calculate the AP1roG energy given AP1roG geminal coefficients @param G
+     */
+    double calculateEnergy(const GQCG::AP1roGGeminalCoefficients& G) const;
+
+    /**
+     *  Set up and solve the projected Schrödinger equations for AP1roG
+     */
+    void solve();
 };
 
 
