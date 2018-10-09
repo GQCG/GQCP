@@ -21,4 +21,9 @@ function(configure_executable EXECUTABLE_NAME)
     target_include_directories(${EXECUTABLE_NAME} PRIVATE ${cpputil_INCLUDE_DIRS})
     target_link_libraries(${EXECUTABLE_NAME} PRIVATE cpputil)
 
+
+    # Include numopt
+    target_include_directories(${EXECUTABLE_NAME} PUBLIC ${numopt_INCLUDE_DIRS})
+    target_link_libraries(${EXECUTABLE_NAME} PUBLIC numopt)
+
 endfunction(configure_executable)
