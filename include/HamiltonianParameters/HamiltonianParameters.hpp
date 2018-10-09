@@ -27,11 +27,11 @@ private:
 public:
     // CONSTRUCTORS
     /**
-     *  Constructor based on a given @param ao_basis_sptr, overlap @param S, one-electron operator @param h, two-electron
+     *  Constructor based on a given @param ao_basis, overlap @param S, one-electron operator @param h, two-electron
      *  operator @param g and a transformation matrix between the current molecular orbitals and the atomic orbitals
      *  @param C
      */
-    HamiltonianParameters(std::shared_ptr<GQCG::AOBasis> ao_basis_sptr, const GQCG::OneElectronOperator& S, const GQCG::OneElectronOperator& h, const GQCG::TwoElectronOperator& g, const Eigen::MatrixXd& C);
+    HamiltonianParameters(std::shared_ptr<GQCG::AOBasis> ao_basis, const GQCG::OneElectronOperator& S, const GQCG::OneElectronOperator& h, const GQCG::TwoElectronOperator& g, const Eigen::MatrixXd& C);
 
 
     /**

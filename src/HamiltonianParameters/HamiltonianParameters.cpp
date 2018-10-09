@@ -11,12 +11,12 @@ namespace GQCG {
  */
 
 /**
- *  Constructor based on a given @param ao_basis_ptr, overlap @param S, one-electron operator @param h, two-electron
+ *  Constructor based on a given @param ao_basis, overlap @param S, one-electron operator @param h, two-electron
  *  operator @param g and a transformation matrix between the current molecular orbitals and the atomic orbitals
  *  @param C
  */
-HamiltonianParameters::HamiltonianParameters(std::shared_ptr<GQCG::AOBasis> ao_basis_sptr, const GQCG::OneElectronOperator& S, const GQCG::OneElectronOperator& h, const GQCG::TwoElectronOperator& g, const Eigen::MatrixXd& C) :
-    BaseHamiltonianParameters(std::move(ao_basis_sptr)),
+HamiltonianParameters::HamiltonianParameters(std::shared_ptr<GQCG::AOBasis> ao_basis, const GQCG::OneElectronOperator& S, const GQCG::OneElectronOperator& h, const GQCG::TwoElectronOperator& g, const Eigen::MatrixXd& C) :
+    BaseHamiltonianParameters(std::move(ao_basis)),
     S (S),
     h (h),
     g (g),
@@ -24,8 +24,8 @@ HamiltonianParameters::HamiltonianParameters(std::shared_ptr<GQCG::AOBasis> ao_b
 {
     // Check if the dimensions of all matrix representations are compatible
     size_t K = 0;
-    if (!(this->ao_basis_sptr == nullptr)) {
-        K = this->ao_basis_sptr->number_of_basis_functions;
+    if (!(this->ao_basis == nullptr)) {
+        K = this->ao_basis->number_of_basis_functions;
     } else {  // we don't have an AOBasis
         K = S.dim;
     }
@@ -42,7 +42,7 @@ HamiltonianParameters::HamiltonianParameters(std::shared_ptr<GQCG::AOBasis> ao_b
  *  If the initial Hamiltonian parameters @param ham_par are expressed in the basis B, the constructed instance represents the Hamiltonian parameters in the transformed basis B'. The basis transformation between B and B' is given by the transformation matrix @param C.
  */
 HamiltonianParameters::HamiltonianParameters(const GQCG::HamiltonianParameters& ham_par, const Eigen::MatrixXd& C) :
-    BaseHamiltonianParameters(ham_par.ao_basis_sptr),
+    BaseHamiltonianParameters(ham_par.ao_basis),
     S (ham_par.S),
     h (ham_par.h),
     g (ham_par.g),

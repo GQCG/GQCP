@@ -7,7 +7,7 @@ namespace GQCG {
 
 
 /**
- *  @return HamiltonianParameters corresponding to the molecular Hamiltonian for the given @param ao_basis_sptr
+ *  @return HamiltonianParameters corresponding to the molecular Hamiltonian for the given @param ao_basis
  *
  *  The molecular Hamiltonian has
  *      - one-electron contributions:
@@ -16,19 +16,19 @@ namespace GQCG {
  *      - two-electron contributions:
  *          - Coulomb repulsion
  */
-GQCG::HamiltonianParameters constructMolecularHamiltonianParameters(std::shared_ptr<GQCG::AOBasis> ao_basis_sptr) {
+GQCG::HamiltonianParameters constructMolecularHamiltonianParameters(std::shared_ptr<GQCG::AOBasis> ao_basis) {
 
     // Calculate the integrals for the molecular Hamiltonian
-    auto S = GQCG::LibintCommunicator::get().calculateOneElectronIntegrals(libint2::Operator::overlap, *ao_basis_sptr);
-    auto T = GQCG::LibintCommunicator::get().calculateOneElectronIntegrals(libint2::Operator::kinetic, *ao_basis_sptr);
-    auto V = GQCG::LibintCommunicator::get().calculateOneElectronIntegrals(libint2::Operator::nuclear, *ao_basis_sptr);
+    auto S = GQCG::LibintCommunicator::get().calculateOneElectronIntegrals(libint2::Operator::overlap, *ao_basis);
+    auto T = GQCG::LibintCommunicator::get().calculateOneElectronIntegrals(libint2::Operator::kinetic, *ao_basis);
+    auto V = GQCG::LibintCommunicator::get().calculateOneElectronIntegrals(libint2::Operator::nuclear, *ao_basis);
     auto H = T + V;
     
-    auto g = GQCG::LibintCommunicator::get().calculateTwoElectronIntegrals(libint2::Operator::coulomb, *ao_basis_sptr);
+    auto g = GQCG::LibintCommunicator::get().calculateTwoElectronIntegrals(libint2::Operator::coulomb, *ao_basis);
     
     
     // Construct the initial transformation matrix: the identity matrix
-    auto nbf = ao_basis_sptr->get_number_of_basis_functions();
+    auto nbf = ao_basis->get_number_of_basis_functions();
     Eigen::MatrixXd C = Eigen::MatrixXd::Identity(nbf, nbf);
     
     
@@ -149,13 +149,13 @@ GQCG::HamiltonianParameters readFCIDUMPFile(const std::string& fcidump_filename)
     
     
     // Make the ingredients to construct HamiltonianParameters
-    std::shared_ptr<GQCG::AOBasis> ao_basis_sptr;
+    std::shared_ptr<GQCG::AOBasis> ao_basis;  // nullptr
     GQCG::OneElectronOperator S (Eigen::MatrixXd::Zero(K, K));
     GQCG::OneElectronOperator H_core (h_SO);
     GQCG::TwoElectronOperator G (g_SO);
     Eigen::MatrixXd C = Eigen::MatrixXd::Identity(K, K);
 
-    return GQCG::HamiltonianParameters(ao_basis_sptr, S, H_core, G, C);
+    return GQCG::HamiltonianParameters(ao_basis, S, H_core, G, C);
 }
 
 
