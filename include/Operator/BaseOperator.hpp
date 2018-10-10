@@ -27,6 +27,10 @@ public:
     explicit BaseOperator(size_t dimension);
 
 
+    // GETTERS
+    size_t get_dim() { return this->dim; }
+
+
     // PUBLIC METHODS
     /**
      *  Transform the matrix representation of an operator using the transformation matrix @param T

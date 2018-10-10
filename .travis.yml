@@ -74,6 +74,19 @@ install:
   - export LIBINT_DATA_PATH=/usr/local/libint/2.3.1/share/libint/2.3.1/basis
 
 
+# Install Spectra
+  - cd /usr/local/
+  - sudo git clone https://github.com/yixuan/spectra.git
+
+# Install the numopt library
+  - mkdir /tmp/numopt && cd /tmp/numopt
+  - git clone https://github.com/GQCG/numopt.git --branch master --single-branch
+  - cd numopt
+  - mkdir build && cd build
+  - cmake .. && make && make test && sudo make install
+
+
+
 # Run the build script
 script:
   - cd /home/travis/build/GQCG/gqcg
