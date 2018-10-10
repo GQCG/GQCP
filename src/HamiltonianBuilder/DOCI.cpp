@@ -102,8 +102,8 @@ Eigen::VectorXd DOCI::matrixVectorProduct(const Eigen::VectorXd& x) {
 
                     // The loops are p->K and q<p. So, we should normally multiply by a factor 2 (since the summand is symmetric)
                     // However, we are setting both of the symmetric indices of Hamiltonian, so no factor 2 is required
-                    matvec(I) += this->hamiltonian_parameters.get_g().get(p, q, p, q)* x(J);
-                    matvec(J) += this->hamiltonian_parameters.get_g().get(p, q, p, q)* x(I);
+                    matvec(I) += this->hamiltonian_parameters.get_g().get(p, q, p, q) * x(J);
+                    matvec(J) += this->hamiltonian_parameters.get_g().get(p, q, p, q) * x(I);
 
                     onv.annihilate(q);  // reset the spin string after previous creation
                     onv.create(p);  // reset the spin string after previous annihilation

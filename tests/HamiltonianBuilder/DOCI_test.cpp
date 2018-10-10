@@ -11,7 +11,7 @@
 
 
 
-BOOST_AUTO_TEST_CASE ( DOCI_constructor  ) {
+BOOST_AUTO_TEST_CASE ( DOCI_constructor ) {
     // Create an AOBasis
     GQCG::Molecule water ("../tests/data/h2o.xyz");
     auto ao_basis = std::make_shared<GQCG::AOBasis>(water, "STO-3G");
@@ -30,7 +30,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_constructor  ) {
     // Create a compatible Fock space
     GQCG::FockSpace fock_space (K, 3);
 
-    // Check if a correct constructor works and public methods don't fail
+    // Check if a correct constructor works
     BOOST_CHECK_NO_THROW(GQCG::DOCI (random_hamiltonian_parameters, fock_space));
 
     // Check if faulty constructor parameters throw an error
@@ -159,7 +159,6 @@ BOOST_AUTO_TEST_CASE ( DOCI_li2_klaas_dense ) {
 }
 
 
-// dim = 21
 BOOST_AUTO_TEST_CASE ( DOCI_h2o_sto3g_klaas_Davidson ) {
 
     // Klaas' reference DOCI energy for H2O@STO-3G

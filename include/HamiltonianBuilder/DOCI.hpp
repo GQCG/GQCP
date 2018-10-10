@@ -15,8 +15,9 @@ namespace GQCG {
 /**
  *  Doubly occupied configuration interaction builds a hamiltonian matrix
  *  based on a wavefunction only containing doubly occupied configurations.
- *  This requires the alpha and beta Fock space to be identical
- *  combinations of identical alpha, beta ONVs are used.
+ *  This means that the combined ONV from both the alpha and beta Fock space
+ *  requires the individual ONVs to be identical (beta configuration = alpha configuration).
+ *  In turn this is only possible when both Fock spaces are identical.
  */
 class DOCI : public GQCG::RestrictedHamiltonianBuilder {
 private:
