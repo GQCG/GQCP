@@ -14,7 +14,7 @@ namespace GQCG {
 
 
 /**
- *  @return HamiltonianParameters corresponding to the molecular Hamiltonian for the given @param ao_basis_sptr
+ *  @return HamiltonianParameters corresponding to the molecular Hamiltonian for the given @param ao_basis
  *
  *  The molecular Hamiltonian has
  *      - one-electron contributions:
@@ -23,7 +23,7 @@ namespace GQCG {
  *      - two-electron contributions:
  *          - Coulomb repulsion
  */
-GQCG::HamiltonianParameters constructMolecularHamiltonianParameters(std::shared_ptr<GQCG::AOBasis> ao_basis_sptr);
+GQCG::HamiltonianParameters constructMolecularHamiltonianParameters(std::shared_ptr<GQCG::AOBasis> ao_basis);
 
 
 /**
@@ -31,12 +31,8 @@ GQCG::HamiltonianParameters constructMolecularHamiltonianParameters(std::shared_
  */
 GQCG::HamiltonianParameters readFCIDUMPFile(const std::string& fcidump_file);
  
- 
-
 
 }  // namespace GQCG
-
-
 
 
 #endif  // GQCG_HAMILTONIANPARAMETERS_CONSTRUCTORS_HPP
