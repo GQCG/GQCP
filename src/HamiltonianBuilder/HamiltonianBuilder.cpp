@@ -5,17 +5,6 @@ namespace GQCG {
 
 
 /*
- *  PROTECTED CONSTRUCTORS
- */
-
-/**
- *  Protected constructor given a @param hamiltonian_parameters
- */
-HamiltonianBuilder::HamiltonianBuilder() {}
-
-
-
-/*
  *  DESTRUCTOR
  */
 

@@ -165,14 +165,13 @@ BOOST_AUTO_TEST_CASE ( DOCI_h2o_sto3g_klaas_Davidson ) {
     Eigen::VectorXd diagonal = doci.calculateDiagonal(mol_ham_par);
 
     // Davidson Solver requires us to specify the macvec:
-    numopt::VectorFunction matrixVectorProduct = [&doci](const Eigen::VectorXd& x) { return doci.matrixVectorProduct(mol_ham_par, x, diagonal); };
+    numopt::VectorFunction matrixVectorProduct = [&doci, &mol_ham_par, &diagonal](const Eigen::VectorXd& x) { return doci.matrixVectorProduct(mol_ham_par, x, diagonal); };
 
     // Davidson Solver requires initial guess
     Eigen::VectorXd initial_guess = Eigen::VectorXd::Zero(21);
     initial_guess(0) = 1;
 
     // Davidson Solver requires diagonal of the DOCI Hamiltonian
-    Eigen::VectorXd diagonal = doci.calculateDiagonal();
     numopt::eigenproblem::DavidsonSolver davidson_solver (matrixVectorProduct, diagonal, initial_guess);
     davidson_solver.solve();
 

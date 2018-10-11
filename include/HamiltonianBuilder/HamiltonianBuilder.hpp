@@ -19,6 +19,10 @@ namespace GQCG {
  */
 class HamiltonianBuilder {
 public:
+    // CONSTRUCTOR
+    HamiltonianBuilder() = default;
+
+
     // DESTRUCTOR
     /**
      *  Provide a pure virtual destructor to make the class abstract
