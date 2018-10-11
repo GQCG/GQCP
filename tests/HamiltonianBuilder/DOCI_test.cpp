@@ -12,31 +12,11 @@
 
 
 BOOST_AUTO_TEST_CASE ( DOCI_constructor ) {
-    // Create an AOBasis
-    GQCG::Molecule water ("../tests/data/h2o.xyz");
-    auto ao_basis = std::make_shared<GQCG::AOBasis>(water, "STO-3G");
-
-
-    // Create random HamiltonianParameters from One- and TwoElectronOperators (and a transformation matrix) with compatible dimensions
-    size_t K = ao_basis->get_number_of_basis_functions();
-    GQCG::OneElectronOperator S (Eigen::MatrixXd::Random(K, K));
-    GQCG::OneElectronOperator H_core (Eigen::MatrixXd::Random(K, K));
-    Eigen::Tensor<double, 4> g_tensor (K, K, K, K);
-    g_tensor.setRandom();
-    GQCG::TwoElectronOperator g (g_tensor);
-    Eigen::MatrixXd C = Eigen::MatrixXd::Random(K, K);
-    GQCG::HamiltonianParameters random_hamiltonian_parameters (ao_basis, S, H_core, g, C);
-
     // Create a compatible Fock space
-    GQCG::FockSpace fock_space (K, 3);
+    GQCG::FockSpace fock_space (15, 3);
 
     // Check if a correct constructor works
-    BOOST_CHECK_NO_THROW(GQCG::DOCI (random_hamiltonian_parameters, fock_space));
-
-    // Check if faulty constructor parameters throw an error
-    // Create an incompatible Fock space
-    GQCG::FockSpace fock_space_2 (K+1, 3);
-    BOOST_CHECK_THROW(GQCG::DOCI (random_hamiltonian_parameters, fock_space_2), std::invalid_argument);
+    BOOST_CHECK_NO_THROW(GQCG::DOCI doci (fock_space));
 }
 
 
@@ -60,12 +40,20 @@ BOOST_AUTO_TEST_CASE ( DOCI_public_methods ) {
     GQCG::FockSpace fock_space (K, 3);
 
     // Create DOCI module
-    GQCG::DOCI random_doci (random_hamiltonian_parameters, fock_space);
+    GQCG::DOCI random_doci (fock_space);
 
     // Test the public DOCI methods
-    Eigen::VectorXd x = random_doci.calculateDiagonal();
-    BOOST_CHECK_NO_THROW(random_doci.constructHamiltonian());
-    BOOST_CHECK_NO_THROW(random_doci.matrixVectorProduct(x));
+    Eigen::VectorXd x = random_doci.calculateDiagonal(random_hamiltonian_parameters);
+    BOOST_CHECK_NO_THROW(random_doci.constructHamiltonian(random_hamiltonian_parameters));
+    BOOST_CHECK_NO_THROW(random_doci.matrixVectorProduct(random_hamiltonian_parameters, x, x));
+
+    // Create an incompatible Fock space
+    GQCG::FockSpace fock_space_i (K+1, 3);
+
+    // Create DOCI module
+    GQCG::DOCI random_doci_i (fock_space_i);
+    BOOST_CHECK_THROW(random_doci_i.constructHamiltonian(random_hamiltonian_parameters), std::invalid_argument);
+    BOOST_CHECK_THROW(random_doci_i.matrixVectorProduct(random_hamiltonian_parameters, x, x), std::invalid_argument);
 }
 
 
@@ -82,10 +70,10 @@ BOOST_AUTO_TEST_CASE ( DOCI_beh_cation_klaas_dense ) {
    GQCG::FockSpace fock_space (16, 2);  // dim = 120
 
    // Create the DOCI module
-   GQCG::DOCI doci (ham_par, fock_space);
+   GQCG::DOCI doci (fock_space);
 
    // Retrieve the Hamiltonian matrix
-   Eigen::MatrixXd ham = doci.constructHamiltonian();
+   Eigen::MatrixXd ham = doci.constructHamiltonian(ham_par);
 
    // Retrieve the eigenvalues
    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> eigen_solver (ham);
@@ -112,10 +100,10 @@ BOOST_AUTO_TEST_CASE ( DOCI_lih_klaas_dense ) {
     GQCG::FockSpace fock_space (16, 2);  // dim = 120
 
     // Create the DOCI module
-    GQCG::DOCI doci (ham_par, fock_space);
+    GQCG::DOCI doci (fock_space);
 
     // Retrieve the Hamiltonian matrix
-    Eigen::MatrixXd ham = doci.constructHamiltonian();
+    Eigen::MatrixXd ham = doci.constructHamiltonian(ham_par);
 
     // Retrieve the eigenvalues
     Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> eigen_solver (ham);
@@ -142,10 +130,10 @@ BOOST_AUTO_TEST_CASE ( DOCI_li2_klaas_dense ) {
     GQCG::FockSpace fock_space (18, 3);  // dim = 816
 
     // Create the DOCI module
-    GQCG::DOCI doci (ham_par, fock_space);
+    GQCG::DOCI doci (fock_space);
 
     // Retrieve the Hamiltonian matrix
-    Eigen::MatrixXd ham = doci.constructHamiltonian();
+    Eigen::MatrixXd ham = doci.constructHamiltonian(ham_par);
 
     // Retrieve the eigenvalues
     Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> eigen_solver (ham);
@@ -173,10 +161,11 @@ BOOST_AUTO_TEST_CASE ( DOCI_h2o_sto3g_klaas_Davidson ) {
     GQCG::FockSpace fock_space (7, 5);  // dim = 21
 
     // Create the DOCI module
-    GQCG::DOCI doci (mol_ham_par, fock_space);
+    GQCG::DOCI doci (fock_space);
+    Eigen::VectorXd diagonal = doci.calculateDiagonal(mol_ham_par);
 
     // Davidson Solver requires us to specify the macvec:
-    numopt::VectorFunction matrixVectorProduct = [&doci](const Eigen::VectorXd& x) { return doci.matrixVectorProduct(x); };
+    numopt::VectorFunction matrixVectorProduct = [&doci](const Eigen::VectorXd& x) { return doci.matrixVectorProduct(mol_ham_par, x, diagonal); };
 
     // Davidson Solver requires initial guess
     Eigen::VectorXd initial_guess = Eigen::VectorXd::Zero(21);
