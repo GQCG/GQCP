@@ -23,6 +23,9 @@ set(PROJECT_SOURCE_FOLDER ${CMAKE_SOURCE_DIR}/src)
 
 # Find the source files
 set(PROJECT_SOURCE_FILES
+        ${PROJECT_SOURCE_FOLDER}/AP1roG/AP1roG.cpp
+        ${PROJECT_SOURCE_FOLDER}/AP1roG/AP1roGGeminalCoefficients.cpp
+        ${PROJECT_SOURCE_FOLDER}/AP1roG/AP1roGPSESolver.cpp
         ${PROJECT_SOURCE_FOLDER}/FockSpace/BaseFockSpace.cpp
         ${PROJECT_SOURCE_FOLDER}/FockSpace/FockSpace.cpp
         ${PROJECT_SOURCE_FOLDER}/HamiltonianBuilder/DOCI.cpp
@@ -51,6 +54,9 @@ set(PROJECT_INCLUDE_FOLDER ${CMAKE_SOURCE_DIR}/include)
 
 # Find the header files
 set(PROJECT_INCLUDE_FILES
+        ${PROJECT_INCLUDE_FOLDER}/AP1roG/AP1roG.hpp
+        ${PROJECT_INCLUDE_FOLDER}/AP1roG/AP1roGGeminalCoefficients.hpp
+        ${PROJECT_INCLUDE_FOLDER}/AP1roG/AP1roGPSESolver.hpp
         ${PROJECT_INCLUDE_FOLDER}/FockSpace/BaseFockSpace.hpp
         ${PROJECT_INCLUDE_FOLDER}/FockSpace/FockSpace.hpp
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianBuilder/DOCI.hpp
@@ -81,6 +87,9 @@ set(PROJECT_TESTS_FOLDER ${CMAKE_SOURCE_DIR}/tests)
 
 # Find the source files for the tests
 set(PROJECT_TEST_SOURCE_FILES
+        ${PROJECT_TESTS_FOLDER}/AP1roG/AP1roG_test.cpp
+        ${PROJECT_TESTS_FOLDER}/AP1roG/AP1roGGeminalCoefficients_test.cpp
+        ${PROJECT_TESTS_FOLDER}/AP1roG/AP1roGPSESolver_test.cpp
         ${PROJECT_TESTS_FOLDER}/FockSpace/FockSpace_test.cpp
         ${PROJECT_TESTS_FOLDER}/HamiltonianBuilder/DOCI_test.cpp
         ${PROJECT_TESTS_FOLDER}/HamiltonianParameters/HamiltonianParameters_test.cpp

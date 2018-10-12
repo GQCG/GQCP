@@ -1,7 +1,7 @@
 #define BOOST_TEST_MODULE "AP1roG"
 
 
-#include "AP1roG.hpp"
+#include "AP1roG/AP1roG.hpp"
 
 #include <boost/test/unit_test.hpp>
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
