@@ -1,7 +1,7 @@
 #define BOOST_TEST_MODULE "AP1roGGeminalCoefficients"
 
 
-#include "AP1roGGeminalCoefficients.hpp"
+#include "AP1roG/AP1roGGeminalCoefficients.hpp"
 
 #include <boost/test/unit_test.hpp>
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
