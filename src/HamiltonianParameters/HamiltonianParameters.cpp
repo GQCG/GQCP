@@ -45,7 +45,7 @@ HamiltonianParameters::HamiltonianParameters(std::shared_ptr<GQCG::AOBasis> ao_b
  */
 HamiltonianParameters::HamiltonianParameters(const GQCG::HamiltonianParameters& ham_par, const Eigen::MatrixXd& C) :
     BaseHamiltonianParameters(ham_par.ao_basis),
-    K (S.dim),
+    K (ham_par.S.dim),
     S (ham_par.S),
     h (ham_par.h),
     g (ham_par.g),
