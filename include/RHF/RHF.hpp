@@ -68,6 +68,19 @@ Eigen::MatrixXd calculateRHFAOFockMatrix(const Eigen::MatrixXd& D_AO, GQCG::Hami
  */
 double calculateRHFElectronicEnergy(const Eigen::MatrixXd& D_AO, const Eigen::MatrixXd& H_core_AO, const Eigen::MatrixXd& F_AO);
 
+
+/**
+ *  @return the RHF HOMO index a number of electrons @param N
+ */
+size_t RHFHOMOIndex(size_t N);
+
+
+/**
+ *  @return the RHF LUMO index given a number of orbitals @param K and a number of electrons @param N
+ */
+size_t RHFLUMOIndex(size_t K, size_t N);
+
+
 }  // namespace GQCG
 
 

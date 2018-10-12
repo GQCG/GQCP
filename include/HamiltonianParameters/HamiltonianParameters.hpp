@@ -93,6 +93,7 @@ public:
 
     // FRIEND FUNCTIONS
     friend Eigen::MatrixXd calculateRHFAOFockMatrix(const Eigen::MatrixXd& D_AO, GQCG::HamiltonianParameters ham_par);
+    friend double calculateRMP2EnergyCorrection(const GQCG::HamiltonianParameters& ham_par);
 
     // FRIEND CLASSES
     friend class RHFSCFSolver;

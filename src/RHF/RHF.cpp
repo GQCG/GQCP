@@ -104,4 +104,31 @@ double calculateRHFElectronicEnergy(const Eigen::MatrixXd& D_AO, const Eigen::Ma
 }
 
 
+/**
+ *  @return the RHF HOMO index a number of electrons @param N
+ */
+size_t RHFHOMOIndex(size_t N) {
+
+    // throw for RHF
+    if (N / 2 != 0) {
+        throw std::invalid_argument("Can't calculate the RHF HOMO index for an odd number of electrons N.");
+    }
+
+    return N / 2 - 1;  // need to subtract 1 because computer indices start at 0
+}
+
+
+/**
+ *  @return the RHF LUMO index given a number of orbitals @param K and a number of electrons @param N
+ */
+size_t RHFLUMOIndex(size_t K, size_t N) {
+
+    if (N >= 2 * K) {
+        throw std::invalid_argument("There is no LUMO for the given amount of electrons N and spatial orbitals K");
+    }
+
+    return RHFHOMOIndex(N) + 1;
+}
+
+
 }  // namespace GQCG
