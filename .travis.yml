@@ -48,6 +48,10 @@ install:
   - mkdir build && cd build
   - cmake .. && make && make test && sudo make install
 
+  # Install Spectra as dependency for numopt
+  - cd /usr/local/
+  - sudo git clone https://github.com/yixuan/spectra.git
+
   # Install numopt
   - mkdir /tmp/numopt && cd /tmp/numopt
   - git clone https://github.com/GQCG/numopt.git --branch master --single-branch
