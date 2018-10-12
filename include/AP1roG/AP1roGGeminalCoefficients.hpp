@@ -12,7 +12,7 @@ class AP1roGGeminalCoefficients {
 private:
     size_t N_P;  // the number of electron pairs (= the number of geminals)
     size_t K;  // the number of orbitals
-    Eigen::VectorXd g;
+    Eigen::VectorXd g;  // the geminal coefficients stored in a row-major form
 
 
 public:

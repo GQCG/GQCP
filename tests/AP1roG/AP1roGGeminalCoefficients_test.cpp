@@ -18,7 +18,7 @@ BOOST_AUTO_TEST_CASE ( constructor ) {
     GQCG::AP1roGGeminalCoefficients g (4, 6);
 
     // We can't create 4 geminals in 4 orbitals
-    BOOST_CHECK_THROW(GQCG::AP1roGGeminalCoefficients(4, 4), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCG::AP1roGGeminalCoefficients (4, 4), std::invalid_argument);
 }
 
 
@@ -26,11 +26,11 @@ BOOST_AUTO_TEST_CASE ( constructor_vector ) {
 
     // Check a correct constructor
     Eigen::VectorXd g = Eigen::VectorXd::Zero(6);
-    BOOST_CHECK_NO_THROW(GQCG::AP1roGGeminalCoefficients(g, 2, 5));
+    BOOST_CHECK_NO_THROW(GQCG::AP1roGGeminalCoefficients (g, 2, 5));
 
     // Check wrong parameters N_P and K
-    BOOST_CHECK_THROW(GQCG::AP1roGGeminalCoefficients(g, 2, 4), std::invalid_argument);
-    BOOST_CHECK_THROW(GQCG::AP1roGGeminalCoefficients(g, 1, 5), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCG::AP1roGGeminalCoefficients (g, 2, 4), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCG::AP1roGGeminalCoefficients (g, 1, 5), std::invalid_argument);
 }
 
 
