@@ -19,6 +19,7 @@ namespace GQCG {
 class BaseFockSpace {
 protected:
     const size_t K;  // number of spatial orbitals
+    const size_t dim;  // dimension of the Fock space
 
 
     // PROTECTED CONSTRUCTORS
@@ -34,6 +35,10 @@ public:
      *  Provide a pure virtual destructor to make the class abstract
      */
     virtual ~BaseFockSpace() = 0;
+
+
+    // GETTERS
+    size_t get_dimension() const { return dim; }
 
 
     // PURE VIRTUAL PUBLIC METHODS

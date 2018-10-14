@@ -52,6 +52,11 @@ public:
      *  @return the diagonal of the matrix representation of the Hamiltonian
      */
     Eigen::VectorXd calculateDiagonal(const HamiltonianParameters& hamiltonian_parameters) override;
+
+    /**
+     *  @return the fock space of the HamiltonianBuilder
+     */
+    BaseFockSpace* get_fock_space() override { return &fock_space; }
 };
 
 

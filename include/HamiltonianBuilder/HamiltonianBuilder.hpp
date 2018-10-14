@@ -3,6 +3,7 @@
 
 
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "FockSpace/BaseFockSpace.hpp"
 
 #include <memory>
 #include <utility>
@@ -45,6 +46,11 @@ public:
      *  @return the diagonal of the matrix representation of the Hamiltonian
      */
     virtual Eigen::VectorXd calculateDiagonal(const HamiltonianParameters& hamiltonian_parameters) = 0;
+
+    /**
+     *  @return the fock space of the HamiltonianBuilder
+     */
+    virtual BaseFockSpace* get_fock_space() = 0;
 };
 
 

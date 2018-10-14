@@ -10,23 +10,19 @@
 
 namespace GQCG {
 
-using BaseFockSpace_sptr = std::shared_ptr<BaseFockSpace>;
 
 class WaveFunction {
 private:
-    BaseFockSpace_sptr base_fock_space;
-    Eigen::MatrixXd eigenvectors;
-    Eigen::VectorXd eigenvalues;
+    BaseFockSpace* base_fock_space;
+    Eigen::VectorXd coefficients;  // Expansion coefficients of a wave function in the Fock space
 
 public:
-    WaveFunction(BaseFockSpace& base_fock_space, Eigen::VectorXd eigenvector, double eigenvalue);
-    WaveFunction(BaseFockSpace& base_fock_space, Eigen::MatrixXd eigenvector, Eigen::VectorXd eigenvalue);
+    // CONSTRUCTORS
+    WaveFunction(BaseFockSpace& base_fock_space, const Eigen::VectorXd& coefficients) : base_fock_space(&base_fock_space), coefficients(coefficients){}
+
 
     // GETTERS
-    double get_eigenvalue(size_t index = 0) { return eigenvalues(index); }
-    Eigen::VectorXd get_eigenvalues() { return eigenvalues; }
-    Eigen::VectorXd get_eigenvector(size_t index = 0) { return eigenvectors.col(index); }
-    Eigen::MatrixXd get_eigenvectors() { return eigenvectors; }
+    Eigen::VectorXd get_coefficients() { return coefficients; }
     BaseFockSpace& get_fock_space() { return *base_fock_space; }
 };
 

@@ -16,22 +16,34 @@ namespace GQCG {
  */
 class CISolver {
 private:
-    std::shared_ptr<const HamiltonianBuilder> hamiltonian_builder;
+    HamiltonianBuilder* hamiltonian_builder;
     HamiltonianParameters hamiltonian_parameters;
+
+    std::vector<numopt::eigenproblem::Eigenpair> eigenpairs;  // eigenvalues and -vectors
 
 public:
     // CONSTRUCTOR
     /**
      *  Constructor given a @param hamiltonian_builder and @param hamiltonian_parameters
      */
-    CISolver(const HamiltonianBuilder& hamiltonian_builder, const HamiltonianParameters& hamiltonian_parameters);
+    CISolver(HamiltonianBuilder& hamiltonian_builder, HamiltonianParameters& hamiltonian_parameters);
+
+
+    // GETTERS
+    std::vector<numopt::eigenproblem::Eigenpair> get_eigenpairs() { return this->eigenpairs; }
+    numopt::eigenproblem::Eigenpair get_eigenpair(size_t index) { return this->eigenpairs[index]; }
 
 
     // PUBLIC METHODS
     /**
-     *  @return WaveFunction instance from solving the Hamiltonian
+     *  solves the CI problem, setting the eigenpairs
      */
-    WaveFunction solve(numopt::eigenproblem::BaseSolverOptions solver_options);
+    void solve(numopt::eigenproblem::BaseSolverOptions solver_options);
+
+    /**
+     *  @return WaveFunction instance after solving the CI problem for a given eigenvector.
+     */
+    WaveFunction get_wavefunction(size_t index = 0);
 };
 
 

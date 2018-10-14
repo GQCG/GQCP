@@ -53,7 +53,6 @@ public:
     // GETTERS
     size_t get_vertex_weights(size_t p, size_t m) const { return this->vertex_weights[p][m]; }
     Matrixu get_vertex_weights() const { return this->vertex_weights; }
-    size_t get_dimension() const { return dim; }
 
 
     // STATIC PUBLIC METHODS
