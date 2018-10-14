@@ -27,4 +27,19 @@ BaseFockSpace::~BaseFockSpace() {}
 
 
 
+/*
+ *  PUBLIC
+ */
+
+/**
+ *  Creates a Hartree-Fock guess
+ */
+Eigen::VectorXd BaseFockSpace::hartreeFockGuess(){
+    Eigen::VectorXd guess = Eigen::VectorXd::Zero(this->dim);
+    guess(0) = 1;
+    return guess;
+}
+
+
+
 }  // namespace GQCG

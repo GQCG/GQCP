@@ -19,7 +19,7 @@ namespace GQCG {
 class BaseFockSpace {
 protected:
     const size_t K;  // number of spatial orbitals
-    const size_t dim;  // dimension of the Fock space
+    size_t dim;  // dimension of the Fock space
 
 
     // PROTECTED CONSTRUCTORS
@@ -39,7 +39,14 @@ public:
 
     // GETTERS
     size_t get_dimension() const { return dim; }
+    size_t get_K() const { return K; }
 
+
+    // PUBLIC METHODS
+    /**
+     *  Creates a Hartree-Fock guess
+     */
+    Eigen::VectorXd hartreeFockGuess();
 
     // PURE VIRTUAL PUBLIC METHODS
     /**

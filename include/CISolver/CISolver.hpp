@@ -31,14 +31,14 @@ public:
 
     // GETTERS
     std::vector<numopt::eigenproblem::Eigenpair> get_eigenpairs() { return this->eigenpairs; }
-    numopt::eigenproblem::Eigenpair get_eigenpair(size_t index) { return this->eigenpairs[index]; }
+    numopt::eigenproblem::Eigenpair get_eigenpair(size_t index = 0) { return this->eigenpairs[index]; }
 
 
     // PUBLIC METHODS
     /**
      *  solves the CI problem, setting the eigenpairs
      */
-    void solve(numopt::eigenproblem::BaseSolverOptions solver_options);
+    void solve(numopt::eigenproblem::BaseSolverOptions& solver_options);
 
     /**
      *  @return WaveFunction instance after solving the CI problem for a given eigenvector.
