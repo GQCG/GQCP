@@ -60,9 +60,7 @@ void CISolver::solve(numopt::eigenproblem::BaseSolverOptions& solver_options) {
             throw std::invalid_argument("Sparse not implemented");
             break;
         }
-
     }
-    this->eigenpairs = solver->get_eigenpairs();
 }
 
 /**
