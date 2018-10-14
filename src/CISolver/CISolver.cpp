@@ -36,7 +36,7 @@ void CISolver::solve(numopt::eigenproblem::BaseSolverOptions& solver_options) {
 
         case numopt::eigenproblem::SolverType::DENSE: {
             Eigen::MatrixXd matrix = this->hamiltonian_builder->constructHamiltonian(this->hamiltonian_parameters);
-            numopt::eigenproblem::DenseSolver solver = numopt::eigenproblem::DenseSolver(matrix, dynamic_cast<numopt::eigenproblem::DenseSolverOptions&>(solver_options)));
+            numopt::eigenproblem::DenseSolver solver = numopt::eigenproblem::DenseSolver(matrix, dynamic_cast<numopt::eigenproblem::DenseSolverOptions&>(solver_options));
             solver.solve();
             this->eigenpairs = solver.get_eigenpairs();
             break;
