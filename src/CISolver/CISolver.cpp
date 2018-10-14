@@ -49,7 +49,7 @@ void CISolver::solve(numopt::eigenproblem::BaseSolverOptions& solver_options) {
 
             // Davidson Solver requires us to specify the macvec
 
-            numopt::VectorFunction matrixVectorProduct = [this, &diagonal](const Eigen::VectorXd& x) { return hamiltonian_builder->matrixVectorProduct(hamiltonian_parameters, diagonal, x); };
+            numopt::VectorFunction matrixVectorProduct = [this, &diagonal](const Eigen::VectorXd& x) { return hamiltonian_builder->matrixVectorProduct(hamiltonian_parameters, x, diagonal); };
             solver = std::shared_ptr<numopt::eigenproblem::DavidsonSolver>(new numopt::eigenproblem::DavidsonSolver(matrixVectorProduct, diagonal, dynamic_cast<numopt::eigenproblem::DavidsonSolverOptions&>(solver_options)));
 
             break;
