@@ -10,8 +10,9 @@ namespace GQCG {
 /*
  *  Protected constructor given a @param K
  */
-BaseFockSpace::BaseFockSpace(size_t K) :
-    K(K)
+BaseFockSpace::BaseFockSpace(size_t K, size_t dim) :
+    K(K),
+    dim(dim)
 {}
 
 

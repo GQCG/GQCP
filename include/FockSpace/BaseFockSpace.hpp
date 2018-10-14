@@ -26,7 +26,7 @@ protected:
     /**
      *  Protected constructor given a @param K
      */
-    explicit BaseFockSpace(size_t K);
+    explicit BaseFockSpace(size_t K, size_t dim);
 
 
 public:

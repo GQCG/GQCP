@@ -21,8 +21,6 @@ namespace GQCG {
 class FockSpace: public GQCG::BaseFockSpace {
 private:
     const size_t N;  // number of electrons
-    const size_t dim;  // dimension of the Fock space
-
     Matrixu vertex_weights;  // vertex_weights of the addressing scheme
 
 
