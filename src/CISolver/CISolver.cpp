@@ -32,14 +32,13 @@ CISolver::CISolver(HamiltonianBuilder& hamiltonian_builder, HamiltonianParameter
  */
 void CISolver::solve(numopt::eigenproblem::BaseSolverOptions& solver_options) {
     numopt::eigenproblem::SolverType solver_type = solver_options.get_solver_type();
-    std::shared_ptr<numopt::eigenproblem::BaseEigenproblemSolver> solver;
-
     switch (solver_type) {
 
         case numopt::eigenproblem::SolverType::DENSE: {
             Eigen::MatrixXd matrix = this->hamiltonian_builder->constructHamiltonian(this->hamiltonian_parameters);
-            solver = std::shared_ptr<numopt::eigenproblem::DenseSolver>(new numopt::eigenproblem::DenseSolver(matrix, dynamic_cast<numopt::eigenproblem::DenseSolverOptions&>(solver_options)));
-
+            numopt::eigenproblem::DenseSolver solver = numopt::eigenproblem::DenseSolver(matrix, dynamic_cast<numopt::eigenproblem::DenseSolverOptions&>(solver_options)));
+            solver.solve();
+            this->eigenpairs = solver.get_eigenpairs();
             break;
         }
 
@@ -50,8 +49,9 @@ void CISolver::solve(numopt::eigenproblem::BaseSolverOptions& solver_options) {
             // Davidson Solver requires us to specify the macvec
 
             numopt::VectorFunction matrixVectorProduct = [this, &diagonal](const Eigen::VectorXd& x) { return hamiltonian_builder->matrixVectorProduct(hamiltonian_parameters, x, diagonal); };
-            solver = std::shared_ptr<numopt::eigenproblem::DavidsonSolver>(new numopt::eigenproblem::DavidsonSolver(matrixVectorProduct, diagonal, dynamic_cast<numopt::eigenproblem::DavidsonSolverOptions&>(solver_options)));
-
+            numopt::eigenproblem::DavidsonSolver solver = numopt::eigenproblem::DavidsonSolver(matrixVectorProduct, diagonal, dynamic_cast<numopt::eigenproblem::DavidsonSolverOptions&>(solver_options));
+            solver.solve();
+            this->eigenpairs = solver.get_eigenpairs();
             break;
 
         }
@@ -62,8 +62,6 @@ void CISolver::solve(numopt::eigenproblem::BaseSolverOptions& solver_options) {
         }
 
     }
-
-    solver->solve();
     this->eigenpairs = solver->get_eigenpairs();
 }
 
