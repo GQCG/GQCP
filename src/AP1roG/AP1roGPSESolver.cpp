@@ -253,8 +253,20 @@ double AP1roGPSESolver::calculateCoordinateFunction(const Eigen::VectorXd& g, si
  */
 Eigen::VectorXd AP1roGPSESolver::calculateCoordinateFunctions(const Eigen::VectorXd& g) const {
 
+    GQCG::AP1roGGeminalCoefficients gem_coeff (g, this->N_P, this->K);
+    return this->calculateCoordinateFunctions(gem_coeff);
+}
+
+
+/**
+ *  Calculate the coordinate functions or the PSEs at the given geminal coefficients @param G. @returns a vector F in which every entry is one of the coordinate functions
+ */
+Eigen::VectorXd AP1roGPSESolver::calculateCoordinateFunctions(const GQCG::AP1roGGeminalCoefficients& G) const {
+
     // The dimension of the vector F is the number of coordinate functions, which is (K-N_P)*N_P
     Eigen::VectorXd F = Eigen::VectorXd::Zero ((this->K - this->N_P) * this->N_P);
+
+    Eigen::VectorXd g = G.asVector();
 
     // Loop over all the F elements to construct it
     for (size_t mu = 0; mu < (this->K - this->N_P) * this->N_P; mu++) {
@@ -268,6 +280,7 @@ Eigen::VectorXd AP1roGPSESolver::calculateCoordinateFunctions(const Eigen::Vecto
 
     return F;
 }
+
 
 
 /**
