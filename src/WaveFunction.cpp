@@ -9,8 +9,8 @@ namespace GQCG {
  */
 
 WaveFunction::WaveFunction(BaseFockSpace &base_fock_space, const Eigen::VectorXd &coefficients) :
-    fock_space(&base_fock_space),
-    coefficients(coefficients)
+    fock_space (&base_fock_space),
+    coefficients (coefficients)
 {}
 
 
