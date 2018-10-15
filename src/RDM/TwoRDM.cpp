@@ -49,9 +49,6 @@ double TwoRDM::trace() {
 
 /**
  *  @return Eigen::MatrixXd D, the reduced-over 2-RDM : D(p,q) = this->two_rdm(p,q,r,r)
- *
- *  In this case, the 'trace' tensor operation should be used, but the current Eigen3 (3.3.4) hasn't released that support yet
- *  Since Eigen3 hasn't released tensor.trace() yet, we will do the reduction ourselves
  */
 Eigen::MatrixXd TwoRDM::reduce_2RDM() {
     // TODO: when Eigen3 releases tensor.trace(), use it to implement the reduction

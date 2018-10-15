@@ -9,7 +9,7 @@ namespace GQCG {
 
 
 /**
- *  A base class for the representation of operators in an orbital basis
+ *  A base class for the representation of reduced density matrices
  */
 class BaseRDM {
 protected:

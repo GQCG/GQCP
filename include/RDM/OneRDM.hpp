@@ -9,12 +9,15 @@
 
 namespace GQCG {
 
-
+/**
+ *  A class that holds the matrix representations of a 1RDM
+ */
 class OneRDM : public BaseRDM {
 private:
-    Eigen::MatrixXd one_rdm;
-    Eigen::MatrixXd one_rdm_aa;
-    Eigen::MatrixXd one_rdm_bb;
+    Eigen::MatrixXd one_rdm;  // spin-summed (total) 1-RDM
+
+    Eigen::MatrixXd one_rdm_aa;  // alpha-alpha (a-a) 1-RDM
+    Eigen::MatrixXd one_rdm_bb;  // beta-beta (b-b) 1-RDM
 
 
 public:
