@@ -70,6 +70,10 @@ set(PROJECT_INCLUDE_FILES
         ${PROJECT_INCLUDE_FOLDER}/Operator/BaseOperator.hpp
         ${PROJECT_INCLUDE_FOLDER}/Operator/OneElectronOperator.hpp
         ${PROJECT_INCLUDE_FOLDER}/Operator/TwoElectronOperator.hpp
+        ${PROJECT_INCLUDE_FOLDER}/RDM/DOCIRDMBuilder.hpp
+        ${PROJECT_INCLUDE_FOLDER}/RDM/OneRDM.hpp
+        ${PROJECT_INCLUDE_FOLDER}/RDM/RDMBuilder.hpp
+        ${PROJECT_INCLUDE_FOLDER}/RDM/TwoRDM.hpp
         ${PROJECT_INCLUDE_FOLDER}/RHF/DIISRHFSCFSolver.hpp
         ${PROJECT_INCLUDE_FOLDER}/RHF/PlainRHFSCFSolver.hpp
         ${PROJECT_INCLUDE_FOLDER}/RHF/RHF.hpp

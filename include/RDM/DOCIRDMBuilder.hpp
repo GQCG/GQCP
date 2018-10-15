@@ -6,8 +6,8 @@ namespace GQCG {
 
 
 /**
- *  RDMBuilder is an abstract base class for the calculation of a density matrix from a given wave function
- *  or coefficient expansion in a Fock space
+ *  DOCIRDMBuilder is a class for the calculation of a density matrix from a given wave function
+ *  or coefficient expansion in a doubly occupied or single Fock space
  */
 class DOCIRDMBuilder {
     FockSpace fock_space;  // both the alpha and beta Fock space
