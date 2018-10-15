@@ -12,17 +12,27 @@ namespace GQCG {
 
 class OneRDM : public BaseRDM {
 private:
-    Eigen::MatrixXd oneRDM;
+    Eigen::MatrixXd one_rdm;
+    Eigen::MatrixXd one_rdm_aa;
+    Eigen::MatrixXd one_rdm_bb;
 
 
 public:
     // CONSTRUCTORS
-    OneRDM(Eigen::MatrixXd oneRDM);
+    /**
+     * Constructor with @param one_rdm where one_rdm_aa and one_rdm_bb are @param one_rdm/2
+     */
+    OneRDM(Eigen::MatrixXd one_rdm);
+
+    /**
+     * Constructor with @param one_rdm_aa and @param one_rdm_bb were one_rdm = @param one_rdm_aa + @param one_rdm_bb
+     */
+    OneRDM(Eigen::MatrixXd one_rdm_aa, Eigen::MatrixXd one_rdm_bb);
 
 
     // GETTERS
-    Eigen::MatrixXd get_matrix_representation() const { return this->oneRDM; }
-    double get(size_t p, size_t q) const { return this->oneRDM(p, q); }
+    Eigen::MatrixXd get_matrix_representation() const { return this->one_rdm; }
+    double get(size_t p, size_t q) const { return this->one_rdm(p, q); }
 };
 
 

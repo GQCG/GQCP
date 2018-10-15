@@ -1,4 +1,4 @@
-#include "RDM/BaseRDM.cpp"
+#include "RDM/BaseRDM.hpp"
 
 
 namespace GQCG {

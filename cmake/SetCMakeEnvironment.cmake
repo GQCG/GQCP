@@ -37,6 +37,11 @@ set(PROJECT_SOURCE_FILES
         ${PROJECT_SOURCE_FOLDER}/Operator/BaseOperator.cpp
         ${PROJECT_SOURCE_FOLDER}/Operator/OneElectronOperator.cpp
         ${PROJECT_SOURCE_FOLDER}/Operator/TwoElectronOperator.cpp
+        ${PROJECT_SOURCE_FOLDER}/RDM/BaseRDM.cpp
+        ${PROJECT_SOURCE_FOLDER}/RDM/DOCIRDMBuilder.cpp
+        ${PROJECT_SOURCE_FOLDER}/RDM/OneRDM.cpp
+        ${PROJECT_SOURCE_FOLDER}/RDM/RDMBuilder.cpp
+        ${PROJECT_SOURCE_FOLDER}/RDM/TwoRDM.cpp
         ${PROJECT_SOURCE_FOLDER}/RHF/DIISRHFSCFSolver.cpp
         ${PROJECT_SOURCE_FOLDER}/RHF/PlainRHFSCFSolver.cpp
         ${PROJECT_SOURCE_FOLDER}/RHF/RHF.cpp
