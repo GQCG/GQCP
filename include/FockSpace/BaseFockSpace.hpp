@@ -19,13 +19,14 @@ namespace GQCG {
 class BaseFockSpace {
 protected:
     const size_t K;  // number of spatial orbitals
+    size_t dim;  // dimension of the Fock space
 
 
     // PROTECTED CONSTRUCTORS
     /**
-     *  Protected constructor given a @param K
+     *  Protected constructor given a @param K and @param dim
      */
-    explicit BaseFockSpace(size_t K);
+    explicit BaseFockSpace(size_t K, size_t dim);
 
 
 public:
@@ -35,6 +36,17 @@ public:
      */
     virtual ~BaseFockSpace() = 0;
 
+
+    // GETTERS
+    size_t get_dimension() const { return dim; }
+    size_t get_K() const { return K; }
+
+
+    // PUBLIC METHODS
+    /**
+     *  Creates a Hartree-Fock coefficient expansion (single Slater expansion of the first configuration in the Fock space)
+     */
+    Eigen::VectorXd HartreeFockExpansion();
 
     // PURE VIRTUAL PUBLIC METHODS
     /**

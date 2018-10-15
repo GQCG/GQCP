@@ -23,13 +23,14 @@ set(PROJECT_SOURCE_FOLDER ${CMAKE_SOURCE_DIR}/src)
 
 # Find the source files
 set(PROJECT_SOURCE_FILES
+        ${PROJECT_SOURCE_FOLDER}/CISolver/CISolver.cpp
         ${PROJECT_SOURCE_FOLDER}/AP1roG/AP1roG.cpp
         ${PROJECT_SOURCE_FOLDER}/AP1roG/AP1roGGeminalCoefficients.cpp
         ${PROJECT_SOURCE_FOLDER}/AP1roG/AP1roGPSESolver.cpp
         ${PROJECT_SOURCE_FOLDER}/FockSpace/BaseFockSpace.cpp
         ${PROJECT_SOURCE_FOLDER}/FockSpace/FockSpace.cpp
         ${PROJECT_SOURCE_FOLDER}/HamiltonianBuilder/DOCI.cpp
-        ${PROJECT_SOURCE_FOLDER}/HamiltonianBuilder/RestrictedHamiltonianBuilder.cpp
+        ${PROJECT_SOURCE_FOLDER}/HamiltonianBuilder/HamiltonianBuilder.cpp
         ${PROJECT_SOURCE_FOLDER}/HamiltonianParameters/BaseHamiltonianParameters.cpp
         ${PROJECT_SOURCE_FOLDER}/HamiltonianParameters/HamiltonianParameters.cpp
         ${PROJECT_SOURCE_FOLDER}/HamiltonianParameters/HamiltonianParameters_constructors.cpp
@@ -47,20 +48,22 @@ set(PROJECT_SOURCE_FILES
         ${PROJECT_SOURCE_FOLDER}/LibintCommunicator.cpp
         ${PROJECT_SOURCE_FOLDER}/miscellaneous.cpp
         ${PROJECT_SOURCE_FOLDER}/Molecule.cpp
-        ${PROJECT_SOURCE_FOLDER}/ONV.cpp)
+        ${PROJECT_SOURCE_FOLDER}/ONV.cpp
+        ${PROJECT_SOURCE_FOLDER}/WaveFunction.cpp)
 
 # Find the header folder
 set(PROJECT_INCLUDE_FOLDER ${CMAKE_SOURCE_DIR}/include)
 
 # Find the header files
 set(PROJECT_INCLUDE_FILES
+        ${PROJECT_INCLUDE_FOLDER}/CISolver/CISolver.hpp
         ${PROJECT_INCLUDE_FOLDER}/AP1roG/AP1roG.hpp
         ${PROJECT_INCLUDE_FOLDER}/AP1roG/AP1roGGeminalCoefficients.hpp
         ${PROJECT_INCLUDE_FOLDER}/AP1roG/AP1roGPSESolver.hpp
         ${PROJECT_INCLUDE_FOLDER}/FockSpace/BaseFockSpace.hpp
         ${PROJECT_INCLUDE_FOLDER}/FockSpace/FockSpace.hpp
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianBuilder/DOCI.hpp
-        ${PROJECT_INCLUDE_FOLDER}/HamiltonianBuilder/RestrictedHamiltonianBuilder.hpp
+        ${PROJECT_INCLUDE_FOLDER}/HamiltonianBuilder/HamiltonianBuilder.hpp
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianParameters/BaseHamiltonianParameters.hpp
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianParameters/HamiltonianParameters.hpp
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianParameters/HamiltonianParameters_constructors.hpp
@@ -80,13 +83,17 @@ set(PROJECT_INCLUDE_FILES
         ${PROJECT_INCLUDE_FOLDER}/miscellaneous.hpp
         ${PROJECT_INCLUDE_FOLDER}/Molecule.hpp
         ${PROJECT_INCLUDE_FOLDER}/ONV.hpp
-        ${PROJECT_INCLUDE_FOLDER}/units.hpp)
+        ${PROJECT_INCLUDE_FOLDER}/units.hpp
+        ${PROJECT_INCLUDE_FOLDER}/WaveFunction.hpp)
 
 # Find the tests folder
 set(PROJECT_TESTS_FOLDER ${CMAKE_SOURCE_DIR}/tests)
 
 # Find the source files for the tests
 set(PROJECT_TEST_SOURCE_FILES
+        ${PROJECT_TESTS_FOLDER}/CISolver/CISolver_DOCI_Davidson_test.cpp
+        ${PROJECT_TESTS_FOLDER}/CISolver/CISolver_DOCI_Dense_test.cpp
+        ${PROJECT_TESTS_FOLDER}/CISolver/CISolver_test.cpp
         ${PROJECT_TESTS_FOLDER}/AP1roG/AP1roG_test.cpp
         ${PROJECT_TESTS_FOLDER}/AP1roG/AP1roGGeminalCoefficients_test.cpp
         ${PROJECT_TESTS_FOLDER}/AP1roG/AP1roGPSESolver_test.cpp
