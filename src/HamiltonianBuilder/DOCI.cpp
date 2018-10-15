@@ -24,9 +24,9 @@ DOCI::DOCI(FockSpace fock_space) :
  */
 
 /**
- *  @return Hamiltonian matrix as an Eigen::MatrixXd
+ *  @return Hamiltonian matrix as an Eigen::MatrixXd given @param hamiltonian_parameters
  */
-Eigen::MatrixXd DOCI::constructHamiltonian(const HamiltonianParameters& hamiltonian_parameters)  {
+Eigen::MatrixXd DOCI::constructHamiltonian(const HamiltonianParameters& hamiltonian_parameters) {
     
     auto K = hamiltonian_parameters.get_h().get_dim();
     if (K != this->fock_space.K) {
@@ -77,9 +77,9 @@ Eigen::MatrixXd DOCI::constructHamiltonian(const HamiltonianParameters& hamilton
 
 
 /**
- *  @return the action of the DOCI Hamiltonian of the coefficient vector @param x.
+ *  @return the action of the Hamiltonian (@param hamiltonian_parameters and @param diagonal) on the coefficient vector @param x
  */
-Eigen::VectorXd DOCI::matrixVectorProduct(const HamiltonianParameters& hamiltonian_parameters, const Eigen::VectorXd& x, const Eigen::MatrixXd& diagonal) {
+Eigen::VectorXd DOCI::matrixVectorProduct(const HamiltonianParameters& hamiltonian_parameters, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) {
     auto K = hamiltonian_parameters.get_h().get_dim();
     if (K != this->fock_space.K) {
         throw std::invalid_argument("Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
@@ -128,7 +128,7 @@ Eigen::VectorXd DOCI::matrixVectorProduct(const HamiltonianParameters& hamiltoni
 
 
 /**
- *  @return the diagonal of the matrix representation of the DOCI Hamiltonian.
+ *  @return the diagonal of the matrix representation of the Hamiltonian given @param hamiltonian_parameters
  */
 Eigen::VectorXd DOCI::calculateDiagonal(const HamiltonianParameters& hamiltonian_parameters) {
 

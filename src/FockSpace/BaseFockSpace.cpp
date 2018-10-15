@@ -33,12 +33,12 @@ BaseFockSpace::~BaseFockSpace() {}
  */
 
 /**
- *  Creates a Hartree-Fock guess
+ *  Creates a Hartree-Fock coefficient expansion (single Slater expansion of the first configuration in the Fock space)
  */
-Eigen::VectorXd BaseFockSpace::hartreeFockGuess(){
-    Eigen::VectorXd guess = Eigen::VectorXd::Zero(this->dim);
-    guess(0) = 1;
-    return guess;
+Eigen::VectorXd BaseFockSpace::HartreeFockExpansion() {
+    Eigen::VectorXd expansion = Eigen::VectorXd::Zero(this->dim);
+    expansion(0) = 1;  // first configuration is position 0 (conventional ordering of the Fock space)
+    return expansion;
 }
 
 

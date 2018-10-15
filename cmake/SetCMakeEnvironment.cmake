@@ -45,7 +45,8 @@ set(PROJECT_SOURCE_FILES
         ${PROJECT_SOURCE_FOLDER}/LibintCommunicator.cpp
         ${PROJECT_SOURCE_FOLDER}/miscellaneous.cpp
         ${PROJECT_SOURCE_FOLDER}/Molecule.cpp
-        ${PROJECT_SOURCE_FOLDER}/ONV.cpp)
+        ${PROJECT_SOURCE_FOLDER}/ONV.cpp
+        ${PROJECT_SOURCE_FOLDER}/WaveFunction.cpp)
 
 # Find the header folder
 set(PROJECT_INCLUDE_FOLDER ${CMAKE_SOURCE_DIR}/include)

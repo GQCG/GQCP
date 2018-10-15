@@ -42,6 +42,3 @@ BOOST_AUTO_TEST_CASE ( Solver_constructor ) {
     // Test faulty constructor
     BOOST_CHECK_THROW(GQCG::CISolver ci_solver (random_doci_i, random_hamiltonian_parameters), std::invalid_argument);
 }
-
-
-

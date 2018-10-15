@@ -33,17 +33,17 @@ public:
 
     // PURE VIRTUAL PUBLIC METHODS
     /**
-     *  @return Hamiltonian matrix as an Eigen::MatrixXd
+     *  @return Hamiltonian matrix as an Eigen::MatrixXd given @param hamiltonian_parameters
      */
     virtual Eigen::MatrixXd constructHamiltonian(const HamiltonianParameters& hamiltonian_parameters) = 0;
 
     /**
-     *  @return the action of the Hamiltonian of the coefficient vector @param x
+     *  @return the action of the Hamiltonian (@param hamiltonian_parameters and @param diagonal) on the coefficient vector @param x
      */
-    virtual Eigen::VectorXd matrixVectorProduct(const HamiltonianParameters& hamiltonian_parameters, const Eigen::VectorXd& x, const Eigen::MatrixXd& diagonal) = 0;
+    virtual Eigen::VectorXd matrixVectorProduct(const HamiltonianParameters& hamiltonian_parameters, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) = 0;
 
     /**
-     *  @return the diagonal of the matrix representation of the Hamiltonian
+     *  @return the diagonal of the matrix representation of the Hamiltonian given @param hamiltonian_parameters
      */
     virtual Eigen::VectorXd calculateDiagonal(const HamiltonianParameters& hamiltonian_parameters) = 0;
 

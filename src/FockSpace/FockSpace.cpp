@@ -37,8 +37,8 @@ size_t FockSpace::ulongNextPermutation(size_t representation) {
  */
 
 FockSpace::FockSpace(size_t K, size_t N) :
-        BaseFockSpace(K,FockSpace::calculateDimension(K,N)),
-        N(N)
+        BaseFockSpace (K, FockSpace::calculateDimension(K, N)),
+        N (N)
 {
     // Create a zero matrix of dimensions (K+1)x(N+1)
     this->vertex_weights = GQCG::Matrixu(this->K + 1, GQCG::Vectoru(this->N + 1, 0));

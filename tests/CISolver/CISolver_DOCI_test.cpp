@@ -26,7 +26,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_beh_cation_klaas_dense ) {
     // Create the DOCI module
     GQCG::DOCI doci (fock_space);
 
-    // Solve
+    // Solve the dense DOCI eigenvalue problem
     GQCG::CISolver ci_solver (doci, ham_par);
     numopt::eigenproblem::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
@@ -57,7 +57,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_lih_klaas_dense ) {
     // Create the DOCI module
     GQCG::DOCI doci (fock_space);
 
-    // Solve
+    // Solve the dense DOCI eigenvalue problem
     GQCG::CISolver ci_solver (doci, ham_par);
     numopt::eigenproblem::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
@@ -88,7 +88,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_li2_klaas_dense ) {
     // Create the DOCI module
     GQCG::DOCI doci (fock_space);
 
-    // Solve
+    // Solve the dense DOCI eigenvalue problem
     GQCG::CISolver ci_solver (doci, ham_par);
     numopt::eigenproblem::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
@@ -120,9 +120,9 @@ BOOST_AUTO_TEST_CASE ( DOCI_h2o_sto3g_klaas_Davidson ) {
     // Create the DOCI module
     GQCG::DOCI doci (fock_space);
 
-    // Solve
+    // Solve the Davidson DOCI eigenvalue problem
     GQCG::CISolver ci_solver (doci, ham_par);
-    Eigen::VectorXd initial_g = fock_space.hartreeFockGuess();
+    Eigen::VectorXd initial_g = fock_space.HartreeFockExpansion();
     numopt::eigenproblem::DavidsonSolverOptions solver_options (initial_g);
     ci_solver.solve(solver_options);
 
@@ -135,4 +135,3 @@ BOOST_AUTO_TEST_CASE ( DOCI_h2o_sto3g_klaas_Davidson ) {
 
     BOOST_CHECK(std::abs(test_doci_energy - (reference_doci_energy)) < 1.0e-9);
 }
-

@@ -11,21 +11,26 @@
 namespace GQCG {
 
 
+/**
+ *  WaveFunction contains the expansion coefficients in its given FockSpace
+ */
 class WaveFunction {
 private:
-    BaseFockSpace* base_fock_space;
+    BaseFockSpace* fock_space;
     Eigen::VectorXd coefficients;  // Expansion coefficients of a wave function in the Fock space
 
 public:
     // CONSTRUCTORS
-    WaveFunction(BaseFockSpace& base_fock_space, const Eigen::VectorXd& coefficients) : base_fock_space(&base_fock_space), coefficients(coefficients){}
+    WaveFunction(BaseFockSpace& base_fock_space, const Eigen::VectorXd& coefficients);
 
 
     // GETTERS
-    Eigen::VectorXd get_coefficients() { return coefficients; }
-    BaseFockSpace& get_fock_space() { return *base_fock_space; }
+    Eigen::VectorXd get_coefficients() const { return coefficients; }
+    BaseFockSpace& get_fock_space() const { return *fock_space; }
 };
 
 
 }  // namespace GQCG
+
+
 #endif  // GQCG_WAVEFUNCTION_HPP

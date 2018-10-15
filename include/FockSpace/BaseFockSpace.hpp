@@ -24,7 +24,7 @@ protected:
 
     // PROTECTED CONSTRUCTORS
     /**
-     *  Protected constructor given a @param K
+     *  Protected constructor given a @param K and @param dim
      */
     explicit BaseFockSpace(size_t K, size_t dim);
 
@@ -44,9 +44,9 @@ public:
 
     // PUBLIC METHODS
     /**
-     *  Creates a Hartree-Fock guess
+     *  Creates a Hartree-Fock coefficient expansion (single Slater expansion of the first configuration in the Fock space)
      */
-    Eigen::VectorXd hartreeFockGuess();
+    Eigen::VectorXd HartreeFockExpansion();
 
     // PURE VIRTUAL PUBLIC METHODS
     /**
