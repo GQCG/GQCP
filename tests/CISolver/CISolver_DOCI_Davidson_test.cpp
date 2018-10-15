@@ -288,7 +288,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_h2o_631g_klaas_Davidson ) {
     BOOST_CHECK(std::abs(test_doci_energy - (reference_doci_energy)) < 1.0e-9);
 }
 
-
+/*
 BOOST_AUTO_TEST_CASE ( DOCI_lif_631g_klaas_Davidson ) {
 
     // Klaas' reference DOCI energy for LiF
@@ -319,3 +319,4 @@ BOOST_AUTO_TEST_CASE ( DOCI_lif_631g_klaas_Davidson ) {
 
     BOOST_CHECK(std::abs(test_doci_energy - (reference_doci_energy)) < 1.0e-9);
 }
+*/
