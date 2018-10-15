@@ -100,3 +100,28 @@ BOOST_AUTO_TEST_CASE ( matrix_index ) {
     BOOST_CHECK_EQUAL(geminal_coefficients.matrixIndexMinor(4), 6);
     BOOST_CHECK_EQUAL(geminal_coefficients.matrixIndexMinor(5), 7);
 }
+
+
+BOOST_AUTO_TEST_CASE ( operator_call ) {
+    // Make an example for geminal coefficients for N_P=2 and K=5
+    //      1 0  1 2 3
+    //      0 1  4 5 6
+    Eigen::VectorXd g (6);
+    g << 1, 2, 3, 4, 5, 6;
+    GQCG::AP1roGGeminalCoefficients gem_coeff (g, 2, 5);
+
+    BOOST_CHECK_EQUAL(gem_coeff(0), 1);
+    BOOST_CHECK_EQUAL(gem_coeff(1), 2);
+    BOOST_CHECK_EQUAL(gem_coeff(2), 3);
+    BOOST_CHECK_EQUAL(gem_coeff(3), 4);
+    BOOST_CHECK_EQUAL(gem_coeff(4), 5);
+    BOOST_CHECK_EQUAL(gem_coeff(5), 6);
+
+
+    BOOST_CHECK_EQUAL(gem_coeff(0, 2), 1);
+    BOOST_CHECK_EQUAL(gem_coeff(0, 3), 2);
+    BOOST_CHECK_EQUAL(gem_coeff(0, 4), 3);
+    BOOST_CHECK_EQUAL(gem_coeff(1, 2), 4);
+    BOOST_CHECK_EQUAL(gem_coeff(1, 3), 5);
+    BOOST_CHECK_EQUAL(gem_coeff(1, 4), 6);
+}
