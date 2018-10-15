@@ -29,5 +29,15 @@ OneRDM::OneRDM(Eigen::MatrixXd one_rdm_aa, Eigen::MatrixXd one_rdm_bb) :
     one_rdm_bb (one_rdm_bb)
 {}
 
+/*
+ *  PUBLIC METHODS
+ */
+
+/**
+ *  @return the trace of this->one_rdm
+ */
+double OneRDM::trace(){
+    return this->one_rdm.trace();
+}
 
 }  // namespace GQCG

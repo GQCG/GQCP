@@ -115,9 +115,6 @@ TwoRDM DOCIRDMBuilder::construct2RDM(const Eigen::VectorXd& x) {
     TwoRDM two_rdm (two_rdm_aaaa, two_rdm_aaaa, two_rdm_aabb, two_rdm_aabb);
 
     return two_rdm;
-
-
-
 }
 
 

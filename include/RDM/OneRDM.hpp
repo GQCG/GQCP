@@ -33,6 +33,13 @@ public:
     // GETTERS
     Eigen::MatrixXd get_matrix_representation() const { return this->one_rdm; }
     double get(size_t p, size_t q) const { return this->one_rdm(p, q); }
+
+
+    // PUBLIC METHODS
+    /**
+     *  @return the trace of this->one_rdm
+     */
+    double trace();
 };
 
 

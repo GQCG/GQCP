@@ -25,5 +25,50 @@ TwoRDM::TwoRDM(Eigen::Tensor<double, 4> two_rdm_aaaa, Eigen::Tensor<double, 4> t
     two_rdm_bbaa (two_rdm_bbaa)
 {}
 
+/*
+ *  PUBLIC METHODS
+ */
+
+/**
+ *  @return the trace of this->two_rdm
+ */
+double TwoRDM::trace() {
+    // TODO: when Eigen3 releases tensor.trace(), use it to implement the reduction
+
+    auto K = static_cast<size_t>(this->two_rdm.dimension(1));
+
+    double trace = 0.0;
+    for (size_t p = 0; p < K; p++) {
+        for (size_t q = 0; q < K; q++) {
+            trace += this->two_rdm(p,p,q,q);
+        }
+    }
+
+    return trace;
+}
+
+/**
+ *  @return Eigen::MatrixXd D, the reduced-over 2-RDM : D(p,q) = this->two_rdm(p,q,r,r)
+ *
+ *  In this case, the 'trace' tensor operation should be used, but the current Eigen3 (3.3.4) hasn't released that support yet
+ *  Since Eigen3 hasn't released tensor.trace() yet, we will do the reduction ourselves
+ */
+Eigen::MatrixXd TwoRDM::reduce_2RDM() {
+    // TODO: when Eigen3 releases tensor.trace(), use it to implement the reduction
+
+    auto K = static_cast<size_t>(this->two_rdm.dimension(1));
+
+    Eigen::MatrixXd D = Eigen::MatrixXd::Zero(K, K);
+    for (size_t p = 0; p < K; p++) {
+        for (size_t q = 0; q < K; q++) {
+            for (size_t r = 0; r < K; r++) {
+                D(p,q) += this->two_rdm(p,q,r,r);
+            }
+        }
+    }
+
+    return D;
+}
+
 }  // namespace GQCG
 
