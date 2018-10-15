@@ -1,4 +1,4 @@
-#include <HamiltonianBuilder/HamiltonianBuilder.hpp>
+#include "HamiltonianBuilder/HamiltonianBuilder.hpp"
 
 
 namespace GQCG {
