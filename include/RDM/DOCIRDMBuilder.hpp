@@ -2,6 +2,10 @@
 #define GQCG_DOCIRDMBUILDER_HPP
 
 
+#include "FockSpace/FockSpace.hpp"
+#include "RDM/RDMBuilder.hpp"
+
+
 namespace GQCG {
 
 
@@ -9,7 +13,7 @@ namespace GQCG {
  *  DOCIRDMBuilder is a class for the calculation of a density matrix from a given wave function
  *  or coefficient expansion in a doubly occupied or single Fock space
  */
-class DOCIRDMBuilder {
+class DOCIRDMBuilder : public RDMBuilder {
     FockSpace fock_space;  // both the alpha and beta Fock space
 
 
@@ -22,25 +26,25 @@ public:
     ~DOCIRDMBuilder() = default;
 
 
-    // PURE VIRTUAL PUBLIC METHODS
+    // OVERRIDEN PUBLIC METHODS
     /**
      *  @return 1RDM from a coefficient vector @param x
      */
-    Eigen::MatrixXd construct1RDM(const Eigen::VectorXd& x) override;
+    OneRDM construct1RDM(const Eigen::VectorXd& x) override;
 
     /**
      *  @return 2RDM from a coefficient vector @param x
      */
-    Eigen::Tensor<double, 4> construct2RDM(const Eigen::VectorXd& x) override;
+    TwoRDM construct2RDM(const Eigen::VectorXd& x) override;
 
     /**
      *  @return the Fock space of the RDMBuilder
      */
-    virtual BaseFockSpace* get_fock_space() override { return &fock_space; }
+    BaseFockSpace* get_fock_space() override { return &fock_space; }
 };
 
 
 }  // namespace GQCG
 
 
-#endif //GQCG_DOCIRDMBUILDER_HPP
+#endif  // GQCG_DOCIRDMBUILDER_HPP

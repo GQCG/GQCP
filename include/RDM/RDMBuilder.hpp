@@ -1,8 +1,11 @@
 #ifndef GQCG_RDMBUILDER_HPP
 #define GQCG_RDMBUILDER_HPP
 
+
 #include "RDM/OneRDM.hpp"
 #include "RDM/TwoRDM.hpp"
+#include "FockSpace/BaseFockSpace.hpp"
+
 
 namespace GQCG {
 
