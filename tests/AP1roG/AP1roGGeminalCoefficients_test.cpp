@@ -64,3 +64,39 @@ BOOST_AUTO_TEST_CASE ( asMatrix ) {
     GQCG::AP1roGGeminalCoefficients gem_coeff (g, 2, 5);
     BOOST_CHECK(gem_coeff.asMatrix().isApprox(G));
 }
+
+
+BOOST_AUTO_TEST_CASE ( vector_index ) {
+
+    // N_P=2, K=11
+    GQCG::AP1roGGeminalCoefficients geminal_coefficients (2, 11);
+
+    BOOST_CHECK_EQUAL(geminal_coefficients.vectorIndex(0, 2), 0);
+    BOOST_CHECK_EQUAL(geminal_coefficients.vectorIndex(0, 3), 1);
+    BOOST_CHECK_EQUAL(geminal_coefficients.vectorIndex(1, 2), 9);
+    BOOST_CHECK_EQUAL(geminal_coefficients.vectorIndex(1, 3), 10);
+
+    // Require a throw if i > N_P
+    BOOST_REQUIRE_THROW(geminal_coefficients.vectorIndex(3, 3), std::invalid_argument);
+
+    // Require a throw if a < N_P
+    BOOST_REQUIRE_THROW(geminal_coefficients.vectorIndex(0, 1), std::invalid_argument);
+}
+
+
+BOOST_AUTO_TEST_CASE ( matrix_index ) {
+
+    // N_P=2, K=11
+    GQCG::AP1roGGeminalCoefficients geminal_coefficients (2, 11);
+
+
+    BOOST_CHECK_EQUAL(geminal_coefficients.matrixIndexMajor(0), 0);
+    BOOST_CHECK_EQUAL(geminal_coefficients.matrixIndexMajor(1), 0);
+    BOOST_CHECK_EQUAL(geminal_coefficients.matrixIndexMajor(9), 1);
+    BOOST_CHECK_EQUAL(geminal_coefficients.matrixIndexMajor(10), 1);
+
+    BOOST_CHECK_EQUAL(geminal_coefficients.matrixIndexMinor(0), 2);
+    BOOST_CHECK_EQUAL(geminal_coefficients.matrixIndexMinor(1), 3);
+    BOOST_CHECK_EQUAL(geminal_coefficients.matrixIndexMinor(4), 6);
+    BOOST_CHECK_EQUAL(geminal_coefficients.matrixIndexMinor(5), 7);
+}
