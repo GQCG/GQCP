@@ -92,9 +92,16 @@ public:
     double calculateCoordinateFunction(const Eigen::VectorXd& g, size_t i, size_t a) const;
 
     /**
-     *  Calculate the coordinate functions for the pSEs at the given geminal coefficients @param g. This returns a vector F in which every entry is one of the coordinate functions
+     *  Calculate the coordinate functions for the pSEs at the given geminal coefficients @param g. @returns a vector F in which every entry is one of the coordinate functions
      */
     Eigen::VectorXd calculateCoordinateFunctions(const Eigen::VectorXd& g) const;
+
+    /**
+     *  Calculate the coordinate functions or the PSEs at the given geminal coefficients @param G. @returns a vector F in which every entry is one of the coordinate functions
+     */
+    Eigen::VectorXd calculateCoordinateFunctions(const GQCG::AP1roGGeminalCoefficients& G) const;
+
+
 
     /**
      *  Calculate the AP1roG energy given AP1roG geminal coefficients @param G

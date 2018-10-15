@@ -7,6 +7,14 @@
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
 
 
+BOOST_AUTO_TEST_CASE ( numberOfGeminalCoefficients ) {
+
+    BOOST_CHECK_EQUAL(GQCG::AP1roGGeminalCoefficients::numberOfGeminalCoefficients(2, 5), 6);
+
+    BOOST_CHECK_THROW(GQCG::AP1roGGeminalCoefficients::numberOfGeminalCoefficients(4, 4), std::invalid_argument);
+}
+
+
 BOOST_AUTO_TEST_CASE ( default_constructor ) {
     GQCG::AP1roGGeminalCoefficients gem_coeff;
 }

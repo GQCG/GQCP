@@ -43,6 +43,11 @@ public:
      *  Construct and @return the geminal coefficients in matrix form
      */
     Eigen::MatrixXd asMatrix() const;
+
+    /**
+     *  @return the number of free geminal coefficients given a number of geminals @param N_P and a number of spatial orbitals @param K
+     */
+    static size_t numberOfGeminalCoefficients(size_t N_P, size_t K);
 };
 
 

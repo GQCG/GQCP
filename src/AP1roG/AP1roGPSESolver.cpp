@@ -178,8 +178,9 @@ Eigen::MatrixXd AP1roGPSESolver::calculateJacobian(const Eigen::VectorXd& g) con
     Eigen::MatrixXd J = Eigen::MatrixXd::Zero((this->K - this->N_P) * this->N_P, (this->K - this->N_P) * this->N_P);
 
     // Loop over all Jacobian elements to construct it
-    for (size_t mu = 0; mu < (this->K - this->N_P) * this->N_P; mu++) {
-        for (size_t nu = 0; nu < (this->K - this->N_P) * this->N_P; nu++) {
+    size_t number_of_geminal_coefficients = AP1roGGeminalCoefficients::numberOfGeminalCoefficients(N_P, K);
+    for (size_t mu = 0; mu < number_of_geminal_coefficients; mu++) {
+        for (size_t nu = 0; nu < number_of_geminal_coefficients; nu++) {
 
             // Convert the vector indices mu and nu into matrix indices
             size_t i = this->matrixIndexMajor(nu);
@@ -269,7 +270,8 @@ Eigen::VectorXd AP1roGPSESolver::calculateCoordinateFunctions(const GQCG::AP1roG
     Eigen::VectorXd g = G.asVector();
 
     // Loop over all the F elements to construct it
-    for (size_t mu = 0; mu < (this->K - this->N_P) * this->N_P; mu++) {
+    size_t number_of_geminal_coefficients = AP1roGGeminalCoefficients::numberOfGeminalCoefficients(N_P, K);
+    for (size_t mu = 0; mu < number_of_geminal_coefficients; mu++) {
 
         // Convert the vector indices mu into matrix indices
         size_t i = this->matrixIndexMajor(mu);

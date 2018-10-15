@@ -22,13 +22,8 @@ AP1roGGeminalCoefficients::AP1roGGeminalCoefficients() :
 AP1roGGeminalCoefficients::AP1roGGeminalCoefficients(size_t N_P, size_t K) :
     N_P (N_P),
     K (K),
-    g (Eigen::VectorXd::Zero((K-N_P) * N_P))
-{
-    // Check if we can create N_P geminals in K orbitals
-    if (N_P >= K) {
-        throw std::invalid_argument("Can't create that many geminals in this few number of orbitals.");
-    }
-}
+    g (Eigen::VectorXd::Zero(AP1roGGeminalCoefficients::numberOfGeminalCoefficients(N_P, K)))
+{}
 
 
 /**
@@ -39,7 +34,7 @@ AP1roGGeminalCoefficients::AP1roGGeminalCoefficients(const Eigen::VectorXd& g, s
     K (K),
     g (g)
 {
-    if (N_P * (K-N_P) != g.size()) {
+    if (AP1roGGeminalCoefficients::numberOfGeminalCoefficients(N_P, K) != g.size()) {
         throw std::invalid_argument("The specified N_P and K are not compatible with the given vector of geminal coefficients.");
     }
 }
@@ -67,5 +62,20 @@ Eigen::MatrixXd AP1roGGeminalCoefficients::asMatrix() const {
 
     return G;
 }
+
+
+/**
+ *  @return the number of free geminal coefficients given a number of geminals @param N_P and a number of spatial orbitals @param K
+ */
+size_t AP1roGGeminalCoefficients::numberOfGeminalCoefficients(size_t N_P, size_t K) {
+
+    // Check if we can have N_P geminals in K orbitals
+    if (N_P >= K) {
+        throw std::invalid_argument("Can't have that many geminals in this few number of orbitals.");
+    }
+
+    return N_P * (K - N_P);
+}
+
 
 }  // namespace GQCG
