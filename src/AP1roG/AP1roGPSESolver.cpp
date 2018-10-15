@@ -260,17 +260,16 @@ Eigen::VectorXd AP1roGPSESolver::calculateCoordinateFunctions(const Eigen::Vecto
 
 
 /**
- *  Calculate the coordinate functions or the PSEs at the given geminal coefficients @param G. @returns a vector F in which every entry is one of the coordinate functions
+ *  Calculate the coordinate functions for the PSEs at the given geminal coefficients @param G. @returns a vector F in which every entry is one of the coordinate functions
  */
 Eigen::VectorXd AP1roGPSESolver::calculateCoordinateFunctions(const GQCG::AP1roGGeminalCoefficients& G) const {
 
-    // The dimension of the vector F is the number of coordinate functions, which is (K-N_P)*N_P
-    Eigen::VectorXd F = Eigen::VectorXd::Zero ((this->K - this->N_P) * this->N_P);
+    size_t number_of_geminal_coefficients = AP1roGGeminalCoefficients::numberOfGeminalCoefficients(N_P, K);
 
+    Eigen::VectorXd F = Eigen::VectorXd::Zero(number_of_geminal_coefficients);
     Eigen::VectorXd g = G.asVector();
 
     // Loop over all the F elements to construct it
-    size_t number_of_geminal_coefficients = AP1roGGeminalCoefficients::numberOfGeminalCoefficients(N_P, K);
     for (size_t mu = 0; mu < number_of_geminal_coefficients; mu++) {
 
         // Convert the vector indices mu into matrix indices

@@ -64,6 +64,25 @@ Eigen::MatrixXd AP1roGGeminalCoefficients::asMatrix() const {
 }
 
 
+/*
+ *  OPERATORS
+ */
+/**
+ *  @return the geminal coefficient g_mu, in which @param mu is a 'vector index'
+ */
+double AP1roGGeminalCoefficients::operator()(size_t mu) const {
+    return this->g(mu);
+}
+
+/**
+ *  @ return the geminal coefficient G_i^a, in which @param i is the major index (changes in i are not contiguous) and @param a is the minor index (changes in a are contiguous)
+ */
+double AP1roGGeminalCoefficients::operator()(size_t i, size_t a) const {
+    size_t mu = this->vectorIndex(i, a);
+    return this->operator()(mu);
+}
+
+
 /**
  *  @return the number of free geminal coefficients given a number of geminals @param N_P and a number of spatial orbitals @param K
  */
@@ -75,6 +94,59 @@ size_t AP1roGGeminalCoefficients::numberOfGeminalCoefficients(size_t N_P, size_t
     }
 
     return N_P * (K - N_P);
+}
+
+
+/**
+ *  For a geminal coefficient g_mu, return its major index in the matrix of geminal coefficients.
+ *
+ *      Note that:
+ *          - the major index is i (i.e. the subscript), since changes in i are not contiguous
+ *          - i is in [0 ... N_P[
+ */
+size_t AP1roGGeminalCoefficients::matrixIndexMajor(size_t vector_index) const {
+
+    return vector_index / (this->K - this->N_P);  // in the mathematical notes, we use the floor function, which is the same as integer division
+}
+
+
+/**
+ *  For a geminal coefficient g_mu, return its minor index in the matrix of geminal coefficients.
+ *
+ *      Note that:
+ *          - the minor index is a (i.e. the superscript), since changes in a are contiguous
+ *          - a is in [N_P ... K[
+ */
+size_t AP1roGGeminalCoefficients::matrixIndexMinor(size_t vector_index) const {
+
+    return vector_index % (this->K - this->N_P) + this->N_P;  // we add N_P since we want a to be in [N_P ... K[
+}
+
+
+/**
+ *  For a geminal coefficient G_i^a, return its index in the vector of geminal coefficients.
+ *
+ *      Note that
+ *          - i is in [0 ... N_P[       is the 'major' index (i.e. changes in i are not contiguous)
+ *          - a is in [N_P ... K[       is the 'minor' index (i.e. changes in a are contiguous)
+ */
+size_t AP1roGGeminalCoefficients::vectorIndex(size_t i, size_t a) const {
+
+    // Check for invalid values for i and a
+    if (i >= this->N_P) {
+        throw std::invalid_argument("i must be smaller than N_P.");
+    }
+    if (a < this->N_P) {
+        throw std::invalid_argument("a must be larger than or equal to N_P.");
+    }
+
+
+    // The conversion from i and a to a single vector index is just a little more complicated than row-major storage.
+    // If we were to use the row-major storage formula, we would end up with
+    //      mu = a + (K - N_P) * i
+    //
+    // but since we would really like our indices abcd (virtuals) to start at N_P, we should subtract N_P accordingly
+    return (a - this->N_P) + (this->K - this->N_P) * i;
 }
 
 

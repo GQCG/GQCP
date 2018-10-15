@@ -97,7 +97,7 @@ public:
     Eigen::VectorXd calculateCoordinateFunctions(const Eigen::VectorXd& g) const;
 
     /**
-     *  Calculate the coordinate functions or the PSEs at the given geminal coefficients @param G. @returns a vector F in which every entry is one of the coordinate functions
+     *  Calculate the coordinate functions for the PSEs at the given geminal coefficients @param G. @returns a vector F in which every entry is one of the coordinate functions
      */
     Eigen::VectorXd calculateCoordinateFunctions(const GQCG::AP1roGGeminalCoefficients& G) const;
 
