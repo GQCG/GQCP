@@ -110,6 +110,7 @@ public:
     friend class AOBasis;
     friend class RHFSCFSolver;
     friend class AP1roGPSESolver;
+    friend class AP1roGJacobiOrbitalOptimizer;
 };
 
 
