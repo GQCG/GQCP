@@ -94,11 +94,11 @@ size_t AP1roGPSESolver::vectorIndex(size_t i, size_t a) const {
 
 
 /**
- *  Calculate the Jacobian element with compound indices (i,a) and (k,c) at the given geminal coefficients @param g
+ *  Calculate the Jacobian element with compound indices (i,a) and (k,c) at the given geminal coefficients @param G
  *
  *      i and k are subscripts, a and c are superscripts
  */
-double AP1roGPSESolver::calculateJacobianElement(const Eigen::VectorXd& g, size_t i, size_t a, size_t k, size_t c) const {
+double AP1roGPSESolver::calculateJacobianElement(const AP1roGGeminalCoefficients& G, size_t i, size_t a, size_t k, size_t c) const {
 
     Eigen::MatrixXd h_SO = this->ham_par.h.get_matrix_representation();
     Eigen::Tensor<double, 4> g_SO = this->ham_par.g.get_matrix_representation();
@@ -114,11 +114,11 @@ double AP1roGPSESolver::calculateJacobianElement(const Eigen::VectorXd& g, size_
         }
 
         else {  // i!=k and a == c
-            j_el += g_SO(k,i,k,i) - g_SO(k,a,k,a) * g(this->vectorIndex(i, a));
+            j_el += g_SO(k,i,k,i) - g_SO(k,a,k,a) * G(i,a);
 
             for (size_t b = this->N_P; b < this->K; b++) {
                 if (b != a) {
-                    j_el += g_SO(k,b,k,b) * g(this->vectorIndex(i, b));
+                    j_el += g_SO(k,b,k,b) * G(i,b);
                 }
             }
 
@@ -128,17 +128,17 @@ double AP1roGPSESolver::calculateJacobianElement(const Eigen::VectorXd& g, size_
     else {  // i==k
 
         if (a != c) {  // i==k and a!=c
-            j_el += g_SO(a,c,a,c) - g_SO(i,c,i,c) * g(this->vectorIndex(i, a));
+            j_el += g_SO(a,c,a,c) - g_SO(i,c,i,c) * G(i,a);
 
             for (size_t j = 0; j < this->N_P; j++) {
                 if (j != i) {
-                    j_el += g_SO(j,c,j,c) * g(this->vectorIndex(j, a));
+                    j_el += g_SO(j,c,j,c) * G(j,a);
                 }
             }
         }
 
         else {  // i==k and a==c
-            j_el += -2 * g_SO(a,i,a,i) * g(this->vectorIndex(i, a));
+            j_el += -2 * g_SO(a,i,a,i) * G(i,a);
 
             for (size_t j = 0; j < this->N_P; j++) {
                 if (j != i) {
@@ -152,13 +152,13 @@ double AP1roGPSESolver::calculateJacobianElement(const Eigen::VectorXd& g, size_
 
             for (size_t b = this->N_P; b < this->K; b++) {
                 if (b != a) {
-                    j_el += - g_SO(i,b,i,b) * g(this->vectorIndex(i, b));
+                    j_el += - g_SO(i,b,i,b) * G(i,b);
                 }
             }
 
             for (size_t j = 0; j < this->N_P; j++) {
                 if (j != i) {
-                    j_el += - g_SO(j,a,j,a) * g(this->vectorIndex(j, a));
+                    j_el += - g_SO(j,a,j,a) * G(j,a);
                 }
             }
         }
@@ -174,21 +174,21 @@ double AP1roGPSESolver::calculateJacobianElement(const Eigen::VectorXd& g, size_
  */
 Eigen::MatrixXd AP1roGPSESolver::calculateJacobian(const Eigen::VectorXd& g) const {
 
-    // The dimension of the Jacobian is (K-N_P)*N_P times (K-N_P)*N_P
-    Eigen::MatrixXd J = Eigen::MatrixXd::Zero((this->K - this->N_P) * this->N_P, (this->K - this->N_P) * this->N_P);
-
-    // Loop over all Jacobian elements to construct it
+    GQCG::AP1roGGeminalCoefficients G (g, this->N_P, this->K);
     size_t number_of_geminal_coefficients = AP1roGGeminalCoefficients::numberOfGeminalCoefficients(N_P, K);
+
+    Eigen::MatrixXd J = Eigen::MatrixXd::Zero(number_of_geminal_coefficients, number_of_geminal_coefficients);
+    // Loop over all Jacobian elements to construct it
     for (size_t mu = 0; mu < number_of_geminal_coefficients; mu++) {
         for (size_t nu = 0; nu < number_of_geminal_coefficients; nu++) {
 
             // Convert the vector indices mu and nu into matrix indices
-            size_t i = this->matrixIndexMajor(nu);
-            size_t a = this->matrixIndexMinor(nu);
-            size_t k = this->matrixIndexMajor(mu);
-            size_t c = this->matrixIndexMinor(mu);
+            size_t i = G.matrixIndexMajor(nu);
+            size_t a = G.matrixIndexMinor(nu);
+            size_t k = G.matrixIndexMajor(mu);
+            size_t c = G.matrixIndexMinor(mu);
 
-            J(mu, nu) = this->calculateJacobianElement(g, i, a, k, c);
+            J(mu, nu) = this->calculateJacobianElement(G, i, a, k, c);
         }
     }
 
@@ -197,11 +197,11 @@ Eigen::MatrixXd AP1roGPSESolver::calculateJacobian(const Eigen::VectorXd& g) con
 
 
 /**
- *  Calculate the coordinate function at the given geminal coefficients @param g, with given indices.
+ *  Calculate the coordinate function at the given geminal coefficients @param G, with given indices.
  *
  *      i is the subscript and a is the superscript
  */
-double AP1roGPSESolver::calculateCoordinateFunction(const Eigen::VectorXd& g, size_t i, size_t a) const {
+double AP1roGPSESolver::calculateCoordinateFunction(const GQCG::AP1roGGeminalCoefficients& G, size_t i, size_t a) const {
 
     Eigen::MatrixXd h_SO = this->ham_par.h.get_matrix_representation();
     Eigen::Tensor<double, 4> g_SO = this->ham_par.g.get_matrix_representation();
@@ -209,27 +209,27 @@ double AP1roGPSESolver::calculateCoordinateFunction(const Eigen::VectorXd& g, si
     double f = 0.0;
 
     // A KISS implementation of the AP1roG pSE equations
-    f += g_SO(a,i,a,i) * (1 - std::pow(g(this->vectorIndex(i, a)), 2));
+    f += g_SO(a,i,a,i) * (1 - std::pow(G(i,a), 2));
 
     for (size_t j = 0; j < this->N_P; j++) {
         if (j != i) {
-            f += 2 * ((2 * g_SO(a,a,j,j) - g_SO(a,j,j,a)) - (2 * g_SO(i,i,j,j) - g_SO(i,j,j,i))) * g(this->vectorIndex(i, a));
+            f += 2 * ((2 * g_SO(a,a,j,j) - g_SO(a,j,j,a)) - (2 * g_SO(i,i,j,j) - g_SO(i,j,j,i))) * G(i,a);
         }
     }
 
-    f += 2 * (h_SO(a,a) - h_SO(i,i)) * g(this->vectorIndex(i, a));
+    f += 2 * (h_SO(a,a) - h_SO(i,i)) * G(i,a);
 
-    f += (g_SO(a,a,a,a) - g_SO(i,i,i,i)) * g(this->vectorIndex(i, a));
+    f += (g_SO(a,a,a,a) - g_SO(i,i,i,i)) * G(i,a);
 
     for (size_t b = this->N_P; b < this->K; b++) {
         if (b != a) {
-            f += (g_SO(a,b,a,b) - g_SO(i,b,i,b) * g(this->vectorIndex(i, a))) * g(this->vectorIndex(i, b));
+            f += (g_SO(a,b,a,b) - g_SO(i,b,i,b) * G(i,a)) * G(i,b);
         }
     }
 
     for (size_t j = 0; j < this->N_P; j++) {
         if (j != i) {
-            f += (g_SO(j,i,j,i) - g_SO(j,a,j,a) * g(this->vectorIndex(i, a))) * g(this->vectorIndex(j, a));
+            f += (g_SO(j,i,j,i) - g_SO(j,a,j,a) * G(i,a)) * G(j,a);
         }
     }
 
@@ -238,7 +238,7 @@ double AP1roGPSESolver::calculateCoordinateFunction(const Eigen::VectorXd& g, si
 
             for (size_t j = 0; j < this->N_P; j++) {
                 if (j != i) {
-                    f += g_SO(j,b,j,b) * g(this->vectorIndex(j, a)) * g(this->vectorIndex(i, b));
+                    f += g_SO(j,b,j,b) * G(j,a) * G(i,b);
                 }
             }
 
@@ -254,34 +254,22 @@ double AP1roGPSESolver::calculateCoordinateFunction(const Eigen::VectorXd& g, si
  */
 Eigen::VectorXd AP1roGPSESolver::calculateCoordinateFunctions(const Eigen::VectorXd& g) const {
 
-    GQCG::AP1roGGeminalCoefficients gem_coeff (g, this->N_P, this->K);
-    return this->calculateCoordinateFunctions(gem_coeff);
-}
-
-
-/**
- *  Calculate the coordinate functions for the PSEs at the given geminal coefficients @param G. @returns a vector F in which every entry is one of the coordinate functions
- */
-Eigen::VectorXd AP1roGPSESolver::calculateCoordinateFunctions(const GQCG::AP1roGGeminalCoefficients& G) const {
-
+    GQCG::AP1roGGeminalCoefficients G (g, this->N_P, this->K);
     size_t number_of_geminal_coefficients = AP1roGGeminalCoefficients::numberOfGeminalCoefficients(N_P, K);
 
-    Eigen::VectorXd F = Eigen::VectorXd::Zero(number_of_geminal_coefficients);
-    Eigen::VectorXd g = G.asVector();
-
+    Eigen::VectorXd F = Eigen::VectorXd::Zero(number_of_geminal_coefficients);  // the vector of coordinate functions
     // Loop over all the F elements to construct it
     for (size_t mu = 0; mu < number_of_geminal_coefficients; mu++) {
 
         // Convert the vector indices mu into matrix indices
-        size_t i = this->matrixIndexMajor(mu);
-        size_t a = this->matrixIndexMinor(mu);
+        size_t i = G.matrixIndexMajor(mu);
+        size_t a = G.matrixIndexMinor(mu);
 
-        F(mu) = this->calculateCoordinateFunction(g, i, a);
+        F(mu) = this->calculateCoordinateFunction(G, i, a);
     }
 
     return F;
 }
-
 
 
 /**
@@ -291,7 +279,6 @@ double AP1roGPSESolver::calculateEnergy(const GQCG::AP1roGGeminalCoefficients& G
 
     Eigen::MatrixXd h_SO = this->ham_par.h.get_matrix_representation();
     Eigen::Tensor<double, 4> g_SO = this->ham_par.g.get_matrix_representation();
-    Eigen::VectorXd g = G.asVector();
 
     double E = 0.0;
 
@@ -304,7 +291,7 @@ double AP1roGPSESolver::calculateEnergy(const GQCG::AP1roGGeminalCoefficients& G
         }
 
         for (size_t b = this->N_P; b < this->K; b++) {
-            E += g_SO(j,b,j,b) * g(this->vectorIndex(j, b));
+            E += g_SO(j,b,j,b) * G(j,b);
         }
     }
 

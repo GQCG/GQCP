@@ -73,11 +73,11 @@ public:
     size_t vectorIndex(size_t i, size_t a) const;
 
     /**
-     *  Calculate the Jacobian element with compound indices (i,a) and (k,c) at the given geminal coefficients @param g
+     *  Calculate the Jacobian element with compound indices (i,a) and (k,c) at the given geminal coefficients @param G
      *
      *      i and k are subscripts, a and c are superscripts
      */
-    double calculateJacobianElement(const Eigen::VectorXd& g, size_t i, size_t a, size_t k, size_t c) const;
+    double calculateJacobianElement(const AP1roGGeminalCoefficients& G, size_t i, size_t a, size_t k, size_t c) const;
 
     /**
      *  Calculate and return the Jacobian at the given geminal coefficients @param g
@@ -85,23 +85,16 @@ public:
     Eigen::MatrixXd calculateJacobian(const Eigen::VectorXd& g) const;
 
     /**
-     *  Calculate the coordinate function at the given geminal coefficients @param g, with given indices.
+     *  Calculate the coordinate function at the given geminal coefficients @param G, with given indices.
      *
      *      i is the subscript and a is the superscript
      */
-    double calculateCoordinateFunction(const Eigen::VectorXd& g, size_t i, size_t a) const;
+    double calculateCoordinateFunction(const GQCG::AP1roGGeminalCoefficients& G, size_t i, size_t a) const;
 
     /**
      *  Calculate the coordinate functions for the pSEs at the given geminal coefficients @param g. @returns a vector F in which every entry is one of the coordinate functions
      */
     Eigen::VectorXd calculateCoordinateFunctions(const Eigen::VectorXd& g) const;
-
-    /**
-     *  Calculate the coordinate functions for the PSEs at the given geminal coefficients @param G. @returns a vector F in which every entry is one of the coordinate functions
-     */
-    Eigen::VectorXd calculateCoordinateFunctions(const GQCG::AP1roGGeminalCoefficients& G) const;
-
-
 
     /**
      *  Calculate the AP1roG energy given AP1roG geminal coefficients @param G
