@@ -33,7 +33,7 @@ OneRDMs::OneRDMs(const OneRDM& one_rdm_aa, const OneRDM& one_rdm_bb) :
  *  where two_rdm = @param two_rdm_aaaa + @param two_rdm_aabb + @param two_rdm_bbaa  + @param two_rdm_bbbb
  */
 TwoRDMs::TwoRDMs(const TwoRDM& two_rdm_aaaa, const TwoRDM& two_rdm_aabb, const TwoRDM& two_rdm_bbaa, const TwoRDM& two_rdm_bbbb) :
-        two_rdm (two_rdm_aaaa.get_tensor_representation() + two_rdm_aabb.get_tensor_representation() + two_rdm_bbaa.get_tensor_representation() + two_rdm_bbbb.get_tensor_representation()),
+        two_rdm (two_rdm_aaaa.get_matrix_representation() + two_rdm_aabb.get_matrix_representation() + two_rdm_bbaa.get_matrix_representation() + two_rdm_bbbb.get_matrix_representation()),
         two_rdm_aaaa (two_rdm_aaaa),
         two_rdm_aabb (two_rdm_aabb),
         two_rdm_bbaa (two_rdm_bbaa),
