@@ -35,7 +35,7 @@ public:
     // GETTERS
     size_t get_p() const { return this->p; }
     size_t get_q() const { return this->q; }
-    size_t get_angle() const { return this->angle; }
+    double get_angle() const { return this->angle; }
 
 
     // FRIEND CLASSES

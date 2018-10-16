@@ -1,5 +1,6 @@
 #include "AP1roG/AP1roGJacobiOrbitalOptimizer.hpp"
 
+#include <cmath>
 #include <queue>
 
 #include <boost/math/constants/constants.hpp>
@@ -144,7 +145,7 @@ double AP1roGJacobiOrbitalOptimizer::calculateEnergyAfterJacobiRotation(const GQ
 
     size_t p = jacobi_rotation_parameters.get_p();
     size_t q = jacobi_rotation_parameters.get_q();
-    size_t theta = jacobi_rotation_parameters.get_angle();
+    double theta = jacobi_rotation_parameters.get_angle();
 
 
     // The formula I have derived is an energy CORRECTION due to the Jacobi rotation, so we initialize the rotated energy by the initial energy
@@ -171,7 +172,7 @@ double AP1roGJacobiOrbitalOptimizer::calculateEnergyAfterJacobiRotation(const GQ
     }
 
     // Virtual-virtual rotations: if p > N_P and q > N_P for computers
-    else if ((p >= this->N_P) && (q >= this->N_P )) {
+    else if ((p >= this->N_P) && (q >= this->N_P)) {
 
         return E + (this->A3 + this->B3 * c2 + this->C3 * s2);
     }
