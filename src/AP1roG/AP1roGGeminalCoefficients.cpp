@@ -3,6 +3,7 @@
 
 namespace GQCG {
 
+
 /*
  *  CONSTRUCTORS
  */
@@ -13,16 +14,6 @@ AP1roGGeminalCoefficients::AP1roGGeminalCoefficients() :
     N_P (0),
     K (0),
     g (Eigen::VectorXd::Zero(0))
-{}
-
-
-/**
- *  Constructor setting the geminal coefficients to zero, based on the number of orbitals @param K and number of electron pairs @param N_P
- */
-AP1roGGeminalCoefficients::AP1roGGeminalCoefficients(size_t N_P, size_t K) :
-    N_P (N_P),
-    K (K),
-    g (Eigen::VectorXd::Zero(AP1roGGeminalCoefficients::numberOfGeminalCoefficients(N_P, K)))
 {}
 
 
@@ -38,6 +29,15 @@ AP1roGGeminalCoefficients::AP1roGGeminalCoefficients(const Eigen::VectorXd& g, s
         throw std::invalid_argument("The specified N_P and K are not compatible with the given vector of geminal coefficients.");
     }
 }
+
+
+/**
+ *  Constructor setting the geminal coefficients to zero, based on the number of orbitals @param K and number of electron pairs @param N_P
+ */
+AP1roGGeminalCoefficients::AP1roGGeminalCoefficients(size_t N_P, size_t K) :
+    AP1roGGeminalCoefficients(Eigen::VectorXd::Zero(AP1roGGeminalCoefficients::numberOfGeminalCoefficients(N_P, K)), N_P, K)
+{}
+
 
 
 /*
