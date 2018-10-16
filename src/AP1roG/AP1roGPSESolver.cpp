@@ -9,16 +9,36 @@ namespace GQCG {
  * CONSTRUCTORS
  */
 /**
+ *  Constructor based on a given number of electron pairs @param N_P, Hamiltonian parameters @param ham_par and an initial guess for the geminal coefficients @param G
+ */
+AP1roGPSESolver::AP1roGPSESolver(size_t N_P, const GQCG::HamiltonianParameters& ham_par, const GQCG::AP1roGGeminalCoefficients& G) :
+    K (ham_par.K),
+    ham_par (ham_par),
+    N_P (N_P),
+    initial_geminal_coefficients (G)
+{}
+
+/**
  *  Constructor based on a given number of electron pairs @param N_P and Hamiltonian parameters @param ham_par
  *
  *  The initial guess for the geminal coefficients is zero
  */
 AP1roGPSESolver::AP1roGPSESolver(size_t N_P, const GQCG::HamiltonianParameters& ham_par) :
-    K (ham_par.K),
-    ham_par (ham_par),
-    N_P (N_P),
-    initial_geminal_coefficients (GQCG::AP1roGGeminalCoefficients(this->N_P, this->K))
+    GQCG::AP1roGPSESolver(N_P, ham_par, GQCG::AP1roGGeminalCoefficients(N_P, ham_par.K))
 {}
+
+
+/**
+ *  Constructor based on a given @param molecule, Hamiltonian parameters @param ham_par and an initial guess for the geminal coefficients @param G
+ */
+AP1roGPSESolver::AP1roGPSESolver(const GQCG::Molecule& molecule, const GQCG::HamiltonianParameters& ham_par, const GQCG::AP1roGGeminalCoefficients& G) :
+    GQCG::AP1roGPSESolver(molecule.N/2, ham_par, G)
+{
+    // Check if we have an even number of electrons
+    if ((molecule.N % 2) != 0) {
+        throw std::invalid_argument("The given number of electrons is odd.");
+    }
+}
 
 
 /**
@@ -27,7 +47,7 @@ AP1roGPSESolver::AP1roGPSESolver(size_t N_P, const GQCG::HamiltonianParameters& 
  *  The initial guess for the geminal coefficients is zero
  */
 AP1roGPSESolver::AP1roGPSESolver(const GQCG::Molecule& molecule, const GQCG::HamiltonianParameters& ham_par) :
-    AP1roGPSESolver(molecule.N / 2, ham_par)
+    AP1roGPSESolver(molecule.N / 2, ham_par, GQCG::AP1roGGeminalCoefficients(N_P, ham_par.K))
 {
     // Check if we have an even number of electrons
     if ((molecule.N % 2) != 0) {

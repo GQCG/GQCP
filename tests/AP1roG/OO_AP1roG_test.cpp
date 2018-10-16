@@ -86,31 +86,33 @@ BOOST_AUTO_TEST_CASE ( lih_6_31G_calculateEnergyAfterRotation ) {
         }
     }
 }
-//
-//
-//BOOST_AUTO_TEST_CASE ( lih_6_31G_orbitalOptimize ) {
-//
-//    // Construct an SOBasis
-//    libwint::Molecule lih ("../tests/reference_data/lih_olsens.xyz");
-//    libwint::AOBasis ao_basis (lih, "6-31G");
-//    ao_basis.calculateIntegrals();
-//
-//    hf::rhf::RHF rhf (lih, ao_basis, 1.0e-08);
-//    rhf.solve();
-//
-//    libwint::SOBasis so_basis (ao_basis, rhf.get_C_canonical());
-//
-//
-//    ap1rog::AP1roG ap1rog (lih, so_basis);
-//    ap1rog.solvePSE();
-//    double initial_energy = ap1rog.calculateEnergy();
-//    Eigen::VectorXd initial_geminal_coefficients = ap1rog.get_g();
-//
-//    ap1rog.orbitalOptimize();
-//    double optimized_energy = ap1rog.calculateEnergy();
-//    Eigen::VectorXd optimized_geminal_coefficients = ap1rog.get_g();
-//
-//
-//    BOOST_CHECK(optimized_energy < initial_energy);
-//    BOOST_CHECK(ap1rog.calculateCoordinateFunctions(optimized_geminal_coefficients).isZero(1.0e-08));
-//}
+
+
+BOOST_AUTO_TEST_CASE ( lih_6_31G_orbitalOptimize ) {
+
+    // Construct the molecular Hamiltonian parameters in the RHF basis
+    GQCG::Molecule lih ("../tests/data/lih_olsens.xyz");
+    auto ao_basis = std::make_shared<GQCG::AOBasis>(lih, "6-31G");
+    auto ao_mol_ham_par = GQCG::constructMolecularHamiltonianParameters(ao_basis);
+
+    GQCG::PlainRHFSCFSolver plain_scf_solver (ao_mol_ham_par, lih);
+    plain_scf_solver.solve();
+    auto rhf = plain_scf_solver.get_solution();
+    auto mol_ham_par = GQCG::HamiltonianParameters(ao_mol_ham_par, rhf.get_C());
+
+
+    // Get the initial AP1roG energy
+    GQCG::AP1roGPSESolver pse_solver (lih, mol_ham_par);
+    pse_solver.solve();
+    double initial_energy = pse_solver.get_solution().get_electronic_energy();
+
+
+    // Do an AP1roG orbital optimization using Jacobi rotations
+    GQCG::AP1roGJacobiOrbitalOptimizer orbital_optimizer (lih, mol_ham_par);
+    orbital_optimizer.solve();
+    double optimized_energy = orbital_optimizer.get_solution().get_electronic_energy();
+
+
+    // We don't have reference data, so all we can do is check if orbital optimization lowers the energy
+    BOOST_CHECK(optimized_energy < initial_energy);
+}

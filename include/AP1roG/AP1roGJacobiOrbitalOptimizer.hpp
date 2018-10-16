@@ -72,6 +72,13 @@ public:
      */
     AP1roGJacobiOrbitalOptimizer(const GQCG::Molecule& molecule, const GQCG::HamiltonianParameters& ham_par, double oo_threshold=1.0e-08, const size_t maximum_number_of_oo_iterations=128);
 
+
+    // GETTERS
+    GQCG::AP1roG get_solution() const { return this->solution; }
+    GQCG::HamiltonianParameters get_optimized_hamiltonian_parameters() const { return this->ham_par; }
+
+
+    // PUBLIC METHODS
     /**
      *  Given the two indices of spatial orbitals @param p and @param q that will be Jacobi-rotated, and the geminal coefficients @param G,     calculate the coefficients (which are @members)
      *      - A1, B1, C1            to be used in occupied-occupied rotations

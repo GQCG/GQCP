@@ -273,8 +273,11 @@ void AP1roGJacobiOrbitalOptimizer::solve() {
 
     // Solve the PSEs before starting
     GQCG::AP1roGPSESolver pse_solver (this->N_P, this->ham_par);
+    pse_solver.solve();
     auto G = pse_solver.get_solution().get_geminal_coefficients();
+    std::cout << "G as vector: " << std::endl << G.asVector() << std::endl << std::endl;
     double E_old = GQCG::calculateAP1roGEnergy(G, this->ham_par);
+    std::cout << "E_old: " << E_old << std::endl;
 
 
     size_t iterations = 0;
@@ -306,14 +309,20 @@ void AP1roGJacobiOrbitalOptimizer::solve() {
 
 
         // Solve the PSEs in the rotated spatial orbital basis
+        // UPDATE INITIAL GUESS
         GQCG::AP1roGPSESolver pse_solver (this->N_P, this->ham_par);
+        pse_solver.solve();
         auto G = pse_solver.get_solution().get_geminal_coefficients();
         double E_new = GQCG::calculateAP1roGEnergy(G, this->ham_par);
-
+        std::cout << "E_new: " << E_new << std::endl;
 
         // Check for convergence
         if (std::abs(E_new - E_old) < this->oo_threshold) {
             this->is_converged = true;
+
+            // Set the solution
+            double electronic_energy = GQCG::calculateAP1roGEnergy(G, this->ham_par);
+            this->solution = GQCG::AP1roG(G, electronic_energy);
         } else {
             iterations++;
             E_old = E_new;
