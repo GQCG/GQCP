@@ -71,13 +71,12 @@ public:
     AP1roGJacobiOrbitalOptimizer(const GQCG::Molecule& molecule, const GQCG::HamiltonianParameters& ham_par, double oo_threshold=1.0e-08, const size_t maximum_number_of_oo_iterations=128);
 
     /**
-     *  Given the two indices of spatial orbitals @param p and @param q that will be Jacobi-rotated, calculate the
-     *  coefficients (which are @members)
+     *  Given the two indices of spatial orbitals @param p and @param q that will be Jacobi-rotated, and the geminal coefficients @param G,     calculate the coefficients (which are @members)
      *      - A1, B1, C1            to be used in occupied-occupied rotations
      *      - A2, B2, C2, D2, E2    to be used in occupied-virtual rotations
      *      - A3, B3, C3            to be used in virtual-virtual rotations
      */
-    void calculateJacobiCoefficients(size_t p, size_t q);
+    void calculateJacobiCoefficients(size_t p, size_t q, const GQCG::AP1roGGeminalCoefficients& G);
 
     /**
      *  Calculate the AP1roG energy after the application of a Jacobi rotation with the parameters @param jacobi_rotation_parameters
