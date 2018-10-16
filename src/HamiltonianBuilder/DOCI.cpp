@@ -13,8 +13,7 @@ namespace GQCG {
  */
 DOCI::DOCI(FockSpace fock_space) :
     HamiltonianBuilder (),
-    fock_space (fock_space),
-    dim (fock_space.get_dimension())
+    fock_space (fock_space)
 {}
 
 
@@ -29,17 +28,17 @@ DOCI::DOCI(FockSpace fock_space) :
 Eigen::MatrixXd DOCI::constructHamiltonian(const HamiltonianParameters& hamiltonian_parameters) {
     
     auto K = hamiltonian_parameters.get_h().get_dim();
-    if (K != this->fock_space.K) {
+    if (K != this->fock_space.get_K()) {
         throw std::invalid_argument("Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
     }
-    
+    size_t dim = this->fock_space.get_dimension();
     Eigen::VectorXd diagonal = calculateDiagonal(hamiltonian_parameters);
-    Eigen::MatrixXd result_matrix = Eigen::MatrixXd::Zero(this->dim,this->dim);
+    Eigen::MatrixXd result_matrix = Eigen::MatrixXd::Zero(dim,dim);
     // Create the first spin string. Since in DOCI, alpha == beta, we can just treat them as one
     // And multiply all contributions by 2
     ONV onv = this->fock_space.get_ONV(0);  // spin string with address 0
 
-    for (size_t I = 0; I < this->dim; I++) {  // I loops over all the addresses of the spin strings
+    for (size_t I = 0; I < dim; I++) {  // I loops over all the addresses of the spin strings
         // Diagonal contribution
         result_matrix(I, I) += diagonal(I);
 
@@ -66,7 +65,7 @@ Eigen::MatrixXd DOCI::constructHamiltonian(const HamiltonianParameters& hamilton
         }  // p or e1 loop
 
         // Skip the last permutation
-        if (I<this->dim-1) {
+        if (I<dim-1) {
             this->fock_space.setNext(onv);
         }
 
@@ -84,6 +83,7 @@ Eigen::VectorXd DOCI::matrixVectorProduct(const HamiltonianParameters& hamiltoni
     if (K != this->fock_space.K) {
         throw std::invalid_argument("Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
     }
+    size_t dim = this->fock_space.get_dimension();
     // Create the first spin string. Since in DOCI, alpha == beta, we can just treat them as one
     // And multiply all contributions by 2
     ONV onv = this->fock_space.get_ONV(0);  // spin string with address
@@ -93,7 +93,7 @@ Eigen::VectorXd DOCI::matrixVectorProduct(const HamiltonianParameters& hamiltoni
 
 
     // Off-diagonal contributions
-    for (size_t I = 0; I < this->dim; I++) {  // I loops over all the addresses of the spin strings
+    for (size_t I = 0; I < dim; I++) {  // I loops over all the addresses of the spin strings
         for (size_t e1 = 0; e1 < this->fock_space.N; e1++) {  // e1 (electron 1) loops over the (number of) electrons
             size_t p = onv.get_occupied_index(e1);  // retrieve the index of the orbital the electron occupies
             for (size_t q = 0; q < p; q++) {  // q loops over SOs
@@ -117,7 +117,7 @@ Eigen::VectorXd DOCI::matrixVectorProduct(const HamiltonianParameters& hamiltoni
         }  // p or e1 loop
 
         // Skip the last permutation
-        if (I<this->dim-1) {
+        if (I<dim-1) {
             this->fock_space.setNext(onv);
         }
 
@@ -131,13 +131,13 @@ Eigen::VectorXd DOCI::matrixVectorProduct(const HamiltonianParameters& hamiltoni
  *  @return the diagonal of the matrix representation of the Hamiltonian given @param hamiltonian_parameters
  */
 Eigen::VectorXd DOCI::calculateDiagonal(const HamiltonianParameters& hamiltonian_parameters) {
-
-    Eigen::VectorXd diagonal = Eigen::VectorXd::Zero(this->dim);
+    size_t dim = this->fock_space.get_dimension();
+    Eigen::VectorXd diagonal = Eigen::VectorXd::Zero(dim);
     // Create the first spin string. Since in DOCI, alpha == beta, we can just treat them as one
     // And multiply all contributions by 2
     ONV onv = this->fock_space.get_ONV(0);  // onv with address 0
 
-    for (size_t I = 0; I < this->dim; I++) {  // I loops over addresses of spin strings
+    for (size_t I = 0; I < dim; I++) {  // I loops over addresses of spin strings
         for (size_t e1 = 0; e1 < this->fock_space.N; e1++) {  // e1 (electron 1) loops over the (number of) electrons
             size_t p = onv.get_occupied_index(e1);  // retrieve the index of the orbital the electron occupies
 
@@ -150,7 +150,7 @@ Eigen::VectorXd DOCI::calculateDiagonal(const HamiltonianParameters& hamiltonian
         } // p or e1 loop
 
         // Skip the last permutation
-        if (I<this->dim-1) {
+        if (I<dim-1) {
             this->fock_space.setNext(onv);
         }
 

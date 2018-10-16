@@ -29,7 +29,9 @@ set(PROJECT_SOURCE_FILES
         ${PROJECT_SOURCE_FOLDER}/AP1roG/AP1roGPSESolver.cpp
         ${PROJECT_SOURCE_FOLDER}/FockSpace/BaseFockSpace.cpp
         ${PROJECT_SOURCE_FOLDER}/FockSpace/FockSpace.cpp
+        ${PROJECT_SOURCE_FOLDER}/FockSpace/FockSpaceProduct.cpp
         ${PROJECT_SOURCE_FOLDER}/HamiltonianBuilder/DOCI.cpp
+        ${PROJECT_SOURCE_FOLDER}/HamiltonianBuilder/FCI.cpp
         ${PROJECT_SOURCE_FOLDER}/HamiltonianBuilder/HamiltonianBuilder.cpp
         ${PROJECT_SOURCE_FOLDER}/HamiltonianParameters/BaseHamiltonianParameters.cpp
         ${PROJECT_SOURCE_FOLDER}/HamiltonianParameters/HamiltonianParameters.cpp

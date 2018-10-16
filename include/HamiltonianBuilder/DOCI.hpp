@@ -22,7 +22,6 @@ namespace GQCG {
 class DOCI : public GQCG::HamiltonianBuilder {
 private:
     FockSpace fock_space;  // both the alpha and beta Fock space
-    size_t dim;  // dimension of this->fock_space
 
 
 public:
