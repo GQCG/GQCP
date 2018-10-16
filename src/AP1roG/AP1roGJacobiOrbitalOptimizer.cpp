@@ -1,11 +1,9 @@
 #include "AP1roG/AP1roGJacobiOrbitalOptimizer.hpp"
 
+
 namespace GQCG {
 
 
-/*
- *  CON
- */
 /*
  * CONSTRUCTORS
  */
