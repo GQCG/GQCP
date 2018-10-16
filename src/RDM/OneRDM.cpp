@@ -9,10 +9,15 @@ namespace GQCG {
  *  CONSTRUCTORS
  */
 
-OneRDM::OneRDM(Eigen::MatrixXd one_rdm) :
-    BaseRDM (one_rdm.cols()),
-    one_rdm (one_rdm)
-{}
+OneRDM::OneRDM(const Eigen::MatrixXd& D) :
+    BaseRDM (D.cols()),
+    D (D)
+{
+    // Check if the 1-RDM is represented as a square matrix
+    if (D.cols() != D.rows()) {
+        throw std::invalid_argument("1-RDMs have to be represented as a square matrix.");
+    }
+}
 
 
 
@@ -21,18 +26,19 @@ OneRDM::OneRDM(Eigen::MatrixXd one_rdm) :
  */
 
 /**
- *  @return the trace of this->one_rdm
+ *  @return the 1-RDM's trace
  */
 double OneRDM::trace(){
-    return this->one_rdm.trace();
+    return this->D.trace();
 }
 
+
 /**
- *  diagonalises this->one_rdm and @returns the eigenvectors
+ *  diagonalizes the 1-RDM and @returns the eigenvectors
  */
-Eigen::MatrixXd OneRDM::diagonalise() {
-    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes (this->one_rdm);
-    this->one_rdm = saes.eigenvalues().asDiagonal();
+Eigen::MatrixXd OneRDM::diagonalize() {
+    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes (this->D);
+    this->D = saes.eigenvalues().asDiagonal();
     return saes.eigenvectors();
 }
 

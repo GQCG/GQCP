@@ -2,7 +2,7 @@
 #define GQCG_BASERDM_HPP
 
 
-#include "common.hpp"
+#include <cstdlib>
 
 
 namespace GQCG {

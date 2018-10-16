@@ -4,7 +4,7 @@
 
 #include "FockSpace/FockSpace.hpp"
 #include "RDM/RDMBuilder.hpp"
-#include "RDM/RDMS.hpp"
+#include "RDM/RDMs.hpp"
 
 
 namespace GQCG {
@@ -27,16 +27,16 @@ public:
     ~DOCIRDMBuilder() = default;
 
 
-    // OVERRIDEN PUBLIC METHODS
+    // OVERRIDDEN PUBLIC METHODS
     /**
-     *  @return 1RDM from a coefficient vector @param x
+     *  @return all 1-RDMs from a coefficient vector @param x
      */
-    OneRDMs construct1RDM(const Eigen::VectorXd& x) override;
+    OneRDMs calculate1RDMs(const Eigen::VectorXd &x) override;
 
     /**
-     *  @return 2RDM from a coefficient vector @param x
+     *  @return all 2-RDMs from a coefficient vector @param x
      */
-    TwoRDMs construct2RDM(const Eigen::VectorXd& x) override;
+    TwoRDMs calculate2RDMs(const Eigen::VectorXd &x) override;
 
     /**
      *  @return the Fock space of the RDMBuilder

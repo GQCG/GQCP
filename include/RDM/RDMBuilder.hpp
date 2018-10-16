@@ -4,7 +4,7 @@
 
 #include "RDM/OneRDM.hpp"
 #include "RDM/TwoRDM.hpp"
-#include "RDM/RDMS.hpp"
+#include "RDM/RDMs.hpp"
 #include "FockSpace/BaseFockSpace.hpp"
 
 
@@ -30,14 +30,14 @@ public:
 
     // PURE VIRTUAL PUBLIC METHODS
     /**
-     *  @return 1RDM from a coefficient vector @param x
+     *  @return all 1-RDMs from a coefficient vector @param x
      */
-    virtual OneRDMs construct1RDM(const Eigen::VectorXd& x) = 0;
+    virtual OneRDMs calculate1RDMs(const Eigen::VectorXd &x) = 0;
 
     /**
-     *  @return 2RDM from a coefficient vector @param x
+     *  @return all 2-RDMs from a coefficient vector @param x
      */
-    virtual TwoRDMs construct2RDM (const Eigen::VectorXd& x) = 0;
+    virtual TwoRDMs calculate2RDMs(const Eigen::VectorXd &x) = 0;
 
     /**
      *  @return the Fock space of the RDMBuilder

@@ -14,29 +14,30 @@ namespace GQCG {
  */
 class TwoRDM : public BaseRDM {
 private:
-    Eigen::Tensor<double, 4> two_rdm;  // spin-summed (total) 2-RDM
+    Eigen::Tensor<double, 4> d;
 
 
 public:
     // CONSTRUCTORS
-    explicit TwoRDM(Eigen::Tensor<double, 4> two_rdm);
+    explicit TwoRDM(const Eigen::Tensor<double, 4>& d);
 
 
     // GETTERS
-    Eigen::Tensor<double, 4> get_tensor_representation() const { return this->two_rdm; }
-    double get(size_t p, size_t q, size_t r, size_t s) const { return this->two_rdm(p, q, r, s); }
+    Eigen::Tensor<double, 4> get_matrix_representation() const { return this->d; }
+    double get(size_t p, size_t q, size_t r, size_t s) const { return this->d(p, q, r, s); }
 
 
     // PUBLIC METHODS
     /**
-     *  @return the trace of this->two_rdm
+     *  @return the trace of the 2-RDM @param: d(p,p,q,q)
      */
     double trace();
 
     /**
-     *  @return Eigen::MatrixXd D, the reduced-over 2-RDM : D(p,q) = this->two_rdm(p,q,r,r)
+     *  @return a partial contraction of the 2-RDM,
+     *  where D(p,q) = d(p,q,r,r)
      */
-    Eigen::MatrixXd reduce_2RDM();
+    Eigen::MatrixXd reduce();
 };
 
 
