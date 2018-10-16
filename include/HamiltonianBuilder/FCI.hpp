@@ -64,23 +64,7 @@ public:
      *  @return the fock space of the HamiltonianBuilder
      */
     BaseFockSpace* get_fock_space() override { return &fock_space; }
-
-
-
-    struct OneElectronCoupling {
-        int sign;
-        size_t p;
-        size_t q;
-        size_t address;
-    };
-
-    // The following are rectangular arrays of dimension (dim_alpha * N_alpha * (K + 1 - N_alpha)) and similarly for beta,
-    // storing one-electron excited coupling addresses (cfr. the documentation about the OneElectronCoupling struct)
-    std::vector<std::vector<OneElectronCoupling>> alpha_one_electron_couplings;
-    std::vector<std::vector<OneElectronCoupling>> beta_one_electron_couplings;
-
-
-}
+};
 
 
 }  // namespace GQCG

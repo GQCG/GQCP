@@ -109,6 +109,8 @@ set(PROJECT_TESTS_FOLDER ${CMAKE_SOURCE_DIR}/tests)
 set(PROJECT_TEST_SOURCE_FILES
         ${PROJECT_TESTS_FOLDER}/CISolver/CISolver_DOCI_Davidson_test.cpp
         ${PROJECT_TESTS_FOLDER}/CISolver/CISolver_DOCI_Dense_test.cpp
+        ${PROJECT_TESTS_FOLDER}/CISolver/CISolver_FCI_Davidson_test.cpp
+        ${PROJECT_TESTS_FOLDER}/CISolver/CISolver_FCI_Dense_test.cpp
         ${PROJECT_TESTS_FOLDER}/CISolver/CISolver_test.cpp
         ${PROJECT_TESTS_FOLDER}/AP1roG/AP1roG_test.cpp
         ${PROJECT_TESTS_FOLDER}/AP1roG/AP1roGGeminalCoefficients_test.cpp

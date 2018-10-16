@@ -37,7 +37,8 @@ Eigen::MatrixXd FCI::constructHamiltonian(const HamiltonianParameters& hamiltoni
     
     FockSpace fock_space_alpha = fock_space.get_fock_space_alpha();
     FockSpace fock_space_beta = fock_space.get_fock_space_beta();
-    
+
+    auto dim = fock_space.get_dimension();
     auto N_alpha = fock_space_alpha.get_N();
     auto dim_alpha = fock_space_alpha.get_dimension();
     auto N_beta = fock_space_beta.get_N();
@@ -248,10 +249,10 @@ Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters& hamiltonia
 
     auto dim_alpha = fock_space_alpha.get_dimension();
     auto dim_beta = fock_space_beta.get_dimension();
-
+    auto dim = fock_space.get_dimension();
 
     // TODO: use diagonal
-    Eigen::VectorXd matvec =  Eigen::VectorXd::Zero(this->dim);
+    Eigen::VectorXd matvec =  Eigen::VectorXd::Zero(dim);
 
     // Calculate the effective one-electron integrals
     // TODO: move this to libwint
@@ -490,9 +491,10 @@ Eigen::VectorXd FCI::calculateDiagonal(const HamiltonianParameters& hamiltonian_
     auto dim_alpha = fock_space_alpha.get_dimension();
     auto N_beta = fock_space_beta.get_N();
     auto dim_beta = fock_space_beta.get_dimension();
+    auto dim = fock_space.get_dimension();
 
     // Diagonal contributions
-    Eigen::VectorXd diagonal =  Eigen::VectorXd::Zero(this->dim);
+    Eigen::VectorXd diagonal =  Eigen::VectorXd::Zero(dim);
 
     // Calculate the effective one-electron integrals
     // TODO: move this to libwint
