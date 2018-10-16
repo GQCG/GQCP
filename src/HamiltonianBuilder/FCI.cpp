@@ -103,8 +103,8 @@ Eigen::MatrixXd FCI::constructHamiltonian(const HamiltonianParameters& hamiltoni
 
                                         // We are storing the alpha addresses as 'major', i.e. the total address I_alpha I_beta = I_alpha * dim_b + I_b
                                         for (size_t Ib = 0; Ib < dim_beta; Ib++) {
-                                            double value = sign_pqrs * 0.5 * hamiltonian_parameters.get_g().get(s,p,r,q);
-                                            result_matrix( I_alpha * dim_beta + Ib, Ja * dim_beta + Ib) += value;
+                                            double value = sign_pqrs * 0.5 * hamiltonian_parameters.get_g().get(s, p, r, q);
+                                            result_matrix(I_alpha * dim_beta + Ib, Ja * dim_beta + Ib) += value;
                                         }
 
                                         spin_string_alpha.annihilate(s);  // undo the previous creation on s
@@ -156,7 +156,7 @@ Eigen::MatrixXd FCI::constructHamiltonian(const HamiltonianParameters& hamiltoni
 
                         for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {
                             double value = sign_pq * hamiltonian_parameters.get_h().get(p,q);
-                            result_matrix ( I_alpha * dim_beta + I_beta, I_alpha * dim_beta + J_beta) += value;
+                            result_matrix (I_alpha * dim_beta + I_beta, I_alpha * dim_beta + J_beta) += value;
                         }
 
                         // We have found a spin string that is one electron excitation away from |I_alpha>
@@ -189,7 +189,7 @@ Eigen::MatrixXd FCI::constructHamiltonian(const HamiltonianParameters& hamiltoni
 
                                         // We are storing the alpha addresses as 'major', i.e. the total address IaIb = Ia * dim_b + I_b
                                         for (size_t Ia = 0; Ia < dim_alpha; Ia++) {
-                                            double value = sign_pqrs * 0.5 * hamiltonian_parameters.get_g().get(s,p,r,q);
+                                            double value = sign_pqrs * 0.5 * hamiltonian_parameters.get_g().get(s, p, r, q);
                                             result_matrix(Ia * dim_beta + I_beta, Ia * dim_beta + Jb) += value;
                                         }
 
