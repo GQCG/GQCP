@@ -70,11 +70,6 @@ public:
     Eigen::VectorXd calculateCoordinateFunctions(const Eigen::VectorXd& g) const;
 
     /**
-     *  Calculate the AP1roG energy given AP1roG geminal coefficients @param G
-     */
-    double calculateEnergy(const GQCG::AP1roGGeminalCoefficients& G) const;
-
-    /**
      *  Set up and solve the projected Schrödinger equations for AP1roG
      */
     void solve();

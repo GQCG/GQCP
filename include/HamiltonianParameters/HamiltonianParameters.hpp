@@ -2,7 +2,7 @@
 #define GQCG_HAMILTONIANPARAMETERS_HPP
 
 
-#include "Eigen/Dense"
+#include <Eigen/Dense>
 
 #include "HamiltonianParameters/BaseHamiltonianParameters.hpp"
 #include "Operator/OneElectronOperator.hpp"

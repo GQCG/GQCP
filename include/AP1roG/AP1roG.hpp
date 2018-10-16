@@ -3,6 +3,7 @@
 
 
 #include "AP1roGGeminalCoefficients.hpp"
+#include "HamiltonianParameters/HamiltonianParameters.hpp"
 
 
 namespace GQCG {
@@ -35,6 +36,14 @@ public:
     double get_electronic_energy() const { return this->electronic_energy; }
 };
 
+
+/*
+ *  HELPER FUNCTIONS
+ */
+/**
+ *  Calculate the AP1roG energy given AP1roG geminal coefficients @param G and Hamiltonian parameters @param ham_par
+ */
+double calculateAP1roGEnergy(const GQCG::AP1roGGeminalCoefficients& G, const GQCG::HamiltonianParameters& ham_par);
 
 
 }  // namespace GQCG

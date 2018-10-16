@@ -220,33 +220,6 @@ Eigen::VectorXd AP1roGPSESolver::calculateCoordinateFunctions(const Eigen::Vecto
 
 
 /**
- *  Calculate the AP1roG energy given AP1roG geminal coefficients @param G
- */
-double AP1roGPSESolver::calculateEnergy(const GQCG::AP1roGGeminalCoefficients& G) const {
-
-    Eigen::MatrixXd h_SO = this->ham_par.h.get_matrix_representation();
-    Eigen::Tensor<double, 4> g_SO = this->ham_par.g.get_matrix_representation();
-
-    double E = 0.0;
-
-    // KISS implementation of the AP1roG energy
-    for (size_t j = 0; j < this->N_P; j++) {
-        E += 2 * h_SO(j,j);
-
-        for (size_t k = 0; k < this->N_P; k++) {
-            E += 2 * g_SO(k,k,j,j) - g_SO(k,j,j,k);
-        }
-
-        for (size_t b = this->N_P; b < this->K; b++) {
-            E += g_SO(j,b,j,b) * G(j,b);
-        }
-    }
-
-    return E;
-}
-
-
-/**
  *  Set up and solve the projected Schrödinger equations for AP1roG
  */
 void AP1roGPSESolver::solve() {
@@ -264,7 +237,7 @@ void AP1roGPSESolver::solve() {
 
     // Set the solution
     GQCG::AP1roGGeminalCoefficients geminal_coefficients (syseq_solver.get_solution(), this->N_P, this->K);
-    double electronic_energy = this->calculateEnergy(geminal_coefficients);
+    double electronic_energy = GQCG::calculateAP1roGEnergy(geminal_coefficients, this->ham_par);
     this->solution = GQCG::AP1roG(geminal_coefficients, electronic_energy);
 }
 

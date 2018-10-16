@@ -45,6 +45,11 @@ public:
     double operator()(size_t i, size_t a) const;
 
 
+    // GETTERS
+    size_t get_N_P() const { return this->N_P; }
+    size_t get_K() const { return this->K; }
+
+
     // METHODS
     /**
      *  @return the geminal coefficients in vector form
