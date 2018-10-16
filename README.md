@@ -8,7 +8,12 @@ A C++ library that provides the glue code for our other libraries/modules.
 
 [![Boost Dependency](https://img.shields.io/badge/Boost-1.65.1+-000000.svg)](http://www.boost.org)
 [![Eigen3 Dependency](https://img.shields.io/badge/Eigen-3.3.4+-000000.svg)](http://eigen.tuxfamily.org/index.php?title=Main_Page)
+[![libint2 Dependency](https://img.shields.io/badge/libint-2.3.1+-000000.svg)](https://github.com/evaleev/libint)
 
+gqcg uses the bases packaged with libint. Please set the LIBINT_DATA_PATH to the directory that contains these bases. E.g.:
+```
+export LIBINT_DATA_PATH=/usr/local/libint/2.3.1/share/basis
+```
 
 ## Installation
 To install this library:
