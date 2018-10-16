@@ -90,6 +90,7 @@ BOOST_AUTO_TEST_CASE ( lih_1RDM_2RDM_trace_DOCI ) {
 
     Eigen::VectorXd coef = ci_solver.get_eigenpair().get_eigenvector();
 
+    // Check if the 2-RDM contraction matches the reduction.
     GQCG::DOCIRDMBuilder doci_rdm (fock_space);
     GQCG::TwoRDMs two_rdms = doci_rdm.calculate2RDMs(coef);
     GQCG::OneRDMs one_rdms = doci_rdm.calculate1RDMs(coef);
@@ -120,26 +121,12 @@ BOOST_AUTO_TEST_CASE ( lih_energy_RDM_contraction_DOCI ) {
     Eigen::VectorXd coef = ci_solver.get_eigenpair().get_eigenvector();
     double energy_by_eigenvalue = ci_solver.get_eigenpair().get_eigenvalue();
 
+    // Check if the contraction energy matches the doci eigenvalue.
     GQCG::DOCIRDMBuilder doci_rdm (fock_space);
     GQCG::TwoRDMs two_rdms = doci_rdm.calculate2RDMs(coef);
     GQCG::OneRDMs one_rdms = doci_rdm.calculate1RDMs(coef);
 
-    Eigen::MatrixXd D = one_rdms.one_rdm.get_matrix_representation();
-    Eigen::MatrixXd h = ham_par.get_h().get_matrix_representation();
-    double energy_by_contraction = (h * D).trace();
-
-    Eigen::Tensor<double, 4> d = two_rdms.two_rdm.get_matrix_representation();
-    Eigen::Tensor<double, 4> g = ham_par.get_g().get_matrix_representation();
-
-    // Specify the contractions for the relevant contraction of the two-electron integrals and the 2-RDM
-    //      0.5 g(p q r s) d(p q r s)
-    Eigen::array<Eigen::IndexPair<int>, 4> contractions = {Eigen::IndexPair<int>(0,0), Eigen::IndexPair<int>(1,1), Eigen::IndexPair<int>(2,2), Eigen::IndexPair<int>(3,3)};
-    //      Perform the contraction
-    Eigen::Tensor<double, 0> contraction = 0.5 * g.contract(d, contractions);
-
-    // As the contraction is a scalar (a tensor of rank 0), we should access by (0).
-    energy_by_contraction += contraction(0);
-
+    double energy_by_contraction = ham_par.calculateEnergy(one_rdms.one_rdm, two_rdms.two_rdm);
 
     BOOST_CHECK(std::abs(energy_by_eigenvalue - energy_by_contraction) < 1.0e-12);
 }
