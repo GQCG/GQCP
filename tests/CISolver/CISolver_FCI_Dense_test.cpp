@@ -2,7 +2,8 @@
 
 
 #include "CISolver/CISolver.hpp"
-#include "HamiltonianBuilder/DOCI.hpp"
+#include "FockSpace/FockSpaceProduct.hpp"
+#include "HamiltonianBuilder/FCI.hpp"
 #include "HamiltonianParameters/HamiltonianParameters_constructors.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
 
@@ -49,13 +50,6 @@ BOOST_AUTO_TEST_CASE ( test_random_rotation_diagonal_dense_fci ) {
 
     Eigen::VectorXd diagonal2 = fci.calculateDiagonal(mol_ham_par);
 
-    // Solve Dense
-    numopt::eigenproblem::DenseSolverOptions dense_solver_options;
-    ci_solver.solve(dense_solver_options);
-
-    // Retrieve the eigenvalues
-    auto fci_dense_eigenvalue = ci_solver.get_eigenpair().get_eigenvalue();
-
     BOOST_CHECK(std::abs(diagonal1.sum() - diagonal2.sum()) < 1.0e-10);
 }
 
@@ -92,11 +86,11 @@ BOOST_AUTO_TEST_CASE ( FCI_H2_Cristina_dense ) {
     ci_solver.solve(dense_solver_options);
 
     // Retrieve the eigenvalues
-    auto test_fci_energy = ci_solver.get_eigenpair().get_eigenvalue();
+    auto fci_energy = ci_solver.get_eigenpair().get_eigenvalue();
 
     // Calculate the total FCI energy
     double internuclear_repulsion_energy = h2.calculateInternuclearRepulsionEnergy();
-    double test_fci_energy = fci.get_eigenvalue() + internuclear_repulsion_energy;
+    double test_fci_energy = fci_energy + internuclear_repulsion_energy;
 
     BOOST_CHECK(std::abs(test_fci_energy - (reference_fci_energy)) < 1.0e-06);
 }
@@ -134,16 +128,16 @@ BOOST_AUTO_TEST_CASE ( FCI_H2O_Psi4_GAMESS_dense ) {
     ci_solver.solve(dense_solver_options);
 
     // Retrieve the eigenvalues
-    auto test_fci_energy = ci_solver.get_eigenpair().get_eigenvalue();
+    auto fci_energy = ci_solver.get_eigenpair().get_eigenvalue();
 
     // Calculate the total FCI energy
     double internuclear_repulsion_energy = h2o.calculateInternuclearRepulsionEnergy();
-    double test_fci_energy = fci.get_eigenvalue() + internuclear_repulsion_energy;
+    double test_fci_energy = fci_energy + internuclear_repulsion_energy;
 
     BOOST_CHECK(std::abs(test_fci_energy - (reference_fci_energy)) < 1.0e-06);
 }
 
-
+/*
 BOOST_AUTO_TEST_CASE ( FCI_He_Cristina_dense ) {
 
     // Cristina's He FCI energy
@@ -176,11 +170,12 @@ BOOST_AUTO_TEST_CASE ( FCI_He_Cristina_dense ) {
     ci_solver.solve(dense_solver_options);
 
     // Retrieve the eigenvalues
-    auto test_fci_energy = ci_solver.get_eigenpair().get_eigenvalue();
+    auto fci_energy = ci_solver.get_eigenpair().get_eigenvalue();
 
     // Calculate the total FCI energy
     double internuclear_repulsion_energy = he.calculateInternuclearRepulsionEnergy();
-    double test_fci_energy = fci.get_eigenvalue() + internuclear_repulsion_energy;
+    double test_fci_energy = fci_energy + internuclear_repulsion_energy;
 
     BOOST_CHECK(std::abs(test_fci_energy - (reference_fci_energy)) < 1.0e-06);
 }
+ */

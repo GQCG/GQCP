@@ -64,10 +64,10 @@ BOOST_AUTO_TEST_CASE ( FCI_H2_6_31Gxx_dense_vs_Davidson ) {
     // Create a Molecule and an AOBasis
     GQCG::Molecule h2 ("../tests/data/h2_cristina.xyz");
     auto ao_basis = std::make_shared<GQCG::AOBasis>(h2, "6-31G**");
-    auto K = mol_ham_par.get_h().get_dim();
 
     // Create the molecular Hamiltonian parameters for this molecule and basis
     auto mol_ham_par = GQCG::constructMolecularHamiltonianParameters(ao_basis);
+    auto K = mol_ham_par.get_h().get_dim();
 
     // Create a plain RHF SCF solver and solve the SCF equations
     GQCG::PlainRHFSCFSolver plain_scf_solver (mol_ham_par, h2);
