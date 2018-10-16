@@ -33,7 +33,7 @@ Eigen::MatrixXd FCI::constructHamiltonian(const HamiltonianParameters& hamiltoni
     }
     
     Eigen::VectorXd diagonal = calculateDiagonal(hamiltonian_parameters);
-    Eigen::MatrixXd result_matrix = Eigen::MatrixXd::Zero(this->fock_space.get_dimension(),this->fock_space.get_dimension());
+    Eigen::MatrixXd result_matrix = Eigen::MatrixXd::Zero(this->fock_space.get_dimension(), this->fock_space.get_dimension());
     
     FockSpace fock_space_alpha = fock_space.get_fock_space_alpha();
     FockSpace fock_space_beta = fock_space.get_fock_space_beta();
@@ -190,7 +190,7 @@ Eigen::MatrixXd FCI::constructHamiltonian(const HamiltonianParameters& hamiltoni
                                         // We are storing the alpha addresses as 'major', i.e. the total address IaIb = Ia * dim_b + I_b
                                         for (size_t Ia = 0; Ia < dim_alpha; Ia++) {
                                             double value = sign_pqrs * 0.5 * hamiltonian_parameters.get_g().get(s,p,r,q);
-                                            result_matrix( Ia * dim_beta + I_beta, Ia * dim_beta + Jb) += value;
+                                            result_matrix(Ia * dim_beta + I_beta, Ia * dim_beta + Jb) += value;
                                         }
 
                                         spin_string_beta.annihilate(s);  // undo the previous creation on s

@@ -33,7 +33,7 @@ Eigen::MatrixXd DOCI::constructHamiltonian(const HamiltonianParameters& hamilton
     }
     size_t dim = this->fock_space.get_dimension();
     Eigen::VectorXd diagonal = calculateDiagonal(hamiltonian_parameters);
-    Eigen::MatrixXd result_matrix = Eigen::MatrixXd::Zero(dim,dim);
+    Eigen::MatrixXd result_matrix = Eigen::MatrixXd::Zero(dim, dim);
     // Create the first spin string. Since in DOCI, alpha == beta, we can just treat them as one
     // And multiply all contributions by 2
     ONV onv = this->fock_space.get_ONV(0);  // spin string with address 0
