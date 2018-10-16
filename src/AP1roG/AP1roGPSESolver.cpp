@@ -41,59 +41,6 @@ AP1roGPSESolver::AP1roGPSESolver(const GQCG::Molecule& molecule, const GQCG::Ham
  *  PUBLIC METHODS
  */
 /**
- *  For a geminal coefficient g_mu, return its major index in the matrix of geminal coefficients.
- *
- *      Note that:
- *          - the major index is i (i.e. the subscript), since changes in i are not contiguous
- *          - i is in [0 ... N_P[
- */
-size_t AP1roGPSESolver::matrixIndexMajor(size_t vector_index) const {
-
-    return vector_index / (this->K - this->N_P);  // in the mathematical notes, we use the floor function, which is the same as integer division
-}
-
-
-/**
- *  For a geminal coefficient g_mu, return its minor index in the matrix of geminal coefficients.
- *
- *      Note that:
- *          - the minor index is a (i.e. the superscript), since changes in a are contiguous
- *          - a is in [N_P ... K[
- */
-size_t AP1roGPSESolver::matrixIndexMinor(size_t vector_index) const {
-
-    return vector_index % (this->K - this->N_P) + this->N_P;  // we add N_P since we want a to be in [N_P ... K[
-}
-
-
-/**
- *  For a geminal coefficient G_i^a, return its index in the vector of geminal coefficients.
- *
- *      Note that
- *          - i is in [0 ... N_P[       is the 'major' index (i.e. changes in i are not contiguous)
- *          - a is in [N_P ... K[       is the 'minor' index (i.e. changes in a are contiguous)
- */
-size_t AP1roGPSESolver::vectorIndex(size_t i, size_t a) const {
-
-    // Check for invalid values for i and a
-    if (i >= this->N_P) {
-        throw std::invalid_argument("i must be smaller than N_P.");
-    }
-    if (a < this->N_P) {
-        throw std::invalid_argument("a must be larger than or equal to N_P.");
-    }
-
-
-    // The conversion from i and a to a single vector index is just a little more complicated than row-major storage.
-    // If we were to use the row-major storage formula, we would end up with
-    //      mu = a + (K - N_P) * i
-    //
-    // but since we would really like our indices abcd (virtuals) to start at N_P, we should subtract N_P accordingly
-    return (a - this->N_P) + (this->K - this->N_P) * i;
-}
-
-
-/**
  *  Calculate the Jacobian element with compound indices (i,a) and (k,c) at the given geminal coefficients @param G
  *
  *      i and k are subscripts, a and c are superscripts
@@ -306,11 +253,8 @@ void AP1roGPSESolver::solve() {
 
     // Solve the AP1roG equations using a Newton-based algorithm
 
-
-    // using std::function: see (http://en.cppreference.com/w/cpp/utility/functional/function)
-    // using Lambdas: see (https://stackoverflow.com/a/44792017)
-    numopt::VectorFunction f = [this](const Eigen::VectorXd& x) {return this->calculateCoordinateFunctions(x); };
-    numopt::JacobianFunction J = [this](const Eigen::VectorXd& x) {return this->calculateJacobian(x); };
+    numopt::VectorFunction f = [this](const Eigen::VectorXd& x) { return this->calculateCoordinateFunctions(x); };
+    numopt::JacobianFunction J = [this](const Eigen::VectorXd& x) { return this->calculateJacobian(x); };
 
 
     Eigen::VectorXd x0 = this->initial_geminal_coefficients.asVector();
