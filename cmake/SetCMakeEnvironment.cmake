@@ -114,7 +114,9 @@ set(PROJECT_TEST_SOURCE_FILES
         ${PROJECT_TESTS_FOLDER}/AP1roG/AP1roGGeminalCoefficients_test.cpp
         ${PROJECT_TESTS_FOLDER}/AP1roG/AP1roGPSESolver_test.cpp
         ${PROJECT_TESTS_FOLDER}/FockSpace/FockSpace_test.cpp
+        ${PROJECT_TESTS_FOLDER}/FockSpace/FockSpaceProduct_test.cpp
         ${PROJECT_TESTS_FOLDER}/HamiltonianBuilder/DOCI_test.cpp
+        ${PROJECT_TESTS_FOLDER}/HamiltonianBuilder/FCI_test.cpp
         ${PROJECT_TESTS_FOLDER}/HamiltonianParameters/HamiltonianParameters_test.cpp
         ${PROJECT_TESTS_FOLDER}/HamiltonianParameters/HamiltonianParameters_constructors_test.cpp
         ${PROJECT_TESTS_FOLDER}/Operator/OneElectronOperator_test.cpp
