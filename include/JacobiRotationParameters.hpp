@@ -20,9 +20,9 @@ namespace GQCG {
  */
 class JacobiRotationParameters {
 private:
-    const size_t p;  // p > q
-    const size_t q;
-    const double angle;
+    size_t p;  // p > q
+    size_t q;
+    double angle;
 
 public:
     // CONSTRUCTORS
@@ -32,8 +32,15 @@ public:
     JacobiRotationParameters(size_t p, size_t q, double angle);
 
 
+    // GETTERS
+    size_t get_p() const { return this->p; }
+    size_t get_q() const { return this->q; }
+    size_t get_angle() const { return this->angle; }
+
+
     // FRIEND CLASSES
     friend class OneElectronOperator;
+    friend class AP1roGJacobiOrbitalOptimizer;
 
     // FRIEND FUNCTIONS
     friend Eigen::MatrixXd jacobiRotationMatrix(const GQCG::JacobiRotationParameters& jacobi_rotation_parameters, size_t M);

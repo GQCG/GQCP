@@ -40,6 +40,8 @@ private:
     // PRIVATE PARAMETERS
     const size_t K;  // the number of special orbitals
     const size_t N_P;  // the number of electron pairs
+
+    bool is_converged = false;
     const double oo_threshold;  // the threshold used for OO: convergence is achieved when E_current - E_previous < oo_threshold
     const size_t maximum_number_of_oo_iterations;
 
@@ -79,15 +81,15 @@ public:
     void calculateJacobiCoefficients(size_t p, size_t q, const GQCG::AP1roGGeminalCoefficients& G);
 
     /**
-     *  Calculate the AP1roG energy after the application of a Jacobi rotation with the parameters @param jacobi_rotation_parameters
+     *  Calculate the AP1roG energy given the geminal coefficients @param G after the application of a Jacobi rotation with the parameters @param jacobi_rotation_parameters
      */
-    double calculateEnergyAfterJacobiRotation(const GQCG::JacobiRotationParameters& jacobi_rotation_parameters) const;
+    double calculateEnergyAfterJacobiRotation(const GQCG::JacobiRotationParameters& jacobi_rotation_parameters, const GQCG::AP1roGGeminalCoefficients& G) const;
 
     /**
-     *  Given a Jacobi pair @param p and @param q, @return the optimal rotation angle, i.e. the angle for which the derivative
+     *  Given a Jacobi pair @param p and @param q and the geminal coefficients @param G, @return the optimal rotation angle, i.e. the angle for which the derivative
      *  of the energy after the Jacobi rotation is zero (and the second derivative is positive).
      */
-    double findOptimalRotationAngle(size_t p, size_t q) const;
+    double findOptimalRotationAngle(size_t p, size_t q, const GQCG::AP1roGGeminalCoefficients& G) const;
 
     /**
      *  Optimize the AP1roG energy by consequently
