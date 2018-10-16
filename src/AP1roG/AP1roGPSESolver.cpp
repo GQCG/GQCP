@@ -9,21 +9,16 @@ namespace GQCG {
  * CONSTRUCTORS
  */
 /**
- *  Constructor based on a given number of electrons @param N and Hamiltonian parameters @param ham_par
+ *  Constructor based on a given number of electron pairs @param N_P and Hamiltonian parameters @param ham_par
  *
  *  The initial guess for the geminal coefficients is zero
  */
-AP1roGPSESolver::AP1roGPSESolver(size_t N, const GQCG::HamiltonianParameters& ham_par) :
+AP1roGPSESolver::AP1roGPSESolver(size_t N_P, const GQCG::HamiltonianParameters& ham_par) :
     K (ham_par.K),
     ham_par (ham_par),
-    N_P (N / 2),
+    N_P (N_P),
     initial_geminal_coefficients (GQCG::AP1roGGeminalCoefficients(this->N_P, this->K))
-{
-    // Check if we have an even number of electrons
-    if ((N % 2) != 0) {
-        throw std::invalid_argument("The given number of electrons is odd.");
-    }
-}
+{}
 
 
 /**
@@ -32,8 +27,13 @@ AP1roGPSESolver::AP1roGPSESolver(size_t N, const GQCG::HamiltonianParameters& ha
  *  The initial guess for the geminal coefficients is zero
  */
 AP1roGPSESolver::AP1roGPSESolver(const GQCG::Molecule& molecule, const GQCG::HamiltonianParameters& ham_par) :
-    AP1roGPSESolver(molecule.N, ham_par)
-{}
+    AP1roGPSESolver(molecule.N / 2, ham_par)
+{
+    // Check if we have an even number of electrons
+    if ((molecule.N % 2) != 0) {
+        throw std::invalid_argument("The given number of electrons is odd.");
+    }
+}
 
 
 

@@ -41,6 +41,8 @@ private:
     const size_t K;  // the number of special orbitals
     const size_t N_P;  // the number of electron pairs
     const double oo_threshold;  // the threshold used for OO: convergence is achieved when E_current - E_previous < oo_threshold
+    const size_t maximum_number_of_oo_iterations;
+
 
     GQCG::HamiltonianParameters ham_par;
 
@@ -55,18 +57,18 @@ private:
 public:
     // CONSTRUCTORS
     /**
-     *  Constructor based on a given number of electrons @param N and Hamiltonian parameters @param ham_par
+     *  Constructor based on a given number of electron pairs @param N_P, Hamiltonian parameters @param ham_par, a threshold for the orbital optimization @param oo_threshold and a @param maximum_number_of_oo_iterations
      *
      *  The initial guess for the geminal coefficients is zero
      */
-    AP1roGJacobiOrbitalOptimizer(size_t N, const GQCG::HamiltonianParameters& ham_par, double oo_threshold=1.0e-08);
+    AP1roGJacobiOrbitalOptimizer(size_t N_P, const GQCG::HamiltonianParameters& ham_par, double oo_threshold=1.0e-08, const size_t maximum_number_of_oo_iterations=128);
 
     /**
-     *  Constructor based on a given @param molecule and Hamiltonian parameters @param ham_par
+     *  Constructor based on a given @param molecule, Hamiltonian parameters @param ham_par, a threshold for the orbital optimization @param oo_threshold and a @param maximum_number_of_oo_iterations
      *
      *  The initial guess for the geminal coefficients is zero
      */
-    AP1roGJacobiOrbitalOptimizer(const GQCG::Molecule& molecule, const GQCG::HamiltonianParameters& ham_par, double oo_threshold=1.0e-08);
+    AP1roGJacobiOrbitalOptimizer(const GQCG::Molecule& molecule, const GQCG::HamiltonianParameters& ham_par, double oo_threshold=1.0e-08, const size_t maximum_number_of_oo_iterations=128);
 
     /**
      *  Given the two indices of spatial orbitals @param p and @param q that will be Jacobi-rotated, calculate the

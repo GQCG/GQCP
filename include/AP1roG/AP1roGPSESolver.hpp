@@ -26,11 +26,11 @@ private:
 public:
     // CONSTRUCTORS
     /**
-     *  Constructor based on a given number of electrons @param N and Hamiltonian parameters @param ham_par
+     *  Constructor based on a given number of electron pairs @param N_P and Hamiltonian parameters @param ham_par
      *
      *  The initial guess for the geminal coefficients is zero
      */
-    AP1roGPSESolver(size_t N, const GQCG::HamiltonianParameters& ham_par);
+    AP1roGPSESolver(size_t N_P, const GQCG::HamiltonianParameters& ham_par);
 
     /**
      *  Constructor based on a given @param molecule and Hamiltonian parameters @param ham_par

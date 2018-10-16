@@ -16,14 +16,10 @@ BOOST_AUTO_TEST_CASE ( constructor ) {
     // Test a correct constructor
     GQCG::Molecule h2 ("../tests/data/h2_szabo.xyz");
     size_t N = 2;  // number of electrons for H2
+    size_t N_P = N/2;  // number of electron pairs for H2
     auto ao_basis = std::make_shared<GQCG::AOBasis>(h2, "STO-3G");
     auto mol_ham_par = GQCG::constructMolecularHamiltonianParameters(ao_basis);
-    GQCG::AP1roGPSESolver ap1rog_pse_solver (N, mol_ham_par);
-
-
-    // Test a faulty constructor
-    size_t N_ion = 1;  // number of electrons for cationic H2
-    BOOST_CHECK_THROW(GQCG::AP1roGPSESolver(N_ion, mol_ham_par), std::invalid_argument);  // we can use the same Hamiltonian parameters for molecule and ion
+    GQCG::AP1roGPSESolver ap1rog_pse_solver (N_P, mol_ham_par);
 }
 
 
@@ -35,6 +31,10 @@ BOOST_AUTO_TEST_CASE ( constructor_molecule ) {
     auto ao_basis = std::make_shared<GQCG::AOBasis>(h2, "STO-3G");
     auto mol_ham_par = GQCG::constructMolecularHamiltonianParameters(ao_basis);
     GQCG::AP1roGPSESolver ap1rog_pse_solver (h2, mol_ham_par);
+
+    // Test a faulty constructor
+    GQCG::Molecule h2_cation ("../tests/data/h2_szabo.xyz", +1);
+    BOOST_CHECK_THROW(GQCG::AP1roGPSESolver(h2_cation, mol_ham_par), std::invalid_argument);  // we can use the same Hamiltonian parameters for molecule and ion
 }
 
 
