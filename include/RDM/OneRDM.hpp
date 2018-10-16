@@ -5,6 +5,7 @@
 #include "RDM/BaseRDM.hpp"
 
 #include <Eigen/Dense>
+#include <Eigenpair.hpp>
 
 
 namespace GQCG {
@@ -14,23 +15,12 @@ namespace GQCG {
  */
 class OneRDM : public BaseRDM {
 private:
-    Eigen::MatrixXd one_rdm;  // spin-summed (total) 1-RDM
-
-    Eigen::MatrixXd one_rdm_aa;  // alpha-alpha (a-a) 1-RDM
-    Eigen::MatrixXd one_rdm_bb;  // beta-beta (b-b) 1-RDM
+    Eigen::MatrixXd one_rdm;
 
 
 public:
     // CONSTRUCTORS
-    /**
-     * Constructor with @param one_rdm where one_rdm_aa and one_rdm_bb are @param one_rdm/2
-     */
-    OneRDM(Eigen::MatrixXd one_rdm);
-
-    /**
-     * Constructor with @param one_rdm_aa and @param one_rdm_bb were one_rdm = @param one_rdm_aa + @param one_rdm_bb
-     */
-    OneRDM(Eigen::MatrixXd one_rdm_aa, Eigen::MatrixXd one_rdm_bb);
+    explicit OneRDM(Eigen::MatrixXd one_rdm);
 
 
     // GETTERS
@@ -43,6 +33,11 @@ public:
      *  @return the trace of this->one_rdm
      */
     double trace();
+
+    /**
+     *  diagonalises this->one_rdm and @returns the eigenvectors
+     */
+    Eigen::MatrixXd diagonalise();
 };
 
 

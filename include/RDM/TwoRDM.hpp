@@ -16,20 +16,10 @@ class TwoRDM : public BaseRDM {
 private:
     Eigen::Tensor<double, 4> two_rdm;  // spin-summed (total) 2-RDM
 
-    Eigen::Tensor<double, 4> two_rdm_aaaa;  // a-a-a-a 2-RDM
-    Eigen::Tensor<double, 4> two_rdm_aabb;  // a-a-b-b 2-RDM
-    Eigen::Tensor<double, 4> two_rdm_bbaa;  // b-a-a-b 2-RDM
-    Eigen::Tensor<double, 4> two_rdm_bbbb;  // b-b-b-b 2-RDM
-
 
 public:
     // CONSTRUCTORS
-    TwoRDM(Eigen::Tensor<double, 4> two_rdm);
-
-    /**
-     * Constructor where two_rdm = @param two_rdm_aaaa + @param two_rdm_bbbb + @param two_rdm_aabb  + @param two_rdm_bbaa
-     */
-    TwoRDM(Eigen::Tensor<double, 4> two_rdm_aaaa, Eigen::Tensor<double, 4> two_rdm_bbbb, Eigen::Tensor<double, 4> two_rdm_aabb, Eigen::Tensor<double, 4> two_rdm_bbaa);
+    explicit TwoRDM(Eigen::Tensor<double, 4> two_rdm);
 
 
     // GETTERS

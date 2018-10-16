@@ -4,6 +4,7 @@
 
 #include "FockSpace/FockSpace.hpp"
 #include "RDM/RDMBuilder.hpp"
+#include "RDM/RDMS.hpp"
 
 
 namespace GQCG {
@@ -30,12 +31,12 @@ public:
     /**
      *  @return 1RDM from a coefficient vector @param x
      */
-    OneRDM construct1RDM(const Eigen::VectorXd& x) override;
+    OneRDMs construct1RDM(const Eigen::VectorXd& x) override;
 
     /**
      *  @return 2RDM from a coefficient vector @param x
      */
-    TwoRDM construct2RDM(const Eigen::VectorXd& x) override;
+    TwoRDMs construct2RDM(const Eigen::VectorXd& x) override;
 
     /**
      *  @return the Fock space of the RDMBuilder

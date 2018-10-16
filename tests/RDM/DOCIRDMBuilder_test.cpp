@@ -33,9 +33,10 @@ BOOST_AUTO_TEST_CASE ( lih_1RDM_trace ) {
     Eigen::VectorXd coef = ci_solver.get_eigenpair().get_eigenvector();
 
     GQCG::DOCIRDMBuilder doci_rdm (fock_space);
-    GQCG::OneRDM one_rdm = doci_rdm.construct1RDM(coef);
+    GQCG::OneRDMs one_rdms = doci_rdm.construct1RDM(coef);
 
-    BOOST_CHECK(std::abs(one_rdm.trace() - N) < 1.0e-12);
+
+    BOOST_CHECK(std::abs(one_rdms.one_rdm.trace() - N) < 1.0e-12);
 }
 
 
@@ -61,9 +62,9 @@ BOOST_AUTO_TEST_CASE ( lih_2RDM_trace ) {
     Eigen::VectorXd coef = ci_solver.get_eigenpair().get_eigenvector();
 
     GQCG::DOCIRDMBuilder doci_rdm (fock_space);
-    GQCG::TwoRDM two_rdm = doci_rdm.construct2RDM(coef);
+    GQCG::TwoRDMs two_rdms = doci_rdm.construct2RDM(coef);
 
-    BOOST_CHECK(std::abs(two_rdm.trace() - N*(N-1)) < 1.0e-12);
+    BOOST_CHECK(std::abs(two_rdms.two_rdm.trace() - N*(N-1)) < 1.0e-12);
 }
 
 
@@ -89,12 +90,12 @@ BOOST_AUTO_TEST_CASE ( lih_1RDM_2RDM_trace_DOCI ) {
     Eigen::VectorXd coef = ci_solver.get_eigenpair().get_eigenvector();
 
     GQCG::DOCIRDMBuilder doci_rdm (fock_space);
-    GQCG::TwoRDM two_rdm = doci_rdm.construct2RDM(coef);
-    GQCG::OneRDM one_rdm = doci_rdm.construct1RDM(coef);
+    GQCG::TwoRDMs two_rdms = doci_rdm.construct2RDM(coef);
+    GQCG::OneRDMs one_rdms = doci_rdm.construct1RDM(coef);
 
 
-    Eigen::MatrixXd D_from_reduction = (1.0/(N-1)) * two_rdm.reduce_2RDM();
-    BOOST_CHECK(one_rdm.get_matrix_representation().isApprox(D_from_reduction, 1.0e-12));
+    Eigen::MatrixXd D_from_reduction = (1.0/(N-1)) * two_rdms.two_rdm.reduce_2RDM();
+    BOOST_CHECK(one_rdms.one_rdm.get_matrix_representation().isApprox(D_from_reduction, 1.0e-12));
 }
 
 
@@ -119,14 +120,14 @@ BOOST_AUTO_TEST_CASE ( lih_energy_RDM_contraction_DOCI ) {
     double energy_by_eigenvalue = ci_solver.get_eigenpair().get_eigenvalue();
 
     GQCG::DOCIRDMBuilder doci_rdm (fock_space);
-    GQCG::TwoRDM two_rdm = doci_rdm.construct2RDM(coef);
-    GQCG::OneRDM one_rdm = doci_rdm.construct1RDM(coef);
+    GQCG::TwoRDMs two_rdms = doci_rdm.construct2RDM(coef);
+    GQCG::OneRDMs one_rdms = doci_rdm.construct1RDM(coef);
 
-    Eigen::MatrixXd D = one_rdm.get_matrix_representation();
+    Eigen::MatrixXd D = one_rdms.one_rdm.get_matrix_representation();
     Eigen::MatrixXd h = ham_par.get_h().get_matrix_representation();
     double energy_by_contraction = (h * D).trace();
 
-    Eigen::Tensor<double, 4> d = two_rdm.get_tensor_representation();
+    Eigen::Tensor<double, 4> d = two_rdms.two_rdm.get_tensor_representation();
     Eigen::Tensor<double, 4> g = ham_par.get_g().get_matrix_representation();
 
     // Specify the contractions for the relevant contraction of the two-electron integrals and the 2-RDM
