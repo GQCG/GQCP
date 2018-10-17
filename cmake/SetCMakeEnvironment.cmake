@@ -55,6 +55,7 @@ set(PROJECT_SOURCE_FILES
         ${PROJECT_SOURCE_FOLDER}/miscellaneous.cpp
         ${PROJECT_SOURCE_FOLDER}/Molecule.cpp
         ${PROJECT_SOURCE_FOLDER}/ONV.cpp
+        ${PROJECT_SOURCE_FOLDER}/RMP2.cpp
         ${PROJECT_SOURCE_FOLDER}/WaveFunction.cpp)
 
 # Find the header folder
@@ -95,6 +96,7 @@ set(PROJECT_INCLUDE_FILES
         ${PROJECT_INCLUDE_FOLDER}/miscellaneous.hpp
         ${PROJECT_INCLUDE_FOLDER}/Molecule.hpp
         ${PROJECT_INCLUDE_FOLDER}/ONV.hpp
+        ${PROJECT_INCLUDE_FOLDER}/RMP2.hpp
         ${PROJECT_INCLUDE_FOLDER}/units.hpp
         ${PROJECT_INCLUDE_FOLDER}/WaveFunction.hpp)
 
@@ -118,6 +120,7 @@ set(PROJECT_TEST_SOURCE_FILES
         ${PROJECT_TESTS_FOLDER}/RDM/DOCIRDMBuilder_test.cpp
         ${PROJECT_TESTS_FOLDER}/RHF/DIISRHFSCFSolver_test.cpp
         ${PROJECT_TESTS_FOLDER}/RHF/PlainRHFSCFSolver_test.cpp
+        ${PROJECT_TESTS_FOLDER}/RHF/RHF_test.cpp
         ${PROJECT_TESTS_FOLDER}/AOBasis_test.cpp
         ${PROJECT_TESTS_FOLDER}/Atom_test.cpp
         ${PROJECT_TESTS_FOLDER}/elements_test.cpp
@@ -126,6 +129,7 @@ set(PROJECT_TEST_SOURCE_FILES
         ${PROJECT_TESTS_FOLDER}/miscellaneous_test.cpp
         ${PROJECT_TESTS_FOLDER}/Molecule_test.cpp
         ${PROJECT_TESTS_FOLDER}/ONV_test.cpp
+        ${PROJECT_TESTS_FOLDER}/RMP2_test.cpp
         ${PROJECT_TESTS_FOLDER}/units_test.cpp)
 
 
