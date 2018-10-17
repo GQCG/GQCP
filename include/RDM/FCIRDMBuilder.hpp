@@ -12,7 +12,7 @@ namespace GQCG {
 
 /**
  *  FCIRDMBuilder is a class for the calculation of a density matrix from a given wave function
- *  or coefficient expansion in a the Full ci Fock space
+ *  or coefficient expansion in the Full CI Fock space
  */
 class FCIRDMBuilder : public RDMBuilder {
     FockSpaceProduct fock_space;  // fock space containing the alpha and beta Fock space
@@ -31,12 +31,12 @@ public:
     /**
      *  @return all 1-RDMs from a coefficient vector @param x
      */
-    OneRDMs calculate1RDMs(const Eigen::VectorXd &x) override;
+    OneRDMs calculate1RDMs(const Eigen::VectorXd& x) override;
 
     /**
      *  @return all 2-RDMs from a coefficient vector @param x
      */
-    TwoRDMs calculate2RDMs(const Eigen::VectorXd &x) override;
+    TwoRDMs calculate2RDMs(const Eigen::VectorXd& x) override;
 
     /**
      *  @return the Fock space of the RDMBuilder

@@ -32,12 +32,12 @@ public:
     /**
      *  @return all 1-RDMs from a coefficient vector @param x
      */
-    virtual OneRDMs calculate1RDMs(const Eigen::VectorXd &x) = 0;
+    virtual OneRDMs calculate1RDMs(const Eigen::VectorXd& x) = 0;
 
     /**
      *  @return all 2-RDMs from a coefficient vector @param x
      */
-    virtual TwoRDMs calculate2RDMs(const Eigen::VectorXd &x) = 0;
+    virtual TwoRDMs calculate2RDMs(const Eigen::VectorXd& x) = 0;
 
     /**
      *  @return the Fock space of the RDMBuilder

@@ -19,7 +19,7 @@ FCIRDMBuilder::FCIRDMBuilder(const FockSpaceProduct& fock_space) :
 /**
  *  @return 1RDM from a coefficient vector @param x
  */
-OneRDMs FCIRDMBuilder::calculate1RDMs(const Eigen::VectorXd &x) {
+OneRDMs FCIRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) {
 
     // Initialize as zero matrices
     size_t K = this->fock_space.get_K();
@@ -133,7 +133,7 @@ OneRDMs FCIRDMBuilder::calculate1RDMs(const Eigen::VectorXd &x) {
 /**
  *  @return 2RDM from a coefficient vector @param x
  */
-TwoRDMs FCIRDMBuilder::calculate2RDMs(const Eigen::VectorXd &x) {
+TwoRDMs FCIRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) {
 
 
     // KISS implementation of the 2-DMs (no symmetry relations are used yet)

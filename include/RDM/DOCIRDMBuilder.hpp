@@ -31,12 +31,12 @@ public:
     /**
      *  @return all 1-RDMs from a coefficient vector @param x
      */
-    OneRDMs calculate1RDMs(const Eigen::VectorXd &x) override;
+    OneRDMs calculate1RDMs(const Eigen::VectorXd& x) override;
 
     /**
      *  @return all 2-RDMs from a coefficient vector @param x
      */
-    TwoRDMs calculate2RDMs(const Eigen::VectorXd &x) override;
+    TwoRDMs calculate2RDMs(const Eigen::VectorXd& x) override;
 
     /**
      *  @return the Fock space of the RDMBuilder

@@ -19,7 +19,7 @@ DOCIRDMBuilder::DOCIRDMBuilder(const FockSpace& fock_space) :
 /**
  *  @return 1RDM from a coefficient vector @param x
  */
-OneRDMs DOCIRDMBuilder::calculate1RDMs(const Eigen::VectorXd &x) {
+OneRDMs DOCIRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) {
     // The formulas for the DOCI 1-RDMs can be found in (https://github.com/lelemmen/electronic_structure)
 
     size_t K = this->fock_space.get_K();
@@ -52,7 +52,7 @@ OneRDMs DOCIRDMBuilder::calculate1RDMs(const Eigen::VectorXd &x) {
 /**
  *  @return 2RDM from a coefficient vector @param x
  */
-TwoRDMs DOCIRDMBuilder::calculate2RDMs(const Eigen::VectorXd &x) {
+TwoRDMs DOCIRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) {
 
     // The formulas for the DOCI 2-RDMs can be found in (https://github.com/lelemmen/electronic_structure)
 
