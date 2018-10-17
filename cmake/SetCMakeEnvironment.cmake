@@ -93,6 +93,7 @@ set(PROJECT_TEST_SOURCE_FILES
         ${PROJECT_TESTS_FOLDER}/miscellaneous_test.cpp
         ${PROJECT_TESTS_FOLDER}/Molecule_test.cpp
         ${PROJECT_TESTS_FOLDER}/ONV_test.cpp
+        ${PROJECT_TESTS_FOLDER}/RMP2_test.cpp
         ${PROJECT_TESTS_FOLDER}/units_test.cpp)
 
 
