@@ -84,6 +84,7 @@ set(PROJECT_TEST_SOURCE_FILES
         ${PROJECT_TESTS_FOLDER}/Operator/TwoElectronOperator_test.cpp
         ${PROJECT_TESTS_FOLDER}/RHF/DIISRHFSCFSolver_test.cpp
         ${PROJECT_TESTS_FOLDER}/RHF/PlainRHFSCFSolver_test.cpp
+        ${PROJECT_TESTS_FOLDER}/RHF/RHF_test.cpp
         ${PROJECT_TESTS_FOLDER}/AOBasis_test.cpp
         ${PROJECT_TESTS_FOLDER}/Atom_test.cpp
         ${PROJECT_TESTS_FOLDER}/elements_test.cpp

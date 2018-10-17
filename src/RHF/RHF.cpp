@@ -109,8 +109,7 @@ double calculateRHFElectronicEnergy(const Eigen::MatrixXd& D_AO, const Eigen::Ma
  */
 size_t RHFHOMOIndex(size_t N) {
 
-    // throw for RHF
-    if (N / 2 != 0) {
+    if (N % 2 != 0) {
         throw std::invalid_argument("Can't calculate the RHF HOMO index for an odd number of electrons N.");
     }
 

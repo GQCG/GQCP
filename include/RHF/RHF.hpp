@@ -2,7 +2,7 @@
 #define RHF_hpp
 
 
-#include "HamiltonianParameters/HamiltonianParameters_constructors.hpp"
+#include "HamiltonianParameters/HamiltonianParameters.hpp"
 
 #include <Eigen/Dense>
 #include <unsupported/Eigen/CXX11/Tensor>
