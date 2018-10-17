@@ -42,6 +42,8 @@ public:
     double get_electronic_energy() const { return this->electronic_energy; }
     Eigen::MatrixXd get_C() const { return this->C; }
     Eigen::VectorXd get_orbital_energies() const { return this->orbital_energies; }
+    double get_orbital_energies(size_t index) const { return this->orbital_energies(index); }
+
 
     // FRIEND CLASSES
     friend class RHFSCFSolver;
