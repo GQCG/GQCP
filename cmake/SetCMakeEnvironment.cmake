@@ -29,7 +29,9 @@ set(PROJECT_SOURCE_FILES
         ${PROJECT_SOURCE_FOLDER}/AP1roG/AP1roGPSESolver.cpp
         ${PROJECT_SOURCE_FOLDER}/FockSpace/BaseFockSpace.cpp
         ${PROJECT_SOURCE_FOLDER}/FockSpace/FockSpace.cpp
+        ${PROJECT_SOURCE_FOLDER}/FockSpace/FockSpaceProduct.cpp
         ${PROJECT_SOURCE_FOLDER}/HamiltonianBuilder/DOCI.cpp
+        ${PROJECT_SOURCE_FOLDER}/HamiltonianBuilder/FCI.cpp
         ${PROJECT_SOURCE_FOLDER}/HamiltonianBuilder/HamiltonianBuilder.cpp
         ${PROJECT_SOURCE_FOLDER}/HamiltonianParameters/BaseHamiltonianParameters.cpp
         ${PROJECT_SOURCE_FOLDER}/HamiltonianParameters/HamiltonianParameters.cpp
@@ -69,7 +71,9 @@ set(PROJECT_INCLUDE_FILES
         ${PROJECT_INCLUDE_FOLDER}/AP1roG/AP1roGPSESolver.hpp
         ${PROJECT_INCLUDE_FOLDER}/FockSpace/BaseFockSpace.hpp
         ${PROJECT_INCLUDE_FOLDER}/FockSpace/FockSpace.hpp
+        ${PROJECT_INCLUDE_FOLDER}/FockSpace/FockSpaceProduct.hpp
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianBuilder/DOCI.hpp
+        ${PROJECT_INCLUDE_FOLDER}/HamiltonianBuilder/FCI.hpp
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianBuilder/HamiltonianBuilder.hpp
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianParameters/BaseHamiltonianParameters.hpp
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianParameters/HamiltonianParameters.hpp
@@ -107,12 +111,16 @@ set(PROJECT_TESTS_FOLDER ${CMAKE_SOURCE_DIR}/tests)
 set(PROJECT_TEST_SOURCE_FILES
         ${PROJECT_TESTS_FOLDER}/CISolver/CISolver_DOCI_Davidson_test.cpp
         ${PROJECT_TESTS_FOLDER}/CISolver/CISolver_DOCI_Dense_test.cpp
+        ${PROJECT_TESTS_FOLDER}/CISolver/CISolver_FCI_Davidson_test.cpp
+        ${PROJECT_TESTS_FOLDER}/CISolver/CISolver_FCI_Dense_test.cpp
         ${PROJECT_TESTS_FOLDER}/CISolver/CISolver_test.cpp
         ${PROJECT_TESTS_FOLDER}/AP1roG/AP1roG_test.cpp
         ${PROJECT_TESTS_FOLDER}/AP1roG/AP1roGGeminalCoefficients_test.cpp
         ${PROJECT_TESTS_FOLDER}/AP1roG/AP1roGPSESolver_test.cpp
         ${PROJECT_TESTS_FOLDER}/FockSpace/FockSpace_test.cpp
+        ${PROJECT_TESTS_FOLDER}/FockSpace/FockSpaceProduct_test.cpp
         ${PROJECT_TESTS_FOLDER}/HamiltonianBuilder/DOCI_test.cpp
+        ${PROJECT_TESTS_FOLDER}/HamiltonianBuilder/FCI_test.cpp
         ${PROJECT_TESTS_FOLDER}/HamiltonianParameters/HamiltonianParameters_test.cpp
         ${PROJECT_TESTS_FOLDER}/HamiltonianParameters/HamiltonianParameters_constructors_test.cpp
         ${PROJECT_TESTS_FOLDER}/Operator/OneElectronOperator_test.cpp

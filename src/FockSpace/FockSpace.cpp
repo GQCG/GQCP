@@ -37,7 +37,7 @@ size_t FockSpace::ulongNextPermutation(size_t representation) {
  */
 
 FockSpace::FockSpace(size_t K, size_t N) :
-        BaseFockSpace (K, FockSpace::calculateDimension(K, N)),
+        BaseFockSpace(K, FockSpace::calculateDimension(K, N)),
         N (N)
 {
     // Create a zero matrix of dimensions (K+1)x(N+1)
@@ -156,7 +156,7 @@ void FockSpace::setNext(ONV& onv) {
 /**
  *  @return the Fock space address (i.e. the ordering number) of the @param onv in reverse lexical ordering, in the fock space.
  */
-size_t FockSpace::getAddress(ONV& onv) {
+size_t FockSpace::getAddress(const ONV& onv) {
     // An implementation of the formula in Helgaker, starting the addressing count from zero
     size_t address = 0;
     size_t electron_count = 0;  // counts the number of electrons in the spin string up to orbital p

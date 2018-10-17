@@ -33,7 +33,7 @@ public:
 
     // PURE VIRTUAL PUBLIC METHODS
     /**
-     *  @return Hamiltonian matrix as an Eigen::MatrixXd given @param hamiltonian_parameters
+     *  @return the Hamiltonian matrix as an Eigen::MatrixXd given @param hamiltonian_parameters
      */
     virtual Eigen::MatrixXd constructHamiltonian(const HamiltonianParameters& hamiltonian_parameters) = 0;
 

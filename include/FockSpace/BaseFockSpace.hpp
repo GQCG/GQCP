@@ -47,22 +47,6 @@ public:
      *  Creates a Hartree-Fock coefficient expansion (single Slater expansion of the first configuration in the Fock space)
      */
     Eigen::VectorXd HartreeFockExpansion();
-
-    // PURE VIRTUAL PUBLIC METHODS
-    /**
-     *  @return the ONV with the corresponding @param address in the considered space
-     */
-    virtual ONV get_ONV(size_t address) = 0;
-
-    /**
-     *  sets @param ONV to the next ONV in the space
-     */
-    virtual void setNext(ONV& onv) = 0;
-
-    /**
-     *  @return the Fock space address (i.e. the ordering number) of the @param onv in reverse lexical ordering, in the fock space.
-     */
-    virtual size_t getAddress(ONV& onv) = 0;
 };
 
 

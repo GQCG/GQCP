@@ -22,7 +22,6 @@ namespace GQCG {
 class DOCI : public GQCG::HamiltonianBuilder {
 private:
     FockSpace fock_space;  // both the alpha and beta Fock space
-    size_t dim;  // dimension of this->fock_space
 
 
 public:
@@ -30,7 +29,7 @@ public:
     /**
      *  Constructor given a @param fock_space
      */
-    explicit DOCI(FockSpace fock_space);
+    explicit DOCI(const FockSpace& fock_space);
 
 
     // DESTRUCTOR
@@ -39,7 +38,7 @@ public:
 
     // OVERRIDDEN PUBLIC METHODS
     /**
-     *  @return Hamiltonian matrix as an Eigen::MatrixXd given @param hamiltonian_parameters
+     *  @return the Hamiltonian matrix as an Eigen::MatrixXd given @param hamiltonian_parameters
      */
     Eigen::MatrixXd constructHamiltonian(const HamiltonianParameters& hamiltonian_parameters) override;
 
