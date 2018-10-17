@@ -22,7 +22,7 @@ BOOST_AUTO_TEST_CASE ( FCI_h2_sto3g_dense_vs_Davidson ) {
 
     // Create the molecular Hamiltonian parameters for this molecule and basis
     auto mol_ham_par = GQCG::constructMolecularHamiltonianParameters(ao_basis);
-    auto K = mol_ham_par.get_h().get_dim();
+    auto K = mol_ham_par.get_K();
 
     // Create a plain RHF SCF solver and solve the SCF equations
     GQCG::PlainRHFSCFSolver plain_scf_solver (mol_ham_par, h2);
@@ -67,7 +67,7 @@ BOOST_AUTO_TEST_CASE ( FCI_H2_6_31Gxx_dense_vs_Davidson ) {
 
     // Create the molecular Hamiltonian parameters for this molecule and basis
     auto mol_ham_par = GQCG::constructMolecularHamiltonianParameters(ao_basis);
-    auto K = mol_ham_par.get_h().get_dim();
+    auto K = mol_ham_par.get_K();
 
     // Create a plain RHF SCF solver and solve the SCF equations
     GQCG::PlainRHFSCFSolver plain_scf_solver (mol_ham_par, h2);
@@ -112,7 +112,7 @@ BOOST_AUTO_TEST_CASE ( FCI_H2O_STO_3G_dense_vs_Davidson ) {
 
     // Create the molecular Hamiltonian parameters for this molecule and basis
     auto mol_ham_par = GQCG::constructMolecularHamiltonianParameters(ao_basis);
-    auto K = mol_ham_par.get_h().get_dim();
+    auto K = mol_ham_par.get_K();
 
     // Create a plain RHF SCF solver and solve the SCF equations
     GQCG::PlainRHFSCFSolver plain_scf_solver (mol_ham_par, h2o);
