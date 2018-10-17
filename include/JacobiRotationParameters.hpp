@@ -3,6 +3,7 @@
 
 
 #include <stdlib.h>
+#include <ostream>
 
 #include <Eigen/Dense>
 
@@ -30,6 +31,13 @@ public:
      *  Constructor based on a given @param p, @param q and a @param angle expressed in radians
      */
     JacobiRotationParameters(size_t p, size_t q, double angle);
+
+
+    // OPERATORS
+    /**
+     *  Overloading of operator<< for GQCG::JacobiRotationParameters to be used with streams
+     */
+    friend std::ostream& operator<<(std::ostream& os, const GQCG::JacobiRotationParameters& jacobi_rotation_parameters);
 
 
     // GETTERS

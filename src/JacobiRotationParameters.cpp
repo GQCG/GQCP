@@ -25,5 +25,18 @@ JacobiRotationParameters::JacobiRotationParameters(size_t p, size_t q, double an
 }
 
 
+/*
+ *  OPERATORS
+ */
+/**
+ *  Overloading of operator<< for GQCG::JacobiRotationParameters to be used with streams
+ */
+std::ostream& operator<<(std::ostream& os, const GQCG::JacobiRotationParameters& jacobi_rotation_parameters) {
+
+    os << "p: " << jacobi_rotation_parameters.p << ", q: " << jacobi_rotation_parameters.q << ", angle: " << jacobi_rotation_parameters.angle;
+    return os;
+}
+
+
 
 }  // namespace GQCG
