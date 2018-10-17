@@ -134,18 +134,17 @@ size_t AP1roGGeminalCoefficients::vectorIndex(size_t i, size_t a) const {
 
     // Check for invalid values for i and a
     if (i >= this->N_P) {
-        throw std::invalid_argument("i must be smaller than N_P.");
+        throw std::invalid_argument("The major index i (subscript) must be smaller than N_P.");
     }
     if (a < this->N_P) {
-        throw std::invalid_argument("a must be larger than or equal to N_P.");
+        throw std::invalid_argument("The minor index a (superscript) must be larger than or equal to N_P.");
     }
 
 
     // The conversion from i and a to a single vector index is just a little more complicated than row-major storage.
     // If we were to use the row-major storage formula, we would end up with
     //      mu = a + (K - N_P) * i
-    //
-    // but since we would really like our indices abcd (virtuals) to start at N_P, we should subtract N_P accordingly
+    // but since we would really like our indices abcd (virtual orbitals) to start at N_P, we should subtract N_P accordingly
     return (a - this->N_P) + (this->K - this->N_P) * i;
 }
 
