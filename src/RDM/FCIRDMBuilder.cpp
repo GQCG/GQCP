@@ -274,7 +274,7 @@ TwoRDMs FCIRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) {
         }  // loop over p
 
         if (I_alpha < dim_alpha - 1) {  // prevent the last permutation to occur
-            fock_space_alpha.setNext(spin_string_alpha_aaaa);
+            fock_space_alpha.setNext(spin_string_alpha_aabb);
         }
 
     }  // loop over alpha addresses

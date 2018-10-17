@@ -81,7 +81,7 @@ BOOST_AUTO_TEST_CASE ( H2O_2RDM_spin_trace_FCI ) {
 
     BOOST_CHECK(std::abs(two_rdms.two_rdm_aaaa.trace() - N_a*(N_a-1)) < 1.0e-12);
     BOOST_CHECK(std::abs(two_rdms.two_rdm_aabb.trace() - N_a*N_b) < 1.0e-12);
-    BOOST_CHECK(std::abs(two_rdms.two_rdm_bbaa.trace() - N_b*N_b) < 1.0e-12);
+    BOOST_CHECK(std::abs(two_rdms.two_rdm_bbaa.trace() - N_b*N_a) < 1.0e-12);
     BOOST_CHECK(std::abs(two_rdms.two_rdm_bbbb.trace() - N_b*(N_b-1)) < 1.0e-12);
 }
 
