@@ -29,7 +29,7 @@ public:
     /**
      *  Constructor given a @param fock_space
      */
-    explicit DOCI(FockSpace fock_space);
+    explicit DOCI(const FockSpace& fock_space);
 
 
     // DESTRUCTOR
@@ -38,7 +38,7 @@ public:
 
     // OVERRIDDEN PUBLIC METHODS
     /**
-     *  @return Hamiltonian matrix as an Eigen::MatrixXd given @param hamiltonian_parameters
+     *  @return the Hamiltonian matrix as an Eigen::MatrixXd given @param hamiltonian_parameters
      */
     Eigen::MatrixXd constructHamiltonian(const HamiltonianParameters& hamiltonian_parameters) override;
 

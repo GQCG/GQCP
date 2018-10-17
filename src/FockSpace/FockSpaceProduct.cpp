@@ -14,7 +14,7 @@ namespace GQCG {
  */
 
 FockSpaceProduct::FockSpaceProduct(size_t K, size_t N_alpha, size_t N_beta) :
-        BaseFockSpace (K, FockSpaceProduct::calculateDimension(K, N_alpha, N_beta)),
+        BaseFockSpace(K, FockSpaceProduct::calculateDimension(K, N_alpha, N_beta)),
         fock_space_alpha (FockSpace(K, N_alpha)),
         fock_space_beta (FockSpace(K, N_beta)),
         N_alpha (N_alpha),

@@ -80,7 +80,7 @@ public:
     /**
      *  @return the Fock space address (i.e. the ordering number) of the @param onv in reverse lexical ordering, in the fock space.
      */
-    size_t getAddress(ONV& onv);
+    size_t getAddress(const ONV& onv);
 
 
     // FRIEND CLASSES

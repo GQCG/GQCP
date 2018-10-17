@@ -11,8 +11,8 @@ namespace GQCG {
 /**
  *  Constructor given a @param hamiltonian_parameters and @param fock_space
  */
-FCI::FCI(FockSpaceProduct fock_space) :
-        HamiltonianBuilder (),
+FCI::FCI(const FockSpaceProduct& fock_space) :
+        HamiltonianBuilder(),
         fock_space (fock_space)
 {}
 
@@ -23,7 +23,7 @@ FCI::FCI(FockSpaceProduct fock_space) :
  */
 
 /**
- *  @return Hamiltonian matrix as an Eigen::MatrixXd given @param hamiltonian_parameters
+ *  @return the Hamiltonian matrix as an Eigen::MatrixXd given @param hamiltonian_parameters
  */
 Eigen::MatrixXd FCI::constructHamiltonian(const HamiltonianParameters& hamiltonian_parameters) {
 

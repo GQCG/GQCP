@@ -11,8 +11,8 @@ namespace GQCG {
 /**
  *  Constructor given a @param hamiltonian_parameters and @param fock_space
  */
-DOCI::DOCI(FockSpace fock_space) :
-    HamiltonianBuilder (),
+DOCI::DOCI(const FockSpace& fock_space) :
+    HamiltonianBuilder(),
     fock_space (fock_space)
 {}
 
@@ -23,7 +23,7 @@ DOCI::DOCI(FockSpace fock_space) :
  */
 
 /**
- *  @return Hamiltonian matrix as an Eigen::MatrixXd given @param hamiltonian_parameters
+ *  @return the Hamiltonian matrix as an Eigen::MatrixXd given @param hamiltonian_parameters
  */
 Eigen::MatrixXd DOCI::constructHamiltonian(const HamiltonianParameters& hamiltonian_parameters) {
     
@@ -65,7 +65,7 @@ Eigen::MatrixXd DOCI::constructHamiltonian(const HamiltonianParameters& hamilton
         }  // p or e1 loop
 
         // Skip the last permutation
-        if (I<dim-1) {
+        if (I < dim-1) {
             this->fock_space.setNext(onv);
         }
 
@@ -117,7 +117,7 @@ Eigen::VectorXd DOCI::matrixVectorProduct(const HamiltonianParameters& hamiltoni
         }  // p or e1 loop
 
         // Skip the last permutation
-        if (I<dim-1) {
+        if (I < dim-1) {
             this->fock_space.setNext(onv);
         }
 
@@ -150,7 +150,7 @@ Eigen::VectorXd DOCI::calculateDiagonal(const HamiltonianParameters& hamiltonian
         } // p or e1 loop
 
         // Skip the last permutation
-        if (I<dim-1) {
+        if (I < dim-1) {
             this->fock_space.setNext(onv);
         }
 
