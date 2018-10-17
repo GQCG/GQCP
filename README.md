@@ -10,7 +10,7 @@ A C++ library that provides the glue code for our other libraries/modules.
 [![Eigen3 Dependency](https://img.shields.io/badge/Eigen-3.3.4+-000000.svg)](http://eigen.tuxfamily.org/index.php?title=Main_Page)
 [![libint2 Dependency](https://img.shields.io/badge/libint-2.3.1+-000000.svg)](https://github.com/evaleev/libint)
 
-gqcg uses the bases packaged with libint. Please set the LIBINT_DATA_PATH to the directory that contains these bases.
+gqcg uses the bases packaged with libint. Please set the `LIBINT_DATA_PATH` environment variable that contains these bases. In a default installation (of e.g. version v2.3.1), the data path is given by:
 ```
 export LIBINT_DATA_PATH=/usr/local/libint/2.3.1/share/libint/2.3.1/basis
 ```
