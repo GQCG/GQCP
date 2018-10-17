@@ -20,7 +20,7 @@ class FCIRDMBuilder : public RDMBuilder {
 
 public:
     // CONSTRUCTOR
-    explicit FCIRDMBuilder(FockSpaceProduct fock_space);
+    explicit FCIRDMBuilder(const FockSpaceProduct& fock_space);
 
 
     // DESTRUCTOR

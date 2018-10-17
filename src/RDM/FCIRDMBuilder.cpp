@@ -7,7 +7,7 @@ namespace GQCG {
 /*
  *  CONSTRUCTOR
  */
-FCIRDMBuilder::FCIRDMBuilder(FockSpace fock_space) :
+FCIRDMBuilder::FCIRDMBuilder(const FockSpaceProduct& fock_space) :
     fock_space (fock_space)
 {}
 
@@ -80,12 +80,8 @@ OneRDMs FCIRDMBuilder::calculate1RDMs(const Eigen::VectorXd &x) {
 
 
     // BETA
-    ONV spin_string_beta (0, this->addressing_scheme_beta);  // spin string with address 0
+    ONV spin_string_beta = fock_space_beta.get_ONV(0);  // spin string with address 0
     for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {  // I_beta loops over all the addresses of the spin strings
-        if (I_beta > 0) {
-            spin_string_beta.nextPermutation();
-        }
-
         for (size_t p = 0; p < K; p++) {  // p loops over SOs
             int sign_p = 1;
             if (spin_string_beta.annihilate(p, sign_p)) {  // if p is in I_beta
@@ -122,6 +118,11 @@ OneRDMs FCIRDMBuilder::calculate1RDMs(const Eigen::VectorXd &x) {
                 spin_string_beta.create(p);  // undo the previous annihilation
             }  // annihilate on p
         }  // loop over p
+
+        if (I_beta < dim_beta - 1) {  // prevent the last permutation to occur
+            fock_space_beta.setNext(spin_string_beta);
+        }
+
     }  // I_beta loop
     OneRDM one_rdm_aa (D_aa);
     OneRDM one_rdm_bb (D_bb);
@@ -145,23 +146,20 @@ TwoRDMs FCIRDMBuilder::calculate2RDMs(const Eigen::VectorXd &x) {
     
     // Initialize as zero matrices
     size_t K = this->fock_space.get_K();
-    
-    d_aaaa = Eigen::Tensor<double, 4>(K,K,K,K);
+
+    Eigen::Tensor<double, 4> d_aaaa (K,K,K,K);
     d_aaaa.setZero();
-    d_aabb = Eigen::Tensor<double, 4>(K,K,K,K);
+    Eigen::Tensor<double, 4> d_aabb (K,K,K,K);
     d_aabb.setZero();
-    d_bbaa = Eigen::Tensor<double, 4>(K,K,K,K);
+    Eigen::Tensor<double, 4> d_bbaa (K,K,K,K);
     d_bbaa.setZero();
-    d_bbbb = Eigen::Tensor<double, 4>(K,K,K,K);
+    Eigen::Tensor<double, 4> d_bbbb (K,K,K,K);
     d_bbbb.setZero();
 
 
     // ALPHA-ALPHA-ALPHA-ALPHA
-    ONV spin_string_alpha_aaaa (0, this->addressing_scheme_alpha);  // spin string with address 0
+    ONV spin_string_alpha_aaaa = fock_space_alpha.get_ONV(0);  // spin string with address 0
     for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {  // I_alpha loops over all the addresses of the alpha spin strings
-        if (I_alpha > 0) {
-            spin_string_alpha_aaaa.nextPermutation();
-        }
 
         for (size_t p = 0; p < K; p++) {  // p loops over SOs
             int sign_p = 1;  // sign of the operator a_p
@@ -209,15 +207,17 @@ TwoRDMs FCIRDMBuilder::calculate2RDMs(const Eigen::VectorXd &x) {
                 spin_string_alpha_aaaa.create(p);  // undo the previous annihilation
             }
         }  // loop over p
+
+        if (I_alpha < dim_alpha - 1) {  // prevent the last permutation to occur
+            fock_space_alpha.setNext(spin_string_alpha_aaaa);
+        }
+
     }  // loop over I_alpha
 
 
     // ALPHA-ALPHA-BETA-BETA
-    ONV spin_string_alpha_aabb (0, this->addressing_scheme_alpha);  // spin string with address 0
+    ONV spin_string_alpha_aabb = fock_space_alpha.get_ONV(0);  // spin string with address 0
     for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {  // I_alpha loops over all the addresses of the alpha spin strings
-        if (I_alpha > 0) {
-            spin_string_alpha_aabb.nextPermutation();
-        }
 
         for (size_t p = 0; p < K; p++) {  // p loops over SOs
             int sign_p = 1;  // sign of the operator a_p_alpha
@@ -231,11 +231,8 @@ TwoRDMs FCIRDMBuilder::calculate2RDMs(const Eigen::VectorXd &x) {
                         size_t J_alpha = fock_space_alpha.getAddress(spin_string_alpha_aabb);  // the string that couples to I_alpha
 
 
-                        ONV spin_string_beta_aabb (0, this->addressing_scheme_beta);  // spin string with address 0
+                        ONV spin_string_beta_aabb = fock_space_beta.get_ONV(0);  // spin string with address 0
                         for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {  // I_beta loops over all addresses of beta spin strings
-                            if (I_beta > 0) {
-                                spin_string_beta_aabb.nextPermutation();
-                            }
 
                             for (size_t r = 0; r < K; r++) {  // r loops over all SOs
                                 int sign_r = 1;  // sign of the operator a_r_beta
@@ -261,16 +258,25 @@ TwoRDMs FCIRDMBuilder::calculate2RDMs(const Eigen::VectorXd &x) {
                                 }
 
                             }  // loop over r
+
+                            if (I_beta < dim_beta - 1) {  // prevent the last permutation to occur
+                                fock_space_beta.setNext(spin_string_beta_aabb);
+                            }
+
                         }  // loop over beta addresses
 
                         spin_string_alpha_aabb.annihilate(q);  // undo the previous creation
                     }
                 }  // loop over q
 
-
                 spin_string_alpha_aabb.create(p);  // undo the previous annihilation
             }
         }  // loop over p
+
+        if (I_alpha < dim_alpha - 1) {  // prevent the last permutation to occur
+            fock_space_alpha.setNext(spin_string_alpha_aaaa);
+        }
+
     }  // loop over alpha addresses
 
 
@@ -281,11 +287,8 @@ TwoRDMs FCIRDMBuilder::calculate2RDMs(const Eigen::VectorXd &x) {
 
 
     // BETA-BETA-BETA-BETA
-    ONV spin_string_beta_bbbb (0, this->addressing_scheme_beta);  // spin string with address 0
+    ONV spin_string_beta_bbbb = fock_space_beta.get_ONV(0);  // spin string with address 0
     for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {  // I_beta loops over all the addresses of the beta spin strings
-        if (I_beta > 0) {
-            spin_string_beta_bbbb.nextPermutation();
-        }
 
         for (size_t p = 0; p < K; p++) {  // p loops over SOs
             int sign_p = 1;  // sign of the operator a_p
@@ -333,6 +336,11 @@ TwoRDMs FCIRDMBuilder::calculate2RDMs(const Eigen::VectorXd &x) {
                 spin_string_beta_bbbb.create(p);  // undo the previous annihilation
             }
         }  // loop over p
+
+        if (I_beta < dim_beta - 1) {  // prevent the last permutation to occur
+            fock_space_beta.setNext(spin_string_beta_bbbb);
+        }
+
     }  // loop over I_beta
 
     TwoRDM two_rdm_aaaa (d_aaaa);

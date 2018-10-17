@@ -20,7 +20,7 @@ class DOCIRDMBuilder : public RDMBuilder {
 
 public:
     // CONSTRUCTOR
-    explicit DOCIRDMBuilder(FockSpace fock_space);
+    explicit DOCIRDMBuilder(const FockSpace& fock_space);
 
 
     // DESTRUCTOR

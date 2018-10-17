@@ -7,7 +7,7 @@ namespace GQCG {
 /*
  *  CONSTRUCTOR
  */
-DOCIRDMBuilder::DOCIRDMBuilder(FockSpace fock_space) :
+DOCIRDMBuilder::DOCIRDMBuilder(const FockSpace& fock_space) :
     fock_space (fock_space)
 {}
 
