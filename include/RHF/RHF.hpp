@@ -2,7 +2,7 @@
 #define RHF_hpp
 
 
-#include "HamiltonianParameters/HamiltonianParameters_constructors.hpp"
+#include "HamiltonianParameters/HamiltonianParameters.hpp"
 
 #include <Eigen/Dense>
 #include <unsupported/Eigen/CXX11/Tensor>
@@ -42,6 +42,8 @@ public:
     double get_electronic_energy() const { return this->electronic_energy; }
     Eigen::MatrixXd get_C() const { return this->C; }
     Eigen::VectorXd get_orbital_energies() const { return this->orbital_energies; }
+    double get_orbital_energies(size_t index) const { return this->orbital_energies(index); }
+
 
     // FRIEND CLASSES
     friend class RHFSCFSolver;
@@ -67,6 +69,19 @@ Eigen::MatrixXd calculateRHFAOFockMatrix(const Eigen::MatrixXd& D_AO, GQCG::Hami
  *  @return the RHF electronic energy based on the RHF AO density matrix @param: D_AO, the core Hamiltonian @param: H_core_AO and the Fock matrix @param: F_AO
  */
 double calculateRHFElectronicEnergy(const Eigen::MatrixXd& D_AO, const Eigen::MatrixXd& H_core_AO, const Eigen::MatrixXd& F_AO);
+
+
+/**
+ *  @return the RHF HOMO index a number of electrons @param N
+ */
+size_t RHFHOMOIndex(size_t N);
+
+
+/**
+ *  @return the RHF LUMO index given a number of orbitals @param K and a number of electrons @param N
+ */
+size_t RHFLUMOIndex(size_t K, size_t N);
+
 
 }  // namespace GQCG
 

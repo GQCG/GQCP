@@ -2,7 +2,7 @@
 #define GQCG_DOCI_HPP
 
 
-#include "RestrictedHamiltonianBuilder.hpp"
+#include "HamiltonianBuilder.hpp"
 #include "FockSpace/FockSpace.hpp"
 
 #include <memory>
@@ -19,18 +19,17 @@ namespace GQCG {
  *  requires the individual ONVs to be identical (beta configuration = alpha configuration).
  *  In turn this is only possible when both Fock spaces are identical.
  */
-class DOCI : public GQCG::RestrictedHamiltonianBuilder {
+class DOCI : public GQCG::HamiltonianBuilder {
 private:
     FockSpace fock_space;  // both the alpha and beta Fock space
-    size_t dim;  // dimension of this->fock_space
 
 
 public:
     // CONSTRUCTORS
     /**
-     *  Constructor given a @param hamiltonian_parameters and @param fock_space
+     *  Constructor given a @param fock_space
      */
-    explicit DOCI(HamiltonianParameters hamiltonian_parameters, FockSpace fock_space);
+    explicit DOCI(const FockSpace& fock_space);
 
 
     // DESTRUCTOR
@@ -39,19 +38,24 @@ public:
 
     // OVERRIDDEN PUBLIC METHODS
     /**
-     *  @return Hamiltonian matrix as an Eigen::MatrixXd
+     *  @return the Hamiltonian matrix as an Eigen::MatrixXd given @param hamiltonian_parameters
      */
-    Eigen::MatrixXd constructHamiltonian() override;
+    Eigen::MatrixXd constructHamiltonian(const HamiltonianParameters& hamiltonian_parameters) override;
 
     /**
-     *  @return the action of the Hamiltonian of the coefficient vector @param x
+     *  @return the action of the Hamiltonian (@param hamiltonian_parameters and @param diagonal) on the coefficient vector @param x
      */
-    Eigen::VectorXd matrixVectorProduct(const Eigen::VectorXd& x) override;
+    Eigen::VectorXd matrixVectorProduct(const HamiltonianParameters& hamiltonian_parameters, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) override;
 
     /**
-     *  @return the diagonal of the matrix representation of the Hamiltonian
+     *  @return the diagonal of the matrix representation of the Hamiltonian given @param hamiltonian_parameters
      */
-    Eigen::VectorXd calculateDiagonal() override;
+    Eigen::VectorXd calculateDiagonal(const HamiltonianParameters& hamiltonian_parameters) override;
+
+    /**
+     *  @return the fock space of the HamiltonianBuilder
+     */
+    BaseFockSpace* get_fock_space() override { return &fock_space; }
 };
 
 

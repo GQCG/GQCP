@@ -21,8 +21,6 @@ namespace GQCG {
 class FockSpace: public GQCG::BaseFockSpace {
 private:
     const size_t N;  // number of electrons
-    const size_t dim;  // dimension of the Fock space
-
     Matrixu vertex_weights;  // vertex_weights of the addressing scheme
 
 
@@ -53,7 +51,7 @@ public:
     // GETTERS
     size_t get_vertex_weights(size_t p, size_t m) const { return this->vertex_weights[p][m]; }
     Matrixu get_vertex_weights() const { return this->vertex_weights; }
-    size_t get_dimension() const { return dim; }
+    size_t get_N() const { return this->N; }
 
 
     // STATIC PUBLIC METHODS
@@ -69,7 +67,7 @@ public:
     /**
      *  @return the ONV with the corresponding address in the considered space
      */
-    ONV get_ONV(size_t address) override;
+    ONV get_ONV(size_t address);
 
     /**
      *  sets @param ONV to the next ONV in the space
@@ -77,12 +75,12 @@ public:
      *  and updates the corresponding occupation indexes
      *  of the ONV occupation array
      */
-    void setNext(ONV& onv) override;
+    void setNext(ONV& onv);
 
     /**
      *  @return the Fock space address (i.e. the ordering number) of the @param onv in reverse lexical ordering, in the fock space.
      */
-    size_t getAddress(ONV& onv) override;
+    size_t getAddress(const ONV& onv);
 
 
     // FRIEND CLASSES

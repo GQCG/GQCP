@@ -2,12 +2,14 @@
 #define GQCG_HAMILTONIANPARAMETERS_HPP
 
 
-#include <Eigen/Dense>
-
 #include "HamiltonianParameters/BaseHamiltonianParameters.hpp"
 #include "Operator/OneElectronOperator.hpp"
 #include "Operator/TwoElectronOperator.hpp"
 #include "JacobiRotationParameters.hpp"
+#include "RDM/TwoRDM.hpp"
+#include "RDM/OneRDM.hpp"
+
+#include <Eigen/Dense>
 
 
 
@@ -92,9 +94,15 @@ public:
      */
     void rotate(const GQCG::JacobiRotationParameters& jacobi_rotation_parameters);
 
+    /**
+     *  Given @param one_rdm and @param two_rdm
+     *  @return the energy as a result of the contraction of the 1- and 2-RDMs with the one- and two-electron integrals
+     */
+    double calculateEnergy(OneRDM one_rdm, TwoRDM two_rdm);
 
     // FRIEND FUNCTIONS
     friend Eigen::MatrixXd calculateRHFAOFockMatrix(const Eigen::MatrixXd& D_AO, GQCG::HamiltonianParameters ham_par);
+    friend double calculateRMP2EnergyCorrection(const GQCG::HamiltonianParameters& ham_par);
 
     // FRIEND CLASSES
     friend class RHFSCFSolver;
