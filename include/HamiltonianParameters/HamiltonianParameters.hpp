@@ -2,14 +2,14 @@
 #define GQCG_HAMILTONIANPARAMETERS_HPP
 
 
-#include "Eigen/Dense"
-
 #include "HamiltonianParameters/BaseHamiltonianParameters.hpp"
 #include "Operator/OneElectronOperator.hpp"
 #include "Operator/TwoElectronOperator.hpp"
 #include "JacobiRotationParameters.hpp"
 #include "RDM/TwoRDM.hpp"
 #include "RDM/OneRDM.hpp"
+
+#include <Eigen/Dense>
 
 
 
@@ -102,6 +102,7 @@ public:
 
     // FRIEND FUNCTIONS
     friend Eigen::MatrixXd calculateRHFAOFockMatrix(const Eigen::MatrixXd& D_AO, GQCG::HamiltonianParameters ham_par);
+    friend double calculateRMP2EnergyCorrection(const GQCG::HamiltonianParameters& ham_par);
 
     // FRIEND CLASSES
     friend class RHFSCFSolver;
