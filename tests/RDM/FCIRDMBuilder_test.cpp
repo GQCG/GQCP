@@ -12,15 +12,20 @@
 #include <boost/test/included/unit_test.hpp>
 
 
-BOOST_AUTO_TEST_CASE ( lih_1RDM_trace ) {
+BOOST_AUTO_TEST_CASE ( H2O_1RDM_spin_trace_FCI ) {
 
-    // Test if the trace of the 1-RDM gives N
+    // Test if the trace of the 1-RDMs (spin summed, aa and bb) gives N, N_a and N_b
 
     // Get the 1-RDM from FCI
     size_t N_a = 5;
     size_t N_b = 5;
-    
-    auto ham_par = GQCG::readFCIDUMPFile("../tests/data/h2o_Psi4_GAMESS.xyz");
+
+    // Create a Molecule and an AOBasis
+    GQCG::Molecule h2o ("../tests/data/h2o_Psi4_GAMESS.xyz");
+    auto ao_basis = std::make_shared<GQCG::AOBasis>(h2o, "STO-3G");
+
+    // Create the molecular Hamiltonian parameters for this molecule and basis
+    auto ham_par = GQCG::constructMolecularHamiltonianParameters(ao_basis);
     size_t K = ham_par.get_K();  // SO 7
 
     GQCG::FockSpaceProduct fock_space (K, N_a, N_b);  // dim = 441
@@ -34,25 +39,32 @@ BOOST_AUTO_TEST_CASE ( lih_1RDM_trace ) {
 
     Eigen::VectorXd coef = ci_solver.get_eigenpair().get_eigenvector();
 
-    // Check if the FCI 1-RDM has the proper trace.
+    // Check if the FCI 1-RDMs have the proper trace.
     GQCG::FCIRDMBuilder fci_rdm (fock_space);
     GQCG::OneRDMs one_rdms = fci_rdm.calculate1RDMs(coef);
 
-    BOOST_CHECK(std::abs(one_rdms.one_rdm.trace() - N) < 1.0e-12);
+    BOOST_CHECK(std::abs(one_rdms.one_rdm_aa.trace() - N_a) < 1.0e-12);
+    BOOST_CHECK(std::abs(one_rdms.one_rdm_bb.trace() - N_b) < 1.0e-12);
+    BOOST_CHECK(std::abs(one_rdms.one_rdm.trace() - (N_a + N_b)) < 1.0e-12);
 }
 
 
-BOOST_AUTO_TEST_CASE ( lih_2RDM_trace ) {
+BOOST_AUTO_TEST_CASE ( H2O_2RDM_spin_trace_FCI ) {
 
-    // Test if the trace of the 2-RDM (d_ppqq) gives N(N-1)
+    // Test if the traces of the spin-resolved 2-RDMs (d_ppqq) gives the correct number
+    
+    size_t N_a = 5;
+    size_t N_b = 5;
 
+    // Create a Molecule and an AOBasis
+    GQCG::Molecule h2o ("../tests/data/h2o_Psi4_GAMESS.xyz");
+    auto ao_basis = std::make_shared<GQCG::AOBasis>(h2o, "STO-3G");
 
-    // Get the 2-RDM from FCI
-    size_t N = 4;  // 4 electrons
-    size_t K = 16;  // 16 SOs
-    auto ham_par = GQCG::readFCIDUMPFile("../tests/data/lih_631g_caitlin.FCIDUMP");
+    // Create the molecular Hamiltonian parameters for this molecule and basis
+    auto ham_par = GQCG::constructMolecularHamiltonianParameters(ao_basis);
+    size_t K = ham_par.get_K();  // SO 7
 
-    GQCG::FockSpaceProduct fock_space (16, 2);  // dim = 120
+    GQCG::FockSpaceProduct fock_space (K, N_a, N_b);  // dim = 441
     GQCG::FCI fci (fock_space);
 
     // Specify solver options and solve the eigenvalue problem
@@ -63,25 +75,33 @@ BOOST_AUTO_TEST_CASE ( lih_2RDM_trace ) {
 
     Eigen::VectorXd coef = ci_solver.get_eigenpair().get_eigenvector();
 
-    // Check if the 2-RDM has the proper trace.
+    // Check if the FCI 2-RDMs have the proper trace.
     GQCG::FCIRDMBuilder fci_rdm (fock_space);
     GQCG::TwoRDMs two_rdms = fci_rdm.calculate2RDMs(coef);
 
-    BOOST_CHECK(std::abs(two_rdms.two_rdm.trace() - N*(N-1)) < 1.0e-12);
+    BOOST_CHECK(std::abs(two_rdms.two_rdm_aaaa.trace() - N_a*(N_a-1)) < 1.0e-12);
+    BOOST_CHECK(std::abs(two_rdms.two_rdm_aabb.trace() - N_a*N_b) < 1.0e-12);
+    BOOST_CHECK(std::abs(two_rdms.two_rdm_bbaa.trace() - N_b*N_b) < 1.0e-12);
+    BOOST_CHECK(std::abs(two_rdms.two_rdm_bbbb.trace() - N_b*(N_b-1)) < 1.0e-12);
 }
 
 
-BOOST_AUTO_TEST_CASE ( lih_1RDM_2RDM_trace_FCI ) {
+BOOST_AUTO_TEST_CASE ( H2O_1RDM_2RDM_trace_FCI ) {
 
     // Test if the relevant 2-RDM trace gives the 1-RDM for FCI
 
+    size_t N_a = 5;
+    size_t N_b = 5;
+    size_t N = N_a + N_b;
+    // Create a Molecule and an AOBasis
+    GQCG::Molecule h2o ("../tests/data/h2o_Psi4_GAMESS.xyz");
+    auto ao_basis = std::make_shared<GQCG::AOBasis>(h2o, "STO-3G");
 
-    // Get the 1- and 2-RDMs from FCI
-    size_t N = 4;  // 4 electrons
-    size_t K = 16;  // 16 SOs
-    auto ham_par = GQCG::readFCIDUMPFile("../tests/data/lih_631g_caitlin.FCIDUMP");
+    // Create the molecular Hamiltonian parameters for this molecule and basis
+    auto ham_par = GQCG::constructMolecularHamiltonianParameters(ao_basis);
+    size_t K = ham_par.get_K();  // SO 7
 
-    GQCG::FockSpaceProduct fock_space (16, 2);  // dim = 120
+    GQCG::FockSpaceProduct fock_space (K, N_a, N_b);  // dim = 441
     GQCG::FCI fci (fock_space);
 
     // Specify solver options and solve the eigenvalue problem
@@ -97,21 +117,26 @@ BOOST_AUTO_TEST_CASE ( lih_1RDM_2RDM_trace_FCI ) {
     GQCG::TwoRDMs two_rdms = fci_rdm.calculate2RDMs(coef);
     GQCG::OneRDMs one_rdms = fci_rdm.calculate1RDMs(coef);
 
-
     Eigen::MatrixXd D_from_reduction = (1.0/(N-1)) * two_rdms.two_rdm.reduce();
     BOOST_CHECK(one_rdms.one_rdm.get_matrix_representation().isApprox(D_from_reduction, 1.0e-12));
 }
 
 
-BOOST_AUTO_TEST_CASE ( lih_energy_RDM_contraction_FCI ) {
+BOOST_AUTO_TEST_CASE ( H2O_energy_RDM_contraction_FCI ) {
 
     // Test if the contraction of the 1- and 2-RDMs with the one- and two-electron integrals gives the FCI energy
 
-    size_t N = 4;  // 4 electrons
-    size_t K = 16;  // 16 SOs
-    auto ham_par = GQCG::readFCIDUMPFile("../tests/data/lih_631g_caitlin.FCIDUMP");
+    size_t N_a = 5;
+    size_t N_b = 5;
+    // Create a Molecule and an AOBasis
+    GQCG::Molecule h2o ("../tests/data/h2o_Psi4_GAMESS.xyz");
+    auto ao_basis = std::make_shared<GQCG::AOBasis>(h2o, "STO-3G");
 
-    GQCG::FockSpaceProduct fock_space (16, 2);  // dim = 120
+    // Create the molecular Hamiltonian parameters for this molecule and basis
+    auto ham_par = GQCG::constructMolecularHamiltonianParameters(ao_basis);
+    size_t K = ham_par.get_K();  // SO 7
+
+    GQCG::FockSpaceProduct fock_space (K, N_a, N_b);  // dim = 441
     GQCG::FCI fci (fock_space);
 
     // Specify solver options and solve the eigenvalue problem

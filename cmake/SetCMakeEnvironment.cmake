@@ -128,6 +128,7 @@ set(PROJECT_TEST_SOURCE_FILES
         ${PROJECT_TESTS_FOLDER}/Operator/OneElectronOperator_test.cpp
         ${PROJECT_TESTS_FOLDER}/Operator/TwoElectronOperator_test.cpp
         ${PROJECT_TESTS_FOLDER}/RDM/DOCIRDMBuilder_test.cpp
+        ${PROJECT_TESTS_FOLDER}/RDM/FCIRDMBuilder_test.cpp
         ${PROJECT_TESTS_FOLDER}/RHF/DIISRHFSCFSolver_test.cpp
         ${PROJECT_TESTS_FOLDER}/RHF/PlainRHFSCFSolver_test.cpp
         ${PROJECT_TESTS_FOLDER}/RHF/RHF_test.cpp
