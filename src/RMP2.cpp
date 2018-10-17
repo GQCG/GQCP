@@ -1,8 +1,6 @@
 #include "RMP2.hpp"
 
 
-
-
 namespace GQCG {
 
 
