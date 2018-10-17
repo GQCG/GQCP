@@ -17,21 +17,23 @@ namespace GQCG {
  */
 HamiltonianParameters::HamiltonianParameters(std::shared_ptr<GQCG::AOBasis> ao_basis, const GQCG::OneElectronOperator& S, const GQCG::OneElectronOperator& h, const GQCG::TwoElectronOperator& g, const Eigen::MatrixXd& C) :
     BaseHamiltonianParameters(std::move(ao_basis)),
+    K (S.dim),
     S (S),
     h (h),
     g (g),
     C (C)
 {
     // Check if the dimensions of all matrix representations are compatible
-    size_t K = 0;
-    if (!(this->ao_basis == nullptr)) {
-        K = this->ao_basis->number_of_basis_functions;
-    } else {  // we don't have an AOBasis
-        K = S.dim;
+    auto error = std::invalid_argument("The dimensions of the operators and coefficient matrix are incompatible.");
+
+    if (this->ao_basis) {  // ao_basis is not nullptr
+        if (this->K != this->ao_basis->number_of_basis_functions) {
+            throw error;
+        }
     }
 
-    if ((S.dim != K) || (h.dim != K) || (g.dim != K) || (C.cols() != K) || (C.rows() != K)) {
-        throw std::invalid_argument("The dimensions of the operators and coefficient matrix are incompatible.");
+    if ((h.dim != this->K) || (g.dim != this->K) || (C.cols() != this->K) || (C.rows() != this->K)) {
+        throw error;
     }
 }
 
@@ -43,6 +45,7 @@ HamiltonianParameters::HamiltonianParameters(std::shared_ptr<GQCG::AOBasis> ao_b
  */
 HamiltonianParameters::HamiltonianParameters(const GQCG::HamiltonianParameters& ham_par, const Eigen::MatrixXd& C) :
     BaseHamiltonianParameters(ham_par.ao_basis),
+    K (ham_par.S.dim),
     S (ham_par.S),
     h (ham_par.h),
     g (ham_par.g),
@@ -126,5 +129,27 @@ void HamiltonianParameters::rotate(const GQCG::JacobiRotationParameters& jacobi_
 }
 
 
+/**
+ *  Given @param one_rdm and @param two_rdm
+ *  @return the energy as a result of the contraction of the 1- and 2-RDMs with the one- and two-electron integrals
+ */
+double HamiltonianParameters::calculateEnergy(OneRDM one_rdm, TwoRDM two_rdm){
+
+    double energy_by_contraction = (this->h.get_matrix_representation() * one_rdm.get_matrix_representation()).trace();
+
+    Eigen::Tensor<double, 4> d = two_rdm.get_matrix_representation();
+    Eigen::Tensor<double, 4> g = this->g.get_matrix_representation();
+
+    // Specify the contractions for the relevant contraction of the two-electron integrals and the 2-RDM
+    //      0.5 g(p q r s) d(p q r s)
+    Eigen::array<Eigen::IndexPair<int>, 4> contractions = {Eigen::IndexPair<int>(0,0), Eigen::IndexPair<int>(1,1), Eigen::IndexPair<int>(2,2), Eigen::IndexPair<int>(3,3)};
+    //      Perform the contraction
+    Eigen::Tensor<double, 0> contraction = 0.5 * g.contract(d, contractions);
+
+    // As the contraction is a scalar (a tensor of rank 0), we should access by (0).
+    energy_by_contraction += contraction(0);
+
+    return energy_by_contraction;
+}
 
 }  // namespace GQCG

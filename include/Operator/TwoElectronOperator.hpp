@@ -22,6 +22,7 @@ private:
 public:
     // GETTERS
     Eigen::Tensor<double, 4> get_matrix_representation() const { return this->tensor; }
+    double get(size_t p, size_t q, size_t r, size_t s) { return this->tensor(p, q, r, s); }
 
 
     // CONSTRUCTORS

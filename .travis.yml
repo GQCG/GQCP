@@ -48,6 +48,17 @@ install:
   - mkdir build && cd build
   - cmake .. && make && make test && sudo make install
 
+  # Install Spectra as dependency for numopt
+  - cd /usr/local/
+  - sudo git clone https://github.com/yixuan/spectra.git
+
+  # Install numopt
+  - mkdir /tmp/numopt && cd /tmp/numopt
+  - git clone https://github.com/GQCG/numopt.git --branch master --single-branch
+  - cd numopt
+  - mkdir build && cd build
+  - cmake .. && make && make test && sudo make install
+
   # We can't install libint2 (2.2.0+) through APT.
   # Since compiling libint2 takes around 15 minutes on Travis, it is a good idea to cache it (see also below)
   - |

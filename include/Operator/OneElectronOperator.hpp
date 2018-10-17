@@ -29,7 +29,8 @@ public:
 
     // GETTERS
     Eigen::MatrixXd get_matrix_representation() const { return this->matrix; }
-    
+    double get(size_t p, size_t q) { return this->matrix(p,q); }
+
     
     // OPERATORS
     /**

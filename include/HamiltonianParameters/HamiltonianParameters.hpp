@@ -6,6 +6,8 @@
 #include "Operator/OneElectronOperator.hpp"
 #include "Operator/TwoElectronOperator.hpp"
 #include "JacobiRotationParameters.hpp"
+#include "RDM/TwoRDM.hpp"
+#include "RDM/OneRDM.hpp"
 
 #include <Eigen/Dense>
 
@@ -16,6 +18,8 @@ namespace GQCG {
 
 class HamiltonianParameters : public BaseHamiltonianParameters {
 private:
+    const size_t K;  // the number of spatial orbitals
+
     OneElectronOperator S;  // overlap
 
     OneElectronOperator h;  // one-electron interactions (i.e. the core Hamiltonian)
@@ -90,6 +94,11 @@ public:
      */
     void rotate(const GQCG::JacobiRotationParameters& jacobi_rotation_parameters);
 
+    /**
+     *  Given @param one_rdm and @param two_rdm
+     *  @return the energy as a result of the contraction of the 1- and 2-RDMs with the one- and two-electron integrals
+     */
+    double calculateEnergy(OneRDM one_rdm, TwoRDM two_rdm);
 
     // FRIEND FUNCTIONS
     friend Eigen::MatrixXd calculateRHFAOFockMatrix(const Eigen::MatrixXd& D_AO, GQCG::HamiltonianParameters ham_par);
@@ -98,6 +107,7 @@ public:
     // FRIEND CLASSES
     friend class RHFSCFSolver;
     friend class DIISRHFSCFSolver;
+    friend class AP1roGPSESolver;
 };
 
 
