@@ -47,13 +47,8 @@ AP1roGPSESolver::AP1roGPSESolver(const GQCG::Molecule& molecule, const GQCG::Ham
  *  The initial guess for the geminal coefficients is zero
  */
 AP1roGPSESolver::AP1roGPSESolver(const GQCG::Molecule& molecule, const GQCG::HamiltonianParameters& ham_par) :
-    AP1roGPSESolver(molecule.N / 2, ham_par, GQCG::AP1roGGeminalCoefficients(N_P, ham_par.K))
-{
-    // Check if we have an even number of electrons
-    if ((molecule.N % 2) != 0) {
-        throw std::invalid_argument("The given number of electrons is odd.");
-    }
-}
+    AP1roGPSESolver(molecule, ham_par, GQCG::AP1roGGeminalCoefficients(molecule.N/2, ham_par.K))
+{}
 
 
 

@@ -272,13 +272,10 @@ double AP1roGJacobiOrbitalOptimizer::findOptimalRotationAngle(size_t p, size_t q
 void AP1roGJacobiOrbitalOptimizer::solve() {
 
     // Solve the PSEs before starting
-    GQCG::AP1roGPSESolver pse_solver (this->N_P, this->ham_par);
-    pse_solver.solve();
-    auto G = pse_solver.get_solution().get_geminal_coefficients();
-    std::cout << "G as vector: " << std::endl << G.asVector() << std::endl << std::endl;
+    GQCG::AP1roGPSESolver initial_pse_solver (this->N_P, this->ham_par);
+    initial_pse_solver.solve();
+    auto G = initial_pse_solver.get_solution().get_geminal_coefficients();
     double E_old = GQCG::calculateAP1roGEnergy(G, this->ham_par);
-    std::cout << "E_old: " << E_old << std::endl;
-
 
     size_t iterations = 0;
     while (!(this->is_converged)) {
@@ -298,26 +295,27 @@ void AP1roGJacobiOrbitalOptimizer::solve() {
             }
         }  // loop over p>q
 
-        auto optimal_jacobi_parameters = min_q.top().jacobi_rotation_parameters;
-
         // Check for if there were no Jacobi parameters that lower the energy
-        // TODO
+        double E_promised = min_q.top().energy_after_rotation;
+        if (E_promised > E_old) {
+            std::cerr << "Did not find a rotation that would lower the energy." << std::endl;
+        }
 
+
+        auto optimal_jacobi_parameters = min_q.top().jacobi_rotation_parameters;
 
         // Using the found Jacobi parameters, rotate the basis with the corresponding orthogonal Jacobi matrix
         this->ham_par.rotate(optimal_jacobi_parameters);
 
 
         // Solve the PSEs in the rotated spatial orbital basis
-        // UPDATE INITIAL GUESS
-        GQCG::AP1roGPSESolver pse_solver (this->N_P, this->ham_par);
+        GQCG::AP1roGPSESolver pse_solver (this->N_P, this->ham_par, G);  // use the unrotated solution G as initial guess for the PSEs in the rotated basis
         pse_solver.solve();
-        auto G = pse_solver.get_solution().get_geminal_coefficients();
-        double E_new = GQCG::calculateAP1roGEnergy(G, this->ham_par);
-        std::cout << "E_new: " << E_new << std::endl;
+        G = pse_solver.get_solution().get_geminal_coefficients();
+        double E = GQCG::calculateAP1roGEnergy(G, this->ham_par);
 
         // Check for convergence
-        if (std::abs(E_new - E_old) < this->oo_threshold) {
+        if (std::abs(E - E_old) < this->oo_threshold) {
             this->is_converged = true;
 
             // Set the solution
@@ -325,7 +323,7 @@ void AP1roGJacobiOrbitalOptimizer::solve() {
             this->solution = GQCG::AP1roG(G, electronic_energy);
         } else {
             iterations++;
-            E_old = E_new;
+            E_old = E;  // copy the current energy to be able to check for energy convergence.
 
             if (iterations == this->maximum_number_of_oo_iterations) {
                 throw std::runtime_error("The orbital optimization procedure did not converge.");
