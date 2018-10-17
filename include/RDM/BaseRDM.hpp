@@ -32,7 +32,7 @@ public:
 
 
     // GETTERS
-    size_t get_dim() { return this->dim; }
+    size_t get_dim() const { return this->dim; }
 };
 
 

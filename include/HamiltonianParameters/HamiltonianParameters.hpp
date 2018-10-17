@@ -99,7 +99,17 @@ public:
      *  Given @param one_rdm and @param two_rdm
      *  @return the energy as a result of the contraction of the 1- and 2-RDMs with the one- and two-electron integrals
      */
-    double calculateEnergy(const GQCG::OneRDM& one_rdm, const GQCG::TwoRDM& two_rdm);
+    double calculateEnergy(const GQCG::OneRDM& one_rdm, const GQCG::TwoRDM& two_rdm) const;
+
+    /**
+     *  Given a @param one_rdm and a @param two_rdm, @return the generalized Fock matrix F as a OneElectronOperator
+     */
+    GQCG::OneElectronOperator calculateGeneralizedFockMatrix(const GQCG::OneRDM& one_rdm, const GQCG::TwoRDM& two_rdm) const;
+
+    /**
+     *  Given a @param D: 1-RDM and a @param d: 2-RDM, @return the super-generalized Fock matrix W as a TwoElectronOperator
+     */
+    GQCG::TwoElectronOperator calculateSuperGeneralizedFockMatrix(const GQCG::OneRDM& one_rdm, const GQCG::TwoRDM& two_rdm) const;
 
 
     // FRIEND FUNCTIONS
