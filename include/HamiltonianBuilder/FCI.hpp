@@ -11,7 +11,7 @@ namespace GQCG {
 
 /**
  *  Full configuration interaction builds a hamiltonian matrix
- *  based on a wavefunction containing fixed amount of alpha and beta electrons.
+ *  based on a wavefunction containing all configuration pertaining to a fixed amount of alpha and beta electrons.
  *  This means that the ONV is a combination of two ONVs, one from an alpha and beta Fock space.
  */
 class FCI : public GQCG::HamiltonianBuilder {

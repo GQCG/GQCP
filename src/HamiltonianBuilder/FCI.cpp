@@ -31,14 +31,12 @@ Eigen::MatrixXd FCI::constructHamiltonian(const HamiltonianParameters& hamiltoni
     if (K != this->fock_space.get_K()) {
         throw std::invalid_argument("Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
     }
-    
-    Eigen::VectorXd diagonal = calculateDiagonal(hamiltonian_parameters);
+
     Eigen::MatrixXd result_matrix = Eigen::MatrixXd::Zero(this->fock_space.get_dimension(), this->fock_space.get_dimension());
     
     FockSpace fock_space_alpha = fock_space.get_fock_space_alpha();
     FockSpace fock_space_beta = fock_space.get_fock_space_beta();
 
-    auto dim = fock_space.get_dimension();
     auto N_alpha = fock_space_alpha.get_N();
     auto dim_alpha = fock_space_alpha.get_dimension();
     auto N_beta = fock_space_beta.get_N();
@@ -487,9 +485,7 @@ Eigen::VectorXd FCI::calculateDiagonal(const HamiltonianParameters& hamiltonian_
     FockSpace fock_space_alpha = fock_space.get_fock_space_alpha();
     FockSpace fock_space_beta = fock_space.get_fock_space_beta();
 
-    auto N_alpha = fock_space_alpha.get_N();
     auto dim_alpha = fock_space_alpha.get_dimension();
-    auto N_beta = fock_space_beta.get_N();
     auto dim_beta = fock_space_beta.get_dimension();
     auto dim = fock_space.get_dimension();
 

@@ -4,7 +4,6 @@
 namespace GQCG {
 
 
-
 /*
  *  CONSTRUCTORS
  */
@@ -37,7 +36,6 @@ size_t FockSpaceProduct::calculateDimension(size_t K, size_t N_alpha, size_t N_b
     size_t beta_dim = FockSpace::calculateDimension(K, N_beta);
     return boost::numeric::converter<double, size_t>::convert(beta_dim * alpha_dim);
 }
-
 
 
 }  // namespace GQCG

@@ -24,7 +24,6 @@ private:
     FockSpace fock_space_beta;
 
 
-
 public:
     // CONSTRUCTORS
     /**
