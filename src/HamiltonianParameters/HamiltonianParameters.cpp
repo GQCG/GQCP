@@ -133,7 +133,7 @@ void HamiltonianParameters::rotate(const GQCG::JacobiRotationParameters& jacobi_
  *  Given @param one_rdm and @param two_rdm
  *  @return the energy as a result of the contraction of the 1- and 2-RDMs with the one- and two-electron integrals
  */
-double HamiltonianParameters::calculateEnergy(OneRDM one_rdm, TwoRDM two_rdm){
+    double HamiltonianParameters::calculateEnergy(const GQCG::OneRDM& one_rdm, const GQCG::TwoRDM& two_rdm){
 
     double energy_by_contraction = (this->h.get_matrix_representation() * one_rdm.get_matrix_representation()).trace();
 
@@ -151,5 +151,6 @@ double HamiltonianParameters::calculateEnergy(OneRDM one_rdm, TwoRDM two_rdm){
 
     return energy_by_contraction;
 }
+
 
 }  // namespace GQCG
