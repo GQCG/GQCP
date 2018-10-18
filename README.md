@@ -39,3 +39,15 @@ Basic usage of this library can be found in the `tests` directory. If you use CM
     find_package(gqcp 0.0.1)
 
 CMake then provides the commands `gqcp_INCLUDE_DIRS` to be used in your `target_include_directories` and the library `gqcp` to be used in your `target_link_libraries`.
+
+## Documentation
+Documentation can be built with Doxygen (Graphviz required for UML generation). If you pass the following option to CMake
+```
+cmake -DBUILD_DOCS=ON ..
+```
+a custom `docs` target will be configured. After the documentation is compiled
+```
+make docs
+```
+the html documentation can be found in the docs/html directory of the build.
+
