@@ -62,7 +62,7 @@ public:
     /**
      *  @return WaveFunction instance after solving the CI problem for a given eigenvector at @param index
      */
-    WaveFunction get_wavefunction(size_t index = 0);
+    GQCG::WaveFunction get_wavefunction(size_t index = 0);
 };
 
 
