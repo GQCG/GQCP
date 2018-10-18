@@ -3,6 +3,8 @@
 
 #include "FockSpace/FockSpace.hpp"
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "HamiltonianBuilder/DOCI.hpp"
+#include "CISolver/CISolver.hpp"
 
 #include <numopt.hpp>
 
@@ -19,9 +21,12 @@ namespace GQCG {
 class DOCINewtonOrbitalOptimizer {
 private:
     const GQCG::FockSpace fock_space;
+    GQCG::DOCI doci;
 
     GQCG::HamiltonianParameters ham_par;
     numopt::eigenproblem::BaseSolverOptions& solver_options;
+    GQCG::CISolver doci_solver;
+
     const double oo_convergence_threshold;
     const size_t maximum_number_of_oo_iterations;
     bool is_converged = false;
@@ -34,6 +39,9 @@ public:
      */
     DOCINewtonOrbitalOptimizer(const GQCG::FockSpace& fock_space, const GQCG::HamiltonianParameters& ham_par, numopt::eigenproblem::BaseSolverOptions& solver_options, double oo_convergence_threshold=1.0e-08, size_t maximum_number_of_oo_iterations=128);
 
+    // GETTERS
+    std::vector<numopt::eigenproblem::Eigenpair> get_eigenpairs() const;
+    numopt::eigenproblem::Eigenpair get_eigenpair(size_t index = 0) const;
 
     // PUBLIC METHODS
     /**
@@ -41,6 +49,10 @@ public:
      */
     void solve();
 
+    /**
+     *  @return a WaveFunction instance after performing the orbital optimization for a given eigenvector at @param index
+     */
+    GQCG::WaveFunction get_wavefunction(size_t index = 0);
 };
 
 
