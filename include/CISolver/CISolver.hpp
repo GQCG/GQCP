@@ -5,7 +5,9 @@
 #include "HamiltonianBuilder/HamiltonianBuilder.hpp"
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "WaveFunction.hpp"
+
 #include <numopt.hpp>
+
 
 namespace GQCG {
 
