@@ -49,5 +49,6 @@ a custom `docs` target will be configured. After the documentation is compiled
 ```
 make docs
 ```
-the html documentation can be found in the docs/html directory of the build.
+
+the html documentation can be found in the docs/html directory of the build (start with the index.html file). 
 
