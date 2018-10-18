@@ -1,6 +1,5 @@
 #include "DOCINewtonOrbitalOptimizer.hpp"
 
-<<<<<<< HEAD
 #include <cpputil.hpp>
 #include <unsupported/Eigen/MatrixFunctions>
 
@@ -8,8 +7,6 @@
 #include "CISolver/CISolver.hpp"
 #include "RDM/DOCIRDMBuilder.hpp"
 
-=======
->>>>>>> Initial bringing over of the OO-DOCI code.
 
 namespace GQCG {
 
