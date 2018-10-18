@@ -1,48 +1,53 @@
 #ifndef GQCG_RDMBUILDER_HPP
 #define GQCG_RDMBUILDER_HPP
 
+#include "RDM/BaseRDMBuilder.hpp"
+#include "FockSpace/FockSpace.hpp"
+#include "FockSpace/FockSpaceProduct.hpp"
 
-#include "RDM/OneRDM.hpp"
-#include "RDM/TwoRDM.hpp"
-#include "RDM/RDMs.hpp"
-#include "FockSpace/BaseFockSpace.hpp"
+#include <memory>
 
 
 namespace GQCG {
 
 
 /**
- *  RDMBuilder is an abstract base class for the calculation of a density matrix from a given wave function
- *  or coefficient expansion in a Fock space
+ *  RDMBuilder is a wrapper around the RDMBuilders that provides the functionality of the correct RDMBuilder
+ *  for a given Fock space at compile- or runtime.
  */
+
+
 class RDMBuilder {
+private:
+    std::shared_ptr<GQCG::BaseRDMBuilder> rdm_builder;
 public:
     // CONSTRUCTOR
-    RDMBuilder() = default;
-
-
-    // DESTRUCTOR
     /**
-     *  Provide a pure virtual destructor to make the class abstract
+     *  Allocates a DOCIRDMBuilder based on @param fock_space
      */
-    virtual ~RDMBuilder() = 0;
+    RDMBuilder(const FockSpace& fock_space);
+
+    /**
+     *  Allocates a FCIRDMBuilder based on @param fock_space
+     */
+    RDMBuilder(const FockSpaceProduct& fock_space);
+
+    /**
+     *  Allocates the correct derived BaseRDMBuilder based on @param fock_space
+     */
+    RDMBuilder(const BaseFockSpace& fock_space);
 
 
-    // PURE VIRTUAL PUBLIC METHODS
+    // PUBLIC METHODS
     /**
      *  @return all 1-RDMs from a coefficient vector @param x
      */
-    virtual OneRDMs calculate1RDMs(const Eigen::VectorXd& x) = 0;
+    OneRDMs calculate1RDMs(const Eigen::VectorXd &x) { return rdm_builder->calculate1RDMs(x); }
 
     /**
      *  @return all 2-RDMs from a coefficient vector @param x
      */
-    virtual TwoRDMs calculate2RDMs(const Eigen::VectorXd& x) = 0;
-
-    /**
-     *  @return the Fock space of the RDMBuilder
-     */
-    virtual BaseFockSpace* get_fock_space() = 0;
+    TwoRDMs calculate2RDMs(const Eigen::VectorXd &x) { return rdm_builder->calculate2RDMs(x); }
 };
 
 

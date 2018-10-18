@@ -41,6 +41,7 @@ set(PROJECT_SOURCE_FILES
         ${PROJECT_SOURCE_FOLDER}/Operator/OneElectronOperator.cpp
         ${PROJECT_SOURCE_FOLDER}/Operator/TwoElectronOperator.cpp
         ${PROJECT_SOURCE_FOLDER}/RDM/BaseRDM.cpp
+        ${PROJECT_SOURCE_FOLDER}/RDM/BaseRDMBuilder.cpp
         ${PROJECT_SOURCE_FOLDER}/RDM/DOCIRDMBuilder.cpp
         ${PROJECT_SOURCE_FOLDER}/RDM/FCIRDMBuilder.cpp
         ${PROJECT_SOURCE_FOLDER}/RDM/OneRDM.cpp
@@ -85,6 +86,7 @@ set(PROJECT_INCLUDE_FILES
         ${PROJECT_INCLUDE_FOLDER}/Operator/OneElectronOperator.hpp
         ${PROJECT_INCLUDE_FOLDER}/Operator/TwoElectronOperator.hpp
         ${PROJECT_INCLUDE_FOLDER}/RDM/BaseRDM.hpp
+        ${PROJECT_INCLUDE_FOLDER}/RDM/BaseRDMBuilder.hpp
         ${PROJECT_INCLUDE_FOLDER}/RDM/DOCIRDMBuilder.hpp
         ${PROJECT_INCLUDE_FOLDER}/RDM/FCIRDMBuilder.hpp
         ${PROJECT_INCLUDE_FOLDER}/RDM/OneRDM.hpp
@@ -132,6 +134,7 @@ set(PROJECT_TEST_SOURCE_FILES
         ${PROJECT_TESTS_FOLDER}/Operator/TwoElectronOperator_test.cpp
         ${PROJECT_TESTS_FOLDER}/RDM/DOCIRDMBuilder_test.cpp
         ${PROJECT_TESTS_FOLDER}/RDM/FCIRDMBuilder_test.cpp
+        ${PROJECT_TESTS_FOLDER}/RDM/RDMBuilder_test.cpp
         ${PROJECT_TESTS_FOLDER}/RHF/DIISRHFSCFSolver_test.cpp
         ${PROJECT_TESTS_FOLDER}/RHF/PlainRHFSCFSolver_test.cpp
         ${PROJECT_TESTS_FOLDER}/RHF/RHF_test.cpp

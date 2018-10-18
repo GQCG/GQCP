@@ -11,6 +11,15 @@ namespace GQCG {
 
 
 /**
+ *  An enum class for the implemented Fock space types
+ */
+enum class FockSpaceType {
+    FockSpace,
+    FockSpaceProduct
+};
+
+
+/**
  *  A base class for the Fock space
  *  Interfacing requires the Fock space to generate an ONV from a given address
  *  transform a given ONV into the next ONV (in the full or selected space)
@@ -40,7 +49,7 @@ public:
     // GETTERS
     size_t get_dimension() const { return dim; }
     size_t get_K() const { return K; }
-
+    virtual FockSpaceType get_fock_space_type() const = 0;
 
     // PUBLIC METHODS
     /**
