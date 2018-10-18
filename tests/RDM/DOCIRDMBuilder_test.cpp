@@ -18,10 +18,10 @@ BOOST_AUTO_TEST_CASE ( lih_1RDM_trace ) {
 
     // Get the 1-RDM from DOCI
     size_t N = 4;  // 4 electrons
-    size_t K = 16;  // 16 SOs
     auto ham_par = GQCG::readFCIDUMPFile("../tests/data/lih_631g_caitlin.FCIDUMP");
+    size_t K = ham_par.get_K();  // 16 SO
 
-    GQCG::FockSpace fock_space (16, 2);  // dim = 120
+    GQCG::FockSpace fock_space (K, N/2);  // dim = 120
     GQCG::DOCI doci (fock_space);
 
     // Specify solver options and solve the eigenvalue problem
@@ -45,12 +45,12 @@ BOOST_AUTO_TEST_CASE ( lih_2RDM_trace ) {
     // Test if the trace of the 2-RDM (d_ppqq) gives N(N-1)
 
 
-    // Get the 2-RDM from DOCI
+    // Get the 1-RDM from DOCI
     size_t N = 4;  // 4 electrons
-    size_t K = 16;  // 16 SOs
     auto ham_par = GQCG::readFCIDUMPFile("../tests/data/lih_631g_caitlin.FCIDUMP");
+    size_t K = ham_par.get_K();  // 16 SO
 
-    GQCG::FockSpace fock_space (16, 2);  // dim = 120
+    GQCG::FockSpace fock_space (K, N/2);  // dim = 120
     GQCG::DOCI doci (fock_space);
 
     // Specify solver options and solve the eigenvalue problem
@@ -74,12 +74,12 @@ BOOST_AUTO_TEST_CASE ( lih_1RDM_2RDM_trace_DOCI ) {
     // Test if the relevant 2-RDM trace gives the 1-RDM for DOCI
 
 
-    // Get the 1- and 2-RDMs from DOCI
+    // Get the 1-RDM from DOCI
     size_t N = 4;  // 4 electrons
-    size_t K = 16;  // 16 SOs
     auto ham_par = GQCG::readFCIDUMPFile("../tests/data/lih_631g_caitlin.FCIDUMP");
+    size_t K = ham_par.get_K();  // 16 SO
 
-    GQCG::FockSpace fock_space (16, 2);  // dim = 120
+    GQCG::FockSpace fock_space (K, N/2);  // dim = 120
     GQCG::DOCI doci (fock_space);
 
     // Specify solver options and solve the eigenvalue problem
@@ -105,11 +105,12 @@ BOOST_AUTO_TEST_CASE ( lih_energy_RDM_contraction_DOCI ) {
 
     // Test if the contraction of the 1- and 2-RDMs with the one- and two-electron integrals gives the DOCI energy
 
+    // Get the 1-RDM from DOCI
     size_t N = 4;  // 4 electrons
-    size_t K = 16;  // 16 SOs
     auto ham_par = GQCG::readFCIDUMPFile("../tests/data/lih_631g_caitlin.FCIDUMP");
+    size_t K = ham_par.get_K();  // 16 SO
 
-    GQCG::FockSpace fock_space (16, 2);  // dim = 120
+    GQCG::FockSpace fock_space (K, N/2);  // dim = 120
     GQCG::DOCI doci (fock_space);
 
     // Specify solver options and solve the eigenvalue problem

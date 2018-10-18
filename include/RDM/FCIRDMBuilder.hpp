@@ -1,8 +1,8 @@
-#ifndef GQCG_DOCIRDMBUILDER_HPP
-#define GQCG_DOCIRDMBUILDER_HPP
+#ifndef GQCG_FCIRDMBUILDER_HPP
+#define GQCG_FCIRDMBUILDER_HPP
 
 
-#include "FockSpace/FockSpace.hpp"
+#include "FockSpace/FockSpaceProduct.hpp"
 #include "RDM/RDMBuilder.hpp"
 #include "RDM/RDMs.hpp"
 
@@ -11,20 +11,20 @@ namespace GQCG {
 
 
 /**
- *  DOCIRDMBuilder is a class for the calculation of a density matrix from a given wave function
- *  or coefficient expansion in a doubly occupied or single Fock space
+ *  FCIRDMBuilder is a class for the calculation of a density matrix from a given wave function
+ *  or coefficient expansion in the Full CI Fock space
  */
-class DOCIRDMBuilder : public RDMBuilder {
-    FockSpace fock_space;  // both the alpha and beta Fock space
+class FCIRDMBuilder : public RDMBuilder {
+    FockSpaceProduct fock_space;  // fock space containing the alpha and beta Fock space
 
 
 public:
     // CONSTRUCTOR
-    explicit DOCIRDMBuilder(const FockSpace& fock_space);
+    explicit FCIRDMBuilder(const FockSpaceProduct& fock_space);
 
 
     // DESTRUCTOR
-    ~DOCIRDMBuilder() = default;
+    ~FCIRDMBuilder() = default;
 
 
     // OVERRIDDEN PUBLIC METHODS
@@ -48,4 +48,4 @@ public:
 }  // namespace GQCG
 
 
-#endif  // GQCG_DOCIRDMBUILDER_HPP
+#endif  // GQCG_FCIRDMBUILDER_HPP

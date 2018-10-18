@@ -53,6 +53,7 @@ public:
     // GETTERS
     GQCG::OneElectronOperator get_h() const { return this->h; }
     GQCG::TwoElectronOperator get_g() const { return this->g; }
+    size_t get_K() const { return this->K; }
 
     
     // PUBLIC METHODS
