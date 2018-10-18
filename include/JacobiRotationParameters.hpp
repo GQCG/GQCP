@@ -3,6 +3,7 @@
 
 
 #include <stdlib.h>
+#include <ostream>
 
 #include <Eigen/Dense>
 
@@ -20,9 +21,9 @@ namespace GQCG {
  */
 class JacobiRotationParameters {
 private:
-    const size_t p;  // p > q
-    const size_t q;
-    const double angle;
+    size_t p;  // p > q
+    size_t q;
+    double angle;
 
 public:
     // CONSTRUCTORS
@@ -32,8 +33,22 @@ public:
     JacobiRotationParameters(size_t p, size_t q, double angle);
 
 
+    // OPERATORS
+    /**
+     *  Overloading of operator<< for GQCG::JacobiRotationParameters to be used with streams
+     */
+    friend std::ostream& operator<<(std::ostream& os, const GQCG::JacobiRotationParameters& jacobi_rotation_parameters);
+
+
+    // GETTERS
+    size_t get_p() const { return this->p; }
+    size_t get_q() const { return this->q; }
+    double get_angle() const { return this->angle; }
+
+
     // FRIEND CLASSES
     friend class OneElectronOperator;
+    friend class AP1roGJacobiOrbitalOptimizer;
 
     // FRIEND FUNCTIONS
     friend Eigen::MatrixXd jacobiRotationMatrix(const GQCG::JacobiRotationParameters& jacobi_rotation_parameters, size_t M);
