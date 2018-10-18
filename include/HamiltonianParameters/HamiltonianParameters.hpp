@@ -35,7 +35,7 @@ namespace GQCP {
 
 class HamiltonianParameters : public BaseHamiltonianParameters {
 private:
-    const size_t K;  // the number of spatial orbitals
+    size_t K;  // the number of spatial orbitals
 
     OneElectronOperator S;  // overlap
 
