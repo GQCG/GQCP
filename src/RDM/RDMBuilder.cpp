@@ -37,10 +37,14 @@ RDMBuilder::RDMBuilder(const BaseFockSpace& fock_space) {
 
         case FockSpaceType::FockSpace: {
             rdm_builder = std::make_shared<GQCG::DOCIRDMBuilder>(dynamic_cast<const GQCG::FockSpace&>(fock_space));
+
+            break;
         }
 
         case FockSpaceType::FockSpaceProduct: {
             rdm_builder = std::make_shared<GQCG::FCIRDMBuilder>(dynamic_cast<const GQCG::FockSpaceProduct&>(fock_space));
+
+            break;
         }
     }
 

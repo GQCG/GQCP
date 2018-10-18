@@ -25,7 +25,6 @@ BOOST_AUTO_TEST_CASE ( Builder_Constructor ) {
 
     // Abstract pointer to test RDM
     GQCG::BaseFockSpace* fock_space_dy = new GQCG::FockSpace(K, N/2);  // dim = 120
-
     GQCG::FockSpace fock_space (K, N/2);  // dim = 120
 
     GQCG::DOCI doci (fock_space);
@@ -37,7 +36,7 @@ BOOST_AUTO_TEST_CASE ( Builder_Constructor ) {
     ci_solver.solve(solver_options);
 
     Eigen::VectorXd coef = ci_solver.get_eigenpair().get_eigenvector();
-
+    
     // Check if the DOCI 1-RDM has the proper trace.
     GQCG::RDMBuilder doci_rdm (*fock_space_dy);
     GQCG::OneRDMs one_rdms = doci_rdm.calculate1RDMs(coef);
