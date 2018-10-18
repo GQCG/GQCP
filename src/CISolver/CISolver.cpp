@@ -69,8 +69,8 @@ void CISolver::solve(numopt::eigenproblem::BaseSolverOptions& solver_options) {
 /**
  *  @return WaveFunction instance after solving the CI problem for a given eigenvector at @param index
  */
-WaveFunction CISolver::get_wavefunction(size_t index) {
-    if (index < this->eigenpairs.size()) {
+GQCG::WaveFunction CISolver::get_wavefunction(size_t index) {
+    if (index > this->eigenpairs.size()) {
         throw std::logic_error("Not enough requested eigenpairs for the given index.");
     }
     return WaveFunction(*this->hamiltonian_builder->get_fock_space(), this->eigenpairs[index].get_eigenvector());
