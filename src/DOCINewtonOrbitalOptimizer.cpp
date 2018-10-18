@@ -143,7 +143,6 @@ void DOCINewtonOrbitalOptimizer::solve() {
 
         // If we're using a Davidson solver, we should update the initial guesses in the solver_options to be the current eigenvectors
         if (this->solver_options.get_solver_type() == numopt::eigenproblem::SolverType::DAVIDSON) {
-            std::cout << "It's a DAVIDSON!" << std::endl;
             auto davidson_solver_options = dynamic_cast<numopt::eigenproblem::DavidsonSolverOptions&>(this->solver_options);
 
             for (size_t i = 0; i < this->solver_options.number_of_requested_eigenpairs; i++) {
