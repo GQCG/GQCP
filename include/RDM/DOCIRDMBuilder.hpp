@@ -20,7 +20,7 @@
 
 
 #include "FockSpace/FockSpace.hpp"
-#include "RDM/RDMBuilder.hpp"
+#include "RDM/BaseRDMBuilder.hpp"
 #include "RDM/RDMs.hpp"
 
 
@@ -31,7 +31,7 @@ namespace GQCP {
  *  DOCIRDMBuilder is a class for the calculation of a density matrix from a given wave function
  *  or coefficient expansion in a doubly occupied or single Fock space
  */
-class DOCIRDMBuilder : public RDMBuilder {
+class DOCIRDMBuilder : public BaseRDMBuilder {
     FockSpace fock_space;  // both the alpha and beta Fock space
 
 

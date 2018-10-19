@@ -20,7 +20,7 @@
 
 
 #include "FockSpace/FockSpaceProduct.hpp"
-#include "RDM/RDMBuilder.hpp"
+#include "RDM/BaseRDMBuilder.hpp"
 #include "RDM/RDMs.hpp"
 
 
@@ -29,10 +29,10 @@ namespace GQCP {
 
 /**
  *  FCIRDMBuilder is a class for the calculation of a density matrix from a given wave function
- *  or coefficient expansion in the Full CI Fock space
+ *  or coefficient expansion in the full CI Fock space
  */
-class FCIRDMBuilder : public RDMBuilder {
-    FockSpaceProduct fock_space;  // fock space containing the alpha and beta Fock space
+class FCIRDMBuilder : public BaseRDMBuilder {
+    FockSpaceProduct fock_space;  // Fock space containing the alpha and beta Fock space
 
 
 public:

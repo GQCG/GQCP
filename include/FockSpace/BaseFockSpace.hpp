@@ -20,6 +20,7 @@
 
 
 #include "ONV.hpp"
+#include "FockSpace/FockSpaceType.hpp"
 #include "common.hpp"
 
 
@@ -57,7 +58,7 @@ public:
     // GETTERS
     size_t get_dimension() const { return dim; }
     size_t get_K() const { return K; }
-
+    virtual FockSpaceType get_type() const = 0;
 
     // PUBLIC METHODS
     /**
