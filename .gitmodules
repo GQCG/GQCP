@@ -1,0 +1,3 @@
+[submodule "tools/copyright_headers"]
+	path = tools/copyright_headers
+	url = https://github.com/GQCG/copyright_headers
