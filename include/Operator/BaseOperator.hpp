@@ -1,5 +1,5 @@
-#ifndef GQCG_BASEOPERATOR_HPP
-#define GQCG_BASEOPERATOR_HPP
+#ifndef GQCP_BASEOPERATOR_HPP
+#define GQCP_BASEOPERATOR_HPP
 
 
 #include <Eigen/Dense>
@@ -8,7 +8,7 @@
 
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /**
@@ -59,12 +59,12 @@ public:
      *        in which the basis functions are collected as elements of a row vector b.
      *      - we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
      */
-    virtual void rotate(const GQCG::JacobiRotationParameters& jacobi_rotation_parameters) = 0;
+    virtual void rotate(const GQCP::JacobiRotationParameters& jacobi_rotation_parameters) = 0;
 };
 
 
 
-}  // namespace GQCG
+}  // namespace GQCP
 
 
-#endif  // GQCG_BASEOPERATOR_HPP
+#endif  // GQCP_BASEOPERATOR_HPP

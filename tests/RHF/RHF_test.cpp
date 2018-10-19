@@ -12,9 +12,9 @@ BOOST_AUTO_TEST_CASE ( HOMO_LUMO_index ) {
     size_t K = 7;
     size_t N = 10;
 
-    BOOST_CHECK_EQUAL(GQCG::RHFHOMOIndex(N), 4);
-    BOOST_CHECK_EQUAL(GQCG::RHFLUMOIndex(K, N), 5);
+    BOOST_CHECK_EQUAL(GQCP::RHFHOMOIndex(N), 4);
+    BOOST_CHECK_EQUAL(GQCP::RHFLUMOIndex(K, N), 5);
 
-    BOOST_CHECK_THROW(GQCG::RHFHOMOIndex(N+1), std::invalid_argument);
-    BOOST_CHECK_THROW(GQCG::RHFLUMOIndex(K, N+1), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::RHFHOMOIndex(N+1), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::RHFLUMOIndex(K, N+1), std::invalid_argument);
 }

@@ -1,5 +1,5 @@
-#ifndef GQCG_BASEFOCKSPACE_HPP
-#define GQCG_BASEFOCKSPACE_HPP
+#ifndef GQCP_BASEFOCKSPACE_HPP
+#define GQCP_BASEFOCKSPACE_HPP
 
 
 #include "ONV.hpp"
@@ -7,7 +7,7 @@
 
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /**
@@ -50,7 +50,7 @@ public:
 };
 
 
-}  // namespace GQCG
+}  // namespace GQCP
 
 
-#endif  // GQCG_BASEFOCKSPACE_HPP
+#endif  // GQCP_BASEFOCKSPACE_HPP

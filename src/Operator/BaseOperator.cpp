@@ -1,7 +1,7 @@
 #include "Operator/BaseOperator.hpp"
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /**
@@ -12,4 +12,4 @@ BaseOperator::BaseOperator(size_t dimension) :
 {}
 
 
-}  // namespace GQCG
+}  // namespace GQCP

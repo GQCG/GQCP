@@ -1,7 +1,7 @@
 #include "FockSpace/BaseFockSpace.hpp"
 
 
-namespace GQCG {
+namespace GQCP {
 
 /*
  * PROTECTED CONSTRUCTORS
@@ -43,4 +43,4 @@ Eigen::VectorXd BaseFockSpace::HartreeFockExpansion() {
 
 
 
-}  // namespace GQCG
+}  // namespace GQCP

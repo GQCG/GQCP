@@ -1,5 +1,5 @@
-#ifndef GQCG_COMMON_HPP
-#define GQCG_COMMON_HPP
+#ifndef GQCP_COMMON_HPP
+#define GQCP_COMMON_HPP
 
 
 #include <cstdlib>
@@ -8,7 +8,7 @@
 #include <Eigen/Dense>
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 typedef std::vector<size_t> Vectoru;
@@ -16,7 +16,7 @@ typedef std::vector<Vectoru> Matrixu;
 using VectorXs = Eigen::Matrix<size_t, Eigen::Dynamic, 1>;
 
 
-}  // namespace GQCG
+}  // namespace GQCP
 
 
-#endif  // GQCG_COMMON_HPP
+#endif  // GQCP_COMMON_HPP

@@ -1,5 +1,5 @@
-#ifndef GQCG_CISOLVER_HPP
-#define GQCG_CISOLVER_HPP
+#ifndef GQCP_CISOLVER_HPP
+#define GQCP_CISOLVER_HPP
 
 
 #include "HamiltonianBuilder/HamiltonianBuilder.hpp"
@@ -7,7 +7,7 @@
 #include "WaveFunction.hpp"
 #include <numopt.hpp>
 
-namespace GQCG {
+namespace GQCP {
 
 
 /**
@@ -47,6 +47,6 @@ public:
 };
 
 
-}  // namespace GQCG
+}  // namespace GQCP
 
-#endif  // GQCG_CISOLVER_HPP
+#endif  // GQCP_CISOLVER_HPP

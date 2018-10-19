@@ -5,7 +5,7 @@
 #include <Eigen/Dense>
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 class AP1roGGeminalCoefficients {
@@ -95,7 +95,7 @@ public:
 };
 
 
-}  // namespace GQCG
+}  // namespace GQCP
 
 
 

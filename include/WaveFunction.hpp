@@ -1,5 +1,5 @@
-#ifndef GQCG_WAVEFUNCTION_HPP
-#define GQCG_WAVEFUNCTION_HPP
+#ifndef GQCP_WAVEFUNCTION_HPP
+#define GQCP_WAVEFUNCTION_HPP
 
 
 #include "FockSpace/BaseFockSpace.hpp"
@@ -8,7 +8,7 @@
 
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /**
@@ -30,7 +30,7 @@ public:
 };
 
 
-}  // namespace GQCG
+}  // namespace GQCP
 
 
-#endif  // GQCG_WAVEFUNCTION_HPP
+#endif  // GQCP_WAVEFUNCTION_HPP

@@ -7,7 +7,7 @@
 #include "Molecule.hpp"
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /**
@@ -21,10 +21,10 @@ protected:
     const double threshold;
     bool is_converged = false;
 
-    const GQCG::HamiltonianParameters ham_par;  // Hamiltonian parameters expressed in an AO basis
-    const GQCG::Molecule molecule;
+    const GQCP::HamiltonianParameters ham_par;  // Hamiltonian parameters expressed in an AO basis
+    const GQCP::Molecule molecule;
 
-    GQCG::RHF solution;
+    GQCP::RHF solution;
 
     // PROTECTED METHODS
     /**
@@ -37,10 +37,10 @@ public:
     /**
      *  Constructor based on given Hamiltonian parameters @param ham_par, @param molecule, @param maximum_number_of_iterations and @param SCF threshold
      */
-    RHFSCFSolver(GQCG::HamiltonianParameters ham_par, GQCG::Molecule molecule, double threshold=1.0e-08, size_t maximum_number_of_iterations=128);
+    RHFSCFSolver(GQCP::HamiltonianParameters ham_par, GQCP::Molecule molecule, double threshold=1.0e-08, size_t maximum_number_of_iterations=128);
 
     // GETTERS
-    GQCG::RHF get_solution() const { return this->solution; }
+    GQCP::RHF get_solution() const { return this->solution; }
 
     /**
      *  Solve the RHF SCF equations. This function internally uses the pure virtual calculateNewFockMatrix.
@@ -49,7 +49,7 @@ public:
 };
 
 
-}  // namespace GQCG
+}  // namespace GQCP
 
 
 #endif /* RHFSCFSolver_hpp */

@@ -1,5 +1,5 @@
-#ifndef GQCG_RDMBUILDER_HPP
-#define GQCG_RDMBUILDER_HPP
+#ifndef GQCP_RDMBUILDER_HPP
+#define GQCP_RDMBUILDER_HPP
 
 
 #include "RDM/OneRDM.hpp"
@@ -8,7 +8,7 @@
 #include "FockSpace/BaseFockSpace.hpp"
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /**
@@ -46,7 +46,7 @@ public:
 };
 
 
-}  // namespace GQCG
+}  // namespace GQCP
 
 
-#endif  // GQCG_RDMBUILDER_HPP
+#endif  // GQCP_RDMBUILDER_HPP

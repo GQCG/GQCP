@@ -1,7 +1,7 @@
 #include "RDM/FCIRDMBuilder.hpp"
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /*
@@ -351,4 +351,4 @@ TwoRDMs FCIRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) {
 }
 
 
-}  // namespace GQCG
+}  // namespace GQCP

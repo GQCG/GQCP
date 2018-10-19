@@ -1,7 +1,7 @@
 #include "HamiltonianBuilder/DOCI.hpp"
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /*
@@ -160,4 +160,4 @@ Eigen::VectorXd DOCI::calculateDiagonal(const HamiltonianParameters& hamiltonian
 
 
 
-}  // namespace GQCG
+}  // namespace GQCP

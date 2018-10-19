@@ -1,7 +1,7 @@
 #include "CISolver/CISolver.hpp"
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /*
@@ -77,4 +77,4 @@ WaveFunction CISolver::get_wavefunction(size_t index) {
 }
 
 
-}  // namespace GQCG
+}  // namespace GQCP

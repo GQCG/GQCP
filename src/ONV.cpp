@@ -3,7 +3,7 @@
 #include <boost/dynamic_bitset.hpp>
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /*
@@ -29,9 +29,9 @@ ONV::ONV(size_t K, size_t N, size_t representation):
  */
 
 /**
- *  Overloading of operator<< for a GQCG::ONV to be used with streams
+ *  Overloading of operator<< for a GQCP::ONV to be used with streams
  */
-std::ostream& operator<<(std::ostream& os, const GQCG::ONV& onv) {
+std::ostream& operator<<(std::ostream& os, const GQCP::ONV& onv) {
     return os<<boost::dynamic_bitset<> (onv.K, onv.unsigned_representation);
 }
 
@@ -229,4 +229,4 @@ size_t ONV::slice(size_t index_start, size_t index_end) const {
 }
 
 
-}  // namespace GQCG
+}  // namespace GQCP

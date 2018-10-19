@@ -12,13 +12,13 @@
 BOOST_AUTO_TEST_CASE ( jacobiRotationMatrix ) {
 
     // A random Jacobi matrix is unitary
-    BOOST_CHECK(GQCG::jacobiRotationMatrix(GQCG::JacobiRotationParameters(7, 4, 6.9921), 10).isUnitary());
-    BOOST_CHECK(GQCG::jacobiRotationMatrix(GQCG::JacobiRotationParameters(9, 1, 78.00166), 22).isUnitary());
+    BOOST_CHECK(GQCP::jacobiRotationMatrix(GQCP::JacobiRotationParameters(7, 4, 6.9921), 10).isUnitary());
+    BOOST_CHECK(GQCP::jacobiRotationMatrix(GQCP::JacobiRotationParameters(9, 1, 78.00166), 22).isUnitary());
 
     // Let's see if we can construct the easiest Jacobi matrix, one with theta = pi/2 and dimension 2
     // cos(pi/2) = 0, sin(pi/2) = 1
     auto pi = boost::math::constants::half_pi<double>();
-    Eigen::MatrixXd J = GQCG::jacobiRotationMatrix(GQCG::JacobiRotationParameters(1, 0, pi), 2);
+    Eigen::MatrixXd J = GQCP::jacobiRotationMatrix(GQCP::JacobiRotationParameters(1, 0, pi), 2);
 
     BOOST_CHECK(std::abs(J(0,0) - 0) < 1.0e-12);
     BOOST_CHECK(std::abs(J(0,1) - (-1)) < 1.0e-12);

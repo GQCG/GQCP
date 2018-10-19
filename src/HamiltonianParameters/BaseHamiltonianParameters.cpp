@@ -1,7 +1,7 @@
 #include "HamiltonianParameters/BaseHamiltonianParameters.hpp"
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /*
@@ -11,7 +11,7 @@ namespace GQCG {
 /**
  *  Constructor based on a given @param ao_basis_sptr
  */
-BaseHamiltonianParameters::BaseHamiltonianParameters(std::shared_ptr<GQCG::AOBasis> ao_basis) :
+BaseHamiltonianParameters::BaseHamiltonianParameters(std::shared_ptr<GQCP::AOBasis> ao_basis) :
     ao_basis (std::move(ao_basis))
 {}
 
@@ -28,4 +28,4 @@ BaseHamiltonianParameters::~BaseHamiltonianParameters() {}
 
 
 
-}  // namespace GQCG
+}  // namespace GQCP

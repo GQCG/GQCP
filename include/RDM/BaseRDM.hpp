@@ -1,11 +1,11 @@
-#ifndef GQCG_BASERDM_HPP
-#define GQCG_BASERDM_HPP
+#ifndef GQCP_BASERDM_HPP
+#define GQCP_BASERDM_HPP
 
 
 #include <cstdlib>
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /**
@@ -36,7 +36,7 @@ public:
 };
 
 
-}  // namespace GQCG
+}  // namespace GQCP
 
 
-#endif  // GQCG_BASERDM_HPP
+#endif  // GQCP_BASERDM_HPP

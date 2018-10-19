@@ -5,7 +5,7 @@
 #include "miscellaneous.hpp"
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /**
@@ -99,7 +99,7 @@ void TwoElectronOperator::rotate(const Eigen::MatrixXd& U) {
  *        in which the basis functions are collected as elements of a row vector b.
  *      - we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
  */
-void TwoElectronOperator::rotate(const GQCG::JacobiRotationParameters& jacobi_rotation_parameters) {
+void TwoElectronOperator::rotate(const GQCP::JacobiRotationParameters& jacobi_rotation_parameters) {
 
     /**
      *  While waiting for an analogous Eigen::Tensor Jacobi module, we implement this rotation by constructing a
@@ -113,4 +113,4 @@ void TwoElectronOperator::rotate(const GQCG::JacobiRotationParameters& jacobi_ro
 }
 
 
-}  // namespace GQCG
+}  // namespace GQCP

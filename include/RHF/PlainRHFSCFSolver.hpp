@@ -5,13 +5,13 @@
 #include "RHFSCFSolver.hpp"
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /**
  *  A plain RHF SCF solver.
  */
-class PlainRHFSCFSolver : public GQCG::RHFSCFSolver {
+class PlainRHFSCFSolver : public GQCP::RHFSCFSolver {
 private:
     /**
      *  Calculate a new Fock matrix (expressed in AO basis), i.e. this is the 'plain' RHF SCF step.
@@ -25,11 +25,11 @@ public:
     /**
      *  Constructor based on given Hamiltonian parameters @param ham_par, @param molecule, @param maximum_number_of_iterations and @param SCF threshold
      */
-    PlainRHFSCFSolver(GQCG::HamiltonianParameters ham_par, GQCG::Molecule molecule, double threshold=1.0e-08, size_t maximum_number_of_iterations=128);
+    PlainRHFSCFSolver(GQCP::HamiltonianParameters ham_par, GQCP::Molecule molecule, double threshold=1.0e-08, size_t maximum_number_of_iterations=128);
 };
 
 
-}  // namespace GQCG
+}  // namespace GQCP
 
 
 #endif /* PlainRHFSCFSolver_hpp */

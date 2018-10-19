@@ -1,7 +1,7 @@
 #include "FockSpace/FockSpaceProduct.hpp"
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /*
@@ -38,4 +38,4 @@ size_t FockSpaceProduct::calculateDimension(size_t K, size_t N_alpha, size_t N_b
 }
 
 
-}  // namespace GQCG
+}  // namespace GQCP

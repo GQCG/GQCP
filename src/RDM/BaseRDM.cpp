@@ -1,7 +1,7 @@
 #include "RDM/BaseRDM.hpp"
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 
@@ -27,4 +27,4 @@ BaseRDM::BaseRDM(size_t dimension) :
 BaseRDM::~BaseRDM() {}
 
 
-}  // namespace GQCG
+}  // namespace GQCP

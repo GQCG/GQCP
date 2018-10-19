@@ -1,7 +1,7 @@
 #include "AP1roG/AP1roG.hpp"
 
 
-namespace GQCG {
+namespace GQCP {
 
 /*
  *  CONSTRUCTORS
@@ -18,7 +18,7 @@ AP1roG::AP1roG() :
 /**
  *  Constructor based on given @param geminal_coefficients and @param electronic_energy
  */
-AP1roG::AP1roG(const GQCG::AP1roGGeminalCoefficients& geminal_coefficients, double electronic_energy) :
+AP1roG::AP1roG(const GQCP::AP1roGGeminalCoefficients& geminal_coefficients, double electronic_energy) :
     geminal_coefficients (geminal_coefficients),
     electronic_energy (electronic_energy)
 {}
@@ -31,7 +31,7 @@ AP1roG::AP1roG(const GQCG::AP1roGGeminalCoefficients& geminal_coefficients, doub
 /**
  *  Calculate the AP1roG energy given AP1roG geminal coefficients @param G and Hamiltonian parameters @param ham_par
  */
-double calculateAP1roGEnergy(const GQCG::AP1roGGeminalCoefficients& G, const GQCG::HamiltonianParameters& ham_par) {
+double calculateAP1roGEnergy(const GQCP::AP1roGGeminalCoefficients& G, const GQCP::HamiltonianParameters& ham_par) {
 
     Eigen::MatrixXd h_SO = ham_par.get_h().get_matrix_representation();
     Eigen::Tensor<double, 4> g_SO = ham_par.get_g().get_matrix_representation();
@@ -55,4 +55,4 @@ double calculateAP1roGEnergy(const GQCG::AP1roGGeminalCoefficients& G, const GQC
 }
 
 
-}  // namespace GQCG
+}  // namespace GQCP

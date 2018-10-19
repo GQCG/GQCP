@@ -1,5 +1,5 @@
-#ifndef GQCG_MOLECULE_HPP
-#define GQCG_MOLECULE_HPP
+#ifndef GQCP_MOLECULE_HPP
+#define GQCP_MOLECULE_HPP
 
 
 #include <stdlib.h>
@@ -10,21 +10,21 @@
 
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 
 class Molecule {
 private:
-    const std::vector<GQCG::Atom> atoms;
+    const std::vector<GQCP::Atom> atoms;
     const size_t N;  // number of electrons
 
     /**
-     *  Parse a @param xyz_filename to @return a std::vector<GQCG::Atom>.
+     *  Parse a @param xyz_filename to @return a std::vector<GQCP::Atom>.
      *
      *  The coordinates in the .xyz-file should be in Angstrom: this function converts them immediately to Bohr (a.u.)
      */
-    static std::vector<GQCG::Atom> parseXYZFile(const std::string& xyz_filename);
+    static std::vector<GQCP::Atom> parseXYZFile(const std::string& xyz_filename);
 
 
 public:
@@ -49,14 +49,14 @@ public:
     Molecule(const std::string& xyz_filename, int molecular_charge);
 
     /**
-     *  Constructor from a @param atoms: a given std::vector of GQCG::Atoms
+     *  Constructor from a @param atoms: a given std::vector of GQCP::Atoms
      *
      *  IMPORTANT!!! The coordinates of the atoms should be input in Bohr.
      */
-    explicit Molecule(const std::vector<GQCG::Atom>& atoms);
+    explicit Molecule(const std::vector<GQCP::Atom>& atoms);
 
     /**
-     *  Constructor from a @param atoms: a given std::vector of GQCG::Atoms and a @param molecular_charge
+     *  Constructor from a @param atoms: a given std::vector of GQCP::Atoms and a @param molecular_charge
      *      The constructed molecule instance corresponds to an ion:
      *          charge = +1 -> cation (one electron less than the neutral molecule)
      *          charge = 0  -> neutral molecule
@@ -64,19 +64,19 @@ public:
      *
      *  IMPORTANT!!! The coordinates of the atoms should be input in Bohr.
      */
-    Molecule(const std::vector<GQCG::Atom>& atoms, int molecular_charge);
+    Molecule(const std::vector<GQCP::Atom>& atoms, int molecular_charge);
 
 
     // OPERATORS
     /**
-     *  @return if this is equal to @param other, within the default GQCG::Atom::tolerance_for_comparison for the coordinates of the atoms
+     *  @return if this is equal to @param other, within the default GQCP::Atom::tolerance_for_comparison for the coordinates of the atoms
      */
-    bool operator==(const GQCG::Molecule& other) const;
+    bool operator==(const GQCP::Molecule& other) const;
 
     /**
-     *  Overloading of operator<< for a GQCG::Molecule to be used with streams
+     *  Overloading of operator<< for a GQCP::Molecule to be used with streams
      */
-    friend std::ostream& operator<<(std::ostream& os, const GQCG::Molecule& molecule);
+    friend std::ostream& operator<<(std::ostream& os, const GQCP::Molecule& molecule);
 
 
     // GETTERS
@@ -88,7 +88,7 @@ public:
     /**
      *  @return if this is equal to @param other, within the given @param tolerance for the coordinates of the atoms
      */
-    bool isEqualTo(const GQCG::Molecule& other, double tolerance=GQCG::Atom::tolerance_for_comparison) const;
+    bool isEqualTo(const GQCP::Molecule& other, double tolerance=GQCP::Atom::tolerance_for_comparison) const;
 
     /**
      *  @return the sum of all the charges of the nuclei
@@ -115,7 +115,7 @@ public:
 
 
 
-}  // namespace GQCG
+}  // namespace GQCP
 
 
-#endif  // GQCG_MOLECULE_HPP
+#endif  // GQCP_MOLECULE_HPP

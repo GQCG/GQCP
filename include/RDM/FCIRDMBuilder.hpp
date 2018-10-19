@@ -1,5 +1,5 @@
-#ifndef GQCG_FCIRDMBUILDER_HPP
-#define GQCG_FCIRDMBUILDER_HPP
+#ifndef GQCP_FCIRDMBUILDER_HPP
+#define GQCP_FCIRDMBUILDER_HPP
 
 
 #include "FockSpace/FockSpaceProduct.hpp"
@@ -7,7 +7,7 @@
 #include "RDM/RDMs.hpp"
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /**
@@ -45,7 +45,7 @@ public:
 };
 
 
-}  // namespace GQCG
+}  // namespace GQCP
 
 
-#endif  // GQCG_FCIRDMBUILDER_HPP
+#endif  // GQCP_FCIRDMBUILDER_HPP

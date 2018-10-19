@@ -1,5 +1,5 @@
-#ifndef GQCG_ONV_HPP
-#define GQCG_ONV_HPP
+#ifndef GQCP_ONV_HPP
+#define GQCP_ONV_HPP
 
 
 #include <Eigen/Dense>
@@ -8,7 +8,7 @@
 
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /**
@@ -41,9 +41,9 @@ public:
 
     // OPERATORS
     /**
-     *  Overloading of operator<< for a GQCG::ONV to be used with streams
+     *  Overloading of operator<< for a GQCP::ONV to be used with streams
      */
-    friend std::ostream& operator<<(std::ostream& os, const GQCG::ONV& onv);
+    friend std::ostream& operator<<(std::ostream& os, const GQCP::ONV& onv);
 
     /**
      *  @return if this->unsigned_representation equals @param other.unsigned_representation
@@ -147,6 +147,6 @@ public:
 };
 
 
-}  // namespace GQCG
+}  // namespace GQCP
 
-#endif  // GQCG_ONV_HPP
+#endif  // GQCP_ONV_HPP

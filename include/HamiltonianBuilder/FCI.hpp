@@ -1,5 +1,5 @@
-#ifndef GQCG_FCI_HPP
-#define GQCG_FCI_HPP
+#ifndef GQCP_FCI_HPP
+#define GQCP_FCI_HPP
 
 
 #include "HamiltonianBuilder/HamiltonianBuilder.hpp"
@@ -7,14 +7,14 @@
 
 
 
-namespace GQCG {
+namespace GQCP {
 
 /**
  *  Full configuration interaction (FCI) builds a hamiltonian matrix
  *  based on a wavefunction containing all configurations pertaining to a fixed number of alpha and beta electrons.
  *  This means that a total ONV would be a combination of two ONVs, one from an alpha and one from a beta Fock space.
  */
-class FCI : public GQCG::HamiltonianBuilder {
+class FCI : public GQCP::HamiltonianBuilder {
 private:
     FockSpaceProduct fock_space;  // fock space containing the alpha and beta Fock space
 
@@ -90,7 +90,7 @@ public:
 };
 
 
-}  // namespace GQCG
+}  // namespace GQCP
 
 
-#endif //GQCG_FCI_HPP
+#endif //GQCP_FCI_HPP

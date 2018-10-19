@@ -1,7 +1,7 @@
 #include "RDM/RDMs.hpp"
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /*
@@ -41,4 +41,4 @@ TwoRDMs::TwoRDMs(const TwoRDM& two_rdm_aaaa, const TwoRDM& two_rdm_aabb, const T
 {}
 
 
-}  // namespace GQCG
+}  // namespace GQCP

@@ -1,5 +1,5 @@
-#ifndef GQCG_ONEELECTRONOPERATOR_HPP
-#define GQCG_ONEELECTRONOPERATOR_HPP
+#ifndef GQCP_ONEELECTRONOPERATOR_HPP
+#define GQCP_ONEELECTRONOPERATOR_HPP
 
 
 #include <Eigen/Dense>
@@ -7,7 +7,7 @@
 #include "BaseOperator.hpp"
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 
@@ -37,7 +37,7 @@ public:
      *  @return the sum of two OneElectronOperators, i.e. a OneElectronOperator whose matrix representation is the sum
      *  of the two matrix representations of the given OneElectronOperators
      */
-    GQCG::OneElectronOperator operator+(const GQCG::OneElectronOperator& other);
+    GQCP::OneElectronOperator operator+(const GQCP::OneElectronOperator& other);
 
 
     // PUBLIC METHODS
@@ -68,7 +68,7 @@ public:
      *        in which the basis functions are collected as elements of a row vector b.
      *      - we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
      */
-    void rotate(const GQCG::JacobiRotationParameters& jacobi_rotation_parameters) override;
+    void rotate(const GQCP::JacobiRotationParameters& jacobi_rotation_parameters) override;
 
 
     // FRIEND CLASSES
@@ -77,8 +77,8 @@ public:
 
 
 
-}  // namespace GQCG
+}  // namespace GQCP
 
 
 
-#endif  // GQCG_ONEELECTRONOPERATOR_HPP
+#endif  // GQCP_ONEELECTRONOPERATOR_HPP

@@ -1,5 +1,5 @@
-#ifndef GQCG_ONERDM_HPP
-#define GQCG_ONERDM_HPP
+#ifndef GQCP_ONERDM_HPP
+#define GQCP_ONERDM_HPP
 
 
 #include "RDM/BaseRDM.hpp"
@@ -7,7 +7,7 @@
 #include <Eigen/Dense>
 
 
-namespace GQCG {
+namespace GQCP {
 
 /**
  *  A class that holds the matrix representation of a 1-RDM
@@ -40,7 +40,7 @@ public:
 };
 
 
-}  // namespace GQCG
+}  // namespace GQCP
 
 
-#endif  // GQCG_ONERDM_HPP
+#endif  // GQCP_ONERDM_HPP

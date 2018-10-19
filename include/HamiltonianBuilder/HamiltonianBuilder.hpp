@@ -1,5 +1,5 @@
-#ifndef GQCG_HAMILTONIANBUILDER_HPP
-#define GQCG_HAMILTONIANBUILDER_HPP
+#ifndef GQCP_HAMILTONIANBUILDER_HPP
+#define GQCP_HAMILTONIANBUILDER_HPP
 
 
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
@@ -10,7 +10,7 @@
 
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /**
@@ -54,8 +54,8 @@ public:
 };
 
 
-}  // namespace GQCG
+}  // namespace GQCP
 
 
 
-#endif  // GQCG_HAMILTONIANBUILDER_HPP
+#endif  // GQCP_HAMILTONIANBUILDER_HPP

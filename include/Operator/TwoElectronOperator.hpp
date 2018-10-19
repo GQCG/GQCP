@@ -1,5 +1,5 @@
-#ifndef GQCG_TWOELECTRONOPERATOR_HPP
-#define GQCG_TWOELECTRONOPERATOR_HPP
+#ifndef GQCP_TWOELECTRONOPERATOR_HPP
+#define GQCP_TWOELECTRONOPERATOR_HPP
 
 
 #include <unsupported/Eigen/CXX11/Tensor>
@@ -7,7 +7,7 @@
 #include "BaseOperator.hpp"
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 
@@ -60,7 +60,7 @@ public:
      *        in which the basis functions are collected as elements of a row vector b.
      *      - we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
      */
-    void rotate(const GQCG::JacobiRotationParameters& jacobi_rotation_parameters) override;
+    void rotate(const GQCP::JacobiRotationParameters& jacobi_rotation_parameters) override;
 
 
     // FRIEND CLASSES
@@ -69,7 +69,7 @@ public:
 
 
 
-}  // namespace GQCG
+}  // namespace GQCP
 
 
-#endif  // GQCG_TWOELECTRONOPERATOR_HPP
+#endif  // GQCP_TWOELECTRONOPERATOR_HPP

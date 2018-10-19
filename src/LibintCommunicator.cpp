@@ -5,7 +5,7 @@
 
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /*
@@ -43,9 +43,9 @@ LibintCommunicator& LibintCommunicator::get() {  // need to return by reference 
 
 
 /**
- *  @return a std::vector<libint2::Atom> based on a given std::vector<GQCG::Atom> @param atoms
+ *  @return a std::vector<libint2::Atom> based on a given std::vector<GQCP::Atom> @param atoms
  */
-std::vector<libint2::Atom> LibintCommunicator::interface(const std::vector<GQCG::Atom>& atoms) const {
+std::vector<libint2::Atom> LibintCommunicator::interface(const std::vector<GQCP::Atom>& atoms) const {
 
     std::vector<libint2::Atom> libint_vector;  // start with an empty vector, we're doing push_backs later
 
@@ -62,7 +62,7 @@ std::vector<libint2::Atom> LibintCommunicator::interface(const std::vector<GQCG:
  *  @return the OneElectronOperator corresponding to the matrix representation of @param operator_type in the given
  *  @param ao_basis
  */
-GQCG::OneElectronOperator LibintCommunicator::calculateOneElectronIntegrals(libint2::Operator operator_type, const GQCG::AOBasis& ao_basis) const {
+GQCP::OneElectronOperator LibintCommunicator::calculateOneElectronIntegrals(libint2::Operator operator_type, const GQCP::AOBasis& ao_basis) const {
 
     // Use the basis_functions that is currently a libint2::BasisSet
     auto libint_basisset = ao_basis.basis_functions;
@@ -76,7 +76,7 @@ GQCG::OneElectronOperator LibintCommunicator::calculateOneElectronIntegrals(libi
 
     // Something extra for the nuclear attraction integrals
     if (operator_type == libint2::Operator::nuclear) {
-        auto atoms = this->interface(ao_basis.atoms);  // convert from GQCG::Atoms to libint2::atoms
+        auto atoms = this->interface(ao_basis.atoms);  // convert from GQCP::Atoms to libint2::atoms
         engine.set_params(make_point_charges(atoms));
     }
 
@@ -123,7 +123,7 @@ GQCG::OneElectronOperator LibintCommunicator::calculateOneElectronIntegrals(libi
         }
     }  // shell loops
 
-    return GQCG::OneElectronOperator(matrix);
+    return GQCP::OneElectronOperator(matrix);
 }
 
 
@@ -131,7 +131,7 @@ GQCG::OneElectronOperator LibintCommunicator::calculateOneElectronIntegrals(libi
  *  @return the TwoElectronOperator corresponding to the matrix representation of @param operator_type in the given
  *  @param ao_basis
  */
-GQCG::TwoElectronOperator LibintCommunicator::calculateTwoElectronIntegrals(libint2::Operator operator_type, const GQCG::AOBasis& ao_basis) const {
+GQCP::TwoElectronOperator LibintCommunicator::calculateTwoElectronIntegrals(libint2::Operator operator_type, const GQCP::AOBasis& ao_basis) const {
 
     // Use the basis_functions that is currently a libint2::BasisSet
     auto libint_basisset = ao_basis.basis_functions;
@@ -203,8 +203,8 @@ GQCG::TwoElectronOperator LibintCommunicator::calculateTwoElectronIntegrals(libi
         }
     } // shell loops
 
-    return GQCG::TwoElectronOperator(tensor);
+    return GQCP::TwoElectronOperator(tensor);
 };
 
 
-}  // namespace GQCG
+}  // namespace GQCP

@@ -1,12 +1,12 @@
-#ifndef GQCG_RDMS_HPP
-#define GQCG_RDMS_HPP
+#ifndef GQCP_RDMS_HPP
+#define GQCP_RDMS_HPP
 
 
 #include "RDM/OneRDM.hpp"
 #include "RDM/TwoRDM.hpp"
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 struct OneRDMs {
@@ -52,6 +52,6 @@ struct TwoRDMs {
 };
 
 
-}  // namespace GQCG
+}  // namespace GQCP
 
-#endif  // GQCG_RDMS_HPP
+#endif  // GQCP_RDMS_HPP

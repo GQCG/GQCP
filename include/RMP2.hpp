@@ -6,16 +6,16 @@
 #include "RHF/RHF.hpp"
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /**
  *  @return the RMP2 energy correction based on given @param Hamiltonian parameters ham_par, a given @param molecule and a converged solution @param rhf to the RHF SCF equations
  */
-double calculateRMP2EnergyCorrection(const GQCG::HamiltonianParameters& ham_par, const GQCG::Molecule& molecule, const GQCG::RHF& rhf);
+double calculateRMP2EnergyCorrection(const GQCP::HamiltonianParameters& ham_par, const GQCP::Molecule& molecule, const GQCP::RHF& rhf);
 
 
-}  // namespace GQCG
+}  // namespace GQCP
 
 
 

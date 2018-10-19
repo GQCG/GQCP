@@ -1,7 +1,7 @@
 #include "RDM/TwoRDM.hpp"
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /*
@@ -63,5 +63,5 @@ Eigen::MatrixXd TwoRDM::reduce() {
     return D;
 }
 
-}  // namespace GQCG
+}  // namespace GQCP
 

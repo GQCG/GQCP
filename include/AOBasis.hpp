@@ -1,5 +1,5 @@
-#ifndef GQCG_AOBASIS_HPP
-#define GQCG_AOBASIS_HPP
+#ifndef GQCP_AOBASIS_HPP
+#define GQCP_AOBASIS_HPP
 
 
 #include "Atom.hpp"
@@ -11,7 +11,7 @@
 
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /**
@@ -19,13 +19,13 @@ namespace GQCG {
  */
 class AOBasis {
 private:
-    const std::vector<GQCG::Atom> atoms;
+    const std::vector<GQCP::Atom> atoms;
     const libint2::BasisSet basis_functions;
     const size_t number_of_basis_functions;
 
 public:
     // CONSTRUCTOR
-    AOBasis(const GQCG::Molecule& molecule, std::string basis_set);
+    AOBasis(const GQCP::Molecule& molecule, std::string basis_set);
 
 
     // GETTERS
@@ -38,7 +38,7 @@ public:
 };
 
 
-}  // namespace GQCG
+}  // namespace GQCP
 
 
-#endif  // GQCG_AOBASIS_HPP
+#endif  // GQCP_AOBASIS_HPP

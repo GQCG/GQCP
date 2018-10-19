@@ -6,7 +6,7 @@
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /**
@@ -14,7 +14,7 @@ namespace GQCG {
  */
 class AP1roG {
 private:
-    GQCG::AP1roGGeminalCoefficients geminal_coefficients;
+    GQCP::AP1roGGeminalCoefficients geminal_coefficients;
 
     double electronic_energy;
 
@@ -28,11 +28,11 @@ public:
     /**
      *  Constructor based on given @param geminal_coefficients and @param electronic_energy
      */
-    AP1roG(const GQCG::AP1roGGeminalCoefficients& geminal_coefficients, double electronic_energy);
+    AP1roG(const GQCP::AP1roGGeminalCoefficients& geminal_coefficients, double electronic_energy);
 
 
     // GETTERS
-    GQCG::AP1roGGeminalCoefficients get_geminal_coefficients() const { return this->geminal_coefficients; }
+    GQCP::AP1roGGeminalCoefficients get_geminal_coefficients() const { return this->geminal_coefficients; }
     double get_electronic_energy() const { return this->electronic_energy; }
 };
 
@@ -43,10 +43,10 @@ public:
 /**
  *  Calculate the AP1roG energy given AP1roG geminal coefficients @param G and Hamiltonian parameters @param ham_par
  */
-double calculateAP1roGEnergy(const GQCG::AP1roGGeminalCoefficients& G, const GQCG::HamiltonianParameters& ham_par);
+double calculateAP1roGEnergy(const GQCP::AP1roGGeminalCoefficients& G, const GQCP::HamiltonianParameters& ham_par);
 
 
-}  // namespace GQCG
+}  // namespace GQCP
 
 
 #endif /* AP1roG_hpp */

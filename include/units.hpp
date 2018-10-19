@@ -1,8 +1,8 @@
-#ifndef GQCG_UNITS_HPP
-#define GQCG_UNITS_HPP
+#ifndef GQCP_UNITS_HPP
+#define GQCP_UNITS_HPP
 
 
-namespace GQCG {
+namespace GQCP {
 namespace units {
 
 
@@ -20,17 +20,17 @@ struct CODATA2014 {
 /**
  *  Given a @param value_in_bohr, @return the value in Angstrom
  */
-inline double bohr_to_angstrom(double value_in_bohr) { return value_in_bohr * GQCG::units::constants::CODATA2014::angstrom_per_bohr; }
+inline double bohr_to_angstrom(double value_in_bohr) { return value_in_bohr * GQCP::units::constants::CODATA2014::angstrom_per_bohr; }
 
 /**
  *  Given a @param value_in_angstrom, @return the value in Bohr (a.u.)
  */
-inline double angstrom_to_bohr(double value_in_angstrom) { return value_in_angstrom * GQCG::units::constants::CODATA2014::bohr_per_angstrom; }
+inline double angstrom_to_bohr(double value_in_angstrom) { return value_in_angstrom * GQCP::units::constants::CODATA2014::bohr_per_angstrom; }
 
 
 
 }  // namespace units
-}  // namespace GQCG
+}  // namespace GQCP
 
 
-#endif  // GQCG_UNITS_HPP
+#endif  // GQCP_UNITS_HPP

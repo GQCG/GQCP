@@ -1,7 +1,7 @@
 #include "FockSpace/FockSpace.hpp"
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /*
@@ -41,7 +41,7 @@ FockSpace::FockSpace(size_t K, size_t N) :
         N (N)
 {
     // Create a zero matrix of dimensions (K+1)x(N+1)
-    this->vertex_weights = GQCG::Matrixu(this->K + 1, GQCG::Vectoru(this->N + 1, 0));
+    this->vertex_weights = GQCP::Matrixu(this->K + 1, GQCP::Vectoru(this->N + 1, 0));
 
     // K=5   N=2
     // [ 0 0 0 ]
@@ -172,4 +172,4 @@ size_t FockSpace::getAddress(const ONV& onv) {
 }
 
 
-}  // namespace GQCG
+}  // namespace GQCP

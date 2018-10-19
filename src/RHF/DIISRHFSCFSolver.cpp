@@ -1,6 +1,6 @@
 //
 //  DIISRHFSCFSolver.cpp
-//  gqcg
+//  GQCP
 //
 //  Created by Laurent Lemmens on 04/10/2018.
 //  Copyright © 2018 Ghent Quantum Chemistry Group. All rights reserved.
@@ -9,7 +9,7 @@
 #include "RHF/DIISRHFSCFSolver.hpp"
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /*
@@ -24,7 +24,7 @@ Eigen::MatrixXd DIISRHFSCFSolver::calculateNewFockMatrix(const Eigen::MatrixXd& 
     Eigen::MatrixXd S = this->ham_par.S.get_matrix_representation();
 
     // Calculate the Fock matrix based off the density matrix
-    auto f_AO = GQCG::calculateRHFAOFockMatrix(D_AO, this->ham_par);
+    auto f_AO = GQCP::calculateRHFAOFockMatrix(D_AO, this->ham_par);
 
 
     // Update deques for the DIIS procedure
@@ -79,10 +79,10 @@ Eigen::MatrixXd DIISRHFSCFSolver::calculateNewFockMatrix(const Eigen::MatrixXd& 
 /**
  *  Constructor based on given Hamiltonian parameters @param ham_par, @param molecule, @param maximum_number_of_iterations and @param SCF threshold
  */
-DIISRHFSCFSolver::DIISRHFSCFSolver(GQCG::HamiltonianParameters ham_par, GQCG::Molecule molecule, size_t maximum_subspace_dimension, double threshold, size_t maximum_number_of_iterations) :
+DIISRHFSCFSolver::DIISRHFSCFSolver(GQCP::HamiltonianParameters ham_par, GQCP::Molecule molecule, size_t maximum_subspace_dimension, double threshold, size_t maximum_number_of_iterations) :
     RHFSCFSolver(ham_par, molecule, threshold, maximum_number_of_iterations),
     maximum_subspace_dimension (maximum_subspace_dimension)
 {}
 
 
-}  // namespace GQCG
+}  // namespace GQCP

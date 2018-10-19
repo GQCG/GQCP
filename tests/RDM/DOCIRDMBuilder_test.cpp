@@ -18,23 +18,23 @@ BOOST_AUTO_TEST_CASE ( lih_1RDM_trace ) {
 
     // Get the 1-RDM from DOCI
     size_t N = 4;  // 4 electrons
-    auto ham_par = GQCG::readFCIDUMPFile("../tests/data/lih_631g_caitlin.FCIDUMP");
+    auto ham_par = GQCP::readFCIDUMPFile("../tests/data/lih_631g_caitlin.FCIDUMP");
     size_t K = ham_par.get_K();  // 16 SO
 
-    GQCG::FockSpace fock_space (K, N/2);  // dim = 120
-    GQCG::DOCI doci (fock_space);
+    GQCP::FockSpace fock_space (K, N/2);  // dim = 120
+    GQCP::DOCI doci (fock_space);
 
     // Specify solver options and solve the eigenvalue problem
     // Solve the dense DOCI eigenvalue problem
-    GQCG::CISolver ci_solver (doci, ham_par);
+    GQCP::CISolver ci_solver (doci, ham_par);
     numopt::eigenproblem::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
     Eigen::VectorXd coef = ci_solver.get_eigenpair().get_eigenvector();
 
     // Check if the DOCI 1-RDM has the proper trace.
-    GQCG::DOCIRDMBuilder doci_rdm (fock_space);
-    GQCG::OneRDMs one_rdms = doci_rdm.calculate1RDMs(coef);
+    GQCP::DOCIRDMBuilder doci_rdm (fock_space);
+    GQCP::OneRDMs one_rdms = doci_rdm.calculate1RDMs(coef);
 
     BOOST_CHECK(std::abs(one_rdms.one_rdm.trace() - N) < 1.0e-12);
 }
@@ -47,23 +47,23 @@ BOOST_AUTO_TEST_CASE ( lih_2RDM_trace ) {
 
     // Get the 1-RDM from DOCI
     size_t N = 4;  // 4 electrons
-    auto ham_par = GQCG::readFCIDUMPFile("../tests/data/lih_631g_caitlin.FCIDUMP");
+    auto ham_par = GQCP::readFCIDUMPFile("../tests/data/lih_631g_caitlin.FCIDUMP");
     size_t K = ham_par.get_K();  // 16 SO
 
-    GQCG::FockSpace fock_space (K, N/2);  // dim = 120
-    GQCG::DOCI doci (fock_space);
+    GQCP::FockSpace fock_space (K, N/2);  // dim = 120
+    GQCP::DOCI doci (fock_space);
 
     // Specify solver options and solve the eigenvalue problem
     // Solve the dense DOCI eigenvalue problem
-    GQCG::CISolver ci_solver (doci, ham_par);
+    GQCP::CISolver ci_solver (doci, ham_par);
     numopt::eigenproblem::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
     Eigen::VectorXd coef = ci_solver.get_eigenpair().get_eigenvector();
 
     // Check if the 2-RDM has the proper trace.
-    GQCG::DOCIRDMBuilder doci_rdm (fock_space);
-    GQCG::TwoRDMs two_rdms = doci_rdm.calculate2RDMs(coef);
+    GQCP::DOCIRDMBuilder doci_rdm (fock_space);
+    GQCP::TwoRDMs two_rdms = doci_rdm.calculate2RDMs(coef);
 
     BOOST_CHECK(std::abs(two_rdms.two_rdm.trace() - N*(N-1)) < 1.0e-12);
 }
@@ -76,24 +76,24 @@ BOOST_AUTO_TEST_CASE ( lih_1RDM_2RDM_trace_DOCI ) {
 
     // Get the 1-RDM from DOCI
     size_t N = 4;  // 4 electrons
-    auto ham_par = GQCG::readFCIDUMPFile("../tests/data/lih_631g_caitlin.FCIDUMP");
+    auto ham_par = GQCP::readFCIDUMPFile("../tests/data/lih_631g_caitlin.FCIDUMP");
     size_t K = ham_par.get_K();  // 16 SO
 
-    GQCG::FockSpace fock_space (K, N/2);  // dim = 120
-    GQCG::DOCI doci (fock_space);
+    GQCP::FockSpace fock_space (K, N/2);  // dim = 120
+    GQCP::DOCI doci (fock_space);
 
     // Specify solver options and solve the eigenvalue problem
     // Solve the dense DOCI eigenvalue problem
-    GQCG::CISolver ci_solver (doci, ham_par);
+    GQCP::CISolver ci_solver (doci, ham_par);
     numopt::eigenproblem::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
     Eigen::VectorXd coef = ci_solver.get_eigenpair().get_eigenvector();
 
     // Check if the 2-RDM contraction matches the reduction.
-    GQCG::DOCIRDMBuilder doci_rdm (fock_space);
-    GQCG::TwoRDMs two_rdms = doci_rdm.calculate2RDMs(coef);
-    GQCG::OneRDMs one_rdms = doci_rdm.calculate1RDMs(coef);
+    GQCP::DOCIRDMBuilder doci_rdm (fock_space);
+    GQCP::TwoRDMs two_rdms = doci_rdm.calculate2RDMs(coef);
+    GQCP::OneRDMs one_rdms = doci_rdm.calculate1RDMs(coef);
 
 
     Eigen::MatrixXd D_from_reduction = (1.0/(N-1)) * two_rdms.two_rdm.reduce();
@@ -107,15 +107,15 @@ BOOST_AUTO_TEST_CASE ( lih_energy_RDM_contraction_DOCI ) {
 
     // Get the 1-RDM from DOCI
     size_t N = 4;  // 4 electrons
-    auto ham_par = GQCG::readFCIDUMPFile("../tests/data/lih_631g_caitlin.FCIDUMP");
+    auto ham_par = GQCP::readFCIDUMPFile("../tests/data/lih_631g_caitlin.FCIDUMP");
     size_t K = ham_par.get_K();  // 16 SO
 
-    GQCG::FockSpace fock_space (K, N/2);  // dim = 120
-    GQCG::DOCI doci (fock_space);
+    GQCP::FockSpace fock_space (K, N/2);  // dim = 120
+    GQCP::DOCI doci (fock_space);
 
     // Specify solver options and solve the eigenvalue problem
     // Solve the dense DOCI eigenvalue problem
-    GQCG::CISolver ci_solver (doci, ham_par);
+    GQCP::CISolver ci_solver (doci, ham_par);
     numopt::eigenproblem::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
@@ -123,9 +123,9 @@ BOOST_AUTO_TEST_CASE ( lih_energy_RDM_contraction_DOCI ) {
     double energy_by_eigenvalue = ci_solver.get_eigenpair().get_eigenvalue();
 
     // Check if the contraction energy matches the doci eigenvalue.
-    GQCG::DOCIRDMBuilder doci_rdm (fock_space);
-    GQCG::TwoRDMs two_rdms = doci_rdm.calculate2RDMs(coef);
-    GQCG::OneRDMs one_rdms = doci_rdm.calculate1RDMs(coef);
+    GQCP::DOCIRDMBuilder doci_rdm (fock_space);
+    GQCP::TwoRDMs two_rdms = doci_rdm.calculate2RDMs(coef);
+    GQCP::OneRDMs one_rdms = doci_rdm.calculate1RDMs(coef);
 
     double energy_by_contraction = ham_par.calculateEnergy(one_rdms.one_rdm, two_rdms.two_rdm);
 

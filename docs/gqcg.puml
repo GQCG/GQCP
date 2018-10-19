@@ -1,8 +1,8 @@
 @startuml
 
-namespace gqcg {
+namespace GQCP {
 
-    class GQCG::Atom {
+    class GQCP::Atom {
         __ public members __
             + size_t atomic_number
             + double x, y, z
@@ -10,42 +10,42 @@ namespace gqcg {
         == constructors ==
             **Atom** (size_t atomic_number, double x, double y, double z)
         __ operators __
-            + bool **operator==**(const GQCG::Atom& other) const
-            + bool **operator<(const GQCG::Atom& other) const
-            + friend std::ostream& **operator<<**(std::ostream& os, const GQCG::Atom& atom)
+            + bool **operator==**(const GQCP::Atom& other) const
+            + bool **operator<(const GQCP::Atom& other) const
+            + friend std::ostream& **operator<<**(std::ostream& os, const GQCP::Atom& atom)
         __ public methods __
-            + bool **isEqualTo**(const GQCG::Atom& other, double tolerance=Atom::tolerance_for_comparison) const
-            + bool **isSmallerThan**(const GQCG::Atom& other, double tolerance=Atom::tolerance_for_comparison) const
-            + double **calculateDistance**(const GQCG::Atom& other) const
+            + bool **isEqualTo**(const GQCP::Atom& other, double tolerance=Atom::tolerance_for_comparison) const
+            + bool **isSmallerThan**(const GQCP::Atom& other, double tolerance=Atom::tolerance_for_comparison) const
+            + double **calculateDistance**(const GQCP::Atom& other) const
     }
 
-    GQCG::Molecule *--> "vector of ..." GQCG::Atom
-    class GQCG::Molecule {
+    GQCP::Molecule *--> "vector of ..." GQCP::Atom
+    class GQCP::Molecule {
         __ private members __
-            - const std::vector<GQCG::Atom> atoms
+            - const std::vector<GQCP::Atom> atoms
             - const size_t N
         __ private methods __
-            - {static} std::vector<GQCG::Atom> parseXYZFile(const std::string& xyz_filename)
+            - {static} std::vector<GQCP::Atom> parseXYZFile(const std::string& xyz_filename)
         == constructors ==
             explicit **Molecule**(const std::string& xyz_filename)
             **Molecule**(const std::string& xyz_filename, int molecular_charge)
-            explicit **Molecule**(const std::vector<GQCG::Atom>& atoms)
-            **Molecule**(const std::vector<GQCG::Atom>& atoms, int molecular_charge)
+            explicit **Molecule**(const std::vector<GQCP::Atom>& atoms)
+            **Molecule**(const std::vector<GQCP::Atom>& atoms, int molecular_charge)
         __ operators __
-            + bool **operator==**(const GQCG::Molecule& other) const
-            + friend std::ostream& **operator<<**(std::ostream& os, const GQCG::Molecule& molecule)
+            + bool **operator==**(const GQCP::Molecule& other) const
+            + friend std::ostream& **operator<<**(std::ostream& os, const GQCP::Molecule& molecule)
         __ public methods __
             + size_t **get_N**() const
             + size_t **numberOfAtoms**() const
 
-            + bool **isEqualTo**(const GQCG::Molecule& other, double tolerance=GQCG::Atom::tolerance_for_comparison) const
+            + bool **isEqualTo**(const GQCP::Molecule& other, double tolerance=GQCP::Atom::tolerance_for_comparison) const
             + size_t **calculateTotalNucleicCharge**() const
             + double **calculateInternuclearDistance**(size_t index1, size_t index2) const
             + double **calculateInternuclearRepulsionEnergy**() const
     }
 
 
-    class GQCG::JacobiRotationParameters {
+    class GQCP::JacobiRotationParameters {
         __ private members __
             - size_t p
             - size_t q
@@ -67,7 +67,7 @@ namespace gqcg {
         __ public methods __
             + void **transform**(const Eigen::MatriXd& T)
             + void **rotate**(const Eigen::MatrixXd& U) = 0
-            + void **rotate**(const GQCG::JacobiRotationParameters& jacobi_parameters) = 0
+            + void **rotate**(const GQCP::JacobiRotationParameters& jacobi_parameters) = 0
     }
 
     OneElectronOperator --|> Operator
@@ -88,11 +88,11 @@ namespace gqcg {
 
     class AOBasis {
         __ private members __
-            - const std::vector<GQCG::Atom> atoms
+            - const std::vector<GQCP::Atom> atoms
             - const libint2::BasisSet basis_functions
             - const size_t number_of_basis_functions
         == constructors ==
-            **AOBasis**(const GQCG::Molecule& molecule, std::string basis_set)
+            **AOBasis**(const GQCP::Molecule& molecule, std::string basis_set)
         __ public methods __
             size_t **get_number_of_basis_functions**() const
     }
@@ -107,9 +107,9 @@ namespace gqcg {
             + **LibintCommunicator**(LibintCommunicator const& libint_communicator) = delete
             + void **operator=**(LibintCommunicator const& libint_communicator) = delete
 
-            + std::vector<libint2::Atom> **interface**(const std::vector<GQCG::Atom>& atoms) const
-            + OneElectronOperator **calculateOneElectronIntegrals**(libint2::Operator operator_type, const GQCG::AOBasis& ao_basis) const
-            + TwoElectronOperator **calculateTwoElectronIntegrals**(libint2::Operator operator_type, const GQCG::AOBasis& ao_basis) const
+            + std::vector<libint2::Atom> **interface**(const std::vector<GQCP::Atom>& atoms) const
+            + OneElectronOperator **calculateOneElectronIntegrals**(libint2::Operator operator_type, const GQCP::AOBasis& ao_basis) const
+            + TwoElectronOperator **calculateTwoElectronIntegrals**(libint2::Operator operator_type, const GQCP::AOBasis& ao_basis) const
     }
 
 
@@ -117,11 +117,11 @@ namespace gqcg {
         __ private members __
             - const size_t K
             - const size_t N
-            - GQCG::Matrixu vertex_weights
+            - GQCP::Matrixu vertex_weights
         == constructors ==
             **AddressingScheme**(size_t K, size_t N)
         __ public methods __
-            + GQCG::Matrixu **get_vertex_weights**() const
+            + GQCP::Matrixu **get_vertex_weights**() const
             + size_t **get_vertex_weights**(size_t p, size_t m) const
             + size_t **get_K**() const
             + size_t **get_N**() const
@@ -131,7 +131,7 @@ namespace gqcg {
     BaseHamiltonianParameters o--> AOBasis
     abstract class BaseHamiltonianParameters {
         __ private members __
-            - std::shared_ptr<GQCG::AOBasis> ao_basis_sptr
+            - std::shared_ptr<GQCP::AOBasis> ao_basis_sptr
     }
 
 
@@ -143,11 +143,11 @@ namespace gqcg {
             - OneElectronOperator g
             - Eigen::MatrixXd C
         == constructors ==
-            **HamiltonianParameters**(std::shared_ptr<GQCG::AOBasis> ao_basis_sptr, const GQCG::OneElectronOperator& S, const GQCG::OneElectronOperator& h, const GQCG::TwoElectronOperator& g, const Eigen::MatrixXd& C)
+            **HamiltonianParameters**(std::shared_ptr<GQCP::AOBasis> ao_basis_sptr, const GQCP::OneElectronOperator& S, const GQCP::OneElectronOperator& h, const GQCP::TwoElectronOperator& g, const Eigen::MatrixXd& C)
         __ public methods __
             + void **transform**(const Eigen::MatriXd& T)
             + void **rotate**(const Eigen::MatrixXd& U)
-            + void **rotate**(const GQCG::JacobiRotationParameters& jacobi_parameters)
+            + void **rotate**(const GQCP::JacobiRotationParameters& jacobi_parameters)
     }
 
     UnrestrictedHamiltonianParameters --|> BaseHamiltonianParameters
@@ -168,8 +168,8 @@ namespace gqcg {
             + void **transformBeta**(const Eigen::MatrixXd& T_alpha)
             + void **rotateAlpha**(const Eigen::MatrixXd& U_alpha)
             + void **rotateBeta**(const Eigen::MatrixXd& U_beta)
-            + void **rotateAlpha**(const GQCG::JacobiRotationParameters& jacobi_parameters_alpha)
-            + void **rotateBeta**(const GQCG::JacobiRotationParameters& jacobi_parameters_beta)
+            + void **rotateAlpha**(const GQCP::JacobiRotationParameters& jacobi_parameters_alpha)
+            + void **rotateBeta**(const GQCP::JacobiRotationParameters& jacobi_parameters_beta)
     }
 
     abstract class QCM {
@@ -183,7 +183,7 @@ namespace gqcg {
 
     abstract AllNumoptSolverInterface
 
-    gqcg.QCM ..> gqcg.Basis
+    GQCP.QCM ..> GQCP.Basis
 }
 
 namespace oo {
@@ -197,8 +197,8 @@ namespace oo {
 }
 
 
-oo.OO o--> gqcg.QCM
-oo.OO o--> gqcg.Basis
+oo.OO o--> GQCP.QCM
+oo.OO o--> GQCP.Basis
 oo.OOjacobi --|> oo.OO
 
 namespace ci {
@@ -209,12 +209,12 @@ namespace ci {
     class SelectedCI
 }
 
-ci.BaseCI --|> gqcg.QCM
+ci.BaseCI --|> GQCP.QCM
 ci.OODOCI --|> oo.OO
 ci.DOCI --|> ci.BaseCI
 ci.FCI --|> ci.BaseCI
 ci.SelectedCI --|> ci.BaseCI
-ci.BaseCI o--> gqcg.AllNumoptSolverInterface
+ci.BaseCI o--> GQCP.AllNumoptSolverInterface
 
 namespace rdm {
 }

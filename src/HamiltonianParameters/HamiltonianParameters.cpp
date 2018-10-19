@@ -3,7 +3,7 @@
 #include "miscellaneous.hpp"
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /*
@@ -15,7 +15,7 @@ namespace GQCG {
  *  operator @param g and a transformation matrix between the current molecular orbitals and the atomic orbitals
  *  @param C
  */
-HamiltonianParameters::HamiltonianParameters(std::shared_ptr<GQCG::AOBasis> ao_basis, const GQCG::OneElectronOperator& S, const GQCG::OneElectronOperator& h, const GQCG::TwoElectronOperator& g, const Eigen::MatrixXd& C) :
+HamiltonianParameters::HamiltonianParameters(std::shared_ptr<GQCP::AOBasis> ao_basis, const GQCP::OneElectronOperator& S, const GQCP::OneElectronOperator& h, const GQCP::TwoElectronOperator& g, const Eigen::MatrixXd& C) :
     BaseHamiltonianParameters(std::move(ao_basis)),
     K (S.dim),
     S (S),
@@ -43,7 +43,7 @@ HamiltonianParameters::HamiltonianParameters(std::shared_ptr<GQCG::AOBasis> ao_b
  *
  *  If the initial Hamiltonian parameters @param ham_par are expressed in the basis B, the constructed instance represents the Hamiltonian parameters in the transformed basis B'. The basis transformation between B and B' is given by the transformation matrix @param C.
  */
-HamiltonianParameters::HamiltonianParameters(const GQCG::HamiltonianParameters& ham_par, const Eigen::MatrixXd& C) :
+HamiltonianParameters::HamiltonianParameters(const GQCP::HamiltonianParameters& ham_par, const Eigen::MatrixXd& C) :
     BaseHamiltonianParameters(ham_par.ao_basis),
     K (ham_par.S.dim),
     S (ham_par.S),
@@ -114,7 +114,7 @@ void HamiltonianParameters::rotate(const Eigen::MatrixXd& U) {
  *
  *  Furthermore @member C is updated to reflect the total transformation between the new molecular orbital basis and the initial atomic orbitals
  */
-void HamiltonianParameters::rotate(const GQCG::JacobiRotationParameters& jacobi_rotation_parameters) {
+void HamiltonianParameters::rotate(const GQCP::JacobiRotationParameters& jacobi_rotation_parameters) {
 
     // A rotation leaves the overlap matrix invariant, so we don't have to transform it
 
@@ -124,7 +124,7 @@ void HamiltonianParameters::rotate(const GQCG::JacobiRotationParameters& jacobi_
 
     // Create a Jacobi rotation matrix to transform the coefficient matrix with
     size_t K = this->h.dim;  // number of spatial orbitals
-    auto J = GQCG::jacobiRotationMatrix(jacobi_rotation_parameters, K);
+    auto J = GQCP::jacobiRotationMatrix(jacobi_rotation_parameters, K);
     this->C = this->C * J;
 }
 
@@ -152,4 +152,4 @@ double HamiltonianParameters::calculateEnergy(OneRDM one_rdm, TwoRDM two_rdm){
     return energy_by_contraction;
 }
 
-}  // namespace GQCG
+}  // namespace GQCP

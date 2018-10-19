@@ -1,7 +1,7 @@
 #include "RDM/OneRDM.hpp"
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 
@@ -43,4 +43,4 @@ Eigen::MatrixXd OneRDM::diagonalize() {
 }
 
 
-}  // namespace GQCG
+}  // namespace GQCP

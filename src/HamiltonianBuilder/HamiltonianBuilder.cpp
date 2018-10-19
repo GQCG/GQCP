@@ -1,7 +1,7 @@
 #include "HamiltonianBuilder/HamiltonianBuilder.hpp"
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /*
@@ -15,4 +15,4 @@ HamiltonianBuilder::~HamiltonianBuilder() {}
 
 
 
-}  // namespace GQCG
+}  // namespace GQCP

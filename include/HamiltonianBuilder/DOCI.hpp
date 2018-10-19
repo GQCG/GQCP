@@ -1,5 +1,5 @@
-#ifndef GQCG_DOCI_HPP
-#define GQCG_DOCI_HPP
+#ifndef GQCP_DOCI_HPP
+#define GQCP_DOCI_HPP
 
 
 #include "HamiltonianBuilder.hpp"
@@ -9,7 +9,7 @@
 
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /**
@@ -19,7 +19,7 @@ namespace GQCG {
  *  requires the individual ONVs to be identical (beta configuration = alpha configuration).
  *  In turn this is only possible when both Fock spaces are identical.
  */
-class DOCI : public GQCG::HamiltonianBuilder {
+class DOCI : public GQCP::HamiltonianBuilder {
 private:
     FockSpace fock_space;  // both the alpha and beta Fock space
 
@@ -59,7 +59,7 @@ public:
 };
 
 
-}  // namespace GQCG
+}  // namespace GQCP
 
 
-#endif  // GQCG_DOCI_HPP
+#endif  // GQCP_DOCI_HPP

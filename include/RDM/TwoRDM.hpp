@@ -1,5 +1,5 @@
-#ifndef GQCG_TWORDM_HPP
-#define GQCG_TWORDM_HPP
+#ifndef GQCP_TWORDM_HPP
+#define GQCP_TWORDM_HPP
 
 
 #include "RDM/BaseRDM.hpp"
@@ -7,7 +7,7 @@
 #include <unsupported/Eigen/CXX11/Tensor>
 
 
-namespace GQCG {
+namespace GQCP {
 
 /**
  *  A class that holds the tensor representations of a 2RDM
@@ -41,7 +41,7 @@ public:
 };
 
 
-}  // namespace GQCG
+}  // namespace GQCP
 
 
-#endif  // GQCG_TWORDM_HPP
+#endif  // GQCP_TWORDM_HPP

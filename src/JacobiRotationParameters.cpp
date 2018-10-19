@@ -3,7 +3,7 @@
 #include <stdexcept>
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /*
@@ -29,9 +29,9 @@ JacobiRotationParameters::JacobiRotationParameters(size_t p, size_t q, double an
  *  OPERATORS
  */
 /**
- *  Overloading of operator<< for GQCG::JacobiRotationParameters to be used with streams
+ *  Overloading of operator<< for GQCP::JacobiRotationParameters to be used with streams
  */
-std::ostream& operator<<(std::ostream& os, const GQCG::JacobiRotationParameters& jacobi_rotation_parameters) {
+std::ostream& operator<<(std::ostream& os, const GQCP::JacobiRotationParameters& jacobi_rotation_parameters) {
 
     os << "p: " << jacobi_rotation_parameters.p << ", q: " << jacobi_rotation_parameters.q << ", angle: " << jacobi_rotation_parameters.angle;
     return os;
@@ -39,4 +39,4 @@ std::ostream& operator<<(std::ostream& os, const GQCG::JacobiRotationParameters&
 
 
 
-}  // namespace GQCG
+}  // namespace GQCP

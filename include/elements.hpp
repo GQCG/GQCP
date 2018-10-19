@@ -1,11 +1,11 @@
-#ifndef GQCG_ELEMENTS_HPP
-#define GQCG_ELEMENTS_HPP
+#ifndef GQCP_ELEMENTS_HPP
+#define GQCP_ELEMENTS_HPP
 
 
 #include <string>
 
 
-namespace GQCG {
+namespace GQCP {
 namespace elements {
 
 
@@ -23,7 +23,7 @@ const std::string& atomicNumberToElement(size_t atomic_number);
 
 
 }  // namespace elements
-}  // namespace GQCG
+}  // namespace GQCP
 
 
-#endif  // GQCG_ELEMENTS_HPP
+#endif  // GQCP_ELEMENTS_HPP

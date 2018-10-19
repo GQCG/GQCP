@@ -1,7 +1,7 @@
 #include "AP1roG/AP1roGGeminalCoefficients.hpp"
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /*
@@ -149,4 +149,4 @@ size_t AP1roGGeminalCoefficients::vectorIndex(size_t i, size_t a) const {
 }
 
 
-}  // namespace GQCG
+}  // namespace GQCP

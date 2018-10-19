@@ -1,7 +1,7 @@
 #include "RDM/DOCIRDMBuilder.hpp"
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /*
@@ -118,4 +118,4 @@ TwoRDMs DOCIRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) {
 
 
 
-}  // namespace GQCG
+}  // namespace GQCP

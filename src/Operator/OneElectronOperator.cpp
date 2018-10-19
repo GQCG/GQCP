@@ -3,7 +3,7 @@
 #include <stdexcept>
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /*
@@ -33,7 +33,7 @@ OneElectronOperator::OneElectronOperator(const Eigen::MatrixXd& matrix) :
  *  @return the sum of two OneElectronOperators, i.e. a OneElectronOperator whose matrix representation is the sum
  *  of the two matrix representations of the given OneElectronOperators
  */
-GQCG::OneElectronOperator OneElectronOperator::operator+(const GQCG::OneElectronOperator& other) {
+GQCP::OneElectronOperator OneElectronOperator::operator+(const GQCP::OneElectronOperator& other) {
     
     return OneElectronOperator(this->matrix + other.matrix);
 }
@@ -83,7 +83,7 @@ void OneElectronOperator::rotate(const Eigen::MatrixXd& U) {
  *        in which the basis functions are collected as elements of a row vector b.
  *      - we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
  */
-void OneElectronOperator::rotate(const GQCG::JacobiRotationParameters& jacobi_rotation_parameters) {
+void OneElectronOperator::rotate(const GQCP::JacobiRotationParameters& jacobi_rotation_parameters) {
 
     auto p = jacobi_rotation_parameters.p;
     auto q = jacobi_rotation_parameters.q;
@@ -102,4 +102,4 @@ void OneElectronOperator::rotate(const GQCG::JacobiRotationParameters& jacobi_ro
 
 
 
-}  // namespace GQCG
+}  // namespace GQCP

@@ -1,7 +1,7 @@
 #include "WaveFunction.hpp"
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /*
@@ -14,4 +14,4 @@ WaveFunction::WaveFunction(BaseFockSpace& base_fock_space, const Eigen::VectorXd
 {}
 
 
-}  // namespace GQCG
+}  // namespace GQCP

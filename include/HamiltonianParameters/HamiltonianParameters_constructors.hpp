@@ -1,5 +1,5 @@
-#ifndef GQCG_HAMILTONIANPARAMETERS_CONSTRUCTORS_HPP
-#define GQCG_HAMILTONIANPARAMETERS_CONSTRUCTORS_HPP
+#ifndef GQCP_HAMILTONIANPARAMETERS_CONSTRUCTORS_HPP
+#define GQCP_HAMILTONIANPARAMETERS_CONSTRUCTORS_HPP
 
 
 
@@ -10,7 +10,7 @@
 
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /**
@@ -23,16 +23,16 @@ namespace GQCG {
  *      - two-electron contributions:
  *          - Coulomb repulsion
  */
-GQCG::HamiltonianParameters constructMolecularHamiltonianParameters(std::shared_ptr<GQCG::AOBasis> ao_basis);
+GQCP::HamiltonianParameters constructMolecularHamiltonianParameters(std::shared_ptr<GQCP::AOBasis> ao_basis);
 
 
 /**
  *  @return HamiltonianParameters corresponding to the contents of an @param fcidump_file
  */
-GQCG::HamiltonianParameters readFCIDUMPFile(const std::string& fcidump_file);
+GQCP::HamiltonianParameters readFCIDUMPFile(const std::string& fcidump_file);
  
 
-}  // namespace GQCG
+}  // namespace GQCP
 
 
-#endif  // GQCG_HAMILTONIANPARAMETERS_CONSTRUCTORS_HPP
+#endif  // GQCP_HAMILTONIANPARAMETERS_CONSTRUCTORS_HPP

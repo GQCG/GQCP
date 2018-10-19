@@ -3,7 +3,7 @@
 #include <boost/bimap.hpp>
 
 
-namespace GQCG {
+namespace GQCP {
 namespace elements {
 
 
@@ -70,4 +70,4 @@ const std::string& atomicNumberToElement(size_t atomic_number) {
 
 
 }  // namespace elements
-}  // namespace GQCG
+}  // namespace GQCP

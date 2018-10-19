@@ -1,7 +1,7 @@
 #include "RHF/RHF.hpp"
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /*
@@ -51,7 +51,7 @@ Eigen::MatrixXd calculateRHFAO1RDM(const Eigen::MatrixXd& C, size_t N) {
  *
  *  The RHF Fock matrix is calculated as F = H + G, in which G is a contraction of the density matrix and the two-electron integrals
  */
-Eigen::MatrixXd calculateRHFAOFockMatrix(const Eigen::MatrixXd& D_AO, GQCG::HamiltonianParameters ham_par) {
+Eigen::MatrixXd calculateRHFAOFockMatrix(const Eigen::MatrixXd& D_AO, GQCP::HamiltonianParameters ham_par) {
 
     // To perform the contraction, we will first have to convert the Eigen::MatrixXd D_AO to an Eigen::Tensor<const double, 2> D_AO_tensor, as contractions are only implemented for Eigen::Tensors
     Eigen::TensorMap<Eigen::Tensor<const double, 2>> D_AO_tensor (D_AO.data(), D_AO.rows(), D_AO.cols());
@@ -130,4 +130,4 @@ size_t RHFLUMOIndex(size_t K, size_t N) {
 }
 
 
-}  // namespace GQCG
+}  // namespace GQCP

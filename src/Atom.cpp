@@ -6,7 +6,7 @@
 #include "elements.hpp"
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /*
@@ -32,7 +32,7 @@ Atom::Atom(size_t atomic_number, double x, double y, double z) :
 /**
  *  @return if this is equal to @param other, within the @member tolerance_for_comparison for the coordinates
  */
-bool Atom::operator==(const GQCG::Atom& other) const {
+bool Atom::operator==(const GQCP::Atom& other) const {
 
     return this->isEqualTo(other, Atom::tolerance_for_comparison);
 }
@@ -43,17 +43,17 @@ bool Atom::operator==(const GQCG::Atom& other) const {
  *
  *  @member atomic_number takes precedence over @member x, over @member y, over @member z
  */
-bool Atom::operator<(const GQCG::Atom& other) const {
+bool Atom::operator<(const GQCP::Atom& other) const {
 
     return this->isSmallerThan(other, Atom::tolerance_for_comparison);
 }
 
 
 /**
- *  Overloading of operator<< for a GQCG::Atom to be used with streams
+ *  Overloading of operator<< for a GQCP::Atom to be used with streams
  */
-std::ostream& operator<<(std::ostream& os, const GQCG::Atom& atom) {
-    os << std::left << std::setw(3) << GQCG::elements::atomicNumberToElement(atom.atomic_number) << '(' << atom.x << ", " << atom.y << ", " << atom.z << ")\n";
+std::ostream& operator<<(std::ostream& os, const GQCP::Atom& atom) {
+    os << std::left << std::setw(3) << GQCP::elements::atomicNumberToElement(atom.atomic_number) << '(' << atom.x << ", " << atom.y << ", " << atom.z << ")\n";
     return os;
 }
 
@@ -65,7 +65,7 @@ std::ostream& operator<<(std::ostream& os, const GQCG::Atom& atom) {
 /**
  *  @return if this is equal to @param other, within the given @param tolerance for the coordinates
  */
-bool Atom::isEqualTo(const GQCG::Atom& other, double tolerance) const {
+bool Atom::isEqualTo(const GQCP::Atom& other, double tolerance) const {
 
     return (this->atomic_number == other.atomic_number) &&
            (std::abs(this->x - other.x) < tolerance) &&
@@ -79,7 +79,7 @@ bool Atom::isEqualTo(const GQCG::Atom& other, double tolerance) const {
  *
  *  @member atomic_number takes precedence over @member x, over @member y, over @member z
  */
-bool Atom::isSmallerThan(const GQCG::Atom& other, double tolerance) const {
+bool Atom::isSmallerThan(const GQCP::Atom& other, double tolerance) const {
 
     if (this->atomic_number < other.atomic_number) {
         return true;
@@ -109,7 +109,7 @@ bool Atom::isSmallerThan(const GQCG::Atom& other, double tolerance) const {
 /**
  * @return the distance between this and @param other
  */
-double Atom::calculateDistance(const GQCG::Atom& other) const {
+double Atom::calculateDistance(const GQCP::Atom& other) const {
 
     return std::sqrt(std::pow(this->x - other.x, 2)
                      + std::pow(this->y - other.y, 2)
@@ -117,4 +117,4 @@ double Atom::calculateDistance(const GQCG::Atom& other) const {
 }
 
 
-}  // namespace GQCG
+}  // namespace GQCP

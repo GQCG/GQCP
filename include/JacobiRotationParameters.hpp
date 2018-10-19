@@ -1,5 +1,5 @@
-#ifndef GQCG_JACOBIROTATIONPARAMETERS_HPP
-#define GQCG_JACOBIROTATIONPARAMETERS_HPP
+#ifndef GQCP_JACOBIROTATIONPARAMETERS_HPP
+#define GQCP_JACOBIROTATIONPARAMETERS_HPP
 
 
 #include <stdlib.h>
@@ -8,7 +8,7 @@
 #include <Eigen/Dense>
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /**
@@ -35,9 +35,9 @@ public:
 
     // OPERATORS
     /**
-     *  Overloading of operator<< for GQCG::JacobiRotationParameters to be used with streams
+     *  Overloading of operator<< for GQCP::JacobiRotationParameters to be used with streams
      */
-    friend std::ostream& operator<<(std::ostream& os, const GQCG::JacobiRotationParameters& jacobi_rotation_parameters);
+    friend std::ostream& operator<<(std::ostream& os, const GQCP::JacobiRotationParameters& jacobi_rotation_parameters);
 
 
     // GETTERS
@@ -51,12 +51,12 @@ public:
     friend class AP1roGJacobiOrbitalOptimizer;
 
     // FRIEND FUNCTIONS
-    friend Eigen::MatrixXd jacobiRotationMatrix(const GQCG::JacobiRotationParameters& jacobi_rotation_parameters, size_t M);
+    friend Eigen::MatrixXd jacobiRotationMatrix(const GQCP::JacobiRotationParameters& jacobi_rotation_parameters, size_t M);
 };
 
 
 
-}  // namespace GQCG
+}  // namespace GQCP
 
 
-#endif  // GQCG_JACOBIROTATIONPARAMETERS_HPP
+#endif  // GQCP_JACOBIROTATIONPARAMETERS_HPP

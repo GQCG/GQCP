@@ -1,5 +1,5 @@
-#ifndef GQCG_FOCKSPACE_HPP
-#define GQCG_FOCKSPACE_HPP
+#ifndef GQCP_FOCKSPACE_HPP
+#define GQCP_FOCKSPACE_HPP
 
 
 #include "FockSpace/BaseFockSpace.hpp"
@@ -8,7 +8,7 @@
 #include <boost/math/special_functions.hpp>
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /**
@@ -18,7 +18,7 @@ namespace GQCG {
  *  Implementation of the addressing scheme from :
  *      Molecular Electronic-Structure Theory (August 2000) by Trygve Helgaker, Poul Jorgensen, and Jeppe Olsen
  */
-class FockSpace: public GQCG::BaseFockSpace {
+class FockSpace: public GQCP::BaseFockSpace {
 private:
     const size_t N;  // number of electrons
     Matrixu vertex_weights;  // vertex_weights of the addressing scheme
@@ -89,7 +89,7 @@ public:
 };
 
 
-}  // namespace GQCG
+}  // namespace GQCP
 
 
-#endif  // GQCG_FOCKSPACE_HPP
+#endif  // GQCP_FOCKSPACE_HPP

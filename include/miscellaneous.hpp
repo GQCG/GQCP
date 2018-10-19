@@ -1,5 +1,5 @@
-#ifndef GQCG_MISCELLANEOUS_HPP
-#define GQCG_MISCELLANEOUS_HPP
+#ifndef GQCP_MISCELLANEOUS_HPP
+#define GQCP_MISCELLANEOUS_HPP
 
 
 #include <stdlib.h>
@@ -9,7 +9,7 @@
 #include "JacobiRotationParameters.hpp"
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /**
@@ -18,12 +18,12 @@ namespace GQCG {
  *  Note that:
  *      - we work with the (cos, sin, -sin, cos) definition of the Jacobi rotation matrix
  */
-Eigen::MatrixXd jacobiRotationMatrix(const GQCG::JacobiRotationParameters& jacobi_rotation_parameters, size_t M);
+Eigen::MatrixXd jacobiRotationMatrix(const GQCP::JacobiRotationParameters& jacobi_rotation_parameters, size_t M);
 
 
 
-}  // namespace GQCG
+}  // namespace GQCP
 
 
 
-#endif  // GQCG_MISCELLANEOUS_HPP
+#endif  // GQCP_MISCELLANEOUS_HPP

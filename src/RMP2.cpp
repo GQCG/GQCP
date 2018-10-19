@@ -1,13 +1,13 @@
 #include "RMP2.hpp"
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /**
  *  @return the RMP2 energy correction based on given @param Hamiltonian parameters ham_par, a given @param molecule and a converged solution @param rhf to the RHF SCF equations
  */
-double calculateRMP2EnergyCorrection(const GQCG::HamiltonianParameters& ham_par, const GQCG::Molecule& molecule, const GQCG::RHF& rhf) {
+double calculateRMP2EnergyCorrection(const GQCP::HamiltonianParameters& ham_par, const GQCP::Molecule& molecule, const GQCP::RHF& rhf) {
 
     size_t N = molecule.get_N();
 
@@ -15,8 +15,8 @@ double calculateRMP2EnergyCorrection(const GQCG::HamiltonianParameters& ham_par,
     size_t K = g.dimension(0);  // TODO: change to ham_par.dim after rebase
 
 
-    size_t HOMO_index = GQCG::RHFHOMOIndex(N);
-    size_t LUMO_index = GQCG::RHFLUMOIndex(K, N);
+    size_t HOMO_index = GQCP::RHFHOMOIndex(N);
+    size_t LUMO_index = GQCP::RHFLUMOIndex(K, N);
 
     double E = 0.0;
     //  loop over all occupied orbitals (0 <= HOMO )
@@ -43,4 +43,4 @@ double calculateRMP2EnergyCorrection(const GQCG::HamiltonianParameters& ham_par,
 }
 
 
-}  // namespace GQCG
+}  // namespace GQCP

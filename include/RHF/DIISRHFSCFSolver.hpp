@@ -1,6 +1,6 @@
 //
 //  DIISRHFSCFSolver.hpp
-//  gqcg
+//  GQCP
 //
 //  Created by Laurent Lemmens on 04/10/2018.
 //  Copyright © 2018 Ghent Quantum Chemistry Group. All rights reserved.
@@ -19,9 +19,9 @@
 /**
  *  A DIIS RHF SCF solver.
  */
-namespace GQCG {
+namespace GQCP {
 
-class DIISRHFSCFSolver : public GQCG::RHFSCFSolver {
+class DIISRHFSCFSolver : public GQCP::RHFSCFSolver {
 private:
     const size_t maximum_subspace_dimension;
 
@@ -39,11 +39,11 @@ public:
     /**
      *  Constructor based on given Hamiltonian parameters @param ham_par, @param molecule, @param maximum_number_of_iterations and @param SCF threshold
      */
-    DIISRHFSCFSolver(GQCG::HamiltonianParameters ham_par, GQCG::Molecule molecule, size_t maximum_subspace_dimension = 6, double threshold=1.0e-08, size_t maximum_number_of_iterations=128);
+    DIISRHFSCFSolver(GQCP::HamiltonianParameters ham_par, GQCP::Molecule molecule, size_t maximum_subspace_dimension = 6, double threshold=1.0e-08, size_t maximum_number_of_iterations=128);
 };
 
 
-}  // namespace GQCG
+}  // namespace GQCP
 
 
 

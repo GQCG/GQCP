@@ -1,5 +1,5 @@
-#ifndef GQCG_FOCKSPACEPRODUCT_HPP
-#define GQCG_FOCKSPACEPRODUCT_HPP
+#ifndef GQCP_FOCKSPACEPRODUCT_HPP
+#define GQCP_FOCKSPACEPRODUCT_HPP
 
 
 #include "FockSpace/BaseFockSpace.hpp"
@@ -9,13 +9,13 @@
 #include <boost/math/special_functions.hpp>
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /**
  *  The product of two Fock spaces for a given set of orbitals and number of alpha and beta electrons.
  */
-class FockSpaceProduct: public GQCG::BaseFockSpace {
+class FockSpaceProduct: public GQCP::BaseFockSpace {
 private:
     const size_t N_alpha;  // number of alpha electrons
     const size_t N_beta;  // number of beta electrons
@@ -54,7 +54,7 @@ public:
 };
 
 
-}  // namespace GQCG
+}  // namespace GQCP
 
 
-#endif  // GQCG_FOCKSPACE_HPP
+#endif  // GQCP_FOCKSPACE_HPP
