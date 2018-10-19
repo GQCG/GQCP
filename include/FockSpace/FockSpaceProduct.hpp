@@ -1,5 +1,22 @@
-#ifndef GQCG_FOCKSPACEPRODUCT_HPP
-#define GQCG_FOCKSPACEPRODUCT_HPP
+// This file is part of GQCG-gqcp.
+// 
+// Copyright (C) 2017-2018  the GQCG developers
+// 
+// GQCG-gqcp is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// GQCG-gqcp is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+// 
+// You should have received a copy of the GNU Lesser General Public License
+// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
+// 
+#ifndef GQCP_FOCKSPACEPRODUCT_HPP
+#define GQCP_FOCKSPACEPRODUCT_HPP
 
 
 #include "FockSpace/BaseFockSpace.hpp"
@@ -9,13 +26,13 @@
 #include <boost/math/special_functions.hpp>
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /**
  *  The product of two Fock spaces for a given set of orbitals and number of alpha and beta electrons.
  */
-class FockSpaceProduct: public GQCG::BaseFockSpace {
+class FockSpaceProduct: public GQCP::BaseFockSpace {
 private:
     const size_t N_alpha;  // number of alpha electrons
     const size_t N_beta;  // number of beta electrons
@@ -54,7 +71,7 @@ public:
 };
 
 
-}  // namespace GQCG
+}  // namespace GQCP
 
 
-#endif  // GQCG_FOCKSPACE_HPP
+#endif  // GQCP_FOCKSPACE_HPP

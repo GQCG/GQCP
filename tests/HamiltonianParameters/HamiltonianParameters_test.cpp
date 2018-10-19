@@ -1,3 +1,20 @@
+// This file is part of GQCG-gqcp.
+// 
+// Copyright (C) 2017-2018  the GQCG developers
+// 
+// GQCG-gqcp is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// GQCG-gqcp is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+// 
+// You should have received a copy of the GNU Lesser General Public License
+// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
+// 
 #define BOOST_TEST_MODULE "HamiltonianParameters"
 
 
@@ -12,61 +29,61 @@
 BOOST_AUTO_TEST_CASE ( HamiltonianParameters_constructor ) {
 
     // Create an AOBasis
-    GQCG::Molecule water ("../tests/data/h2o.xyz");
-    auto ao_basis_ptr = std::make_shared<GQCG::AOBasis>(water, "STO-3G");
+    GQCP::Molecule water ("../tests/data/h2o.xyz");
+    auto ao_basis_ptr = std::make_shared<GQCP::AOBasis>(water, "STO-3G");
 
 
     // Create One- and TwoElectronOperators (and a transformation matrix) with compatible dimensions
     size_t K = ao_basis_ptr->get_number_of_basis_functions();
-    GQCG::OneElectronOperator S (Eigen::MatrixXd::Random(K, K));
-    GQCG::OneElectronOperator H_core (Eigen::MatrixXd::Random(K, K));
+    GQCP::OneElectronOperator S (Eigen::MatrixXd::Random(K, K));
+    GQCP::OneElectronOperator H_core (Eigen::MatrixXd::Random(K, K));
 
     Eigen::Tensor<double, 4> g_tensor (K, K, K, K);
     g_tensor.setRandom();
-    GQCG::TwoElectronOperator g (g_tensor);
+    GQCP::TwoElectronOperator g (g_tensor);
 
     Eigen::MatrixXd C = Eigen::MatrixXd::Random(K, K);
 
 
     // Check if a correct constructor works
-    GQCG::HamiltonianParameters random_hamiltonian_parameters (ao_basis_ptr, S, H_core, g, C);
+    GQCP::HamiltonianParameters random_hamiltonian_parameters (ao_basis_ptr, S, H_core, g, C);
 
 
     // Check if wrong arguments result in a throw
-    GQCG::OneElectronOperator S_faulty (Eigen::MatrixXd::Random(K+1, K+1));
-    GQCG::OneElectronOperator H_core_faulty (Eigen::MatrixXd::Random(K+1, K+1));
+    GQCP::OneElectronOperator S_faulty (Eigen::MatrixXd::Random(K+1, K+1));
+    GQCP::OneElectronOperator H_core_faulty (Eigen::MatrixXd::Random(K+1, K+1));
 
     Eigen::Tensor<double, 4> g_tensor_faulty (K+1, K+1, K+1, K+1);
     g_tensor_faulty.setRandom();
-    GQCG::TwoElectronOperator g_faulty (g_tensor_faulty);
+    GQCP::TwoElectronOperator g_faulty (g_tensor_faulty);
 
     Eigen::MatrixXd C_faulty = Eigen::MatrixXd::Random(K+1, K+1);
 
-    BOOST_CHECK_THROW(GQCG::HamiltonianParameters (ao_basis_ptr, S_faulty, H_core, g, C), std::invalid_argument);
-    BOOST_CHECK_THROW(GQCG::HamiltonianParameters (ao_basis_ptr, S, H_core_faulty, g, C), std::invalid_argument);
-    BOOST_CHECK_THROW(GQCG::HamiltonianParameters (ao_basis_ptr, S, H_core, g_faulty, C), std::invalid_argument);
-    BOOST_CHECK_THROW(GQCG::HamiltonianParameters (ao_basis_ptr, S, H_core, g, C_faulty), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::HamiltonianParameters (ao_basis_ptr, S_faulty, H_core, g, C), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::HamiltonianParameters (ao_basis_ptr, S, H_core_faulty, g, C), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::HamiltonianParameters (ao_basis_ptr, S, H_core, g_faulty, C), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::HamiltonianParameters (ao_basis_ptr, S, H_core, g, C_faulty), std::invalid_argument);
 }
 
 
 BOOST_AUTO_TEST_CASE ( constructor_C ) {
 
     // Create dummy Hamiltonian parameters
-    std::shared_ptr<GQCG::AOBasis> ao_basis;
+    std::shared_ptr<GQCP::AOBasis> ao_basis;
     size_t K = 4;
-    GQCG::OneElectronOperator S (Eigen::MatrixXd::Random(K, K));
-    GQCG::OneElectronOperator H_core (Eigen::MatrixXd::Random(K, K));
+    GQCP::OneElectronOperator S (Eigen::MatrixXd::Random(K, K));
+    GQCP::OneElectronOperator H_core (Eigen::MatrixXd::Random(K, K));
 
     Eigen::Tensor<double, 4> g_tensor (K, K, K, K);
     g_tensor.setRandom();
-    GQCG::TwoElectronOperator g (g_tensor);
+    GQCP::TwoElectronOperator g (g_tensor);
 
     Eigen::MatrixXd C = Eigen::MatrixXd::Random(K, K);
 
-    GQCG::HamiltonianParameters random_hamiltonian_parameters (ao_basis, S, H_core, g, C);
+    GQCP::HamiltonianParameters random_hamiltonian_parameters (ao_basis, S, H_core, g, C);
 
 
     // Check if we can create transformed Hamiltonian parameters
     Eigen::MatrixXd T = Eigen::MatrixXd::Random(K, K);
-    GQCG::HamiltonianParameters transformed_random_hamiltonian_parameters (random_hamiltonian_parameters, T);
+    GQCP::HamiltonianParameters transformed_random_hamiltonian_parameters (random_hamiltonian_parameters, T);
 }

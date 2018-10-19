@@ -1,3 +1,20 @@
+// This file is part of GQCG-gqcp.
+// 
+// Copyright (C) 2017-2018  the GQCG developers
+// 
+// GQCG-gqcp is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// GQCG-gqcp is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+// 
+// You should have received a copy of the GNU Lesser General Public License
+// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
+// 
 #ifndef AP1roGPSESolver_hpp
 #define AP1roGPSESolver_hpp
 
@@ -7,7 +24,7 @@
 #include "AP1roG/AP1roGGeminalCoefficients.hpp"
 #include "AP1roG/AP1roG.hpp"
 
-namespace GQCG {
+namespace GQCP {
 
 /**
  *
@@ -16,11 +33,11 @@ class AP1roGPSESolver {
 private:
     const size_t K;  // the number of special orbitals
     const size_t N_P;  // the number of electron pairs
-    const GQCG::AP1roGGeminalCoefficients initial_geminal_coefficients;
+    const GQCP::AP1roGGeminalCoefficients initial_geminal_coefficients;
     
-    GQCG::HamiltonianParameters ham_par;
+    GQCP::HamiltonianParameters ham_par;
 
-    GQCG::AP1roG solution;
+    GQCP::AP1roG solution;
 
 
 public:
@@ -28,30 +45,30 @@ public:
     /**
      *  Constructor based on a given number of electron pairs @param N_P, Hamiltonian parameters @param ham_par and an initial guess for the geminal coefficients @param G
      */
-    AP1roGPSESolver(size_t N_P, const GQCG::HamiltonianParameters& ham_par, const GQCG::AP1roGGeminalCoefficients& G);
+    AP1roGPSESolver(size_t N_P, const GQCP::HamiltonianParameters& ham_par, const GQCP::AP1roGGeminalCoefficients& G);
 
     /**
      *  Constructor based on a given number of electron pairs @param N_P and Hamiltonian parameters @param ham_par
      *
      *  The initial guess for the geminal coefficients is zero
      */
-    AP1roGPSESolver(size_t N_P, const GQCG::HamiltonianParameters& ham_par);
+    AP1roGPSESolver(size_t N_P, const GQCP::HamiltonianParameters& ham_par);
 
     /**
      *  Constructor based on a given @param molecule, Hamiltonian parameters @param ham_par and an initial guess for the geminal coefficients @param G
      */
-    AP1roGPSESolver(const GQCG::Molecule& molecule, const GQCG::HamiltonianParameters& ham_par, const GQCG::AP1roGGeminalCoefficients& G);
+    AP1roGPSESolver(const GQCP::Molecule& molecule, const GQCP::HamiltonianParameters& ham_par, const GQCP::AP1roGGeminalCoefficients& G);
 
     /**
      *  Constructor based on a given @param molecule and Hamiltonian parameters @param ham_par
      *
      *  The initial guess for the geminal coefficients is zero
      */
-    AP1roGPSESolver(const GQCG::Molecule& molecule, const GQCG::HamiltonianParameters& ham_par);
+    AP1roGPSESolver(const GQCP::Molecule& molecule, const GQCP::HamiltonianParameters& ham_par);
 
 
     // GETTERS
-    GQCG::AP1roG get_solution() const { return this->solution; }
+    GQCP::AP1roG get_solution() const { return this->solution; }
 
 
     // PUBLIC METHODS
@@ -72,7 +89,7 @@ public:
      *
      *      i is the subscript and a is the superscript
      */
-    double calculateCoordinateFunction(const GQCG::AP1roGGeminalCoefficients& G, size_t i, size_t a) const;
+    double calculateCoordinateFunction(const GQCP::AP1roGGeminalCoefficients& G, size_t i, size_t a) const;
 
     /**
      *  Calculate the coordinate functions for the pSEs at the given geminal coefficients @param g. @returns a vector F in which every entry is one of the coordinate functions
@@ -86,7 +103,7 @@ public:
 };
 
 
-}  // namespace GQCG
+}  // namespace GQCP
 
 
 

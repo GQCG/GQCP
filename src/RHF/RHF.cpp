@@ -1,7 +1,24 @@
+// This file is part of GQCG-gqcp.
+// 
+// Copyright (C) 2017-2018  the GQCG developers
+// 
+// GQCG-gqcp is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// GQCG-gqcp is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+// 
+// You should have received a copy of the GNU Lesser General Public License
+// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
+// 
 #include "RHF/RHF.hpp"
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /*
@@ -51,7 +68,7 @@ Eigen::MatrixXd calculateRHFAO1RDM(const Eigen::MatrixXd& C, size_t N) {
  *
  *  The RHF Fock matrix is calculated as F = H + G, in which G is a contraction of the density matrix and the two-electron integrals
  */
-Eigen::MatrixXd calculateRHFAOFockMatrix(const Eigen::MatrixXd& D_AO, GQCG::HamiltonianParameters ham_par) {
+Eigen::MatrixXd calculateRHFAOFockMatrix(const Eigen::MatrixXd& D_AO, GQCP::HamiltonianParameters ham_par) {
 
     // To perform the contraction, we will first have to convert the Eigen::MatrixXd D_AO to an Eigen::Tensor<const double, 2> D_AO_tensor, as contractions are only implemented for Eigen::Tensors
     Eigen::TensorMap<Eigen::Tensor<const double, 2>> D_AO_tensor (D_AO.data(), D_AO.rows(), D_AO.cols());
@@ -130,4 +147,4 @@ size_t RHFLUMOIndex(size_t K, size_t N) {
 }
 
 
-}  // namespace GQCG
+}  // namespace GQCP

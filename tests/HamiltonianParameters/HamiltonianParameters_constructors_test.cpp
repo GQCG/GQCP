@@ -1,3 +1,20 @@
+// This file is part of GQCG-gqcp.
+// 
+// Copyright (C) 2017-2018  the GQCG developers
+// 
+// GQCG-gqcp is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// GQCG-gqcp is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+// 
+// You should have received a copy of the GNU Lesser General Public License
+// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
+// 
 #define BOOST_TEST_MODULE "HamiltonianParameters_constructors"
 
 
@@ -12,18 +29,18 @@
 BOOST_AUTO_TEST_CASE ( constructMolecularHamiltonianParameters ) {
 
     // Set up a basis
-    GQCG::Molecule water ("../tests/data/h2o.xyz");
-    auto ao_basis_sptr = std::make_shared<GQCG::AOBasis>(water, "STO-3G");
+    GQCP::Molecule water ("../tests/data/h2o.xyz");
+    auto ao_basis_sptr = std::make_shared<GQCP::AOBasis>(water, "STO-3G");
 
     
     // Check if we can construct the molecular Hamiltonian parameters
-    auto mol_ham_par = GQCG::constructMolecularHamiltonianParameters(ao_basis_sptr);
+    auto mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis_sptr);
 }
 
 
 BOOST_AUTO_TEST_CASE ( FCIDUMP_reader ) {
     
-    auto fcidump_ham_par = GQCG::readFCIDUMPFile("../tests/data/beh_cation_631g_caitlin.FCIDUMP");
+    auto fcidump_ham_par = GQCP::readFCIDUMPFile("../tests/data/beh_cation_631g_caitlin.FCIDUMP");
     
     // Check if the one-electron integrals are read in correctly from a previous implementation
     Eigen::MatrixXd h_SO = fcidump_ham_par.get_h().get_matrix_representation();
@@ -59,7 +76,7 @@ BOOST_AUTO_TEST_CASE ( FCIDUMP_reader ) {
 BOOST_AUTO_TEST_CASE ( FCIDUMP_reader_HORTON ) {
     
     // Check the same reference value that HORTON does
-    auto fcidump_ham_par = GQCG::readFCIDUMPFile("../tests/data/h2_psi4_horton.FCIDUMP");
+    auto fcidump_ham_par = GQCP::readFCIDUMPFile("../tests/data/h2_psi4_horton.FCIDUMP");
     
     Eigen::Tensor<double, 4> g_SO = fcidump_ham_par.get_g().get_matrix_representation();
     BOOST_CHECK(std::abs(g_SO(6,5,1,0) - 0.0533584656) <  1.0e-7);

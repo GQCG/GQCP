@@ -1,5 +1,22 @@
-#ifndef GQCG_ONV_HPP
-#define GQCG_ONV_HPP
+// This file is part of GQCG-gqcp.
+// 
+// Copyright (C) 2017-2018  the GQCG developers
+// 
+// GQCG-gqcp is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// GQCG-gqcp is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+// 
+// You should have received a copy of the GNU Lesser General Public License
+// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
+// 
+#ifndef GQCP_ONV_HPP
+#define GQCP_ONV_HPP
 
 
 #include <Eigen/Dense>
@@ -8,7 +25,7 @@
 
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /**
@@ -41,9 +58,9 @@ public:
 
     // OPERATORS
     /**
-     *  Overloading of operator<< for a GQCG::ONV to be used with streams
+     *  Overloading of operator<< for a GQCP::ONV to be used with streams
      */
-    friend std::ostream& operator<<(std::ostream& os, const GQCG::ONV& onv);
+    friend std::ostream& operator<<(std::ostream& os, const GQCP::ONV& onv);
 
     /**
      *  @return if this->unsigned_representation equals @param other.unsigned_representation
@@ -147,6 +164,6 @@ public:
 };
 
 
-}  // namespace GQCG
+}  // namespace GQCP
 
-#endif  // GQCG_ONV_HPP
+#endif  // GQCP_ONV_HPP

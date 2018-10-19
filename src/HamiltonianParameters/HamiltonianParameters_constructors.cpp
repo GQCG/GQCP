@@ -1,9 +1,26 @@
+// This file is part of GQCG-gqcp.
+// 
+// Copyright (C) 2017-2018  the GQCG developers
+// 
+// GQCG-gqcp is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// GQCG-gqcp is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+// 
+// You should have received a copy of the GNU Lesser General Public License
+// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
+// 
 #include "HamiltonianParameters/HamiltonianParameters_constructors.hpp"
 
 #include "LibintCommunicator.hpp"
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /**
@@ -16,15 +33,15 @@ namespace GQCG {
  *      - two-electron contributions:
  *          - Coulomb repulsion
  */
-GQCG::HamiltonianParameters constructMolecularHamiltonianParameters(std::shared_ptr<GQCG::AOBasis> ao_basis) {
+GQCP::HamiltonianParameters constructMolecularHamiltonianParameters(std::shared_ptr<GQCP::AOBasis> ao_basis) {
 
     // Calculate the integrals for the molecular Hamiltonian
-    auto S = GQCG::LibintCommunicator::get().calculateOneElectronIntegrals(libint2::Operator::overlap, *ao_basis);
-    auto T = GQCG::LibintCommunicator::get().calculateOneElectronIntegrals(libint2::Operator::kinetic, *ao_basis);
-    auto V = GQCG::LibintCommunicator::get().calculateOneElectronIntegrals(libint2::Operator::nuclear, *ao_basis);
+    auto S = GQCP::LibintCommunicator::get().calculateOneElectronIntegrals(libint2::Operator::overlap, *ao_basis);
+    auto T = GQCP::LibintCommunicator::get().calculateOneElectronIntegrals(libint2::Operator::kinetic, *ao_basis);
+    auto V = GQCP::LibintCommunicator::get().calculateOneElectronIntegrals(libint2::Operator::nuclear, *ao_basis);
     auto H = T + V;
     
-    auto g = GQCG::LibintCommunicator::get().calculateTwoElectronIntegrals(libint2::Operator::coulomb, *ao_basis);
+    auto g = GQCP::LibintCommunicator::get().calculateTwoElectronIntegrals(libint2::Operator::coulomb, *ao_basis);
     
     
     // Construct the initial transformation matrix: the identity matrix
@@ -41,7 +58,7 @@ GQCG::HamiltonianParameters constructMolecularHamiltonianParameters(std::shared_
 /**
  *  @return HamiltonianParameters corresponding to the contents of an @param fcidump_file
  */
-GQCG::HamiltonianParameters readFCIDUMPFile(const std::string& fcidump_filename) {
+GQCP::HamiltonianParameters readFCIDUMPFile(const std::string& fcidump_filename) {
     
     // Find the extension of the given path (https://stackoverflow.com/a/51992)
     std::string extension;
@@ -149,14 +166,14 @@ GQCG::HamiltonianParameters readFCIDUMPFile(const std::string& fcidump_filename)
     
     
     // Make the ingredients to construct HamiltonianParameters
-    std::shared_ptr<GQCG::AOBasis> ao_basis;  // nullptr
-    GQCG::OneElectronOperator S (Eigen::MatrixXd::Zero(K, K));
-    GQCG::OneElectronOperator H_core (h_SO);
-    GQCG::TwoElectronOperator G (g_SO);
+    std::shared_ptr<GQCP::AOBasis> ao_basis;  // nullptr
+    GQCP::OneElectronOperator S (Eigen::MatrixXd::Zero(K, K));
+    GQCP::OneElectronOperator H_core (h_SO);
+    GQCP::TwoElectronOperator G (g_SO);
     Eigen::MatrixXd C = Eigen::MatrixXd::Identity(K, K);
 
-    return GQCG::HamiltonianParameters(ao_basis, S, H_core, G, C);
+    return GQCP::HamiltonianParameters(ao_basis, S, H_core, G, C);
 }
 
 
-}  // namespace GQCG
+}  // namespace GQCP

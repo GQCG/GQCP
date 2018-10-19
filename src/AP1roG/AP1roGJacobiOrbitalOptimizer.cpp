@@ -1,3 +1,20 @@
+// This file is part of GQCG-gqcp.
+// 
+// Copyright (C) 2017-2018  the GQCG developers
+// 
+// GQCG-gqcp is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// GQCG-gqcp is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+// 
+// You should have received a copy of the GNU Lesser General Public License
+// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
+// 
 #include "AP1roG/AP1roGJacobiOrbitalOptimizer.hpp"
 
 #include <cmath>
@@ -9,7 +26,7 @@
 #include "AP1roG/AP1roGPSESolver.hpp"
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /*
@@ -20,7 +37,7 @@ namespace GQCG {
  *
  *  The initial guess for the geminal coefficients is zero
  */
-AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer(size_t N_P, const GQCG::HamiltonianParameters& ham_par, double oo_threshold, const size_t maximum_number_of_oo_iterations) :
+AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer(size_t N_P, const GQCP::HamiltonianParameters& ham_par, double oo_threshold, const size_t maximum_number_of_oo_iterations) :
     K (ham_par.K),
     ham_par (ham_par),
     N_P (N_P),
@@ -34,7 +51,7 @@ AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer(size_t N_P, const GQC
  *
  *  The initial guess for the geminal coefficients is zero
  */
-AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer(const GQCG::Molecule& molecule, const GQCG::HamiltonianParameters& ham_par, double oo_threshold, const size_t maximum_number_of_oo_iterations) :
+AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer(const GQCP::Molecule& molecule, const GQCP::HamiltonianParameters& ham_par, double oo_threshold, const size_t maximum_number_of_oo_iterations) :
     AP1roGJacobiOrbitalOptimizer(molecule.N/2, ham_par, oo_threshold, maximum_number_of_oo_iterations)
 {
     // Check if we have an even number of electrons
@@ -54,7 +71,7 @@ AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer(const GQCG::Molecule&
  *      - A2, B2, C2, D2, E2    to be used in occupied-virtual rotations
  *      - A3, B3, C3            to be used in virtual-virtual rotations
  */
-void AP1roGJacobiOrbitalOptimizer::calculateJacobiCoefficients(size_t p, size_t q, const GQCG::AP1roGGeminalCoefficients& G) {
+void AP1roGJacobiOrbitalOptimizer::calculateJacobiCoefficients(size_t p, size_t q, const GQCP::AP1roGGeminalCoefficients& G) {
 
     Eigen::MatrixXd h_SO = this->ham_par.h.get_matrix_representation();
     Eigen::Tensor<double, 4> g_SO = this->ham_par.g.get_matrix_representation();
@@ -135,7 +152,7 @@ void AP1roGJacobiOrbitalOptimizer::calculateJacobiCoefficients(size_t p, size_t 
 /**
  *  Calculate the AP1roG energy given the geminal coefficients @param G after the application of a Jacobi rotation with the parameters @param jacobi_rotation_parameters
  */
-double AP1roGJacobiOrbitalOptimizer::calculateEnergyAfterJacobiRotation(const GQCG::JacobiRotationParameters& jacobi_rotation_parameters, const GQCG::AP1roGGeminalCoefficients& G) const {
+double AP1roGJacobiOrbitalOptimizer::calculateEnergyAfterJacobiRotation(const GQCP::JacobiRotationParameters& jacobi_rotation_parameters, const GQCP::AP1roGGeminalCoefficients& G) const {
 
     if (!this->are_calculated_jacobi_coefficients) {
         throw std::runtime_error("calculateEnergyAfterJacobiRotation: You haven't calculated the Jacobi coefficients yet. You should call AP1roG::calculateJacobiCoefficients before calling this function.");
@@ -149,7 +166,7 @@ double AP1roGJacobiOrbitalOptimizer::calculateEnergyAfterJacobiRotation(const GQ
 
 
     // The formula I have derived is an energy CORRECTION due to the Jacobi rotation, so we initialize the rotated energy by the initial energy
-    double E = GQCG::calculateAP1roGEnergy(G, this->ham_par);
+    double E = GQCP::calculateAP1roGEnergy(G, this->ham_par);
 
     // I've written everything in terms of cos(2 theta), sin(2 theta), cos(4 theta) and sin(4 theta)
     double c2 = std::cos(2 * theta);
@@ -187,7 +204,7 @@ double AP1roGJacobiOrbitalOptimizer::calculateEnergyAfterJacobiRotation(const GQ
  *  Given a Jacobi pair @param p and @param q and the geminal coefficients @param G, @return the optimal rotation angle, i.e. the angle for which the derivative
  *  of the energy after the Jacobi rotation is zero (and the second derivative is positive).
  */
-double AP1roGJacobiOrbitalOptimizer::findOptimalRotationAngle(size_t p, size_t q, const GQCG::AP1roGGeminalCoefficients& G) const {
+double AP1roGJacobiOrbitalOptimizer::findOptimalRotationAngle(size_t p, size_t q, const GQCP::AP1roGGeminalCoefficients& G) const {
 
     if (!this->are_calculated_jacobi_coefficients) {
         throw std::runtime_error("findOptimalRotationAngle: You haven't calculated the Jacobi coefficients yet. You should call AP1roG::calculateJacobiCoefficients before calling this function.");
@@ -236,7 +253,7 @@ double AP1roGJacobiOrbitalOptimizer::findOptimalRotationAngle(size_t p, size_t q
             minimizer.solve();
             double theta_min = minimizer.get_solution()(0);  // get inside the Eigen::VectorXd
 
-            GQCG::JacobiRotationParameters jacobi_rot_par {p, q, theta_min};
+            GQCP::JacobiRotationParameters jacobi_rot_par {p, q, theta_min};
 
             double E_min = this->calculateEnergyAfterJacobiRotation(jacobi_rot_par, G);
             min_q.emplace(JacobiRotationEnergy {jacobi_rot_par, E_min});
@@ -272,10 +289,10 @@ double AP1roGJacobiOrbitalOptimizer::findOptimalRotationAngle(size_t p, size_t q
 void AP1roGJacobiOrbitalOptimizer::solve() {
 
     // Solve the PSEs before starting
-    GQCG::AP1roGPSESolver initial_pse_solver (this->N_P, this->ham_par);
+    GQCP::AP1roGPSESolver initial_pse_solver (this->N_P, this->ham_par);
     initial_pse_solver.solve();
     auto G = initial_pse_solver.get_solution().get_geminal_coefficients();
-    double E_old = GQCG::calculateAP1roGEnergy(G, this->ham_par);
+    double E_old = GQCP::calculateAP1roGEnergy(G, this->ham_par);
 
     size_t iterations = 0;
     while (!(this->is_converged)) {
@@ -288,7 +305,7 @@ void AP1roGJacobiOrbitalOptimizer::solve() {
                 this->calculateJacobiCoefficients(p, q, G);
 
                 double theta = this->findOptimalRotationAngle(p, q, G);
-                GQCG::JacobiRotationParameters jacobi_rot_par {p, q, theta};
+                GQCP::JacobiRotationParameters jacobi_rot_par {p, q, theta};
                 double E_rotated = this->calculateEnergyAfterJacobiRotation(jacobi_rot_par, G);
 
                 min_q.emplace(JacobiRotationEnergy {jacobi_rot_par, E_rotated});
@@ -309,18 +326,18 @@ void AP1roGJacobiOrbitalOptimizer::solve() {
 
 
         // Solve the PSEs in the rotated spatial orbital basis
-        GQCG::AP1roGPSESolver pse_solver (this->N_P, this->ham_par, G);  // use the unrotated solution G as initial guess for the PSEs in the rotated basis
+        GQCP::AP1roGPSESolver pse_solver (this->N_P, this->ham_par, G);  // use the unrotated solution G as initial guess for the PSEs in the rotated basis
         pse_solver.solve();
         G = pse_solver.get_solution().get_geminal_coefficients();
-        double E = GQCG::calculateAP1roGEnergy(G, this->ham_par);
+        double E = GQCP::calculateAP1roGEnergy(G, this->ham_par);
 
         // Check for convergence
         if (std::abs(E - E_old) < this->oo_threshold) {
             this->is_converged = true;
 
             // Set the solution
-            double electronic_energy = GQCG::calculateAP1roGEnergy(G, this->ham_par);
-            this->solution = GQCG::AP1roG(G, electronic_energy);
+            double electronic_energy = GQCP::calculateAP1roGEnergy(G, this->ham_par);
+            this->solution = GQCP::AP1roG(G, electronic_energy);
         } else {
             iterations++;
             E_old = E;  // copy the current energy to be able to check for energy convergence.
@@ -333,4 +350,4 @@ void AP1roGJacobiOrbitalOptimizer::solve() {
 }
 
 
-}  // namespace GQCG
+}  // namespace GQCP

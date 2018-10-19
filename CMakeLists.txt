@@ -3,7 +3,7 @@
 cmake_minimum_required(VERSION 3.9 FATAL_ERROR)
 
 # Specify the project, its version and the used language
-project(gqcg
+project(gqcp
         VERSION 0.0.1
         LANGUAGES CXX)
 

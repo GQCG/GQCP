@@ -1,5 +1,22 @@
-#ifndef GQCG_ONEELECTRONOPERATOR_HPP
-#define GQCG_ONEELECTRONOPERATOR_HPP
+// This file is part of GQCG-gqcp.
+// 
+// Copyright (C) 2017-2018  the GQCG developers
+// 
+// GQCG-gqcp is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// GQCG-gqcp is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+// 
+// You should have received a copy of the GNU Lesser General Public License
+// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
+// 
+#ifndef GQCP_ONEELECTRONOPERATOR_HPP
+#define GQCP_ONEELECTRONOPERATOR_HPP
 
 
 #include <Eigen/Dense>
@@ -7,7 +24,7 @@
 #include "BaseOperator.hpp"
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 
@@ -37,7 +54,7 @@ public:
      *  @return the sum of two OneElectronOperators, i.e. a OneElectronOperator whose matrix representation is the sum
      *  of the two matrix representations of the given OneElectronOperators
      */
-    GQCG::OneElectronOperator operator+(const GQCG::OneElectronOperator& other);
+    GQCP::OneElectronOperator operator+(const GQCP::OneElectronOperator& other);
 
 
     // PUBLIC METHODS
@@ -68,7 +85,7 @@ public:
      *        in which the basis functions are collected as elements of a row vector b.
      *      - we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
      */
-    void rotate(const GQCG::JacobiRotationParameters& jacobi_rotation_parameters) override;
+    void rotate(const GQCP::JacobiRotationParameters& jacobi_rotation_parameters) override;
 
 
     // FRIEND CLASSES
@@ -77,8 +94,8 @@ public:
 
 
 
-}  // namespace GQCG
+}  // namespace GQCP
 
 
 
-#endif  // GQCG_ONEELECTRONOPERATOR_HPP
+#endif  // GQCP_ONEELECTRONOPERATOR_HPP

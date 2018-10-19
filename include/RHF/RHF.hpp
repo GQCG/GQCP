@@ -1,3 +1,20 @@
+// This file is part of GQCG-gqcp.
+// 
+// Copyright (C) 2017-2018  the GQCG developers
+// 
+// GQCG-gqcp is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// GQCG-gqcp is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+// 
+// You should have received a copy of the GNU Lesser General Public License
+// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
+// 
 #ifndef RHF_hpp
 #define RHF_hpp
 
@@ -8,7 +25,7 @@
 #include <unsupported/Eigen/CXX11/Tensor>
 
 
-namespace GQCG {
+namespace GQCP {
 
 /**
  *  A class that represents a converged solution to the RHF SCF equations. It has
@@ -63,7 +80,7 @@ Eigen::MatrixXd calculateRHFAO1RDM(const Eigen::MatrixXd& C, size_t N);
  *
  *  The RHF Fock matrix is calculated as F = H + G, in which G is a contraction of the density matrix and the two-electron integrals
  */
-Eigen::MatrixXd calculateRHFAOFockMatrix(const Eigen::MatrixXd& D_AO, GQCG::HamiltonianParameters ham_par);
+Eigen::MatrixXd calculateRHFAOFockMatrix(const Eigen::MatrixXd& D_AO, GQCP::HamiltonianParameters ham_par);
 
 /**
  *  @return the RHF electronic energy based on the RHF AO density matrix @param: D_AO, the core Hamiltonian @param: H_core_AO and the Fock matrix @param: F_AO
@@ -83,7 +100,7 @@ size_t RHFHOMOIndex(size_t N);
 size_t RHFLUMOIndex(size_t K, size_t N);
 
 
-}  // namespace GQCG
+}  // namespace GQCP
 
 
 #endif /* RHF_hpp */

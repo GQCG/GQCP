@@ -1,8 +1,25 @@
-#ifndef GQCG_UNITS_HPP
-#define GQCG_UNITS_HPP
+// This file is part of GQCG-gqcp.
+// 
+// Copyright (C) 2017-2018  the GQCG developers
+// 
+// GQCG-gqcp is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// GQCG-gqcp is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+// 
+// You should have received a copy of the GNU Lesser General Public License
+// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
+// 
+#ifndef GQCP_UNITS_HPP
+#define GQCP_UNITS_HPP
 
 
-namespace GQCG {
+namespace GQCP {
 namespace units {
 
 
@@ -20,17 +37,17 @@ struct CODATA2014 {
 /**
  *  Given a @param value_in_bohr, @return the value in Angstrom
  */
-inline double bohr_to_angstrom(double value_in_bohr) { return value_in_bohr * GQCG::units::constants::CODATA2014::angstrom_per_bohr; }
+inline double bohr_to_angstrom(double value_in_bohr) { return value_in_bohr * GQCP::units::constants::CODATA2014::angstrom_per_bohr; }
 
 /**
  *  Given a @param value_in_angstrom, @return the value in Bohr (a.u.)
  */
-inline double angstrom_to_bohr(double value_in_angstrom) { return value_in_angstrom * GQCG::units::constants::CODATA2014::bohr_per_angstrom; }
+inline double angstrom_to_bohr(double value_in_angstrom) { return value_in_angstrom * GQCP::units::constants::CODATA2014::bohr_per_angstrom; }
 
 
 
 }  // namespace units
-}  // namespace GQCG
+}  // namespace GQCP
 
 
-#endif  // GQCG_UNITS_HPP
+#endif  // GQCP_UNITS_HPP

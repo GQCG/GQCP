@@ -1,5 +1,22 @@
-#ifndef GQCG_LIBINTCOMMUNICATOR_HPP
-#define GQCG_LIBINTCOMMUNICATOR_HPP
+// This file is part of GQCG-gqcp.
+// 
+// Copyright (C) 2017-2018  the GQCG developers
+// 
+// GQCG-gqcp is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// GQCG-gqcp is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+// 
+// You should have received a copy of the GNU Lesser General Public License
+// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
+// 
+#ifndef GQCP_LIBINTCOMMUNICATOR_HPP
+#define GQCP_LIBINTCOMMUNICATOR_HPP
 
 
 #include "AOBasis.hpp"
@@ -12,7 +29,7 @@
 #include <libint2.hpp>
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /**
@@ -48,26 +65,26 @@ public:
 
     // PUBLIC METHODS
     /**
-     *  @return a std::vector<libint2::Atom> based on a given std::vector<GQCG::Atom> @param atoms
+     *  @return a std::vector<libint2::Atom> based on a given std::vector<GQCP::Atom> @param atoms
      */
-    std::vector<libint2::Atom> interface(const std::vector<GQCG::Atom>& atoms) const;
+    std::vector<libint2::Atom> interface(const std::vector<GQCP::Atom>& atoms) const;
 
 
     /**
      *  @return the OneElectronOperator corresponding to the matrix representation of @param operator_type in the given
      *  @param ao_basis. The corresponding @param molecule is also given as an argument, to be able to access
      */
-    GQCG::OneElectronOperator calculateOneElectronIntegrals(libint2::Operator operator_type, const GQCG::AOBasis& ao_basis) const;
+    GQCP::OneElectronOperator calculateOneElectronIntegrals(libint2::Operator operator_type, const GQCP::AOBasis& ao_basis) const;
 
     /**
      *  @return the TwoElectronOperator corresponding to the matrix representation of @param operator_type in the given
      *  @param ao_basis
      */
-    GQCG::TwoElectronOperator calculateTwoElectronIntegrals(libint2::Operator operator_type, const GQCG::AOBasis& ao_basis) const;
+    GQCP::TwoElectronOperator calculateTwoElectronIntegrals(libint2::Operator operator_type, const GQCP::AOBasis& ao_basis) const;
 };
 
 
-}  // namespace GQCG
+}  // namespace GQCP
 
 
-#endif  // GQCG_LIBINTCOMMUNICATOR_HPP
+#endif  // GQCP_LIBINTCOMMUNICATOR_HPP
