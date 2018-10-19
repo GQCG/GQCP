@@ -7,6 +7,9 @@ project(gqcp
         VERSION 0.0.1
         LANGUAGES CXX)
 
+# Option to build the documentation
+option(BUILD_DOCS "Build the documentation using Doxygen" OFF)
+
 # To enable the C++11 standard, we have to add flags like -std=gnu+11 or so. CMake can take care of this:
 set(CMAKE_CXX_STANDARD 11)
 
@@ -18,7 +21,6 @@ if(NOT CMAKE_BUILD_TYPE)
 endif()
 set(CMAKE_CXX_FLAGS_DEBUG "-g")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3")
-
 
 
 # Set CMake variables

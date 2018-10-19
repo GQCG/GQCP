@@ -15,3 +15,9 @@ find_package(libint2 REQUIRED)
 
 # Find numopt
 find_package(numopt 1.5.0 REQUIRED)
+
+# Find doxygen
+if(BUILD_DOCS)
+    find_package(Doxygen REQUIRED dot)
+endif()
+
