@@ -41,10 +41,11 @@ set(PROJECT_SOURCE_FILES
         ${PROJECT_SOURCE_FOLDER}/Operator/OneElectronOperator.cpp
         ${PROJECT_SOURCE_FOLDER}/Operator/TwoElectronOperator.cpp
         ${PROJECT_SOURCE_FOLDER}/RDM/BaseRDM.cpp
+        ${PROJECT_SOURCE_FOLDER}/RDM/BaseRDMBuilder.cpp
         ${PROJECT_SOURCE_FOLDER}/RDM/DOCIRDMBuilder.cpp
         ${PROJECT_SOURCE_FOLDER}/RDM/FCIRDMBuilder.cpp
         ${PROJECT_SOURCE_FOLDER}/RDM/OneRDM.cpp
-        ${PROJECT_SOURCE_FOLDER}/RDM/RDMBuilder.cpp
+        ${PROJECT_SOURCE_FOLDER}/RDM/RDMCalculator.cpp
         ${PROJECT_SOURCE_FOLDER}/RDM/RDMs.cpp
         ${PROJECT_SOURCE_FOLDER}/RDM/TwoRDM.cpp
         ${PROJECT_SOURCE_FOLDER}/RHF/DIISRHFSCFSolver.cpp
@@ -75,6 +76,7 @@ set(PROJECT_INCLUDE_FILES
         ${PROJECT_INCLUDE_FOLDER}/FockSpace/BaseFockSpace.hpp
         ${PROJECT_INCLUDE_FOLDER}/FockSpace/FockSpace.hpp
         ${PROJECT_INCLUDE_FOLDER}/FockSpace/FockSpaceProduct.hpp
+        ${PROJECT_INCLUDE_FOLDER}/FockSpace/FockSpaceType.hpp
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianBuilder/DOCI.hpp
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianBuilder/FCI.hpp
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianBuilder/HamiltonianBuilder.hpp
@@ -85,10 +87,11 @@ set(PROJECT_INCLUDE_FILES
         ${PROJECT_INCLUDE_FOLDER}/Operator/OneElectronOperator.hpp
         ${PROJECT_INCLUDE_FOLDER}/Operator/TwoElectronOperator.hpp
         ${PROJECT_INCLUDE_FOLDER}/RDM/BaseRDM.hpp
+        ${PROJECT_INCLUDE_FOLDER}/RDM/BaseRDMBuilder.hpp
         ${PROJECT_INCLUDE_FOLDER}/RDM/DOCIRDMBuilder.hpp
         ${PROJECT_INCLUDE_FOLDER}/RDM/FCIRDMBuilder.hpp
         ${PROJECT_INCLUDE_FOLDER}/RDM/OneRDM.hpp
-        ${PROJECT_INCLUDE_FOLDER}/RDM/RDMBuilder.hpp
+        ${PROJECT_INCLUDE_FOLDER}/RDM/RDMCalculator.hpp
         ${PROJECT_INCLUDE_FOLDER}/RDM/RDMs.hpp
         ${PROJECT_INCLUDE_FOLDER}/RDM/TwoRDM.hpp
         ${PROJECT_INCLUDE_FOLDER}/RHF/DIISRHFSCFSolver.hpp
@@ -132,6 +135,7 @@ set(PROJECT_TEST_SOURCE_FILES
         ${PROJECT_TESTS_FOLDER}/Operator/TwoElectronOperator_test.cpp
         ${PROJECT_TESTS_FOLDER}/RDM/DOCIRDMBuilder_test.cpp
         ${PROJECT_TESTS_FOLDER}/RDM/FCIRDMBuilder_test.cpp
+        ${PROJECT_TESTS_FOLDER}/RDM/RDMCalculator_test.cpp
         ${PROJECT_TESTS_FOLDER}/RHF/DIISRHFSCFSolver_test.cpp
         ${PROJECT_TESTS_FOLDER}/RHF/PlainRHFSCFSolver_test.cpp
         ${PROJECT_TESTS_FOLDER}/RHF/RHF_test.cpp
