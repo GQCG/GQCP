@@ -2,6 +2,9 @@
 #define OrbitalOptimizationOptions_hpp
 
 
+#include <cstdlib>
+
+
 namespace GQCP {
 
 

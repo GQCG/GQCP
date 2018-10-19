@@ -1,7 +1,7 @@
 // This file is part of GQCG-gqcp.
 // 
 // Copyright (C) 2017-2018  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -14,7 +14,7 @@
 // 
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 #define BOOST_TEST_MODULE "HamiltonianParameters"
 
 
@@ -153,22 +153,22 @@ BOOST_AUTO_TEST_CASE ( constructor_C ) {
 BOOST_AUTO_TEST_CASE ( calculate_generalized_Fock_matrix_and_super_invalid_arguments ) {
 
     // Initialize toy HamiltonianParameters
-    std::shared_ptr<GQCG::AOBasis> ao_basis;
-    GQCG::OneElectronOperator S (Eigen::MatrixXd::Zero(2, 2));
-    GQCG::OneElectronOperator h (Eigen::MatrixXd::Zero(2, 2));
+    std::shared_ptr<GQCP::AOBasis> ao_basis;
+    GQCP::OneElectronOperator S (Eigen::MatrixXd::Zero(2, 2));
+    GQCP::OneElectronOperator h (Eigen::MatrixXd::Zero(2, 2));
     Eigen::Tensor<double, 4> g_tensor (2, 2, 2, 2);
-    GQCG::TwoElectronOperator g (g_tensor);
-    GQCG::HamiltonianParameters ham_par (ao_basis, S, h, g, Eigen::MatrixXd::Identity(2, 2));
+    GQCP::TwoElectronOperator g (g_tensor);
+    GQCP::HamiltonianParameters ham_par (ao_basis, S, h, g, Eigen::MatrixXd::Identity(2, 2));
 
 
     // Create valid and invalid density matrices (with respect to the dimensions of the SOBasis)
-    GQCG::OneRDM D_valid (Eigen::MatrixXd::Zero(2, 2));
-    GQCG::OneRDM D_invalid (Eigen::MatrixXd::Zero(3, 3));
+    GQCP::OneRDM D_valid (Eigen::MatrixXd::Zero(2, 2));
+    GQCP::OneRDM D_invalid (Eigen::MatrixXd::Zero(3, 3));
 
     Eigen::Tensor<double, 4> d_valid_tensor (2, 2, 2, 2);
     Eigen::Tensor<double, 4> d_invalid_tensor (3, 3, 3, 3);
-    GQCG::TwoRDM d_valid (d_valid_tensor);
-    GQCG::TwoRDM d_invalid (d_invalid_tensor);
+    GQCP::TwoRDM d_valid (d_valid_tensor);
+    GQCP::TwoRDM d_invalid (d_invalid_tensor);
 
 
     // Test a faulty function calls
@@ -192,19 +192,19 @@ BOOST_AUTO_TEST_CASE ( calculate_generalized_Fock_matrix_and_super ) {
     Eigen::MatrixXd D_matrix (2, 2);
     D_matrix << 0, 1,
                 2, 3;
-    GQCG::OneRDM D (D_matrix);
+    GQCP::OneRDM D (D_matrix);
 
-    GQCG::TwoRDM d (calculateToy2RDMTensor());
+    GQCP::TwoRDM d (calculateToy2RDMTensor());
 
     // Set up the toy SOBasis
-    std::shared_ptr<GQCG::AOBasis> ao_basis;
-    GQCG::OneElectronOperator S (Eigen::MatrixXd::Zero(2, 2));
+    std::shared_ptr<GQCP::AOBasis> ao_basis;
+    GQCP::OneElectronOperator S (Eigen::MatrixXd::Zero(2, 2));
     Eigen::MatrixXd h_matrix (2, 2);
     h_matrix << 1, 0,
                 0, 1;
-    GQCG::OneElectronOperator h (h_matrix);
-    GQCG::TwoElectronOperator g (calculateToyTwoElectronIntegralsTensor());
-    GQCG::HamiltonianParameters ham_par (ao_basis, S, h, g, Eigen::MatrixXd::Identity(2, 2));
+    GQCP::OneElectronOperator h (h_matrix);
+    GQCP::TwoElectronOperator g (calculateToyTwoElectronIntegralsTensor());
+    GQCP::HamiltonianParameters ham_par (ao_basis, S, h, g, Eigen::MatrixXd::Identity(2, 2));
 
 
     // Construct the reference generalized Fock matrix
@@ -268,22 +268,22 @@ BOOST_AUTO_TEST_CASE ( calculate_generalized_Fock_matrix_and_super ) {
 BOOST_AUTO_TEST_CASE ( calculate_generalized_Fock_matrix_and_super_invalid_arguments ) {
 
     // Initialize toy HamiltonianParameters
-    std::shared_ptr<GQCG::AOBasis> ao_basis;
-    GQCG::OneElectronOperator S (Eigen::MatrixXd::Zero(2, 2));
-    GQCG::OneElectronOperator h (Eigen::MatrixXd::Zero(2, 2));
+    std::shared_ptr<GQCP::AOBasis> ao_basis;
+    GQCP::OneElectronOperator S (Eigen::MatrixXd::Zero(2, 2));
+    GQCP::OneElectronOperator h (Eigen::MatrixXd::Zero(2, 2));
     Eigen::Tensor<double, 4> g_tensor (2, 2, 2, 2);
-    GQCG::TwoElectronOperator g (g_tensor);
-    GQCG::HamiltonianParameters ham_par (ao_basis, S, h, g, Eigen::MatrixXd::Identity(2, 2));
+    GQCP::TwoElectronOperator g (g_tensor);
+    GQCP::HamiltonianParameters ham_par (ao_basis, S, h, g, Eigen::MatrixXd::Identity(2, 2));
 
 
     // Create valid and invalid density matrices (with respect to the dimensions of the SOBasis)
-    GQCG::OneRDM D_valid (Eigen::MatrixXd::Zero(2, 2));
-    GQCG::OneRDM D_invalid (Eigen::MatrixXd::Zero(3, 3));
+    GQCP::OneRDM D_valid (Eigen::MatrixXd::Zero(2, 2));
+    GQCP::OneRDM D_invalid (Eigen::MatrixXd::Zero(3, 3));
 
     Eigen::Tensor<double, 4> d_valid_tensor (2, 2, 2, 2);
     Eigen::Tensor<double, 4> d_invalid_tensor (3, 3, 3, 3);
-    GQCG::TwoRDM d_valid (d_valid_tensor);
-    GQCG::TwoRDM d_invalid (d_invalid_tensor);
+    GQCP::TwoRDM d_valid (d_valid_tensor);
+    GQCP::TwoRDM d_invalid (d_invalid_tensor);
 
 
     // Test a faulty function calls
@@ -307,19 +307,19 @@ BOOST_AUTO_TEST_CASE ( calculate_generalized_Fock_matrix_and_super ) {
     Eigen::MatrixXd D_matrix (2, 2);
     D_matrix << 0, 1,
                 2, 3;
-    GQCG::OneRDM D (D_matrix);
+    GQCP::OneRDM D (D_matrix);
 
-    GQCG::TwoRDM d (calculateToy2RDMTensor());
+    GQCP::TwoRDM d (calculateToy2RDMTensor());
 
     // Set up the toy SOBasis
-    std::shared_ptr<GQCG::AOBasis> ao_basis;
-    GQCG::OneElectronOperator S (Eigen::MatrixXd::Zero(2, 2));
+    std::shared_ptr<GQCP::AOBasis> ao_basis;
+    GQCP::OneElectronOperator S (Eigen::MatrixXd::Zero(2, 2));
     Eigen::MatrixXd h_matrix (2, 2);
     h_matrix << 1, 0,
                 0, 1;
-    GQCG::OneElectronOperator h (h_matrix);
-    GQCG::TwoElectronOperator g (calculateToyTwoElectronIntegralsTensor());
-    GQCG::HamiltonianParameters ham_par (ao_basis, S, h, g, Eigen::MatrixXd::Identity(2, 2));
+    GQCP::OneElectronOperator h (h_matrix);
+    GQCP::TwoElectronOperator g (calculateToyTwoElectronIntegralsTensor());
+    GQCP::HamiltonianParameters ham_par (ao_basis, S, h, g, Eigen::MatrixXd::Identity(2, 2));
 
 
     // Construct the reference generalized Fock matrix
