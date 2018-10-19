@@ -57,8 +57,8 @@ BOOST_AUTO_TEST_CASE ( H2O_1RDM_spin_trace_FCI ) {
     Eigen::VectorXd coef = ci_solver.get_eigenpair().get_eigenvector();
 
     // Check if the FCI 1-RDMs have the proper trace.
-    GQCG::RDMCalculator fci_rdm (fock_space);
-    GQCG::OneRDMs one_rdms = fci_rdm.calculate1RDMs(coef);
+    GQCP::RDMCalculator fci_rdm (fock_space);
+    GQCP::OneRDMs one_rdms = fci_rdm.calculate1RDMs(coef);
 
 
     BOOST_CHECK(std::abs(one_rdms.one_rdm_aa.trace() - N_a) < 1.0e-12);
@@ -94,8 +94,8 @@ BOOST_AUTO_TEST_CASE ( H2O_2RDM_spin_trace_FCI ) {
     Eigen::VectorXd coef = ci_solver.get_eigenpair().get_eigenvector();
 
     // Check if the FCI 2-RDMs have the proper trace.
-    GQCG::RDMCalculator fci_rdm (fock_space);
-    GQCG::TwoRDMs two_rdms = fci_rdm.calculate2RDMs(coef);
+    GQCP::RDMCalculator fci_rdm (fock_space);
+    GQCP::TwoRDMs two_rdms = fci_rdm.calculate2RDMs(coef);
 
 
     BOOST_CHECK(std::abs(two_rdms.two_rdm_aaaa.trace() - N_a*(N_a-1)) < 1.0e-12);
@@ -132,9 +132,9 @@ BOOST_AUTO_TEST_CASE ( H2O_1RDM_2RDM_trace_FCI ) {
     Eigen::VectorXd coef = ci_solver.get_eigenpair().get_eigenvector();
 
     // Check if the 2-RDM contraction matches the reduction.
-    GQCG::RDMCalculator fci_rdm (fock_space);
-    GQCG::TwoRDMs two_rdms = fci_rdm.calculate2RDMs(coef);
-    GQCG::OneRDMs one_rdms = fci_rdm.calculate1RDMs(coef);
+    GQCP::RDMCalculator fci_rdm (fock_space);
+    GQCP::TwoRDMs two_rdms = fci_rdm.calculate2RDMs(coef);
+    GQCP::OneRDMs one_rdms = fci_rdm.calculate1RDMs(coef);
 
 
     Eigen::MatrixXd D_from_reduction = (1.0/(N-1)) * two_rdms.two_rdm.reduce();
@@ -169,9 +169,9 @@ BOOST_AUTO_TEST_CASE ( H2O_energy_RDM_contraction_FCI ) {
     double energy_by_eigenvalue = ci_solver.get_eigenpair().get_eigenvalue();
 
     // Check if the contraction energy matches the fci eigenvalue.
-    GQCG::RDMCalculator fci_rdm (fock_space);
-    GQCG::TwoRDMs two_rdms = fci_rdm.calculate2RDMs(coef);
-    GQCG::OneRDMs one_rdms = fci_rdm.calculate1RDMs(coef);
+    GQCP::RDMCalculator fci_rdm (fock_space);
+    GQCP::TwoRDMs two_rdms = fci_rdm.calculate2RDMs(coef);
+    GQCP::OneRDMs one_rdms = fci_rdm.calculate1RDMs(coef);
 
 
     double energy_by_contraction = ham_par.calculateEnergy(one_rdms.one_rdm, two_rdms.two_rdm);

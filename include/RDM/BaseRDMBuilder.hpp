@@ -8,7 +8,7 @@
 #include "FockSpace/BaseFockSpace.hpp"
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /**

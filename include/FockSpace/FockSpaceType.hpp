@@ -2,7 +2,7 @@
 #define GQCG_FOCKSPACETYPE_HPP
 
 
-namespace GQCG {
+namespace GQCP {
 
 /**
  *  An enum class for the implemented Fock space types

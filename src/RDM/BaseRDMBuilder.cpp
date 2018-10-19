@@ -1,7 +1,7 @@
 #include "RDM/BaseRDMBuilder.hpp"
 
 
-namespace GQCG {
+namespace GQCP {
 
 /*
  *  DESTRUCTOR

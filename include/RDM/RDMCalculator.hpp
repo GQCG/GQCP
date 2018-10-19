@@ -1,5 +1,5 @@
-#ifndef GQCG_RDMCALCULATOR_HPP
-#define GQCG_RDMCALCULATOR_HPP
+#ifndef GQCP_RDMCALCULATOR_HPP
+#define GQCP_RDMCALCULATOR_HPP
 
 #include "RDM/BaseRDMBuilder.hpp"
 #include "FockSpace/FockSpace.hpp"
@@ -8,7 +8,7 @@
 #include <memory>
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /**
@@ -17,7 +17,7 @@ namespace GQCG {
  */
 class RDMCalculator {
 private:
-    std::shared_ptr<GQCG::BaseRDMBuilder> rdm_builder;
+    std::shared_ptr<GQCP::BaseRDMBuilder> rdm_builder;
 
 public:
     // CONSTRUCTOR
@@ -42,7 +42,7 @@ public:
 };
 
 
-}  // namespace GQCG
+}  // namespace GQCP
 
 
-#endif  // GQCG_RDMCALCULATOR_HPP
+#endif  // GQCP_RDMCALCULATOR_HPP
