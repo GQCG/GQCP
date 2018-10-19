@@ -263,3 +263,118 @@ BOOST_AUTO_TEST_CASE ( calculate_generalized_Fock_matrix_and_super ) {
     BOOST_CHECK(F_ref.isApprox(ham_par.calculateGeneralizedFockMatrix(D, d).get_matrix_representation(), 1.0e-12));
     BOOST_CHECK(cpputil::linalg::areEqual(W_ref, ham_par.calculateSuperGeneralizedFockMatrix(D, d).get_matrix_representation(), 1.0e-12));
 }
+
+
+BOOST_AUTO_TEST_CASE ( calculate_generalized_Fock_matrix_and_super_invalid_arguments ) {
+
+    // Initialize toy HamiltonianParameters
+    std::shared_ptr<GQCG::AOBasis> ao_basis;
+    GQCG::OneElectronOperator S (Eigen::MatrixXd::Zero(2, 2));
+    GQCG::OneElectronOperator h (Eigen::MatrixXd::Zero(2, 2));
+    Eigen::Tensor<double, 4> g_tensor (2, 2, 2, 2);
+    GQCG::TwoElectronOperator g (g_tensor);
+    GQCG::HamiltonianParameters ham_par (ao_basis, S, h, g, Eigen::MatrixXd::Identity(2, 2));
+
+
+    // Create valid and invalid density matrices (with respect to the dimensions of the SOBasis)
+    GQCG::OneRDM D_valid (Eigen::MatrixXd::Zero(2, 2));
+    GQCG::OneRDM D_invalid (Eigen::MatrixXd::Zero(3, 3));
+
+    Eigen::Tensor<double, 4> d_valid_tensor (2, 2, 2, 2);
+    Eigen::Tensor<double, 4> d_invalid_tensor (3, 3, 3, 3);
+    GQCG::TwoRDM d_valid (d_valid_tensor);
+    GQCG::TwoRDM d_invalid (d_invalid_tensor);
+
+
+    // Test a faulty function calls
+    BOOST_REQUIRE_THROW(ham_par.calculateGeneralizedFockMatrix(D_invalid, d_valid), std::invalid_argument);
+    BOOST_REQUIRE_THROW(ham_par.calculateGeneralizedFockMatrix(D_valid, d_invalid), std::invalid_argument);
+
+    BOOST_REQUIRE_THROW(ham_par.calculateSuperGeneralizedFockMatrix(D_invalid, d_valid), std::invalid_argument);
+    BOOST_REQUIRE_THROW(ham_par.calculateSuperGeneralizedFockMatrix(D_valid, d_invalid), std::invalid_argument);
+
+
+    // Test correct function calls
+    ham_par.calculateGeneralizedFockMatrix(D_valid, d_valid);
+    ham_par.calculateSuperGeneralizedFockMatrix(D_valid, d_valid);
+}
+
+
+BOOST_AUTO_TEST_CASE ( calculate_generalized_Fock_matrix_and_super ) {
+
+    // We test the function by a manual calculation of nonsensical toy 1- and 2-RDMS and one- and two-electron integrals
+    // Set up the toy 1- and 2-RDMs
+    Eigen::MatrixXd D_matrix (2, 2);
+    D_matrix << 0, 1,
+                2, 3;
+    GQCG::OneRDM D (D_matrix);
+
+    GQCG::TwoRDM d (calculateToy2RDMTensor());
+
+    // Set up the toy SOBasis
+    std::shared_ptr<GQCG::AOBasis> ao_basis;
+    GQCG::OneElectronOperator S (Eigen::MatrixXd::Zero(2, 2));
+    Eigen::MatrixXd h_matrix (2, 2);
+    h_matrix << 1, 0,
+                0, 1;
+    GQCG::OneElectronOperator h (h_matrix);
+    GQCG::TwoElectronOperator g (calculateToyTwoElectronIntegralsTensor());
+    GQCG::HamiltonianParameters ham_par (ao_basis, S, h, g, Eigen::MatrixXd::Identity(2, 2));
+
+
+    // Construct the reference generalized Fock matrix
+    Eigen::MatrixXd F_ref = Eigen::MatrixXd::Zero(2, 2);
+    for (size_t p = 0; p < 2; p++) {
+        for (size_t q = 0; q < 2; q++) {
+            auto p_ = static_cast<double>(p);
+            auto q_ = static_cast<double>(q);
+
+            // One-electron part is simplified by manual calculation
+            F_ref(p,q) += q_ + 2*p_;
+
+            // Two-electron part is simplified by manual calculation
+            for (size_t r = 0; r < 2; r++) {
+                auto r_ = static_cast<double>(r);
+
+                F_ref(p,q) += r_ + 4*q_;
+                F_ref(p,q) -= q_ + 4*r_;
+            }
+        }
+    }
+
+
+    // Construct the reference super generalized Fock matrix
+    Eigen::Tensor<double, 4> W_ref (2, 2, 2, 2);
+    W_ref.setZero();
+    for (size_t p = 0; p < 2; p++) {
+        for (size_t q = 0; q < 2; q++) {
+            for (size_t r = 0; r < 2; r++) {
+                for (size_t s = 0; s < 2; s++) {
+                    auto q_ = static_cast<double>(q);
+                    auto r_ = static_cast<double>(r);
+
+                    if (r == q) {
+                        W_ref(p,q,r,s) += F_ref(p,s);
+                    }
+
+                    // One-electron part is simplified by manual calculation
+                    if (s == p) {
+                        W_ref(p,q,r,s) -= q_ + 2*r_;
+                    }
+
+                    // Two-electron part is simplified by manual calculation
+                    if (s == p) {
+                        for (size_t t = 0; t < 2; t++) {
+                            auto t_ = static_cast<double>(t);
+
+                            W_ref(p,q,r,s) += 3*t_ - 3*q_;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    BOOST_CHECK(F_ref.isApprox(ham_par.calculateGeneralizedFockMatrix(D, d).get_matrix_representation(), 1.0e-12));
+    BOOST_CHECK(cpputil::linalg::areEqual(W_ref, ham_par.calculateSuperGeneralizedFockMatrix(D, d).get_matrix_representation(), 1.0e-12));
+}
