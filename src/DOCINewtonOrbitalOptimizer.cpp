@@ -3,28 +3,22 @@
 #include <cpputil.hpp>
 #include <unsupported/Eigen/MatrixFunctions>
 
-
 #include "CISolver/CISolver.hpp"
 #include "RDM/DOCIRDMBuilder.hpp"
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /*
  *  CONSTRUCTORS
  */
 /**
- *  Constructor based on a given @param fock_space, Hamiltonian parameters @param ham_par, @param solver_options for solving the DOCI eigenvalue problem, a @param oo_convergence_threshold and a @param maximum_number_of_oo_iterations
+ *  Constructor based on a given @param doci instance and Hamiltonian parameters @param ham_par
  */
-DOCINewtonOrbitalOptimizer::DOCINewtonOrbitalOptimizer(const GQCG::FockSpace& fock_space, const GQCG::HamiltonianParameters& ham_par, numopt::eigenproblem::BaseSolverOptions& solver_options, double oo_convergence_threshold, size_t maximum_number_of_oo_iterations) :
-    doci (GQCG::DOCI (fock_space)),
-    fock_space (fock_space),
+DOCINewtonOrbitalOptimizer::DOCINewtonOrbitalOptimizer(const GQCG::DOCI& doci, const GQCG::HamiltonianParameters& ham_par) :
+    doci (doci),
     ham_par (ham_par),
-    solver_options (solver_options),
-    doci_solver (GQCG::CISolver (this->doci, this->ham_par)),
-    oo_convergence_threshold (oo_convergence_threshold),
-    maximum_number_of_oo_iterations (maximum_number_of_oo_iterations)
 {}
 
 
@@ -33,7 +27,7 @@ DOCINewtonOrbitalOptimizer::DOCINewtonOrbitalOptimizer(const GQCG::FockSpace& fo
  */
 std::vector<numopt::eigenproblem::Eigenpair> DOCINewtonOrbitalOptimizer::get_eigenpairs() const {
     if (this->is_converged) {
-        return this->doci_solver.get_eigenpairs();
+        return this->eigenpairs();
     } else {
         throw std::logic_error("You are trying to get eigenpairs but the orbital optimization hasn't converged (yet).");
     }
@@ -41,7 +35,7 @@ std::vector<numopt::eigenproblem::Eigenpair> DOCINewtonOrbitalOptimizer::get_eig
 
 numopt::eigenproblem::Eigenpair DOCINewtonOrbitalOptimizer::get_eigenpair(size_t index) const {
     if (this->is_converged) {
-        return this->doci_solver.get_eigenpair(index);
+        return this->eigenpairs[index];
     } else {
         throw std::logic_error("You are trying to get eigenpairs but the orbital optimization hasn't converged (yet).");
     }
@@ -53,12 +47,11 @@ numopt::eigenproblem::Eigenpair DOCINewtonOrbitalOptimizer::get_eigenpair(size_t
  *  PUBLIC METHODS
  */
 /**
- *  Perform the orbital optimization
+ *  Perform the orbital optimization, given @param solver_options for the CI solver and the @param oo_options for the orbital optimization
  */
-void DOCINewtonOrbitalOptimizer::solve() {
-
-    auto K = this->fock_space.get_K();
-
+void DOCINewtonOrbitalOptimizer::solve(const numopt::eigenproblem::BaseSolverOptions& solver_options, const GQCP::OrbitalOptimizationOptions& oo_options) {
+    this->is_converged = false;
+    auto K = this->fock_space.ham_par();
 
     size_t oo_iterations = 0;
     while (!(this->is_converged)) {
@@ -115,6 +108,9 @@ void DOCINewtonOrbitalOptimizer::solve() {
             }
             else {  // the Hessian is confirmed to be positive definite, so we have reached a minimum
                 this->is_converged = true;
+
+                // Set solutions
+                this->eigenpairs = doci_solver.get_eigenpairs();
             }
 
 
@@ -156,15 +152,14 @@ void DOCINewtonOrbitalOptimizer::solve() {
 
 
 /**
- *  @return a WaveFunction instance after performing the orbital optimization for a given eigenvector at @param index
+ *  @return WaveFunction instance after solving the CI problem for a given eigenvector at @param index
  */
-GQCG::WaveFunction DOCINewtonOrbitalOptimizer::get_wavefunction(size_t index) {
-    if (this->is_converged) {
-        return this->doci_solver.get_wavefunction(index);
-    } else {
-        throw std::logic_error("You are trying to get eigenpairs but the orbital optimization hasn't converged (yet).");
+GQCP::WaveFunction DOCINewtonOrbitalOptimizer::get_wavefunction(size_t index) {
+    if (index > this->eigenpairs.size()) {
+        throw std::logic_error("Not enough requested eigenpairs for the given index.");
     }
+    return WaveFunction(*this->hamiltonian_builder->get_fock_space(), this->eigenpairs[index].get_eigenvector());
 }
 
 
-}  // namespace GQCG
+}  // namespace GQCP
