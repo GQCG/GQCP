@@ -263,38 +263,3 @@ BOOST_AUTO_TEST_CASE ( calculate_generalized_Fock_matrix_and_super ) {
     BOOST_CHECK(F_ref.isApprox(ham_par.calculateGeneralizedFockMatrix(D, d).get_matrix_representation(), 1.0e-12));
     BOOST_CHECK(cpputil::linalg::areEqual(W_ref, ham_par.calculateSuperGeneralizedFockMatrix(D, d).get_matrix_representation(), 1.0e-12));
 }
-
-
-BOOST_AUTO_TEST_CASE ( calculate_generalized_Fock_matrix_and_super_invalid_arguments ) {
-
-    // Initialize toy HamiltonianParameters
-    std::shared_ptr<GQCP::AOBasis> ao_basis;
-    GQCP::OneElectronOperator S (Eigen::MatrixXd::Zero(2, 2));
-    GQCP::OneElectronOperator h (Eigen::MatrixXd::Zero(2, 2));
-    Eigen::Tensor<double, 4> g_tensor (2, 2, 2, 2);
-    GQCP::TwoElectronOperator g (g_tensor);
-    GQCP::HamiltonianParameters ham_par (ao_basis, S, h, g, Eigen::MatrixXd::Identity(2, 2));
-
-
-    // Create valid and invalid density matrices (with respect to the dimensions of the SOBasis)
-    GQCP::OneRDM D_valid (Eigen::MatrixXd::Zero(2, 2));
-    GQCP::OneRDM D_invalid (Eigen::MatrixXd::Zero(3, 3));
-
-    Eigen::Tensor<double, 4> d_valid_tensor (2, 2, 2, 2);
-    Eigen::Tensor<double, 4> d_invalid_tensor (3, 3, 3, 3);
-    GQCP::TwoRDM d_valid (d_valid_tensor);
-    GQCP::TwoRDM d_invalid (d_invalid_tensor);
-
-
-    // Test a faulty function calls
-    BOOST_REQUIRE_THROW(ham_par.calculateGeneralizedFockMatrix(D_invalid, d_valid), std::invalid_argument);
-    BOOST_REQUIRE_THROW(ham_par.calculateGeneralizedFockMatrix(D_valid, d_invalid), std::invalid_argument);
-
-    BOOST_REQUIRE_THROW(ham_par.calculateSuperGeneralizedFockMatrix(D_invalid, d_valid), std::invalid_argument);
-    BOOST_REQUIRE_THROW(ham_par.calculateSuperGeneralizedFockMatrix(D_valid, d_invalid), std::invalid_argument);
-
-
-    // Test correct function calls
-    ham_par.calculateGeneralizedFockMatrix(D_valid, d_valid);
-    ham_par.calculateSuperGeneralizedFockMatrix(D_valid, d_valid);
-}
