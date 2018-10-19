@@ -45,10 +45,10 @@ Documentation can be built with Doxygen (Graphviz required for UML generation). 
 ```
 cmake -DBUILD_DOCS=ON ..
 ```
-a custom `docs` target will be configured. After the documentation is compiled
+a custom `docs` target will be configured. After the documentation is compiled through
 ```
 make docs
 ```
 
-the html documentation can be found in the docs/html directory of the build (start with the index.html file). 
+the HTML documentation can be found in the `docs/html` directory inside the `build` directory. Navigating the documentation is easiest if you start with the index.html file.
 
