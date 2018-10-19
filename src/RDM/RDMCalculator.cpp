@@ -1,3 +1,4 @@
+<<<<<<< HEAD:src/RDM/RDMBuilder.cpp
 // This file is part of GQCG-gqcp.
 // 
 // Copyright (C) 2017-2018  the GQCG developers
@@ -14,8 +15,8 @@
 // 
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
-#include "RDM/RDMBuilder.hpp"
+//
+#include "RDM/RDMCalculator.hpp"
 
 #include "RDM/DOCIRDMBuilder.hpp"
 #include "RDM/FCIRDMBuilder.hpp"
@@ -30,7 +31,7 @@ namespace GQCP {
 /**
  *  Allocates a DOCIRDMBuilder based on @param fock_space
  */
-RDMBuilder::RDMBuilder(const FockSpace& fock_space) {
+RDMCalculator::RDMCalculator(const FockSpace& fock_space) {
     rdm_builder = std::make_shared<GQCG::DOCIRDMBuilder>(fock_space);
 }
 
@@ -38,7 +39,7 @@ RDMBuilder::RDMBuilder(const FockSpace& fock_space) {
 /**
  *  Allocates a FCIRDMBuilder based on @param fock_space
  */
-RDMBuilder::RDMBuilder(const FockSpaceProduct& fock_space) {
+RDMCalculator::RDMCalculator(const FockSpaceProduct& fock_space) {
     rdm_builder = std::make_shared<GQCG::FCIRDMBuilder>(fock_space);
 }
 
@@ -46,11 +47,9 @@ RDMBuilder::RDMBuilder(const FockSpaceProduct& fock_space) {
 /**
  *  Allocates the correct derived BaseRDMBuilder based on @param fock_space
  */
-RDMBuilder::RDMBuilder(const BaseFockSpace& fock_space) {
+RDMCalculator::RDMCalculator(const BaseFockSpace& fock_space) {
 
-    FockSpaceType fock_space_type = fock_space.get_fock_space_type();
-
-    switch (fock_space_type){
+    switch (fock_space.get_type()){
 
         case FockSpaceType::FockSpace: {
             rdm_builder = std::make_shared<GQCG::DOCIRDMBuilder>(dynamic_cast<const GQCG::FockSpace&>(fock_space));
@@ -67,5 +66,25 @@ RDMBuilder::RDMBuilder(const BaseFockSpace& fock_space) {
 
 }
 
+
+
+/*
+ *  PUBLIC METHODS
+ */
+
+/**
+ *  @return all 1-RDMs from a coefficient vector @param x
+ */
+OneRDMs RDMCalculator::calculate1RDMs(const Eigen::VectorXd& x) {
+    return rdm_builder->calculate1RDMs(x);
+}
+
+
+/**
+ *  @return all 2-RDMs from a coefficient vector @param x
+ */
+TwoRDMs RDMCalculator::calculate2RDMs(const Eigen::VectorXd& x) {
+    return rdm_builder->calculate2RDMs(x);
+}
 
 }  // namespace GQCP

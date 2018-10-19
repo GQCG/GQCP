@@ -59,7 +59,7 @@ public:
     size_t get_N_beta() const { return this->N_beta; }
     FockSpace get_fock_space_alpha() const { return this->fock_space_alpha; }
     FockSpace get_fock_space_beta() const { return this->fock_space_beta; }
-    FockSpaceType get_fock_space_type() const override { return FockSpaceType::FockSpaceProduct; }
+    FockSpaceType get_type() const override { return FockSpaceType::FockSpaceProduct; }
 
 
     // STATIC PUBLIC METHODS
