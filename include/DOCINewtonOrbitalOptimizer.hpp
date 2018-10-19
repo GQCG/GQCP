@@ -1,15 +1,15 @@
 #ifndef DOCINewtonOrbitalOptimizer_hpp
 #define DOCINewtonOrbitalOptimizer_hpp
 
-#include "FockSpace/FockSpace.hpp"
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "HamiltonianBuilder/DOCI.hpp"
-#include "CISolver/CISolver.hpp"
+#include "OrbitalOptimizationOptions.hpp"
+#include "WaveFunction.hpp"
 
 #include <numopt.hpp>
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /**
@@ -20,24 +20,19 @@ namespace GQCG {
  */
 class DOCINewtonOrbitalOptimizer {
 private:
-    const GQCG::FockSpace fock_space;
-    GQCG::DOCI doci;
-
+    GQCG::DOCI doci;  // the DOCI Hamiltonian builder
     GQCG::HamiltonianParameters ham_par;
-    numopt::eigenproblem::BaseSolverOptions& solver_options;
-    GQCG::CISolver doci_solver;
 
-    const double oo_convergence_threshold;
-    const size_t maximum_number_of_oo_iterations;
     bool is_converged = false;
+    std::vector<numopt::eigenproblem::Eigenpair> eigenpairs;  // eigenvalues and -vectors
 
 
 public:
     // CONSTRUCTORS
     /**
-     *  Constructor based on a given @param fock_space, Hamiltonian parameters @param ham_par, @param solver_options for solving the DOCI eigenvalue problem, a @param oo_convergence_threshold and a @param maximum_number_of_oo_iterations
+     *  Constructor based on a given @param doci instance and Hamiltonian parameters @param ham_par
      */
-    DOCINewtonOrbitalOptimizer(const GQCG::FockSpace& fock_space, const GQCG::HamiltonianParameters& ham_par, numopt::eigenproblem::BaseSolverOptions& solver_options, double oo_convergence_threshold=1.0e-08, size_t maximum_number_of_oo_iterations=128);
+    DOCINewtonOrbitalOptimizer(const GQCG::DOCI& doci, const GQCG::HamiltonianParameters& ham_par);
 
     // GETTERS
     std::vector<numopt::eigenproblem::Eigenpair> get_eigenpairs() const;
@@ -45,18 +40,18 @@ public:
 
     // PUBLIC METHODS
     /**
-     *  Perform the orbital optimization
+     *  Perform the orbital optimization, given @param solver_options for the CI solver and the @param oo_options for the orbital optimization
      */
-    void solve();
+    void solve(numopt::eigenproblem::BaseSolverOptions& solver_options, const GQCP::OrbitalOptimizationOptions& oo_options);
 
     /**
      *  @return a WaveFunction instance after performing the orbital optimization for a given eigenvector at @param index
      */
-    GQCG::WaveFunction get_wavefunction(size_t index = 0);
+    GQCP::WaveFunction get_wavefunction(size_t index = 0);
 };
 
 
-}  // namespace GQCG
+}  // namespace GQCP
 
 
 #endif /* DOCINewtonOrbitalOptimizer_hpp */
