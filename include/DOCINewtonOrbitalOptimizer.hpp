@@ -20,8 +20,8 @@ namespace GQCP {
  */
 class DOCINewtonOrbitalOptimizer {
 private:
-    GQCG::DOCI doci;  // the DOCI Hamiltonian builder
-    GQCG::HamiltonianParameters ham_par;
+    GQCP::DOCI doci;  // the DOCI Hamiltonian builder
+    GQCP::HamiltonianParameters ham_par;
 
     bool is_converged = false;
     std::vector<numopt::eigenproblem::Eigenpair> eigenpairs;  // eigenvalues and -vectors
@@ -32,7 +32,7 @@ public:
     /**
      *  Constructor based on a given @param doci instance and Hamiltonian parameters @param ham_par
      */
-    DOCINewtonOrbitalOptimizer(const GQCG::DOCI& doci, const GQCG::HamiltonianParameters& ham_par);
+    DOCINewtonOrbitalOptimizer(const GQCP::DOCI& doci, const GQCP::HamiltonianParameters& ham_par);
 
     // GETTERS
     std::vector<numopt::eigenproblem::Eigenpair> get_eigenpairs() const;
@@ -41,8 +41,10 @@ public:
     // PUBLIC METHODS
     /**
      *  Perform the orbital optimization, given @param solver_options for the CI solver and the @param oo_options for the orbital optimization
+     *
+     *  The default values for the OrbitalOptimiationOptions are used when no options are supplied.
      */
-    void solve(numopt::eigenproblem::BaseSolverOptions& solver_options, const GQCP::OrbitalOptimizationOptions& oo_options);
+    void solve(numopt::eigenproblem::BaseSolverOptions& solver_options, const GQCP::OrbitalOptimizationOptions& oo_options=GQCP::OrbitalOptimizationOptions());
 
     /**
      *  @return a WaveFunction instance after performing the orbital optimization for a given eigenvector at @param index

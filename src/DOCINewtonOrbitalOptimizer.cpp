@@ -16,9 +16,9 @@ namespace GQCP {
 /**
  *  Constructor based on a given @param doci instance and Hamiltonian parameters @param ham_par
  */
-DOCINewtonOrbitalOptimizer::DOCINewtonOrbitalOptimizer(const GQCG::DOCI& doci, const GQCG::HamiltonianParameters& ham_par) :
+    DOCINewtonOrbitalOptimizer::DOCINewtonOrbitalOptimizer(const GQCP::DOCI& doci, const GQCP::HamiltonianParameters& ham_par) :
     doci (doci),
-    ham_par (ham_par),
+    ham_par (ham_par)
 {}
 
 
@@ -27,7 +27,7 @@ DOCINewtonOrbitalOptimizer::DOCINewtonOrbitalOptimizer(const GQCG::DOCI& doci, c
  */
 std::vector<numopt::eigenproblem::Eigenpair> DOCINewtonOrbitalOptimizer::get_eigenpairs() const {
     if (this->is_converged) {
-        return this->eigenpairs();
+        return this->eigenpairs;
     } else {
         throw std::logic_error("You are trying to get eigenpairs but the orbital optimization hasn't converged (yet).");
     }
@@ -48,21 +48,23 @@ numopt::eigenproblem::Eigenpair DOCINewtonOrbitalOptimizer::get_eigenpair(size_t
  */
 /**
  *  Perform the orbital optimization, given @param solver_options for the CI solver and the @param oo_options for the orbital optimization
+ *
+ *  The default values for the OrbitalOptimiationOptions are used when no options are supplied.
  */
-void DOCINewtonOrbitalOptimizer::solve(const numopt::eigenproblem::BaseSolverOptions& solver_options, const GQCP::OrbitalOptimizationOptions& oo_options) {
+void DOCINewtonOrbitalOptimizer::solve(numopt::eigenproblem::BaseSolverOptions& solver_options, const GQCP::OrbitalOptimizationOptions& oo_options) {
     this->is_converged = false;
-    auto K = this->fock_space.ham_par();
+    auto K = this->ham_par.get_K();
 
     size_t oo_iterations = 0;
     while (!(this->is_converged)) {
 
         // Solve the DOCI eigenvalue equation, using the options provided
-        this->doci_solver = GQCG::CISolver(this->doci, this->ham_par);  // update the CI solver with the rotated Hamiltonian parameters
-        this->doci_solver.solve(this->solver_options);
-        GQCG::WaveFunction ground_state = this->doci_solver.get_wavefunction();
+        GQCP::CISolver doci_solver (this->doci, this->ham_par);  // update the CI solver with the rotated Hamiltonian parameters
+        doci_solver.solve(solver_options);
+        GQCP::WaveFunction ground_state = doci_solver.get_wavefunction();
 
         // Calculate the 1- and 2-RDMs
-        GQCG::DOCIRDMBuilder rdm_builder (this->fock_space);
+        GQCP::DOCIRDMBuilder rdm_builder (*dynamic_cast<GQCP::FockSpace*>(this->doci.get_fock_space()));
         auto one_rdm = rdm_builder.calculate1RDMs(ground_state.get_coefficients()).one_rdm;  // spin-summed 1-RDM
         auto two_rdm = rdm_builder.calculate2RDMs(ground_state.get_coefficients()).two_rdm;  // spin-summed 2-RDM
 
@@ -100,7 +102,7 @@ void DOCINewtonOrbitalOptimizer::solve(const numopt::eigenproblem::BaseSolverOpt
 
 
         // If the calculated norm is zero, we have reached a critical point
-        if (gradient_vector.norm() < this->oo_convergence_threshold) {
+        if (gradient_vector.norm() < oo_options.convergence_threshold) {
 
             // If we have found a critical point, but we have a negative eigenvalue for the Hessian, continue in that direction
             if (hessian_solver.eigenvalues()(0) < 0) {
@@ -117,7 +119,7 @@ void DOCINewtonOrbitalOptimizer::solve(const numopt::eigenproblem::BaseSolverOpt
         } else {
             oo_iterations++;
 
-            if (oo_iterations >= this->maximum_number_of_oo_iterations) {
+            if (oo_iterations >= oo_options.maximum_number_of_iterations) {
                 throw std::runtime_error("DOCINewtonOrbitalOptimizer.solve(): The OO-DOCI procedure failed to converge in the maximum number of allowed iterations.");
             }
         }
@@ -138,14 +140,14 @@ void DOCINewtonOrbitalOptimizer::solve(const numopt::eigenproblem::BaseSolverOpt
 
 
         // If we're using a Davidson solver, we should update the initial guesses in the solver_options to be the current eigenvectors
-        if (this->solver_options.get_solver_type() == numopt::eigenproblem::SolverType::DAVIDSON) {
-            auto davidson_solver_options = dynamic_cast<numopt::eigenproblem::DavidsonSolverOptions&>(this->solver_options);
+        if (solver_options.get_solver_type() == numopt::eigenproblem::SolverType::DAVIDSON) {
+            auto davidson_solver_options = dynamic_cast<numopt::eigenproblem::DavidsonSolverOptions&>(solver_options);
 
-            for (size_t i = 0; i < this->solver_options.number_of_requested_eigenpairs; i++) {
-                davidson_solver_options.X_0.col(i) = this->doci_solver.get_wavefunction(i).get_coefficients();
+            for (size_t i = 0; i < solver_options.number_of_requested_eigenpairs; i++) {
+                davidson_solver_options.X_0.col(i) = doci_solver.get_wavefunction(i).get_coefficients();
             }
 
-            this->solver_options = davidson_solver_options;
+            solver_options = davidson_solver_options;
         }
     }  // while not converged
 }
@@ -158,7 +160,7 @@ GQCP::WaveFunction DOCINewtonOrbitalOptimizer::get_wavefunction(size_t index) {
     if (index > this->eigenpairs.size()) {
         throw std::logic_error("Not enough requested eigenpairs for the given index.");
     }
-    return WaveFunction(*this->hamiltonian_builder->get_fock_space(), this->eigenpairs[index].get_eigenvector());
+    return WaveFunction(*dynamic_cast<GQCP::FockSpace*>(this->doci.get_fock_space()), this->eigenpairs[index].get_eigenvector());
 }
 
 

@@ -150,7 +150,7 @@ void HamiltonianParameters::rotate(const GQCP::JacobiRotationParameters& jacobi_
  *  Given @param one_rdm and @param two_rdm
  *  @return the energy as a result of the contraction of the 1- and 2-RDMs with the one- and two-electron integrals
  */
-double HamiltonianParameters::calculateEnergy(const GQCG::OneRDM& one_rdm, const GQCG::TwoRDM& two_rdm) const {
+    double HamiltonianParameters::calculateEnergy(const GQCP::OneRDM& one_rdm, const GQCP::TwoRDM& two_rdm) const {
 
     double energy_by_contraction = (this->h.get_matrix_representation() * one_rdm.get_matrix_representation()).trace();
 
@@ -173,7 +173,7 @@ double HamiltonianParameters::calculateEnergy(const GQCG::OneRDM& one_rdm, const
 /**
  *  Given a @param one_rdm and a @param two_rdm, @return the generalized Fock matrix F as a OneElectronOperator
  */
-GQCG::OneElectronOperator HamiltonianParameters::calculateGeneralizedFockMatrix(const GQCG::OneRDM& one_rdm, const GQCG::TwoRDM& two_rdm) const {
+GQCP::OneElectronOperator HamiltonianParameters::calculateGeneralizedFockMatrix(const GQCP::OneRDM& one_rdm, const GQCP::TwoRDM& two_rdm) const {
 
     // Check if dimensions are compatible
     if (one_rdm.get_dim() != this->K) {
@@ -213,14 +213,14 @@ GQCG::OneElectronOperator HamiltonianParameters::calculateGeneralizedFockMatrix(
     }  // F elements loop
 
 
-    return GQCG::OneElectronOperator(F);
+    return GQCP::OneElectronOperator(F);
 }
 
 
 /**
  *  Given a @param one_rdm and a @param two_rdm, calculate and @return the super-generalized Fock matrix W as a TwoElectronOperator
  */
-GQCG::TwoElectronOperator HamiltonianParameters::calculateSuperGeneralizedFockMatrix(const GQCG::OneRDM& one_rdm, const GQCG::TwoRDM& two_rdm) const {
+GQCP::TwoElectronOperator HamiltonianParameters::calculateSuperGeneralizedFockMatrix(const GQCP::OneRDM& one_rdm, const GQCP::TwoRDM& two_rdm) const {
 
     // Check if dimensions are compatible
     if (one_rdm.get_dim() != this->K) {
@@ -268,7 +268,7 @@ GQCG::TwoElectronOperator HamiltonianParameters::calculateSuperGeneralizedFockMa
     }  // W elements loop
 
 
-    return GQCG::TwoElectronOperator(W);
+    return GQCP::TwoElectronOperator(W);
 };
 
 
