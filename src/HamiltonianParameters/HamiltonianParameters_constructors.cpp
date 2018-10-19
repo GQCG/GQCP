@@ -52,7 +52,24 @@ GQCP::HamiltonianParameters constructMolecularHamiltonianParameters(std::shared_
     return HamiltonianParameters(ao_basis, S, H, g, C);
 }
 
-    
+
+/**
+ *  @return a set of random Hamiltonian parameters for a given number of orbitals @param K
+ */
+GQCP::HamiltonianParameters constructRandomHamiltonianParameters(size_t K) {
+
+    GQCP::OneElectronOperator S (Eigen::MatrixXd::Identity(K, K));  // the underlying orbital basis can be chosen as orthonormal, since the form of the underlying orbitals doesn't really matter
+    Eigen::MatrixXd C (Eigen::MatrixXd::Identity(K, K));  // the transformation matrix C here doesn't really mean anything, because it doesn't link to any AO basis
+
+    GQCP::OneElectronOperator H (Eigen::MatrixXd::Random(K, K));
+    Eigen::Tensor<double, 4> g_tensor (K, K, K, K);
+    g_tensor.setRandom();
+    GQCP::TwoElectronOperator g (g_tensor);
+
+    std::shared_ptr<GQCP::AOBasis> ao_basis;  // nullptr because it doesn't make sense to set an AOBasis
+
+    return GQCP::HamiltonianParameters(ao_basis, S, H, g, C);
+}
     
     
 /**

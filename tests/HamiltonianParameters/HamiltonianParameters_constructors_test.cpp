@@ -38,6 +38,12 @@ BOOST_AUTO_TEST_CASE ( constructMolecularHamiltonianParameters ) {
 }
 
 
+BOOST_AUTO_TEST_CASE ( constructRandomHamiltonianParameters ) {
+
+    auto random_ham_par = GQCP::constructRandomHamiltonianParameters(10);
+}
+
+
 BOOST_AUTO_TEST_CASE ( FCIDUMP_reader ) {
     
     auto fcidump_ham_par = GQCP::readFCIDUMPFile("../tests/data/beh_cation_631g_caitlin.FCIDUMP");

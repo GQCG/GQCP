@@ -44,10 +44,16 @@ GQCP::HamiltonianParameters constructMolecularHamiltonianParameters(std::shared_
 
 
 /**
+ *  @return a set of random Hamiltonian parameters for a given number of orbitals @param K
+ */
+GQCP::HamiltonianParameters constructRandomHamiltonianParameters(size_t K);
+
+
+/**
  *  @return HamiltonianParameters corresponding to the contents of an @param fcidump_file
  */
 GQCP::HamiltonianParameters readFCIDUMPFile(const std::string& fcidump_file);
- 
+
 
 }  // namespace GQCP
 
