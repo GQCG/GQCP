@@ -2,7 +2,7 @@
 
 
 
-#include "RDM/RDMBuilder.hpp"
+#include "RDM/RDMCalculator.hpp"
 
 #include "CISolver/CISolver.hpp"
 #include "HamiltonianBuilder/DOCI.hpp"
@@ -33,7 +33,7 @@ BOOST_AUTO_TEST_CASE ( lih_1RDM_trace ) {
     Eigen::VectorXd coef = ci_solver.get_eigenpair().get_eigenvector();
 
     // Check if the DOCI 1-RDM has the proper trace.
-    GQCG::RDMBuilder doci_rdm (fock_space);
+    GQCG::RDMCalculator doci_rdm (fock_space);
     GQCG::OneRDMs one_rdms = doci_rdm.calculate1RDMs(coef);
 
     BOOST_CHECK(std::abs(one_rdms.one_rdm.trace() - N) < 1.0e-12);
@@ -62,7 +62,7 @@ BOOST_AUTO_TEST_CASE ( lih_2RDM_trace ) {
     Eigen::VectorXd coef = ci_solver.get_eigenpair().get_eigenvector();
 
     // Check if the 2-RDM has the proper trace.
-    GQCG::RDMBuilder doci_rdm (fock_space);
+    GQCG::RDMCalculator doci_rdm (fock_space);
     GQCG::TwoRDMs two_rdms = doci_rdm.calculate2RDMs(coef);
 
     BOOST_CHECK(std::abs(two_rdms.two_rdm.trace() - N*(N-1)) < 1.0e-12);
@@ -91,7 +91,7 @@ BOOST_AUTO_TEST_CASE ( lih_1RDM_2RDM_trace_DOCI ) {
     Eigen::VectorXd coef = ci_solver.get_eigenpair().get_eigenvector();
 
     // Check if the 2-RDM contraction matches the reduction.
-    GQCG::RDMBuilder doci_rdm (fock_space);
+    GQCG::RDMCalculator doci_rdm (fock_space);
     GQCG::TwoRDMs two_rdms = doci_rdm.calculate2RDMs(coef);
     GQCG::OneRDMs one_rdms = doci_rdm.calculate1RDMs(coef);
 
@@ -123,7 +123,7 @@ BOOST_AUTO_TEST_CASE ( lih_energy_RDM_contraction_DOCI ) {
     double energy_by_eigenvalue = ci_solver.get_eigenpair().get_eigenvalue();
 
     // Check if the contraction energy matches the doci eigenvalue.
-    GQCG::RDMBuilder doci_rdm (fock_space);
+    GQCG::RDMCalculator doci_rdm (fock_space);
     GQCG::TwoRDMs two_rdms = doci_rdm.calculate2RDMs(coef);
     GQCG::OneRDMs one_rdms = doci_rdm.calculate1RDMs(coef);
 

@@ -14,6 +14,3 @@ BaseRDMBuilder::~BaseRDMBuilder() {}
 
 
 }  // namespace GQCG
-
-
-

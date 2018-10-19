@@ -3,20 +3,12 @@
 
 
 #include "ONV.hpp"
+#include "FockSpace/FockSpaceType.hpp"
 #include "common.hpp"
 
 
 
 namespace GQCG {
-
-
-/**
- *  An enum class for the implemented Fock space types
- */
-enum class FockSpaceType {
-    FockSpace,
-    FockSpaceProduct
-};
 
 
 /**
@@ -49,7 +41,7 @@ public:
     // GETTERS
     size_t get_dimension() const { return dim; }
     size_t get_K() const { return K; }
-    virtual FockSpaceType get_fock_space_type() const = 0;
+    virtual FockSpaceType get_type() const = 0;
 
     // PUBLIC METHODS
     /**
