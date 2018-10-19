@@ -4,7 +4,7 @@
 #include <unsupported/Eigen/MatrixFunctions>
 
 #include "CISolver/CISolver.hpp"
-#include "RDM/DOCIRDMBuilder.hpp"
+#include "RDM/RDMCalculator.hpp"
 
 
 namespace GQCP {
@@ -64,9 +64,9 @@ void DOCINewtonOrbitalOptimizer::solve(numopt::eigenproblem::BaseSolverOptions& 
         GQCP::WaveFunction ground_state = doci_solver.get_wavefunction();
 
         // Calculate the 1- and 2-RDMs
-        GQCP::DOCIRDMBuilder rdm_builder (*dynamic_cast<GQCP::FockSpace*>(this->doci.get_fock_space()));
-        auto one_rdm = rdm_builder.calculate1RDMs(ground_state.get_coefficients()).one_rdm;  // spin-summed 1-RDM
-        auto two_rdm = rdm_builder.calculate2RDMs(ground_state.get_coefficients()).two_rdm;  // spin-summed 2-RDM
+        GQCP::RDMCalculator rdm_calculator (*(this->doci.get_fock_space()));
+        auto one_rdm = rdm_calculator.calculate1RDMs(ground_state.get_coefficients()).one_rdm;  // spin-summed 1-RDM
+        auto two_rdm = rdm_calculator.calculate2RDMs(ground_state.get_coefficients()).two_rdm;  // spin-summed 2-RDM
 
 
         // Calculate the electronic gradient at kappa = 0
