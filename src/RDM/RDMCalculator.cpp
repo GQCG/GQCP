@@ -1,4 +1,3 @@
-<<<<<<< HEAD:src/RDM/RDMBuilder.cpp
 // This file is part of GQCG-gqcp.
 // 
 // Copyright (C) 2017-2018  the GQCG developers
@@ -22,7 +21,9 @@
 #include "RDM/FCIRDMBuilder.hpp"
 
 
+
 namespace GQCP {
+
 
 /*
  *  CONSTRUCTOR
@@ -86,5 +87,6 @@ OneRDMs RDMCalculator::calculate1RDMs(const Eigen::VectorXd& x) {
 TwoRDMs RDMCalculator::calculate2RDMs(const Eigen::VectorXd& x) {
     return rdm_builder->calculate2RDMs(x);
 }
+
 
 }  // namespace GQCP
