@@ -21,6 +21,11 @@ target_include_directories(${LIBRARY_NAME} PUBLIC ${spectra_INCLUDE_DIRS})
 target_include_directories(${LIBRARY_NAME} PUBLIC ${numopt_INCLUDE_DIRS})
 target_link_libraries(${LIBRARY_NAME} PUBLIC numopt)
 
+# Include cpputil
+target_include_directories(${LIBRARY_NAME} PRIVATE ${cpputil_INCLUDE_DIRS})
+target_link_libraries(${LIBRARY_NAME} PRIVATE cpputil)
+
+
 # Generate documentation
 if (DOXYGEN_FOUND)
     set(DOXYGEN_IN ${CMAKE_SOURCE_DIR}/docs/Doxyfile.in)
@@ -33,4 +38,3 @@ if (DOXYGEN_FOUND)
             WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
             VERBATIM)
 endif (DOXYGEN_FOUND)
-	

@@ -35,7 +35,7 @@ namespace GQCP {
 
 class HamiltonianParameters : public BaseHamiltonianParameters {
 private:
-    const size_t K;  // the number of spatial orbitals
+    size_t K;  // the number of spatial orbitals
 
     OneElectronOperator S;  // overlap
 
@@ -116,7 +116,18 @@ public:
      *  Given @param one_rdm and @param two_rdm
      *  @return the energy as a result of the contraction of the 1- and 2-RDMs with the one- and two-electron integrals
      */
-    double calculateEnergy(OneRDM one_rdm, TwoRDM two_rdm);
+    double calculateEnergy(const GQCP::OneRDM& one_rdm, const GQCP::TwoRDM& two_rdm) const;
+
+    /**
+     *  Given a @param one_rdm and a @param two_rdm, @return the generalized Fock matrix F as a OneElectronOperator
+     */
+    GQCP::OneElectronOperator calculateGeneralizedFockMatrix(const GQCP::OneRDM& one_rdm, const GQCP::TwoRDM& two_rdm) const;
+
+    /**
+     *  Given a @param D: 1-RDM and a @param d: 2-RDM, @return the super-generalized Fock matrix W as a TwoElectronOperator
+     */
+    GQCP::TwoElectronOperator calculateSuperGeneralizedFockMatrix(const GQCP::OneRDM& one_rdm, const GQCP::TwoRDM& two_rdm) const;
+
 
     // FRIEND FUNCTIONS
     friend Eigen::MatrixXd calculateRHFAOFockMatrix(const Eigen::MatrixXd& D_AO, GQCP::HamiltonianParameters ham_par);

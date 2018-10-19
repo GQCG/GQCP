@@ -22,7 +22,9 @@
 #include "HamiltonianBuilder/HamiltonianBuilder.hpp"
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "WaveFunction.hpp"
+
 #include <numopt.hpp>
+
 
 namespace GQCP {
 
@@ -60,7 +62,7 @@ public:
     /**
      *  @return WaveFunction instance after solving the CI problem for a given eigenvector at @param index
      */
-    WaveFunction get_wavefunction(size_t index = 0);
+    GQCP::WaveFunction get_wavefunction(size_t index = 0);
 };
 
 
