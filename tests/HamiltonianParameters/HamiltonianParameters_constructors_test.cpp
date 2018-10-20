@@ -40,7 +40,7 @@ BOOST_AUTO_TEST_CASE ( constructMolecularHamiltonianParameters ) {
 
 BOOST_AUTO_TEST_CASE ( constructRandomHamiltonianParameters ) {
 
-    auto random_ham_par = GQCP::constructRandomHamiltonianParameters(10);
+    auto random_ham_par = GQCP::constructRandomHamiltonianParameters(5);
 }
 
 

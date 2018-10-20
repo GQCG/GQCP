@@ -44,7 +44,7 @@ GQCP::HamiltonianParameters constructMolecularHamiltonianParameters(std::shared_
 
 
 /**
- *  @return a set of random Hamiltonian parameters for a given number of orbitals @param K
+ *  @return a set of random Hamiltonian parameters (with values uniformly distributed between [-1,1]) for a given number of orbitals @param K
  */
 GQCP::HamiltonianParameters constructRandomHamiltonianParameters(size_t K);
 

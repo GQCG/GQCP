@@ -54,16 +54,30 @@ GQCP::HamiltonianParameters constructMolecularHamiltonianParameters(std::shared_
 
 
 /**
- *  @return a set of random Hamiltonian parameters for a given number of orbitals @param K
+ *  @return a set of random Hamiltonian parameters (with values uniformly distributed between [-1,1]) for a given number of orbitals @param K
  */
 GQCP::HamiltonianParameters constructRandomHamiltonianParameters(size_t K) {
 
     GQCP::OneElectronOperator S (Eigen::MatrixXd::Identity(K, K));  // the underlying orbital basis can be chosen as orthonormal, since the form of the underlying orbitals doesn't really matter
     Eigen::MatrixXd C (Eigen::MatrixXd::Identity(K, K));  // the transformation matrix C here doesn't really mean anything, because it doesn't link to any AO basis
 
-    GQCP::OneElectronOperator H (Eigen::MatrixXd::Random(K, K));
+    GQCP::OneElectronOperator H (Eigen::MatrixXd::Random(K, K));  // uniformly distributed between [-1,1]
+
+
+    // Unfortunately, the Tensor module provides uniform random distributions between [0, 1]
     Eigen::Tensor<double, 4> g_tensor (K, K, K, K);
     g_tensor.setRandom();
+
+    // Move the distribution from [0, 1] -> [-1, 1]
+    for (size_t i = 0; i < K; i++) {
+        for (size_t j = 0; j < K; j++) {
+            for (size_t k = 0; k < K; k++) {
+                for (size_t l = 0; l < K; l++) {
+                    g_tensor(i,j,k,l) = 2*g_tensor(i,j,k,l) - 1;  // scale from [0, 1] -> [0, 2] -> [-1, 1]
+                }
+            }
+        }
+    }
     GQCP::TwoElectronOperator g (g_tensor);
 
     std::shared_ptr<GQCP::AOBasis> ao_basis;  // nullptr because it doesn't make sense to set an AOBasis
