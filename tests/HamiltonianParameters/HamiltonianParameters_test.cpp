@@ -85,7 +85,9 @@ Eigen::Tensor<double, 4> calculateToyTwoElectronIntegralsTensor () {
 
 
 
-
+/*
+ * UNIT TESTS
+ */
 
 BOOST_AUTO_TEST_CASE ( HamiltonianParameters_constructor ) {
 
@@ -124,6 +126,30 @@ BOOST_AUTO_TEST_CASE ( HamiltonianParameters_constructor ) {
     BOOST_CHECK_THROW(GQCP::HamiltonianParameters (ao_basis_ptr, S, H_core_faulty, g, C), std::invalid_argument);
     BOOST_CHECK_THROW(GQCP::HamiltonianParameters (ao_basis_ptr, S, H_core, g_faulty, C), std::invalid_argument);
     BOOST_CHECK_THROW(GQCP::HamiltonianParameters (ao_basis_ptr, S, H_core, g, C_faulty), std::invalid_argument);
+}
+
+
+BOOST_AUTO_TEST_CASE ( randomRotate ) {
+
+    // Create random HamiltonianParameters
+    GQCP::Molecule water ("../tests/data/h2o.xyz");
+    auto ao_basis_ptr = std::make_shared<GQCP::AOBasis>(water, "STO-3G");
+
+    size_t K = ao_basis_ptr->get_number_of_basis_functions();
+    GQCP::OneElectronOperator S (Eigen::MatrixXd::Random(K, K));
+
+    GQCP::OneElectronOperator H_core (Eigen::MatrixXd::Random(K, K));
+    Eigen::Tensor<double, 4> g_tensor (K, K, K, K);
+    g_tensor.setRandom();
+    GQCP::TwoElectronOperator g (g_tensor);
+
+    Eigen::MatrixXd C = Eigen::MatrixXd::Random(K, K);
+
+    GQCP::HamiltonianParameters random_hamiltonian_parameters (ao_basis_ptr, S, H_core, g, C);
+
+
+    // Check if the function randomRotate() is still available
+    random_hamiltonian_parameters.randomRotate();
 }
 
 
