@@ -20,6 +20,8 @@
 
 #include "FockSpace/SelectedFockSpace.hpp"
 
+#include "WaveFunction/WaveFunctionReader.hpp"
+
 
 #include <boost/test/unit_test.hpp>
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
@@ -53,3 +55,11 @@ BOOST_AUTO_TEST_CASE ( addConfiguration ) {
 }
 
 
+BOOST_AUTO_TEST_CASE ( reader_test ) {
+
+    GQCP::WaveFunctionReader test_reader ("../tests/data/test_GAMESS_expansion");
+    Eigen::VectorXd test = {1.0000, 0.0000};
+
+    // Check if both expansions are considered equal
+    BOOST_CHECK(test.isApprox(test_reader.get_coefficients()));
+}

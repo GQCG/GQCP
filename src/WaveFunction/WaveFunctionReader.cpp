@@ -18,10 +18,14 @@
 
 #include "WaveFunction/WaveFunctionReader.hpp"
 
-#include <boost/algorithm/string.hpp>
-#include <boost/range/adaptors.hpp>
-#include "boost/dynamic_bitset.hpp"
 #include <fstream>
+
+#include <boost/algorithm/string/trim.hpp>
+#include <boost/algorithm/string/split.hpp>
+
+
+#include <boost/dynamic_bitset.hpp>
+
 
 namespace GQCP {
 
