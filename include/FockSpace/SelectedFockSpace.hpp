@@ -31,13 +31,13 @@ namespace GQCP {
 
 /**
  *  A Fock space for a given set of orbitals and number of alpha and beta electrons.
- *  Where the considered configurations are manually selected and represented as an ONV pair :
- *  a combination of two ONVs, one holding the alpha configuration and holding the bea configuration.
+ *  Where the considered configurations are manually selected and represented as a Configuration :
+ *  a combination of two ONVs, one holding the alpha configuration and holding the beta configuration.
  */
 class SelectedFockSpace : public GQCP::BaseFockSpace {
 private:
-    const size_t N_alpha;  // number of alpha electrons
-    const size_t N_beta;  // number of beta electrons
+    size_t N_alpha;  // number of alpha electrons
+    size_t N_beta;  // number of beta electrons
 
     std::vector<Configuration> selection;  // the selected configurations
 
@@ -50,10 +50,10 @@ public:
     // CONSTRUCTORS
     /**
      *  Constructor given a @param K (spatial orbitals), N_alpha and N_beta (electrons);
-     *  the initial dimension of the space is 0 as no selections are made.
+     *  the initial dimension of the space is 0, as no selections are made.
      */
     SelectedFockSpace(size_t K, size_t N_alpha, size_t N_beta);
-
+    SelectedFockSpace() = default;
 
     // DESTRUCTORS
     ~SelectedFockSpace() override = default;

@@ -36,7 +36,7 @@ namespace GQCP {
  */
 class BaseFockSpace {
 protected:
-    const size_t K;  // number of spatial orbitals
+    size_t K;  // number of spatial orbitals
     size_t dim;  // dimension of the Fock space
 
 
@@ -45,7 +45,7 @@ protected:
      *  Protected constructor given a @param K and @param dim
      */
     explicit BaseFockSpace(size_t K, size_t dim);
-
+    BaseFockSpace() = default;
 
 public:
     // DESTRUCTOR

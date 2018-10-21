@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "../../gqcg/include/ONV.hpp"
+#include "ONV.hpp"
 
 #include <boost/dynamic_bitset.hpp>
 

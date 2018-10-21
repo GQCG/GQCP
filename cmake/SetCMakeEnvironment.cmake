@@ -54,6 +54,7 @@ set(PROJECT_SOURCE_FILES
         ${PROJECT_SOURCE_FOLDER}/RHF/RHF.cpp
         ${PROJECT_SOURCE_FOLDER}/RHF/RHFSCFSolver.cpp
         ${PROJECT_SOURCE_FOLDER}/WaveFunction/WaveFunction.cpp
+        ${PROJECT_SOURCE_FOLDER}/WaveFunction/WaveFunctionReader.cpp
         ${PROJECT_SOURCE_FOLDER}/AOBasis.cpp
         ${PROJECT_SOURCE_FOLDER}/Atom.cpp
         ${PROJECT_SOURCE_FOLDER}/DOCINewtonOrbitalOptimizer.cpp
