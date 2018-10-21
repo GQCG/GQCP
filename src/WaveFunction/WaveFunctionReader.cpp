@@ -17,6 +17,10 @@
 //
 
 #include "WaveFunction/WaveFunctionReader.hpp"
+
+#include <boost/algorithm/string.hpp>
+#include <boost/range/adaptors.hpp>
+#include "boost/dynamic_bitset.hpp"
 #include <fstream>
 
 namespace GQCP {
@@ -59,7 +63,7 @@ WaveFunctionReader::WaveFunctionReader(const std::string& GAMESS_filename)
     size_t space_size = 0;
     // Count the amount of configurations
     while (std::getline(input_file_stream, buffer)) {
-        if (buffer.length() != 0 | buffer != '\n') {
+        if (buffer.length() != 0 | buffer[0] != '\n') {
             space_size++;
         }
     }
@@ -83,7 +87,7 @@ WaveFunctionReader::WaveFunctionReader(const std::string& GAMESS_filename)
 
     size_t counter = 0;
     // add the double
-    coefficient(counter) = std::stod(splitted_line[2]);
+    this->coefficients(counter) = std::stod(splitted_line[2]);
 
     // dynamic bitset provides us with functionallity
     boost::dynamic_bitset<> alpha_transfer (trimmed_alpha);
@@ -93,9 +97,9 @@ WaveFunctionReader::WaveFunctionReader(const std::string& GAMESS_filename)
     size_t N_alpha = alpha_transfer.count();
     size_t N_beta = beta_transfer.count();
 
-    fock_space = SelectedFockSpace(K, N_alpha, N_beta);
+    this->fock_space = SelectedFockSpace(K, N_alpha, N_beta);
 
-    fock_space.addConfiguration(trimmed_alpha, trimmed_beta);
+    this->fock_space.addConfiguration(trimmed_alpha, trimmed_beta);
 
 
     // Read in the ONVs and the coefficients by splitting the line on '|', and then trimming whitespace
@@ -123,12 +127,12 @@ WaveFunctionReader::WaveFunctionReader(const std::string& GAMESS_filename)
 
 
         // Create a double for the third field
-        coefficient(counter) = std::stod(splitted_line[2]);
-        fock_space.addConfiguration(trimmed_alpha, trimmed_beta);
+        this->coefficients(counter) = std::stod(splitted_line[2]);
+        this->fock_space.addConfiguration(trimmed_alpha, trimmed_beta);
 
     }  // while getline
 
-    this->wave_function = WaveFunction(fock_space, coefficients);
+    this->wave_function = WaveFunction(this->fock_space, this->coefficients);
 }
 
 
