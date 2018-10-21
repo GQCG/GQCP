@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "ONV.hpp"
+#include "../../gqcg/include/ONV.hpp"
 
 #include <boost/dynamic_bitset.hpp>
 
@@ -28,7 +28,7 @@ namespace GQCP {
  */
 
 /**
- *  Constructor from a @param K orbitals, N electrons and a representation for the ONV
+ *  Constructor from a @param K orbitals, N electrons and an @param unsigned_representation
  */
 ONV::ONV(size_t K, size_t N, size_t representation):
     K(K),
@@ -39,6 +39,17 @@ ONV::ONV(size_t K, size_t N, size_t representation):
     this->updateOccupationIndices();  // throws error if the representation and N are not compatible
 }
 
+/**
+ *  Constructor from a @param K orbitals and an @param unsigned_representation
+ */
+ONV::ONV(size_t K, size_t representation):
+        K(K),
+        N(__builtin_popcountl(representation)),
+        unsigned_representation(representation)
+{
+    occupation_indices = VectorXs::Zero(N);
+    this->updateOccupationIndices();  // throws error if the representation and N are not compatible
+}
 
 
 /*
@@ -243,6 +254,38 @@ size_t ONV::slice(size_t index_start, size_t index_end) const {
 
     // Use the mask
     return u & mask;
+}
+
+
+/**
+  *  @return the number of different bits between this and @param other, i.e. two times the number of electron excitations
+  */
+size_t ONV::countNumberOfDifferences(const ONV& other) const {
+    return __builtin_popcountl(this->unsigned_representation ^ other.unsigned_representation);
+}
+
+
+/**
+ *  @return the positions of the bits (lexical indices) that are occupied in this, but unoccupied in @param other
+ */
+std::vector<size_t> ONV::findOccupiedDifferences(const ONV& other) const {
+
+    size_t differences = this->unsigned_representation ^ other.unsigned_representation;
+    size_t occupied_differences = differences & this->unsigned_representation;  // this holds all indices occupied in this, but unoccupied in other
+
+    size_t number_of_occupied_differences = __builtin_popcountl(occupied_differences);
+    std::vector<size_t> positions (number_of_occupied_differences);
+
+
+    // Find the positions of the set bits in occupied_differences
+    for (size_t counter = 0; counter < number_of_occupied_differences; counter++) {  // counts the number of occupied differences we have already encountered
+        size_t position = __builtin_ctzl(occupied_differences);  // count trailing zeros
+        positions[counter] = position;
+
+        occupied_differences ^= occupied_differences & -occupied_differences;  // annihilate the least significant set bit
+    }
+
+    return positions;
 }
 
 

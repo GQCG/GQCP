@@ -274,3 +274,36 @@ BOOST_AUTO_TEST_CASE ( ONV_address_setNext_fullspace ) {
     // Checks if no unexpected results occured in a full iteration
     BOOST_CHECK(is_correct);
 }
+
+
+BOOST_AUTO_TEST_CASE ( countNumberOfDifferences_unsigned ) {
+
+    GQCP::ONV spin_string1 (5, 3, 21);  // "10101" (21)
+    GQCP::ONV spin_string2 (5, 3, 22);  // "10110" (22)
+    GQCP::ONV spin_string3 (5, 3, 26);  // "11010" (26)
+
+    BOOST_CHECK_EQUAL(spin_string1.countNumberOfDifferences(spin_string1), 0);
+    BOOST_CHECK_EQUAL(spin_string2.countNumberOfDifferences(spin_string2), 0);
+    BOOST_CHECK_EQUAL(spin_string3.countNumberOfDifferences(spin_string3), 0);
+
+    BOOST_CHECK_EQUAL(spin_string1.countNumberOfDifferences(spin_string2), 2);
+    BOOST_CHECK_EQUAL(spin_string1.countNumberOfDifferences(spin_string3), 4);
+    BOOST_CHECK_EQUAL(spin_string2.countNumberOfDifferences(spin_string3), 2);
+}
+
+
+BOOST_AUTO_TEST_CASE ( findOccupiedDifferences_unsigned ) {
+
+    GQCP::ONV spin_string1 (5, 3, 21);  // "10101" (21)
+    GQCP::ONV spin_string2 (5, 3, 22);  // "10110" (22)
+    GQCP::ONV spin_string3 (5, 3, 26);  // "11010" (26)
+
+    BOOST_TEST(spin_string1.findOccupiedDifferences(spin_string2) == (std::vector<size_t> {0}), boost::test_tools::per_element());
+    BOOST_TEST(spin_string2.findOccupiedDifferences(spin_string1) == (std::vector<size_t> {1}), boost::test_tools::per_element());
+
+    BOOST_TEST(spin_string1.findOccupiedDifferences(spin_string3) == (std::vector<size_t> {0, 2}), boost::test_tools::per_element());
+    BOOST_TEST(spin_string3.findOccupiedDifferences(spin_string1) == (std::vector<size_t> {1, 3}), boost::test_tools::per_element());
+
+    BOOST_TEST(spin_string2.findOccupiedDifferences(spin_string3) == (std::vector<size_t> {2}), boost::test_tools::per_element());
+    BOOST_TEST(spin_string3.findOccupiedDifferences(spin_string2) == (std::vector<size_t> {3}), boost::test_tools::per_element());
+}

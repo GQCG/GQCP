@@ -55,6 +55,11 @@ public:
      */
     ONV(size_t K, size_t N, size_t unsigned_representation);
 
+    /**
+     *  Constructor from a @param K orbitals and an @param unsigned_representation
+     */
+    ONV(size_t K, size_t unsigned_representation);
+
 
     // OPERATORS
     /**
@@ -157,6 +162,19 @@ public:
      *
      */
     size_t slice(size_t index_start, size_t index_end) const;
+
+
+    /**
+     *  @return the number of different bits between this and @param other, i.e. two times the number of electron excitations
+     */
+    size_t countNumberOfDifferences(const ONV& other) const;
+
+
+    /**
+     *  @return the positions of the bits (lexical indices) that are occupied in this, but unoccupied in @param other
+     */
+    std::vector<size_t> findOccupiedDifferences(const ONV& other) const;
+
 
 
     // FRIEND CLASSES

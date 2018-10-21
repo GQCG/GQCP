@@ -31,6 +31,7 @@ set(PROJECT_SOURCE_FILES
         ${PROJECT_SOURCE_FOLDER}/FockSpace/BaseFockSpace.cpp
         ${PROJECT_SOURCE_FOLDER}/FockSpace/FockSpace.cpp
         ${PROJECT_SOURCE_FOLDER}/FockSpace/FockSpaceProduct.cpp
+        ${PROJECT_SOURCE_FOLDER}/FockSpace/SelectedFockSpace.cpp
         ${PROJECT_SOURCE_FOLDER}/HamiltonianBuilder/DOCI.cpp
         ${PROJECT_SOURCE_FOLDER}/HamiltonianBuilder/FCI.cpp
         ${PROJECT_SOURCE_FOLDER}/HamiltonianBuilder/HamiltonianBuilder.cpp
@@ -78,6 +79,7 @@ set(PROJECT_INCLUDE_FILES
         ${PROJECT_INCLUDE_FOLDER}/FockSpace/FockSpace.hpp
         ${PROJECT_INCLUDE_FOLDER}/FockSpace/FockSpaceProduct.hpp
         ${PROJECT_INCLUDE_FOLDER}/FockSpace/FockSpaceType.hpp
+        ${PROJECT_INCLUDE_FOLDER}/FockSpace/SelectedFockSpace.hpp
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianBuilder/DOCI.hpp
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianBuilder/FCI.hpp
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianBuilder/HamiltonianBuilder.hpp
@@ -102,6 +104,7 @@ set(PROJECT_INCLUDE_FILES
         ${PROJECT_INCLUDE_FOLDER}/AOBasis.hpp
         ${PROJECT_INCLUDE_FOLDER}/Atom.hpp
         ${PROJECT_INCLUDE_FOLDER}/common.hpp
+        ${PROJECT_INCLUDE_FOLDER}/Configuration.hpp
         ${PROJECT_INCLUDE_FOLDER}/DOCINewtonOrbitalOptimizer.hpp
         ${PROJECT_INCLUDE_FOLDER}/elements.hpp
         ${PROJECT_INCLUDE_FOLDER}/JacobiRotationParameters.hpp
@@ -129,6 +132,7 @@ set(PROJECT_TEST_SOURCE_FILES
         ${PROJECT_TESTS_FOLDER}/AP1roG/AP1roGPSESolver_test.cpp
         ${PROJECT_TESTS_FOLDER}/FockSpace/FockSpace_test.cpp
         ${PROJECT_TESTS_FOLDER}/FockSpace/FockSpaceProduct_test.cpp
+        ${PROJECT_TESTS_FOLDER}/FockSpace/SelectedFockSpace_test.cpp
         ${PROJECT_TESTS_FOLDER}/HamiltonianBuilder/DOCI_test.cpp
         ${PROJECT_TESTS_FOLDER}/HamiltonianBuilder/FCI_test.cpp
         ${PROJECT_TESTS_FOLDER}/HamiltonianParameters/HamiltonianParameters_test.cpp
