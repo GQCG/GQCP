@@ -53,6 +53,7 @@ set(PROJECT_SOURCE_FILES
         ${PROJECT_SOURCE_FOLDER}/RHF/PlainRHFSCFSolver.cpp
         ${PROJECT_SOURCE_FOLDER}/RHF/RHF.cpp
         ${PROJECT_SOURCE_FOLDER}/RHF/RHFSCFSolver.cpp
+        ${PROJECT_SOURCE_FOLDER}/WaveFunction/WaveFunction.cpp
         ${PROJECT_SOURCE_FOLDER}/AOBasis.cpp
         ${PROJECT_SOURCE_FOLDER}/Atom.cpp
         ${PROJECT_SOURCE_FOLDER}/DOCINewtonOrbitalOptimizer.cpp
@@ -62,8 +63,7 @@ set(PROJECT_SOURCE_FILES
         ${PROJECT_SOURCE_FOLDER}/miscellaneous.cpp
         ${PROJECT_SOURCE_FOLDER}/Molecule.cpp
         ${PROJECT_SOURCE_FOLDER}/ONV.cpp
-        ${PROJECT_SOURCE_FOLDER}/RMP2.cpp
-        ${PROJECT_SOURCE_FOLDER}/WaveFunction.cpp)
+        ${PROJECT_SOURCE_FOLDER}/RMP2.cpp)
 
 # Find the header folder
 set(PROJECT_INCLUDE_FOLDER ${CMAKE_SOURCE_DIR}/include)
@@ -101,6 +101,7 @@ set(PROJECT_INCLUDE_FILES
         ${PROJECT_INCLUDE_FOLDER}/RHF/PlainRHFSCFSolver.hpp
         ${PROJECT_INCLUDE_FOLDER}/RHF/RHF.hpp
         ${PROJECT_INCLUDE_FOLDER}/RHF/RHFSCFSolver.hpp
+        ${PROJECT_INCLUDE_FOLDER}/WaveFunction/WaveFunction.hpp
         ${PROJECT_INCLUDE_FOLDER}/AOBasis.hpp
         ${PROJECT_INCLUDE_FOLDER}/Atom.hpp
         ${PROJECT_INCLUDE_FOLDER}/common.hpp
@@ -113,8 +114,7 @@ set(PROJECT_INCLUDE_FILES
         ${PROJECT_INCLUDE_FOLDER}/Molecule.hpp
         ${PROJECT_INCLUDE_FOLDER}/ONV.hpp
         ${PROJECT_INCLUDE_FOLDER}/RMP2.hpp
-        ${PROJECT_INCLUDE_FOLDER}/units.hpp
-        ${PROJECT_INCLUDE_FOLDER}/WaveFunction.hpp)
+        ${PROJECT_INCLUDE_FOLDER}/units.hpp)
 
 # Find the tests folder
 set(PROJECT_TESTS_FOLDER ${CMAKE_SOURCE_DIR}/tests)

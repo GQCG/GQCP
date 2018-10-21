@@ -1,0 +1,22 @@
+#ifndef GQCP_WAVEFUNCTIONREADER_HPP
+#define GQCP_WAVEFUNCTIONREADER_HPP
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#endif //GQCP_WAVEFUNCTIONREADER_HPP

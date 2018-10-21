@@ -34,7 +34,7 @@ namespace GQCP {
  *  Where the considered configurations are manually selected and represented as an ONV pair :
  *  a combination of two ONVs, one holding the alpha configuration and holding the bea configuration.
  */
-class SelectedFockSpace : public GQCG::BaseFockSpace {
+class SelectedFockSpace : public GQCP::BaseFockSpace {
 private:
     const size_t N_alpha;  // number of alpha electrons
     const size_t N_beta;  // number of beta electrons
