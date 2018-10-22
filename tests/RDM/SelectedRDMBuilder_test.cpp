@@ -72,10 +72,8 @@ BOOST_AUTO_TEST_CASE ( one_rdms_fci_H2_6_31G ) {
 
     BOOST_CHECK(one_rdms_s.one_rdm.get_matrix_representation().isApprox(
             one_rdms.one_rdm.get_matrix_representation()));
-
     BOOST_CHECK(one_rdms_s.one_rdm_aa.get_matrix_representation().isApprox(
             one_rdms.one_rdm_aa.get_matrix_representation()));
-
     BOOST_CHECK(one_rdms_s.one_rdm_bb.get_matrix_representation().isApprox(
             one_rdms.one_rdm_bb.get_matrix_representation()));
 }
@@ -119,7 +117,7 @@ BOOST_AUTO_TEST_CASE ( two_rdms_fci_H2_6_31G ) {
     // Get the 1-RDM from SelectedCI
     GQCP::RDMCalculator selected_rdm(selected_fock_space);
     GQCP::TwoRDMs two_rdms_s = selected_rdm.calculate2RDMs(coef);
-    
+
 
     BOOST_CHECK(cpputil::linalg::areEqual(two_rdms_s.two_rdm_aaaa.get_matrix_representation(), two_rdms.two_rdm_aaaa.get_matrix_representation(), 1.0e-06));
     BOOST_CHECK(cpputil::linalg::areEqual(two_rdms_s.two_rdm_aabb.get_matrix_representation(), two_rdms.two_rdm_aabb.get_matrix_representation(), 1.0e-06));
@@ -127,3 +125,4 @@ BOOST_AUTO_TEST_CASE ( two_rdms_fci_H2_6_31G ) {
     BOOST_CHECK(cpputil::linalg::areEqual(two_rdms_s.two_rdm_bbbb.get_matrix_representation(), two_rdms.two_rdm_bbbb.get_matrix_representation(), 1.0e-06));
     BOOST_CHECK(cpputil::linalg::areEqual(two_rdms_s.two_rdm.get_matrix_representation(), two_rdms.two_rdm.get_matrix_representation(), 1.0e-06));
 }
+

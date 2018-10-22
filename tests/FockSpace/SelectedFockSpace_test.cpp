@@ -20,7 +20,7 @@
 
 #include "FockSpace/SelectedFockSpace.hpp"
 
-//#include "WaveFunction/WaveFunctionReader.hpp"
+#include "WaveFunction/WaveFunctionReader.hpp"
 
 
 #include <boost/test/unit_test.hpp>
@@ -54,13 +54,48 @@ BOOST_AUTO_TEST_CASE ( addConfiguration ) {
     BOOST_CHECK_THROW(fock_space.addConfiguration("011", "011"), std::invalid_argument);
 }
 
-/*
+
 BOOST_AUTO_TEST_CASE ( reader_test ) {
 
     GQCP::WaveFunctionReader test_reader ("../tests/data/test_GAMESS_expansion");
-    Eigen::VectorXd test = {1.0000, 0.0000};
+    Eigen::Vector2d test_vector;
+    test_vector << 1.0000, 0.0000;
 
-    // Check if both expansions are considered equal
-    BOOST_CHECK(test.isApprox(test_reader.get_coefficients()));
+    // Check read vector is correct
+    BOOST_CHECK(test_vector.isApprox(test_reader.get_coefficients()));
+
+    // Check if the expansions are equal
+    std::string alpha1 = "0000000000000000000000000000000000000000000001";
+    std::string alpha2 = "0000000000000000000000000000000000000000000001";
+    std::string beta1 = "0000000000000000000000000000000000000000000001";
+    std::string beta2 = "0000000000000000000000000000000000000000000010";
+
+    GQCP::Configuration configuration1 = test_reader.get_fock_space().get_Configuration(0);
+    GQCP::Configuration configuration2 = test_reader.get_fock_space().get_Configuration(1);
+
+    std::string alpha1_test;
+    std::string alpha2_test;
+    std::string beta1_test;
+    std::string beta2_test;
+
+    std::ostringstream ss;
+
+    ss << configuration1.onv_alpha;
+    alpha1_test = ss.str();
+    ss.str("");
+    ss << configuration1.onv_beta;
+    beta1_test = ss.str();
+    ss.str("");
+    ss << configuration2.onv_alpha;
+    alpha2_test = ss.str();
+    ss.str("");
+    ss << configuration2.onv_beta;
+    beta2_test = ss.str();
+    ss.str("");
+
+    BOOST_CHECK(alpha1_test == alpha1);
+    BOOST_CHECK(alpha2_test == alpha2);
+    BOOST_CHECK(beta1_test == beta1);
+    BOOST_CHECK(beta2_test == beta2);
+
 }
- */

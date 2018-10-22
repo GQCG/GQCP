@@ -2,9 +2,6 @@
 #define GQCP_WAVEFUNCTIONREADER_HPP
 
 
-
-#include <boost/dynamic_bitset.hpp>
-
 #include "FockSpace/SelectedFockSpace.hpp"
 #include "WaveFunction/WaveFunction.hpp"
 

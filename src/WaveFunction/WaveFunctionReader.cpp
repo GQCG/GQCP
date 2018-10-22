@@ -18,10 +18,11 @@
 
 #include <fstream>
 
-
+#include <boost/algorithm/string.hpp>
+#include <boost/range/adaptors.hpp>
+#include <boost/dynamic_bitset.hpp>
 
 #include "WaveFunction/WaveFunctionReader.hpp"
-
 
 
 
@@ -37,7 +38,7 @@ namespace GQCP {
  */
 WaveFunctionReader::WaveFunctionReader(const std::string& GAMESS_filename)
 {
-    /*
+
     // If the filename isn't properly converted into an input file stream, we assume the user supplied a wrong file
     std::ifstream input_file_stream(GAMESS_filename);
     std::ifstream input_file_stream_count(GAMESS_filename);  // made to count the expansion size
@@ -65,7 +66,7 @@ WaveFunctionReader::WaveFunctionReader(const std::string& GAMESS_filename)
 
     size_t space_size = 0;
     // Count the amount of configurations
-    while (std::getline(input_file_stream, buffer)) {
+    while (std::getline(input_file_stream_count, buffer)) {
         if (buffer.length() != 0 | buffer[0] != '\n') {
             space_size++;
         }
@@ -76,25 +77,25 @@ WaveFunctionReader::WaveFunctionReader(const std::string& GAMESS_filename)
 
     std::getline(input_file_stream, line);
     // Read the first line containing the configurations
-    std::vector<std::string> splitted_line;
-    boost::split(splitted_line, line, boost::is_any_of("|"));  // split on '|'
+    std::vector<std::string> splitted_linef;
+    boost::split(splitted_linef, line, boost::is_any_of("|"));  // split on '|'
 
 
     // Create an alpha SpinString for the first field
-    std::string trimmed_alpha = boost::algorithm::trim_copy(splitted_line[0]);
-    std::string reversed_alpha (trimmed_alpha.rbegin(), trimmed_alpha.rend());
+    std::string trimmed_alphaf = boost::algorithm::trim_copy(splitted_linef[0]);
+    std::string reversed_alphaf (trimmed_alphaf.rbegin(), trimmed_alphaf.rend());
 
     // Create a beta SpinString for the second field
-    std::string trimmed_beta = boost::algorithm::trim_copy(splitted_line[1]);
-    std::string reversed_beta(trimmed_beta.rbegin(), trimmed_beta.rend());
+    std::string trimmed_betaf = boost::algorithm::trim_copy(splitted_linef[1]);
+    std::string reversed_betaf(trimmed_betaf.rbegin(), trimmed_betaf.rend());
 
     size_t counter = 0;
     // add the double
-    this->coefficients(counter) = std::stod(splitted_line[2]);
+    this->coefficients(counter) = std::stod(splitted_linef[2]);
 
     // dynamic bitset provides us with functionallity
-    boost::dynamic_bitset<> alpha_transfer (trimmed_alpha);
-    boost::dynamic_bitset<> beta_transfer (trimmed_beta);
+    boost::dynamic_bitset<> alpha_transfer (reversed_alphaf);
+    boost::dynamic_bitset<> beta_transfer (reversed_betaf);
 
     size_t K = alpha_transfer.size();
     size_t N_alpha = alpha_transfer.count();
@@ -102,7 +103,7 @@ WaveFunctionReader::WaveFunctionReader(const std::string& GAMESS_filename)
 
     this->fock_space = SelectedFockSpace(K, N_alpha, N_beta);
 
-    this->fock_space.addConfiguration(trimmed_alpha, trimmed_beta);
+    this->fock_space.addConfiguration(reversed_alphaf, reversed_betaf);
 
 
     // Read in the ONVs and the coefficients by splitting the line on '|', and then trimming whitespace
@@ -131,12 +132,12 @@ WaveFunctionReader::WaveFunctionReader(const std::string& GAMESS_filename)
 
         // Create a double for the third field
         this->coefficients(counter) = std::stod(splitted_line[2]);
-        this->fock_space.addConfiguration(trimmed_alpha, trimmed_beta);
+        this->fock_space.addConfiguration(reversed_alpha, reversed_beta);
 
     }  // while getline
 
     this->wave_function = WaveFunction(this->fock_space, this->coefficients);
-     */
+
 }
 
 
