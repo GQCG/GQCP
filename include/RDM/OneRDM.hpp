@@ -43,6 +43,9 @@ public:
     Eigen::MatrixXd get_matrix_representation() const { return this->D; }
     double get(size_t p, size_t q) const { return this->D(p, q); }
 
+    // OPERATOR
+
+
 
     // PUBLIC METHODS
     /**

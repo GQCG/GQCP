@@ -20,6 +20,7 @@
 
 
 #include "FockSpace/BaseFockSpace.hpp"
+#include "FockSpace/FockSpaceProduct.hpp"
 #include "Configuration.hpp"
 
 #include <boost/numeric/conversion/converter.hpp>
@@ -73,6 +74,11 @@ public:
      */
     void addConfiguration(std::string onv1, std::string onv2);
     void addConfiguration(std::vector<std::string> onv1s, std::vector<std::string> onv2s);
+
+    /**
+     *  Sets the current expansion to that of @param fock_space
+     */
+    void setExpansion(const FockSpaceProduct& fock_space);
 };
 
 

@@ -98,5 +98,43 @@ void SelectedFockSpace::addConfiguration(std::vector<std::string> onv1s, std::ve
     }
 }
 
+/**
+ *  Sets the current expansion to that of @param fock_space
+ */
+void SelectedFockSpace::setExpansion(const FockSpaceProduct& fock_space){
+
+    std::vector<Configuration> configurations;
+
+    FockSpace fock_space_alpha = fock_space.get_fock_space_alpha();
+    FockSpace fock_space_beta = fock_space.get_fock_space_beta();
+
+    auto dim_alpha = fock_space_alpha.get_dimension();
+    auto dim_beta = fock_space_beta.get_dimension();
+
+    ONV alpha = fock_space_alpha.get_ONV(0);
+    for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {
+
+        ONV beta = fock_space_beta.get_ONV(0);
+        for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {
+
+            configurations.push_back(Configuration {alpha, beta});
+
+
+            if (I_beta < dim_beta - 1) {  // prevent the last permutation to occur
+                fock_space_beta.setNext(beta);
+            }
+
+        }
+
+        if (I_alpha < dim_alpha - 1) {  // prevent the last permutation to occur
+            fock_space_alpha.setNext(alpha);
+        }
+
+    }
+    this->dim = fock_space.get_dimension();
+    this->selection = configurations;
+
+
+}
 
 }  // namespace GQCP

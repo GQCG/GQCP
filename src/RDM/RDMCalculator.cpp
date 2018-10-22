@@ -19,6 +19,7 @@
 
 #include "RDM/DOCIRDMBuilder.hpp"
 #include "RDM/FCIRDMBuilder.hpp"
+#include "RDM/SelectedRDMBuilder.hpp"
 
 
 
@@ -46,6 +47,14 @@ RDMCalculator::RDMCalculator(const FockSpaceProduct& fock_space) {
 
 
 /**
+ *  Allocates a SelectedRDMBuilder based on @param fock_space
+ */
+RDMCalculator::RDMCalculator(const SelectedFockSpace& fock_space) {
+    rdm_builder = std::make_shared<GQCP::SelectedRDMBuilder>(fock_space);
+}
+
+
+/**
  *  Allocates the correct derived BaseRDMBuilder based on @param fock_space
  */
 RDMCalculator::RDMCalculator(const BaseFockSpace& fock_space) {
@@ -60,6 +69,12 @@ RDMCalculator::RDMCalculator(const BaseFockSpace& fock_space) {
 
         case FockSpaceType::FockSpaceProduct: {
             rdm_builder = std::make_shared<GQCP::FCIRDMBuilder>(dynamic_cast<const GQCP::FockSpaceProduct&>(fock_space));
+
+            break;
+        }
+
+        case FockSpaceType::SelectedFockSpace: {
+            rdm_builder = std::make_shared<GQCP::SelectedRDMBuilder>(dynamic_cast<const GQCP::SelectedFockSpace&>(fock_space));
 
             break;
         }
