@@ -19,6 +19,7 @@
 #define GQCP_CISOLVER_HPP
 
 
+
 #include "HamiltonianBuilder/HamiltonianBuilder.hpp"
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "WaveFunction/WaveFunction.hpp"

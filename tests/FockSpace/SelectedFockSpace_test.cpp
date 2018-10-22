@@ -20,7 +20,7 @@
 
 #include "FockSpace/SelectedFockSpace.hpp"
 
-#include "WaveFunction/WaveFunctionReader.hpp"
+//#include "WaveFunction/WaveFunctionReader.hpp"
 
 
 #include <boost/test/unit_test.hpp>
@@ -54,7 +54,7 @@ BOOST_AUTO_TEST_CASE ( addConfiguration ) {
     BOOST_CHECK_THROW(fock_space.addConfiguration("011", "011"), std::invalid_argument);
 }
 
-
+/*
 BOOST_AUTO_TEST_CASE ( reader_test ) {
 
     GQCP::WaveFunctionReader test_reader ("../tests/data/test_GAMESS_expansion");
@@ -63,3 +63,4 @@ BOOST_AUTO_TEST_CASE ( reader_test ) {
     // Check if both expansions are considered equal
     BOOST_CHECK(test.isApprox(test_reader.get_coefficients()));
 }
+ */

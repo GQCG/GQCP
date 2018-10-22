@@ -2,7 +2,7 @@
 
 
 # Find the Boost package
-find_package(Boost REQUIRED)
+find_package(Boost REQUIRED COMPONENTS system thread)
 
 # Find Eigen3
 find_package(Eigen3 3.3.4 REQUIRED)

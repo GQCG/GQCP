@@ -16,15 +16,13 @@
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#include "WaveFunction/WaveFunctionReader.hpp"
-
 #include <fstream>
 
-#include <boost/algorithm/string/trim.hpp>
-#include <boost/algorithm/string/split.hpp>
 
 
-#include <boost/dynamic_bitset.hpp>
+#include "WaveFunction/WaveFunctionReader.hpp"
+
+
 
 
 namespace GQCP {
@@ -39,6 +37,7 @@ namespace GQCP {
  */
 WaveFunctionReader::WaveFunctionReader(const std::string& GAMESS_filename)
 {
+    /*
     // If the filename isn't properly converted into an input file stream, we assume the user supplied a wrong file
     std::ifstream input_file_stream(GAMESS_filename);
     std::ifstream input_file_stream_count(GAMESS_filename);  // made to count the expansion size
@@ -137,6 +136,7 @@ WaveFunctionReader::WaveFunctionReader(const std::string& GAMESS_filename)
     }  // while getline
 
     this->wave_function = WaveFunction(this->fock_space, this->coefficients);
+     */
 }
 
 
