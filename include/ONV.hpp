@@ -40,8 +40,8 @@ namespace GQCP {
  */
 class ONV {
 private:
-    const size_t K;  // number of spatial orbitals
-    const size_t N;  // number of electrons
+    size_t K;  // number of spatial orbitals
+    size_t N;  // number of electrons
     size_t unsigned_representation;  // unsigned representation
     VectorXs occupation_indices;  // the occupied orbital electron indexes
                                   // it is a vector of N elements in which occupation_indices[j]
@@ -50,6 +50,7 @@ private:
 
 public:
     // CONSTRUCTORS
+    ONV() = default;
     /**
      *  Constructor from a @param K orbitals, N electrons and an @param unsigned_representation
      */
