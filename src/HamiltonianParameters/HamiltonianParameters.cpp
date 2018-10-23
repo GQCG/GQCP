@@ -73,6 +73,7 @@ HamiltonianParameters::HamiltonianParameters(const GQCP::HamiltonianParameters& 
 }
 
 
+
 /*
  *  PUBLIC METHODS
  */
@@ -118,6 +119,23 @@ void HamiltonianParameters::rotate(const Eigen::MatrixXd& U) {
     this->g.rotate(U);
 
     this->C = this->C * U;
+}
+
+
+/**
+ *  Using a random rotation matrix, transform:
+ *      - the one-electron interaction operator (i.e. the core Hamiltonian)
+ *      - the two-electron interaction operator
+ */
+void HamiltonianParameters::randomRotate() {
+
+    // Get a random unitary matrix by diagonalizing a random symmetric matrix
+    Eigen::MatrixXd A_random = Eigen::MatrixXd::Random(this->K, this->K);
+    Eigen::MatrixXd A_symmetric = A_random + A_random.transpose();
+    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> unitary_solver (A_symmetric);
+    Eigen::MatrixXd U_random = unitary_solver.eigenvectors();
+
+    this->rotate(U_random);
 }
 
 

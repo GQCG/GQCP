@@ -101,6 +101,13 @@ public:
     void rotate(const Eigen::MatrixXd& U);
 
     /**
+     *  Using a random rotation matrix, transform:
+     *      - the one-electron interaction operator (i.e. the core Hamiltonian)
+     *      - the two-electron interaction operator
+     */
+    void randomRotate();
+
+    /**
      *  Given @param jacobi_rotation_parameters that represent a unitary rotation matrix @param U (using a (cos, sin, -sin, cos) definition for the Jacobi rotation matrix) that links the new molecular orbital basis to the old molecular orbital basis,
      *  in the sense that
      *       b' = b U ,
