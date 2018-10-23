@@ -74,10 +74,10 @@ BOOST_AUTO_TEST_CASE ( addConfiguration ) {
     GQCP::Configuration configuration2 = fock_space.get_configuration(1);
 
     // Retrieve the string representation of the ONVs
-    std::string alpha1_test = configuration1.onv_alpha.string_representation();
-    std::string alpha2_test = configuration2.onv_alpha.string_representation();
-    std::string beta1_test = configuration1.onv_beta.string_representation();
-    std::string beta2_test = configuration2.onv_beta.string_representation();
+    std::string alpha1_test = configuration1.onv_alpha.asString();
+    std::string alpha2_test = configuration2.onv_alpha.asString();
+    std::string beta1_test = configuration1.onv_beta.asString();
+    std::string beta2_test = configuration2.onv_beta.asString();
 
     BOOST_CHECK(alpha1_test == alpha1_ref);
     BOOST_CHECK(alpha2_test == alpha2_ref);
@@ -112,10 +112,10 @@ BOOST_AUTO_TEST_CASE ( reader_test ) {
     GQCP::Configuration configuration2 = test_reader.get_fock_space().get_configuration(1);
 
     // Retrieve the string representation of the ONVs
-    std::string alpha1_test = configuration1.onv_alpha.string_representation();
-    std::string alpha2_test = configuration2.onv_alpha.string_representation();
-    std::string beta1_test = configuration1.onv_beta.string_representation();
-    std::string beta2_test = configuration2.onv_beta.string_representation();
+    std::string alpha1_test = configuration1.onv_alpha.asString();
+    std::string alpha2_test = configuration2.onv_alpha.asString();
+    std::string beta1_test = configuration1.onv_beta.asString();
+    std::string beta2_test = configuration2.onv_beta.asString();
 
     BOOST_CHECK(alpha1_test == alpha1_ref);
     BOOST_CHECK(alpha2_test == alpha2_ref);

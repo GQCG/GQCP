@@ -185,7 +185,7 @@ public:
     /**
      * @return std::string containing the ONV representation
      */
-    std::string string_representation() const;
+    std::string asString() const;
 
     // FRIEND CLASSES
     friend class FockSpace;

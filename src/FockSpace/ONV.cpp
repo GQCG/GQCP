@@ -58,7 +58,7 @@ ONV::ONV(size_t K, size_t representation):
  *  Overloading of operator<< for a GQCP::ONV to be used with streams
  */
 std::ostream& operator<<(std::ostream& os, const GQCP::ONV& onv) {
-    return os<<onv.string_representation();
+    return os<< onv.asString();
 }
 
 /**
@@ -290,7 +290,7 @@ std::vector<size_t> ONV::findOccupiedDifferences(const ONV& other) const {
 /**
  * @return std::string containing the ONV representation
  */
-std::string ONV::string_representation() const {
+std::string ONV::asString() const {
     boost::dynamic_bitset<> transfer_set (this->K, this->unsigned_representation);
     std::string buffer;
     boost::to_string(transfer_set, buffer);
