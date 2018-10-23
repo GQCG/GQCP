@@ -50,7 +50,7 @@ OneRDMs SelectedRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) {
     size_t dim = fock_space.get_dimension();
 
     for (size_t I = 0; I < dim; I++) {  // loop over all addresses (1)
-        Configuration configuration_I = this->fock_space.get_Configuration(I);
+        Configuration configuration_I = this->fock_space.get_configuration(I);
         ONV alpha_I = configuration_I.onv_alpha;
         ONV beta_I = configuration_I.onv_beta;
         
@@ -73,7 +73,7 @@ OneRDMs SelectedRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) {
         // Calculate the off-diagonal elements, by going over all other ONVs
         for (size_t J = I+1; J < dim; J++) {
 
-            Configuration configuration_J = this->fock_space.get_Configuration(J);
+            Configuration configuration_J = this->fock_space.get_configuration(J);
             ONV alpha_J = configuration_J.onv_alpha;
             ONV beta_J = configuration_J.onv_beta;
 
@@ -139,7 +139,7 @@ TwoRDMs SelectedRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) {
 
     for (size_t I = 0; I < dim; I++) {  // loop over all addresses I
 
-        Configuration configuration_I = this->fock_space.get_Configuration(I);
+        Configuration configuration_I = this->fock_space.get_configuration(I);
         ONV alpha_I = configuration_I.onv_alpha;
         ONV beta_I = configuration_I.onv_beta;
 
@@ -184,7 +184,7 @@ TwoRDMs SelectedRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) {
 
         for (size_t J = I+1; J < dim; J++) {
 
-            Configuration configuration_J = this->fock_space.get_Configuration(J);
+            Configuration configuration_J = this->fock_space.get_configuration(J);
             ONV alpha_J = configuration_J.onv_alpha;
             ONV beta_J = configuration_J.onv_beta;
 
