@@ -38,8 +38,9 @@ private:
 
 public:
     // CONSTRUCTORS
+    WaveFunction() = default;
     WaveFunction(BaseFockSpace& base_fock_space, const Eigen::VectorXd& coefficients);
-    WaveFunction()  = default;
+
 
     // GETTERS
     Eigen::VectorXd get_coefficients() const { return coefficients; }

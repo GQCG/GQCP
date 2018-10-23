@@ -23,6 +23,7 @@
 
 #include "CISolver/CISolver.hpp"
 #include "HamiltonianBuilder/FCI.hpp"
+#include "HamiltonianBuilder/DOCI.hpp"
 #include "HamiltonianParameters/HamiltonianParameters_constructors.hpp"
 
 #include <cpputil.hpp>
@@ -39,19 +40,19 @@ BOOST_AUTO_TEST_CASE ( one_rdms_fci_H2_6_31G ) {
     size_t N_b = 1;
 
     // Create a Molecule and an AOBasis
-    GQCP::Molecule h2("../tests/data/h2.xyz");
+    GQCP::Molecule h2 ("../tests/data/h2.xyz");
     auto ao_basis = std::make_shared<GQCP::AOBasis>(h2, "6-31G");
 
     // Create the molecular Hamiltonian parameters for this molecule and basis
     auto ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
     size_t K = ham_par.get_K();  // 4
 
-    GQCP::FockSpaceProduct fock_space(K, N_a, N_b);  // dim = 16
-    GQCP::FCI fci(fock_space);
+    GQCP::FockSpaceProduct fock_space (K, N_a, N_b);  // dim = 16
+    GQCP::FCI fci (fock_space);
 
     // Specify solver options and solve the eigenvalue problem
     // Solve the dense FCI eigenvalue problem
-    GQCP::CISolver ci_solver(fci, ham_par);
+    GQCP::CISolver ci_solver (fci, ham_par);
     numopt::eigenproblem::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
@@ -62,11 +63,10 @@ BOOST_AUTO_TEST_CASE ( one_rdms_fci_H2_6_31G ) {
     GQCP::OneRDMs one_rdms = fci_rdm.calculate1RDMs(coef);
 
 
-    GQCP::SelectedFockSpace selected_fock_space(K, N_a, N_b);
-    selected_fock_space.setExpansion(fock_space);
+    GQCP::SelectedFockSpace selected_fock_space (fock_space);
 
     // Get the 1-RDM from SelectedCI
-    GQCP::RDMCalculator selected_rdm(selected_fock_space);
+    GQCP::RDMCalculator selected_rdm (selected_fock_space);
     GQCP::OneRDMs one_rdms_s = selected_rdm.calculate1RDMs(coef);
 
 
@@ -88,19 +88,19 @@ BOOST_AUTO_TEST_CASE ( two_rdms_fci_H2_6_31G ) {
     size_t N_b = 1;
 
     // Create a Molecule and an AOBasis
-    GQCP::Molecule h2("../tests/data/h2.xyz");
+    GQCP::Molecule h2 ("../tests/data/h2.xyz");
     auto ao_basis = std::make_shared<GQCP::AOBasis>(h2, "6-31G");
 
     // Create the molecular Hamiltonian parameters for this molecule and basis
     auto ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
     size_t K = ham_par.get_K();  // 4
 
-    GQCP::FockSpaceProduct fock_space(K, N_a, N_b);  // dim = 16
-    GQCP::FCI fci(fock_space);
+    GQCP::FockSpaceProduct fock_space (K, N_a, N_b);  // dim = 16
+    GQCP::FCI fci (fock_space);
 
     // Specify solver options and solve the eigenvalue problem
     // Solve the dense FCI eigenvalue problem
-    GQCP::CISolver ci_solver(fci, ham_par);
+    GQCP::CISolver ci_solver (fci, ham_par);
     numopt::eigenproblem::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
@@ -111,11 +111,10 @@ BOOST_AUTO_TEST_CASE ( two_rdms_fci_H2_6_31G ) {
     GQCP::TwoRDMs two_rdms = fci_rdm.calculate2RDMs(coef);
 
 
-    GQCP::SelectedFockSpace selected_fock_space(K, N_a, N_b);
-    selected_fock_space.setExpansion(fock_space);
+    GQCP::SelectedFockSpace selected_fock_space (fock_space);
 
     // Get the 1-RDM from SelectedCI
-    GQCP::RDMCalculator selected_rdm(selected_fock_space);
+    GQCP::RDMCalculator selected_rdm (selected_fock_space);
     GQCP::TwoRDMs two_rdms_s = selected_rdm.calculate2RDMs(coef);
 
 
@@ -126,3 +125,94 @@ BOOST_AUTO_TEST_CASE ( two_rdms_fci_H2_6_31G ) {
     BOOST_CHECK(cpputil::linalg::areEqual(two_rdms_s.two_rdm.get_matrix_representation(), two_rdms.two_rdm.get_matrix_representation(), 1.0e-06));
 }
 
+
+BOOST_AUTO_TEST_CASE ( one_rdms_doci_H2_6_31G ) {
+
+    // Do an H2@doci//6-31G calculation
+    // test if 1-RDM SelectedRDM and dociRDM are equal
+    size_t N = 1;
+
+    // Create a Molecule and an AOBasis
+    GQCP::Molecule h2 ("../tests/data/h2.xyz");
+    auto ao_basis = std::make_shared<GQCP::AOBasis>(h2, "6-31G");
+
+    // Create the molecular Hamiltonian parameters for this molecule and basis
+    auto ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
+    size_t K = ham_par.get_K();  // 4
+
+    GQCP::FockSpace fock_space (K, N);  // dim = 4
+    GQCP::DOCI doci (fock_space);
+
+    // Specify solver options and solve the eigenvalue problem
+    // Solve the dense doci eigenvalue problem
+    GQCP::CISolver ci_solver (doci, ham_par);
+    numopt::eigenproblem::DenseSolverOptions solver_options;
+    ci_solver.solve(solver_options);
+
+    Eigen::VectorXd coef = ci_solver.get_eigenpair().get_eigenvector();
+
+    // Get the 1-RDM from doci
+    GQCP::RDMCalculator doci_rdm(fock_space);
+    GQCP::OneRDMs one_rdms = doci_rdm.calculate1RDMs(coef);
+
+
+    GQCP::SelectedFockSpace selected_fock_space (fock_space);
+
+    // Get the 1-RDM from SelectedCI
+    GQCP::RDMCalculator selected_rdm (selected_fock_space);
+    GQCP::OneRDMs one_rdms_s = selected_rdm.calculate1RDMs(coef);
+
+
+    BOOST_CHECK(one_rdms_s.one_rdm.get_matrix_representation().isApprox(
+            one_rdms.one_rdm.get_matrix_representation()));
+    BOOST_CHECK(one_rdms_s.one_rdm_aa.get_matrix_representation().isApprox(
+            one_rdms.one_rdm_aa.get_matrix_representation()));
+    BOOST_CHECK(one_rdms_s.one_rdm_bb.get_matrix_representation().isApprox(
+            one_rdms.one_rdm_bb.get_matrix_representation()));
+}
+
+
+
+BOOST_AUTO_TEST_CASE ( two_rdms_doci_H2_6_31G ) {
+
+    // Do an H2@doci//6-31G calculation
+    // test if 2-RDM SelectedRDM and dociRDM are equal
+    size_t N = 1;
+
+    // Create a Molecule and an AOBasis
+    GQCP::Molecule h2 ("../tests/data/h2.xyz");
+    auto ao_basis = std::make_shared<GQCP::AOBasis>(h2, "6-31G");
+
+    // Create the molecular Hamiltonian parameters for this molecule and basis
+    auto ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
+    size_t K = ham_par.get_K();  // 4
+
+    GQCP::FockSpace fock_space (K, N);  // dim = 4
+    GQCP::DOCI doci (fock_space);
+
+    // Specify solver options and solve the eigenvalue problem
+    // Solve the dense doci eigenvalue problem
+    GQCP::CISolver ci_solver (doci, ham_par);
+    numopt::eigenproblem::DenseSolverOptions solver_options;
+    ci_solver.solve(solver_options);
+
+    Eigen::VectorXd coef = ci_solver.get_eigenpair().get_eigenvector();
+
+    // Get the 1-RDM from doci
+    GQCP::RDMCalculator doci_rdm(fock_space);
+    GQCP::TwoRDMs two_rdms = doci_rdm.calculate2RDMs(coef);
+
+
+    GQCP::SelectedFockSpace selected_fock_space (fock_space);
+
+    // Get the 1-RDM from SelectedCI
+    GQCP::RDMCalculator selected_rdm (selected_fock_space);
+    GQCP::TwoRDMs two_rdms_s = selected_rdm.calculate2RDMs(coef);
+
+
+    BOOST_CHECK(cpputil::linalg::areEqual(two_rdms_s.two_rdm_aaaa.get_matrix_representation(), two_rdms.two_rdm_aaaa.get_matrix_representation(), 1.0e-06));
+    BOOST_CHECK(cpputil::linalg::areEqual(two_rdms_s.two_rdm_aabb.get_matrix_representation(), two_rdms.two_rdm_aabb.get_matrix_representation(), 1.0e-06));
+    BOOST_CHECK(cpputil::linalg::areEqual(two_rdms_s.two_rdm_bbaa.get_matrix_representation(), two_rdms.two_rdm_bbaa.get_matrix_representation(), 1.0e-06));
+    BOOST_CHECK(cpputil::linalg::areEqual(two_rdms_s.two_rdm_bbbb.get_matrix_representation(), two_rdms.two_rdm_bbbb.get_matrix_representation(), 1.0e-06));
+    BOOST_CHECK(cpputil::linalg::areEqual(two_rdms_s.two_rdm.get_matrix_representation(), two_rdms.two_rdm.get_matrix_representation(), 1.0e-06));
+}

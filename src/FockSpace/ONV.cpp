@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "ONV.hpp"
+#include "FockSpace/ONV.hpp"
 
 #include <boost/dynamic_bitset.hpp>
 
@@ -31,9 +31,9 @@ namespace GQCP {
  *  Constructor from a @param K orbitals, N electrons and an @param unsigned_representation
  */
 ONV::ONV(size_t K, size_t N, size_t representation):
-    K(K),
-    N(N),
-    unsigned_representation(representation)
+    K (K),
+    N (N),
+    unsigned_representation (representation)
 {
     occupation_indices = VectorXs::Zero(N);
     this->updateOccupationIndices();  // throws error if the representation and N are not compatible
@@ -43,9 +43,7 @@ ONV::ONV(size_t K, size_t N, size_t representation):
  *  Constructor from a @param K orbitals and an @param unsigned_representation
  */
 ONV::ONV(size_t K, size_t representation):
-        K(K),
-        N(__builtin_popcountl(representation)),
-        unsigned_representation(representation)
+    ONV(K, __builtin_popcountl(representation), representation)
 {
     occupation_indices = VectorXs::Zero(N);
     this->updateOccupationIndices();  // throws error if the representation and N are not compatible
@@ -60,7 +58,7 @@ ONV::ONV(size_t K, size_t representation):
  *  Overloading of operator<< for a GQCP::ONV to be used with streams
  */
 std::ostream& operator<<(std::ostream& os, const GQCP::ONV& onv) {
-    return os<<boost::dynamic_bitset<> (onv.K, onv.unsigned_representation);
+    return os<<onv.string_representation();
 }
 
 /**
@@ -116,7 +114,7 @@ void ONV::updateOccupationIndices() {
 
 /**
  *  @return if the @param p-th spatial orbital is occupied, starting from 0
- *  @param p is the lexical index (i.e. read from right to left)
+ *  @param p is counted from right to left
  */
 bool ONV::isOccupied(size_t p) const {
 
@@ -199,7 +197,7 @@ bool ONV::create(size_t p, int& sign) {
 }
 
 /**
- *  @return the phase factor (+1 or -1) that arises by applying an annihilation or creation operator on orbital @param p, starting from 0 in reverse lexical ordering.
+ *  @return the phase factor (+1 or -1) that arises by applying an annihilation or creation operator on orbital @param p, starting from 0, read from right to left.
  *
  *  Let's say that there are m electrons in the orbitals up to p (not included). If m is even, the phase factor is (+1) and if m is odd, the phase factor is (-1), since electrons are fermions.
  */
@@ -222,8 +220,8 @@ int ONV::operatorPhaseFactor(size_t p) const {
  *  @return the representation of a slice (i.e. a subset) of the spin string between @param index_start (included)
  *  and @param index_end (not included).
  *
- *  Both @param index_start and @param index_end are 'lexical' (i.e. from right to left), which means that the slice
- *  occurs 'lexically' as well (i.e. from right to left).
+ *  Both @param index_start and @param index_end  are read from right to left, which means that the slice
+ *  is from right to left as well.
  *
  *      Example:
  *          "010011".slice(1, 4) => "01[001]1" -> "001"
@@ -266,7 +264,7 @@ size_t ONV::countNumberOfDifferences(const ONV& other) const {
 
 
 /**
- *  @return the positions of the bits (lexical indices) that are occupied in this, but unoccupied in @param other
+ *  @return the positions of the bits (from right to left) that are occupied in this, but unoccupied in @param other
  */
 std::vector<size_t> ONV::findOccupiedDifferences(const ONV& other) const {
 
@@ -286,6 +284,17 @@ std::vector<size_t> ONV::findOccupiedDifferences(const ONV& other) const {
     }
 
     return positions;
+}
+
+
+/**
+ * @return std::string containing the ONV representation
+ */
+std::string ONV::string_representation() const {
+    boost::dynamic_bitset<> transfer_set (this->K, this->unsigned_representation);
+    std::string buffer;
+    boost::to_string(transfer_set, buffer);
+    return buffer;
 }
 
 

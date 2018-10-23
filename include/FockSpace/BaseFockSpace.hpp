@@ -41,11 +41,11 @@ protected:
 
 
     // PROTECTED CONSTRUCTORS
+    BaseFockSpace() = default;
     /**
      *  Protected constructor given a @param K and @param dim
      */
     explicit BaseFockSpace(size_t K, size_t dim);
-    BaseFockSpace() = default;
 
 public:
     // DESTRUCTOR

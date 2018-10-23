@@ -30,6 +30,12 @@
 BOOST_AUTO_TEST_CASE ( constructor ) {
 
     BOOST_CHECK_NO_THROW(GQCP::SelectedFockSpace (10, 5, 5));
+
+    GQCP::FockSpaceProduct fock_space_product (10, 5, 5);
+    GQCP::FockSpace fock_space (10, 5);
+
+    BOOST_CHECK_NO_THROW(GQCP::SelectedFockSpace fock (fock_space_product));
+    BOOST_CHECK_NO_THROW(GQCP::SelectedFockSpace fock (fock_space));
 }
 
 
@@ -52,50 +58,68 @@ BOOST_AUTO_TEST_CASE ( addConfiguration ) {
 
     // Test throw with incompatible electron numbers
     BOOST_CHECK_THROW(fock_space.addConfiguration("011", "011"), std::invalid_argument);
+
+    fock_space.addConfiguration(alpha_set, beta_set);
+
+
+    // Check if the expansions are equal
+    // Generate the expected results
+    std::string alpha1_ref = "001";
+    std::string alpha2_ref = "010";
+    std::string beta1_ref = "001";
+    std::string beta2_ref = "010";
+
+    // Retrieve the added results
+    GQCP::Configuration configuration1 = fock_space.get_configuration(0);
+    GQCP::Configuration configuration2 = fock_space.get_configuration(1);
+
+    // Retrieve the string representation of the ONVs
+    std::string alpha1_test = configuration1.onv_alpha.string_representation();
+    std::string alpha2_test = configuration2.onv_alpha.string_representation();
+    std::string beta1_test = configuration1.onv_beta.string_representation();
+    std::string beta2_test = configuration2.onv_beta.string_representation();
+
+    BOOST_CHECK(alpha1_test == alpha1_ref);
+    BOOST_CHECK(alpha2_test == alpha2_ref);
+    BOOST_CHECK(beta1_test == beta1_ref);
+    BOOST_CHECK(beta2_test == beta2_ref);
 }
 
 
 BOOST_AUTO_TEST_CASE ( reader_test ) {
 
+    // We will test if we can construct a selected fock space and a corresponding coefficients
+    // through an input file
     GQCP::WaveFunctionReader test_reader ("../tests/data/test_GAMESS_expansion");
+
+
+    // Check read vector is correct
+    // Gerenate the expected result
     Eigen::Vector2d test_vector;
     test_vector << 1.0000, 0.0000;
 
-    // Check read vector is correct
     BOOST_CHECK(test_vector.isApprox(test_reader.get_coefficients()));
 
     // Check if the expansions are equal
-    std::string alpha1 = "0000000000000000000000000000000000000000000001";
-    std::string alpha2 = "0000000000000000000000000000000000000000000001";
-    std::string beta1 = "0000000000000000000000000000000000000000000001";
-    std::string beta2 = "0000000000000000000000000000000000000000000010";
+    // Generate the expected results
+    std::string alpha1_ref = "0000000000000000000000000000000000000000000001";
+    std::string alpha2_ref = "0000000000000000000000000000000000000000000001";
+    std::string beta1_ref = "0000000000000000000000000000000000000000000001";
+    std::string beta2_ref = "0000000000000000000000000000000000000000000010";
 
-    GQCP::Configuration configuration1 = test_reader.get_fock_space().get_Configuration(0);
-    GQCP::Configuration configuration2 = test_reader.get_fock_space().get_Configuration(1);
+    // Retrieve the read results
+    GQCP::Configuration configuration1 = test_reader.get_fock_space().get_configuration(0);
+    GQCP::Configuration configuration2 = test_reader.get_fock_space().get_configuration(1);
 
-    std::string alpha1_test;
-    std::string alpha2_test;
-    std::string beta1_test;
-    std::string beta2_test;
+    // Retrieve the string representation of the ONVs
+    std::string alpha1_test = configuration1.onv_alpha.string_representation();
+    std::string alpha2_test = configuration2.onv_alpha.string_representation();
+    std::string beta1_test = configuration1.onv_beta.string_representation();
+    std::string beta2_test = configuration2.onv_beta.string_representation();
 
-    std::ostringstream ss;
-
-    ss << configuration1.onv_alpha;
-    alpha1_test = ss.str();
-    ss.str("");
-    ss << configuration1.onv_beta;
-    beta1_test = ss.str();
-    ss.str("");
-    ss << configuration2.onv_alpha;
-    alpha2_test = ss.str();
-    ss.str("");
-    ss << configuration2.onv_beta;
-    beta2_test = ss.str();
-    ss.str("");
-
-    BOOST_CHECK(alpha1_test == alpha1);
-    BOOST_CHECK(alpha2_test == alpha2);
-    BOOST_CHECK(beta1_test == beta1);
-    BOOST_CHECK(beta2_test == beta2);
+    BOOST_CHECK(alpha1_test == alpha1_ref);
+    BOOST_CHECK(alpha2_test == alpha2_ref);
+    BOOST_CHECK(beta1_test == beta1_ref);
+    BOOST_CHECK(beta2_test == beta2_ref);
 
 }

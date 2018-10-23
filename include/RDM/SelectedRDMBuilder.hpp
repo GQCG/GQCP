@@ -29,19 +29,15 @@ namespace GQCP {
 
 /**
  *  SelectedRDMBuilder is a class for the calculation of a density matrix from a given wave function
- *  or coefficient expansion in the full CI Fock space
+ *  or coefficient expansion in a selected Fock space
  */
 class SelectedRDMBuilder : public BaseRDMBuilder {
-    SelectedFockSpace fock_space;  // Fock space containing the selected configuration
+    SelectedFockSpace fock_space;  // Fock space containing the selected configurations
 
 
 public:
     // CONSTRUCTOR
     explicit SelectedRDMBuilder (const SelectedFockSpace& fock_space);
-
-
-    // DESTRUCTOR
-    ~SelectedRDMBuilder() = default;
 
 
     // OVERRIDDEN PUBLIC METHODS

@@ -5,8 +5,6 @@
 #include "FockSpace/SelectedFockSpace.hpp"
 #include "WaveFunction/WaveFunction.hpp"
 
-#include <memory>
-
 
 namespace GQCP {
 
@@ -39,4 +37,4 @@ public:
 
 
 
-#endif //GQCP_WAVEFUNCTIONREADER_HPP
+#endif  // GQCP_WAVEFUNCTIONREADER_HPP

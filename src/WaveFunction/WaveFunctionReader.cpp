@@ -40,8 +40,8 @@ WaveFunctionReader::WaveFunctionReader(const std::string& GAMESS_filename)
 {
 
     // If the filename isn't properly converted into an input file stream, we assume the user supplied a wrong file
-    std::ifstream input_file_stream(GAMESS_filename);
-    std::ifstream input_file_stream_count(GAMESS_filename);  // made to count the expansion size
+    std::ifstream input_file_stream (GAMESS_filename);
+    std::ifstream input_file_stream_count (GAMESS_filename);  // made to count the expansion size
 
     if (!input_file_stream.good()) {
         throw std::runtime_error("WaveFunctionReader(): The provided GAMESS file is illegible. Maybe you specified a wrong path?");
@@ -50,7 +50,7 @@ WaveFunctionReader::WaveFunctionReader(const std::string& GAMESS_filename)
     // Do the actual parsing
     // Read in dummy lines up until we actually get to the ONVs and coefficients
     std::string line;
-    std::string buffer;  // dummy for the getline()  TODO: find "correcter" way if possible
+    std::string buffer;  // dummy for the counting stream  TODO: find "correcter" way if possible
     while (std::getline(input_file_stream, line)) {
         std::getline(input_file_stream_count, buffer);
         if (line.find("ALPHA") != std::string::npos
@@ -77,25 +77,27 @@ WaveFunctionReader::WaveFunctionReader(const std::string& GAMESS_filename)
 
     std::getline(input_file_stream, line);
     // Read the first line containing the configurations
-    std::vector<std::string> splitted_linef;
-    boost::split(splitted_linef, line, boost::is_any_of("|"));  // split on '|'
+    std::vector<std::string> splitted_line;
+    boost::split(splitted_line, line, boost::is_any_of("|"));  // split on '|'
 
 
-    // Create an alpha SpinString for the first field
-    std::string trimmed_alphaf = boost::algorithm::trim_copy(splitted_linef[0]);
-    std::string reversed_alphaf (trimmed_alphaf.rbegin(), trimmed_alphaf.rend());
+    // Create an alpha ONV for the first field
+    std::string trimmed_alpha = boost::algorithm::trim_copy(splitted_line[0]);
+    std::string reversed_alpha (trimmed_alpha.rbegin(), trimmed_alpha.rend());
 
-    // Create a beta SpinString for the second field
-    std::string trimmed_betaf = boost::algorithm::trim_copy(splitted_linef[1]);
-    std::string reversed_betaf(trimmed_betaf.rbegin(), trimmed_betaf.rend());
+    // Create a beta ONV for the second field
+    std::string trimmed_beta = boost::algorithm::trim_copy(splitted_line[1]);
+    std::string reversed_beta (trimmed_beta.rbegin(), trimmed_beta.rend());
 
-    size_t counter = 0;
+
+    size_t index_count = 0; // counts the configurations added
+
     // add the double
-    this->coefficients(counter) = std::stod(splitted_linef[2]);
+    this->coefficients(index_count) = std::stod(splitted_line[2]);
 
-    // dynamic bitset provides us with functionallity
-    boost::dynamic_bitset<> alpha_transfer (reversed_alphaf);
-    boost::dynamic_bitset<> beta_transfer (reversed_betaf);
+    // Construct dynamic bitsets to use its functionality
+    boost::dynamic_bitset<> alpha_transfer (reversed_alpha);
+    boost::dynamic_bitset<> beta_transfer (reversed_beta);
 
     size_t K = alpha_transfer.size();
     size_t N_alpha = alpha_transfer.count();
@@ -103,41 +105,39 @@ WaveFunctionReader::WaveFunctionReader(const std::string& GAMESS_filename)
 
     this->fock_space = SelectedFockSpace(K, N_alpha, N_beta);
 
-    this->fock_space.addConfiguration(reversed_alphaf, reversed_betaf);
+    this->fock_space.addConfiguration(reversed_alpha, reversed_beta);
 
 
     // Read in the ONVs and the coefficients by splitting the line on '|', and then trimming whitespace
     // In the GAMESS format, the bit strings are ordered in reverse
     while (std::getline(input_file_stream, line)) {
 
-        counter++;
-        std::vector<std::string> splitted_line;
+        index_count++;
         boost::split(splitted_line, line, boost::is_any_of("|"));  // split on '|'
 
 
-        // Create an alpha SpinString for the first field
-        std::string trimmed_alpha = boost::algorithm::trim_copy(splitted_line[0]);
+        // Create an alpha ONV for the first field
+        trimmed_alpha = boost::algorithm::trim_copy(splitted_line[0]);
         if (trimmed_alpha.length() != K) {
             throw std::invalid_argument("WaveFunctionReader(): One of the provided alpha ONVs does not have the correct number of orbitals.");
         }
-        std::string reversed_alpha (trimmed_alpha.rbegin(), trimmed_alpha.rend());
+        reversed_alpha = std::string(trimmed_alpha.rbegin(), trimmed_alpha.rend());
 
-        // Create a beta SpinString for the second field
-        std::string trimmed_beta = boost::algorithm::trim_copy(splitted_line[1]);
+        // Create a beta ONV for the second field
+        trimmed_beta = boost::algorithm::trim_copy(splitted_line[1]);
         if (trimmed_beta.length() != K) {
             throw std::invalid_argument("WaveFunctionReader(): One of the provided beta ONVs does not have the correct number of orbitals.");
         }
-        std::string reversed_beta(trimmed_beta.rbegin(), trimmed_beta.rend());
+        reversed_beta = std::string(trimmed_beta.rbegin(), trimmed_beta.rend());
 
 
         // Create a double for the third field
-        this->coefficients(counter) = std::stod(splitted_line[2]);
+        this->coefficients(index_count) = std::stod(splitted_line[2]);
         this->fock_space.addConfiguration(reversed_alpha, reversed_beta);
 
     }  // while getline
 
     this->wave_function = WaveFunction(this->fock_space, this->coefficients);
-
 }
 
 

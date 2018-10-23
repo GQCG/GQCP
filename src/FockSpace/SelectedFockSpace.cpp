@@ -29,19 +29,23 @@ namespace GQCP {
  */
 
 /**
- *  Given @param onv1 and onv2, make a configuration
+ *  Member taking two string arguments and creating a Configuration
+ *  @param onv1 a string representation read from right to left
+ *  @param onv2 a string representation read from right to left
+ *  @return a Configuration
+ *  !!! only works for up to 64 bits !!!
  */
-Configuration SelectedFockSpace::makeConfiguration(std::string onv1, std::string onv2){
+Configuration SelectedFockSpace::makeConfiguration(const std::string& onv1, const std::string& onv2){
 
     boost::dynamic_bitset<> alpha_transfer (onv1);
     boost::dynamic_bitset<> beta_transfer (onv2);
 
     if (alpha_transfer.size() != this->K | beta_transfer.size() != this->K) {
-        throw std::invalid_argument("Added configuration is not compatible with the orbitals number of the Fock space");
+        throw std::invalid_argument("Given string representations for ONVs are not compatible with the number of orbitals of the Fock space");
     }
 
     if (alpha_transfer.count() != this->N_alpha | beta_transfer.count() != this->N_beta) {
-        throw std::invalid_argument("Added configuration is not compatible with the electron numbers of the Fock space");
+        throw std::invalid_argument("Given string representations for ONVs are not compatible with the number of orbitals of the Fock space");
     }
 
     size_t alpha_s = alpha_transfer.to_ulong();
@@ -50,7 +54,7 @@ Configuration SelectedFockSpace::makeConfiguration(std::string onv1, std::string
     ONV alpha (alpha_transfer.size(), alpha_s);
     ONV beta (beta_transfer.size(), beta_s);
 
-    return Configuration { alpha, beta };
+    return Configuration {alpha, beta};
 }
 
 
@@ -69,39 +73,13 @@ SelectedFockSpace::SelectedFockSpace(size_t K, size_t N_alpha, size_t N_beta) :
         N_beta (N_beta)
 {}
 
-
-
-/*
- *  PUBLIC METHODS
- */
-
 /**
- *  Add configuration(s) (@param onv1(s) and onv2(s)) to the current selected Fock space
- *  increasing its selected dimension.
+ * Constructor that generates expansion of a given FockSpaceProduct
+ * @param fock_space generated Fock space
  */
-void SelectedFockSpace::addConfiguration(std::string onv1, std::string onv2){
-
-    this->dim++;
-
-    Configuration configuration = makeConfiguration(onv1, onv2);
-    selection.push_back(configuration);
-}
-
-void SelectedFockSpace::addConfiguration(std::vector<std::string> onv1s, std::vector<std::string> onv2s){
-
-    if (onv1s.size() != onv2s.size()) {
-        throw std::invalid_argument("Size of both ONV entry vectors do not match");
-    }
-
-    for (int i = 0; i<onv1s.size(); i++) {
-        this->addConfiguration(onv1s[i], onv2s[i]);
-    }
-}
-
-/**
- *  Sets the current expansion to that of @param fock_space
- */
-void SelectedFockSpace::setExpansion(const FockSpaceProduct& fock_space){
+SelectedFockSpace::SelectedFockSpace(const FockSpaceProduct& fock_space) :
+    SelectedFockSpace (fock_space.get_K(), fock_space.get_N_alpha(), fock_space.get_N_beta())
+{
 
     std::vector<Configuration> configurations;
 
@@ -119,22 +97,85 @@ void SelectedFockSpace::setExpansion(const FockSpaceProduct& fock_space){
 
             configurations.push_back(Configuration {alpha, beta});
 
-
             if (I_beta < dim_beta - 1) {  // prevent the last permutation to occur
                 fock_space_beta.setNext(beta);
             }
-
         }
-
         if (I_alpha < dim_alpha - 1) {  // prevent the last permutation to occur
             fock_space_alpha.setNext(alpha);
         }
-
     }
     this->dim = fock_space.get_dimension();
-    this->selection = configurations;
-
+    this->configurations = configurations;
 
 }
+
+/**
+ * Constructor that generates expansion of a given FockSpace
+ * @param fock_space generated Fock space
+ */
+SelectedFockSpace::SelectedFockSpace(const FockSpace& fock_space)  :
+        SelectedFockSpace (fock_space.get_K(), fock_space.get_N(), fock_space.get_N())
+{
+
+    std::vector<Configuration> configurations;
+
+    // Current workaround to call non-const functions
+    FockSpace fock_space_single = fock_space;
+
+
+    auto dim = fock_space_single.get_dimension();
+
+    // Iterate over the Fock space and add all onvs as doubly occupied configurations
+    ONV onv = fock_space_single.get_ONV(0);
+    for (size_t I = 0; I < dim; I++) {
+
+        configurations.push_back(Configuration {onv, onv});
+
+        if (I < dim - 1) {  // prevent the last permutation to occur
+            fock_space_single.setNext(onv);
+        }
+
+    }
+
+    this->dim = dim;
+    this->configurations = configurations;
+
+}
+
+
+/*
+ *  PUBLIC METHODS
+ */
+
+/**
+ *  Member taking two string arguments to add a Configuration
+ *  @see makeConfiguration()
+ *  add a Configuration to @var configurations
+ */
+void SelectedFockSpace::addConfiguration(const std::string& onv1, const std::string& onv2){
+
+    this->dim++;
+
+    Configuration configuration = makeConfiguration(onv1, onv2);
+    configurations.push_back(configuration);
+}
+
+/**
+ *  Member taking two vector<string> arguments to add Configurations
+ *  @see makeConfiguration()
+ *  add multiple Configurations to @var configurations
+ */
+void SelectedFockSpace::addConfiguration(const std::vector<std::string>& onv1s, const std::vector<std::string>& onv2s){
+
+    if (onv1s.size() != onv2s.size()) {
+        throw std::invalid_argument("Size of both ONV entry vectors do not match");
+    }
+
+    for (int i = 0; i<onv1s.size(); i++) {
+        this->addConfiguration(onv1s[i], onv2s[i]);
+    }
+}
+
 
 }  // namespace GQCP

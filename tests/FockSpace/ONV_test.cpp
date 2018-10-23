@@ -18,7 +18,7 @@
 #define BOOST_TEST_MODULE "ONV"
 
 
-#include "ONV.hpp"
+#include "FockSpace/ONV.hpp"
 #include "FockSpace/FockSpace.hpp"
 
 #include <boost/test/unit_test.hpp>

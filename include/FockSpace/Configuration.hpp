@@ -3,12 +3,15 @@
 
 
 #include "ONV.hpp"
-#include "common.hpp"
 
 
 namespace GQCP {
 
 
+/**
+ *  Struct containing an electron distribution
+ *  represented by the alpha and beta ONV.
+ */
 struct Configuration {
     ONV onv_alpha;
     ONV onv_beta;

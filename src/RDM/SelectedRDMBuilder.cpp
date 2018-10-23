@@ -17,7 +17,7 @@
 // 
 #include "RDM/SelectedRDMBuilder.hpp"
 
-#include "Configuration.hpp"
+#include "FockSpace/Configuration.hpp"
 
 
 namespace GQCP {
