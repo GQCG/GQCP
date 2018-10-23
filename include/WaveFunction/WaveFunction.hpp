@@ -15,20 +15,40 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "WaveFunction.hpp"
+#ifndef GQCP_WAVEFUNCTION_HPP
+#define GQCP_WAVEFUNCTION_HPP
+
+
+#include "FockSpace/BaseFockSpace.hpp"
+
+#include "common.hpp"
+
 
 
 namespace GQCP {
 
 
-/*
- * CONSTRUCTORS
+/**
+ *  WaveFunction contains the expansion coefficients in its given FockSpace
  */
+class WaveFunction {
+private:
+    BaseFockSpace* fock_space;
+    Eigen::VectorXd coefficients;  // Expansion coefficients of a wave function in the Fock space
 
-WaveFunction::WaveFunction(BaseFockSpace& base_fock_space, const Eigen::VectorXd& coefficients) :
-    fock_space (&base_fock_space),
-    coefficients (coefficients)
-{}
+public:
+    // CONSTRUCTORS
+    WaveFunction() = default;
+    WaveFunction(BaseFockSpace& base_fock_space, const Eigen::VectorXd& coefficients);
+
+
+    // GETTERS
+    Eigen::VectorXd get_coefficients() const { return coefficients; }
+    BaseFockSpace& get_fock_space() const { return *fock_space; }
+};
 
 
 }  // namespace GQCP
+
+
+#endif  // GQCP_WAVEFUNCTION_HPP

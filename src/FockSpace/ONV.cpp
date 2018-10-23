@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "ONV.hpp"
+#include "FockSpace/ONV.hpp"
 
 #include <boost/dynamic_bitset.hpp>
 
@@ -28,17 +28,26 @@ namespace GQCP {
  */
 
 /**
- *  Constructor from a @param K orbitals, N electrons and a representation for the ONV
+ *  Constructor from a @param K orbitals, N electrons and an @param unsigned_representation
  */
 ONV::ONV(size_t K, size_t N, size_t representation):
-    K(K),
-    N(N),
-    unsigned_representation(representation)
+    K (K),
+    N (N),
+    unsigned_representation (representation)
 {
     occupation_indices = VectorXs::Zero(N);
     this->updateOccupationIndices();  // throws error if the representation and N are not compatible
 }
 
+/**
+ *  Constructor from a @param K orbitals and an @param unsigned_representation
+ */
+ONV::ONV(size_t K, size_t representation):
+    ONV(K, __builtin_popcountl(representation), representation)
+{
+    occupation_indices = VectorXs::Zero(N);
+    this->updateOccupationIndices();  // throws error if the representation and N are not compatible
+}
 
 
 /*
@@ -49,7 +58,7 @@ ONV::ONV(size_t K, size_t N, size_t representation):
  *  Overloading of operator<< for a GQCP::ONV to be used with streams
  */
 std::ostream& operator<<(std::ostream& os, const GQCP::ONV& onv) {
-    return os<<boost::dynamic_bitset<> (onv.K, onv.unsigned_representation);
+    return os<< onv.asString();
 }
 
 /**
@@ -105,7 +114,7 @@ void ONV::updateOccupationIndices() {
 
 /**
  *  @return if the @param p-th spatial orbital is occupied, starting from 0
- *  @param p is the lexical index (i.e. read from right to left)
+ *  @param p is counted from right to left
  */
 bool ONV::isOccupied(size_t p) const {
 
@@ -188,7 +197,7 @@ bool ONV::create(size_t p, int& sign) {
 }
 
 /**
- *  @return the phase factor (+1 or -1) that arises by applying an annihilation or creation operator on orbital @param p, starting from 0 in reverse lexical ordering.
+ *  @return the phase factor (+1 or -1) that arises by applying an annihilation or creation operator on orbital @param p, starting from 0, read from right to left.
  *
  *  Let's say that there are m electrons in the orbitals up to p (not included). If m is even, the phase factor is (+1) and if m is odd, the phase factor is (-1), since electrons are fermions.
  */
@@ -211,8 +220,8 @@ int ONV::operatorPhaseFactor(size_t p) const {
  *  @return the representation of a slice (i.e. a subset) of the spin string between @param index_start (included)
  *  and @param index_end (not included).
  *
- *  Both @param index_start and @param index_end are 'lexical' (i.e. from right to left), which means that the slice
- *  occurs 'lexically' as well (i.e. from right to left).
+ *  Both @param index_start and @param index_end  are read from right to left, which means that the slice
+ *  is from right to left as well.
  *
  *      Example:
  *          "010011".slice(1, 4) => "01[001]1" -> "001"
@@ -243,6 +252,49 @@ size_t ONV::slice(size_t index_start, size_t index_end) const {
 
     // Use the mask
     return u & mask;
+}
+
+
+/**
+  *  @return the number of different bits between this and @param other, i.e. two times the number of electron excitations
+  */
+size_t ONV::countNumberOfDifferences(const ONV& other) const {
+    return __builtin_popcountl(this->unsigned_representation ^ other.unsigned_representation);
+}
+
+
+/**
+ *  @return the positions of the bits (from right to left) that are occupied in this, but unoccupied in @param other
+ */
+std::vector<size_t> ONV::findOccupiedDifferences(const ONV& other) const {
+
+    size_t differences = this->unsigned_representation ^ other.unsigned_representation;
+    size_t occupied_differences = differences & this->unsigned_representation;  // this holds all indices occupied in this, but unoccupied in other
+
+    size_t number_of_occupied_differences = __builtin_popcountl(occupied_differences);
+    std::vector<size_t> positions (number_of_occupied_differences);
+
+
+    // Find the positions of the set bits in occupied_differences
+    for (size_t counter = 0; counter < number_of_occupied_differences; counter++) {  // counts the number of occupied differences we have already encountered
+        size_t position = __builtin_ctzl(occupied_differences);  // count trailing zeros
+        positions[counter] = position;
+
+        occupied_differences ^= occupied_differences & -occupied_differences;  // annihilate the least significant set bit
+    }
+
+    return positions;
+}
+
+
+/**
+ * @return std::string containing the ONV representation
+ */
+std::string ONV::asString() const {
+    boost::dynamic_bitset<> transfer_set (this->K, this->unsigned_representation);
+    std::string buffer;
+    boost::to_string(transfer_set, buffer);
+    return buffer;
 }
 
 

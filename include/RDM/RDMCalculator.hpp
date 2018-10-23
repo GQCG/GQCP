@@ -4,6 +4,7 @@
 #include "RDM/BaseRDMBuilder.hpp"
 #include "FockSpace/FockSpace.hpp"
 #include "FockSpace/FockSpaceProduct.hpp"
+#include "FockSpace/SelectedFockSpace.hpp"
 
 #include <memory>
 
@@ -26,7 +27,8 @@ public:
      */
     RDMCalculator(const FockSpace& fock_space);  // DOCIRDMBuilder
     RDMCalculator(const FockSpaceProduct& fock_space);  // FCIRDMBuilder
-    RDMCalculator(const BaseFockSpace& fock_space);
+    RDMCalculator(const SelectedFockSpace& fock_space);  // SelectedRDMBuilder
+    RDMCalculator(const BaseFockSpace& fock_space);  // runtime
 
 
     // PUBLIC METHODS

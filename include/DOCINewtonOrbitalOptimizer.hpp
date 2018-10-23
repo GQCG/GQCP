@@ -4,7 +4,7 @@
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "HamiltonianBuilder/DOCI.hpp"
 #include "OrbitalOptimizationOptions.hpp"
-#include "WaveFunction.hpp"
+#include "WaveFunction/WaveFunction.hpp"
 
 #include <numopt.hpp>
 
