@@ -44,14 +44,14 @@ RHFSCFSolver::RHFSCFSolver(GQCP::HamiltonianParameters ham_par, GQCP::Molecule m
  */
 void RHFSCFSolver::solve() {
 
-    Eigen::MatrixXd H_core = this->ham_par.h.get_matrix_representation();
-    Eigen::MatrixXd S = this->ham_par.S.get_matrix_representation();
+    Eigen::MatrixXd H_core = this->ham_par.get_h().get_matrix_representation();
+    Eigen::MatrixXd S = this->ham_par.get_S().get_matrix_representation();
 
 
     // Obtain an initial guess for the AO density matrix by solving the generalized eigenvalue problem for H_core
     Eigen::GeneralizedSelfAdjointEigenSolver<Eigen::MatrixXd> initial_generalized_eigensolver (H_core, S);
     Eigen::MatrixXd C = initial_generalized_eigensolver.eigenvectors();
-    Eigen::MatrixXd D_AO = GQCP::calculateRHFAO1RDM(C, this->molecule.N);
+    Eigen::MatrixXd D_AO = GQCP::calculateRHFAO1RDM(C, this->molecule.get_N());
 
 
     size_t iteration_counter = 0;
@@ -63,7 +63,7 @@ void RHFSCFSolver::solve() {
         C = generalized_eigensolver.eigenvectors();
 
         Eigen::MatrixXd D_AO_previous = D_AO;  // store the previous density matrix to be able to check on convergence
-        D_AO = GQCP::calculateRHFAO1RDM(C, this->molecule.N);
+        D_AO = GQCP::calculateRHFAO1RDM(C, this->molecule.get_N());
 
 
         // Check for convergence on the AO density matrix

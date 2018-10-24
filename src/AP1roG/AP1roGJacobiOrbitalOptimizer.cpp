@@ -38,7 +38,7 @@ namespace GQCP {
  *  The initial guess for the geminal coefficients is zero
  */
 AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer(size_t N_P, const GQCP::HamiltonianParameters& ham_par, double oo_threshold, const size_t maximum_number_of_oo_iterations) :
-    K (ham_par.K),
+    K (ham_par.get_K()),
     ham_par (ham_par),
     N_P (N_P),
     oo_threshold (oo_threshold),
@@ -52,10 +52,10 @@ AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer(size_t N_P, const GQC
  *  The initial guess for the geminal coefficients is zero
  */
 AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer(const GQCP::Molecule& molecule, const GQCP::HamiltonianParameters& ham_par, double oo_threshold, const size_t maximum_number_of_oo_iterations) :
-    AP1roGJacobiOrbitalOptimizer(molecule.N/2, ham_par, oo_threshold, maximum_number_of_oo_iterations)
+    AP1roGJacobiOrbitalOptimizer(molecule.get_N()/2, ham_par, oo_threshold, maximum_number_of_oo_iterations)
 {
     // Check if we have an even number of electrons
-    if ((molecule.N % 2) != 0) {
+    if ((molecule.get_N() % 2) != 0) {
         throw std::invalid_argument("The given number of electrons is odd.");
     }
 }
@@ -73,8 +73,8 @@ AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer(const GQCP::Molecule&
  */
 void AP1roGJacobiOrbitalOptimizer::calculateJacobiCoefficients(size_t p, size_t q, const GQCP::AP1roGGeminalCoefficients& G) {
 
-    Eigen::MatrixXd h_SO = this->ham_par.h.get_matrix_representation();
-    Eigen::Tensor<double, 4> g_SO = this->ham_par.g.get_matrix_representation();
+    Eigen::MatrixXd h_SO = this->ham_par.get_h().get_matrix_representation();
+    Eigen::Tensor<double, 4> g_SO = this->ham_par.get_g().get_matrix_representation();
 
 
     // Implementation of the Jacobi rotation coefficients with disjoint cases for p and q
@@ -260,11 +260,11 @@ double AP1roGJacobiOrbitalOptimizer::findOptimalRotationAngle(size_t p, size_t q
         }  // for theta
 
         Eigen::VectorXd theta_min_vec (1);  // we can't implicitly convert a float to an Eigen::VectorXd so we make it ourselves
-        theta_min_vec << min_q.top().jacobi_rotation_parameters.angle;
+        theta_min_vec << min_q.top().jacobi_rotation_parameters.get_angle();
 
         assert(hessian_function(theta_min_vec)(0,0) > 0);  // the Hessian of the minimal value of the three must be positive, otherwise we're not in a minimum
 
-        return min_q.top().jacobi_rotation_parameters.angle;
+        return min_q.top().jacobi_rotation_parameters.get_angle();
     }
 
 

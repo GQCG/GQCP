@@ -102,9 +102,9 @@ void OneElectronOperator::rotate(const Eigen::MatrixXd& U) {
  */
 void OneElectronOperator::rotate(const GQCP::JacobiRotationParameters& jacobi_rotation_parameters) {
 
-    auto p = jacobi_rotation_parameters.p;
-    auto q = jacobi_rotation_parameters.q;
-    auto angle = jacobi_rotation_parameters.angle;
+    auto p = jacobi_rotation_parameters.get_p();
+    auto q = jacobi_rotation_parameters.get_q();
+    auto angle = jacobi_rotation_parameters.get_angle();
 
     double c = std::cos(angle);
     double s = std::sin(angle);

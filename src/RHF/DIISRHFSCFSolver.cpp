@@ -30,7 +30,7 @@ namespace GQCP {
  */
 Eigen::MatrixXd DIISRHFSCFSolver::calculateNewFockMatrix(const Eigen::MatrixXd& D_AO) {
 
-    Eigen::MatrixXd S = this->ham_par.S.get_matrix_representation();
+    Eigen::MatrixXd S = this->ham_par.get_S().get_matrix_representation();
 
     // Calculate the Fock matrix based off the density matrix
     auto f_AO = GQCP::calculateRHFAOFockMatrix(D_AO, this->ham_par);

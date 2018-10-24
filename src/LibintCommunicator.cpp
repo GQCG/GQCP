@@ -82,7 +82,7 @@ std::vector<libint2::Atom> LibintCommunicator::interface(const std::vector<GQCP:
 GQCP::OneElectronOperator LibintCommunicator::calculateOneElectronIntegrals(libint2::Operator operator_type, const GQCP::AOBasis& ao_basis) const {
 
     // Use the basis_functions that is currently a libint2::BasisSet
-    auto libint_basisset = ao_basis.basis_functions;
+    auto libint_basisset = ao_basis.get_basis_functions();
     const auto nbf = static_cast<size_t>(libint_basisset.nbf());  // nbf: number of basis functions in the basisset
 
     Eigen::MatrixXd matrix = Eigen::MatrixXd::Zero(nbf, nbf);
@@ -93,7 +93,7 @@ GQCP::OneElectronOperator LibintCommunicator::calculateOneElectronIntegrals(libi
 
     // Something extra for the nuclear attraction integrals
     if (operator_type == libint2::Operator::nuclear) {
-        auto atoms = this->interface(ao_basis.atoms);  // convert from GQCP::Atoms to libint2::atoms
+        auto atoms = this->interface(ao_basis.get_atoms());  // convert from GQCP::Atoms to libint2::atoms
         engine.set_params(make_point_charges(atoms));
     }
 
@@ -151,7 +151,7 @@ GQCP::OneElectronOperator LibintCommunicator::calculateOneElectronIntegrals(libi
 GQCP::TwoElectronOperator LibintCommunicator::calculateTwoElectronIntegrals(libint2::Operator operator_type, const GQCP::AOBasis& ao_basis) const {
 
     // Use the basis_functions that is currently a libint2::BasisSet
-    auto libint_basisset = ao_basis.basis_functions;
+    auto libint_basisset = ao_basis.get_basis_functions();
     const auto nbf = static_cast<size_t>(libint_basisset.nbf());  // nbf: number of basis functions in the basisset
 
 

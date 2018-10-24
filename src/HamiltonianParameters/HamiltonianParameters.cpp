@@ -34,7 +34,7 @@ namespace GQCP {
  */
 HamiltonianParameters::HamiltonianParameters(std::shared_ptr<GQCP::AOBasis> ao_basis, const GQCP::OneElectronOperator& S, const GQCP::OneElectronOperator& h, const GQCP::TwoElectronOperator& g, const Eigen::MatrixXd& C) :
     BaseHamiltonianParameters(std::move(ao_basis)),
-    K (S.dim),
+    K (S.get_dim()),
     S (S),
     h (h),
     g (g),
@@ -44,12 +44,12 @@ HamiltonianParameters::HamiltonianParameters(std::shared_ptr<GQCP::AOBasis> ao_b
     auto error = std::invalid_argument("The dimensions of the operators and coefficient matrix are incompatible.");
 
     if (this->ao_basis) {  // ao_basis is not nullptr
-        if (this->K != this->ao_basis->number_of_basis_functions) {
+        if (this->K != this->ao_basis->get_number_of_basis_functions()) {
             throw error;
         }
     }
 
-    if ((h.dim != this->K) || (g.dim != this->K) || (C.cols() != this->K) || (C.rows() != this->K)) {
+    if ((h.get_dim() != this->K) || (g.get_dim() != this->K) || (C.cols() != this->K) || (C.rows() != this->K)) {
         throw error;
     }
 }
@@ -62,7 +62,7 @@ HamiltonianParameters::HamiltonianParameters(std::shared_ptr<GQCP::AOBasis> ao_b
  */
 HamiltonianParameters::HamiltonianParameters(const GQCP::HamiltonianParameters& ham_par, const Eigen::MatrixXd& C) :
     BaseHamiltonianParameters(ham_par.ao_basis),
-    K (ham_par.S.dim),
+    K (ham_par.S.get_dim()),
     S (ham_par.S),
     h (ham_par.h),
     g (ham_par.g),
@@ -158,7 +158,7 @@ void HamiltonianParameters::rotate(const GQCP::JacobiRotationParameters& jacobi_
 
 
     // Create a Jacobi rotation matrix to transform the coefficient matrix with
-    size_t K = this->h.dim;  // number of spatial orbitals
+    size_t K = this->h.get_dim();  // number of spatial orbitals
     auto J = GQCP::jacobiRotationMatrix(jacobi_rotation_parameters, K);
     this->C = this->C * J;
 }
