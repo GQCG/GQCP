@@ -288,6 +288,28 @@ std::vector<size_t> ONV::findOccupiedDifferences(const ONV& other) const {
 
 
 /**
+ *  @return the positions of the bits (from right to left) that are occupied in @this and occupied in @param other
+ */
+Vectoru ONV::findMatchingOccupations(const ONV& other) const {
+
+    size_t matches = this->unsigned_representation & other.unsigned_representation;
+    size_t number_of_occupied_matches = __builtin_popcountl(matches);
+    Vectoru positions (number_of_occupied_matches);
+
+
+    // Find the positions of the set bits in occupied_differences
+    for (size_t counter = 0; counter < number_of_occupied_matches; counter++) {  // counts the number of occupied differences we have already encountered
+        size_t position = __builtin_ctzl(matches);  // count trailing zeros
+        positions[counter] = position;
+
+        matches ^= matches & -matches;  // annihilate the least significant set bit
+    }
+
+    return positions;
+}
+
+
+/**
  * @return std::string containing the ONV representation
  */
 std::string ONV::asString() const {

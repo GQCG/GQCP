@@ -183,6 +183,12 @@ public:
 
 
     /**
+     *  @return the positions of the bits (from right to left) that are occupied in @this and occupied in @param other
+     */
+    std::vector<size_t> findMatchingOccupations(const ONV& other) const;
+
+
+    /**
      * @return std::string containing the ONV representation
      */
     std::string asString() const;

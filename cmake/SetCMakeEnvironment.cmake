@@ -36,6 +36,7 @@ set(PROJECT_SOURCE_FILES
         ${PROJECT_SOURCE_FOLDER}/HamiltonianBuilder/DOCI.cpp
         ${PROJECT_SOURCE_FOLDER}/HamiltonianBuilder/FCI.cpp
         ${PROJECT_SOURCE_FOLDER}/HamiltonianBuilder/HamiltonianBuilder.cpp
+        ${PROJECT_SOURCE_FOLDER}/HamiltonianBuilder/Hubbard.cpp
         ${PROJECT_SOURCE_FOLDER}/HamiltonianParameters/BaseHamiltonianParameters.cpp
         ${PROJECT_SOURCE_FOLDER}/HamiltonianParameters/HamiltonianParameters.cpp
         ${PROJECT_SOURCE_FOLDER}/HamiltonianParameters/HamiltonianParameters_constructors.cpp
@@ -87,6 +88,7 @@ set(PROJECT_INCLUDE_FILES
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianBuilder/DOCI.hpp
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianBuilder/FCI.hpp
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianBuilder/HamiltonianBuilder.hpp
+        ${PROJECT_INCLUDE_FOLDER}/HamiltonianBuilder/Hubbard.hpp
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianParameters/BaseHamiltonianParameters.hpp
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianParameters/HamiltonianParameters.hpp
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianParameters/HamiltonianParameters_constructors.hpp
@@ -128,6 +130,8 @@ set(PROJECT_TEST_SOURCE_FILES
         ${PROJECT_TESTS_FOLDER}/CISolver/CISolver_DOCI_Dense_test.cpp
         ${PROJECT_TESTS_FOLDER}/CISolver/CISolver_FCI_Davidson_test.cpp
         ${PROJECT_TESTS_FOLDER}/CISolver/CISolver_FCI_Dense_test.cpp
+        ${PROJECT_TESTS_FOLDER}/CISolver/CISolver_Hubbard_Davidson_test.cpp
+        ${PROJECT_TESTS_FOLDER}/CISolver/CISolver_Hubbard_Dense_test.cpp
         ${PROJECT_TESTS_FOLDER}/CISolver/CISolver_test.cpp
         ${PROJECT_TESTS_FOLDER}/AP1roG/AP1roG_test.cpp
         ${PROJECT_TESTS_FOLDER}/AP1roG/AP1roGGeminalCoefficients_test.cpp
@@ -139,6 +143,7 @@ set(PROJECT_TEST_SOURCE_FILES
         ${PROJECT_TESTS_FOLDER}/FockSpace/SelectedFockSpace_test.cpp
         ${PROJECT_TESTS_FOLDER}/HamiltonianBuilder/DOCI_test.cpp
         ${PROJECT_TESTS_FOLDER}/HamiltonianBuilder/FCI_test.cpp
+        ${PROJECT_TESTS_FOLDER}/HamiltonianBuilder/Hubbard_test.cpp
         ${PROJECT_TESTS_FOLDER}/HamiltonianParameters/HamiltonianParameters_test.cpp
         ${PROJECT_TESTS_FOLDER}/HamiltonianParameters/HamiltonianParameters_constructors_test.cpp
         ${PROJECT_TESTS_FOLDER}/Operator/OneElectronOperator_test.cpp
