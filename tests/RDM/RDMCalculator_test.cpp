@@ -59,4 +59,3 @@ BOOST_AUTO_TEST_CASE ( constructor ) {
 
     BOOST_CHECK(std::abs(one_rdms.one_rdm.trace() - N) < 1.0e-12);
 }
-

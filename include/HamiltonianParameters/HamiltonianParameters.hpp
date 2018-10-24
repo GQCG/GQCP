@@ -127,14 +127,14 @@ public:
     double calculateEnergy(const GQCP::OneRDM& one_rdm, const GQCP::TwoRDM& two_rdm) const;
 
     /**
-     *  Given a @param one_rdm and a @param two_rdm, @return the generalized Fock matrix F as a OneElectronOperator
+     *  Given a @param D: the 1-RDM and a @param d: the 2-RDM, @return the generalized Fock matrix F as a OneElectronOperator
      */
-    GQCP::OneElectronOperator calculateGeneralizedFockMatrix(const GQCP::OneRDM& one_rdm, const GQCP::TwoRDM& two_rdm) const;
+    GQCP::OneElectronOperator calculateGeneralizedFockMatrix(const GQCP::OneRDM& D, const GQCP::TwoRDM& d) const;
 
     /**
-     *  Given a @param D: 1-RDM and a @param d: 2-RDM, @return the super-generalized Fock matrix W as a TwoElectronOperator
+     *  Given a @param D: the 1-RDM and a @param d: the 2-RDM, @return the super-generalized Fock matrix W as a TwoElectronOperator
      */
-    GQCP::TwoElectronOperator calculateSuperGeneralizedFockMatrix(const GQCP::OneRDM& one_rdm, const GQCP::TwoRDM& two_rdm) const;
+    GQCP::TwoElectronOperator calculateSuperGeneralizedFockMatrix(const GQCP::OneRDM& D, const GQCP::TwoRDM& d) const;
 };
 
 
