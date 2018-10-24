@@ -29,7 +29,7 @@ namespace GQCP {
  *  Constructor based on a given number of electron pairs @param N_P, Hamiltonian parameters @param ham_par and an initial guess for the geminal coefficients @param G
  */
 AP1roGPSESolver::AP1roGPSESolver(size_t N_P, const GQCP::HamiltonianParameters& ham_par, const GQCP::AP1roGGeminalCoefficients& G) :
-    K (ham_par.K),
+    K (ham_par.get_K()),
     ham_par (ham_par),
     N_P (N_P),
     initial_geminal_coefficients (G)
@@ -41,7 +41,7 @@ AP1roGPSESolver::AP1roGPSESolver(size_t N_P, const GQCP::HamiltonianParameters& 
  *  The initial guess for the geminal coefficients is zero
  */
 AP1roGPSESolver::AP1roGPSESolver(size_t N_P, const GQCP::HamiltonianParameters& ham_par) :
-    GQCP::AP1roGPSESolver(N_P, ham_par, GQCP::AP1roGGeminalCoefficients(N_P, ham_par.K))
+    GQCP::AP1roGPSESolver(N_P, ham_par, GQCP::AP1roGGeminalCoefficients(N_P, ham_par.get_K()))
 {}
 
 
@@ -49,10 +49,10 @@ AP1roGPSESolver::AP1roGPSESolver(size_t N_P, const GQCP::HamiltonianParameters& 
  *  Constructor based on a given @param molecule, Hamiltonian parameters @param ham_par and an initial guess for the geminal coefficients @param G
  */
 AP1roGPSESolver::AP1roGPSESolver(const GQCP::Molecule& molecule, const GQCP::HamiltonianParameters& ham_par, const GQCP::AP1roGGeminalCoefficients& G) :
-    GQCP::AP1roGPSESolver(molecule.N/2, ham_par, G)
+    GQCP::AP1roGPSESolver(molecule.get_N()/2, ham_par, G)
 {
     // Check if we have an even number of electrons
-    if ((molecule.N % 2) != 0) {
+    if ((molecule.get_N() % 2) != 0) {
         throw std::invalid_argument("The given number of electrons is odd.");
     }
 }
@@ -64,7 +64,7 @@ AP1roGPSESolver::AP1roGPSESolver(const GQCP::Molecule& molecule, const GQCP::Ham
  *  The initial guess for the geminal coefficients is zero
  */
 AP1roGPSESolver::AP1roGPSESolver(const GQCP::Molecule& molecule, const GQCP::HamiltonianParameters& ham_par) :
-    AP1roGPSESolver(molecule, ham_par, GQCP::AP1roGGeminalCoefficients(molecule.N/2, ham_par.K))
+    AP1roGPSESolver(molecule, ham_par, GQCP::AP1roGGeminalCoefficients(molecule.get_N()/2, ham_par.get_K()))
 {}
 
 
@@ -79,8 +79,8 @@ AP1roGPSESolver::AP1roGPSESolver(const GQCP::Molecule& molecule, const GQCP::Ham
  */
 double AP1roGPSESolver::calculateJacobianElement(const AP1roGGeminalCoefficients& G, size_t i, size_t a, size_t k, size_t c) const {
 
-    Eigen::MatrixXd h_SO = this->ham_par.h.get_matrix_representation();
-    Eigen::Tensor<double, 4> g_SO = this->ham_par.g.get_matrix_representation();
+    Eigen::MatrixXd h_SO = this->ham_par.get_h().get_matrix_representation();
+    Eigen::Tensor<double, 4> g_SO = this->ham_par.get_g().get_matrix_representation();
 
     double j_el = 0.0;
 
@@ -182,8 +182,8 @@ Eigen::MatrixXd AP1roGPSESolver::calculateJacobian(const Eigen::VectorXd& g) con
  */
 double AP1roGPSESolver::calculateCoordinateFunction(const GQCP::AP1roGGeminalCoefficients& G, size_t i, size_t a) const {
 
-    Eigen::MatrixXd h_SO = this->ham_par.h.get_matrix_representation();
-    Eigen::Tensor<double, 4> g_SO = this->ham_par.g.get_matrix_representation();
+    Eigen::MatrixXd h_SO = this->ham_par.get_h().get_matrix_representation();
+    Eigen::Tensor<double, 4> g_SO = this->ham_par.get_g().get_matrix_representation();
 
     double f = 0.0;
 

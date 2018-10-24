@@ -166,7 +166,7 @@ ONV FockSpace::get_ONV(size_t address) {
  *  of the ONV occupation vector
  */
 void FockSpace::setNext(ONV& onv) {
-    onv.set_representation(ulongNextPermutation(onv.unsigned_representation));
+    onv.set_representation(ulongNextPermutation(onv.get_unsigned_representation()));
 }
 
 
@@ -177,7 +177,7 @@ size_t FockSpace::getAddress(const ONV& onv) {
     // An implementation of the formula in Helgaker, starting the addressing count from zero
     size_t address = 0;
     size_t electron_count = 0;  // counts the number of electrons in the spin string up to orbital p
-    unsigned long unsigned_onv = onv.unsigned_representation;  // copy the unsigned_representation of the onv
+    unsigned long unsigned_onv = onv.get_unsigned_representation();  // copy the unsigned_representation of the onv
 
     while(unsigned_onv != 0) {  // we will remove the least significant bit each loop, we are finished when no bits are left
         size_t p = __builtin_ctzl(unsigned_onv);  // p is the orbital index counter (starting from 1)

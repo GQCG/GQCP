@@ -42,7 +42,7 @@ private:
     std::vector<numopt::eigenproblem::Eigenpair> eigenpairs;  // eigenvalues and -vectors
 
 public:
-    // CONSTRUCTOR
+    // CONSTRUCTORS
     /**
      *  Constructor given a @param hamiltonian_builder and @param hamiltonian_parameters
      */

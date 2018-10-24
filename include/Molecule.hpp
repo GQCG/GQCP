@@ -98,6 +98,7 @@ public:
 
     // GETTERS
     size_t get_N() const { return this->N; }
+    std::vector<GQCP::Atom> get_atoms() const { return this->atoms; }
     size_t numberOfAtoms() const { return this->atoms.size(); }
 
 
@@ -121,13 +122,6 @@ public:
      *  @return the internuclear repulsion energy due to the nuclear framework
      */
     double calculateInternuclearRepulsionEnergy() const;
-
-
-    // FRIEND CLASSES
-    friend class AOBasis;
-    friend class RHFSCFSolver;
-    friend class AP1roGPSESolver;
-    friend class AP1roGJacobiOrbitalOptimizer;
 };
 
 

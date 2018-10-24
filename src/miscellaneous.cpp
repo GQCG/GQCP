@@ -28,14 +28,14 @@ namespace GQCP {
  */
 Eigen::MatrixXd jacobiRotationMatrix(const GQCP::JacobiRotationParameters& jacobi_rotation_parameters, size_t M) {
 
-    double c = std::cos(jacobi_rotation_parameters.angle);
-    double s = std::sin(jacobi_rotation_parameters.angle);
+    double c = std::cos(jacobi_rotation_parameters.get_angle());
+    double s = std::sin(jacobi_rotation_parameters.get_angle());
 
     // We'll start the construction with an identity matrix
     Eigen::MatrixXd J = Eigen::MatrixXd::Identity(M, M);
 
     // And apply the Jacobi rotation as J = I * jacobi_rotation (cfr. B' = B T)
-    J.applyOnTheRight(jacobi_rotation_parameters.p, jacobi_rotation_parameters.q, Eigen::JacobiRotation<double> (c, s));
+    J.applyOnTheRight(jacobi_rotation_parameters.get_p(), jacobi_rotation_parameters.get_q(), Eigen::JacobiRotation<double> (c, s));
     return J;
 }
 

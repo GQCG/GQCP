@@ -60,6 +60,7 @@ public:
     size_t get_K() const { return K; }
     virtual FockSpaceType get_type() const = 0;
 
+
     // PUBLIC METHODS
     /**
      *  Creates a Hartree-Fock coefficient expansion (single Slater expansion of the first configuration in the Fock space)

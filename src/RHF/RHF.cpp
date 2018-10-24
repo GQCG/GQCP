@@ -81,7 +81,7 @@ Eigen::MatrixXd calculateRHFAOFockMatrix(const Eigen::MatrixXd& D_AO, GQCP::Hami
     Eigen::array<Eigen::IndexPair<int>, 2> exchange_contraction_pair = {Eigen::IndexPair<int>(1, 0), Eigen::IndexPair<int>(2, 1)};
 
     // Calculate both contractions (and incorporate prefactors)
-    Eigen::Tensor<double, 4> g = ham_par.g.get_matrix_representation();  // two-electron integrals
+    Eigen::Tensor<double, 4> g = ham_par.get_g().get_matrix_representation();  // two-electron integrals
     Eigen::Tensor<double, 2> direct_contraction = g.contract(D_AO_tensor, direct_contraction_pair);
     Eigen::Tensor<double, 2> exchange_contraction = -0.5 * g.contract(D_AO_tensor, exchange_contraction_pair);
 
@@ -91,7 +91,7 @@ Eigen::MatrixXd calculateRHFAOFockMatrix(const Eigen::MatrixXd& D_AO, GQCP::Hami
 
 
     // Return the final result
-    Eigen::MatrixXd H_core = ham_par.h.get_matrix_representation();
+    Eigen::MatrixXd H_core = ham_par.get_h().get_matrix_representation();
     return H_core + G1 + G2;
 }
 
