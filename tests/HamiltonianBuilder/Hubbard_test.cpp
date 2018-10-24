@@ -60,7 +60,7 @@ BOOST_AUTO_TEST_CASE ( Hubbard_public_methods ) {
     // Test the public Hubbard methods
     Eigen::VectorXd x = random_Hubbard.calculateDiagonal(random_hamiltonian_parameters);
     BOOST_CHECK_NO_THROW(random_Hubbard.constructHamiltonian(random_hamiltonian_parameters));
-    //BOOST_CHECK_NO_THROW(random_Hubbard.matrixVectorProduct(random_hamiltonian_parameters, x, x));
+    BOOST_CHECK_NO_THROW(random_Hubbard.matrixVectorProduct(random_hamiltonian_parameters, x, x));
 
     // Create an incompatible Fock space
     GQCP::FockSpaceProduct fock_space_i (K+1, 3, 3);

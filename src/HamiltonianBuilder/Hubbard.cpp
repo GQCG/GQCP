@@ -72,7 +72,7 @@ void Hubbard::oneOperatorModule(FockSpace& fock_space_target, FockSpace& fock_sp
                     method(J * minor_dim + I_fixed * major_dim, I * minor_dim + I_fixed * major_dim, val);
                 }
                 q++;
-                if (q == onv.get_occupied_index(e2)) {
+                if (e2 < N && q == onv.get_occupied_index(e2)) {
                     address += fock_space_target.get_vertex_weights(q, e2) - fock_space_target.get_vertex_weights(q, e2 + 1);
 
                     while (e2 < N - 1 && onv.get_occupied_index(e2 + 1) - onv.get_occupied_index(e2) == 1) {
