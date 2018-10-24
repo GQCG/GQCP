@@ -1,9 +1,26 @@
+// This file is part of GQCG-gqcp.
+// 
+// Copyright (C) 2017-2018  the GQCG developers
+// 
+// GQCG-gqcp is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// GQCG-gqcp is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+// 
+// You should have received a copy of the GNU Lesser General Public License
+// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
+// 
 #include "Operator/OneElectronOperator.hpp"
 
 #include <stdexcept>
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /*
@@ -33,7 +50,7 @@ OneElectronOperator::OneElectronOperator(const Eigen::MatrixXd& matrix) :
  *  @return the sum of two OneElectronOperators, i.e. a OneElectronOperator whose matrix representation is the sum
  *  of the two matrix representations of the given OneElectronOperators
  */
-GQCG::OneElectronOperator OneElectronOperator::operator+(const GQCG::OneElectronOperator& other) {
+GQCP::OneElectronOperator OneElectronOperator::operator+(const GQCP::OneElectronOperator& other) {
     
     return OneElectronOperator(this->matrix + other.matrix);
 }
@@ -83,11 +100,11 @@ void OneElectronOperator::rotate(const Eigen::MatrixXd& U) {
  *        in which the basis functions are collected as elements of a row vector b.
  *      - we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
  */
-void OneElectronOperator::rotate(const GQCG::JacobiRotationParameters& jacobi_rotation_parameters) {
+void OneElectronOperator::rotate(const GQCP::JacobiRotationParameters& jacobi_rotation_parameters) {
 
-    auto p = jacobi_rotation_parameters.p;
-    auto q = jacobi_rotation_parameters.q;
-    auto angle = jacobi_rotation_parameters.angle;
+    auto p = jacobi_rotation_parameters.get_p();
+    auto q = jacobi_rotation_parameters.get_q();
+    auto angle = jacobi_rotation_parameters.get_angle();
 
     double c = std::cos(angle);
     double s = std::sin(angle);
@@ -102,4 +119,4 @@ void OneElectronOperator::rotate(const GQCG::JacobiRotationParameters& jacobi_ro
 
 
 
-}  // namespace GQCG
+}  // namespace GQCP

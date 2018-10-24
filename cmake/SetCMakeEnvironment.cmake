@@ -23,41 +23,100 @@ set(PROJECT_SOURCE_FOLDER ${CMAKE_SOURCE_DIR}/src)
 
 # Find the source files
 set(PROJECT_SOURCE_FILES
+        ${PROJECT_SOURCE_FOLDER}/CISolver/CISolver.cpp
+        ${PROJECT_SOURCE_FOLDER}/AP1roG/AP1roG.cpp
+        ${PROJECT_SOURCE_FOLDER}/AP1roG/AP1roGGeminalCoefficients.cpp
+        ${PROJECT_SOURCE_FOLDER}/AP1roG/AP1roGJacobiOrbitalOptimizer.cpp
+        ${PROJECT_SOURCE_FOLDER}/AP1roG/AP1roGPSESolver.cpp
+        ${PROJECT_SOURCE_FOLDER}/FockSpace/BaseFockSpace.cpp
+        ${PROJECT_SOURCE_FOLDER}/FockSpace/FockSpace.cpp
+        ${PROJECT_SOURCE_FOLDER}/FockSpace/FockSpaceProduct.cpp
+        ${PROJECT_SOURCE_FOLDER}/FockSpace/ONV.cpp
+        ${PROJECT_SOURCE_FOLDER}/FockSpace/SelectedFockSpace.cpp
+        ${PROJECT_SOURCE_FOLDER}/HamiltonianBuilder/DOCI.cpp
+        ${PROJECT_SOURCE_FOLDER}/HamiltonianBuilder/FCI.cpp
+        ${PROJECT_SOURCE_FOLDER}/HamiltonianBuilder/HamiltonianBuilder.cpp
         ${PROJECT_SOURCE_FOLDER}/HamiltonianParameters/BaseHamiltonianParameters.cpp
         ${PROJECT_SOURCE_FOLDER}/HamiltonianParameters/HamiltonianParameters.cpp
         ${PROJECT_SOURCE_FOLDER}/HamiltonianParameters/HamiltonianParameters_constructors.cpp
         ${PROJECT_SOURCE_FOLDER}/Operator/BaseOperator.cpp
         ${PROJECT_SOURCE_FOLDER}/Operator/OneElectronOperator.cpp
         ${PROJECT_SOURCE_FOLDER}/Operator/TwoElectronOperator.cpp
-        ${PROJECT_SOURCE_FOLDER}/AddressingScheme.cpp
+        ${PROJECT_SOURCE_FOLDER}/RDM/BaseRDM.cpp
+        ${PROJECT_SOURCE_FOLDER}/RDM/BaseRDMBuilder.cpp
+        ${PROJECT_SOURCE_FOLDER}/RDM/DOCIRDMBuilder.cpp
+        ${PROJECT_SOURCE_FOLDER}/RDM/FCIRDMBuilder.cpp
+        ${PROJECT_SOURCE_FOLDER}/RDM/OneRDM.cpp
+        ${PROJECT_SOURCE_FOLDER}/RDM/RDMCalculator.cpp
+        ${PROJECT_SOURCE_FOLDER}/RDM/RDMs.cpp
+        ${PROJECT_SOURCE_FOLDER}/RDM/SelectedRDMBuilder.cpp
+        ${PROJECT_SOURCE_FOLDER}/RDM/TwoRDM.cpp
+        ${PROJECT_SOURCE_FOLDER}/RHF/DIISRHFSCFSolver.cpp
+        ${PROJECT_SOURCE_FOLDER}/RHF/PlainRHFSCFSolver.cpp
+        ${PROJECT_SOURCE_FOLDER}/RHF/RHF.cpp
+        ${PROJECT_SOURCE_FOLDER}/RHF/RHFSCFSolver.cpp
+        ${PROJECT_SOURCE_FOLDER}/WaveFunction/WaveFunction.cpp
+        ${PROJECT_SOURCE_FOLDER}/WaveFunction/WaveFunctionReader.cpp
         ${PROJECT_SOURCE_FOLDER}/AOBasis.cpp
         ${PROJECT_SOURCE_FOLDER}/Atom.cpp
+        ${PROJECT_SOURCE_FOLDER}/DOCINewtonOrbitalOptimizer.cpp
         ${PROJECT_SOURCE_FOLDER}/elements.cpp
         ${PROJECT_SOURCE_FOLDER}/JacobiRotationParameters.cpp
         ${PROJECT_SOURCE_FOLDER}/LibintCommunicator.cpp
         ${PROJECT_SOURCE_FOLDER}/miscellaneous.cpp
-        ${PROJECT_SOURCE_FOLDER}/Molecule.cpp)
+        ${PROJECT_SOURCE_FOLDER}/Molecule.cpp
+        ${PROJECT_SOURCE_FOLDER}/RMP2.cpp)
 
 # Find the header folder
 set(PROJECT_INCLUDE_FOLDER ${CMAKE_SOURCE_DIR}/include)
 
 # Find the header files
 set(PROJECT_INCLUDE_FILES
+        ${PROJECT_INCLUDE_FOLDER}/CISolver/CISolver.hpp
+        ${PROJECT_INCLUDE_FOLDER}/AP1roG/AP1roG.hpp
+        ${PROJECT_INCLUDE_FOLDER}/AP1roG/AP1roGGeminalCoefficients.hpp
+        ${PROJECT_INCLUDE_FOLDER}/AP1roG/AP1roGJacobiOrbitalOptimizer.hpp
+        ${PROJECT_INCLUDE_FOLDER}/AP1roG/AP1roGPSESolver.hpp
+        ${PROJECT_INCLUDE_FOLDER}/FockSpace/BaseFockSpace.hpp
+        ${PROJECT_INCLUDE_FOLDER}/FockSpace/Configuration.hpp
+        ${PROJECT_INCLUDE_FOLDER}/FockSpace/FockSpace.hpp
+        ${PROJECT_INCLUDE_FOLDER}/FockSpace/FockSpaceProduct.hpp
+        ${PROJECT_INCLUDE_FOLDER}/FockSpace/FockSpaceType.hpp
+        ${PROJECT_INCLUDE_FOLDER}/FockSpace/ONV.hpp
+        ${PROJECT_INCLUDE_FOLDER}/FockSpace/SelectedFockSpace.hpp
+        ${PROJECT_INCLUDE_FOLDER}/HamiltonianBuilder/DOCI.hpp
+        ${PROJECT_INCLUDE_FOLDER}/HamiltonianBuilder/FCI.hpp
+        ${PROJECT_INCLUDE_FOLDER}/HamiltonianBuilder/HamiltonianBuilder.hpp
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianParameters/BaseHamiltonianParameters.hpp
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianParameters/HamiltonianParameters.hpp
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianParameters/HamiltonianParameters_constructors.hpp
         ${PROJECT_INCLUDE_FOLDER}/Operator/BaseOperator.hpp
         ${PROJECT_INCLUDE_FOLDER}/Operator/OneElectronOperator.hpp
         ${PROJECT_INCLUDE_FOLDER}/Operator/TwoElectronOperator.hpp
-        ${PROJECT_INCLUDE_FOLDER}/AddressingScheme.hpp
+        ${PROJECT_INCLUDE_FOLDER}/RDM/BaseRDM.hpp
+        ${PROJECT_INCLUDE_FOLDER}/RDM/BaseRDMBuilder.hpp
+        ${PROJECT_INCLUDE_FOLDER}/RDM/DOCIRDMBuilder.hpp
+        ${PROJECT_INCLUDE_FOLDER}/RDM/FCIRDMBuilder.hpp
+        ${PROJECT_INCLUDE_FOLDER}/RDM/OneRDM.hpp
+        ${PROJECT_INCLUDE_FOLDER}/RDM/SelectedRDMBuilder.hpp
+        ${PROJECT_INCLUDE_FOLDER}/RDM/RDMCalculator.hpp
+        ${PROJECT_INCLUDE_FOLDER}/RDM/RDMs.hpp
+        ${PROJECT_INCLUDE_FOLDER}/RDM/TwoRDM.hpp
+        ${PROJECT_INCLUDE_FOLDER}/RHF/DIISRHFSCFSolver.hpp
+        ${PROJECT_INCLUDE_FOLDER}/RHF/PlainRHFSCFSolver.hpp
+        ${PROJECT_INCLUDE_FOLDER}/RHF/RHF.hpp
+        ${PROJECT_INCLUDE_FOLDER}/RHF/RHFSCFSolver.hpp
+        ${PROJECT_INCLUDE_FOLDER}/WaveFunction/WaveFunction.hpp
         ${PROJECT_INCLUDE_FOLDER}/AOBasis.hpp
         ${PROJECT_INCLUDE_FOLDER}/Atom.hpp
         ${PROJECT_INCLUDE_FOLDER}/common.hpp
+        ${PROJECT_INCLUDE_FOLDER}/DOCINewtonOrbitalOptimizer.hpp
         ${PROJECT_INCLUDE_FOLDER}/elements.hpp
         ${PROJECT_INCLUDE_FOLDER}/JacobiRotationParameters.hpp
         ${PROJECT_INCLUDE_FOLDER}/LibintCommunicator.hpp
         ${PROJECT_INCLUDE_FOLDER}/miscellaneous.hpp
         ${PROJECT_INCLUDE_FOLDER}/Molecule.hpp
+        ${PROJECT_INCLUDE_FOLDER}/RMP2.hpp
         ${PROJECT_INCLUDE_FOLDER}/units.hpp)
 
 # Find the tests folder
@@ -65,11 +124,32 @@ set(PROJECT_TESTS_FOLDER ${CMAKE_SOURCE_DIR}/tests)
 
 # Find the source files for the tests
 set(PROJECT_TEST_SOURCE_FILES
+        ${PROJECT_TESTS_FOLDER}/CISolver/CISolver_DOCI_Davidson_test.cpp
+        ${PROJECT_TESTS_FOLDER}/CISolver/CISolver_DOCI_Dense_test.cpp
+        ${PROJECT_TESTS_FOLDER}/CISolver/CISolver_FCI_Davidson_test.cpp
+        ${PROJECT_TESTS_FOLDER}/CISolver/CISolver_FCI_Dense_test.cpp
+        ${PROJECT_TESTS_FOLDER}/CISolver/CISolver_test.cpp
+        ${PROJECT_TESTS_FOLDER}/AP1roG/AP1roG_test.cpp
+        ${PROJECT_TESTS_FOLDER}/AP1roG/AP1roGGeminalCoefficients_test.cpp
+        ${PROJECT_TESTS_FOLDER}/AP1roG/OO_AP1roG_test.cpp
+        ${PROJECT_TESTS_FOLDER}/AP1roG/AP1roGPSESolver_test.cpp
+        ${PROJECT_TESTS_FOLDER}/FockSpace/FockSpace_test.cpp
+        ${PROJECT_TESTS_FOLDER}/FockSpace/FockSpaceProduct_test.cpp
+        ${PROJECT_TESTS_FOLDER}/FockSpace/ONV_test.cpp
+        ${PROJECT_TESTS_FOLDER}/FockSpace/SelectedFockSpace_test.cpp
+        ${PROJECT_TESTS_FOLDER}/HamiltonianBuilder/DOCI_test.cpp
+        ${PROJECT_TESTS_FOLDER}/HamiltonianBuilder/FCI_test.cpp
         ${PROJECT_TESTS_FOLDER}/HamiltonianParameters/HamiltonianParameters_test.cpp
         ${PROJECT_TESTS_FOLDER}/HamiltonianParameters/HamiltonianParameters_constructors_test.cpp
         ${PROJECT_TESTS_FOLDER}/Operator/OneElectronOperator_test.cpp
         ${PROJECT_TESTS_FOLDER}/Operator/TwoElectronOperator_test.cpp
-        ${PROJECT_TESTS_FOLDER}/AddressingScheme_test.cpp
+        ${PROJECT_TESTS_FOLDER}/RDM/DOCIRDMBuilder_test.cpp
+        ${PROJECT_TESTS_FOLDER}/RDM/FCIRDMBuilder_test.cpp
+        ${PROJECT_TESTS_FOLDER}/RDM/RDMCalculator_test.cpp
+        ${PROJECT_TESTS_FOLDER}/RDM/SelectedRDMBuilder_test.cpp
+        ${PROJECT_TESTS_FOLDER}/RHF/DIISRHFSCFSolver_test.cpp
+        ${PROJECT_TESTS_FOLDER}/RHF/PlainRHFSCFSolver_test.cpp
+        ${PROJECT_TESTS_FOLDER}/RHF/RHF_test.cpp
         ${PROJECT_TESTS_FOLDER}/AOBasis_test.cpp
         ${PROJECT_TESTS_FOLDER}/Atom_test.cpp
         ${PROJECT_TESTS_FOLDER}/elements_test.cpp
@@ -77,6 +157,8 @@ set(PROJECT_TEST_SOURCE_FILES
         ${PROJECT_TESTS_FOLDER}/LibintCommunicator_test.cpp
         ${PROJECT_TESTS_FOLDER}/miscellaneous_test.cpp
         ${PROJECT_TESTS_FOLDER}/Molecule_test.cpp
+        ${PROJECT_TESTS_FOLDER}/OO_DOCI_test.cpp
+        ${PROJECT_TESTS_FOLDER}/RMP2_test.cpp
         ${PROJECT_TESTS_FOLDER}/units_test.cpp)
 
 

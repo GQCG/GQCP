@@ -1,3 +1,20 @@
+// This file is part of GQCG-gqcp.
+// 
+// Copyright (C) 2017-2018  the GQCG developers
+// 
+// GQCG-gqcp is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// GQCG-gqcp is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+// 
+// You should have received a copy of the GNU Lesser General Public License
+// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
+// 
 #include "Molecule.hpp"
 
 #include <algorithm>
@@ -9,7 +26,7 @@
 #include "units.hpp"
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /*
@@ -17,11 +34,11 @@ namespace GQCG {
  */
 
 /**
- *  Parse a @param xyz_filename to @return a std::vector<GQCG::Atom>.
+ *  Parse a @param xyz_filename to @return a std::vector<GQCP::Atom>.
  *
  *  The coordinates in the .xyz-file should be in Angstrom: this function converts them immediately to Bohr (a.u.)
  */
-std::vector<GQCG::Atom> Molecule::parseXYZFile(const std::string& xyz_filename) {
+std::vector<GQCP::Atom> Molecule::parseXYZFile(const std::string& xyz_filename) {
 
     // Find the extension of the given path (https://stackoverflow.com/a/51992)
     std::string extension;
@@ -56,7 +73,7 @@ std::vector<GQCG::Atom> Molecule::parseXYZFile(const std::string& xyz_filename) 
 
 
         // Next lines are the atoms
-        std::vector<GQCG::Atom> atoms;
+        std::vector<GQCP::Atom> atoms;
         while (std::getline(input_file_stream, line)) {
             std::string symbol;
             double x_angstrom, y_angstrom, z_angstrom;
@@ -65,11 +82,11 @@ std::vector<GQCG::Atom> Molecule::parseXYZFile(const std::string& xyz_filename) 
             iss >> symbol >> x_angstrom >> y_angstrom >> z_angstrom;
 
             // Convert the (x,y,z)-coordinates that are in Angstrom to Bohr
-            double x_bohr = GQCG::units::angstrom_to_bohr(x_angstrom);
-            double y_bohr = GQCG::units::angstrom_to_bohr(y_angstrom);
-            double z_bohr = GQCG::units::angstrom_to_bohr(z_angstrom);
+            double x_bohr = GQCP::units::angstrom_to_bohr(x_angstrom);
+            double y_bohr = GQCP::units::angstrom_to_bohr(y_angstrom);
+            double z_bohr = GQCP::units::angstrom_to_bohr(z_angstrom);
 
-            atoms.emplace_back(GQCG::elements::elementToAtomicNumber(symbol), x_bohr, y_bohr, z_bohr);
+            atoms.emplace_back(GQCP::elements::elementToAtomicNumber(symbol), x_bohr, y_bohr, z_bohr);
         }
 
 
@@ -88,7 +105,7 @@ std::vector<GQCG::Atom> Molecule::parseXYZFile(const std::string& xyz_filename) 
  */
 
 /**
- *  Constructor from a @param atoms: a given std::vector of GQCG::Atoms and a @param molecular_charge
+ *  Constructor from a @param atoms: a given std::vector of GQCP::Atoms and a @param molecular_charge
  *      The constructed molecule instance corresponds to an ion:
  *          charge = +1 -> cation (one electron less than the neutral molecule)
  *          charge = 0  -> neutral molecule
@@ -96,7 +113,7 @@ std::vector<GQCG::Atom> Molecule::parseXYZFile(const std::string& xyz_filename) 
  *
  *  IMPORTANT!!! The coordinates of the atoms should be input in Bohr.
  */
-Molecule::Molecule(const std::vector<GQCG::Atom>& atoms, int molecular_charge) :
+Molecule::Molecule(const std::vector<GQCP::Atom>& atoms, int molecular_charge) :
     atoms (atoms),
     N (this->calculateTotalNucleicCharge() - molecular_charge)
 {
@@ -123,11 +140,11 @@ Molecule::Molecule(const std::vector<GQCG::Atom>& atoms, int molecular_charge) :
 
 
 /**
- *  Constructor from a @param atoms: a given std::vector of GQCG::Atoms
+ *  Constructor from a @param atoms: a given std::vector of GQCP::Atoms
  *
  *  IMPORTANT!!! The coordinates of the atoms should be input in Bohr.
  */
-Molecule::Molecule(const std::vector<GQCG::Atom>& atoms) :
+Molecule::Molecule(const std::vector<GQCP::Atom>& atoms) :
     Molecule (atoms, 0)
 {}
 
@@ -163,18 +180,18 @@ Molecule::Molecule(const std::string& xyz_filename) :
  */
 
 /**
- *  @return if this is equal to @param other, within the default GQCG::Atom::tolerance_for_comparison for the coordinates of the atoms
+ *  @return if this is equal to @param other, within the default GQCP::Atom::tolerance_for_comparison for the coordinates of the atoms
  */
-bool Molecule::operator==(const GQCG::Molecule& other) const {
+bool Molecule::operator==(const GQCP::Molecule& other) const {
 
-    return this->isEqualTo(other, GQCG::Atom::tolerance_for_comparison);
+    return this->isEqualTo(other, GQCP::Atom::tolerance_for_comparison);
 }
 
 
 /**
- *  Overloading of operator<< for a GQCG::Molecule to be used with streams
+ *  Overloading of operator<< for a GQCP::Molecule to be used with streams
  */
-std::ostream& operator<<(std::ostream& os, const GQCG::Molecule& molecule) {
+std::ostream& operator<<(std::ostream& os, const GQCP::Molecule& molecule) {
 
     for (const auto& atom : molecule.atoms) {
         os << atom;
@@ -192,22 +209,22 @@ std::ostream& operator<<(std::ostream& os, const GQCG::Molecule& molecule) {
 /**
  *  @return if this is equal to @param other, within the given @param tolerance for the coordinates of the atoms
  */
-bool Molecule::isEqualTo(const GQCG::Molecule& other, double tolerance) const {
+bool Molecule::isEqualTo(const GQCP::Molecule& other, double tolerance) const {
 
     if (this->N != other.get_N()) {
         return false;
     }
 
-    // We don't want the order of the atoms to matter in a GQCG::Molecule comparison
-    // We have implemented a custom GQCG::Atom::operator< so we can sort std::vectors of GQCG::Atoms
+    // We don't want the order of the atoms to matter in a GQCP::Molecule comparison
+    // We have implemented a custom GQCP::Atom::operator< so we can sort std::vectors of GQCP::Atoms
     // Make a copy of the atoms because std::sort modifies
     auto this_atoms = this->atoms;
     auto other_atoms = other.atoms;
 
 
     // Make lambda expressions for the comparators, since we want to hand over the tolerance argument
-    auto smaller_than_atom = [this, tolerance](const GQCG::Atom& lhs, const GQCG::Atom& rhs) { return lhs.isSmallerThan(rhs, tolerance); };
-    auto equal_atom = [this, tolerance](const GQCG::Atom& lhs, const GQCG::Atom& rhs) { return lhs.isEqualTo(rhs, tolerance); };
+    auto smaller_than_atom = [this, tolerance](const GQCP::Atom& lhs, const GQCP::Atom& rhs) { return lhs.isSmallerThan(rhs, tolerance); };
+    auto equal_atom = [this, tolerance](const GQCP::Atom& lhs, const GQCP::Atom& rhs) { return lhs.isEqualTo(rhs, tolerance); };
 
 
     std::sort(this_atoms.begin(), this_atoms.end(), smaller_than_atom);
@@ -269,4 +286,4 @@ double Molecule::calculateInternuclearRepulsionEnergy() const {
 }
 
 
-}  // namespace GQCG
+}  // namespace GQCP

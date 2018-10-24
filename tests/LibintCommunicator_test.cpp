@@ -1,3 +1,20 @@
+// This file is part of GQCG-gqcp.
+// 
+// Copyright (C) 2017-2018  the GQCG developers
+// 
+// GQCG-gqcp is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// GQCG-gqcp is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+// 
+// You should have received a copy of the GNU Lesser General Public License
+// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
+// 
 #define BOOST_TEST_MODULE "LibintCommunicator"
 
 
@@ -12,7 +29,7 @@
 
 BOOST_AUTO_TEST_CASE ( atoms_interface ) {
 
-    std::vector<GQCG::Atom> gqcg_atoms = {
+    std::vector<GQCP::Atom> GQCP_atoms = {
         {1, 0, 3, 0},
         {2, 0, 0, 4},
         {3, 3, 0, 0},
@@ -27,8 +44,8 @@ BOOST_AUTO_TEST_CASE ( atoms_interface ) {
     };
 
 
-    // Use the Libint interface to obtain a std::vector<libint2::Atom> from the GQCG ones
-    auto test_libint_atoms = GQCG::LibintCommunicator::get().interface(gqcg_atoms);
+    // Use the Libint interface to obtain a std::vector<libint2::Atom> from the GQCP ones
+    auto test_libint_atoms = GQCP::LibintCommunicator::get().interface(GQCP_atoms);
 
 
     /**
@@ -56,19 +73,19 @@ BOOST_AUTO_TEST_CASE ( atoms_interface ) {
 BOOST_AUTO_TEST_CASE( Szabo_integrals_h2_sto3g ) {
 
     // We will follow the example in Szabo, section 3.5.2, where it is stated that R = 1.4 a.u. = 0.740848 Angstrom
-    GQCG::Molecule h2 ("../tests/data/h2_szabo.xyz");
-    GQCG::AOBasis basis (h2, "STO-3G");
+    GQCP::Molecule h2 ("../tests/data/h2_szabo.xyz");
+    GQCP::AOBasis basis (h2, "STO-3G");
     BOOST_CHECK_EQUAL(basis.get_number_of_basis_functions(), 2);
 
 
     // Calculate some integrals
-    auto S = GQCG::LibintCommunicator::get().calculateOneElectronIntegrals(libint2::Operator::overlap, basis);
+    auto S = GQCP::LibintCommunicator::get().calculateOneElectronIntegrals(libint2::Operator::overlap, basis);
 
-    auto T = GQCG::LibintCommunicator::get().calculateOneElectronIntegrals(libint2::Operator::kinetic, basis);
-    auto V = GQCG::LibintCommunicator::get().calculateOneElectronIntegrals(libint2::Operator::nuclear, basis);
-    auto H_core = GQCG::OneElectronOperator(T.get_matrix_representation() + V.get_matrix_representation());
+    auto T = GQCP::LibintCommunicator::get().calculateOneElectronIntegrals(libint2::Operator::kinetic, basis);
+    auto V = GQCP::LibintCommunicator::get().calculateOneElectronIntegrals(libint2::Operator::nuclear, basis);
+    auto H_core = GQCP::OneElectronOperator(T.get_matrix_representation() + V.get_matrix_representation());
 
-    auto g = GQCG::LibintCommunicator::get().calculateTwoElectronIntegrals(libint2::Operator::coulomb, basis);
+    auto g = GQCP::LibintCommunicator::get().calculateTwoElectronIntegrals(libint2::Operator::coulomb, basis);
 
 
     // Fill in the reference values from Szabo
@@ -105,17 +122,17 @@ BOOST_AUTO_TEST_CASE( Szabo_integrals_h2_sto3g ) {
 BOOST_AUTO_TEST_CASE( HORTON_integrals_h2o_sto3g ) {
 
     // Set up a basis
-    GQCG::Molecule water ("../tests/data/h2o.xyz");
-    GQCG::AOBasis basis (water, "STO-3G");
+    GQCP::Molecule water ("../tests/data/h2o.xyz");
+    GQCP::AOBasis basis (water, "STO-3G");
     auto nbf = basis.get_number_of_basis_functions();
 
 
     // Calculate some integrals
-    auto S = GQCG::LibintCommunicator::get().calculateOneElectronIntegrals(libint2::Operator::overlap, basis);
-    auto T = GQCG::LibintCommunicator::get().calculateOneElectronIntegrals(libint2::Operator::kinetic, basis);
-    auto V = GQCG::LibintCommunicator::get().calculateOneElectronIntegrals(libint2::Operator::nuclear, basis);
+    auto S = GQCP::LibintCommunicator::get().calculateOneElectronIntegrals(libint2::Operator::overlap, basis);
+    auto T = GQCP::LibintCommunicator::get().calculateOneElectronIntegrals(libint2::Operator::kinetic, basis);
+    auto V = GQCP::LibintCommunicator::get().calculateOneElectronIntegrals(libint2::Operator::nuclear, basis);
 
-    auto g = GQCG::LibintCommunicator::get().calculateTwoElectronIntegrals(libint2::Operator::coulomb, basis);
+    auto g = GQCP::LibintCommunicator::get().calculateTwoElectronIntegrals(libint2::Operator::coulomb, basis);
 
 
     // Read in reference data from HORTON

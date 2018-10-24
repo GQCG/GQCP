@@ -1,5 +1,22 @@
-#ifndef GQCG_BASEOPERATOR_HPP
-#define GQCG_BASEOPERATOR_HPP
+// This file is part of GQCG-gqcp.
+// 
+// Copyright (C) 2017-2018  the GQCG developers
+// 
+// GQCG-gqcp is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// GQCG-gqcp is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+// 
+// You should have received a copy of the GNU Lesser General Public License
+// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
+// 
+#ifndef GQCP_BASEOPERATOR_HPP
+#define GQCP_BASEOPERATOR_HPP
 
 
 #include <Eigen/Dense>
@@ -8,7 +25,7 @@
 
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /**
@@ -16,7 +33,7 @@ namespace GQCG {
  */
 class BaseOperator {
 protected:
-    const size_t dim;  // dimension of the matrix representation of the operator
+    size_t dim;  // dimension of the matrix representation of the operator
 
 
 public:
@@ -25,6 +42,10 @@ public:
      *  Constructor based on a given @param dimension
      */
     explicit BaseOperator(size_t dimension);
+
+
+    // GETTERS
+    size_t get_dim() const { return this->dim; }
 
 
     // PUBLIC METHODS
@@ -55,12 +76,12 @@ public:
      *        in which the basis functions are collected as elements of a row vector b.
      *      - we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
      */
-    virtual void rotate(const GQCG::JacobiRotationParameters& jacobi_rotation_parameters) = 0;
+    virtual void rotate(const GQCP::JacobiRotationParameters& jacobi_rotation_parameters) = 0;
 };
 
 
 
-}  // namespace GQCG
+}  // namespace GQCP
 
 
-#endif  // GQCG_BASEOPERATOR_HPP
+#endif  // GQCP_BASEOPERATOR_HPP

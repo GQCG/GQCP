@@ -1,5 +1,22 @@
-#ifndef GQCG_TWOELECTRONOPERATOR_HPP
-#define GQCG_TWOELECTRONOPERATOR_HPP
+// This file is part of GQCG-gqcp.
+// 
+// Copyright (C) 2017-2018  the GQCG developers
+// 
+// GQCG-gqcp is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// GQCG-gqcp is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+// 
+// You should have received a copy of the GNU Lesser General Public License
+// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
+// 
+#ifndef GQCP_TWOELECTRONOPERATOR_HPP
+#define GQCP_TWOELECTRONOPERATOR_HPP
 
 
 #include <unsupported/Eigen/CXX11/Tensor>
@@ -7,7 +24,7 @@
 #include "BaseOperator.hpp"
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 
@@ -22,6 +39,7 @@ private:
 public:
     // GETTERS
     Eigen::Tensor<double, 4> get_matrix_representation() const { return this->tensor; }
+    double get(size_t p, size_t q, size_t r, size_t s) { return this->tensor(p, q, r, s); }
 
 
     // CONSTRUCTORS
@@ -59,16 +77,12 @@ public:
      *        in which the basis functions are collected as elements of a row vector b.
      *      - we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
      */
-    void rotate(const GQCG::JacobiRotationParameters& jacobi_rotation_parameters) override;
-
-
-    // FRIEND CLASSES
-    friend class HamiltonianParameters;
+    void rotate(const GQCP::JacobiRotationParameters& jacobi_rotation_parameters) override;
 };
 
 
 
-}  // namespace GQCG
+}  // namespace GQCP
 
 
-#endif  // GQCG_TWOELECTRONOPERATOR_HPP
+#endif  // GQCP_TWOELECTRONOPERATOR_HPP
