@@ -121,13 +121,6 @@ public:
      *  @return the internuclear repulsion energy due to the nuclear framework
      */
     double calculateInternuclearRepulsionEnergy() const;
-
-
-    // FRIEND CLASSES
-    friend class AOBasis;
-    friend class RHFSCFSolver;
-    friend class AP1roGPSESolver;
-    friend class AP1roGJacobiOrbitalOptimizer;
 };
 
 

@@ -67,7 +67,7 @@ public:
     size_t get_K() const { return this->K; }
 
 
-    // METHODS
+    // PUBLIC METHODS
     /**
      *  @return the geminal coefficients in vector form
      */

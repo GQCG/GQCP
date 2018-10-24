@@ -47,11 +47,6 @@ public:
 
     // GETTERS
     size_t get_number_of_basis_functions() const { return this->number_of_basis_functions; }
-
-
-    // FRIEND CLASSES
-    friend class HamiltonianParameters;
-    friend class LibintCommunicator;
 };
 
 

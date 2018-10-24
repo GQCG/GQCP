@@ -61,14 +61,6 @@ public:
     size_t get_p() const { return this->p; }
     size_t get_q() const { return this->q; }
     double get_angle() const { return this->angle; }
-
-
-    // FRIEND CLASSES
-    friend class OneElectronOperator;
-    friend class AP1roGJacobiOrbitalOptimizer;
-
-    // FRIEND FUNCTIONS
-    friend Eigen::MatrixXd jacobiRotationMatrix(const GQCP::JacobiRotationParameters& jacobi_rotation_parameters, size_t M);
 };
 
 

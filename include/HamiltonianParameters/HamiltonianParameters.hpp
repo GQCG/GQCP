@@ -134,17 +134,6 @@ public:
      *  Given a @param D: 1-RDM and a @param d: 2-RDM, @return the super-generalized Fock matrix W as a TwoElectronOperator
      */
     GQCP::TwoElectronOperator calculateSuperGeneralizedFockMatrix(const GQCP::OneRDM& one_rdm, const GQCP::TwoRDM& two_rdm) const;
-
-
-    // FRIEND FUNCTIONS
-    friend Eigen::MatrixXd calculateRHFAOFockMatrix(const Eigen::MatrixXd& D_AO, GQCP::HamiltonianParameters ham_par);
-    friend double calculateRMP2EnergyCorrection(const GQCP::HamiltonianParameters& ham_par);
-
-    // FRIEND CLASSES
-    friend class RHFSCFSolver;
-    friend class DIISRHFSCFSolver;
-    friend class AP1roGPSESolver;
-    friend class AP1roGJacobiOrbitalOptimizer;
 };
 
 
