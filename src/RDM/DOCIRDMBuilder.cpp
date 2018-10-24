@@ -66,6 +66,7 @@ OneRDMs DOCIRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) {
     return OneRDMs (one_rdm);
 }
 
+
 /**
  *  @return 2RDM from a coefficient vector @param x
  */

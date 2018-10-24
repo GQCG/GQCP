@@ -50,8 +50,8 @@ AP1roG::AP1roG(const GQCP::AP1roGGeminalCoefficients& geminal_coefficients, doub
  */
 double calculateAP1roGEnergy(const GQCP::AP1roGGeminalCoefficients& G, const GQCP::HamiltonianParameters& ham_par) {
 
-    Eigen::MatrixXd h_SO = ham_par.get_h().get_matrix_representation();
-    Eigen::Tensor<double, 4> g_SO = ham_par.get_g().get_matrix_representation();
+    GQCP::OneElectronOperator h_SO = ham_par.get_h();
+    GQCP::TwoElectronOperator g_SO = ham_par.get_g();
 
 
     // KISS implementation of the AP1roG energy
