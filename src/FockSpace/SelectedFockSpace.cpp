@@ -77,7 +77,7 @@ SelectedFockSpace::SelectedFockSpace(size_t K, size_t N_alpha, size_t N_beta) :
  * Constructor that generates expansion of a given FockSpaceProduct
  * @param fock_space generated Fock space
  */
-SelectedFockSpace::SelectedFockSpace(const FockSpaceProduct& fock_space) :
+SelectedFockSpace::SelectedFockSpace(const ProductFockSpace& fock_space) :
     SelectedFockSpace (fock_space.get_K(), fock_space.get_N_alpha(), fock_space.get_N_beta())
 {
 

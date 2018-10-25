@@ -49,7 +49,7 @@ BOOST_AUTO_TEST_CASE ( FCI_h2_sto3g_dense_vs_Davidson ) {
     // Transform the ham_par
     mol_ham_par.transform(rhf.get_C());
 
-    GQCP::FockSpaceProduct fock_space (K, h2.get_N()/2, h2.get_N()/2);  // dim = 2
+    GQCP::ProductFockSpace fock_space (K, h2.get_N()/2, h2.get_N()/2);  // dim = 2
 
     // Create the FCI module
     GQCP::FCI fci (fock_space);
@@ -94,7 +94,7 @@ BOOST_AUTO_TEST_CASE ( FCI_H2_6_31Gxx_dense_vs_Davidson ) {
     // Transform the ham_par
     mol_ham_par.transform(rhf.get_C());
 
-    GQCP::FockSpaceProduct fock_space (K, h2.get_N()/2, h2.get_N()/2);  // dim = 100
+    GQCP::ProductFockSpace fock_space (K, h2.get_N()/2, h2.get_N()/2);  // dim = 100
 
     // Create the FCI module
     GQCP::FCI fci (fock_space);
@@ -139,7 +139,7 @@ BOOST_AUTO_TEST_CASE ( FCI_H2O_STO_3G_dense_vs_Davidson ) {
     // Transform the ham_par
     mol_ham_par.transform(rhf.get_C());
 
-    GQCP::FockSpaceProduct fock_space (K, h2o.get_N()/2, h2o.get_N()/2);  // dim = 441
+    GQCP::ProductFockSpace fock_space (K, h2o.get_N()/2, h2o.get_N()/2);  // dim = 441
 
     // Create the FCI module
     GQCP::FCI fci (fock_space);

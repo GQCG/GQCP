@@ -41,7 +41,7 @@ RDMCalculator::RDMCalculator(const FockSpace& fock_space) {
 /**
  *  Allocates a FCIRDMBuilder based on @param fock_space
  */
-RDMCalculator::RDMCalculator(const FockSpaceProduct& fock_space) {
+RDMCalculator::RDMCalculator(const ProductFockSpace& fock_space) {
     rdm_builder = std::make_shared<GQCP::FCIRDMBuilder>(fock_space);
 }
 
@@ -67,8 +67,8 @@ RDMCalculator::RDMCalculator(const BaseFockSpace& fock_space) {
             break;
         }
 
-        case FockSpaceType::FockSpaceProduct: {
-            rdm_builder = std::make_shared<GQCP::FCIRDMBuilder>(dynamic_cast<const GQCP::FockSpaceProduct&>(fock_space));
+        case FockSpaceType::ProductFockSpace: {
+            rdm_builder = std::make_shared<GQCP::FCIRDMBuilder>(dynamic_cast<const GQCP::ProductFockSpace&>(fock_space));
 
             break;
         }

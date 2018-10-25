@@ -20,7 +20,7 @@
 
 #include "RDM/BaseRDMBuilder.hpp"
 #include "FockSpace/FockSpace.hpp"
-#include "FockSpace/FockSpaceProduct.hpp"
+#include "FockSpace/ProductFockSpace.hpp"
 #include "FockSpace/SelectedFockSpace.hpp"
 
 #include <memory>
@@ -43,7 +43,7 @@ public:
      *  Allocates a derived RDMBuilder based on the nature of the given @param fock_space
      */
     RDMCalculator(const FockSpace& fock_space);  // DOCIRDMBuilder
-    RDMCalculator(const FockSpaceProduct& fock_space);  // FCIRDMBuilder
+    RDMCalculator(const ProductFockSpace& fock_space);  // FCIRDMBuilder
     RDMCalculator(const SelectedFockSpace& fock_space);  // SelectedRDMBuilder
     RDMCalculator(const BaseFockSpace& fock_space);  // runtime
 

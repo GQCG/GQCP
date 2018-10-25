@@ -47,7 +47,7 @@ BOOST_AUTO_TEST_CASE ( one_rdms_fci_H2_6_31G ) {
     auto ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
     size_t K = ham_par.get_K();  // 4
 
-    GQCP::FockSpaceProduct fock_space (K, N_a, N_b);  // dim = 16
+    GQCP::ProductFockSpace fock_space (K, N_a, N_b);  // dim = 16
     GQCP::FCI fci (fock_space);
 
     // Specify solver options and solve the eigenvalue problem
@@ -70,12 +70,9 @@ BOOST_AUTO_TEST_CASE ( one_rdms_fci_H2_6_31G ) {
     GQCP::OneRDMs one_rdms_s = selected_rdm.calculate1RDMs(coef);
 
 
-    BOOST_CHECK(one_rdms_s.one_rdm.get_matrix_representation().isApprox(
-            one_rdms.one_rdm.get_matrix_representation()));
-    BOOST_CHECK(one_rdms_s.one_rdm_aa.get_matrix_representation().isApprox(
-            one_rdms.one_rdm_aa.get_matrix_representation()));
-    BOOST_CHECK(one_rdms_s.one_rdm_bb.get_matrix_representation().isApprox(
-            one_rdms.one_rdm_bb.get_matrix_representation()));
+    BOOST_CHECK(one_rdms_s.one_rdm.get_matrix_representation().isApprox(one_rdms.one_rdm.get_matrix_representation()));
+    BOOST_CHECK(one_rdms_s.one_rdm_aa.get_matrix_representation().isApprox(one_rdms.one_rdm_aa.get_matrix_representation()));
+    BOOST_CHECK(one_rdms_s.one_rdm_bb.get_matrix_representation().isApprox(one_rdms.one_rdm_bb.get_matrix_representation()));
 }
 
 
@@ -95,7 +92,7 @@ BOOST_AUTO_TEST_CASE ( two_rdms_fci_H2_6_31G ) {
     auto ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
     size_t K = ham_par.get_K();  // 4
 
-    GQCP::FockSpaceProduct fock_space (K, N_a, N_b);  // dim = 16
+    GQCP::ProductFockSpace fock_space (K, N_a, N_b);  // dim = 16
     GQCP::FCI fci (fock_space);
 
     // Specify solver options and solve the eigenvalue problem
@@ -163,14 +160,10 @@ BOOST_AUTO_TEST_CASE ( one_rdms_doci_H2_6_31G ) {
     GQCP::OneRDMs one_rdms_s = selected_rdm.calculate1RDMs(coef);
 
 
-    BOOST_CHECK(one_rdms_s.one_rdm.get_matrix_representation().isApprox(
-            one_rdms.one_rdm.get_matrix_representation()));
-    BOOST_CHECK(one_rdms_s.one_rdm_aa.get_matrix_representation().isApprox(
-            one_rdms.one_rdm_aa.get_matrix_representation()));
-    BOOST_CHECK(one_rdms_s.one_rdm_bb.get_matrix_representation().isApprox(
-            one_rdms.one_rdm_bb.get_matrix_representation()));
+    BOOST_CHECK(one_rdms_s.one_rdm.get_matrix_representation().isApprox(one_rdms.one_rdm.get_matrix_representation()));
+    BOOST_CHECK(one_rdms_s.one_rdm_aa.get_matrix_representation().isApprox(one_rdms.one_rdm_aa.get_matrix_representation()));
+    BOOST_CHECK(one_rdms_s.one_rdm_bb.get_matrix_representation().isApprox(one_rdms.one_rdm_bb.get_matrix_representation()));
 }
-
 
 
 BOOST_AUTO_TEST_CASE ( two_rdms_doci_H2_6_31G ) {

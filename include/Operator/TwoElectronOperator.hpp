@@ -37,16 +37,19 @@ private:
 
 
 public:
-    // GETTERS
-    Eigen::Tensor<double, 4> get_matrix_representation() const { return this->tensor; }
-    double get(size_t p, size_t q, size_t r, size_t s) { return this->tensor(p, q, r, s); }
-
-
     // CONSTRUCTORS
     /**
      *  Constructor based on a given @param tensor
      */
     explicit TwoElectronOperator(const Eigen::Tensor<double, 4>& tensor);
+
+
+    // OPERATORS
+    double operator()(size_t p, size_t q, size_t r, size_t s) const { return this->tensor(p, q, r, s); }
+
+
+    // GETTERS
+    Eigen::Tensor<double, 4> get_matrix_representation() const { return this->tensor; }
 
 
     // PUBLIC METHODS

@@ -90,7 +90,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31g ) {
     // Transform the molecular Hamiltonian parameters to the FCI natural basis
     size_t N_a = h2.get_N() / 2;
     size_t N_b = h2.get_N() / 2;
-    GQCP::FockSpaceProduct fci_fock_space (K, N_a, N_b);  // dim = 441
+    GQCP::ProductFockSpace fci_fock_space (K, N_a, N_b);  // dim = 441
     GQCP::FCI fci (fci_fock_space);
     GQCP::CISolver fci_solver (fci, mol_ham_par);
     numopt::eigenproblem::DenseSolverOptions solver_options;
@@ -140,7 +140,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx ) {
     // Transform the molecular Hamiltonian parameters to the FCI natural basis
     size_t N_a = h2.get_N() / 2;
     size_t N_b = h2.get_N() / 2;
-    GQCP::FockSpaceProduct fci_fock_space (K, N_a, N_b);  // dim = 441
+    GQCP::ProductFockSpace fci_fock_space (K, N_a, N_b);  // dim = 441
     GQCP::FCI fci (fci_fock_space);
     GQCP::CISolver fci_solver (fci, mol_ham_par);
     numopt::eigenproblem::DenseSolverOptions solver_options;
@@ -190,7 +190,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx_Davidson ) {
     // Transform the molecular Hamiltonian parameters to the FCI natural basis
     size_t N_a = h2.get_N() / 2;
     size_t N_b = h2.get_N() / 2;
-    GQCP::FockSpaceProduct fci_fock_space (K, N_a, N_b);  // dim = 441
+    GQCP::ProductFockSpace fci_fock_space (K, N_a, N_b);  // dim = 441
     GQCP::FCI fci (fci_fock_space);
     GQCP::CISolver fci_solver (fci, mol_ham_par);
     numopt::eigenproblem::DenseSolverOptions solver_options;
