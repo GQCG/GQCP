@@ -19,7 +19,7 @@
 
 
 #include "CISolver/CISolver.hpp"
-#include "FockSpace/FockSpaceProduct.hpp"
+#include "FockSpace/ProductFockSpace.hpp"
 #include "HamiltonianBuilder/Hubbard.hpp"
 #include "HamiltonianBuilder/FCI.hpp"
 #include "HamiltonianParameters/HamiltonianParameters_constructors.hpp"
@@ -44,7 +44,7 @@ BOOST_AUTO_TEST_CASE ( test_random_rotation_diagonal_dense_Hubbard ) {
     auto K = mol_ham_par.get_K();
 
 
-    GQCP::FockSpaceProduct fock_space (K, N, N);  // dim = 9
+    GQCP::ProductFockSpace fock_space (K, N, N);  // dim = 9
 
     // Create the Hubbard module
     GQCP::Hubbard hubbard (fock_space);
@@ -77,7 +77,7 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_dense ) {
     auto K = mol_ham_par.get_K();
 
 
-    GQCP::FockSpaceProduct fock_space (K, N, N);  // dim = 36
+    GQCP::ProductFockSpace fock_space (K, N, N);  // dim = 36
 
     // Create the Hubbard module
     GQCP::Hubbard hubbard (fock_space);
@@ -109,7 +109,7 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_dense_large ) {
     auto K = mol_ham_par.get_K();
 
 
-    GQCP::FockSpaceProduct fock_space (K, N, N);  // dim = 400
+    GQCP::ProductFockSpace fock_space (K, N, N);  // dim = 400
 
     // Create the Hubbard module
     GQCP::Hubbard hubbard (fock_space);
@@ -150,7 +150,7 @@ BOOST_AUTO_TEST_CASE ( four_site_chain_ward ) {
     // Specify a tolerance
     double tol = 1.0e-08;
 
-    GQCP::FockSpaceProduct fock_space (K, N, N);
+    GQCP::ProductFockSpace fock_space (K, N, N);
 
     // For every U-value, create the Hubbard instance, solve it, and check the energy with Ward's results (https://github.com/wpoely86/Hubbard-GPU)
     for (size_t i = 0; i < 7; i++) {
@@ -194,7 +194,7 @@ BOOST_AUTO_TEST_CASE ( six_site_ring_ward ) {
     // Specify a tolerance
     double tol = 1.0e-08;
 
-    GQCP::FockSpaceProduct fock_space (K, N, N);
+    GQCP::ProductFockSpace fock_space (K, N, N);
 
     // For every U-value, create the Hubbard instance, solve it, and check the energy with Ward's results (https://github.com/wpoely86/Hubbard-GPU)
     for (size_t i = 0; i < 7; i++) {

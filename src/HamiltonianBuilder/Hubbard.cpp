@@ -127,7 +127,7 @@ namespace GQCP {
  *  Constructor given a @param hamiltonian_parameters and @param fock_space
  */
 
-Hubbard::Hubbard(const FockSpaceProduct &fock_space) :
+Hubbard::Hubbard(const ProductFockSpace &fock_space) :
         HamiltonianBuilder(),
         fock_space(fock_space) {}
 

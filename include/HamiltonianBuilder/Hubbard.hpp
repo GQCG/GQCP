@@ -20,7 +20,7 @@
 
 
 #include "HamiltonianBuilder/HamiltonianBuilder.hpp"
-#include "FockSpace/FockSpaceProduct.hpp"
+#include "FockSpace/ProductFockSpace.hpp"
 
 
 
@@ -41,7 +41,7 @@ using PassToMethod = std::function<void (size_t I, size_t J, double value)>;
  */
 class Hubbard : public GQCP::HamiltonianBuilder {
 private:
-    FockSpaceProduct fock_space;  // fock space containing the alpha and beta Fock space
+    ProductFockSpace fock_space;  // fock space containing the alpha and beta Fock space
 
     
     // PRIVATE METHODS
@@ -63,7 +63,7 @@ public:
     /**
      *  Constructor given a @param fock_space
      */
-    explicit Hubbard(const FockSpaceProduct& fock_space);
+    explicit Hubbard(const ProductFockSpace& fock_space);
 
 
     // DESTRUCTOR

@@ -40,7 +40,7 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_davidson ) {
     auto mol_ham_par = GQCP::hubbardTriagonalLattice(triagonal_test);
     auto K = mol_ham_par.get_K();
 
-    GQCP::FockSpaceProduct fock_space (K, N, N);  // dim = 36
+    GQCP::ProductFockSpace fock_space (K, N, N);  // dim = 36
 
     // Create the Hubbard and FCI modules
     GQCP::Hubbard hubbard (fock_space);
@@ -73,7 +73,7 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_davidson_large ) {
     auto mol_ham_par = GQCP::hubbardTriagonalLattice(triagonal_test);
     auto K = mol_ham_par.get_K();
 
-    GQCP::FockSpaceProduct fock_space (K, N, N);  // dim = 400
+    GQCP::ProductFockSpace fock_space (K, N, N);  // dim = 400
 
     // Create the Hubbard and FCI modules
     GQCP::Hubbard hubbard (fock_space);

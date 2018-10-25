@@ -30,7 +30,7 @@
 
 BOOST_AUTO_TEST_CASE ( Hubbard_constructor ) {
     // Create a compatible Fock space
-    GQCP::FockSpaceProduct fock_space (15, 3, 3);
+    GQCP::ProductFockSpace fock_space (15, 3, 3);
 
     // Check if a correct constructor works
     BOOST_CHECK_NO_THROW(GQCP::Hubbard Hubbard (fock_space));
@@ -54,7 +54,7 @@ BOOST_AUTO_TEST_CASE ( Hubbard_public_methods ) {
     GQCP::HamiltonianParameters random_hamiltonian_parameters (ao_basis, S, H_core, g, C);
 
     // Create a compatible Fock space
-    GQCP::FockSpaceProduct fock_space (K, 3, 3);
+    GQCP::ProductFockSpace fock_space (K, 3, 3);
 
     // Create Hubbard module
     GQCP::Hubbard random_Hubbard (fock_space);
@@ -65,7 +65,7 @@ BOOST_AUTO_TEST_CASE ( Hubbard_public_methods ) {
     BOOST_CHECK_NO_THROW(random_Hubbard.matrixVectorProduct(random_hamiltonian_parameters, x, x));
 
     // Create an incompatible Fock space
-    GQCP::FockSpaceProduct fock_space_i (K+1, 3, 3);
+    GQCP::ProductFockSpace fock_space_i (K+1, 3, 3);
 
     // Create Hubbard module
     GQCP::Hubbard random_Hubbard_i (fock_space_i);
@@ -86,7 +86,7 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI ) {
     auto K = mol_ham_par.get_K();
 
 
-    GQCP::FockSpaceProduct fock_space (K, N, N);  // dim = 36
+    GQCP::ProductFockSpace fock_space (K, N, N);  // dim = 36
 
     // Create the Hubbard module
     GQCP::Hubbard hubbard (fock_space);
@@ -111,7 +111,7 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_large ) {
     auto K = mol_ham_par.get_K();
 
 
-    GQCP::FockSpaceProduct fock_space (K, N, N);  // dim = 400
+    GQCP::ProductFockSpace fock_space (K, N, N);  // dim = 400
 
     // Create the Hubbard module
     GQCP::Hubbard hubbard (fock_space);
@@ -136,7 +136,7 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_matvec ) {
     auto K = mol_ham_par.get_K();
 
 
-    GQCP::FockSpaceProduct fock_space (K, N, N);  // dim = 36
+    GQCP::ProductFockSpace fock_space (K, N, N);  // dim = 36
 
     // Create the Hubbard module
     GQCP::Hubbard hubbard (fock_space);
@@ -164,7 +164,7 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_large_matvec ) {
     auto K = mol_ham_par.get_K();
 
 
-    GQCP::FockSpaceProduct fock_space (K, N, N);  // dim = 400
+    GQCP::ProductFockSpace fock_space (K, N, N);  // dim = 400
 
     // Create the Hubbard module
     GQCP::Hubbard hubbard (fock_space);
