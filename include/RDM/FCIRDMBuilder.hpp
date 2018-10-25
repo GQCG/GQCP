@@ -19,7 +19,7 @@
 #define GQCP_FCIRDMBUILDER_HPP
 
 
-#include "FockSpace/FockSpaceProduct.hpp"
+#include "FockSpace/ProductFockSpace.hpp"
 #include "RDM/BaseRDMBuilder.hpp"
 #include "RDM/RDMs.hpp"
 
@@ -32,12 +32,12 @@ namespace GQCP {
  *  or coefficient expansion in the full CI Fock space
  */
 class FCIRDMBuilder : public BaseRDMBuilder {
-    FockSpaceProduct fock_space;  // Fock space containing the alpha and beta Fock space
+    ProductFockSpace fock_space;  // Fock space containing the alpha and beta Fock space
 
 
 public:
     // CONSTRUCTOR
-    explicit FCIRDMBuilder(const FockSpaceProduct& fock_space);
+    explicit FCIRDMBuilder(const ProductFockSpace& fock_space);
 
 
     // DESTRUCTOR

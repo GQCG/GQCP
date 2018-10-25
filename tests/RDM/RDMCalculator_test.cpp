@@ -21,7 +21,7 @@
 #include "RDM/RDMCalculator.hpp"
 
 #include "FockSpace/FockSpace.hpp"
-#include "FockSpace/FockSpaceProduct.hpp"
+#include "FockSpace/ProductFockSpace.hpp"
 #include "CISolver/CISolver.hpp"
 #include "HamiltonianBuilder/DOCI.hpp"
 #include "HamiltonianParameters/HamiltonianParameters_constructors.hpp"
