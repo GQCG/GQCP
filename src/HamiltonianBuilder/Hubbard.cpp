@@ -84,7 +84,7 @@ namespace GQCP {
 
                 // address has been calculated, update accordingly and at all instances of the fixed component
                 for (size_t I_fixed = 0; I_fixed < dim_fixed; I_fixed++){
-                    double val = sign_e2 * hamiltonian_parameters.get_h().get(p, q);
+                    double val = sign_e2 * hamiltonian_parameters.get_h()(p, q);
                     method(I * target_interval + I_fixed * fixed_intervals, J * target_interval + I_fixed * fixed_intervals, val);
                     method(J * target_interval + I_fixed * fixed_intervals, I * target_interval + I_fixed * fixed_intervals, val);
                 }
@@ -229,7 +229,7 @@ Eigen::VectorXd Hubbard::calculateDiagonal(const HamiltonianParameters &hamilton
 
             for (size_t p : occupations){
 
-                diagonal(address) += hamiltonian_parameters.get_g().get(p,p,p,p);
+                diagonal(address) += hamiltonian_parameters.get_g()(p,p,p,p);
 
             }
 
