@@ -20,7 +20,7 @@
 
 
 #include "FockSpace/BaseFockSpace.hpp"
-#include "FockSpace/FockSpaceProduct.hpp"
+#include "FockSpace/ProductFockSpace.hpp"
 #include "Configuration.hpp"
 
 #include <boost/numeric/conversion/converter.hpp>
@@ -64,7 +64,7 @@ public:
      * Constructor that generates expansion of a given FockSpaceProduct
      * @param fock_space generated Fock space
      */
-    explicit SelectedFockSpace(const FockSpaceProduct& fock_space);
+    explicit SelectedFockSpace(const ProductFockSpace& fock_space);
 
     /**
      * Constructor that generates expansion of a given FockSpace

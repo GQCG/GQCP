@@ -19,7 +19,7 @@
 
 
 #include "CISolver/CISolver.hpp"
-#include "FockSpace/FockSpaceProduct.hpp"
+#include "FockSpace/ProductFockSpace.hpp"
 #include "HamiltonianBuilder/FCI.hpp"
 #include "HamiltonianParameters/HamiltonianParameters_constructors.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
@@ -49,7 +49,7 @@ BOOST_AUTO_TEST_CASE ( test_random_rotation_diagonal_dense_fci ) {
     // Transform the ham_par
     mol_ham_par.transform(rhf.get_C());
 
-    GQCP::FockSpaceProduct fock_space (K, h2o.get_N()/2, h2o.get_N()/2);  // dim = 2
+    GQCP::ProductFockSpace fock_space (K, h2o.get_N()/2, h2o.get_N()/2);  // dim = 2
 
     // Create the FCI module
     GQCP::FCI fci (fock_space);
@@ -92,7 +92,7 @@ BOOST_AUTO_TEST_CASE ( FCI_H2_Cristina_dense ) {
     // Transform the ham_par
     mol_ham_par.transform(rhf.get_C());
 
-    GQCP::FockSpaceProduct fock_space (K, h2.get_N()/2, h2.get_N()/2);  // dim = 100
+    GQCP::ProductFockSpace fock_space (K, h2.get_N()/2, h2.get_N()/2);  // dim = 100
 
     // Create the FCI module
     GQCP::FCI fci (fock_space);
@@ -134,7 +134,7 @@ BOOST_AUTO_TEST_CASE ( FCI_H2O_Psi4_GAMESS_dense ) {
     // Transform the ham_par
     mol_ham_par.transform(rhf.get_C());
 
-    GQCP::FockSpaceProduct fock_space (K, h2o.get_N()/2, h2o.get_N()/2);  // dim = 441
+    GQCP::ProductFockSpace fock_space (K, h2o.get_N()/2, h2o.get_N()/2);  // dim = 441
 
     // Create the FCI module
     GQCP::FCI fci (fock_space);
@@ -176,7 +176,7 @@ BOOST_AUTO_TEST_CASE ( FCI_He_Cristina_dense ) {
     // Transform the ham_par
     mol_ham_par.transform(rhf.get_C());
 
-    GQCP::FockSpaceProduct fock_space (K, he.get_N()/2, he.get_N()/2);  // dim = 2116
+    GQCP::ProductFockSpace fock_space (K, he.get_N()/2, he.get_N()/2);  // dim = 2116
 
     // Create the FCI module
     GQCP::FCI fci (fock_space);

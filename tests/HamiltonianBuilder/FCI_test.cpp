@@ -30,7 +30,7 @@
 
 BOOST_AUTO_TEST_CASE ( FCI_constructor ) {
     // Create a compatible Fock space
-    GQCP::FockSpaceProduct fock_space (15, 3, 3);
+    GQCP::ProductFockSpace fock_space (15, 3, 3);
 
     // Check if a correct constructor works
     BOOST_CHECK_NO_THROW(GQCP::FCI fci (fock_space));
@@ -44,7 +44,7 @@ BOOST_AUTO_TEST_CASE ( FCI_public_methods ) {
     auto random_hamiltonian_parameters = GQCP::constructRandomHamiltonianParameters(K);
 
     // Create a compatible Fock space
-    GQCP::FockSpaceProduct fock_space (K, 3, 3);
+    GQCP::ProductFockSpace fock_space (K, 3, 3);
 
     // Create FCI module
     GQCP::FCI random_fci (fock_space);
@@ -55,7 +55,7 @@ BOOST_AUTO_TEST_CASE ( FCI_public_methods ) {
     BOOST_CHECK_NO_THROW(random_fci.matrixVectorProduct(random_hamiltonian_parameters, x, x));
 
     // Create an incompatible Fock space
-    GQCP::FockSpaceProduct fock_space_i (K+1, 3, 3);
+    GQCP::ProductFockSpace fock_space_i (K+1, 3, 3);
 
     // Create FCI module
     GQCP::FCI random_fci_i (fock_space_i);

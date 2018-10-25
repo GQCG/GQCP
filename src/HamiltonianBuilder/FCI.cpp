@@ -28,7 +28,7 @@ namespace GQCP {
 /**
  *  Constructor given a @param hamiltonian_parameters and @param fock_space
  */
-FCI::FCI(const FockSpaceProduct& fock_space) :
+FCI::FCI(const ProductFockSpace& fock_space) :
         HamiltonianBuilder(),
         fock_space (fock_space)
 {}
