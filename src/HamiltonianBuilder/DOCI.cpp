@@ -71,8 +71,8 @@ Eigen::MatrixXd DOCI::constructHamiltonian(const HamiltonianParameters& hamilton
 
                     // The loops are p->K and q<p. So, we should normally multiply by a factor 2 (since the summand is symmetric)
                     // However, we are setting both of the symmetric indices of Hamiltonian, so no factor 2 is required
-                    result_matrix(I, J) += hamiltonian_parameters.get_g().get(p, q, p, q);
-                    result_matrix(J, I) += hamiltonian_parameters.get_g().get(p, q, p, q);
+                    result_matrix(I, J) += hamiltonian_parameters.get_g()(p, q, p, q);
+                    result_matrix(J, I) += hamiltonian_parameters.get_g()(p, q, p, q);
 
                     onv.annihilate(q);  // reset the spin string after previous creation
                     onv.create(p);  // reset the spin string after previous annihilation
@@ -123,8 +123,8 @@ Eigen::VectorXd DOCI::matrixVectorProduct(const HamiltonianParameters& hamiltoni
 
                     // The loops are p->K and q<p. So, we should normally multiply by a factor 2 (since the summand is symmetric)
                     // However, we are setting both of the symmetric indices of Hamiltonian, so no factor 2 is required
-                    matvec(I) += hamiltonian_parameters.get_g().get(p, q, p, q) * x(J);
-                    matvec(J) += hamiltonian_parameters.get_g().get(p, q, p, q) * x(I);
+                    matvec(I) += hamiltonian_parameters.get_g()(p, q, p, q) * x(J);
+                    matvec(J) += hamiltonian_parameters.get_g()(p, q, p, q) * x(I);
 
                     onv.annihilate(q);  // reset the spin string after previous creation
                     onv.create(p);  // reset the spin string after previous annihilation
@@ -158,11 +158,11 @@ Eigen::VectorXd DOCI::calculateDiagonal(const HamiltonianParameters& hamiltonian
         for (size_t e1 = 0; e1 < this->fock_space.get_N(); e1++) {  // e1 (electron 1) loops over the (number of) electrons
             size_t p = onv.get_occupied_index(e1);  // retrieve the index of the orbital the electron occupies
 
-            diagonal(I) += 2 * hamiltonian_parameters.get_h().get(p,p) + hamiltonian_parameters.get_g().get(p,p,p,p);
+            diagonal(I) += 2 * hamiltonian_parameters.get_h()(p,p) + hamiltonian_parameters.get_g()(p,p,p,p);
             for (size_t e2 = 0; e2 < e1; e2++) {  // e2 (electron 2) loops over the (number of) electrons
                 // Since we are doing a restricted summation q<p (and thus e2<e1), we should multiply by 2 since the summand argument is symmetric.
                 size_t q = onv.get_occupied_index(e2);  // retrieve the index of the orbital the electron occupies
-                diagonal(I) += 2 * (2*hamiltonian_parameters.get_g().get(p,p,q,q) - hamiltonian_parameters.get_g().get(p,q,q,p));
+                diagonal(I) += 2 * (2*hamiltonian_parameters.get_g()(p,p,q,q) - hamiltonian_parameters.get_g()(p,q,q,p));
             }  // q or e2 loop
         } // p or e1 loop
 

@@ -49,7 +49,7 @@ BOOST_AUTO_TEST_CASE ( FCIDUMP_reader ) {
     auto fcidump_ham_par = GQCP::readFCIDUMPFile("../tests/data/beh_cation_631g_caitlin.FCIDUMP");
     
     // Check if the one-electron integrals are read in correctly from a previous implementation
-    Eigen::MatrixXd h_SO = fcidump_ham_par.get_h().get_matrix_representation();
+    GQCP::OneElectronOperator h_SO = fcidump_ham_par.get_h();
     
     BOOST_CHECK(std::abs(h_SO(0,0) - (-8.34082)) < 1.0e-5);
     BOOST_CHECK(std::abs(h_SO(5,1) - 0.381418) < 1.0e-6);
@@ -59,7 +59,7 @@ BOOST_AUTO_TEST_CASE ( FCIDUMP_reader ) {
     
     
     // Check if the two-electron integrals are read in correctly from a previous implementation
-    Eigen::Tensor<double, 4> g_SO = fcidump_ham_par.get_g().get_matrix_representation();
+    GQCP::TwoElectronOperator g_SO = fcidump_ham_par.get_g();
     
     BOOST_CHECK(std::abs(g_SO(2,5,4,4) - 0.0139645) < 1.0e-6);
     BOOST_CHECK(std::abs(g_SO(2,6,3,0) - 5.16622e-18) < 1.0e-17);
@@ -84,6 +84,6 @@ BOOST_AUTO_TEST_CASE ( FCIDUMP_reader_HORTON ) {
     // Check the same reference value that HORTON does
     auto fcidump_ham_par = GQCP::readFCIDUMPFile("../tests/data/h2_psi4_horton.FCIDUMP");
     
-    Eigen::Tensor<double, 4> g_SO = fcidump_ham_par.get_g().get_matrix_representation();
+    GQCP::TwoElectronOperator g_SO = fcidump_ham_par.get_g();
     BOOST_CHECK(std::abs(g_SO(6,5,1,0) - 0.0533584656) <  1.0e-7);
 }

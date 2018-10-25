@@ -73,8 +73,8 @@ AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer(const GQCP::Molecule&
  */
 void AP1roGJacobiOrbitalOptimizer::calculateJacobiCoefficients(size_t p, size_t q, const GQCP::AP1roGGeminalCoefficients& G) {
 
-    Eigen::MatrixXd h_SO = this->ham_par.get_h().get_matrix_representation();
-    Eigen::Tensor<double, 4> g_SO = this->ham_par.get_g().get_matrix_representation();
+    GQCP::OneElectronOperator h_SO = this->ham_par.get_h();
+    GQCP::TwoElectronOperator g_SO = this->ham_par.get_g();
 
 
     // Implementation of the Jacobi rotation coefficients with disjoint cases for p and q

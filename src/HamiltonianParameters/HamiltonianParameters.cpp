@@ -168,7 +168,7 @@ void HamiltonianParameters::rotate(const GQCP::JacobiRotationParameters& jacobi_
  *  Given @param one_rdm and @param two_rdm
  *  @return the energy as a result of the contraction of the 1- and 2-RDMs with the one- and two-electron integrals
  */
-    double HamiltonianParameters::calculateEnergy(const GQCP::OneRDM& one_rdm, const GQCP::TwoRDM& two_rdm) const {
+double HamiltonianParameters::calculateEnergy(const GQCP::OneRDM& one_rdm, const GQCP::TwoRDM& two_rdm) const {
 
     double energy_by_contraction = (this->h.get_matrix_representation() * one_rdm.get_matrix_representation()).trace();
 
@@ -189,24 +189,19 @@ void HamiltonianParameters::rotate(const GQCP::JacobiRotationParameters& jacobi_
 
 
 /**
- *  Given a @param one_rdm and a @param two_rdm, @return the generalized Fock matrix F as a OneElectronOperator
+ *  Given a @param D: the 1-RDM and a @param d: the 2-RDM, @return the generalized Fock matrix F as a OneElectronOperator
  */
-GQCP::OneElectronOperator HamiltonianParameters::calculateGeneralizedFockMatrix(const GQCP::OneRDM& one_rdm, const GQCP::TwoRDM& two_rdm) const {
+GQCP::OneElectronOperator HamiltonianParameters::calculateGeneralizedFockMatrix(const GQCP::OneRDM& D, const GQCP::TwoRDM& d) const {
 
     // Check if dimensions are compatible
-    if (one_rdm.get_dim() != this->K) {
+    if (D.get_dim() != this->K) {
         throw std::invalid_argument("The 1-RDM is not compatible with the HamiltonianParameters.");
     }
 
-    if (two_rdm.get_dim() != this->K) {
+    if (d.get_dim() != this->K) {
         throw std::invalid_argument("The 2-RDM is not compatible with the HamiltonianParameters.");
     }
 
-
-    Eigen::MatrixXd h = this->h.get_matrix_representation();
-    Eigen::Tensor<double, 4> g = this->g.get_matrix_representation();
-    Eigen::MatrixXd D = one_rdm.get_matrix_representation();
-    Eigen::Tensor<double, 4> d = two_rdm.get_matrix_representation();
 
     // A KISS implementation of the calculation of the generalized Fock matrix F
     Eigen::MatrixXd F = Eigen::MatrixXd::Zero(this->K, this->K);
@@ -236,27 +231,22 @@ GQCP::OneElectronOperator HamiltonianParameters::calculateGeneralizedFockMatrix(
 
 
 /**
- *  Given a @param one_rdm and a @param two_rdm, calculate and @return the super-generalized Fock matrix W as a TwoElectronOperator
+ *  Given a @param D: the 1-RDM and a @param d: the 2-RDM, @return the super-generalized Fock matrix W as a TwoElectronOperator
  */
-GQCP::TwoElectronOperator HamiltonianParameters::calculateSuperGeneralizedFockMatrix(const GQCP::OneRDM& one_rdm, const GQCP::TwoRDM& two_rdm) const {
+GQCP::TwoElectronOperator HamiltonianParameters::calculateSuperGeneralizedFockMatrix(const GQCP::OneRDM& D, const GQCP::TwoRDM& d) const {
 
     // Check if dimensions are compatible
-    if (one_rdm.get_dim() != this->K) {
+    if (D.get_dim() != this->K) {
         throw std::invalid_argument("The 1-RDM is not compatible with the HamiltonianParameters.");
     }
 
-    if (two_rdm.get_dim() != this->K) {
+    if (d.get_dim() != this->K) {
         throw std::invalid_argument("The 2-RDM is not compatible with the HamiltonianParameters.");
     }
 
 
-    Eigen::MatrixXd h = this->h.get_matrix_representation();
-    Eigen::Tensor<double, 4> g = this->g.get_matrix_representation();
-    Eigen::MatrixXd D = one_rdm.get_matrix_representation();
-    Eigen::Tensor<double, 4> d = two_rdm.get_matrix_representation();
-
     // We have to calculate the generalized Fock matrix F first
-    Eigen::MatrixXd F = this->calculateGeneralizedFockMatrix(one_rdm, two_rdm).get_matrix_representation();
+    GQCP::OneElectronOperator F = this->calculateGeneralizedFockMatrix(D, d);
 
     // A KISS implementation of the calculation of the super generalized Fock matrix W
     Eigen::Tensor<double, 4> W (this->K, this->K, this->K, this->K);
@@ -272,12 +262,12 @@ GQCP::TwoElectronOperator HamiltonianParameters::calculateSuperGeneralizedFockMa
                     }
 
                     // One-electron part
-                    W(p,q,r,s) -= h(s,p) * D(r,q);
+                    W(p,q,r,s) -= this->h(s,p) * D(r,q);
 
                     // Two-electron part
                     for (size_t t = 0; t < this->K; t++) {
                         for (size_t u = 0; u < this->K; u++) {
-                            W(p,q,r,s) += g(s,t,q,u) * d(r,t,p,u) - g(s,t,u,p) * d(r,t,u,q) - g(s,p,t,u) * d(r,q,t,u);
+                            W(p,q,r,s) += this->g(s,t,q,u) * d(r,t,p,u) - this->g(s,t,u,p) * d(r,t,u,q) - this->g(s,p,t,u) * d(r,q,t,u);
                         }
                     }  // two-electron part
                 }

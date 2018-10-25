@@ -39,9 +39,12 @@ public:
     explicit TwoRDM(const Eigen::Tensor<double, 4>& d);
 
 
+    // OPERATORS
+    double operator()(size_t p, size_t q, size_t r, size_t s) const { return this->d(p,q,r,s); }
+
+
     // GETTERS
     Eigen::Tensor<double, 4> get_matrix_representation() const { return this->d; }
-    double get(size_t p, size_t q, size_t r, size_t s) const { return this->d(p, q, r, s); }
 
 
     // PUBLIC METHODS
