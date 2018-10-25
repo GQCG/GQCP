@@ -20,6 +20,7 @@
 
 #include "CISolver/CISolver.hpp"
 #include "HamiltonianBuilder/Hubbard.hpp"
+#include "HamiltonianBuilder/FCI.hpp"
 #include "HamiltonianParameters/HamiltonianParameters_constructors.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
 
@@ -28,137 +29,67 @@
 
 
 
+BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_davidson ) {
 
-BOOST_AUTO_TEST_CASE ( Hubbard_h2_sto3g_dense_vs_Davidson ) {
+    // Check if FCI and Hubbard produce the same results
 
-    // Check if the dense Hubbard energy is equal to the Davidson (with matvec) Hubbard energy
+    // Create the Hamiltonian parameters for the triagonal of a Hubbard lattice.
+    Eigen::VectorXd triagonal_test = Eigen::VectorXd::Random(10);
 
-    // Create a Molecule and an AOBasis
-    GQCP::Molecule h2 ("../tests/data/h2_cristina.xyz");
-    auto ao_basis = std::make_shared<GQCP::AOBasis>(h2, "STO-3G");
-
-    // Create the molecular Hamiltonian parameters for this molecule and basis
-    auto mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
+    size_t N = 2;
+    auto mol_ham_par = GQCP::hubbardTriagonalLattice(triagonal_test);
     auto K = mol_ham_par.get_K();
 
-    // Create a plain RHF SCF solver and solve the SCF equations
-    GQCP::PlainRHFSCFSolver plain_scf_solver (mol_ham_par, h2);
-    plain_scf_solver.solve();
-    auto rhf = plain_scf_solver.get_solution();
+    GQCP::FockSpaceProduct fock_space (K, N, N);  // dim = 36
 
-    // Transform the ham_par
-    mol_ham_par.transform(rhf.get_C());
+    // Create the Hubbard and FCI modules
+    GQCP::Hubbard hubbard (fock_space);
+    GQCP::FCI fci (fock_space);
 
-    GQCP::FockSpaceProduct fock_space (K, h2.get_N()/2, h2.get_N()/2);  // dim = 2
+    GQCP::CISolver solver1 (hubbard, mol_ham_par);
+    GQCP::CISolver solver2 (fci, mol_ham_par);
 
-    // Create the Hubbard module
-    GQCP::Hubbard Hubbard (fock_space);
-    GQCP::CISolver ci_solver (Hubbard, mol_ham_par);
+    // Solve with Davidson
+    Eigen::VectorXd initial_guess = fock_space.HartreeFockExpansion();
+    numopt::eigenproblem::DavidsonSolverOptions solver_options (initial_guess);
+    solver1.solve(solver_options);
+    solver2.solve(solver_options);
 
-    // Solve Davidson
-    Eigen::VectorXd initial_g = fock_space.HartreeFockExpansion();
-    numopt::eigenproblem::DavidsonSolverOptions davidson_solver_options (initial_g);
-    ci_solver.solve(davidson_solver_options);
+    auto fci_energy = solver2.get_eigenpair().get_eigenvalue();
+    auto hubbard_energy = solver1.get_eigenpair().get_eigenvalue();
 
-    // Retrieve the eigenvalues
-    auto Hubbard_davidson_eigenvalue = ci_solver.get_eigenpair().get_eigenvalue();
-
-    // Solve Dense
-    numopt::eigenproblem::DenseSolverOptions dense_solver_options;
-    ci_solver.solve(dense_solver_options);
-
-    // Retrieve the eigenvalues
-    auto Hubbard_dense_eigenvalue = ci_solver.get_eigenpair().get_eigenvalue();
-
-    BOOST_CHECK(std::abs(Hubbard_dense_eigenvalue - Hubbard_davidson_eigenvalue) < 1.0e-08);
+    BOOST_CHECK(std::abs(fci_energy - (hubbard_energy)) < 1.0e-06);
 }
 
 
-BOOST_AUTO_TEST_CASE ( Hubbard_H2_6_31Gxx_dense_vs_Davidson ) {
+BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_davidson_large ) {
 
-    // Check if the dense Hubbard energy is equal to the Davidson (with matvec) Hubbard energy
+    // Check if FCI and Hubbard produce the same results
 
-    // Create a Molecule and an AOBasis
-    GQCP::Molecule h2 ("../tests/data/h2_cristina.xyz");
-    auto ao_basis = std::make_shared<GQCP::AOBasis>(h2, "6-31G**");
+    // Create the Hamiltonian parameters for the triagonal of a Hubbard lattice.
+    Eigen::VectorXd triagonal_test = Eigen::VectorXd::Random(21);
 
-    // Create the molecular Hamiltonian parameters for this molecule and basis
-    auto mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
+    size_t N = 3;
+    auto mol_ham_par = GQCP::hubbardTriagonalLattice(triagonal_test);
     auto K = mol_ham_par.get_K();
 
-    // Create a plain RHF SCF solver and solve the SCF equations
-    GQCP::PlainRHFSCFSolver plain_scf_solver (mol_ham_par, h2);
-    plain_scf_solver.solve();
-    auto rhf = plain_scf_solver.get_solution();
+    GQCP::FockSpaceProduct fock_space (K, N, N);  // dim = 400
 
-    // Transform the ham_par
-    mol_ham_par.transform(rhf.get_C());
+    // Create the Hubbard and FCI modules
+    GQCP::Hubbard hubbard (fock_space);
+    GQCP::FCI fci (fock_space);
 
-    GQCP::FockSpaceProduct fock_space (K, h2.get_N()/2, h2.get_N()/2);  // dim = 100
+    GQCP::CISolver solver1 (hubbard, mol_ham_par);
+    GQCP::CISolver solver2 (fci, mol_ham_par);
 
-    // Create the Hubbard module
-    GQCP::Hubbard Hubbard (fock_space);
-    GQCP::CISolver ci_solver (Hubbard, mol_ham_par);
+    // Solve with Davidson
+    Eigen::VectorXd initial_guess = fock_space.HartreeFockExpansion();
+    numopt::eigenproblem::DavidsonSolverOptions solver_options (initial_guess);
+    solver1.solve(solver_options);
+    solver2.solve(solver_options);
 
-    // Solve Davidson
-    Eigen::VectorXd initial_g = fock_space.HartreeFockExpansion();
-    numopt::eigenproblem::DavidsonSolverOptions davidson_solver_options (initial_g);
-    ci_solver.solve(davidson_solver_options);
+    auto fci_energy = solver2.get_eigenpair().get_eigenvalue();
+    auto hubbard_energy = solver1.get_eigenpair().get_eigenvalue();
 
-    // Retrieve the eigenvalues
-    auto Hubbard_davidson_eigenvalue = ci_solver.get_eigenpair().get_eigenvalue();
-
-    // Solve Dense
-    numopt::eigenproblem::DenseSolverOptions dense_solver_options;
-    ci_solver.solve(dense_solver_options);
-
-    // Retrieve the eigenvalues
-    auto Hubbard_dense_eigenvalue = ci_solver.get_eigenpair().get_eigenvalue();
-
-    BOOST_CHECK(std::abs(Hubbard_dense_eigenvalue - Hubbard_davidson_eigenvalue) < 1.0e-08);
-}
-
-
-BOOST_AUTO_TEST_CASE ( Hubbard_H2O_STO_3G_dense_vs_Davidson ) {
-
-    // Check if the dense Hubbard energy is equal to the Davidson (with matvec) Hubbard energy
-
-    // Create a Molecule and an AOBasis
-    GQCP::Molecule h2o ("../tests/data/h2o.xyz");
-    auto ao_basis = std::make_shared<GQCP::AOBasis>(h2o, "STO-3G");
-
-    // Create the molecular Hamiltonian parameters for this molecule and basis
-    auto mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
-    auto K = mol_ham_par.get_K();
-
-    // Create a plain RHF SCF solver and solve the SCF equations
-    GQCP::PlainRHFSCFSolver plain_scf_solver (mol_ham_par, h2o);
-    plain_scf_solver.solve();
-    auto rhf = plain_scf_solver.get_solution();
-
-    // Transform the ham_par
-    mol_ham_par.transform(rhf.get_C());
-
-    GQCP::FockSpaceProduct fock_space (K, h2o.get_N()/2, h2o.get_N()/2);  // dim = 441
-
-    // Create the Hubbard module
-    GQCP::Hubbard Hubbard (fock_space);
-    GQCP::CISolver ci_solver (Hubbard, mol_ham_par);
-
-    // Solve Davidson
-    Eigen::VectorXd initial_g = fock_space.HartreeFockExpansion();
-    numopt::eigenproblem::DavidsonSolverOptions davidson_solver_options (initial_g);
-    ci_solver.solve(davidson_solver_options);
-
-    // Retrieve the eigenvalues
-    auto Hubbard_davidson_eigenvalue = ci_solver.get_eigenpair().get_eigenvalue();
-
-    // Solve Dense
-    numopt::eigenproblem::DenseSolverOptions dense_solver_options;
-    ci_solver.solve(dense_solver_options);
-
-    // Retrieve the eigenvalues
-    auto Hubbard_dense_eigenvalue = ci_solver.get_eigenpair().get_eigenvalue();
-
-    BOOST_CHECK(std::abs(Hubbard_dense_eigenvalue - Hubbard_davidson_eigenvalue) < 1.0e-08);
+    BOOST_CHECK(std::abs(fci_energy - (hubbard_energy)) < 1.0e-06);
 }

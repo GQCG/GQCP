@@ -29,6 +29,7 @@ namespace GQCP {
 
 using PassToMethod = std::function<void (size_t I, size_t J, double value)>;
 
+
 /**
  *  Hubbard builds a hamiltonian matrix
  *  based on a wavefunction containing all configurations pertaining to a fixed number of alpha and beta electrons.
@@ -49,11 +50,11 @@ private:
      *  Additionally stores this evaluation in either the matvec or matrix depending on passed 
      *  @param fock_space_target refers to which spin function will be evaluated
      *  @param fock_space_fixed refers to which spin function is not evaluated
-     *  @param target_is_alpha refers to whether or not alpha is the evaluated spin function
+     *  @param target_is_major refers to whether or not alpha is the evaluated spin function
      *  @param hamiltonian_parameters contains the data of the operators
      *  @param method refers to which method is used (matvec or Hamliltonian matrix)
      */
-    void oneOperatorModule(FockSpace& fock_space_target, FockSpace& fock_space_fixed, bool target_is_alpha, const HamiltonianParameters& hamiltonian_parameters, const PassToMethod& method);
+    void oneOperatorModule(FockSpace& fock_space_target, FockSpace& fock_space_fixed, bool target_is_major, const HamiltonianParameters& hamiltonian_parameters, const PassToMethod& method);
 
 
 public:
@@ -90,6 +91,17 @@ public:
      */
     BaseFockSpace* get_fock_space() override { return &fock_space; }
 };
+
+
+//  RELEVANT (non-class) METHODS
+/**
+ *  Generates a upper triagonal (vector) for a hubbard lattice.
+ *  @param hopping_matrix allowed interaction between sites
+ *  @param t one electron hopping interaction parameter
+ *  @param U two electron doubly occupied interaction parameter
+ *  @return the triagonal of the matrix resulting in the recominbation of U and t with the hopping matrix.
+ */
+Eigen::VectorXd genrateUpperTriagonal(Eigen::MatrixXd hopping_matrix, double t, double U);
 
 
 }  // namespace GQCP

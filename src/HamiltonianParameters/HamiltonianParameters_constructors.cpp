@@ -18,7 +18,7 @@
 #include "HamiltonianParameters/HamiltonianParameters_constructors.hpp"
 
 #include "LibintCommunicator.hpp"
-
+#include <math.h>       /* sqrt */
 
 namespace GQCP {
 
@@ -199,6 +199,54 @@ GQCP::HamiltonianParameters readFCIDUMPFile(const std::string& fcidump_filename)
     // Make the ingredients to construct HamiltonianParameters
     std::shared_ptr<GQCP::AOBasis> ao_basis;  // nullptr
     GQCP::OneElectronOperator S (Eigen::MatrixXd::Zero(K, K));
+    GQCP::OneElectronOperator H_core (h_SO);
+    GQCP::TwoElectronOperator G (g_SO);
+    Eigen::MatrixXd C = Eigen::MatrixXd::Identity(K, K);
+
+    return GQCP::HamiltonianParameters(ao_basis, S, H_core, G, C);
+}
+
+
+/**
+ *  @return HamiltonianParameters corresponding to the contents of an @param upperTriagonal
+ */
+GQCP::HamiltonianParameters hubbardTriagonalLattice(const Eigen::VectorXd& upperTriagonal) {
+
+    // The dimension of matrix K is related to the length of the triagonal vector :
+    // K (K + 1) = 2*X
+    // K = (sqrt(1+4X) - 1)/2
+
+    size_t X = upperTriagonal.rows();
+    size_t K = (static_cast<size_t>(sqrt(1 + 8*X) - 1))/2;
+
+
+
+    if (K * (K+1) != 2*X) {
+        throw std::invalid_argument("Passed vector was not the triagonal of a square matrix");
+    }
+
+    Eigen::MatrixXd h_SO = Eigen::MatrixXd::Zero(K, K);
+    Eigen::Tensor<double, 4> g_SO (K, K, K, K);
+    g_SO.setZero();
+
+    size_t triagonal_index = 0;
+    for (size_t i = 0; i < K; i++) {
+        for (size_t j = i; j < K; j++) {
+
+            if (i == j){
+                g_SO(i,i,i,i) = upperTriagonal(triagonal_index);
+            } else {
+                h_SO (i,j) = upperTriagonal(triagonal_index);
+                h_SO (j,i) = upperTriagonal(triagonal_index);
+            }
+            triagonal_index++;
+        }
+    }
+
+
+    // Make the ingredients to construct HamiltonianParameters
+    std::shared_ptr<GQCP::AOBasis> ao_basis;  // nullptr
+    GQCP::OneElectronOperator S (Eigen::MatrixXd::Identity(K, K));
     GQCP::OneElectronOperator H_core (h_SO);
     GQCP::TwoElectronOperator G (g_SO);
     Eigen::MatrixXd C = Eigen::MatrixXd::Identity(K, K);

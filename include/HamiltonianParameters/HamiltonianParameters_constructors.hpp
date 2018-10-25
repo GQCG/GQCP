@@ -55,6 +55,12 @@ GQCP::HamiltonianParameters constructRandomHamiltonianParameters(size_t K);
 GQCP::HamiltonianParameters readFCIDUMPFile(const std::string& fcidump_file);
 
 
+/**
+ *  @return HamiltonianParameters corresponding to the contents of an @param upperTriagonal
+ */
+GQCP::HamiltonianParameters hubbardTriagonalLattice(const Eigen::VectorXd& upperTriagonal);
+
+
 }  // namespace GQCP
 
 
