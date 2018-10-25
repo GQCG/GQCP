@@ -29,42 +29,6 @@
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
 
 
-
-BOOST_AUTO_TEST_CASE ( test_random_rotation_diagonal_dense_Hubbard ) {
-
-    // Check if a random rotation has no effect on the sum of the diagonal elements
-
-
-    // Create the Hamiltonian parameters for the triagonal of a Hubbard lattice.
-    Eigen::VectorXd triagonal_test(6);
-    triagonal_test << 1, 2, 3, 4, 5, 6;
-
-    size_t N = 2;
-    auto mol_ham_par = GQCP::hubbardTriagonalLattice(triagonal_test);
-    auto K = mol_ham_par.get_K();
-
-
-    GQCP::ProductFockSpace fock_space (K, N, N);  // dim = 9
-
-    // Create the Hubbard module
-    GQCP::Hubbard hubbard (fock_space);
-
-    Eigen::VectorXd diagonal1 = hubbard.calculateDiagonal(mol_ham_par);
-
-    // Get a random unitary matrix by diagonalizing a random symmetric matrix
-    Eigen::MatrixXd A_random = Eigen::MatrixXd::Random(K, K);
-    Eigen::MatrixXd A_symmetric = A_random + A_random.transpose();
-    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> unitary_solver (A_symmetric);
-    Eigen::MatrixXd U_random = unitary_solver.eigenvectors();
-
-    // Rotate the hampar using the random unitary matrix
-    mol_ham_par.rotate(U_random);
-
-    Eigen::VectorXd diagonal2 = hubbard.calculateDiagonal(mol_ham_par);
-
-    BOOST_CHECK(std::abs(diagonal1.sum() - diagonal2.sum()) < 1.0e-10);
-}
-
 BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_dense ) {
 
     // Check if FCI and Hubbard produce the same results
@@ -184,7 +148,7 @@ BOOST_AUTO_TEST_CASE ( six_site_ring_ward ) {
     double t = 1.0;
 
     // Set the HubbardClass parameters
-    size_t N = 6;
+    size_t N = 3;
 
     std::vector<double> U_list {0.0, 1.0, 1.5, 3.5, 6.5, 9, 10};
 
