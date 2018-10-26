@@ -252,7 +252,7 @@ Eigen::VectorXd Hubbard::calculateDiagonal(const HamiltonianParameters &hamilton
  */
 
 /**
- *  Generates the upper triagonal (vector) for a hubbard lattice.
+ *  Generates the upper triagonal (vector) for a Hubbard lattice, specified by the @param hopping_matrix
  *  @param hopping_matrix allowed interaction between sites
  *  @param t one electron hopping interaction parameter
  *  @param U two electron doubly occupied interaction parameter
