@@ -58,6 +58,14 @@ Eigen::VectorXd BaseFockSpace::HartreeFockExpansion() {
     return expansion;
 }
 
+/**
+ *  Creates a random normalized coefficient expansion, uniformly distributed in [-1, 1]
+ */
+Eigen::VectorXd BaseFockSpace::randomExpansion() {
+    Eigen::VectorXd random = Eigen::VectorXd::Random(this->dim);
+    random.normalize();
+    return random;
+}
 
 
 }  // namespace GQCP
