@@ -94,7 +94,7 @@ BOOST_AUTO_TEST_CASE ( hubbard_upperTriagonal ) {
     
     Eigen::VectorXd triagonal_test(6);
     triagonal_test << 1, 2, 3, 4, 5, 6;
-    auto hubbard_ham_par = GQCP::hubbardTriagonalLattice(triagonal_test);
+    auto hubbard_ham_par = GQCP::constructHubbardParameters(triagonal_test);
 
     Eigen::MatrixXd h_ref (3, 3);
     h_ref << 0, 2, 3,
@@ -113,5 +113,5 @@ BOOST_AUTO_TEST_CASE ( hubbard_upperTriagonal ) {
     Eigen::VectorXd triagonal_test_faulty(5);
     triagonal_test_faulty << 1, 2, 3, 4, 5;
     
-    BOOST_CHECK_THROW(GQCP::hubbardTriagonalLattice(triagonal_test_faulty), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::constructHubbardParameters(triagonal_test_faulty), std::invalid_argument);
 }

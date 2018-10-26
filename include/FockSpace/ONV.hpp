@@ -179,7 +179,7 @@ public:
     /**
      *  @return the positions of the bits (from right to left) that are occupied in this, but unoccupied in @param other
      */
-    std::vector<size_t> findOccupiedDifferences(const ONV& other) const;
+    std::vector<size_t> findDifferentOccupations(const ONV &other) const;
 
 
     /**

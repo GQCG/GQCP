@@ -45,13 +45,7 @@ BOOST_AUTO_TEST_CASE ( Hubbard_public_methods ) {
 
     // Create random HamiltonianParameters from One- and TwoElectronOperators (and a transformation matrix) with compatible dimensions
     size_t K = ao_basis->get_number_of_basis_functions();
-    GQCP::OneElectronOperator S (Eigen::MatrixXd::Random(K, K));
-    GQCP::OneElectronOperator H_core (Eigen::MatrixXd::Random(K, K));
-    Eigen::Tensor<double, 4> g_tensor (K, K, K, K);
-    g_tensor.setRandom();
-    GQCP::TwoElectronOperator g (g_tensor);
-    Eigen::MatrixXd C = Eigen::MatrixXd::Random(K, K);
-    GQCP::HamiltonianParameters random_hamiltonian_parameters (ao_basis, S, H_core, g, C);
+    GQCP::HamiltonianParameters random_hamiltonian_parameters = constructRandomHamiltonianParameters(K);
 
     // Create a compatible Fock space
     GQCP::ProductFockSpace fock_space (K, 3, 3);
@@ -76,13 +70,13 @@ BOOST_AUTO_TEST_CASE ( Hubbard_public_methods ) {
 
 BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI ) {
 
-    // Check if FCI and Hubbard produce the same results
+    // Check if FCI and Hubbard produce the Hamiltonian matrix for Hubbard Hamiltonian parameters
 
     // Create the Hamiltonian parameters for the triagonal of a Hubbard lattice.
     Eigen::VectorXd triagonal_test = Eigen::VectorXd::Random(10);
 
     size_t N = 2;
-    auto mol_ham_par = GQCP::hubbardTriagonalLattice(triagonal_test);
+    auto mol_ham_par = GQCP::constructHubbardParameters(triagonal_test);
     auto K = mol_ham_par.get_K();
 
 
@@ -101,13 +95,13 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI ) {
 
 BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_large ) {
 
-    // Check if FCI and Hubbard produce the same results
+    // Check if FCI and Hubbard produce the Hamiltonian matrix for Hubbard Hamiltonian parameters
 
     // Create the Hamiltonian parameters for the triagonal of a Hubbard lattice.
     Eigen::VectorXd triagonal_test = Eigen::VectorXd::Random(21);
 
     size_t N = 3;
-    auto mol_ham_par = GQCP::hubbardTriagonalLattice(triagonal_test);
+    auto mol_ham_par = GQCP::constructHubbardParameters(triagonal_test);
     auto K = mol_ham_par.get_K();
 
 
@@ -126,13 +120,13 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_large ) {
 
 BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_matvec ) {
 
-    // Check if FCI and Hubbard produce the same results
+    // Check if FCI and Hubbard have the same matvec for Hubbard Hamiltonian parameters
 
     // Create the Hamiltonian parameters for the triagonal of a Hubbard lattice.
     Eigen::VectorXd triagonal_test = Eigen::VectorXd::Random(10);
 
     size_t N = 2;
-    auto mol_ham_par = GQCP::hubbardTriagonalLattice(triagonal_test);
+    auto mol_ham_par = GQCP::constructHubbardParameters(triagonal_test);
     auto K = mol_ham_par.get_K();
 
 
@@ -154,13 +148,13 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_matvec ) {
 
 BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_large_matvec ) {
 
-    // Check if FCI and Hubbard produce the same results
+    // Check if FCI and Hubbard have the same matvec for Hubbard Hamiltonian parameters
 
     // Create the Hamiltonian parameters for the triagonal of a Hubbard lattice.
     Eigen::VectorXd triagonal_test = Eigen::VectorXd::Random(21);
 
     size_t N = 3;
-    auto mol_ham_par = GQCP::hubbardTriagonalLattice(triagonal_test);
+    auto mol_ham_par = GQCP::constructHubbardParameters(triagonal_test);
     auto K = mol_ham_par.get_K();
 
 

@@ -18,7 +18,7 @@
 #include "HamiltonianParameters/HamiltonianParameters_constructors.hpp"
 
 #include "LibintCommunicator.hpp"
-#include <math.h>       /* sqrt */
+#include <math.h>       // sqrt
 
 namespace GQCP {
 
@@ -208,15 +208,15 @@ GQCP::HamiltonianParameters readFCIDUMPFile(const std::string& fcidump_filename)
 
 
 /**
- *  @return HamiltonianParameters corresponding to the contents of an @param upperTriagonal
+ *  @return HamiltonianParameters corresponding to the contents of an @param upper_triagonal that specifies the Hubbard lattice interactions
  */
-GQCP::HamiltonianParameters hubbardTriagonalLattice(const Eigen::VectorXd& upperTriagonal) {
+GQCP::HamiltonianParameters constructHubbardParameters(const Eigen::VectorXd &upper_triagonal) {
 
     // The dimension of matrix K is related to the length of the triagonal vector :
     // K (K + 1) = 2*X
     // K = (sqrt(1+4X) - 1)/2
 
-    size_t X = upperTriagonal.rows();
+    size_t X = upper_triagonal.rows();
     size_t K = (static_cast<size_t>(sqrt(1 + 8*X) - 1))/2;
 
 
@@ -234,10 +234,10 @@ GQCP::HamiltonianParameters hubbardTriagonalLattice(const Eigen::VectorXd& upper
         for (size_t j = i; j < K; j++) {
 
             if (i == j){
-                g_SO(i,i,i,i) = upperTriagonal(triagonal_index);
+                g_SO(i,i,i,i) = upper_triagonal(triagonal_index);
             } else {
-                h_SO (i,j) = upperTriagonal(triagonal_index);
-                h_SO (j,i) = upperTriagonal(triagonal_index);
+                h_SO (i,j) = upper_triagonal(triagonal_index);
+                h_SO (j,i) = upper_triagonal(triagonal_index);
             }
             triagonal_index++;
         }

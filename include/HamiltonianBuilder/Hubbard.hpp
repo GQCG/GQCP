@@ -32,11 +32,11 @@ using PassToMethod = std::function<void (size_t I, size_t J, double value)>;
 
 
 /**
- *  Hubbard builds a hamiltonian matrix
+ *  Hubbard builds a Hamiltonian matrix
  *  based on a wavefunction containing all configurations pertaining to a fixed number of alpha and beta electrons.
  *  This means that a total ONV would be a combination of two ONVs, one from an alpha and one from a beta Fock space.
  *
- *  Hubbard distinguishes itself from full configuration interaction by using a simplified hamiltonian model
+ *  Hubbard distinguishes itself from full configuration interaction by explicitly implementing simplified Hamiltonian parameters
  *  For the two electron operators only on-site (doubly occupied in-place) interactions are considered
  *  For the one electron operators only inter-site interactions are considered
  */
@@ -48,7 +48,7 @@ private:
     // PRIVATE METHODS
     /**
      *  Private member that evaluates either the one-electron operators for alpha or beta given the parameters.
-     *  Additionally stores this evaluation in either the matvec or matrix depending on passed 
+     *  Additionally stores this evaluation in either the matvec or matrix depending on the method passed
      *  @param fock_space_target refers to which spin function will be evaluated
      *  @param fock_space_fixed refers to which spin function is not evaluated
      *  @param target_is_major refers to whether or not the evaluated component is major
@@ -88,7 +88,7 @@ public:
     Eigen::VectorXd calculateDiagonal(const HamiltonianParameters& hamiltonian_parameters) override;
 
     /**
-     *  @return the fock space of the HamiltonianBuilder
+     *  @return the Fock space of the HamiltonianBuilder
      */
     BaseFockSpace* get_fock_space() override { return &fock_space; }
 };
@@ -96,13 +96,13 @@ public:
 
 //  RELEVANT (non-class) METHODS
 /**
- *  Generates the upper triagonal (vector) for a hubbard lattice.
+ *  Generates the upper triagonal (vector) for a Hubbard lattice, specified by the @param hopping_matrix
  *  @param hopping_matrix allowed interaction between sites
  *  @param t one electron hopping interaction parameter
  *  @param U two electron doubly occupied interaction parameter
  *  @return the triagonal of the matrix resulting in the recombination of U and t with the hopping matrix.
  */
-Eigen::VectorXd genrateUpperTriagonal(Eigen::MatrixXd hopping_matrix, double t, double U);
+Eigen::VectorXd generateUpperTriagonal(Eigen::MatrixXd hopping_matrix, double t, double U);
 
 
 }  // namespace GQCP

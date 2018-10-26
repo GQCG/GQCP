@@ -266,7 +266,7 @@ size_t ONV::countNumberOfDifferences(const ONV& other) const {
 /**
  *  @return the positions of the bits (from right to left) that are occupied in this, but unoccupied in @param other
  */
-std::vector<size_t> ONV::findOccupiedDifferences(const ONV& other) const {
+std::vector<size_t> ONV::findDifferentOccupations(const ONV &other) const {
 
     size_t differences = this->unsigned_representation ^ other.unsigned_representation;
     size_t occupied_differences = differences & this->unsigned_representation;  // this holds all indices occupied in this, but unoccupied in other
@@ -290,7 +290,7 @@ std::vector<size_t> ONV::findOccupiedDifferences(const ONV& other) const {
 /**
  *  @return the positions of the bits (from right to left) that are occupied in @this and occupied in @param other
  */
-Vectoru ONV::findMatchingOccupations(const ONV& other) const {
+std::vector<size_t> ONV::findMatchingOccupations(const ONV& other) const {
 
     size_t matches = this->unsigned_representation & other.unsigned_representation;
     size_t number_of_occupied_matches = __builtin_popcountl(matches);

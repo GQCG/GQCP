@@ -31,13 +31,13 @@
 
 BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_dense ) {
 
-    // Check if FCI and Hubbard produce the same results
+    // Check if FCI and Hubbard produce the same results for Hubbard Hamiltonian parameters
 
     // Create the Hamiltonian parameters for the triagonal of a Hubbard lattice.
     Eigen::VectorXd triagonal_test = Eigen::VectorXd::Random(10);
 
     size_t N = 2;
-    auto mol_ham_par = GQCP::hubbardTriagonalLattice(triagonal_test);
+    auto mol_ham_par = GQCP::constructHubbardParameters(triagonal_test);
     auto K = mol_ham_par.get_K();
 
 
@@ -63,13 +63,13 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_dense ) {
 
 BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_dense_large ) {
 
-    // Check if FCI and Hubbard produce the same results
+    // Check if FCI and Hubbard produce the same results for Hubbard Hamiltonian parameters
 
     // Create the Hamiltonian parameters for the triagonal of a Hubbard lattice.
     Eigen::VectorXd triagonal_test = Eigen::VectorXd::Random(21);
 
     size_t N = 3;
-    auto mol_ham_par = GQCP::hubbardTriagonalLattice(triagonal_test);
+    auto mol_ham_par = GQCP::constructHubbardParameters(triagonal_test);
     auto K = mol_ham_par.get_K();
 
 
@@ -120,8 +120,8 @@ BOOST_AUTO_TEST_CASE ( four_site_chain_ward ) {
     for (size_t i = 0; i < 7; i++) {
 
         GQCP::Hubbard hubbard (fock_space);
-        Eigen::VectorXd triagonal = GQCP::genrateUpperTriagonal(A, t, U_list[i]);
-        auto ham_par = GQCP::hubbardTriagonalLattice(triagonal);
+        Eigen::VectorXd triagonal = GQCP::generateUpperTriagonal(A, t, U_list[i]);
+        auto ham_par = GQCP::constructHubbardParameters(triagonal);
 
         GQCP::CISolver solver1 (hubbard, ham_par);
         numopt::eigenproblem::DenseSolverOptions dense_solver_options;
@@ -164,8 +164,8 @@ BOOST_AUTO_TEST_CASE ( six_site_ring_ward ) {
     for (size_t i = 0; i < 7; i++) {
 
         GQCP::Hubbard hubbard (fock_space);
-        Eigen::VectorXd triagonal = GQCP::genrateUpperTriagonal(A, t, U_list[i]);
-        auto ham_par = GQCP::hubbardTriagonalLattice(triagonal);
+        Eigen::VectorXd triagonal = GQCP::generateUpperTriagonal(A, t, U_list[i]);
+        auto ham_par = GQCP::constructHubbardParameters(triagonal);
 
         GQCP::CISolver solver1 (hubbard, ham_par);
         numopt::eigenproblem::DenseSolverOptions dense_solver_options;

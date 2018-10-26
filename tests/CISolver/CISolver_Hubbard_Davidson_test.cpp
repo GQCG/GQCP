@@ -31,13 +31,13 @@
 
 BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_davidson ) {
 
-    // Check if FCI and Hubbard produce the same results
+    // Check if FCI and Hubbard produce the same results for Hubbard Hamiltonian parameters
 
     // Create the Hamiltonian parameters for the triagonal of a Hubbard lattice.
     Eigen::VectorXd triagonal_test = Eigen::VectorXd::Random(10);
 
     size_t N = 2;
-    auto mol_ham_par = GQCP::hubbardTriagonalLattice(triagonal_test);
+    auto mol_ham_par = GQCP::constructHubbardParameters(triagonal_test);
     auto K = mol_ham_par.get_K();
 
     GQCP::ProductFockSpace fock_space (K, N, N);  // dim = 36
@@ -64,13 +64,13 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_davidson ) {
 
 BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_davidson_large ) {
 
-    // Check if FCI and Hubbard produce the same results
+    // Check if FCI and Hubbard produce the same results for Hubbard Hamiltonian parameters
 
     // Create the Hamiltonian parameters for the triagonal of a Hubbard lattice.
     Eigen::VectorXd triagonal_test = Eigen::VectorXd::Random(21);
 
     size_t N = 3;
-    auto mol_ham_par = GQCP::hubbardTriagonalLattice(triagonal_test);
+    auto mol_ham_par = GQCP::constructHubbardParameters(triagonal_test);
     auto K = mol_ham_par.get_K();
 
     GQCP::ProductFockSpace fock_space (K, N, N);  // dim = 400

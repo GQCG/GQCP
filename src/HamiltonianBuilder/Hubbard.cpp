@@ -26,7 +26,7 @@ namespace GQCP {
 
 /**
  *  Private member that evaluates either the one-electron operators for alpha or beta given the parameters.
- *  Additionally stores this evaluation in either the matvec or matrix depending on passed
+ *  Additionally stores this evaluation in either the matvec or matrix depending on the method passed
  *  @param fock_space_target refers to which spin function will be evaluated
  *  @param fock_space_fixed refers to which spin function is not evaluated
  *  @param target_is_major refers to whether or not the evaluated component is major
@@ -43,7 +43,7 @@ void Hubbard::oneOperatorModule(FockSpace& fock_space_target, FockSpace& fock_sp
     size_t fixed_intervals;
     size_t target_interval;
 
-    // if the target is major, then the interval for the non-target (or fixed component) is 1
+    // If the target is major, then the interval for the non-target (or fixed component) is 1
     // while the the target (major) intervals after each fixed (minor) iteration, thus at the dimension of the fixed component.
     if (target_is_major) {
         fixed_intervals = 1;
@@ -135,7 +135,7 @@ void Hubbard::oneOperatorModule(FockSpace& fock_space_target, FockSpace& fock_sp
 /**
  *  Constructor given a @param hamiltonian_parameters and @param fock_space
  */
-Hubbard::Hubbard(const ProductFockSpace &fock_space) :
+Hubbard::Hubbard(const ProductFockSpace& fock_space) :
         HamiltonianBuilder(),
         fock_space(fock_space) {}
 
@@ -258,9 +258,9 @@ Eigen::VectorXd Hubbard::calculateDiagonal(const HamiltonianParameters &hamilton
  *  @param U two electron doubly occupied interaction parameter
  *  @return the triagonal of the matrix resulting in the recombination of U and t with the hopping matrix.
  */
-Eigen::VectorXd genrateUpperTriagonal(Eigen::MatrixXd matrix, double t, double U) {
+Eigen::VectorXd generateUpperTriagonal(Eigen::MatrixXd matrix, double t, double U) {
 
-    // Check if the one-electron integrals are represented as a square matrix
+    // Check if the hopping matrix is represented as a square matrix
     if (matrix.cols() != matrix.rows()) {
         throw std::invalid_argument("Hopping matrix has to be represented as a square matrix.");
     }
@@ -272,7 +272,7 @@ Eigen::VectorXd genrateUpperTriagonal(Eigen::MatrixXd matrix, double t, double U
     size_t index = 0;
     for (size_t i = 0; i < K; i++) {
         for (size_t j = i; j < K; j++) {
-            if (i == j){
+            if (i == j) {
                 triagonal(index) = U;
             } else {
                 triagonal(index) = t * matrix(i,j);

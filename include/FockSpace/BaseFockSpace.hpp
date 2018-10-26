@@ -68,7 +68,7 @@ public:
     Eigen::VectorXd HartreeFockExpansion();
 
     /**
-     *  Creates a random coefficient expansion (in the Fock space)
+     *  Creates a random normalized coefficient expansion, uniformly distributed in [-1, 1]
      */
     Eigen::VectorXd randomExpansion();
 };
