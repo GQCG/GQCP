@@ -43,6 +43,9 @@ include(${CMAKE_SOURCE_DIR}/cmake/FindPackages.cmake)
 add_subdirectory(${PROJECT_SOURCE_FOLDER})
 
 
+# Add the sources for the executables
+add_subdirectory(${PROJECT_EXECUTABLES_FOLDER})
+
 
 # Set up testing
 enable_testing()
