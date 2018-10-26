@@ -45,7 +45,7 @@ BOOST_AUTO_TEST_CASE ( Hubbard_public_methods ) {
 
     // Create random HamiltonianParameters from One- and TwoElectronOperators (and a transformation matrix) with compatible dimensions
     size_t K = ao_basis->get_number_of_basis_functions();
-    GQCP::HamiltonianParameters random_hamiltonian_parameters = constructRandomHamiltonianParameters(K);
+    GQCP::HamiltonianParameters random_hamiltonian_parameters = GQCP::constructRandomHamiltonianParameters(K);
 
     // Create a compatible Fock space
     GQCP::ProductFockSpace fock_space (K, 3, 3);
