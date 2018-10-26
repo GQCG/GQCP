@@ -165,6 +165,17 @@ void HamiltonianParameters::rotate(const GQCP::JacobiRotationParameters& jacobi_
 
 
 /**
+ *  Transform the Hamiltonian parameters to the Löwdin basis (i.e. T = S^{-1/2})
+ */
+void HamiltonianParameters::LowdinOrthonormalize() {
+
+    // The transformation matrix to the Löwdin basis is T = S^{-1/2}
+    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes (this->S.get_matrix_representation());
+    this->transform(saes.operatorInverseSqrt());
+}
+
+
+/**
  *  Given @param one_rdm and @param two_rdm
  *  @return the energy as a result of the contraction of the 1- and 2-RDMs with the one- and two-electron integrals
  */

@@ -121,6 +121,11 @@ public:
     void rotate(const GQCP::JacobiRotationParameters& jacobi_rotation_parameters);
 
     /**
+     *  Transform the HamiltonianParameters to the Löwdin basis (i.e. T = S^{-1/2})
+     */
+    void LowdinOrthonormalize();
+
+    /**
      *  Given @param one_rdm and @param two_rdm
      *  @return the energy as a result of the contraction of the 1- and 2-RDMs with the one- and two-electron integrals
      */
