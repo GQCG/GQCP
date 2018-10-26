@@ -27,6 +27,7 @@
 namespace GQCP {
 
 
+// the function that will be passed to the evaluation, it defines to what and how the evaluated results will be added.
 using PassToMethod = std::function<void (size_t I, size_t J, double value)>;
 
 
@@ -50,7 +51,7 @@ private:
      *  Additionally stores this evaluation in either the matvec or matrix depending on passed 
      *  @param fock_space_target refers to which spin function will be evaluated
      *  @param fock_space_fixed refers to which spin function is not evaluated
-     *  @param target_is_major refers to whether or not alpha is the evaluated spin function
+     *  @param target_is_major refers to whether or not the evaluated component is major
      *  @param hamiltonian_parameters contains the data of the operators
      *  @param method refers to which method is used (matvec or Hamliltonian matrix)
      */
@@ -95,11 +96,11 @@ public:
 
 //  RELEVANT (non-class) METHODS
 /**
- *  Generates a upper triagonal (vector) for a hubbard lattice.
+ *  Generates the upper triagonal (vector) for a hubbard lattice.
  *  @param hopping_matrix allowed interaction between sites
  *  @param t one electron hopping interaction parameter
  *  @param U two electron doubly occupied interaction parameter
- *  @return the triagonal of the matrix resulting in the recominbation of U and t with the hopping matrix.
+ *  @return the triagonal of the matrix resulting in the recombination of U and t with the hopping matrix.
  */
 Eigen::VectorXd genrateUpperTriagonal(Eigen::MatrixXd hopping_matrix, double t, double U);
 

@@ -154,7 +154,7 @@ Eigen::MatrixXd Hubbard::constructHamiltonian(const HamiltonianParameters& hamil
     Eigen::MatrixXd result_matrix = Eigen::MatrixXd::Zero(dim, dim);
     result_matrix += this->calculateDiagonal(hamiltonian_parameters).asDiagonal();
 
-    // the function that will be passed to the evalution, it defines to what and how the evaluated results will be added.
+    // the function that will be passed to the evaluation, it defines to what and how the evaluated results will be added.
     PassToMethod addToMatrix = [&result_matrix](size_t I, size_t J, double value) { result_matrix(I, J) += value; };
 
     // perform one electron evaluations, one for the alpha component and one for the beta component.
@@ -183,7 +183,7 @@ Eigen::VectorXd Hubbard::matrixVectorProduct(const HamiltonianParameters& hamilt
 
     Eigen::VectorXd matvec = diagonal.cwiseProduct(x);
 
-    // the function that will be passed to the evalution, it defines to what and how the evaluated results will be added.
+    // the function that will be passed to the evaluation, it defines to what and how the evaluated results will be added.
     PassToMethod addToMatvec = [&matvec, &x](size_t I, size_t J, double value) { matvec(I) += value * x(J); };
 
     // perform one electron evaluations, one for the alpha component and one for the beta component.
@@ -221,28 +221,20 @@ Eigen::VectorXd Hubbard::calculateDiagonal(const HamiltonianParameters &hamilton
     for (size_t Ia = 0; Ia < dim_alpha; Ia++) {  // Ia loops over addresses of alpha onvs
         ONV onv_beta = fock_space_beta.get_ONV(0);
         for (size_t Ib = 0; Ib < dim_beta; Ib++) {  // Ib loops over addresses of beta onvs
-
             size_t address = Ia * dim_beta + Ib;
-
             // find all double occupations
             Vectoru occupations = onv_alpha.findMatchingOccupations(onv_beta);
-
             for (size_t p : occupations){
-
                 diagonal(address) += hamiltonian_parameters.get_g()(p,p,p,p);
-
             }
-
             if (Ib < dim_beta - 1) {  // prevent last permutation to occur
                 fock_space_beta.setNext(onv_beta);
             }
         }  // beta address (Ib) loop
-
         if (Ia < dim_alpha - 1) {  // prevent last permutation to occur
             fock_space_alpha.setNext(onv_alpha);
         }
     }  // alpha address (Ia) loop
-
     return diagonal;
 
 }
@@ -253,11 +245,11 @@ Eigen::VectorXd Hubbard::calculateDiagonal(const HamiltonianParameters &hamilton
  */
 
 /**
- *  Generates a upper triagonal (vector) for a hubbard lattice.
+ *  Generates the upper triagonal (vector) for a hubbard lattice.
  *  @param hopping_matrix allowed interaction between sites
  *  @param t one electron hopping interaction parameter
  *  @param U two electron doubly occupied interaction parameter
- *  @return the triagonal of the matrix resulting in the recominbation of U and t with the hopping matrix.
+ *  @return the triagonal of the matrix resulting in the recombination of U and t with the hopping matrix.
  */
 Eigen::VectorXd genrateUpperTriagonal(Eigen::MatrixXd matrix, double t, double U) {
 
