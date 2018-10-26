@@ -24,7 +24,16 @@ namespace GQCP {
  *  PRIVATE METHODS
  */
 
-    void Hubbard::oneOperatorModule(FockSpace& fock_space_target, FockSpace& fock_space_fixed, bool target_is_major, const HamiltonianParameters& hamiltonian_parameters, const PassToMethod& method) {
+/**
+ *  Private member that evaluates either the one-electron operators for alpha or beta given the parameters.
+ *  Additionally stores this evaluation in either the matvec or matrix depending on passed
+ *  @param fock_space_target refers to which spin function will be evaluated
+ *  @param fock_space_fixed refers to which spin function is not evaluated
+ *  @param target_is_major refers to whether or not the evaluated component is major
+ *  @param hamiltonian_parameters contains the data of the operators
+ *  @param method refers to which method is used (matvec or Hamliltonian matrix)
+ */
+void Hubbard::oneOperatorModule(FockSpace& fock_space_target, FockSpace& fock_space_fixed, bool target_is_major, const HamiltonianParameters& hamiltonian_parameters, const PassToMethod& method) {
 
     size_t K = fock_space_target.get_K();
     size_t N = fock_space_target.get_N();
@@ -35,13 +44,13 @@ namespace GQCP {
     size_t target_interval;
 
     // if the target is major, then the interval for the non-target (or fixed component) is 1
-    // while the interval of the target is now major and intervals at that of the fixed component
+    // while the the target (major) intervals after each fixed (minor) iteration, thus at the dimension of the fixed component.
     if (target_is_major) {
         fixed_intervals = 1;
         target_interval = dim_fixed;
 
     // vice versa, if the target is not major, its own interval is 1,
-    // and the fixed component intervals at the target
+    // and the fixed component intervals at the targets dimension.
     } else {
         fixed_intervals = dim;
         target_interval = 1;
@@ -126,7 +135,6 @@ namespace GQCP {
 /**
  *  Constructor given a @param hamiltonian_parameters and @param fock_space
  */
-
 Hubbard::Hubbard(const ProductFockSpace &fock_space) :
         HamiltonianBuilder(),
         fock_space(fock_space) {}
@@ -154,7 +162,7 @@ Eigen::MatrixXd Hubbard::constructHamiltonian(const HamiltonianParameters& hamil
     Eigen::MatrixXd result_matrix = Eigen::MatrixXd::Zero(dim, dim);
     result_matrix += this->calculateDiagonal(hamiltonian_parameters).asDiagonal();
 
-    // the function that will be passed to the evaluation, it defines to what and how the evaluated results will be added.
+    // We pass to a matrix and create the corresponding lambda function
     PassToMethod addToMatrix = [&result_matrix](size_t I, size_t J, double value) { result_matrix(I, J) += value; };
 
     // perform one electron evaluations, one for the alpha component and one for the beta component.
@@ -170,7 +178,6 @@ Eigen::MatrixXd Hubbard::constructHamiltonian(const HamiltonianParameters& hamil
 /**
  *  @return the action of the Hamiltonian (@param hamiltonian_parameters and @param diagonal) on the coefficient vector @param x
  */
-
 Eigen::VectorXd Hubbard::matrixVectorProduct(const HamiltonianParameters& hamiltonian_parameters, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) {
 
     auto K = hamiltonian_parameters.get_h().get_dim();
@@ -183,7 +190,7 @@ Eigen::VectorXd Hubbard::matrixVectorProduct(const HamiltonianParameters& hamilt
 
     Eigen::VectorXd matvec = diagonal.cwiseProduct(x);
 
-    // the function that will be passed to the evaluation, it defines to what and how the evaluated results will be added.
+    // We pass to a the matvec and create the corresponding lambda function
     PassToMethod addToMatvec = [&matvec, &x](size_t I, size_t J, double value) { matvec(I) += value * x(J); };
 
     // perform one electron evaluations, one for the alpha component and one for the beta component.
@@ -259,7 +266,7 @@ Eigen::VectorXd genrateUpperTriagonal(Eigen::MatrixXd matrix, double t, double U
     }
 
     size_t K = matrix.cols();
-    size_t length = (K * (K+1))/2;
+    size_t length = (K * (K+1))/2;  // formula for the length of the triagonal (in one vector)
     Eigen::VectorXd triagonal = Eigen::VectorXd::Zero(length);
 
     size_t index = 0;
