@@ -29,7 +29,7 @@ int main (int argc, char** argv) {
         desc.add_options()
         ("help,h", "print help messages")
         ("input,f", po::value<std::string>(&input_xyz_file)->required(), "filename of the .xyz-file")
-        ("basis,b", po::value<std::string>(&basisset), "name of the basis set");
+        ("basis,b", po::value<std::string>(&basisset)->required(), "name of the basis set");
 
         po::store(po::parse_command_line(argc, argv, desc), variables_map);
 
