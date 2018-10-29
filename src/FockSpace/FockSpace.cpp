@@ -1,7 +1,24 @@
+// This file is part of GQCG-gqcp.
+// 
+// Copyright (C) 2017-2018  the GQCG developers
+// 
+// GQCG-gqcp is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// GQCG-gqcp is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+// 
+// You should have received a copy of the GNU Lesser General Public License
+// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
+// 
 #include "FockSpace/FockSpace.hpp"
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /*
@@ -41,7 +58,7 @@ FockSpace::FockSpace(size_t K, size_t N) :
         N (N)
 {
     // Create a zero matrix of dimensions (K+1)x(N+1)
-    this->vertex_weights = GQCG::Matrixu(this->K + 1, GQCG::Vectoru(this->N + 1, 0));
+    this->vertex_weights = GQCP::Matrixu(this->K + 1, GQCP::Vectoru(this->N + 1, 0));
 
     // K=5   N=2
     // [ 0 0 0 ]
@@ -149,7 +166,7 @@ ONV FockSpace::get_ONV(size_t address) {
  *  of the ONV occupation vector
  */
 void FockSpace::setNext(ONV& onv) {
-    onv.set_representation(ulongNextPermutation(onv.unsigned_representation));
+    onv.set_representation(ulongNextPermutation(onv.get_unsigned_representation()));
 }
 
 
@@ -160,7 +177,7 @@ size_t FockSpace::getAddress(const ONV& onv) {
     // An implementation of the formula in Helgaker, starting the addressing count from zero
     size_t address = 0;
     size_t electron_count = 0;  // counts the number of electrons in the spin string up to orbital p
-    unsigned long unsigned_onv = onv.unsigned_representation;  // copy the unsigned_representation of the onv
+    unsigned long unsigned_onv = onv.get_unsigned_representation();  // copy the unsigned_representation of the onv
 
     while(unsigned_onv != 0) {  // we will remove the least significant bit each loop, we are finished when no bits are left
         size_t p = __builtin_ctzl(unsigned_onv);  // p is the orbital index counter (starting from 1)
@@ -172,4 +189,4 @@ size_t FockSpace::getAddress(const ONV& onv) {
 }
 
 
-}  // namespace GQCG
+}  // namespace GQCP

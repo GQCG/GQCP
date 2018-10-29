@@ -1,3 +1,20 @@
+// This file is part of GQCG-gqcp.
+// 
+// Copyright (C) 2017-2018  the GQCG developers
+// 
+// GQCG-gqcp is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// GQCG-gqcp is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+// 
+// You should have received a copy of the GNU Lesser General Public License
+// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
+// 
 #define BOOST_TEST_MODULE "AP1roGPSESolver"
 
 
@@ -14,12 +31,12 @@
 BOOST_AUTO_TEST_CASE ( constructor ) {
 
     // Test a correct constructor
-    GQCG::Molecule h2 ("../tests/data/h2_szabo.xyz");
+    GQCP::Molecule h2 ("../tests/data/h2_szabo.xyz");
     size_t N = 2;  // number of electrons for H2
     size_t N_P = N/2;  // number of electron pairs for H2
-    auto ao_basis = std::make_shared<GQCG::AOBasis>(h2, "STO-3G");
-    auto mol_ham_par = GQCG::constructMolecularHamiltonianParameters(ao_basis);
-    GQCG::AP1roGPSESolver ap1rog_pse_solver (N_P, mol_ham_par);
+    auto ao_basis = std::make_shared<GQCP::AOBasis>(h2, "STO-3G");
+    auto mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
+    GQCP::AP1roGPSESolver ap1rog_pse_solver (N_P, mol_ham_par);
 }
 
 
@@ -27,14 +44,14 @@ BOOST_AUTO_TEST_CASE ( constructor_molecule ) {
 
     // Test a correct constructor
     // Check if we can also pass a molecule object to the constructor
-    GQCG::Molecule h2 ("../tests/data/h2_szabo.xyz");
-    auto ao_basis = std::make_shared<GQCG::AOBasis>(h2, "STO-3G");
-    auto mol_ham_par = GQCG::constructMolecularHamiltonianParameters(ao_basis);
-    GQCG::AP1roGPSESolver ap1rog_pse_solver (h2, mol_ham_par);
+    GQCP::Molecule h2 ("../tests/data/h2_szabo.xyz");
+    auto ao_basis = std::make_shared<GQCP::AOBasis>(h2, "STO-3G");
+    auto mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
+    GQCP::AP1roGPSESolver ap1rog_pse_solver (h2, mol_ham_par);
 
     // Test a faulty constructor
-    GQCG::Molecule h2_cation ("../tests/data/h2_szabo.xyz", +1);
-    BOOST_CHECK_THROW(GQCG::AP1roGPSESolver(h2_cation, mol_ham_par), std::invalid_argument);  // we can use the same Hamiltonian parameters for molecule and ion
+    GQCP::Molecule h2_cation ("../tests/data/h2_szabo.xyz", +1);
+    BOOST_CHECK_THROW(GQCP::AP1roGPSESolver(h2_cation, mol_ham_par), std::invalid_argument);  // we can use the same Hamiltonian parameters for molecule and ion
 }
 
 
@@ -50,19 +67,19 @@ BOOST_AUTO_TEST_CASE ( h2_631gdp ) {
 
 
     // 1. Do an RHF calculation
-    GQCG::Molecule h2 ("../tests/data/h2_olsens.xyz");
-    auto ao_basis = std::make_shared<GQCG::AOBasis>(h2, "6-31G**");
-    auto ao_mol_ham_par = GQCG::constructMolecularHamiltonianParameters(ao_basis);
+    GQCP::Molecule h2 ("../tests/data/h2_olsens.xyz");
+    auto ao_basis = std::make_shared<GQCP::AOBasis>(h2, "6-31G**");
+    auto ao_mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
 
-    GQCG::PlainRHFSCFSolver plain_scf_solver (ao_mol_ham_par, h2);
+    GQCP::PlainRHFSCFSolver plain_scf_solver (ao_mol_ham_par, h2);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 
 
 
     // 2. Solve the AP1roG pSE equations
-    auto mol_ham_par = GQCG::HamiltonianParameters(ao_mol_ham_par, rhf.get_C());
-    GQCG::AP1roGPSESolver ap1rog_pse_solver (h2, mol_ham_par);
+    auto mol_ham_par = GQCP::HamiltonianParameters(ao_mol_ham_par, rhf.get_C());
+    GQCP::AP1roGPSESolver ap1rog_pse_solver (h2, mol_ham_par);
     ap1rog_pse_solver.solve();
 
     auto ap1rog = ap1rog_pse_solver.get_solution();

@@ -1,5 +1,22 @@
-#ifndef GQCG_ONV_HPP
-#define GQCG_ONV_HPP
+// This file is part of GQCG-gqcp.
+// 
+// Copyright (C) 2017-2018  the GQCG developers
+// 
+// GQCG-gqcp is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// GQCG-gqcp is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+// 
+// You should have received a copy of the GNU Lesser General Public License
+// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
+// 
+#ifndef GQCP_ONV_HPP
+#define GQCP_ONV_HPP
 
 
 #include <Eigen/Dense>
@@ -8,7 +25,7 @@
 
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /**
@@ -16,15 +33,15 @@ namespace GQCG {
  *      An example for 3 alpha electrons in a Fock space spanned by 4 spatial orbitals is
  *          a_1^\dagger a_2^\dagger a_3^\dagger |vac> = |1,1,1,0>
  *
- *      In this code, we are using REVERSE LEXICAL notation, i.e. bitstrings are read from right to left. This means that the
+ *      In this code bitstrings are read from right to left. This means that the
  *      least significant bit relates to the first orbital. Using this notation is how normally bits are read, leading
  *      to more efficient code. As is also usual, the least significant bit has index 0.
  *          The previous example is then represented by the bit string "0111" (7).
  */
 class ONV {
 private:
-    const size_t K;  // number of spatial orbitals
-    const size_t N;  // number of electrons
+    size_t K;  // number of spatial orbitals
+    size_t N;  // number of electrons
     size_t unsigned_representation;  // unsigned representation
     VectorXs occupation_indices;  // the occupied orbital electron indexes
                                   // it is a vector of N elements in which occupation_indices[j]
@@ -33,17 +50,28 @@ private:
 
 public:
     // CONSTRUCTORS
+    ONV() = default;
     /**
-     *  Constructor from a @param K orbitals, N electrons and an @param unsigned_representation
+     *  Constructor
+     *  @param K a given number of orbitals
+     *  @param N a given number of electrons
+     *  @param unsigned_representation a representation for the ONV
      */
     ONV(size_t K, size_t N, size_t unsigned_representation);
+
+    /**
+     *  Constructor
+     *  @param K a given number of orbitals
+     *  @param unsigned_representation a representation for the ONV
+     */
+    ONV(size_t K, size_t unsigned_representation);
 
 
     // OPERATORS
     /**
-     *  Overloading of operator<< for a GQCG::ONV to be used with streams
+     *  Overloading of operator<< for a GQCP::ONV to be used with streams
      */
-    friend std::ostream& operator<<(std::ostream& os, const GQCG::ONV& onv);
+    friend std::ostream& operator<<(std::ostream& os, const GQCP::ONV& onv);
 
     /**
      *  @return if this->unsigned_representation equals @param other.unsigned_representation
@@ -80,7 +108,7 @@ public:
 
     /**
      *  @return if the @param p-th spatial orbital is occupied, starting from 0
-     *  @param p is the lexical index (i.e. read from right to left)
+     *  @param p is counted from right to left
      */
     bool isOccupied(size_t p) const;
 
@@ -121,7 +149,7 @@ public:
     bool create(size_t p, int& sign);
 
     /**
-     *  @return the phase factor (+1 or -1) that arises by applying an annihilation or creation operator on orbital @param p, starting from 0 in reverse lexical ordering.
+     *  @return the phase factor (+1 or -1) that arises by applying an annihilation or creation operator on orbital @param p, starting from 0, read from right to left.
      *
      *  Let's say that there are m electrons in the orbitals up to p (not included). If m is even, the phase factor is (+1) and if m is odd, the phase factor is (-1), since electrons are fermions.
      */
@@ -132,8 +160,8 @@ public:
      *  @return the representation of a slice (i.e. a subset) of the spin string between @param index_start (included)
      *  and @param index_end (not included).
      *
-     *  Both @param index_start and @param index_end are 'lexical' (i.e. from right to left), which means that the slice
-     *  occurs 'lexically' as well (i.e. from right to left).
+     *  Both @param index_start and @param index_end are read from right to left, which means that the slice
+     *  is from right to left as well.
      *
      *      Example:
      *          "010011".slice(1, 4) => "01[001]1" -> "001"
@@ -142,11 +170,31 @@ public:
     size_t slice(size_t index_start, size_t index_end) const;
 
 
-    // FRIEND CLASSES
-    friend class FockSpace;
+    /**
+     *  @return the number of different bits between this and @param other, i.e. two times the number of electron excitations
+     */
+    size_t countNumberOfDifferences(const ONV& other) const;
+
+
+    /**
+     *  @return the positions of the bits (from right to left) that are occupied in this, but unoccupied in @param other
+     */
+    std::vector<size_t> findDifferentOccupations(const ONV &other) const;
+
+
+    /**
+     *  @return the positions of the bits (from right to left) that are occupied in @this and occupied in @param other
+     */
+    std::vector<size_t> findMatchingOccupations(const ONV& other) const;
+
+
+    /**
+     * @return std::string containing the ONV representation
+     */
+    std::string asString() const;
 };
 
 
-}  // namespace GQCG
+}  // namespace GQCP
 
-#endif  // GQCG_ONV_HPP
+#endif  // GQCP_ONV_HPP

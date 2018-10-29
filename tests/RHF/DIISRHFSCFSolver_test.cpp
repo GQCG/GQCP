@@ -1,3 +1,20 @@
+// This file is part of GQCG-gqcp.
+// 
+// Copyright (C) 2017-2018  the GQCG developers
+// 
+// GQCG-gqcp is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// GQCG-gqcp is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+// 
+// You should have received a copy of the GNU Lesser General Public License
+// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
+// 
 #define BOOST_TEST_MODULE "DIISRHFSCFSolver"
 
 #include "RHF/DIISRHFSCFSolver.hpp"
@@ -17,15 +34,15 @@ BOOST_AUTO_TEST_CASE ( h2_sto3g_szabo_DIIS ) {
 
 
     // Create a Molecule and an AOBasis
-    GQCG::Molecule h2 ("../tests/data/h2_szabo.xyz");
-    auto ao_basis = std::make_shared<GQCG::AOBasis>(h2, "STO-3G");
+    GQCP::Molecule h2 ("../tests/data/h2_szabo.xyz");
+    auto ao_basis = std::make_shared<GQCP::AOBasis>(h2, "STO-3G");
 
     // Create the molecular Hamiltonian parameters for this molecule and basis
-    auto mol_ham_par = GQCG::constructMolecularHamiltonianParameters(ao_basis);
+    auto mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
 
 
     // Create a plain RHF SCF solver and solve the SCF equations
-    GQCG::DIISRHFSCFSolver diis_scf_solver (mol_ham_par, h2);
+    GQCP::DIISRHFSCFSolver diis_scf_solver (mol_ham_par, h2);
     diis_scf_solver.solve();
     auto rhf = diis_scf_solver.get_solution();
 
@@ -55,11 +72,11 @@ BOOST_AUTO_TEST_CASE ( h2o_sto3g_horton_DIIS ) {
 
 
     // Do our own RHF calculation
-    GQCG::Molecule water ("../tests/data/h2o.xyz");
-    auto ao_basis = std::make_shared<GQCG::AOBasis>(water, "STO-3G");
-    auto mol_ham_par = GQCG::constructMolecularHamiltonianParameters(ao_basis);
+    GQCP::Molecule water ("../tests/data/h2o.xyz");
+    auto ao_basis = std::make_shared<GQCP::AOBasis>(water, "STO-3G");
+    auto mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
 
-    GQCG::DIISRHFSCFSolver diis_scf_solver (mol_ham_par, water);
+    GQCP::DIISRHFSCFSolver diis_scf_solver (mol_ham_par, water);
     diis_scf_solver.solve();
     auto rhf = diis_scf_solver.get_solution();
 
@@ -81,14 +98,14 @@ BOOST_AUTO_TEST_CASE ( crawdad_h2o_sto3g_DIIS ) {
 
 
     // Do our own RHF calculation
-    GQCG::Molecule water ("../tests/data/h2o_crawdad.xyz");
+    GQCP::Molecule water ("../tests/data/h2o_crawdad.xyz");
     // Check if the internuclear distance between O and H is really 1.1 A (= 2.07869 bohr), as specified in the text
     BOOST_REQUIRE(std::abs(water.calculateInternuclearDistance(0, 1) - 2.07869) < 1.0e-4);
 
-    auto ao_basis = std::make_shared<GQCG::AOBasis>(water, "STO-3G");
-    auto mol_ham_par = GQCG::constructMolecularHamiltonianParameters(ao_basis);
+    auto ao_basis = std::make_shared<GQCP::AOBasis>(water, "STO-3G");
+    auto mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
 
-    GQCG::DIISRHFSCFSolver diis_scf_solver (mol_ham_par, water);
+    GQCP::DIISRHFSCFSolver diis_scf_solver (mol_ham_par, water);
     diis_scf_solver.solve();
     auto rhf = diis_scf_solver.get_solution();
 
@@ -105,14 +122,14 @@ BOOST_AUTO_TEST_CASE ( crawdad_ch4_sto3g_DIIS ) {
     double ref_total_energy = -39.726850324347;
 
     // Do our own RHF calculation
-    GQCG::Molecule methane ("../tests/data/ch4_crawdad.xyz");
+    GQCP::Molecule methane ("../tests/data/ch4_crawdad.xyz");
     // Check if the internuclear distance between C and H is really around 2.05 bohr, which is the bond distance Wikipedia (108.7 pm) specifies
     BOOST_CHECK(std::abs(methane.calculateInternuclearDistance(0, 1) - 2.05) < 1.0e-1);
 
-    auto ao_basis = std::make_shared<GQCG::AOBasis>(methane, "STO-3G");
-    auto mol_ham_par = GQCG::constructMolecularHamiltonianParameters(ao_basis);
+    auto ao_basis = std::make_shared<GQCP::AOBasis>(methane, "STO-3G");
+    auto mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
 
-    GQCG::DIISRHFSCFSolver diis_scf_solver (mol_ham_par, methane);
+    GQCP::DIISRHFSCFSolver diis_scf_solver (mol_ham_par, methane);
     diis_scf_solver.solve();
     auto rhf = diis_scf_solver.get_solution();
 
@@ -129,11 +146,11 @@ BOOST_AUTO_TEST_CASE ( h2_631gdp_DIIS ) {
 
 
     // Do our own RHF calculation
-    GQCG::Molecule h2 ("../tests/data/h2_olsens.xyz");
-    auto ao_basis = std::make_shared<GQCG::AOBasis>(h2, "6-31g**");
-    auto mol_ham_par = GQCG::constructMolecularHamiltonianParameters(ao_basis);
+    GQCP::Molecule h2 ("../tests/data/h2_olsens.xyz");
+    auto ao_basis = std::make_shared<GQCP::AOBasis>(h2, "6-31g**");
+    auto mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
 
-    GQCG::DIISRHFSCFSolver diis_scf_solver (mol_ham_par, h2);
+    GQCP::DIISRHFSCFSolver diis_scf_solver (mol_ham_par, h2);
     diis_scf_solver.solve();
     auto rhf = diis_scf_solver.get_solution();
 

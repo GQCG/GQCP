@@ -3,9 +3,12 @@
 cmake_minimum_required(VERSION 3.9 FATAL_ERROR)
 
 # Specify the project, its version and the used language
-project(gqcg
-        VERSION 0.0.1
+project(gqcp
+        VERSION 0.1.0
         LANGUAGES CXX)
+
+# Option to build the documentation
+option(BUILD_DOCS "Build the documentation using Doxygen" OFF)
 
 # To enable the C++11 standard, we have to add flags like -std=gnu+11 or so. CMake can take care of this:
 set(CMAKE_CXX_STANDARD 11)
@@ -18,7 +21,6 @@ if(NOT CMAKE_BUILD_TYPE)
 endif()
 set(CMAKE_CXX_FLAGS_DEBUG "-g")
 set(CMAKE_CXX_FLAGS_RELEASE "-O2 -march=native")
-
 
 
 # Set CMake variables
@@ -40,6 +42,9 @@ include(${CMAKE_SOURCE_DIR}/cmake/FindPackages.cmake)
 # Add the sources for the library
 add_subdirectory(${PROJECT_SOURCE_FOLDER})
 
+
+# Add the sources for the executables
+add_subdirectory(${PROJECT_EXECUTABLES_FOLDER})
 
 
 # Set up testing

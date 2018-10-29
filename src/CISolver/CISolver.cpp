@@ -1,7 +1,24 @@
+// This file is part of GQCG-gqcp.
+// 
+// Copyright (C) 2017-2018  the GQCG developers
+// 
+// GQCG-gqcp is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// GQCG-gqcp is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+// 
+// You should have received a copy of the GNU Lesser General Public License
+// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
+// 
 #include "CISolver/CISolver.hpp"
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 /*
@@ -69,12 +86,12 @@ void CISolver::solve(numopt::eigenproblem::BaseSolverOptions& solver_options) {
 /**
  *  @return WaveFunction instance after solving the CI problem for a given eigenvector at @param index
  */
-WaveFunction CISolver::get_wavefunction(size_t index) {
-    if (index < this->eigenpairs.size()) {
+GQCP::WaveFunction CISolver::get_wavefunction(size_t index) {
+    if (index > this->eigenpairs.size()) {
         throw std::logic_error("Not enough requested eigenpairs for the given index.");
     }
     return WaveFunction(*this->hamiltonian_builder->get_fock_space(), this->eigenpairs[index].get_eigenvector());
 }
 
 
-}  // namespace GQCG
+}  // namespace GQCP

@@ -1,5 +1,22 @@
-#ifndef GQCG_HAMILTONIANPARAMETERS_HPP
-#define GQCG_HAMILTONIANPARAMETERS_HPP
+// This file is part of GQCG-gqcp.
+// 
+// Copyright (C) 2017-2018  the GQCG developers
+// 
+// GQCG-gqcp is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// GQCG-gqcp is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+// 
+// You should have received a copy of the GNU Lesser General Public License
+// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
+// 
+#ifndef GQCP_HAMILTONIANPARAMETERS_HPP
+#define GQCP_HAMILTONIANPARAMETERS_HPP
 
 
 #include "HamiltonianParameters/BaseHamiltonianParameters.hpp"
@@ -13,12 +30,12 @@
 
 
 
-namespace GQCG {
+namespace GQCP {
 
 
 class HamiltonianParameters : public BaseHamiltonianParameters {
 private:
-    const size_t K;  // the number of spatial orbitals
+    size_t K;  // the number of spatial orbitals
 
     OneElectronOperator S;  // overlap
 
@@ -35,7 +52,7 @@ public:
      *  operator @param g and a transformation matrix between the current molecular orbitals and the atomic orbitals
      *  @param C
      */
-    HamiltonianParameters(std::shared_ptr<GQCG::AOBasis> ao_basis, const GQCG::OneElectronOperator& S, const GQCG::OneElectronOperator& h, const GQCG::TwoElectronOperator& g, const Eigen::MatrixXd& C);
+    HamiltonianParameters(std::shared_ptr<GQCP::AOBasis> ao_basis, const GQCP::OneElectronOperator& S, const GQCP::OneElectronOperator& h, const GQCP::TwoElectronOperator& g, const Eigen::MatrixXd& C);
 
 
     /**
@@ -43,7 +60,7 @@ public:
      *
      *  If the initial Hamiltonian parameters @param ham_par are expressed in the basis B, the constructed instance represents the Hamiltonian parameters in the transformed basis B'. The basis transformation between B and B' is given by the transformation matrix @param C.
      */
-    HamiltonianParameters(const GQCG::HamiltonianParameters& ham_par, const Eigen::MatrixXd& C);
+    HamiltonianParameters(const GQCP::HamiltonianParameters& ham_par, const Eigen::MatrixXd& C);
 
 
     // DESTRUCTORS
@@ -51,8 +68,9 @@ public:
 
     
     // GETTERS
-    GQCG::OneElectronOperator get_h() const { return this->h; }
-    GQCG::TwoElectronOperator get_g() const { return this->g; }
+    GQCP::OneElectronOperator get_S() const { return this->S; }
+    GQCP::OneElectronOperator get_h() const { return this->h; }
+    GQCP::TwoElectronOperator get_g() const { return this->g; }
     size_t get_K() const { return this->K; }
 
     
@@ -84,6 +102,13 @@ public:
     void rotate(const Eigen::MatrixXd& U);
 
     /**
+     *  Using a random rotation matrix, transform:
+     *      - the one-electron interaction operator (i.e. the core Hamiltonian)
+     *      - the two-electron interaction operator
+     */
+    void randomRotate();
+
+    /**
      *  Given @param jacobi_rotation_parameters that represent a unitary rotation matrix @param U (using a (cos, sin, -sin, cos) definition for the Jacobi rotation matrix) that links the new molecular orbital basis to the old molecular orbital basis,
      *  in the sense that
      *       b' = b U ,
@@ -93,27 +118,32 @@ public:
      *
      *  Furthermore @member C is updated to reflect the total transformation between the new molecular orbital basis and the initial atomic orbitals
      */
-    void rotate(const GQCG::JacobiRotationParameters& jacobi_rotation_parameters);
+    void rotate(const GQCP::JacobiRotationParameters& jacobi_rotation_parameters);
+
+    /**
+     *  Transform the HamiltonianParameters to the Löwdin basis (i.e. T = S^{-1/2})
+     */
+    void LowdinOrthonormalize();
 
     /**
      *  Given @param one_rdm and @param two_rdm
      *  @return the energy as a result of the contraction of the 1- and 2-RDMs with the one- and two-electron integrals
      */
-    double calculateEnergy(OneRDM one_rdm, TwoRDM two_rdm);
+    double calculateEnergy(const GQCP::OneRDM& one_rdm, const GQCP::TwoRDM& two_rdm) const;
 
-    // FRIEND FUNCTIONS
-    friend Eigen::MatrixXd calculateRHFAOFockMatrix(const Eigen::MatrixXd& D_AO, GQCG::HamiltonianParameters ham_par);
-    friend double calculateRMP2EnergyCorrection(const GQCG::HamiltonianParameters& ham_par);
+    /**
+     *  Given a @param D: the 1-RDM and a @param d: the 2-RDM, @return the generalized Fock matrix F as a OneElectronOperator
+     */
+    GQCP::OneElectronOperator calculateGeneralizedFockMatrix(const GQCP::OneRDM& D, const GQCP::TwoRDM& d) const;
 
-    // FRIEND CLASSES
-    friend class RHFSCFSolver;
-    friend class DIISRHFSCFSolver;
-    friend class AP1roGPSESolver;
-    friend class AP1roGJacobiOrbitalOptimizer;
+    /**
+     *  Given a @param D: the 1-RDM and a @param d: the 2-RDM, @return the super-generalized Fock matrix W as a TwoElectronOperator
+     */
+    GQCP::TwoElectronOperator calculateSuperGeneralizedFockMatrix(const GQCP::OneRDM& D, const GQCP::TwoRDM& d) const;
 };
 
 
-}  // namespace GQCG
+}  // namespace GQCP
 
 
-#endif  // GQCG_HAMILTONIANPARAMETERS_HPP
+#endif  // GQCP_HAMILTONIANPARAMETERS_HPP

@@ -1,3 +1,20 @@
+// This file is part of GQCG-gqcp.
+// 
+// Copyright (C) 2017-2018  the GQCG developers
+// 
+// GQCG-gqcp is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// GQCG-gqcp is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+// 
+// You should have received a copy of the GNU Lesser General Public License
+// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
+// 
 #define BOOST_TEST_MODULE "DavidsonDOCISolver"
 
 
@@ -19,16 +36,16 @@ BOOST_AUTO_TEST_CASE ( DOCI_h2o_sto3g_klaas_Davidson ) {
 
     // Do a DOCI calculation based on a given FCIDUMP file
     // Create the Hamiltonian Parameters
-    auto ham_par = GQCG::readFCIDUMPFile("../tests/data/h2o_sto3g_klaas.FCIDUMP");
+    auto ham_par = GQCP::readFCIDUMPFile("../tests/data/h2o_sto3g_klaas.FCIDUMP");
 
     // The species contains 10 electrons and 7 basis functions, this requires a single Fock Space of 7 orbitals and 5 electrons
-    GQCG::FockSpace fock_space (ham_par.get_K(), 5);  // dim = 21
+    GQCP::FockSpace fock_space (ham_par.get_K(), 5);  // dim = 21
 
     // Create the DOCI module
-    GQCG::DOCI doci (fock_space);
+    GQCP::DOCI doci (fock_space);
 
     // Solve the Davidson DOCI eigenvalue problem
-    GQCG::CISolver ci_solver (doci, ham_par);
+    GQCP::CISolver ci_solver (doci, ham_par);
     Eigen::VectorXd initial_g = fock_space.HartreeFockExpansion();
     numopt::eigenproblem::DavidsonSolverOptions solver_options (initial_g);
     ci_solver.solve(solver_options);
@@ -47,25 +64,25 @@ BOOST_AUTO_TEST_CASE ( DOCI_h2o_sto3g_klaas_Davidson ) {
 BOOST_AUTO_TEST_CASE ( DOCI_h2_sto3g_dense_vs_Davidson ) {
 
     // Create a Molecule and an AOBasis
-    GQCG::Molecule h2 ("../tests/data/h2.xyz");
-    auto ao_basis = std::make_shared<GQCG::AOBasis>(h2, "STO-3G");
+    GQCP::Molecule h2 ("../tests/data/h2.xyz");
+    auto ao_basis = std::make_shared<GQCP::AOBasis>(h2, "STO-3G");
 
     // Create the molecular Hamiltonian parameters for this molecule and basis
-    auto mol_ham_par = GQCG::constructMolecularHamiltonianParameters(ao_basis);
+    auto mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
 
     // Create a plain RHF SCF solver and solve the SCF equations
-    GQCG::PlainRHFSCFSolver plain_scf_solver (mol_ham_par, h2);
+    GQCP::PlainRHFSCFSolver plain_scf_solver (mol_ham_par, h2);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 
     // Transform the ham_par
     mol_ham_par.transform(rhf.get_C());
 
-    GQCG::FockSpace fock_space (mol_ham_par.get_K(), h2.get_N()/2);  // dim = 2
+    GQCP::FockSpace fock_space (mol_ham_par.get_K(), h2.get_N()/2);  // dim = 2
 
     // Create the DOCI module
-    GQCG::DOCI doci (fock_space);
-    GQCG::CISolver ci_solver (doci, mol_ham_par);
+    GQCP::DOCI doci (fock_space);
+    GQCP::CISolver ci_solver (doci, mol_ham_par);
 
     // Solve Davidson
     Eigen::VectorXd initial_g = fock_space.HartreeFockExpansion();
@@ -89,25 +106,25 @@ BOOST_AUTO_TEST_CASE ( DOCI_h2_sto3g_dense_vs_Davidson ) {
 BOOST_AUTO_TEST_CASE ( DOCI_h2_631g_dense_vs_Davidson ) {
 
     // Create a Molecule and an AOBasis
-    GQCG::Molecule h2 ("../tests/data/h2.xyz");
-    auto ao_basis = std::make_shared<GQCG::AOBasis>(h2, "6-31G");
+    GQCP::Molecule h2 ("../tests/data/h2.xyz");
+    auto ao_basis = std::make_shared<GQCP::AOBasis>(h2, "6-31G");
 
     // Create the molecular Hamiltonian parameters for this molecule and basis
-    auto mol_ham_par = GQCG::constructMolecularHamiltonianParameters(ao_basis);
+    auto mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
 
     // Create a plain RHF SCF solver and solve the SCF equations
-    GQCG::PlainRHFSCFSolver plain_scf_solver (mol_ham_par, h2);
+    GQCP::PlainRHFSCFSolver plain_scf_solver (mol_ham_par, h2);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 
     // Transform the ham_par
     mol_ham_par.transform(rhf.get_C());
 
-    GQCG::FockSpace fock_space (mol_ham_par.get_K(), h2.get_N()/2);  // dim = 4
+    GQCP::FockSpace fock_space (mol_ham_par.get_K(), h2.get_N()/2);  // dim = 4
 
     // Create the DOCI module
-    GQCG::DOCI doci (fock_space);
-    GQCG::CISolver ci_solver (doci, mol_ham_par);
+    GQCP::DOCI doci (fock_space);
+    GQCP::CISolver ci_solver (doci, mol_ham_par);
 
     // Solve Davidson
     Eigen::VectorXd initial_g = fock_space.HartreeFockExpansion();
@@ -136,16 +153,16 @@ BOOST_AUTO_TEST_CASE ( DOCI_beh_cation_631g_klaas_Davidson ) {
 
     // Do a DOCI calculation based on a given FCIDUMP file
     // Create the Hamiltonian Parameters
-    auto ham_par = GQCG::readFCIDUMPFile("../tests/data/beh_cation_631g_caitlin.FCIDUMP");
+    auto ham_par = GQCP::readFCIDUMPFile("../tests/data/beh_cation_631g_caitlin.FCIDUMP");
 
     // The species contains 4 electrons and 16 basis functions, this requires a single Fock Space of 16 orbitals and 2 electrons
-    GQCG::FockSpace fock_space (ham_par.get_K(), 2);  // dim = 120
+    GQCP::FockSpace fock_space (ham_par.get_K(), 2);  // dim = 120
 
     // Create the DOCI module
-    GQCG::DOCI doci (fock_space);
+    GQCP::DOCI doci (fock_space);
 
     // Solve the Davidson DOCI eigenvalue problem
-    GQCG::CISolver ci_solver (doci, ham_par);
+    GQCP::CISolver ci_solver (doci, ham_par);
     Eigen::VectorXd initial_g = fock_space.HartreeFockExpansion();
     numopt::eigenproblem::DavidsonSolverOptions solver_options (initial_g);
     ci_solver.solve(solver_options);
@@ -169,15 +186,15 @@ BOOST_AUTO_TEST_CASE ( DOCI_n2_sto3g_klaas_Davidson ) {
 
     // Do a DOCI calculation based on a given FCIDUMP file
     // Create the Hamiltonian Parameters
-    auto ham_par = GQCG::readFCIDUMPFile("../tests/data/n2_sto-3g_klaas.FCIDUMP");
+    auto ham_par = GQCP::readFCIDUMPFile("../tests/data/n2_sto-3g_klaas.FCIDUMP");
 
-    GQCG::FockSpace fock_space (ham_par.get_K(), 7);  // dim = 120
+    GQCP::FockSpace fock_space (ham_par.get_K(), 7);  // dim = 120
 
     // Create the DOCI module
-    GQCG::DOCI doci (fock_space);
+    GQCP::DOCI doci (fock_space);
 
     // Solve the Davidson DOCI eigenvalue problem
-    GQCG::CISolver ci_solver (doci, ham_par);
+    GQCP::CISolver ci_solver (doci, ham_par);
     Eigen::VectorXd initial_g = fock_space.HartreeFockExpansion();
     numopt::eigenproblem::DavidsonSolverOptions solver_options (initial_g);
     ci_solver.solve(solver_options);
@@ -201,15 +218,15 @@ BOOST_AUTO_TEST_CASE ( DOCI_lih_631g_klaas_Davidson ) {
 
     // Do a DOCI calculation based on a given FCIDUMP file
     // Create the Hamiltonian Parameters
-    auto ham_par = GQCG::readFCIDUMPFile("../tests/data/lih_631g_caitlin.FCIDUMP");
+    auto ham_par = GQCP::readFCIDUMPFile("../tests/data/lih_631g_caitlin.FCIDUMP");
 
-    GQCG::FockSpace fock_space (ham_par.get_K(), 2);  // dim = 120
+    GQCP::FockSpace fock_space (ham_par.get_K(), 2);  // dim = 120
 
     // Create the DOCI module
-    GQCG::DOCI doci (fock_space);
+    GQCP::DOCI doci (fock_space);
 
     // Solve the Davidson DOCI eigenvalue problem
-    GQCG::CISolver ci_solver (doci, ham_par);
+    GQCP::CISolver ci_solver (doci, ham_par);
     Eigen::VectorXd initial_g = fock_space.HartreeFockExpansion();
     numopt::eigenproblem::DavidsonSolverOptions solver_options (initial_g);
     ci_solver.solve(solver_options);
@@ -233,15 +250,15 @@ BOOST_AUTO_TEST_CASE ( DOCI_li2_321g_klaas_Davidson ) {
 
     // Do a DOCI calculation based on a given FCIDUMP file
     // Create the Hamiltonian Parameters
-    auto ham_par = GQCG::readFCIDUMPFile("../tests/data/li2_321g_klaas.FCIDUMP");
+    auto ham_par = GQCP::readFCIDUMPFile("../tests/data/li2_321g_klaas.FCIDUMP");
 
-    GQCG::FockSpace fock_space (ham_par.get_K(), 3);  // dim = 816
+    GQCP::FockSpace fock_space (ham_par.get_K(), 3);  // dim = 816
 
     // Create the DOCI module
-    GQCG::DOCI doci (fock_space);
+    GQCP::DOCI doci (fock_space);
 
     // Solve the Davidson DOCI eigenvalue problem
-    GQCG::CISolver ci_solver (doci, ham_par);
+    GQCP::CISolver ci_solver (doci, ham_par);
     Eigen::VectorXd initial_g = fock_space.HartreeFockExpansion();
     numopt::eigenproblem::DavidsonSolverOptions solver_options (initial_g);
     ci_solver.solve(solver_options);
@@ -265,15 +282,15 @@ BOOST_AUTO_TEST_CASE ( DOCI_h2o_631g_klaas_Davidson ) {
 
     // Do a DOCI calculation based on a given FCIDUMP file
     // Create the Hamiltonian Parameters
-    auto ham_par = GQCG::readFCIDUMPFile("../tests/data/h2o_631g_klaas.FCIDUMP");
+    auto ham_par = GQCP::readFCIDUMPFile("../tests/data/h2o_631g_klaas.FCIDUMP");
 
-    GQCG::FockSpace fock_space (ham_par.get_K(), 5);  // dim = 1287
+    GQCP::FockSpace fock_space (ham_par.get_K(), 5);  // dim = 1287
 
     // Create the DOCI module
-    GQCG::DOCI doci (fock_space);
+    GQCP::DOCI doci (fock_space);
 
     // Solve the Davidson DOCI eigenvalue problem
-    GQCG::CISolver ci_solver (doci, ham_par);
+    GQCP::CISolver ci_solver (doci, ham_par);
     Eigen::VectorXd initial_g = fock_space.HartreeFockExpansion();
     numopt::eigenproblem::DavidsonSolverOptions solver_options (initial_g);
     ci_solver.solve(solver_options);
@@ -297,15 +314,15 @@ BOOST_AUTO_TEST_CASE ( DOCI_lif_631g_klaas_Davidson ) {
 
     // Do a DOCI calculation based on a given FCIDUMP file
     // Create the Hamiltonian Parameters
-    auto ham_par = GQCG::readFCIDUMPFile("../tests/data/lif_631g_klaas.FCIDUMP");
+    auto ham_par = GQCP::readFCIDUMPFile("../tests/data/lif_631g_klaas.FCIDUMP");
 
-    GQCG::FockSpace fock_space (ham_par.get_K(), 6);  // dim = 376740
+    GQCP::FockSpace fock_space (ham_par.get_K(), 6);  // dim = 376740
 
     // Create the DOCI module
-    GQCG::DOCI doci (fock_space);
+    GQCP::DOCI doci (fock_space);
 
     // Solve the Davidson DOCI eigenvalue problem
-    GQCG::CISolver ci_solver (doci, ham_par);
+    GQCP::CISolver ci_solver (doci, ham_par);
     Eigen::VectorXd initial_g = fock_space.HartreeFockExpansion();
     numopt::eigenproblem::DavidsonSolverOptions solver_options (initial_g);
     ci_solver.solve(solver_options);

@@ -1,3 +1,20 @@
+// This file is part of GQCG-gqcp.
+// 
+// Copyright (C) 2017-2018  the GQCG developers
+// 
+// GQCG-gqcp is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// GQCG-gqcp is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+// 
+// You should have received a copy of the GNU Lesser General Public License
+// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
+// 
 #define BOOST_TEST_MODULE "AP1roG"
 
 
@@ -8,20 +25,20 @@
 
 
 BOOST_AUTO_TEST_CASE ( default_constructor ) {
-    GQCG::AP1roG ap1rog;
+    GQCP::AP1roG ap1rog;
 }
 
 
 BOOST_AUTO_TEST_CASE ( constructor ) {
 
-    GQCG::AP1roGGeminalCoefficients g (4, 6);
-    GQCG::AP1roG ap1rog (g, 0.0);
+    GQCP::AP1roGGeminalCoefficients g (4, 6);
+    GQCP::AP1roG ap1rog (g, 0.0);
 }
 
 
 BOOST_AUTO_TEST_CASE ( get_geminal_coefficients ) {
 
-    GQCG::AP1roGGeminalCoefficients g (4, 6);
-    GQCG::AP1roG ap1rog (g, 0.0);
+    GQCP::AP1roGGeminalCoefficients g (4, 6);
+    GQCP::AP1roG ap1rog (g, 0.0);
     ap1rog.get_geminal_coefficients();
 }

@@ -10,7 +10,7 @@ compiler: gcc
 
 # Enable Slack notifications, disable e-mail
 notifications:
-    slack: gqcg:5PZ5ibXCwNU1b5ToWbHVIqnI
+    slack: GQCG:5PZ5ibXCwNU1b5ToWbHVIqnI
     email: false
 
 
@@ -87,7 +87,7 @@ install:
 
 # Run the build script
 script:
-  - cd /home/travis/build/GQCG/gqcg
+  - cd ${TRAVIS_BUILD_DIR}
   - mkdir build && cd build
   - cmake ..
   - make && make test && sudo make install

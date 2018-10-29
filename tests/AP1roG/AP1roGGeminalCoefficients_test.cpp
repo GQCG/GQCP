@@ -1,3 +1,20 @@
+// This file is part of GQCG-gqcp.
+// 
+// Copyright (C) 2017-2018  the GQCG developers
+// 
+// GQCG-gqcp is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// GQCG-gqcp is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+// 
+// You should have received a copy of the GNU Lesser General Public License
+// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
+// 
 #define BOOST_TEST_MODULE "AP1roGGeminalCoefficients"
 
 
@@ -9,24 +26,24 @@
 
 BOOST_AUTO_TEST_CASE ( numberOfGeminalCoefficients ) {
 
-    BOOST_CHECK_EQUAL(GQCG::AP1roGGeminalCoefficients::numberOfGeminalCoefficients(2, 5), 6);
+    BOOST_CHECK_EQUAL(GQCP::AP1roGGeminalCoefficients::numberOfGeminalCoefficients(2, 5), 6);
 
-    BOOST_CHECK_THROW(GQCG::AP1roGGeminalCoefficients::numberOfGeminalCoefficients(4, 4), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::AP1roGGeminalCoefficients::numberOfGeminalCoefficients(4, 4), std::invalid_argument);
 }
 
 
 BOOST_AUTO_TEST_CASE ( default_constructor ) {
-    GQCG::AP1roGGeminalCoefficients gem_coeff;
+    GQCP::AP1roGGeminalCoefficients gem_coeff;
 }
 
 
 BOOST_AUTO_TEST_CASE ( constructor ) {
 
     // Check a correct constructor
-    GQCG::AP1roGGeminalCoefficients g (4, 6);
+    GQCP::AP1roGGeminalCoefficients g (4, 6);
 
     // We can't create 4 geminals in 4 orbitals
-    BOOST_CHECK_THROW(GQCG::AP1roGGeminalCoefficients (4, 4), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::AP1roGGeminalCoefficients (4, 4), std::invalid_argument);
 }
 
 
@@ -34,17 +51,17 @@ BOOST_AUTO_TEST_CASE ( constructor_vector ) {
 
     // Check a correct constructor
     Eigen::VectorXd g = Eigen::VectorXd::Zero(6);
-    BOOST_CHECK_NO_THROW(GQCG::AP1roGGeminalCoefficients (g, 2, 5));
+    BOOST_CHECK_NO_THROW(GQCP::AP1roGGeminalCoefficients (g, 2, 5));
 
     // Check wrong parameters N_P and K
-    BOOST_CHECK_THROW(GQCG::AP1roGGeminalCoefficients (g, 2, 4), std::invalid_argument);
-    BOOST_CHECK_THROW(GQCG::AP1roGGeminalCoefficients (g, 1, 5), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::AP1roGGeminalCoefficients (g, 2, 4), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::AP1roGGeminalCoefficients (g, 1, 5), std::invalid_argument);
 }
 
 
 BOOST_AUTO_TEST_CASE ( asVector ) {
 
-    GQCG::AP1roGGeminalCoefficients g (4, 6);
+    GQCP::AP1roGGeminalCoefficients g (4, 6);
     g.asVector();
 }
 
@@ -61,7 +78,7 @@ BOOST_AUTO_TEST_CASE ( asMatrix ) {
     g << 1, 2, 3, 4, 5, 6;
 
 
-    GQCG::AP1roGGeminalCoefficients gem_coeff (g, 2, 5);
+    GQCP::AP1roGGeminalCoefficients gem_coeff (g, 2, 5);
     BOOST_CHECK(gem_coeff.asMatrix().isApprox(G));
 }
 
@@ -69,7 +86,7 @@ BOOST_AUTO_TEST_CASE ( asMatrix ) {
 BOOST_AUTO_TEST_CASE ( vector_index ) {
 
     // N_P=2, K=11
-    GQCG::AP1roGGeminalCoefficients geminal_coefficients (2, 11);
+    GQCP::AP1roGGeminalCoefficients geminal_coefficients (2, 11);
 
     BOOST_CHECK_EQUAL(geminal_coefficients.vectorIndex(0, 2), 0);
     BOOST_CHECK_EQUAL(geminal_coefficients.vectorIndex(0, 3), 1);
@@ -87,7 +104,7 @@ BOOST_AUTO_TEST_CASE ( vector_index ) {
 BOOST_AUTO_TEST_CASE ( matrix_index ) {
 
     // N_P=2, K=11
-    GQCG::AP1roGGeminalCoefficients geminal_coefficients (2, 11);
+    GQCP::AP1roGGeminalCoefficients geminal_coefficients (2, 11);
 
 
     BOOST_CHECK_EQUAL(geminal_coefficients.matrixIndexMajor(0), 0);
@@ -108,7 +125,7 @@ BOOST_AUTO_TEST_CASE ( operator_call ) {
     //      0 1  4 5 6
     Eigen::VectorXd g (6);
     g << 1, 2, 3, 4, 5, 6;
-    GQCG::AP1roGGeminalCoefficients gem_coeff (g, 2, 5);
+    GQCP::AP1roGGeminalCoefficients gem_coeff (g, 2, 5);
 
     BOOST_CHECK_EQUAL(gem_coeff(0), 1);
     BOOST_CHECK_EQUAL(gem_coeff(1), 2);

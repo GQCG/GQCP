@@ -1,9 +1,26 @@
+// This file is part of GQCG-gqcp.
+// 
+// Copyright (C) 2017-2018  the GQCG developers
+// 
+// GQCG-gqcp is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// GQCG-gqcp is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+// 
+// You should have received a copy of the GNU Lesser General Public License
+// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
+// 
 #include "HamiltonianParameters/HamiltonianParameters_constructors.hpp"
 
 #include "LibintCommunicator.hpp"
+#include <math.h>       // sqrt
 
-
-namespace GQCG {
+namespace GQCP {
 
 
 /**
@@ -16,15 +33,15 @@ namespace GQCG {
  *      - two-electron contributions:
  *          - Coulomb repulsion
  */
-GQCG::HamiltonianParameters constructMolecularHamiltonianParameters(std::shared_ptr<GQCG::AOBasis> ao_basis) {
+GQCP::HamiltonianParameters constructMolecularHamiltonianParameters(std::shared_ptr<GQCP::AOBasis> ao_basis) {
 
     // Calculate the integrals for the molecular Hamiltonian
-    auto S = GQCG::LibintCommunicator::get().calculateOneElectronIntegrals(libint2::Operator::overlap, *ao_basis);
-    auto T = GQCG::LibintCommunicator::get().calculateOneElectronIntegrals(libint2::Operator::kinetic, *ao_basis);
-    auto V = GQCG::LibintCommunicator::get().calculateOneElectronIntegrals(libint2::Operator::nuclear, *ao_basis);
+    auto S = GQCP::LibintCommunicator::get().calculateOneElectronIntegrals(libint2::Operator::overlap, *ao_basis);
+    auto T = GQCP::LibintCommunicator::get().calculateOneElectronIntegrals(libint2::Operator::kinetic, *ao_basis);
+    auto V = GQCP::LibintCommunicator::get().calculateOneElectronIntegrals(libint2::Operator::nuclear, *ao_basis);
     auto H = T + V;
     
-    auto g = GQCG::LibintCommunicator::get().calculateTwoElectronIntegrals(libint2::Operator::coulomb, *ao_basis);
+    auto g = GQCP::LibintCommunicator::get().calculateTwoElectronIntegrals(libint2::Operator::coulomb, *ao_basis);
     
     
     // Construct the initial transformation matrix: the identity matrix
@@ -35,13 +52,44 @@ GQCG::HamiltonianParameters constructMolecularHamiltonianParameters(std::shared_
     return HamiltonianParameters(ao_basis, S, H, g, C);
 }
 
-    
+
+/**
+ *  @return a set of random Hamiltonian parameters (with values uniformly distributed between [-1,1]) for a given number of orbitals @param K
+ */
+GQCP::HamiltonianParameters constructRandomHamiltonianParameters(size_t K) {
+
+    GQCP::OneElectronOperator S (Eigen::MatrixXd::Identity(K, K));  // the underlying orbital basis can be chosen as orthonormal, since the form of the underlying orbitals doesn't really matter
+    Eigen::MatrixXd C (Eigen::MatrixXd::Identity(K, K));  // the transformation matrix C here doesn't really mean anything, because it doesn't link to any AO basis
+
+    GQCP::OneElectronOperator H (Eigen::MatrixXd::Random(K, K));  // uniformly distributed between [-1,1]
+
+
+    // Unfortunately, the Tensor module provides uniform random distributions between [0, 1]
+    Eigen::Tensor<double, 4> g_tensor (K, K, K, K);
+    g_tensor.setRandom();
+
+    // Move the distribution from [0, 1] -> [-1, 1]
+    for (size_t i = 0; i < K; i++) {
+        for (size_t j = 0; j < K; j++) {
+            for (size_t k = 0; k < K; k++) {
+                for (size_t l = 0; l < K; l++) {
+                    g_tensor(i,j,k,l) = 2*g_tensor(i,j,k,l) - 1;  // scale from [0, 1] -> [0, 2] -> [-1, 1]
+                }
+            }
+        }
+    }
+    GQCP::TwoElectronOperator g (g_tensor);
+
+    std::shared_ptr<GQCP::AOBasis> ao_basis;  // nullptr because it doesn't make sense to set an AOBasis
+
+    return GQCP::HamiltonianParameters(ao_basis, S, H, g, C);
+}
     
     
 /**
  *  @return HamiltonianParameters corresponding to the contents of an @param fcidump_file
  */
-GQCG::HamiltonianParameters readFCIDUMPFile(const std::string& fcidump_filename) {
+GQCP::HamiltonianParameters readFCIDUMPFile(const std::string& fcidump_filename) {
     
     // Find the extension of the given path (https://stackoverflow.com/a/51992)
     std::string extension;
@@ -149,14 +197,62 @@ GQCG::HamiltonianParameters readFCIDUMPFile(const std::string& fcidump_filename)
     
     
     // Make the ingredients to construct HamiltonianParameters
-    std::shared_ptr<GQCG::AOBasis> ao_basis;  // nullptr
-    GQCG::OneElectronOperator S (Eigen::MatrixXd::Zero(K, K));
-    GQCG::OneElectronOperator H_core (h_SO);
-    GQCG::TwoElectronOperator G (g_SO);
+    std::shared_ptr<GQCP::AOBasis> ao_basis;  // nullptr
+    GQCP::OneElectronOperator S (Eigen::MatrixXd::Zero(K, K));
+    GQCP::OneElectronOperator H_core (h_SO);
+    GQCP::TwoElectronOperator G (g_SO);
     Eigen::MatrixXd C = Eigen::MatrixXd::Identity(K, K);
 
-    return GQCG::HamiltonianParameters(ao_basis, S, H_core, G, C);
+    return GQCP::HamiltonianParameters(ao_basis, S, H_core, G, C);
 }
 
 
-}  // namespace GQCG
+/**
+ *  @return HamiltonianParameters corresponding to the contents of an @param upper_triagonal that specifies the Hubbard lattice interactions
+ */
+GQCP::HamiltonianParameters constructHubbardParameters(const Eigen::VectorXd &upper_triagonal) {
+
+    // The dimension of matrix K is related to the length of the triagonal vector :
+    // K (K + 1) = 2*X
+    // K = (sqrt(1+4X) - 1)/2
+
+    size_t X = upper_triagonal.rows();
+    size_t K = (static_cast<size_t>(sqrt(1 + 8*X) - 1))/2;
+
+
+
+    if (K * (K+1) != 2*X) {
+        throw std::invalid_argument("Passed vector was not the triagonal of a square matrix");
+    }
+
+    Eigen::MatrixXd h_SO = Eigen::MatrixXd::Zero(K, K);
+    Eigen::Tensor<double, 4> g_SO (K, K, K, K);
+    g_SO.setZero();
+
+    size_t triagonal_index = 0;
+    for (size_t i = 0; i < K; i++) {
+        for (size_t j = i; j < K; j++) {
+
+            if (i == j){
+                g_SO(i,i,i,i) = upper_triagonal(triagonal_index);
+            } else {
+                h_SO (i,j) = upper_triagonal(triagonal_index);
+                h_SO (j,i) = upper_triagonal(triagonal_index);
+            }
+            triagonal_index++;
+        }
+    }
+
+
+    // Make the ingredients to construct HamiltonianParameters
+    std::shared_ptr<GQCP::AOBasis> ao_basis;  // nullptr
+    GQCP::OneElectronOperator S (Eigen::MatrixXd::Identity(K, K));
+    GQCP::OneElectronOperator H_core (h_SO);
+    GQCP::TwoElectronOperator G (g_SO);
+    Eigen::MatrixXd C = Eigen::MatrixXd::Identity(K, K);
+
+    return GQCP::HamiltonianParameters(ao_basis, S, H_core, G, C);
+}
+
+
+}  // namespace GQCP
