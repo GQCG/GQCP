@@ -126,6 +126,10 @@ BOOST_AUTO_TEST_CASE ( HamiltonianParameters_constructor ) {
     BOOST_CHECK_THROW(GQCP::HamiltonianParameters (ao_basis_ptr, S, H_core_faulty, g, C), std::invalid_argument);
     BOOST_CHECK_THROW(GQCP::HamiltonianParameters (ao_basis_ptr, S, H_core, g_faulty, C), std::invalid_argument);
     BOOST_CHECK_THROW(GQCP::HamiltonianParameters (ao_basis_ptr, S, H_core, g, C_faulty), std::invalid_argument);
+
+    // Check if we can't use a zero matrix as overlap matrix
+    GQCP::OneElectronOperator S_zero (Eigen::MatrixXd::Zero(K, K));
+    BOOST_CHECK_THROW(GQCP::HamiltonianParameters (ao_basis_ptr, S_zero, H_core, g, C), std::invalid_argument);
 }
 
 
@@ -180,7 +184,7 @@ BOOST_AUTO_TEST_CASE ( calculate_generalized_Fock_matrix_and_super_invalid_argum
 
     // Initialize toy HamiltonianParameters
     std::shared_ptr<GQCP::AOBasis> ao_basis;
-    GQCP::OneElectronOperator S (Eigen::MatrixXd::Zero(2, 2));
+    GQCP::OneElectronOperator S (Eigen::MatrixXd::Identity(2, 2));
     GQCP::OneElectronOperator h (Eigen::MatrixXd::Zero(2, 2));
     Eigen::Tensor<double, 4> g_tensor (2, 2, 2, 2);
     GQCP::TwoElectronOperator g (g_tensor);
@@ -224,7 +228,7 @@ BOOST_AUTO_TEST_CASE ( calculate_generalized_Fock_matrix_and_super ) {
 
     // Set up the toy SOBasis
     std::shared_ptr<GQCP::AOBasis> ao_basis;
-    GQCP::OneElectronOperator S (Eigen::MatrixXd::Zero(2, 2));
+    GQCP::OneElectronOperator S (Eigen::MatrixXd::Identity(2, 2));
     Eigen::MatrixXd h_matrix (2, 2);
     h_matrix << 1, 0,
                 0, 1;

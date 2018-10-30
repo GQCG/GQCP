@@ -52,6 +52,11 @@ HamiltonianParameters::HamiltonianParameters(std::shared_ptr<GQCP::AOBasis> ao_b
     if ((h.get_dim() != this->K) || (g.get_dim() != this->K) || (C.cols() != this->K) || (C.rows() != this->K)) {
         throw error;
     }
+
+
+    if (S.get_matrix_representation().isZero(1.0e-08)) {
+        throw std::invalid_argument("The underlying overlap matrix cannot be a zero matrix.");
+    }
 }
 
 

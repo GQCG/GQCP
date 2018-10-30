@@ -198,7 +198,7 @@ GQCP::HamiltonianParameters readFCIDUMPFile(const std::string& fcidump_filename)
     
     // Make the ingredients to construct HamiltonianParameters
     std::shared_ptr<GQCP::AOBasis> ao_basis;  // nullptr
-    GQCP::OneElectronOperator S (Eigen::MatrixXd::Zero(K, K));
+    GQCP::OneElectronOperator S (Eigen::MatrixXd::Identity(K, K));
     GQCP::OneElectronOperator H_core (h_SO);
     GQCP::TwoElectronOperator G (g_SO);
     Eigen::MatrixXd C = Eigen::MatrixXd::Identity(K, K);
