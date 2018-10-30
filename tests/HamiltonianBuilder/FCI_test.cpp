@@ -20,6 +20,8 @@
 
 #include "HamiltonianBuilder/FCI.hpp"
 
+#include "HamiltonianParameters/HamiltonianParameters_constructors.hpp"
+
 
 #include <boost/test/unit_test.hpp>
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
@@ -28,7 +30,7 @@
 
 BOOST_AUTO_TEST_CASE ( FCI_constructor ) {
     // Create a compatible Fock space
-    GQCP::FockSpaceProduct fock_space (15, 3, 3);
+    GQCP::ProductFockSpace fock_space (15, 3, 3);
 
     // Check if a correct constructor works
     BOOST_CHECK_NO_THROW(GQCP::FCI fci (fock_space));
@@ -36,23 +38,13 @@ BOOST_AUTO_TEST_CASE ( FCI_constructor ) {
 
 
 BOOST_AUTO_TEST_CASE ( FCI_public_methods ) {
-    // Create an AOBasis
-    GQCP::Molecule water ("../tests/data/h2o.xyz");
-    auto ao_basis = std::make_shared<GQCP::AOBasis>(water, "STO-3G");
 
-
-    // Create random HamiltonianParameters from One- and TwoElectronOperators (and a transformation matrix) with compatible dimensions
-    size_t K = ao_basis->get_number_of_basis_functions();
-    GQCP::OneElectronOperator S (Eigen::MatrixXd::Random(K, K));
-    GQCP::OneElectronOperator H_core (Eigen::MatrixXd::Random(K, K));
-    Eigen::Tensor<double, 4> g_tensor (K, K, K, K);
-    g_tensor.setRandom();
-    GQCP::TwoElectronOperator g (g_tensor);
-    Eigen::MatrixXd C = Eigen::MatrixXd::Random(K, K);
-    GQCP::HamiltonianParameters random_hamiltonian_parameters (ao_basis, S, H_core, g, C);
+    // Create random HamiltonianParameters to check compatibility
+    size_t K = 5;
+    auto random_hamiltonian_parameters = GQCP::constructRandomHamiltonianParameters(K);
 
     // Create a compatible Fock space
-    GQCP::FockSpaceProduct fock_space (K, 3, 3);
+    GQCP::ProductFockSpace fock_space (K, 3, 3);
 
     // Create FCI module
     GQCP::FCI random_fci (fock_space);
@@ -63,7 +55,7 @@ BOOST_AUTO_TEST_CASE ( FCI_public_methods ) {
     BOOST_CHECK_NO_THROW(random_fci.matrixVectorProduct(random_hamiltonian_parameters, x, x));
 
     // Create an incompatible Fock space
-    GQCP::FockSpaceProduct fock_space_i (K+1, 3, 3);
+    GQCP::ProductFockSpace fock_space_i (K+1, 3, 3);
 
     // Create FCI module
     GQCP::FCI random_fci_i (fock_space_i);

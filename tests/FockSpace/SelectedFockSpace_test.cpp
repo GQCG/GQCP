@@ -31,7 +31,7 @@ BOOST_AUTO_TEST_CASE ( constructor ) {
 
     BOOST_CHECK_NO_THROW(GQCP::SelectedFockSpace (10, 5, 5));
 
-    GQCP::FockSpaceProduct fock_space_product (10, 5, 5);
+    GQCP::ProductFockSpace fock_space_product (10, 5, 5);
     GQCP::FockSpace fock_space (10, 5);
 
     BOOST_CHECK_NO_THROW(GQCP::SelectedFockSpace fock (fock_space_product));

@@ -66,6 +66,11 @@ public:
      *  Creates a Hartree-Fock coefficient expansion (single Slater expansion of the first configuration in the Fock space)
      */
     Eigen::VectorXd HartreeFockExpansion();
+
+    /**
+     *  Creates a random normalized coefficient expansion, uniformly distributed in [-1, 1]
+     */
+    Eigen::VectorXd randomExpansion();
 };
 
 

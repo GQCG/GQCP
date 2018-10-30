@@ -82,18 +82,18 @@ void DOCINewtonOrbitalOptimizer::solve(numopt::eigenproblem::BaseSolverOptions& 
 
         // Calculate the 1- and 2-RDMs
         GQCP::RDMCalculator rdm_calculator (*(this->doci.get_fock_space()));
-        auto one_rdm = rdm_calculator.calculate1RDMs(ground_state.get_coefficients()).one_rdm;  // spin-summed 1-RDM
-        auto two_rdm = rdm_calculator.calculate2RDMs(ground_state.get_coefficients()).two_rdm;  // spin-summed 2-RDM
+        auto D = rdm_calculator.calculate1RDMs(ground_state.get_coefficients()).one_rdm;  // spin-summed 1-RDM
+        auto d = rdm_calculator.calculate2RDMs(ground_state.get_coefficients()).two_rdm;  // spin-summed 2-RDM
 
 
         // Calculate the electronic gradient at kappa = 0
-        Eigen::MatrixXd F = this->ham_par.calculateGeneralizedFockMatrix(one_rdm, two_rdm).get_matrix_representation();
+        Eigen::MatrixXd F = this->ham_par.calculateGeneralizedFockMatrix(D, d).get_matrix_representation();
         Eigen::MatrixXd gradient_matrix = 2 * (F - F.transpose());
         Eigen::VectorXd gradient_vector = cpputil::linalg::strictLowerTriangle(gradient_matrix);  // gradient vector with the free parameters, at kappa = 0
 
 
         // Calculate the electronic Hessian at kappa = 0
-        Eigen::Tensor<double, 4> W = this->ham_par.calculateSuperGeneralizedFockMatrix(one_rdm, two_rdm).get_matrix_representation();
+        GQCP::TwoElectronOperator W = this->ham_par.calculateSuperGeneralizedFockMatrix(D, d);
         Eigen::Tensor<double, 4> hessian_tensor (K, K, K, K);
         hessian_tensor.setZero();
 

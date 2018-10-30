@@ -27,13 +27,13 @@ namespace GQCP {
 double calculateRMP2EnergyCorrection(const GQCP::HamiltonianParameters& ham_par, const GQCP::Molecule& molecule, const GQCP::RHF& rhf) {
 
     size_t N = molecule.get_N();
-
-    Eigen::Tensor<double, 4> g = ham_par.get_g().get_matrix_representation();
-    size_t K = g.dimension(0);  // TODO: change to ham_par.dim after rebase
-
+    size_t K = ham_par.get_K();
 
     size_t HOMO_index = GQCP::RHFHOMOIndex(N);
     size_t LUMO_index = GQCP::RHFLUMOIndex(K, N);
+
+
+    GQCP::TwoElectronOperator g = ham_par.get_g();
 
     double E = 0.0;
     //  loop over all occupied orbitals (0 <= HOMO )

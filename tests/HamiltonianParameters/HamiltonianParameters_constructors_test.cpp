@@ -20,6 +20,7 @@
 
 #include "HamiltonianParameters/HamiltonianParameters_constructors.hpp"
 
+#include <cpputil.hpp>
 
 #include <boost/test/unit_test.hpp>
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
@@ -49,7 +50,7 @@ BOOST_AUTO_TEST_CASE ( FCIDUMP_reader ) {
     auto fcidump_ham_par = GQCP::readFCIDUMPFile("../tests/data/beh_cation_631g_caitlin.FCIDUMP");
     
     // Check if the one-electron integrals are read in correctly from a previous implementation
-    Eigen::MatrixXd h_SO = fcidump_ham_par.get_h().get_matrix_representation();
+    GQCP::OneElectronOperator h_SO = fcidump_ham_par.get_h();
     
     BOOST_CHECK(std::abs(h_SO(0,0) - (-8.34082)) < 1.0e-5);
     BOOST_CHECK(std::abs(h_SO(5,1) - 0.381418) < 1.0e-6);
@@ -59,7 +60,7 @@ BOOST_AUTO_TEST_CASE ( FCIDUMP_reader ) {
     
     
     // Check if the two-electron integrals are read in correctly from a previous implementation
-    Eigen::Tensor<double, 4> g_SO = fcidump_ham_par.get_g().get_matrix_representation();
+    GQCP::TwoElectronOperator g_SO = fcidump_ham_par.get_g();
     
     BOOST_CHECK(std::abs(g_SO(2,5,4,4) - 0.0139645) < 1.0e-6);
     BOOST_CHECK(std::abs(g_SO(2,6,3,0) - 5.16622e-18) < 1.0e-17);
@@ -84,6 +85,33 @@ BOOST_AUTO_TEST_CASE ( FCIDUMP_reader_HORTON ) {
     // Check the same reference value that HORTON does
     auto fcidump_ham_par = GQCP::readFCIDUMPFile("../tests/data/h2_psi4_horton.FCIDUMP");
     
-    Eigen::Tensor<double, 4> g_SO = fcidump_ham_par.get_g().get_matrix_representation();
+    GQCP::TwoElectronOperator g_SO = fcidump_ham_par.get_g();
     BOOST_CHECK(std::abs(g_SO(6,5,1,0) - 0.0533584656) <  1.0e-7);
+}
+
+
+BOOST_AUTO_TEST_CASE ( hubbard_upperTriagonal ) {
+    
+    Eigen::VectorXd triagonal_test(6);
+    triagonal_test << 1, 2, 3, 4, 5, 6;
+    auto hubbard_ham_par = GQCP::constructHubbardParameters(triagonal_test);
+
+    Eigen::MatrixXd h_ref (3, 3);
+    h_ref << 0, 2, 3,
+             2, 0, 5,
+             3, 5, 0;
+
+    Eigen::Tensor<double, 4> g_ref (3, 3, 3, 3);
+    g_ref.setZero();
+    g_ref(0,0,0,0) = 1;
+    g_ref(1,1,1,1) = 4;
+    g_ref(2,2,2,2) = 6;
+
+    BOOST_CHECK(h_ref.isApprox(hubbard_ham_par.get_h().get_matrix_representation()));
+    BOOST_CHECK(cpputil::linalg::areEqual(g_ref, hubbard_ham_par.get_g().get_matrix_representation(), 1.0e-12));
+    
+    Eigen::VectorXd triagonal_test_faulty(5);
+    triagonal_test_faulty << 1, 2, 3, 4, 5;
+    
+    BOOST_CHECK_THROW(GQCP::constructHubbardParameters(triagonal_test_faulty), std::invalid_argument);
 }

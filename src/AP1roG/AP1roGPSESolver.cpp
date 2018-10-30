@@ -79,8 +79,8 @@ AP1roGPSESolver::AP1roGPSESolver(const GQCP::Molecule& molecule, const GQCP::Ham
  */
 double AP1roGPSESolver::calculateJacobianElement(const AP1roGGeminalCoefficients& G, size_t i, size_t a, size_t k, size_t c) const {
 
-    Eigen::MatrixXd h_SO = this->ham_par.get_h().get_matrix_representation();
-    Eigen::Tensor<double, 4> g_SO = this->ham_par.get_g().get_matrix_representation();
+    GQCP::OneElectronOperator h_SO = this->ham_par.get_h();
+    GQCP::TwoElectronOperator g_SO = this->ham_par.get_g();
 
     double j_el = 0.0;
 
@@ -182,8 +182,8 @@ Eigen::MatrixXd AP1roGPSESolver::calculateJacobian(const Eigen::VectorXd& g) con
  */
 double AP1roGPSESolver::calculateCoordinateFunction(const GQCP::AP1roGGeminalCoefficients& G, size_t i, size_t a) const {
 
-    Eigen::MatrixXd h_SO = this->ham_par.get_h().get_matrix_representation();
-    Eigen::Tensor<double, 4> g_SO = this->ham_par.get_g().get_matrix_representation();
+    GQCP::OneElectronOperator h_SO = this->ham_par.get_h();
+    GQCP::TwoElectronOperator g_SO = this->ham_par.get_g();
 
     double f = 0.0;
 

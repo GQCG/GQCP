@@ -28,7 +28,7 @@ namespace GQCP {
 /**
  *  Constructor given a @param hamiltonian_parameters and @param fock_space
  */
-FCI::FCI(const FockSpaceProduct& fock_space) :
+FCI::FCI(const ProductFockSpace& fock_space) :
         HamiltonianBuilder(),
         fock_space (fock_space)
 {}
@@ -85,7 +85,7 @@ Eigen::MatrixXd FCI::constructHamiltonian(const HamiltonianParameters& hamiltoni
                         // are the same
                         // We are storing the alpha addresses as 'major', i.e. the total address I_alpha I_beta = I_alpha * dim_beta + I_beta
                         for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {
-                            double value = sign_pq * hamiltonian_parameters.get_h().get(p, q);
+                            double value = sign_pq * hamiltonian_parameters.get_h()(p, q);
                             result_matrix(I_alpha * dim_beta + I_beta, J_alpha * dim_beta + I_beta) += value;
                         }
 
@@ -119,7 +119,7 @@ Eigen::MatrixXd FCI::constructHamiltonian(const HamiltonianParameters& hamiltoni
 
                                         // We are storing the alpha addresses as 'major', i.e. the total address I_alpha I_beta = I_alpha * dim_b + I_b
                                         for (size_t Ib = 0; Ib < dim_beta; Ib++) {
-                                            double value = sign_pqrs * 0.5 * hamiltonian_parameters.get_g().get(s, p, r, q);
+                                            double value = sign_pqrs * 0.5 * hamiltonian_parameters.get_g()(s, p, r, q);
                                             result_matrix(I_alpha * dim_beta + Ib, Ja * dim_beta + Ib) += value;
                                         }
 
@@ -171,7 +171,7 @@ Eigen::MatrixXd FCI::constructHamiltonian(const HamiltonianParameters& hamiltoni
                         // We are storing the alpha addresses as 'major', i.e. the total address I_alpha I_beta = I_alpha * dim_beta + I_beta
 
                         for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {
-                            double value = sign_pq * hamiltonian_parameters.get_h().get(p, q);
+                            double value = sign_pq * hamiltonian_parameters.get_h()(p, q);
                             result_matrix (I_alpha * dim_beta + I_beta, I_alpha * dim_beta + J_beta) += value;
                         }
 
@@ -205,7 +205,7 @@ Eigen::MatrixXd FCI::constructHamiltonian(const HamiltonianParameters& hamiltoni
 
                                         // We are storing the alpha addresses as 'major', i.e. the total address IaIb = Ia * dim_b + I_b
                                         for (size_t Ia = 0; Ia < dim_alpha; Ia++) {
-                                            double value = sign_pqrs * 0.5 * hamiltonian_parameters.get_g().get(s, p, r, q);
+                                            double value = sign_pqrs * 0.5 * hamiltonian_parameters.get_g()(s, p, r, q);
                                             result_matrix(Ia * dim_beta + I_beta, Ia * dim_beta + Jb) += value;
                                         }
 
@@ -239,7 +239,7 @@ Eigen::MatrixXd FCI::constructHamiltonian(const HamiltonianParameters& hamiltoni
                 for (const auto& beta : this->beta_one_electron_couplings[I_beta]) {  // traverse all OneElectronCouplings for I_beta
 
                     int sign = alpha.sign * beta.sign;
-                    double value = sign * hamiltonian_parameters.get_g().get(alpha.p, alpha.q, beta.p, beta.q);
+                    double value = sign * hamiltonian_parameters.get_g()(alpha.p, alpha.q, beta.p, beta.q);
                     result_matrix( I_alpha * dim_beta + I_beta, alpha.address * dim_beta + beta.address) += value;  // alpha is the major index
                 }  // beta OneElectronCouplings
             }  // alpha OneElectronCouplings
@@ -275,7 +275,7 @@ Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters& hamiltonia
     for (size_t p = 0; p < K; p++) {
         for (size_t q = 0; q < K; q++) {
             for (size_t r = 0; r < K; r++) {
-                k_SO(p,q) -= 0.5 * hamiltonian_parameters.get_g().get(p, r, r, q);
+                k_SO(p,q) -= 0.5 * hamiltonian_parameters.get_g()(p, r, r, q);
             }
         }
     }
@@ -365,7 +365,7 @@ Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters& hamiltonia
                                         size_t J_alpha = fock_space_alpha.getAddress(spin_string_alpha_aaaa);  // the address of the string J_alpha that couples to I_alpha
 
                                         for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {  // I_beta loops over all beta addresses
-                                            matvec(I_alpha*dim_beta + I_beta) += 0.5 * hamiltonian_parameters.get_g().get(p, q, r, s) * sign_pqrs * x(J_alpha*dim_beta + I_beta);
+                                            matvec(I_alpha*dim_beta + I_beta) += 0.5 * hamiltonian_parameters.get_g()(p, q, r, s) * sign_pqrs * x(J_alpha*dim_beta + I_beta);
                                         }
 
                                         spin_string_alpha_aaaa.annihilate(s);  // undo the previous creation
@@ -417,7 +417,7 @@ Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters& hamiltonia
                                         if (spin_string_beta_aabb.create(s, sign_rs)) {
                                             size_t J_beta = fock_space_beta.getAddress(spin_string_beta_aabb);  // the address of the spin string that couples to I_beta
 
-                                            matvec(I_alpha*dim_beta + I_beta) += hamiltonian_parameters.get_g().get(p, q, r, s) * sign_pq * sign_rs * x(J_alpha*dim_beta + J_beta);  // alpha addresses are major
+                                            matvec(I_alpha*dim_beta + I_beta) += hamiltonian_parameters.get_g()(p, q, r, s) * sign_pq * sign_rs * x(J_alpha*dim_beta + J_beta);  // alpha addresses are major
 
                                             spin_string_beta_aabb.annihilate(s);  // undo the previous creation
                                         }
@@ -465,7 +465,7 @@ Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters& hamiltonia
                                         size_t J_beta = fock_space_beta.getAddress(spin_string_beta_bbbb);  // the address of the string J_beta that couples to I_beta
 
                                         for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {  // I_beta loops over all beta addresses
-                                            matvec(I_alpha*dim_beta + I_beta) += 0.5 * hamiltonian_parameters.get_g().get(p,q,r,s) * sign_pqrs * x(I_alpha*dim_beta + J_beta);
+                                            matvec(I_alpha*dim_beta + I_beta) += 0.5 * hamiltonian_parameters.get_g()(p,q,r,s) * sign_pqrs * x(I_alpha*dim_beta + J_beta);
                                         }
 
                                         spin_string_beta_bbbb.annihilate(s);  // undo the previous creation
@@ -515,7 +515,7 @@ Eigen::VectorXd FCI::calculateDiagonal(const HamiltonianParameters& hamiltonian_
     for (size_t p = 0; p < K; p++) {
         for (size_t q = 0; q < K; q++) {
             for (size_t r = 0; r < K; r++) {
-                k_SO(p,q) -= 0.5 * hamiltonian_parameters.get_g().get(p, r, r, q);
+                k_SO(p,q) -= 0.5 * hamiltonian_parameters.get_g()(p, r, r, q);
             }
         }
     }
@@ -533,13 +533,13 @@ Eigen::VectorXd FCI::calculateDiagonal(const HamiltonianParameters& hamiltonian_
 
                     for (size_t q = 0; q < K; q++) {  // q loops over SOs
                         if (spin_string_alpha.isOccupied(q)) {  // q is in Ia
-                            diagonal(Ia * dim_beta + Ib) += 0.5 * hamiltonian_parameters.get_g().get(p, p, q, q);
+                            diagonal(Ia * dim_beta + Ib) += 0.5 * hamiltonian_parameters.get_g()(p, p, q, q);
                         } else {  // q is not in I_alpha
-                            diagonal(Ia * dim_beta + Ib) += 0.5 * hamiltonian_parameters.get_g().get(p, q, q, p);
+                            diagonal(Ia * dim_beta + Ib) += 0.5 * hamiltonian_parameters.get_g()(p, q, q, p);
                         }
 
                         if (spin_string_beta.isOccupied(q)) {  // q is in Ib
-                            diagonal(Ia * dim_beta + Ib) += hamiltonian_parameters.get_g().get(p, p, q, q);
+                            diagonal(Ia * dim_beta + Ib) += hamiltonian_parameters.get_g()(p, p, q, q);
                         }
                     }  // q loop
                 }
@@ -551,10 +551,10 @@ Eigen::VectorXd FCI::calculateDiagonal(const HamiltonianParameters& hamiltonian_
 
                     for (size_t q = 0; q < K; q++) {  // q loops over SOs
                         if (spin_string_beta.isOccupied(q)) {  // q is in Ib
-                            diagonal(Ia * dim_beta + Ib) += 0.5 * hamiltonian_parameters.get_g().get(p, p, q, q);
+                            diagonal(Ia * dim_beta + Ib) += 0.5 * hamiltonian_parameters.get_g()(p, p, q, q);
 
                         } else {  // q is not in I_beta
-                            diagonal(Ia * dim_beta + Ib) += 0.5 * hamiltonian_parameters.get_g().get(p, q, q, p);
+                            diagonal(Ia * dim_beta + Ib) += 0.5 * hamiltonian_parameters.get_g()(p, q, q, p);
                         }
                     }  // q loop
                 }

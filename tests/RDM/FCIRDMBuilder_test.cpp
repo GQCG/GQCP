@@ -45,7 +45,7 @@ BOOST_AUTO_TEST_CASE ( H2O_1RDM_spin_trace_FCI ) {
     auto ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
     size_t K = ham_par.get_K();  // SO 7
 
-    GQCP::FockSpaceProduct fock_space (K, N_a, N_b);  // dim = 441
+    GQCP::ProductFockSpace fock_space (K, N_a, N_b);  // dim = 441
     GQCP::FCI fci (fock_space);
 
     // Specify solver options and solve the eigenvalue problem
@@ -82,7 +82,7 @@ BOOST_AUTO_TEST_CASE ( H2O_2RDM_spin_trace_FCI ) {
     auto ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
     size_t K = ham_par.get_K();  // SO 7
 
-    GQCP::FockSpaceProduct fock_space (K, N_a, N_b);  // dim = 441
+    GQCP::ProductFockSpace fock_space (K, N_a, N_b);  // dim = 441
     GQCP::FCI fci (fock_space);
 
     // Specify solver options and solve the eigenvalue problem
@@ -120,7 +120,7 @@ BOOST_AUTO_TEST_CASE ( H2O_1RDM_2RDM_trace_FCI ) {
     auto ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
     size_t K = ham_par.get_K();  // SO 7
 
-    GQCP::FockSpaceProduct fock_space (K, N_a, N_b);  // dim = 441
+    GQCP::ProductFockSpace fock_space (K, N_a, N_b);  // dim = 441
     GQCP::FCI fci (fock_space);
 
     // Specify solver options and solve the eigenvalue problem
@@ -156,7 +156,7 @@ BOOST_AUTO_TEST_CASE ( H2O_energy_RDM_contraction_FCI ) {
     auto ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
     size_t K = ham_par.get_K();  // SO 7
 
-    GQCP::FockSpaceProduct fock_space (K, N_a, N_b);  // dim = 441
+    GQCP::ProductFockSpace fock_space (K, N_a, N_b);  // dim = 441
     GQCP::FCI fci (fock_space);
 
     // Specify solver options and solve the eigenvalue problem

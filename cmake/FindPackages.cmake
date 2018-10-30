@@ -2,7 +2,7 @@
 
 
 # Find the Boost package
-find_package(Boost REQUIRED)
+find_package(Boost REQUIRED REQUIRED program_options)
 
 # Find Eigen3
 find_package(Eigen3 3.3.4 REQUIRED)
@@ -20,4 +20,3 @@ find_package(numopt 1.5.0 REQUIRED)
 if(BUILD_DOCS)
     find_package(Doxygen REQUIRED dot)
 endif()
-
