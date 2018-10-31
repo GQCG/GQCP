@@ -27,7 +27,7 @@ namespace GQCP {
  */
 
 /**
- *  Constructor based on a given @param dimension
+ *  @param dimension    the dimension of the matrix representation of the operator (i.e. the number of orbitals)
  */
 BaseRDM::BaseRDM(size_t dimension) :
     dim (dimension)

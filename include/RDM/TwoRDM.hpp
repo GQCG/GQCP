@@ -26,8 +26,9 @@
 
 namespace GQCP {
 
+
 /**
- *  A class that holds the tensor representations of a 2RDM
+ *  A class that represents a 2-RDM
  */
 class TwoRDM : public BaseRDM {
 private:
@@ -36,10 +37,16 @@ private:
 
 public:
     // CONSTRUCTORS
+    /**
+     *  @param d    the explicit matrix representation of the 2-RDM
+     */
     explicit TwoRDM(const Eigen::Tensor<double, 4>& d);
 
 
     // OPERATORS
+    /**
+     *  @return the matrix element at position (p,q,r,s)
+     */
     double operator()(size_t p, size_t q, size_t r, size_t s) const { return this->d(p,q,r,s); }
 
 
@@ -49,13 +56,12 @@ public:
 
     // PUBLIC METHODS
     /**
-     *  @return the trace of the 2-RDM @param: d(p,p,q,q)
+     *  @return the trace of the 2-RDM, i.e. d(p,p,q,q)
      */
     double trace();
 
     /**
-     *  @return a partial contraction of the 2-RDM,
-     *  where D(p,q) = d(p,q,r,r)
+     *  @return a partial contraction of the 2-RDM, where D(p,q) = d(p,q,r,r)
      */
     Eigen::MatrixXd reduce();
 };

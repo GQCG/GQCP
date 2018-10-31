@@ -27,7 +27,7 @@
 namespace GQCP {
 
 /**
- *  A class that holds the matrix representation of a 1-RDM
+ *  A class that represents a 1-RDM
  */
 class OneRDM : public BaseRDM {
 private:
@@ -36,10 +36,16 @@ private:
 
 public:
     // CONSTRUCTORS
+    /**
+     *  @param D    the explicit matrix representation of the 1-RDM
+     */
     explicit OneRDM(const Eigen::MatrixXd& D);
 
 
     // OPERATORS
+    /**
+     *  @return the matrix element at position (p,q)
+     */
     double operator()(size_t p, size_t q) const { return this->D(p,q); }
 
 
@@ -51,10 +57,12 @@ public:
     /**
      *  @return the 1-RDM's trace
      */
-    double trace();
+    double trace() const;
 
     /**
-     *  diagonalizes the 1-RDM and @returns the eigenvectors
+     *  In-place diagonalize the 1-RDM
+     *
+     *  @return the eigenvectors of the 1-RDM
      */
     Eigen::MatrixXd diagonalize();
 };

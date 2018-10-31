@@ -25,9 +25,11 @@ namespace GQCP {
 /*
  *  CONSTRUCTORS
  */
-
+/**
+ *  @param D    the explicit matrix representation of the 1-RDM
+ */
 OneRDM::OneRDM(const Eigen::MatrixXd& D) :
-    BaseRDM (D.cols()),
+    BaseRDM(D.cols()),
     D (D)
 {
     // Check if the 1-RDM is represented as a square matrix
@@ -45,16 +47,19 @@ OneRDM::OneRDM(const Eigen::MatrixXd& D) :
 /**
  *  @return the 1-RDM's trace
  */
-double OneRDM::trace(){
+double OneRDM::trace() const {
     return this->D.trace();
 }
 
 
 /**
- *  diagonalizes the 1-RDM and @returns the eigenvectors
+ *  In-place diagonalize the 1-RDM
+ *
+ *  @return the eigenvectors of the 1-RDM
  */
 Eigen::MatrixXd OneRDM::diagonalize() {
     Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes (this->D);
+
     this->D = saes.eigenvalues().asDiagonal();
     return saes.eigenvectors();
 }
