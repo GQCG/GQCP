@@ -67,7 +67,7 @@ std::vector<libint2::Atom> LibintCommunicator::interface(const std::vector<GQCP:
     std::vector<libint2::Atom> libint_vector;  // start with an empty vector, we're doing push_backs later
 
     for (const auto& atom : atoms) {
-        libint2::Atom libint_atom {static_cast<int>(atom.atomic_number), atom.x, atom.y, atom.z};
+        libint2::Atom libint_atom {static_cast<int>(atom.atomic_number), atom.position.x(), atom.position.y(), atom.position.z()};
         libint_vector.push_back(libint_atom);
     }
 
