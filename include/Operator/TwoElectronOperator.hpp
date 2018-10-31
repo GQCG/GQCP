@@ -44,18 +44,33 @@ public:
     explicit TwoElectronOperator(const Eigen::Tensor<double, 4>& tensor);
 
 
+    // GETTERS
+    Eigen::Tensor<double, 4> get_matrix_representation() const { return this->tensor; }
+
+
     // OPERATORS
     /**
      *  @return the matrix element at position (p,q,r,s)
      */
     double operator()(size_t p, size_t q, size_t r, size_t s) const { return this->tensor(p, q, r, s); }
 
-
-    // GETTERS
-    Eigen::Tensor<double, 4> get_matrix_representation() const { return this->tensor; }
+    /**
+     *  @param other    the other TwoElectronOperator
+     *
+     *  @return if the matrix representation of this operator is equal to the matrix representation of the other, within the default tolerance specified by isEqualTo()
+     */
+    bool operator==(const GQCP::TwoElectronOperator& other);
 
 
     // PUBLIC METHODS
+    /**
+     *  @param other        the other TwoElectronOperator
+     *  @param tolerance    the tolerance for equality of the matrix representations
+     *
+     *  @return if the matrix representation of this operator is equal to the matrix representation of the other, given a tolerance
+     */
+    bool isEqualTo(const GQCP::TwoElectronOperator& other, double tolerance=1.0e-08) const;
+
     /**
      *  In-place transform the matrix representation of the two-electron operator
      *

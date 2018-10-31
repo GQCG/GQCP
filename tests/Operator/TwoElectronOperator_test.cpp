@@ -41,12 +41,28 @@ BOOST_AUTO_TEST_CASE ( TwoElectronOperator_constructor ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( TwoElectronOperator_getters ) {
+BOOST_AUTO_TEST_CASE ( isEqualTo ) {
 
-    Eigen::Tensor<double, 4> tensor (3, 3, 3, 3);
-    GQCP::TwoElectronOperator O (tensor);
+    Eigen::Tensor<double, 4> A (3, 3, 3, 3);
+    A.setRandom();
 
-    O.get_matrix_representation();
+    GQCP::TwoElectronOperator O1 (A);
+    GQCP::TwoElectronOperator O2 (A);
+    BOOST_CHECK(O1.isEqualTo(O2, 1.0e-05));
+
+    GQCP::TwoElectronOperator O3 (2*A);
+    BOOST_CHECK(!(O3.isEqualTo(O1)));
+}
+
+
+BOOST_AUTO_TEST_CASE ( operator_equals ) {
+
+    Eigen::Tensor<double, 4> A (3, 3, 3, 3);
+    A.setRandom();
+
+    GQCP::TwoElectronOperator O1 (A);
+    GQCP::TwoElectronOperator O2 (A);
+    BOOST_CHECK(O1 == O2);
 }
 
 

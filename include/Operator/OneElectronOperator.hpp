@@ -44,18 +44,16 @@ public:
     explicit OneElectronOperator(const Eigen::MatrixXd& matrix);
 
 
+    // GETTERS
+    Eigen::MatrixXd get_matrix_representation() const { return this->matrix; }
+
+
     // OPERATORS
     /**
      *  @return the matrix element at position (p,q)
      */
     double operator()(size_t p, size_t q) const { return this->matrix(p,q); }
 
-
-    // GETTERS
-    Eigen::MatrixXd get_matrix_representation() const { return this->matrix; }
-
-
-    // OPERATORS
     /**
      *  @param other    the other OneElectronOperator
      *
@@ -66,7 +64,7 @@ public:
     /**
      *  @param other    the other OneElectronOperator
      *
-     *  @return if the matrix representation of this operator is equal to the matrix representation of the, within the default tolerance specified by isEqualTo()
+     *  @return if the matrix representation of this operator is equal to the matrix representation of the other, within the default tolerance specified by isEqualTo()
      */
     bool operator==(const GQCP::OneElectronOperator& other);
 

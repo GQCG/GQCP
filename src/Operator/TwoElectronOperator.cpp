@@ -19,6 +19,8 @@
 
 #include <iostream>
 
+#include <cpputil.hpp>
+
 #include "miscellaneous.hpp"
 
 
@@ -40,10 +42,35 @@ TwoElectronOperator::TwoElectronOperator(const Eigen::Tensor<double, 4>& tensor)
 }
 
 
+/*
+ *  OPERATORS
+ */
+/**
+ *  @param other    the other TwoElectronOperator
+ *
+ *  @return if the matrix representation of this operator is equal to the matrix representation of the other, within the default tolerance specified by isEqualTo()
+ */
+bool TwoElectronOperator::operator==(const GQCP::TwoElectronOperator& other) {
+    return this->isEqualTo(other);
+}
+
+
 
 /*
  *  PUBLIC METHODS
  */
+
+/**
+ *  @param other        the other TwoElectronOperator
+ *  @param tolerance    the tolerance for equality of the matrix representations
+ *
+ *  @return if the matrix representation of this operator is equal to the matrix representation of the other, given a tolerance
+ */
+bool TwoElectronOperator::isEqualTo(const GQCP::TwoElectronOperator& other, double tolerance) const {
+    
+    return cpputil::linalg::areEqual(this->tensor, other.tensor, tolerance);
+}
+
 
 /**
  *  In-place transform the matrix representation of the two-electron operator
