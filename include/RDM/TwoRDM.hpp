@@ -26,8 +26,9 @@
 
 namespace GQCP {
 
+
 /**
- *  A class that holds the tensor representations of a 2RDM
+ *  A class that represents a 2-RDM
  */
 class TwoRDM : public BaseRDM {
 private:
@@ -36,26 +37,46 @@ private:
 
 public:
     // CONSTRUCTORS
+    /**
+     *  @param d    the explicit matrix representation of the 2-RDM
+     */
     explicit TwoRDM(const Eigen::Tensor<double, 4>& d);
 
 
+    // GETTERS
+    const Eigen::Tensor<double, 4>& get_matrix_representation() const { return this->d; }
+
+
     // OPERATORS
+    /**
+     *  @return the matrix element at position (p,q,r,s)
+     */
     double operator()(size_t p, size_t q, size_t r, size_t s) const { return this->d(p,q,r,s); }
 
-
-    // GETTERS
-    Eigen::Tensor<double, 4> get_matrix_representation() const { return this->d; }
+    /**
+     *  @param other    the other TwoRDM
+     *
+     *  @return if the matrix representation of this 2-RDM is equal to the matrix representation of the other, within the default tolerance specified by isEqualTo()
+     */
+    bool operator==(const GQCP::TwoRDM& other);
 
 
     // PUBLIC METHODS
     /**
-     *  @return the trace of the 2-RDM @param: d(p,p,q,q)
+     *  @param other        the other TwoRDM
+     *  @param tolerance    the tolerance for equality of the matrix representations
+     *
+     *  @return if the matrix representation of this 2-RDM is equal to the matrix representation of the other, given a tolerance
+     */
+    bool isEqualTo(const GQCP::TwoRDM& other, double tolerance=1.0e-08) const;
+
+    /**
+     *  @return the trace of the 2-RDM, i.e. d(p,p,q,q)
      */
     double trace();
 
     /**
-     *  @return a partial contraction of the 2-RDM,
-     *  where D(p,q) = d(p,q,r,r)
+     *  @return a partial contraction of the 2-RDM, where D(p,q) = d(p,q,r,r)
      */
     Eigen::MatrixXd reduce();
 };

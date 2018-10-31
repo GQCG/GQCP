@@ -91,8 +91,8 @@ public:
 
 
     // GETTERS
-    GQCP::AP1roG get_solution() const { return this->solution; }
-    GQCP::HamiltonianParameters get_optimized_hamiltonian_parameters() const { return this->ham_par; }
+    const GQCP::AP1roG& get_solution() const { return this->solution; }
+    const GQCP::HamiltonianParameters& get_optimized_hamiltonian_parameters() const { return this->ham_par; }
 
 
     // PUBLIC METHODS

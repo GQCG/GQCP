@@ -43,9 +43,9 @@ public:
 
 
     // GETTERS
-    SelectedFockSpace get_fock_space() const { return this->fock_space; }
-    Eigen::VectorXd get_coefficients() const { return this->coefficients; }
-    WaveFunction get_wave_function() const { return this->wave_function; }
+    const SelectedFockSpace& get_fock_space() const { return this->fock_space; }
+    const Eigen::VectorXd& get_coefficients() const { return this->coefficients; }
+    const WaveFunction& get_wave_function() const { return this->wave_function; }
 };
 
 

@@ -52,8 +52,8 @@ public:
     DOCINewtonOrbitalOptimizer(const GQCP::DOCI& doci, const GQCP::HamiltonianParameters& ham_par);
 
     // GETTERS
-    std::vector<numopt::eigenproblem::Eigenpair> get_eigenpairs() const;
-    numopt::eigenproblem::Eigenpair get_eigenpair(size_t index = 0) const;
+    const std::vector<numopt::eigenproblem::Eigenpair>& get_eigenpairs() const;
+    const numopt::eigenproblem::Eigenpair& get_eigenpair(size_t index = 0) const;
 
     // PUBLIC METHODS
     /**

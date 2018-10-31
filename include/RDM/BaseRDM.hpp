@@ -36,7 +36,7 @@ protected:
 public:
     // CONSTRUCTORS
     /**
-     *  Constructor based on a given @param dimension
+     *  @param dimension    the dimension of the matrix representation of the operator (i.e. the number of orbitals)
      */
     explicit BaseRDM(size_t dimension);
 

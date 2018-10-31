@@ -50,8 +50,8 @@ public:
 
 
     // GETTERS
-    std::vector<numopt::eigenproblem::Eigenpair> get_eigenpairs() const { return this->eigenpairs; }
-    numopt::eigenproblem::Eigenpair get_eigenpair(size_t index = 0) const { return this->eigenpairs[index]; }
+    const std::vector<numopt::eigenproblem::Eigenpair>& get_eigenpairs() const { return this->eigenpairs; }
+    const numopt::eigenproblem::Eigenpair& get_eigenpair(size_t index = 0) const { return this->eigenpairs[index]; }
 
 
     // PUBLIC METHODS

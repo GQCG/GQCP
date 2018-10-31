@@ -67,7 +67,7 @@ public:
 
     // GETTERS
     size_t get_vertex_weights(size_t p, size_t m) const { return this->vertex_weights[p][m]; }
-    Matrixu get_vertex_weights() const { return this->vertex_weights; }
+    const Matrixu& get_vertex_weights() const { return this->vertex_weights; }
     size_t get_N() const { return this->N; }
     FockSpaceType get_type() const override { return FockSpaceType::FockSpace; }
 
@@ -80,7 +80,7 @@ public:
     static size_t calculateDimension(size_t K, size_t N);
 
 
-    // OVERRIDDEN PUBLIC METHODS
+    // PUBLIC METHODS
     /**
      *  @return the ONV with the corresponding address in the considered space
      */
