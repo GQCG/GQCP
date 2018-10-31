@@ -25,7 +25,10 @@ namespace GQCP {
  *  CONSTRUCTORS
  */
 /**
- *  Constructor based on given Hamiltonian parameters @param ham_par, @param molecule, @param maximum_number_of_iterations and @param SCF threshold
+ *  @param ham_par                          the Hamiltonian parameters in AO basis
+ *  @param molecule                         the molecule used for the SCF calculation
+ *  @param threshold                        the convergence treshold on the Frobenius norm on the AO density matrix
+ *  @param maximum_number_of_iterations     the maximum number of iterations for the SCF procedure
  */
 RHFSCFSolver::RHFSCFSolver(GQCP::HamiltonianParameters ham_par, GQCP::Molecule molecule, double threshold, size_t maximum_number_of_iterations) :
     ham_par (ham_par),

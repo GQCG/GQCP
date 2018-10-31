@@ -24,9 +24,12 @@ namespace GQCP {
 /*
  *  PRIVATE METHODS
  */
-
 /**
- *  Calculate a new Fock matrix (in AO basis), i.e. this is the 'DIIS' RHF SCF step.
+ *  Update the Fock matrix, i.e. calculate the Fock matrix to be used in the next iteration of the SCF procedure, according to the DIIS step
+ *
+ *  @param D_AO     the RHF density matrix in AO basis
+ *
+ *  @return the new Fock matrix (expressed in AO basis)
  */
 Eigen::MatrixXd DIISRHFSCFSolver::calculateNewFockMatrix(const Eigen::MatrixXd& D_AO) {
 
@@ -86,7 +89,11 @@ Eigen::MatrixXd DIISRHFSCFSolver::calculateNewFockMatrix(const Eigen::MatrixXd& 
  *  CONSTRUCTORS
  */
 /**
- *  Constructor based on given Hamiltonian parameters @param ham_par, @param molecule, @param maximum_number_of_iterations and @param SCF threshold
+ *  @param ham_par                          the Hamiltonian parameters in AO basis
+ *  @param molecule                         the molecule used for the SCF calculation
+ *  @param maximum_subspace_dimension       the maximum DIIS subspace dimension before a collapse occurs
+ *  @param threshold                        the convergence treshold on the Frobenius norm on the AO density matrix
+ *  @param maximum_number_of_iterations     the maximum number of iterations for the SCF procedure
  */
 DIISRHFSCFSolver::DIISRHFSCFSolver(GQCP::HamiltonianParameters ham_par, GQCP::Molecule molecule, size_t maximum_subspace_dimension, double threshold, size_t maximum_number_of_iterations) :
     RHFSCFSolver(ham_par, molecule, threshold, maximum_number_of_iterations),
