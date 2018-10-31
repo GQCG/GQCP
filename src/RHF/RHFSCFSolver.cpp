@@ -35,7 +35,12 @@ RHFSCFSolver::RHFSCFSolver(GQCP::HamiltonianParameters ham_par, GQCP::Molecule m
     molecule (molecule),
     maximum_number_of_iterations (maximum_number_of_iterations),
     threshold (threshold)
-{}
+{
+    // Check if the given molecule has an even number of electrons
+    if ((molecule.get_N() % 2) != 0) {
+        throw std::invalid_argument("The given molecule has an odd number of electrons.");
+    }
+}
 
 
 

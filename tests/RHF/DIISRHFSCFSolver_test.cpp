@@ -27,6 +27,20 @@
 
 
 
+BOOST_AUTO_TEST_CASE ( constructor ) {
+
+    // Check a correct constructor with an even number of electrons
+    GQCP::Molecule h2 ("../tests/data/h2_szabo.xyz");
+    auto ao_basis = std::make_shared<GQCP::AOBasis>(h2, "STO-3G");
+    auto mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
+    GQCP::DIISRHFSCFSolver diis_solver (mol_ham_par, h2);
+
+    // Check if a faulty constructor with an odd number of electron throws
+    GQCP::Molecule h2_ion ("../tests/data/h2_szabo.xyz", +1);
+    BOOST_CHECK_THROW(GQCP::DIISRHFSCFSolver (mol_ham_par, h2_ion), std::invalid_argument);
+}
+
+
 BOOST_AUTO_TEST_CASE ( h2_sto3g_szabo_DIIS ) {
 
     // In this test case, we will follow section 3.5.2 in Szabo.
