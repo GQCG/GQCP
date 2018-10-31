@@ -29,7 +29,7 @@ namespace GQCP {
 
 
 /**
- *  A class that holds the matrix representation of a one-electron operator in an orbital basis
+ *  A class that represents a one-electron operator in an orbital basis
  */
 class OneElectronOperator : public BaseOperator {
 private:
@@ -39,12 +39,15 @@ private:
 public:
     // CONSTRUCTORS
     /**
-     *  Constructor based on a given @param matrix
+     *  @param matrix   the explicit matrix representation of the one-electron operator
      */
     explicit OneElectronOperator(const Eigen::MatrixXd& matrix);
 
 
     // OPERATORS
+    /**
+     *  @return the matrix element at position (p,q)
+     */
     double operator()(size_t p, size_t q) const { return this->matrix(p,q); }
 
 
@@ -54,8 +57,9 @@ public:
 
     // OPERATORS
     /**
-     *  @return the sum of two OneElectronOperators, i.e. a OneElectronOperator whose matrix representation is the sum
-     *  of the two matrix representations of the given OneElectronOperators
+     *  @param other    the other OneElectronOperator
+     *
+     *  @return the sum of two OneElectronOperators, i.e. a OneElectronOperator whose matrix representation is the sum of the two matrix representations of the given OneElectronOperators
      */
     GQCP::OneElectronOperator operator+(const GQCP::OneElectronOperator& other);
 
@@ -77,31 +81,25 @@ public:
     bool isEqualTo(const GQCP::OneElectronOperator& other, double tolerance=1.0e-08) const;
 
     /**
-     *  Transform the matrix representation of a one-electron operator using the transformation matrix @param T
+     *  In-place transform the matrix representation of the one-electron operator
      *
-     *  Note that the transformation matrix @param T is used as
+     *  @param T    the transformation matrix between the old and the new orbital basis, it is used as
      *      b' = b T ,
-     *  in which the basis functions are collected as elements of a row vector b
+     *   in which the basis functions are collected as elements of a row vector b
      */
     void transform(const Eigen::MatrixXd& T) override;
 
     /**
-     *  Rotate the matrix representation of a one-electron operator using a unitary rotation matrix @param U
+     *  In-place rotate the matrix representation of the one-electron operator
      *
-     *  Note that the rotation matrix @param U is used as
-     *      b' = b U ,
-     *  in which the basis functions are collected as elements of a row vector b.
+     *  @param U     the unitary transformation (i.e. rotation) matrix, see transform() for how the transformation matrix between the two bases should be represented
      */
     void rotate(const Eigen::MatrixXd& U) override;
 
     /**
-     *  Rotate the matrix representation of a one-electron operator using the unitary Jacobi rotation matrix U constructed from the @param jacobi_rotation_parameters
+     *  In-place rotate the matrix representation of the operator using a unitary Jacobi rotation matrix constructed from the Jacobi rotation parameters
      *
-     *  Note that
-     *      - the rotation matrix @param U is used as
-     *          b' = b U ,
-     *        in which the basis functions are collected as elements of a row vector b.
-     *      - we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
+     *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix. See transform() for how the transformation matrix between the two bases should be represented
      */
     void rotate(const GQCP::JacobiRotationParameters& jacobi_rotation_parameters) override;
 };
