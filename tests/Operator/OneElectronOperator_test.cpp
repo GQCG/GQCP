@@ -56,6 +56,26 @@ BOOST_AUTO_TEST_CASE ( operator_plus ) {
 }
 
 
+BOOST_AUTO_TEST_CASE ( isEqualTo ) {
+
+    Eigen::MatrixXd A = Eigen::MatrixXd::Random(3, 3);
+    GQCP::OneElectronOperator O1 (A);
+    GQCP::OneElectronOperator O2 (A);
+    BOOST_CHECK(O1.isEqualTo(O2, 1.0e-05));
+
+    GQCP::OneElectronOperator O3 (2*A);
+    BOOST_CHECK(!(O3.isEqualTo(O1)));
+}
+
+
+BOOST_AUTO_TEST_CASE ( operator_equals ) {
+
+    Eigen::MatrixXd A = Eigen::MatrixXd::Random(3, 3);
+    GQCP::OneElectronOperator O1 (A);
+    GQCP::OneElectronOperator O2 (A);
+    BOOST_CHECK(O1 == O2);
+}
+
 
 BOOST_AUTO_TEST_CASE ( OneElectronOperator_transform_trivial ) {
 

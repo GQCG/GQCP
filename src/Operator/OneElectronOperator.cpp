@@ -56,10 +56,31 @@ GQCP::OneElectronOperator OneElectronOperator::operator+(const GQCP::OneElectron
 }
 
 
+/**
+ *  @param other    the other OneElectronOperator
+ *
+ *  @return if the matrix representation of this operator is equal to the matrix representation of the, within the default tolerance specified by isEqualTo()
+ */
+bool OneElectronOperator::operator==(const GQCP::OneElectronOperator& other) {
+    return this->isEqualTo(other);
+}
+
+
 
 /*
  *  PUBLIC METHODS
  */
+
+/**
+ *  @param other        the other OneElectronOperator
+ *  @param tolerance    the tolerance for equality of the matrix representations
+ *
+ *  @return if the matrix representation of this operator is equal to the matrix representation of the other, given a tolerance
+ */
+bool OneElectronOperator::isEqualTo(const GQCP::OneElectronOperator& other, double tolerance) const {
+    return this->matrix.isApprox(other.matrix, tolerance);
+}
+
 
 /**
  *  Transform the matrix representation of a one-electron operator using the transformation matrix @param T
