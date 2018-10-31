@@ -39,10 +39,34 @@ OneRDM::OneRDM(const Eigen::MatrixXd& D) :
 }
 
 
+/*
+ *  OPERATORS
+ */
+/**
+ *  @param other    the other OneRDM
+ *
+ *  @return if the matrix representation of this 1-RDM is equal to the matrix representation of the other, within the default tolerance specified by isEqualTo()
+ */
+bool OneRDM::operator==(const GQCP::OneRDM& other) {
+    return this->isEqualTo(other);
+}
+
+
 
 /*
  *  PUBLIC METHODS
  */
+
+/**
+ *  @param other        the other OneRDM
+ *  @param tolerance    the tolerance for equality of the matrix representations
+ *
+ *  @return if the matrix representation of this 1-RDM is equal to the matrix representation of the other, given a tolerance
+ */
+bool OneRDM::isEqualTo(const GQCP::OneRDM& other, double tolerance) const {
+    return this->D.isApprox(other.D, tolerance);
+}
+
 
 /**
  *  @return the 1-RDM's trace

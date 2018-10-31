@@ -43,15 +43,32 @@ public:
     explicit TwoRDM(const Eigen::Tensor<double, 4>& d);
 
 
+    // GETTERS
+    Eigen::Tensor<double, 4> get_matrix_representation() const { return this->d; }
+
+
     // OPERATORS
     /**
      *  @return the matrix element at position (p,q,r,s)
      */
     double operator()(size_t p, size_t q, size_t r, size_t s) const { return this->d(p,q,r,s); }
 
+    /**
+     *  @param other    the other TwoRDM
+     *
+     *  @return if the matrix representation of this 2-RDM is equal to the matrix representation of the other, within the default tolerance specified by isEqualTo()
+     */
+    bool operator==(const GQCP::TwoRDM& other);
 
-    // GETTERS
-    Eigen::Tensor<double, 4> get_matrix_representation() const { return this->d; }
+
+    // PUBLIC METHODS
+    /**
+     *  @param other        the other TwoRDM
+     *  @param tolerance    the tolerance for equality of the matrix representations
+     *
+     *  @return if the matrix representation of this 2-RDM is equal to the matrix representation of the other, given a tolerance
+     */
+    bool isEqualTo(const GQCP::TwoRDM& other, double tolerance=1.0e-08) const;
 
 
     // PUBLIC METHODS

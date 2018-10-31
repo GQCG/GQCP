@@ -17,6 +17,8 @@
 // 
 #include "RDM/TwoRDM.hpp"
 
+#include <cpputil.hpp>
+
 
 namespace GQCP {
 
@@ -40,10 +42,33 @@ TwoRDM::TwoRDM(const Eigen::Tensor<double, 4>& d) :
 }
 
 
+/*
+ *  OPERATORS
+ */
+/**
+ *  @param other    the other TwoRDM
+ *
+ *  @return if the matrix representation of this 2-RDM is equal to the matrix representation of the other, within the default tolerance specified by isEqualTo()
+ */
+bool TwoRDM::operator==(const GQCP::TwoRDM& other) {
+    return this->isEqualTo(other);
+}
+
 
 /*
  *  PUBLIC METHODS
  */
+
+/**
+ *  @param other        the other TwoRDM
+ *  @param tolerance    the tolerance for equality of the matrix representations
+ *
+ *  @return if the matrix representation of this 2-RDM is equal to the matrix representation of the other, given a tolerance
+ */
+bool TwoRDM::isEqualTo(const GQCP::TwoRDM& other, double tolerance) const {
+    return cpputil::linalg::areEqual(this->d, other.d, tolerance);
+}
+
 
 /**
  *  @return the trace of the 2-RDM, i.e. d(p,p,q,q)

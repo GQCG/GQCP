@@ -35,3 +35,27 @@ BOOST_AUTO_TEST_CASE ( TwoRDM_constructor ) {
     Eigen::Tensor<double, 4> tensor2 (3, 3, 3, 2);
     BOOST_CHECK_THROW(GQCP::TwoRDM d2 (tensor2), std::invalid_argument);
 }
+
+BOOST_AUTO_TEST_CASE ( isEqualTo ) {
+
+    Eigen::Tensor<double, 4> A (3, 3, 3, 3);
+    A.setRandom();
+
+    GQCP::TwoRDM O1 (A);
+    GQCP::TwoRDM O2 (A);
+    BOOST_CHECK(O1.isEqualTo(O2, 1.0e-05));
+
+    GQCP::TwoRDM O3 (2*A);
+    BOOST_CHECK(!(O3.isEqualTo(O1)));
+}
+
+
+BOOST_AUTO_TEST_CASE ( operator_equals ) {
+
+    Eigen::Tensor<double, 4> A (3, 3, 3, 3);
+    A.setRandom();
+
+    GQCP::TwoRDM O1 (A);
+    GQCP::TwoRDM O2 (A);
+    BOOST_CHECK(O1 == O2);
+}

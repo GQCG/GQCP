@@ -42,18 +42,33 @@ public:
     explicit OneRDM(const Eigen::MatrixXd& D);
 
 
+    // GETTERS
+    Eigen::MatrixXd get_matrix_representation() const { return this->D; }
+
+
     // OPERATORS
     /**
      *  @return the matrix element at position (p,q)
      */
     double operator()(size_t p, size_t q) const { return this->D(p,q); }
 
-
-    // GETTERS
-    Eigen::MatrixXd get_matrix_representation() const { return this->D; }
+    /**
+     *  @param other    the other OneRDM
+     *
+     *  @return if the matrix representation of this 1-RDM is equal to the matrix representation of the other, within the default tolerance specified by isEqualTo()
+     */
+    bool operator==(const GQCP::OneRDM& other);
 
 
     // PUBLIC METHODS
+    /**
+     *  @param other        the other OneRDM
+     *  @param tolerance    the tolerance for equality of the matrix representations
+     *
+     *  @return if the matrix representation of this 1-RDM is equal to the matrix representation of the other, given a tolerance
+     */
+    bool isEqualTo(const GQCP::OneRDM& other, double tolerance=1.0e-08) const;
+
     /**
      *  @return the 1-RDM's trace
      */
