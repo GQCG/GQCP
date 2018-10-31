@@ -26,7 +26,9 @@ namespace GQCP {
  */
 
 /**
- *  In-place permute the unsigned representation of the @param ONV, giving the next bitstring permutation in reverse lexical ordering.
+ *  @param representation       a representation of an ONV
+ *
+ *  @return the next bitstring permutation
  *
  *      Examples:
  *          011 -> 101
@@ -49,10 +51,9 @@ size_t FockSpace::ulongNextPermutation(size_t representation) {
  */
 
 /**
- *  Constructor given a @param K (spatial orbitals), N (electrons)
- *  on which the dimensions of the Fock space are based
+ *  @param K        the number of orbitals
+ *  @param N        the number of electrons
  */
-
 FockSpace::FockSpace(size_t K, size_t N) :
         BaseFockSpace(K, FockSpace::calculateDimension(K, N)),
         N (N)
@@ -113,8 +114,9 @@ FockSpace::FockSpace(size_t K, size_t N) :
  */
 
 /**
- *  Given a number of spatial orbitals @param K
- *  and a number of electrons  @param N,
+ *  @param K        the number of orbitals
+ *  @param N        the number of electrons
+ *
  *  @return the dimension of the Fock space
  */
 size_t FockSpace::calculateDimension(size_t K, size_t N) {
@@ -129,7 +131,9 @@ size_t FockSpace::calculateDimension(size_t K, size_t N) {
  */
 
 /**
- *  @return the ONV with the corresponding address in the considered space
+ *  @param address      the address (i.e. the ordening number) of the ONV
+ *
+ *  @return the ONV with the corresponding address
  */
 ONV FockSpace::get_ONV(size_t address) {
     size_t representation;
@@ -160,10 +164,9 @@ ONV FockSpace::get_ONV(size_t address) {
 
 
 /**
- *  sets @param ONV to the next ONV in the space
- *  performs the ulongNextPermutation() function
- *  and updates the corresponding occupation indices
- *  of the ONV occupation vector
+ *  Set the current ONV to the next ONV: performs ulongNextPermutation() and updates the corresponding occupation indices of the ONV occupation array
+ *
+ *  @param onv      the current ONV
  */
 void FockSpace::setNext(ONV& onv) {
     onv.set_representation(ulongNextPermutation(onv.get_unsigned_representation()));
@@ -171,7 +174,9 @@ void FockSpace::setNext(ONV& onv) {
 
 
 /**
- *  @return the Fock space address (i.e. the ordering number) of the @param onv in reverse lexical ordering, in the fock space.
+ *  @param onv      the ONV
+ *
+ *  @return the address (i.e. the ordering number) of the given ONV
  */
 size_t FockSpace::getAddress(const ONV& onv) {
     // An implementation of the formula in Helgaker, starting the addressing count from zero

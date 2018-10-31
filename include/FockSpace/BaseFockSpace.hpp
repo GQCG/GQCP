@@ -29,10 +29,12 @@ namespace GQCP {
 
 
 /**
- *  A base class for the Fock space
- *  Interfacing requires the Fock space to generate an ONV from a given address
- *  transform a given ONV into the next ONV (in the full or selected space)
- *  and retrieve the address of a given ONV in the space
+ *  A base class for the representation of a Fock space.
+ *
+ *  Derived classes should be able to
+ *      - generate an ONV from a given address
+ *      - transform a given ONV into the 'next' ONV
+ *      - retrieve the address of a given ONV
  */
 class BaseFockSpace {
 protected:
@@ -43,7 +45,8 @@ protected:
     // PROTECTED CONSTRUCTORS
     BaseFockSpace() = default;
     /**
-     *  Protected constructor given a @param K and @param dim
+     *  @param K        the number of orbitals
+     *  @param dim      the dimension of the Fock space
      */
     explicit BaseFockSpace(size_t K, size_t dim);
 
@@ -63,12 +66,12 @@ public:
 
     // PUBLIC METHODS
     /**
-     *  Creates a Hartree-Fock coefficient expansion (single Slater expansion of the first configuration in the Fock space)
+     *  @return the coefficient vector for the Hartree-Fock wave function (i.e. the 'first' ONV/Slater determinant)
      */
     Eigen::VectorXd HartreeFockExpansion();
 
     /**
-     *  Creates a random normalized coefficient expansion, uniformly distributed in [-1, 1]
+     *  @return a random normalized coefficient vector, with coefficients uniformly distributed in [-1, 1]
      */
     Eigen::VectorXd randomExpansion();
 };

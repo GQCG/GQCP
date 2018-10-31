@@ -91,7 +91,7 @@ public:
     AP1roGJacobiOrbitalOptimizer(size_t N_P, const GQCP::HamiltonianParameters& ham_par, double oo_threshold=1.0e-08, const size_t maximum_number_of_oo_iterations=128);
 
     /**
-     *  @param molecule                             the molecule used for the AP1roG calculation
+     *  @param molecule                             the molecule used for the OO-AP1roG calculation
      *  @param ham_par                              Hamiltonian parameters in an orthonormal orbital basis
      *  @param oo_threshold                         the threshold on the convergence of the energy during the OO procedure
      *  @param maximum_number_of_oo_iterations      the maximum number of iterations during the OO procedure
