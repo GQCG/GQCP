@@ -56,14 +56,6 @@ BOOST_AUTO_TEST_CASE ( operator_plus ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( OneElectronOperator_getters ) {
-
-    Eigen::MatrixXd matrix = Eigen::MatrixXd::Zero(4, 4);
-    GQCP::OneElectronOperator O (matrix);
-
-    O.get_matrix_representation();
-}
-
 
 BOOST_AUTO_TEST_CASE ( OneElectronOperator_transform_trivial ) {
 
