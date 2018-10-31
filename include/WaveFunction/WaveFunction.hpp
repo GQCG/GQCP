@@ -43,7 +43,7 @@ public:
 
 
     // GETTERS
-    Eigen::VectorXd get_coefficients() const { return coefficients; }
+    const Eigen::VectorXd& get_coefficients() const { return coefficients; }
     BaseFockSpace& get_fock_space() const { return *fock_space; }
 };
 

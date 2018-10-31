@@ -98,7 +98,7 @@ public:
 
     // GETTERS
     size_t get_N() const { return this->N; }
-    std::vector<GQCP::Atom> get_atoms() const { return this->atoms; }
+    const std::vector<GQCP::Atom>& get_atoms() const { return this->atoms; }
     size_t numberOfAtoms() const { return this->atoms.size(); }
 
 

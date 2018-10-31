@@ -44,7 +44,7 @@ public:
 
 
     // GETTERS
-    Eigen::Tensor<double, 4> get_matrix_representation() const { return this->d; }
+    const Eigen::Tensor<double, 4>& get_matrix_representation() const { return this->d; }
 
 
     // PUBLIC METHODS
