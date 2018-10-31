@@ -45,7 +45,7 @@ public:
 
 
     // GETTERS
-    Eigen::MatrixXd get_matrix_representation() const { return this->matrix; }
+    const Eigen::MatrixXd& get_matrix_representation() const { return this->matrix; }
 
 
     // OPERATORS

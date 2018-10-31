@@ -49,7 +49,7 @@ public:
 
 
     // GETTERS
-    GQCP::AP1roGGeminalCoefficients get_geminal_coefficients() const { return this->geminal_coefficients; }
+    const GQCP::AP1roGGeminalCoefficients& get_geminal_coefficients() const { return this->geminal_coefficients; }
     double get_electronic_energy() const { return this->electronic_energy; }
 };
 

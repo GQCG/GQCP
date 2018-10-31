@@ -43,7 +43,7 @@ public:
 
 
     // GETTERS
-    Eigen::MatrixXd get_matrix_representation() const { return this->D; }
+    const Eigen::MatrixXd& get_matrix_representation() const { return this->D; }
 
 
     // OPERATORS

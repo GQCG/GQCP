@@ -42,7 +42,7 @@ namespace GQCP {
 /*
  *  GETTERS
  */
-std::vector<numopt::eigenproblem::Eigenpair> DOCINewtonOrbitalOptimizer::get_eigenpairs() const {
+const std::vector<numopt::eigenproblem::Eigenpair>& DOCINewtonOrbitalOptimizer::get_eigenpairs() const {
     if (this->is_converged) {
         return this->eigenpairs;
     } else {
@@ -50,7 +50,7 @@ std::vector<numopt::eigenproblem::Eigenpair> DOCINewtonOrbitalOptimizer::get_eig
     }
 }
 
-numopt::eigenproblem::Eigenpair DOCINewtonOrbitalOptimizer::get_eigenpair(size_t index) const {
+const numopt::eigenproblem::Eigenpair& DOCINewtonOrbitalOptimizer::get_eigenpair(size_t index) const {
     if (this->is_converged) {
         return this->eigenpairs[index];
     } else {

@@ -44,7 +44,7 @@ public:
 
 
     // GETTERS
-    Eigen::Tensor<double, 4> get_matrix_representation() const { return this->d; }
+    const Eigen::Tensor<double, 4>& get_matrix_representation() const { return this->d; }
 
 
     // OPERATORS
@@ -70,8 +70,6 @@ public:
      */
     bool isEqualTo(const GQCP::TwoRDM& other, double tolerance=1.0e-08) const;
 
-
-    // PUBLIC METHODS
     /**
      *  @return the trace of the 2-RDM, i.e. d(p,p,q,q)
      */

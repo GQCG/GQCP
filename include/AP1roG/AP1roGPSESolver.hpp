@@ -68,7 +68,7 @@ public:
 
 
     // GETTERS
-    GQCP::AP1roG get_solution() const { return this->solution; }
+    const GQCP::AP1roG& get_solution() const { return this->solution; }
 
 
     // PUBLIC METHODS
