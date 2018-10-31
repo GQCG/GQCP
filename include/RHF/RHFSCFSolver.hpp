@@ -57,7 +57,7 @@ public:
     RHFSCFSolver(GQCP::HamiltonianParameters ham_par, GQCP::Molecule molecule, double threshold=1.0e-08, size_t maximum_number_of_iterations=128);
 
     // GETTERS
-    GQCP::RHF get_solution() const { return this->solution; }
+    const GQCP::RHF& get_solution() const { return this->solution; }
 
     /**
      *  Solve the RHF SCF equations. This function internally uses the pure virtual calculateNewFockMatrix.

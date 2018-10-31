@@ -46,8 +46,8 @@ public:
 
 
     // GETTERS
-    std::vector<GQCP::Atom> get_atoms() const { return this->atoms; }
-    libint2::BasisSet get_basis_functions() const { return this->basis_functions; }
+    const std::vector<GQCP::Atom>& get_atoms() const { return this->atoms; }
+    const libint2::BasisSet& get_basis_functions() const { return this->basis_functions; }
     size_t get_number_of_basis_functions() const { return this->number_of_basis_functions; }
 };
 

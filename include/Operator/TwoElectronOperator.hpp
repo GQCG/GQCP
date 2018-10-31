@@ -49,7 +49,7 @@ public:
 
 
     // GETTERS
-    Eigen::Tensor<double, 4> get_matrix_representation() const { return this->tensor; }
+    const Eigen::Tensor<double, 4>& get_matrix_representation() const { return this->tensor; }
 
 
     // PUBLIC METHODS
