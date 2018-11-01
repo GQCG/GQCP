@@ -26,7 +26,7 @@
 
 
 /**
- *  A DIIS RHF SCF solver.
+ *  A class that implements the RHF DIIS SCF algorithm
  */
 namespace GQCP {
 
@@ -37,16 +37,25 @@ private:
     std::deque<Eigen::MatrixXd> fock_matrix_deque = {};  // deque of Fock matrices used in the DIIS algorithm
     std::deque<Eigen::MatrixXd> error_matrix_deque = {};  // deque of error matrices used in the DIIS algorithm
 
+
     // PRIVATE METHODS
     /**
-     *  Calculate a new Fock matrix (in AO basis), i.e. this is the 'DIIS' RHF SCF step.
+     *  Update the Fock matrix, i.e. calculate the Fock matrix to be used in the next iteration of the SCF procedure, according to the DIIS step
+     *
+     *  @param D_AO     the RHF density matrix in AO basis
+     *
+     *  @return the new Fock matrix (expressed in AO basis)
      */
     Eigen::MatrixXd calculateNewFockMatrix(const Eigen::MatrixXd& D_AO) override;
 
 public:
     // CONSTRUCTORS
     /**
-     *  Constructor based on given Hamiltonian parameters @param ham_par, @param molecule, @param maximum_number_of_iterations and @param SCF threshold
+     *  @param ham_par                          the Hamiltonian parameters in AO basis
+     *  @param molecule                         the molecule used for the SCF calculation
+     *  @param maximum_subspace_dimension       the maximum DIIS subspace dimension before a collapse occurs
+     *  @param threshold                        the convergence treshold on the Frobenius norm on the AO density matrix
+     *  @param maximum_number_of_iterations     the maximum number of iterations for the SCF procedure
      */
     DIISRHFSCFSolver(GQCP::HamiltonianParameters ham_par, GQCP::Molecule molecule, size_t maximum_subspace_dimension = 6, double threshold=1.0e-08, size_t maximum_number_of_iterations=128);
 };

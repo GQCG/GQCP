@@ -24,9 +24,11 @@ namespace GQCP {
  *  PRIVATE METHODS
  */
 /**
- *  Calculate a new Fock matrix (expressed in AO basis), i.e. this is the 'plain' RHF SCF step.
+ *  Update the Fock matrix, i.e. calculate the Fock matrix to be used in the next iteration of the SCF procedure: the 'new' Fock matrix is just F = H_core + G
  *
- *  The new Fock matrix is calculated as F = H_core + G, i.e. the new Fock matrix is just the AO Fock matrix
+ *  @param D_AO     the RHF density matrix in AO basis
+ *
+ *  @return the new Fock matrix (expressed in AO basis)
  */
 Eigen::MatrixXd PlainRHFSCFSolver::calculateNewFockMatrix(const Eigen::MatrixXd& D_AO) {
     return GQCP::calculateRHFAOFockMatrix(D_AO, this->ham_par);
@@ -38,7 +40,10 @@ Eigen::MatrixXd PlainRHFSCFSolver::calculateNewFockMatrix(const Eigen::MatrixXd&
  * CONSTRUCTORS
  */
 /**
- *  Constructor based on given Hamiltonian parameters @param ham_par, @param molecule, @param maximum_number_of_iterations and @param SCF threshold
+ *  @param ham_par                          the Hamiltonian parameters in AO basis
+ *  @param molecule                         the molecule used for the SCF calculation
+ *  @param threshold                        the convergence treshold on the Frobenius norm on the AO density matrix
+ *  @param maximum_number_of_iterations     the maximum number of iterations for the SCF procedure
  */
 PlainRHFSCFSolver::PlainRHFSCFSolver(GQCP::HamiltonianParameters ham_par, GQCP::Molecule molecule, double threshold, size_t maximum_number_of_iterations) :
     GQCP::RHFSCFSolver(ham_par, molecule, threshold, maximum_number_of_iterations)

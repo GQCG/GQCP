@@ -35,6 +35,10 @@ RHF::RHF() :
 
 /**
  *  Constructor based on given converged solutions of the RHF SCF equations
+ *
+ *  @param electronic_energy    the converged RHF electronic energy
+ *  @param C                    the coefficient matrix, i.e. the transformation matrix from the AO basis to the RHF MO basis
+ *  @param orbital_energies     the RHF MO energies
  */
 RHF::RHF(double electronic_energy, const Eigen::MatrixXd& C, const Eigen::VectorXd& orbital_energies) :
     electronic_energy (electronic_energy),
@@ -48,7 +52,10 @@ RHF::RHF(double electronic_energy, const Eigen::MatrixXd& C, const Eigen::Vector
  *  HELPER METHODS
  */
 /**
- *  @return the RHF 1-RDM expressed in the AO basis, given the @param coefficient matrix C and the number of electrons @param N
+ *  @param C    the coefficient matrix
+ *  @param N    the number of electrons
+ *
+ *  @return the RHF 1-RDM expressed in the AO basis
  */
 Eigen::MatrixXd calculateRHFAO1RDM(const Eigen::MatrixXd& C, size_t N) {
 
@@ -64,9 +71,12 @@ Eigen::MatrixXd calculateRHFAO1RDM(const Eigen::MatrixXd& C, size_t N) {
 
 
 /**
- *  @return the RHF Fock matrix in the AO basis, given the @param D_AO density matrix in AO basis and @param ham_par_ptr Hamiltonian parameters
+ *  Calculate the RHF Fock matrix F = H_core + G, in which G is a contraction of the density matrix and the two-electron integrals
  *
- *  The RHF Fock matrix is calculated as F = H + G, in which G is a contraction of the density matrix and the two-electron integrals
+ *  @param D_AO     the RHF density matrix in AO basis
+ *  @param ham_par  The Hamiltonian parameters in AO basis
+ *
+ *  @return the RHF Fock matrix expressed in the AO basis
  */
 Eigen::MatrixXd calculateRHFAOFockMatrix(const Eigen::MatrixXd& D_AO, GQCP::HamiltonianParameters ham_par) {
 
@@ -97,7 +107,11 @@ Eigen::MatrixXd calculateRHFAOFockMatrix(const Eigen::MatrixXd& D_AO, GQCP::Hami
 
 
 /**
- *  @return the RHF electronic energy based on the RHF AO density matrix @param: D_AO, the core Hamiltonian @param: H_core_AO and the Fock matrix @param: F_AO
+ *  @param D_AO         the RHF density matrix in AO basis
+ *  @param H_core_AO    the core Hamiltonian parameters in AO basis
+ *  @param F_AO         the Fock matrix in AO basis
+ *
+ *  @return the RHF electronic energy
  */
 double calculateRHFElectronicEnergy(const Eigen::MatrixXd& D_AO, const Eigen::MatrixXd& H_core_AO, const Eigen::MatrixXd& F_AO) {
 
@@ -122,7 +136,9 @@ double calculateRHFElectronicEnergy(const Eigen::MatrixXd& D_AO, const Eigen::Ma
 
 
 /**
- *  @return the RHF HOMO index a number of electrons @param N
+ *  @param N    the number of electrons
+ *
+ *  @return the RHF HOMO index
  */
 size_t RHFHOMOIndex(size_t N) {
 
@@ -135,7 +151,10 @@ size_t RHFHOMOIndex(size_t N) {
 
 
 /**
- *  @return the RHF LUMO index given a number of orbitals @param K and a number of electrons @param N
+ *  @param K    the number of spatial orbitals
+ *  @param N    the number of electrons
+ *
+ *  @return the RHF LUMO index
  */
 size_t RHFLUMOIndex(size_t K, size_t N) {
 
