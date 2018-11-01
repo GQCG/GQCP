@@ -39,6 +39,11 @@ private:
 public:
     // CONSTRUCTORS
     /**
+     *  A default constructor setting everything to zero
+     */
+    OneElectronOperator();
+
+    /**
      *  Constructor based on a given @param matrix
      */
     explicit OneElectronOperator(const Eigen::MatrixXd& matrix);

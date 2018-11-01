@@ -28,6 +28,15 @@ namespace GQCP {
  */
 
 /**
+ *  A default constructor setting everything to zero
+ */
+OneElectronOperator::OneElectronOperator() :
+    BaseOperator(0),
+    matrix (Eigen::MatrixXd::Zero(0, 0))
+{}
+
+
+/**
  *  Constructor based on a given @param matrix
  */
 OneElectronOperator::OneElectronOperator(const Eigen::MatrixXd& matrix) :
