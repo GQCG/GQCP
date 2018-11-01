@@ -36,12 +36,12 @@ namespace GQCP {
 GQCP::HamiltonianParameters constructMolecularHamiltonianParameters(std::shared_ptr<GQCP::AOBasis> ao_basis) {
 
     // Calculate the integrals for the molecular Hamiltonian
-    auto S = GQCP::LibintCommunicator::get().calculateOneElectronIntegrals(libint2::Operator::overlap, *ao_basis);
-    auto T = GQCP::LibintCommunicator::get().calculateOneElectronIntegrals(libint2::Operator::kinetic, *ao_basis);
-    auto V = GQCP::LibintCommunicator::get().calculateOneElectronIntegrals(libint2::Operator::nuclear, *ao_basis);
+    auto S = GQCP::LibintCommunicator::get().calculateOverlapIntegrals(*ao_basis);
+    auto T = GQCP::LibintCommunicator::get().calculateKineticIntegrals(*ao_basis);
+    auto V = GQCP::LibintCommunicator::get().calculateOverlapIntegrals(*ao_basis);
     auto H = T + V;
     
-    auto g = GQCP::LibintCommunicator::get().calculateTwoElectronIntegrals(libint2::Operator::coulomb, *ao_basis);
+    auto g = GQCP::LibintCommunicator::get().calculateCoulombRepulsionIntegrals(*ao_basis);
     
     
     // Construct the initial transformation matrix: the identity matrix

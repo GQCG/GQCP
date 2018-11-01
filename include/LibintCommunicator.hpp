@@ -24,8 +24,6 @@
 #include "Operator/OneElectronOperator.hpp"
 #include "Operator/TwoElectronOperator.hpp"
 
-#include <array>
-
 #include <Eigen/Dense>
 #include <unsupported/Eigen/CXX11/Tensor>
 #include <libint2.hpp>
