@@ -26,7 +26,7 @@ namespace GQCP {
  */
 
 /**
- *  Constructor based on a given @param ao_basis_sptr
+ *  @param ao_basis     the initial AO basis
  */
 BaseHamiltonianParameters::BaseHamiltonianParameters(std::shared_ptr<GQCP::AOBasis> ao_basis) :
     ao_basis (std::move(ao_basis))

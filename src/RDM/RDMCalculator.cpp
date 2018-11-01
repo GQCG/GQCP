@@ -31,7 +31,9 @@ namespace GQCP {
  */
 
 /**
- *  Allocates a DOCIRDMBuilder based on @param fock_space
+ *  Allocate a DOCIRDMBuilder
+ *
+ *  @param fock_space       the DOCI Fock space
  */
 RDMCalculator::RDMCalculator(const FockSpace& fock_space) {
     rdm_builder = std::make_shared<GQCP::DOCIRDMBuilder>(fock_space);
@@ -39,7 +41,9 @@ RDMCalculator::RDMCalculator(const FockSpace& fock_space) {
 
 
 /**
- *  Allocates a FCIRDMBuilder based on @param fock_space
+ *  Allocate a FCIRDMBuilder
+ *
+ *  @param fock_space       the FCI Fock space
  */
 RDMCalculator::RDMCalculator(const ProductFockSpace& fock_space) {
     rdm_builder = std::make_shared<GQCP::FCIRDMBuilder>(fock_space);
@@ -47,7 +51,9 @@ RDMCalculator::RDMCalculator(const ProductFockSpace& fock_space) {
 
 
 /**
- *  Allocates a SelectedRDMBuilder based on @param fock_space
+ *  Allocate a SelectedRDMBuilder
+ *
+ *  @param fock_space       the 'selected' Fock space
  */
 RDMCalculator::RDMCalculator(const SelectedFockSpace& fock_space) {
     rdm_builder = std::make_shared<GQCP::SelectedRDMBuilder>(fock_space);
@@ -55,7 +61,9 @@ RDMCalculator::RDMCalculator(const SelectedFockSpace& fock_space) {
 
 
 /**
- *  Allocates the correct derived BaseRDMBuilder based on @param fock_space
+ *  A run-time constructor allocating the appropriate derived RDMBuilder
+ *
+ *  @param fock_space       the Fock space on which the RDMBuilder should be based
  */
 RDMCalculator::RDMCalculator(const BaseFockSpace& fock_space) {
 
@@ -89,7 +97,9 @@ RDMCalculator::RDMCalculator(const BaseFockSpace& fock_space) {
  */
 
 /**
- *  @return all 1-RDMs from a coefficient vector @param x
+ *  @param x        the coefficient vector representing the wave function
+ *
+ *  @return all 1-RDMs given a coefficient vector
  */
 OneRDMs RDMCalculator::calculate1RDMs(const Eigen::VectorXd& x) {
     return rdm_builder->calculate1RDMs(x);
@@ -97,7 +107,9 @@ OneRDMs RDMCalculator::calculate1RDMs(const Eigen::VectorXd& x) {
 
 
 /**
- *  @return all 2-RDMs from a coefficient vector @param x
+ *  @param x        the coefficient vector representing the wave function
+ *
+ *  @return all 2-RDMs given a coefficient vector
  */
 TwoRDMs RDMCalculator::calculate2RDMs(const Eigen::VectorXd& x) {
     return rdm_builder->calculate2RDMs(x);

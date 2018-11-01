@@ -27,13 +27,17 @@ namespace elements {
 
 
 /**
- *  Given a @param symbol for the name of an element, @return its atomic number
+ *  @param symbol       the name of an element
+ *
+ *  @return the atomic number of the corresponding element
  */
 size_t elementToAtomicNumber(const std::string& symbol);
 
 
 /**
- *  Given an @param atomic_number, @return the symbol of the corresponding element
+ *  @param atomic_number    the atomic number of an element
+ *
+ *  @return the symbol of the corresponding element
  */
 const std::string& atomicNumberToElement(size_t atomic_number);
 

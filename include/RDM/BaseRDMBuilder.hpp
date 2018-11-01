@@ -29,8 +29,7 @@ namespace GQCP {
 
 
 /**
- *  BaseRDMBuilder is an abstract base class for the calculation of a density matrix from a given wave function
- *  or coefficient expansion in a Fock space
+ *  BaseRDMBuilder is an abstract base class whose derived classes are capable of calculating 1- and 2-RDMs from wave functions
  */
 class BaseRDMBuilder {
 public:
@@ -45,21 +44,24 @@ public:
     virtual ~BaseRDMBuilder() = 0;
 
 
+    // PURE VIRTUAL GETTERS
+    virtual BaseFockSpace* get_fock_space() = 0;
+
+
     // PURE VIRTUAL PUBLIC METHODS
     /**
-     *  @return all 1-RDMs from a coefficient vector @param x
+     *  @param x        the coefficient vector representing the wave function
+     *
+     *  @return all 1-RDMs given a coefficient vector
      */
     virtual OneRDMs calculate1RDMs(const Eigen::VectorXd& x) = 0;
 
     /**
-     *  @return all 2-RDMs from a coefficient vector @param x
+     *  @param x        the coefficient vector representing the wave function
+     *
+     *  @return all 2-RDMs given a coefficient vector
      */
     virtual TwoRDMs calculate2RDMs(const Eigen::VectorXd& x) = 0;
-
-    /**
-     *  @return the Fock space of the RDMBuilder
-     */
-    virtual BaseFockSpace* get_fock_space() = 0;
 };
 
 

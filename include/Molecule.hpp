@@ -31,15 +31,18 @@ namespace GQCP {
 
 
 
+/**
+ *  A class that represents a collection of atoms with a number of electrons
+ */
 class Molecule {
 private:
-    const std::vector<GQCP::Atom> atoms;
+    const std::vector<GQCP::Atom> atoms;  // coordinates in bohr
     const size_t N;  // number of electrons
 
     /**
-     *  Parse a @param xyz_filename to @return a std::vector<GQCP::Atom>.
+     *  @param xyz_filename     the .xyz-file that contains the molecular coordinates in Angstrom
      *
-     *  The coordinates in the .xyz-file should be in Angstrom: this function converts them immediately to Bohr (a.u.)
+     *  @return a vector of Atoms that are in the given xyz-file
      */
     static std::vector<GQCP::Atom> parseXYZFile(const std::string& xyz_filename);
 
@@ -47,51 +50,55 @@ private:
 public:
     // CONSTRUCTORS
     /**
-     *  Constructor from a given @param xyz_filename
-     *      The constructed molecule instance corresponds to a neutral atom (i.e. N = sum of nucleus charges)
+     *  A constructor that creates a neutral molecule
      *
-     *  IMPORTANT!!! The coordinates of the atoms in the .xyz-file should be in Angstrom, but we convert them internally to Bohr
+     *  @param atoms     the atoms that make up the molecule, with coordinates in bohr
+     *  @param molecular_charge     +1 -> cation (one electron less than the neutral molecule)
+     *                               0 -> neutral molecule
+     *                              -1 -> anion (one electron more than the neutral molecule)
      */
-    explicit Molecule(const std::string& xyz_filename);
+    Molecule(const std::vector<GQCP::Atom>& atoms, int molecular_charge);
 
     /**
-     *  Constructor from a given @param xyz_filename and a @param molecular_charge
-     *      The constructed molecule instance corresponds to an ion:
-     *          charge = +1 -> cation (one electron less than the neutral molecule)
-     *          charge = 0  -> neutral molecule
-     *          charge = -1 -> anion (one electron more than the neutral molecule)
+     *  A constructor that creates a neutral molecule
      *
-     *  IMPORTANT!!! The coordinates of the atoms in the .xyz-file should be in Angstrom, but we convert them internally to Bohr
-     */
-    Molecule(const std::string& xyz_filename, int molecular_charge);
-
-    /**
-     *  Constructor from a @param atoms: a given std::vector of GQCP::Atoms
-     *
-     *  IMPORTANT!!! The coordinates of the atoms should be input in Bohr.
+     *  @param atoms     the atoms that make up the molecule, with coordinates in bohr
      */
     explicit Molecule(const std::vector<GQCP::Atom>& atoms);
 
     /**
-     *  Constructor from a @param atoms: a given std::vector of GQCP::Atoms and a @param molecular_charge
-     *      The constructed molecule instance corresponds to an ion:
-     *          charge = +1 -> cation (one electron less than the neutral molecule)
-     *          charge = 0  -> neutral molecule
-     *          charge = -1 -> anion (one electron more than the neutral molecule)
+     *  A constructor from that creates a charged molecule
      *
-     *  IMPORTANT!!! The coordinates of the atoms should be input in Bohr.
+     *  @param xyz_filename     the .xyz-file that contains the molecular coordinates in Angstrom
+     *  @param molecular_charge     +1 -> cation (one electron less than the neutral molecule)
+     *                               0 -> neutral molecule
+     *                              -1 -> anion (one electron more than the neutral molecule)
      */
-    Molecule(const std::vector<GQCP::Atom>& atoms, int molecular_charge);
+    Molecule(const std::string& xyz_filename, int molecular_charge);
+
+    /**
+     *  A constructor that creates a neutral molecule
+     *
+     *  @param xyz_filename     the .xyz-file that contains the molecular coordinates in Angstrom
+     */
+    explicit Molecule(const std::string& xyz_filename);
 
 
     // OPERATORS
     /**
-     *  @return if this is equal to @param other, within the default GQCP::Atom::tolerance_for_comparison for the coordinates of the atoms
+     *  @param other        the other molecule
+     *
+     *  @return if this molecule is equal to the other, within the default GQCP::Atom::tolerance_for_comparison for the coordinates of the atoms
      */
     bool operator==(const GQCP::Molecule& other) const;
 
     /**
      *  Overloading of operator<< for a GQCP::Molecule to be used with streams
+     *
+     *  @param os           the output stream which the molecule should be concatenated to
+     *  @param molecule     the molecule that should be concatenated to the output stream
+     *
+     *  @return the updated output stream
      */
     friend std::ostream& operator<<(std::ostream& os, const GQCP::Molecule& molecule);
 
@@ -104,7 +111,10 @@ public:
 
     // PUBLIC METHODS
     /**
-     *  @return if this is equal to @param other, within the given @param tolerance for the coordinates of the atoms
+     *  @param other        the other molecule
+     *  @param tolerance    the tolerance for the coordinates of the atoms
+     *
+     *  @return if this is equal to the other, within the given tolerance
      */
     bool isEqualTo(const GQCP::Molecule& other, double tolerance=GQCP::Atom::tolerance_for_comparison) const;
 
@@ -114,7 +124,10 @@ public:
     size_t calculateTotalNucleicCharge() const;
 
     /**
-     *  @return the distance between two the two atoms at @param index1 and @param index2
+     *  @param index1   the index of the first atom
+     *  @param index2   the index of the second atom
+     *
+     *  @return the distance between the two atoms at index1 and index2
      */
     double calculateInternuclearDistance(size_t index1, size_t index2) const;
 

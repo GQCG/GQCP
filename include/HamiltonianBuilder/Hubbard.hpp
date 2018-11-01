@@ -27,18 +27,16 @@
 namespace GQCP {
 
 
-// the function that will be passed to the evaluation, it defines to what and how the evaluated results will be added.
+// Typedef for a function that will be passed to the evaluation, it defines to what and how the evaluated results will be added.
 using PassToMethod = std::function<void (size_t I, size_t J, double value)>;
 
 
 /**
- *  Hubbard builds a Hamiltonian matrix
- *  based on a wavefunction containing all configurations pertaining to a fixed number of alpha and beta electrons.
- *  This means that a total ONV would be a combination of two ONVs, one from an alpha and one from a beta Fock space.
+ *  Hubbard builds a a Hubbard Hamiltonian matrix in the FCI Fock space
  *
- *  Hubbard distinguishes itself from full configuration interaction by explicitly implementing simplified Hamiltonian parameters
- *  For the two electron operators only on-site (doubly occupied in-place) interactions are considered
- *  For the one electron operators only inter-site interactions are considered
+ *  Hubbard distinguishes itself from FCI by explicitly implementing simplified Hamiltonian parameters:
+ *      - for the one electron operators only inter-site interactions are considered
+ *      - for the two electron operators only on-site (doubly occupied in-place) interactions are considered
  */
 class Hubbard : public GQCP::HamiltonianBuilder {
 private:
@@ -47,13 +45,13 @@ private:
     
     // PRIVATE METHODS
     /**
-     *  Private member that evaluates either the one-electron operators for alpha or beta given the parameters.
-     *  Additionally stores this evaluation in either the matvec or matrix depending on the method passed
-     *  @param fock_space_target refers to which spin function will be evaluated
-     *  @param fock_space_fixed refers to which spin function is not evaluated
-     *  @param target_is_major refers to whether or not the evaluated component is major
-     *  @param hamiltonian_parameters contains the data of the operators
-     *  @param method refers to which method is used (matvec or Hamliltonian matrix)
+     *  Evaluate the one-electron operators for alpha or beta and store the result in a matrix-vector product or a matrix, depending on the method passed
+     *
+     *  @param fock_space_target        the Fock space that is used as a target, i.e. that is evaluated
+     *  @param fock_space_fixed         the Fock space that is not evaluated
+     *  @param target_is_major          whether or not the evaluated component is the major index
+     *  @param hamiltonian_parameters   the Hubbard Hamiltonian parameters
+     *  @param method                   the used method: constructHamiltonian() or matrixVectorProduct()
      */
     void oneOperatorModule(FockSpace& fock_space_target, FockSpace& fock_space_fixed, bool target_is_major, const HamiltonianParameters& hamiltonian_parameters, const PassToMethod& method);
 
@@ -62,7 +60,7 @@ public:
 
     // CONSTRUCTORS
     /**
-     *  Constructor given a @param fock_space
+     *  @param fock_space       the full alpha and beta product Fock space
      */
     explicit Hubbard(const ProductFockSpace& fock_space);
 
@@ -71,38 +69,50 @@ public:
     ~Hubbard() = default;
 
 
+    // OVERRIDDEN GETTERS
+    BaseFockSpace* get_fock_space() override { return &fock_space; }
+
+
     // OVERRIDDEN PUBLIC METHODS
     /**
-     *  @return the Hamiltonian matrix as an Eigen::MatrixXd given @param hamiltonian_parameters
+     *  @param hamiltonian_parameters       the Hubbard Hamiltonian parameters in an orthonormal orbital basis
+     *
+     *  @return the Hubbard Hamiltonian matrix
      */
     Eigen::MatrixXd constructHamiltonian(const HamiltonianParameters& hamiltonian_parameters) override;
 
     /**
-     *  @return the action of the Hamiltonian (@param hamiltonian_parameters and @param diagonal) on the coefficient vector @param x
+     *  @param hamiltonian_parameters       the Hubbard Hamiltonian parameters in an orthonormal orbital basis
+     *  @param x                            the vector upon which the Hubbard Hamiltonian acts
+     *  @param diagonal                     the diagonal of the Hubbard Hamiltonian matrix
+     *
+     *  @return the action of the Hubbard Hamiltonian on the coefficient vector
      */
     Eigen::VectorXd matrixVectorProduct(const HamiltonianParameters& hamiltonian_parameters, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) override;
 
     /**
-     *  @return the diagonal of the matrix representation of the Hamiltonian given @param hamiltonian_parameters
+     *  @param hamiltonian_parameters       the Hubbard Hamiltonian parameters in an orthonormal orbital basis
+     *
+     *  @return the diagonal of the matrix representation of the Hubbard Hamiltonian
      */
     Eigen::VectorXd calculateDiagonal(const HamiltonianParameters& hamiltonian_parameters) override;
-
-    /**
-     *  @return the Fock space of the HamiltonianBuilder
-     */
-    BaseFockSpace* get_fock_space() override { return &fock_space; }
 };
 
 
-//  RELEVANT (non-class) METHODS
-/**
- *  Generates the upper triagonal (vector) for a Hubbard lattice, specified by the @param hopping_matrix
- *  @param hopping_matrix allowed interaction between sites
- *  @param t one electron hopping interaction parameter
- *  @param U two electron doubly occupied interaction parameter
- *  @return the triagonal of the matrix resulting in the recombination of U and t with the hopping matrix.
+
+/*
+ *  HELPER METHODS
  */
-Eigen::VectorXd generateUpperTriagonal(Eigen::MatrixXd hopping_matrix, double t, double U);
+/**
+ *  Generate the upper triagonal as a vector for a Hubbard lattice
+ *
+ *  @param A        the adjacency matrix that represents the allowed interaction between sites
+ *  @param t        the one-electron hopping interaction parameter
+ *  @param U        the two-electron interaction parameter
+ *
+ *  @return the upper triagonal as a vector of the hopping matrix generated from the adjacency matrix and the Hubbard parameters t and U
+ */
+Eigen::VectorXd generateUpperTriagonal(Eigen::MatrixXd A, double t, double U);
 
 
 }  // namespace GQCP

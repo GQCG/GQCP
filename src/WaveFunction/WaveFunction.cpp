@@ -25,6 +25,10 @@ namespace GQCP {
  * CONSTRUCTORS
  */
 
+/**
+ *  @param base_fock_space      the Fock space in which the wave function 'lives'
+ *  @param coefficients         the expansion coefficients
+ */
 WaveFunction::WaveFunction(BaseFockSpace& base_fock_space, const Eigen::VectorXd& coefficients) :
     fock_space (&base_fock_space),
     coefficients (coefficients)

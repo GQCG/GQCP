@@ -30,7 +30,7 @@ namespace GQCP {
 
 
 /**
- *  The product of two Fock spaces for a given set of orbitals and number of alpha and beta electrons.
+ *  A class that represents the product of two full Fock spaces (alpha and beta).
  */
 class ProductFockSpace: public GQCP::BaseFockSpace {
 private:
@@ -44,8 +44,9 @@ private:
 public:
     // CONSTRUCTORS
     /**
-     *  Constructor given a @param K (spatial orbitals), N_alpha and N_beta (electrons)
-     *  on which the dimensions of the Fock space are based
+     *  @param K            the number of orbitals (equal for alpha and beta)
+     *  @param N_alpha      the number of alpha electrons
+     *  @param N_beta       the number of beta electrons
      */
     ProductFockSpace(size_t K, size_t N_alpha, size_t N_beta);
 
@@ -64,9 +65,11 @@ public:
 
     // STATIC PUBLIC METHODS
     /**
-     *  Given a number of spatial orbitals @param K
-     *  and a number of alpha and beta electrons @param N_alpha, N_beta,
-     *  @return the dimension of the Fock space
+     *  @param K            the number of orbitals (equal for alpha and beta)
+     *  @param N_alpha      the number of alpha electrons
+     *  @param N_beta       the number of beta electrons
+     *
+     *  @return the dimension of the product Fock space
      */
     static size_t calculateDimension(size_t K, size_t N_alpha, size_t N_beta);
 };
