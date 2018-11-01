@@ -194,6 +194,22 @@ GQCP::OneElectronOperator LibintCommunicator::calculateNuclearIntegrals(const GQ
 
 
 /**
+ *  @param ao_basis     the AO basis used for the calculation of the dipole repulsion integrals
+ *  @param origin       the origin of the dipole
+ *
+ *  @return the Cartesian components of the electrical dipole operator, expressed in the given AO basis
+ */
+std::array<GQCP::OneElectronOperator, 3> LibintCommunicator::calculateDipoleIntegrals(const GQCP::AOBasis& ao_basis, const Eigen::Vector3d& origin) const {
+
+    std::array<double, 3> origin_array {origin.x(), origin.y(), origin.z()};
+
+    auto all_integrals = this->calculateOneElectronIntegrals<4>(libint2::Operator::emultipole1, ao_basis.get_basis_functions(), origin_array);  // overlap, x, y, z
+
+    return std::array<GQCP::OneElectronOperator, 3> {all_integrals[1], all_integrals[2], all_integrals[3]};  // we don't need the overlap
+}
+
+
+/**
  *  @param ao_basis     the AO basis used for the calculation of the Coulomb repulsion integrals
  *
  *  @return the Coulomb repulsion integrals expressed in the given AO basis

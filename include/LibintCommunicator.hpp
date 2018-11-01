@@ -119,6 +119,14 @@ public:
     GQCP::TwoElectronOperator calculateCoulombRepulsionIntegrals(const GQCP::AOBasis& ao_basis) const;
 
     /**
+     *  @param ao_basis     the AO basis used for the calculation of the dipole repulsion integrals
+     *  @param origin       the origin of the dipole
+     *
+     *  @return the Cartesian components of the electrical dipole operator, expressed in the given AO basis
+     */
+    std::array<GQCP::OneElectronOperator, 3> calculateDipoleIntegrals(const GQCP::AOBasis& ao_basis, const Eigen::Vector3d& origin) const;
+
+    /**
      *  @return a std::vector<libint2::Atom> based on a given std::vector<GQCP::Atom> @param atoms
      */
     std::vector<libint2::Atom> interface(const std::vector<GQCP::Atom>& atoms) const;
