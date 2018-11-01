@@ -61,6 +61,7 @@ private:
      *
      *  @param operator_type    the name of the operator as specified by the enumeration
      *  @param basisset         the libint2 basis set representing the AO basis
+     *  @param parameters       the parameters for the integral engine, as specified by libint2
      *
      *  @return an array of N OneElectronOperators corresponding to the matrix representations of the N components of the given operator type
      */
@@ -89,10 +90,32 @@ public:
 
 
     // PUBLIC METHODS
+    /**
+     *  @param ao_basis     the AO basis used for the calculation of the overlap integrals
+     *
+     *  @return the overlap integrals expressed in the given AO basis
+     */
     GQCP::OneElectronOperator calculateOverlapIntegrals(const GQCP::AOBasis& ao_basis) const;
+
+    /**
+     *  @param ao_basis     the AO basis used for the calculation of the kinetic integrals
+     *
+     *  @return the kinetic integrals expressed in the given AO basis
+     */
     GQCP::OneElectronOperator calculateKineticIntegrals(const GQCP::AOBasis& ao_basis) const;
+
+    /**
+     *  @param ao_basis     the AO basis used for the calculation of the nuclear attraction integrals
+     *
+     *  @return the nuclear attraction integrals expressed in the given AO basis
+     */
     GQCP::OneElectronOperator calculateNuclearIntegrals(const GQCP::AOBasis& ao_basis) const;
 
+    /**
+     *  @param ao_basis     the AO basis used for the calculation of the Coulomb repulsion integrals
+     *
+     *  @return the Coulomb repulsion integrals expressed in the given AO basis
+     */
     GQCP::TwoElectronOperator calculateCoulombRepulsionIntegrals(const GQCP::AOBasis& ao_basis) const;
 
     /**
@@ -111,18 +134,15 @@ public:
  *
  *  @param operator_type    the name of the operator as specified by the enumeration
  *  @param basisset         the libint2 basis set representing the AO basis
- *  @param parameters       the parameters for the integral engine
+ *  @param parameters       the parameters for the integral engine, as specified by libint2
  *
  *  @return an array of N OneElectronOperators corresponding to the matrix representations of the N components of the given operator type
  */
 template <size_t N>
 std::array<GQCP::OneElectronOperator, N> LibintCommunicator::calculateOneElectronIntegrals(libint2::Operator operator_type, const libint2::BasisSet& basisset, const libint2::any& parameters) const {
 
-    // Use the basis_functions that is currently a libint2::BasisSet
-    const auto nbf = static_cast<size_t>(basisset.nbf());  // nbf: number of basis functions in the basisset
-
-
-    // Initialize the N components of the operator
+    // Initialize the N components of the matrix representations of the operator
+    const auto nbf = static_cast<size_t>(basisset.nbf());  // number of basis functions
     std::array<Eigen::MatrixXd, N> matrix_components;
     for (auto& matrix : matrix_components) {
         matrix = Eigen::MatrixXd::Zero(nbf, nbf);
@@ -131,52 +151,24 @@ std::array<GQCP::OneElectronOperator, N> LibintCommunicator::calculateOneElectro
 
     // Construct the libint2 engine
     libint2::Engine engine (operator_type, basisset.max_nprim(), static_cast<int>(basisset.max_l()));
-
-    // Set parameters for the nuclear attraction integrals
-//    if (operator_type == libint2::Operator::nuclear) {
-//        auto atoms = this->interface(ao_basis.get_atoms());  // convert from GQCP::Atoms to libint2::atoms
-//        engine.set_params(make_point_charges(atoms));
-//    }
-    std::cout << "Got to before set_params." << std::endl;
     engine.set_params(parameters);
 
+    const auto shell2bf = basisset.shell2bf();  // create a map between (shell index) -> (basis function index)
 
+    const auto& calculated_integrals = engine.results();  // vector that holds pointers to computed shell sets
+    assert(calculated_integrals.size() == N);             // its size is N, so it holds N pointers to the first computed integral of an integral set
 
-    std::array<const double*, N> calculated_integrals_components;
-
-
-    const auto shell2bf = basisset.shell2bf();  // maps shell index to bf index
-
-    const auto& buffer = engine.results();  // vector that holds pointers to computed shell sets
-    // actually, buffer.size() is always 1, so buffer[0] is a pointer to
-    //      the first calculated integral of these specific shells
-    // the values that buffer[0] points to will change after every compute() call
-
-    // ASSERT buffer.size() == N ??
 
     // One-electron integrals are between two basis functions, so we'll need two loops
-    // Libint calculates integrals between libint2::Shells, so we will loop over the shells (sh) in the basisset
-    const auto nsh = static_cast<size_t>(basisset.size());  // nsh: number of shells in the basisset
-    for (auto sh1 = 0; sh1 != nsh; ++sh1) {  // sh1: shell 1
-        for (auto sh2 = 0; sh2 != nsh; ++sh2) {  // sh2: shell 2
-            // Calculate integrals between the two shells (basis_set is a decorated std::vector<libint2::Shell>)
-            engine.compute(basisset[sh1], basisset[sh2]);
+    // Libint calculates integrals between libint2::Shells, so we will loop over the shells in the basisset
+    const auto nsh = static_cast<size_t>(basisset.size());  // number of shells
+    for (auto sh1 = 0; sh1 != nsh; ++sh1) {  // shell 1
+        for (auto sh2 = 0; sh2 != nsh; ++sh2) {  // shell 2
+            // Calculate integrals between the two shells
+            engine.compute(basisset[sh1], basisset[sh2]);  // this updates the pointers in calculated_integrals
 
 
-            for (size_t i = 0; i < N; i++) {
-                calculated_integrals_components[i] = buffer[i];
-            }
-//            auto calculated_integrals = buffer[0];  // is actually a pointer: const double *
-
-
-//            if (calculated_integrals == nullptr) {  // if the zeroth element is nullptr, then the whole shell has been exhausted
-//                // or the libint engine predicts that the integrals are below a certain threshold
-//                // in this case the value does not need to be filled in, and we are safe because we have properly initialized to zero
-//                continue;
-//            }
-
-            // Extract the calculated integrals from calculated_integrals
-            // In calculated_integrals, the integrals are stored in row major form
+            // Place the calculated integrals into the matrix representation(s): the integrals are stored in row-major form
             auto bf1 = shell2bf[sh1];  // (index of) first bf in sh1
             auto bf2 = shell2bf[sh2];  // (index of) first bf in sh2
 
@@ -185,13 +177,12 @@ std::array<GQCP::OneElectronOperator, N> LibintCommunicator::calculateOneElectro
 
             for (auto f1 = 0; f1 != nbf_sh1; ++f1) {  // f1: index of basis function within shell 1
                 for (auto f2 = 0; f2 != nbf_sh2; ++f2) { // f2: index of basis function within shell 2
+
                     for (size_t i = 0; i < N; i++) {
-                        double computed_integral = calculated_integrals_components[i][f2 + f1 * nbf_sh2];  // integrals are packed in row-major form
+                        double computed_integral = calculated_integrals[i][f2 + f1 * nbf_sh2];  // integrals are packed in row-major form
                         matrix_components[i](bf1 + f1, bf2 + f2) = computed_integral;
                     }
 
-//                    double computed_integral = calculated_integrals[f2 + f1 * nbf_sh2];  // integrals are packed in row-major form
-//                    matrix(bf1 + f1, bf2 + f2) = computed_integral;
                 }
             }  // data access loops
 
@@ -199,9 +190,10 @@ std::array<GQCP::OneElectronOperator, N> LibintCommunicator::calculateOneElectro
     }  // shell loops
 
 
+     // Wrap the matrix representations into a GQCP::OneElectronOperator
     std::array<GQCP::OneElectronOperator, N> operator_components;
     for (size_t i = 0; i < N; i++) {
-        operator_components[i] = GQCP::OneElectronOperator(matrix_components[i]);  // convert to a GQCP::OneElectronOperator
+        operator_components[i] = GQCP::OneElectronOperator(matrix_components[i]);
     }
 
     return operator_components;

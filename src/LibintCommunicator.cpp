@@ -162,16 +162,33 @@ std::vector<libint2::Atom> LibintCommunicator::interface(const std::vector<GQCP:
 }
 
 
+/**
+ *  @param ao_basis     the AO basis used for the calculation of the overlap integrals
+ *
+ *  @return the overlap integrals expressed in the given AO basis
+ */
 GQCP::OneElectronOperator LibintCommunicator::calculateOverlapIntegrals(const GQCP::AOBasis& ao_basis) const {
     libint2::BasisSet basisset = ao_basis.get_basis_functions();
     return this->calculateOneElectronIntegrals<1>(libint2::Operator::overlap, basisset)[0];
 }
 
+
+/**
+ *  @param ao_basis     the AO basis used for the calculation of the kinetic integrals
+ *
+ *  @return the kinetic integrals expressed in the given AO basis
+ */
 GQCP::OneElectronOperator LibintCommunicator::calculateKineticIntegrals(const GQCP::AOBasis& ao_basis) const {
     libint2::BasisSet basisset = ao_basis.get_basis_functions();
     return this->calculateOneElectronIntegrals<1>(libint2::Operator::kinetic, basisset)[0];
 }
 
+
+/**
+ *  @param ao_basis     the AO basis used for the calculation of the nuclear attraction integrals
+ *
+ *  @return the nuclear attraction integrals expressed in the given AO basis
+ */
 GQCP::OneElectronOperator LibintCommunicator::calculateNuclearIntegrals(const GQCP::AOBasis& ao_basis) const {
     libint2::BasisSet basisset = ao_basis.get_basis_functions();
     auto atoms = this->interface(ao_basis.get_atoms());  // convert from GQCP::Atoms to libint2::atoms
@@ -180,6 +197,11 @@ GQCP::OneElectronOperator LibintCommunicator::calculateNuclearIntegrals(const GQ
 }
 
 
+/**
+ *  @param ao_basis     the AO basis used for the calculation of the Coulomb repulsion integrals
+ *
+ *  @return the Coulomb repulsion integrals expressed in the given AO basis
+ */
 GQCP::TwoElectronOperator LibintCommunicator::calculateCoulombRepulsionIntegrals(const GQCP::AOBasis& ao_basis) const {
     libint2::BasisSet basisset = ao_basis.get_basis_functions();
 
