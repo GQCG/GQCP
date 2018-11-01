@@ -58,15 +58,14 @@ private:
     // PRIVATE METHODS
     /**
      *  @tparam N               the number of operator components
-     *  @tparam Parameters      the type of the given parameters for the integral engine
      *
      *  @param operator_type    the name of the operator as specified by the enumeration
      *  @param basisset         the libint2 basis set representing the AO basis
      *
      *  @return an array of N OneElectronOperators corresponding to the matrix representations of the N components of the given operator type
      */
-    template <size_t N, typename Parameters>
-    std::array<GQCP::OneElectronOperator, N> calculateOneElectronIntegrals(libint2::Operator operator_type, const libint2::BasisSet& basisset, const Parameters& parameters = empty()) const;
+    template <size_t N>
+    std::array<GQCP::OneElectronOperator, N> calculateOneElectronIntegrals(libint2::Operator operator_type, const libint2::BasisSet& basisset, const libint2::any& parameters = empty()) const;
 
     /**
      *  @return the TwoElectronOperator corresponding to the matrix representation of @param operator_type in the given
@@ -109,7 +108,6 @@ public:
  */
 /**
  *  @tparam N               the number of operator components
- *  @tparam Parameters      the type of the given parameters for the integral engine
  *
  *  @param operator_type    the name of the operator as specified by the enumeration
  *  @param basisset         the libint2 basis set representing the AO basis
@@ -117,8 +115,8 @@ public:
  *
  *  @return an array of N OneElectronOperators corresponding to the matrix representations of the N components of the given operator type
  */
-template <size_t N, typename Parameters>
-std::array<GQCP::OneElectronOperator, N> LibintCommunicator::calculateOneElectronIntegrals(libint2::Operator operator_type, const libint2::BasisSet& basisset, const Parameters& parameters) const {
+template <size_t N>
+std::array<GQCP::OneElectronOperator, N> LibintCommunicator::calculateOneElectronIntegrals(libint2::Operator operator_type, const libint2::BasisSet& basisset, const libint2::any& parameters) const {
 
     // Use the basis_functions that is currently a libint2::BasisSet
     const auto nbf = static_cast<size_t>(basisset.nbf());  // nbf: number of basis functions in the basisset

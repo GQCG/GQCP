@@ -164,19 +164,19 @@ std::vector<libint2::Atom> LibintCommunicator::interface(const std::vector<GQCP:
 
 GQCP::OneElectronOperator LibintCommunicator::calculateOverlapIntegrals(const GQCP::AOBasis& ao_basis) const {
     libint2::BasisSet basisset = ao_basis.get_basis_functions();
-    return this->calculateOneElectronIntegrals<1, libint2::any>(libint2::Operator::overlap, basisset)[0];
+    return this->calculateOneElectronIntegrals<1>(libint2::Operator::overlap, basisset)[0];
 }
 
 GQCP::OneElectronOperator LibintCommunicator::calculateKineticIntegrals(const GQCP::AOBasis& ao_basis) const {
     libint2::BasisSet basisset = ao_basis.get_basis_functions();
-    return this->calculateOneElectronIntegrals<1, libint2::any>(libint2::Operator::kinetic, basisset)[0];
+    return this->calculateOneElectronIntegrals<1>(libint2::Operator::kinetic, basisset)[0];
 }
 
 GQCP::OneElectronOperator LibintCommunicator::calculateNuclearIntegrals(const GQCP::AOBasis& ao_basis) const {
     libint2::BasisSet basisset = ao_basis.get_basis_functions();
     auto atoms = this->interface(ao_basis.get_atoms());  // convert from GQCP::Atoms to libint2::atoms
 
-    return this->calculateOneElectronIntegrals<1, libint2::any>(libint2::Operator::nuclear, basisset, make_point_charges(atoms))[0];
+    return this->calculateOneElectronIntegrals<1>(libint2::Operator::nuclear, basisset, make_point_charges(atoms))[0];
 }
 
 
