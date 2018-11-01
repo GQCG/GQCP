@@ -71,7 +71,7 @@ public:
     /**
      *  @return the geminal coefficients in vector form
      */
-    Eigen::VectorXd asVector() const { return this->g; }
+    const Eigen::VectorXd& asVector() const { return this->g; }
 
     /**
      *  Construct and @return the geminal coefficients in matrix form

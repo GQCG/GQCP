@@ -90,7 +90,7 @@ public:
      */
     void set_representation(size_t unsigned_representation);
     size_t get_unsigned_representation() const { return unsigned_representation; }
-    VectorXs get_occupation_indices() const { return occupation_indices; }
+    const VectorXs& get_occupation_indices() const { return occupation_indices; }
 
     /**
      *  @return index of occupied orbital based on the @param electron index

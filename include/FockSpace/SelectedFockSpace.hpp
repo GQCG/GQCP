@@ -76,7 +76,7 @@ public:
     // GETTERS
     size_t get_N_alpha() const { return this->N_alpha; }
     size_t get_N_beta() const { return this->N_beta; }
-    Configuration get_configuration(size_t index) const { return this->configurations[index]; }
+    const Configuration& get_configuration(size_t index) const { return this->configurations[index]; }
     FockSpaceType get_type() const override { return FockSpaceType::SelectedFockSpace; }
 
 

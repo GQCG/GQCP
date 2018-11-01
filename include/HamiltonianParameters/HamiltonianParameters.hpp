@@ -68,9 +68,9 @@ public:
 
     
     // GETTERS
-    GQCP::OneElectronOperator get_S() const { return this->S; }
-    GQCP::OneElectronOperator get_h() const { return this->h; }
-    GQCP::TwoElectronOperator get_g() const { return this->g; }
+    const GQCP::OneElectronOperator& get_S() const { return this->S; }
+    const GQCP::OneElectronOperator& get_h() const { return this->h; }
+    const GQCP::TwoElectronOperator& get_g() const { return this->g; }
     size_t get_K() const { return this->K; }
 
     

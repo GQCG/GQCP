@@ -28,9 +28,9 @@ namespace GQCP {
 
 
 /**
- *  Base class for RHF SCF solvers. This class contains the solve()-method, which is the RHF SCF procedure.
+ *  Base class for RHF SCF solvers. This class contains the solve()-method, which does the RHF SCF procedure.
  *
- *  Derived classes should implement the pure virtual function calculateNewFockMatrix.
+ *  Derived classes should implement the pure virtual function calculateNewFockMatrix().
  */
 class RHFSCFSolver {
 protected:
@@ -43,24 +43,32 @@ protected:
 
     GQCP::RHF solution;
 
+
     // PROTECTED METHODS
     /**
-     *  Calculate a new Fock matrix (expressed in AO basis). This is the function that causes the different behaviour between derived classes.
+     *  Update the Fock matrix, i.e. calculate the Fock matrix to be used in the next iteration of the SCF procedure
+     *
+     *  @param D_AO     the RHF density matrix in AO basis
+     *
+     *  @return the new Fock matrix (expressed in AO basis)
      */
     virtual Eigen::MatrixXd calculateNewFockMatrix(const Eigen::MatrixXd& D_AO) = 0;
 
 public:
     // CONSTRUCTORS
     /**
-     *  Constructor based on given Hamiltonian parameters @param ham_par, @param molecule, @param maximum_number_of_iterations and @param SCF threshold
+     *  @param ham_par                          the Hamiltonian parameters in AO basis
+     *  @param molecule                         the molecule used for the SCF calculation
+     *  @param threshold                        the convergence treshold on the Frobenius norm on the AO density matrix
+     *  @param maximum_number_of_iterations     the maximum number of iterations for the SCF procedure
      */
     RHFSCFSolver(GQCP::HamiltonianParameters ham_par, GQCP::Molecule molecule, double threshold=1.0e-08, size_t maximum_number_of_iterations=128);
 
     // GETTERS
-    GQCP::RHF get_solution() const { return this->solution; }
+    const GQCP::RHF& get_solution() const { return this->solution; }
 
     /**
-     *  Solve the RHF SCF equations. This function internally uses the pure virtual calculateNewFockMatrix.
+     *  Solve the RHF SCF equations
      */
     void solve();
 };
