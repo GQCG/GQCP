@@ -38,7 +38,7 @@ GQCP::HamiltonianParameters constructMolecularHamiltonianParameters(std::shared_
     // Calculate the integrals for the molecular Hamiltonian
     auto S = GQCP::LibintCommunicator::get().calculateOverlapIntegrals(*ao_basis);
     auto T = GQCP::LibintCommunicator::get().calculateKineticIntegrals(*ao_basis);
-    auto V = GQCP::LibintCommunicator::get().calculateOverlapIntegrals(*ao_basis);
+    auto V = GQCP::LibintCommunicator::get().calculateNuclearIntegrals(*ao_basis);
     auto H = T + V;
     
     auto g = GQCP::LibintCommunicator::get().calculateCoulombRepulsionIntegrals(*ao_basis);
