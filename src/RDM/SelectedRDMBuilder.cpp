@@ -36,7 +36,9 @@ SelectedRDMBuilder::SelectedRDMBuilder(const SelectedFockSpace& fock_space) :
  */
 
 /**
- *  @return 1RDM from a coefficient vector @param x
+ *  @param x        the coefficient vector representing the 'selected' wave function
+ *
+ *  @return all 1-RDMs given a coefficient vector
  */
 OneRDMs SelectedRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) {
 
@@ -118,7 +120,9 @@ OneRDMs SelectedRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) {
 
 
 /**
- *  @return 2RDM from a coefficient vector @param x
+ *  @param x        the coefficient vector representing the 'selected' wave function
+ *
+ *  @return all 2-RDMs given a coefficient vector
  */
 TwoRDMs SelectedRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) {
 

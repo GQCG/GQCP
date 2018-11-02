@@ -28,33 +28,39 @@ namespace GQCP {
 
 
 /**
- *  SelectedRDMBuilder is a class for the calculation of a density matrix from a given wave function
- *  or coefficient expansion in a selected Fock space
+ *  A class capable of calculating 1- and 2-RDMs from wave functions expanded in a selected Fock space
  */
 class SelectedRDMBuilder : public BaseRDMBuilder {
     SelectedFockSpace fock_space;  // Fock space containing the selected configurations
 
 
 public:
-    // CONSTRUCTOR
+    // CONSTRUCTORS
     explicit SelectedRDMBuilder (const SelectedFockSpace& fock_space);
+
+
+    // DESTRUCTOR
+    ~SelectedRDMBuilder() = default;
+
+
+    // OVERRIDDEN GETTERS
+    BaseFockSpace* get_fock_space() override { return &fock_space; }
 
 
     // OVERRIDDEN PUBLIC METHODS
     /**
-     *  @return all 1-RDMs from a coefficient vector @param x
+     *  @param x        the coefficient vector representing the 'selected' wave function
+     *
+     *  @return all 1-RDMs given a coefficient vector
      */
     OneRDMs calculate1RDMs(const Eigen::VectorXd& x) override;
 
     /**
-     *  @return all 2-RDMs from a coefficient vector @param x
+     *  @param x        the coefficient vector representing the 'selected' wave function
+     *
+     *  @return all 2-RDMs given a coefficient vector
      */
     TwoRDMs calculate2RDMs(const Eigen::VectorXd& x) override;
-
-    /**
-     *  @return the Fock space of the RDMBuilder
-     */
-    BaseFockSpace* get_fock_space() override { return &fock_space; }
 };
 
 

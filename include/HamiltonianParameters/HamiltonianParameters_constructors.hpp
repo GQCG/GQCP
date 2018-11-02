@@ -31,9 +31,9 @@ namespace GQCP {
 
 
 /**
- *  @return HamiltonianParameters corresponding to the molecular Hamiltonian for the given @param ao_basis
+ *  @param ao_basis     the AO basis in which the molecular Hamiltonian should be expressed
  *
- *  The molecular Hamiltonian has
+ *  @return Hamiltonian parameters corresponding to the molecular Hamiltonian. The molecular Hamiltonian has
  *      - one-electron contributions:
  *          - kinetic
  *          - nuclear attraction
@@ -44,19 +44,25 @@ GQCP::HamiltonianParameters constructMolecularHamiltonianParameters(std::shared_
 
 
 /**
- *  @return a set of random Hamiltonian parameters (with values uniformly distributed between [-1,1]) for a given number of orbitals @param K
+ *  @param K        the number of orbitals
+ *
+ *  @return a set of random Hamiltonian parameters with values uniformly distributed between [-1,1]
  */
 GQCP::HamiltonianParameters constructRandomHamiltonianParameters(size_t K);
 
 
 /**
- *  @return HamiltonianParameters corresponding to the contents of an @param fcidump_file
+ *  @param fcidump_file     the name of the FCIDUMP file
+ *
+ *  @return Hamiltonian parameters corresponding to the contents of an FCIDUMP file
  */
 GQCP::HamiltonianParameters readFCIDUMPFile(const std::string& fcidump_file);
 
 
 /**
- *  @return HamiltonianParameters corresponding to the contents of an @param upper_triagonal that specifies the Hubbard lattice interactions
+ *  @param upper_triagonal      an upper triagonal representation of the Hubbard hopping matrix
+ *
+ *  @return Hubbard Hamiltonian parameters generated from the Hubbard hopping matrix
  */
 GQCP::HamiltonianParameters constructHubbardParameters(const Eigen::VectorXd& upper_triagonal);
 

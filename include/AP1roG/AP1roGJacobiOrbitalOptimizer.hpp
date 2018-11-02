@@ -36,8 +36,9 @@ class AP1roGJacobiOrbitalOptimizer {
 private:
     // PRIVATE STRUCTS
     /**
-     *  A struct that holds JacobiRotationParameters and a @param energy_after_rotation, operator< is implemented so "optimal parameters" can easily be
-     *  found using a priority queue
+     *  A struct that holds JacobiRotationParameters and an energy after rotation
+     *
+     *  Since operator< is implemented, "optimal parameters" can easily be found using a priority queue
      */
     struct JacobiRotationEnergy {
 
@@ -46,6 +47,10 @@ private:
 
         /**
          *  An operator< that can be used to achieve a minimum priority queue: the order of arguments is reversed
+         *
+         *  @param other    the other JacobiRotationEnergy parameters
+         *
+         *  @return if the energy of this is 'smaller' than other
          */
         bool operator< (const JacobiRotationEnergy& other) const {
             return this->energy_after_rotation > other.energy_after_rotation;
@@ -76,14 +81,20 @@ private:
 public:
     // CONSTRUCTORS
     /**
-     *  Constructor based on a given number of electron pairs @param N_P, Hamiltonian parameters @param ham_par, a threshold for the orbital optimization @param oo_threshold and a @param maximum_number_of_oo_iterations
-     *
+     *  @param N_P                                  the number of electron pairs
+     *  @param ham_par                              Hamiltonian parameters in an orthonormal orbital basis
+     *  @param oo_threshold                         the threshold on the convergence of the energy during the OO procedure
+     *  @param maximum_number_of_oo_iterations      the maximum number of iterations during the OO procedure
+
      *  The initial guess for the geminal coefficients is zero
      */
     AP1roGJacobiOrbitalOptimizer(size_t N_P, const GQCP::HamiltonianParameters& ham_par, double oo_threshold=1.0e-08, const size_t maximum_number_of_oo_iterations=128);
 
     /**
-     *  Constructor based on a given @param molecule, Hamiltonian parameters @param ham_par, a threshold for the orbital optimization @param oo_threshold and a @param maximum_number_of_oo_iterations
+     *  @param molecule                             the molecule used for the OO-AP1roG calculation
+     *  @param ham_par                              Hamiltonian parameters in an orthonormal orbital basis
+     *  @param oo_threshold                         the threshold on the convergence of the energy during the OO procedure
+     *  @param maximum_number_of_oo_iterations      the maximum number of iterations during the OO procedure
      *
      *  The initial guess for the geminal coefficients is zero
      */
@@ -97,21 +108,31 @@ public:
 
     // PUBLIC METHODS
     /**
-     *  Given the two indices of spatial orbitals @param p and @param q that will be Jacobi-rotated, and the geminal coefficients @param G,     calculate the coefficients (which are @members)
+     *  Calculate the coefficients
      *      - A1, B1, C1            to be used in occupied-occupied rotations
      *      - A2, B2, C2, D2, E2    to be used in occupied-virtual rotations
      *      - A3, B3, C3            to be used in virtual-virtual rotations
+     *
+     *  @param p    the index of spatial orbital 1
+     *  @param q    the index of spatial orbital 2
+     *  @param G    the AP1roG geminal coefficients
      */
     void calculateJacobiCoefficients(size_t p, size_t q, const GQCP::AP1roGGeminalCoefficients& G);
 
     /**
-     *  Calculate the AP1roG energy given the geminal coefficients @param G after the application of a Jacobi rotation with the parameters @param jacobi_rotation_parameters
+     *  @param jacobi_rotation_parameters       the Jacobi parameters that specify a Jacobi rotation
+     *  @param G                                the AP1roG geminal coefficients
+     *
+     *  @return the AP1roG energy after a Jacobi rotation using analytical formulas
      */
     double calculateEnergyAfterJacobiRotation(const GQCP::JacobiRotationParameters& jacobi_rotation_parameters, const GQCP::AP1roGGeminalCoefficients& G) const;
 
     /**
-     *  Given a Jacobi pair @param p and @param q and the geminal coefficients @param G, @return the optimal rotation angle, i.e. the angle for which the derivative
-     *  of the energy after the Jacobi rotation is zero (and the second derivative is positive).
+     *  @param p    the index of spatial orbital 1
+     *  @param q    the index of spatial orbital 2
+     *  @param G    the AP1roG geminal coefficients
+     *
+     *  @return the angle for which the derivative of the energy after the Jacobi rotation is zero (and the second derivative is positive)
      */
     double findOptimalRotationAngle(size_t p, size_t q, const GQCP::AP1roGGeminalCoefficients& G) const;
 

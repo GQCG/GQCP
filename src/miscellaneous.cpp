@@ -20,11 +20,12 @@
 
 namespace GQCP {
 
+    
 /**
- *  @return the @param M-dimensional Jacobi rotation matrix given a set of JacobiRotationParameters
+ *  @param jacobi_rotation_parameters       the parameters that define the Jacobi rotation matrix
+ *  @param M                                the dimension of the resulting matrix
  *
- *  Note that:
- *      - we work with the (cos, sin, -sin, cos) definition of the Jacobi rotation matrix
+ *  @return the corresponding Jacobi rotation matrix. Note that we work with the (cos, sin, -sin, cos) definition of the Jacobi rotation matrix
  */
 Eigen::MatrixXd jacobiRotationMatrix(const GQCP::JacobiRotationParameters& jacobi_rotation_parameters, size_t M) {
 

@@ -28,15 +28,14 @@ namespace GQCP {
 
 
 /**
- *  DOCIRDMBuilder is a class for the calculation of a density matrix from a given wave function
- *  or coefficient expansion in a doubly occupied or single Fock space
+ *  A class capable of calculating 1- and 2-RDMs from DOCI wave functions
  */
 class DOCIRDMBuilder : public BaseRDMBuilder {
     FockSpace fock_space;  // both the alpha and beta Fock space
 
 
 public:
-    // CONSTRUCTOR
+    // CONSTRUCTORS
     explicit DOCIRDMBuilder(const FockSpace& fock_space);
 
 
@@ -44,21 +43,24 @@ public:
     ~DOCIRDMBuilder() = default;
 
 
+    // OVERRIDDEN GETTERS
+    BaseFockSpace* get_fock_space() override { return &fock_space; }
+
+
     // OVERRIDDEN PUBLIC METHODS
     /**
-     *  @return all 1-RDMs from a coefficient vector @param x
+     *  @param x        the coefficient vector representing the DOCI wave function
+     *
+     *  @return all 1-RDMs given a coefficient vector
      */
     OneRDMs calculate1RDMs(const Eigen::VectorXd& x) override;
 
     /**
-     *  @return all 2-RDMs from a coefficient vector @param x
+     *  @param x        the coefficient vector representing the DOCI wave function
+     *
+     *  @return all 2-RDMs given a coefficient vector
      */
     TwoRDMs calculate2RDMs(const Eigen::VectorXd& x) override;
-
-    /**
-     *  @return the Fock space of the RDMBuilder
-     */
-    BaseFockSpace* get_fock_space() override { return &fock_space; }
 };
 
 

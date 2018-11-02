@@ -26,8 +26,7 @@ namespace GQCP {
 
 
 /**
- *  Struct containing an electron distribution
- *  represented by the alpha and beta ONV.
+ *  A small struct that represents the combination of an alpha and beta ONV
  */
 struct Configuration {
     ONV onv_alpha;

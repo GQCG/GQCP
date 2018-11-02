@@ -26,7 +26,8 @@ namespace GQCP {
  */
 
 /**
- *  Constructor given a @param hamiltonian_builder and @param hamiltonian_parameters
+ *  @param hamiltonian_builder      the HamiltonianBuilder for which the CI eigenvalue problem should be solved
+ *  @param hamiltonian_parameters   the Hamiltonian parameters in an orthonormal basis
  */
 CISolver::CISolver(HamiltonianBuilder& hamiltonian_builder, const HamiltonianParameters& hamiltonian_parameters) :
     hamiltonian_builder (&hamiltonian_builder),
@@ -45,7 +46,9 @@ CISolver::CISolver(HamiltonianBuilder& hamiltonian_builder, const HamiltonianPar
  */
 
 /**
- *  solves the CI problem, setting the eigenvectors and -values
+ *  @param solver_options       specify a type of solver and its options
+ *
+ *  Solve the CI eigenvalue problem and set the eigenpairs internally
  */
 void CISolver::solve(numopt::eigenproblem::BaseSolverOptions& solver_options) {
     numopt::eigenproblem::SolverType solver_type = solver_options.get_solver_type();
@@ -83,8 +86,11 @@ void CISolver::solve(numopt::eigenproblem::BaseSolverOptions& solver_options) {
     }
 }
 
+
 /**
- *  @return WaveFunction instance after solving the CI problem for a given eigenvector at @param index
+ *  @param index        the index of the index-th excited state
+ *
+ *  @return the index-th excited state after solving the CI eigenvalue problem
  */
 GQCP::WaveFunction CISolver::get_wavefunction(size_t index) {
     if (index > this->eigenpairs.size()) {

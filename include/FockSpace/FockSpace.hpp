@@ -29,11 +29,10 @@ namespace GQCP {
 
 
 /**
- *  The full Fock space for a given set of orbitals and number of electrons
- *  where the ONVs and addresses are linked
- *  through a hashing function calculated with an addressing scheme.
- *  Implementation of the addressing scheme from :
- *      Molecular Electronic-Structure Theory (August 2000) by Trygve Helgaker, Poul Jorgensen, and Jeppe Olsen
+ *  The full Fock space for a number of orbitals and number of electrons
+ *
+ *  The ONVs and addresses are linked with a hashing function calculated with an addressing scheme. The implementation of the addressing scheme is from Molecular Electronic-Structure Theory (August 2000) by Trygve Helgaker, Poul Jorgensen, and Jeppe Olsen
+ *
  */
 class FockSpace: public GQCP::BaseFockSpace {
 private:
@@ -43,7 +42,9 @@ private:
 
     // PRIVATE METHODS
     /**
-     *  @returns a permutation of the representation, giving the next bitstring permutation in reverse lexical ordering.
+     *  @param representation       a representation of an ONV
+     *
+     *  @return the next bitstring permutation
      *
      *      Examples:
      *          011 -> 101
@@ -55,8 +56,8 @@ private:
 public:
     // CONSTRUCTORS
     /**
-     *  Constructor given a @param K (spatial orbitals), N (electrons)
-     *  on which the dimensions of the Fock space are based
+     *  @param K        the number of orbitals
+     *  @param N        the number of electrons
      */
     FockSpace(size_t K, size_t N);
 
@@ -71,10 +72,12 @@ public:
     size_t get_N() const { return this->N; }
     FockSpaceType get_type() const override { return FockSpaceType::FockSpace; }
 
+
     // STATIC PUBLIC METHODS
     /**
-     *  Given a number of spatial orbitals @param K
-     *  and a number of electrons  @param N,
+     *  @param K        the number of orbitals
+     *  @param N        the number of electrons
+     *
      *  @return the dimension of the Fock space
      */
     static size_t calculateDimension(size_t K, size_t N);
@@ -82,20 +85,24 @@ public:
 
     // PUBLIC METHODS
     /**
-     *  @return the ONV with the corresponding address in the considered space
+     *  @param address      the address (i.e. the ordening number) of the ONV
+     *
+     *  @return the ONV with the corresponding address
      */
     ONV get_ONV(size_t address);
 
+
     /**
-     *  sets @param ONV to the next ONV in the space
-     *  performs the ulongNextPermutation() function
-     *  and updates the corresponding occupation indexes
-     *  of the ONV occupation array
+     *  Set the current ONV to the next ONV: performs ulongNextPermutation() and updates the corresponding occupation indices of the ONV occupation array
+     *
+     *  @param onv      the current ONV
      */
     void setNext(ONV& onv);
 
     /**
-     *  @return the Fock space address (i.e. the ordering number) of the @param onv in reverse lexical ordering, in the fock space.
+     *  @param onv      the ONV
+     *
+     *  @return the address (i.e. the ordering number) of the given ONV
      */
     size_t getAddress(const ONV& onv);
 };

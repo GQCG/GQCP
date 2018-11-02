@@ -28,19 +28,22 @@ namespace GQCP {
  */
 
 /**
- *  Constructor from a @param K orbitals, N electrons and an @param unsigned_representation
+ *  @param K                        the number of orbitals
+ *  @param N                        the number of electrons
+ *  @param unsigned_representation  the representation for the ONV as an unsigned integer
  */
-ONV::ONV(size_t K, size_t N, size_t representation):
+ONV::ONV(size_t K, size_t N, size_t unsigned_representation):
     K (K),
     N (N),
-    unsigned_representation (representation)
+    unsigned_representation (unsigned_representation)
 {
     occupation_indices = VectorXs::Zero(N);
     this->updateOccupationIndices();  // throws error if the representation and N are not compatible
 }
 
 /**
- *  Constructor from a @param K orbitals and an @param unsigned_representation
+ *  @param K                        the number of orbitals
+ *  @param unsigned_representation  the representation for the ONV as an unsigned integer
  */
 ONV::ONV(size_t K, size_t representation):
     ONV(K, __builtin_popcountl(representation), representation)
@@ -50,26 +53,38 @@ ONV::ONV(size_t K, size_t representation):
 }
 
 
+
 /*
  *  OPERATORS
  */
 
 /**
  *  Overloading of operator<< for a GQCP::ONV to be used with streams
+ *
+ *  @param os       the output stream which the ONV should be concatenated to
+ *  @param onv      the ONV that should be concatenated to the output stream
+ *
+ *  @return the updated output stream
  */
 std::ostream& operator<<(std::ostream& os, const GQCP::ONV& onv) {
     return os<< onv.asString();
 }
 
+
 /**
- *  @return if this->unsigned_representation equals @param other.unsigned_representation
+ *  @param other    the other ONV
+ *
+ *  @return if this ONV is the same as the other ONV
  */
 bool ONV::operator==(ONV& other) const {
     return this->unsigned_representation == other.unsigned_representation && this->K == other.K;  // this ensures that N, K and representation are equal
 }
 
+
 /**
- *  @return if this->unsigned_representation does not equal @param other.unsigned_representation
+ *  @param other    the other ONV
+ *
+ *  @return if this ONV is not the same as the other ONV
  */
 bool ONV::operator!=(ONV& other) const {
     return !(this->operator==(other));
@@ -78,11 +93,13 @@ bool ONV::operator!=(ONV& other) const {
 
 
 /*
- *  SETTERS & GETTERS
+ *  SETTERS
  */
 
 /**
- *  @set to a new representation and calls this->updateOccupationIndices()
+ *  @param unsigned_representation      the new representation as an unsigned integer
+ *
+ *  Set the representation of an ONV to a new representation and call update the occupation indices accordingly
  */
 void ONV::set_representation(size_t unsigned_representation) {
     this->unsigned_representation = unsigned_representation;
@@ -96,8 +113,7 @@ void ONV::set_representation(size_t unsigned_representation) {
  */
 
 /**
- *  Extracts the positions of the set bits from the this->unsigned_representation
- *  and places them in the this->occupation_indices
+ *  Extracts the positions of the set bits from the this->unsigned_representation and places them in the this->occupation_indices
  */
 void ONV::updateOccupationIndices() {
     size_t l = this->unsigned_representation;
@@ -112,9 +128,11 @@ void ONV::updateOccupationIndices() {
     }
 }
 
+
 /**
- *  @return if the @param p-th spatial orbital is occupied, starting from 0
- *  @param p is counted from right to left
+ *  @param p    the orbital index starting from 0, counted from right to left
+ *
+ *  @return if the p-th spatial orbital is occupied
  */
 bool ONV::isOccupied(size_t p) const {
 
@@ -127,10 +145,11 @@ bool ONV::isOccupied(size_t p) const {
 
 
 /**
- *  @return if we can apply the annihilation operator (i.e. 1->0) for the @param p-th spatial orbital
- *  Subsequently perform an in-place annihilation on the orbital @param p
+ *  @param p    the orbital index starting from 0, counted from right to left
  *
- *  !!! IMPORTANT: does not update this->occupation_indices if required call this->updateOccupationIndices !!!
+ *  @return if we can apply the annihilation operator (i.e. 1->0) for the p-th spatial orbital. Subsequently perform an in-place annihilation on the orbital p
+ *
+ *  IMPORTANT: does not update the occupation indices for performance reasons, if required call updateOccupationIndices()!
  */
 bool ONV::annihilate(size_t p) {
 
@@ -143,13 +162,14 @@ bool ONV::annihilate(size_t p) {
     }
 }
 
+
 /**
- *  @return if we can apply the annihilation operator (i.e. 1->0) for the @param p-th spatial orbital
- *  Subsequently perform an in-place annihilation on the orbital @param p
+ *  @param p        the orbital index starting from 0, counted from right to left
+ *  @param sign     the current sign of the operator string
  *
- *  Furthermore, the @param sign is changed according to the sign change (+1 or -1) of the spin string after annihilation.
+ *  @return if we can apply the annihilation operator (i.e. 1->0) for the p-th spatial orbital. Subsequently perform an in-place annihilation on the orbital p. Furthermore, update the sign according to the sign change (+1 or -1) of the spin string after annihilation.
  *
- *  !!! IMPORTANT: does not update this->occupation_indices if required call this->updateOccupationIndices !!!
+ *  IMPORTANT: does not update the occupation indices for performance reasons, if required call updateOccupationIndices()!
  */
 bool ONV::annihilate(size_t p, int& sign) {
 
@@ -161,11 +181,12 @@ bool ONV::annihilate(size_t p, int& sign) {
     }
 }
 
+
 /**
- * @return if we can apply the creation operator (i.e. 0->1) for the @param p-th spatial orbital
- * Subsequently perform an in-place creation on the orbital @param p
+ *  @param p        the orbital index starting from 0, counted from right to left
+ *  @return if we can apply the creation operator (i.e. 0->1) for the p-th spatial orbital. Subsequently perform an in-place creation on the orbital p
  *
- *  !!! IMPORTANT: does not update this->occupation_indices if required call this->updateOccupationIndices !!!
+ *  IMPORTANT: does not update the occupation indices for performance reasons, if required call updateOccupationIndices()!
  */
 bool ONV::create(size_t p) {
 
@@ -178,13 +199,14 @@ bool ONV::create(size_t p) {
     }
 }
 
+
 /**
- *  @return if we can apply the creation operator (i.e. 0->1) for the @param p-th spatial orbital
- *  Subsequently perform an in-place creation on the orbital @param p
+ *  @param p        the orbital index starting from 0, counted from right to left
+ *  @param sign     the current sign of the operator string
  *
- *  Furthermore, the @param sign is changed according to the sign change (+1 or -1) of the spin string after annihilation.
+ *  @return if we can apply the creation operator (i.e. 0->1) for the p-th spatial orbital. Subsequently perform an in-place creation on the orbital p. Furthermore, update the sign according to the sign change (+1 or -1) of the spin string after creation.
  *
- *  !!! IMPORTANT: does not update this->occupation_indices if required call this->updateOccupationIndices !!!
+ *  IMPORTANT: does not update the occupation indices for performance reasons, if required call updateOccupationIndices()!
  */
 bool ONV::create(size_t p, int& sign) {
 
@@ -196,8 +218,11 @@ bool ONV::create(size_t p, int& sign) {
     }
 }
 
+
 /**
- *  @return the phase factor (+1 or -1) that arises by applying an annihilation or creation operator on orbital @param p, starting from 0, read from right to left.
+ *  @param p        the orbital index starting from 0, counted from right to left
+ *
+ *  @return the phase factor (+1 or -1) that arises by applying an annihilation or creation operator on orbital p
  *
  *  Let's say that there are m electrons in the orbitals up to p (not included). If m is even, the phase factor is (+1) and if m is odd, the phase factor is (-1), since electrons are fermions.
  */
@@ -217,15 +242,13 @@ int ONV::operatorPhaseFactor(size_t p) const {
 
 
 /**
- *  @return the representation of a slice (i.e. a subset) of the spin string between @param index_start (included)
- *  and @param index_end (not included).
+ *  @param index_start      the starting index (included), read from right to left
+ *  @param index_end        the ending index (not included), read from right to left
  *
- *  Both @param index_start and @param index_end  are read from right to left, which means that the slice
- *  is from right to left as well.
+ *  @return the representation of a slice (i.e. a subset) of the spin string (read from right to left) between index_start (included) and index_end (not included)
  *
  *      Example:
  *          "010011".slice(1, 4) => "01[001]1" -> "001"
- *
  */
 size_t ONV::slice(size_t index_start, size_t index_end) const {
 
@@ -256,15 +279,19 @@ size_t ONV::slice(size_t index_start, size_t index_end) const {
 
 
 /**
-  *  @return the number of different bits between this and @param other, i.e. two times the number of electron excitations
-  */
+ *  @param other        the other ONV
+ *
+ *  @return the number of different occupations between this ONV and the other, i.e. two times the number of electron excitations
+ */
 size_t ONV::countNumberOfDifferences(const ONV& other) const {
     return __builtin_popcountl(this->unsigned_representation ^ other.unsigned_representation);
 }
 
 
 /**
- *  @return the positions of the bits (from right to left) that are occupied in this, but unoccupied in @param other
+ *  @param other        the other ONV
+ *
+ *  @return the indices of the orbitals (from right to left) that are occupied in this ONV, but unoccupied in the other
  */
 std::vector<size_t> ONV::findDifferentOccupations(const ONV &other) const {
 
@@ -288,7 +315,9 @@ std::vector<size_t> ONV::findDifferentOccupations(const ONV &other) const {
 
 
 /**
- *  @return the positions of the bits (from right to left) that are occupied in @this and occupied in @param other
+ *  @param other        the other ONV
+ *
+ *  @return the indices of the orbitals (from right to left) that are occupied both this ONV and the other
  */
 std::vector<size_t> ONV::findMatchingOccupations(const ONV& other) const {
 
@@ -310,7 +339,7 @@ std::vector<size_t> ONV::findMatchingOccupations(const ONV& other) const {
 
 
 /**
- * @return std::string containing the ONV representation
+ * @return a string representation of the ONV
  */
 std::string ONV::asString() const {
     boost::dynamic_bitset<> transfer_set (this->K, this->unsigned_representation);

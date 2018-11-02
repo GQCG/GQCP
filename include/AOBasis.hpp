@@ -42,6 +42,12 @@ private:
 
 public:
     // CONSTRUCTOR
+    /**
+     *  Constructor that creates an AOBasis from a basisset name
+     *
+     *  @param molecule         the molecule to which the AO basis corresponds
+     *  @param basis_set        the name of the basisset
+     */
     AOBasis(const GQCP::Molecule& molecule, std::string basis_set);
 
 

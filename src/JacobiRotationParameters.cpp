@@ -28,7 +28,9 @@ namespace GQCP {
  */
 
 /**
- *  Constructor based on a given @param p, @param q and a @param angle expressed in radians
+ *  @param p        the index of the first rotated orbital
+ *  @param q        the index of the second rotated orbital
+ *  @param angle    the angle of rotation, in radians
  */
 JacobiRotationParameters::JacobiRotationParameters(size_t p, size_t q, double angle) :
     p (p),
@@ -46,7 +48,12 @@ JacobiRotationParameters::JacobiRotationParameters(size_t p, size_t q, double an
  *  OPERATORS
  */
 /**
- *  Overloading of operator<< for GQCP::JacobiRotationParameters to be used with streams
+ *  Overloading of operator<< for a GQCP::JacobiRotationParameters to be used with streams
+ *
+ *  @param os                               the output stream which the ONV should be concatenated to
+ *  @param jacobi_rotation_parameters       the parameters that should be concatenated to the output stream
+ *
+ *  @return the updated output stream
  */
 std::ostream& operator<<(std::ostream& os, const GQCP::JacobiRotationParameters& jacobi_rotation_parameters) {
 

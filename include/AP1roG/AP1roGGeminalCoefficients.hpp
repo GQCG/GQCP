@@ -25,6 +25,9 @@
 namespace GQCP {
 
 
+/**
+ *  A class that represents geminal coefficients for AP1roG: the number of rows is the number of geminals, the number of columns is the number of spatial orbitals
+ */
 class AP1roGGeminalCoefficients {
 private:
     size_t N_P;  // the number of electron pairs (= the number of geminals)
@@ -40,24 +43,35 @@ public:
     AP1roGGeminalCoefficients();
     
     /**
-     *  Constructor setting the geminal coefficients to zero, based on the number of orbitals @param K and number of electron pairs @param N_P
+     *  Constructor that sets the geminal coefficients to zero
+     *
+     *  @param N_P      the number of electron pairs (= the number of geminals)
+     *  @param K        the number of spatial orbitals
      */
     AP1roGGeminalCoefficients(size_t N_P, size_t K);
 
     /**
-     *  Constructor based on given geminal coefficients @param g, which are in vector (row-major) form
+     *  @param g        the geminal coefficients in a vector representation that is in row-major storage
+     *
+     *  @param N_P      the number of electron pairs (= the number of geminals)
+     *  @param K        the number of spatial orbitals
      */
     AP1roGGeminalCoefficients(const Eigen::VectorXd& g, size_t N_P, size_t K);
 
 
     // OPERATORS
     /**
-     *  @return the geminal coefficient g_mu, in which @param mu is a 'vector index'
+     *  @param mu       a vector index
+     *
+     *  @return the geminal coefficient g_mu
      */
     double operator()(size_t mu) const;
 
     /**
-     *  @ return the geminal coefficient G_i^a, in which @param i is the major index (changes in i are not contiguous) and @param a is the minor index (changes in a are contiguous)
+     *  @param i        the major index (changes in i are not contiguous)
+     *  @param a        the minor index (changes in a are contiguous)
+     *
+     *  @ return the geminal coefficient G_i^a
      */
     double operator()(size_t i, size_t a) const;
 
@@ -69,17 +83,20 @@ public:
 
     // PUBLIC METHODS
     /**
-     *  @return the geminal coefficients in vector form
+     *  @return the geminal coefficients in row-major vector form
      */
     const Eigen::VectorXd& asVector() const { return this->g; }
 
     /**
-     *  Construct and @return the geminal coefficients in matrix form
+     *  @return the geminal coefficients in matrix form
      */
     Eigen::MatrixXd asMatrix() const;
 
     /**
-     *  @return the number of free geminal coefficients given a number of geminals @param N_P and a number of spatial orbitals @param K
+     *  @param N_P      the number of electron pairs (= the number of geminals)
+     *  @param K        the number of spatial orbitals
+     *
+     *  @return the number of 'free' geminal coefficients
      */
     static size_t numberOfGeminalCoefficients(size_t N_P, size_t K);
 

@@ -33,7 +33,8 @@ AP1roG::AP1roG() :
 
 
 /**
- *  Constructor based on given @param geminal_coefficients and @param electronic_energy
+ *  @param geminal_coefficients     the converged AP1roG geminal coefficients
+ *  @param electronic_energy        the AP1roG electronic energy
  */
 AP1roG::AP1roG(const GQCP::AP1roGGeminalCoefficients& geminal_coefficients, double electronic_energy) :
     geminal_coefficients (geminal_coefficients),
@@ -46,7 +47,10 @@ AP1roG::AP1roG(const GQCP::AP1roGGeminalCoefficients& geminal_coefficients, doub
  *  HELPER FUNCTIONS
  */
 /**
- *  Calculate the AP1roG energy given AP1roG geminal coefficients @param G and Hamiltonian parameters @param ham_par
+ *  @param G            the converged AP1roG geminal coefficients
+ *  @param ham_par      Hamiltonian parameters in an orthonormal spatial orbital basis
+ *
+ *  @return the AP1roG electronic energy
  */
 double calculateAP1roGEnergy(const GQCP::AP1roGGeminalCoefficients& G, const GQCP::HamiltonianParameters& ham_par) {
 

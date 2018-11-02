@@ -24,11 +24,12 @@ namespace GQCP {
  * PROTECTED CONSTRUCTORS
  */
 
-/*
- *  Protected constructor given a @param K
+/**
+ *  @param K        the number of orbitals
+ *  @param dim      the dimension of the Fock space
  */
 BaseFockSpace::BaseFockSpace(size_t K, size_t dim) :
-    K( K),
+    K (K),
     dim (dim)
 {}
 
@@ -50,7 +51,7 @@ BaseFockSpace::~BaseFockSpace() {}
  */
 
 /**
- *  Creates a Hartree-Fock coefficient expansion (single Slater expansion of the first configuration in the Fock space)
+ *  @return the coefficient vector for the Hartree-Fock wave function (i.e. the 'first' ONV/Slater determinant)
  */
 Eigen::VectorXd BaseFockSpace::HartreeFockExpansion() {
     Eigen::VectorXd expansion = Eigen::VectorXd::Zero(this->dim);
@@ -58,8 +59,9 @@ Eigen::VectorXd BaseFockSpace::HartreeFockExpansion() {
     return expansion;
 }
 
+
 /**
- *  Creates a random normalized coefficient expansion, uniformly distributed in [-1, 1]
+ *  @return a random normalized coefficient vector, with coefficients uniformly distributed in [-1, 1]
  */
 Eigen::VectorXd BaseFockSpace::randomExpansion() {
     Eigen::VectorXd random = Eigen::VectorXd::Random(this->dim);

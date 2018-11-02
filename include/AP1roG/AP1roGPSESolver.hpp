@@ -27,7 +27,7 @@
 namespace GQCP {
 
 /**
- *
+ *  A class that is able to solve the AP1roG PSE equations
  */
 class AP1roGPSESolver {
 private:
@@ -43,24 +43,30 @@ private:
 public:
     // CONSTRUCTORS
     /**
-     *  Constructor based on a given number of electron pairs @param N_P, Hamiltonian parameters @param ham_par and an initial guess for the geminal coefficients @param G
+     *  @param N_P          the number of electrons
+     *  @param ham_par      Hamiltonian parameters in an orthonormal orbital basis
+     *  @param G            the initial guess for the AP1roG gemial coefficients
      */
     AP1roGPSESolver(size_t N_P, const GQCP::HamiltonianParameters& ham_par, const GQCP::AP1roGGeminalCoefficients& G);
 
     /**
-     *  Constructor based on a given number of electron pairs @param N_P and Hamiltonian parameters @param ham_par
+     *  @param N_P          the number of electrons
+     *  @param ham_par      Hamiltonian parameters in an orthonormal orbital basis
      *
      *  The initial guess for the geminal coefficients is zero
      */
     AP1roGPSESolver(size_t N_P, const GQCP::HamiltonianParameters& ham_par);
 
     /**
-     *  Constructor based on a given @param molecule, Hamiltonian parameters @param ham_par and an initial guess for the geminal coefficients @param G
+     *  @param molecule     the molecule used for the AP1roG calculation
+     *  @param ham_par      Hamiltonian parameters in an orthonormal orbital basis
+     *  @param G            the initial guess for the AP1roG gemial coefficients
      */
     AP1roGPSESolver(const GQCP::Molecule& molecule, const GQCP::HamiltonianParameters& ham_par, const GQCP::AP1roGGeminalCoefficients& G);
 
     /**
-     *  Constructor based on a given @param molecule and Hamiltonian parameters @param ham_par
+     *  @param molecule     the molecule used for the AP1roG calculation
+     *  @param ham_par      Hamiltonian parameters in an orthonormal orbital basis
      *
      *  The initial guess for the geminal coefficients is zero
      */
@@ -73,26 +79,36 @@ public:
 
     // PUBLIC METHODS
     /**
-     *  Calculate the Jacobian element with compound indices (i,a) and (k,c) at the given geminal coefficients @param G
+     *  @param G        the AP1roG geminal coefficients
+     *  @param i        the subscript for the coordinate function
+     *  @param a        the superscript for the coordinate function
+     *  @param k        the subscript for the geminal coefficient
+     *  @param c        the superscript for the geminal coefficient
      *
-     *      i and k are subscripts, a and c are superscripts
+     *  @return the Jacobian element with compound indices (i,a) and (k,c) at the given geminal coefficients
      */
     double calculateJacobianElement(const AP1roGGeminalCoefficients& G, size_t i, size_t a, size_t k, size_t c) const;
 
     /**
-     *  Calculate and return the Jacobian at the given geminal coefficients @param g
+     *  @param g        the AP1roG geminal coefficients in row-major vector form
+     *
+     *  @return the Jacobian at the given geminal coefficients
      */
     Eigen::MatrixXd calculateJacobian(const Eigen::VectorXd& g) const;
 
     /**
-     *  Calculate the coordinate function at the given geminal coefficients @param G, with given indices.
+     *  @param G        the AP1roG geminal coefficients
+     *  @param i        the subscript for the coordinate function
+     *  @param a        the superscript for the coordinate function
      *
-     *      i is the subscript and a is the superscript
+     *  @return the coordinate function with given indices (i,a) at the given geminal coefficients
      */
     double calculateCoordinateFunction(const GQCP::AP1roGGeminalCoefficients& G, size_t i, size_t a) const;
 
     /**
-     *  Calculate the coordinate functions for the pSEs at the given geminal coefficients @param g. @returns a vector F in which every entry is one of the coordinate functions
+     *  @param g        the AP1roG geminal coefficients in row-major vector form
+     *
+     *  @return the vector of coordinate functions at the given geminal coefficients
      */
     Eigen::VectorXd calculateCoordinateFunctions(const Eigen::VectorXd& g) const;
 
