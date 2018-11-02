@@ -29,12 +29,7 @@ namespace GQCP {
 
 
 /**
- *  A base class for the representation of a Fock space.
- *
- *  Derived classes should be able to
- *      - generate an ONV from a given address
- *      - transform a given ONV into the 'next' ONV
- *      - retrieve the address of a given ONV
+ *  A base class for the representation of a Fock space
  */
 class BaseFockSpace {
 protected:
