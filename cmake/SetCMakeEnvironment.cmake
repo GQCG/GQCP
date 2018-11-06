@@ -174,6 +174,13 @@ set(PROJECT_EXE_SOURCE_FILES
     ${PROJECT_EXECUTABLES_FOLDER}/oo_doci_rhf.cpp
     ${PROJECT_EXECUTABLES_FOLDER}/fci_lowdin.cpp)
 
+# Find the benchmarks folder
+set(PROJECT_BENCHMARKS_FOLDER ${CMAKE_SOURCE_DIR}/benchmarks)
+
+# Find the source files for the benchmark
+set(PROJECT_BENCH_SOURCE_FILES
+    ${PROJECT_BENCHMARKS_FOLDER}/doci_matvec.cpp)
+
 
 # Give the user the option to specify an installation prefix. If not given as -DINSTALLATION_PREFIX, defaults to /usr/local.
 if(NOT INSTALLATION_PREFIX)

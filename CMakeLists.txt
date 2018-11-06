@@ -45,6 +45,7 @@ add_subdirectory(${PROJECT_SOURCE_FOLDER})
 
 # Add the sources for the executables
 add_subdirectory(${PROJECT_EXECUTABLES_FOLDER})
+add_subdirectory(${PROJECT_BENCHMARKS_FOLDER})
 
 
 # Set up testing
