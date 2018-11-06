@@ -7,8 +7,8 @@
 #include "HamiltonianParameters/HamiltonianParameters_constructors.hpp"
 #include "HamiltonianBuilder/DOCI.hpp"
 
-static void matvec(benchmark::State& state) {
 
+static void matvec(benchmark::State& state) {
     // Prepare parameters
     size_t K = state.range(0);
     size_t N = state.range(1);
@@ -35,6 +35,7 @@ static void CustomArguments(benchmark::internal::Benchmark* b) {
     }
 }
 
+// Perform the benchmarks
 BENCHMARK(matvec)->Apply(CustomArguments);
 
 
