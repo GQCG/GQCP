@@ -39,7 +39,7 @@ static void CustomArguments(benchmark::internal::Benchmark* b) {
 }
 
 // Perform the benchmarks
-BENCHMARK(matvec)->Apply(CustomArguments);
+BENCHMARK(matvec)->Unit(benchmark::kMillisecond)->Apply(CustomArguments);
 
 
 BENCHMARK_MAIN();

@@ -66,6 +66,7 @@ install:
   - git clone https://github.com/tmhuysen/benchmark.git
   # Benchmark requires Google Test as a dependency. Add the source tree as a subdirectory.
   - git clone https://github.com/google/googletest.git benchmark/googletest
+  - cd benchmark
   - mkdir build && cd build
   - cmake .. -DCMAKE_BUILD_TYPE=RELEASE
   # Assuming a makefile generator was used

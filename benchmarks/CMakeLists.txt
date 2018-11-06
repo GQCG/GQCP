@@ -5,6 +5,7 @@ foreach(BENCH_SOURCE ${PROJECT_BENCH_SOURCE_FILES})
 
 
     link_libraries("-lbenchmark")
+    #add_compile_options("-benchmark_counters_tabular=true")
 
     # ... extract the filename without extension (NAME_WE) as a name for our executable ...
     get_filename_component(EXE_NAME ${BENCH_SOURCE} NAME_WE)
