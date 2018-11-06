@@ -26,6 +26,9 @@ static void matvec(benchmark::State& state) {
         // Make sure the variable is not optimized away by compiler
         benchmark::DoNotOptimize(matvec);
     }
+
+    state.counters["Electron pairs"] = N;
+    state.counters["Orbitals"] = K;
 }
 
 
