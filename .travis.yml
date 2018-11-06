@@ -84,6 +84,18 @@ install:
   # Finally, since libint often complains about reading the basis sets, specify a LIBINT_DATA_PATH to help libint find the files.
   - export LIBINT_DATA_PATH=/usr/local/libint/2.3.1/share/libint/2.3.1/basis
 
+  # Install google benchmark
+  - git clone https://github.com/google/benchmark.git
+  # Benchmark requires Google Test as a dependency. Add the source tree as a subdirectory.
+  - git clone https://github.com/google/googletest.git benchmark/googletest
+  - mkdir build && cd build
+  - cmake .. -DCMAKE_BUILD_TYPE=RELEASE
+  # Assuming a makefile generator was used
+  - make && sudo make install
+
+
+
+
 
 # Run the build script
 script:
