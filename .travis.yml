@@ -65,8 +65,8 @@ install:
   # Fork from tmhuysen for cmake fix
   - git clone https://github.com/tmhuysen/benchmark.git
   # Benchmark requires Google Test as a dependency. Add the source tree as a subdirectory.
-  - git clone https://github.com/google/googletest.git benchmark/googletest
   - cd benchmark
+  - git clone https://github.com/google/googletest.git
   - mkdir build && cd build
   - cmake .. -DCMAKE_BUILD_TYPE=RELEASE
   # Assuming a makefile generator was used
@@ -106,6 +106,8 @@ script:
   - mkdir build && cd build
   - cmake ..
   - make && make test && sudo make install
+  - cd bencmarks
+  - ./doci_matvec --benchmark_counters_tabular=true
 
 
 cache:
