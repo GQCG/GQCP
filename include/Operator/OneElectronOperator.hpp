@@ -69,6 +69,11 @@ public:
     GQCP::OneElectronOperator operator+(const GQCP::OneElectronOperator& other);
 
     /**
+     *  @return a OneElectronOperator whose matrix representation is negated
+     */
+    GQCP::OneElectronOperator operator-();
+
+    /**
      *  @param other    the other OneElectronOperator
      *
      *  @return if the matrix representation of this operator is equal to the matrix representation of the other, within the default tolerance specified by isEqualTo()

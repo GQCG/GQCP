@@ -78,6 +78,14 @@ bool OneElectronOperator::operator==(const GQCP::OneElectronOperator& other) {
 }
 
 
+/**
+ *  @return a OneElectronOperator whose matrix representation is negated
+ */
+GQCP::OneElectronOperator GQCP::OneElectronOperator::operator-() {
+    return GQCP::OneElectronOperator(-this->matrix);
+}
+
+
 
 /*
  *  PUBLIC METHODS
