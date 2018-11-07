@@ -124,10 +124,12 @@ public:
      *
      *  @return the Cartesian components of the electrical dipole operator, expressed in the given AO basis
      */
-    std::array<GQCP::OneElectronOperator, 3> calculateDipoleIntegrals(const GQCP::AOBasis& ao_basis, const Eigen::Vector3d& origin) const;
+    std::array<GQCP::OneElectronOperator, 3> calculateDipoleIntegrals(const GQCP::AOBasis& ao_basis, const Eigen::Vector3d& origin=Eigen::Vector3d::Zero()) const;
 
     /**
-     *  @return a std::vector<libint2::Atom> based on a given std::vector<GQCP::Atom> @param atoms
+     *  @param atoms        the GQCP-atoms that should be interfaced
+     *
+     *  @return libint2-atoms, interfaced from the given atoms
      */
     std::vector<libint2::Atom> interface(const std::vector<GQCP::Atom>& atoms) const;
 };

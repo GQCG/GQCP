@@ -147,7 +147,9 @@ LibintCommunicator& LibintCommunicator::get() {  // need to return by reference 
  */
 
 /**
- *  @return a std::vector<libint2::Atom> based on a given std::vector<GQCP::Atom> @param atoms
+ *  @param atoms        the GQCP-atoms that should be interfaced
+ *
+ *  @return libint2-atoms, interfaced from the given atoms
  */
 std::vector<libint2::Atom> LibintCommunicator::interface(const std::vector<GQCP::Atom>& atoms) const {
 
@@ -205,7 +207,8 @@ std::array<GQCP::OneElectronOperator, 3> LibintCommunicator::calculateDipoleInte
 
     auto all_integrals = this->calculateOneElectronIntegrals<4>(libint2::Operator::emultipole1, ao_basis.get_basis_functions(), origin_array);  // overlap, x, y, z
 
-    return std::array<GQCP::OneElectronOperator, 3> {all_integrals[1], all_integrals[2], all_integrals[3]};  // we don't need the overlap
+    // Apply the minus sign which comes from the charge of the electrons -e
+    return std::array<GQCP::OneElectronOperator, 3> {-all_integrals[1], -all_integrals[2], -all_integrals[3]};  // we don't need the overlap, so ignore [0]
 }
 
 
