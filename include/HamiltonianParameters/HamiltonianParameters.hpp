@@ -128,14 +128,6 @@ public:
      *  @param D      the 1-RDM
      *  @param d      the 2-RDM
      *
-     *  @return the energy as a result of the contraction of the 1- and 2-RDMs with the one- and two-electron integrals
-     */
-    double calculateEnergy(const GQCP::OneRDM& D, const GQCP::TwoRDM& d) const;
-
-    /**
-     *  @param D      the 1-RDM
-     *  @param d      the 2-RDM
-     *
      *  @return the generalized Fock matrix
      */
     GQCP::OneElectronOperator calculateGeneralizedFockMatrix(const GQCP::OneRDM& D, const GQCP::TwoRDM& d) const;

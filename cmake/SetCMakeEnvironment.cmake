@@ -43,6 +43,8 @@ set(PROJECT_SOURCE_FILES
         ${PROJECT_SOURCE_FOLDER}/Operator/BaseOperator.cpp
         ${PROJECT_SOURCE_FOLDER}/Operator/OneElectronOperator.cpp
         ${PROJECT_SOURCE_FOLDER}/Operator/TwoElectronOperator.cpp
+        ${PROJECT_SOURCE_FOLDER}/properties/expectation_values.cpp
+        ${PROJECT_SOURCE_FOLDER}/properties/properties.cpp
         ${PROJECT_SOURCE_FOLDER}/RDM/BaseRDM.cpp
         ${PROJECT_SOURCE_FOLDER}/RDM/BaseRDMBuilder.cpp
         ${PROJECT_SOURCE_FOLDER}/RDM/DOCIRDMBuilder.cpp
@@ -95,6 +97,8 @@ set(PROJECT_INCLUDE_FILES
         ${PROJECT_INCLUDE_FOLDER}/Operator/BaseOperator.hpp
         ${PROJECT_INCLUDE_FOLDER}/Operator/OneElectronOperator.hpp
         ${PROJECT_INCLUDE_FOLDER}/Operator/TwoElectronOperator.hpp
+        ${PROJECT_INCLUDE_FOLDER}/properties/expectation_values.hpp
+        ${PROJECT_INCLUDE_FOLDER}/properties/properties.hpp
         ${PROJECT_INCLUDE_FOLDER}/RDM/BaseRDM.hpp
         ${PROJECT_INCLUDE_FOLDER}/RDM/BaseRDMBuilder.hpp
         ${PROJECT_INCLUDE_FOLDER}/RDM/DOCIRDMBuilder.hpp
@@ -148,6 +152,8 @@ set(PROJECT_TEST_SOURCE_FILES
         ${PROJECT_TESTS_FOLDER}/HamiltonianParameters/HamiltonianParameters_constructors_test.cpp
         ${PROJECT_TESTS_FOLDER}/Operator/OneElectronOperator_test.cpp
         ${PROJECT_TESTS_FOLDER}/Operator/TwoElectronOperator_test.cpp
+        ${PROJECT_TESTS_FOLDER}/properties/expectation_values_test.cpp
+        ${PROJECT_TESTS_FOLDER}/properties/properties_test.cpp
         ${PROJECT_TESTS_FOLDER}/RDM/DOCIRDMBuilder_test.cpp
         ${PROJECT_TESTS_FOLDER}/RDM/FCIRDMBuilder_test.cpp
         ${PROJECT_TESTS_FOLDER}/RDM/RDMCalculator_test.cpp

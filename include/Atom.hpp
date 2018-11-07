@@ -22,6 +22,8 @@
 #include <iostream>
 #include <stdlib.h>
 
+#include <Eigen/Dense>
+
 
 namespace GQCP {
 
@@ -33,9 +35,7 @@ namespace GQCP {
 struct Atom {
 public:
     size_t atomic_number;
-    double x;
-    double y;
-    double z;
+    Eigen::Vector3d position;
 
     static constexpr double tolerance_for_comparison = 1.0e-08;
 

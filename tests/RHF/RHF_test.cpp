@@ -23,6 +23,36 @@
 #include <boost/test/included/unit_test.hpp>
 
 
+BOOST_AUTO_TEST_CASE ( RHF_1RDM_invalid_argument ) {
+
+    size_t K = 5;
+    size_t N_invalid = 3;
+    size_t N_valid = 4;
+
+    BOOST_CHECK_THROW(GQCP::calculateRHF1RDM(K, N_invalid), std::invalid_argument);
+    BOOST_CHECK_NO_THROW(GQCP::calculateRHF1RDM(K, N_valid));
+}
+
+
+BOOST_AUTO_TEST_CASE ( RHF_1RDM_matrix ) {
+
+    // Test a reference RHF 1-RDM in an orthonormal basis
+    size_t K = 5;
+    size_t N = 6;
+    Eigen::MatrixXd D_ref (K, K);
+    D_ref << 2, 0, 0, 0, 0,
+             0, 2, 0, 0, 0,
+             0, 0, 2, 0, 0,
+             0, 0, 0, 0, 0,
+             0, 0, 0, 0, 0;
+
+    BOOST_CHECK(GQCP::calculateRHF1RDM(K, N).get_matrix_representation().isApprox(D_ref));
+}
+
+
+
+
+
 BOOST_AUTO_TEST_CASE ( HOMO_LUMO_index ) {
 
     // For K=7 and N=10, the index of the HOMO should be 4

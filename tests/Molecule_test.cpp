@@ -263,3 +263,14 @@ BOOST_AUTO_TEST_CASE ( methods_water ) {
     // Test the calculation of the nuclear repulsion energy
     BOOST_CHECK(std::abs(water.calculateInternuclearRepulsionEnergy() - ref_internuclear_repulsion_energy) < 1.0e-07);  // reference data from horton
 }
+
+
+BOOST_AUTO_TEST_CASE ( calculateNuclearDipoleMoment ) {
+
+    // Check the nuclear dipole moment for a toy molecule
+    GQCP::Atom H {1,  0, 1, 2};
+    GQCP::Atom O {8,  2, 4, 8};
+    GQCP::Molecule molecule (std::vector<GQCP::Atom>{H, O});
+
+    BOOST_CHECK(molecule.calculateNuclearDipoleMoment().isApprox(Eigen::Vector3d{16, 33, 66}));
+}
