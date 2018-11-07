@@ -52,7 +52,33 @@ RHF::RHF(double electronic_energy, const Eigen::MatrixXd& C, const Eigen::Vector
  *  HELPER METHODS
  */
 /**
- *  @param C    the coefficient matrix
+ *  @param K    the number of spatial orbitals
+ *  @param N    the number of electrons
+ *
+ *  @return the RHF 1-RDM expressed in an orthonormal basis
+ */
+GQCP::OneRDM calculateRHF1RDM(size_t K, size_t N) {
+
+    if (N % 2 != 0) {
+        throw std::invalid_argument("The number of given electrons cannot be odd for RHF.");
+    }
+
+    // The 1-RDM for RHF looks like (for K=5, N=6)
+    //    2  0  0  0  0
+    //    0  2  0  0  0
+    //    0  0  2  0  0
+    //    0  0  0  0  0
+    //    0  0  0  0  0
+
+    Eigen::MatrixXd D_MO = Eigen::MatrixXd::Zero(K, K);
+    D_MO.topLeftCorner(N/2, N/2) = 2 * Eigen::MatrixXd::Identity(N/2, N/2);
+
+    return GQCP::OneRDM(D_MO);
+}
+
+
+/**
+ *  @param C    the coefficient matrix, specifying the transformation to the AO basis
  *  @param N    the number of electrons
  *
  *  @return the RHF 1-RDM expressed in the AO basis
@@ -60,12 +86,9 @@ RHF::RHF(double electronic_energy, const Eigen::MatrixXd& C, const Eigen::Vector
 Eigen::MatrixXd calculateRHFAO1RDM(const Eigen::MatrixXd& C, size_t N) {
 
     size_t K = C.rows();
+    Eigen::MatrixXd D_MO = GQCP::calculateRHF1RDM(K, N).get_matrix_representation();
 
-    // Construct the RHF density matrix in MO basis
-    Eigen::MatrixXd D_MO = Eigen::MatrixXd::Zero(K, K);
-    D_MO.topLeftCorner(N/2, N/2) = 2 * Eigen::MatrixXd::Identity(N/2,N/2);
-
-    // Transform the MO density matrix to AO basis
+    // Transform the MO 1-RDM to an AO basis
     return C * D_MO * C.adjoint();
 }
 

@@ -20,6 +20,7 @@
 
 
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "RDM/OneRDM.hpp"
 
 #include <Eigen/Dense>
 #include <unsupported/Eigen/CXX11/Tensor>
@@ -65,8 +66,17 @@ public:
 /*
  *  HELPER METHODS
  */
+
 /**
- *  @param C    the coefficient matrix
+ *  @param K    the number of spatial orbitals
+ *  @param N    the number of electrons
+ *
+ *  @return the RHF 1-RDM expressed in an orthonormal basis
+ */
+GQCP::OneRDM calculateRHF1RDM(size_t K, size_t N);
+
+/**
+ *  @param C    the coefficient matrix, specifying the transformation to the AO basis
  *  @param N    the number of electrons
  *
  *  @return the RHF 1-RDM expressed in the AO basis
@@ -92,14 +102,12 @@ Eigen::MatrixXd calculateRHFAOFockMatrix(const Eigen::MatrixXd& D_AO, GQCP::Hami
  */
 double calculateRHFElectronicEnergy(const Eigen::MatrixXd& D_AO, const Eigen::MatrixXd& H_core_AO, const Eigen::MatrixXd& F_AO);
 
-
 /**
  *  @param N    the number of electrons
  *
  *  @return the RHF HOMO index
  */
 size_t RHFHOMOIndex(size_t N);
-
 
 /**
  *  @param K    the number of spatial orbitals
