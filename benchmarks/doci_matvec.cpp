@@ -33,7 +33,7 @@ static void matvec(benchmark::State& state) {
 
 
 static void CustomArguments(benchmark::internal::Benchmark* b) {
-    for (int i = 10; i <= 20; ++i){
+    for (int i = 15; i <= 24; ++i){
           b->Args({i, i/2});
     }
 }
@@ -43,3 +43,5 @@ BENCHMARK(matvec)->Unit(benchmark::kMillisecond)->Apply(CustomArguments);
 
 
 BENCHMARK_MAIN();
+// --benchmark_counters_tabular=true --benchmark_out=<docimatvec_benchmark>
+// --benchmark_out=<docimatvec_benchmark> --benchmark_counters_tabular=true

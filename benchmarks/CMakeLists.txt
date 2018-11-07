@@ -16,3 +16,10 @@ foreach(BENCH_SOURCE ${PROJECT_BENCH_SOURCE_FILES})
     # ... configure (include headers and link libraries) the executable ...
     configure_executable(${EXE_NAME})
 endforeach()
+
+
+
+# see https://github.com/google/benchmark for program arguments
+# --benchmark_counters_tabular=true (for nice format)
+# --benchmark_out=<filename> (to save to file)
+#
