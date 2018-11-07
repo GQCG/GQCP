@@ -28,9 +28,11 @@ namespace GQCP {
  */
 
 /**
- *  Constructor based on a given @param ao_basis, overlap @param S, one-electron operator @param h, two-electron
- *  operator @param g and a transformation matrix between the current molecular orbitals and the atomic orbitals
- *  @param C
+ *  @param ao_basis     the initial AO basis
+ *  @param S            the overlap integrals
+ *  @param h            the one-electron integrals H_core
+ *  @param g            the two-electron integrals
+ *  @param C            a transformation matrix between the current molecular orbitals and the atomic orbitals
  */
 HamiltonianParameters::HamiltonianParameters(std::shared_ptr<GQCP::AOBasis> ao_basis, const GQCP::OneElectronOperator& S, const GQCP::OneElectronOperator& h, const GQCP::TwoElectronOperator& g, const Eigen::MatrixXd& C) :
     BaseHamiltonianParameters(std::move(ao_basis)),
@@ -61,9 +63,10 @@ HamiltonianParameters::HamiltonianParameters(std::shared_ptr<GQCP::AOBasis> ao_b
 
 
 /**
- *  Constructor based on given Hamiltonian parameters @param ham_par and a transformation matrix @param C.
+ *  A constructor that transforms the current Hamiltonian parameters with a transformation matrix
  *
- *  If the initial Hamiltonian parameters @param ham_par are expressed in the basis B, the constructed instance represents the Hamiltonian parameters in the transformed basis B'. The basis transformation between B and B' is given by the transformation matrix @param C.
+ *  @param ham_par      the current Hamiltonian parameters
+ *  @param C            the transformation matrix to be applied to the current Hamiltonian parameters
  */
 HamiltonianParameters::HamiltonianParameters(const GQCP::HamiltonianParameters& ham_par, const Eigen::MatrixXd& C) :
     BaseHamiltonianParameters(ham_par.ao_basis),
@@ -84,16 +87,15 @@ HamiltonianParameters::HamiltonianParameters(const GQCP::HamiltonianParameters& 
  */
 
 /**
- *  Given a transformation matrix @param T that links the new molecular orbital basis to the old molecular orbital basis,
- *  in the sense that
- *       b' = b T ,
- *  in which the molecular orbitals are collected as elements of a row vector b, transform
- *      - the one-electron interaction operator (i.e. the core Hamiltonian)
- *      - the two-electron interaction operator
+ *  In-place transform the matrix representations of Hamiltonian parameters
+ *
+ *  @param T    the transformation matrix between the old and the new orbital basis, it is used as
+ *      b' = b T ,
+ *   in which the basis functions are collected as elements of a row vector b
  *
  *  Furthermore
- *      - @member S now gives the overlap matrix in the new molecular orbital basis
- *      - @member C is updated to reflect the total transformation between the new molecular orbital basis and the initial atomic orbitals
+ *      - the overlap matrix S now gives the overlap matrix in the new molecular orbital basis
+ *      - the coefficient matrix C is updated to reflect the total transformation between the new molecular orbital basis and the initial atomic orbitals
  */
 void HamiltonianParameters::transform(const Eigen::MatrixXd& T) {
 
@@ -107,14 +109,11 @@ void HamiltonianParameters::transform(const Eigen::MatrixXd& T) {
 
 
 /**
- *  Given a unitary rotation matrix @param U that links the new molecular orbital basis to the old molecular orbital basis,
- *  in the sense that
- *       b' = b U ,
- *  in which the molecular orbitals are collected as elements of a row vector b, transform
- *      - the one-electron interaction operator (i.e. the core Hamiltonian)
- *      - the two-electron interaction operator
+ *  In-place rotate the matrix representations of the Hamiltonian parameters
  *
- *  Furthermore, @member C is updated to reflect the total transformation between the new molecular orbital basis and the initial atomic orbitals
+ *  @param U     the unitary transformation (i.e. rotation) matrix, see transform() for how the transformation matrix between the two bases should be represented
+ *
+ *  Furthermore, the coefficient matrix C is updated to reflect the total transformation between the new molecular orbital basis and the initial atomic orbitals
  */
 void HamiltonianParameters::rotate(const Eigen::MatrixXd& U) {
 
@@ -128,9 +127,7 @@ void HamiltonianParameters::rotate(const Eigen::MatrixXd& U) {
 
 
 /**
- *  Using a random rotation matrix, transform:
- *      - the one-electron interaction operator (i.e. the core Hamiltonian)
- *      - the two-electron interaction operator
+ *  Using a random rotation matrix, transform the matrix representations of the Hamiltonian parameters
  */
 void HamiltonianParameters::randomRotate() {
 
@@ -145,14 +142,11 @@ void HamiltonianParameters::randomRotate() {
 
 
 /**
- *  Given @param jacobi_rotation_parameters that represent a unitary rotation matrix @param U (using a (cos, sin, -sin, cos) definition for the Jacobi rotation matrix) that links the new molecular orbital basis to the old molecular orbital basis,
- *  in the sense that
- *       b' = b U ,
- *  in which the molecular orbitals are collected as elements of a row vector b, transform
- *      - the one-electron interaction operator (i.e. the core Hamiltonian)
- *      - the two-electron interaction operator
+ *  In-place rotate the matrix representations of the Hamiltonian parameters using a unitary Jacobi rotation matrix constructed from the Jacobi rotation parameters
  *
- *  Furthermore @member C is updated to reflect the total transformation between the new molecular orbital basis and the initial atomic orbitals
+ *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix. See transform() for how the transformation matrix between the two bases should be represented
+ *
+ *  Furthermore the coefficient matrix C is updated to reflect the total transformation between the new molecular orbital basis and the initial atomic orbitals
  */
 void HamiltonianParameters::rotate(const GQCP::JacobiRotationParameters& jacobi_rotation_parameters) {
 
@@ -181,7 +175,10 @@ void HamiltonianParameters::LowdinOrthonormalize() {
 
 
 /**
- *  Given a @param D: the 1-RDM and a @param d: the 2-RDM, @return the generalized Fock matrix F as a OneElectronOperator
+ *  @param D      the 1-RDM
+ *  @param d      the 2-RDM
+ *
+ *  @return the generalized Fock matrix
  */
 GQCP::OneElectronOperator HamiltonianParameters::calculateGeneralizedFockMatrix(const GQCP::OneRDM& D, const GQCP::TwoRDM& d) const {
 
@@ -223,7 +220,10 @@ GQCP::OneElectronOperator HamiltonianParameters::calculateGeneralizedFockMatrix(
 
 
 /**
- *  Given a @param D: the 1-RDM and a @param d: the 2-RDM, @return the super-generalized Fock matrix W as a TwoElectronOperator
+ *  @param D      the 1-RDM
+ *  @param d      the 2-RDM
+ *
+ *  @return the super-generalized Fock matrix
  */
 GQCP::TwoElectronOperator HamiltonianParameters::calculateSuperGeneralizedFockMatrix(const GQCP::OneRDM& D, const GQCP::TwoRDM& d) const {
 

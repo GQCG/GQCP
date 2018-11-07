@@ -31,7 +31,8 @@ namespace GQCP {
  *  CONSTRUCTORS
  */
 /**
- *  Constructor based on a given @param doci instance and Hamiltonian parameters @param ham_par
+ *  @param doci         the DOCI HamiltonianBuilder
+ *  @param ham_par      the Hamiltonian parameters in an orthonormal basis
  */
     DOCINewtonOrbitalOptimizer::DOCINewtonOrbitalOptimizer(const GQCP::DOCI& doci, const GQCP::HamiltonianParameters& ham_par) :
     doci (doci),
@@ -64,9 +65,10 @@ const numopt::eigenproblem::Eigenpair& DOCINewtonOrbitalOptimizer::get_eigenpair
  *  PUBLIC METHODS
  */
 /**
- *  Perform the orbital optimization, given @param solver_options for the CI solver and the @param oo_options for the orbital optimization
+ *  Do the orbital optimization for DOCI
  *
- *  The default values for the OrbitalOptimiationOptions are used when no options are supplied.
+ *  @param solver_options       solver options for the CI solver
+ *  @param oo_options           options for the orbital optimization
  */
 void DOCINewtonOrbitalOptimizer::solve(numopt::eigenproblem::BaseSolverOptions& solver_options, const GQCP::OrbitalOptimizationOptions& oo_options) {
     this->is_converged = false;
@@ -171,7 +173,9 @@ void DOCINewtonOrbitalOptimizer::solve(numopt::eigenproblem::BaseSolverOptions& 
 
 
 /**
- *  @return WaveFunction instance after solving the CI problem for a given eigenvector at @param index
+ *  @param index        the index of the index-th excited state
+ *
+ *  @return the index-th excited state after doing the OO-DOCI calculation
  */
 GQCP::WaveFunction DOCINewtonOrbitalOptimizer::get_wavefunction(size_t index) {
     if (index > this->eigenpairs.size()) {

@@ -26,7 +26,7 @@ namespace GQCP {
  */
 
 /**
- *  Constructor given a @param hamiltonian_parameters and @param fock_space
+ *  @param fock_space       the full Fock space, identical for alpha and beta
  */
 DOCI::DOCI(const FockSpace& fock_space) :
     HamiltonianBuilder(),
@@ -40,7 +40,9 @@ DOCI::DOCI(const FockSpace& fock_space) :
  */
 
 /**
- *  @return the Hamiltonian matrix as an Eigen::MatrixXd given @param hamiltonian_parameters
+ *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis
+ *
+ *  @return the DOCI Hamiltonian matrix
  */
 Eigen::MatrixXd DOCI::constructHamiltonian(const HamiltonianParameters& hamiltonian_parameters) {
     
@@ -93,7 +95,11 @@ Eigen::MatrixXd DOCI::constructHamiltonian(const HamiltonianParameters& hamilton
 
 
 /**
- *  @return the action of the Hamiltonian (@param hamiltonian_parameters and @param diagonal) on the coefficient vector @param x
+ *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis
+ *  @param x                            the vector upon which the DOCI Hamiltonian acts
+ *  @param diagonal                     the diagonal of the DOCI Hamiltonian matrix
+ *
+ *  @return the action of the DOCI Hamiltonian on the coefficient vector
  */
 Eigen::VectorXd DOCI::matrixVectorProduct(const HamiltonianParameters& hamiltonian_parameters, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) {
     auto K = hamiltonian_parameters.get_h().get_dim();
@@ -145,6 +151,8 @@ Eigen::VectorXd DOCI::matrixVectorProduct(const HamiltonianParameters& hamiltoni
 
 
 /**
+ *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis
+ *
  *  @return the diagonal of the matrix representation of the Hamiltonian given @param hamiltonian_parameters
  */
 Eigen::VectorXd DOCI::calculateDiagonal(const HamiltonianParameters& hamiltonian_parameters) {

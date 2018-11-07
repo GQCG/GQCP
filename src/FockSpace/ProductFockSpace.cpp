@@ -26,10 +26,10 @@ namespace GQCP {
  */
 
 /**
- *  Constructor given a @param K (spatial orbitals), N_alpha and N_beta (electrons)
- *  on which the dimensions of the Fock space are based
+ *  @param K            the number of orbitals (equal for alpha and beta)
+ *  @param N_alpha      the number of alpha electrons
+ *  @param N_beta       the number of beta electrons
  */
-
 ProductFockSpace::ProductFockSpace(size_t K, size_t N_alpha, size_t N_beta) :
         BaseFockSpace(K, ProductFockSpace::calculateDimension(K, N_alpha, N_beta)),
         fock_space_alpha (FockSpace(K, N_alpha)),
@@ -44,9 +44,11 @@ ProductFockSpace::ProductFockSpace(size_t K, size_t N_alpha, size_t N_beta) :
  */
 
 /**
- *  Given a number of spatial orbitals @param K
- *  and a number of alpha and beta electrons @param N_alpha, N_beta,
- *  @return the dimension of the Fock space
+ *  @param K            the number of orbitals (equal for alpha and beta)
+ *  @param N_alpha      the number of alpha electrons
+ *  @param N_beta       the number of beta electrons
+ *
+ *  @return the dimension of the product Fock space
  */
 size_t ProductFockSpace::calculateDimension(size_t K, size_t N_alpha, size_t N_beta) {
     size_t alpha_dim = FockSpace::calculateDimension(K, N_alpha);

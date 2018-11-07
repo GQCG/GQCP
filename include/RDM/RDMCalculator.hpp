@@ -30,8 +30,7 @@ namespace GQCP {
 
 
 /**
- *  RDMCalculator is a wrapper around the derived RDMBuilders that provides the functionality of the correct derived RDMBuilder
- *  for a given Fock space at compile- or runtime.
+ *  A wrapper around the derived RDMBuilders that provides the functionality of the appropriate derived RDMBuilder for a given Fock space at compile- or runtime.
  */
 class RDMCalculator {
 private:
@@ -40,22 +39,46 @@ private:
 public:
     // CONSTRUCTOR
     /**
-     *  Allocates a derived RDMBuilder based on the nature of the given @param fock_space
+     *  Allocate a DOCIRDMBuilder
+     *
+     *  @param fock_space       the DOCI Fock space
      */
-    RDMCalculator(const FockSpace& fock_space);  // DOCIRDMBuilder
-    RDMCalculator(const ProductFockSpace& fock_space);  // FCIRDMBuilder
-    RDMCalculator(const SelectedFockSpace& fock_space);  // SelectedRDMBuilder
-    RDMCalculator(const BaseFockSpace& fock_space);  // runtime
+    RDMCalculator(const FockSpace& fock_space);
+
+    /**
+     *  Allocate a FCIRDMBuilder
+     *
+     *  @param fock_space       the FCI Fock space
+     */
+    RDMCalculator(const ProductFockSpace& fock_space);
+
+    /**
+     *  Allocate a SelectedRDMBuilder
+     *
+     *  @param fock_space       the 'selected' Fock space
+     */
+    RDMCalculator(const SelectedFockSpace& fock_space);
+
+    /**
+     *  A run-time constructor allocating the appropriate derived RDMBuilder
+     *
+     *  @param fock_space       the Fock space on which the RDMBuilder should be based
+     */
+    RDMCalculator(const BaseFockSpace& fock_space);
 
 
     // PUBLIC METHODS
     /**
-     *  @return all 1-RDMs from a coefficient vector @param x
+     *  @param x        the coefficient vector representing the wave function
+     *
+     *  @return all 1-RDMs given a coefficient vector
      */
     OneRDMs calculate1RDMs(const Eigen::VectorXd& x);
 
     /**
-     *  @return all 2-RDMs from a coefficient vector @param x
+     *  @param x        the coefficient vector representing the wave function
+     *
+     *  @return all 2-RDMs given a coefficient vector
      */
     TwoRDMs calculate2RDMs(const Eigen::VectorXd& x);
 };
