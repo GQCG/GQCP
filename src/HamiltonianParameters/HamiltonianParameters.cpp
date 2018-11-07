@@ -329,30 +329,30 @@ HamiltonianParameters HamiltonianParameters::constrain(const GQCP::TwoElectronOp
  *
  *  @return the Mulliken operator for a set of GTOs
  */
-OneElectronOperator calculateMullikenOperator(const GQCP::HamiltonianParameters& ham_par, const Vectoru& gto_list) {
+OneElectronOperator HamiltonianParameters::calculateMullikenOperator(const Vectoru& gto_list) {
 
-    if (!ham_par.get_ao_basis()) {
+    if (!this->get_ao_basis()) {
         throw std::invalid_argument("The Hamiltonian parameters has no underlying GTO basis, Mulliken analysis is not possible.");
     }
 
-    if (gto_list.size() > ham_par.get_K()) {
+    if (gto_list.size() > this->get_K()) {
         throw std::invalid_argument("To many GTOs are selected");
     }
 
-    Eigen::MatrixXd p_a = Eigen::MatrixXd::Zero(ham_par.get_K(), ham_par.get_K());
+    Eigen::MatrixXd p_a = Eigen::MatrixXd::Zero(this->get_K(), this->get_K());
 
     for (size_t index : gto_list) {
-        if (gto_list.size() >= ham_par.get_K()) {
+        if (index >= this->get_K()) {
             throw std::invalid_argument("GTO index is too large");
         }
 
         p_a(index, index) = 1;
     }
 
-    Eigen::MatrixXd C_inverse = ham_par.get_C().inverse();
+    Eigen::MatrixXd C_inverse = this->get_C().inverse();
 
     //  Formula for the Mulliken matrix
-    Eigen::MatrixXd mulliken_matrix = (C_inverse * p_a * ham_par.get_C() + ham_par.get_C() * p_a * C_inverse) / 2;
+    Eigen::MatrixXd mulliken_matrix = (C_inverse * p_a * this->get_C() + this->get_C() * p_a * C_inverse) / 2;
 
     return OneElectronOperator(mulliken_matrix);
 
