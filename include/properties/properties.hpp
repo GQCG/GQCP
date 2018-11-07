@@ -18,29 +18,14 @@
 #ifndef properties_hpp
 #define properties_hpp
 
+#include "Operator/OneElectronOperator.hpp"
 #include "RDM/OneRDM.hpp"
-#include "RDM/TwoRDM.hpp"
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
 
 
 namespace GQCP {
 
 
 /**
- *  Calculate the electronic energy as a result of the contraction of the 1- and 2-RDMs with the one- and two-electron integrals
- *
- *  @param ham_par      the Hamiltonian parameters containing the one- and two-electron integrals
- *  @param one_rdm      the 1-RDM
- *  @param two_rdm      the 2-RDM
- *
- *  @return the electronic energy
- */
-double calculateElectronicEnergy(const GQCP::HamiltonianParameters& ham_par, const GQCP::OneRDM& one_rdm, const GQCP::TwoRDM& two_rdm);
-
-
-/**
- *  Calculate the electronic electric dipole moment
- *
  *  @param dipole_operator      the three components of the Cartesian dipole integrals in the orthonormal basis in which the 1-RDM is expressed
  *  @param one_rdm              the 1-RDM
  *

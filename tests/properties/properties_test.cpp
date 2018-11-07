@@ -14,20 +14,21 @@
 // 
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-//
+// 
 #define BOOST_TEST_MODULE "properties"
 
-#include "properties.hpp"
+#include "properties/properties.hpp"
+
 #include "HamiltonianParameters/HamiltonianParameters_constructors.hpp"
 #include "RHF/DIISRHFSCFSolver.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
 #include "LibintCommunicator.hpp"
+#include "units.hpp"
+
 
 #include <boost/test/unit_test.hpp>
-#include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
+#include <boost/test/included/unit_test.hpp>
 
-
-#include "units.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( dipole_CO_STO_3G ) {
@@ -66,7 +67,6 @@ BOOST_AUTO_TEST_CASE ( dipole_CO_STO_3G ) {
     Eigen::Vector3d total_dipole_moment = CO.calculateNuclearDipoleMoment() + GQCP::calculateElectronicDipoleMoment(dipole_components, D);
     BOOST_CHECK(std::abs(total_dipole_moment.norm() - (0.049)) < 1.0e-03);
 }
-
 
 
 BOOST_AUTO_TEST_CASE ( dipole_N2_STO_3G ) {

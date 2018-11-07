@@ -172,7 +172,7 @@ BOOST_AUTO_TEST_CASE ( H2O_energy_RDM_contraction_FCI ) {
     GQCP::TwoRDMs two_rdms = fci_rdm.calculate2RDMs(coef);
     GQCP::OneRDMs one_rdms = fci_rdm.calculate1RDMs(coef);
 
-    double energy_by_contraction = GQCP::calculateElectronicEnergy(ham_par, one_rdms.one_rdm, two_rdms.two_rdm);
+    double energy_by_contraction = GQCP::calculateExpectationValue(ham_par, one_rdms.one_rdm, two_rdms.two_rdm);
 
     BOOST_CHECK(std::abs(energy_by_eigenvalue - energy_by_contraction) < 1.0e-12);
 }
