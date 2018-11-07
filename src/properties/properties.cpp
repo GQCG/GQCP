@@ -38,41 +38,4 @@ Eigen::Vector3d calculateElectronicDipoleMoment(const std::array<GQCP::OneElectr
 }
 
 
-/**
- *  Calculates the Mulliken operator for Hamiltonian parameters and a set of GTOs indexes
- *
- *  @param ham_par      the Hamiltonian parameters
- *  @param gto_list     indexes of the original GTOs on which the Mulliken populations are dependant
- *
- *  @return the Mulliken operator for a set of GTOs
- */
-OneElectronOperator calculateMullikenOperator(const GQCP::HamiltonianParameters& ham_par, const Vectoru& gto_list) {
-
-    if (!ham_par.get_ao_basis()) {
-        throw std::invalid_argument("The Hamiltonian parameters has no underlying GTO basis, Mulliken analysis is not possible.");
-    }
-
-    if (gto_list.size() > ham_par.get_K()) {
-        throw std::invalid_argument("To many GTOs are selected");
-    }
-
-    Eigen::MatrixXd p_a = Eigen::MatrixXd::Zero(ham_par.get_K(), ham_par.get_K());
-
-    for (size_t index : gto_list) {
-        if (gto_list.size() >= ham_par.get_K()) {
-            throw std::invalid_argument("GTO index is too large");
-        }
-
-        p_a(index, index) = 1;
-    }
-
-    Eigen::MatrixXd C_inverse = ham_par.get_C().inverse();
-
-    //  Formula for the Mulliken matrix
-    Eigen::MatrixXd mulliken_matrix = (C_inverse * p_a * ham_par.get_C() + ham_par.get_C() * p_a * C_inverse) / 2;
-
-    return OneElectronOperator(mulliken_matrix);
-
-}
-
 }  // namespace GQCP

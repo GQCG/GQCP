@@ -19,6 +19,14 @@
 
 #include "properties/expectation_values.hpp"
 
+#include "RDM/RDMCalculator.hpp"
+#include "CISolver/CISolver.hpp"
+#include "HamiltonianBuilder/DOCI.hpp"
+#include "HamiltonianParameters/HamiltonianParameters_constructors.hpp"
+#include "RHF/DIISRHFSCFSolver.hpp"
+#include "RHF/PlainRHFSCFSolver.hpp"
+#include "LibintCommunicator.hpp"
+#include "units.hpp"
 
 #include <boost/test/unit_test.hpp>
 #include <boost/test/included/unit_test.hpp>
@@ -50,4 +58,67 @@ BOOST_AUTO_TEST_CASE ( two_electron_throw ) {
 
     BOOST_CHECK_THROW(GQCP::calculateExpectationValue(g, d_invalid), std::invalid_argument);
     BOOST_CHECK_NO_THROW(GQCP::calculateExpectationValue(g, d_valid));
+}
+
+BOOST_AUTO_TEST_CASE ( mulliken_N2_STO_3G ) {
+
+    // Check that the mulliken population of N2 is 14 (N)
+
+    // Initialize the molecule and molecular Hamiltonian parameters for N2
+    GQCP::Atom N_1 (7, 0.0, 0.0, 0.0);
+    GQCP::Atom N_2 (7, 0.0, 0.0, GQCP::units::angstrom_to_bohr(1.134));  // from CCCBDB, STO-3G geometry
+    std::vector<GQCP::Atom> atoms {N_1, N_2};
+    GQCP::Molecule N2 (atoms);
+
+    auto ao_basis = std::make_shared<GQCP::AOBasis>(N2, "STO-3G");
+    auto ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
+
+    size_t K = ao_basis->get_number_of_basis_functions();
+
+    GQCP::Vectoru gto_list (K);
+    for(size_t i = 0; i<K; i++){
+        gto_list[i] = i;
+    }
+
+    GQCP::OneElectronOperator mulliken = ham_par.calculateMullikenOperator(gto_list);
+
+    size_t N = N2.get_N();
+
+    // Create a 1-RDM for N2
+    Eigen::MatrixXd D = Eigen::MatrixXd::Zero(K, K);
+    for (size_t i = 0; i<N/2; i++){
+        D(i,i) = 1;
+    }
+
+    GQCP::OneRDM one_rdm (2*D);
+
+    double mulliken_population = GQCP::calculateExpectationValue(mulliken, one_rdm);
+    BOOST_CHECK(std::abs(mulliken_population - (N)) < 1.0e-08);
+
+    // Repeat this for the RDM of DOCI calculation
+
+
+    // Solve the SCF equations
+    GQCP::PlainRHFSCFSolver plain_scf_solver (ham_par, N2);  // The DIIS SCF solver seems to find a wrong minimum, so use a plain solver instead
+    plain_scf_solver.solve();
+    auto rhf = plain_scf_solver.get_solution();
+
+    ham_par.transform(rhf.get_C());
+
+    GQCP::FockSpace fock_space (K, N/2);
+    GQCP::DOCI doci (fock_space);
+
+    GQCP::CISolver ci_solver (doci, ham_par);
+
+    numopt::eigenproblem::DenseSolverOptions solver_options;
+    ci_solver.solve(solver_options);
+
+    numopt::eigenproblem::Eigenpair eigen_pair = ci_solver.get_eigenpair(0);
+
+    GQCP::RDMCalculator rdm_calculator (fock_space);
+
+    GQCP::OneRDMs one_rdms = rdm_calculator.calculate1RDMs(eigen_pair.get_eigenvector());
+
+    double mulliken_population_2 = GQCP::calculateExpectationValue(mulliken, one_rdms.one_rdm);
+    BOOST_CHECK(std::abs(mulliken_population_2 - (N)) < 1.0e-08);
 }

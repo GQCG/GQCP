@@ -18,7 +18,7 @@
 #ifndef GQCP_HAMILTONIANPARAMETERS_HPP
 #define GQCP_HAMILTONIANPARAMETERS_HPP
 
-
+#include "common.hpp"
 #include "HamiltonianParameters/BaseHamiltonianParameters.hpp"
 #include "Operator/OneElectronOperator.hpp"
 #include "Operator/TwoElectronOperator.hpp"
@@ -171,6 +171,15 @@ public:
      *  @return the constrained Hamiltonian parameters
      */
     HamiltonianParameters constrain(const GQCP::TwoElectronOperator& two_op, double lambda) const;
+
+    /**
+     *  Calculates the Mulliken operator for Hamiltonian parameters and a set of GTOs indexes
+     *
+     *  @param gto_list     indexes of the original GTOs on which the Mulliken populations are dependant
+     *
+     *  @return the Mulliken operator for a set of GTOs
+     */
+    OneElectronOperator calculateMullikenOperator(const Vectoru& gto_list);
 };
 
 

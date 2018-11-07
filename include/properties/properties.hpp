@@ -18,8 +18,6 @@
 #ifndef properties_hpp
 #define properties_hpp
 
-#include <common.hpp>
-#include <HamiltonianParameters/HamiltonianParameters.hpp>
 #include "Operator/OneElectronOperator.hpp"
 #include "RDM/OneRDM.hpp"
 
@@ -34,17 +32,6 @@ namespace GQCP {
  *  @return the three Cartesian components of the electronic electric dipole moment
  */
 Eigen::Vector3d calculateElectronicDipoleMoment(const std::array<GQCP::OneElectronOperator, 3>& dipole_operator, const GQCP::OneRDM& one_rdm);
-
-
-/**
- *  Calculates the Mulliken operator for Hamiltonian parameters and a set of GTOs indexes
- *
- *  @param ham_par      the Hamiltonian parameters
- *  @param gto_list     indexes of the original GTOs on which the Mulliken populations are dependant
- *
- *  @return the Mulliken operator for a set of GTOs
- */
-OneElectronOperator calculateMullikenOperator(const GQCP::HamiltonianParameters& ham_par, const Vectoru& gto_list);
 
 
 

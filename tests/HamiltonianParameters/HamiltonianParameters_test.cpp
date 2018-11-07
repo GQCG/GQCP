@@ -293,3 +293,5 @@ BOOST_AUTO_TEST_CASE ( calculate_generalized_Fock_matrix_and_super ) {
     BOOST_CHECK(F_ref.isApprox(ham_par.calculateGeneralizedFockMatrix(D, d).get_matrix_representation(), 1.0e-12));
     BOOST_CHECK(cpputil::linalg::areEqual(W_ref, ham_par.calculateSuperGeneralizedFockMatrix(D, d).get_matrix_representation(), 1.0e-12));
 }
+
+
