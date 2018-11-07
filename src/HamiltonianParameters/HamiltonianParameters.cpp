@@ -272,5 +272,54 @@ GQCP::TwoElectronOperator HamiltonianParameters::calculateSuperGeneralizedFockMa
 };
 
 
+/**
+ *  Constrains and copies the Hamiltonian parameters
+ *
+ *  @param one_op   constraining one electron operator
+ *  @param two_op   constraining two electron operator
+ *  @param lambda   lagrangian multiplier for the constraint
+ *
+ *  @return the constrained Hamiltonian parameters
+ */
+HamiltonianParameters HamiltonianParameters::constrain(const GQCP::OneElectronOperator& one_op, const GQCP::TwoElectronOperator& two_op, double lambda) const {
+
+    OneElectronOperator hc (this->get_h().get_matrix_representation() - lambda*one_op.get_matrix_representation());
+    TwoElectronOperator gc (this->get_g().get_matrix_representation() - lambda*two_op.get_matrix_representation());
+
+    return HamiltonianParameters(this->ao_basis, this->S, hc, gc, this->C);
+}
+
+
+/**
+ *  Constrains and copies the Hamiltonian parameters
+ *
+ *  @param one_op   constraining one electron operator
+ *  @param lambda   lagrangian multiplier for the constraint
+ *
+ *  @return the constrained Hamiltonian parameters
+ */
+HamiltonianParameters HamiltonianParameters::constrain(const GQCP::OneElectronOperator& one_op, double lambda) const {
+
+    OneElectronOperator hc (this->get_h().get_matrix_representation() - lambda*one_op.get_matrix_representation());
+
+    return HamiltonianParameters(this->ao_basis, this->S, hc, this->g, this->C);
+}
+
+
+/**
+ *  Constrains and copies the Hamiltonian parameters
+ *
+ *  @param two_op   constraining two electron operator
+ *  @param lambda   lagrangian multiplier for the constraint
+ *
+ *  @return the constrained Hamiltonian parameters
+ */
+HamiltonianParameters HamiltonianParameters::constrain(const GQCP::TwoElectronOperator& two_op, double lambda) const {
+
+    TwoElectronOperator gc (this->get_g().get_matrix_representation() - lambda*two_op.get_matrix_representation());
+
+    return HamiltonianParameters(this->ao_basis, this->S, this->h, gc, this->C);
+}
+
 
 }  // namespace GQCP

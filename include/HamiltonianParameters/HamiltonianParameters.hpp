@@ -139,6 +139,37 @@ public:
      *  @return the super-generalized Fock matrix
      */
     GQCP::TwoElectronOperator calculateSuperGeneralizedFockMatrix(const GQCP::OneRDM& D, const GQCP::TwoRDM& d) const;
+
+    /**
+     *  Constrains and copies the Hamiltonian parameters
+     *
+     *  @param one_op   constraining one electron operator
+     *  @param two_op   constraining two electron operator
+     *  @param lambda   lagrangian multiplier for the constraint
+     *
+     *  @return the constrained Hamiltonian parameters
+     */
+    HamiltonianParameters constrain(const GQCP::OneElectronOperator& one_op, const GQCP::TwoElectronOperator& two_op, double lambda) const;
+
+    /**
+     *  Constrains and copies the Hamiltonian parameters
+     *
+     *  @param one_op   constraining one electron operator
+     *  @param lambda   lagrangian multiplier for the constraint
+     *
+     *  @return the constrained Hamiltonian parameters
+     */
+    HamiltonianParameters constrain(const GQCP::OneElectronOperator& one_op, double lambda) const;
+
+    /**
+     *  Constrains and copies the Hamiltonian parameters
+     *
+     *  @param two_op   constraining two electron operator
+     *  @param lambda   lagrangian multiplier for the constraint
+     *
+     *  @return the constrained Hamiltonian parameters
+     */
+    HamiltonianParameters constrain(const GQCP::TwoElectronOperator& two_op, double lambda) const;
 };
 
 
