@@ -27,6 +27,9 @@
 namespace GQCP {
 
 
+/**
+ *  A base class for representing Hamiltonian parameters, i.e. the one- and two-electron integrals in the second-quantized expression of the Hamiltonian
+ */
 class BaseHamiltonianParameters {
 protected:
     std::shared_ptr<GQCP::AOBasis> ao_basis;  // the initial atomic orbitals
@@ -34,7 +37,7 @@ protected:
 public:
     // CONSTRUCTOR
     /**
-     *  Constructor based on a given @param ao_basis
+     *  @param ao_basis     the initial AO basis
      */
     explicit BaseHamiltonianParameters(std::shared_ptr<GQCP::AOBasis> ao_basis);
 

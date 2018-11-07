@@ -33,7 +33,7 @@ namespace GQCP {
  */
 
 /**
- *  Constructor based on a given @param GAMESS_filename
+ *  @param GAMESS_filename      the name of the GAMESS file that contains the 'selected' wave function expansion
  */
 WaveFunctionReader::WaveFunctionReader(const std::string& GAMESS_filename)
 {

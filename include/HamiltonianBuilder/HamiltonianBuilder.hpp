@@ -31,9 +31,12 @@ namespace GQCP {
 
 
 /**
- *  HamiltonianBuilder is an abstract base class for quantum chemical methods performed with Hamiltonian parameters
- *  for which the Hamiltonian is preferably expressed as a Hermitian matrix
- *  so that the corresponding eigenvalues and -vectors can be retrieved through diagonalisation of this matrix.
+ *  A base class whose derived classes are able to construct matrix representations of the Hamiltonian in a Fock space
+ *
+ *  Derived classes should implement:
+ *      - constructHamiltonian() which constructs the full Hamiltonian matrix in the given Fock space
+ *      - matrixVectorProduct() which gives the result of the action of the Hamiltonian on a given coefficient vector
+ *      - calculateDiagonal() which gives the diagonal of the Hamiltonian matrix
  */
 class HamiltonianBuilder {
 public:
@@ -48,26 +51,33 @@ public:
     virtual ~HamiltonianBuilder() = 0;
 
 
+    // PURE VIRTUAL GETTERS
+    virtual BaseFockSpace* get_fock_space() = 0;
+
+
     // PURE VIRTUAL PUBLIC METHODS
     /**
-     *  @return the Hamiltonian matrix as an Eigen::MatrixXd given @param hamiltonian_parameters
+     *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis
+     *
+     *  @return the Hamiltonian matrix
      */
     virtual Eigen::MatrixXd constructHamiltonian(const HamiltonianParameters& hamiltonian_parameters) = 0;
 
     /**
-     *  @return the action of the Hamiltonian (@param hamiltonian_parameters and @param diagonal) on the coefficient vector @param x
+     *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis
+     *  @param x                            the vector upon which the Hamiltonian acts
+     *  @param diagonal                     the diagonal of the Hamiltonian matrix
+     *
+     *  @return the action of the Hamiltonian on the coefficient vector
      */
     virtual Eigen::VectorXd matrixVectorProduct(const HamiltonianParameters& hamiltonian_parameters, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) = 0;
 
     /**
-     *  @return the diagonal of the matrix representation of the Hamiltonian given @param hamiltonian_parameters
+     *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis
+     *
+     *  @return the diagonal of the matrix representation of the Hamiltonian
      */
     virtual Eigen::VectorXd calculateDiagonal(const HamiltonianParameters& hamiltonian_parameters) = 0;
-
-    /**
-     *  @return the fock space of the HamiltonianBuilder
-     */
-    virtual BaseFockSpace* get_fock_space() = 0;
 };
 
 

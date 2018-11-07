@@ -34,7 +34,9 @@ DOCIRDMBuilder::DOCIRDMBuilder(const FockSpace& fock_space) :
  */
 
 /**
- *  @return 1RDM from a coefficient vector @param x
+ *  @param x        the coefficient vector representing the DOCI wave function
+ *
+ *  @return all 1-RDMs given a coefficient vector
  */
 OneRDMs DOCIRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) {
     // The formulas for the DOCI 1-RDMs can be found in (https://github.com/lelemmen/electronic_structure)
@@ -68,7 +70,9 @@ OneRDMs DOCIRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) {
 
 
 /**
- *  @return 2RDM from a coefficient vector @param x
+ *  @param x        the coefficient vector representing the DOCI wave function
+ *
+ *  @return all 2-RDMs given a coefficient vector
  */
 TwoRDMs DOCIRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) {
 
@@ -133,7 +137,6 @@ TwoRDMs DOCIRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) {
     TwoRDM two_rdm_bbbb (d_aaaa);
     return TwoRDMs (two_rdm_aaaa, two_rdm_aabb, two_rdm_bbaa, two_rdm_bbbb);
 }
-
 
 
 }  // namespace GQCP

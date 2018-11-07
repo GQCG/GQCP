@@ -25,8 +25,9 @@
 
 namespace GQCP {
 
+
 /**
- *  Class that reads and stores a selected wavefunction expansion
+ *  A class that reads and stores a 'selected' wave function expansion
  */
 class WaveFunctionReader {
 private:
@@ -37,7 +38,7 @@ private:
 
 public:
     /**
-     *  Constructor based on a given @param GAMESS_filename
+     *  @param GAMESS_filename      the name of the GAMESS file that contains the 'selected' wave function expansion
      */
     explicit WaveFunctionReader(const std::string& GAMESS_filename);
 

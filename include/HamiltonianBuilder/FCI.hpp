@@ -27,9 +27,7 @@
 namespace GQCP {
 
 /**
- *  Full configuration interaction (FCI) builds a hamiltonian matrix
- *  based on a wavefunction containing all configurations pertaining to a fixed number of alpha and beta electrons.
- *  This means that a total ONV would be a combination of two ONVs, one from an alpha and one from a beta Fock space.
+ *  A HamiltonianBuilder for FCI: it builds the matrix representation of the FCI Hamiltonian in the full alpha and beta product Fock space
  */
 class FCI : public GQCP::HamiltonianBuilder {
 private:
@@ -37,19 +35,15 @@ private:
 
     // Rectangular matrix of SpinEvaluations
     /**
-     *  A small struct that is used to hold in memory the @param address of spin strings differing in one electron
-     *  excitation (an annihilation on orbital @param p and a creation on orbital @param q) that are coupled through the
-     *  Hamiltonian.
+     *  A small struct that is used to hold in memory the addresses of spin strings differing in one electron
+     *  excitation (an annihilation on orbital p and a creation on orbital q) that are coupled through the Hamiltonian
      *
      *  During the construction of the FCI Hamiltonian, the one-electron excited coupling strings are both needed in the
      *  alpha, beta, and alpha-beta parts. When a spin string is found that couples to another spin string (with address
      *  I), the address of the coupling spin string is hold in memory, in the following way: in a
      *  std::vector<std::vector<OneElectronCoupling>> (with dimension I_alpha * N_alpha * (K + 1 - N_alpha)), at every outer index
      *  I_alpha, a std::vector of OneElectronCouplings is kept, each coupling through the Hamiltonian to that particular
-     *  spin string with address I_alpha. Of course, the beta case is similar.
-     *
-     *  The @param sign of the matrix element, i.e. <I_alpha | H | address> is also stored as a parameter.
-     *
+     *  spin string with address I_alpha. The beta case is similar. The sign of the matrix element, i.e. <I_alpha | H | address> is also stored.
      *
      *  We can keep this many addresses in memory because the resulting dimension (cfr. dim_alpha * N_alpha * (K + 1 - N_alpha)) is
      *  significantly less than the dimension of the FCI space (cfr. I_alpha * I_beta).
@@ -75,7 +69,7 @@ public:
 
     // CONSTRUCTORS
     /**
-     *  Constructor given a @param fock_space
+     *  @param fock_space       the full alpha and beta product Fock space
      */
     explicit FCI(const ProductFockSpace& fock_space);
 
@@ -84,26 +78,33 @@ public:
     ~FCI() = default;
 
 
+    // OVERRIDDEN GETTERS
+    BaseFockSpace* get_fock_space() override { return &fock_space; }
+
+
     // OVERRIDDEN PUBLIC METHODS
     /**
-     *  @return the Hamiltonian matrix as an Eigen::MatrixXd given @param hamiltonian_parameters
+     *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis
+     *
+     *  @return the FCI Hamiltonian matrix
      */
     Eigen::MatrixXd constructHamiltonian(const HamiltonianParameters& hamiltonian_parameters) override;
 
     /**
-     *  @return the action of the Hamiltonian (@param hamiltonian_parameters and @param diagonal) on the coefficient vector @param x
+     *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis
+     *  @param x                            the vector upon which the FCI Hamiltonian acts
+     *  @param diagonal                     the diagonal of the FCI Hamiltonian matrix
+     *
+     *  @return the action of the FCI Hamiltonian on the coefficient vector
      */
     Eigen::VectorXd matrixVectorProduct(const HamiltonianParameters& hamiltonian_parameters, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) override;
 
     /**
-     *  @return the diagonal of the matrix representation of the Hamiltonian given @param hamiltonian_parameters
+     *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis
+     *
+     *  @return the diagonal of the matrix representation of the Hamiltonian
      */
     Eigen::VectorXd calculateDiagonal(const HamiltonianParameters& hamiltonian_parameters) override;
-
-    /**
-     *  @return the fock space of the HamiltonianBuilder
-     */
-    BaseFockSpace* get_fock_space() override { return &fock_space; }
 };
 
 

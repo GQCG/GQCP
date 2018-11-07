@@ -21,6 +21,12 @@
 namespace GQCP {
 
 
+/**
+ *  Constructor that creates an AOBasis from a basisset name
+ *
+ *  @param molecule         the molecule to which the AO basis corresponds
+ *  @param basis_set        the name of the basisset
+ */
 AOBasis::AOBasis(const GQCP::Molecule& molecule, std::string basis_set) :
     atoms (molecule.get_atoms()),
     basis_functions (libint2::BasisSet(std::move(basis_set), GQCP::LibintCommunicator::get().interface(this->atoms))),  // construct a libint2::BasisSet

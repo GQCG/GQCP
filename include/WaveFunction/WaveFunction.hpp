@@ -29,7 +29,7 @@ namespace GQCP {
 
 
 /**
- *  WaveFunction contains the expansion coefficients in its given FockSpace
+ *  A class that represents a wave function: expansion coefficients in a Fock space
  */
 class WaveFunction {
 private:
@@ -39,6 +39,11 @@ private:
 public:
     // CONSTRUCTORS
     WaveFunction() = default;
+
+    /**
+     *  @param base_fock_space      the Fock space in which the wave function 'lives'
+     *  @param coefficients         the expansion coefficients
+     */
     WaveFunction(BaseFockSpace& base_fock_space, const Eigen::VectorXd& coefficients);
 
 

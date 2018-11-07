@@ -25,13 +25,13 @@ namespace GQCP {
  */
 
 /**
- *  Private member that evaluates either the one-electron operators for alpha or beta given the parameters.
- *  Additionally stores this evaluation in either the matvec or matrix depending on the method passed
- *  @param fock_space_target refers to which spin function will be evaluated
- *  @param fock_space_fixed refers to which spin function is not evaluated
- *  @param target_is_major refers to whether or not the evaluated component is major
- *  @param hamiltonian_parameters contains the data of the operators
- *  @param method refers to which method is used (matvec or Hamliltonian matrix)
+ *  Evaluate the one-electron operators for alpha or beta and store the result in a matrix-vector product or a matrix, depending on the method passed
+ *
+ *  @param fock_space_target        the Fock space that is used as a target, i.e. that is evaluated
+ *  @param fock_space_fixed         the Fock space that is not evaluated
+ *  @param target_is_major          whether or not the evaluated component is the major index
+ *  @param hamiltonian_parameters   the Hubbard Hamiltonian parameters
+ *  @param method                   the used method: constructHamiltonian() or matrixVectorProduct()
  */
 void Hubbard::oneOperatorModule(FockSpace& fock_space_target, FockSpace& fock_space_fixed, bool target_is_major, const HamiltonianParameters& hamiltonian_parameters, const PassToMethod& method) {
 
@@ -133,11 +133,12 @@ void Hubbard::oneOperatorModule(FockSpace& fock_space_target, FockSpace& fock_sp
  */
 
 /**
- *  Constructor given a @param hamiltonian_parameters and @param fock_space
+ *  @param fock_space       the full alpha and beta product Fock space
  */
 Hubbard::Hubbard(const ProductFockSpace& fock_space) :
-        HamiltonianBuilder(),
-        fock_space(fock_space) {}
+    HamiltonianBuilder(),
+    fock_space(fock_space)
+{}
 
 
 
@@ -146,7 +147,9 @@ Hubbard::Hubbard(const ProductFockSpace& fock_space) :
  */
 
 /**
- *  @return the Hamiltonian matrix as an Eigen::MatrixXd given @param hamiltonian_parameters
+ *  @param hamiltonian_parameters       the Hubbard Hamiltonian parameters in an orthonormal orbital basis
+ *
+ *  @return the Hubbard Hamiltonian matrix
  */
 Eigen::MatrixXd Hubbard::constructHamiltonian(const HamiltonianParameters& hamiltonian_parameters) {
     auto K = hamiltonian_parameters.get_h().get_dim();
@@ -176,7 +179,11 @@ Eigen::MatrixXd Hubbard::constructHamiltonian(const HamiltonianParameters& hamil
 
 
 /**
- *  @return the action of the Hamiltonian (@param hamiltonian_parameters and @param diagonal) on the coefficient vector @param x
+ *  @param hamiltonian_parameters       the Hubbard Hamiltonian parameters in an orthonormal orbital basis
+ *  @param x                            the vector upon which the Hubbard Hamiltonian acts
+ *  @param diagonal                     the diagonal of the Hubbard Hamiltonian matrix
+ *
+ *  @return the action of the Hubbard Hamiltonian on the coefficient vector
  */
 Eigen::VectorXd Hubbard::matrixVectorProduct(const HamiltonianParameters& hamiltonian_parameters, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) {
 
@@ -203,9 +210,10 @@ Eigen::VectorXd Hubbard::matrixVectorProduct(const HamiltonianParameters& hamilt
 }
 
 
-
 /**
- *  @return the diagonal of the matrix representation of the Hamiltonian given @param hamiltonian_parameters
+ *  @param hamiltonian_parameters       the Hubbard Hamiltonian parameters in an orthonormal orbital basis
+ *
+ *  @return the diagonal of the matrix representation of the Hubbard Hamiltonian
  */
 Eigen::VectorXd Hubbard::calculateDiagonal(const HamiltonianParameters &hamiltonian_parameters) {
 
@@ -248,24 +256,26 @@ Eigen::VectorXd Hubbard::calculateDiagonal(const HamiltonianParameters &hamilton
 
 
 /*
- *  RELEVANT (non-class) METHODS
+ *  HELPER METHODS
  */
 
 /**
- *  Generates the upper triagonal (vector) for a Hubbard lattice, specified by the @param hopping_matrix
- *  @param hopping_matrix allowed interaction between sites
- *  @param t one electron hopping interaction parameter
- *  @param U two electron doubly occupied interaction parameter
- *  @return the triagonal of the matrix resulting in the recombination of U and t with the hopping matrix.
+ *  Generate the upper triagonal as a vector for a Hubbard lattice
+ *
+ *  @param A        the adjacency matrix that represents the allowed interaction between sites
+ *  @param t        the one-electron hopping interaction parameter
+ *  @param U        the two-electron interaction parameter
+ *
+ *  @return the upper triagonal as a vector of the hopping matrix generated from the adjacency matrix and the Hubbard parameters t and U
  */
-Eigen::VectorXd generateUpperTriagonal(Eigen::MatrixXd matrix, double t, double U) {
+Eigen::VectorXd generateUpperTriagonal(Eigen::MatrixXd A, double t, double U) {
 
     // Check if the hopping matrix is represented as a square matrix
-    if (matrix.cols() != matrix.rows()) {
-        throw std::invalid_argument("Hopping matrix has to be represented as a square matrix.");
+    if (A.cols() != A.rows()) {
+        throw std::invalid_argument("The adjacency matrix has to be represented as a square matrix.");
     }
 
-    size_t K = matrix.cols();
+    size_t K = A.cols();
     size_t length = (K * (K+1))/2;  // formula for the length of the triagonal (in one vector)
     Eigen::VectorXd triagonal = Eigen::VectorXd::Zero(length);
 
@@ -275,11 +285,10 @@ Eigen::VectorXd generateUpperTriagonal(Eigen::MatrixXd matrix, double t, double 
             if (i == j) {
                 triagonal(index) = U;
             } else {
-                triagonal(index) = t * matrix(i,j);
+                triagonal(index) = t * A(i,j);
             }
             index++;
         }
-
     }
 
     return triagonal;

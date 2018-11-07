@@ -31,9 +31,9 @@ namespace GQCP {
 
 
 /**
- *  A Fock space that is flexible in the number of states that span it.
- *  The configurations are represented as a Configuration:
- *  a combination of two ONVs, holding the alpha and beta ONVs.
+ *  A class that represents a Fock space that is flexible in the number of states that span it
+ *
+ *  Configurations are represented as a Configuration: a combination of an alpha and a beta ONV
  */
 class SelectedFockSpace : public GQCP::BaseFockSpace {
 private:
@@ -43,32 +43,39 @@ private:
     std::vector<GQCP::Configuration> configurations;
 
     /**
-     *  Member taking two string arguments and creating a Configuration
-     *  @param onv1 a string representation read from right to left
-     *  @param onv2 a string representation read from right to left
-     *  @return a Configuration
-     *  !!! only works for up to 64 bits !!!
+     *  @param onv1     the alpha ONV as a string representation read from right to left
+     *  @param onv2     the beta ONV as a string representation read from right to left
+     *
+     *  @return the configuration that holds both ONVs
+     *
+     *  IMPORTANT: only works for up to 64 bits!
      */
     Configuration makeConfiguration(const std::string& onv1, const std::string& onv2);
 
 public:
     // CONSTRUCTORS
     SelectedFockSpace() = default;
+
     /**
-     *  Constructor given a @param K (spatial orbitals), N_alpha and N_beta (electrons);
-     *  the initial dimension of the space is 0, as no selections are made.
+     *  A constructor with initial Fock space dimension of 0
+     *
+     *  @param K            the number of orbitals
+     *  @param N_alpha      the number of alpha electrons
+     *  @param N_beta       the number of beta electrons
      */
     SelectedFockSpace(size_t K, size_t N_alpha, size_t N_beta);
 
     /**
-     * Constructor that generates expansion of a given FockSpaceProduct
-     * @param fock_space generated Fock space
+     *  A constructor that generates the configurations based off the given ProductFockSpace.
+     *
+     *  @param fock_space       the ProductFockSpace from which the configurations should be generated
      */
     explicit SelectedFockSpace(const ProductFockSpace& fock_space);
 
     /**
-     * Constructor that generates expansion of a given FockSpace
-     * @param fock_space generated Fock space
+     *  A constructor that generates the configurations based off the given FockSpace.
+     *
+     *  @param fock_space       the FockSpace from which the configurations should be generated
      */
     explicit SelectedFockSpace(const FockSpace& fock_space);
 
@@ -82,16 +89,18 @@ public:
 
     // PUBLIC METHODS
     /**
-     *  Member taking two string arguments to add a Configuration
-     *  @see makeConfiguration()
-     *  add a Configuration to @var configurations
+     *  Make a configuration (see makeConfiguration()) and add it to this Fock space
+     *
+     *  @param onv1     the alpha ONV as a string representation read from right to left
+     *  @param onv2     the beta ONV as a string representation read from right to left
      */
     void addConfiguration(const std::string& onv1, const std::string& onv2);
 
     /**
-     *  Member taking two vector<string> arguments to add Configurations
-     *  @see makeConfiguration()
-     *  add multiple Configurations to @var configurations
+     *  Make configurations (see makeConfiguration()) and add them to the Fock space
+     *
+     *  @param onv1s     the alpha ONVs as string representations read from right to left
+     *  @param onv2s     the beta ONVs as string representations read from right to left
      */
     void addConfiguration(const std::vector<std::string>& onv1s, const std::vector<std::string>& onv2s);
 };

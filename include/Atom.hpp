@@ -42,45 +42,65 @@ public:
 public:
     // CONSTRUCTORS
     /**
-     *  Constructor based on a given @param atomic_number and the coordinates @param x, @param y, @param z
+     *  @param atomic_number        the atomic number (Z) of the atom
+     *  @param x                    the x-position of the atom
+     *  @param y                    the y-position of the atom
+     *  @param z                    the z-position of the atom
      */
-    Atom (size_t atomic_number, double x, double y, double z);
+    Atom(size_t atomic_number, double x, double y, double z);
 
 
     // OPERATORS
     /**
-     *  @return if this is equal to @param other, within the @member tolerance_for_comparison for the coordinates
+     *  @param other        the other atom
+     *
+     *  @return if this atom is equal to the other, within a default tolerance for the coordinates
      */
     bool operator==(const GQCP::Atom& other) const;
 
     /**
-     *  @return if this is smaller than @param other, within the @member tolerance_for_comparison for the coordinates
+     *  A custom implementation for the comparison (and thus ordening) of atoms. The atomic_number takes precedence over the x-coordinate, which takes precedence over the y-coordinate, which in turn takes precedence over the z-coordinate
      *
-     *  @member atomic_number takes precedence over @member x, over @member y, over @member z
+     *  @param other        the other atom
+     *
+     *  @return if this atom is 'smaller' than the other, within a default tolerance for the coordinates
      */
     bool operator<(const GQCP::Atom& other) const;
 
     /**
-     *  Overloading of operator<< for a GQCP::Atom to be used with streams
+     *  Overloading of operator<< for a GQCP::Atom to be used with ostreams
+     *
+     *  @param os       the output stream to which the atom should be concatenated
+     *  @param atom     the atom which should be concatenated to the output stream
+     *
+     *  @return the updated output stream
      */
     friend std::ostream& operator<<(std::ostream& os, const GQCP::Atom& atom);
 
 
     // PUBLIC METHODS
     /**
-     *  @return if this is equal to @param other, within the given @param tolerance for the coordinates
+     *  @param other        the other atom
+     *  @param tolerance    the tolerance for equality of positions
+     *
+     *  @return if this atom is equal to the other
      */
     bool isEqualTo(const GQCP::Atom& other, double tolerance=Atom::tolerance_for_comparison) const;
 
     /**
-     *  @return if this is smaller than @param other, within the given @param tolerance for the coordinates
+     *  A custom implementation for the comparison (and thus ordening) of atoms. The atomic_number takes precedence over the x-coordinate, which takes precedence over the y-coordinate, which in turn takes precedence over the z-coordinate
      *
-     *  @member atomic_number takes precedence over @member x, over @member y, over @member z
+     *  @param other        the other atom
+     *  @param tolerance    the tolerance for equality of positions
+     *
+     *  @return if this atom is 'smaller' than the other, within a default tolerance for the coordinates
      */
     bool isSmallerThan(const GQCP::Atom& other, double tolerance=Atom::tolerance_for_comparison) const;
 
     /**
-     * @return the distance between this and @param other
+     *  @param other        the other atom
+     *
+     *  @return the Euclidian distance between this atom and the other
      */
     double calculateDistance(const GQCP::Atom& other) const;
 };
