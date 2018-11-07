@@ -47,7 +47,16 @@ double calculateExpectationValue(const GQCP::OneElectronOperator& one_op, const 
  *  @return the expectation values of all components of the one-electron operator
  */
 template <size_t N>
-std::array<double, N> calculateExpectationValues(const std::array<GQCP::OneElectronOperator, N>& one_ops, const GQCP::OneRDM& one_rdm);
+std::array<double, N> calculateExpectationValues(const std::array<GQCP::OneElectronOperator, N>& one_ops, const GQCP::OneRDM& one_rdm) {
+
+    std::array<double, N> expectation_values {};  // zero initialization
+
+    for (size_t i = 0; i < N; i++) {
+        expectation_values[i] = calculateExpectationValue(one_ops[i], one_rdm);
+    }
+
+    return expectation_values;
+}
 
 
 

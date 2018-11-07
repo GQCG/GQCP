@@ -44,27 +44,6 @@ double calculateExpectationValue(const GQCP::OneElectronOperator& one_op, const 
 }
 
 
-/**
- *  @tparam N           the number of components of the one-electron operator
- *
- *  @param one_ops      the components of the one-electron operator
- *  @param one_rdm      the 1-RDM that represents the wave function
- *
- *  @return the expectation values of all components of the one-electron operator
- */
-template <size_t N>
-std::array<double, N> calculateExpectationValues(const std::array<GQCP::OneElectronOperator, N>& one_ops, const GQCP::OneRDM& one_rdm) {
-
-    std::array<double, N> expectation_values (0);
-
-    for (size_t i = 0; i < N; i++) {
-        expectation_values[i] = calculateExpectationValue(one_ops[i], one_rdm);
-    }
-
-    return expectation_values;
-}
-
-
 
 /*
  *  TWO-ELECTRON OPERATORS
