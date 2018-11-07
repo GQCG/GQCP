@@ -66,6 +66,7 @@ set(PROJECT_SOURCE_FILES
         ${PROJECT_SOURCE_FOLDER}/LibintCommunicator.cpp
         ${PROJECT_SOURCE_FOLDER}/miscellaneous.cpp
         ${PROJECT_SOURCE_FOLDER}/Molecule.cpp
+        ${PROJECT_SOURCE_FOLDER}/properties.cpp
         ${PROJECT_SOURCE_FOLDER}/RMP2.cpp)
 
 # Find the header folder
@@ -119,6 +120,7 @@ set(PROJECT_INCLUDE_FILES
         ${PROJECT_INCLUDE_FOLDER}/miscellaneous.hpp
         ${PROJECT_INCLUDE_FOLDER}/Molecule.hpp
         ${PROJECT_INCLUDE_FOLDER}/RMP2.hpp
+        ${PROJECT_INCLUDE_FOLDER}/properties.hpp
         ${PROJECT_INCLUDE_FOLDER}/units.hpp)
 
 # Find the tests folder
@@ -164,6 +166,7 @@ set(PROJECT_TEST_SOURCE_FILES
         ${PROJECT_TESTS_FOLDER}/Molecule_test.cpp
         ${PROJECT_TESTS_FOLDER}/OO_DOCI_test.cpp
         ${PROJECT_TESTS_FOLDER}/RMP2_test.cpp
+        ${PROJECT_TESTS_FOLDER}/properties_test.cpp
         ${PROJECT_TESTS_FOLDER}/units_test.cpp)
 
 # Find the executables folder

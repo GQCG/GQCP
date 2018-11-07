@@ -126,12 +126,6 @@ public:
     void LowdinOrthonormalize();
 
     /**
-     *  Given @param one_rdm and @param two_rdm
-     *  @return the energy as a result of the contraction of the 1- and 2-RDMs with the one- and two-electron integrals
-     */
-    double calculateEnergy(const GQCP::OneRDM& one_rdm, const GQCP::TwoRDM& two_rdm) const;
-
-    /**
      *  Given a @param D: the 1-RDM and a @param d: the 2-RDM, @return the generalized Fock matrix F as a OneElectronOperator
      */
     GQCP::OneElectronOperator calculateGeneralizedFockMatrix(const GQCP::OneRDM& D, const GQCP::TwoRDM& d) const;
