@@ -27,8 +27,8 @@ static void matvec(benchmark::State& state) {
         benchmark::DoNotOptimize(matvec);
     }
 
-    state.counters["Electron pairs"] = N;
     state.counters["Orbitals"] = K;
+    state.counters["Electron pairs"] = N;
 }
 
 
