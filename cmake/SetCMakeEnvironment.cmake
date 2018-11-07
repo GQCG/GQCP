@@ -170,7 +170,6 @@ set(PROJECT_TEST_SOURCE_FILES
         ${PROJECT_TESTS_FOLDER}/Molecule_test.cpp
         ${PROJECT_TESTS_FOLDER}/OO_DOCI_test.cpp
         ${PROJECT_TESTS_FOLDER}/RMP2_test.cpp
-        ${PROJECT_TESTS_FOLDER}/properties_test.cpp
         ${PROJECT_TESTS_FOLDER}/units_test.cpp)
 
 # Find the executables folder
