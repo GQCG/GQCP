@@ -79,6 +79,7 @@ public:
     const GQCP::OneElectronOperator& get_S() const { return this->S; }
     const GQCP::OneElectronOperator& get_h() const { return this->h; }
     const GQCP::TwoElectronOperator& get_g() const { return this->g; }
+    const Eigen::MatrixXd& get_C() const { return this->C; }
     size_t get_K() const { return this->K; }
 
     
