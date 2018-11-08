@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "Localization/ERLocalizer.hpp"
+#include "Localization/ERJacobiLocalizer.hpp"
 
 
 namespace GQCP {
@@ -28,7 +28,7 @@ namespace GQCP {
 /**
  *  @param N_P        the number of electron pairs
  */
-ERLocalizer::ERLocalizer(size_t N_P) :
+ERJacobiLocalizer::ERJacobiLocalizer(size_t N_P) :
     N_P (N_P)
 {}
 
@@ -43,7 +43,7 @@ ERLocalizer::ERLocalizer(size_t N_P) :
  *
  *  @return the Edmiston-Ruedenberg localization index
  */
-double ERLocalizer::calculateLocalizationIndex(const GQCP::HamiltonianParameters& ham_par) const {
+double ERJacobiLocalizer::calculateLocalizationIndex(const GQCP::HamiltonianParameters& ham_par) const {
 
     double localization_index = 0.0;
     auto g = ham_par.get_g();  // the two-electron integrals
@@ -57,6 +57,28 @@ double ERLocalizer::calculateLocalizationIndex(const GQCP::HamiltonianParameters
     return localization_index;
 }
 
+
+/**
+ *  @param ham_par      the Hamiltonian parameters that should be localized
+ */
+void ERJacobiLocalizer::localize(GQCP::HamiltonianParameters& ham_par) const {
+
+    while (!(this->is_converged)) {
+
+        double D = this->calculateLocalizationIndex(ham_par);
+
+        for (size_t i = 0; i < this->N_P; i++) {
+            for (size_t j = i+1; j < this->N_P; j++) {
+                
+            }
+        }
+
+
+
+    }
+
+
+}
 
 
 
