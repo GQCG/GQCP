@@ -19,16 +19,39 @@
 #define ERLocalizer_hpp
 
 
+#include "HamiltonianParameters/HamiltonianParameters.hpp"
+
+
+namespace GQCP {
+
+
 /**
  *  A class that localizes a set of orthonormal orbitals according to the Edmiston-Ruedenberg localization index
  */
 class ERLocalizer {
 private:
+    const size_t N_P;     // the number of electron pairs
+
 
 public:
-    
+    // CONSTRUCTORS
+    /**
+     *  @param N_P        the number of electron pairs
+     */
+    ERLocalizer(size_t N_P);
+
+
+    // PUBLIC METHODS
+    /**
+     *  @param ham_par      the Hamiltonian parameters that contain the two-electron integrals upon which the Edmiston-Ruedenberg localization index is calculated
+     *
+     *  @return the Edmiston-Ruedenberg localization index
+     */
+    double calculateLocalizationIndex(const GQCP::HamiltonianParameters& ham_par) const;
 };
 
+
+}  // namespace GQCP
 
 
 #endif /* ERLocalizer_hpp */
