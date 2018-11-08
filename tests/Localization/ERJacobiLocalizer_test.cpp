@@ -27,19 +27,25 @@
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
 
 
+
+
+#include <cmath>
+
 BOOST_AUTO_TEST_CASE ( sandbox ) {
 
     GQCP::Molecule h2o ("../tests/data/h2o.xyz");
+    size_t N_P = h2o.get_N()/2;
+
     auto ao_basis = std::make_shared<GQCP::AOBasis>(h2o, "STO-3G");
     auto mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);  // in AOBasis
     mol_ham_par.LowdinOrthonormalize();  // in the Löwdin basis
 
 
-    GQCP::ERJacobiLocalizer localizer (h2o.get_N()/2);
-    double index = localizer.calculateLocalizationIndex(mol_ham_par);
-    std::cout << index << std::endl;
+    GQCP::ERJacobiLocalizer localizer (N_P);
+    std::cout << mol_ham_par.calculateEdmistonRuedenbergLocalizationIndex(N_P) << std::endl;
 
     localizer.localize(mol_ham_par);  // now the Hamiltonian parameters are in the localized basis
-    index = localizer.calculateLocalizationIndex(mol_ham_par);
-    std::cout << index << std::endl;
+    std::cout << mol_ham_par.calculateEdmistonRuedenbergLocalizationIndex(N_P) << std::endl;
+
+
 }

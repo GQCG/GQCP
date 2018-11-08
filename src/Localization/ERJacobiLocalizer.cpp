@@ -72,7 +72,7 @@ void ERJacobiLocalizer::calculateJacobiCoefficients(const GQCP::HamiltonianParam
 double ERJacobiLocalizer::calculateMaximizingRotationAngle(const GQCP::HamiltonianParameters& ham_par, size_t i, size_t j) const {
 
     double denominator = std::sqrt(std::pow(this->B, 2) + std::pow(this->C, 2));
-    return 0.25 * std::atan2(this->B / denominator, this->C / denominator);
+    return 0.25 * std::atan2(this->C / denominator, this->B / denominator);  // atan(y/x) = std::atan2(y,x)
 }
 
 
@@ -101,7 +101,6 @@ void ERJacobiLocalizer::localize(GQCP::HamiltonianParameters& ham_par) {
     while (!(this->is_converged)) {
 
         double D_old = ham_par.calculateEdmistonRuedenbergLocalizationIndex(this->N_P);
-        std::cout << "D_old: " << D_old << std::endl;
 
         // Find the Jacobi parameters (i,j,theta) that maximize the Edmiston-Ruedenberg localization index
         std::priority_queue<JacobiRotationLocalizationIndex> max_q;  // an ascending queue (on localization index) because we have implemented JacobiRotationLocalizationIndex::operator<
@@ -124,10 +123,7 @@ void ERJacobiLocalizer::localize(GQCP::HamiltonianParameters& ham_par) {
 
 
         // Check for convergence
-        double D_new = max_q.top().index_after_rotation;
-        std::cout << "D_new: " << D_new << std::endl;
-
-
+        double D_new = max_q.top().index_after_rotation;  // the 'promised' localization index after rotation is equal to the one that would be calculated
         if (std::abs(D_new - D_old) < this->threshold) {
             this->is_converged = true;
         } else {
