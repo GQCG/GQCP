@@ -75,6 +75,7 @@ BOOST_AUTO_TEST_CASE ( mulliken_N2_STO_3G ) {
 
     size_t K = ao_basis->get_number_of_basis_functions();
 
+    // We include all basis functions
     GQCP::Vectoru gto_list (K);
     for(size_t i = 0; i<K; i++){
         gto_list[i] = i;
@@ -86,16 +87,12 @@ BOOST_AUTO_TEST_CASE ( mulliken_N2_STO_3G ) {
 
     // Create a 1-RDM for N2
     Eigen::MatrixXd D = Eigen::MatrixXd::Zero(K, K);
-    for (size_t i = 0; i<N/2; i++){
-        D(i,i) = 1;
-    }
-
-    GQCP::OneRDM one_rdm (2*D);
+    GQCP::OneRDM one_rdm = GQCP::calculateRHF1RDM(K, N);
 
     double mulliken_population = GQCP::calculateExpectationValue(mulliken, one_rdm);
     BOOST_CHECK(std::abs(mulliken_population - (N)) < 1.0e-08);
 
-    // Repeat this for the RDM of DOCI calculation
+    // Repeat this for the RDM of a DOCI expansion
 
 
     // Solve the SCF equations
