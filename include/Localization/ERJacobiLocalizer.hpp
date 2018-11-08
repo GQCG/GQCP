@@ -105,13 +105,6 @@ public:
 
     // PUBLIC METHODS
     /**
-     *  @param ham_par      the Hamiltonian parameters that contain the two-electron integrals upon which the Edmiston-Ruedenberg localization index is calculated
-     *
-     *  @return the Edmiston-Ruedenberg localization index
-     */
-    double calculateLocalizationIndex(const GQCP::HamiltonianParameters& ham_par) const;
-
-    /**
      *  Localize the Hamiltonian parameters by maximizing the Edmiston-Ruedenberg localization index, using the 'best' Jacobi rotation in every iteration step
      *
      *  @param ham_par      the Hamiltonian parameters that should be localized

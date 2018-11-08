@@ -139,6 +139,13 @@ public:
      *  @return the super-generalized Fock matrix
      */
     GQCP::TwoElectronOperator calculateSuperGeneralizedFockMatrix(const GQCP::OneRDM& D, const GQCP::TwoRDM& d) const;
+
+    /**
+     *  @param N_P      the number of electron pairs
+     *
+     *  @return the Edmiston-Ruedenberg localization index g(i,i,i,i)
+     */
+    double calculateEdmistonRuedenbergLocalizationIndex(size_t N_P) const;
 };
 
 

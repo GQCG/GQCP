@@ -82,7 +82,9 @@ double ERJacobiLocalizer::calculateMaximizingRotationAngle(const GQCP::Hamiltoni
  *  @return the maximal Edmiston-Ruedenberg for the current Jacobi coefficients A, B, C
  */
 double ERJacobiLocalizer::calculateMaximalLocalizationIndex(const GQCP::HamiltonianParameters& ham_par) const {
-    return this->calculateLocalizationIndex(ham_par) + this->A + std::sqrt(std::pow(this->B, 2) + std::pow(this->C, 2));
+
+    double D = ham_par.calculateEdmistonRuedenbergLocalizationIndex(this->N_P);
+    return D + this->A + std::sqrt(std::pow(this->B, 2) + std::pow(this->C, 2));
 }
 
 
@@ -92,33 +94,13 @@ double ERJacobiLocalizer::calculateMaximalLocalizationIndex(const GQCP::Hamilton
  */
 
 /**
- *  @param ham_par      the Hamiltonian parameters that contain the two-electron integrals upon which the Edmiston-Ruedenberg localization index is calculated
- *
- *  @return the Edmiston-Ruedenberg localization index
- */
-double ERJacobiLocalizer::calculateLocalizationIndex(const GQCP::HamiltonianParameters& ham_par) const {
-
-    double localization_index = 0.0;
-    auto g = ham_par.get_g();  // the two-electron integrals
-
-
-    // TODO: when Eigen releases TensorTrace, use it here
-    for (size_t i = 0; i < this->N_P; i++) {
-        localization_index += g(i,i,i,i);
-    }
-
-    return localization_index;
-}
-
-
-/**
  *  @param ham_par      the Hamiltonian parameters that should be localized
  */
 void ERJacobiLocalizer::localize(GQCP::HamiltonianParameters& ham_par) {
 
     while (!(this->is_converged)) {
 
-        double D_old = this->calculateLocalizationIndex(ham_par);
+        double D_old = ham_par.calculateEdmistonRuedenbergLocalizationIndex(this->N_P);
         std::cout << "D_old: " << D_old << std::endl;
 
         // Find the Jacobi parameters (i,j,theta) that maximize the Edmiston-Ruedenberg localization index

@@ -272,5 +272,22 @@ GQCP::TwoElectronOperator HamiltonianParameters::calculateSuperGeneralizedFockMa
 };
 
 
+/**
+ *  @param N_P      the number of electron pairs
+ *
+ *  @return the Edmiston-Ruedenberg localization index g(i,i,i,i)
+ */
+double HamiltonianParameters::calculateEdmistonRuedenbergLocalizationIndex(size_t N_P) const {
+
+    double localization_index = 0.0;
+
+    // TODO: when Eigen releases TensorTrace, use it here
+    for (size_t i = 0; i < N_P; i++) {
+        localization_index += this->g(i,i,i,i);
+    }
+
+    return localization_index;
+}
+
 
 }  // namespace GQCP
