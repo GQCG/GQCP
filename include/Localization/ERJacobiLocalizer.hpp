@@ -15,8 +15,8 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef ERLocalizer_hpp
-#define ERLocalizer_hpp
+#ifndef ERJacobiLocalizer_hpp
+#define ERJacobiLocalizer_hpp
 
 
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
@@ -26,11 +26,14 @@ namespace GQCP {
 
 
 /**
- *  A class that localizes a set of orthonormal orbitals according to the Edmiston-Ruedenberg localization index
+ *  A class that localizes a set of orthonormal orbitals according to the maximization of the Edmiston-Ruedenberg localization index. A maximum is found using subsequent Jacobi rotations.
  */
-class ERLocalizer {
+class ERJacobiLocalizer {
 private:
-    const size_t N_P;     // the number of electron pairs
+    const size_t N_P;  // the number of electron pairs
+    const double threshold;  // the threshold for maximization on subsequent localization indices
+
+    bool is_converged = false;
 
 
 public:
@@ -38,7 +41,7 @@ public:
     /**
      *  @param N_P        the number of electron pairs
      */
-    ERLocalizer(size_t N_P);
+    ERJacobiLocalizer(size_t N_P);
 
 
     // PUBLIC METHODS
@@ -48,10 +51,17 @@ public:
      *  @return the Edmiston-Ruedenberg localization index
      */
     double calculateLocalizationIndex(const GQCP::HamiltonianParameters& ham_par) const;
+
+    /**
+     *  @param ham_par      the Hamiltonian parameters that should be localized
+     */
+    void localize(GQCP::HamiltonianParameters& ham_par) const;
+
+
 };
 
 
 }  // namespace GQCP
 
 
-#endif /* ERLocalizer_hpp */
+#endif /* ERJacobiLocalizer_hpp */
