@@ -27,12 +27,9 @@
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
 
 
+BOOST_AUTO_TEST_CASE ( localization_index_raises ) {
 
-
-#include <cmath>
-
-BOOST_AUTO_TEST_CASE ( sandbox ) {
-
+    // Check if the Edmiston-Ruedenberg localization index is raised after a localization procedure
     GQCP::Molecule h2o ("../tests/data/h2o.xyz");
     size_t N_P = h2o.get_N()/2;
 
@@ -41,11 +38,12 @@ BOOST_AUTO_TEST_CASE ( sandbox ) {
     mol_ham_par.LowdinOrthonormalize();  // in the Löwdin basis
 
 
-    GQCP::ERJacobiLocalizer localizer (N_P);
-    std::cout << mol_ham_par.calculateEdmistonRuedenbergLocalizationIndex(N_P) << std::endl;
+    double D_before = mol_ham_par.calculateEdmistonRuedenbergLocalizationIndex(N_P);
 
+    GQCP::ERJacobiLocalizer localizer (N_P, 1.0e-04);
     localizer.localize(mol_ham_par);  // now the Hamiltonian parameters are in the localized basis
-    std::cout << mol_ham_par.calculateEdmistonRuedenbergLocalizationIndex(N_P) << std::endl;
 
+    double D_after = mol_ham_par.calculateEdmistonRuedenbergLocalizationIndex(N_P);
 
+    BOOST_CHECK(D_after > D_before);
 }
