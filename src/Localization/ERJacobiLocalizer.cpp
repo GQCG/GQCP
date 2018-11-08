@@ -17,6 +17,9 @@
 // 
 #include "Localization/ERJacobiLocalizer.hpp"
 
+#include <cmath>
+#include <queue>
+
 
 namespace GQCP {
 
@@ -26,11 +29,61 @@ namespace GQCP {
  */
 
 /**
- *  @param N_P        the number of electron pairs
+ *  @param N_P                              the number of electron pairs
+ *  @param threshold                        the threshold for maximization on subsequent localization indices
+ *  @param maximum_number_of_iterations     the maximum number of iterations for the localization algorithm
  */
-ERJacobiLocalizer::ERJacobiLocalizer(size_t N_P) :
-    N_P (N_P)
+ERJacobiLocalizer::ERJacobiLocalizer(size_t N_P, double threshold, size_t maximum_number_of_iterations) :
+    N_P (N_P),
+    threshold (threshold),
+    maximum_number_of_iterations (maximum_number_of_iterations)
 {}
+
+
+
+/*
+ *  PRIVATE METHODS
+ */
+
+/**
+ *  Calculate the coefficients A, B, C for the Jacobi rotations
+ *
+ *  @param ham_par      the Hamiltonian parameters
+ *  @param i            the index of spatial orbital 1
+ *  @param j            the index of spatial orbital 2
+ */
+void ERJacobiLocalizer::calculateJacobiCoefficients(const GQCP::HamiltonianParameters& ham_par, size_t i, size_t j) {
+
+    auto g = ham_par.get_g();  // two-electron integrals
+
+    this->A = 0.25 * (2*g(i,i,j,j) + 4*g(i,j,i,j) - g(i,i,i,i) - g(j,j,j,j));
+    this->B = -this->A;
+    this->C = g(i,j,j,j) - g(i,i,i,j);
+}
+
+
+/**
+ *  @param ham_par      the Hamiltonian parameters
+ *  @param i            the index of spatial orbital 1
+ *  @param j            the index of spatial orbital 2
+ *
+ *  @return the angle which maximizes the Edmiston-Ruedenberg localization index for the orbitals i and j
+ */
+double ERJacobiLocalizer::calculateMaximizingRotationAngle(const GQCP::HamiltonianParameters& ham_par, size_t i, size_t j) const {
+
+    double denominator = std::sqrt(std::pow(this->B, 2) + std::pow(this->C, 2));
+    return 0.25 * std::atan2(this->B / denominator, this->C / denominator);
+}
+
+
+/**
+ *  @param ham_par      the Hamiltonian parameters that contain the two-electron integrals upon which the Edmiston-Ruedenberg localization index is calculated
+ *
+ *  @return the maximal Edmiston-Ruedenberg for the current Jacobi coefficients A, B, C
+ */
+double ERJacobiLocalizer::calculateMaximalLocalizationIndex(const GQCP::HamiltonianParameters& ham_par) const {
+    return this->calculateLocalizationIndex(ham_par) + this->A + std::sqrt(std::pow(this->B, 2) + std::pow(this->C, 2));
+}
 
 
 
@@ -61,25 +114,50 @@ double ERJacobiLocalizer::calculateLocalizationIndex(const GQCP::HamiltonianPara
 /**
  *  @param ham_par      the Hamiltonian parameters that should be localized
  */
-void ERJacobiLocalizer::localize(GQCP::HamiltonianParameters& ham_par) const {
+void ERJacobiLocalizer::localize(GQCP::HamiltonianParameters& ham_par) {
 
     while (!(this->is_converged)) {
 
-        double D = this->calculateLocalizationIndex(ham_par);
+        double D_old = this->calculateLocalizationIndex(ham_par);
+        std::cout << "D_old: " << D_old << std::endl;
 
-        for (size_t i = 0; i < this->N_P; i++) {
-            for (size_t j = i+1; j < this->N_P; j++) {
-                
+        // Find the Jacobi parameters (i,j,theta) that maximize the Edmiston-Ruedenberg localization index
+        std::priority_queue<JacobiRotationLocalizationIndex> max_q;  // an ascending queue (on localization index) because we have implemented JacobiRotationLocalizationIndex::operator<
+
+        for (size_t j = 0; j < this->N_P; j++) {
+            for (size_t i = j+1; i < this->N_P; i++) {  // loop over i>j
+                this->calculateJacobiCoefficients(ham_par, i, j);
+
+                double theta = this->calculateMaximizingRotationAngle(ham_par, i, j);
+                GQCP::JacobiRotationParameters jacobi_rot_par {i, j, theta};
+                double D_rotated = this->calculateMaximalLocalizationIndex(ham_par);
+
+                max_q.emplace(JacobiRotationLocalizationIndex {jacobi_rot_par, D_rotated});
             }
         }
 
+        // Rotate the Hamiltonian parameters using the maximizing Jacobi parameters
+        auto maximizing_jacobi_parameters = max_q.top().jacobi_rotation_parameters;
+        ham_par.rotate(maximizing_jacobi_parameters);
 
 
-    }
+        // Check for convergence
+        double D_new = max_q.top().index_after_rotation;
+        std::cout << "D_new: " << D_new << std::endl;
 
 
+        if (std::abs(D_new - D_old) < this->threshold) {
+            this->is_converged = true;
+        } else {
+            this->iterations++;
+
+            if (this->iterations == this->maximum_number_of_iterations) {
+                throw std::runtime_error("The localization algorithm did not converge within the given maximum number of iterations.");
+            }
+        }
+
+    }  // while not converged
 }
-
 
 
 }  // namespace GQCP

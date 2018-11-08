@@ -30,18 +30,77 @@ namespace GQCP {
  */
 class ERJacobiLocalizer {
 private:
+    // PRIVATE MEMBERS
     const size_t N_P;  // the number of electron pairs
     const double threshold;  // the threshold for maximization on subsequent localization indices
+    const size_t maximum_number_of_iterations;  // the maximum number of iterations for the localization algorithm
 
     bool is_converged = false;
+    size_t iterations = 0;  // the number of iterations
+
+    bool are_calculated_jacobi_coefficients = false;
+    double A=0.0, B=0.0, C=0.0;  // the Jacobi rotation coefficients
+
+
+    // PRIVATE STRUCTS
+    /**
+     *  A struct that holds JacobiRotationParameters and a localization index
+     *
+     *  Since operator< is implemented, "optimal parameters" can easily be found using a priority queue
+     */
+    struct JacobiRotationLocalizationIndex {
+
+        GQCP::JacobiRotationParameters jacobi_rotation_parameters;
+        double index_after_rotation;
+
+        /**
+         *  An operator< that can be used to achieve a minimum priority queue: the order of arguments is reversed
+         *
+         *  @param other    the other JacobiRotationLocalizationIndex parameters
+         *
+         *  @return if the localization index of this is smaller than other
+         */
+        bool operator< (const JacobiRotationLocalizationIndex& other) const {
+            return this->index_after_rotation < other.index_after_rotation;
+        }
+    };
+
+
+    // PRIVATE METHODS
+    /**
+     *  Calculate the coefficients A, B, C for the Jacobi rotations
+     *
+     *  @param ham_par      the Hamiltonian parameters
+     *  @param i            the index of spatial orbital 1
+     *  @param j            the index of spatial orbital 2
+     */
+    void calculateJacobiCoefficients(const GQCP::HamiltonianParameters& ham_par, size_t i, size_t j);
+
+    /**
+     *  @param ham_par      the Hamiltonian parameters
+     *  @param i            the index of spatial orbital 1
+     *  @param j            the index of spatial orbital 2
+     *
+     *  @return the angle which maximizes the Edmiston-Ruedenberg localization index for the orbitals i and j
+     */
+    double calculateMaximizingRotationAngle(const GQCP::HamiltonianParameters& ham_par, size_t i, size_t j) const;
+
+    /**
+     *  @param ham_par      the Hamiltonian parameters that contain the two-electron integrals upon which the Edmiston-Ruedenberg localization index is calculated
+     *
+     *  @return the maximal Edmiston-Ruedenberg for the current Jacobi coefficients A, B, C
+     */
+    double calculateMaximalLocalizationIndex(const GQCP::HamiltonianParameters& ham_par) const;
 
 
 public:
     // CONSTRUCTORS
     /**
-     *  @param N_P        the number of electron pairs
+     *  @param N_P                              the number of electron pairs
+     *  @param threshold                        the threshold for maximization on subsequent localization indices
+     *  @param maximum_number_of_iterations     the maximum number of iterations for the localization algorithm
      */
-    ERJacobiLocalizer(size_t N_P);
+    ERJacobiLocalizer(size_t N_P, double threshold=1.0e-08, size_t maximum_number_of_iterations=128);
 
 
     // PUBLIC METHODS
@@ -53,11 +112,11 @@ public:
     double calculateLocalizationIndex(const GQCP::HamiltonianParameters& ham_par) const;
 
     /**
+     *  Localize the Hamiltonian parameters by maximizing the Edmiston-Ruedenberg localization index, using the 'best' Jacobi rotation in every iteration step
+     *
      *  @param ham_par      the Hamiltonian parameters that should be localized
      */
-    void localize(GQCP::HamiltonianParameters& ham_par) const;
-
-
+    void localize(GQCP::HamiltonianParameters& ham_par);
 };
 
 
