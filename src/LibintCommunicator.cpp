@@ -50,8 +50,10 @@ LibintCommunicator::~LibintCommunicator() {
  */
 
 /**
- *  @return the TwoElectronOperator corresponding to the matrix representation of @param operator_type in the given
- *  @param ao_basis
+ *  @param operator_type    the name of the operator as specified by the enumeration
+ *  @param ao_basis         the AO basis in which the two-electron operator should be expressed
+ *
+ *  @return the matrix representation of a two-electron operator in the given AO basis
  */
 GQCP::TwoElectronOperator LibintCommunicator::calculateTwoElectronIntegrals(libint2::Operator operator_type, const GQCP::AOBasis& ao_basis) const {
 
