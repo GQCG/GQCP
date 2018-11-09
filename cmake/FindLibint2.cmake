@@ -13,11 +13,11 @@
 
 # We have to find the version! Luckily, libint2 -when installed defaultly- provides a directory /usr/local/libint/x.y.z
 # When the user has set ${LIBINTROOT} in the enviroment, this path can also be used
-find_path(LIBINT_PREFIX include/libint2.hpp HINTS /usr/local/libint/*/ ENV LIBINTROOT)
+find_path(LIBINT_PREFIX include/libint2.hpp HINTS /usr/local/libint/*/ ENV{LIBINTROOT} ${LIBINT_ROOT})
 
 
 if("${LIBINT_PREFIX}" STREQUAL "LIBINT_PREFIX-NOTFOUND")
-    message(WARNING "libint2 was not found in the default location /usr/local/libint/x.y.z or through the environment variables")
+    message(FATAL_ERROR "libint2 was not found in the default location /usr/local/libint/x.y.z or through the environment variables")
 else()
     # Set FOUND
     set(libint2_FOUND TRUE)
