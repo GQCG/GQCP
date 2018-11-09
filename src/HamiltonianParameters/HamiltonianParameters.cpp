@@ -350,28 +350,11 @@ OneElectronOperator HamiltonianParameters::calculateMullikenOperator(const Vecto
     }
 
     Eigen::MatrixXd mulliken_matrix = Eigen::MatrixXd(this->K, this->K);
-    // For an orthognal basis
-    if (this->S.get_matrix_representation().isApprox(Eigen::MatrixXd::Identity(this->K, this->K))) {
-        Eigen::MatrixXd C_inverse = this->get_C().inverse();
-
-        //  Formula for the Mulliken matrix
-        mulliken_matrix = (C_inverse * p_a * this->get_C() + this->get_C() * p_a * C_inverse) / 2;
-
-    } else if (this->get_C().isApprox(Eigen::MatrixXd::Identity(this->K, this->K))) {
-
-        // Formula for Mulliken matrix is AO basis
-        mulliken_matrix = (p_a * this->S.get_matrix_representation() + this->S.get_matrix_representation() * p_a)/2;
-
-    } else {
-
-
-
-    }
-    Eigen::MatrixXd C_inverse = this->get_C().inverse();
-
-
+    Eigen::MatrixXd S_inverse = this->S.get_matrix_representation().inverse();
+    mulliken_matrix = (C.adjoint() * C * S_inverse * C.adjoint() * p_a * C + C.adjoint() * p_a * C * S_inverse * C.adjoint()* C)/2;
 
     return OneElectronOperator(mulliken_matrix);
-
 }
+
+
 }  // namespace GQCP
