@@ -259,7 +259,7 @@ void AP1roGPSESolver::solve() {
     // Solve the AP1roG equations using a Newton-based algorithm
 
     numopt::VectorFunction f = [this](const Eigen::VectorXd& x) { return this->calculateCoordinateFunctions(x); };
-    numopt::JacobianFunction J = [this](const Eigen::VectorXd& x) { return this->calculateJacobian(x); };
+    numopt::MatrixFunction J = [this](const Eigen::VectorXd& x) { return this->calculateJacobian(x); };
 
 
     Eigen::VectorXd x0 = this->initial_geminal_coefficients.asVector();
