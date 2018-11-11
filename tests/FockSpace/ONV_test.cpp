@@ -324,3 +324,26 @@ BOOST_AUTO_TEST_CASE ( findMatchingOccupations ) {
     BOOST_TEST(spin_string2.findMatchingOccupations(spin_string3) == (std::vector<size_t> {1,4}), boost::test_tools::per_element());
     BOOST_TEST(spin_string3.findMatchingOccupations(spin_string2) == (std::vector<size_t> {1,4}), boost::test_tools::per_element());
 }
+
+BOOST_AUTO_TEST_CASE ( operator_phase_factor_onv ) {
+
+    // Sign should be negative on an index which has passed an odd amount of electron
+    // and positive for an even amount.
+    GQCP::ONV spin_string1 (6, 3, 22);  // "010110" (22)
+
+    BOOST_CHECK_EQUAL(spin_string1.operatorPhaseFactor(0), 1);
+    BOOST_CHECK_EQUAL(spin_string1.operatorPhaseFactor(1), 1);
+    BOOST_CHECK_EQUAL(spin_string1.operatorPhaseFactor(2), -1);
+    BOOST_CHECK_EQUAL(spin_string1.operatorPhaseFactor(3), 1);
+    BOOST_CHECK_EQUAL(spin_string1.operatorPhaseFactor(4), 1);
+    BOOST_CHECK_EQUAL(spin_string1.operatorPhaseFactor(5), -1);
+
+
+    BOOST_CHECK_EQUAL(spin_string1.operatorPhaseFactor(0), 1);
+    BOOST_CHECK_EQUAL(spin_string1.operatorPhaseFactor(1), 1);
+    BOOST_CHECK_EQUAL(spin_string1.operatorPhaseFactor(2), -1);
+    BOOST_CHECK_EQUAL(spin_string1.operatorPhaseFactor(3), 1);
+    BOOST_CHECK_EQUAL(spin_string1.operatorPhaseFactor(4), 1);
+    BOOST_CHECK_EQUAL(spin_string1.operatorPhaseFactor(5), -1);
+
+}
