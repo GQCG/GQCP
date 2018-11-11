@@ -179,7 +179,7 @@ Eigen::VectorXd DOCI::matrixVectorProduct(const HamiltonianParameters& hamiltoni
             this->fock_space.setNext(onv);
         }
 
-        matvec(I) = double_I;
+        matvec(I) += double_I;
 
     }   // address (I) loop
 
