@@ -109,42 +109,79 @@ Eigen::VectorXd DOCI::matrixVectorProduct(const HamiltonianParameters& hamiltoni
     size_t dim = this->fock_space.get_dimension();
     // Create the first spin string. Since in DOCI, alpha == beta, we can just treat them as one
     // And multiply all contributions by 2
+
     ONV onv = this->fock_space.get_ONV(0);  // spin string with address
+    size_t N = this->fock_space.get_N();
 
     // Diagonal contributions
     Eigen::VectorXd matvec = diagonal.cwiseProduct(x);
 
 
-    // Off-diagonal contributions
-    for (size_t I = 0; I < dim; I++) {  // I loops over all the addresses of the spin strings
-        for (size_t e1 = 0; e1 < this->fock_space.get_N(); e1++) {  // e1 (electron 1) loops over the (number of) electrons
-            size_t p = onv.get_occupied_index(e1);  // retrieve the index of the orbital the electron occupies
-            for (size_t q = 0; q < p; q++) {  // q loops over SOs
-                if (!onv.isOccupied(q)) {  // if q not in I
+    for (size_t I = 0; I < dim; I++) {  // I loops over all the addresses of the onv
+        double double_I = 0;
+        for (size_t e1 = 0; e1 < N; e1++) {  // e1 (electron 1) loops over the (number of) electrons
+            size_t p = onv.get_occupied_index(e1);  // retrieve the index of a given electron
 
-                    onv.annihilate(p);
-                    onv.create(q);
+            // remove the weight from the initial address I, because we annihilate
+            size_t address = I - this->fock_space.get_vertex_weights(p, e1 + 1);
+            // The e2 iteration counts the amount of encountered electrons for the creation operator
+            // We only consider greater addresses than the initial one (because of symmetry)
+            // Hence we are only required to start counting from the annihilated electron (e1)
+            size_t e2 = e1;
 
-                    size_t J = this->fock_space.getAddress(onv);  // J is the address of a string that couples to I
+            size_t q = p+1;
 
-                    // The loops are p->K and q<p. So, we should normally multiply by a factor 2 (since the summand is symmetric)
-                    // However, we are setting both of the symmetric indices of Hamiltonian, so no factor 2 is required
-                    matvec(I) += hamiltonian_parameters.get_g()(p, q, p, q) * x(J);
-                    matvec(J) += hamiltonian_parameters.get_g()(p, q, p, q) * x(I);
-
-                    onv.annihilate(q);  // reset the spin string after previous creation
-                    onv.create(p);  // reset the spin string after previous annihilation
-
-                }  // q < p loop
+            // Test whether next orbital is occupied, until we reach unoccupied orbital
+            while (e2 < N - 1 && q == onv.get_occupied_index(e2+1)) {
+                // Shift the address for the electrons encountered after the annihilation but before the creation
+                // Their currents weights are no longer correct, the corresponding weights can be calculated
+                // initial weight can be found in the addressing scheme, on the index of the orbital (row) and electron count (column)
+                // since e2 starts at the annihilated position, the first shifted electron is at e2's position + 1, (given the while loop condition this is also (e2+1)'s position)
+                // The nature of the addressing scheme requires us the add 1 to the electron count (because we start with the 0'th electron
+                // And for the initial weight we are at an extra electron (before the annihilation) hence the difference in weight is:
+                // the new weight at (e2+1) position (row) and e2+1 (column) - the old weight at  (e2+1) position (row) and e2+2 (column)
+                address += this->fock_space.get_vertex_weights(q, e2 + 1) - this->fock_space.get_vertex_weights(q, e2 + 2);
+                e2++;  // adding occupied orbitals to the electron count
+                q++;
             }
-        }  // p or e1 loop
+            e2++;
+            while (q < K) {
+                size_t J = address + this->fock_space.get_vertex_weights(q, e2);
 
-        // Skip the last permutation
-        if (I < dim-1) {
+                // address has been calculated, since I is only updated in the outer loop
+                // it is more efficient to add it to a locally scoped variable and add it to the vector with one access.
+
+                double_I += hamiltonian_parameters.get_g()(p, q, p, q) * x(J);
+                matvec(J) += hamiltonian_parameters.get_g()(p, q, p, q) * x(I);
+
+                // go to the next orbital
+                q++;
+
+                // if we encounter an occupied orbital, perform the shift, and test whether the following orbitals are occupied (or not)
+                // then proceed to set q to the next non-occupied orbital.
+                if (e2 < N && q == onv.get_occupied_index(e2)) {
+                    address += this->fock_space.get_vertex_weights(q, e2) - this->fock_space.get_vertex_weights(q, e2 + 1);
+                    q++;
+                    while (e2 < N - 1 &&  q == onv.get_occupied_index(e2+1)) {
+                        // see previous
+                        address += this->fock_space.get_vertex_weights(q, e2 + 1) - this->fock_space.get_vertex_weights(q, e2 + 2);
+                        e2++;
+                        q++;
+                    }
+                    e2++;
+                }
+            }  //  (creation)
+
+        } // e1 loop (annihilation)
+
+        // Prevent last permutation
+        if (I < dim - 1) {
             this->fock_space.setNext(onv);
         }
 
-    }  // address (I) loop
+        matvec(I) = double_I;
+
+    }   // address (I) loop
 
     return matvec;
 }
