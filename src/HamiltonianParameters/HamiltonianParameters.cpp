@@ -331,27 +331,40 @@ HamiltonianParameters HamiltonianParameters::constrain(const GQCP::TwoElectronOp
  */
 OneElectronOperator HamiltonianParameters::calculateMullikenOperator(const Vectoru& gto_list) {
 
+
     if (!this->get_ao_basis()) {
         throw std::invalid_argument("The Hamiltonian parameters has no underlying GTO basis, Mulliken analysis is not possible.");
     }
 
-    if (gto_list.size() > this->get_K()) {
+    if (gto_list.size() > this->K) {
         throw std::invalid_argument("To many GTOs are selected");
     }
 
-    Eigen::MatrixXd p_a = Eigen::MatrixXd::Zero(this->get_K(), this->get_K());
+    Eigen::MatrixXd p_a = Eigen::MatrixXd::Zero(this->K, this->K);
 
     for (size_t index : gto_list) {
-        if (index >= this->get_K()) {
+        if (index >= this->K) {
             throw std::invalid_argument("GTO index is too large");
         }
 
         p_a(index, index) = 1;
     }
 
+    OneElectronOperator S_GTO = this->S;
+    S_GTO.transform(C.inverse());
+
+    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes_gto (S_GTO.get_matrix_representation());
+    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes_ov (S.get_matrix_representation());
+
+    Eigen::MatrixXd S_root = saes_ov.operatorSqrt();
+
+    Eigen::MatrixXd S_GTO_root_inverse = saes_gto.operatorInverseSqrt();
+    Eigen::MatrixXd S_GTO_root = saes_gto.operatorSqrt();
+
+
     Eigen::MatrixXd mulliken_matrix = Eigen::MatrixXd(this->K, this->K);
-    Eigen::MatrixXd S_inverse = this->S.get_matrix_representation().inverse();
-    mulliken_matrix = (C.adjoint() * C * S_inverse * C.adjoint() * p_a * C + C.adjoint() * p_a * C * S_inverse * C.adjoint()* C)/2;
+
+    mulliken_matrix = (C.adjoint() * S_root * S_GTO_root_inverse * p_a * S_GTO_root * S_root * C + C.adjoint() * S_root * S_GTO_root * p_a * S_GTO_root_inverse * S_root * C)/2 ;
 
     return OneElectronOperator(mulliken_matrix);
 }
