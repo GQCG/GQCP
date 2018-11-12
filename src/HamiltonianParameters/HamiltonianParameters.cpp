@@ -178,31 +178,6 @@ void HamiltonianParameters::LowdinOrthonormalize() {
  *  @param D      the 1-RDM
  *  @param d      the 2-RDM
  *
- *  @return the energy as a result of the contraction of the 1- and 2-RDMs with the one- and two-electron integrals
- */
-double HamiltonianParameters::calculateEnergy(const GQCP::OneRDM& D, const GQCP::TwoRDM& d) const {
-
-    double energy_by_contraction = (this->h.get_matrix_representation() * D.get_matrix_representation()).trace();
-
-    Eigen::Tensor<double, 4> g = this->g.get_matrix_representation();
-
-    // Specify the contractions for the relevant contraction of the two-electron integrals and the 2-RDM
-    //      0.5 g(p q r s) d(p q r s)
-    Eigen::array<Eigen::IndexPair<int>, 4> contractions = {Eigen::IndexPair<int>(0,0), Eigen::IndexPair<int>(1,1), Eigen::IndexPair<int>(2,2), Eigen::IndexPair<int>(3,3)};
-    //      Perform the contraction
-    Eigen::Tensor<double, 0> contraction = 0.5 * g.contract(d.get_matrix_representation(), contractions);
-
-    // As the contraction is a scalar (a tensor of rank 0), we should access by (0).
-    energy_by_contraction += contraction(0);
-
-    return energy_by_contraction;
-}
-
-
-/**
- *  @param D      the 1-RDM
- *  @param d      the 2-RDM
- *
  *  @return the generalized Fock matrix
  */
 GQCP::OneElectronOperator HamiltonianParameters::calculateGeneralizedFockMatrix(const GQCP::OneRDM& D, const GQCP::TwoRDM& d) const {

@@ -38,9 +38,7 @@ namespace GQCP {
  */
 Atom::Atom(size_t atomic_number, double x, double y, double z) :
     atomic_number (atomic_number),
-    x (x),
-    y (y),
-    z (z)
+    position (Eigen::Vector3d {x, y, z})
 {}
 
 
@@ -82,7 +80,7 @@ bool Atom::operator<(const GQCP::Atom& other) const {
  *  @return the updated output stream
  */
 std::ostream& operator<<(std::ostream& os, const GQCP::Atom& atom) {
-    os << std::left << std::setw(3) << GQCP::elements::atomicNumberToElement(atom.atomic_number) << '(' << atom.x << ", " << atom.y << ", " << atom.z << ")\n";
+    os << std::left << std::setw(3) << GQCP::elements::atomicNumberToElement(atom.atomic_number) << '(' << atom.position.x() << ", " << atom.position.y() << ", " << atom.position.z() << ")\n";
     return os;
 }
 
@@ -100,9 +98,9 @@ std::ostream& operator<<(std::ostream& os, const GQCP::Atom& atom) {
 bool Atom::isEqualTo(const GQCP::Atom& other, double tolerance) const {
 
     return (this->atomic_number == other.atomic_number) &&
-           (std::abs(this->x - other.x) < tolerance) &&
-           (std::abs(this->y - other.y) < tolerance) &&
-           (std::abs(this->z - other.z) < tolerance);
+           (std::abs(this->position.x() - other.position.x()) < tolerance) &&
+           (std::abs(this->position.y() - other.position.y()) < tolerance) &&
+           (std::abs(this->position.z() - other.position.z()) < tolerance);
 }
 
 
@@ -122,16 +120,16 @@ bool Atom::isSmallerThan(const GQCP::Atom& other, double tolerance) const {
         return false;
     } else {  // the atomic numbers are equal
 
-        if (std::abs(this->x - other.x) > tolerance) {  // the difference is meaningful
-            return (this->x < other.x);
+        if (std::abs(this->position.x() - other.position.x()) > tolerance) {  // the difference is meaningful
+            return (this->position.x() < other.position.x());
         } else {  // the x-coordinates are considered equal
 
-            if (std::abs(this->y - other.y) > tolerance) {  // the difference is meaningful
-                return (this->y < other.y);
+            if (std::abs(this->position.y() - other.position.y()) > tolerance) {  // the difference is meaningful
+                return (this->position.y() < other.position.y());
             } else {  // the y-coordinates are considered equal
 
-                if (std::abs(this->z - other.z) > tolerance) {  // the difference is meaningful
-                    return (this->z < other.z);
+                if (std::abs(this->position.z() - other.position.z()) > tolerance) {  // the difference is meaningful
+                    return (this->position.z() < other.position.z());
                 } else {  // the z-coordinates are considered equal
                     return false;
                 }
@@ -148,9 +146,7 @@ bool Atom::isSmallerThan(const GQCP::Atom& other, double tolerance) const {
  */
 double Atom::calculateDistance(const GQCP::Atom& other) const {
 
-    return std::sqrt(std::pow(this->x - other.x, 2)
-                     + std::pow(this->y - other.y, 2)
-                     + std::pow(this->z - other.z, 2));
+    return (this->position - other.position).norm();
 }
 
 

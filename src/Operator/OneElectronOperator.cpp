@@ -28,6 +28,17 @@ namespace GQCP {
  */
 
 /**
+ *  A default constructor setting everything to zero
+ */
+OneElectronOperator::OneElectronOperator() :
+    BaseOperator(0),
+    matrix (Eigen::MatrixXd::Zero(0, 0))
+{}
+
+
+/**
+ *  Constructor based on a given @param matrix
+ *
  *  @param matrix   the explicit matrix representation of the one-electron operator
  */
 OneElectronOperator::OneElectronOperator(const Eigen::MatrixXd& matrix) :
@@ -64,6 +75,14 @@ GQCP::OneElectronOperator OneElectronOperator::operator+(const GQCP::OneElectron
  */
 bool OneElectronOperator::operator==(const GQCP::OneElectronOperator& other) {
     return this->isEqualTo(other);
+}
+
+
+/**
+ *  @return a OneElectronOperator whose matrix representation is negated
+ */
+GQCP::OneElectronOperator GQCP::OneElectronOperator::operator-() {
+    return GQCP::OneElectronOperator(-this->matrix);
 }
 
 

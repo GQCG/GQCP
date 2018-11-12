@@ -77,29 +77,28 @@ BOOST_AUTO_TEST_CASE( Szabo_integrals_h2_sto3g ) {
     GQCP::AOBasis basis (h2, "STO-3G");
     BOOST_CHECK_EQUAL(basis.get_number_of_basis_functions(), 2);
 
-
     // Calculate some integrals
-    auto S = GQCP::LibintCommunicator::get().calculateOneElectronIntegrals(libint2::Operator::overlap, basis);
+    auto S = GQCP::LibintCommunicator::get().calculateOverlapIntegrals(basis);
+    auto T = GQCP::LibintCommunicator::get().calculateKineticIntegrals(basis);
+    auto V = GQCP::LibintCommunicator::get().calculateNuclearIntegrals(basis);
 
-    auto T = GQCP::LibintCommunicator::get().calculateOneElectronIntegrals(libint2::Operator::kinetic, basis);
-    auto V = GQCP::LibintCommunicator::get().calculateOneElectronIntegrals(libint2::Operator::nuclear, basis);
     auto H_core = GQCP::OneElectronOperator(T.get_matrix_representation() + V.get_matrix_representation());
 
-    auto g = GQCP::LibintCommunicator::get().calculateTwoElectronIntegrals(libint2::Operator::coulomb, basis);
+    auto g = GQCP::LibintCommunicator::get().calculateCoulombRepulsionIntegrals(basis);
 
 
     // Fill in the reference values from Szabo
     Eigen::MatrixXd ref_S (2, 2);
     ref_S << 1.0,    0.6593,
-            0.6593, 1.0;
+             0.6593, 1.0;
 
     Eigen::MatrixXd ref_T (2, 2);
     ref_T << 0.7600, 0.2365,
-            0.2365, 0.7600;
+             0.2365, 0.7600;
 
     Eigen::MatrixXd ref_H_core (2, 2);
     ref_H_core << -1.1204, -0.9584,
-            -0.9584, -1.1204;
+                  -0.9584, -1.1204;
 
     BOOST_CHECK(S.get_matrix_representation().isApprox(ref_S, 1.0e-04));
     BOOST_CHECK(T.get_matrix_representation().isApprox(ref_T, 1.0e-04));
@@ -128,11 +127,12 @@ BOOST_AUTO_TEST_CASE( HORTON_integrals_h2o_sto3g ) {
 
 
     // Calculate some integrals
-    auto S = GQCP::LibintCommunicator::get().calculateOneElectronIntegrals(libint2::Operator::overlap, basis);
-    auto T = GQCP::LibintCommunicator::get().calculateOneElectronIntegrals(libint2::Operator::kinetic, basis);
-    auto V = GQCP::LibintCommunicator::get().calculateOneElectronIntegrals(libint2::Operator::nuclear, basis);
+    libint2::BasisSet basisset = basis.get_basis_functions();
+    auto S = GQCP::LibintCommunicator::get().calculateOverlapIntegrals(basis);
+    auto T = GQCP::LibintCommunicator::get().calculateKineticIntegrals(basis);
+    auto V = GQCP::LibintCommunicator::get().calculateNuclearIntegrals(basis);
 
-    auto g = GQCP::LibintCommunicator::get().calculateTwoElectronIntegrals(libint2::Operator::coulomb, basis);
+    auto g = GQCP::LibintCommunicator::get().calculateCoulombRepulsionIntegrals(basis);
 
 
     // Read in reference data from HORTON
@@ -153,5 +153,3 @@ BOOST_AUTO_TEST_CASE( HORTON_integrals_h2o_sto3g ) {
     BOOST_CHECK(V.get_matrix_representation().isApprox(ref_V, 1.0e-08));
     BOOST_CHECK(cpputil::linalg::areEqual(g.get_matrix_representation(), ref_g, 1.0e-06));
 }
-
-

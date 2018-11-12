@@ -39,6 +39,13 @@ private:
 public:
     // CONSTRUCTORS
     /**
+     *  A default constructor setting everything to zero
+     */
+    OneElectronOperator();
+
+    /**
+     *  Constructor based on a given @param matrix
+     *
      *  @param matrix   the explicit matrix representation of the one-electron operator
      */
     explicit OneElectronOperator(const Eigen::MatrixXd& matrix);
@@ -60,6 +67,11 @@ public:
      *  @return the sum of two OneElectronOperators, i.e. a OneElectronOperator whose matrix representation is the sum of the two matrix representations of the given OneElectronOperators
      */
     GQCP::OneElectronOperator operator+(const GQCP::OneElectronOperator& other);
+
+    /**
+     *  @return a OneElectronOperator whose matrix representation is negated
+     */
+    GQCP::OneElectronOperator operator-();
 
     /**
      *  @param other    the other OneElectronOperator
