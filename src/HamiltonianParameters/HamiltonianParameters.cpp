@@ -352,6 +352,7 @@ OneElectronOperator HamiltonianParameters::calculateMullikenOperator(const Vecto
 
     OneElectronOperator S_GTO = this->S;
     S_GTO.transform(C.inverse());
+    Eigen::MatrixXd S_GTO_mat = S_GTO.get_matrix_representation();
 
     Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes_gto (S_GTO.get_matrix_representation());
     Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes_ov (S.get_matrix_representation());
@@ -364,7 +365,7 @@ OneElectronOperator HamiltonianParameters::calculateMullikenOperator(const Vecto
 
     Eigen::MatrixXd mulliken_matrix = Eigen::MatrixXd(this->K, this->K);
 
-    mulliken_matrix = (C.adjoint() * S_root * S_GTO_root_inverse * p_a * S_GTO_root * S_root * C + C.adjoint() * S_root * S_GTO_root * p_a * S_GTO_root_inverse * S_root * C)/2 ;
+    mulliken_matrix = (C.adjoint() *  p_a * S_GTO_mat * C + C.adjoint() * S_GTO_mat * p_a * C)/2 ;
 
     return OneElectronOperator(mulliken_matrix);
 }
