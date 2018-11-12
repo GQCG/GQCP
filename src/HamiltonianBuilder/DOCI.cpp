@@ -118,7 +118,10 @@ Eigen::VectorXd DOCI::matrixVectorProduct(const HamiltonianParameters& hamiltoni
 
 
     for (size_t I = 0; I < dim; I++) {  // I loops over all the addresses of the onv
+
         double double_I = 0;
+        double double_J = x(I);
+
         for (size_t e1 = 0; e1 < N; e1++) {  // e1 (electron 1) loops over the (number of) electrons
             size_t p = onv.get_occupied_index(e1);  // retrieve the index of a given electron
 
@@ -129,10 +132,10 @@ Eigen::VectorXd DOCI::matrixVectorProduct(const HamiltonianParameters& hamiltoni
             // Hence we are only required to start counting from the annihilated electron (e1)
             size_t e2 = e1;
 
-            size_t q = p+1;
+            size_t q = p + 1;
 
             // Test whether next orbital is occupied, until we reach unoccupied orbital
-            while (e2 < N - 1 && q == onv.get_occupied_index(e2+1)) {
+            while (e2 < N - 1 && q == onv.get_occupied_index(e2 + 1)) {
                 // Shift the address for the electrons encountered after the annihilation but before the creation
                 // Their currents weights are no longer correct, the corresponding weights can be calculated
                 // initial weight can be found in the addressing scheme, on the index of the orbital (row) and electron count (column)
@@ -144,6 +147,7 @@ Eigen::VectorXd DOCI::matrixVectorProduct(const HamiltonianParameters& hamiltoni
                 e2++;  // adding occupied orbitals to the electron count
                 q++;
             }
+
             e2++;
             while (q < K) {
                 size_t J = address + this->fock_space.get_vertex_weights(q, e2);
@@ -152,7 +156,7 @@ Eigen::VectorXd DOCI::matrixVectorProduct(const HamiltonianParameters& hamiltoni
                 // it is more efficient to add it to a locally scoped variable and add it to the vector with one access.
 
                 double_I += hamiltonian_parameters.get_g()(p, q, p, q) * x(J);
-                matvec(J) += hamiltonian_parameters.get_g()(p, q, p, q) * x(I);
+                matvec(J) += hamiltonian_parameters.get_g()(p, q, p, q) * double_J;
 
                 // go to the next orbital
                 q++;
@@ -162,7 +166,7 @@ Eigen::VectorXd DOCI::matrixVectorProduct(const HamiltonianParameters& hamiltoni
                 if (e2 < N && q == onv.get_occupied_index(e2)) {
                     address += this->fock_space.get_vertex_weights(q, e2) - this->fock_space.get_vertex_weights(q, e2 + 1);
                     q++;
-                    while (e2 < N - 1 &&  q == onv.get_occupied_index(e2+1)) {
+                    while (e2 < N - 1 &&  q == onv.get_occupied_index(e2 + 1)) {
                         // see previous
                         address += this->fock_space.get_vertex_weights(q, e2 + 1) - this->fock_space.get_vertex_weights(q, e2 + 2);
                         e2++;
