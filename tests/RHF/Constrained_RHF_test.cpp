@@ -21,7 +21,7 @@
 #include "RHF/DIISRHFSCFSolver.hpp"
 #include "HamiltonianParameters/HamiltonianParameters_constructors.hpp"
 #include "properties/expectation_values.hpp"
-
+#include <random>
 
 #include <boost/test/unit_test.hpp>
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
@@ -80,7 +80,7 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test) {
         // Contrain the original Hamiltonian parameters
         auto constrained_ham_par = ao_ham_par.constrain(mulliken_operator, i);
 
-        // Create a plain RHF SCF solver and solve the SCF equations
+        // Create a DIIS RHF SCF solver and solve the SCF equations
         GQCP::DIISRHFSCFSolver diis_scf_solver (constrained_ham_par, CO, 6, 10e-12, 10000);
         diis_scf_solver.solve();
         auto rhf = diis_scf_solver.get_solution();
@@ -108,7 +108,7 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test) {
 }
 
 BOOST_AUTO_TEST_CASE ( constrained_CO_test_random_transformation) {
-    // Repeat the same test starting from a rotated
+    // Repeat the same test but perform a random transformation
 
 
     // Create a Molecule and an AOBasis
@@ -116,9 +116,24 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test_random_transformation) {
     auto ao_basis = std::make_shared<GQCP::AOBasis>(CO, "STO-3G");
     auto ao_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
 
-    ao_ham_par.randomRotate();
+
+
     size_t K = ao_basis->get_number_of_basis_functions();
     size_t N = CO.get_N();
+
+    // random transform
+    Eigen::MatrixXd T = Eigen::MatrixXd::Identity(K, K);
+    std::uniform_real_distribution<double> unif(-1,1);
+    std::default_random_engine re;
+    for (int i =0; i<K; i++) {
+        for (int j = i +1; j<K; j++) {
+            double random = unif(re);
+            std::cout<<random;
+            T(i,j) = random;
+            T(j,i) = random;
+        }
+    }
+    ao_ham_par.transform(T);
 
     GQCP::OneRDM one_rdm = GQCP::calculateRHF1RDM(K, N);
 
@@ -130,7 +145,7 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test_random_transformation) {
     Eigen::Matrix<double,21,3> CO_data;
     //          lambda  charge  energy
     CO_data <<  -1.0 , 1.73  , -110.530475 ,
-            -0.9 , 1.62  , -110.634766 ,
+             -0.9 , 1.62  , -110.634766 ,
             -0.8 , 1.50  , -110.737606 ,
             -0.7 , 1.37  , -110.836596 ,
             -0.6 , 1.23  , -110.929219 ,
@@ -163,7 +178,7 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test_random_transformation) {
         // Contrain the original Hamiltonian parameters
         auto constrained_ham_par = ao_ham_par.constrain(mulliken_operator, i);
 
-        // Create a plain RHF SCF solver and solve the SCF equations
+        // Create a DIIS RHF SCF solver and solve the SCF equations
         GQCP::DIISRHFSCFSolver diis_scf_solver (constrained_ham_par, CO, 6, 10e-12, 10000);
         diis_scf_solver.solve();
         auto rhf = diis_scf_solver.get_solution();
