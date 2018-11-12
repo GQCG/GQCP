@@ -327,8 +327,7 @@ BOOST_AUTO_TEST_CASE ( findMatchingOccupations ) {
 
 BOOST_AUTO_TEST_CASE ( operator_phase_factor_onv ) {
 
-    // Sign should be negative on an index which has passed an odd amount of electron
-    // and positive for an even amount.
+    // The sign should be negative on an index which has passed an odd amount of electrons
     GQCP::ONV spin_string1 (6, 3, 22);  // "010110" (22)
 
     BOOST_CHECK_EQUAL(spin_string1.operatorPhaseFactor(0), 1);
@@ -345,5 +344,4 @@ BOOST_AUTO_TEST_CASE ( operator_phase_factor_onv ) {
     BOOST_CHECK_EQUAL(spin_string1.operatorPhaseFactor(3), 1);
     BOOST_CHECK_EQUAL(spin_string1.operatorPhaseFactor(4), 1);
     BOOST_CHECK_EQUAL(spin_string1.operatorPhaseFactor(5), -1);
-
 }
