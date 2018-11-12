@@ -337,11 +337,11 @@ BOOST_AUTO_TEST_CASE ( operator_phase_factor_onv ) {
     BOOST_CHECK_EQUAL(spin_string1.operatorPhaseFactor(4), 1);
     BOOST_CHECK_EQUAL(spin_string1.operatorPhaseFactor(5), -1);
 
-
-    BOOST_CHECK_EQUAL(spin_string1.operatorPhaseFactor(0), 1);
-    BOOST_CHECK_EQUAL(spin_string1.operatorPhaseFactor(1), 1);
-    BOOST_CHECK_EQUAL(spin_string1.operatorPhaseFactor(2), -1);
-    BOOST_CHECK_EQUAL(spin_string1.operatorPhaseFactor(3), 1);
-    BOOST_CHECK_EQUAL(spin_string1.operatorPhaseFactor(4), 1);
-    BOOST_CHECK_EQUAL(spin_string1.operatorPhaseFactor(5), -1);
+    GQCP::ONV spin_string2 (6, 3, 26);  // "011010" (26)
+    BOOST_CHECK_EQUAL(spin_string2.operatorPhaseFactor(0), 1);
+    BOOST_CHECK_EQUAL(spin_string2.operatorPhaseFactor(1), 1);
+    BOOST_CHECK_EQUAL(spin_string2.operatorPhaseFactor(2), -1);
+    BOOST_CHECK_EQUAL(spin_string2.operatorPhaseFactor(3), -1);
+    BOOST_CHECK_EQUAL(spin_string2.operatorPhaseFactor(4), 1);
+    BOOST_CHECK_EQUAL(spin_string2.operatorPhaseFactor(5), -1);
 }
