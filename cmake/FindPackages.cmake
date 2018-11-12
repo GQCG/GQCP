@@ -20,3 +20,8 @@ find_package(numopt 1.5.1 REQUIRED)
 if(BUILD_DOCS)
     find_package(Doxygen REQUIRED dot)
 endif()
+
+# Find MKL
+if(USE_MKL)
+    find_package(MKL)
+endif(USE_MKL)
