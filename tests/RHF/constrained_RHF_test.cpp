@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 //
-#define BOOST_TEST_MODULE "Constrained_RHF"
+#define BOOST_TEST_MODULE "constrained_RHF"
 
 
 #include "RHF/DIISRHFSCFSolver.hpp"
@@ -101,7 +101,7 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test ) {
         double C_charge = 6 - mulliken_population;
 
         // The lenient threshold is because of we are not certain of exact the geometry in the paper
-        BOOST_CHECK(std::abs(total_energy - CO_data(index, 2)) < 1.0e-5);
+        BOOST_CHECK(std::abs(total_energy - CO_data(index, 2)) < 1.0e-4);
         BOOST_CHECK(std::abs(C_charge - CO_data(index, 1)) < 1.0e-2);
 
         index++;
@@ -122,13 +122,12 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test_random_transformation) {
     size_t K = ao_basis->get_number_of_basis_functions();
     size_t N = CO.get_N();
 
-    // random transform
-    std::uniform_real_distribution<double> unif(-1,1);
-    std::default_random_engine re;
-    Eigen::MatrixXd T = Eigen::MatrixXd(K, K).unaryExpr(unif(re));
-    for (int i =0; i<K; i++) {
+    Eigen::MatrixXd T = Eigen::MatrixXd::Random(K, K);
+    // set diagonal elements to 1
+    for (int i = 0; i < K; i++) {
         T(i,i) = 1;
     }
+
     ao_ham_par.transform(T);
 
     GQCP::OneRDM one_rdm = GQCP::calculateRHF1RDM(K, N);
@@ -175,7 +174,7 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test_random_transformation) {
         auto constrained_ham_par = ao_ham_par.constrain(mulliken_operator, i);
 
         // Create a DIIS RHF SCF solver and solve the SCF equations
-        GQCP::DIISRHFSCFSolver diis_scf_solver (constrained_ham_par, CO, 6, 10e-12, 10000);
+        GQCP::DIISRHFSCFSolver diis_scf_solver (constrained_ham_par, CO);
         diis_scf_solver.solve();
         auto rhf = diis_scf_solver.get_solution();
 
