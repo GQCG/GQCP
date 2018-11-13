@@ -142,44 +142,42 @@ public:
     GQCP::TwoElectronOperator calculateSuperGeneralizedFockMatrix(const GQCP::OneRDM& D, const GQCP::TwoRDM& d) const;
 
     /**
-     *  Constrains and copies the Hamiltonian parameters
+     *  Constrain the Hamiltonian parameters according to the convention: - lambda * constraint
      *
-     *  @param one_op   constraining one electron operator
-     *  @param two_op   constraining two electron operator
-     *  @param lambda   lagrangian multiplier for the constraint
+     *  @param one_op   the one-electron operator used as a constraint
+     *  @param two_op   the two-electron operator used as a constraint
+     *  @param lambda   Lagrangian multiplier for the constraint
      *
-     *  @return the constrained Hamiltonian parameters
+     *  @return a copy of the constrained Hamiltonian parameters
      */
     HamiltonianParameters constrain(const GQCP::OneElectronOperator& one_op, const GQCP::TwoElectronOperator& two_op, double lambda) const;
 
     /**
-     *  Constrains and copies the Hamiltonian parameters
+     *  Constrain the Hamiltonian parameters according to the convention: - lambda * constraint
      *
-     *  @param one_op   constraining one electron operator
-     *  @param lambda   lagrangian multiplier for the constraint
+     *  @param one_op   the one-electron operator used as a constraint
+     *  @param lambda   Lagrangian multiplier for the constraint
      *
-     *  @return the constrained Hamiltonian parameters
+     *  @return a copy of the constrained Hamiltonian parameters
      */
     HamiltonianParameters constrain(const GQCP::OneElectronOperator& one_op, double lambda) const;
 
     /**
-     *  Constrains and copies the Hamiltonian parameters
+     *  Constrain the Hamiltonian parameters according to the convention: - lambda * constraint
      *
-     *  @param two_op   constraining two electron operator
-     *  @param lambda   lagrangian multiplier for the constraint
+     *  @param two_op   the two-electron operator used as a constraint
+     *  @param lambda   Lagrangian multiplier for the constraint
      *
-     *  @return the constrained Hamiltonian parameters
+     *  @return a copy of the constrained Hamiltonian parameters
      */
     HamiltonianParameters constrain(const GQCP::TwoElectronOperator& two_op, double lambda) const;
 
     /**
-     *  Calculates the Mulliken operator for Hamiltonian parameters and a set of GTOs indexes
+     *  @param ao_list     indices of the AOs used for the Mulliken populations
      *
-     *  @param gto_list     indexes of the original GTOs on which the Mulliken populations are dependant
-     *
-     *  @return the Mulliken operator for a set of GTOs
+     *  @return the Mulliken operator for a set of AOs
      */
-    OneElectronOperator calculateMullikenOperator(const Vectoru& gto_list);
+    OneElectronOperator calculateMullikenOperator(const Vectoru& ao_list);
 };
 
 

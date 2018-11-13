@@ -92,11 +92,10 @@ BOOST_AUTO_TEST_CASE ( mulliken_N2_STO_3G ) {
     double mulliken_population = GQCP::calculateExpectationValue(mulliken, one_rdm);
     BOOST_CHECK(std::abs(mulliken_population - (N)) < 1.0e-08);
 
-    // Repeat this for the RDM of a DOCI expansion
-
+    // Repeat this for a DOCI-RDM
 
     // Solve the SCF equations
-    GQCP::PlainRHFSCFSolver plain_scf_solver (ham_par, N2);  // The DIIS SCF solver seems to find a wrong minimum, so use a plain solver instead
+    GQCP::PlainRHFSCFSolver plain_scf_solver (ham_par, N2);  // the DIIS SCF solver seems to find a wrong minimum, so use a plain solver instead
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 

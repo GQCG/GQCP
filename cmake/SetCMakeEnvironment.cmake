@@ -95,6 +95,7 @@ set(PROJECT_INCLUDE_FILES
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianParameters/HamiltonianParameters.hpp
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianParameters/HamiltonianParameters_constructors.hpp
         ${PROJECT_INCLUDE_FOLDER}/Operator/BaseOperator.hpp
+        ${PROJECT_INCLUDE_FOLDER}/Operator/Constraint.hpp
         ${PROJECT_INCLUDE_FOLDER}/Operator/OneElectronOperator.hpp
         ${PROJECT_INCLUDE_FOLDER}/Operator/TwoElectronOperator.hpp
         ${PROJECT_INCLUDE_FOLDER}/properties/expectation_values.hpp
@@ -130,7 +131,7 @@ set(PROJECT_TESTS_FOLDER ${CMAKE_SOURCE_DIR}/tests)
 
 # Find the source files for the tests
 set(PROJECT_TEST_SOURCE_FILES
-        ${PROJECT_TESTS_FOLDER}/CISolver/CISolver_DOCI_Constrained_test.cpp
+        ${PROJECT_TESTS_FOLDER}/CISolver/CISolver_DOCI_constrained_test.cpp
         ${PROJECT_TESTS_FOLDER}/CISolver/CISolver_DOCI_Davidson_test.cpp
         ${PROJECT_TESTS_FOLDER}/CISolver/CISolver_DOCI_Dense_test.cpp
         ${PROJECT_TESTS_FOLDER}/CISolver/CISolver_FCI_Davidson_test.cpp
@@ -159,7 +160,7 @@ set(PROJECT_TEST_SOURCE_FILES
         ${PROJECT_TESTS_FOLDER}/RDM/FCIRDMBuilder_test.cpp
         ${PROJECT_TESTS_FOLDER}/RDM/RDMCalculator_test.cpp
         ${PROJECT_TESTS_FOLDER}/RDM/SelectedRDMBuilder_test.cpp
-        ${PROJECT_TESTS_FOLDER}/RHF/Constrained_RHF_test.cpp
+        ${PROJECT_TESTS_FOLDER}/RHF/constrained_RHF_test.cpp
         ${PROJECT_TESTS_FOLDER}/RHF/DIISRHFSCFSolver_test.cpp
         ${PROJECT_TESTS_FOLDER}/RHF/PlainRHFSCFSolver_test.cpp
         ${PROJECT_TESTS_FOLDER}/RHF/RHF_test.cpp

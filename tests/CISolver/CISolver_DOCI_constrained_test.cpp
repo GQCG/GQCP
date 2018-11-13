@@ -34,37 +34,37 @@ BOOST_AUTO_TEST_CASE ( CO_DOCI_constrained_dense ) {
     // Reference data from tmhuysens thesis
     Eigen::Matrix<double, 21 , 3> CO_data;
     //        lamda | C population | DOCI energy
-    CO_data << -1.000000, 	5.80863087698, 	-111.281035626,
-            -0.900000, 	5.81016803318, 	-111.282495093,
-            -0.800000, 	5.8118219348, 	-111.28389979,
-            -0.700000, 	5.81362985899, 	-111.285254278,
-            -0.600000, 	5.81563610261, 	-111.286556475,
-            -0.500000, 	5.81789473016, 	-111.28779636,
-            -0.400000, 	5.82047326851, 	-111.288953711,
-            -0.300000, 	5.82345780552, 	-111.289994495,
-            -0.200000, 	5.82696018148, 	-111.290865222,
-            -0.100000, 	5.83112832986, 	-111.291484159,
-            0.000000, 	5.83616141374, 	-111.291727603,
-            0.100000, 	5.84233235124, 	-111.291408185,
-            0.200000, 	5.85002183736, 	-111.29024015,
-            0.300000, 	5.85977033411, 	-111.28778306,
-            0.400000, 	5.87235795874, 	-111.283349644,
-            0.500000, 	5.88892639439, 	-111.275854656,
-            0.600000, 	5.91115885823, 	-111.263570726,
-            0.700000, 	5.94152162485, 	-111.243754333,
-            0.800000, 	5.98350566877, 	-111.212151981,
-            0.900000, 	6.0416010444, 	-111.162616424,
-            1.000000, 	6.12030270656, 	-111.087663866;
+    CO_data <<  -1.000000, 	5.80863087698, 	-111.281035626,
+                -0.900000, 	5.81016803318, 	-111.282495093,
+                -0.800000, 	5.8118219348, 	-111.28389979,
+                -0.700000, 	5.81362985899, 	-111.285254278,
+                -0.600000, 	5.81563610261, 	-111.286556475,
+                -0.500000, 	5.81789473016, 	-111.28779636,
+                -0.400000, 	5.82047326851, 	-111.288953711,
+                -0.300000, 	5.82345780552, 	-111.289994495,
+                -0.200000, 	5.82696018148, 	-111.290865222,
+                -0.100000, 	5.83112832986, 	-111.291484159,
+                0.000000, 	5.83616141374, 	-111.291727603,
+                0.100000, 	5.84233235124, 	-111.291408185,
+                0.200000, 	5.85002183736, 	-111.29024015,
+                0.300000, 	5.85977033411, 	-111.28778306,
+                0.400000, 	5.87235795874, 	-111.283349644,
+                0.500000, 	5.88892639439, 	-111.275854656,
+                0.600000, 	5.91115885823, 	-111.263570726,
+                0.700000, 	5.94152162485, 	-111.243754333,
+                0.800000, 	5.98350566877, 	-111.212151981,
+                0.900000, 	6.0416010444, 	-111.162616424,
+                1.000000, 	6.12030270656, 	-111.087663866;
 
     // Create a Molecule and an AOBasis
-    GQCP::Molecule CO ("../tests/data/CO_tmhuysen.xyz");
+    GQCP::Molecule CO ("../tests/data/CO_mulliken.xyz");
     auto ao_basis = std::make_shared<GQCP::AOBasis>(CO, "STO-3G");
 
     // Create the molecular Hamiltonian parameters for this molecule and basis
     auto mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
 
     // Create a plain RHF SCF solver and solve the SCF equations
-    GQCP::DIISRHFSCFSolver diis_scf_solver (mol_ham_par, CO);
+    GQCP::DIISRHFSCFSolver diis_scf_solver (mol_ham_par, CO, 6, 1.0e-5  , 1000);
     diis_scf_solver.solve();
     auto rhf = diis_scf_solver.get_solution();
 
@@ -75,19 +75,20 @@ BOOST_AUTO_TEST_CASE ( CO_DOCI_constrained_dense ) {
 
     // Create the DOCI module
     GQCP::DOCI doci (fock_space);
-    GQCP::RDMCalculator rdm_calc(fock_space);
-    GQCP::Vectoru gto_list = {0,1,2,3,4};
+    GQCP::RDMCalculator rdm_calc (fock_space);
 
-    for (int i = 0; i<21; i++) {
+    numopt::eigenproblem::DenseSolverOptions dense_solver_options;
+    GQCP::Vectoru ao_list = {0,1,2,3,4};
+
+    for (int i = 0; i < 21; i++) {
         // Calculate the Mulliken operator
-        auto mulliken_operator = mol_ham_par.calculateMullikenOperator(gto_list);
+        auto mulliken_operator = mol_ham_par.calculateMullikenOperator(ao_list);
 
         // Contrain the original Hamiltonian parameters
         auto constrained_ham_par = mol_ham_par.constrain(mulliken_operator, CO_data(i, 0));
 
         GQCP::CISolver ci_solver(doci, constrained_ham_par);
         // Solve Dense
-        numopt::eigenproblem::DenseSolverOptions dense_solver_options;
         ci_solver.solve(dense_solver_options);
 
         // Retrieve the eigenvalues
@@ -106,4 +107,5 @@ BOOST_AUTO_TEST_CASE ( CO_DOCI_constrained_dense ) {
         BOOST_CHECK(std::abs(total_energy - CO_data(i, 2)) < 1.0e-3);
         BOOST_CHECK(std::abs(mulliken_population - CO_data(i, 1)) < 1.0e-2);
     }
+    BOOST_CHECK(true);
 }

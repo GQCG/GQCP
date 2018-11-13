@@ -273,13 +273,13 @@ GQCP::TwoElectronOperator HamiltonianParameters::calculateSuperGeneralizedFockMa
 
 
 /**
- *  Constrains and copies the Hamiltonian parameters
+ *  Constrain the Hamiltonian parameters according to the convention: - lambda * constraint
  *
- *  @param one_op   constraining one electron operator
- *  @param two_op   constraining two electron operator
- *  @param lambda   lagrangian multiplier for the constraint
+ *  @param one_op   the one-electron operator used as a constraint
+ *  @param two_op   the two-electron operator used as a constraint
+ *  @param lambda   Lagrangian multiplier for the constraint
  *
- *  @return the constrained Hamiltonian parameters
+ *  @return a copy of the constrained Hamiltonian parameters
  */
 HamiltonianParameters HamiltonianParameters::constrain(const GQCP::OneElectronOperator& one_op, const GQCP::TwoElectronOperator& two_op, double lambda) const {
 
@@ -291,12 +291,12 @@ HamiltonianParameters HamiltonianParameters::constrain(const GQCP::OneElectronOp
 
 
 /**
- *  Constrains and copies the Hamiltonian parameters
+ *  Constrain the Hamiltonian parameters according to the convention: - lambda * constraint
  *
- *  @param one_op   constraining one electron operator
- *  @param lambda   lagrangian multiplier for the constraint
+ *  @param one_op   the one-electron operator used as a constraint
+ *  @param lambda   Lagrangian multiplier for the constraint
  *
- *  @return the constrained Hamiltonian parameters
+ *  @return a copy of the constrained Hamiltonian parameters
  */
 HamiltonianParameters HamiltonianParameters::constrain(const GQCP::OneElectronOperator& one_op, double lambda) const {
 
@@ -307,12 +307,12 @@ HamiltonianParameters HamiltonianParameters::constrain(const GQCP::OneElectronOp
 
 
 /**
- *  Constrains and copies the Hamiltonian parameters
+ *  Constrain the Hamiltonian parameters according to the convention: - lambda * constraint
  *
- *  @param two_op   constraining two electron operator
- *  @param lambda   lagrangian multiplier for the constraint
+ *  @param two_op   the two-electron operator used as a constraint
+ *  @param lambda   Lagrangian multiplier for the constraint
  *
- *  @return the constrained Hamiltonian parameters
+ *  @return a copy of the constrained Hamiltonian parameters
  */
 HamiltonianParameters HamiltonianParameters::constrain(const GQCP::TwoElectronOperator& two_op, double lambda) const {
 
@@ -323,40 +323,37 @@ HamiltonianParameters HamiltonianParameters::constrain(const GQCP::TwoElectronOp
 
 
 /**
- *  Calculates the Mulliken operator for Hamiltonian parameters and a set of GTOs indexes
- *
- *  @param gto_list     indexes of the original GTOs on which the Mulliken populations are dependant
+ *  @param ao_list     indexes of the original GTOs on which the Mulliken populations are dependant
  *
  *  @return the Mulliken operator for a set of GTOs
  */
-OneElectronOperator HamiltonianParameters::calculateMullikenOperator(const Vectoru& gto_list) {
+OneElectronOperator HamiltonianParameters::calculateMullikenOperator(const Vectoru& ao_list) {
 
 
     if (!this->get_ao_basis()) {
-        throw std::invalid_argument("The Hamiltonian parameters has no underlying GTO basis, Mulliken analysis is not possible.");
+        throw std::invalid_argument("The Hamiltonian parameters have no underlying AO basis, Mulliken analysis is not possible.");
     }
 
-    if (gto_list.size() > this->K) {
-        throw std::invalid_argument("To many GTOs are selected");
+    if (ao_list.size() > this->K) {
+        throw std::invalid_argument("To many AOs are selected");
     }
 
+    // Create the partitioning matrix (diagonal matrix with values set to 1 of selected AOs
     Eigen::MatrixXd p_a = Eigen::MatrixXd::Zero(this->K, this->K);
 
-    for (size_t index : gto_list) {
+    for (size_t index : ao_list) {
         if (index >= this->K) {
-            throw std::invalid_argument("GTO index is too large");
+            throw std::invalid_argument("AO index is too large");
         }
 
         p_a(index, index) = 1;
     }
 
-    OneElectronOperator S_GTO = this->S;
-    S_GTO.transform(C.inverse());
-    Eigen::MatrixXd S_GTO_mat = S_GTO.get_matrix_representation();
+    OneElectronOperator S_AO = this->S;
+    S_AO.transform(C.inverse());
+    Eigen::MatrixXd S_AO_mat = S_AO.get_matrix_representation();
 
-    Eigen::MatrixXd mulliken_matrix = Eigen::MatrixXd(this->K, this->K);
-
-    mulliken_matrix = (C.adjoint() *  p_a * S_GTO_mat * C + C.adjoint() * S_GTO_mat * p_a * C)/2 ;
+    Eigen::MatrixXd mulliken_matrix = (C.adjoint() * p_a * S_AO_mat * C + C.adjoint() * S_AO_mat * p_a * C)/2 ;
 
     return OneElectronOperator(mulliken_matrix);
 }
