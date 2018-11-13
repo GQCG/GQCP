@@ -19,7 +19,7 @@
 #define ERJacobiLocalizer_hpp
 
 
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "Localization/BaseERLocalizer.hpp"
 
 
 namespace GQCP {
@@ -28,16 +28,9 @@ namespace GQCP {
 /**
  *  A class that localizes a set of orthonormal orbitals according to the maximization of the Edmiston-Ruedenberg localization index. A maximum is found using subsequent Jacobi rotations.
  */
-class ERJacobiLocalizer {
+class ERJacobiLocalizer : public BaseERLocalizer {
 private:
     // PRIVATE MEMBERS
-    const size_t N_P;  // the number of electron pairs
-    const double threshold;  // the threshold for maximization on subsequent localization indices
-    const size_t maximum_number_of_iterations;  // the maximum number of iterations for the localization algorithm
-
-    bool is_converged = false;
-    size_t iterations = 0;  // the number of iterations
-
     bool are_calculated_jacobi_coefficients = false;
     double A=0.0, B=0.0, C=0.0;  // the Jacobi rotation coefficients
 
@@ -109,7 +102,7 @@ public:
      *
      *  @param ham_par      the Hamiltonian parameters that should be localized
      */
-    void localize(GQCP::HamiltonianParameters& ham_par);
+    void localize(GQCP::HamiltonianParameters& ham_par) override;
 };
 
 

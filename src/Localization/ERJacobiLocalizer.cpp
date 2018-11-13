@@ -34,9 +34,7 @@ namespace GQCP {
  *  @param maximum_number_of_iterations     the maximum number of iterations for the localization algorithm
  */
 ERJacobiLocalizer::ERJacobiLocalizer(size_t N_P, double threshold, size_t maximum_number_of_iterations) :
-    N_P (N_P),
-    threshold (threshold),
-    maximum_number_of_iterations (maximum_number_of_iterations)
+    BaseERLocalizer(N_P, threshold, maximum_number_of_iterations)
 {}
 
 
