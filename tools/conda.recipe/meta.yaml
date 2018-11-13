@@ -1,7 +1,33 @@
 package:
-  name: GQCP
-  version: 0.0.1
-
+  name: gqcp
+  version: 0.1.0
 
 source:
   path: ../../
+
+build:
+  run_exports:
+      - gqcp
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - cmake
+    - doxygen
+    - graphviz
+  host:
+    - libint >=2.3.1
+    - boost >=1.65
+    - eigen >=3.3.4
+    - cpputil >=1.6.0
+    - numopt >=1.6.0
+  run: []
+test:
+  commands:
+    - conda inspect linkages gqcp 
+
+about:
+  home: https://github.com/GQCG/gqcp 
+  license: LGPL
+

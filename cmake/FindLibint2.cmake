@@ -26,7 +26,11 @@ else()
     set(Libint2_INCLUDE_DIRS "${Libint2_INCLUDE_DIRS};${LIBINT_PREFIX}/include")
 
     # Set the LIBRARIES
-    set(Libint2_LIBRARIES "${Libint2_LIBRARIES};${LIBINT_PREFIX}/lib/libint2.a")
+    if("${LIBRARY_TYPE}" STREQUAL "STATIC")
+      set(Libint2_LIBRARIES "${Libint2_LIBRARIES};${LIBINT_PREFIX}/lib/libint2.a")
+    else()
+      find_library(libint2_LIBRARIES int2)
+    endif()
 
     message(STATUS "Libint2 was found at ${LIBINT_PREFIX}")
 endif()

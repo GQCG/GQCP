@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-mkdir build_for_release
-cd build_for_release
-cmake ..
-make && make test && sudo make install
+mkdir build_release
+cd build_release
+cmake -DCMAKE_INSTALL_PREFIX=${PREFIX} -DPROJECT_INSTALL_DIR=${PREFIX} -DLIBRARY_TYPE=SHARED -DBUILD_DOCS=ON ..
+make && make test && make install

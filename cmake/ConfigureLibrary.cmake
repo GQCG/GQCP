@@ -27,6 +27,9 @@ if (MKL_FOUND)
     target_include_directories(${LIBRARY_NAME} PRIVATE ${MKL_INCLUDE_DIRS})
 endif()
 
+# Include librt
+target_link_libraries(${LIBRARY_NAME} PUBLIC rt)
+
 # Generate documentation
 if (DOXYGEN_FOUND)
     set(DOXYGEN_IN ${CMAKE_SOURCE_DIR}/docs/Doxyfile.in)
