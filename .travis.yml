@@ -13,77 +13,88 @@ notifications:
     slack: GQCG:5PZ5ibXCwNU1b5ToWbHVIqnI
     email: false
 
+before_cache:
+    - rm -rf $HOME/miniconda/locks $HOME/miniconda/pkgs $HOME/miniconda/var $HOME/miniconda/conda-meta/history
+    - pip uninstall -y cardboardlint
 
-# Install Miniconda and CMake
+# Cache miniconda for faster build procedures
+cache:
+    directories:
+        - $HOME/miniconda
+        - $HOME/download
+        - /tmp/libint
+
+# Before installing, we need a never version of CMake.
 before_install:
-  # Install Miniconda
-  - if [[ "${TRAVIS_PYTHON_VERSION}" == "2.7" ]]; then
-      wget wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O miniconda.sh;
-    else
-      wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
-    fi
-  - bash miniconda.sh -b -p ${HOME}/miniconda
-  - export PATH="${HOME}/miniconda/bin:${PATH}"
-  - hash -r
-  - conda config --set always_yes yes --set changeps1 no
-  - conda update -q conda
-
-  # Install a recent version of CMake
-  - conda install -c conda-forge cmake
-
+    # Install Miniconda
+    - if [ -d $HOME/miniconda/bin ]; then
+        echo "Miniconda already installed.";
+      else
+        echo "Installing miniconda.";
+        rm -rf $HOME/miniconda;
+        mkdir -p $HOME/download;
+        if [[ "${TRAVIS_PYTHON_VERSION}" == "2.7" ]]; then
+            wget wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O $HOME/download/miniconda.sh;
+        else
+            wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O $HOME/download/miniconda.sh;
+        fi;
+        bash $HOME/download/miniconda.sh -b -p ${HOME}/miniconda;
+      fi
 
 # Install general dependencies
 install:
-  # Install Boost before Eigen
-  - conda install -c conda-forge boost-cpp
-  - export BOOST_ROOT=${HOME}/miniconda/include
 
-  # Install Eigen
-  - conda install -c conda-forge eigen
+    # Configure conda
+    - source $HOME/miniconda/bin/activate
+    - hash -r
+    - conda config --set always_yes yes --set changeps1 no
 
-  # Install cpputil
-  - mkdir /tmp/cpputil && cd /tmp/cpputil
-  - git clone https://github.com/GQCG/cpputil.git --branch master --single-branch
-  - cd cpputil
-  - mkdir build && cd build
-  - cmake .. && make -j3 && make test ARGS=-j3 && sudo make install
+    # Install a recent version of CMake, Boost and eigen if they are not yet already installed.
+    - if [ ! -f $HOME/miniconda/bin/cmake ]; then
+        conda install -c conda-forge cmake boost-cpp eigen;
+      else
+        echo "Using already installed packages.";
+      fi
+    - export BOOST_ROOT=${HOME}/miniconda/include
 
-  # Install Spectra as dependency for numopt
-  - cd /usr/local/
-  - sudo git clone https://github.com/yixuan/spectra.git
+    # Install cpputil
+    - mkdir /tmp/cpputil && cd /tmp/cpputil
+    - git clone https://github.com/GQCG/cpputil.git --branch master --single-branch
+    - cd cpputil
+    - mkdir build && cd build
+    - cmake .. && make -j3 && make test ARGS=-j3 && sudo make install
 
-  # Install numopt
-  - mkdir /tmp/numopt && cd /tmp/numopt
-  - git clone https://github.com/GQCG/numopt.git --branch master --single-branch
-  - cd numopt
-  - mkdir build && cd build
-  - cmake .. && make -j3 && make test ARGS=-j3 && sudo make install
+    # We can't install libint2 (2.2.0+) through APT.
+    # Since compiling libint2 takes around 15 minutes on Travis, it is a good idea to cache it (see also below)
+    - |
+        if [ ! -d /tmp/libint/libint-2.3.1 ]; then
+           mkdir -p /tmp/libint && cd /tmp/libint
+           curl -OL "https://github.com/evaleev/libint/archive/v2.3.1.tar.gz"
+           tar -xvzf v2.3.1.tar.gz
+           cd libint-2.3.1
+           ./autogen.sh
+           mkdir build && cd build
+           ../configure CXXFLAGS=-I${BOOST_ROOT}
+           make export
+           tar -xvzf libint-2.3.1.tgz
+           cd libint-2.3.1
+           ./configure CXXFLAGS=-I${BOOST_ROOT}
+           make -j3
+           sudo make install
+        else
+          cd /tmp/libint/libint-2.3.1/build/libint-2.3.1
+          sudo make install
+        fi
 
-  # We can't install libint2 (2.2.0+) through APT.
-  # Since compiling libint2 takes around 15 minutes on Travis, it is a good idea to cache it (see also below)
-  - |
-    if [ ! -d /tmp/libint/libint-2.3.1 ]; then
-       mkdir -p /tmp/libint && cd /tmp/libint
-       curl -OL "https://github.com/evaleev/libint/archive/v2.3.1.tar.gz"
-       tar -xvzf v2.3.1.tar.gz
-       cd libint-2.3.1
-       ./autogen.sh
-       mkdir build && cd build
-       ../configure CXXFLAGS=-I${BOOST_ROOT}
-       make export
-       tar -xvzf libint-2.3.1.tgz
-       cd libint-2.3.1
-       ./configure CXXFLAGS=-I${BOOST_ROOT}
-       make -j3
-       sudo make install
-    else
-      cd /tmp/libint/libint-2.3.1/build/libint-2.3.1
-      sudo make install
-    fi
+    # Finally, since libint often complains about reading the basis sets, specify a LIBINT_DATA_PATH to help libint find the files.
+    - export LIBINT_DATA_PATH=/usr/local/libint/2.3.1/share/libint/2.3.1/basis
 
-  # Finally, since libint often complains about reading the basis sets, specify a LIBINT_DATA_PATH to help libint find the files.
-  - export LIBINT_DATA_PATH=/usr/local/libint/2.3.1/share/libint/2.3.1/basis
-
+    # Install numopt
+    - mkdir /tmp/numopt && cd /tmp/numopt
+    - git clone https://github.com/GQCG/numopt.git --branch master --single-branch --recurse-submodules
+    - cd numopt
+    - mkdir build && cd build
+    - cmake .. && make -j3 && make test ARGS=-j3 && sudo make install
 
 # Run the build script
 script:
@@ -92,7 +103,3 @@ script:
   - cmake ..
   - make -j3 && make test ARGS=-j3 && sudo make install
 
-
-cache:
-    directories:  # add the libint compilation to the cache
-    - /tmp/libint
