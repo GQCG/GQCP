@@ -293,3 +293,28 @@ BOOST_AUTO_TEST_CASE ( calculate_generalized_Fock_matrix_and_super ) {
     BOOST_CHECK(F_ref.isApprox(ham_par.calculateGeneralizedFockMatrix(D, d).get_matrix_representation(), 1.0e-12));
     BOOST_CHECK(cpputil::linalg::areEqual(W_ref, ham_par.calculateSuperGeneralizedFockMatrix(D, d).get_matrix_representation(), 1.0e-12));
 }
+
+
+BOOST_AUTO_TEST_CASE ( calculateEdmistonRuedenbergLocalizationIndex ) {
+
+    // Create toy Hamiltonian parameters: only the two-electron integrals are important
+    size_t K = 5;
+    Eigen::MatrixXd S = Eigen::MatrixXd::Identity(K, K);
+    GQCP::OneElectronOperator S_op (S);
+
+    Eigen::MatrixXd H = Eigen::MatrixXd::Random(K, K);
+    GQCP::OneElectronOperator H_op (H);
+
+    Eigen::Tensor<double, 4> g (K, K, K, K);
+    g.setZero();
+    for (size_t i = 0; i < K; i++) {
+        g(i,i,i,i) = 2*static_cast<float>(i);
+    }
+    GQCP::TwoElectronOperator g_op (g);
+
+    GQCP::HamiltonianParameters ham_par (nullptr, S_op, H_op, g_op, Eigen::MatrixXd::Identity(K, K));
+
+
+    BOOST_CHECK(std::abs(ham_par.calculateEdmistonRuedenbergLocalizationIndex(3) - 6.0) < 1.0e-08);
+    BOOST_CHECK(std::abs(ham_par.calculateEdmistonRuedenbergLocalizationIndex(4) - 12.0) < 1.0e-08);
+}
