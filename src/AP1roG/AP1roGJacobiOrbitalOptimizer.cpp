@@ -217,7 +217,7 @@ double AP1roGJacobiOrbitalOptimizer::findOptimalRotationAngle(size_t p, size_t q
     // Occupied-occupied rotations: if p <= N_P and q <= N_P for computers
     if ((p < this->N_P) && (q < this->N_P)) {
         double denominator = std::sqrt(std::pow(this->B1, 2) + std::pow(this->C1, 2));
-        return 0.5 * std::atan2(-this->B1 / denominator, -this->C1 / denominator);
+        return 0.5 * std::atan2(-this->C1 / denominator, -this->B1 / denominator);  // std::atan2(y,x) = tan^-1(y/x)
     }
 
 
@@ -271,7 +271,7 @@ double AP1roGJacobiOrbitalOptimizer::findOptimalRotationAngle(size_t p, size_t q
     // Virtual-virtual rotations: if p > N_P and q > N_P for computers
     else if ((p >= this->N_P) && (q >= this->N_P )) {
         double denominator = std::sqrt(std::pow(this->B3, 2) + std::pow(this->C3, 2));
-        return 0.5 * std::atan2(-this->B3 / denominator, -this->C3 / denominator);
+        return 0.5 * std::atan2(-this->C3 / denominator, -this->B3 / denominator);  // std::atan2(y,x) = tan^-1(y/x)
     }
 
 
