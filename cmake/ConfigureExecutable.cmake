@@ -15,8 +15,8 @@ function(configure_executable EXECUTABLE_NAME)
     target_link_libraries(${EXECUTABLE_NAME} PUBLIC Eigen3::Eigen)
 
     # Include libint2
-    target_include_directories(${EXECUTABLE_NAME} PUBLIC ${libint2_INCLUDE_DIRS})
-    target_link_libraries(${EXECUTABLE_NAME} PUBLIC ${libint2_LIBRARIES})
+    target_include_directories(${EXECUTABLE_NAME} PUBLIC ${Libint2_INCLUDE_DIRS})
+    target_link_libraries(${EXECUTABLE_NAME} PUBLIC ${Libint2_LIBRARIES})
 
     # Include Spectra
     target_include_directories(${EXECUTABLE_NAME} PUBLIC ${spectra_INCLUDE_DIRS})
