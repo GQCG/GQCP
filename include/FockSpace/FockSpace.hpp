@@ -105,6 +105,18 @@ public:
      *  @return the address (i.e. the ordering number) of the given ONV
      */
     size_t getAddress(const ONV& onv);
+
+    /**
+     *  Find the next unoccupied orbital in a given ONV and update the electron count and orbital index,
+     *  additionally shift the address by updating the encountered electron weights by that of a path with one fewer electron
+     *
+     *  @param onv       the ONV for which we search the next unnocupied orbital
+     *  @param e         the electron count
+     *  @param q         the orbital index
+     *
+     *  @return and shift in address resulting from the iteration
+     */
+    size_t shiftAddressTillNextUnoccupiedOrbital(const ONV &onv, size_t &q, size_t &e);
 };
 
 

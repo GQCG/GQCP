@@ -15,6 +15,8 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
+#include <FockSpace/FockSpace.hpp>
+
 #include "FockSpace/FockSpace.hpp"
 
 
@@ -191,6 +193,37 @@ size_t FockSpace::getAddress(const ONV& onv) {
         unsigned_onv ^= unsigned_onv & -unsigned_onv;  // flip the least significant bit
     }
     return address;
+}
+
+
+/**
+ *  Find the next unoccupied orbital in a given ONV and update the electron count and orbital index,
+ *  additionally shift the address by updating the encountered electron weights by that of a path with one fewer electron
+ *  
+ *  @param onv       the ONV for which we search the next unnocupied orbital
+ *  @param e         the electron count
+ *  @param q         the orbital index
+ *
+ *  @return and shift in address resulting from the iteration
+ */
+
+size_t FockSpace::shiftAddressTillNextUnoccupiedOrbital(const ONV &onv, size_t &q, size_t &e) {
+    size_t address_shift = 0;
+
+    while (e < N - 1 && q == onv.get_occupied_index(e + 1)) {
+        // Shift the address for the electrons encountered after the annihilation but before the creation
+        // Their currents weights are no longer correct, the corresponding weights can be calculated
+        // initial weight can be found in the addressing scheme, on the index of the orbital (row) and electron count (column)
+        // since e2 starts at the annihilated position, the first shifted electron is at e2's position + 1, (given the while loop condition this is also (e2+1)'s position)
+        // The nature of the addressing scheme requires us the add 1 to the electron count (because we start with the 0'th electron
+        // And for the initial weight we are at an extra electron (before the annihilation) hence the difference in weight is:
+        // the new weight at (e2+1) position (row) and e2+1 (column) - the old weight at  (e2+1) position (row) and e2+2 (column)
+        address_shift += this->get_vertex_weights(q, e + 1) - this->get_vertex_weights(q, e + 2);
+        e++;  // adding occupied orbitals to the electron count
+        q++;
+    }
+
+    return address_shift;
 }
 
 
