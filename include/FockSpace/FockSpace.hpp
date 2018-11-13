@@ -105,6 +105,13 @@ public:
      *  @return the address (i.e. the ordering number) of the given ONV
      */
     size_t getAddress(const ONV& onv);
+
+
+    /**
+     *  @param onv          the ONV
+     *  @param address      the address to which the ONV will be set
+     */
+    void setONV(ONV& onv, size_t address);
 };
 
 

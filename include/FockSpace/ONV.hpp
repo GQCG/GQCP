@@ -22,10 +22,14 @@
 #include <Eigen/Dense>
 
 #include "common.hpp"
+#include <tuple>
 
 
 
 namespace GQCP {
+
+
+using K_N_pair = std::tuple<size_t, size_t>;
 
 
 /**
@@ -64,6 +68,12 @@ public:
      *  @param unsigned_representation  the representation for the ONV as an unsigned integer
      */
     ONV(size_t K, size_t unsigned_representation);
+
+    /**
+     *  @param K                        the number of orbitals
+     *  @param N                        the number of electrons
+     */
+    ONV(GQCP::K_N_pair pair);
 
 
     // OPERATORS

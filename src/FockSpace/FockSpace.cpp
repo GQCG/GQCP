@@ -136,30 +136,9 @@ size_t FockSpace::calculateDimension(size_t K, size_t N) {
  *  @return the ONV with the corresponding address
  */
 ONV FockSpace::get_ONV(size_t address) {
-    size_t representation;
-    if (this->N == 0) {
-        representation = 0;
-    }
-
-    else {
-        representation = 0;
-        size_t m = this->N;  // counts the number of electrons in the spin string up to orbital p
-
-        for (size_t p = this->K; p > 0; p--) {  // p is an orbital index
-            size_t weight = get_vertex_weights(p-1, m);
-
-            if (weight <= address) {  // the algorithm can move diagonally, so we found an occupied orbital
-                address -= weight;
-                representation |= ((1) << (p - 1));  // set the (p-1)th bit: see (https://stackoverflow.com/a/47990)
-
-                m--;  // since we found an occupied orbital, we have one electron less
-                if (m == 0) {
-                    break;
-                }
-            }
-        }
-    }
-    return ONV(this->K, this->N, representation);
+    ONV onv (std::make_tuple(this->K, this->N));
+    this->setONV(onv, address);
+    return onv;
 }
 
 
@@ -193,5 +172,37 @@ size_t FockSpace::getAddress(const ONV& onv) {
     return address;
 }
 
+
+/**
+ *  @param onv          the ONV
+ *  @param address      the address to which the ONV will be set
+ */
+void FockSpace::setONV(ONV& onv, size_t address){
+
+    size_t representation;
+    if (this->N == 0) {
+        representation = 0;
+    }
+
+    else {
+        representation = 0;
+        size_t m = this->N;  // counts the number of electrons in the spin string up to orbital p
+
+        for (size_t p = this->K; p > 0; p--) {  // p is an orbital index
+            size_t weight = get_vertex_weights(p-1, m);
+
+            if (weight <= address) {  // the algorithm can move diagonally, so we found an occupied orbital
+                address -= weight;
+                representation |= ((1) << (p - 1));  // set the (p-1)th bit: see (https://stackoverflow.com/a/47990)
+
+                m--;  // since we found an occupied orbital, we have one electron less
+                if (m == 0) {
+                    break;
+                }
+            }
+        }
+    }
+    onv.set_representation(representation);
+}
 
 }  // namespace GQCP
