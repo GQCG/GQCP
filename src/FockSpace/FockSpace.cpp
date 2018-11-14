@@ -209,7 +209,8 @@ void FockSpace::set(ONV& onv, size_t address) const {
     onv.set_representation(representation);
 }
 
-  
+
+/**
  *  Find the next unoccupied orbital in a given ONV,
  *  update the electron count and orbital index,
  *  and calculate a shift in address
