@@ -91,7 +91,6 @@ public:
      */
     ONV get_ONV(size_t address);
 
-
     /**
      *  Set the current ONV to the next ONV: performs ulongNextPermutation() and updates the corresponding occupation indices of the ONV occupation array
      *
@@ -105,6 +104,14 @@ public:
      *  @return the address (i.e. the ordering number) of the given ONV
      */
     size_t getAddress(const ONV& onv);
+  
+    /**
+     *  Transform an ONV to one with corresponding to the given address
+     *
+     *  @param onv          the ONV
+     *  @param address      the address to which the ONV will be set
+     */
+    void set(ONV& onv, size_t address) const;
 
     /**
      *  Find the next unoccupied orbital in a given ONV,
