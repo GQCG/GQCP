@@ -11,20 +11,21 @@ target_include_directories(${LIBRARY_NAME} PUBLIC ${Boost_INCLUDE_DIRS})
 target_link_libraries(${LIBRARY_NAME} PUBLIC Eigen3::Eigen)
 
 # Include libint2
-target_include_directories(${LIBRARY_NAME} PUBLIC ${libint2_INCLUDE_DIRS})
-target_link_libraries(${LIBRARY_NAME} PUBLIC ${libint2_LIBRARIES})
+target_include_directories(${LIBRARY_NAME} PUBLIC ${Libint2_INCLUDE_DIRS})
 
 # Include Spectra
 target_include_directories(${LIBRARY_NAME} PUBLIC ${spectra_INCLUDE_DIRS})
 
-# Include numopt
-target_include_directories(${LIBRARY_NAME} PUBLIC ${numopt_INCLUDE_DIRS})
-target_link_libraries(${LIBRARY_NAME} PUBLIC numopt)
-
 # Include cpputil
 target_include_directories(${LIBRARY_NAME} PRIVATE ${cpputil_INCLUDE_DIRS})
-target_link_libraries(${LIBRARY_NAME} PRIVATE cpputil)
 
+# Include numopt
+target_include_directories(${LIBRARY_NAME} PUBLIC ${numopt_INCLUDE_DIRS})
+
+# Include MKL (optional)
+if (MKL_FOUND)
+    target_include_directories(${LIBRARY_NAME} PRIVATE ${MKL_INCLUDE_DIRS})
+endif()
 
 # Generate documentation
 if (DOXYGEN_FOUND)

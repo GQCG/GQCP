@@ -20,6 +20,10 @@
 
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 
+#include "miscellaneous.hpp"
+
+#include <boost/math/constants/constants.hpp>
+
 #include <cpputil.hpp>
 
 #include <boost/test/unit_test.hpp>
@@ -130,6 +134,72 @@ BOOST_AUTO_TEST_CASE ( HamiltonianParameters_constructor ) {
     // Check if we can't use a zero matrix as overlap matrix
     GQCP::OneElectronOperator S_zero (Eigen::MatrixXd::Zero(K, K));
     BOOST_CHECK_THROW(GQCP::HamiltonianParameters (ao_basis_ptr, S_zero, H_core, g, C), std::invalid_argument);
+}
+
+
+BOOST_AUTO_TEST_CASE ( rotate_argument ) {
+
+    // Create well-behaved Hamiltonian parameters
+    size_t K = 3;
+    Eigen::MatrixXd S = Eigen::MatrixXd::Random(K, K);
+    GQCP::OneElectronOperator S_op (S);
+
+    Eigen::MatrixXd H = Eigen::MatrixXd::Random(K, K);
+    GQCP::OneElectronOperator H_op (H);
+
+    Eigen::Tensor<double, 4> g (K, K, K, K);
+    g.setRandom();
+    GQCP::TwoElectronOperator g_op (g);
+
+    GQCP::HamiltonianParameters ham_par (nullptr, S_op, H_op, g_op, Eigen::MatrixXd::Random(K, K));
+
+
+    // Check if we can't rotate with a non-unitary matrix
+    Eigen::MatrixXd T (K, K);
+    T << 0.5, 0.5, -2.0,
+         3.0, 0.0,  1.5,
+         0.0, 0.0,  2.5;
+    BOOST_CHECK_THROW(ham_par.rotate(T), std::invalid_argument);
+}
+
+
+BOOST_AUTO_TEST_CASE ( rotate_overlap_matrix ) {
+
+    // Check if a rotation that interchanges two orbitals changes the non-identity overlap matrix
+    GQCP::JacobiRotationParameters jacobi_rotation_parameters {1, 0, boost::math::constants::half_pi<double>()};  // interchanges two orbitals
+
+    size_t K = 3;
+    Eigen::MatrixXd S (K, K);
+    S << 1.0, 0.5, 0.0,
+         0.5, 2.0, 0.0,
+         0.0, 0.0, 1.0;
+    GQCP::OneElectronOperator S_op (S);
+
+    Eigen::MatrixXd S_rotated_ref (K, K);  // manual calculation
+    S_rotated_ref <<  2.0, -0.5, 0.0,
+                     -0.5,  1.0, 0.0,
+                      0.0,  0.0, 1.0;
+
+
+    Eigen::MatrixXd H = Eigen::MatrixXd::Random(K, K);
+    GQCP::OneElectronOperator H_op (H);
+
+    Eigen::Tensor<double, 4> g (K, K, K, K);
+    g.setRandom();
+    GQCP::TwoElectronOperator g_op (g);
+
+
+    // Check the Jacobi rotation
+    GQCP::HamiltonianParameters ham_par_jacobi (nullptr, S_op, H_op, g_op, Eigen::MatrixXd::Random(K, K));
+    ham_par_jacobi.rotate(jacobi_rotation_parameters);
+    BOOST_CHECK(ham_par_jacobi.get_S().get_matrix_representation().isApprox(S_rotated_ref, 1.0e-08));
+
+
+    // Check for a unitary transformation
+    GQCP::HamiltonianParameters ham_par (nullptr, S_op, H_op, g_op, Eigen::MatrixXd::Random(K, K));
+    Eigen::MatrixXd J = GQCP::jacobiRotationMatrix(jacobi_rotation_parameters, K);
+    ham_par.rotate(J);
+    BOOST_CHECK(ham_par.get_S().get_matrix_representation().isApprox(S_rotated_ref, 1.0e-08));
 }
 
 
