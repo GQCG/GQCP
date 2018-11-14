@@ -24,7 +24,6 @@ cache:
         - $HOME/download
         - /tmp/libint
 
-# Before installing, we need a never version of CMake.
 before_install:
     # Install Miniconda
     - if [ -d $HOME/miniconda/bin ]; then
