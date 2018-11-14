@@ -34,6 +34,7 @@ namespace GQCP {
 Eigen::Vector3d calculateElectronicDipoleMoment(const std::array<GQCP::OneElectronOperator, 3>& dipole_operator, const GQCP::OneRDM& one_rdm);
 
 
+
 }  // namespace GQCP
 
 
