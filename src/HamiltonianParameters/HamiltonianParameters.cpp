@@ -117,12 +117,11 @@ void HamiltonianParameters::transform(const Eigen::MatrixXd& T) {
  */
 void HamiltonianParameters::rotate(const Eigen::MatrixXd& U) {
 
-    // A rotation leaves the overlap matrix invariant, so we don't have to transform it
+    if (!U.isUnitary(1.0e-12)) {
+        throw std::invalid_argument("The given matrix is not unitary.");
+    }
 
-    this->h.rotate(U);
-    this->g.rotate(U);
-
-    this->C = this->C * U;
+    this->transform(U);
 }
 
 
@@ -150,8 +149,7 @@ void HamiltonianParameters::randomRotate() {
  */
 void HamiltonianParameters::rotate(const GQCP::JacobiRotationParameters& jacobi_rotation_parameters) {
 
-    // A rotation leaves the overlap matrix invariant, so we don't have to transform it
-
+    this->S.rotate(jacobi_rotation_parameters);
     this->h.rotate(jacobi_rotation_parameters);
     this->g.rotate(jacobi_rotation_parameters);
 

@@ -233,8 +233,9 @@ Eigen::VectorXd Hubbard::calculateDiagonal(const HamiltonianParameters &hamilton
     Eigen::VectorXd diagonal = Eigen::VectorXd::Zero(dim);
 
     ONV onv_alpha = fock_space_alpha.get_ONV(0);
+    ONV onv_beta =  fock_space_beta.get_ONV(0);
     for (size_t Ia = 0; Ia < dim_alpha; Ia++) {  // Ia loops over addresses of alpha onvs
-        ONV onv_beta = fock_space_beta.get_ONV(0);
+        fock_space_beta.set(onv_beta, 0);
         for (size_t Ib = 0; Ib < dim_beta; Ib++) {  // Ib loops over addresses of beta onvs
             size_t address = Ia * dim_beta + Ib;
             // find all double occupations

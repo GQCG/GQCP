@@ -233,7 +233,7 @@ double AP1roGJacobiOrbitalOptimizer::findOptimalRotationAngle(size_t p, size_t q
     // Occupied-occupied rotations: if p <= N_P and q <= N_P for computers
     if ((p < this->N_P) && (q < this->N_P)) {
         double denominator = std::sqrt(std::pow(this->B1, 2) + std::pow(this->C1, 2));
-        return 0.5 * std::atan2(-this->B1 / denominator, -this->C1 / denominator);
+        return 0.5 * std::atan2(-this->C1 / denominator, -this->B1 / denominator);  // std::atan2(y,x) = tan^-1(y/x)
     }
 
 
@@ -243,14 +243,14 @@ double AP1roGJacobiOrbitalOptimizer::findOptimalRotationAngle(size_t p, size_t q
         std::priority_queue<JacobiRotationEnergy> min_q;  // an ascending queue (on energy) because we have implemented the 'reverse' JacobiParameters::operator<
 
         // Construct a lambda gradient function
-        numopt::GradientFunction gradient_function = [this](const Eigen::VectorXd& x) {
+        numopt::VectorFunction gradient_function = [this](const Eigen::VectorXd& x) {
             Eigen::VectorXd gradient_vec (1);
             gradient_vec << (-2*this->B2 * std::sin(2*x(0)) + 2*this->C2 * std::cos(2*x(0)) - 4*this->D2 * std::sin(4*x(0)) + 4*this->E2 * std::cos(4*x(0)));
             return gradient_vec;
         };
 
         // Construct a lambda Hessian function
-        numopt::HessianFunction hessian_function = [this](const Eigen::VectorXd& x) {
+        numopt::MatrixFunction hessian_function = [this](const Eigen::VectorXd& x) {
             Eigen::MatrixXd hessian_matrix (1, 1);
             hessian_matrix << (-4*this->B2 * std::cos(2*x(0)) - 2*this->C2 * std::sin(2*x(0)) - 16*this->D2 * std::cos(4*x(0)) - 16*this->E2 * std::sin(4*x(0)));
             return hessian_matrix;
@@ -287,7 +287,7 @@ double AP1roGJacobiOrbitalOptimizer::findOptimalRotationAngle(size_t p, size_t q
     // Virtual-virtual rotations: if p > N_P and q > N_P for computers
     else if ((p >= this->N_P) && (q >= this->N_P )) {
         double denominator = std::sqrt(std::pow(this->B3, 2) + std::pow(this->C3, 2));
-        return 0.5 * std::atan2(-this->B3 / denominator, -this->C3 / denominator);
+        return 0.5 * std::atan2(-this->C3 / denominator, -this->B3 / denominator);  // std::atan2(y,x) = tan^-1(y/x)
     }
 
 
