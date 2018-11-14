@@ -211,7 +211,7 @@ size_t FockSpace::getAddress(const ONV& onv) {
  *  @return the shift in address resulting from the difference in the corrected electron weights
  */
 
-size_t FockSpace::shiftUntilNextUnoccupiedOrbital(const ONV& onv, size_t& q, size_t& e, size_t a) {
+size_t FockSpace::shiftUntilNextUnoccupiedOrbital(const ONV& onv, size_t& q, size_t& e, size_t a) const {
 
     size_t address_shift = 0;
     // Test whether the current orbital index is occupied

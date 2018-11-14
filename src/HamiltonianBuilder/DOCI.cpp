@@ -154,7 +154,6 @@ Eigen::VectorXd DOCI::matrixVectorProduct(const HamiltonianParameters& hamiltoni
 
                 q++;  // go to the next orbital
 
-
                 // perform a shift
                 address += this->fock_space.shiftUntilNextUnoccupiedOrbital(onv, q, e2, 1);
 
