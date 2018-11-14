@@ -24,20 +24,20 @@ else()
             HINTS ${MKL_PREFIX}/include)
 
     find_library(MKL_INTERFACE_LIBRARY
-            NAMES libmkl_intel_lp64.a
+            NAMES libmkl_intel_lp64.a mkl_intel_lp64
             PATHS ${MKL_PREFIX}/lib ${MKL_PREFIX}/lib/intel64)
 
     find_library(MKL_INTEL_THREAD
-            NAMES libmkl_intel_thread.a
+            NAMES libmkl_intel_thread.a mkl_intel_thread
             PATHS ${MKL_PREFIX}/lib ${MKL_PREFIX}/lib/intel64)
 
     find_library(MKL_CORE_LIBRARY
-            NAMES libmkl_core.a
+            NAMES libmkl_core.a mkl_core
             PATHS ${MKL_PREFIX}/lib ${MKL_PREFIX}/lib/intel64)
 
     # Cluster compilations need additional options
     find_library(MKL_LAPACK
-            NAMES libmkl_lapack.a
+            NAMES libmkl_lapack.a mkl_lapack
             PATHS ${MKL_PREFIX}/lib ${MKL_PREFIX}/lib/intel64)
     # If Lapack is not found, then you are not on a cluster
     if("${MKL_LAPACK}" STREQUAL "MKL_LAPACK-NOTFOUND")
@@ -45,7 +45,7 @@ else()
     endif()
 
     find_library(MKL_INTEL_OPENMP
-            NAMES libiomp5.a
+            NAMES libiomp5.a iomp5
             PATHS ${INTEL_PREFIX}/lib ${INTEL_PREFIX}/lib/intel64)
 
     set(MKL_LIBRARIES ${MKL_INTERFACE_LIBRARY} ${MKL_INTEL_THREAD} ${MKL_CORE_LIBRARY} ${MKL_LAPACK} ${MKL_INTEL_OPENMP} pthread m dl)

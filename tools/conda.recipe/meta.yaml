@@ -14,6 +14,7 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - cmake
+    - ccache
     - doxygen
     - graphviz
   host:
@@ -22,6 +23,8 @@ requirements:
     - eigen >=3.3.4
     - cpputil >=1.6.0
     - numopt >=1.6.0
+    - mkl >=2019.0
+    - mkl-include >=2019.0
   run: []
 test:
   commands:
