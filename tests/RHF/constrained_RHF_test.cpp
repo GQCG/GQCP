@@ -81,7 +81,7 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test ) {
         auto constrained_ham_par = ao_ham_par.constrain(mulliken_operator, i);
 
         // Create a DIIS RHF SCF solver and solve the SCF equations
-        GQCP::DIISRHFSCFSolver diis_scf_solver (constrained_ham_par, CO, 6);
+        GQCP::DIISRHFSCFSolver diis_scf_solver (constrained_ham_par, CO);
         diis_scf_solver.solve();
         auto rhf = diis_scf_solver.get_solution();
 
