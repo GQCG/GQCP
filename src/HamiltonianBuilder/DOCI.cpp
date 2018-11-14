@@ -139,7 +139,7 @@ Eigen::VectorXd DOCI::matrixVectorProduct(const HamiltonianParameters& hamiltoni
             size_t address = I - this->fock_space.get_vertex_weights(p, e1 + 1);
             // The e2 iteration counts the amount of encountered electrons for the creation operator
             // We only consider greater addresses than the initial one (because of symmetry)
-            // Hence we are only required to start counting from the annihilated electron (e1)
+            // Hence we only count electron after the annihilated electron (e1)
             size_t e2 = e1 + 1;
             size_t q = p + 1;
 
