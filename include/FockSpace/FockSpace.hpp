@@ -108,10 +108,12 @@ public:
 
 
     /**
+     *  Transform an ONV to one with corresponding to the given address
+     *
      *  @param onv          the ONV
      *  @param address      the address to which the ONV will be set
      */
-    void setONV(ONV& onv, size_t address);
+    void set(ONV &onv, size_t address) const;
 };
 
 

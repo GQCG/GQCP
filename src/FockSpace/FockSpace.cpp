@@ -136,8 +136,8 @@ size_t FockSpace::calculateDimension(size_t K, size_t N) {
  *  @return the ONV with the corresponding address
  */
 ONV FockSpace::get_ONV(size_t address) {
-    ONV onv (std::make_tuple(this->K, this->N));
-    this->setONV(onv, address);
+    ONV onv (this->K, this->N);
+    this->set(onv, address);
     return onv;
 }
 
@@ -174,10 +174,12 @@ size_t FockSpace::getAddress(const ONV& onv) {
 
 
 /**
+ *  Transform an ONV to one with corresponding to the given address
+ *
  *  @param onv          the ONV
  *  @param address      the address to which the ONV will be set
  */
-void FockSpace::setONV(ONV& onv, size_t address){
+void FockSpace::set(ONV &onv, size_t address) const {
 
     size_t representation;
     if (this->N == 0) {
