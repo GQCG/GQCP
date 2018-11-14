@@ -113,7 +113,7 @@ public:
      *  @param onv          the ONV
      *  @param address      the address to which the ONV will be set
      */
-    void set(ONV &onv, size_t address) const;
+    void set(ONV& onv, size_t address) const;
 };
 
 

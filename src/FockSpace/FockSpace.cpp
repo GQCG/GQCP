@@ -179,7 +179,7 @@ size_t FockSpace::getAddress(const ONV& onv) {
  *  @param onv          the ONV
  *  @param address      the address to which the ONV will be set
  */
-void FockSpace::set(ONV &onv, size_t address) const {
+void FockSpace::set(ONV& onv, size_t address) const {
 
     size_t representation;
     if (this->N == 0) {
