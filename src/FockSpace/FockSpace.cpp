@@ -15,6 +15,8 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
+#include <FockSpace/FockSpace.hpp>
+
 #include "FockSpace/FockSpace.hpp"
 
 
@@ -206,5 +208,40 @@ void FockSpace::set(ONV& onv, size_t address) const {
     }
     onv.set_representation(representation);
 }
+
+  
+ *  Find the next unoccupied orbital in a given ONV,
+ *  update the electron count and orbital index,
+ *  and calculate a shift in address
+ *  resulting from a difference between the initial vertex weights for the encountered occupied orbitals
+ *  and the corrected vertex weights accounting for previously annihilated electrons
+ *
+ *  @param onv       the ONV for which we search the next unnocupied orbital
+ *  @param q         the orbital index
+ *  @param e         the electron count
+ *  @param a         the annihilation count
+ *
+ *  @return the shift in address resulting from the difference in the corrected electron weights
+ */
+
+size_t FockSpace::shiftUntilNextUnoccupiedOrbital(const ONV& onv, size_t& q, size_t& e, size_t a) const {
+
+    size_t address_shift = 0;
+    // Test whether the current orbital index is occupied
+    while (e < this->N && q == onv.get_occupied_index(e)) {
+
+        // Take the difference of vertex weights for the encountered electron weights to that of a vertex weight path with "a" fewer electrons
+        // +1 is added to the electron index, because of how the addressing scheme is arrayed.
+        address_shift += this->get_vertex_weights(q, e + 1 - a) - this->get_vertex_weights(q, e + 1);
+
+        // move to the next electron and orbital
+        e++;
+        q++;
+    }
+
+    return address_shift;
+}
+
+
 
 }  // namespace GQCP

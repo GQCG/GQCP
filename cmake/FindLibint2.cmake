@@ -3,7 +3,7 @@
 
 # The following installations of Libint2 are supported:
 #   - /usr/local/libint
-#   - any directory, but with an environment variable ${LIBINTROOT}, which contains the include, lib and share folders
+#   - any directory, but with an environment variable ${LIBINTROOT} or ${LIBINT_ROOT}, which contains the include, lib and share folders
 
 # If found, this will define
 #  Libint2_FOUND            Libint2 is available on the system
@@ -12,8 +12,8 @@
 
 
 # We have to find the version! Luckily, Libint2 -when installed defaultly- provides a directory /usr/local/libint/x.y.z
-# When the user has set ${LIBINTROOT} in the enviroment, this path can also be used
-find_path(LIBINT_PREFIX include/libint2.hpp HINTS /usr/local/libint/*/ ENV{LIBINTROOT} ${LIBINT_ROOT})
+# When the user has set ${LIBINTROOT} or ${LIBINT_ROOT} in the enviroment, this path can also be used
+find_path(LIBINT_PREFIX include/libint2.hpp HINTS /usr/local/libint/*/ ENV LIBINTROOT LIBINT_ROOT)
 
 
 if("${LIBINT_PREFIX}" STREQUAL "LIBINT_PREFIX-NOTFOUND")
