@@ -52,8 +52,8 @@ Configuration SelectedFockSpace::makeConfiguration(const std::string& onv1, cons
     size_t alpha_s = alpha_transfer.to_ulong();
     size_t beta_s = beta_transfer.to_ulong();
 
-    ONV alpha (alpha_transfer.size(), alpha_s);
-    ONV beta (beta_transfer.size(), beta_s);
+    ONV alpha (this->K, this->N_alpha, alpha_s);
+    ONV beta (this->K, this->N_beta, beta_s);
 
     return Configuration {alpha, beta};
 }
