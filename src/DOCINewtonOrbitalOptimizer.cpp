@@ -34,7 +34,7 @@ namespace GQCP {
  *  @param doci         the DOCI HamiltonianBuilder
  *  @param ham_par      the Hamiltonian parameters in an orthonormal basis
  */
-    DOCINewtonOrbitalOptimizer::DOCINewtonOrbitalOptimizer(const GQCP::DOCI& doci, const GQCP::HamiltonianParameters& ham_par) :
+DOCINewtonOrbitalOptimizer::DOCINewtonOrbitalOptimizer(const GQCP::DOCI& doci, const GQCP::HamiltonianParameters& ham_par) :
     doci (doci),
     ham_par (ham_par)
 {}
@@ -132,6 +132,8 @@ void DOCINewtonOrbitalOptimizer::solve(numopt::eigenproblem::BaseSolverOptions& 
 
                 // Set solutions
                 this->eigenpairs = doci_solver.get_eigenpairs();
+
+                break;  // no need to continue if we have converged
             }
 
 
