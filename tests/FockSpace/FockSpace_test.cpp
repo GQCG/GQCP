@@ -59,14 +59,31 @@ BOOST_AUTO_TEST_CASE ( iterateToNextUnoccupiedOrbital ) {
     GQCP::FockSpace fock_space (5, 3);
     GQCP::ONV onv = fock_space.get_ONV(3);  // 01110
 
-    size_t e = 0;  // count starts at 0 (one electron = 0, two electrons = 1, etc)
-    size_t q = 2;  // index starts at the second occupied orbital (as if the first was annihilated)
+    // test shift if we annihilated one electron and start from orbital index 2
+    size_t e = 1;  // count starts at 1 (translates to orbital index 2)
+    size_t q = 2;  // index starts at orbital index 2
 
     //  In this instance electron weights at index 2 and 3 should be shifted
     //  Initial weight contributions were 1 and 1 respectively.
     //  These should be shifted to 2 and 3 respectively, the difference is 1 and 2 respectively
     //  The total shift is thus 3
-    size_t address_shift = fock_space.shiftAddressTillNextUnoccupiedOrbital(onv, q, e);
+    size_t address_shift = fock_space.shiftUntilNextUnoccupiedOrbital(onv, q, e, 1);
 
     BOOST_CHECK(address_shift == 3);
+    BOOST_CHECK(e == 3);
+    BOOST_CHECK(q == 4);
+
+    // test shift if we annihilated two electrons and start from orbital index 3
+    e = 2;  // count starts at 2 (translates to orbital index 3)
+    q = 3;  // index starts at orbital index 3
+
+    //  In this instance electron weights at index 3 should be shifted
+    //  Initial weight contributions was 1.
+    //  These should be shifted to 3, the difference is 2
+    //  The total shift is thus 2
+    address_shift = fock_space.shiftUntilNextUnoccupiedOrbital(onv, q, e, 2);
+
+    BOOST_CHECK(address_shift == 2);
+    BOOST_CHECK(e == 3);
+    BOOST_CHECK(q == 4);
 }

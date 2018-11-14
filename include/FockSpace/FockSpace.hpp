@@ -111,12 +111,12 @@ public:
      *  additionally shift the address by updating the encountered electron weights by that of a path with one fewer electron
      *
      *  @param onv       the ONV for which we search the next unnocupied orbital
-     *  @param e         the electron count
      *  @param q         the orbital index
+     *  @param e         the electron count
      *
      *  @return and shift in address resulting from the iteration
      */
-    size_t shiftAddressTillNextUnoccupiedOrbital(const ONV &onv, size_t &q, size_t &e);
+    size_t shiftUntilNextUnoccupiedOrbital(const ONV& onv, size_t& q, size_t& e, size_t a);
 };
 
 

@@ -197,29 +197,32 @@ size_t FockSpace::getAddress(const ONV& onv) {
 
 
 /**
- *  Find the next unoccupied orbital in a given ONV and update the electron count and orbital index,
- *  additionally shift the address by updating the encountered electron weights by that of a path with one fewer electron
- *  
- *  @param onv       the ONV for which we search the next unnocupied orbital
- *  @param e         the electron count
- *  @param q         the orbital index
+ *  Find the next unoccupied orbital in a given ONV,
+ *  update the electron count and orbital index,
+ *  and calculate a shift in address
+ *  resulting from a difference between the initial vertex weights for the encountered occupied orbitals
+ *  and the corrected vertex weights accounting for previously annihilated electrons
  *
- *  @return and shift in address resulting from the iteration
+ *  @param onv       the ONV for which we search the next unnocupied orbital
+ *  @param q         the orbital index
+ *  @param e         the electron count
+ *  @param a         the annihilation count
+ *
+ *  @return the shift in address resulting from the difference in the corrected electron weights
  */
 
-size_t FockSpace::shiftAddressTillNextUnoccupiedOrbital(const ONV &onv, size_t &q, size_t &e) {
-    size_t address_shift = 0;
+size_t FockSpace::shiftUntilNextUnoccupiedOrbital(const ONV& onv, size_t& q, size_t& e, size_t a) {
 
-    while (e < N - 1 && q == onv.get_occupied_index(e + 1)) {
-        // Shift the address for the electrons encountered after the annihilation but before the creation
-        // Their currents weights are no longer correct, the corresponding weights can be calculated
-        // initial weight can be found in the addressing scheme, on the index of the orbital (row) and electron count (column)
-        // since e2 starts at the annihilated position, the first shifted electron is at e2's position + 1, (given the while loop condition this is also (e2+1)'s position)
-        // The nature of the addressing scheme requires us the add 1 to the electron count (because we start with the 0'th electron
-        // And for the initial weight we are at an extra electron (before the annihilation) hence the difference in weight is:
-        // the new weight at (e2+1) position (row) and e2+1 (column) - the old weight at  (e2+1) position (row) and e2+2 (column)
-        address_shift += this->get_vertex_weights(q, e + 1) - this->get_vertex_weights(q, e + 2);
-        e++;  // adding occupied orbitals to the electron count
+    size_t address_shift = 0;
+    // Test whether the current orbital index is occupied
+    while (e < this->N && q == onv.get_occupied_index(e)) {
+
+        // Take the difference of vertex weights for the encountered electron weights to that of a vertex weight path with "a" fewer electrons
+        // +1 is added to the electron index, because of how the addressing scheme is arrayed.
+        address_shift += this->get_vertex_weights(q, e + 1 - a) - this->get_vertex_weights(q, e + 1);
+
+        // move to the next electron and orbital
+        e++;
         q++;
     }
 

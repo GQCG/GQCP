@@ -48,15 +48,14 @@ Eigen::MatrixXd DOCI::constructHamiltonian(const HamiltonianParameters& hamilton
     
     auto K = hamiltonian_parameters.get_h().get_dim();
     if (K != this->fock_space.get_K()) {
-        throw std::invalid_argument("Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
+        throw std::invalid_argument("The number of orbitals for the Fock space and Hamiltonian parameters are incompatible.");
     }
     size_t dim = this->fock_space.get_dimension();
     Eigen::VectorXd diagonal = calculateDiagonal(hamiltonian_parameters);
     Eigen::MatrixXd result_matrix = Eigen::MatrixXd::Zero(dim, dim);
     size_t N = this->fock_space.get_N();
 
-    // Create the first spin string. Since in DOCI, alpha == beta, we can just treat them as one
-    // And multiply all contributions by 2
+    // Create the first spin string. Since in DOCI, alpha == beta, we can just treat them as one and multiply all contributions by 2
     ONV onv = this->fock_space.get_ONV(0);  // spin string with address 0
 
     for (size_t I = 0; I < dim; I++) {  // I loops over all the addresses of the onv
@@ -70,14 +69,13 @@ Eigen::MatrixXd DOCI::constructHamiltonian(const HamiltonianParameters& hamilton
             size_t address = I - this->fock_space.get_vertex_weights(p, e1 + 1);
             // The e2 iteration counts the amount of encountered electrons for the creation operator
             // We only consider greater addresses than the initial one (because of symmetry)
-            // Hence we are only required to start counting from the annihilated electron (e1)
-            size_t e2 = e1;
-
+            // Hence we only count electron after the annihilated electron (e1)
+            size_t e2 = e1 + 1;
             size_t q = p + 1;
 
-            address += this->fock_space.shiftAddressTillNextUnoccupiedOrbital(onv, q, e2);
+            // perform a shift
+            address += this->fock_space.shiftUntilNextUnoccupiedOrbital(onv, q, e2, 1);
 
-            e2++;
             while (q < K) {
                 size_t J = address + this->fock_space.get_vertex_weights(q, e2);
 
@@ -86,15 +84,10 @@ Eigen::MatrixXd DOCI::constructHamiltonian(const HamiltonianParameters& hamilton
 
                 q++;  // go to the next orbital
 
-                // If we encounter an occupied orbital, perform the shift, and test whether the following orbitals are occupied (or not)
-                // Then procdeedo set q to the next non-occupied orbital.
-                if (e2 < N && q == onv.get_occupied_index(e2)) {
-                    address += this->fock_space.get_vertex_weights(q, e2) - this->fock_space.get_vertex_weights(q, e2 + 1);
-                    q++;
-                    address += this->fock_space.shiftAddressTillNextUnoccupiedOrbital(onv, q, e2);
-                    e2++;
-                }
-            }  //  (creation)
+                // perform a shift
+                address += this->fock_space.shiftUntilNextUnoccupiedOrbital(onv, q, e2, 1);
+
+            }  // (creation)
 
         } // e1 loop (annihilation)
 
@@ -119,9 +112,10 @@ Eigen::MatrixXd DOCI::constructHamiltonian(const HamiltonianParameters& hamilton
  *  @return the action of the DOCI Hamiltonian on the coefficient vector
  */
 Eigen::VectorXd DOCI::matrixVectorProduct(const HamiltonianParameters& hamiltonian_parameters, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) {
+
     auto K = hamiltonian_parameters.get_h().get_dim();
     if (K != this->fock_space.get_K()) {
-        throw std::invalid_argument("Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
+        throw std::invalid_argument("The number of orbitals for the Fock space and Hamiltonian parameters are incompatible.");
     }
     size_t dim = this->fock_space.get_dimension();
 
@@ -131,7 +125,6 @@ Eigen::VectorXd DOCI::matrixVectorProduct(const HamiltonianParameters& hamiltoni
 
     // Diagonal contributions
     Eigen::VectorXd matvec = diagonal.cwiseProduct(x);
-
 
     for (size_t I = 0; I < dim; I++) {  // I loops over all the addresses of the onv
 
@@ -147,13 +140,12 @@ Eigen::VectorXd DOCI::matrixVectorProduct(const HamiltonianParameters& hamiltoni
             // The e2 iteration counts the amount of encountered electrons for the creation operator
             // We only consider greater addresses than the initial one (because of symmetry)
             // Hence we are only required to start counting from the annihilated electron (e1)
-            size_t e2 = e1;
-
+            size_t e2 = e1 + 1;
             size_t q = p + 1;
 
-            address += this->fock_space.shiftAddressTillNextUnoccupiedOrbital(onv, q, e2);
+            // perform a shift
+            address += this->fock_space.shiftUntilNextUnoccupiedOrbital(onv, q, e2, 1);
 
-            e2++;
             while (q < K) {
                 size_t J = address + this->fock_space.get_vertex_weights(q, e2);
 
@@ -162,17 +154,11 @@ Eigen::VectorXd DOCI::matrixVectorProduct(const HamiltonianParameters& hamiltoni
 
                 q++;  // go to the next orbital
 
-                // If we encounter an occupied orbital, perform the shift, and test whether the following orbitals are occupied (or not)
-                // Then procdeedo set q to the next non-occupied orbital.
-                if (e2 < N && q == onv.get_occupied_index(e2)) {
-                    address += this->fock_space.get_vertex_weights(q, e2) - this->fock_space.get_vertex_weights(q, e2 + 1);
-                    q++;
 
-                    address += this->fock_space.shiftAddressTillNextUnoccupiedOrbital(onv, q, e2);
+                // perform a shift
+                address += this->fock_space.shiftUntilNextUnoccupiedOrbital(onv, q, e2, 1);
 
-                    e2++;
-                }
-            }  //  (creation)
+            }  // (creation)
 
         } // e1 loop (annihilation)
 
