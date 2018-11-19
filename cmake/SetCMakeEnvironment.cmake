@@ -40,6 +40,9 @@ set(PROJECT_SOURCE_FILES
         ${PROJECT_SOURCE_FOLDER}/HamiltonianParameters/BaseHamiltonianParameters.cpp
         ${PROJECT_SOURCE_FOLDER}/HamiltonianParameters/HamiltonianParameters.cpp
         ${PROJECT_SOURCE_FOLDER}/HamiltonianParameters/HamiltonianParameters_constructors.cpp
+        ${PROJECT_SOURCE_FOLDER}/Localization/BaseERLocalizer.cpp
+        ${PROJECT_SOURCE_FOLDER}/Localization/ERJacobiLocalizer.cpp
+        ${PROJECT_SOURCE_FOLDER}/Localization/ERNewtonLocalizer.cpp
         ${PROJECT_SOURCE_FOLDER}/Operator/BaseOperator.cpp
         ${PROJECT_SOURCE_FOLDER}/Operator/OneElectronOperator.cpp
         ${PROJECT_SOURCE_FOLDER}/Operator/TwoElectronOperator.cpp
@@ -94,6 +97,9 @@ set(PROJECT_INCLUDE_FILES
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianParameters/BaseHamiltonianParameters.hpp
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianParameters/HamiltonianParameters.hpp
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianParameters/HamiltonianParameters_constructors.hpp
+        ${PROJECT_INCLUDE_FOLDER}/Localization/BaseERLocalizer.hpp
+        ${PROJECT_INCLUDE_FOLDER}/Localization/ERJacobiLocalizer.hpp
+        ${PROJECT_INCLUDE_FOLDER}/Localization/ERNewtonLocalizer.hpp
         ${PROJECT_INCLUDE_FOLDER}/Operator/BaseOperator.hpp
         ${PROJECT_INCLUDE_FOLDER}/Operator/OneElectronOperator.hpp
         ${PROJECT_INCLUDE_FOLDER}/Operator/TwoElectronOperator.hpp
@@ -151,6 +157,8 @@ set(PROJECT_TEST_SOURCE_FILES
         ${PROJECT_TESTS_FOLDER}/HamiltonianBuilder/Hubbard_test.cpp
         ${PROJECT_TESTS_FOLDER}/HamiltonianParameters/HamiltonianParameters_test.cpp
         ${PROJECT_TESTS_FOLDER}/HamiltonianParameters/HamiltonianParameters_constructors_test.cpp
+        ${PROJECT_TESTS_FOLDER}/Localization/ERJacobiLocalizer_test.cpp
+        ${PROJECT_TESTS_FOLDER}/Localization/ERNewtonLocalizer_test.cpp
         ${PROJECT_TESTS_FOLDER}/Operator/OneElectronOperator_test.cpp
         ${PROJECT_TESTS_FOLDER}/Operator/TwoElectronOperator_test.cpp
         ${PROJECT_TESTS_FOLDER}/properties/expectation_values_test.cpp

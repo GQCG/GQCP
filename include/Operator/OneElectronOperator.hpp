@@ -44,8 +44,6 @@ public:
     OneElectronOperator();
 
     /**
-     *  Constructor based on a given @param matrix
-     *
      *  @param matrix   the explicit matrix representation of the one-electron operator
      */
     explicit OneElectronOperator(const Eigen::MatrixXd& matrix);

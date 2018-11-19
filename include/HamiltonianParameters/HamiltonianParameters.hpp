@@ -142,6 +142,13 @@ public:
     GQCP::TwoElectronOperator calculateSuperGeneralizedFockMatrix(const GQCP::OneRDM& D, const GQCP::TwoRDM& d) const;
 
     /**
+     *  @param N_P      the number of electron pairs
+     *
+     *  @return the Edmiston-Ruedenberg localization index g(i,i,i,i)
+     */
+    double calculateEdmistonRuedenbergLocalizationIndex(size_t N_P) const;
+
+    /**
      *  Constrain the Hamiltonian parameters according to the convention: - lambda * constraint
      *
      *  @param one_op   the one-electron operator used as a constraint
