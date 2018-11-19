@@ -32,27 +32,26 @@ namespace GQCP {
  *  @param N                        the number of electrons
  *  @param unsigned_representation  the representation for the ONV as an unsigned integer
  */
-ONV::ONV(size_t K, size_t N, size_t unsigned_representation):
-    K (K),
-    N (N),
-    unsigned_representation (unsigned_representation)
+ONV::ONV(size_t K, size_t N, size_t unsigned_representation) :
+    ONV(K, N)
 {
-    occupation_indices = VectorXs::Zero(N);
+    this->unsigned_representation = unsigned_representation;
     this->updateOccupationIndices();  // throws error if the representation and N are not compatible
 }
+
 
 /**
+ *  Constructs a default ONV without a representation
+ *
  *  @param K                        the number of orbitals
- *  @param unsigned_representation  the representation for the ONV as an unsigned integer
+ *  @param N                        the number of electrons
  */
-ONV::ONV(size_t K, size_t representation):
-    ONV(K, __builtin_popcountl(representation), representation)
+ONV::ONV(size_t K, size_t N) :
+    K (K),
+    N (N)
 {
-    occupation_indices = VectorXs::Zero(N);
-    this->updateOccupationIndices();  // throws error if the representation and N are not compatible
+    this->occupation_indices = VectorXs::Zero(N);
 }
-
-
 
 /*
  *  OPERATORS
