@@ -58,8 +58,9 @@ public:
      *  @param h            the one-electron integrals H_core
      *  @param g            the two-electron integrals
      *  @param C            a transformation matrix between the current molecular orbitals and the atomic orbitals
+     *  @param scalar       the scalar interaction term
      */
-    HamiltonianParameters(std::shared_ptr<GQCP::AOBasis> ao_basis, const GQCP::OneElectronOperator& S, const GQCP::OneElectronOperator& h, const GQCP::TwoElectronOperator& g, const Eigen::MatrixXd& C);
+    HamiltonianParameters(std::shared_ptr<GQCP::AOBasis> ao_basis, const GQCP::OneElectronOperator& S, const GQCP::OneElectronOperator& h, const GQCP::TwoElectronOperator& g, const Eigen::MatrixXd& C, double scalar=0.0);
 
 
     /**
