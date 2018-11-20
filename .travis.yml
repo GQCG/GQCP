@@ -114,11 +114,11 @@ script:
   - cmake ..
   - make -j3 && make test ARGS=-j3 && sudo make install
   - cd benchmarks
-  - ./DOCI/doci_case --benchmark_counters_tabular=true
-  - ./DOCI/doci_matrix --benchmark_counters_tabular=true
-  - ./DOCI/doci_matvec --benchmark_counters_tabular=true
-  - ./FCI/fci_matrix --benchmark_counters_tabular=true
-  - ./FCI/fci_matvec --benchmark_counters_tabular=true
-  - ./Hubbard/hubbard_diagonalization --benchmark_counters_tabular=true
-  - ./Hubbard/hubbard_matrix --benchmark_counters_tabular=true
-  - ./Hubbard/hubbard_matvec --benchmark_counters_tabular=true
+  - ./doci_case --benchmark_counters_tabular=true
+  - ./doci_matrix --benchmark_counters_tabular=true
+  - ./doci_matvec --benchmark_counters_tabular=true
+  - ./fci_matrix --benchmark_counters_tabular=true
+  - ./fci_matvec --benchmark_counters_tabular=true
+  - ./hubbard_diagonalization --benchmark_counters_tabular=true
+  - ./hubbard_matrix --benchmark_counters_tabular=true
+  - ./hubbard_matvec --benchmark_counters_tabular=true

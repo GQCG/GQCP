@@ -4,6 +4,8 @@
 
 #include "benchmark/benchmark.h"
 
+#include "CISolver/CISolver.hpp"
+
 #include "HamiltonianParameters/HamiltonianParameters_constructors.hpp"
 #include "HamiltonianBuilder/Hubbard.hpp"
 
