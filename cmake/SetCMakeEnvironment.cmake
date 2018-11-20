@@ -40,9 +40,14 @@ set(PROJECT_SOURCE_FILES
         ${PROJECT_SOURCE_FOLDER}/HamiltonianParameters/BaseHamiltonianParameters.cpp
         ${PROJECT_SOURCE_FOLDER}/HamiltonianParameters/HamiltonianParameters.cpp
         ${PROJECT_SOURCE_FOLDER}/HamiltonianParameters/HamiltonianParameters_constructors.cpp
+        ${PROJECT_SOURCE_FOLDER}/Localization/BaseERLocalizer.cpp
+        ${PROJECT_SOURCE_FOLDER}/Localization/ERJacobiLocalizer.cpp
+        ${PROJECT_SOURCE_FOLDER}/Localization/ERNewtonLocalizer.cpp
         ${PROJECT_SOURCE_FOLDER}/Operator/BaseOperator.cpp
         ${PROJECT_SOURCE_FOLDER}/Operator/OneElectronOperator.cpp
         ${PROJECT_SOURCE_FOLDER}/Operator/TwoElectronOperator.cpp
+        ${PROJECT_SOURCE_FOLDER}/properties/expectation_values.cpp
+        ${PROJECT_SOURCE_FOLDER}/properties/properties.cpp
         ${PROJECT_SOURCE_FOLDER}/RDM/BaseRDM.cpp
         ${PROJECT_SOURCE_FOLDER}/RDM/BaseRDMBuilder.cpp
         ${PROJECT_SOURCE_FOLDER}/RDM/DOCIRDMBuilder.cpp
@@ -92,9 +97,14 @@ set(PROJECT_INCLUDE_FILES
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianParameters/BaseHamiltonianParameters.hpp
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianParameters/HamiltonianParameters.hpp
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianParameters/HamiltonianParameters_constructors.hpp
+        ${PROJECT_INCLUDE_FOLDER}/Localization/BaseERLocalizer.hpp
+        ${PROJECT_INCLUDE_FOLDER}/Localization/ERJacobiLocalizer.hpp
+        ${PROJECT_INCLUDE_FOLDER}/Localization/ERNewtonLocalizer.hpp
         ${PROJECT_INCLUDE_FOLDER}/Operator/BaseOperator.hpp
         ${PROJECT_INCLUDE_FOLDER}/Operator/OneElectronOperator.hpp
         ${PROJECT_INCLUDE_FOLDER}/Operator/TwoElectronOperator.hpp
+        ${PROJECT_INCLUDE_FOLDER}/properties/expectation_values.hpp
+        ${PROJECT_INCLUDE_FOLDER}/properties/properties.hpp
         ${PROJECT_INCLUDE_FOLDER}/RDM/BaseRDM.hpp
         ${PROJECT_INCLUDE_FOLDER}/RDM/BaseRDMBuilder.hpp
         ${PROJECT_INCLUDE_FOLDER}/RDM/DOCIRDMBuilder.hpp
@@ -126,6 +136,7 @@ set(PROJECT_TESTS_FOLDER ${CMAKE_SOURCE_DIR}/tests)
 
 # Find the source files for the tests
 set(PROJECT_TEST_SOURCE_FILES
+        ${PROJECT_TESTS_FOLDER}/CISolver/CISolver_DOCI_constrained_test.cpp
         ${PROJECT_TESTS_FOLDER}/CISolver/CISolver_DOCI_Davidson_test.cpp
         ${PROJECT_TESTS_FOLDER}/CISolver/CISolver_DOCI_Dense_test.cpp
         ${PROJECT_TESTS_FOLDER}/CISolver/CISolver_FCI_Davidson_test.cpp
@@ -146,12 +157,17 @@ set(PROJECT_TEST_SOURCE_FILES
         ${PROJECT_TESTS_FOLDER}/HamiltonianBuilder/Hubbard_test.cpp
         ${PROJECT_TESTS_FOLDER}/HamiltonianParameters/HamiltonianParameters_test.cpp
         ${PROJECT_TESTS_FOLDER}/HamiltonianParameters/HamiltonianParameters_constructors_test.cpp
+        ${PROJECT_TESTS_FOLDER}/Localization/ERJacobiLocalizer_test.cpp
+        ${PROJECT_TESTS_FOLDER}/Localization/ERNewtonLocalizer_test.cpp
         ${PROJECT_TESTS_FOLDER}/Operator/OneElectronOperator_test.cpp
         ${PROJECT_TESTS_FOLDER}/Operator/TwoElectronOperator_test.cpp
+        ${PROJECT_TESTS_FOLDER}/properties/expectation_values_test.cpp
+        ${PROJECT_TESTS_FOLDER}/properties/properties_test.cpp
         ${PROJECT_TESTS_FOLDER}/RDM/DOCIRDMBuilder_test.cpp
         ${PROJECT_TESTS_FOLDER}/RDM/FCIRDMBuilder_test.cpp
         ${PROJECT_TESTS_FOLDER}/RDM/RDMCalculator_test.cpp
         ${PROJECT_TESTS_FOLDER}/RDM/SelectedRDMBuilder_test.cpp
+        ${PROJECT_TESTS_FOLDER}/RHF/constrained_RHF_test.cpp
         ${PROJECT_TESTS_FOLDER}/RHF/DIISRHFSCFSolver_test.cpp
         ${PROJECT_TESTS_FOLDER}/RHF/PlainRHFSCFSolver_test.cpp
         ${PROJECT_TESTS_FOLDER}/RHF/RHF_test.cpp

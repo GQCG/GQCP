@@ -15,6 +15,8 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
+#include <FockSpace/FockSpace.hpp>
+
 #include "FockSpace/FockSpace.hpp"
 
 
@@ -136,30 +138,9 @@ size_t FockSpace::calculateDimension(size_t K, size_t N) {
  *  @return the ONV with the corresponding address
  */
 ONV FockSpace::get_ONV(size_t address) {
-    size_t representation;
-    if (this->N == 0) {
-        representation = 0;
-    }
-
-    else {
-        representation = 0;
-        size_t m = this->N;  // counts the number of electrons in the spin string up to orbital p
-
-        for (size_t p = this->K; p > 0; p--) {  // p is an orbital index
-            size_t weight = get_vertex_weights(p-1, m);
-
-            if (weight <= address) {  // the algorithm can move diagonally, so we found an occupied orbital
-                address -= weight;
-                representation |= ((1) << (p - 1));  // set the (p-1)th bit: see (https://stackoverflow.com/a/47990)
-
-                m--;  // since we found an occupied orbital, we have one electron less
-                if (m == 0) {
-                    break;
-                }
-            }
-        }
-    }
-    return ONV(this->K, this->N, representation);
+    ONV onv (this->K, this->N);
+    this->set(onv, address);
+    return onv;
 }
 
 
@@ -192,6 +173,76 @@ size_t FockSpace::getAddress(const ONV& onv) {
     }
     return address;
 }
+
+
+/**
+ *  Transform an ONV to one with corresponding to the given address
+ *
+ *  @param onv          the ONV
+ *  @param address      the address to which the ONV will be set
+ */
+void FockSpace::set(ONV& onv, size_t address) const {
+
+    size_t representation;
+    if (this->N == 0) {
+        representation = 0;
+    }
+
+    else {
+        representation = 0;
+        size_t m = this->N;  // counts the number of electrons in the spin string up to orbital p
+
+        for (size_t p = this->K; p > 0; p--) {  // p is an orbital index
+            size_t weight = get_vertex_weights(p-1, m);
+
+            if (weight <= address) {  // the algorithm can move diagonally, so we found an occupied orbital
+                address -= weight;
+                representation |= ((1) << (p - 1));  // set the (p-1)th bit: see (https://stackoverflow.com/a/47990)
+
+                m--;  // since we found an occupied orbital, we have one electron less
+                if (m == 0) {
+                    break;
+                }
+            }
+        }
+    }
+    onv.set_representation(representation);
+}
+
+
+/**
+ *  Find the next unoccupied orbital in a given ONV,
+ *  update the electron count and orbital index,
+ *  and calculate a shift in address
+ *  resulting from a difference between the initial vertex weights for the encountered occupied orbitals
+ *  and the corrected vertex weights accounting for previously annihilated electrons
+ *
+ *  @param onv       the ONV for which we search the next unnocupied orbital
+ *  @param q         the orbital index
+ *  @param e         the electron count
+ *  @param a         the annihilation count
+ *
+ *  @return the shift in address resulting from the difference in the corrected electron weights
+ */
+
+size_t FockSpace::shiftUntilNextUnoccupiedOrbital(const ONV& onv, size_t& q, size_t& e, size_t a) const {
+
+    size_t address_shift = 0;
+    // Test whether the current orbital index is occupied
+    while (e < this->N && q == onv.get_occupied_index(e)) {
+
+        // Take the difference of vertex weights for the encountered electron weights to that of a vertex weight path with "a" fewer electrons
+        // +1 is added to the electron index, because of how the addressing scheme is arrayed.
+        address_shift += this->get_vertex_weights(q, e + 1 - a) - this->get_vertex_weights(q, e + 1);
+
+        // move to the next electron and orbital
+        e++;
+        q++;
+    }
+
+    return address_shift;
+}
+
 
 
 }  // namespace GQCP

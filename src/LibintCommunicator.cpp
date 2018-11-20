@@ -26,7 +26,7 @@ namespace GQCP {
 
 
 /*
- *  PRIVATE METHODS
+ *  PRIVATE METHODS - SINGLETON
  */
 
 /**
@@ -45,108 +45,15 @@ LibintCommunicator::~LibintCommunicator() {
 }
 
 
-
 /*
- *  PUBLIC METHODS
+ *  PRIVATE METHODS
  */
 
 /**
- *  @return the static singleton instance
- */
-LibintCommunicator& LibintCommunicator::get() {  // need to return by reference since we deleted the relevant constructor
-    static LibintCommunicator singleton_instance;  // instantiated on first use and guaranteed to be destroyed
-    return singleton_instance;
-}
-
-
-/**
- *  @return a std::vector<libint2::Atom> based on a given std::vector<GQCP::Atom> @param atoms
- */
-std::vector<libint2::Atom> LibintCommunicator::interface(const std::vector<GQCP::Atom>& atoms) const {
-
-    std::vector<libint2::Atom> libint_vector;  // start with an empty vector, we're doing push_backs later
-
-    for (const auto& atom : atoms) {
-        libint2::Atom libint_atom {static_cast<int>(atom.atomic_number), atom.x, atom.y, atom.z};
-        libint_vector.push_back(libint_atom);
-    }
-
-    return libint_vector;
-}
-
-
-/**
- *  @return the OneElectronOperator corresponding to the matrix representation of @param operator_type in the given
- *  @param ao_basis
- */
-GQCP::OneElectronOperator LibintCommunicator::calculateOneElectronIntegrals(libint2::Operator operator_type, const GQCP::AOBasis& ao_basis) const {
-
-    // Use the basis_functions that is currently a libint2::BasisSet
-    auto libint_basisset = ao_basis.get_basis_functions();
-    const auto nbf = static_cast<size_t>(libint_basisset.nbf());  // nbf: number of basis functions in the basisset
-
-    Eigen::MatrixXd matrix = Eigen::MatrixXd::Zero(nbf, nbf);
-
-
-    // Construct the libint2 engine
-    libint2::Engine engine (operator_type, libint_basisset.max_nprim(), static_cast<int>(libint_basisset.max_l()));
-
-    // Something extra for the nuclear attraction integrals
-    if (operator_type == libint2::Operator::nuclear) {
-        auto atoms = this->interface(ao_basis.get_atoms());  // convert from GQCP::Atoms to libint2::atoms
-        engine.set_params(make_point_charges(atoms));
-    }
-
-
-    const auto shell2bf = libint_basisset.shell2bf();  // maps shell index to bf index
-
-    const auto& buffer = engine.results();  // vector that holds pointers to computed shell sets
-    // actually, buffer.size() is always 1, so buffer[0] is a pointer to
-    //      the first calculated integral of these specific shells
-    // the values that buffer[0] points to will change after every compute() call
-
-
-    // One-electron integrals are between two basis functions, so we'll need two loops
-    // Libint calculates integrals between libint2::Shells, so we will loop over the shells (sh) in the basisset
-    const auto nsh = static_cast<size_t>(libint_basisset.size());  // nsh: number of shells in the basisset
-    for (auto sh1 = 0; sh1 != nsh; ++sh1) {  // sh1: shell 1
-        for (auto sh2 = 0; sh2 != nsh; ++sh2) {  // sh2: shell 2
-            // Calculate integrals between the two shells (basis_set is a decorated std::vector<libint2::Shell>)
-            engine.compute(libint_basisset[sh1], libint_basisset[sh2]);
-
-            auto calculated_integrals = buffer[0];  // is actually a pointer: const double *
-
-            if (calculated_integrals == nullptr) {  // if the zeroth element is nullptr, then the whole shell has been exhausted
-                // or the libint engine predicts that the integrals are below a certain threshold
-                // in this case the value does not need to be filled in, and we are safe because we have properly initialized to zero
-                continue;
-            }
-
-            // Extract the calculated integrals from calculated_integrals
-            // In calculated_integrals, the integrals are stored in row major form
-            auto bf1 = shell2bf[sh1];  // (index of) first bf in sh1
-            auto bf2 = shell2bf[sh2];  // (index of) first bf in sh2
-
-            auto nbf_sh1 = libint_basisset[sh1].size();  // number of basis functions in first shell
-            auto nbf_sh2 = libint_basisset[sh2].size();  // number of basis functions in second shell
-
-            for (auto f1 = 0; f1 != nbf_sh1; ++f1) {  // f1: index of basis function within shell 1
-                for (auto f2 = 0; f2 != nbf_sh2; ++f2) { // f2: index of basis function within shell 2
-                    double computed_integral = calculated_integrals[f2 + f1 * nbf_sh2];  // integrals are packed in row-major form
-                    matrix(bf1 + f1, bf2 + f2) = computed_integral;
-                }
-            }  // data access loops
-
-        }
-    }  // shell loops
-
-    return GQCP::OneElectronOperator(matrix);
-}
-
-
-/**
- *  @return the TwoElectronOperator corresponding to the matrix representation of @param operator_type in the given
- *  @param ao_basis
+ *  @param operator_type    the name of the operator as specified by the enumeration
+ *  @param ao_basis         the AO basis in which the two-electron operator should be expressed
+ *
+ *  @return the matrix representation of a two-electron operator in the given AO basis
  */
 GQCP::TwoElectronOperator LibintCommunicator::calculateTwoElectronIntegrals(libint2::Operator operator_type, const GQCP::AOBasis& ao_basis) const {
 
@@ -222,6 +129,100 @@ GQCP::TwoElectronOperator LibintCommunicator::calculateTwoElectronIntegrals(libi
 
     return GQCP::TwoElectronOperator(tensor);
 };
+
+
+/*
+ *  PUBLIC METHODS - SINGLETON
+ */
+
+/**
+ *  @return the static singleton instance
+ */
+LibintCommunicator& LibintCommunicator::get() {  // need to return by reference since we deleted the relevant constructor
+    static LibintCommunicator singleton_instance;  // instantiated on first use and guaranteed to be destroyed
+    return singleton_instance;
+}
+
+
+/*
+ *  PUBLIC METHODS
+ */
+
+/**
+ *  @param atoms        the GQCP-atoms that should be interfaced
+ *
+ *  @return libint2-atoms, interfaced from the given atoms
+ */
+std::vector<libint2::Atom> LibintCommunicator::interface(const std::vector<GQCP::Atom>& atoms) const {
+
+    std::vector<libint2::Atom> libint_vector;  // start with an empty vector, we're doing push_backs later
+
+    for (const auto& atom : atoms) {
+        libint2::Atom libint_atom {static_cast<int>(atom.atomic_number), atom.position.x(), atom.position.y(), atom.position.z()};
+        libint_vector.push_back(libint_atom);
+    }
+
+    return libint_vector;
+}
+
+
+/**
+ *  @param ao_basis     the AO basis used for the calculation of the overlap integrals
+ *
+ *  @return the overlap integrals expressed in the given AO basis
+ */
+GQCP::OneElectronOperator LibintCommunicator::calculateOverlapIntegrals(const GQCP::AOBasis& ao_basis) const {
+    return this->calculateOneElectronIntegrals<1>(libint2::Operator::overlap, ao_basis.get_basis_functions())[0];
+}
+
+
+/**
+ *  @param ao_basis     the AO basis used for the calculation of the kinetic integrals
+ *
+ *  @return the kinetic integrals expressed in the given AO basis
+ */
+GQCP::OneElectronOperator LibintCommunicator::calculateKineticIntegrals(const GQCP::AOBasis& ao_basis) const {
+    return this->calculateOneElectronIntegrals<1>(libint2::Operator::kinetic, ao_basis.get_basis_functions())[0];
+}
+
+
+/**
+ *  @param ao_basis     the AO basis used for the calculation of the nuclear attraction integrals
+ *
+ *  @return the nuclear attraction integrals expressed in the given AO basis
+ */
+GQCP::OneElectronOperator LibintCommunicator::calculateNuclearIntegrals(const GQCP::AOBasis& ao_basis) const {
+    return this->calculateOneElectronIntegrals<1>(libint2::Operator::nuclear, ao_basis.get_basis_functions(),
+                                                  make_point_charges(this->interface(ao_basis.get_atoms())))[0];
+}
+
+
+/**
+ *  @param ao_basis     the AO basis used for the calculation of the dipole repulsion integrals
+ *  @param origin       the origin of the dipole
+ *
+ *  @return the Cartesian components of the electrical dipole operator, expressed in the given AO basis
+ */
+std::array<GQCP::OneElectronOperator, 3> LibintCommunicator::calculateDipoleIntegrals(const GQCP::AOBasis& ao_basis, const Eigen::Vector3d& origin) const {
+
+    std::array<double, 3> origin_array {origin.x(), origin.y(), origin.z()};
+
+    auto all_integrals = this->calculateOneElectronIntegrals<4>(libint2::Operator::emultipole1, ao_basis.get_basis_functions(), origin_array);  // overlap, x, y, z
+
+    // Apply the minus sign which comes from the charge of the electrons -e
+    return std::array<GQCP::OneElectronOperator, 3> {-all_integrals[1], -all_integrals[2], -all_integrals[3]};  // we don't need the overlap, so ignore [0]
+}
+
+
+/**
+ *  @param ao_basis     the AO basis used for the calculation of the Coulomb repulsion integrals
+ *
+ *  @return the Coulomb repulsion integrals expressed in the given AO basis
+ */
+GQCP::TwoElectronOperator LibintCommunicator::calculateCoulombRepulsionIntegrals(const GQCP::AOBasis& ao_basis) const {
+    return this->calculateTwoElectronIntegrals(libint2::Operator::coulomb, ao_basis);
+}
+
 
 
 }  // namespace GQCP

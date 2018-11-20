@@ -117,12 +117,11 @@ void HamiltonianParameters::transform(const Eigen::MatrixXd& T) {
  */
 void HamiltonianParameters::rotate(const Eigen::MatrixXd& U) {
 
-    // A rotation leaves the overlap matrix invariant, so we don't have to transform it
+    if (!U.isUnitary(1.0e-12)) {
+        throw std::invalid_argument("The given matrix is not unitary.");
+    }
 
-    this->h.rotate(U);
-    this->g.rotate(U);
-
-    this->C = this->C * U;
+    this->transform(U);
 }
 
 
@@ -150,8 +149,7 @@ void HamiltonianParameters::randomRotate() {
  */
 void HamiltonianParameters::rotate(const GQCP::JacobiRotationParameters& jacobi_rotation_parameters) {
 
-    // A rotation leaves the overlap matrix invariant, so we don't have to transform it
-
+    this->S.rotate(jacobi_rotation_parameters);
     this->h.rotate(jacobi_rotation_parameters);
     this->g.rotate(jacobi_rotation_parameters);
 
@@ -171,31 +169,6 @@ void HamiltonianParameters::LowdinOrthonormalize() {
     // The transformation matrix to the Löwdin basis is T = S^{-1/2}
     Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes (this->S.get_matrix_representation());
     this->transform(saes.operatorInverseSqrt());
-}
-
-
-/**
- *  @param D      the 1-RDM
- *  @param d      the 2-RDM
- *
- *  @return the energy as a result of the contraction of the 1- and 2-RDMs with the one- and two-electron integrals
- */
-double HamiltonianParameters::calculateEnergy(const GQCP::OneRDM& D, const GQCP::TwoRDM& d) const {
-
-    double energy_by_contraction = (this->h.get_matrix_representation() * D.get_matrix_representation()).trace();
-
-    Eigen::Tensor<double, 4> g = this->g.get_matrix_representation();
-
-    // Specify the contractions for the relevant contraction of the two-electron integrals and the 2-RDM
-    //      0.5 g(p q r s) d(p q r s)
-    Eigen::array<Eigen::IndexPair<int>, 4> contractions = {Eigen::IndexPair<int>(0,0), Eigen::IndexPair<int>(1,1), Eigen::IndexPair<int>(2,2), Eigen::IndexPair<int>(3,3)};
-    //      Perform the contraction
-    Eigen::Tensor<double, 0> contraction = 0.5 * g.contract(d.get_matrix_representation(), contractions);
-
-    // As the contraction is a scalar (a tensor of rank 0), we should access by (0).
-    energy_by_contraction += contraction(0);
-
-    return energy_by_contraction;
 }
 
 
@@ -296,6 +269,110 @@ GQCP::TwoElectronOperator HamiltonianParameters::calculateSuperGeneralizedFockMa
     return GQCP::TwoElectronOperator(W);
 };
 
+
+/**
+ *  @param N_P      the number of electron pairs
+ *
+ *  @return the Edmiston-Ruedenberg localization index g(i,i,i,i)
+ */
+double HamiltonianParameters::calculateEdmistonRuedenbergLocalizationIndex(size_t N_P) const {
+
+    double localization_index = 0.0;
+
+    // TODO: when Eigen releases TensorTrace, use it here
+    for (size_t i = 0; i < N_P; i++) {
+        localization_index += this->g(i,i,i,i);
+    }
+
+    return localization_index;
+}
+
+  
+/**  
+ *  Constrain the Hamiltonian parameters according to the convention: - lambda * constraint
+ *
+ *  @param one_op   the one-electron operator used as a constraint
+ *  @param two_op   the two-electron operator used as a constraint
+ *  @param lambda   Lagrangian multiplier for the constraint
+ *
+ *  @return a copy of the constrained Hamiltonian parameters
+ */
+HamiltonianParameters HamiltonianParameters::constrain(const GQCP::OneElectronOperator& one_op, const GQCP::TwoElectronOperator& two_op, double lambda) const {
+
+    OneElectronOperator hc (this->get_h().get_matrix_representation() - lambda*one_op.get_matrix_representation());
+    TwoElectronOperator gc (this->get_g().get_matrix_representation() - lambda*two_op.get_matrix_representation());
+
+    return HamiltonianParameters(this->ao_basis, this->S, hc, gc, this->C);
+}
+
+
+/**
+ *  Constrain the Hamiltonian parameters according to the convention: - lambda * constraint
+ *
+ *  @param one_op   the one-electron operator used as a constraint
+ *  @param lambda   Lagrangian multiplier for the constraint
+ *
+ *  @return a copy of the constrained Hamiltonian parameters
+ */
+HamiltonianParameters HamiltonianParameters::constrain(const GQCP::OneElectronOperator& one_op, double lambda) const {
+
+    OneElectronOperator hc (this->get_h().get_matrix_representation() - lambda*one_op.get_matrix_representation());
+
+    return HamiltonianParameters(this->ao_basis, this->S, hc, this->g, this->C);
+}
+
+
+/**
+ *  Constrain the Hamiltonian parameters according to the convention: - lambda * constraint
+ *
+ *  @param two_op   the two-electron operator used as a constraint
+ *  @param lambda   Lagrangian multiplier for the constraint
+ *
+ *  @return a copy of the constrained Hamiltonian parameters
+ */
+HamiltonianParameters HamiltonianParameters::constrain(const GQCP::TwoElectronOperator& two_op, double lambda) const {
+
+    TwoElectronOperator gc (this->get_g().get_matrix_representation() - lambda*two_op.get_matrix_representation());
+
+    return HamiltonianParameters(this->ao_basis, this->S, this->h, gc, this->C);
+}
+
+
+/**
+ *  @param ao_list     indexes of the original GTOs on which the Mulliken populations are dependant
+ *
+ *  @return the Mulliken operator for a set of GTOs
+ */
+OneElectronOperator HamiltonianParameters::calculateMullikenOperator(const Vectoru& ao_list) {
+
+
+    if (!this->get_ao_basis()) {
+        throw std::invalid_argument("The Hamiltonian parameters have no underlying AO basis, Mulliken analysis is not possible.");
+    }
+
+    if (ao_list.size() > this->K) {
+        throw std::invalid_argument("To many AOs are selected");
+    }
+
+    // Create the partitioning matrix (diagonal matrix with values set to 1 of selected AOs
+    Eigen::MatrixXd p_a = Eigen::MatrixXd::Zero(this->K, this->K);
+
+    for (size_t index : ao_list) {
+        if (index >= this->K) {
+            throw std::invalid_argument("AO index is too large");
+        }
+
+        p_a(index, index) = 1;
+    }
+
+    OneElectronOperator S_AO = this->S;
+    S_AO.transform(C.inverse());
+    Eigen::MatrixXd S_AO_mat = S_AO.get_matrix_representation();
+
+    Eigen::MatrixXd mulliken_matrix = (C.adjoint() * p_a * S_AO_mat * C + C.adjoint() * S_AO_mat * p_a * C)/2 ;
+
+    return OneElectronOperator(mulliken_matrix);
+}
 
 
 }  // namespace GQCP

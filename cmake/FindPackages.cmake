@@ -2,13 +2,13 @@
 
 
 # Find the Boost package
-find_package(Boost REQUIRED REQUIRED program_options)
+find_package(Boost REQUIRED COMPONENTS program_options)
 
 # Find Eigen3
 find_package(Eigen3 3.3.4 REQUIRED)
 
 # Find libint
-find_package(libint2 REQUIRED)
+find_package(Libint2 REQUIRED)
 
 # Find cpputil
 find_package(cpputil 1.5.1 REQUIRED)
@@ -20,3 +20,8 @@ find_package(numopt 1.5.1 REQUIRED)
 if(BUILD_DOCS)
     find_package(Doxygen REQUIRED dot)
 endif()
+
+# Find MKL
+if(USE_MKL)
+    find_package(MKL)
+endif(USE_MKL)

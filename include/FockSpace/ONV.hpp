@@ -22,6 +22,7 @@
 #include <Eigen/Dense>
 
 #include "common.hpp"
+#include <tuple>
 
 
 
@@ -29,7 +30,7 @@ namespace GQCP {
 
 
 /**
- *  A class that represents an ONV (occupation number vector).
+ *  A class that represents an ONV (occupation number vector)
 
  *  An ONV in quantum chemistry is a string of creation operators acting on top of a vacuum state.
  *  An example for 3 alpha electrons in a Fock space spanned by 4 spatial orbitals is
@@ -60,10 +61,12 @@ public:
     ONV(size_t K, size_t N, size_t unsigned_representation);
 
     /**
+     *  Constructs a default ONV without a representation
+     *
      *  @param K                        the number of orbitals
-     *  @param unsigned_representation  the representation for the ONV as an unsigned integer
+     *  @param N                        the number of electrons
      */
-    ONV(size_t K, size_t unsigned_representation);
+    ONV(size_t K, size_t N);
 
 
     // OPERATORS

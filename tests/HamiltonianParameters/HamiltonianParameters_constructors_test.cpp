@@ -30,12 +30,34 @@
 BOOST_AUTO_TEST_CASE ( constructMolecularHamiltonianParameters ) {
 
     // Set up a basis
-    GQCP::Molecule water ("../tests/data/h2o.xyz");
-    auto ao_basis_sptr = std::make_shared<GQCP::AOBasis>(water, "STO-3G");
+    GQCP::Molecule h2 ("../tests/data/h2_szabo.xyz");
+    auto ao_basis = std::make_shared<GQCP::AOBasis>(h2, "STO-3G");
 
     
     // Check if we can construct the molecular Hamiltonian parameters
-    auto mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis_sptr);
+    auto mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
+    auto g = mol_ham_par.get_g();
+
+
+    // Check with reference values from Szabo
+    Eigen::MatrixXd ref_S (2, 2);
+    ref_S << 1.0,    0.6593,
+             0.6593, 1.0;
+
+    Eigen::MatrixXd ref_H_core (2, 2);
+    ref_H_core << -1.1204, -0.9584,
+                  -0.9584, -1.1204;
+
+
+    BOOST_CHECK(mol_ham_par.get_S().get_matrix_representation().isApprox(ref_S, 1.0e-04));
+    BOOST_CHECK(mol_ham_par.get_h().get_matrix_representation().isApprox(ref_H_core, 1.0e-04));
+
+    BOOST_CHECK(std::abs(g(0,0,0,0) - 0.7746) < 1.0e-04);
+    BOOST_CHECK(std::abs(g(0,0,0,0) - g(1,1,1,1)) < 1.0e-12);
+    BOOST_CHECK(std::abs(g(0,0,1,1) - 0.5697) < 1.0e-04);
+    BOOST_CHECK(std::abs(g(1,0,0,0) - 0.4441) < 1.0e-04);
+    BOOST_CHECK(std::abs(g(1,0,0,0) - g(1,1,1,0)) < 1.0e-12);
+    BOOST_CHECK(std::abs(g(1,0,1,0) - 0.2970) < 1.0e-04);
 }
 
 

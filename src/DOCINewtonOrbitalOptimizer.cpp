@@ -34,7 +34,7 @@ namespace GQCP {
  *  @param doci         the DOCI HamiltonianBuilder
  *  @param ham_par      the Hamiltonian parameters in an orthonormal basis
  */
-    DOCINewtonOrbitalOptimizer::DOCINewtonOrbitalOptimizer(const GQCP::DOCI& doci, const GQCP::HamiltonianParameters& ham_par) :
+DOCINewtonOrbitalOptimizer::DOCINewtonOrbitalOptimizer(const GQCP::DOCI& doci, const GQCP::HamiltonianParameters& ham_par) :
     doci (doci),
     ham_par (ham_par)
 {}
@@ -114,8 +114,8 @@ void DOCINewtonOrbitalOptimizer::solve(numopt::eigenproblem::BaseSolverOptions& 
 
 
         // Perform a Newton-step to find orbital rotation parameters kappa
-        numopt::GradientFunction gradient_function = [gradient_vector](const Eigen::VectorXd& x) { return gradient_vector; };
-        numopt::JacobianFunction hessian_function = [hessian_matrix](const Eigen::VectorXd& x) { return hessian_matrix; };
+        numopt::VectorFunction gradient_function = [gradient_vector](const Eigen::VectorXd& x) { return gradient_vector; };
+        numopt::MatrixFunction hessian_function = [hessian_matrix](const Eigen::VectorXd& x) { return hessian_matrix; };
 
         Eigen::VectorXd kappa_vector = numopt::newtonStep(Eigen::VectorXd::Zero(K), gradient_function, hessian_function);  // with only the free parameters
 
@@ -132,6 +132,8 @@ void DOCINewtonOrbitalOptimizer::solve(numopt::eigenproblem::BaseSolverOptions& 
 
                 // Set solutions
                 this->eigenpairs = doci_solver.get_eigenpairs();
+
+                break;  // no need to continue if we have converged
             }
 
 
