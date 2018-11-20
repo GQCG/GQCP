@@ -35,7 +35,7 @@ namespace GQCP {
  *  @param C            a transformation matrix between the current molecular orbitals and the atomic orbitals
  *  @param scalar       the scalar interaction term
  */
-HamiltonianParameters::HamiltonianParameters(std::shared_ptr<GQCP::AOBasis> ao_basis, const GQCP::OneElectronOperator& S, const GQCP::OneElectronOperator& h, const GQCP::TwoElectronOperator& g, const Eigen::MatrixXd& C) :
+HamiltonianParameters::HamiltonianParameters(std::shared_ptr<GQCP::AOBasis> ao_basis, const GQCP::OneElectronOperator& S, const GQCP::OneElectronOperator& h, const GQCP::TwoElectronOperator& g, const Eigen::MatrixXd& C, double scalar) :
     BaseHamiltonianParameters(std::move(ao_basis), scalar),
     K (S.get_dim()),
     S (S),
