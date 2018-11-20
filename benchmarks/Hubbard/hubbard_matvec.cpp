@@ -1,40 +1,41 @@
 /**
- *  A benchmark executable for the DOCI matvec
+ *  A benchmark executable for the Hubbard matvec
  */
 
 #include "benchmark/benchmark.h"
 
 #include "HamiltonianParameters/HamiltonianParameters_constructors.hpp"
-#include "HamiltonianBuilder/DOCI.hpp"
+#include "HamiltonianBuilder/Hubbard.hpp"
 
 
 static void matvec(benchmark::State& state) {
     // Prepare parameters
     size_t K = state.range(0);
     size_t N = state.range(1);
-    GQCP::FockSpace fock_space (K, N);
-    GQCP::DOCI doci (fock_space);
+    GQCP::ProductFockSpace fock_space (K, N, N);
+    GQCP::Hubbard hubbard (fock_space);
 
     // Random ham_par
     GQCP::HamiltonianParameters ham_par = GQCP::constructRandomHamiltonianParameters(K);
-    Eigen::VectorXd diagonal = doci.calculateDiagonal(ham_par);
+    Eigen::VectorXd diagonal = hubbard.calculateDiagonal(ham_par);
     Eigen::VectorXd random = Eigen::VectorXd::Random(diagonal.rows());
 
     // Code inside this loop is measured repeatedly
     for (auto _ : state) {
-        Eigen::VectorXd matvec = doci.matrixVectorProduct(ham_par, random, diagonal);
+        Eigen::VectorXd matvec = hubbard.matrixVectorProduct(ham_par, random, diagonal);
         // Make sure the variable is not optimized away by compiler
         benchmark::DoNotOptimize(matvec);
     }
 
     state.counters["Orbitals"] = K;
     state.counters["Electron pairs"] = N;
+    state.counters["Dimension"] = fock_space.get_dimension();
 }
 
 
 static void CustomArguments(benchmark::internal::Benchmark* b) {
-    for (int i = 15; i <= 24; ++i){
-          b->Args({i, i/2});
+    for (int i = 2; i < 6; ++i){
+        b->Args({10,i});
     }
 }
 
@@ -43,5 +44,3 @@ BENCHMARK(matvec)->Unit(benchmark::kMillisecond)->Apply(CustomArguments);
 
 
 BENCHMARK_MAIN();
-// --benchmark_counters_tabular=true --benchmark_out=<docimatvec_benchmark>
-// --benchmark_out=<docimatvec_benchmark> --benchmark_counters_tabular=true
