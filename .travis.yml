@@ -95,6 +95,18 @@ install:
     - mkdir build && cd build
     - cmake .. && make -j3 && make test ARGS=-j3 && sudo make install
 
+    # Install google benchmark
+    - mkdir /tmp/bench && cd /tmp/bench
+    # Fork from tmhuysen for cmake fix
+    - git clone https://github.com/tmhuysen/benchmark.git
+    # Benchmark requires Google Test as a dependency. Add the source tree as a subdirectory.
+    - cd benchmark
+    - git clone https://github.com/google/googletest.git
+    - mkdir build && cd build
+    - cmake .. -DCMAKE_BUILD_TYPE=RELEASE
+    # Assuming a makefile generator was used
+    - make -j3 && sudo make install
+
 # Run the build script
 script:
   - cd ${TRAVIS_BUILD_DIR}
