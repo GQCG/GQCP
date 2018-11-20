@@ -52,6 +52,7 @@ public:
 
     // GETTERS
     const std::shared_ptr<GQCP::AOBasis>& get_ao_basis() const { return this->ao_basis; }
+    double get_scalar() const { return this->scalar; }
 };
 
 
