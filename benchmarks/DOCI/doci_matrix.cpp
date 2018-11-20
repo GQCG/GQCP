@@ -33,7 +33,7 @@ static void constructHamiltonian(benchmark::State& state) {
 
 static void CustomArguments(benchmark::internal::Benchmark* b) {
     for (int i = 5; i < 9; ++i){
-          b->Args({28,i});
+          b->Args({16,i});
     }
 }
 
