@@ -179,7 +179,14 @@ set(PROJECT_BENCHMARKS_FOLDER ${CMAKE_SOURCE_DIR}/benchmarks)
 
 # Find the source files for the benchmark
 set(PROJECT_BENCH_SOURCE_FILES
-    ${PROJECT_BENCHMARKS_FOLDER}/doci_matvec.cpp)
+        ${PROJECT_BENCHMARKS_FOLDER}/DOCI/doci_case.cpp
+        ${PROJECT_BENCHMARKS_FOLDER}/DOCI/doci_matrix.cpp
+        ${PROJECT_BENCHMARKS_FOLDER}/DOCI/doci_matvec.cpp
+        ${PROJECT_BENCHMARKS_FOLDER}/FCI/fci_matrix.cpp
+        ${PROJECT_BENCHMARKS_FOLDER}/FCI/fci_matvec.cpp
+        ${PROJECT_BENCHMARKS_FOLDER}/Hubbard/hubbard_diagonalization.cpp
+        ${PROJECT_BENCHMARKS_FOLDER}/Hubbard/hubbard_matrix.cpp
+        ${PROJECT_BENCHMARKS_FOLDER}/Hubbard/hubbard_matvec.cpp)
 
 
 # Give the user the option to specify an installation prefix. If not given as -DINSTALLATION_PREFIX, defaults to /usr/local.
