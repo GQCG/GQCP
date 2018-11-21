@@ -217,3 +217,4 @@ set(LIBRARY_INSTALL_DIR ${PROJECT_INSTALL_DIR}/lib)
 
 # Include the function that configures the executables
 include(${CMAKE_SOURCE_DIR}/cmake/ConfigureExecutable.cmake)
+include(${CMAKE_SOURCE_DIR}/cmake/ConfigureBenchmarks.cmake)
