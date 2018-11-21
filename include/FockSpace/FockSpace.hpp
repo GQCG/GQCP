@@ -121,6 +121,7 @@ public:
      *  and the corrected vertex weights accounting for previously annihilated electrons
      *
      *  @tparam T        the amount of previously annihilated electrons
+     *
      *  @param address   the address which is updated
      *  @param onv       the ONV for which we search the next unnocupied orbital
      *  @param q         the orbital index
@@ -150,6 +151,7 @@ public:
      *  and the corrected vertex weights accounting for previously annihilated electrons
      *
      *  @tparam T        the amount of previously annihilated electrons
+     *
      *  @param address   the address which is updated
      *  @param onv       the ONV for which we search the next unnocupied orbital
      *  @param q         the orbital index
