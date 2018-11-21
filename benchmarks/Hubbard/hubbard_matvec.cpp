@@ -21,7 +21,7 @@ static void matvec(benchmark::State& state) {
 
     // Code inside this loop is measured repeatedly
     for (auto _ : state) {
-        Eigen::VectorXd matvec = hubbard.matrixVectorProduct(ham_par, random, diagonal);
+        Eigen::VectorXd matvec = hubbard.matrixVectorProduct(ham_par, x, diagonal);
         // Make sure the variable is not optimized away by compiler
         benchmark::DoNotOptimize(matvec);
     }
