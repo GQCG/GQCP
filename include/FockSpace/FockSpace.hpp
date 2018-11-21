@@ -115,20 +115,67 @@ public:
 
     /**
      *  Find the next unoccupied orbital in a given ONV,
-     *  update the electron count and orbital index,
-     *  and calculate a shift in address
+     *  update the electron count, orbital index,
+     *  and update the address by calculating a shift
      *  resulting from a difference between the initial vertex weights for the encountered occupied orbitals
      *  and the corrected vertex weights accounting for previously annihilated electrons
      *
+     *  @tparam T        the amount of previously annihilated electrons
+     *
+     *  @param address   the address which is updated
      *  @param onv       the ONV for which we search the next unnocupied orbital
      *  @param q         the orbital index
      *  @param e         the electron count
-     *  @param a         the annihilation count
-     *
-     *  @return the shift in address resulting from the difference in the corrected electron weights
      */
-    size_t shiftUntilNextUnoccupiedOrbital(const ONV& onv, size_t& q, size_t& e, size_t a) const;
+    template<int T>
+    void shiftUntilNextUnoccupiedOrbital(const ONV& onv, size_t& address, size_t& q, size_t& e) const {
+
+        // Test whether the current orbital index is occupied
+        while (e < this->N && q == onv.get_occupied_index(e)) {
+
+            // Take the difference of vertex weights for the encountered electron weights to that of a vertex weight path with "a" fewer electrons
+            // +1 is added to the electron index, because of how the addressing scheme is arrayed.
+            address += this->get_vertex_weights(q, e + 1 - T) - this->get_vertex_weights(q, e + 1);
+
+            // move to the next electron and orbital
+            e++;
+            q++;
+        }
+    }
+
+    /**
+     *  Find the next unoccupied orbital in a given ONV,
+     *  update the electron count, orbital index, sign,
+     *  and update the address by calculating a shift
+     *  resulting from a difference between the initial vertex weights for the encountered occupied orbitals
+     *  and the corrected vertex weights accounting for previously annihilated electrons
+     *
+     *  @tparam T        the amount of previously annihilated electrons
+     *
+     *  @param address   the address which is updated
+     *  @param onv       the ONV for which we search the next unnocupied orbital
+     *  @param q         the orbital index
+     *  @param e         the electron count
+     *  @param sign      the sign which is flipped for each iteration
+     */
+    template<int T>
+    void shiftUntilNextUnoccupiedOrbital(const ONV& onv, size_t& address, size_t& q, size_t& e, int& sign) const {
+
+        // Test whether the current orbital index is occupied
+        while (e < this->N && q == onv.get_occupied_index(e)) {
+
+            // Take the difference of vertex weights for the encountered electron weights to that of a vertex weight path with "a" fewer electrons
+            // +1 is added to the electron index, because of how the addressing scheme is arrayed.
+            address += this->get_vertex_weights(q, e + 1 - T) - this->get_vertex_weights(q, e + 1);
+
+            // move to the next electron and orbital
+            e++;
+            q++;
+            sign *= -1;
+        }
+    }
 };
+
 
 
 }  // namespace GQCP
