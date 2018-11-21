@@ -37,4 +37,7 @@ BOOST_AUTO_TEST_CASE ( shannon_entropy ) {
 
 
     // Check the maximal entropy (corresponding to a wave function with all equal coefficients different from zero)
+    GQCP::WaveFunction constant_expansion (fock_space, fock_space.constantExpansion());
+    double reference_entropy = std::log2(fock_space.get_dimension());  // manual derivation
+    BOOST_CHECK(std::abs(constant_expansion.calculateShannonEntropy() - reference_entropy) < 1.0e-12);
 }
