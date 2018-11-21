@@ -31,7 +31,24 @@ BOOST_AUTO_TEST_CASE ( FockSpace_constructor ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( FockSpace_dimension) {
+BOOST_AUTO_TEST_CASE ( expansions ) {
+
+    // Check the BaseFockSpace expansion functions
+    GQCP::FockSpace fock_space (8, 3);
+
+    Eigen::VectorXd hartree_fock_expansion = fock_space.HartreeFockExpansion();
+    BOOST_CHECK(std::abs(hartree_fock_expansion.norm() - 1.0) < 1.0e-12);  // check if normalized
+    BOOST_CHECK(std::abs(hartree_fock_expansion(0) - 1.0) < 1.0e-12);  // the Hartree-Fock determinant should be the first one
+
+    Eigen::VectorXd random_expansion = fock_space.randomExpansion();
+    BOOST_CHECK(std::abs(random_expansion.norm() - 1.0) < 1.0e-12);  // check if normalized
+
+    Eigen::VectorXd constant_expansion = fock_space.constantExpansion();
+    BOOST_CHECK(std::abs(constant_expansion.norm() - 1.0) < 1.0e-12);  // check if normalized
+}
+
+
+BOOST_AUTO_TEST_CASE ( FockSpace_dimension ) {
 
     BOOST_CHECK_EQUAL(GQCP::FockSpace::calculateDimension(10, 1), 10);
     BOOST_CHECK_EQUAL(GQCP::FockSpace::calculateDimension(6, 2), 15);

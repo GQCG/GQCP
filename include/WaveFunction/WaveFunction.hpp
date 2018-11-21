@@ -50,6 +50,13 @@ public:
     // GETTERS
     const Eigen::VectorXd& get_coefficients() const { return coefficients; }
     BaseFockSpace& get_fock_space() const { return *fock_space; }
+
+
+    // PUBLIC METHODS
+    /**
+     *  @return the Shannon entropy (or information content) of the wave function
+     */
+    double calculateShannonEntropy() const;
 };
 
 
