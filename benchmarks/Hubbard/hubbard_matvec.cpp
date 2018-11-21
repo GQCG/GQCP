@@ -15,10 +15,9 @@ static void matvec(benchmark::State& state) {
     GQCP::ProductFockSpace fock_space (K, N, N);
     GQCP::Hubbard hubbard (fock_space);
 
-    // Random ham_par
     GQCP::HamiltonianParameters ham_par = GQCP::constructRandomHamiltonianParameters(K);
     Eigen::VectorXd diagonal = hubbard.calculateDiagonal(ham_par);
-    Eigen::VectorXd random = Eigen::VectorXd::Random(diagonal.rows());
+    Eigen::VectorXd x = fock_space.randomExpansion();
 
     // Code inside this loop is measured repeatedly
     for (auto _ : state) {
@@ -35,6 +34,7 @@ static void matvec(benchmark::State& state) {
 
 static void CustomArguments(benchmark::internal::Benchmark* b) {
     for (int i = 2; i < 7; ++i){
+        // b-Args({Orbitals, Electrons})
         b->Args({12,i});
     }
 }

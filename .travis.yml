@@ -113,6 +113,8 @@ script:
   - mkdir build && cd build
   - cmake ..
   - make -j3 && make test ARGS=-j3 && sudo make install
+
+# Run the benchmarks
   - cd benchmarks
   - ./doci_case --benchmark_counters_tabular=true
   - ./doci_matrix --benchmark_counters_tabular=true

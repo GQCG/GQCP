@@ -21,8 +21,8 @@ static void test_case(benchmark::State& state) {
     GQCP::DOCI doci (fock_space);
 
     // Solve the Davidson DOCI eigenvalue problem
-    Eigen::VectorXd initial_g = fock_space.HartreeFockExpansion();
-    numopt::eigenproblem::DavidsonSolverOptions solver_options (initial_g);
+    Eigen::VectorXd initial_guess = fock_space.HartreeFockExpansion();
+    numopt::eigenproblem::DavidsonSolverOptions solver_options (initial_guess);
 
     // Code inside this loop is measured repeatedly
     for (auto _ : state) {

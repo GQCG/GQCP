@@ -193,7 +193,7 @@ set(PROJECT_EXE_SOURCE_FILES
 # Find the benchmarks folder
 set(PROJECT_BENCHMARKS_FOLDER ${CMAKE_SOURCE_DIR}/benchmarks)
 
-# Find the source files for the benchmark
+# Find the source files for the benchmarks
 set(PROJECT_BENCH_SOURCE_FILES
         ${PROJECT_BENCHMARKS_FOLDER}/DOCI/doci_case.cpp
         ${PROJECT_BENCHMARKS_FOLDER}/DOCI/doci_matrix.cpp

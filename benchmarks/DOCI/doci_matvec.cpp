@@ -15,14 +15,13 @@ static void matvec(benchmark::State& state) {
     GQCP::FockSpace fock_space (K, N);
     GQCP::DOCI doci (fock_space);
 
-    // Random ham_par
     GQCP::HamiltonianParameters ham_par = GQCP::constructRandomHamiltonianParameters(K);
     Eigen::VectorXd diagonal = doci.calculateDiagonal(ham_par);
-    Eigen::VectorXd random = Eigen::VectorXd::Random(diagonal.rows());
+    Eigen::VectorXd x = fock_space.randomExpansion();
 
     // Code inside this loop is measured repeatedly
     for (auto _ : state) {
-        Eigen::VectorXd matvec = doci.matrixVectorProduct(ham_par, random, diagonal);
+        Eigen::VectorXd matvec = doci.matrixVectorProduct(ham_par, x, diagonal);
         // Make sure the variable is not optimized away by compiler
         benchmark::DoNotOptimize(matvec);
     }
@@ -35,7 +34,8 @@ static void matvec(benchmark::State& state) {
 
 static void CustomArguments(benchmark::internal::Benchmark* b) {
     for (int i = 5; i < 9; ++i){
-          b->Args({28,i});
+        // b-Args({Orbitals, Electrons})
+        b->Args({28,i});
     }
 }
 
@@ -44,5 +44,3 @@ BENCHMARK(matvec)->Unit(benchmark::kMillisecond)->Apply(CustomArguments);
 
 
 BENCHMARK_MAIN();
-// --benchmark_counters_tabular=true --benchmark_out=<docimatvec_benchmark>
-// --benchmark_out=<docimatvec_benchmark> --benchmark_counters_tabular=true

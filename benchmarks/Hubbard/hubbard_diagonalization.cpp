@@ -17,7 +17,6 @@ static void constructHamiltonian(benchmark::State& state) {
     GQCP::ProductFockSpace fock_space (K, N, N);
     GQCP::Hubbard hubbard (fock_space);
 
-    // Random ham_par
     GQCP::HamiltonianParameters ham_par = GQCP::constructRandomHamiltonianParameters(K);
     numopt::eigenproblem::DenseSolverOptions solver_options;
 
@@ -37,7 +36,8 @@ static void constructHamiltonian(benchmark::State& state) {
 
 static void CustomArguments(benchmark::internal::Benchmark* b) {
     for (int i = 4; i < 10; ++i){
-          b->Args({i,2});
+        // b-Args({Orbitals, Electrons})
+        b->Args({i,2});
     }
 }
 
