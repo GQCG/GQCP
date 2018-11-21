@@ -25,3 +25,6 @@ endif()
 if(USE_MKL)
     find_package(MKL)
 endif(USE_MKL)
+
+# Find google benchmarks
+find_package(benchmark)
