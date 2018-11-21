@@ -63,12 +63,17 @@ public:
     /**
      *  @return the coefficient vector for the Hartree-Fock wave function (i.e. the 'first' ONV/Slater determinant)
      */
-    Eigen::VectorXd HartreeFockExpansion();
+    Eigen::VectorXd HartreeFockExpansion() const;
 
     /**
      *  @return a random normalized coefficient vector, with coefficients uniformly distributed in [-1, 1]
      */
-    Eigen::VectorXd randomExpansion();
+    Eigen::VectorXd randomExpansion() const;
+
+    /**
+     *  @return a constant normalized coefficients vector (i.e. all the coefficients are equal)
+     */
+    Eigen::VectorXd constantExpansion() const;
 };
 
 
