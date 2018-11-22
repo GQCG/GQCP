@@ -246,9 +246,28 @@ GQCP::OneElectronOperator HamiltonianParameters::calculateGeneralizedFockMatrix(
 
 
 /**
- *  @param ao_list     indexes of the original GTOs on which the Mulliken populations are dependant
+ *  @return the effective one-electron integrals
+ */
+GQCP::OneElectronOperator HamiltonianParameters::calculateEffectiveOneElectronIntegrals() const {
+
+    Eigen::MatrixXd k = this->h.get_matrix_representation();
+
+    for (size_t p = 0; p < this->K; p++) {
+        for (size_t q = 0; q < this->K; q++) {
+            for (size_t r = 0; r < this->K; r++) {
+                k(p,q) -= 0.5 * this->g(p, r, r, q);
+            }
+        }
+    }
+
+    return GQCP::OneElectronOperator(k);
+}
+
+
+/**
+ *  @param ao_list     indices of the AOs used for the Mulliken populations
  *
- *  @return the Mulliken operator for a set of GTOs
+ *  @return the Mulliken operator for a set of AOs
  */
 OneElectronOperator HamiltonianParameters::calculateMullikenOperator(const Vectoru& ao_list) const {
 

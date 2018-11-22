@@ -150,6 +150,11 @@ public:
      */
     OneElectronOperator calculateMullikenOperator(const Vectoru& ao_list) const;
 
+    /**
+     *  @return the effective one-electron integrals
+     */
+    GQCP::OneElectronOperator calculateEffectiveOneElectronIntegrals() const;
+
 
     // PUBLIC METHODS - CALCULATIONS OF TWO-ELECTRON OPERATORS
     /**
