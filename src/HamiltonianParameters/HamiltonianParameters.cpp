@@ -83,7 +83,7 @@ HamiltonianParameters::HamiltonianParameters(const GQCP::HamiltonianParameters& 
 
 
 /*
- *  PUBLIC METHODS
+ *  PUBLIC METHODS - TRANSFORMATIONS
  */
 
 /**
@@ -172,6 +172,34 @@ void HamiltonianParameters::LowdinOrthonormalize() {
 }
 
 
+
+/*
+ *  PUBLIC METHODS - CALCULATIONS OF VALUES
+ */
+
+/**
+ *  @param N_P      the number of electron pairs
+ *
+ *  @return the Edmiston-Ruedenberg localization index g(i,i,i,i)
+ */
+double HamiltonianParameters::calculateEdmistonRuedenbergLocalizationIndex(size_t N_P) const {
+
+    double localization_index = 0.0;
+
+    // TODO: when Eigen releases TensorTrace, use it here
+    for (size_t i = 0; i < N_P; i++) {
+        localization_index += this->g(i,i,i,i);
+    }
+
+    return localization_index;
+}
+
+
+
+/*
+ *  PUBLIC METHODS - CALCULATIONS OF ONE-ELECTRON OPERATORS
+ */
+
 /**
  *  @param D      the 1-RDM
  *  @param d      the 2-RDM
@@ -216,6 +244,48 @@ GQCP::OneElectronOperator HamiltonianParameters::calculateGeneralizedFockMatrix(
     return GQCP::OneElectronOperator(F);
 }
 
+
+/**
+ *  @param ao_list     indexes of the original GTOs on which the Mulliken populations are dependant
+ *
+ *  @return the Mulliken operator for a set of GTOs
+ */
+OneElectronOperator HamiltonianParameters::calculateMullikenOperator(const Vectoru& ao_list) const {
+
+
+    if (!this->get_ao_basis()) {
+        throw std::invalid_argument("The Hamiltonian parameters have no underlying AO basis, Mulliken analysis is not possible.");
+    }
+
+    if (ao_list.size() > this->K) {
+        throw std::invalid_argument("To many AOs are selected");
+    }
+
+    // Create the partitioning matrix (diagonal matrix with values set to 1 of selected AOs
+    Eigen::MatrixXd p_a = Eigen::MatrixXd::Zero(this->K, this->K);
+
+    for (size_t index : ao_list) {
+        if (index >= this->K) {
+            throw std::invalid_argument("AO index is too large");
+        }
+
+        p_a(index, index) = 1;
+    }
+
+    OneElectronOperator S_AO = this->S;
+    S_AO.transform(C.inverse());
+    Eigen::MatrixXd S_AO_mat = S_AO.get_matrix_representation();
+
+    Eigen::MatrixXd mulliken_matrix = (C.adjoint() * p_a * S_AO_mat * C + C.adjoint() * S_AO_mat * p_a * C)/2 ;
+
+    return OneElectronOperator(mulliken_matrix);
+}
+
+
+
+/*
+ *  PUBLIC METHODS - CALCULATIONS OF TWO-ELECTRON OPERATORS
+ */
 
 /**
  *  @param D      the 1-RDM
@@ -270,23 +340,10 @@ GQCP::TwoElectronOperator HamiltonianParameters::calculateSuperGeneralizedFockMa
 };
 
 
-/**
- *  @param N_P      the number of electron pairs
- *
- *  @return the Edmiston-Ruedenberg localization index g(i,i,i,i)
+
+/*
+ *  PUBLIC METHODS - CONSTRAINTS
  */
-double HamiltonianParameters::calculateEdmistonRuedenbergLocalizationIndex(size_t N_P) const {
-
-    double localization_index = 0.0;
-
-    // TODO: when Eigen releases TensorTrace, use it here
-    for (size_t i = 0; i < N_P; i++) {
-        localization_index += this->g(i,i,i,i);
-    }
-
-    return localization_index;
-}
-
   
 /**  
  *  Constrain the Hamiltonian parameters according to the convention: - lambda * constraint
@@ -335,43 +392,6 @@ HamiltonianParameters HamiltonianParameters::constrain(const GQCP::TwoElectronOp
     TwoElectronOperator gc (this->get_g().get_matrix_representation() - lambda*two_op.get_matrix_representation());
 
     return HamiltonianParameters(this->ao_basis, this->S, this->h, gc, this->C);
-}
-
-
-/**
- *  @param ao_list     indexes of the original GTOs on which the Mulliken populations are dependant
- *
- *  @return the Mulliken operator for a set of GTOs
- */
-OneElectronOperator HamiltonianParameters::calculateMullikenOperator(const Vectoru& ao_list) {
-
-
-    if (!this->get_ao_basis()) {
-        throw std::invalid_argument("The Hamiltonian parameters have no underlying AO basis, Mulliken analysis is not possible.");
-    }
-
-    if (ao_list.size() > this->K) {
-        throw std::invalid_argument("To many AOs are selected");
-    }
-
-    // Create the partitioning matrix (diagonal matrix with values set to 1 of selected AOs
-    Eigen::MatrixXd p_a = Eigen::MatrixXd::Zero(this->K, this->K);
-
-    for (size_t index : ao_list) {
-        if (index >= this->K) {
-            throw std::invalid_argument("AO index is too large");
-        }
-
-        p_a(index, index) = 1;
-    }
-
-    OneElectronOperator S_AO = this->S;
-    S_AO.transform(C.inverse());
-    Eigen::MatrixXd S_AO_mat = S_AO.get_matrix_representation();
-
-    Eigen::MatrixXd mulliken_matrix = (C.adjoint() * p_a * S_AO_mat * C + C.adjoint() * S_AO_mat * p_a * C)/2 ;
-
-    return OneElectronOperator(mulliken_matrix);
 }
 
 
