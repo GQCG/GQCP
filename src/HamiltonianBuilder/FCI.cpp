@@ -275,16 +275,9 @@ Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters& hamiltonia
     // TODO: use diagonal
     Eigen::VectorXd matvec =  Eigen::VectorXd::Zero(dim);
 
+
     // Calculate the effective one-electron integrals
-    // TODO: move this to libwint
-    Eigen::MatrixXd k_SO = hamiltonian_parameters.get_h().get_matrix_representation();
-    for (size_t p = 0; p < K; p++) {
-        for (size_t q = 0; q < K; q++) {
-            for (size_t r = 0; r < K; r++) {
-                k_SO(p,q) -= 0.5 * hamiltonian_parameters.get_g()(p, r, r, q);
-            }
-        }
-    }
+    GQCP::OneElectronOperator k = hamiltonian_parameters.calculateEffectiveOneElectronIntegrals();
 
 
     // ALPHA-ALPHA
@@ -304,7 +297,7 @@ Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters& hamiltonia
                         size_t J_alpha = fock_space_alpha.getAddress(spin_string_alpha_aa); // find all strings J_alpha that couple to I_alpha
 
                         for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {  // I_beta loops over all addresses of the beta spin strings
-                            matvec(I_alpha*dim_beta + I_beta) += k_SO(p,q) * sign_pq * x(J_alpha*dim_beta + I_beta);  // alpha addresses are major
+                            matvec(I_alpha*dim_beta + I_beta) += k(p,q) * sign_pq * x(J_alpha*dim_beta + I_beta);  // alpha addresses are major
                         }
 
                         spin_string_alpha_aa.annihilate(q);  // undo the previous creation
@@ -334,7 +327,7 @@ Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters& hamiltonia
                         size_t J_beta = fock_space_beta.getAddress(spin_string_beta_bb);  // find all strings J_beta that couple to I_beta
 
                         for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {  // I_alpha loops over all addresses of the alpha spin strings
-                            matvec(I_alpha*dim_beta + I_beta) += k_SO(p,q) * sign_pq * x(I_alpha*dim_beta + J_beta);  // alpha addresses are major
+                            matvec(I_alpha*dim_beta + I_beta) += k(p,q) * sign_pq * x(I_alpha*dim_beta + J_beta);  // alpha addresses are major
                         }
 
                         spin_string_beta_bb.annihilate(q);  // undo the previous creation
@@ -518,15 +511,7 @@ Eigen::VectorXd FCI::calculateDiagonal(const HamiltonianParameters& hamiltonian_
     Eigen::VectorXd diagonal =  Eigen::VectorXd::Zero(dim);
 
     // Calculate the effective one-electron integrals
-    // TODO: move this to libwint
-    Eigen::MatrixXd k_SO = hamiltonian_parameters.get_h().get_matrix_representation();
-    for (size_t p = 0; p < K; p++) {
-        for (size_t q = 0; q < K; q++) {
-            for (size_t r = 0; r < K; r++) {
-                k_SO(p,q) -= 0.5 * hamiltonian_parameters.get_g()(p, r, r, q);
-            }
-        }
-    }
+    GQCP::OneElectronOperator k = hamiltonian_parameters.calculateEffectiveOneElectronIntegrals();
 
     ONV spin_string_alpha = fock_space_alpha.get_ONV(0);
     for (size_t Ia = 0; Ia < dim_alpha; Ia++) {  // Ia loops over addresses of alpha spin strings
@@ -537,7 +522,7 @@ Eigen::VectorXd FCI::calculateDiagonal(const HamiltonianParameters& hamiltonian_
             for (size_t p = 0; p < K; p++) {  // p loops over SOs
 
                 if (spin_string_alpha.isOccupied(p)) {  // p is in Ia
-                    diagonal(Ia * dim_beta + Ib) += k_SO(p, p);
+                    diagonal(Ia * dim_beta + Ib) += k(p, p);
 
                     for (size_t q = 0; q < K; q++) {  // q loops over SOs
                         if (spin_string_alpha.isOccupied(q)) {  // q is in Ia
@@ -554,7 +539,7 @@ Eigen::VectorXd FCI::calculateDiagonal(const HamiltonianParameters& hamiltonian_
 
 
                 if (spin_string_beta.isOccupied(p)) {  // p is in Ib
-                    diagonal(Ia * dim_beta + Ib) += k_SO(p, p);
+                    diagonal(Ia * dim_beta + Ib) += k(p, p);
 
 
                     for (size_t q = 0; q < K; q++) {  // q loops over SOs
