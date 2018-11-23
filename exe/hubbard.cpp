@@ -76,7 +76,7 @@ int main (int argc, char** argv) {
         boost::split(splitted_line, triagonal_line, boost::is_any_of(","));
 
         std::vector<double> triagonal_data;
-        for(const std::string& x : splitted_line){
+        for (const std::string& x : splitted_line) {
             triagonal_data.push_back(std::stod(x));
         }
 
