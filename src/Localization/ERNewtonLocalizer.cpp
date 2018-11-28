@@ -31,7 +31,7 @@ namespace GQCP {
  *  PRIVATE METHODS
  */
 /**
- *  @param ham_par      the Hamiltonian parameters containing the two-electron integrals
+ *  @param ham_par      the Hamiltonian parameters (in an orthonormal basis) containing the two-electron integrals
  *  @param i            the row of the gradient 'matrix'
  *  @param j            the column of the gradient 'matrix'
  *
@@ -46,7 +46,7 @@ double ERNewtonLocalizer::calculateGradientElement(const GQCP::HamiltonianParame
 
 
 /**
- *  @param ham_par      the Hamiltonian parameters containing the two-electron integrals
+ *  @param ham_par      the Hamiltonian parameters (in an orthonormal basis) containing the two-electron integrals
  *
  *  @return the gradient of the Edmiston-Ruedenberg localization index as a matrix
  */
@@ -65,7 +65,7 @@ Eigen::MatrixXd ERNewtonLocalizer::calculateGradient(const GQCP::HamiltonianPara
 
 
 /**
- *  @param ham_par      the Hamiltonian parameters containing the two-electron integrals
+ *  @param ham_par      the Hamiltonian parameters (in an orthonormal basis) containing the two-electron integrals
  *  @param i            the first index of the Hessian 'tensor'
  *  @param j            the second index of the Hessian 'tensor'
  *  @param k            the third index of the Hessian 'tensor'
@@ -100,7 +100,7 @@ double ERNewtonLocalizer::calculateHessianElement(const GQCP::HamiltonianParamet
 
 
 /**
- *  @param ham_par      the Hamiltonian parameters containing the two-electron integrals
+ *  @param ham_par      the Hamiltonian parameters (in an orthonormal basis) containing the two-electron integrals
  *
  *  @return the Hessian of the Edmiston-Ruedenberg localization index as a tensor
  */
@@ -146,7 +146,7 @@ ERNewtonLocalizer::ERNewtonLocalizer(size_t N_P, double threshold, size_t maximu
 /**
  *  Localize the Hamiltonian parameters by maximizing the Edmiston-Ruedenberg localization index, using a Newton-based algorithm
  *
- *  @param ham_par      the Hamiltonian parameters that should be localized
+ *  @param ham_par      the Hamiltonian parameters (in an orthonormal basis) that should be localized
  */
 void ERNewtonLocalizer::localize(GQCP::HamiltonianParameters& ham_par) {
 

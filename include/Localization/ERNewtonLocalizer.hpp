@@ -33,7 +33,7 @@ class ERNewtonLocalizer : public BaseERLocalizer {
 private:
     // PRIVATE METHODS
     /**
-     *  @param ham_par      the Hamiltonian parameters containing the two-electron integrals
+     *  @param ham_par      the Hamiltonian parameters (in an orthonormal basis) containing the two-electron integrals
      *  @param i            the row of the gradient 'matrix'
      *  @param j            the column of the gradient 'matrix'
      *
@@ -42,14 +42,14 @@ private:
     double calculateGradientElement(const GQCP::HamiltonianParameters& ham_par, size_t i, size_t j) const;
 
     /**
-     *  @param ham_par      the Hamiltonian parameters containing the two-electron integrals
+     *  @param ham_par      the Hamiltonian parameters (in an orthonormal basis) containing the two-electron integrals
      *
      *  @return the gradient of the Edmiston-Ruedenberg localization index as a matrix
      */
     Eigen::MatrixXd calculateGradient(const GQCP::HamiltonianParameters& ham_par) const;
 
     /**
-     *  @param ham_par      the Hamiltonian parameters containing the two-electron integrals
+     *  @param ham_par      the Hamiltonian parameters (in an orthonormal basis) containing the two-electron integrals
      *  @param i            the first index of the Hessian 'tensor'
      *  @param j            the second index of the Hessian 'tensor'
      *  @param k            the third index of the Hessian 'tensor'
@@ -60,7 +60,7 @@ private:
     double calculateHessianElement(const GQCP::HamiltonianParameters& ham_par, size_t i, size_t j, size_t k, size_t l) const;
 
     /**
-     *  @param ham_par      the Hamiltonian parameters containing the two-electron integrals
+     *  @param ham_par      the Hamiltonian parameters (in an orthonormal basis) containing the two-electron integrals
      *
      *  @return the Hessian of the Edmiston-Ruedenberg localization index as a tensor
      */
@@ -81,7 +81,7 @@ public:
     /**
      *  Localize the Hamiltonian parameters by maximizing the Edmiston-Ruedenberg localization index, using a Newton-based algorithm
      *
-     *  @param ham_par      the Hamiltonian parameters that should be localized
+     *  @param ham_par      the Hamiltonian parameters (in an orthonormal basis) that should be localized
      */
     void localize(GQCP::HamiltonianParameters& ham_par) override;
 };
