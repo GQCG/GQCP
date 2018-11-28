@@ -20,6 +20,7 @@
 
 #include "common.hpp"
 #include "HamiltonianParameters/BaseHamiltonianParameters.hpp"
+#include "Molecule.hpp"
 #include "Operator/OneElectronOperator.hpp"
 #include "Operator/TwoElectronOperator.hpp"
 #include "JacobiRotationParameters.hpp"
@@ -58,16 +59,34 @@ public:
      *  @param h            the one-electron integrals H_core
      *  @param g            the two-electron integrals
      *  @param C            a transformation matrix between the current molecular orbitals and the atomic orbitals
+     *  @param scalar       the scalar interaction term
      */
-    HamiltonianParameters(std::shared_ptr<GQCP::AOBasis> ao_basis, const GQCP::OneElectronOperator& S, const GQCP::OneElectronOperator& h, const GQCP::TwoElectronOperator& g, const Eigen::MatrixXd& C);
+    HamiltonianParameters(std::shared_ptr<GQCP::AOBasis> ao_basis, const GQCP::OneElectronOperator& S, const GQCP::OneElectronOperator& h, const GQCP::TwoElectronOperator& g, const Eigen::MatrixXd& C, double scalar=0.0);
 
     /**
-     *  A constructor that transforms the current Hamiltonian parameters with a transformation matrix
+     *  A constructor that transforms the given Hamiltonian parameters with a transformation matrix
      *
      *  @param ham_par      the current Hamiltonian parameters
-     *  @param C            the transformation matrix to be applied to the current Hamiltonian parameters
+     *  @param C            the transformation matrix to be applied to the given Hamiltonian parameters
      */
     HamiltonianParameters(const GQCP::HamiltonianParameters& ham_par, const Eigen::MatrixXd& C);
+
+
+    // NAMED CONSTRUCTORS
+    /**
+     *  Construct the molecular Hamiltonian parameters in an AO basis
+     *
+     *  @param molecule     the molecule for which the Hamiltonian parameters should be calculated
+     *  @param basisset     the name of the basisset corresponding to the AO basis
+     *
+     *  @return Hamiltonian parameters corresponding to the molecular Hamiltonian. The molecular Hamiltonian has
+     *      - one-electron contributions:
+     *          - kinetic
+     *          - nuclear attraction
+     *      - two-electron contributions:
+     *          - Coulomb repulsion
+     */
+    static HamiltonianParameters Molecular(const Molecule& molecule, const std::string& basisset);
 
 
     // DESTRUCTORS

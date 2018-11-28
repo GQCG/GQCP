@@ -20,8 +20,7 @@
 #include "AP1roG/AP1roGPSESolver.hpp"
 //#include "AP1roG/AP1roGGeminalCoefficients.hpp"
 
-#include "HamiltonianParameters/HamiltonianParameters_constructors.hpp"
-#include "Molecule.hpp"
+#include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
 
 #include <boost/test/unit_test.hpp>
@@ -34,8 +33,7 @@ BOOST_AUTO_TEST_CASE ( constructor ) {
     GQCP::Molecule h2 ("../tests/data/h2_szabo.xyz");
     size_t N = 2;  // number of electrons for H2
     size_t N_P = N/2;  // number of electron pairs for H2
-    auto ao_basis = std::make_shared<GQCP::AOBasis>(h2, "STO-3G");
-    auto mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
+    auto mol_ham_par = GQCP::HamiltonianParameters::Molecular(h2, "STO-3G");
     GQCP::AP1roGPSESolver ap1rog_pse_solver (N_P, mol_ham_par);
 }
 
@@ -45,8 +43,7 @@ BOOST_AUTO_TEST_CASE ( constructor_molecule ) {
     // Test a correct constructor
     // Check if we can also pass a molecule object to the constructor
     GQCP::Molecule h2 ("../tests/data/h2_szabo.xyz");
-    auto ao_basis = std::make_shared<GQCP::AOBasis>(h2, "STO-3G");
-    auto mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
+    auto mol_ham_par = GQCP::HamiltonianParameters::Molecular(h2, "STO-3G");
     GQCP::AP1roGPSESolver ap1rog_pse_solver (h2, mol_ham_par);
 
     // Test a faulty constructor
@@ -68,16 +65,15 @@ BOOST_AUTO_TEST_CASE ( h2_631gdp ) {
 
     // Prepare molecular Hamiltonian parameters in the RHF basis
     GQCP::Molecule h2 ("../tests/data/h2_olsens.xyz");
-    auto ao_basis = std::make_shared<GQCP::AOBasis>(h2, "6-31G**");
-    auto ao_mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
+    auto ao_mol_ham_par = GQCP::HamiltonianParameters::Molecular(h2, "6-31G**");
 
     GQCP::PlainRHFSCFSolver plain_scf_solver (ao_mol_ham_par, h2);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 
     auto mol_ham_par = GQCP::HamiltonianParameters(ao_mol_ham_par, rhf.get_C());
-
-
+  
+  
     // Solve the AP1roG pSE equations with the initial guess being 0
     GQCP::AP1roGPSESolver ap1rog_pse_solver (h2, mol_ham_par);
     ap1rog_pse_solver.solve();
@@ -109,8 +105,7 @@ BOOST_AUTO_TEST_CASE ( h2_631gdp_weak_interaction_limit ) {
     // Prepare molecular Hamiltonian parameters in the RHF basis
     GQCP::Molecule h2 ("../tests/data/h2_olsens.xyz");
     size_t N_P = h2.get_N() / 2;
-    auto ao_basis = std::make_shared<GQCP::AOBasis>(h2, "6-31G**");
-    auto ao_mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
+    auto ao_mol_ham_par = GQCP::HamiltonianParameters::Molecular(h2, "6-31G**");
 
     GQCP::PlainRHFSCFSolver plain_scf_solver (ao_mol_ham_par, h2);
     plain_scf_solver.solve();

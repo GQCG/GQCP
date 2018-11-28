@@ -91,7 +91,7 @@ GQCP::HamiltonianParameters constructRandomHamiltonianParameters(size_t K) {
     
     
 /**
- *  @param fcidump_file     the name of the FCIDUMP file
+ *  @param fcidump_filename     the name of the FCIDUMP file
  *
  *  @return Hamiltonian parameters corresponding to the contents of an FCIDUMP file
  */
@@ -141,7 +141,8 @@ GQCP::HamiltonianParameters readFCIDUMPFile(const std::string& fcidump_filename)
         throw std::invalid_argument("The .FCIDUMP-file is invalid: could not read a number of orbitals.");
     }
     
-    
+
+    double scalar = 0.0;
     Eigen::MatrixXd h_SO = Eigen::MatrixXd::Zero(K, K);
     Eigen::Tensor<double, 4> g_SO (K, K, K, K);
     g_SO.setZero();
@@ -165,8 +166,10 @@ GQCP::HamiltonianParameters readFCIDUMPFile(const std::string& fcidump_filename)
         //  I think the documentation is a bit unclear for the two-electron integrals, but we can rest assured that FCIDUMP files give the two-electron integrals in CHEMIST's notation.
         iss >> x >> i >> a >> j >> b;
         
-        //  Internuclear repulsion energy (skipped)
-        if ((i == 0) && (j == 0) && (a == 0) && (b == 0)) {}
+        //  Internuclear repulsion energy
+        if ((i == 0) && (j == 0) && (a == 0) && (b == 0)) {
+            scalar = x;
+        }
         
         //  Single-particle eigenvalues (skipped)
         else if ((a == 0) && (j == 0) && (b == 0)) {}
@@ -209,7 +212,7 @@ GQCP::HamiltonianParameters readFCIDUMPFile(const std::string& fcidump_filename)
     GQCP::TwoElectronOperator G (g_SO);
     Eigen::MatrixXd C = Eigen::MatrixXd::Identity(K, K);
 
-    return GQCP::HamiltonianParameters(ao_basis, S, H_core, G, C);
+    return GQCP::HamiltonianParameters(ao_basis, S, H_core, G, C, scalar);
 }
 
 

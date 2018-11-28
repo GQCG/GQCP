@@ -35,8 +35,7 @@ BOOST_AUTO_TEST_CASE ( crawdad_sto3g_water ) {
 
     // Create molecular Hamiltonian parameters in the RHF basis
     GQCP::Molecule water ("../tests/data/h2o_crawdad.xyz");
-    auto ao_basis = std::make_shared<GQCP::AOBasis>(water, "STO-3G");
-    auto ao_mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
+    auto ao_mol_ham_par = GQCP::HamiltonianParameters::Molecular(water, "STO-3G");
 
     GQCP::PlainRHFSCFSolver plain_scf_solver (ao_mol_ham_par, water);
     plain_scf_solver.solve();
@@ -57,8 +56,7 @@ BOOST_AUTO_TEST_CASE ( crawdad_sto3g_methane ) {
 
     // Create molecular Hamiltonian parameters in the RHF basis
     GQCP::Molecule methane ("../tests/data/ch4_crawdad.xyz");
-    auto ao_basis = std::make_shared<GQCP::AOBasis>(methane, "STO-3G");
-    auto ao_mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
+    auto ao_mol_ham_par = GQCP::HamiltonianParameters::Molecular(methane, "STO-3G");
 
     GQCP::PlainRHFSCFSolver plain_scf_solver (ao_mol_ham_par, methane);
     plain_scf_solver.solve();
@@ -70,4 +68,3 @@ BOOST_AUTO_TEST_CASE ( crawdad_sto3g_methane ) {
     double energy_correction = GQCP::calculateRMP2EnergyCorrection(mol_ham_par, methane, rhf);
     BOOST_CHECK(std::abs(energy_correction - ref_energy_correction) < 1.0e-08);
 }
-

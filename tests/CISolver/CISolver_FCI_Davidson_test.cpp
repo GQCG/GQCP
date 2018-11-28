@@ -33,12 +33,9 @@ BOOST_AUTO_TEST_CASE ( FCI_h2_sto3g_dense_vs_Davidson ) {
 
     // Check if the dense FCI energy is equal to the Davidson (with matvec) FCI energy
 
-    // Create a Molecule and an AOBasis
+    // Create the molecular Hamiltonian parameters in an AO basis
     GQCP::Molecule h2 ("../tests/data/h2_cristina.xyz");
-    auto ao_basis = std::make_shared<GQCP::AOBasis>(h2, "STO-3G");
-
-    // Create the molecular Hamiltonian parameters for this molecule and basis
-    auto mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
+    auto mol_ham_par = GQCP::HamiltonianParameters::Molecular(h2, "STO-3G");
     auto K = mol_ham_par.get_K();
 
     // Create a plain RHF SCF solver and solve the SCF equations
@@ -78,12 +75,9 @@ BOOST_AUTO_TEST_CASE ( FCI_H2_6_31Gxx_dense_vs_Davidson ) {
 
     // Check if the dense FCI energy is equal to the Davidson (with matvec) FCI energy
 
-    // Create a Molecule and an AOBasis
+    // Create the molecular Hamiltonian parameters in an AO basis
     GQCP::Molecule h2 ("../tests/data/h2_cristina.xyz");
-    auto ao_basis = std::make_shared<GQCP::AOBasis>(h2, "6-31G**");
-
-    // Create the molecular Hamiltonian parameters for this molecule and basis
-    auto mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
+    auto mol_ham_par = GQCP::HamiltonianParameters::Molecular(h2, "6-31G**");
     auto K = mol_ham_par.get_K();
 
     // Create a plain RHF SCF solver and solve the SCF equations
@@ -123,12 +117,9 @@ BOOST_AUTO_TEST_CASE ( FCI_H2O_STO_3G_dense_vs_Davidson ) {
 
     // Check if the dense FCI energy is equal to the Davidson (with matvec) FCI energy
 
-    // Create a Molecule and an AOBasis
+    // Create the molecular Hamiltonian parameters in an AO basis
     GQCP::Molecule h2o ("../tests/data/h2o.xyz");
-    auto ao_basis = std::make_shared<GQCP::AOBasis>(h2o, "STO-3G");
-
-    // Create the molecular Hamiltonian parameters for this molecule and basis
-    auto mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
+    auto mol_ham_par = GQCP::HamiltonianParameters::Molecular(h2o, "STO-3G");
     auto K = mol_ham_par.get_K();
 
     // Create a plain RHF SCF solver and solve the SCF equations

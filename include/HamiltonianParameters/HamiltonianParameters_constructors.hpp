@@ -19,7 +19,6 @@
 #define GQCP_HAMILTONIANPARAMETERS_CONSTRUCTORS_HPP
 
 
-
 #include <memory>
 
 #include "AOBasis.hpp"
