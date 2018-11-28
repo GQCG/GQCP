@@ -70,10 +70,8 @@ BOOST_AUTO_TEST_CASE ( mulliken_N2_STO_3G ) {
     std::vector<GQCP::Atom> atoms {N_1, N_2};
     GQCP::Molecule N2 (atoms);
 
-    auto ao_basis = std::make_shared<GQCP::AOBasis>(N2, "STO-3G");
-    auto ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
-
-    size_t K = ao_basis->get_number_of_basis_functions();
+    auto ham_par = GQCP::HamiltonianParameters::Molecular(N2, "STO-3G");
+    size_t K = ham_par.get_K();
 
     // We include all basis functions
     GQCP::Vectoru gto_list (K);

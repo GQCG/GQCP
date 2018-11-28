@@ -10,7 +10,7 @@
 
 namespace po = boost::program_options;
 
-#include "HamiltonianParameters/HamiltonianParameters_constructors.hpp"
+#include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "CISolver/CISolver.hpp"
 #include "HamiltonianBuilder/FCI.hpp"
 #include "FockSpace/ProductFockSpace.hpp"
@@ -56,13 +56,12 @@ int main (int argc, char** argv) {
     // Actual calculations
     // Prepare molecular Hamiltonian parameters in the Löwdin basis
     GQCP::Molecule molecule (input_xyz_file);
-    auto ao_basis = std::make_shared<GQCP::AOBasis>(molecule, basisset);
-    auto mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);  // in the AO basis
+    auto mol_ham_par = GQCP::HamiltonianParameters::Molecular(molecule, basisset);  // in the AO basis
     mol_ham_par.LowdinOrthonormalize();  // now in the Löwdin basis
 
 
     // Solve the FCI eigenvalue problem using the dense algorithm
-    auto K = ao_basis->get_number_of_basis_functions();
+    auto K = mol_ham_par.get_K();
     GQCP::ProductFockSpace fock_space (K, N_alpha, N_beta);
     GQCP::FCI fci (fock_space);
     GQCP::CISolver ci_solver (fci, mol_ham_par);

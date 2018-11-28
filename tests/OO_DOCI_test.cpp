@@ -40,9 +40,8 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_sto_3g ) {
     // Prepare molecular Hamiltonian parameters in the RHF basis
     GQCP::Molecule h2 ("../tests/data/h2_cristina.xyz");
     double internuclear_repulsion_energy = h2.calculateInternuclearRepulsionEnergy();  // 0.713176780299327
-    auto ao_basis = std::make_shared<GQCP::AOBasis>(h2, "STO-3G");
-    auto K = ao_basis->get_number_of_basis_functions();
-    auto ao_mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
+    auto ao_mol_ham_par = GQCP::HamiltonianParameters::Molecular(h2, "STO-3G");
+    auto K = ao_mol_ham_par.get_K();
 
     GQCP::PlainRHFSCFSolver plain_scf_solver (ao_mol_ham_par, h2);
     plain_scf_solver.solve();
@@ -76,9 +75,8 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31g ) {
     // Prepare molecular Hamiltonian parameters in the RHF basis
     GQCP::Molecule h2 ("../tests/data/h2_cristina.xyz");
     double internuclear_repulsion_energy = h2.calculateInternuclearRepulsionEnergy();  // 0.713176780299327
-    auto ao_basis = std::make_shared<GQCP::AOBasis>(h2, "6-31G");
-    auto K = ao_basis->get_number_of_basis_functions();
-    auto ao_mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
+    auto ao_mol_ham_par = GQCP::HamiltonianParameters::Molecular(h2, "6-31G");
+    auto K = ao_mol_ham_par.get_K();
 
     GQCP::PlainRHFSCFSolver plain_scf_solver (ao_mol_ham_par, h2);
     plain_scf_solver.solve();
@@ -126,9 +124,9 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx ) {
     // Prepare molecular Hamiltonian parameters in the RHF basis
     GQCP::Molecule h2 ("../tests/data/h2_cristina.xyz");
     double internuclear_repulsion_energy = h2.calculateInternuclearRepulsionEnergy();  // 0.713176780299327
-    auto ao_basis = std::make_shared<GQCP::AOBasis>(h2, "6-31G**");
-    auto K = ao_basis->get_number_of_basis_functions();
-    auto ao_mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
+    auto ao_mol_ham_par = GQCP::HamiltonianParameters::Molecular(h2, "6-31G**");
+    auto K = ao_mol_ham_par.get_K();
+
 
     GQCP::PlainRHFSCFSolver plain_scf_solver (ao_mol_ham_par, h2);
     plain_scf_solver.solve();
@@ -176,9 +174,9 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx_Davidson ) {
     // Prepare molecular Hamiltonian parameters in the RHF basis
     GQCP::Molecule h2 ("../tests/data/h2_cristina.xyz");
     double internuclear_repulsion_energy = h2.calculateInternuclearRepulsionEnergy();  // 0.713176780299327
-    auto ao_basis = std::make_shared<GQCP::AOBasis>(h2, "6-31G**");
-    auto K = ao_basis->get_number_of_basis_functions();
-    auto ao_mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
+    auto ao_mol_ham_par = GQCP::HamiltonianParameters::Molecular(h2, "6-31G**");
+    auto K = ao_mol_ham_par.get_K();
+
 
     GQCP::PlainRHFSCFSolver plain_scf_solver (ao_mol_ham_par, h2);
     plain_scf_solver.solve();

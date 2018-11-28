@@ -21,7 +21,7 @@
 #include "CISolver/CISolver.hpp"
 #include "RDM/RDMCalculator.hpp"
 #include "HamiltonianBuilder/DOCI.hpp"
-#include "HamiltonianParameters/HamiltonianParameters_constructors.hpp"
+#include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
 #include "RHF/DIISRHFSCFSolver.hpp"
 #include "properties/expectation_values.hpp"
@@ -56,12 +56,9 @@ BOOST_AUTO_TEST_CASE ( CO_DOCI_constrained_dense ) {
                  0.900000, 	6.0416010444 , 	-111.162616424,
                  1.000000, 	6.12030270656, 	-111.087663866;
 
-    // Create a Molecule and an AOBasis
+    // Create the molecular Hamiltonian parameters for CO
     GQCP::Molecule CO ("../tests/data/CO_mulliken.xyz");
-    auto ao_basis = std::make_shared<GQCP::AOBasis>(CO, "STO-3G");
-
-    // Create the molecular Hamiltonian parameters for this molecule and basis
-    auto mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
+    auto mol_ham_par = GQCP::HamiltonianParameters::Molecular(CO, "STO-3G");
 
     // Create a plain RHF SCF solver and solve the SCF equations
     GQCP::DIISRHFSCFSolver diis_scf_solver (mol_ham_par, CO);

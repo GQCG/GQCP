@@ -20,6 +20,7 @@
 
 #include "CISolver/CISolver.hpp"
 #include "HamiltonianBuilder/DOCI.hpp"
+#include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "HamiltonianParameters/HamiltonianParameters_constructors.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
 
@@ -63,12 +64,9 @@ BOOST_AUTO_TEST_CASE ( DOCI_h2o_sto3g_klaas_Davidson ) {
 
 BOOST_AUTO_TEST_CASE ( DOCI_h2_sto3g_dense_vs_Davidson ) {
 
-    // Create a Molecule and an AOBasis
+    // Create the molecular Hamiltonian parameters in an AO basis
     GQCP::Molecule h2 ("../tests/data/h2.xyz");
-    auto ao_basis = std::make_shared<GQCP::AOBasis>(h2, "STO-3G");
-
-    // Create the molecular Hamiltonian parameters for this molecule and basis
-    auto mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
+    auto mol_ham_par = GQCP::HamiltonianParameters::Molecular(h2, "STO-3G");
 
     // Create a plain RHF SCF solver and solve the SCF equations
     GQCP::PlainRHFSCFSolver plain_scf_solver (mol_ham_par, h2);
@@ -105,12 +103,9 @@ BOOST_AUTO_TEST_CASE ( DOCI_h2_sto3g_dense_vs_Davidson ) {
 
 BOOST_AUTO_TEST_CASE ( DOCI_h2_631g_dense_vs_Davidson ) {
 
-    // Create a Molecule and an AOBasis
+    // Create the molecular Hamiltonian parameters in an AO basis
     GQCP::Molecule h2 ("../tests/data/h2.xyz");
-    auto ao_basis = std::make_shared<GQCP::AOBasis>(h2, "6-31G");
-
-    // Create the molecular Hamiltonian parameters for this molecule and basis
-    auto mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
+    auto mol_ham_par = GQCP::HamiltonianParameters::Molecular(h2, "6-31G");
 
     // Create a plain RHF SCF solver and solve the SCF equations
     GQCP::PlainRHFSCFSolver plain_scf_solver (mol_ham_par, h2);

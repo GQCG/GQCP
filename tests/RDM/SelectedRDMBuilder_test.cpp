@@ -39,12 +39,9 @@ BOOST_AUTO_TEST_CASE ( one_rdms_fci_H2_6_31G ) {
     size_t N_a = 1;
     size_t N_b = 1;
 
-    // Create a Molecule and an AOBasis
+    // Create the molecular Hamiltonian parameters in the AO basis
     GQCP::Molecule h2 ("../tests/data/h2.xyz");
-    auto ao_basis = std::make_shared<GQCP::AOBasis>(h2, "6-31G");
-
-    // Create the molecular Hamiltonian parameters for this molecule and basis
-    auto ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
+    auto ham_par = GQCP::HamiltonianParameters::Molecular(h2, "6-31G");
     size_t K = ham_par.get_K();  // 4
 
     GQCP::ProductFockSpace fock_space (K, N_a, N_b);  // dim = 16
@@ -84,12 +81,9 @@ BOOST_AUTO_TEST_CASE ( two_rdms_fci_H2_6_31G ) {
     size_t N_a = 1;
     size_t N_b = 1;
 
-    // Create a Molecule and an AOBasis
+    // Create the molecular Hamiltonian parameters in the AO basis
     GQCP::Molecule h2 ("../tests/data/h2.xyz");
-    auto ao_basis = std::make_shared<GQCP::AOBasis>(h2, "6-31G");
-
-    // Create the molecular Hamiltonian parameters for this molecule and basis
-    auto ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
+    auto ham_par = GQCP::HamiltonianParameters::Molecular(h2, "6-31G");
     size_t K = ham_par.get_K();  // 4
 
     GQCP::ProductFockSpace fock_space (K, N_a, N_b);  // dim = 16
@@ -129,12 +123,9 @@ BOOST_AUTO_TEST_CASE ( one_rdms_doci_H2_6_31G ) {
     // test if 1-RDM SelectedRDM and dociRDM are equal
     size_t N = 1;
 
-    // Create a Molecule and an AOBasis
+    // Create the molecular Hamiltonian parameters in the AO basis
     GQCP::Molecule h2 ("../tests/data/h2.xyz");
-    auto ao_basis = std::make_shared<GQCP::AOBasis>(h2, "6-31G");
-
-    // Create the molecular Hamiltonian parameters for this molecule and basis
-    auto ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
+    auto ham_par = GQCP::HamiltonianParameters::Molecular(h2, "6-31G");
     size_t K = ham_par.get_K();  // 4
 
     GQCP::FockSpace fock_space (K, N);  // dim = 4
@@ -172,12 +163,9 @@ BOOST_AUTO_TEST_CASE ( two_rdms_doci_H2_6_31G ) {
     // test if 2-RDM SelectedRDM and dociRDM are equal
     size_t N = 1;
 
-    // Create a Molecule and an AOBasis
+    // Create the molecular Hamiltonian parameters in the AO basis
     GQCP::Molecule h2 ("../tests/data/h2.xyz");
-    auto ao_basis = std::make_shared<GQCP::AOBasis>(h2, "6-31G");
-
-    // Create the molecular Hamiltonian parameters for this molecule and basis
-    auto ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
+    auto ham_par = GQCP::HamiltonianParameters::Molecular(h2, "6-31G");
     size_t K = ham_par.get_K();  // 4
 
     GQCP::FockSpace fock_space (K, N);  // dim = 4
