@@ -100,7 +100,14 @@ public:
     const Eigen::MatrixXd& get_C() const { return this->C; }
     size_t get_K() const { return this->K; }
 
-    
+
+    // PUBLIC METHODS
+    /**
+     *  @return if the underlying spatial orbital basis of the Hamiltonian parameters is orthonormal
+     */
+    bool areOrbitalsOrthonormal();
+
+
     // PUBLIC METHODS - TRANSFORMATIONS
     /**
      *  In-place transform the matrix representations of Hamiltonian parameters
