@@ -101,7 +101,7 @@ public:
     size_t get_K() const { return this->K; }
 
     
-    // PUBLIC METHODS
+    // PUBLIC METHODS - TRANSFORMATIONS
     /**
      *  In-place transform the matrix representations of Hamiltonian parameters
      *
@@ -143,6 +143,17 @@ public:
      */
     void LowdinOrthonormalize();
 
+
+    // PUBLIC METHODS - CALCULATIONS OF VALUES
+    /**
+     *  @param N_P      the number of electron pairs
+     *
+     *  @return the Edmiston-Ruedenberg localization index g(i,i,i,i)
+     */
+    double calculateEdmistonRuedenbergLocalizationIndex(size_t N_P) const;
+
+
+    // PUBLIC METHODS - CALCULATIONS OF ONE-ELECTRON OPERATORS
     /**
      *  @param D      the 1-RDM
      *  @param d      the 2-RDM
@@ -152,6 +163,20 @@ public:
     GQCP::OneElectronOperator calculateGeneralizedFockMatrix(const GQCP::OneRDM& D, const GQCP::TwoRDM& d) const;
 
     /**
+     *  @param ao_list     indices of the AOs used for the Mulliken populations
+     *
+     *  @return the Mulliken operator for a set of AOs
+     */
+    OneElectronOperator calculateMullikenOperator(const Vectoru& ao_list) const;
+
+    /**
+     *  @return the effective one-electron integrals
+     */
+    GQCP::OneElectronOperator calculateEffectiveOneElectronIntegrals() const;
+
+
+    // PUBLIC METHODS - CALCULATIONS OF TWO-ELECTRON OPERATORS
+    /**
      *  @param D      the 1-RDM
      *  @param d      the 2-RDM
      *
@@ -159,13 +184,8 @@ public:
      */
     GQCP::TwoElectronOperator calculateSuperGeneralizedFockMatrix(const GQCP::OneRDM& D, const GQCP::TwoRDM& d) const;
 
-    /**
-     *  @param N_P      the number of electron pairs
-     *
-     *  @return the Edmiston-Ruedenberg localization index g(i,i,i,i)
-     */
-    double calculateEdmistonRuedenbergLocalizationIndex(size_t N_P) const;
 
+    // PUBLIC METHODS - CONSTRAINTS
     /**
      *  Constrain the Hamiltonian parameters according to the convention: - lambda * constraint
      *
@@ -196,13 +216,6 @@ public:
      *  @return a copy of the constrained Hamiltonian parameters
      */
     HamiltonianParameters constrain(const GQCP::TwoElectronOperator& two_op, double lambda) const;
-
-    /**
-     *  @param ao_list     indices of the AOs used for the Mulliken populations
-     *
-     *  @return the Mulliken operator for a set of AOs
-     */
-    OneElectronOperator calculateMullikenOperator(const Vectoru& ao_list);
 };
 
 

@@ -37,7 +37,7 @@
  *  @return a toy 2-RDM where
  *      d(i,j,k,l) = l + 2k + 4j + 8i
  */
-Eigen::Tensor<double, 4> calculateToy2RDMTensor () {
+Eigen::Tensor<double, 4> calculateToy2RDMTensor() {
     Eigen::Tensor<double, 4> d (2, 2, 2, 2);
 
     for (size_t i = 0; i < 2; i++) {
@@ -64,7 +64,7 @@ Eigen::Tensor<double, 4> calculateToy2RDMTensor () {
  *  @return toy 2-electron integrals where
  *      g(i,j,k,l) = delta_ij delta_kl - delta_il delta_jk
  */
-Eigen::Tensor<double, 4> calculateToyTwoElectronIntegralsTensor () {
+Eigen::Tensor<double, 4> calculateToyTwoElectronIntegralsTensor() {
     Eigen::Tensor<double, 4> g (2, 2, 2, 2);
     g.setZero();
 
@@ -387,4 +387,45 @@ BOOST_AUTO_TEST_CASE ( calculateEdmistonRuedenbergLocalizationIndex ) {
 
     BOOST_CHECK(std::abs(ham_par.calculateEdmistonRuedenbergLocalizationIndex(3) - 6.0) < 1.0e-08);
     BOOST_CHECK(std::abs(ham_par.calculateEdmistonRuedenbergLocalizationIndex(4) - 12.0) < 1.0e-08);
+}
+
+
+BOOST_AUTO_TEST_CASE ( effective_one_electron_integrals ) {
+
+    size_t K = 4;
+    auto K_ = static_cast<double>(K);
+
+    // Set up toy 2-electron integrals and put them into Hamiltonian parameters
+    Eigen::Tensor<double, 4> g (K, K, K, K);
+    g.setZero();
+
+    for (size_t i = 0; i < K; i++) {
+        for (size_t j = 0; j < K; j++) {
+            for (size_t k = 0; k < K; k++) {
+                for (size_t l = 0; l < K; l++) {
+                    g(i,j,k,l) = (i+1) + 2*(j+1) + 4*(k+1) + 8*(l+1);
+                }
+            }
+        }
+    }
+
+    GQCP::OneElectronOperator S_op (Eigen::MatrixXd::Identity(K, K));
+    GQCP::OneElectronOperator h_op (Eigen::MatrixXd::Zero(K, K));
+    GQCP::TwoElectronOperator g_op (g);
+    Eigen::MatrixXd C = Eigen::MatrixXd::Identity(K, K);
+    GQCP::HamiltonianParameters ham_par (nullptr, S_op, h_op, g_op, C);
+
+
+    // Set up the reference effective one-electron integrals by manual calculation
+    Eigen::MatrixXd k_ref = Eigen::MatrixXd::Zero(K, K);
+    for (size_t p = 0; p < K; p++) {
+        for (size_t q = 0; q < K; q++) {
+            auto p_ = static_cast<double>(p) + 1;
+            auto q_ = static_cast<double>(q) + 1;
+
+            k_ref(p,q) = -K_ / 2 * (p_ + 8*q_ + 3*K_ + 3);
+        }
+    }
+
+    BOOST_CHECK(k_ref.isApprox(ham_par.calculateEffectiveOneElectronIntegrals().get_matrix_representation(), 1.0e-08));
 }
