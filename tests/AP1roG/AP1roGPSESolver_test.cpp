@@ -105,7 +105,7 @@ BOOST_AUTO_TEST_CASE ( h2_631gdp_weak_interaction_limit ) {
     // Prepare molecular Hamiltonian parameters in the RHF basis
     GQCP::Molecule h2 ("../tests/data/h2_olsens.xyz");
     size_t N_P = h2.get_N() / 2;
-    auto ao_mol_ham_par = GQCP::HamiltonianParameters::Molecular(h2, "6-31G**"));
+    auto ao_mol_ham_par = GQCP::HamiltonianParameters::Molecular(h2, "6-31G**");
 
     GQCP::PlainRHFSCFSolver plain_scf_solver (ao_mol_ham_par, h2);
     plain_scf_solver.solve();
