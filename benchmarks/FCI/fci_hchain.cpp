@@ -2,7 +2,7 @@
  *  A benchmark executable for the FCI
  */
 
-#include "benchmark/benchmark.h"
+#include <benchmark/benchmark.h>
 
 #include "CISolver/CISolver.hpp"
 #include "HamiltonianParameters/HamiltonianParameters_constructors.hpp"
@@ -73,8 +73,8 @@ static void fci_davidson_hchain(benchmark::State& state) {
     for (auto _ : state) {
         GQCP::CISolver ci_solver (fci, mol_ham_par);
         ci_solver.solve(solver_options);
-        // Make sure the variable is not optimized away by compiler
-        benchmark::DoNotOptimize(ci_solver);
+
+        benchmark::DoNotOptimize(ci_solver);  // make sure the variable is not optimized away by compiler
     }
 
     state.counters["Hydrogen atoms"] = K;
@@ -108,8 +108,8 @@ static void fci_dense_hchain(benchmark::State& state) {
     for (auto _ : state) {
         GQCP::CISolver ci_solver (fci, mol_ham_par);
         ci_solver.solve(solver_options);
-        // Make sure the variable is not optimized away by compiler
-        benchmark::DoNotOptimize(ci_solver);
+
+        benchmark::DoNotOptimize(ci_solver);  // make sure the variable is not optimized away by compiler
     }
 
     state.counters["Hydrogen atoms"] = K;
@@ -119,16 +119,12 @@ static void fci_dense_hchain(benchmark::State& state) {
 
 static void CustomArguments(benchmark::internal::Benchmark* b) {
     for (int i = 4; i < 11; i++) { // Hydrogen atoms
-        // 4 electrons
-
-        b->Args({i, 4});
-
+        b->Args({i, 4});  // number of hydrogen atoms, 4 electrons
     }
 }
+
 
 // Perform the benchmarks
 BENCHMARK(fci_davidson_hchain)->Unit(benchmark::kMillisecond)->Apply(CustomArguments);
 BENCHMARK(fci_dense_hchain)->Unit(benchmark::kMillisecond)->Apply(CustomArguments);
-
-
 BENCHMARK_MAIN();

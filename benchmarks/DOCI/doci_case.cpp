@@ -1,8 +1,8 @@
 /**
- *  A benchmark executable for a DOCI case
+ *  A benchmark executable for DOCI calculations on CO
  */
 
-#include "benchmark/benchmark.h"
+#include <benchmark/benchmark.h>
 
 #include "CISolver/CISolver.hpp"
 #include "HamiltonianBuilder/DOCI.hpp"
@@ -28,8 +28,8 @@ static void test_case(benchmark::State& state) {
     for (auto _ : state) {
         GQCP::CISolver ci_solver (doci, ham_par);
         ci_solver.solve(solver_options);
-        // Make sure the variable is not optimized away by compiler
-        benchmark::DoNotOptimize(ci_solver);
+
+        benchmark::DoNotOptimize(ci_solver);  // make sure the variable is not optimized away by compiler
     }
 
     state.counters["Orbitals"] = ham_par.get_K();
@@ -40,6 +40,4 @@ static void test_case(benchmark::State& state) {
 
 // Perform the benchmarks
 BENCHMARK(test_case)->Unit(benchmark::kMillisecond);
-
-
 BENCHMARK_MAIN();

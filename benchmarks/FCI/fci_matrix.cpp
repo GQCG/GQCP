@@ -1,8 +1,8 @@
 /**
- *  A benchmark executable for the FCI constructHamiltonian
+ *  A benchmark executable for the construction of the FCI Hamiltonian
  */
 
-#include "benchmark/benchmark.h"
+#include <benchmark/benchmark.h>
 
 #include "HamiltonianParameters/HamiltonianParameters_constructors.hpp"
 #include "HamiltonianBuilder/FCI.hpp"
@@ -20,8 +20,8 @@ static void constructHamiltonian(benchmark::State& state) {
     // Code inside this loop is measured repeatedly
     for (auto _ : state) {
         Eigen::MatrixXd hamiltonian = fci.constructHamiltonian(ham_par);
-        // Make sure the variable is not optimized away by compiler
-        benchmark::DoNotOptimize(hamiltonian);
+
+        benchmark::DoNotOptimize(hamiltonian);  // make sure the variable is not optimized away by compiler
     }
 
     state.counters["Orbitals"] = K;
@@ -31,14 +31,12 @@ static void constructHamiltonian(benchmark::State& state) {
 
 
 static void CustomArguments(benchmark::internal::Benchmark* b) {
-    for (int i = 2; i < 6; ++i){
-        // b-Args({Orbitals, Electrons})
-        b->Args({8,i});
+    for (int i = 2; i < 6; ++i) {  // need int instead of size_t
+        b->Args({8, i});  // orbitals, electron pairs
     }
 }
 
+
 // Perform the benchmarks
 BENCHMARK(constructHamiltonian)->Unit(benchmark::kMillisecond)->Apply(CustomArguments);
-
-
 BENCHMARK_MAIN();

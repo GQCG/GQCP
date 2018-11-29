@@ -1,8 +1,8 @@
 /**
- *  A benchmark executable for the Hubbard constructHamiltonian
+ *  A benchmark executable for the construction of the Hubbard Hamiltonian matrix
  */
 
-#include "benchmark/benchmark.h"
+#include <benchmark/benchmark.h>
 
 #include "HamiltonianParameters/HamiltonianParameters_constructors.hpp"
 #include "HamiltonianBuilder/Hubbard.hpp"
@@ -20,25 +20,23 @@ static void constructHamiltonian(benchmark::State& state) {
     // Code inside this loop is measured repeatedly
     for (auto _ : state) {
         Eigen::MatrixXd hamiltonian = hubbard.constructHamiltonian(ham_par);
-        // Make sure the variable is not optimized away by compiler
-        benchmark::DoNotOptimize(hamiltonian);
+
+        benchmark::DoNotOptimize(hamiltonian);  // make sure the variable is not optimized away by compiler
     }
 
-    state.counters["Orbitals"] = K;
+    state.counters["Sites"] = K;
     state.counters["Electron pairs"] = N;
     state.counters["Dimension"] = fock_space.get_dimension();
 }
 
 
 static void CustomArguments(benchmark::internal::Benchmark* b) {
-    for (int i = 2; i < 5; ++i){
-        // b-Args({Orbitals, Electrons})
-        b->Args({8,i});
+    for (int i = 2; i < 5; ++i) {  // need int instead of size_t
+        b->Args({8, i});  // sites, electron pairs
     }
 }
 
+
 // Perform the benchmarks
 BENCHMARK(constructHamiltonian)->Unit(benchmark::kMillisecond)->Apply(CustomArguments);
-
-
 BENCHMARK_MAIN();

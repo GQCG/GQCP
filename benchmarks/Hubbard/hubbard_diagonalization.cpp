@@ -1,8 +1,8 @@
 /**
- *  A benchmark executable for the Hubbard constructHamiltonian
+ *  A benchmark executable for the diagonalization of Hubbard Hamiltonian matrices
  */
 
-#include "benchmark/benchmark.h"
+#include <benchmark/benchmark.h>
 
 #include "CISolver/CISolver.hpp"
 
@@ -24,25 +24,23 @@ static void constructHamiltonian(benchmark::State& state) {
     for (auto _ : state) {
         GQCP::CISolver ci_solver (hubbard, ham_par);
         ci_solver.solve(solver_options);
-        // Make sure the variable is not optimized away by compiler
-        benchmark::DoNotOptimize(ci_solver);
+
+        benchmark::DoNotOptimize(ci_solver);  // make sure the variable is not optimized away by compiler
     }
 
-    state.counters["Orbitals"] = K;
+    state.counters["Sites"] = K;
     state.counters["Electron pairs"] = N;
     state.counters["Dimension"] = fock_space.get_dimension();
 }
 
 
 static void CustomArguments(benchmark::internal::Benchmark* b) {
-    for (int i = 4; i < 10; ++i){
-        // b-Args({Orbitals, Electrons})
-        b->Args({i,2});
+    for (int i = 4; i < 10; ++i) {  // need int instead of size_t
+        b->Args({i, 2});  // sites, electron pairs
     }
 }
 
+
 // Perform the benchmarks
 BENCHMARK(constructHamiltonian)->Unit(benchmark::kMillisecond)->Apply(CustomArguments);
-
-
 BENCHMARK_MAIN();
