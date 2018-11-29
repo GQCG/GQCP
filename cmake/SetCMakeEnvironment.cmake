@@ -191,6 +191,21 @@ set(PROJECT_EXE_SOURCE_FILES
     ${PROJECT_EXECUTABLES_FOLDER}/fci_lowdin.cpp
     ${PROJECT_EXECUTABLES_FOLDER}/hubbard.cpp)
 
+# Find the benchmarks folder
+set(PROJECT_BENCHMARKS_FOLDER ${CMAKE_SOURCE_DIR}/benchmarks)
+
+# Find the source files for the benchmarks
+set(PROJECT_BENCH_SOURCE_FILES
+        ${PROJECT_BENCHMARKS_FOLDER}/DOCI/doci_case.cpp
+        ${PROJECT_BENCHMARKS_FOLDER}/DOCI/doci_matrix.cpp
+        ${PROJECT_BENCHMARKS_FOLDER}/DOCI/doci_matvec.cpp
+        ${PROJECT_BENCHMARKS_FOLDER}/FCI/fci_hchain.cpp
+        ${PROJECT_BENCHMARKS_FOLDER}/FCI/fci_matrix.cpp
+        ${PROJECT_BENCHMARKS_FOLDER}/FCI/fci_matvec.cpp
+        ${PROJECT_BENCHMARKS_FOLDER}/Hubbard/hubbard_diagonalization.cpp
+        ${PROJECT_BENCHMARKS_FOLDER}/Hubbard/hubbard_matrix.cpp
+        ${PROJECT_BENCHMARKS_FOLDER}/Hubbard/hubbard_matvec.cpp)
+
 
 # Give the user the option to specify an installation prefix. If not given as -DINSTALLATION_PREFIX, defaults to /usr/local.
 if(NOT INSTALLATION_PREFIX)
@@ -204,3 +219,4 @@ set(LIBRARY_INSTALL_DIR ${PROJECT_INSTALL_DIR}/lib)
 
 # Include the function that configures the executables
 include(${CMAKE_SOURCE_DIR}/cmake/ConfigureExecutable.cmake)
+include(${CMAKE_SOURCE_DIR}/cmake/ConfigureBenchmarks.cmake)

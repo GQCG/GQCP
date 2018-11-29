@@ -86,6 +86,27 @@ public:
     explicit Molecule(const std::string& xyz_filename);
 
 
+    // NAMED CONSTRUCTORS
+    /**
+     *  @param n            the number of H atoms
+     *  @param spacing      the internuclear spacing in bohr
+     *  @param charge       the total charge
+     *
+     *  @return a H-chain with equal internuclear spacing
+     */
+    static Molecule HChain(size_t n, double spacing, int charge=0);
+
+    /**
+     *  @param n        the number of H2-molecules
+     *  @param a        the internuclear distance in bohr
+     *  @param b        the intermolecular distance in bohr
+     *  @param charge   the total charge
+     *
+     *  @return a charged H2-chain
+     */
+    static Molecule H2Chain(size_t n, double a, double b, int charge=0);
+
+
     // OPERATORS
     /**
      *  @param other        the other molecule

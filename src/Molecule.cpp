@@ -173,6 +173,79 @@ Molecule::Molecule(const std::string& xyz_filename) :
 
 
 /*
+ *  NAMED CONSTRUCTORS
+ */
+
+/**
+ *  @param n            the number of H atoms
+ *  @param spacing      the internuclear spacing in bohr
+ *  @param charge       the total charge
+ *
+ *  @return a charged H-chain with equal internuclear spacing
+ */
+Molecule Molecule::HChain(size_t n, double spacing, int charge) {
+
+    if (n == 0) {
+        throw std::invalid_argument("Can not create a H-chain consisting of zero atoms.");
+    }
+
+    if (spacing < 0.0) {
+        throw std::invalid_argument("Can't have a negative spacing.");
+    }
+
+
+    std::vector<Atom> h_chain;
+
+    // Put all H-atoms on a line on the x-axis: the first H is on the origin
+    double x = 0.0;  // the current x-coordinate
+    for (size_t i = 0; i < n; i++) {
+        h_chain.emplace_back(1, x, 0.0, 0.0);
+
+        x += spacing;  // proceed to the next H-atom
+    }
+
+    return Molecule(h_chain, charge);
+}
+
+
+/**
+ *  @param n        the number of H2-molecules
+ *  @param a        the internuclear distance in bohr
+ *  @param b        the intermolecular distance in bohr
+ *  @param charge   the total charge
+ *
+ *  @return a charged H2-chain
+ */
+Molecule Molecule::H2Chain(size_t n, double a, double b, int charge) {
+
+    if (n == 0) {
+        throw std::invalid_argument("Can not create a H2-chain consisting of zero H2-molecules.");
+    }
+
+    if ((a < 0.0) || (b < 0.0)) {
+        throw std::invalid_argument("Can't have a negative spacing.");
+    }
+
+
+    std::vector<Atom> h_chain;
+
+    // Put all H-atoms on a line on the x-axis: the first H is on the origin
+    double x = 0.0;  // the current x-coordinate
+    for (size_t i = 0; i < n; i++) {
+
+        h_chain.emplace_back(1, x, 0.0, 0.0);  // the first H-atom
+        x += a;  // add internuclear distance (we're within a H2-molecule)
+        h_chain.emplace_back(1, x, 0.0, 0.0);  // the second H-atom
+
+        x += b;  // proceed to the next H2-molecule
+    }
+
+    return Molecule(h_chain, charge);
+}
+
+
+
+/*
  *  OPERATORS
  */
 
