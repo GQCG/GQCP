@@ -10,47 +10,18 @@
 #include "Molecule.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
 
-/**
- *  AUXILIARY FUNCTIONS
- */
 
-/**
- *  @param  chain_length
- *  @param  interatomic_distance
- *  @param  electrons
- *
- *  @return hydrogen-chain with specified length, spacing and electrons
- */
-static GQCP::Molecule makeHChain(size_t chain_length, double interatomic_distance, size_t electrons){
-    if (chain_length == 0) {
-        throw std::invalid_argument("Can not return a molecule consisting of zero atoms");
-    }
-
-    std::vector<GQCP::Atom> hs;
-    size_t half_num = chain_length/2;
-    double outer_x_pos = -(half_num*interatomic_distance);
-    if (!(chain_length & 2)) {
-        outer_x_pos -= interatomic_distance/2;
-    }
-
-    for (size_t i = 0; i < chain_length; i++) {
-        double x_pos = outer_x_pos + i*interatomic_distance;
-        hs.emplace_back(1, x_pos, 0, 0);
-    }
-
-    int charge = chain_length-electrons;
-    return GQCP::Molecule(hs, charge);
-}
-
-/**
- *  BENCHMARKS
- */
 
 /**
  *  DAVIDSON
  */
 static void fci_davidson_hchain(benchmark::State& state) {
-    GQCP::Molecule hchain = makeHChain(state.range(0), 0.742 , state.range(1));
+
+    int64_t number_of_H_atoms = state.range(0);
+    int64_t number_of_electrons = state.range(1);
+    auto charge = static_cast<int>(number_of_H_atoms - number_of_electrons);
+
+    GQCP::Molecule hchain = GQCP::Molecule::HChain(number_of_H_atoms, 0.742, charge);
     auto ao_basis = std::make_shared<GQCP::AOBasis>(hchain, "STO-3G");
 
     // Create the molecular Hamiltonian parameters for this molecule and basis
@@ -86,7 +57,13 @@ static void fci_davidson_hchain(benchmark::State& state) {
  *  DENSE
  */
 static void fci_dense_hchain(benchmark::State& state) {
-    GQCP::Molecule hchain = makeHChain(state.range(0), 0.742 , state.range(1));
+
+    int64_t number_of_H_atoms = state.range(0);
+    int64_t number_of_electrons = state.range(1);
+    auto charge = static_cast<int>(number_of_H_atoms - number_of_electrons);
+
+    GQCP::Molecule hchain = GQCP::Molecule::HChain(number_of_H_atoms, 0.742, charge);
+
     auto ao_basis = std::make_shared<GQCP::AOBasis>(hchain, "STO-3G");
 
     // Create the molecular Hamiltonian parameters for this molecule and basis
@@ -118,7 +95,7 @@ static void fci_dense_hchain(benchmark::State& state) {
 }
 
 static void CustomArguments(benchmark::internal::Benchmark* b) {
-    for (int i = 4; i < 11; i++) { // Hydrogen atoms
+    for (int i = 4; i < 11; i++) {  // need int instead of size_t
         b->Args({i, 4});  // number of hydrogen atoms, 4 electrons
     }
 }

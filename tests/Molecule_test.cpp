@@ -274,3 +274,61 @@ BOOST_AUTO_TEST_CASE ( calculateNuclearDipoleMoment ) {
 
     BOOST_CHECK(molecule.calculateNuclearDipoleMoment().isApprox(Eigen::Vector3d{16, 33, 66}));
 }
+
+
+BOOST_AUTO_TEST_CASE ( HChain_throws ) {
+
+    BOOST_CHECK_THROW(GQCP::Molecule::HChain(0, 1.0, +0), std::invalid_argument);  // can't create 0 H-atoms
+    BOOST_CHECK_THROW(GQCP::Molecule::HChain(1, -1.0, +0), std::invalid_argument);  // can't have negative spacing
+}
+
+
+BOOST_AUTO_TEST_CASE ( H2Chain_throws ) {
+
+    BOOST_CHECK_THROW(GQCP::Molecule::H2Chain(0, 1.0, 2.0, +0), std::invalid_argument);  // can't create 0 H2-molecules
+    BOOST_CHECK_THROW(GQCP::Molecule::H2Chain(1, -1.0, 1.0, +0), std::invalid_argument);  // can't have negative spacing
+    BOOST_CHECK_THROW(GQCP::Molecule::H2Chain(1, 1.0, -1.0, +0), std::invalid_argument);  // can't have negative spacing
+}
+
+
+BOOST_AUTO_TEST_CASE ( HChain ) {
+
+    GQCP::Molecule h_chain = GQCP::Molecule::HChain(3, 1.0);
+    BOOST_CHECK(h_chain.numberOfAtoms() == 3);
+    BOOST_CHECK(h_chain.get_N() == 3);
+    BOOST_CHECK(std::abs(h_chain.calculateInternuclearDistance(0, 1) - 1.0) < 1.0e-12);
+    BOOST_CHECK(std::abs(h_chain.calculateInternuclearDistance(0, 2) - 2.0) < 1.0e-12);
+
+
+    GQCP::Molecule h_chain_charged = GQCP::Molecule::HChain(4, 1.5, +2);
+    BOOST_CHECK(h_chain_charged.numberOfAtoms() == 4);
+    BOOST_CHECK(h_chain_charged.get_N() == 2);
+    BOOST_CHECK(std::abs(h_chain_charged.calculateInternuclearDistance(0, 1) - 1.5) < 1.0e-12);
+    BOOST_CHECK(std::abs(h_chain_charged.calculateInternuclearDistance(0, 2) - 3.0) < 1.0e-12);
+    BOOST_CHECK(std::abs(h_chain_charged.calculateInternuclearDistance(0, 3) - 4.5) < 1.0e-12);
+    BOOST_CHECK(std::abs(h_chain_charged.calculateInternuclearDistance(1, 2) - 1.5) < 1.0e-12);
+    BOOST_CHECK(std::abs(h_chain_charged.calculateInternuclearDistance(1, 3) - 3.0) < 1.0e-12);
+    BOOST_CHECK(std::abs(h_chain_charged.calculateInternuclearDistance(2, 3) - 1.5) < 1.0e-12);
+}
+
+
+BOOST_AUTO_TEST_CASE ( H2Chain ) {
+
+    GQCP::Molecule h2_chain = GQCP::Molecule::H2Chain(2, 1.0, 1.5);
+    BOOST_CHECK(h2_chain.numberOfAtoms() == 4);
+    BOOST_CHECK(h2_chain.get_N() == 4);
+    BOOST_CHECK(std::abs(h2_chain.calculateInternuclearDistance(0, 1) - 1.0) < 1.0e-12);
+    BOOST_CHECK(std::abs(h2_chain.calculateInternuclearDistance(0, 2) - 2.5) < 1.0e-12);
+    BOOST_CHECK(std::abs(h2_chain.calculateInternuclearDistance(0, 3) - 3.5) < 1.0e-12);
+    BOOST_CHECK(std::abs(h2_chain.calculateInternuclearDistance(1, 2) - 1.5) < 1.0e-12);
+    BOOST_CHECK(std::abs(h2_chain.calculateInternuclearDistance(1, 3) - 2.5) < 1.0e-12);
+    BOOST_CHECK(std::abs(h2_chain.calculateInternuclearDistance(2, 3) - 1.0) < 1.0e-12);
+
+
+    GQCP::Molecule h2_chain_charged = GQCP::Molecule::H2Chain(4, 2.0, 3.8, -2);
+    BOOST_CHECK(h2_chain_charged.numberOfAtoms() == 8);
+    BOOST_CHECK(h2_chain_charged.get_N() == 10);
+}
+
+
+// a, b, spacing > 0
