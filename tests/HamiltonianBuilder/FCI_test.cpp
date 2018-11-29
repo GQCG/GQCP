@@ -61,4 +61,8 @@ BOOST_AUTO_TEST_CASE ( FCI_public_methods ) {
     GQCP::FCI random_fci_i (fock_space_i);
     BOOST_CHECK_THROW(random_fci_i.constructHamiltonian(random_hamiltonian_parameters), std::invalid_argument);
     BOOST_CHECK_THROW(random_fci_i.matrixVectorProduct(random_hamiltonian_parameters, x, x), std::invalid_argument);
+    
+    Eigen::MatrixXd ham = random_fci.constructHamiltonian(random_hamiltonian_parameters);
+    
+    BOOST_CHECK(x.isApprox(ham.diagonal()));
 }

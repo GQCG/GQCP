@@ -46,16 +46,16 @@ std::vector<std::vector<FCI::AnnihilationCouple>> FCI::calculateOneElectronCoupl
     size_t N = fock_space_target.get_N();
     size_t dim = fock_space_target.get_dimension();
 
-    std::vector<std::vector<AnnihilationCouple>> one_couplings;
-    one_couplings.reserve(dim);
+    std::vector<std::vector<AnnihilationCouple>> one_couplings(dim);
 
     ONV onv = fock_space_target.get_ONV(0);  // onv with address 0
     for (size_t I = 0; I < dim; I++) {  // I loops over all the addresses of the onv
         std::vector<AnnihilationCouple> annis(N);
         for (size_t e1 = 0; e1 < N; e1++) {  // e1 (electron 1) loops over the (number of) electrons
             size_t p = onv.get_occupied_index(e1);  // retrieve the index of a given electron
-            std::vector<CreationCouple> creas;
-            creas.reserve((K-p-(N-e1)));
+            size_t size = (K-p)-(N-e1);
+            std::vector<CreationCouple> creas(size);
+
             // remove the weight from the initial address I, because we annihilate
             size_t address = I - fock_space_target.get_vertex_weights(p, e1 + 1);
             // The e2 iteration counts the amount of encountered electrons for the creation operator
@@ -67,27 +67,29 @@ std::vector<std::vector<FCI::AnnihilationCouple>> FCI::calculateOneElectronCoupl
             int sign_e2 = 1;
             // perform a shift
             fock_space_target.shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign_e2);
-
+            size_t dex = 0;
             while (q < K) {
                 size_t J = address + fock_space_target.get_vertex_weights(q, e2);
 
                 // address has been calculated, update accordingly and at all instances of the fixed component
-                creas.emplace_back(CreationCouple{sign_e2, q, J});
+                creas[dex] = CreationCouple{sign_e2, q, J};
 
                 q++; // go to the next orbital
-
+                dex++;
                 // perform a shift
                 fock_space_target.shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign_e2);
             }  //  (creation)
 
-            if (!creas.empty()){
-                annis.emplace_back(AnnihilationCouple{p, creas});
-            }
+
+
+
+            annis[e1] = AnnihilationCouple{p, creas};
+
 
 
         } // e1 loop (annihilation)
 
-        one_couplings.push_back(annis);
+        one_couplings[I] = annis;
 
         // Prevent last permutation
         if (I < dim - 1) {
@@ -347,39 +349,30 @@ Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters& hamiltonia
         for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {  // loop over beta addresses
             for (const auto &alpha : this->alpha_one_electron_couplings2[I_alpha]) {
                 for (const auto &creaa : alpha.creationCouples) {
-
-                    matvec(I_alpha * dim_beta + I_beta) += creaa.sign * k(alpha.p, creaa.q) * x(I_alpha * dim_beta + I_beta);
-                    matvec(I_alpha * dim_beta + creaa.address) += creaa.sign * k(alpha.p, creaa.q) * x(I_alpha * dim_beta + creaa.address);
+                    // A-A
+                    matvec(creaa.address * dim_beta + I_beta) += creaa.sign * k(alpha.p, creaa.q) * x(I_alpha * dim_beta + I_beta);
+                    matvec(I_alpha * dim_beta + I_beta) += creaa.sign * k(alpha.p, creaa.q) * x(creaa.address * dim_beta + I_beta);
 
                     for (const auto &beta : this->beta_one_electron_couplings2[I_beta]) {
                         for (const auto &creab : beta.creationCouples) {
+                            // A-B
                             int sign = creaa.sign * creab.sign;
-                            matvec(I_alpha * dim_beta + I_beta) +=
-                                    sign * hamiltonian_parameters.get_g()(alpha.p, creaa.q, beta.p, creab.q) *
-                                    x(creaa.address * dim_beta + creab.address);
-                            matvec(creaa.address * dim_beta + creab.address) +=
-                                    sign * hamiltonian_parameters.get_g()(alpha.p, creaa.q, beta.p, creab.q) *
-                                    x(I_alpha * dim_beta + I_beta);
+                            matvec(I_alpha * dim_beta + I_beta) += sign * hamiltonian_parameters.get_g()(alpha.p, creaa.q, beta.p, creab.q) * x(creaa.address * dim_beta + creab.address);
+                            matvec(creaa.address * dim_beta + creab.address) += sign * hamiltonian_parameters.get_g()(creaa.q, alpha.p, creab.q, beta.p) * x(I_alpha * dim_beta + I_beta);
+                            matvec(creaa.address * dim_beta + I_beta) += sign * hamiltonian_parameters.get_g()(creaa.q, alpha.p, beta.p, creab.q) * x(I_alpha * dim_beta + creab.address);
+                            matvec(I_alpha * dim_beta + creab.address) += sign * hamiltonian_parameters.get_g()(alpha.p, creaa.q, creab.q, beta.p) * x(creaa.address * dim_beta + I_beta);
 
                         }
-
-                        matvec(I_alpha * dim_beta + I_beta) +=
-                                creaa.sign * hamiltonian_parameters.get_g()(alpha.p, creaa.q, beta.p, beta.p) *
-                                x(creaa.address * dim_beta + I_beta);
-                        matvec(creaa.address * dim_beta + I_beta) +=
-                                creaa.sign * hamiltonian_parameters.get_g()(alpha.p, creaa.q, beta.p, beta.p) *
-                                x(I_alpha * dim_beta + I_beta);
+                        // A-B DIAG
+                        matvec(I_alpha * dim_beta + I_beta) += creaa.sign * hamiltonian_parameters.get_g()(alpha.p, creaa.q, beta.p, beta.p) * x(creaa.address * dim_beta + I_beta);
+                        matvec(creaa.address * dim_beta + I_beta) += creaa.sign * hamiltonian_parameters.get_g()(creaa.q, alpha.p, beta.p, beta.p) * x(I_alpha * dim_beta + I_beta);
                     }
                 }
-
+                // A-B DIAG
                 for (const auto &beta : this->beta_one_electron_couplings2[I_beta]) {
                     for (const auto &creab : beta.creationCouples) {
-                        matvec(I_alpha * dim_beta + I_beta) +=
-                                creab.sign * hamiltonian_parameters.get_g()(alpha.p, alpha.p, beta.p, creab.q) *
-                                x(I_alpha * dim_beta + creab.address);
-                        matvec(I_alpha * dim_beta + creab.address) +=
-                                creab.sign * hamiltonian_parameters.get_g()(alpha.p, alpha.p, beta.p, creab.q) *
-                                x(I_alpha * dim_beta + I_beta);
+                        matvec(I_alpha * dim_beta + I_beta) += creab.sign * hamiltonian_parameters.get_g()(alpha.p, alpha.p, beta.p, creab.q) * x(I_alpha * dim_beta + creab.address);
+                        matvec(I_alpha * dim_beta + creab.address) += creab.sign * hamiltonian_parameters.get_g()(alpha.p, alpha.p, creab.q, beta.p) * x(I_alpha * dim_beta + I_beta);
 
                     }
                 }
@@ -387,10 +380,8 @@ Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters& hamiltonia
 
             for (const auto &beta : this->beta_one_electron_couplings2[I_beta]) {
                 for (const auto &creab : beta.creationCouples) {
-                    matvec(I_alpha * dim_beta + I_beta) +=
-                            creab.sign * k(beta.p, creab.q) * x(I_alpha * dim_beta + I_beta);
-                    matvec(I_alpha * dim_beta + creab.address) +=
-                            creab.sign * k(beta.p, creab.q) * x(I_alpha * dim_beta + creab.address);
+                    matvec(I_alpha * dim_beta + I_beta) += creab.sign * k(beta.p, creab.q) * x(I_alpha * dim_beta + creab.address);
+                    matvec(I_alpha * dim_beta + creab.address) += creab.sign * k(beta.p, creab.q) * x(I_alpha * dim_beta + I_beta);
                 }
             }
         }
