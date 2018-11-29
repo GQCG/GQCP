@@ -147,6 +147,7 @@ BOOST_AUTO_TEST_CASE ( lih_energy_RDM_contraction_DOCI ) {
 
 
     double energy_by_contraction = GQCP::calculateExpectationValue(ham_par, one_rdms.one_rdm, two_rdms.two_rdm);
+    energy_by_contraction -= ham_par.get_scalar();  // if we read in an FCIDUMP file, the internuclear repulsion is added as a scalar parameter: subtract it to get the electronic energy
 
     BOOST_CHECK(std::abs(energy_by_eigenvalue - energy_by_contraction) < 1.0e-12);
 }

@@ -20,6 +20,7 @@
 
 #include "common.hpp"
 #include "HamiltonianParameters/BaseHamiltonianParameters.hpp"
+#include "Molecule.hpp"
 #include "Operator/OneElectronOperator.hpp"
 #include "Operator/TwoElectronOperator.hpp"
 #include "JacobiRotationParameters.hpp"
@@ -58,17 +59,34 @@ public:
      *  @param h            the one-electron integrals H_core
      *  @param g            the two-electron integrals
      *  @param C            a transformation matrix between the current molecular orbitals and the atomic orbitals
+     *  @param scalar       the scalar interaction term
      */
-    HamiltonianParameters(std::shared_ptr<GQCP::AOBasis> ao_basis, const GQCP::OneElectronOperator& S, const GQCP::OneElectronOperator& h, const GQCP::TwoElectronOperator& g, const Eigen::MatrixXd& C);
-
+    HamiltonianParameters(std::shared_ptr<GQCP::AOBasis> ao_basis, const GQCP::OneElectronOperator& S, const GQCP::OneElectronOperator& h, const GQCP::TwoElectronOperator& g, const Eigen::MatrixXd& C, double scalar=0.0);
 
     /**
-     *  A constructor that transforms the current Hamiltonian parameters with a transformation matrix
+     *  A constructor that transforms the given Hamiltonian parameters with a transformation matrix
      *
      *  @param ham_par      the current Hamiltonian parameters
-     *  @param C            the transformation matrix to be applied to the current Hamiltonian parameters
+     *  @param C            the transformation matrix to be applied to the given Hamiltonian parameters
      */
     HamiltonianParameters(const GQCP::HamiltonianParameters& ham_par, const Eigen::MatrixXd& C);
+
+
+    // NAMED CONSTRUCTORS
+    /**
+     *  Construct the molecular Hamiltonian parameters in an AO basis
+     *
+     *  @param molecule     the molecule for which the Hamiltonian parameters should be calculated
+     *  @param basisset     the name of the basisset corresponding to the AO basis
+     *
+     *  @return Hamiltonian parameters corresponding to the molecular Hamiltonian. The molecular Hamiltonian has
+     *      - one-electron contributions:
+     *          - kinetic
+     *          - nuclear attraction
+     *      - two-electron contributions:
+     *          - Coulomb repulsion
+     */
+    static HamiltonianParameters Molecular(const Molecule& molecule, const std::string& basisset);
 
 
     // DESTRUCTORS
@@ -82,8 +100,15 @@ public:
     const Eigen::MatrixXd& get_C() const { return this->C; }
     size_t get_K() const { return this->K; }
 
-    
+
     // PUBLIC METHODS
+    /**
+     *  @return if the underlying spatial orbital basis of the Hamiltonian parameters is orthonormal
+     */
+    bool areOrbitalsOrthonormal();
+
+
+    // PUBLIC METHODS - TRANSFORMATIONS
     /**
      *  In-place transform the matrix representations of Hamiltonian parameters
      *
@@ -125,6 +150,17 @@ public:
      */
     void LowdinOrthonormalize();
 
+
+    // PUBLIC METHODS - CALCULATIONS OF VALUES
+    /**
+     *  @param N_P      the number of electron pairs
+     *
+     *  @return the Edmiston-Ruedenberg localization index g(i,i,i,i)
+     */
+    double calculateEdmistonRuedenbergLocalizationIndex(size_t N_P) const;
+
+
+    // PUBLIC METHODS - CALCULATIONS OF ONE-ELECTRON OPERATORS
     /**
      *  @param D      the 1-RDM
      *  @param d      the 2-RDM
@@ -134,6 +170,20 @@ public:
     GQCP::OneElectronOperator calculateGeneralizedFockMatrix(const GQCP::OneRDM& D, const GQCP::TwoRDM& d) const;
 
     /**
+     *  @param ao_list     indices of the AOs used for the Mulliken populations
+     *
+     *  @return the Mulliken operator for a set of AOs
+     */
+    OneElectronOperator calculateMullikenOperator(const Vectoru& ao_list) const;
+
+    /**
+     *  @return the effective one-electron integrals
+     */
+    GQCP::OneElectronOperator calculateEffectiveOneElectronIntegrals() const;
+
+
+    // PUBLIC METHODS - CALCULATIONS OF TWO-ELECTRON OPERATORS
+    /**
      *  @param D      the 1-RDM
      *  @param d      the 2-RDM
      *
@@ -141,13 +191,8 @@ public:
      */
     GQCP::TwoElectronOperator calculateSuperGeneralizedFockMatrix(const GQCP::OneRDM& D, const GQCP::TwoRDM& d) const;
 
-    /**
-     *  @param N_P      the number of electron pairs
-     *
-     *  @return the Edmiston-Ruedenberg localization index g(i,i,i,i)
-     */
-    double calculateEdmistonRuedenbergLocalizationIndex(size_t N_P) const;
 
+    // PUBLIC METHODS - CONSTRAINTS
     /**
      *  Constrain the Hamiltonian parameters according to the convention: - lambda * constraint
      *
@@ -178,13 +223,6 @@ public:
      *  @return a copy of the constrained Hamiltonian parameters
      */
     HamiltonianParameters constrain(const GQCP::TwoElectronOperator& two_op, double lambda) const;
-
-    /**
-     *  @param ao_list     indices of the AOs used for the Mulliken populations
-     *
-     *  @return the Mulliken operator for a set of AOs
-     */
-    OneElectronOperator calculateMullikenOperator(const Vectoru& ao_list);
 };
 
 

@@ -36,12 +36,9 @@ BOOST_AUTO_TEST_CASE ( H2O_1RDM_spin_trace_FCI ) {
     size_t N_a = 5;
     size_t N_b = 5;
 
-    // Create a Molecule and an AOBasis
+    // Create the molecular Hamiltonian parameters in the AO basis
     GQCP::Molecule h2o ("../tests/data/h2o_Psi4_GAMESS.xyz");
-    auto ao_basis = std::make_shared<GQCP::AOBasis>(h2o, "STO-3G");
-
-    // Create the molecular Hamiltonian parameters for this molecule and basis
-    auto ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
+    auto ham_par = GQCP::HamiltonianParameters::Molecular(h2o, "STO-3G");
     size_t K = ham_par.get_K();  // SO 7
 
     GQCP::ProductFockSpace fock_space (K, N_a, N_b);  // dim = 441
@@ -73,12 +70,9 @@ BOOST_AUTO_TEST_CASE ( H2O_2RDM_spin_trace_FCI ) {
     size_t N_a = 5;
     size_t N_b = 5;
 
-    // Create a Molecule and an AOBasis
+    // Create the molecular Hamiltonian parameters in the AO basis
     GQCP::Molecule h2o ("../tests/data/h2o_Psi4_GAMESS.xyz");
-    auto ao_basis = std::make_shared<GQCP::AOBasis>(h2o, "STO-3G");
-
-    // Create the molecular Hamiltonian parameters for this molecule and basis
-    auto ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
+    auto ham_par = GQCP::HamiltonianParameters::Molecular(h2o, "STO-3G");
     size_t K = ham_par.get_K();  // SO 7
 
     GQCP::ProductFockSpace fock_space (K, N_a, N_b);  // dim = 441
@@ -111,12 +105,10 @@ BOOST_AUTO_TEST_CASE ( H2O_1RDM_2RDM_trace_FCI ) {
     size_t N_a = 5;
     size_t N_b = 5;
     size_t N = N_a + N_b;
-    // Create a Molecule and an AOBasis
-    GQCP::Molecule h2o ("../tests/data/h2o_Psi4_GAMESS.xyz");
-    auto ao_basis = std::make_shared<GQCP::AOBasis>(h2o, "STO-3G");
 
-    // Create the molecular Hamiltonian parameters for this molecule and basis
-    auto ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
+    // Create the molecular Hamiltonian parameters in the AO basis
+    GQCP::Molecule h2o ("../tests/data/h2o_Psi4_GAMESS.xyz");
+    auto ham_par = GQCP::HamiltonianParameters::Molecular(h2o, "STO-3G");
     size_t K = ham_par.get_K();  // SO 7
 
     GQCP::ProductFockSpace fock_space (K, N_a, N_b);  // dim = 441
@@ -147,12 +139,10 @@ BOOST_AUTO_TEST_CASE ( H2O_energy_RDM_contraction_FCI ) {
 
     size_t N_a = 5;
     size_t N_b = 5;
-    // Create a Molecule and an AOBasis
-    GQCP::Molecule h2o ("../tests/data/h2o_Psi4_GAMESS.xyz");
-    auto ao_basis = std::make_shared<GQCP::AOBasis>(h2o, "STO-3G");
 
-    // Create the molecular Hamiltonian parameters for this molecule and basis
-    auto ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
+    // Create the molecular Hamiltonian parameters in the AO basis
+    GQCP::Molecule h2o ("../tests/data/h2o_Psi4_GAMESS.xyz");
+    auto ham_par = GQCP::HamiltonianParameters::Molecular(h2o, "STO-3G");
     size_t K = ham_par.get_K();  // SO 7
 
     GQCP::ProductFockSpace fock_space (K, N_a, N_b);  // dim = 441
@@ -172,7 +162,7 @@ BOOST_AUTO_TEST_CASE ( H2O_energy_RDM_contraction_FCI ) {
     GQCP::TwoRDMs two_rdms = fci_rdm.calculate2RDMs(coef);
     GQCP::OneRDMs one_rdms = fci_rdm.calculate1RDMs(coef);
 
-    double energy_by_contraction = GQCP::calculateExpectationValue(ham_par, one_rdms.one_rdm, two_rdms.two_rdm);
+    double energy_by_contraction = GQCP::calculateExpectationValue(ham_par, one_rdms.one_rdm, two_rdms.two_rdm) - h2o.calculateInternuclearRepulsionEnergy();  // subtract the internuclear repulsion energy because it is not included in the Hamiltonian matrix
 
     BOOST_CHECK(std::abs(energy_by_eigenvalue - energy_by_contraction) < 1.0e-12);
 }

@@ -74,7 +74,7 @@ Eigen::MatrixXd DOCI::constructHamiltonian(const HamiltonianParameters& hamilton
             size_t q = p + 1;
 
             // perform a shift
-            address += this->fock_space.shiftUntilNextUnoccupiedOrbital(onv, q, e2, 1);
+            this->fock_space.shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2);
 
             while (q < K) {
                 size_t J = address + this->fock_space.get_vertex_weights(q, e2);
@@ -85,7 +85,7 @@ Eigen::MatrixXd DOCI::constructHamiltonian(const HamiltonianParameters& hamilton
                 q++;  // go to the next orbital
 
                 // perform a shift
-                address += this->fock_space.shiftUntilNextUnoccupiedOrbital(onv, q, e2, 1);
+                this->fock_space.shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2);
 
             }  // (creation)
 
@@ -144,7 +144,7 @@ Eigen::VectorXd DOCI::matrixVectorProduct(const HamiltonianParameters& hamiltoni
             size_t q = p + 1;
 
             // perform a shift
-            address += this->fock_space.shiftUntilNextUnoccupiedOrbital(onv, q, e2, 1);
+            this->fock_space.shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2);
 
             while (q < K) {
                 size_t J = address + this->fock_space.get_vertex_weights(q, e2);
@@ -155,7 +155,7 @@ Eigen::VectorXd DOCI::matrixVectorProduct(const HamiltonianParameters& hamiltoni
                 q++;  // go to the next orbital
 
                 // perform a shift
-                address += this->fock_space.shiftUntilNextUnoccupiedOrbital(onv, q, e2, 1);
+                this->fock_space.shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2);
 
             }  // (creation)
 

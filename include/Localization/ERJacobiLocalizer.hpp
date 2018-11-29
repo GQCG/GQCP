@@ -63,14 +63,14 @@ private:
     /**
      *  Calculate the coefficients A, B, C for the Jacobi rotations
      *
-     *  @param ham_par      the Hamiltonian parameters
+     *  @param ham_par      the Hamiltonian parameters in an orthonormal basis
      *  @param i            the index of spatial orbital 1
      *  @param j            the index of spatial orbital 2
      */
     void calculateJacobiCoefficients(const GQCP::HamiltonianParameters& ham_par, size_t i, size_t j);
 
     /**
-     *  @param ham_par      the Hamiltonian parameters
+     *  @param ham_par      the Hamiltonian parameters in an orthonormal basis
      *  @param i            the index of spatial orbital 1
      *  @param j            the index of spatial orbital 2
      *
@@ -79,7 +79,7 @@ private:
     double calculateMaximizingRotationAngle(const GQCP::HamiltonianParameters& ham_par, size_t i, size_t j) const;
 
     /**
-     *  @param ham_par      the Hamiltonian parameters that contain the two-electron integrals upon which the Edmiston-Ruedenberg localization index is calculated
+     *  @param ham_par      the Hamiltonian parameters (in an orthonormal basis) that contain the two-electron integrals upon which the Edmiston-Ruedenberg localization index is calculated
      *
      *  @return the maximal Edmiston-Ruedenberg for the current Jacobi coefficients A, B, C
      */
@@ -100,7 +100,7 @@ public:
     /**
      *  Localize the Hamiltonian parameters by maximizing the Edmiston-Ruedenberg localization index, using the 'best' Jacobi rotation in every iteration step
      *
-     *  @param ham_par      the Hamiltonian parameters that should be localized
+     *  @param ham_par      the Hamiltonian parameters (in an orthonormal basis) that should be localized
      */
     void localize(GQCP::HamiltonianParameters& ham_par) override;
 };

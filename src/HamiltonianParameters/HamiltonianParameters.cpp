@@ -16,6 +16,7 @@
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "LibintCommunicator.hpp"
 
 #include "miscellaneous.hpp"
 
@@ -33,9 +34,10 @@ namespace GQCP {
  *  @param h            the one-electron integrals H_core
  *  @param g            the two-electron integrals
  *  @param C            a transformation matrix between the current molecular orbitals and the atomic orbitals
+ *  @param scalar       the scalar interaction term
  */
-HamiltonianParameters::HamiltonianParameters(std::shared_ptr<GQCP::AOBasis> ao_basis, const GQCP::OneElectronOperator& S, const GQCP::OneElectronOperator& h, const GQCP::TwoElectronOperator& g, const Eigen::MatrixXd& C) :
-    BaseHamiltonianParameters(std::move(ao_basis)),
+HamiltonianParameters::HamiltonianParameters(std::shared_ptr<GQCP::AOBasis> ao_basis, const GQCP::OneElectronOperator& S, const GQCP::OneElectronOperator& h, const GQCP::TwoElectronOperator& g, const Eigen::MatrixXd& C, double scalar) :
+    BaseHamiltonianParameters(std::move(ao_basis), scalar),
     K (S.get_dim()),
     S (S),
     h (h),
@@ -63,10 +65,10 @@ HamiltonianParameters::HamiltonianParameters(std::shared_ptr<GQCP::AOBasis> ao_b
 
 
 /**
- *  A constructor that transforms the current Hamiltonian parameters with a transformation matrix
+ *  A constructor that transforms the given Hamiltonian parameters with a transformation matrix
  *
  *  @param ham_par      the current Hamiltonian parameters
- *  @param C            the transformation matrix to be applied to the current Hamiltonian parameters
+ *  @param C            the transformation matrix to be applied to the given Hamiltonian parameters
  */
 HamiltonianParameters::HamiltonianParameters(const GQCP::HamiltonianParameters& ham_par, const Eigen::MatrixXd& C) :
     BaseHamiltonianParameters(ham_par.ao_basis),
@@ -81,9 +83,61 @@ HamiltonianParameters::HamiltonianParameters(const GQCP::HamiltonianParameters& 
 }
 
 
-
 /*
  *  PUBLIC METHODS
+ */
+
+/**
+ *  @return if the underlying spatial orbital basis of the Hamiltonian parameters is orthonormal
+ */
+bool HamiltonianParameters::areOrbitalsOrthonormal() {
+
+    return this->S.get_matrix_representation().isApprox(Eigen::MatrixXd::Identity(this->K, this->K));
+}
+
+
+/*
+ *  NAMED CONSTRUCTORS
+ */
+
+/**
+ *  Construct the molecular Hamiltonian parameters in an AO basis
+ *
+ *  @param molecule     the molecule for which the Hamiltonian parameters should be calculated
+ *  @param basisset     the name of the basisset corresponding to the AO basis
+ *
+ *  @return Hamiltonian parameters corresponding to the molecular Hamiltonian. The molecular Hamiltonian has
+ *      - one-electron contributions:
+ *          - kinetic
+ *          - nuclear attraction
+ *      - two-electron contributions:
+ *          - Coulomb repulsion
+ */
+HamiltonianParameters HamiltonianParameters::Molecular(const Molecule& molecule, const std::string& basisset) {
+
+    // Calculate the integrals in the AO basis for the molecular Hamiltonian
+    auto ao_basis = std::make_shared<AOBasis>(molecule, basisset);
+
+    auto S = LibintCommunicator::get().calculateOverlapIntegrals(*ao_basis);
+    auto T = LibintCommunicator::get().calculateKineticIntegrals(*ao_basis);
+    auto V = LibintCommunicator::get().calculateNuclearIntegrals(*ao_basis);
+    auto H = T + V;
+
+    auto g = LibintCommunicator::get().calculateCoulombRepulsionIntegrals(*ao_basis);
+
+
+    // Construct the initial transformation matrix: the identity matrix
+    auto nbf = ao_basis->get_number_of_basis_functions();
+    Eigen::MatrixXd C = Eigen::MatrixXd::Identity(nbf, nbf);
+
+
+    return HamiltonianParameters(ao_basis, S, H, g, C, molecule.calculateInternuclearRepulsionEnergy());
+}
+
+
+
+/*
+ *  PUBLIC METHODS - TRANSFORMATIONS
  */
 
 /**
@@ -172,6 +226,34 @@ void HamiltonianParameters::LowdinOrthonormalize() {
 }
 
 
+
+/*
+ *  PUBLIC METHODS - CALCULATIONS OF VALUES
+ */
+
+/**
+ *  @param N_P      the number of electron pairs
+ *
+ *  @return the Edmiston-Ruedenberg localization index g(i,i,i,i)
+ */
+double HamiltonianParameters::calculateEdmistonRuedenbergLocalizationIndex(size_t N_P) const {
+
+    double localization_index = 0.0;
+
+    // TODO: when Eigen releases TensorTrace, use it here
+    for (size_t i = 0; i < N_P; i++) {
+        localization_index += this->g(i,i,i,i);
+    }
+
+    return localization_index;
+}
+
+
+
+/*
+ *  PUBLIC METHODS - CALCULATIONS OF ONE-ELECTRON OPERATORS
+ */
+
 /**
  *  @param D      the 1-RDM
  *  @param d      the 2-RDM
@@ -216,6 +298,67 @@ GQCP::OneElectronOperator HamiltonianParameters::calculateGeneralizedFockMatrix(
     return GQCP::OneElectronOperator(F);
 }
 
+
+/**
+ *  @return the effective one-electron integrals
+ */
+GQCP::OneElectronOperator HamiltonianParameters::calculateEffectiveOneElectronIntegrals() const {
+
+    Eigen::MatrixXd k = this->h.get_matrix_representation();
+
+    for (size_t p = 0; p < this->K; p++) {
+        for (size_t q = 0; q < this->K; q++) {
+            for (size_t r = 0; r < this->K; r++) {
+                k(p,q) -= 0.5 * this->g(p, r, r, q);
+            }
+        }
+    }
+
+    return GQCP::OneElectronOperator(k);
+}
+
+
+/**
+ *  @param ao_list     indices of the AOs used for the Mulliken populations
+ *
+ *  @return the Mulliken operator for a set of AOs
+ */
+OneElectronOperator HamiltonianParameters::calculateMullikenOperator(const Vectoru& ao_list) const {
+
+
+    if (!this->get_ao_basis()) {
+        throw std::invalid_argument("The Hamiltonian parameters have no underlying AO basis, Mulliken analysis is not possible.");
+    }
+
+    if (ao_list.size() > this->K) {
+        throw std::invalid_argument("To many AOs are selected");
+    }
+
+    // Create the partitioning matrix (diagonal matrix with values set to 1 of selected AOs
+    Eigen::MatrixXd p_a = Eigen::MatrixXd::Zero(this->K, this->K);
+
+    for (size_t index : ao_list) {
+        if (index >= this->K) {
+            throw std::invalid_argument("AO index is too large");
+        }
+
+        p_a(index, index) = 1;
+    }
+
+    OneElectronOperator S_AO = this->S;
+    S_AO.transform(C.inverse());
+    Eigen::MatrixXd S_AO_mat = S_AO.get_matrix_representation();
+
+    Eigen::MatrixXd mulliken_matrix = (C.adjoint() * p_a * S_AO_mat * C + C.adjoint() * S_AO_mat * p_a * C)/2 ;
+
+    return OneElectronOperator(mulliken_matrix);
+}
+
+
+
+/*
+ *  PUBLIC METHODS - CALCULATIONS OF TWO-ELECTRON OPERATORS
+ */
 
 /**
  *  @param D      the 1-RDM
@@ -270,23 +413,10 @@ GQCP::TwoElectronOperator HamiltonianParameters::calculateSuperGeneralizedFockMa
 };
 
 
-/**
- *  @param N_P      the number of electron pairs
- *
- *  @return the Edmiston-Ruedenberg localization index g(i,i,i,i)
+
+/*
+ *  PUBLIC METHODS - CONSTRAINTS
  */
-double HamiltonianParameters::calculateEdmistonRuedenbergLocalizationIndex(size_t N_P) const {
-
-    double localization_index = 0.0;
-
-    // TODO: when Eigen releases TensorTrace, use it here
-    for (size_t i = 0; i < N_P; i++) {
-        localization_index += this->g(i,i,i,i);
-    }
-
-    return localization_index;
-}
-
   
 /**  
  *  Constrain the Hamiltonian parameters according to the convention: - lambda * constraint
@@ -335,43 +465,6 @@ HamiltonianParameters HamiltonianParameters::constrain(const GQCP::TwoElectronOp
     TwoElectronOperator gc (this->get_g().get_matrix_representation() - lambda*two_op.get_matrix_representation());
 
     return HamiltonianParameters(this->ao_basis, this->S, this->h, gc, this->C);
-}
-
-
-/**
- *  @param ao_list     indexes of the original GTOs on which the Mulliken populations are dependant
- *
- *  @return the Mulliken operator for a set of GTOs
- */
-OneElectronOperator HamiltonianParameters::calculateMullikenOperator(const Vectoru& ao_list) {
-
-
-    if (!this->get_ao_basis()) {
-        throw std::invalid_argument("The Hamiltonian parameters have no underlying AO basis, Mulliken analysis is not possible.");
-    }
-
-    if (ao_list.size() > this->K) {
-        throw std::invalid_argument("To many AOs are selected");
-    }
-
-    // Create the partitioning matrix (diagonal matrix with values set to 1 of selected AOs
-    Eigen::MatrixXd p_a = Eigen::MatrixXd::Zero(this->K, this->K);
-
-    for (size_t index : ao_list) {
-        if (index >= this->K) {
-            throw std::invalid_argument("AO index is too large");
-        }
-
-        p_a(index, index) = 1;
-    }
-
-    OneElectronOperator S_AO = this->S;
-    S_AO.transform(C.inverse());
-    Eigen::MatrixXd S_AO_mat = S_AO.get_matrix_representation();
-
-    Eigen::MatrixXd mulliken_matrix = (C.adjoint() * p_a * S_AO_mat * C + C.adjoint() * S_AO_mat * p_a * C)/2 ;
-
-    return OneElectronOperator(mulliken_matrix);
 }
 
 

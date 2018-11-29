@@ -31,7 +31,24 @@ BOOST_AUTO_TEST_CASE ( FockSpace_constructor ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( FockSpace_dimension) {
+BOOST_AUTO_TEST_CASE ( expansions ) {
+
+    // Check the BaseFockSpace expansion functions
+    GQCP::FockSpace fock_space (8, 3);
+
+    Eigen::VectorXd hartree_fock_expansion = fock_space.HartreeFockExpansion();
+    BOOST_CHECK(std::abs(hartree_fock_expansion.norm() - 1.0) < 1.0e-12);  // check if normalized
+    BOOST_CHECK(std::abs(hartree_fock_expansion(0) - 1.0) < 1.0e-12);  // the Hartree-Fock determinant should be the first one
+
+    Eigen::VectorXd random_expansion = fock_space.randomExpansion();
+    BOOST_CHECK(std::abs(random_expansion.norm() - 1.0) < 1.0e-12);  // check if normalized
+
+    Eigen::VectorXd constant_expansion = fock_space.constantExpansion();
+    BOOST_CHECK(std::abs(constant_expansion.norm() - 1.0) < 1.0e-12);  // check if normalized
+}
+
+
+BOOST_AUTO_TEST_CASE ( FockSpace_dimension ) {
 
     BOOST_CHECK_EQUAL(GQCP::FockSpace::calculateDimension(10, 1), 10);
     BOOST_CHECK_EQUAL(GQCP::FockSpace::calculateDimension(6, 2), 15);
@@ -59,6 +76,7 @@ BOOST_AUTO_TEST_CASE ( iterateToNextUnoccupiedOrbital ) {
     GQCP::FockSpace fock_space (5, 3);
     GQCP::ONV onv = fock_space.get_ONV(3);  // 01110
 
+    size_t address_shift = 0;
     // test shift if we annihilate one electron and start from orbital index 2
     size_t e = 1;  // count starts at 1 (translates to orbital index 2)
     size_t q = 2;  // index starts at orbital index 2
@@ -67,7 +85,7 @@ BOOST_AUTO_TEST_CASE ( iterateToNextUnoccupiedOrbital ) {
     //  Initial weight contributions were 1 and 1 respectively,
     //  these should be shifted to 2 and 3 respectively, the difference is 1 and 2 respectively.
     //  The total shift is thus 3
-    size_t address_shift = fock_space.shiftUntilNextUnoccupiedOrbital(onv, q, e, 1);
+    fock_space.shiftUntilNextUnoccupiedOrbital<1>(onv, address_shift, q, e);
 
     BOOST_CHECK(address_shift == 3);
     BOOST_CHECK(e == 3);
@@ -81,9 +99,50 @@ BOOST_AUTO_TEST_CASE ( iterateToNextUnoccupiedOrbital ) {
     //  The initial weight contribution was 1,
     //  this should be shifted to 3, the difference is 2
     //  The total shift is thus 2
-    address_shift = fock_space.shiftUntilNextUnoccupiedOrbital(onv, q, e, 2);
+    address_shift = 0;
+    fock_space.shiftUntilNextUnoccupiedOrbital<2>(onv, address_shift, q, e);
 
     BOOST_CHECK(address_shift == 2);
     BOOST_CHECK(e == 3);
     BOOST_CHECK(q == 4);
+}
+
+
+BOOST_AUTO_TEST_CASE ( iterateToNextUnoccupiedOrbital_signed ) {
+
+    GQCP::FockSpace fock_space (5, 3);
+    GQCP::ONV onv = fock_space.get_ONV(3);  // 01110
+
+    size_t address_shift = 0;
+    int sign = 1;
+    // test shift if we annihilate one electron and start from orbital index 2
+    size_t e = 1;  // count starts at 1 (translates to orbital index 2)
+    size_t q = 2;  // index starts at orbital index 2
+
+    //  In this instance electron weights at index 2 and 3 should be shifted.
+    //  Initial weight contributions were 1 and 1 respectively,
+    //  these should be shifted to 2 and 3 respectively, the difference is 1 and 2 respectively.
+    //  The total shift is thus 3, and the sign should remain the same (flips twice)
+    fock_space.shiftUntilNextUnoccupiedOrbital<1>(onv, address_shift, q, e, sign);
+
+    BOOST_CHECK(address_shift == 3);
+    BOOST_CHECK(e == 3);
+    BOOST_CHECK(q == 4);
+    BOOST_CHECK(sign == 1);
+
+    // test shift if we annihilate two electrons and start from orbital index 3
+    e = 2;  // count starts at 2 (translates to orbital index 3)
+    q = 3;  // index starts at orbital index 3
+
+    //  In this instance electron weights at index 3 should be shifted.
+    //  The initial weight contribution was 1,
+    //  this should be shifted to 3, the difference is 2
+    //  The total shift is thus 2, sign should flip once
+    address_shift = 0;
+    fock_space.shiftUntilNextUnoccupiedOrbital<2>(onv, address_shift, q, e, sign);
+
+    BOOST_CHECK(address_shift == 2);
+    BOOST_CHECK(e == 3);
+    BOOST_CHECK(q == 4);
+    BOOST_CHECK(sign == -1);
 }
