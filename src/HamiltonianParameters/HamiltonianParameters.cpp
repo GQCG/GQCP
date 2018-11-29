@@ -83,6 +83,18 @@ HamiltonianParameters::HamiltonianParameters(const GQCP::HamiltonianParameters& 
 }
 
 
+/*
+ *  PUBLIC METHODS
+ */
+
+/**
+ *  @return if the underlying spatial orbital basis of the Hamiltonian parameters is orthonormal
+ */
+bool HamiltonianParameters::areOrbitalsOrthonormal() {
+
+    return this->S.get_matrix_representation().isApprox(Eigen::MatrixXd::Identity(this->K, this->K));
+}
+
 
 /*
  *  NAMED CONSTRUCTORS

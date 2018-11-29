@@ -20,7 +20,9 @@
 
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 
+#include "HamiltonianParameters/HamiltonianParameters_constructors.hpp"
 #include "miscellaneous.hpp"
+#include "RHF/PlainRHFSCFSolver.hpp"
 
 #include <boost/math/constants/constants.hpp>
 
@@ -428,4 +430,26 @@ BOOST_AUTO_TEST_CASE ( effective_one_electron_integrals ) {
     }
 
     BOOST_CHECK(k_ref.isApprox(ham_par.calculateEffectiveOneElectronIntegrals().get_matrix_representation(), 1.0e-08));
+}
+
+
+BOOST_AUTO_TEST_CASE ( areOrbitalsOrthonormal ) {
+
+    // We assume that the orbitals in an FCIDUMP file are orthonormal
+    auto ham_par_fcidump = GQCP::readFCIDUMPFile("../tests/data/h2_psi4_horton.FCIDUMP");
+    BOOST_CHECK(ham_par_fcidump.areOrbitalsOrthonormal());
+
+
+    // The orbitals in an AO basis are not orthonormal
+    GQCP::Molecule h2o ("../tests/data/h2o.xyz");
+    auto ao_ham_par = GQCP::HamiltonianParameters::Molecular(h2o, "STO-3G");
+    BOOST_CHECK(!ao_ham_par.areOrbitalsOrthonormal());
+
+
+    // The orbitals in the RHF basis are orthonormal
+    GQCP::PlainRHFSCFSolver plain_scf_solver (ao_ham_par, h2o);
+    plain_scf_solver.solve();
+    auto rhf = plain_scf_solver.get_solution();
+    auto mol_ham_par = GQCP::HamiltonianParameters(ao_ham_par, rhf.get_C());
+    BOOST_CHECK(mol_ham_par.areOrbitalsOrthonormal());
 }

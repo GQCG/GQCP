@@ -51,7 +51,7 @@ public:
     /**
      *  Localize the Hamiltonian parameters by maximizing the Edmiston-Ruedenberg localization index
      *
-     *  @param ham_par      the Hamiltonian parameters that should be localized
+     *  @param ham_par      the Hamiltonian parameters (in an orthonormal basis) that should be localized
      */
     virtual void localize(GQCP::HamiltonianParameters& ham_par) = 0;
 };
