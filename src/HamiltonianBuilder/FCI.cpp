@@ -46,14 +46,16 @@ std::vector<std::vector<FCI::AnnihilationCouple>> FCI::calculateOneElectronCoupl
     size_t N = fock_space_target.get_N();
     size_t dim = fock_space_target.get_dimension();
 
-    std::vector<std::vector<AnnihilationCouple>> one_couplings(dim);
+    std::vector<std::vector<AnnihilationCouple>> one_couplings;
+    one_couplings.reserve(dim);
 
     ONV onv = fock_space_target.get_ONV(0);  // onv with address 0
     for (size_t I = 0; I < dim; I++) {  // I loops over all the addresses of the onv
         std::vector<AnnihilationCouple> annis(N);
         for (size_t e1 = 0; e1 < N; e1++) {  // e1 (electron 1) loops over the (number of) electrons
             size_t p = onv.get_occupied_index(e1);  // retrieve the index of a given electron
-            std::vector<CreationCouple> creas(K-p-(N-e1));
+            std::vector<CreationCouple> creas;
+            creas.reserve((K-p-(N-e1)));
             // remove the weight from the initial address I, because we annihilate
             size_t address = I - fock_space_target.get_vertex_weights(p, e1 + 1);
             // The e2 iteration counts the amount of encountered electrons for the creation operator
@@ -70,7 +72,7 @@ std::vector<std::vector<FCI::AnnihilationCouple>> FCI::calculateOneElectronCoupl
                 size_t J = address + fock_space_target.get_vertex_weights(q, e2);
 
                 // address has been calculated, update accordingly and at all instances of the fixed component
-                creas.emplace_back(sign_e2, q, J);
+                creas.emplace_back(CreationCouple{sign_e2, q, J});
 
                 q++; // go to the next orbital
 
@@ -79,13 +81,13 @@ std::vector<std::vector<FCI::AnnihilationCouple>> FCI::calculateOneElectronCoupl
             }  //  (creation)
 
             if (!creas.empty()){
-                annis[e1] = {p, creas};
+                annis.emplace_back(AnnihilationCouple{p, creas});
             }
 
 
         } // e1 loop (annihilation)
 
-        one_couplings[I] = annis;
+        one_couplings.push_back(annis);
 
         // Prevent last permutation
         if (I < dim - 1) {
@@ -333,7 +335,7 @@ Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters& hamiltonia
     auto dim_alpha = fock_space_alpha.get_dimension();
     auto dim_beta = fock_space_beta.get_dimension();
 
-    Eigen::VectorXd matvec =  diagonal.cwiseProduct(x);
+    Eigen::VectorXd matvec = diagonal.cwiseProduct(x);
 
 
     // Calculate the effective one-electron integrals
