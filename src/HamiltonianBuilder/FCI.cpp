@@ -34,25 +34,26 @@ FCI::FCI(const ProductFockSpace& fock_space) :
 {
     GQCP::FockSpace alpha = this->fock_space.get_fock_space_alpha();
     GQCP::FockSpace beta = this->fock_space.get_fock_space_beta();
-    this->alpha_one_electron_couplings = this->calculateOneElectronCouplings(alpha);
-    this->beta_one_electron_couplings = this->calculateOneElectronCouplings(beta);
+    this->alpha_one_electron_couplings2 = this->calculateOneElectronCouplings(alpha);
+    this->beta_one_electron_couplings2 = this->calculateOneElectronCouplings(beta);
 }
 
 /*
  *  PRIVATE METHODS
  */
-std::vector<std::vector<FCI::OneElectronCoupling>> FCI::calculateOneElectronCouplings(FockSpace& fock_space_target) {
+std::vector<std::vector<FCI::AnnihilationCouple>> FCI::calculateOneElectronCouplings(FockSpace& fock_space_target) {
     size_t K = fock_space_target.get_K();
     size_t N = fock_space_target.get_N();
     size_t dim = fock_space_target.get_dimension();
 
-    std::vector<std::vector<OneElectronCoupling>> one_couplings = {dim, std::vector<OneElectronCoupling>()};
+    std::vector<std::vector<AnnihilationCouple>> one_couplings(dim);
 
     ONV onv = fock_space_target.get_ONV(0);  // onv with address 0
     for (size_t I = 0; I < dim; I++) {  // I loops over all the addresses of the onv
+        std::vector<AnnihilationCouple> annis(N);
         for (size_t e1 = 0; e1 < N; e1++) {  // e1 (electron 1) loops over the (number of) electrons
             size_t p = onv.get_occupied_index(e1);  // retrieve the index of a given electron
-
+            std::vector<CreationCouple> creas(K-p-(N-e1));
             // remove the weight from the initial address I, because we annihilate
             size_t address = I - fock_space_target.get_vertex_weights(p, e1 + 1);
             // The e2 iteration counts the amount of encountered electrons for the creation operator
@@ -69,7 +70,7 @@ std::vector<std::vector<FCI::OneElectronCoupling>> FCI::calculateOneElectronCoup
                 size_t J = address + fock_space_target.get_vertex_weights(q, e2);
 
                 // address has been calculated, update accordingly and at all instances of the fixed component
-                one_couplings[I].emplace_back(sign_e2, p, q, J);
+                creas.emplace_back(sign_e2, q, J);
 
                 q++; // go to the next orbital
 
@@ -77,7 +78,14 @@ std::vector<std::vector<FCI::OneElectronCoupling>> FCI::calculateOneElectronCoup
                 fock_space_target.shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign_e2);
             }  //  (creation)
 
+            if (!creas.empty()){
+                annis[e1] = {p, creas};
+            }
+
+
         } // e1 loop (annihilation)
+
+        one_couplings[I] = annis;
 
         // Prevent last permutation
         if (I < dim - 1) {
@@ -324,74 +332,68 @@ Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters& hamiltonia
 
     auto dim_alpha = fock_space_alpha.get_dimension();
     auto dim_beta = fock_space_beta.get_dimension();
-    auto dim = fock_space.get_dimension();
 
-    // TODO: use diagonal
-    Eigen::VectorXd matvec =  Eigen::VectorXd::Zero(dim);
+    Eigen::VectorXd matvec =  diagonal.cwiseProduct(x);
 
 
     // Calculate the effective one-electron integrals
     GQCP::OneElectronOperator k = hamiltonian_parameters.calculateEffectiveOneElectronIntegrals();
 
 
-    // ALPHA-ALPHA
-    ONV spin_string_alpha_aa = fock_space_alpha.get_ONV(0);  // spin string with address 0
-    for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {  // I_alpha loops over all the addresses of the alpha spin strings
-        if (I_alpha > 0) {
-            fock_space_alpha.setNext(spin_string_alpha_aa);
-        }
+    // ALPHA-ALPHA, BETA-BETA, ALPHA-BETA
+    for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {  // loop over alpha addresses
+        for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {  // loop over beta addresses
+            for (const auto &alpha : this->alpha_one_electron_couplings2[I_alpha]) {
+                for (const auto &creaa : alpha.creationCouples) {
 
-        for (size_t p = 0; p < K; p++) {  // p loops over SOs
-            int sign_p = 1;  // sign of the operator a_p_alpha
-            if (spin_string_alpha_aa.annihilate(p, sign_p)) {  // if p is in I_alpha
+                    matvec(I_alpha * dim_beta + I_beta) += creaa.sign * k(alpha.p, creaa.q) * x(I_alpha * dim_beta + I_beta);
+                    matvec(I_alpha * dim_beta + creaa.address) += creaa.sign * k(alpha.p, creaa.q) * x(I_alpha * dim_beta + creaa.address);
 
-                for (size_t q = 0; q < K; q++) {  // q loops over SOs
-                    int sign_pq = sign_p;  // sign of the operator a^dagger_q_alpha a_p_alpha
-                    if (spin_string_alpha_aa.create(q, sign_pq)) {  // if q is not occupied in I_alpha
-                        size_t J_alpha = fock_space_alpha.getAddress(spin_string_alpha_aa); // find all strings J_alpha that couple to I_alpha
+                    for (const auto &beta : this->beta_one_electron_couplings2[I_beta]) {
+                        for (const auto &creab : beta.creationCouples) {
+                            int sign = creaa.sign * creab.sign;
+                            matvec(I_alpha * dim_beta + I_beta) +=
+                                    sign * hamiltonian_parameters.get_g()(alpha.p, creaa.q, beta.p, creab.q) *
+                                    x(creaa.address * dim_beta + creab.address);
+                            matvec(creaa.address * dim_beta + creab.address) +=
+                                    sign * hamiltonian_parameters.get_g()(alpha.p, creaa.q, beta.p, creab.q) *
+                                    x(I_alpha * dim_beta + I_beta);
 
-                        for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {  // I_beta loops over all addresses of the beta spin strings
-                            matvec(I_alpha*dim_beta + I_beta) += k(p,q) * sign_pq * x(J_alpha*dim_beta + I_beta);  // alpha addresses are major
                         }
 
-                        spin_string_alpha_aa.annihilate(q);  // undo the previous creation
+                        matvec(I_alpha * dim_beta + I_beta) +=
+                                creaa.sign * hamiltonian_parameters.get_g()(alpha.p, creaa.q, beta.p, beta.p) *
+                                x(creaa.address * dim_beta + I_beta);
+                        matvec(creaa.address * dim_beta + I_beta) +=
+                                creaa.sign * hamiltonian_parameters.get_g()(alpha.p, creaa.q, beta.p, beta.p) *
+                                x(I_alpha * dim_beta + I_beta);
                     }
-                }  // q loop
+                }
 
-                spin_string_alpha_aa.create(p);  // undo the previous annihilation
+                for (const auto &beta : this->beta_one_electron_couplings2[I_beta]) {
+                    for (const auto &creab : beta.creationCouples) {
+                        matvec(I_alpha * dim_beta + I_beta) +=
+                                creab.sign * hamiltonian_parameters.get_g()(alpha.p, alpha.p, beta.p, creab.q) *
+                                x(I_alpha * dim_beta + creab.address);
+                        matvec(I_alpha * dim_beta + creab.address) +=
+                                creab.sign * hamiltonian_parameters.get_g()(alpha.p, alpha.p, beta.p, creab.q) *
+                                x(I_alpha * dim_beta + I_beta);
+
+                    }
+                }
             }
-        }  // p loop
-    }  // I_alpha loop
 
-
-    // BETA-BETA
-    ONV spin_string_beta_bb = fock_space_beta.get_ONV(0);  // spin string with address 0
-    for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {  // I_beta loops over all the addresses of the beta spin strings
-        if (I_beta > 0) {
-            fock_space_beta.setNext(spin_string_beta_bb);
+            for (const auto &beta : this->beta_one_electron_couplings2[I_beta]) {
+                for (const auto &creab : beta.creationCouples) {
+                    matvec(I_alpha * dim_beta + I_beta) +=
+                            creab.sign * k(beta.p, creab.q) * x(I_alpha * dim_beta + I_beta);
+                    matvec(I_alpha * dim_beta + creab.address) +=
+                            creab.sign * k(beta.p, creab.q) * x(I_alpha * dim_beta + creab.address);
+                }
+            }
         }
+    }
 
-        for (size_t p = 0; p < K; p++) {  // p loops over SOs
-            int sign_p = 1;  // sign of the operator a_p_beta
-            if (spin_string_beta_bb.annihilate(p, sign_p)) {  // if p is in I_beta
-
-                for (size_t q = 0; q < K; q++) {  // q loops over SOs
-                    int sign_pq = sign_p;  // sign of the operator a^dagger_q_beta a_p_beta
-                    if (spin_string_beta_bb.create(q, sign_pq)) {  // if q is not occupied in I_beta
-                        size_t J_beta = fock_space_beta.getAddress(spin_string_beta_bb);  // find all strings J_beta that couple to I_beta
-
-                        for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {  // I_alpha loops over all addresses of the alpha spin strings
-                            matvec(I_alpha*dim_beta + I_beta) += k(p,q) * sign_pq * x(I_alpha*dim_beta + J_beta);  // alpha addresses are major
-                        }
-
-                        spin_string_beta_bb.annihilate(q);  // undo the previous creation
-                    }
-                }  // q loop
-
-                spin_string_beta_bb.create(p);  // undo the previous annihilation
-            }
-        }  // p loop
-    }  // I_beta loop
 
     // ALPHA-ALPHA-ALPHA-ALPHA
     ONV spin_string_alpha_aaaa = fock_space_alpha.get_ONV(0);  // spin string with address 0
@@ -417,8 +419,10 @@ Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters& hamiltonia
                                     if (spin_string_alpha_aaaa.create(s, sign_pqrs)) {
                                         size_t J_alpha = fock_space_alpha.getAddress(spin_string_alpha_aaaa);  // the address of the string J_alpha that couples to I_alpha
 
-                                        for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {  // I_beta loops over all beta addresses
-                                            matvec(I_alpha*dim_beta + I_beta) += 0.5 * hamiltonian_parameters.get_g()(p, q, r, s) * sign_pqrs * x(J_alpha*dim_beta + I_beta);
+                                        if (I_alpha != J_alpha) {
+                                            for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {  // I_beta loops over all beta addresses
+                                                matvec(I_alpha*dim_beta + I_beta) += 0.5 * hamiltonian_parameters.get_g()(p, q, r, s) * sign_pqrs * x(J_alpha*dim_beta + I_beta);
+                                            }
                                         }
 
                                         spin_string_alpha_aaaa.annihilate(s);  // undo the previous creation
@@ -434,60 +438,6 @@ Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters& hamiltonia
                 }  // loop over q
 
                 spin_string_alpha_aaaa.create(p);  // undo the previous creation
-            }
-        }  // loop over p
-    }  // loop over I_alpha
-
-
-    // ALPHA-ALPHA-BETA-BETA (and BETA-BETA-ALPHA-ALPHA)
-    ONV spin_string_alpha_aabb = fock_space_alpha.get_ONV(0);  // spin string with address 0
-    for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {  // I_alpha loops over all addresses of alpha spin strings
-        if (I_alpha > 0) {
-            fock_space_alpha.setNext(spin_string_alpha_aabb);
-        }
-
-        for (size_t p = 0; p < K; p++) {  // p loops over SOs
-            int sign_p = 1;  // sign of the operator a_p_alpha
-            if (spin_string_alpha_aabb.annihilate(p, sign_p)) {
-
-                for (size_t q = 0; q < K; q++) {
-                    int sign_pq = sign_p;  // sign of the operator a^dagger_q_alpha a_p_alpha
-                    if (spin_string_alpha_aabb.create(q, sign_pq)) {
-                        size_t J_alpha = fock_space_alpha.getAddress(spin_string_alpha_aabb);  // the address of the spin string that couples to I_alpha
-
-                        ONV spin_string_beta_aabb = fock_space_beta.get_ONV (0); // spin string with address 0
-                        for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {  // I_beta loops over all addresses of beta spin strings
-                            if (I_beta > 0) {
-                                fock_space_beta.setNext(spin_string_beta_aabb);
-                            }
-
-                            for (size_t r = 0; r < K; r++) {  // r loops over SOs
-                                int sign_r = 1;  // sign of the operator a_r_beta
-                                if (spin_string_beta_aabb.annihilate(r, sign_r)) {
-
-                                    for (size_t s = 0; s < K; s++) {  // s loops over SOs
-                                        int sign_rs = sign_r;  // sign of the operato a^dagger_s_beta a_r_beta
-                                        if (spin_string_beta_aabb.create(s, sign_rs)) {
-                                            size_t J_beta = fock_space_beta.getAddress(spin_string_beta_aabb);  // the address of the spin string that couples to I_beta
-
-                                            matvec(I_alpha*dim_beta + I_beta) += hamiltonian_parameters.get_g()(p, q, r, s) * sign_pq * sign_rs * x(J_alpha*dim_beta + J_beta);  // alpha addresses are major
-
-                                            spin_string_beta_aabb.annihilate(s);  // undo the previous creation
-                                        }
-                                    }  // loop over r
-
-                                    spin_string_beta_aabb.create(r);  // undo the previous annihilation
-                                }
-                            }  // loop over r
-
-
-                        }  // I_beta loop
-
-                        spin_string_alpha_aabb.annihilate(q);  // undo the previous creation
-                    }
-                }  // loop over q
-
-                spin_string_alpha_aabb.create(p);  // undo the previous annihilation
             }
         }  // loop over p
     }  // loop over I_alpha
@@ -517,8 +467,10 @@ Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters& hamiltonia
                                     if (spin_string_beta_bbbb.create(s, sign_pqrs)) {
                                         size_t J_beta = fock_space_beta.getAddress(spin_string_beta_bbbb);  // the address of the string J_beta that couples to I_beta
 
-                                        for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {  // I_beta loops over all beta addresses
-                                            matvec(I_alpha*dim_beta + I_beta) += 0.5 * hamiltonian_parameters.get_g()(p,q,r,s) * sign_pqrs * x(I_alpha*dim_beta + J_beta);
+                                        if(I_beta != J_beta) {
+                                            for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {  // I_beta loops over all beta addresses
+                                                matvec(I_alpha*dim_beta + I_beta) += 0.5 * hamiltonian_parameters.get_g()(p,q,r,s) * sign_pqrs * x(I_alpha*dim_beta + J_beta);
+                                            }
                                         }
 
                                         spin_string_beta_bbbb.annihilate(s);  // undo the previous creation

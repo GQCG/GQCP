@@ -59,12 +59,25 @@ private:
         size_t address;
     };
 
+    struct CreationCouple {
+        int sign;
+        size_t q;
+        size_t address;
+    };
+
+    struct AnnihilationCouple {
+        size_t p;
+        std::vector<CreationCouple> creationCouples;
+    };
+
     // The following are rectangular arrays of dimension (dim_alpha * N_alpha * (K + 1 - N_alpha)) and similarly for beta,
     // storing one-electron excited coupling addresses (cfr. the documentation about the OneElectronCoupling struct)
     std::vector<std::vector<OneElectronCoupling>> alpha_one_electron_couplings;
+    std::vector<std::vector<AnnihilationCouple>> alpha_one_electron_couplings2;
     std::vector<std::vector<OneElectronCoupling>> beta_one_electron_couplings;
+    std::vector<std::vector<AnnihilationCouple>> beta_one_electron_couplings2;
 
-    std::vector<std::vector<OneElectronCoupling>> calculateOneElectronCouplings(FockSpace& fock_space_target);
+    std::vector<std::vector<AnnihilationCouple>> calculateOneElectronCouplings(FockSpace& fock_space_target);
 
 public:
 
