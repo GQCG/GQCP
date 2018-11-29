@@ -174,6 +174,36 @@ public:
             sign *= -1;
         }
     }
+
+    /**
+     * PLACE HOLDER
+     */
+    void sbu(const ONV& onv, size_t& address, size_t& q, size_t& e, int& sign) const {
+
+        // Test whether the current orbital index is occupied
+        while (e != -1 && q == onv.get_occupied_index(e)) {
+
+            address += this->get_vertex_weights(q, e + 2) - this->get_vertex_weights(q, e + 1);
+
+            e--;
+            q--;
+            sign *= -1;
+        }
+    }
+
+    void dbu(const ONV& onv, size_t& address, size_t& q, size_t& e, int& sign, size_t& e2) const {
+
+
+        while (e > e2 && q == onv.get_occupied_index(e)) {
+
+
+            address += this->get_vertex_weights(q, e ) + this->get_vertex_weights(q, e + 1);
+
+            e--;
+            q--;
+            sign *= -1;
+        }
+    }
 };
 
 
