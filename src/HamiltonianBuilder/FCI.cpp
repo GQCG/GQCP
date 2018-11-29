@@ -31,8 +31,62 @@ namespace GQCP {
 FCI::FCI(const ProductFockSpace& fock_space) :
         HamiltonianBuilder(),
         fock_space (fock_space)
-{}
+{
+    GQCP::FockSpace alpha = this->fock_space.get_fock_space_alpha();
+    GQCP::FockSpace beta = this->fock_space.get_fock_space_beta();
+    this->alpha_one_electron_couplings = this->calculateOneElectronCouplings(alpha);
+    this->beta_one_electron_couplings = this->calculateOneElectronCouplings(beta);
+}
 
+/*
+ *  PRIVATE METHODS
+ */
+std::vector<std::vector<FCI::OneElectronCoupling>> FCI::calculateOneElectronCouplings(FockSpace& fock_space_target) {
+    size_t K = fock_space_target.get_K();
+    size_t N = fock_space_target.get_N();
+    size_t dim = fock_space_target.get_dimension();
+
+    std::vector<std::vector<OneElectronCoupling>> one_couplings = {dim, std::vector<OneElectronCoupling>()};
+
+    ONV onv = fock_space_target.get_ONV(0);  // onv with address 0
+    for (size_t I = 0; I < dim; I++) {  // I loops over all the addresses of the onv
+        for (size_t e1 = 0; e1 < N; e1++) {  // e1 (electron 1) loops over the (number of) electrons
+            size_t p = onv.get_occupied_index(e1);  // retrieve the index of a given electron
+
+            // remove the weight from the initial address I, because we annihilate
+            size_t address = I - fock_space_target.get_vertex_weights(p, e1 + 1);
+            // The e2 iteration counts the amount of encountered electrons for the creation operator
+            // We only consider greater addresses than the initial one (because of symmetry)
+            // Hence we only count electron after the annihilated electron (e1)
+            size_t e2 = e1 + 1;
+            size_t q = p + 1;
+
+            int sign_e2 = 1;
+            // perform a shift
+            fock_space_target.shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign_e2);
+
+            while (q < K) {
+                size_t J = address + fock_space_target.get_vertex_weights(q, e2);
+
+                // address has been calculated, update accordingly and at all instances of the fixed component
+                one_couplings[I].emplace_back(sign_e2, p, q, J);
+
+                q++; // go to the next orbital
+
+                // perform a shift
+                fock_space_target.shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign_e2);
+            }  //  (creation)
+
+        } // e1 loop (annihilation)
+
+        // Prevent last permutation
+        if (I < dim - 1) {
+            fock_space_target.setNext(onv);
+        }
+    }
+
+    return one_couplings;
+}
 
 
 /*

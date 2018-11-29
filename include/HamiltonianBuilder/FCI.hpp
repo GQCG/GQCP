@@ -64,6 +64,7 @@ private:
     std::vector<std::vector<OneElectronCoupling>> alpha_one_electron_couplings;
     std::vector<std::vector<OneElectronCoupling>> beta_one_electron_couplings;
 
+    std::vector<std::vector<OneElectronCoupling>> calculateOneElectronCouplings(FockSpace& fock_space_target);
 
 public:
 
