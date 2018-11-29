@@ -209,18 +209,6 @@ Molecule Molecule::HChain(size_t n, double spacing, int charge) {
 
 
 /**
- *  @param n            the number of H atoms
- *  @param spacing      the internuclear spacing in bohr
- *
- *  @return a neutral H-chain with equal internuclear spacing
- */
-Molecule Molecule::HChain(size_t n, double spacing) {
-
-    return Molecule::HChain(n, spacing, 0);  // a neutral molecule has charge 0
-}
-
-
-/**
  *  @param n        the number of H2-molecules
  *  @param a        the internuclear distance in bohr
  *  @param b        the intermolecular distance in bohr
@@ -253,19 +241,6 @@ Molecule Molecule::H2Chain(size_t n, double a, double b, int charge) {
     }
 
     return Molecule(h_chain, charge);
-}
-
-
-/**
- *  @param n        the number of H2-molecules
- *  @param a        the internuclear distance in bohr
- *  @param b        the intermolecular distance in bohr
- *
- *  @return a neutral H2-chain
- */
-Molecule Molecule::H2Chain(size_t n, double a, double b) {
-
-    return Molecule::H2Chain(n, a, b, 0);  // a neutral molecule has charge 0
 }
 
 
