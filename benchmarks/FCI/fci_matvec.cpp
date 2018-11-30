@@ -36,6 +36,7 @@ static void CustomArguments(benchmark::internal::Benchmark* b) {
     for (int i = 2; i < 6; ++i) {  // need int instead of size_t
         b->Args({10, i});  // orbitals, electron pairs
     }
+    //b->Args({12, 6});
 }
 
 

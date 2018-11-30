@@ -121,7 +121,7 @@ void FCI::twoOperatorModule(FockSpace& fock_space_target, FockSpace& fock_space_
         fixed_intervals = dim;
         target_interval = 1;
     }
-
+    size_t hits = 0;
     ONV onv = fock_space_target.get_ONV(0);  // spin string with address 0
     for (size_t I = 0; I < dim; I++) {  // I_alpha loops over all addresses of alpha spin strings
         if (I > 0) {
@@ -162,7 +162,7 @@ void FCI::twoOperatorModule(FockSpace& fock_space_target, FockSpace& fock_space_
                         value += hamiltonian_parameters.get_g()(r, s, p, p);
                     }
                     value *= sign3 * 0.5;
-
+                    hits++;
                     for (size_t I_fixed = 0; I_fixed < dim_fixed; I_fixed++) {
 
                         matvec(I * target_interval + I_fixed * fixed_intervals) += value * x(J * target_interval + I_fixed * fixed_intervals);
@@ -221,6 +221,7 @@ void FCI::twoOperatorModule(FockSpace& fock_space_target, FockSpace& fock_space_
                             matvec(J * target_interval + I_fixed * fixed_intervals) += value * x(I * target_interval + I_fixed * fixed_intervals);
 
                         }
+                        hits++;
                         s++;
                         fock_space_target.shiftUntilNextUnoccupiedOrbital<1>(onv, address3, s, e4, sign4);
                     }
@@ -281,7 +282,7 @@ void FCI::twoOperatorModule(FockSpace& fock_space_target, FockSpace& fock_space_
                         }
 
                         s++;  // go to the next orbital
-
+                        hits++;
                         // perform a shift
                         fock_space_target.shiftUntilNextUnoccupiedOrbital<1>(onv, address3, s, e4, sign4);
 
@@ -325,6 +326,7 @@ void FCI::twoOperatorModule(FockSpace& fock_space_target, FockSpace& fock_space_
                             matvec(J * target_interval + I_fixed * fixed_intervals) += value * x(I * target_interval + I_fixed * fixed_intervals);
 
                         }
+                        hits++;
                         s++;
 
                         fock_space_target.shiftUntilNextUnoccupiedOrbital<1>(onv, address2, s, e4, sign4);
@@ -349,6 +351,7 @@ void FCI::twoOperatorModule(FockSpace& fock_space_target, FockSpace& fock_space_
                             matvec(address1 * target_interval + I_fixed * fixed_intervals) += value * x(I * target_interval + I_fixed * fixed_intervals);
 
                         }
+                        hits++;
 
                     }
 
@@ -362,6 +365,7 @@ void FCI::twoOperatorModule(FockSpace& fock_space_target, FockSpace& fock_space_
             }
         }
     }
+    //std::cout<<" HITS "<<hits<<std::endl;
 
 }
 
@@ -662,102 +666,6 @@ Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters& hamiltonia
         }
     }
 
-    /*
-    // ALPHA-ALPHA-ALPHA-ALPHA
-    ONV spin_string_alpha_aaaa = fock_space_alpha.get_ONV(0);  // spin string with address 0
-    for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {  // I_alpha loops over all addresses of alpha spin strings
-        if (I_alpha > 0) {
-            fock_space_alpha.setNext(spin_string_alpha_aaaa);
-        }
-
-        for (size_t p = 0; p < K; p++) {  // p loops over SOs
-            int sign_p = 1;  // sign of the operator a_p_alpha
-            if (spin_string_alpha_aaaa.annihilate(p, sign_p)) {
-
-                for (size_t q = 0; q < K; q++) {  // q loops over SOs
-                    int sign_pq = sign_p;  // sign of the operator a^dagger_q_alpha a_p_alpha
-                    if (spin_string_alpha_aaaa.create(q, sign_pq)) {
-
-                        for (size_t r = 0; r < K; r++) {  // r loops over SOs
-                            int sign_pqr = sign_pq;  // sign of the operator a_r_alpha a^dagger_q_alpha a_p_alpha
-                            if (spin_string_alpha_aaaa.annihilate(r, sign_pqr)) {
-
-                                for (size_t s = 0; s < K; s++) {  // s loops over SOs
-                                    int sign_pqrs = sign_pqr;  // sign of the operator a^dagger_s_alpha a_r_alpha a^dagger_q_alpha a_p_alpha
-                                    if (spin_string_alpha_aaaa.create(s, sign_pqrs)) {
-                                        size_t J_alpha = fock_space_alpha.getAddress(spin_string_alpha_aaaa);  // the address of the string J_alpha that couples to I_alpha
-
-                                        if (I_alpha != J_alpha) {
-                                            for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {  // I_beta loops over all beta addresses
-                                                matvec(I_alpha*dim_beta + I_beta) += 0.5 * hamiltonian_parameters.get_g()(p, q, r, s) * sign_pqrs * x(J_alpha*dim_beta + I_beta);
-                                            }
-                                        }
-
-                                        spin_string_alpha_aaaa.annihilate(s);  // undo the previous creation
-                                    }
-                                }  // loop over s
-
-                                spin_string_alpha_aaaa.create(r);  // undo the previous annihilation
-                            }
-                        }  // loop over r
-
-                        spin_string_alpha_aaaa.annihilate(q);  // undo the previous creation
-                    }
-                }  // loop over q
-
-                spin_string_alpha_aaaa.create(p);  // undo the previous creation
-            }
-        }  // loop over p
-    }  // loop over I_alpha
-
-
-    // BETA-BETA-BETA-BETA
-    ONV spin_string_beta_bbbb = fock_space_beta.get_ONV(0);  // spin string with address 0
-    for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {  // I_beta loops over all addresses of beta spin strings
-        if (I_beta > 0) {
-            fock_space_beta.setNext(spin_string_beta_bbbb);
-        }
-
-        for (size_t p = 0; p < K; p++) {  // p loops over SOs
-            int sign_p = 1;  // sign of the operator a_p_beta
-            if (spin_string_beta_bbbb.annihilate(p, sign_p)) {
-
-                for (size_t q = 0; q < K; q++) {  // q loops over SOs
-                    int sign_pq = sign_p;  // sign of the operator a^dagger_q_beta a_p_beta
-                    if (spin_string_beta_bbbb.create(q, sign_pq)) {
-
-                        for (size_t r = 0; r < K; r++) {  // r loops over SOs
-                            int sign_pqr = sign_pq;  // sign of the operator a_r_beta a^dagger_q_beta a_p_beta
-                            if (spin_string_beta_bbbb.annihilate(r, sign_pqr)) {
-
-                                for (size_t s = 0; s < K; s++) {  // s loops over SOs
-                                    int sign_pqrs = sign_pqr;  // sign of the operator a^dagger_s_beta a_r_beta a^dagger_q_beta a_p_beta
-                                    if (spin_string_beta_bbbb.create(s, sign_pqrs)) {
-                                        size_t J_beta = fock_space_beta.getAddress(spin_string_beta_bbbb);  // the address of the string J_beta that couples to I_beta
-
-                                        if(I_beta != J_beta) {
-                                            for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {  // I_beta loops over all beta addresses
-                                                matvec(I_alpha*dim_beta + I_beta) += 0.5 * hamiltonian_parameters.get_g()(p,q,r,s) * sign_pqrs * x(I_alpha*dim_beta + J_beta);
-                                            }
-                                        }
-
-                                        spin_string_beta_bbbb.annihilate(s);  // undo the previous creation
-                                    }
-                                }  // loop over s
-
-                                spin_string_beta_bbbb.create(r);  // undo the previous annihilation
-                            }
-                        }  // loop over r
-
-                        spin_string_beta_bbbb.annihilate(q);  // undo the previous creation
-                    }
-                }  // loop over q
-
-                spin_string_beta_bbbb.create(p);  // undo the previous creation
-            }
-        }  // loop over p
-    }  // loop over I_beta
-    */
 
     this->twoOperatorModule(fock_space_alpha, fock_space_beta, true, hamiltonian_parameters, matvec, x);
     this->twoOperatorModule(fock_space_beta, fock_space_beta, false, hamiltonian_parameters, matvec, x);
