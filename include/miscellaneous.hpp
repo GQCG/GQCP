@@ -63,7 +63,7 @@ size_t gray_code(size_t S);
 /**
  *  @param A        the square matrix
  *
- *  @return the permanent of the given square matrix using the Ryser algorithm
+ *  @return the permanent of the given square matrix using the Ryser algorithm.  Note that this algorithm does not work for dimensions larger than 64 (see https://www.codeproject.com/Articles/21282/%2FArticles%2F21282%2FCompute-Permanent-of-a-Matrix-with-Ryser-s-Algorit)
  */
 double permanent_ryser(const Eigen::MatrixXd& A);
 
