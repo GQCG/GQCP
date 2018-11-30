@@ -1,21 +1,16 @@
 /**
  *  An executable that calculates the Hubbard energy(-ies), starting from a triagonal input specifying the hopping matrix
- *  Results are printed to a given filename
+ *  Results are printed to the console
  *
  *  Example execution:
- *      ./hubbard -f "filename" -a "number of alpha electrons" -b "number of beta electrons" -K "number of sites"
+ *      ./hubbard -m "comma-separated upper triagonal" -a "number of alpha electrons" -b "number of beta electrons" -K "number of sites"
  *
  *  For example:
- *      ./hubbard -f hubbard_in -a 1 -b 2 -K 3
- *  where hubbard_in is a comma-separated file:
- *      for K=3: 1,2,3,4,5,6
+ *      ./hubbard -m "1,2,3,4,5,6" -a 1 -b 2 -K 3
  *  Default amount of eigenvalues is 1, this can be changed with the x flag:
- *      ./hubbard -f hubbard_in -x 2 -a 1 -b 2 -K 3
- *
- *
- *  Alternatively one can give a non-existing filename and add a comma-separated line to the program arguments:
- *      ./hubbard -f hubbard_out -x 2 -m "1,2,3,4,5,6" -a 1 -b 2 -K 3
+ *      ./hubbard -m "1,2,3,4,5,6" -x 2 -a 1 -b 2 -K 3
  */
+
 
 
 
@@ -37,7 +32,6 @@ namespace po = boost::program_options;
 int main (int argc, char** argv) {
 
     // Input processing
-    std::string hubbard_input_file;
     std::string csline;
     size_t N_alpha;
     size_t N_beta;
@@ -49,8 +43,7 @@ int main (int argc, char** argv) {
         po::options_description desc ("Options");
         desc.add_options()
         ("help,h", "print help messages")
-        ("input,f", po::value<std::string>(&hubbard_input_file)->required(), "filename of the output-file and input-file (if no csline is given)")
-        ("csline,m", po::value<std::string>(&csline)->default_value(""), "Comma-separated upper triagonal line replacing input-file")
+        ("csline,m", po::value<std::string>(&csline)->required(), "Comma-separated upper triagonal line")
         ("N_lowest_states,x", po::value<size_t>(&N_eigenvalues)->default_value(1), "Number of lowest states")
         ("N_alpha,a", po::value<size_t>(&N_alpha)->required(), "number of alpha electrons")
         ("N_beta,b", po::value<size_t>(&N_beta)->required(), "number of beta electrons")
@@ -71,22 +64,12 @@ int main (int argc, char** argv) {
         std::cerr << "ERROR: you have not specified all arguments. Please use the -h flag for more information." << std::endl << std::endl;
     }
 
-    bool read_from_file = false;
-    std::string triagonal_line;
-    std::ifstream file;
+    std::string triagonal_line = csline;
     // Actual calculations
     // Read the upper triagonal of the hopping matrix
     Eigen::VectorXd triagonal;
-    if (!csline.empty()){
-        triagonal_line = csline;
-    } else {
-        file.open(hubbard_input_file);
-        if (file.is_open()) {
-            read_from_file = true;
-            std::getline(file, triagonal_line);
-        } else {
-            throw std::invalid_argument("No input-file was found, while no csline was given.");
-        }
+    if (csline.empty()){
+        throw std::invalid_argument("Comma-separated was empty!");
     }
 
     // Split comma-separated line
@@ -100,9 +83,6 @@ int main (int argc, char** argv) {
 
     triagonal = Eigen::Map<Eigen::VectorXd>(triagonal_data.data(), triagonal_data.size());
 
-    if( read_from_file ){
-        file.close();
-    }
 
     auto ham_par = GQCP::constructHubbardParameters(triagonal);
     if (ham_par.get_K() != K) {
@@ -118,15 +98,10 @@ int main (int argc, char** argv) {
     solver.solve(dense_solver_options);
 
 
-    // Print the energy to an output file: hubbard_input_file.out
-    std::string output_filename = hubbard_input_file + ".out";
-    std::ofstream output_file;
-    output_file.open(output_filename, std::fstream::out);
-
-    output_file << std::setprecision(15);
+    // Print the energy to the console
+    std::cout << std::setprecision(15);
     for (const numopt::eigenproblem::Eigenpair& eigenpair : solver.get_eigenpairs()) {
-        output_file << eigenpair.get_eigenvalue() << std::endl;
+        std::cout << eigenpair.get_eigenvalue() << std::endl;
     }
 
-    output_file.close();
 }
