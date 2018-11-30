@@ -17,6 +17,8 @@
 // 
 #include "miscellaneous.hpp"
 
+#include <iostream>
+
 
 namespace GQCP {
 
@@ -38,6 +40,71 @@ Eigen::MatrixXd jacobiRotationMatrix(const GQCP::JacobiRotationParameters& jacob
     // And apply the Jacobi rotation as J = I * jacobi_rotation (cfr. B' = B T)
     J.applyOnTheRight(jacobi_rotation_parameters.get_p(), jacobi_rotation_parameters.get_q(), Eigen::JacobiRotation<double> (c, s));
     return J;
+}
+
+
+/**
+ *  @param A    the matrix
+ *  @param i    row index (starting from 0)
+ *  @param j    column index (starting from 0)
+ *
+ *  @return the i-j minor of the matrix A (i.e. delete the i-th row and j-th column)
+ */
+Eigen::MatrixXd minor(const Eigen::MatrixXd& A, size_t i, size_t j) {
+
+    // Delete the i-th row
+    Eigen::MatrixXd A_i = Eigen::MatrixXd::Zero(A.rows() - 1, A.cols());
+    for (size_t i2 = 0; i2 < A.rows(); i2++) {  // loop over A's rows
+        if (i2 < i) {
+            A_i.row(i2) = A.row(i2);
+        } else if (i2 == i) {
+            continue;
+        } else if (i2 > i) {
+            A_i.row(i2-1) = A.row(i2);
+        }
+    }
+
+    // Delete the j-th column
+    Eigen::MatrixXd A_ij = Eigen::MatrixXd::Zero(A.rows() - 1, A.cols() - 1);
+    for (size_t j2 = 0; j2 < A.cols(); j2++) {  // loop over A's columns
+        if (j2 < j) {
+            A_ij.col(j2) = A_i.col(j2);
+        } else if (j2 == j) {
+            continue;
+        } else if (j2 > j) {
+            A_ij.col(j2-1) = A_i.col(j2);
+        }
+    }
+
+    return A_ij;
+}
+
+    
+
+/**
+ *  @param A        the square matrix
+ *
+ *  @return the permanent of the given square matrix
+ */
+double permanent(const Eigen::MatrixXd& A) {
+
+    if (A.rows() != A.cols()) {
+        throw std::invalid_argument("The given matrix must be square.");
+    }
+
+
+    // The recursion ends when the given 'matrix' is just a number
+    if ((A.rows() == 1) && (A.cols() == 1)) {
+        return A(0,0);
+    }
+
+    size_t j = 0;  // develop by the first column
+    double value = 0.0;
+    for (size_t i = 0; i < A.rows(); i++) {
+            value += A(i,j) * permanent(minor(A, i,j));
+    }
+
+    return value;
 }
 
 

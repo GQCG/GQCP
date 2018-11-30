@@ -42,3 +42,50 @@ BOOST_AUTO_TEST_CASE ( jacobiRotationMatrix ) {
     BOOST_CHECK(std::abs(J(1,0) - 1) < 1.0e-12);
     BOOST_CHECK(std::abs(J(0,0) - 0) < 1.0e-12);
 }
+
+
+BOOST_AUTO_TEST_CASE ( minors ) {
+
+    Eigen::MatrixXd A (3, 4);
+    A << 1,  2,  3,  4,
+         5,  6,  7,  8,
+         9, 10, 11, 12;
+
+
+    Eigen::MatrixXd A_00 (2, 3);
+    A_00 <<  6,  7,  8,
+            10, 11, 12;
+    BOOST_CHECK(A_00.isApprox(GQCP::minor(A, 0, 0)));
+
+    Eigen::MatrixXd A_21 (2, 3);
+    A_21 << 1, 3, 4,
+            5, 7, 8;
+    BOOST_CHECK(A_21.isApprox(GQCP::minor(A, 2, 1)));
+}
+
+
+BOOST_AUTO_TEST_CASE ( permanent_throws ) {
+
+    Eigen::MatrixXd A (3, 4);
+    Eigen::MatrixXd B (3, 2);
+
+    BOOST_CHECK_THROW(GQCP::permanent(A), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::permanent(B), std::invalid_argument);
+}
+
+
+BOOST_AUTO_TEST_CASE ( permanent ) {
+
+    Eigen::MatrixXd A (2, 2);
+    A << 2, 3,
+         9, 1;
+    BOOST_CHECK(std::abs(GQCP::permanent(A) - 29.0) < 1.0e-12);
+
+
+    Eigen::MatrixXd B (3, 3);
+    B << 1,  2, -3,
+         4, -5,  6,
+         7, -8,  9;
+    BOOST_CHECK(std::abs(GQCP::permanent(B) - 264.0) < 1.0e-12);
+
+}

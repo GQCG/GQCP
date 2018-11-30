@@ -37,8 +37,23 @@ namespace GQCP {
  */
 Eigen::MatrixXd jacobiRotationMatrix(const GQCP::JacobiRotationParameters& jacobi_rotation_parameters, size_t M);
 
+/**
+ *  @param A    the matrix
+ *  @param i    row index (starting from 0)
+ *  @param j    column index (starting from 0)
+ *
+ *  @return the i-j minor of the matrix A (i.e. delete the i-th row and j-th column)
+ */
+Eigen::MatrixXd minor(const Eigen::MatrixXd& A, size_t i, size_t j);
 
+/**
+ *  @param A        the square matrix
+ *
+ *  @return the permanent of the given square matrix
+ */
+double permanent(const Eigen::MatrixXd& A);
 
+    
 }  // namespace GQCP
 
 
