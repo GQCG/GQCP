@@ -22,6 +22,7 @@
 #include <Eigen/Dense>
 
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "WaveFunction/WaveFunction.hpp"
 
 
 namespace GQCP {
@@ -162,6 +163,11 @@ public:
      *  @return the vector index of the geminal coefficient G_i^a
      */
     size_t vectorIndex(size_t i, size_t a) const;
+
+    /**
+     *  @return the wave function expansion corresponding to the geminal coefficients
+     */
+    WaveFunction toWaveFunction() const;
 };
 
 
