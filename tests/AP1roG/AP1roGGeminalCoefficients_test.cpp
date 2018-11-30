@@ -142,3 +142,19 @@ BOOST_AUTO_TEST_CASE ( operator_call ) {
     BOOST_CHECK_EQUAL(gem_coeff(1, 3), 5);
     BOOST_CHECK_EQUAL(gem_coeff(1, 4), 6);
 }
+
+
+BOOST_AUTO_TEST_CASE ( toWaveFunction ) {
+
+    size_t K = 3;
+    size_t N_P = 1;
+
+    Eigen::VectorXd g (2);
+    g << 2, 3;
+
+    GQCP::AP1roGGeminalCoefficients gem_coeff (g, N_P, K);
+
+
+
+    gem_coeff.toWaveFunction();
+}

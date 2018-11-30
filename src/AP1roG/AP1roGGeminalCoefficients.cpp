@@ -17,6 +17,8 @@
 // 
 #include "AP1roG/AP1roGGeminalCoefficients.hpp"
 
+#include "FockSpace/FockSpace.hpp"
+
 
 namespace GQCP {
 
@@ -245,6 +247,54 @@ size_t AP1roGGeminalCoefficients::matrixIndexMinor(size_t vector_index) const {
 size_t AP1roGGeminalCoefficients::vectorIndex(size_t i, size_t a) const {
 
     return AP1roGGeminalCoefficients::vectorIndex(this->K, this->N_P, i, a);
+}
+
+
+/**
+ *  @return the wave function expansion corresponding to the geminal coefficients
+ */
+WaveFunction AP1roGGeminalCoefficients::toWaveFunction() const {
+
+    FockSpace fock_space (this->K, this->N_P);  // the DOCI Fock space
+
+    Eigen::MatrixXd G = this->asMatrix();  // geminal coefficients as a matrix
+    std::cout << "Geminal coefficients matrix: " << std::endl << G << std::endl << std::endl;
+
+
+    ONV onv = fock_space.get_ONV(0);  // start with address 0
+    for (size_t I = 0; I < fock_space.get_dimension(); I++) {
+        std::cout << onv << std::endl;
+
+
+        Eigen::MatrixXd Gm = Eigen::MatrixXd::Zero(this->N_P, this->N_P);
+
+
+        // TODO: wait until the syntax G(Eigen::placeholders::all, occupation_indices) is released in a stable Eigen release
+        for (size_t e = 0; e < this->N_P ; e++) {  // loop over all electrons
+            size_t occupation_index = onv.get_occupied_index(e);
+            std::cout << "\t: " << occupation_index << std::endl;
+
+            Gm.col(e) = G.col(occupation_index);
+        }
+
+
+
+        // calculate the permanent of Gm to obtain the coefficient
+
+        // store the coefficients
+
+
+        std::cout << "'occupied' geminal coefficient matrix" << std::endl << Gm << std::endl << std::endl;
+
+
+        // Skip the last permutation
+        if (I < fock_space.get_dimension() - 1) {
+            fock_space.setNext(onv);
+        }
+    }
+
+
+    return WaveFunction();
 }
 
 
