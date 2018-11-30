@@ -19,6 +19,8 @@
 
 #include <iostream>
 
+#include <boost/numeric/conversion/converter.hpp>
+
 
 namespace GQCP {
 
@@ -84,9 +86,9 @@ Eigen::MatrixXd minor(const Eigen::MatrixXd& A, size_t i, size_t j) {
 /**
  *  @param A        the square matrix
  *
- *  @return the permanent of the given square matrix
+ *  @return the permanent of the given square matrix using a combinatorial algorithm
  */
-double permanent(const Eigen::MatrixXd& A) {
+double permanent_combinatorial(const Eigen::MatrixXd& A) {
 
     if (A.rows() != A.cols()) {
         throw std::invalid_argument("The given matrix must be square.");
@@ -101,11 +103,71 @@ double permanent(const Eigen::MatrixXd& A) {
     size_t j = 0;  // develop by the first column
     double value = 0.0;
     for (size_t i = 0; i < A.rows(); i++) {
-            value += A(i,j) * permanent(minor(A, i,j));
+            value += A(i,j) * permanent_combinatorial(minor(A, i,j));
     }
 
     return value;
 }
+
+
+/**
+ *  @param S    the positive integer to be converted to Gray code
+ *
+ *  @return the Gray code of the given integer number as a bitset
+ */
+size_t gray_code(size_t S) {
+
+    // See (https://en.wikipedia.org/wiki/Gray_code#Converting_to_and_from_Gray_code)
+    return S ^ (S >> 1);
+}
+
+
+/**
+ *  @param A        the square matrix
+ *
+ *  @return the permanent of the given square matrix using the Ryser algorithm (see https://www.codeproject.com/Articles/21282/%2FArticles%2F21282%2FCompute-Permanent-of-a-Matrix-with-Ryser-s-Algorit)
+ */
+double permanent_ryser(const Eigen::MatrixXd& A) {
+
+    if (A.rows() != A.cols()) {
+        throw std::invalid_argument("The given matrix must be square.");
+    }
+
+
+    size_t n = A.rows();
+
+    // Loop over all submatrices of A
+    double value = 0.0;  // value of the permanent
+    size_t number_of_submatrices = boost::numeric::converter<double, size_t>::convert(std::pow(2, n));
+    for (size_t S = 1; S < number_of_submatrices; S++) {  // there are no 'chosen columns' in S=0
+
+        // Generate the current submatrix through the Gray code of S: if the bit is 1, the column is chosen
+        size_t gray_code_value = gray_code(S);
+        size_t k = __builtin_popcountll(gray_code_value);  // number of columns
+
+        Eigen::MatrixXd X = Eigen::MatrixXd::Zero(n, k);
+        size_t j = 0;  // the column index in X
+        while (gray_code_value != 0) {  // loop over the set bits in the Gray code
+            size_t index = __builtin_ctzll(gray_code_value);  // the index in the original matrix
+
+            X.col(j) = A.col(index);
+
+            gray_code_value ^= gray_code_value & -gray_code_value;  // flip the first set bit
+            j++;
+        }
+
+
+        // Calculate the product of all the row sums and multiply by the sign
+        double product_of_rowsums = X.array().rowwise().sum().prod();
+
+        size_t t = n - k;  // number of deleted columns
+        int sign = std::pow(-1, t);
+        value += sign * product_of_rowsums;
+    }
+
+    return value;
+}
+
 
 
 }  // namespace GQCP

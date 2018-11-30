@@ -17,6 +17,9 @@
 // 
 #include "FockSpace/ProductFockSpace.hpp"
 
+#include <boost/numeric/conversion/converter.hpp>
+#include <boost/math/special_functions.hpp>
+
 
 namespace GQCP {
 

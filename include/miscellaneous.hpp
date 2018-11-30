@@ -49,11 +49,25 @@ Eigen::MatrixXd minor(const Eigen::MatrixXd& A, size_t i, size_t j);
 /**
  *  @param A        the square matrix
  *
- *  @return the permanent of the given square matrix
+ *  @return the permanent of the given square matrix using a combinatorial algorithm
  */
-double permanent(const Eigen::MatrixXd& A);
+double permanent_combinatorial(const Eigen::MatrixXd& A);
 
-    
+/**
+ *  @param S    the positive integer to be converted to Gray code
+ *
+ *  @return the Gray code of the given integer number as a bitset
+ */
+size_t gray_code(size_t S);
+
+/**
+ *  @param A        the square matrix
+ *
+ *  @return the permanent of the given square matrix using the Ryser algorithm
+ */
+double permanent_ryser(const Eigen::MatrixXd& A);
+
+
 }  // namespace GQCP
 
 
