@@ -165,8 +165,8 @@ void FCI::twoOperatorModule(FockSpace& fock_space_target, FockSpace& fock_space_
 
                     for (size_t I_fixed = 0; I_fixed < dim_fixed; I_fixed++) {
 
-                        matvec(I * target_interval + I_fixed * fixed_intervals) = value * x(J * target_interval + I_fixed * fixed_intervals);
-                        matvec(J * target_interval + I_fixed * fixed_intervals) = value * x(I * target_interval + I_fixed * fixed_intervals);
+                        matvec(I * target_interval + I_fixed * fixed_intervals) += value * x(J * target_interval + I_fixed * fixed_intervals);
+                        matvec(J * target_interval + I_fixed * fixed_intervals) += value * x(I * target_interval + I_fixed * fixed_intervals);
 
                     }
 
@@ -217,8 +217,8 @@ void FCI::twoOperatorModule(FockSpace& fock_space_target, FockSpace& fock_space_
                                                        hamiltonian_parameters.get_g()(r, q, p, s));
                         for (size_t I_fixed = 0; I_fixed < dim_fixed; I_fixed++) {
 
-                            matvec(I * target_interval + I_fixed * fixed_intervals) = value * x(J * target_interval + I_fixed * fixed_intervals);
-                            matvec(J * target_interval + I_fixed * fixed_intervals) = value * x(I * target_interval + I_fixed * fixed_intervals);
+                            matvec(I * target_interval + I_fixed * fixed_intervals) += value * x(J * target_interval + I_fixed * fixed_intervals);
+                            matvec(J * target_interval + I_fixed * fixed_intervals) += value * x(I * target_interval + I_fixed * fixed_intervals);
 
                         }
                         s++;
@@ -275,8 +275,8 @@ void FCI::twoOperatorModule(FockSpace& fock_space_target, FockSpace& fock_space_
 
                         for (size_t I_fixed = 0; I_fixed < dim_fixed; I_fixed++) {
 
-                            matvec(I * target_interval + I_fixed * fixed_intervals) = value * x(J * target_interval + I_fixed * fixed_intervals);
-                            matvec(J * target_interval + I_fixed * fixed_intervals) = value * x(I * target_interval + I_fixed * fixed_intervals);
+                            matvec(I * target_interval + I_fixed * fixed_intervals) += value * x(J * target_interval + I_fixed * fixed_intervals);
+                            matvec(J * target_interval + I_fixed * fixed_intervals) += value * x(I * target_interval + I_fixed * fixed_intervals);
 
                         }
 
@@ -321,8 +321,8 @@ void FCI::twoOperatorModule(FockSpace& fock_space_target, FockSpace& fock_space_
 
                         for (size_t I_fixed = 0; I_fixed < dim_fixed; I_fixed++) {
 
-                            matvec(I * target_interval + I_fixed * fixed_intervals) = value * x(J * target_interval + I_fixed * fixed_intervals);
-                            matvec(J * target_interval + I_fixed * fixed_intervals) = value * x(I * target_interval + I_fixed * fixed_intervals);
+                            matvec(I * target_interval + I_fixed * fixed_intervals) += value * x(J * target_interval + I_fixed * fixed_intervals);
+                            matvec(J * target_interval + I_fixed * fixed_intervals) += value * x(I * target_interval + I_fixed * fixed_intervals);
 
                         }
                         s++;
@@ -345,8 +345,8 @@ void FCI::twoOperatorModule(FockSpace& fock_space_target, FockSpace& fock_space_
                         double value = signev * 0.5 * (hamiltonian_parameters.get_g()(p, s2, s2, q));
                         for (size_t I_fixed = 0; I_fixed < dim_fixed; I_fixed++) {
 
-                            matvec(I * target_interval + I_fixed * fixed_intervals) = value * x(address1 * target_interval + I_fixed * fixed_intervals);
-                            matvec(address1 * target_interval + I_fixed * fixed_intervals) = value * x(I * target_interval + I_fixed * fixed_intervals);
+                            matvec(I * target_interval + I_fixed * fixed_intervals) += value * x(address1 * target_interval + I_fixed * fixed_intervals);
+                            matvec(address1 * target_interval + I_fixed * fixed_intervals) += value * x(I * target_interval + I_fixed * fixed_intervals);
 
                         }
 
@@ -662,7 +662,7 @@ Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters& hamiltonia
         }
     }
 
-
+    /*
     // ALPHA-ALPHA-ALPHA-ALPHA
     ONV spin_string_alpha_aaaa = fock_space_alpha.get_ONV(0);  // spin string with address 0
     for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {  // I_alpha loops over all addresses of alpha spin strings
@@ -757,7 +757,10 @@ Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters& hamiltonia
             }
         }  // loop over p
     }  // loop over I_beta
+    */
 
+    this->twoOperatorModule(fock_space_alpha, fock_space_beta, true, hamiltonian_parameters, matvec, x);
+    this->twoOperatorModule(fock_space_beta, fock_space_beta, false, hamiltonian_parameters, matvec, x);
     return matvec;
 }
 

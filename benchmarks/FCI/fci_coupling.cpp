@@ -16,7 +16,6 @@ static void initializeFCI(benchmark::State& state) {
     // Code inside this loop is measured repeatedly
     for (auto _ : state) {
         GQCP::FCI fci (fock_space);
-        fci.get
         //benchmark::DoNotOptimize(fci);  // make sure the variable is not optimized away by compiler
     }
 
