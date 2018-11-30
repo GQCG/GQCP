@@ -31,17 +31,20 @@ int main (int argc, char** argv) {
 
     // Input processing
     std::string hubbard_input_file;
+    std::string csline;
     size_t N_alpha;
     size_t N_beta;
     size_t K;
-
+    size_t N_eigenvalues;
     po::variables_map variables_map;
 
     try {
         po::options_description desc ("Options");
         desc.add_options()
         ("help,h", "print help messages")
-        ("input,f", po::value<std::string>(&hubbard_input_file)->required(), "filename of the input-file")
+        ("input,f", po::value<std::string>(&hubbard_input_file)->required(), "filename of the output-file and input-file (if no csline is given)")
+        ("csline,m", po::value<std::string>(&csline)->default_value(""), "Comma separated upper triagonal line replacing input-file")
+        ("N_lowest_states,x", po::value<size_t>(&N_eigenvalues)->default_value(1), "Number of lowest states")
         ("N_alpha,a", po::value<size_t>(&N_alpha)->required(), "number of alpha electrons")
         ("N_beta,b", po::value<size_t>(&N_beta)->required(), "number of beta electrons")
         ("K,K", po::value<size_t>(&K)->required(), "number of sites");
@@ -61,30 +64,37 @@ int main (int argc, char** argv) {
         std::cerr << "ERROR: you have not specified all arguments. Please use the -h flag for more information." << std::endl << std::endl;
     }
 
-
+    bool read_from_file = false;
+    std::string triagonal_line;
+    std::ifstream file;
     // Actual calculations
     // Read the upper triagonal of the hopping matrix
-
-    std::ifstream file (hubbard_input_file);
     Eigen::VectorXd triagonal;
-    if (file.is_open()) {
-
-        // Split comma-separated line
-        std::string triagonal_line;
-        std::getline(file, triagonal_line);
-        std::vector<std::string> splitted_line;
-        boost::split(splitted_line, triagonal_line, boost::is_any_of(","));
-
-        std::vector<double> triagonal_data;
-        for (const std::string& x : splitted_line) {
-            triagonal_data.push_back(std::stod(x));
-        }
-
-        triagonal = Eigen::Map<Eigen::VectorXd>(triagonal_data.data(), triagonal_data.size());
-
-        file.close();
+    if (!csline.empty()){
+        triagonal_line = csline;
     } else {
-        throw std::invalid_argument("File was not found!");
+        file = std::ifstream(hubbard_input_file);
+        if (file.is_open()) {
+            read_from_file = true;
+            std::getline(file, triagonal_line);
+        } else {
+            throw std::invalid_argument("No input-file was not found, while no csline was given.");
+        }
+    }
+
+    // Split comma-separated line
+    std::vector<std::string> splitted_line;
+    boost::split(splitted_line, triagonal_line, boost::is_any_of(","));
+
+    std::vector<double> triagonal_data;
+    for (const std::string& x : splitted_line) {
+        triagonal_data.push_back(std::stod(x));
+    }
+
+    triagonal = Eigen::Map<Eigen::VectorXd>(triagonal_data.data(), triagonal_data.size());
+
+    if( read_from_file ){
+        file.close();
     }
 
     auto ham_par = GQCP::constructHubbardParameters(triagonal);
@@ -97,6 +107,7 @@ int main (int argc, char** argv) {
     GQCP::Hubbard hubbard (fock_space);
     GQCP::CISolver solver (hubbard, ham_par);
     numopt::eigenproblem::DenseSolverOptions dense_solver_options;
+    dense_solver_options.number_of_requested_eigenpairs = N_eigenvalues;
     solver.solve(dense_solver_options);
 
 
@@ -105,7 +116,10 @@ int main (int argc, char** argv) {
     std::ofstream output_file;
     output_file.open(output_filename, std::fstream::out);
 
-    output_file << std::setprecision(15) << solver.get_eigenpair().get_eigenvalue() << std::endl;
+    output_file << std::setprecision(15);
+    for (const numopt::eigenproblem::Eigenpair& eigenpair : solver.get_eigenpairs()) {
+        output_file << eigenpair.get_eigenvalue() << std::endl;
+    }
 
     output_file.close();
 }
