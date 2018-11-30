@@ -1,5 +1,5 @@
 /**
- *  An executable that calculates the Hubbard energy, starting from a triagonal input specifying the hopping matrix
+ *  An executable that calculates the Hubbard energy(-ies), starting from a triagonal input specifying the hopping matrix
  *
  *  Example execution:
  *      ./hubbard -f "filename" -a "number of alpha electrons" -b "number of beta electrons" -K "number of sites"
@@ -8,6 +8,12 @@
  *      ./hubbard -f hubbard_in -a 1 -b 2 -K 3
  *  where hubbard_in is a comma-separated file:
  *      for K=3: 1,2,3,4,5,6
+ *  Default amount of eigenvalues is 1, this can be changed with the x flag:
+ *      ./hubbard -f hubbard_in -x 2 -a 1 -b 2 -K 3
+ *
+ *
+ *  Alternatively one can give a non-existing filename and add a comma-separated line to the program arguments:
+ *      ./hubbard -f hubbard_out -x 2 -m "1,2,3,4,5,6" -a 1 -b 2 -K 3
  */
 
 
@@ -73,12 +79,12 @@ int main (int argc, char** argv) {
     if (!csline.empty()){
         triagonal_line = csline;
     } else {
-        file = std::ifstream(hubbard_input_file);
+        file.open(hubbard_input_file);
         if (file.is_open()) {
             read_from_file = true;
             std::getline(file, triagonal_line);
         } else {
-            throw std::invalid_argument("No input-file was not found, while no csline was given.");
+            throw std::invalid_argument("No input-file was found, while no csline was given.");
         }
     }
 
