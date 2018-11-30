@@ -78,6 +78,9 @@ private:
     std::vector<std::vector<AnnihilationCouple>> beta_one_electron_couplings2;
 
     std::vector<std::vector<AnnihilationCouple>> calculateOneElectronCouplings(FockSpace& fock_space_target);
+    void twoOperatorModule(FockSpace& fock_space_target, FockSpace& fock_space_fixed, bool target_is_major, const HamiltonianParameters& hamiltonian_parameters, Eigen::VectorXd& matvec, const Eigen::VectorXd& x);
+
+
 
 public:
 

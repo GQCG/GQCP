@@ -80,12 +80,7 @@ std::vector<std::vector<FCI::AnnihilationCouple>> FCI::calculateOneElectronCoupl
                 fock_space_target.shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign_e2);
             }  //  (creation)
 
-
-
-
             annis[e1] = AnnihilationCouple{p, creas};
-
-
 
         } // e1 loop (annihilation)
 
@@ -99,6 +94,286 @@ std::vector<std::vector<FCI::AnnihilationCouple>> FCI::calculateOneElectronCoupl
 
     return one_couplings;
 }
+
+
+
+
+
+void FCI::twoOperatorModule(FockSpace& fock_space_target, FockSpace& fock_space_fixed, bool target_is_major, const HamiltonianParameters& hamiltonian_parameters, Eigen::VectorXd& matvec, const Eigen::VectorXd& x){
+
+    size_t K = fock_space_target.get_K();
+    size_t N = fock_space_target.get_N();
+    size_t dim = fock_space_target.get_dimension();
+    size_t dim_fixed = fock_space_fixed.get_dimension();
+
+    size_t fixed_intervals;
+    size_t target_interval;
+
+    // If the target is major, then the interval for the non-target (or fixed component) is 1
+    // while the the target (major) intervals after each fixed (minor) iteration, thus at the dimension of the fixed component.
+    if (target_is_major) {
+        fixed_intervals = 1;
+        target_interval = dim_fixed;
+
+        // vice versa, if the target is not major, its own interval is 1,
+        // and the fixed component intervals at the targets dimension.
+    } else {
+        fixed_intervals = dim;
+        target_interval = 1;
+    }
+
+    ONV onv = fock_space_target.get_ONV(0);  // spin string with address 0
+    for (size_t I = 0; I < dim; I++) {  // I_alpha loops over all addresses of alpha spin strings
+        if (I > 0) {
+            fock_space_target.setNext(onv);
+        }
+
+        int sign1 = -1;
+        for (size_t e1 = 0; e1 < N; e1++) {  // A1
+
+            sign1 *= -1;
+            size_t p = onv.get_occupied_index(e1);  // retrieve the index of a given electron
+            size_t address = I - fock_space_target.get_vertex_weights(p, e1 + 1);
+
+            /**
+             *  A1 = C1
+             */
+            for (size_t e3 = 0; e3 < N; e3++) { // A2
+
+                size_t r = onv.get_occupied_index(e3);
+
+
+                size_t address3 = I - fock_space_target.get_vertex_weights(r, e3 + 1);
+
+                /**
+                 *  C2 > A2
+                 */
+                size_t e4 = e3 + 1;
+                size_t s = r + 1;
+                int sign3 = 1;
+                fock_space_target.shiftUntilNextUnoccupiedOrbital<1>(onv, address3, s, e4, sign3);
+
+                while (s < K) {
+                    size_t J = address3 + fock_space_target.get_vertex_weights(s, e4);
+
+                    double value =  (hamiltonian_parameters.get_g()(p, p, r, s));
+                    if(p != r) {
+                        value -= hamiltonian_parameters.get_g()(p, s, r, p);
+                        value += hamiltonian_parameters.get_g()(r, s, p, p);
+                    }
+                    value *= sign3 * 0.5;
+
+                    for (size_t I_fixed = 0; I_fixed < dim_fixed; I_fixed++) {
+
+                        matvec(I * target_interval + I_fixed * fixed_intervals) = value * x(J * target_interval + I_fixed * fixed_intervals);
+                        matvec(J * target_interval + I_fixed * fixed_intervals) = value * x(I * target_interval + I_fixed * fixed_intervals);
+
+                    }
+
+                    s++;  // go to the next orbital
+                    // perform a shift
+                    fock_space_target.shiftUntilNextUnoccupiedOrbital<1>(onv, address3, s, e4, sign3);
+
+                }  // (creation)
+
+            }
+
+
+            size_t address1 = address;
+            size_t e2 = e1;
+            size_t q = p;
+            /**
+             *  A1 > C1
+             */
+            int sign2 = sign1;
+            q--;
+            e2--;
+            fock_space_target.sbu(onv, address1, q, e2, sign2);
+            while (q != -1) {
+
+                size_t address2 = address1 + fock_space_target.get_vertex_weights(q, e2 + 2);
+
+                /**
+                 *  A2 > C1
+                 */
+                int sign3 = sign1;
+                for (size_t e3 = e1 + 1; e3 < N; e3++) {
+                    sign3 *= -1;  // initial sign3 = sign of the annhilation, with one extra electron(from crea) = *-1
+                    size_t r = onv.get_occupied_index(e3);
+                    size_t address3 = address2 - fock_space_target.get_vertex_weights(r, e3 + 1);
+
+                    size_t e4 = e3 + 1;
+                    size_t s = r + 1;
+
+                    int sign4 = sign3;
+                    fock_space_target.shiftUntilNextUnoccupiedOrbital<1>(onv, address3, s, e4, sign4);
+
+                    while (s < K) {
+                        size_t J = address3 + fock_space_target.get_vertex_weights(s, e4);
+                        int signev = sign1 * sign2 * sign3 * sign4;
+                        double value = signev * 0.5 * (hamiltonian_parameters.get_g()(p, q, r, s) +
+                                                       hamiltonian_parameters.get_g()(r, s, p, q) -
+                                                       hamiltonian_parameters.get_g()(p, s, r, q) -
+                                                       hamiltonian_parameters.get_g()(r, q, p, s));
+                        for (size_t I_fixed = 0; I_fixed < dim_fixed; I_fixed++) {
+
+                            matvec(I * target_interval + I_fixed * fixed_intervals) = value * x(J * target_interval + I_fixed * fixed_intervals);
+                            matvec(J * target_interval + I_fixed * fixed_intervals) = value * x(I * target_interval + I_fixed * fixed_intervals);
+
+                        }
+                        s++;
+                        fock_space_target.shiftUntilNextUnoccupiedOrbital<1>(onv, address3, s, e4, sign4);
+                    }
+                }
+
+                q--;
+                fock_space_target.sbu(onv, address1, q, e2, sign2);
+
+            }
+
+
+
+            e2 = e1 + 1;
+            q = p + 1;
+            sign2 = sign1;
+            fock_space_target.shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign2);
+
+
+            /**
+             *  A1 < C1
+             */
+            while (q < K) {
+
+                // BRANCH N
+
+
+                address1 = address + fock_space_target.get_vertex_weights(q, e2);
+                /**
+                 *  A2 > C1
+                 */
+                int sign3 = sign2;
+                for (size_t e3 = e2; e3 < N; e3++) {
+                    sign3 *= -1; // -1 cause we created electron (creation) sign of A is now the that of C *-1
+                    size_t r = onv.get_occupied_index(e3);
+                    size_t address3 = address1 - fock_space_target.get_vertex_weights(r, e3 + 1);
+
+                    size_t e4 = e3 + 1;
+                    size_t s = r + 1;
+
+                    // perform a shift
+                    int sign4 = sign3;
+                    fock_space_target.shiftUntilNextUnoccupiedOrbital<1>(onv, address3, s, e4, sign4);
+
+                    while (s < K) {
+                        size_t J = address3 + fock_space_target.get_vertex_weights(s, e4);
+                        int signev = sign1 * sign2 * sign3 * sign4;
+
+                        double value = signev * 0.5 * (hamiltonian_parameters.get_g()(p, q, r, s) +
+                                                       hamiltonian_parameters.get_g()(r, s, p, q) -
+                                                       hamiltonian_parameters.get_g()(r, q, p, s) -
+                                                       hamiltonian_parameters.get_g()(p, s, r, q));
+
+                        for (size_t I_fixed = 0; I_fixed < dim_fixed; I_fixed++) {
+
+                            matvec(I * target_interval + I_fixed * fixed_intervals) = value * x(J * target_interval + I_fixed * fixed_intervals);
+                            matvec(J * target_interval + I_fixed * fixed_intervals) = value * x(I * target_interval + I_fixed * fixed_intervals);
+
+                        }
+
+                        s++;  // go to the next orbital
+
+                        // perform a shift
+                        fock_space_target.shiftUntilNextUnoccupiedOrbital<1>(onv, address3, s, e4, sign4);
+
+                    }  // (creation)
+
+                }
+
+
+                size_t r = q;
+
+                sign3 = sign2;
+
+                size_t address1c = address1;
+
+                /**
+                 *  A2 < C1, (A2 > A1)
+                 */
+                for (size_t e3 = e2 - 1; e3 > e1; e3--) {
+                    sign3 *= -1;
+                    size_t e4 = e2;
+                    address1c += fock_space_target.get_vertex_weights(r, e3) -
+                                 fock_space_target.get_vertex_weights(r, e3 + 1);
+                    r = onv.get_occupied_index(e3);
+                    size_t address2 = address1c - fock_space_target.get_vertex_weights(r, e3);
+                    int sign4 = sign2;
+                    size_t s = q + 1;
+                    fock_space_target.shiftUntilNextUnoccupiedOrbital<1>(onv, address2, s, e4, sign4);
+                    while (s < K) {
+
+                        size_t J = address2 + fock_space_target.get_vertex_weights(s, e4);
+
+                        int signev = sign1 * sign2 * sign3 * sign4;
+                        double value = signev * 0.5 * (hamiltonian_parameters.get_g()(p, q, r, s) +
+                                                       hamiltonian_parameters.get_g()(r, s, p, q) -
+                                                       hamiltonian_parameters.get_g()(r, q, p, s) -
+                                                       hamiltonian_parameters.get_g()(p, s, r, q));
+
+                        for (size_t I_fixed = 0; I_fixed < dim_fixed; I_fixed++) {
+
+                            matvec(I * target_interval + I_fixed * fixed_intervals) = value * x(J * target_interval + I_fixed * fixed_intervals);
+                            matvec(J * target_interval + I_fixed * fixed_intervals) = value * x(I * target_interval + I_fixed * fixed_intervals);
+
+                        }
+                        s++;
+
+                        fock_space_target.shiftUntilNextUnoccupiedOrbital<1>(onv, address2, s, e4, sign4);
+
+                    }
+
+
+                }
+
+                /**
+                 *  A2 = C1
+                 */
+                int signev = sign2 * sign1;
+
+                for (size_t s2 = 0; s2 < K; s2++) {
+                    if(!onv.isOccupied(s2)){
+
+                        double value = signev * 0.5 * (hamiltonian_parameters.get_g()(p, s2, s2, q));
+                        for (size_t I_fixed = 0; I_fixed < dim_fixed; I_fixed++) {
+
+                            matvec(I * target_interval + I_fixed * fixed_intervals) = value * x(address1 * target_interval + I_fixed * fixed_intervals);
+                            matvec(address1 * target_interval + I_fixed * fixed_intervals) = value * x(I * target_interval + I_fixed * fixed_intervals);
+
+                        }
+
+                    }
+
+                }
+
+                q++;
+
+                fock_space_target.shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign2);
+
+
+            }
+        }
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
 
 
 /*
@@ -118,7 +393,7 @@ Eigen::MatrixXd FCI::constructHamiltonian(const HamiltonianParameters& hamiltoni
     }
 
     Eigen::MatrixXd result_matrix = Eigen::MatrixXd::Zero(this->fock_space.get_dimension(), this->fock_space.get_dimension());
-    
+
     FockSpace fock_space_alpha = fock_space.get_fock_space_alpha();
     FockSpace fock_space_beta = fock_space.get_fock_space_beta();
 
