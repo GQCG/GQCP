@@ -144,17 +144,49 @@ BOOST_AUTO_TEST_CASE ( operator_call ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( toWaveFunction ) {
+BOOST_AUTO_TEST_CASE ( toWaveFunction_example1 ) {
 
     size_t K = 3;
     size_t N_P = 1;
 
     Eigen::VectorXd g (2);
     g << 2, 3;
-
     GQCP::AP1roGGeminalCoefficients gem_coeff (g, N_P, K);
 
+    Eigen::VectorXd ref_coefficients (3);
+    ref_coefficients << 1, 2, 3;
+
+    BOOST_CHECK(ref_coefficients.isApprox(gem_coeff.toWaveFunction().get_coefficients()));
+}
 
 
-    gem_coeff.toWaveFunction();
+BOOST_AUTO_TEST_CASE ( toWaveFunction_example2 ) {
+
+    size_t K = 3;
+    size_t N_P = 2;
+
+    Eigen::VectorXd g (2);
+    g << 2, 3;
+    GQCP::AP1roGGeminalCoefficients gem_coeff (g, N_P, K);
+
+    Eigen::VectorXd ref_coefficients (3);
+    ref_coefficients << 1, 3, 2;
+
+    BOOST_CHECK(ref_coefficients.isApprox(gem_coeff.toWaveFunction().get_coefficients()));
+}
+
+
+BOOST_AUTO_TEST_CASE ( toWaveFunction_example3 ) {
+
+    size_t K = 5;
+    size_t N_P = 2;
+
+    Eigen::VectorXd g (6);
+    g << 2, 3, 4, 5, 6, 7;
+    GQCP::AP1roGGeminalCoefficients gem_coeff (g, N_P, K);
+
+    Eigen::VectorXd ref_coefficients (10);
+    ref_coefficients << 1, 5, 2, 6, 3, 27, 7, 4, 34, 45;
+
+    BOOST_CHECK(ref_coefficients.isApprox(gem_coeff.toWaveFunction().get_coefficients()));
 }

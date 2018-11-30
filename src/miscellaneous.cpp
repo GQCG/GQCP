@@ -81,7 +81,6 @@ Eigen::MatrixXd minor(const Eigen::MatrixXd& A, size_t i, size_t j) {
     return A_ij;
 }
 
-    
 
 /**
  *  @param A        the square matrix
@@ -125,7 +124,7 @@ size_t gray_code(size_t S) {
 /**
  *  @param A        the square matrix
  *
- *  @return the permanent of the given square matrix using the Ryser algorithm (see https://www.codeproject.com/Articles/21282/%2FArticles%2F21282%2FCompute-Permanent-of-a-Matrix-with-Ryser-s-Algorit)
+ *  @return the permanent of the given square matrix using the Ryser algorithm.  Note that this algorithm does not work for dimensions larger than 64 (see https://www.codeproject.com/Articles/21282/%2FArticles%2F21282%2FCompute-Permanent-of-a-Matrix-with-Ryser-s-Algorit)
  */
 double permanent_ryser(const Eigen::MatrixXd& A) {
 
