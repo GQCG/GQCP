@@ -140,3 +140,39 @@ BOOST_AUTO_TEST_CASE ( permanent_ryser ) {
     Eigen::MatrixXd C = Eigen::MatrixXd::Random(5, 5);
     BOOST_CHECK(std::abs(GQCP::permanent_combinatorial(C) - GQCP::permanent_ryser(C)) < 1.0e-12);
 }
+
+
+BOOST_AUTO_TEST_CASE ( vectorIndex ) {
+
+    size_t cols = 11;
+    size_t skipped = 2;
+    BOOST_CHECK_EQUAL(GQCP::vectorIndex(0, 2, cols, skipped), 0);
+    BOOST_CHECK_EQUAL(GQCP::vectorIndex(1, 2, cols, skipped), 9);
+
+    cols = 5;
+    // skipped = 0
+    BOOST_CHECK_EQUAL(GQCP::vectorIndex(0, 2, cols), 2);
+    BOOST_CHECK_EQUAL(GQCP::vectorIndex(1, 2, cols), 7);
+}
+
+
+BOOST_AUTO_TEST_CASE ( matrixIndex ) {
+
+    size_t cols = 11;
+    size_t skipped = 2;
+
+    BOOST_CHECK_EQUAL(GQCP::matrixIndexMajor(0, cols, skipped), 0);
+    BOOST_CHECK_EQUAL(GQCP::matrixIndexMajor(9, cols, skipped), 1);
+
+    BOOST_CHECK_EQUAL(GQCP::matrixIndexMinor(0, cols, skipped), 2);
+    BOOST_CHECK_EQUAL(GQCP::matrixIndexMinor(4, cols, skipped), 6);
+
+
+    cols = 5;
+    // skipped = 0
+    BOOST_CHECK_EQUAL(GQCP::matrixIndexMajor(2, cols), 0);
+    BOOST_CHECK_EQUAL(GQCP::matrixIndexMajor(6, cols), 1);
+
+    BOOST_CHECK_EQUAL(GQCP::matrixIndexMinor(2, cols), 2);
+    BOOST_CHECK_EQUAL(GQCP::matrixIndexMinor(7, cols), 2);
+}

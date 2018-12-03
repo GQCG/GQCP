@@ -67,6 +67,34 @@ size_t gray_code(size_t S);
  */
 double permanent_ryser(const Eigen::MatrixXd& A);
 
+/**
+ *  @param v            the vector index
+ *  @param cols         the number of columns in the matrix
+ *  @param skipped      the number of columns that are skipped in the matrix representation
+ *
+ *  @return the row-major major (non-contiguous) index given the corresponding vector index
+ */
+size_t matrixIndexMajor(size_t v, size_t cols, size_t skipped=0);
+
+/**
+ *  @param v            the vector index
+ *  @param cols         the number of columns in the matrix
+ *  @param skipped      the number of columns that are skipped in the matrix representation
+ *
+ *  @return the row-major minor (contiguous) index given the corresponding vector index
+ */
+size_t matrixIndexMinor(size_t v, size_t cols, size_t skipped=0);
+
+/**
+ *  @param i            the row index
+ *  @param j            the column index
+ *  @param cols         the number of columns in de matrix
+ *  @param skipped      the number of columns that are skipped in the matrix representation
+ *
+ *  @return the vector index given the corresponding row-major matrix indices
+ */
+size_t vectorIndex(size_t i, size_t j, size_t cols, size_t skipped=0);
+
 
 }  // namespace GQCP
 
