@@ -71,33 +71,36 @@ BOOST_AUTO_TEST_CASE ( asMatrix ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( vector_index ) {
+BOOST_AUTO_TEST_CASE ( vectorIndex ) {
 
     size_t K = 5;
     size_t N_P = 2;
+    GQCP::APIGGeminalCoefficients gem_coeff (N_P, K);
 
-    BOOST_CHECK_EQUAL(GQCP::APIGGeminalCoefficients::vectorIndex(K, N_P, 0, 2), 2);
-    BOOST_CHECK_EQUAL(GQCP::APIGGeminalCoefficients::vectorIndex(K, N_P, 1, 1), 6);
-    BOOST_CHECK_EQUAL(GQCP::APIGGeminalCoefficients::vectorIndex(K, N_P, 1, 2), 7);
 
+    BOOST_CHECK_EQUAL(gem_coeff.vectorIndex(0, 2), 2);
+    BOOST_CHECK_EQUAL(gem_coeff.vectorIndex(1, 1), 6);
+    BOOST_CHECK_EQUAL(gem_coeff.vectorIndex(1, 2), 7);
 
     // Require a throw if i > N_P
-    BOOST_REQUIRE_THROW(GQCP::APIGGeminalCoefficients::vectorIndex(K, N_P, 3, 3), std::invalid_argument);
+    BOOST_REQUIRE_THROW(gem_coeff.vectorIndex(3, 3), std::invalid_argument);
 }
 
 
-BOOST_AUTO_TEST_CASE ( matrix_index ) {
+BOOST_AUTO_TEST_CASE ( matrixIndex ) {
 
     size_t K = 5;
     size_t N_P = 2;
+    GQCP::APIGGeminalCoefficients gem_coeff (N_P, K);
 
-    BOOST_CHECK_EQUAL(GQCP::APIGGeminalCoefficients::matrixIndexMajor(K, N_P, 2), 0);
-    BOOST_CHECK_EQUAL(GQCP::APIGGeminalCoefficients::matrixIndexMajor(K, N_P, 6), 1);
-    BOOST_CHECK_EQUAL(GQCP::APIGGeminalCoefficients::matrixIndexMajor(K, N_P, 7), 1);
 
-    BOOST_CHECK_EQUAL(GQCP::APIGGeminalCoefficients::matrixIndexMinor(K, N_P, 2), 2);
-    BOOST_CHECK_EQUAL(GQCP::APIGGeminalCoefficients::matrixIndexMinor(K, N_P, 6), 1);
-    BOOST_CHECK_EQUAL(GQCP::APIGGeminalCoefficients::matrixIndexMinor(K, N_P, 7), 2);
+    BOOST_CHECK_EQUAL(gem_coeff.matrixIndexMajor(2), 0);
+    BOOST_CHECK_EQUAL(gem_coeff.matrixIndexMajor(6), 1);
+    BOOST_CHECK_EQUAL(gem_coeff.matrixIndexMajor(7), 1);
+
+    BOOST_CHECK_EQUAL(gem_coeff.matrixIndexMinor(2), 2);
+    BOOST_CHECK_EQUAL(gem_coeff.matrixIndexMinor(6), 1);
+    BOOST_CHECK_EQUAL(gem_coeff.matrixIndexMinor(7), 2);
 }
 
 
@@ -109,10 +112,10 @@ BOOST_AUTO_TEST_CASE ( operator_call ) {
     g << 1, 2, 3, 4, 5, 6, 7, 8, 9, 10;
     GQCP::APIGGeminalCoefficients gem_coeff (g, 2, 5);
 
+
     BOOST_CHECK_EQUAL(gem_coeff(2), 3);
     BOOST_CHECK_EQUAL(gem_coeff(6), 7);
     BOOST_CHECK_EQUAL(gem_coeff(7), 8);
-
 
     BOOST_CHECK_EQUAL(gem_coeff(0, 2), 3);
     BOOST_CHECK_EQUAL(gem_coeff(1, 1), 7);

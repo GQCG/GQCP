@@ -112,7 +112,6 @@ public:
      *  @return the wave function expansion corresponding to the geminal coefficients
      */
     virtual WaveFunction toWaveFunction() const = 0;
-
 };
 
 

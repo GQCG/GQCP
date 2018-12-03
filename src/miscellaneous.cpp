@@ -102,7 +102,7 @@ double permanent_combinatorial(const Eigen::MatrixXd& A) {
     size_t j = 0;  // develop by the first column
     double value = 0.0;
     for (size_t i = 0; i < A.rows(); i++) {
-            value += A(i,j) * permanent_combinatorial(minor(A, i,j));
+        value += A(i,j) * permanent_combinatorial(GQCP::minor(A, i,j));
     }
 
     return value;
@@ -165,6 +165,41 @@ double permanent_ryser(const Eigen::MatrixXd& A) {
     }
 
     return value;
+}
+
+
+/**
+ *  @param v            the vector index
+ *  @param cols         the number of columns in the matrix
+ *  @param skipped      the number of columns that are skipped in the matrix representation
+ *
+ *  @return the row-major major (non-contiguous) index given the corresponding vector index
+ */
+size_t matrixIndexMajor(size_t v, size_t cols, size_t skipped) {
+    return v / (cols - skipped);
+}
+
+/**
+ *  @param v            the vector index
+ *  @param cols         the number of columns in the matrix
+ *  @param skipped      the number of columns that are skipped in the matrix representation
+ *
+ *  @return the row-major minor (contiguous) index given the corresponding vector index
+ */
+size_t matrixIndexMinor(size_t v, size_t cols, size_t skipped) {
+    return v % (cols - skipped) + skipped;
+}
+
+/**
+ *  @param i            the row index
+ *  @param j            the column index
+ *  @param cols         the number of columns in de matrix
+ *  @param skipped      the number of columns that are skipped in the matrix representation
+ *
+ *  @return the vector index given the corresponding row-major matrix indices
+ */
+size_t vectorIndex(size_t i, size_t j, size_t cols, size_t skipped) {
+    return (j - skipped) + (cols - skipped) * i;
 }
 
 

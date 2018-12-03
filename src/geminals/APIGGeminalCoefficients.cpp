@@ -84,51 +84,6 @@ size_t APIGGeminalCoefficients::numberOfGeminalCoefficients(size_t N_P, size_t K
 }
 
 
-/**
- *  @param K                the number of spatial orbitals
- *  @param N_P              the number of electron pairs (= the number of geminals)
- *  @param vector_index     the vector index of the geminal coefficient
- *
- *  @return the major (geminal, subscript, non-contiguous) index i in the matrix of the geminal coefficients
- */
-size_t APIGGeminalCoefficients::matrixIndexMajor(size_t K, size_t N_P, size_t vector_index) {
-
-    return vector_index / K;  // row-major storage
-}
-
-
-/**
- *  @param K                the number of spatial orbitals
- *  @param N_P              the number of electron pairs (= the number of geminals)
- *  @param vector_index     the vector index of the geminal coefficient
- *
- *  @return the minor (orbital, superscript, contiguous) index p in the matrix of the geminal coefficients
- */
-size_t APIGGeminalCoefficients::matrixIndexMinor(size_t K, size_t N_P, size_t vector_index) {
-
-    return vector_index % K;  // row-major storage
-}
-
-
-/**
- *  @param K        the number of spatial orbitals
- *  @param N_P      the number of electron pairs (= the number of geminals)
- *
- *  @param i        the major (geminal, subscript, non-contiguous) index
- *  @param p        the minor (orbital, superscript, contiguous) index
- *
- *  @return the vector index of the geminal coefficient G_i^p
- */
-size_t APIGGeminalCoefficients::vectorIndex(size_t K, size_t N_P, size_t i, size_t p) {
-
-    if (i >= N_P) {
-        throw std::invalid_argument("The major index i (subscript) must be smaller than N_P.");
-    }
-
-    return p + K * i;  // row-major storage
-}
-
-
 
 /*
  *  PUBLIC METHODS
@@ -153,7 +108,7 @@ Eigen::MatrixXd APIGGeminalCoefficients::asMatrix() const {
  */
 size_t APIGGeminalCoefficients::matrixIndexMajor(size_t vector_index) const {
 
-    return APIGGeminalCoefficients::matrixIndexMajor(this->K, this->N_P, vector_index);
+    return GQCP::matrixIndexMajor(vector_index, this->K);
 }
 
 
@@ -164,7 +119,7 @@ size_t APIGGeminalCoefficients::matrixIndexMajor(size_t vector_index) const {
  */
 size_t APIGGeminalCoefficients::matrixIndexMinor(size_t vector_index) const {
 
-    return APIGGeminalCoefficients::matrixIndexMinor(this->K, this->N_P, vector_index);
+    return GQCP::matrixIndexMinor(vector_index, this->K);
 }
 
 
@@ -176,7 +131,11 @@ size_t APIGGeminalCoefficients::matrixIndexMinor(size_t vector_index) const {
  */
 size_t APIGGeminalCoefficients::vectorIndex(size_t i, size_t p) const {
 
-    return APIGGeminalCoefficients::vectorIndex(this->K, this->N_P, i, p);
+    if (i >= N_P) {
+        throw std::invalid_argument("The major index i (subscript) must be smaller than N_P.");
+    }
+
+    return GQCP::vectorIndex(i, p, this->K);
 }
 
 

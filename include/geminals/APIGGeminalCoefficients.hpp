@@ -66,35 +66,6 @@ public:
      */
     static size_t numberOfGeminalCoefficients(size_t N_P, size_t K);
 
-    /**
-     *  @param K                the number of spatial orbitals
-     *  @param N_P              the number of electron pairs (= the number of geminals)
-     *  @param vector_index     the vector index of the geminal coefficient
-     *
-     *  @return the major (geminal, subscript, non-contiguous) index i in the matrix of the geminal coefficients
-     */
-    static size_t matrixIndexMajor(size_t K, size_t N_P, size_t vector_index);
-
-    /**
-     *  @param K                the number of spatial orbitals
-     *  @param N_P              the number of electron pairs (= the number of geminals)
-     *  @param vector_index     the vector index of the geminal coefficient
-     *
-     *  @return the minor (orbital, superscript, contiguous) index p in the matrix of the geminal coefficients
-     */
-    static size_t matrixIndexMinor(size_t K, size_t N_P, size_t vector_index);
-
-    /**
-     *  @param K        the number of spatial orbitals
-     *  @param N_P      the number of electron pairs (= the number of geminals)
-     *
-     *  @param i        the major (geminal, subscript, non-contiguous) index
-     *  @param p        the minor (orbital, superscript, contiguous) index
-     *
-     *  @return the vector index of the geminal coefficient G_i^p
-     */
-    static size_t vectorIndex(size_t K, size_t N_P, size_t i, size_t p);
-
 
     // PUBLIC METHODS
     /**

@@ -2994,8 +2994,8 @@
 				5614F9F421B029FB002C5D40 /* properties */,
 				5614F9E521B029FB002C5D40 /* RDM */,
 				5614F9E021B029FB002C5D40 /* RHF */,
-				5614FA7721B02A34002C5D40 /* singles */,
 				5614FA0221B029FB002C5D40 /* WaveFunction */,
+				5614FA7721B02A34002C5D40 /* singles */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -3336,11 +3336,11 @@
 		5614FB5421B02EDE002C5D40 /* geminals */ = {
 			isa = PBXGroup;
 			children = (
-				5614FB5521B02EDE002C5D40 /* AP1roGGeminalCoefficients_test.cpp */,
-				5614FB5621B02EDE002C5D40 /* OO_AP1roG_test.cpp */,
 				5614FB5721B02EDE002C5D40 /* AP1roG_test.cpp */,
+				5614FB5521B02EDE002C5D40 /* AP1roGGeminalCoefficients_test.cpp */,
 				5614FB5821B02EDE002C5D40 /* AP1roGPSESolver_test.cpp */,
 				56112AD321B50AE5001FB879 /* APIGGeminalCoefficients_test.cpp */,
+				5614FB5621B02EDE002C5D40 /* OO_AP1roG_test.cpp */,
 			);
 			path = geminals;
 			sourceTree = "<group>";
