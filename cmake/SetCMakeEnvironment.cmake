@@ -29,6 +29,7 @@ set(PROJECT_SOURCE_FILES
         ${PROJECT_SOURCE_FOLDER}/geminals/AP1roGJacobiOrbitalOptimizer.cpp
         ${PROJECT_SOURCE_FOLDER}/geminals/AP1roGPSESolver.cpp
         ${PROJECT_SOURCE_FOLDER}/geminals/APIGGeminalCoefficients.cpp
+        ${PROJECT_SOURCE_FOLDER}/geminals/BaseAPIGGeminalCoefficients.cpp
         ${PROJECT_SOURCE_FOLDER}/FockSpace/BaseFockSpace.cpp
         ${PROJECT_SOURCE_FOLDER}/FockSpace/FockSpace.cpp
         ${PROJECT_SOURCE_FOLDER}/FockSpace/ONV.cpp
@@ -85,6 +86,7 @@ set(PROJECT_INCLUDE_FILES
         ${PROJECT_INCLUDE_FOLDER}/geminals/AP1roGJacobiOrbitalOptimizer.hpp
         ${PROJECT_INCLUDE_FOLDER}/geminals/AP1roGPSESolver.hpp
         ${PROJECT_INCLUDE_FOLDER}/geminals/APIGGeminalCoefficients.hpp
+        ${PROJECT_INCLUDE_FOLDER}/geminals/BaseAPIGGeminalCoefficients.hpp
         ${PROJECT_INCLUDE_FOLDER}/FockSpace/BaseFockSpace.hpp
         ${PROJECT_INCLUDE_FOLDER}/FockSpace/Configuration.hpp
         ${PROJECT_INCLUDE_FOLDER}/FockSpace/FockSpace.hpp

@@ -29,13 +29,10 @@ namespace GQCP {
  */
 
 /**
- *  Constructor that sets the geminal coefficients to zero
- *
- *  @param N_P      the number of electron pairs (= the number of geminals)
- *  @param K        the number of spatial orbitals
+ *  Default constructor setting everything to zero
  */
-APIGGeminalCoefficients::APIGGeminalCoefficients(size_t N_P, size_t K) :
-    APIGGeminalCoefficients(Eigen::VectorXd::Zero(APIGGeminalCoefficients::numberOfGeminalCoefficients(N_P, K)), N_P, K)
+APIGGeminalCoefficients::APIGGeminalCoefficients() :
+    BaseAPIGGeminalCoefficients()
 {}
 
 
@@ -46,9 +43,7 @@ APIGGeminalCoefficients::APIGGeminalCoefficients(size_t N_P, size_t K) :
  *  @param K        the number of spatial orbitals
  */
 APIGGeminalCoefficients::APIGGeminalCoefficients(const Eigen::VectorXd& g, size_t N_P, size_t K) :
-    N_P (N_P),
-    K (K),
-    g (g)
+    BaseAPIGGeminalCoefficients(g, N_P, K)
 {
     if (APIGGeminalCoefficients::numberOfGeminalCoefficients(N_P, K) != g.size()) {
         throw std::invalid_argument("The specified N_P and K are not compatible with the given vector of geminal coefficients.");
@@ -56,31 +51,15 @@ APIGGeminalCoefficients::APIGGeminalCoefficients(const Eigen::VectorXd& g, size_
 }
 
 
-
-/*
- *  OPERATORS
- */
-
 /**
- *  @param mu       a vector index
+ *  Constructor that sets the geminal coefficients to zero
  *
- *  @return the geminal coefficient g_mu
+ *  @param N_P      the number of electron pairs (= the number of geminals)
+ *  @param K        the number of spatial orbitals
  */
-double APIGGeminalCoefficients::operator()(size_t mu) const {
-    return this->g(mu);
-}
-
-
-/**
- *  @param i        the major (geminal, subscript, non-contiguous) index
- *  @param p        the minor (orbital, superscript, contiguous) index
- *
- *  @return the geminal coefficient G_i^p
- */
-double APIGGeminalCoefficients::operator()(size_t i, size_t p) const {
-    size_t mu = this->vectorIndex(i, p);
-    return this->operator()(mu);
-}
+APIGGeminalCoefficients::APIGGeminalCoefficients(size_t N_P, size_t K) :
+    APIGGeminalCoefficients(Eigen::VectorXd::Zero(APIGGeminalCoefficients::numberOfGeminalCoefficients(N_P, K)), N_P, K)
+{}
 
 
 
