@@ -21,8 +21,8 @@
 
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "Molecule.hpp"
-#include "AP1roG/AP1roGGeminalCoefficients.hpp"
-#include "AP1roG/AP1roG.hpp"
+#include "geminals/AP1roGGeminalCoefficients.hpp"
+#include "geminals/AP1roG.hpp"
 
 namespace GQCP {
 

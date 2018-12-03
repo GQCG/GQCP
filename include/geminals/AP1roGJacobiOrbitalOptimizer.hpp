@@ -20,7 +20,7 @@
 
 
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
-#include "AP1roG/AP1roG.hpp"
+#include "geminals/AP1roG.hpp"
 #include "JacobiRotationParameters.hpp"
 
 

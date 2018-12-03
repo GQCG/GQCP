@@ -17,9 +17,9 @@
 // 
 #define BOOST_TEST_MODULE "OO-AP1roG"
 
-#include "AP1roG/AP1roGJacobiOrbitalOptimizer.hpp"
+#include "geminals/AP1roGJacobiOrbitalOptimizer.hpp"
 
-#include "AP1roG/AP1roGPSESolver.hpp"
+#include "geminals/AP1roGPSESolver.hpp"
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
 
