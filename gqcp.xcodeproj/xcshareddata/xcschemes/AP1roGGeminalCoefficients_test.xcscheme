@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5614FE8B21B0410A002C5D40"
+               BlueprintIdentifier = "56112AEE21B50D4C001FB879"
                BuildableName = "AP1roGGeminalCoefficients_test"
                BlueprintName = "AP1roGGeminalCoefficients_test"
                ReferencedContainer = "container:gqcp.xcodeproj">
@@ -32,7 +32,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5614FE8B21B0410A002C5D40"
+            BlueprintIdentifier = "56112AEE21B50D4C001FB879"
             BuildableName = "AP1roGGeminalCoefficients_test"
             BlueprintName = "AP1roGGeminalCoefficients_test"
             ReferencedContainer = "container:gqcp.xcodeproj">
@@ -55,7 +55,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5614FE8B21B0410A002C5D40"
+            BlueprintIdentifier = "56112AEE21B50D4C001FB879"
             BuildableName = "AP1roGGeminalCoefficients_test"
             BlueprintName = "AP1roGGeminalCoefficients_test"
             ReferencedContainer = "container:gqcp.xcodeproj">
@@ -74,7 +74,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5614FE8B21B0410A002C5D40"
+            BlueprintIdentifier = "56112AEE21B50D4C001FB879"
             BuildableName = "AP1roGGeminalCoefficients_test"
             BlueprintName = "AP1roGGeminalCoefficients_test"
             ReferencedContainer = "container:gqcp.xcodeproj">

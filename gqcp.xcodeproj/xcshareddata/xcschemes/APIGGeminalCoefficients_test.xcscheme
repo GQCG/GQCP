@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5614FEC421B041F1002C5D40"
-               BuildableName = "BUILD_GEMINALS_TESTS"
-               BlueprintName = "BUILD_GEMINALS_TESTS"
+               BlueprintIdentifier = "56112AFA21B50D68001FB879"
+               BuildableName = "APIGGeminalCoefficients_test"
+               BlueprintName = "APIGGeminalCoefficients_test"
                ReferencedContainer = "container:gqcp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -29,6 +29,15 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "56112AFA21B50D68001FB879"
+            BuildableName = "APIGGeminalCoefficients_test"
+            BlueprintName = "APIGGeminalCoefficients_test"
+            ReferencedContainer = "container:gqcp.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -42,15 +51,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5614FEC421B041F1002C5D40"
-            BuildableName = "BUILD_GEMINALS_TESTS"
-            BlueprintName = "BUILD_GEMINALS_TESTS"
+            BlueprintIdentifier = "56112AFA21B50D68001FB879"
+            BuildableName = "APIGGeminalCoefficients_test"
+            BlueprintName = "APIGGeminalCoefficients_test"
             ReferencedContainer = "container:gqcp.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -60,15 +70,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5614FEC421B041F1002C5D40"
-            BuildableName = "BUILD_GEMINALS_TESTS"
-            BlueprintName = "BUILD_GEMINALS_TESTS"
+            BlueprintIdentifier = "56112AFA21B50D68001FB879"
+            BuildableName = "APIGGeminalCoefficients_test"
+            BlueprintName = "APIGGeminalCoefficients_test"
             ReferencedContainer = "container:gqcp.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

@@ -32,11 +32,6 @@ BOOST_AUTO_TEST_CASE ( numberOfGeminalCoefficients ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( default_constructor ) {
-    GQCP::AP1roGGeminalCoefficients gem_coeff;
-}
-
-
 BOOST_AUTO_TEST_CASE ( constructor ) {
 
     // Check a correct constructor
@@ -59,13 +54,6 @@ BOOST_AUTO_TEST_CASE ( constructor_vector ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( asVector ) {
-
-    GQCP::AP1roGGeminalCoefficients g (4, 6);
-    g.asVector();
-}
-
-
 BOOST_AUTO_TEST_CASE ( asMatrix ) {
 
     // For N_P=2 and K=5, we have an AP1roG geminal coefficient matrix that looks like the following matrix:
@@ -85,37 +73,36 @@ BOOST_AUTO_TEST_CASE ( asMatrix ) {
 
 BOOST_AUTO_TEST_CASE ( vector_index ) {
 
-    // N_P=2, K=11
-    GQCP::AP1roGGeminalCoefficients geminal_coefficients (2, 11);
+    size_t K = 11;
+    size_t N_P = 2;
 
-    BOOST_CHECK_EQUAL(geminal_coefficients.vectorIndex(0, 2), 0);
-    BOOST_CHECK_EQUAL(geminal_coefficients.vectorIndex(0, 3), 1);
-    BOOST_CHECK_EQUAL(geminal_coefficients.vectorIndex(1, 2), 9);
-    BOOST_CHECK_EQUAL(geminal_coefficients.vectorIndex(1, 3), 10);
+    BOOST_CHECK_EQUAL(GQCP::AP1roGGeminalCoefficients::vectorIndex(K, N_P, 0, 2), 0);
+    BOOST_CHECK_EQUAL(GQCP::AP1roGGeminalCoefficients::vectorIndex(K, N_P, 0, 3), 1);
+    BOOST_CHECK_EQUAL(GQCP::AP1roGGeminalCoefficients::vectorIndex(K, N_P, 1, 2), 9);
+    BOOST_CHECK_EQUAL(GQCP::AP1roGGeminalCoefficients::vectorIndex(K, N_P, 1, 3), 10);
 
     // Require a throw if i > N_P
-    BOOST_REQUIRE_THROW(geminal_coefficients.vectorIndex(3, 3), std::invalid_argument);
+    BOOST_REQUIRE_THROW(GQCP::AP1roGGeminalCoefficients::vectorIndex(K, N_P, 3, 3), std::invalid_argument);
 
     // Require a throw if a < N_P
-    BOOST_REQUIRE_THROW(geminal_coefficients.vectorIndex(0, 1), std::invalid_argument);
+    BOOST_REQUIRE_THROW(GQCP::AP1roGGeminalCoefficients::vectorIndex(K, N_P, 0, 1), std::invalid_argument);
 }
 
 
 BOOST_AUTO_TEST_CASE ( matrix_index ) {
 
-    // N_P=2, K=11
-    GQCP::AP1roGGeminalCoefficients geminal_coefficients (2, 11);
+    size_t K = 11;
+    size_t N_P = 2;
 
+    BOOST_CHECK_EQUAL(GQCP::AP1roGGeminalCoefficients::matrixIndexMajor(K, N_P, 0), 0);
+    BOOST_CHECK_EQUAL(GQCP::AP1roGGeminalCoefficients::matrixIndexMajor(K, N_P, 1), 0);
+    BOOST_CHECK_EQUAL(GQCP::AP1roGGeminalCoefficients::matrixIndexMajor(K, N_P, 9), 1);
+    BOOST_CHECK_EQUAL(GQCP::AP1roGGeminalCoefficients::matrixIndexMajor(K, N_P, 10), 1);
 
-    BOOST_CHECK_EQUAL(geminal_coefficients.matrixIndexMajor(0), 0);
-    BOOST_CHECK_EQUAL(geminal_coefficients.matrixIndexMajor(1), 0);
-    BOOST_CHECK_EQUAL(geminal_coefficients.matrixIndexMajor(9), 1);
-    BOOST_CHECK_EQUAL(geminal_coefficients.matrixIndexMajor(10), 1);
-
-    BOOST_CHECK_EQUAL(geminal_coefficients.matrixIndexMinor(0), 2);
-    BOOST_CHECK_EQUAL(geminal_coefficients.matrixIndexMinor(1), 3);
-    BOOST_CHECK_EQUAL(geminal_coefficients.matrixIndexMinor(4), 6);
-    BOOST_CHECK_EQUAL(geminal_coefficients.matrixIndexMinor(5), 7);
+    BOOST_CHECK_EQUAL(GQCP::AP1roGGeminalCoefficients::matrixIndexMinor(K, N_P, 0), 2);
+    BOOST_CHECK_EQUAL(GQCP::AP1roGGeminalCoefficients::matrixIndexMinor(K, N_P, 1), 3);
+    BOOST_CHECK_EQUAL(GQCP::AP1roGGeminalCoefficients::matrixIndexMinor(K, N_P, 4), 6);
+    BOOST_CHECK_EQUAL(GQCP::AP1roGGeminalCoefficients::matrixIndexMinor(K, N_P, 5), 7);
 }
 
 

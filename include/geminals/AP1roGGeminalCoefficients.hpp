@@ -29,7 +29,7 @@ namespace GQCP {
 
 
 /**
- *  A class that represents geminal coefficients for AP1roG: the number of rows is the number of geminals, the number of columns is the number of spatial orbitals
+ *  A class that represents geminal coefficients for an AP1roG wave function
  */
 class AP1roGGeminalCoefficients {
 private:
@@ -79,8 +79,8 @@ public:
     double operator()(size_t mu) const;
 
     /**
-     *  @param i        the major index (changes in i are not contiguous)
-     *  @param a        the minor index (changes in a are contiguous)
+     *  @param i        the major (geminal) index (changes in i are not contiguous)
+     *  @param a        the minor (virtual orbital) index (changes in a are contiguous)
      *
      *  @return the geminal coefficient G_i^a
      */
@@ -102,20 +102,20 @@ public:
     static size_t numberOfGeminalCoefficients(size_t N_P, size_t K);
 
     /**
-     *  @param K        the number of spatial orbitals
-     *  @param N_P      the number of electron pairs (= the number of geminals)
+     *  @param K                the number of spatial orbitals
+     *  @param N_P              the number of electron pairs (= the number of geminals)
      *  @param vector_index     the vector index of the geminal coefficient
      *
-     *  @return the major (non-contiguous) index i (i.e. the subscript) in the matrix of the geminal coefficients. Note that i is in [0 ... N_P[
+     *  @return the major (geminal, non-contiguous) index i (i.e. the subscript) in the matrix of the geminal coefficients. Note that i is in [0 ... N_P[
      */
     static size_t matrixIndexMajor(size_t K, size_t N_P, size_t vector_index);
 
     /**
-     *  @param K        the number of spatial orbitals
-     *  @param N_P      the number of electron pairs (= the number of geminals)
+     *  @param K                the number of spatial orbitals
+     *  @param N_P              the number of electron pairs (= the number of geminals)
      *  @param vector_index     the vector index of the geminal coefficient
      *
-     *  @return the minor (contiguous) index a (i.e. the subscript) in the matrix of the geminal coefficients. Note that a is in [N_P ... K[
+     *  @return the minor (virtual orbital, contiguous) index a (i.e. the subscript) in the matrix of the geminal coefficients. Note that a is in [N_P ... K[
      */
     static size_t matrixIndexMinor(size_t K, size_t N_P, size_t vector_index);
 
@@ -123,8 +123,8 @@ public:
      *  @param K        the number of spatial orbitals
      *  @param N_P      the number of electron pairs (= the number of geminals)
      *
-     *  @param i        the major index (changes in i are not contiguous)
-     *  @param a        the minor index (changes in a are contiguous)
+     *  @param i        the major (geminal) index (changes in i are not contiguous)
+     *  @param a        the minor (virtual orbital) index (changes in a are contiguous)
      *
      *  @return the vector index of the geminal coefficient G_i^a
      */
@@ -145,20 +145,20 @@ public:
     /**
      *  @param vector_index     the vector index of the geminal coefficient
      *
-     *  @return the major (non-contiguous) index i (i.e. the subscript) in the matrix of the geminal coefficients. Note that i is in [0 ... N_P[
+     *  @return the major (geminal, non-contiguous) index i (i.e. the subscript) in the matrix of the geminal coefficients. Note that i is in [0 ... N_P[
      */
     size_t matrixIndexMajor(size_t vector_index) const;
 
     /**
      *  @param vector_index     the vector index of the geminal coefficient
      *
-     *  @return the minor (contiguous) index a (i.e. the subscript) in the matrix of the geminal coefficients. Note that a is in [N_P ... K[
+     *  @return the minor (virtual orbital, contiguous) index a (i.e. the subscript) in the matrix of the geminal coefficients. Note that a is in [N_P ... K[
      */
     size_t matrixIndexMinor(size_t vector_index) const;
 
     /**
-     *  @param i        the major index (changes in i are not contiguous)
-     *  @param a        the minor index (changes in a are contiguous)
+     *  @param i        the major (geminal) index (changes in i are not contiguous)
+     *  @param a        the minor (virtual orbital) index (changes in a are contiguous)
      *
      *  @return the vector index of the geminal coefficient G_i^a
      */
