@@ -21,6 +21,7 @@
 
 #include <Eigen/Dense>
 
+#include "geminals/BaseAPIGGeminalCoefficients.hpp"
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "WaveFunction/WaveFunction.hpp"
 
@@ -31,27 +32,13 @@ namespace GQCP {
 /**
  *  A class that represents geminal coefficients for an AP1roG wave function
  */
-class AP1roGGeminalCoefficients {
-private:
-    size_t N_P;  // the number of electron pairs (= the number of geminals)
-    size_t K;  // the number of orbitals
-    Eigen::VectorXd g;  // the geminal coefficients stored in a row-major form
-
-
+class AP1roGGeminalCoefficients : public BaseAPIGGeminalCoefficients {
 public:
     // CONSTRUCTORS
     /**
      *  Default constructor setting everything to zero
      */
     AP1roGGeminalCoefficients();
-    
-    /**
-     *  Constructor that sets the geminal coefficients to zero
-     *
-     *  @param N_P      the number of electron pairs (= the number of geminals)
-     *  @param K        the number of spatial orbitals
-     */
-    AP1roGGeminalCoefficients(size_t N_P, size_t K);
 
     /**
      *  @param g        the geminal coefficients in a vector representation that is in row-major storage
@@ -62,34 +49,20 @@ public:
     AP1roGGeminalCoefficients(const Eigen::VectorXd& g, size_t N_P, size_t K);
 
     /**
-     *  @param ham_par      the Hamiltonian parameters
+     *  Constructor that sets the geminal coefficients to zero
+     *
      *  @param N_P      the number of electron pairs (= the number of geminals)
+     *  @param K        the number of spatial orbitals
+     */
+    AP1roGGeminalCoefficients(size_t N_P, size_t K);
+
+    /**
+     *  @param ham_par      the Hamiltonian parameters
+     *  @param N_P          the number of electron pairs (= the number of geminals)
      *
      *  @return the AP1roG geminal coefficients in the weak interaction limit
      */
     static AP1roGGeminalCoefficients WeakInteractionLimit(const HamiltonianParameters& ham_par, size_t N_P);
-
-
-    // OPERATORS
-    /**
-     *  @param mu       a vector index
-     *
-     *  @return the geminal coefficient g_mu
-     */
-    double operator()(size_t mu) const;
-
-    /**
-     *  @param i        the major (geminal) index (changes in i are not contiguous)
-     *  @param a        the minor (virtual orbital) index (changes in a are contiguous)
-     *
-     *  @return the geminal coefficient G_i^a
-     */
-    double operator()(size_t i, size_t a) const;
-
-
-    // GETTERS
-    size_t get_N_P() const { return this->N_P; }
-    size_t get_K() const { return this->K; }
 
 
     // STATIC PUBLIC METHODS
@@ -133,28 +106,23 @@ public:
 
     // PUBLIC METHODS
     /**
-     *  @return the geminal coefficients in row-major vector form
-     */
-    const Eigen::VectorXd& asVector() const { return this->g; }
-
-    /**
      *  @return the geminal coefficients in matrix form
      */
-    Eigen::MatrixXd asMatrix() const;
+    Eigen::MatrixXd asMatrix() const override;
 
     /**
      *  @param vector_index     the vector index of the geminal coefficient
      *
      *  @return the major (geminal, non-contiguous) index i (i.e. the subscript) in the matrix of the geminal coefficients. Note that i is in [0 ... N_P[
      */
-    size_t matrixIndexMajor(size_t vector_index) const;
+    size_t matrixIndexMajor(size_t vector_index) const override;
 
     /**
      *  @param vector_index     the vector index of the geminal coefficient
      *
      *  @return the minor (virtual orbital, contiguous) index a (i.e. the subscript) in the matrix of the geminal coefficients. Note that a is in [N_P ... K[
      */
-    size_t matrixIndexMinor(size_t vector_index) const;
+    size_t matrixIndexMinor(size_t vector_index) const override;
 
     /**
      *  @param i        the major (geminal) index (changes in i are not contiguous)
@@ -162,12 +130,12 @@ public:
      *
      *  @return the vector index of the geminal coefficient G_i^a
      */
-    size_t vectorIndex(size_t i, size_t a) const;
+    size_t vectorIndex(size_t i, size_t a) const override;
 
     /**
      *  @return the wave function expansion corresponding to the geminal coefficients
      */
-    WaveFunction toWaveFunction() const;
+    WaveFunction toWaveFunction() const override;
 };
 
 

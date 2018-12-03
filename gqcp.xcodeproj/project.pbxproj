@@ -238,6 +238,8 @@
 		56112B0021B50D68001FB879 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
 		56112B0B21B50DE4001FB879 /* APIGGeminalCoefficients_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56112AD321B50AE5001FB879 /* APIGGeminalCoefficients_test.cpp */; };
 		56112B0C21B50DF7001FB879 /* AP1roGGeminalCoefficients_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FB5521B02EDE002C5D40 /* AP1roGGeminalCoefficients_test.cpp */; };
+		56112B0F21B55482001FB879 /* BaseAPIGGeminalCoefficients.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56112B0D21B55482001FB879 /* BaseAPIGGeminalCoefficients.cpp */; };
+		56112B1021B55482001FB879 /* BaseAPIGGeminalCoefficients.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56112B0E21B55482001FB879 /* BaseAPIGGeminalCoefficients.hpp */; };
 		5614000321B062BA002C5D40 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
 		5614000F21B062C3002C5D40 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
 		5614001B21B062C6002C5D40 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
@@ -1954,6 +1956,8 @@
 		56112AD321B50AE5001FB879 /* APIGGeminalCoefficients_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = APIGGeminalCoefficients_test.cpp; sourceTree = "<group>"; };
 		56112AF921B50D4C001FB879 /* AP1roGGeminalCoefficients_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AP1roGGeminalCoefficients_test; sourceTree = BUILT_PRODUCTS_DIR; };
 		56112B0521B50D68001FB879 /* APIGGeminalCoefficients_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = APIGGeminalCoefficients_test; sourceTree = BUILT_PRODUCTS_DIR; };
+		56112B0D21B55482001FB879 /* BaseAPIGGeminalCoefficients.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BaseAPIGGeminalCoefficients.cpp; sourceTree = "<group>"; };
+		56112B0E21B55482001FB879 /* BaseAPIGGeminalCoefficients.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BaseAPIGGeminalCoefficients.hpp; sourceTree = "<group>"; };
 		5614000821B062BA002C5D40 /* SelectedFockSpace_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SelectedFockSpace_test; sourceTree = BUILT_PRODUCTS_DIR; };
 		5614001421B062C3002C5D40 /* DOCI_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DOCI_test; sourceTree = BUILT_PRODUCTS_DIR; };
 		5614002021B062C7002C5D40 /* FCI_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = FCI_test; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2760,6 +2764,7 @@
 				5614F9AB21B029FB002C5D40 /* AP1roGJacobiOrbitalOptimizer.hpp */,
 				5614F9AD21B029FB002C5D40 /* AP1roGPSESolver.hpp */,
 				56112AD021B5076D001FB879 /* APIGGeminalCoefficients.hpp */,
+				56112B0E21B55482001FB879 /* BaseAPIGGeminalCoefficients.hpp */,
 			);
 			path = geminals;
 			sourceTree = "<group>";
@@ -3042,6 +3047,7 @@
 				5614F9F221B029FB002C5D40 /* AP1roGJacobiOrbitalOptimizer.cpp */,
 				5614F9F121B029FB002C5D40 /* AP1roGPSESolver.cpp */,
 				56112ACF21B5076D001FB879 /* APIGGeminalCoefficients.cpp */,
+				56112B0D21B55482001FB879 /* BaseAPIGGeminalCoefficients.cpp */,
 			);
 			path = geminals;
 			sourceTree = "<group>";
@@ -3492,6 +3498,7 @@
 				5614FA2221B029FB002C5D40 /* RDMs.hpp in Headers */,
 				5614FA2C21B029FB002C5D40 /* expectation_values.hpp in Headers */,
 				5614FA3821B029FB002C5D40 /* ERJacobiLocalizer.hpp in Headers */,
+				56112B1021B55482001FB879 /* BaseAPIGGeminalCoefficients.hpp in Headers */,
 				5614FA2421B029FB002C5D40 /* TwoRDM.hpp in Headers */,
 				5614FA3921B029FB002C5D40 /* ERNewtonLocalizer.hpp in Headers */,
 				5614FA1A21B029FB002C5D40 /* DIISRHFSCFSolver.hpp in Headers */,
@@ -5145,6 +5152,7 @@
 				5614FA7421B029FB002C5D40 /* HamiltonianBuilder.cpp in Sources */,
 				5614FA6521B029FB002C5D40 /* TwoElectronOperator.cpp in Sources */,
 				5614FA5A21B029FB002C5D40 /* SelectedRDMBuilder.cpp in Sources */,
+				56112B0F21B55482001FB879 /* BaseAPIGGeminalCoefficients.cpp in Sources */,
 				5614FA4A21B029FB002C5D40 /* FockSpace.cpp in Sources */,
 				5614FA6921B029FB002C5D40 /* BaseERLocalizer.cpp in Sources */,
 				5614FA6F21B029FB002C5D40 /* HamiltonianParameters_constructors.cpp in Sources */,

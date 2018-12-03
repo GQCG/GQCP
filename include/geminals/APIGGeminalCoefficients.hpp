@@ -21,7 +21,7 @@
 
 #include <Eigen/Dense>
 
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "geminals/BaseAPIGGeminalCoefficients.hpp"
 #include "WaveFunction/WaveFunction.hpp"
 
 
@@ -32,22 +32,13 @@ namespace GQCP {
 /**
  *  A class that represents geminal coefficients for an APIG wave function
  */
-class APIGGeminalCoefficients {
-private:
-    size_t N_P;  // the number of electron pairs (= the number of geminals)
-    size_t K;  // the number of orbitals
-    Eigen::VectorXd g;  // the geminal coefficients stored in a row-major form
-
-
+class APIGGeminalCoefficients : public BaseAPIGGeminalCoefficients {
 public:
     // CONSTRUCTORS
     /**
-     *  Constructor that sets the geminal coefficients to zero
-     *
-     *  @param N_P      the number of electron pairs (= the number of geminals)
-     *  @param K        the number of spatial orbitals
+     *  Default constructor setting everything to zero
      */
-    APIGGeminalCoefficients(size_t N_P, size_t K);
+    APIGGeminalCoefficients();
 
     /**
      *  @param g        the geminal coefficients in a vector representation that is in row-major storage
@@ -57,27 +48,13 @@ public:
      */
     APIGGeminalCoefficients(const Eigen::VectorXd& g, size_t N_P, size_t K);
 
-
-    // OPERATORS
     /**
-     *  @param mu       a vector index
+     *  Constructor that sets the geminal coefficients to zero
      *
-     *  @return the geminal coefficient g_mu
+     *  @param N_P      the number of electron pairs (= the number of geminals)
+     *  @param K        the number of spatial orbitals
      */
-    double operator()(size_t mu) const;
-
-    /**
-     *  @param i        the major (geminal, subscript, non-contiguous) index
-     *  @param p        the minor (orbital, superscript, contiguous) index
-     *
-     *  @return the geminal coefficient G_i^p
-     */
-    double operator()(size_t i, size_t p) const;
-
-
-    // GETTERS
-    size_t get_N_P() const { return this->N_P; }
-    size_t get_K() const { return this->K; }
+    APIGGeminalCoefficients(size_t N_P, size_t K);
 
 
     // STATIC PUBLIC METHODS
@@ -121,28 +98,23 @@ public:
 
     // PUBLIC METHODS
     /**
-     *  @return the geminal coefficients in row-major vector form
-     */
-    const Eigen::VectorXd& asVector() const { return this->g; }
-
-    /**
      *  @return the geminal coefficients in matrix form
      */
-    Eigen::MatrixXd asMatrix() const;
+    Eigen::MatrixXd asMatrix() const override;
 
     /**
      *  @param vector_index     the vector index of the geminal coefficient
      *
      *  @return the major (geminal, subscript, non-contiguous) index i in the matrix of the geminal coefficients
      */
-    size_t matrixIndexMajor(size_t vector_index) const;
+    size_t matrixIndexMajor(size_t vector_index) const override;
 
     /**
      *  @param vector_index     the vector index of the geminal coefficient
      *
      *  @return the minor (orbital, superscript, contiguous) index p in the matrix of the geminal coefficients
      */
-    size_t matrixIndexMinor(size_t vector_index) const;
+    size_t matrixIndexMinor(size_t vector_index) const override;
 
     /**
      *  @param i        the major (geminal, subscript, non-contiguous) index
@@ -150,12 +122,12 @@ public:
      *
      *  @return the vector index of the geminal coefficient G_i^p
      */
-    size_t vectorIndex(size_t i, size_t p) const;
+    size_t vectorIndex(size_t i, size_t p) const override;
 
     /**
      *  @return the wave function expansion corresponding to the geminal coefficients
      */
-    WaveFunction toWaveFunction() const;
+    WaveFunction toWaveFunction() const override;
 };
 
 

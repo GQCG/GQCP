@@ -27,14 +27,27 @@ namespace GQCP {
 /*
  *  CONSTRUCTORS
  */
+
 /**
  *  Default constructor setting everything to zero
  */
 AP1roGGeminalCoefficients::AP1roGGeminalCoefficients() :
-    N_P (0),
-    K (0),
-    g (Eigen::VectorXd::Zero(0))
+    BaseAPIGGeminalCoefficients()
 {}
+
+/**
+ *  @param g        the geminal coefficients in a vector representation that is in row-major storage
+ *
+ *  @param N_P      the number of electron pairs (= the number of geminals)
+ *  @param K        the number of spatial orbitals
+ */
+AP1roGGeminalCoefficients::AP1roGGeminalCoefficients(const Eigen::VectorXd& g, size_t N_P, size_t K) :
+    BaseAPIGGeminalCoefficients(g, N_P, K)
+{
+    if (AP1roGGeminalCoefficients::numberOfGeminalCoefficients(N_P, K) != g.size()) {
+        throw std::invalid_argument("The specified N_P and K are not compatible with the given vector of geminal coefficients.");
+    }
+}
 
 
 /**
@@ -44,25 +57,8 @@ AP1roGGeminalCoefficients::AP1roGGeminalCoefficients() :
  *  @param K        the number of spatial orbitals
  */
 AP1roGGeminalCoefficients::AP1roGGeminalCoefficients(size_t N_P, size_t K) :
-AP1roGGeminalCoefficients(Eigen::VectorXd::Zero(AP1roGGeminalCoefficients::numberOfGeminalCoefficients(N_P, K)), N_P, K)
+    AP1roGGeminalCoefficients(Eigen::VectorXd::Zero(AP1roGGeminalCoefficients::numberOfGeminalCoefficients(N_P, K)), N_P, K)
 {}
-
-
-/**
- *  @param g        the geminal coefficients in a vector representation that is in row-major storage
- *
- *  @param N_P      the number of electron pairs (= the number of geminals)
- *  @param K        the number of spatial orbitals
- */
-AP1roGGeminalCoefficients::AP1roGGeminalCoefficients(const Eigen::VectorXd& g, size_t N_P, size_t K) :
-    N_P (N_P),
-    K (K),
-    g (g)
-{
-    if (AP1roGGeminalCoefficients::numberOfGeminalCoefficients(N_P, K) != g.size()) {
-        throw std::invalid_argument("The specified N_P and K are not compatible with the given vector of geminal coefficients.");
-    }
-}
 
 
 /**
@@ -89,33 +85,6 @@ AP1roGGeminalCoefficients AP1roGGeminalCoefficients::WeakInteractionLimit(const 
 
 
     return AP1roGGeminalCoefficients(g_vector, N_P, K);
-}
-
-
-
-/*
- *  OPERATORS
- */
-
-/**
- *  @param mu       a vector index
- *
- *  @return the geminal coefficient g_mu
- */
-double AP1roGGeminalCoefficients::operator()(size_t mu) const {
-    return this->g(mu);
-}
-
-
-/**
- *  @param i        the major (geminal) index (changes in i are not contiguous)
- *  @param a        the minor (virtual orbital) index (changes in a are contiguous)
- *
- *  @return the geminal coefficient G_i^a
- */
-double AP1roGGeminalCoefficients::operator()(size_t i, size_t a) const {
-    size_t mu = this->vectorIndex(i, a);
-    return this->operator()(mu);
 }
 
 
