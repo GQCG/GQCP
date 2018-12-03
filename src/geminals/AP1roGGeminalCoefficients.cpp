@@ -108,8 +108,8 @@ double AP1roGGeminalCoefficients::operator()(size_t mu) const {
 
 
 /**
- *  @param i        the major index (changes in i are not contiguous)
- *  @param a        the minor index (changes in a are contiguous)
+ *  @param i        the major (geminal) index (changes in i are not contiguous)
+ *  @param a        the minor (virtual orbital) index (changes in a are contiguous)
  *
  *  @return the geminal coefficient G_i^a
  */
@@ -117,6 +117,7 @@ double AP1roGGeminalCoefficients::operator()(size_t i, size_t a) const {
     size_t mu = this->vectorIndex(i, a);
     return this->operator()(mu);
 }
+
 
 
 /*
@@ -139,12 +140,13 @@ size_t AP1roGGeminalCoefficients::numberOfGeminalCoefficients(size_t N_P, size_t
     return N_P * (K - N_P);
 }
 
+
 /**
- *  @param K        the number of spatial orbitals
- *  @param N_P      the number of electron pairs (= the number of geminals)
+ *  @param K                the number of spatial orbitals
+ *  @param N_P              the number of electron pairs (= the number of geminals)
  *  @param vector_index     the vector index of the geminal coefficient
  *
- *  @return the major (non-contiguous) index i (i.e. the subscript) in the matrix of the geminal coefficients. Note that i is in [0 ... N_P[
+ *  @return the major (geminal, non-contiguous) index i (i.e. the subscript) in the matrix of the geminal coefficients. Note that i is in [0 ... N_P[
  */
 size_t AP1roGGeminalCoefficients::matrixIndexMajor(size_t K, size_t N_P, size_t vector_index) {
 
@@ -153,23 +155,24 @@ size_t AP1roGGeminalCoefficients::matrixIndexMajor(size_t K, size_t N_P, size_t 
 
 
 /**
- *  @param K        the number of spatial orbitals
- *  @param N_P      the number of electron pairs (= the number of geminals)
+ *  @param K                the number of spatial orbitals
+ *  @param N_P              the number of electron pairs (= the number of geminals)
  *  @param vector_index     the vector index of the geminal coefficient
  *
- *  @return the minor (contiguous) index a (i.e. the subscript) in the matrix of the geminal coefficients. Note that a is in [N_P ... K[
+ *  @return the minor (virtual orbital, contiguous) index a (i.e. the subscript) in the matrix of the geminal coefficients. Note that a is in [N_P ... K[
  */
 size_t AP1roGGeminalCoefficients::matrixIndexMinor(size_t K, size_t N_P, size_t vector_index) {
 
     return vector_index % (K - N_P) + N_P;  // we add N_P since we want a to be in [N_P ... K[
 }
 
+
 /**
  *  @param K        the number of spatial orbitals
  *  @param N_P      the number of electron pairs (= the number of geminals)
  *
- *  @param i        the major index (changes in i are not contiguous)
- *  @param a        the minor index (changes in a are contiguous)
+ *  @param i        the major (geminal) index (changes in i are not contiguous)
+ *  @param a        the minor (virtual orbital) index (changes in a are contiguous)
  *
  *  @return the vector index of the geminal coefficient G_i^a
  */
@@ -190,6 +193,7 @@ size_t AP1roGGeminalCoefficients::vectorIndex(size_t K, size_t N_P, size_t i, si
     // but since we would really like our indices abcd (virtual orbitals) to start at N_P, we should subtract N_P accordingly
     return (a - N_P) + (K - N_P) * i;
 }
+
 
 
 /*
@@ -220,7 +224,7 @@ Eigen::MatrixXd AP1roGGeminalCoefficients::asMatrix() const {
 /**
  *  @param vector_index     the vector index of the geminal coefficient
  *
- *  @return the major (non-contiguous) index i (i.e. the subscript) in the matrix of the geminal coefficients. Note that i is in [0 ... N_P[
+ *  @return the major (geminal, non-contiguous) index i (i.e. the subscript) in the matrix of the geminal coefficients. Note that i is in [0 ... N_P[
  */
 size_t AP1roGGeminalCoefficients::matrixIndexMajor(size_t vector_index) const {
 
@@ -231,7 +235,7 @@ size_t AP1roGGeminalCoefficients::matrixIndexMajor(size_t vector_index) const {
 /**
  *  @param vector_index     the vector index of the geminal coefficient
  *
- *  @return the minor (contiguous) index a (i.e. the subscript) in the matrix of the geminal coefficients. Note that a is in [N_P ... K[
+ *  @return the minor (virtual orbital, contiguous) index a (i.e. the subscript) in the matrix of the geminal coefficients. Note that a is in [N_P ... K[
  */
 size_t AP1roGGeminalCoefficients::matrixIndexMinor(size_t vector_index) const {
 
@@ -240,8 +244,8 @@ size_t AP1roGGeminalCoefficients::matrixIndexMinor(size_t vector_index) const {
 
 
 /**
- *  @param i        the major index (changes in i are not contiguous)
- *  @param a        the minor index (changes in a are contiguous)
+ *  @param i        the major (geminal) index (changes in i are not contiguous)
+ *  @param a        the minor (virtual orbital) index (changes in a are contiguous)
  *
  *  @return the vector index of the geminal coefficient G_i^a
  */

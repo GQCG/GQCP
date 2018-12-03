@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "56112AEE21B50D4C001FB879"
-               BuildableName = "AP1roGGeminalCoefficients_test"
-               BlueprintName = "AP1roGGeminalCoefficients_test"
+               BlueprintIdentifier = "56112AFA21B50D68001FB879"
+               BuildableName = "APIGGeminalCoefficients_test"
+               BlueprintName = "APIGGeminalCoefficients_test"
                ReferencedContainer = "container:gqcp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "56112AEE21B50D4C001FB879"
-            BuildableName = "AP1roGGeminalCoefficients_test"
-            BlueprintName = "AP1roGGeminalCoefficients_test"
+            BlueprintIdentifier = "56112AFA21B50D68001FB879"
+            BuildableName = "APIGGeminalCoefficients_test"
+            BlueprintName = "APIGGeminalCoefficients_test"
             ReferencedContainer = "container:gqcp.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -55,9 +55,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "56112AEE21B50D4C001FB879"
-            BuildableName = "AP1roGGeminalCoefficients_test"
-            BlueprintName = "AP1roGGeminalCoefficients_test"
+            BlueprintIdentifier = "56112AFA21B50D68001FB879"
+            BuildableName = "APIGGeminalCoefficients_test"
+            BlueprintName = "APIGGeminalCoefficients_test"
             ReferencedContainer = "container:gqcp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -74,9 +74,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "56112AEE21B50D4C001FB879"
-            BuildableName = "AP1roGGeminalCoefficients_test"
-            BlueprintName = "AP1roGGeminalCoefficients_test"
+            BlueprintIdentifier = "56112AFA21B50D68001FB879"
+            BuildableName = "APIGGeminalCoefficients_test"
+            BlueprintName = "APIGGeminalCoefficients_test"
             ReferencedContainer = "container:gqcp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
