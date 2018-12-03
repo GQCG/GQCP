@@ -104,9 +104,11 @@ public:
     size_t vectorIndex(size_t i, size_t a) const override;
 
     /**
-     *  @return the wave function expansion corresponding to the geminal coefficients
+     *  @param onv      the ONV that is being projected on
+     *
+     *  @return the overlap of the AP1roG wave function with the given on, i.e. the projection of the APIG wave function onto that ONV
      */
-    WaveFunction toWaveFunction() const override;
+    double overlap(const ONV& onv) const override;
 };
 
 

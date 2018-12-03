@@ -17,6 +17,8 @@
 // 
 #include "geminals/BaseAPIGGeminalCoefficients.hpp"
 
+#include "FockSpace/FockSpace.hpp"
+
 
 namespace GQCP {
 
@@ -62,6 +64,34 @@ BaseAPIGGeminalCoefficients::BaseAPIGGeminalCoefficients() :
 double BaseAPIGGeminalCoefficients::operator()(size_t i, size_t p) const {
     size_t mu = this->vectorIndex(i, p);
     return this->operator()(mu);
+}
+
+
+
+/*
+ *  PUBLIC METHODS
+ */
+
+/**
+ *  @return the wave function expansion corresponding to the geminal coefficients
+ */
+WaveFunction BaseAPIGGeminalCoefficients::toWaveFunction() const {
+
+    FockSpace fock_space (this->K, this->N_P);  // the DOCI Fock space
+
+
+    Eigen::VectorXd coefficients = Eigen::VectorXd::Zero(fock_space.get_dimension());  // coefficient vector
+    ONV onv = fock_space.get_ONV(0);  // start with address 0
+    for (size_t I = 0; I < fock_space.get_dimension(); I++) {
+
+        coefficients(I) = this->overlap(onv);
+
+        if (I < fock_space.get_dimension() - 1) {  // skip the last permutation
+            fock_space.setNext(onv);
+        }
+    }
+
+    return WaveFunction(fock_space, coefficients);
 }
 
 
