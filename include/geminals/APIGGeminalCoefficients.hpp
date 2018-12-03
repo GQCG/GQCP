@@ -56,6 +56,11 @@ public:
      */
     APIGGeminalCoefficients(size_t N_P, size_t K);
 
+    /**
+     *  @param G        the geminal coefficients in a matrix representation
+     */
+    APIGGeminalCoefficients(const Eigen::MatrixXd& G);
+
 
     // STATIC PUBLIC METHODS
     /**
@@ -96,9 +101,11 @@ public:
     size_t vectorIndex(size_t i, size_t p) const override;
 
     /**
-     *  @return the wave function expansion corresponding to the geminal coefficients
+     *  @param onv      the ONV that is being projected on
+     *
+     *  @return the overlap of the APIG wave function with the given on, i.e. the projection of the APIG wave function onto that ONV
      */
-    WaveFunction toWaveFunction() const override;
+    double overlap(const ONV& onv) const override;
 };
 
 

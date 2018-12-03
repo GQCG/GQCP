@@ -62,6 +62,21 @@ APIGGeminalCoefficients::APIGGeminalCoefficients(size_t N_P, size_t K) :
 {}
 
 
+/**
+ *  @param G        the geminal coefficients in a matrix representation
+ */
+APIGGeminalCoefficients::APIGGeminalCoefficients(const Eigen::MatrixXd& G) :
+    BaseAPIGGeminalCoefficients()
+{
+
+    Eigen::MatrixXd G_transpose = G.transpose();
+
+    this->g = Eigen::Map<const Eigen::VectorXd>(G_transpose.data(), G_transpose.cols()*G_transpose.rows());
+    this->K = G.cols();
+    this->N_P = G.rows();
+}
+
+
 
 /*
  *  STATIC PUBLIC METHODS
@@ -140,40 +155,29 @@ size_t APIGGeminalCoefficients::vectorIndex(size_t i, size_t p) const {
 
 
 /**
- *  @return the wave function expansion corresponding to the geminal coefficients
+ *  @param onv      the ONV that is being projected on
+ *
+ *  @return the overlap of the APIG wave function with the given on, i.e. the projection of the APIG wave function onto that ONV
  */
-WaveFunction APIGGeminalCoefficients::toWaveFunction() const {
+double APIGGeminalCoefficients::overlap(const ONV& onv) const {
 
-    FockSpace fock_space (this->K, this->N_P);  // the DOCI Fock space
+    // For a pure APIG, the formula has to be the most general one
 
+
+    // Construct the matrix G(m) which only has the occupied columns of G in the given ONV m
     Eigen::MatrixXd G = this->asMatrix();  // geminal coefficients as a matrix
+    Eigen::MatrixXd Gm = Eigen::MatrixXd::Zero(this->N_P, this->N_P);
 
+    // TODO: wait until the syntax G(Eigen::placeholders::all, occupation_indices) is released in a stable Eigen release
+    for (size_t e = 0; e < this->N_P ; e++) {  // loop over all electrons
+        size_t occupation_index = onv.get_occupied_index(e);
 
-    Eigen::VectorXd coefficients = Eigen::VectorXd::Zero(fock_space.get_dimension());  // coefficient vector
-    ONV onv = fock_space.get_ONV(0);  // start with address 0
-    for (size_t I = 0; I < fock_space.get_dimension(); I++) {
-
-        // Construct the matrix G(m) which only has the occupied columns of G in the ONV m
-        Eigen::MatrixXd Gm = Eigen::MatrixXd::Zero(this->N_P, this->N_P);
-
-        // TODO: wait until the syntax G(Eigen::placeholders::all, occupation_indices) is released in a stable Eigen release
-        for (size_t e = 0; e < this->N_P ; e++) {  // loop over all electrons
-            size_t occupation_index = onv.get_occupied_index(e);
-
-            Gm.col(e) = G.col(occupation_index);
-        }
-
-
-        // Calculate the permanent of Gm to obtain the coefficient
-        coefficients(I) = permanent_ryser(Gm);
-
-
-        if (I < fock_space.get_dimension() - 1) {  // skip the last permutation
-            fock_space.setNext(onv);
-        }
+        Gm.col(e) = G.col(occupation_index);
     }
 
-    return WaveFunction(fock_space, coefficients);
+
+    // Calculate the permanent of Gm to obtain the coefficient
+    return permanent_ryser(Gm);
 }
 
 

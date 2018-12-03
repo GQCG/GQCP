@@ -17,6 +17,7 @@
 // 
 #include "geminals/AP1roGGeminalCoefficients.hpp"
 
+#include "geminals/APIGGeminalCoefficients.hpp"
 #include "FockSpace/FockSpace.hpp"
 #include "miscellaneous.hpp"
 
@@ -179,40 +180,48 @@ size_t AP1roGGeminalCoefficients::vectorIndex(size_t i, size_t a) const {
 
 
 /**
- *  @return the wave function expansion corresponding to the geminal coefficients
+ *  @param onv      the ONV that is being projected on
+ *
+ *  @return the overlap of the AP1roG wave function with the given on, i.e. the projection of the APIG wave function onto that ONV
  */
-WaveFunction AP1roGGeminalCoefficients::toWaveFunction() const {
+double AP1roGGeminalCoefficients::overlap(const ONV& onv) const {
+
+    // For an AP1roG, we use a simplification for singly and doubly pair-excited ONVs
+
 
     FockSpace fock_space (this->K, this->N_P);  // the DOCI Fock space
+    ONV reference = fock_space.get_ONV(0);
 
-    Eigen::MatrixXd G = this->asMatrix();  // geminal coefficients as a matrix
-
-
-    Eigen::VectorXd coefficients = Eigen::VectorXd::Zero(fock_space.get_dimension());  // coefficient vector
-    ONV onv = fock_space.get_ONV(0);  // start with address 0
-    for (size_t I = 0; I < fock_space.get_dimension(); I++) {
-
-        // Construct the matrix G(m) which only has the occupied columns of G in the ONV m
-        Eigen::MatrixXd Gm = Eigen::MatrixXd::Zero(this->N_P, this->N_P);
-
-        // TODO: wait until the syntax G(Eigen::placeholders::all, occupation_indices) is released in a stable Eigen release
-        for (size_t e = 0; e < this->N_P ; e++) {  // loop over all electrons
-            size_t occupation_index = onv.get_occupied_index(e);
-
-            Gm.col(e) = G.col(occupation_index);
-        }
-
-
-        // Calculate the permanent of Gm to obtain the coefficient
-        coefficients(I) = permanent_ryser(Gm);
-
-
-        if (I < fock_space.get_dimension() - 1) {  // skip the last permutation
-            fock_space.setNext(onv);
-        }
+    if (onv.countNumberOfDifferences(reference) == 0) {  // no excitations
+        return 1.0;
     }
 
-    return WaveFunction(fock_space, coefficients);
+    else if (onv.countNumberOfDifferences(reference) == 2) {  // one pair excitation
+
+        size_t i = reference.findDifferentOccupations(onv)[0];
+        size_t a = onv.findDifferentOccupations(reference)[0];
+
+        return this->operator()(i, a);
+    }
+
+    else if (onv.countNumberOfDifferences(reference) == 4) {  // two pair excitations
+
+        auto different_occupied = reference.findDifferentOccupations(onv);
+        auto different_virtual = onv.findDifferentOccupations(reference);
+
+        size_t i = different_occupied[0];
+        size_t j = different_occupied[1];
+        size_t a = different_virtual[0];
+        size_t b = different_virtual[1];
+
+        return this->operator()(i, a) * this->operator()(j, b) + this->operator()(j, a) * this->operator()(i, b);
+    }
+
+    else {
+
+        APIGGeminalCoefficients APIG (this->asMatrix());
+        return APIG.overlap(onv);
+    }
 }
 
 

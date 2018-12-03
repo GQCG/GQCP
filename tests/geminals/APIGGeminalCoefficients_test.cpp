@@ -68,6 +68,9 @@ BOOST_AUTO_TEST_CASE ( asMatrix ) {
 
     GQCP::APIGGeminalCoefficients gem_coeff (g, 2, 5);
     BOOST_CHECK(gem_coeff.asMatrix().isApprox(G));
+
+    GQCP::APIGGeminalCoefficients gem_coeff_matrix (G);
+    BOOST_CHECK(gem_coeff_matrix.asVector().isApprox(g));
 }
 
 

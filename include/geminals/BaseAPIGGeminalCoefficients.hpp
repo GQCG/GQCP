@@ -109,9 +109,16 @@ public:
     virtual size_t vectorIndex(size_t i, size_t p) const = 0;
 
     /**
+     *  @param onv      the ONV that is being projected on
+     *
+     *  @return the overlap of the APIG-like wave function with the given on, i.e. the projection of the APIG wave function onto that ONV
+     */
+    virtual double overlap(const ONV& onv) const = 0;
+
+    /**
      *  @return the wave function expansion corresponding to the geminal coefficients
      */
-    virtual WaveFunction toWaveFunction() const = 0;
+    WaveFunction toWaveFunction() const;
 };
 
 
