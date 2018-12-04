@@ -32,9 +32,9 @@ namespace GQCP {
 
 /**
  *  @param atomic_number        the atomic number (Z) of the atom
- *  @param x                    the x-position of the atom
- *  @param y                    the y-position of the atom
- *  @param z                    the z-position of the atom
+ *  @param x                    the x-position of the atom in bohr
+ *  @param y                    the y-position of the atom in bohr
+ *  @param z                    the z-position of the atom in bohr
  */
 Atom::Atom(size_t atomic_number, double x, double y, double z) :
     atomic_number (atomic_number),

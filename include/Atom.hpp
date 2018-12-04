@@ -28,24 +28,22 @@
 namespace GQCP {
 
 /**
- *  A data-holder struct to represent an atom with
- *      - an @member atomic_charge
- *      - coordinates @member x, @member y, @member z
+ *  A class to represent an atom with an atomic charge and a position in space (in bohr)
  */
-struct Atom {
+class Atom {
 public:
     size_t atomic_number;
-    Eigen::Vector3d position;
+    Eigen::Vector3d position;  // in bohr
 
-    static constexpr double tolerance_for_comparison = 1.0e-08;
+    static constexpr double tolerance_for_comparison = 1.0e-08;  // in bohr
 
 public:
     // CONSTRUCTORS
     /**
      *  @param atomic_number        the atomic number (Z) of the atom
-     *  @param x                    the x-position of the atom
-     *  @param y                    the y-position of the atom
-     *  @param z                    the z-position of the atom
+     *  @param x                    the x-position of the atom in bohr
+     *  @param y                    the y-position of the atom in bohr
+     *  @param z                    the z-position of the atom in bohr
      */
     Atom(size_t atomic_number, double x, double y, double z);
 
