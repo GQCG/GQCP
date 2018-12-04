@@ -295,7 +295,7 @@ size_t Molecule::calculateTotalNucleicCharge() const {
  *  @param index1   the index of the first atom
  *  @param index2   the index of the second atom
  *
- *  @return the distance between the two atoms at index1 and index2
+ *  @return the distance between the two atoms at index1 and index2 in bohr
  */
 double Molecule::calculateInternuclearDistance(size_t index1, size_t index2) const {
 

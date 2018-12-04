@@ -34,7 +34,7 @@ namespace GQCP {
 
 
 /**
- *  A class that represents a collection of atoms with a number of electrons
+ *  A class that represents a collection of atoms (with coordinates in bohr) with a number of electrons
  */
 class Molecule {
 private:
@@ -129,7 +129,7 @@ public:
      *  @param index1   the index of the first atom
      *  @param index2   the index of the second atom
      *
-     *  @return the distance between the two atoms at index1 and index2
+     *  @return the distance between the two atoms at index1 and index2 in bohr
      */
     double calculateInternuclearDistance(size_t index1, size_t index2) const;
 
