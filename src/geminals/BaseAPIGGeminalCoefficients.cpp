@@ -20,6 +20,9 @@
 #include "FockSpace/FockSpace.hpp"
 
 
+#include <iostream>
+
+
 namespace GQCP {
 
 
@@ -73,12 +76,13 @@ double BaseAPIGGeminalCoefficients::operator()(size_t i, size_t p) const {
  */
 
 /**
+ *  @param fock_space       the seniority-zero Fock space the wave function should live in
+ *
  *  @return the wave function expansion corresponding to the geminal coefficients
  */
-WaveFunction BaseAPIGGeminalCoefficients::toWaveFunction() const {
+WaveFunction BaseAPIGGeminalCoefficients::toWaveFunction(FockSpace& fock_space) const {
 
-    FockSpace fock_space (this->K, this->N_P);  // the DOCI Fock space
-
+    // The FockSpace can't be marked const, as get_ONV() and setNext() are non-const methods
 
     Eigen::VectorXd coefficients = Eigen::VectorXd::Zero(fock_space.get_dimension());  // coefficient vector
     ONV onv = fock_space.get_ONV(0);  // start with address 0

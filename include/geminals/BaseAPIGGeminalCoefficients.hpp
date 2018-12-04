@@ -22,6 +22,7 @@
 #include <Eigen/Dense>
 
 #include "WaveFunction/WaveFunction.hpp"
+#include "FockSpace/FockSpace.hpp"
 
 
 namespace GQCP {
@@ -116,9 +117,11 @@ public:
     virtual double overlap(const ONV& onv) const = 0;
 
     /**
+     *  @param fock_space       the seniority-zero Fock space the wave function should live in
+     *
      *  @return the wave function expansion corresponding to the geminal coefficients
      */
-    WaveFunction toWaveFunction() const;
+    WaveFunction toWaveFunction(FockSpace& fock_space) const;
 };
 
 
