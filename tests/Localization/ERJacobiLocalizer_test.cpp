@@ -29,7 +29,7 @@
 BOOST_AUTO_TEST_CASE ( localization_index_raises ) {
 
     // Check if the Edmiston-Ruedenberg localization index is raised after a localization procedure
-    GQCP::Molecule h2o ("../tests/data/h2o.xyz");
+    auto h2o = GQCP::Molecule::Readxyz("../tests/data/h2o.xyz");
     size_t N_P = h2o.get_N()/2;
 
     auto mol_ham_par = GQCP::HamiltonianParameters::Molecular(h2o, "STO-3G");  // in AOBasis
