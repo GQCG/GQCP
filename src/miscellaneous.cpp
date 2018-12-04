@@ -52,7 +52,7 @@ Eigen::MatrixXd jacobiRotationMatrix(const GQCP::JacobiRotationParameters& jacob
  *
  *  @return the i-j minor of the matrix A (i.e. delete the i-th row and j-th column)
  */
-Eigen::MatrixXd minor(const Eigen::MatrixXd& A, size_t i, size_t j) {
+Eigen::MatrixXd matrixMinor(const Eigen::MatrixXd& A, size_t i, size_t j) {
 
     // Delete the i-th row
     Eigen::MatrixXd A_i = Eigen::MatrixXd::Zero(A.rows() - 1, A.cols());
@@ -102,7 +102,7 @@ double permanent_combinatorial(const Eigen::MatrixXd& A) {
     size_t j = 0;  // develop by the first column
     double value = 0.0;
     for (size_t i = 0; i < A.rows(); i++) {
-        value += A(i,j) * permanent_combinatorial(GQCP::minor(A, i,j));
+        value += A(i,j) * permanent_combinatorial(GQCP::matrixMinor(A, i,j));
     }
 
     return value;

@@ -44,7 +44,7 @@ Eigen::MatrixXd jacobiRotationMatrix(const GQCP::JacobiRotationParameters& jacob
  *
  *  @return the i-j minor of the matrix A (i.e. delete the i-th row and j-th column)
  */
-Eigen::MatrixXd minor(const Eigen::MatrixXd& A, size_t i, size_t j);
+Eigen::MatrixXd matrixMinor(const Eigen::MatrixXd& A, size_t i, size_t j);
 
 /**
  *  @param A        the square matrix
