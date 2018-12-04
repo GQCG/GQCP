@@ -50,7 +50,7 @@ BOOST_AUTO_TEST_CASE ( constructor_molecule ) {
 
 
     // Test a faulty constructor
-    GQCP::Molecule h2_cation ("../tests/data/h2_szabo.xyz", +1);
+    auto h2_cation = GQCP::Molecule::Readxyz("../tests/data/h2_szabo.xyz", +1);
     BOOST_CHECK_THROW(GQCP::AP1roGJacobiOrbitalOptimizer(h2_cation, mol_ham_par), std::invalid_argument);  // we can use the same Hamiltonian parameters for molecule and ion
 }
 

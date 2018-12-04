@@ -68,13 +68,12 @@ int main (int argc, char** argv) {
 
     // Actual calculations
     // Prepare molecular Hamiltonian parameters in the RHF basis
-    GQCP::Molecule molecule (input_xyz_file);
+    auto molecule = GQCP::Molecule::Readxyz(input_xyz_file);
     size_t N_P = molecule.get_N()/2;
     output_file << "Molecule geometry" << std::endl;
     output_file << molecule << std::endl;
 
 
-//    auto ao_basis = std::make_shared<GQCP::AOBasis>(molecule, basisset);
     output_file << "Basisset: " << basisset << std::endl << std::endl;
     auto ao_mol_ham_par = GQCP::HamiltonianParameters::Molecular(molecule, basisset);
     size_t K = ao_mol_ham_par.get_K();
