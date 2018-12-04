@@ -20,7 +20,7 @@
 
 #include "Localization/ERNewtonLocalizer.hpp"
 
-#include "HamiltonianParameters/HamiltonianParameters_constructors.hpp"
+#include "HamiltonianParameters/HamiltonianParameters.hpp"
 
 
 #include <boost/test/unit_test.hpp>

@@ -19,7 +19,7 @@
 
 
 #include "RHF/DIISRHFSCFSolver.hpp"
-#include "HamiltonianParameters/HamiltonianParameters_constructors.hpp"
+#include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "properties/expectation_values.hpp"
 #include <random>
 

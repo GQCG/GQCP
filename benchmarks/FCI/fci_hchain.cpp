@@ -5,7 +5,7 @@
 #include <benchmark/benchmark.h>
 
 #include "CISolver/CISolver.hpp"
-#include "HamiltonianParameters/HamiltonianParameters_constructors.hpp"
+#include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "HamiltonianBuilder/FCI.hpp"
 #include "Molecule.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
@@ -22,10 +22,9 @@ static void fci_davidson_hchain(benchmark::State& state) {
     auto charge = static_cast<int>(number_of_H_atoms - number_of_electrons);
 
     GQCP::Molecule hchain = GQCP::Molecule::HChain(number_of_H_atoms, 0.742, charge);
-    auto ao_basis = std::make_shared<GQCP::AOBasis>(hchain, "STO-3G");
 
     // Create the molecular Hamiltonian parameters for this molecule and basis
-    auto mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
+    auto mol_ham_par = GQCP::HamiltonianParameters::Molecular(hchain, "STO-3G");
     auto K = mol_ham_par.get_K();
     auto N_P = hchain.get_N()/2;
     // Create a plain RHF SCF solver and solve the SCF equations
@@ -64,10 +63,8 @@ static void fci_dense_hchain(benchmark::State& state) {
 
     GQCP::Molecule hchain = GQCP::Molecule::HChain(number_of_H_atoms, 0.742, charge);
 
-    auto ao_basis = std::make_shared<GQCP::AOBasis>(hchain, "STO-3G");
-
     // Create the molecular Hamiltonian parameters for this molecule and basis
-    auto mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
+    auto mol_ham_par = GQCP::HamiltonianParameters::Molecular(hchain, "STO-3G");
     auto K = mol_ham_par.get_K();
     auto N_P = hchain.get_N()/2;
     // Create a plain RHF SCF solver and solve the SCF equations

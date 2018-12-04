@@ -40,7 +40,6 @@
 			buildPhases = (
 			);
 			dependencies = (
-				561401E121B06835002C5D40 /* PBXTargetDependency */,
 				561401E321B06835002C5D40 /* PBXTargetDependency */,
 			);
 			name = BUILD_HAMILTONIANPARAMETERS_TESTS;
@@ -149,6 +148,9 @@
 			buildPhases = (
 			);
 			dependencies = (
+				56112B1221B6B13C001FB879 /* PBXTargetDependency */,
+				56112B1421B6B13C001FB879 /* PBXTargetDependency */,
+				56112B1621B6B13C001FB879 /* PBXTargetDependency */,
 			);
 			name = BUILD_EXECUTABLES;
 			productName = BUILD_ALL_EXECUTABLES;
@@ -231,11 +233,12 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		56112B1721B6B15B001FB879 /* hubbard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FAA521B02E48002C5D40 /* hubbard.cpp */; };
+		56112B1821B6B165001FB879 /* oo_doci.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FAA721B02E48002C5D40 /* oo_doci.cpp */; };
 		5614000321B062BA002C5D40 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
 		5614000F21B062C3002C5D40 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
 		5614001B21B062C6002C5D40 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
 		5614002721B062CD002C5D40 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
-		5614003321B062D5002C5D40 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
 		5614003F21B062DD002C5D40 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
 		5614004B21B062E3002C5D40 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
 		5614005721B062EC002C5D40 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
@@ -269,7 +272,6 @@
 		561401B121B065B6002C5D40 /* DOCI_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FB9221B02EDE002C5D40 /* DOCI_test.cpp */; };
 		561401B221B065BD002C5D40 /* FCI_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FB9121B02EDE002C5D40 /* FCI_test.cpp */; };
 		561401B321B065C6002C5D40 /* Hubbard_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FB9021B02EDE002C5D40 /* Hubbard_test.cpp */; };
-		561401B421B065D0002C5D40 /* HamiltonianParameters_constructors_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FB8D21B02EDE002C5D40 /* HamiltonianParameters_constructors_test.cpp */; };
 		561401B521B065E0002C5D40 /* ERJacobiLocalizer_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FB8821B02EDE002C5D40 /* ERJacobiLocalizer_test.cpp */; };
 		561401B621B065EB002C5D40 /* HamiltonianParameters_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FB8E21B02EDE002C5D40 /* HamiltonianParameters_test.cpp */; };
 		561401B721B065F4002C5D40 /* ERNewtonLocalizer_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FB8921B02EDE002C5D40 /* ERNewtonLocalizer_test.cpp */; };
@@ -346,7 +348,6 @@
 		5614FA3B21B029FB002C5D40 /* WaveFunction.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5614F9C521B029FB002C5D40 /* WaveFunction.hpp */; };
 		5614FA3C21B029FB002C5D40 /* WaveFunctionReader.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5614F9C621B029FB002C5D40 /* WaveFunctionReader.hpp */; };
 		5614FA3D21B029FB002C5D40 /* BaseHamiltonianParameters.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5614F9C821B029FB002C5D40 /* BaseHamiltonianParameters.hpp */; };
-		5614FA3E21B029FB002C5D40 /* HamiltonianParameters_constructors.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5614F9C921B029FB002C5D40 /* HamiltonianParameters_constructors.hpp */; };
 		5614FA3F21B029FB002C5D40 /* HamiltonianParameters.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5614F9CA21B029FB002C5D40 /* HamiltonianParameters.hpp */; };
 		5614FA4021B029FB002C5D40 /* DOCI.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5614F9CC21B029FB002C5D40 /* DOCI.hpp */; };
 		5614FA4121B029FB002C5D40 /* HamiltonianBuilder.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5614F9CD21B029FB002C5D40 /* HamiltonianBuilder.hpp */; };
@@ -395,7 +396,6 @@
 		5614FA6C21B029FB002C5D40 /* WaveFunctionReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FA0321B029FB002C5D40 /* WaveFunctionReader.cpp */; };
 		5614FA6D21B029FB002C5D40 /* WaveFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FA0421B029FB002C5D40 /* WaveFunction.cpp */; };
 		5614FA6E21B029FB002C5D40 /* HamiltonianParameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FA0621B029FB002C5D40 /* HamiltonianParameters.cpp */; };
-		5614FA6F21B029FB002C5D40 /* HamiltonianParameters_constructors.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FA0721B029FB002C5D40 /* HamiltonianParameters_constructors.cpp */; };
 		5614FA7021B029FB002C5D40 /* BaseHamiltonianParameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FA0821B029FB002C5D40 /* BaseHamiltonianParameters.cpp */; };
 		5614FA7121B029FB002C5D40 /* Hubbard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FA0A21B029FB002C5D40 /* Hubbard.cpp */; };
 		5614FA7221B029FB002C5D40 /* FCI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FA0B21B029FB002C5D40 /* FCI.cpp */; };
@@ -435,10 +435,8 @@
 		5614FE6821B03A16002C5D40 /* fci_lowdin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FAA421B02E48002C5D40 /* fci_lowdin.cpp */; };
 		5614FE6B21B03A55002C5D40 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
 		5614FE6D21B03A9D002C5D40 /* libboost_program_options-mt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614FE6C21B03A9D002C5D40 /* libboost_program_options-mt.dylib */; };
-		5614FE7221B04008002C5D40 /* fci_lowdin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FAA421B02E48002C5D40 /* fci_lowdin.cpp */; };
 		5614FE7421B04008002C5D40 /* libboost_program_options-mt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614FE6C21B03A9D002C5D40 /* libboost_program_options-mt.dylib */; };
 		5614FE7521B04008002C5D40 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
-		5614FE7F21B0400D002C5D40 /* fci_lowdin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FAA421B02E48002C5D40 /* fci_lowdin.cpp */; };
 		5614FE8121B0400D002C5D40 /* libboost_program_options-mt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614FE6C21B03A9D002C5D40 /* libboost_program_options-mt.dylib */; };
 		5614FE8221B0400D002C5D40 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
 		5614FE9521B0411E002C5D40 /* AP1roGGeminalCoefficients_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FB5521B02EDE002C5D40 /* AP1roGGeminalCoefficients_test.cpp */; };
@@ -472,6 +470,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		56112B1121B6B13C001FB879 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5614FE6021B03A07002C5D40;
+			remoteInfo = fci_lowdin;
+		};
+		56112B1321B6B13C001FB879 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5614FE6E21B04008002C5D40;
+			remoteInfo = hubbard;
+		};
+		56112B1521B6B13C001FB879 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5614FE7B21B0400D002C5D40;
+			remoteInfo = oo_doci;
+		};
 		5614000B21B062C3002C5D40 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
@@ -487,13 +506,6 @@
 			remoteInfo = gqcp;
 		};
 		5614002321B062CD002C5D40 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5614F97F21B0295C002C5D40;
-			remoteInfo = gqcp;
-		};
-		5614002F21B062D5002C5D40 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
 			proxyType = 1;
@@ -744,13 +756,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 5614002121B062CD002C5D40;
 			remoteInfo = Hubbard_test;
-		};
-		561401E021B06835002C5D40 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5614002D21B062D5002C5D40;
-			remoteInfo = HamiltonianParameters_constructors_test;
 		};
 		561401E221B06835002C5D40 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1414,15 +1419,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
-		5614003421B062D5002C5D40 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
 		5614004021B062DD002C5D40 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1925,7 +1921,6 @@
 		5614001421B062C3002C5D40 /* DOCI_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DOCI_test; sourceTree = BUILT_PRODUCTS_DIR; };
 		5614002021B062C7002C5D40 /* FCI_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = FCI_test; sourceTree = BUILT_PRODUCTS_DIR; };
 		5614002C21B062CD002C5D40 /* Hubbard_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Hubbard_test; sourceTree = BUILT_PRODUCTS_DIR; };
-		5614003821B062D5002C5D40 /* HamiltonianParameters_constructors_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = HamiltonianParameters_constructors_test; sourceTree = BUILT_PRODUCTS_DIR; };
 		5614004421B062DD002C5D40 /* HamiltonianParameters_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = HamiltonianParameters_test; sourceTree = BUILT_PRODUCTS_DIR; };
 		5614005021B062E3002C5D40 /* ERJacobiLocalizer_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ERJacobiLocalizer_test; sourceTree = BUILT_PRODUCTS_DIR; };
 		5614005C21B062EC002C5D40 /* ERNewtonLocalizer_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ERNewtonLocalizer_test; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2003,7 +1998,6 @@
 		5614F9C521B029FB002C5D40 /* WaveFunction.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = WaveFunction.hpp; sourceTree = "<group>"; };
 		5614F9C621B029FB002C5D40 /* WaveFunctionReader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = WaveFunctionReader.hpp; sourceTree = "<group>"; };
 		5614F9C821B029FB002C5D40 /* BaseHamiltonianParameters.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BaseHamiltonianParameters.hpp; sourceTree = "<group>"; };
-		5614F9C921B029FB002C5D40 /* HamiltonianParameters_constructors.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HamiltonianParameters_constructors.hpp; sourceTree = "<group>"; };
 		5614F9CA21B029FB002C5D40 /* HamiltonianParameters.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HamiltonianParameters.hpp; sourceTree = "<group>"; };
 		5614F9CC21B029FB002C5D40 /* DOCI.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DOCI.hpp; sourceTree = "<group>"; };
 		5614F9CD21B029FB002C5D40 /* HamiltonianBuilder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HamiltonianBuilder.hpp; sourceTree = "<group>"; };
@@ -2053,7 +2047,6 @@
 		5614FA0321B029FB002C5D40 /* WaveFunctionReader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WaveFunctionReader.cpp; sourceTree = "<group>"; };
 		5614FA0421B029FB002C5D40 /* WaveFunction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WaveFunction.cpp; sourceTree = "<group>"; };
 		5614FA0621B029FB002C5D40 /* HamiltonianParameters.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HamiltonianParameters.cpp; sourceTree = "<group>"; };
-		5614FA0721B029FB002C5D40 /* HamiltonianParameters_constructors.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HamiltonianParameters_constructors.cpp; sourceTree = "<group>"; };
 		5614FA0821B029FB002C5D40 /* BaseHamiltonianParameters.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseHamiltonianParameters.cpp; sourceTree = "<group>"; };
 		5614FA0A21B029FB002C5D40 /* Hubbard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Hubbard.cpp; sourceTree = "<group>"; };
 		5614FA0B21B029FB002C5D40 /* FCI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FCI.cpp; sourceTree = "<group>"; };
@@ -2168,7 +2161,6 @@
 		5614FB8821B02EDE002C5D40 /* ERJacobiLocalizer_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ERJacobiLocalizer_test.cpp; sourceTree = "<group>"; };
 		5614FB8921B02EDE002C5D40 /* ERNewtonLocalizer_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ERNewtonLocalizer_test.cpp; sourceTree = "<group>"; };
 		5614FB8B21B02EDE002C5D40 /* WaveFunction_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = WaveFunction_test.cpp; sourceTree = "<group>"; };
-		5614FB8D21B02EDE002C5D40 /* HamiltonianParameters_constructors_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HamiltonianParameters_constructors_test.cpp; sourceTree = "<group>"; };
 		5614FB8E21B02EDE002C5D40 /* HamiltonianParameters_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HamiltonianParameters_test.cpp; sourceTree = "<group>"; };
 		5614FB9021B02EDE002C5D40 /* Hubbard_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Hubbard_test.cpp; sourceTree = "<group>"; };
 		5614FB9121B02EDE002C5D40 /* FCI_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FCI_test.cpp; sourceTree = "<group>"; };
@@ -2236,14 +2228,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5614002721B062CD002C5D40 /* libgqcp.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5614003221B062D5002C5D40 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5614003321B062D5002C5D40 /* libgqcp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2761,7 +2745,6 @@
 				5614001421B062C3002C5D40 /* DOCI_test */,
 				5614002021B062C7002C5D40 /* FCI_test */,
 				5614002C21B062CD002C5D40 /* Hubbard_test */,
-				5614003821B062D5002C5D40 /* HamiltonianParameters_constructors_test */,
 				5614004421B062DD002C5D40 /* HamiltonianParameters_test */,
 				5614005021B062E3002C5D40 /* ERJacobiLocalizer_test */,
 				5614005C21B062EC002C5D40 /* ERNewtonLocalizer_test */,
@@ -2916,7 +2899,6 @@
 			isa = PBXGroup;
 			children = (
 				5614F9C821B029FB002C5D40 /* BaseHamiltonianParameters.hpp */,
-				5614F9C921B029FB002C5D40 /* HamiltonianParameters_constructors.hpp */,
 				5614F9CA21B029FB002C5D40 /* HamiltonianParameters.hpp */,
 			);
 			path = HamiltonianParameters;
@@ -3053,7 +3035,6 @@
 			isa = PBXGroup;
 			children = (
 				5614FA0621B029FB002C5D40 /* HamiltonianParameters.cpp */,
-				5614FA0721B029FB002C5D40 /* HamiltonianParameters_constructors.cpp */,
 				5614FA0821B029FB002C5D40 /* BaseHamiltonianParameters.cpp */,
 			);
 			path = HamiltonianParameters;
@@ -3380,7 +3361,6 @@
 		5614FB8C21B02EDE002C5D40 /* HamiltonianParameters */ = {
 			isa = PBXGroup;
 			children = (
-				5614FB8D21B02EDE002C5D40 /* HamiltonianParameters_constructors_test.cpp */,
 				5614FB8E21B02EDE002C5D40 /* HamiltonianParameters_test.cpp */,
 			);
 			path = HamiltonianParameters;
@@ -3482,7 +3462,6 @@
 				5614FA3C21B029FB002C5D40 /* WaveFunctionReader.hpp in Headers */,
 				5614FA1221B029FB002C5D40 /* Configuration.hpp in Headers */,
 				5614FA2121B029FB002C5D40 /* FCIRDMBuilder.hpp in Headers */,
-				5614FA3E21B029FB002C5D40 /* HamiltonianParameters_constructors.hpp in Headers */,
 				5614FA1721B029FB002C5D40 /* AOBasis.hpp in Headers */,
 				5614FA1B21B029FB002C5D40 /* RHF.hpp in Headers */,
 				5614FA1E21B029FB002C5D40 /* SelectedRDMBuilder.hpp in Headers */,
@@ -3544,24 +3523,6 @@
 			name = Hubbard_test;
 			productName = AP1roGGeminalCoefficients_test;
 			productReference = 5614002C21B062CD002C5D40 /* Hubbard_test */;
-			productType = "com.apple.product-type.tool";
-		};
-		5614002D21B062D5002C5D40 /* HamiltonianParameters_constructors_test */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 5614003521B062D5002C5D40 /* Build configuration list for PBXNativeTarget "HamiltonianParameters_constructors_test" */;
-			buildPhases = (
-				5614003021B062D5002C5D40 /* Sources */,
-				5614003221B062D5002C5D40 /* Frameworks */,
-				5614003421B062D5002C5D40 /* CopyFiles */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				5614002E21B062D5002C5D40 /* PBXTargetDependency */,
-			);
-			name = HamiltonianParameters_constructors_test;
-			productName = AP1roGGeminalCoefficients_test;
-			productReference = 5614003821B062D5002C5D40 /* HamiltonianParameters_constructors_test */;
 			productType = "com.apple.product-type.tool";
 		};
 		5614003921B062DD002C5D40 /* HamiltonianParameters_test */ = {
@@ -4683,7 +4644,6 @@
 				5614001521B062C6002C5D40 /* FCI_test */,
 				5614002121B062CD002C5D40 /* Hubbard_test */,
 				5614019121B063FF002C5D40 /* BUILD_HAMILTONIANPARAMETERS_TESTS */,
-				5614002D21B062D5002C5D40 /* HamiltonianParameters_constructors_test */,
 				5614003921B062DD002C5D40 /* HamiltonianParameters_test */,
 				5614019521B0643B002C5D40 /* BUILD_LOCALIZATION_TESTS */,
 				5614004521B062E3002C5D40 /* ERJacobiLocalizer_test */,
@@ -4790,14 +4750,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				561401B321B065C6002C5D40 /* Hubbard_test.cpp in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5614003021B062D5002C5D40 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				561401B421B065D0002C5D40 /* HamiltonianParameters_constructors_test.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5069,7 +5021,6 @@
 				5614FA5A21B029FB002C5D40 /* SelectedRDMBuilder.cpp in Sources */,
 				5614FA4A21B029FB002C5D40 /* FockSpace.cpp in Sources */,
 				5614FA6921B029FB002C5D40 /* BaseERLocalizer.cpp in Sources */,
-				5614FA6F21B029FB002C5D40 /* HamiltonianParameters_constructors.cpp in Sources */,
 				5614FA4B21B029FB002C5D40 /* ONV.cpp in Sources */,
 				5614FA6021B029FB002C5D40 /* AP1roGJacobiOrbitalOptimizer.cpp in Sources */,
 				5614FA6B21B029FB002C5D40 /* ERJacobiLocalizer.cpp in Sources */,
@@ -5165,7 +5116,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5614FE7221B04008002C5D40 /* fci_lowdin.cpp in Sources */,
+				56112B1721B6B15B001FB879 /* hubbard.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5173,7 +5124,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5614FE7F21B0400D002C5D40 /* fci_lowdin.cpp in Sources */,
+				56112B1821B6B165001FB879 /* oo_doci.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5300,6 +5251,21 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		56112B1221B6B13C001FB879 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5614FE6021B03A07002C5D40 /* fci_lowdin */;
+			targetProxy = 56112B1121B6B13C001FB879 /* PBXContainerItemProxy */;
+		};
+		56112B1421B6B13C001FB879 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5614FE6E21B04008002C5D40 /* hubbard */;
+			targetProxy = 56112B1321B6B13C001FB879 /* PBXContainerItemProxy */;
+		};
+		56112B1621B6B13C001FB879 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5614FE7B21B0400D002C5D40 /* oo_doci */;
+			targetProxy = 56112B1521B6B13C001FB879 /* PBXContainerItemProxy */;
+		};
 		5614000A21B062C3002C5D40 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 5614F97F21B0295C002C5D40 /* gqcp */;
@@ -5314,11 +5280,6 @@
 			isa = PBXTargetDependency;
 			target = 5614F97F21B0295C002C5D40 /* gqcp */;
 			targetProxy = 5614002321B062CD002C5D40 /* PBXContainerItemProxy */;
-		};
-		5614002E21B062D5002C5D40 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5614F97F21B0295C002C5D40 /* gqcp */;
-			targetProxy = 5614002F21B062D5002C5D40 /* PBXContainerItemProxy */;
 		};
 		5614003A21B062DD002C5D40 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -5494,11 +5455,6 @@
 			isa = PBXTargetDependency;
 			target = 5614002121B062CD002C5D40 /* Hubbard_test */;
 			targetProxy = 561401DE21B0682D002C5D40 /* PBXContainerItemProxy */;
-		};
-		561401E121B06835002C5D40 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5614002D21B062D5002C5D40 /* HamiltonianParameters_constructors_test */;
-			targetProxy = 561401E021B06835002C5D40 /* PBXContainerItemProxy */;
 		};
 		561401E321B06835002C5D40 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -6005,22 +5961,6 @@
 			name = Debug;
 		};
 		5614002B21B062CD002C5D40 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		5614003621B062D5002C5D40 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		5614003721B062D5002C5D40 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -7382,15 +7322,6 @@
 			buildConfigurations = (
 				5614002A21B062CD002C5D40 /* Debug */,
 				5614002B21B062CD002C5D40 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		5614003521B062D5002C5D40 /* Build configuration list for PBXNativeTarget "HamiltonianParameters_constructors_test" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				5614003621B062D5002C5D40 /* Debug */,
-				5614003721B062D5002C5D40 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

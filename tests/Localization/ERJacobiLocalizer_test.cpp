@@ -20,8 +20,7 @@
 
 #include "Localization/ERJacobiLocalizer.hpp"
 
-#include "HamiltonianParameters/HamiltonianParameters_constructors.hpp"
-
+#include "HamiltonianParameters/HamiltonianParameters.hpp"
 
 #include <boost/test/unit_test.hpp>
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain

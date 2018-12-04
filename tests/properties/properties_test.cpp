@@ -19,7 +19,6 @@
 
 #include "properties/properties.hpp"
 
-#include "HamiltonianParameters/HamiltonianParameters_constructors.hpp"
 #include "RHF/DIISRHFSCFSolver.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
 #include "LibintCommunicator.hpp"
@@ -40,7 +39,7 @@ BOOST_AUTO_TEST_CASE ( dipole_CO_STO_3G ) {
     GQCP::Molecule CO (atoms);
 
     auto ao_basis = std::make_shared<GQCP::AOBasis>(CO, "STO-3G");
-    auto ao_mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
+    auto ao_mol_ham_par = GQCP::HamiltonianParameters::Molecular(ao_basis);
 
     size_t K = ao_basis->get_number_of_basis_functions();
     size_t N = CO.get_N();
@@ -80,7 +79,7 @@ BOOST_AUTO_TEST_CASE ( dipole_N2_STO_3G ) {
     GQCP::Molecule N2 (atoms);
 
     auto ao_basis = std::make_shared<GQCP::AOBasis>(N2, "STO-3G");
-    auto ao_mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
+    auto ao_mol_ham_par = GQCP::HamiltonianParameters::Molecular(ao_basis);
 
     size_t K = ao_basis->get_number_of_basis_functions();
     size_t N = N2.get_N();

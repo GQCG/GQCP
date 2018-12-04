@@ -18,7 +18,7 @@
 #define BOOST_TEST_MODULE "PlainRHFSCFSolver"
 
 #include "RHF/PlainRHFSCFSolver.hpp"
-#include "HamiltonianParameters/HamiltonianParameters_constructors.hpp"
+#include "HamiltonianParameters/HamiltonianParameters.hpp"
 
 #include <cpputil.hpp>
 

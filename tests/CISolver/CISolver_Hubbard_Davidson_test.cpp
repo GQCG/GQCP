@@ -21,7 +21,7 @@
 #include "CISolver/CISolver.hpp"
 #include "HamiltonianBuilder/Hubbard.hpp"
 #include "HamiltonianBuilder/FCI.hpp"
-#include "HamiltonianParameters/HamiltonianParameters_constructors.hpp"
+#include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
 
 #include <boost/test/unit_test.hpp>
@@ -37,7 +37,7 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_davidson ) {
     Eigen::VectorXd triagonal_test = Eigen::VectorXd::Random(10);
 
     size_t N = 2;
-    auto mol_ham_par = GQCP::constructHubbardParameters(triagonal_test);
+    auto mol_ham_par = GQCP::HamiltonianParameters::Hubbard(triagonal_test);
     auto K = mol_ham_par.get_K();
 
     GQCP::ProductFockSpace fock_space (K, N, N);  // dim = 36
@@ -70,7 +70,7 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_davidson_large ) {
     Eigen::VectorXd triagonal_test = Eigen::VectorXd::Random(21);
 
     size_t N = 3;
-    auto mol_ham_par = GQCP::constructHubbardParameters(triagonal_test);
+    auto mol_ham_par = GQCP::HamiltonianParameters::Hubbard(triagonal_test);
     auto K = mol_ham_par.get_K();
 
     GQCP::ProductFockSpace fock_space (K, N, N);  // dim = 400
