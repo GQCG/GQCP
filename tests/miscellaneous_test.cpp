@@ -55,12 +55,12 @@ BOOST_AUTO_TEST_CASE ( minors ) {
     Eigen::MatrixXd A_00 (2, 3);
     A_00 <<  6,  7,  8,
             10, 11, 12;
-    BOOST_CHECK(A_00.isApprox(GQCP::minor(A, 0, 0)));
+    BOOST_CHECK(A_00.isApprox(GQCP::matrixMinor(A, 0, 0)));
 
     Eigen::MatrixXd A_21 (2, 3);
     A_21 << 1, 3, 4,
             5, 7, 8;
-    BOOST_CHECK(A_21.isApprox(GQCP::minor(A, 2, 1)));
+    BOOST_CHECK(A_21.isApprox(GQCP::matrixMinor(A, 2, 1)));
 }
 
 
