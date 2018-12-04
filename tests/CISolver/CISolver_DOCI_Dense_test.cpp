@@ -20,7 +20,7 @@
 
 #include "CISolver/CISolver.hpp"
 #include "HamiltonianBuilder/DOCI.hpp"
-#include "HamiltonianParameters/HamiltonianParameters_constructors.hpp"
+#include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
 
 #include <boost/test/unit_test.hpp>
@@ -35,7 +35,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_beh_cation_klaas_dense ) {
 
     // Do a DOCI calculation based on a given FCIDUMP file
     // Create the Hamiltonian Parameters
-    auto ham_par = GQCP::readFCIDUMPFile("../tests/data/beh_cation_631g_caitlin.FCIDUMP");
+    auto ham_par = GQCP::HamiltonianParameters::ReadFCIDUMP("../tests/data/beh_cation_631g_caitlin.FCIDUMP");
 
     // The species contains 4 electrons and 16 basis functions, this requires a single Fock Space of 16 orbitals and 2 electrons
     GQCP::FockSpace fock_space (16, 2);  // dim = 120
@@ -66,7 +66,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_lih_klaas_dense ) {
 
     // Do a DOCI calculation based on a given FCIDUMP file
     // Create the Hamiltonian Parameters
-    auto ham_par = GQCP::readFCIDUMPFile("../tests/data/lih_631g_caitlin.FCIDUMP");
+    auto ham_par = GQCP::HamiltonianParameters::ReadFCIDUMP("../tests/data/lih_631g_caitlin.FCIDUMP");
 
     // The species contains 4 electrons and 16 basis functions, this requires a single Fock Space of 16 orbitals and 2 electrons
     GQCP::FockSpace fock_space (16, 2);  // dim = 120
@@ -97,7 +97,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_li2_klaas_dense ) {
 
     // Do a DOCI calculation based on a given FCIDUMP file
     // Create the Hamiltonian Parameters
-    auto ham_par = GQCP::readFCIDUMPFile("../tests/data/li2_321g_klaas.FCIDUMP");
+    auto ham_par = GQCP::HamiltonianParameters::ReadFCIDUMP("../tests/data/li2_321g_klaas.FCIDUMP");
 
     // The species contains 4 electrons and 16 basis functions, this requires a single Fock Space of 16 orbitals and 2 electrons
     GQCP::FockSpace fock_space (18, 3);  // dim = 816

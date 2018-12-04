@@ -22,7 +22,7 @@
 #include "FockSpace/ProductFockSpace.hpp"
 #include "HamiltonianBuilder/Hubbard.hpp"
 #include "HamiltonianBuilder/FCI.hpp"
-#include "HamiltonianParameters/HamiltonianParameters_constructors.hpp"
+#include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
 
 #include <boost/test/unit_test.hpp>
@@ -37,7 +37,7 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_dense ) {
     Eigen::VectorXd triagonal_test = Eigen::VectorXd::Random(10);
 
     size_t N = 2;
-    auto mol_ham_par = GQCP::constructHubbardParameters(triagonal_test);
+    auto mol_ham_par = GQCP::HamiltonianParameters::Hubbard(triagonal_test);
     auto K = mol_ham_par.get_K();
 
 
@@ -69,7 +69,7 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_dense_large ) {
     Eigen::VectorXd triagonal_test = Eigen::VectorXd::Random(21);
 
     size_t N = 3;
-    auto mol_ham_par = GQCP::constructHubbardParameters(triagonal_test);
+    auto mol_ham_par = GQCP::HamiltonianParameters::Hubbard(triagonal_test);
     auto K = mol_ham_par.get_K();
 
 
@@ -121,7 +121,7 @@ BOOST_AUTO_TEST_CASE ( four_site_chain_ward ) {
 
         GQCP::Hubbard hubbard (fock_space);
         Eigen::VectorXd triagonal = GQCP::generateUpperTriagonal(A, t, U_list[i]);
-        auto ham_par = GQCP::constructHubbardParameters(triagonal);
+        auto ham_par = GQCP::HamiltonianParameters::Hubbard(triagonal);
 
         GQCP::CISolver solver1 (hubbard, ham_par);
         numopt::eigenproblem::DenseSolverOptions dense_solver_options;
@@ -165,7 +165,7 @@ BOOST_AUTO_TEST_CASE ( six_site_ring_ward ) {
 
         GQCP::Hubbard hubbard (fock_space);
         Eigen::VectorXd triagonal = GQCP::generateUpperTriagonal(A, t, U_list[i]);
-        auto ham_par = GQCP::constructHubbardParameters(triagonal);
+        auto ham_par = GQCP::HamiltonianParameters::Hubbard(triagonal);
 
         GQCP::CISolver solver1 (hubbard, ham_par);
         numopt::eigenproblem::DenseSolverOptions dense_solver_options;

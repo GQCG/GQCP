@@ -18,7 +18,7 @@
 #define BOOST_TEST_MODULE "DIISRHFSCFSolver"
 
 #include "RHF/DIISRHFSCFSolver.hpp"
-#include "HamiltonianParameters/HamiltonianParameters_constructors.hpp"
+#include "HamiltonianParameters/HamiltonianParameters.hpp"
 
 #include <cpputil.hpp>
 

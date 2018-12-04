@@ -19,7 +19,7 @@
 
 #include "DOCINewtonOrbitalOptimizer.hpp"
 
-#include "HamiltonianParameters/HamiltonianParameters_constructors.hpp"
+#include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "HamiltonianBuilder/FCI.hpp"
 #include "HamiltonianBuilder/DOCI.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
