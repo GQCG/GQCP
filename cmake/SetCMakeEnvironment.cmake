@@ -39,7 +39,6 @@ set(PROJECT_SOURCE_FILES
         ${PROJECT_SOURCE_FOLDER}/HamiltonianBuilder/Hubbard.cpp
         ${PROJECT_SOURCE_FOLDER}/HamiltonianParameters/BaseHamiltonianParameters.cpp
         ${PROJECT_SOURCE_FOLDER}/HamiltonianParameters/HamiltonianParameters.cpp
-        ${PROJECT_SOURCE_FOLDER}/HamiltonianParameters/HamiltonianParameters_constructors.cpp
         ${PROJECT_SOURCE_FOLDER}/Localization/BaseERLocalizer.cpp
         ${PROJECT_SOURCE_FOLDER}/Localization/ERJacobiLocalizer.cpp
         ${PROJECT_SOURCE_FOLDER}/Localization/ERNewtonLocalizer.cpp
@@ -96,7 +95,6 @@ set(PROJECT_INCLUDE_FILES
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianBuilder/Hubbard.hpp
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianParameters/BaseHamiltonianParameters.hpp
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianParameters/HamiltonianParameters.hpp
-        ${PROJECT_INCLUDE_FOLDER}/HamiltonianParameters/HamiltonianParameters_constructors.hpp
         ${PROJECT_INCLUDE_FOLDER}/Localization/BaseERLocalizer.hpp
         ${PROJECT_INCLUDE_FOLDER}/Localization/ERJacobiLocalizer.hpp
         ${PROJECT_INCLUDE_FOLDER}/Localization/ERNewtonLocalizer.hpp
@@ -156,7 +154,6 @@ set(PROJECT_TEST_SOURCE_FILES
         ${PROJECT_TESTS_FOLDER}/HamiltonianBuilder/FCI_test.cpp
         ${PROJECT_TESTS_FOLDER}/HamiltonianBuilder/Hubbard_test.cpp
         ${PROJECT_TESTS_FOLDER}/HamiltonianParameters/HamiltonianParameters_test.cpp
-        ${PROJECT_TESTS_FOLDER}/HamiltonianParameters/HamiltonianParameters_constructors_test.cpp
         ${PROJECT_TESTS_FOLDER}/Localization/ERJacobiLocalizer_test.cpp
         ${PROJECT_TESTS_FOLDER}/Localization/ERNewtonLocalizer_test.cpp
         ${PROJECT_TESTS_FOLDER}/Operator/OneElectronOperator_test.cpp
