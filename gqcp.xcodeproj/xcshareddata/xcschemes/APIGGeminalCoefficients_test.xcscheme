@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "56112AFA21B50D68001FB879"
+               BlueprintIdentifier = "56272DD621B6CC7B008BEA47"
                BuildableName = "APIGGeminalCoefficients_test"
                BlueprintName = "APIGGeminalCoefficients_test"
                ReferencedContainer = "container:gqcp.xcodeproj">
@@ -32,7 +32,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "56112AFA21B50D68001FB879"
+            BlueprintIdentifier = "56272DD621B6CC7B008BEA47"
             BuildableName = "APIGGeminalCoefficients_test"
             BlueprintName = "APIGGeminalCoefficients_test"
             ReferencedContainer = "container:gqcp.xcodeproj">
@@ -55,7 +55,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "56112AFA21B50D68001FB879"
+            BlueprintIdentifier = "56272DD621B6CC7B008BEA47"
             BuildableName = "APIGGeminalCoefficients_test"
             BlueprintName = "APIGGeminalCoefficients_test"
             ReferencedContainer = "container:gqcp.xcodeproj">
@@ -74,7 +74,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "56112AFA21B50D68001FB879"
+            BlueprintIdentifier = "56272DD621B6CC7B008BEA47"
             BuildableName = "APIGGeminalCoefficients_test"
             BlueprintName = "APIGGeminalCoefficients_test"
             ReferencedContainer = "container:gqcp.xcodeproj">

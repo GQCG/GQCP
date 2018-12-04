@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5614FEC421B041F1002C5D40"
-               BuildableName = "BUILD_AP1ROG_TESTS"
-               BlueprintName = "BUILD_AP1ROG_TESTS"
+               BuildableName = "BUILD_GEMINALS_TESTS"
+               BlueprintName = "BUILD_GEMINALS_TESTS"
                ReferencedContainer = "container:gqcp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -46,8 +46,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5614FEC421B041F1002C5D40"
-            BuildableName = "BUILD_AP1ROG_TESTS"
-            BlueprintName = "BUILD_AP1ROG_TESTS"
+            BuildableName = "BUILD_GEMINALS_TESTS"
+            BlueprintName = "BUILD_GEMINALS_TESTS"
             ReferencedContainer = "container:gqcp.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -64,8 +64,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5614FEC421B041F1002C5D40"
-            BuildableName = "BUILD_AP1ROG_TESTS"
-            BlueprintName = "BUILD_AP1ROG_TESTS"
+            BuildableName = "BUILD_GEMINALS_TESTS"
+            BlueprintName = "BUILD_GEMINALS_TESTS"
             ReferencedContainer = "container:gqcp.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
