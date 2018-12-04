@@ -95,7 +95,7 @@ Eigen::Tensor<double, 4> calculateToyTwoElectronIntegralsTensor() {
 BOOST_AUTO_TEST_CASE ( HamiltonianParameters_constructor ) {
 
     // Create an AOBasis
-    GQCP::Molecule water ("../tests/data/h2o.xyz");
+    auto water = GQCP::Molecule::Readxyz("../tests/data/h2o.xyz");
     auto ao_basis_ptr = std::make_shared<GQCP::AOBasis>(water, "STO-3G");
 
 
@@ -232,7 +232,7 @@ BOOST_AUTO_TEST_CASE ( constructor_C ) {
 BOOST_AUTO_TEST_CASE ( constructMolecularHamiltonianParameters ) {
 
     // Set up a basis
-    GQCP::Molecule h2 ("../tests/data/h2_szabo.xyz");
+    auto h2 = GQCP::Molecule::Readxyz("../tests/data/h2_szabo.xyz");
     auto ao_basis = std::make_shared<GQCP::AOBasis>(h2, "STO-3G");
 
 
@@ -533,7 +533,7 @@ BOOST_AUTO_TEST_CASE ( areOrbitalsOrthonormal ) {
 
 
     // The orbitals in an AO basis are not orthonormal
-    GQCP::Molecule h2o ("../tests/data/h2o.xyz");
+    auto h2o = GQCP::Molecule::Readxyz("../tests/data/h2o.xyz");
     auto ao_ham_par = GQCP::HamiltonianParameters::Molecular(h2o, "STO-3G");
     BOOST_CHECK(!ao_ham_par.areOrbitalsOrthonormal());
 

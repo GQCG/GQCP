@@ -73,7 +73,7 @@ BOOST_AUTO_TEST_CASE ( atoms_interface ) {
 BOOST_AUTO_TEST_CASE( Szabo_integrals_h2_sto3g ) {
 
     // We will follow the example in Szabo, section 3.5.2, where it is stated that R = 1.4 a.u. = 0.740848 Angstrom
-    GQCP::Molecule h2 ("../tests/data/h2_szabo.xyz");
+    auto h2 = GQCP::Molecule::Readxyz("../tests/data/h2_szabo.xyz");
     GQCP::AOBasis basis (h2, "STO-3G");
     BOOST_CHECK_EQUAL(basis.get_number_of_basis_functions(), 2);
 
@@ -121,7 +121,7 @@ BOOST_AUTO_TEST_CASE( Szabo_integrals_h2_sto3g ) {
 BOOST_AUTO_TEST_CASE( HORTON_integrals_h2o_sto3g ) {
 
     // Set up a basis
-    GQCP::Molecule water ("../tests/data/h2o.xyz");
+    auto water = GQCP::Molecule::Readxyz("../tests/data/h2o.xyz");
     GQCP::AOBasis basis (water, "STO-3G");
     auto nbf = basis.get_number_of_basis_functions();
 

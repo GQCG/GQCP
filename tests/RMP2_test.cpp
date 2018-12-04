@@ -34,7 +34,7 @@ BOOST_AUTO_TEST_CASE ( crawdad_sto3g_water ) {
 
 
     // Create molecular Hamiltonian parameters in the RHF basis
-    GQCP::Molecule water ("../tests/data/h2o_crawdad.xyz");
+    auto water = GQCP::Molecule::Readxyz("../tests/data/h2o_crawdad.xyz");
     auto ao_mol_ham_par = GQCP::HamiltonianParameters::Molecular(water, "STO-3G");
 
     GQCP::PlainRHFSCFSolver plain_scf_solver (ao_mol_ham_par, water);
@@ -55,7 +55,7 @@ BOOST_AUTO_TEST_CASE ( crawdad_sto3g_methane ) {
     double ref_energy_correction = -0.056046676165;
 
     // Create molecular Hamiltonian parameters in the RHF basis
-    GQCP::Molecule methane ("../tests/data/ch4_crawdad.xyz");
+    auto methane = GQCP::Molecule::Readxyz("../tests/data/ch4_crawdad.xyz");
     auto ao_mol_ham_par = GQCP::HamiltonianParameters::Molecular(methane, "STO-3G");
 
     GQCP::PlainRHFSCFSolver plain_scf_solver (ao_mol_ham_par, methane);
