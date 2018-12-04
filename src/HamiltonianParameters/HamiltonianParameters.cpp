@@ -71,7 +71,7 @@ HamiltonianParameters::HamiltonianParameters(std::shared_ptr<GQCP::AOBasis> ao_b
  *  @param C            the transformation matrix to be applied to the given Hamiltonian parameters
  */
 HamiltonianParameters::HamiltonianParameters(const GQCP::HamiltonianParameters& ham_par, const Eigen::MatrixXd& C) :
-    BaseHamiltonianParameters(ham_par.ao_basis),
+    BaseHamiltonianParameters(ham_par.ao_basis, ham_par.scalar),
     K (ham_par.S.get_dim()),
     S (ham_par.S),
     h (ham_par.h),

@@ -44,8 +44,8 @@ class ONV {
 private:
     size_t K;  // number of spatial orbitals
     size_t N;  // number of electrons
-    size_t unsigned_representation;  // unsigned representation
-    VectorXs occupation_indices;  // the occupied orbital electron indexes
+    size_t unsigned_representation;
+    VectorXs occupation_indices;  // the occupied orbital electron indices
                                   // it is a vector of N elements in which occupation_indices[j]
                                   // gives the occupied orbital index for electron j
 
@@ -111,7 +111,7 @@ public:
     /**
      *  @param electron_index       the index of the electron
      *
-     *  @return the index of the orbital that the electron occupies
+     *  @return the index of the orbital that the electron occupies. For the bitset "100", this would be 2: the conversion from right-to-left is already made
      */
     size_t get_occupied_index(size_t electron_index) const { return occupation_indices(electron_index); }
 

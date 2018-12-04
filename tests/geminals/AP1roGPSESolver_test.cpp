@@ -17,7 +17,7 @@
 // 
 #define BOOST_TEST_MODULE "AP1roGPSESolver"
 
-#include "AP1roG/AP1roGPSESolver.hpp"
+#include "geminals/AP1roGPSESolver.hpp"
 //#include "AP1roG/AP1roGGeminalCoefficients.hpp"
 
 #include "HamiltonianParameters/HamiltonianParameters.hpp"

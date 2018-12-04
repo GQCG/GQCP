@@ -24,10 +24,12 @@ set(PROJECT_SOURCE_FOLDER ${CMAKE_SOURCE_DIR}/src)
 # Find the source files
 set(PROJECT_SOURCE_FILES
         ${PROJECT_SOURCE_FOLDER}/CISolver/CISolver.cpp
-        ${PROJECT_SOURCE_FOLDER}/AP1roG/AP1roG.cpp
-        ${PROJECT_SOURCE_FOLDER}/AP1roG/AP1roGGeminalCoefficients.cpp
-        ${PROJECT_SOURCE_FOLDER}/AP1roG/AP1roGJacobiOrbitalOptimizer.cpp
-        ${PROJECT_SOURCE_FOLDER}/AP1roG/AP1roGPSESolver.cpp
+        ${PROJECT_SOURCE_FOLDER}/geminals/AP1roG.cpp
+        ${PROJECT_SOURCE_FOLDER}/geminals/AP1roGGeminalCoefficients.cpp
+        ${PROJECT_SOURCE_FOLDER}/geminals/AP1roGJacobiOrbitalOptimizer.cpp
+        ${PROJECT_SOURCE_FOLDER}/geminals/AP1roGPSESolver.cpp
+        ${PROJECT_SOURCE_FOLDER}/geminals/APIGGeminalCoefficients.cpp
+        ${PROJECT_SOURCE_FOLDER}/geminals/BaseAPIGGeminalCoefficients.cpp
         ${PROJECT_SOURCE_FOLDER}/FockSpace/BaseFockSpace.cpp
         ${PROJECT_SOURCE_FOLDER}/FockSpace/FockSpace.cpp
         ${PROJECT_SOURCE_FOLDER}/FockSpace/ONV.cpp
@@ -79,10 +81,12 @@ set(PROJECT_INCLUDE_FOLDER ${CMAKE_SOURCE_DIR}/include)
 # Find the header files
 set(PROJECT_INCLUDE_FILES
         ${PROJECT_INCLUDE_FOLDER}/CISolver/CISolver.hpp
-        ${PROJECT_INCLUDE_FOLDER}/AP1roG/AP1roG.hpp
-        ${PROJECT_INCLUDE_FOLDER}/AP1roG/AP1roGGeminalCoefficients.hpp
-        ${PROJECT_INCLUDE_FOLDER}/AP1roG/AP1roGJacobiOrbitalOptimizer.hpp
-        ${PROJECT_INCLUDE_FOLDER}/AP1roG/AP1roGPSESolver.hpp
+        ${PROJECT_INCLUDE_FOLDER}/geminals/AP1roG.hpp
+        ${PROJECT_INCLUDE_FOLDER}/geminals/AP1roGGeminalCoefficients.hpp
+        ${PROJECT_INCLUDE_FOLDER}/geminals/AP1roGJacobiOrbitalOptimizer.hpp
+        ${PROJECT_INCLUDE_FOLDER}/geminals/AP1roGPSESolver.hpp
+        ${PROJECT_INCLUDE_FOLDER}/geminals/APIGGeminalCoefficients.hpp
+        ${PROJECT_INCLUDE_FOLDER}/geminals/BaseAPIGGeminalCoefficients.hpp
         ${PROJECT_INCLUDE_FOLDER}/FockSpace/BaseFockSpace.hpp
         ${PROJECT_INCLUDE_FOLDER}/FockSpace/Configuration.hpp
         ${PROJECT_INCLUDE_FOLDER}/FockSpace/FockSpace.hpp
@@ -143,10 +147,11 @@ set(PROJECT_TEST_SOURCE_FILES
         ${PROJECT_TESTS_FOLDER}/CISolver/CISolver_Hubbard_Davidson_test.cpp
         ${PROJECT_TESTS_FOLDER}/CISolver/CISolver_Hubbard_Dense_test.cpp
         ${PROJECT_TESTS_FOLDER}/CISolver/CISolver_test.cpp
-        ${PROJECT_TESTS_FOLDER}/AP1roG/AP1roG_test.cpp
-        ${PROJECT_TESTS_FOLDER}/AP1roG/AP1roGGeminalCoefficients_test.cpp
-        ${PROJECT_TESTS_FOLDER}/AP1roG/OO_AP1roG_test.cpp
-        ${PROJECT_TESTS_FOLDER}/AP1roG/AP1roGPSESolver_test.cpp
+        ${PROJECT_TESTS_FOLDER}/geminals/AP1roG_test.cpp
+        ${PROJECT_TESTS_FOLDER}/geminals/AP1roGGeminalCoefficients_test.cpp
+        ${PROJECT_TESTS_FOLDER}/geminals/OO_AP1roG_test.cpp
+        ${PROJECT_TESTS_FOLDER}/geminals/AP1roGPSESolver_test.cpp
+        ${PROJECT_TESTS_FOLDER}/geminals/APIGGeminalCoefficients_test.cpp
         ${PROJECT_TESTS_FOLDER}/FockSpace/FockSpace_test.cpp
         ${PROJECT_TESTS_FOLDER}/FockSpace/ONV_test.cpp
         ${PROJECT_TESTS_FOLDER}/FockSpace/SelectedFockSpace_test.cpp

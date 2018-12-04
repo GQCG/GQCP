@@ -18,7 +18,7 @@
 #define BOOST_TEST_MODULE "AP1roGGeminalCoefficients"
 
 
-#include "AP1roG/AP1roGGeminalCoefficients.hpp"
+#include "geminals/AP1roGGeminalCoefficients.hpp"
 
 #include <boost/test/unit_test.hpp>
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
@@ -29,11 +29,6 @@ BOOST_AUTO_TEST_CASE ( numberOfGeminalCoefficients ) {
     BOOST_CHECK_EQUAL(GQCP::AP1roGGeminalCoefficients::numberOfGeminalCoefficients(2, 5), 6);
 
     BOOST_CHECK_THROW(GQCP::AP1roGGeminalCoefficients::numberOfGeminalCoefficients(4, 4), std::invalid_argument);
-}
-
-
-BOOST_AUTO_TEST_CASE ( default_constructor ) {
-    GQCP::AP1roGGeminalCoefficients gem_coeff;
 }
 
 
@@ -59,13 +54,6 @@ BOOST_AUTO_TEST_CASE ( constructor_vector ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( asVector ) {
-
-    GQCP::AP1roGGeminalCoefficients g (4, 6);
-    g.asVector();
-}
-
-
 BOOST_AUTO_TEST_CASE ( asMatrix ) {
 
     // For N_P=2 and K=5, we have an AP1roG geminal coefficient matrix that looks like the following matrix:
@@ -83,39 +71,41 @@ BOOST_AUTO_TEST_CASE ( asMatrix ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( vector_index ) {
+BOOST_AUTO_TEST_CASE ( vectorIndex ) {
 
-    // N_P=2, K=11
-    GQCP::AP1roGGeminalCoefficients geminal_coefficients (2, 11);
+    size_t K = 11;
+    size_t N_P = 2;
+    GQCP::AP1roGGeminalCoefficients gem_coeff (N_P, K);
 
-    BOOST_CHECK_EQUAL(geminal_coefficients.vectorIndex(0, 2), 0);
-    BOOST_CHECK_EQUAL(geminal_coefficients.vectorIndex(0, 3), 1);
-    BOOST_CHECK_EQUAL(geminal_coefficients.vectorIndex(1, 2), 9);
-    BOOST_CHECK_EQUAL(geminal_coefficients.vectorIndex(1, 3), 10);
+    BOOST_CHECK_EQUAL(gem_coeff.vectorIndex(0, 2), 0);
+    BOOST_CHECK_EQUAL(gem_coeff.vectorIndex(0, 3), 1);
+    BOOST_CHECK_EQUAL(gem_coeff.vectorIndex(1, 2), 9);
+    BOOST_CHECK_EQUAL(gem_coeff.vectorIndex(1, 3), 10);
 
     // Require a throw if i > N_P
-    BOOST_REQUIRE_THROW(geminal_coefficients.vectorIndex(3, 3), std::invalid_argument);
+    BOOST_REQUIRE_THROW(gem_coeff.vectorIndex(3, 3), std::invalid_argument);
 
     // Require a throw if a < N_P
-    BOOST_REQUIRE_THROW(geminal_coefficients.vectorIndex(0, 1), std::invalid_argument);
+    BOOST_REQUIRE_THROW(gem_coeff.vectorIndex(0, 1), std::invalid_argument);
 }
 
 
-BOOST_AUTO_TEST_CASE ( matrix_index ) {
+BOOST_AUTO_TEST_CASE ( matrixIndex ) {
 
-    // N_P=2, K=11
-    GQCP::AP1roGGeminalCoefficients geminal_coefficients (2, 11);
+    size_t K = 11;
+    size_t N_P = 2;
+    GQCP::AP1roGGeminalCoefficients gem_coeff (N_P, K);
 
 
-    BOOST_CHECK_EQUAL(geminal_coefficients.matrixIndexMajor(0), 0);
-    BOOST_CHECK_EQUAL(geminal_coefficients.matrixIndexMajor(1), 0);
-    BOOST_CHECK_EQUAL(geminal_coefficients.matrixIndexMajor(9), 1);
-    BOOST_CHECK_EQUAL(geminal_coefficients.matrixIndexMajor(10), 1);
+    BOOST_CHECK_EQUAL(gem_coeff.matrixIndexMajor(0), 0);
+    BOOST_CHECK_EQUAL(gem_coeff.matrixIndexMajor(1), 0);
+    BOOST_CHECK_EQUAL(gem_coeff.matrixIndexMajor(9), 1);
+    BOOST_CHECK_EQUAL(gem_coeff.matrixIndexMajor(10), 1);
 
-    BOOST_CHECK_EQUAL(geminal_coefficients.matrixIndexMinor(0), 2);
-    BOOST_CHECK_EQUAL(geminal_coefficients.matrixIndexMinor(1), 3);
-    BOOST_CHECK_EQUAL(geminal_coefficients.matrixIndexMinor(4), 6);
-    BOOST_CHECK_EQUAL(geminal_coefficients.matrixIndexMinor(5), 7);
+    BOOST_CHECK_EQUAL(gem_coeff.matrixIndexMinor(0), 2);
+    BOOST_CHECK_EQUAL(gem_coeff.matrixIndexMinor(1), 3);
+    BOOST_CHECK_EQUAL(gem_coeff.matrixIndexMinor(4), 6);
+    BOOST_CHECK_EQUAL(gem_coeff.matrixIndexMinor(5), 7);
 }
 
 
@@ -141,4 +131,55 @@ BOOST_AUTO_TEST_CASE ( operator_call ) {
     BOOST_CHECK_EQUAL(gem_coeff(1, 2), 4);
     BOOST_CHECK_EQUAL(gem_coeff(1, 3), 5);
     BOOST_CHECK_EQUAL(gem_coeff(1, 4), 6);
+}
+
+
+BOOST_AUTO_TEST_CASE ( toWaveFunction_example1 ) {
+
+    size_t K = 3;
+    size_t N_P = 1;
+
+    Eigen::VectorXd g (2);
+    g << 2, 3;
+    GQCP::AP1roGGeminalCoefficients gem_coeff (g, N_P, K);
+
+    Eigen::VectorXd ref_coefficients (3);
+    ref_coefficients << 1, 2, 3;
+
+    GQCP::FockSpace fock_space (K, N_P);
+    BOOST_CHECK(ref_coefficients.isApprox(gem_coeff.toWaveFunction(fock_space).get_coefficients()));
+}
+
+
+BOOST_AUTO_TEST_CASE ( toWaveFunction_example2 ) {
+
+    size_t K = 3;
+    size_t N_P = 2;
+
+    Eigen::VectorXd g (2);
+    g << 2, 3;
+    GQCP::AP1roGGeminalCoefficients gem_coeff (g, N_P, K);
+
+    Eigen::VectorXd ref_coefficients (3);
+    ref_coefficients << 1, 3, 2;
+
+    GQCP::FockSpace fock_space (K, N_P);
+    BOOST_CHECK(ref_coefficients.isApprox(gem_coeff.toWaveFunction(fock_space).get_coefficients()));
+}
+
+
+BOOST_AUTO_TEST_CASE ( toWaveFunction_example3 ) {
+
+    size_t K = 5;
+    size_t N_P = 2;
+
+    Eigen::VectorXd g (6);
+    g << 2, 3, 4, 5, 6, 7;
+    GQCP::AP1roGGeminalCoefficients gem_coeff (g, N_P, K);
+
+    Eigen::VectorXd ref_coefficients (10);
+    ref_coefficients << 1, 5, 2, 6, 3, 27, 7, 4, 34, 45;
+
+    GQCP::FockSpace fock_space (K, N_P);
+    BOOST_CHECK(ref_coefficients.isApprox(gem_coeff.toWaveFunction(fock_space).get_coefficients()));
 }

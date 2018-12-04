@@ -37,6 +37,63 @@ namespace GQCP {
  */
 Eigen::MatrixXd jacobiRotationMatrix(const GQCP::JacobiRotationParameters& jacobi_rotation_parameters, size_t M);
 
+/**
+ *  @param A    the matrix
+ *  @param i    row index (starting from 0)
+ *  @param j    column index (starting from 0)
+ *
+ *  @return the i-j minor of the matrix A (i.e. delete the i-th row and j-th column)
+ */
+Eigen::MatrixXd matrixMinor(const Eigen::MatrixXd& A, size_t i, size_t j);
+
+/**
+ *  @param A        the square matrix
+ *
+ *  @return the permanent of the given square matrix using a combinatorial algorithm
+ */
+double permanent_combinatorial(const Eigen::MatrixXd& A);
+
+/**
+ *  @param S    the positive integer to be converted to Gray code
+ *
+ *  @return the Gray code of the given integer number as a bitset
+ */
+size_t gray_code(size_t S);
+
+/**
+ *  @param A        the square matrix
+ *
+ *  @return the permanent of the given square matrix using the Ryser algorithm.  Note that this algorithm does not work for dimensions larger than 64 (see https://www.codeproject.com/Articles/21282/%2FArticles%2F21282%2FCompute-Permanent-of-a-Matrix-with-Ryser-s-Algorit)
+ */
+double permanent_ryser(const Eigen::MatrixXd& A);
+
+/**
+ *  @param v            the vector index
+ *  @param cols         the number of columns in the matrix
+ *  @param skipped      the number of columns that are skipped in the matrix representation
+ *
+ *  @return the row-major major (non-contiguous) index given the corresponding vector index
+ */
+size_t matrixIndexMajor(size_t v, size_t cols, size_t skipped=0);
+
+/**
+ *  @param v            the vector index
+ *  @param cols         the number of columns in the matrix
+ *  @param skipped      the number of columns that are skipped in the matrix representation
+ *
+ *  @return the row-major minor (contiguous) index given the corresponding vector index
+ */
+size_t matrixIndexMinor(size_t v, size_t cols, size_t skipped=0);
+
+/**
+ *  @param i            the row index
+ *  @param j            the column index
+ *  @param cols         the number of columns in de matrix
+ *  @param skipped      the number of columns that are skipped in the matrix representation
+ *
+ *  @return the vector index given the corresponding row-major matrix indices
+ */
+size_t vectorIndex(size_t i, size_t j, size_t cols, size_t skipped=0);
 
 
 }  // namespace GQCP
