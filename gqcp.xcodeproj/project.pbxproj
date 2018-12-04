@@ -269,7 +269,6 @@
 		561401B121B065B6002C5D40 /* DOCI_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FB9221B02EDE002C5D40 /* DOCI_test.cpp */; };
 		561401B221B065BD002C5D40 /* FCI_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FB9121B02EDE002C5D40 /* FCI_test.cpp */; };
 		561401B321B065C6002C5D40 /* Hubbard_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FB9021B02EDE002C5D40 /* Hubbard_test.cpp */; };
-		561401B421B065D0002C5D40 /* HamiltonianParameters_constructors_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FB8D21B02EDE002C5D40 /* HamiltonianParameters_constructors_test.cpp */; };
 		561401B521B065E0002C5D40 /* ERJacobiLocalizer_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FB8821B02EDE002C5D40 /* ERJacobiLocalizer_test.cpp */; };
 		561401B621B065EB002C5D40 /* HamiltonianParameters_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FB8E21B02EDE002C5D40 /* HamiltonianParameters_test.cpp */; };
 		561401B721B065F4002C5D40 /* ERNewtonLocalizer_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FB8921B02EDE002C5D40 /* ERNewtonLocalizer_test.cpp */; };
@@ -342,7 +341,6 @@
 		5614FA3B21B029FB002C5D40 /* WaveFunction.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5614F9C521B029FB002C5D40 /* WaveFunction.hpp */; };
 		5614FA3C21B029FB002C5D40 /* WaveFunctionReader.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5614F9C621B029FB002C5D40 /* WaveFunctionReader.hpp */; };
 		5614FA3D21B029FB002C5D40 /* BaseHamiltonianParameters.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5614F9C821B029FB002C5D40 /* BaseHamiltonianParameters.hpp */; };
-		5614FA3E21B029FB002C5D40 /* HamiltonianParameters_constructors.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5614F9C921B029FB002C5D40 /* HamiltonianParameters_constructors.hpp */; };
 		5614FA3F21B029FB002C5D40 /* HamiltonianParameters.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5614F9CA21B029FB002C5D40 /* HamiltonianParameters.hpp */; };
 		5614FA4021B029FB002C5D40 /* DOCI.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5614F9CC21B029FB002C5D40 /* DOCI.hpp */; };
 		5614FA4121B029FB002C5D40 /* HamiltonianBuilder.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5614F9CD21B029FB002C5D40 /* HamiltonianBuilder.hpp */; };
@@ -2003,7 +2001,6 @@
 		5614F9C521B029FB002C5D40 /* WaveFunction.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = WaveFunction.hpp; sourceTree = "<group>"; };
 		5614F9C621B029FB002C5D40 /* WaveFunctionReader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = WaveFunctionReader.hpp; sourceTree = "<group>"; };
 		5614F9C821B029FB002C5D40 /* BaseHamiltonianParameters.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BaseHamiltonianParameters.hpp; sourceTree = "<group>"; };
-		5614F9C921B029FB002C5D40 /* HamiltonianParameters_constructors.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HamiltonianParameters_constructors.hpp; sourceTree = "<group>"; };
 		5614F9CA21B029FB002C5D40 /* HamiltonianParameters.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HamiltonianParameters.hpp; sourceTree = "<group>"; };
 		5614F9CC21B029FB002C5D40 /* DOCI.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DOCI.hpp; sourceTree = "<group>"; };
 		5614F9CD21B029FB002C5D40 /* HamiltonianBuilder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HamiltonianBuilder.hpp; sourceTree = "<group>"; };
@@ -2159,7 +2156,6 @@
 		5614FB8821B02EDE002C5D40 /* ERJacobiLocalizer_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ERJacobiLocalizer_test.cpp; sourceTree = "<group>"; };
 		5614FB8921B02EDE002C5D40 /* ERNewtonLocalizer_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ERNewtonLocalizer_test.cpp; sourceTree = "<group>"; };
 		5614FB8B21B02EDE002C5D40 /* WaveFunction_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = WaveFunction_test.cpp; sourceTree = "<group>"; };
-		5614FB8D21B02EDE002C5D40 /* HamiltonianParameters_constructors_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HamiltonianParameters_constructors_test.cpp; sourceTree = "<group>"; };
 		5614FB8E21B02EDE002C5D40 /* HamiltonianParameters_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HamiltonianParameters_test.cpp; sourceTree = "<group>"; };
 		5614FB9021B02EDE002C5D40 /* Hubbard_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Hubbard_test.cpp; sourceTree = "<group>"; };
 		5614FB9121B02EDE002C5D40 /* FCI_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FCI_test.cpp; sourceTree = "<group>"; };
@@ -2913,7 +2909,6 @@
 			isa = PBXGroup;
 			children = (
 				5614F9C821B029FB002C5D40 /* BaseHamiltonianParameters.hpp */,
-				5614F9C921B029FB002C5D40 /* HamiltonianParameters_constructors.hpp */,
 				5614F9CA21B029FB002C5D40 /* HamiltonianParameters.hpp */,
 			);
 			path = HamiltonianParameters;
@@ -3354,7 +3349,6 @@
 		5614FB8C21B02EDE002C5D40 /* HamiltonianParameters */ = {
 			isa = PBXGroup;
 			children = (
-				5614FB8D21B02EDE002C5D40 /* HamiltonianParameters_constructors_test.cpp */,
 				5614FB8E21B02EDE002C5D40 /* HamiltonianParameters_test.cpp */,
 			);
 			path = HamiltonianParameters;
@@ -3495,7 +3489,6 @@
 				56272DB921B6CBFA008BEA47 /* AP1roGJacobiOrbitalOptimizer.hpp in Headers */,
 				5614FA1221B029FB002C5D40 /* Configuration.hpp in Headers */,
 				5614FA2121B029FB002C5D40 /* FCIRDMBuilder.hpp in Headers */,
-				5614FA3E21B029FB002C5D40 /* HamiltonianParameters_constructors.hpp in Headers */,
 				56272DBC21B6CBFA008BEA47 /* BaseAPIGGeminalCoefficients.hpp in Headers */,
 				5614FA1721B029FB002C5D40 /* AOBasis.hpp in Headers */,
 				5614FA1B21B029FB002C5D40 /* RHF.hpp in Headers */,
@@ -4811,7 +4804,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				561401B421B065D0002C5D40 /* HamiltonianParameters_constructors_test.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
