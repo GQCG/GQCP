@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "AP1roG/AP1roGJacobiOrbitalOptimizer.hpp"
+#include "geminals/AP1roGJacobiOrbitalOptimizer.hpp"
 
 #include <cmath>
 #include <queue>
@@ -23,7 +23,7 @@
 #include <boost/math/constants/constants.hpp>
 #include <numopt.hpp>
 
-#include "AP1roG/AP1roGPSESolver.hpp"
+#include "geminals/AP1roGPSESolver.hpp"
 
 
 namespace GQCP {

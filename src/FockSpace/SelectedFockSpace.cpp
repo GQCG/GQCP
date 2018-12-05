@@ -17,8 +17,9 @@
 // 
 #include "FockSpace/SelectedFockSpace.hpp"
 
-
-#include "boost/dynamic_bitset.hpp"
+#include <boost/dynamic_bitset.hpp>
+#include <boost/numeric/conversion/converter.hpp>
+#include <boost/math/special_functions.hpp>
 
 
 namespace GQCP {

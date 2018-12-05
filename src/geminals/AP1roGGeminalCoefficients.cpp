@@ -15,7 +15,11 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "AP1roG/AP1roGGeminalCoefficients.hpp"
+#include "geminals/AP1roGGeminalCoefficients.hpp"
+
+#include "geminals/APIGGeminalCoefficients.hpp"
+#include "FockSpace/FockSpace.hpp"
+#include "miscellaneous.hpp"
 
 
 namespace GQCP {
@@ -24,14 +28,27 @@ namespace GQCP {
 /*
  *  CONSTRUCTORS
  */
+
 /**
  *  Default constructor setting everything to zero
  */
 AP1roGGeminalCoefficients::AP1roGGeminalCoefficients() :
-    N_P (0),
-    K (0),
-    g (Eigen::VectorXd::Zero(0))
+    BaseAPIGGeminalCoefficients()
 {}
+
+/**
+ *  @param g        the geminal coefficients in a vector representation that is in row-major storage
+ *
+ *  @param N_P      the number of electron pairs (= the number of geminals)
+ *  @param K        the number of spatial orbitals
+ */
+AP1roGGeminalCoefficients::AP1roGGeminalCoefficients(const Eigen::VectorXd& g, size_t N_P, size_t K) :
+    BaseAPIGGeminalCoefficients(g, N_P, K)
+{
+    if (AP1roGGeminalCoefficients::numberOfGeminalCoefficients(N_P, K) != g.size()) {
+        throw std::invalid_argument("The specified N_P and K are not compatible with the given vector of geminal coefficients.");
+    }
+}
 
 
 /**
@@ -41,25 +58,8 @@ AP1roGGeminalCoefficients::AP1roGGeminalCoefficients() :
  *  @param K        the number of spatial orbitals
  */
 AP1roGGeminalCoefficients::AP1roGGeminalCoefficients(size_t N_P, size_t K) :
-AP1roGGeminalCoefficients(Eigen::VectorXd::Zero(AP1roGGeminalCoefficients::numberOfGeminalCoefficients(N_P, K)), N_P, K)
+    AP1roGGeminalCoefficients(Eigen::VectorXd::Zero(AP1roGGeminalCoefficients::numberOfGeminalCoefficients(N_P, K)), N_P, K)
 {}
-
-
-/**
- *  @param g        the geminal coefficients in a vector representation that is in row-major storage
- *
- *  @param N_P      the number of electron pairs (= the number of geminals)
- *  @param K        the number of spatial orbitals
- */
-AP1roGGeminalCoefficients::AP1roGGeminalCoefficients(const Eigen::VectorXd& g, size_t N_P, size_t K) :
-    N_P (N_P),
-    K (K),
-    g (g)
-{
-    if (AP1roGGeminalCoefficients::numberOfGeminalCoefficients(N_P, K) != g.size()) {
-        throw std::invalid_argument("The specified N_P and K are not compatible with the given vector of geminal coefficients.");
-    }
-}
 
 
 /**
@@ -78,8 +78,8 @@ AP1roGGeminalCoefficients AP1roGGeminalCoefficients::WeakInteractionLimit(const 
     // Provide the weak interaction limit values for the geminal coefficients
     Eigen::VectorXd g_vector = Eigen::VectorXd::Zero(number_of_geminal_coefficients);
     for (size_t mu = 0; mu < number_of_geminal_coefficients; mu++) {
-        size_t i = AP1roGGeminalCoefficients::matrixIndexMajor(K, N_P, mu);
-        size_t a = AP1roGGeminalCoefficients::matrixIndexMinor(K, N_P, mu);
+        size_t i = GQCP::matrixIndexMajor(mu, K, N_P);
+        size_t a = GQCP::matrixIndexMinor(mu, K, N_P);
 
         g_vector(mu) = - g(a,i,a,i) / (2 * (h(a,a) - h(i,i)));
     }
@@ -88,32 +88,6 @@ AP1roGGeminalCoefficients AP1roGGeminalCoefficients::WeakInteractionLimit(const 
     return AP1roGGeminalCoefficients(g_vector, N_P, K);
 }
 
-
-
-/*
- *  OPERATORS
- */
-
-/**
- *  @param mu       a vector index
- *
- *  @return the geminal coefficient g_mu
- */
-double AP1roGGeminalCoefficients::operator()(size_t mu) const {
-    return this->g(mu);
-}
-
-
-/**
- *  @param i        the major index (changes in i are not contiguous)
- *  @param a        the minor index (changes in a are contiguous)
- *
- *  @return the geminal coefficient G_i^a
- */
-double AP1roGGeminalCoefficients::operator()(size_t i, size_t a) const {
-    size_t mu = this->vectorIndex(i, a);
-    return this->operator()(mu);
-}
 
 
 /*
@@ -136,57 +110,6 @@ size_t AP1roGGeminalCoefficients::numberOfGeminalCoefficients(size_t N_P, size_t
     return N_P * (K - N_P);
 }
 
-/**
- *  @param K        the number of spatial orbitals
- *  @param N_P      the number of electron pairs (= the number of geminals)
- *  @param vector_index     the vector index of the geminal coefficient
- *
- *  @return the major (non-contiguous) index i (i.e. the subscript) in the matrix of the geminal coefficients. Note that i is in [0 ... N_P[
- */
-size_t AP1roGGeminalCoefficients::matrixIndexMajor(size_t K, size_t N_P, size_t vector_index) {
-
-    return vector_index / (K - N_P);  // in the mathematical notes, we use the floor function, which is the same as integer division
-}
-
-
-/**
- *  @param K        the number of spatial orbitals
- *  @param N_P      the number of electron pairs (= the number of geminals)
- *  @param vector_index     the vector index of the geminal coefficient
- *
- *  @return the minor (contiguous) index a (i.e. the subscript) in the matrix of the geminal coefficients. Note that a is in [N_P ... K[
- */
-size_t AP1roGGeminalCoefficients::matrixIndexMinor(size_t K, size_t N_P, size_t vector_index) {
-
-    return vector_index % (K - N_P) + N_P;  // we add N_P since we want a to be in [N_P ... K[
-}
-
-/**
- *  @param K        the number of spatial orbitals
- *  @param N_P      the number of electron pairs (= the number of geminals)
- *
- *  @param i        the major index (changes in i are not contiguous)
- *  @param a        the minor index (changes in a are contiguous)
- *
- *  @return the vector index of the geminal coefficient G_i^a
- */
-size_t AP1roGGeminalCoefficients::vectorIndex(size_t K, size_t N_P, size_t i, size_t a) {
-
-    // Check for invalid values for i and a
-    if (i >= N_P) {
-        throw std::invalid_argument("The major index i (subscript) must be smaller than N_P.");
-    }
-    if (a < N_P) {
-        throw std::invalid_argument("The minor index a (superscript) must be larger than or equal to N_P.");
-    }
-
-
-    // The conversion from i and a to a single vector index is just a little more complicated than row-major storage
-    // If we were to use the row-major storage formula, we would end up with
-    //      mu = a + (K - N_P) * i
-    // but since we would really like our indices abcd (virtual orbitals) to start at N_P, we should subtract N_P accordingly
-    return (a - N_P) + (K - N_P) * i;
-}
 
 
 /*
@@ -217,34 +140,88 @@ Eigen::MatrixXd AP1roGGeminalCoefficients::asMatrix() const {
 /**
  *  @param vector_index     the vector index of the geminal coefficient
  *
- *  @return the major (non-contiguous) index i (i.e. the subscript) in the matrix of the geminal coefficients. Note that i is in [0 ... N_P[
+ *  @return the major (geminal, non-contiguous) index i (i.e. the subscript) in the matrix of the geminal coefficients. Note that i is in [0 ... N_P[
  */
 size_t AP1roGGeminalCoefficients::matrixIndexMajor(size_t vector_index) const {
 
-    return AP1roGGeminalCoefficients::matrixIndexMajor(this->K, this->N_P, vector_index);
+    return GQCP::matrixIndexMajor(vector_index, this->K, this->N_P);
 }
 
 
 /**
  *  @param vector_index     the vector index of the geminal coefficient
  *
- *  @return the minor (contiguous) index a (i.e. the subscript) in the matrix of the geminal coefficients. Note that a is in [N_P ... K[
+ *  @return the minor (virtual orbital, contiguous) index a (i.e. the subscript) in the matrix of the geminal coefficients. Note that a is in [N_P ... K[
  */
 size_t AP1roGGeminalCoefficients::matrixIndexMinor(size_t vector_index) const {
 
-    return AP1roGGeminalCoefficients::matrixIndexMinor(this->K, this->N_P, vector_index);
+    return GQCP::matrixIndexMinor(vector_index, this->K, this->N_P);
 }
 
 
 /**
- *  @param i        the major index (changes in i are not contiguous)
- *  @param a        the minor index (changes in a are contiguous)
+ *  @param i        the major (geminal) index (changes in i are not contiguous)
+ *  @param a        the minor (virtual orbital) index (changes in a are contiguous)
  *
  *  @return the vector index of the geminal coefficient G_i^a
  */
 size_t AP1roGGeminalCoefficients::vectorIndex(size_t i, size_t a) const {
 
-    return AP1roGGeminalCoefficients::vectorIndex(this->K, this->N_P, i, a);
+    if (i >= N_P) {
+        throw std::invalid_argument("The major index i (subscript) must be smaller than N_P.");
+    }
+    if (a < N_P) {
+        throw std::invalid_argument("The minor index a (superscript) must be larger than or equal to N_P.");
+    }
+
+
+    return GQCP::vectorIndex(i, a, this->K, this->N_P);
+}
+
+
+/**
+ *  @param onv      the ONV that is being projected on
+ *
+ *  @return the overlap of the AP1roG wave function with the given on, i.e. the projection of the APIG wave function onto that ONV
+ */
+double AP1roGGeminalCoefficients::overlap(const ONV& onv) const {
+
+    // For an AP1roG, we use a simplification for singly and doubly pair-excited ONVs
+
+
+    FockSpace fock_space (this->K, this->N_P);  // the DOCI Fock space
+    ONV reference = fock_space.get_ONV(0);
+
+    if (onv.countNumberOfDifferences(reference) == 0) {  // no excitations
+        return 1.0;
+    }
+
+    else if (onv.countNumberOfDifferences(reference) == 2) {  // one pair excitation
+
+        size_t i = reference.findDifferentOccupations(onv)[0];
+        size_t a = onv.findDifferentOccupations(reference)[0];
+
+        return this->operator()(i, a);
+    }
+
+    else if (onv.countNumberOfDifferences(reference) == 4) {  // two pair excitations
+
+        auto different_occupied = reference.findDifferentOccupations(onv);
+        auto different_virtual = onv.findDifferentOccupations(reference);
+
+        size_t i = different_occupied[0];
+        size_t j = different_occupied[1];
+        size_t a = different_virtual[0];
+        size_t b = different_virtual[1];
+
+        return this->operator()(i, a) * this->operator()(j, b) + this->operator()(j, a) * this->operator()(i, b);
+    }
+
+    else {
+
+        APIGGeminalCoefficients APIG (this->asMatrix());
+        return APIG.overlap(onv);
+    }
 }
 
 
