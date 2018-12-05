@@ -94,13 +94,13 @@ BOOST_AUTO_TEST_CASE ( calculateTotalNucleicCharge ) {
 BOOST_AUTO_TEST_CASE ( parseXYZFile ) {
 
     // Make sure we get an error when a nonsense path is given for the .xyz file name
-    BOOST_REQUIRE_THROW(GQCP::Molecule ("this is a nonsense data path"), std::runtime_error);
+    BOOST_REQUIRE_THROW(GQCP::Molecule::Readxyz("this is a nonsense data path"), std::runtime_error);
 
     // Make sure we get an error when a path with a wrong extension is given
-    BOOST_REQUIRE_THROW(GQCP::Molecule ("../tests/ref_data/nuclear.data"), std::runtime_error);
+    BOOST_REQUIRE_THROW(GQCP::Molecule::Readxyz("../tests/ref_data/nuclear.data"), std::runtime_error);
 
     // Make sure we don't get an error when a correct path is given
-    BOOST_REQUIRE_NO_THROW(GQCP::Molecule ("../tests/data/h2o.xyz"));
+    BOOST_REQUIRE_NO_THROW(GQCP::Molecule::Readxyz("../tests/data/h2o.xyz"));
 }
 
 
@@ -108,10 +108,10 @@ BOOST_AUTO_TEST_CASE ( molecule_ion_constructor ) {
 
     // Create some Molecule objects
     const std::string xyzfilename = "../tests/data/h2o.xyz";
-    GQCP::Molecule water (xyzfilename);
-    GQCP::Molecule water_anion (xyzfilename, -1);
-    GQCP::Molecule water_neutral (xyzfilename, 0);
-    GQCP::Molecule water_cation (xyzfilename, +1);
+    auto water = GQCP::Molecule::Readxyz(xyzfilename);
+    auto water_anion = GQCP::Molecule::Readxyz(xyzfilename, -1);
+    auto water_neutral = GQCP::Molecule::Readxyz(xyzfilename, 0);
+    auto water_cation = GQCP::Molecule::Readxyz(xyzfilename, +1);
 
     // Test the number of electrons created by the constructor
     BOOST_CHECK_EQUAL(water.get_N(), 10);
@@ -200,7 +200,7 @@ BOOST_AUTO_TEST_CASE ( xyz_filename_constructor ) {
     };
     GQCP::Molecule molecule_atoms (atoms);
 
-    GQCP::Molecule molecule_xyz ("../tests/data/h2o.xyz");
+    auto molecule_xyz = GQCP::Molecule::Readxyz("../tests/data/h2o.xyz");
 
     // Check if the conversion from Bohr to Angstrom is correct
     BOOST_CHECK(molecule_atoms.isEqualTo(molecule_xyz, 1.0e-05));
@@ -237,7 +237,7 @@ BOOST_AUTO_TEST_CASE ( methods_h2 ) {
     double ref_internuclear_repulsion_energy = 0.714285658963;
 
     // Create the hydrogen gas molecule
-    GQCP::Molecule h2 ("../tests/data/h2_szabo.xyz");
+    auto h2 = GQCP::Molecule::Readxyz("../tests/data/h2_szabo.xyz");
 
     // Test the basic methods
     BOOST_CHECK_EQUAL(h2.numberOfAtoms(), 2);
@@ -254,7 +254,7 @@ BOOST_AUTO_TEST_CASE ( methods_water ) {
     double ref_internuclear_repulsion_energy = 8.00236693455;
 
     // Create the water molecule
-    GQCP::Molecule water ("../tests/data/h2o.xyz");
+    auto water = GQCP::Molecule::Readxyz("../tests/data/h2o.xyz");
 
     // Test the basic methods
     BOOST_CHECK_EQUAL(water.numberOfAtoms(), 3);
@@ -329,6 +329,3 @@ BOOST_AUTO_TEST_CASE ( H2Chain ) {
     BOOST_CHECK(h2_chain_charged.numberOfAtoms() == 8);
     BOOST_CHECK(h2_chain_charged.get_N() == 10);
 }
-
-
-// a, b, spacing > 0

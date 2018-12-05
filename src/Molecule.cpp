@@ -29,8 +29,47 @@
 namespace GQCP {
 
 
+
 /*
- *  PRIVATE METHODS
+ *  CONSTRUCTORS
+ */
+
+/**
+ *  @param atoms        the atoms that make up the molecule, with coordinates in bohr
+ *  @param charge       the charge of the molecule:
+ *                          +1 -> cation (one electron less than the neutral molecule)
+ *                           0 -> neutral molecule
+ *                          -1 -> anion (one electron more than the neutral molecule)
+ */
+Molecule::Molecule(const std::vector<GQCP::Atom>& atoms, int charge) :
+    atoms (atoms),
+    N (this->calculateTotalNucleicCharge() - charge)
+{
+    // Check if the total positive charge is valid, e.g. H^(2+) does not exist
+    if (charge > 0) {
+        if (this->calculateTotalNucleicCharge() < charge) {
+            throw std::invalid_argument("You cannot create a molecule with these atoms and this much of a total positive charge.");
+        }
+    }
+
+    // Check if there are no duplicate atoms
+    // The atoms are const, so we will make a copy to check if there are duplicates
+    auto atoms_copy = this->atoms;
+
+    // Sort and unique
+    std::sort(atoms_copy.begin(), atoms_copy.end());
+    auto last_it = std::unique(atoms_copy.begin(), atoms_copy.end());
+
+    // If the iterator returned from unique is the same as the end iterator, there are no duplicate items
+    if (last_it != atoms_copy.end()) {
+        throw std::invalid_argument("There can't be two equal atoms on the same position.");
+    }
+}
+
+
+
+/*
+ *  NAMED CONSTRUCTORS
  */
 
 /**
@@ -38,7 +77,7 @@ namespace GQCP {
  *
  *  @return a vector of Atoms that are in the given xyz-file
  */
-std::vector<GQCP::Atom> Molecule::parseXYZFile(const std::string& xyz_filename) {
+Molecule Molecule::Readxyz(const std::string& xyz_filename, int charge) {
 
     // Find the extension of the given path (https://stackoverflow.com/a/51992)
     std::string extension;
@@ -93,88 +132,11 @@ std::vector<GQCP::Atom> Molecule::parseXYZFile(const std::string& xyz_filename) 
         if (number_of_atoms > atoms.size()) {
             throw std::invalid_argument("The .xyz-file contains more atoms than specified on its first line.");
         } else {
-            return atoms;
+            return Molecule(atoms, charge);
         }
     }
 }
 
-
-
-/*
- *  CONSTRUCTORS
- */
-
-/**
- *  A constructor that creates a neutral molecule
- *
- *  @param atoms     the atoms that make up the molecule, with coordinates in bohr
- *  @param molecular_charge     +1 -> cation (one electron less than the neutral molecule)
- *                               0 -> neutral molecule
- *                              -1 -> anion (one electron more than the neutral molecule)
- */
-Molecule::Molecule(const std::vector<GQCP::Atom>& atoms, int molecular_charge) :
-    atoms (atoms),
-    N (this->calculateTotalNucleicCharge() - molecular_charge)
-{
-    // Check if the total positive charge is valid, e.g. H^(2+) does not exist
-    if (molecular_charge > 0) {
-        if (this->calculateTotalNucleicCharge() < molecular_charge) {
-            throw std::invalid_argument("You cannot create a molecule with these atoms and this much of a total positive charge.");
-        }
-    }
-
-    // Check if there are no duplicate atoms
-    // The atoms are const, so we will make a copy to check if there are duplicates
-    auto atoms_copy = this->atoms;
-
-    // Sort and unique
-    std::sort(atoms_copy.begin(), atoms_copy.end());
-    auto last_it = std::unique(atoms_copy.begin(), atoms_copy.end());
-
-    // If the iterator returned from unique is the same as the end iterator, there are no duplicate items
-    if (last_it != atoms_copy.end()) {
-        throw std::invalid_argument("There can't be two equal atoms on the same position.");
-    }
-}
-
-
-/**
- *  A constructor that creates a neutral molecule
- *
- *  @param atoms     the atoms that make up the molecule, with coordinates in bohr
- */
-Molecule::Molecule(const std::vector<GQCP::Atom>& atoms) :
-    Molecule (atoms, 0)
-{}
-
-
-/**
- *  A constructor from that creates a charged molecule
- *
- *  @param xyz_filename     the .xyz-file that contains the molecular coordinates in Angstrom
- *  @param molecular_charge     +1 -> cation (one electron less than the neutral molecule)
- *                               0 -> neutral molecule
- *                              -1 -> anion (one electron more than the neutral molecule)
- */
-Molecule::Molecule(const std::string& xyz_filename, int molecular_charge) :
-    Molecule (Molecule::parseXYZFile(xyz_filename), molecular_charge)
-{}
-
-
-/**
- *  A constructor that creates a neutral molecule
- *
- *  @param xyz_filename     the .xyz-file that contains the molecular coordinates in Angstrom
- */
-Molecule::Molecule(const std::string& xyz_filename) :
-    Molecule (xyz_filename, 0)
-{}
-
-
-
-/*
- *  NAMED CONSTRUCTORS
- */
 
 /**
  *  @param n            the number of H atoms
@@ -333,7 +295,7 @@ size_t Molecule::calculateTotalNucleicCharge() const {
  *  @param index1   the index of the first atom
  *  @param index2   the index of the second atom
  *
- *  @return the distance between the two atoms at index1 and index2
+ *  @return the distance between the two atoms at index1 and index2 in bohr
  */
 double Molecule::calculateInternuclearDistance(size_t index1, size_t index2) const {
 

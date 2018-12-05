@@ -21,7 +21,6 @@
 #include "CISolver/CISolver.hpp"
 #include "HamiltonianBuilder/DOCI.hpp"
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
-#include "HamiltonianParameters/HamiltonianParameters_constructors.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
 
 #include <boost/test/unit_test.hpp>
@@ -37,7 +36,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_h2o_sto3g_klaas_Davidson ) {
 
     // Do a DOCI calculation based on a given FCIDUMP file
     // Create the Hamiltonian Parameters
-    auto ham_par = GQCP::readFCIDUMPFile("../tests/data/h2o_sto3g_klaas.FCIDUMP");
+    auto ham_par = GQCP::HamiltonianParameters::ReadFCIDUMP("../tests/data/h2o_sto3g_klaas.FCIDUMP");
 
     // The species contains 10 electrons and 7 basis functions, this requires a single Fock Space of 7 orbitals and 5 electrons
     GQCP::FockSpace fock_space (ham_par.get_K(), 5);  // dim = 21
@@ -65,7 +64,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_h2o_sto3g_klaas_Davidson ) {
 BOOST_AUTO_TEST_CASE ( DOCI_h2_sto3g_dense_vs_Davidson ) {
 
     // Create the molecular Hamiltonian parameters in an AO basis
-    GQCP::Molecule h2 ("../tests/data/h2.xyz");
+    auto h2 = GQCP::Molecule::Readxyz("../tests/data/h2.xyz");
     auto mol_ham_par = GQCP::HamiltonianParameters::Molecular(h2, "STO-3G");
 
     // Create a plain RHF SCF solver and solve the SCF equations
@@ -104,7 +103,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_h2_sto3g_dense_vs_Davidson ) {
 BOOST_AUTO_TEST_CASE ( DOCI_h2_631g_dense_vs_Davidson ) {
 
     // Create the molecular Hamiltonian parameters in an AO basis
-    GQCP::Molecule h2 ("../tests/data/h2.xyz");
+    auto h2 = GQCP::Molecule::Readxyz("../tests/data/h2.xyz");
     auto mol_ham_par = GQCP::HamiltonianParameters::Molecular(h2, "6-31G");
 
     // Create a plain RHF SCF solver and solve the SCF equations
@@ -148,7 +147,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_beh_cation_631g_klaas_Davidson ) {
 
     // Do a DOCI calculation based on a given FCIDUMP file
     // Create the Hamiltonian Parameters
-    auto ham_par = GQCP::readFCIDUMPFile("../tests/data/beh_cation_631g_caitlin.FCIDUMP");
+    auto ham_par = GQCP::HamiltonianParameters::ReadFCIDUMP("../tests/data/beh_cation_631g_caitlin.FCIDUMP");
 
     // The species contains 4 electrons and 16 basis functions, this requires a single Fock Space of 16 orbitals and 2 electrons
     GQCP::FockSpace fock_space (ham_par.get_K(), 2);  // dim = 120
@@ -181,7 +180,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_n2_sto3g_klaas_Davidson ) {
 
     // Do a DOCI calculation based on a given FCIDUMP file
     // Create the Hamiltonian Parameters
-    auto ham_par = GQCP::readFCIDUMPFile("../tests/data/n2_sto-3g_klaas.FCIDUMP");
+    auto ham_par = GQCP::HamiltonianParameters::ReadFCIDUMP("../tests/data/n2_sto-3g_klaas.FCIDUMP");
 
     GQCP::FockSpace fock_space (ham_par.get_K(), 7);  // dim = 120
 
@@ -213,7 +212,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_lih_631g_klaas_Davidson ) {
 
     // Do a DOCI calculation based on a given FCIDUMP file
     // Create the Hamiltonian Parameters
-    auto ham_par = GQCP::readFCIDUMPFile("../tests/data/lih_631g_caitlin.FCIDUMP");
+    auto ham_par = GQCP::HamiltonianParameters::ReadFCIDUMP("../tests/data/lih_631g_caitlin.FCIDUMP");
 
     GQCP::FockSpace fock_space (ham_par.get_K(), 2);  // dim = 120
 
@@ -245,7 +244,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_li2_321g_klaas_Davidson ) {
 
     // Do a DOCI calculation based on a given FCIDUMP file
     // Create the Hamiltonian Parameters
-    auto ham_par = GQCP::readFCIDUMPFile("../tests/data/li2_321g_klaas.FCIDUMP");
+    auto ham_par = GQCP::HamiltonianParameters::ReadFCIDUMP("../tests/data/li2_321g_klaas.FCIDUMP");
 
     GQCP::FockSpace fock_space (ham_par.get_K(), 3);  // dim = 816
 
@@ -277,7 +276,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_h2o_631g_klaas_Davidson ) {
 
     // Do a DOCI calculation based on a given FCIDUMP file
     // Create the Hamiltonian Parameters
-    auto ham_par = GQCP::readFCIDUMPFile("../tests/data/h2o_631g_klaas.FCIDUMP");
+    auto ham_par = GQCP::HamiltonianParameters::ReadFCIDUMP("../tests/data/h2o_631g_klaas.FCIDUMP");
 
     GQCP::FockSpace fock_space (ham_par.get_K(), 5);  // dim = 1287
 

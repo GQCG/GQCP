@@ -18,7 +18,7 @@
 #define BOOST_TEST_MODULE "PlainRHFSCFSolver"
 
 #include "RHF/PlainRHFSCFSolver.hpp"
-#include "HamiltonianParameters/HamiltonianParameters_constructors.hpp"
+#include "HamiltonianParameters/HamiltonianParameters.hpp"
 
 #include <cpputil.hpp>
 
@@ -30,12 +30,12 @@
 BOOST_AUTO_TEST_CASE ( constructor ) {
 
     // Check a correct constructor with an even number of electrons
-    GQCP::Molecule h2 ("../tests/data/h2_szabo.xyz");
+    auto h2 = GQCP::Molecule::Readxyz("../tests/data/h2_szabo.xyz");
     auto mol_ham_par = GQCP::HamiltonianParameters::Molecular(h2, "STO-3G");
     GQCP::PlainRHFSCFSolver plain_solver (mol_ham_par, h2);
 
     // Check if a faulty constructor with an odd number of electron throws
-    GQCP::Molecule h2_ion ("../tests/data/h2_szabo.xyz", +1);
+    auto h2_ion = GQCP::Molecule::Readxyz("../tests/data/h2_szabo.xyz", +1);
     BOOST_CHECK_THROW(GQCP::PlainRHFSCFSolver (mol_ham_par, h2_ion), std::invalid_argument);
 }
 
@@ -47,7 +47,7 @@ BOOST_AUTO_TEST_CASE ( h2_sto3g_szabo_plain ) {
 
 
     // Create the molecular Hamiltonian parameters in an AO basis
-    GQCP::Molecule h2 ("../tests/data/h2_szabo.xyz");
+    auto h2 = GQCP::Molecule::Readxyz("../tests/data/h2_szabo.xyz");
     auto mol_ham_par = GQCP::HamiltonianParameters::Molecular(h2, "STO-3G");
 
 
@@ -82,7 +82,7 @@ BOOST_AUTO_TEST_CASE ( h2o_sto3g_horton_plain ) {
 
 
     // Do our own RHF calculation
-    GQCP::Molecule water ("../tests/data/h2o.xyz");
+    auto water = GQCP::Molecule::Readxyz("../tests/data/h2o.xyz");
     auto mol_ham_par = GQCP::HamiltonianParameters::Molecular(water, "STO-3G");
 
     GQCP::PlainRHFSCFSolver plain_scf_solver (mol_ham_par, water);
@@ -107,7 +107,7 @@ BOOST_AUTO_TEST_CASE ( crawdad_h2o_sto3g_plain ) {
 
 
     // Do our own RHF calculation
-    GQCP::Molecule water ("../tests/data/h2o_crawdad.xyz");
+    auto water = GQCP::Molecule::Readxyz("../tests/data/h2o_crawdad.xyz");
     // Check if the internuclear distance between O and H is really 1.1 A (= 2.07869 bohr), as specified in the text
     BOOST_REQUIRE(std::abs(water.calculateInternuclearDistance(0, 1) - 2.07869) < 1.0e-4);
 
@@ -130,7 +130,7 @@ BOOST_AUTO_TEST_CASE ( crawdad_ch4_sto3g_plain ) {
     double ref_total_energy = -39.726850324347;
 
     // Do our own RHF calculation
-    GQCP::Molecule methane ("../tests/data/ch4_crawdad.xyz");
+    auto methane = GQCP::Molecule::Readxyz("../tests/data/ch4_crawdad.xyz");
     // Check if the internuclear distance between C and H is really around 2.05 bohr, which is the bond distance Wikipedia (108.7 pm) specifies
     BOOST_CHECK(std::abs(methane.calculateInternuclearDistance(0, 1) - 2.05) < 1.0e-1);
 
@@ -153,7 +153,7 @@ BOOST_AUTO_TEST_CASE ( h2_631gdp_plain ) {
 
 
     // Do our own RHF calculation
-    GQCP::Molecule h2 ("../tests/data/h2_olsens.xyz");
+    auto h2 = GQCP::Molecule::Readxyz("../tests/data/h2_olsens.xyz");
     auto mol_ham_par = GQCP::HamiltonianParameters::Molecular(h2, "6-31g**");
 
     GQCP::PlainRHFSCFSolver plain_scf_solver (mol_ham_par, h2);

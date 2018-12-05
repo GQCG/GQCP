@@ -34,59 +34,38 @@ namespace GQCP {
 
 
 /**
- *  A class that represents a collection of atoms with a number of electrons
+ *  A class that represents a collection of atoms (with coordinates in bohr) with a number of electrons
  */
 class Molecule {
 private:
     const std::vector<GQCP::Atom> atoms;  // coordinates in bohr
     const size_t N;  // number of electrons
 
-    /**
-     *  @param xyz_filename     the .xyz-file that contains the molecular coordinates in Angstrom
-     *
-     *  @return a vector of Atoms that are in the given xyz-file
-     */
-    static std::vector<GQCP::Atom> parseXYZFile(const std::string& xyz_filename);
-
 
 public:
     // CONSTRUCTORS
     /**
-     *  A constructor that creates a neutral molecule
-     *
-     *  @param atoms     the atoms that make up the molecule, with coordinates in bohr
-     *  @param molecular_charge     +1 -> cation (one electron less than the neutral molecule)
-     *                               0 -> neutral molecule
-     *                              -1 -> anion (one electron more than the neutral molecule)
+     *  @param atoms        the atoms that make up the molecule, with coordinates in bohr
+     *  @param charge       the charge of the molecule:
+     *                          +1 -> cation (one electron less than the neutral molecule)
+     *                           0 -> neutral molecule
+     *                          -1 -> anion (one electron more than the neutral molecule)
      */
-    Molecule(const std::vector<GQCP::Atom>& atoms, int molecular_charge);
-
-    /**
-     *  A constructor that creates a neutral molecule
-     *
-     *  @param atoms     the atoms that make up the molecule, with coordinates in bohr
-     */
-    explicit Molecule(const std::vector<GQCP::Atom>& atoms);
-
-    /**
-     *  A constructor from that creates a charged molecule
-     *
-     *  @param xyz_filename     the .xyz-file that contains the molecular coordinates in Angstrom
-     *  @param molecular_charge     +1 -> cation (one electron less than the neutral molecule)
-     *                               0 -> neutral molecule
-     *                              -1 -> anion (one electron more than the neutral molecule)
-     */
-    Molecule(const std::string& xyz_filename, int molecular_charge);
-
-    /**
-     *  A constructor that creates a neutral molecule
-     *
-     *  @param xyz_filename     the .xyz-file that contains the molecular coordinates in Angstrom
-     */
-    explicit Molecule(const std::string& xyz_filename);
+    Molecule(const std::vector<GQCP::Atom>& atoms, int charge=0);
 
 
     // NAMED CONSTRUCTORS
+    /**
+     *  Construct a molecule based on the content of a given .xyz-file. In an .xyz-file, the molecular coordinates are in Angstrom
+     *
+     *  @param xyz_filename     the .xyz-file that contains the molecular coordinates in Angstrom
+     *  @param charge       the charge of the molecule:
+     *                          +1 -> cation (one electron less than the neutral molecule)
+     *                           0 -> neutral molecule
+     *                          -1 -> anion (one electron more than the neutral molecule)
+     */
+    static Molecule Readxyz(const std::string& xyz_filename, int charge=0);
+
     /**
      *  @param n            the number of H atoms
      *  @param spacing      the internuclear spacing in bohr
@@ -150,7 +129,7 @@ public:
      *  @param index1   the index of the first atom
      *  @param index2   the index of the second atom
      *
-     *  @return the distance between the two atoms at index1 and index2
+     *  @return the distance between the two atoms at index1 and index2 in bohr
      */
     double calculateInternuclearDistance(size_t index1, size_t index2) const;
 

@@ -21,7 +21,7 @@
 #include "HamiltonianBuilder/Hubbard.hpp"
 
 #include "HamiltonianBuilder/FCI.hpp"
-#include "HamiltonianParameters/HamiltonianParameters_constructors.hpp"
+#include "HamiltonianParameters/HamiltonianParameters.hpp"
 
 #include <boost/test/unit_test.hpp>
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
@@ -29,42 +29,34 @@
 
 
 BOOST_AUTO_TEST_CASE ( Hubbard_constructor ) {
-    // Create a compatible Fock space
-    GQCP::ProductFockSpace fock_space (15, 3, 3);
 
     // Check if a correct constructor works
+    GQCP::ProductFockSpace fock_space (15, 3, 3);
     BOOST_CHECK_NO_THROW(GQCP::Hubbard Hubbard (fock_space));
 }
 
 
 BOOST_AUTO_TEST_CASE ( Hubbard_public_methods ) {
-    // Create an AOBasis
-    GQCP::Molecule water ("../tests/data/h2o.xyz");
-    auto ao_basis = std::make_shared<GQCP::AOBasis>(water, "STO-3G");
 
+    size_t K = 7;
+    auto random_hamiltonian_parameters = GQCP::HamiltonianParameters::Random(K);
 
-    // Create random HamiltonianParameters from One- and TwoElectronOperators (and a transformation matrix) with compatible dimensions
-    size_t K = ao_basis->get_number_of_basis_functions();
-    GQCP::HamiltonianParameters random_hamiltonian_parameters = GQCP::constructRandomHamiltonianParameters(K);
 
     // Create a compatible Fock space
     GQCP::ProductFockSpace fock_space (K, 3, 3);
-
-    // Create Hubbard module
     GQCP::Hubbard random_Hubbard (fock_space);
-
-    // Test the public Hubbard methods
     Eigen::VectorXd x = random_Hubbard.calculateDiagonal(random_hamiltonian_parameters);
     BOOST_CHECK_NO_THROW(random_Hubbard.constructHamiltonian(random_hamiltonian_parameters));
     BOOST_CHECK_NO_THROW(random_Hubbard.matrixVectorProduct(random_hamiltonian_parameters, x, x));
 
+
     // Create an incompatible Fock space
-    GQCP::ProductFockSpace fock_space_i (K+1, 3, 3);
+    GQCP::ProductFockSpace fock_space_invalid (K+1, 3, 3);
 
     // Create Hubbard module
-    GQCP::Hubbard random_Hubbard_i (fock_space_i);
-    BOOST_CHECK_THROW(random_Hubbard_i.constructHamiltonian(random_hamiltonian_parameters), std::invalid_argument);
-    BOOST_CHECK_THROW(random_Hubbard_i.matrixVectorProduct(random_hamiltonian_parameters, x, x), std::invalid_argument);
+    GQCP::Hubbard random_Hubbard_invalid (fock_space_invalid);
+    BOOST_CHECK_THROW(random_Hubbard_invalid.constructHamiltonian(random_hamiltonian_parameters), std::invalid_argument);
+    BOOST_CHECK_THROW(random_Hubbard_invalid.matrixVectorProduct(random_hamiltonian_parameters, x, x), std::invalid_argument);
 }
 
 
@@ -76,7 +68,7 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI ) {
     Eigen::VectorXd triagonal_test = Eigen::VectorXd::Random(10);
 
     size_t N = 2;
-    auto mol_ham_par = GQCP::constructHubbardParameters(triagonal_test);
+    auto mol_ham_par = GQCP::HamiltonianParameters::Hubbard(triagonal_test);
     auto K = mol_ham_par.get_K();
 
 
@@ -101,7 +93,7 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_large ) {
     Eigen::VectorXd triagonal_test = Eigen::VectorXd::Random(21);
 
     size_t N = 3;
-    auto mol_ham_par = GQCP::constructHubbardParameters(triagonal_test);
+    auto mol_ham_par = GQCP::HamiltonianParameters::Hubbard(triagonal_test);
     auto K = mol_ham_par.get_K();
 
 
@@ -126,7 +118,7 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_matvec ) {
     Eigen::VectorXd triagonal_test = Eigen::VectorXd::Random(10);
 
     size_t N = 2;
-    auto mol_ham_par = GQCP::constructHubbardParameters(triagonal_test);
+    auto mol_ham_par = GQCP::HamiltonianParameters::Hubbard(triagonal_test);
     auto K = mol_ham_par.get_K();
 
 
@@ -154,7 +146,7 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_large_matvec ) {
     Eigen::VectorXd triagonal_test = Eigen::VectorXd::Random(21);
 
     size_t N = 3;
-    auto mol_ham_par = GQCP::constructHubbardParameters(triagonal_test);
+    auto mol_ham_par = GQCP::HamiltonianParameters::Hubbard(triagonal_test);
     auto K = mol_ham_par.get_K();
 
 

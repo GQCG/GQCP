@@ -22,10 +22,9 @@
 
 namespace po = boost::program_options;
 
-#include "HamiltonianParameters/HamiltonianParameters_constructors.hpp"
+#include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "CISolver/CISolver.hpp"
 #include "HamiltonianBuilder/Hubbard.hpp"
-#include <string>
 
 
 int main (int argc, char** argv) {
@@ -84,7 +83,7 @@ int main (int argc, char** argv) {
 
 
     // Actual calculations
-    auto ham_par = GQCP::constructHubbardParameters(triagonal);
+    auto ham_par = GQCP::HamiltonianParameters::Hubbard(triagonal);
     if (ham_par.get_K() != K) {
         throw std::invalid_argument("The given number of sites does not match the triagonal");
     }

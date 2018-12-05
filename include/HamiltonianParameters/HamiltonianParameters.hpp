@@ -76,10 +76,29 @@ public:
     /**
      *  Construct the molecular Hamiltonian parameters in an AO basis
      *
+     *  @param ao_basis     the AO basis in which the Hamiltonian parameters should be expressed
+     *  @param scalar       the scalar energy term (usually the internuclear repulsion energy)
+     *
+     *  @return Hamiltonian parameters corresponding to the molecular Hamiltonian in an AO basis. The molecular Hamiltonian has
+     *      - scalar contributions:
+     *          - internuclear repulsion
+     *      - one-electron contributions:
+     *          - kinetic
+     *          - nuclear attraction
+     *      - two-electron contributions:
+     *          - Coulomb repulsion
+     */
+    static HamiltonianParameters Molecular(std::shared_ptr<GQCP::AOBasis> ao_basis, double scalar=0.0);
+
+    /**
+     *  Construct the molecular Hamiltonian parameters in an AO basis
+     *
      *  @param molecule     the molecule for which the Hamiltonian parameters should be calculated
      *  @param basisset     the name of the basisset corresponding to the AO basis
      *
-     *  @return Hamiltonian parameters corresponding to the molecular Hamiltonian. The molecular Hamiltonian has
+     *  @return Hamiltonian parameters corresponding to the molecular Hamiltonian in an AO basis. The molecular Hamiltonian has
+     *      - scalar contributions:
+     *          - internuclear repulsion
      *      - one-electron contributions:
      *          - kinetic
      *          - nuclear attraction
@@ -87,6 +106,27 @@ public:
      *          - Coulomb repulsion
      */
     static HamiltonianParameters Molecular(const Molecule& molecule, const std::string& basisset);
+
+    /**
+     *  @param K        the number of orbitals
+     *
+     *  @return a set of random Hamiltonian parameters with values uniformly distributed between [-1,1]
+     */
+    static HamiltonianParameters Random(size_t K);
+
+    /**
+     *  @param fcidump_file     the name of the FCIDUMP file
+     *
+     *  @return Hamiltonian parameters corresponding to the contents of an FCIDUMP file
+     */
+    static HamiltonianParameters ReadFCIDUMP(const std::string& fcidump_file);
+
+    /**
+     *  @param upper_triagonal      an upper triagonal representation of the Hubbard hopping matrix
+     *
+     *  @return Hubbard Hamiltonian parameters generated from the Hubbard hopping matrix
+     */
+    static HamiltonianParameters Hubbard(const Eigen::VectorXd& upper_triagonal);
 
 
     // DESTRUCTORS

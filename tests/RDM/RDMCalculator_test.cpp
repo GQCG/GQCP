@@ -24,7 +24,7 @@
 #include "FockSpace/ProductFockSpace.hpp"
 #include "CISolver/CISolver.hpp"
 #include "HamiltonianBuilder/DOCI.hpp"
-#include "HamiltonianParameters/HamiltonianParameters_constructors.hpp"
+#include "HamiltonianParameters/HamiltonianParameters.hpp"
 
 #include <boost/test/unit_test.hpp>
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
@@ -36,7 +36,7 @@ BOOST_AUTO_TEST_CASE ( constructor ) {
 
     // Get the 1-RDM from DOCI
     size_t N = 4;  // 4 electrons
-    auto ham_par = GQCP::readFCIDUMPFile("../tests/data/lih_631g_caitlin.FCIDUMP");
+    auto ham_par = GQCP::HamiltonianParameters::ReadFCIDUMP("../tests/data/lih_631g_caitlin.FCIDUMP");
     size_t K = ham_par.get_K();  // 16 SO
 
     // Abstract pointer to test RDM

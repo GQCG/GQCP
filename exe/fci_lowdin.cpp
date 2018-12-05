@@ -55,7 +55,7 @@ int main (int argc, char** argv) {
 
     // Actual calculations
     // Prepare molecular Hamiltonian parameters in the Löwdin basis
-    GQCP::Molecule molecule (input_xyz_file);
+    auto molecule = GQCP::Molecule::Readxyz(input_xyz_file);
     auto mol_ham_par = GQCP::HamiltonianParameters::Molecular(molecule, basisset);  // in the AO basis
     mol_ham_par.LowdinOrthonormalize();  // now in the Löwdin basis
 

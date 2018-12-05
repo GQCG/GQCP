@@ -19,7 +19,7 @@
 
 
 #include "RHF/DIISRHFSCFSolver.hpp"
-#include "HamiltonianParameters/HamiltonianParameters_constructors.hpp"
+#include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "properties/expectation_values.hpp"
 #include <random>
 
@@ -30,7 +30,7 @@
 BOOST_AUTO_TEST_CASE ( constrained_CO_test ) {
 
     // Create a Molecule and an AOBasis with the assumed geometry
-    GQCP::Molecule CO ("../tests/data/CO_mulliken.xyz");
+    auto CO = GQCP::Molecule::Readxyz("../tests/data/CO_mulliken.xyz");
     auto ao_ham_par = GQCP::HamiltonianParameters::Molecular(CO, "STO-3G");
 
     size_t K = ao_ham_par.get_K();
@@ -114,7 +114,7 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test_random_transformation) {
     // This tests if our Mulliken operator remains correct if we transform before the procedure.
 
     // Create a Molecule and an AOBasis with the assumed geometry
-    GQCP::Molecule CO ("../tests/data/CO_mulliken.xyz");
+    auto CO = GQCP::Molecule::Readxyz("../tests/data/CO_mulliken.xyz");
     auto ao_ham_par = GQCP::HamiltonianParameters::Molecular(CO, "STO-3G");
 
     size_t K = ao_ham_par.get_K();

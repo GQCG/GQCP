@@ -12,7 +12,7 @@
 #include <boost/program_options.hpp>
 namespace po = boost::program_options;
 
-#include "HamiltonianParameters/HamiltonianParameters_constructors.hpp"
+#include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "RHF/DIISRHFSCFSolver.hpp"
 #include "CISolver/CISolver.hpp"
 #include "DOCINewtonOrbitalOptimizer.hpp"
@@ -68,18 +68,15 @@ int main (int argc, char** argv) {
 
     // Actual calculations
     // Prepare molecular Hamiltonian parameters in the RHF basis
-    GQCP::Molecule molecule (input_xyz_file);
-    double internuclear_repulsion_energy = molecule.calculateInternuclearRepulsionEnergy();
+    auto molecule = GQCP::Molecule::Readxyz(input_xyz_file);
     size_t N_P = molecule.get_N()/2;
     output_file << "Molecule geometry" << std::endl;
     output_file << molecule << std::endl;
 
 
-    auto ao_basis = std::make_shared<GQCP::AOBasis>(molecule, basisset);
     output_file << "Basisset: " << basisset << std::endl << std::endl;
-    size_t K = ao_basis->get_number_of_basis_functions();
-
-    auto ao_mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
+    auto ao_mol_ham_par = GQCP::HamiltonianParameters::Molecular(molecule, basisset);
+    size_t K = ao_mol_ham_par.get_K();
 
 
     GQCP::DIISRHFSCFSolver diis_scf_solver (ao_mol_ham_par, molecule);
@@ -128,7 +125,7 @@ int main (int argc, char** argv) {
     output_file << "Total transformation matrix to the OO-DOCI orbitals: " << std::endl << mol_ham_par.get_C() << std::endl << std::endl;
 
     double OO_DOCI_electronic_energy = orbital_optimizer.get_eigenpair().get_eigenvalue();
-    output_file << "Total OO-DOCI energy (internuclear repulsion energy added): " << std::setprecision(15) << OO_DOCI_electronic_energy + internuclear_repulsion_energy << std::endl;
+    output_file << "Total OO-DOCI energy (internuclear repulsion energy added): " << std::setprecision(15) << OO_DOCI_electronic_energy + mol_ham_par.get_scalar() << std::endl;
 
     output_file.close();
 }

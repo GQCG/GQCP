@@ -20,7 +20,7 @@
 
 #include "CISolver/CISolver.hpp"
 #include "HamiltonianBuilder/FCI.hpp"
-#include "HamiltonianParameters/HamiltonianParameters_constructors.hpp"
+#include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
 
 #include <boost/test/unit_test.hpp>
@@ -34,7 +34,7 @@ BOOST_AUTO_TEST_CASE ( FCI_h2_sto3g_dense_vs_Davidson ) {
     // Check if the dense FCI energy is equal to the Davidson (with matvec) FCI energy
 
     // Create the molecular Hamiltonian parameters in an AO basis
-    GQCP::Molecule h2 ("../tests/data/h2_cristina.xyz");
+    auto h2 = GQCP::Molecule::Readxyz("../tests/data/h2_cristina.xyz");
     auto mol_ham_par = GQCP::HamiltonianParameters::Molecular(h2, "STO-3G");
     auto K = mol_ham_par.get_K();
 
@@ -76,7 +76,7 @@ BOOST_AUTO_TEST_CASE ( FCI_H2_6_31Gxx_dense_vs_Davidson ) {
     // Check if the dense FCI energy is equal to the Davidson (with matvec) FCI energy
 
     // Create the molecular Hamiltonian parameters in an AO basis
-    GQCP::Molecule h2 ("../tests/data/h2_cristina.xyz");
+    auto h2 = GQCP::Molecule::Readxyz("../tests/data/h2_cristina.xyz");
     auto mol_ham_par = GQCP::HamiltonianParameters::Molecular(h2, "6-31G**");
     auto K = mol_ham_par.get_K();
 
@@ -118,7 +118,7 @@ BOOST_AUTO_TEST_CASE ( FCI_H2O_STO_3G_dense_vs_Davidson ) {
     // Check if the dense FCI energy is equal to the Davidson (with matvec) FCI energy
 
     // Create the molecular Hamiltonian parameters in an AO basis
-    GQCP::Molecule h2o ("../tests/data/h2o.xyz");
+    auto h2o = GQCP::Molecule::Readxyz("../tests/data/h2o.xyz");
     auto mol_ham_par = GQCP::HamiltonianParameters::Molecular(h2o, "STO-3G");
     auto K = mol_ham_par.get_K();
 
