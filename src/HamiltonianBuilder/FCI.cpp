@@ -155,14 +155,14 @@ void FCI::twoOperatorModule(FockSpace& fock_space_target, FockSpace& fock_space_
 
                 while (s < K) {
                     size_t J = address3 + fock_space_target.get_vertex_weights(s, e4);
-
+                        std::cout<<"C2>A2 : "<<"I : "<<I<<" J : "<<J<<" "<<p<<p<<r<<s<<std::endl;
                     double value =  (hamiltonian_parameters.get_g()(p, p, r, s));
                     if(p != r) {
                         value -= hamiltonian_parameters.get_g()(p, s, r, p);
                         value += hamiltonian_parameters.get_g()(r, s, p, p);
                     }
                     value *= sign3 * 0.5;
-                    hits++;
+
                     for (size_t I_fixed = 0; I_fixed < dim_fixed; I_fixed++) {
 
                         matvec(I * target_interval + I_fixed * fixed_intervals) += value * x(J * target_interval + I_fixed * fixed_intervals);
@@ -194,7 +194,7 @@ void FCI::twoOperatorModule(FockSpace& fock_space_target, FockSpace& fock_space_
                 size_t address2 = address1 + fock_space_target.get_vertex_weights(q, e2 + 2);
 
                 /**
-                 *  A2 > C1
+                 *  A2 > C2
                  */
                 int sign3 = sign1;
                 for (size_t e3 = e1 + 1; e3 < N; e3++) {
@@ -221,6 +221,8 @@ void FCI::twoOperatorModule(FockSpace& fock_space_target, FockSpace& fock_space_
                             matvec(J * target_interval + I_fixed * fixed_intervals) += value * x(I * target_interval + I_fixed * fixed_intervals);
 
                         }
+                        std::cout<<"A1>C1 : "<<"I : "<<I<<" J : "<<J<<" "<<p<<q<<r<<s<<std::endl;
+
                         hits++;
                         s++;
                         fock_space_target.shiftUntilNextUnoccupiedOrbital<1>(onv, address3, s, e4, sign4);
@@ -280,6 +282,7 @@ void FCI::twoOperatorModule(FockSpace& fock_space_target, FockSpace& fock_space_
                             matvec(J * target_interval + I_fixed * fixed_intervals) += value * x(I * target_interval + I_fixed * fixed_intervals);
 
                         }
+                        std::cout<<"A1<C1 : "<<"I : "<<I<<" J : "<<J<<" "<<p<<q<<r<<s<<std::endl;
 
                         s++;  // go to the next orbital
                         hits++;
@@ -326,6 +329,8 @@ void FCI::twoOperatorModule(FockSpace& fock_space_target, FockSpace& fock_space_
                             matvec(J * target_interval + I_fixed * fixed_intervals) += value * x(I * target_interval + I_fixed * fixed_intervals);
 
                         }
+                        std::cout<<"A2<C1 : "<<"I : "<<I<<" J : "<<J<<" "<<p<<q<<r<<s<<std::endl;
+
                         hits++;
                         s++;
 
@@ -341,10 +346,10 @@ void FCI::twoOperatorModule(FockSpace& fock_space_target, FockSpace& fock_space_
                  */
                 int signev = sign2 * sign1;
 
-                for (size_t s2 = 0; s2 < K; s2++) {
-                    if(!onv.isOccupied(s2)){
+                for (size_t s = 0; s < K; s++) {
+                    if(!onv.isOccupied(s)){
 
-                        double value = signev * 0.5 * (hamiltonian_parameters.get_g()(p, s2, s2, q));
+                        double value = signev * 0.5 * (hamiltonian_parameters.get_g()(p, s, s, q));
                         for (size_t I_fixed = 0; I_fixed < dim_fixed; I_fixed++) {
 
                             matvec(I * target_interval + I_fixed * fixed_intervals) += value * x(address1 * target_interval + I_fixed * fixed_intervals);
@@ -352,6 +357,8 @@ void FCI::twoOperatorModule(FockSpace& fock_space_target, FockSpace& fock_space_
 
                         }
                         hits++;
+                        std::cout<<"A2=C1 : "<<"I : "<<I<<" J : "<<address1<<" "<<p<<s<<s<<q<<std::endl;
+
 
                     }
 
@@ -668,7 +675,7 @@ Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters& hamiltonia
 
 
     this->twoOperatorModule(fock_space_alpha, fock_space_beta, true, hamiltonian_parameters, matvec, x);
-    this->twoOperatorModule(fock_space_beta, fock_space_beta, false, hamiltonian_parameters, matvec, x);
+    //this->twoOperatorModule(fock_space_beta, fock_space_alpha, false, hamiltonian_parameters, matvec, x);
     return matvec;
 }
 
