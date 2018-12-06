@@ -149,6 +149,15 @@ public:
     bool annihilate(size_t p, int& sign);
 
     /**
+     *  @param indices      the indices of the orbitals that should be annihilated (the first index is annihilated first)
+     *
+     *  @return if we can apply all annihilation operators (i.e. 1->0) on the given indices. Subsequently perform in-place annihilations on the given indices p. Furthermore, update the sign according to the sign change (+1 or -1) of the spin string after the annihilations.
+     *
+     *  IMPORTANT: does not update the occupation indices for performance reasons, if required call updateOccupationIndices()!
+     */
+    bool annihilateAll(const std::vector<size_t>& indices, int& sign);
+
+    /**
      *  @param p        the orbital index starting from 0, counted from right to left
      *  @return if we can apply the creation operator (i.e. 0->1) for the p-th spatial orbital. Subsequently perform an in-place creation on the orbital p
      *

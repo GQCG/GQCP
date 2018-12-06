@@ -325,6 +325,7 @@ BOOST_AUTO_TEST_CASE ( findMatchingOccupations ) {
     BOOST_TEST(spin_string3.findMatchingOccupations(spin_string2) == (std::vector<size_t> {1,4}), boost::test_tools::per_element());
 }
 
+
 BOOST_AUTO_TEST_CASE ( operator_phase_factor_onv ) {
 
     // The sign should be negative on an index which has passed an odd amount of electrons
@@ -344,4 +345,52 @@ BOOST_AUTO_TEST_CASE ( operator_phase_factor_onv ) {
     BOOST_CHECK_EQUAL(spin_string2.operatorPhaseFactor(3), -1);
     BOOST_CHECK_EQUAL(spin_string2.operatorPhaseFactor(4), 1);
     BOOST_CHECK_EQUAL(spin_string2.operatorPhaseFactor(5), -1);
+}
+
+
+BOOST_AUTO_TEST_CASE ( annihilateAll_example1 ) {
+
+    GQCP::ONV spin_string (6, 3, 22);  // "010110" (22)
+    GQCP::ONV spin_string_copy = spin_string;  // to check if nothing happens
+    int sign = 1;
+
+    BOOST_CHECK_THROW(spin_string.annihilateAll({8, 4}, sign), std::invalid_argument);
+
+
+    // Try to annihilate {0,1} and check if nothing changes
+    BOOST_CHECK(!spin_string.annihilateAll({0, 1}, sign));
+    BOOST_CHECK(sign == 1);
+    BOOST_CHECK(spin_string_copy == spin_string);
+
+
+    // Try to annihilate {0,1} and check if nothing changes
+    BOOST_CHECK(!spin_string.annihilateAll({5, 2, 0, 1}, sign));
+    BOOST_CHECK(sign == 1);
+    BOOST_CHECK(spin_string_copy == spin_string);
+}
+
+
+BOOST_AUTO_TEST_CASE ( annihilateAll_example2 ) {
+
+    GQCP::ONV spin_string (6, 3, 22);  // "010110" (22)
+
+    // Annihilate the indices {1, 2}
+    GQCP::ONV ref_spin_string (6, 1, 16);  // "010000" (16)
+    int sign = 1;
+    BOOST_CHECK(spin_string.annihilateAll({1, 2}, sign));
+    BOOST_CHECK(sign == 1);
+    BOOST_CHECK(spin_string == ref_spin_string);
+}
+
+
+BOOST_AUTO_TEST_CASE ( annihilateAll_example3 ) {
+
+    GQCP::ONV spin_string (6, 3, 22);  // "010110" (22)
+
+    // Annihilate the indices {2, 1}
+    GQCP::ONV ref_spin_string (6, 1, 16);  // "010000" (16)
+    int sign = 1;
+    BOOST_CHECK(spin_string.annihilateAll({2, 1}, sign));
+    BOOST_CHECK(sign == -1);
+    BOOST_CHECK(spin_string == ref_spin_string);
 }
