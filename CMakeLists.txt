@@ -10,6 +10,9 @@ project(gqcp
 # Option to build the documentation
 option(BUILD_DOCS "Build the documentation using Doxygen" OFF)
 
+# Option to build benchmarks
+option(BUILD_BENCHMARKS "Build the benchmarks" OFF)
+
 # To enable the C++11 standard, we have to add flags like -std=gnu+11 or so. CMake can take care of this:
 set(CMAKE_CXX_STANDARD 11)
 
@@ -55,7 +58,9 @@ add_subdirectory(${PROJECT_SOURCE_FOLDER})
 add_subdirectory(${PROJECT_EXECUTABLES_FOLDER})
 
 # Add the sources ofr the benchmarks
-add_subdirectory(${PROJECT_BENCHMARKS_FOLDER})
+if(BUILD_BENCHMARKS)
+    add_subdirectory(${PROJECT_BENCHMARKS_FOLDER})
+endif(BUILD_BENCHMARKS)
 
 
 # Set up testing
