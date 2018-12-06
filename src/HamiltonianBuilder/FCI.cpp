@@ -675,7 +675,7 @@ Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters& hamiltonia
 
 
     this->twoOperatorModule(fock_space_alpha, fock_space_beta, true, hamiltonian_parameters, matvec, x);
-    //this->twoOperatorModule(fock_space_beta, fock_space_alpha, false, hamiltonian_parameters, matvec, x);
+    this->twoOperatorModule(fock_space_beta, fock_space_alpha, false, hamiltonian_parameters, matvec, x);
     return matvec;
 }
 
