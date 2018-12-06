@@ -363,7 +363,7 @@ BOOST_AUTO_TEST_CASE ( annihilateAll_example1 ) {
     BOOST_CHECK(spin_string_copy == spin_string);
 
 
-    // Try to annihilate {0,1} and check if nothing changes
+    // Try to annihilate {5,2,0,1} and check if nothing changes
     BOOST_CHECK(!spin_string.annihilateAll({5, 2, 0, 1}, sign));
     BOOST_CHECK(sign == 1);
     BOOST_CHECK(spin_string_copy == spin_string);
@@ -392,5 +392,35 @@ BOOST_AUTO_TEST_CASE ( annihilateAll_example3 ) {
     int sign = 1;
     BOOST_CHECK(spin_string.annihilateAll({2, 1}, sign));
     BOOST_CHECK(sign == -1);
+    BOOST_CHECK(spin_string == ref_spin_string);
+}
+
+
+BOOST_AUTO_TEST_CASE ( createAll_example1 ) {
+
+    GQCP::ONV spin_string (6, 3, 22);  // "010110" (22)
+    GQCP::ONV spin_string_copy = spin_string;  // to check if nothing happens
+
+    BOOST_CHECK_THROW(spin_string.createAll({8, 4}), std::invalid_argument);
+
+
+    // Try to create {0,1} and check if nothing changes
+    BOOST_CHECK(!spin_string.createAll({0, 1}));
+    BOOST_CHECK(spin_string_copy == spin_string);
+
+
+    // Try to create {5,2,0,1} and check if nothing changes
+    BOOST_CHECK(!spin_string.createAll({5, 2, 0, 1}));
+    BOOST_CHECK(spin_string_copy == spin_string);
+}
+
+
+BOOST_AUTO_TEST_CASE ( createAll_example2 ) {
+
+    GQCP::ONV spin_string (6, 3, 22);  // "010110" (22)
+
+    // Create the indices {1, 3}
+    GQCP::ONV ref_spin_string (6, 1, 31);  // "011111" (31)
+    BOOST_CHECK(spin_string.createAll({1, 3}));
     BOOST_CHECK(spin_string == ref_spin_string);
 }

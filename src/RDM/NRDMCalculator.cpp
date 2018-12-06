@@ -65,7 +65,7 @@ double NRDMCalculator::calculateElement(const std::vector<size_t>& bra_indices, 
 
 
         // Annihilate the bra on the bra indices
-        if (!bra.annihilateAll(bra_indices, sign)) {
+        if (!bra.annihilateAll(bra_indices, sign)) {  // if we can't annihilate, this doesn't change the bra
 
             // Go to the beginning of the outer while loop with the next bra
             if (I < dim-1) {  // prevent the last permutation to occur
@@ -82,7 +82,7 @@ double NRDMCalculator::calculateElement(const std::vector<size_t>& bra_indices, 
         while (J < dim) {
 
             // Annihilate the ket on the ket indices
-            if (!ket.annihilateAll(ket_indices, sign)) {
+            if (!ket.annihilateAll(ket_indices, sign)) {  // if we can't annihilate, this doesn't change the ket
 
                 // Go to the beginning of this (the inner) while loop with the next bra
                 if (J < dim-1) {  // prevent the last permutation to occur

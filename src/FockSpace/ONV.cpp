@@ -184,7 +184,7 @@ bool ONV::annihilate(size_t p, int& sign) {
 /**
  *  @param indices      the indices of the orbitals that should be annihilated (the first index is annihilated first)
  *
- *  @return if we can apply all annihilation operators (i.e. 1->0) on the given indices. Subsequently perform in-place annihilations on the given indices p. Furthermore, update the sign according to the sign change (+1 or -1) of the spin string after the annihilations.
+ *  @return if we can apply all annihilation operators (i.e. 1->0) on the given indices. Subsequently perform in-place annihilations on the given indices. Furthermore, update the sign according to the sign change (+1 or -1) of the spin string after the annihilations.
  *
  *  IMPORTANT: does not update the occupation indices for performance reasons, if required call updateOccupationIndices()!
  */
@@ -234,6 +234,23 @@ bool ONV::create(size_t p, int& sign) {
     } else {
         return false;
     }
+}
+
+
+/**
+ *  @param indices      the indices of the orbitals that should be created
+ *
+ *  @return if we can apply all creation operators (i.e. 0->1) on the given indices. Subsequently perform in-place creations on the given indices
+ */
+bool ONV::createAll(const std::vector<size_t>& indices) {
+
+    for (const auto& index : indices) {
+        if (!this->create(index)) {
+            return false;
+        }
+    }
+
+    return true;
 }
 
 
