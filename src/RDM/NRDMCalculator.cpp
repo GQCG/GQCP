@@ -53,7 +53,8 @@ double NRDMCalculator::calculateElement(const std::vector<size_t>& bra_indices, 
 
     ONV bra = fock_space.get_ONV(0);
     std::cout << "Initial bra: " << bra.asString() << std::endl;
-//    ONV ket = fock_space.get_ONV(0);
+    ONV ket = fock_space.get_ONV(0);
+    std::cout << "Initial ket: " << ket.asString() << std::endl;
 
 
 
@@ -64,74 +65,43 @@ double NRDMCalculator::calculateElement(const std::vector<size_t>& bra_indices, 
 
 
         // Annihilate the bra on the bra indices
-        size_t i = 0;
-        while (i < bra_indices.size()) {
+        if (!bra.annihilateAll(bra_indices, sign)) {
 
-            size_t bra_index = bra_indices[i];
-            if (!bra.annihilate(bra_index, sign)) {
-
-                // If we can't annihilate on the current bra, we should immediately go to the next bra
-                if (I < dim-1) {  // prevent the last permutation to occur
-                    fock_space.setNext(bra);
-                    I++;
-                }
-                i = 0;  // for every new I, we have to restart the bra indices as well
-            } else {
-                std::cout << "We annihilated on " << bra_index << std::endl;
-                std::cout << "The current bra is now: " << bra.asString() << std::endl;
+            // Go to the beginning of the outer while loop with the next bra
+            if (I < dim-1) {  // prevent the last permutation to occur
+                fock_space.setNext(bra);
+                I++;
+                continue;
             }
         }
 
-        std::cout << bra.asString() << std::endl;
-    }
+        std::cout << "The fully-annihilated bra is now: " << bra.asString() << std::endl;
 
 
+        size_t J = 0;
+        while (J < dim) {
+
+            // Annihilate the ket on the ket indices
+            if (!ket.annihilateAll(ket_indices, sign)) {
+
+                // Go to the beginning of this (the inner) while loop with the next bra
+                if (J < dim-1) {  // prevent the last permutation to occur
+                    fock_space.setNext(ket);
+                    J++;
+                    continue;
+                }
+            }
 
 
+            std::cout << "The fully-annihilated ket is now: " << ket.asString() << std::endl;
 
+            if (bra == ket) {
+                value += sign * coeff(I) * coeff(J);
+            }
 
-//    for (size_t I = 0; I < dim; I++) {  // loop over all bra addresses
-//
-//
-//
-//
-//
-////        for (size_t J = 0; J < dim; J++) {  // loop over all ket addresses
-////
-////            // Annihilate the ket on the ket indices
-////            for (const auto& ket_index : ket_indices) {
-////
-////                if (!ket.annihilate(ket_index, sign)) {
-////
-////                    // If we can't annihilate on the current ket, we should immediately go to the next bra
-////                    if (J < dim-1) {  // prevent the last permutation to occur
-////                        fock_space.setNext(ket);
-////                        J++;  // we aren't at the end of the for-loop, so increment J manually
-////                    }
-////                    continue;
-////                }
-////            }
-////
-////            // Right here, we're sure all the annihilations on the bra and the ket have been successful
-////            if (bra.countNumberOfDifferences(ket) == 0) {
-////                value += sign * coeff(I) * coeff(J);
-////            }
-////
-////
-////
-////
-////            if (J < dim-1) {  // prevent the last permutation to occur
-////                fock_space.setNext(ket);
-////            }
-////
-////        }  // loop over J
-//
-//
-//
-//        if (I < dim-1) {  // prevent the last permutation to occur
-//            fock_space.setNext(bra);
-//        }
-//    }  // loop over I
+        }  // while J loop
+
+    }  // while I loop
 
 
     return value;
