@@ -88,6 +88,7 @@
 			buildPhases = (
 			);
 			dependencies = (
+				5660430521B913EA008C2E86 /* PBXTargetDependency */,
 				561401F121B0685B002C5D40 /* PBXTargetDependency */,
 				561401F321B0685B002C5D40 /* PBXTargetDependency */,
 				561401F521B0685B002C5D40 /* PBXTargetDependency */,
@@ -467,8 +468,12 @@
 		56272DD521B6CC71008BEA47 /* AP1roGPSESolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56272DC321B6CC0D008BEA47 /* AP1roGPSESolver.cpp */; };
 		56272DDC21B6CC7B008BEA47 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
 		56272DE221B6CC93008BEA47 /* APIGGeminalCoefficients_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56272DD121B6CC2D008BEA47 /* APIGGeminalCoefficients_test.cpp */; };
+		566042FD21B913AD008C2E86 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
+		5660430321B913BA008C2E86 /* NRDMCalculator_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 566042F621B91369008C2E86 /* NRDMCalculator_test.cpp */; };
 		566D229E21B7ED2500F8EB91 /* oo_doci.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FAA721B02E48002C5D40 /* oo_doci.cpp */; };
 		566D229F21B7ED2D00F8EB91 /* oo_doci.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FAA721B02E48002C5D40 /* oo_doci.cpp */; };
+		566D22A221B81CC100F8EB91 /* NRDMCalculator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 566D22A021B81CC100F8EB91 /* NRDMCalculator.cpp */; };
+		566D22A321B81CC100F8EB91 /* NRDMCalculator.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 566D22A121B81CC100F8EB91 /* NRDMCalculator.hpp */; };
 		56C64D8621B0713700D44FF0 /* constrained_RHF_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FB4921B02EDE002C5D40 /* constrained_RHF_test.cpp */; };
 /* End PBXBuildFile section */
 
@@ -1369,6 +1374,20 @@
 			remoteGlobalIDString = 56272DD621B6CC7B008BEA47;
 			remoteInfo = APIGGeminalCoefficients_test;
 		};
+		566042F921B913AD008C2E86 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5614F97F21B0295C002C5D40;
+			remoteInfo = gqcp;
+		};
+		5660430421B913EA008C2E86 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 566042F721B913AD008C2E86;
+			remoteInfo = NRDMCalculator_test;
+		};
 		56C64D8B21B0736C00D44FF0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
@@ -1919,6 +1938,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
+		566042FE21B913AD008C2E86 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -2206,6 +2234,10 @@
 		56272DD021B6CC2D008BEA47 /* AP1roGPSESolver_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AP1roGPSESolver_test.cpp; sourceTree = "<group>"; };
 		56272DD121B6CC2D008BEA47 /* APIGGeminalCoefficients_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = APIGGeminalCoefficients_test.cpp; sourceTree = "<group>"; };
 		56272DE121B6CC7B008BEA47 /* APIGGeminalCoefficients_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = APIGGeminalCoefficients_test; sourceTree = BUILT_PRODUCTS_DIR; };
+		566042F621B91369008C2E86 /* NRDMCalculator_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NRDMCalculator_test.cpp; sourceTree = "<group>"; };
+		5660430221B913AD008C2E86 /* NRDMCalculator_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = NRDMCalculator_test; sourceTree = BUILT_PRODUCTS_DIR; };
+		566D22A021B81CC100F8EB91 /* NRDMCalculator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NRDMCalculator.cpp; sourceTree = "<group>"; };
+		566D22A121B81CC100F8EB91 /* NRDMCalculator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NRDMCalculator.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2711,6 +2743,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		566042FC21B913AD008C2E86 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				566042FD21B913AD008C2E86 /* libgqcp.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -2792,6 +2832,7 @@
 				5614017C21B06392002C5D40 /* RMP2_test */,
 				5614018821B06397002C5D40 /* units_test */,
 				56272DE121B6CC7B008BEA47 /* APIGGeminalCoefficients_test */,
+				5660430221B913AD008C2E86 /* NRDMCalculator_test */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2844,14 +2885,15 @@
 		5614F99F21B029FB002C5D40 /* RDM */ = {
 			isa = PBXGroup;
 			children = (
-				5614F9A021B029FB002C5D40 /* RDMCalculator.hpp */,
-				5614F9A121B029FB002C5D40 /* DOCIRDMBuilder.hpp */,
-				5614F9A221B029FB002C5D40 /* SelectedRDMBuilder.hpp */,
 				5614F9A321B029FB002C5D40 /* BaseRDM.hpp */,
-				5614F9A421B029FB002C5D40 /* OneRDM.hpp */,
-				5614F9A521B029FB002C5D40 /* FCIRDMBuilder.hpp */,
-				5614F9A621B029FB002C5D40 /* RDMs.hpp */,
 				5614F9A721B029FB002C5D40 /* BaseRDMBuilder.hpp */,
+				5614F9A121B029FB002C5D40 /* DOCIRDMBuilder.hpp */,
+				5614F9A521B029FB002C5D40 /* FCIRDMBuilder.hpp */,
+				566D22A121B81CC100F8EB91 /* NRDMCalculator.hpp */,
+				5614F9A421B029FB002C5D40 /* OneRDM.hpp */,
+				5614F9A021B029FB002C5D40 /* RDMCalculator.hpp */,
+				5614F9A621B029FB002C5D40 /* RDMs.hpp */,
+				5614F9A221B029FB002C5D40 /* SelectedRDMBuilder.hpp */,
 				5614F9A821B029FB002C5D40 /* TwoRDM.hpp */,
 			);
 			path = RDM;
@@ -2969,15 +3011,16 @@
 		5614F9E521B029FB002C5D40 /* RDM */ = {
 			isa = PBXGroup;
 			children = (
-				5614F9E621B029FB002C5D40 /* RDMs.cpp */,
-				5614F9E721B029FB002C5D40 /* BaseRDMBuilder.cpp */,
-				5614F9E821B029FB002C5D40 /* TwoRDM.cpp */,
-				5614F9E921B029FB002C5D40 /* OneRDM.cpp */,
-				5614F9EA21B029FB002C5D40 /* FCIRDMBuilder.cpp */,
-				5614F9EB21B029FB002C5D40 /* SelectedRDMBuilder.cpp */,
 				5614F9EC21B029FB002C5D40 /* BaseRDM.cpp */,
-				5614F9ED21B029FB002C5D40 /* RDMCalculator.cpp */,
+				5614F9E721B029FB002C5D40 /* BaseRDMBuilder.cpp */,
 				5614F9EE21B029FB002C5D40 /* DOCIRDMBuilder.cpp */,
+				5614F9EA21B029FB002C5D40 /* FCIRDMBuilder.cpp */,
+				566D22A021B81CC100F8EB91 /* NRDMCalculator.cpp */,
+				5614F9E921B029FB002C5D40 /* OneRDM.cpp */,
+				5614F9ED21B029FB002C5D40 /* RDMCalculator.cpp */,
+				5614F9E621B029FB002C5D40 /* RDMs.cpp */,
+				5614F9EB21B029FB002C5D40 /* SelectedRDMBuilder.cpp */,
+				5614F9E821B029FB002C5D40 /* TwoRDM.cpp */,
 			);
 			path = RDM;
 			sourceTree = "<group>";
@@ -3254,6 +3297,7 @@
 			children = (
 				5614FB4F21B02EDE002C5D40 /* DOCIRDMBuilder_test.cpp */,
 				5614FB5321B02EDE002C5D40 /* FCIRDMBuilder_test.cpp */,
+				566042F621B91369008C2E86 /* NRDMCalculator_test.cpp */,
 				5614FB5021B02EDE002C5D40 /* OneRDM_test.cpp */,
 				5614FB4E21B02EDE002C5D40 /* RDMCalculator_test.cpp */,
 				5614FB5221B02EDE002C5D40 /* SelectedRDMBuilder_test.cpp */,
@@ -3470,6 +3514,7 @@
 				5614FA2B21B029FB002C5D40 /* properties.hpp in Headers */,
 				5614FA4321B029FB002C5D40 /* FCI.hpp in Headers */,
 				5614FA3421B029FB002C5D40 /* OneElectronOperator.hpp in Headers */,
+				566D22A321B81CC100F8EB91 /* NRDMCalculator.hpp in Headers */,
 				5614FA2D21B029FB002C5D40 /* miscellaneous.hpp in Headers */,
 				56272DBA21B6CBFA008BEA47 /* AP1roGGeminalCoefficients.hpp in Headers */,
 				5614FA1521B029FB002C5D40 /* ONV.hpp in Headers */,
@@ -4593,6 +4638,24 @@
 			productReference = 56272DE121B6CC7B008BEA47 /* APIGGeminalCoefficients_test */;
 			productType = "com.apple.product-type.tool";
 		};
+		566042F721B913AD008C2E86 /* NRDMCalculator_test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 566042FF21B913AD008C2E86 /* Build configuration list for PBXNativeTarget "NRDMCalculator_test" */;
+			buildPhases = (
+				566042FA21B913AD008C2E86 /* Sources */,
+				566042FC21B913AD008C2E86 /* Frameworks */,
+				566042FE21B913AD008C2E86 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				566042F821B913AD008C2E86 /* PBXTargetDependency */,
+			);
+			name = NRDMCalculator_test;
+			productName = AP1roGGeminalCoefficients_test;
+			productReference = 5660430221B913AD008C2E86 /* NRDMCalculator_test */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -4701,6 +4764,7 @@
 				561401A121B06455002C5D40 /* BUILD_RDM_TESTS */,
 				5614008D21B0630F002C5D40 /* DOCIRDMBuilder_test */,
 				5614009921B0631A002C5D40 /* FCIRDMBuilder_test */,
+				566042F721B913AD008C2E86 /* NRDMCalculator_test */,
 				561400A521B06320002C5D40 /* OneRDM_test */,
 				561400B121B06329002C5D40 /* RDMCalculator_test */,
 				561400BD21B06330002C5D40 /* SelectedRDMBuilder_test */,
@@ -5033,6 +5097,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5614FA5621B029FB002C5D40 /* BaseRDMBuilder.cpp in Sources */,
+				566D22A221B81CC100F8EB91 /* NRDMCalculator.cpp in Sources */,
 				5614FA6721B029FB002C5D40 /* OneElectronOperator.cpp in Sources */,
 				5614FA6321B029FB002C5D40 /* properties.cpp in Sources */,
 				56272DC621B6CC0D008BEA47 /* BaseAPIGGeminalCoefficients.cpp in Sources */,
@@ -5298,6 +5363,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				56272DE221B6CC93008BEA47 /* APIGGeminalCoefficients_test.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		566042FA21B913AD008C2E86 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5660430321B913BA008C2E86 /* NRDMCalculator_test.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5943,6 +6016,16 @@
 			isa = PBXTargetDependency;
 			target = 56272DD621B6CC7B008BEA47 /* APIGGeminalCoefficients_test */;
 			targetProxy = 56272DE321B6CC9B008BEA47 /* PBXContainerItemProxy */;
+		};
+		566042F821B913AD008C2E86 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5614F97F21B0295C002C5D40 /* gqcp */;
+			targetProxy = 566042F921B913AD008C2E86 /* PBXContainerItemProxy */;
+		};
+		5660430521B913EA008C2E86 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 566042F721B913AD008C2E86 /* NRDMCalculator_test */;
+			targetProxy = 5660430421B913EA008C2E86 /* PBXContainerItemProxy */;
 		};
 		56C64D8C21B0736C00D44FF0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -7335,6 +7418,22 @@
 			};
 			name = Release;
 		};
+		5660430021B913AD008C2E86 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		5660430121B913AD008C2E86 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		56C64D8821B0735C00D44FF0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -8034,6 +8133,15 @@
 			buildConfigurations = (
 				56272DDF21B6CC7B008BEA47 /* Debug */,
 				56272DE021B6CC7B008BEA47 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		566042FF21B913AD008C2E86 /* Build configuration list for PBXNativeTarget "NRDMCalculator_test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5660430021B913AD008C2E86 /* Debug */,
+				5660430121B913AD008C2E86 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
