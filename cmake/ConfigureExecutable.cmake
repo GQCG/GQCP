@@ -35,5 +35,6 @@ function(configure_executable EXECUTABLE_NAME)
         target_link_libraries(${EXECUTABLE_NAME} PRIVATE ${MKL_LIBRARIES})
     endif()
 
+    install(TARGETS ${EXECUTABLE_NAME} RUNTIME DESTINATION ${BIN_INSTALL_DIR})
 
 endfunction(configure_executable)
