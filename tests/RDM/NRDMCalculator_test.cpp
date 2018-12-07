@@ -79,3 +79,23 @@ BOOST_AUTO_TEST_CASE ( calculateElement_2RDM ) {
     BOOST_CHECK(std::abs(d.calculateElement({0,2}, {0,2}, coeff) - (-4.0)) < 1.0e-12);  // d(0,2,0,2) : a^\dagger_0 a^dagger_2 a_0 a_2
     BOOST_CHECK(std::abs(d.calculateElement({0,0}, {0,2}, coeff) - 0.0) < 1.0e-12);     // d(0,2,0,0) : a^\dagger_0 a^dagger_0 a_0 a_2, double annihilation gives 0.0
 }
+
+
+BOOST_AUTO_TEST_CASE ( calculateElement_3RDM ) {
+
+    // Create a test wave function
+    size_t M = 5;
+    size_t N = 4;
+    GQCP::FockSpace fock_space (M, N);
+
+    Eigen::VectorXd coeff (fock_space.get_dimension());
+    coeff << 1, 1, -2, 4, -5;
+
+
+    // Check some 3-RDM values
+    GQCP::NRDMCalculator d (fock_space);
+    BOOST_CHECK(std::abs(d.calculateElement({0,0,1}, {1,0,2}, coeff) - 0.0) < 1.0e-12);  // zero because two times the same index
+    BOOST_CHECK(std::abs(d.calculateElement({1,0,3}, {4,1,2}, coeff) - 0.0) < 1.0e-12);  // zero because no fully annihilated bras and kets match
+    BOOST_CHECK(std::abs(d.calculateElement({0,1,2}, {2,1,0}, coeff) - 2.0) < 1.0e-12);
+    BOOST_CHECK(std::abs(d.calculateElement({0,1,2}, {0,1,3}, coeff) - 2.0) < 1.0e-12);
+}
