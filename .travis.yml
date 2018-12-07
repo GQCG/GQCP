@@ -73,11 +73,11 @@ install:
            cd libint-2.3.1
            ./autogen.sh
            mkdir build && cd build
-           ../configure CXXFLAGS=-I${BOOST_ROOT}
+           ../configure CXXFLAGS=-I${BOOST_ROOT} --enable-shared=yes
            make export
            tar -xvzf libint-2.3.1.tgz
            cd libint-2.3.1
-           ./configure CXXFLAGS=-I${BOOST_ROOT}
+           ./configure CXXFLAGS=-I${BOOST_ROOT} --enable-shared=yes
            make -j3
            sudo make install
         else
