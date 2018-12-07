@@ -22,7 +22,6 @@
 #include <Eigen/Dense>
 
 #include "common.hpp"
-#include <tuple>
 
 
 
@@ -121,7 +120,6 @@ public:
      *  Extracts the positions of the set bits from the this->unsigned_representation and places them in the this->occupation_indices
      */
     void updateOccupationIndices();
-    
 
     /**
      *  @param p    the orbital index starting from 0, counted from right to left
