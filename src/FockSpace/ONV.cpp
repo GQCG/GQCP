@@ -48,10 +48,13 @@ ONV::ONV(size_t K, size_t N, size_t unsigned_representation) :
  */
 ONV::ONV(size_t K, size_t N) :
     K (K),
-    N (N)
+    N (N),
+    occupation_indices (VectorXs::Zero(N))
 {
     this->occupation_indices = VectorXs::Zero(N);
 }
+
+
 
 /*
  *  OPERATORS
@@ -138,6 +141,7 @@ bool ONV::isOccupied(size_t p) const {
     if (p > this->K-1) {
         throw std::invalid_argument("The index is out of the bitset bounds");
     }
+
     size_t operator_string = 1U << p;
     return this->unsigned_representation & operator_string;
 }
@@ -156,8 +160,73 @@ bool ONV::areOccupied(const std::vector<size_t>& indices) const {
         }
     }
 
-    // Only if all indices are not occupied, we can return true
+    // Only if all indices have been tested to be occupied, we can return true
     return true;
+}
+
+
+/**
+ *  @param p    the orbital index starting from 0, counted from right to left
+ *
+ *  @return if the p-th spatial orbital is not occupied
+ */
+bool ONV::isUnoccupied(size_t p) const {
+    return !this->isOccupied(p);
+}
+
+
+/**
+ *  @param indices      the orbital indices (starting from 0)
+ *
+ *  @return if all the given indices are unoccupied
+ */
+bool ONV::areUnoccupied(const std::vector<size_t>& indices) const {
+
+    for (const auto& index : indices) {
+        if (this->isOccupied(index)) {
+            return false;
+        }
+    }
+
+    // Only if all indices have been tested to be unoccupied, we can return true
+    return true;
+}
+
+
+/**
+ *  @param index_start      the starting index (included), read from right to left
+ *  @param index_end        the ending index (not included), read from right to left
+ *
+ *  @return the representation of a slice (i.e. a subset) of the spin string (read from right to left) between index_start (included) and index_end (not included)
+ *
+ *      Example:
+ *          "010011".slice(1, 4) => "01[001]1" -> "001"
+ */
+size_t ONV::slice(size_t index_start, size_t index_end) const {
+
+    // First, do some checks
+    if (index_end <= index_start) {
+        throw std::invalid_argument("index_end should be larger than index_start.");
+    }
+
+    if (index_end > this->K + 1) {
+        throw std::invalid_argument("The last slicing index index_end cannot be greater than the number of spatial orbitals K.");
+    }
+
+    // The union of these conditions also include the case that index_start > this->K
+
+
+    // Shift bits to the right
+    size_t u = this->unsigned_representation >> index_start;
+
+
+    // Create the correct mask
+    size_t mask_length = index_end - index_start;
+    size_t mask = ((1U) << mask_length) - 1;
+
+
+    // Use the mask
+    return u & mask;
 }
 
 
@@ -203,6 +272,26 @@ bool ONV::annihilate(size_t p) {
 
 
 /**
+ *  @param indices      the orbital indices (starting from 0)
+ *
+ *  @return if we can apply all annihilation operators (i.e. 1->0) on the given indices. Subsequently perform in-place annihilations on the given indices
+ *
+ *  IMPORTANT: does not update the occupation indices for performance reasons, if required call updateOccupationIndices()!
+ */
+bool ONV::annihilateAll(const std::vector<size_t>& indices) {
+
+    if (this->areOccupied(indices)) {  // only if all indices are occupied, we will annihilate
+        for (const auto& index : indices) {
+            this->annihilate(index);
+        }
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
+/**
  *  @param p        the orbital index starting from 0, counted from right to left
  *  @param sign     the current sign of the operator string
  *
@@ -230,13 +319,14 @@ bool ONV::annihilate(size_t p, int& sign) {
  */
 bool ONV::annihilateAll(const std::vector<size_t>& indices, int& sign) {
 
-    for (const auto& index : indices) {
-        if (!this->annihilate(index, sign)) {
-            return false;
+    if (this->areOccupied(indices)) {  // only if all indices are occupied, we will annihilate
+        for (const auto& index : indices) {
+            this->annihilate(index, sign);
         }
+        return true;
+    } else {
+        return false;
     }
-
-    return true;
 }
 
 
@@ -284,50 +374,34 @@ bool ONV::create(size_t p, int& sign) {
  */
 bool ONV::createAll(const std::vector<size_t>& indices) {
 
-    for (const auto& index : indices) {
-        if (!this->create(index)) {
-            return false;
+    if (this->areUnoccupied(indices)) {
+        for (const auto& index : indices) {
+            this->create(index);
         }
+        return true;
+    } else {
+        return false;
     }
-
-    return true;
 }
 
-
+    
 /**
- *  @param index_start      the starting index (included), read from right to left
- *  @param index_end        the ending index (not included), read from right to left
+ *  @param indices      the indices of the orbitals that should be annihilated (the first index is annihilated first)
  *
- *  @return the representation of a slice (i.e. a subset) of the spin string (read from right to left) between index_start (included) and index_end (not included)
+ *  @return if we can apply all annihilation operators (i.e. 1->0) on the given indices. Subsequently perform in-place annihilations on the given indices. Furthermore, update the sign according to the sign change (+1 or -1) of the spin string after the annihilations.
  *
- *      Example:
- *          "010011".slice(1, 4) => "01[001]1" -> "001"
+ *  IMPORTANT: does not update the occupation indices for performance reasons, if required call updateOccupationIndices()!
  */
-size_t ONV::slice(size_t index_start, size_t index_end) const {
+bool ONV::createAll(const std::vector<size_t>& indices, int& sign) {
 
-    // First, do some checks
-    if (index_end <= index_start) {
-        throw std::invalid_argument("index_end should be larger than index_start.");
+    if (this->areUnoccupied(indices)) {
+        for (const auto& index : indices) {
+            this->create(index, sign);
+        }
+        return true;
+    } else {
+        return false;
     }
-
-    if (index_end > this->K + 1) {
-        throw std::invalid_argument("The last slicing index index_end cannot be greater than the number of spatial orbitals K.");
-    }
-
-    // The union of these conditions also include the case that index_start > this->K
-
-
-    // Shift bits to the right
-    size_t u = this->unsigned_representation >> index_start;
-
-
-    // Create the correct mask
-    size_t mask_length = index_end - index_start;
-    size_t mask = ((1U) << mask_length) - 1;
-
-
-    // Use the mask
-    return u & mask;
 }
 
 
