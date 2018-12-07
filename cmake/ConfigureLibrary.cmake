@@ -1,30 +1,33 @@
 # In this CMake file, we will include the headers and link to the necessary libraries
 
-
 # Include this project's headers
-target_include_directories(${LIBRARY_NAME} PRIVATE ${PROJECT_INCLUDE_FOLDER})
+target_include_directories(${LIBRARY_NAME} PUBLIC
+        $<BUILD_INTERFACE:${PROJECT_INCLUDE_FOLDER}>
+        $<INSTALL_INTERFACE:${PROJECT_INSTALL_INCLUDE_FOLDER}>)
 
-# Include the boost headers
+# Include boost
 target_include_directories(${LIBRARY_NAME} PUBLIC ${Boost_INCLUDE_DIRS})
+target_link_libraries(${LIBRARY_NAME} PUBLIC ${Boost_LIBRARIES})
 
 # Include Eigen
 target_link_libraries(${LIBRARY_NAME} PUBLIC Eigen3::Eigen)
 
 # Include libint2
 target_include_directories(${LIBRARY_NAME} PUBLIC ${Libint2_INCLUDE_DIRS})
-
-# Include Spectra
-target_include_directories(${LIBRARY_NAME} PUBLIC ${spectra_INCLUDE_DIRS})
+target_link_libraries(${LIBRARY_NAME} PUBLIC ${Libint2_LIBRARIES})
 
 # Include cpputil
-target_include_directories(${LIBRARY_NAME} PRIVATE ${cpputil_INCLUDE_DIRS})
+target_include_directories(${LIBRARY_NAME} PUBLIC ${cpputil_INCLUDE_DIRS})
+target_link_libraries(${LIBRARY_NAME} PUBLIC cpputil)
 
 # Include numopt
 target_include_directories(${LIBRARY_NAME} PUBLIC ${numopt_INCLUDE_DIRS})
+target_link_libraries(${LIBRARY_NAME} PUBLIC numopt)
 
 # Include MKL (optional)
 if (MKL_FOUND)
-    target_include_directories(${LIBRARY_NAME} PRIVATE ${MKL_INCLUDE_DIRS})
+    target_include_directories(${LIBRARY_NAME} PUBLIC ${MKL_INCLUDE_DIRS})
+    target_link_libraries(${LIBRARY_NAME} PUBLIC ${MKL_LIBRARIES})
 endif()
 
 # Generate documentation

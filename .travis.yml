@@ -58,7 +58,7 @@ install:
 
     # Install cpputil
     - mkdir /tmp/cpputil && cd /tmp/cpputil
-    - git clone https://github.com/GQCG/cpputil.git --branch master --single-branch
+    - git clone https://github.com/GQCG/cpputil.git --branch feature/shared_library --single-branch
     - cd cpputil
     - mkdir build && cd build
     - cmake .. && make -j3 && make test ARGS=-j3 && sudo make install
@@ -90,7 +90,7 @@ install:
 
     # Install numopt
     - mkdir /tmp/numopt && cd /tmp/numopt
-    - git clone https://github.com/GQCG/numopt.git --branch master --single-branch --recurse-submodules
+    - git clone https://github.com/GQCG/numopt.git --branch feature/shared_library --single-branch --recurse-submodules
     - cd numopt
     - mkdir build && cd build
     - cmake .. && make -j3 && make test ARGS=-j3 && sudo make install

@@ -6,17 +6,13 @@ string(TOUPPER ${PROJECT_NAME} PROJECT_NAME_UPPERCASE)  # Uppercase is needed in
 string(TOLOWER ${PROJECT_NAME} PROJECT_NAME_LOWERCASE)
 
 
-
 # The name of the library should be equal to the project name
 if(NOT LIBRARY_NAME)
     set(LIBRARY_NAME ${PROJECT_NAME})
 endif()
 
-# We want to make a static library
-set(LIBRARY_TYPE STATIC)
-set(EXPORT_TYPE ARCHIVE)
-
-
+# We want to make a shared/dynamic library
+set(LIBRARY_TYPE SHARED)
 
 # Find the source folder
 set(PROJECT_SOURCE_FOLDER ${CMAKE_SOURCE_DIR}/src)
