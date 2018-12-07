@@ -138,7 +138,7 @@ void ONV::updateOccupationIndices() {
  */
 bool ONV::isOccupied(size_t p) const {
 
-    if (p > this->K-1) {
+    if (p > this->K - 1) {
         throw std::invalid_argument("The index is out of the bitset bounds");
     }
 
@@ -153,6 +153,13 @@ bool ONV::isOccupied(size_t p) const {
  *  @return if all given indices are occupied
  */
 bool ONV::areOccupied(const std::vector<size_t>& indices) const {
+
+    // Check first if all indices are within bounds
+    for (const auto& index : indices) {
+        if (index > this->K - 1) {
+            throw std::invalid_argument("The index is out of the bitset bounds");
+        }
+    }
 
     for (const auto& index : indices) {
         if (!this->isOccupied(index)) {
@@ -181,6 +188,13 @@ bool ONV::isUnoccupied(size_t p) const {
  *  @return if all the given indices are unoccupied
  */
 bool ONV::areUnoccupied(const std::vector<size_t>& indices) const {
+
+    // Check first if all indices are within bounds
+    for (const auto& index : indices) {
+        if (index > this->K - 1) {
+            throw std::invalid_argument("The index is out of the bitset bounds");
+        }
+    }
 
     for (const auto& index : indices) {
         if (this->isOccupied(index)) {

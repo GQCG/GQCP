@@ -25,7 +25,9 @@
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise clang++ will complain
 
 
+
 BOOST_AUTO_TEST_CASE ( ONV_constructor ) {
+
     // Create ONV : 10 considered bits and 5 set bits with distributed as "0000011111" = 31
     GQCP::ONV onv1 (10, 5, 31);
 
@@ -145,37 +147,51 @@ BOOST_AUTO_TEST_CASE ( isOccupied ) {
 
     GQCP::ONV onv (4, 1, 2);  // "0010" (2)
 
-    // We shouldn't be able to check on index 9 (out of bounds)
-    BOOST_CHECK_THROW(onv.isOccupied(4), std::invalid_argument);
+    BOOST_CHECK_THROW(onv.isOccupied(9), std::invalid_argument);  // 9 is out of bounds
 
-    // Index 1 is occupied in "0010" (2)
     BOOST_CHECK(onv.isOccupied(1));
-
-    // Index 2 is not occupied "0010" (2)
     BOOST_CHECK(!onv.isOccupied(2));
 }
 
 
 BOOST_AUTO_TEST_CASE ( areOccupied ) {
 
-    GQCP::ONV spin_string (6, 3, 22);  // "010110" (22)
+    GQCP::ONV onv (6, 3, 22);  // "010110" (22)
 
+    BOOST_CHECK_THROW(onv.areOccupied({1, 2, 9}), std::invalid_argument);  // 9 is out of bounds
+    BOOST_CHECK_THROW(onv.areOccupied({9, 1, 2}), std::invalid_argument);  // 9 is out of bounds
 
+    BOOST_CHECK(onv.areOccupied({1, 2, 4}));
+    BOOST_CHECK(onv.areOccupied({4, 2, 1}));
 
-
-
+    BOOST_CHECK(!onv.areOccupied({0, 1}));
+    BOOST_CHECK(!onv.areOccupied({3, 0}));
 }
 
 
 BOOST_AUTO_TEST_CASE ( isUnoccupied ) {
 
+    GQCP::ONV onv (4, 1, 2);  // "0010" (2)
 
+    BOOST_CHECK_THROW(onv.isUnoccupied(9), std::invalid_argument);  // 9 is out of bounds
+
+    BOOST_CHECK(onv.isUnoccupied(0));
+    BOOST_CHECK(!onv.isUnoccupied(1));
 }
 
 
 BOOST_AUTO_TEST_CASE ( areUnoccupied ) {
 
+    GQCP::ONV onv (6, 3, 22);  // "010110" (22)
 
+    BOOST_CHECK_THROW(onv.areUnoccupied({0, 3, 9}), std::invalid_argument);  // 9 is out of bounds
+    BOOST_CHECK_THROW(onv.areUnoccupied({9, 0, 3}), std::invalid_argument);  // 9 is out of bounds
+
+    BOOST_CHECK(onv.areUnoccupied({0, 3, 5}));
+    BOOST_CHECK(onv.areUnoccupied({5, 0, 3}));
+
+    BOOST_CHECK(!onv.areUnoccupied({0, 1}));
+    BOOST_CHECK(!onv.areUnoccupied({1, 2}));
 }
 
 
@@ -193,11 +209,11 @@ BOOST_AUTO_TEST_CASE ( slice ) {
 
     GQCP::ONV onv3 (7, 5, 115);
     BOOST_CHECK_EQUAL(onv3.slice(2, 7), 28);  // "[11100]11" (115) -> "11100" (28)
-    BOOST_CHECK_EQUAL(onv3.slice(2, 5), 4);  // "11[100]11" (115) -> "100" (4)
+    BOOST_CHECK_EQUAL(onv3.slice(2, 5), 4);   // "11[100]11" (115) -> "100" (4)
 
     GQCP::ONV onv4 (6, 3, 19);
     BOOST_CHECK_EQUAL(onv4.slice(2, 6), 4);  // "[0100]11" (18) -> "0100" (4)
-    BOOST_CHECK_EQUAL(onv4.slice(6, 6), 0);  // "[0]10011" (18) -> "0" (0)
+    BOOST_CHECK_EQUAL(onv4.slice(5, 6), 0);  // "[0]10011" (18) -> "0" (0)
     BOOST_CHECK_EQUAL(onv4.slice(4, 5), 1);  // "0[1]0011" (19) -> "1" (1)
 }
 
@@ -242,6 +258,52 @@ BOOST_AUTO_TEST_CASE ( annihilate ) {
 }
 
 
+BOOST_AUTO_TEST_CASE ( annihilateAll_1 ) {
+
+    GQCP::ONV onv (6, 3, 22);  // "010110" (22)
+    GQCP::ONV onv_copy = onv;  // to check if nothing changes
+
+    BOOST_CHECK_THROW(onv.annihilateAll({8, 4}), std::invalid_argument);
+
+
+    // Try to annihilate {0,1} and check if nothing changes
+    BOOST_CHECK(!onv.annihilateAll({0, 1}));
+    BOOST_CHECK(onv_copy == onv);
+
+
+    // Try to annihilate {1,0} and check if nothing changes
+    BOOST_CHECK(!onv.annihilateAll({1, 0}));
+    BOOST_CHECK(onv_copy == onv);
+
+
+    // Try to annihilate {5,2,0,1} and check if nothing changes
+    BOOST_CHECK(!onv.annihilateAll({5, 2, 0, 1}));
+    BOOST_CHECK(onv_copy == onv);
+}
+
+
+BOOST_AUTO_TEST_CASE ( annihilateAll_2 ) {
+
+    GQCP::ONV onv (6, 3, 22);  // "010110" (22)
+
+    // Annihilate the indices {1, 2}
+    GQCP::ONV ref_onv (6, 1, 16);  // "010000" (16)
+    BOOST_CHECK(onv.annihilateAll({1, 2}));
+    BOOST_CHECK(onv == ref_onv);
+}
+
+
+BOOST_AUTO_TEST_CASE ( annihilateAll_3 ) {
+
+    GQCP::ONV onv (6, 3, 22);  // "010110" (22)
+
+    // Annihilate the indices {2, 1}
+    GQCP::ONV ref_onv (6, 1, 16);  // "010000" (16)
+    BOOST_CHECK(onv.annihilateAll({2, 1}));
+    BOOST_CHECK(onv == ref_onv);
+}
+
+
 BOOST_AUTO_TEST_CASE ( annihilate_sign ) {
 
     // There should be a sign change when we annihilate on (lexical) index 2 for "10101" (21)
@@ -259,7 +321,7 @@ BOOST_AUTO_TEST_CASE ( annihilate_sign ) {
     onv2.annihilate(4, sign);
     BOOST_CHECK_EQUAL(sign, 1);
 
-    // Annihilating the first occupied SO on (lexical) index 0 for "10101" (21)
+    // Annihilating the first occupied orbital on (lexical) index 0 for "10101" (21)
     GQCP::ONV onv3 (5, 3, 21);
     sign = 1;
 
@@ -283,8 +345,8 @@ BOOST_AUTO_TEST_CASE ( annihilateAll_sign_1 ) {
     BOOST_CHECK(onv_copy == onv);
 
 
-    // Try to annihilate {1,2} and check if nothing changes
-    BOOST_CHECK(!onv.annihilateAll({1, 2}, sign));
+    // Try to annihilate {1,0} and check if nothing changes
+    BOOST_CHECK(!onv.annihilateAll({1, 0}, sign));
     BOOST_CHECK(sign == 1);
     BOOST_CHECK(onv_copy == onv);
 
@@ -338,7 +400,7 @@ BOOST_AUTO_TEST_CASE ( create ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( createAll_example_1 ) {
+BOOST_AUTO_TEST_CASE ( createAll_1 ) {
 
     GQCP::ONV onv (6, 3, 22);  // "010110" (22)
     GQCP::ONV onv_copy = onv;  // to check if nothing happens
@@ -349,8 +411,6 @@ BOOST_AUTO_TEST_CASE ( createAll_example_1 ) {
     // Try to create {0,1} and check if nothing changes
     BOOST_CHECK(!onv.createAll({0, 1}));
     BOOST_CHECK(onv_copy == onv);
-    std::cout << onv.asString() << std::endl;
-    std::cout << onv_copy.asString() << std::endl;
 
 
     // Try to create {5,2,0,1} and check if nothing changes
@@ -359,13 +419,13 @@ BOOST_AUTO_TEST_CASE ( createAll_example_1 ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( createAll_example_2 ) {
+BOOST_AUTO_TEST_CASE ( createAll_2 ) {
 
     GQCP::ONV onv (6, 3, 22);  // "010110" (22)
 
-    // Create the indices {1, 3}
-    GQCP::ONV ref_onv (6, 1, 31);  // "011111" (31)
-    BOOST_CHECK(onv.createAll({1, 3}));
+    // Create the indices {0, 3}
+    GQCP::ONV ref_onv (6, 5, 31);  // "011111" (31)
+    BOOST_CHECK(onv.createAll({0, 3}));
     BOOST_CHECK(onv == ref_onv);
 }
 
@@ -387,14 +447,14 @@ BOOST_AUTO_TEST_CASE ( create_sign ) {
     onv2.create(3, sign);
     BOOST_CHECK_EQUAL(sign, 1);
 
-    // Creating the last SO on (lexical) index 4 for "00101" (5)
+    // Creating the last orbital on (lexical) index 4 for "00101" (5)
     GQCP::ONV onv3 (5, 2, 5);
     sign = 1;
 
     onv3.create(4, sign);
     BOOST_CHECK_EQUAL(sign, 1);
 
-    // Creating the first SO on (lexical) index 0 for "10100" (5)
+    // Creating the first orbital on (lexical) index 0 for "10100" (5)
     GQCP::ONV onv4 (5, 2, 20);
     sign = 1;
 
@@ -403,9 +463,51 @@ BOOST_AUTO_TEST_CASE ( create_sign ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( createAll_sign ) {
+BOOST_AUTO_TEST_CASE ( createAll_sign_1 ) {
 
-    
+    GQCP::ONV onv (6, 3, 22);  // "010110" (22)
+    GQCP::ONV onv_copy = onv;  // to check if nothing happens
+
+    BOOST_CHECK_THROW(onv.createAll({8, 4}), std::invalid_argument);
+
+
+    // Try to create {0,1} and check if nothing changes
+    int sign = 1;
+    BOOST_CHECK(!onv.createAll({0, 1}, sign));
+    BOOST_CHECK(sign == 1);
+    BOOST_CHECK(onv_copy == onv);
+
+
+    // Try to create {5,2,0,1} and check if nothing changes
+    BOOST_CHECK(!onv.createAll({5, 2, 0, 1}, sign));
+    BOOST_CHECK(sign == 1);
+    BOOST_CHECK(onv_copy == onv);
+}
+
+
+BOOST_AUTO_TEST_CASE ( createAll_sign_2 ) {
+
+    GQCP::ONV onv (6, 3, 22);  // "010110" (22)
+
+    // Create the indices {0, 3}
+    GQCP::ONV ref_onv (6, 5, 31);  // "011111" (31)
+    int sign = 1;
+    BOOST_CHECK(onv.createAll({0, 3}, sign));
+    BOOST_CHECK(sign == -1);
+    BOOST_CHECK(onv == ref_onv);
+}
+
+
+BOOST_AUTO_TEST_CASE ( createAll_sign_3 ) {
+
+    GQCP::ONV onv (6, 3, 22);  // "010110" (22)
+
+    // Create the indices {3, 0}
+    int sign = 1;
+    GQCP::ONV ref_onv (6, 5, 31);  // "011111" (31)
+    BOOST_CHECK(onv.createAll({3, 0}, sign));
+    BOOST_CHECK(sign == 1);
+    BOOST_CHECK(onv == ref_onv);
 }
 
 
