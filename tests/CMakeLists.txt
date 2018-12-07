@@ -9,7 +9,7 @@ foreach(TEST_SOURCE ${PROJECT_TEST_SOURCE_FILES})
     add_executable(${TEST_NAME} ${TEST_SOURCE})
 
     # ... configure (include headers and link libraries) the test ...
-    configure_executable(${TEST_NAME})
+    configure_test(${TEST_NAME})
 
     # ... and finally make a test
     add_test(NAME ${TEST_NAME} COMMAND ${TEST_NAME} WORKING_DIRECTORY ${CMAKE_BINARY_DIR})  # the working directory will be the build directory
