@@ -25,17 +25,6 @@
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise clang++ will complain
 
 
-BOOST_AUTO_TEST_CASE ( operator_equals_onv ) {
-
-    GQCP::ONV spin_string1 (6, 3, 19);  // "010011" (19)
-    GQCP::ONV spin_string2 (6, 3, 19);  // "010011" (19)
-    GQCP::ONV spin_string3 (7, 3, 19);  // "0010011" (19)
-
-    BOOST_CHECK(spin_string1 == spin_string2);
-    BOOST_CHECK(!(spin_string1 == spin_string3));  // wrong number of orbitals
-}
-
-
 BOOST_AUTO_TEST_CASE ( ONV_constructor ) {
     // Create ONV : 10 considered bits and 5 set bits with distributed as "0000011111" = 31
     GQCP::ONV onv1 (10, 5, 31);
@@ -60,7 +49,18 @@ BOOST_AUTO_TEST_CASE ( ONV_constructor ) {
 }
 
 
-BOOST_AUTO_TEST_CASE (  operator_not_equals_onv ) {
+BOOST_AUTO_TEST_CASE ( operator_equals_ONV ) {
+
+    GQCP::ONV spin_string1 (6, 3, 19);  // "010011" (19)
+    GQCP::ONV spin_string2 (6, 3, 19);  // "010011" (19)
+    GQCP::ONV spin_string3 (7, 3, 19);  // "0010011" (19)
+
+    BOOST_CHECK(spin_string1 == spin_string2);
+    BOOST_CHECK(!(spin_string1 == spin_string3));  // wrong number of orbitals
+}
+
+
+BOOST_AUTO_TEST_CASE ( operator_not_equals_ONV ) {
 
     GQCP::ONV spin_string1 (6, 3, 19);  // "010011" (19)
     GQCP::ONV spin_string2 (6, 3, 19);  // "010011" (19)
@@ -71,7 +71,7 @@ BOOST_AUTO_TEST_CASE (  operator_not_equals_onv ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( address_onv ) {
+BOOST_AUTO_TEST_CASE ( FockSpace_getAddress ) {
 
     GQCP::FockSpace fock_space (6, 3);
 
@@ -82,8 +82,9 @@ BOOST_AUTO_TEST_CASE ( address_onv ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( set_Next_onv ) {
-    GQCP::FockSpace fock_space(5, 3);
+BOOST_AUTO_TEST_CASE ( FockSpace_setNext ) {
+
+    GQCP::FockSpace fock_space (5, 3);
     // K = 5, N = 3 <-> "00111"
     GQCP::ONV spin_string = fock_space.get_ONV(0);
     // The lexical permutations are: "00111" (7), "01011" (11), "01101" (13), "01110" (14), etc.
@@ -107,143 +108,6 @@ BOOST_AUTO_TEST_CASE ( set_Next_onv ) {
     GQCP::VectorXs x3 (3);
     x3 << 1, 2, 3;
     BOOST_CHECK(x3.isApprox(spin_string.get_occupation_indices()));
-}
-
-
-BOOST_AUTO_TEST_CASE ( slice_onv ) {
-
-    // Check for throws
-    GQCP::ONV spin_string (4, 2, 5);  // "0101" (5)
-    BOOST_CHECK_THROW(spin_string.slice(2, 1), std::invalid_argument);  // index_end should be larger than index_start
-    BOOST_CHECK_THROW(spin_string.slice(2, 2), std::invalid_argument);  // index_end should be larger than index_start
-    BOOST_CHECK_THROW(spin_string.slice(2, 6), std::invalid_argument);  // index_end is out of bounds
-
-
-    GQCP::ONV spin_string1 (7, 3, 41);
-    BOOST_CHECK_EQUAL(spin_string1.slice(2, 6), 10);  // "0[1010]01" (41) -> "1010" (10)
-
-    GQCP::ONV spin_string2 (7, 5, 115);
-    BOOST_CHECK_EQUAL(spin_string2.slice(2, 7), 28);  // "[11100]11" (115) -> "11100" (28)
-
-    GQCP::ONV spin_string3 (7, 5, 115);
-    BOOST_CHECK_EQUAL(spin_string3.slice(2, 5), 4);  // "11[100]11" (115) -> "100" (4)
-
-    GQCP::ONV spin_string4 (6, 3, 19);
-    BOOST_CHECK_EQUAL(spin_string4.slice(2, 6), 4);  // "[0100]11" (18) -> "0100" (4)
-
-    GQCP::ONV spin_string5 (6, 3, 19);
-    BOOST_CHECK_EQUAL(spin_string5.slice(5, 6), 0);  // "[0]10011" (18) -> "0" (0)
-
-    GQCP::ONV spin_string6 (6, 3, 19);
-    BOOST_CHECK_EQUAL(spin_string6.slice(4, 5), 1);  // "0[1]0011" (19) -> "1" (1)
-}
-
-
-BOOST_AUTO_TEST_CASE ( isOccupied_onv ) {
-
-    GQCP::ONV spin_string (4, 1, 2);  // "0010" (2)
-
-    // We shouldn't be able to check on index 9 (out of bounds)
-    BOOST_CHECK_THROW(spin_string.isOccupied(4), std::invalid_argument);
-
-    // Index 1 is occupied in "0010" (2)
-    BOOST_CHECK(spin_string.isOccupied(1));
-
-    // Index 2 is not occupied "0010" (2)
-    BOOST_CHECK(!spin_string.isOccupied(2));
-}
-
-
-BOOST_AUTO_TEST_CASE ( annihilate_onv ) {
-
-    GQCP::ONV spin_string (4, 2, 10);  // "1010" (10)
-
-    // We shouldn't be able to annihilate on index 5 (out of bounds)
-    BOOST_CHECK_THROW(spin_string.annihilate(5), std::invalid_argument);
-
-    // We can't annihilate on index 2
-    BOOST_CHECK(!(spin_string.annihilate(2)));
-
-    // We can annihilate on index 1
-    BOOST_CHECK(spin_string.annihilate(1));  // "1010" (10) -> "1000" (8)
-    BOOST_CHECK_EQUAL(spin_string.get_unsigned_representation(), 8);
-    // Test if updating throws an error (no longer 2 electrons)
-    BOOST_CHECK_THROW(spin_string.updateOccupationIndices(), std::invalid_argument);
-}
-
-
-BOOST_AUTO_TEST_CASE ( annihilate_sign_onv ) {
-
-    // There should be a sign change when we annihilate on (lexical) index 2 for "10101" (21)
-    GQCP::ONV spin_string1 (5,3, 21);
-    int sign = 1;
-
-    spin_string1.annihilate(2, sign);
-    BOOST_CHECK_EQUAL(sign, -1);
-
-
-    // There should be no sign change when we annihilate on (lexical) index 4 for "10101" (21)
-    GQCP::ONV spin_string2 (5, 3, 21);
-    sign = 1;
-
-    spin_string2.annihilate(4, sign);
-    BOOST_CHECK_EQUAL(sign, 1);
-
-    // Annihilating the first occupied SO on (lexical) index 0 for "10101" (21)
-    GQCP::ONV spin_string3 (5, 3, 21);
-    sign = 1;
-
-    spin_string3.annihilate(0, sign);
-    BOOST_CHECK_EQUAL(sign, 1);
-}
-
-
-BOOST_AUTO_TEST_CASE ( create_onv ) {
-
-    GQCP::ONV spin_string (4, 1, 2);  // "0010" (2)
-
-    // We shouldn't be able to create on index 9 (out of bounds)
-    BOOST_CHECK_THROW(spin_string.create(9), std::invalid_argument);
-
-    // We can't create on index 1
-    BOOST_CHECK(!(spin_string.create(1)));
-
-    // We can create on index 2
-    BOOST_CHECK(spin_string.create(2));  // "0010" (2) -> "0110" (6)
-    BOOST_CHECK_EQUAL(spin_string.get_unsigned_representation(), 6);
-}
-
-
-BOOST_AUTO_TEST_CASE ( create_sign_onv ) {
-
-    // There should be a sign change when we create on (lexical) index 1 for "10101" (21)
-    GQCP::ONV spin_string1 (5, 3, 21);
-    int sign = 1;
-
-    spin_string1.create(1, sign);
-    BOOST_CHECK_EQUAL(sign, -1);
-
-
-    // There should be no sign change when we create on (lexical) index 3 for "10101" (21)
-    GQCP::ONV spin_string2 (5, 3, 21);
-    sign = 1;
-
-    spin_string2.create(3, sign);
-    BOOST_CHECK_EQUAL(sign, 1);
-
-    // Creating the last SO on (lexical) index 4 for "00101" (5)
-    GQCP::ONV spin_string3 (5, 2, 5);
-    sign = 1;
-
-    spin_string3.create(4, sign);
-    BOOST_CHECK_EQUAL(sign, 1);
-
-    // Creating the first SO on (lexical) index 0 for "10100" (5)
-    GQCP::ONV spin_string4 (5, 2, 20);
-    sign = 1;
-
-    spin_string4.create(0, sign);
-    BOOST_CHECK_EQUAL(sign, 1);
 }
 
 
@@ -276,57 +140,28 @@ BOOST_AUTO_TEST_CASE ( ONV_address_setNext_fullspace ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( countNumberOfDifferences ) {
+BOOST_AUTO_TEST_CASE ( isOccupied ) {
 
-    GQCP::ONV spin_string1 (5, 3, 21);  // "10101" (21)
-    GQCP::ONV spin_string2 (5, 3, 22);  // "10110" (22)
-    GQCP::ONV spin_string3 (5, 3, 26);  // "11010" (26)
+    GQCP::ONV spin_string (4, 1, 2);  // "0010" (2)
 
-    BOOST_CHECK_EQUAL(spin_string1.countNumberOfDifferences(spin_string1), 0);
-    BOOST_CHECK_EQUAL(spin_string2.countNumberOfDifferences(spin_string2), 0);
-    BOOST_CHECK_EQUAL(spin_string3.countNumberOfDifferences(spin_string3), 0);
+    // We shouldn't be able to check on index 9 (out of bounds)
+    BOOST_CHECK_THROW(spin_string.isOccupied(4), std::invalid_argument);
 
-    BOOST_CHECK_EQUAL(spin_string1.countNumberOfDifferences(spin_string2), 2);
-    BOOST_CHECK_EQUAL(spin_string1.countNumberOfDifferences(spin_string3), 4);
-    BOOST_CHECK_EQUAL(spin_string2.countNumberOfDifferences(spin_string3), 2);
+    // Index 1 is occupied in "0010" (2)
+    BOOST_CHECK(spin_string.isOccupied(1));
+
+    // Index 2 is not occupied "0010" (2)
+    BOOST_CHECK(!spin_string.isOccupied(2));
 }
 
 
-BOOST_AUTO_TEST_CASE ( findOccupiedDifferences ) {
+BOOST_AUTO_TEST_CASE ( areOccupied ) {
 
-    GQCP::ONV spin_string1 (5, 3, 21);  // "10101" (21)
-    GQCP::ONV spin_string2 (5, 3, 22);  // "10110" (22)
-    GQCP::ONV spin_string3 (5, 3, 26);  // "11010" (26)
 
-    BOOST_TEST(spin_string1.findDifferentOccupations(spin_string2) == (std::vector<size_t> {0}), boost::test_tools::per_element());
-    BOOST_TEST(spin_string2.findDifferentOccupations(spin_string1) == (std::vector<size_t> {1}), boost::test_tools::per_element());
-
-    BOOST_TEST(spin_string1.findDifferentOccupations(spin_string3) == (std::vector<size_t> {0, 2}), boost::test_tools::per_element());
-    BOOST_TEST(spin_string3.findDifferentOccupations(spin_string1) == (std::vector<size_t> {1, 3}), boost::test_tools::per_element());
-
-    BOOST_TEST(spin_string2.findDifferentOccupations(spin_string3) == (std::vector<size_t> {2}), boost::test_tools::per_element());
-    BOOST_TEST(spin_string3.findDifferentOccupations(spin_string2) == (std::vector<size_t> {3}), boost::test_tools::per_element());
 }
 
 
-BOOST_AUTO_TEST_CASE ( findMatchingOccupations ) {
-
-    GQCP::ONV spin_string1 (5, 3, 21);  // "10101" (21)
-    GQCP::ONV spin_string2 (5, 3, 22);  // "10110" (22)
-    GQCP::ONV spin_string3 (5, 3, 26);  // "11010" (26)
-
-    BOOST_TEST(spin_string1.findMatchingOccupations(spin_string2) == (std::vector<size_t> {2,4}), boost::test_tools::per_element());
-    BOOST_TEST(spin_string2.findMatchingOccupations(spin_string1) == (std::vector<size_t> {2,4}), boost::test_tools::per_element());
-
-    BOOST_TEST(spin_string1.findMatchingOccupations(spin_string3) == (std::vector<size_t> {4}), boost::test_tools::per_element());
-    BOOST_TEST(spin_string3.findMatchingOccupations(spin_string1) == (std::vector<size_t> {4}), boost::test_tools::per_element());
-
-    BOOST_TEST(spin_string2.findMatchingOccupations(spin_string3) == (std::vector<size_t> {1,4}), boost::test_tools::per_element());
-    BOOST_TEST(spin_string3.findMatchingOccupations(spin_string2) == (std::vector<size_t> {1,4}), boost::test_tools::per_element());
-}
-
-
-BOOST_AUTO_TEST_CASE ( operator_phase_factor_onv ) {
+BOOST_AUTO_TEST_CASE ( operatorPhaseFactor ) {
 
     // The sign should be negative on an index which has passed an odd amount of electrons
     GQCP::ONV spin_string1 (6, 3, 22);  // "010110" (22)
@@ -348,6 +183,50 @@ BOOST_AUTO_TEST_CASE ( operator_phase_factor_onv ) {
 }
 
 
+BOOST_AUTO_TEST_CASE ( annihilate ) {
+
+    GQCP::ONV spin_string (4, 2, 10);  // "1010" (10)
+
+    // We shouldn't be able to annihilate on index 5 (out of bounds)
+    BOOST_CHECK_THROW(spin_string.annihilate(5), std::invalid_argument);
+
+    // We can't annihilate on index 2
+    BOOST_CHECK(!(spin_string.annihilate(2)));
+
+    // We can annihilate on index 1
+    BOOST_CHECK(spin_string.annihilate(1));  // "1010" (10) -> "1000" (8)
+    BOOST_CHECK_EQUAL(spin_string.get_unsigned_representation(), 8);
+    // Test if updating throws an error (no longer 2 electrons)
+    BOOST_CHECK_THROW(spin_string.updateOccupationIndices(), std::invalid_argument);
+}
+
+
+BOOST_AUTO_TEST_CASE ( annihilate_sign ) {
+
+    // There should be a sign change when we annihilate on (lexical) index 2 for "10101" (21)
+    GQCP::ONV spin_string1 (5,3, 21);
+    int sign = 1;
+
+    spin_string1.annihilate(2, sign);
+    BOOST_CHECK_EQUAL(sign, -1);
+
+
+    // There should be no sign change when we annihilate on (lexical) index 4 for "10101" (21)
+    GQCP::ONV spin_string2 (5, 3, 21);
+    sign = 1;
+
+    spin_string2.annihilate(4, sign);
+    BOOST_CHECK_EQUAL(sign, 1);
+
+    // Annihilating the first occupied SO on (lexical) index 0 for "10101" (21)
+    GQCP::ONV spin_string3 (5, 3, 21);
+    sign = 1;
+
+    spin_string3.annihilate(0, sign);
+    BOOST_CHECK_EQUAL(sign, 1);
+}
+
+
 BOOST_AUTO_TEST_CASE ( annihilateAll_example1 ) {
 
     GQCP::ONV spin_string (6, 3, 22);  // "010110" (22)
@@ -359,6 +238,12 @@ BOOST_AUTO_TEST_CASE ( annihilateAll_example1 ) {
 
     // Try to annihilate {0,1} and check if nothing changes
     BOOST_CHECK(!spin_string.annihilateAll({0, 1}, sign));
+    BOOST_CHECK(sign == 1);
+    BOOST_CHECK(spin_string_copy == spin_string);
+
+
+    // Try to annihilate {1,2} and check if nothing changes
+    BOOST_CHECK(!spin_string.annihilateAll({1, 2}, sign));
     BOOST_CHECK(sign == 1);
     BOOST_CHECK(spin_string_copy == spin_string);
 
@@ -396,6 +281,55 @@ BOOST_AUTO_TEST_CASE ( annihilateAll_example3 ) {
 }
 
 
+BOOST_AUTO_TEST_CASE ( create ) {
+
+    GQCP::ONV spin_string (4, 1, 2);  // "0010" (2)
+
+    // We shouldn't be able to create on index 9 (out of bounds)
+    BOOST_CHECK_THROW(spin_string.create(9), std::invalid_argument);
+
+    // We can't create on index 1
+    BOOST_CHECK(!(spin_string.create(1)));
+
+    // We can create on index 2
+    BOOST_CHECK(spin_string.create(2));  // "0010" (2) -> "0110" (6)
+    BOOST_CHECK_EQUAL(spin_string.get_unsigned_representation(), 6);
+}
+
+
+BOOST_AUTO_TEST_CASE ( create_sign ) {
+
+    // There should be a sign change when we create on (lexical) index 1 for "10101" (21)
+    GQCP::ONV spin_string1 (5, 3, 21);
+    int sign = 1;
+
+    spin_string1.create(1, sign);
+    BOOST_CHECK_EQUAL(sign, -1);
+
+
+    // There should be no sign change when we create on (lexical) index 3 for "10101" (21)
+    GQCP::ONV spin_string2 (5, 3, 21);
+    sign = 1;
+
+    spin_string2.create(3, sign);
+    BOOST_CHECK_EQUAL(sign, 1);
+
+    // Creating the last SO on (lexical) index 4 for "00101" (5)
+    GQCP::ONV spin_string3 (5, 2, 5);
+    sign = 1;
+
+    spin_string3.create(4, sign);
+    BOOST_CHECK_EQUAL(sign, 1);
+
+    // Creating the first SO on (lexical) index 0 for "10100" (5)
+    GQCP::ONV spin_string4 (5, 2, 20);
+    sign = 1;
+
+    spin_string4.create(0, sign);
+    BOOST_CHECK_EQUAL(sign, 1);
+}
+
+
 BOOST_AUTO_TEST_CASE ( createAll_example1 ) {
 
     GQCP::ONV spin_string (6, 3, 22);  // "010110" (22)
@@ -407,6 +341,8 @@ BOOST_AUTO_TEST_CASE ( createAll_example1 ) {
     // Try to create {0,1} and check if nothing changes
     BOOST_CHECK(!spin_string.createAll({0, 1}));
     BOOST_CHECK(spin_string_copy == spin_string);
+    std::cout << spin_string.asString() << std::endl;
+    std::cout << spin_string_copy.asString() << std::endl;
 
 
     // Try to create {5,2,0,1} and check if nothing changes
@@ -423,4 +359,83 @@ BOOST_AUTO_TEST_CASE ( createAll_example2 ) {
     GQCP::ONV ref_spin_string (6, 1, 31);  // "011111" (31)
     BOOST_CHECK(spin_string.createAll({1, 3}));
     BOOST_CHECK(spin_string == ref_spin_string);
+}
+
+
+BOOST_AUTO_TEST_CASE ( slice ) {
+
+    // Check for throws
+    GQCP::ONV spin_string (4, 2, 5);  // "0101" (5)
+    BOOST_CHECK_THROW(spin_string.slice(2, 1), std::invalid_argument);  // index_end should be larger than index_start
+    BOOST_CHECK_THROW(spin_string.slice(2, 2), std::invalid_argument);  // index_end should be larger than index_start
+    BOOST_CHECK_THROW(spin_string.slice(2, 6), std::invalid_argument);  // index_end is out of bounds
+
+
+    GQCP::ONV spin_string1 (7, 3, 41);
+    BOOST_CHECK_EQUAL(spin_string1.slice(2, 6), 10);  // "0[1010]01" (41) -> "1010" (10)
+
+    GQCP::ONV spin_string2 (7, 5, 115);
+    BOOST_CHECK_EQUAL(spin_string2.slice(2, 7), 28);  // "[11100]11" (115) -> "11100" (28)
+
+    GQCP::ONV spin_string3 (7, 5, 115);
+    BOOST_CHECK_EQUAL(spin_string3.slice(2, 5), 4);  // "11[100]11" (115) -> "100" (4)
+
+    GQCP::ONV spin_string4 (6, 3, 19);
+    BOOST_CHECK_EQUAL(spin_string4.slice(2, 6), 4);  // "[0100]11" (18) -> "0100" (4)
+
+    GQCP::ONV spin_string5 (6, 3, 19);
+    BOOST_CHECK_EQUAL(spin_string5.slice(5, 6), 0);  // "[0]10011" (18) -> "0" (0)
+
+    GQCP::ONV spin_string6 (6, 3, 19);
+    BOOST_CHECK_EQUAL(spin_string6.slice(4, 5), 1);  // "0[1]0011" (19) -> "1" (1)
+}
+
+
+BOOST_AUTO_TEST_CASE ( countNumberOfDifferences ) {
+
+    GQCP::ONV spin_string1 (5, 3, 21);  // "10101" (21)
+    GQCP::ONV spin_string2 (5, 3, 22);  // "10110" (22)
+    GQCP::ONV spin_string3 (5, 3, 26);  // "11010" (26)
+
+    BOOST_CHECK_EQUAL(spin_string1.countNumberOfDifferences(spin_string1), 0);
+    BOOST_CHECK_EQUAL(spin_string2.countNumberOfDifferences(spin_string2), 0);
+    BOOST_CHECK_EQUAL(spin_string3.countNumberOfDifferences(spin_string3), 0);
+
+    BOOST_CHECK_EQUAL(spin_string1.countNumberOfDifferences(spin_string2), 2);
+    BOOST_CHECK_EQUAL(spin_string1.countNumberOfDifferences(spin_string3), 4);
+    BOOST_CHECK_EQUAL(spin_string2.countNumberOfDifferences(spin_string3), 2);
+}
+
+
+BOOST_AUTO_TEST_CASE ( findDifferentOccupations ) {
+
+    GQCP::ONV spin_string1 (5, 3, 21);  // "10101" (21)
+    GQCP::ONV spin_string2 (5, 3, 22);  // "10110" (22)
+    GQCP::ONV spin_string3 (5, 3, 26);  // "11010" (26)
+
+    BOOST_TEST(spin_string1.findDifferentOccupations(spin_string2) == (std::vector<size_t> {0}), boost::test_tools::per_element());
+    BOOST_TEST(spin_string2.findDifferentOccupations(spin_string1) == (std::vector<size_t> {1}), boost::test_tools::per_element());
+
+    BOOST_TEST(spin_string1.findDifferentOccupations(spin_string3) == (std::vector<size_t> {0, 2}), boost::test_tools::per_element());
+    BOOST_TEST(spin_string3.findDifferentOccupations(spin_string1) == (std::vector<size_t> {1, 3}), boost::test_tools::per_element());
+
+    BOOST_TEST(spin_string2.findDifferentOccupations(spin_string3) == (std::vector<size_t> {2}), boost::test_tools::per_element());
+    BOOST_TEST(spin_string3.findDifferentOccupations(spin_string2) == (std::vector<size_t> {3}), boost::test_tools::per_element());
+}
+
+
+BOOST_AUTO_TEST_CASE ( findMatchingOccupations ) {
+
+    GQCP::ONV spin_string1 (5, 3, 21);  // "10101" (21)
+    GQCP::ONV spin_string2 (5, 3, 22);  // "10110" (22)
+    GQCP::ONV spin_string3 (5, 3, 26);  // "11010" (26)
+
+    BOOST_TEST(spin_string1.findMatchingOccupations(spin_string2) == (std::vector<size_t> {2,4}), boost::test_tools::per_element());
+    BOOST_TEST(spin_string2.findMatchingOccupations(spin_string1) == (std::vector<size_t> {2,4}), boost::test_tools::per_element());
+
+    BOOST_TEST(spin_string1.findMatchingOccupations(spin_string3) == (std::vector<size_t> {4}), boost::test_tools::per_element());
+    BOOST_TEST(spin_string3.findMatchingOccupations(spin_string1) == (std::vector<size_t> {4}), boost::test_tools::per_element());
+
+    BOOST_TEST(spin_string2.findMatchingOccupations(spin_string3) == (std::vector<size_t> {1,4}), boost::test_tools::per_element());
+    BOOST_TEST(spin_string3.findMatchingOccupations(spin_string2) == (std::vector<size_t> {1,4}), boost::test_tools::per_element());
 }

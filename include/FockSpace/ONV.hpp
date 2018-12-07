@@ -130,6 +130,22 @@ public:
     bool isOccupied(size_t p) const;
 
     /**
+     *  @param indices      the orbital indices (starting from 0)
+     *
+     *  @return if all given indices are occupied
+     */
+    bool areOccupied(const std::vector<size_t>& indices) const;
+
+    /**
+     *  @param p        the orbital index starting from 0, counted from right to left
+     *
+     *  @return the phase factor (+1 or -1) that arises by applying an annihilation or creation operator on orbital p
+     *
+     *  Let's say that there are m electrons in the orbitals up to p (not included). If m is even, the phase factor is (+1) and if m is odd, the phase factor is (-1), since electrons are fermions.
+     */
+    int operatorPhaseFactor(size_t p) const;
+
+    /**
      *  @param p    the orbital index starting from 0, counted from right to left
      *
      *  @return if we can apply the annihilation operator (i.e. 1->0) for the p-th spatial orbital. Subsequently perform an in-place annihilation on the orbital p
@@ -181,15 +197,6 @@ public:
      *  @return if we can apply all creation operators (i.e. 0->1) on the given indices. Subsequently perform in-place creations on the given indices
      */
     bool createAll(const std::vector<size_t>& indices);
-
-    /**
-     *  @param p        the orbital index starting from 0, counted from right to left
-     *
-     *  @return the phase factor (+1 or -1) that arises by applying an annihilation or creation operator on orbital p
-     *
-     *  Let's say that there are m electrons in the orbitals up to p (not included). If m is even, the phase factor is (+1) and if m is odd, the phase factor is (-1), since electrons are fermions.
-     */
-    int operatorPhaseFactor(size_t p) const;
 
     /**
      *  @param index_start      the starting index (included), read from right to left

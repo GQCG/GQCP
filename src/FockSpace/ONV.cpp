@@ -144,6 +144,46 @@ bool ONV::isOccupied(size_t p) const {
 
 
 /**
+ *  @param indices      the orbital indices (starting from 0)
+ *
+ *  @return if all given indices are occupied
+ */
+bool ONV::areOccupied(const std::vector<size_t>& indices) const {
+
+    for (const auto& index : indices) {
+        if (!this->isOccupied(index)) {
+            return false;
+        }
+    }
+
+    // Only if all indices are not occupied, we can return true
+    return true;
+}
+
+
+/**
+ *  @param p        the orbital index starting from 0, counted from right to left
+ *
+ *  @return the phase factor (+1 or -1) that arises by applying an annihilation or creation operator on orbital p
+ *
+ *  Let's say that there are m electrons in the orbitals up to p (not included). If m is even, the phase factor is (+1) and if m is odd, the phase factor is (-1), since electrons are fermions.
+ */
+int ONV::operatorPhaseFactor(size_t p) const {
+
+    if (p == 0) {  // we can't give this to this->slice(0, 0)
+        return 1;
+    }
+    size_t m = __builtin_popcountl(this->slice(0, p));  // count the number of set bits in the slice [0,p-1]
+
+    if ( m % 2 == 0 ) {  // even number of electrons: phase factor (+1)
+        return 1;
+    } else {  // odd number of electrons: phase factor (-1)
+        return -1;
+    }
+}
+
+
+/**
  *  @param p    the orbital index starting from 0, counted from right to left
  *
  *  @return if we can apply the annihilation operator (i.e. 1->0) for the p-th spatial orbital. Subsequently perform an in-place annihilation on the orbital p
@@ -251,28 +291,6 @@ bool ONV::createAll(const std::vector<size_t>& indices) {
     }
 
     return true;
-}
-
-
-/**
- *  @param p        the orbital index starting from 0, counted from right to left
- *
- *  @return the phase factor (+1 or -1) that arises by applying an annihilation or creation operator on orbital p
- *
- *  Let's say that there are m electrons in the orbitals up to p (not included). If m is even, the phase factor is (+1) and if m is odd, the phase factor is (-1), since electrons are fermions.
- */
-int ONV::operatorPhaseFactor(size_t p) const {
-
-    if (p == 0) {  // we can't give this to this->slice(0, 0)
-        return 1;
-    }
-    size_t m = __builtin_popcountl(this->slice(0, p));  // count the number of set bits in the slice [0,p-1]
-
-    if ( m % 2 == 0 ) {  // even number of electrons: phase factor (+1)
-        return 1;
-    } else {  // odd number of electrons: phase factor (-1)
-        return -1;
-    }
 }
 
 
