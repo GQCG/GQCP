@@ -40,5 +40,6 @@ BOOST_AUTO_TEST_CASE ( calculateElement ) {
 
     // Check some N-RDM values
     GQCP::NRDMCalculator d (fock_space);
+    std::cout << d.calculateElement({0}, {1}, coeff) << std::endl;
     BOOST_CHECK(std::abs(d.calculateElement({0}, {1}, coeff) - 2.0) < 1.0e-12);
 }

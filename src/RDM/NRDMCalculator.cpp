@@ -47,59 +47,86 @@ double NRDMCalculator::calculateElement(const std::vector<size_t>& bra_indices, 
 
 
     double value = 0.0;
+    int sign = 1;
     FockSpace fock_space = this->fock_space;  // make a copy because this method is marked const
     size_t dim = fock_space.get_dimension();
 
 
     ONV bra = fock_space.get_ONV(0);
-    std::cout << "Initial bra: " << bra.asString() << std::endl;
-    ONV ket = fock_space.get_ONV(0);
-    std::cout << "Initial ket: " << ket.asString() << std::endl;
-
-
-
     size_t I = 0;
     while (I < dim) {  // loop over all bra addresses
 
-        int sign = 1;  // (re)set the total sign
-
+        std::cout << "Current bra: " << bra.asString() << std::endl;
 
         // Annihilate the bra on the bra indices
         if (!bra.annihilateAll(bra_indices, sign)) {  // if we can't annihilate, this doesn't change the bra
+
+            std::cout << "Can't annihilate all bra indices on: " << bra.asString() << std::endl;
+
 
             // Go to the beginning of the outer while loop with the next bra
             if (I < dim-1) {  // prevent the last permutation to occur
                 fock_space.setNext(bra);
                 I++;
+                sign = 1;
                 continue;
+            } else {
+                break;  // we have to jump out if we have looped over the whole bra dimension
             }
         }
 
-        std::cout << "The fully-annihilated bra is now: " << bra.asString() << std::endl;
 
 
+        ONV ket = fock_space.get_ONV(0);
         size_t J = 0;
         while (J < dim) {
 
+            std::cout << "current ket: " << ket.asString() << std::endl;
+
             // Annihilate the ket on the ket indices
             if (!ket.annihilateAll(ket_indices, sign)) {  // if we can't annihilate, this doesn't change the ket
+
+                std::cout << "can't annihilate all ket indices on: " << ket.asString() << std::endl;
 
                 // Go to the beginning of this (the inner) while loop with the next bra
                 if (J < dim-1) {  // prevent the last permutation to occur
                     fock_space.setNext(ket);
                     J++;
+                    sign = 1;
                     continue;
+                } else {
+                    break;  // we have to jump out if we have looped over the whole ket dimension
                 }
             }
 
-
+            std::cout << "The fully-annihilated bra is now: " << bra.asString() << std::endl;
             std::cout << "The fully-annihilated ket is now: " << ket.asString() << std::endl;
 
             if (bra == ket) {
+                std::cout << "I, J: " << I << ',' << J << std::endl;
+                std::cout << "sign: " << sign << std::endl;
+                std::cout << "c(I), c(J): " << coeff(I) << ',' << coeff(J) << std::endl;
                 value += sign * coeff(I) * coeff(J);
             }
 
+            // Reset the previous ket annihilations and move to the next ket
+            ket.createAll(ket_indices);
+            if (J < dim-1) {  // prevent the last permutation to occur
+                fock_space.setNext(ket);
+                sign = 1;
+                J++;
+            }
+
         }  // while J loop
+
+        // Reset the previous bra annihilations and move to the next bra
+        bra.createAll(bra_indices);
+        if (I < dim-1) {  // prevent the last permutation to occur
+            std::cout << "bra after createAll: " << bra.asString() << std::endl;
+            fock_space.setNext(bra);
+            sign = 1;
+            I++;
+        }
 
     }  // while I loop
 
