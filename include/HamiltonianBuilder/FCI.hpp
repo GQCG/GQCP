@@ -33,6 +33,9 @@ class FCI : public GQCP::HamiltonianBuilder {
 private:
     ProductFockSpace fock_space;  // fock space containing the alpha and beta Fock space
 
+    double** alpha_ev;
+    double** beta_ev;
+
     // Rectangular matrix of SpinEvaluations
     /**
      *  A small struct that is used to hold in memory the addresses of spin strings differing in one electron
@@ -81,7 +84,6 @@ private:
     void twoOperatorModule(FockSpace& fock_space_target, FockSpace& fock_space_fixed, bool target_is_major, const HamiltonianParameters& hamiltonian_parameters, Eigen::VectorXd& matvec, const Eigen::VectorXd& x);
 
 
-
 public:
 
     // CONSTRUCTORS
@@ -122,6 +124,9 @@ public:
      *  @return the diagonal of the matrix representation of the Hamiltonian
      */
     Eigen::VectorXd calculateDiagonal(const HamiltonianParameters& hamiltonian_parameters) override;
+
+
+
 };
 
 

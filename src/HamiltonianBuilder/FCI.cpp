@@ -109,6 +109,9 @@ void FCI::twoOperatorModule(FockSpace& fock_space_target, FockSpace& fock_space_
     size_t fixed_intervals;
     size_t target_interval;
 
+    Eigen::VectorXd matvecJ (dim);
+    Eigen::VectorXi matvecI (dim);
+
     // If the target is major, then the interval for the non-target (or fixed component) is 1
     // while the the target (major) intervals after each fixed (minor) iteration, thus at the dimension of the fixed component.
     if (target_is_major) {
@@ -122,12 +125,15 @@ void FCI::twoOperatorModule(FockSpace& fock_space_target, FockSpace& fock_space_
         target_interval = 1;
     }
     size_t hits = 0;
+    size_t coi = 0;
     ONV onv = fock_space_target.get_ONV(0);  // spin string with address 0
     for (size_t I = 0; I < dim; I++) {  // I_alpha loops over all addresses of alpha spin strings
         if (I > 0) {
             fock_space_target.setNext(onv);
         }
-
+        coi += fock_space_target.tecc(onv);
+        double double_I = 0;
+        matvecJ.setZero();
         int sign1 = -1;
         for (size_t e1 = 0; e1 < N; e1++) {  // A1
 
@@ -155,7 +161,7 @@ void FCI::twoOperatorModule(FockSpace& fock_space_target, FockSpace& fock_space_
 
                 while (s < K) {
                     size_t J = address3 + fock_space_target.get_vertex_weights(s, e4);
-                        std::cout<<"C2>A2 : "<<"I : "<<I<<" J : "<<J<<" "<<p<<p<<r<<s<<std::endl;
+                    //std::cout<<"C2>A2 : "<<"I : "<<I<<" J : "<<J<<" "<<p<<p<<r<<s<<std::endl;
                     double value =  (hamiltonian_parameters.get_g()(p, p, r, s));
                     if(p != r) {
                         value -= hamiltonian_parameters.get_g()(p, s, r, p);
@@ -163,6 +169,11 @@ void FCI::twoOperatorModule(FockSpace& fock_space_target, FockSpace& fock_space_
                     }
                     value *= sign3 * 0.5;
 
+                    hits++;
+
+                    double_I += value;
+                    matvecJ(I) = value;
+                    matvecI(I) = J;
                     for (size_t I_fixed = 0; I_fixed < dim_fixed; I_fixed++) {
 
                         matvec(I * target_interval + I_fixed * fixed_intervals) += value * x(J * target_interval + I_fixed * fixed_intervals);
@@ -221,7 +232,7 @@ void FCI::twoOperatorModule(FockSpace& fock_space_target, FockSpace& fock_space_
                             matvec(J * target_interval + I_fixed * fixed_intervals) += value * x(I * target_interval + I_fixed * fixed_intervals);
 
                         }
-                        std::cout<<"A1>C1 : "<<"I : "<<I<<" J : "<<J<<" "<<p<<q<<r<<s<<std::endl;
+                        //std::cout<<"A1>C1 : "<<"I : "<<I<<" J : "<<J<<" "<<p<<q<<r<<s<<std::endl;
 
                         hits++;
                         s++;
@@ -282,7 +293,7 @@ void FCI::twoOperatorModule(FockSpace& fock_space_target, FockSpace& fock_space_
                             matvec(J * target_interval + I_fixed * fixed_intervals) += value * x(I * target_interval + I_fixed * fixed_intervals);
 
                         }
-                        std::cout<<"A1<C1 : "<<"I : "<<I<<" J : "<<J<<" "<<p<<q<<r<<s<<std::endl;
+                        //std::cout<<"A1<C1 : "<<"I : "<<I<<" J : "<<J<<" "<<p<<q<<r<<s<<std::endl;
 
                         s++;  // go to the next orbital
                         hits++;
@@ -329,7 +340,7 @@ void FCI::twoOperatorModule(FockSpace& fock_space_target, FockSpace& fock_space_
                             matvec(J * target_interval + I_fixed * fixed_intervals) += value * x(I * target_interval + I_fixed * fixed_intervals);
 
                         }
-                        std::cout<<"A2<C1 : "<<"I : "<<I<<" J : "<<J<<" "<<p<<q<<r<<s<<std::endl;
+                        //std::cout<<"A2<C1 : "<<"I : "<<I<<" J : "<<J<<" "<<p<<q<<r<<s<<std::endl;
 
                         hits++;
                         s++;
@@ -356,14 +367,14 @@ void FCI::twoOperatorModule(FockSpace& fock_space_target, FockSpace& fock_space_
                             matvec(address1 * target_interval + I_fixed * fixed_intervals) += value * x(I * target_interval + I_fixed * fixed_intervals);
 
                         }
-                        hits++;
-                        std::cout<<"A2=C1 : "<<"I : "<<I<<" J : "<<address1<<" "<<p<<s<<s<<q<<std::endl;
+
+                        //std::cout<<"A2=C1 : "<<"I : "<<I<<" J : "<<address1<<" "<<p<<s<<s<<q<<std::endl;
 
 
                     }
 
                 }
-
+                hits++;
                 q++;
 
                 fock_space_target.shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign2);
@@ -372,7 +383,8 @@ void FCI::twoOperatorModule(FockSpace& fock_space_target, FockSpace& fock_space_
             }
         }
     }
-    //std::cout<<" HITS "<<hits<<std::endl;
+    std::cout<<" HITS "<<hits<<std::endl;
+    std::cout<<" cccc "<<coi<<std::endl;
 
 }
 
@@ -631,6 +643,7 @@ Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters& hamiltonia
 
 
     // ALPHA-ALPHA, BETA-BETA, ALPHA-BETA
+    /*
     for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {  // loop over alpha addresses
         for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {  // loop over beta addresses
             for (const auto &alpha : this->alpha_one_electron_couplings2[I_alpha]) {
@@ -672,7 +685,7 @@ Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters& hamiltonia
             }
         }
     }
-
+    */
 
     this->twoOperatorModule(fock_space_alpha, fock_space_beta, true, hamiltonian_parameters, matvec, x);
     this->twoOperatorModule(fock_space_beta, fock_space_alpha, false, hamiltonian_parameters, matvec, x);
@@ -758,7 +771,6 @@ Eigen::VectorXd FCI::calculateDiagonal(const HamiltonianParameters& hamiltonian_
 
     return diagonal;
 }
-
 
 
 }  // namespace GQCP

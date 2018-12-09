@@ -91,6 +91,35 @@ public:
      */
     ONV get_ONV(size_t address);
 
+    size_t tecc(ONV& onv) {
+        size_t V = K-N;
+        size_t cc = 0;
+        for (size_t e1 = 0; e1 < this->N; e1++){
+
+            size_t p = onv.get_occupied_index(e1);
+
+            size_t cc1 = (V + e1 - p);
+            cc += cc1;
+
+
+            for (size_t e2 = e1+1; e2 < this->N; e2++){
+
+                size_t q = onv.get_occupied_index(e2);
+
+                size_t cc2 = (V + e2 - q);
+
+                cc += (cc1 - cc2)*cc2;
+                if(cc2 > 1 ){
+                    cc += calculateDimension(cc2, 2);
+
+                }
+
+            }
+        }
+
+        return cc;
+    }
+
     /**
      *  Set the current ONV to the next ONV: performs ulongNextPermutation() and updates the corresponding occupation indices of the ONV occupation array
      *
