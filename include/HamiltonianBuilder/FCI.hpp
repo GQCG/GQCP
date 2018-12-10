@@ -22,6 +22,7 @@
 #include "HamiltonianBuilder/HamiltonianBuilder.hpp"
 #include "FockSpace/ProductFockSpace.hpp"
 
+#include <Eigen/Sparse>
 
 
 namespace GQCP {
@@ -33,8 +34,8 @@ class FCI : public GQCP::HamiltonianBuilder {
 private:
     ProductFockSpace fock_space;  // fock space containing the alpha and beta Fock space
 
-    double** alpha_ev;
-    double** beta_ev;
+    Eigen::SparseMatrix<double> alpha_ev;
+    Eigen::SparseMatrix<double> beta_ev;
 
     // Rectangular matrix of SpinEvaluations
     /**
@@ -81,7 +82,7 @@ private:
     std::vector<std::vector<AnnihilationCouple>> beta_one_electron_couplings2;
 
     std::vector<std::vector<AnnihilationCouple>> calculateOneElectronCouplings(FockSpace& fock_space_target);
-    void twoOperatorModule(FockSpace& fock_space_target, FockSpace& fock_space_fixed, bool target_is_major, const HamiltonianParameters& hamiltonian_parameters, Eigen::VectorXd& matvec, const Eigen::VectorXd& x);
+    void twoOperatorModule(FockSpace& fock_space_target, FockSpace& fock_space_fixed, bool target_is_major, const HamiltonianParameters& hamiltonian_parameters,  Eigen::SparseMatrix<double>& mat);
 
 
 public:

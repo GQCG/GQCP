@@ -108,7 +108,7 @@ public:
 
                 size_t cc2 = (V + e2 - q);
 
-                cc += (cc1 - cc2)*cc2;
+                cc += (V-cc2)*cc2;
                 if(cc2 > 1 ){
                     cc += calculateDimension(cc2, 2);
 
@@ -120,6 +120,19 @@ public:
         return cc;
     }
 
+    size_t oecc(ONV& onv) {
+        size_t V = K-N;
+        size_t cc = 0;
+        for (size_t e1 = 0; e1 < this->N; e1++) {
+
+            size_t p = onv.get_occupied_index(e1);
+
+            size_t cc1 = (V + e1 - p);
+            cc += cc1;
+        }
+        return cc;
+
+    }
     /**
      *  Set the current ONV to the next ONV: performs ulongNextPermutation() and updates the corresponding occupation indices of the ONV occupation array
      *
@@ -219,6 +232,40 @@ public:
             q--;
             sign *= -1;
         }
+    }
+
+
+    size_t calculateSparsityTwo() {
+        size_t sparsity = 0;
+        ONV onv = this->get_ONV(0);  // spin string with address 0
+        for (size_t I = 0; I < dim; I++) {  // I_alpha loops over all addresses of alpha spin strings
+            if (I > 0) {
+                this->setNext(onv);
+            }
+
+            sparsity += this->tecc(onv);
+
+        }
+
+        return sparsity;
+
+
+    }
+
+    size_t calculateSparsityOne() {
+        size_t sparsity = 0;
+        ONV onv = this->get_ONV(0);  // spin string with address 0
+        for (size_t I = 0; I < dim; I++) {  // I_alpha loops over all addresses of alpha spin strings
+            if (I > 0) {
+                this->setNext(onv);
+            }
+
+            sparsity += this->oecc(onv);
+
+        }
+
+        return sparsity;
+
     }
 };
 

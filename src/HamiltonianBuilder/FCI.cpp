@@ -16,7 +16,7 @@
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
 #include "HamiltonianBuilder/FCI.hpp"
-
+#include <chrono>
 
 namespace GQCP {
 
@@ -34,8 +34,14 @@ FCI::FCI(const ProductFockSpace& fock_space) :
 {
     GQCP::FockSpace alpha = this->fock_space.get_fock_space_alpha();
     GQCP::FockSpace beta = this->fock_space.get_fock_space_beta();
+    this->alpha_ev = Eigen::SparseMatrix<double>(alpha.get_dimension(),alpha.get_dimension());
+    this->beta_ev = Eigen::SparseMatrix<double>(beta.get_dimension(),beta.get_dimension());
+
     this->alpha_one_electron_couplings2 = this->calculateOneElectronCouplings(alpha);
     this->beta_one_electron_couplings2 = this->calculateOneElectronCouplings(beta);
+
+
+
 }
 
 /*
@@ -99,18 +105,24 @@ std::vector<std::vector<FCI::AnnihilationCouple>> FCI::calculateOneElectronCoupl
 
 
 
-void FCI::twoOperatorModule(FockSpace& fock_space_target, FockSpace& fock_space_fixed, bool target_is_major, const HamiltonianParameters& hamiltonian_parameters, Eigen::VectorXd& matvec, const Eigen::VectorXd& x){
+void FCI::twoOperatorModule(FockSpace& fock_space_target, FockSpace& fock_space_fixed, bool target_is_major, const HamiltonianParameters& hamiltonian_parameters, Eigen::SparseMatrix<double>& mat){
 
     size_t K = fock_space_target.get_K();
     size_t N = fock_space_target.get_N();
     size_t dim = fock_space_target.get_dimension();
     size_t dim_fixed = fock_space_fixed.get_dimension();
+    GQCP::OneElectronOperator k = hamiltonian_parameters.calculateEffectiveOneElectronIntegrals();
 
     size_t fixed_intervals;
     size_t target_interval;
 
-    Eigen::VectorXd matvecJ (dim);
-    Eigen::VectorXi matvecI (dim);
+    size_t sparsity = fock_space_target.calculateSparsityTwo();
+
+    std::vector<Eigen::Triplet<double>> sparsein;
+    sparsein.reserve(2*sparsity);
+
+
+
 
     // If the target is major, then the interval for the non-target (or fixed component) is 1
     // while the the target (major) intervals after each fixed (minor) iteration, thus at the dimension of the fixed component.
@@ -124,70 +136,20 @@ void FCI::twoOperatorModule(FockSpace& fock_space_target, FockSpace& fock_space_
         fixed_intervals = dim;
         target_interval = 1;
     }
-    size_t hits = 0;
-    size_t coi = 0;
+
+    //I * target_interval + I_fixed * fixed_intervals
+
     ONV onv = fock_space_target.get_ONV(0);  // spin string with address 0
     for (size_t I = 0; I < dim; I++) {  // I_alpha loops over all addresses of alpha spin strings
         if (I > 0) {
             fock_space_target.setNext(onv);
         }
-        coi += fock_space_target.tecc(onv);
-        double double_I = 0;
-        matvecJ.setZero();
         int sign1 = -1;
         for (size_t e1 = 0; e1 < N; e1++) {  // A1
 
             sign1 *= -1;
             size_t p = onv.get_occupied_index(e1);  // retrieve the index of a given electron
             size_t address = I - fock_space_target.get_vertex_weights(p, e1 + 1);
-
-            /**
-             *  A1 = C1
-             */
-            for (size_t e3 = 0; e3 < N; e3++) { // A2
-
-                size_t r = onv.get_occupied_index(e3);
-
-
-                size_t address3 = I - fock_space_target.get_vertex_weights(r, e3 + 1);
-
-                /**
-                 *  C2 > A2
-                 */
-                size_t e4 = e3 + 1;
-                size_t s = r + 1;
-                int sign3 = 1;
-                fock_space_target.shiftUntilNextUnoccupiedOrbital<1>(onv, address3, s, e4, sign3);
-
-                while (s < K) {
-                    size_t J = address3 + fock_space_target.get_vertex_weights(s, e4);
-                    //std::cout<<"C2>A2 : "<<"I : "<<I<<" J : "<<J<<" "<<p<<p<<r<<s<<std::endl;
-                    double value =  (hamiltonian_parameters.get_g()(p, p, r, s));
-                    if(p != r) {
-                        value -= hamiltonian_parameters.get_g()(p, s, r, p);
-                        value += hamiltonian_parameters.get_g()(r, s, p, p);
-                    }
-                    value *= sign3 * 0.5;
-
-                    hits++;
-
-                    double_I += value;
-                    matvecJ(I) = value;
-                    matvecI(I) = J;
-                    for (size_t I_fixed = 0; I_fixed < dim_fixed; I_fixed++) {
-
-                        matvec(I * target_interval + I_fixed * fixed_intervals) += value * x(J * target_interval + I_fixed * fixed_intervals);
-                        matvec(J * target_interval + I_fixed * fixed_intervals) += value * x(I * target_interval + I_fixed * fixed_intervals);
-
-                    }
-
-                    s++;  // go to the next orbital
-                    // perform a shift
-                    fock_space_target.shiftUntilNextUnoccupiedOrbital<1>(onv, address3, s, e4, sign3);
-
-                }  // (creation)
-
-            }
 
 
             size_t address1 = address;
@@ -226,15 +188,11 @@ void FCI::twoOperatorModule(FockSpace& fock_space_target, FockSpace& fock_space_
                                                        hamiltonian_parameters.get_g()(r, s, p, q) -
                                                        hamiltonian_parameters.get_g()(p, s, r, q) -
                                                        hamiltonian_parameters.get_g()(r, q, p, s));
-                        for (size_t I_fixed = 0; I_fixed < dim_fixed; I_fixed++) {
 
-                            matvec(I * target_interval + I_fixed * fixed_intervals) += value * x(J * target_interval + I_fixed * fixed_intervals);
-                            matvec(J * target_interval + I_fixed * fixed_intervals) += value * x(I * target_interval + I_fixed * fixed_intervals);
 
-                        }
-                        //std::cout<<"A1>C1 : "<<"I : "<<I<<" J : "<<J<<" "<<p<<q<<r<<s<<std::endl;
+                        sparsein.emplace_back(I,J, value);
+                        sparsein.emplace_back(J,I, value);
 
-                        hits++;
                         s++;
                         fock_space_target.shiftUntilNextUnoccupiedOrbital<1>(onv, address3, s, e4, sign4);
                     }
@@ -287,16 +245,10 @@ void FCI::twoOperatorModule(FockSpace& fock_space_target, FockSpace& fock_space_
                                                        hamiltonian_parameters.get_g()(r, q, p, s) -
                                                        hamiltonian_parameters.get_g()(p, s, r, q));
 
-                        for (size_t I_fixed = 0; I_fixed < dim_fixed; I_fixed++) {
-
-                            matvec(I * target_interval + I_fixed * fixed_intervals) += value * x(J * target_interval + I_fixed * fixed_intervals);
-                            matvec(J * target_interval + I_fixed * fixed_intervals) += value * x(I * target_interval + I_fixed * fixed_intervals);
-
-                        }
-                        //std::cout<<"A1<C1 : "<<"I : "<<I<<" J : "<<J<<" "<<p<<q<<r<<s<<std::endl;
+                        sparsein.emplace_back(I,J, value);
+                        sparsein.emplace_back(J,I, value);
 
                         s++;  // go to the next orbital
-                        hits++;
                         // perform a shift
                         fock_space_target.shiftUntilNextUnoccupiedOrbital<1>(onv, address3, s, e4, sign4);
 
@@ -334,15 +286,9 @@ void FCI::twoOperatorModule(FockSpace& fock_space_target, FockSpace& fock_space_
                                                        hamiltonian_parameters.get_g()(r, q, p, s) -
                                                        hamiltonian_parameters.get_g()(p, s, r, q));
 
-                        for (size_t I_fixed = 0; I_fixed < dim_fixed; I_fixed++) {
+                        sparsein.emplace_back(I,J, value);
+                        sparsein.emplace_back(J,I, value);
 
-                            matvec(I * target_interval + I_fixed * fixed_intervals) += value * x(J * target_interval + I_fixed * fixed_intervals);
-                            matvec(J * target_interval + I_fixed * fixed_intervals) += value * x(I * target_interval + I_fixed * fixed_intervals);
-
-                        }
-                        //std::cout<<"A2<C1 : "<<"I : "<<I<<" J : "<<J<<" "<<p<<q<<r<<s<<std::endl;
-
-                        hits++;
                         s++;
 
                         fock_space_target.shiftUntilNextUnoccupiedOrbital<1>(onv, address2, s, e4, sign4);
@@ -356,35 +302,41 @@ void FCI::twoOperatorModule(FockSpace& fock_space_target, FockSpace& fock_space_
                  *  A2 = C1
                  */
                 int signev = sign2 * sign1;
-
+                double value_I =  k(p, q);
                 for (size_t s = 0; s < K; s++) {
                     if(!onv.isOccupied(s)){
 
-                        double value = signev * 0.5 * (hamiltonian_parameters.get_g()(p, s, s, q));
-                        for (size_t I_fixed = 0; I_fixed < dim_fixed; I_fixed++) {
+                        value_I += 0.5 * (hamiltonian_parameters.get_g()(p, s, s, q));
 
-                            matvec(I * target_interval + I_fixed * fixed_intervals) += value * x(address1 * target_interval + I_fixed * fixed_intervals);
-                            matvec(address1 * target_interval + I_fixed * fixed_intervals) += value * x(I * target_interval + I_fixed * fixed_intervals);
+                    } else {
 
-                        }
-
-                        //std::cout<<"A2=C1 : "<<"I : "<<I<<" J : "<<address1<<" "<<p<<s<<s<<q<<std::endl;
-
+                        value_I  += 0.5 *  (hamiltonian_parameters.get_g()(s, s, p, q) - hamiltonian_parameters.get_g()(s, q, p, s) + hamiltonian_parameters.get_g()(p, q, s, s));
 
                     }
 
                 }
-                hits++;
+
+                value_I *= signev;
+
+
                 q++;
+
+
+
+                sparsein.emplace_back(I,address1, value_I);
+                sparsein.emplace_back(address1,I, value_I);
 
                 fock_space_target.shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign2);
 
 
             }
         }
+
+
     }
-    std::cout<<" HITS "<<hits<<std::endl;
-    std::cout<<" cccc "<<coi<<std::endl;
+
+    mat.setFromTriplets(sparsein.begin(),sparsein.end());
+
 
 }
 
@@ -637,21 +589,16 @@ Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters& hamiltonia
 
     Eigen::VectorXd matvec = diagonal.cwiseProduct(x);
 
-
     // Calculate the effective one-electron integrals
     GQCP::OneElectronOperator k = hamiltonian_parameters.calculateEffectiveOneElectronIntegrals();
 
 
     // ALPHA-ALPHA, BETA-BETA, ALPHA-BETA
-    /*
+
     for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {  // loop over alpha addresses
         for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {  // loop over beta addresses
             for (const auto &alpha : this->alpha_one_electron_couplings2[I_alpha]) {
                 for (const auto &creaa : alpha.creationCouples) {
-                    // A-A
-                    matvec(creaa.address * dim_beta + I_beta) += creaa.sign * k(alpha.p, creaa.q) * x(I_alpha * dim_beta + I_beta);
-                    matvec(I_alpha * dim_beta + I_beta) += creaa.sign * k(alpha.p, creaa.q) * x(creaa.address * dim_beta + I_beta);
-
                     for (const auto &beta : this->beta_one_electron_couplings2[I_beta]) {
                         for (const auto &creab : beta.creationCouples) {
                             // A-B
@@ -667,6 +614,7 @@ Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters& hamiltonia
                         matvec(creaa.address * dim_beta + I_beta) += creaa.sign * hamiltonian_parameters.get_g()(creaa.q, alpha.p, beta.p, beta.p) * x(I_alpha * dim_beta + I_beta);
                     }
                 }
+
                 // A-B DIAG
                 for (const auto &beta : this->beta_one_electron_couplings2[I_beta]) {
                     for (const auto &creab : beta.creationCouples) {
@@ -676,19 +624,18 @@ Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters& hamiltonia
                     }
                 }
             }
-
-            for (const auto &beta : this->beta_one_electron_couplings2[I_beta]) {
-                for (const auto &creab : beta.creationCouples) {
-                    matvec(I_alpha * dim_beta + I_beta) += creab.sign * k(beta.p, creab.q) * x(I_alpha * dim_beta + creab.address);
-                    matvec(I_alpha * dim_beta + creab.address) += creab.sign * k(beta.p, creab.q) * x(I_alpha * dim_beta + I_beta);
-                }
-            }
         }
     }
-    */
 
-    this->twoOperatorModule(fock_space_alpha, fock_space_beta, true, hamiltonian_parameters, matvec, x);
-    this->twoOperatorModule(fock_space_beta, fock_space_alpha, false, hamiltonian_parameters, matvec, x);
+    Eigen::Map<Eigen::MatrixXd> matvecmap(matvec.data(), dim_alpha, dim_beta);
+    Eigen::Map<const Eigen::MatrixXd> xmap(x.data(), dim_alpha, dim_beta);
+
+    this->twoOperatorModule(fock_space_alpha, fock_space_beta, true, hamiltonian_parameters, this->alpha_ev);
+    this->twoOperatorModule(fock_space_beta, fock_space_alpha, false, hamiltonian_parameters, this->beta_ev);
+
+    matvecmap.noalias() += xmap * this->beta_ev;
+    matvecmap.noalias() += this->alpha_ev * xmap;
+
     return matvec;
 }
 
