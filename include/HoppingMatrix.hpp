@@ -24,6 +24,15 @@ public:
      */
     explicit HoppingMatrix(const Eigen::MatrixXd& H);
 
+    /**
+     *  Generate the Hubbard hopping matrix from an adjacency matrix and parameters U and t
+     *
+     *  @param A        the Hubbard adjacency matrix, specifying the connectivity of the Hubbard lattice
+     *  @param t        the Hubbard parameter t. Note that a positive value for t means a negative neighbour hopping term
+     *  @param U        the Hubbard parameter U
+     */
+    HoppingMatrix(const Eigen::MatrixXd& A, double t, double U);
+
 
     // NAMED CONSTRUCTORS
     /**

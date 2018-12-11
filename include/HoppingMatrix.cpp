@@ -28,6 +28,27 @@ HoppingMatrix::HoppingMatrix(const Eigen::MatrixXd& H) :
 }
 
 
+/**
+ *  Generate the Hubbard hopping matrix from an adjacency matrix and parameters U and t
+ *
+ *  @param A        the Hubbard adjacency matrix, specifying the connectivity of the Hubbard lattice
+ *  @param t        the Hubbard parameter t. Note that a positive value for t means a negative neighbour hopping term
+ *  @param U        the Hubbard parameter U
+ */
+HoppingMatrix::HoppingMatrix(const Eigen::MatrixXd& A, double t, double U) :
+    K (A.cols()),
+    H (U * Eigen::MatrixXd::Identity(this->K, this->K) - t * A)
+{
+    if (A.cols() != A.rows()) {
+        throw std::invalid_argument("The given adjacency matrix must be square.");
+    }
+
+    if (!A.transpose().isApprox(A)) {
+        throw std::invalid_argument("The given adjacency matrix must be symmetric.");
+    }
+}
+
+
 
 /*
  *  NAMED CONSTRUCTORS

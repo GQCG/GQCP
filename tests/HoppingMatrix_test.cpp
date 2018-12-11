@@ -24,7 +24,7 @@
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
 
 
-BOOST_AUTO_TEST_CASE ( constructor ) {
+BOOST_AUTO_TEST_CASE ( constructor_throws ) {
 
     Eigen::MatrixXd H1 (3, 4);
     BOOST_CHECK_THROW(GQCP::HoppingMatrix H (H1), std::invalid_argument);  // not square
@@ -38,13 +38,34 @@ BOOST_AUTO_TEST_CASE ( constructor ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( FromUpperTriangle_throw ) {
+BOOST_AUTO_TEST_CASE ( FromUpperTriangle_throws ) {
 
     Eigen::VectorXd v1 (8);
-    BOOST_CHECK_THROW(GQCP::HoppingMatrix H (v1), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::HoppingMatrix H (v1), std::invalid_argument);  // 8 is not a square number
 
 
     Eigen::VectorXd v2 (6);
-    GQCP::HoppingMatrix H (v2);
     BOOST_CHECK_NO_THROW(GQCP::HoppingMatrix H (v2));
+}
+
+
+BOOST_AUTO_TEST_CASE ( triangle_adjacency_matrix ) {
+
+    // Check the conversion to a triangle hopping matrix
+    Eigen::MatrixXd A = Eigen::MatrixXd::Zero(3, 3);
+    A << 0, 1, 1,
+         1, 0, 1,
+         1, 1, 0;
+    double t = 1.0;
+    double U = 2.0;
+    GQCP::HoppingMatrix H (A, t, U);
+
+
+    Eigen::MatrixXd H_ref = Eigen::MatrixXd::Zero(3, 3);
+    H_ref << U, -t, -t,
+            -t,  U, -t,
+            -t, -t,  U;
+
+
+    BOOST_CHECK(H_ref.isApprox(H.asMatrix()));
 }
