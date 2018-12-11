@@ -85,54 +85,14 @@ public:
 
     // PUBLIC METHODS
     /**
-     *  @param address      the address (i.e. the ordening number) of the ONV
+     *  @param address      the address (i.e. the arrangement number) of the ONV
      *
      *  @return the ONV with the corresponding address
      */
     ONV get_ONV(size_t address);
 
-    size_t tecc(ONV& onv) {
-        size_t V = K-N;
-        size_t cc = 0;
-        for (size_t e1 = 0; e1 < this->N; e1++){
-
-            size_t p = onv.get_occupied_index(e1);
-
-            size_t cc1 = (V + e1 - p);
-            cc += cc1;
 
 
-            for (size_t e2 = e1+1; e2 < this->N; e2++){
-
-                size_t q = onv.get_occupied_index(e2);
-
-                size_t cc2 = (V + e2 - q);
-
-                cc += (V-cc2)*cc2;
-                if(cc2 > 1 ){
-                    cc += calculateDimension(cc2, 2);
-
-                }
-
-            }
-        }
-
-        return cc;
-    }
-
-    size_t oecc(ONV& onv) {
-        size_t V = K-N;
-        size_t cc = 0;
-        for (size_t e1 = 0; e1 < this->N; e1++) {
-
-            size_t p = onv.get_occupied_index(e1);
-
-            size_t cc1 = (V + e1 - p);
-            cc += cc1;
-        }
-        return cc;
-
-    }
     /**
      *  Set the current ONV to the next ONV: performs ulongNextPermutation() and updates the corresponding occupation indices of the ONV occupation array
      *
@@ -156,6 +116,21 @@ public:
     void set(ONV& onv, size_t address) const;
 
     /**
+     *  @param onv       the ONV
+     *
+     *  @return the amount of ONVs (with a larger arrangement number) this ONV would couple with given a two electron operator
+     */
+    size_t twoElectronCouplingCount(ONV &onv);
+
+
+    /**
+     *  @param onv       the ONV
+     *
+     *  @return the amount of ONVs (with a larger arrangement number) this ONV would couple with given a one electron operator
+     */
+    size_t oneElectronCouplingCount(ONV &onv);
+
+    /**
      *  Find the next unoccupied orbital in a given ONV,
      *  update the electron count, orbital index,
      *  and update the address by calculating a shift
@@ -165,7 +140,7 @@ public:
      *  @tparam T        the amount of previously annihilated electrons
      *
      *  @param address   the address which is updated
-     *  @param onv       the ONV for which we search the next unnocupied orbital
+     *  @param onv       the ONV for which we search the next unoccupied orbital
      *  @param q         the orbital index
      *  @param e         the electron count
      */
@@ -195,7 +170,7 @@ public:
      *  @tparam T        the amount of previously annihilated electrons
      *
      *  @param address   the address which is updated
-     *  @param onv       the ONV for which we search the next unnocupied orbital
+     *  @param onv       the ONV for which we search the next unoccupied orbital
      *  @param q         the orbital index
      *  @param e         the electron count
      *  @param sign      the sign which is flipped for each iteration
@@ -218,14 +193,27 @@ public:
     }
 
     /**
-     * PLACE HOLDER
+     *  Find the previous unoccupied orbital in a given ONV,
+     *  update the electron count, orbital index, sign,
+     *  and update the address by calculating a shift
+     *  resulting from a difference between the initial vertex weights for the encountered occupied orbitals
+     *  and the corrected vertex weights accounting for newly created electrons
+     *
+     *  @tparam T        the amount of newly created electrons
+     *
+     *  @param address   the address which is updated
+     *  @param onv       the ONV for which we search the next unoccupied orbital
+     *  @param q         the orbital index
+     *  @param e         the electron count
+     *  @param sign      the sign which is flipped for each iteration
      */
-    void sbu(const ONV& onv, size_t& address, size_t& q, size_t& e, int& sign) const {
+    template<int T>
+    void shiftUntilPreviousUnoccupiedOrbital(const ONV &onv, size_t &address, size_t &q, size_t &e, int &sign) const {
 
         // Test whether the current orbital index is occupied
         while (e != -1 && q == onv.get_occupied_index(e)) {
 
-            int shift = static_cast<int>(this->get_vertex_weights(q, e + 2)) - static_cast<int>(this->get_vertex_weights(q, e + 1));
+            int shift = static_cast<int>(this->get_vertex_weights(q, e + 1 + T)) - static_cast<int>(this->get_vertex_weights(q, e + 1));
             address += shift;
 
             e--;
@@ -235,38 +223,15 @@ public:
     }
 
 
-    size_t calculateSparsityTwo() {
-        size_t sparsity = 0;
-        ONV onv = this->get_ONV(0);  // spin string with address 0
-        for (size_t I = 0; I < dim; I++) {  // I_alpha loops over all addresses of alpha spin strings
-            if (I > 0) {
-                this->setNext(onv);
-            }
+    /**
+     *  @return the amount non-zero couplings of a two electron coupling scheme in the Fock space
+     */
+    size_t totalTwoElectronCouplingCount();
 
-            sparsity += this->tecc(onv);
-
-        }
-
-        return sparsity;
-
-
-    }
-
-    size_t calculateSparsityOne() {
-        size_t sparsity = 0;
-        ONV onv = this->get_ONV(0);  // spin string with address 0
-        for (size_t I = 0; I < dim; I++) {  // I_alpha loops over all addresses of alpha spin strings
-            if (I > 0) {
-                this->setNext(onv);
-            }
-
-            sparsity += this->oecc(onv);
-
-        }
-
-        return sparsity;
-
-    }
+    /**
+     *  @return the amount non-zero couplings of a one electron coupling scheme in the Fock space
+     */
+    size_t totalOneElectronCouplingCount();
 };
 
 
