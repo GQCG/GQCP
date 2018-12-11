@@ -62,19 +62,15 @@ BOOST_AUTO_TEST_CASE ( Hubbard_public_methods ) {
 
 BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI ) {
 
-    // Check if FCI and Hubbard produce the Hamiltonian matrix for Hubbard Hamiltonian parameters
-
-    // Create the Hamiltonian parameters for the triagonal of a Hubbard lattice.
-    Eigen::VectorXd triagonal_test = Eigen::VectorXd::Random(10);
-
+    // Create Hubbard Hamiltonian parameters
+    size_t K = 4;
     size_t N = 2;
-    auto mol_ham_par = GQCP::HamiltonianParameters::Hubbard(triagonal_test);
-    auto K = mol_ham_par.get_K();
+    auto H = GQCP::HoppingMatrix::Random(K);
+    auto mol_ham_par = GQCP::HamiltonianParameters::Hubbard(H);
 
 
+    // Check if the Hamiltonian matrix is equal for FCI and Hubbard
     GQCP::ProductFockSpace fock_space (K, N, N);  // dim = 36
-
-    // Create the Hubbard module
     GQCP::Hubbard hubbard (fock_space);
     GQCP::FCI fci (fock_space);
 
@@ -87,80 +83,69 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI ) {
 
 BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_large ) {
 
-    // Check if FCI and Hubbard produce the Hamiltonian matrix for Hubbard Hamiltonian parameters
-
-    // Create the Hamiltonian parameters for the triagonal of a Hubbard lattice.
-    Eigen::VectorXd triagonal_test = Eigen::VectorXd::Random(21);
-
+    // Create Hubbard Hamiltonian parameters
+    size_t K = 6;
     size_t N = 3;
-    auto mol_ham_par = GQCP::HamiltonianParameters::Hubbard(triagonal_test);
-    auto K = mol_ham_par.get_K();
+    auto H = GQCP::HoppingMatrix::Random(K);
+    auto mol_ham_par = GQCP::HamiltonianParameters::Hubbard(H);
 
 
+    // Check if the Hamiltonian matrix is equal for FCI and Hubbard
     GQCP::ProductFockSpace fock_space (K, N, N);  // dim = 400
-
-    // Create the Hubbard module
     GQCP::Hubbard hubbard (fock_space);
     GQCP::FCI fci (fock_space);
 
     Eigen::MatrixXd hubbard_ham = hubbard.constructHamiltonian(mol_ham_par);
     Eigen::MatrixXd fci_ham = fci.constructHamiltonian(mol_ham_par);
-
     BOOST_CHECK(hubbard_ham.isApprox(fci_ham));
 }
 
 
 BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_matvec ) {
 
-    // Check if FCI and Hubbard have the same matvec for Hubbard Hamiltonian parameters
-
-    // Create the Hamiltonian parameters for the triagonal of a Hubbard lattice.
-    Eigen::VectorXd triagonal_test = Eigen::VectorXd::Random(10);
-
+    // Create Hubbard Hamiltonian parameters
+    size_t K = 4;
     size_t N = 2;
-    auto mol_ham_par = GQCP::HamiltonianParameters::Hubbard(triagonal_test);
-    auto K = mol_ham_par.get_K();
+    auto H = GQCP::HoppingMatrix::Random(K);
+    auto mol_ham_par = GQCP::HamiltonianParameters::Hubbard(H);
 
 
+    // Check if FCI and Hubbard have the same matvec for Hubbard Hamiltonian parameters
     GQCP::ProductFockSpace fock_space (K, N, N);  // dim = 36
 
-    // Create the Hubbard module
     GQCP::Hubbard hubbard (fock_space);
     GQCP::FCI fci (fock_space);
 
     Eigen::VectorXd hubbard_diagonal = hubbard.calculateDiagonal(mol_ham_par);
     Eigen::VectorXd fci_diagonal = fci.calculateDiagonal(mol_ham_par);
+    BOOST_CHECK(hubbard_diagonal.isApprox(fci_diagonal));
 
     Eigen::VectorXd hubbard_matvec = hubbard.matrixVectorProduct(mol_ham_par, hubbard_diagonal, hubbard_diagonal);
     Eigen::VectorXd fci_matvec = fci.matrixVectorProduct(mol_ham_par, fci_diagonal, fci_diagonal);
-
     BOOST_CHECK(hubbard_matvec.isApprox(fci_matvec));
 }
 
 
 BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_large_matvec ) {
 
-    // Check if FCI and Hubbard have the same matvec for Hubbard Hamiltonian parameters
-
-    // Create the Hamiltonian parameters for the triagonal of a Hubbard lattice.
-    Eigen::VectorXd triagonal_test = Eigen::VectorXd::Random(21);
-
+    // Create Hubbard Hamiltonian parameters
+    size_t K = 6;
     size_t N = 3;
-    auto mol_ham_par = GQCP::HamiltonianParameters::Hubbard(triagonal_test);
-    auto K = mol_ham_par.get_K();
+    auto H = GQCP::HoppingMatrix::Random(K);
+    auto mol_ham_par = GQCP::HamiltonianParameters::Hubbard(H);
 
 
+    // Check if FCI and Hubbard have the same matvec for Hubbard Hamiltonian parameters
     GQCP::ProductFockSpace fock_space (K, N, N);  // dim = 400
 
-    // Create the Hubbard module
     GQCP::Hubbard hubbard (fock_space);
     GQCP::FCI fci (fock_space);
 
     Eigen::VectorXd hubbard_diagonal = hubbard.calculateDiagonal(mol_ham_par);
     Eigen::VectorXd fci_diagonal = fci.calculateDiagonal(mol_ham_par);
+    BOOST_CHECK(hubbard_diagonal.isApprox(fci_diagonal));
 
     Eigen::VectorXd hubbard_matvec = hubbard.matrixVectorProduct(mol_ham_par, hubbard_diagonal, hubbard_diagonal);
     Eigen::VectorXd fci_matvec = fci.matrixVectorProduct(mol_ham_par, fci_diagonal, fci_diagonal);
-
     BOOST_CHECK(hubbard_matvec.isApprox(fci_matvec));
 }

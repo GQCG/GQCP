@@ -41,11 +41,11 @@ BOOST_AUTO_TEST_CASE ( constructor_throws ) {
 BOOST_AUTO_TEST_CASE ( FromUpperTriangle_throws ) {
 
     Eigen::VectorXd v1 (8);
-    BOOST_CHECK_THROW(GQCP::HoppingMatrix H (v1), std::invalid_argument);  // 8 is not a square number
+    BOOST_CHECK_THROW(GQCP::HoppingMatrix::FromUpperTriangle(v1), std::invalid_argument);  // 8 is not a square number
 
 
     Eigen::VectorXd v2 (6);
-    BOOST_CHECK_NO_THROW(GQCP::HoppingMatrix H (v2));
+    BOOST_CHECK_NO_THROW(GQCP::HoppingMatrix::FromUpperTriangle(v2));
 }
 
 

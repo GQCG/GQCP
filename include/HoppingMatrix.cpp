@@ -19,7 +19,7 @@ HoppingMatrix::HoppingMatrix(const Eigen::MatrixXd& H) :
     H (H)
 {
     if (H.cols() != H.rows()) {
-        throw std::invalid_argument("The given hopping matrix must be square.");
+        throw std::invalid_argument("The given hopping matrix must be square. Did you maybe pass an upper triangle instead of a full hopping matrix?");
     }
 
     if (!H.transpose().isApprox(H)) {
