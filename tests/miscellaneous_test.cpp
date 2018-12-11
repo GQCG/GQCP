@@ -64,6 +64,20 @@ BOOST_AUTO_TEST_CASE ( minors ) {
 }
 
 
+BOOST_AUTO_TEST_CASE ( fromUpperTriangle ) {
+
+    Eigen::VectorXd upper_triangle (6);
+    upper_triangle << 1, 2, 3, 4, 5, 6;
+
+    Eigen::MatrixXd H_ref (3, 3);
+    H_ref << 1, 2, 3,
+             2, 4, 5,
+             3, 5, 6;
+
+    BOOST_CHECK(H_ref.isApprox(GQCP::fromUpperTriangle(upper_triangle)));
+}
+
+
 BOOST_AUTO_TEST_CASE ( permanent_throws ) {
 
     Eigen::MatrixXd A (3, 4);
