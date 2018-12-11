@@ -12,8 +12,8 @@ install(TARGETS ${LIBRARY_NAME}
 configure_file(${PROJECT_INCLUDE_FOLDER}/version.hpp.in ${PROJECT_INCLUDE_FOLDER}/version.hpp @ONLY)
 
 
-# Install the header files (not including version.hpp.in)
-install(FILES ${PROJECT_INCLUDE_FILES} DESTINATION ${INCLUDE_INSTALL_DIR})
+# Install the header files
+install(DIRECTORY ${PROJECT_INCLUDE_FOLDER}/ DESTINATION ${INCLUDE_INSTALL_DIR})
 
 
 # Export the target library into a ${PROJECT_NAME}Targets.cmake file.
