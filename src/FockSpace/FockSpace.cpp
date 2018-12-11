@@ -267,22 +267,7 @@ size_t FockSpace::oneElectronCouplingCount(ONV &onv) {
  *  @return the amount non-zero couplings of a two electron coupling scheme in the Fock space
  */
 size_t FockSpace::totalTwoElectronCouplingCount() {
-
-
-
-    size_t coupling_count = (calculateDimension(K-N+2, 2)*N*(N-1)*(dim-1))/2;
-     /*
-    ONV onv = this->get_ONV(0);  // spin string with address 0
-    for (size_t I = 0; I < dim; I++) {  // I_alpha loops over all addresses of alpha spin strings
-        if (I > 0) {
-            this->setNext(onv);
-        }
-        coupling_count += this->twoElectronCouplingCount(onv);
-    }
-     */
-
-    return coupling_count;
-
+    return (calculateDimension(K-N, 2)*N*(N-1)*(dim))/2 + totalOneElectronCouplingCount();
 
 }
 
@@ -290,18 +275,7 @@ size_t FockSpace::totalTwoElectronCouplingCount() {
  *  @return the amount non-zero couplings of a one electron coupling scheme in the Fock space
  */
 size_t FockSpace::totalOneElectronCouplingCount() {
-
-    size_t coupling_count = (K-N)*N*(dim);
-    /*
-    ONV onv = this->get_ONV(0);  // spin string with address 0
-    for (size_t I = 0; I < dim; I++) {  // I_alpha loops over all addresses of alpha spin strings
-        if (I > 0) {
-            this->setNext(onv);
-        }
-        coupling_count += this->oneElectronCouplingCount(onv);
-    }
-    */
-    return coupling_count;
+    return (K-N)*N*(dim);
 
 }
 

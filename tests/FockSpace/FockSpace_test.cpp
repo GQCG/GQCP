@@ -223,8 +223,8 @@ BOOST_AUTO_TEST_CASE ( coupling_count ) {
         coupling_count2 += fock_space2.twoElectronCouplingCount(onv);
     }
 
-    BOOST_CHECK(coupling_count1 = 2*fock_space2.totalOneElectronCouplingCount());
-    BOOST_CHECK(coupling_count2 = 2*fock_space2.totalTwoElectronCouplingCount());
+    BOOST_CHECK(2*coupling_count1 == fock_space2.totalOneElectronCouplingCount());
+    BOOST_CHECK(2*coupling_count2 == fock_space2.totalTwoElectronCouplingCount());
 
 
 }
