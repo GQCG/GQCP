@@ -41,6 +41,10 @@ public:
     static HoppingMatrix Random(size_t K);
 
 
+    // OPERATORS
+    double operator()(size_t i, size_t j) const { return this->H(i,j); }
+
+
     // PUBLIC METHODS
     /**
      *  @return the Hubbard hopping matrix

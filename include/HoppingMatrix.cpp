@@ -58,7 +58,7 @@ HoppingMatrix HoppingMatrix::FromUpperTriangle(const Eigen::VectorXd& upper_tria
  *
  *  @return a random hopping matrix with elements distributed uniformly in [-1.0, 1.0]
  */
-static HoppingMatrix Random(size_t K) {
+HoppingMatrix HoppingMatrix::Random(size_t K) {
 
     Eigen::VectorXd v = Eigen::VectorXd::Random(K*(K+1)/2);  // random free variables
 

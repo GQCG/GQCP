@@ -149,6 +149,9 @@
 			buildPhases = (
 			);
 			dependencies = (
+				56E67C5C21BFB1D60085803E /* PBXTargetDependency */,
+				56E67C5E21BFB1D60085803E /* PBXTargetDependency */,
+				56E67C6021BFB1D60085803E /* PBXTargetDependency */,
 			);
 			name = BUILD_EXECUTABLES;
 			productName = BUILD_ALL_EXECUTABLES;
@@ -468,12 +471,12 @@
 		56272DDC21B6CC7B008BEA47 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
 		56272DE221B6CC93008BEA47 /* APIGGeminalCoefficients_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56272DD121B6CC2D008BEA47 /* APIGGeminalCoefficients_test.cpp */; };
 		566D229E21B7ED2500F8EB91 /* oo_doci.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FAA721B02E48002C5D40 /* oo_doci.cpp */; };
-		566D229F21B7ED2D00F8EB91 /* oo_doci.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FAA721B02E48002C5D40 /* oo_doci.cpp */; };
 		56C64D8621B0713700D44FF0 /* constrained_RHF_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FB4921B02EDE002C5D40 /* constrained_RHF_test.cpp */; };
 		56E67C4B21BF96D70085803E /* HoppingMatrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56E67C4921BF96D70085803E /* HoppingMatrix.cpp */; };
 		56E67C4C21BF96D70085803E /* HoppingMatrix.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56E67C4A21BF96D70085803E /* HoppingMatrix.hpp */; };
 		56E67C5421BF976C0085803E /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
 		56E67C5A21BF97800085803E /* HoppingMatrix_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56E67C4D21BF975D0085803E /* HoppingMatrix_test.cpp */; };
+		56E67C6121BFB1EE0085803E /* hubbard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FAA521B02E48002C5D40 /* hubbard.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1386,6 +1389,27 @@
 			proxyType = 1;
 			remoteGlobalIDString = 5614F97F21B0295C002C5D40;
 			remoteInfo = gqcp;
+		};
+		56E67C5B21BFB1D60085803E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5614FE6021B03A07002C5D40;
+			remoteInfo = fci_lowdin;
+		};
+		56E67C5D21BFB1D60085803E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5614FE6E21B04008002C5D40;
+			remoteInfo = hubbard;
+		};
+		56E67C5F21BFB1D60085803E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5614FE7B21B0400D002C5D40;
+			remoteInfo = oo_doci;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -5226,7 +5250,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				566D229F21B7ED2D00F8EB91 /* oo_doci.cpp in Sources */,
+				56E67C6121BFB1EE0085803E /* hubbard.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6018,6 +6042,21 @@
 			isa = PBXTargetDependency;
 			target = 5614F97F21B0295C002C5D40 /* gqcp */;
 			targetProxy = 56E67C5021BF976C0085803E /* PBXContainerItemProxy */;
+		};
+		56E67C5C21BFB1D60085803E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5614FE6021B03A07002C5D40 /* fci_lowdin */;
+			targetProxy = 56E67C5B21BFB1D60085803E /* PBXContainerItemProxy */;
+		};
+		56E67C5E21BFB1D60085803E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5614FE6E21B04008002C5D40 /* hubbard */;
+			targetProxy = 56E67C5D21BFB1D60085803E /* PBXContainerItemProxy */;
+		};
+		56E67C6021BFB1D60085803E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5614FE7B21B0400D002C5D40 /* oo_doci */;
+			targetProxy = 56E67C5F21BFB1D60085803E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

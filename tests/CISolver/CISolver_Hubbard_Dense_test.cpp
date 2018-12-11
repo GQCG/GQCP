@@ -33,29 +33,29 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_dense ) {
 
     // Check if FCI and Hubbard produce the same results for Hubbard Hamiltonian parameters
 
-    // Create the Hamiltonian parameters for the triagonal of a Hubbard lattice.
-    Eigen::VectorXd triagonal_test = Eigen::VectorXd::Random(10);
+    // Create the Hamiltonian parameters for a random Hubbard hopping matrix
+    size_t K = 4;
+    auto H = GQCP::HoppingMatrix::Random(K);
+    auto mol_ham_par = GQCP::HamiltonianParameters::Hubbard(H);
 
+
+    // Create the Hubbard and FCI modules
     size_t N = 2;
-    auto mol_ham_par = GQCP::HamiltonianParameters::Hubbard(triagonal_test);
-    auto K = mol_ham_par.get_K();
-
-
     GQCP::ProductFockSpace fock_space (K, N, N);  // dim = 36
-
-    // Create the Hubbard module
     GQCP::Hubbard hubbard (fock_space);
     GQCP::FCI fci (fock_space);
 
-    GQCP::CISolver solver1 (hubbard, mol_ham_par);
-    GQCP::CISolver solver2 (fci, mol_ham_par);
+
+    // Solve via dense
+    GQCP::CISolver hubbard_solver (hubbard, mol_ham_par);
+    GQCP::CISolver fci_solver (fci, mol_ham_par);
 
     numopt::eigenproblem::DenseSolverOptions dense_solver_options;
-    solver1.solve(dense_solver_options);
-    solver2.solve(dense_solver_options);
+    hubbard_solver.solve(dense_solver_options);
+    fci_solver.solve(dense_solver_options);
 
-    auto fci_energy = solver2.get_eigenpair().get_eigenvalue();
-    auto hubbard_energy = solver1.get_eigenpair().get_eigenvalue();
+    auto fci_energy = fci_solver.get_eigenpair().get_eigenvalue();
+    auto hubbard_energy = hubbard_solver.get_eigenpair().get_eigenvalue();
 
     BOOST_CHECK(std::abs(fci_energy - (hubbard_energy)) < 1.0e-06);
 }
@@ -65,17 +65,15 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_dense_large ) {
 
     // Check if FCI and Hubbard produce the same results for Hubbard Hamiltonian parameters
 
-    // Create the Hamiltonian parameters for the triagonal of a Hubbard lattice.
-    Eigen::VectorXd triagonal_test = Eigen::VectorXd::Random(21);
+    // Create the Hamiltonian parameters for a random Hubbard hopping matrix
+    size_t K = 6;
+    auto H = GQCP::HoppingMatrix::Random(K);
+    auto mol_ham_par = GQCP::HamiltonianParameters::Hubbard(H);
 
+
+    // Create the Hubbard and FCI modules
     size_t N = 3;
-    auto mol_ham_par = GQCP::HamiltonianParameters::Hubbard(triagonal_test);
-    auto K = mol_ham_par.get_K();
-
-
-    GQCP::ProductFockSpace fock_space (K, N, N);  // dim = 400
-
-    // Create the Hubbard module
+    GQCP::ProductFockSpace fock_space (K, N, N);  // dim = 36
     GQCP::Hubbard hubbard (fock_space);
     GQCP::FCI fci (fock_space);
 
