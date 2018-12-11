@@ -68,6 +68,7 @@ set(PROJECT_SOURCE_FILES
         ${PROJECT_SOURCE_FOLDER}/Atom.cpp
         ${PROJECT_SOURCE_FOLDER}/DOCINewtonOrbitalOptimizer.cpp
         ${PROJECT_SOURCE_FOLDER}/elements.cpp
+        ${PROJECT_SOURCE_FOLDER}/HoppingMatrix.cpp
         ${PROJECT_SOURCE_FOLDER}/JacobiRotationParameters.cpp
         ${PROJECT_SOURCE_FOLDER}/LibintCommunicator.cpp
         ${PROJECT_SOURCE_FOLDER}/miscellaneous.cpp
@@ -126,6 +127,7 @@ set(PROJECT_INCLUDE_FILES
         ${PROJECT_INCLUDE_FOLDER}/common.hpp
         ${PROJECT_INCLUDE_FOLDER}/DOCINewtonOrbitalOptimizer.hpp
         ${PROJECT_INCLUDE_FOLDER}/elements.hpp
+        ${PROJECT_INCLUDE_FOLDER}/HoppingMatrix.hpp
         ${PROJECT_INCLUDE_FOLDER}/JacobiRotationParameters.hpp
         ${PROJECT_INCLUDE_FOLDER}/LibintCommunicator.hpp
         ${PROJECT_INCLUDE_FOLDER}/miscellaneous.hpp
@@ -175,6 +177,7 @@ set(PROJECT_TEST_SOURCE_FILES
         ${PROJECT_TESTS_FOLDER}/AOBasis_test.cpp
         ${PROJECT_TESTS_FOLDER}/Atom_test.cpp
         ${PROJECT_TESTS_FOLDER}/elements_test.cpp
+        ${PROJECT_TESTS_FOLDER}/HoppingMatrix_test.cpp
         ${PROJECT_TESTS_FOLDER}/JacobiRotationParameters_test.cpp
         ${PROJECT_TESTS_FOLDER}/LibintCommunicator_test.cpp
         ${PROJECT_TESTS_FOLDER}/miscellaneous_test.cpp
