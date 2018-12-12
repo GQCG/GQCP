@@ -6,7 +6,7 @@ add_library(${LIBRARY_NAME} ${LIBRARY_TYPE} ${PROJECT_SOURCE_FILES} ${PROJECT_IN
 
 
 # Configure the library: include headers and link to libraries
-include(${CMAKE_SOURCE_DIR}/cmake/ConfigureLibrary.cmake)
+include(${CMAKE_SOURCE_DIR}/cmake/Configure/ConfigureLibrary.cmake)
 
 
 # Make the install target for this library
