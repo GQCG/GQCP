@@ -1,13 +1,13 @@
 # exe-level CMakeLists.txt
 
-# For every *.cpp-file (every file corresponding to an executable) ...
+
 foreach(EXE_SOURCE ${PROJECT_EXE_SOURCE_FILES})
-    # ... extract the filename without extension (NAME_WE) as a name for our executable ...
+    # Extract the filename without extension (NAME_WE) as a name for our executable
     get_filename_component(EXE_NAME ${EXE_SOURCE} NAME_WE)
 
-    # ... add an executable based on the source ...
+    # Add an executable based on the source
     add_executable(${EXE_NAME} ${EXE_SOURCE})
 
-    # ... configure (include headers and link libraries) the executable ...
-    configure_executable(${EXE_NAME})
+    # Configure (include headers and link libraries) the executable
+    configure_driver(${EXE_NAME})
 endforeach()

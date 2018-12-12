@@ -1,4 +1,4 @@
-# In this file, we will provide a function that takes the name of an executable, and includes/links the appropriate libraries to it.
+# Provide a function that takes the name of target executable, and includes/links the appropriate libraries to it
 
 
 function(configure_executable EXECUTABLE_NAME)
@@ -34,7 +34,5 @@ function(configure_executable EXECUTABLE_NAME)
         target_include_directories(${EXECUTABLE_NAME} PRIVATE ${MKL_INCLUDE_DIRS})
         target_link_libraries(${EXECUTABLE_NAME} PRIVATE ${MKL_LIBRARIES})
     endif()
-
-    install(TARGETS ${EXECUTABLE_NAME} RUNTIME DESTINATION ${BIN_INSTALL_DIR})
 
 endfunction(configure_executable)

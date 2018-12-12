@@ -1,4 +1,4 @@
-# In this CMake file, we will include the headers and link to the necessary libraries
+# Link the dependencies to the target library
 
 
 # Include this project's headers

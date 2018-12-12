@@ -219,7 +219,8 @@ set(LIBRARY_INSTALL_DIR ${PROJECT_INSTALL_DIR}/lib)
 set(BIN_INSTALL_DIR ${PROJECT_INSTALL_DIR}/bin)
 
 
-# Include the function that configures the tests, benchmarks and executables
-include(${CMAKE_SOURCE_DIR}/cmake/ConfigureTest.cmake)
-include(${CMAKE_SOURCE_DIR}/cmake/ConfigureExecutable.cmake)
-include(${CMAKE_SOURCE_DIR}/cmake/ConfigureBenchmarks.cmake)
+# Include the function that configures target executables: tests, drivers and benchmarks
+include(${CMAKE_SOURCE_DIR}/cmake/Configure/ConfigureExecutable.cmake)
+include(${CMAKE_SOURCE_DIR}/cmake/Configure/ConfigureTest.cmake)
+include(${CMAKE_SOURCE_DIR}/cmake/Configure/ConfigureDriver.cmake)
+include(${CMAKE_SOURCE_DIR}/cmake/Configure/ConfigureBenchmarks.cmake)
