@@ -325,7 +325,6 @@
 		5614FA2A21B029FB002C5D40 /* LibintCommunicator.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5614F9AF21B029FB002C5D40 /* LibintCommunicator.hpp */; };
 		5614FA2B21B029FB002C5D40 /* properties.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5614F9B121B029FB002C5D40 /* properties.hpp */; };
 		5614FA2C21B029FB002C5D40 /* expectation_values.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5614F9B221B029FB002C5D40 /* expectation_values.hpp */; };
-		5614FA2D21B029FB002C5D40 /* miscellaneous.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5614F9B321B029FB002C5D40 /* miscellaneous.hpp */; };
 		5614FA2E21B029FB002C5D40 /* units.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5614F9B421B029FB002C5D40 /* units.hpp */; };
 		5614FA2F21B029FB002C5D40 /* JacobiRotationParameters.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5614F9B521B029FB002C5D40 /* JacobiRotationParameters.hpp */; };
 		5614FA3021B029FB002C5D40 /* common.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5614F9B621B029FB002C5D40 /* common.hpp */; };
@@ -348,7 +347,6 @@
 		5614FA4221B029FB002C5D40 /* Hubbard.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5614F9CE21B029FB002C5D40 /* Hubbard.hpp */; };
 		5614FA4321B029FB002C5D40 /* FCI.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5614F9CF21B029FB002C5D40 /* FCI.hpp */; };
 		5614FA4421B029FB002C5D40 /* Molecule.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5614F9D021B029FB002C5D40 /* Molecule.hpp */; };
-		5614FA4521B029FB002C5D40 /* miscellaneous.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614F9D221B029FB002C5D40 /* miscellaneous.cpp */; };
 		5614FA4621B029FB002C5D40 /* JacobiRotationParameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614F9D321B029FB002C5D40 /* JacobiRotationParameters.cpp */; };
 		5614FA4721B029FB002C5D40 /* RMP2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614F9D421B029FB002C5D40 /* RMP2.cpp */; };
 		5614FA4821B029FB002C5D40 /* elements.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614F9D521B029FB002C5D40 /* elements.cpp */; };
@@ -394,8 +392,6 @@
 		5614FA7521B029FB002C5D40 /* DOCINewtonOrbitalOptimizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FA0E21B029FB002C5D40 /* DOCINewtonOrbitalOptimizer.cpp */; };
 		5614FDB521B033B6002C5D40 /* fci_hchain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FAAD21B02E48002C5D40 /* fci_hchain.cpp */; };
 		5614FDB721B033BC002C5D40 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
-		5614FDB921B034D5002C5D40 /* libcpputil.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614FDB821B034D5002C5D40 /* libcpputil.a */; };
-		5614FDBB21B034D5002C5D40 /* libnumopt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614FDBA21B034D5002C5D40 /* libnumopt.a */; };
 		5614FDBD21B034F9002C5D40 /* libint2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614FDBC21B034F8002C5D40 /* libint2.a */; };
 		5614FDBF21B03525002C5D40 /* libbenchmark.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614FDBE21B03525002C5D40 /* libbenchmark.a */; };
 		5614FDC821B0367B002C5D40 /* libbenchmark.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614FDBE21B03525002C5D40 /* libbenchmark.a */; };
@@ -475,6 +471,12 @@
 		566D22A221B81CC100F8EB91 /* NRDMCalculator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 566D22A021B81CC100F8EB91 /* NRDMCalculator.cpp */; };
 		566D22A321B81CC100F8EB91 /* NRDMCalculator.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 566D22A121B81CC100F8EB91 /* NRDMCalculator.hpp */; };
 		56C64D8621B0713700D44FF0 /* constrained_RHF_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FB4921B02EDE002C5D40 /* constrained_RHF_test.cpp */; };
+		56FBA09F21C2B0420084F088 /* linalg.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56FBA09B21C2B0420084F088 /* linalg.hpp */; };
+		56FBA0A121C2B0420084F088 /* io.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56FBA09D21C2B0420084F088 /* io.hpp */; };
+		56FBA0A221C2B0420084F088 /* miscellaneous.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56FBA09E21C2B0420084F088 /* miscellaneous.hpp */; };
+		56FBA0A721C2B06B0084F088 /* miscellaneous.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56FBA0A421C2B06B0084F088 /* miscellaneous.cpp */; };
+		56FBA0A821C2B06B0084F088 /* io.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56FBA0A521C2B06B0084F088 /* io.cpp */; };
+		56FBA0A921C2B06B0084F088 /* linalg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56FBA0A621C2B06B0084F088 /* linalg.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2011,7 +2013,6 @@
 		5614F9AF21B029FB002C5D40 /* LibintCommunicator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LibintCommunicator.hpp; sourceTree = "<group>"; };
 		5614F9B121B029FB002C5D40 /* properties.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = properties.hpp; sourceTree = "<group>"; };
 		5614F9B221B029FB002C5D40 /* expectation_values.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = expectation_values.hpp; sourceTree = "<group>"; };
-		5614F9B321B029FB002C5D40 /* miscellaneous.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = miscellaneous.hpp; sourceTree = "<group>"; };
 		5614F9B421B029FB002C5D40 /* units.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = units.hpp; sourceTree = "<group>"; };
 		5614F9B521B029FB002C5D40 /* JacobiRotationParameters.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = JacobiRotationParameters.hpp; sourceTree = "<group>"; };
 		5614F9B621B029FB002C5D40 /* common.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = common.hpp; sourceTree = "<group>"; };
@@ -2034,7 +2035,6 @@
 		5614F9CE21B029FB002C5D40 /* Hubbard.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Hubbard.hpp; sourceTree = "<group>"; };
 		5614F9CF21B029FB002C5D40 /* FCI.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FCI.hpp; sourceTree = "<group>"; };
 		5614F9D021B029FB002C5D40 /* Molecule.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Molecule.hpp; sourceTree = "<group>"; };
-		5614F9D221B029FB002C5D40 /* miscellaneous.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = miscellaneous.cpp; sourceTree = "<group>"; };
 		5614F9D321B029FB002C5D40 /* JacobiRotationParameters.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JacobiRotationParameters.cpp; sourceTree = "<group>"; };
 		5614F9D421B029FB002C5D40 /* RMP2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RMP2.cpp; sourceTree = "<group>"; };
 		5614F9D521B029FB002C5D40 /* elements.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = elements.cpp; sourceTree = "<group>"; };
@@ -2238,6 +2238,12 @@
 		5660430221B913AD008C2E86 /* NRDMCalculator_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = NRDMCalculator_test; sourceTree = BUILT_PRODUCTS_DIR; };
 		566D22A021B81CC100F8EB91 /* NRDMCalculator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NRDMCalculator.cpp; sourceTree = "<group>"; };
 		566D22A121B81CC100F8EB91 /* NRDMCalculator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NRDMCalculator.hpp; sourceTree = "<group>"; };
+		56FBA09B21C2B0420084F088 /* linalg.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = linalg.hpp; sourceTree = "<group>"; };
+		56FBA09D21C2B0420084F088 /* io.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = io.hpp; sourceTree = "<group>"; };
+		56FBA09E21C2B0420084F088 /* miscellaneous.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = miscellaneous.hpp; sourceTree = "<group>"; };
+		56FBA0A421C2B06B0084F088 /* miscellaneous.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = miscellaneous.cpp; sourceTree = "<group>"; };
+		56FBA0A521C2B06B0084F088 /* io.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = io.cpp; sourceTree = "<group>"; };
+		56FBA0A621C2B06B0084F088 /* linalg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = linalg.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2510,8 +2516,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5614FDBD21B034F9002C5D40 /* libint2.a in Frameworks */,
-				5614FDB921B034D5002C5D40 /* libcpputil.a in Frameworks */,
-				5614FDBB21B034D5002C5D40 /* libnumopt.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2840,6 +2844,7 @@
 		5614F98E21B029FB002C5D40 /* include */ = {
 			isa = PBXGroup;
 			children = (
+				56FBA09A21C2B0260084F088 /* utilities */,
 				5614F9BE21B029FB002C5D40 /* CISolver */,
 				5614F99121B029FB002C5D40 /* FockSpace */,
 				56272DB221B6CBFA008BEA47 /* geminals */,
@@ -2968,6 +2973,7 @@
 		5614F9D121B029FB002C5D40 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				56FBA0A321C2B04B0084F088 /* utilities */,
 				5614F9D621B029FB002C5D40 /* CMakeLists.txt */,
 				5614F9FC21B029FB002C5D40 /* CISolver */,
 				5614F9D821B029FB002C5D40 /* FockSpace */,
@@ -3101,7 +3107,6 @@
 				5614F9B921B029FB002C5D40 /* elements.hpp */,
 				5614F9B521B029FB002C5D40 /* JacobiRotationParameters.hpp */,
 				5614F9AF21B029FB002C5D40 /* LibintCommunicator.hpp */,
-				5614F9B321B029FB002C5D40 /* miscellaneous.hpp */,
 				5614F9D021B029FB002C5D40 /* Molecule.hpp */,
 				5614F9B821B029FB002C5D40 /* OrbitalOptimizationOptions.hpp */,
 				5614F9B721B029FB002C5D40 /* RMP2.hpp */,
@@ -3113,7 +3118,6 @@
 		5614FA7721B02A34002C5D40 /* singles */ = {
 			isa = PBXGroup;
 			children = (
-				5614F9D221B029FB002C5D40 /* miscellaneous.cpp */,
 				5614F9D321B029FB002C5D40 /* JacobiRotationParameters.cpp */,
 				5614F9D421B029FB002C5D40 /* RMP2.cpp */,
 				5614F9D521B029FB002C5D40 /* elements.cpp */,
@@ -3472,6 +3476,26 @@
 			path = geminals;
 			sourceTree = "<group>";
 		};
+		56FBA09A21C2B0260084F088 /* utilities */ = {
+			isa = PBXGroup;
+			children = (
+				56FBA09D21C2B0420084F088 /* io.hpp */,
+				56FBA09B21C2B0420084F088 /* linalg.hpp */,
+				56FBA09E21C2B0420084F088 /* miscellaneous.hpp */,
+			);
+			path = utilities;
+			sourceTree = "<group>";
+		};
+		56FBA0A321C2B04B0084F088 /* utilities */ = {
+			isa = PBXGroup;
+			children = (
+				56FBA0A521C2B06B0084F088 /* io.cpp */,
+				56FBA0A621C2B06B0084F088 /* linalg.cpp */,
+				56FBA0A421C2B06B0084F088 /* miscellaneous.cpp */,
+			);
+			path = utilities;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -3503,6 +3527,9 @@
 				5614FA4021B029FB002C5D40 /* DOCI.hpp in Headers */,
 				5614FA2A21B029FB002C5D40 /* LibintCommunicator.hpp in Headers */,
 				5614FA1F21B029FB002C5D40 /* BaseRDM.hpp in Headers */,
+				56FBA0A121C2B0420084F088 /* io.hpp in Headers */,
+				56FBA09F21C2B0420084F088 /* linalg.hpp in Headers */,
+				56FBA0A221C2B0420084F088 /* miscellaneous.hpp in Headers */,
 				5614FA1621B029FB002C5D40 /* FockSpace.hpp in Headers */,
 				5614FA3A21B029FB002C5D40 /* BaseERLocalizer.hpp in Headers */,
 				5614FA2021B029FB002C5D40 /* OneRDM.hpp in Headers */,
@@ -3515,7 +3542,6 @@
 				5614FA4321B029FB002C5D40 /* FCI.hpp in Headers */,
 				5614FA3421B029FB002C5D40 /* OneElectronOperator.hpp in Headers */,
 				566D22A321B81CC100F8EB91 /* NRDMCalculator.hpp in Headers */,
-				5614FA2D21B029FB002C5D40 /* miscellaneous.hpp in Headers */,
 				56272DBA21B6CBFA008BEA47 /* AP1roGGeminalCoefficients.hpp in Headers */,
 				5614FA1521B029FB002C5D40 /* ONV.hpp in Headers */,
 				5614FA3721B029FB002C5D40 /* CISolver.hpp in Headers */,
@@ -5098,6 +5124,7 @@
 			files = (
 				5614FA5621B029FB002C5D40 /* BaseRDMBuilder.cpp in Sources */,
 				566D22A221B81CC100F8EB91 /* NRDMCalculator.cpp in Sources */,
+				56FBA0A721C2B06B0084F088 /* miscellaneous.cpp in Sources */,
 				5614FA6721B029FB002C5D40 /* OneElectronOperator.cpp in Sources */,
 				5614FA6321B029FB002C5D40 /* properties.cpp in Sources */,
 				56272DC621B6CC0D008BEA47 /* BaseAPIGGeminalCoefficients.cpp in Sources */,
@@ -5106,10 +5133,10 @@
 				5614FA5421B029FB002C5D40 /* PlainRHFSCFSolver.cpp in Sources */,
 				5614FA4721B029FB002C5D40 /* RMP2.cpp in Sources */,
 				56272DCA21B6CC0D008BEA47 /* AP1roGJacobiOrbitalOptimizer.cpp in Sources */,
+				56FBA0A821C2B06B0084F088 /* io.cpp in Sources */,
 				5614FA5021B029FB002C5D40 /* LibintCommunicator.cpp in Sources */,
 				5614FA5321B029FB002C5D40 /* RHFSCFSolver.cpp in Sources */,
 				5614FA5D21B029FB002C5D40 /* DOCIRDMBuilder.cpp in Sources */,
-				5614FA4521B029FB002C5D40 /* miscellaneous.cpp in Sources */,
 				5614FA4921B029FB002C5D40 /* Molecule.cpp in Sources */,
 				5614FA7021B029FB002C5D40 /* BaseHamiltonianParameters.cpp in Sources */,
 				5614FA5721B029FB002C5D40 /* TwoRDM.cpp in Sources */,
@@ -5138,6 +5165,7 @@
 				5614FA4A21B029FB002C5D40 /* FockSpace.cpp in Sources */,
 				56272DC721B6CC0D008BEA47 /* AP1roG.cpp in Sources */,
 				5614FA6921B029FB002C5D40 /* BaseERLocalizer.cpp in Sources */,
+				56FBA0A921C2B06B0084F088 /* linalg.cpp in Sources */,
 				5614FA4B21B029FB002C5D40 /* ONV.cpp in Sources */,
 				5614FA6B21B029FB002C5D40 /* ERJacobiLocalizer.cpp in Sources */,
 				5614FA7121B029FB002C5D40 /* Hubbard.cpp in Sources */,

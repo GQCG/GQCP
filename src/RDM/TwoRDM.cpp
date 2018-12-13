@@ -17,7 +17,7 @@
 // 
 #include "RDM/TwoRDM.hpp"
 
-#include <cpputil.hpp>
+#include "utilities/linalg.hpp"
 
 
 namespace GQCP {
@@ -66,7 +66,7 @@ bool TwoRDM::operator==(const GQCP::TwoRDM& other) {
  *  @return if the matrix representation of this 2-RDM is equal to the matrix representation of the other, given a tolerance
  */
 bool TwoRDM::isEqualTo(const GQCP::TwoRDM& other, double tolerance) const {
-    return cpputil::linalg::areEqual(this->d, other.d, tolerance);
+    return areEqual(this->d, other.d, tolerance);
 }
 
 
@@ -111,4 +111,3 @@ Eigen::MatrixXd TwoRDM::reduce() {
 
 
 }  // namespace GQCP
-

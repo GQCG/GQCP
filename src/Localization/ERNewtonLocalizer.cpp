@@ -17,7 +17,6 @@
 // 
 #include "Localization/ERNewtonLocalizer.hpp"
 
-#include <cpputil.hpp>
 #include <numopt.hpp>
 
 #include <unsupported/Eigen/MatrixFunctions>
@@ -155,8 +154,8 @@ void ERNewtonLocalizer::localize(GQCP::HamiltonianParameters& ham_par) {
     while (!(this->is_converged)) {
 
         // Calculate the gradient and Hessian with only the free parameters, at kappa = 0
-        Eigen::VectorXd gradient_vector = cpputil::linalg::strictLowerTriangle(this->calculateGradient(ham_par));
-        Eigen::MatrixXd hessian_matrix = cpputil::linalg::strictLowerTriangle(this->calculateHessian(ham_par));
+        Eigen::VectorXd gradient_vector = strictLowerTriangle(this->calculateGradient(ham_par));
+        Eigen::MatrixXd hessian_matrix = strictLowerTriangle(this->calculateHessian(ham_par));
 
         // Perform a Newton-step to find orbital rotation parameters kappa
         numopt::VectorFunction gradient_function = [gradient_vector](const Eigen::VectorXd& x) { return gradient_vector; };
