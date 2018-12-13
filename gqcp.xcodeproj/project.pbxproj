@@ -2206,6 +2206,8 @@
 		56272DD021B6CC2D008BEA47 /* AP1roGPSESolver_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AP1roGPSESolver_test.cpp; sourceTree = "<group>"; };
 		56272DD121B6CC2D008BEA47 /* APIGGeminalCoefficients_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = APIGGeminalCoefficients_test.cpp; sourceTree = "<group>"; };
 		56272DE121B6CC7B008BEA47 /* APIGGeminalCoefficients_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = APIGGeminalCoefficients_test; sourceTree = BUILT_PRODUCTS_DIR; };
+		56A96C4A21C12028001AFC9A /* ConfigureDriver.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = ConfigureDriver.cmake; sourceTree = "<group>"; };
+		56A96C4C21C12114001AFC9A /* ConfigureTest.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = ConfigureTest.cmake; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3104,17 +3106,15 @@
 		5614FA8C21B02A8A002C5D40 /* cmake */ = {
 			isa = PBXGroup;
 			children = (
+				56A96C4B21C12033001AFC9A /* Configure */,
 				5614FA8D21B02A8A002C5D40 /* InstallLibrary.cmake */,
 				5614FA8E21B02A8A002C5D40 /* FindEigen3.cmake */,
 				5614FA8F21B02A8A002C5D40 /* SetCMakeEnvironment.cmake */,
-				5614FA9021B02A8A002C5D40 /* ConfigureExecutable.cmake */,
 				5614FA9121B02A8A002C5D40 /* ConfigVersion.cmake.in */,
 				5614FA9221B02A8A002C5D40 /* FindLibint2.cmake */,
 				5614FA9321B02A8A002C5D40 /* FindPackages.cmake */,
 				5614FA9421B02A8A002C5D40 /* Config.cmake.in */,
-				5614FA9521B02A8A002C5D40 /* ConfigureLibrary.cmake */,
 				5614FA9621B02A8A002C5D40 /* FindMKL.cmake */,
-				5614FA9721B02A8A002C5D40 /* ConfigureBenchmarks.cmake */,
 			);
 			path = cmake;
 			sourceTree = "<group>";
@@ -3426,6 +3426,18 @@
 				56272DD121B6CC2D008BEA47 /* APIGGeminalCoefficients_test.cpp */,
 			);
 			path = geminals;
+			sourceTree = "<group>";
+		};
+		56A96C4B21C12033001AFC9A /* Configure */ = {
+			isa = PBXGroup;
+			children = (
+				5614FA9721B02A8A002C5D40 /* ConfigureBenchmarks.cmake */,
+				56A96C4A21C12028001AFC9A /* ConfigureDriver.cmake */,
+				5614FA9021B02A8A002C5D40 /* ConfigureExecutable.cmake */,
+				5614FA9521B02A8A002C5D40 /* ConfigureLibrary.cmake */,
+				56A96C4C21C12114001AFC9A /* ConfigureTest.cmake */,
+			);
+			path = Configure;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -47,7 +47,7 @@ add_subdirectory(${PROJECT_SOURCE_FOLDER})
 # Add the sources for the executables
 add_subdirectory(${PROJECT_EXECUTABLES_FOLDER})
 
-# Add the sources ofr the benchmarks
+# Add the sources for the benchmarks
 if(BUILD_BENCHMARKS)
     add_subdirectory(${PROJECT_BENCHMARKS_FOLDER})
 endif(BUILD_BENCHMARKS)
