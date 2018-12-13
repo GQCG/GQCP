@@ -6,17 +6,13 @@ string(TOUPPER ${PROJECT_NAME} PROJECT_NAME_UPPERCASE)  # Uppercase is needed in
 string(TOLOWER ${PROJECT_NAME} PROJECT_NAME_LOWERCASE)
 
 
-
 # The name of the library should be equal to the project name
 if(NOT LIBRARY_NAME)
     set(LIBRARY_NAME ${PROJECT_NAME})
 endif()
 
-# We want to make a static library
-set(LIBRARY_TYPE STATIC)
-set(EXPORT_TYPE ARCHIVE)
-
-
+# We want to make a shared/dynamic library
+set(LIBRARY_TYPE SHARED)
 
 # Find the source folder
 set(PROJECT_SOURCE_FOLDER ${CMAKE_SOURCE_DIR}/src)
@@ -219,8 +215,11 @@ set(PROJECT_INSTALL_DIR ${INSTALLATION_PREFIX}/${PROJECT_NAME_LOWERCASE})
 set(INCLUDE_INSTALL_DIR ${PROJECT_INSTALL_DIR}/include)
 set(CMAKE_INSTALL_DIR ${PROJECT_INSTALL_DIR}/cmake)
 set(LIBRARY_INSTALL_DIR ${PROJECT_INSTALL_DIR}/lib)
+set(BIN_INSTALL_DIR ${PROJECT_INSTALL_DIR}/bin)
 
 
-# Include the function that configures the executables
-include(${CMAKE_SOURCE_DIR}/cmake/ConfigureExecutable.cmake)
-include(${CMAKE_SOURCE_DIR}/cmake/ConfigureBenchmarks.cmake)
+# Include the function that configures target executables: tests, drivers and benchmarks
+include(${CMAKE_SOURCE_DIR}/cmake/Configure/ConfigureExecutable.cmake)
+include(${CMAKE_SOURCE_DIR}/cmake/Configure/ConfigureTest.cmake)
+include(${CMAKE_SOURCE_DIR}/cmake/Configure/ConfigureDriver.cmake)
+include(${CMAKE_SOURCE_DIR}/cmake/Configure/ConfigureBenchmarks.cmake)

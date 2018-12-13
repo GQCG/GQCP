@@ -58,7 +58,7 @@ install:
 
     # Install cpputil
     - mkdir /tmp/cpputil && cd /tmp/cpputil
-    - git clone https://github.com/GQCG/cpputil.git --branch master --single-branch
+    - git clone https://github.com/GQCG/cpputil.git --branch feature/shared_library --single-branch
     - cd cpputil
     - mkdir build && cd build
     - cmake .. && make -j3 && make test ARGS=-j3 && sudo make install
@@ -73,11 +73,11 @@ install:
            cd libint-2.3.1
            ./autogen.sh
            mkdir build && cd build
-           ../configure CXXFLAGS=-I${BOOST_ROOT}
+           ../configure CXXFLAGS=-I${BOOST_ROOT} --enable-shared=yes
            make export
            tar -xvzf libint-2.3.1.tgz
            cd libint-2.3.1
-           ./configure CXXFLAGS=-I${BOOST_ROOT}
+           ./configure CXXFLAGS=-I${BOOST_ROOT} --enable-shared=yes
            make -j3
            sudo make install
         else
@@ -90,7 +90,7 @@ install:
 
     # Install numopt
     - mkdir /tmp/numopt && cd /tmp/numopt
-    - git clone https://github.com/GQCG/numopt.git --branch master --single-branch --recurse-submodules
+    - git clone https://github.com/GQCG/numopt.git --branch feature/shared_library --single-branch --recurse-submodules
     - cd numopt
     - mkdir build && cd build
     - cmake .. && make -j3 && make test ARGS=-j3 && sudo make install
