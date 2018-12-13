@@ -5,7 +5,7 @@ function(configure_executable EXECUTABLE_NAME)
 
     # Include this project
     target_include_directories(${EXECUTABLE_NAME} PRIVATE ${PROJECT_INCLUDE_FOLDER})
-    target_link_libraries(${EXECUTABLE_NAME} PRIVATE ${LIBRARY_NAME})
+    target_link_libraries(${EXECUTABLE_NAME} PUBLIC ${LIBRARY_NAME})
 
     # Include boost
     target_include_directories(${EXECUTABLE_NAME} PUBLIC ${Boost_INCLUDE_DIRS})
