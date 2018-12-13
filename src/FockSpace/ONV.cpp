@@ -48,10 +48,13 @@ ONV::ONV(size_t K, size_t N, size_t unsigned_representation) :
  */
 ONV::ONV(size_t K, size_t N) :
     K (K),
-    N (N)
+    N (N),
+    occupation_indices (VectorXs::Zero(N))
 {
     this->occupation_indices = VectorXs::Zero(N);
 }
+
+
 
 /*
  *  OPERATORS
@@ -135,11 +138,131 @@ void ONV::updateOccupationIndices() {
  */
 bool ONV::isOccupied(size_t p) const {
 
-    if (p > this->K-1) {
+    if (p > this->K - 1) {
         throw std::invalid_argument("The index is out of the bitset bounds");
     }
+
     size_t operator_string = 1U << p;
     return this->unsigned_representation & operator_string;
+}
+
+
+/**
+ *  @param indices      the orbital indices (starting from 0)
+ *
+ *  @return if all given indices are occupied
+ */
+bool ONV::areOccupied(const std::vector<size_t>& indices) const {
+
+    // Check first if all indices are within bounds
+    for (const auto& index : indices) {
+        if (index > this->K - 1) {
+            throw std::invalid_argument("The index is out of the bitset bounds");
+        }
+    }
+
+    for (const auto& index : indices) {
+        if (!this->isOccupied(index)) {
+            return false;
+        }
+    }
+
+    // Only if all indices have been tested to be occupied, we can return true
+    return true;
+}
+
+
+/**
+ *  @param p    the orbital index starting from 0, counted from right to left
+ *
+ *  @return if the p-th spatial orbital is not occupied
+ */
+bool ONV::isUnoccupied(size_t p) const {
+    return !this->isOccupied(p);
+}
+
+
+/**
+ *  @param indices      the orbital indices (starting from 0)
+ *
+ *  @return if all the given indices are unoccupied
+ */
+bool ONV::areUnoccupied(const std::vector<size_t>& indices) const {
+
+    // Check first if all indices are within bounds
+    for (const auto& index : indices) {
+        if (index > this->K - 1) {
+            throw std::invalid_argument("The index is out of the bitset bounds");
+        }
+    }
+
+    for (const auto& index : indices) {
+        if (this->isOccupied(index)) {
+            return false;
+        }
+    }
+
+    // Only if all indices have been tested to be unoccupied, we can return true
+    return true;
+}
+
+
+/**
+ *  @param index_start      the starting index (included), read from right to left
+ *  @param index_end        the ending index (not included), read from right to left
+ *
+ *  @return the representation of a slice (i.e. a subset) of the spin string (read from right to left) between index_start (included) and index_end (not included)
+ *
+ *      Example:
+ *          "010011".slice(1, 4) => "01[001]1" -> "001"
+ */
+size_t ONV::slice(size_t index_start, size_t index_end) const {
+
+    // First, do some checks
+    if (index_end <= index_start) {
+        throw std::invalid_argument("index_end should be larger than index_start.");
+    }
+
+    if (index_end > this->K + 1) {
+        throw std::invalid_argument("The last slicing index index_end cannot be greater than the number of spatial orbitals K.");
+    }
+
+    // The union of these conditions also include the case that index_start > this->K
+
+
+    // Shift bits to the right
+    size_t u = this->unsigned_representation >> index_start;
+
+
+    // Create the correct mask
+    size_t mask_length = index_end - index_start;
+    size_t mask = ((1U) << mask_length) - 1;
+
+
+    // Use the mask
+    return u & mask;
+}
+
+
+/**
+ *  @param p        the orbital index starting from 0, counted from right to left
+ *
+ *  @return the phase factor (+1 or -1) that arises by applying an annihilation or creation operator on orbital p
+ *
+ *  Let's say that there are m electrons in the orbitals up to p (not included). If m is even, the phase factor is (+1) and if m is odd, the phase factor is (-1), since electrons are fermions.
+ */
+int ONV::operatorPhaseFactor(size_t p) const {
+
+    if (p == 0) {  // we can't give this to this->slice(0, 0)
+        return 1;
+    }
+    size_t m = __builtin_popcountl(this->slice(0, p));  // count the number of set bits in the slice [0,p-1]
+
+    if ( m % 2 == 0 ) {  // even number of electrons: phase factor (+1)
+        return 1;
+    } else {  // odd number of electrons: phase factor (-1)
+        return -1;
+    }
 }
 
 
@@ -163,6 +286,26 @@ bool ONV::annihilate(size_t p) {
 
 
 /**
+ *  @param indices      the orbital indices (starting from 0)
+ *
+ *  @return if we can apply all annihilation operators (i.e. 1->0) on the given indices. Subsequently perform in-place annihilations on the given indices
+ *
+ *  IMPORTANT: does not update the occupation indices for performance reasons, if required call updateOccupationIndices()!
+ */
+bool ONV::annihilateAll(const std::vector<size_t>& indices) {
+
+    if (this->areOccupied(indices)) {  // only if all indices are occupied, we will annihilate
+        for (const auto& index : indices) {
+            this->annihilate(index);
+        }
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
+/**
  *  @param p        the orbital index starting from 0, counted from right to left
  *  @param sign     the current sign of the operator string
  *
@@ -174,6 +317,26 @@ bool ONV::annihilate(size_t p, int& sign) {
 
     if (this->annihilate(p)) {  // we have to first check if we can annihilate before applying the phase factor
         sign *= this->operatorPhaseFactor(p);
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
+/**
+ *  @param indices      the indices of the orbitals that should be annihilated (the first index is annihilated first)
+ *
+ *  @return if we can apply all annihilation operators (i.e. 1->0) on the given indices. Subsequently perform in-place annihilations on the given indices. Furthermore, update the sign according to the sign change (+1 or -1) of the spin string after the annihilations.
+ *
+ *  IMPORTANT: does not update the occupation indices for performance reasons, if required call updateOccupationIndices()!
+ */
+bool ONV::annihilateAll(const std::vector<size_t>& indices, int& sign) {
+
+    if (this->areOccupied(indices)) {  // only if all indices are occupied, we will annihilate
+        for (const auto& index : indices) {
+            this->annihilate(index, sign);
+        }
         return true;
     } else {
         return false;
@@ -219,61 +382,40 @@ bool ONV::create(size_t p, int& sign) {
 
 
 /**
- *  @param p        the orbital index starting from 0, counted from right to left
+ *  @param indices      the indices of the orbitals that should be created
  *
- *  @return the phase factor (+1 or -1) that arises by applying an annihilation or creation operator on orbital p
- *
- *  Let's say that there are m electrons in the orbitals up to p (not included). If m is even, the phase factor is (+1) and if m is odd, the phase factor is (-1), since electrons are fermions.
+ *  @return if we can apply all creation operators (i.e. 0->1) on the given indices. Subsequently perform in-place creations on the given indices
  */
-int ONV::operatorPhaseFactor(size_t p) const {
+bool ONV::createAll(const std::vector<size_t>& indices) {
 
-    if (p == 0) {  // we can't give this to this->slice(0, 0)
-        return 1;
-    }
-    size_t m = __builtin_popcountl(this->slice(0, p));  // count the number of set bits in the slice [0,p-1]
-
-    if ( m % 2 == 0 ) {  // even number of electrons: phase factor (+1)
-        return 1;
-    } else {  // odd number of electrons: phase factor (-1)
-        return -1;
+    if (this->areUnoccupied(indices)) {
+        for (const auto& index : indices) {
+            this->create(index);
+        }
+        return true;
+    } else {
+        return false;
     }
 }
 
-
+    
 /**
- *  @param index_start      the starting index (included), read from right to left
- *  @param index_end        the ending index (not included), read from right to left
+ *  @param indices      the indices of the orbitals that should be annihilated (the first index is annihilated first)
  *
- *  @return the representation of a slice (i.e. a subset) of the spin string (read from right to left) between index_start (included) and index_end (not included)
+ *  @return if we can apply all annihilation operators (i.e. 1->0) on the given indices. Subsequently perform in-place annihilations on the given indices. Furthermore, update the sign according to the sign change (+1 or -1) of the spin string after the annihilations.
  *
- *      Example:
- *          "010011".slice(1, 4) => "01[001]1" -> "001"
+ *  IMPORTANT: does not update the occupation indices for performance reasons, if required call updateOccupationIndices()!
  */
-size_t ONV::slice(size_t index_start, size_t index_end) const {
+bool ONV::createAll(const std::vector<size_t>& indices, int& sign) {
 
-    // First, do some checks
-    if (index_end <= index_start) {
-        throw std::invalid_argument("index_end should be larger than index_start.");
+    if (this->areUnoccupied(indices)) {
+        for (const auto& index : indices) {
+            this->create(index, sign);
+        }
+        return true;
+    } else {
+        return false;
     }
-
-    if (index_end > this->K + 1) {
-        throw std::invalid_argument("The last slicing index index_end cannot be greater than the number of spatial orbitals K.");
-    }
-
-    // The union of these conditions also include the case that index_start > this->K
-
-
-    // Shift bits to the right
-    size_t u = this->unsigned_representation >> index_start;
-
-
-    // Create the correct mask
-    size_t mask_length = index_end - index_start;
-    size_t mask = ((1U) << mask_length) - 1;
-
-
-    // Use the mask
-    return u & mask;
 }
 
 

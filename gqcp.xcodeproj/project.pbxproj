@@ -88,6 +88,7 @@
 			buildPhases = (
 			);
 			dependencies = (
+				5660430521B913EA008C2E86 /* PBXTargetDependency */,
 				561401F121B0685B002C5D40 /* PBXTargetDependency */,
 				561401F321B0685B002C5D40 /* PBXTargetDependency */,
 				561401F521B0685B002C5D40 /* PBXTargetDependency */,
@@ -149,9 +150,6 @@
 			buildPhases = (
 			);
 			dependencies = (
-				56E67C5C21BFB1D60085803E /* PBXTargetDependency */,
-				56E67C5E21BFB1D60085803E /* PBXTargetDependency */,
-				56E67C6021BFB1D60085803E /* PBXTargetDependency */,
 			);
 			name = BUILD_EXECUTABLES;
 			productName = BUILD_ALL_EXECUTABLES;
@@ -470,13 +468,13 @@
 		56272DD521B6CC71008BEA47 /* AP1roGPSESolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56272DC321B6CC0D008BEA47 /* AP1roGPSESolver.cpp */; };
 		56272DDC21B6CC7B008BEA47 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
 		56272DE221B6CC93008BEA47 /* APIGGeminalCoefficients_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56272DD121B6CC2D008BEA47 /* APIGGeminalCoefficients_test.cpp */; };
+		566042FD21B913AD008C2E86 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
+		5660430321B913BA008C2E86 /* NRDMCalculator_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 566042F621B91369008C2E86 /* NRDMCalculator_test.cpp */; };
 		566D229E21B7ED2500F8EB91 /* oo_doci.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FAA721B02E48002C5D40 /* oo_doci.cpp */; };
+		566D229F21B7ED2D00F8EB91 /* oo_doci.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FAA721B02E48002C5D40 /* oo_doci.cpp */; };
+		566D22A221B81CC100F8EB91 /* NRDMCalculator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 566D22A021B81CC100F8EB91 /* NRDMCalculator.cpp */; };
+		566D22A321B81CC100F8EB91 /* NRDMCalculator.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 566D22A121B81CC100F8EB91 /* NRDMCalculator.hpp */; };
 		56C64D8621B0713700D44FF0 /* constrained_RHF_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FB4921B02EDE002C5D40 /* constrained_RHF_test.cpp */; };
-		56E67C4B21BF96D70085803E /* HoppingMatrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56E67C4921BF96D70085803E /* HoppingMatrix.cpp */; };
-		56E67C4C21BF96D70085803E /* HoppingMatrix.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56E67C4A21BF96D70085803E /* HoppingMatrix.hpp */; };
-		56E67C5421BF976C0085803E /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
-		56E67C5A21BF97800085803E /* HoppingMatrix_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56E67C4D21BF975D0085803E /* HoppingMatrix_test.cpp */; };
-		56E67C6121BFB1EE0085803E /* hubbard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FAA521B02E48002C5D40 /* hubbard.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1376,40 +1374,26 @@
 			remoteGlobalIDString = 56272DD621B6CC7B008BEA47;
 			remoteInfo = APIGGeminalCoefficients_test;
 		};
-		56C64D8B21B0736C00D44FF0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5614FE9921B0414A002C5D40;
-			remoteInfo = BUILD_TESTS;
-		};
-		56E67C5021BF976C0085803E /* PBXContainerItemProxy */ = {
+		566042F921B913AD008C2E86 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 5614F97F21B0295C002C5D40;
 			remoteInfo = gqcp;
 		};
-		56E67C5B21BFB1D60085803E /* PBXContainerItemProxy */ = {
+		5660430421B913EA008C2E86 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 5614FE6021B03A07002C5D40;
-			remoteInfo = fci_lowdin;
+			remoteGlobalIDString = 566042F721B913AD008C2E86;
+			remoteInfo = NRDMCalculator_test;
 		};
-		56E67C5D21BFB1D60085803E /* PBXContainerItemProxy */ = {
+		56C64D8B21B0736C00D44FF0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 5614FE6E21B04008002C5D40;
-			remoteInfo = hubbard;
-		};
-		56E67C5F21BFB1D60085803E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5614FE7B21B0400D002C5D40;
-			remoteInfo = oo_doci;
+			remoteGlobalIDString = 5614FE9921B0414A002C5D40;
+			remoteInfo = BUILD_TESTS;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -1954,7 +1938,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
-		56E67C5521BF976C0085803E /* CopyFiles */ = {
+		566042FE21B913AD008C2E86 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -2250,10 +2234,10 @@
 		56272DD021B6CC2D008BEA47 /* AP1roGPSESolver_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AP1roGPSESolver_test.cpp; sourceTree = "<group>"; };
 		56272DD121B6CC2D008BEA47 /* APIGGeminalCoefficients_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = APIGGeminalCoefficients_test.cpp; sourceTree = "<group>"; };
 		56272DE121B6CC7B008BEA47 /* APIGGeminalCoefficients_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = APIGGeminalCoefficients_test; sourceTree = BUILT_PRODUCTS_DIR; };
-		56E67C4921BF96D70085803E /* HoppingMatrix.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = HoppingMatrix.cpp; path = ../include/HoppingMatrix.cpp; sourceTree = "<group>"; };
-		56E67C4A21BF96D70085803E /* HoppingMatrix.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HoppingMatrix.hpp; sourceTree = "<group>"; };
-		56E67C4D21BF975D0085803E /* HoppingMatrix_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HoppingMatrix_test.cpp; sourceTree = "<group>"; };
-		56E67C5921BF976C0085803E /* HoppingMatrix_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = HoppingMatrix_test; sourceTree = BUILT_PRODUCTS_DIR; };
+		566042F621B91369008C2E86 /* NRDMCalculator_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NRDMCalculator_test.cpp; sourceTree = "<group>"; };
+		5660430221B913AD008C2E86 /* NRDMCalculator_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = NRDMCalculator_test; sourceTree = BUILT_PRODUCTS_DIR; };
+		566D22A021B81CC100F8EB91 /* NRDMCalculator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NRDMCalculator.cpp; sourceTree = "<group>"; };
+		566D22A121B81CC100F8EB91 /* NRDMCalculator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NRDMCalculator.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2759,11 +2743,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		56E67C5321BF976C0085803E /* Frameworks */ = {
+		566042FC21B913AD008C2E86 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				56E67C5421BF976C0085803E /* libgqcp.a in Frameworks */,
+				566042FD21B913AD008C2E86 /* libgqcp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2848,7 +2832,7 @@
 				5614017C21B06392002C5D40 /* RMP2_test */,
 				5614018821B06397002C5D40 /* units_test */,
 				56272DE121B6CC7B008BEA47 /* APIGGeminalCoefficients_test */,
-				56E67C5921BF976C0085803E /* HoppingMatrix_test */,
+				5660430221B913AD008C2E86 /* NRDMCalculator_test */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2901,14 +2885,15 @@
 		5614F99F21B029FB002C5D40 /* RDM */ = {
 			isa = PBXGroup;
 			children = (
-				5614F9A021B029FB002C5D40 /* RDMCalculator.hpp */,
-				5614F9A121B029FB002C5D40 /* DOCIRDMBuilder.hpp */,
-				5614F9A221B029FB002C5D40 /* SelectedRDMBuilder.hpp */,
 				5614F9A321B029FB002C5D40 /* BaseRDM.hpp */,
-				5614F9A421B029FB002C5D40 /* OneRDM.hpp */,
-				5614F9A521B029FB002C5D40 /* FCIRDMBuilder.hpp */,
-				5614F9A621B029FB002C5D40 /* RDMs.hpp */,
 				5614F9A721B029FB002C5D40 /* BaseRDMBuilder.hpp */,
+				5614F9A121B029FB002C5D40 /* DOCIRDMBuilder.hpp */,
+				5614F9A521B029FB002C5D40 /* FCIRDMBuilder.hpp */,
+				566D22A121B81CC100F8EB91 /* NRDMCalculator.hpp */,
+				5614F9A421B029FB002C5D40 /* OneRDM.hpp */,
+				5614F9A021B029FB002C5D40 /* RDMCalculator.hpp */,
+				5614F9A621B029FB002C5D40 /* RDMs.hpp */,
+				5614F9A221B029FB002C5D40 /* SelectedRDMBuilder.hpp */,
 				5614F9A821B029FB002C5D40 /* TwoRDM.hpp */,
 			);
 			path = RDM;
@@ -2994,8 +2979,8 @@
 				5614F9F421B029FB002C5D40 /* properties */,
 				5614F9E521B029FB002C5D40 /* RDM */,
 				5614F9E021B029FB002C5D40 /* RHF */,
-				5614FA0221B029FB002C5D40 /* WaveFunction */,
 				5614FA7721B02A34002C5D40 /* singles */,
+				5614FA0221B029FB002C5D40 /* WaveFunction */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -3026,15 +3011,16 @@
 		5614F9E521B029FB002C5D40 /* RDM */ = {
 			isa = PBXGroup;
 			children = (
-				5614F9E621B029FB002C5D40 /* RDMs.cpp */,
-				5614F9E721B029FB002C5D40 /* BaseRDMBuilder.cpp */,
-				5614F9E821B029FB002C5D40 /* TwoRDM.cpp */,
-				5614F9E921B029FB002C5D40 /* OneRDM.cpp */,
-				5614F9EA21B029FB002C5D40 /* FCIRDMBuilder.cpp */,
-				5614F9EB21B029FB002C5D40 /* SelectedRDMBuilder.cpp */,
 				5614F9EC21B029FB002C5D40 /* BaseRDM.cpp */,
-				5614F9ED21B029FB002C5D40 /* RDMCalculator.cpp */,
+				5614F9E721B029FB002C5D40 /* BaseRDMBuilder.cpp */,
 				5614F9EE21B029FB002C5D40 /* DOCIRDMBuilder.cpp */,
+				5614F9EA21B029FB002C5D40 /* FCIRDMBuilder.cpp */,
+				566D22A021B81CC100F8EB91 /* NRDMCalculator.cpp */,
+				5614F9E921B029FB002C5D40 /* OneRDM.cpp */,
+				5614F9ED21B029FB002C5D40 /* RDMCalculator.cpp */,
+				5614F9E621B029FB002C5D40 /* RDMs.cpp */,
+				5614F9EB21B029FB002C5D40 /* SelectedRDMBuilder.cpp */,
+				5614F9E821B029FB002C5D40 /* TwoRDM.cpp */,
 			);
 			path = RDM;
 			sourceTree = "<group>";
@@ -3113,7 +3099,6 @@
 				5614F9B621B029FB002C5D40 /* common.hpp */,
 				5614F99021B029FB002C5D40 /* DOCINewtonOrbitalOptimizer.hpp */,
 				5614F9B921B029FB002C5D40 /* elements.hpp */,
-				56E67C4A21BF96D70085803E /* HoppingMatrix.hpp */,
 				5614F9B521B029FB002C5D40 /* JacobiRotationParameters.hpp */,
 				5614F9AF21B029FB002C5D40 /* LibintCommunicator.hpp */,
 				5614F9B321B029FB002C5D40 /* miscellaneous.hpp */,
@@ -3128,16 +3113,15 @@
 		5614FA7721B02A34002C5D40 /* singles */ = {
 			isa = PBXGroup;
 			children = (
-				5614F9F721B029FB002C5D40 /* AOBasis.cpp */,
-				5614F9DE21B029FB002C5D40 /* Atom.cpp */,
-				5614FA0E21B029FB002C5D40 /* DOCINewtonOrbitalOptimizer.cpp */,
-				5614F9D521B029FB002C5D40 /* elements.cpp */,
-				56E67C4921BF96D70085803E /* HoppingMatrix.cpp */,
-				5614F9D321B029FB002C5D40 /* JacobiRotationParameters.cpp */,
-				5614F9DF21B029FB002C5D40 /* LibintCommunicator.cpp */,
 				5614F9D221B029FB002C5D40 /* miscellaneous.cpp */,
-				5614F9D721B029FB002C5D40 /* Molecule.cpp */,
+				5614F9D321B029FB002C5D40 /* JacobiRotationParameters.cpp */,
 				5614F9D421B029FB002C5D40 /* RMP2.cpp */,
+				5614F9D521B029FB002C5D40 /* elements.cpp */,
+				5614F9D721B029FB002C5D40 /* Molecule.cpp */,
+				5614F9DE21B029FB002C5D40 /* Atom.cpp */,
+				5614F9DF21B029FB002C5D40 /* LibintCommunicator.cpp */,
+				5614F9F721B029FB002C5D40 /* AOBasis.cpp */,
+				5614FA0E21B029FB002C5D40 /* DOCINewtonOrbitalOptimizer.cpp */,
 			);
 			name = singles;
 			sourceTree = "<group>";
@@ -3313,6 +3297,7 @@
 			children = (
 				5614FB4F21B02EDE002C5D40 /* DOCIRDMBuilder_test.cpp */,
 				5614FB5321B02EDE002C5D40 /* FCIRDMBuilder_test.cpp */,
+				566042F621B91369008C2E86 /* NRDMCalculator_test.cpp */,
 				5614FB5021B02EDE002C5D40 /* OneRDM_test.cpp */,
 				5614FB4E21B02EDE002C5D40 /* RDMCalculator_test.cpp */,
 				5614FB5221B02EDE002C5D40 /* SelectedRDMBuilder_test.cpp */,
@@ -3426,7 +3411,6 @@
 				5614FB4021B02EDE002C5D40 /* AOBasis_test.cpp */,
 				5614FB3E21B02EDE002C5D40 /* Atom_test.cpp */,
 				5614FB5D21B02EDE002C5D40 /* elements_test.cpp */,
-				56E67C4D21BF975D0085803E /* HoppingMatrix_test.cpp */,
 				5614FB3D21B02EDE002C5D40 /* JacobiRotationParameters_test.cpp */,
 				5614FB3F21B02EDE002C5D40 /* LibintCommunicator_test.cpp */,
 				5614FB5C21B02EDE002C5D40 /* miscellaneous_test.cpp */,
@@ -3530,6 +3514,7 @@
 				5614FA2B21B029FB002C5D40 /* properties.hpp in Headers */,
 				5614FA4321B029FB002C5D40 /* FCI.hpp in Headers */,
 				5614FA3421B029FB002C5D40 /* OneElectronOperator.hpp in Headers */,
+				566D22A321B81CC100F8EB91 /* NRDMCalculator.hpp in Headers */,
 				5614FA2D21B029FB002C5D40 /* miscellaneous.hpp in Headers */,
 				56272DBA21B6CBFA008BEA47 /* AP1roGGeminalCoefficients.hpp in Headers */,
 				5614FA1521B029FB002C5D40 /* ONV.hpp in Headers */,
@@ -3544,7 +3529,6 @@
 				5614FA3321B029FB002C5D40 /* elements.hpp in Headers */,
 				5614FA3C21B029FB002C5D40 /* WaveFunctionReader.hpp in Headers */,
 				56272DB921B6CBFA008BEA47 /* AP1roGJacobiOrbitalOptimizer.hpp in Headers */,
-				56E67C4C21BF96D70085803E /* HoppingMatrix.hpp in Headers */,
 				5614FA1221B029FB002C5D40 /* Configuration.hpp in Headers */,
 				5614FA2121B029FB002C5D40 /* FCIRDMBuilder.hpp in Headers */,
 				56272DBC21B6CBFA008BEA47 /* BaseAPIGGeminalCoefficients.hpp in Headers */,
@@ -4654,22 +4638,22 @@
 			productReference = 56272DE121B6CC7B008BEA47 /* APIGGeminalCoefficients_test */;
 			productType = "com.apple.product-type.tool";
 		};
-		56E67C4E21BF976C0085803E /* HoppingMatrix_test */ = {
+		566042F721B913AD008C2E86 /* NRDMCalculator_test */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 56E67C5621BF976C0085803E /* Build configuration list for PBXNativeTarget "HoppingMatrix_test" */;
+			buildConfigurationList = 566042FF21B913AD008C2E86 /* Build configuration list for PBXNativeTarget "NRDMCalculator_test" */;
 			buildPhases = (
-				56E67C5121BF976C0085803E /* Sources */,
-				56E67C5321BF976C0085803E /* Frameworks */,
-				56E67C5521BF976C0085803E /* CopyFiles */,
+				566042FA21B913AD008C2E86 /* Sources */,
+				566042FC21B913AD008C2E86 /* Frameworks */,
+				566042FE21B913AD008C2E86 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				56E67C4F21BF976C0085803E /* PBXTargetDependency */,
+				566042F821B913AD008C2E86 /* PBXTargetDependency */,
 			);
-			name = HoppingMatrix_test;
+			name = NRDMCalculator_test;
 			productName = AP1roGGeminalCoefficients_test;
-			productReference = 56E67C5921BF976C0085803E /* HoppingMatrix_test */;
+			productReference = 5660430221B913AD008C2E86 /* NRDMCalculator_test */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -4780,6 +4764,7 @@
 				561401A121B06455002C5D40 /* BUILD_RDM_TESTS */,
 				5614008D21B0630F002C5D40 /* DOCIRDMBuilder_test */,
 				5614009921B0631A002C5D40 /* FCIRDMBuilder_test */,
+				566042F721B913AD008C2E86 /* NRDMCalculator_test */,
 				561400A521B06320002C5D40 /* OneRDM_test */,
 				561400B121B06329002C5D40 /* RDMCalculator_test */,
 				561400BD21B06330002C5D40 /* SelectedRDMBuilder_test */,
@@ -4794,7 +4779,6 @@
 				5614011121B06368002C5D40 /* AOBasis_test */,
 				5614011D21B0636D002C5D40 /* Atom_test */,
 				5614012921B06371002C5D40 /* elements_test */,
-				56E67C4E21BF976C0085803E /* HoppingMatrix_test */,
 				5614013521B06376002C5D40 /* JacobiRotationParameters_test */,
 				5614014121B0637D002C5D40 /* LibintCommunicator_test */,
 				5614014D21B06383002C5D40 /* miscellaneous_test */,
@@ -5113,6 +5097,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5614FA5621B029FB002C5D40 /* BaseRDMBuilder.cpp in Sources */,
+				566D22A221B81CC100F8EB91 /* NRDMCalculator.cpp in Sources */,
 				5614FA6721B029FB002C5D40 /* OneElectronOperator.cpp in Sources */,
 				5614FA6321B029FB002C5D40 /* properties.cpp in Sources */,
 				56272DC621B6CC0D008BEA47 /* BaseAPIGGeminalCoefficients.cpp in Sources */,
@@ -5132,7 +5117,6 @@
 				5614FA7221B029FB002C5D40 /* FCI.cpp in Sources */,
 				5614FA5121B029FB002C5D40 /* RHF.cpp in Sources */,
 				5614FA6221B029FB002C5D40 /* expectation_values.cpp in Sources */,
-				56E67C4B21BF96D70085803E /* HoppingMatrix.cpp in Sources */,
 				5614FA6821B029FB002C5D40 /* CISolver.cpp in Sources */,
 				5614FA5521B029FB002C5D40 /* RDMs.cpp in Sources */,
 				5614FA4821B029FB002C5D40 /* elements.cpp in Sources */,
@@ -5250,7 +5234,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				56E67C6121BFB1EE0085803E /* hubbard.cpp in Sources */,
+				566D229F21B7ED2D00F8EB91 /* oo_doci.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5382,11 +5366,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		56E67C5121BF976C0085803E /* Sources */ = {
+		566042FA21B913AD008C2E86 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				56E67C5A21BF97800085803E /* HoppingMatrix_test.cpp in Sources */,
+				5660430321B913BA008C2E86 /* NRDMCalculator_test.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6033,30 +6017,20 @@
 			target = 56272DD621B6CC7B008BEA47 /* APIGGeminalCoefficients_test */;
 			targetProxy = 56272DE321B6CC9B008BEA47 /* PBXContainerItemProxy */;
 		};
+		566042F821B913AD008C2E86 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5614F97F21B0295C002C5D40 /* gqcp */;
+			targetProxy = 566042F921B913AD008C2E86 /* PBXContainerItemProxy */;
+		};
+		5660430521B913EA008C2E86 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 566042F721B913AD008C2E86 /* NRDMCalculator_test */;
+			targetProxy = 5660430421B913EA008C2E86 /* PBXContainerItemProxy */;
+		};
 		56C64D8C21B0736C00D44FF0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 5614FE9921B0414A002C5D40 /* BUILD_TESTS */;
 			targetProxy = 56C64D8B21B0736C00D44FF0 /* PBXContainerItemProxy */;
-		};
-		56E67C4F21BF976C0085803E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5614F97F21B0295C002C5D40 /* gqcp */;
-			targetProxy = 56E67C5021BF976C0085803E /* PBXContainerItemProxy */;
-		};
-		56E67C5C21BFB1D60085803E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5614FE6021B03A07002C5D40 /* fci_lowdin */;
-			targetProxy = 56E67C5B21BFB1D60085803E /* PBXContainerItemProxy */;
-		};
-		56E67C5E21BFB1D60085803E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5614FE6E21B04008002C5D40 /* hubbard */;
-			targetProxy = 56E67C5D21BFB1D60085803E /* PBXContainerItemProxy */;
-		};
-		56E67C6021BFB1D60085803E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5614FE7B21B0400D002C5D40 /* oo_doci */;
-			targetProxy = 56E67C5F21BFB1D60085803E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -7444,6 +7418,22 @@
 			};
 			name = Release;
 		};
+		5660430021B913AD008C2E86 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		5660430121B913AD008C2E86 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		56C64D8821B0735C00D44FF0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -7453,22 +7443,6 @@
 			name = Debug;
 		};
 		56C64D8921B0735C00D44FF0 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		56E67C5721BF976C0085803E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		56E67C5821BF976C0085803E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -8163,20 +8137,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		566042FF21B913AD008C2E86 /* Build configuration list for PBXNativeTarget "NRDMCalculator_test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5660430021B913AD008C2E86 /* Debug */,
+				5660430121B913AD008C2E86 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		56C64D8A21B0735C00D44FF0 /* Build configuration list for PBXAggregateTarget "RUN_TESTS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				56C64D8821B0735C00D44FF0 /* Debug */,
 				56C64D8921B0735C00D44FF0 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		56E67C5621BF976C0085803E /* Build configuration list for PBXNativeTarget "HoppingMatrix_test" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				56E67C5721BF976C0085803E /* Debug */,
-				56E67C5821BF976C0085803E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
