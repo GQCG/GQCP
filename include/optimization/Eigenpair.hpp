@@ -15,8 +15,8 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef NUMOPT_EIGENPAIR_HPP
-#define NUMOPT_EIGENPAIR_HPP
+#ifndef GQCP_EIGENPAIR_HPP
+#define GQCP_EIGENPAIR_HPP
 
 
 
@@ -24,8 +24,7 @@
 
 
 
-namespace numopt {
-namespace eigenproblem {
+namespace GQCP {
 
 
 /**
@@ -65,13 +64,12 @@ public:
      *
      *  @return if this Eigenpair is equal to the other: if the eigenvalues and eigenvectors are equal given the tolerance
      */
-    bool isEqual(const numopt::eigenproblem::Eigenpair& other, double tolerance=1.0e-08) const;
+    bool isEqual(const Eigenpair& other, double tolerance=1.0e-08) const;
 };
 
 
-}  // namespace eigenproblem
-}  // namespace numopt
+}  // namespace GQCP
 
 
 
-#endif  // NUMOPT_EIGENPAIR_HPP
+#endif  // GQCP_EIGENPAIR_HPP
