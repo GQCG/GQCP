@@ -18,6 +18,7 @@ static void matvec(benchmark::State& state) {
     GQCP::HamiltonianParameters ham_par = GQCP::constructRandomHamiltonianParameters(K);
     Eigen::VectorXd diagonal = fci.calculateDiagonal(ham_par);
     Eigen::VectorXd x = fock_space.randomExpansion();
+    Eigen::VectorXd matvec = fci.matrixVectorProduct(ham_par, x, diagonal);
 
     // Code inside this loop is measured repeatedly
     for (auto _ : state) {

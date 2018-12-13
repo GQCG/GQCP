@@ -71,6 +71,7 @@ private:
         std::vector<CreationCouple> creationCouples;
     };
 
+    bool xyr = true;
     // The following are rectangular arrays of dimension (dim_alpha * N_alpha * (K + 1 - N_alpha)) and similarly for beta,
     // storing one-electron excited coupling addresses (cfr. the documentation about the OneElectronCoupling struct)
     std::vector<std::vector<OneElectronCoupling>> alpha_one_electron_couplings;
@@ -78,9 +79,15 @@ private:
     std::vector<std::vector<OneElectronCoupling>> beta_one_electron_couplings;
     std::vector<std::vector<AnnihilationCouple>> beta_one_electron_couplings2;
 
+    std::vector<Eigen::SparseMatrix<double>> beta_resolved;
+    std::vector<Eigen::SparseMatrix<double>> alpha_resolved;
+
+    Eigen::SparseMatrix<double> alpha_ev; // (dim_alpha, dim_alpha);
+    Eigen::SparseMatrix<double> beta_ev; // (dim_beta, dim_beta);
+
     std::vector<std::vector<AnnihilationCouple>> calculateOneElectronCouplings(FockSpace& fock_space_target);
-    void spinSeparatedModule(FockSpace &fock_space, const OneElectronOperator &k,
-                             const HamiltonianParameters &hamiltonian_parameters, Eigen::SparseMatrix<double> &sparse_mat);
+    void spinSeparatedModule(FockSpace& fock_space, const OneElectronOperator& k,
+                             const HamiltonianParameters& hamiltonian_parameters, Eigen::SparseMatrix<double>& sparse_mat);
 
 
 public:
@@ -94,6 +101,8 @@ public:
 
     // DESTRUCTOR
     ~FCI() = default;
+
+
 
 
     // OVERRIDDEN GETTERS
