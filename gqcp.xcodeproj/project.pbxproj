@@ -477,6 +477,31 @@
 		56FBA0A721C2B06B0084F088 /* miscellaneous.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56FBA0A421C2B06B0084F088 /* miscellaneous.cpp */; };
 		56FBA0A821C2B06B0084F088 /* io.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56FBA0A521C2B06B0084F088 /* io.cpp */; };
 		56FBA0A921C2B06B0084F088 /* linalg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56FBA0A621C2B06B0084F088 /* linalg.cpp */; };
+		56FBA0BA21C2B4AF0084F088 /* common.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56FBA0AC21C2B4AE0084F088 /* common.hpp */; };
+		56FBA0BB21C2B4AF0084F088 /* BaseSystemOfEquationsSolver.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56FBA0AD21C2B4AE0084F088 /* BaseSystemOfEquationsSolver.hpp */; };
+		56FBA0BC21C2B4AF0084F088 /* DavidsonSolver.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56FBA0AE21C2B4AE0084F088 /* DavidsonSolver.hpp */; };
+		56FBA0BD21C2B4AF0084F088 /* numopt.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56FBA0AF21C2B4AE0084F088 /* numopt.hpp */; };
+		56FBA0BE21C2B4AF0084F088 /* DenseSolver.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56FBA0B021C2B4AE0084F088 /* DenseSolver.hpp */; };
+		56FBA0BF21C2B4AF0084F088 /* NewtonMinimizer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56FBA0B121C2B4AE0084F088 /* NewtonMinimizer.hpp */; };
+		56FBA0C021C2B4AF0084F088 /* Eigenpair.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56FBA0B221C2B4AE0084F088 /* Eigenpair.hpp */; };
+		56FBA0C121C2B4AF0084F088 /* step.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56FBA0B321C2B4AF0084F088 /* step.hpp */; };
+		56FBA0C221C2B4AF0084F088 /* BaseMinimizer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56FBA0B421C2B4AF0084F088 /* BaseMinimizer.hpp */; };
+		56FBA0C321C2B4AF0084F088 /* NewtonSystemOfEquationsSolver.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56FBA0B521C2B4AF0084F088 /* NewtonSystemOfEquationsSolver.hpp */; };
+		56FBA0C421C2B4AF0084F088 /* BaseEigenproblemSolver.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56FBA0B621C2B4AF0084F088 /* BaseEigenproblemSolver.hpp */; };
+		56FBA0C521C2B4AF0084F088 /* EigenproblemSolverOptions.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56FBA0B721C2B4AF0084F088 /* EigenproblemSolverOptions.hpp */; };
+		56FBA0C621C2B4AF0084F088 /* BaseMatrixSolver.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56FBA0B821C2B4AF0084F088 /* BaseMatrixSolver.hpp */; };
+		56FBA0C721C2B4AF0084F088 /* SparseSolver.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56FBA0B921C2B4AF0084F088 /* SparseSolver.hpp */; };
+		56FBA0D321C2B4C90084F088 /* BaseSystemOfEquationsSolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56FBA0C821C2B4C90084F088 /* BaseSystemOfEquationsSolver.cpp */; };
+		56FBA0D421C2B4C90084F088 /* Eigenpair.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56FBA0C921C2B4C90084F088 /* Eigenpair.cpp */; };
+		56FBA0D521C2B4C90084F088 /* NewtonMinimizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56FBA0CA21C2B4C90084F088 /* NewtonMinimizer.cpp */; };
+		56FBA0D621C2B4C90084F088 /* NewtonSystemOfEquationsSolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56FBA0CB21C2B4C90084F088 /* NewtonSystemOfEquationsSolver.cpp */; };
+		56FBA0D721C2B4C90084F088 /* DavidsonSolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56FBA0CC21C2B4C90084F088 /* DavidsonSolver.cpp */; };
+		56FBA0D821C2B4C90084F088 /* DenseSolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56FBA0CD21C2B4C90084F088 /* DenseSolver.cpp */; };
+		56FBA0D921C2B4C90084F088 /* SparseSolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56FBA0CE21C2B4C90084F088 /* SparseSolver.cpp */; };
+		56FBA0DA21C2B4C90084F088 /* step.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56FBA0CF21C2B4C90084F088 /* step.cpp */; };
+		56FBA0DB21C2B4C90084F088 /* BaseMatrixSolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56FBA0D021C2B4C90084F088 /* BaseMatrixSolver.cpp */; };
+		56FBA0DC21C2B4C90084F088 /* BaseMinimizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56FBA0D121C2B4C90084F088 /* BaseMinimizer.cpp */; };
+		56FBA0DD21C2B4C90084F088 /* BaseEigenproblemSolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56FBA0D221C2B4C90084F088 /* BaseEigenproblemSolver.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2244,6 +2269,31 @@
 		56FBA0A421C2B06B0084F088 /* miscellaneous.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = miscellaneous.cpp; sourceTree = "<group>"; };
 		56FBA0A521C2B06B0084F088 /* io.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = io.cpp; sourceTree = "<group>"; };
 		56FBA0A621C2B06B0084F088 /* linalg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = linalg.cpp; sourceTree = "<group>"; };
+		56FBA0AC21C2B4AE0084F088 /* common.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = common.hpp; sourceTree = "<group>"; };
+		56FBA0AD21C2B4AE0084F088 /* BaseSystemOfEquationsSolver.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BaseSystemOfEquationsSolver.hpp; sourceTree = "<group>"; };
+		56FBA0AE21C2B4AE0084F088 /* DavidsonSolver.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DavidsonSolver.hpp; sourceTree = "<group>"; };
+		56FBA0AF21C2B4AE0084F088 /* numopt.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = numopt.hpp; sourceTree = "<group>"; };
+		56FBA0B021C2B4AE0084F088 /* DenseSolver.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DenseSolver.hpp; sourceTree = "<group>"; };
+		56FBA0B121C2B4AE0084F088 /* NewtonMinimizer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = NewtonMinimizer.hpp; sourceTree = "<group>"; };
+		56FBA0B221C2B4AE0084F088 /* Eigenpair.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Eigenpair.hpp; sourceTree = "<group>"; };
+		56FBA0B321C2B4AF0084F088 /* step.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = step.hpp; sourceTree = "<group>"; };
+		56FBA0B421C2B4AF0084F088 /* BaseMinimizer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BaseMinimizer.hpp; sourceTree = "<group>"; };
+		56FBA0B521C2B4AF0084F088 /* NewtonSystemOfEquationsSolver.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = NewtonSystemOfEquationsSolver.hpp; sourceTree = "<group>"; };
+		56FBA0B621C2B4AF0084F088 /* BaseEigenproblemSolver.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BaseEigenproblemSolver.hpp; sourceTree = "<group>"; };
+		56FBA0B721C2B4AF0084F088 /* EigenproblemSolverOptions.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = EigenproblemSolverOptions.hpp; sourceTree = "<group>"; };
+		56FBA0B821C2B4AF0084F088 /* BaseMatrixSolver.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BaseMatrixSolver.hpp; sourceTree = "<group>"; };
+		56FBA0B921C2B4AF0084F088 /* SparseSolver.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SparseSolver.hpp; sourceTree = "<group>"; };
+		56FBA0C821C2B4C90084F088 /* BaseSystemOfEquationsSolver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseSystemOfEquationsSolver.cpp; sourceTree = "<group>"; };
+		56FBA0C921C2B4C90084F088 /* Eigenpair.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Eigenpair.cpp; sourceTree = "<group>"; };
+		56FBA0CA21C2B4C90084F088 /* NewtonMinimizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NewtonMinimizer.cpp; sourceTree = "<group>"; };
+		56FBA0CB21C2B4C90084F088 /* NewtonSystemOfEquationsSolver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NewtonSystemOfEquationsSolver.cpp; sourceTree = "<group>"; };
+		56FBA0CC21C2B4C90084F088 /* DavidsonSolver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DavidsonSolver.cpp; sourceTree = "<group>"; };
+		56FBA0CD21C2B4C90084F088 /* DenseSolver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DenseSolver.cpp; sourceTree = "<group>"; };
+		56FBA0CE21C2B4C90084F088 /* SparseSolver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SparseSolver.cpp; sourceTree = "<group>"; };
+		56FBA0CF21C2B4C90084F088 /* step.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = step.cpp; sourceTree = "<group>"; };
+		56FBA0D021C2B4C90084F088 /* BaseMatrixSolver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseMatrixSolver.cpp; sourceTree = "<group>"; };
+		56FBA0D121C2B4C90084F088 /* BaseMinimizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseMinimizer.cpp; sourceTree = "<group>"; };
+		56FBA0D221C2B4C90084F088 /* BaseEigenproblemSolver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseEigenproblemSolver.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2844,6 +2894,7 @@
 		5614F98E21B029FB002C5D40 /* include */ = {
 			isa = PBXGroup;
 			children = (
+				56FBA0AA21C2B4660084F088 /* optimization */,
 				56FBA09A21C2B0260084F088 /* utilities */,
 				5614F9BE21B029FB002C5D40 /* CISolver */,
 				5614F99121B029FB002C5D40 /* FockSpace */,
@@ -2973,6 +3024,7 @@
 		5614F9D121B029FB002C5D40 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				56FBA0AB21C2B48D0084F088 /* optimization */,
 				56FBA0A321C2B04B0084F088 /* utilities */,
 				5614F9D621B029FB002C5D40 /* CMakeLists.txt */,
 				5614F9FC21B029FB002C5D40 /* CISolver */,
@@ -3496,6 +3548,45 @@
 			path = utilities;
 			sourceTree = "<group>";
 		};
+		56FBA0AA21C2B4660084F088 /* optimization */ = {
+			isa = PBXGroup;
+			children = (
+				56FBA0B621C2B4AF0084F088 /* BaseEigenproblemSolver.hpp */,
+				56FBA0B821C2B4AF0084F088 /* BaseMatrixSolver.hpp */,
+				56FBA0B421C2B4AF0084F088 /* BaseMinimizer.hpp */,
+				56FBA0AD21C2B4AE0084F088 /* BaseSystemOfEquationsSolver.hpp */,
+				56FBA0AC21C2B4AE0084F088 /* common.hpp */,
+				56FBA0AE21C2B4AE0084F088 /* DavidsonSolver.hpp */,
+				56FBA0B021C2B4AE0084F088 /* DenseSolver.hpp */,
+				56FBA0B221C2B4AE0084F088 /* Eigenpair.hpp */,
+				56FBA0B721C2B4AF0084F088 /* EigenproblemSolverOptions.hpp */,
+				56FBA0B121C2B4AE0084F088 /* NewtonMinimizer.hpp */,
+				56FBA0B521C2B4AF0084F088 /* NewtonSystemOfEquationsSolver.hpp */,
+				56FBA0AF21C2B4AE0084F088 /* numopt.hpp */,
+				56FBA0B921C2B4AF0084F088 /* SparseSolver.hpp */,
+				56FBA0B321C2B4AF0084F088 /* step.hpp */,
+			);
+			path = optimization;
+			sourceTree = "<group>";
+		};
+		56FBA0AB21C2B48D0084F088 /* optimization */ = {
+			isa = PBXGroup;
+			children = (
+				56FBA0D221C2B4C90084F088 /* BaseEigenproblemSolver.cpp */,
+				56FBA0D021C2B4C90084F088 /* BaseMatrixSolver.cpp */,
+				56FBA0D121C2B4C90084F088 /* BaseMinimizer.cpp */,
+				56FBA0C821C2B4C90084F088 /* BaseSystemOfEquationsSolver.cpp */,
+				56FBA0CC21C2B4C90084F088 /* DavidsonSolver.cpp */,
+				56FBA0CD21C2B4C90084F088 /* DenseSolver.cpp */,
+				56FBA0C921C2B4C90084F088 /* Eigenpair.cpp */,
+				56FBA0CA21C2B4C90084F088 /* NewtonMinimizer.cpp */,
+				56FBA0CB21C2B4C90084F088 /* NewtonSystemOfEquationsSolver.cpp */,
+				56FBA0CE21C2B4C90084F088 /* SparseSolver.cpp */,
+				56FBA0CF21C2B4C90084F088 /* step.cpp */,
+			);
+			path = optimization;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -3504,12 +3595,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				5614FA3B21B029FB002C5D40 /* WaveFunction.hpp in Headers */,
+				56FBA0C621C2B4AF0084F088 /* BaseMatrixSolver.hpp in Headers */,
 				56272DBD21B6CBFA008BEA47 /* AP1roG.hpp in Headers */,
 				5614FA3D21B029FB002C5D40 /* BaseHamiltonianParameters.hpp in Headers */,
 				5614FA0F21B029FB002C5D40 /* DOCINewtonOrbitalOptimizer.hpp in Headers */,
+				56FBA0C421C2B4AF0084F088 /* BaseEigenproblemSolver.hpp in Headers */,
 				56272DBB21B6CBFA008BEA47 /* AP1roGPSESolver.hpp in Headers */,
 				5614FA3521B029FB002C5D40 /* BaseOperator.hpp in Headers */,
+				56FBA0C021C2B4AF0084F088 /* Eigenpair.hpp in Headers */,
 				5614FA4221B029FB002C5D40 /* Hubbard.hpp in Headers */,
+				56FBA0C221C2B4AF0084F088 /* BaseMinimizer.hpp in Headers */,
 				5614FA1D21B029FB002C5D40 /* DOCIRDMBuilder.hpp in Headers */,
 				5614FA1421B029FB002C5D40 /* SelectedFockSpace.hpp in Headers */,
 				5614FA3221B029FB002C5D40 /* OrbitalOptimizationOptions.hpp in Headers */,
@@ -3517,18 +3612,23 @@
 				5614FA3021B029FB002C5D40 /* common.hpp in Headers */,
 				5614FA4121B029FB002C5D40 /* HamiltonianBuilder.hpp in Headers */,
 				5614FA2221B029FB002C5D40 /* RDMs.hpp in Headers */,
+				56FBA0C321C2B4AF0084F088 /* NewtonSystemOfEquationsSolver.hpp in Headers */,
 				5614FA2C21B029FB002C5D40 /* expectation_values.hpp in Headers */,
 				56272DBE21B6CBFA008BEA47 /* APIGGeminalCoefficients.hpp in Headers */,
 				5614FA3821B029FB002C5D40 /* ERJacobiLocalizer.hpp in Headers */,
 				5614FA2421B029FB002C5D40 /* TwoRDM.hpp in Headers */,
+				56FBA0BB21C2B4AF0084F088 /* BaseSystemOfEquationsSolver.hpp in Headers */,
 				5614FA3921B029FB002C5D40 /* ERNewtonLocalizer.hpp in Headers */,
 				5614FA1A21B029FB002C5D40 /* DIISRHFSCFSolver.hpp in Headers */,
 				5614FA2521B029FB002C5D40 /* Atom.hpp in Headers */,
 				5614FA4021B029FB002C5D40 /* DOCI.hpp in Headers */,
+				56FBA0C521C2B4AF0084F088 /* EigenproblemSolverOptions.hpp in Headers */,
 				5614FA2A21B029FB002C5D40 /* LibintCommunicator.hpp in Headers */,
 				5614FA1F21B029FB002C5D40 /* BaseRDM.hpp in Headers */,
+				56FBA0BE21C2B4AF0084F088 /* DenseSolver.hpp in Headers */,
 				56FBA0A121C2B0420084F088 /* io.hpp in Headers */,
 				56FBA09F21C2B0420084F088 /* linalg.hpp in Headers */,
+				56FBA0BD21C2B4AF0084F088 /* numopt.hpp in Headers */,
 				56FBA0A221C2B0420084F088 /* miscellaneous.hpp in Headers */,
 				5614FA1621B029FB002C5D40 /* FockSpace.hpp in Headers */,
 				5614FA3A21B029FB002C5D40 /* BaseERLocalizer.hpp in Headers */,
@@ -3547,13 +3647,18 @@
 				5614FA3721B029FB002C5D40 /* CISolver.hpp in Headers */,
 				5614FA2321B029FB002C5D40 /* BaseRDMBuilder.hpp in Headers */,
 				5614FA1321B029FB002C5D40 /* FockSpaceType.hpp in Headers */,
+				56FBA0C121C2B4AF0084F088 /* step.hpp in Headers */,
 				5614FA1021B029FB002C5D40 /* BaseFockSpace.hpp in Headers */,
 				5614FA3621B029FB002C5D40 /* TwoElectronOperator.hpp in Headers */,
 				5614FA2F21B029FB002C5D40 /* JacobiRotationParameters.hpp in Headers */,
 				5614FA3F21B029FB002C5D40 /* HamiltonianParameters.hpp in Headers */,
 				5614FA3121B029FB002C5D40 /* RMP2.hpp in Headers */,
+				56FBA0BA21C2B4AF0084F088 /* common.hpp in Headers */,
 				5614FA3321B029FB002C5D40 /* elements.hpp in Headers */,
+				56FBA0BC21C2B4AF0084F088 /* DavidsonSolver.hpp in Headers */,
 				5614FA3C21B029FB002C5D40 /* WaveFunctionReader.hpp in Headers */,
+				56FBA0C721C2B4AF0084F088 /* SparseSolver.hpp in Headers */,
+				56FBA0BF21C2B4AF0084F088 /* NewtonMinimizer.hpp in Headers */,
 				56272DB921B6CBFA008BEA47 /* AP1roGJacobiOrbitalOptimizer.hpp in Headers */,
 				5614FA1221B029FB002C5D40 /* Configuration.hpp in Headers */,
 				5614FA2121B029FB002C5D40 /* FCIRDMBuilder.hpp in Headers */,
@@ -5128,6 +5233,7 @@
 				5614FA6721B029FB002C5D40 /* OneElectronOperator.cpp in Sources */,
 				5614FA6321B029FB002C5D40 /* properties.cpp in Sources */,
 				56272DC621B6CC0D008BEA47 /* BaseAPIGGeminalCoefficients.cpp in Sources */,
+				56FBA0DB21C2B4C90084F088 /* BaseMatrixSolver.cpp in Sources */,
 				5614FA6D21B029FB002C5D40 /* WaveFunction.cpp in Sources */,
 				5614FA4D21B029FB002C5D40 /* ProductFockSpace.cpp in Sources */,
 				5614FA5421B029FB002C5D40 /* PlainRHFSCFSolver.cpp in Sources */,
@@ -5141,15 +5247,22 @@
 				5614FA7021B029FB002C5D40 /* BaseHamiltonianParameters.cpp in Sources */,
 				5614FA5721B029FB002C5D40 /* TwoRDM.cpp in Sources */,
 				5614FA6E21B029FB002C5D40 /* HamiltonianParameters.cpp in Sources */,
+				56FBA0D521C2B4C90084F088 /* NewtonMinimizer.cpp in Sources */,
 				5614FA7221B029FB002C5D40 /* FCI.cpp in Sources */,
 				5614FA5121B029FB002C5D40 /* RHF.cpp in Sources */,
 				5614FA6221B029FB002C5D40 /* expectation_values.cpp in Sources */,
+				56FBA0D821C2B4C90084F088 /* DenseSolver.cpp in Sources */,
 				5614FA6821B029FB002C5D40 /* CISolver.cpp in Sources */,
+				56FBA0DD21C2B4C90084F088 /* BaseEigenproblemSolver.cpp in Sources */,
 				5614FA5521B029FB002C5D40 /* RDMs.cpp in Sources */,
+				56FBA0D921C2B4C90084F088 /* SparseSolver.cpp in Sources */,
 				5614FA4821B029FB002C5D40 /* elements.cpp in Sources */,
+				56FBA0DA21C2B4C90084F088 /* step.cpp in Sources */,
 				5614FA5B21B029FB002C5D40 /* BaseRDM.cpp in Sources */,
+				56FBA0D421C2B4C90084F088 /* Eigenpair.cpp in Sources */,
 				5614FA5821B029FB002C5D40 /* OneRDM.cpp in Sources */,
 				5614FA6621B029FB002C5D40 /* BaseOperator.cpp in Sources */,
+				56FBA0D721C2B4C90084F088 /* DavidsonSolver.cpp in Sources */,
 				5614FA5221B029FB002C5D40 /* DIISRHFSCFSolver.cpp in Sources */,
 				5614FA5C21B029FB002C5D40 /* RDMCalculator.cpp in Sources */,
 				5614FA4C21B029FB002C5D40 /* BaseFockSpace.cpp in Sources */,
@@ -5159,6 +5272,7 @@
 				5614FA4E21B029FB002C5D40 /* SelectedFockSpace.cpp in Sources */,
 				5614FA4621B029FB002C5D40 /* JacobiRotationParameters.cpp in Sources */,
 				5614FA7521B029FB002C5D40 /* DOCINewtonOrbitalOptimizer.cpp in Sources */,
+				56FBA0D621C2B4C90084F088 /* NewtonSystemOfEquationsSolver.cpp in Sources */,
 				5614FA7421B029FB002C5D40 /* HamiltonianBuilder.cpp in Sources */,
 				5614FA6521B029FB002C5D40 /* TwoElectronOperator.cpp in Sources */,
 				5614FA5A21B029FB002C5D40 /* SelectedRDMBuilder.cpp in Sources */,
@@ -5167,7 +5281,9 @@
 				5614FA6921B029FB002C5D40 /* BaseERLocalizer.cpp in Sources */,
 				56FBA0A921C2B06B0084F088 /* linalg.cpp in Sources */,
 				5614FA4B21B029FB002C5D40 /* ONV.cpp in Sources */,
+				56FBA0D321C2B4C90084F088 /* BaseSystemOfEquationsSolver.cpp in Sources */,
 				5614FA6B21B029FB002C5D40 /* ERJacobiLocalizer.cpp in Sources */,
+				56FBA0DC21C2B4C90084F088 /* BaseMinimizer.cpp in Sources */,
 				5614FA7121B029FB002C5D40 /* Hubbard.cpp in Sources */,
 				5614FA6A21B029FB002C5D40 /* ERNewtonLocalizer.cpp in Sources */,
 				56272DCB21B6CC0D008BEA47 /* AP1roGGeminalCoefficients.cpp in Sources */,
