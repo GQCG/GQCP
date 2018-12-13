@@ -1,6 +1,6 @@
 # Link the dependencies to the target library
 
-# Include this project's headers
+# Include this project's headers, and Spectra (see: https://github.com/arvidn/libtorrent/issues/3101#issuecomment-396195787)
 target_include_directories(${LIBRARY_NAME} PUBLIC
         $<BUILD_INTERFACE:${PROJECT_INCLUDE_FOLDER}>
         $<INSTALL_INTERFACE:${PROJECT_INSTALL_INCLUDE_FOLDER}>)
@@ -12,17 +12,12 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC ${Boost_LIBRARIES})
 # Include Eigen
 target_link_libraries(${LIBRARY_NAME} PUBLIC Eigen3::Eigen)
 
-# Include libint2
+# Include Libint2
 target_include_directories(${LIBRARY_NAME} PUBLIC ${Libint2_INCLUDE_DIRS})
 target_link_libraries(${LIBRARY_NAME} PUBLIC ${Libint2_LIBRARIES})
 
-# Include cpputil
-target_include_directories(${LIBRARY_NAME} PUBLIC ${cpputil_INCLUDE_DIRS})
-target_link_libraries(${LIBRARY_NAME} PUBLIC cpputil)
-
-# Include numopt
-target_include_directories(${LIBRARY_NAME} PUBLIC ${numopt_INCLUDE_DIRS})
-target_link_libraries(${LIBRARY_NAME} PUBLIC numopt)
+# Include Spectra
+target_include_directories(${LIBRARY_NAME} PRIVATE ${Spectra_INCLUDE_DIRS})
 
 # Include MKL (optional)
 if (MKL_FOUND)

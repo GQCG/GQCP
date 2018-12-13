@@ -16,7 +16,8 @@
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
 #include "geminals/AP1roGPSESolver.hpp"
-#include <numopt.hpp>
+
+#include "optimization/NewtonSystemOfEquationsSolver.hpp"
 
 
 namespace GQCP {
@@ -274,12 +275,12 @@ void AP1roGPSESolver::solve() {
 
     // Solve the AP1roG equations using a Newton-based algorithm
 
-    numopt::VectorFunction f = [this](const Eigen::VectorXd& x) { return this->calculateCoordinateFunctions(x); };
-    numopt::MatrixFunction J = [this](const Eigen::VectorXd& x) { return this->calculateJacobian(x); };
+    VectorFunction f = [this](const Eigen::VectorXd& x) { return this->calculateCoordinateFunctions(x); };
+    MatrixFunction J = [this](const Eigen::VectorXd& x) { return this->calculateJacobian(x); };
 
 
     Eigen::VectorXd x0 = this->initial_geminal_coefficients.asVector();
-    numopt::syseq::NewtonSystemOfEquationsSolver syseq_solver (x0, f, J);
+    NewtonSystemOfEquationsSolver syseq_solver (x0, f, J);
     syseq_solver.solve();
 
 

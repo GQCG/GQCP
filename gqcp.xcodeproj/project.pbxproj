@@ -500,6 +500,8 @@
 		56FBA0DB21C2B4C90084F088 /* BaseMatrixSolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56FBA0D021C2B4C90084F088 /* BaseMatrixSolver.cpp */; };
 		56FBA0DC21C2B4C90084F088 /* BaseMinimizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56FBA0D121C2B4C90084F088 /* BaseMinimizer.cpp */; };
 		56FBA0DD21C2B4C90084F088 /* BaseEigenproblemSolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56FBA0D221C2B4C90084F088 /* BaseEigenproblemSolver.cpp */; };
+		56FBA0E721C2DFB40084F088 /* HoppingMatrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56FBA0E621C2DFB40084F088 /* HoppingMatrix.cpp */; };
+		56FBA0E921C2DFC00084F088 /* HoppingMatrix.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56FBA0E821C2DFC00084F088 /* HoppingMatrix.hpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2109,14 +2111,11 @@
 		5614FA8D21B02A8A002C5D40 /* InstallLibrary.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = InstallLibrary.cmake; sourceTree = "<group>"; };
 		5614FA8E21B02A8A002C5D40 /* FindEigen3.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = FindEigen3.cmake; sourceTree = "<group>"; };
 		5614FA8F21B02A8A002C5D40 /* SetCMakeEnvironment.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = SetCMakeEnvironment.cmake; sourceTree = "<group>"; };
-		5614FA9021B02A8A002C5D40 /* ConfigureExecutable.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = ConfigureExecutable.cmake; sourceTree = "<group>"; };
 		5614FA9121B02A8A002C5D40 /* ConfigVersion.cmake.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = ConfigVersion.cmake.in; sourceTree = "<group>"; };
 		5614FA9221B02A8A002C5D40 /* FindLibint2.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = FindLibint2.cmake; sourceTree = "<group>"; };
 		5614FA9321B02A8A002C5D40 /* FindPackages.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = FindPackages.cmake; sourceTree = "<group>"; };
 		5614FA9421B02A8A002C5D40 /* Config.cmake.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = Config.cmake.in; sourceTree = "<group>"; };
-		5614FA9521B02A8A002C5D40 /* ConfigureLibrary.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = ConfigureLibrary.cmake; sourceTree = "<group>"; };
 		5614FA9621B02A8A002C5D40 /* FindMKL.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = FindMKL.cmake; sourceTree = "<group>"; };
-		5614FA9721B02A8A002C5D40 /* ConfigureBenchmarks.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = ConfigureBenchmarks.cmake; sourceTree = "<group>"; };
 		5614FA9821B02A8B002C5D40 /* CONTRIBUTORS */ = {isa = PBXFileReference; lastKnownFileType = text; path = CONTRIBUTORS; sourceTree = "<group>"; };
 		5614FA9921B02A8B002C5D40 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		5614FA9B21B02A8B002C5D40 /* Doxyfile.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = Doxyfile.in; sourceTree = "<group>"; };
@@ -2290,6 +2289,14 @@
 		56FBA0D021C2B4C90084F088 /* BaseMatrixSolver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseMatrixSolver.cpp; sourceTree = "<group>"; };
 		56FBA0D121C2B4C90084F088 /* BaseMinimizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseMinimizer.cpp; sourceTree = "<group>"; };
 		56FBA0D221C2B4C90084F088 /* BaseEigenproblemSolver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseEigenproblemSolver.cpp; sourceTree = "<group>"; };
+		56FBA0DF21C2CEE10084F088 /* ConfigureDriver.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = ConfigureDriver.cmake; sourceTree = "<group>"; };
+		56FBA0E021C2CEE10084F088 /* ConfigureTest.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = ConfigureTest.cmake; sourceTree = "<group>"; };
+		56FBA0E121C2CEE10084F088 /* ConfigureExecutable.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = ConfigureExecutable.cmake; sourceTree = "<group>"; };
+		56FBA0E221C2CEE10084F088 /* ConfigureLibrary.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = ConfigureLibrary.cmake; sourceTree = "<group>"; };
+		56FBA0E321C2CEE10084F088 /* ConfigureBenchmarks.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = ConfigureBenchmarks.cmake; sourceTree = "<group>"; };
+		56FBA0E521C2D5BF0084F088 /* FindSpectra.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = FindSpectra.cmake; sourceTree = "<group>"; };
+		56FBA0E621C2DFB40084F088 /* HoppingMatrix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HoppingMatrix.cpp; sourceTree = "<group>"; };
+		56FBA0E821C2DFC00084F088 /* HoppingMatrix.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HoppingMatrix.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2808,7 +2815,7 @@
 			isa = PBXGroup;
 			children = (
 				5614FAA821B02E48002C5D40 /* benchmarks */,
-				5614FAA321B02E48002C5D40 /* exe */,
+				5614FAA321B02E48002C5D40 /* drivers */,
 				5614F98E21B029FB002C5D40 /* include */,
 				5614F9D121B029FB002C5D40 /* src */,
 				5614FB3C21B02EDE002C5D40 /* tests */,
@@ -2890,8 +2897,6 @@
 		5614F98E21B029FB002C5D40 /* include */ = {
 			isa = PBXGroup;
 			children = (
-				56FBA0AA21C2B4660084F088 /* optimization */,
-				56FBA09A21C2B0260084F088 /* utilities */,
 				5614F9BE21B029FB002C5D40 /* CISolver */,
 				5614F99121B029FB002C5D40 /* FockSpace */,
 				56272DB221B6CBFA008BEA47 /* geminals */,
@@ -2899,12 +2904,14 @@
 				5614F9C721B029FB002C5D40 /* HamiltonianParameters */,
 				5614F9C021B029FB002C5D40 /* Localization */,
 				5614F9BA21B029FB002C5D40 /* Operator */,
+				56FBA0AA21C2B4660084F088 /* optimization */,
 				5614F9B021B029FB002C5D40 /* properties */,
 				5614F99F21B029FB002C5D40 /* RDM */,
 				5614F99A21B029FB002C5D40 /* RHF */,
+				5614FA7621B02A16002C5D40 /* singles */,
+				56FBA09A21C2B0260084F088 /* utilities */,
 				5614F98F21B029FB002C5D40 /* version.hpp.in */,
 				5614F9C421B029FB002C5D40 /* WaveFunction */,
-				5614FA7621B02A16002C5D40 /* singles */,
 			);
 			path = include;
 			sourceTree = "<group>";
@@ -3020,8 +3027,6 @@
 		5614F9D121B029FB002C5D40 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				56FBA0AB21C2B48D0084F088 /* optimization */,
-				56FBA0A321C2B04B0084F088 /* utilities */,
 				5614F9D621B029FB002C5D40 /* CMakeLists.txt */,
 				5614F9FC21B029FB002C5D40 /* CISolver */,
 				5614F9D821B029FB002C5D40 /* FockSpace */,
@@ -3030,10 +3035,12 @@
 				5614FA0521B029FB002C5D40 /* HamiltonianParameters */,
 				5614F9FE21B029FB002C5D40 /* Localization */,
 				5614F9F821B029FB002C5D40 /* Operator */,
+				56FBA0AB21C2B48D0084F088 /* optimization */,
 				5614F9F421B029FB002C5D40 /* properties */,
 				5614F9E521B029FB002C5D40 /* RDM */,
 				5614F9E021B029FB002C5D40 /* RHF */,
 				5614FA7721B02A34002C5D40 /* singles */,
+				56FBA0A321C2B04B0084F088 /* utilities */,
 				5614FA0221B029FB002C5D40 /* WaveFunction */,
 			);
 			path = src;
@@ -3148,6 +3155,7 @@
 		5614FA7621B02A16002C5D40 /* singles */ = {
 			isa = PBXGroup;
 			children = (
+				56FBA0E821C2DFC00084F088 /* HoppingMatrix.hpp */,
 				5614F99921B029FB002C5D40 /* AOBasis.hpp */,
 				5614F9A921B029FB002C5D40 /* Atom.hpp */,
 				5614F9B621B029FB002C5D40 /* common.hpp */,
@@ -3166,6 +3174,7 @@
 		5614FA7721B02A34002C5D40 /* singles */ = {
 			isa = PBXGroup;
 			children = (
+				56FBA0E621C2DFB40084F088 /* HoppingMatrix.cpp */,
 				5614F9D321B029FB002C5D40 /* JacobiRotationParameters.cpp */,
 				5614F9D421B029FB002C5D40 /* RMP2.cpp */,
 				5614F9D521B029FB002C5D40 /* elements.cpp */,
@@ -3199,17 +3208,12 @@
 		5614FA8C21B02A8A002C5D40 /* cmake */ = {
 			isa = PBXGroup;
 			children = (
+				56FBA0E421C2D57D0084F088 /* Find */,
+				56FBA0DE21C2CEE10084F088 /* Configure */,
 				5614FA8D21B02A8A002C5D40 /* InstallLibrary.cmake */,
-				5614FA8E21B02A8A002C5D40 /* FindEigen3.cmake */,
 				5614FA8F21B02A8A002C5D40 /* SetCMakeEnvironment.cmake */,
-				5614FA9021B02A8A002C5D40 /* ConfigureExecutable.cmake */,
 				5614FA9121B02A8A002C5D40 /* ConfigVersion.cmake.in */,
-				5614FA9221B02A8A002C5D40 /* FindLibint2.cmake */,
-				5614FA9321B02A8A002C5D40 /* FindPackages.cmake */,
 				5614FA9421B02A8A002C5D40 /* Config.cmake.in */,
-				5614FA9521B02A8A002C5D40 /* ConfigureLibrary.cmake */,
-				5614FA9621B02A8A002C5D40 /* FindMKL.cmake */,
-				5614FA9721B02A8A002C5D40 /* ConfigureBenchmarks.cmake */,
 			);
 			path = cmake;
 			sourceTree = "<group>";
@@ -3240,7 +3244,7 @@
 			name = extra;
 			sourceTree = "<group>";
 		};
-		5614FAA321B02E48002C5D40 /* exe */ = {
+		5614FAA321B02E48002C5D40 /* drivers */ = {
 			isa = PBXGroup;
 			children = (
 				5614FAA621B02E48002C5D40 /* CMakeLists.txt */,
@@ -3248,7 +3252,7 @@
 				5614FAA521B02E48002C5D40 /* hubbard.cpp */,
 				5614FAA721B02E48002C5D40 /* oo_doci.cpp */,
 			);
-			path = exe;
+			path = drivers;
 			sourceTree = "<group>";
 		};
 		5614FAA821B02E48002C5D40 /* benchmarks */ = {
@@ -3581,6 +3585,30 @@
 			path = optimization;
 			sourceTree = "<group>";
 		};
+		56FBA0DE21C2CEE10084F088 /* Configure */ = {
+			isa = PBXGroup;
+			children = (
+				56FBA0DF21C2CEE10084F088 /* ConfigureDriver.cmake */,
+				56FBA0E021C2CEE10084F088 /* ConfigureTest.cmake */,
+				56FBA0E121C2CEE10084F088 /* ConfigureExecutable.cmake */,
+				56FBA0E221C2CEE10084F088 /* ConfigureLibrary.cmake */,
+				56FBA0E321C2CEE10084F088 /* ConfigureBenchmarks.cmake */,
+			);
+			path = Configure;
+			sourceTree = "<group>";
+		};
+		56FBA0E421C2D57D0084F088 /* Find */ = {
+			isa = PBXGroup;
+			children = (
+				5614FA8E21B02A8A002C5D40 /* FindEigen3.cmake */,
+				5614FA9221B02A8A002C5D40 /* FindLibint2.cmake */,
+				5614FA9621B02A8A002C5D40 /* FindMKL.cmake */,
+				5614FA9321B02A8A002C5D40 /* FindPackages.cmake */,
+				56FBA0E521C2D5BF0084F088 /* FindSpectra.cmake */,
+			);
+			path = Find;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -3591,6 +3619,7 @@
 				5614FA3B21B029FB002C5D40 /* WaveFunction.hpp in Headers */,
 				56FBA0C621C2B4AF0084F088 /* BaseMatrixSolver.hpp in Headers */,
 				56272DBD21B6CBFA008BEA47 /* AP1roG.hpp in Headers */,
+				56FBA0E921C2DFC00084F088 /* HoppingMatrix.hpp in Headers */,
 				5614FA3D21B029FB002C5D40 /* BaseHamiltonianParameters.hpp in Headers */,
 				5614FA0F21B029FB002C5D40 /* DOCINewtonOrbitalOptimizer.hpp in Headers */,
 				56FBA0C421C2B4AF0084F088 /* BaseEigenproblemSolver.hpp in Headers */,
@@ -5279,6 +5308,7 @@
 				5614FA7121B029FB002C5D40 /* Hubbard.cpp in Sources */,
 				5614FA6A21B029FB002C5D40 /* ERNewtonLocalizer.cpp in Sources */,
 				56272DCB21B6CC0D008BEA47 /* AP1roGGeminalCoefficients.cpp in Sources */,
+				56FBA0E721C2DFB40084F088 /* HoppingMatrix.cpp in Sources */,
 				56272DC821B6CC0D008BEA47 /* APIGGeminalCoefficients.cpp in Sources */,
 				5614FA6421B029FB002C5D40 /* AOBasis.cpp in Sources */,
 				5614FA7321B029FB002C5D40 /* DOCI.cpp in Sources */,

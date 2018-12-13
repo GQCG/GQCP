@@ -17,7 +17,7 @@
 // 
 #include "HoppingMatrix.hpp"
 
-#include "miscellaneous.hpp"
+#include "utilities/miscellaneous.hpp"
 #include <iostream>
 
 

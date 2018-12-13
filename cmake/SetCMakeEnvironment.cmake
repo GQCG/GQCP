@@ -20,31 +20,51 @@ set(PROJECT_SOURCE_FOLDER ${CMAKE_SOURCE_DIR}/src)
 # Find the source files
 set(PROJECT_SOURCE_FILES
         ${PROJECT_SOURCE_FOLDER}/CISolver/CISolver.cpp
+
+        ${PROJECT_SOURCE_FOLDER}/FockSpace/BaseFockSpace.cpp
+        ${PROJECT_SOURCE_FOLDER}/FockSpace/FockSpace.cpp
+        ${PROJECT_SOURCE_FOLDER}/FockSpace/ONV.cpp
+        ${PROJECT_SOURCE_FOLDER}/FockSpace/ProductFockSpace.cpp
+        ${PROJECT_SOURCE_FOLDER}/FockSpace/SelectedFockSpace.cpp
+
         ${PROJECT_SOURCE_FOLDER}/geminals/AP1roG.cpp
         ${PROJECT_SOURCE_FOLDER}/geminals/AP1roGGeminalCoefficients.cpp
         ${PROJECT_SOURCE_FOLDER}/geminals/AP1roGJacobiOrbitalOptimizer.cpp
         ${PROJECT_SOURCE_FOLDER}/geminals/AP1roGPSESolver.cpp
         ${PROJECT_SOURCE_FOLDER}/geminals/APIGGeminalCoefficients.cpp
         ${PROJECT_SOURCE_FOLDER}/geminals/BaseAPIGGeminalCoefficients.cpp
-        ${PROJECT_SOURCE_FOLDER}/FockSpace/BaseFockSpace.cpp
-        ${PROJECT_SOURCE_FOLDER}/FockSpace/FockSpace.cpp
-        ${PROJECT_SOURCE_FOLDER}/FockSpace/ONV.cpp
-        ${PROJECT_SOURCE_FOLDER}/FockSpace/ProductFockSpace.cpp
-        ${PROJECT_SOURCE_FOLDER}/FockSpace/SelectedFockSpace.cpp
+
         ${PROJECT_SOURCE_FOLDER}/HamiltonianBuilder/DOCI.cpp
         ${PROJECT_SOURCE_FOLDER}/HamiltonianBuilder/FCI.cpp
         ${PROJECT_SOURCE_FOLDER}/HamiltonianBuilder/HamiltonianBuilder.cpp
         ${PROJECT_SOURCE_FOLDER}/HamiltonianBuilder/Hubbard.cpp
+
         ${PROJECT_SOURCE_FOLDER}/HamiltonianParameters/BaseHamiltonianParameters.cpp
         ${PROJECT_SOURCE_FOLDER}/HamiltonianParameters/HamiltonianParameters.cpp
+
         ${PROJECT_SOURCE_FOLDER}/Localization/BaseERLocalizer.cpp
         ${PROJECT_SOURCE_FOLDER}/Localization/ERJacobiLocalizer.cpp
         ${PROJECT_SOURCE_FOLDER}/Localization/ERNewtonLocalizer.cpp
+
         ${PROJECT_SOURCE_FOLDER}/Operator/BaseOperator.cpp
         ${PROJECT_SOURCE_FOLDER}/Operator/OneElectronOperator.cpp
         ${PROJECT_SOURCE_FOLDER}/Operator/TwoElectronOperator.cpp
+
+        ${PROJECT_SOURCE_FOLDER}/optimization/BaseEigenproblemSolver.cpp
+        ${PROJECT_SOURCE_FOLDER}/optimization/BaseMatrixSolver.cpp
+        ${PROJECT_SOURCE_FOLDER}/optimization/BaseMinimizer.cpp
+        ${PROJECT_SOURCE_FOLDER}/optimization/BaseSystemOfEquationsSolver.cpp
+        ${PROJECT_SOURCE_FOLDER}/optimization/DavidsonSolver.cpp
+        ${PROJECT_SOURCE_FOLDER}/optimization/DenseSolver.cpp
+        ${PROJECT_SOURCE_FOLDER}/optimization/Eigenpair.cpp
+        ${PROJECT_SOURCE_FOLDER}/optimization/NewtonMinimizer.cpp
+        ${PROJECT_SOURCE_FOLDER}/optimization/NewtonSystemOfEquationsSolver.cpp
+        ${PROJECT_SOURCE_FOLDER}/optimization/SparseSolver.cpp
+        ${PROJECT_SOURCE_FOLDER}/optimization/step.cpp
+
         ${PROJECT_SOURCE_FOLDER}/properties/expectation_values.cpp
         ${PROJECT_SOURCE_FOLDER}/properties/properties.cpp
+
         ${PROJECT_SOURCE_FOLDER}/RDM/BaseRDM.cpp
         ${PROJECT_SOURCE_FOLDER}/RDM/BaseRDMBuilder.cpp
         ${PROJECT_SOURCE_FOLDER}/RDM/DOCIRDMBuilder.cpp
@@ -55,12 +75,19 @@ set(PROJECT_SOURCE_FILES
         ${PROJECT_SOURCE_FOLDER}/RDM/RDMs.cpp
         ${PROJECT_SOURCE_FOLDER}/RDM/SelectedRDMBuilder.cpp
         ${PROJECT_SOURCE_FOLDER}/RDM/TwoRDM.cpp
+
         ${PROJECT_SOURCE_FOLDER}/RHF/DIISRHFSCFSolver.cpp
         ${PROJECT_SOURCE_FOLDER}/RHF/PlainRHFSCFSolver.cpp
         ${PROJECT_SOURCE_FOLDER}/RHF/RHF.cpp
         ${PROJECT_SOURCE_FOLDER}/RHF/RHFSCFSolver.cpp
+
+        ${PROJECT_SOURCE_FOLDER}/utilities/io.cpp
+        ${PROJECT_SOURCE_FOLDER}/utilities/linalg.cpp
+        ${PROJECT_SOURCE_FOLDER}/utilities/miscellaneous.cpp
+
         ${PROJECT_SOURCE_FOLDER}/WaveFunction/WaveFunction.cpp
         ${PROJECT_SOURCE_FOLDER}/WaveFunction/WaveFunctionReader.cpp
+
         ${PROJECT_SOURCE_FOLDER}/AOBasis.cpp
         ${PROJECT_SOURCE_FOLDER}/Atom.cpp
         ${PROJECT_SOURCE_FOLDER}/DOCINewtonOrbitalOptimizer.cpp
@@ -68,7 +95,6 @@ set(PROJECT_SOURCE_FILES
         ${PROJECT_SOURCE_FOLDER}/HoppingMatrix.cpp
         ${PROJECT_SOURCE_FOLDER}/JacobiRotationParameters.cpp
         ${PROJECT_SOURCE_FOLDER}/LibintCommunicator.cpp
-        ${PROJECT_SOURCE_FOLDER}/miscellaneous.cpp
         ${PROJECT_SOURCE_FOLDER}/Molecule.cpp
         ${PROJECT_SOURCE_FOLDER}/RMP2.cpp)
 
@@ -78,12 +104,7 @@ set(PROJECT_INCLUDE_FOLDER ${CMAKE_SOURCE_DIR}/include)
 # Find the header files
 set(PROJECT_INCLUDE_FILES
         ${PROJECT_INCLUDE_FOLDER}/CISolver/CISolver.hpp
-        ${PROJECT_INCLUDE_FOLDER}/geminals/AP1roG.hpp
-        ${PROJECT_INCLUDE_FOLDER}/geminals/AP1roGGeminalCoefficients.hpp
-        ${PROJECT_INCLUDE_FOLDER}/geminals/AP1roGJacobiOrbitalOptimizer.hpp
-        ${PROJECT_INCLUDE_FOLDER}/geminals/AP1roGPSESolver.hpp
-        ${PROJECT_INCLUDE_FOLDER}/geminals/APIGGeminalCoefficients.hpp
-        ${PROJECT_INCLUDE_FOLDER}/geminals/BaseAPIGGeminalCoefficients.hpp
+
         ${PROJECT_INCLUDE_FOLDER}/FockSpace/BaseFockSpace.hpp
         ${PROJECT_INCLUDE_FOLDER}/FockSpace/Configuration.hpp
         ${PROJECT_INCLUDE_FOLDER}/FockSpace/FockSpace.hpp
@@ -91,20 +112,46 @@ set(PROJECT_INCLUDE_FILES
         ${PROJECT_INCLUDE_FOLDER}/FockSpace/ONV.hpp
         ${PROJECT_INCLUDE_FOLDER}/FockSpace/SelectedFockSpace.hpp
         ${PROJECT_INCLUDE_FOLDER}/FockSpace/ProductFockSpace.hpp
+
+        ${PROJECT_INCLUDE_FOLDER}/geminals/AP1roG.hpp
+        ${PROJECT_INCLUDE_FOLDER}/geminals/AP1roGGeminalCoefficients.hpp
+        ${PROJECT_INCLUDE_FOLDER}/geminals/AP1roGJacobiOrbitalOptimizer.hpp
+        ${PROJECT_INCLUDE_FOLDER}/geminals/AP1roGPSESolver.hpp
+        ${PROJECT_INCLUDE_FOLDER}/geminals/APIGGeminalCoefficients.hpp
+        ${PROJECT_INCLUDE_FOLDER}/geminals/BaseAPIGGeminalCoefficients.hpp
+
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianBuilder/DOCI.hpp
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianBuilder/FCI.hpp
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianBuilder/HamiltonianBuilder.hpp
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianBuilder/Hubbard.hpp
+
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianParameters/BaseHamiltonianParameters.hpp
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianParameters/HamiltonianParameters.hpp
+
         ${PROJECT_INCLUDE_FOLDER}/Localization/BaseERLocalizer.hpp
         ${PROJECT_INCLUDE_FOLDER}/Localization/ERJacobiLocalizer.hpp
         ${PROJECT_INCLUDE_FOLDER}/Localization/ERNewtonLocalizer.hpp
+
         ${PROJECT_INCLUDE_FOLDER}/Operator/BaseOperator.hpp
         ${PROJECT_INCLUDE_FOLDER}/Operator/OneElectronOperator.hpp
         ${PROJECT_INCLUDE_FOLDER}/Operator/TwoElectronOperator.hpp
+
+        ${PROJECT_INCLUDE_FOLDER}/optimization/BaseEigenproblemSolver.hpp
+        ${PROJECT_INCLUDE_FOLDER}/optimization/BaseMatrixSolver.hpp
+        ${PROJECT_INCLUDE_FOLDER}/optimization/BaseMinimizer.hpp
+        ${PROJECT_INCLUDE_FOLDER}/optimization/BaseSystemOfEquationsSolver.hpp
+        ${PROJECT_INCLUDE_FOLDER}/optimization/DavidsonSolver.hpp
+        ${PROJECT_INCLUDE_FOLDER}/optimization/DenseSolver.hpp
+        ${PROJECT_INCLUDE_FOLDER}/optimization/Eigenpair.hpp
+        ${PROJECT_INCLUDE_FOLDER}/optimization/EigenproblemSolverOptions.hpp
+        ${PROJECT_INCLUDE_FOLDER}/optimization/NewtonMinimizer.hpp
+        ${PROJECT_INCLUDE_FOLDER}/optimization/NewtonSystemOfEquationsSolver.hpp
+        ${PROJECT_INCLUDE_FOLDER}/optimization/SparseSolver.hpp
+        ${PROJECT_INCLUDE_FOLDER}/optimization/step.hpp
+
         ${PROJECT_INCLUDE_FOLDER}/properties/expectation_values.hpp
         ${PROJECT_INCLUDE_FOLDER}/properties/properties.hpp
+
         ${PROJECT_INCLUDE_FOLDER}/RDM/BaseRDM.hpp
         ${PROJECT_INCLUDE_FOLDER}/RDM/BaseRDMBuilder.hpp
         ${PROJECT_INCLUDE_FOLDER}/RDM/DOCIRDMBuilder.hpp
@@ -115,11 +162,18 @@ set(PROJECT_INCLUDE_FILES
         ${PROJECT_INCLUDE_FOLDER}/RDM/RDMCalculator.hpp
         ${PROJECT_INCLUDE_FOLDER}/RDM/RDMs.hpp
         ${PROJECT_INCLUDE_FOLDER}/RDM/TwoRDM.hpp
+
         ${PROJECT_INCLUDE_FOLDER}/RHF/DIISRHFSCFSolver.hpp
         ${PROJECT_INCLUDE_FOLDER}/RHF/PlainRHFSCFSolver.hpp
         ${PROJECT_INCLUDE_FOLDER}/RHF/RHF.hpp
         ${PROJECT_INCLUDE_FOLDER}/RHF/RHFSCFSolver.hpp
+
+        ${PROJECT_INCLUDE_FOLDER}/utilities/io.hpp
+        ${PROJECT_INCLUDE_FOLDER}/utilities/linalg.hpp
+        ${PROJECT_INCLUDE_FOLDER}/utilities/miscellaneous.hpp
+
         ${PROJECT_INCLUDE_FOLDER}/WaveFunction/WaveFunction.hpp
+
         ${PROJECT_INCLUDE_FOLDER}/AOBasis.hpp
         ${PROJECT_INCLUDE_FOLDER}/Atom.hpp
         ${PROJECT_INCLUDE_FOLDER}/common.hpp
@@ -128,7 +182,6 @@ set(PROJECT_INCLUDE_FILES
         ${PROJECT_INCLUDE_FOLDER}/HoppingMatrix.hpp
         ${PROJECT_INCLUDE_FOLDER}/JacobiRotationParameters.hpp
         ${PROJECT_INCLUDE_FOLDER}/LibintCommunicator.hpp
-        ${PROJECT_INCLUDE_FOLDER}/miscellaneous.hpp
         ${PROJECT_INCLUDE_FOLDER}/Molecule.hpp
         ${PROJECT_INCLUDE_FOLDER}/RMP2.hpp
         ${PROJECT_INCLUDE_FOLDER}/units.hpp)
@@ -186,13 +239,13 @@ set(PROJECT_TEST_SOURCE_FILES
         ${PROJECT_TESTS_FOLDER}/units_test.cpp)
 
 # Find the executables folder
-set(PROJECT_EXECUTABLES_FOLDER ${CMAKE_SOURCE_DIR}/exe)
+set(PROJECT_DRIVERS_FOLDER ${CMAKE_SOURCE_DIR}/drivers)
 
 # Find the source files for the executables
-set(PROJECT_EXE_SOURCE_FILES
-    ${PROJECT_EXECUTABLES_FOLDER}/fci_lowdin.cpp
-    ${PROJECT_EXECUTABLES_FOLDER}/hubbard.cpp
-    ${PROJECT_EXECUTABLES_FOLDER}/oo_doci.cpp)
+set(PROJECT_DRIVERS_SOURCE_FILES
+    ${PROJECT_DRIVERS_FOLDER}/fci_lowdin.cpp
+    ${PROJECT_DRIVERS_FOLDER}/hubbard.cpp
+    ${PROJECT_DRIVERS_FOLDER}/oo_doci.cpp)
 
 # Find the benchmarks folder
 set(PROJECT_BENCHMARKS_FOLDER ${CMAKE_SOURCE_DIR}/benchmarks)

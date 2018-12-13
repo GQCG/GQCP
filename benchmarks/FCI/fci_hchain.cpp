@@ -37,7 +37,7 @@ static void fci_davidson_hchain(benchmark::State& state) {
     GQCP::FCI fci (fock_space);
 
     Eigen::VectorXd initial_guess = fock_space.HartreeFockExpansion();
-    numopt::eigenproblem::DavidsonSolverOptions solver_options (initial_guess);
+    GQCP::DavidsonSolverOptions solver_options (initial_guess);
 
     // Code inside this loop is measured repeatedly
     for (auto _ : state) {
@@ -76,7 +76,7 @@ static void fci_dense_hchain(benchmark::State& state) {
     GQCP::ProductFockSpace fock_space (K, N_P, N_P);
     GQCP::FCI fci (fock_space);
 
-    numopt::eigenproblem::DenseSolverOptions solver_options;
+    GQCP::DenseSolverOptions solver_options;
 
     // Code inside this loop is measured repeatedly
     for (auto _ : state) {

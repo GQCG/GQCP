@@ -20,7 +20,7 @@
 #include <iostream>
 
 #include "utilities/linalg.hpp"
-#include "miscellaneous.hpp"
+#include "utilities/miscellaneous.hpp"
 
 
 namespace GQCP {
