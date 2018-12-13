@@ -3,4 +3,4 @@
 	url = https://github.com/GQCG/copyright_headers
 [submodule "spectra"]
 	path = spectra
-	url = git@github.com:yixuan/spectra.git
+	url = https://github.com/yixuan/spectra.git
