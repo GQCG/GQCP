@@ -47,6 +47,13 @@ Eigen::MatrixXd jacobiRotationMatrix(const GQCP::JacobiRotationParameters& jacob
 Eigen::MatrixXd matrixMinor(const Eigen::MatrixXd& A, size_t i, size_t j);
 
 /**
+ *  @param v    the upper triangle of a matrix
+ *
+ *  @return the full, symmetric matrix corresponding to the given upper triangle
+ */
+Eigen::MatrixXd fromUpperTriangle(const Eigen::VectorXd& v);
+
+/**
  *  @param A        the square matrix
  *
  *  @return the permanent of the given square matrix using a combinatorial algorithm

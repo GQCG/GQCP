@@ -13,7 +13,7 @@
 
 # We have to find the version! Luckily, Libint2 -when installed defaultly- provides a directory /usr/local/libint/x.y.z
 # When the user has set ${LIBINTROOT} or ${LIBINT_ROOT} in the enviroment, this path can also be used
-find_path(LIBINT_PREFIX include/libint2.hpp HINTS /usr/local/libint/*/ ENV LIBINTROOT LIBINT_ROOT)
+find_path(LIBINT_PREFIX include/libint2.hpp HINTS /usr/local/libint/*/ $ENV{LIBINTROOT} $ENV{LIBINT_ROOT} ${LIBINTROOT} ${LIBINT_ROOT})
 
 
 if("${LIBINT_PREFIX}" STREQUAL "LIBINT_PREFIX-NOTFOUND")
@@ -25,8 +25,12 @@ else()
     # Set the INCLUDE_DIRS
     set(Libint2_INCLUDE_DIRS "${Libint2_INCLUDE_DIRS};${LIBINT_PREFIX}/include")
 
-    # Set the LIBRARIES
-    set(Libint2_LIBRARIES "${Libint2_LIBRARIES};${LIBINT_PREFIX}/lib/libint2.a")
+    # Set the dynamic or static libraries
+    if(EXISTS ${LIBINT_PREFIX}/lib/libint2.so)
+        set(Libint2_LIBRARIES "${Libint2_LIBRARIES};${LIBINT_PREFIX}/lib/libint2.so")
+    else()
+        set(Libint2_LIBRARIES "${Libint2_LIBRARIES};${LIBINT_PREFIX}/lib/libint2.a")
+    endif()
 
     message(STATUS "Libint2 was found at ${LIBINT_PREFIX}")
 endif()

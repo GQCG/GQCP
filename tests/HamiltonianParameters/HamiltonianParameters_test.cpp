@@ -308,37 +308,6 @@ BOOST_AUTO_TEST_CASE ( FCIDUMP_reader_HORTON ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( Hubbard_throw ) {
-
-    Eigen::VectorXd triagonal_test_faulty(5);
-    triagonal_test_faulty << 1, 2, 3, 4, 5;
-
-    BOOST_CHECK_THROW(GQCP::HamiltonianParameters::Hubbard(triagonal_test_faulty), std::invalid_argument);
-}
-
-
-BOOST_AUTO_TEST_CASE ( hubbard_upperTriagonal ) {
-
-    Eigen::VectorXd triagonal_test (6);
-    triagonal_test << 1, 2, 3, 4, 5, 6;
-    auto hubbard_ham_par = GQCP::HamiltonianParameters::Hubbard(triagonal_test);
-
-    Eigen::MatrixXd h_ref (3, 3);
-    h_ref << 0, 2, 3,
-             2, 0, 5,
-             3, 5, 0;
-
-    Eigen::Tensor<double, 4> g_ref (3, 3, 3, 3);
-    g_ref.setZero();
-    g_ref(0,0,0,0) = 1;
-    g_ref(1,1,1,1) = 4;
-    g_ref(2,2,2,2) = 6;
-
-    BOOST_CHECK(h_ref.isApprox(hubbard_ham_par.get_h().get_matrix_representation()));
-    BOOST_CHECK(cpputil::linalg::areEqual(g_ref, hubbard_ham_par.get_g().get_matrix_representation(), 1.0e-12));
-}
-
-
 
 /*
  *  UNIT TESTS - METHODS

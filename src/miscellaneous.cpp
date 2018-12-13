@@ -20,6 +20,7 @@
 #include <iostream>
 
 #include <boost/numeric/conversion/converter.hpp>
+#include <cpputil.hpp>
 
 
 namespace GQCP {
@@ -79,6 +80,42 @@ Eigen::MatrixXd matrixMinor(const Eigen::MatrixXd& A, size_t i, size_t j) {
     }
 
     return A_ij;
+}
+
+
+/**
+ *  @param v    the upper triangle of a matrix
+ *
+ *  @return the full, symmetric matrix corresponding to the given upper triangle
+ */
+Eigen::MatrixXd fromUpperTriangle(const Eigen::VectorXd& v) {
+
+    size_t x = v.size();
+    size_t N = (static_cast<size_t>(sqrt(1 + 8*x) - 1))/2;
+
+    if (N * (N+1) != 2*x) {
+        throw std::invalid_argument("The given vector is does not correspond to the upper triagonal of a square matrix.");
+    }
+
+
+    Eigen::MatrixXd A = Eigen::MatrixXd::Zero(N, N);
+
+    size_t k = 0;  // vector index
+    for (size_t i = 0; i < N; i++) {  // row index
+        for (size_t j = i; j < N; j++) {  // column index
+            if (i != j) {
+                A(i,j) = v(k);
+                A(j,i) = v(k);
+            } else {
+                A(i,i) = v(k);
+            }
+
+            k++;
+        }
+    }
+
+
+    return A;
 }
 
 

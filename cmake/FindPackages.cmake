@@ -19,7 +19,7 @@ find_package(numopt 1.5.1 REQUIRED)
 # Find doxygen
 if(BUILD_DOCS)
     find_package(Doxygen REQUIRED dot)
-endif()
+endif(BUILD_DOCS)
 
 # Find MKL
 if(USE_MKL)
@@ -27,4 +27,6 @@ if(USE_MKL)
 endif(USE_MKL)
 
 # Find google benchmarks
-find_package(benchmark)
+if(BUILD_BENCHMARKS)
+    find_package(benchmark)
+endif(BUILD_BENCHMARKS)

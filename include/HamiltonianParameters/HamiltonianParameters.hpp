@@ -20,10 +20,11 @@
 
 #include "common.hpp"
 #include "HamiltonianParameters/BaseHamiltonianParameters.hpp"
+#include "HoppingMatrix.hpp"
+#include "JacobiRotationParameters.hpp"
 #include "Molecule.hpp"
 #include "Operator/OneElectronOperator.hpp"
 #include "Operator/TwoElectronOperator.hpp"
-#include "JacobiRotationParameters.hpp"
 #include "RDM/TwoRDM.hpp"
 #include "RDM/OneRDM.hpp"
 
@@ -122,11 +123,11 @@ public:
     static HamiltonianParameters ReadFCIDUMP(const std::string& fcidump_file);
 
     /**
-     *  @param upper_triagonal      an upper triagonal representation of the Hubbard hopping matrix
+     *  @param H      a Hubbard hopping matrix
      *
      *  @return Hubbard Hamiltonian parameters generated from the Hubbard hopping matrix
      */
-    static HamiltonianParameters Hubbard(const Eigen::VectorXd& upper_triagonal);
+    static HamiltonianParameters Hubbard(const HoppingMatrix& H);
 
 
     // DESTRUCTORS
