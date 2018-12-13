@@ -15,16 +15,15 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "NewtonSystemOfEquationsSolver.hpp"
+#include "optimization/NewtonSystemOfEquationsSolver.hpp"
 
-#include "step.hpp"
+#include "optimization/step.hpp"
 
 #include <iostream>
 
 
 
-namespace numopt {
-namespace syseq {
+namespace GQCP {
 
 
 
@@ -66,7 +65,7 @@ void NewtonSystemOfEquationsSolver::solve() {
     while (!(this->is_solved)) {
 
         // Calculate the Newton step
-        Eigen::VectorXd dx = numopt::newtonStep(this->x, this->f, this->J);
+        Eigen::VectorXd dx = GQCP::newtonStep(this->x, this->f, this->J);
 
         // Update the current coefficients, using the Newton step
         this->x += dx;
@@ -87,5 +86,4 @@ void NewtonSystemOfEquationsSolver::solve() {
 }
 
 
-}  // namespace syseq
-}  // namespace numopt
+}  // namespace GQCP

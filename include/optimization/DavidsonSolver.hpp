@@ -15,25 +15,24 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef NUMOPT_DAVIDSONSOLVER_HPP
-#define NUMOPT_DAVIDSONSOLVER_HPP
+#ifndef GQCP_DAVIDSONSOLVER_HPP
+#define GQCP_DAVIDSONSOLVER_HPP
 
 
-#include "BaseEigenproblemSolver.hpp"
-#include "EigenproblemSolverOptions.hpp"
+#include "optimization/BaseEigenproblemSolver.hpp"
+#include "optimization/EigenproblemSolverOptions.hpp"
 
 #include "common.hpp"
 
 
 
-namespace numopt {
-namespace eigenproblem {
+namespace GQCP {
 
 /**
  *  A class that implements the Davidson algorithm for finding the lowest eigenpair of a (possibly large) diagonally-
  *  dominant symmetric matrix
  */
-class DavidsonSolver : public numopt::eigenproblem::BaseEigenproblemSolver {
+class DavidsonSolver : public BaseEigenproblemSolver {
 private:
     static constexpr size_t maximum_number_of_iterations = 128;
 
@@ -42,7 +41,7 @@ private:
     const size_t maximum_subspace_dimension;
     const size_t collapsed_subspace_dimension;
 
-    const numopt::VectorFunction matrixVectorProduct;
+    const VectorFunction matrixVectorProduct;
     const Eigen::VectorXd diagonal;  // the diagonal of the matrix in question
     const Eigen::MatrixXd V_0;  // the set of initial guesses (every column is an initial guess)
 
@@ -57,7 +56,7 @@ public:
      *  @param diagonal                     the diagonal of the matrix
      *  @param davidson_solver_options      the options specified for solving the Davidson eigenvalue problem
      */
-    DavidsonSolver(const numopt::VectorFunction& matrixVectorProduct, const Eigen::VectorXd& diagonal, const DavidsonSolverOptions& davidson_solver_options);
+    DavidsonSolver(const VectorFunction& matrixVectorProduct, const Eigen::VectorXd& diagonal, const DavidsonSolverOptions& davidson_solver_options);
 
     /**
      *  @param A                            the matrix to be diagonalized
@@ -75,7 +74,7 @@ public:
      *  @param maximum_subspace_dimension           the maximum dimension of the Davidson subspace before collapsing
      *  @param collapsed_subspace_dimension         the dimension of the subspace after collapse
      */
-    DavidsonSolver(const numopt::VectorFunction& matrixVectorProduct, const Eigen::VectorXd& diagonal,
+    DavidsonSolver(const VectorFunction& matrixVectorProduct, const Eigen::VectorXd& diagonal,
                    const Eigen::MatrixXd& V_0, size_t number_of_requested_eigenpairs = 1,
                    double residue_tolerance = 1.0e-08, double correction_threshold = 1.0e-12,
                    size_t maximum_subspace_dimension = 15, size_t collapsed_subspace_dimension = 2);
@@ -115,9 +114,8 @@ public:
 };
 
 
-}  // namespace eigenproblem
-}  // namespace numopt
+}  // namespace GQCP
 
 
 
-#endif  // NUMOPT_DAVIDSONSOLVER_HPP
+#endif  // GQCP_DAVIDSONSOLVER_HPP

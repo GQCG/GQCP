@@ -15,25 +15,24 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef NUMOPT_DENSESOLVER_HPP
-#define NUMOPT_DENSESOLVER_HPP
+#ifndef GQCP_DENSESOLVER_HPP
+#define GQCP_DENSESOLVER_HPP
 
 
 
-#include "BaseMatrixSolver.hpp"
-#include "EigenproblemSolverOptions.hpp"
+#include "optimization/BaseMatrixSolver.hpp"
+#include "optimization/EigenproblemSolverOptions.hpp"
 
 
 
 
-namespace numopt {
-namespace eigenproblem {
+namespace GQCP {
 
 
 /**
  *  An eigenproblem solver that stores a dense representation of the matrix
  */
-class DenseSolver : public numopt::eigenproblem::BaseMatrixSolver {
+class DenseSolver : public BaseMatrixSolver {
 private:
     Eigen::MatrixXd matrix;
 
@@ -96,9 +95,8 @@ public:
 
 
 
-}  // namespace eigenproblem
-}  // namespace numopt
+}  // namespace GQCP
 
 
 
-#endif  // NUMOPT_DENSESOLVER_HPP
+#endif  // GQCP_DENSESOLVER_HPP

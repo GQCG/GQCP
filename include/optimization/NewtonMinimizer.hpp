@@ -15,18 +15,17 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef NUMOPT_NEWTONMINIMIZER_HPP
-#define NUMOPT_NEWTONMINIMIZER_HPP
+#ifndef GQCP_NEWTONMINIMIZER_HPP
+#define GQCP_NEWTONMINIMIZER_HPP
 
 
 
-#include "BaseMinimizer.hpp"
+#include "optimization/BaseMinimizer.hpp"
 #include "common.hpp"
 
 
 
-namespace numopt {
-namespace minimization {
+namespace GQCP {
 
 
 /**
@@ -66,9 +65,8 @@ public:
 };
 
 
-}  // namespace minimization
-}  // numopt
+}  // namespace GQCP
 
 
 
-#endif  // NUMOPT_NEWTONMINIMIZER_HPP
+#endif  // GQCP_NEWTONMINIMIZER_HPP

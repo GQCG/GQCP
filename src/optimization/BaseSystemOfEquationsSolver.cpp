@@ -15,12 +15,11 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "BaseSystemOfEquationsSolver.hpp"
+#include "optimization/BaseSystemOfEquationsSolver.hpp"
 
 
 
-namespace numopt {
-namespace syseq {
+namespace GQCP {
 
 
 /*
@@ -48,5 +47,4 @@ Eigen::VectorXd BaseSystemOfEquationsSolver::get_solution() const {
 }
 
 
-}  // namespace syseq
-}  // namespace numopt
+}  // namespace GQCP

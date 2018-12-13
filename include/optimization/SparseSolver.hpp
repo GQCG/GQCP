@@ -15,26 +15,25 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef NUMOPT_SPARSESOLVER_HPP
-#define NUMOPT_SPARSESOLVER_HPP
+#ifndef GQCP_SPARSESOLVER_HPP
+#define GQCP_SPARSESOLVER_HPP
 
 
 
 #include <Eigen/Sparse>
 
-#include "BaseMatrixSolver.hpp"
-#include "EigenproblemSolverOptions.hpp"
+#include "optimization/BaseMatrixSolver.hpp"
+#include "optimization/EigenproblemSolverOptions.hpp"
 
 
 
-namespace numopt {
-namespace eigenproblem {
+namespace GQCP {
 
 
 /**
  *  An eigenproblem solver that stores a sparse representation of the matrix
  */
-class SparseSolver : public numopt::eigenproblem::BaseMatrixSolver {
+class SparseSolver : public BaseMatrixSolver {
 private:
     Eigen::SparseMatrix<double> matrix;
 
@@ -83,9 +82,8 @@ public:
 };
 
 
-}  // namespace eigenproblem
-}  // namespace numopt
+}  // namespace GQCP
 
 
 
-#endif  // NUMOPT_SPARSESOLVER_HPP
+#endif  // GQCP_SPARSESOLVER_HPP

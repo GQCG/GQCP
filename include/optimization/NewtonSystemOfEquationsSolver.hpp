@@ -15,18 +15,17 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef NUMOPT_NEWTONSYSTEMOFEQUATIONSSOLVER_HPP
-#define NUMOPT_NEWTONSYSTEMOFEQUATIONSSOLVER_HPP
+#ifndef GQCP_NEWTONSYSTEMOFEQUATIONSSOLVER_HPP
+#define GQCP_NEWTONSYSTEMOFEQUATIONSSOLVER_HPP
 
 #include <Eigen/Dense>
 
-#include "BaseSystemOfEquationsSolver.hpp"
+#include "optimization/BaseSystemOfEquationsSolver.hpp"
 #include "common.hpp"
 
 
 
-namespace numopt {
-namespace syseq {
+namespace GQCP {
 
 
 /**
@@ -62,8 +61,7 @@ public:
 };
 
 
-}  // namespace syseq
-}  // namespace numopt
+}  // namespace GQCP
 
 
-#endif // NUMOPT_NEWTONSYSTEMOFEQUATIONSSOLVER_HPP
+#endif  // GQCP_NEWTONSYSTEMOFEQUATIONSSOLVER_HPP

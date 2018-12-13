@@ -15,23 +15,22 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef NUMOPT_BASEMATRIXSOLVER_HPP
-#define NUMOPT_BASEMATRIXSOLVER_HPP
+#ifndef GQCP_BASEMATRIXSOLVER_HPP
+#define GQCP_BASEMATRIXSOLVER_HPP
 
 
 
-#include "BaseEigenproblemSolver.hpp"
+#include "optimization/BaseEigenproblemSolver.hpp"
 
 
 
-namespace numopt {
-namespace eigenproblem {
+namespace GQCP {
 
 
 /**
  *  A base class for eigenproblem solvers in which the whole matrix is supplied
  */
-class BaseMatrixSolver : public numopt::eigenproblem::BaseEigenproblemSolver {
+class BaseMatrixSolver : public BaseEigenproblemSolver {
 public:
     // CONSTRUCTOR
     /**
@@ -57,9 +56,8 @@ public:
 };
 
 
-}  // namespace eigenproblem
-}  // namespace numopt
+}  // namespace GQCP
 
 
 
-#endif  // NUMOPT_BASEMATRIXSOLVER_HPP
+#endif  // GQCP_BASEMATRIXSOLVER_HPP

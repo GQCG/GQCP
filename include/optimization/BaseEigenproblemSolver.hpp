@@ -15,19 +15,18 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef NUMOPT_BASEEIGENVALUESOLVER_HPP
-#define NUMOPT_BASEEIGENVALUESOLVER_HPP
+#ifndef GQCP_BASEEIGENPROBLEMSOLVER_HPP
+#define GQCP_BASEEIGENPROBLEMSOLVER_HPP
 
 
-#include "Eigenpair.hpp"
+#include "optimization/Eigenpair.hpp"
 
 #include <cstddef>
 #include <Eigen/Dense>
 #include <vector>
 
 
-namespace numopt {
-namespace eigenproblem {
+namespace GQCP {
 
 
 /**
@@ -42,7 +41,7 @@ protected:
     const size_t number_of_requested_eigenpairs;
 
     bool _is_solved = false;
-    std::vector<numopt::eigenproblem::Eigenpair> eigenpairs;  // a collection of the eigenpairs of the eigenproblem
+    std::vector<Eigenpair> eigenpairs;  // a collection of the eigenpairs of the eigenproblem
                                                               // the eigenpairs are sorted with increasing eigenvalue
 
 
@@ -68,14 +67,14 @@ public:
 
 
     // GETTERS - EIGENPAIR
-    std::vector<numopt::eigenproblem::Eigenpair> get_eigenpairs() const;
-    numopt::eigenproblem::Eigenpair get_lowest_eigenpair() const;
+    std::vector<Eigenpair> get_eigenpairs() const;
+    Eigenpair get_lowest_eigenpair() const;
     /**
      *  @param i        the index for the i-th lowest eigenpair
      *
      *  @return the i-th lowest eigenpair
      */
-    numopt::eigenproblem::Eigenpair get_eigenpair(size_t i) const;
+    Eigenpair get_eigenpair(size_t i) const;
 
 
     // GETTERS - EIGENVALUE
@@ -118,11 +117,10 @@ public:
 };
 
 
-}  // namespace eigenproblem
-}  // namespace numopt
+}  // namespace GQCP
 
 
 
 
 
-#endif  // NUMOPT_BASEEIGENVALUESOLVER_HPP
+#endif  // GQCP_BASEEIGENPROBLEMSOLVER_HPP

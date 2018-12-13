@@ -32,6 +32,8 @@ typedef std::vector<size_t> Vectoru;
 typedef std::vector<Vectoru> Matrixu;
 using VectorXs = Eigen::Matrix<size_t, Eigen::Dynamic, 1>;
 
+using VectorFunction = std::function<Eigen::VectorXd (const Eigen::VectorXd&)>;
+using MatrixFunction = std::function<Eigen::MatrixXd (const Eigen::VectorXd&)>;
 
 }  // namespace GQCP
 

@@ -15,8 +15,8 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef NUMOPT_BASEMINIMIZER_HPP
-#define NUMOPT_BASEMINIMIZER_HPP
+#ifndef GQCP_BASEMINIMIZER_HPP
+#define GQCP_BASEMINIMIZER_HPP
 
 
 
@@ -24,8 +24,7 @@
 
 
 
-namespace numopt {
-namespace minimization {
+namespace GQCP {
 
 
 /**
@@ -70,9 +69,8 @@ public:
 };
 
 
-}  // namespace minimization
-}  // namespace numopt
+}  // namespace GQCP
 
 
 
-#endif  // NUMOPT_BASEMINIMIZER_HPP
+#endif  // GQCP_BASEMINIMIZER_HPP

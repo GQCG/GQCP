@@ -15,34 +15,18 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include <utility>
+#ifndef GQCP_EIGENPROBLEMSOLVEROPTIONS_HPP
+#define GQCP_EIGENPROBLEMSOLVEROPTIONS_HPP
 
-// This file is part of GQCG-numopt.
-// 
-// Copyright (C) 2017-2018  the GQCG developers
-// 
-// GQCG-numopt is free software: you can redistribute it and/or modify
-// it under the terms of the GNU Lesser General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-// 
-// GQCG-numopt is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU Lesser General Public License for more details.
-// 
-// You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-numopt.  If not, see <http://www.gnu.org/licenses/>.
-#ifndef NUMOPT_EIGENPROBLEMSOLVEROPTIONS_HPP
-#define NUMOPT_EIGENPROBLEMSOLVEROPTIONS_HPP
+
+#include <utility>
 
 
 #include <cstddef>
 #include <Eigen/Dense>
 
 
-namespace numopt {
-namespace eigenproblem {
+namespace GQCP {
 
 
 /**
@@ -66,7 +50,7 @@ public:
 
 
     // PURE VIRTUAL METHODS
-    virtual numopt::eigenproblem::SolverType get_solver_type() = 0;
+    virtual SolverType get_solver_type() = 0;
 };
 
 
@@ -77,7 +61,7 @@ public:
 struct DenseSolverOptions : public BaseSolverOptions {
 public:
     // OVERRIDDEN METHODS
-    numopt::eigenproblem::SolverType get_solver_type () override { return numopt::eigenproblem::SolverType::DENSE; };
+    SolverType get_solver_type () override { return SolverType::DENSE; };
 };
 
 
@@ -88,7 +72,7 @@ public:
 struct SparseSolverOptions : public BaseSolverOptions {
 public:
     // OVERRIDDEN METHODS
-    numopt::eigenproblem::SolverType get_solver_type () override { return numopt::eigenproblem::SolverType::SPARSE; };
+    SolverType get_solver_type () override { return SolverType::SPARSE; };
 };
 
 
@@ -118,13 +102,12 @@ public:
 
 
     // OVERRIDDEN METHODS
-    numopt::eigenproblem::SolverType get_solver_type () override { return numopt::eigenproblem::SolverType::DAVIDSON; };
+    SolverType get_solver_type () override { return SolverType::DAVIDSON; };
 };
 
 
-}  // namespace eigenproblem
-}  // namespace numopt
+}  // namespace GQCP
 
 
 
-#endif  // NUMOPT_EIGENPROBLEMSOLVEROPTIONS_HPP
+#endif  // GQCP_EIGENPROBLEMSOLVEROPTIONS_HPP

@@ -60,7 +60,7 @@ Eigenpair::Eigenpair(double eigenvalue, const Eigen::VectorXd& eigenvector) :
  *
  *  @return if this Eigenpair is equal to the other: if the eigenvalues and eigenvectors are equal given the tolerance
  */
-bool Eigenpair::isEqual(const numopt::eigenproblem::Eigenpair& other, double tolerance) const {
+bool Eigenpair::isEqual(const Eigenpair& other, double tolerance) const {
 
 
     if (this->eigenvector.size() != other.get_eigenvector().size()) {

@@ -15,8 +15,8 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef NUMOPT_STEP_HPP
-#define NUMOPT_STEP_HPP
+#ifndef GQCP_STEP_HPP
+#define GQCP_STEP_HPP
 
 
 #include "common.hpp"
@@ -25,7 +25,7 @@
 
 
 
-namespace numopt {
+namespace GQCP {
 
 
 /**
@@ -39,7 +39,7 @@ namespace numopt {
 Eigen::VectorXd newtonStep(const Eigen::VectorXd& x, const VectorFunction& f, const MatrixFunction& J);
 
 
-}  // namespace numopt
+}  // namespace GQCP
 
 
-#endif  // NUMOPT_STEP_HPP
+#endif  // GQCP_STEP_HPP

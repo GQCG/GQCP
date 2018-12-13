@@ -15,12 +15,11 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "BaseEigenproblemSolver.hpp"
+#include "optimization/BaseEigenproblemSolver.hpp"
 #include <iostream>
 
 
-namespace numopt {
-namespace eigenproblem {
+namespace GQCP {
 
 
 /*
@@ -34,7 +33,7 @@ namespace eigenproblem {
 BaseEigenproblemSolver::BaseEigenproblemSolver(size_t dim, size_t number_of_requested_eigenpairs) :
     dim (dim),
     number_of_requested_eigenpairs (number_of_requested_eigenpairs),
-    eigenpairs (std::vector<numopt::eigenproblem::Eigenpair> (this->number_of_requested_eigenpairs, numopt::eigenproblem::Eigenpair(this->dim)))
+    eigenpairs (std::vector<Eigenpair> (this->number_of_requested_eigenpairs, Eigenpair(this->dim)))
 {}
 
 
@@ -42,7 +41,7 @@ BaseEigenproblemSolver::BaseEigenproblemSolver(size_t dim, size_t number_of_requ
 /*
  *  GETTERS
  */
-std::vector<numopt::eigenproblem::Eigenpair> BaseEigenproblemSolver::get_eigenpairs() const {
+std::vector<Eigenpair> BaseEigenproblemSolver::get_eigenpairs() const {
 
     if (this->_is_solved) {
         return this->eigenpairs;
@@ -52,7 +51,7 @@ std::vector<numopt::eigenproblem::Eigenpair> BaseEigenproblemSolver::get_eigenpa
 }
 
 
-numopt::eigenproblem::Eigenpair BaseEigenproblemSolver::get_lowest_eigenpair() const {
+Eigenpair BaseEigenproblemSolver::get_lowest_eigenpair() const {
 
     if (this->_is_solved) {
         return this->eigenpairs[0];  // the eigenpairs are sorted by increasing eigenvalue
@@ -67,7 +66,7 @@ numopt::eigenproblem::Eigenpair BaseEigenproblemSolver::get_lowest_eigenpair() c
  *
  *  @return the i-th lowest eigenpair
  */
-numopt::eigenproblem::Eigenpair BaseEigenproblemSolver::get_eigenpair(size_t i) const {
+Eigenpair BaseEigenproblemSolver::get_eigenpair(size_t i) const {
 
     if (this->_is_solved) {
         return this->eigenpairs[i];  // the eigenpairs are sorted by increasing eigenvalue
@@ -138,5 +137,4 @@ double BaseEigenproblemSolver::get_eigenvector(size_t index) const {
 
 
 
-}  // namespace eigenproblem
-}  // namespace numopt
+}  // namespace GQCP

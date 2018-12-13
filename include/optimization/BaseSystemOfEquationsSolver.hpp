@@ -15,8 +15,8 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef NUMOPT_BASESYSTEMOFEQUATIONSSOLVER_HPP
-#define NUMOPT_BASESYSTEMOFEQUATIONSSOLVER_HPP
+#ifndef GQCP_BASESYSTEMOFEQUATIONSSOLVER_HPP
+#define GQCP_BASESYSTEMOFEQUATIONSSOLVER_HPP
 
 
 
@@ -24,8 +24,7 @@
 
 
 
-namespace numopt {
-namespace syseq {
+namespace GQCP {
 
 
 /**
@@ -71,9 +70,8 @@ public:
 };
 
 
-}  // namespace syseq
-}  // namespace numopt
+}  // namespace GQCP
 
 
 
-#endif  // NUMOPT_BASESYSTEMOFEQUATIONSSOLVER_HPP
+#endif  // GQCP_BASESYSTEMOFEQUATIONSSOLVER_HPP

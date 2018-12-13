@@ -477,10 +477,8 @@
 		56FBA0A721C2B06B0084F088 /* miscellaneous.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56FBA0A421C2B06B0084F088 /* miscellaneous.cpp */; };
 		56FBA0A821C2B06B0084F088 /* io.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56FBA0A521C2B06B0084F088 /* io.cpp */; };
 		56FBA0A921C2B06B0084F088 /* linalg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56FBA0A621C2B06B0084F088 /* linalg.cpp */; };
-		56FBA0BA21C2B4AF0084F088 /* common.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56FBA0AC21C2B4AE0084F088 /* common.hpp */; };
 		56FBA0BB21C2B4AF0084F088 /* BaseSystemOfEquationsSolver.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56FBA0AD21C2B4AE0084F088 /* BaseSystemOfEquationsSolver.hpp */; };
 		56FBA0BC21C2B4AF0084F088 /* DavidsonSolver.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56FBA0AE21C2B4AE0084F088 /* DavidsonSolver.hpp */; };
-		56FBA0BD21C2B4AF0084F088 /* numopt.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56FBA0AF21C2B4AE0084F088 /* numopt.hpp */; };
 		56FBA0BE21C2B4AF0084F088 /* DenseSolver.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56FBA0B021C2B4AE0084F088 /* DenseSolver.hpp */; };
 		56FBA0BF21C2B4AF0084F088 /* NewtonMinimizer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56FBA0B121C2B4AE0084F088 /* NewtonMinimizer.hpp */; };
 		56FBA0C021C2B4AF0084F088 /* Eigenpair.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56FBA0B221C2B4AE0084F088 /* Eigenpair.hpp */; };
@@ -2269,10 +2267,8 @@
 		56FBA0A421C2B06B0084F088 /* miscellaneous.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = miscellaneous.cpp; sourceTree = "<group>"; };
 		56FBA0A521C2B06B0084F088 /* io.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = io.cpp; sourceTree = "<group>"; };
 		56FBA0A621C2B06B0084F088 /* linalg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = linalg.cpp; sourceTree = "<group>"; };
-		56FBA0AC21C2B4AE0084F088 /* common.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = common.hpp; sourceTree = "<group>"; };
 		56FBA0AD21C2B4AE0084F088 /* BaseSystemOfEquationsSolver.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BaseSystemOfEquationsSolver.hpp; sourceTree = "<group>"; };
 		56FBA0AE21C2B4AE0084F088 /* DavidsonSolver.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DavidsonSolver.hpp; sourceTree = "<group>"; };
-		56FBA0AF21C2B4AE0084F088 /* numopt.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = numopt.hpp; sourceTree = "<group>"; };
 		56FBA0B021C2B4AE0084F088 /* DenseSolver.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DenseSolver.hpp; sourceTree = "<group>"; };
 		56FBA0B121C2B4AE0084F088 /* NewtonMinimizer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = NewtonMinimizer.hpp; sourceTree = "<group>"; };
 		56FBA0B221C2B4AE0084F088 /* Eigenpair.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Eigenpair.hpp; sourceTree = "<group>"; };
@@ -3555,14 +3551,12 @@
 				56FBA0B821C2B4AF0084F088 /* BaseMatrixSolver.hpp */,
 				56FBA0B421C2B4AF0084F088 /* BaseMinimizer.hpp */,
 				56FBA0AD21C2B4AE0084F088 /* BaseSystemOfEquationsSolver.hpp */,
-				56FBA0AC21C2B4AE0084F088 /* common.hpp */,
 				56FBA0AE21C2B4AE0084F088 /* DavidsonSolver.hpp */,
 				56FBA0B021C2B4AE0084F088 /* DenseSolver.hpp */,
 				56FBA0B221C2B4AE0084F088 /* Eigenpair.hpp */,
 				56FBA0B721C2B4AF0084F088 /* EigenproblemSolverOptions.hpp */,
 				56FBA0B121C2B4AE0084F088 /* NewtonMinimizer.hpp */,
 				56FBA0B521C2B4AF0084F088 /* NewtonSystemOfEquationsSolver.hpp */,
-				56FBA0AF21C2B4AE0084F088 /* numopt.hpp */,
 				56FBA0B921C2B4AF0084F088 /* SparseSolver.hpp */,
 				56FBA0B321C2B4AF0084F088 /* step.hpp */,
 			);
@@ -3628,7 +3622,6 @@
 				56FBA0BE21C2B4AF0084F088 /* DenseSolver.hpp in Headers */,
 				56FBA0A121C2B0420084F088 /* io.hpp in Headers */,
 				56FBA09F21C2B0420084F088 /* linalg.hpp in Headers */,
-				56FBA0BD21C2B4AF0084F088 /* numopt.hpp in Headers */,
 				56FBA0A221C2B0420084F088 /* miscellaneous.hpp in Headers */,
 				5614FA1621B029FB002C5D40 /* FockSpace.hpp in Headers */,
 				5614FA3A21B029FB002C5D40 /* BaseERLocalizer.hpp in Headers */,
@@ -3653,7 +3646,6 @@
 				5614FA2F21B029FB002C5D40 /* JacobiRotationParameters.hpp in Headers */,
 				5614FA3F21B029FB002C5D40 /* HamiltonianParameters.hpp in Headers */,
 				5614FA3121B029FB002C5D40 /* RMP2.hpp in Headers */,
-				56FBA0BA21C2B4AF0084F088 /* common.hpp in Headers */,
 				5614FA3321B029FB002C5D40 /* elements.hpp in Headers */,
 				56FBA0BC21C2B4AF0084F088 /* DavidsonSolver.hpp in Headers */,
 				5614FA3C21B029FB002C5D40 /* WaveFunctionReader.hpp in Headers */,
@@ -6904,8 +6896,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					/opt/local/include/eigen3,
-					/usr/local/cpputil/include/,
-					/usr/local/numopt/include,
 					/opt/local/include/,
 					/usr/local/libint/2.3.1/include/,
 					/usr/local/include/,
@@ -6916,7 +6906,10 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/include";
+				USER_HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/include",
+					"$(SRCROOT)/spectra/include/",
+				);
 			};
 			name = Debug;
 		};
@@ -6967,8 +6960,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					/opt/local/include/eigen3,
-					/usr/local/cpputil/include/,
-					/usr/local/numopt/include,
 					/opt/local/include/,
 					/usr/local/libint/2.3.1/include/,
 					/usr/local/include/,
@@ -6978,7 +6969,10 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/include";
+				USER_HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/include",
+					"$(SRCROOT)/spectra/include/",
+				);
 			};
 			name = Release;
 		};

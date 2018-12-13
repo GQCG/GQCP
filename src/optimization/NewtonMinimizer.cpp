@@ -15,18 +15,17 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "NewtonMinimizer.hpp"
+#include "optimization/NewtonMinimizer.hpp"
 
 #include "common.hpp"
-#include "NewtonSystemOfEquationsSolver.hpp"
+#include "optimization/NewtonSystemOfEquationsSolver.hpp"
 
 
 
 #include <iostream>
 
 
-namespace numopt {
-namespace minimization {
+namespace GQCP {
 
 
 /*
@@ -63,7 +62,7 @@ void NewtonMinimizer::solve() {
 
     // For mathematical correctness, the Jacobian of the gradient is the transpose of the Hessian of the scalar function
     // behind it
-    numopt::MatrixFunction H_t = [this](const Eigen::VectorXd& x) {
+    MatrixFunction H_t = [this](const Eigen::VectorXd& x) {
         Eigen::MatrixXd H = this->H(x);
         H.transposeInPlace();
         return H;
@@ -75,7 +74,7 @@ void NewtonMinimizer::solve() {
 
     // For previously established reasons, we can use the NewtonSystemOfEquationsSolver as an implementation of this
     // minimization problem
-    numopt::syseq::NewtonSystemOfEquationsSolver newton_syseq_solver (this->x0, this->grad, H_t, this->convergence_threshold);
+    NewtonSystemOfEquationsSolver newton_syseq_solver (this->x0, this->grad, H_t, this->convergence_threshold);
     newton_syseq_solver.solve();
 
 
@@ -86,5 +85,4 @@ void NewtonMinimizer::solve() {
 }
 
 
-}  // namespace minimization
-}  // namespace numopt
+}  // namespace GQCP

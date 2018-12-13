@@ -17,6 +17,10 @@
 // 
 #include "CISolver/CISolver.hpp"
 
+#include "optimization/DenseSolver.hpp"
+#include "optimization/DavidsonSolver.hpp"
+#include "optimization/SparseSolver.hpp"
+
 
 namespace GQCP {
 
@@ -50,15 +54,15 @@ CISolver::CISolver(HamiltonianBuilder& hamiltonian_builder, const HamiltonianPar
  *
  *  Solve the CI eigenvalue problem and set the eigenpairs internally
  */
-void CISolver::solve(numopt::eigenproblem::BaseSolverOptions& solver_options) {
-    numopt::eigenproblem::SolverType solver_type = solver_options.get_solver_type();
+void CISolver::solve(BaseSolverOptions& solver_options) {
+    SolverType solver_type = solver_options.get_solver_type();
     switch (solver_type) {
 
-        case numopt::eigenproblem::SolverType::DENSE: {
+        case SolverType::DENSE: {
 
             Eigen::MatrixXd matrix = this->hamiltonian_builder->constructHamiltonian(this->hamiltonian_parameters);
 
-            numopt::eigenproblem::DenseSolver solver = numopt::eigenproblem::DenseSolver(matrix, dynamic_cast<numopt::eigenproblem::DenseSolverOptions&>(solver_options));
+            DenseSolver solver = DenseSolver(matrix, dynamic_cast<DenseSolverOptions&>(solver_options));
 
             solver.solve();
             this->eigenpairs = solver.get_eigenpairs();
@@ -66,12 +70,12 @@ void CISolver::solve(numopt::eigenproblem::BaseSolverOptions& solver_options) {
             break;
         }
 
-        case numopt::eigenproblem::SolverType::DAVIDSON: {
+        case SolverType::DAVIDSON: {
 
             Eigen::VectorXd diagonal = this->hamiltonian_builder->calculateDiagonal(this->hamiltonian_parameters);
-            numopt::VectorFunction matrixVectorProduct = [this, &diagonal](const Eigen::VectorXd& x) { return hamiltonian_builder->matrixVectorProduct(hamiltonian_parameters, x, diagonal); };
+            VectorFunction matrixVectorProduct = [this, &diagonal](const Eigen::VectorXd& x) { return hamiltonian_builder->matrixVectorProduct(hamiltonian_parameters, x, diagonal); };
 
-            numopt::eigenproblem::DavidsonSolver solver = numopt::eigenproblem::DavidsonSolver(matrixVectorProduct, diagonal, dynamic_cast<numopt::eigenproblem::DavidsonSolverOptions&>(solver_options));
+            DavidsonSolver solver = DavidsonSolver(matrixVectorProduct, diagonal, dynamic_cast<DavidsonSolverOptions&>(solver_options));
 
             solver.solve();
             this->eigenpairs = solver.get_eigenpairs();
@@ -79,7 +83,7 @@ void CISolver::solve(numopt::eigenproblem::BaseSolverOptions& solver_options) {
             break;
         }
 
-        case numopt::eigenproblem::SolverType::SPARSE: {
+        case SolverType::SPARSE: {
             throw std::invalid_argument("Sparse not implemented");
             break;
         }

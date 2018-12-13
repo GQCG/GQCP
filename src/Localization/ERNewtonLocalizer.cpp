@@ -17,7 +17,9 @@
 // 
 #include "Localization/ERNewtonLocalizer.hpp"
 
-#include <numopt.hpp>
+#include "utilities/linalg.hpp"
+#include "optimization/step.hpp"
+
 
 #include <unsupported/Eigen/MatrixFunctions>
 
@@ -154,14 +156,14 @@ void ERNewtonLocalizer::localize(GQCP::HamiltonianParameters& ham_par) {
     while (!(this->is_converged)) {
 
         // Calculate the gradient and Hessian with only the free parameters, at kappa = 0
-        Eigen::VectorXd gradient_vector = strictLowerTriangle(this->calculateGradient(ham_par));
-        Eigen::MatrixXd hessian_matrix = strictLowerTriangle(this->calculateHessian(ham_par));
+        Eigen::VectorXd gradient_vector = GQCP::strictLowerTriangle(this->calculateGradient(ham_par));
+        Eigen::MatrixXd hessian_matrix = GQCP::strictLowerTriangle(this->calculateHessian(ham_par));
 
         // Perform a Newton-step to find orbital rotation parameters kappa
-        numopt::VectorFunction gradient_function = [gradient_vector](const Eigen::VectorXd& x) { return gradient_vector; };
-        numopt::MatrixFunction hessian_function = [hessian_matrix](const Eigen::VectorXd& x) { return hessian_matrix; };
+        VectorFunction gradient_function = [gradient_vector] (const Eigen::VectorXd& x) { return gradient_vector; };
+        MatrixFunction hessian_function = [hessian_matrix] (const Eigen::VectorXd& x) { return hessian_matrix; };
 
-        Eigen::VectorXd kappa_vector = numopt::newtonStep(Eigen::VectorXd::Zero(dim), gradient_function, hessian_function);  // with only the free parameters
+        Eigen::VectorXd kappa_vector = GQCP::newtonStep(Eigen::VectorXd::Zero(dim), gradient_function, hessian_function);  // with only the free parameters
 
 
         // If the calculated norm is zero, we have reached a critical point
@@ -191,7 +193,7 @@ void ERNewtonLocalizer::localize(GQCP::HamiltonianParameters& ham_par) {
         // Change kappa from the occupied-occupied vector to the full matrix
 
         // The current kappa vector corresponds to the occupied-occupied rotation: the full kappa matrix contains o-o, o-v and v-v blocks
-        Eigen::MatrixXd kappa_matrix_occupied = cpputil::linalg::fillStrictLowerTriangle(kappa_vector);  // containing all parameters, so this is in anti-Hermitian (anti-symmetric) form
+        Eigen::MatrixXd kappa_matrix_occupied = GQCP::fillStrictLowerTriangle(kappa_vector);  // containing all parameters, so this is in anti-Hermitian (anti-symmetric) form
         Eigen::MatrixXd kappa_matrix_transpose_occupied = kappa_matrix_occupied.transpose();  // store the transpose in an auxiliary variable to avoid aliasing issues
         kappa_matrix_occupied -= kappa_matrix_transpose_occupied;  // fillStrictLowerTriangle only returns the lower triangle, so we must construct the anti-Hermitian (anti-symmetric) matrix
 

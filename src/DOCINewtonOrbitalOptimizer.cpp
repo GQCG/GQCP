@@ -17,11 +17,14 @@
 // 
 #include "DOCINewtonOrbitalOptimizer.hpp"
 
-#include <cpputil.hpp>
 #include <unsupported/Eigen/MatrixFunctions>
 
 #include "CISolver/CISolver.hpp"
 #include "RDM/RDMCalculator.hpp"
+
+#include "utilities/linalg.hpp"
+#include "optimization/step.hpp"
+#include "optimization/EigenproblemSolverOptions.hpp"
 
 
 namespace GQCP {
@@ -43,7 +46,7 @@ DOCINewtonOrbitalOptimizer::DOCINewtonOrbitalOptimizer(const GQCP::DOCI& doci, c
 /*
  *  GETTERS
  */
-const std::vector<numopt::eigenproblem::Eigenpair>& DOCINewtonOrbitalOptimizer::get_eigenpairs() const {
+const std::vector<Eigenpair>& DOCINewtonOrbitalOptimizer::get_eigenpairs() const {
     if (this->is_converged) {
         return this->eigenpairs;
     } else {
@@ -51,7 +54,7 @@ const std::vector<numopt::eigenproblem::Eigenpair>& DOCINewtonOrbitalOptimizer::
     }
 }
 
-const numopt::eigenproblem::Eigenpair& DOCINewtonOrbitalOptimizer::get_eigenpair(size_t index) const {
+const Eigenpair& DOCINewtonOrbitalOptimizer::get_eigenpair(size_t index) const {
     if (this->is_converged) {
         return this->eigenpairs[index];
     } else {
@@ -70,7 +73,7 @@ const numopt::eigenproblem::Eigenpair& DOCINewtonOrbitalOptimizer::get_eigenpair
  *  @param solver_options       solver options for the CI solver
  *  @param oo_options           options for the orbital optimization
  */
-void DOCINewtonOrbitalOptimizer::solve(numopt::eigenproblem::BaseSolverOptions& solver_options, const GQCP::OrbitalOptimizationOptions& oo_options) {
+void DOCINewtonOrbitalOptimizer::solve(BaseSolverOptions& solver_options, const GQCP::OrbitalOptimizationOptions& oo_options) {
     this->is_converged = false;
     auto K = this->ham_par.get_K();
 
@@ -91,7 +94,7 @@ void DOCINewtonOrbitalOptimizer::solve(numopt::eigenproblem::BaseSolverOptions& 
         // Calculate the electronic gradient at kappa = 0
         Eigen::MatrixXd F = this->ham_par.calculateGeneralizedFockMatrix(D, d).get_matrix_representation();
         Eigen::MatrixXd gradient_matrix = 2 * (F - F.transpose());
-        Eigen::VectorXd gradient_vector = cpputil::linalg::strictLowerTriangle(gradient_matrix);  // gradient vector with the free parameters, at kappa = 0
+        Eigen::VectorXd gradient_vector = GQCP::strictLowerTriangle(gradient_matrix);  // gradient vector with the free parameters, at kappa = 0
 
 
         // Calculate the electronic Hessian at kappa = 0
@@ -108,16 +111,16 @@ void DOCINewtonOrbitalOptimizer::solve(numopt::eigenproblem::BaseSolverOptions& 
                 }
             }
         }
-        Eigen::MatrixXd hessian_matrix = cpputil::linalg::strictLowerTriangle(hessian_tensor);  // hessian matrix with only the free parameters, at kappa = 0
+        Eigen::MatrixXd hessian_matrix = GQCP::strictLowerTriangle(hessian_tensor);  // hessian matrix with only the free parameters, at kappa = 0
 
         Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> hessian_solver (hessian_matrix);
 
 
         // Perform a Newton-step to find orbital rotation parameters kappa
-        numopt::VectorFunction gradient_function = [gradient_vector](const Eigen::VectorXd& x) { return gradient_vector; };
-        numopt::MatrixFunction hessian_function = [hessian_matrix](const Eigen::VectorXd& x) { return hessian_matrix; };
+        VectorFunction gradient_function = [gradient_vector](const Eigen::VectorXd& x) { return gradient_vector; };
+        MatrixFunction hessian_function = [hessian_matrix](const Eigen::VectorXd& x) { return hessian_matrix; };
 
-        Eigen::VectorXd kappa_vector = numopt::newtonStep(Eigen::VectorXd::Zero(K), gradient_function, hessian_function);  // with only the free parameters
+        Eigen::VectorXd kappa_vector = GQCP::newtonStep(Eigen::VectorXd::Zero(K), gradient_function, hessian_function);  // with only the free parameters
 
 
         // If the calculated norm is zero, we have reached a critical point
@@ -147,7 +150,7 @@ void DOCINewtonOrbitalOptimizer::solve(numopt::eigenproblem::BaseSolverOptions& 
 
 
         // Change kappa back to a matrix
-        Eigen::MatrixXd kappa_matrix = cpputil::linalg::fillStrictLowerTriangle(kappa_vector);  // containing all parameters, so this is in anti-Hermitian (anti-symmetric) form
+        Eigen::MatrixXd kappa_matrix = GQCP::fillStrictLowerTriangle(kappa_vector);  // containing all parameters, so this is in anti-Hermitian (anti-symmetric) form
         Eigen::MatrixXd kappa_matrix_transpose = kappa_matrix.transpose();  // store the transpose in an auxiliary variable to avoid aliasing issues
         kappa_matrix -= kappa_matrix_transpose;  // fillStrictLowerTriangle only returns the lower triangle, so we must construct the anti-Hermitian (anti-symmetric) matrix
 
@@ -161,8 +164,8 @@ void DOCINewtonOrbitalOptimizer::solve(numopt::eigenproblem::BaseSolverOptions& 
 
 
         // If we're using a Davidson solver, we should update the initial guesses in the solver_options to be the current eigenvectors
-        if (solver_options.get_solver_type() == numopt::eigenproblem::SolverType::DAVIDSON) {
-            auto davidson_solver_options = dynamic_cast<numopt::eigenproblem::DavidsonSolverOptions&>(solver_options);
+        if (solver_options.get_solver_type() == SolverType::DAVIDSON) {
+            auto davidson_solver_options = dynamic_cast<DavidsonSolverOptions&>(solver_options);
 
             for (size_t i = 0; i < solver_options.number_of_requested_eigenpairs; i++) {
                 davidson_solver_options.X_0.col(i) = doci_solver.get_wavefunction(i).get_coefficients();

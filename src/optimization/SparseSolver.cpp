@@ -17,13 +17,12 @@
 // 
 #include "SparseSolver.hpp"
 
-#include <Spectra/SymEigsSolver.h>
-#include <Spectra/MatOp/SparseSymMatProd.h>
+#include "Spectra/SymEigsSolver.h"
+#include "Spectra/MatOp/SparseSymMatProd.h"
 
 
 
-namespace numopt {
-namespace eigenproblem {
+namespace GQCP {
 
 
 /*
@@ -102,5 +101,4 @@ void SparseSolver::addToMatrix(double value, size_t index1, size_t index2) {
 }
 
 
-}  // namespace eigenproblem
-}  // namespace numopt
+}  // namespace GQCP

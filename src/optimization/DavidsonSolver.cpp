@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "DavidsonSolver.hpp"
+#include "optimization/DavidsonSolver.hpp"
 #include <iostream>
 
 
@@ -24,8 +24,7 @@
 
 
 
-namespace numopt {
-namespace eigenproblem {
+namespace GQCP {
 
 
 /*
@@ -37,7 +36,7 @@ namespace eigenproblem {
  *  @param diagonal                     the diagonal of the matrix
  *  @param davidson_solver_options      the options specified for solving the Davidson eigenvalue problem
  */
-DavidsonSolver::DavidsonSolver(const numopt::VectorFunction& matrixVectorProduct, const Eigen::VectorXd& diagonal,
+DavidsonSolver::DavidsonSolver(const VectorFunction& matrixVectorProduct, const Eigen::VectorXd& diagonal,
                                const DavidsonSolverOptions& davidson_solver_options) :
    DavidsonSolver (matrixVectorProduct, diagonal, davidson_solver_options.X_0, davidson_solver_options.number_of_requested_eigenpairs,
                    davidson_solver_options.residue_tolerance, davidson_solver_options.correction_threshold,
@@ -65,7 +64,7 @@ DavidsonSolver::DavidsonSolver(const Eigen::MatrixXd& A, const DavidsonSolverOpt
  *  @param maximum_subspace_dimension           the maximum dimension of the Davidson subspace before collapsing
  *  @param collapsed_subspace_dimension         the dimension of the subspace after collapse
  */
-DavidsonSolver::DavidsonSolver(const numopt::VectorFunction& matrixVectorProduct, const Eigen::VectorXd& diagonal,
+DavidsonSolver::DavidsonSolver(const VectorFunction& matrixVectorProduct, const Eigen::VectorXd& diagonal,
                                const Eigen::MatrixXd& V_0, size_t number_of_requested_eigenpairs,
                                double residue_tolerance, double correction_threshold,
                                size_t maximum_subspace_dimension, size_t collapsed_subspace_dimension) :
@@ -193,7 +192,7 @@ void DavidsonSolver::solve() {
                 double eigenvalue = Lambda(i);
                 Eigen::VectorXd eigenvector = X.col(i);
 
-                this->eigenpairs[i] = numopt::eigenproblem::Eigenpair(eigenvalue, eigenvector);
+                this->eigenpairs[i] = Eigenpair(eigenvalue, eigenvector);
             }
 	
 	    break;  // because we don't want the flow to continue to after the if-statement
@@ -260,5 +259,4 @@ void DavidsonSolver::solve() {
 }
 
 
-}  // namespace eigenproblem
-}  // namespace numopt
+}  // namespace GQCP

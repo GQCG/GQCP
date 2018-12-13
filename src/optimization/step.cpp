@@ -15,10 +15,10 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "step.hpp"
+#include "optimization/step.hpp"
 
 
-namespace numopt {
+namespace GQCP {
 
 
 /**
@@ -40,4 +40,4 @@ Eigen::VectorXd newtonStep(const Eigen::VectorXd& x, const VectorFunction& f, co
 }
 
 
-}  // namespace numopt
+}  // namespace GQCP

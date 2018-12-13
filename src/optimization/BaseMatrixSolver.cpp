@@ -15,12 +15,11 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "BaseMatrixSolver.hpp"
+#include "optimization/BaseMatrixSolver.hpp"
 
 
 
-namespace numopt {
-namespace eigenproblem {
+namespace GQCP {
 
 
 
@@ -35,5 +34,4 @@ BaseMatrixSolver::BaseMatrixSolver(size_t dim, size_t number_of_requested_eigenp
 
 
 
-}  // namespace eigenproblem
-}  // namespace numopt
+}  // namespace GQCP
