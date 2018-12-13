@@ -47,7 +47,7 @@ BOOST_AUTO_TEST_CASE ( H2O_1RDM_spin_trace_FCI ) {
     // Specify solver options and solve the eigenvalue problem
     // Solve the dense FCI eigenvalue problem
     GQCP::CISolver ci_solver (fci, ham_par);
-    numopt::eigenproblem::DenseSolverOptions solver_options;
+    GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
     Eigen::VectorXd coef = ci_solver.get_eigenpair().get_eigenvector();
@@ -81,7 +81,7 @@ BOOST_AUTO_TEST_CASE ( H2O_2RDM_spin_trace_FCI ) {
     // Specify solver options and solve the eigenvalue problem
     // Solve the dense FCI eigenvalue problem
     GQCP::CISolver ci_solver (fci, ham_par);
-    numopt::eigenproblem::DenseSolverOptions solver_options;
+    GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
     Eigen::VectorXd coef = ci_solver.get_eigenpair().get_eigenvector();
@@ -117,7 +117,7 @@ BOOST_AUTO_TEST_CASE ( H2O_1RDM_2RDM_trace_FCI ) {
     // Specify solver options and solve the eigenvalue problem
     // Solve the dense FCI eigenvalue problem
     GQCP::CISolver ci_solver (fci, ham_par);
-    numopt::eigenproblem::DenseSolverOptions solver_options;
+    GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
     Eigen::VectorXd coef = ci_solver.get_eigenpair().get_eigenvector();
@@ -151,7 +151,7 @@ BOOST_AUTO_TEST_CASE ( H2O_energy_RDM_contraction_FCI ) {
     // Specify solver options and solve the eigenvalue problem
     // Solve the dense FCI eigenvalue problem
     GQCP::CISolver ci_solver (fci, ham_par);
-    numopt::eigenproblem::DenseSolverOptions solver_options;
+    GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
     Eigen::VectorXd coef = ci_solver.get_eigenpair().get_eigenvector();

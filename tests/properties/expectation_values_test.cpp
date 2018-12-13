@@ -104,10 +104,10 @@ BOOST_AUTO_TEST_CASE ( mulliken_N2_STO_3G ) {
 
     GQCP::CISolver ci_solver (doci, ham_par);
 
-    numopt::eigenproblem::DenseSolverOptions solver_options;
+    GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
-    numopt::eigenproblem::Eigenpair eigen_pair = ci_solver.get_eigenpair(0);
+    GQCP::Eigenpair eigen_pair = ci_solver.get_eigenpair(0);
 
     GQCP::RDMCalculator rdm_calculator (fock_space);
 

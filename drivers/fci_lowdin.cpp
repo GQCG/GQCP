@@ -65,7 +65,7 @@ int main (int argc, char** argv) {
     GQCP::ProductFockSpace fock_space (K, N_alpha, N_beta);
     GQCP::FCI fci (fock_space);
     GQCP::CISolver ci_solver (fci, mol_ham_par);
-    numopt::eigenproblem::DenseSolverOptions dense_solver_options;
+    GQCP::DenseSolverOptions dense_solver_options;
     ci_solver.solve(dense_solver_options);
 
     auto fci_energy = ci_solver.get_eigenpair().get_eigenvalue();

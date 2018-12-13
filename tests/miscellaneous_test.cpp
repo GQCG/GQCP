@@ -18,7 +18,7 @@
 #define BOOST_TEST_MODULE "miscellaneous"
 
 
-#include "miscellaneous.hpp"
+#include "utilities/miscellaneous.hpp"
 
 #include <boost/math/constants/constants.hpp>
 

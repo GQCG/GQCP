@@ -67,9 +67,6 @@ void NewtonMinimizer::solve() {
         H.transposeInPlace();
         return H;
     };
-    // We have defined an elaborate lambda function, because
-    // numopt::JacobianFunction H_t = [this](const Eigen::VectorXd& x) { return this->H(x).transpose(); }
-    // produces an error
 
 
     // For previously established reasons, we can use the NewtonSystemOfEquationsSolver as an implementation of this

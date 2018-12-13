@@ -45,7 +45,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_beh_cation_klaas_dense ) {
 
     // Solve the dense DOCI eigenvalue problem
     GQCP::CISolver ci_solver (doci, ham_par);
-    numopt::eigenproblem::DenseSolverOptions solver_options;
+    GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
     // Retrieve the eigenvalues
@@ -76,7 +76,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_lih_klaas_dense ) {
 
     // Solve the dense DOCI eigenvalue problem
     GQCP::CISolver ci_solver (doci, ham_par);
-    numopt::eigenproblem::DenseSolverOptions solver_options;
+    GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
     // Retrieve the eigenvalues
@@ -107,7 +107,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_li2_klaas_dense ) {
 
     // Solve the dense DOCI eigenvalue problem
     GQCP::CISolver ci_solver (doci, ham_par);
-    numopt::eigenproblem::DenseSolverOptions solver_options;
+    GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
     // Retrieve the eigenvalues

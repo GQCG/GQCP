@@ -21,7 +21,7 @@
 #include "Operator/OneElectronOperator.hpp"
 
 #include "JacobiRotationParameters.hpp"
-#include "miscellaneous.hpp"
+#include "utilities/miscellaneous.hpp"
 
 #include <boost/test/unit_test.hpp>
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain

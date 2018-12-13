@@ -93,14 +93,14 @@ int main (int argc, char** argv) {
     GQCP::ProductFockSpace fock_space (K, N_alpha, N_beta);
     GQCP::Hubbard hubbard (fock_space);
     GQCP::CISolver solver (hubbard, ham_par);
-    numopt::eigenproblem::DenseSolverOptions dense_solver_options;
+    GQCP::DenseSolverOptions dense_solver_options;
     dense_solver_options.number_of_requested_eigenpairs = N_eigenvalues;
     solver.solve(dense_solver_options);
 
 
     // Print the energy to the console
     std::cout << std::setprecision(15);
-    for (const numopt::eigenproblem::Eigenpair& eigenpair : solver.get_eigenpairs()) {
+    for (const GQCP::Eigenpair& eigenpair : solver.get_eigenpairs()) {
         std::cout << eigenpair.get_eigenvalue() << std::endl;
     }
 }

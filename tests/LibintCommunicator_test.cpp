@@ -20,7 +20,8 @@
 
 #include "LibintCommunicator.hpp"
 
-#include <cpputil.hpp>
+#include "utilities/io.hpp"
+#include "utilities/linalg.hpp"
 
 #include <boost/test/unit_test.hpp>
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
@@ -141,15 +142,15 @@ BOOST_AUTO_TEST_CASE( HORTON_integrals_h2o_sto3g ) {
     Eigen::MatrixXd ref_V (nbf, nbf);
     Eigen::Tensor<double, 4> ref_g (nbf, nbf, nbf, nbf);
 
-    cpputil::io::readArrayFromFile("../tests/data/h2o_sto-3g_overlap_horton.data", ref_S);
-    cpputil::io::readArrayFromFile("../tests/data/h2o_sto-3g_kinetic_horton.data", ref_T);
-    cpputil::io::readArrayFromFile("../tests/data/h2o_sto-3g_nuclear_horton.data", ref_V);
-    cpputil::io::readArrayFromFile("../tests/data/h2o_sto-3g_coulomb_horton.data", ref_g);
+    GQCP::readArrayFromFile("../tests/data/h2o_sto-3g_overlap_horton.data", ref_S);
+    GQCP::readArrayFromFile("../tests/data/h2o_sto-3g_kinetic_horton.data", ref_T);
+    GQCP::readArrayFromFile("../tests/data/h2o_sto-3g_nuclear_horton.data", ref_V);
+    GQCP::readArrayFromFile("../tests/data/h2o_sto-3g_coulomb_horton.data", ref_g);
 
 
     // Check if the calculated integrals are equal to those of HORTON
     BOOST_CHECK(S.get_matrix_representation().isApprox(ref_S, 1.0e-08));
     BOOST_CHECK(T.get_matrix_representation().isApprox(ref_T, 1.0e-08));
     BOOST_CHECK(V.get_matrix_representation().isApprox(ref_V, 1.0e-08));
-    BOOST_CHECK(cpputil::linalg::areEqual(g.get_matrix_representation(), ref_g, 1.0e-06));
+    BOOST_CHECK(GQCP::areEqual(g.get_matrix_representation(), ref_g, 1.0e-06));
 }

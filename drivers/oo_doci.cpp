@@ -116,10 +116,10 @@ int main (int argc, char** argv) {
     GQCP::DOCINewtonOrbitalOptimizer orbital_optimizer (doci, mol_ham_par);
 
     if (user_wants_davidson) {
-        numopt::eigenproblem::DavidsonSolverOptions solver_options (fock_space.HartreeFockExpansion());
+        GQCP::DavidsonSolverOptions solver_options (fock_space.HartreeFockExpansion());
         orbital_optimizer.solve(solver_options);
     } else {
-        numopt::eigenproblem::DenseSolverOptions solver_options;
+        GQCP::DenseSolverOptions solver_options;
         orbital_optimizer.solve(solver_options);
     }
     output_file << "Total transformation matrix to the OO-DOCI orbitals: " << std::endl << mol_ham_par.get_C() << std::endl << std::endl;

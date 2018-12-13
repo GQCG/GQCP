@@ -20,9 +20,10 @@
 
 #include "Operator/TwoElectronOperator.hpp"
 
-#include <cpputil.hpp>
+#include "utilities/io.hpp"
+#include "utilities/linalg.hpp"
 
-#include "miscellaneous.hpp"
+#include "utilities/miscellaneous.hpp"
 
 #include <boost/test/unit_test.hpp>
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
@@ -76,7 +77,7 @@ BOOST_AUTO_TEST_CASE ( TwoElectronOperator_transform_trivial ) {
     Eigen::MatrixXd T = Eigen::MatrixXd::Identity(3, 3);
     G.transform(T);
 
-    BOOST_CHECK(cpputil::linalg::areEqual(g, G.get_matrix_representation(), 1.0e-12));
+    BOOST_CHECK(GQCP::areEqual(g, G.get_matrix_representation(), 1.0e-12));
 }
 
 
@@ -84,7 +85,7 @@ BOOST_AUTO_TEST_CASE ( TwoElectronOperator_transform_olsens ) {
 
     // We can find a reference algorithm in the olsens module from Ayer's lab
     Eigen::Tensor<double, 4> g_transformed_ref (2, 2, 2, 2);
-    cpputil::io::readArrayFromFile("../tests/data/rotated_two_electron_integrals_olsens.data", g_transformed_ref);
+    GQCP::readArrayFromFile("../tests/data/rotated_two_electron_integrals_olsens.data", g_transformed_ref);
 
     // Set an example transformation matrix and two-electron integrals tensor
     Eigen::MatrixXd T (2, 2);
@@ -103,7 +104,7 @@ BOOST_AUTO_TEST_CASE ( TwoElectronOperator_transform_olsens ) {
     GQCP::TwoElectronOperator G (g);
     G.transform(T);
 
-    BOOST_CHECK(cpputil::linalg::areEqual(G.get_matrix_representation(), g_transformed_ref, 1.0e-12));
+    BOOST_CHECK(GQCP::areEqual(G.get_matrix_representation(), g_transformed_ref, 1.0e-12));
 }
 
 
@@ -147,5 +148,5 @@ BOOST_AUTO_TEST_CASE ( TwoElectronOperator_rotate_JacobiRotationParameters ) {
     G2.rotate(U);
 
 
-    BOOST_CHECK(cpputil::linalg::areEqual(G1.get_matrix_representation(), G2.get_matrix_representation(), 1.0e-12));
+    BOOST_CHECK(GQCP::areEqual(G1.get_matrix_representation(), G2.get_matrix_representation(), 1.0e-12));
 }

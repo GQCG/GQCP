@@ -54,14 +54,14 @@ BOOST_AUTO_TEST_CASE ( FCI_h2_sto3g_dense_vs_Davidson ) {
 
     // Solve Davidson
     Eigen::VectorXd initial_g = fock_space.HartreeFockExpansion();
-    numopt::eigenproblem::DavidsonSolverOptions davidson_solver_options (initial_g);
+    GQCP::DavidsonSolverOptions davidson_solver_options (initial_g);
     ci_solver.solve(davidson_solver_options);
 
     // Retrieve the eigenvalues
     auto fci_davidson_eigenvalue = ci_solver.get_eigenpair().get_eigenvalue();
 
     // Solve Dense
-    numopt::eigenproblem::DenseSolverOptions dense_solver_options;
+    GQCP::DenseSolverOptions dense_solver_options;
     ci_solver.solve(dense_solver_options);
 
     // Retrieve the eigenvalues
@@ -96,14 +96,14 @@ BOOST_AUTO_TEST_CASE ( FCI_H2_6_31Gxx_dense_vs_Davidson ) {
 
     // Solve Davidson
     Eigen::VectorXd initial_g = fock_space.HartreeFockExpansion();
-    numopt::eigenproblem::DavidsonSolverOptions davidson_solver_options (initial_g);
+    GQCP::DavidsonSolverOptions davidson_solver_options (initial_g);
     ci_solver.solve(davidson_solver_options);
 
     // Retrieve the eigenvalues
     auto fci_davidson_eigenvalue = ci_solver.get_eigenpair().get_eigenvalue();
 
     // Solve Dense
-    numopt::eigenproblem::DenseSolverOptions dense_solver_options;
+    GQCP::DenseSolverOptions dense_solver_options;
     ci_solver.solve(dense_solver_options);
 
     // Retrieve the eigenvalues
@@ -138,14 +138,14 @@ BOOST_AUTO_TEST_CASE ( FCI_H2O_STO_3G_dense_vs_Davidson ) {
 
     // Solve Davidson
     Eigen::VectorXd initial_g = fock_space.HartreeFockExpansion();
-    numopt::eigenproblem::DavidsonSolverOptions davidson_solver_options (initial_g);
+    GQCP::DavidsonSolverOptions davidson_solver_options (initial_g);
     ci_solver.solve(davidson_solver_options);
 
     // Retrieve the eigenvalues
     auto fci_davidson_eigenvalue = ci_solver.get_eigenpair().get_eigenvalue();
 
     // Solve Dense
-    numopt::eigenproblem::DenseSolverOptions dense_solver_options;
+    GQCP::DenseSolverOptions dense_solver_options;
     ci_solver.solve(dense_solver_options);
 
     // Retrieve the eigenvalues

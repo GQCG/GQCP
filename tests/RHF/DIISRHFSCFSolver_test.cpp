@@ -20,7 +20,7 @@
 #include "RHF/DIISRHFSCFSolver.hpp"
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 
-#include <cpputil.hpp>
+#include "utilities/linalg.hpp"
 
 #include <boost/test/unit_test.hpp>
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
@@ -95,8 +95,8 @@ BOOST_AUTO_TEST_CASE ( h2o_sto3g_horton_DIIS ) {
 
     // Check the calculated results with the reference
     BOOST_CHECK(std::abs(total_energy - ref_total_energy) < 1.0e-06);
-    BOOST_CHECK(cpputil::linalg::areEqualEigenvalues(ref_orbital_energies, rhf.get_orbital_energies(), 1.0e-06));
-    BOOST_CHECK(cpputil::linalg::areEqualSetsOfEigenvectors(ref_C, rhf.get_C(), 1.0e-05));
+    BOOST_CHECK(GQCP::areEqualEigenvalues(ref_orbital_energies, rhf.get_orbital_energies(), 1.0e-06));
+    BOOST_CHECK(GQCP::areEqualSetsOfEigenvectors(ref_C, rhf.get_C(), 1.0e-05));
 }
 
 

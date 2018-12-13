@@ -10,8 +10,6 @@ The Ghent Quantum Chemistry Package is a C++ library for electronic structure ca
 [![Eigen3 Dependency](https://img.shields.io/badge/Eigen-3.3.4+-000000.svg)](http://eigen.tuxfamily.org/index.php?title=Main_Page)
 [![libint2 Dependency](https://img.shields.io/badge/libint-2.3.1+-000000.svg)](https://github.com/evaleev/libint)
 
-[![cpputil Dependency](https://img.shields.io/badge/cpputil-1.5.1+-blue.svg)](https://github.com/GQCG/cpputil)
-[![numopt Dependency](https://img.shields.io/badge/numopt-1.5.1+-blue.svg)](https://github.com/GQCG/numopt)
 
 As gqcp uses the bassisets packaged with libint, please set the `LIBINT_DATA_PATH` environment variable to the folder that contains these bases. In a default installation (of e.g. version v2.3.1), the data path is given by:
 
