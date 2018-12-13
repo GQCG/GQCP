@@ -80,10 +80,10 @@ int main (int argc, char** argv) {
     }
 
     triagonal = Eigen::Map<Eigen::VectorXd>(triagonal_data.data(), triagonal_data.size());
-
+    GQCP::HoppingMatrix H (triagonal);
 
     // Actual calculations
-    auto ham_par = GQCP::HamiltonianParameters::Hubbard(triagonal);
+    auto ham_par = GQCP::HamiltonianParameters::Hubbard(H);
     if (ham_par.get_K() != K) {
         throw std::invalid_argument("The given number of sites does not match the triagonal");
     }

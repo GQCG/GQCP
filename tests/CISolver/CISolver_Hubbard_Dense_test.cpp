@@ -33,29 +33,29 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_dense ) {
 
     // Check if FCI and Hubbard produce the same results for Hubbard Hamiltonian parameters
 
-    // Create the Hamiltonian parameters for the triagonal of a Hubbard lattice.
-    Eigen::VectorXd triagonal_test = Eigen::VectorXd::Random(10);
+    // Create the Hamiltonian parameters for a random Hubbard hopping matrix
+    size_t K = 4;
+    auto H = GQCP::HoppingMatrix::Random(K);
+    auto mol_ham_par = GQCP::HamiltonianParameters::Hubbard(H);
 
+
+    // Create the Hubbard and FCI modules
     size_t N = 2;
-    auto mol_ham_par = GQCP::HamiltonianParameters::Hubbard(triagonal_test);
-    auto K = mol_ham_par.get_K();
-
-
     GQCP::ProductFockSpace fock_space (K, N, N);  // dim = 36
-
-    // Create the Hubbard module
     GQCP::Hubbard hubbard (fock_space);
     GQCP::FCI fci (fock_space);
 
-    GQCP::CISolver solver1 (hubbard, mol_ham_par);
-    GQCP::CISolver solver2 (fci, mol_ham_par);
+
+    // Solve via dense
+    GQCP::CISolver hubbard_solver (hubbard, mol_ham_par);
+    GQCP::CISolver fci_solver (fci, mol_ham_par);
 
     numopt::eigenproblem::DenseSolverOptions dense_solver_options;
-    solver1.solve(dense_solver_options);
-    solver2.solve(dense_solver_options);
+    hubbard_solver.solve(dense_solver_options);
+    fci_solver.solve(dense_solver_options);
 
-    auto fci_energy = solver2.get_eigenpair().get_eigenvalue();
-    auto hubbard_energy = solver1.get_eigenpair().get_eigenvalue();
+    auto fci_energy = fci_solver.get_eigenpair().get_eigenvalue();
+    auto hubbard_energy = hubbard_solver.get_eigenpair().get_eigenvalue();
 
     BOOST_CHECK(std::abs(fci_energy - (hubbard_energy)) < 1.0e-06);
 }
@@ -65,17 +65,15 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_dense_large ) {
 
     // Check if FCI and Hubbard produce the same results for Hubbard Hamiltonian parameters
 
-    // Create the Hamiltonian parameters for the triagonal of a Hubbard lattice.
-    Eigen::VectorXd triagonal_test = Eigen::VectorXd::Random(21);
+    // Create the Hamiltonian parameters for a random Hubbard hopping matrix
+    size_t K = 6;
+    auto H = GQCP::HoppingMatrix::Random(K);
+    auto mol_ham_par = GQCP::HamiltonianParameters::Hubbard(H);
 
+
+    // Create the Hubbard and FCI modules
     size_t N = 3;
-    auto mol_ham_par = GQCP::HamiltonianParameters::Hubbard(triagonal_test);
-    auto K = mol_ham_par.get_K();
-
-
-    GQCP::ProductFockSpace fock_space (K, N, N);  // dim = 400
-
-    // Create the Hubbard module
+    GQCP::ProductFockSpace fock_space (K, N, N);  // dim = 36
     GQCP::Hubbard hubbard (fock_space);
     GQCP::FCI fci (fock_space);
 
@@ -95,49 +93,47 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_dense_large ) {
 
 BOOST_AUTO_TEST_CASE ( four_site_chain_ward ) {
 
+    // Create the adjacency matrix for a four-site chain
     size_t K = 4;
-
-    // Create the adjacency matrix
-    Eigen::MatrixXd A (K, K);
+    size_t N = 2;  // = N_alpha = N_beta: half-filling
+    Eigen::MatrixXd A = Eigen::MatrixXd::Zero(K, K);
     A << 0, 1, 0, 0,
          1, 0, 1, 0,
          0, 1, 0, 1,
          0, 0, 1, 0;
 
+    // Set Ward's results (https://github.com/wpoely86/Hubbard-GPU) from ground state energies
     double t = 1.0;
     std::vector<double> U_list {0.0, 1.0, 1.5, 3.5, 6.5, 9, 10};
-    size_t N = 2;
-
-    // Set Ward's results
     std::vector<double> E_list {-4.472135955, -3.57536562, -3.202271824, -2.135871608, -1.338959715, -1.004379799, -0.9114974686};
-
-    // Specify a tolerance
     double tol = 1.0e-08;
 
-    GQCP::ProductFockSpace fock_space (K, N, N);
 
-    // For every U-value, create the Hubbard instance, solve it, and check the energy with Ward's results (https://github.com/wpoely86/Hubbard-GPU)
+    GQCP::ProductFockSpace fock_space (K, N, N);
     for (size_t i = 0; i < 7; i++) {
 
+        // Create the Hamiltonian parameters for the Hubbard model
+        GQCP::HoppingMatrix H (A, t, U_list[i]);
+        auto ham_par = GQCP::HamiltonianParameters::Hubbard(H);
+
+
+        // Solve the dense eigenvalue problem
         GQCP::Hubbard hubbard (fock_space);
-        Eigen::VectorXd triagonal = GQCP::generateUpperTriagonal(A, t, U_list[i]);
-        auto ham_par = GQCP::HamiltonianParameters::Hubbard(triagonal);
-
-        GQCP::CISolver solver1 (hubbard, ham_par);
+        GQCP::CISolver solver (hubbard, ham_par);
         numopt::eigenproblem::DenseSolverOptions dense_solver_options;
-        solver1.solve(dense_solver_options);
+        solver.solve(dense_solver_options);
 
-        BOOST_CHECK(std::abs(solver1.get_eigenpair().get_eigenvalue() - E_list[i]) < tol);
+        BOOST_CHECK(std::abs(solver.get_eigenpair().get_eigenvalue() - E_list[i]) < tol);
     }
 }
 
 
 BOOST_AUTO_TEST_CASE ( six_site_ring_ward ) {
 
+    // Create the adjacency matrix for a six-site ring
     size_t K = 6;
-
-    // Create the adjacency matrix
-    Eigen::MatrixXd A (K, K);
+    size_t N = 3;  // = N_alpha = N_beta: half-filling
+    Eigen::MatrixXd A = Eigen::MatrixXd::Zero(K, K);
     A << 0, 1, 0, 0, 0, 1,
          1, 0, 1, 0, 0, 0,
          0, 1, 0, 1, 0, 0,
@@ -145,33 +141,29 @@ BOOST_AUTO_TEST_CASE ( six_site_ring_ward ) {
          0, 0, 0, 1, 0, 1,
          1, 0, 0, 0, 1, 0;
 
+
+    // Set Ward's results (https://github.com/wpoely86/Hubbard-GPU) from ground state energies
     double t = 1.0;
-
-    // Set the HubbardClass parameters
-    size_t N = 3;
-
     std::vector<double> U_list {0.0, 1.0, 1.5, 3.5, 6.5, 9, 10};
-
-    // Set Ward's results
     std::vector<double> E_list {-8, -6.601158293, -5.978815789, -4.025796251, -2.469458295, -1.836926909, -1.664362733};
-
-    // Specify a tolerance
     double tol = 1.0e-08;
 
-    GQCP::ProductFockSpace fock_space (K, N, N);
 
-    // For every U-value, create the Hubbard instance, solve it, and check the energy with Ward's results (https://github.com/wpoely86/Hubbard-GPU)
+    GQCP::ProductFockSpace fock_space (K, N, N);
     for (size_t i = 0; i < 7; i++) {
 
+        // Create the Hamiltonian parameters for the Hubbard model
+        GQCP::HoppingMatrix H (A, t, U_list[i]);
+        auto ham_par = GQCP::HamiltonianParameters::Hubbard(H);
+
+
+        // Solve the dense eigenvalue problem
         GQCP::Hubbard hubbard (fock_space);
-        Eigen::VectorXd triagonal = GQCP::generateUpperTriagonal(A, t, U_list[i]);
-        auto ham_par = GQCP::HamiltonianParameters::Hubbard(triagonal);
-
-        GQCP::CISolver solver1 (hubbard, ham_par);
+        GQCP::CISolver solver (hubbard, ham_par);
         numopt::eigenproblem::DenseSolverOptions dense_solver_options;
-        solver1.solve(dense_solver_options);
+        solver.solve(dense_solver_options);
 
-        BOOST_CHECK(std::abs(solver1.get_eigenpair().get_eigenvalue() - E_list[i]) < tol);
+        BOOST_CHECK(std::abs(solver.get_eigenpair().get_eigenvalue() - E_list[i]) < tol);
     }
 }
 

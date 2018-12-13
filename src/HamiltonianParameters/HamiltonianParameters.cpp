@@ -324,40 +324,27 @@ HamiltonianParameters HamiltonianParameters::ReadFCIDUMP(const std::string& fcid
 
 
 /**
- *  @param upper_triagonal      an upper triagonal representation of the Hubbard hopping matrix
+ *  @param H      a Hubbard hopping matrix
  *
  *  @return Hubbard Hamiltonian parameters generated from the Hubbard hopping matrix
  */
-HamiltonianParameters HamiltonianParameters::Hubbard(const Eigen::VectorXd& upper_triagonal) {
+HamiltonianParameters HamiltonianParameters::Hubbard(const HoppingMatrix& H) {
 
-    // The dimension of matrix K is related to the length of the triagonal vector :
-    // K (K + 1) = 2*X
-    // K = (sqrt(1+4X) - 1)/2
-
-    size_t X = upper_triagonal.rows();
-    size_t K = (static_cast<size_t>(sqrt(1 + 8*X) - 1))/2;
-
-
-
-    if (K * (K+1) != 2*X) {
-        throw std::invalid_argument("Passed vector was not the triagonal of a square matrix");
-    }
+    size_t K = H.numberOfLatticeSites();
 
     Eigen::MatrixXd h_SO = Eigen::MatrixXd::Zero(K, K);
     Eigen::Tensor<double, 4> g_SO (K, K, K, K);
     g_SO.setZero();
 
-    size_t triagonal_index = 0;
+
     for (size_t i = 0; i < K; i++) {
         for (size_t j = i; j < K; j++) {
-
-            if (i == j){
-                g_SO(i,i,i,i) = upper_triagonal(triagonal_index);
+            if (i == j) {
+                g_SO(i,i,i,i) = H(i,i);
             } else {
-                h_SO (i,j) = upper_triagonal(triagonal_index);
-                h_SO (j,i) = upper_triagonal(triagonal_index);
+                h_SO(i,j) = H(i,j);
+                h_SO(j,i) = H(j,i);
             }
-            triagonal_index++;
         }
     }
 
