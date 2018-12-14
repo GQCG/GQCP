@@ -32,7 +32,7 @@ namespace GQCP {
  */
 class Atom {
 public:
-    size_t atomic_number;
+    const size_t atomic_number;
     Eigen::Vector3d position;  // in bohr
 
     static constexpr double tolerance_for_comparison = 1.0e-08;  // in bohr

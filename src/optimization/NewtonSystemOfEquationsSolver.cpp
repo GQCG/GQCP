@@ -32,14 +32,14 @@ namespace GQCP {
  */
 
 /**
- *  @param x0                           the initial guess
- *  @param f                            a callable vector function
- *  @param J                            the corresponding callable Jacobian
- *  @param convergence_threshold        the threshold used to determine convergence
+ *  @param x0                               the initial guess
+ *  @param f                                a callable vector function
+ *  @param J                                the corresponding callable Jacobian
+ *  @param convergence_threshold            the threshold used to determine convergence
+ *  @param maximum_number_of_iterations     the maximum number of iterations in the algorithm
  */
-NewtonSystemOfEquationsSolver::NewtonSystemOfEquationsSolver(const Eigen::VectorXd& x0, const VectorFunction& f,
-                                                             const MatrixFunction& J, double convergence_threshold) :
-    BaseSystemOfEquationsSolver(x0, convergence_threshold),
+NewtonSystemOfEquationsSolver::NewtonSystemOfEquationsSolver(const Eigen::VectorXd& x0, const VectorFunction& f, const MatrixFunction& J, double convergence_threshold, size_t maximum_number_of_iterations) :
+    BaseSystemOfEquationsSolver(x0, convergence_threshold, maximum_number_of_iterations),
     f (f),
     J (J)
 {}
@@ -60,7 +60,6 @@ NewtonSystemOfEquationsSolver::NewtonSystemOfEquationsSolver(const Eigen::Vector
 void NewtonSystemOfEquationsSolver::solve() {
 
     size_t iteration_counter = 0;
-    this->x = this->x0;  // start the Newton procedure with the initial guess
 
     while (!(this->is_solved)) {
 

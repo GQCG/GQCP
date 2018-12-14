@@ -30,23 +30,23 @@ namespace GQCP {
  */
 
 /**
- *  @param dim                      the dimension of the matrix
- *  @param sparse_solver_options    the options to be used for the sparse eigenproblem algorithm
+ *  @param dim                                  the dimension of the matrix
+ *  @param number_of_requested_eigenpairs       the number of eigenpairs the eigensolver should find
  */
-SparseSolver::SparseSolver(size_t dim, const SparseSolverOptions& sparse_solver_options) :
-    BaseMatrixSolver (dim, sparse_solver_options.number_of_requested_eigenpairs),
+SparseSolver::SparseSolver(size_t dim, size_t number_of_requested_eigenpairs) :
+    BaseMatrixSolver(dim, number_of_requested_eigenpairs),
     matrix (Eigen::SparseMatrix<double> (this->dim, this->dim))  // Eigen::Sparse is always initiated to zeros
 {}
 
 
 /**
- *  @param dim                                  the dimension of the matrix
- *  @param number_of_requested_eigenpairs       the number of eigenpairs the eigensolver should find
+ *  @param dim                      the dimension of the matrix
+ *  @param sparse_solver_options    the options to be used for the sparse eigenproblem algorithm
  */
-SparseSolver::SparseSolver(size_t dim, size_t number_of_requested_eigenpairs) :
-        BaseMatrixSolver(dim, number_of_requested_eigenpairs),
-        matrix (Eigen::SparseMatrix<double> (this->dim, this->dim))  // Eigen::Sparse is always initiated to zeros
+SparseSolver::SparseSolver(size_t dim, const SparseSolverOptions& sparse_solver_options) :
+    SparseSolver(dim, sparse_solver_options.number_of_requested_eigenpairs)
 {}
+
 
 
 /*
@@ -81,7 +81,7 @@ void SparseSolver::solve() {
             double eigenvalue = spectra_sparse_eigensolver.eigenvalues()(i);
             Eigen::VectorXd eigenvector = spectra_sparse_eigensolver.eigenvectors().col(i);
 
-            this->eigenpairs[i] = Eigenpair(eigenvalue, eigenvector);
+            this->eigenpairs.emplace_back(eigenvalue, eigenvector);  // already reserved in the base constructor
         }
     } else {  // if Spectra was not successful
         throw std::runtime_error("Spectra could not solve the sparse eigenvalue problem.");

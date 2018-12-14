@@ -37,7 +37,7 @@ public:
      *  @param dim                                  the dimension of the eigenvalue problem
      *  @param number_of_requested_eigenpairs       the number of eigenpairs the solver should find
      */
-    explicit BaseMatrixSolver(size_t dim, size_t number_of_requested_eigenpairs = 1);
+    BaseMatrixSolver(size_t dim, size_t number_of_requested_eigenpairs = 1);
 
 
     // DESTRUCTOR

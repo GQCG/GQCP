@@ -26,19 +26,22 @@ namespace GQCP {
  *  CONSTRUCTORS
  */
 /**
- *  @param x0                           the initial guess
- *  @param convergence_threshold        the threshold for establishing convergence
+ *  @param x0                               an initial guess
+ *  @param convergence_threshold            the threshold for convergence on the norm of the gradient
+ *  @param maximum_number_of_iterations     the maximum number of iterations in the algorithm
  */
-BaseSystemOfEquationsSolver::BaseSystemOfEquationsSolver(const Eigen::VectorXd& x0, double convergence_threshold) :
-    x0 (x0),
-    convergence_threshold (convergence_threshold)
+BaseSystemOfEquationsSolver::BaseSystemOfEquationsSolver(const Eigen::VectorXd& x0, double convergence_threshold, size_t maximum_number_of_iterations) :
+    x (x0),
+    convergence_threshold (convergence_threshold),
+    maximum_number_of_iterations (maximum_number_of_iterations)
 {}
+
 
 
 /*
  *  GETTERS
  */
-Eigen::VectorXd BaseSystemOfEquationsSolver::get_solution() const {
+const Eigen::VectorXd& BaseSystemOfEquationsSolver::get_solution() const {
     if (!this->is_solved) {
         throw std::logic_error("The solution hasn't been found and you are trying to get it.");
     } else {

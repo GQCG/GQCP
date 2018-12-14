@@ -32,50 +32,26 @@ namespace GQCP {
  */
 
 /**
- *  @param matrixVectorProduct          a vector function that returns the matrix-vector product (i.e. the matrix-vector product representation of the matrix)
- *  @param diagonal                     the diagonal of the matrix
- *  @param davidson_solver_options      the options specified for solving the Davidson eigenvalue problem
- */
-DavidsonSolver::DavidsonSolver(const VectorFunction& matrixVectorProduct, const Eigen::VectorXd& diagonal,
-                               const DavidsonSolverOptions& davidson_solver_options) :
-   DavidsonSolver (matrixVectorProduct, diagonal, davidson_solver_options.X_0, davidson_solver_options.number_of_requested_eigenpairs,
-                   davidson_solver_options.residue_tolerance, davidson_solver_options.correction_threshold,
-                   davidson_solver_options.maximum_subspace_dimension, davidson_solver_options.collapsed_subspace_dimension)
-{}
-
-
-/**
- *  @param A                            the matrix to be diagonalized
- *  @param davidson_solver_options      the options specified for solving the Davidson eigenvalue problem
- */
-DavidsonSolver::DavidsonSolver(const Eigen::MatrixXd& A, const DavidsonSolverOptions& davidson_solver_options) :
-    DavidsonSolver ([A](const Eigen::VectorXd& x) { return A * x; },  // lambda matrix-vector product function created from the given matrix A
-    A.diagonal(), davidson_solver_options)
-{}
-
-
-/**
  *  @param matrixVectorProduct                  a vector function that returns the matrix-vector product (i.e. the matrix-vector product representation of the matrix)
  *  @param diagonal                             the diagonal of the matrix
  *  @param V_0                                  the (set of) initial guess(es) specified as a vector (matrix of column vectors)
  *  @param number_of_requested_eigenpairs       the number of eigenpairs the solver should find
- *  @param residue_tolerance                    the tolerance on the norm of the residual vector
+ *  @param convergence_threshold                the tolerance on the norm of the residual vector
  *  @param correction_threshold                 the threshold used in solving the (approximated) residue correction equation
  *  @param maximum_subspace_dimension           the maximum dimension of the Davidson subspace before collapsing
  *  @param collapsed_subspace_dimension         the dimension of the subspace after collapse
+ *  @param maximum_number_of_iterations         the maximum number of Davidson iterations
  */
-DavidsonSolver::DavidsonSolver(const VectorFunction& matrixVectorProduct, const Eigen::VectorXd& diagonal,
-                               const Eigen::MatrixXd& V_0, size_t number_of_requested_eigenpairs,
-                               double residue_tolerance, double correction_threshold,
-                               size_t maximum_subspace_dimension, size_t collapsed_subspace_dimension) :
-        BaseEigenproblemSolver(static_cast<size_t>(V_0.rows()), number_of_requested_eigenpairs),
-        matrixVectorProduct (matrixVectorProduct),
-        diagonal (diagonal),
-        V_0 (V_0),
-        convergence_threshold (residue_tolerance),
-        correction_threshold (correction_threshold),
-        maximum_subspace_dimension (maximum_subspace_dimension),
-        collapsed_subspace_dimension (collapsed_subspace_dimension)
+DavidsonSolver::DavidsonSolver(const VectorFunction& matrixVectorProduct, const Eigen::VectorXd& diagonal, const Eigen::MatrixXd& V_0, size_t number_of_requested_eigenpairs, double convergence_threshold, double correction_threshold, size_t maximum_subspace_dimension, size_t collapsed_subspace_dimension, size_t maximum_number_of_iterations) :
+    BaseEigenproblemSolver(static_cast<size_t>(V_0.rows()), number_of_requested_eigenpairs),
+    matrixVectorProduct (matrixVectorProduct),
+    diagonal (diagonal),
+    V_0 (V_0),
+    convergence_threshold (convergence_threshold),
+    correction_threshold (correction_threshold),
+    maximum_subspace_dimension (maximum_subspace_dimension),
+    collapsed_subspace_dimension (collapsed_subspace_dimension),
+    maximum_number_of_iterations (maximum_number_of_iterations)
 {
     if (V_0.cols() < this->number_of_requested_eigenpairs) {
         throw std::invalid_argument("You have to specify at least as many initial guesses as number of requested eigenpairs.");
@@ -95,23 +71,44 @@ DavidsonSolver::DavidsonSolver(const VectorFunction& matrixVectorProduct, const 
  *  @param A                                    the matrix to be diagonalized
  *  @param V_0                                  the (set of) initial guess(es) specified as a vector (matrix of column vectors)
  *  @param number_of_requested_eigenpairs       the number of eigenpairs the solver should find
- *  @param residue_tolerance                    the tolerance on the norm of the residual vector
+ *  @param convergence_threshold                    the tolerance on the norm of the residual vector
  *  @param correction_threshold                 the threshold used in solving the (approximated) residue correction equation
  *  @param maximum_subspace_dimension           the maximum dimension of the Davidson subspace before collapsing
  *  @param collapsed_subspace_dimension         the dimension of the subspace after collapse
+ *  @param maximum_number_of_iterations         the maximum number of Davidson iterations
  */
-DavidsonSolver::DavidsonSolver(const Eigen::MatrixXd& A, const Eigen::MatrixXd& V_0, size_t number_of_requested_eigenpairs,
-                               double residue_tolerance, double correction_threshold, size_t maximum_subspace_dimension,
-                               size_t collapsed_subspace_dimension) :
-        DavidsonSolver([A](const Eigen::VectorXd& x) { return A * x; },  // lambda matrix-vector product function created from the given matrix A
-                       A.diagonal(), V_0, number_of_requested_eigenpairs, residue_tolerance, correction_threshold,
-                       maximum_subspace_dimension, collapsed_subspace_dimension)
+DavidsonSolver::DavidsonSolver(const Eigen::MatrixXd& A, const Eigen::MatrixXd& V_0, size_t number_of_requested_eigenpairs, double convergence_threshold, double correction_threshold, size_t maximum_subspace_dimension, size_t collapsed_subspace_dimension, size_t maximum_number_of_iterations) :
+    DavidsonSolver([A](const Eigen::VectorXd& x) { return A * x; },  // lambda matrix-vector product function created from the given matrix A
+                   A.diagonal(), V_0, number_of_requested_eigenpairs, convergence_threshold, correction_threshold, maximum_subspace_dimension, collapsed_subspace_dimension, maximum_number_of_iterations)
 {}
+
+
+/**
+ *  @param matrixVectorProduct          a vector function that returns the matrix-vector product (i.e. the matrix-vector product representation of the matrix)
+ *  @param diagonal                     the diagonal of the matrix
+ *  @param davidson_solver_options      the options specified for solving the Davidson eigenvalue problem
+ */
+DavidsonSolver::DavidsonSolver(const VectorFunction& matrixVectorProduct, const Eigen::VectorXd& diagonal,
+                               const DavidsonSolverOptions& davidson_solver_options) :
+   DavidsonSolver(matrixVectorProduct, diagonal, davidson_solver_options.X_0, davidson_solver_options.number_of_requested_eigenpairs, davidson_solver_options.convergence_threshold, davidson_solver_options.correction_threshold, davidson_solver_options.maximum_subspace_dimension, davidson_solver_options.collapsed_subspace_dimension, davidson_solver_options.maximum_number_of_iterations)
+{}
+
+
+/**
+ *  @param A                            the matrix to be diagonalized
+ *  @param davidson_solver_options      the options specified for solving the Davidson eigenvalue problem
+ */
+DavidsonSolver::DavidsonSolver(const Eigen::MatrixXd& A, const DavidsonSolverOptions& davidson_solver_options) :
+    DavidsonSolver([A](const Eigen::VectorXd& x) { return A * x; },  // lambda matrix-vector product function created from the given matrix A
+                   A.diagonal(), davidson_solver_options)
+{}
+
 
 
 /*
  *  GETTERS
  */
+
 size_t DavidsonSolver::get_number_of_iterations() const {
 
     if (this->_is_solved) {
@@ -120,6 +117,7 @@ size_t DavidsonSolver::get_number_of_iterations() const {
         throw std::invalid_argument("The Davidson hasn't converged (yet) and you are trying to get the number of iterations.");
     }
 }
+
 
 
 /*
@@ -192,7 +190,7 @@ void DavidsonSolver::solve() {
                 double eigenvalue = Lambda(i);
                 Eigen::VectorXd eigenvector = X.col(i);
 
-                this->eigenpairs[i] = Eigenpair(eigenvalue, eigenvector);
+                this->eigenpairs.emplace_back(eigenvalue, eigenvector);  // already reserved in the base constructor
             }
 	
 	    break;  // because we don't want the flow to continue to after the if-statement

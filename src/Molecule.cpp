@@ -41,7 +41,7 @@ namespace GQCP {
  *                           0 -> neutral molecule
  *                          -1 -> anion (one electron more than the neutral molecule)
  */
-Molecule::Molecule(const std::vector<GQCP::Atom>& atoms, int charge) :
+Molecule::Molecule(const std::vector<Atom>& atoms, int charge) :
     atoms (atoms),
     N (this->calculateTotalNucleicCharge() - charge)
 {
@@ -112,7 +112,9 @@ Molecule Molecule::Readxyz(const std::string& xyz_filename, int charge) {
 
 
         // Next lines are the atoms
-        std::vector<GQCP::Atom> atoms;
+        std::vector<Atom> atoms;
+        atoms.reserve(number_of_atoms);
+
         while (std::getline(input_file_stream, line)) {
             std::string symbol;
             double x_angstrom, y_angstrom, z_angstrom;
@@ -121,11 +123,11 @@ Molecule Molecule::Readxyz(const std::string& xyz_filename, int charge) {
             iss >> symbol >> x_angstrom >> y_angstrom >> z_angstrom;
 
             // Convert the (x,y,z)-coordinates that are in Angstrom to Bohr
-            double x_bohr = GQCP::units::angstrom_to_bohr(x_angstrom);
-            double y_bohr = GQCP::units::angstrom_to_bohr(y_angstrom);
-            double z_bohr = GQCP::units::angstrom_to_bohr(z_angstrom);
+            double x_bohr = units::angstrom_to_bohr(x_angstrom);
+            double y_bohr = units::angstrom_to_bohr(y_angstrom);
+            double z_bohr = units::angstrom_to_bohr(z_angstrom);
 
-            atoms.emplace_back(GQCP::elements::elementToAtomicNumber(symbol), x_bohr, y_bohr, z_bohr);
+            atoms.emplace_back(elements::elementToAtomicNumber(symbol), x_bohr, y_bohr, z_bohr);
         }
 
 
@@ -216,9 +218,9 @@ Molecule Molecule::H2Chain(size_t n, double a, double b, int charge) {
  *
  *  @return if this molecule is equal to the other, within the default GQCP::Atom::tolerance_for_comparison for the coordinates of the atoms
  */
-bool Molecule::operator==(const GQCP::Molecule& other) const {
+bool Molecule::operator==(const Molecule& other) const {
 
-    return this->isEqualTo(other, GQCP::Atom::tolerance_for_comparison);
+    return this->isEqualTo(other, Atom::tolerance_for_comparison);
 }
 
 
@@ -230,7 +232,7 @@ bool Molecule::operator==(const GQCP::Molecule& other) const {
  *
  *  @return the updated output stream
  */
-std::ostream& operator<<(std::ostream& os, const GQCP::Molecule& molecule) {
+std::ostream& operator<<(std::ostream& os, const Molecule& molecule) {
 
     for (const auto& atom : molecule.atoms) {
         os << atom;
@@ -251,7 +253,7 @@ std::ostream& operator<<(std::ostream& os, const GQCP::Molecule& molecule) {
  *
  *  @return if this is equal to the other, within the given tolerance
  */
-bool Molecule::isEqualTo(const GQCP::Molecule& other, double tolerance) const {
+bool Molecule::isEqualTo(const Molecule& other, double tolerance) const {
 
     if (this->N != other.get_N()) {
         return false;
@@ -265,8 +267,8 @@ bool Molecule::isEqualTo(const GQCP::Molecule& other, double tolerance) const {
 
 
     // Make lambda expressions for the comparators, since we want to hand over the tolerance argument
-    auto smaller_than_atom = [this, tolerance](const GQCP::Atom& lhs, const GQCP::Atom& rhs) { return lhs.isSmallerThan(rhs, tolerance); };
-    auto equal_atom = [this, tolerance](const GQCP::Atom& lhs, const GQCP::Atom& rhs) { return lhs.isEqualTo(rhs, tolerance); };
+    auto smaller_than_atom = [this, tolerance](const Atom& lhs, const Atom& rhs) { return lhs.isSmallerThan(rhs, tolerance); };
+    auto equal_atom = [this, tolerance](const Atom& lhs, const Atom& rhs) { return lhs.isEqualTo(rhs, tolerance); };
 
 
     std::sort(this_atoms.begin(), this_atoms.end(), smaller_than_atom);

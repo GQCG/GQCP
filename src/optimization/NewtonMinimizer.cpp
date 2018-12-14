@@ -32,17 +32,18 @@ namespace GQCP {
  *  CONSTRUCTORS
  */
 /**
- *  @param x0                           the initial guess
- *  @param grad                         the callable gradient function
- *  @param H                            the callable Hessian function
- *  @param convergence_threshold        the threshold used for establishing convergence
+ *  @param x0                               the initial guess
+ *  @param grad                             the callable gradient function
+ *  @param H                                the callable Hessian function
+ *  @param convergence_threshold            the threshold used for establishing convergence
+ *  @param maximum_number_of_iterations     the maximum number of iterations in the algorithm
  */
-NewtonMinimizer::NewtonMinimizer(const Eigen::VectorXd& x0, const VectorFunction& grad, const MatrixFunction& H,
-                                 double convergence_threshold) :
-    BaseMinimizer(x0, convergence_threshold),
+NewtonMinimizer::NewtonMinimizer(const Eigen::VectorXd& x0, const VectorFunction& grad, const MatrixFunction& H, double convergence_threshold, size_t maximum_number_of_iterations) :
+    BaseMinimizer(x0, convergence_threshold, maximum_number_of_iterations),
     grad (grad),
     H (H)
 {}
+
 
 
 /*
@@ -71,7 +72,7 @@ void NewtonMinimizer::solve() {
 
     // For previously established reasons, we can use the NewtonSystemOfEquationsSolver as an implementation of this
     // minimization problem
-    NewtonSystemOfEquationsSolver newton_syseq_solver (this->x0, this->grad, H_t, this->convergence_threshold);
+    NewtonSystemOfEquationsSolver newton_syseq_solver (this->x, this->grad, H_t, this->convergence_threshold);
     newton_syseq_solver.solve();
 
 
