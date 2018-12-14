@@ -42,7 +42,7 @@ HamiltonianParameters::HamiltonianParameters(std::shared_ptr<AOBasis> ao_basis, 
     S (S),
     h (h),
     g (g),
-    C (C)
+    T_total (C)
 {
     // Check if the dimensions of all matrix representations are compatible
     auto error = std::invalid_argument("The dimensions of the operators and coefficient matrix are incompatible.");
@@ -76,7 +76,7 @@ HamiltonianParameters::HamiltonianParameters(const HamiltonianParameters& ham_pa
     S (ham_par.S),
     h (ham_par.h),
     g (ham_par.g),
-    C (ham_par.C)
+    T_total (ham_par.T_total)
 {
     // We have now initialized the new Hamiltonian parameters to be a copy of the given Hamiltonian parameters, so now we will transform
     this->transform(C);
@@ -385,7 +385,7 @@ void HamiltonianParameters::transform(const Eigen::MatrixXd& T) {
     this->h.transform(T);
     this->g.transform(T);
 
-    this->C = this->C * T;  // use the correct transformation formula for subsequent transformations
+    this->T_total = this->T_total * T;  // use the correct transformation formula for subsequent transformations
 }
 
 
@@ -438,7 +438,7 @@ void HamiltonianParameters::rotate(const JacobiRotationParameters& jacobi_rotati
     // Create a Jacobi rotation matrix to transform the coefficient matrix with
     size_t K = this->h.get_dim();  // number of spatial orbitals
     auto J = jacobiRotationMatrix(jacobi_rotation_parameters, K);
-    this->C = this->C * J;
+    this->T_total = this->T_total * J;
 }
 
 
@@ -573,10 +573,10 @@ OneElectronOperator HamiltonianParameters::calculateMullikenOperator(const Vecto
     }
 
     OneElectronOperator S_AO = this->S;
-    S_AO.transform(C.inverse());
+    S_AO.transform(T_total.inverse());
     Eigen::MatrixXd S_AO_mat = S_AO.get_matrix_representation();
 
-    Eigen::MatrixXd mulliken_matrix = (C.adjoint() * p_a * S_AO_mat * C + C.adjoint() * S_AO_mat * p_a * C)/2 ;
+    Eigen::MatrixXd mulliken_matrix = (T_total.adjoint() * p_a * S_AO_mat * T_total + T_total.adjoint() * S_AO_mat * p_a * T_total)/2 ;
 
     return OneElectronOperator(mulliken_matrix);
 }
@@ -659,7 +659,7 @@ HamiltonianParameters HamiltonianParameters::constrain(const OneElectronOperator
     OneElectronOperator hc (this->get_h().get_matrix_representation() - lambda*one_op.get_matrix_representation());
     TwoElectronOperator gc (this->get_g().get_matrix_representation() - lambda*two_op.get_matrix_representation());
 
-    return HamiltonianParameters(this->ao_basis, this->S, hc, gc, this->C);
+    return HamiltonianParameters(this->ao_basis, this->S, hc, gc, this->T_total);
 }
 
 
@@ -675,7 +675,7 @@ HamiltonianParameters HamiltonianParameters::constrain(const OneElectronOperator
 
     OneElectronOperator hc (this->get_h().get_matrix_representation() - lambda*one_op.get_matrix_representation());
 
-    return HamiltonianParameters(this->ao_basis, this->S, hc, this->g, this->C);
+    return HamiltonianParameters(this->ao_basis, this->S, hc, this->g, this->T_total);
 }
 
 
@@ -691,7 +691,7 @@ HamiltonianParameters HamiltonianParameters::constrain(const TwoElectronOperator
 
     TwoElectronOperator gc (this->get_g().get_matrix_representation() - lambda*two_op.get_matrix_representation());
 
-    return HamiltonianParameters(this->ao_basis, this->S, this->h, gc, this->C);
+    return HamiltonianParameters(this->ao_basis, this->S, this->h, gc, this->T_total);
 }
 
 

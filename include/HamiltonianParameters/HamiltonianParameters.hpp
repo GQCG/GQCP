@@ -49,7 +49,7 @@ private:
     OneElectronOperator h;  // one-electron interactions (i.e. the core Hamiltonian)
     TwoElectronOperator g;  // two-electron interactions
 
-    Eigen::MatrixXd C;  // total transformation matrix between the current (restricted) molecular orbitals and the atomic orbitals
+    Eigen::MatrixXd T_total;  // total transformation matrix between the current (restricted) molecular orbitals and the atomic orbitals
 
 
 public:
@@ -138,7 +138,7 @@ public:
     const OneElectronOperator& get_S() const { return this->S; }
     const OneElectronOperator& get_h() const { return this->h; }
     const TwoElectronOperator& get_g() const { return this->g; }
-    const Eigen::MatrixXd& get_C() const { return this->C; }
+    const Eigen::MatrixXd& get_T_total() const { return this->T_total; }
     size_t get_K() const { return this->K; }
 
 
