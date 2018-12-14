@@ -39,7 +39,7 @@ before_install:
         fi;
         bash $HOME/download/miniconda.sh -b -p ${HOME}/miniconda;
       fi
-    
+
     # Add headers and libraries to path
     - export CONDA_HOME=${HOME}/miniconda
     - export C_INCLUDE_PATH=${C_INCLUDE_PATH}:${CONDA_HOME}/include
@@ -71,6 +71,7 @@ install:
            curl -OL "https://github.com/evaleev/libint/archive/v2.3.1.tar.gz"
            tar -xvzf v2.3.1.tar.gz
            cd libint-2.3.1
+           rm -rf external
            ./autogen.sh
            mkdir build && cd build
            ../configure --enable-shared=yes
