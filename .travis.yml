@@ -71,7 +71,6 @@ install:
            curl -OL "https://github.com/evaleev/libint/archive/v2.3.1.tar.gz"
            tar -xvzf v2.3.1.tar.gz
            cd libint-2.3.1
-           rm -rf external
            ./autogen.sh
            mkdir build && cd build
            ../configure --enable-shared=yes
@@ -81,6 +80,8 @@ install:
           cd /tmp/libint/libint-2.3.1/build/libint-2.3.1
           sudo make install
         fi
+    # Remove the boost includes installed by libint
+    - sudo rm -rf /use/local/libint/2.3.1/include/libint2/boost
     - export LIBINT_DATA_PATH=/usr/local/libint/2.3.1/share/libint/2.3.1/basis
     - cd $HOME
 
