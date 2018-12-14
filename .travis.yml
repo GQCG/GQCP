@@ -78,7 +78,7 @@ install:
           sudo make install
         fi
     - export LIBINT_DATA_PATH=/usr/local/libint/2.3.1/share/libint/2.3.1/basis
-
+    - cd $HOME
 
     # Install google benchmark
     - mkdir /tmp/bench && cd /tmp/bench
