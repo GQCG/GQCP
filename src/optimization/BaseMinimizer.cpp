@@ -26,7 +26,8 @@ namespace GQCP {
  *  CONSTRUCTORS
  */
 /**
- *  Constructor based on a given initial guess @param x0 and a @param convergence_threshold
+ *  @param x0   an initial guess
+ *  @param convergence_threshold        the threshold for convergence on the norm of the gradient
  */
 BaseMinimizer::BaseMinimizer(const Eigen::VectorXd& x0, double convergence_threshold) :
     x0(x0),

@@ -18,9 +18,6 @@ function(configure_executable EXECUTABLE_NAME)
     target_include_directories(${EXECUTABLE_NAME} PUBLIC ${Libint2_INCLUDE_DIRS})
     target_link_libraries(${EXECUTABLE_NAME} PUBLIC ${Libint2_LIBRARIES})
 
-    # Include Spectra
-# target_include_directories(${EXECUTABLE_NAME} PUBLIC ${spectra_INCLUDE_DIRS})
-
     # Include MKL (optional)
     if (MKL_FOUND)
         target_include_directories(${EXECUTABLE_NAME} PRIVATE ${MKL_INCLUDE_DIRS})

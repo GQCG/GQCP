@@ -44,7 +44,8 @@ protected:
 public:
     // CONSTRUCTORS
     /**
-     *  Constructor based on a given initial guess @param x0 and a @param convergence_threshold
+     *  @param x0   an initial guess
+     *  @param convergence_threshold        the threshold for convergence on the norm of the gradient
      */
     BaseMinimizer(const Eigen::VectorXd& x0, double convergence_threshold);
 
@@ -62,8 +63,8 @@ public:
      *  Solve the problem associated to the numerical minimization method
      *
      *  If successful, it sets
-     *      - @member is_solved to true
-     *      - @member x to the found solution
+     *      - is_solved to true
+     *      - x to the found solution
      */
     virtual void solve() = 0;
 };
