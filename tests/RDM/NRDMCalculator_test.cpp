@@ -18,11 +18,11 @@
 #define BOOST_TEST_MODULE "NRDMCalculator_test"
 
 
-#include "RDM/NRDMCalculator.hpp"
-
-
 #include <boost/test/unit_test.hpp>
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
+
+#include "RDM/NRDMCalculator.hpp"
+
 
 
 BOOST_AUTO_TEST_CASE ( calculateElement_throws ) {

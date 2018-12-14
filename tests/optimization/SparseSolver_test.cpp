@@ -17,6 +17,9 @@
 // 
 #define BOOST_TEST_MODULE "Sparse"
 
+#include <boost/test/unit_test.hpp>
+#include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
+
 #include "optimization/SparseSolver.hpp"
 
 #include "Spectra/SymEigsSolver.h"
@@ -24,9 +27,6 @@
 
 #include "utilities/linalg.hpp"
 
-
-#include <boost/test/unit_test.hpp>
-#include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
 
 
 

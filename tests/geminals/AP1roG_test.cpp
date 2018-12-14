@@ -17,11 +17,11 @@
 // 
 #define BOOST_TEST_MODULE "AP1roG"
 
-
-#include "geminals/AP1roG.hpp"
-
 #include <boost/test/unit_test.hpp>
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
+
+
+#include "geminals/AP1roG.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( default_constructor ) {

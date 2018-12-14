@@ -18,11 +18,11 @@
 #define BOOST_TEST_MODULE "ProductFockSpace"
 
 
-#include "FockSpace/ProductFockSpace.hpp"
-
-
 #include <boost/test/unit_test.hpp>
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
+
+#include "FockSpace/ProductFockSpace.hpp"
+
 
 
 BOOST_AUTO_TEST_CASE ( ProductFockSpace_constructor ) {

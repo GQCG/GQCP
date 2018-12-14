@@ -17,6 +17,9 @@
 // 
 #define BOOST_TEST_MODULE "RDMCalculator_test"
 
+#include <boost/test/unit_test.hpp>
+#include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
+
 
 #include "RDM/RDMCalculator.hpp"
 
@@ -25,9 +28,6 @@
 #include "CISolver/CISolver.hpp"
 #include "HamiltonianBuilder/DOCI.hpp"
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
-
-#include <boost/test/unit_test.hpp>
-#include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
 
 
 BOOST_AUTO_TEST_CASE ( constructor ) {

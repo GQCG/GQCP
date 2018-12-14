@@ -16,6 +16,10 @@
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
 #define BOOST_TEST_MODULE "HamiltonianParameters"
+#include <boost/math/constants/constants.hpp>
+
+#include <boost/test/unit_test.hpp>
+#include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
 
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 
@@ -23,10 +27,6 @@
 #include "RHF/PlainRHFSCFSolver.hpp"
 #include "utilities/linalg.hpp"
 
-#include <boost/math/constants/constants.hpp>
-
-#include <boost/test/unit_test.hpp>
-#include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
 
 
 /*
