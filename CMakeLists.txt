@@ -37,15 +37,15 @@ include(${CMAKE_SOURCE_DIR}/cmake/SetCMakeEnvironment.cmake)
 
 message(STATUS "Building ${LIBRARY_NAME} in ${CMAKE_BUILD_TYPE} mode")
 
-# Find all required packages. Update CMake's MODULE_PATH to let CMake know that we have supplied our own FindXXX.cmake files in the cmake directory
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_SOURCE_DIR}/cmake)
-include(${CMAKE_SOURCE_DIR}/cmake/FindPackages.cmake)
+# Find all required packages. Update CMake's MODULE_PATH to let CMake know that we have supplied our own FindXXX.cmake files in the cmake/Find directory
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_SOURCE_DIR}/cmake/Find)
+include(${CMAKE_SOURCE_DIR}/cmake/Find/FindPackages.cmake)
 
 # Add the sources for the library
 add_subdirectory(${PROJECT_SOURCE_FOLDER})
 
 # Add the sources for the executables
-add_subdirectory(${PROJECT_EXECUTABLES_FOLDER})
+add_subdirectory(${PROJECT_DRIVERS_FOLDER})
 
 # Add the sources for the benchmarks
 if(BUILD_BENCHMARKS)

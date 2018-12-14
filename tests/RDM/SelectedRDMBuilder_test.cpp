@@ -26,7 +26,7 @@
 #include "HamiltonianBuilder/DOCI.hpp"
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 
-#include <cpputil.hpp>
+#include "utilities/linalg.hpp"
 
 #include <boost/test/unit_test.hpp>
 #include <boost/test/included/unit_test.hpp>
@@ -50,7 +50,7 @@ BOOST_AUTO_TEST_CASE ( one_rdms_fci_H2_6_31G ) {
     // Specify solver options and solve the eigenvalue problem
     // Solve the dense FCI eigenvalue problem
     GQCP::CISolver ci_solver (fci, ham_par);
-    numopt::eigenproblem::DenseSolverOptions solver_options;
+    GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
     Eigen::VectorXd coef = ci_solver.get_eigenpair().get_eigenvector();
@@ -92,7 +92,7 @@ BOOST_AUTO_TEST_CASE ( two_rdms_fci_H2_6_31G ) {
     // Specify solver options and solve the eigenvalue problem
     // Solve the dense FCI eigenvalue problem
     GQCP::CISolver ci_solver (fci, ham_par);
-    numopt::eigenproblem::DenseSolverOptions solver_options;
+    GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
     Eigen::VectorXd coef = ci_solver.get_eigenpair().get_eigenvector();
@@ -109,11 +109,11 @@ BOOST_AUTO_TEST_CASE ( two_rdms_fci_H2_6_31G ) {
     GQCP::TwoRDMs two_rdms_s = selected_rdm.calculate2RDMs(coef);
 
 
-    BOOST_CHECK(cpputil::linalg::areEqual(two_rdms_s.two_rdm_aaaa.get_matrix_representation(), two_rdms.two_rdm_aaaa.get_matrix_representation(), 1.0e-06));
-    BOOST_CHECK(cpputil::linalg::areEqual(two_rdms_s.two_rdm_aabb.get_matrix_representation(), two_rdms.two_rdm_aabb.get_matrix_representation(), 1.0e-06));
-    BOOST_CHECK(cpputil::linalg::areEqual(two_rdms_s.two_rdm_bbaa.get_matrix_representation(), two_rdms.two_rdm_bbaa.get_matrix_representation(), 1.0e-06));
-    BOOST_CHECK(cpputil::linalg::areEqual(two_rdms_s.two_rdm_bbbb.get_matrix_representation(), two_rdms.two_rdm_bbbb.get_matrix_representation(), 1.0e-06));
-    BOOST_CHECK(cpputil::linalg::areEqual(two_rdms_s.two_rdm.get_matrix_representation(), two_rdms.two_rdm.get_matrix_representation(), 1.0e-06));
+    BOOST_CHECK(GQCP::areEqual(two_rdms_s.two_rdm_aaaa.get_matrix_representation(), two_rdms.two_rdm_aaaa.get_matrix_representation(), 1.0e-06));
+    BOOST_CHECK(GQCP::areEqual(two_rdms_s.two_rdm_aabb.get_matrix_representation(), two_rdms.two_rdm_aabb.get_matrix_representation(), 1.0e-06));
+    BOOST_CHECK(GQCP::areEqual(two_rdms_s.two_rdm_bbaa.get_matrix_representation(), two_rdms.two_rdm_bbaa.get_matrix_representation(), 1.0e-06));
+    BOOST_CHECK(GQCP::areEqual(two_rdms_s.two_rdm_bbbb.get_matrix_representation(), two_rdms.two_rdm_bbbb.get_matrix_representation(), 1.0e-06));
+    BOOST_CHECK(GQCP::areEqual(two_rdms_s.two_rdm.get_matrix_representation(), two_rdms.two_rdm.get_matrix_representation(), 1.0e-06));
 }
 
 
@@ -134,7 +134,7 @@ BOOST_AUTO_TEST_CASE ( one_rdms_doci_H2_6_31G ) {
     // Specify solver options and solve the eigenvalue problem
     // Solve the dense doci eigenvalue problem
     GQCP::CISolver ci_solver (doci, ham_par);
-    numopt::eigenproblem::DenseSolverOptions solver_options;
+    GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
     Eigen::VectorXd coef = ci_solver.get_eigenpair().get_eigenvector();
@@ -174,7 +174,7 @@ BOOST_AUTO_TEST_CASE ( two_rdms_doci_H2_6_31G ) {
     // Specify solver options and solve the eigenvalue problem
     // Solve the dense doci eigenvalue problem
     GQCP::CISolver ci_solver (doci, ham_par);
-    numopt::eigenproblem::DenseSolverOptions solver_options;
+    GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
     Eigen::VectorXd coef = ci_solver.get_eigenpair().get_eigenvector();
@@ -191,9 +191,9 @@ BOOST_AUTO_TEST_CASE ( two_rdms_doci_H2_6_31G ) {
     GQCP::TwoRDMs two_rdms_s = selected_rdm.calculate2RDMs(coef);
 
 
-    BOOST_CHECK(cpputil::linalg::areEqual(two_rdms_s.two_rdm_aaaa.get_matrix_representation(), two_rdms.two_rdm_aaaa.get_matrix_representation(), 1.0e-06));
-    BOOST_CHECK(cpputil::linalg::areEqual(two_rdms_s.two_rdm_aabb.get_matrix_representation(), two_rdms.two_rdm_aabb.get_matrix_representation(), 1.0e-06));
-    BOOST_CHECK(cpputil::linalg::areEqual(two_rdms_s.two_rdm_bbaa.get_matrix_representation(), two_rdms.two_rdm_bbaa.get_matrix_representation(), 1.0e-06));
-    BOOST_CHECK(cpputil::linalg::areEqual(two_rdms_s.two_rdm_bbbb.get_matrix_representation(), two_rdms.two_rdm_bbbb.get_matrix_representation(), 1.0e-06));
-    BOOST_CHECK(cpputil::linalg::areEqual(two_rdms_s.two_rdm.get_matrix_representation(), two_rdms.two_rdm.get_matrix_representation(), 1.0e-06));
+    BOOST_CHECK(GQCP::areEqual(two_rdms_s.two_rdm_aaaa.get_matrix_representation(), two_rdms.two_rdm_aaaa.get_matrix_representation(), 1.0e-06));
+    BOOST_CHECK(GQCP::areEqual(two_rdms_s.two_rdm_aabb.get_matrix_representation(), two_rdms.two_rdm_aabb.get_matrix_representation(), 1.0e-06));
+    BOOST_CHECK(GQCP::areEqual(two_rdms_s.two_rdm_bbaa.get_matrix_representation(), two_rdms.two_rdm_bbaa.get_matrix_representation(), 1.0e-06));
+    BOOST_CHECK(GQCP::areEqual(two_rdms_s.two_rdm_bbbb.get_matrix_representation(), two_rdms.two_rdm_bbbb.get_matrix_representation(), 1.0e-06));
+    BOOST_CHECK(GQCP::areEqual(two_rdms_s.two_rdm.get_matrix_representation(), two_rdms.two_rdm.get_matrix_representation(), 1.0e-06));
 }

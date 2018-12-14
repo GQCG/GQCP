@@ -20,8 +20,9 @@
 #include <cmath>
 #include <queue>
 
+#include "optimization/NewtonMinimizer.hpp"
+
 #include <boost/math/constants/constants.hpp>
-#include <numopt.hpp>
 
 #include "geminals/AP1roGPSESolver.hpp"
 
@@ -243,14 +244,14 @@ double AP1roGJacobiOrbitalOptimizer::findOptimalRotationAngle(size_t p, size_t q
         std::priority_queue<JacobiRotationEnergy> min_q;  // an ascending queue (on energy) because we have implemented the 'reverse' JacobiParameters::operator<
 
         // Construct a lambda gradient function
-        numopt::VectorFunction gradient_function = [this](const Eigen::VectorXd& x) {
+        VectorFunction gradient_function = [this](const Eigen::VectorXd& x) {
             Eigen::VectorXd gradient_vec (1);
             gradient_vec << (-2*this->B2 * std::sin(2*x(0)) + 2*this->C2 * std::cos(2*x(0)) - 4*this->D2 * std::sin(4*x(0)) + 4*this->E2 * std::cos(4*x(0)));
             return gradient_vec;
         };
 
         // Construct a lambda Hessian function
-        numopt::MatrixFunction hessian_function = [this](const Eigen::VectorXd& x) {
+        MatrixFunction hessian_function = [this](const Eigen::VectorXd& x) {
             Eigen::MatrixXd hessian_matrix (1, 1);
             hessian_matrix << (-4*this->B2 * std::cos(2*x(0)) - 2*this->C2 * std::sin(2*x(0)) - 16*this->D2 * std::cos(4*x(0)) - 16*this->E2 * std::sin(4*x(0)));
             return hessian_matrix;
@@ -265,7 +266,7 @@ double AP1roGJacobiOrbitalOptimizer::findOptimalRotationAngle(size_t p, size_t q
             Eigen::VectorXd theta_vec (1);  // we can't implicitly convert a float to an Eigen::VectorXd so we make it ourselves
             theta_vec << theta;
 
-            numopt::minimization::NewtonMinimizer minimizer (theta_vec, gradient_function, hessian_function);
+            NewtonMinimizer minimizer (theta_vec, gradient_function, hessian_function);
             minimizer.solve();
             double theta_min = minimizer.get_solution()(0);  // get inside the Eigen::VectorXd
 

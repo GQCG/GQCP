@@ -18,7 +18,7 @@ static void constructHamiltonian(benchmark::State& state) {
     GQCP::Hubbard hubbard (fock_space);
 
     GQCP::HamiltonianParameters ham_par = GQCP::HamiltonianParameters::Random(K);
-    numopt::eigenproblem::DenseSolverOptions solver_options;
+    GQCP::DenseSolverOptions solver_options;
 
     // Code inside this loop is measured repeatedly
     for (auto _ : state) {

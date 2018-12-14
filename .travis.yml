@@ -56,13 +56,6 @@ install:
       fi
     - export BOOST_ROOT=${HOME}/miniconda/include
 
-    # Install cpputil
-    - mkdir /tmp/cpputil && cd /tmp/cpputil
-    - git clone https://github.com/GQCG/cpputil.git --branch feature/shared_library --single-branch
-    - cd cpputil
-    - mkdir build && cd build
-    - cmake .. && make -j3 && make test ARGS=-j3 && sudo make install
-
     # We can't install libint2 (2.2.0+) through APT.
     # Since compiling libint2 takes around 15 minutes on Travis, it is a good idea to cache it (see also below)
     - |
@@ -84,16 +77,8 @@ install:
           cd /tmp/libint/libint-2.3.1/build/libint-2.3.1
           sudo make install
         fi
-
-    # Finally, since libint often complains about reading the basis sets, specify a LIBINT_DATA_PATH to help libint find the files.
     - export LIBINT_DATA_PATH=/usr/local/libint/2.3.1/share/libint/2.3.1/basis
 
-    # Install numopt
-    - mkdir /tmp/numopt && cd /tmp/numopt
-    - git clone https://github.com/GQCG/numopt.git --branch feature/shared_library --single-branch --recurse-submodules
-    - cd numopt
-    - mkdir build && cd build
-    - cmake .. && make -j3 && make test ARGS=-j3 && sudo make install
 
     # Install google benchmark
     - mkdir /tmp/bench && cd /tmp/bench
@@ -104,7 +89,6 @@ install:
     - git clone https://github.com/google/googletest.git
     - mkdir build && cd build
     - cmake .. -DCMAKE_BUILD_TYPE=RELEASE
-    # Assuming a makefile generator was used
     - make -j3 && sudo make install
 
 # Run the build script

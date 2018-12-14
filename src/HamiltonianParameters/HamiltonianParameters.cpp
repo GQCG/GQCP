@@ -18,7 +18,7 @@
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "LibintCommunicator.hpp"
 
-#include "miscellaneous.hpp"
+#include "utilities/miscellaneous.hpp"
 
 
 namespace GQCP {

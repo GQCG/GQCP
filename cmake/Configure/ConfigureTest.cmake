@@ -5,7 +5,6 @@ function(configure_test TEST_NAME)
 
     configure_executable(${TEST_NAME})
 
-
-    # At the moment, there are no extra dependencies for the unit test executables
-
+    # Include Spectra
+    target_include_directories(${TEST_NAME} PUBLIC ${Spectra_INCLUDE_DIRS})
 endfunction(configure_test)

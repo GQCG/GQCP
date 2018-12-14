@@ -53,7 +53,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_sto_3g ) {
     // Do the DOCI orbital optimization using specified solver options
     GQCP::FockSpace fock_space (K, h2.get_N()/2);  // dim = 120
     GQCP::DOCI doci (fock_space);
-    numopt::eigenproblem::DenseSolverOptions solver_options;
+    GQCP::DenseSolverOptions solver_options;
     GQCP::DOCINewtonOrbitalOptimizer orbital_optimizer (doci, mol_ham_par);
     orbital_optimizer.solve(solver_options);
 
@@ -91,7 +91,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31g ) {
     GQCP::ProductFockSpace fci_fock_space (K, N_a, N_b);  // dim = 441
     GQCP::FCI fci (fci_fock_space);
     GQCP::CISolver fci_solver (fci, mol_ham_par);
-    numopt::eigenproblem::DenseSolverOptions solver_options;
+    GQCP::DenseSolverOptions solver_options;
     fci_solver.solve(solver_options);
 
     Eigen::VectorXd coef = fci_solver.get_wavefunction().get_coefficients();
@@ -141,7 +141,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx ) {
     GQCP::ProductFockSpace fci_fock_space (K, N_a, N_b);  // dim = 441
     GQCP::FCI fci (fci_fock_space);
     GQCP::CISolver fci_solver (fci, mol_ham_par);
-    numopt::eigenproblem::DenseSolverOptions solver_options;
+    GQCP::DenseSolverOptions solver_options;
     fci_solver.solve(solver_options);
 
     Eigen::VectorXd coef = fci_solver.get_wavefunction().get_coefficients();
@@ -191,7 +191,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx_Davidson ) {
     GQCP::ProductFockSpace fci_fock_space (K, N_a, N_b);  // dim = 441
     GQCP::FCI fci (fci_fock_space);
     GQCP::CISolver fci_solver (fci, mol_ham_par);
-    numopt::eigenproblem::DenseSolverOptions solver_options;
+    GQCP::DenseSolverOptions solver_options;
     fci_solver.solve(solver_options);
 
     Eigen::VectorXd coef = fci_solver.get_wavefunction().get_coefficients();
@@ -206,7 +206,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx_Davidson ) {
     GQCP::FockSpace doci_fock_space (K, h2.get_N()/2);  // dim = 120
     GQCP::DOCI doci (doci_fock_space);
     Eigen::VectorXd initial_g = doci_fock_space.HartreeFockExpansion();
-    numopt::eigenproblem::DavidsonSolverOptions davidson_solver_options (initial_g);
+    GQCP::DavidsonSolverOptions davidson_solver_options (initial_g);
     GQCP::DOCINewtonOrbitalOptimizer orbital_optimizer (doci, mol_ham_par);
     orbital_optimizer.solve(davidson_solver_options);
 

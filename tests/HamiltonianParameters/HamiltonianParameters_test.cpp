@@ -19,11 +19,11 @@
 
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 
-#include "miscellaneous.hpp"
+#include "utilities/miscellaneous.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
+#include "utilities/linalg.hpp"
 
 #include <boost/math/constants/constants.hpp>
-#include <cpputil.hpp>
 
 #include <boost/test/unit_test.hpp>
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
@@ -424,7 +424,7 @@ BOOST_AUTO_TEST_CASE ( calculate_generalized_Fock_matrix_and_super ) {
     }
 
     BOOST_CHECK(F_ref.isApprox(ham_par.calculateGeneralizedFockMatrix(D, d).get_matrix_representation(), 1.0e-12));
-    BOOST_CHECK(cpputil::linalg::areEqual(W_ref, ham_par.calculateSuperGeneralizedFockMatrix(D, d).get_matrix_representation(), 1.0e-12));
+    BOOST_CHECK(GQCP::areEqual(W_ref, ham_par.calculateSuperGeneralizedFockMatrix(D, d).get_matrix_representation(), 1.0e-12));
 }
 
 

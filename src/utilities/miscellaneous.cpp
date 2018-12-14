@@ -15,17 +15,46 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "miscellaneous.hpp"
+#include "utilities/miscellaneous.hpp"
 
+
+
+#include <chrono>
 #include <iostream>
 
+
 #include <boost/numeric/conversion/converter.hpp>
-#include <cpputil.hpp>
 
 
 namespace GQCP {
 
-    
+
+/**
+ *  Print the time a function takes to be executed
+ *
+ *  @param function         the function call to be made
+ *  @param method_name      the name of function that is to be executed
+ */
+void printExecutionTime(const std::string& method_name, const std::function<void()>& function) {
+
+    // High resolution clock example from (https://stackoverflow.com/a/12231232/7930415)
+    auto start = std::chrono::high_resolution_clock::now();
+
+    function();
+
+    auto stop = std::chrono::high_resolution_clock::now();
+
+
+    // Print the timings
+    std::cout << method_name << " took "
+              << std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count()
+              << " microseconds ("
+              << std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count()
+              << " milliseconds) to complete." << std::endl;
+}
+
+
+
 /**
  *  @param jacobi_rotation_parameters       the parameters that define the Jacobi rotation matrix
  *  @param M                                the dimension of the resulting matrix
@@ -238,7 +267,6 @@ size_t matrixIndexMinor(size_t v, size_t cols, size_t skipped) {
 size_t vectorIndex(size_t i, size_t j, size_t cols, size_t skipped) {
     return (j - skipped) + (cols - skipped) * i;
 }
-
 
 
 }  // namespace GQCP

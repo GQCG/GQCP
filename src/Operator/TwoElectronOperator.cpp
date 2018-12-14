@@ -19,9 +19,8 @@
 
 #include <iostream>
 
-#include <cpputil.hpp>
-
-#include "miscellaneous.hpp"
+#include "utilities/linalg.hpp"
+#include "utilities/miscellaneous.hpp"
 
 
 namespace GQCP {
@@ -68,7 +67,7 @@ bool TwoElectronOperator::operator==(const GQCP::TwoElectronOperator& other) {
  */
 bool TwoElectronOperator::isEqualTo(const GQCP::TwoElectronOperator& other, double tolerance) const {
     
-    return cpputil::linalg::areEqual(this->tensor, other.tensor, tolerance);
+    return areEqual(this->tensor, other.tensor, tolerance);
 }
 
 

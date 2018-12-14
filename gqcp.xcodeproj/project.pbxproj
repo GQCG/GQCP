@@ -150,6 +150,9 @@
 			buildPhases = (
 			);
 			dependencies = (
+				56FBA1A821C389F60084F088 /* PBXTargetDependency */,
+				56FBA1AA21C389F60084F088 /* PBXTargetDependency */,
+				56FBA1AC21C389F60084F088 /* PBXTargetDependency */,
 			);
 			name = BUILD_EXECUTABLES;
 			productName = BUILD_ALL_EXECUTABLES;
@@ -160,6 +163,9 @@
 			buildPhases = (
 			);
 			dependencies = (
+				56FBA12E21C388540084F088 /* PBXTargetDependency */,
+				56FBA13021C388540084F088 /* PBXTargetDependency */,
+				56FBA13221C388540084F088 /* PBXTargetDependency */,
 				5614020721B0688B002C5D40 /* PBXTargetDependency */,
 				5614020921B0688B002C5D40 /* PBXTargetDependency */,
 				5614020B21B0688B002C5D40 /* PBXTargetDependency */,
@@ -171,16 +177,6 @@
 				5614021721B0688B002C5D40 /* PBXTargetDependency */,
 				5614021921B0688B002C5D40 /* PBXTargetDependency */,
 				5614021B21B0688B002C5D40 /* PBXTargetDependency */,
-				5614021D21B0688B002C5D40 /* PBXTargetDependency */,
-				5614021F21B0688B002C5D40 /* PBXTargetDependency */,
-				5614022121B0688B002C5D40 /* PBXTargetDependency */,
-				5614022321B0688B002C5D40 /* PBXTargetDependency */,
-				5614022521B0688B002C5D40 /* PBXTargetDependency */,
-				5614022721B0688B002C5D40 /* PBXTargetDependency */,
-				5614022921B0688B002C5D40 /* PBXTargetDependency */,
-				5614022B21B0688B002C5D40 /* PBXTargetDependency */,
-				5614022D21B0688B002C5D40 /* PBXTargetDependency */,
-				5614022F21B0688B002C5D40 /* PBXTargetDependency */,
 			);
 			name = BUILD_TESTS;
 			productName = BUILD_ALL_TESTS;
@@ -217,17 +213,55 @@
 			name = BUILD_CISOLVER_TESTS;
 			productName = BUILD_ALL_AP1ROG_TESTS;
 		};
-		56C64D8721B0735C00D44FF0 /* RUN_TESTS */ = {
+		56FBA10B21C387B10084F088 /* BUILD_OPTIMIZATION_TESTS */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = 56C64D8A21B0735C00D44FF0 /* Build configuration list for PBXAggregateTarget "RUN_TESTS" */;
+			buildConfigurationList = 56FBA10C21C387B10084F088 /* Build configuration list for PBXAggregateTarget "BUILD_OPTIMIZATION_TESTS" */;
 			buildPhases = (
-				56C64D8D21B0737500D44FF0 /* Run Script */,
 			);
 			dependencies = (
-				56C64D8C21B0736C00D44FF0 /* PBXTargetDependency */,
+				56FBA19621C3894A0084F088 /* PBXTargetDependency */,
+				56FBA19821C3894A0084F088 /* PBXTargetDependency */,
+				56FBA19A21C3894A0084F088 /* PBXTargetDependency */,
+				56FBA19C21C3894A0084F088 /* PBXTargetDependency */,
+				56FBA19E21C3894A0084F088 /* PBXTargetDependency */,
+				56FBA1A021C3894A0084F088 /* PBXTargetDependency */,
 			);
-			name = RUN_TESTS;
-			productName = RUN_TESTS;
+			name = BUILD_OPTIMIZATION_TESTS;
+			productName = BUILD_OPTIMIZATION_TESTS;
+		};
+		56FBA10F21C388040084F088 /* BUILD_UTILITIES_TESTS */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 56FBA11021C388040084F088 /* Build configuration list for PBXAggregateTarget "BUILD_UTILITIES_TESTS" */;
+			buildPhases = (
+			);
+			dependencies = (
+				56FBA1B021C390130084F088 /* PBXTargetDependency */,
+				56FBA1B221C390130084F088 /* PBXTargetDependency */,
+				56FBA1B421C390130084F088 /* PBXTargetDependency */,
+			);
+			name = BUILD_UTILITIES_TESTS;
+			productName = BUILD_UTILITIES_TESTS;
+		};
+		56FBA11321C388170084F088 /* BUILD_SINGLE_TESTS */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 56FBA11421C388180084F088 /* Build configuration list for PBXAggregateTarget "BUILD_SINGLE_TESTS" */;
+			buildPhases = (
+			);
+			dependencies = (
+				56FBA11821C3882B0084F088 /* PBXTargetDependency */,
+				56FBA11A21C3882B0084F088 /* PBXTargetDependency */,
+				56FBA11C21C3882B0084F088 /* PBXTargetDependency */,
+				56FBA11E21C3882B0084F088 /* PBXTargetDependency */,
+				56FBA12021C3882B0084F088 /* PBXTargetDependency */,
+				56FBA12221C3882B0084F088 /* PBXTargetDependency */,
+				56FBA12421C3882B0084F088 /* PBXTargetDependency */,
+				56FBA12621C3882B0084F088 /* PBXTargetDependency */,
+				56FBA12821C3882B0084F088 /* PBXTargetDependency */,
+				56FBA12A21C3882B0084F088 /* PBXTargetDependency */,
+				56FBA12C21C3882B0084F088 /* PBXTargetDependency */,
+			);
+			name = BUILD_SINGLE_TESTS;
+			productName = BUILD_SINGLE_TESTS;
 		};
 /* End PBXAggregateTarget section */
 
@@ -325,7 +359,6 @@
 		5614FA2A21B029FB002C5D40 /* LibintCommunicator.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5614F9AF21B029FB002C5D40 /* LibintCommunicator.hpp */; };
 		5614FA2B21B029FB002C5D40 /* properties.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5614F9B121B029FB002C5D40 /* properties.hpp */; };
 		5614FA2C21B029FB002C5D40 /* expectation_values.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5614F9B221B029FB002C5D40 /* expectation_values.hpp */; };
-		5614FA2D21B029FB002C5D40 /* miscellaneous.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5614F9B321B029FB002C5D40 /* miscellaneous.hpp */; };
 		5614FA2E21B029FB002C5D40 /* units.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5614F9B421B029FB002C5D40 /* units.hpp */; };
 		5614FA2F21B029FB002C5D40 /* JacobiRotationParameters.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5614F9B521B029FB002C5D40 /* JacobiRotationParameters.hpp */; };
 		5614FA3021B029FB002C5D40 /* common.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5614F9B621B029FB002C5D40 /* common.hpp */; };
@@ -348,7 +381,6 @@
 		5614FA4221B029FB002C5D40 /* Hubbard.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5614F9CE21B029FB002C5D40 /* Hubbard.hpp */; };
 		5614FA4321B029FB002C5D40 /* FCI.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5614F9CF21B029FB002C5D40 /* FCI.hpp */; };
 		5614FA4421B029FB002C5D40 /* Molecule.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5614F9D021B029FB002C5D40 /* Molecule.hpp */; };
-		5614FA4521B029FB002C5D40 /* miscellaneous.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614F9D221B029FB002C5D40 /* miscellaneous.cpp */; };
 		5614FA4621B029FB002C5D40 /* JacobiRotationParameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614F9D321B029FB002C5D40 /* JacobiRotationParameters.cpp */; };
 		5614FA4721B029FB002C5D40 /* RMP2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614F9D421B029FB002C5D40 /* RMP2.cpp */; };
 		5614FA4821B029FB002C5D40 /* elements.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614F9D521B029FB002C5D40 /* elements.cpp */; };
@@ -394,8 +426,6 @@
 		5614FA7521B029FB002C5D40 /* DOCINewtonOrbitalOptimizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FA0E21B029FB002C5D40 /* DOCINewtonOrbitalOptimizer.cpp */; };
 		5614FDB521B033B6002C5D40 /* fci_hchain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FAAD21B02E48002C5D40 /* fci_hchain.cpp */; };
 		5614FDB721B033BC002C5D40 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
-		5614FDB921B034D5002C5D40 /* libcpputil.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614FDB821B034D5002C5D40 /* libcpputil.a */; };
-		5614FDBB21B034D5002C5D40 /* libnumopt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614FDBA21B034D5002C5D40 /* libnumopt.a */; };
 		5614FDBD21B034F9002C5D40 /* libint2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614FDBC21B034F8002C5D40 /* libint2.a */; };
 		5614FDBF21B03525002C5D40 /* libbenchmark.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614FDBE21B03525002C5D40 /* libbenchmark.a */; };
 		5614FDC821B0367B002C5D40 /* libbenchmark.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614FDBE21B03525002C5D40 /* libbenchmark.a */; };
@@ -465,16 +495,65 @@
 		56272DD221B6CC53008BEA47 /* AP1roGGeminalCoefficients_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56272DCD21B6CC2D008BEA47 /* AP1roGGeminalCoefficients_test.cpp */; };
 		56272DD321B6CC5D008BEA47 /* OO_AP1roG_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56272DCE21B6CC2D008BEA47 /* OO_AP1roG_test.cpp */; };
 		56272DD421B6CC66008BEA47 /* AP1roG_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56272DCF21B6CC2D008BEA47 /* AP1roG_test.cpp */; };
-		56272DD521B6CC71008BEA47 /* AP1roGPSESolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56272DC321B6CC0D008BEA47 /* AP1roGPSESolver.cpp */; };
 		56272DDC21B6CC7B008BEA47 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
 		56272DE221B6CC93008BEA47 /* APIGGeminalCoefficients_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56272DD121B6CC2D008BEA47 /* APIGGeminalCoefficients_test.cpp */; };
 		566042FD21B913AD008C2E86 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
 		5660430321B913BA008C2E86 /* NRDMCalculator_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 566042F621B91369008C2E86 /* NRDMCalculator_test.cpp */; };
 		566D229E21B7ED2500F8EB91 /* oo_doci.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FAA721B02E48002C5D40 /* oo_doci.cpp */; };
-		566D229F21B7ED2D00F8EB91 /* oo_doci.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FAA721B02E48002C5D40 /* oo_doci.cpp */; };
 		566D22A221B81CC100F8EB91 /* NRDMCalculator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 566D22A021B81CC100F8EB91 /* NRDMCalculator.cpp */; };
 		566D22A321B81CC100F8EB91 /* NRDMCalculator.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 566D22A121B81CC100F8EB91 /* NRDMCalculator.hpp */; };
 		56C64D8621B0713700D44FF0 /* constrained_RHF_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FB4921B02EDE002C5D40 /* constrained_RHF_test.cpp */; };
+		56FBA09F21C2B0420084F088 /* linalg.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56FBA09B21C2B0420084F088 /* linalg.hpp */; };
+		56FBA0A121C2B0420084F088 /* io.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56FBA09D21C2B0420084F088 /* io.hpp */; };
+		56FBA0A221C2B0420084F088 /* miscellaneous.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56FBA09E21C2B0420084F088 /* miscellaneous.hpp */; };
+		56FBA0A721C2B06B0084F088 /* miscellaneous.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56FBA0A421C2B06B0084F088 /* miscellaneous.cpp */; };
+		56FBA0A821C2B06B0084F088 /* io.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56FBA0A521C2B06B0084F088 /* io.cpp */; };
+		56FBA0A921C2B06B0084F088 /* linalg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56FBA0A621C2B06B0084F088 /* linalg.cpp */; };
+		56FBA0BB21C2B4AF0084F088 /* BaseSystemOfEquationsSolver.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56FBA0AD21C2B4AE0084F088 /* BaseSystemOfEquationsSolver.hpp */; };
+		56FBA0BC21C2B4AF0084F088 /* DavidsonSolver.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56FBA0AE21C2B4AE0084F088 /* DavidsonSolver.hpp */; };
+		56FBA0BE21C2B4AF0084F088 /* DenseSolver.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56FBA0B021C2B4AE0084F088 /* DenseSolver.hpp */; };
+		56FBA0BF21C2B4AF0084F088 /* NewtonMinimizer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56FBA0B121C2B4AE0084F088 /* NewtonMinimizer.hpp */; };
+		56FBA0C021C2B4AF0084F088 /* Eigenpair.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56FBA0B221C2B4AE0084F088 /* Eigenpair.hpp */; };
+		56FBA0C121C2B4AF0084F088 /* step.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56FBA0B321C2B4AF0084F088 /* step.hpp */; };
+		56FBA0C221C2B4AF0084F088 /* BaseMinimizer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56FBA0B421C2B4AF0084F088 /* BaseMinimizer.hpp */; };
+		56FBA0C321C2B4AF0084F088 /* NewtonSystemOfEquationsSolver.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56FBA0B521C2B4AF0084F088 /* NewtonSystemOfEquationsSolver.hpp */; };
+		56FBA0C421C2B4AF0084F088 /* BaseEigenproblemSolver.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56FBA0B621C2B4AF0084F088 /* BaseEigenproblemSolver.hpp */; };
+		56FBA0C521C2B4AF0084F088 /* EigenproblemSolverOptions.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56FBA0B721C2B4AF0084F088 /* EigenproblemSolverOptions.hpp */; };
+		56FBA0C621C2B4AF0084F088 /* BaseMatrixSolver.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56FBA0B821C2B4AF0084F088 /* BaseMatrixSolver.hpp */; };
+		56FBA0C721C2B4AF0084F088 /* SparseSolver.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56FBA0B921C2B4AF0084F088 /* SparseSolver.hpp */; };
+		56FBA0D321C2B4C90084F088 /* BaseSystemOfEquationsSolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56FBA0C821C2B4C90084F088 /* BaseSystemOfEquationsSolver.cpp */; };
+		56FBA0D421C2B4C90084F088 /* Eigenpair.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56FBA0C921C2B4C90084F088 /* Eigenpair.cpp */; };
+		56FBA0D521C2B4C90084F088 /* NewtonMinimizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56FBA0CA21C2B4C90084F088 /* NewtonMinimizer.cpp */; };
+		56FBA0D621C2B4C90084F088 /* NewtonSystemOfEquationsSolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56FBA0CB21C2B4C90084F088 /* NewtonSystemOfEquationsSolver.cpp */; };
+		56FBA0D721C2B4C90084F088 /* DavidsonSolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56FBA0CC21C2B4C90084F088 /* DavidsonSolver.cpp */; };
+		56FBA0D821C2B4C90084F088 /* DenseSolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56FBA0CD21C2B4C90084F088 /* DenseSolver.cpp */; };
+		56FBA0D921C2B4C90084F088 /* SparseSolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56FBA0CE21C2B4C90084F088 /* SparseSolver.cpp */; };
+		56FBA0DA21C2B4C90084F088 /* step.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56FBA0CF21C2B4C90084F088 /* step.cpp */; };
+		56FBA0DB21C2B4C90084F088 /* BaseMatrixSolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56FBA0D021C2B4C90084F088 /* BaseMatrixSolver.cpp */; };
+		56FBA0DC21C2B4C90084F088 /* BaseMinimizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56FBA0D121C2B4C90084F088 /* BaseMinimizer.cpp */; };
+		56FBA0DD21C2B4C90084F088 /* BaseEigenproblemSolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56FBA0D221C2B4C90084F088 /* BaseEigenproblemSolver.cpp */; };
+		56FBA0E721C2DFB40084F088 /* HoppingMatrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56FBA0E621C2DFB40084F088 /* HoppingMatrix.cpp */; };
+		56FBA0E921C2DFC00084F088 /* HoppingMatrix.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56FBA0E821C2DFC00084F088 /* HoppingMatrix.hpp */; };
+		56FBA0F321C2F1A10084F088 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
+		56FBA0F921C2F1B40084F088 /* HoppingMatrix_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56FBA0EC21C2F1950084F088 /* HoppingMatrix_test.cpp */; };
+		56FBA13921C3888A0084F088 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
+		56FBA13F21C3889E0084F088 /* io_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56FBA10321C2F3480084F088 /* io_test.cpp */; };
+		56FBA14621C388AE0084F088 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
+		56FBA14C21C388BD0084F088 /* linalg_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56FBA10421C2F3490084F088 /* linalg_test.cpp */; };
+		56FBA15321C388E70084F088 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
+		56FBA15F21C388EE0084F088 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
+		56FBA16B21C388F30084F088 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
+		56FBA17721C388F80084F088 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
+		56FBA18321C388FD0084F088 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
+		56FBA18F21C389050084F088 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
+		56FBA1A121C389540084F088 /* DavidsonSolver_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56FBA10A21C384110084F088 /* DavidsonSolver_test.cpp */; };
+		56FBA1A221C3895C0084F088 /* DenseSolver_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56FBA10821C384110084F088 /* DenseSolver_test.cpp */; };
+		56FBA1A321C389630084F088 /* Eigenpair_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56FBA10621C384110084F088 /* Eigenpair_test.cpp */; };
+		56FBA1A421C3896C0084F088 /* NewtonMinimizer_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56FBA10721C384110084F088 /* NewtonMinimizer_test.cpp */; };
+		56FBA1A521C389740084F088 /* NewtonSystemOfEquationsSolver_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56FBA10921C384110084F088 /* NewtonSystemOfEquationsSolver_test.cpp */; };
+		56FBA1A621C3897D0084F088 /* SparseSolver_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56FBA10521C384110084F088 /* SparseSolver_test.cpp */; };
+		56FBA1AD21C38A050084F088 /* hubbard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FAA521B02E48002C5D40 /* hubbard.cpp */; };
+		56FBA1AE21C38B130084F088 /* AP1roGPSESolver_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56272DD021B6CC2D008BEA47 /* AP1roGPSESolver_test.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -961,76 +1040,6 @@
 			remoteGlobalIDString = 561401A921B06464002C5D40;
 			remoteInfo = BUILD_WAVEFUNCTION_TESTS;
 		};
-		5614021C21B0688B002C5D40 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5614011121B06368002C5D40;
-			remoteInfo = AOBasis_test;
-		};
-		5614021E21B0688B002C5D40 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5614011D21B0636D002C5D40;
-			remoteInfo = Atom_test;
-		};
-		5614022021B0688B002C5D40 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5614012921B06371002C5D40;
-			remoteInfo = elements_test;
-		};
-		5614022221B0688B002C5D40 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5614013521B06376002C5D40;
-			remoteInfo = JacobiRotationParameters_test;
-		};
-		5614022421B0688B002C5D40 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5614014121B0637D002C5D40;
-			remoteInfo = LibintCommunicator_test;
-		};
-		5614022621B0688B002C5D40 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5614014D21B06383002C5D40;
-			remoteInfo = miscellaneous_test;
-		};
-		5614022821B0688B002C5D40 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5614015921B06389002C5D40;
-			remoteInfo = Molecule_test;
-		};
-		5614022A21B0688B002C5D40 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5614016521B0638D002C5D40;
-			remoteInfo = OO_DOCI_test;
-		};
-		5614022C21B0688B002C5D40 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5614017121B06392002C5D40;
-			remoteInfo = RMP2_test;
-		};
-		5614022E21B0688B002C5D40 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5614017D21B06397002C5D40;
-			remoteInfo = units_test;
-		};
 		5614FDAF21B0338A002C5D40 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
@@ -1388,12 +1397,250 @@
 			remoteGlobalIDString = 566042F721B913AD008C2E86;
 			remoteInfo = NRDMCalculator_test;
 		};
-		56C64D8B21B0736C00D44FF0 /* PBXContainerItemProxy */ = {
+		56FBA0EF21C2F1A10084F088 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 5614FE9921B0414A002C5D40;
-			remoteInfo = BUILD_TESTS;
+			remoteGlobalIDString = 5614F97F21B0295C002C5D40;
+			remoteInfo = gqcp;
+		};
+		56FBA11721C3882B0084F088 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5614011121B06368002C5D40;
+			remoteInfo = AOBasis_test;
+		};
+		56FBA11921C3882B0084F088 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5614011D21B0636D002C5D40;
+			remoteInfo = Atom_test;
+		};
+		56FBA11B21C3882B0084F088 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5614012921B06371002C5D40;
+			remoteInfo = elements_test;
+		};
+		56FBA11D21C3882B0084F088 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 56FBA0ED21C2F1A10084F088;
+			remoteInfo = HoppingMatrix_test;
+		};
+		56FBA11F21C3882B0084F088 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5614013521B06376002C5D40;
+			remoteInfo = JacobiRotationParameters_test;
+		};
+		56FBA12121C3882B0084F088 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5614014121B0637D002C5D40;
+			remoteInfo = LibintCommunicator_test;
+		};
+		56FBA12321C3882B0084F088 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5614014D21B06383002C5D40;
+			remoteInfo = miscellaneous_test;
+		};
+		56FBA12521C3882B0084F088 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5614015921B06389002C5D40;
+			remoteInfo = Molecule_test;
+		};
+		56FBA12721C3882B0084F088 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5614016521B0638D002C5D40;
+			remoteInfo = OO_DOCI_test;
+		};
+		56FBA12921C3882B0084F088 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5614017121B06392002C5D40;
+			remoteInfo = RMP2_test;
+		};
+		56FBA12B21C3882B0084F088 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5614017D21B06397002C5D40;
+			remoteInfo = units_test;
+		};
+		56FBA12D21C388540084F088 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 56FBA10B21C387B10084F088;
+			remoteInfo = BUILD_OPTIMIZATION_TESTS;
+		};
+		56FBA12F21C388540084F088 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 56FBA11321C388170084F088;
+			remoteInfo = BUILD_SINGLE_TESTS;
+		};
+		56FBA13121C388540084F088 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 56FBA10F21C388040084F088;
+			remoteInfo = BUILD_UTILITIES_TESTS;
+		};
+		56FBA13521C3888A0084F088 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5614F97F21B0295C002C5D40;
+			remoteInfo = gqcp;
+		};
+		56FBA14221C388AE0084F088 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5614F97F21B0295C002C5D40;
+			remoteInfo = gqcp;
+		};
+		56FBA14F21C388E70084F088 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5614F97F21B0295C002C5D40;
+			remoteInfo = gqcp;
+		};
+		56FBA15B21C388EE0084F088 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5614F97F21B0295C002C5D40;
+			remoteInfo = gqcp;
+		};
+		56FBA16721C388F30084F088 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5614F97F21B0295C002C5D40;
+			remoteInfo = gqcp;
+		};
+		56FBA17321C388F80084F088 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5614F97F21B0295C002C5D40;
+			remoteInfo = gqcp;
+		};
+		56FBA17F21C388FD0084F088 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5614F97F21B0295C002C5D40;
+			remoteInfo = gqcp;
+		};
+		56FBA18B21C389050084F088 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5614F97F21B0295C002C5D40;
+			remoteInfo = gqcp;
+		};
+		56FBA19521C3894A0084F088 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 56FBA14D21C388E70084F088;
+			remoteInfo = DavidsonSolver_test;
+		};
+		56FBA19721C3894A0084F088 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 56FBA15921C388EE0084F088;
+			remoteInfo = DenseSolver_test;
+		};
+		56FBA19921C3894A0084F088 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 56FBA16521C388F30084F088;
+			remoteInfo = Eigenpair_test;
+		};
+		56FBA19B21C3894A0084F088 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 56FBA17121C388F80084F088;
+			remoteInfo = NewtonMinmizer_test;
+		};
+		56FBA19D21C3894A0084F088 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 56FBA17D21C388FD0084F088;
+			remoteInfo = NewtonSystemOfEquationsSolver_test;
+		};
+		56FBA19F21C3894A0084F088 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 56FBA18921C389050084F088;
+			remoteInfo = SparseSolver_test;
+		};
+		56FBA1A721C389F60084F088 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5614FE6021B03A07002C5D40;
+			remoteInfo = fci_lowdin;
+		};
+		56FBA1A921C389F60084F088 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5614FE6E21B04008002C5D40;
+			remoteInfo = hubbard;
+		};
+		56FBA1AB21C389F60084F088 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5614FE7B21B0400D002C5D40;
+			remoteInfo = oo_doci;
+		};
+		56FBA1AF21C390130084F088 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 56FBA13321C3888A0084F088;
+			remoteInfo = io_test;
+		};
+		56FBA1B121C390130084F088 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 56FBA14021C388AE0084F088;
+			remoteInfo = linalg_test;
+		};
+		56FBA1B321C390130084F088 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5614014D21B06383002C5D40;
+			remoteInfo = miscellaneous_test;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -1947,6 +2194,87 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
+		56FBA0F421C2F1A10084F088 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		56FBA13A21C3888A0084F088 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		56FBA14721C388AE0084F088 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		56FBA15421C388E70084F088 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		56FBA16021C388EE0084F088 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		56FBA16C21C388F30084F088 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		56FBA17821C388F80084F088 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		56FBA18421C388FD0084F088 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		56FBA19021C389050084F088 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -2011,7 +2339,6 @@
 		5614F9AF21B029FB002C5D40 /* LibintCommunicator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LibintCommunicator.hpp; sourceTree = "<group>"; };
 		5614F9B121B029FB002C5D40 /* properties.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = properties.hpp; sourceTree = "<group>"; };
 		5614F9B221B029FB002C5D40 /* expectation_values.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = expectation_values.hpp; sourceTree = "<group>"; };
-		5614F9B321B029FB002C5D40 /* miscellaneous.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = miscellaneous.hpp; sourceTree = "<group>"; };
 		5614F9B421B029FB002C5D40 /* units.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = units.hpp; sourceTree = "<group>"; };
 		5614F9B521B029FB002C5D40 /* JacobiRotationParameters.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = JacobiRotationParameters.hpp; sourceTree = "<group>"; };
 		5614F9B621B029FB002C5D40 /* common.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = common.hpp; sourceTree = "<group>"; };
@@ -2034,7 +2361,6 @@
 		5614F9CE21B029FB002C5D40 /* Hubbard.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Hubbard.hpp; sourceTree = "<group>"; };
 		5614F9CF21B029FB002C5D40 /* FCI.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FCI.hpp; sourceTree = "<group>"; };
 		5614F9D021B029FB002C5D40 /* Molecule.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Molecule.hpp; sourceTree = "<group>"; };
-		5614F9D221B029FB002C5D40 /* miscellaneous.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = miscellaneous.cpp; sourceTree = "<group>"; };
 		5614F9D321B029FB002C5D40 /* JacobiRotationParameters.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JacobiRotationParameters.cpp; sourceTree = "<group>"; };
 		5614F9D421B029FB002C5D40 /* RMP2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RMP2.cpp; sourceTree = "<group>"; };
 		5614F9D521B029FB002C5D40 /* elements.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = elements.cpp; sourceTree = "<group>"; };
@@ -2086,14 +2412,11 @@
 		5614FA8D21B02A8A002C5D40 /* InstallLibrary.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = InstallLibrary.cmake; sourceTree = "<group>"; };
 		5614FA8E21B02A8A002C5D40 /* FindEigen3.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = FindEigen3.cmake; sourceTree = "<group>"; };
 		5614FA8F21B02A8A002C5D40 /* SetCMakeEnvironment.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = SetCMakeEnvironment.cmake; sourceTree = "<group>"; };
-		5614FA9021B02A8A002C5D40 /* ConfigureExecutable.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = ConfigureExecutable.cmake; sourceTree = "<group>"; };
 		5614FA9121B02A8A002C5D40 /* ConfigVersion.cmake.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = ConfigVersion.cmake.in; sourceTree = "<group>"; };
 		5614FA9221B02A8A002C5D40 /* FindLibint2.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = FindLibint2.cmake; sourceTree = "<group>"; };
 		5614FA9321B02A8A002C5D40 /* FindPackages.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = FindPackages.cmake; sourceTree = "<group>"; };
 		5614FA9421B02A8A002C5D40 /* Config.cmake.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = Config.cmake.in; sourceTree = "<group>"; };
-		5614FA9521B02A8A002C5D40 /* ConfigureLibrary.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = ConfigureLibrary.cmake; sourceTree = "<group>"; };
 		5614FA9621B02A8A002C5D40 /* FindMKL.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = FindMKL.cmake; sourceTree = "<group>"; };
-		5614FA9721B02A8A002C5D40 /* ConfigureBenchmarks.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = ConfigureBenchmarks.cmake; sourceTree = "<group>"; };
 		5614FA9821B02A8B002C5D40 /* CONTRIBUTORS */ = {isa = PBXFileReference; lastKnownFileType = text; path = CONTRIBUTORS; sourceTree = "<group>"; };
 		5614FA9921B02A8B002C5D40 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		5614FA9B21B02A8B002C5D40 /* Doxyfile.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = Doxyfile.in; sourceTree = "<group>"; };
@@ -2238,6 +2561,66 @@
 		5660430221B913AD008C2E86 /* NRDMCalculator_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = NRDMCalculator_test; sourceTree = BUILT_PRODUCTS_DIR; };
 		566D22A021B81CC100F8EB91 /* NRDMCalculator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NRDMCalculator.cpp; sourceTree = "<group>"; };
 		566D22A121B81CC100F8EB91 /* NRDMCalculator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NRDMCalculator.hpp; sourceTree = "<group>"; };
+		56FBA09B21C2B0420084F088 /* linalg.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = linalg.hpp; sourceTree = "<group>"; };
+		56FBA09D21C2B0420084F088 /* io.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = io.hpp; sourceTree = "<group>"; };
+		56FBA09E21C2B0420084F088 /* miscellaneous.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = miscellaneous.hpp; sourceTree = "<group>"; };
+		56FBA0A421C2B06B0084F088 /* miscellaneous.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = miscellaneous.cpp; sourceTree = "<group>"; };
+		56FBA0A521C2B06B0084F088 /* io.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = io.cpp; sourceTree = "<group>"; };
+		56FBA0A621C2B06B0084F088 /* linalg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = linalg.cpp; sourceTree = "<group>"; };
+		56FBA0AD21C2B4AE0084F088 /* BaseSystemOfEquationsSolver.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BaseSystemOfEquationsSolver.hpp; sourceTree = "<group>"; };
+		56FBA0AE21C2B4AE0084F088 /* DavidsonSolver.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DavidsonSolver.hpp; sourceTree = "<group>"; };
+		56FBA0B021C2B4AE0084F088 /* DenseSolver.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DenseSolver.hpp; sourceTree = "<group>"; };
+		56FBA0B121C2B4AE0084F088 /* NewtonMinimizer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = NewtonMinimizer.hpp; sourceTree = "<group>"; };
+		56FBA0B221C2B4AE0084F088 /* Eigenpair.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Eigenpair.hpp; sourceTree = "<group>"; };
+		56FBA0B321C2B4AF0084F088 /* step.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = step.hpp; sourceTree = "<group>"; };
+		56FBA0B421C2B4AF0084F088 /* BaseMinimizer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BaseMinimizer.hpp; sourceTree = "<group>"; };
+		56FBA0B521C2B4AF0084F088 /* NewtonSystemOfEquationsSolver.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = NewtonSystemOfEquationsSolver.hpp; sourceTree = "<group>"; };
+		56FBA0B621C2B4AF0084F088 /* BaseEigenproblemSolver.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BaseEigenproblemSolver.hpp; sourceTree = "<group>"; };
+		56FBA0B721C2B4AF0084F088 /* EigenproblemSolverOptions.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = EigenproblemSolverOptions.hpp; sourceTree = "<group>"; };
+		56FBA0B821C2B4AF0084F088 /* BaseMatrixSolver.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BaseMatrixSolver.hpp; sourceTree = "<group>"; };
+		56FBA0B921C2B4AF0084F088 /* SparseSolver.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SparseSolver.hpp; sourceTree = "<group>"; };
+		56FBA0C821C2B4C90084F088 /* BaseSystemOfEquationsSolver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseSystemOfEquationsSolver.cpp; sourceTree = "<group>"; };
+		56FBA0C921C2B4C90084F088 /* Eigenpair.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Eigenpair.cpp; sourceTree = "<group>"; };
+		56FBA0CA21C2B4C90084F088 /* NewtonMinimizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NewtonMinimizer.cpp; sourceTree = "<group>"; };
+		56FBA0CB21C2B4C90084F088 /* NewtonSystemOfEquationsSolver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NewtonSystemOfEquationsSolver.cpp; sourceTree = "<group>"; };
+		56FBA0CC21C2B4C90084F088 /* DavidsonSolver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DavidsonSolver.cpp; sourceTree = "<group>"; };
+		56FBA0CD21C2B4C90084F088 /* DenseSolver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DenseSolver.cpp; sourceTree = "<group>"; };
+		56FBA0CE21C2B4C90084F088 /* SparseSolver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SparseSolver.cpp; sourceTree = "<group>"; };
+		56FBA0CF21C2B4C90084F088 /* step.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = step.cpp; sourceTree = "<group>"; };
+		56FBA0D021C2B4C90084F088 /* BaseMatrixSolver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseMatrixSolver.cpp; sourceTree = "<group>"; };
+		56FBA0D121C2B4C90084F088 /* BaseMinimizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseMinimizer.cpp; sourceTree = "<group>"; };
+		56FBA0D221C2B4C90084F088 /* BaseEigenproblemSolver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseEigenproblemSolver.cpp; sourceTree = "<group>"; };
+		56FBA0DF21C2CEE10084F088 /* ConfigureDriver.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = ConfigureDriver.cmake; sourceTree = "<group>"; };
+		56FBA0E021C2CEE10084F088 /* ConfigureTest.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = ConfigureTest.cmake; sourceTree = "<group>"; };
+		56FBA0E121C2CEE10084F088 /* ConfigureExecutable.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = ConfigureExecutable.cmake; sourceTree = "<group>"; };
+		56FBA0E221C2CEE10084F088 /* ConfigureLibrary.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = ConfigureLibrary.cmake; sourceTree = "<group>"; };
+		56FBA0E321C2CEE10084F088 /* ConfigureBenchmarks.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = ConfigureBenchmarks.cmake; sourceTree = "<group>"; };
+		56FBA0E521C2D5BF0084F088 /* FindSpectra.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = FindSpectra.cmake; sourceTree = "<group>"; };
+		56FBA0E621C2DFB40084F088 /* HoppingMatrix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HoppingMatrix.cpp; sourceTree = "<group>"; };
+		56FBA0E821C2DFC00084F088 /* HoppingMatrix.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HoppingMatrix.hpp; sourceTree = "<group>"; };
+		56FBA0EA21C2F1610084F088 /* h2o_fci_lowdin_STO-3G.output */ = {isa = PBXFileReference; lastKnownFileType = text; path = "h2o_fci_lowdin_STO-3G.output"; sourceTree = "<group>"; };
+		56FBA0EC21C2F1950084F088 /* HoppingMatrix_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HoppingMatrix_test.cpp; sourceTree = "<group>"; };
+		56FBA0F821C2F1A10084F088 /* HoppingMatrix_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = HoppingMatrix_test; sourceTree = BUILT_PRODUCTS_DIR; };
+		56FBA0FE21C2F3480084F088 /* small_two_ints.data */ = {isa = PBXFileReference; lastKnownFileType = text; path = small_two_ints.data; sourceTree = "<group>"; };
+		56FBA0FF21C2F3480084F088 /* small_vector.data */ = {isa = PBXFileReference; lastKnownFileType = text; path = small_vector.data; sourceTree = "<group>"; };
+		56FBA10221C2F3480084F088 /* small_one_ints.data */ = {isa = PBXFileReference; lastKnownFileType = text; path = small_one_ints.data; sourceTree = "<group>"; };
+		56FBA10321C2F3480084F088 /* io_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = io_test.cpp; sourceTree = "<group>"; };
+		56FBA10421C2F3490084F088 /* linalg_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = linalg_test.cpp; sourceTree = "<group>"; };
+		56FBA10521C384110084F088 /* SparseSolver_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SparseSolver_test.cpp; sourceTree = "<group>"; };
+		56FBA10621C384110084F088 /* Eigenpair_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Eigenpair_test.cpp; sourceTree = "<group>"; };
+		56FBA10721C384110084F088 /* NewtonMinimizer_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NewtonMinimizer_test.cpp; sourceTree = "<group>"; };
+		56FBA10821C384110084F088 /* DenseSolver_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DenseSolver_test.cpp; sourceTree = "<group>"; };
+		56FBA10921C384110084F088 /* NewtonSystemOfEquationsSolver_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NewtonSystemOfEquationsSolver_test.cpp; sourceTree = "<group>"; };
+		56FBA10A21C384110084F088 /* DavidsonSolver_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DavidsonSolver_test.cpp; sourceTree = "<group>"; };
+		56FBA13E21C3888A0084F088 /* io_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = io_test; sourceTree = BUILT_PRODUCTS_DIR; };
+		56FBA14B21C388AE0084F088 /* linalg_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = linalg_test; sourceTree = BUILT_PRODUCTS_DIR; };
+		56FBA15821C388E70084F088 /* DavidsonSolver_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DavidsonSolver_test; sourceTree = BUILT_PRODUCTS_DIR; };
+		56FBA16421C388EE0084F088 /* DenseSolver_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DenseSolver_test; sourceTree = BUILT_PRODUCTS_DIR; };
+		56FBA17021C388F30084F088 /* Eigenpair_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Eigenpair_test; sourceTree = BUILT_PRODUCTS_DIR; };
+		56FBA17C21C388F80084F088 /* NewtonMinimizer_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = NewtonMinimizer_test; sourceTree = BUILT_PRODUCTS_DIR; };
+		56FBA18821C388FD0084F088 /* NewtonSystemOfEquationsSolver_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = NewtonSystemOfEquationsSolver_test; sourceTree = BUILT_PRODUCTS_DIR; };
+		56FBA19421C389050084F088 /* SparseSolver_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SparseSolver_test; sourceTree = BUILT_PRODUCTS_DIR; };
+		56FBA1B521C390680084F088 /* h2o_sto-3g_two_electron_horton.data */ = {isa = PBXFileReference; lastKnownFileType = text; path = "h2o_sto-3g_two_electron_horton.data"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2510,8 +2893,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5614FDBD21B034F9002C5D40 /* libint2.a in Frameworks */,
-				5614FDB921B034D5002C5D40 /* libcpputil.a in Frameworks */,
-				5614FDBB21B034D5002C5D40 /* libnumopt.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2751,6 +3132,78 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		56FBA0F221C2F1A10084F088 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56FBA0F321C2F1A10084F088 /* libgqcp.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		56FBA13821C3888A0084F088 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56FBA13921C3888A0084F088 /* libgqcp.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		56FBA14521C388AE0084F088 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56FBA14621C388AE0084F088 /* libgqcp.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		56FBA15221C388E70084F088 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56FBA15321C388E70084F088 /* libgqcp.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		56FBA15E21C388EE0084F088 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56FBA15F21C388EE0084F088 /* libgqcp.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		56FBA16A21C388F30084F088 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56FBA16B21C388F30084F088 /* libgqcp.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		56FBA17621C388F80084F088 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56FBA17721C388F80084F088 /* libgqcp.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		56FBA18221C388FD0084F088 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56FBA18321C388FD0084F088 /* libgqcp.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		56FBA18E21C389050084F088 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56FBA18F21C389050084F088 /* libgqcp.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -2758,7 +3211,7 @@
 			isa = PBXGroup;
 			children = (
 				5614FAA821B02E48002C5D40 /* benchmarks */,
-				5614FAA321B02E48002C5D40 /* exe */,
+				5614FAA321B02E48002C5D40 /* drivers */,
 				5614F98E21B029FB002C5D40 /* include */,
 				5614F9D121B029FB002C5D40 /* src */,
 				5614FB3C21B02EDE002C5D40 /* tests */,
@@ -2833,6 +3286,15 @@
 				5614018821B06397002C5D40 /* units_test */,
 				56272DE121B6CC7B008BEA47 /* APIGGeminalCoefficients_test */,
 				5660430221B913AD008C2E86 /* NRDMCalculator_test */,
+				56FBA0F821C2F1A10084F088 /* HoppingMatrix_test */,
+				56FBA13E21C3888A0084F088 /* io_test */,
+				56FBA14B21C388AE0084F088 /* linalg_test */,
+				56FBA15821C388E70084F088 /* DavidsonSolver_test */,
+				56FBA16421C388EE0084F088 /* DenseSolver_test */,
+				56FBA17021C388F30084F088 /* Eigenpair_test */,
+				56FBA17C21C388F80084F088 /* NewtonMinimizer_test */,
+				56FBA18821C388FD0084F088 /* NewtonSystemOfEquationsSolver_test */,
+				56FBA19421C389050084F088 /* SparseSolver_test */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2847,12 +3309,14 @@
 				5614F9C721B029FB002C5D40 /* HamiltonianParameters */,
 				5614F9C021B029FB002C5D40 /* Localization */,
 				5614F9BA21B029FB002C5D40 /* Operator */,
+				56FBA0AA21C2B4660084F088 /* optimization */,
 				5614F9B021B029FB002C5D40 /* properties */,
 				5614F99F21B029FB002C5D40 /* RDM */,
 				5614F99A21B029FB002C5D40 /* RHF */,
+				5614FA7621B02A16002C5D40 /* singles */,
+				56FBA09A21C2B0260084F088 /* utilities */,
 				5614F98F21B029FB002C5D40 /* version.hpp.in */,
 				5614F9C421B029FB002C5D40 /* WaveFunction */,
-				5614FA7621B02A16002C5D40 /* singles */,
 			);
 			path = include;
 			sourceTree = "<group>";
@@ -2861,12 +3325,12 @@
 			isa = PBXGroup;
 			children = (
 				5614F99221B029FB002C5D40 /* BaseFockSpace.hpp */,
-				5614F99321B029FB002C5D40 /* ProductFockSpace.hpp */,
 				5614F99421B029FB002C5D40 /* Configuration.hpp */,
-				5614F99521B029FB002C5D40 /* FockSpaceType.hpp */,
-				5614F99621B029FB002C5D40 /* SelectedFockSpace.hpp */,
-				5614F99721B029FB002C5D40 /* ONV.hpp */,
 				5614F99821B029FB002C5D40 /* FockSpace.hpp */,
+				5614F99521B029FB002C5D40 /* FockSpaceType.hpp */,
+				5614F99721B029FB002C5D40 /* ONV.hpp */,
+				5614F99321B029FB002C5D40 /* ProductFockSpace.hpp */,
+				5614F99621B029FB002C5D40 /* SelectedFockSpace.hpp */,
 			);
 			path = FockSpace;
 			sourceTree = "<group>";
@@ -2874,10 +3338,10 @@
 		5614F99A21B029FB002C5D40 /* RHF */ = {
 			isa = PBXGroup;
 			children = (
-				5614F99B21B029FB002C5D40 /* RHFSCFSolver.hpp */,
-				5614F99C21B029FB002C5D40 /* PlainRHFSCFSolver.hpp */,
 				5614F99D21B029FB002C5D40 /* DIISRHFSCFSolver.hpp */,
+				5614F99C21B029FB002C5D40 /* PlainRHFSCFSolver.hpp */,
 				5614F99E21B029FB002C5D40 /* RHF.hpp */,
+				5614F99B21B029FB002C5D40 /* RHFSCFSolver.hpp */,
 			);
 			path = RHF;
 			sourceTree = "<group>";
@@ -2902,8 +3366,8 @@
 		5614F9B021B029FB002C5D40 /* properties */ = {
 			isa = PBXGroup;
 			children = (
-				5614F9B121B029FB002C5D40 /* properties.hpp */,
 				5614F9B221B029FB002C5D40 /* expectation_values.hpp */,
+				5614F9B121B029FB002C5D40 /* properties.hpp */,
 			);
 			path = properties;
 			sourceTree = "<group>";
@@ -2911,8 +3375,8 @@
 		5614F9BA21B029FB002C5D40 /* Operator */ = {
 			isa = PBXGroup;
 			children = (
-				5614F9BB21B029FB002C5D40 /* OneElectronOperator.hpp */,
 				5614F9BC21B029FB002C5D40 /* BaseOperator.hpp */,
+				5614F9BB21B029FB002C5D40 /* OneElectronOperator.hpp */,
 				5614F9BD21B029FB002C5D40 /* TwoElectronOperator.hpp */,
 			);
 			path = Operator;
@@ -2929,9 +3393,9 @@
 		5614F9C021B029FB002C5D40 /* Localization */ = {
 			isa = PBXGroup;
 			children = (
+				5614F9C321B029FB002C5D40 /* BaseERLocalizer.hpp */,
 				5614F9C121B029FB002C5D40 /* ERJacobiLocalizer.hpp */,
 				5614F9C221B029FB002C5D40 /* ERNewtonLocalizer.hpp */,
-				5614F9C321B029FB002C5D40 /* BaseERLocalizer.hpp */,
 			);
 			path = Localization;
 			sourceTree = "<group>";
@@ -2958,9 +3422,9 @@
 			isa = PBXGroup;
 			children = (
 				5614F9CC21B029FB002C5D40 /* DOCI.hpp */,
+				5614F9CF21B029FB002C5D40 /* FCI.hpp */,
 				5614F9CD21B029FB002C5D40 /* HamiltonianBuilder.hpp */,
 				5614F9CE21B029FB002C5D40 /* Hubbard.hpp */,
-				5614F9CF21B029FB002C5D40 /* FCI.hpp */,
 			);
 			path = HamiltonianBuilder;
 			sourceTree = "<group>";
@@ -2976,10 +3440,12 @@
 				5614FA0521B029FB002C5D40 /* HamiltonianParameters */,
 				5614F9FE21B029FB002C5D40 /* Localization */,
 				5614F9F821B029FB002C5D40 /* Operator */,
+				56FBA0AB21C2B48D0084F088 /* optimization */,
 				5614F9F421B029FB002C5D40 /* properties */,
 				5614F9E521B029FB002C5D40 /* RDM */,
 				5614F9E021B029FB002C5D40 /* RHF */,
 				5614FA7721B02A34002C5D40 /* singles */,
+				56FBA0A321C2B04B0084F088 /* utilities */,
 				5614FA0221B029FB002C5D40 /* WaveFunction */,
 			);
 			path = src;
@@ -2988,9 +3454,9 @@
 		5614F9D821B029FB002C5D40 /* FockSpace */ = {
 			isa = PBXGroup;
 			children = (
+				5614F9DB21B029FB002C5D40 /* BaseFockSpace.cpp */,
 				5614F9D921B029FB002C5D40 /* FockSpace.cpp */,
 				5614F9DA21B029FB002C5D40 /* ONV.cpp */,
-				5614F9DB21B029FB002C5D40 /* BaseFockSpace.cpp */,
 				5614F9DC21B029FB002C5D40 /* ProductFockSpace.cpp */,
 				5614F9DD21B029FB002C5D40 /* SelectedFockSpace.cpp */,
 			);
@@ -3000,10 +3466,10 @@
 		5614F9E021B029FB002C5D40 /* RHF */ = {
 			isa = PBXGroup;
 			children = (
-				5614F9E121B029FB002C5D40 /* RHF.cpp */,
 				5614F9E221B029FB002C5D40 /* DIISRHFSCFSolver.cpp */,
-				5614F9E321B029FB002C5D40 /* RHFSCFSolver.cpp */,
 				5614F9E421B029FB002C5D40 /* PlainRHFSCFSolver.cpp */,
+				5614F9E121B029FB002C5D40 /* RHF.cpp */,
+				5614F9E321B029FB002C5D40 /* RHFSCFSolver.cpp */,
 			);
 			path = RHF;
 			sourceTree = "<group>";
@@ -3037,9 +3503,9 @@
 		5614F9F821B029FB002C5D40 /* Operator */ = {
 			isa = PBXGroup;
 			children = (
-				5614F9F921B029FB002C5D40 /* TwoElectronOperator.cpp */,
 				5614F9FA21B029FB002C5D40 /* BaseOperator.cpp */,
 				5614F9FB21B029FB002C5D40 /* OneElectronOperator.cpp */,
+				5614F9F921B029FB002C5D40 /* TwoElectronOperator.cpp */,
 			);
 			path = Operator;
 			sourceTree = "<group>";
@@ -3056,8 +3522,8 @@
 			isa = PBXGroup;
 			children = (
 				5614F9FF21B029FB002C5D40 /* BaseERLocalizer.cpp */,
-				5614FA0021B029FB002C5D40 /* ERNewtonLocalizer.cpp */,
 				5614FA0121B029FB002C5D40 /* ERJacobiLocalizer.cpp */,
+				5614FA0021B029FB002C5D40 /* ERNewtonLocalizer.cpp */,
 			);
 			path = Localization;
 			sourceTree = "<group>";
@@ -3065,8 +3531,8 @@
 		5614FA0221B029FB002C5D40 /* WaveFunction */ = {
 			isa = PBXGroup;
 			children = (
-				5614FA0321B029FB002C5D40 /* WaveFunctionReader.cpp */,
 				5614FA0421B029FB002C5D40 /* WaveFunction.cpp */,
+				5614FA0321B029FB002C5D40 /* WaveFunctionReader.cpp */,
 			);
 			path = WaveFunction;
 			sourceTree = "<group>";
@@ -3074,8 +3540,8 @@
 		5614FA0521B029FB002C5D40 /* HamiltonianParameters */ = {
 			isa = PBXGroup;
 			children = (
-				5614FA0621B029FB002C5D40 /* HamiltonianParameters.cpp */,
 				5614FA0821B029FB002C5D40 /* BaseHamiltonianParameters.cpp */,
+				5614FA0621B029FB002C5D40 /* HamiltonianParameters.cpp */,
 			);
 			path = HamiltonianParameters;
 			sourceTree = "<group>";
@@ -3083,10 +3549,10 @@
 		5614FA0921B029FB002C5D40 /* HamiltonianBuilder */ = {
 			isa = PBXGroup;
 			children = (
-				5614FA0A21B029FB002C5D40 /* Hubbard.cpp */,
-				5614FA0B21B029FB002C5D40 /* FCI.cpp */,
 				5614FA0C21B029FB002C5D40 /* DOCI.cpp */,
+				5614FA0B21B029FB002C5D40 /* FCI.cpp */,
 				5614FA0D21B029FB002C5D40 /* HamiltonianBuilder.cpp */,
+				5614FA0A21B029FB002C5D40 /* Hubbard.cpp */,
 			);
 			path = HamiltonianBuilder;
 			sourceTree = "<group>";
@@ -3099,9 +3565,9 @@
 				5614F9B621B029FB002C5D40 /* common.hpp */,
 				5614F99021B029FB002C5D40 /* DOCINewtonOrbitalOptimizer.hpp */,
 				5614F9B921B029FB002C5D40 /* elements.hpp */,
+				56FBA0E821C2DFC00084F088 /* HoppingMatrix.hpp */,
 				5614F9B521B029FB002C5D40 /* JacobiRotationParameters.hpp */,
 				5614F9AF21B029FB002C5D40 /* LibintCommunicator.hpp */,
-				5614F9B321B029FB002C5D40 /* miscellaneous.hpp */,
 				5614F9D021B029FB002C5D40 /* Molecule.hpp */,
 				5614F9B821B029FB002C5D40 /* OrbitalOptimizationOptions.hpp */,
 				5614F9B721B029FB002C5D40 /* RMP2.hpp */,
@@ -3113,15 +3579,15 @@
 		5614FA7721B02A34002C5D40 /* singles */ = {
 			isa = PBXGroup;
 			children = (
-				5614F9D221B029FB002C5D40 /* miscellaneous.cpp */,
-				5614F9D321B029FB002C5D40 /* JacobiRotationParameters.cpp */,
-				5614F9D421B029FB002C5D40 /* RMP2.cpp */,
-				5614F9D521B029FB002C5D40 /* elements.cpp */,
-				5614F9D721B029FB002C5D40 /* Molecule.cpp */,
-				5614F9DE21B029FB002C5D40 /* Atom.cpp */,
-				5614F9DF21B029FB002C5D40 /* LibintCommunicator.cpp */,
 				5614F9F721B029FB002C5D40 /* AOBasis.cpp */,
+				5614F9DE21B029FB002C5D40 /* Atom.cpp */,
 				5614FA0E21B029FB002C5D40 /* DOCINewtonOrbitalOptimizer.cpp */,
+				5614F9D521B029FB002C5D40 /* elements.cpp */,
+				56FBA0E621C2DFB40084F088 /* HoppingMatrix.cpp */,
+				5614F9D321B029FB002C5D40 /* JacobiRotationParameters.cpp */,
+				5614F9DF21B029FB002C5D40 /* LibintCommunicator.cpp */,
+				5614F9D721B029FB002C5D40 /* Molecule.cpp */,
+				5614F9D421B029FB002C5D40 /* RMP2.cpp */,
 			);
 			name = singles;
 			sourceTree = "<group>";
@@ -3147,17 +3613,12 @@
 		5614FA8C21B02A8A002C5D40 /* cmake */ = {
 			isa = PBXGroup;
 			children = (
+				56FBA0E421C2D57D0084F088 /* Find */,
+				56FBA0DE21C2CEE10084F088 /* Configure */,
 				5614FA8D21B02A8A002C5D40 /* InstallLibrary.cmake */,
-				5614FA8E21B02A8A002C5D40 /* FindEigen3.cmake */,
 				5614FA8F21B02A8A002C5D40 /* SetCMakeEnvironment.cmake */,
-				5614FA9021B02A8A002C5D40 /* ConfigureExecutable.cmake */,
 				5614FA9121B02A8A002C5D40 /* ConfigVersion.cmake.in */,
-				5614FA9221B02A8A002C5D40 /* FindLibint2.cmake */,
-				5614FA9321B02A8A002C5D40 /* FindPackages.cmake */,
 				5614FA9421B02A8A002C5D40 /* Config.cmake.in */,
-				5614FA9521B02A8A002C5D40 /* ConfigureLibrary.cmake */,
-				5614FA9621B02A8A002C5D40 /* FindMKL.cmake */,
-				5614FA9721B02A8A002C5D40 /* ConfigureBenchmarks.cmake */,
 			);
 			path = cmake;
 			sourceTree = "<group>";
@@ -3188,7 +3649,7 @@
 			name = extra;
 			sourceTree = "<group>";
 		};
-		5614FAA321B02E48002C5D40 /* exe */ = {
+		5614FAA321B02E48002C5D40 /* drivers */ = {
 			isa = PBXGroup;
 			children = (
 				5614FAA621B02E48002C5D40 /* CMakeLists.txt */,
@@ -3196,7 +3657,7 @@
 				5614FAA521B02E48002C5D40 /* hubbard.cpp */,
 				5614FAA721B02E48002C5D40 /* oo_doci.cpp */,
 			);
-			path = exe;
+			path = drivers;
 			sourceTree = "<group>";
 		};
 		5614FAA821B02E48002C5D40 /* benchmarks */ = {
@@ -3252,8 +3713,8 @@
 		5614FB3C21B02EDE002C5D40 /* tests */ = {
 			isa = PBXGroup;
 			children = (
-				5614FB4121B02EDE002C5D40 /* CMakeLists.txt */,
 				5614FB7E21B02EDE002C5D40 /* CISolver */,
+				5614FB4121B02EDE002C5D40 /* CMakeLists.txt */,
 				5614FB5F21B02EDE002C5D40 /* data */,
 				5614FB4321B02EDE002C5D40 /* FockSpace */,
 				56272DCC21B6CC2D008BEA47 /* geminals */,
@@ -3261,11 +3722,13 @@
 				5614FB8C21B02EDE002C5D40 /* HamiltonianParameters */,
 				5614FB8721B02EDE002C5D40 /* Localization */,
 				5614FB7B21B02EDE002C5D40 /* Operator */,
+				56FBA0FB21C2F2BA0084F088 /* optimization */,
 				5614FB5921B02EDE002C5D40 /* properties */,
 				5614FB4D21B02EDE002C5D40 /* RDM */,
 				5614FB4821B02EDE002C5D40 /* RHF */,
-				5614FB8A21B02EDE002C5D40 /* WaveFunction */,
 				5614FB9321B02EF1002C5D40 /* singles */,
+				56FBA0FA21C2F2B40084F088 /* utilities */,
+				5614FB8A21B02EDE002C5D40 /* WaveFunction */,
 			);
 			path = tests;
 			sourceTree = "<group>";
@@ -3318,31 +3781,36 @@
 		5614FB5F21B02EDE002C5D40 /* data */ = {
 			isa = PBXGroup;
 			children = (
-				5614FB6021B02EDE002C5D40 /* lih_631g_caitlin.FCIDUMP */,
-				5614FB6121B02EDE002C5D40 /* h2o_sto-3g_coulomb_horton.data */,
-				5614FB6221B02EDE002C5D40 /* he_cristina.xyz */,
-				5614FB6321B02EDE002C5D40 /* h2o_sto-3g_kinetic_horton.data */,
-				5614FB6421B02EDE002C5D40 /* lih_olsens.xyz */,
-				5614FB6521B02EDE002C5D40 /* test_GAMESS_expansion */,
-				5614FB6621B02EDE002C5D40 /* h2o.xyz */,
-				5614FB6721B02EDE002C5D40 /* h2o_sto3g_klaas.FCIDUMP */,
-				5614FB6821B02EDE002C5D40 /* h2_cristina.xyz */,
-				5614FB6921B02EDE002C5D40 /* rotated_two_electron_integrals_olsens.data */,
-				5614FB6A21B02EDE002C5D40 /* ch4_crawdad.xyz */,
-				5614FB6B21B02EDE002C5D40 /* n2_sto-3g_klaas.FCIDUMP */,
-				5614FB6C21B02EDE002C5D40 /* h2o_sto-3g_nuclear_horton.data */,
-				5614FB6D21B02EDE002C5D40 /* h2_olsens.xyz */,
-				5614FB6E21B02EDE002C5D40 /* h2.xyz */,
-				5614FB6F21B02EDE002C5D40 /* h2_psi4_horton.FCIDUMP */,
-				5614FB7021B02EDE002C5D40 /* h2o_Psi4_GAMESS.xyz */,
-				5614FB7121B02EDE002C5D40 /* CO_mulliken.xyz */,
 				5614FB7221B02EDE002C5D40 /* beh_cation_631g_caitlin.FCIDUMP */,
-				5614FB7321B02EDE002C5D40 /* h2o_crawdad.xyz */,
-				5614FB7421B02EDE002C5D40 /* h2o_631g_klaas.FCIDUMP */,
-				5614FB7521B02EDE002C5D40 /* lif_631g_klaas.FCIDUMP */,
+				5614FB6A21B02EDE002C5D40 /* ch4_crawdad.xyz */,
+				5614FB7121B02EDE002C5D40 /* CO_mulliken.xyz */,
+				5614FB6821B02EDE002C5D40 /* h2_cristina.xyz */,
+				5614FB6D21B02EDE002C5D40 /* h2_olsens.xyz */,
+				5614FB6F21B02EDE002C5D40 /* h2_psi4_horton.FCIDUMP */,
 				5614FB7621B02EDE002C5D40 /* h2_szabo.xyz */,
+				5614FB6E21B02EDE002C5D40 /* h2.xyz */,
+				5614FB7421B02EDE002C5D40 /* h2o_631g_klaas.FCIDUMP */,
+				5614FB7321B02EDE002C5D40 /* h2o_crawdad.xyz */,
+				56FBA0EA21C2F1610084F088 /* h2o_fci_lowdin_STO-3G.output */,
+				5614FB7021B02EDE002C5D40 /* h2o_Psi4_GAMESS.xyz */,
+				5614FB6121B02EDE002C5D40 /* h2o_sto-3g_coulomb_horton.data */,
+				5614FB6321B02EDE002C5D40 /* h2o_sto-3g_kinetic_horton.data */,
+				5614FB6C21B02EDE002C5D40 /* h2o_sto-3g_nuclear_horton.data */,
 				5614FB7721B02EDE002C5D40 /* h2o_sto-3g_overlap_horton.data */,
+				56FBA1B521C390680084F088 /* h2o_sto-3g_two_electron_horton.data */,
+				5614FB6721B02EDE002C5D40 /* h2o_sto3g_klaas.FCIDUMP */,
+				5614FB6621B02EDE002C5D40 /* h2o.xyz */,
+				5614FB6221B02EDE002C5D40 /* he_cristina.xyz */,
 				5614FB7821B02EDE002C5D40 /* li2_321g_klaas.FCIDUMP */,
+				5614FB7521B02EDE002C5D40 /* lif_631g_klaas.FCIDUMP */,
+				5614FB6021B02EDE002C5D40 /* lih_631g_caitlin.FCIDUMP */,
+				5614FB6421B02EDE002C5D40 /* lih_olsens.xyz */,
+				5614FB6B21B02EDE002C5D40 /* n2_sto-3g_klaas.FCIDUMP */,
+				5614FB6921B02EDE002C5D40 /* rotated_two_electron_integrals_olsens.data */,
+				56FBA10221C2F3480084F088 /* small_one_ints.data */,
+				56FBA0FE21C2F3480084F088 /* small_two_ints.data */,
+				56FBA0FF21C2F3480084F088 /* small_vector.data */,
+				5614FB6521B02EDE002C5D40 /* test_GAMESS_expansion */,
 			);
 			path = data;
 			sourceTree = "<group>";
@@ -3411,9 +3879,9 @@
 				5614FB4021B02EDE002C5D40 /* AOBasis_test.cpp */,
 				5614FB3E21B02EDE002C5D40 /* Atom_test.cpp */,
 				5614FB5D21B02EDE002C5D40 /* elements_test.cpp */,
+				56FBA0EC21C2F1950084F088 /* HoppingMatrix_test.cpp */,
 				5614FB3D21B02EDE002C5D40 /* JacobiRotationParameters_test.cpp */,
 				5614FB3F21B02EDE002C5D40 /* LibintCommunicator_test.cpp */,
-				5614FB5C21B02EDE002C5D40 /* miscellaneous_test.cpp */,
 				5614FB7921B02EDE002C5D40 /* Molecule_test.cpp */,
 				5614FB5E21B02EDE002C5D40 /* OO_DOCI_test.cpp */,
 				5614FB4221B02EDE002C5D40 /* RMP2_test.cpp */,
@@ -3437,12 +3905,12 @@
 		56272DB221B6CBFA008BEA47 /* geminals */ = {
 			isa = PBXGroup;
 			children = (
-				56272DB321B6CBFA008BEA47 /* AP1roGJacobiOrbitalOptimizer.hpp */,
-				56272DB421B6CBFA008BEA47 /* AP1roGGeminalCoefficients.hpp */,
-				56272DB521B6CBFA008BEA47 /* AP1roGPSESolver.hpp */,
-				56272DB621B6CBFA008BEA47 /* BaseAPIGGeminalCoefficients.hpp */,
 				56272DB721B6CBFA008BEA47 /* AP1roG.hpp */,
+				56272DB421B6CBFA008BEA47 /* AP1roGGeminalCoefficients.hpp */,
+				56272DB321B6CBFA008BEA47 /* AP1roGJacobiOrbitalOptimizer.hpp */,
+				56272DB521B6CBFA008BEA47 /* AP1roGPSESolver.hpp */,
 				56272DB821B6CBFA008BEA47 /* APIGGeminalCoefficients.hpp */,
+				56272DB621B6CBFA008BEA47 /* BaseAPIGGeminalCoefficients.hpp */,
 			);
 			path = geminals;
 			sourceTree = "<group>";
@@ -3450,12 +3918,12 @@
 		56272DBF21B6CC0D008BEA47 /* geminals */ = {
 			isa = PBXGroup;
 			children = (
-				56272DC021B6CC0D008BEA47 /* BaseAPIGGeminalCoefficients.cpp */,
 				56272DC121B6CC0D008BEA47 /* AP1roG.cpp */,
-				56272DC221B6CC0D008BEA47 /* APIGGeminalCoefficients.cpp */,
-				56272DC321B6CC0D008BEA47 /* AP1roGPSESolver.cpp */,
-				56272DC421B6CC0D008BEA47 /* AP1roGJacobiOrbitalOptimizer.cpp */,
 				56272DC521B6CC0D008BEA47 /* AP1roGGeminalCoefficients.cpp */,
+				56272DC421B6CC0D008BEA47 /* AP1roGJacobiOrbitalOptimizer.cpp */,
+				56272DC321B6CC0D008BEA47 /* AP1roGPSESolver.cpp */,
+				56272DC221B6CC0D008BEA47 /* APIGGeminalCoefficients.cpp */,
+				56272DC021B6CC0D008BEA47 /* BaseAPIGGeminalCoefficients.cpp */,
 			);
 			path = geminals;
 			sourceTree = "<group>";
@@ -3463,13 +3931,117 @@
 		56272DCC21B6CC2D008BEA47 /* geminals */ = {
 			isa = PBXGroup;
 			children = (
-				56272DCD21B6CC2D008BEA47 /* AP1roGGeminalCoefficients_test.cpp */,
-				56272DCE21B6CC2D008BEA47 /* OO_AP1roG_test.cpp */,
 				56272DCF21B6CC2D008BEA47 /* AP1roG_test.cpp */,
+				56272DCD21B6CC2D008BEA47 /* AP1roGGeminalCoefficients_test.cpp */,
 				56272DD021B6CC2D008BEA47 /* AP1roGPSESolver_test.cpp */,
 				56272DD121B6CC2D008BEA47 /* APIGGeminalCoefficients_test.cpp */,
+				56272DCE21B6CC2D008BEA47 /* OO_AP1roG_test.cpp */,
 			);
 			path = geminals;
+			sourceTree = "<group>";
+		};
+		56FBA09A21C2B0260084F088 /* utilities */ = {
+			isa = PBXGroup;
+			children = (
+				56FBA09D21C2B0420084F088 /* io.hpp */,
+				56FBA09B21C2B0420084F088 /* linalg.hpp */,
+				56FBA09E21C2B0420084F088 /* miscellaneous.hpp */,
+			);
+			path = utilities;
+			sourceTree = "<group>";
+		};
+		56FBA0A321C2B04B0084F088 /* utilities */ = {
+			isa = PBXGroup;
+			children = (
+				56FBA0A521C2B06B0084F088 /* io.cpp */,
+				56FBA0A621C2B06B0084F088 /* linalg.cpp */,
+				56FBA0A421C2B06B0084F088 /* miscellaneous.cpp */,
+			);
+			path = utilities;
+			sourceTree = "<group>";
+		};
+		56FBA0AA21C2B4660084F088 /* optimization */ = {
+			isa = PBXGroup;
+			children = (
+				56FBA0B621C2B4AF0084F088 /* BaseEigenproblemSolver.hpp */,
+				56FBA0B821C2B4AF0084F088 /* BaseMatrixSolver.hpp */,
+				56FBA0B421C2B4AF0084F088 /* BaseMinimizer.hpp */,
+				56FBA0AD21C2B4AE0084F088 /* BaseSystemOfEquationsSolver.hpp */,
+				56FBA0AE21C2B4AE0084F088 /* DavidsonSolver.hpp */,
+				56FBA0B021C2B4AE0084F088 /* DenseSolver.hpp */,
+				56FBA0B221C2B4AE0084F088 /* Eigenpair.hpp */,
+				56FBA0B721C2B4AF0084F088 /* EigenproblemSolverOptions.hpp */,
+				56FBA0B121C2B4AE0084F088 /* NewtonMinimizer.hpp */,
+				56FBA0B521C2B4AF0084F088 /* NewtonSystemOfEquationsSolver.hpp */,
+				56FBA0B921C2B4AF0084F088 /* SparseSolver.hpp */,
+				56FBA0B321C2B4AF0084F088 /* step.hpp */,
+			);
+			path = optimization;
+			sourceTree = "<group>";
+		};
+		56FBA0AB21C2B48D0084F088 /* optimization */ = {
+			isa = PBXGroup;
+			children = (
+				56FBA0D221C2B4C90084F088 /* BaseEigenproblemSolver.cpp */,
+				56FBA0D021C2B4C90084F088 /* BaseMatrixSolver.cpp */,
+				56FBA0D121C2B4C90084F088 /* BaseMinimizer.cpp */,
+				56FBA0C821C2B4C90084F088 /* BaseSystemOfEquationsSolver.cpp */,
+				56FBA0CC21C2B4C90084F088 /* DavidsonSolver.cpp */,
+				56FBA0CD21C2B4C90084F088 /* DenseSolver.cpp */,
+				56FBA0C921C2B4C90084F088 /* Eigenpair.cpp */,
+				56FBA0CA21C2B4C90084F088 /* NewtonMinimizer.cpp */,
+				56FBA0CB21C2B4C90084F088 /* NewtonSystemOfEquationsSolver.cpp */,
+				56FBA0CE21C2B4C90084F088 /* SparseSolver.cpp */,
+				56FBA0CF21C2B4C90084F088 /* step.cpp */,
+			);
+			path = optimization;
+			sourceTree = "<group>";
+		};
+		56FBA0DE21C2CEE10084F088 /* Configure */ = {
+			isa = PBXGroup;
+			children = (
+				56FBA0DF21C2CEE10084F088 /* ConfigureDriver.cmake */,
+				56FBA0E021C2CEE10084F088 /* ConfigureTest.cmake */,
+				56FBA0E121C2CEE10084F088 /* ConfigureExecutable.cmake */,
+				56FBA0E221C2CEE10084F088 /* ConfigureLibrary.cmake */,
+				56FBA0E321C2CEE10084F088 /* ConfigureBenchmarks.cmake */,
+			);
+			path = Configure;
+			sourceTree = "<group>";
+		};
+		56FBA0E421C2D57D0084F088 /* Find */ = {
+			isa = PBXGroup;
+			children = (
+				5614FA8E21B02A8A002C5D40 /* FindEigen3.cmake */,
+				5614FA9221B02A8A002C5D40 /* FindLibint2.cmake */,
+				5614FA9621B02A8A002C5D40 /* FindMKL.cmake */,
+				5614FA9321B02A8A002C5D40 /* FindPackages.cmake */,
+				56FBA0E521C2D5BF0084F088 /* FindSpectra.cmake */,
+			);
+			path = Find;
+			sourceTree = "<group>";
+		};
+		56FBA0FA21C2F2B40084F088 /* utilities */ = {
+			isa = PBXGroup;
+			children = (
+				56FBA10321C2F3480084F088 /* io_test.cpp */,
+				56FBA10421C2F3490084F088 /* linalg_test.cpp */,
+				5614FB5C21B02EDE002C5D40 /* miscellaneous_test.cpp */,
+			);
+			path = utilities;
+			sourceTree = "<group>";
+		};
+		56FBA0FB21C2F2BA0084F088 /* optimization */ = {
+			isa = PBXGroup;
+			children = (
+				56FBA10A21C384110084F088 /* DavidsonSolver_test.cpp */,
+				56FBA10821C384110084F088 /* DenseSolver_test.cpp */,
+				56FBA10621C384110084F088 /* Eigenpair_test.cpp */,
+				56FBA10721C384110084F088 /* NewtonMinimizer_test.cpp */,
+				56FBA10921C384110084F088 /* NewtonSystemOfEquationsSolver_test.cpp */,
+				56FBA10521C384110084F088 /* SparseSolver_test.cpp */,
+			);
+			path = optimization;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -3480,12 +4052,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				5614FA3B21B029FB002C5D40 /* WaveFunction.hpp in Headers */,
+				56FBA0C621C2B4AF0084F088 /* BaseMatrixSolver.hpp in Headers */,
 				56272DBD21B6CBFA008BEA47 /* AP1roG.hpp in Headers */,
+				56FBA0E921C2DFC00084F088 /* HoppingMatrix.hpp in Headers */,
 				5614FA3D21B029FB002C5D40 /* BaseHamiltonianParameters.hpp in Headers */,
 				5614FA0F21B029FB002C5D40 /* DOCINewtonOrbitalOptimizer.hpp in Headers */,
+				56FBA0C421C2B4AF0084F088 /* BaseEigenproblemSolver.hpp in Headers */,
 				56272DBB21B6CBFA008BEA47 /* AP1roGPSESolver.hpp in Headers */,
 				5614FA3521B029FB002C5D40 /* BaseOperator.hpp in Headers */,
+				56FBA0C021C2B4AF0084F088 /* Eigenpair.hpp in Headers */,
 				5614FA4221B029FB002C5D40 /* Hubbard.hpp in Headers */,
+				56FBA0C221C2B4AF0084F088 /* BaseMinimizer.hpp in Headers */,
 				5614FA1D21B029FB002C5D40 /* DOCIRDMBuilder.hpp in Headers */,
 				5614FA1421B029FB002C5D40 /* SelectedFockSpace.hpp in Headers */,
 				5614FA3221B029FB002C5D40 /* OrbitalOptimizationOptions.hpp in Headers */,
@@ -3493,16 +4070,23 @@
 				5614FA3021B029FB002C5D40 /* common.hpp in Headers */,
 				5614FA4121B029FB002C5D40 /* HamiltonianBuilder.hpp in Headers */,
 				5614FA2221B029FB002C5D40 /* RDMs.hpp in Headers */,
+				56FBA0C321C2B4AF0084F088 /* NewtonSystemOfEquationsSolver.hpp in Headers */,
 				5614FA2C21B029FB002C5D40 /* expectation_values.hpp in Headers */,
 				56272DBE21B6CBFA008BEA47 /* APIGGeminalCoefficients.hpp in Headers */,
 				5614FA3821B029FB002C5D40 /* ERJacobiLocalizer.hpp in Headers */,
 				5614FA2421B029FB002C5D40 /* TwoRDM.hpp in Headers */,
+				56FBA0BB21C2B4AF0084F088 /* BaseSystemOfEquationsSolver.hpp in Headers */,
 				5614FA3921B029FB002C5D40 /* ERNewtonLocalizer.hpp in Headers */,
 				5614FA1A21B029FB002C5D40 /* DIISRHFSCFSolver.hpp in Headers */,
 				5614FA2521B029FB002C5D40 /* Atom.hpp in Headers */,
 				5614FA4021B029FB002C5D40 /* DOCI.hpp in Headers */,
+				56FBA0C521C2B4AF0084F088 /* EigenproblemSolverOptions.hpp in Headers */,
 				5614FA2A21B029FB002C5D40 /* LibintCommunicator.hpp in Headers */,
 				5614FA1F21B029FB002C5D40 /* BaseRDM.hpp in Headers */,
+				56FBA0BE21C2B4AF0084F088 /* DenseSolver.hpp in Headers */,
+				56FBA0A121C2B0420084F088 /* io.hpp in Headers */,
+				56FBA09F21C2B0420084F088 /* linalg.hpp in Headers */,
+				56FBA0A221C2B0420084F088 /* miscellaneous.hpp in Headers */,
 				5614FA1621B029FB002C5D40 /* FockSpace.hpp in Headers */,
 				5614FA3A21B029FB002C5D40 /* BaseERLocalizer.hpp in Headers */,
 				5614FA2021B029FB002C5D40 /* OneRDM.hpp in Headers */,
@@ -3515,19 +4099,22 @@
 				5614FA4321B029FB002C5D40 /* FCI.hpp in Headers */,
 				5614FA3421B029FB002C5D40 /* OneElectronOperator.hpp in Headers */,
 				566D22A321B81CC100F8EB91 /* NRDMCalculator.hpp in Headers */,
-				5614FA2D21B029FB002C5D40 /* miscellaneous.hpp in Headers */,
 				56272DBA21B6CBFA008BEA47 /* AP1roGGeminalCoefficients.hpp in Headers */,
 				5614FA1521B029FB002C5D40 /* ONV.hpp in Headers */,
 				5614FA3721B029FB002C5D40 /* CISolver.hpp in Headers */,
 				5614FA2321B029FB002C5D40 /* BaseRDMBuilder.hpp in Headers */,
 				5614FA1321B029FB002C5D40 /* FockSpaceType.hpp in Headers */,
+				56FBA0C121C2B4AF0084F088 /* step.hpp in Headers */,
 				5614FA1021B029FB002C5D40 /* BaseFockSpace.hpp in Headers */,
 				5614FA3621B029FB002C5D40 /* TwoElectronOperator.hpp in Headers */,
 				5614FA2F21B029FB002C5D40 /* JacobiRotationParameters.hpp in Headers */,
 				5614FA3F21B029FB002C5D40 /* HamiltonianParameters.hpp in Headers */,
 				5614FA3121B029FB002C5D40 /* RMP2.hpp in Headers */,
 				5614FA3321B029FB002C5D40 /* elements.hpp in Headers */,
+				56FBA0BC21C2B4AF0084F088 /* DavidsonSolver.hpp in Headers */,
 				5614FA3C21B029FB002C5D40 /* WaveFunctionReader.hpp in Headers */,
+				56FBA0C721C2B4AF0084F088 /* SparseSolver.hpp in Headers */,
+				56FBA0BF21C2B4AF0084F088 /* NewtonMinimizer.hpp in Headers */,
 				56272DB921B6CBFA008BEA47 /* AP1roGJacobiOrbitalOptimizer.hpp in Headers */,
 				5614FA1221B029FB002C5D40 /* Configuration.hpp in Headers */,
 				5614FA2121B029FB002C5D40 /* FCIRDMBuilder.hpp in Headers */,
@@ -4656,6 +5243,168 @@
 			productReference = 5660430221B913AD008C2E86 /* NRDMCalculator_test */;
 			productType = "com.apple.product-type.tool";
 		};
+		56FBA0ED21C2F1A10084F088 /* HoppingMatrix_test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 56FBA0F521C2F1A10084F088 /* Build configuration list for PBXNativeTarget "HoppingMatrix_test" */;
+			buildPhases = (
+				56FBA0F021C2F1A10084F088 /* Sources */,
+				56FBA0F221C2F1A10084F088 /* Frameworks */,
+				56FBA0F421C2F1A10084F088 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				56FBA0EE21C2F1A10084F088 /* PBXTargetDependency */,
+			);
+			name = HoppingMatrix_test;
+			productName = AP1roGGeminalCoefficients_test;
+			productReference = 56FBA0F821C2F1A10084F088 /* HoppingMatrix_test */;
+			productType = "com.apple.product-type.tool";
+		};
+		56FBA13321C3888A0084F088 /* io_test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 56FBA13B21C3888A0084F088 /* Build configuration list for PBXNativeTarget "io_test" */;
+			buildPhases = (
+				56FBA13621C3888A0084F088 /* Sources */,
+				56FBA13821C3888A0084F088 /* Frameworks */,
+				56FBA13A21C3888A0084F088 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				56FBA13421C3888A0084F088 /* PBXTargetDependency */,
+			);
+			name = io_test;
+			productName = AP1roGGeminalCoefficients_test;
+			productReference = 56FBA13E21C3888A0084F088 /* io_test */;
+			productType = "com.apple.product-type.tool";
+		};
+		56FBA14021C388AE0084F088 /* linalg_test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 56FBA14821C388AE0084F088 /* Build configuration list for PBXNativeTarget "linalg_test" */;
+			buildPhases = (
+				56FBA14321C388AE0084F088 /* Sources */,
+				56FBA14521C388AE0084F088 /* Frameworks */,
+				56FBA14721C388AE0084F088 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				56FBA14121C388AE0084F088 /* PBXTargetDependency */,
+			);
+			name = linalg_test;
+			productName = AP1roGGeminalCoefficients_test;
+			productReference = 56FBA14B21C388AE0084F088 /* linalg_test */;
+			productType = "com.apple.product-type.tool";
+		};
+		56FBA14D21C388E70084F088 /* DavidsonSolver_test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 56FBA15521C388E70084F088 /* Build configuration list for PBXNativeTarget "DavidsonSolver_test" */;
+			buildPhases = (
+				56FBA15021C388E70084F088 /* Sources */,
+				56FBA15221C388E70084F088 /* Frameworks */,
+				56FBA15421C388E70084F088 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				56FBA14E21C388E70084F088 /* PBXTargetDependency */,
+			);
+			name = DavidsonSolver_test;
+			productName = AP1roGGeminalCoefficients_test;
+			productReference = 56FBA15821C388E70084F088 /* DavidsonSolver_test */;
+			productType = "com.apple.product-type.tool";
+		};
+		56FBA15921C388EE0084F088 /* DenseSolver_test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 56FBA16121C388EE0084F088 /* Build configuration list for PBXNativeTarget "DenseSolver_test" */;
+			buildPhases = (
+				56FBA15C21C388EE0084F088 /* Sources */,
+				56FBA15E21C388EE0084F088 /* Frameworks */,
+				56FBA16021C388EE0084F088 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				56FBA15A21C388EE0084F088 /* PBXTargetDependency */,
+			);
+			name = DenseSolver_test;
+			productName = AP1roGGeminalCoefficients_test;
+			productReference = 56FBA16421C388EE0084F088 /* DenseSolver_test */;
+			productType = "com.apple.product-type.tool";
+		};
+		56FBA16521C388F30084F088 /* Eigenpair_test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 56FBA16D21C388F30084F088 /* Build configuration list for PBXNativeTarget "Eigenpair_test" */;
+			buildPhases = (
+				56FBA16821C388F30084F088 /* Sources */,
+				56FBA16A21C388F30084F088 /* Frameworks */,
+				56FBA16C21C388F30084F088 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				56FBA16621C388F30084F088 /* PBXTargetDependency */,
+			);
+			name = Eigenpair_test;
+			productName = AP1roGGeminalCoefficients_test;
+			productReference = 56FBA17021C388F30084F088 /* Eigenpair_test */;
+			productType = "com.apple.product-type.tool";
+		};
+		56FBA17121C388F80084F088 /* NewtonMinimizer_test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 56FBA17921C388F80084F088 /* Build configuration list for PBXNativeTarget "NewtonMinimizer_test" */;
+			buildPhases = (
+				56FBA17421C388F80084F088 /* Sources */,
+				56FBA17621C388F80084F088 /* Frameworks */,
+				56FBA17821C388F80084F088 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				56FBA17221C388F80084F088 /* PBXTargetDependency */,
+			);
+			name = NewtonMinimizer_test;
+			productName = AP1roGGeminalCoefficients_test;
+			productReference = 56FBA17C21C388F80084F088 /* NewtonMinimizer_test */;
+			productType = "com.apple.product-type.tool";
+		};
+		56FBA17D21C388FD0084F088 /* NewtonSystemOfEquationsSolver_test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 56FBA18521C388FD0084F088 /* Build configuration list for PBXNativeTarget "NewtonSystemOfEquationsSolver_test" */;
+			buildPhases = (
+				56FBA18021C388FD0084F088 /* Sources */,
+				56FBA18221C388FD0084F088 /* Frameworks */,
+				56FBA18421C388FD0084F088 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				56FBA17E21C388FD0084F088 /* PBXTargetDependency */,
+			);
+			name = NewtonSystemOfEquationsSolver_test;
+			productName = AP1roGGeminalCoefficients_test;
+			productReference = 56FBA18821C388FD0084F088 /* NewtonSystemOfEquationsSolver_test */;
+			productType = "com.apple.product-type.tool";
+		};
+		56FBA18921C389050084F088 /* SparseSolver_test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 56FBA19121C389050084F088 /* Build configuration list for PBXNativeTarget "SparseSolver_test" */;
+			buildPhases = (
+				56FBA18C21C389050084F088 /* Sources */,
+				56FBA18E21C389050084F088 /* Frameworks */,
+				56FBA19021C389050084F088 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				56FBA18A21C389050084F088 /* PBXTargetDependency */,
+			);
+			name = SparseSolver_test;
+			productName = AP1roGGeminalCoefficients_test;
+			productReference = 56FBA19421C389050084F088 /* SparseSolver_test */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -4692,7 +5441,13 @@
 					5614FEC421B041F1002C5D40 = {
 						CreatedOnToolsVersion = 10.1;
 					};
-					56C64D8721B0735C00D44FF0 = {
+					56FBA10B21C387B10084F088 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					56FBA10F21C388040084F088 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					56FBA11321C388170084F088 = {
 						CreatedOnToolsVersion = 10.1;
 					};
 				};
@@ -4724,14 +5479,7 @@
 				5614FE6021B03A07002C5D40 /* fci_lowdin */,
 				5614FE6E21B04008002C5D40 /* hubbard */,
 				5614FE7B21B0400D002C5D40 /* oo_doci */,
-				56C64D8721B0735C00D44FF0 /* RUN_TESTS */,
 				5614FE9921B0414A002C5D40 /* BUILD_TESTS */,
-				5614FEC421B041F1002C5D40 /* BUILD_GEMINALS_TESTS */,
-				5614FE8B21B0410A002C5D40 /* AP1roGGeminalCoefficients_test */,
-				5614FE9D21B04188002C5D40 /* OO_AP1roG_test */,
-				5614FEA921B0418E002C5D40 /* AP1roG_test */,
-				5614FEB521B04193002C5D40 /* AP1roGPSESolver_test */,
-				56272DD621B6CC7B008BEA47 /* APIGGeminalCoefficients_test */,
 				5614FF2621B042AF002C5D40 /* BUILD_CISOLVER_TESTS */,
 				5614FF5721B043C5002C5D40 /* CISolver_DOCI_Davidson_test */,
 				5614FF6321B043CC002C5D40 /* CISolver_DOCI_Dense_test */,
@@ -4745,6 +5493,12 @@
 				5614FFE521B062AF002C5D40 /* ONV_test */,
 				5614FFF121B062B4002C5D40 /* ProductFockSpace_test */,
 				5614FFFD21B062BA002C5D40 /* SelectedFockSpace_test */,
+				5614FEC421B041F1002C5D40 /* BUILD_GEMINALS_TESTS */,
+				5614FE8B21B0410A002C5D40 /* AP1roGGeminalCoefficients_test */,
+				5614FE9D21B04188002C5D40 /* OO_AP1roG_test */,
+				5614FEA921B0418E002C5D40 /* AP1roG_test */,
+				5614FEB521B04193002C5D40 /* AP1roGPSESolver_test */,
+				56272DD621B6CC7B008BEA47 /* APIGGeminalCoefficients_test */,
 				5614018D21B063E9002C5D40 /* BUILD_HAMILTONIANBUILDER_TESTS */,
 				5614000921B062C3002C5D40 /* DOCI_test */,
 				5614001521B062C6002C5D40 /* FCI_test */,
@@ -4758,6 +5512,13 @@
 				5614019921B06446002C5D40 /* BUILD_OPERATOR_TESTS */,
 				5614005D21B062F3002C5D40 /* OneElectronOperator_test */,
 				5614006921B062F9002C5D40 /* TwoElectronOperator_test */,
+				56FBA10B21C387B10084F088 /* BUILD_OPTIMIZATION_TESTS */,
+				56FBA14D21C388E70084F088 /* DavidsonSolver_test */,
+				56FBA15921C388EE0084F088 /* DenseSolver_test */,
+				56FBA16521C388F30084F088 /* Eigenpair_test */,
+				56FBA17121C388F80084F088 /* NewtonMinimizer_test */,
+				56FBA17D21C388FD0084F088 /* NewtonSystemOfEquationsSolver_test */,
+				56FBA18921C389050084F088 /* SparseSolver_test */,
 				5614019D21B0644C002C5D40 /* BUILD_PROPERTIES_TESTS */,
 				5614007521B062FF002C5D40 /* expectation_values_test */,
 				5614008121B06307002C5D40 /* properties_test */,
@@ -4774,18 +5535,23 @@
 				561400E121B06349002C5D40 /* DIISRHFSCFSolver_test */,
 				561400ED21B06351002C5D40 /* PlainRHFSCFSolver_test */,
 				561400F921B06357002C5D40 /* RHF_test */,
-				561401A921B06464002C5D40 /* BUILD_WAVEFUNCTION_TESTS */,
-				5614010521B06363002C5D40 /* WaveFunction_test */,
+				56FBA11321C388170084F088 /* BUILD_SINGLE_TESTS */,
 				5614011121B06368002C5D40 /* AOBasis_test */,
 				5614011D21B0636D002C5D40 /* Atom_test */,
 				5614012921B06371002C5D40 /* elements_test */,
+				56FBA0ED21C2F1A10084F088 /* HoppingMatrix_test */,
 				5614013521B06376002C5D40 /* JacobiRotationParameters_test */,
 				5614014121B0637D002C5D40 /* LibintCommunicator_test */,
-				5614014D21B06383002C5D40 /* miscellaneous_test */,
 				5614015921B06389002C5D40 /* Molecule_test */,
 				5614016521B0638D002C5D40 /* OO_DOCI_test */,
 				5614017121B06392002C5D40 /* RMP2_test */,
 				5614017D21B06397002C5D40 /* units_test */,
+				56FBA10F21C388040084F088 /* BUILD_UTILITIES_TESTS */,
+				56FBA13321C3888A0084F088 /* io_test */,
+				56FBA14021C388AE0084F088 /* linalg_test */,
+				5614014D21B06383002C5D40 /* miscellaneous_test */,
+				561401A921B06464002C5D40 /* BUILD_WAVEFUNCTION_TESTS */,
+				5614010521B06363002C5D40 /* WaveFunction_test */,
 			);
 		};
 /* End PBXProject section */
@@ -4807,24 +5573,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n";
-		};
-		56C64D8D21B0737500D44FF0 /* Run Script */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Run Script";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/Users/laurentlemmens/Software/GQCG/gqcp/run_tests.sh\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -5098,31 +5846,40 @@
 			files = (
 				5614FA5621B029FB002C5D40 /* BaseRDMBuilder.cpp in Sources */,
 				566D22A221B81CC100F8EB91 /* NRDMCalculator.cpp in Sources */,
+				56FBA0A721C2B06B0084F088 /* miscellaneous.cpp in Sources */,
 				5614FA6721B029FB002C5D40 /* OneElectronOperator.cpp in Sources */,
 				5614FA6321B029FB002C5D40 /* properties.cpp in Sources */,
 				56272DC621B6CC0D008BEA47 /* BaseAPIGGeminalCoefficients.cpp in Sources */,
+				56FBA0DB21C2B4C90084F088 /* BaseMatrixSolver.cpp in Sources */,
 				5614FA6D21B029FB002C5D40 /* WaveFunction.cpp in Sources */,
 				5614FA4D21B029FB002C5D40 /* ProductFockSpace.cpp in Sources */,
 				5614FA5421B029FB002C5D40 /* PlainRHFSCFSolver.cpp in Sources */,
 				5614FA4721B029FB002C5D40 /* RMP2.cpp in Sources */,
 				56272DCA21B6CC0D008BEA47 /* AP1roGJacobiOrbitalOptimizer.cpp in Sources */,
+				56FBA0A821C2B06B0084F088 /* io.cpp in Sources */,
 				5614FA5021B029FB002C5D40 /* LibintCommunicator.cpp in Sources */,
 				5614FA5321B029FB002C5D40 /* RHFSCFSolver.cpp in Sources */,
 				5614FA5D21B029FB002C5D40 /* DOCIRDMBuilder.cpp in Sources */,
-				5614FA4521B029FB002C5D40 /* miscellaneous.cpp in Sources */,
 				5614FA4921B029FB002C5D40 /* Molecule.cpp in Sources */,
 				5614FA7021B029FB002C5D40 /* BaseHamiltonianParameters.cpp in Sources */,
 				5614FA5721B029FB002C5D40 /* TwoRDM.cpp in Sources */,
 				5614FA6E21B029FB002C5D40 /* HamiltonianParameters.cpp in Sources */,
+				56FBA0D521C2B4C90084F088 /* NewtonMinimizer.cpp in Sources */,
 				5614FA7221B029FB002C5D40 /* FCI.cpp in Sources */,
 				5614FA5121B029FB002C5D40 /* RHF.cpp in Sources */,
 				5614FA6221B029FB002C5D40 /* expectation_values.cpp in Sources */,
+				56FBA0D821C2B4C90084F088 /* DenseSolver.cpp in Sources */,
 				5614FA6821B029FB002C5D40 /* CISolver.cpp in Sources */,
+				56FBA0DD21C2B4C90084F088 /* BaseEigenproblemSolver.cpp in Sources */,
 				5614FA5521B029FB002C5D40 /* RDMs.cpp in Sources */,
+				56FBA0D921C2B4C90084F088 /* SparseSolver.cpp in Sources */,
 				5614FA4821B029FB002C5D40 /* elements.cpp in Sources */,
+				56FBA0DA21C2B4C90084F088 /* step.cpp in Sources */,
 				5614FA5B21B029FB002C5D40 /* BaseRDM.cpp in Sources */,
+				56FBA0D421C2B4C90084F088 /* Eigenpair.cpp in Sources */,
 				5614FA5821B029FB002C5D40 /* OneRDM.cpp in Sources */,
 				5614FA6621B029FB002C5D40 /* BaseOperator.cpp in Sources */,
+				56FBA0D721C2B4C90084F088 /* DavidsonSolver.cpp in Sources */,
 				5614FA5221B029FB002C5D40 /* DIISRHFSCFSolver.cpp in Sources */,
 				5614FA5C21B029FB002C5D40 /* RDMCalculator.cpp in Sources */,
 				5614FA4C21B029FB002C5D40 /* BaseFockSpace.cpp in Sources */,
@@ -5132,17 +5889,22 @@
 				5614FA4E21B029FB002C5D40 /* SelectedFockSpace.cpp in Sources */,
 				5614FA4621B029FB002C5D40 /* JacobiRotationParameters.cpp in Sources */,
 				5614FA7521B029FB002C5D40 /* DOCINewtonOrbitalOptimizer.cpp in Sources */,
+				56FBA0D621C2B4C90084F088 /* NewtonSystemOfEquationsSolver.cpp in Sources */,
 				5614FA7421B029FB002C5D40 /* HamiltonianBuilder.cpp in Sources */,
 				5614FA6521B029FB002C5D40 /* TwoElectronOperator.cpp in Sources */,
 				5614FA5A21B029FB002C5D40 /* SelectedRDMBuilder.cpp in Sources */,
 				5614FA4A21B029FB002C5D40 /* FockSpace.cpp in Sources */,
 				56272DC721B6CC0D008BEA47 /* AP1roG.cpp in Sources */,
 				5614FA6921B029FB002C5D40 /* BaseERLocalizer.cpp in Sources */,
+				56FBA0A921C2B06B0084F088 /* linalg.cpp in Sources */,
 				5614FA4B21B029FB002C5D40 /* ONV.cpp in Sources */,
+				56FBA0D321C2B4C90084F088 /* BaseSystemOfEquationsSolver.cpp in Sources */,
 				5614FA6B21B029FB002C5D40 /* ERJacobiLocalizer.cpp in Sources */,
+				56FBA0DC21C2B4C90084F088 /* BaseMinimizer.cpp in Sources */,
 				5614FA7121B029FB002C5D40 /* Hubbard.cpp in Sources */,
 				5614FA6A21B029FB002C5D40 /* ERNewtonLocalizer.cpp in Sources */,
 				56272DCB21B6CC0D008BEA47 /* AP1roGGeminalCoefficients.cpp in Sources */,
+				56FBA0E721C2DFB40084F088 /* HoppingMatrix.cpp in Sources */,
 				56272DC821B6CC0D008BEA47 /* APIGGeminalCoefficients.cpp in Sources */,
 				5614FA6421B029FB002C5D40 /* AOBasis.cpp in Sources */,
 				5614FA7321B029FB002C5D40 /* DOCI.cpp in Sources */,
@@ -5234,7 +5996,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				566D229F21B7ED2D00F8EB91 /* oo_doci.cpp in Sources */,
+				56FBA1AD21C38A050084F088 /* hubbard.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5274,7 +6036,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				56272DD521B6CC71008BEA47 /* AP1roGPSESolver.cpp in Sources */,
+				56FBA1AE21C38B130084F088 /* AP1roGPSESolver_test.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5371,6 +6133,78 @@
 			buildActionMask = 2147483647;
 			files = (
 				5660430321B913BA008C2E86 /* NRDMCalculator_test.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		56FBA0F021C2F1A10084F088 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56FBA0F921C2F1B40084F088 /* HoppingMatrix_test.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		56FBA13621C3888A0084F088 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56FBA13F21C3889E0084F088 /* io_test.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		56FBA14321C388AE0084F088 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56FBA14C21C388BD0084F088 /* linalg_test.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		56FBA15021C388E70084F088 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56FBA1A121C389540084F088 /* DavidsonSolver_test.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		56FBA15C21C388EE0084F088 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56FBA1A221C3895C0084F088 /* DenseSolver_test.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		56FBA16821C388F30084F088 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56FBA1A321C389630084F088 /* Eigenpair_test.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		56FBA17421C388F80084F088 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56FBA1A421C3896C0084F088 /* NewtonMinimizer_test.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		56FBA18021C388FD0084F088 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56FBA1A521C389740084F088 /* NewtonSystemOfEquationsSolver_test.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		56FBA18C21C389050084F088 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56FBA1A621C3897D0084F088 /* SparseSolver_test.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5722,56 +6556,6 @@
 			target = 561401A921B06464002C5D40 /* BUILD_WAVEFUNCTION_TESTS */;
 			targetProxy = 5614021A21B0688B002C5D40 /* PBXContainerItemProxy */;
 		};
-		5614021D21B0688B002C5D40 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5614011121B06368002C5D40 /* AOBasis_test */;
-			targetProxy = 5614021C21B0688B002C5D40 /* PBXContainerItemProxy */;
-		};
-		5614021F21B0688B002C5D40 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5614011D21B0636D002C5D40 /* Atom_test */;
-			targetProxy = 5614021E21B0688B002C5D40 /* PBXContainerItemProxy */;
-		};
-		5614022121B0688B002C5D40 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5614012921B06371002C5D40 /* elements_test */;
-			targetProxy = 5614022021B0688B002C5D40 /* PBXContainerItemProxy */;
-		};
-		5614022321B0688B002C5D40 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5614013521B06376002C5D40 /* JacobiRotationParameters_test */;
-			targetProxy = 5614022221B0688B002C5D40 /* PBXContainerItemProxy */;
-		};
-		5614022521B0688B002C5D40 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5614014121B0637D002C5D40 /* LibintCommunicator_test */;
-			targetProxy = 5614022421B0688B002C5D40 /* PBXContainerItemProxy */;
-		};
-		5614022721B0688B002C5D40 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5614014D21B06383002C5D40 /* miscellaneous_test */;
-			targetProxy = 5614022621B0688B002C5D40 /* PBXContainerItemProxy */;
-		};
-		5614022921B0688B002C5D40 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5614015921B06389002C5D40 /* Molecule_test */;
-			targetProxy = 5614022821B0688B002C5D40 /* PBXContainerItemProxy */;
-		};
-		5614022B21B0688B002C5D40 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5614016521B0638D002C5D40 /* OO_DOCI_test */;
-			targetProxy = 5614022A21B0688B002C5D40 /* PBXContainerItemProxy */;
-		};
-		5614022D21B0688B002C5D40 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5614017121B06392002C5D40 /* RMP2_test */;
-			targetProxy = 5614022C21B0688B002C5D40 /* PBXContainerItemProxy */;
-		};
-		5614022F21B0688B002C5D40 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5614017D21B06397002C5D40 /* units_test */;
-			targetProxy = 5614022E21B0688B002C5D40 /* PBXContainerItemProxy */;
-		};
 		5614FDB021B0338A002C5D40 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 5614F97F21B0295C002C5D40 /* gqcp */;
@@ -6027,10 +6811,180 @@
 			target = 566042F721B913AD008C2E86 /* NRDMCalculator_test */;
 			targetProxy = 5660430421B913EA008C2E86 /* PBXContainerItemProxy */;
 		};
-		56C64D8C21B0736C00D44FF0 /* PBXTargetDependency */ = {
+		56FBA0EE21C2F1A10084F088 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 5614FE9921B0414A002C5D40 /* BUILD_TESTS */;
-			targetProxy = 56C64D8B21B0736C00D44FF0 /* PBXContainerItemProxy */;
+			target = 5614F97F21B0295C002C5D40 /* gqcp */;
+			targetProxy = 56FBA0EF21C2F1A10084F088 /* PBXContainerItemProxy */;
+		};
+		56FBA11821C3882B0084F088 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5614011121B06368002C5D40 /* AOBasis_test */;
+			targetProxy = 56FBA11721C3882B0084F088 /* PBXContainerItemProxy */;
+		};
+		56FBA11A21C3882B0084F088 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5614011D21B0636D002C5D40 /* Atom_test */;
+			targetProxy = 56FBA11921C3882B0084F088 /* PBXContainerItemProxy */;
+		};
+		56FBA11C21C3882B0084F088 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5614012921B06371002C5D40 /* elements_test */;
+			targetProxy = 56FBA11B21C3882B0084F088 /* PBXContainerItemProxy */;
+		};
+		56FBA11E21C3882B0084F088 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 56FBA0ED21C2F1A10084F088 /* HoppingMatrix_test */;
+			targetProxy = 56FBA11D21C3882B0084F088 /* PBXContainerItemProxy */;
+		};
+		56FBA12021C3882B0084F088 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5614013521B06376002C5D40 /* JacobiRotationParameters_test */;
+			targetProxy = 56FBA11F21C3882B0084F088 /* PBXContainerItemProxy */;
+		};
+		56FBA12221C3882B0084F088 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5614014121B0637D002C5D40 /* LibintCommunicator_test */;
+			targetProxy = 56FBA12121C3882B0084F088 /* PBXContainerItemProxy */;
+		};
+		56FBA12421C3882B0084F088 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5614014D21B06383002C5D40 /* miscellaneous_test */;
+			targetProxy = 56FBA12321C3882B0084F088 /* PBXContainerItemProxy */;
+		};
+		56FBA12621C3882B0084F088 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5614015921B06389002C5D40 /* Molecule_test */;
+			targetProxy = 56FBA12521C3882B0084F088 /* PBXContainerItemProxy */;
+		};
+		56FBA12821C3882B0084F088 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5614016521B0638D002C5D40 /* OO_DOCI_test */;
+			targetProxy = 56FBA12721C3882B0084F088 /* PBXContainerItemProxy */;
+		};
+		56FBA12A21C3882B0084F088 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5614017121B06392002C5D40 /* RMP2_test */;
+			targetProxy = 56FBA12921C3882B0084F088 /* PBXContainerItemProxy */;
+		};
+		56FBA12C21C3882B0084F088 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5614017D21B06397002C5D40 /* units_test */;
+			targetProxy = 56FBA12B21C3882B0084F088 /* PBXContainerItemProxy */;
+		};
+		56FBA12E21C388540084F088 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 56FBA10B21C387B10084F088 /* BUILD_OPTIMIZATION_TESTS */;
+			targetProxy = 56FBA12D21C388540084F088 /* PBXContainerItemProxy */;
+		};
+		56FBA13021C388540084F088 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 56FBA11321C388170084F088 /* BUILD_SINGLE_TESTS */;
+			targetProxy = 56FBA12F21C388540084F088 /* PBXContainerItemProxy */;
+		};
+		56FBA13221C388540084F088 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 56FBA10F21C388040084F088 /* BUILD_UTILITIES_TESTS */;
+			targetProxy = 56FBA13121C388540084F088 /* PBXContainerItemProxy */;
+		};
+		56FBA13421C3888A0084F088 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5614F97F21B0295C002C5D40 /* gqcp */;
+			targetProxy = 56FBA13521C3888A0084F088 /* PBXContainerItemProxy */;
+		};
+		56FBA14121C388AE0084F088 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5614F97F21B0295C002C5D40 /* gqcp */;
+			targetProxy = 56FBA14221C388AE0084F088 /* PBXContainerItemProxy */;
+		};
+		56FBA14E21C388E70084F088 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5614F97F21B0295C002C5D40 /* gqcp */;
+			targetProxy = 56FBA14F21C388E70084F088 /* PBXContainerItemProxy */;
+		};
+		56FBA15A21C388EE0084F088 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5614F97F21B0295C002C5D40 /* gqcp */;
+			targetProxy = 56FBA15B21C388EE0084F088 /* PBXContainerItemProxy */;
+		};
+		56FBA16621C388F30084F088 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5614F97F21B0295C002C5D40 /* gqcp */;
+			targetProxy = 56FBA16721C388F30084F088 /* PBXContainerItemProxy */;
+		};
+		56FBA17221C388F80084F088 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5614F97F21B0295C002C5D40 /* gqcp */;
+			targetProxy = 56FBA17321C388F80084F088 /* PBXContainerItemProxy */;
+		};
+		56FBA17E21C388FD0084F088 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5614F97F21B0295C002C5D40 /* gqcp */;
+			targetProxy = 56FBA17F21C388FD0084F088 /* PBXContainerItemProxy */;
+		};
+		56FBA18A21C389050084F088 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5614F97F21B0295C002C5D40 /* gqcp */;
+			targetProxy = 56FBA18B21C389050084F088 /* PBXContainerItemProxy */;
+		};
+		56FBA19621C3894A0084F088 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 56FBA14D21C388E70084F088 /* DavidsonSolver_test */;
+			targetProxy = 56FBA19521C3894A0084F088 /* PBXContainerItemProxy */;
+		};
+		56FBA19821C3894A0084F088 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 56FBA15921C388EE0084F088 /* DenseSolver_test */;
+			targetProxy = 56FBA19721C3894A0084F088 /* PBXContainerItemProxy */;
+		};
+		56FBA19A21C3894A0084F088 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 56FBA16521C388F30084F088 /* Eigenpair_test */;
+			targetProxy = 56FBA19921C3894A0084F088 /* PBXContainerItemProxy */;
+		};
+		56FBA19C21C3894A0084F088 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 56FBA17121C388F80084F088 /* NewtonMinimizer_test */;
+			targetProxy = 56FBA19B21C3894A0084F088 /* PBXContainerItemProxy */;
+		};
+		56FBA19E21C3894A0084F088 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 56FBA17D21C388FD0084F088 /* NewtonSystemOfEquationsSolver_test */;
+			targetProxy = 56FBA19D21C3894A0084F088 /* PBXContainerItemProxy */;
+		};
+		56FBA1A021C3894A0084F088 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 56FBA18921C389050084F088 /* SparseSolver_test */;
+			targetProxy = 56FBA19F21C3894A0084F088 /* PBXContainerItemProxy */;
+		};
+		56FBA1A821C389F60084F088 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5614FE6021B03A07002C5D40 /* fci_lowdin */;
+			targetProxy = 56FBA1A721C389F60084F088 /* PBXContainerItemProxy */;
+		};
+		56FBA1AA21C389F60084F088 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5614FE6E21B04008002C5D40 /* hubbard */;
+			targetProxy = 56FBA1A921C389F60084F088 /* PBXContainerItemProxy */;
+		};
+		56FBA1AC21C389F60084F088 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5614FE7B21B0400D002C5D40 /* oo_doci */;
+			targetProxy = 56FBA1AB21C389F60084F088 /* PBXContainerItemProxy */;
+		};
+		56FBA1B021C390130084F088 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 56FBA13321C3888A0084F088 /* io_test */;
+			targetProxy = 56FBA1AF21C390130084F088 /* PBXContainerItemProxy */;
+		};
+		56FBA1B221C390130084F088 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 56FBA14021C388AE0084F088 /* linalg_test */;
+			targetProxy = 56FBA1B121C390130084F088 /* PBXContainerItemProxy */;
+		};
+		56FBA1B421C390130084F088 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5614014D21B06383002C5D40 /* miscellaneous_test */;
+			targetProxy = 56FBA1B321C390130084F088 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -6760,8 +7714,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					/opt/local/include/eigen3,
-					/usr/local/cpputil/include/,
-					/usr/local/numopt/include,
 					/opt/local/include/,
 					/usr/local/libint/2.3.1/include/,
 					/usr/local/include/,
@@ -6772,7 +7724,10 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/include";
+				USER_HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/include",
+					"$(SRCROOT)/spectra/include/",
+				);
 			};
 			name = Debug;
 		};
@@ -6823,8 +7778,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					/opt/local/include/eigen3,
-					/usr/local/cpputil/include/,
-					/usr/local/numopt/include,
 					/opt/local/include/,
 					/usr/local/libint/2.3.1/include/,
 					/usr/local/include/,
@@ -6834,7 +7787,10 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/include";
+				USER_HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/include",
+					"$(SRCROOT)/spectra/include/",
+				);
 			};
 			name = Release;
 		};
@@ -7434,7 +8390,7 @@
 			};
 			name = Release;
 		};
-		56C64D8821B0735C00D44FF0 /* Debug */ = {
+		56FBA0F621C2F1A10084F088 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -7442,7 +8398,183 @@
 			};
 			name = Debug;
 		};
-		56C64D8921B0735C00D44FF0 /* Release */ = {
+		56FBA0F721C2F1A10084F088 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		56FBA10D21C387B10084F088 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		56FBA10E21C387B10084F088 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		56FBA11121C388040084F088 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		56FBA11221C388040084F088 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		56FBA11521C388180084F088 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		56FBA11621C388180084F088 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		56FBA13C21C3888A0084F088 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		56FBA13D21C3888A0084F088 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		56FBA14921C388AE0084F088 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		56FBA14A21C388AE0084F088 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		56FBA15621C388E70084F088 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		56FBA15721C388E70084F088 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		56FBA16221C388EE0084F088 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		56FBA16321C388EE0084F088 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		56FBA16E21C388F30084F088 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		56FBA16F21C388F30084F088 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		56FBA17A21C388F80084F088 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		56FBA17B21C388F80084F088 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		56FBA18621C388FD0084F088 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		56FBA18721C388FD0084F088 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		56FBA19221C389050084F088 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		56FBA19321C389050084F088 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -8146,11 +9278,110 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		56C64D8A21B0735C00D44FF0 /* Build configuration list for PBXAggregateTarget "RUN_TESTS" */ = {
+		56FBA0F521C2F1A10084F088 /* Build configuration list for PBXNativeTarget "HoppingMatrix_test" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				56C64D8821B0735C00D44FF0 /* Debug */,
-				56C64D8921B0735C00D44FF0 /* Release */,
+				56FBA0F621C2F1A10084F088 /* Debug */,
+				56FBA0F721C2F1A10084F088 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		56FBA10C21C387B10084F088 /* Build configuration list for PBXAggregateTarget "BUILD_OPTIMIZATION_TESTS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				56FBA10D21C387B10084F088 /* Debug */,
+				56FBA10E21C387B10084F088 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		56FBA11021C388040084F088 /* Build configuration list for PBXAggregateTarget "BUILD_UTILITIES_TESTS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				56FBA11121C388040084F088 /* Debug */,
+				56FBA11221C388040084F088 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		56FBA11421C388180084F088 /* Build configuration list for PBXAggregateTarget "BUILD_SINGLE_TESTS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				56FBA11521C388180084F088 /* Debug */,
+				56FBA11621C388180084F088 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		56FBA13B21C3888A0084F088 /* Build configuration list for PBXNativeTarget "io_test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				56FBA13C21C3888A0084F088 /* Debug */,
+				56FBA13D21C3888A0084F088 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		56FBA14821C388AE0084F088 /* Build configuration list for PBXNativeTarget "linalg_test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				56FBA14921C388AE0084F088 /* Debug */,
+				56FBA14A21C388AE0084F088 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		56FBA15521C388E70084F088 /* Build configuration list for PBXNativeTarget "DavidsonSolver_test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				56FBA15621C388E70084F088 /* Debug */,
+				56FBA15721C388E70084F088 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		56FBA16121C388EE0084F088 /* Build configuration list for PBXNativeTarget "DenseSolver_test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				56FBA16221C388EE0084F088 /* Debug */,
+				56FBA16321C388EE0084F088 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		56FBA16D21C388F30084F088 /* Build configuration list for PBXNativeTarget "Eigenpair_test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				56FBA16E21C388F30084F088 /* Debug */,
+				56FBA16F21C388F30084F088 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		56FBA17921C388F80084F088 /* Build configuration list for PBXNativeTarget "NewtonMinimizer_test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				56FBA17A21C388F80084F088 /* Debug */,
+				56FBA17B21C388F80084F088 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		56FBA18521C388FD0084F088 /* Build configuration list for PBXNativeTarget "NewtonSystemOfEquationsSolver_test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				56FBA18621C388FD0084F088 /* Debug */,
+				56FBA18721C388FD0084F088 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		56FBA19121C389050084F088 /* Build configuration list for PBXNativeTarget "SparseSolver_test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				56FBA19221C389050084F088 /* Debug */,
+				56FBA19321C389050084F088 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

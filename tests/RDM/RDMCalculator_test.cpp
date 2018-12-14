@@ -48,7 +48,7 @@ BOOST_AUTO_TEST_CASE ( constructor ) {
     // Specify solver options and solve the eigenvalue problem
     // Solve the dense DOCI eigenvalue problem
     GQCP::CISolver ci_solver (doci, ham_par);
-    numopt::eigenproblem::DenseSolverOptions solver_options;
+    GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
     Eigen::VectorXd coef = ci_solver.get_eigenpair().get_eigenvector();

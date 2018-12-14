@@ -93,7 +93,7 @@ BOOST_AUTO_TEST_CASE ( FCI_H2_Cristina_dense ) {
     GQCP::CISolver ci_solver (fci, mol_ham_par);
 
     // Solve Dense
-    numopt::eigenproblem::DenseSolverOptions dense_solver_options;
+    GQCP::DenseSolverOptions dense_solver_options;
     ci_solver.solve(dense_solver_options);
 
     // Retrieve the eigenvalues
@@ -132,7 +132,7 @@ BOOST_AUTO_TEST_CASE ( FCI_H2O_Psi4_GAMESS_dense ) {
     GQCP::CISolver ci_solver (fci, mol_ham_par);
 
     // Solve Dense
-    numopt::eigenproblem::DenseSolverOptions dense_solver_options;
+    GQCP::DenseSolverOptions dense_solver_options;
     ci_solver.solve(dense_solver_options);
 
     // Retrieve the eigenvalues
@@ -174,7 +174,7 @@ BOOST_AUTO_TEST_CASE ( FCI_He_Cristina_dense ) {
     GQCP::CISolver ci_solver (fci, mol_ham_par);
 
     // Solve Dense
-    numopt::eigenproblem::DenseSolverOptions dense_solver_options;
+    GQCP::DenseSolverOptions dense_solver_options;
     ci_solver.solve(dense_solver_options);
 
     // Retrieve the eigenvalues

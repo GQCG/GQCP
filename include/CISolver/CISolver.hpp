@@ -19,12 +19,12 @@
 #define GQCP_CISOLVER_HPP
 
 
-
 #include "HamiltonianBuilder/HamiltonianBuilder.hpp"
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "WaveFunction/WaveFunction.hpp"
 
-#include <numopt.hpp>
+#include "optimization/Eigenpair.hpp"
+#include "optimization/EigenproblemSolverOptions.hpp"
 
 
 namespace GQCP {
@@ -38,7 +38,7 @@ private:
     HamiltonianBuilder* hamiltonian_builder;
     HamiltonianParameters hamiltonian_parameters;
 
-    std::vector<numopt::eigenproblem::Eigenpair> eigenpairs;  // eigenvalues and -vectors
+    std::vector<Eigenpair> eigenpairs;  // eigenvalues and -vectors
 
 public:
     // CONSTRUCTORS
@@ -50,8 +50,8 @@ public:
 
 
     // GETTERS
-    const std::vector<numopt::eigenproblem::Eigenpair>& get_eigenpairs() const { return this->eigenpairs; }
-    const numopt::eigenproblem::Eigenpair& get_eigenpair(size_t index = 0) const { return this->eigenpairs[index]; }
+    const std::vector<Eigenpair>& get_eigenpairs() const { return this->eigenpairs; }
+    const Eigenpair& get_eigenpair(size_t index = 0) const { return this->eigenpairs[index]; }
 
 
     // PUBLIC METHODS
@@ -60,7 +60,7 @@ public:
      *
      *  Solve the CI eigenvalue problem and set the eigenpairs internally
      */
-    void solve(numopt::eigenproblem::BaseSolverOptions& solver_options);
+    void solve(BaseSolverOptions& solver_options);
 
     /**
      *  @param index        the index of the index-th excited state

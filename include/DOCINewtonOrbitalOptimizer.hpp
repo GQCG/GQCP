@@ -23,7 +23,8 @@
 #include "OrbitalOptimizationOptions.hpp"
 #include "WaveFunction/WaveFunction.hpp"
 
-#include <numopt.hpp>
+#include "optimization/Eigenpair.hpp"
+#include "optimization/EigenproblemSolverOptions.hpp"
 
 
 namespace GQCP {
@@ -41,7 +42,7 @@ private:
     GQCP::HamiltonianParameters ham_par;
 
     bool is_converged = false;
-    std::vector<numopt::eigenproblem::Eigenpair> eigenpairs;  // eigenvalues and -vectors
+    std::vector<Eigenpair> eigenpairs;  // eigenvalues and -vectors
 
 
 public:
@@ -54,8 +55,8 @@ public:
 
 
     // GETTERS
-    const std::vector<numopt::eigenproblem::Eigenpair>& get_eigenpairs() const;
-    const numopt::eigenproblem::Eigenpair& get_eigenpair(size_t index = 0) const;
+    const std::vector<Eigenpair>& get_eigenpairs() const;
+    const Eigenpair& get_eigenpair(size_t index = 0) const;
 
 
     // PUBLIC METHODS
@@ -65,7 +66,7 @@ public:
      *  @param solver_options       solver options for the CI solver
      *  @param oo_options           options for the orbital optimization
      */
-    void solve(numopt::eigenproblem::BaseSolverOptions& solver_options, const GQCP::OrbitalOptimizationOptions& oo_options=GQCP::OrbitalOptimizationOptions());
+    void solve(BaseSolverOptions& solver_options, const GQCP::OrbitalOptimizationOptions& oo_options=GQCP::OrbitalOptimizationOptions());
 
     /**
      *  @param index        the index of the index-th excited state

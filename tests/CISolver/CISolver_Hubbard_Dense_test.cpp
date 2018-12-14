@@ -50,7 +50,7 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_dense ) {
     GQCP::CISolver hubbard_solver (hubbard, mol_ham_par);
     GQCP::CISolver fci_solver (fci, mol_ham_par);
 
-    numopt::eigenproblem::DenseSolverOptions dense_solver_options;
+    GQCP::DenseSolverOptions dense_solver_options;
     hubbard_solver.solve(dense_solver_options);
     fci_solver.solve(dense_solver_options);
 
@@ -80,7 +80,7 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_dense_large ) {
     GQCP::CISolver solver1 (hubbard, mol_ham_par);
     GQCP::CISolver solver2 (fci, mol_ham_par);
 
-    numopt::eigenproblem::DenseSolverOptions dense_solver_options;
+    GQCP::DenseSolverOptions dense_solver_options;
     solver1.solve(dense_solver_options);
     solver2.solve(dense_solver_options);
 
@@ -120,7 +120,7 @@ BOOST_AUTO_TEST_CASE ( four_site_chain_ward ) {
         // Solve the dense eigenvalue problem
         GQCP::Hubbard hubbard (fock_space);
         GQCP::CISolver solver (hubbard, ham_par);
-        numopt::eigenproblem::DenseSolverOptions dense_solver_options;
+        GQCP::DenseSolverOptions dense_solver_options;
         solver.solve(dense_solver_options);
 
         BOOST_CHECK(std::abs(solver.get_eigenpair().get_eigenvalue() - E_list[i]) < tol);
@@ -160,7 +160,7 @@ BOOST_AUTO_TEST_CASE ( six_site_ring_ward ) {
         // Solve the dense eigenvalue problem
         GQCP::Hubbard hubbard (fock_space);
         GQCP::CISolver solver (hubbard, ham_par);
-        numopt::eigenproblem::DenseSolverOptions dense_solver_options;
+        GQCP::DenseSolverOptions dense_solver_options;
         solver.solve(dense_solver_options);
 
         BOOST_CHECK(std::abs(solver.get_eigenpair().get_eigenvalue() - E_list[i]) < tol);
