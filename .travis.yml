@@ -81,7 +81,7 @@ install:
           sudo make install
         fi
     # Remove the boost includes installed by libint
-    - sudo rm -rf /use/local/libint/2.3.1/include/libint2/boost
+    - sudo rm -rf /usr/local/libint/2.3.1/include/libint2/boost
     - export LIBINT_DATA_PATH=/usr/local/libint/2.3.1/share/libint/2.3.1/basis
     - cd $HOME
 
