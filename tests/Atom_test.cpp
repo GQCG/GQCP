@@ -17,11 +17,11 @@
 // 
 #define BOOST_TEST_MODULE "Atom"
 
-
-#include "Atom.hpp"
-
 #include <boost/test/unit_test.hpp>
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise clang++ will complain
+
+
+#include "Atom.hpp"
 
 
 

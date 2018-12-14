@@ -17,10 +17,12 @@
 // 
 #define BOOST_TEST_MODULE "RHF"
 
-#include "RHF/RHF.hpp"
 
 #include <boost/test/unit_test.hpp>
 #include <boost/test/included/unit_test.hpp>
+
+
+#include "RHF/RHF.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( RHF_1RDM_invalid_argument ) {

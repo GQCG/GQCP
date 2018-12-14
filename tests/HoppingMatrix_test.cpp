@@ -18,10 +18,10 @@
 #define BOOST_TEST_MODULE "HoppingMatrix"
 
 
-#include "HoppingMatrix.hpp"
-
 #include <boost/test/unit_test.hpp>
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
+
+#include "HoppingMatrix.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( constructor_throws ) {
