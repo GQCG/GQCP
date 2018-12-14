@@ -30,7 +30,7 @@ namespace GQCP {
  */
 class BaseRDM {
 protected:
-    const size_t dim;  // dimension of the matrix representation of the operator
+    size_t dim;  // dimension of the matrix representation of the operator
 
 
 public:

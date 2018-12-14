@@ -29,7 +29,7 @@ namespace GQCP {
 /**
  *  A HamiltonianBuilder for FCI: it builds the matrix representation of the FCI Hamiltonian in the full alpha and beta product Fock space
  */
-class FCI : public GQCP::HamiltonianBuilder {
+class FCI : public HamiltonianBuilder {
 private:
     ProductFockSpace fock_space;  // fock space containing the alpha and beta Fock space
 
@@ -59,11 +59,6 @@ private:
         size_t address;
     };
 
-    // The following are rectangular arrays of dimension (dim_alpha * N_alpha * (K + 1 - N_alpha)) and similarly for beta,
-    // storing one-electron excited coupling addresses (cfr. the documentation about the OneElectronCoupling struct)
-    std::vector<std::vector<OneElectronCoupling>> alpha_one_electron_couplings;
-    std::vector<std::vector<OneElectronCoupling>> beta_one_electron_couplings;
-
 
 public:
 
@@ -79,7 +74,7 @@ public:
 
 
     // OVERRIDDEN GETTERS
-    BaseFockSpace* get_fock_space() override { return &fock_space; }
+    const BaseFockSpace* get_fock_space() const override { return &fock_space; }
 
 
     // OVERRIDDEN PUBLIC METHODS
@@ -88,7 +83,7 @@ public:
      *
      *  @return the FCI Hamiltonian matrix
      */
-    Eigen::MatrixXd constructHamiltonian(const HamiltonianParameters& hamiltonian_parameters) override;
+    Eigen::MatrixXd constructHamiltonian(const HamiltonianParameters& hamiltonian_parameters) const override;
 
     /**
      *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis
@@ -97,14 +92,14 @@ public:
      *
      *  @return the action of the FCI Hamiltonian on the coefficient vector
      */
-    Eigen::VectorXd matrixVectorProduct(const HamiltonianParameters& hamiltonian_parameters, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) override;
+    Eigen::VectorXd matrixVectorProduct(const HamiltonianParameters& hamiltonian_parameters, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) const override;
 
     /**
      *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis
      *
      *  @return the diagonal of the matrix representation of the Hamiltonian
      */
-    Eigen::VectorXd calculateDiagonal(const HamiltonianParameters& hamiltonian_parameters) override;
+    Eigen::VectorXd calculateDiagonal(const HamiltonianParameters& hamiltonian_parameters) const override;
 };
 
 

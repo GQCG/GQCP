@@ -66,7 +66,7 @@ private:
      *  @return an array of N OneElectronOperators corresponding to the matrix representations of the N components of the given operator type
      */
     template <size_t N>
-    std::array<GQCP::OneElectronOperator, N> calculateOneElectronIntegrals(libint2::Operator operator_type, const libint2::BasisSet& basisset, const libint2::any& parameters = empty()) const;
+    std::array<OneElectronOperator, N> calculateOneElectronIntegrals(libint2::Operator operator_type, const libint2::BasisSet& basisset, const libint2::any& parameters = empty()) const;
 
     /**
      *  @param operator_type    the name of the operator as specified by the enumeration
@@ -74,7 +74,7 @@ private:
      *
      *  @return the matrix representation of a two-electron operator in the given AO basis
      */
-    GQCP::TwoElectronOperator calculateTwoElectronIntegrals(libint2::Operator operator_type, const GQCP::AOBasis& ao_basis) const;
+    TwoElectronOperator calculateTwoElectronIntegrals(libint2::Operator operator_type, const AOBasis& ao_basis) const;
 
 
 public:
@@ -85,7 +85,7 @@ public:
     static LibintCommunicator& get();
 
     /**
-     *  Remove the public copy constructor and a public assignment operator
+     *  Remove the public copy constructor and the public assignment operator
      */
     LibintCommunicator(LibintCommunicator const& libint_communicator) = delete;
     void operator=(LibintCommunicator const& libint_communicator) = delete;
@@ -97,28 +97,28 @@ public:
      *
      *  @return the overlap integrals expressed in the given AO basis
      */
-    GQCP::OneElectronOperator calculateOverlapIntegrals(const GQCP::AOBasis& ao_basis) const;
+    OneElectronOperator calculateOverlapIntegrals(const AOBasis& ao_basis) const;
 
     /**
      *  @param ao_basis     the AO basis used for the calculation of the kinetic integrals
      *
      *  @return the kinetic integrals expressed in the given AO basis
      */
-    GQCP::OneElectronOperator calculateKineticIntegrals(const GQCP::AOBasis& ao_basis) const;
+    OneElectronOperator calculateKineticIntegrals(const AOBasis& ao_basis) const;
 
     /**
      *  @param ao_basis     the AO basis used for the calculation of the nuclear attraction integrals
      *
      *  @return the nuclear attraction integrals expressed in the given AO basis
      */
-    GQCP::OneElectronOperator calculateNuclearIntegrals(const GQCP::AOBasis& ao_basis) const;
+    OneElectronOperator calculateNuclearIntegrals(const AOBasis& ao_basis) const;
 
     /**
      *  @param ao_basis     the AO basis used for the calculation of the Coulomb repulsion integrals
      *
      *  @return the Coulomb repulsion integrals expressed in the given AO basis
      */
-    GQCP::TwoElectronOperator calculateCoulombRepulsionIntegrals(const GQCP::AOBasis& ao_basis) const;
+    TwoElectronOperator calculateCoulombRepulsionIntegrals(const AOBasis& ao_basis) const;
 
     /**
      *  @param ao_basis     the AO basis used for the calculation of the dipole repulsion integrals
@@ -126,14 +126,14 @@ public:
      *
      *  @return the Cartesian components of the electrical dipole operator, expressed in the given AO basis
      */
-    std::array<GQCP::OneElectronOperator, 3> calculateDipoleIntegrals(const GQCP::AOBasis& ao_basis, const Eigen::Vector3d& origin=Eigen::Vector3d::Zero()) const;
+    std::array<OneElectronOperator, 3> calculateDipoleIntegrals(const AOBasis& ao_basis, const Eigen::Vector3d& origin=Eigen::Vector3d::Zero()) const;
 
     /**
      *  @param atoms        the GQCP-atoms that should be interfaced
      *
      *  @return libint2-atoms, interfaced from the given atoms
      */
-    std::vector<libint2::Atom> interface(const std::vector<GQCP::Atom>& atoms) const;
+    std::vector<libint2::Atom> interface(const std::vector<Atom>& atoms) const;
 };
 
 
@@ -151,7 +151,7 @@ public:
  *  @return an array of N OneElectronOperators corresponding to the matrix representations of the N components of the given operator type
  */
 template <size_t N>
-std::array<GQCP::OneElectronOperator, N> LibintCommunicator::calculateOneElectronIntegrals(libint2::Operator operator_type, const libint2::BasisSet& basisset, const libint2::any& parameters) const {
+std::array<OneElectronOperator, N> LibintCommunicator::calculateOneElectronIntegrals(libint2::Operator operator_type, const libint2::BasisSet& basisset, const libint2::any& parameters) const {
 
     // Initialize the N components of the matrix representations of the operator
     const auto nbf = static_cast<size_t>(basisset.nbf());  // number of basis functions
@@ -202,10 +202,10 @@ std::array<GQCP::OneElectronOperator, N> LibintCommunicator::calculateOneElectro
     }  // shell loops
 
 
-     // Wrap the matrix representations into a GQCP::OneElectronOperator
-    std::array<GQCP::OneElectronOperator, N> operator_components;
+     // Wrap the matrix representations into a OneElectronOperator
+    std::array<OneElectronOperator, N> operator_components;
     for (size_t i = 0; i < N; i++) {
-        operator_components[i] = GQCP::OneElectronOperator(matrix_components[i]);
+        operator_components[i] = OneElectronOperator(matrix_components[i]);
     }
 
     return operator_components;

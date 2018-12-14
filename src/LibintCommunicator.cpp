@@ -55,7 +55,7 @@ LibintCommunicator::~LibintCommunicator() {
  *
  *  @return the matrix representation of a two-electron operator in the given AO basis
  */
-GQCP::TwoElectronOperator LibintCommunicator::calculateTwoElectronIntegrals(libint2::Operator operator_type, const GQCP::AOBasis& ao_basis) const {
+TwoElectronOperator LibintCommunicator::calculateTwoElectronIntegrals(libint2::Operator operator_type, const AOBasis& ao_basis) const {
 
     // Use the basis_functions that is currently a libint2::BasisSet
     auto libint_basisset = ao_basis.get_basis_functions();
@@ -127,7 +127,7 @@ GQCP::TwoElectronOperator LibintCommunicator::calculateTwoElectronIntegrals(libi
         }
     } // shell loops
 
-    return GQCP::TwoElectronOperator(tensor);
+    return TwoElectronOperator(tensor);
 };
 
 
@@ -153,7 +153,7 @@ LibintCommunicator& LibintCommunicator::get() {  // need to return by reference 
  *
  *  @return libint2-atoms, interfaced from the given atoms
  */
-std::vector<libint2::Atom> LibintCommunicator::interface(const std::vector<GQCP::Atom>& atoms) const {
+std::vector<libint2::Atom> LibintCommunicator::interface(const std::vector<Atom>& atoms) const {
 
     std::vector<libint2::Atom> libint_vector;  // start with an empty vector, we're doing push_backs later
 
@@ -171,7 +171,7 @@ std::vector<libint2::Atom> LibintCommunicator::interface(const std::vector<GQCP:
  *
  *  @return the overlap integrals expressed in the given AO basis
  */
-GQCP::OneElectronOperator LibintCommunicator::calculateOverlapIntegrals(const GQCP::AOBasis& ao_basis) const {
+OneElectronOperator LibintCommunicator::calculateOverlapIntegrals(const AOBasis& ao_basis) const {
     return this->calculateOneElectronIntegrals<1>(libint2::Operator::overlap, ao_basis.get_basis_functions())[0];
 }
 
@@ -181,7 +181,7 @@ GQCP::OneElectronOperator LibintCommunicator::calculateOverlapIntegrals(const GQ
  *
  *  @return the kinetic integrals expressed in the given AO basis
  */
-GQCP::OneElectronOperator LibintCommunicator::calculateKineticIntegrals(const GQCP::AOBasis& ao_basis) const {
+OneElectronOperator LibintCommunicator::calculateKineticIntegrals(const AOBasis& ao_basis) const {
     return this->calculateOneElectronIntegrals<1>(libint2::Operator::kinetic, ao_basis.get_basis_functions())[0];
 }
 
@@ -191,7 +191,7 @@ GQCP::OneElectronOperator LibintCommunicator::calculateKineticIntegrals(const GQ
  *
  *  @return the nuclear attraction integrals expressed in the given AO basis
  */
-GQCP::OneElectronOperator LibintCommunicator::calculateNuclearIntegrals(const GQCP::AOBasis& ao_basis) const {
+OneElectronOperator LibintCommunicator::calculateNuclearIntegrals(const AOBasis& ao_basis) const {
     return this->calculateOneElectronIntegrals<1>(libint2::Operator::nuclear, ao_basis.get_basis_functions(),
                                                   make_point_charges(this->interface(ao_basis.get_atoms())))[0];
 }
@@ -203,14 +203,14 @@ GQCP::OneElectronOperator LibintCommunicator::calculateNuclearIntegrals(const GQ
  *
  *  @return the Cartesian components of the electrical dipole operator, expressed in the given AO basis
  */
-std::array<GQCP::OneElectronOperator, 3> LibintCommunicator::calculateDipoleIntegrals(const GQCP::AOBasis& ao_basis, const Eigen::Vector3d& origin) const {
+std::array<OneElectronOperator, 3> LibintCommunicator::calculateDipoleIntegrals(const AOBasis& ao_basis, const Eigen::Vector3d& origin) const {
 
     std::array<double, 3> origin_array {origin.x(), origin.y(), origin.z()};
 
     auto all_integrals = this->calculateOneElectronIntegrals<4>(libint2::Operator::emultipole1, ao_basis.get_basis_functions(), origin_array);  // overlap, x, y, z
 
     // Apply the minus sign which comes from the charge of the electrons -e
-    return std::array<GQCP::OneElectronOperator, 3> {-all_integrals[1], -all_integrals[2], -all_integrals[3]};  // we don't need the overlap, so ignore [0]
+    return std::array<OneElectronOperator, 3> {-all_integrals[1], -all_integrals[2], -all_integrals[3]};  // we don't need the overlap, so ignore [0]
 }
 
 
@@ -219,7 +219,7 @@ std::array<GQCP::OneElectronOperator, 3> LibintCommunicator::calculateDipoleInte
  *
  *  @return the Coulomb repulsion integrals expressed in the given AO basis
  */
-GQCP::TwoElectronOperator LibintCommunicator::calculateCoulombRepulsionIntegrals(const GQCP::AOBasis& ao_basis) const {
+TwoElectronOperator LibintCommunicator::calculateCoulombRepulsionIntegrals(const AOBasis& ao_basis) const {
     return this->calculateTwoElectronIntegrals(libint2::Operator::coulomb, ao_basis);
 }
 

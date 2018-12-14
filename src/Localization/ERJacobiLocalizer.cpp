@@ -50,7 +50,7 @@ ERJacobiLocalizer::ERJacobiLocalizer(size_t N_P, double threshold, size_t maximu
  *  @param i            the index of spatial orbital 1
  *  @param j            the index of spatial orbital 2
  */
-void ERJacobiLocalizer::calculateJacobiCoefficients(const GQCP::HamiltonianParameters& ham_par, size_t i, size_t j) {
+void ERJacobiLocalizer::calculateJacobiCoefficients(const HamiltonianParameters& ham_par, size_t i, size_t j) {
 
     auto g = ham_par.get_g();  // two-electron integrals
 
@@ -67,7 +67,7 @@ void ERJacobiLocalizer::calculateJacobiCoefficients(const GQCP::HamiltonianParam
  *
  *  @return the angle which maximizes the Edmiston-Ruedenberg localization index for the orbitals i and j
  */
-double ERJacobiLocalizer::calculateMaximizingRotationAngle(const GQCP::HamiltonianParameters& ham_par, size_t i, size_t j) const {
+double ERJacobiLocalizer::calculateMaximizingRotationAngle(const HamiltonianParameters& ham_par, size_t i, size_t j) const {
 
     double denominator = std::sqrt(std::pow(this->B, 2) + std::pow(this->C, 2));
     return 0.25 * std::atan2(this->C / denominator, this->B / denominator);  // atan(y/x) = std::atan2(y,x)
@@ -79,7 +79,7 @@ double ERJacobiLocalizer::calculateMaximizingRotationAngle(const GQCP::Hamiltoni
  *
  *  @return the maximal Edmiston-Ruedenberg for the current Jacobi coefficients A, B, C
  */
-double ERJacobiLocalizer::calculateMaximalLocalizationIndex(const GQCP::HamiltonianParameters& ham_par) const {
+double ERJacobiLocalizer::calculateMaximalLocalizationIndex(const HamiltonianParameters& ham_par) const {
 
     double D = ham_par.calculateEdmistonRuedenbergLocalizationIndex(this->N_P);
     return D + this->A + std::sqrt(std::pow(this->B, 2) + std::pow(this->C, 2));
@@ -96,7 +96,7 @@ double ERJacobiLocalizer::calculateMaximalLocalizationIndex(const GQCP::Hamilton
  *
  *  @param ham_par      the Hamiltonian parameters (in an orthonormal basis) that should be localized
  */
-void ERJacobiLocalizer::localize(GQCP::HamiltonianParameters& ham_par) {
+void ERJacobiLocalizer::localize(HamiltonianParameters& ham_par) {
 
     while (!(this->is_converged)) {
 
@@ -110,7 +110,7 @@ void ERJacobiLocalizer::localize(GQCP::HamiltonianParameters& ham_par) {
                 this->calculateJacobiCoefficients(ham_par, i, j);
 
                 double theta = this->calculateMaximizingRotationAngle(ham_par, i, j);
-                GQCP::JacobiRotationParameters jacobi_rot_par {i, j, theta};
+                JacobiRotationParameters jacobi_rot_par {i, j, theta};
                 double D_rotated = this->calculateMaximalLocalizationIndex(ham_par);
 
                 max_q.emplace(JacobiRotationLocalizationIndex {jacobi_rot_par, D_rotated});

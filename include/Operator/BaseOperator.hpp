@@ -70,7 +70,7 @@ public:
      *
      *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix. See transform() for how the transformation matrix between the two bases should be represented
      */
-    virtual void rotate(const GQCP::JacobiRotationParameters& jacobi_rotation_parameters) = 0;
+    virtual void rotate(const JacobiRotationParameters& jacobi_rotation_parameters) = 0;
 };
 
 

@@ -32,9 +32,9 @@ namespace GQCP {
  *  The ONVs and addresses are linked with a hashing function calculated with an addressing scheme. The implementation of the addressing scheme is from Molecular Electronic-Structure Theory (August 2000) by Trygve Helgaker, Poul Jorgensen, and Jeppe Olsen
  *
  */
-class FockSpace: public GQCP::BaseFockSpace {
+class FockSpace: public BaseFockSpace {
 private:
-    const size_t N;  // number of electrons
+    size_t N;  // number of electrons
     Matrixu vertex_weights;  // vertex_weights of the addressing scheme
 
 
@@ -48,7 +48,7 @@ private:
      *          011 -> 101
      *          101 -> 110
      */
-    size_t ulongNextPermutation(size_t representation);
+    size_t ulongNextPermutation(size_t representation) const;
 
 
 public:
@@ -87,29 +87,29 @@ public:
      *
      *  @return the ONV with the corresponding address
      */
-    ONV get_ONV(size_t address);
+    ONV makeONV(size_t address) const;
 
     /**
      *  Set the current ONV to the next ONV: performs ulongNextPermutation() and updates the corresponding occupation indices of the ONV occupation array
      *
      *  @param onv      the current ONV
      */
-    void setNext(ONV& onv);
+    void setNextONV(ONV& onv) const;
 
     /**
      *  @param onv      the ONV
      *
      *  @return the address (i.e. the ordering number) of the given ONV
      */
-    size_t getAddress(const ONV& onv);
+    size_t getAddress(const ONV& onv) const;
   
     /**
-     *  Transform an ONV to one with corresponding to the given address
+     *  Transform an ONV to one corresponding to the given address
      *
      *  @param onv          the ONV
      *  @param address      the address to which the ONV will be set
      */
-    void set(ONV& onv, size_t address) const;
+    void transformONV(ONV& onv, size_t address) const;
 
     /**
      *  Find the next unoccupied orbital in a given ONV,
@@ -173,7 +173,6 @@ public:
         }
     }
 };
-
 
 
 }  // namespace GQCP

@@ -31,13 +31,13 @@ namespace GQCP {
  */
 class AP1roGPSESolver {
 private:
-    const size_t K;  // the number of special orbitals
-    const size_t N_P;  // the number of electron pairs
-    const GQCP::AP1roGGeminalCoefficients initial_geminal_coefficients;
+    size_t K;  // the number of special orbitals
+    size_t N_P;  // the number of electron pairs
+    AP1roGGeminalCoefficients initial_geminal_coefficients;
     
-    GQCP::HamiltonianParameters ham_par;
+    HamiltonianParameters ham_par;
 
-    GQCP::AP1roG solution;
+    AP1roG solution;
 
 
 public:
@@ -47,7 +47,7 @@ public:
      *  @param ham_par      Hamiltonian parameters in an orthonormal orbital basis
      *  @param G            the initial guess for the AP1roG gemial coefficients
      */
-    AP1roGPSESolver(size_t N_P, const GQCP::HamiltonianParameters& ham_par, const GQCP::AP1roGGeminalCoefficients& G);
+    AP1roGPSESolver(size_t N_P, const HamiltonianParameters& ham_par, const AP1roGGeminalCoefficients& G);
 
     /**
      *  @param N_P          the number of electrons
@@ -55,14 +55,14 @@ public:
      *
      *  The initial guess for the geminal coefficients is zero
      */
-    AP1roGPSESolver(size_t N_P, const GQCP::HamiltonianParameters& ham_par);
+    AP1roGPSESolver(size_t N_P, const HamiltonianParameters& ham_par);
 
     /**
      *  @param molecule     the molecule used for the AP1roG calculation
      *  @param ham_par      Hamiltonian parameters in an orthonormal orbital basis
      *  @param G            the initial guess for the AP1roG gemial coefficients
      */
-    AP1roGPSESolver(const GQCP::Molecule& molecule, const GQCP::HamiltonianParameters& ham_par, const GQCP::AP1roGGeminalCoefficients& G);
+    AP1roGPSESolver(const Molecule& molecule, const HamiltonianParameters& ham_par, const AP1roGGeminalCoefficients& G);
 
     /**
      *  @param molecule     the molecule used for the AP1roG calculation
@@ -70,11 +70,11 @@ public:
      *
      *  The initial guess for the geminal coefficients is zero
      */
-    AP1roGPSESolver(const GQCP::Molecule& molecule, const GQCP::HamiltonianParameters& ham_par);
+    AP1roGPSESolver(const Molecule& molecule, const HamiltonianParameters& ham_par);
 
 
     // GETTERS
-    const GQCP::AP1roG& get_solution() const { return this->solution; }
+    const AP1roG& get_solution() const { return this->solution; }
 
 
     // PUBLIC METHODS
@@ -103,7 +103,7 @@ public:
      *
      *  @return the coordinate function with given indices (i,a) at the given geminal coefficients
      */
-    double calculateCoordinateFunction(const GQCP::AP1roGGeminalCoefficients& G, size_t i, size_t a) const;
+    double calculateCoordinateFunction(const AP1roGGeminalCoefficients& G, size_t i, size_t a) const;
 
     /**
      *  @param g        the AP1roG geminal coefficients in row-major vector form

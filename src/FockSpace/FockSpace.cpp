@@ -25,7 +25,7 @@ namespace GQCP {
 
 
 /*
- * PRIVATE METHODS
+ *  PRIVATE METHODS
  */
 
 /**
@@ -37,7 +37,7 @@ namespace GQCP {
  *          011 -> 101
  *          101 -> 110
  */
-size_t FockSpace::ulongNextPermutation(size_t representation) {
+size_t FockSpace::ulongNextPermutation(size_t representation) const {
 
     // t gets this->representation's least significant 0 bits set to 1
     unsigned long t = representation | (representation - 1UL);
@@ -62,7 +62,7 @@ FockSpace::FockSpace(size_t K, size_t N) :
         N (N)
 {
     // Create a zero matrix of dimensions (K+1)x(N+1)
-    this->vertex_weights = GQCP::Matrixu(this->K + 1, GQCP::Vectoru(this->N + 1, 0));
+    this->vertex_weights = Matrixu(this->K + 1, Vectoru(this->N + 1, 0));
 
     // K=5   N=2
     // [ 0 0 0 ]
@@ -138,9 +138,9 @@ size_t FockSpace::calculateDimension(size_t K, size_t N) {
  *
  *  @return the ONV with the corresponding address
  */
-ONV FockSpace::get_ONV(size_t address) {
+ONV FockSpace::makeONV(size_t address) const {
     ONV onv (this->K, this->N);
-    this->set(onv, address);
+    this->transformONV(onv, address);
     return onv;
 }
 
@@ -150,7 +150,7 @@ ONV FockSpace::get_ONV(size_t address) {
  *
  *  @param onv      the current ONV
  */
-void FockSpace::setNext(ONV& onv) {
+void FockSpace::setNextONV(ONV& onv) const {
     onv.set_representation(ulongNextPermutation(onv.get_unsigned_representation()));
 }
 
@@ -160,7 +160,7 @@ void FockSpace::setNext(ONV& onv) {
  *
  *  @return the address (i.e. the ordering number) of the given ONV
  */
-size_t FockSpace::getAddress(const ONV& onv) {
+size_t FockSpace::getAddress(const ONV& onv) const {
     // An implementation of the formula in Helgaker, starting the addressing count from zero
     size_t address = 0;
     size_t electron_count = 0;  // counts the number of electrons in the spin string up to orbital p
@@ -169,7 +169,7 @@ size_t FockSpace::getAddress(const ONV& onv) {
     while(unsigned_onv != 0) {  // we will remove the least significant bit each loop, we are finished when no bits are left
         size_t p = __builtin_ctzl(unsigned_onv);  // p is the orbital index counter (starting from 1)
         electron_count++;  // each bit is an electron hence we add it up to the electron count
-        address += get_vertex_weights(p , electron_count);
+        address += this->get_vertex_weights(p , electron_count);
         unsigned_onv ^= unsigned_onv & -unsigned_onv;  // flip the least significant bit
     }
     return address;
@@ -182,7 +182,7 @@ size_t FockSpace::getAddress(const ONV& onv) {
  *  @param onv          the ONV
  *  @param address      the address to which the ONV will be set
  */
-void FockSpace::set(ONV& onv, size_t address) const {
+void FockSpace::transformONV(ONV& onv, size_t address) const {
 
     size_t representation;
     if (this->N == 0) {

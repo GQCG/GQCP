@@ -53,8 +53,7 @@ Molecule::Molecule(const std::vector<Atom>& atoms, int charge) :
     }
 
     // Check if there are no duplicate atoms
-    // The atoms are const, so we will make a copy to check if there are duplicates
-    auto atoms_copy = this->atoms;
+    std::vector<Atom> atoms_copy = this->atoms;
 
     // Sort and unique
     std::sort(atoms_copy.begin(), atoms_copy.end());
@@ -216,7 +215,7 @@ Molecule Molecule::H2Chain(size_t n, double a, double b, int charge) {
 /**
  *  @param other        the other molecule
  *
- *  @return if this molecule is equal to the other, within the default GQCP::Atom::tolerance_for_comparison for the coordinates of the atoms
+ *  @return if this molecule is equal to the other, within the default Atom::tolerance_for_comparison for the coordinates of the atoms
  */
 bool Molecule::operator==(const Molecule& other) const {
 
@@ -225,8 +224,6 @@ bool Molecule::operator==(const Molecule& other) const {
 
 
 /**
- *  Overloading of operator<< for a GQCP::Molecule to be used with streams
- *
  *  @param os           the output stream which the molecule should be concatenated to
  *  @param molecule     the molecule that should be concatenated to the output stream
  *
@@ -259,8 +256,8 @@ bool Molecule::isEqualTo(const Molecule& other, double tolerance) const {
         return false;
     }
 
-    // We don't want the order of the atoms to matter in a GQCP::Molecule comparison
-    // We have implemented a custom GQCP::Atom::operator< so we can sort std::vectors of GQCP::Atoms
+    // We don't want the order of the atoms to matter in a Molecule comparison
+    // We have implemented a custom Atom::operator< so we can sort std::vectors of Atoms
     // Make a copy of the atoms because std::sort modifies
     auto this_atoms = this->atoms;
     auto other_atoms = other.atoms;

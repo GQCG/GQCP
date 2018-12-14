@@ -51,7 +51,7 @@ public:
     /**
      *  Default constructor setting everything to zero
      */
-    BaseAPIGGeminalCoefficients();
+    BaseAPIGGeminalCoefficients();  // default constructor needed
 
 
     // OPERATORS
@@ -121,7 +121,7 @@ public:
      *
      *  @return the wave function expansion corresponding to the geminal coefficients
      */
-    WaveFunction toWaveFunction(FockSpace& fock_space) const;
+    WaveFunction toWaveFunction(const FockSpace& fock_space) const;
 };
 
 

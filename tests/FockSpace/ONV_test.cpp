@@ -35,7 +35,7 @@ BOOST_AUTO_TEST_CASE ( ONV_constructor ) {
     GQCP::FockSpace fock_space (10, 5);
 
     // Ask for the first ONV in reverse lexicographic order : "0000011111" = 31
-    GQCP::ONV onv2 = fock_space.get_ONV(0);
+    GQCP::ONV onv2 = fock_space.makeONV(0);
 
     // Check if both unsigned representations match (are equal to 31 and have the same considered bits)
     BOOST_CHECK(onv1 == onv2);
@@ -88,24 +88,24 @@ BOOST_AUTO_TEST_CASE ( FockSpace_setNext ) {
 
     GQCP::FockSpace fock_space (5, 3);
     // K = 5, N = 3 <-> "00111"
-    GQCP::ONV onv = fock_space.get_ONV(0);
+    GQCP::ONV onv = fock_space.makeONV(0);
     // The lexical permutations are: "00111" (7), "01011" (11), "01101" (13), "01110" (14), etc.
 
     // Check permutations one after the other
 
-    fock_space.setNext(onv);  // "01011" (11)
+    fock_space.setNextONV(onv);  // "01011" (11)
     BOOST_CHECK_EQUAL(onv.get_unsigned_representation(), 11);
     GQCP::VectorXs x1 (3);
     x1 << 0, 1, 3;
     BOOST_CHECK(x1.isApprox(onv.get_occupation_indices()));
 
-    fock_space.setNext(onv);  // "01101" (13)
+    fock_space.setNextONV(onv);  // "01101" (13)
     BOOST_CHECK_EQUAL(onv.get_unsigned_representation(), 13);
     GQCP::VectorXs x2 (3);
     x2 << 0, 2, 3;
     BOOST_CHECK(x2.isApprox(onv.get_occupation_indices()));
 
-    fock_space.setNext(onv);  // "01110" (14)
+    fock_space.setNextONV(onv);  // "01110" (14)
     BOOST_CHECK_EQUAL(onv.get_unsigned_representation(), 14);
     GQCP::VectorXs x3 (3);
     x3 << 1, 2, 3;
@@ -119,7 +119,7 @@ BOOST_AUTO_TEST_CASE ( ONV_address_setNext_fullspace ) {
     GQCP::FockSpace fock_space (15, 5);
 
     // Retrieve the first ONV of the Fock space
-    GQCP::ONV onv_test = fock_space.get_ONV(0);
+    GQCP::ONV onv_test = fock_space.makeONV(0);
 
     const size_t dimension_fock_space = 3003;
     bool is_correct = true;  // variable that is updated to false if an unexpected result occurs
@@ -134,7 +134,7 @@ BOOST_AUTO_TEST_CASE ( ONV_address_setNext_fullspace ) {
 
         // transforms the given ONV to the next ONV in the Fock space
         if (i < dimension_fock_space - 1) {
-            fock_space.setNext(onv_test);
+            fock_space.setNextONV(onv_test);
         }
     }
 

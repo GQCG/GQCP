@@ -35,9 +35,9 @@ namespace GQCP {
  *
  *  @param fock_space       the DOCI Fock space
  */
-RDMCalculator::RDMCalculator(const FockSpace& fock_space) {
-    rdm_builder = std::make_shared<GQCP::DOCIRDMBuilder>(fock_space);
-}
+RDMCalculator::RDMCalculator(const FockSpace& fock_space) :
+    rdm_builder (std::make_shared<DOCIRDMBuilder>(fock_space))
+{}
 
 
 /**
@@ -45,9 +45,9 @@ RDMCalculator::RDMCalculator(const FockSpace& fock_space) {
  *
  *  @param fock_space       the FCI Fock space
  */
-RDMCalculator::RDMCalculator(const ProductFockSpace& fock_space) {
-    rdm_builder = std::make_shared<GQCP::FCIRDMBuilder>(fock_space);
-}
+RDMCalculator::RDMCalculator(const ProductFockSpace& fock_space) :
+    rdm_builder (std::make_shared<FCIRDMBuilder>(fock_space))
+{}
 
 
 /**
@@ -55,9 +55,9 @@ RDMCalculator::RDMCalculator(const ProductFockSpace& fock_space) {
  *
  *  @param fock_space       the 'selected' Fock space
  */
-RDMCalculator::RDMCalculator(const SelectedFockSpace& fock_space) {
-    rdm_builder = std::make_shared<GQCP::SelectedRDMBuilder>(fock_space);
-}
+RDMCalculator::RDMCalculator(const SelectedFockSpace& fock_space) :
+    rdm_builder (std::make_shared<SelectedRDMBuilder>(fock_space))
+{}
 
 
 /**
@@ -70,19 +70,19 @@ RDMCalculator::RDMCalculator(const BaseFockSpace& fock_space) {
     switch (fock_space.get_type()){
 
         case FockSpaceType::FockSpace: {
-            rdm_builder = std::make_shared<GQCP::DOCIRDMBuilder>(dynamic_cast<const GQCP::FockSpace&>(fock_space));
+            this->rdm_builder = std::make_shared<DOCIRDMBuilder>(dynamic_cast<const FockSpace&>(fock_space));
 
             break;
         }
 
         case FockSpaceType::ProductFockSpace: {
-            rdm_builder = std::make_shared<GQCP::FCIRDMBuilder>(dynamic_cast<const GQCP::ProductFockSpace&>(fock_space));
+            this->rdm_builder = std::make_shared<FCIRDMBuilder>(dynamic_cast<const ProductFockSpace&>(fock_space));
 
             break;
         }
 
         case FockSpaceType::SelectedFockSpace: {
-            rdm_builder = std::make_shared<GQCP::SelectedRDMBuilder>(dynamic_cast<const GQCP::SelectedFockSpace&>(fock_space));
+            this->rdm_builder = std::make_shared<SelectedRDMBuilder>(dynamic_cast<const SelectedFockSpace&>(fock_space));
 
             break;
         }
@@ -101,7 +101,7 @@ RDMCalculator::RDMCalculator(const BaseFockSpace& fock_space) {
  *
  *  @return all 1-RDMs given a coefficient vector
  */
-OneRDMs RDMCalculator::calculate1RDMs(const Eigen::VectorXd& x) {
+OneRDMs RDMCalculator::calculate1RDMs(const Eigen::VectorXd& x) const {
     return rdm_builder->calculate1RDMs(x);
 }
 
@@ -111,7 +111,7 @@ OneRDMs RDMCalculator::calculate1RDMs(const Eigen::VectorXd& x) {
  *
  *  @return all 2-RDMs given a coefficient vector
  */
-TwoRDMs RDMCalculator::calculate2RDMs(const Eigen::VectorXd& x) {
+TwoRDMs RDMCalculator::calculate2RDMs(const Eigen::VectorXd& x) const {
     return rdm_builder->calculate2RDMs(x);
 }
 

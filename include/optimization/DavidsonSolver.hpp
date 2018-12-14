@@ -34,17 +34,16 @@ namespace GQCP {
  */
 class DavidsonSolver : public BaseEigenproblemSolver {
 private:
-
-    const double convergence_threshold;  // the tolerance on the norm of the residual vector
-    const double correction_threshold;  // the threshold used in solving the (approximated) residue correction equation
-    const size_t maximum_subspace_dimension;
-    const size_t collapsed_subspace_dimension;
-    const size_t maximum_number_of_iterations;
+    double convergence_threshold;  // the tolerance on the norm of the residual vector
+    double correction_threshold;  // the threshold used in solving the (approximated) residue correction equation
+    size_t maximum_subspace_dimension;
+    size_t collapsed_subspace_dimension;
+    size_t maximum_number_of_iterations;
     size_t number_of_iterations = 0;
 
-    const VectorFunction matrixVectorProduct;
-    const Eigen::VectorXd diagonal;  // the diagonal of the matrix in question
-    const Eigen::MatrixXd V_0;  // the set of initial guesses (every column is an initial guess)
+    VectorFunction matrixVectorProduct;
+    Eigen::VectorXd diagonal;  // the diagonal of the matrix in question
+    Eigen::MatrixXd V_0;  // the set of initial guesses (every column is an initial guess)
 
 
 public:

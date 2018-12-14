@@ -49,7 +49,7 @@ void printExecutionTime(const std::string& method_name, const std::function<void
  *
  *  @return the corresponding Jacobi rotation matrix. Note that we work with the (cos, sin, -sin, cos) definition of the Jacobi rotation matrix
  */
-Eigen::MatrixXd jacobiRotationMatrix(const GQCP::JacobiRotationParameters& jacobi_rotation_parameters, size_t M);
+Eigen::MatrixXd jacobiRotationMatrix(const JacobiRotationParameters& jacobi_rotation_parameters, size_t M);
 
 /**
  *  @param A    the matrix

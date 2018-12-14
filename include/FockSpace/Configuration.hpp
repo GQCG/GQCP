@@ -26,7 +26,7 @@ namespace GQCP {
 
 
 /**
- *  A small struct that represents the combination of an alpha and beta ONV
+ *  A struct that represents the combination of an alpha and beta ONV
  */
 struct Configuration {
     ONV onv_alpha;

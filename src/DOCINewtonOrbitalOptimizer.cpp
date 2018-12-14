@@ -37,7 +37,7 @@ namespace GQCP {
  *  @param doci         the DOCI HamiltonianBuilder
  *  @param ham_par      the Hamiltonian parameters in an orthonormal basis
  */
-DOCINewtonOrbitalOptimizer::DOCINewtonOrbitalOptimizer(const GQCP::DOCI& doci, const GQCP::HamiltonianParameters& ham_par) :
+DOCINewtonOrbitalOptimizer::DOCINewtonOrbitalOptimizer(const DOCI& doci, const HamiltonianParameters& ham_par) :
     doci (doci),
     ham_par (ham_par)
 {}
@@ -73,7 +73,7 @@ const Eigenpair& DOCINewtonOrbitalOptimizer::get_eigenpair(size_t index) const {
  *  @param solver_options       solver options for the CI solver
  *  @param oo_options           options for the orbital optimization
  */
-void DOCINewtonOrbitalOptimizer::solve(BaseSolverOptions& solver_options, const GQCP::OrbitalOptimizationOptions& oo_options) {
+void DOCINewtonOrbitalOptimizer::solve(BaseSolverOptions& solver_options, const OrbitalOptimizationOptions& oo_options) {
     this->is_converged = false;
     auto K = this->ham_par.get_K();
 
@@ -81,12 +81,12 @@ void DOCINewtonOrbitalOptimizer::solve(BaseSolverOptions& solver_options, const 
     while (!(this->is_converged)) {
 
         // Solve the DOCI eigenvalue equation, using the options provided
-        GQCP::CISolver doci_solver (this->doci, this->ham_par);  // update the CI solver with the rotated Hamiltonian parameters
+        CISolver doci_solver (this->doci, this->ham_par);  // update the CI solver with the rotated Hamiltonian parameters
         doci_solver.solve(solver_options);
-        GQCP::WaveFunction ground_state = doci_solver.get_wavefunction();
+        WaveFunction ground_state = doci_solver.get_wavefunction();
 
         // Calculate the 1- and 2-RDMs
-        GQCP::RDMCalculator rdm_calculator (*(this->doci.get_fock_space()));
+        RDMCalculator rdm_calculator (*(this->doci.get_fock_space()));
         auto D = rdm_calculator.calculate1RDMs(ground_state.get_coefficients()).one_rdm;  // spin-summed 1-RDM
         auto d = rdm_calculator.calculate2RDMs(ground_state.get_coefficients()).two_rdm;  // spin-summed 2-RDM
 
@@ -94,11 +94,11 @@ void DOCINewtonOrbitalOptimizer::solve(BaseSolverOptions& solver_options, const 
         // Calculate the electronic gradient at kappa = 0
         Eigen::MatrixXd F = this->ham_par.calculateGeneralizedFockMatrix(D, d).get_matrix_representation();
         Eigen::MatrixXd gradient_matrix = 2 * (F - F.transpose());
-        Eigen::VectorXd gradient_vector = GQCP::strictLowerTriangle(gradient_matrix);  // gradient vector with the free parameters, at kappa = 0
+        Eigen::VectorXd gradient_vector = strictLowerTriangle(gradient_matrix);  // gradient vector with the free parameters, at kappa = 0
 
 
         // Calculate the electronic Hessian at kappa = 0
-        GQCP::TwoElectronOperator W = this->ham_par.calculateSuperGeneralizedFockMatrix(D, d);
+        TwoElectronOperator W = this->ham_par.calculateSuperGeneralizedFockMatrix(D, d);
         Eigen::Tensor<double, 4> hessian_tensor (K, K, K, K);
         hessian_tensor.setZero();
 
@@ -111,7 +111,7 @@ void DOCINewtonOrbitalOptimizer::solve(BaseSolverOptions& solver_options, const 
                 }
             }
         }
-        Eigen::MatrixXd hessian_matrix = GQCP::strictLowerTriangle(hessian_tensor);  // hessian matrix with only the free parameters, at kappa = 0
+        Eigen::MatrixXd hessian_matrix = strictLowerTriangle(hessian_tensor);  // hessian matrix with only the free parameters, at kappa = 0
 
         Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> hessian_solver (hessian_matrix);
 
@@ -120,7 +120,7 @@ void DOCINewtonOrbitalOptimizer::solve(BaseSolverOptions& solver_options, const 
         VectorFunction gradient_function = [gradient_vector](const Eigen::VectorXd& x) { return gradient_vector; };
         MatrixFunction hessian_function = [hessian_matrix](const Eigen::VectorXd& x) { return hessian_matrix; };
 
-        Eigen::VectorXd kappa_vector = GQCP::newtonStep(Eigen::VectorXd::Zero(K), gradient_function, hessian_function);  // with only the free parameters
+        Eigen::VectorXd kappa_vector = newtonStep(Eigen::VectorXd::Zero(K), gradient_function, hessian_function);  // with only the free parameters
 
 
         // If the calculated norm is zero, we have reached a critical point
@@ -150,7 +150,7 @@ void DOCINewtonOrbitalOptimizer::solve(BaseSolverOptions& solver_options, const 
 
 
         // Change kappa back to a matrix
-        Eigen::MatrixXd kappa_matrix = GQCP::fillStrictLowerTriangle(kappa_vector);  // containing all parameters, so this is in anti-Hermitian (anti-symmetric) form
+        Eigen::MatrixXd kappa_matrix = fillStrictLowerTriangle(kappa_vector);  // containing all parameters, so this is in anti-Hermitian (anti-symmetric) form
         Eigen::MatrixXd kappa_matrix_transpose = kappa_matrix.transpose();  // store the transpose in an auxiliary variable to avoid aliasing issues
         kappa_matrix -= kappa_matrix_transpose;  // fillStrictLowerTriangle only returns the lower triangle, so we must construct the anti-Hermitian (anti-symmetric) matrix
 
@@ -182,11 +182,11 @@ void DOCINewtonOrbitalOptimizer::solve(BaseSolverOptions& solver_options, const 
  *
  *  @return the index-th excited state after doing the OO-DOCI calculation
  */
-GQCP::WaveFunction DOCINewtonOrbitalOptimizer::get_wavefunction(size_t index) {
+WaveFunction DOCINewtonOrbitalOptimizer::get_wavefunction(size_t index) const {
     if (index > this->eigenpairs.size()) {
         throw std::logic_error("Not enough requested eigenpairs for the given index.");
     }
-    return WaveFunction(*dynamic_cast<GQCP::FockSpace*>(this->doci.get_fock_space()), this->eigenpairs[index].get_eigenvector());
+    return WaveFunction(*this->doci.get_fock_space(), this->eigenpairs[index].get_eigenvector());
 }
 
 

@@ -41,7 +41,7 @@ public:
     /**
      *  A default constructor setting everything to zero
      */
-    OneElectronOperator();
+    OneElectronOperator();  // need a default constructor
 
     /**
      *  @param matrix   the explicit matrix representation of the one-electron operator
@@ -64,19 +64,19 @@ public:
      *
      *  @return the sum of two OneElectronOperators, i.e. a OneElectronOperator whose matrix representation is the sum of the two matrix representations of the given OneElectronOperators
      */
-    GQCP::OneElectronOperator operator+(const GQCP::OneElectronOperator& other);
+    OneElectronOperator operator+(const OneElectronOperator& other) const;
 
     /**
      *  @return a OneElectronOperator whose matrix representation is negated
      */
-    GQCP::OneElectronOperator operator-();
+    OneElectronOperator operator-() const;
 
     /**
      *  @param other    the other OneElectronOperator
      *
      *  @return if the matrix representation of this operator is equal to the matrix representation of the other, within the default tolerance specified by isEqualTo()
      */
-    bool operator==(const GQCP::OneElectronOperator& other);
+    bool operator==(const OneElectronOperator& other) const;
 
 
     // PUBLIC METHODS
@@ -86,7 +86,7 @@ public:
      *
      *  @return if the matrix representation of this operator is equal to the matrix representation of the other, given a tolerance
      */
-    bool isEqualTo(const GQCP::OneElectronOperator& other, double tolerance=1.0e-08) const;
+    bool isEqualTo(const OneElectronOperator& other, double tolerance=1.0e-08) const;
 
     /**
      *  In-place transform the matrix representation of the one-electron operator
@@ -109,7 +109,7 @@ public:
      *
      *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix. See transform() for how the transformation matrix between the two bases should be represented
      */
-    void rotate(const GQCP::JacobiRotationParameters& jacobi_rotation_parameters) override;
+    void rotate(const JacobiRotationParameters& jacobi_rotation_parameters) override;
 };
 
 

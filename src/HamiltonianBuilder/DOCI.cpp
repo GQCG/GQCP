@@ -44,7 +44,7 @@ DOCI::DOCI(const FockSpace& fock_space) :
  *
  *  @return the DOCI Hamiltonian matrix
  */
-Eigen::MatrixXd DOCI::constructHamiltonian(const HamiltonianParameters& hamiltonian_parameters) {
+Eigen::MatrixXd DOCI::constructHamiltonian(const HamiltonianParameters& hamiltonian_parameters) const {
     
     auto K = hamiltonian_parameters.get_h().get_dim();
     if (K != this->fock_space.get_K()) {
@@ -56,7 +56,7 @@ Eigen::MatrixXd DOCI::constructHamiltonian(const HamiltonianParameters& hamilton
     size_t N = this->fock_space.get_N();
 
     // Create the first spin string. Since in DOCI, alpha == beta, we can just treat them as one and multiply all contributions by 2
-    ONV onv = this->fock_space.get_ONV(0);  // spin string with address 0
+    ONV onv = this->fock_space.makeONV(0);  // spin string with address 0
 
     for (size_t I = 0; I < dim; I++) {  // I loops over all the addresses of the onv
 
@@ -93,7 +93,7 @@ Eigen::MatrixXd DOCI::constructHamiltonian(const HamiltonianParameters& hamilton
 
         // Prevent last permutation
         if (I < dim - 1) {
-            this->fock_space.setNext(onv);
+            this->fock_space.setNextONV(onv);
         }
 
 
@@ -111,7 +111,7 @@ Eigen::MatrixXd DOCI::constructHamiltonian(const HamiltonianParameters& hamilton
  *
  *  @return the action of the DOCI Hamiltonian on the coefficient vector
  */
-Eigen::VectorXd DOCI::matrixVectorProduct(const HamiltonianParameters& hamiltonian_parameters, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) {
+Eigen::VectorXd DOCI::matrixVectorProduct(const HamiltonianParameters& hamiltonian_parameters, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) const {
 
     auto K = hamiltonian_parameters.get_h().get_dim();
     if (K != this->fock_space.get_K()) {
@@ -120,7 +120,7 @@ Eigen::VectorXd DOCI::matrixVectorProduct(const HamiltonianParameters& hamiltoni
     size_t dim = this->fock_space.get_dimension();
 
     // Create the first spin string. Since in DOCI, alpha == beta, we can just treat them as one and multiply all contributions by 2
-    ONV onv = this->fock_space.get_ONV(0);  // spin string with address
+    ONV onv = this->fock_space.makeONV(0);  // spin string with address
     size_t N = this->fock_space.get_N();
 
     // Diagonal contributions
@@ -163,7 +163,7 @@ Eigen::VectorXd DOCI::matrixVectorProduct(const HamiltonianParameters& hamiltoni
 
         // Prevent last permutation
         if (I < dim - 1) {
-            this->fock_space.setNext(onv);
+            this->fock_space.setNextONV(onv);
         }
 
         matvec(I) += double_I;
@@ -179,12 +179,12 @@ Eigen::VectorXd DOCI::matrixVectorProduct(const HamiltonianParameters& hamiltoni
  *
  *  @return the diagonal of the matrix representation of the Hamiltonian given @param hamiltonian_parameters
  */
-Eigen::VectorXd DOCI::calculateDiagonal(const HamiltonianParameters& hamiltonian_parameters) {
+Eigen::VectorXd DOCI::calculateDiagonal(const HamiltonianParameters& hamiltonian_parameters) const {
     size_t dim = this->fock_space.get_dimension();
     Eigen::VectorXd diagonal = Eigen::VectorXd::Zero(dim);
 
     // Create the first spin string. Since in DOCI, alpha == beta, we can just treat them as one and multiply all contributions by 2
-    ONV onv = this->fock_space.get_ONV(0);  // onv with address 0
+    ONV onv = this->fock_space.makeONV(0);  // onv with address 0
 
     for (size_t I = 0; I < dim; I++) {  // I loops over addresses of spin strings
         double double_I = 0;
@@ -202,7 +202,7 @@ Eigen::VectorXd DOCI::calculateDiagonal(const HamiltonianParameters& hamiltonian
 
         // Skip the last permutation
         if (I < dim-1) {
-            this->fock_space.setNext(onv);
+            this->fock_space.setNextONV(onv);
         }
 
 

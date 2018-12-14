@@ -32,18 +32,18 @@ namespace GQCP {
  */
 class Eigenpair {
 private:
-    const double eigenvalue;
-    const Eigen::VectorXd eigenvector;
+    double eigenvalue;
+    Eigen::VectorXd eigenvector;
 
 
 public:
     // CONSTRUCTORS
-//    /**
-//     *  A constructor that sets the eigenvalue to zero and the corresponding eigenvector to zeros
-//     *
-//     *  @param dimension        the dimension of the eigenvector
-//     */
-//    explicit Eigenpair(size_t dimension = 1);
+    /**
+     *  A constructor that sets the eigenvalue to zero and the corresponding eigenvector to zeros
+     *
+     *  @param dimension        the dimension of the eigenvector
+     */
+    explicit Eigenpair(size_t dimension = 1);
 
     /**
      *  @param eigenvalue       the eigenvalue

@@ -28,16 +28,16 @@ namespace GQCP {
  *
  *  @return the RMP2 energy correction
  */
-double calculateRMP2EnergyCorrection(const GQCP::HamiltonianParameters& ham_par, const GQCP::Molecule& molecule, const GQCP::RHF& rhf) {
+double calculateRMP2EnergyCorrection(const HamiltonianParameters& ham_par, const Molecule& molecule, const RHF& rhf) {
 
     size_t N = molecule.get_N();
     size_t K = ham_par.get_K();
 
-    size_t HOMO_index = GQCP::RHFHOMOIndex(N);
-    size_t LUMO_index = GQCP::RHFLUMOIndex(K, N);
+    size_t HOMO_index = RHFHOMOIndex(N);
+    size_t LUMO_index = RHFLUMOIndex(K, N);
 
 
-    GQCP::TwoElectronOperator g = ham_par.get_g();
+    TwoElectronOperator g = ham_par.get_g();
 
     double E = 0.0;
     //  loop over all occupied orbitals (0 <= HOMO )

@@ -65,7 +65,7 @@ public:
      *  @param dim                      the dimension of the matrix
      *  @param dense_solver_options     the options to be used for the dense eigenproblem algorithm
      */
-    DenseSolver(size_t dim, const DenseSolverOptions& dense_solver_options = {});
+    DenseSolver(size_t dim, const DenseSolverOptions& dense_solver_options);
 
 
     // DESTRUCTOR

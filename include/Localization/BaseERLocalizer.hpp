@@ -30,9 +30,9 @@ namespace GQCP {
  */
 class BaseERLocalizer {
 protected:
-    const size_t N_P;  // the number of electron pairs
-    const double threshold;  // the threshold for maximization on subsequent localization indices
-    const size_t maximum_number_of_iterations;  // the maximum number of iterations for the localization algorithm
+    size_t N_P;  // the number of electron pairs
+    double threshold;  // the threshold for maximization on subsequent localization indices
+    size_t maximum_number_of_iterations;  // the maximum number of iterations for the localization algorithm
 
     bool is_converged = false;
     size_t iterations = 0;  // the number of iterations
@@ -53,7 +53,7 @@ public:
      *
      *  @param ham_par      the Hamiltonian parameters (in an orthonormal basis) that should be localized
      */
-    virtual void localize(GQCP::HamiltonianParameters& ham_par) = 0;
+    virtual void localize(HamiltonianParameters& ham_par) = 0;
 };
 
 

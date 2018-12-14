@@ -32,8 +32,8 @@ namespace GQCP {
  */
 class BaseSystemOfEquationsSolver {
 protected:
-    const size_t maximum_number_of_iterations;
-    const double convergence_threshold;
+    size_t maximum_number_of_iterations;
+    double convergence_threshold;
 
     double is_solved = false;
 

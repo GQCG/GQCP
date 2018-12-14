@@ -34,11 +34,11 @@ namespace GQCP {
  */
 class BaseEigenproblemSolver {
 protected:
-    const size_t dim;  // the dimension of the vector space associated to the eigenvalue problem
-    const size_t number_of_requested_eigenpairs;
+    size_t dim;  // the dimension of the vector space associated to the eigenvalue problem
+    size_t number_of_requested_eigenpairs;
 
     bool _is_solved = false;
-    std::vector<const Eigenpair> eigenpairs;  // a collection of the eigenpairs of the eigenproblem, sorted with increasing eigenvalue
+    std::vector<Eigenpair> eigenpairs;  // a collection of the eigenpairs of the eigenproblem, sorted with increasing eigenvalue
 
 
     // PROTECTED CONSTRUCTORS
@@ -57,7 +57,7 @@ public:
     // GETTERS
     bool is_solved() const { return this->_is_solved; }
 
-    std::vector<const Eigenpair> get_eigenpairs() const;
+    std::vector<Eigenpair> get_eigenpairs() const;
 
     /**
      *  @param i        the index for the i-th lowest eigenpair

@@ -32,7 +32,7 @@ namespace GQCP {
 /**
  *  A HamiltonianBuilder for DOCI: it builds the matrix representation of the DOCI Hamiltonian, in a Fock space where orbitals are either doubly occupied or unoccupied.
  */
-class DOCI : public GQCP::HamiltonianBuilder {
+class DOCI : public HamiltonianBuilder {
 private:
     FockSpace fock_space;  // both the alpha and beta Fock space
 
@@ -50,7 +50,7 @@ public:
 
 
     // OVERRIDDEN GETTERS
-    BaseFockSpace* get_fock_space() override { return &fock_space; }
+    const BaseFockSpace* get_fock_space() const override { return &fock_space; }
 
 
     // OVERRIDDEN PUBLIC METHODS
@@ -59,7 +59,7 @@ public:
      *
      *  @return the DOCI Hamiltonian matrix
      */
-    Eigen::MatrixXd constructHamiltonian(const HamiltonianParameters& hamiltonian_parameters) override;
+    Eigen::MatrixXd constructHamiltonian(const HamiltonianParameters& hamiltonian_parameters) const override;
 
     /**
      *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis
@@ -68,14 +68,14 @@ public:
      *
      *  @return the action of the DOCI Hamiltonian on the coefficient vector
      */
-    Eigen::VectorXd matrixVectorProduct(const HamiltonianParameters& hamiltonian_parameters, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) override;
+    Eigen::VectorXd matrixVectorProduct(const HamiltonianParameters& hamiltonian_parameters, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) const override;
 
     /**
      *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis
      *
      *  @return the diagonal of the matrix representation of the DOCI Hamiltonian
      */
-    Eigen::VectorXd calculateDiagonal(const HamiltonianParameters& hamiltonian_parameters) override;
+    Eigen::VectorXd calculateDiagonal(const HamiltonianParameters& hamiltonian_parameters) const override;
 };
 
 

@@ -43,7 +43,7 @@ protected:
      *  @param K        the number of orbitals
      *  @param dim      the dimension of the Fock space
      */
-    explicit BaseFockSpace(size_t K, size_t dim);
+    BaseFockSpace(size_t K, size_t dim);
 
 public:
     // DESTRUCTOR

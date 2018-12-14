@@ -38,7 +38,7 @@ namespace GQCP {
  */
 class Molecule {
 private:
-    const std::vector<Atom> atoms;  // coordinates in bohr
+    std::vector<Atom> atoms;  // coordinates in bohr
     size_t N;  // number of electrons
 
 
@@ -90,13 +90,11 @@ public:
     /**
      *  @param other        the other molecule
      *
-     *  @return if this molecule is equal to the other, within the default GQCP::Atom::tolerance_for_comparison for the coordinates of the atoms
+     *  @return if this molecule is equal to the other, within the default Atom::tolerance_for_comparison for the coordinates of the atoms
      */
     bool operator==(const Molecule& other) const;
 
     /**
-     *  Overloading of operator<< for a GQCP::Molecule to be used with streams
-     *
      *  @param os           the output stream which the molecule should be concatenated to
      *  @param molecule     the molecule that should be concatenated to the output stream
      *

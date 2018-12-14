@@ -27,7 +27,7 @@
 namespace GQCP {
 
 
-// Typedef for a function that will be passed to the evaluation, it defines to what and how the evaluated results will be added.
+// Typedef for a function that will be passed to the evaluation, it defines to what and how the evaluated results will be added
 using PassToMethod = std::function<void (size_t I, size_t J, double value)>;
 
 
@@ -38,7 +38,7 @@ using PassToMethod = std::function<void (size_t I, size_t J, double value)>;
  *      - for the one electron operators only inter-site interactions are considered
  *      - for the two electron operators only on-site (doubly occupied in-place) interactions are considered
  */
-class Hubbard : public GQCP::HamiltonianBuilder {
+class Hubbard : public HamiltonianBuilder {
 private:
     ProductFockSpace fock_space;  // fock space containing the alpha and beta Fock space
 
@@ -53,7 +53,7 @@ private:
      *  @param hamiltonian_parameters   the Hubbard Hamiltonian parameters
      *  @param method                   the used method: constructHamiltonian() or matrixVectorProduct()
      */
-    void oneOperatorModule(FockSpace& fock_space_target, FockSpace& fock_space_fixed, bool target_is_major, const HamiltonianParameters& hamiltonian_parameters, const PassToMethod& method);
+    void oneOperatorModule(const FockSpace& fock_space_target, const FockSpace& fock_space_fixed, bool target_is_major, const HamiltonianParameters& hamiltonian_parameters, const PassToMethod& method) const;
 
 
 public:
@@ -70,7 +70,7 @@ public:
 
 
     // OVERRIDDEN GETTERS
-    BaseFockSpace* get_fock_space() override { return &fock_space; }
+    const BaseFockSpace* get_fock_space() const override { return &fock_space; }
 
 
     // OVERRIDDEN PUBLIC METHODS
@@ -79,7 +79,7 @@ public:
      *
      *  @return the Hubbard Hamiltonian matrix
      */
-    Eigen::MatrixXd constructHamiltonian(const HamiltonianParameters& hamiltonian_parameters) override;
+    Eigen::MatrixXd constructHamiltonian(const HamiltonianParameters& hamiltonian_parameters) const override;
 
     /**
      *  @param hamiltonian_parameters       the Hubbard Hamiltonian parameters in an orthonormal orbital basis
@@ -88,31 +88,16 @@ public:
      *
      *  @return the action of the Hubbard Hamiltonian on the coefficient vector
      */
-    Eigen::VectorXd matrixVectorProduct(const HamiltonianParameters& hamiltonian_parameters, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) override;
+    Eigen::VectorXd matrixVectorProduct(const HamiltonianParameters& hamiltonian_parameters, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) const override;
 
     /**
      *  @param hamiltonian_parameters       the Hubbard Hamiltonian parameters in an orthonormal orbital basis
      *
      *  @return the diagonal of the matrix representation of the Hubbard Hamiltonian
      */
-    Eigen::VectorXd calculateDiagonal(const HamiltonianParameters& hamiltonian_parameters) override;
+    Eigen::VectorXd calculateDiagonal(const HamiltonianParameters& hamiltonian_parameters) const override;
 };
 
-
-
-/*
- *  HELPER METHODS
- */
-/**
- *  Generate the upper triagonal as a vector for a Hubbard lattice
- *
- *  @param A        the adjacency matrix that represents the allowed interaction between sites
- *  @param t        the one-electron hopping interaction parameter
- *  @param U        the two-electron interaction parameter
- *
- *  @return the upper triagonal as a vector of the hopping matrix generated from the adjacency matrix and the Hubbard parameters t and U
- */
-Eigen::VectorXd generateUpperTriagonal(Eigen::MatrixXd A, double t, double U);
 
 
 }  // namespace GQCP

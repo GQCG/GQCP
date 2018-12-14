@@ -74,7 +74,7 @@ BOOST_AUTO_TEST_CASE ( vertex_weights_K5_N3 ) {
 BOOST_AUTO_TEST_CASE ( iterateToNextUnoccupiedOrbital ) {
 
     GQCP::FockSpace fock_space (5, 3);
-    GQCP::ONV onv = fock_space.get_ONV(3);  // 01110
+    GQCP::ONV onv = fock_space.makeONV(3);  // 01110
 
     size_t address_shift = 0;
     // test shift if we annihilate one electron and start from orbital index 2
@@ -111,7 +111,7 @@ BOOST_AUTO_TEST_CASE ( iterateToNextUnoccupiedOrbital ) {
 BOOST_AUTO_TEST_CASE ( iterateToNextUnoccupiedOrbital_signed ) {
 
     GQCP::FockSpace fock_space (5, 3);
-    GQCP::ONV onv = fock_space.get_ONV(3);  // 01110
+    GQCP::ONV onv = fock_space.makeONV(3);  // 01110
 
     size_t address_shift = 0;
     int sign = 1;

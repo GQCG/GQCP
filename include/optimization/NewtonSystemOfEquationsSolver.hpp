@@ -33,8 +33,8 @@ namespace GQCP {
  */
 class NewtonSystemOfEquationsSolver : public BaseSystemOfEquationsSolver {
 private:
-    const VectorFunction f;  // function wrapper for the vector 'function'
-    const MatrixFunction J;  // function wrapper for the JacobianFunction
+    VectorFunction f;  // function wrapper for the vector 'function'
+    MatrixFunction J;  // function wrapper for the JacobianFunction
 
 
 public:

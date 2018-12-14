@@ -51,7 +51,7 @@ private:
 
 public:
     // CONSTRUCTORS
-    ONV() = default;
+//    ONV() = default;
     /**
      *  @param K                        the number of orbitals
      *  @param N                        the number of electrons
@@ -70,14 +70,12 @@ public:
 
     // OPERATORS
     /**
-     *  Overloading of operator<< for a GQCP::ONV to be used with streams
-     *
      *  @param os       the output stream which the ONV should be concatenated to
      *  @param onv      the ONV that should be concatenated to the output stream
      *
      *  @return the updated output stream
      */
-    friend std::ostream& operator<<(std::ostream& os, const GQCP::ONV& onv);
+    friend std::ostream& operator<<(std::ostream& os, const ONV& onv);
 
     /**
      *  @param other    the other ONV
@@ -199,6 +197,7 @@ public:
 
     /**
      *  @param indices      the indices of the orbitals that should be annihilated (the first index is annihilated first)
+     *  @param sign     the current sign of the operator string
      *
      *  @return if we can apply all annihilation operators (i.e. 1->0) on the given indices. Subsequently perform in-place annihilations on the given indices. Furthermore, update the sign according to the sign change (+1 or -1) of the spin string after the annihilations.
      *
@@ -235,6 +234,7 @@ public:
 
     /**
      *  @param indices      the indices of the orbitals that should be annihilated (the first index is annihilated first)
+     *  @param sign     the current sign of the operator string
      *
      *  @return if we can apply all annihilation operators (i.e. 1->0) on the given indices. Subsequently perform in-place annihilations on the given indices. Furthermore, update the sign according to the sign change (+1 or -1) of the spin string after the annihilations.
      *
@@ -264,7 +264,7 @@ public:
     std::vector<size_t> findMatchingOccupations(const ONV& other) const;
 
     /**
-     * @return a string representation of the ONV
+     *  @return a string representation of the ONV
      */
     std::string asString() const;
 };

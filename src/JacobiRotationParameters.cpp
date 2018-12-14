@@ -48,14 +48,12 @@ JacobiRotationParameters::JacobiRotationParameters(size_t p, size_t q, double an
  *  OPERATORS
  */
 /**
- *  Overloading of operator<< for a GQCP::JacobiRotationParameters to be used with streams
- *
  *  @param os                               the output stream which the ONV should be concatenated to
  *  @param jacobi_rotation_parameters       the parameters that should be concatenated to the output stream
  *
  *  @return the updated output stream
  */
-std::ostream& operator<<(std::ostream& os, const GQCP::JacobiRotationParameters& jacobi_rotation_parameters) {
+std::ostream& operator<<(std::ostream& os, const JacobiRotationParameters& jacobi_rotation_parameters) {
 
     os << "p: " << jacobi_rotation_parameters.p << ", q: " << jacobi_rotation_parameters.q << ", angle: " << jacobi_rotation_parameters.angle;
     return os;

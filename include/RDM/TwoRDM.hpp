@@ -58,7 +58,7 @@ public:
      *
      *  @return if the matrix representation of this 2-RDM is equal to the matrix representation of the other, within the default tolerance specified by isEqualTo()
      */
-    bool operator==(const GQCP::TwoRDM& other);
+    bool operator==(const TwoRDM& other) const;
 
 
     // PUBLIC METHODS
@@ -68,17 +68,17 @@ public:
      *
      *  @return if the matrix representation of this 2-RDM is equal to the matrix representation of the other, given a tolerance
      */
-    bool isEqualTo(const GQCP::TwoRDM& other, double tolerance=1.0e-08) const;
+    bool isEqualTo(const TwoRDM& other, double tolerance=1.0e-08) const;
 
     /**
      *  @return the trace of the 2-RDM, i.e. d(p,p,q,q)
      */
-    double trace();
+    double trace() const;
 
     /**
      *  @return a partial contraction of the 2-RDM, where D(p,q) = d(p,q,r,r)
      */
-    Eigen::MatrixXd reduce();
+    Eigen::MatrixXd reduce() const;
 };
 
 

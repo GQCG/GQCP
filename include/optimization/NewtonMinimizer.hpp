@@ -33,8 +33,8 @@ namespace GQCP {
  */
 class NewtonMinimizer : public BaseMinimizer {
 private:
-    const VectorFunction grad;
-    const MatrixFunction H;
+    VectorFunction grad;
+    MatrixFunction H;
 
 
 public:

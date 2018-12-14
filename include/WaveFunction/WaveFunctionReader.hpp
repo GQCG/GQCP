@@ -31,9 +31,9 @@ namespace GQCP {
  */
 class WaveFunctionReader {
 private:
-    GQCP::SelectedFockSpace fock_space;
+    SelectedFockSpace fock_space;
     Eigen::VectorXd coefficients;
-    GQCP::WaveFunction wave_function;
+    WaveFunction wave_function;
 
 
 public:

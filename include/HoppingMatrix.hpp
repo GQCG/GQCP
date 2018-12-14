@@ -30,8 +30,8 @@ namespace GQCP {
  */
 class HoppingMatrix {
 private:
-    const size_t K;  // the number of lattice sites
-    const Eigen::MatrixXd H;  // the Hubbard hopping matrix
+    size_t K;  // the number of lattice sites
+    Eigen::MatrixXd H;  // the Hubbard hopping matrix
 
 
 public:

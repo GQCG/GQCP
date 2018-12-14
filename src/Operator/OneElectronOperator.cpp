@@ -60,7 +60,7 @@ OneElectronOperator::OneElectronOperator(const Eigen::MatrixXd& matrix) :
  *
  *  @return the sum of two OneElectronOperators, i.e. a OneElectronOperator whose matrix representation is the sum of the two matrix representations of the given OneElectronOperators
  */
-GQCP::OneElectronOperator OneElectronOperator::operator+(const GQCP::OneElectronOperator& other) {
+OneElectronOperator OneElectronOperator::operator+(const OneElectronOperator& other) const {
     
     return OneElectronOperator(this->matrix + other.matrix);
 }
@@ -71,7 +71,7 @@ GQCP::OneElectronOperator OneElectronOperator::operator+(const GQCP::OneElectron
  *
  *  @return if the matrix representation of this operator is equal to the matrix representation of the, within the default tolerance specified by isEqualTo()
  */
-bool OneElectronOperator::operator==(const GQCP::OneElectronOperator& other) {
+bool OneElectronOperator::operator==(const OneElectronOperator& other) const {
     return this->isEqualTo(other);
 }
 
@@ -79,8 +79,8 @@ bool OneElectronOperator::operator==(const GQCP::OneElectronOperator& other) {
 /**
  *  @return a OneElectronOperator whose matrix representation is negated
  */
-GQCP::OneElectronOperator GQCP::OneElectronOperator::operator-() {
-    return GQCP::OneElectronOperator(-this->matrix);
+OneElectronOperator OneElectronOperator::operator-() const {
+    return OneElectronOperator(-this->matrix);
 }
 
 
@@ -95,7 +95,7 @@ GQCP::OneElectronOperator GQCP::OneElectronOperator::operator-() {
  *
  *  @return if the matrix representation of this operator is equal to the matrix representation of the other, given a tolerance
  */
-bool OneElectronOperator::isEqualTo(const GQCP::OneElectronOperator& other, double tolerance) const {
+bool OneElectronOperator::isEqualTo(const OneElectronOperator& other, double tolerance) const {
     return this->matrix.isApprox(other.matrix, tolerance);
 }
 
@@ -133,7 +133,7 @@ void OneElectronOperator::rotate(const Eigen::MatrixXd& U) {
  *
  *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix. See transform() for how the transformation matrix between the two bases should be represented
  */
-void OneElectronOperator::rotate(const GQCP::JacobiRotationParameters& jacobi_rotation_parameters) {
+void OneElectronOperator::rotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
 
     auto p = jacobi_rotation_parameters.get_p();
     auto q = jacobi_rotation_parameters.get_q();

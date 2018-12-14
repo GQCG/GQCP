@@ -59,7 +59,7 @@ public:
      *
      *  @return if the matrix representation of this operator is equal to the matrix representation of the other, within the default tolerance specified by isEqualTo()
      */
-    bool operator==(const GQCP::TwoElectronOperator& other);
+    bool operator==(const TwoElectronOperator& other) const;
 
 
     // PUBLIC METHODS
@@ -69,7 +69,7 @@ public:
      *
      *  @return if the matrix representation of this operator is equal to the matrix representation of the other, given a tolerance
      */
-    bool isEqualTo(const GQCP::TwoElectronOperator& other, double tolerance=1.0e-08) const;
+    bool isEqualTo(const TwoElectronOperator& other, double tolerance=1.0e-08) const;
 
     /**
      *  In-place transform the matrix representation of the two-electron operator
@@ -92,7 +92,7 @@ public:
      *
      *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix. See transform() for how the transformation matrix between the two bases should be represented
      */
-    void rotate(const GQCP::JacobiRotationParameters& jacobi_rotation_parameters) override;
+    void rotate(const JacobiRotationParameters& jacobi_rotation_parameters) override;
 };
 
 

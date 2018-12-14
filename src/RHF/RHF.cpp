@@ -57,7 +57,7 @@ RHF::RHF(double electronic_energy, const Eigen::MatrixXd& C, const Eigen::Vector
  *
  *  @return the RHF 1-RDM expressed in an orthonormal basis
  */
-GQCP::OneRDM calculateRHF1RDM(size_t K, size_t N) {
+OneRDM calculateRHF1RDM(size_t K, size_t N) {
 
     if (N % 2 != 0) {
         throw std::invalid_argument("The number of given electrons cannot be odd for RHF.");
@@ -73,7 +73,7 @@ GQCP::OneRDM calculateRHF1RDM(size_t K, size_t N) {
     Eigen::MatrixXd D_MO = Eigen::MatrixXd::Zero(K, K);
     D_MO.topLeftCorner(N/2, N/2) = 2 * Eigen::MatrixXd::Identity(N/2, N/2);
 
-    return GQCP::OneRDM(D_MO);
+    return OneRDM(D_MO);
 }
 
 
@@ -86,7 +86,7 @@ GQCP::OneRDM calculateRHF1RDM(size_t K, size_t N) {
 Eigen::MatrixXd calculateRHFAO1RDM(const Eigen::MatrixXd& C, size_t N) {
 
     size_t K = C.rows();
-    Eigen::MatrixXd D_MO = GQCP::calculateRHF1RDM(K, N).get_matrix_representation();
+    Eigen::MatrixXd D_MO = calculateRHF1RDM(K, N).get_matrix_representation();
 
     // Transform the MO 1-RDM to an AO basis
     return C * D_MO * C.adjoint();
@@ -101,7 +101,7 @@ Eigen::MatrixXd calculateRHFAO1RDM(const Eigen::MatrixXd& C, size_t N) {
  *
  *  @return the RHF Fock matrix expressed in the AO basis
  */
-Eigen::MatrixXd calculateRHFAOFockMatrix(const Eigen::MatrixXd& D_AO, GQCP::HamiltonianParameters ham_par) {
+Eigen::MatrixXd calculateRHFAOFockMatrix(const Eigen::MatrixXd& D_AO, HamiltonianParameters ham_par) {
 
     // To perform the contraction, we will first have to convert the Eigen::MatrixXd D_AO to an Eigen::Tensor<const double, 2> D_AO_tensor, as contractions are only implemented for Eigen::Tensors
     Eigen::TensorMap<Eigen::Tensor<const double, 2>> D_AO_tensor (D_AO.data(), D_AO.rows(), D_AO.cols());

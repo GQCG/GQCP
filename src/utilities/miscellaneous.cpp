@@ -61,7 +61,7 @@ void printExecutionTime(const std::string& method_name, const std::function<void
  *
  *  @return the corresponding Jacobi rotation matrix. Note that we work with the (cos, sin, -sin, cos) definition of the Jacobi rotation matrix
  */
-Eigen::MatrixXd jacobiRotationMatrix(const GQCP::JacobiRotationParameters& jacobi_rotation_parameters, size_t M) {
+Eigen::MatrixXd jacobiRotationMatrix(const JacobiRotationParameters& jacobi_rotation_parameters, size_t M) {
 
     double c = std::cos(jacobi_rotation_parameters.get_angle());
     double s = std::sin(jacobi_rotation_parameters.get_angle());
@@ -168,7 +168,7 @@ double permanent_combinatorial(const Eigen::MatrixXd& A) {
     size_t j = 0;  // develop by the first column
     double value = 0.0;
     for (size_t i = 0; i < A.rows(); i++) {
-        value += A(i,j) * permanent_combinatorial(GQCP::matrixMinor(A, i,j));
+        value += A(i,j) * permanent_combinatorial(matrixMinor(A, i,j));
     }
 
     return value;

@@ -44,7 +44,7 @@ FCI::FCI(const ProductFockSpace& fock_space) :
  *
  *  @return the FCI Hamiltonian matrix
  */
-Eigen::MatrixXd FCI::constructHamiltonian(const HamiltonianParameters& hamiltonian_parameters) {
+Eigen::MatrixXd FCI::constructHamiltonian(const HamiltonianParameters& hamiltonian_parameters) const {
 
     auto K = hamiltonian_parameters.get_h().get_dim();
     if (K != this->fock_space.get_K()) {
@@ -61,11 +61,11 @@ Eigen::MatrixXd FCI::constructHamiltonian(const HamiltonianParameters& hamiltoni
     auto N_beta = fock_space_beta.get_N();
     auto dim_beta = fock_space_beta.get_dimension();
 
-    alpha_one_electron_couplings = { dim_alpha, std::vector<OneElectronCoupling>(N_alpha * (K + 1 - N_alpha)) };
-    beta_one_electron_couplings = { dim_beta, std::vector<OneElectronCoupling>(N_beta * (K + 1 - N_beta)) };
+    std::vector<std::vector<OneElectronCoupling>> alpha_one_electron_couplings {dim_alpha, std::vector<OneElectronCoupling>(N_alpha * (K + 1 - N_alpha)) };
+    std::vector<std::vector<OneElectronCoupling>> beta_one_electron_couplings {dim_beta, std::vector<OneElectronCoupling>(N_beta * (K + 1 - N_beta)) };
 
     // 1. ALPHA-ALPHA
-    ONV spin_string_alpha = fock_space_alpha.get_ONV(0);  // alpha spin string with address 0
+    ONV spin_string_alpha = fock_space_alpha.makeONV(0);  // alpha spin string with address 0
     for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {  // I_alpha loops over all the addresses of the alpha spin strings
 
         size_t coupling_address_index = 0;  // index of |J_alpha> in the (N_alpha * (K + 1 - N_alpha))-long std::vector
@@ -93,7 +93,7 @@ Eigen::MatrixXd FCI::constructHamiltonian(const HamiltonianParameters& hamiltoni
 
                         // We have found a spin string that is one electron excitation away from |I_alpha>
                         // We will store it, since these strings are also needed in the alpha-beta part
-                        this->alpha_one_electron_couplings[I_alpha][coupling_address_index] = OneElectronCoupling{sign_pq, p, q, J_alpha};
+                        alpha_one_electron_couplings[I_alpha][coupling_address_index] = OneElectronCoupling{sign_pq, p, q, J_alpha};
                         coupling_address_index++;
                         spin_string_alpha.annihilate(q);  // undo the previous creation on q
                     }  // create on q (alpha)
@@ -143,13 +143,13 @@ Eigen::MatrixXd FCI::constructHamiltonian(const HamiltonianParameters& hamiltoni
 
 
         if (I_alpha < dim_alpha - 1) {  // prevent the last permutation to occur
-            fock_space_alpha.setNext(spin_string_alpha);
+            fock_space_alpha.setNextONV(spin_string_alpha);
         }
     }  // loop over alpha addresses (I_alpha)
 
 
     // 2. BETA-BETA
-    ONV spin_string_beta = fock_space_beta.get_ONV(0);  // beta spin string with address 0
+    ONV spin_string_beta = fock_space_beta.makeONV(0);  // beta spin string with address 0
 
     for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {  // I_beta loops over addresses of all beta spin strings
 
@@ -179,7 +179,7 @@ Eigen::MatrixXd FCI::constructHamiltonian(const HamiltonianParameters& hamiltoni
 
                         // We have found a spin string that is one electron excitation away from |I_alpha>
                         // We will store it, since these strings are also needed in the alpha-beta part
-                        this->beta_one_electron_couplings[I_beta][coupling_address_index] = OneElectronCoupling{sign_pq, p, q, J_beta};
+                        beta_one_electron_couplings[I_beta][coupling_address_index] = OneElectronCoupling{sign_pq, p, q, J_beta};
                         coupling_address_index++;
                         spin_string_beta.annihilate(q);  // undo the previous creation on q
                     }  // create on q (beta)
@@ -228,7 +228,7 @@ Eigen::MatrixXd FCI::constructHamiltonian(const HamiltonianParameters& hamiltoni
         }  // loop over p
 
         if (I_beta < dim_beta - 1) {  // prevent last permutation to occur
-            fock_space_beta.setNext(spin_string_beta);
+            fock_space_beta.setNextONV(spin_string_beta);
         }
     }  // loop over beta addresses (I_beta)
 
@@ -237,8 +237,8 @@ Eigen::MatrixXd FCI::constructHamiltonian(const HamiltonianParameters& hamiltoni
     for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {  // loop over alpha addresses
         for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {  // loop over beta addresses
 
-            for (const auto& alpha : this->alpha_one_electron_couplings[I_alpha]) {  // traverse all OneElectronCouplings for I_alpha
-                for (const auto& beta : this->beta_one_electron_couplings[I_beta]) {  // traverse all OneElectronCouplings for I_beta
+            for (const auto& alpha : alpha_one_electron_couplings[I_alpha]) {  // traverse all OneElectronCouplings for I_alpha
+                for (const auto& beta : beta_one_electron_couplings[I_beta]) {  // traverse all OneElectronCouplings for I_beta
 
                     int sign = alpha.sign * beta.sign;
                     double value = sign * hamiltonian_parameters.get_g()(alpha.p, alpha.q, beta.p, beta.q);
@@ -259,7 +259,7 @@ Eigen::MatrixXd FCI::constructHamiltonian(const HamiltonianParameters& hamiltoni
  *
  *  @return the action of the FCI Hamiltonian on the coefficient vector
  */
-Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters& hamiltonian_parameters, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) {
+Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters& hamiltonian_parameters, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) const {
     auto K = hamiltonian_parameters.get_h().get_dim();
     if (K != this->fock_space.get_K()) {
         throw std::invalid_argument("Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
@@ -277,14 +277,14 @@ Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters& hamiltonia
 
 
     // Calculate the effective one-electron integrals
-    GQCP::OneElectronOperator k = hamiltonian_parameters.calculateEffectiveOneElectronIntegrals();
+    OneElectronOperator k = hamiltonian_parameters.calculateEffectiveOneElectronIntegrals();
 
 
     // ALPHA-ALPHA
-    ONV spin_string_alpha_aa = fock_space_alpha.get_ONV(0);  // spin string with address 0
+    ONV spin_string_alpha_aa = fock_space_alpha.makeONV(0);  // spin string with address 0
     for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {  // I_alpha loops over all the addresses of the alpha spin strings
         if (I_alpha > 0) {
-            fock_space_alpha.setNext(spin_string_alpha_aa);
+            fock_space_alpha.setNextONV(spin_string_alpha_aa);
         }
 
         for (size_t p = 0; p < K; p++) {  // p loops over SOs
@@ -311,10 +311,10 @@ Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters& hamiltonia
 
 
     // BETA-BETA
-    ONV spin_string_beta_bb = fock_space_beta.get_ONV(0);  // spin string with address 0
+    ONV spin_string_beta_bb = fock_space_beta.makeONV(0);  // spin string with address 0
     for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {  // I_beta loops over all the addresses of the beta spin strings
         if (I_beta > 0) {
-            fock_space_beta.setNext(spin_string_beta_bb);
+            fock_space_beta.setNextONV(spin_string_beta_bb);
         }
 
         for (size_t p = 0; p < K; p++) {  // p loops over SOs
@@ -340,10 +340,10 @@ Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters& hamiltonia
     }  // I_beta loop
 
     // ALPHA-ALPHA-ALPHA-ALPHA
-    ONV spin_string_alpha_aaaa = fock_space_alpha.get_ONV(0);  // spin string with address 0
+    ONV spin_string_alpha_aaaa = fock_space_alpha.makeONV(0);  // spin string with address 0
     for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {  // I_alpha loops over all addresses of alpha spin strings
         if (I_alpha > 0) {
-            fock_space_alpha.setNext(spin_string_alpha_aaaa);
+            fock_space_alpha.setNextONV(spin_string_alpha_aaaa);
         }
 
         for (size_t p = 0; p < K; p++) {  // p loops over SOs
@@ -386,10 +386,10 @@ Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters& hamiltonia
 
 
     // ALPHA-ALPHA-BETA-BETA (and BETA-BETA-ALPHA-ALPHA)
-    ONV spin_string_alpha_aabb = fock_space_alpha.get_ONV(0);  // spin string with address 0
+    ONV spin_string_alpha_aabb = fock_space_alpha.makeONV(0);  // spin string with address 0
     for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {  // I_alpha loops over all addresses of alpha spin strings
         if (I_alpha > 0) {
-            fock_space_alpha.setNext(spin_string_alpha_aabb);
+            fock_space_alpha.setNextONV(spin_string_alpha_aabb);
         }
 
         for (size_t p = 0; p < K; p++) {  // p loops over SOs
@@ -401,10 +401,10 @@ Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters& hamiltonia
                     if (spin_string_alpha_aabb.create(q, sign_pq)) {
                         size_t J_alpha = fock_space_alpha.getAddress(spin_string_alpha_aabb);  // the address of the spin string that couples to I_alpha
 
-                        ONV spin_string_beta_aabb = fock_space_beta.get_ONV (0); // spin string with address 0
+                        ONV spin_string_beta_aabb = fock_space_beta.makeONV (0); // spin string with address 0
                         for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {  // I_beta loops over all addresses of beta spin strings
                             if (I_beta > 0) {
-                                fock_space_beta.setNext(spin_string_beta_aabb);
+                                fock_space_beta.setNextONV(spin_string_beta_aabb);
                             }
 
                             for (size_t r = 0; r < K; r++) {  // r loops over SOs
@@ -440,10 +440,10 @@ Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters& hamiltonia
 
 
     // BETA-BETA-BETA-BETA
-    ONV spin_string_beta_bbbb = fock_space_beta.get_ONV(0);  // spin string with address 0
+    ONV spin_string_beta_bbbb = fock_space_beta.makeONV(0);  // spin string with address 0
     for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {  // I_beta loops over all addresses of beta spin strings
         if (I_beta > 0) {
-            fock_space_beta.setNext(spin_string_beta_bbbb);
+            fock_space_beta.setNextONV(spin_string_beta_bbbb);
         }
 
         for (size_t p = 0; p < K; p++) {  // p loops over SOs
@@ -493,7 +493,7 @@ Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters& hamiltonia
  *
  *  @return the diagonal of the matrix representation of the Hamiltonian
  */
-Eigen::VectorXd FCI::calculateDiagonal(const HamiltonianParameters& hamiltonian_parameters) {
+Eigen::VectorXd FCI::calculateDiagonal(const HamiltonianParameters& hamiltonian_parameters) const {
 
     auto K = hamiltonian_parameters.get_h().get_dim();
     if (K != this->fock_space.get_K()) {
@@ -511,12 +511,12 @@ Eigen::VectorXd FCI::calculateDiagonal(const HamiltonianParameters& hamiltonian_
     Eigen::VectorXd diagonal =  Eigen::VectorXd::Zero(dim);
 
     // Calculate the effective one-electron integrals
-    GQCP::OneElectronOperator k = hamiltonian_parameters.calculateEffectiveOneElectronIntegrals();
+    OneElectronOperator k = hamiltonian_parameters.calculateEffectiveOneElectronIntegrals();
 
-    ONV spin_string_alpha = fock_space_alpha.get_ONV(0);
+    ONV spin_string_alpha = fock_space_alpha.makeONV(0);
     for (size_t Ia = 0; Ia < dim_alpha; Ia++) {  // Ia loops over addresses of alpha spin strings
 
-        ONV spin_string_beta = fock_space_beta.get_ONV(0);
+        ONV spin_string_beta = fock_space_beta.makeONV(0);
         for (size_t Ib = 0; Ib < dim_beta; Ib++) {  // Ib loops over addresses of beta spin strings
 
             for (size_t p = 0; p < K; p++) {  // p loops over SOs
@@ -555,12 +555,12 @@ Eigen::VectorXd FCI::calculateDiagonal(const HamiltonianParameters& hamiltonian_
             }  // p loop
 
             if (Ib < dim_beta - 1) {  // prevent last permutation to occur
-                fock_space_beta.setNext(spin_string_beta);
+                fock_space_beta.setNextONV(spin_string_beta);
             }
         }  // beta address (Ib) loop
 
         if (Ia < dim_alpha - 1) {  // prevent last permutation to occur
-            fock_space_alpha.setNext(spin_string_alpha);
+            fock_space_alpha.setNextONV(spin_string_alpha);
         }
     }  // alpha address (Ia) loop
 

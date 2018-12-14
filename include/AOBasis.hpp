@@ -36,9 +36,9 @@ namespace GQCP {
  */
 class AOBasis {
 private:
-    const std::vector<GQCP::Atom> atoms;
-    const libint2::BasisSet basis_functions;
-    const size_t number_of_basis_functions;
+    std::vector<Atom> atoms;
+    libint2::BasisSet basis_functions;
+    size_t number_of_basis_functions;
 
 public:
     // CONSTRUCTOR
@@ -48,11 +48,11 @@ public:
      *  @param molecule         the molecule to which the AO basis corresponds
      *  @param basis_set        the name of the basisset
      */
-    AOBasis(const GQCP::Molecule& molecule, std::string basis_set);
+    AOBasis(const Molecule& molecule, const std::string& basis_set);
 
 
     // GETTERS
-    const std::vector<GQCP::Atom>& get_atoms() const { return this->atoms; }
+    const std::vector<Atom>& get_atoms() const { return this->atoms; }
     const libint2::BasisSet& get_basis_functions() const { return this->basis_functions; }
     size_t get_number_of_basis_functions() const { return this->number_of_basis_functions; }
 };

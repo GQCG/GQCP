@@ -32,7 +32,7 @@ namespace GQCP {
  */
 class Atom {
 public:
-    const size_t atomic_number;
+    size_t atomic_number;
     Eigen::Vector3d position;  // in bohr
 
     static constexpr double tolerance_for_comparison = 1.0e-08;  // in bohr
@@ -54,7 +54,7 @@ public:
      *
      *  @return if this atom is equal to the other, within a default tolerance for the coordinates
      */
-    bool operator==(const GQCP::Atom& other) const;
+    bool operator==(const Atom& other) const;
 
     /**
      *  A custom implementation for the comparison (and thus ordening) of atoms. The atomic_number takes precedence over the x-coordinate, which takes precedence over the y-coordinate, which in turn takes precedence over the z-coordinate
@@ -63,17 +63,17 @@ public:
      *
      *  @return if this atom is 'smaller' than the other, within a default tolerance for the coordinates
      */
-    bool operator<(const GQCP::Atom& other) const;
+    bool operator<(const Atom& other) const;
 
     /**
-     *  Overloading of operator<< for a GQCP::Atom to be used with ostreams
+     *  Overloading of operator<< for a Atom to be used with ostreams
      *
      *  @param os       the output stream to which the atom should be concatenated
      *  @param atom     the atom which should be concatenated to the output stream
      *
      *  @return the updated output stream
      */
-    friend std::ostream& operator<<(std::ostream& os, const GQCP::Atom& atom);
+    friend std::ostream& operator<<(std::ostream& os, const Atom& atom);
 
 
     // PUBLIC METHODS
@@ -83,7 +83,7 @@ public:
      *
      *  @return if this atom is equal to the other
      */
-    bool isEqualTo(const GQCP::Atom& other, double tolerance=Atom::tolerance_for_comparison) const;
+    bool isEqualTo(const Atom& other, double tolerance=Atom::tolerance_for_comparison) const;
 
     /**
      *  A custom implementation for the comparison (and thus ordening) of atoms. The atomic_number takes precedence over the x-coordinate, which takes precedence over the y-coordinate, which in turn takes precedence over the z-coordinate
@@ -93,14 +93,14 @@ public:
      *
      *  @return if this atom is 'smaller' than the other, within a default tolerance for the coordinates
      */
-    bool isSmallerThan(const GQCP::Atom& other, double tolerance=Atom::tolerance_for_comparison) const;
+    bool isSmallerThan(const Atom& other, double tolerance=Atom::tolerance_for_comparison) const;
 
     /**
      *  @param other        the other atom
      *
      *  @return the Euclidian distance between this atom and the other
      */
-    double calculateDistance(const GQCP::Atom& other) const;
+    double calculateDistance(const Atom& other) const;
 };
 
 

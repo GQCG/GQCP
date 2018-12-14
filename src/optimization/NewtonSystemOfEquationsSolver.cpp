@@ -64,7 +64,7 @@ void NewtonSystemOfEquationsSolver::solve() {
     while (!(this->is_solved)) {
 
         // Calculate the Newton step
-        Eigen::VectorXd dx = GQCP::newtonStep(this->x, this->f, this->J);
+        Eigen::VectorXd dx = newtonStep(this->x, this->f, this->J);
 
         // Update the current coefficients, using the Newton step
         this->x += dx;

@@ -61,6 +61,10 @@ public:
     ~SparseSolver() override = default;
 
 
+    // GETTERS
+    const Eigen::SparseMatrix<double>& get_matrix() const { return this->matrix; }
+
+
     // PUBLIC OVERRIDDEN METHODS
     /**
      *  Solve the sparse eigenvalue problem

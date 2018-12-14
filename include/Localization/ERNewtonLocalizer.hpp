@@ -39,14 +39,14 @@ private:
      *
      *  @return the element (i,j) of the Edmiston-Ruedenberg localization index gradient
      */
-    double calculateGradientElement(const GQCP::HamiltonianParameters& ham_par, size_t i, size_t j) const;
+    double calculateGradientElement(const HamiltonianParameters& ham_par, size_t i, size_t j) const;
 
     /**
      *  @param ham_par      the Hamiltonian parameters (in an orthonormal basis) containing the two-electron integrals
      *
      *  @return the gradient of the Edmiston-Ruedenberg localization index as a matrix
      */
-    Eigen::MatrixXd calculateGradient(const GQCP::HamiltonianParameters& ham_par) const;
+    Eigen::MatrixXd calculateGradient(const HamiltonianParameters& ham_par) const;
 
     /**
      *  @param ham_par      the Hamiltonian parameters (in an orthonormal basis) containing the two-electron integrals
@@ -57,14 +57,14 @@ private:
      *
      *  @return the element (i,j,k,l) of the Edmiston-Ruedenberg localization index Hessian
      */
-    double calculateHessianElement(const GQCP::HamiltonianParameters& ham_par, size_t i, size_t j, size_t k, size_t l) const;
+    double calculateHessianElement(const HamiltonianParameters& ham_par, size_t i, size_t j, size_t k, size_t l) const;
 
     /**
      *  @param ham_par      the Hamiltonian parameters (in an orthonormal basis) containing the two-electron integrals
      *
      *  @return the Hessian of the Edmiston-Ruedenberg localization index as a tensor
      */
-    Eigen::Tensor<double, 4> calculateHessian(const GQCP::HamiltonianParameters& ham_par) const;
+    Eigen::Tensor<double, 4> calculateHessian(const HamiltonianParameters& ham_par) const;
 
 
 public:
@@ -83,7 +83,7 @@ public:
      *
      *  @param ham_par      the Hamiltonian parameters (in an orthonormal basis) that should be localized
      */
-    void localize(GQCP::HamiltonianParameters& ham_par) override;
+    void localize(HamiltonianParameters& ham_par) override;
 };
 
 

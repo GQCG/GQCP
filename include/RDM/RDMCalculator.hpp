@@ -34,7 +34,7 @@ namespace GQCP {
  */
 class RDMCalculator {
 private:
-    std::shared_ptr<GQCP::BaseRDMBuilder> rdm_builder;
+    std::shared_ptr<BaseRDMBuilder> rdm_builder;
 
 public:
     // CONSTRUCTOR
@@ -73,14 +73,14 @@ public:
      *
      *  @return all 1-RDMs given a coefficient vector
      */
-    OneRDMs calculate1RDMs(const Eigen::VectorXd& x);
+    OneRDMs calculate1RDMs(const Eigen::VectorXd& x) const;
 
     /**
      *  @param x        the coefficient vector representing the wave function
      *
      *  @return all 2-RDMs given a coefficient vector
      */
-    TwoRDMs calculate2RDMs(const Eigen::VectorXd& x);
+    TwoRDMs calculate2RDMs(const Eigen::VectorXd& x) const;
 };
 
 

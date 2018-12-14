@@ -31,7 +31,7 @@ namespace GQCP {
  *
  *  @return the expectation value of the one-electron operator
  */
-double calculateExpectationValue(const GQCP::OneElectronOperator& one_op, const GQCP::OneRDM& one_rdm) {
+double calculateExpectationValue(const OneElectronOperator& one_op, const OneRDM& one_rdm) {
 
     if (one_op.get_dim() != one_rdm.get_dim()) {
         throw std::invalid_argument("The given one-electron integrals are not compatible with the 1-RDM.");
@@ -55,7 +55,7 @@ double calculateExpectationValue(const GQCP::OneElectronOperator& one_op, const 
  *
  *  @return the expectation value of the one-electron operator: this includes the prefactor 1/2
  */
-double calculateExpectationValue(const GQCP::TwoElectronOperator& two_op, const GQCP::TwoRDM& two_rdm) {
+double calculateExpectationValue(const TwoElectronOperator& two_op, const TwoRDM& two_rdm) {
 
     if (two_op.get_dim() != two_rdm.get_dim()) {
         throw std::invalid_argument("The given two-electron integrals are not compatible with the 2-RDM.");
@@ -87,7 +87,7 @@ double calculateExpectationValue(const GQCP::TwoElectronOperator& two_op, const 
  *
  *  @return the expectation value of the 'Hamiltonian' represented by the Hamiltonian parameters
  */
-double calculateExpectationValue(const GQCP::HamiltonianParameters& ham_par, const GQCP::OneRDM& one_rdm, const GQCP::TwoRDM& two_rdm) {
+double calculateExpectationValue(const HamiltonianParameters& ham_par, const OneRDM& one_rdm, const TwoRDM& two_rdm) {
 
     return ham_par.get_scalar() + calculateExpectationValue(ham_par.get_h(), one_rdm) + calculateExpectationValue(ham_par.get_g(), two_rdm);
 }

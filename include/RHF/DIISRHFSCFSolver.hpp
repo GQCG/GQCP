@@ -30,9 +30,9 @@
  */
 namespace GQCP {
 
-class DIISRHFSCFSolver : public GQCP::RHFSCFSolver {
+class DIISRHFSCFSolver : public RHFSCFSolver {
 private:
-    const size_t maximum_subspace_dimension;
+    size_t maximum_subspace_dimension;
 
     std::deque<Eigen::MatrixXd> fock_matrix_deque = {};  // deque of Fock matrices used in the DIIS algorithm
     std::deque<Eigen::MatrixXd> error_matrix_deque = {};  // deque of error matrices used in the DIIS algorithm
@@ -57,7 +57,7 @@ public:
      *  @param threshold                        the convergence treshold on the Frobenius norm on the AO density matrix
      *  @param maximum_number_of_iterations     the maximum number of iterations for the SCF procedure
      */
-    DIISRHFSCFSolver(GQCP::HamiltonianParameters ham_par, GQCP::Molecule molecule, size_t maximum_subspace_dimension = 6, double threshold=1.0e-08, size_t maximum_number_of_iterations=128);
+    DIISRHFSCFSolver(HamiltonianParameters ham_par, Molecule molecule, size_t maximum_subspace_dimension = 6, double threshold=1.0e-08, size_t maximum_number_of_iterations=128);
 };
 
 

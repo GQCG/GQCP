@@ -28,15 +28,15 @@ namespace GQCP {
  *  CONSTRUCTORS
  */
 
-///**
-// *  A constructor that sets the eigenvalue to zero and the corresponding eigenvector to zeros
-// *
-// *  @param dimension        the dimension of the eigenvector
-// */
-//Eigenpair::Eigenpair(size_t dimension) :
-//    eigenvalue (0.0),
-//    eigenvector (Eigen::VectorXd::Zero(dimension))
-//{}
+/**
+ *  A constructor that sets the eigenvalue to zero and the corresponding eigenvector to zeros
+ *
+ *  @param dimension        the dimension of the eigenvector
+ */
+Eigenpair::Eigenpair(size_t dimension) :
+    eigenvalue (0.0),
+    eigenvector (Eigen::VectorXd::Zero(dimension))
+{}
 
 
 /**
@@ -68,7 +68,7 @@ bool Eigenpair::isEqual(const Eigenpair& other, double tolerance) const {
     }
 
     if (std::abs(this->eigenvalue - other.eigenvalue) < tolerance) {
-        if (GQCP::areEqualEigenvectors(this->eigenvector, other.get_eigenvector(), tolerance)) {
+        if (areEqualEigenvectors(this->eigenvector, other.get_eigenvector(), tolerance)) {
             return true;
         }
     }

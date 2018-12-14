@@ -54,14 +54,14 @@ public:
      *
      *  @return all 1-RDMs given a coefficient vector
      */
-    virtual OneRDMs calculate1RDMs(const Eigen::VectorXd& x) = 0;
+    virtual OneRDMs calculate1RDMs(const Eigen::VectorXd& x) const = 0;
 
     /**
      *  @param x        the coefficient vector representing the wave function
      *
      *  @return all 2-RDMs given a coefficient vector
      */
-    virtual TwoRDMs calculate2RDMs(const Eigen::VectorXd& x) = 0;
+    virtual TwoRDMs calculate2RDMs(const Eigen::VectorXd& x) const = 0;
 };
 
 

@@ -29,10 +29,10 @@ namespace GQCP {
 /**
  *  A class that represents the product of two full Fock spaces (alpha and beta).
  */
-class ProductFockSpace: public GQCP::BaseFockSpace {
+class ProductFockSpace: public BaseFockSpace {
 private:
-    const size_t N_alpha;  // number of alpha electrons
-    const size_t N_beta;  // number of beta electrons
+    size_t N_alpha;  // number of alpha electrons
+    size_t N_beta;  // number of beta electrons
 
     FockSpace fock_space_alpha;
     FockSpace fock_space_beta;

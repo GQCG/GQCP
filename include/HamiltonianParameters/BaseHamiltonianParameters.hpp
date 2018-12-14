@@ -33,7 +33,7 @@ namespace GQCP {
 class BaseHamiltonianParameters {
 protected:
     double scalar;  // a scalar interaction term
-    std::shared_ptr<GQCP::AOBasis> ao_basis;  // the initial atomic orbitals
+    std::shared_ptr<AOBasis> ao_basis;  // the initial atomic orbitals
 
 public:
     // CONSTRUCTORS
@@ -41,7 +41,7 @@ public:
      *  @param ao_basis     the initial AO basis
      *  @param scalar       the scalar interaction term
      */
-    BaseHamiltonianParameters(std::shared_ptr<GQCP::AOBasis> ao_basis, double scalar=0.0);
+    BaseHamiltonianParameters(std::shared_ptr<AOBasis> ao_basis, double scalar=0.0);
 
 
     // DESTRUCTOR
@@ -51,7 +51,7 @@ public:
     virtual ~BaseHamiltonianParameters() = 0;
 
     // GETTERS
-    const std::shared_ptr<GQCP::AOBasis>& get_ao_basis() const { return this->ao_basis; }
+    const std::shared_ptr<AOBasis>& get_ao_basis() const { return this->ao_basis; }
     double get_scalar() const { return this->scalar; }
 };
 

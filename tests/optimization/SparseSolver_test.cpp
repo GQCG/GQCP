@@ -43,7 +43,7 @@ BOOST_AUTO_TEST_CASE ( diagonal_getter_sparse ) {
     }
 
 
-    BOOST_CHECK(ref_diagonal.isApprox(sparse_solver.get_diagonal(), 1.0e-12));
+    BOOST_CHECK(ref_diagonal.isApprox(sparse_solver.get_matrix().diagonal(), 1.0e-12));
 }
 
 
