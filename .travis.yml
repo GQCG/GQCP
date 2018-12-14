@@ -39,6 +39,13 @@ before_install:
         fi;
         bash $HOME/download/miniconda.sh -b -p ${HOME}/miniconda;
       fi
+    
+    # Add headers and libraries to path
+    - export CONDA_HOME=${HOME}/miniconda
+    - export C_INCLUDE_PATH=${C_INCLUDE_PATH}:${CONDA_HOME}/include
+    - export CPLUS_INCLUDE_PATH=${CPLUS_INCLUDE_PATH}:${CONDA_HOME}/include
+    - export LIBRARY_PATH=${LIBRARY_PATH}:${CONDA_HOME}/lib
+    - export DYLD_FALLBACK_LIBRARY_PATH=${DYLD_FALLBACK_LIBRARY_PATH}:${CONDA_HOME}/lib
 
 # Install general dependencies
 install:
@@ -66,11 +73,11 @@ install:
            cd libint-2.3.1
            ./autogen.sh
            mkdir build && cd build
-           ../configure CXXFLAGS=-I${BOOST_ROOT} --enable-shared=yes --with-boost=$HOME/miniconda
+           ../configure --enable-shared=yes
            make export
            tar -xvzf libint-2.3.1.tgz
            cd libint-2.3.1
-           ./configure CXXFLAGS=-I${BOOST_ROOT} --enable-shared=yes --with-boost=$HOME/miniconda
+           ./configure --enable-shared=yes
            make -j3
            sudo make install
         else
