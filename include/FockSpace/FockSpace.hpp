@@ -129,7 +129,7 @@ public:
     void shiftUntilNextUnoccupiedOrbital(const ONV& onv, size_t& address, size_t& q, size_t& e) const {
 
         // Test whether the current orbital index is occupied
-        while (e < this->N && q == onv.get_occupied_index(e)) {
+        while (e < this->N && q == onv.get_occupation_index(e)) {
 
             // Take the difference of vertex weights for the encountered electron weights to that of a vertex weight path with "a" fewer electrons
             // +1 is added to the electron index, because of how the addressing scheme is arrayed.
@@ -160,7 +160,7 @@ public:
     void shiftUntilNextUnoccupiedOrbital(const ONV& onv, size_t& address, size_t& q, size_t& e, int& sign) const {
 
         // Test whether the current orbital index is occupied
-        while (e < this->N && q == onv.get_occupied_index(e)) {
+        while (e < this->N && q == onv.get_occupation_index(e)) {
 
             // Take the difference of vertex weights for the encountered electron weights to that of a vertex weight path with "a" fewer electrons
             // +1 is added to the electron index, because of how the addressing scheme is arrayed.

@@ -59,7 +59,7 @@ void Hubbard::oneOperatorModule(const FockSpace& fock_space_target, const FockSp
     ONV onv = fock_space_target.makeONV(0);  // onv with address 0
     for (size_t I = 0; I < dim; I++) {  // I loops over all the addresses of the onv
         for (size_t e1 = 0; e1 < N; e1++) {  // e1 (electron 1) loops over the (number of) electrons
-            size_t p = onv.get_occupied_index(e1);  // retrieve the index of a given electron
+            size_t p = onv.get_occupation_index(e1);  // retrieve the index of a given electron
 
             // remove the weight from the initial address I, because we annihilate
             size_t address = I - fock_space_target.get_vertex_weights(p, e1 + 1);
@@ -74,7 +74,7 @@ void Hubbard::oneOperatorModule(const FockSpace& fock_space_target, const FockSp
             int sign_e2 = 1;
 
             // Test whether next orbital is occupied, until we reach unoccupied orbital
-            while (e2 < N - 1 && onv.get_occupied_index(e2 + 1) - onv.get_occupied_index(e2) == 1) {
+            while (e2 < N - 1 && onv.get_occupation_index(e2 + 1) - onv.get_occupation_index(e2) == 1) {
                 // Shift the address for the electrons encountered after the annihilation but before the creation
                 // Their currents weights are no longer correct, the corresponding weights can be calculated
                 // initial weight can be found in the addressing scheme, on the index of the orbital (row) and electron count (column)
@@ -82,11 +82,11 @@ void Hubbard::oneOperatorModule(const FockSpace& fock_space_target, const FockSp
                 // The nature of the addressing scheme requires us the add 1 to the electron count (because we start with the 0'th electron
                 // And for the initial weight we are at an extra electron (before the annihilation) hence the difference in weight is:
                 // the new weight at (e2+1) position (row) and e2+1 (column) - the old weight at  (e2+1) position (row) and e2+2 (column)
-                address += fock_space_target.get_vertex_weights(onv.get_occupied_index(e2) + 1, e2 + 1) - fock_space_target.get_vertex_weights(onv.get_occupied_index(e2) + 1, e2 + 2);
+                address += fock_space_target.get_vertex_weights(onv.get_occupation_index(e2) + 1, e2 + 1) - fock_space_target.get_vertex_weights(onv.get_occupation_index(e2) + 1, e2 + 2);
                 e2++;  // adding occupied orbitals to the electron count
                 sign_e2 *= -1;  // skipping over non-annihilated electrons will cause a phase change
             }
-            size_t q = onv.get_occupied_index(e2) + 1;
+            size_t q = onv.get_occupation_index(e2) + 1;
             e2++;
             while (q < K) {
                 size_t J = address + fock_space_target.get_vertex_weights(q, e2);
@@ -103,16 +103,16 @@ void Hubbard::oneOperatorModule(const FockSpace& fock_space_target, const FockSp
 
                 // if we encounter an occupied orbital, perform the shift, and test whether the following orbitals are occupied (or not)
                 // then proceed to set q to the next non-occupied orbital.
-                if (e2 < N && q == onv.get_occupied_index(e2)) {
+                if (e2 < N && q == onv.get_occupation_index(e2)) {
                     address += fock_space_target.get_vertex_weights(q, e2) - fock_space_target.get_vertex_weights(q, e2 + 1);
                     sign_e2 *= -1;
-                    while (e2 < N - 1 && onv.get_occupied_index(e2 + 1) - onv.get_occupied_index(e2) == 1) {
+                    while (e2 < N - 1 && onv.get_occupation_index(e2 + 1) - onv.get_occupation_index(e2) == 1) {
                         // see previous
-                        address += fock_space_target.get_vertex_weights(onv.get_occupied_index(e2) + 1, e2 + 1) - fock_space_target.get_vertex_weights(onv.get_occupied_index(e2) + 1, e2 + 2);
+                        address += fock_space_target.get_vertex_weights(onv.get_occupation_index(e2) + 1, e2 + 1) - fock_space_target.get_vertex_weights(onv.get_occupation_index(e2) + 1, e2 + 2);
                         e2++;
                         sign_e2 *= -1;
                     }
-                    q = onv.get_occupied_index(e2) + 1;
+                    q = onv.get_occupation_index(e2) + 1;
                     e2++;
                 }
             }  //  (creation)

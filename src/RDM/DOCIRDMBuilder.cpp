@@ -54,7 +54,7 @@ OneRDMs DOCIRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) const {
     for (size_t I = 0; I < dim; I++) {  // I loops over all the addresses of the spin strings
 
         for (size_t e1 = 0; e1 < this->fock_space.get_N(); e1++) {  // e1 (electron 1) loops over the (number of) electrons
-            size_t p = onv.get_occupied_index(e1);  // retrieve the index of the orbital the electron occupies
+            size_t p = onv.get_occupation_index(e1);  // retrieve the index of the orbital the electron occupies
             double c_I = x(I);  // coefficient of the I-th basis vector
             D(p,p) += 2*std::pow(c_I, 2);
         }

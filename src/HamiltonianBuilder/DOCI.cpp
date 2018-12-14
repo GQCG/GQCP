@@ -63,7 +63,7 @@ Eigen::MatrixXd DOCI::constructHamiltonian(const HamiltonianParameters& hamilton
         result_matrix(I, I) += diagonal(I);
 
         for (size_t e1 = 0; e1 < N; e1++) {  // e1 (electron 1) loops over the (number of) electrons
-            size_t p = onv.get_occupied_index(e1);  // retrieve the index of a given electron
+            size_t p = onv.get_occupation_index(e1);  // retrieve the index of a given electron
 
             // Remove the weight from the initial address I, because we annihilate
             size_t address = I - this->fock_space.get_vertex_weights(p, e1 + 1);
@@ -133,7 +133,7 @@ Eigen::VectorXd DOCI::matrixVectorProduct(const HamiltonianParameters& hamiltoni
         double double_J = x(I);
 
         for (size_t e1 = 0; e1 < N; e1++) {  // e1 (electron 1) loops over the (number of) electrons
-            size_t p = onv.get_occupied_index(e1);  // retrieve the index of a given electron
+            size_t p = onv.get_occupation_index(e1);  // retrieve the index of a given electron
 
             // Remove the weight from the initial address I, because we annihilate
             size_t address = I - this->fock_space.get_vertex_weights(p, e1 + 1);
@@ -189,11 +189,11 @@ Eigen::VectorXd DOCI::calculateDiagonal(const HamiltonianParameters& hamiltonian
     for (size_t I = 0; I < dim; I++) {  // I loops over addresses of spin strings
         double double_I = 0;
         for (size_t e1 = 0; e1 < this->fock_space.get_N(); e1++) {  // e1 (electron 1) loops over the (number of) electrons
-            size_t p = onv.get_occupied_index(e1);  // retrieve the index of the orbital the electron occupies
+            size_t p = onv.get_occupation_index(e1);  // retrieve the index of the orbital the electron occupies
             double_I += 2 * hamiltonian_parameters.get_h()(p,p) + hamiltonian_parameters.get_g()(p,p,p,p);
             for (size_t e2 = 0; e2 < e1; e2++) {  // e2 (electron 2) loops over the (number of) electrons
                 // Since we are doing a restricted summation q<p (and thus e2<e1), we should multiply by 2 since the summand argument is symmetric.
-                size_t q = onv.get_occupied_index(e2);  // retrieve the index of the orbital the electron occupies
+                size_t q = onv.get_occupation_index(e2);  // retrieve the index of the orbital the electron occupies
                 double_I += 2 * (2*hamiltonian_parameters.get_g()(p,p,q,q) - hamiltonian_parameters.get_g()(p,q,q,p));
             }  // q or e2 loop
         } // p or e1 loop

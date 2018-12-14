@@ -110,7 +110,7 @@ public:
      *
      *  @return the index of the orbital that the electron occupies. For the bitset "100", this would be 2: the conversion from right-to-left is already made
      */
-    size_t get_occupied_index(size_t electron_index) const { return occupation_indices(electron_index); }
+    size_t get_occupation_index(size_t electron_index) const { return occupation_indices(electron_index); }
 
 
     // PUBLIC METHODS
