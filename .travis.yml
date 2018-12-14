@@ -66,11 +66,11 @@ install:
            cd libint-2.3.1
            ./autogen.sh
            mkdir build && cd build
-           ../configure CXXFLAGS=-I${BOOST_ROOT} --enable-shared=yes
+           ../configure CXXFLAGS=-I${BOOST_ROOT} --enable-shared=yes --with-boost=$HOME/miniconda
            make export
            tar -xvzf libint-2.3.1.tgz
            cd libint-2.3.1
-           ./configure CXXFLAGS=-I${BOOST_ROOT} --enable-shared=yes
+           ./configure CXXFLAGS=-I${BOOST_ROOT} --enable-shared=yes --with-boost=$HOME/miniconda
            make -j3
            sudo make install
         else
