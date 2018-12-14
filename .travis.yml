@@ -22,7 +22,6 @@ cache:
     directories:
         - $HOME/miniconda
         - $HOME/download
-        - /tmp/libint
 
 before_install:
     # Install Miniconda
@@ -33,7 +32,7 @@ before_install:
         rm -rf $HOME/miniconda;
         mkdir -p $HOME/download;
         if [[ "${TRAVIS_PYTHON_VERSION}" == "2.7" ]]; then
-            wget wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O $HOME/download/miniconda.sh;
+            wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O $HOME/download/miniconda.sh;
         else
             wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O $HOME/download/miniconda.sh;
         fi;
@@ -64,6 +63,7 @@ install:
       fi
     - export BOOST_ROOT=${HOME}/miniconda/include
     - export LIBINT_DATA_PATH=${HOME}/miniconda/share/libint/2.3.1/basis
+    - ls ${HOME}/miniconda/lib/libint*
 
     # Install google benchmark
     - mkdir /tmp/bench && cd /tmp/bench
