@@ -22,7 +22,6 @@ cache:
     directories:
         - $HOME/miniconda
         - $HOME/download
-        - /tmp/libint
 
 before_install:
     # Install Miniconda
@@ -63,29 +62,7 @@ install:
         echo "Using already installed packages.";
       fi
     - export BOOST_ROOT=${HOME}/miniconda/include
-
-    # We can't install libint2 (2.2.0+) through APT.
-    # Since compiling libint2 takes around 15 minutes on Travis, it is a good idea to cache it (see also below)
-    - |
-      if [ ! -d /tmp/libint/libint-2.3.1 ]; then
-         mkdir -p /tmp/libint && cd /tmp/libint
-         curl -OL "https://github.com/evaleev/libint/archive/v2.3.1.tar.gz"
-         tar -xvzf v2.3.1.tar.gz
-         cd libint-2.3.1
-         ./autogen.sh
-         mkdir build && cd build
-         ../configure CXXFLAGS=-I${BOOST_ROOT} --enable-shared=yes
-         make export
-         tar -xvzf libint-2.3.1.tgz
-         cd libint-2.3.1
-         ./configure CXXFLAGS=-I${BOOST_ROOT} --enable-shared=yes
-         make -j3
-         sudo make install
-      else
-        cd /tmp/libint/libint-2.3.1/build/libint-2.3.1
-        sudo make install
-      fi
-    - export LIBINT_DATA_PATH=/usr/local/libint/2.3.1/share/libint/2.3.1/basis
+    - export LIBINT_DATA_PATH=${HOME}/miniconda/share/libint/2.3.1/basis
 
     # Install google benchmark
     - mkdir /tmp/bench && cd /tmp/bench
