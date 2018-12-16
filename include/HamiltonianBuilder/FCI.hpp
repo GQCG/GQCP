@@ -87,9 +87,12 @@ private:
 
     std::vector<std::vector<AnnihilationCouple>> calculateOneElectronCouplings(FockSpace& fock_space_target);
     void spinSeparatedModule(FockSpace& fock_space, const OneElectronOperator& k,
-                             const HamiltonianParameters& hamiltonian_parameters, Eigen::SparseMatrix<double>& sparse_mat);
+                             const HamiltonianParameters& hamiltonian_parameters,
+                             Eigen::SparseMatrix<double>& sparse_mat);
 
 
+    Eigen::SparseMatrix<double> bbb(size_t r, size_t s, const HamiltonianParameters& hamiltonian_parameters);
+    std::vector<Eigen::SparseMatrix<double>> aaa();
 public:
 
     // CONSTRUCTORS

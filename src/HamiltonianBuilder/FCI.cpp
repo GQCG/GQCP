@@ -42,6 +42,7 @@ FCI::FCI(const ProductFockSpace& fock_space) :
     alpha_ev =  Eigen::SparseMatrix<double>(alpha.get_dimension(), alpha.get_dimension());
     beta_ev = Eigen::SparseMatrix<double>(beta.get_dimension(), beta.get_dimension());
 
+    this->alpha_resolved = this->aaa();
 
 
 
@@ -319,32 +320,31 @@ void FCI::spinSeparatedModule(FockSpace& fock_space, const OneElectronOperator& 
 }
 
 
+Eigen::SparseMatrix<double> FCI::bbb(size_t r, size_t s, const HamiltonianParameters& hamiltonian_parameters) {
 
-
-
-
-
-
-void FCI::aaa() {
-
-    GQCP::FockSpace alpha = this->fock_space.get_fock_space_alpha();
-
-    size_t K = alpha.get_K();
-    size_t N = alpha.get_N();
-    size_t dim = alpha.get_dimension();
-
-    std::vector<std::vector<Eigen::Triplet<double>> sparseEntries(N*(K-N));
-
-    ONV onv = alpha.get_ONV(0);  // onv with address 0
+    FockSpace beta = fock_space.get_fock_space_beta();
+    const bool do_diagonal = (r != s);
+    size_t K = beta.get_K();
+    size_t N = beta.get_N();
+    size_t dim = beta.get_dimension();
+    Eigen::SparseMatrix<double> sparseMatrix(dim, dim);
+    std::vector<Eigen::Triplet<double>> triplet_vector;
+    size_t mod = 0;
+    if (do_diagonal){
+        mod += dim;
+    }
+    triplet_vector.reserve(beta.totalOneElectronCouplingCount() + mod);
+    ONV onv = beta.get_ONV(0);  // onv with address 0
     for (size_t I = 0; I < dim; I++) {  // I loops over all the addresses of the onv
-        std::vector<AnnihilationCouple> annihilations (N);
         for (size_t e1 = 0; e1 < N; e1++) {  // e1 (electron 1) loops over the (number of) electrons
             size_t p = onv.get_occupied_index(e1);  // retrieve the index of a given electron
-            size_t size = (K-p)-(N-e1);
-            std::vector<CreationCouple> creations (size);
-
             // remove the weight from the initial address I, because we annihilate
-            size_t address = I - alpha.get_vertex_weights(p, e1 + 1);
+            size_t address = I - beta.get_vertex_weights(p, e1 + 1);
+
+            if(do_diagonal){
+                triplet_vector.emplace_back(I, I, hamiltonian_parameters.get_g()(r, s, p, p));
+            }
+
             // The e2 iteration counts the amount of encountered electrons for the creation operator
             // We only consider greater addresses than the initial one (because of symmetry)
             // Hence we only count electron after the annihilated electron (e1)
@@ -353,12 +353,74 @@ void FCI::aaa() {
 
             int sign_e2 = 1;
             // perform a shift
+            beta.shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign_e2);
+
+            while (q < K) {
+                size_t J = address + beta.get_vertex_weights(q, e2);
+                double value = sign_e2*hamiltonian_parameters.get_g()(r, s, p, q);
+                triplet_vector.emplace_back(I, J, value);
+                triplet_vector.emplace_back(J, I, value);
+
+                q++; // go to the next orbital
+
+                // perform a shift
+                beta.shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign_e2);
+            }  //  (creation)
+
+
+        } // e1 loop (annihilation)
+
+
+        // Prevent last permutation
+        if (I < dim - 1) {
+            beta.setNext(onv);
+        }
+    }
+    sparseMatrix.setFromTriplets(triplet_vector.begin(),triplet_vector.end());
+    return sparseMatrix;
+    
+}
+
+
+
+
+
+std::vector<Eigen::SparseMatrix<double>> FCI::aaa() {
+
+    GQCP::FockSpace alpha = this->fock_space.get_fock_space_alpha();
+
+    size_t K = alpha.get_K();
+    size_t N = alpha.get_N();
+    size_t dim = alpha.get_dimension();
+
+    std::vector<std::vector<Eigen::Triplet<double>>> sparseEntries(K*K);
+    std::vector<Eigen::SparseMatrix<double>> matrixes(K*K, Eigen::SparseMatrix<double>(dim, dim));
+    for (std::vector<Eigen::Triplet<double>>& reserver : sparseEntries) {
+        reserver.reserve(1+N*(K-N));
+    }
+
+
+    ONV onv = alpha.get_ONV(0);  // onv with address 0
+    for (size_t I = 0; I < dim; I++) {  // I loops over all the addresses of the onv
+        for (size_t e1 = 0; e1 < N; e1++) {  // e1 (electron 1) loops over the (number of) electrons
+            size_t p = onv.get_occupied_index(e1);  // retrieve the index of a given electron
+            // remove the weight from the initial address I, because we annihilate
+            size_t address = I - alpha.get_vertex_weights(p, e1 + 1);
+            // The e2 iteration counts the amount of encountered electrons for the creation operator
+            // We only consider greater addresses than the initial one (because of symmetry)
+            // Hence we only count electron after the annihilated electron (e1)
+            sparseEntries[p*K+p].emplace_back(I, I, 1);
+            size_t e2 = e1 + 1;
+            size_t q = p + 1;
+            int sign_e2 = 1;
+            // perform a shift
             alpha.shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign_e2);
             size_t dex = 0;
             while (q < K) {
                 size_t J = address + alpha.get_vertex_weights(q, e2);
 
-                creations[dex] = CreationCouple{sign_e2, q, J};
+                sparseEntries[p*K+q].emplace_back(I, J, sign_e2);
+                sparseEntries[q*K+p].emplace_back(J, I, sign_e2);
 
                 q++; // go to the next orbital
                 dex++;
@@ -366,11 +428,9 @@ void FCI::aaa() {
                 alpha.shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign_e2);
             }  //  (creation)
 
-            annihilations[e1] = AnnihilationCouple{p, creations};
 
         } // e1 loop (annihilation)
 
-        one_couplings[I] = annihilations;
 
         // Prevent last permutation
         if (I < dim - 1) {
@@ -378,6 +438,12 @@ void FCI::aaa() {
         }
     }
 
+
+    for (size_t k = 0; k < K*K ; k++){
+        matrixes[k].setFromTriplets(sparseEntries[k].begin(), sparseEntries[k].end());
+    }
+
+    return matrixes;
 
 
 }
@@ -628,9 +694,8 @@ Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters& hamiltonia
     Eigen::Map<const Eigen::MatrixXd> xmap(x.data(), dim_alpha, dim_beta);
 
 
-        // ALPHA-BETA
+    // ALPHA-BETA
 
-    std::vector<Eigen::Triplet<double>> triplet_vector;
 
 
     if (xyr) {
@@ -638,6 +703,19 @@ Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters& hamiltonia
 
         this->spinSeparatedModule(fock_space_alpha, k, hamiltonian_parameters, alpha_ev);
         this->spinSeparatedModule(fock_space_beta, k, hamiltonian_parameters, beta_ev);
+
+        beta_resolved = std::vector<Eigen::SparseMatrix<double>>(K*(K+1)/2, Eigen::SparseMatrix<double>(dim_beta, dim_beta));
+
+        for (size_t p = 0; p<K; p++) {
+            beta_resolved[p*(K+K+1-p)/2] = bbb(p,p, hamiltonian_parameters);
+            for (size_t q = p + 1; q < K; q++) {
+                beta_resolved[p*(K+K+1-p)/2 + q - p] = bbb(p,q, hamiltonian_parameters);
+
+
+            }
+        }
+
+
 
 
     }
@@ -708,13 +786,22 @@ Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters& hamiltonia
 
     */
 
+    Eigen::SparseMatrix<double> basf(dim_beta,dim_beta);
+    for (size_t p = 0; p<K; p++) {
+        matvecmap.noalias() += alpha_resolved[p*K + p] * xmap * beta_resolved[p*(K+K+1-p)/2];
+        for (size_t q = p + 1; q<K; q++) {
+            basf = beta_resolved[p*(K+K+1-p)/2 + q - p];
+            matvecmap.noalias() += alpha_resolved[p*K + q] * xmap * basf;
+            matvecmap.noalias() += alpha_resolved[q*K + p] * xmap * basf;
+        }
+    }
 
 
 
+    matvecmap.noalias() += alpha_ev * xmap * beta_ev;
 
 
-    matvecmap.noalias() += xmap * beta_ev;
-    matvecmap.noalias() += alpha_ev * xmap;
+    //matvecmap.noalias() += alpha_ev * xmap;
 
     return matvec;
 }
