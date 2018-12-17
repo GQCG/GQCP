@@ -26,7 +26,7 @@ namespace GQCP {
  */
 
 /**
- *  Provide a pure virtual destructor to make the class abstract
+ *  Provide a pure virtual destructor for the abstract base class
  */
 HamiltonianBuilder::~HamiltonianBuilder() {}
 

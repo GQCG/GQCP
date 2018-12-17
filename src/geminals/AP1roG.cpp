@@ -36,7 +36,7 @@ AP1roG::AP1roG() :
  *  @param geminal_coefficients     the converged AP1roG geminal coefficients
  *  @param electronic_energy        the AP1roG electronic energy
  */
-AP1roG::AP1roG(const GQCP::AP1roGGeminalCoefficients& geminal_coefficients, double electronic_energy) :
+AP1roG::AP1roG(const AP1roGGeminalCoefficients& geminal_coefficients, double electronic_energy) :
     geminal_coefficients (geminal_coefficients),
     electronic_energy (electronic_energy)
 {}
@@ -52,10 +52,10 @@ AP1roG::AP1roG(const GQCP::AP1roGGeminalCoefficients& geminal_coefficients, doub
  *
  *  @return the AP1roG electronic energy
  */
-double calculateAP1roGEnergy(const GQCP::AP1roGGeminalCoefficients& G, const GQCP::HamiltonianParameters& ham_par) {
+double calculateAP1roGEnergy(const AP1roGGeminalCoefficients& G, const HamiltonianParameters& ham_par) {
 
-    GQCP::OneElectronOperator h_SO = ham_par.get_h();
-    GQCP::TwoElectronOperator g_SO = ham_par.get_g();
+    OneElectronOperator h_SO = ham_par.get_h();
+    TwoElectronOperator g_SO = ham_par.get_g();
 
 
     // KISS implementation of the AP1roG energy

@@ -36,7 +36,7 @@ namespace GQCP {
  *
  *  @return the expectation value of the one-electron operator, with the given 1-RDM
  */
-double calculateExpectationValue(const GQCP::OneElectronOperator& one_op, const GQCP::OneRDM& one_rdm);
+double calculateExpectationValue(const OneElectronOperator& one_op, const OneRDM& one_rdm);
 
 /**
  *  @tparam N           the number of components of the one-electron operator
@@ -47,7 +47,7 @@ double calculateExpectationValue(const GQCP::OneElectronOperator& one_op, const 
  *  @return the expectation values of all components of the one-electron operator
  */
 template <size_t N>
-std::array<double, N> calculateExpectationValues(const std::array<GQCP::OneElectronOperator, N>& one_ops, const GQCP::OneRDM& one_rdm) {
+std::array<double, N> calculateExpectationValues(const std::array<OneElectronOperator, N>& one_ops, const OneRDM& one_rdm) {
 
     std::array<double, N> expectation_values {};  // zero initialization
 
@@ -70,7 +70,7 @@ std::array<double, N> calculateExpectationValues(const std::array<GQCP::OneElect
  *
  *  @return the expectation value of the one-electron operator, with the given 2-RDM: this includes the prefactor 1/2
  */
-double calculateExpectationValue(const GQCP::TwoElectronOperator& two_op, const GQCP::TwoRDM& two_rdm);
+double calculateExpectationValue(const TwoElectronOperator& two_op, const TwoRDM& two_rdm);
 
 
 
@@ -85,7 +85,7 @@ double calculateExpectationValue(const GQCP::TwoElectronOperator& two_op, const 
  *
  *  @return the expectation value of the 'Hamiltonian' represented by the Hamiltonian parameters
  */
-double calculateExpectationValue(const GQCP::HamiltonianParameters& ham_par, const GQCP::OneRDM& one_rdm, const GQCP::TwoRDM& two_rdm);
+double calculateExpectationValue(const HamiltonianParameters& ham_par, const OneRDM& one_rdm, const TwoRDM& two_rdm);
 
 
 }  // namespace GQCP

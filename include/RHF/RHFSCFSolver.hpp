@@ -34,14 +34,14 @@ namespace GQCP {
  */
 class RHFSCFSolver {
 protected:
-    const size_t maximum_number_of_iterations;
-    const double threshold;
+    size_t maximum_number_of_iterations;
+    double threshold;
     bool is_converged = false;
 
-    const GQCP::HamiltonianParameters ham_par;  // Hamiltonian parameters expressed in an AO basis
-    const GQCP::Molecule molecule;
+    HamiltonianParameters ham_par;  // Hamiltonian parameters expressed in an AO basis
+    Molecule molecule;
 
-    GQCP::RHF solution;
+    RHF solution;
 
 
     // PROTECTED METHODS
@@ -62,10 +62,10 @@ public:
      *  @param threshold                        the convergence treshold on the Frobenius norm on the AO density matrix
      *  @param maximum_number_of_iterations     the maximum number of iterations for the SCF procedure
      */
-    RHFSCFSolver(GQCP::HamiltonianParameters ham_par, GQCP::Molecule molecule, double threshold=1.0e-08, size_t maximum_number_of_iterations=128);
+    RHFSCFSolver(HamiltonianParameters ham_par, Molecule molecule, double threshold=1.0e-08, size_t maximum_number_of_iterations=128);
 
     // GETTERS
-    const GQCP::RHF& get_solution() const { return this->solution; }
+    const RHF& get_solution() const { return this->solution; }
 
     /**
      *  Solve the RHF SCF equations

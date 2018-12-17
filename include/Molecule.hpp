@@ -38,8 +38,8 @@ namespace GQCP {
  */
 class Molecule {
 private:
-    const std::vector<GQCP::Atom> atoms;  // coordinates in bohr
-    const size_t N;  // number of electrons
+    std::vector<Atom> atoms;  // coordinates in bohr
+    size_t N;  // number of electrons
 
 
 public:
@@ -51,7 +51,7 @@ public:
      *                           0 -> neutral molecule
      *                          -1 -> anion (one electron more than the neutral molecule)
      */
-    Molecule(const std::vector<GQCP::Atom>& atoms, int charge=0);
+    Molecule(const std::vector<Atom>& atoms, int charge=0);
 
 
     // NAMED CONSTRUCTORS
@@ -90,24 +90,22 @@ public:
     /**
      *  @param other        the other molecule
      *
-     *  @return if this molecule is equal to the other, within the default GQCP::Atom::tolerance_for_comparison for the coordinates of the atoms
+     *  @return if this molecule is equal to the other, within the default Atom::tolerance_for_comparison for the coordinates of the atoms
      */
-    bool operator==(const GQCP::Molecule& other) const;
+    bool operator==(const Molecule& other) const;
 
     /**
-     *  Overloading of operator<< for a GQCP::Molecule to be used with streams
-     *
      *  @param os           the output stream which the molecule should be concatenated to
      *  @param molecule     the molecule that should be concatenated to the output stream
      *
      *  @return the updated output stream
      */
-    friend std::ostream& operator<<(std::ostream& os, const GQCP::Molecule& molecule);
+    friend std::ostream& operator<<(std::ostream& os, const Molecule& molecule);
 
 
     // GETTERS
     size_t get_N() const { return this->N; }
-    const std::vector<GQCP::Atom>& get_atoms() const { return this->atoms; }
+    const std::vector<Atom>& get_atoms() const { return this->atoms; }
     size_t numberOfAtoms() const { return this->atoms.size(); }
 
 
@@ -118,7 +116,7 @@ public:
      *
      *  @return if this is equal to the other, within the given tolerance
      */
-    bool isEqualTo(const GQCP::Molecule& other, double tolerance=GQCP::Atom::tolerance_for_comparison) const;
+    bool isEqualTo(const Molecule& other, double tolerance=Atom::tolerance_for_comparison) const;
 
     /**
      *  @return the sum of all the charges of the nuclei

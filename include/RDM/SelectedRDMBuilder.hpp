@@ -53,14 +53,14 @@ public:
      *
      *  @return all 1-RDMs given a coefficient vector
      */
-    OneRDMs calculate1RDMs(const Eigen::VectorXd& x) override;
+    OneRDMs calculate1RDMs(const Eigen::VectorXd& x) const override;
 
     /**
      *  @param x        the coefficient vector representing the 'selected' wave function
      *
      *  @return all 2-RDMs given a coefficient vector
      */
-    TwoRDMs calculate2RDMs(const Eigen::VectorXd& x) override;
+    TwoRDMs calculate2RDMs(const Eigen::VectorXd& x) const override;
 };
 
 

@@ -190,7 +190,7 @@ double AP1roGGeminalCoefficients::overlap(const ONV& onv) const {
 
 
     FockSpace fock_space (this->K, this->N_P);  // the DOCI Fock space
-    ONV reference = fock_space.get_ONV(0);
+    ONV reference = fock_space.makeONV(0);
 
     if (onv.countNumberOfDifferences(reference) == 0) {  // no excitations
         return 1.0;

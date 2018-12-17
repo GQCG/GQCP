@@ -47,7 +47,7 @@ OneRDM::OneRDM(const Eigen::MatrixXd& D) :
  *
  *  @return if the matrix representation of this 1-RDM is equal to the matrix representation of the other, within the default tolerance specified by isEqualTo()
  */
-bool OneRDM::operator==(const GQCP::OneRDM& other) {
+bool OneRDM::operator==(const OneRDM& other) const {
     return this->isEqualTo(other);
 }
 
@@ -63,7 +63,7 @@ bool OneRDM::operator==(const GQCP::OneRDM& other) {
  *
  *  @return if the matrix representation of this 1-RDM is equal to the matrix representation of the other, given a tolerance
  */
-bool OneRDM::isEqualTo(const GQCP::OneRDM& other, double tolerance) const {
+bool OneRDM::isEqualTo(const OneRDM& other, double tolerance) const {
     return this->D.isApprox(other.D, tolerance);
 }
 

@@ -33,7 +33,7 @@ namespace GQCP {
  *  @param hamiltonian_builder      the HamiltonianBuilder for which the CI eigenvalue problem should be solved
  *  @param hamiltonian_parameters   the Hamiltonian parameters in an orthonormal basis
  */
-CISolver::CISolver(HamiltonianBuilder& hamiltonian_builder, const HamiltonianParameters& hamiltonian_parameters) :
+CISolver::CISolver(const HamiltonianBuilder& hamiltonian_builder, const HamiltonianParameters& hamiltonian_parameters) :
     hamiltonian_builder (&hamiltonian_builder),
     hamiltonian_parameters (hamiltonian_parameters)
 {
@@ -54,15 +54,15 @@ CISolver::CISolver(HamiltonianBuilder& hamiltonian_builder, const HamiltonianPar
  *
  *  Solve the CI eigenvalue problem and set the eigenpairs internally
  */
-void CISolver::solve(BaseSolverOptions& solver_options) {
-    SolverType solver_type = solver_options.get_solver_type();
-    switch (solver_type) {
+void CISolver::solve(const BaseSolverOptions& solver_options) {
+
+    switch (solver_options.get_solver_type()) {
 
         case SolverType::DENSE: {
 
             Eigen::MatrixXd matrix = this->hamiltonian_builder->constructHamiltonian(this->hamiltonian_parameters);
 
-            DenseSolver solver = DenseSolver(matrix, dynamic_cast<DenseSolverOptions&>(solver_options));
+            DenseSolver solver (matrix, dynamic_cast<const DenseSolverOptions&>(solver_options));
 
             solver.solve();
             this->eigenpairs = solver.get_eigenpairs();
@@ -75,7 +75,7 @@ void CISolver::solve(BaseSolverOptions& solver_options) {
             Eigen::VectorXd diagonal = this->hamiltonian_builder->calculateDiagonal(this->hamiltonian_parameters);
             VectorFunction matrixVectorProduct = [this, &diagonal](const Eigen::VectorXd& x) { return hamiltonian_builder->matrixVectorProduct(hamiltonian_parameters, x, diagonal); };
 
-            DavidsonSolver solver = DavidsonSolver(matrixVectorProduct, diagonal, dynamic_cast<DavidsonSolverOptions&>(solver_options));
+            DavidsonSolver solver (matrixVectorProduct, diagonal, dynamic_cast<const DavidsonSolverOptions&>(solver_options));
 
             solver.solve();
             this->eigenpairs = solver.get_eigenpairs();
@@ -96,7 +96,7 @@ void CISolver::solve(BaseSolverOptions& solver_options) {
  *
  *  @return the index-th excited state after solving the CI eigenvalue problem
  */
-GQCP::WaveFunction CISolver::get_wavefunction(size_t index) {
+WaveFunction CISolver::makeWavefunction(size_t index) const {
     if (index > this->eigenpairs.size()) {
         throw std::logic_error("Not enough requested eigenpairs for the given index.");
     }

@@ -38,7 +38,7 @@ public:
     /**
      *  Default constructor setting everything to zero
      */
-    APIGGeminalCoefficients();
+    APIGGeminalCoefficients();  // default constructor needed
 
     /**
      *  @param g        the geminal coefficients in a vector representation that is in row-major storage

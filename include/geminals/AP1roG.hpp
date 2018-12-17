@@ -31,7 +31,7 @@ namespace GQCP {
  */
 class AP1roG {
 private:
-    GQCP::AP1roGGeminalCoefficients geminal_coefficients;
+    AP1roGGeminalCoefficients geminal_coefficients;
 
     double electronic_energy;
 
@@ -46,11 +46,11 @@ public:
      *  @param geminal_coefficients     the converged AP1roG geminal coefficients
      *  @param electronic_energy        the AP1roG electronic energy
      */
-    AP1roG(const GQCP::AP1roGGeminalCoefficients& geminal_coefficients, double electronic_energy);
+    AP1roG(const AP1roGGeminalCoefficients& geminal_coefficients, double electronic_energy);
 
 
     // GETTERS
-    const GQCP::AP1roGGeminalCoefficients& get_geminal_coefficients() const { return this->geminal_coefficients; }
+    const AP1roGGeminalCoefficients& get_geminal_coefficients() const { return this->geminal_coefficients; }
     double get_electronic_energy() const { return this->electronic_energy; }
 };
 
@@ -64,7 +64,7 @@ public:
  *
  *  @return the AP1roG electronic energy
  */
-double calculateAP1roGEnergy(const GQCP::AP1roGGeminalCoefficients& G, const GQCP::HamiltonianParameters& ham_par);
+double calculateAP1roGEnergy(const AP1roGGeminalCoefficients& G, const HamiltonianParameters& ham_par);
 
 
 }  // namespace GQCP

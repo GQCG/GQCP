@@ -28,8 +28,8 @@
 namespace GQCP {
 
 
-typedef std::vector<size_t> Vectoru;
-typedef std::vector<Vectoru> Matrixu;
+using Vectoru = std::vector<size_t>;
+using Matrixu = std::vector<Vectoru>;
 using VectorXs = Eigen::Matrix<size_t, Eigen::Dynamic, 1>;
 
 using VectorFunction = std::function<Eigen::VectorXd (const Eigen::VectorXd&)>;

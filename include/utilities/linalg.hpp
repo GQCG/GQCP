@@ -64,8 +64,7 @@ bool areEqualEigenvectors(const Eigen::VectorXd& eigenvector1, const Eigen::Vect
  *
  *  @return if two sets of eigenvectors are equal within a given tolerance
  */
-bool areEqualSetsOfEigenvectors(const Eigen::MatrixXd& eigenvectors1, const Eigen::MatrixXd& eigenvectors2,
-                                double tolerance);
+bool areEqualSetsOfEigenvectors(const Eigen::MatrixXd& eigenvectors1, const Eigen::MatrixXd& eigenvectors2, double tolerance);
 
 
 /**

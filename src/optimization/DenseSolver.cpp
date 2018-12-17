@@ -29,12 +29,23 @@ namespace GQCP {
  */
 
 /**
- *  @param dim                      the dimension of the matrix
- *  @param dense_solver_options     the options to be used for the dense eigenproblem algorithm
+ *  @param matrix                               the full dense representation of the matrix
+ *  @param number_of_requested_eigenpairs       the number of eigenpairs the eigensolver should find
  */
-DenseSolver::DenseSolver(size_t dim, const DenseSolverOptions& dense_solver_options) :
-    BaseMatrixSolver (dim, dense_solver_options.number_of_requested_eigenpairs),
-    matrix (Eigen::MatrixXd::Zero(this->dim, this->dim))
+DenseSolver::DenseSolver(const Eigen::MatrixXd& matrix, size_t number_of_requested_eigenpairs) :
+    BaseMatrixSolver(matrix.cols(), number_of_requested_eigenpairs),
+    matrix (matrix)
+{
+    // TODO: throw if the matrix is not square
+}
+
+
+/**
+ *  @param dim                                  the dimension of the matrix
+ *  @param number_of_requested_eigenpairs       the number of eigenpairs the eigensolver should find
+ */
+DenseSolver::DenseSolver(size_t dim, size_t number_of_requested_eigenpairs) :
+    DenseSolver(Eigen::MatrixXd::Zero(dim, dim), number_of_requested_eigenpairs)
 {}
 
 
@@ -43,28 +54,16 @@ DenseSolver::DenseSolver(size_t dim, const DenseSolverOptions& dense_solver_opti
  *  @param dense_solver_options     the options to be used for the dense eigenproblem algorithm
  */
 DenseSolver::DenseSolver(const Eigen::MatrixXd& matrix, const DenseSolverOptions& dense_solver_options) :
-        BaseMatrixSolver (matrix.cols(), dense_solver_options.number_of_requested_eigenpairs),
-        matrix (matrix)
-{}
-
-    
-/**
- *  @param dim                                  the dimension of the matrix
- *  @param number_of_requested_eigenpairs       the number of eigenpairs the eigensolver should find
- */
-DenseSolver::DenseSolver(size_t dim, size_t number_of_requested_eigenpairs) :
-        BaseMatrixSolver (dim, number_of_requested_eigenpairs),
-        matrix (Eigen::MatrixXd::Zero(this->dim, this->dim))
+    DenseSolver(matrix, dense_solver_options.number_of_requested_eigenpairs)
 {}
 
 
 /**
- *  @param matrix                   the full dense representation of the matrix
- *  @param number_of_requested_eigenpairs       the number of eigenpairs the eigensolver should find
+ *  @param dim                      the dimension of the matrix
+ *  @param dense_solver_options     the options to be used for the dense eigenproblem algorithm
  */
-DenseSolver::DenseSolver(Eigen::MatrixXd matrix, size_t number_of_requested_eigenpairs) :
-        BaseMatrixSolver (matrix.cols(), number_of_requested_eigenpairs),
-        matrix (matrix)
+DenseSolver::DenseSolver(size_t dim, const DenseSolverOptions& dense_solver_options) :
+    DenseSolver(dim, dense_solver_options.number_of_requested_eigenpairs)
 {}
 
 
@@ -91,7 +90,7 @@ void DenseSolver::solve() {
         double eigenvalue = self_adjoint_eigensolver.eigenvalues()(i);
         Eigen::VectorXd eigenvector = self_adjoint_eigensolver.eigenvectors().col(i);
 
-        this->eigenpairs[i] = Eigenpair(eigenvalue, eigenvector);
+        this->eigenpairs.emplace_back(eigenvalue, eigenvector);  // space is already reserved in the base constructor
     }
 }
 

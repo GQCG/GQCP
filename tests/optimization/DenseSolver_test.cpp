@@ -40,7 +40,7 @@ BOOST_AUTO_TEST_CASE ( diagonal_getter_dense ) {
     }
 
 
-    BOOST_CHECK(ref_diagonal.isApprox(dense_solver.get_diagonal(), 1.0e-12));
+    BOOST_CHECK(ref_diagonal.isApprox(dense_solver.get_matrix().diagonal(), 1.0e-12));
 }
 
 

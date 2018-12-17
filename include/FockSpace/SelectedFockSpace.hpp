@@ -32,12 +32,12 @@ namespace GQCP {
  *
  *  Configurations are represented as a Configuration: a combination of an alpha and a beta ONV
  */
-class SelectedFockSpace : public GQCP::BaseFockSpace {
+class SelectedFockSpace : public BaseFockSpace {
 private:
     size_t N_alpha;  // number of alpha electrons
     size_t N_beta;  // number of beta electrons
 
-    std::vector<GQCP::Configuration> configurations;
+    std::vector<Configuration> configurations;
 
     /**
      *  @param onv1     the alpha ONV as a string representation read from right to left
@@ -47,11 +47,11 @@ private:
      *
      *  IMPORTANT: only works for up to 64 bits!
      */
-    Configuration makeConfiguration(const std::string& onv1, const std::string& onv2);
+    Configuration makeConfiguration(const std::string& onv1, const std::string& onv2) const;
 
 public:
     // CONSTRUCTORS
-    SelectedFockSpace() = default;
+    SelectedFockSpace() = default;  // need a default constructor
 
     /**
      *  A constructor with initial Fock space dimension of 0

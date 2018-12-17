@@ -40,10 +40,18 @@ private:
 public:
     // CONSTRUCTORS
     /**
-     *  @param dim                      the dimension of the matrix
-     *  @param dense_solver_options     the options to be used for the dense eigenproblem algorithm
+     *  @param matrix                               the full dense representation of the matrix
+     *  @param number_of_requested_eigenpairs       the number of eigenpairs the eigensolver should find
      */
-    DenseSolver(size_t dim, const DenseSolverOptions& dense_solver_options);
+    DenseSolver(const Eigen::MatrixXd& matrix, size_t number_of_requested_eigenpairs = 1);
+
+    /**
+     *  Constructor that sets a zero matrix
+     *
+     *  @param dim                                  the dimension of the matrix
+     *  @param number_of_requested_eigenpairs       the number of eigenpairs the eigensolver should find
+     */
+    DenseSolver(size_t dim, size_t number_of_requested_eigenpairs = 1);
 
     /**
      *  @param matrix                   the full dense representation of the matrix
@@ -52,16 +60,12 @@ public:
     DenseSolver(const Eigen::MatrixXd& matrix, const DenseSolverOptions& dense_solver_options);
 
     /**
-     *  @param dim                                  the dimension of the matrix
-     *  @param number_of_requested_eigenpairs       the number of eigenpairs the eigensolver should find
+     *  Constructor that sets a zero matrix
+     *
+     *  @param dim                      the dimension of the matrix
+     *  @param dense_solver_options     the options to be used for the dense eigenproblem algorithm
      */
-    DenseSolver(size_t dim, size_t number_of_requested_eigenpairs = 1);
-
-    /**
-     *  @param matrix                   the full dense representation of the matrix
-     *  @param number_of_requested_eigenpairs       the number of eigenpairs the eigensolver should find
-     */
-    DenseSolver(Eigen::MatrixXd matrix, size_t number_of_requested_eigenpairs = 1);
+    DenseSolver(size_t dim, const DenseSolverOptions& dense_solver_options);
 
 
     // DESTRUCTOR
@@ -69,8 +73,7 @@ public:
 
 
     // GETTERS
-    Eigen::MatrixXd get_matrix() { return this->matrix; };
-    Eigen::VectorXd get_diagonal() override { return this->matrix.diagonal(); };
+    const Eigen::MatrixXd& get_matrix() const { return this->matrix; };
 
 
     // PUBLIC OVERRIDDEN METHODS

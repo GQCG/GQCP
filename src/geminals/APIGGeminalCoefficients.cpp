@@ -170,7 +170,7 @@ double APIGGeminalCoefficients::overlap(const ONV& onv) const {
 
     // TODO: wait until the syntax G(Eigen::placeholders::all, occupation_indices) is released in a stable Eigen release
     for (size_t e = 0; e < this->N_P ; e++) {  // loop over all electrons
-        size_t occupation_index = onv.get_occupied_index(e);
+        size_t occupation_index = onv.get_occupation_index(e);
 
         Gm.col(e) = G.col(occupation_index);
     }

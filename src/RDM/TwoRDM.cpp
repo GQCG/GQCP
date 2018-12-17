@@ -50,7 +50,7 @@ TwoRDM::TwoRDM(const Eigen::Tensor<double, 4>& d) :
  *
  *  @return if the matrix representation of this 2-RDM is equal to the matrix representation of the other, within the default tolerance specified by isEqualTo()
  */
-bool TwoRDM::operator==(const GQCP::TwoRDM& other) {
+bool TwoRDM::operator==(const TwoRDM& other) const {
     return this->isEqualTo(other);
 }
 
@@ -65,7 +65,7 @@ bool TwoRDM::operator==(const GQCP::TwoRDM& other) {
  *
  *  @return if the matrix representation of this 2-RDM is equal to the matrix representation of the other, given a tolerance
  */
-bool TwoRDM::isEqualTo(const GQCP::TwoRDM& other, double tolerance) const {
+bool TwoRDM::isEqualTo(const TwoRDM& other, double tolerance) const {
     return areEqual(this->d, other.d, tolerance);
 }
 
@@ -73,7 +73,7 @@ bool TwoRDM::isEqualTo(const GQCP::TwoRDM& other, double tolerance) const {
 /**
  *  @return the trace of the 2-RDM, i.e. d(p,p,q,q)
  */
-double TwoRDM::trace() {
+double TwoRDM::trace() const {
     // TODO: when Eigen3 releases tensor.trace(), use it to implement the reduction
 
     auto K = static_cast<size_t>(this->d.dimension(1));
@@ -92,7 +92,7 @@ double TwoRDM::trace() {
 /**
  *  @return a partial contraction of the 2-RDM, where D(p,q) = d(p,q,r,r)
  */
-Eigen::MatrixXd TwoRDM::reduce() {
+Eigen::MatrixXd TwoRDM::reduce() const {
     // TODO: when Eigen3 releases tensor.trace(), use it to implement the reduction
 
     auto K = static_cast<size_t>(this->d.dimension(1));

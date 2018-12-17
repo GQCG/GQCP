@@ -32,22 +32,22 @@ namespace GQCP {
  */
 class BaseSystemOfEquationsSolver {
 protected:
-    constexpr static size_t maximum_number_of_iterations = 128;
-    const double convergence_threshold = 1.0e-08;
+    size_t maximum_number_of_iterations;
+    double convergence_threshold;
 
     double is_solved = false;
 
-    const Eigen::VectorXd x0;  // initial guess to the problem
-    Eigen::VectorXd x;  // current guess or final solution to the problem
+    Eigen::VectorXd x;  // initial guess, current guess or final solution to the problem
 
 
 public:
     // CONSTRUCTORS
     /**
-     *  @param x0                           the initial guess
-     *  @param convergence_threshold        the threshold for establishing convergence
+     *  @param x0                               an initial guess
+     *  @param convergence_threshold            the threshold for convergence on the norm of the gradient
+     *  @param maximum_number_of_iterations     the maximum number of iterations in the algorithm
      */
-    BaseSystemOfEquationsSolver(const Eigen::VectorXd& x0, double convergence_threshold);
+    BaseSystemOfEquationsSolver(const Eigen::VectorXd& x0, double convergence_threshold = 1.0e-08, size_t maximum_number_of_iterations = 128);
 
 
     // DESTRUCTOR
@@ -55,7 +55,7 @@ public:
 
 
     // GETTERS
-    Eigen::VectorXd get_solution() const;
+    const Eigen::VectorXd& get_solution() const;
 
 
     // PUBLIC PURE VIRTUAL METHODS

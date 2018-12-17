@@ -49,7 +49,7 @@ private:
     OneElectronOperator h;  // one-electron interactions (i.e. the core Hamiltonian)
     TwoElectronOperator g;  // two-electron interactions
 
-    Eigen::MatrixXd C;  // total transformation matrix between the current (restricted) molecular orbitals and the atomic orbitals
+    Eigen::MatrixXd T_total;  // total transformation matrix between the current (restricted) molecular orbitals and the atomic orbitals
 
 
 public:
@@ -62,7 +62,7 @@ public:
      *  @param C            a transformation matrix between the current molecular orbitals and the atomic orbitals
      *  @param scalar       the scalar interaction term
      */
-    HamiltonianParameters(std::shared_ptr<GQCP::AOBasis> ao_basis, const GQCP::OneElectronOperator& S, const GQCP::OneElectronOperator& h, const GQCP::TwoElectronOperator& g, const Eigen::MatrixXd& C, double scalar=0.0);
+    HamiltonianParameters(std::shared_ptr<AOBasis> ao_basis, const OneElectronOperator& S, const OneElectronOperator& h, const TwoElectronOperator& g, const Eigen::MatrixXd& C, double scalar=0.0);
 
     /**
      *  A constructor that transforms the given Hamiltonian parameters with a transformation matrix
@@ -70,7 +70,7 @@ public:
      *  @param ham_par      the current Hamiltonian parameters
      *  @param C            the transformation matrix to be applied to the given Hamiltonian parameters
      */
-    HamiltonianParameters(const GQCP::HamiltonianParameters& ham_par, const Eigen::MatrixXd& C);
+    HamiltonianParameters(const HamiltonianParameters& ham_par, const Eigen::MatrixXd& C);
 
 
     // NAMED CONSTRUCTORS
@@ -89,7 +89,7 @@ public:
      *      - two-electron contributions:
      *          - Coulomb repulsion
      */
-    static HamiltonianParameters Molecular(std::shared_ptr<GQCP::AOBasis> ao_basis, double scalar=0.0);
+    static HamiltonianParameters Molecular(std::shared_ptr<AOBasis> ao_basis, double scalar=0.0);
 
     /**
      *  Construct the molecular Hamiltonian parameters in an AO basis
@@ -131,14 +131,14 @@ public:
 
 
     // DESTRUCTORS
-    ~HamiltonianParameters() override =default;
+    ~HamiltonianParameters() override = default;
 
     
     // GETTERS
-    const GQCP::OneElectronOperator& get_S() const { return this->S; }
-    const GQCP::OneElectronOperator& get_h() const { return this->h; }
-    const GQCP::TwoElectronOperator& get_g() const { return this->g; }
-    const Eigen::MatrixXd& get_C() const { return this->C; }
+    const OneElectronOperator& get_S() const { return this->S; }
+    const OneElectronOperator& get_h() const { return this->h; }
+    const TwoElectronOperator& get_g() const { return this->g; }
+    const Eigen::MatrixXd& get_T_total() const { return this->T_total; }
     size_t get_K() const { return this->K; }
 
 
@@ -146,7 +146,7 @@ public:
     /**
      *  @return if the underlying spatial orbital basis of the Hamiltonian parameters is orthonormal
      */
-    bool areOrbitalsOrthonormal();
+    bool areOrbitalsOrthonormal() const;
 
 
     // PUBLIC METHODS - TRANSFORMATIONS
@@ -184,7 +184,7 @@ public:
      *
      *  Furthermore the coefficient matrix C is updated to reflect the total transformation between the new molecular orbital basis and the initial atomic orbitals
      */
-    void rotate(const GQCP::JacobiRotationParameters& jacobi_rotation_parameters);
+    void rotate(const JacobiRotationParameters& jacobi_rotation_parameters);
 
     /**
      *  Transform the HamiltonianParameters to the Löwdin basis (i.e. T = S^{-1/2})
@@ -208,7 +208,7 @@ public:
      *
      *  @return the generalized Fock matrix
      */
-    GQCP::OneElectronOperator calculateGeneralizedFockMatrix(const GQCP::OneRDM& D, const GQCP::TwoRDM& d) const;
+    OneElectronOperator calculateGeneralizedFockMatrix(const OneRDM& D, const TwoRDM& d) const;
 
     /**
      *  @param ao_list     indices of the AOs used for the Mulliken populations
@@ -220,7 +220,7 @@ public:
     /**
      *  @return the effective one-electron integrals
      */
-    GQCP::OneElectronOperator calculateEffectiveOneElectronIntegrals() const;
+    OneElectronOperator calculateEffectiveOneElectronIntegrals() const;
 
 
     // PUBLIC METHODS - CALCULATIONS OF TWO-ELECTRON OPERATORS
@@ -230,7 +230,7 @@ public:
      *
      *  @return the super-generalized Fock matrix
      */
-    GQCP::TwoElectronOperator calculateSuperGeneralizedFockMatrix(const GQCP::OneRDM& D, const GQCP::TwoRDM& d) const;
+    TwoElectronOperator calculateSuperGeneralizedFockMatrix(const OneRDM& D, const TwoRDM& d) const;
 
 
     // PUBLIC METHODS - CONSTRAINTS
@@ -243,7 +243,7 @@ public:
      *
      *  @return a copy of the constrained Hamiltonian parameters
      */
-    HamiltonianParameters constrain(const GQCP::OneElectronOperator& one_op, const GQCP::TwoElectronOperator& two_op, double lambda) const;
+    HamiltonianParameters constrain(const OneElectronOperator& one_op, const TwoElectronOperator& two_op, double lambda) const;
 
     /**
      *  Constrain the Hamiltonian parameters according to the convention: - lambda * constraint
@@ -253,7 +253,7 @@ public:
      *
      *  @return a copy of the constrained Hamiltonian parameters
      */
-    HamiltonianParameters constrain(const GQCP::OneElectronOperator& one_op, double lambda) const;
+    HamiltonianParameters constrain(const OneElectronOperator& one_op, double lambda) const;
 
     /**
      *  Constrain the Hamiltonian parameters according to the convention: - lambda * constraint
@@ -263,7 +263,7 @@ public:
      *
      *  @return a copy of the constrained Hamiltonian parameters
      */
-    HamiltonianParameters constrain(const GQCP::TwoElectronOperator& two_op, double lambda) const;
+    HamiltonianParameters constrain(const TwoElectronOperator& two_op, double lambda) const;
 };
 
 

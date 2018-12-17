@@ -41,18 +41,18 @@ namespace GQCP {
 class HamiltonianBuilder {
 public:
     // CONSTRUCTOR
-    HamiltonianBuilder() = default;
+//    HamiltonianBuilder() = default;
 
 
     // DESTRUCTOR
     /**
-     *  Provide a pure virtual destructor to make the class abstract
+     *  Provide a pure virtual destructor for the abstract base class
      */
     virtual ~HamiltonianBuilder() = 0;
 
 
     // PURE VIRTUAL GETTERS
-    virtual BaseFockSpace* get_fock_space() = 0;
+    virtual const BaseFockSpace* get_fock_space() const = 0;
 
 
     // PURE VIRTUAL PUBLIC METHODS
@@ -61,7 +61,7 @@ public:
      *
      *  @return the Hamiltonian matrix
      */
-    virtual Eigen::MatrixXd constructHamiltonian(const HamiltonianParameters& hamiltonian_parameters) = 0;
+    virtual Eigen::MatrixXd constructHamiltonian(const HamiltonianParameters& hamiltonian_parameters) const = 0;
 
     /**
      *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis
@@ -70,14 +70,14 @@ public:
      *
      *  @return the action of the Hamiltonian on the coefficient vector
      */
-    virtual Eigen::VectorXd matrixVectorProduct(const HamiltonianParameters& hamiltonian_parameters, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) = 0;
+    virtual Eigen::VectorXd matrixVectorProduct(const HamiltonianParameters& hamiltonian_parameters, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) const = 0;
 
     /**
      *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis
      *
      *  @return the diagonal of the matrix representation of the Hamiltonian
      */
-    virtual Eigen::VectorXd calculateDiagonal(const HamiltonianParameters& hamiltonian_parameters) = 0;
+    virtual Eigen::VectorXd calculateDiagonal(const HamiltonianParameters& hamiltonian_parameters) const = 0;
 };
 
 

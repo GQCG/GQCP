@@ -80,18 +80,18 @@ double BaseAPIGGeminalCoefficients::operator()(size_t i, size_t p) const {
  *
  *  @return the wave function expansion corresponding to the geminal coefficients
  */
-WaveFunction BaseAPIGGeminalCoefficients::toWaveFunction(FockSpace& fock_space) const {
+WaveFunction BaseAPIGGeminalCoefficients::toWaveFunction(const FockSpace& fock_space) const {
 
-    // The FockSpace can't be marked const, as get_ONV() and setNext() are non-const methods
+    // The FockSpace can't be marked const, as makeONV() and setNext() are non-const methods
 
     Eigen::VectorXd coefficients = Eigen::VectorXd::Zero(fock_space.get_dimension());  // coefficient vector
-    ONV onv = fock_space.get_ONV(0);  // start with address 0
+    ONV onv = fock_space.makeONV(0);  // start with address 0
     for (size_t I = 0; I < fock_space.get_dimension(); I++) {
 
         coefficients(I) = this->overlap(onv);
 
         if (I < fock_space.get_dimension() - 1) {  // skip the last permutation
-            fock_space.setNext(onv);
+            fock_space.setNextONV(onv);
         }
     }
 

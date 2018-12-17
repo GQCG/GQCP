@@ -52,7 +52,7 @@ Atom::Atom(size_t atomic_number, double x, double y, double z) :
  *
  *  @return if this atom is equal to the other, within a default tolerance for the coordinates
  */
-bool Atom::operator==(const GQCP::Atom& other) const {
+bool Atom::operator==(const Atom& other) const {
 
     return this->isEqualTo(other, Atom::tolerance_for_comparison);
 }
@@ -65,22 +65,22 @@ bool Atom::operator==(const GQCP::Atom& other) const {
  *
  *  @return if this atom is 'smaller' than the other, within a default tolerance for the coordinates
  */
-bool Atom::operator<(const GQCP::Atom& other) const {
+bool Atom::operator<(const Atom& other) const {
 
     return this->isSmallerThan(other, Atom::tolerance_for_comparison);
 }
 
 
 /**
- *  Overloading of operator<< for a GQCP::Atom to be used with ostreams
+ *  Overloading of operator<< for a Atom to be used with ostreams
  *
  *  @param os       the output stream to which the atom should be concatenated
  *  @param atom     the atom which should be concatenated to the output stream
  *
  *  @return the updated output stream
  */
-std::ostream& operator<<(std::ostream& os, const GQCP::Atom& atom) {
-    os << std::left << std::setw(3) << GQCP::elements::atomicNumberToElement(atom.atomic_number) << '(' << atom.position.x() << ", " << atom.position.y() << ", " << atom.position.z() << ")\n";
+std::ostream& operator<<(std::ostream& os, const Atom& atom) {
+    os << std::left << std::setw(3) << elements::atomicNumberToElement(atom.atomic_number) << '(' << atom.position.x() << ", " << atom.position.y() << ", " << atom.position.z() << ")\n";
     return os;
 }
 
@@ -95,7 +95,7 @@ std::ostream& operator<<(std::ostream& os, const GQCP::Atom& atom) {
  *
  *  @return if this atom is equal to the other
  */
-bool Atom::isEqualTo(const GQCP::Atom& other, double tolerance) const {
+bool Atom::isEqualTo(const Atom& other, double tolerance) const {
 
     return (this->atomic_number == other.atomic_number) &&
            (std::abs(this->position.x() - other.position.x()) < tolerance) &&
@@ -112,7 +112,7 @@ bool Atom::isEqualTo(const GQCP::Atom& other, double tolerance) const {
  *
  *  @return if this atom is 'smaller' than the other, within a default tolerance for the coordinates
  */
-bool Atom::isSmallerThan(const GQCP::Atom& other, double tolerance) const {
+bool Atom::isSmallerThan(const Atom& other, double tolerance) const {
 
     if (this->atomic_number < other.atomic_number) {
         return true;
@@ -144,7 +144,7 @@ bool Atom::isSmallerThan(const GQCP::Atom& other, double tolerance) const {
  *
  *  @return the Euclidian distance between this atom and the other
  */
-double Atom::calculateDistance(const GQCP::Atom& other) const {
+double Atom::calculateDistance(const Atom& other) const {
 
     return (this->position - other.position).norm();
 }

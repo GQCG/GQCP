@@ -67,7 +67,7 @@ double NRDMCalculator::calculateElement(const std::vector<size_t>& bra_indices, 
     size_t dim = fock_space.get_dimension();
 
 
-    ONV bra = fock_space.get_ONV(0);
+    ONV bra = fock_space.makeONV(0);
     size_t I = 0;
     while (I < dim) {  // loop over all bra addresses
 
@@ -76,7 +76,7 @@ double NRDMCalculator::calculateElement(const std::vector<size_t>& bra_indices, 
 
             // Go to the beginning of the outer while loop with the next bra
             if (I < dim-1) {  // prevent the last permutation to occur
-                fock_space.setNext(bra);
+                fock_space.setNextONV(bra);
                 I++;
                 sign = 1;
                 continue;
@@ -86,7 +86,7 @@ double NRDMCalculator::calculateElement(const std::vector<size_t>& bra_indices, 
         }
 
 
-        ONV ket = fock_space.get_ONV(0);
+        ONV ket = fock_space.makeONV(0);
         size_t J = 0;
         while (J < dim) {  // loop over all ket indices
 
@@ -95,7 +95,7 @@ double NRDMCalculator::calculateElement(const std::vector<size_t>& bra_indices, 
 
                 // Go to the beginning of this (the inner) while loop with the next bra
                 if (J < dim-1) {  // prevent the last permutation to occur
-                    fock_space.setNext(ket);
+                    fock_space.setNextONV(ket);
                     J++;
                     sign = 1;
                     continue;
@@ -113,7 +113,7 @@ double NRDMCalculator::calculateElement(const std::vector<size_t>& bra_indices, 
                 break;  // out of the J-loop
             }
             ket.createAll(ket_indices_reversed);
-            fock_space.setNext(ket);
+            fock_space.setNextONV(ket);
             sign = 1;
             J++;
         }  // while J loop
@@ -123,7 +123,7 @@ double NRDMCalculator::calculateElement(const std::vector<size_t>& bra_indices, 
             break;  // out of the I-loop
         }
         bra.createAll(bra_indices);
-        fock_space.setNext(bra);
+        fock_space.setNextONV(bra);
         sign = 1;
         I++;
     }  // while I loop

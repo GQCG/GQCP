@@ -32,16 +32,18 @@ namespace GQCP {
  */
 BaseEigenproblemSolver::BaseEigenproblemSolver(size_t dim, size_t number_of_requested_eigenpairs) :
     dim (dim),
-    number_of_requested_eigenpairs (number_of_requested_eigenpairs),
-    eigenpairs (std::vector<Eigenpair> (this->number_of_requested_eigenpairs, Eigenpair(this->dim)))
-{}
+    number_of_requested_eigenpairs (number_of_requested_eigenpairs)
+{
+    eigenpairs.reserve(this->number_of_requested_eigenpairs);
+}
 
 
 
 /*
  *  GETTERS
  */
-std::vector<Eigenpair> BaseEigenproblemSolver::get_eigenpairs() const {
+
+const std::vector<Eigenpair>& BaseEigenproblemSolver::get_eigenpairs() const {
 
     if (this->_is_solved) {
         return this->eigenpairs;
@@ -51,88 +53,36 @@ std::vector<Eigenpair> BaseEigenproblemSolver::get_eigenpairs() const {
 }
 
 
-Eigenpair BaseEigenproblemSolver::get_lowest_eigenpair() const {
-
-    if (this->_is_solved) {
-        return this->eigenpairs[0];  // the eigenpairs are sorted by increasing eigenvalue
-    } else {
-        throw std::logic_error("The eigenvalue problem hasn't been solved yet and you are trying to get the lowest eigenpair.");
-    }
-}
-
-
 /**
  *  @param i        the index for the i-th lowest eigenpair
  *
  *  @return the i-th lowest eigenpair
  */
-Eigenpair BaseEigenproblemSolver::get_eigenpair(size_t i) const {
+const Eigenpair& BaseEigenproblemSolver::get_eigenpair(size_t i) const {
 
-    if (this->_is_solved) {
-        return this->eigenpairs[i];  // the eigenpairs are sorted by increasing eigenvalue
-    } else {
-        throw std::logic_error("The eigenvalue problem hasn't been solved yet and you are trying to get the i-th lowest eigenpair.");
-    }
-}
-
-
-double BaseEigenproblemSolver::get_lowest_eigenvalue() const {
-
-    if (this->_is_solved) {
-        return this->eigenpairs[0].get_eigenvalue();
-    } else {
-        throw std::logic_error("The eigenvalue problem hasn't been solved yet and you are trying to get the lowest eigenvalue.");
-    }
+    return this->get_eigenpairs()[i];
 }
 
 
 /**
- *  Special shortcut getter for the lowest eigenvalue: will be deprecated in the next major release
- */
-double BaseEigenproblemSolver::get_eigenvalue() const {
-
-    return this->get_lowest_eigenvalue();
-}
-
-
-Eigen::VectorXd BaseEigenproblemSolver::get_lowest_eigenvector() const {
-
-    if (this->_is_solved) {
-        return this->eigenpairs[0].get_eigenvector();
-    } else {
-        throw std::logic_error("The eigenvalue problem hasn't been solved yet and you are trying to get the lowest eigenvector.");
-    }
-}
-
-
-/**
- *  @param index        the index of an element of the lowest eigenvector
+ *  @param i        the index for the i-th lowest eigenvalue
  *
- *  @return the element at the given index of the lowest eigenvector
+ *  @return the i-th lowest eigenvalue
  */
-double BaseEigenproblemSolver::get_lowest_eigenvector(size_t index) const {
+double BaseEigenproblemSolver::get_eigenvalue(size_t i) const {
 
-    return this->get_lowest_eigenvector()[index];
+    return this->get_eigenpair(i).get_eigenvalue();
 }
 
 
 /**
- *  Special shortcut getter for the eigenvector corresponding to the lowest eigenvalue: will be deprecated in the next major release
- */
-Eigen::VectorXd BaseEigenproblemSolver::get_eigenvector() const {
-
-    return this->get_lowest_eigenvector();
-}
-
-
-/**
- *  @param index        the index of an element of the lowest eigenvector
+ *  @param i        the index for the i-th lowest eigenvector
  *
- *  @return the value at the index of the eigenvector corresponding to the lowest eigenvalue: will be deprecated in the next major release
+ *  @return the i-th lowest eigenvector
  */
-double BaseEigenproblemSolver::get_eigenvector(size_t index) const {
+const Eigen::VectorXd& BaseEigenproblemSolver::get_eigenvector(size_t i) const {
 
-    return this->get_lowest_eigenvector(index);
+    return this->get_eigenpair(i).get_eigenvector();
 }
 
 

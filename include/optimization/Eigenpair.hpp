@@ -54,7 +54,7 @@ public:
 
     // GETTERS
     double get_eigenvalue() const { return this->eigenvalue; };
-    Eigen::VectorXd get_eigenvector() const { return this->eigenvector; };
+    const Eigen::VectorXd& get_eigenvector() const { return this->eigenvector; };
 
 
     // PUBLIC METHODS

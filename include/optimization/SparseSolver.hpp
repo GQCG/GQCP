@@ -41,16 +41,20 @@ private:
 public:
     // CONSTRUCTORS
     /**
-     *  @param dim                      the dimension of the matrix
-     *  @param sparse_solver_options    the options to be used for the sparse eigenproblem algorithm
-     */
-    SparseSolver(size_t dim, const SparseSolverOptions& sparse_solver_options);
-
-    /**
+     *  Constructor that sets the sparse matrix to zeros
+     *
      *  @param dim                                  the dimension of the matrix
      *  @param number_of_requested_eigenpairs       the number of eigenpairs the eigensolver should find
      */
     SparseSolver(size_t dim, size_t number_of_requested_eigenpairs = 1);
+
+    /**
+     *  Constructor that sets the sparse matrix to zeros
+     *
+     *  @param dim                      the dimension of the matrix
+     *  @param sparse_solver_options    the options to be used for the sparse eigenproblem algorithm
+     */
+    SparseSolver(size_t dim, const SparseSolverOptions& sparse_solver_options);
 
 
     // DESTRUCTOR
@@ -58,7 +62,7 @@ public:
 
 
     // GETTERS
-    Eigen::VectorXd get_diagonal() override { return this->matrix.diagonal(); };
+    const Eigen::SparseMatrix<double>& get_matrix() const { return this->matrix; }
 
 
     // PUBLIC OVERRIDDEN METHODS

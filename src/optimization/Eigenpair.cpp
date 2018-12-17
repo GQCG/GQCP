@@ -68,7 +68,7 @@ bool Eigenpair::isEqual(const Eigenpair& other, double tolerance) const {
     }
 
     if (std::abs(this->eigenvalue - other.eigenvalue) < tolerance) {
-        if (GQCP::areEqualEigenvectors(this->eigenvector, other.get_eigenvector(), tolerance)) {
+        if (areEqualEigenvectors(this->eigenvector, other.get_eigenvector(), tolerance)) {
             return true;
         }
     }

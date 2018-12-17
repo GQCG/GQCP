@@ -43,7 +43,7 @@ public:
     /**
      *  Default constructor setting everything to zero
      */
-    RHF();
+    RHF();  // need default constructor
 
     /**
      *  Constructor based on given converged solutions of the RHF SCF equations
@@ -73,7 +73,7 @@ public:
  *
  *  @return the RHF 1-RDM expressed in an orthonormal basis
  */
-GQCP::OneRDM calculateRHF1RDM(size_t K, size_t N);
+OneRDM calculateRHF1RDM(size_t K, size_t N);
 
 /**
  *  @param C    the coefficient matrix, specifying the transformation to the AO basis
@@ -91,7 +91,7 @@ Eigen::MatrixXd calculateRHFAO1RDM(const Eigen::MatrixXd& C, size_t N);
  *
  *  @return the RHF Fock matrix expressed in the AO basis
  */
-Eigen::MatrixXd calculateRHFAOFockMatrix(const Eigen::MatrixXd& D_AO, GQCP::HamiltonianParameters ham_par);
+Eigen::MatrixXd calculateRHFAOFockMatrix(const Eigen::MatrixXd& D_AO, HamiltonianParameters ham_par);
 
 /**
  *  @param D_AO         the RHF density matrix in AO basis

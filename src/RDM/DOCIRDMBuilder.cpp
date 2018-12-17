@@ -38,7 +38,7 @@ DOCIRDMBuilder::DOCIRDMBuilder(const FockSpace& fock_space) :
  *
  *  @return all 1-RDMs given a coefficient vector
  */
-OneRDMs DOCIRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) {
+OneRDMs DOCIRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) const {
     // The formulas for the DOCI 1-RDMs can be found in (https://github.com/lelemmen/electronic_structure)
 
     size_t K = this->fock_space.get_K();
@@ -48,19 +48,19 @@ OneRDMs DOCIRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) {
     Eigen::MatrixXd D = Eigen::MatrixXd::Zero(K, K);
 
     // Create the first ONV (with address 0). In DOCI, the Fock space for alpha and beta is equal so we just use one
-    ONV onv = this->fock_space.get_ONV(0);   
+    ONV onv = this->fock_space.makeONV(0);   
 
 
     for (size_t I = 0; I < dim; I++) {  // I loops over all the addresses of the spin strings
 
         for (size_t e1 = 0; e1 < this->fock_space.get_N(); e1++) {  // e1 (electron 1) loops over the (number of) electrons
-            size_t p = onv.get_occupied_index(e1);  // retrieve the index of the orbital the electron occupies
+            size_t p = onv.get_occupation_index(e1);  // retrieve the index of the orbital the electron occupies
             double c_I = x(I);  // coefficient of the I-th basis vector
             D(p,p) += 2*std::pow(c_I, 2);
         }
         
         if (I < dim-1) {
-            this->fock_space.setNext(onv);
+            this->fock_space.setNextONV(onv);
         }
     }
 
@@ -74,7 +74,7 @@ OneRDMs DOCIRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) {
  *
  *  @return all 2-RDMs given a coefficient vector
  */
-TwoRDMs DOCIRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) {
+TwoRDMs DOCIRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) const {
 
     // The formulas for the DOCI 2-RDMs can be found in (https://github.com/lelemmen/electronic_structure)
 
@@ -87,7 +87,7 @@ TwoRDMs DOCIRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) {
     d_aabb.setZero();
 
     // Create the first ONV (with address 0). In DOCI, the Fock space for alpha and beta is equal so we just use one
-    ONV onv = this->fock_space.get_ONV(0);   
+    ONV onv = this->fock_space.makeONV(0);   
 
 
     for (size_t I = 0; I < dim; I++) {  // I loops over all the addresses of the spin strings
@@ -126,7 +126,7 @@ TwoRDMs DOCIRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) {
         }
 
         if ( I < dim-1) {
-            this->fock_space.setNext(onv);
+            this->fock_space.setNextONV(onv);
         }
     }
 

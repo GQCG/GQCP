@@ -105,7 +105,7 @@ int main (int argc, char** argv) {
         first_newton_localizer.localize(mol_ham_par);
 
 
-        output_file << "Total transformation matrix to the ER-localized orbitals: " << std::endl << mol_ham_par.get_C() << std::endl << std::endl;
+        output_file << "Total transformation matrix to the ER-localized orbitals: " << std::endl << mol_ham_par.get_T_total() << std::endl << std::endl;
     }
 
 
@@ -122,7 +122,7 @@ int main (int argc, char** argv) {
         GQCP::DenseSolverOptions solver_options;
         orbital_optimizer.solve(solver_options);
     }
-    output_file << "Total transformation matrix to the OO-DOCI orbitals: " << std::endl << mol_ham_par.get_C() << std::endl << std::endl;
+    output_file << "Total transformation matrix to the OO-DOCI orbitals: " << std::endl << mol_ham_par.get_T_total() << std::endl << std::endl;
 
     double OO_DOCI_electronic_energy = orbital_optimizer.get_eigenpair().get_eigenvalue();
     output_file << "Total OO-DOCI energy (internuclear repulsion energy added): " << std::setprecision(15) << OO_DOCI_electronic_energy + mol_ham_par.get_scalar() << std::endl;

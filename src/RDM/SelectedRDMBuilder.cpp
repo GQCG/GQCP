@@ -40,7 +40,7 @@ SelectedRDMBuilder::SelectedRDMBuilder(const SelectedFockSpace& fock_space) :
  *
  *  @return all 1-RDMs given a coefficient vector
  */
-OneRDMs SelectedRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) {
+OneRDMs SelectedRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) const {
 
     // Initialize as zero matrices
     size_t K = this->fock_space.get_K();
@@ -124,7 +124,7 @@ OneRDMs SelectedRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) {
  *
  *  @return all 2-RDMs given a coefficient vector
  */
-TwoRDMs SelectedRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) {
+TwoRDMs SelectedRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) const {
 
     
     // Initialize as zero matrices

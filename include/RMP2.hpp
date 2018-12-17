@@ -33,7 +33,7 @@ namespace GQCP {
  *
  *  @return the RMP2 energy correction
  */
-double calculateRMP2EnergyCorrection(const GQCP::HamiltonianParameters& ham_par, const GQCP::Molecule& molecule, const GQCP::RHF& rhf);
+double calculateRMP2EnergyCorrection(const HamiltonianParameters& ham_par, const Molecule& molecule, const RHF& rhf);
 
 
 }  // namespace GQCP

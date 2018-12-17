@@ -49,14 +49,12 @@ public:
 
     // OPERATORS
     /**
-     *  Overloading of operator<< for a GQCP::JacobiRotationParameters to be used with streams
-     *
      *  @param os                               the output stream which the parameters should be concatenated to
      *  @param jacobi_rotation_parameters       the parameters that should be concatenated to the output stream
      *
      *  @return the updated output stream
      */
-    friend std::ostream& operator<<(std::ostream& os, const GQCP::JacobiRotationParameters& jacobi_rotation_parameters);
+    friend std::ostream& operator<<(std::ostream& os, const JacobiRotationParameters& jacobi_rotation_parameters);
 
 
     // GETTERS

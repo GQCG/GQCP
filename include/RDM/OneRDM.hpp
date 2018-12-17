@@ -57,7 +57,7 @@ public:
      *
      *  @return if the matrix representation of this 1-RDM is equal to the matrix representation of the other, within the default tolerance specified by isEqualTo()
      */
-    bool operator==(const GQCP::OneRDM& other);
+    bool operator==(const OneRDM& other) const;
 
 
     // PUBLIC METHODS
@@ -67,7 +67,7 @@ public:
      *
      *  @return if the matrix representation of this 1-RDM is equal to the matrix representation of the other, given a tolerance
      */
-    bool isEqualTo(const GQCP::OneRDM& other, double tolerance=1.0e-08) const;
+    bool isEqualTo(const OneRDM& other, double tolerance=1.0e-08) const;
 
     /**
      *  @return the 1-RDM's trace

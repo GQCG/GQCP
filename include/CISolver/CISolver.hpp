@@ -35,7 +35,7 @@ namespace GQCP {
  */
 class CISolver {
 private:
-    HamiltonianBuilder* hamiltonian_builder;
+    const HamiltonianBuilder* hamiltonian_builder;
     HamiltonianParameters hamiltonian_parameters;
 
     std::vector<Eigenpair> eigenpairs;  // eigenvalues and -vectors
@@ -46,7 +46,7 @@ public:
      *  @param hamiltonian_builder      the HamiltonianBuilder for which the CI eigenvalue problem should be solved
      *  @param hamiltonian_parameters   the Hamiltonian parameters in an orthonormal basis
      */
-    CISolver(HamiltonianBuilder& hamiltonian_builder, const HamiltonianParameters& hamiltonian_parameters);
+    CISolver(const HamiltonianBuilder& hamiltonian_builder, const HamiltonianParameters& hamiltonian_parameters);
 
 
     // GETTERS
@@ -60,17 +60,18 @@ public:
      *
      *  Solve the CI eigenvalue problem and set the eigenpairs internally
      */
-    void solve(BaseSolverOptions& solver_options);
+    void solve(const BaseSolverOptions& solver_options);
 
     /**
      *  @param index        the index of the index-th excited state
      *
      *  @return the index-th excited state after solving the CI eigenvalue problem
      */
-    GQCP::WaveFunction get_wavefunction(size_t index = 0);
+    WaveFunction makeWavefunction(size_t index = 0) const;
 };
 
 
 }  // namespace GQCP
+
 
 #endif  // GQCP_CISOLVER_HPP

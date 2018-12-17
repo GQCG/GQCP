@@ -93,7 +93,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31g ) {
     GQCP::DenseSolverOptions solver_options;
     fci_solver.solve(solver_options);
 
-    Eigen::VectorXd coef = fci_solver.get_wavefunction().get_coefficients();
+    Eigen::VectorXd coef = fci_solver.makeWavefunction().get_coefficients();
     GQCP::FCIRDMBuilder fci_rdm_builder (fci_fock_space);
     GQCP::OneRDM one_rdm = fci_rdm_builder.calculate1RDMs(coef).one_rdm;
     Eigen::MatrixXd U = one_rdm.diagonalize();
@@ -143,7 +143,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx ) {
     GQCP::DenseSolverOptions solver_options;
     fci_solver.solve(solver_options);
 
-    Eigen::VectorXd coef = fci_solver.get_wavefunction().get_coefficients();
+    Eigen::VectorXd coef = fci_solver.makeWavefunction().get_coefficients();
     GQCP::FCIRDMBuilder fci_rdm_builder (fci_fock_space);
     GQCP::OneRDM one_rdm = fci_rdm_builder.calculate1RDMs(coef).one_rdm;
     Eigen::MatrixXd U = one_rdm.diagonalize();
@@ -193,7 +193,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx_Davidson ) {
     GQCP::DenseSolverOptions solver_options;
     fci_solver.solve(solver_options);
 
-    Eigen::VectorXd coef = fci_solver.get_wavefunction().get_coefficients();
+    Eigen::VectorXd coef = fci_solver.makeWavefunction().get_coefficients();
     GQCP::FCIRDMBuilder fci_rdm_builder (fci_fock_space);
     GQCP::OneRDM one_rdm = fci_rdm_builder.calculate1RDMs(coef).one_rdm;
     Eigen::MatrixXd U = one_rdm.diagonalize();

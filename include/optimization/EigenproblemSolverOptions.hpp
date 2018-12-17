@@ -50,7 +50,7 @@ public:
 
 
     // PURE VIRTUAL METHODS
-    virtual SolverType get_solver_type() = 0;
+    virtual SolverType get_solver_type() const = 0;
 };
 
 
@@ -61,7 +61,7 @@ public:
 struct DenseSolverOptions : public BaseSolverOptions {
 public:
     // OVERRIDDEN METHODS
-    SolverType get_solver_type () override { return SolverType::DENSE; };
+    SolverType get_solver_type () const override { return SolverType::DENSE; };
 };
 
 
@@ -72,7 +72,7 @@ public:
 struct SparseSolverOptions : public BaseSolverOptions {
 public:
     // OVERRIDDEN METHODS
-    SolverType get_solver_type () override { return SolverType::SPARSE; };
+    SolverType get_solver_type () const override { return SolverType::SPARSE; };
 };
 
 
@@ -83,11 +83,12 @@ public:
 struct DavidsonSolverOptions : public BaseSolverOptions {
 public:
     // MEMBERS
-    double residue_tolerance = 1.0e-08;  // the tolerance on the norm of the residual vector
+    double convergence_threshold = 1.0e-08;  // the tolerance on the norm of the residual vector
     double correction_threshold = 1.0e-12;  // the threshold used in solving the (approximated) residue correction equation
 
     size_t maximum_subspace_dimension = 15;
     size_t collapsed_subspace_dimension = 2;
+    size_t maximum_number_of_iterations = 128;
 
     Eigen::MatrixXd X_0;  // Eigen::MatrixXd of initial guesses, or Eigen::VectorXd of initial guess
 
@@ -102,7 +103,7 @@ public:
 
 
     // OVERRIDDEN METHODS
-    SolverType get_solver_type () override { return SolverType::DAVIDSON; };
+    SolverType get_solver_type () const override { return SolverType::DAVIDSON; };
 };
 
 

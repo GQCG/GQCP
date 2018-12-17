@@ -33,7 +33,7 @@ namespace GQCP {
  *  @param hamiltonian_parameters   the Hubbard Hamiltonian parameters
  *  @param method                   the used method: constructHamiltonian() or matrixVectorProduct()
  */
-void Hubbard::oneOperatorModule(FockSpace& fock_space_target, FockSpace& fock_space_fixed, bool target_is_major, const HamiltonianParameters& hamiltonian_parameters, const PassToMethod& method) {
+void Hubbard::oneOperatorModule(const FockSpace& fock_space_target, const FockSpace& fock_space_fixed, bool target_is_major, const HamiltonianParameters& hamiltonian_parameters, const PassToMethod& method) const {
 
     size_t K = fock_space_target.get_K();
     size_t N = fock_space_target.get_N();
@@ -56,10 +56,10 @@ void Hubbard::oneOperatorModule(FockSpace& fock_space_target, FockSpace& fock_sp
         target_interval = 1;
     }
 
-    ONV onv = fock_space_target.get_ONV(0);  // onv with address 0
+    ONV onv = fock_space_target.makeONV(0);  // onv with address 0
     for (size_t I = 0; I < dim; I++) {  // I loops over all the addresses of the onv
         for (size_t e1 = 0; e1 < N; e1++) {  // e1 (electron 1) loops over the (number of) electrons
-            size_t p = onv.get_occupied_index(e1);  // retrieve the index of a given electron
+            size_t p = onv.get_occupation_index(e1);  // retrieve the index of a given electron
 
             // remove the weight from the initial address I, because we annihilate
             size_t address = I - fock_space_target.get_vertex_weights(p, e1 + 1);
@@ -74,7 +74,7 @@ void Hubbard::oneOperatorModule(FockSpace& fock_space_target, FockSpace& fock_sp
             int sign_e2 = 1;
 
             // Test whether next orbital is occupied, until we reach unoccupied orbital
-            while (e2 < N - 1 && onv.get_occupied_index(e2 + 1) - onv.get_occupied_index(e2) == 1) {
+            while (e2 < N - 1 && onv.get_occupation_index(e2 + 1) - onv.get_occupation_index(e2) == 1) {
                 // Shift the address for the electrons encountered after the annihilation but before the creation
                 // Their currents weights are no longer correct, the corresponding weights can be calculated
                 // initial weight can be found in the addressing scheme, on the index of the orbital (row) and electron count (column)
@@ -82,11 +82,11 @@ void Hubbard::oneOperatorModule(FockSpace& fock_space_target, FockSpace& fock_sp
                 // The nature of the addressing scheme requires us the add 1 to the electron count (because we start with the 0'th electron
                 // And for the initial weight we are at an extra electron (before the annihilation) hence the difference in weight is:
                 // the new weight at (e2+1) position (row) and e2+1 (column) - the old weight at  (e2+1) position (row) and e2+2 (column)
-                address += fock_space_target.get_vertex_weights(onv.get_occupied_index(e2) + 1, e2 + 1) - fock_space_target.get_vertex_weights(onv.get_occupied_index(e2) + 1, e2 + 2);
+                address += fock_space_target.get_vertex_weights(onv.get_occupation_index(e2) + 1, e2 + 1) - fock_space_target.get_vertex_weights(onv.get_occupation_index(e2) + 1, e2 + 2);
                 e2++;  // adding occupied orbitals to the electron count
                 sign_e2 *= -1;  // skipping over non-annihilated electrons will cause a phase change
             }
-            size_t q = onv.get_occupied_index(e2) + 1;
+            size_t q = onv.get_occupation_index(e2) + 1;
             e2++;
             while (q < K) {
                 size_t J = address + fock_space_target.get_vertex_weights(q, e2);
@@ -103,16 +103,16 @@ void Hubbard::oneOperatorModule(FockSpace& fock_space_target, FockSpace& fock_sp
 
                 // if we encounter an occupied orbital, perform the shift, and test whether the following orbitals are occupied (or not)
                 // then proceed to set q to the next non-occupied orbital.
-                if (e2 < N && q == onv.get_occupied_index(e2)) {
+                if (e2 < N && q == onv.get_occupation_index(e2)) {
                     address += fock_space_target.get_vertex_weights(q, e2) - fock_space_target.get_vertex_weights(q, e2 + 1);
                     sign_e2 *= -1;
-                    while (e2 < N - 1 && onv.get_occupied_index(e2 + 1) - onv.get_occupied_index(e2) == 1) {
+                    while (e2 < N - 1 && onv.get_occupation_index(e2 + 1) - onv.get_occupation_index(e2) == 1) {
                         // see previous
-                        address += fock_space_target.get_vertex_weights(onv.get_occupied_index(e2) + 1, e2 + 1) - fock_space_target.get_vertex_weights(onv.get_occupied_index(e2) + 1, e2 + 2);
+                        address += fock_space_target.get_vertex_weights(onv.get_occupation_index(e2) + 1, e2 + 1) - fock_space_target.get_vertex_weights(onv.get_occupation_index(e2) + 1, e2 + 2);
                         e2++;
                         sign_e2 *= -1;
                     }
-                    q = onv.get_occupied_index(e2) + 1;
+                    q = onv.get_occupation_index(e2) + 1;
                     e2++;
                 }
             }  //  (creation)
@@ -121,7 +121,7 @@ void Hubbard::oneOperatorModule(FockSpace& fock_space_target, FockSpace& fock_sp
 
         // Prevent last permutation
         if (I < dim - 1) {
-            fock_space_target.setNext(onv);
+            fock_space_target.setNextONV(onv);
         }
     }
 
@@ -151,7 +151,7 @@ Hubbard::Hubbard(const ProductFockSpace& fock_space) :
  *
  *  @return the Hubbard Hamiltonian matrix
  */
-Eigen::MatrixXd Hubbard::constructHamiltonian(const HamiltonianParameters& hamiltonian_parameters) {
+Eigen::MatrixXd Hubbard::constructHamiltonian(const HamiltonianParameters& hamiltonian_parameters) const {
     auto K = hamiltonian_parameters.get_h().get_dim();
     if (K != this->fock_space.get_K()) {
         throw std::invalid_argument("Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
@@ -185,7 +185,7 @@ Eigen::MatrixXd Hubbard::constructHamiltonian(const HamiltonianParameters& hamil
  *
  *  @return the action of the Hubbard Hamiltonian on the coefficient vector
  */
-Eigen::VectorXd Hubbard::matrixVectorProduct(const HamiltonianParameters& hamiltonian_parameters, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) {
+Eigen::VectorXd Hubbard::matrixVectorProduct(const HamiltonianParameters& hamiltonian_parameters, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) const {
 
     auto K = hamiltonian_parameters.get_h().get_dim();
     if (K != this->fock_space.get_K()) {
@@ -215,7 +215,7 @@ Eigen::VectorXd Hubbard::matrixVectorProduct(const HamiltonianParameters& hamilt
  *
  *  @return the diagonal of the matrix representation of the Hubbard Hamiltonian
  */
-Eigen::VectorXd Hubbard::calculateDiagonal(const HamiltonianParameters &hamiltonian_parameters) {
+Eigen::VectorXd Hubbard::calculateDiagonal(const HamiltonianParameters &hamiltonian_parameters) const {
 
     auto K = hamiltonian_parameters.get_h().get_dim();
     if (K != this->fock_space.get_K()) {
@@ -232,10 +232,10 @@ Eigen::VectorXd Hubbard::calculateDiagonal(const HamiltonianParameters &hamilton
     // Diagonal contributions
     Eigen::VectorXd diagonal = Eigen::VectorXd::Zero(dim);
 
-    ONV onv_alpha = fock_space_alpha.get_ONV(0);
-    ONV onv_beta =  fock_space_beta.get_ONV(0);
+    ONV onv_alpha = fock_space_alpha.makeONV(0);
+    ONV onv_beta =  fock_space_beta.makeONV(0);
     for (size_t Ia = 0; Ia < dim_alpha; Ia++) {  // Ia loops over addresses of alpha onvs
-        fock_space_beta.set(onv_beta, 0);
+        fock_space_beta.transformONV(onv_beta, 0);
         for (size_t Ib = 0; Ib < dim_beta; Ib++) {  // Ib loops over addresses of beta onvs
             size_t address = Ia * dim_beta + Ib;
             // find all double occupations
@@ -244,56 +244,17 @@ Eigen::VectorXd Hubbard::calculateDiagonal(const HamiltonianParameters &hamilton
                 diagonal(address) += hamiltonian_parameters.get_g()(p,p,p,p);
             }
             if (Ib < dim_beta - 1) {  // prevent last permutation to occur
-                fock_space_beta.setNext(onv_beta);
+                fock_space_beta.setNextONV(onv_beta);
             }
         }  // beta address (Ib) loop
         if (Ia < dim_alpha - 1) {  // prevent last permutation to occur
-            fock_space_alpha.setNext(onv_alpha);
+            fock_space_alpha.setNextONV(onv_alpha);
         }
     }  // alpha address (Ia) loop
     return diagonal;
 
 }
 
-
-/*
- *  HELPER METHODS
- */
-
-/**
- *  Generate the upper triagonal as a vector for a Hubbard lattice
- *
- *  @param A        the adjacency matrix that represents the allowed interaction between sites
- *  @param t        the one-electron hopping interaction parameter
- *  @param U        the two-electron interaction parameter
- *
- *  @return the upper triagonal as a vector of the hopping matrix generated from the adjacency matrix and the Hubbard parameters t and U
- */
-Eigen::VectorXd generateUpperTriagonal(Eigen::MatrixXd A, double t, double U) {
-
-    // Check if the hopping matrix is represented as a square matrix
-    if (A.cols() != A.rows()) {
-        throw std::invalid_argument("The adjacency matrix has to be represented as a square matrix.");
-    }
-
-    size_t K = A.cols();
-    size_t length = (K * (K+1))/2;  // formula for the length of the triagonal (in one vector)
-    Eigen::VectorXd triagonal = Eigen::VectorXd::Zero(length);
-
-    size_t index = 0;
-    for (size_t i = 0; i < K; i++) {
-        for (size_t j = i; j < K; j++) {
-            if (i == j) {
-                triagonal(index) = U;
-            } else {
-                triagonal(index) = t * A(i,j);
-            }
-            index++;
-        }
-    }
-
-    return triagonal;
-}
 
 
 }  // namespace GQCP
