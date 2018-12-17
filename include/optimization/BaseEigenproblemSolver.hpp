@@ -57,7 +57,7 @@ public:
     // GETTERS
     bool is_solved() const { return this->_is_solved; }
 
-    std::vector<Eigenpair> get_eigenpairs() const;
+    const std::vector<Eigenpair>& get_eigenpairs() const;
 
     /**
      *  @param i        the index for the i-th lowest eigenpair

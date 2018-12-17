@@ -43,7 +43,7 @@ BaseEigenproblemSolver::BaseEigenproblemSolver(size_t dim, size_t number_of_requ
  *  GETTERS
  */
 
-std::vector<Eigenpair> BaseEigenproblemSolver::get_eigenpairs() const {
+const std::vector<Eigenpair>& BaseEigenproblemSolver::get_eigenpairs() const {
 
     if (this->_is_solved) {
         return this->eigenpairs;
