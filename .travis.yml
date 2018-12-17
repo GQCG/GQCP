@@ -22,7 +22,6 @@ cache:
     directories:
         - $HOME/miniconda
         - $HOME/download
-        - /tmp/libint
 
 before_install:
     # Install Miniconda
@@ -33,12 +32,20 @@ before_install:
         rm -rf $HOME/miniconda;
         mkdir -p $HOME/download;
         if [[ "${TRAVIS_PYTHON_VERSION}" == "2.7" ]]; then
-            wget wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O $HOME/download/miniconda.sh;
+            wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O $HOME/download/miniconda.sh;
         else
             wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O $HOME/download/miniconda.sh;
         fi;
         bash $HOME/download/miniconda.sh -b -p ${HOME}/miniconda;
       fi
+
+    # Add headers and libraries to path
+    - export CONDA_HOME=${HOME}/miniconda
+    - export C_INCLUDE_PATH=${C_INCLUDE_PATH}:${CONDA_HOME}/include
+    - export CPLUS_INCLUDE_PATH=${CPLUS_INCLUDE_PATH}:${CONDA_HOME}/include
+    - export LIBRARY_PATH=${LIBRARY_PATH}:${CONDA_HOME}/lib
+    - export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${CONDA_HOME}/lib
+    - export DYLD_FALLBACK_LIBRARY_PATH=${DYLD_FALLBACK_LIBRARY_PATH}:${CONDA_HOME}/lib
 
 # Install general dependencies
 install:
@@ -51,34 +58,12 @@ install:
     # Install a recent version of CMake, Boost and eigen if they are not yet already installed.
     - if [ ! -f $HOME/miniconda/bin/cmake ]; then
         conda install -c conda-forge cmake boost-cpp eigen;
+        conda install -c gqcg libint;
       else
         echo "Using already installed packages.";
       fi
     - export BOOST_ROOT=${HOME}/miniconda/include
-
-    # We can't install libint2 (2.2.0+) through APT.
-    # Since compiling libint2 takes around 15 minutes on Travis, it is a good idea to cache it (see also below)
-    - |
-        if [ ! -d /tmp/libint/libint-2.3.1 ]; then
-           mkdir -p /tmp/libint && cd /tmp/libint
-           curl -OL "https://github.com/evaleev/libint/archive/v2.3.1.tar.gz"
-           tar -xvzf v2.3.1.tar.gz
-           cd libint-2.3.1
-           ./autogen.sh
-           mkdir build && cd build
-           ../configure CXXFLAGS=-I${BOOST_ROOT} --enable-shared=yes
-           make export
-           tar -xvzf libint-2.3.1.tgz
-           cd libint-2.3.1
-           ./configure CXXFLAGS=-I${BOOST_ROOT} --enable-shared=yes
-           make -j3
-           sudo make install
-        else
-          cd /tmp/libint/libint-2.3.1/build/libint-2.3.1
-          sudo make install
-        fi
-    - export LIBINT_DATA_PATH=/usr/local/libint/2.3.1/share/libint/2.3.1/basis
-
+    - export LIBINT_DATA_PATH=${HOME}/miniconda/share/libint/2.3.1/basis
 
     # Install google benchmark
     - mkdir /tmp/bench && cd /tmp/bench

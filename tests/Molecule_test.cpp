@@ -17,11 +17,10 @@
 // 
 #define BOOST_TEST_MODULE "Molecule"
 
-
-#include "Molecule.hpp"
-
 #include <boost/test/unit_test.hpp>
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise clang++ will complain
+
+#include "Molecule.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( constructor_atoms_charge ) {

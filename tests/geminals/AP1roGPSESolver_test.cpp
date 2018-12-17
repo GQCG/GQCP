@@ -16,6 +16,8 @@
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
 #define BOOST_TEST_MODULE "AP1roGPSESolver"
+#include <boost/test/unit_test.hpp>
+#include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
 
 #include "geminals/AP1roGPSESolver.hpp"
 //#include "AP1roG/AP1roGGeminalCoefficients.hpp"
@@ -23,8 +25,6 @@
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
 
-#include <boost/test/unit_test.hpp>
-#include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
 
 
 BOOST_AUTO_TEST_CASE ( constructor ) {

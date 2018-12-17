@@ -18,15 +18,15 @@
 #define BOOST_TEST_MODULE "TwoElectronOperator"
 
 
+#include <boost/test/unit_test.hpp>
+#include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
+
 #include "Operator/TwoElectronOperator.hpp"
 
 #include "utilities/io.hpp"
 #include "utilities/linalg.hpp"
 
 #include "utilities/miscellaneous.hpp"
-
-#include <boost/test/unit_test.hpp>
-#include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
 
 
 BOOST_AUTO_TEST_CASE ( TwoElectronOperator_constructor ) {

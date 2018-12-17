@@ -17,13 +17,13 @@
 // 
 #define BOOST_TEST_MODULE "DavidsonSolver"
 
+#include <boost/test/unit_test.hpp>
+#include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
+
 #include "optimization/DavidsonSolver.hpp"
 
 #include "utilities/linalg.hpp"
 
-
-#include <boost/test/unit_test.hpp>
-#include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
 
 
 

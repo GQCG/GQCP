@@ -17,12 +17,11 @@
 // 
 #define BOOST_TEST_MODULE "WaveFunction"
 
-#include "WaveFunction/WaveFunction.hpp"
-#include "FockSpace/FockSpace.hpp"
-
 #include <boost/test/unit_test.hpp>
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
 
+#include "WaveFunction/WaveFunction.hpp"
+#include "FockSpace/FockSpace.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( shannon_entropy ) {
