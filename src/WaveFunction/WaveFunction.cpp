@@ -30,7 +30,7 @@ namespace GQCP {
  *  @param coefficients         the expansion coefficients
  */
 WaveFunction::WaveFunction(const BaseFockSpace& base_fock_space, const Eigen::VectorXd& coefficients) :
-    fock_space (&base_fock_space),
+    fock_space (BaseFockSpace::HeapFockSpace(base_fock_space)),
     coefficients (coefficients)
 {}
 

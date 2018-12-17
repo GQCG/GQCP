@@ -15,8 +15,12 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "FockSpace/BaseFockSpace.hpp"
+#include <FockSpace/BaseFockSpace.hpp>
 
+#include "FockSpace/BaseFockSpace.hpp"
+#include "FockSpace/FockSpace.hpp"
+#include "FockSpace/ProductFockSpace.hpp"
+#include "FockSpace/SelectedFockSpace.hpp"
 
 namespace GQCP {
 
@@ -34,6 +38,37 @@ BaseFockSpace::BaseFockSpace(size_t K, size_t dim) :
 {}
 
 
+std::shared_ptr<BaseFockSpace> BaseFockSpace::HeapFockSpace(const BaseFockSpace& fock_space) {
+
+    if (fock_space.is_on_heap){
+        //std::shared_ptr<BaseFockSpace> f (&fock_space);
+        //return f;
+        std::invalid_argument("Passed address of a shared heap fock space");
+    }
+
+    std::shared_ptr<BaseFockSpace> fock_space_ptr;
+
+    switch (fock_space.get_type()){
+
+        case FockSpaceType::FockSpace: {
+            fock_space_ptr = std::make_shared<FockSpace>(FockSpace(dynamic_cast<const FockSpace&>(fock_space)));
+            break;
+        }
+
+        case FockSpaceType::ProductFockSpace: {
+            fock_space_ptr = std::make_shared<ProductFockSpace>(ProductFockSpace(dynamic_cast<const ProductFockSpace&>(fock_space)));
+            break;
+        }
+
+        case FockSpaceType::SelectedFockSpace: {
+            fock_space_ptr = std::make_shared<SelectedFockSpace>(SelectedFockSpace(dynamic_cast<const SelectedFockSpace&>(fock_space)));
+            break;
+        }
+    }
+
+    fock_space_ptr->is_on_heap = true;
+    return fock_space_ptr;
+}
 
 /*
  *  DESTRUCTOR
@@ -78,6 +113,7 @@ Eigen::VectorXd BaseFockSpace::constantExpansion() const {
     constant.normalize();
     return constant;
 }
+
 
 
 }  // namespace GQCP

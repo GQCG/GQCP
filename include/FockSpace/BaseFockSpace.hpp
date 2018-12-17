@@ -33,6 +33,7 @@ namespace GQCP {
  */
 class BaseFockSpace {
 protected:
+    bool is_on_heap = false;
     size_t K;  // number of spatial orbitals
     size_t dim;  // dimension of the Fock space
 
@@ -74,6 +75,10 @@ public:
      *  @return a constant normalized coefficients vector (i.e. all the coefficients are equal)
      */
     Eigen::VectorXd constantExpansion() const;
+
+
+    // STATIC SHARED HEAP CONSTRUCTOR
+    static std::shared_ptr<BaseFockSpace> HeapFockSpace(const BaseFockSpace& fock_space);
 };
 
 
