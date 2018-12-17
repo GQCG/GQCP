@@ -17,6 +17,9 @@
 // 
 #define BOOST_TEST_MODULE "expectation_values"
 
+#include <boost/test/unit_test.hpp>
+#include <boost/test/included/unit_test.hpp>
+
 #include "properties/expectation_values.hpp"
 
 #include "RDM/RDMCalculator.hpp"
@@ -27,9 +30,6 @@
 #include "RHF/PlainRHFSCFSolver.hpp"
 #include "LibintCommunicator.hpp"
 #include "units.hpp"
-
-#include <boost/test/unit_test.hpp>
-#include <boost/test/included/unit_test.hpp>
 
 
 BOOST_AUTO_TEST_CASE ( one_electron_throw ) {

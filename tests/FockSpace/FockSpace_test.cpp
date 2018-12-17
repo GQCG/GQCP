@@ -16,13 +16,13 @@
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
 #define BOOST_TEST_MODULE "FockSpace"
+#include <boost/test/unit_test.hpp>
+#include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
 
 
 #include "FockSpace/FockSpace.hpp"
 
 
-#include <boost/test/unit_test.hpp>
-#include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
 
 
 BOOST_AUTO_TEST_CASE ( FockSpace_constructor ) {

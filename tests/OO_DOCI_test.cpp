@@ -17,6 +17,9 @@
 // 
 #define BOOST_TEST_MODULE "DOCI_orbital_optimization_test"
 
+#include <boost/test/unit_test.hpp>
+#include <boost/test/included/unit_test.hpp>
+
 #include "DOCINewtonOrbitalOptimizer.hpp"
 
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
@@ -25,10 +28,6 @@
 #include "RHF/PlainRHFSCFSolver.hpp"
 #include "RDM/FCIRDMBuilder.hpp"
 #include "CISolver/CISolver.hpp"
-
-#include <boost/test/unit_test.hpp>
-#include <boost/test/included/unit_test.hpp>
-
 
 // dim = 2 for DOCI
 BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_sto_3g ) {

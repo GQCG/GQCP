@@ -18,11 +18,11 @@
 #define BOOST_TEST_MODULE "ONV"
 
 
-#include "FockSpace/ONV.hpp"
-#include "FockSpace/FockSpace.hpp"
-
 #include <boost/test/unit_test.hpp>
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise clang++ will complain
+
+#include "FockSpace/ONV.hpp"
+#include "FockSpace/FockSpace.hpp"
 
 
 

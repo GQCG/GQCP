@@ -16,6 +16,8 @@
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
 #define BOOST_TEST_MODULE "OO-AP1roG"
+#include <boost/test/unit_test.hpp>
+#include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
 
 #include "geminals/AP1roGJacobiOrbitalOptimizer.hpp"
 
@@ -23,8 +25,6 @@
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
 
-#include <boost/test/unit_test.hpp>
-#include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
 
 
 

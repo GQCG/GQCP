@@ -18,10 +18,10 @@
 #define BOOST_TEST_MODULE "TwoRDM"
 
 
-#include "RDM/TwoRDM.hpp"
-
 #include <boost/test/unit_test.hpp>
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
+
+#include "RDM/TwoRDM.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( TwoRDM_constructor ) {

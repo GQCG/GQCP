@@ -17,6 +17,9 @@
 // 
 #define BOOST_TEST_MODULE "ConstrainedDociSolver"
 
+#include <boost/test/unit_test.hpp>
+#include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
+
 
 #include "CISolver/CISolver.hpp"
 #include "RDM/RDMCalculator.hpp"
@@ -25,9 +28,6 @@
 #include "RHF/PlainRHFSCFSolver.hpp"
 #include "RHF/DIISRHFSCFSolver.hpp"
 #include "properties/expectation_values.hpp"
-
-#include <boost/test/unit_test.hpp>
-#include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
 
 
 BOOST_AUTO_TEST_CASE ( CO_DOCI_constrained_dense ) {
