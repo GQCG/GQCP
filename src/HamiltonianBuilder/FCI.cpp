@@ -393,10 +393,10 @@ std::vector<Eigen::SparseMatrix<double>> FCI::aaa() {
     size_t N = alpha.get_N();
     size_t dim = alpha.get_dimension();
 
-    std::vector<std::vector<Eigen::Triplet<double>>> sparseEntries(K*K);
-    std::vector<Eigen::SparseMatrix<double>> matrixes(K*K, Eigen::SparseMatrix<double>(dim, dim));
+    std::vector<std::vector<Eigen::Triplet<double>>> sparseEntries(K*(K+1)/2);
+    std::vector<Eigen::SparseMatrix<double>> matrixes(K*(K+1)/2, Eigen::SparseMatrix<double>(dim, dim));
     for (std::vector<Eigen::Triplet<double>>& reserver : sparseEntries) {
-        reserver.reserve(1+N*(K-N));
+        reserver.reserve(2*(1+N*(K-N)));
     }
 
 
@@ -409,7 +409,7 @@ std::vector<Eigen::SparseMatrix<double>> FCI::aaa() {
             // The e2 iteration counts the amount of encountered electrons for the creation operator
             // We only consider greater addresses than the initial one (because of symmetry)
             // Hence we only count electron after the annihilated electron (e1)
-            sparseEntries[p*K+p].emplace_back(I, I, 1);
+            sparseEntries[p*(K+K+1-p)/2].emplace_back(I, I, 1);
             size_t e2 = e1 + 1;
             size_t q = p + 1;
             int sign_e2 = 1;
@@ -419,8 +419,8 @@ std::vector<Eigen::SparseMatrix<double>> FCI::aaa() {
             while (q < K) {
                 size_t J = address + alpha.get_vertex_weights(q, e2);
 
-                sparseEntries[p*K+q].emplace_back(I, J, sign_e2);
-                sparseEntries[q*K+p].emplace_back(J, I, sign_e2);
+                sparseEntries[p*(K+K+1-p)/2 + q - p].emplace_back(I, J, sign_e2);
+                sparseEntries[p*(K+K+1-p)/2 + q - p].emplace_back(J, I, sign_e2);
 
                 q++; // go to the next orbital
                 dex++;
@@ -439,7 +439,7 @@ std::vector<Eigen::SparseMatrix<double>> FCI::aaa() {
     }
 
 
-    for (size_t k = 0; k < K*K ; k++){
+    for (size_t k = 0; k < K*(K+1)/2 ; k++){
         matrixes[k].setFromTriplets(sparseEntries[k].begin(), sparseEntries[k].end());
     }
 
@@ -710,98 +710,22 @@ Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters& hamiltonia
             beta_resolved[p*(K+K+1-p)/2] = bbb(p,p, hamiltonian_parameters);
             for (size_t q = p + 1; q < K; q++) {
                 beta_resolved[p*(K+K+1-p)/2 + q - p] = bbb(p,q, hamiltonian_parameters);
-
-
-            }
-        }
-
-
-
-
-    }
-
-
-
-
-    /*
-    triplet_vector.reserve(fock_space_beta.totalTwoElectronCouplingCount());
-    for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {  // loop over alpha addresses
-
-        for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {  // loop over beta addresses
-            for (const auto &alpha : this->alpha_one_electron_couplings2[I_alpha]) {
-                for (const auto &creaa : alpha.creationCouples) {
-                    for (const auto &beta : this->beta_one_electron_couplings2[I_beta]) {
-                        for (const auto &creab : beta.creationCouples) {
-                            // A-B
-                            int sign = creaa.sign * creab.sign;
-                            const double gg = hamiltonian_parameters.get_g()(alpha.p, creaa.q, beta.p, creab.q);
-                            matvecmap(I_alpha, I_beta) += sign * gg * xmap(creaa.address, creab.address);
-                            matvecmap(creaa.address, creab.address) += sign * gg * xmap(I_alpha, I_beta);
-                            matvecmap(creaa.address, I_beta) += sign * gg * xmap(I_alpha, creab.address);
-                            matvecmap(I_alpha, creab.address) += sign * gg * xmap(creaa.address, I_beta);
-
-                        }
-                        // A-B DIAG
-                        const double gg2 = hamiltonian_parameters.get_g()(alpha.p, creaa.q, beta.p, beta.p);
-                        matvecmap(I_alpha, I_beta) += creaa.sign * gg2 * xmap(creaa.address, I_beta);
-                        matvecmap(creaa.address, I_beta) += creaa.sign * gg2 * xmap(I_alpha, I_beta);
-                    }
-                }
-
-                // A-B DIAG
-                for (const auto &beta : this->beta_one_electron_couplings2[I_beta]) {
-                    for (const auto &creab : beta.creationCouples) {
-                        const double gg2 = hamiltonian_parameters.get_g()(alpha.p, alpha.p, beta.p, creab.q);
-
-                        matvecmap(I_alpha, I_beta) += creab.sign * gg2 * xmap(I_alpha, creab.address);
-                        matvecmap(I_alpha, creab.address) += creab.sign * gg2 * xmap(I_alpha, I_beta);
-
-                    }
-                }
-            }
-        }
-    }
-    */
-
-    /*
-    for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {  // loop over alpha addresses
-        for (const auto &alpha : this->alpha_one_electron_couplings2[I_alpha]) {
-            for (const auto &creaa : alpha.creationCouples) {
-                for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {
-                    for (const auto &beta : this->beta_one_electron_couplings2[I_beta]) {
-                        for (const auto &creab : beta.creationCouples) {
-                            // A-B
-                            int sign = creaa.sign * creab.sign;
-                            const double gg = hamiltonian_parameters.get_g()(alpha.p, creaa.q, beta.p, creab.q);
-                            matvecmap(I_alpha, I_beta) += sign * gg * xmap(creaa.address, creab.address);
-                            matvecmap(creaa.address, creab.address) += sign * gg * xmap(I_alpha, I_beta);
-                            matvecmap(creaa.address, I_beta) += sign * gg * xmap(I_alpha, creab.address);
-                            matvecmap(I_alpha, creab.address) += sign * gg * xmap(creaa.address, I_beta);
-                        }
-                    }
-                }
             }
         }
     }
 
-    */
 
-    Eigen::SparseMatrix<double> basf(dim_beta,dim_beta);
+
     for (size_t p = 0; p<K; p++) {
-        matvecmap.noalias() += alpha_resolved[p*K + p] * xmap * beta_resolved[p*(K+K+1-p)/2];
+        matvecmap.noalias() += alpha_resolved[p*(K+K+1-p)/2] * xmap * beta_resolved[p*(K+K+1-p)/2];
         for (size_t q = p + 1; q<K; q++) {
-            basf = beta_resolved[p*(K+K+1-p)/2 + q - p];
-            matvecmap.noalias() += alpha_resolved[p*K + q] * xmap * basf;
-            matvecmap.noalias() += alpha_resolved[q*K + p] * xmap * basf;
+            matvecmap.noalias() += alpha_resolved[p*(K+K+1-p)/2 + q - p] * xmap * beta_resolved[p*(K+K+1-p)/2];
         }
     }
 
 
 
     matvecmap.noalias() += alpha_ev * xmap + xmap * beta_ev;
-
-
-    //matvecmap.noalias() += alpha_ev * xmap;
 
     return matvec;
 }
