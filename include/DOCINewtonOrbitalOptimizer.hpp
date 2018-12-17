@@ -73,7 +73,7 @@ public:
      *
      *  @return the index-th excited state after doing the OO-DOCI calculation
      */
-    WaveFunction get_wavefunction(size_t index = 0) const;
+    WaveFunction makeWavefunction(size_t index = 0) const;
 };
 
 

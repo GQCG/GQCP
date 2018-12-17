@@ -67,7 +67,7 @@ public:
      *
      *  @return the index-th excited state after solving the CI eigenvalue problem
      */
-    WaveFunction get_wavefunction(size_t index = 0);
+    WaveFunction makeWavefunction(size_t index = 0) const;
 };
 
 

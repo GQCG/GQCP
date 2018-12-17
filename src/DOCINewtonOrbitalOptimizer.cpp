@@ -83,7 +83,7 @@ void DOCINewtonOrbitalOptimizer::solve(BaseSolverOptions& solver_options, const 
         // Solve the DOCI eigenvalue equation, using the options provided
         CISolver doci_solver (this->doci, this->ham_par);  // update the CI solver with the rotated Hamiltonian parameters
         doci_solver.solve(solver_options);
-        WaveFunction ground_state = doci_solver.get_wavefunction();
+        WaveFunction ground_state = doci_solver.makeWavefunction();
 
         // Calculate the 1- and 2-RDMs
         RDMCalculator rdm_calculator (*(this->doci.get_fock_space()));
@@ -168,7 +168,7 @@ void DOCINewtonOrbitalOptimizer::solve(BaseSolverOptions& solver_options, const 
             auto davidson_solver_options = dynamic_cast<DavidsonSolverOptions&>(solver_options);
 
             for (size_t i = 0; i < solver_options.number_of_requested_eigenpairs; i++) {
-                davidson_solver_options.X_0.col(i) = doci_solver.get_wavefunction(i).get_coefficients();
+                davidson_solver_options.X_0.col(i) = doci_solver.makeWavefunction(i).get_coefficients();
             }
 
             solver_options = davidson_solver_options;
@@ -182,7 +182,7 @@ void DOCINewtonOrbitalOptimizer::solve(BaseSolverOptions& solver_options, const 
  *
  *  @return the index-th excited state after doing the OO-DOCI calculation
  */
-WaveFunction DOCINewtonOrbitalOptimizer::get_wavefunction(size_t index) const {
+WaveFunction DOCINewtonOrbitalOptimizer::makeWavefunction(size_t index) const {
     if (index > this->eigenpairs.size()) {
         throw std::logic_error("Not enough requested eigenpairs for the given index.");
     }
