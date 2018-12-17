@@ -5,7 +5,7 @@
 # To specify that this target should also be exported, we add the EXPORT option. This is used in conjuction with the install(EXPORT) command below
 install(TARGETS ${LIBRARY_NAME}
         EXPORT ${LIBRARY_NAME} ${EXPORT_TYPE}
-        DESTINATION ${LIBRARY_INSTALL_DIR})
+        LIBRARY DESTINATION ${LIBRARY_INSTALL_DIR})
 
 
 # Parse the version.hpp.in (input - .in) file (this replaces all @VAR@ by their CMake value)
