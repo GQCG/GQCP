@@ -1,6 +1,6 @@
 # drivers-level CMakeLists.txt
 
-foreach(DRIVER_SOURCE ${PROJECT_DRIVER_SOURCE_FILES})
+foreach(DRIVER_SOURCE ${PROJECT_DRIVERS_SOURCE_FILES})
     # Extract the filename without extension (NAME_WE) as a name for our executable
     get_filename_component(DRIVER_NAME ${DRIVER_SOURCE} NAME_WE)
 
