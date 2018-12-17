@@ -798,7 +798,7 @@ Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters& hamiltonia
 
 
 
-    matvecmap.noalias() += alpha_ev * xmap * beta_ev;
+    matvecmap.noalias() += alpha_ev * xmap + xmap * beta_ev;
 
 
     //matvecmap.noalias() += alpha_ev * xmap;
