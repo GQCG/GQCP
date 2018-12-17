@@ -267,7 +267,13 @@ size_t FockSpace::oneElectronCouplingCount(ONV &onv) {
  *  @return the amount non-zero couplings of a two electron coupling scheme in the Fock space
  */
 size_t FockSpace::totalTwoElectronCouplingCount() {
-    return (calculateDimension(K-N, 2)*N*(N-1)*(dim))/2 + totalOneElectronCouplingCount();
+    size_t two_electron_permutation = 0;
+
+    if (K-N >= 2) {
+        two_electron_permutation = calculateDimension(K-N, 2)*N*(N-1)*(dim)/2;
+    }
+
+    return two_electron_permutation + totalOneElectronCouplingCount();
 
 }
 
