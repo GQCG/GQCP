@@ -35,6 +35,11 @@ endif()
 # Set CMake variables
 include(${CMAKE_SOURCE_DIR}/cmake/SetCMakeEnvironment.cmake)
 
+# From RPATH to full installation path
+# https://stackoverflow.com/questions/30398238/cmake-rpath-not-working-could-not-find-shared-object-file
+set(CMAKE_INSTALL_RPATH "${LIBRARY_INSTALL_DIR}")
+set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+
 message(STATUS "Building ${LIBRARY_NAME} in ${CMAKE_BUILD_TYPE} mode")
 
 # Find all required packages. Update CMake's MODULE_PATH to let CMake know that we have supplied our own FindXXX.cmake files in the cmake/Find directory
@@ -55,3 +60,6 @@ endif(BUILD_BENCHMARKS)
 # Set up testing
 enable_testing()
 add_subdirectory(${PROJECT_TESTS_FOLDER})
+
+
+
