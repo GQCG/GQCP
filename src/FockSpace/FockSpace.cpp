@@ -146,7 +146,7 @@ FockSpace::FockSpace(size_t K, size_t N) :
      */
 
     /**
-     *  Move the iterator forward
+     *  Move the iterator forward (pre-increment)
      *
      *  @return a reference to the updated iterator
      */
@@ -312,10 +312,11 @@ FockSpace::Iterator FockSpace::begin() {
 
 
 /**
- *  @return an iterator pointing ad the last ONV in the Fock space
+ *  @return an iterator pointing at the last ONV in the Fock space
  */
 FockSpace::Iterator FockSpace::end() {
-    size_t address = this->dim - 1;
+    size_t address = this->dim;  // this is an 'invalid' address (i.e. there is no ONV corresponding to this address), but the Iterator design requires .end() to be an iterator following the last element
+    ONV onv = this->makeONV(0);  // placeholder ONV
     return FockSpace::Iterator(*this, address);
 }
 
