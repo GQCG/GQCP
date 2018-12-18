@@ -14,8 +14,11 @@
 // 
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 #include "FockSpace/BaseFockSpace.hpp"
+#include "FockSpace/FockSpace.hpp"
+#include "FockSpace/ProductFockSpace.hpp"
+#include "FockSpace/SelectedFockSpace.hpp"
 
 
 namespace GQCP {
@@ -32,6 +35,44 @@ BaseFockSpace::BaseFockSpace(size_t K, size_t dim) :
     K (K),
     dim (dim)
 {}
+
+
+
+/*
+ *  NAMED CONSTRUCTORS
+ */
+
+/**
+ *  Clones a derived BaseFockSpace instance to the heap memory
+ *
+ *  @param fock_space     reference to a derived BaseFockSpace instance to be cloned.
+ *
+ *  @return a shared pointer owning the heap-cloned Fock space
+ */
+std::shared_ptr<BaseFockSpace> BaseFockSpace::CloneToHeap(const BaseFockSpace& fock_space) {
+
+    std::shared_ptr<BaseFockSpace> fock_space_ptr;
+
+    switch (fock_space.get_type()) {
+
+        case FockSpaceType::FockSpace: {
+            fock_space_ptr = std::make_shared<FockSpace>(FockSpace(dynamic_cast<const FockSpace&>(fock_space)));
+            break;
+        }
+
+        case FockSpaceType::ProductFockSpace: {
+            fock_space_ptr = std::make_shared<ProductFockSpace>(ProductFockSpace(dynamic_cast<const ProductFockSpace&>(fock_space)));
+            break;
+        }
+
+        case FockSpaceType::SelectedFockSpace: {
+            fock_space_ptr = std::make_shared<SelectedFockSpace>(SelectedFockSpace(dynamic_cast<const SelectedFockSpace&>(fock_space)));
+            break;
+        }
+    }
+
+    return fock_space_ptr;
+}
 
 
 
@@ -78,6 +119,7 @@ Eigen::VectorXd BaseFockSpace::constantExpansion() const {
     constant.normalize();
     return constant;
 }
+
 
 
 }  // namespace GQCP

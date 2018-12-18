@@ -20,7 +20,7 @@
 
 
 #include "FockSpace/BaseFockSpace.hpp"
-
+#include <memory.h>
 #include "common.hpp"
 
 
@@ -33,7 +33,7 @@ namespace GQCP {
  */
 class WaveFunction {
 private:
-    const BaseFockSpace* fock_space;
+    std::shared_ptr<BaseFockSpace> fock_space;
     Eigen::VectorXd coefficients;  // Expansion coefficients of a wave function in the Fock space
 
 public:
