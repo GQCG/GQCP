@@ -22,6 +22,8 @@
 #include "ONV.hpp"
 #include "FockSpace/FockSpaceType.hpp"
 #include "common.hpp"
+#include <memory.h>
+
 
 
 
@@ -33,7 +35,6 @@ namespace GQCP {
  */
 class BaseFockSpace {
 protected:
-    bool is_on_heap = false;
     size_t K;  // number of spatial orbitals
     size_t dim;  // dimension of the Fock space
 
@@ -47,6 +48,17 @@ protected:
     BaseFockSpace(size_t K, size_t dim);
 
 public:
+    // NAMED CONSTRUCTORS
+    /**
+     *  Clones a derivation of the BaseFockSpace to the heap memory
+     *
+     *  @param fock_space     reference to a derived BaseFockSpace instance to be cloned.
+     *
+     *  @return shared pointer owning the heap cloned fock space
+     */
+    static std::shared_ptr<BaseFockSpace> CloneToHeap(const BaseFockSpace& fock_space);
+
+
     // DESTRUCTOR
     /**
      *  Provide a pure virtual destructor to make the class abstract
@@ -75,10 +87,6 @@ public:
      *  @return a constant normalized coefficients vector (i.e. all the coefficients are equal)
      */
     Eigen::VectorXd constantExpansion() const;
-
-
-    // STATIC SHARED HEAP CONSTRUCTOR
-    static std::shared_ptr<BaseFockSpace> HeapFockSpace(const BaseFockSpace& fock_space);
 };
 
 

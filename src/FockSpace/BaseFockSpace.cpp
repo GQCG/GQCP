@@ -37,17 +37,23 @@ BaseFockSpace::BaseFockSpace(size_t K, size_t dim) :
 {}
 
 
-std::shared_ptr<BaseFockSpace> BaseFockSpace::HeapFockSpace(const BaseFockSpace& fock_space) {
 
-    if (fock_space.is_on_heap){
-        //std::shared_ptr<BaseFockSpace> f (&fock_space);
-        //return f;
-        std::invalid_argument("Passed address of a shared heap fock space");
-    }
+/*
+ *  NAMED CONSTRUCTORS
+ */
+
+/**
+ *  Clones a derivation of the BaseFockSpace to the heap memory
+ *
+ *  @param fock_space     reference to a derived BaseFockSpace instance to be cloned.
+ *
+ *  @return shared pointer owning the heap cloned fock space
+ */
+std::shared_ptr<BaseFockSpace> BaseFockSpace::CloneToHeap(const BaseFockSpace& fock_space) {
 
     std::shared_ptr<BaseFockSpace> fock_space_ptr;
 
-    switch (fock_space.get_type()){
+    switch (fock_space.get_type()) {
 
         case FockSpaceType::FockSpace: {
             fock_space_ptr = std::make_shared<FockSpace>(FockSpace(dynamic_cast<const FockSpace&>(fock_space)));
@@ -65,9 +71,10 @@ std::shared_ptr<BaseFockSpace> BaseFockSpace::HeapFockSpace(const BaseFockSpace&
         }
     }
 
-    fock_space_ptr->is_on_heap = true;
     return fock_space_ptr;
 }
+
+
 
 /*
  *  DESTRUCTOR
