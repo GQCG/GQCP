@@ -123,3 +123,34 @@ BOOST_AUTO_TEST_CASE ( reader_test ) {
     BOOST_CHECK(beta2_test == beta2_ref);
 
 }
+
+
+BOOST_AUTO_TEST_CASE ( Iterator ) {
+
+    size_t K = 3;
+    size_t N_alpha = 1;
+    size_t N_beta = 1;
+    GQCP::SelectedFockSpace fock_space (K, N_alpha, N_beta);
+
+    std::string alpha1 = "010";
+    std::string alpha2 = "001";
+    std::string beta1 = "100";
+    std::string beta2 = "001";
+
+    fock_space.addConfiguration(alpha1, beta1);
+    fock_space.addConfiguration(alpha2, beta1);
+    fock_space.addConfiguration(alpha2, beta2);
+    size_t dim = fock_space.get_dimension();
+
+    std::vector<std::string> ref_alpha_ONVs {alpha1, alpha2, alpha2};
+    std::vector<std::string> ref_beta_ONVs {beta1, beta1, beta2};
+
+    
+    size_t i = 0;
+    for (auto it = fock_space.begin(); it != fock_space.end(); ++it, i++) {
+        BOOST_CHECK_EQUAL(it.currentAddress(), i);
+        BOOST_CHECK_EQUAL(it.currentAlphaONV().asString(), ref_alpha_ONVs[i]);
+        BOOST_CHECK_EQUAL(it.currentBetaONV().asString(), ref_beta_ONVs[i]);
+    }
+    BOOST_CHECK_EQUAL(i, dim);  // check if the iteration went through the whole Fock space
+}

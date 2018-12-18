@@ -154,6 +154,7 @@ BOOST_AUTO_TEST_CASE ( Iterator ) {
     size_t N = 2;
     GQCP::FockSpace fock_space (M, N);
     size_t dim = fock_space.get_dimension();
+
     // "0011" (3) -> "0101" (5) -> "0110" (6) --> "1001" (9) --> "1010" (10) --> "1100" (12)
     std::vector<size_t> ref_unsigned_representations {3, 5, 6, 9, 10, 12};
 
@@ -162,5 +163,5 @@ BOOST_AUTO_TEST_CASE ( Iterator ) {
         BOOST_CHECK_EQUAL(it.currentAddress(), i);
         BOOST_CHECK_EQUAL(it.currentONV().get_unsigned_representation(), ref_unsigned_representations[i]);
     }
-    BOOST_CHECK_EQUAL(i, dim);  // check if the iteration went to the whole Fock space
+    BOOST_CHECK_EQUAL(i, dim);  // check if the iteration went through the whole Fock space
 }
