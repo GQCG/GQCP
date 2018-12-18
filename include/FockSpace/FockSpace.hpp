@@ -71,6 +71,70 @@ public:
     FockSpaceType get_type() const override { return FockSpaceType::FockSpace; }
 
 
+    // ITERATOR
+    class Iterator {
+    private:
+        const FockSpace* fock_space;  // non-owning pointer: the Fock space is never in a stack level deeper than its own iterator
+        size_t address;  // the address of the current onv
+        ONV onv;  // the current onv
+
+    public:
+        // CONSTRUCTORS
+        /**
+         *  @param fock_space       the Fock space that should be iterated over
+         *  @param address          the address of the current ONV
+         */
+        Iterator(const FockSpace& fock_space, size_t address);
+
+        /**
+         *  Constructor that starts at the ONV with address 0
+         *
+         *  @param fock_space       the Fock space that should be iterated over
+         */
+        Iterator(const FockSpace& fock_space);
+
+
+        // OPERATORS
+        /**
+         *  Move the iterator forward
+         *
+         *  @return a reference to the updated iterator
+         */
+        Iterator& operator++();
+
+        /**
+         *  @param other            the other iterator
+         *
+         *  @return if this iterator is the same as the other
+         */
+        bool operator==(const Iterator& other) const;
+
+        /**
+         *  @param other            the other iterator
+         *
+         *  @return if this iterator is not the same as the other
+         */
+        bool operator!=(const Iterator& other) const;
+
+        /**
+         *  @return the current ONV
+         */
+        const ONV& operator*() const;
+
+
+        // PUBLIC METHODS
+        /**
+         *  @return the current ONV
+         */
+        const ONV& currentONV() const;
+
+        /**
+         *  @return the current address
+         */
+        size_t currentAddress() const;
+    };
+
+
     // STATIC PUBLIC METHODS
     /**
      *  @param K        the number of orbitals
@@ -172,6 +236,16 @@ public:
             sign *= -1;
         }
     }
+
+    /**
+     *  @return an iterator pointing at the first ONV in the Fock space
+     */
+    Iterator begin();
+
+    /**
+     *  @return an iterator pointing ad the last ONV in the Fock space
+     */
+    Iterator end();
 };
 
 

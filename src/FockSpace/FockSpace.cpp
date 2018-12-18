@@ -113,6 +113,98 @@ FockSpace::FockSpace(size_t K, size_t N) :
 
 
 /*
+ *  ITERATOR
+ */
+
+    /*
+     *  CONSTRUCTORS
+     */
+
+    /**
+     *  @param fock_space       the Fock space that should be iterated over
+     *  @param address          the address of the current ONV
+     */
+    FockSpace::Iterator::Iterator(const FockSpace& fock_space, size_t address) :
+        fock_space (&fock_space),
+        address (address),
+        onv (fock_space.makeONV(address))
+    {}
+
+
+    /**
+     *  Constructor that starts at the ONV with address 0
+     *
+     *  @param fock_space       the Fock space that should be iterated over
+     */
+    FockSpace::Iterator::Iterator(const FockSpace& fock_space) :
+        FockSpace::Iterator(fock_space, 0)
+    {}
+
+
+    /*
+     *  OPERATORS
+     */
+
+    /**
+     *  Move the iterator forward
+     *
+     *  @return a reference to the updated iterator
+     */
+    FockSpace::Iterator& FockSpace::Iterator::operator++() {
+        this->address++;
+        this->fock_space->setNextONV(this->onv);
+        return *this;
+    }
+
+
+    /**
+     *  @param other            the other iterator
+     *
+     *  @return if this iterator is the same as the other
+     */
+    bool FockSpace::Iterator::operator==(const Iterator& other) const {
+        return this->address == other.address;
+    }
+
+
+    /**
+     *  @param other            the other iterator
+     *
+     *  @return if this iterator is not the same as the other
+     */
+    bool FockSpace::Iterator::operator!=(const Iterator& other) const {
+        return !(this->operator==(other));
+    }
+
+
+    /**
+     *  @return the current ONV
+     */
+    const ONV& FockSpace::Iterator::operator*() const {
+        return this->onv;
+    }
+
+
+    /*
+     *  PUBLIC METHODS
+     */
+    /**
+     *  @return the current ONV
+     */
+    const ONV& FockSpace::Iterator::currentONV() const {
+        return this->operator*();
+    }
+
+    /**
+     *  @return the current address
+     */
+    size_t FockSpace::Iterator::currentAddress() const {
+        return this->address;
+    }
+
+
+
+/*
  *  STATIC PUBLIC METHODS
  */
 
@@ -208,6 +300,23 @@ void FockSpace::transformONV(ONV& onv, size_t address) const {
         }
     }
     onv.set_representation(representation);
+}
+
+
+/**
+ *  @return an iterator pointing at the first ONV in the Fock space
+ */
+FockSpace::Iterator FockSpace::begin() {
+    return FockSpace::Iterator(*this);
+}
+
+
+/**
+ *  @return an iterator pointing ad the last ONV in the Fock space
+ */
+FockSpace::Iterator FockSpace::end() {
+    size_t address = this->dim - 1;
+    return FockSpace::Iterator(*this, address);
 }
 
 
