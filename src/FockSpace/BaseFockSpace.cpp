@@ -43,11 +43,11 @@ BaseFockSpace::BaseFockSpace(size_t K, size_t dim) :
  */
 
 /**
- *  Clones a derivation of the BaseFockSpace to the heap memory
+ *  Clones a derived BaseFockSpace instance to the heap memory
  *
  *  @param fock_space     reference to a derived BaseFockSpace instance to be cloned.
  *
- *  @return shared pointer owning the heap cloned fock space
+ *  @return a shared pointer owning the heap-cloned Fock space
  */
 std::shared_ptr<BaseFockSpace> BaseFockSpace::CloneToHeap(const BaseFockSpace& fock_space) {
 
