@@ -34,7 +34,7 @@ BOOST_AUTO_TEST_CASE ( test_random_rotation_diagonal_dense_fci ) {
     // Check if a random rotation has no effect on the sum of the diagonal elements
 
     // Create the molecular Hamiltonian parameters in an AO basis
-    auto h2o = GQCP::Molecule::Readxyz("../tests/data/h2o.xyz");
+    auto h2o = GQCP::Molecule::Readxyz("data/h2o.xyz");
     auto mol_ham_par = GQCP::HamiltonianParameters::Molecular(h2o, "STO-3G");
     auto K = mol_ham_par.get_K();
 
@@ -74,7 +74,7 @@ BOOST_AUTO_TEST_CASE ( FCI_H2_Cristina_dense ) {
     double reference_fci_energy = -1.1651486697;
 
     // Create the molecular Hamiltonian parameters in an AO basis
-    auto h2 = GQCP::Molecule::Readxyz("../tests/data/h2_cristina.xyz");
+    auto h2 = GQCP::Molecule::Readxyz("data/h2_cristina.xyz");
     auto mol_ham_par = GQCP::HamiltonianParameters::Molecular(h2, "6-31g**");
     auto K = mol_ham_par.get_K();
 
@@ -113,7 +113,7 @@ BOOST_AUTO_TEST_CASE ( FCI_H2O_Psi4_GAMESS_dense ) {
     double reference_fci_energy = -75.0129803939602;
 
     // Create the molecular Hamiltonian parameters in an AO basis
-    auto h2o = GQCP::Molecule::Readxyz("../tests/data/h2o_Psi4_GAMESS.xyz");
+    auto h2o = GQCP::Molecule::Readxyz("data/h2o_Psi4_GAMESS.xyz");
     auto mol_ham_par = GQCP::HamiltonianParameters::Molecular(h2o, "STO-3G");
     auto K = mol_ham_par.get_K();
 
@@ -152,7 +152,7 @@ BOOST_AUTO_TEST_CASE ( FCI_He_Cristina_dense ) {
     double reference_fci_energy = -2.902533599;
 
     // Create a Molecule and an AOBasis
-    GQCP::Molecule he ("../tests/data/h2o_Psi4_GAMESS.xyz");
+    GQCP::Molecule he ("data/h2o_Psi4_GAMESS.xyz");
     auto ao_basis = std::make_shared<GQCP::AOBasis>(he, "aug-cc-pVQZ");
 
     // Create the molecular Hamiltonian parameters for this molecule and basis

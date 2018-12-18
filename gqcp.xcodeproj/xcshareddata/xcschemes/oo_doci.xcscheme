@@ -76,7 +76,7 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-f &quot;../../tests/data/h2o.xyz"
+            argument = "-f &quot;../data/h2o.xyz"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

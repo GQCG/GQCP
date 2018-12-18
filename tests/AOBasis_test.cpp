@@ -29,7 +29,7 @@
 BOOST_AUTO_TEST_CASE ( AOBasis_constructor ) {
 
     // Check if we can construct an AOBasis object
-    auto water = GQCP::Molecule::Readxyz("../tests/data/h2o.xyz");
+    auto water = GQCP::Molecule::Readxyz("data/h2o.xyz");
     GQCP::AOBasis basis (water, "STO-3G");
 }
 
@@ -37,7 +37,7 @@ BOOST_AUTO_TEST_CASE ( AOBasis_constructor ) {
 BOOST_AUTO_TEST_CASE ( number_of_basis_functions ) {
 
     // Check the number of basis functions in water
-    auto water = GQCP::Molecule::Readxyz("../tests/data/h2o.xyz");
+    auto water = GQCP::Molecule::Readxyz("data/h2o.xyz");
     GQCP::AOBasis basis (water, "STO-3G");
 
     BOOST_CHECK_EQUAL(basis.get_number_of_basis_functions(), 7);

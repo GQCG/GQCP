@@ -90,7 +90,7 @@ BOOST_AUTO_TEST_CASE ( reader_test ) {
 
     // We will test if we can construct a selected fock space and a corresponding coefficients
     // through an input file
-    GQCP::WaveFunctionReader test_reader ("../tests/data/test_GAMESS_expansion");
+    GQCP::WaveFunctionReader test_reader ("data/test_GAMESS_expansion");
 
 
     // Check read vector is correct
