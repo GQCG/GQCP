@@ -18,7 +18,8 @@
 #ifndef GQCP_BASEFOCKSPACE_HPP
 #define GQCP_BASEFOCKSPACE_HPP
 
-#include <memory.h>
+#include <iostream>
+#include <memory>
 #include "ONV.hpp"
 #include "FockSpace/FockSpaceType.hpp"
 #include "common.hpp"
