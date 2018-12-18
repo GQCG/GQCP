@@ -84,6 +84,94 @@ public:
     FockSpaceType get_type() const override { return FockSpaceType::SelectedFockSpace; }
 
 
+    // ITERATOR
+    class Iterator {
+    private:
+        const SelectedFockSpace* fock_space;  // non-owning pointer: the Fock space is never in a stack level deeper than its own iterator
+        size_t address;  // the address of the current onv
+
+
+        // CONSTRUCTORS
+//        /**
+//         *  Place an iterator in a possibly invalid state (the ONV does not correspond to the address)
+//         *
+//         *  @note This constructor is only implemented to provide a proper SelectedFockSpace.end() iterator with an address that is higher than the 'last' ONV in the Fock space
+//         *
+//         *  @param fock_space       the Fock space that should be iterated over
+//         *  @param address          the address of the current ONV
+//         *  @param onv              the current ONV
+//         */
+//        Iterator(const FockSpace& fock_space, size_t address, const ONV& onv);
+//        friend class SelectedFockSpace;  // declare the whole class friend because we don't want to forward declare Iterator and then make the FockSpace::end() function a friend
+
+
+    public:
+        // CONSTRUCTORS
+        /**
+         *  @param fock_space       the Fock space that should be iterated over
+         *  @param address          the address of the current Configuration
+         */
+        Iterator(const SelectedFockSpace& fock_space, size_t address);
+
+        /**
+         *  Constructor that starts at the Configuration with address 0
+         *
+         *  @param fock_space       the Fock space that should be iterated over
+         */
+        Iterator(const SelectedFockSpace& fock_space);
+
+
+        // OPERATORS
+        /**
+         *  Move the iterator forward (pre-increment)
+         *
+         *  @return a reference to the updated iterator
+         */
+        Iterator& operator++();
+
+        /**
+         *  @param other            the other iterator
+         *
+         *  @return if this iterator is the same as the other
+         */
+        bool operator==(const Iterator& other) const;
+
+        /**
+         *  @param other            the other iterator
+         *
+         *  @return if this iterator is not the same as the other
+         */
+        bool operator!=(const Iterator& other) const;
+
+        /**
+         *  @return the current Configuration
+         */
+        const Configuration& operator*() const;
+
+
+        // PUBLIC METHODS
+        /**
+         *  @return the current Configuration
+         */
+        const Configuration& currentConfiguration() const;
+
+        /**
+         *  @return the alpha-ONV of the current Configuration
+         */
+        const ONV& currentAlphaONV() const;
+
+        /**
+         *  @return the beta-ONV of the current Configuration
+         */
+        const ONV& currentBetaONV() const;
+
+        /**
+         *  @return the address of the current Configuration
+         */
+        size_t currentAddress() const;
+    };
+
+
     // PUBLIC METHODS
     /**
      *  Make a configuration (see makeConfiguration()) and add it to this Fock space
@@ -100,6 +188,16 @@ public:
      *  @param onv2s     the beta ONVs as string representations read from right to left
      */
     void addConfiguration(const std::vector<std::string>& onv1s, const std::vector<std::string>& onv2s);
+
+    /**
+     *  @return an iterator pointing at the first Configuration in the Fock space
+     */
+    Iterator begin();
+
+    /**
+     *  @return an iterator pointing at the last Configuration in the Fock space
+     */
+    Iterator end();
 };
 
 

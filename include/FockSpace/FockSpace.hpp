@@ -144,7 +144,7 @@ public:
         const ONV& currentONV() const;
 
         /**
-         *  @return the current address
+         *  @return the address of the current ONV
          */
         size_t currentAddress() const;
     };

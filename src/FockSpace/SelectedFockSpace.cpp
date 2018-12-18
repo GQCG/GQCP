@@ -149,6 +149,131 @@ SelectedFockSpace::SelectedFockSpace(const FockSpace& fock_space)  :
 }
 
 
+
+/*
+ *  ITERATOR
+ */
+
+    /*
+     *  CONSTRUCTORS
+     */
+
+//    /**
+//     *  Place an iterator in a possibly invalid state (the ONV does not correspond to the address)
+//     *
+//     *  @note This constructor is only implemented to provide a proper SelectedFockSpace.end() iterator with an address that is higher than the 'last' ONV in the Fock space
+//     *
+//     *  @param fock_space       the Fock space that should be iterated over
+//     *  @param address          the address of the current ONV
+//     *  @param onv              the current ONV
+//     */
+//    SelectedFockSpace::Iterator::Iterator(const SelectedFockSpace& fock_space, size_t address, const ONV& onv) :
+//        fock_space (&fock_space),
+//        address (address),
+//        onv (onv)
+//    {}
+
+
+    /**
+     *  @param fock_space       the Fock space that should be iterated over
+     *  @param address          the address of the current Configuration
+     */
+    SelectedFockSpace::Iterator::Iterator(const SelectedFockSpace& fock_space, size_t address) :
+        fock_space (&fock_space),
+        address (address)
+    {}
+
+
+    /**
+     *  Constructor that starts at the Configuration with address 0
+     *
+     *  @param fock_space       the Fock space that should be iterated over
+     */
+    SelectedFockSpace::Iterator::Iterator(const SelectedFockSpace& fock_space) :
+        SelectedFockSpace::Iterator(fock_space, 0)
+    {}
+
+
+
+    /*
+     *  OPERATORS
+     */
+
+    /**
+     *  Move the iterator forward (pre-increment)
+     *
+     *  @return a reference to the updated iterator
+     */
+    SelectedFockSpace::Iterator& SelectedFockSpace::Iterator::operator++() {
+        this->address++;
+        return *this;
+    }
+
+
+    /**
+     *  @param other            the other iterator
+     *
+     *  @return if this iterator is the same as the other
+     */
+    bool SelectedFockSpace::Iterator::operator==(const Iterator& other) const {
+        return this->address == other.address;
+    }
+
+
+    /**
+     *  @param other            the other iterator
+     *
+     *  @return if this iterator is not the same as the other
+     */
+    bool SelectedFockSpace::Iterator::operator!=(const Iterator& other) const {
+        return !(this->operator==(other));
+    }
+
+
+    /**
+     *  @return the current Configuration
+     */
+    const Configuration& SelectedFockSpace::Iterator::operator*() const {
+        return this->fock_space->get_configuration(this->address);
+    }
+
+
+
+    /*
+     *  PUBLIC METHODS
+     */
+
+    /**
+     *  @return the current Configuration
+     */
+    const Configuration& SelectedFockSpace::Iterator::currentConfiguration() const {
+        return this->operator*();
+    }
+
+
+    /**
+     *  @return the alpha-ONV of the current Configuration
+     */
+    const ONV& SelectedFockSpace::Iterator::currentAlphaONV() const {
+        return this->currentConfiguration().onv_alpha;
+    }
+
+    /**
+     *  @return the beta-ONV of the current Configuration
+     */
+    const ONV& SelectedFockSpace::Iterator::currentBetaONV() const {
+        return this->currentConfiguration().onv_beta;
+    }
+
+    /**
+     *  @return the address of the current Configuration
+     */
+    size_t SelectedFockSpace::Iterator::currentAddress() const {
+        return this->address;
+    }
+
+
+
 /*
  *  PUBLIC METHODS
  */
@@ -183,6 +308,23 @@ void SelectedFockSpace::addConfiguration(const std::vector<std::string>& onv1s, 
     for (size_t i = 0; i < onv1s.size(); i++) {
         this->addConfiguration(onv1s[i], onv2s[i]);
     }
+}
+
+
+/**
+ *  @return an iterator pointing at the first ONV in the Fock space
+ */
+SelectedFockSpace::Iterator SelectedFockSpace::begin() {
+    return SelectedFockSpace::Iterator(*this);
+}
+
+
+/**
+ *  @return an iterator pointing at the last ONV in the Fock space
+ */
+SelectedFockSpace::Iterator SelectedFockSpace::end() {
+    size_t address = this->dim;  // this is an 'invalid' address (i.e. there is no ONV corresponding to this address), but the Iterator design requires .end() to be an iterator following the last element
+    return SelectedFockSpace::Iterator(*this, address);
 }
 
 

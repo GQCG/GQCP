@@ -119,6 +119,7 @@ FockSpace::FockSpace(size_t K, size_t N) :
     /*
      *  CONSTRUCTORS
      */
+
     /**
      *  Place an iterator in a possibly invalid state (the ONV does not correspond to the address)
      *
@@ -152,6 +153,7 @@ FockSpace::FockSpace(size_t K, size_t N) :
     FockSpace::Iterator::Iterator(const FockSpace& fock_space) :
         FockSpace::Iterator(fock_space, 0)
     {}
+
 
 
     /*
@@ -198,15 +200,18 @@ FockSpace::FockSpace(size_t K, size_t N) :
     }
 
 
+
     /*
      *  PUBLIC METHODS
      */
+
     /**
      *  @return the current ONV
      */
     const ONV& FockSpace::Iterator::currentONV() const {
         return this->operator*();
     }
+
 
     /**
      *  @return the address of the current ONV
@@ -330,7 +335,7 @@ FockSpace::Iterator FockSpace::begin() {
 FockSpace::Iterator FockSpace::end() {
     size_t address = this->dim;  // this is an 'invalid' address (i.e. there is no ONV corresponding to this address), but the Iterator design requires .end() to be an iterator following the last element
     ONV onv = this->makeONV(0);  // placeholder ONV
-    return FockSpace::Iterator(*this, address);
+    return FockSpace::Iterator(*this, address, onv);
 }
 
 
