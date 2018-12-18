@@ -126,6 +126,10 @@ Eigen::VectorXd DOCI::matrixVectorProduct(const HamiltonianParameters& hamiltoni
     // Diagonal contributions
     Eigen::VectorXd matvec = diagonal.cwiseProduct(x);
 
+    for (auto it = this->fock_space.begin(); it != this->fock_space.end(); ++it) {
+        
+    }
+
     for (size_t I = 0; I < dim; I++) {  // I loops over all the addresses of the onv
 
         // double_I and J reduce vector accessing and writing

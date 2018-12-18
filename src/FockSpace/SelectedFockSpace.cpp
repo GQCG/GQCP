@@ -314,7 +314,7 @@ void SelectedFockSpace::addConfiguration(const std::vector<std::string>& onv1s, 
 /**
  *  @return an iterator pointing at the first ONV in the Fock space
  */
-SelectedFockSpace::Iterator SelectedFockSpace::begin() {
+SelectedFockSpace::Iterator SelectedFockSpace::begin() const {
     return SelectedFockSpace::Iterator(*this);
 }
 
@@ -322,7 +322,7 @@ SelectedFockSpace::Iterator SelectedFockSpace::begin() {
 /**
  *  @return an iterator pointing at the last ONV in the Fock space
  */
-SelectedFockSpace::Iterator SelectedFockSpace::end() {
+SelectedFockSpace::Iterator SelectedFockSpace::end() const {
     size_t address = this->dim;  // this is an 'invalid' address (i.e. there is no ONV corresponding to this address), but the Iterator design requires .end() to be an iterator following the last element
     return SelectedFockSpace::Iterator(*this, address);
 }

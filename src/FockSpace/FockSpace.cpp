@@ -324,7 +324,7 @@ void FockSpace::transformONV(ONV& onv, size_t address) const {
 /**
  *  @return an iterator pointing at the first ONV in the Fock space
  */
-FockSpace::Iterator FockSpace::begin() {
+FockSpace::Iterator FockSpace::begin() const {
     return FockSpace::Iterator(*this);
 }
 
@@ -332,7 +332,7 @@ FockSpace::Iterator FockSpace::begin() {
 /**
  *  @return an iterator pointing at the last ONV in the Fock space
  */
-FockSpace::Iterator FockSpace::end() {
+FockSpace::Iterator FockSpace::end() const {
     size_t address = this->dim;  // this is an 'invalid' address (i.e. there is no ONV corresponding to this address), but the Iterator design requires .end() to be an iterator following the last element
     ONV onv = this->makeONV(0);  // placeholder ONV
     return FockSpace::Iterator(*this, address, onv);

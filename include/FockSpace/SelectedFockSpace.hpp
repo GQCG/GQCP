@@ -192,12 +192,12 @@ public:
     /**
      *  @return an iterator pointing at the first Configuration in the Fock space
      */
-    Iterator begin();
+    Iterator begin() const;
 
     /**
      *  @return an iterator pointing at the last Configuration in the Fock space
      */
-    Iterator end();
+    Iterator end() const;
 };
 
 
