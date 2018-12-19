@@ -101,39 +101,19 @@ BOOST_AUTO_TEST_CASE ( calculateElement_3RDM ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( operator_call_throw ) {
+BOOST_AUTO_TEST_CASE ( throw_1and2_RDMs ) {
 
     // Create a test wave function
-    size_t M = 3;
-    size_t N = 1;
+    size_t M = 5;
+    size_t N = 4;
     GQCP::FockSpace fock_space (M, N);
 
     Eigen::VectorXd coeff (fock_space.get_dimension());
-    coeff << 1, 2, -3;
+    coeff << 1, 1, -2, 4, -5;
+
+
+    // not implemented yet and should throw
     GQCP::UnresolvedCIRDMBuilder d (fock_space);
-
-
-    BOOST_CHECK_THROW(d(0), std::invalid_argument);
-}
-
-
-BOOST_AUTO_TEST_CASE ( operator_call ) {
-
-    // Create a test wave function
-    size_t M = 3;
-    size_t N = 2;
-    GQCP::FockSpace fock_space (M, N);
-
-    Eigen::VectorXd coeff (fock_space.get_dimension());
-    coeff << 1, 2, -3;
-    GQCP::NRDMCalculator d (fock_space, coeff);
-
-
-
-
-
-    BOOST_CHECK(std::abs(d(0,1,1,2) - (-3.0)) < 1.0e-12);  // d(0,1,1,2) : a^\dagger_0 a^\dagger_1 a_2 a_1
-    BOOST_CHECK(std::abs(d(2,0,0,1) - (-2.0)) < 1.0e-12);  // d(2,0,0,1) : a^\dagger_2 a^\dagger_0 a^1 a_0
-    BOOST_CHECK(std::abs(d(0,2,2,0) - (-4.0)) < 1.0e-12);  // d(0,2,2,0) : a^\dagger_0 a^dagger_2 a_0 a_2
-    BOOST_CHECK(std::abs(d(0,2,0,0) - 0.0) < 1.0e-12);     // d(0,2,0,0) : a^\dagger_0 a^dagger_0 a_0 a_2, double annihilation gives 0.0
+    BOOST_CHECK_THROW(d.calculate1RDMs(coeff), std::runtime_error);
+    BOOST_CHECK_THROW(d.calculate2RDMs(coeff), std::runtime_error);
 }

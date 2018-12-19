@@ -24,7 +24,7 @@ namespace GQCP {
 /*
  *  CONSTRUCTOR
  */
-UnresolvedCIRDMBuilder::UnresolvedCIRDMBuilder(const ProductFockSpace& fock_space) :
+UnresolvedCIRDMBuilder::UnresolvedCIRDMBuilder(const FockSpace& fock_space) :
     fock_space (fock_space)
 {}
 

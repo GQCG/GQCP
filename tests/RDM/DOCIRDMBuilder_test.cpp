@@ -19,6 +19,7 @@
 #include <boost/test/unit_test.hpp>
 #include <boost/test/included/unit_test.hpp>
 #include "RDM/RDMCalculator.hpp"
+#include "RDM/DOCIRDMBuilder.hpp"
 
 #include "CISolver/CISolver.hpp"
 #include "HamiltonianBuilder/DOCI.hpp"
@@ -49,7 +50,7 @@ BOOST_AUTO_TEST_CASE ( lih_1RDM_trace ) {
     Eigen::VectorXd coef = ci_solver.get_eigenpair().get_eigenvector();
 
     // Check if the DOCI 1-RDM has the proper trace.
-    GQCP::RDMCalculator doci_rdm (fock_space);
+    GQCP::DOCIRDMBuilder doci_rdm (fock_space);
     GQCP::OneRDMs one_rdms = doci_rdm.calculate1RDMs(coef);
 
 
@@ -79,7 +80,7 @@ BOOST_AUTO_TEST_CASE ( lih_2RDM_trace ) {
     Eigen::VectorXd coef = ci_solver.get_eigenpair().get_eigenvector();
 
     // Check if the 2-RDM has the proper trace.
-    GQCP::RDMCalculator doci_rdm (fock_space);
+    GQCP::DOCIRDMBuilder doci_rdm (fock_space);
     GQCP::TwoRDMs two_rdms = doci_rdm.calculate2RDMs(coef);
 
 
@@ -109,7 +110,7 @@ BOOST_AUTO_TEST_CASE ( lih_1RDM_2RDM_trace_DOCI ) {
     Eigen::VectorXd coef = ci_solver.get_eigenpair().get_eigenvector();
 
     // Check if the 2-RDM contraction matches the reduction.
-    GQCP::RDMCalculator doci_rdm (fock_space);
+    GQCP::DOCIRDMBuilder doci_rdm (fock_space);
     GQCP::TwoRDMs two_rdms = doci_rdm.calculate2RDMs(coef);
     GQCP::OneRDMs one_rdms = doci_rdm.calculate1RDMs(coef);
 
@@ -141,7 +142,7 @@ BOOST_AUTO_TEST_CASE ( lih_energy_RDM_contraction_DOCI ) {
     double energy_by_eigenvalue = ci_solver.get_eigenpair().get_eigenvalue();
 
     // Check if the contraction energy matches the doci eigenvalue.
-    GQCP::RDMCalculator doci_rdm (fock_space);
+    GQCP::DOCIRDMBuilder doci_rdm (fock_space);
     GQCP::TwoRDMs two_rdms = doci_rdm.calculate2RDMs(coef);
     GQCP::OneRDMs one_rdms = doci_rdm.calculate1RDMs(coef);
 
@@ -150,4 +151,48 @@ BOOST_AUTO_TEST_CASE ( lih_energy_RDM_contraction_DOCI ) {
     energy_by_contraction -= ham_par.get_scalar();  // if we read in an FCIDUMP file, the internuclear repulsion is added as a scalar parameter: subtract it to get the electronic energy
 
     BOOST_CHECK(std::abs(energy_by_eigenvalue - energy_by_contraction) < 1.0e-12);
+}
+
+BOOST_AUTO_TEST_CASE ( lih_1RDM_2RDM_trace_DOCI_wavefunction ) {
+
+    // Repeat test with wavefunction input
+
+    // Get the 1-RDM from DOCI
+    size_t N = 4;  // 4 electrons
+    auto ham_par = GQCP::HamiltonianParameters::ReadFCIDUMP("../tests/data/lih_631g_caitlin.FCIDUMP");
+    size_t K = ham_par.get_K();  // 16 SO
+
+    GQCP::FockSpace fock_space (K, N/2);  // dim = 120
+    GQCP::DOCI doci (fock_space);
+
+    // Specify solver options and solve the eigenvalue problem
+    // Solve the dense DOCI eigenvalue problem
+    GQCP::CISolver ci_solver (doci, ham_par);
+    GQCP::DenseSolverOptions solver_options;
+    ci_solver.solve(solver_options);
+
+    GQCP::WaveFunction wave_function = ci_solver.makeWavefunction();
+
+    // Check if the 2-RDM contraction matches the reduction.
+    GQCP::RDMCalculator doci_rdm (wave_function);
+    GQCP::TwoRDMs two_rdms = doci_rdm.calculate2RDMs();
+    GQCP::OneRDMs one_rdms = doci_rdm.calculate1RDMs();
+
+    Eigen::MatrixXd D_from_reduction = (1.0/(N-1)) * two_rdms.two_rdm.reduce();
+    BOOST_CHECK(one_rdms.one_rdm.get_matrix_representation().isApprox(D_from_reduction, 1.0e-12));
+}
+
+BOOST_AUTO_TEST_CASE ( throw_calculate_element ) {
+
+    // Create a test wave function
+    size_t K = 5;
+    size_t N = 4;
+    GQCP::FockSpace fock_space (K, N);
+
+    Eigen::VectorXd coeff (fock_space.get_dimension());
+    coeff << 1, 1, -2, 4, -5;
+
+    // not implemented yet and should throw
+    GQCP::DOCIRDMBuilder doci_rdm (fock_space);
+    BOOST_CHECK_THROW(doci_rdm.calculateElement({0,0,1}, {1,0,2}, coeff), std::runtime_error);
 }
