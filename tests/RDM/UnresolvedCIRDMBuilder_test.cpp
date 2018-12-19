@@ -34,7 +34,7 @@ BOOST_AUTO_TEST_CASE ( calculateElement_throws ) {
 
     Eigen::VectorXd coeff (fock_space.get_dimension());
     coeff << 1, 2, -3;
-    GQCP::UnresolvedCIRDMBuilder d (fock_space;
+    GQCP::UnresolvedCIRDMBuilder d (fock_space);
 
     BOOST_CHECK_THROW(d.calculateElement({3}, {0}, coeff), std::invalid_argument);  // bra-index is out of bounds
     BOOST_CHECK_THROW(d.calculateElement({0}, {3}, coeff), std::invalid_argument);  // ket-index is out of bounds

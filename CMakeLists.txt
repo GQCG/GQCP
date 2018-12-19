@@ -22,7 +22,7 @@ if(NOT CMAKE_BUILD_TYPE)
 endif()
 
 if (“${CMAKE_CXX_COMPILER_ID}” STREQUAL “Clang”)
-    set(CMAKE_CXX_FLAGS_DEBUG "-g -march=native -m64 -pipe")
+    set(CMAKE_CXX_FLAGS_DEBUG "-g -m64 -pipe")
     set(CMAKE_CXX_FLAGS_RELEASE "-O2 -march=native -m64 -pipe")
 elseif (“${CMAKE_CXX_COMPILER_ID}” STREQUAL “GNU”)
     set(CMAKE_CXX_FLAGS_DEBUG "-g -march=native -m64 -pipe")  
