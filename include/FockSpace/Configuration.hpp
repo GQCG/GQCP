@@ -29,8 +29,14 @@ namespace GQCP {
  *  A struct that represents the combination of an alpha and beta ONV
  */
 struct Configuration {
+public:
     ONV onv_alpha;
     ONV onv_beta;
+
+
+public:
+    // CONSTRUCTORS
+    Configuration(const ONV& alpha, const ONV& beta) : onv_alpha (alpha), onv_beta (beta) {}
 };
 
 

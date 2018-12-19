@@ -82,17 +82,11 @@ double BaseAPIGGeminalCoefficients::operator()(size_t i, size_t p) const {
  */
 WaveFunction BaseAPIGGeminalCoefficients::toWaveFunction(const FockSpace& fock_space) const {
 
-    // The FockSpace can't be marked const, as makeONV() and setNext() are non-const methods
+    Eigen::VectorXd coefficients = Eigen::VectorXd::Zero(fock_space.get_dimension());  // expansion coefficient vector
 
-    Eigen::VectorXd coefficients = Eigen::VectorXd::Zero(fock_space.get_dimension());  // coefficient vector
-    ONV onv = fock_space.makeONV(0);  // start with address 0
-    for (size_t I = 0; I < fock_space.get_dimension(); I++) {
-
-        coefficients(I) = this->overlap(onv);
-
-        if (I < fock_space.get_dimension() - 1) {  // skip the last permutation
-            fock_space.setNextONV(onv);
-        }
+    auto end = fock_space.end();  // help the compiler by putting this out the for-loop
+    for (auto it = fock_space.begin(); it != end; ++it) {
+        coefficients(it.currentAddress()) = this->overlap(it.currentONV());
     }
 
     return WaveFunction(fock_space, coefficients);

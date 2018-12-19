@@ -85,36 +85,20 @@ SelectedFockSpace::SelectedFockSpace(size_t K, size_t N_alpha, size_t N_beta) :
  *  @param fock_space       the ProductFockSpace from which the configurations should be generated
  */
 SelectedFockSpace::SelectedFockSpace(const ProductFockSpace& fock_space) :
-    SelectedFockSpace (fock_space.get_K(), fock_space.get_N_alpha(), fock_space.get_N_beta())
+    SelectedFockSpace(fock_space.get_K(), fock_space.get_N_alpha(), fock_space.get_N_beta())
 {
-
-    std::vector<Configuration> configurations;
-
     FockSpace fock_space_alpha = fock_space.get_fock_space_alpha();
     FockSpace fock_space_beta = fock_space.get_fock_space_beta();
 
-    auto dim_alpha = fock_space_alpha.get_dimension();
-    auto dim_beta = fock_space_beta.get_dimension();
-
-    ONV alpha = fock_space_alpha.makeONV(0);
-    for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {
-
-        ONV beta = fock_space_beta.makeONV(0);
-        for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {
-
-            configurations.push_back(Configuration {alpha, beta});
-
-            if (I_beta < dim_beta - 1) {  // prevent the last permutation to occur
-                fock_space_beta.setNextONV(beta);
-            }
-        }
-        if (I_alpha < dim_alpha - 1) {  // prevent the last permutation to occur
-            fock_space_alpha.setNextONV(alpha);
+    auto end_alpha = fock_space_alpha.end();  // help the compiler by putting this out the for-loop
+    auto end_beta = fock_space_beta.end();
+    for (auto it_alpha = fock_space_alpha.begin(); it_alpha != end_alpha; ++it_alpha) {
+        for (auto it_beta = fock_space_beta.begin(); it_beta != end_beta; ++it_beta) {
+            this->configurations.emplace_back(it_alpha.currentONV(), it_beta.currentONV());
         }
     }
-    this->dim = fock_space.get_dimension();
-    this->configurations = configurations;
 
+    this->dim = fock_space.get_dimension();
 }
 
 
@@ -127,25 +111,13 @@ SelectedFockSpace::SelectedFockSpace(const FockSpace& fock_space)  :
         SelectedFockSpace (fock_space.get_K(), fock_space.get_N(), fock_space.get_N())
 {
 
-    std::vector<Configuration> configurations;
-
-    auto dim = fock_space.get_dimension();
-
-    // Iterate over the Fock space and add all onvs as doubly occupied configurations
-    ONV onv = fock_space.makeONV(0);
-    for (size_t I = 0; I < dim; I++) {
-
-        configurations.push_back(Configuration {onv, onv});
-
-        if (I < dim - 1) {  // prevent the last permutation to occur
-            fock_space.setNextONV(onv);
-        }
-
+    auto end = fock_space.end();
+    for (auto it = fock_space.begin(); it != end; ++it) {
+        ONV onv = it.currentONV();
+        this->configurations.emplace_back(onv, onv);  // doubly occupied configurations
     }
 
-    this->dim = dim;
-    this->configurations = configurations;
-
+    this->dim = fock_space.get_dimension();
 }
 
 
@@ -157,22 +129,6 @@ SelectedFockSpace::SelectedFockSpace(const FockSpace& fock_space)  :
     /*
      *  CONSTRUCTORS
      */
-
-//    /**
-//     *  Place an iterator in a possibly invalid state (the ONV does not correspond to the address)
-//     *
-//     *  @note This constructor is only implemented to provide a proper SelectedFockSpace.end() iterator with an address that is higher than the 'last' ONV in the Fock space
-//     *
-//     *  @param fock_space       the Fock space that should be iterated over
-//     *  @param address          the address of the current ONV
-//     *  @param onv              the current ONV
-//     */
-//    SelectedFockSpace::Iterator::Iterator(const SelectedFockSpace& fock_space, size_t address, const ONV& onv) :
-//        fock_space (&fock_space),
-//        address (address),
-//        onv (onv)
-//    {}
-
 
     /**
      *  @param fock_space       the Fock space that should be iterated over
@@ -316,6 +272,16 @@ void SelectedFockSpace::addConfiguration(const std::vector<std::string>& onv1s, 
  */
 SelectedFockSpace::Iterator SelectedFockSpace::begin() const {
     return SelectedFockSpace::Iterator(*this);
+}
+
+
+/**
+ *  @param address      the address the iterator should point at
+ *
+ *  @return an iterator pointing at the Configuration with the given address
+ */
+SelectedFockSpace::Iterator SelectedFockSpace::begin(size_t address) const {
+    return SelectedFockSpace::Iterator(*this, address);
 }
 
 

@@ -48,13 +48,12 @@ OneRDMs SelectedRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) const {
     Eigen::MatrixXd D_aa = Eigen::MatrixXd::Zero(K, K);
     Eigen::MatrixXd D_bb = Eigen::MatrixXd::Zero(K, K);
     
-    
-    size_t dim = fock_space.get_dimension();
+    auto end = fock_space.end();
+    for (auto it_I = fock_space.begin(); it_I != end; ++it_I) {
 
-    for (size_t I = 0; I < dim; I++) {  // loop over all addresses (1)
-        Configuration configuration_I = this->fock_space.get_configuration(I);
-        ONV alpha_I = configuration_I.onv_alpha;
-        ONV beta_I = configuration_I.onv_beta;
+        size_t I = it_I.currentAddress();
+        ONV alpha_I = it_I.currentAlphaONV();
+        ONV beta_I = it_I.currentBetaONV();
         
         double c_I = x(I);
 
@@ -73,11 +72,11 @@ OneRDMs SelectedRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) const {
 
 
         // Calculate the off-diagonal elements, by going over all other ONVs
-        for (size_t J = I+1; J < dim; J++) {
+        for (auto it_J = this->fock_space.begin(I+1); it_J != end; ++it_J) {
 
-            Configuration configuration_J = this->fock_space.get_configuration(J);
-            ONV alpha_J = configuration_J.onv_alpha;
-            ONV beta_J = configuration_J.onv_beta;
+            size_t J = it_J.currentAddress();
+            ONV alpha_J = it_J.currentAlphaONV();
+            ONV beta_J = it_J.currentBetaONV();
 
             double c_J = x(J);
 
@@ -114,6 +113,7 @@ OneRDMs SelectedRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) const {
 
     OneRDM one_rdm_aa (D_aa);
     OneRDM one_rdm_bb (D_bb);
+
     // The total 1-RDM is the sum of the spin components
     return OneRDMs (one_rdm_aa, one_rdm_bb);
 }
@@ -141,11 +141,14 @@ TwoRDMs SelectedRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) const {
     Eigen::Tensor<double, 4> d_bbbb (K,K,K,K);
     d_bbbb.setZero();
 
-    for (size_t I = 0; I < dim; I++) {  // loop over all addresses I
 
-        Configuration configuration_I = this->fock_space.get_configuration(I);
-        ONV alpha_I = configuration_I.onv_alpha;
-        ONV beta_I = configuration_I.onv_beta;
+    auto end = this->fock_space.end();
+
+    for (auto it_I = this->fock_space.begin(); it_I != end; ++it_I) {
+
+        size_t I = it_I.currentAddress();
+        ONV alpha_I = it_I.currentAlphaONV();
+        ONV beta_I = it_I.currentBetaONV();
 
         double c_I = x(I);
         
@@ -186,11 +189,12 @@ TwoRDMs SelectedRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) const {
         }  // loop over q
 
 
-        for (size_t J = I+1; J < dim; J++) {
 
-            Configuration configuration_J = this->fock_space.get_configuration(J);
-            ONV alpha_J = configuration_J.onv_alpha;
-            ONV beta_J = configuration_J.onv_beta;
+        for (auto it_J = this->fock_space.begin(I+1); it_J != end; ++it_J) {
+
+            size_t J = it_J.currentAddress();
+            ONV alpha_J = it_J.currentAlphaONV();
+            ONV beta_J = it_J.currentBetaONV();
 
             double c_J = x(J);
 

@@ -91,20 +91,6 @@ public:
         size_t address;  // the address of the current onv
 
 
-        // CONSTRUCTORS
-//        /**
-//         *  Place an iterator in a possibly invalid state (the ONV does not correspond to the address)
-//         *
-//         *  @note This constructor is only implemented to provide a proper SelectedFockSpace.end() iterator with an address that is higher than the 'last' ONV in the Fock space
-//         *
-//         *  @param fock_space       the Fock space that should be iterated over
-//         *  @param address          the address of the current ONV
-//         *  @param onv              the current ONV
-//         */
-//        Iterator(const FockSpace& fock_space, size_t address, const ONV& onv);
-//        friend class SelectedFockSpace;  // declare the whole class friend because we don't want to forward declare Iterator and then make the FockSpace::end() function a friend
-
-
     public:
         // CONSTRUCTORS
         /**
@@ -193,6 +179,13 @@ public:
      *  @return an iterator pointing at the first Configuration in the Fock space
      */
     Iterator begin() const;
+
+    /**
+     *  @param address      the address the iterator should point at
+     *
+     *  @return an iterator pointing at the Configuration with the given address
+     */
+    Iterator begin(size_t address) const;
 
     /**
      *  @return an iterator pointing at the last Configuration in the Fock space

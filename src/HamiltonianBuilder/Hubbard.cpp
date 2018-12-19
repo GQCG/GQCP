@@ -57,7 +57,13 @@ void Hubbard::oneOperatorModule(const FockSpace& fock_space_target, const FockSp
     }
 
     ONV onv = fock_space_target.makeONV(0);  // onv with address 0
-    for (size_t I = 0; I < dim; I++) {  // I loops over all the addresses of the onv
+
+    auto end = fock_space_target.end();
+    for (auto it = fock_space_target.begin(); it != end; ++it) {
+
+        size_t I = it.currentAddress();
+        auto onv = it.currentONV();
+
         for (size_t e1 = 0; e1 < N; e1++) {  // e1 (electron 1) loops over the (number of) electrons
             size_t p = onv.get_occupation_index(e1);  // retrieve the index of a given electron
 
@@ -118,11 +124,6 @@ void Hubbard::oneOperatorModule(const FockSpace& fock_space_target, const FockSp
             }  //  (creation)
 
         } // e1 loop (annihilation)
-
-        // Prevent last permutation
-        if (I < dim - 1) {
-            fock_space_target.setNextONV(onv);
-        }
     }
 
 }
@@ -225,34 +226,36 @@ Eigen::VectorXd Hubbard::calculateDiagonal(const HamiltonianParameters &hamilton
     FockSpace fock_space_alpha = fock_space.get_fock_space_alpha();
     FockSpace fock_space_beta = fock_space.get_fock_space_beta();
 
-    auto dim_alpha = fock_space_alpha.get_dimension();
     auto dim_beta = fock_space_beta.get_dimension();
     auto dim = fock_space.get_dimension();
 
     // Diagonal contributions
     Eigen::VectorXd diagonal = Eigen::VectorXd::Zero(dim);
 
-    ONV onv_alpha = fock_space_alpha.makeONV(0);
-    ONV onv_beta =  fock_space_beta.makeONV(0);
-    for (size_t Ia = 0; Ia < dim_alpha; Ia++) {  // Ia loops over addresses of alpha onvs
-        fock_space_beta.transformONV(onv_beta, 0);
-        for (size_t Ib = 0; Ib < dim_beta; Ib++) {  // Ib loops over addresses of beta onvs
-            size_t address = Ia * dim_beta + Ib;
-            // find all double occupations
-            Vectoru occupations = onv_alpha.findMatchingOccupations(onv_beta);
-            for (size_t p : occupations){
+
+    auto end_alpha = fock_space_alpha.end();
+    auto end_beta = fock_space_beta.end();
+    for (auto it_alpha = fock_space_alpha.begin(); it_alpha != end_alpha; ++it_alpha) {
+
+        size_t I_alpha = it_alpha.currentAddress();
+        ONV onv_alpha = it_alpha.currentONV();
+
+        for (auto it_beta = fock_space_beta.begin(); it_beta != end_beta; ++it_beta) {
+
+            size_t I_beta = it_beta.currentAddress();
+            ONV onv_beta = it_beta.currentONV();
+
+            Vectoru occupations = onv_alpha.findMatchingOccupations(onv_beta);  // find all double occupations
+
+            size_t address = I_alpha * dim_beta + I_beta;  // alpha is major
+            for (size_t p : occupations) {
                 diagonal(address) += hamiltonian_parameters.get_g()(p,p,p,p);
             }
-            if (Ib < dim_beta - 1) {  // prevent last permutation to occur
-                fock_space_beta.setNextONV(onv_beta);
-            }
-        }  // beta address (Ib) loop
-        if (Ia < dim_alpha - 1) {  // prevent last permutation to occur
-            fock_space_alpha.setNextONV(onv_alpha);
-        }
-    }  // alpha address (Ia) loop
-    return diagonal;
 
+        }  // beta Fock space iteration
+    }  // alpha Fock space iteration
+
+    return diagonal;
 }
 
 

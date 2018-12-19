@@ -62,70 +62,44 @@ double NRDMCalculator::calculateElement(const std::vector<size_t>& bra_indices, 
 
 
     double value = 0.0;
-    int sign = 1;
-    FockSpace fock_space = this->fock_space;  // make a copy because this method is marked const
-    size_t dim = fock_space.get_dimension();
+    int bra_sign = 1;
+    int ket_sign = 1;
 
+    auto it_bra = fock_space.begin();
+    auto end = fock_space.end();
+    while (it_bra != end) {  // loop over all bra addresses
 
-    ONV bra = fock_space.makeONV(0);
-    size_t I = 0;
-    while (I < dim) {  // loop over all bra addresses
+        bra_sign = 1;
+        ONV bra = it_bra.currentONV();
 
         // Annihilate the bra on the bra indices
-        if (!bra.annihilateAll(bra_indices, sign)) {  // if we can't annihilate, the bra doesn't change
-
-            // Go to the beginning of the outer while loop with the next bra
-            if (I < dim-1) {  // prevent the last permutation to occur
-                fock_space.setNextONV(bra);
-                I++;
-                sign = 1;
-                continue;
-            } else {
-                break;  // we have to jump out if we have looped over the whole bra dimension
-            }
+        if (!bra.annihilateAll(bra_indices, bra_sign)) {
+            ++it_bra;
+            continue;
         }
 
+        auto it_ket = fock_space.begin();
+        while (it_ket != end) {
 
-        ONV ket = fock_space.makeONV(0);
-        size_t J = 0;
-        while (J < dim) {  // loop over all ket indices
+            ket_sign = 1;
+            ONV ket = it_ket.currentONV();
 
             // Annihilate the ket on the ket indices
-            if (!ket.annihilateAll(ket_indices_reversed, sign)) {  // if we can't annihilate, the ket doesn't change
-
-                // Go to the beginning of this (the inner) while loop with the next bra
-                if (J < dim-1) {  // prevent the last permutation to occur
-                    fock_space.setNextONV(ket);
-                    J++;
-                    sign = 1;
-                    continue;
-                } else {
-                    break;  // we have to jump out if we have looped over the whole ket dimension
-                }
+            if (!ket.annihilateAll(ket_indices_reversed, ket_sign)) {
+                ++it_ket;
+                continue;
             }
 
+            size_t I = it_bra.currentAddress();
+            size_t J = it_ket.currentAddress();
             if (bra == ket) {
-                value += sign * this->coeff(I) * this->coeff(J);
+                value += bra_sign * ket_sign * this->coeff(I) * this->coeff(J);
             }
 
-            // Reset the previous ket annihilations and move to the next ket
-            if (J == dim-1) {  // prevent the last permutation to occur
-                break;  // out of the J-loop
-            }
-            ket.createAll(ket_indices_reversed);
-            fock_space.setNextONV(ket);
-            sign = 1;
-            J++;
+            ++it_ket;
         }  // while J loop
 
-        // Reset the previous bra annihilations and move to the next bra
-        if (I == dim-1) {  // prevent the last permutation to occur
-            break;  // out of the I-loop
-        }
-        bra.createAll(bra_indices);
-        fock_space.setNextONV(bra);
-        sign = 1;
-        I++;
+        ++it_bra;
     }  // while I loop
 
     return value;
