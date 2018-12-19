@@ -76,7 +76,7 @@ const Eigenpair& DOCINewtonOrbitalOptimizer::get_eigenpair(size_t index) const {
 void DOCINewtonOrbitalOptimizer::solve(BaseSolverOptions& solver_options, const OrbitalOptimizationOptions& oo_options) {
     this->is_converged = false;
     auto K = this->ham_par.get_K();
-    RDMCalculator rdm_calculator(*(this->doci.get_fock_space());
+    RDMCalculator rdm_calculator(*this->doci.get_fock_space());
     size_t oo_iterations = 0;
     while (!(this->is_converged)) {
 
