@@ -80,7 +80,7 @@ int main (int argc, char** argv) {
     }
 
     triagonal = Eigen::Map<Eigen::VectorXd>(triagonal_data.data(), triagonal_data.size());
-    GQCP::HoppingMatrix H (triagonal);
+    GQCP::HoppingMatrix H = GQCP::HoppingMatrix::FromUpperTriangle(triagonal);
 
     // Actual calculations
     auto ham_par = GQCP::HamiltonianParameters::Hubbard(H);
