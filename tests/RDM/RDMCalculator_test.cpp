@@ -112,15 +112,13 @@ BOOST_AUTO_TEST_CASE ( operator_call ) {
 
 BOOST_AUTO_TEST_CASE ( SpinUnresolved_throw ) {
 
-    // Create a test wave function
-    size_t M = 3;
+    // Create test Fock spaces
+    size_t K = 3;
     size_t N = 1;
-    GQCP::FockSpace fock_space (M, N);
-    GQCP::FockSpace fock_space (M, N);
+    GQCP::ProductFockSpace product_fock_space (K, N, N);
+    GQCP::SelectedFockSpace selected_fock_space (product_fock_space);
 
-    Eigen::VectorXd coeff (fock_space.get_dimension());
-    coeff << 1, 2, -3;
-    GQCP::RDMCalculator d = GQCP::RDMCalculator::SpinUnresolved(fock_space);
-    d.set_coefficients(coeff);
-    BOOST_CHECK_THROW(d(0), std::invalid_argument);
+    // No spin unresolved implementations
+    BOOST_CHECK_THROW(GQCP::RDMCalculator::SpinUnresolved(product_fock_space), std::runtime_error);
+    BOOST_CHECK_THROW(GQCP::RDMCalculator::SpinUnresolved(selected_fock_space), std::runtime_error);
 }
