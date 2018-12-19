@@ -107,11 +107,9 @@ BOOST_AUTO_TEST_CASE ( mulliken_N2_STO_3G ) {
     GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
-    GQCP::Eigenpair eigen_pair = ci_solver.get_eigenpair(0);
+    GQCP::RDMCalculator rdm_calculator (ci_solver.makeWavefunction());
 
-    GQCP::RDMCalculator rdm_calculator (fock_space);
-
-    GQCP::OneRDMs one_rdms = rdm_calculator.calculate1RDMs(eigen_pair.get_eigenvector());
+    GQCP::OneRDMs one_rdms = rdm_calculator.calculate1RDMs();
 
     double mulliken_population_2 = GQCP::calculateExpectationValue(mulliken, one_rdms.one_rdm);
     BOOST_CHECK(std::abs(mulliken_population_2 - (N)) < 1.0e-08);
