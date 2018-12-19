@@ -15,11 +15,11 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCP_SELECTEDRDMBUILDER_HPP
-#define GQCP_SELECTEDRDMBUILDER_HPP
+#ifndef GQCP_UNRESOLVEDCIRDMBUILDER_HPP
+#define GQCP_UNRESOLVEDCIRDMBUILDER_HPP
 
 
-#include "FockSpace/SelectedFockSpace.hpp"
+#include "FockSpace/FockSpace.hpp"
 #include "RDM/BaseRDMBuilder.hpp"
 #include "RDM/RDMs.hpp"
 
@@ -28,19 +28,19 @@ namespace GQCP {
 
 
 /**
- *  A class capable of calculating 1- and 2-RDMs from wave functions expanded in a selected Fock space
+ *  A class capable of calculating 1- and 2-RDMs from wave functions expanded in the full CI product Fock space
  */
-class SelectedRDMBuilder : public BaseRDMBuilder {
-    SelectedFockSpace fock_space;  // Fock space containing the selected configurations
+class UnresolvedCIRDMBuilder : public BaseRDMBuilder {
+    FockSpace fock_space;  // Fock space containing the alpha and beta Fock space
 
 
 public:
     // CONSTRUCTORS
-    explicit SelectedRDMBuilder (const SelectedFockSpace& fock_space);
+    explicit UnresolvedCIRDMBuilder(const FockSpace& fock_space);
 
 
     // DESTRUCTOR
-    ~SelectedRDMBuilder() = default;
+    ~UnresolvedCIRDMBuilder() = default;
 
 
     // OVERRIDDEN GETTERS
@@ -49,14 +49,14 @@ public:
 
     // OVERRIDDEN PUBLIC METHODS
     /**
-     *  @param x        the coefficient vector representing the 'selected' wave function
+     *  @param x        the coefficient vector representing the UnresolvedCI wave function
      *
      *  @return all 1-RDMs given a coefficient vector
      */
     OneRDMs calculate1RDMs(const Eigen::VectorXd& x) const override;
 
     /**
-     *  @param x        the coefficient vector representing the 'selected' wave function
+     *  @param x        the coefficient vector representing the UnresolvedCI wave function
      *
      *  @return all 2-RDMs given a coefficient vector
      */
@@ -65,7 +65,7 @@ public:
     /**
      *  @param bra_indices      the indices of the orbitals that should be annihilated on the left (on the bra)
      *  @param ket_indices      the indices of the orbitals that should be annihilated on the right (on the ket)
-     *  @param x                the coefficient vector representing the 'selected' wave function
+     *  @param x                the coefficient vector representing the UnresolvedCI wave function
      *
      *  @return an element of the N-RDM, as specified by the given bra and ket indices
      *
@@ -78,4 +78,4 @@ public:
 }  // namespace GQCP
 
 
-#endif  // GQCP_SELECTEDRDMBUILDER_HPP
+#endif  // GQCP_UNRESOLVEDCIRDMBUILDER_HPP

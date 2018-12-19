@@ -15,47 +15,54 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "RDM/NRDMCalculator.hpp"
-
-
-
-#include <iostream>
-
+#include "RDM/UnresolvedCIRDMBuilder.hpp"
 
 
 namespace GQCP {
 
 
 /*
- *  CONSTRUCTORS
+ *  CONSTRUCTOR
  */
-
-/**
- *  @param fock_space       the FCI Fock space with spin orbitals
- *  @param coeff            the expansion coefficient vector
- */
-NRDMCalculator::NRDMCalculator(const FockSpace& fock_space, const Eigen::VectorXd& coeff) :
-    fock_space (fock_space),
-    coeff (coeff)
+UnresolvedCIRDMBuilder::UnresolvedCIRDMBuilder(const ProductFockSpace& fock_space) :
+    fock_space (fock_space)
 {}
 
 
-
 /*
- *  PUBLIC METHODS
+ *  OVERRIDDEN PUBLIC METHODS
  */
+
+/**
+ *  @param x        the coefficient vector representing the UnresolvedCI wave function
+ *
+ *  @return all 1-RDMs given a coefficient vector
+ */
+OneRDMs UnresolvedCIRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) const {
+    throw std::runtime_error ("calculate1RDMs is not implemented for UnresolvedCIRDMs");
+}
+
+
+/**
+ *  @param x        the coefficient vector representing the UnresolvedCI wave function
+ *
+ *  @return all 2-RDMs given a coefficient vector
+ */
+TwoRDMs UnresolvedCIRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) const {
+    throw std::runtime_error ("calculate2RDMs is not implemented for UnresolvedCIRDMs");
+}
+
 
 /**
  *  @param bra_indices      the indices of the orbitals that should be annihilated on the left (on the bra)
  *  @param ket_indices      the indices of the orbitals that should be annihilated on the right (on the ket)
+ *  @param x                the coefficient vector representing the UnresolvedCI wave function
  *
  *  @return an element of the N-RDM, as specified by the given bra and ket indices
  *
- *      calculateElement({0, 1}, {2, 1}) would calculate d^{(2)} (0, 1, 1, 2)
+ *      calculateElement({0, 1}, {2, 1}) would calculate d^{(2)} (0, 1, 1, 2): the operator string would be a^\dagger_0 a^\dagger_1 a_2 a_1
  */
-double NRDMCalculator::calculateElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices) const {
-
-
+double UnresolvedCIRDMBuilder::calculateElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices, const Eigen::VectorXd& x) const {
     // The ket indices should be reversed because the annihilators on the ket should be applied from right to left
     std::vector<size_t> ket_indices_reversed = ket_indices;
     std::reverse(ket_indices_reversed.begin(), ket_indices_reversed.end());
@@ -105,7 +112,7 @@ double NRDMCalculator::calculateElement(const std::vector<size_t>& bra_indices, 
             }
 
             if (bra == ket) {
-                value += sign * this->coeff(I) * this->coeff(J);
+                value += sign * x(I) * x(J);
             }
 
             // Reset the previous ket annihilations and move to the next ket
@@ -130,7 +137,6 @@ double NRDMCalculator::calculateElement(const std::vector<size_t>& bra_indices, 
 
     return value;
 }
-
 
 
 }  // namespace GQCP
