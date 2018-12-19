@@ -117,20 +117,19 @@ Eigen::VectorXd DOCI::matrixVectorProduct(const HamiltonianParameters& hamiltoni
     if (K != this->fock_space.get_K()) {
         throw std::invalid_argument("The number of orbitals for the Fock space and Hamiltonian parameters are incompatible.");
     }
-    size_t dim = this->fock_space.get_dimension();
 
-    // Create the first spin string. Since in DOCI, alpha == beta, we can just treat them as one and multiply all contributions by 2
-    ONV onv = this->fock_space.makeONV(0);  // spin string with address
     size_t N = this->fock_space.get_N();
 
-    // Diagonal contributions
+
+    // Start with the diagonal contributions
     Eigen::VectorXd matvec = diagonal.cwiseProduct(x);
 
-    for (auto it = this->fock_space.begin(); it != this->fock_space.end(); ++it) {
-        
-    }
 
-    for (size_t I = 0; I < dim; I++) {  // I loops over all the addresses of the onv
+    auto end = this->fock_space.end();  // help the compiler by putting this out the for-loop
+    for (auto it = this->fock_space.begin(); it != end; ++it) {
+
+        size_t I = it.currentAddress();
+        ONV onv = it.currentONV();
 
         // double_I and J reduce vector accessing and writing
         double double_I = 0;
@@ -162,17 +161,10 @@ Eigen::VectorXd DOCI::matrixVectorProduct(const HamiltonianParameters& hamiltoni
                 this->fock_space.shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2);
 
             }  // (creation)
-
         } // e1 loop (annihilation)
 
-        // Prevent last permutation
-        if (I < dim - 1) {
-            this->fock_space.setNextONV(onv);
-        }
-
         matvec(I) += double_I;
-
-    }  // address (I) loop
+    }  // Fock space iteration
 
     return matvec;
 }
@@ -181,7 +173,7 @@ Eigen::VectorXd DOCI::matrixVectorProduct(const HamiltonianParameters& hamiltoni
 /**
  *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis
  *
- *  @return the diagonal of the matrix representation of the Hamiltonian given @param hamiltonian_parameters
+ *  @return the diagonal of the matrix representation of the DOCI Hamiltonian
  */
 Eigen::VectorXd DOCI::calculateDiagonal(const HamiltonianParameters& hamiltonian_parameters) const {
     size_t dim = this->fock_space.get_dimension();

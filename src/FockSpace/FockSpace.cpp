@@ -209,7 +209,7 @@ FockSpace::FockSpace(size_t K, size_t N) :
      *  @return the current ONV
      */
     const ONV& FockSpace::Iterator::currentONV() const {
-        return this->operator*();
+        return this->onv;
     }
 
 
