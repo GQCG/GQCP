@@ -96,7 +96,7 @@ BOOST_AUTO_TEST_CASE ( parseXYZFile ) {
     BOOST_REQUIRE_THROW(GQCP::Molecule::Readxyz("this is a nonsense data path"), std::runtime_error);
 
     // Make sure we get an error when a path with a wrong extension is given
-    BOOST_REQUIRE_THROW(GQCP::Molecule::Readxyz("ref_data/nuclear.data"), std::runtime_error);
+    BOOST_REQUIRE_THROW(GQCP::Molecule::Readxyz("data/small_vector.data"), std::runtime_error);
 
     // Make sure we don't get an error when a correct path is given
     BOOST_REQUIRE_NO_THROW(GQCP::Molecule::Readxyz("data/h2o.xyz"));
