@@ -35,15 +35,15 @@ BOOST_AUTO_TEST_CASE ( readVectorFromFile_throw ) {
 
 
     // Check that there's an error when a wrong path is supplied.
-    BOOST_CHECK_THROW(GQCP::readVectorFromFile("../tests/data/small_vector.dat", v), std::runtime_error);  // should be 'datA'
+    BOOST_CHECK_THROW(GQCP::readVectorFromFile("data/small_vector.dat", v), std::runtime_error);  // should be 'datA'
 
 
     // Check that there's no error when a correct path is supplied.
-    BOOST_CHECK_NO_THROW(GQCP::readVectorFromFile("../tests/data/small_vector.data", v));
+    BOOST_CHECK_NO_THROW(GQCP::readVectorFromFile("data/small_vector.data", v));
 
 
     // Check that there's an error when the matrix is incompatible with the given file.
-    BOOST_CHECK_THROW(GQCP::readVectorFromFile("../tests/ref_data/h2o_sto-3g_two_electron_horton.data", v), std::runtime_error);  // can't read in two-electron data in a vector
+    BOOST_CHECK_THROW(GQCP::readVectorFromFile("ref_data/h2o_sto-3g_two_electron_horton.data", v), std::runtime_error);  // can't read in two-electron data in a vector
 }
 
 
@@ -53,15 +53,15 @@ BOOST_AUTO_TEST_CASE ( readArrayFromFile_matrix_throw ) {
 
 
     // Check that there's an error when a wrong path is supplied.
-    BOOST_CHECK_THROW(GQCP::readArrayFromFile("../tests/data/h2o_sto-3g_kinetic_horton.dat", M), std::runtime_error);  // should be 'datA'
+    BOOST_CHECK_THROW(GQCP::readArrayFromFile("data/h2o_sto-3g_kinetic_horton.dat", M), std::runtime_error);  // should be 'datA'
 
 
     // Check that there's no error when a correct path is supplied.
-    BOOST_CHECK_NO_THROW(GQCP::readArrayFromFile("../tests/data/h2o_sto-3g_kinetic_horton.data", M));
+    BOOST_CHECK_NO_THROW(GQCP::readArrayFromFile("data/h2o_sto-3g_kinetic_horton.data", M));
 
 
     // Check that there's an error when the matrix is incompatible with the given file.
-    BOOST_CHECK_THROW(GQCP::readArrayFromFile("../tests/data/h2o_sto-3g_two_electron_horton.data", M), std::runtime_error);  // can't read in two-electron data in a matrix
+    BOOST_CHECK_THROW(GQCP::readArrayFromFile("data/h2o_sto-3g_two_electron_horton.data", M), std::runtime_error);  // can't read in two-electron data in a matrix
 }
 
 
@@ -73,15 +73,15 @@ BOOST_AUTO_TEST_CASE ( readArrayFromFile_tensor_throw ) {
 
 
     // Check that there's an error when a wrong path is supplied.
-    BOOST_CHECK_THROW(GQCP::readArrayFromFile("../tests/data/h2o_sto-3g_two_electron_horton.dat", T), std::runtime_error);
+    BOOST_CHECK_THROW(GQCP::readArrayFromFile("data/h2o_sto-3g_two_electron_horton.dat", T), std::runtime_error);
 
 
     // Check that there's no error when a correct path is supplied.
-    BOOST_CHECK_NO_THROW(GQCP::readArrayFromFile("../tests/data/h2o_sto-3g_two_electron_horton.data", T));
+    BOOST_CHECK_NO_THROW(GQCP::readArrayFromFile("data/h2o_sto-3g_two_electron_horton.data", T));
 
 
     // Check that there's an error when the tensor is incompatible with the given file.
-    BOOST_CHECK_THROW(GQCP::readArrayFromFile("../tests/data/h2o_sto-3g_kinetic.data_horton", T), std::runtime_error);  // can't read in one-electron data in a tensor
+    BOOST_CHECK_THROW(GQCP::readArrayFromFile("data/h2o_sto-3g_kinetic.data_horton", T), std::runtime_error);  // can't read in one-electron data in a tensor
 }
 
 
@@ -92,7 +92,7 @@ BOOST_AUTO_TEST_CASE ( readVectorFromFile_example ) {
     Eigen::VectorXd v_ref (4);
     v_ref << 1.5, -0.2, 0.002, 8.3314;
 
-    GQCP::readVectorFromFile("../tests/data/small_vector.data", v);
+    GQCP::readVectorFromFile("data/small_vector.data", v);
 
 
     BOOST_CHECK(v.isApprox(v_ref, 1.0e-8));
@@ -107,7 +107,7 @@ BOOST_AUTO_TEST_CASE ( readArrayFromFile_matrix_example ) {
     M_ref << 2.1,  1.1,
              1.1, -3.4;
 
-    GQCP::readArrayFromFile("../tests/data/small_one_ints.data", M);
+    GQCP::readArrayFromFile("data/small_one_ints.data", M);
 
 
     BOOST_CHECK(M.isApprox(M_ref, 1.0e-8));
@@ -130,7 +130,7 @@ BOOST_AUTO_TEST_CASE ( readArrayFromFile_tensor_example ) {
     T_ref(0,0,0,5) = 0.121785318177;
     T_ref(0,0,0,6) = 0.121785318177;
 
-    GQCP::readArrayFromFile("../tests/data/small_two_ints.data", T);
+    GQCP::readArrayFromFile("data/small_two_ints.data", T);
 
 
     BOOST_CHECK(GQCP::areEqual(T, T_ref, 1.0e-8));

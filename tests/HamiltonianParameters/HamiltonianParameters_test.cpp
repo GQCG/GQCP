@@ -95,7 +95,7 @@ Eigen::Tensor<double, 4> calculateToyTwoElectronIntegralsTensor() {
 BOOST_AUTO_TEST_CASE ( HamiltonianParameters_constructor ) {
 
     // Create an AOBasis
-    auto water = GQCP::Molecule::Readxyz("../tests/data/h2o.xyz");
+    auto water = GQCP::Molecule::Readxyz("data/h2o.xyz");
     auto ao_basis_ptr = std::make_shared<GQCP::AOBasis>(water, "STO-3G");
 
 
@@ -232,7 +232,7 @@ BOOST_AUTO_TEST_CASE ( constructor_C ) {
 BOOST_AUTO_TEST_CASE ( constructMolecularHamiltonianParameters ) {
 
     // Set up a basis
-    auto h2 = GQCP::Molecule::Readxyz("../tests/data/h2_szabo.xyz");
+    auto h2 = GQCP::Molecule::Readxyz("data/h2_szabo.xyz");
     auto ao_basis = std::make_shared<GQCP::AOBasis>(h2, "STO-3G");
 
 
@@ -265,7 +265,7 @@ BOOST_AUTO_TEST_CASE ( constructMolecularHamiltonianParameters ) {
 
 BOOST_AUTO_TEST_CASE ( FCIDUMP_reader ) {
 
-    auto fcidump_ham_par = GQCP::HamiltonianParameters::ReadFCIDUMP("../tests/data/beh_cation_631g_caitlin.FCIDUMP");
+    auto fcidump_ham_par = GQCP::HamiltonianParameters::ReadFCIDUMP("data/beh_cation_631g_caitlin.FCIDUMP");
 
     // Check if the one-electron integrals are read in correctly from a previous implementation
     GQCP::OneElectronOperator h_SO = fcidump_ham_par.get_h();
@@ -301,7 +301,7 @@ BOOST_AUTO_TEST_CASE ( FCIDUMP_reader ) {
 BOOST_AUTO_TEST_CASE ( FCIDUMP_reader_HORTON ) {
 
     // Check the same reference value that HORTON does
-    auto fcidump_ham_par = GQCP::HamiltonianParameters::ReadFCIDUMP("../tests/data/h2_psi4_horton.FCIDUMP");
+    auto fcidump_ham_par = GQCP::HamiltonianParameters::ReadFCIDUMP("data/h2_psi4_horton.FCIDUMP");
 
     GQCP::TwoElectronOperator g_SO = fcidump_ham_par.get_g();
     BOOST_CHECK(std::abs(g_SO(6,5,1,0) - 0.0533584656) <  1.0e-7);
@@ -497,12 +497,12 @@ BOOST_AUTO_TEST_CASE ( effective_one_electron_integrals ) {
 BOOST_AUTO_TEST_CASE ( areOrbitalsOrthonormal ) {
 
     // We assume that the orbitals in an FCIDUMP file are orthonormal
-    auto ham_par_fcidump = GQCP::HamiltonianParameters::ReadFCIDUMP("../tests/data/h2_psi4_horton.FCIDUMP");
+    auto ham_par_fcidump = GQCP::HamiltonianParameters::ReadFCIDUMP("data/h2_psi4_horton.FCIDUMP");
     BOOST_CHECK(ham_par_fcidump.areOrbitalsOrthonormal());
 
 
     // The orbitals in an AO basis are not orthonormal
-    auto h2o = GQCP::Molecule::Readxyz("../tests/data/h2o.xyz");
+    auto h2o = GQCP::Molecule::Readxyz("data/h2o.xyz");
     auto ao_ham_par = GQCP::HamiltonianParameters::Molecular(h2o, "STO-3G");
     BOOST_CHECK(!ao_ham_par.areOrbitalsOrthonormal());
 

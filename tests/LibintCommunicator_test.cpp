@@ -72,7 +72,7 @@ BOOST_AUTO_TEST_CASE ( atoms_interface ) {
 BOOST_AUTO_TEST_CASE( Szabo_integrals_h2_sto3g ) {
 
     // We will follow the example in Szabo, section 3.5.2, where it is stated that R = 1.4 a.u. = 0.740848 Angstrom
-    auto h2 = GQCP::Molecule::Readxyz("../tests/data/h2_szabo.xyz");
+    auto h2 = GQCP::Molecule::Readxyz("data/h2_szabo.xyz");
     GQCP::AOBasis basis (h2, "STO-3G");
     BOOST_CHECK_EQUAL(basis.get_number_of_basis_functions(), 2);
 
@@ -120,7 +120,7 @@ BOOST_AUTO_TEST_CASE( Szabo_integrals_h2_sto3g ) {
 BOOST_AUTO_TEST_CASE( HORTON_integrals_h2o_sto3g ) {
 
     // Set up a basis
-    auto water = GQCP::Molecule::Readxyz("../tests/data/h2o.xyz");
+    auto water = GQCP::Molecule::Readxyz("data/h2o.xyz");
     GQCP::AOBasis basis (water, "STO-3G");
     auto nbf = basis.get_number_of_basis_functions();
 
@@ -140,10 +140,10 @@ BOOST_AUTO_TEST_CASE( HORTON_integrals_h2o_sto3g ) {
     Eigen::MatrixXd ref_V (nbf, nbf);
     Eigen::Tensor<double, 4> ref_g (nbf, nbf, nbf, nbf);
 
-    GQCP::readArrayFromFile("../tests/data/h2o_sto-3g_overlap_horton.data", ref_S);
-    GQCP::readArrayFromFile("../tests/data/h2o_sto-3g_kinetic_horton.data", ref_T);
-    GQCP::readArrayFromFile("../tests/data/h2o_sto-3g_nuclear_horton.data", ref_V);
-    GQCP::readArrayFromFile("../tests/data/h2o_sto-3g_coulomb_horton.data", ref_g);
+    GQCP::readArrayFromFile("data/h2o_sto-3g_overlap_horton.data", ref_S);
+    GQCP::readArrayFromFile("data/h2o_sto-3g_kinetic_horton.data", ref_T);
+    GQCP::readArrayFromFile("data/h2o_sto-3g_nuclear_horton.data", ref_V);
+    GQCP::readArrayFromFile("data/h2o_sto-3g_coulomb_horton.data", ref_g);
 
 
     // Check if the calculated integrals are equal to those of HORTON
