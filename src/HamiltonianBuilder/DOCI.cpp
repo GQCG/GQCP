@@ -56,7 +56,7 @@ Eigen::MatrixXd DOCI::constructHamiltonian(const HamiltonianParameters& hamilton
     size_t N = this->fock_space.get_N();
 
 
-    auto end = this->fock_space.end();  // help the compiler by putting this out the for-loop
+    auto end = this->fock_space.end();  // help the compiler by putting the end out the for-loop
     for (auto it = this->fock_space.begin(); it != end; ++it) {
 
         size_t I = it.currentAddress();
@@ -118,7 +118,7 @@ Eigen::VectorXd DOCI::matrixVectorProduct(const HamiltonianParameters& hamiltoni
     Eigen::VectorXd matvec = diagonal.cwiseProduct(x);
 
 
-    auto end = this->fock_space.end();  // help the compiler by putting this out the for-loop
+    auto end = this->fock_space.end();  // help the compiler by putting the end out the for-loop
     for (auto it = this->fock_space.begin(); it != end; ++it) {
 
         size_t I = it.currentAddress();
@@ -172,7 +172,7 @@ Eigen::VectorXd DOCI::calculateDiagonal(const HamiltonianParameters& hamiltonian
     size_t dim = this->fock_space.get_dimension();
     Eigen::VectorXd diagonal = Eigen::VectorXd::Zero(dim);
 
-    auto end = this->fock_space.end();  // help the compiler by putting this out the for-loop
+    auto end = this->fock_space.end();  // help the compiler by putting the end out the for-loop
     for (auto it = this->fock_space.begin(); it != end; ++it) {
 
         size_t I = it.currentAddress();
@@ -191,7 +191,7 @@ Eigen::VectorXd DOCI::calculateDiagonal(const HamiltonianParameters& hamiltonian
         } // p or e1 loop
 
         diagonal(I) += double_I;
-    }  // Fock space iterations
+    }  // Fock space iteration
 
     return diagonal;
 }

@@ -90,13 +90,13 @@ SelectedFockSpace::SelectedFockSpace(const ProductFockSpace& fock_space) :
     FockSpace fock_space_alpha = fock_space.get_fock_space_alpha();
     FockSpace fock_space_beta = fock_space.get_fock_space_beta();
 
-    auto end_alpha = fock_space_alpha.end();  // help the compiler by putting this out the for-loop
+    auto end_alpha = fock_space_alpha.end();  // help the compiler by putting the end out the for-loop
     auto end_beta = fock_space_beta.end();
     for (auto it_alpha = fock_space_alpha.begin(); it_alpha != end_alpha; ++it_alpha) {
         for (auto it_beta = fock_space_beta.begin(); it_beta != end_beta; ++it_beta) {
             this->configurations.emplace_back(it_alpha.currentONV(), it_beta.currentONV());
-        }
-    }
+        }  // beta Fock space iteration
+    }  // alpha Fock space iteration
 
     this->dim = fock_space.get_dimension();
 }
@@ -111,11 +111,11 @@ SelectedFockSpace::SelectedFockSpace(const FockSpace& fock_space)  :
         SelectedFockSpace (fock_space.get_K(), fock_space.get_N(), fock_space.get_N())
 {
 
-    auto end = fock_space.end();
+    auto end = fock_space.end();  // help the compiler by putting the end out the for-loop
     for (auto it = fock_space.begin(); it != end; ++it) {
         ONV onv = it.currentONV();
         this->configurations.emplace_back(onv, onv);  // doubly occupied configurations
-    }
+    }  // Fock space iteration
 
     this->dim = fock_space.get_dimension();
 }

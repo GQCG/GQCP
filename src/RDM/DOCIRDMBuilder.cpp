@@ -46,7 +46,7 @@ OneRDMs DOCIRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) const {
     // For DOCI, one rdm covers both spins
     Eigen::MatrixXd D = Eigen::MatrixXd::Zero(K, K);
 
-    auto end = this->fock_space.end();
+    auto end = this->fock_space.end();  // help the compiler by putting the end out the for-loop
     for (auto it = this->fock_space.begin(); it != end; ++it) {
 
         size_t I = it.currentAddress();
@@ -81,7 +81,7 @@ TwoRDMs DOCIRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) const {
     d_aabb.setZero();
 
 
-    auto end = this->fock_space.end();
+    auto end = this->fock_space.end();  // help the compiler by putting the end out the for-loop
     for (auto it = this->fock_space.begin(); it != end; ++it) {
 
         size_t I = it.currentAddress();
@@ -120,7 +120,7 @@ TwoRDMs DOCIRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) const {
                 onv.create(p);  // reset the spin string after previous annihilation on p
             }
         }
-    }
+    }  // Fock space iteration
 
     // For DOCI, we have additional symmetries (two_rdm_aaaa = two_rdm_bbbb, two_rdm_aabb = two_rdm_bbaa)
     TwoRDM two_rdm_aaaa (d_aaaa);

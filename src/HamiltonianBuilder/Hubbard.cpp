@@ -56,9 +56,7 @@ void Hubbard::oneOperatorModule(const FockSpace& fock_space_target, const FockSp
         target_interval = 1;
     }
 
-    ONV onv = fock_space_target.makeONV(0);  // onv with address 0
-
-    auto end = fock_space_target.end();
+    auto end = fock_space_target.end();  // help the compiler by putting the end out the for-loop
     for (auto it = fock_space_target.begin(); it != end; ++it) {
 
         size_t I = it.currentAddress();
@@ -124,8 +122,7 @@ void Hubbard::oneOperatorModule(const FockSpace& fock_space_target, const FockSp
             }  //  (creation)
 
         } // e1 loop (annihilation)
-    }
-
+    }  // Fock space iteration
 }
 
 
@@ -233,7 +230,7 @@ Eigen::VectorXd Hubbard::calculateDiagonal(const HamiltonianParameters &hamilton
     Eigen::VectorXd diagonal = Eigen::VectorXd::Zero(dim);
 
 
-    auto end_alpha = fock_space_alpha.end();
+    auto end_alpha = fock_space_alpha.end();  // help the compiler by putting the end out the for-loop
     auto end_beta = fock_space_beta.end();
     for (auto it_alpha = fock_space_alpha.begin(); it_alpha != end_alpha; ++it_alpha) {
 

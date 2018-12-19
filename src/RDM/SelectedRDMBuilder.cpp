@@ -48,7 +48,7 @@ OneRDMs SelectedRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) const {
     Eigen::MatrixXd D_aa = Eigen::MatrixXd::Zero(K, K);
     Eigen::MatrixXd D_bb = Eigen::MatrixXd::Zero(K, K);
     
-    auto end = fock_space.end();
+    auto end = fock_space.end();  // help the compiler by putting the end out of the for-loop
     for (auto it_I = fock_space.begin(); it_I != end; ++it_I) {
 
         size_t I = it_I.currentAddress();
@@ -108,8 +108,8 @@ OneRDMs SelectedRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) const {
                 D_bb(q,p) += sign * c_I * c_J;
             }
 
-        }  // loop over addresses J > I
-    }  // loop over addresses I
+        }  // J > I Fock space iteration
+    }  // I Fock space iteration
 
     OneRDM one_rdm_aa (D_aa);
     OneRDM one_rdm_bb (D_bb);
@@ -142,8 +142,7 @@ TwoRDMs SelectedRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) const {
     d_bbbb.setZero();
 
 
-    auto end = this->fock_space.end();
-
+    auto end = this->fock_space.end();  // help the compiler by putting the end out of the for-loop
     for (auto it_I = this->fock_space.begin(); it_I != end; ++it_I) {
 
         size_t I = it_I.currentAddress();
@@ -353,9 +352,8 @@ TwoRDMs SelectedRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) const {
                 d_bbbb(s,r,q,p) += sign * c_I * c_J;
             }
 
-        }  // loop over all addresses J > I
-
-    }  // loop over all addresses I
+        }  // J > I Fock space iteration
+    }  // I Fock space iteration
 
     TwoRDM two_rdm_aaaa (d_aaaa);
     TwoRDM two_rdm_aabb (d_aabb);

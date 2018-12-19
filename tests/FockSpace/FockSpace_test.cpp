@@ -159,7 +159,8 @@ BOOST_AUTO_TEST_CASE ( Iterator ) {
     std::vector<size_t> ref_unsigned_representations {3, 5, 6, 9, 10, 12};
 
     size_t i = 0;
-    for (auto it = fock_space.begin(); it != fock_space.end(); ++it, i++) {
+    auto end = fock_space.end();  // help the compiler by putting the end out of the for-loop
+    for (auto it = fock_space.begin(); it != end; ++it, i++) {
         BOOST_CHECK_EQUAL(it.currentAddress(), i);
         BOOST_CHECK_EQUAL(it.currentONV().get_unsigned_representation(), ref_unsigned_representations[i]);
     }

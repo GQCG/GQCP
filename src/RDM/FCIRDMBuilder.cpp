@@ -53,7 +53,7 @@ OneRDMs FCIRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) const {
     auto dim_beta = fock_space_beta.get_dimension();
     
     // ALPHA
-    auto end_alpha = fock_space_alpha.end();
+    auto end_alpha = fock_space_alpha.end();  // help the compiler by putting the end out the for-loop
     for (auto it_alpha = fock_space_alpha.begin(); it_alpha != end_alpha; ++it_alpha) {
 
         size_t I_alpha = it_alpha.currentAddress();
@@ -94,11 +94,11 @@ OneRDMs FCIRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) const {
                 onv_alpha.create(p);  // undo the previous annihilation
             }  // annihilate on p
         }  // p loop
-    }  // I_alpha loop
+    }  // Fock space iteration
 
 
     // ALPHA
-    auto end_beta = fock_space_beta.end();
+    auto end_beta = fock_space_beta.end();  // help the compiler by putting the end out the for-loop
     for (auto it_beta = fock_space_beta.begin(); it_beta != end_beta; ++it_beta) {
 
         size_t I_beta = it_beta.currentAddress();
@@ -125,7 +125,7 @@ OneRDMs FCIRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) const {
                         size_t J_beta = fock_space_beta.getAddress(onv_beta);  // find all strings J_beta that couple to I_beta
 
                         double off_diagonal_contribution = 0;
-                        for (size_t I_alpha = 0; I_alpha<dim_alpha; I_alpha++) {
+                        for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {
                             double c_I_alpha_I_beta = x(I_alpha*dim_beta + I_beta);  // alpha addresses are 'major'
                             double c_I_alpha_J_beta = x(I_alpha*dim_beta + J_beta);
                             off_diagonal_contribution += c_I_alpha_I_beta * c_I_alpha_J_beta;
@@ -140,11 +140,11 @@ OneRDMs FCIRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) const {
                 onv_beta.create(p);  // undo the previous annihilation
             }  // annihilate on p
         }  // loop over p
-    }  // I_beta loop
+    }  // Fock space iteration
 
     OneRDM one_rdm_aa (D_aa);
     OneRDM one_rdm_bb (D_bb);
-    return OneRDMs (one_rdm_aa, one_rdm_bb);
+    return OneRDMs(one_rdm_aa, one_rdm_bb);
 }
 
 
@@ -161,6 +161,7 @@ TwoRDMs FCIRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) const {
     FockSpace fock_space_alpha = fock_space.get_fock_space_alpha();
     FockSpace fock_space_beta = fock_space.get_fock_space_beta();
 
+    auto dim_alpha = fock_space_alpha.get_dimension();
     auto dim_beta = fock_space_beta.get_dimension();
     
     // Initialize as zero matrices
@@ -177,7 +178,7 @@ TwoRDMs FCIRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) const {
 
 
     // ALPHA-ALPHA-ALPHA-ALPHA
-    auto end_alpha = fock_space_alpha.end();
+    auto end_alpha = fock_space_alpha.end();  // help the compiler by putting the end out the for-loop
     for (auto it_alpha = fock_space_alpha.begin(); it_alpha != end_alpha; ++it_alpha) {
 
         size_t I_alpha = it_alpha.currentAddress();
@@ -229,11 +230,11 @@ TwoRDMs FCIRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) const {
                 onv_aaaa.create(p);  // undo the previous annihilation
             }
         }  // loop over p
-    }  // loop over I_alpha
+    }  // Fock space iteration
 
 
     // ALPHA-ALPHA-BETA-BETA
-    auto end_beta = fock_space_beta.end();
+    auto end_beta = fock_space_beta.end();  // help the compiler by putting the end out the for-loop
     for (auto it_alpha = fock_space_alpha.begin(); it_alpha != end_alpha; ++it_alpha) {
 
         size_t I_alpha = it_alpha.currentAddress();
@@ -280,7 +281,7 @@ TwoRDMs FCIRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) const {
                                 }
 
                             }  // loop over r
-                        }  // loop over beta addresses
+                        }  // beta Fock space iteration
 
                         onv_alpha_aabb.annihilate(q);  // undo the previous creation
                     }
@@ -289,7 +290,7 @@ TwoRDMs FCIRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) const {
                 onv_alpha_aabb.create(p);  // undo the previous annihilation
             }
         }  // loop over p
-    }  // loop over alpha addresses
+    }  // alpha Fock space iteration
 
 
     // BETA-BETA-ALPHA-ALPHA
@@ -326,11 +327,11 @@ TwoRDMs FCIRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) const {
                                         size_t J_beta = fock_space_beta.getAddress(onv_bbbb);  // address of the coupling string
 
                                         double contribution = 0.0;
-                                        for (size_t I_alpha = 0; I_alpha < dim_beta; I_alpha++) {
+                                        for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {
                                             double c_I_alpha_I_beta = x(I_alpha*dim_beta + I_beta);  // alpha addresses are 'major'
                                             double c_I_alpha_J_beta = x(I_alpha*dim_beta + J_beta);
                                             contribution += c_I_alpha_I_beta * c_I_alpha_J_beta;
-                                        }
+                                        }  // loop over alpha ddresses
 
 
                                         d_bbbb(p,q,r,s) += sign_prsq * contribution;
@@ -350,7 +351,7 @@ TwoRDMs FCIRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) const {
                 onv_bbbb.create(p);  // undo the previous annihilation
             }
         }  // loop over p
-    }  // loop over I_beta
+    }  // Fock space iteration
 
     TwoRDM two_rdm_aaaa (d_aaaa);
     TwoRDM two_rdm_aabb (d_aabb);

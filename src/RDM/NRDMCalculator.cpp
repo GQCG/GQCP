@@ -66,8 +66,8 @@ double NRDMCalculator::calculateElement(const std::vector<size_t>& bra_indices, 
     int ket_sign = 1;
 
     auto it_bra = fock_space.begin();
-    auto end = fock_space.end();
-    while (it_bra != end) {  // loop over all bra addresses
+    auto end = fock_space.end();  // help the compiler by putting the end out of the for-loop
+    while (it_bra != end) {
 
         bra_sign = 1;
         ONV bra = it_bra.currentONV();
@@ -97,10 +97,10 @@ double NRDMCalculator::calculateElement(const std::vector<size_t>& bra_indices, 
             }
 
             ++it_ket;
-        }  // while J loop
+        }  // ket Fock space iteration
 
         ++it_bra;
-    }  // while I loop
+    }  // bra Fock space iteration
 
     return value;
 }

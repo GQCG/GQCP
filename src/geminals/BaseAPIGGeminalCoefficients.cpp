@@ -84,10 +84,10 @@ WaveFunction BaseAPIGGeminalCoefficients::toWaveFunction(const FockSpace& fock_s
 
     Eigen::VectorXd coefficients = Eigen::VectorXd::Zero(fock_space.get_dimension());  // expansion coefficient vector
 
-    auto end = fock_space.end();  // help the compiler by putting this out the for-loop
+    auto end = fock_space.end();  // help the compiler by putting the end out the for-loop
     for (auto it = fock_space.begin(); it != end; ++it) {
         coefficients(it.currentAddress()) = this->overlap(it.currentONV());
-    }
+    }  // Fock space iteration
 
     return WaveFunction(fock_space, coefficients);
 }

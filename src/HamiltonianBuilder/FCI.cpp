@@ -65,7 +65,7 @@ Eigen::MatrixXd FCI::constructHamiltonian(const HamiltonianParameters& hamiltoni
     std::vector<std::vector<OneElectronCoupling>> beta_one_electron_couplings {dim_beta, std::vector<OneElectronCoupling>(N_beta * (K + 1 - N_beta)) };
 
     // 1. ALPHA-ALPHA
-    auto end_alpha = fock_space_alpha.end();  // help the compiler by putting this out the for-loop
+    auto end_alpha = fock_space_alpha.end();  // help the compiler by putting the end out the for-loop
     for (auto it_alpha = fock_space_alpha.begin(); it_alpha != end_alpha; ++it_alpha) {
 
         size_t I_alpha = it_alpha.currentAddress();
@@ -147,7 +147,7 @@ Eigen::MatrixXd FCI::constructHamiltonian(const HamiltonianParameters& hamiltoni
 
 
     // 2. BETA-BETA
-    auto end_beta = fock_space_beta.end();  // help the compiler by putting this out the for-loop
+    auto end_beta = fock_space_beta.end();  // help the compiler by putting the end out the for-loop
     for (auto it_beta = fock_space_beta.begin(); it_beta != end_beta; ++it_beta) {
 
         size_t I_beta = it_beta.currentAddress();
@@ -224,7 +224,7 @@ Eigen::MatrixXd FCI::constructHamiltonian(const HamiltonianParameters& hamiltoni
                 onv_beta.create(p);  // undo the previous annihilation on p
             } // annihilate on p (beta)
         }  // loop over p
-    }  // loop over beta addresses (I_beta)
+    }  // Fock space iteration
 
 
     // 3. ALPHA-BETA
@@ -275,7 +275,7 @@ Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters& hamiltonia
 
 
     // ALPHA-ALPHA
-    auto end_alpha = fock_space_alpha.end();
+    auto end_alpha = fock_space_alpha.end();  // help the compiler by putting the end out the for-loop
     for (auto it_alpha = fock_space_alpha.begin(); it_alpha != end_alpha; ++it_alpha) {
 
         size_t I_alpha = it_alpha.currentAddress();
@@ -301,11 +301,11 @@ Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters& hamiltonia
                 onv_aa.create(p);  // undo the previous annihilation
             }
         }  // p loop
-    }  // I_alpha loop
+    }  // Fock space iteration
 
 
     // BETA-BETA
-    auto end_beta = fock_space_beta.end();
+    auto end_beta = fock_space_beta.end();  // help the compiler by putting the end out the for-loop
     for (auto it_beta = fock_space_beta.begin(); it_beta != end_beta; ++it_beta) {
 
         size_t I_beta = it_beta.currentAddress();
@@ -331,7 +331,7 @@ Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters& hamiltonia
                 onv_bb.create(p);  // undo the previous annihilation
             }
         }  // p loop
-    }  // I_beta loop
+    }  // Fock space iteration
 
 
     // ALPHA-ALPHA-ALPHA-ALPHA
