@@ -21,6 +21,10 @@
 #include "optimization/DavidsonSolver.hpp"
 #include "optimization/SparseSolver.hpp"
 
+#include "FockSpace/FockSpace.hpp"
+#include "FockSpace/ProductFockSpace.hpp"
+#include "FockSpace/SelectedProductFockSpace.hpp"
+
 
 namespace GQCP {
 
@@ -38,8 +42,47 @@ CISolver::CISolver(const HamiltonianBuilder& hamiltonian_builder, const Hamilton
     hamiltonian_parameters (hamiltonian_parameters)
 {
     auto K = hamiltonian_parameters.get_h().get_dim();
-    if (K != this->hamiltonian_builder->get_fock_space()->get_K()) {
-        throw std::invalid_argument("Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
+
+
+    size_t number_of_orbitals = 0;  // spatial or spin orbitals
+    const BaseFockSpace* fock_space_ptr = this->hamiltonian_builder->get_fock_space();  // non-owning pointer
+
+
+    switch (fock_space_ptr->get_type()) {
+
+        case FockSpaceType::FockSpace: {
+            const FockSpace* fock_space = dynamic_cast<const FockSpace*>(fock_space_ptr);
+            number_of_orbitals = fock_space->get_K();
+            break;
+        }
+
+
+        case FockSpaceType::ProductFockSpace: {
+            const ProductFockSpace* fock_space = dynamic_cast<const ProductFockSpace*>(fock_space_ptr);
+            number_of_orbitals = fock_space->get_K();
+            break;
+        }
+
+
+        case FockSpaceType::SelectedFockSpace: {
+            break;  // not implemented yet
+        }
+
+
+        case FockSpaceType::SelectedProductFockSpace: {
+            const SelectedProductFockSpace* fock_space = dynamic_cast<const SelectedProductFockSpace*>(fock_space_ptr);
+            number_of_orbitals = fock_space->get_K();
+            break;
+        }
+
+
+        default:
+            break;
+    }
+
+
+    if (K != number_of_orbitals) {
+        throw std::invalid_argument("Number of orbitals of the Fock space and Hamiltonian parameters are incompatible.");
     }
 }
 

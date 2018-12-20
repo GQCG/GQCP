@@ -67,7 +67,7 @@ RDMCalculator::RDMCalculator(const SelectedProductFockSpace& fock_space) :
  */
 RDMCalculator::RDMCalculator(const BaseFockSpace& fock_space) {
 
-    switch (fock_space.get_type()){
+    switch (fock_space.get_type()) {
 
         case FockSpaceType::FockSpace: {
             this->rdm_builder = std::make_shared<DOCIRDMBuilder>(dynamic_cast<const FockSpace&>(fock_space));
@@ -81,11 +81,16 @@ RDMCalculator::RDMCalculator(const BaseFockSpace& fock_space) {
             break;
         }
 
+        case FockSpaceType::SelectedFockSpace: {
+            break;
+        }
+
         case FockSpaceType::SelectedProductFockSpace: {
             this->rdm_builder = std::make_shared<SelectedRDMBuilder>(dynamic_cast<const SelectedProductFockSpace&>(fock_space));
 
             break;
         }
+
     }
 
 }

@@ -201,7 +201,7 @@ set(PROJECT_TEST_SOURCE_FILES
 
         ${PROJECT_TESTS_FOLDER}/FockSpace/FockSpace_test.cpp
         ${PROJECT_TESTS_FOLDER}/FockSpace/ONV_test.cpp
-        ${PROJECT_TESTS_FOLDER}/FockSpace/SelectedFockSpace_test.cpp
+        ${PROJECT_TESTS_FOLDER}/FockSpace/SelectedProductFockSpace_test.cpp
         ${PROJECT_TESTS_FOLDER}/FockSpace/ProductFockSpace_test.cpp
 
         ${PROJECT_TESTS_FOLDER}/geminals/AP1roG_test.cpp

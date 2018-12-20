@@ -125,7 +125,7 @@ SelectedProductFockSpace::SelectedProductFockSpace(const ProductFockSpace& fock_
  *  @param fock_space       the FockSpace from which the configurations should be generated
  */
 SelectedProductFockSpace::SelectedProductFockSpace(const FockSpace& fock_space)  :
-    SelectedProductFockSpace(fock_space.get_M(), fock_space.get_N(), fock_space.get_N())
+    SelectedProductFockSpace(fock_space.get_K(), fock_space.get_N(), fock_space.get_N())
 {
 
     std::vector<Configuration> configurations;
