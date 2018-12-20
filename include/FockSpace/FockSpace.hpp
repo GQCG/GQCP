@@ -73,7 +73,7 @@ public:
     size_t get_vertex_weights(size_t p, size_t m) const { return this->vertex_weights[p][m]; }
 
     const Matrixu& get_vertex_weights() const { return this->vertex_weights; }
-    size_t get_K() const { return this->M; }
+    size_t get_M() const { return this->M; }
     size_t get_N() const { return this->N; }
     FockSpaceType get_type() const override { return FockSpaceType::FockSpace; }
 

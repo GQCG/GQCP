@@ -47,7 +47,7 @@ DOCI::DOCI(const FockSpace& fock_space) :
 Eigen::MatrixXd DOCI::constructHamiltonian(const HamiltonianParameters& hamiltonian_parameters) const {
     
     auto K = hamiltonian_parameters.get_h().get_dim();
-    if (K != this->fock_space.get_K()) {
+    if (K != this->fock_space.get_M()) {
         throw std::invalid_argument("The number of orbitals for the Fock space and Hamiltonian parameters are incompatible.");
     }
     size_t dim = this->fock_space.get_dimension();
@@ -114,7 +114,7 @@ Eigen::MatrixXd DOCI::constructHamiltonian(const HamiltonianParameters& hamilton
 Eigen::VectorXd DOCI::matrixVectorProduct(const HamiltonianParameters& hamiltonian_parameters, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) const {
 
     auto K = hamiltonian_parameters.get_h().get_dim();
-    if (K != this->fock_space.get_K()) {
+    if (K != this->fock_space.get_M()) {
         throw std::invalid_argument("The number of orbitals for the Fock space and Hamiltonian parameters are incompatible.");
     }
     size_t dim = this->fock_space.get_dimension();

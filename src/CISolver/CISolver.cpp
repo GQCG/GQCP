@@ -52,7 +52,7 @@ CISolver::CISolver(const HamiltonianBuilder& hamiltonian_builder, const Hamilton
 
         case FockSpaceType::FockSpace: {
             const FockSpace* fock_space = dynamic_cast<const FockSpace*>(fock_space_ptr);
-            number_of_orbitals = fock_space->get_K();
+            number_of_orbitals = fock_space->get_M();
             break;
         }
 

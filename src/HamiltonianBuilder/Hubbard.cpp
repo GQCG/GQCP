@@ -35,7 +35,7 @@ namespace GQCP {
  */
 void Hubbard::oneOperatorModule(const FockSpace& fock_space_target, const FockSpace& fock_space_fixed, bool target_is_major, const HamiltonianParameters& hamiltonian_parameters, const PassToMethod& method) const {
 
-    size_t K = fock_space_target.get_K();
+    size_t K = fock_space_target.get_M();
     size_t N = fock_space_target.get_N();
     size_t dim = fock_space_target.get_dimension();
     size_t dim_fixed = fock_space_fixed.get_dimension();
