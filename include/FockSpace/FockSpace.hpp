@@ -34,11 +34,12 @@ namespace GQCP {
  */
 class FockSpace: public BaseFockSpace {
 private:
+    size_t M;  // number of spin orbitals
     size_t N;  // number of electrons
-    Matrixu vertex_weights;  // vertex_weights of the addressing scheme
+    Matrixu vertex_weights;  // vertex weights of the addressing scheme
 
 
-    // PRIVATE METHODS
+    // STATIC PRIVATE METHODS
     /**
      *  @param representation       a representation of an ONV
      *
@@ -48,16 +49,16 @@ private:
      *          011 -> 101
      *          101 -> 110
      */
-    size_t ulongNextPermutation(size_t representation) const;
+    static size_t ulongNextPermutation(size_t representation);
 
 
 public:
     // CONSTRUCTORS
     /**
-     *  @param K        the number of orbitals
+     *  @param M        the number of spin orbitals
      *  @param N        the number of electrons
      */
-    FockSpace(size_t K, size_t N);
+    FockSpace(size_t M, size_t N);
 
 
     // DESTRUCTORS
@@ -65,20 +66,26 @@ public:
 
 
     // GETTERS
+    /**
+     *  @param p        the orbital index
+     *  @param m        the electron index
+     */
     size_t get_vertex_weights(size_t p, size_t m) const { return this->vertex_weights[p][m]; }
+
     const Matrixu& get_vertex_weights() const { return this->vertex_weights; }
+    size_t get_K() const { return this->M; }
     size_t get_N() const { return this->N; }
     FockSpaceType get_type() const override { return FockSpaceType::FockSpace; }
 
 
     // STATIC PUBLIC METHODS
     /**
-     *  @param K        the number of orbitals
+     *  @param M        the number of spin orbitals
      *  @param N        the number of electrons
      *
      *  @return the dimension of the Fock space
      */
-    static size_t calculateDimension(size_t K, size_t N);
+    static size_t calculateDimension(size_t M, size_t N);
 
 
     // PUBLIC METHODS

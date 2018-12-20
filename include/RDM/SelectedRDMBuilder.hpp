@@ -19,7 +19,7 @@
 #define GQCP_SELECTEDRDMBUILDER_HPP
 
 
-#include "FockSpace/SelectedFockSpace.hpp"
+#include "FockSpace/SelectedProductFockSpace.hpp"
 #include "RDM/BaseRDMBuilder.hpp"
 #include "RDM/RDMs.hpp"
 
@@ -31,12 +31,12 @@ namespace GQCP {
  *  A class capable of calculating 1- and 2-RDMs from wave functions expanded in a selected Fock space
  */
 class SelectedRDMBuilder : public BaseRDMBuilder {
-    SelectedFockSpace fock_space;  // Fock space containing the selected configurations
+    SelectedProductFockSpace fock_space;  // Fock space containing the selected configurations
 
 
 public:
     // CONSTRUCTORS
-    explicit SelectedRDMBuilder (const SelectedFockSpace& fock_space);
+    explicit SelectedRDMBuilder (const SelectedProductFockSpace& fock_space);
 
 
     // DESTRUCTOR

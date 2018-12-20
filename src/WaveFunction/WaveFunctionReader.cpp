@@ -102,7 +102,7 @@ WaveFunctionReader::WaveFunctionReader(const std::string& GAMESS_filename)
     size_t N_alpha = alpha_transfer.count();
     size_t N_beta = beta_transfer.count();
 
-    this->fock_space = SelectedFockSpace(K, N_alpha, N_beta);
+    this->fock_space = SelectedProductFockSpace(K, N_alpha, N_beta);
 
     this->fock_space.addConfiguration(reversed_alpha, reversed_beta);
 

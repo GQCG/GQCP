@@ -25,7 +25,7 @@ namespace GQCP {
 
 
 /*
- *  PRIVATE METHODS
+ *  STATIC PRIVATE METHODS
  */
 
 /**
@@ -37,7 +37,7 @@ namespace GQCP {
  *          011 -> 101
  *          101 -> 110
  */
-size_t FockSpace::ulongNextPermutation(size_t representation) const {
+size_t FockSpace::ulongNextPermutation(size_t representation) {
 
     // t gets this->representation's least significant 0 bits set to 1
     unsigned long t = representation | (representation - 1UL);
@@ -54,17 +54,18 @@ size_t FockSpace::ulongNextPermutation(size_t representation) const {
  */
 
 /**
- *  @param K        the number of orbitals
+ *  @param M        the number of spin orbitals
  *  @param N        the number of electrons
  */
-FockSpace::FockSpace(size_t K, size_t N) :
-        BaseFockSpace(K, FockSpace::calculateDimension(K, N)),
-        N (N)
+FockSpace::FockSpace(size_t M, size_t N) :
+    BaseFockSpace(FockSpace::calculateDimension(M, N)),
+    M (M),
+    N (N)
 {
     // Create a zero matrix of dimensions (K+1)x(N+1)
-    this->vertex_weights = Matrixu(this->K + 1, Vectoru(this->N + 1, 0));
+    this->vertex_weights = Matrixu(this->M + 1, Vectoru(this->N + 1, 0));
 
-    // K=5   N=2
+    // M=5   N=2
     // [ 0 0 0 ]
     // [ 0 0 0 ]
     // [ 0 0 0 ]
@@ -73,16 +74,16 @@ FockSpace::FockSpace(size_t K, size_t N) :
     // [ 0 0 0 ]
 
 
-    // The largest (reverse lexical) string is the one that includes the first (K-N+1) vertices of the first column
+    // The largest (reverse lexical) string is the one that includes the first (M-N+1) vertices of the first column
     //      This is because every vertical move from (p,m) to (p+1,m+1) corresponds to "orbital p+1 is unoccupied".
-    //      Therefore, the largest reverse lexical string is the one where the first (K-N) orbitals are unoccupied.
-    //      This means that there should be (K-N) vertical moves from (0,0).
-    // Therefore, we may only set the weights of first (K-N+1) vertices of the first column to 1.
-    for (size_t p = 0; p < this->K - this->N + 1; p++) {
+    //      Therefore, the largest reverse lexical string is the one where the first (M-N) orbitals are unoccupied.
+    //      This means that there should be (M-N) vertical moves from (0,0).
+    // Therefore, we may only set the weights of first (M-N+1) vertices of the first column to 1.
+    for (size_t p = 0; p < this->M - this->N + 1; p++) {
         this->vertex_weights[p][0] = 1;
     }
 
-    // K=5   N=2
+    // M=5   N=2
     // [ 1 0 0 ]
     // [ 1 0 0 ]
     // [ 1 0 0 ]
@@ -96,12 +97,12 @@ FockSpace::FockSpace(size_t K, size_t N) :
     //      W(p,m) = W(p-1,m) + W(p-1,m-1)
 
     for (size_t m = 1; m < this->N + 1; m++) {
-        for (size_t p = m; p < (this->K - this->N + m) + 1; p++) {
+        for (size_t p = m; p < (this->M - this->N + m) + 1; p++) {
             this->vertex_weights[p][m] = this->vertex_weights[p - 1][m] + this->vertex_weights[p - 1][m - 1];
         }
     }
 
-    // K=5   N=2
+    // M=5   N=2
     // [ 1 0 0 ]
     // [ 1 1 0 ]
     // [ 1 2 1 ]
@@ -117,13 +118,13 @@ FockSpace::FockSpace(size_t K, size_t N) :
  */
 
 /**
- *  @param K        the number of orbitals
+ *  @param M        the number of spin orbitals
  *  @param N        the number of electrons
  *
  *  @return the dimension of the Fock space
  */
-size_t FockSpace::calculateDimension(size_t K, size_t N) {
-    auto dim_double = boost::math::binomial_coefficient<double>(static_cast<unsigned>(K), static_cast<unsigned>(N));
+size_t FockSpace::calculateDimension(size_t M, size_t N) {
+    auto dim_double = boost::math::binomial_coefficient<double>(static_cast<unsigned>(M), static_cast<unsigned>(N));
     return boost::numeric::converter<double, size_t>::convert(dim_double);
 }
 
@@ -139,7 +140,7 @@ size_t FockSpace::calculateDimension(size_t K, size_t N) {
  *  @return the ONV with the corresponding address
  */
 ONV FockSpace::makeONV(size_t address) const {
-    ONV onv (this->K, this->N);
+    ONV onv (this->M, this->N);
     this->transformONV(onv, address);
     return onv;
 }
@@ -193,7 +194,7 @@ void FockSpace::transformONV(ONV& onv, size_t address) const {
         representation = 0;
         size_t m = this->N;  // counts the number of electrons in the spin string up to orbital p
 
-        for (size_t p = this->K; p > 0; p--) {  // p is an orbital index
+        for (size_t p = this->M; p > 0; p--) {  // p is an orbital index
             size_t weight = get_vertex_weights(p-1, m);
 
             if (weight <= address) {  // the algorithm can move diagonally, so we found an occupied orbital

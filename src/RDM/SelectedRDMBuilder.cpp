@@ -26,7 +26,7 @@ namespace GQCP {
 /*
  *  CONSTRUCTOR
  */
-SelectedRDMBuilder::SelectedRDMBuilder(const SelectedFockSpace& fock_space) :
+SelectedRDMBuilder::SelectedRDMBuilder(const SelectedProductFockSpace& fock_space) :
     fock_space (fock_space)
 {}
 

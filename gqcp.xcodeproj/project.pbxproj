@@ -332,13 +332,12 @@
 		561401CF21B066D0002C5D40 /* RMP2_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FB4221B02EDE002C5D40 /* RMP2_test.cpp */; };
 		561401D021B066D7002C5D40 /* units_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FB7A21B02EDE002C5D40 /* units_test.cpp */; };
 		561401D121B067CB002C5D40 /* FockSpace_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FB4521B02EDE002C5D40 /* FockSpace_test.cpp */; };
-		5614023021B068E0002C5D40 /* SelectedFockSpace_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FB4421B02EDE002C5D40 /* SelectedFockSpace_test.cpp */; };
+		5614023021B068E0002C5D40 /* SelectedProductFockSpace_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FB4421B02EDE002C5D40 /* SelectedProductFockSpace_test.cpp */; };
 		5614FA0F21B029FB002C5D40 /* DOCINewtonOrbitalOptimizer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5614F99021B029FB002C5D40 /* DOCINewtonOrbitalOptimizer.hpp */; };
 		5614FA1021B029FB002C5D40 /* BaseFockSpace.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5614F99221B029FB002C5D40 /* BaseFockSpace.hpp */; };
 		5614FA1121B029FB002C5D40 /* ProductFockSpace.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5614F99321B029FB002C5D40 /* ProductFockSpace.hpp */; };
 		5614FA1221B029FB002C5D40 /* Configuration.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5614F99421B029FB002C5D40 /* Configuration.hpp */; };
 		5614FA1321B029FB002C5D40 /* FockSpaceType.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5614F99521B029FB002C5D40 /* FockSpaceType.hpp */; };
-		5614FA1421B029FB002C5D40 /* SelectedFockSpace.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5614F99621B029FB002C5D40 /* SelectedFockSpace.hpp */; };
 		5614FA1521B029FB002C5D40 /* ONV.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5614F99721B029FB002C5D40 /* ONV.hpp */; };
 		5614FA1621B029FB002C5D40 /* FockSpace.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5614F99821B029FB002C5D40 /* FockSpace.hpp */; };
 		5614FA1721B029FB002C5D40 /* AOBasis.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5614F99921B029FB002C5D40 /* AOBasis.hpp */; };
@@ -389,7 +388,7 @@
 		5614FA4B21B029FB002C5D40 /* ONV.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614F9DA21B029FB002C5D40 /* ONV.cpp */; };
 		5614FA4C21B029FB002C5D40 /* BaseFockSpace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614F9DB21B029FB002C5D40 /* BaseFockSpace.cpp */; };
 		5614FA4D21B029FB002C5D40 /* ProductFockSpace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614F9DC21B029FB002C5D40 /* ProductFockSpace.cpp */; };
-		5614FA4E21B029FB002C5D40 /* SelectedFockSpace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614F9DD21B029FB002C5D40 /* SelectedFockSpace.cpp */; };
+		5614FA4E21B029FB002C5D40 /* SelectedProductFockSpace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614F9DD21B029FB002C5D40 /* SelectedProductFockSpace.cpp */; };
 		5614FA4F21B029FB002C5D40 /* Atom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614F9DE21B029FB002C5D40 /* Atom.cpp */; };
 		5614FA5021B029FB002C5D40 /* LibintCommunicator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614F9DF21B029FB002C5D40 /* LibintCommunicator.cpp */; };
 		5614FA5121B029FB002C5D40 /* RHF.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614F9E121B029FB002C5D40 /* RHF.cpp */; };
@@ -502,6 +501,7 @@
 		566D229E21B7ED2500F8EB91 /* oo_doci.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FAA721B02E48002C5D40 /* oo_doci.cpp */; };
 		566D22A221B81CC100F8EB91 /* NRDMCalculator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 566D22A021B81CC100F8EB91 /* NRDMCalculator.cpp */; };
 		566D22A321B81CC100F8EB91 /* NRDMCalculator.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 566D22A121B81CC100F8EB91 /* NRDMCalculator.hpp */; };
+		5679D5C921CB919700DE2CE8 /* SelectedProductFockSpace.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5679D5C821CB919700DE2CE8 /* SelectedProductFockSpace.hpp */; };
 		56C64D8621B0713700D44FF0 /* constrained_RHF_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FB4921B02EDE002C5D40 /* constrained_RHF_test.cpp */; };
 		56FBA09F21C2B0420084F088 /* linalg.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56FBA09B21C2B0420084F088 /* linalg.hpp */; };
 		56FBA0A121C2B0420084F088 /* io.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56FBA09D21C2B0420084F088 /* io.hpp */; };
@@ -2278,7 +2278,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		5614000821B062BA002C5D40 /* SelectedFockSpace_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SelectedFockSpace_test; sourceTree = BUILT_PRODUCTS_DIR; };
+		5614000821B062BA002C5D40 /* SelectedProductFockSpace_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SelectedProductFockSpace_test; sourceTree = BUILT_PRODUCTS_DIR; };
 		5614001421B062C3002C5D40 /* DOCI_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DOCI_test; sourceTree = BUILT_PRODUCTS_DIR; };
 		5614002021B062C7002C5D40 /* FCI_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = FCI_test; sourceTree = BUILT_PRODUCTS_DIR; };
 		5614002C21B062CD002C5D40 /* Hubbard_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Hubbard_test; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2318,7 +2318,6 @@
 		5614F99321B029FB002C5D40 /* ProductFockSpace.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ProductFockSpace.hpp; sourceTree = "<group>"; };
 		5614F99421B029FB002C5D40 /* Configuration.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Configuration.hpp; sourceTree = "<group>"; };
 		5614F99521B029FB002C5D40 /* FockSpaceType.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FockSpaceType.hpp; sourceTree = "<group>"; };
-		5614F99621B029FB002C5D40 /* SelectedFockSpace.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SelectedFockSpace.hpp; sourceTree = "<group>"; };
 		5614F99721B029FB002C5D40 /* ONV.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ONV.hpp; sourceTree = "<group>"; };
 		5614F99821B029FB002C5D40 /* FockSpace.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FockSpace.hpp; sourceTree = "<group>"; };
 		5614F99921B029FB002C5D40 /* AOBasis.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AOBasis.hpp; sourceTree = "<group>"; };
@@ -2370,7 +2369,7 @@
 		5614F9DA21B029FB002C5D40 /* ONV.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ONV.cpp; sourceTree = "<group>"; };
 		5614F9DB21B029FB002C5D40 /* BaseFockSpace.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseFockSpace.cpp; sourceTree = "<group>"; };
 		5614F9DC21B029FB002C5D40 /* ProductFockSpace.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ProductFockSpace.cpp; sourceTree = "<group>"; };
-		5614F9DD21B029FB002C5D40 /* SelectedFockSpace.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SelectedFockSpace.cpp; sourceTree = "<group>"; };
+		5614F9DD21B029FB002C5D40 /* SelectedProductFockSpace.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SelectedProductFockSpace.cpp; sourceTree = "<group>"; };
 		5614F9DE21B029FB002C5D40 /* Atom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Atom.cpp; sourceTree = "<group>"; };
 		5614F9DF21B029FB002C5D40 /* LibintCommunicator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LibintCommunicator.cpp; sourceTree = "<group>"; };
 		5614F9E121B029FB002C5D40 /* RHF.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RHF.cpp; sourceTree = "<group>"; };
@@ -2447,7 +2446,7 @@
 		5614FB4021B02EDE002C5D40 /* AOBasis_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AOBasis_test.cpp; sourceTree = "<group>"; };
 		5614FB4121B02EDE002C5D40 /* CMakeLists.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		5614FB4221B02EDE002C5D40 /* RMP2_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RMP2_test.cpp; sourceTree = "<group>"; };
-		5614FB4421B02EDE002C5D40 /* SelectedFockSpace_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SelectedFockSpace_test.cpp; sourceTree = "<group>"; };
+		5614FB4421B02EDE002C5D40 /* SelectedProductFockSpace_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SelectedProductFockSpace_test.cpp; sourceTree = "<group>"; };
 		5614FB4521B02EDE002C5D40 /* FockSpace_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FockSpace_test.cpp; sourceTree = "<group>"; };
 		5614FB4621B02EDE002C5D40 /* ONV_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ONV_test.cpp; sourceTree = "<group>"; };
 		5614FB4721B02EDE002C5D40 /* ProductFockSpace_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ProductFockSpace_test.cpp; sourceTree = "<group>"; };
@@ -2561,6 +2560,7 @@
 		5660430221B913AD008C2E86 /* NRDMCalculator_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = NRDMCalculator_test; sourceTree = BUILT_PRODUCTS_DIR; };
 		566D22A021B81CC100F8EB91 /* NRDMCalculator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NRDMCalculator.cpp; sourceTree = "<group>"; };
 		566D22A121B81CC100F8EB91 /* NRDMCalculator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NRDMCalculator.hpp; sourceTree = "<group>"; };
+		5679D5C821CB919700DE2CE8 /* SelectedProductFockSpace.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SelectedProductFockSpace.hpp; sourceTree = "<group>"; };
 		56FBA09B21C2B0420084F088 /* linalg.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = linalg.hpp; sourceTree = "<group>"; };
 		56FBA09D21C2B0420084F088 /* io.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = io.hpp; sourceTree = "<group>"; };
 		56FBA09E21C2B0420084F088 /* miscellaneous.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = miscellaneous.hpp; sourceTree = "<group>"; };
@@ -3251,7 +3251,7 @@
 				5614FFE421B062A8002C5D40 /* FockSpace_test */,
 				5614FFF021B062AF002C5D40 /* ONV_test */,
 				5614FFFC21B062B4002C5D40 /* ProductFockSpace_test */,
-				5614000821B062BA002C5D40 /* SelectedFockSpace_test */,
+				5614000821B062BA002C5D40 /* SelectedProductFockSpace_test */,
 				5614001421B062C3002C5D40 /* DOCI_test */,
 				5614002021B062C7002C5D40 /* FCI_test */,
 				5614002C21B062CD002C5D40 /* Hubbard_test */,
@@ -3330,7 +3330,7 @@
 				5614F99521B029FB002C5D40 /* FockSpaceType.hpp */,
 				5614F99721B029FB002C5D40 /* ONV.hpp */,
 				5614F99321B029FB002C5D40 /* ProductFockSpace.hpp */,
-				5614F99621B029FB002C5D40 /* SelectedFockSpace.hpp */,
+				5679D5C821CB919700DE2CE8 /* SelectedProductFockSpace.hpp */,
 			);
 			path = FockSpace;
 			sourceTree = "<group>";
@@ -3458,7 +3458,7 @@
 				5614F9D921B029FB002C5D40 /* FockSpace.cpp */,
 				5614F9DA21B029FB002C5D40 /* ONV.cpp */,
 				5614F9DC21B029FB002C5D40 /* ProductFockSpace.cpp */,
-				5614F9DD21B029FB002C5D40 /* SelectedFockSpace.cpp */,
+				5614F9DD21B029FB002C5D40 /* SelectedProductFockSpace.cpp */,
 			);
 			path = FockSpace;
 			sourceTree = "<group>";
@@ -3739,7 +3739,7 @@
 				5614FB4521B02EDE002C5D40 /* FockSpace_test.cpp */,
 				5614FB4621B02EDE002C5D40 /* ONV_test.cpp */,
 				5614FB4721B02EDE002C5D40 /* ProductFockSpace_test.cpp */,
-				5614FB4421B02EDE002C5D40 /* SelectedFockSpace_test.cpp */,
+				5614FB4421B02EDE002C5D40 /* SelectedProductFockSpace_test.cpp */,
 			);
 			path = FockSpace;
 			sourceTree = "<group>";
@@ -4064,7 +4064,6 @@
 				5614FA4221B029FB002C5D40 /* Hubbard.hpp in Headers */,
 				56FBA0C221C2B4AF0084F088 /* BaseMinimizer.hpp in Headers */,
 				5614FA1D21B029FB002C5D40 /* DOCIRDMBuilder.hpp in Headers */,
-				5614FA1421B029FB002C5D40 /* SelectedFockSpace.hpp in Headers */,
 				5614FA3221B029FB002C5D40 /* OrbitalOptimizationOptions.hpp in Headers */,
 				5614FA1C21B029FB002C5D40 /* RDMCalculator.hpp in Headers */,
 				5614FA3021B029FB002C5D40 /* common.hpp in Headers */,
@@ -4080,6 +4079,7 @@
 				5614FA1A21B029FB002C5D40 /* DIISRHFSCFSolver.hpp in Headers */,
 				5614FA2521B029FB002C5D40 /* Atom.hpp in Headers */,
 				5614FA4021B029FB002C5D40 /* DOCI.hpp in Headers */,
+				5679D5C921CB919700DE2CE8 /* SelectedProductFockSpace.hpp in Headers */,
 				56FBA0C521C2B4AF0084F088 /* EigenproblemSolverOptions.hpp in Headers */,
 				5614FA2A21B029FB002C5D40 /* LibintCommunicator.hpp in Headers */,
 				5614FA1F21B029FB002C5D40 /* BaseRDM.hpp in Headers */,
@@ -5189,9 +5189,9 @@
 			productReference = 5614FFFC21B062B4002C5D40 /* ProductFockSpace_test */;
 			productType = "com.apple.product-type.tool";
 		};
-		5614FFFD21B062BA002C5D40 /* SelectedFockSpace_test */ = {
+		5614FFFD21B062BA002C5D40 /* SelectedProductFockSpace_test */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5614000521B062BA002C5D40 /* Build configuration list for PBXNativeTarget "SelectedFockSpace_test" */;
+			buildConfigurationList = 5614000521B062BA002C5D40 /* Build configuration list for PBXNativeTarget "SelectedProductFockSpace_test" */;
 			buildPhases = (
 				5614000021B062BA002C5D40 /* Sources */,
 				5614000221B062BA002C5D40 /* Frameworks */,
@@ -5202,9 +5202,9 @@
 			dependencies = (
 				5614FFFE21B062BA002C5D40 /* PBXTargetDependency */,
 			);
-			name = SelectedFockSpace_test;
+			name = SelectedProductFockSpace_test;
 			productName = AP1roGGeminalCoefficients_test;
-			productReference = 5614000821B062BA002C5D40 /* SelectedFockSpace_test */;
+			productReference = 5614000821B062BA002C5D40 /* SelectedProductFockSpace_test */;
 			productType = "com.apple.product-type.tool";
 		};
 		56272DD621B6CC7B008BEA47 /* APIGGeminalCoefficients_test */ = {
@@ -5492,7 +5492,7 @@
 				5614FFD921B062A8002C5D40 /* FockSpace_test */,
 				5614FFE521B062AF002C5D40 /* ONV_test */,
 				5614FFF121B062B4002C5D40 /* ProductFockSpace_test */,
-				5614FFFD21B062BA002C5D40 /* SelectedFockSpace_test */,
+				5614FFFD21B062BA002C5D40 /* SelectedProductFockSpace_test */,
 				5614FEC421B041F1002C5D40 /* BUILD_GEMINALS_TESTS */,
 				5614FE8B21B0410A002C5D40 /* AP1roGGeminalCoefficients_test */,
 				5614FE9D21B04188002C5D40 /* OO_AP1roG_test */,
@@ -5581,7 +5581,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5614023021B068E0002C5D40 /* SelectedFockSpace_test.cpp in Sources */,
+				5614023021B068E0002C5D40 /* SelectedProductFockSpace_test.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5886,7 +5886,7 @@
 				5614FA5921B029FB002C5D40 /* FCIRDMBuilder.cpp in Sources */,
 				56272DC921B6CC0D008BEA47 /* AP1roGPSESolver.cpp in Sources */,
 				5614FA6C21B029FB002C5D40 /* WaveFunctionReader.cpp in Sources */,
-				5614FA4E21B029FB002C5D40 /* SelectedFockSpace.cpp in Sources */,
+				5614FA4E21B029FB002C5D40 /* SelectedProductFockSpace.cpp in Sources */,
 				5614FA4621B029FB002C5D40 /* JacobiRotationParameters.cpp in Sources */,
 				5614FA7521B029FB002C5D40 /* DOCINewtonOrbitalOptimizer.cpp in Sources */,
 				56FBA0D621C2B4C90084F088 /* NewtonSystemOfEquationsSolver.cpp in Sources */,
@@ -6388,7 +6388,7 @@
 		};
 		561401D921B06818002C5D40 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 5614FFFD21B062BA002C5D40 /* SelectedFockSpace_test */;
+			target = 5614FFFD21B062BA002C5D40 /* SelectedProductFockSpace_test */;
 			targetProxy = 561401D821B06818002C5D40 /* PBXContainerItemProxy */;
 		};
 		561401DB21B0682D002C5D40 /* PBXTargetDependency */ = {
@@ -8585,7 +8585,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		5614000521B062BA002C5D40 /* Build configuration list for PBXNativeTarget "SelectedFockSpace_test" */ = {
+		5614000521B062BA002C5D40 /* Build configuration list for PBXNativeTarget "SelectedProductFockSpace_test" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5614000621B062BA002C5D40 /* Debug */,

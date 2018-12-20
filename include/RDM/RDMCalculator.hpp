@@ -21,7 +21,7 @@
 #include "RDM/BaseRDMBuilder.hpp"
 #include "FockSpace/FockSpace.hpp"
 #include "FockSpace/ProductFockSpace.hpp"
-#include "FockSpace/SelectedFockSpace.hpp"
+#include "FockSpace/SelectedProductFockSpace.hpp"
 
 #include <memory>
 
@@ -57,7 +57,7 @@ public:
      *
      *  @param fock_space       the 'selected' Fock space
      */
-    RDMCalculator(const SelectedFockSpace& fock_space);
+    RDMCalculator(const SelectedProductFockSpace& fock_space);
 
     /**
      *  A run-time constructor allocating the appropriate derived RDMBuilder

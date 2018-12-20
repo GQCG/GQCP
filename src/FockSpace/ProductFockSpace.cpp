@@ -34,11 +34,12 @@ namespace GQCP {
  *  @param N_beta       the number of beta electrons
  */
 ProductFockSpace::ProductFockSpace(size_t K, size_t N_alpha, size_t N_beta) :
-        BaseFockSpace(K, ProductFockSpace::calculateDimension(K, N_alpha, N_beta)),
-        fock_space_alpha (FockSpace(K, N_alpha)),
-        fock_space_beta (FockSpace(K, N_beta)),
-        N_alpha (N_alpha),
-        N_beta (N_beta)
+    BaseFockSpace(ProductFockSpace::calculateDimension(K, N_alpha, N_beta)),
+    fock_space_alpha (FockSpace(K, N_alpha)),
+    fock_space_beta (FockSpace(K, N_beta)),
+    K (K),
+    N_alpha (N_alpha),
+    N_beta (N_beta)
 {}
 
 

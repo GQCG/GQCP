@@ -15,13 +15,13 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#define BOOST_TEST_MODULE "SelectedFockSpace"
+#define BOOST_TEST_MODULE "SelectedProductFockSpace"
 
 #include <boost/test/unit_test.hpp>
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
 
 
-#include "FockSpace/SelectedFockSpace.hpp"
+#include "FockSpace/SelectedProductFockSpace.hpp"
 
 #include "WaveFunction/WaveFunctionReader.hpp"
 
@@ -29,20 +29,20 @@
 
 BOOST_AUTO_TEST_CASE ( constructor ) {
 
-    BOOST_CHECK_NO_THROW(GQCP::SelectedFockSpace (10, 5, 5));
+    BOOST_CHECK_NO_THROW(GQCP::SelectedProductFockSpace (10, 5, 5));
 
     GQCP::ProductFockSpace fock_space_product (10, 5, 5);
     GQCP::FockSpace fock_space (10, 5);
 
-    BOOST_CHECK_NO_THROW(GQCP::SelectedFockSpace fock (fock_space_product));
-    BOOST_CHECK_NO_THROW(GQCP::SelectedFockSpace fock (fock_space));
+    BOOST_CHECK_NO_THROW(GQCP::SelectedProductFockSpace fock (fock_space_product));
+    BOOST_CHECK_NO_THROW(GQCP::SelectedProductFockSpace fock (fock_space));
 }
 
 
 BOOST_AUTO_TEST_CASE ( addConfiguration ) {
 
     // Create a faulty expansion: one of the orbitals is different
-    GQCP::SelectedFockSpace fock_space (3, 1, 1);
+    GQCP::SelectedProductFockSpace fock_space (3, 1, 1);
 
     std::vector<std::string> alpha_set = {"001", "010"};
     std::vector<std::string> beta_set = {"001", "010"};

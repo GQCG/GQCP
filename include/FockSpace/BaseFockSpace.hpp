@@ -35,17 +35,15 @@ namespace GQCP {
  */
 class BaseFockSpace {
 protected:
-    size_t K;  // number of spatial orbitals
     size_t dim;  // dimension of the Fock space
 
 
     // PROTECTED CONSTRUCTORS
     BaseFockSpace() = default;
     /**
-     *  @param K        the number of orbitals
      *  @param dim      the dimension of the Fock space
      */
-    BaseFockSpace(size_t K, size_t dim);
+    BaseFockSpace(size_t dim);
 
 public:
     // NAMED CONSTRUCTORS
@@ -68,7 +66,6 @@ public:
 
     // GETTERS
     size_t get_dimension() const { return dim; }
-    size_t get_K() const { return K; }
     virtual FockSpaceType get_type() const = 0;
 
 

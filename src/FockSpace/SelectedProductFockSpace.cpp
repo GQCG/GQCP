@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "FockSpace/SelectedFockSpace.hpp"
+#include "FockSpace/SelectedProductFockSpace.hpp"
 
 #include <boost/dynamic_bitset.hpp>
 #include <boost/numeric/conversion/converter.hpp>
@@ -37,7 +37,7 @@ namespace GQCP {
  *
  *  IMPORTANT: only works for up to 64 bits!
  */
-Configuration SelectedFockSpace::makeConfiguration(const std::string& onv1, const std::string& onv2) const {
+Configuration SelectedProductFockSpace::makeConfiguration(const std::string& onv1, const std::string& onv2) const {
 
     boost::dynamic_bitset<> alpha_transfer (onv1);
     boost::dynamic_bitset<> beta_transfer (onv2);
@@ -72,8 +72,9 @@ Configuration SelectedFockSpace::makeConfiguration(const std::string& onv1, cons
  *  @param N_alpha      the number of alpha electrons
  *  @param N_beta       the number of beta electrons
  */
-SelectedFockSpace::SelectedFockSpace(size_t K, size_t N_alpha, size_t N_beta) :
-    BaseFockSpace(K, 0),
+SelectedProductFockSpace::SelectedProductFockSpace(size_t K, size_t N_alpha, size_t N_beta) :
+    BaseFockSpace(0),  // start with dimension 0
+    K (K),
     N_alpha (N_alpha),
     N_beta (N_beta)
 {}
@@ -84,8 +85,8 @@ SelectedFockSpace::SelectedFockSpace(size_t K, size_t N_alpha, size_t N_beta) :
  *
  *  @param fock_space       the ProductFockSpace from which the configurations should be generated
  */
-SelectedFockSpace::SelectedFockSpace(const ProductFockSpace& fock_space) :
-    SelectedFockSpace (fock_space.get_K(), fock_space.get_N_alpha(), fock_space.get_N_beta())
+SelectedProductFockSpace::SelectedProductFockSpace(const ProductFockSpace& fock_space) :
+    SelectedProductFockSpace(fock_space.get_K(), fock_space.get_N_alpha(), fock_space.get_N_beta())
 {
 
     std::vector<Configuration> configurations;
@@ -123,8 +124,8 @@ SelectedFockSpace::SelectedFockSpace(const ProductFockSpace& fock_space) :
  *
  *  @param fock_space       the FockSpace from which the configurations should be generated
  */
-SelectedFockSpace::SelectedFockSpace(const FockSpace& fock_space)  :
-        SelectedFockSpace (fock_space.get_K(), fock_space.get_N(), fock_space.get_N())
+SelectedProductFockSpace::SelectedProductFockSpace(const FockSpace& fock_space)  :
+    SelectedProductFockSpace(fock_space.get_M(), fock_space.get_N(), fock_space.get_N())
 {
 
     std::vector<Configuration> configurations;
@@ -159,7 +160,7 @@ SelectedFockSpace::SelectedFockSpace(const FockSpace& fock_space)  :
  *  @param onv1     the alpha ONV as a string representation read from right to left
  *  @param onv2     the beta ONV as a string representation read from right to left
  */
-void SelectedFockSpace::addConfiguration(const std::string& onv1, const std::string& onv2) {
+void SelectedProductFockSpace::addConfiguration(const std::string& onv1, const std::string& onv2) {
 
     this->dim++;
 
@@ -174,7 +175,7 @@ void SelectedFockSpace::addConfiguration(const std::string& onv1, const std::str
  *  @param onv1s     the alpha ONVs as string representations read from right to left
  *  @param onv2s     the beta ONVs as string representations read from right to left
  */
-void SelectedFockSpace::addConfiguration(const std::vector<std::string>& onv1s, const std::vector<std::string>& onv2s){
+void SelectedProductFockSpace::addConfiguration(const std::vector<std::string>& onv1s, const std::vector<std::string>& onv2s){
 
     if (onv1s.size() != onv2s.size()) {
         throw std::invalid_argument("Size of both ONV entry vectors do not match");

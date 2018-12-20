@@ -18,7 +18,7 @@
 #include "FockSpace/BaseFockSpace.hpp"
 #include "FockSpace/FockSpace.hpp"
 #include "FockSpace/ProductFockSpace.hpp"
-#include "FockSpace/SelectedFockSpace.hpp"
+#include "FockSpace/SelectedProductFockSpace.hpp"
 
 
 namespace GQCP {
@@ -28,11 +28,9 @@ namespace GQCP {
  */
 
 /**
- *  @param K        the number of orbitals
  *  @param dim      the dimension of the Fock space
  */
-BaseFockSpace::BaseFockSpace(size_t K, size_t dim) :
-    K (K),
+BaseFockSpace::BaseFockSpace(size_t dim) :
     dim (dim)
 {}
 
@@ -65,8 +63,8 @@ std::shared_ptr<BaseFockSpace> BaseFockSpace::CloneToHeap(const BaseFockSpace& f
             break;
         }
 
-        case FockSpaceType::SelectedFockSpace: {
-            fock_space_ptr = std::make_shared<SelectedFockSpace>(SelectedFockSpace(dynamic_cast<const SelectedFockSpace&>(fock_space)));
+        case FockSpaceType::SelectedProductFockSpace: {
+            fock_space_ptr = std::make_shared<SelectedProductFockSpace>(SelectedProductFockSpace(dynamic_cast<const SelectedProductFockSpace&>(fock_space)));
             break;
         }
     }

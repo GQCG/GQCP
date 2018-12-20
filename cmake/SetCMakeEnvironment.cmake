@@ -25,7 +25,7 @@ set(PROJECT_SOURCE_FILES
         ${PROJECT_SOURCE_FOLDER}/FockSpace/FockSpace.cpp
         ${PROJECT_SOURCE_FOLDER}/FockSpace/ONV.cpp
         ${PROJECT_SOURCE_FOLDER}/FockSpace/ProductFockSpace.cpp
-        ${PROJECT_SOURCE_FOLDER}/FockSpace/SelectedFockSpace.cpp
+        ${PROJECT_SOURCE_FOLDER}/FockSpace/SelectedProductFockSpace.cpp
 
         ${PROJECT_SOURCE_FOLDER}/geminals/AP1roG.cpp
         ${PROJECT_SOURCE_FOLDER}/geminals/AP1roGGeminalCoefficients.cpp
@@ -110,7 +110,7 @@ set(PROJECT_INCLUDE_FILES
         ${PROJECT_INCLUDE_FOLDER}/FockSpace/FockSpace.hpp
         ${PROJECT_INCLUDE_FOLDER}/FockSpace/FockSpaceType.hpp
         ${PROJECT_INCLUDE_FOLDER}/FockSpace/ONV.hpp
-        ${PROJECT_INCLUDE_FOLDER}/FockSpace/SelectedFockSpace.hpp
+        ${PROJECT_INCLUDE_FOLDER}/FockSpace/SelectedProductFockSpace.hpp
         ${PROJECT_INCLUDE_FOLDER}/FockSpace/ProductFockSpace.hpp
 
         ${PROJECT_INCLUDE_FOLDER}/geminals/AP1roG.hpp

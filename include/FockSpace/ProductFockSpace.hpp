@@ -31,6 +31,7 @@ namespace GQCP {
  */
 class ProductFockSpace: public BaseFockSpace {
 private:
+    size_t K;  // number of spatial orbitals
     size_t N_alpha;  // number of alpha electrons
     size_t N_beta;  // number of beta electrons
 
@@ -41,7 +42,7 @@ private:
 public:
     // CONSTRUCTORS
     /**
-     *  @param K            the number of orbitals (equal for alpha and beta)
+     *  @param K            the number of spatial orbitals (equal for alpha and beta)
      *  @param N_alpha      the number of alpha electrons
      *  @param N_beta       the number of beta electrons
      */
@@ -53,6 +54,7 @@ public:
 
 
     // GETTERS
+    size_t get_K() const { return this->K; }
     size_t get_N_alpha() const { return this->N_alpha; }
     size_t get_N_beta() const { return this->N_beta; }
     const FockSpace& get_fock_space_alpha() const { return this->fock_space_alpha; }

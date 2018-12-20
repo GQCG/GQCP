@@ -32,8 +32,9 @@ namespace GQCP {
  *
  *  Configurations are represented as a Configuration: a combination of an alpha and a beta ONV
  */
-class SelectedFockSpace : public BaseFockSpace {
+class SelectedProductFockSpace : public BaseFockSpace {
 private:
+    size_t K;  // number of spatial orbitals
     size_t N_alpha;  // number of alpha electrons
     size_t N_beta;  // number of beta electrons
 
@@ -51,7 +52,7 @@ private:
 
 public:
     // CONSTRUCTORS
-    SelectedFockSpace() = default;  // need a default constructor
+    SelectedProductFockSpace() = default;  // need a default constructor
 
     /**
      *  A constructor with initial Fock space dimension of 0
@@ -60,28 +61,29 @@ public:
      *  @param N_alpha      the number of alpha electrons
      *  @param N_beta       the number of beta electrons
      */
-    SelectedFockSpace(size_t K, size_t N_alpha, size_t N_beta);
+    SelectedProductFockSpace(size_t K, size_t N_alpha, size_t N_beta);
 
     /**
      *  A constructor that generates the configurations based off the given ProductFockSpace.
      *
      *  @param fock_space       the ProductFockSpace from which the configurations should be generated
      */
-    explicit SelectedFockSpace(const ProductFockSpace& fock_space);
+    explicit SelectedProductFockSpace(const ProductFockSpace& fock_space);
 
     /**
      *  A constructor that generates the configurations based off the given FockSpace.
      *
      *  @param fock_space       the FockSpace from which the configurations should be generated
      */
-    explicit SelectedFockSpace(const FockSpace& fock_space);
+    explicit SelectedProductFockSpace(const FockSpace& fock_space);
 
 
     // GETTERS
+    size_t get_K() const { return this->K; }
     size_t get_N_alpha() const { return this->N_alpha; }
     size_t get_N_beta() const { return this->N_beta; }
     const Configuration& get_configuration(size_t index) const { return this->configurations[index]; }
-    FockSpaceType get_type() const override { return FockSpaceType::SelectedFockSpace; }
+    FockSpaceType get_type() const override { return FockSpaceType::SelectedProductFockSpace; }
 
 
     // PUBLIC METHODS

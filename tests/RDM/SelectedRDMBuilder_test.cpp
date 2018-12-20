@@ -60,7 +60,7 @@ BOOST_AUTO_TEST_CASE ( one_rdms_fci_H2_6_31G ) {
     GQCP::OneRDMs one_rdms = fci_rdm.calculate1RDMs(coef);
 
 
-    GQCP::SelectedFockSpace selected_fock_space (fock_space);
+    GQCP::SelectedProductFockSpace selected_fock_space (fock_space);
 
     // Get the 1-RDM from SelectedCI
     GQCP::RDMCalculator selected_rdm (selected_fock_space);
@@ -102,7 +102,7 @@ BOOST_AUTO_TEST_CASE ( two_rdms_fci_H2_6_31G ) {
     GQCP::TwoRDMs two_rdms = fci_rdm.calculate2RDMs(coef);
 
 
-    GQCP::SelectedFockSpace selected_fock_space (fock_space);
+    GQCP::SelectedProductFockSpace selected_fock_space (fock_space);
 
     // Get the 1-RDM from SelectedCI
     GQCP::RDMCalculator selected_rdm (selected_fock_space);
@@ -144,7 +144,7 @@ BOOST_AUTO_TEST_CASE ( one_rdms_doci_H2_6_31G ) {
     GQCP::OneRDMs one_rdms = doci_rdm.calculate1RDMs(coef);
 
 
-    GQCP::SelectedFockSpace selected_fock_space (fock_space);
+    GQCP::SelectedProductFockSpace selected_fock_space (fock_space);
 
     // Get the 1-RDM from SelectedCI
     GQCP::RDMCalculator selected_rdm (selected_fock_space);
@@ -184,7 +184,7 @@ BOOST_AUTO_TEST_CASE ( two_rdms_doci_H2_6_31G ) {
     GQCP::TwoRDMs two_rdms = doci_rdm.calculate2RDMs(coef);
 
 
-    GQCP::SelectedFockSpace selected_fock_space (fock_space);
+    GQCP::SelectedProductFockSpace selected_fock_space (fock_space);
 
     // Get the 1-RDM from SelectedCI
     GQCP::RDMCalculator selected_rdm (selected_fock_space);
