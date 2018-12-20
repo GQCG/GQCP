@@ -15,8 +15,8 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCP_SELECTEDFOCKSPACE_HPP
-#define GQCP_SELECTEDFOCKSPACE_HPP
+#ifndef GQCP_SELECTEDPRODUCTFOCKSPACE_HPP
+#define GQCP_SELECTEDPRODUCTFOCKSPACE_HPP
 
 
 #include "FockSpace/BaseFockSpace.hpp"
@@ -28,9 +28,7 @@ namespace GQCP {
 
 
 /**
- *  A class that represents a Fock space that is flexible in the number of states that span it
- *
- *  Configurations are represented as a Configuration: a combination of an alpha and a beta ONV
+ *  A class that represents a (spin-resolved) Fock space that is flexible in the number of states (Configurations) that span it
  */
 class SelectedProductFockSpace : public BaseFockSpace {
 private:
@@ -108,4 +106,4 @@ public:
 }  // namespace GQCP
 
 
-#endif  // GQCP_SELECTEDFOCKSPACE_HPP
+#endif  // GQCP_SELECTEDPRODUCTFOCKSPACE_HPP

@@ -27,7 +27,7 @@ namespace GQCP {
 
 
 /**
- *  The full Fock space for a number of orbitals and number of electrons
+ *  The full Fock space for a number of spin orbitals and number of electrons
  *
  *  The ONVs and addresses are linked with a hashing function calculated with an addressing scheme. The implementation of the addressing scheme is from Molecular Electronic-Structure Theory (August 2000) by Trygve Helgaker, Poul Jorgensen, and Jeppe Olsen
  *

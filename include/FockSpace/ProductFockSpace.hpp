@@ -27,7 +27,7 @@ namespace GQCP {
 
 
 /**
- *  A class that represents the product of two full Fock spaces (alpha and beta).
+ *  A class that holds two full Fock spaces (alpha and beta) that can be used in spin-resolved calculations
  */
 class ProductFockSpace: public BaseFockSpace {
 private:

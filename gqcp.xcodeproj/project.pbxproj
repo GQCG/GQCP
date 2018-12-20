@@ -502,6 +502,8 @@
 		566D22A221B81CC100F8EB91 /* NRDMCalculator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 566D22A021B81CC100F8EB91 /* NRDMCalculator.cpp */; };
 		566D22A321B81CC100F8EB91 /* NRDMCalculator.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 566D22A121B81CC100F8EB91 /* NRDMCalculator.hpp */; };
 		5679D5C921CB919700DE2CE8 /* SelectedProductFockSpace.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5679D5C821CB919700DE2CE8 /* SelectedProductFockSpace.hpp */; };
+		5679D5CC21CBA7EF00DE2CE8 /* SelectedFockSpace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5679D5CA21CBA7EF00DE2CE8 /* SelectedFockSpace.cpp */; };
+		5679D5CD21CBA7EF00DE2CE8 /* SelectedFockSpace.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5679D5CB21CBA7EF00DE2CE8 /* SelectedFockSpace.hpp */; };
 		56C64D8621B0713700D44FF0 /* constrained_RHF_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FB4921B02EDE002C5D40 /* constrained_RHF_test.cpp */; };
 		56FBA09F21C2B0420084F088 /* linalg.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56FBA09B21C2B0420084F088 /* linalg.hpp */; };
 		56FBA0A121C2B0420084F088 /* io.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56FBA09D21C2B0420084F088 /* io.hpp */; };
@@ -2561,6 +2563,8 @@
 		566D22A021B81CC100F8EB91 /* NRDMCalculator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NRDMCalculator.cpp; sourceTree = "<group>"; };
 		566D22A121B81CC100F8EB91 /* NRDMCalculator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NRDMCalculator.hpp; sourceTree = "<group>"; };
 		5679D5C821CB919700DE2CE8 /* SelectedProductFockSpace.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SelectedProductFockSpace.hpp; sourceTree = "<group>"; };
+		5679D5CA21CBA7EF00DE2CE8 /* SelectedFockSpace.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SelectedFockSpace.cpp; sourceTree = "<group>"; };
+		5679D5CB21CBA7EF00DE2CE8 /* SelectedFockSpace.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SelectedFockSpace.hpp; sourceTree = "<group>"; };
 		56FBA09B21C2B0420084F088 /* linalg.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = linalg.hpp; sourceTree = "<group>"; };
 		56FBA09D21C2B0420084F088 /* io.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = io.hpp; sourceTree = "<group>"; };
 		56FBA09E21C2B0420084F088 /* miscellaneous.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = miscellaneous.hpp; sourceTree = "<group>"; };
@@ -3330,6 +3334,7 @@
 				5614F99521B029FB002C5D40 /* FockSpaceType.hpp */,
 				5614F99721B029FB002C5D40 /* ONV.hpp */,
 				5614F99321B029FB002C5D40 /* ProductFockSpace.hpp */,
+				5679D5CB21CBA7EF00DE2CE8 /* SelectedFockSpace.hpp */,
 				5679D5C821CB919700DE2CE8 /* SelectedProductFockSpace.hpp */,
 			);
 			path = FockSpace;
@@ -3459,6 +3464,7 @@
 				5614F9DA21B029FB002C5D40 /* ONV.cpp */,
 				5614F9DC21B029FB002C5D40 /* ProductFockSpace.cpp */,
 				5614F9DD21B029FB002C5D40 /* SelectedProductFockSpace.cpp */,
+				5679D5CA21CBA7EF00DE2CE8 /* SelectedFockSpace.cpp */,
 			);
 			path = FockSpace;
 			sourceTree = "<group>";
@@ -4070,6 +4076,7 @@
 				5614FA4121B029FB002C5D40 /* HamiltonianBuilder.hpp in Headers */,
 				5614FA2221B029FB002C5D40 /* RDMs.hpp in Headers */,
 				56FBA0C321C2B4AF0084F088 /* NewtonSystemOfEquationsSolver.hpp in Headers */,
+				5679D5CD21CBA7EF00DE2CE8 /* SelectedFockSpace.hpp in Headers */,
 				5614FA2C21B029FB002C5D40 /* expectation_values.hpp in Headers */,
 				56272DBE21B6CBFA008BEA47 /* APIGGeminalCoefficients.hpp in Headers */,
 				5614FA3821B029FB002C5D40 /* ERJacobiLocalizer.hpp in Headers */,
@@ -5866,6 +5873,7 @@
 				5614FA6E21B029FB002C5D40 /* HamiltonianParameters.cpp in Sources */,
 				56FBA0D521C2B4C90084F088 /* NewtonMinimizer.cpp in Sources */,
 				5614FA7221B029FB002C5D40 /* FCI.cpp in Sources */,
+				5679D5CC21CBA7EF00DE2CE8 /* SelectedFockSpace.cpp in Sources */,
 				5614FA5121B029FB002C5D40 /* RHF.cpp in Sources */,
 				5614FA6221B029FB002C5D40 /* expectation_values.cpp in Sources */,
 				56FBA0D821C2B4C90084F088 /* DenseSolver.cpp in Sources */,
