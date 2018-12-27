@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "RDM/UnresolvedCIRDMBuilder.hpp"
+#include "RDM/SpinUnresolvedFCIRDMBuilder.hpp"
 
 
 namespace GQCP {
@@ -24,7 +24,7 @@ namespace GQCP {
 /*
  *  CONSTRUCTOR
  */
-UnresolvedCIRDMBuilder::UnresolvedCIRDMBuilder(const FockSpace& fock_space) :
+SpinUnresolvedFCIRDMBuilder::SpinUnresolvedFCIRDMBuilder(const FockSpace& fock_space) :
     fock_space (fock_space)
 {}
 
@@ -38,7 +38,7 @@ UnresolvedCIRDMBuilder::UnresolvedCIRDMBuilder(const FockSpace& fock_space) :
  *
  *  @return all 1-RDMs given a coefficient vector
  */
-OneRDMs UnresolvedCIRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) const {
+OneRDMs SpinUnresolvedFCIRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) const {
     throw std::runtime_error ("calculate1RDMs is not implemented for UnresolvedCIRDMs");
 }
 
@@ -48,7 +48,7 @@ OneRDMs UnresolvedCIRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) const {
  *
  *  @return all 2-RDMs given a coefficient vector
  */
-TwoRDMs UnresolvedCIRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) const {
+TwoRDMs SpinUnresolvedFCIRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) const {
     throw std::runtime_error ("calculate2RDMs is not implemented for UnresolvedCIRDMs");
 }
 
@@ -62,7 +62,7 @@ TwoRDMs UnresolvedCIRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) const {
  *
  *      calculateElement({0, 1}, {2, 1}) would calculate d^{(2)} (0, 1, 1, 2): the operator string would be a^\dagger_0 a^\dagger_1 a_2 a_1
  */
-double UnresolvedCIRDMBuilder::calculateElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices, const Eigen::VectorXd& x) const {
+double SpinUnresolvedFCIRDMBuilder::calculateElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices, const Eigen::VectorXd& x) const {
     // The ket indices should be reversed because the annihilators on the ket should be applied from right to left
     std::vector<size_t> ket_indices_reversed = ket_indices;
     std::reverse(ket_indices_reversed.begin(), ket_indices_reversed.end());

@@ -20,7 +20,7 @@
 #include "RDM/DOCIRDMBuilder.hpp"
 #include "RDM/FCIRDMBuilder.hpp"
 #include "RDM/SelectedRDMBuilder.hpp"
-#include "RDM/UnresolvedCIRDMBuilder.hpp"
+#include "RDM/SpinUnresolvedFCIRDMBuilder.hpp"
 
 
 
@@ -126,7 +126,7 @@ RDMCalculator RDMCalculator::SpinUnresolved(const WaveFunction& wavefunction) {
  */
 RDMCalculator RDMCalculator::SpinUnresolved(const FockSpace& fock_space) {
     RDMCalculator rdm_calculator;
-    rdm_calculator.rdm_builder = std::make_shared<UnresolvedCIRDMBuilder>(fock_space);
+    rdm_calculator.rdm_builder = std::make_shared<SpinUnresolvedFCIRDMBuilder>(fock_space);
     return rdm_calculator;
 }
 

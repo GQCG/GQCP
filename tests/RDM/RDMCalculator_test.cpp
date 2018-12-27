@@ -87,7 +87,7 @@ BOOST_AUTO_TEST_CASE ( operator_call_throw ) {
     coeff << 1, 2, -3;
     GQCP::RDMCalculator d = GQCP::RDMCalculator::SpinUnresolved(fock_space);
     d.set_coefficients(coeff);
-    BOOST_CHECK_THROW(d(0), std::invalid_argument);
+    BOOST_CHECK_THROW(d(0), std::invalid_argument);  // need an even number of indices
 }
 
 

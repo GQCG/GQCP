@@ -15,8 +15,8 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCP_RDMCALCULATOR_HPP
-#define GQCP_RDMCALCULATOR_HPP
+#ifndef GQCP_SPINUNRESOLVEDRDMCALCULATOR_HPP
+#define GQCP_SPINUNRESOLVEDRDMCALCULATOR_HPP
 
 #include "RDM/BaseRDMBuilder.hpp"
 #include "FockSpace/FockSpace.hpp"
@@ -36,70 +36,35 @@ namespace GQCP {
 /**
  *  A wrapper around the derived RDMBuilders that provides the functionality of the appropriate derived RDMBuilder for a given Fock space at compile- or runtime.
  */
-class RDMCalculator {
+class SpinUnresolvedRDMCalculator {
 private:
     std::shared_ptr<BaseRDMBuilder> rdm_builder;
     Eigen::VectorXd coefficients;
 
 public:
     // CONSTRUCTOR
-    RDMCalculator() = default;
-    /**
-     *  Allocate a DOCIRDMBuilder
-     *
-     *  @param fock_space       the DOCI Fock space
-     */
-    explicit RDMCalculator(const FockSpace& fock_space);
-
-    /**
-     *  Allocate a FCIRDMBuilder
-     *
-     *  @param fock_space       the FCI Fock space
-     */
-    explicit RDMCalculator(const ProductFockSpace& fock_space);
-
-    /**
-     *  Allocate a SelectedRDMBuilder
-     *
-     *  @param fock_space       the 'selected' Fock space
-     */
-    explicit RDMCalculator(const SelectedFockSpace& fock_space);
-
-    /**
-     *  A run-time constructor allocating the appropriate derived RDMBuilder
-     *
-     *  @param fock_space       the Fock space on which the RDMBuilder should be based
-     */
-    explicit RDMCalculator(const BaseFockSpace& fock_space);
-
-    /**
-     *  A run-time constructor allocating the appropriate derived RDMBuilder and coefficient vector
-     *
-     *  @param wavefunction       the wave function holding the coefficient vector and a Fock space on which the RDMBuilder should be based
-     */
-    explicit RDMCalculator(const WaveFunction& wavefunction);
-
+    SpinUnresolvedRDMCalculator() = default;
     // NAMED CONSTRUCTORS
     /**
      *  A run-time constructor allocating the appropriate derived Unresolved RDMBuilder and coefficient vector
      *
      *  @param wavefunction       the wave function holding the coefficient vector and a Fock space on which the RDMBuilder should be based
      */
-    static RDMCalculator SpinUnresolved(const WaveFunction& wavefunction);
+    static SpinUnresolvedRDMCalculator (const WaveFunction& wavefunction);
 
     /**
      *  Allocate an UnresolvedCIRDMBuilder
      *
      *  @param fock_space       the Fock space
      */
-    static RDMCalculator SpinUnresolved(const FockSpace& fock_space);
+    static SpinUnresolvedRDMCalculator (const FockSpace& fock_space);
 
     /**
      *  A run-time constructor allocating the appropriate derived Unresolved RDMBuilder
      *
      *  @param fock_space       the Fock space on which the RDMBuilder should be based
      */
-    static RDMCalculator SpinUnresolved(const BaseFockSpace& fock_space);
+    static SpinUnresolvedRDMCalculator (const BaseFockSpace& fock_space);
     
     // SETTERS
     void set_coefficients(const Eigen::VectorXd& coefficients) { this->coefficients = coefficients; };
@@ -163,4 +128,4 @@ public:
 }  // namespace GQCP
 
 
-#endif  // GQCP_RDMCALCULATOR_HPP
+#endif  // GQCP_SPINUNRESOLVEDRDMCalculator_HPP

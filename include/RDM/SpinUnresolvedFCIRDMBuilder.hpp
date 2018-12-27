@@ -28,19 +28,19 @@ namespace GQCP {
 
 
 /**
- *  A class capable of calculating 1- and 2-RDMs from wave functions expanded in the full CI product Fock space
+ *  A class capable of calculating RDMs from wave functions expanded in the full CI (spin-orbital) Fock space
  */
-class UnresolvedCIRDMBuilder : public BaseRDMBuilder {
-    FockSpace fock_space;  // Fock space containing the alpha and beta Fock space
+class SpinUnresolvedFCIRDMBuilder : public BaseRDMBuilder {
+    FockSpace fock_space;  // spin-orbital Fock space
 
 
 public:
     // CONSTRUCTORS
-    explicit UnresolvedCIRDMBuilder(const FockSpace& fock_space);
+    explicit SpinUnresolvedFCIRDMBuilder(const FockSpace& fock_space);
 
 
     // DESTRUCTOR
-    ~UnresolvedCIRDMBuilder() = default;
+    ~SpinUnresolvedFCIRDMBuilder() = default;
 
 
     // OVERRIDDEN GETTERS

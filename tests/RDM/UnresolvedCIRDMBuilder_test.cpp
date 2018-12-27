@@ -21,7 +21,7 @@
 #include <boost/test/unit_test.hpp>
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
 
-#include "RDM/UnresolvedCIRDMBuilder.hpp"
+#include "RDM/SpinUnresolvedFCIRDMBuilder.hpp"
 
 
 
@@ -34,7 +34,7 @@ BOOST_AUTO_TEST_CASE ( calculateElement_throws ) {
 
     Eigen::VectorXd coeff (fock_space.get_dimension());
     coeff << 1, 2, -3;
-    GQCP::UnresolvedCIRDMBuilder d (fock_space);
+    GQCP::SpinUnresolvedFCIRDMBuilder d (fock_space);
 
     BOOST_CHECK_THROW(d.calculateElement({3}, {0}, coeff), std::invalid_argument);  // bra-index is out of bounds
     BOOST_CHECK_THROW(d.calculateElement({0}, {3}, coeff), std::invalid_argument);  // ket-index is out of bounds
@@ -54,7 +54,7 @@ BOOST_AUTO_TEST_CASE ( calculateElement_1RDM ) {
 
 
     // Check some 1-RDM values
-    GQCP::UnresolvedCIRDMBuilder d (fock_space);
+    GQCP::SpinUnresolvedFCIRDMBuilder d (fock_space);
     BOOST_CHECK(std::abs(d.calculateElement({0}, {0}, coeff) - 1.0) < 1.0e-12);     // d(0,0) : a^\dagger_0 a_0
     BOOST_CHECK(std::abs(d.calculateElement({0}, {1}, coeff) - 2.0) < 1.0e-12);     // d(0,1) : a^\dagger_0 a_1
     BOOST_CHECK(std::abs(d.calculateElement({2}, {1}, coeff) - (-6.0)) < 1.0e-12);  // d(2,1) : a^\dagger_2 a_1
@@ -73,7 +73,7 @@ BOOST_AUTO_TEST_CASE ( calculateElement_2RDM ) {
 
 
     // Check some 2-RDM values
-    GQCP::UnresolvedCIRDMBuilder d (fock_space);
+    GQCP::SpinUnresolvedFCIRDMBuilder d (fock_space);
     BOOST_CHECK(std::abs(d.calculateElement({0,1}, {2,1}, coeff) - (-3.0)) < 1.0e-12);  // d(0,1,1,2) : a^\dagger_0 a^\dagger_1 a_2 a_1
     BOOST_CHECK(std::abs(d.calculateElement({2,0}, {1,0}, coeff) - (-2.0)) < 1.0e-12);  // d(2,0,0,1) : a^\dagger_2 a^\dagger_0 a^1 a_0
     BOOST_CHECK(std::abs(d.calculateElement({0,2}, {0,2}, coeff) - (-4.0)) < 1.0e-12);  // d(0,2,2,0) : a^\dagger_0 a^dagger_2 a_0 a_2
@@ -93,7 +93,7 @@ BOOST_AUTO_TEST_CASE ( calculateElement_3RDM ) {
 
 
     // Check some 3-RDM values
-    GQCP::UnresolvedCIRDMBuilder d (fock_space);
+    GQCP::SpinUnresolvedFCIRDMBuilder d (fock_space);
     BOOST_CHECK(std::abs(d.calculateElement({0,0,1}, {1,0,2}, coeff) - 0.0) < 1.0e-12);  // zero because two times the same index
     BOOST_CHECK(std::abs(d.calculateElement({1,0,3}, {4,1,2}, coeff) - 0.0) < 1.0e-12);  // zero because no fully annihilated bras and kets match
     BOOST_CHECK(std::abs(d.calculateElement({0,1,2}, {2,1,0}, coeff) - 2.0) < 1.0e-12);
@@ -113,7 +113,7 @@ BOOST_AUTO_TEST_CASE ( throw_1and2_RDMs ) {
 
 
     // not implemented yet and should throw
-    GQCP::UnresolvedCIRDMBuilder d (fock_space);
+    GQCP::SpinUnresolvedFCIRDMBuilder d (fock_space);
     BOOST_CHECK_THROW(d.calculate1RDMs(coeff), std::runtime_error);
     BOOST_CHECK_THROW(d.calculate2RDMs(coeff), std::runtime_error);
 }
