@@ -15,8 +15,8 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCG_BASERDMBUILDER_HPP
-#define GQCG_BASERDMBUILDER_HPP
+#ifndef GQCG_BASESPINUNRESOLVEDRDMBUILDER_HPP
+#define GQCG_BASESPINUNRESOLVEDRDMBUILDER_HPP
 
 
 #include "RDM/OneRDM.hpp"
@@ -29,19 +29,19 @@ namespace GQCP {
 
 
 /**
- *  BaseRDMBuilder is an abstract base class whose derived classes are capable of calculating 1- and 2-RDMs from wave functions in spin resolved basis
+ *  BaseSpinUnresolvedRDMBuilder is an abstract base class whose derived classes are capable of calculating 1- and 2-RDM from wave functions in a spin unresolved basis
  */
-class BaseRDMBuilder {
+class BaseSpinUnresolvedRDMBuilder {
 public:
     // CONSTRUCTOR
-    BaseRDMBuilder() = default;
+    BaseSpinUnresolvedRDMBuilder() = default;
 
 
     // DESTRUCTOR
     /**
      *  Provide a pure virtual destructor to make the class abstract
      */
-    virtual ~BaseRDMBuilder() = 0;
+    virtual ~BaseSpinUnresolvedRDMBuilder() = 0;
 
 
     // PURE VIRTUAL GETTERS
@@ -52,23 +52,23 @@ public:
     /**
      *  @param x        the coefficient vector representing the wave function
      *
-     *  @return all 1-RDMs given a coefficient vector
+     *  @return the 1-RDM given a coefficient vector
      */
-    virtual OneRDMs calculate1RDMs(const Eigen::VectorXd& x) const = 0;
+    virtual OneRDM calculate1RDM(const Eigen::VectorXd& x) const = 0;
 
     /**
      *  @param x        the coefficient vector representing the wave function
      *
-     *  @return all 2-RDMs given a coefficient vector
+     *  @return the 2-RDM given a coefficient vector
      */
-    virtual TwoRDMs calculate2RDMs(const Eigen::VectorXd& x) const = 0;
+    virtual TwoRDM calculate2RDM(const Eigen::VectorXd& x) const = 0;
 
     /**
      *  @param bra_indices      the indices of the orbitals that should be annihilated on the left (on the bra)
      *  @param ket_indices      the indices of the orbitals that should be annihilated on the right (on the ket)
      *  @param x                the coefficient vector representing the wave function
      *
-     *  @return an element of the N-RDM, as specified by the given bra and ket indices. In the case of a spin-resolved Fock space, calculate an element of the spin-summed (total) N-RDM
+     *  @return an element of the N-RDM, as specified by the given bra and ket indices.
      *
      *      calculateElement({0, 1}, {2, 1}) would calculate d^{(2)} (0, 1, 1, 2): the operator string would be a^\dagger_0 a^\dagger_1 a_2 a_1
      */
@@ -79,4 +79,4 @@ public:
 }  // namespace GQCG
 
 
-#endif  // GQCG_BASERDMBUILDER_HPP
+#endif  // GQCG_BASESPINUNRESOLVEDRDMBUILDER_HPP

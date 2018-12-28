@@ -114,6 +114,6 @@ BOOST_AUTO_TEST_CASE ( throw_1and2_RDMs ) {
 
     // not implemented yet and should throw
     GQCP::SpinUnresolvedFCIRDMBuilder d (fock_space);
-    BOOST_CHECK_THROW(d.calculate1RDMs(coeff), std::runtime_error);
-    BOOST_CHECK_THROW(d.calculate2RDMs(coeff), std::runtime_error);
+    BOOST_CHECK_THROW(d.calculate1RDM(coeff), std::runtime_error);
+    BOOST_CHECK_THROW(d.calculate2RDM(coeff), std::runtime_error);
 }

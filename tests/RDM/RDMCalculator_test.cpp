@@ -22,6 +22,7 @@
 
 
 #include "RDM/RDMCalculator.hpp"
+#include "RDM/SpinUnresolvedRDMCalculator.hpp"
 
 #include "FockSpace/FockSpace.hpp"
 #include "FockSpace/ProductFockSpace.hpp"
@@ -85,7 +86,7 @@ BOOST_AUTO_TEST_CASE ( operator_call_throw ) {
 
     Eigen::VectorXd coeff (fock_space.get_dimension());
     coeff << 1, 2, -3;
-    GQCP::RDMCalculator d = GQCP::RDMCalculator::SpinUnresolved(fock_space);
+    GQCP::SpinUnresolvedRDMCalculator d (fock_space);
     d.set_coefficients(coeff);
     BOOST_CHECK_THROW(d(0), std::invalid_argument);  // need an even number of indices
 }
@@ -100,25 +101,11 @@ BOOST_AUTO_TEST_CASE ( operator_call ) {
 
     Eigen::VectorXd coeff (fock_space.get_dimension());
     coeff << 1, 2, -3;
-    GQCP::RDMCalculator d = GQCP::RDMCalculator::SpinUnresolved(fock_space);
+    GQCP::SpinUnresolvedRDMCalculator d (fock_space);
     d.set_coefficients(coeff);
 
     BOOST_CHECK(std::abs(d(0,1,1,2) - (-3.0)) < 1.0e-12);  // d(0,1,1,2) : a^\dagger_0 a^\dagger_1 a_2 a_1
     BOOST_CHECK(std::abs(d(2,0,0,1) - (-2.0)) < 1.0e-12);  // d(2,0,0,1) : a^\dagger_2 a^\dagger_0 a^1 a_0
     BOOST_CHECK(std::abs(d(0,2,2,0) - (-4.0)) < 1.0e-12);  // d(0,2,2,0) : a^\dagger_0 a^dagger_2 a_0 a_2
     BOOST_CHECK(std::abs(d(0,2,0,0) - 0.0) < 1.0e-12);     // d(0,2,0,0) : a^\dagger_0 a^dagger_0 a_0 a_2, double annihilation gives 0.0
-}
-
-
-BOOST_AUTO_TEST_CASE ( SpinUnresolved_throw ) {
-
-    // Create test Fock spaces
-    size_t K = 3;
-    size_t N = 1;
-    GQCP::ProductFockSpace product_fock_space (K, N, N);
-    GQCP::SelectedFockSpace selected_fock_space (product_fock_space);
-
-    // No spin unresolved implementations
-    BOOST_CHECK_THROW(GQCP::RDMCalculator::SpinUnresolved(product_fock_space), std::runtime_error);
-    BOOST_CHECK_THROW(GQCP::RDMCalculator::SpinUnresolved(selected_fock_space), std::runtime_error);
 }

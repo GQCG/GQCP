@@ -20,7 +20,7 @@
 
 
 #include "FockSpace/FockSpace.hpp"
-#include "RDM/BaseRDMBuilder.hpp"
+#include "RDM/BaseSpinUnresolvedRDMBuilder.hpp"
 #include "RDM/RDMs.hpp"
 
 
@@ -30,9 +30,8 @@ namespace GQCP {
 /**
  *  A class capable of calculating RDMs from wave functions expanded in the full CI (spin-orbital) Fock space
  */
-class SpinUnresolvedFCIRDMBuilder : public BaseRDMBuilder {
+class SpinUnresolvedFCIRDMBuilder : public BaseSpinUnresolvedRDMBuilder {
     FockSpace fock_space;  // spin-orbital Fock space
-
 
 public:
     // CONSTRUCTORS
@@ -51,16 +50,16 @@ public:
     /**
      *  @param x        the coefficient vector representing the UnresolvedCI wave function
      *
-     *  @return all 1-RDMs given a coefficient vector
+     *  @return the 1-RDM given a coefficient vector
      */
-    OneRDMs calculate1RDMs(const Eigen::VectorXd& x) const override;
+    OneRDM calculate1RDM(const Eigen::VectorXd& x) const override;
 
     /**
      *  @param x        the coefficient vector representing the UnresolvedCI wave function
      *
-     *  @return all 2-RDMs given a coefficient vector
+     *  @return the 2-RDM given a coefficient vector
      */
-    TwoRDMs calculate2RDMs(const Eigen::VectorXd& x) const override;
+    TwoRDM calculate2RDM(const Eigen::VectorXd& x) const override;
 
     /**
      *  @param bra_indices      the indices of the orbitals that should be annihilated on the left (on the bra)

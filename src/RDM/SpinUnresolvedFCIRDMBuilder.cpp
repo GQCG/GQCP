@@ -36,19 +36,19 @@ SpinUnresolvedFCIRDMBuilder::SpinUnresolvedFCIRDMBuilder(const FockSpace& fock_s
 /**
  *  @param x        the coefficient vector representing the UnresolvedCI wave function
  *
- *  @return all 1-RDMs given a coefficient vector
+ *  @return the 1-RDM given a coefficient vector
  */
-OneRDMs SpinUnresolvedFCIRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) const {
+OneRDM SpinUnresolvedFCIRDMBuilder::calculate1RDM(const Eigen::VectorXd& x) const {
     throw std::runtime_error ("calculate1RDMs is not implemented for UnresolvedCIRDMs");
 }
 
 
 /**
- *  @param x        the coefficient vector representing the UnresolvedCI wave function
- *
- *  @return all 2-RDMs given a coefficient vector
- */
-TwoRDMs SpinUnresolvedFCIRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) const {
+     *  @param x        the coefficient vector representing the UnresolvedCI wave function
+     *
+     *  @return the 2-RDM given a coefficient vector
+     */
+TwoRDM SpinUnresolvedFCIRDMBuilder::calculate2RDM(const Eigen::VectorXd& x) const {
     throw std::runtime_error ("calculate2RDMs is not implemented for UnresolvedCIRDMs");
 }
 

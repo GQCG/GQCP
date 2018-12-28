@@ -20,7 +20,6 @@
 
 
 #include "FockSpace/BaseFockSpace.hpp"
-
 #include "common.hpp"
 
 

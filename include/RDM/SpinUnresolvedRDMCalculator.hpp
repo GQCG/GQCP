@@ -18,11 +18,10 @@
 #ifndef GQCP_SPINUNRESOLVEDRDMCALCULATOR_HPP
 #define GQCP_SPINUNRESOLVEDRDMCALCULATOR_HPP
 
-#include "RDM/BaseRDMBuilder.hpp"
+#include "RDM/BaseSpinUnresolvedRDMBuilder.hpp"
 #include "FockSpace/FockSpace.hpp"
-#include "FockSpace/ProductFockSpace.hpp"
-#include "FockSpace/SelectedFockSpace.hpp"
-#include "WaveFunction/WaveFunction.hpp"
+#include "WaveFunction/SpinUnresolvedWaveFunction.hpp"
+#include "RDM/SpinUnresolvedFCIRDMBuilder.hpp"
 
 #include <boost/range/adaptor/strided.hpp>
 #include <boost/range/adaptor/sliced.hpp>
@@ -34,51 +33,45 @@ namespace GQCP {
 
 
 /**
- *  A wrapper around the derived RDMBuilders that provides the functionality of the appropriate derived RDMBuilder for a given Fock space at compile- or runtime.
+ *  A wrapper around the SpinUnresolvedFCIRDMBuilder
  */
 class SpinUnresolvedRDMCalculator {
 private:
-    std::shared_ptr<BaseRDMBuilder> rdm_builder;
+    SpinUnresolvedFCIRDMBuilder rdm_builder;
     Eigen::VectorXd coefficients;
 
 public:
-    // CONSTRUCTOR
+    // CONSTRUCTORS
     SpinUnresolvedRDMCalculator() = default;
-    // NAMED CONSTRUCTORS
-    /**
-     *  A run-time constructor allocating the appropriate derived Unresolved RDMBuilder and coefficient vector
-     *
-     *  @param wavefunction       the wave function holding the coefficient vector and a Fock space on which the RDMBuilder should be based
-     */
-    static SpinUnresolvedRDMCalculator (const WaveFunction& wavefunction);
 
     /**
-     *  Allocate an UnresolvedCIRDMBuilder
+     *  Allocate a SpinUnresolvedFCIRDMBuilder
      *
      *  @param fock_space       the Fock space
      */
-    static SpinUnresolvedRDMCalculator (const FockSpace& fock_space);
+    explicit SpinUnresolvedRDMCalculator(const FockSpace& fock_space);
 
     /**
-     *  A run-time constructor allocating the appropriate derived Unresolved RDMBuilder
+     *  A run-time constructor allocating the appropriate derived RDMBuilder and coefficient vector
      *
-     *  @param fock_space       the Fock space on which the RDMBuilder should be based
+     *  @param wavefunction       the wave function holding the coefficient vector and a Fock space on which the RDMBuilder should be based
      */
-    static SpinUnresolvedRDMCalculator (const BaseFockSpace& fock_space);
-    
+    explicit SpinUnresolvedRDMCalculator(const SpinUnresolvedWaveFunction& wavefunction);
+
+
     // SETTERS
     void set_coefficients(const Eigen::VectorXd& coefficients) { this->coefficients = coefficients; };
 
     // PUBLIC METHODS
     /**
-     *  @return all 1-RDMs if a given coefficient vector is set
+     *  @return the 1-RDM if a given coefficient vector is set
      */
-    OneRDMs calculate1RDMs() const;
+    OneRDM calculate1RDM() const;
 
     /**
-     *  @return all 2-RDMs if a given coefficient vector is set
+     *  @return the 2-RDM if a given coefficient vector is set
      */
-    TwoRDMs calculate2RDMs() const;
+    TwoRDM calculate2RDM() const;
 
     /**
      *  @param bra_indices      the indices of the orbitals that should be annihilated on the left (on the bra)
@@ -97,10 +90,10 @@ public:
      */
     template<typename... size_ts>
     double operator()(size_ts... indices_pack) const {
+        if (this->coefficients.rows() == 0) { throw std::logic_error("No vector has been set."); }
 
         // Assume the user has given size_ts
         std::vector<size_t> indices {static_cast<size_t>(indices_pack)...};  // convert the pack to a vector so we can easily traverse
-
 
         if ((indices.size() == 0)) {
             return 1.0;  // assume the wave function is normalized
@@ -110,7 +103,6 @@ public:
             throw std::invalid_argument("There must be an even number of indices as arguments.");
         }
 
-
         // Split the vector in ket (even) and bra (odd) indices
         std::vector<size_t> bra_indices;  // even
         boost::push_back(bra_indices, indices | boost::adaptors::strided(2));
@@ -118,7 +110,6 @@ public:
         std::vector<size_t> ket_indices;  // odd
         boost::push_back(ket_indices, indices | boost::adaptors::sliced(1, indices.size()) | boost::adaptors::strided(2));
         std::reverse(ket_indices.begin(), ket_indices.end());
-
 
         return this->calculateElement(bra_indices, ket_indices);
     }

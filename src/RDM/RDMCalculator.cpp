@@ -20,7 +20,7 @@
 #include "RDM/DOCIRDMBuilder.hpp"
 #include "RDM/FCIRDMBuilder.hpp"
 #include "RDM/SelectedRDMBuilder.hpp"
-#include "RDM/SpinUnresolvedFCIRDMBuilder.hpp"
+#include "RDM/FCIRDMBuilder.hpp"
 
 
 
@@ -100,58 +100,6 @@ RDMCalculator::RDMCalculator(const WaveFunction& wavefunction) :
         RDMCalculator(wavefunction.get_fock_space())
 {
     this->set_coefficients(wavefunction.get_coefficients());
-}
-
-/*
- *  NAMED CONSTRUCTORS
- */
-
-/**
- *  A run-time constructor allocating the appropriate derived Unresolved RDMBuilder and coefficient vector
- *
- *  @param wavefunction       the wave function holding the coefficient vector and a Fock space on which the RDMBuilder should be based
- */
-RDMCalculator RDMCalculator::SpinUnresolved(const WaveFunction& wavefunction) {
-
-    RDMCalculator rdm_calculator = RDMCalculator::SpinUnresolved(wavefunction.get_fock_space());
-    rdm_calculator.set_coefficients(wavefunction.get_coefficients());
-    return rdm_calculator;
-};
-
-
-/**
- *  Allocate an UnresolvedCIRDMBuilder
- *
- *  @param fock_space       the Fock space
- */
-RDMCalculator RDMCalculator::SpinUnresolved(const FockSpace& fock_space) {
-    RDMCalculator rdm_calculator;
-    rdm_calculator.rdm_builder = std::make_shared<SpinUnresolvedFCIRDMBuilder>(fock_space);
-    return rdm_calculator;
-}
-
-
-/**
- *  A run-time constructor allocating the appropriate derived Unresolved RDMBuilder
- *
- *  @param fock_space       the Fock space on which the RDMBuilder should be based
- */
-RDMCalculator RDMCalculator::SpinUnresolved(const BaseFockSpace& fock_space)
-{
-    switch (fock_space.get_type()){
-
-        case FockSpaceType::FockSpace: {
-            return RDMCalculator::SpinUnresolved(dynamic_cast<const FockSpace&>(fock_space));
-        }
-
-        case FockSpaceType::ProductFockSpace: {
-            throw std::runtime_error ("No ProductFockSpace based implementation for Spin Unresolved RDMS");
-        }
-
-        case FockSpaceType::SelectedFockSpace: {
-            throw std::runtime_error ("No ProductFockSpace based implementation for Spin Unresolved RDMS");
-        }
-    }
 }
 
 /*
