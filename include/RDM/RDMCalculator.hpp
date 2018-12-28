@@ -78,28 +78,6 @@ public:
      *  @param wavefunction       the wave function holding the coefficient vector and a Fock space on which the RDMBuilder should be based
      */
     explicit RDMCalculator(const WaveFunction& wavefunction);
-
-    // NAMED CONSTRUCTORS
-    /**
-     *  A run-time constructor allocating the appropriate derived Unresolved RDMBuilder and coefficient vector
-     *
-     *  @param wavefunction       the wave function holding the coefficient vector and a Fock space on which the RDMBuilder should be based
-     */
-    static RDMCalculator SpinUnresolved(const WaveFunction& wavefunction);
-
-    /**
-     *  Allocate an UnresolvedCIRDMBuilder
-     *
-     *  @param fock_space       the Fock space
-     */
-    static RDMCalculator SpinUnresolved(const FockSpace& fock_space);
-
-    /**
-     *  A run-time constructor allocating the appropriate derived Unresolved RDMBuilder
-     *
-     *  @param fock_space       the Fock space on which the RDMBuilder should be based
-     */
-    static RDMCalculator SpinUnresolved(const BaseFockSpace& fock_space);
     
     // SETTERS
     void set_coefficients(const Eigen::VectorXd& coefficients) { this->coefficients = coefficients; };
