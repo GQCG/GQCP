@@ -1,5 +1,8 @@
 # test-level CMakeLists.txt
 
+# Copy the necessary test files to the out-of-source build
+file(COPY data DESTINATION ${CMAKE_BINARY_DIR})
+
 # For every *.cpp-file (every file corresponding to one set of tests) ...
 foreach(TEST_SOURCE ${PROJECT_TEST_SOURCE_FILES})
     # ... extract the filename without extension (NAME_WE) as a name for our executable ...

@@ -57,7 +57,7 @@ BOOST_AUTO_TEST_CASE ( CO_DOCI_constrained_dense ) {
                  1.000000, 	6.12030270656, 	-111.087663866;
 
     // Create the molecular Hamiltonian parameters for CO
-    auto CO = GQCP::Molecule::Readxyz("../tests/data/CO_mulliken.xyz");
+    auto CO = GQCP::Molecule::Readxyz("data/CO_mulliken.xyz");
     auto mol_ham_par = GQCP::HamiltonianParameters::Molecular(CO, "STO-3G");
 
     // Create a plain RHF SCF solver and solve the SCF equations

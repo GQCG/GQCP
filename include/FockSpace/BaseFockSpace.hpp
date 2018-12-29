@@ -23,6 +23,8 @@
 #include "FockSpace/FockSpaceType.hpp"
 #include "common.hpp"
 
+#include <iostream>
+#include <memory>
 
 
 namespace GQCP {
@@ -46,6 +48,17 @@ protected:
     BaseFockSpace(size_t K, size_t dim);
 
 public:
+    // NAMED CONSTRUCTORS
+    /**
+     *  Clones a derived BaseFockSpace instance to the heap memory
+     *
+     *  @param fock_space     reference to a derived BaseFockSpace instance to be cloned.
+     *
+     *  @return a shared pointer owning the heap-cloned Fock space
+     */
+    static std::shared_ptr<BaseFockSpace> CloneToHeap(const BaseFockSpace& fock_space);
+
+
     // DESTRUCTOR
     /**
      *  Provide a pure virtual destructor to make the class abstract

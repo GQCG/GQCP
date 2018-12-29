@@ -85,7 +85,7 @@ BOOST_AUTO_TEST_CASE ( TwoElectronOperator_transform_olsens ) {
 
     // We can find a reference algorithm in the olsens module from Ayer's lab
     Eigen::Tensor<double, 4> g_transformed_ref (2, 2, 2, 2);
-    GQCP::readArrayFromFile("../tests/data/rotated_two_electron_integrals_olsens.data", g_transformed_ref);
+    GQCP::readArrayFromFile("data/rotated_two_electron_integrals_olsens.data", g_transformed_ref);
 
     // Set an example transformation matrix and two-electron integrals tensor
     Eigen::MatrixXd T (2, 2);

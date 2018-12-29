@@ -64,7 +64,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "-f ../../tests/data/h2o.xyz"
+            argument = "-f ../data/h2o.xyz"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

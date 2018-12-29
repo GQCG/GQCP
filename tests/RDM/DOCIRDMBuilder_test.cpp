@@ -35,7 +35,7 @@ BOOST_AUTO_TEST_CASE ( lih_1RDM_trace ) {
 
     // Get the 1-RDM from DOCI
     size_t N = 4;  // 4 electrons
-    auto ham_par = GQCP::HamiltonianParameters::ReadFCIDUMP("../tests/data/lih_631g_caitlin.FCIDUMP");
+    auto ham_par = GQCP::HamiltonianParameters::ReadFCIDUMP("data/lih_631g_caitlin.FCIDUMP");
     size_t K = ham_par.get_K();  // 16 SO
 
     GQCP::FockSpace fock_space (K, N/2);  // dim = 120
@@ -65,7 +65,7 @@ BOOST_AUTO_TEST_CASE ( lih_2RDM_trace ) {
 
     // Get the 1-RDM from DOCI
     size_t N = 4;  // 4 electrons
-    auto ham_par = GQCP::HamiltonianParameters::ReadFCIDUMP("../tests/data/lih_631g_caitlin.FCIDUMP");
+    auto ham_par = GQCP::HamiltonianParameters::ReadFCIDUMP("data/lih_631g_caitlin.FCIDUMP");
     size_t K = ham_par.get_K();  // 16 SO
 
     GQCP::FockSpace fock_space (K, N/2);  // dim = 120
@@ -95,7 +95,7 @@ BOOST_AUTO_TEST_CASE ( lih_1RDM_2RDM_trace_DOCI ) {
 
     // Get the 1-RDM from DOCI
     size_t N = 4;  // 4 electrons
-    auto ham_par = GQCP::HamiltonianParameters::ReadFCIDUMP("../tests/data/lih_631g_caitlin.FCIDUMP");
+    auto ham_par = GQCP::HamiltonianParameters::ReadFCIDUMP("data/lih_631g_caitlin.FCIDUMP");
     size_t K = ham_par.get_K();  // 16 SO
 
     GQCP::FockSpace fock_space (K, N/2);  // dim = 120
@@ -126,7 +126,7 @@ BOOST_AUTO_TEST_CASE ( lih_energy_RDM_contraction_DOCI ) {
 
     // Get the 1-RDM from DOCI
     size_t N = 4;  // 4 electrons
-    auto ham_par = GQCP::HamiltonianParameters::ReadFCIDUMP("../tests/data/lih_631g_caitlin.FCIDUMP");
+    auto ham_par = GQCP::HamiltonianParameters::ReadFCIDUMP("data/lih_631g_caitlin.FCIDUMP");
     size_t K = ham_par.get_K();  // 16 SO
 
     GQCP::FockSpace fock_space (K, N/2);  // dim = 120
