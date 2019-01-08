@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "56E67C4E21BF976C0085803E"
+               BlueprintIdentifier = "56FBA0ED21C2F1A10084F088"
                BuildableName = "HoppingMatrix_test"
                BlueprintName = "HoppingMatrix_test"
                ReferencedContainer = "container:gqcp.xcodeproj">
@@ -32,7 +32,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "56E67C4E21BF976C0085803E"
+            BlueprintIdentifier = "56FBA0ED21C2F1A10084F088"
             BuildableName = "HoppingMatrix_test"
             BlueprintName = "HoppingMatrix_test"
             ReferencedContainer = "container:gqcp.xcodeproj">
@@ -55,7 +55,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "56E67C4E21BF976C0085803E"
+            BlueprintIdentifier = "56FBA0ED21C2F1A10084F088"
             BuildableName = "HoppingMatrix_test"
             BlueprintName = "HoppingMatrix_test"
             ReferencedContainer = "container:gqcp.xcodeproj">
@@ -74,7 +74,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "56E67C4E21BF976C0085803E"
+            BlueprintIdentifier = "56FBA0ED21C2F1A10084F088"
             BuildableName = "HoppingMatrix_test"
             BlueprintName = "HoppingMatrix_test"
             ReferencedContainer = "container:gqcp.xcodeproj">

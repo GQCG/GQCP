@@ -88,7 +88,7 @@
 			buildPhases = (
 			);
 			dependencies = (
-				5660430521B913EA008C2E86 /* PBXTargetDependency */,
+				5652E65A21E4AED20042BE2A /* PBXTargetDependency */,
 				561401F121B0685B002C5D40 /* PBXTargetDependency */,
 				561401F321B0685B002C5D40 /* PBXTargetDependency */,
 				561401F521B0685B002C5D40 /* PBXTargetDependency */,
@@ -497,11 +497,18 @@
 		56272DD421B6CC66008BEA47 /* AP1roG_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56272DCF21B6CC2D008BEA47 /* AP1roG_test.cpp */; };
 		56272DDC21B6CC7B008BEA47 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
 		56272DE221B6CC93008BEA47 /* APIGGeminalCoefficients_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56272DD121B6CC2D008BEA47 /* APIGGeminalCoefficients_test.cpp */; };
-		566042FD21B913AD008C2E86 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
-		5660430321B913BA008C2E86 /* NRDMCalculator_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 566042F621B91369008C2E86 /* NRDMCalculator_test.cpp */; };
+		5652E63B21E4A8640042BE2A /* SpinUnresolvedRDMCalculator.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5652E63821E4A8630042BE2A /* SpinUnresolvedRDMCalculator.hpp */; };
+		5652E63C21E4A8640042BE2A /* BaseSpinUnresolvedRDMBuilder.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5652E63921E4A8630042BE2A /* BaseSpinUnresolvedRDMBuilder.hpp */; };
+		5652E63D21E4A8640042BE2A /* SpinUnresolvedFCIRDMBuilder.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5652E63A21E4A8640042BE2A /* SpinUnresolvedFCIRDMBuilder.hpp */; };
+		5652E64121E4A8900042BE2A /* SpinUnresolvedFCIRDMBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5652E63E21E4A88F0042BE2A /* SpinUnresolvedFCIRDMBuilder.cpp */; };
+		5652E64221E4A8900042BE2A /* BaseSpinUnresolvedRDMBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5652E63F21E4A8900042BE2A /* BaseSpinUnresolvedRDMBuilder.cpp */; };
+		5652E64321E4A8900042BE2A /* SpinUnresolvedRDMCalculator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5652E64021E4A8900042BE2A /* SpinUnresolvedRDMCalculator.cpp */; };
+		5652E64521E4A8C40042BE2A /* SpinUnresolvedWaveFunction.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5652E64421E4A8C30042BE2A /* SpinUnresolvedWaveFunction.hpp */; };
+		5652E64721E4A8CF0042BE2A /* SpinUnresolvedWaveFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5652E64621E4A8CF0042BE2A /* SpinUnresolvedWaveFunction.cpp */; };
+		5652E64B21E4AE240042BE2A /* SpinUnresolvedFCIRDMBuilder_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5652E64A21E4AE230042BE2A /* SpinUnresolvedFCIRDMBuilder_test.cpp */; };
+		5652E65221E4AE600042BE2A /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
+		5652E65821E4AEA60042BE2A /* SpinUnresolvedFCIRDMBuilder_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5652E64A21E4AE230042BE2A /* SpinUnresolvedFCIRDMBuilder_test.cpp */; };
 		566D229E21B7ED2500F8EB91 /* oo_doci.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FAA721B02E48002C5D40 /* oo_doci.cpp */; };
-		566D22A221B81CC100F8EB91 /* NRDMCalculator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 566D22A021B81CC100F8EB91 /* NRDMCalculator.cpp */; };
-		566D22A321B81CC100F8EB91 /* NRDMCalculator.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 566D22A121B81CC100F8EB91 /* NRDMCalculator.hpp */; };
 		56C64D8621B0713700D44FF0 /* constrained_RHF_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FB4921B02EDE002C5D40 /* constrained_RHF_test.cpp */; };
 		56FBA09F21C2B0420084F088 /* linalg.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56FBA09B21C2B0420084F088 /* linalg.hpp */; };
 		56FBA0A121C2B0420084F088 /* io.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56FBA09D21C2B0420084F088 /* io.hpp */; };
@@ -1383,19 +1390,19 @@
 			remoteGlobalIDString = 56272DD621B6CC7B008BEA47;
 			remoteInfo = APIGGeminalCoefficients_test;
 		};
-		566042F921B913AD008C2E86 /* PBXContainerItemProxy */ = {
+		5652E64E21E4AE600042BE2A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 5614F97F21B0295C002C5D40;
 			remoteInfo = gqcp;
 		};
-		5660430421B913EA008C2E86 /* PBXContainerItemProxy */ = {
+		5652E65921E4AED20042BE2A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 566042F721B913AD008C2E86;
-			remoteInfo = NRDMCalculator_test;
+			remoteGlobalIDString = 5652E64C21E4AE600042BE2A;
+			remoteInfo = SpinUnresolvedFCIRDMBuilder_test;
 		};
 		56FBA0EF21C2F1A10084F088 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -2185,7 +2192,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
-		566042FE21B913AD008C2E86 /* CopyFiles */ = {
+		5652E65321E4AE600042BE2A /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -2557,10 +2564,16 @@
 		56272DD021B6CC2D008BEA47 /* AP1roGPSESolver_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AP1roGPSESolver_test.cpp; sourceTree = "<group>"; };
 		56272DD121B6CC2D008BEA47 /* APIGGeminalCoefficients_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = APIGGeminalCoefficients_test.cpp; sourceTree = "<group>"; };
 		56272DE121B6CC7B008BEA47 /* APIGGeminalCoefficients_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = APIGGeminalCoefficients_test; sourceTree = BUILT_PRODUCTS_DIR; };
-		566042F621B91369008C2E86 /* NRDMCalculator_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NRDMCalculator_test.cpp; sourceTree = "<group>"; };
-		5660430221B913AD008C2E86 /* NRDMCalculator_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = NRDMCalculator_test; sourceTree = BUILT_PRODUCTS_DIR; };
-		566D22A021B81CC100F8EB91 /* NRDMCalculator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NRDMCalculator.cpp; sourceTree = "<group>"; };
-		566D22A121B81CC100F8EB91 /* NRDMCalculator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NRDMCalculator.hpp; sourceTree = "<group>"; };
+		5652E63821E4A8630042BE2A /* SpinUnresolvedRDMCalculator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SpinUnresolvedRDMCalculator.hpp; sourceTree = "<group>"; };
+		5652E63921E4A8630042BE2A /* BaseSpinUnresolvedRDMBuilder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BaseSpinUnresolvedRDMBuilder.hpp; sourceTree = "<group>"; };
+		5652E63A21E4A8640042BE2A /* SpinUnresolvedFCIRDMBuilder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SpinUnresolvedFCIRDMBuilder.hpp; sourceTree = "<group>"; };
+		5652E63E21E4A88F0042BE2A /* SpinUnresolvedFCIRDMBuilder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpinUnresolvedFCIRDMBuilder.cpp; sourceTree = "<group>"; };
+		5652E63F21E4A8900042BE2A /* BaseSpinUnresolvedRDMBuilder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseSpinUnresolvedRDMBuilder.cpp; sourceTree = "<group>"; };
+		5652E64021E4A8900042BE2A /* SpinUnresolvedRDMCalculator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpinUnresolvedRDMCalculator.cpp; sourceTree = "<group>"; };
+		5652E64421E4A8C30042BE2A /* SpinUnresolvedWaveFunction.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SpinUnresolvedWaveFunction.hpp; sourceTree = "<group>"; };
+		5652E64621E4A8CF0042BE2A /* SpinUnresolvedWaveFunction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpinUnresolvedWaveFunction.cpp; sourceTree = "<group>"; };
+		5652E64A21E4AE230042BE2A /* SpinUnresolvedFCIRDMBuilder_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpinUnresolvedFCIRDMBuilder_test.cpp; sourceTree = "<group>"; };
+		5652E65721E4AE600042BE2A /* SpinUnresolvedFCIRDMBuilder_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SpinUnresolvedFCIRDMBuilder_test; sourceTree = BUILT_PRODUCTS_DIR; };
 		56FBA09B21C2B0420084F088 /* linalg.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = linalg.hpp; sourceTree = "<group>"; };
 		56FBA09D21C2B0420084F088 /* io.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = io.hpp; sourceTree = "<group>"; };
 		56FBA09E21C2B0420084F088 /* miscellaneous.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = miscellaneous.hpp; sourceTree = "<group>"; };
@@ -3124,11 +3137,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		566042FC21B913AD008C2E86 /* Frameworks */ = {
+		5652E65121E4AE600042BE2A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				566042FD21B913AD008C2E86 /* libgqcp.a in Frameworks */,
+				5652E65221E4AE600042BE2A /* libgqcp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3212,12 +3225,12 @@
 			children = (
 				5614FAA821B02E48002C5D40 /* benchmarks */,
 				5614FAA321B02E48002C5D40 /* drivers */,
+				5614FA9F21B02A90002C5D40 /* extra */,
+				5614FDB621B033BC002C5D40 /* Frameworks */,
 				5614F98E21B029FB002C5D40 /* include */,
+				5614F98121B0295C002C5D40 /* Products */,
 				5614F9D121B029FB002C5D40 /* src */,
 				5614FB3C21B02EDE002C5D40 /* tests */,
-				5614FA9F21B02A90002C5D40 /* extra */,
-				5614F98121B0295C002C5D40 /* Products */,
-				5614FDB621B033BC002C5D40 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -3285,7 +3298,6 @@
 				5614017C21B06392002C5D40 /* RMP2_test */,
 				5614018821B06397002C5D40 /* units_test */,
 				56272DE121B6CC7B008BEA47 /* APIGGeminalCoefficients_test */,
-				5660430221B913AD008C2E86 /* NRDMCalculator_test */,
 				56FBA0F821C2F1A10084F088 /* HoppingMatrix_test */,
 				56FBA13E21C3888A0084F088 /* io_test */,
 				56FBA14B21C388AE0084F088 /* linalg_test */,
@@ -3295,6 +3307,7 @@
 				56FBA17C21C388F80084F088 /* NewtonMinimizer_test */,
 				56FBA18821C388FD0084F088 /* NewtonSystemOfEquationsSolver_test */,
 				56FBA19421C389050084F088 /* SparseSolver_test */,
+				5652E65721E4AE600042BE2A /* SpinUnresolvedFCIRDMBuilder_test */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -3351,13 +3364,15 @@
 			children = (
 				5614F9A321B029FB002C5D40 /* BaseRDM.hpp */,
 				5614F9A721B029FB002C5D40 /* BaseRDMBuilder.hpp */,
+				5652E63921E4A8630042BE2A /* BaseSpinUnresolvedRDMBuilder.hpp */,
 				5614F9A121B029FB002C5D40 /* DOCIRDMBuilder.hpp */,
 				5614F9A521B029FB002C5D40 /* FCIRDMBuilder.hpp */,
-				566D22A121B81CC100F8EB91 /* NRDMCalculator.hpp */,
 				5614F9A421B029FB002C5D40 /* OneRDM.hpp */,
 				5614F9A021B029FB002C5D40 /* RDMCalculator.hpp */,
 				5614F9A621B029FB002C5D40 /* RDMs.hpp */,
 				5614F9A221B029FB002C5D40 /* SelectedRDMBuilder.hpp */,
+				5652E63A21E4A8640042BE2A /* SpinUnresolvedFCIRDMBuilder.hpp */,
+				5652E63821E4A8630042BE2A /* SpinUnresolvedRDMCalculator.hpp */,
 				5614F9A821B029FB002C5D40 /* TwoRDM.hpp */,
 			);
 			path = RDM;
@@ -3403,6 +3418,7 @@
 		5614F9C421B029FB002C5D40 /* WaveFunction */ = {
 			isa = PBXGroup;
 			children = (
+				5652E64421E4A8C30042BE2A /* SpinUnresolvedWaveFunction.hpp */,
 				5614F9C521B029FB002C5D40 /* WaveFunction.hpp */,
 				5614F9C621B029FB002C5D40 /* WaveFunctionReader.hpp */,
 			);
@@ -3479,13 +3495,15 @@
 			children = (
 				5614F9EC21B029FB002C5D40 /* BaseRDM.cpp */,
 				5614F9E721B029FB002C5D40 /* BaseRDMBuilder.cpp */,
+				5652E63F21E4A8900042BE2A /* BaseSpinUnresolvedRDMBuilder.cpp */,
 				5614F9EE21B029FB002C5D40 /* DOCIRDMBuilder.cpp */,
 				5614F9EA21B029FB002C5D40 /* FCIRDMBuilder.cpp */,
-				566D22A021B81CC100F8EB91 /* NRDMCalculator.cpp */,
 				5614F9E921B029FB002C5D40 /* OneRDM.cpp */,
 				5614F9ED21B029FB002C5D40 /* RDMCalculator.cpp */,
 				5614F9E621B029FB002C5D40 /* RDMs.cpp */,
 				5614F9EB21B029FB002C5D40 /* SelectedRDMBuilder.cpp */,
+				5652E63E21E4A88F0042BE2A /* SpinUnresolvedFCIRDMBuilder.cpp */,
+				5652E64021E4A8900042BE2A /* SpinUnresolvedRDMCalculator.cpp */,
 				5614F9E821B029FB002C5D40 /* TwoRDM.cpp */,
 			);
 			path = RDM;
@@ -3531,6 +3549,7 @@
 		5614FA0221B029FB002C5D40 /* WaveFunction */ = {
 			isa = PBXGroup;
 			children = (
+				5652E64621E4A8CF0042BE2A /* SpinUnresolvedWaveFunction.cpp */,
 				5614FA0421B029FB002C5D40 /* WaveFunction.cpp */,
 				5614FA0321B029FB002C5D40 /* WaveFunctionReader.cpp */,
 			);
@@ -3760,10 +3779,10 @@
 			children = (
 				5614FB4F21B02EDE002C5D40 /* DOCIRDMBuilder_test.cpp */,
 				5614FB5321B02EDE002C5D40 /* FCIRDMBuilder_test.cpp */,
-				566042F621B91369008C2E86 /* NRDMCalculator_test.cpp */,
 				5614FB5021B02EDE002C5D40 /* OneRDM_test.cpp */,
 				5614FB4E21B02EDE002C5D40 /* RDMCalculator_test.cpp */,
 				5614FB5221B02EDE002C5D40 /* SelectedRDMBuilder_test.cpp */,
+				5652E64A21E4AE230042BE2A /* SpinUnresolvedFCIRDMBuilder_test.cpp */,
 				5614FB5121B02EDE002C5D40 /* TwoRDM_test.cpp */,
 			);
 			path = RDM;
@@ -4054,6 +4073,8 @@
 				5614FA3B21B029FB002C5D40 /* WaveFunction.hpp in Headers */,
 				56FBA0C621C2B4AF0084F088 /* BaseMatrixSolver.hpp in Headers */,
 				56272DBD21B6CBFA008BEA47 /* AP1roG.hpp in Headers */,
+				5652E63B21E4A8640042BE2A /* SpinUnresolvedRDMCalculator.hpp in Headers */,
+				5652E63C21E4A8640042BE2A /* BaseSpinUnresolvedRDMBuilder.hpp in Headers */,
 				56FBA0E921C2DFC00084F088 /* HoppingMatrix.hpp in Headers */,
 				5614FA3D21B029FB002C5D40 /* BaseHamiltonianParameters.hpp in Headers */,
 				5614FA0F21B029FB002C5D40 /* DOCINewtonOrbitalOptimizer.hpp in Headers */,
@@ -4093,12 +4114,13 @@
 				5614FA1921B029FB002C5D40 /* PlainRHFSCFSolver.hpp in Headers */,
 				5614FA1821B029FB002C5D40 /* RHFSCFSolver.hpp in Headers */,
 				5614FA2E21B029FB002C5D40 /* units.hpp in Headers */,
+				5652E63D21E4A8640042BE2A /* SpinUnresolvedFCIRDMBuilder.hpp in Headers */,
 				5614FA4421B029FB002C5D40 /* Molecule.hpp in Headers */,
 				5614FA1121B029FB002C5D40 /* ProductFockSpace.hpp in Headers */,
 				5614FA2B21B029FB002C5D40 /* properties.hpp in Headers */,
 				5614FA4321B029FB002C5D40 /* FCI.hpp in Headers */,
 				5614FA3421B029FB002C5D40 /* OneElectronOperator.hpp in Headers */,
-				566D22A321B81CC100F8EB91 /* NRDMCalculator.hpp in Headers */,
+				5652E64521E4A8C40042BE2A /* SpinUnresolvedWaveFunction.hpp in Headers */,
 				56272DBA21B6CBFA008BEA47 /* AP1roGGeminalCoefficients.hpp in Headers */,
 				5614FA1521B029FB002C5D40 /* ONV.hpp in Headers */,
 				5614FA3721B029FB002C5D40 /* CISolver.hpp in Headers */,
@@ -5225,22 +5247,22 @@
 			productReference = 56272DE121B6CC7B008BEA47 /* APIGGeminalCoefficients_test */;
 			productType = "com.apple.product-type.tool";
 		};
-		566042F721B913AD008C2E86 /* NRDMCalculator_test */ = {
+		5652E64C21E4AE600042BE2A /* SpinUnresolvedFCIRDMBuilder_test */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 566042FF21B913AD008C2E86 /* Build configuration list for PBXNativeTarget "NRDMCalculator_test" */;
+			buildConfigurationList = 5652E65421E4AE600042BE2A /* Build configuration list for PBXNativeTarget "SpinUnresolvedFCIRDMBuilder_test" */;
 			buildPhases = (
-				566042FA21B913AD008C2E86 /* Sources */,
-				566042FC21B913AD008C2E86 /* Frameworks */,
-				566042FE21B913AD008C2E86 /* CopyFiles */,
+				5652E64F21E4AE600042BE2A /* Sources */,
+				5652E65121E4AE600042BE2A /* Frameworks */,
+				5652E65321E4AE600042BE2A /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				566042F821B913AD008C2E86 /* PBXTargetDependency */,
+				5652E64D21E4AE600042BE2A /* PBXTargetDependency */,
 			);
-			name = NRDMCalculator_test;
+			name = SpinUnresolvedFCIRDMBuilder_test;
 			productName = AP1roGGeminalCoefficients_test;
-			productReference = 5660430221B913AD008C2E86 /* NRDMCalculator_test */;
+			productReference = 5652E65721E4AE600042BE2A /* SpinUnresolvedFCIRDMBuilder_test */;
 			productType = "com.apple.product-type.tool";
 		};
 		56FBA0ED21C2F1A10084F088 /* HoppingMatrix_test */ = {
@@ -5525,10 +5547,10 @@
 				561401A121B06455002C5D40 /* BUILD_RDM_TESTS */,
 				5614008D21B0630F002C5D40 /* DOCIRDMBuilder_test */,
 				5614009921B0631A002C5D40 /* FCIRDMBuilder_test */,
-				566042F721B913AD008C2E86 /* NRDMCalculator_test */,
 				561400A521B06320002C5D40 /* OneRDM_test */,
 				561400B121B06329002C5D40 /* RDMCalculator_test */,
 				561400BD21B06330002C5D40 /* SelectedRDMBuilder_test */,
+				5652E64C21E4AE600042BE2A /* SpinUnresolvedFCIRDMBuilder_test */,
 				561400C921B06337002C5D40 /* TwoRDM_test */,
 				561401A521B0645C002C5D40 /* BUILD_RHF_TESTS */,
 				561400D521B06340002C5D40 /* constrained_RHF_test */,
@@ -5845,11 +5867,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5614FA5621B029FB002C5D40 /* BaseRDMBuilder.cpp in Sources */,
-				566D22A221B81CC100F8EB91 /* NRDMCalculator.cpp in Sources */,
 				56FBA0A721C2B06B0084F088 /* miscellaneous.cpp in Sources */,
 				5614FA6721B029FB002C5D40 /* OneElectronOperator.cpp in Sources */,
 				5614FA6321B029FB002C5D40 /* properties.cpp in Sources */,
 				56272DC621B6CC0D008BEA47 /* BaseAPIGGeminalCoefficients.cpp in Sources */,
+				5652E64321E4A8900042BE2A /* SpinUnresolvedRDMCalculator.cpp in Sources */,
 				56FBA0DB21C2B4C90084F088 /* BaseMatrixSolver.cpp in Sources */,
 				5614FA6D21B029FB002C5D40 /* WaveFunction.cpp in Sources */,
 				5614FA4D21B029FB002C5D40 /* ProductFockSpace.cpp in Sources */,
@@ -5867,6 +5889,7 @@
 				56FBA0D521C2B4C90084F088 /* NewtonMinimizer.cpp in Sources */,
 				5614FA7221B029FB002C5D40 /* FCI.cpp in Sources */,
 				5614FA5121B029FB002C5D40 /* RHF.cpp in Sources */,
+				5652E64221E4A8900042BE2A /* BaseSpinUnresolvedRDMBuilder.cpp in Sources */,
 				5614FA6221B029FB002C5D40 /* expectation_values.cpp in Sources */,
 				56FBA0D821C2B4C90084F088 /* DenseSolver.cpp in Sources */,
 				5614FA6821B029FB002C5D40 /* CISolver.cpp in Sources */,
@@ -5874,6 +5897,7 @@
 				5614FA5521B029FB002C5D40 /* RDMs.cpp in Sources */,
 				56FBA0D921C2B4C90084F088 /* SparseSolver.cpp in Sources */,
 				5614FA4821B029FB002C5D40 /* elements.cpp in Sources */,
+				5652E64121E4A8900042BE2A /* SpinUnresolvedFCIRDMBuilder.cpp in Sources */,
 				56FBA0DA21C2B4C90084F088 /* step.cpp in Sources */,
 				5614FA5B21B029FB002C5D40 /* BaseRDM.cpp in Sources */,
 				56FBA0D421C2B4C90084F088 /* Eigenpair.cpp in Sources */,
@@ -5891,10 +5915,12 @@
 				5614FA7521B029FB002C5D40 /* DOCINewtonOrbitalOptimizer.cpp in Sources */,
 				56FBA0D621C2B4C90084F088 /* NewtonSystemOfEquationsSolver.cpp in Sources */,
 				5614FA7421B029FB002C5D40 /* HamiltonianBuilder.cpp in Sources */,
+				5652E64B21E4AE240042BE2A /* SpinUnresolvedFCIRDMBuilder_test.cpp in Sources */,
 				5614FA6521B029FB002C5D40 /* TwoElectronOperator.cpp in Sources */,
 				5614FA5A21B029FB002C5D40 /* SelectedRDMBuilder.cpp in Sources */,
 				5614FA4A21B029FB002C5D40 /* FockSpace.cpp in Sources */,
 				56272DC721B6CC0D008BEA47 /* AP1roG.cpp in Sources */,
+				5652E64721E4A8CF0042BE2A /* SpinUnresolvedWaveFunction.cpp in Sources */,
 				5614FA6921B029FB002C5D40 /* BaseERLocalizer.cpp in Sources */,
 				56FBA0A921C2B06B0084F088 /* linalg.cpp in Sources */,
 				5614FA4B21B029FB002C5D40 /* ONV.cpp in Sources */,
@@ -6128,11 +6154,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		566042FA21B913AD008C2E86 /* Sources */ = {
+		5652E64F21E4AE600042BE2A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5660430321B913BA008C2E86 /* NRDMCalculator_test.cpp in Sources */,
+				5652E65821E4AEA60042BE2A /* SpinUnresolvedFCIRDMBuilder_test.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6801,15 +6827,15 @@
 			target = 56272DD621B6CC7B008BEA47 /* APIGGeminalCoefficients_test */;
 			targetProxy = 56272DE321B6CC9B008BEA47 /* PBXContainerItemProxy */;
 		};
-		566042F821B913AD008C2E86 /* PBXTargetDependency */ = {
+		5652E64D21E4AE600042BE2A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 5614F97F21B0295C002C5D40 /* gqcp */;
-			targetProxy = 566042F921B913AD008C2E86 /* PBXContainerItemProxy */;
+			targetProxy = 5652E64E21E4AE600042BE2A /* PBXContainerItemProxy */;
 		};
-		5660430521B913EA008C2E86 /* PBXTargetDependency */ = {
+		5652E65A21E4AED20042BE2A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 566042F721B913AD008C2E86 /* NRDMCalculator_test */;
-			targetProxy = 5660430421B913EA008C2E86 /* PBXContainerItemProxy */;
+			target = 5652E64C21E4AE600042BE2A /* SpinUnresolvedFCIRDMBuilder_test */;
+			targetProxy = 5652E65921E4AED20042BE2A /* PBXContainerItemProxy */;
 		};
 		56FBA0EE21C2F1A10084F088 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -8374,7 +8400,7 @@
 			};
 			name = Release;
 		};
-		5660430021B913AD008C2E86 /* Debug */ = {
+		5652E65521E4AE600042BE2A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -8382,7 +8408,7 @@
 			};
 			name = Debug;
 		};
-		5660430121B913AD008C2E86 /* Release */ = {
+		5652E65621E4AE600042BE2A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -9269,11 +9295,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		566042FF21B913AD008C2E86 /* Build configuration list for PBXNativeTarget "NRDMCalculator_test" */ = {
+		5652E65421E4AE600042BE2A /* Build configuration list for PBXNativeTarget "SpinUnresolvedFCIRDMBuilder_test" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5660430021B913AD008C2E86 /* Debug */,
-				5660430121B913AD008C2E86 /* Release */,
+				5652E65521E4AE600042BE2A /* Debug */,
+				5652E65621E4AE600042BE2A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

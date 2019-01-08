@@ -144,7 +144,7 @@ BOOST_AUTO_TEST_CASE ( print_output_stream ) {
 
 
     std::ofstream file;
-    file.open("print_output_stream_test.txt");
+    file.open("print_output_stream_test.output");
 
 
     GQCP::print(T, file);
