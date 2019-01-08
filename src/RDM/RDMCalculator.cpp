@@ -20,6 +20,7 @@
 #include "RDM/DOCIRDMBuilder.hpp"
 #include "RDM/FCIRDMBuilder.hpp"
 #include "RDM/SelectedRDMBuilder.hpp"
+#include "RDM/FCIRDMBuilder.hpp"
 
 
 
@@ -87,32 +88,53 @@ RDMCalculator::RDMCalculator(const BaseFockSpace& fock_space) {
             break;
         }
     }
-
 }
 
 
+/**
+ *  A run-time constructor allocating the appropriate derived RDMBuilder and coefficient vector
+ *
+ *  @param wavefunction       the wave function holding the coefficient vector and a Fock space on which the RDMBuilder should be based
+ */
+RDMCalculator::RDMCalculator(const WaveFunction& wavefunction) :
+        RDMCalculator(wavefunction.get_fock_space())
+{
+    this->set_coefficients(wavefunction.get_coefficients());
+}
 
 /*
  *  PUBLIC METHODS
  */
 
 /**
- *  @param x        the coefficient vector representing the wave function
- *
- *  @return all 1-RDMs given a coefficient vector
+ *  @return all 1-RDMs if a given coefficient vector is set
  */
-OneRDMs RDMCalculator::calculate1RDMs(const Eigen::VectorXd& x) const {
-    return rdm_builder->calculate1RDMs(x);
+OneRDMs RDMCalculator::calculate1RDMs() const {
+    if (this->coefficients.rows() == 0) { throw std::logic_error("No vector has been set."); }
+    return rdm_builder->calculate1RDMs(this->coefficients);
 }
 
 
 /**
- *  @param x        the coefficient vector representing the wave function
- *
- *  @return all 2-RDMs given a coefficient vector
+ *  @return all 2-RDMs if a given coefficient vector is set
  */
-TwoRDMs RDMCalculator::calculate2RDMs(const Eigen::VectorXd& x) const {
-    return rdm_builder->calculate2RDMs(x);
+TwoRDMs RDMCalculator::calculate2RDMs() const {
+    if (this->coefficients.rows() == 0) { throw std::logic_error("No vector has been set."); }
+    return rdm_builder->calculate2RDMs(this->coefficients);
+}
+
+
+/**
+ *  @param bra_indices      the indices of the orbitals that should be annihilated on the left (on the bra)
+ *  @param ket_indices      the indices of the orbitals that should be annihilated on the right (on the ket)
+ *
+ *  @return an element of the N-RDM, as specified by the given bra and ket indices
+ *
+ *      calculateElement({0, 1}, {2, 1}) would calculate d^{(2)} (0, 1, 1, 2): the operator string would be a^\dagger_0 a^\dagger_1 a_2 a_1
+ */
+double RDMCalculator::calculateElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices) const {
+    if (this->coefficients.rows() == 0) { throw std::logic_error("No vector has been set."); }
+    return this->rdm_builder->calculateElement(bra_indices, ket_indices, this->coefficients);
 }
 
 

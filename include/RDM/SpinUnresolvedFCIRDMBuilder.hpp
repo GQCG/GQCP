@@ -15,12 +15,12 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCP_DOCIRDMBUILDER_HPP
-#define GQCP_DOCIRDMBUILDER_HPP
+#ifndef GQCP_UNRESOLVEDCIRDMBUILDER_HPP
+#define GQCP_UNRESOLVEDCIRDMBUILDER_HPP
 
 
 #include "FockSpace/FockSpace.hpp"
-#include "RDM/BaseRDMBuilder.hpp"
+#include "RDM/BaseSpinUnresolvedRDMBuilder.hpp"
 #include "RDM/RDMs.hpp"
 
 
@@ -28,19 +28,18 @@ namespace GQCP {
 
 
 /**
- *  A class capable of calculating 1- and 2-RDMs from DOCI wave functions
+ *  A class capable of calculating RDMs from wave functions expanded in the full CI (spin-orbital) Fock space
  */
-class DOCIRDMBuilder : public BaseRDMBuilder {
-    FockSpace fock_space;  // both the alpha and beta Fock space
-
+class SpinUnresolvedFCIRDMBuilder : public BaseSpinUnresolvedRDMBuilder {
+    FockSpace fock_space;  // spin-orbital Fock space
 
 public:
     // CONSTRUCTORS
-    explicit DOCIRDMBuilder(const FockSpace& fock_space);
+    explicit SpinUnresolvedFCIRDMBuilder(const FockSpace& fock_space);
 
 
     // DESTRUCTOR
-    ~DOCIRDMBuilder() = default;
+    ~SpinUnresolvedFCIRDMBuilder() = default;
 
 
     // OVERRIDDEN GETTERS
@@ -49,25 +48,25 @@ public:
 
     // OVERRIDDEN PUBLIC METHODS
     /**
-     *  @param x        the coefficient vector representing the DOCI wave function
+     *  @param x        the coefficient vector representing the UnresolvedCI wave function
      *
-     *  @return all 1-RDMs given a coefficient vector
+     *  @return the 1-RDM given a coefficient vector
      */
-    OneRDMs calculate1RDMs(const Eigen::VectorXd& x) const override;
+    OneRDM calculate1RDM(const Eigen::VectorXd& x) const override;
 
     /**
-     *  @param x        the coefficient vector representing the DOCI wave function
+     *  @param x        the coefficient vector representing the UnresolvedCI wave function
      *
-     *  @return all 2-RDMs given a coefficient vector
+     *  @return the 2-RDM given a coefficient vector
      */
-    TwoRDMs calculate2RDMs(const Eigen::VectorXd& x) const override;
+    TwoRDM calculate2RDM(const Eigen::VectorXd& x) const override;
 
     /**
      *  @param bra_indices      the indices of the orbitals that should be annihilated on the left (on the bra)
      *  @param ket_indices      the indices of the orbitals that should be annihilated on the right (on the ket)
-     *  @param x                the coefficient vector representing the DOCI wave function
+     *  @param x                the coefficient vector representing the UnresolvedCI wave function
      *
-     *  @return an element of the spin-summed (total) N-RDM, as specified by the given bra and ket indices
+     *  @return an element of the N-RDM, as specified by the given bra and ket indices
      *
      *      calculateElement({0, 1}, {2, 1}) would calculate d^{(2)} (0, 1, 1, 2): the operator string would be a^\dagger_0 a^\dagger_1 a_2 a_1
      */
@@ -78,4 +77,4 @@ public:
 }  // namespace GQCP
 
 
-#endif  // GQCP_DOCIRDMBUILDER_HPP
+#endif  // GQCP_UNRESOLVEDCIRDMBUILDER_HPP

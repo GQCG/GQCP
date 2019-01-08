@@ -21,8 +21,11 @@
 #include <boost/test/unit_test.hpp>
 #include <boost/test/included/unit_test.hpp>
 
-
 #include "RDM/RDMCalculator.hpp"
+#include "RDM/SelectedRDMBuilder.hpp"
+
+#include "RDM/DOCIRDMBuilder.hpp"
+#include "RDM/FCIRDMBuilder.hpp"
 
 #include "CISolver/CISolver.hpp"
 #include "HamiltonianBuilder/FCI.hpp"
@@ -56,14 +59,14 @@ BOOST_AUTO_TEST_CASE ( one_rdms_fci_H2_6_31G ) {
     Eigen::VectorXd coef = ci_solver.get_eigenpair().get_eigenvector();
 
     // Get the 1-RDM from FCI
-    GQCP::RDMCalculator fci_rdm(fock_space);
+    GQCP::FCIRDMBuilder fci_rdm(fock_space);
     GQCP::OneRDMs one_rdms = fci_rdm.calculate1RDMs(coef);
 
 
     GQCP::SelectedFockSpace selected_fock_space (fock_space);
 
     // Get the 1-RDM from SelectedCI
-    GQCP::RDMCalculator selected_rdm (selected_fock_space);
+    GQCP::SelectedRDMBuilder selected_rdm (selected_fock_space);
     GQCP::OneRDMs one_rdms_s = selected_rdm.calculate1RDMs(coef);
 
 
@@ -98,14 +101,14 @@ BOOST_AUTO_TEST_CASE ( two_rdms_fci_H2_6_31G ) {
     Eigen::VectorXd coef = ci_solver.get_eigenpair().get_eigenvector();
 
     // Get the 1-RDM from FCI
-    GQCP::RDMCalculator fci_rdm(fock_space);
+    GQCP::FCIRDMBuilder fci_rdm(fock_space);
     GQCP::TwoRDMs two_rdms = fci_rdm.calculate2RDMs(coef);
 
 
     GQCP::SelectedFockSpace selected_fock_space (fock_space);
 
     // Get the 1-RDM from SelectedCI
-    GQCP::RDMCalculator selected_rdm (selected_fock_space);
+    GQCP::SelectedRDMBuilder selected_rdm (selected_fock_space);
     GQCP::TwoRDMs two_rdms_s = selected_rdm.calculate2RDMs(coef);
 
 
@@ -140,14 +143,14 @@ BOOST_AUTO_TEST_CASE ( one_rdms_doci_H2_6_31G ) {
     Eigen::VectorXd coef = ci_solver.get_eigenpair().get_eigenvector();
 
     // Get the 1-RDM from doci
-    GQCP::RDMCalculator doci_rdm(fock_space);
+    GQCP::DOCIRDMBuilder doci_rdm(fock_space);
     GQCP::OneRDMs one_rdms = doci_rdm.calculate1RDMs(coef);
 
 
     GQCP::SelectedFockSpace selected_fock_space (fock_space);
 
     // Get the 1-RDM from SelectedCI
-    GQCP::RDMCalculator selected_rdm (selected_fock_space);
+    GQCP::SelectedRDMBuilder selected_rdm (selected_fock_space);
     GQCP::OneRDMs one_rdms_s = selected_rdm.calculate1RDMs(coef);
 
 
@@ -180,14 +183,14 @@ BOOST_AUTO_TEST_CASE ( two_rdms_doci_H2_6_31G ) {
     Eigen::VectorXd coef = ci_solver.get_eigenpair().get_eigenvector();
 
     // Get the 1-RDM from doci
-    GQCP::RDMCalculator doci_rdm(fock_space);
+    GQCP::DOCIRDMBuilder doci_rdm(fock_space);
     GQCP::TwoRDMs two_rdms = doci_rdm.calculate2RDMs(coef);
 
 
     GQCP::SelectedFockSpace selected_fock_space (fock_space);
 
     // Get the 1-RDM from SelectedCI
-    GQCP::RDMCalculator selected_rdm (selected_fock_space);
+    GQCP::SelectedRDMBuilder selected_rdm (selected_fock_space);
     GQCP::TwoRDMs two_rdms_s = selected_rdm.calculate2RDMs(coef);
 
 
@@ -196,4 +199,19 @@ BOOST_AUTO_TEST_CASE ( two_rdms_doci_H2_6_31G ) {
     BOOST_CHECK(GQCP::areEqual(two_rdms_s.two_rdm_bbaa.get_matrix_representation(), two_rdms.two_rdm_bbaa.get_matrix_representation(), 1.0e-06));
     BOOST_CHECK(GQCP::areEqual(two_rdms_s.two_rdm_bbbb.get_matrix_representation(), two_rdms.two_rdm_bbbb.get_matrix_representation(), 1.0e-06));
     BOOST_CHECK(GQCP::areEqual(two_rdms_s.two_rdm.get_matrix_representation(), two_rdms.two_rdm.get_matrix_representation(), 1.0e-06));
+}
+
+BOOST_AUTO_TEST_CASE ( throw_calculate_element ) {
+
+    // Create a test wave function
+    size_t K = 5;
+    size_t N = 4;
+    GQCP::FockSpace fock_space (K, N);
+    GQCP::SelectedFockSpace selected_fock_space (fock_space);
+    Eigen::VectorXd coeff (fock_space.get_dimension());
+    coeff << 1, 1, -2, 4, -5;
+
+    // not implemented yet and should throw
+    GQCP::SelectedRDMBuilder selected_rdm (selected_fock_space);
+    BOOST_CHECK_THROW(selected_rdm.calculateElement({0,0,1}, {1,0,2}, coeff), std::runtime_error);
 }
