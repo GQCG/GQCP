@@ -83,11 +83,13 @@ public:
 
     // PUBLIC METHODS
     /**
-     *  @param address      the address (i.e. the ordening number) of the ONV
+     *  @param address      the address (i.e. the arrangement number) of the ONV
      *
      *  @return the ONV with the corresponding address
      */
     ONV makeONV(size_t address) const;
+
+
 
     /**
      *  Set the current ONV to the next ONV: performs ulongNextPermutation() and updates the corresponding occupation indices of the ONV occupation array
@@ -112,6 +114,21 @@ public:
     void transformONV(ONV& onv, size_t address) const;
 
     /**
+     *  @param onv       the ONV
+     *
+     *  @return the amount of ONVs (with a larger arrangement number) this ONV would couple with given a two electron operator
+     */
+    size_t twoElectronCouplingCount(ONV &onv);
+
+
+    /**
+     *  @param onv       the ONV
+     *
+     *  @return the amount of ONVs (with a larger arrangement number) this ONV would couple with given a one electron operator
+     */
+    size_t oneElectronCouplingCount(ONV &onv);
+
+    /**
      *  Find the next unoccupied orbital in a given ONV,
      *  update the electron count, orbital index,
      *  and update the address by calculating a shift
@@ -121,7 +138,7 @@ public:
      *  @tparam T        the amount of previously annihilated electrons
      *
      *  @param address   the address which is updated
-     *  @param onv       the ONV for which we search the next unnocupied orbital
+     *  @param onv       the ONV for which we search the next unoccupied orbital
      *  @param q         the orbital index
      *  @param e         the electron count
      */
@@ -151,7 +168,7 @@ public:
      *  @tparam T        the amount of previously annihilated electrons
      *
      *  @param address   the address which is updated
-     *  @param onv       the ONV for which we search the next unnocupied orbital
+     *  @param onv       the ONV for which we search the next unoccupied orbital
      *  @param q         the orbital index
      *  @param e         the electron count
      *  @param sign      the sign which is flipped for each iteration
@@ -172,6 +189,47 @@ public:
             sign *= -1;
         }
     }
+
+    /**
+     *  Find the previous unoccupied orbital in a given ONV,
+     *  update the electron count, orbital index, sign,
+     *  and update the address by calculating a shift
+     *  resulting from a difference between the initial vertex weights for the encountered occupied orbitals
+     *  and the corrected vertex weights accounting for newly created electrons
+     *
+     *  @tparam T        the amount of newly created electrons
+     *
+     *  @param address   the address which is updated
+     *  @param onv       the ONV for which we search the next unoccupied orbital
+     *  @param q         the orbital index
+     *  @param e         the electron count
+     *  @param sign      the sign which is flipped for each iteration
+     */
+    template<int T>
+    void shiftUntilPreviousUnoccupiedOrbital(const ONV &onv, size_t &address, size_t &q, size_t &e, int &sign) const {
+
+        // Test whether the current orbital index is occupied
+        while (e != -1 && q == onv.get_occupied_index(e)) {
+
+            int shift = static_cast<int>(this->get_vertex_weights(q, e + 1 + T)) - static_cast<int>(this->get_vertex_weights(q, e + 1));
+            address += shift;
+
+            e--;
+            q--;
+            sign *= -1;
+        }
+    }
+
+
+    /**
+     *  @return the amount non-zero couplings of a two electron coupling scheme in the Fock space
+     */
+    size_t totalTwoElectronCouplingCount();
+
+    /**
+     *  @return the amount non-zero couplings of a one electron coupling scheme in the Fock space
+     */
+    size_t totalOneElectronCouplingCount();
 };
 
 

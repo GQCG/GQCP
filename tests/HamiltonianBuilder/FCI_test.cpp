@@ -49,6 +49,8 @@ BOOST_AUTO_TEST_CASE ( FCI_public_methods ) {
     Eigen::VectorXd x = random_fci.calculateDiagonal(random_hamiltonian_parameters);
     BOOST_CHECK_NO_THROW(random_fci.constructHamiltonian(random_hamiltonian_parameters));
     BOOST_CHECK_NO_THROW(random_fci.matrixVectorProduct(random_hamiltonian_parameters, x, x));
+    Eigen::MatrixXd ham = random_fci.constructHamiltonian(random_hamiltonian_parameters);
+    BOOST_CHECK(x.isApprox(ham.diagonal()));
 
 
     // Create an incompatible Fock space

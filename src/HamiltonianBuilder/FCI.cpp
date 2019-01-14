@@ -16,7 +16,7 @@
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
 #include "HamiltonianBuilder/FCI.hpp"
-
+#include <chrono>
 
 namespace GQCP {
 
@@ -31,7 +31,375 @@ namespace GQCP {
 FCI::FCI(const ProductFockSpace& fock_space) :
         HamiltonianBuilder(),
         fock_space (fock_space)
-{}
+{
+    this->alpha_resolved = this->alphaOneElectronCouplings();
+}
+
+/*
+ *
+ */
+
+/**
+ *  Calculates all Hamiltonian elements for operators exclusively operating for one spin function
+ *  and stores these in a sparse matrix
+ *
+ *  @param fock_space                   Fock space for the spin function specific Hamiltonian
+ *  @param k                            Modified one-electron operator
+ *  @param hamiltonian_parameters       The Hamiltonian parameters in an orthonormal orbital basis
+ *  @param sparse_mat                   The representation of the spin function specific Hamiltonian
+ */
+void FCI::spinSeparatedModule(FockSpace& fock_space, const OneElectronOperator& k,
+                              const HamiltonianParameters& hamiltonian_parameters, Eigen::SparseMatrix<double>& sparse_mat){
+
+    size_t K = fock_space.get_K();
+    size_t N = fock_space.get_N();
+    size_t dim = fock_space.get_dimension();
+    
+    std::vector<Eigen::Triplet<double>> triplet_vector;
+    triplet_vector.reserve(fock_space.totalTwoElectronCouplingCount());
+    
+    ONV onv = fock_space.get_ONV(0);  // onv with address 0
+    for (size_t I = 0; I < dim; I++) {  // I loops over all addresses in the Fock space
+        if (I > 0) {
+            fock_space.setNext(onv);
+        }
+        int sign1 = -1;
+        for (size_t e1 = 0; e1 < N; e1++) {  // A1 (annihilation 1)
+
+            sign1 *= -1;
+            size_t p = onv.get_occupied_index(e1);  // retrieve the index of a given electron
+            size_t address = I - fock_space.get_vertex_weights(p, e1 + 1);
+
+
+            size_t address1 = address;
+            size_t e2 = e1;
+            size_t q = p;
+            /**
+             *  A1 > C1 (annihlation 1 > creation 1)
+             */
+            int sign2 = sign1;
+            q--;
+            e2--;
+            fock_space.shiftUntilPreviousUnoccupiedOrbital<1>(onv, address1, q, e2, sign2);
+            while (q != -1) {
+
+                size_t address2 = address1 + fock_space.get_vertex_weights(q, e2 + 2);
+
+                /**
+                 *  A2 > C2
+                 */
+                int sign3 = sign1;
+                for (size_t e3 = e1 + 1; e3 < N; e3++) {
+                    sign3 *= -1;  // initial sign3 = sign of the annhilation, with one extra electron(from crea) = *-1
+                    size_t r = onv.get_occupied_index(e3);
+                    size_t address3 = address2 - fock_space.get_vertex_weights(r, e3 + 1);
+
+                    size_t e4 = e3 + 1;
+                    size_t s = r + 1;
+
+                    int sign4 = sign3;
+                    fock_space.shiftUntilNextUnoccupiedOrbital<1>(onv, address3, s, e4, sign4);
+
+                    while (s < K) {
+                        size_t J = address3 + fock_space.get_vertex_weights(s, e4);
+                        int signev = sign1 * sign2 * sign3 * sign4;
+                        double value = signev * 0.5 * (hamiltonian_parameters.get_g()(p, q, r, s) +
+                                                       hamiltonian_parameters.get_g()(r, s, p, q) -
+                                                       hamiltonian_parameters.get_g()(p, s, r, q) -
+                                                       hamiltonian_parameters.get_g()(r, q, p, s));
+
+
+                        triplet_vector.emplace_back(I,J, value);
+                        triplet_vector.emplace_back(J,I, value);
+
+                        s++;
+                        fock_space.shiftUntilNextUnoccupiedOrbital<1>(onv, address3, s, e4, sign4);
+                    }
+                }
+
+                q--;
+                fock_space.shiftUntilPreviousUnoccupiedOrbital<1>(onv, address1, q, e2, sign2);
+
+            }
+
+
+
+            e2 = e1 + 1;
+            q = p + 1;
+            sign2 = sign1;
+            fock_space.shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign2);
+
+
+            /**
+             *  A1 < C1
+             */
+            while (q < K) {
+
+                // BRANCH N
+
+
+                address1 = address + fock_space.get_vertex_weights(q, e2);
+                /**
+                 *  A2 > C1
+                 */
+                int sign3 = sign2;
+                for (size_t e3 = e2; e3 < N; e3++) {
+                    sign3 *= -1; // -1 cause we created electron (creation) sign of A is now the that of C *-1
+                    size_t r = onv.get_occupied_index(e3);
+                    size_t address3 = address1 - fock_space.get_vertex_weights(r, e3 + 1);
+
+                    size_t e4 = e3 + 1;
+                    size_t s = r + 1;
+
+                    
+                    int sign4 = sign3;
+                    fock_space.shiftUntilNextUnoccupiedOrbital<1>(onv, address3, s, e4, sign4);
+
+                    while (s < K) {
+                        size_t J = address3 + fock_space.get_vertex_weights(s, e4);
+                        int signev = sign1 * sign2 * sign3 * sign4;
+
+                        double value = signev * 0.5 * (hamiltonian_parameters.get_g()(p, q, r, s) +
+                                                       hamiltonian_parameters.get_g()(r, s, p, q) -
+                                                       hamiltonian_parameters.get_g()(r, q, p, s) -
+                                                       hamiltonian_parameters.get_g()(p, s, r, q));
+
+                        triplet_vector.emplace_back(I,J, value);
+                        triplet_vector.emplace_back(J,I, value);
+
+                        s++;  // go to the next orbital
+                        fock_space.shiftUntilNextUnoccupiedOrbital<1>(onv, address3, s, e4, sign4);
+
+                    }  // (creation)
+
+                }
+
+
+                size_t r = q;
+
+                sign3 = sign2;
+
+                size_t address1c = address1;
+
+                /**
+                 *  A2 < C1, (A2 > A1)
+                 */
+                for (size_t e3 = e2 - 1; e3 > e1; e3--) {
+                    sign3 *= -1;
+                    size_t e4 = e2;
+                    address1c += fock_space.get_vertex_weights(r, e3) -
+                                 fock_space.get_vertex_weights(r, e3 + 1);
+                    r = onv.get_occupied_index(e3);
+                    size_t address2 = address1c - fock_space.get_vertex_weights(r, e3);
+                    int sign4 = sign2;
+                    size_t s = q + 1;
+                    fock_space.shiftUntilNextUnoccupiedOrbital<1>(onv, address2, s, e4, sign4);
+                    while (s < K) {
+
+                        size_t J = address2 + fock_space.get_vertex_weights(s, e4);
+
+                        int signev = sign1 * sign2 * sign3 * sign4;
+                        double value = signev * 0.5 * (hamiltonian_parameters.get_g()(p, q, r, s) +
+                                                       hamiltonian_parameters.get_g()(r, s, p, q) -
+                                                       hamiltonian_parameters.get_g()(r, q, p, s) -
+                                                       hamiltonian_parameters.get_g()(p, s, r, q));
+
+                        triplet_vector.emplace_back(I,J, value);
+                        triplet_vector.emplace_back(J,I, value);
+
+                        s++;
+
+                        fock_space.shiftUntilNextUnoccupiedOrbital<1>(onv, address2, s, e4, sign4);
+
+                    }
+
+
+                }
+
+                /**
+                 *  A2 = C1
+                 */
+                int signev = sign2 * sign1;
+                
+                double value_I =  k(p, q);  // cover the one electron calculations
+                
+                for (size_t s = 0; s < K; s++) {
+                    if(!onv.isOccupied(s)){
+
+                        value_I += 0.5 * (hamiltonian_parameters.get_g()(p, s, s, q));
+
+                    } else {
+
+                        value_I  += 0.5 *  (hamiltonian_parameters.get_g()(s, s, p, q) - hamiltonian_parameters.get_g()(s, q, p, s) + hamiltonian_parameters.get_g()(p, q, s, s));
+
+                    }
+
+                }
+
+                value_I *= signev;
+
+
+                q++;
+
+
+
+                triplet_vector.emplace_back(I,address1, value_I);
+                triplet_vector.emplace_back(address1,I, value_I);
+
+                fock_space.shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign2);
+
+
+            }
+        }
+    }
+
+    sparse_mat.setFromTriplets(triplet_vector.begin(),triplet_vector.end());
+
+
+}
+
+/**
+ *  Calculates all one-electron couplings for the beta Fock space
+ *  and attributes two-electron integrals based on the one-electron indexes of the coupling and two fixed indexes
+ *
+ *  @param r                        Fixed index of two-electorn integral
+ *  @param s                        Fixed index of two-electron integral
+ *  @param hamiltonian_parameters   The Hamiltonian parameters in an orthonormal orbital basis
+ *
+ *  @return                         The sparse matrix containing the calculated two-electron integrals mapped to one-electron couplings
+ */
+Eigen::SparseMatrix<double> FCI::betaTwoElectronOneElectronModule(size_t r, size_t s,
+                                                                  const HamiltonianParameters& hamiltonian_parameters) {
+
+    FockSpace beta = fock_space.get_fock_space_beta();
+    const bool do_diagonal = (r != s);
+    size_t K = beta.get_K();
+    size_t N = beta.get_N();
+    size_t dim = beta.get_dimension();
+    Eigen::SparseMatrix<double> sparseMatrix(dim, dim);
+    std::vector<Eigen::Triplet<double>> triplet_vector;
+    size_t mod = 0;
+    if (do_diagonal){
+        mod += dim;
+    }
+    triplet_vector.reserve(beta.totalOneElectronCouplingCount() + mod);
+    ONV onv = beta.get_ONV(0);  // onv with address 0
+    for (size_t I = 0; I < dim; I++) {  // I loops over all the addresses of the onv
+        for (size_t e1 = 0; e1 < N; e1++) {  // e1 (electron 1) loops over the (number of) electrons
+            size_t p = onv.get_occupied_index(e1);  // retrieve the index of a given electron
+            // remove the weight from the initial address I, because we annihilate
+            size_t address = I - beta.get_vertex_weights(p, e1 + 1);
+
+            if(do_diagonal){
+                triplet_vector.emplace_back(I, I, hamiltonian_parameters.get_g()(r, s, p, p));
+            }
+
+            // The e2 iteration counts the amount of encountered electrons for the creation operator
+            // We only consider greater addresses than the initial one (because of symmetry)
+            // Hence we only count electron after the annihilated electron (e1)
+            size_t e2 = e1 + 1;
+            size_t q = p + 1;
+
+            int sign_e2 = 1;
+            // perform a shift
+            beta.shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign_e2);
+
+            while (q < K) {
+                size_t J = address + beta.get_vertex_weights(q, e2);
+                double value = sign_e2*hamiltonian_parameters.get_g()(r, s, p, q);
+                triplet_vector.emplace_back(I, J, value);
+                triplet_vector.emplace_back(J, I, value);
+
+                q++; // go to the next orbital
+
+                // perform a shift
+                beta.shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign_e2);
+            }  //  (creation)
+
+
+        } // e1 loop (annihilation)
+
+
+        // Prevent last permutation
+        if (I < dim - 1) {
+            beta.setNext(onv);
+        }
+    }
+    sparseMatrix.setFromTriplets(triplet_vector.begin(),triplet_vector.end());
+    return sparseMatrix;
+    
+}
+
+
+
+/**
+ *  Calculates all one-eletron couplings for each annihilation-creation pair in the alpha Fock space
+ *  and stores them in sparse matrices for each combination
+ *
+ *  @return vector of sparse matrices containing the one-electron couplings for the alpha Fock space
+ */
+std::vector<Eigen::SparseMatrix<double>> FCI::alphaOneElectronCouplings() {
+
+    GQCP::FockSpace alpha = this->fock_space.get_fock_space_alpha();
+
+    size_t K = alpha.get_K();
+    size_t N = alpha.get_N();
+    size_t dim = alpha.get_dimension();
+
+    std::vector<std::vector<Eigen::Triplet<double>>> sparseEntries(K*(K+1)/2);
+    std::vector<Eigen::SparseMatrix<double>> matrixes(K*(K+1)/2, Eigen::SparseMatrix<double>(dim, dim));
+    for (std::vector<Eigen::Triplet<double>>& reserver : sparseEntries) {
+        reserver.reserve(2*(1+N*(K-N)));
+    }
+
+
+    ONV onv = alpha.get_ONV(0);  // onv with address 0
+    for (size_t I = 0; I < dim; I++) {  // I loops over all the addresses of the onv
+        for (size_t e1 = 0; e1 < N; e1++) {  // e1 (electron 1) loops over the (number of) electrons
+            size_t p = onv.get_occupied_index(e1);  // retrieve the index of a given electron
+            // remove the weight from the initial address I, because we annihilate
+            size_t address = I - alpha.get_vertex_weights(p, e1 + 1);
+            // The e2 iteration counts the amount of encountered electrons for the creation operator
+            // We only consider greater addresses than the initial one (because of symmetry)
+            // Hence we only count electron after the annihilated electron (e1)
+            sparseEntries[p*(K+K+1-p)/2].emplace_back(I, I, 1);
+            size_t e2 = e1 + 1;
+            size_t q = p + 1;
+            int sign_e2 = 1;
+            // perform a shift
+            alpha.shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign_e2);
+            size_t dex = 0;
+            while (q < K) {
+                size_t J = address + alpha.get_vertex_weights(q, e2);
+
+                sparseEntries[p*(K+K+1-p)/2 + q - p].emplace_back(I, J, sign_e2);
+                sparseEntries[p*(K+K+1-p)/2 + q - p].emplace_back(J, I, sign_e2);
+
+                q++; // go to the next orbital
+                dex++;
+                // perform a shift
+                alpha.shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign_e2);
+            }  //  (creation)
+
+
+        } // e1 loop (annihilation)
+
+
+        // Prevent last permutation
+        if (I < dim - 1) {
+            alpha.setNext(onv);
+        }
+    }
+
+
+    for (size_t k = 0; k < K*(K+1)/2 ; k++){
+        matrixes[k].setFromTriplets(sparseEntries[k].begin(), sparseEntries[k].end());
+    }
+
+    return matrixes;
+
+
+}
 
 
 
@@ -52,202 +420,60 @@ Eigen::MatrixXd FCI::constructHamiltonian(const HamiltonianParameters& hamiltoni
     }
 
     Eigen::MatrixXd result_matrix = Eigen::MatrixXd::Zero(this->fock_space.get_dimension(), this->fock_space.get_dimension());
-    
+
     FockSpace fock_space_alpha = fock_space.get_fock_space_alpha();
     FockSpace fock_space_beta = fock_space.get_fock_space_beta();
+
+    OneElectronOperator k = hamiltonian_parameters.calculateEffectiveOneElectronIntegrals();
 
     auto N_alpha = fock_space_alpha.get_N();
     auto dim_alpha = fock_space_alpha.get_dimension();
     auto N_beta = fock_space_beta.get_N();
     auto dim_beta = fock_space_beta.get_dimension();
 
-    std::vector<std::vector<OneElectronCoupling>> alpha_one_electron_couplings {dim_alpha, std::vector<OneElectronCoupling>(N_alpha * (K + 1 - N_alpha)) };
-    std::vector<std::vector<OneElectronCoupling>> beta_one_electron_couplings {dim_beta, std::vector<OneElectronCoupling>(N_beta * (K + 1 - N_beta)) };
-
-    // 1. ALPHA-ALPHA
-    ONV spin_string_alpha = fock_space_alpha.makeONV(0);  // alpha spin string with address 0
-    for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {  // I_alpha loops over all the addresses of the alpha spin strings
-
-        size_t coupling_address_index = 0;  // index of |J_alpha> in the (N_alpha * (K + 1 - N_alpha))-long std::vector
-        // located at alpha_one_electron_couplings[I_alpha]
-
-        for (size_t p = 0; p < K; p++) {  // p loops over SOs
-            int sign_p = 1;  // sign for the annihilation operator (a_p)
-
-            if (spin_string_alpha.annihilate(p, sign_p)) {
-                for (size_t q = 0; q < K; q++) {  // q loops over SOs
-
-                    // one-electron contributions for alpha, i.e. one electron excitation
-                    int sign_pq = sign_p;  // sign for the total excitation operator (a^\dagger_q a_p)
-                    if (spin_string_alpha.create(q, sign_pq)) {
-
-                        size_t J_alpha = fock_space_alpha.getAddress(spin_string_alpha);
-
-                        // For the 'diagonal beta contributions', i.e. I_beta = J_beta, the one-electron alpha contributions
-                        // are the same
-                        // We are storing the alpha addresses as 'major', i.e. the total address I_alpha I_beta = I_alpha * dim_beta + I_beta
-                        for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {
-                            double value = sign_pq * hamiltonian_parameters.get_h()(p, q);
-                            result_matrix(I_alpha * dim_beta + I_beta, J_alpha * dim_beta + I_beta) += value;
-                        }
-
-                        // We have found a spin string that is one electron excitation away from |I_alpha>
-                        // We will store it, since these strings are also needed in the alpha-beta part
-                        alpha_one_electron_couplings[I_alpha][coupling_address_index] = OneElectronCoupling{sign_pq, p, q, J_alpha};
-                        coupling_address_index++;
-                        spin_string_alpha.annihilate(q);  // undo the previous creation on q
-                    }  // create on q (alpha)
-
-
-                    // two-electron contributions for beta-beta, i.e. two electron excitations
-                    sign_pq = sign_p;  // sign for the total excitation operator (a^\dagger_q a_p)
-                    // we have to reset this because we changed this in the previous if-statement
-
-                    if (spin_string_alpha.annihilate(q, sign_pq)) {
-
-                        for (size_t r = 0; r < K; r++) {
-                            int sign_pqr = sign_pq;  // sign for total operator (a^\dagger_r a_q a_p)
-
-                            if (spin_string_alpha.create(r, sign_pqr)) {
-                                for (size_t s = 0; s < K; s++) {
-
-                                    int sign_pqrs = sign_pqr;  // sign for total operator (a^dagger_s a^\dagger_r a_q a_p)
-                                    if (spin_string_alpha.create(s, sign_pqrs)) {
-
-                                        size_t Ja = fock_space_alpha.getAddress(spin_string_alpha);
-
-                                        // For the 'diagonal beta contributions', i.e. Ib = Jb, the two-electron alpha
-                                        // contributions are the same
-
-                                        // We are storing the alpha addresses as 'major', i.e. the total address I_alpha I_beta = I_alpha * dim_b + I_b
-                                        for (size_t Ib = 0; Ib < dim_beta; Ib++) {
-                                            double value = sign_pqrs * 0.5 * hamiltonian_parameters.get_g()(s, p, r, q);
-                                            result_matrix(I_alpha * dim_beta + Ib, Ja * dim_beta + Ib) += value;
-                                        }
-
-                                        spin_string_alpha.annihilate(s);  // undo the previous creation on s
-                                    }  // create on s (alpha)
-                                }  // loop over s
-
-                                spin_string_alpha.annihilate(r);  // undo the previous creation on r
-                            }  // create on r (alpha)
-                        }  // loop over r
-
-                        spin_string_alpha.create(q);  // undo the previous annihilation on q
-                    }  // annihilate on q (alpha)
-                }  // loop over q
-
-                spin_string_alpha.create(p);  // undo the previous annihilation on p
-            }  // annihilate p (alpha)
-        }  // loop over p
-
-
-        if (I_alpha < dim_alpha - 1) {  // prevent the last permutation to occur
-            fock_space_alpha.setNextONV(spin_string_alpha);
+    if (!is_ham_par_set) {
+        spinSeparatedModule(fock_space_alpha, k, hamiltonian_parameters, alpha_ev);
+        spinSeparatedModule(fock_space_beta, k, hamiltonian_parameters, beta_ev);
+        for (size_t p = 0; p < K; p++) {
+            beta_resolved[p * (K + K + 1 - p) / 2] = betaTwoElectronOneElectronModule(p, p, hamiltonian_parameters);
+            for (size_t q = p + 1; q < K; q++) {
+                beta_resolved[p * (K + K + 1 - p) / 2 + q - p] = betaTwoElectronOneElectronModule(p, q, hamiltonian_parameters);
+            }
         }
-    }  // loop over alpha addresses (I_alpha)
 
+    }
 
-    // 2. BETA-BETA
-    ONV spin_string_beta = fock_space_beta.makeONV(0);  // beta spin string with address 0
-
-    for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {  // I_beta loops over addresses of all beta spin strings
-
-        size_t coupling_address_index = 0;  // index of |J_beta> in the (N_beta * (K + 1 - N_beta))-long std::vector
-        // located at alpha_one_electron_couplings[I_alpha]
-
-        for (size_t p = 0; p < K; p++) {  // p loops over SOs
-            int sign_p = 1;
-
-            if (spin_string_beta.annihilate(p, sign_p)) {
-                for (size_t q = 0; q < K; q++) {  // q loops over SOs
-
-                    // one-electron contributions for beta, i.e. one electron excitation
-                    int sign_pq = sign_p;  // sign for the total excitation operator (a^\dagger_q a_p)
-                    if (spin_string_beta.create(q, sign_pq)) {
-
-                        size_t J_beta = fock_space_beta.getAddress(spin_string_beta);
-
-                        // For the 'diagonal alpha contributions', i.e. I_alpha = J_alpha, the one-electron beta contributions are
-                        // the same
-                        // We are storing the alpha addresses as 'major', i.e. the total address I_alpha I_beta = I_alpha * dim_beta + I_beta
-
-                        for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {
-                            double value = sign_pq * hamiltonian_parameters.get_h()(p, q);
-                            result_matrix (I_alpha * dim_beta + I_beta, I_alpha * dim_beta + J_beta) += value;
-                        }
-
-                        // We have found a spin string that is one electron excitation away from |I_alpha>
-                        // We will store it, since these strings are also needed in the alpha-beta part
-                        beta_one_electron_couplings[I_beta][coupling_address_index] = OneElectronCoupling{sign_pq, p, q, J_beta};
-                        coupling_address_index++;
-                        spin_string_beta.annihilate(q);  // undo the previous creation on q
-                    }  // create on q (beta)
-
-
-                    // two-electron contributions for beta-beta, i.e. two electron excitations
-                    sign_pq = sign_p;  // sign for the total excitation operator (a^\dagger_q a_p)
-                    // we have to reset this because we changed this in the previous if-statement
-
-                    if (spin_string_beta.annihilate(q, sign_pq)) {
-
-                        for (size_t r = 0; r < K; r++) {  // r loops over SOs
-                            int sign_pqr = sign_pq;  // sign for total operator (a^\dagger_r a_q a_p)
-
-                            if (spin_string_beta.create(r, sign_pqr)) {
-                                for (size_t s = 0; s < K; s++) {  // s loops over SOs
-
-                                    int sign_pqrs = sign_pqr;  // sign for total operator (a^dagger_s a^\dagger_r a_q a_p)
-                                    if (spin_string_beta.create(s, sign_pqrs)) {
-
-                                        size_t Jb = fock_space_beta.getAddress(spin_string_beta);
-
-                                        // For the 'diagonal alpha contributions', i.e. Ia = Ja, the two-electron beta
-                                        // contributions are the same
-
-                                        // We are storing the alpha addresses as 'major', i.e. the total address IaIb = Ia * dim_b + I_b
-                                        for (size_t Ia = 0; Ia < dim_alpha; Ia++) {
-                                            double value = sign_pqrs * 0.5 * hamiltonian_parameters.get_g()(s, p, r, q);
-                                            result_matrix(Ia * dim_beta + I_beta, Ia * dim_beta + Jb) += value;
-                                        }
-
-                                        spin_string_beta.annihilate(s);  // undo the previous creation on s
-                                    }  // create on s (beta)
-                                }  // loop over s
-
-                                spin_string_beta.annihilate(r);  // undo the previous creation on r
-                            }  // create on r (beta)
-                        }  // loop over r
-
-                        spin_string_beta.create(q);  // undo the previous annihilation on q
-                    }  // annihilate on q (beta)
-                }  // loop over q
-
-                spin_string_beta.create(p);  // undo the previous annihilation on p
-            } // annihilate on p (beta)
-        }  // loop over p
-
-        if (I_beta < dim_beta - 1) {  // prevent last permutation to occur
-            fock_space_beta.setNextONV(spin_string_beta);
+    for (size_t i = 0; i < dim_alpha; i++) {
+        for (size_t j = 0; j < dim_alpha; j++) {
+            result_matrix.block(i * dim_beta, j * dim_beta, dim_beta, dim_beta) += beta_ev;
         }
-    }  // loop over beta addresses (I_beta)
+    }
+
+    Eigen::MatrixXd ones = Eigen::MatrixXd::Ones(dim_alpha, dim_alpha);
+
+    for (int i = 0; i < alpha_ev.outerSize(); ++i){
+        for (Eigen::SparseMatrix<double>::InnerIterator it(alpha_ev, i); it; ++it) {
+            result_matrix.block(it.row() * dim_alpha, it.col() * dim_alpha, dim_alpha, dim_alhpa) += it_value*ones;
+        }
+    }
 
 
-    // 3. ALPHA-BETA
-    for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {  // loop over alpha addresses
-        for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {  // loop over beta addresses
+    for (const Eigen::SparseMatrix<double> alpha_couplings : alpha_resolved) {
+        for (i = 0; i < alpha_couplings.outerSize(); ++i){
+            for (Eigen::SparseMatrix<double>::InnerIterator it(alpha_couplings, i); it; ++it) {
+                result_matrix.block(it.row() * dim_alpha, it.col() * dim_alpha, dim_alpha, dim_alpha) += it_value*ones;
+            }
+        }
+    }
 
-            for (const auto& alpha : alpha_one_electron_couplings[I_alpha]) {  // traverse all OneElectronCouplings for I_alpha
-                for (const auto& beta : beta_one_electron_couplings[I_beta]) {  // traverse all OneElectronCouplings for I_beta
 
-                    int sign = alpha.sign * beta.sign;
-                    double value = sign * hamiltonian_parameters.get_g()(alpha.p, alpha.q, beta.p, beta.q);
-                    result_matrix( I_alpha * dim_beta + I_beta, alpha.address * dim_beta + beta.address) += value;  // alpha is the major index
-                }  // beta OneElectronCouplings
-            }  // alpha OneElectronCouplings
+    for (size_t p = 0; p<K; p++) {
+        matvecmap.noalias() += alpha_resolved[p*(K+K+1-p)/2] * xmap * beta_resolved[p*(K+K+1-p)/2];
+        for (size_t q = p + 1; q<K; q++) {
+            matvecmap.noalias() += alpha_resolved[p*(K+K+1-p)/2 + q - p] * xmap * beta_resolved[p*(K+K+1-p)/2 + q - p];
+        }
+    }
 
-        }  // loop over beta addresses (I_beta)
-    }  // loop over alpha addresses (I_alpha)
     return result_matrix;
 }
 
@@ -270,219 +496,49 @@ Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters& hamiltonia
 
     auto dim_alpha = fock_space_alpha.get_dimension();
     auto dim_beta = fock_space_beta.get_dimension();
-    auto dim = fock_space.get_dimension();
 
-    // TODO: use diagonal
-    Eigen::VectorXd matvec =  Eigen::VectorXd::Zero(dim);
-
+    Eigen::VectorXd matvec = diagonal.cwiseProduct(x);
 
     // Calculate the effective one-electron integrals
     OneElectronOperator k = hamiltonian_parameters.calculateEffectiveOneElectronIntegrals();
 
+    GQCP::OneElectronOperator k = hamiltonian_parameters.calculateEffectiveOneElectronIntegrals();
+    Eigen::Map<Eigen::MatrixXd> matvecmap(matvec.data(), dim_alpha, dim_beta);
+    Eigen::Map<const Eigen::MatrixXd> xmap(x.data(), dim_alpha, dim_beta);
 
-    // ALPHA-ALPHA
-    ONV spin_string_alpha_aa = fock_space_alpha.makeONV(0);  // spin string with address 0
-    for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {  // I_alpha loops over all the addresses of the alpha spin strings
-        if (I_alpha > 0) {
-            fock_space_alpha.setNextONV(spin_string_alpha_aa);
-        }
 
-        for (size_t p = 0; p < K; p++) {  // p loops over SOs
-            int sign_p = 1;  // sign of the operator a_p_alpha
-            if (spin_string_alpha_aa.annihilate(p, sign_p)) {  // if p is in I_alpha
 
-                for (size_t q = 0; q < K; q++) {  // q loops over SOs
-                    int sign_pq = sign_p;  // sign of the operator a^dagger_q_alpha a_p_alpha
-                    if (spin_string_alpha_aa.create(q, sign_pq)) {  // if q is not occupied in I_alpha
-                        size_t J_alpha = fock_space_alpha.getAddress(spin_string_alpha_aa); // find all strings J_alpha that couple to I_alpha
 
-                        for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {  // I_beta loops over all addresses of the beta spin strings
-                            matvec(I_alpha*dim_beta + I_beta) += k(p,q) * sign_pq * x(J_alpha*dim_beta + I_beta);  // alpha addresses are major
-                        }
+    if (xyr) {
+        xyr = false;
 
-                        spin_string_alpha_aa.annihilate(q);  // undo the previous creation
-                    }
-                }  // q loop
+        this->spinSeparatedModule(fock_space_alpha, k, hamiltonian_parameters, alpha_ev);
+        this->spinSeparatedModule(fock_space_beta, k, hamiltonian_parameters, beta_ev);
 
-                spin_string_alpha_aa.create(p);  // undo the previous annihilation
+        beta_resolved = std::vector<Eigen::SparseMatrix<double>>(K * (K + 1) / 2,
+                                                                 Eigen::SparseMatrix<double>(dim_beta, dim_beta));
+
+        for (size_t p = 0; p < K; p++) {
+            beta_resolved[p * (K + K + 1 - p) / 2] = betaTwoElectronOneElectronModule(p, p, hamiltonian_parameters);
+            for (size_t q = p + 1; q < K; q++) {
+                beta_resolved[p * (K + K + 1 - p) / 2 + q - p] = betaTwoElectronOneElectronModule(p, q,
+                                                                                                  hamiltonian_parameters);
             }
-        }  // p loop
-    }  // I_alpha loop
-
-
-    // BETA-BETA
-    ONV spin_string_beta_bb = fock_space_beta.makeONV(0);  // spin string with address 0
-    for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {  // I_beta loops over all the addresses of the beta spin strings
-        if (I_beta > 0) {
-            fock_space_beta.setNextONV(spin_string_beta_bb);
         }
+    }
 
-        for (size_t p = 0; p < K; p++) {  // p loops over SOs
-            int sign_p = 1;  // sign of the operator a_p_beta
-            if (spin_string_beta_bb.annihilate(p, sign_p)) {  // if p is in I_beta
 
-                for (size_t q = 0; q < K; q++) {  // q loops over SOs
-                    int sign_pq = sign_p;  // sign of the operator a^dagger_q_beta a_p_beta
-                    if (spin_string_beta_bb.create(q, sign_pq)) {  // if q is not occupied in I_beta
-                        size_t J_beta = fock_space_beta.getAddress(spin_string_beta_bb);  // find all strings J_beta that couple to I_beta
 
-                        for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {  // I_alpha loops over all addresses of the alpha spin strings
-                            matvec(I_alpha*dim_beta + I_beta) += k(p,q) * sign_pq * x(I_alpha*dim_beta + J_beta);  // alpha addresses are major
-                        }
-
-                        spin_string_beta_bb.annihilate(q);  // undo the previous creation
-                    }
-                }  // q loop
-
-                spin_string_beta_bb.create(p);  // undo the previous annihilation
-            }
-        }  // p loop
-    }  // I_beta loop
-
-    // ALPHA-ALPHA-ALPHA-ALPHA
-    ONV spin_string_alpha_aaaa = fock_space_alpha.makeONV(0);  // spin string with address 0
-    for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {  // I_alpha loops over all addresses of alpha spin strings
-        if (I_alpha > 0) {
-            fock_space_alpha.setNextONV(spin_string_alpha_aaaa);
+    for (size_t p = 0; p<K; p++) {
+        matvecmap.noalias() += alpha_resolved[p*(K+K+1-p)/2] * xmap * beta_resolved[p*(K+K+1-p)/2];
+        for (size_t q = p + 1; q<K; q++) {
+            matvecmap.noalias() += alpha_resolved[p*(K+K+1-p)/2 + q - p] * xmap * beta_resolved[p*(K+K+1-p)/2 + q - p];
         }
-
-        for (size_t p = 0; p < K; p++) {  // p loops over SOs
-            int sign_p = 1;  // sign of the operator a_p_alpha
-            if (spin_string_alpha_aaaa.annihilate(p, sign_p)) {
-
-                for (size_t q = 0; q < K; q++) {  // q loops over SOs
-                    int sign_pq = sign_p;  // sign of the operator a^dagger_q_alpha a_p_alpha
-                    if (spin_string_alpha_aaaa.create(q, sign_pq)) {
-
-                        for (size_t r = 0; r < K; r++) {  // r loops over SOs
-                            int sign_pqr = sign_pq;  // sign of the operator a_r_alpha a^dagger_q_alpha a_p_alpha
-                            if (spin_string_alpha_aaaa.annihilate(r, sign_pqr)) {
-
-                                for (size_t s = 0; s < K; s++) {  // s loops over SOs
-                                    int sign_pqrs = sign_pqr;  // sign of the operator a^dagger_s_alpha a_r_alpha a^dagger_q_alpha a_p_alpha
-                                    if (spin_string_alpha_aaaa.create(s, sign_pqrs)) {
-                                        size_t J_alpha = fock_space_alpha.getAddress(spin_string_alpha_aaaa);  // the address of the string J_alpha that couples to I_alpha
-
-                                        for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {  // I_beta loops over all beta addresses
-                                            matvec(I_alpha*dim_beta + I_beta) += 0.5 * hamiltonian_parameters.get_g()(p, q, r, s) * sign_pqrs * x(J_alpha*dim_beta + I_beta);
-                                        }
-
-                                        spin_string_alpha_aaaa.annihilate(s);  // undo the previous creation
-                                    }
-                                }  // loop over s
-
-                                spin_string_alpha_aaaa.create(r);  // undo the previous annihilation
-                            }
-                        }  // loop over r
-
-                        spin_string_alpha_aaaa.annihilate(q);  // undo the previous creation
-                    }
-                }  // loop over q
-
-                spin_string_alpha_aaaa.create(p);  // undo the previous creation
-            }
-        }  // loop over p
-    }  // loop over I_alpha
+    }
 
 
-    // ALPHA-ALPHA-BETA-BETA (and BETA-BETA-ALPHA-ALPHA)
-    ONV spin_string_alpha_aabb = fock_space_alpha.makeONV(0);  // spin string with address 0
-    for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {  // I_alpha loops over all addresses of alpha spin strings
-        if (I_alpha > 0) {
-            fock_space_alpha.setNextONV(spin_string_alpha_aabb);
-        }
 
-        for (size_t p = 0; p < K; p++) {  // p loops over SOs
-            int sign_p = 1;  // sign of the operator a_p_alpha
-            if (spin_string_alpha_aabb.annihilate(p, sign_p)) {
-
-                for (size_t q = 0; q < K; q++) {
-                    int sign_pq = sign_p;  // sign of the operator a^dagger_q_alpha a_p_alpha
-                    if (spin_string_alpha_aabb.create(q, sign_pq)) {
-                        size_t J_alpha = fock_space_alpha.getAddress(spin_string_alpha_aabb);  // the address of the spin string that couples to I_alpha
-
-                        ONV spin_string_beta_aabb = fock_space_beta.makeONV (0); // spin string with address 0
-                        for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {  // I_beta loops over all addresses of beta spin strings
-                            if (I_beta > 0) {
-                                fock_space_beta.setNextONV(spin_string_beta_aabb);
-                            }
-
-                            for (size_t r = 0; r < K; r++) {  // r loops over SOs
-                                int sign_r = 1;  // sign of the operator a_r_beta
-                                if (spin_string_beta_aabb.annihilate(r, sign_r)) {
-
-                                    for (size_t s = 0; s < K; s++) {  // s loops over SOs
-                                        int sign_rs = sign_r;  // sign of the operato a^dagger_s_beta a_r_beta
-                                        if (spin_string_beta_aabb.create(s, sign_rs)) {
-                                            size_t J_beta = fock_space_beta.getAddress(spin_string_beta_aabb);  // the address of the spin string that couples to I_beta
-
-                                            matvec(I_alpha*dim_beta + I_beta) += hamiltonian_parameters.get_g()(p, q, r, s) * sign_pq * sign_rs * x(J_alpha*dim_beta + J_beta);  // alpha addresses are major
-
-                                            spin_string_beta_aabb.annihilate(s);  // undo the previous creation
-                                        }
-                                    }  // loop over r
-
-                                    spin_string_beta_aabb.create(r);  // undo the previous annihilation
-                                }
-                            }  // loop over r
-
-
-                        }  // I_beta loop
-
-                        spin_string_alpha_aabb.annihilate(q);  // undo the previous creation
-                    }
-                }  // loop over q
-
-                spin_string_alpha_aabb.create(p);  // undo the previous annihilation
-            }
-        }  // loop over p
-    }  // loop over I_alpha
-
-
-    // BETA-BETA-BETA-BETA
-    ONV spin_string_beta_bbbb = fock_space_beta.makeONV(0);  // spin string with address 0
-    for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {  // I_beta loops over all addresses of beta spin strings
-        if (I_beta > 0) {
-            fock_space_beta.setNextONV(spin_string_beta_bbbb);
-        }
-
-        for (size_t p = 0; p < K; p++) {  // p loops over SOs
-            int sign_p = 1;  // sign of the operator a_p_beta
-            if (spin_string_beta_bbbb.annihilate(p, sign_p)) {
-
-                for (size_t q = 0; q < K; q++) {  // q loops over SOs
-                    int sign_pq = sign_p;  // sign of the operator a^dagger_q_beta a_p_beta
-                    if (spin_string_beta_bbbb.create(q, sign_pq)) {
-
-                        for (size_t r = 0; r < K; r++) {  // r loops over SOs
-                            int sign_pqr = sign_pq;  // sign of the operator a_r_beta a^dagger_q_beta a_p_beta
-                            if (spin_string_beta_bbbb.annihilate(r, sign_pqr)) {
-
-                                for (size_t s = 0; s < K; s++) {  // s loops over SOs
-                                    int sign_pqrs = sign_pqr;  // sign of the operator a^dagger_s_beta a_r_beta a^dagger_q_beta a_p_beta
-                                    if (spin_string_beta_bbbb.create(s, sign_pqrs)) {
-                                        size_t J_beta = fock_space_beta.getAddress(spin_string_beta_bbbb);  // the address of the string J_beta that couples to I_beta
-
-                                        for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {  // I_beta loops over all beta addresses
-                                            matvec(I_alpha*dim_beta + I_beta) += 0.5 * hamiltonian_parameters.get_g()(p,q,r,s) * sign_pqrs * x(I_alpha*dim_beta + J_beta);
-                                        }
-
-                                        spin_string_beta_bbbb.annihilate(s);  // undo the previous creation
-                                    }
-                                }  // loop over s
-
-                                spin_string_beta_bbbb.create(r);  // undo the previous annihilation
-                            }
-                        }  // loop over r
-
-                        spin_string_beta_bbbb.annihilate(q);  // undo the previous creation
-                    }
-                }  // loop over q
-
-                spin_string_beta_bbbb.create(p);  // undo the previous creation
-            }
-        }  // loop over p
-    }  // loop over I_beta
+    matvecmap.noalias() += alpha_ev * xmap + xmap * beta_ev;
 
     return matvec;
 }
@@ -566,7 +622,6 @@ Eigen::VectorXd FCI::calculateDiagonal(const HamiltonianParameters& hamiltonian_
 
     return diagonal;
 }
-
 
 
 }  // namespace GQCP

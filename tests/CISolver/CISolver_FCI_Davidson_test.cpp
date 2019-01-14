@@ -144,6 +144,7 @@ BOOST_AUTO_TEST_CASE ( FCI_H2O_STO_3G_dense_vs_Davidson ) {
     // Retrieve the eigenvalues
     auto fci_davidson_eigenvalue = ci_solver.get_eigenpair().get_eigenvalue();
 
+    std::cout<<fci_davidson_eigenvalue;
     // Solve Dense
     GQCP::DenseSolverOptions dense_solver_options;
     ci_solver.solve(dense_solver_options);

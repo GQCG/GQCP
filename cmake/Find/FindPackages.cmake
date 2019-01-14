@@ -5,7 +5,7 @@
 find_package(Boost REQUIRED COMPONENTS program_options)
 
 # Find Eigen3
-find_package(Eigen3 3.3.4 REQUIRED)
+find_package(Eigen3 3.3.5 REQUIRED)
 
 # Find Libint
 find_package(Libint2 REQUIRED)
