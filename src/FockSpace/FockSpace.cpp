@@ -224,14 +224,14 @@ size_t FockSpace::twoElectronCouplingCount(ONV &onv) {
 
     for (size_t e1 = 0; e1 < this->N; e1++){
 
-        size_t p = onv.get_occupied_index(e1);
+        size_t p = onv.get_occupation_index(e1);
 
         coupling_count += (V + e1 - p);
 
 
         for (size_t e2 = e1+1; e2 < this->N; e2++){
 
-            size_t q = onv.get_occupied_index(e2);
+            size_t q = onv.get_occupation_index(e2);
 
             size_t coupling_count2 = (V + e2 - q);
 
@@ -257,7 +257,7 @@ size_t FockSpace::oneElectronCouplingCount(ONV &onv) {
     size_t coupling_count = 0;
     for (size_t e1 = 0; e1 < this->N; e1++) {
 
-        size_t p = onv.get_occupied_index(e1);
+        size_t p = onv.get_occupation_index(e1);
         coupling_count += (V + e1 - p);
     }
     return coupling_count;
