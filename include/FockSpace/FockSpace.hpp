@@ -209,7 +209,7 @@ public:
     void shiftUntilPreviousUnoccupiedOrbital(const ONV &onv, size_t &address, size_t &q, size_t &e, int &sign) const {
 
         // Test whether the current orbital index is occupied
-        while (e != -1 && q == onv.get_occupied_index(e)) {
+        while (e != -1 && q == onv.get_occupation_index(e)) {
 
             int shift = static_cast<int>(this->get_vertex_weights(q, e + 1 + T)) - static_cast<int>(this->get_vertex_weights(q, e + 1));
             address += shift;

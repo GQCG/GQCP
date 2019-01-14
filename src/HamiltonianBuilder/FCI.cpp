@@ -403,6 +403,25 @@ void FCI::initializeIntermediates() {
 
 
 /*
+ *  SETTERS
+ */
+void FCI::set_hamiltonian_parameters(const HamiltonianParameters& hamiltonian_parameters) {
+    this->ham_par = hamiltonian_parameters;
+    this->is_ham_par_set = true;
+}
+
+
+
+/*
+ *  PUBLIC METHODS
+ */
+void FCI::clearHamiltonianParameters() {
+    this->is_ham_par_set = false;
+}
+
+
+
+/*
  *  OVERRIDDEN PUBLIC METHODS
  */
 
@@ -494,21 +513,18 @@ Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters& hamiltonia
     Eigen::Map<Eigen::MatrixXd> matvecmap(matvec.data(), dim_alpha, dim_beta);
     Eigen::Map<const Eigen::MatrixXd> xmap(x.data(), dim_alpha, dim_beta);
 
-
     if (!is_ham_par_set) {
         this->initializeIntermediates();
     }
 
     for (size_t p = 0; p<K; p++) {
-        matvecmap.noalias() += alpha_resolved[p*(K+K+1-p)/2] * xmap * beta_resolved[p*(K+K+1-p)/2];
+        matvecmap += alpha_resolved[p*(K+K+1-p)/2] * xmap * beta_resolved[p*(K+K+1-p)/2];
         for (size_t q = p + 1; q<K; q++) {
-            matvecmap.noalias() += alpha_resolved[p*(K+K+1-p)/2 + q - p] * xmap * beta_resolved[p*(K+K+1-p)/2 + q - p];
+            matvecmap += alpha_resolved[p*(K+K+1-p)/2 + q - p] * xmap * beta_resolved[p*(K+K+1-p)/2 + q - p];
         }
     }
 
-
-
-    matvecmap.noalias() += alpha_ev * xmap + xmap * beta_ev;
+    matvecmap += alpha_ev * xmap + xmap * beta_ev;
 
     return matvec;
 }
