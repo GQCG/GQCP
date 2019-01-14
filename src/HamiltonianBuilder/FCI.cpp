@@ -359,7 +359,6 @@ std::vector<Eigen::SparseMatrix<double>> FCI::alphaOneElectronCouplings() {
 
         } // e1 loop (annihilation)
 
-
         // Prevent last permutation
         if (I < dim - 1) {
             alpha.setNext(onv);
@@ -378,10 +377,27 @@ std::vector<Eigen::SparseMatrix<double>> FCI::alphaOneElectronCouplings() {
 
 
 /**
- *  When storing a Hamiltonian one can initialize intermediates
+ *  When calculating the Hamiltonian one can initialize and store intermediates exclusive to that Hamiltonian
  */
 void FCI::initializeIntermediates() {
 
+    OneElectronOperator k = hamiltonian_parameters.calculateEffectiveOneElectronIntegrals();
+
+    FockSpace fock_space_alpha = fock_space.get_fock_space_alpha();
+    FockSpace fock_space_beta = fock_space.get_fock_space_beta();
+
+    spinSeparatedModule(fock_space_alpha, k, hamiltonian_parameters, alpha_ev);
+    spinSeparatedModule(fock_space_beta, k, hamiltonian_parameters, beta_ev);
+
+    beta_resolved = std::vector<Eigen::SparseMatrix<double>>(K * (K + 1) / 2, Eigen::SparseMatrix<double>(dim_beta, dim_beta));
+
+    for (size_t p = 0; p < K; p++) {
+
+        beta_resolved[p * (K + K + 1 - p) / 2] = betaTwoElectronOneElectronModule(p, p, hamiltonian_parameters);
+        for (size_t q = p + 1; q < K; q++) {
+            beta_resolved[p * (K + K + 1 - p) / 2 + q - p] = betaTwoElectronOneElectronModule(p, q, hamiltonian_parameters);
+        }
+    }
 }
 
 
@@ -403,61 +419,54 @@ Eigen::MatrixXd FCI::constructHamiltonian(const HamiltonianParameters& hamiltoni
     }
 
     Eigen::MatrixXd result_matrix = Eigen::MatrixXd::Zero(this->fock_space.get_dimension(), this->fock_space.get_dimension());
-
     FockSpace fock_space_alpha = fock_space.get_fock_space_alpha();
     FockSpace fock_space_beta = fock_space.get_fock_space_beta();
-
-    OneElectronOperator k = hamiltonian_parameters.calculateEffectiveOneElectronIntegrals();
-
-    auto N_alpha = fock_space_alpha.get_N();
     auto dim_alpha = fock_space_alpha.get_dimension();
-    auto N_beta = fock_space_beta.get_N();
     auto dim_beta = fock_space_beta.get_dimension();
 
     if (!is_ham_par_set) {
-        spinSeparatedModule(fock_space_alpha, k, hamiltonian_parameters, alpha_ev);
-        spinSeparatedModule(fock_space_beta, k, hamiltonian_parameters, beta_ev);
-        for (size_t p = 0; p < K; p++) {
-            beta_resolved[p * (K + K + 1 - p) / 2] = betaTwoElectronOneElectronModule(p, p, hamiltonian_parameters);
-            for (size_t q = p + 1; q < K; q++) {
-                beta_resolved[p * (K + K + 1 - p) / 2 + q - p] = betaTwoElectronOneElectronModule(p, q, hamiltonian_parameters);
-            }
-        }
-
+        this->initializeIntermediates();
     }
 
+    // BETA separated evaluations
     for (size_t i = 0; i < dim_alpha; i++) {
         for (size_t j = 0; j < dim_alpha; j++) {
             result_matrix.block(i * dim_beta, j * dim_beta, dim_beta, dim_beta) += beta_ev;
         }
     }
 
+    // ALPHA separated evaluations
     Eigen::MatrixXd ones = Eigen::MatrixXd::Ones(dim_alpha, dim_alpha);
-
     for (int i = 0; i < alpha_ev.outerSize(); ++i){
         for (Eigen::SparseMatrix<double>::InnerIterator it(alpha_ev, i); it; ++it) {
             result_matrix.block(it.row() * dim_alpha, it.col() * dim_alpha, dim_alpha, dim_alhpa) += it_value*ones;
         }
     }
 
+    // MIXED evaluations
+    for (size_t p = 0; p<K; p++) {
 
-    for (const Eigen::SparseMatrix<double> alpha_couplings : alpha_resolved) {
+        const Eigen::SparseMatrix<double> alpha_couplings = alpha_resolved[p*(K+K+1-p)/2];
+        const Eigen::SparseMatrix<double> beta_resolves = beta_resolved[p*(K+K+1-p)/2];
+
         for (i = 0; i < alpha_couplings.outerSize(); ++i){
             for (Eigen::SparseMatrix<double>::InnerIterator it(alpha_couplings, i); it; ++it) {
-                result_matrix.block(it.row() * dim_alpha, it.col() * dim_alpha, dim_alpha, dim_alpha) += it_value*ones;
+                result_matrix.block(it.row() * dim_alpha, it.col() * dim_alpha, dim_alpha, dim_alpha) += it_value*beta_resolves;
+            }
+        }
+
+        for (size_t q = p + 1; q<K; q++) {
+            const Eigen::SparseMatrix<double> alpha_couplings = alpha_resolved[p*(K+K+1-p)/2 + q - p];
+            const Eigen::SparseMatrix<double> beta_resolves = beta_resolved[p*(K+K+1-p)/2 + q - p];
+            for (i = 0; i < alpha_couplings.outerSize(); ++i){
+                for (Eigen::SparseMatrix<double>::InnerIterator it(alpha_couplings, i); it; ++it) {
+                    result_matrix.block(it.row() * dim_alpha, it.col() * dim_alpha, dim_alpha, dim_alpha) += it_value*beta_resolves;
+                }
             }
         }
     }
 
-
-    for (size_t p = 0; p<K; p++) {
-        matvecmap.noalias() += alpha_resolved[p*(K+K+1-p)/2] * xmap * beta_resolved[p*(K+K+1-p)/2];
-        for (size_t q = p + 1; q<K; q++) {
-            matvecmap.noalias() += alpha_resolved[p*(K+K+1-p)/2 + q - p] * xmap * beta_resolved[p*(K+K+1-p)/2 + q - p];
-        }
-    }
-
-    return result_matrix;
+    return result_matrix + this->calculateDiagonal(hamiltonian_parameters);
 }
 
 
@@ -482,35 +491,13 @@ Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters& hamiltonia
 
     Eigen::VectorXd matvec = diagonal.cwiseProduct(x);
 
-    // Calculate the effective one-electron integrals
-    OneElectronOperator k = hamiltonian_parameters.calculateEffectiveOneElectronIntegrals();
-
-    GQCP::OneElectronOperator k = hamiltonian_parameters.calculateEffectiveOneElectronIntegrals();
     Eigen::Map<Eigen::MatrixXd> matvecmap(matvec.data(), dim_alpha, dim_beta);
     Eigen::Map<const Eigen::MatrixXd> xmap(x.data(), dim_alpha, dim_beta);
 
 
-
-
-    if (xyr) {
-        xyr = false;
-
-        this->spinSeparatedModule(fock_space_alpha, k, hamiltonian_parameters, alpha_ev);
-        this->spinSeparatedModule(fock_space_beta, k, hamiltonian_parameters, beta_ev);
-
-        beta_resolved = std::vector<Eigen::SparseMatrix<double>>(K * (K + 1) / 2,
-                                                                 Eigen::SparseMatrix<double>(dim_beta, dim_beta));
-
-        for (size_t p = 0; p < K; p++) {
-            beta_resolved[p * (K + K + 1 - p) / 2] = betaTwoElectronOneElectronModule(p, p, hamiltonian_parameters);
-            for (size_t q = p + 1; q < K; q++) {
-                beta_resolved[p * (K + K + 1 - p) / 2 + q - p] = betaTwoElectronOneElectronModule(p, q,
-                                                                                                  hamiltonian_parameters);
-            }
-        }
+    if (!is_ham_par_set) {
+        this->initializeIntermediates();
     }
-
-
 
     for (size_t p = 0; p<K; p++) {
         matvecmap.noalias() += alpha_resolved[p*(K+K+1-p)/2] * xmap * beta_resolved[p*(K+K+1-p)/2];

@@ -78,7 +78,7 @@ private:
     std::vector<Eigen::SparseMatrix<double>> alphaOneElectronCouplings();
 
     /**
-     *  When storing a Hamiltonian one can initialize intermediates
+     *  When calculating the Hamiltonian one can initialize and store intermediates exclusive to that Hamiltonian
      */
     void initializeIntermediates();
 
