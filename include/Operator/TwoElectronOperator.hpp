@@ -38,6 +38,7 @@ private:
 
 public:
     // CONSTRUCTORS
+    TwoElectronOperator() = default;
     /**
      *  @param tensor   the explicit matrix representation of the two-electron operator
      */

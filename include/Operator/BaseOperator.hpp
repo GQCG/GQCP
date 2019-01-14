@@ -38,6 +38,7 @@ protected:
 
 public:
     // CONSTRUCTORS
+    BaseOperator() = default;
     /**
      * @param dimension     the dimension of the operator, i.e. the number of orbitals
      */

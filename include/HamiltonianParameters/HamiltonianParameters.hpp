@@ -54,6 +54,7 @@ private:
 
 public:
     // CONSTRUCTORS
+    HamiltonianParameters() = default;
     /**
      *  @param ao_basis     the initial AO basis
      *  @param S            the overlap integrals

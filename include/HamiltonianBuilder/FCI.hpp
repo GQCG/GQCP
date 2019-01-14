@@ -33,7 +33,7 @@ namespace GQCP {
 class FCI : public HamiltonianBuilder {
 private:
     ProductFockSpace fock_space;  // fock space containing the alpha and beta Fock space
-    HamiltonianParameters ham_par;  // set ham_par with accompanied memory storage
+    HamiltonianParameters ham_par = HamiltonianParameters();  // set ham_par with accompanied memory storage
     bool is_ham_par_set = false;
 
     std::vector<Eigen::SparseMatrix<double>> alpha_resolved; // one-electron pq couplings
@@ -55,7 +55,7 @@ private:
      */
     void spinSeparatedModule(FockSpace& fock_space, const OneElectronOperator& k,
                              const HamiltonianParameters& hamiltonian_parameters,
-                             Eigen::SparseMatrix<double>& sparse_mat);
+                             Eigen::SparseMatrix<double>& sparse_mat) const;
 
     /**
      *  Calculates all one-electron couplings for the beta Fock space
@@ -67,7 +67,7 @@ private:
      *
      *  @return                         The sparse matrix containing the calculated two-electron integrals mapped to one-electron couplings
      */
-    Eigen::SparseMatrix<double> betaTwoElectronOneElectronModule(size_t r, size_t s, const HamiltonianParameters& hamiltonian_parameters);
+    Eigen::SparseMatrix<double> betaTwoElectronOneElectronModule(size_t r, size_t s, const HamiltonianParameters& hamiltonian_parameters) const;
 
     /**
      *  Calculates all one-eletron couplings for each annihilation-creation pair in the alpha Fock space
@@ -75,12 +75,12 @@ private:
      *
      *  @return vector of sparse matrices containing the one-electron couplings for the alpha Fock space
      */
-    std::vector<Eigen::SparseMatrix<double>> alphaOneElectronCouplings();
+    std::vector<Eigen::SparseMatrix<double>> alphaOneElectronCouplings() const;
 
     /**
      *  When calculating the Hamiltonian one can initialize and store intermediates exclusive to that Hamiltonian
      */
-    void initializeIntermediates();
+    void initializeIntermediates(const HamiltonianParameters& hamiltonian_parameters, Eigen::SparseMatrix<double>& alpha_ev, Eigen::SparseMatrix<double>& beta_ev,  std::vector<Eigen::SparseMatrix<double>>& beta_resolved) const;
 
 public:
 

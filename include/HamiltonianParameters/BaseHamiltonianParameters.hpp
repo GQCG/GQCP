@@ -37,6 +37,7 @@ protected:
 
 public:
     // CONSTRUCTORS
+    BaseHamiltonianParameters() = default;
     /**
      *  @param ao_basis     the initial AO basis
      *  @param scalar       the scalar interaction term

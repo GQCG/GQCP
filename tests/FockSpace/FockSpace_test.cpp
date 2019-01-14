@@ -151,7 +151,7 @@ BOOST_AUTO_TEST_CASE ( iterateToNextUnoccupiedOrbital_signed ) {
 BOOST_AUTO_TEST_CASE ( shiftToPreviousOrbital_signed ) {
 
     GQCP::FockSpace fock_space (5, 3);
-    GQCP::ONV onv = fock_space.get_ONV(6);  // 10110
+    GQCP::ONV onv = fock_space.makeONV(6);  // 10110
 
     size_t address_shift = 0;
     int sign = 1;
@@ -174,7 +174,7 @@ BOOST_AUTO_TEST_CASE ( shiftToPreviousOrbital_signed ) {
 
     sign = 1;
     address_shift = 0;
-    onv = fock_space.get_ONV(9);  // 11100
+    onv = fock_space.makeONV(9);  // 11100
     // test shift if we plan on creating two electrons and start from orbital index 2
     e = 0;  // count starts at 1 (translates to orbital index 2)
     q = 2;  // index starts at orbital index 2
@@ -196,14 +196,14 @@ BOOST_AUTO_TEST_CASE ( shiftToPreviousOrbital_signed ) {
 BOOST_AUTO_TEST_CASE ( coupling_count ) {
 
     GQCP::FockSpace fock_space (5, 3);
-    GQCP::ONV onv = fock_space.get_ONV(3);  // 01110
+    GQCP::ONV onv = fock_space.makeONV(3);  // 01110
 
     // We only count couplings with larger addresses
 
     BOOST_CHECK(fock_space.oneElectronCouplingCount(onv) == 3); // 11100, 11010, 10110
     BOOST_CHECK(fock_space.twoElectronCouplingCount(onv) == 3+3);  // 11100, 11010, 10110, 11001, 10101, 10011
 
-    onv = fock_space.get_ONV(0);  // 00111
+    onv = fock_space.makeONV(0);  // 00111
 
     BOOST_CHECK(fock_space.oneElectronCouplingCount(onv) == 6);
     BOOST_CHECK(fock_space.twoElectronCouplingCount(onv) == 6+3); // all of them
@@ -214,10 +214,10 @@ BOOST_AUTO_TEST_CASE ( coupling_count ) {
 
     size_t coupling_count1 = 0;
     size_t coupling_count2 = 0;
-    onv = fock_space2.get_ONV(0);  // spin string with address 0
+    onv = fock_space2.makeONV(0);  // spin string with address 0
     for (size_t I = 0; I < fock_space2.get_dimension(); I++) {  // I_alpha loops over all addresses of alpha spin strings
         if (I > 0) {
-            fock_space2.setNext(onv);
+            fock_space2.setNextONV(onv);
         }
         coupling_count1 += fock_space2.oneElectronCouplingCount(onv);
         coupling_count2 += fock_space2.twoElectronCouplingCount(onv);

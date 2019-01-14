@@ -49,7 +49,7 @@ FCI::FCI(const ProductFockSpace& fock_space) :
  *  @param sparse_mat                   The representation of the spin function specific Hamiltonian
  */
 void FCI::spinSeparatedModule(FockSpace& fock_space, const OneElectronOperator& k,
-                              const HamiltonianParameters& hamiltonian_parameters, Eigen::SparseMatrix<double>& sparse_mat){
+                              const HamiltonianParameters& hamiltonian_parameters, Eigen::SparseMatrix<double>& sparse_mat) const {
 
     size_t K = fock_space.get_K();
     size_t N = fock_space.get_N();
@@ -58,16 +58,16 @@ void FCI::spinSeparatedModule(FockSpace& fock_space, const OneElectronOperator& 
     std::vector<Eigen::Triplet<double>> triplet_vector;
     triplet_vector.reserve(fock_space.totalTwoElectronCouplingCount());
     
-    ONV onv = fock_space.get_ONV(0);  // onv with address 0
+    ONV onv = fock_space.makeONV(0);  // onv with address 0
     for (size_t I = 0; I < dim; I++) {  // I loops over all addresses in the Fock space
         if (I > 0) {
-            fock_space.setNext(onv);
+            fock_space.setNextONV(onv);
         }
         int sign1 = -1;
         for (size_t e1 = 0; e1 < N; e1++) {  // A1 (annihilation 1)
 
             sign1 *= -1;
-            size_t p = onv.get_occupied_index(e1);  // retrieve the index of a given electron
+            size_t p = onv.get_occupation_index(e1);  // retrieve the index of a given electron
             size_t address = I - fock_space.get_vertex_weights(p, e1 + 1);
 
             size_t address1 = address;
@@ -90,7 +90,7 @@ void FCI::spinSeparatedModule(FockSpace& fock_space, const OneElectronOperator& 
                 int sign3 = sign1;
                 for (size_t e3 = e1 + 1; e3 < N; e3++) {
                     sign3 *= -1;  // initial sign3 = sign of the annhilation, with one extra electron(from crea) = *-1
-                    size_t r = onv.get_occupied_index(e3);
+                    size_t r = onv.get_occupation_index(e3);
                     size_t address3 = address2 - fock_space.get_vertex_weights(r, e3 + 1);
 
                     size_t e4 = e3 + 1;
@@ -136,7 +136,7 @@ void FCI::spinSeparatedModule(FockSpace& fock_space, const OneElectronOperator& 
                 int sign3 = sign2;
                 for (size_t e3 = e2; e3 < N; e3++) {
                     sign3 *= -1; // -1 cause we created electron (creation) sign of A is now the that of C *-1
-                    size_t r = onv.get_occupied_index(e3);
+                    size_t r = onv.get_occupation_index(e3);
                     size_t address3 = address1 - fock_space.get_vertex_weights(r, e3 + 1);
 
                     size_t e4 = e3 + 1;
@@ -177,7 +177,7 @@ void FCI::spinSeparatedModule(FockSpace& fock_space, const OneElectronOperator& 
                     size_t e4 = e2;
                     address1c += fock_space.get_vertex_weights(r, e3) -
                                  fock_space.get_vertex_weights(r, e3 + 1);
-                    r = onv.get_occupied_index(e3);
+                    r = onv.get_occupation_index(e3);
                     size_t address2 = address1c - fock_space.get_vertex_weights(r, e3);
                     int sign4 = sign2;
                     size_t s = q + 1;
@@ -245,7 +245,7 @@ void FCI::spinSeparatedModule(FockSpace& fock_space, const OneElectronOperator& 
  *  @return                         The sparse matrix containing the calculated two-electron integrals mapped to one-electron couplings
  */
 Eigen::SparseMatrix<double> FCI::betaTwoElectronOneElectronModule(size_t r, size_t s,
-                                                                  const HamiltonianParameters& hamiltonian_parameters) {
+                                                                  const HamiltonianParameters& hamiltonian_parameters) const {
 
     FockSpace beta = fock_space.get_fock_space_beta();
     const bool do_diagonal = (r != s);
@@ -259,10 +259,10 @@ Eigen::SparseMatrix<double> FCI::betaTwoElectronOneElectronModule(size_t r, size
         mod += dim;
     }
     triplet_vector.reserve(beta.totalOneElectronCouplingCount() + mod);
-    ONV onv = beta.get_ONV(0);  // onv with address 0
+    ONV onv = beta.makeONV(0);  // onv with address 0
     for (size_t I = 0; I < dim; I++) {  // I loops over all the addresses of the onv
         for (size_t e1 = 0; e1 < N; e1++) {  // e1 (electron 1) loops over the (number of) electrons
-            size_t p = onv.get_occupied_index(e1);  // retrieve the index of a given electron
+            size_t p = onv.get_occupation_index(e1);  // retrieve the index of a given electron
             // remove the weight from the initial address I, because we annihilate
             size_t address = I - beta.get_vertex_weights(p, e1 + 1);
 
@@ -298,7 +298,7 @@ Eigen::SparseMatrix<double> FCI::betaTwoElectronOneElectronModule(size_t r, size
 
         // Prevent last permutation
         if (I < dim - 1) {
-            beta.setNext(onv);
+            beta.setNextONV(onv);
         }
     }
     sparseMatrix.setFromTriplets(triplet_vector.begin(),triplet_vector.end());
@@ -313,7 +313,7 @@ Eigen::SparseMatrix<double> FCI::betaTwoElectronOneElectronModule(size_t r, size
  *
  *  @return vector of sparse matrices containing the one-electron couplings for the alpha Fock space
  */
-std::vector<Eigen::SparseMatrix<double>> FCI::alphaOneElectronCouplings() {
+std::vector<Eigen::SparseMatrix<double>> FCI::alphaOneElectronCouplings() const {
 
     GQCP::FockSpace alpha = this->fock_space.get_fock_space_alpha();
 
@@ -328,10 +328,10 @@ std::vector<Eigen::SparseMatrix<double>> FCI::alphaOneElectronCouplings() {
     }
 
 
-    ONV onv = alpha.get_ONV(0);  // onv with address 0
+    ONV onv = alpha.makeONV(0);  // onv with address 0
     for (size_t I = 0; I < dim; I++) {  // I loops over all the addresses of the onv
         for (size_t e1 = 0; e1 < N; e1++) {  // e1 (electron 1) loops over the (number of) electrons
-            size_t p = onv.get_occupied_index(e1);  // retrieve the index of a given electron
+            size_t p = onv.get_occupation_index(e1);  // retrieve the index of a given electron
             // remove the weight from the initial address I, because we annihilate
             size_t address = I - alpha.get_vertex_weights(p, e1 + 1);
             // The e2 iteration counts the amount of encountered electrons for the creation operator
@@ -361,7 +361,7 @@ std::vector<Eigen::SparseMatrix<double>> FCI::alphaOneElectronCouplings() {
 
         // Prevent last permutation
         if (I < dim - 1) {
-            alpha.setNext(onv);
+            alpha.setNextONV(onv);
         }
     }
 
@@ -379,13 +379,13 @@ std::vector<Eigen::SparseMatrix<double>> FCI::alphaOneElectronCouplings() {
 /**
  *  When calculating the Hamiltonian one can initialize and store intermediates exclusive to that Hamiltonian
  */
-void FCI::initializeIntermediates() {
+void FCI::initializeIntermediates(const HamiltonianParameters& hamiltonian_parameters, Eigen::SparseMatrix<double>& alpha_ev, Eigen::SparseMatrix<double>& beta_ev,  std::vector<Eigen::SparseMatrix<double>>& beta_resolved) const {
 
     OneElectronOperator k = hamiltonian_parameters.calculateEffectiveOneElectronIntegrals();
-
+    auto K = hamiltonian_parameters.get_K();
     FockSpace fock_space_alpha = fock_space.get_fock_space_alpha();
     FockSpace fock_space_beta = fock_space.get_fock_space_beta();
-
+    auto dim_beta = fock_space_beta.get_dimension();
     spinSeparatedModule(fock_space_alpha, k, hamiltonian_parameters, alpha_ev);
     spinSeparatedModule(fock_space_beta, k, hamiltonian_parameters, beta_ev);
 
@@ -408,6 +408,13 @@ void FCI::initializeIntermediates() {
 void FCI::set_hamiltonian_parameters(const HamiltonianParameters& hamiltonian_parameters) {
     this->ham_par = hamiltonian_parameters;
     this->is_ham_par_set = true;
+    Eigen::SparseMatrix<double> alpha_ev;
+    Eigen::SparseMatrix<double> beta_ev;
+    std::vector<Eigen::SparseMatrix<double>> beta_resolved;
+    this->initializeIntermediates(ham_par, alpha_ev, beta_ev, beta_resolved);
+    this->alpha_ev = alpha_ev;
+    this->beta_ev = beta_ev;
+    this->beta_resolved = beta_resolved;
 }
 
 
@@ -443,8 +450,17 @@ Eigen::MatrixXd FCI::constructHamiltonian(const HamiltonianParameters& hamiltoni
     auto dim_alpha = fock_space_alpha.get_dimension();
     auto dim_beta = fock_space_beta.get_dimension();
 
+    Eigen::SparseMatrix<double> alpha_ev;
+    Eigen::SparseMatrix<double> beta_ev;
+    std::vector<Eigen::SparseMatrix<double>> beta_resolved;
+
+
     if (!is_ham_par_set) {
-        this->initializeIntermediates();
+        this->initializeIntermediates(hamiltonian_parameters, alpha_ev, beta_ev, beta_resolved);
+    } else {
+        alpha_ev = this->alpha_ev;
+        beta_ev = this->beta_ev;
+        beta_resolved = this->beta_resolved;
     }
 
     // BETA separated evaluations
@@ -458,7 +474,7 @@ Eigen::MatrixXd FCI::constructHamiltonian(const HamiltonianParameters& hamiltoni
     Eigen::MatrixXd ones = Eigen::MatrixXd::Ones(dim_alpha, dim_alpha);
     for (int i = 0; i < alpha_ev.outerSize(); ++i){
         for (Eigen::SparseMatrix<double>::InnerIterator it(alpha_ev, i); it; ++it) {
-            result_matrix.block(it.row() * dim_alpha, it.col() * dim_alpha, dim_alpha, dim_alhpa) += it_value*ones;
+            result_matrix.block(it.row() * dim_alpha, it.col() * dim_alpha, dim_alpha, dim_alpha) += it.value()*ones;
         }
     }
 
@@ -468,18 +484,18 @@ Eigen::MatrixXd FCI::constructHamiltonian(const HamiltonianParameters& hamiltoni
         const Eigen::SparseMatrix<double> alpha_couplings = alpha_resolved[p*(K+K+1-p)/2];
         const Eigen::SparseMatrix<double> beta_resolves = beta_resolved[p*(K+K+1-p)/2];
 
-        for (i = 0; i < alpha_couplings.outerSize(); ++i){
+        for (int i = 0; i < alpha_couplings.outerSize(); ++i){
             for (Eigen::SparseMatrix<double>::InnerIterator it(alpha_couplings, i); it; ++it) {
-                result_matrix.block(it.row() * dim_alpha, it.col() * dim_alpha, dim_alpha, dim_alpha) += it_value*beta_resolves;
+                result_matrix.block(it.row() * dim_alpha, it.col() * dim_alpha, dim_alpha, dim_alpha) += it.value()*beta_resolves;
             }
         }
 
         for (size_t q = p + 1; q<K; q++) {
             const Eigen::SparseMatrix<double> alpha_couplings = alpha_resolved[p*(K+K+1-p)/2 + q - p];
             const Eigen::SparseMatrix<double> beta_resolves = beta_resolved[p*(K+K+1-p)/2 + q - p];
-            for (i = 0; i < alpha_couplings.outerSize(); ++i){
+            for (int i = 0; i < alpha_couplings.outerSize(); ++i){
                 for (Eigen::SparseMatrix<double>::InnerIterator it(alpha_couplings, i); it; ++it) {
-                    result_matrix.block(it.row() * dim_alpha, it.col() * dim_alpha, dim_alpha, dim_alpha) += it_value*beta_resolves;
+                    result_matrix.block(it.row() * dim_alpha, it.col() * dim_alpha, dim_alpha, dim_alpha) += it.value()*beta_resolves;
                 }
             }
         }
@@ -513,8 +529,16 @@ Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters& hamiltonia
     Eigen::Map<Eigen::MatrixXd> matvecmap(matvec.data(), dim_alpha, dim_beta);
     Eigen::Map<const Eigen::MatrixXd> xmap(x.data(), dim_alpha, dim_beta);
 
+    Eigen::SparseMatrix<double> alpha_ev;
+    Eigen::SparseMatrix<double> beta_ev;
+    std::vector<Eigen::SparseMatrix<double>> beta_resolved;
+
     if (!is_ham_par_set) {
-        this->initializeIntermediates();
+        this->initializeIntermediates(hamiltonian_parameters, alpha_ev, beta_ev, beta_resolved);
+    } else {
+        alpha_ev = this->alpha_ev;
+        beta_ev = this->beta_ev;
+        beta_resolved = this->beta_resolved;
     }
 
     for (size_t p = 0; p<K; p++) {
