@@ -36,7 +36,7 @@ FCI::FCI(const ProductFockSpace& fock_space) :
 }
 
 /*
- *
+ *  PRIVATE METHODS
  */
 
 /**
@@ -69,7 +69,6 @@ void FCI::spinSeparatedModule(FockSpace& fock_space, const OneElectronOperator& 
             sign1 *= -1;
             size_t p = onv.get_occupied_index(e1);  // retrieve the index of a given electron
             size_t address = I - fock_space.get_vertex_weights(p, e1 + 1);
-
 
             size_t address1 = address;
             size_t e2 = e1;
@@ -116,27 +115,19 @@ void FCI::spinSeparatedModule(FockSpace& fock_space, const OneElectronOperator& 
                         fock_space.shiftUntilNextUnoccupiedOrbital<1>(onv, address3, s, e4, sign4);
                     }
                 }
-
                 q--;
                 fock_space.shiftUntilPreviousUnoccupiedOrbital<1>(onv, address1, q, e2, sign2);
-
             }
-
-
 
             e2 = e1 + 1;
             q = p + 1;
             sign2 = sign1;
             fock_space.shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign2);
 
-
             /**
              *  A1 < C1
              */
             while (q < K) {
-
-                // BRANCH N
-
 
                 address1 = address + fock_space.get_vertex_weights(q, e2);
                 /**
@@ -174,11 +165,8 @@ void FCI::spinSeparatedModule(FockSpace& fock_space, const OneElectronOperator& 
 
                 }
 
-
                 size_t r = q;
-
                 sign3 = sign2;
-
                 size_t address1c = address1;
 
                 /**
@@ -212,8 +200,6 @@ void FCI::spinSeparatedModule(FockSpace& fock_space, const OneElectronOperator& 
                         fock_space.shiftUntilNextUnoccupiedOrbital<1>(onv, address2, s, e4, sign4);
 
                     }
-
-
                 }
 
                 /**
@@ -225,38 +211,28 @@ void FCI::spinSeparatedModule(FockSpace& fock_space, const OneElectronOperator& 
                 
                 for (size_t s = 0; s < K; s++) {
                     if(!onv.isOccupied(s)){
-
                         value_I += 0.5 * (hamiltonian_parameters.get_g()(p, s, s, q));
-
                     } else {
 
                         value_I  += 0.5 *  (hamiltonian_parameters.get_g()(s, s, p, q) - hamiltonian_parameters.get_g()(s, q, p, s) + hamiltonian_parameters.get_g()(p, q, s, s));
-
                     }
-
                 }
 
                 value_I *= signev;
 
-
                 q++;
-
-
 
                 triplet_vector.emplace_back(I,address1, value_I);
                 triplet_vector.emplace_back(address1,I, value_I);
 
                 fock_space.shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign2);
-
-
             }
         }
     }
 
     sparse_mat.setFromTriplets(triplet_vector.begin(),triplet_vector.end());
-
-
 }
+
 
 /**
  *  Calculates all one-electron couplings for the beta Fock space
@@ -331,7 +307,6 @@ Eigen::SparseMatrix<double> FCI::betaTwoElectronOneElectronModule(size_t r, size
 }
 
 
-
 /**
  *  Calculates all one-eletron couplings for each annihilation-creation pair in the alpha Fock space
  *  and stores them in sparse matrices for each combination
@@ -398,6 +373,14 @@ std::vector<Eigen::SparseMatrix<double>> FCI::alphaOneElectronCouplings() {
 
     return matrixes;
 
+
+}
+
+
+/**
+ *  When storing a Hamiltonian one can initialize intermediates
+ */
+void FCI::initializeIntermediates() {
 
 }
 
