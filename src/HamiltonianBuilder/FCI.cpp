@@ -450,8 +450,8 @@ Eigen::MatrixXd FCI::constructHamiltonian(const HamiltonianParameters& hamiltoni
     auto dim_alpha = fock_space_alpha.get_dimension();
     auto dim_beta = fock_space_beta.get_dimension();
 
-    Eigen::SparseMatrix<double> alpha_ev;
-    Eigen::SparseMatrix<double> beta_ev;
+    Eigen::SparseMatrix<double> alpha_ev = Eigen::SparseMatrix<double>(dim_alpha,dim_alpha);
+    Eigen::SparseMatrix<double> beta_ev = Eigen::SparseMatrix<double>(dim_beta,dim_beta);
     std::vector<Eigen::SparseMatrix<double>> beta_resolved;
 
 
@@ -471,10 +471,10 @@ Eigen::MatrixXd FCI::constructHamiltonian(const HamiltonianParameters& hamiltoni
     }
 
     // ALPHA separated evaluations
-    Eigen::MatrixXd ones = Eigen::MatrixXd::Ones(dim_alpha, dim_alpha);
+    Eigen::MatrixXd ones = Eigen::MatrixXd::Ones(dim_beta, dim_beta);
     for (int i = 0; i < alpha_ev.outerSize(); ++i){
         for (Eigen::SparseMatrix<double>::InnerIterator it(alpha_ev, i); it; ++it) {
-            result_matrix.block(it.row() * dim_alpha, it.col() * dim_alpha, dim_alpha, dim_alpha) += it.value()*ones;
+            result_matrix.block(it.row() * dim_beta, it.col() * dim_beta, dim_beta, dim_beta) += it.value()*ones;
         }
     }
 
@@ -486,7 +486,8 @@ Eigen::MatrixXd FCI::constructHamiltonian(const HamiltonianParameters& hamiltoni
 
         for (int i = 0; i < alpha_couplings.outerSize(); ++i){
             for (Eigen::SparseMatrix<double>::InnerIterator it(alpha_couplings, i); it; ++it) {
-                result_matrix.block(it.row() * dim_alpha, it.col() * dim_alpha, dim_alpha, dim_alpha) += it.value()*beta_resolves;
+                result_matrix.block(it.row() * dim_beta, it.col() * dim_beta, dim_beta, dim_beta) += it.value()*beta_resolves;
+
             }
         }
 
@@ -495,13 +496,13 @@ Eigen::MatrixXd FCI::constructHamiltonian(const HamiltonianParameters& hamiltoni
             const Eigen::SparseMatrix<double> beta_resolves = beta_resolved[p*(K+K+1-p)/2 + q - p];
             for (int i = 0; i < alpha_couplings.outerSize(); ++i){
                 for (Eigen::SparseMatrix<double>::InnerIterator it(alpha_couplings, i); it; ++it) {
-                    result_matrix.block(it.row() * dim_alpha, it.col() * dim_alpha, dim_alpha, dim_alpha) += it.value()*beta_resolves;
+                    result_matrix.block(it.row() * dim_beta, it.col() * dim_beta, dim_beta, dim_beta) += it.value()*beta_resolves;
                 }
             }
         }
     }
-
-    return result_matrix + this->calculateDiagonal(hamiltonian_parameters);
+    result_matrix += this->calculateDiagonal(hamiltonian_parameters).asDiagonal();
+    return result_matrix;
 }
 
 
@@ -529,8 +530,8 @@ Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters& hamiltonia
     Eigen::Map<Eigen::MatrixXd> matvecmap(matvec.data(), dim_alpha, dim_beta);
     Eigen::Map<const Eigen::MatrixXd> xmap(x.data(), dim_alpha, dim_beta);
 
-    Eigen::SparseMatrix<double> alpha_ev;
-    Eigen::SparseMatrix<double> beta_ev;
+    Eigen::SparseMatrix<double> alpha_ev = Eigen::SparseMatrix<double>(dim_alpha,dim_alpha);
+    Eigen::SparseMatrix<double> beta_ev = Eigen::SparseMatrix<double>(dim_beta,dim_beta);
     std::vector<Eigen::SparseMatrix<double>> beta_resolved;
 
     if (!is_ham_par_set) {
@@ -574,7 +575,7 @@ Eigen::VectorXd FCI::calculateDiagonal(const HamiltonianParameters& hamiltonian_
     auto dim = fock_space.get_dimension();
 
     // Diagonal contributions
-    Eigen::VectorXd diagonal =  Eigen::VectorXd::Zero(dim);
+    Eigen::VectorXd diagonal = Eigen::VectorXd::Zero(dim);
 
     // Calculate the effective one-electron integrals
     OneElectronOperator k = hamiltonian_parameters.calculateEffectiveOneElectronIntegrals();
