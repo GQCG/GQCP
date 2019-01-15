@@ -85,7 +85,7 @@ void FCI::spinSeparatedModule(FockSpace& fock_space, const OneElectronOperator& 
                 size_t address2 = address1 + fock_space.get_vertex_weights(q, e2 + 2);
 
                 /**
-                 *  A2 > C2
+                 *  C2 > A2
                  */
                 int sign3 = sign1;
                 for (size_t e3 = e1 + 1; e3 < N; e3++) {
@@ -465,13 +465,11 @@ Eigen::MatrixXd FCI::constructHamiltonian(const HamiltonianParameters& hamiltoni
 
     // BETA separated evaluations
     for (size_t i = 0; i < dim_alpha; i++) {
-        for (size_t j = 0; j < dim_alpha; j++) {
-            result_matrix.block(i * dim_beta, j * dim_beta, dim_beta, dim_beta) += beta_ev;
-        }
+        result_matrix.block(i * dim_beta, i * dim_beta, dim_beta, dim_beta) += beta_ev;
     }
 
     // ALPHA separated evaluations
-    Eigen::MatrixXd ones = Eigen::MatrixXd::Ones(dim_beta, dim_beta);
+    Eigen::MatrixXd ones = Eigen::MatrixXd::Identity(dim_beta, dim_beta);
     for (int i = 0; i < alpha_ev.outerSize(); ++i){
         for (Eigen::SparseMatrix<double>::InnerIterator it(alpha_ev, i); it; ++it) {
             result_matrix.block(it.row() * dim_beta, it.col() * dim_beta, dim_beta, dim_beta) += it.value()*ones;
@@ -501,6 +499,7 @@ Eigen::MatrixXd FCI::constructHamiltonian(const HamiltonianParameters& hamiltoni
             }
         }
     }
+
     result_matrix += this->calculateDiagonal(hamiltonian_parameters).asDiagonal();
     return result_matrix;
 }
