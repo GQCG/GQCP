@@ -1,5 +1,5 @@
 /**
- *  A benchmark executable for the construction of the FCI Hamiltonian
+ *  A benchmark executable for the FCI matvec
  */
 
 #include <benchmark/benchmark.h>
@@ -8,7 +8,7 @@
 #include "HamiltonianBuilder/FCI.hpp"
 
 
-static void constructHamiltonian(benchmark::State& state) {
+static void matvec(benchmark::State& state) {
     // Prepare parameters
     size_t K = state.range(0);
     size_t N = state.range(1);
@@ -16,12 +16,15 @@ static void constructHamiltonian(benchmark::State& state) {
     GQCP::FCI fci (fock_space);
 
     GQCP::HamiltonianParameters ham_par = GQCP::HamiltonianParameters::Random(K);
+    Eigen::VectorXd diagonal = fci.calculateDiagonal(ham_par);
+    Eigen::VectorXd x = fock_space.randomExpansion();
+    fci.set_hamiltonian_parameters(ham_par);
 
     // Code inside this loop is measured repeatedly
     for (auto _ : state) {
-        Eigen::MatrixXd hamiltonian = fci.constructHamiltonian(ham_par);
+        Eigen::VectorXd matvec = fci.matrixVectorProduct(ham_par, x, diagonal);
 
-        benchmark::DoNotOptimize(hamiltonian);  // make sure the variable is not optimized away by compiler
+        benchmark::DoNotOptimize(matvec);  // make sure the variable is not optimized away by compiler
     }
 
     state.counters["Orbitals"] = K;
@@ -31,12 +34,12 @@ static void constructHamiltonian(benchmark::State& state) {
 
 
 static void CustomArguments(benchmark::internal::Benchmark* b) {
-    for (int i = 2; i < 6; ++i) {  // need int instead of size_t
-        b->Args({9, i});  // orbitals, electron pairs
+    for (int i = 2; i < 7; ++i) {  // need int instead of size_t
+        b->Args({13, i});  // orbitals, electron pairs
     }
 }
 
 
 // Perform the benchmarks
-BENCHMARK(constructHamiltonian)->Unit(benchmark::kMillisecond)->Apply(CustomArguments);
+BENCHMARK(matvec)->Unit(benchmark::kMillisecond)->Apply(CustomArguments);
 BENCHMARK_MAIN();

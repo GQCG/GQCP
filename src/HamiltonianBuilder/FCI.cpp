@@ -54,7 +54,8 @@ void FCI::spinSeparatedModule(FockSpace& fock_space, const OneElectronOperator& 
     size_t K = fock_space.get_K();
     size_t N = fock_space.get_N();
     size_t dim = fock_space.get_dimension();
-    
+
+    sparse_mat = Eigen::SparseMatrix<double>(fock_space.get_dimension(), fock_space.get_dimension());
     std::vector<Eigen::Triplet<double>> triplet_vector;
     triplet_vector.reserve(fock_space.totalTwoElectronCouplingCount());
     
@@ -450,10 +451,9 @@ Eigen::MatrixXd FCI::constructHamiltonian(const HamiltonianParameters& hamiltoni
     auto dim_alpha = fock_space_alpha.get_dimension();
     auto dim_beta = fock_space_beta.get_dimension();
 
-    Eigen::SparseMatrix<double> alpha_ev = Eigen::SparseMatrix<double>(dim_alpha,dim_alpha);
-    Eigen::SparseMatrix<double> beta_ev = Eigen::SparseMatrix<double>(dim_beta,dim_beta);
+    Eigen::SparseMatrix<double> alpha_ev;
+    Eigen::SparseMatrix<double> beta_ev;
     std::vector<Eigen::SparseMatrix<double>> beta_resolved;
-
 
     if (!is_ham_par_set) {
         this->initializeIntermediates(hamiltonian_parameters, alpha_ev, beta_ev, beta_resolved);
@@ -501,6 +501,7 @@ Eigen::MatrixXd FCI::constructHamiltonian(const HamiltonianParameters& hamiltoni
     }
 
     result_matrix += this->calculateDiagonal(hamiltonian_parameters).asDiagonal();
+
     return result_matrix;
 }
 
@@ -529,8 +530,8 @@ Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters& hamiltonia
     Eigen::Map<Eigen::MatrixXd> matvecmap(matvec.data(), dim_alpha, dim_beta);
     Eigen::Map<const Eigen::MatrixXd> xmap(x.data(), dim_alpha, dim_beta);
 
-    Eigen::SparseMatrix<double> alpha_ev = Eigen::SparseMatrix<double>(dim_alpha,dim_alpha);
-    Eigen::SparseMatrix<double> beta_ev = Eigen::SparseMatrix<double>(dim_beta,dim_beta);
+    Eigen::SparseMatrix<double> alpha_ev;
+    Eigen::SparseMatrix<double> beta_ev;
     std::vector<Eigen::SparseMatrix<double>> beta_resolved;
 
     if (!is_ham_par_set) {
@@ -540,6 +541,7 @@ Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters& hamiltonia
         beta_ev = this->beta_ev;
         beta_resolved = this->beta_resolved;
     }
+
 
     for (size_t p = 0; p<K; p++) {
         matvecmap += alpha_resolved[p*(K+K+1-p)/2] * xmap * beta_resolved[p*(K+K+1-p)/2];

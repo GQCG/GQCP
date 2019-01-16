@@ -18,7 +18,6 @@ static void matvec(benchmark::State& state) {
     GQCP::HamiltonianParameters ham_par = GQCP::HamiltonianParameters::Random(K);
     Eigen::VectorXd diagonal = fci.calculateDiagonal(ham_par);
     Eigen::VectorXd x = fock_space.randomExpansion();
-    Eigen::VectorXd matvec = fci.matrixVectorProduct(ham_par, x, diagonal);
 
     // Code inside this loop is measured repeatedly
     for (auto _ : state) {
@@ -34,10 +33,9 @@ static void matvec(benchmark::State& state) {
 
 
 static void CustomArguments(benchmark::internal::Benchmark* b) {
-    for (int i = 2; i < 6; ++i) {  // need int instead of size_t
-        b->Args({10, i});  // orbitals, electron pairs
+    for (int i = 2; i < 7; ++i) {  // need int instead of size_t
+        b->Args({13, i});  // orbitals, electron pairs
     }
-    b->Args({14, 7});
 }
 
 

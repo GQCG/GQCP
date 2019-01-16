@@ -287,6 +287,7 @@ set(PROJECT_BENCH_SOURCE_FILES
         ${PROJECT_BENCHMARKS_FOLDER}/FCI/fci_hchain.cpp
         ${PROJECT_BENCHMARKS_FOLDER}/FCI/fci_matrix.cpp
         ${PROJECT_BENCHMARKS_FOLDER}/FCI/fci_matvec.cpp
+        ${PROJECT_BENCHMARKS_FOLDER}/FCI/fci_matvec_preset.cpp
         ${PROJECT_BENCHMARKS_FOLDER}/Hubbard/hubbard_diagonalization.cpp
         ${PROJECT_BENCHMARKS_FOLDER}/Hubbard/hubbard_matrix.cpp
         ${PROJECT_BENCHMARKS_FOLDER}/Hubbard/hubbard_matvec.cpp)
