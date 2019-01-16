@@ -413,7 +413,31 @@ void FCI::set_hamiltonian_parameters(const HamiltonianParameters& hamiltonian_pa
     this->ham_par = hamiltonian_parameters;
     this->is_ham_par_set = true;
 
-    this->initializeIntermediates(ham_par, this->alpha_ev, this->beta_ev , this->beta_resolved);
+    std::vector<Eigen::SparseMatrix<double>> beta_resolved;
+
+    OneElectronOperator k = hamiltonian_parameters.calculateEffectiveOneElectronIntegrals();
+
+    auto K = hamiltonian_parameters.get_K();
+
+    FockSpace fock_space_alpha = fock_space.get_fock_space_alpha();
+    FockSpace fock_space_beta = fock_space.get_fock_space_beta();
+
+    auto dim_alpha = fock_space_alpha.get_dimension();
+    auto dim_beta = fock_space_beta.get_dimension();
+
+    spinSeparatedModule(fock_space_alpha, k, hamiltonian_parameters, this->alpha_ev);
+    spinSeparatedModule(fock_space_beta, k, hamiltonian_parameters, this->beta_ev);
+    this->beta_resolved = std::vector<Eigen::SparseMatrix<double>>(K * (K + 1) / 2,
+                                                             Eigen::SparseMatrix<double>(dim_beta, dim_beta));
+
+    for (size_t p = 0; p < K; p++) {
+
+        this->beta_resolved[p * (K + K + 1 - p) / 2] = betaTwoElectronOneElectronModule(p, p, hamiltonian_parameters);
+        for (size_t q = p + 1; q < K; q++) {
+            this->beta_resolved[p * (K + K + 1 - p) / 2 + q - p] = betaTwoElectronOneElectronModule(p, q,
+                                                                                              hamiltonian_parameters);
+        }
+    }
 }
 
 
@@ -463,6 +487,7 @@ Eigen::MatrixXd FCI::constructHamiltonian(const HamiltonianParameters& hamiltoni
 
         spinSeparatedModule(fock_space_alpha, k, hamiltonian_parameters, alpha_ev);
         spinSeparatedModule(fock_space_beta, k, hamiltonian_parameters, beta_ev);
+        beta_resolved = std::vector<Eigen::SparseMatrix<double>>(K * (K + 1) / 2, Eigen::SparseMatrix<double>(dim_beta, dim_beta));
 
         for (size_t p = 0; p < K; p++) {
 
