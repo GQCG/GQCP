@@ -80,7 +80,7 @@ private:
     /**
      *  When calculating the Hamiltonian one can initialize and store intermediates exclusive to that Hamiltonian
      */
-    void initializeIntermediates(const HamiltonianParameters& hamiltonian_parameters, Eigen::SparseMatrix<double>& alpha_ev, Eigen::SparseMatrix<double>& beta_ev,  std::vector<Eigen::SparseMatrix<double>>& beta_resolved) const;
+    void initializeIntermediates(const HamiltonianParameters& hamiltonian_parameters, Eigen::SparseMatrix<double>& alpha_ev, Eigen::SparseMatrix<double>& beta_ev,  std::vector<Eigen::SparseMatrix<double>>& beta_resolved);
 
 public:
 
