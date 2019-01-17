@@ -377,33 +377,6 @@ std::vector<Eigen::SparseMatrix<double>> FCI::alphaOneElectronCouplings() const 
 }
 
 
-/**
- *  When calculating the Hamiltonian one can initialize and store intermediates exclusive to that Hamiltonian
- */
-void FCI::initializeIntermediates(const HamiltonianParameters& hamiltonian_parameters, Eigen::SparseMatrix<double>& alpha_ev, Eigen::SparseMatrix<double>& beta_ev,  std::vector<Eigen::SparseMatrix<double>>& beta_resolved) {
-
-    OneElectronOperator k = hamiltonian_parameters.calculateEffectiveOneElectronIntegrals();
-
-    auto K = hamiltonian_parameters.get_K();
-    FockSpace fock_space_alpha = fock_space.get_fock_space_alpha();
-    FockSpace fock_space_beta = fock_space.get_fock_space_beta();
-    auto dim_beta = fock_space_beta.get_dimension();
-
-    spinSeparatedModule(fock_space_alpha, k, hamiltonian_parameters, alpha_ev);
-    spinSeparatedModule(fock_space_beta, k, hamiltonian_parameters, beta_ev);
-
-    beta_resolved = std::vector<Eigen::SparseMatrix<double>>(K * (K + 1) / 2, Eigen::SparseMatrix<double>(dim_beta, dim_beta));
-
-    for (size_t p = 0; p < K; p++) {
-
-        beta_resolved[p * (K + K + 1 - p) / 2] = betaTwoElectronOneElectronModule(p, p, hamiltonian_parameters);
-        for (size_t q = p + 1; q < K; q++) {
-            beta_resolved[p * (K + K + 1 - p) / 2 + q - p] = betaTwoElectronOneElectronModule(p, q, hamiltonian_parameters);
-        }
-    }
-}
-
-
 
 /*
  *  SETTERS
@@ -629,54 +602,54 @@ Eigen::VectorXd FCI::calculateDiagonal(const HamiltonianParameters& hamiltonian_
     // Calculate the effective one-electron integrals
     OneElectronOperator k = hamiltonian_parameters.calculateEffectiveOneElectronIntegrals();
 
-    ONV spin_string_alpha = fock_space_alpha.makeONV(0);
+    ONV onv_alpha = fock_space_alpha.makeONV(0);
+    ONV onv_beta = fock_space_beta.makeONV(0);
     for (size_t Ia = 0; Ia < dim_alpha; Ia++) {  // Ia loops over addresses of alpha spin strings
 
-        ONV spin_string_beta = fock_space_beta.makeONV(0);
+        fock_space_beta.transformONV(onv_beta, 0);
+
         for (size_t Ib = 0; Ib < dim_beta; Ib++) {  // Ib loops over addresses of beta spin strings
 
-            for (size_t p = 0; p < K; p++) {  // p loops over SOs
+            for (size_t e_a = 0; e_a < fock_space_alpha.get_N(); e_a++) {  // loop over alpha electrons
 
-                if (spin_string_alpha.isOccupied(p)) {  // p is in Ia
-                    diagonal(Ia * dim_beta + Ib) += k(p, p);
+                size_t p = onv_alpha.get_occupation_index(e_a);
+                diagonal(Ia * dim_beta + Ib) += k(p, p);
 
-                    for (size_t q = 0; q < K; q++) {  // q loops over SOs
-                        if (spin_string_alpha.isOccupied(q)) {  // q is in Ia
-                            diagonal(Ia * dim_beta + Ib) += 0.5 * hamiltonian_parameters.get_g()(p, p, q, q);
-                        } else {  // q is not in I_alpha
-                            diagonal(Ia * dim_beta + Ib) += 0.5 * hamiltonian_parameters.get_g()(p, q, q, p);
-                        }
+                for (size_t q = 0; q < K; q++) {  // q loops over SOs
+                    if (onv_alpha.isOccupied(q)) {  // q is in Ia
+                        diagonal(Ia * dim_beta + Ib) += 0.5 * hamiltonian_parameters.get_g()(p, p, q, q);
+                    } else {  // q is not in I_alpha
+                        diagonal(Ia * dim_beta + Ib) += 0.5 * hamiltonian_parameters.get_g()(p, q, q, p);
+                    }
 
-                        if (spin_string_beta.isOccupied(q)) {  // q is in Ib
-                            diagonal(Ia * dim_beta + Ib) += hamiltonian_parameters.get_g()(p, p, q, q);
-                        }
-                    }  // q loop
-                }
+                    if (onv_beta.isOccupied(q)) {  // q is in Ib
+                        diagonal(Ia * dim_beta + Ib) += hamiltonian_parameters.get_g()(p, p, q, q);
+                    }
+                }  // q loop
+            }  // e_a loop
 
+            for (size_t e_b = 0; e_b < fock_space_beta.get_N(); e_b++) {  // loop over beta electrons
 
-                if (spin_string_beta.isOccupied(p)) {  // p is in Ib
-                    diagonal(Ia * dim_beta + Ib) += k(p, p);
+                size_t p = onv_beta.get_occupation_index(e_b);
+                diagonal(Ia * dim_beta + Ib) += k(p, p);
 
+                for (size_t q = 0; q < K; q++) {  // q loops over SOs
+                    if (onv_beta.isOccupied(q)) {  // q is in Ib
+                        diagonal(Ia * dim_beta + Ib) += 0.5 * hamiltonian_parameters.get_g()(p, p, q, q);
 
-                    for (size_t q = 0; q < K; q++) {  // q loops over SOs
-                        if (spin_string_beta.isOccupied(q)) {  // q is in Ib
-                            diagonal(Ia * dim_beta + Ib) += 0.5 * hamiltonian_parameters.get_g()(p, p, q, q);
-
-                        } else {  // q is not in I_beta
-                            diagonal(Ia * dim_beta + Ib) += 0.5 * hamiltonian_parameters.get_g()(p, q, q, p);
-                        }
-                    }  // q loop
-                }
-
-            }  // p loop
+                    } else {  // q is not in I_beta
+                        diagonal(Ia * dim_beta + Ib) += 0.5 * hamiltonian_parameters.get_g()(p, q, q, p);
+                    }
+                }  // q loop
+            }  // e_b loop
 
             if (Ib < dim_beta - 1) {  // prevent last permutation to occur
-                fock_space_beta.setNextONV(spin_string_beta);
+                fock_space_beta.setNextONV(onv_beta);
             }
         }  // beta address (Ib) loop
 
         if (Ia < dim_alpha - 1) {  // prevent last permutation to occur
-            fock_space_alpha.setNextONV(spin_string_alpha);
+            fock_space_alpha.setNextONV(onv_alpha);
         }
     }  // alpha address (Ia) loop
 
