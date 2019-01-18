@@ -104,12 +104,10 @@ double AP1roGPSESolver::calculateJacobianElement(const AP1roGGeminalCoefficients
         }
 
         else {  // i!=k and a == c
-            j_el += g_SO(k,i,k,i) - g_SO(k,a,k,a) * G(i,a);
+            j_el += g_SO(k,i,k,i) - 2 * g_SO(k,a,k,a) * G(i,a);
 
             for (size_t b = this->N_P; b < this->K; b++) {
-                if (b != a) {
-                    j_el += g_SO(k,b,k,b) * G(i,b);
-                }
+                j_el += g_SO(k,b,k,b) * G(i,b);
             }
 
         }
@@ -118,38 +116,32 @@ double AP1roGPSESolver::calculateJacobianElement(const AP1roGGeminalCoefficients
     else {  // i==k
 
         if (a != c) {  // i==k and a!=c
-            j_el += g_SO(a,c,a,c) - g_SO(i,c,i,c) * G(i,a);
+            j_el += g_SO(a,c,a,c) - 2 * g_SO(i,c,i,c) * G(i,a);
 
             for (size_t j = 0; j < this->N_P; j++) {
-                if (j != i) {
-                    j_el += g_SO(j,c,j,c) * G(j,a);
-                }
+                j_el += g_SO(j,c,j,c) * G(j,a);
             }
         }
 
         else {  // i==k and a==c
-            j_el += -2 * g_SO(a,i,a,i) * G(i,a);
-
-            for (size_t j = 0; j < this->N_P; j++) {
-                if (j != i) {
-                    j_el += 2 * (2 * g_SO(a,a,j,j) - g_SO(a,j,j,a)) - (2 * g_SO(i,i,j,j) - g_SO(i,j,j,i));
-                }
-            }
 
             j_el += 2 * (h_SO(a,a) - h_SO(i,i));
 
-            j_el += g_SO(a,a,a,a) - g_SO(i,i,i,i);
+            j_el += g_SO(a,a,a,a) + g_SO(i,i,i,i);
 
-            for (size_t b = this->N_P; b < this->K; b++) {
-                if (b != a) {
-                    j_el += - g_SO(i,b,i,b) * G(i,b);
-                }
+            j_el -= 2 * (2 * g_SO(a,a,i,i) - g_SO(a,i,i,a));
+
+
+            for (size_t j = 0; j < this->N_P; j++) {
+                j_el += 2 * (2 * g_SO(a,a,j,j) - g_SO(a,j,j,a)) - (2 * g_SO(i,i,j,j) - g_SO(i,j,j,i));
             }
 
             for (size_t j = 0; j < this->N_P; j++) {
-                if (j != i) {
-                    j_el += - g_SO(j,a,j,a) * G(j,a);
-                }
+                j_el -= g_SO(j,a,j,a) * G(j,a);
+            }
+
+            for (size_t b = this->N_P; b < this->K; b++) {
+                j_el -= g_SO(i,b,i,b) * G(i,b);
             }
         }
 
