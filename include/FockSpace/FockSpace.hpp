@@ -116,17 +116,28 @@ public:
     /**
      *  @param onv       the ONV
      *
-     *  @return the amount of ONVs (with a larger arrangement number) this ONV would couple with given a two electron operator
+     *  @return the amount of ONVs (with a larger arrangement number) this ONV would couple with given a one electron operator
      */
-    size_t twoElectronCouplingCount(ONV &onv);
-
+    size_t countOneElectronCouplings(ONV &onv) const;
 
     /**
      *  @param onv       the ONV
      *
-     *  @return the amount of ONVs (with a larger arrangement number) this ONV would couple with given a one electron operator
+     *  @return the amount of ONVs (with a larger arrangement number) this ONV would couple with given a two electron operator
      */
-    size_t oneElectronCouplingCount(ONV &onv);
+    size_t countTwoElectronCouplings(ONV &onv) const;
+
+    /**
+     *  @return the amount non-zero (non-diagonal) couplings of a one electron coupling scheme in the Fock space
+     */
+    size_t countTotalOneElectronCouplings() const;
+
+    /**
+     *  @return the amount non-zero (non-diagonal) couplings of a two electron coupling scheme in the Fock space
+     */
+    size_t countTotalTwoElectronCouplings() const;
+
+
 
     /**
      *  Find the next unoccupied orbital in a given ONV,
@@ -220,16 +231,6 @@ public:
         }
     }
 
-
-    /**
-     *  @return the amount non-zero couplings of a two electron coupling scheme in the Fock space
-     */
-    size_t totalTwoElectronCouplingCount();
-
-    /**
-     *  @return the amount non-zero couplings of a one electron coupling scheme in the Fock space
-     */
-    size_t totalOneElectronCouplingCount();
 };
 
 

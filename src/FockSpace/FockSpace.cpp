@@ -214,78 +214,73 @@ void FockSpace::transformONV(ONV& onv, size_t address) const {
 /**
  *  @param onv       the ONV
  *
+ *  @return the amount of ONVs (with a larger arrangement number) this ONV would couple with given a one electron operator
+ */
+size_t FockSpace::countOneElectronCouplings(ONV &onv) const {
+    size_t V = K-N;  // amount of virtual orbitals
+    size_t coupling_count = 0;
+
+    for (size_t e1 = 0; e1 < this->N; e1++) {
+        size_t p = onv.get_occupation_index(e1);
+        coupling_count += (V + e1 - p);
+    }
+
+    return coupling_count;
+}
+
+
+/**
+ *  @param onv       the ONV
+ *
  *  @return the amount of ONVs (with a larger arrangement number) this ONV would couple with given a two electron operator
  */
-size_t FockSpace::twoElectronCouplingCount(ONV &onv) {
+size_t FockSpace::countTwoElectronCouplings(ONV &onv) const {
 
     size_t V = K-N; // amount of virtual orbitals
-
     size_t coupling_count = 0;
 
     for (size_t e1 = 0; e1 < this->N; e1++){
 
         size_t p = onv.get_occupation_index(e1);
-
         coupling_count += (V + e1 - p);
-
 
         for (size_t e2 = e1+1; e2 < this->N; e2++){
 
             size_t q = onv.get_occupation_index(e2);
-
             size_t coupling_count2 = (V + e2 - q);
-
             coupling_count += (V-coupling_count2)*coupling_count2;
+
             if(coupling_count2 > 1 ){
                 coupling_count += calculateDimension(coupling_count2, 2);
-
             }
-
         }
     }
 
     return coupling_count;
 }
 
+
 /**
- *  @param onv       the ONV
- *
- *  @return the amount of ONVs (with a larger arrangement number) this ONV would couple with given a one electron operator
+ *  @return the amount non-zero couplings of a one electron coupling scheme in the Fock space
  */
-size_t FockSpace::oneElectronCouplingCount(ONV &onv) {
-    size_t V = K-N;  // amount of virtual orbitals
-    size_t coupling_count = 0;
-    for (size_t e1 = 0; e1 < this->N; e1++) {
-
-        size_t p = onv.get_occupation_index(e1);
-        coupling_count += (V + e1 - p);
-    }
-    return coupling_count;
-
+size_t FockSpace::countTotalOneElectronCouplings() const {
+    return (K-N)*N*(dim);
 }
-
 
 
 /**
  *  @return the amount non-zero couplings of a two electron coupling scheme in the Fock space
  */
-size_t FockSpace::totalTwoElectronCouplingCount() {
+size_t FockSpace::countTotalTwoElectronCouplings() const {
     size_t two_electron_permutation = 0;
 
     if (K-N >= 2) {
         two_electron_permutation = calculateDimension(K-N, 2)*N*(N-1)*(dim)/2;
     }
 
-    return two_electron_permutation + totalOneElectronCouplingCount();
+    return two_electron_permutation + countTotalOneElectronCouplings();
 
 }
 
-/**
- *  @return the amount non-zero couplings of a one electron coupling scheme in the Fock space
- */
-size_t FockSpace::totalOneElectronCouplingCount() {
-    return (K-N)*N*(dim);
-
-}
 
 }  // namespace GQCP
