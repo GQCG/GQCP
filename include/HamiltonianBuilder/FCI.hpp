@@ -22,6 +22,7 @@
 #include "HamiltonianBuilder/HamiltonianBuilder.hpp"
 #include "FockSpace/ProductFockSpace.hpp"
 
+#include <Eigen/Sparse>
 
 
 namespace GQCP {
@@ -32,34 +33,41 @@ namespace GQCP {
 class FCI : public HamiltonianBuilder {
 private:
     ProductFockSpace fock_space;  // fock space containing the alpha and beta Fock space
+    std::vector<Eigen::SparseMatrix<double>> alpha_couplings;
 
-    // Rectangular matrix of SpinEvaluations
+    // PRIVATE METHODS
     /**
-     *  A small struct that is used to hold in memory the addresses of spin strings differing in one electron
-     *  excitation (an annihilation on orbital p and a creation on orbital q) that are coupled through the Hamiltonian
+     *  Calculates all Hamiltonian elements for operators exclusively operating for one spin function
+     *  and stores these in a sparse matrix
      *
-     *  During the construction of the FCI Hamiltonian, the one-electron excited coupling strings are both needed in the
-     *  alpha, beta, and alpha-beta parts. When a spin string is found that couples to another spin string (with address
-     *  I), the address of the coupling spin string is hold in memory, in the following way: in a
-     *  std::vector<std::vector<OneElectronCoupling>> (with dimension I_alpha * N_alpha * (K + 1 - N_alpha)), at every outer index
-     *  I_alpha, a std::vector of OneElectronCouplings is kept, each coupling through the Hamiltonian to that particular
-     *  spin string with address I_alpha. The beta case is similar. The sign of the matrix element, i.e. <I_alpha | H | address> is also stored.
+     *  @param fock_space                   Fock space for the spin function specific Hamiltonian
+     *  @param hamiltonian_parameters       The Hamiltonian parameters in an orthonormal orbital basis
      *
-     *  We can keep this many addresses in memory because the resulting dimension (cfr. dim_alpha * N_alpha * (K + 1 - N_alpha)) is
-     *  significantly less than the dimension of the FCI space (cfr. I_alpha * I_beta).
-     *
-     *  The number of coupling spin strings for an alpha string is equal to N_alpha * (K + 1 - N_alpha), since we have to pick
-     *  one out of N_alpha occupied indices to annihilate, and afterwards (after the annihilation) we have (K + 1 - N_A)
-     *  choices to pick an index to create on.
+     *  @return The sparse matrix containing all Hamiltonian elements for the Fock space pertaining to a single spin
      */
-    struct OneElectronCoupling {
-        int sign;
-        size_t p;
-        size_t q;
-        size_t address;
-    };
+    Eigen::SparseMatrix<double> calculateSpinSeparatedHamiltonian(FockSpace& fock_space,
+                             const HamiltonianParameters& hamiltonian_parameters) const;
 
+    /**
+     *  Calculates all one-electron couplings for a (spin) Fock space
+     *  and attributes two-electron integrals based on the one-electron coupling and two chosen fixed indexes
+     *
+     *  @param r                        First index of the two-electron integral
+     *  @param s                        Second index of the two-electron integral
+     *  @param fock_space
+     *  @param hamiltonian_parameters   The Hamiltonian parameters in an orthonormal orbital basis
+     *
+     *  @return The sparse matrix containing the calculated two-electron integrals mapped to one-electron couplings
+     */
+    Eigen::SparseMatrix<double> calculateTwoElectronIntermediate(size_t r, size_t s, const HamiltonianParameters& hamiltonian_parameters, FockSpace& fock_space) const;
 
+    /**
+     *  Calculates all one-electron couplings for each annihilation-creation pair in the (spin) Fock space
+     *  and stores them in sparse matrices for each combination pair
+     *
+     *  @return vector of sparse matrices containing the one-electron couplings for the (spin) Fock space
+     */
+    std::vector<Eigen::SparseMatrix<double>> calculateOneElectronCouplingsIntermediates(FockSpace& fock_space) const;
 public:
 
     // CONSTRUCTORS
