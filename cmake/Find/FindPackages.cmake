@@ -3,6 +3,7 @@
 
 # Find the Boost package
 find_package(Boost REQUIRED COMPONENTS program_options)
+message(STATUS Boost_LIBRARIES: ${Boost_LIBRARIES})
 
 # Find Eigen3
 find_package(Eigen3 3.3.4 REQUIRED)
