@@ -41,11 +41,11 @@ before_install:
 
     # Add headers and libraries to path
     - export CONDA_HOME=${HOME}/miniconda
-    - export C_INCLUDE_PATH=${C_INCLUDE_PATH}:${CONDA_HOME}/include
-    - export CPLUS_INCLUDE_PATH=${CPLUS_INCLUDE_PATH}:${CONDA_HOME}/include
-    - export LIBRARY_PATH=${LIBRARY_PATH}:${CONDA_HOME}/lib
-    - export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${CONDA_HOME}/lib
-    - export DYLD_FALLBACK_LIBRARY_PATH=${DYLD_FALLBACK_LIBRARY_PATH}:${CONDA_HOME}/lib
+    - export C_INCLUDE_PATH=${CONDA_HOME}/include:${C_INCLUDE_PATH}
+    - export CPLUS_INCLUDE_PATH=${CONDA_HOME}/include:${CPLUS_INCLUDE_PATH}
+    - export LIBRARY_PATH=${CONDA_HOME}/lib:${LIBRARY_PATH}
+    - export LD_LIBRARY_PATH=${CONDA_HOME}/lib:${LD_LIBRARY_PATH}
+    - export DYLD_FALLBACK_LIBRARY_PATH=${CONDA_HOME}/lib:${DYLD_FALLBACK_LIBRARY_PATH}
 
 # Install general dependencies
 install:
