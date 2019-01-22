@@ -21,9 +21,6 @@ notifications:
     email: false
 
 before_cache:
-    - export CC=/usr/bin/gcc-6
-    - export CXX=/usr/bin/g++-6
-    - gcc -v && g++ -v && cmake --version
     - rm -rf $HOME/miniconda/locks $HOME/miniconda/pkgs $HOME/miniconda/var $HOME/miniconda/conda-meta/history
     - pip uninstall -y cardboardlint
 
@@ -56,6 +53,11 @@ before_install:
     - export LIBRARY_PATH=${CONDA_HOME}/lib:${LIBRARY_PATH}
     - export LD_LIBRARY_PATH=${CONDA_HOME}/lib:${LD_LIBRARY_PATH}
     - export DYLD_FALLBACK_LIBRARY_PATH=${CONDA_HOME}/lib:${DYLD_FALLBACK_LIBRARY_PATH}
+
+    # Set GCC 7 compiler
+    - export CC=/usr/bin/gcc-7
+    - export CXX=/usr/bin/g++-7
+    - gcc -v && g++ -v && cmake --version
 
 # Install general dependencies
 install:
