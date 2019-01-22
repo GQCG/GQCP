@@ -81,7 +81,7 @@ script:
   - cd ${TRAVIS_BUILD_DIR}
   - mkdir build && cd build
   - cmake .. -DBUILD_BENCHMARKS=ON
-  - make -j3 && make test ARGS=-j3 && sudo make install
+  - make -j3 VERBOSE=1 && make test ARGS=-j3 && sudo make install
 
 # Run the benchmarks
   - cd benchmarks
