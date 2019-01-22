@@ -20,7 +20,7 @@
 #include <boost/algorithm/string.hpp>
 #include <boost/program_options.hpp>
 
-using namespace po = boost::program_options;
+
 
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "CISolver/CISolver.hpp"
@@ -35,8 +35,9 @@ int main (int argc, char** argv) {
     size_t N_beta;
     size_t K;
     size_t N_eigenvalues;
-    po::variables_map variables_map;
 
+    namespace po = boost::program_options;
+    po::variables_map variables_map;
     try {
         po::options_description desc ("Options");
         desc.add_options()
