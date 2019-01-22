@@ -35,7 +35,7 @@ AP1roGPSESolver::AP1roGPSESolver(size_t N_P, const HamiltonianParameters& ham_pa
     K (ham_par.get_K()),
     ham_par (ham_par),
     N_P (N_P),
-    initial_geminal_coefficients (G)
+    geminal_coefficients (G)
 {}
 
 /**
@@ -271,15 +271,14 @@ void AP1roGPSESolver::solve() {
     MatrixFunction J = [this](const Eigen::VectorXd& x) { return this->calculateJacobian(x); };
 
 
-    Eigen::VectorXd x0 = this->initial_geminal_coefficients.asVector();
+    Eigen::VectorXd x0 = this->geminal_coefficients.asVector();
     NewtonSystemOfEquationsSolver syseq_solver (x0, f, J);
     syseq_solver.solve();
 
 
     // Set the solution
-    AP1roGGeminalCoefficients geminal_coefficients (syseq_solver.get_solution(), this->N_P, this->K);
-    double electronic_energy = calculateAP1roGEnergy(geminal_coefficients, this->ham_par);
-    this->solution = AP1roG(geminal_coefficients, electronic_energy);
+    this->geminal_coefficients = AP1roGGeminalCoefficients(syseq_solver.get_solution(), this->N_P, this->K);
+    this->electronic_energy = calculateAP1roGEnergy(this->geminal_coefficients, this->ham_par);
 }
 
 

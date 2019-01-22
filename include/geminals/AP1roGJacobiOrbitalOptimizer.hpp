@@ -75,7 +75,8 @@ private:
     double A2=0.0, B2=0.0, C2=0.0, D2=0.0, E2=0.0;  // Jacobi rotation coefficients for occupied-virtual rotations
     double A3=0.0, B3=0.0, C3=0.0;  // Jacobi rotation coefficients for virtual-virtual rotations
 
-    AP1roG solution;
+    double electronic_energy;
+    AP1roGGeminalCoefficients geminal_coefficients;
 
 
 public:
@@ -102,7 +103,8 @@ public:
 
 
     // GETTERS
-    const AP1roG& get_solution() const { return this->solution; }
+    const AP1roGGeminalCoefficients& get_geminal_coefficients() const { return this->geminal_coefficients; }
+    double get_electronic_energy() const { return this->electronic_energy; }
     const HamiltonianParameters& get_optimized_hamiltonian_parameters() const { return this->ham_par; }
 
 

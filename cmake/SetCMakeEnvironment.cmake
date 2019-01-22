@@ -210,7 +210,6 @@ set(PROJECT_TEST_SOURCE_FILES
         ${PROJECT_TESTS_FOLDER}/FockSpace/SelectedFockSpace_test.cpp
         ${PROJECT_TESTS_FOLDER}/FockSpace/ProductFockSpace_test.cpp
 
-        ${PROJECT_TESTS_FOLDER}/geminals/AP1roG_test.cpp
         ${PROJECT_TESTS_FOLDER}/geminals/AP1roGGeminalCoefficients_test.cpp
         ${PROJECT_TESTS_FOLDER}/geminals/OO_AP1roG_test.cpp
         ${PROJECT_TESTS_FOLDER}/geminals/AP1roGPSESolver_test.cpp

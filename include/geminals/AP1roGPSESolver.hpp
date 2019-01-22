@@ -33,11 +33,11 @@ class AP1roGPSESolver {
 private:
     size_t K;  // the number of special orbitals
     size_t N_P;  // the number of electron pairs
-    AP1roGGeminalCoefficients initial_geminal_coefficients;
+    double electronic_energy;
+
+    AP1roGGeminalCoefficients geminal_coefficients;
     
     HamiltonianParameters ham_par;
-
-    AP1roG solution;
 
 
 public:
@@ -74,7 +74,8 @@ public:
 
 
     // GETTERS
-    const AP1roG& get_solution() const { return this->solution; }
+    double get_electronic_energy() const { return this->electronic_energy; }
+    const AP1roGGeminalCoefficients& get_geminal_coefficients() const { return this->geminal_coefficients; }
 
 
     // PUBLIC METHODS

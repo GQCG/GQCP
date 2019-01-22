@@ -308,7 +308,7 @@ void AP1roGJacobiOrbitalOptimizer::solve() {
     // Solve the PSEs before starting
     AP1roGPSESolver initial_pse_solver (this->N_P, this->ham_par);
     initial_pse_solver.solve();
-    auto G = initial_pse_solver.get_solution().get_geminal_coefficients();
+    auto G = initial_pse_solver.get_geminal_coefficients();
     double E_old = calculateAP1roGEnergy(G, this->ham_par);
 
     size_t iterations = 0;
@@ -345,7 +345,7 @@ void AP1roGJacobiOrbitalOptimizer::solve() {
         // Solve the PSEs in the rotated spatial orbital basis
         AP1roGPSESolver pse_solver (this->N_P, this->ham_par, G);  // use the unrotated solution G as initial guess for the PSEs in the rotated basis
         pse_solver.solve();
-        G = pse_solver.get_solution().get_geminal_coefficients();
+        G = pse_solver.get_geminal_coefficients();
         double E = calculateAP1roGEnergy(G, this->ham_par);
 
         // Check for convergence
@@ -353,8 +353,8 @@ void AP1roGJacobiOrbitalOptimizer::solve() {
             this->is_converged = true;
 
             // Set the solution
-            double electronic_energy = calculateAP1roGEnergy(G, this->ham_par);
-            this->solution = AP1roG(G, electronic_energy);
+            this->geminal_coefficients = G;
+            this->electronic_energy = calculateAP1roGEnergy(this->geminal_coefficients, this->ham_par);
         } else {
             iterations++;
             E_old = E;  // copy the current energy to be able to check for energy convergence.

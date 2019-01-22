@@ -60,6 +60,3 @@ endif(BUILD_BENCHMARKS)
 # Set up testing
 enable_testing()
 add_subdirectory(${PROJECT_TESTS_FOLDER})
-
-
-

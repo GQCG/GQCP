@@ -27,38 +27,6 @@ namespace GQCP {
 
 
 /**
- *  A class representing an AP1roG wave function: it holds the geminal coefficients that are a solution to the AP1roG projected Schrödinger equations
- */
-class AP1roG {
-private:
-    AP1roGGeminalCoefficients geminal_coefficients;
-
-    double electronic_energy;
-
-public:
-    // CONSTRUCTORS
-    /**
-     *  Default constructor setting everything to zero
-     */
-    AP1roG();
-
-    /**
-     *  @param geminal_coefficients     the converged AP1roG geminal coefficients
-     *  @param electronic_energy        the AP1roG electronic energy
-     */
-    AP1roG(const AP1roGGeminalCoefficients& geminal_coefficients, double electronic_energy);
-
-
-    // GETTERS
-    const AP1roGGeminalCoefficients& get_geminal_coefficients() const { return this->geminal_coefficients; }
-    double get_electronic_energy() const { return this->electronic_energy; }
-};
-
-
-/*
- *  HELPER FUNCTIONS
- */
-/**
  *  @param G            the converged AP1roG geminal coefficients
  *  @param ham_par      Hamiltonian parameters in an orthonormal spatial orbital basis
  *

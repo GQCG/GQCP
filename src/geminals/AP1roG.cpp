@@ -20,32 +20,7 @@
 
 namespace GQCP {
 
-/*
- *  CONSTRUCTORS
- */
-/**
- *  Default constructor setting everything to zero
- */
-AP1roG::AP1roG() :
-    geminal_coefficients (AP1roGGeminalCoefficients()),
-    electronic_energy (0.0)
-{}
 
-
-/**
- *  @param geminal_coefficients     the converged AP1roG geminal coefficients
- *  @param electronic_energy        the AP1roG electronic energy
- */
-AP1roG::AP1roG(const AP1roGGeminalCoefficients& geminal_coefficients, double electronic_energy) :
-    geminal_coefficients (geminal_coefficients),
-    electronic_energy (electronic_energy)
-{}
-
-
-
-/*
- *  HELPER FUNCTIONS
- */
 /**
  *  @param G            the converged AP1roG geminal coefficients
  *  @param ham_par      Hamiltonian parameters in an orthonormal spatial orbital basis
