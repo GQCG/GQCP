@@ -22,6 +22,7 @@
 
 
 #include "RDM/RDMCalculator.hpp"
+#include "RDM/SpinUnresolvedRDMCalculator.hpp"
 
 #include "FockSpace/FockSpace.hpp"
 #include "FockSpace/ProductFockSpace.hpp"
@@ -55,7 +56,56 @@ BOOST_AUTO_TEST_CASE ( constructor ) {
     
     // Check if the DOCI 1-RDM has the proper trace.
     GQCP::RDMCalculator doci_rdm (*fock_space_dy);
-    GQCP::OneRDMs one_rdms = doci_rdm.calculate1RDMs(coef);
+    doci_rdm.set_coefficients(coef);
+    GQCP::OneRDMs one_rdms = doci_rdm.calculate1RDMs();
 
     BOOST_CHECK(std::abs(one_rdms.one_rdm.trace() - N) < 1.0e-12);
+}
+
+BOOST_AUTO_TEST_CASE ( no_vector_throws ) {
+
+    size_t K = 5;
+    size_t N = 4;
+    GQCP::FockSpace fock_space (K, N);
+
+    Eigen::VectorXd coeff (fock_space.get_dimension());
+    coeff << 1, 1, -2, 4, -5;
+
+    // Test if throws when no vector is set
+    GQCP::RDMCalculator doci_rdm (fock_space);
+    BOOST_CHECK_THROW(GQCP::OneRDMs one_rdms = doci_rdm.calculate1RDMs(), std::logic_error);
+}
+
+
+BOOST_AUTO_TEST_CASE ( operator_call_throw ) {
+
+    // Create a test wave function
+    size_t M = 3;
+    size_t N = 1;
+    GQCP::FockSpace fock_space (M, N);
+
+    Eigen::VectorXd coeff (fock_space.get_dimension());
+    coeff << 1, 2, -3;
+    GQCP::SpinUnresolvedRDMCalculator d (fock_space);
+    d.set_coefficients(coeff);
+    BOOST_CHECK_THROW(d(0), std::invalid_argument);  // need an even number of indices
+}
+
+
+BOOST_AUTO_TEST_CASE ( operator_call ) {
+
+    // Create a test wave function
+    size_t M = 3;
+    size_t N = 2;
+    GQCP::FockSpace fock_space (M, N);
+
+    Eigen::VectorXd coeff (fock_space.get_dimension());
+    coeff << 1, 2, -3;
+    GQCP::SpinUnresolvedRDMCalculator d (fock_space);
+    d.set_coefficients(coeff);
+
+    BOOST_CHECK(std::abs(d(0,1,1,2) - (-3.0)) < 1.0e-12);  // d(0,1,1,2) : a^\dagger_0 a^\dagger_1 a_2 a_1
+    BOOST_CHECK(std::abs(d(2,0,0,1) - (-2.0)) < 1.0e-12);  // d(2,0,0,1) : a^\dagger_2 a^\dagger_0 a^1 a_0
+    BOOST_CHECK(std::abs(d(0,2,2,0) - (-4.0)) < 1.0e-12);  // d(0,2,2,0) : a^\dagger_0 a^dagger_2 a_0 a_2
+    BOOST_CHECK(std::abs(d(0,2,0,0) - 0.0) < 1.0e-12);     // d(0,2,0,0) : a^\dagger_0 a^dagger_0 a_0 a_2, double annihilation gives 0.0
 }

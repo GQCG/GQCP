@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "566042F721B913AD008C2E86"
-               BuildableName = "NRDMCalculator_test"
-               BlueprintName = "NRDMCalculator_test"
+               BlueprintIdentifier = "5652E64C21E4AE600042BE2A"
+               BuildableName = "SpinUnresolvedFCIRDMBuilder_test"
+               BlueprintName = "SpinUnresolvedFCIRDMBuilder_test"
                ReferencedContainer = "container:gqcp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "566042F721B913AD008C2E86"
-            BuildableName = "NRDMCalculator_test"
-            BlueprintName = "NRDMCalculator_test"
+            BlueprintIdentifier = "5652E64C21E4AE600042BE2A"
+            BuildableName = "SpinUnresolvedFCIRDMBuilder_test"
+            BlueprintName = "SpinUnresolvedFCIRDMBuilder_test"
             ReferencedContainer = "container:gqcp.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -55,9 +55,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "566042F721B913AD008C2E86"
-            BuildableName = "NRDMCalculator_test"
-            BlueprintName = "NRDMCalculator_test"
+            BlueprintIdentifier = "5652E64C21E4AE600042BE2A"
+            BuildableName = "SpinUnresolvedFCIRDMBuilder_test"
+            BlueprintName = "SpinUnresolvedFCIRDMBuilder_test"
             ReferencedContainer = "container:gqcp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -74,9 +74,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "566042F721B913AD008C2E86"
-            BuildableName = "NRDMCalculator_test"
-            BlueprintName = "NRDMCalculator_test"
+            BlueprintIdentifier = "5652E64C21E4AE600042BE2A"
+            BuildableName = "SpinUnresolvedFCIRDMBuilder_test"
+            BlueprintName = "SpinUnresolvedFCIRDMBuilder_test"
             ReferencedContainer = "container:gqcp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

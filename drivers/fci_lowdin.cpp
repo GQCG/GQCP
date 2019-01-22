@@ -73,9 +73,9 @@ int main (int argc, char** argv) {
 
 
     // Calculate the 1-RDM in the NO basis
-    auto fci_coefficients = ci_solver.get_eigenpair().get_eigenvector();
-    GQCP::RDMCalculator fci_rdm (fock_space);
-    GQCP::OneRDM D = fci_rdm.calculate1RDMs(fci_coefficients).one_rdm;
+    auto fci_wavefunction = ci_solver.makeWavefunction();
+    GQCP::RDMCalculator fci_rdm (fci_wavefunction);
+    GQCP::OneRDM D = fci_rdm.calculate1RDMs().one_rdm;
     D.diagonalize();
 
 

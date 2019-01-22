@@ -67,13 +67,15 @@ set(PROJECT_SOURCE_FILES
 
         ${PROJECT_SOURCE_FOLDER}/RDM/BaseRDM.cpp
         ${PROJECT_SOURCE_FOLDER}/RDM/BaseRDMBuilder.cpp
+        ${PROJECT_SOURCE_FOLDER}/RDM/BaseSpinUnresolvedRDMBuilder.cpp
         ${PROJECT_SOURCE_FOLDER}/RDM/DOCIRDMBuilder.cpp
         ${PROJECT_SOURCE_FOLDER}/RDM/FCIRDMBuilder.cpp
-        ${PROJECT_SOURCE_FOLDER}/RDM/NRDMCalculator.cpp
         ${PROJECT_SOURCE_FOLDER}/RDM/OneRDM.cpp
         ${PROJECT_SOURCE_FOLDER}/RDM/RDMCalculator.cpp
         ${PROJECT_SOURCE_FOLDER}/RDM/RDMs.cpp
         ${PROJECT_SOURCE_FOLDER}/RDM/SelectedRDMBuilder.cpp
+        ${PROJECT_SOURCE_FOLDER}/RDM/SpinUnresolvedFCIRDMBuilder.cpp
+        ${PROJECT_SOURCE_FOLDER}/RDM/SpinUnresolvedRDMCalculator.cpp
         ${PROJECT_SOURCE_FOLDER}/RDM/TwoRDM.cpp
 
         ${PROJECT_SOURCE_FOLDER}/RHF/DIISRHFSCFSolver.cpp
@@ -85,6 +87,7 @@ set(PROJECT_SOURCE_FILES
         ${PROJECT_SOURCE_FOLDER}/utilities/linalg.cpp
         ${PROJECT_SOURCE_FOLDER}/utilities/miscellaneous.cpp
 
+        ${PROJECT_SOURCE_FOLDER}/WaveFunction/SpinUnresolvedWaveFunction.cpp
         ${PROJECT_SOURCE_FOLDER}/WaveFunction/WaveFunction.cpp
         ${PROJECT_SOURCE_FOLDER}/WaveFunction/WaveFunctionReader.cpp
 
@@ -154,13 +157,15 @@ set(PROJECT_INCLUDE_FILES
 
         ${PROJECT_INCLUDE_FOLDER}/RDM/BaseRDM.hpp
         ${PROJECT_INCLUDE_FOLDER}/RDM/BaseRDMBuilder.hpp
+        ${PROJECT_INCLUDE_FOLDER}/RDM/BaseSpinUnresolvedRDMBuilder.hpp
         ${PROJECT_INCLUDE_FOLDER}/RDM/DOCIRDMBuilder.hpp
         ${PROJECT_INCLUDE_FOLDER}/RDM/FCIRDMBuilder.hpp
-        ${PROJECT_INCLUDE_FOLDER}/RDM/NRDMCalculator.hpp
         ${PROJECT_INCLUDE_FOLDER}/RDM/OneRDM.hpp
-        ${PROJECT_INCLUDE_FOLDER}/RDM/SelectedRDMBuilder.hpp
         ${PROJECT_INCLUDE_FOLDER}/RDM/RDMCalculator.hpp
         ${PROJECT_INCLUDE_FOLDER}/RDM/RDMs.hpp
+        ${PROJECT_INCLUDE_FOLDER}/RDM/SelectedRDMBuilder.hpp
+        ${PROJECT_INCLUDE_FOLDER}/RDM/SpinUnresolvedFCIRDMBuilder.hpp
+        ${PROJECT_INCLUDE_FOLDER}/RDM/SpinUnresolvedRDMCalculator.hpp
         ${PROJECT_INCLUDE_FOLDER}/RDM/TwoRDM.hpp
 
         ${PROJECT_INCLUDE_FOLDER}/RHF/DIISRHFSCFSolver.hpp
@@ -172,6 +177,7 @@ set(PROJECT_INCLUDE_FILES
         ${PROJECT_INCLUDE_FOLDER}/utilities/linalg.hpp
         ${PROJECT_INCLUDE_FOLDER}/utilities/miscellaneous.hpp
 
+        ${PROJECT_INCLUDE_FOLDER}/WaveFunction/SpinUnresolvedWaveFunction.hpp
         ${PROJECT_INCLUDE_FOLDER}/WaveFunction/WaveFunction.hpp
 
         ${PROJECT_INCLUDE_FOLDER}/AOBasis.hpp
@@ -234,9 +240,9 @@ set(PROJECT_TEST_SOURCE_FILES
 
         ${PROJECT_TESTS_FOLDER}/RDM/DOCIRDMBuilder_test.cpp
         ${PROJECT_TESTS_FOLDER}/RDM/FCIRDMBuilder_test.cpp
-        ${PROJECT_TESTS_FOLDER}/RDM/NRDMCalculator_test.cpp
         ${PROJECT_TESTS_FOLDER}/RDM/RDMCalculator_test.cpp
         ${PROJECT_TESTS_FOLDER}/RDM/SelectedRDMBuilder_test.cpp
+        ${PROJECT_TESTS_FOLDER}/RDM/SpinUnresolvedFCIRDMBuilder_test.cpp
 
         ${PROJECT_TESTS_FOLDER}/RHF/constrained_RHF_test.cpp
         ${PROJECT_TESTS_FOLDER}/RHF/DIISRHFSCFSolver_test.cpp

@@ -76,19 +76,18 @@ const Eigenpair& DOCINewtonOrbitalOptimizer::get_eigenpair(size_t index) const {
 void DOCINewtonOrbitalOptimizer::solve(BaseSolverOptions& solver_options, const OrbitalOptimizationOptions& oo_options) {
     this->is_converged = false;
     auto K = this->ham_par.get_K();
-
+    RDMCalculator rdm_calculator(*this->doci.get_fock_space());  // make the RDMCalculator beforehand, it doesn't have to be constructed in every iteration
     size_t oo_iterations = 0;
     while (!(this->is_converged)) {
 
         // Solve the DOCI eigenvalue equation, using the options provided
         CISolver doci_solver (this->doci, this->ham_par);  // update the CI solver with the rotated Hamiltonian parameters
         doci_solver.solve(solver_options);
-        WaveFunction ground_state = doci_solver.makeWavefunction();
+        rdm_calculator.set_coefficients(doci_solver.get_eigenpair().get_eigenvector());
 
         // Calculate the 1- and 2-RDMs
-        RDMCalculator rdm_calculator (*(this->doci.get_fock_space()));
-        auto D = rdm_calculator.calculate1RDMs(ground_state.get_coefficients()).one_rdm;  // spin-summed 1-RDM
-        auto d = rdm_calculator.calculate2RDMs(ground_state.get_coefficients()).two_rdm;  // spin-summed 2-RDM
+        auto D = rdm_calculator.calculate1RDMs().one_rdm;  // spin-summed 1-RDM
+        auto d = rdm_calculator.calculate2RDMs().two_rdm;  // spin-summed 2-RDM
 
 
         // Calculate the electronic gradient at kappa = 0
