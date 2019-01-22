@@ -7,7 +7,7 @@ target_include_directories(${LIBRARY_NAME} PUBLIC
 
 # Include boost
 target_include_directories(${LIBRARY_NAME} PUBLIC ${Boost_INCLUDE_DIRS})
-target_link_libraries(${LIBRARY_NAME} PUBLIC ${Boost_LIBRARIES})
+# target_link_libraries(${LIBRARY_NAME} PUBLIC ${Boost_LIBRARIES})
 
 # Include Eigen
 target_link_libraries(${LIBRARY_NAME} PUBLIC Eigen3::Eigen)
