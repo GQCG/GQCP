@@ -10,7 +10,7 @@
 
 #include <boost/algorithm/string.hpp>
 #include <boost/program_options.hpp>
-namespace po = boost::program_options;
+using namespace po = boost::program_options;
 
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "RHF/DIISRHFSCFSolver.hpp"
