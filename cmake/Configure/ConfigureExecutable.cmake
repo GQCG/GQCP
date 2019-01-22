@@ -11,6 +11,7 @@ function(configure_executable EXECUTABLE_NAME)
     target_include_directories(${EXECUTABLE_NAME} PUBLIC ${Boost_INCLUDE_DIRS})
     target_link_libraries(${EXECUTABLE_NAME} PUBLIC ${Boost_LIBRARIES})
     target_compile_definitions(${EXECUTABLE_NAME} PUBLIC -DBOOST_ALL_DYN_LINK)
+    target_compile_definitions(${EXECUTABLE_NAME} PRIVATE _GLIBCXX_USE_CXX11_ABI=1)
 
     # Include Eigen
     target_link_libraries(${EXECUTABLE_NAME} PUBLIC Eigen3::Eigen)
