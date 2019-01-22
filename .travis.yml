@@ -2,7 +2,6 @@
 dist: trusty
 sudo: true
 
-
 # Specify the project language and the compiler to test to
 language: cpp
 compiler: gcc
@@ -12,23 +11,19 @@ addons:
     sources:
       - ubuntu-toolchain-r-test
     packages:
-      - gcc-6
-      - g++-6
+      - gcc-7
+      - g++-7
       - cmake
 
-script:
-  - sudo ln -s /usr/bin/gcc-6 /usr/local/bin/gcc
-  - sudo ln -s /usr/bin/g++-6 /usr/local/bin/g++
-  - export CC=/usr/bin/gcc-6
-  - export CXX=/usr/bin/g++-6
-  - gcc -v && g++ -v && cmake --version
-  
 # Enable Slack notifications, disable e-mail
 notifications:
     slack: GQCG:5PZ5ibXCwNU1b5ToWbHVIqnI
     email: false
 
 before_cache:
+    - export CC=/usr/bin/gcc-6
+    - export CXX=/usr/bin/g++-6
+    - gcc -v && g++ -v && cmake --version
     - rm -rf $HOME/miniconda/locks $HOME/miniconda/pkgs $HOME/miniconda/var $HOME/miniconda/conda-meta/history
     - pip uninstall -y cardboardlint
 
