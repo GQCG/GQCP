@@ -5,7 +5,7 @@ function(configure_driver DRIVER_NAME)
 
     configure_executable(${DRIVER_NAME})
 
-    # Link google benchmarks
+    # Link boost program options
     target_link_libraries(${DRIVER_NAME} PUBLIC "-lboost_program_options")
 
     # Install the driver in a separate location
