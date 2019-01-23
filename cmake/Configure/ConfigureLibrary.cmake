@@ -8,7 +8,6 @@ target_include_directories(${LIBRARY_NAME} PUBLIC
 # Include boost
 target_include_directories(${LIBRARY_NAME} PUBLIC ${Boost_INCLUDE_DIRS})
 target_link_libraries(${LIBRARY_NAME} PUBLIC ${Boost_LIBRARIES})
-target_compile_definitions(${LIBRARY_NAME} PUBLIC _GLIBCXX_USE_CXX11_ABI=1 -DBOOST_ALL_DYN_LINK)
 
 # Include Eigen
 target_link_libraries(${LIBRARY_NAME} PUBLIC Eigen3::Eigen)
