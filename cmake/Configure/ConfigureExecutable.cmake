@@ -7,21 +7,5 @@ function(configure_executable EXECUTABLE_NAME)
     target_include_directories(${EXECUTABLE_NAME} PRIVATE ${PROJECT_INCLUDE_FOLDER})
     target_link_libraries(${EXECUTABLE_NAME} PUBLIC ${LIBRARY_NAME})
 
-    # Include boost
-    target_include_directories(${EXECUTABLE_NAME} PUBLIC ${Boost_INCLUDE_DIRS})
-    target_link_libraries(${EXECUTABLE_NAME} PUBLIC ${Boost_LIBRARIES})
-
-    # Include Eigen
-    target_link_libraries(${EXECUTABLE_NAME} PUBLIC Eigen3::Eigen)
-
-    # Include libint2
-    target_include_directories(${EXECUTABLE_NAME} PUBLIC ${Libint2_INCLUDE_DIRS})
-    target_link_libraries(${EXECUTABLE_NAME} PUBLIC ${Libint2_LIBRARIES})
-
-    # Include MKL (optional)
-    if (MKL_FOUND)
-        target_include_directories(${EXECUTABLE_NAME} PRIVATE ${MKL_INCLUDE_DIRS})
-        target_link_libraries(${EXECUTABLE_NAME} PRIVATE ${MKL_LIBRARIES})
-    endif()
 
 endfunction(configure_executable)
