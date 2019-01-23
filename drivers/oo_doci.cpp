@@ -10,7 +10,7 @@
 
 #include <boost/algorithm/string.hpp>
 #include <boost/program_options.hpp>
-namespace po = boost::program_options;
+
 
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "RHF/DIISRHFSCFSolver.hpp"
@@ -31,6 +31,7 @@ int main (int argc, char** argv) {
     bool user_wants_localization = false;
     bool user_wants_davidson = false;
 
+    namespace po = boost::program_options;
     po::variables_map variables_map;
     try {
         po::options_description desc ("Options");
