@@ -54,7 +54,7 @@ before_install:
     - export LD_LIBRARY_PATH=${CONDA_HOME}/lib:${LD_LIBRARY_PATH}
     - export DYLD_FALLBACK_LIBRARY_PATH=${CONDA_HOME}/lib:${DYLD_FALLBACK_LIBRARY_PATH}
 
-    # Set GCC 7 compiler
+    # Set GCC 8 compiler
     - export CC=/usr/bin/gcc-8
     - export CXX=/usr/bin/g++-8
     - gcc -v && g++ -v && cmake --version
