@@ -28,34 +28,6 @@
 #include "RHF/PlainRHFSCFSolver.hpp"
 
 
-
-BOOST_AUTO_TEST_CASE ( constructor ) {
-
-    // Test a correct constructor
-    auto h2 = GQCP::Molecule::Readxyz("data/h2_szabo.xyz");
-    size_t N = 2;  // number of electrons for H2
-    size_t N_P = N/2;  // number of electron pairs for H2
-    auto mol_ham_par = GQCP::HamiltonianParameters::Molecular(h2, "STO-3G");
-
-    GQCP::AP1roGJacobiOrbitalOptimizer ap1rog_orbital_optimizer (N_P, mol_ham_par);
-}
-
-
-BOOST_AUTO_TEST_CASE ( constructor_molecule ) {
-
-    // Test a correct constructor
-    // Check if we can also pass a molecule object to the constructor
-    auto h2 = GQCP::Molecule::Readxyz("data/h2_szabo.xyz");
-    auto mol_ham_par = GQCP::HamiltonianParameters::Molecular(h2, "STO-3G");
-    GQCP::AP1roGJacobiOrbitalOptimizer ap1rog_orbital_optimizer (h2, mol_ham_par);
-
-
-    // Test a faulty constructor
-    auto h2_cation = GQCP::Molecule::Readxyz("data/h2_szabo.xyz", +1);
-    BOOST_CHECK_THROW(GQCP::AP1roGJacobiOrbitalOptimizer(h2_cation, mol_ham_par), std::invalid_argument);  // we can use the same Hamiltonian parameters for molecule and ion
-}
-
-
 BOOST_AUTO_TEST_CASE ( lih_6_31G_calculateEnergyAfterRotation ) {
 
     // We have implemented a formula to calculate the rotated AP1roG energy directly, but we have to test it
