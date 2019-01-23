@@ -38,11 +38,11 @@ BOOST_AUTO_TEST_CASE ( h2_631gdp ) {
     auto mol_ham_par = GQCP::HamiltonianParameters(ao_mol_ham_par, rhf.get_C());
 
 
-    // Solve the AP1roG bivariational equations with the initial guess being 0 (there are no reference data)
-    GQCP::AP1roGBivariationalSolver ap1rog_bivar_solver (h2, mol_ham_par);
-    ap1rog_bivar_solver.solve();
+    // Solve the AP1roG bivariational equations with the initial guess of the geminal coefficients being 0
+    GQCP::AP1roGBivariationalSolver bivar_solver1 (h2, mol_ham_par);
+    bivar_solver1.solve();
 
-    double electronic_energy = ap1rog_bivar_solver.get_electronic_energy();
-    Eigen::VectorXd ap1rog_coefficients = ap1rog_bivar_solver.get_geminal_coefficients().asVector();
-    auto bivar_coeff = ap1rog_bivar_solver.get_bivariational_coefficients();
+    // Solve the AP1roG bivariational equations with the initial guess of the geminal coefficients being 0
+    GQCP::AP1roGBivariationalSolver bivar_solver2 (h2, mol_ham_par, GQCP::AP1roGBivariationalSolver::ExtraEquation::norm);
+    bivar_solver2.solve();
 }

@@ -14,20 +14,24 @@ namespace GQCP {
  *  @param N_P          the number of electrons
  *  @param ham_par      Hamiltonian parameters in an orthonormal orbital basis
  *  @param G            the initial guess for the AP1roG gemial coefficients
+ *  @param extra_eq     the specification of the extra equation
  */
-AP1roGBivariationalSolver::AP1roGBivariationalSolver(size_t N_P, const HamiltonianParameters& ham_par, const AP1roGGeminalCoefficients& G) :
-    BaseAP1roGSolver(N_P, ham_par, G)
+AP1roGBivariationalSolver::AP1roGBivariationalSolver(size_t N_P, const HamiltonianParameters& ham_par, const AP1roGGeminalCoefficients& G, ExtraEquation extra_eq) :
+    BaseAP1roGSolver(N_P, ham_par, G),
+    extra_eq (extra_eq)
 {}
 
 
 /**
  *  @param N_P          the number of electrons
  *  @param ham_par      Hamiltonian parameters in an orthonormal orbital basis
+ *  @param extra_eq     the specification of the extra equation
  *
  *  The initial guess for the geminal coefficients is zero
  */
-AP1roGBivariationalSolver::AP1roGBivariationalSolver(size_t N_P, const HamiltonianParameters& ham_par) :
-    BaseAP1roGSolver(N_P, ham_par)
+AP1roGBivariationalSolver::AP1roGBivariationalSolver(size_t N_P, const HamiltonianParameters& ham_par, ExtraEquation extra_eq) :
+    BaseAP1roGSolver(N_P, ham_par),
+    extra_eq (extra_eq)
 {}
 
 
@@ -35,20 +39,24 @@ AP1roGBivariationalSolver::AP1roGBivariationalSolver(size_t N_P, const Hamiltoni
  *  @param molecule     the molecule used for the AP1roG calculation
  *  @param ham_par      Hamiltonian parameters in an orthonormal orbital basis
  *  @param G            the initial guess for the AP1roG gemial coefficients
+ *  @param extra_eq     the specification of the extra equation
  */
-AP1roGBivariationalSolver::AP1roGBivariationalSolver(const Molecule& molecule, const HamiltonianParameters& ham_par, const AP1roGGeminalCoefficients& G) :
-    BaseAP1roGSolver(molecule, ham_par, G)
+AP1roGBivariationalSolver::AP1roGBivariationalSolver(const Molecule& molecule, const HamiltonianParameters& ham_par, const AP1roGGeminalCoefficients& G, ExtraEquation extra_eq) :
+    BaseAP1roGSolver(molecule, ham_par, G),
+    extra_eq (extra_eq)
 {}
 
 
 /**
  *  @param molecule     the molecule used for the AP1roG calculation
  *  @param ham_par      Hamiltonian parameters in an orthonormal orbital basis
+ *  @param extra_eq     the specification of the extra equation
  *
  *  The initial guess for the geminal coefficients is zero
  */
-AP1roGBivariationalSolver::AP1roGBivariationalSolver(const Molecule& molecule, const HamiltonianParameters& ham_par) :
-    BaseAP1roGSolver(molecule, ham_par)
+AP1roGBivariationalSolver::AP1roGBivariationalSolver(const Molecule& molecule, const HamiltonianParameters& ham_par, ExtraEquation extra_eq) :
+    BaseAP1roGSolver(molecule, ham_par),
+    extra_eq (extra_eq)
 {}
 
 
@@ -72,18 +80,42 @@ void AP1roGBivariationalSolver::solve() {
     // Initialize and solve the linear system Aq=b
     size_t dim = 1 + this->N_P * (this->K - N_P);
 
-
     Eigen::VectorXd b = Eigen::VectorXd::Zero(dim);
-    b(0) = 1;
-
-
     Eigen::MatrixXd A = Eigen::MatrixXd::Zero(dim, dim);
-    A(0,0) = 1;
 
+    //      Initialize the extra equation
+    switch (this->extra_eq) {
+        case ExtraEquation::q0: {
+            A(0,0) = 1;
+            b(0) = 1;
+            break;
+        }
+
+        case ExtraEquation::norm: {
+            A(0,0) = 1;
+
+            auto G = this->geminal_coefficients;
+            for (size_t j = 0; j < this->N_P; j++) {
+                for (size_t b = this->N_P; b < this->K; b++) {
+                    size_t column_vector_index = G.vectorIndex(j, b);
+
+                    A(0, 1 + column_vector_index) = G(j, b);
+                }
+            }
+
+            b(0) = 1;
+            break;
+        }
+
+        default:
+            break;
+    }
+
+    //      Initialize the rest of A
     auto J = pse_solver.calculateJacobian(this->geminal_coefficients.asVector());
 
     for (size_t i = 0; i < this->N_P; i++) {
-        for (size_t a = N_P; a < this->K; a++) {
+        for (size_t a = this->N_P; a < this->K; a++) {
             size_t row_vector_index = this->geminal_coefficients.vectorIndex(i, a);
 
             // First column
