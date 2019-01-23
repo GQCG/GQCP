@@ -132,4 +132,5 @@ public:
 
 }  // namespace GQCP
 
+
 #endif /* AP1roGJacobiOrbitalOptimizer_hpp */

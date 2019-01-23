@@ -187,6 +187,7 @@
 			buildPhases = (
 			);
 			dependencies = (
+				5643B83221F89F7F00E1741F /* PBXTargetDependency */,
 				5643B81921F8779400E1741F /* PBXTargetDependency */,
 				5614FEC921B041FC002C5D40 /* PBXTargetDependency */,
 				5614FECB21B041FC002C5D40 /* PBXTargetDependency */,
@@ -511,6 +512,9 @@
 		5643B81D21F87F6700E1741F /* AP1roGBivariationalSolver.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5643B81B21F87F6700E1741F /* AP1roGBivariationalSolver.hpp */; };
 		5643B82021F88A0B00E1741F /* BaseAP1roGSolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5643B81E21F88A0B00E1741F /* BaseAP1roGSolver.cpp */; };
 		5643B82121F88A0B00E1741F /* BaseAP1roGSolver.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5643B81F21F88A0B00E1741F /* BaseAP1roGSolver.hpp */; };
+		5643B82321F89E6300E1741F /* AP1roGBivariationalSolver_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5643B82221F89E6300E1741F /* AP1roGBivariationalSolver_test.cpp */; };
+		5643B82A21F89F3200E1741F /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
+		5643B83021F89F5E00E1741F /* AP1roGBivariationalSolver_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5643B82221F89E6300E1741F /* AP1roGBivariationalSolver_test.cpp */; };
 		566D229E21B7ED2500F8EB91 /* oo_doci.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FAA721B02E48002C5D40 /* oo_doci.cpp */; };
 		56B49B7F21F2128D000F543B /* AP1roGGeminalCoefficients.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56B49B7921F2128C000F543B /* AP1roGGeminalCoefficients.cpp */; };
 		56B49B8021F2128D000F543B /* AP1roG.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56B49B7A21F2128C000F543B /* AP1roG.cpp */; };
@@ -1412,6 +1416,20 @@
 			remoteGlobalIDString = 5643B80B21F876D100E1741F;
 			remoteInfo = AP1roGVariables_test;
 		};
+		5643B82621F89F3200E1741F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5614F97F21B0295C002C5D40;
+			remoteInfo = gqcp;
+		};
+		5643B83121F89F7F00E1741F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5643B82421F89F3200E1741F;
+			remoteInfo = AP1roGBivariationalSolver_test;
+		};
 		56FBA0EF21C2F1A10084F088 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
@@ -2209,6 +2227,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
+		5643B82B21F89F3200E1741F /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		56FBA0F421C2F1A10084F088 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2585,6 +2612,8 @@
 		5643B81B21F87F6700E1741F /* AP1roGBivariationalSolver.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AP1roGBivariationalSolver.hpp; sourceTree = "<group>"; };
 		5643B81E21F88A0B00E1741F /* BaseAP1roGSolver.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BaseAP1roGSolver.cpp; sourceTree = "<group>"; };
 		5643B81F21F88A0B00E1741F /* BaseAP1roGSolver.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BaseAP1roGSolver.hpp; sourceTree = "<group>"; };
+		5643B82221F89E6300E1741F /* AP1roGBivariationalSolver_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AP1roGBivariationalSolver_test.cpp; sourceTree = "<group>"; };
+		5643B82F21F89F3200E1741F /* AP1roGBivariationalSolver_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AP1roGBivariationalSolver_test; sourceTree = BUILT_PRODUCTS_DIR; };
 		56B49B7921F2128C000F543B /* AP1roGGeminalCoefficients.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AP1roGGeminalCoefficients.cpp; sourceTree = "<group>"; };
 		56B49B7A21F2128C000F543B /* AP1roG.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AP1roG.cpp; sourceTree = "<group>"; };
 		56B49B7B21F2128C000F543B /* AP1roGJacobiOrbitalOptimizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AP1roGJacobiOrbitalOptimizer.cpp; sourceTree = "<group>"; };
@@ -3161,6 +3190,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5643B82921F89F3200E1741F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5643B82A21F89F3200E1741F /* libgqcp.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		56FBA0F221C2F1A10084F088 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -3324,6 +3361,7 @@
 				56FBA19421C389050084F088 /* SparseSolver_test */,
 				5643B7F621F707CE00E1741F /* SpinUnresolvedFCIRDMBuilder_test */,
 				5643B81621F876D100E1741F /* AP1roGVariables_test */,
+				5643B82F21F89F3200E1741F /* AP1roGBivariationalSolver_test */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -3974,6 +4012,7 @@
 		56272DCC21B6CC2D008BEA47 /* geminals */ = {
 			isa = PBXGroup;
 			children = (
+				5643B82221F89E6300E1741F /* AP1roGBivariationalSolver_test.cpp */,
 				56272DCD21B6CC2D008BEA47 /* AP1roGGeminalCoefficients_test.cpp */,
 				56272DD021B6CC2D008BEA47 /* AP1roGPSESolver_test.cpp */,
 				5643B80621F867C200E1741F /* AP1roGVariables_test.cpp */,
@@ -5293,6 +5332,24 @@
 			productReference = 5643B81621F876D100E1741F /* AP1roGVariables_test */;
 			productType = "com.apple.product-type.tool";
 		};
+		5643B82421F89F3200E1741F /* AP1roGBivariationalSolver_test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5643B82C21F89F3200E1741F /* Build configuration list for PBXNativeTarget "AP1roGBivariationalSolver_test" */;
+			buildPhases = (
+				5643B82721F89F3200E1741F /* Sources */,
+				5643B82921F89F3200E1741F /* Frameworks */,
+				5643B82B21F89F3200E1741F /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5643B82521F89F3200E1741F /* PBXTargetDependency */,
+			);
+			name = AP1roGBivariationalSolver_test;
+			productName = AP1roGGeminalCoefficients_test;
+			productReference = 5643B82F21F89F3200E1741F /* AP1roGBivariationalSolver_test */;
+			productType = "com.apple.product-type.tool";
+		};
 		56FBA0ED21C2F1A10084F088 /* HoppingMatrix_test */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 56FBA0F521C2F1A10084F088 /* Build configuration list for PBXNativeTarget "HoppingMatrix_test" */;
@@ -5544,6 +5601,7 @@
 				5614FFF121B062B4002C5D40 /* ProductFockSpace_test */,
 				5614FFFD21B062BA002C5D40 /* SelectedFockSpace_test */,
 				5614FEC421B041F1002C5D40 /* BUILD_GEMINALS_TESTS */,
+				5643B82421F89F3200E1741F /* AP1roGBivariationalSolver_test */,
 				5614FE8B21B0410A002C5D40 /* AP1roGGeminalCoefficients_test */,
 				5614FEB521B04193002C5D40 /* AP1roGPSESolver_test */,
 				5643B80B21F876D100E1741F /* AP1roGVariables_test */,
@@ -5904,6 +5962,7 @@
 				56B49B7F21F2128D000F543B /* AP1roGGeminalCoefficients.cpp in Sources */,
 				5614FA6D21B029FB002C5D40 /* WaveFunction.cpp in Sources */,
 				5643B80921F868A600E1741F /* AP1roGVariables.cpp in Sources */,
+				5643B82321F89E6300E1741F /* AP1roGBivariationalSolver_test.cpp in Sources */,
 				5614FA4D21B029FB002C5D40 /* ProductFockSpace.cpp in Sources */,
 				5614FA5421B029FB002C5D40 /* PlainRHFSCFSolver.cpp in Sources */,
 				5614FA4721B029FB002C5D40 /* RMP2.cpp in Sources */,
@@ -6191,6 +6250,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				5643B81721F876F500E1741F /* AP1roGVariables_test.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5643B82721F89F3200E1741F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5643B83021F89F5E00E1741F /* AP1roGBivariationalSolver_test.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6868,6 +6935,16 @@
 			isa = PBXTargetDependency;
 			target = 5643B80B21F876D100E1741F /* AP1roGVariables_test */;
 			targetProxy = 5643B81821F8779400E1741F /* PBXContainerItemProxy */;
+		};
+		5643B82521F89F3200E1741F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5614F97F21B0295C002C5D40 /* gqcp */;
+			targetProxy = 5643B82621F89F3200E1741F /* PBXContainerItemProxy */;
+		};
+		5643B83221F89F7F00E1741F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5643B82421F89F3200E1741F /* AP1roGBivariationalSolver_test */;
+			targetProxy = 5643B83121F89F7F00E1741F /* PBXContainerItemProxy */;
 		};
 		56FBA0EE21C2F1A10084F088 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -8448,6 +8525,22 @@
 			};
 			name = Release;
 		};
+		5643B82D21F89F3200E1741F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		5643B82E21F89F3200E1741F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		56FBA0F621C2F1A10084F088 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -9332,6 +9425,15 @@
 			buildConfigurations = (
 				5643B81421F876D100E1741F /* Debug */,
 				5643B81521F876D100E1741F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5643B82C21F89F3200E1741F /* Build configuration list for PBXNativeTarget "AP1roGBivariationalSolver_test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5643B82D21F89F3200E1741F /* Debug */,
+				5643B82E21F89F3200E1741F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

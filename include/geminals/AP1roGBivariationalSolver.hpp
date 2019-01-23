@@ -3,15 +3,30 @@
 
 
 #include "geminals/BaseAP1roGSolver.hpp"
+#include "geminals/AP1roGVariables.hpp"
 
 
 namespace GQCP {
 
 
 /**
+ *  A struct that holds the solutions (q0, q_i^a) to the bivariational equations
+ */
+struct BivariationalCoefficients {
+    double q0;
+    AP1roGVariables q;
+};
+
+
+
+/**
  *  A class that is able to solve the AP1roG bivariational equations
  */
 class AP1roGBivariationalSolver : public BaseAP1roGSolver {
+private:
+    BivariationalCoefficients bivariational_coefficients;  // the determined bivariational coefficients
+
+
 public:
     // CONSTRUCTORS
     /**
@@ -43,6 +58,10 @@ public:
      *  The initial guess for the geminal coefficients is zero
      */
     AP1roGBivariationalSolver(const Molecule& molecule, const HamiltonianParameters& ham_par);
+
+
+    // GETTERS
+    const BivariationalCoefficients& get_bivariational_coefficients() const { return this->bivariational_coefficients; }
 
 
     // PUBLIC METHODS

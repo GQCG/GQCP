@@ -64,7 +64,7 @@ public:
     // GETTERS
     double get_electronic_energy() const { return this->electronic_energy; }
     const AP1roGGeminalCoefficients& get_geminal_coefficients() const { return this->geminal_coefficients; }
-    const HamiltonianParameters& get_hamiltonian_parameters() const { return this->ham_par; }
+    const HamiltonianParameters& get_ham_par() const { return this->ham_par; }
 
 
     // PUBLIC METHODS
