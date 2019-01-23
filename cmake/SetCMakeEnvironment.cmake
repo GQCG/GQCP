@@ -31,8 +31,10 @@ set(PROJECT_SOURCE_FILES
         ${PROJECT_SOURCE_FOLDER}/geminals/AP1roGGeminalCoefficients.cpp
         ${PROJECT_SOURCE_FOLDER}/geminals/AP1roGJacobiOrbitalOptimizer.cpp
         ${PROJECT_SOURCE_FOLDER}/geminals/AP1roGPSESolver.cpp
+        ${PROJECT_SOURCE_FOLDER}/geminals/AP1roGVariables.cpp
         ${PROJECT_SOURCE_FOLDER}/geminals/APIGGeminalCoefficients.cpp
-        ${PROJECT_SOURCE_FOLDER}/geminals/BaseAPIGGeminalCoefficients.cpp
+        ${PROJECT_SOURCE_FOLDER}/geminals/BaseAPIGVariables.cpp
+        ${PROJECT_SOURCE_FOLDER}/geminals/GeminalCoefficientsInterface.cpp
 
         ${PROJECT_SOURCE_FOLDER}/HamiltonianBuilder/DOCI.cpp
         ${PROJECT_SOURCE_FOLDER}/HamiltonianBuilder/FCI.cpp
@@ -120,8 +122,10 @@ set(PROJECT_INCLUDE_FILES
         ${PROJECT_INCLUDE_FOLDER}/geminals/AP1roGGeminalCoefficients.hpp
         ${PROJECT_INCLUDE_FOLDER}/geminals/AP1roGJacobiOrbitalOptimizer.hpp
         ${PROJECT_INCLUDE_FOLDER}/geminals/AP1roGPSESolver.hpp
+        ${PROJECT_INCLUDE_FOLDER}/geminals/AP1roGVariables.hpp
         ${PROJECT_INCLUDE_FOLDER}/geminals/APIGGeminalCoefficients.hpp
-        ${PROJECT_INCLUDE_FOLDER}/geminals/BaseAPIGGeminalCoefficients.hpp
+        ${PROJECT_INCLUDE_FOLDER}/geminals/BaseAPIGVariables.hpp
+        ${PROJECT_INCLUDE_FOLDER}/geminals/GeminalCoefficientsInterface.hpp
 
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianBuilder/DOCI.hpp
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianBuilder/FCI.hpp
@@ -211,9 +215,10 @@ set(PROJECT_TEST_SOURCE_FILES
         ${PROJECT_TESTS_FOLDER}/FockSpace/ProductFockSpace_test.cpp
 
         ${PROJECT_TESTS_FOLDER}/geminals/AP1roGGeminalCoefficients_test.cpp
-        ${PROJECT_TESTS_FOLDER}/geminals/OO_AP1roG_test.cpp
         ${PROJECT_TESTS_FOLDER}/geminals/AP1roGPSESolver_test.cpp
+        ${PROJECT_TESTS_FOLDER}/geminals/AP1roGVariables_test.cpp
         ${PROJECT_TESTS_FOLDER}/geminals/APIGGeminalCoefficients_test.cpp
+        ${PROJECT_TESTS_FOLDER}/geminals/OO_AP1roG_test.cpp
 
         ${PROJECT_TESTS_FOLDER}/HamiltonianBuilder/DOCI_test.cpp
         ${PROJECT_TESTS_FOLDER}/HamiltonianBuilder/FCI_test.cpp

@@ -21,7 +21,8 @@
 
 #include <Eigen/Dense>
 
-#include "geminals/BaseAPIGGeminalCoefficients.hpp"
+#include "geminals/AP1roGVariables.hpp"
+#include "geminals/GeminalCoefficientsInterface.hpp"
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "WaveFunction/WaveFunction.hpp"
 
@@ -32,7 +33,7 @@ namespace GQCP {
 /**
  *  A class that represents geminal coefficients for an AP1roG wave function
  */
-class AP1roGGeminalCoefficients : public BaseAPIGGeminalCoefficients {
+class AP1roGGeminalCoefficients : public AP1roGVariables, public GeminalCoefficientsInterface {
 public:
     // CONSTRUCTORS
     /**
@@ -56,6 +57,8 @@ public:
      */
     AP1roGGeminalCoefficients(size_t N_P, size_t K);
 
+
+    // NAMED CONSTRUCTORS
     /**
      *  @param ham_par      the Hamiltonian parameters
      *  @param N_P          the number of electron pairs (= the number of geminals)
@@ -63,6 +66,10 @@ public:
      *  @return the AP1roG geminal coefficients in the weak interaction limit
      */
     static AP1roGGeminalCoefficients WeakInteractionLimit(const HamiltonianParameters& ham_par, size_t N_P);
+
+
+    // DESTRUCTOR
+    ~AP1roGGeminalCoefficients() override;
 
 
     // STATIC PUBLIC METHODS
@@ -80,28 +87,6 @@ public:
      *  @return the geminal coefficients in matrix form
      */
     Eigen::MatrixXd asMatrix() const override;
-
-    /**
-     *  @param vector_index     the vector index of the geminal coefficient
-     *
-     *  @return the major (geminal, non-contiguous) index i (i.e. the subscript) in the matrix of the geminal coefficients. Note that i is in [0 ... N_P[
-     */
-    size_t matrixIndexMajor(size_t vector_index) const override;
-
-    /**
-     *  @param vector_index     the vector index of the geminal coefficient
-     *
-     *  @return the minor (virtual orbital, contiguous) index a (i.e. the subscript) in the matrix of the geminal coefficients. Note that a is in [N_P ... K[
-     */
-    size_t matrixIndexMinor(size_t vector_index) const override;
-
-    /**
-     *  @param i        the major (geminal) index (changes in i are not contiguous)
-     *  @param a        the minor (virtual orbital) index (changes in a are contiguous)
-     *
-     *  @return the vector index of the geminal coefficient G_i^a
-     */
-    size_t vectorIndex(size_t i, size_t a) const override;
 
     /**
      *  @param onv      the ONV that is being projected on

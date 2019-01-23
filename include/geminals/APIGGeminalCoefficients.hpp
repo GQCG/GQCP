@@ -21,7 +21,8 @@
 
 #include <Eigen/Dense>
 
-#include "geminals/BaseAPIGGeminalCoefficients.hpp"
+#include "geminals/BaseAPIGVariables.hpp"
+#include "geminals/GeminalCoefficientsInterface.hpp"
 #include "WaveFunction/WaveFunction.hpp"
 
 
@@ -32,7 +33,7 @@ namespace GQCP {
 /**
  *  A class that represents geminal coefficients for an APIG wave function
  */
-class APIGGeminalCoefficients : public BaseAPIGGeminalCoefficients {
+class APIGGeminalCoefficients : public BaseAPIGVariables, public GeminalCoefficientsInterface {
 public:
     // CONSTRUCTORS
     /**
@@ -60,6 +61,10 @@ public:
      *  @param G        the geminal coefficients in a matrix representation
      */
     APIGGeminalCoefficients(const Eigen::MatrixXd& G);
+
+
+    // DESTRUCTOR
+    ~APIGGeminalCoefficients() override;
 
 
     // STATIC PUBLIC METHODS

@@ -33,7 +33,7 @@ namespace GQCP {
  *  Default constructor setting everything to zero
  */
 AP1roGGeminalCoefficients::AP1roGGeminalCoefficients() :
-    BaseAPIGGeminalCoefficients()
+    AP1roGVariables()
 {}
 
 /**
@@ -43,12 +43,8 @@ AP1roGGeminalCoefficients::AP1roGGeminalCoefficients() :
  *  @param K        the number of spatial orbitals
  */
 AP1roGGeminalCoefficients::AP1roGGeminalCoefficients(const Eigen::VectorXd& g, size_t N_P, size_t K) :
-    BaseAPIGGeminalCoefficients(g, N_P, K)
-{
-    if (AP1roGGeminalCoefficients::numberOfGeminalCoefficients(N_P, K) != g.size()) {
-        throw std::invalid_argument("The specified N_P and K are not compatible with the given vector of geminal coefficients.");
-    }
-}
+    AP1roGVariables(g, N_P, K)
+{}
 
 
 /**
@@ -58,9 +54,14 @@ AP1roGGeminalCoefficients::AP1roGGeminalCoefficients(const Eigen::VectorXd& g, s
  *  @param K        the number of spatial orbitals
  */
 AP1roGGeminalCoefficients::AP1roGGeminalCoefficients(size_t N_P, size_t K) :
-    AP1roGGeminalCoefficients(Eigen::VectorXd::Zero(AP1roGGeminalCoefficients::numberOfGeminalCoefficients(N_P, K)), N_P, K)
+    AP1roGVariables(N_P, K)
 {}
 
+
+
+/*
+ *  NAMED CONSTRUCTORS
+ */
 
 /**
  *  @param ham_par      the Hamiltonian parameters
@@ -91,6 +92,13 @@ AP1roGGeminalCoefficients AP1roGGeminalCoefficients::WeakInteractionLimit(const 
 
 
 /*
+ *  DESTRUCTOR
+ */
+AP1roGGeminalCoefficients::~AP1roGGeminalCoefficients() {}
+
+
+
+/*
  *  STATIC PUBLIC METHODS
  */
 
@@ -102,12 +110,7 @@ AP1roGGeminalCoefficients AP1roGGeminalCoefficients::WeakInteractionLimit(const 
  */
 size_t AP1roGGeminalCoefficients::numberOfGeminalCoefficients(size_t N_P, size_t K) {
 
-    // Check if we can have N_P geminals in K orbitals
-    if (N_P >= K) {
-        throw std::invalid_argument("Can't have that many geminals in this few number of orbitals.");
-    }
-
-    return N_P * (K - N_P);
+    return AP1roGVariables::numberOfVariables(N_P, K);
 }
 
 
@@ -129,53 +132,11 @@ Eigen::MatrixXd AP1roGGeminalCoefficients::asMatrix() const {
 
     // Set the right AP1roG coefficient block
     using RowMajorMatrixXd = Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor>;
-    Eigen::RowVectorXd g_row = this->g;
-    RowMajorMatrixXd B = Eigen::Map<RowMajorMatrixXd, Eigen::RowMajor>(g_row.data(), this->N_P, this->K-this->N_P);
+    Eigen::RowVectorXd x_row = this->x;
+    RowMajorMatrixXd B = Eigen::Map<RowMajorMatrixXd, Eigen::RowMajor>(x_row.data(), this->N_P, this->K-this->N_P);
     G.topRightCorner(this->N_P, this->K-this->N_P) = B;
 
     return G;
-}
-
-
-/**
- *  @param vector_index     the vector index of the geminal coefficient
- *
- *  @return the major (geminal, non-contiguous) index i (i.e. the subscript) in the matrix of the geminal coefficients. Note that i is in [0 ... N_P[
- */
-size_t AP1roGGeminalCoefficients::matrixIndexMajor(size_t vector_index) const {
-
-    return GQCP::matrixIndexMajor(vector_index, this->K, this->N_P);
-}
-
-
-/**
- *  @param vector_index     the vector index of the geminal coefficient
- *
- *  @return the minor (virtual orbital, contiguous) index a (i.e. the subscript) in the matrix of the geminal coefficients. Note that a is in [N_P ... K[
- */
-size_t AP1roGGeminalCoefficients::matrixIndexMinor(size_t vector_index) const {
-
-    return GQCP::matrixIndexMinor(vector_index, this->K, this->N_P);
-}
-
-
-/**
- *  @param i        the major (geminal) index (changes in i are not contiguous)
- *  @param a        the minor (virtual orbital) index (changes in a are contiguous)
- *
- *  @return the vector index of the geminal coefficient G_i^a
- */
-size_t AP1roGGeminalCoefficients::vectorIndex(size_t i, size_t a) const {
-
-    if (i >= N_P) {
-        throw std::invalid_argument("The major index i (subscript) must be smaller than N_P.");
-    }
-    if (a < N_P) {
-        throw std::invalid_argument("The minor index a (superscript) must be larger than or equal to N_P.");
-    }
-
-
-    return GQCP::vectorIndex(i, a, this->K, this->N_P);
 }
 
 
