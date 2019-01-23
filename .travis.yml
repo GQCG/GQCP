@@ -1,5 +1,5 @@
 # Specify the virtual environment
-dist: trusty
+dist: xenial
 sudo: true
 
 # Specify the project language and the compiler to test to
