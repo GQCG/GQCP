@@ -69,7 +69,8 @@ install:
 
     # Install a recent version of CMake, Boost and eigen if they are not yet already installed.
     - if [ ! -f $HOME/miniconda/bin/cmake ]; then
-        conda install -c conda-forge cmake boost boost-cpp eigen;
+        conda install -c anaconda boost boost-cpp;
+        conda install -c conda-forge cmake eigen;
         conda install -c gqcg libint;
       else
         echo "Using already installed packages.";
