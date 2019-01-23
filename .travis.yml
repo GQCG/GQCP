@@ -74,7 +74,6 @@ install:
       else
         echo "Using already installed packages.";
       fi
-    #- export BOOST_ROOT=${HOME}/miniconda/include
     - export LIBINT_DATA_PATH=${HOME}/miniconda/share/libint/2.3.1/basis
 
     # Install google benchmark
