@@ -28,11 +28,13 @@ set(PROJECT_SOURCE_FILES
         ${PROJECT_SOURCE_FOLDER}/FockSpace/SelectedFockSpace.cpp
 
         ${PROJECT_SOURCE_FOLDER}/geminals/AP1roG.cpp
+        ${PROJECT_SOURCE_FOLDER}/geminals/AP1roGBivariationalSolver.cpp
         ${PROJECT_SOURCE_FOLDER}/geminals/AP1roGGeminalCoefficients.cpp
         ${PROJECT_SOURCE_FOLDER}/geminals/AP1roGJacobiOrbitalOptimizer.cpp
         ${PROJECT_SOURCE_FOLDER}/geminals/AP1roGPSESolver.cpp
         ${PROJECT_SOURCE_FOLDER}/geminals/AP1roGVariables.cpp
         ${PROJECT_SOURCE_FOLDER}/geminals/APIGGeminalCoefficients.cpp
+        ${PROJECT_SOURCE_FOLDER}/geminals/BaseAP1roGSolver.cpp
         ${PROJECT_SOURCE_FOLDER}/geminals/BaseAPIGVariables.cpp
         ${PROJECT_SOURCE_FOLDER}/geminals/GeminalCoefficientsInterface.cpp
 
@@ -119,11 +121,13 @@ set(PROJECT_INCLUDE_FILES
         ${PROJECT_INCLUDE_FOLDER}/FockSpace/ProductFockSpace.hpp
 
         ${PROJECT_INCLUDE_FOLDER}/geminals/AP1roG.hpp
+        ${PROJECT_INCLUDE_FOLDER}/geminals/AP1roGBivariationalSolver.hpp
         ${PROJECT_INCLUDE_FOLDER}/geminals/AP1roGGeminalCoefficients.hpp
         ${PROJECT_INCLUDE_FOLDER}/geminals/AP1roGJacobiOrbitalOptimizer.hpp
         ${PROJECT_INCLUDE_FOLDER}/geminals/AP1roGPSESolver.hpp
         ${PROJECT_INCLUDE_FOLDER}/geminals/AP1roGVariables.hpp
         ${PROJECT_INCLUDE_FOLDER}/geminals/APIGGeminalCoefficients.hpp
+        ${PROJECT_INCLUDE_FOLDER}/geminals/BaseAP1roGSolver.hpp
         ${PROJECT_INCLUDE_FOLDER}/geminals/BaseAPIGVariables.hpp
         ${PROJECT_INCLUDE_FOLDER}/geminals/GeminalCoefficientsInterface.hpp
 

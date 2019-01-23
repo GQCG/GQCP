@@ -21,10 +21,11 @@
 #include <queue>
 
 #include "optimization/NewtonMinimizer.hpp"
+#include "geminals/AP1roG.hpp"
+#include "geminals/AP1roGPSESolver.hpp"
 
 #include <boost/math/constants/constants.hpp>
 
-#include "geminals/AP1roGPSESolver.hpp"
 
 
 namespace GQCP {
@@ -42,9 +43,7 @@ namespace GQCP {
  *  The initial guess for the geminal coefficients is zero
  */
 AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer(size_t N_P, const HamiltonianParameters& ham_par, double oo_threshold, const size_t maximum_number_of_oo_iterations) :
-    K (ham_par.get_K()),
-    ham_par (ham_par),
-    N_P (N_P),
+    BaseAP1roGSolver(N_P, ham_par),
     oo_threshold (oo_threshold),
     maximum_number_of_oo_iterations (maximum_number_of_oo_iterations)
 {}
@@ -59,13 +58,10 @@ AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer(size_t N_P, const Ham
  *  The initial guess for the geminal coefficients is zero
  */
 AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer(const Molecule& molecule, const HamiltonianParameters& ham_par, double oo_threshold, const size_t maximum_number_of_oo_iterations) :
-    AP1roGJacobiOrbitalOptimizer(molecule.get_N()/2, ham_par, oo_threshold, maximum_number_of_oo_iterations)
-{
-    // Check if we have an even number of electrons
-    if ((molecule.get_N() % 2) != 0) {
-        throw std::invalid_argument("The given number of electrons is odd.");
-    }
-}
+    BaseAP1roGSolver(molecule, ham_par),
+    oo_threshold (oo_threshold),
+    maximum_number_of_oo_iterations (maximum_number_of_oo_iterations)
+{}
 
 
 

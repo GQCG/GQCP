@@ -17,6 +17,7 @@
 // 
 #include "geminals/AP1roGPSESolver.hpp"
 
+#include "geminals/AP1roG.hpp"
 #include "optimization/NewtonSystemOfEquationsSolver.hpp"
 
 
@@ -26,17 +27,16 @@ namespace GQCP {
 /*
  * CONSTRUCTORS
  */
+
 /**
  *  @param N_P          the number of electrons
  *  @param ham_par      Hamiltonian parameters in an orthonormal orbital basis
  *  @param G            the initial guess for the AP1roG gemial coefficients
  */
 AP1roGPSESolver::AP1roGPSESolver(size_t N_P, const HamiltonianParameters& ham_par, const AP1roGGeminalCoefficients& G) :
-    K (ham_par.get_K()),
-    ham_par (ham_par),
-    N_P (N_P),
-    geminal_coefficients (G)
+    BaseAP1roGSolver(N_P, ham_par, G)
 {}
+
 
 /**
  *  @param N_P          the number of electrons
@@ -45,7 +45,7 @@ AP1roGPSESolver::AP1roGPSESolver(size_t N_P, const HamiltonianParameters& ham_pa
  *  The initial guess for the geminal coefficients is zero
  */
 AP1roGPSESolver::AP1roGPSESolver(size_t N_P, const HamiltonianParameters& ham_par) :
-    AP1roGPSESolver(N_P, ham_par, AP1roGGeminalCoefficients(N_P, ham_par.get_K()))
+    BaseAP1roGSolver(N_P, ham_par)
 {}
 
 
@@ -55,12 +55,8 @@ AP1roGPSESolver::AP1roGPSESolver(size_t N_P, const HamiltonianParameters& ham_pa
  *  @param G            the initial guess for the AP1roG gemial coefficients
  */
 AP1roGPSESolver::AP1roGPSESolver(const Molecule& molecule, const HamiltonianParameters& ham_par, const AP1roGGeminalCoefficients& G) :
-    AP1roGPSESolver(molecule.get_N()/2, ham_par, G)
+    BaseAP1roGSolver(molecule, ham_par, G)
 {
-    // Check if we have an even number of electrons
-    if ((molecule.get_N() % 2) != 0) {
-        throw std::invalid_argument("The given number of electrons is odd.");
-    }
 }
 
 
@@ -71,7 +67,7 @@ AP1roGPSESolver::AP1roGPSESolver(const Molecule& molecule, const HamiltonianPara
  *  The initial guess for the geminal coefficients is zero
  */
 AP1roGPSESolver::AP1roGPSESolver(const Molecule& molecule, const HamiltonianParameters& ham_par) :
-    AP1roGPSESolver(molecule, ham_par, AP1roGGeminalCoefficients(molecule.get_N()/2, ham_par.get_K()))
+    BaseAP1roGSolver(molecule, ham_par)
 {}
 
 
@@ -79,6 +75,7 @@ AP1roGPSESolver::AP1roGPSESolver(const Molecule& molecule, const HamiltonianPara
 /*
  *  PUBLIC METHODS
  */
+
 /**
  *  @param G        the AP1roG geminal coefficients
  *  @param i        the subscript for the coordinate function

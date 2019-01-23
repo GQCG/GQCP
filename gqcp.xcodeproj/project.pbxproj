@@ -507,6 +507,10 @@
 		5643B80A21F868A600E1741F /* AP1roGVariables.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5643B80821F868A600E1741F /* AP1roGVariables.hpp */; };
 		5643B81121F876D100E1741F /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
 		5643B81721F876F500E1741F /* AP1roGVariables_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5643B80621F867C200E1741F /* AP1roGVariables_test.cpp */; };
+		5643B81C21F87F6700E1741F /* AP1roGBivariationalSolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5643B81A21F87F6700E1741F /* AP1roGBivariationalSolver.cpp */; };
+		5643B81D21F87F6700E1741F /* AP1roGBivariationalSolver.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5643B81B21F87F6700E1741F /* AP1roGBivariationalSolver.hpp */; };
+		5643B82021F88A0B00E1741F /* BaseAP1roGSolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5643B81E21F88A0B00E1741F /* BaseAP1roGSolver.cpp */; };
+		5643B82121F88A0B00E1741F /* BaseAP1roGSolver.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5643B81F21F88A0B00E1741F /* BaseAP1roGSolver.hpp */; };
 		566D229E21B7ED2500F8EB91 /* oo_doci.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FAA721B02E48002C5D40 /* oo_doci.cpp */; };
 		56B49B7F21F2128D000F543B /* AP1roGGeminalCoefficients.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56B49B7921F2128C000F543B /* AP1roGGeminalCoefficients.cpp */; };
 		56B49B8021F2128D000F543B /* AP1roG.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56B49B7A21F2128C000F543B /* AP1roG.cpp */; };
@@ -2577,6 +2581,10 @@
 		5643B80721F868A600E1741F /* AP1roGVariables.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AP1roGVariables.cpp; sourceTree = "<group>"; };
 		5643B80821F868A600E1741F /* AP1roGVariables.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AP1roGVariables.hpp; sourceTree = "<group>"; };
 		5643B81621F876D100E1741F /* AP1roGVariables_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AP1roGVariables_test; sourceTree = BUILT_PRODUCTS_DIR; };
+		5643B81A21F87F6700E1741F /* AP1roGBivariationalSolver.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AP1roGBivariationalSolver.cpp; sourceTree = "<group>"; };
+		5643B81B21F87F6700E1741F /* AP1roGBivariationalSolver.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AP1roGBivariationalSolver.hpp; sourceTree = "<group>"; };
+		5643B81E21F88A0B00E1741F /* BaseAP1roGSolver.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BaseAP1roGSolver.cpp; sourceTree = "<group>"; };
+		5643B81F21F88A0B00E1741F /* BaseAP1roGSolver.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BaseAP1roGSolver.hpp; sourceTree = "<group>"; };
 		56B49B7921F2128C000F543B /* AP1roGGeminalCoefficients.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AP1roGGeminalCoefficients.cpp; sourceTree = "<group>"; };
 		56B49B7A21F2128C000F543B /* AP1roG.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AP1roG.cpp; sourceTree = "<group>"; };
 		56B49B7B21F2128C000F543B /* AP1roGJacobiOrbitalOptimizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AP1roGJacobiOrbitalOptimizer.cpp; sourceTree = "<group>"; };
@@ -3933,11 +3941,13 @@
 			isa = PBXGroup;
 			children = (
 				56272DB721B6CBFA008BEA47 /* AP1roG.hpp */,
+				5643B81B21F87F6700E1741F /* AP1roGBivariationalSolver.hpp */,
 				56272DB421B6CBFA008BEA47 /* AP1roGGeminalCoefficients.hpp */,
 				56272DB321B6CBFA008BEA47 /* AP1roGJacobiOrbitalOptimizer.hpp */,
 				56272DB521B6CBFA008BEA47 /* AP1roGPSESolver.hpp */,
 				5643B80821F868A600E1741F /* AP1roGVariables.hpp */,
 				56272DB821B6CBFA008BEA47 /* APIGGeminalCoefficients.hpp */,
+				5643B81F21F88A0B00E1741F /* BaseAP1roGSolver.hpp */,
 				5643B7FB21F85B1E00E1741F /* BaseAPIGVariables.hpp */,
 				5643B80321F85E9000E1741F /* GeminalCoefficientsInterface.hpp */,
 			);
@@ -3948,11 +3958,13 @@
 			isa = PBXGroup;
 			children = (
 				56B49B7A21F2128C000F543B /* AP1roG.cpp */,
+				5643B81A21F87F6700E1741F /* AP1roGBivariationalSolver.cpp */,
 				56B49B7921F2128C000F543B /* AP1roGGeminalCoefficients.cpp */,
 				56B49B7B21F2128C000F543B /* AP1roGJacobiOrbitalOptimizer.cpp */,
 				56B49B7E21F2128D000F543B /* AP1roGPSESolver.cpp */,
 				5643B80721F868A600E1741F /* AP1roGVariables.cpp */,
 				56B49B7C21F2128D000F543B /* APIGGeminalCoefficients.cpp */,
+				5643B81E21F88A0B00E1741F /* BaseAP1roGSolver.cpp */,
 				5643B7FA21F85B1E00E1741F /* BaseAPIGVariables.cpp */,
 				5643B80221F85E9000E1741F /* GeminalCoefficientsInterface.cpp */,
 			);
@@ -4093,6 +4105,7 @@
 				56272DBB21B6CBFA008BEA47 /* AP1roGPSESolver.hpp in Headers */,
 				5614FA3521B029FB002C5D40 /* BaseOperator.hpp in Headers */,
 				56FBA0C021C2B4AF0084F088 /* Eigenpair.hpp in Headers */,
+				5643B81D21F87F6700E1741F /* AP1roGBivariationalSolver.hpp in Headers */,
 				5614FA4221B029FB002C5D40 /* Hubbard.hpp in Headers */,
 				56FBA0C221C2B4AF0084F088 /* BaseMinimizer.hpp in Headers */,
 				5614FA1D21B029FB002C5D40 /* DOCIRDMBuilder.hpp in Headers */,
@@ -4137,6 +4150,7 @@
 				5614FA3421B029FB002C5D40 /* OneElectronOperator.hpp in Headers */,
 				5643B7E621F7073200E1741F /* SpinUnresolvedWaveFunction.hpp in Headers */,
 				56272DBA21B6CBFA008BEA47 /* AP1roGGeminalCoefficients.hpp in Headers */,
+				5643B82121F88A0B00E1741F /* BaseAP1roGSolver.hpp in Headers */,
 				5614FA1521B029FB002C5D40 /* ONV.hpp in Headers */,
 				5614FA3721B029FB002C5D40 /* CISolver.hpp in Headers */,
 				5614FA2321B029FB002C5D40 /* BaseRDMBuilder.hpp in Headers */,
@@ -5920,6 +5934,7 @@
 				56FBA0D721C2B4C90084F088 /* DavidsonSolver.cpp in Sources */,
 				5614FA5221B029FB002C5D40 /* DIISRHFSCFSolver.cpp in Sources */,
 				5614FA5C21B029FB002C5D40 /* RDMCalculator.cpp in Sources */,
+				5643B82021F88A0B00E1741F /* BaseAP1roGSolver.cpp in Sources */,
 				5614FA4C21B029FB002C5D40 /* BaseFockSpace.cpp in Sources */,
 				5614FA5921B029FB002C5D40 /* FCIRDMBuilder.cpp in Sources */,
 				5614FA6C21B029FB002C5D40 /* WaveFunctionReader.cpp in Sources */,
@@ -5944,6 +5959,7 @@
 				56FBA0D321C2B4C90084F088 /* BaseSystemOfEquationsSolver.cpp in Sources */,
 				5614FA6B21B029FB002C5D40 /* ERJacobiLocalizer.cpp in Sources */,
 				56FBA0DC21C2B4C90084F088 /* BaseMinimizer.cpp in Sources */,
+				5643B81C21F87F6700E1741F /* AP1roGBivariationalSolver.cpp in Sources */,
 				56B49B8421F2128D000F543B /* AP1roGPSESolver.cpp in Sources */,
 				5614FA7121B029FB002C5D40 /* Hubbard.cpp in Sources */,
 				5614FA6A21B029FB002C5D40 /* ERNewtonLocalizer.cpp in Sources */,
