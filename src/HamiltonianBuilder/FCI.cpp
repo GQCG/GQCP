@@ -42,16 +42,14 @@ FCI::FCI(const ProductFockSpace& fock_space) :
  */
 
 /**
- *  Calculates all Hamiltonian elements for operators exclusively operating for one spin function
- *  and stores these in a sparse matrix
+ *  Calculates the matrix Hamiltonian in the alpha or beta Fock space
  *
  *  @param fock_space                   Fock space for the spin function specific Hamiltonian
  *  @param hamiltonian_parameters       The Hamiltonian parameters in an orthonormal orbital basis
  *
  *  @return The sparse matrix containing all Hamiltonian elements for the Fock space pertaining to a single spin
  */
-Eigen::SparseMatrix<double> FCI::calculateSpinSeparatedHamiltonian(FockSpace& fock_space,
-                                                              const HamiltonianParameters& hamiltonian_parameters) const {
+Eigen::SparseMatrix<double> FCI::calculateSpinSeparatedHamiltonian(const FockSpace& fock_space, const HamiltonianParameters& hamiltonian_parameters) const {
     size_t K = fock_space.get_K();
     size_t N = fock_space.get_N();
     size_t dim = fock_space.get_dimension();
@@ -67,7 +65,7 @@ Eigen::SparseMatrix<double> FCI::calculateSpinSeparatedHamiltonian(FockSpace& fo
         if (I > 0) {
             fock_space.setNextONV(onv);
         }
-        int sign1 = -1;
+        int sign1 = -1;  // start with -1 because we flip at the start of the annihilation (so we start at 1, followed by:  -1, 1, ...)
         for (size_t e1 = 0; e1 < N; e1++) {  // A1 (annihilation 1)
 
             sign1 *= -1;
@@ -239,7 +237,7 @@ Eigen::SparseMatrix<double> FCI::calculateSpinSeparatedHamiltonian(FockSpace& fo
 }
 
 /**
- *  Calculates all one-electron couplings for a (spin) Fock space
+ *  Calculates theta(rs): all one-electron couplings for a (spin) Fock space
  *  and attributes two-electron integrals based on the one-electron coupling and two chosen fixed indexes
  *
  *  @param r                        First index of the two-electron integral
@@ -249,14 +247,14 @@ Eigen::SparseMatrix<double> FCI::calculateSpinSeparatedHamiltonian(FockSpace& fo
  *
  *  @return The sparse matrix containing the calculated two-electron integrals mapped to one-electron couplings
  */
-Eigen::SparseMatrix<double> FCI::calculateTwoElectronIntermediate(size_t r, size_t s, const HamiltonianParameters& hamiltonian_parameters, FockSpace& fock_space) const {
+Eigen::SparseMatrix<double> FCI::calculateTwoElectronIntermediate(size_t r, size_t s, const HamiltonianParameters& hamiltonian_parameters, const FockSpace& fock_space) const {
 
     const bool do_diagonal = (r != s);
 
     size_t K = fock_space.get_K();
     size_t N = fock_space.get_N();
     size_t dim = fock_space.get_dimension();
-    Eigen::SparseMatrix<double> sparseMatrix(dim, dim);
+    Eigen::SparseMatrix<double> sparse_matrix(dim, dim);
     std::vector<Eigen::Triplet<double>> triplet_vector;
 
     size_t mod = 0;
@@ -297,34 +295,32 @@ Eigen::SparseMatrix<double> FCI::calculateTwoElectronIntermediate(size_t r, size
                 // perform a shift
                 fock_space.shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign_e2);
             }  //  (creation)
-
-
         } // e1 loop (annihilation)
-
 
         // Prevent last permutation
         if (I < dim - 1) {
             fock_space.setNextONV(onv);
         }
     }
-    sparseMatrix.setFromTriplets(triplet_vector.begin(),triplet_vector.end());
-    return sparseMatrix;
+    sparse_matrix.setFromTriplets(triplet_vector.begin(),triplet_vector.end());
+    return sparse_matrix;
 }
 
 /**
- *  Calculates all one-electron couplings for each annihilation-creation pair in the (spin) Fock space
+ *  Calculates sigma(pq) + sigma(qp)'s: all one-electron couplings for each annihilation-creation pair in the (spin) Fock space
  *  and stores them in sparse matrices for each combination pair
  *
  *  @return vector of sparse matrices containing the one-electron couplings for the (spin) Fock space
+ *  Ordered as: sigma(00), sigma(01) + sigma(10), sigma(02)+ sigma(20), ...
  */
-std::vector<Eigen::SparseMatrix<double>> FCI::calculateOneElectronCouplingsIntermediates(FockSpace& fock_space) const {
+std::vector<Eigen::SparseMatrix<double>> FCI::calculateOneElectronCouplingsIntermediates(const FockSpace& fock_space) const {
 
     size_t K = fock_space.get_K();
     size_t N = fock_space.get_N();
     size_t dim = fock_space.get_dimension();
 
     std::vector<std::vector<Eigen::Triplet<double>>> sparse_entries(K*(K+1)/2);
-    std::vector<Eigen::SparseMatrix<double>> sparse_matrixes(K*(K+1)/2, Eigen::SparseMatrix<double>(dim, dim));
+    std::vector<Eigen::SparseMatrix<double>> sparse_matrices(K*(K+1)/2, Eigen::SparseMatrix<double>(dim, dim));
 
     // Reserve appropriate amount of entries
     size_t reservation_size = FockSpace::calculateDimension(K-1, N-1);
@@ -371,10 +367,10 @@ std::vector<Eigen::SparseMatrix<double>> FCI::calculateOneElectronCouplingsInter
     }
 
     for (size_t k = 0; k < K*(K+1)/2 ; k++){
-        sparse_matrixes[k].setFromTriplets(sparse_entries[k].begin(), sparse_entries[k].end());
+        sparse_matrices[k].setFromTriplets(sparse_entries[k].begin(), sparse_entries[k].end());
     }
 
-    return sparse_matrixes;
+    return sparse_matrices;
 }
 
 
@@ -426,6 +422,7 @@ Eigen::MatrixXd FCI::constructHamiltonian(const HamiltonianParameters& hamiltoni
 
         for (int i = 0; i < alpha_coupling.outerSize(); ++i){
             for (Eigen::SparseMatrix<double>::InnerIterator it(alpha_coupling, i); it; ++it) {
+                // it.value sigma(pp) element multiplied with the sparse matrix theta(pp) : beta_two_electron_intermediate
                 total_hamiltonian.block(it.row() * dim_beta, it.col() * dim_beta, dim_beta, dim_beta) += it.value()*beta_two_electron_intermediate;
 
             }
@@ -436,6 +433,7 @@ Eigen::MatrixXd FCI::constructHamiltonian(const HamiltonianParameters& hamiltoni
             const Eigen::SparseMatrix<double> beta_two_electron_intermediate = calculateTwoElectronIntermediate(p, q, hamiltonian_parameters, fock_space_beta);
             for (int i = 0; i < alpha_coupling.outerSize(); ++i){
                 for (Eigen::SparseMatrix<double>::InnerIterator it(alpha_coupling, i); it; ++it) {
+                    // it.value (sigma(pq) + sigma(qp)) element multiplied with the sparse matrix theta(pq) : beta_two_electron_intermediate
                     total_hamiltonian.block(it.row() * dim_beta, it.col() * dim_beta, dim_beta, dim_beta) += it.value()*beta_two_electron_intermediate;
                 }
             }
@@ -475,8 +473,10 @@ Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters& hamiltonia
 
 
     for (size_t p = 0; p<K; p++) {
+        // sigma(pp) * X * theta(pp)
         matvecmap += this->alpha_couplings[p*(K+K+1-p)/2] * xmap * calculateTwoElectronIntermediate(p, p, hamiltonian_parameters, fock_space_beta);
         for (size_t q = p + 1; q<K; q++) {
+            // (sigma(pq) + sigma(qp)) * X * theta(pq)
             matvecmap += this->alpha_couplings[p*(K+K+1-p)/2 + q - p] * xmap * calculateTwoElectronIntermediate(p, q, hamiltonian_parameters, fock_space_beta);
         }
     }

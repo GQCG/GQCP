@@ -37,19 +37,17 @@ private:
 
     // PRIVATE METHODS
     /**
-     *  Calculates all Hamiltonian elements for operators exclusively operating for one spin function
-     *  and stores these in a sparse matrix
+     *  Calculates the matrix Hamiltonian in the alpha or beta Fock space
      *
      *  @param fock_space                   Fock space for the spin function specific Hamiltonian
      *  @param hamiltonian_parameters       The Hamiltonian parameters in an orthonormal orbital basis
      *
      *  @return The sparse matrix containing all Hamiltonian elements for the Fock space pertaining to a single spin
      */
-    Eigen::SparseMatrix<double> calculateSpinSeparatedHamiltonian(FockSpace& fock_space,
-                             const HamiltonianParameters& hamiltonian_parameters) const;
+    Eigen::SparseMatrix<double> calculateSpinSeparatedHamiltonian(const FockSpace& fock_space, const HamiltonianParameters& hamiltonian_parameters) const;
 
     /**
-     *  Calculates all one-electron couplings for a (spin) Fock space
+     *  Calculates theta[rs]: all one-electron couplings for a (spin) Fock space
      *  and attributes two-electron integrals based on the one-electron coupling and two chosen fixed indexes
      *
      *  @param r                        First index of the two-electron integral
@@ -59,15 +57,16 @@ private:
      *
      *  @return The sparse matrix containing the calculated two-electron integrals mapped to one-electron couplings
      */
-    Eigen::SparseMatrix<double> calculateTwoElectronIntermediate(size_t r, size_t s, const HamiltonianParameters& hamiltonian_parameters, FockSpace& fock_space) const;
+    Eigen::SparseMatrix<double> calculateTwoElectronIntermediate(size_t r, size_t s, const HamiltonianParameters& hamiltonian_parameters, const FockSpace& fock_space) const;
 
     /**
-     *  Calculates all one-electron couplings for each annihilation-creation pair in the (spin) Fock space
+     *  Calculates sigma(pq) + sigma(qp)'s: all one-electron couplings for each annihilation-creation pair in the (spin) Fock space
      *  and stores them in sparse matrices for each combination pair
      *
      *  @return vector of sparse matrices containing the one-electron couplings for the (spin) Fock space
+     *  Ordered as: sigma(00), sigma(01) + sigma(10), sigma(02)+ sigma(20), ...
      */
-    std::vector<Eigen::SparseMatrix<double>> calculateOneElectronCouplingsIntermediates(FockSpace& fock_space) const;
+    std::vector<Eigen::SparseMatrix<double>> calculateOneElectronCouplingsIntermediates(const FockSpace& fock_space) const;
 public:
 
     // CONSTRUCTORS
