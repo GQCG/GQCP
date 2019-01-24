@@ -72,5 +72,67 @@ double calculateOverlap(const AP1roGGeminalCoefficients& G, const BivariationalC
 }
 
 
+/**
+ *  @param G            the AP1roG geminal coefficients
+ *  @param Q            the AP1roG bivariational coefficients
+ *
+ *  @return the AP1roG 1-DM
+ */
+OneRDM calculate1RDM(const AP1roGGeminalCoefficients& G, const BivariationalCoefficients& Q) {
+
+    Eigen::MatrixXd D = Eigen::MatrixXd::Zero(G.get_K(), G.get_K());
+    double overlap = calculateOverlap(G, Q);
+
+    AP1roGVariables q = Q.q;
+    size_t N_P = G.get_N_P();
+    size_t K = G.get_K();
+
+
+    // KISS-implementation of the formulas
+
+    // Occupied part
+    for (size_t i = 0; i < N_P; i++) {
+        for (size_t j = 0; j < N_P; j++) {
+
+            if (i == j) {
+                double intermediate = Q.q0;
+
+                for (size_t k = 0; k < N_P; k++) {
+                    for (size_t a = N_P; a < K; a++) {
+                        if (k != i) {
+                            intermediate += q(k,a) * G(k,a);
+                        }
+                    }
+                }
+
+                D(i,j) = 2 / overlap * intermediate;
+            }
+
+        }
+    }
+
+
+    // Virtual part
+    for (size_t a = N_P; a < K; a++) {
+        for (size_t b = N_P; b < K; b++) {
+
+            if (a == b) {
+                double intermediate = 0.0;
+
+                for (size_t i = 0; i < N_P; i++) {
+                    intermediate += q(i,a) * G(i,a);
+                }
+
+                D(a,b) = 2 / overlap * intermediate;
+            }
+
+        }
+    }
+
+
+    return OneRDM(D);
+}
+
+
 
 }  // namespace GQCP
