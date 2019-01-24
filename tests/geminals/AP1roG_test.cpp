@@ -22,6 +22,12 @@
 
 #include "geminals/AP1roG.hpp"
 
+#include "geminals/AP1roGBivariationalSolver.hpp"
+#include "RHF/PlainRHFSCFSolver.hpp"
+#include "properties/expectation_values.hpp"
+
+
+
 
 BOOST_AUTO_TEST_CASE ( calculateOverlap ) {
 
@@ -59,4 +65,36 @@ BOOST_AUTO_TEST_CASE ( calculateOverlap ) {
 
     // Check with manual formula
     BOOST_CHECK(std::abs(GQCP::calculateOverlap(G, Q) - (1 + 0.25 * N_P_ * (N_P_ + 1) * (K_ * (K_ + 1) - N_P_ * (N_P_ + 1)))) < 1.0e-12);
+}
+
+
+BOOST_AUTO_TEST_CASE ( energy_as_contraction ) {
+
+    auto h2 = GQCP::Molecule::Readxyz("data/h2_olsens.xyz");
+    auto ao_mol_ham_par = GQCP::HamiltonianParameters::Molecular(h2, "6-31G**");
+
+    GQCP::PlainRHFSCFSolver plain_scf_solver (ao_mol_ham_par, h2);
+    plain_scf_solver.solve();
+    auto rhf = plain_scf_solver.get_solution();
+
+    auto mol_ham_par = GQCP::HamiltonianParameters(ao_mol_ham_par, rhf.get_C());
+
+
+    // Solve the AP1roG bivariational equations with the initial guess of the geminal coefficients being 0
+    GQCP::AP1roGBivariationalSolver bivar_solver (h2, mol_ham_par);
+    bivar_solver.solve();
+    double electronic_energy = bivar_solver.get_electronic_energy();
+    auto G = bivar_solver.get_geminal_coefficients();
+    auto Q = bivar_solver.get_bivariational_coefficients();
+
+
+    // Calculate the 1- and 2-RDM for bivariational AP1roG
+    auto D = GQCP::calculate1RDM(G, Q);
+    auto d = GQCP::calculate2RDM(G, Q);
+
+    double electronic_energy_by_contraction = GQCP::calculateExpectationValue(mol_ham_par, D, d) - mol_ham_par.get_scalar();  // only the electronic energy
+    std::cout << electronic_energy << std::endl;
+    std::cout << electronic_energy_by_contraction << std::endl;
+
+    BOOST_CHECK(std::abs(electronic_energy_by_contraction - electronic_energy) < 1.0e-12);
 }

@@ -160,7 +160,7 @@ Eigen::MatrixXd calculateNumber2RDM(const AP1roGGeminalCoefficients& G, const Bi
 
                 double intermediate = 0.0;
 
-                for (size_t c = N_P + 1; c < K; c++) {
+                for (size_t c = N_P; c < K; c++) {
                     intermediate += Q.q(i,c) * G(i,c) + Q.q(j,c) * G(j,c);
 
                     if (i == j) {
@@ -172,7 +172,7 @@ Eigen::MatrixXd calculateNumber2RDM(const AP1roGGeminalCoefficients& G, const Bi
             }  // occupied-occupied block
 
 
-            else if ((p > N_P) && (q > N_P)) {  // virtual-virtual block
+            else if ((p >= N_P) && (q >= N_P)) {  // virtual-virtual block
                 size_t a = p;
                 size_t b = q;
 
@@ -256,7 +256,7 @@ Eigen::MatrixXd calculatePair2RDM(const AP1roGGeminalCoefficients& G, const Biva
             }  // occupied-occupied block
 
 
-            else if ((p < N_P) && (q > N_P)) {  // occupied-virtual block
+            else if ((p < N_P) && (q >= N_P)) {  // occupied-virtual block
                 size_t i = p;
                 size_t a = q;
 
@@ -273,7 +273,7 @@ Eigen::MatrixXd calculatePair2RDM(const AP1roGGeminalCoefficients& G, const Biva
             }  // occupied-virtual
 
 
-            else if ((p > N_P) && (q < N_P)) {  // virtual-occupied block
+            else if ((p >= N_P) && (q < N_P)) {  // virtual-occupied block
                 size_t a = p;
                 size_t i = q;
 
@@ -318,7 +318,7 @@ TwoRDM calculate2RDM(const AP1roGGeminalCoefficients& G, const BivariationalCoef
 
     // KISS-implementation
     for (size_t p = 0; p < K; p++) {
-        for (size_t q = 0; p < K; q++) {
+        for (size_t q = 0; q < K; q++) {
             for (size_t r = 0; r < K; r++) {
                 for (size_t s = 0; s < K; s++) {
 
