@@ -51,4 +51,26 @@ double calculateAP1roGEnergy(const AP1roGGeminalCoefficients& G, const Hamiltoni
 }
 
 
+/**
+ *  @param G            the AP1roG geminal coefficients
+ *  @param Q            the AP1roG bivariational coefficients
+ *
+ *  @return the overlap between the bivariational coefficients and the geminal coefficients, i.e. <Phi(q)|Psi(p)>
+ */
+double calculateOverlap(const AP1roGGeminalCoefficients& G, const BivariationalCoefficients& Q) {
+
+    double overlap = Q.q0;
+    AP1roGVariables q = Q.q;
+
+    for (size_t i = 0; i < G.get_N_P(); i++) {
+        for (size_t a = G.get_N_P(); a < G.get_K(); a++) {
+            overlap += q(i,a) * G(i,a);
+        }
+    }
+
+    return overlap;
+}
+
+
+
 }  // namespace GQCP

@@ -4,19 +4,10 @@
 
 #include "geminals/BaseAP1roGSolver.hpp"
 #include "geminals/AP1roGVariables.hpp"
+#include "geminals/BivariationalCoefficients.hpp"
 
 
 namespace GQCP {
-
-
-/**
- *  A struct that holds the solutions (q0, q_i^a) to the bivariational equations
- */
-struct BivariationalCoefficients {
-    double q0;
-    AP1roGVariables q;
-};
-
 
 
 /**
