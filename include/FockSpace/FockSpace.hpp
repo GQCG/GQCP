@@ -112,6 +112,30 @@ public:
     void transformONV(ONV& onv, size_t address) const;
 
     /**
+     *  @param onv       the ONV
+     *
+     *  @return the amount of ONVs (with a larger address) this ONV would couple with given a one electron operator
+     */
+    size_t countOneElectronCouplings(const ONV& onv) const;
+
+    /**
+     *  @param onv       the ONV
+     *
+     *  @return the amount of ONVs (with a larger address) this ONV would couple with given a two electron operator
+     */
+    size_t countTwoElectronCouplings(const ONV& onv) const;
+
+    /**
+     *  @return the amount non-zero (non-diagonal) couplings of a one electron coupling scheme in the Fock space
+     */
+    size_t countTotalOneElectronCouplings() const;
+
+    /**
+     *  @return the amount non-zero (non-diagonal) couplings of a two electron coupling scheme in the Fock space
+     */
+    size_t countTotalTwoElectronCouplings() const;
+
+    /**
      *  Find the next unoccupied orbital in a given ONV,
      *  update the electron count, orbital index,
      *  and update the address by calculating a shift
@@ -169,6 +193,36 @@ public:
             // move to the next electron and orbital
             e++;
             q++;
+            sign *= -1;
+        }
+    }
+
+    /**
+     *  Find the previous unoccupied orbital in a given ONV,
+     *  update the electron count, orbital index, sign,
+     *  and update the address by calculating a shift
+     *  resulting from a difference between the initial vertex weights for the encountered occupied orbitals
+     *  and the corrected vertex weights accounting for newly created electrons
+     *
+     *  @tparam T        the amount of newly created electrons
+     *
+     *  @param address   the address which is updated
+     *  @param onv       the ONV for which we search the next unoccupied orbital
+     *  @param q         the orbital index
+     *  @param e         the electron count
+     *  @param sign      the sign which is flipped for each iteration
+     */
+    template<int T>
+    void shiftUntilPreviousUnoccupiedOrbital(const ONV &onv, size_t &address, size_t &q, size_t &e, int &sign) const {
+
+        // Test whether the current orbital index is occupied
+        while (e != -1 && q == onv.get_occupation_index(e)) {
+
+            int shift = static_cast<int>(this->get_vertex_weights(q, e + 1 + T)) - static_cast<int>(this->get_vertex_weights(q, e + 1));
+            address += shift;
+
+            e--;
+            q--;
             sign *= -1;
         }
     }
