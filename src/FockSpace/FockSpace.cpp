@@ -215,7 +215,7 @@ void FockSpace::transformONV(ONV& onv, size_t address) const {
  *
  *  @return the amount of ONVs (with a larger address) this ONV would couple with given a one electron operator
  */
-size_t FockSpace::countOneElectronCouplings(ONV &onv) const {
+size_t FockSpace::countOneElectronCouplings(const ONV& onv) const {
     size_t V = K-N;  // amount of virtual orbitals
     size_t coupling_count = 0;
 
@@ -233,7 +233,7 @@ size_t FockSpace::countOneElectronCouplings(ONV &onv) const {
  *
  *  @return the amount of ONVs (with a larger address) this ONV would couple with given a two electron operator
  */
-size_t FockSpace::countTwoElectronCouplings(ONV &onv) const {
+size_t FockSpace::countTwoElectronCouplings(const ONV& onv) const {
 
     size_t V = K-N; // amount of virtual orbitals
     size_t coupling_count = 0;

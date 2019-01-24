@@ -116,14 +116,14 @@ public:
      *
      *  @return the amount of ONVs (with a larger address) this ONV would couple with given a one electron operator
      */
-    size_t countOneElectronCouplings(ONV &onv) const;
+    size_t countOneElectronCouplings(const ONV& onv) const;
 
     /**
      *  @param onv       the ONV
      *
      *  @return the amount of ONVs (with a larger address) this ONV would couple with given a two electron operator
      */
-    size_t countTwoElectronCouplings(ONV &onv) const;
+    size_t countTwoElectronCouplings(const ONV& onv) const;
 
     /**
      *  @return the amount non-zero (non-diagonal) couplings of a one electron coupling scheme in the Fock space
