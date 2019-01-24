@@ -135,4 +135,85 @@ OneRDM calculate1RDM(const AP1roGGeminalCoefficients& G, const BivariationalCoef
 
 
 
+/**
+ *  @param G            the AP1roG geminal coefficients
+ *  @param Q            the AP1roG bivariational coefficients
+ *
+ *  @return the AP1roG number 2-RDM (the Delta-matrix in the notes)
+ */
+Eigen::MatrixXd calculateNumber2RDM(const AP1roGGeminalCoefficients& G, const BivariationalCoefficients& Q) {
+
+    size_t N_P = G.get_N_P();
+    size_t K = G.get_K();
+    double overlap = calculateOverlap(G, Q);
+
+    Eigen::MatrixXd Delta = Eigen::MatrixXd::Zero(K, K);
+
+
+    // KISS-implementation
+    for (size_t p = 0; p < K; p++) {
+        for (size_t q = 0; q < K; q++) {
+
+            if ((p < N_P) && (q < N_P)) {  // occupied-occupied block
+                size_t i = p;
+                size_t j = q;
+
+                double intermediate = 0.0;
+
+                for (size_t c = N_P + 1; c < K; c++) {
+                    intermediate += Q.q(i,c) * G(i,c) + Q.q(j,c) * G(j,c);
+
+                    if (i == j) {
+                        intermediate -= Q.q(i,c) * G(i,c);
+                    }
+                }
+
+                Delta(i,j) = 4 * (1 - intermediate / overlap);
+            }  // occupied-occupied block
+
+
+            else if ((p > N_P) && (q > N_P)) {  // virtual-virtual block
+                size_t a = p;
+                size_t b = q;
+
+                if (a == b) {
+                    double intermediate = 0.0;
+
+                    for (size_t k = 0; k < N_P; k++) {
+                        intermediate += Q.q(k,a) * G(k,a);
+                    }
+
+                    Delta(a,b) = 4 * intermediate / overlap;
+                }
+            }  // virtual-virtual
+
+
+            else {  // occupied-virtual and virtual-occupied block
+
+                if (p < q) {  // and afterwards set Delta(i,a) and Delta(a,i)
+                    size_t i = p;
+                    size_t a = q;
+                    double intermediate = 0.0;
+
+                    for (size_t k = 0; k < N_P; k++) {
+                        if (k != i) {
+                            intermediate += Q.q(k,a) * G(k,a);
+                        }
+                    }
+
+                    Delta(i,a) = 4 * intermediate / overlap;
+                    Delta(a,i) = Delta(i,a);
+                }
+            }  // occupied-virtual and virtual-occupied block
+
+
+        }
+    }
+
+
+    return Delta;
+}
+
+
+
 }  // namespace GQCP
