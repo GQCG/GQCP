@@ -215,5 +215,89 @@ Eigen::MatrixXd calculateNumber2RDM(const AP1roGGeminalCoefficients& G, const Bi
 }
 
 
+/**
+ *  @param G            the AP1roG geminal coefficients
+ *  @param Q            the AP1roG bivariational coefficients
+ *
+ *  @return the AP1roG pair 2-RDM (the Pi-matrix in the notes)
+ */
+Eigen::MatrixXd calculatePair2RDM(const AP1roGGeminalCoefficients& G, const BivariationalCoefficients& Q) {
+
+    size_t N_P = G.get_N_P();
+    size_t K = G.get_K();
+    double overlap = calculateOverlap(G, Q);
+
+    Eigen::MatrixXd Pi = Eigen::MatrixXd::Zero(K, K);
+
+
+    for (size_t p = 0; p < K; p++) {
+        for (size_t q = 0; q < K; q++) {
+
+            if ((p < N_P) && (q < N_P)) {  // occupied-occupied block
+                size_t i = p;
+                size_t j = q;
+
+                double intermediate = 0.0;
+                for (size_t a = N_P; a < K; a++) {
+                    intermediate += Q.q(j,a) * G(i,a);
+
+                    if (i == j) {
+                        intermediate -= 2 * Q.q(i,a) * G(i,a);
+                    }
+                }
+
+
+                if (i == j) {  // delta_ij
+                    Pi(i,j) += 1;
+                }
+
+                Pi(i,j) += intermediate / overlap;
+            }  // occupied-occupied block
+
+
+            else if ((p < N_P) && (q > N_P)) {  // occupied-virtual block
+                size_t i = p;
+                size_t a = q;
+
+                double intermediate = Q.q0 * G(i,a);
+                for (size_t j = 0; j < N_P; j++) {
+                    for (size_t b = N_P; b < K; b++) {
+                        if ((j != i) && (b != a)) {
+                            intermediate += Q.q(j,b) * (G(i,a) * G(j,b) + G(j,a) * G(i,b));
+                        }
+                    }
+                }
+
+                Pi(i,a) = intermediate / overlap;
+            }  // occupied-virtual
+
+
+            else if ((p > N_P) && (q < N_P)) {  // virtual-occupied block
+                size_t a = p;
+                size_t i = q;
+
+                Pi(a,i) = Q.q(i,a) / overlap;
+            }
+
+
+            else {  // virtual-virtual block
+                size_t a = p;
+                size_t b = q;
+
+                double intermediate = 0.0;
+                for (size_t i = 0; i < N_P; i++) {
+                    intermediate += Q.q(i,a) * G(i,b);
+                }
+
+                Pi(a,b) = intermediate / overlap;
+            }
+
+        }
+    }
+
+    return Pi;
+}
+
+
 
 }  // namespace GQCP
