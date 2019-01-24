@@ -230,6 +230,7 @@ Eigen::MatrixXd calculatePair2RDM(const AP1roGGeminalCoefficients& G, const Biva
     Eigen::MatrixXd Pi = Eigen::MatrixXd::Zero(K, K);
 
 
+    // KISS-implementation
     for (size_t p = 0; p < K; p++) {
         for (size_t q = 0; q < K; q++) {
 
@@ -298,6 +299,49 @@ Eigen::MatrixXd calculatePair2RDM(const AP1roGGeminalCoefficients& G, const Biva
     return Pi;
 }
 
+
+/**
+ *  @param G            the AP1roG geminal coefficients
+ *  @param Q            the AP1roG bivariational coefficients
+ *
+ *  @return the AP1roG 2-DM
+ */
+TwoRDM calculate2RDM(const AP1roGGeminalCoefficients& G, const BivariationalCoefficients& Q) {
+
+    size_t K = G.get_K();
+    Eigen::Tensor<double, 4> d (K, K, K, K);
+    d.setZero();
+
+
+    Eigen::MatrixXd Delta = calculateNumber2RDM(G, Q);
+    Eigen::MatrixXd Pi = calculatePair2RDM(G, Q);
+
+    // KISS-implementation
+    for (size_t p = 0; p < K; p++) {
+        for (size_t q = 0; p < K; q++) {
+            for (size_t r = 0; r < K; r++) {
+                for (size_t s = 0; s < K; s++) {
+
+                    if ((p == r) && (q == s)) {
+                        d(p,q,r,s) += Pi(p,q);
+                    }
+
+                    if ((p == q) && (r == s) && (p != r)) {
+                        d(p,q,r,s) += 0.5 * Delta(p,r);
+                    }
+
+                    if ((p == s) && (q == r) && (p != q)) {
+                        d(p,q,r,s) -= 0.25 * Delta(p,q);
+                    }
+
+
+                }
+            }
+        }
+    }  // spatial orbital loops
+
+    return TwoRDM(d);
+}
 
 
 }  // namespace GQCP

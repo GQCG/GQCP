@@ -79,7 +79,6 @@ TwoRDM calculate2RDM(const AP1roGGeminalCoefficients& G, const BivariationalCoef
 
 
 
-
 }  // namespace GQCP
 
 
