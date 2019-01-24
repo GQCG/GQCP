@@ -1,12 +1,19 @@
 # Specify the virtual environment
-dist: trusty
+dist: xenial
 sudo: true
-
 
 # Specify the project language and the compiler to test to
 language: cpp
 compiler: gcc
 
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - gcc-8
+      - g++-8
+      - cmake
 
 # Enable Slack notifications, disable e-mail
 notifications:
@@ -41,11 +48,16 @@ before_install:
 
     # Add headers and libraries to path
     - export CONDA_HOME=${HOME}/miniconda
-    - export C_INCLUDE_PATH=${C_INCLUDE_PATH}:${CONDA_HOME}/include
-    - export CPLUS_INCLUDE_PATH=${CPLUS_INCLUDE_PATH}:${CONDA_HOME}/include
-    - export LIBRARY_PATH=${LIBRARY_PATH}:${CONDA_HOME}/lib
-    - export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${CONDA_HOME}/lib
-    - export DYLD_FALLBACK_LIBRARY_PATH=${DYLD_FALLBACK_LIBRARY_PATH}:${CONDA_HOME}/lib
+    - export C_INCLUDE_PATH=${CONDA_HOME}/include:${C_INCLUDE_PATH}
+    - export CPLUS_INCLUDE_PATH=${CONDA_HOME}/include:${CPLUS_INCLUDE_PATH}
+    - export LIBRARY_PATH=${CONDA_HOME}/lib:${LIBRARY_PATH}
+    - export LD_LIBRARY_PATH=${CONDA_HOME}/lib:${LD_LIBRARY_PATH}
+    - export DYLD_FALLBACK_LIBRARY_PATH=${CONDA_HOME}/lib:${DYLD_FALLBACK_LIBRARY_PATH}
+
+    # Set GCC 8 compiler
+    - export CC=/usr/bin/gcc-8
+    - export CXX=/usr/bin/g++-8
+    - gcc -v && g++ -v && cmake --version
 
 # Install general dependencies
 install:
@@ -62,7 +74,6 @@ install:
       else
         echo "Using already installed packages.";
       fi
-    - export BOOST_ROOT=${HOME}/miniconda/include
     - export LIBINT_DATA_PATH=${HOME}/miniconda/share/libint/2.3.1/basis
 
     # Install google benchmark
@@ -80,8 +91,8 @@ install:
 script:
   - cd ${TRAVIS_BUILD_DIR}
   - mkdir build && cd build
-  - cmake .. -DBUILD_BENCHMARKS=ON
-  - make -j3 && make test ARGS=-j3 && sudo make install
+  - cmake .. -DBUILD_BENCHMARKS=ON -DBOOST_LIBRARYDIR=${HOME}/miniconda/lib -DBOOST_INCLUDEDIR=${HOME}/miniconda/include -DBOOST_NO_SYSTEM_PATHS=TRUE
+  - make -j3 VERBOSE=1 && make test ARGS=-j3 && sudo make install
 
 # Run the benchmarks
   - cd benchmarks
