@@ -123,10 +123,10 @@ void AP1roGBivariationalSolver::solve() {
 
             // Large lower right block
             for (size_t j = 0; j < this->N_P; j++) {
-                for (size_t b = N_P; b < this->K; b++) {
+                for (size_t b = this->N_P; b < this->K; b++) {
                     size_t column_vector_index = this->geminal_coefficients.vectorIndex(j, b);
 
-                    A(1 + row_vector_index, 1 + column_vector_index) = J(row_vector_index, column_vector_index) + g(i,a,i,a) * this->geminal_coefficients(j, b);
+                    A(1 + row_vector_index, 1 + column_vector_index) = J(column_vector_index, row_vector_index) + g(i,a,i,a) * this->geminal_coefficients(j, b);  // transpose of the Jacobian
                 }
             }  // j and b
 
@@ -135,6 +135,7 @@ void AP1roGBivariationalSolver::solve() {
 
     Eigen::HouseholderQR<Eigen::MatrixXd> linear_solver (A);
     Eigen::VectorXd q = linear_solver.solve(b);
+    assert(std::abs((A * q).norm() - 1) < 1.0e-12);
 
 
     // Set the solution

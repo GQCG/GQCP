@@ -92,43 +92,30 @@ OneRDM calculate1RDM(const AP1roGGeminalCoefficients& G, const BivariationalCoef
 
     // Occupied part
     for (size_t i = 0; i < N_P; i++) {
-        for (size_t j = 0; j < N_P; j++) {
+        double intermediate = Q.q0;
 
-            if (i == j) {
-                double intermediate = Q.q0;
-
-                for (size_t k = 0; k < N_P; k++) {
-                    for (size_t a = N_P; a < K; a++) {
-                        if (k != i) {
-                            intermediate += q(k,a) * G(k,a);
-                        }
-                    }
+        for (size_t k = 0; k < N_P; k++) {
+            for (size_t a = N_P; a < K; a++) {
+                if (k != i) {
+                    intermediate += q(k,a) * G(k,a);
                 }
-
-                D(i,j) = 2 / overlap * intermediate;
             }
-
         }
+
+        D(i,i) = 2 / overlap * intermediate;
     }
 
 
     // Virtual part
     for (size_t a = N_P; a < K; a++) {
-        for (size_t b = N_P; b < K; b++) {
+        double intermediate = 0.0;
 
-            if (a == b) {
-                double intermediate = 0.0;
-
-                for (size_t i = 0; i < N_P; i++) {
-                    intermediate += q(i,a) * G(i,a);
-                }
-
-                D(a,b) = 2 / overlap * intermediate;
-            }
-
+        for (size_t i = 0; i < N_P; i++) {
+            intermediate += q(i,a) * G(i,a);
         }
-    }
 
+        D(a,a) = 2 / overlap * intermediate;
+    }
 
     return OneRDM(D);
 }
@@ -190,7 +177,7 @@ Eigen::MatrixXd calculateNumber2RDM(const AP1roGGeminalCoefficients& G, const Bi
 
             else {  // occupied-virtual and virtual-occupied block
 
-                if (p < q) {  // and afterwards set Delta(i,a) and Delta(a,i)
+                if (p < q) {  // and afterwards set Delta(i,a) = Delta(a,i)
                     size_t i = p;
                     size_t a = q;
                     double intermediate = 0.0;
@@ -206,10 +193,8 @@ Eigen::MatrixXd calculateNumber2RDM(const AP1roGGeminalCoefficients& G, const Bi
                 }
             }  // occupied-virtual and virtual-occupied block
 
-
         }
     }
-
 
     return Delta;
 }
@@ -249,7 +234,7 @@ Eigen::MatrixXd calculatePair2RDM(const AP1roGGeminalCoefficients& G, const Biva
 
 
                 if (i == j) {  // delta_ij
-                    Pi(i,j) += 1;
+                    Pi(i,j) += 1.0;
                 }
 
                 Pi(i,j) += intermediate / overlap;
@@ -323,15 +308,15 @@ TwoRDM calculate2RDM(const AP1roGGeminalCoefficients& G, const BivariationalCoef
                 for (size_t s = 0; s < K; s++) {
 
                     if ((p == r) && (q == s)) {
-                        d(p,q,r,s) += Pi(p,q);
+                        d(p,q,r,s) += 2 * Pi(p,q);
                     }
 
                     if ((p == q) && (r == s) && (p != r)) {
-                        d(p,q,r,s) += 0.5 * Delta(p,r);
+                        d(p,q,r,s) += Delta(p,r);
                     }
 
                     if ((p == s) && (q == r) && (p != q)) {
-                        d(p,q,r,s) -= 0.25 * Delta(p,q);
+                        d(p,q,r,s) -= 0.5 * Delta(p,q);
                     }
 
 

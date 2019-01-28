@@ -93,8 +93,6 @@ BOOST_AUTO_TEST_CASE ( energy_as_contraction ) {
     auto d = GQCP::calculate2RDM(G, Q);
 
     double electronic_energy_by_contraction = GQCP::calculateExpectationValue(mol_ham_par, D, d) - mol_ham_par.get_scalar();  // only the electronic energy
-    std::cout << electronic_energy << std::endl;
-    std::cout << electronic_energy_by_contraction << std::endl;
 
-    BOOST_CHECK(std::abs(electronic_energy_by_contraction - electronic_energy) < 1.0e-12);
+    BOOST_CHECK(std::abs(electronic_energy_by_contraction - electronic_energy) < 1.0e-09);
 }

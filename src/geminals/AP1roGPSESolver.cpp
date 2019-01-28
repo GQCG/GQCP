@@ -160,16 +160,19 @@ Eigen::MatrixXd AP1roGPSESolver::calculateJacobian(const Eigen::VectorXd& g) con
 
     Eigen::MatrixXd J = Eigen::MatrixXd::Zero(number_of_geminal_coefficients, number_of_geminal_coefficients);
     // Loop over all Jacobian elements to construct it
-    for (size_t mu = 0; mu < number_of_geminal_coefficients; mu++) {
-        for (size_t nu = 0; nu < number_of_geminal_coefficients; nu++) {
+    for (size_t row_index = 0; row_index < number_of_geminal_coefficients; row_index++) {
+        for (size_t column_index = 0; column_index < number_of_geminal_coefficients; column_index++) {
 
-            // Convert the vector indices mu and nu into matrix indices
-            size_t i = G.matrixIndexMajor(nu);
-            size_t a = G.matrixIndexMinor(nu);
-            size_t k = G.matrixIndexMajor(mu);
-            size_t c = G.matrixIndexMinor(mu);
+            // In our definitions, we have:
+            //      row indices refer to the coordinate functions
+            size_t i = G.matrixIndexMajor(row_index);
+            size_t a = G.matrixIndexMinor(row_index);
 
-            J(mu, nu) = this->calculateJacobianElement(G, i, a, k, c);
+            //      column indices refer to geminal coefficients
+            size_t k = G.matrixIndexMajor(column_index);
+            size_t c = G.matrixIndexMinor(column_index);
+
+            J(row_index,column_index) = this->calculateJacobianElement(G, i, a, k, c);
         }
     }
 
