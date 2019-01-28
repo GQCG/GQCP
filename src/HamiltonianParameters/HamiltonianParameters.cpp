@@ -129,7 +129,9 @@ HamiltonianParameters HamiltonianParameters::Molecular(std::shared_ptr<AOBasis> 
  *  @param molecule     the molecule for which the Hamiltonian parameters should be calculated
  *  @param basisset     the name of the basisset corresponding to the AO basis
  *
- *  @return Hamiltonian parameters corresponding to the molecular Hamiltonian. The molecular Hamiltonian has
+ *  @return Hamiltonian parameters corresponding to the molecular Hamiltonian in an AO basis. The molecular Hamiltonian has
+ *      - scalar contributions:
+ *          - internuclear repulsion
  *      - one-electron contributions:
  *          - kinetic
  *          - nuclear attraction
