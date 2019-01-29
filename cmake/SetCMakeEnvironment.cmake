@@ -176,6 +176,7 @@ set(PROJECT_INCLUDE_FILES
         ${PROJECT_INCLUDE_FOLDER}/utilities/io.hpp
         ${PROJECT_INCLUDE_FOLDER}/utilities/linalg.hpp
         ${PROJECT_INCLUDE_FOLDER}/utilities/miscellaneous.hpp
+        ${PROJECT_INCLUDE_FOLDER}/utilities/NumericalDerivator.hpp
 
         ${PROJECT_INCLUDE_FOLDER}/WaveFunction/SpinUnresolvedWaveFunction.hpp
         ${PROJECT_INCLUDE_FOLDER}/WaveFunction/WaveFunction.hpp
@@ -252,6 +253,7 @@ set(PROJECT_TEST_SOURCE_FILES
         ${PROJECT_TESTS_FOLDER}/utilities/io_test.cpp
         ${PROJECT_TESTS_FOLDER}/utilities/linalg_test.cpp
         ${PROJECT_TESTS_FOLDER}/utilities/miscellaneous_test.cpp
+        ${PROJECT_TESTS_FOLDER}/utilities/NumericalDerivator_test.cpp
 
         ${PROJECT_TESTS_FOLDER}/WaveFunction/WaveFunction_test.cpp
 

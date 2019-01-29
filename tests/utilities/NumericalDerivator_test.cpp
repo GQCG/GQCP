@@ -15,28 +15,27 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCP_COMMON_HPP
-#define GQCP_COMMON_HPP
+#define BOOST_TEST_MODULE "NumericalDerivator"
 
 
-#include <cstdlib>
-#include <vector>
+#include <boost/test/unit_test.hpp>
+#include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
 
-#include <Eigen/Dense>
-
-
-namespace GQCP {
+#include "utilities/NumericalDerivator.hpp"
 
 
-using Vectoru = std::vector<size_t>;
-using Matrixu = std::vector<Vectoru>;
-using VectorXs = Eigen::Matrix<size_t, Eigen::Dynamic, 1>;
 
-using VectorFunction = std::function<Eigen::VectorXd (const Eigen::VectorXd&)>;
-using MatrixFunction = std::function<Eigen::MatrixXd (const Eigen::VectorXd&)>;
-using UnaryFunction = std::function<double (double x)>;
-
-}  // namespace GQCP
+BOOST_AUTO_TEST_CASE ( basic_function ) {
 
 
-#endif  // GQCP_COMMON_HPP
+    GQCP::UnaryFunction xsquared = [](double x) { return pow(x, 3);};
+
+    GQCP::NumericalDerivator<4> num (xsquared, 0, 0.001);
+
+    double threshold = 1e-10;
+    BOOST_CHECK(num.get_derivative(0) == 0);
+    BOOST_CHECK(std::abs(num.get_derivative(1) - 1e-06) < threshold);
+    BOOST_CHECK(std::abs(num.get_derivative(2) - 0.006) < threshold);
+    BOOST_CHECK(std::abs(num.get_derivative(3) - 6) < threshold);
+    BOOST_CHECK(std::abs(num.get_derivative(4) - 0) < threshold);
+}
