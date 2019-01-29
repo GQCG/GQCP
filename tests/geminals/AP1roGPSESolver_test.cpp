@@ -20,7 +20,6 @@
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
 
 #include "geminals/AP1roGPSESolver.hpp"
-//#include "AP1roG/AP1roGGeminalCoefficients.hpp"
 
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
