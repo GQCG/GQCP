@@ -36,3 +36,19 @@ BOOST_AUTO_TEST_CASE ( derive_xcubed ) {
     BOOST_CHECK(std::abs(derivator.get_derivative(3) - 6) < 1e-10);
     BOOST_CHECK(std::abs(derivator.get_derivative(4) - 0) < 1e-10);
 }
+
+
+
+BOOST_AUTO_TEST_CASE ( derive_eigenproblem ) {
+
+    GQCP::UnaryFunction xcubed = [](double x) { return pow(x, 3);};
+    GQCP::NumericEigenProblem example = [xcubed](double x, const Eigen::VectorXd& q) {return GQCP::Eigenpair(xcubed(x),q);};
+    Eigen::VectorXd q = Eigen::VectorXd::Ones(1);
+    GQCP::NumericalGuessDerivator<4> derivator (example, 0, 0.001, q);
+
+    BOOST_CHECK(derivator.get_derivative(0) == 0);
+    BOOST_CHECK(std::abs(derivator.get_derivative(1) - 1e-06) < 1e-10);
+    BOOST_CHECK(std::abs(derivator.get_derivative(2) - 0.006) < 1e-10);
+    BOOST_CHECK(std::abs(derivator.get_derivative(3) - 6) < 1e-10);
+    BOOST_CHECK(std::abs(derivator.get_derivative(4) - 0) < 1e-10);
+}
