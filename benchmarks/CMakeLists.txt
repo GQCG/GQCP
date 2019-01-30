@@ -1,1 +1,1 @@
-include(${CMAKE_SOURCE_DIR}/cmake/Configure/ConfigureDrivers.cmake)
+include(${CMAKE_SOURCE_DIR}/cmake/Configure/ConfigureBenchmarks.cmake)
