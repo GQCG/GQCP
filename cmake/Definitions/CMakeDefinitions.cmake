@@ -44,3 +44,5 @@ endfunction(configure_executable)
 
 
 include(${CMAKE_SOURCE_DIR}/cmake/Definitions/InstallDirectories.cmake)
+
+include(${CMAKE_SOURCE_DIR}/cmake/Definitions/Git.cmake)

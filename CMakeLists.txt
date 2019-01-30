@@ -25,5 +25,9 @@ if (BUILD_BENCHMARKS)
     add_subdirectory(${PROJECT_BENCHMARKS_FOLDER})
 endif()
 
+if (BUILD_DRIVERS)
+    add_subdirectory(${PROJECT_DRIVERS_FOLDER})
+endif()
+
 enable_testing()
 add_subdirectory(${PROJECT_TESTS_FOLDER})

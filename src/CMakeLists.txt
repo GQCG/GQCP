@@ -2,7 +2,7 @@ include(${CMAKE_SOURCE_DIR}/cmake/Configure/ConfigureLibrary.cmake)
 
 # Generate documentation
 if (BUILD_DOCS)
-    set(DOXYGEN_IN ${CMAKE_SOURCE_DIR}/docs/Doxyfile.in)
+    set(DOXYGEN_IN ${CMAKE_SOURCE_DIR}/cmake/Parse/Doxyfile.in)
     set(DOXYGEN_OUT ${CMAKE_BINARY_DIR}/Doxyfile)
 
     configure_file(${DOXYGEN_IN} ${DOXYGEN_OUT} @ONLY)

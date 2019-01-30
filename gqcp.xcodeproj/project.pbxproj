@@ -2625,6 +2625,7 @@
 		56288CE02201C68400403B47 /* CMakeLists.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		56288CE22201CEB800403B47 /* ParseInputFiles.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = ParseInputFiles.cmake; sourceTree = "<group>"; };
 		56288CE32201D84B00403B47 /* gqcp.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = gqcp.hpp; sourceTree = "<group>"; };
+		56288CE42201DDE100403B47 /* Git.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = Git.cmake; sourceTree = "<group>"; };
 		5643B7D921F706EF00E1741F /* BaseSpinUnresolvedRDMBuilder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BaseSpinUnresolvedRDMBuilder.hpp; sourceTree = "<group>"; };
 		5643B7DA21F706EF00E1741F /* SpinUnresolvedRDMCalculator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SpinUnresolvedRDMCalculator.hpp; sourceTree = "<group>"; };
 		5643B7DB21F706EF00E1741F /* SpinUnresolvedFCIRDMBuilder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SpinUnresolvedFCIRDMBuilder.hpp; sourceTree = "<group>"; };
@@ -4062,6 +4063,7 @@
 				56288CD82201BC8A00403B47 /* CMakeDefinitions.cmake */,
 				56288CDA2201BD0200403B47 /* Compiler.cmake */,
 				56288CD62201BBA600403B47 /* Drivers.cmake */,
+				56288CE42201DDE100403B47 /* Git.cmake */,
 				56288CD42201BACE00403B47 /* Headers.cmake */,
 				56288CDC2201C36B00403B47 /* InstallDirectories.cmake */,
 				56288CD22201B92200403B47 /* Options.cmake */,
