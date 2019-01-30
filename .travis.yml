@@ -91,7 +91,7 @@ install:
 script:
   - cd ${TRAVIS_BUILD_DIR}
   - mkdir build && cd build
-  - cmake .. -DBUILD_BENCHMARKS=ON -DBOOST_LIBRARYDIR=${HOME}/miniconda/lib -DBOOST_INCLUDEDIR=${HOME}/miniconda/include -DBOOST_NO_SYSTEM_PATHS=TRUE
+  - cmake .. -DBUILD_BENCHMARKS=ON -DBUILD_DRIVERS=ON -DBOOST_LIBRARYDIR=${HOME}/miniconda/lib -DBOOST_INCLUDEDIR=${HOME}/miniconda/include
   - make -j3 VERBOSE=1 && make test ARGS=-j3 && sudo make install
 
 # Run the benchmarks
