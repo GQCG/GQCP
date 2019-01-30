@@ -19,9 +19,7 @@
 #define AP1roGJacobiOrbitalOptimizer_hpp
 
 
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
-#include "geminals/AP1roG.hpp"
-#include "JacobiRotationParameters.hpp"
+#include "geminals/BaseAP1roGSolver.hpp"
 
 
 namespace GQCP {
@@ -32,7 +30,7 @@ namespace GQCP {
  *
  *  By using analytical Jacobi rotations, and subsequently re-solving the AP1roG PSEs, a new orbital basis is found that (hopefully) results in a lower AP1roG energy.
  */
-class AP1roGJacobiOrbitalOptimizer {
+class AP1roGJacobiOrbitalOptimizer : public BaseAP1roGSolver {
 private:
     // PRIVATE STRUCTS
     /**
@@ -60,22 +58,14 @@ private:
 
 private:
     // PRIVATE PARAMETERS
-    size_t K;  // the number of special orbitals
-    size_t N_P;  // the number of electron pairs
-
     bool is_converged = false;
     double oo_threshold;  // the threshold used for OO: convergence is achieved when E_current - E_previous < oo_threshold
     size_t maximum_number_of_oo_iterations;
-
-
-    HamiltonianParameters ham_par;
 
     bool are_calculated_jacobi_coefficients = false;
     double A1=0.0, B1=0.0, C1=0.0;  // Jacobi rotation coefficients for occupied-occupied rotations
     double A2=0.0, B2=0.0, C2=0.0, D2=0.0, E2=0.0;  // Jacobi rotation coefficients for occupied-virtual rotations
     double A3=0.0, B3=0.0, C3=0.0;  // Jacobi rotation coefficients for virtual-virtual rotations
-
-    AP1roG solution;
 
 
 public:
@@ -99,11 +89,6 @@ public:
      *  The initial guess for the geminal coefficients is zero
      */
     AP1roGJacobiOrbitalOptimizer(const Molecule& molecule, const HamiltonianParameters& ham_par, double oo_threshold=1.0e-08, const size_t maximum_number_of_oo_iterations=128);
-
-
-    // GETTERS
-    const AP1roG& get_solution() const { return this->solution; }
-    const HamiltonianParameters& get_optimized_hamiltonian_parameters() const { return this->ham_par; }
 
 
     // PUBLIC METHODS
@@ -141,10 +126,11 @@ public:
      *      - solving the AP1roG equations
      *      - finding the optimal Jacobi transformation (i.e. the one that yields the lowest energy)
      */
-    void solve();
+    void solve() override;
 };
 
 
 }  // namespace GQCP
+
 
 #endif /* AP1roGJacobiOrbitalOptimizer_hpp */

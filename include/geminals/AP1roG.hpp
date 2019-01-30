@@ -19,45 +19,16 @@
 #define AP1roG_hpp
 
 
-#include "AP1roGGeminalCoefficients.hpp"
+#include "geminals/AP1roGGeminalCoefficients.hpp"
+#include "geminals/BivariationalCoefficients.hpp"
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "RDM/OneRDM.hpp"
+#include "RDM/TwoRDM.hpp"
 
 
 namespace GQCP {
 
 
-/**
- *  A class representing an AP1roG wave function: it holds the geminal coefficients that are a solution to the AP1roG projected Schrödinger equations
- */
-class AP1roG {
-private:
-    AP1roGGeminalCoefficients geminal_coefficients;
-
-    double electronic_energy;
-
-public:
-    // CONSTRUCTORS
-    /**
-     *  Default constructor setting everything to zero
-     */
-    AP1roG();
-
-    /**
-     *  @param geminal_coefficients     the converged AP1roG geminal coefficients
-     *  @param electronic_energy        the AP1roG electronic energy
-     */
-    AP1roG(const AP1roGGeminalCoefficients& geminal_coefficients, double electronic_energy);
-
-
-    // GETTERS
-    const AP1roGGeminalCoefficients& get_geminal_coefficients() const { return this->geminal_coefficients; }
-    double get_electronic_energy() const { return this->electronic_energy; }
-};
-
-
-/*
- *  HELPER FUNCTIONS
- */
 /**
  *  @param G            the converged AP1roG geminal coefficients
  *  @param ham_par      Hamiltonian parameters in an orthonormal spatial orbital basis
@@ -65,6 +36,47 @@ public:
  *  @return the AP1roG electronic energy
  */
 double calculateAP1roGEnergy(const AP1roGGeminalCoefficients& G, const HamiltonianParameters& ham_par);
+
+/**
+ *  @param G            the AP1roG geminal coefficients
+ *  @param Q            the AP1roG bivariational coefficients
+ *
+ *  @return the overlap between the bivariational coefficients and the geminal coefficients, i.e. <Phi(q)|Psi(p)>
+ */
+double calculateOverlap(const AP1roGGeminalCoefficients& G, const BivariationalCoefficients& Q);
+
+/**
+ *  @param G            the AP1roG geminal coefficients
+ *  @param Q            the AP1roG bivariational coefficients
+ *
+ *  @return the AP1roG 1-DM
+ */
+OneRDM calculate1RDM(const AP1roGGeminalCoefficients& G, const BivariationalCoefficients& Q);
+
+/**
+ *  @param G            the AP1roG geminal coefficients
+ *  @param Q            the AP1roG bivariational coefficients
+ *
+ *  @return the AP1roG number 2-RDM (the Delta-matrix in the notes)
+ */
+Eigen::MatrixXd calculateNumber2RDM(const AP1roGGeminalCoefficients& G, const BivariationalCoefficients& Q);
+
+/**
+ *  @param G            the AP1roG geminal coefficients
+ *  @param Q            the AP1roG bivariational coefficients
+ *
+ *  @return the AP1roG pair 2-RDM (the Pi-matrix in the notes)
+ */
+Eigen::MatrixXd calculatePair2RDM(const AP1roGGeminalCoefficients& G, const BivariationalCoefficients& Q);
+
+/**
+ *  @param G            the AP1roG geminal coefficients
+ *  @param Q            the AP1roG bivariational coefficients
+ *
+ *  @return the AP1roG 2-DM
+ */
+TwoRDM calculate2RDM(const AP1roGGeminalCoefficients& G, const BivariationalCoefficients& Q);
+
 
 
 }  // namespace GQCP

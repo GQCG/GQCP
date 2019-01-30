@@ -16,43 +16,16 @@
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
 #define BOOST_TEST_MODULE "OO-AP1roG"
+
 #include <boost/test/unit_test.hpp>
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
 
 #include "geminals/AP1roGJacobiOrbitalOptimizer.hpp"
 
+#include "geminals/AP1roG.hpp"
 #include "geminals/AP1roGPSESolver.hpp"
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
-
-
-
-
-BOOST_AUTO_TEST_CASE ( constructor ) {
-
-    // Test a correct constructor
-    auto h2 = GQCP::Molecule::Readxyz("data/h2_szabo.xyz");
-    size_t N = 2;  // number of electrons for H2
-    size_t N_P = N/2;  // number of electron pairs for H2
-    auto mol_ham_par = GQCP::HamiltonianParameters::Molecular(h2, "STO-3G");
-
-    GQCP::AP1roGJacobiOrbitalOptimizer ap1rog_orbital_optimizer (N_P, mol_ham_par);
-}
-
-
-BOOST_AUTO_TEST_CASE ( constructor_molecule ) {
-
-    // Test a correct constructor
-    // Check if we can also pass a molecule object to the constructor
-    auto h2 = GQCP::Molecule::Readxyz("data/h2_szabo.xyz");
-    auto mol_ham_par = GQCP::HamiltonianParameters::Molecular(h2, "STO-3G");
-    GQCP::AP1roGJacobiOrbitalOptimizer ap1rog_orbital_optimizer (h2, mol_ham_par);
-
-
-    // Test a faulty constructor
-    auto h2_cation = GQCP::Molecule::Readxyz("data/h2_szabo.xyz", +1);
-    BOOST_CHECK_THROW(GQCP::AP1roGJacobiOrbitalOptimizer(h2_cation, mol_ham_par), std::invalid_argument);  // we can use the same Hamiltonian parameters for molecule and ion
-}
 
 
 BOOST_AUTO_TEST_CASE ( lih_6_31G_calculateEnergyAfterRotation ) {
@@ -63,7 +36,7 @@ BOOST_AUTO_TEST_CASE ( lih_6_31G_calculateEnergyAfterRotation ) {
 
     // Construct the molecular Hamiltonian parameters in the RHF basis
     auto lih = GQCP::Molecule::Readxyz("data/lih_olsens.xyz");
-    auto ao_mol_ham_par =  GQCP::HamiltonianParameters::Molecular(lih, "6-31G");
+    auto ao_mol_ham_par = GQCP::HamiltonianParameters::Molecular(lih, "6-31G");
 
     GQCP::PlainRHFSCFSolver plain_scf_solver (ao_mol_ham_par, lih);
     plain_scf_solver.solve();
@@ -83,7 +56,7 @@ BOOST_AUTO_TEST_CASE ( lih_6_31G_calculateEnergyAfterRotation ) {
             // AP1roG.calculateEnergyAfterRotation is a function that is only used in testing
             GQCP::AP1roGPSESolver pse_solver (lih, mol_ham_par);
             pse_solver.solve();
-            auto G = pse_solver.get_solution().get_geminal_coefficients();
+            auto G = pse_solver.get_geminal_coefficients();
 
 
             // Calculate the analytical energy after rotation
@@ -119,13 +92,13 @@ BOOST_AUTO_TEST_CASE ( lih_6_31G_orbitalOptimize ) {
     // Get the initial AP1roG energy
     GQCP::AP1roGPSESolver pse_solver (lih, mol_ham_par);
     pse_solver.solve();
-    double initial_energy = pse_solver.get_solution().get_electronic_energy();
+    double initial_energy = pse_solver.get_electronic_energy();
 
 
     // Do an AP1roG orbital optimization using Jacobi rotations
     GQCP::AP1roGJacobiOrbitalOptimizer orbital_optimizer (lih, mol_ham_par);
     orbital_optimizer.solve();
-    double optimized_energy = orbital_optimizer.get_solution().get_electronic_energy();
+    double optimized_energy = orbital_optimizer.get_electronic_energy();
 
 
     // We don't have reference data, so all we can do is check if orbital optimization lowers the energy

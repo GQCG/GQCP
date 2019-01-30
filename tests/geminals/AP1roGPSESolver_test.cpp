@@ -20,7 +20,6 @@
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
 
 #include "geminals/AP1roGPSESolver.hpp"
-//#include "AP1roG/AP1roGGeminalCoefficients.hpp"
 
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
@@ -78,9 +77,8 @@ BOOST_AUTO_TEST_CASE ( h2_631gdp ) {
     GQCP::AP1roGPSESolver ap1rog_pse_solver (h2, mol_ham_par);
     ap1rog_pse_solver.solve();
 
-    auto ap1rog = ap1rog_pse_solver.get_solution();
-    double electronic_energy = ap1rog.get_electronic_energy();
-    Eigen::VectorXd ap1rog_coefficients = ap1rog.get_geminal_coefficients().asVector();
+    double electronic_energy = ap1rog_pse_solver.get_electronic_energy();
+    Eigen::VectorXd ap1rog_coefficients = ap1rog_pse_solver.get_geminal_coefficients().asVector();
 
 
     BOOST_CHECK(std::abs(electronic_energy - ref_ap1rog_energy) < 1.0e-05);
@@ -118,9 +116,8 @@ BOOST_AUTO_TEST_CASE ( h2_631gdp_weak_interaction_limit ) {
     GQCP::AP1roGPSESolver ap1rog_pse_solver (h2, mol_ham_par, GQCP::AP1roGGeminalCoefficients::WeakInteractionLimit(mol_ham_par, N_P));
     ap1rog_pse_solver.solve();
 
-    auto ap1rog = ap1rog_pse_solver.get_solution();
-    double electronic_energy = ap1rog.get_electronic_energy();
-    Eigen::VectorXd ap1rog_coefficients = ap1rog.get_geminal_coefficients().asVector();
+    double electronic_energy = ap1rog_pse_solver.get_electronic_energy();
+    Eigen::VectorXd ap1rog_coefficients = ap1rog_pse_solver.get_geminal_coefficients().asVector();
 
 
     BOOST_CHECK(std::abs(electronic_energy - ref_ap1rog_energy) < 1.0e-05);

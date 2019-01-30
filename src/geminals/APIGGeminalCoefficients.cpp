@@ -32,7 +32,7 @@ namespace GQCP {
  *  Default constructor setting everything to zero
  */
 APIGGeminalCoefficients::APIGGeminalCoefficients() :
-    BaseAPIGGeminalCoefficients()
+    BaseAPIGVariables()
 {}
 
 
@@ -43,7 +43,7 @@ APIGGeminalCoefficients::APIGGeminalCoefficients() :
  *  @param K        the number of spatial orbitals
  */
 APIGGeminalCoefficients::APIGGeminalCoefficients(const Eigen::VectorXd& g, size_t N_P, size_t K) :
-    BaseAPIGGeminalCoefficients(g, N_P, K)
+    BaseAPIGVariables(g, N_P, K)
 {
     if (APIGGeminalCoefficients::numberOfGeminalCoefficients(N_P, K) != g.size()) {
         throw std::invalid_argument("The specified N_P and K are not compatible with the given vector of geminal coefficients.");
@@ -66,15 +66,22 @@ APIGGeminalCoefficients::APIGGeminalCoefficients(size_t N_P, size_t K) :
  *  @param G        the geminal coefficients in a matrix representation
  */
 APIGGeminalCoefficients::APIGGeminalCoefficients(const Eigen::MatrixXd& G) :
-    BaseAPIGGeminalCoefficients()
+    BaseAPIGVariables()
 {
 
     Eigen::MatrixXd G_transpose = G.transpose();
 
-    this->g = Eigen::Map<const Eigen::VectorXd>(G_transpose.data(), G_transpose.cols()*G_transpose.rows());
+    this->x = Eigen::Map<const Eigen::VectorXd>(G_transpose.data(), G_transpose.cols()*G_transpose.rows());
     this->K = G.cols();
     this->N_P = G.rows();
 }
+
+
+
+/*
+ *  DESTRUCTOR
+ */
+APIGGeminalCoefficients::~APIGGeminalCoefficients() {}
 
 
 
@@ -110,9 +117,9 @@ size_t APIGGeminalCoefficients::numberOfGeminalCoefficients(size_t N_P, size_t K
 Eigen::MatrixXd APIGGeminalCoefficients::asMatrix() const {
 
     using RowMajorMatrixXd = Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor>;
-    Eigen::RowVectorXd g_row = this->g;
+    Eigen::RowVectorXd x_row = this->x;
 
-    return Eigen::Map<RowMajorMatrixXd, Eigen::RowMajor>(g_row.data(), this->N_P, this->K);
+    return Eigen::Map<RowMajorMatrixXd, Eigen::RowMajor>(x_row.data(), this->N_P, this->K);
 }
 
 

@@ -187,9 +187,11 @@
 			buildPhases = (
 			);
 			dependencies = (
+				56B0D3C021F9C3A100605997 /* PBXTargetDependency */,
+				5643B83221F89F7F00E1741F /* PBXTargetDependency */,
+				5643B81921F8779400E1741F /* PBXTargetDependency */,
 				5614FEC921B041FC002C5D40 /* PBXTargetDependency */,
 				5614FECB21B041FC002C5D40 /* PBXTargetDependency */,
-				5614FECD21B041FC002C5D40 /* PBXTargetDependency */,
 				5614FECF21B041FC002C5D40 /* PBXTargetDependency */,
 				56272DE421B6CC9B008BEA47 /* PBXTargetDependency */,
 			);
@@ -461,7 +463,6 @@
 		5614FE8221B0400D002C5D40 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
 		5614FE9621B04123002C5D40 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
 		5614FEA321B04188002C5D40 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
-		5614FEAF21B0418E002C5D40 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
 		5614FEBB21B04193002C5D40 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
 		5614FF5D21B043C5002C5D40 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
 		5614FF6921B043CC002C5D40 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
@@ -483,12 +484,10 @@
 		56272DB921B6CBFA008BEA47 /* AP1roGJacobiOrbitalOptimizer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56272DB321B6CBFA008BEA47 /* AP1roGJacobiOrbitalOptimizer.hpp */; };
 		56272DBA21B6CBFA008BEA47 /* AP1roGGeminalCoefficients.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56272DB421B6CBFA008BEA47 /* AP1roGGeminalCoefficients.hpp */; };
 		56272DBB21B6CBFA008BEA47 /* AP1roGPSESolver.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56272DB521B6CBFA008BEA47 /* AP1roGPSESolver.hpp */; };
-		56272DBC21B6CBFA008BEA47 /* BaseAPIGGeminalCoefficients.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56272DB621B6CBFA008BEA47 /* BaseAPIGGeminalCoefficients.hpp */; };
 		56272DBD21B6CBFA008BEA47 /* AP1roG.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56272DB721B6CBFA008BEA47 /* AP1roG.hpp */; };
 		56272DBE21B6CBFA008BEA47 /* APIGGeminalCoefficients.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56272DB821B6CBFA008BEA47 /* APIGGeminalCoefficients.hpp */; };
 		56272DD221B6CC53008BEA47 /* AP1roGGeminalCoefficients_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56272DCD21B6CC2D008BEA47 /* AP1roGGeminalCoefficients_test.cpp */; };
 		56272DD321B6CC5D008BEA47 /* OO_AP1roG_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56272DCE21B6CC2D008BEA47 /* OO_AP1roG_test.cpp */; };
-		56272DD421B6CC66008BEA47 /* AP1roG_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56272DCF21B6CC2D008BEA47 /* AP1roG_test.cpp */; };
 		56272DDC21B6CC7B008BEA47 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
 		56272DE221B6CC93008BEA47 /* APIGGeminalCoefficients_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56272DD121B6CC2D008BEA47 /* APIGGeminalCoefficients_test.cpp */; };
 		5643B7DC21F706F000E1741F /* BaseSpinUnresolvedRDMBuilder.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5643B7D921F706EF00E1741F /* BaseSpinUnresolvedRDMBuilder.hpp */; };
@@ -502,12 +501,30 @@
 		5643B7EA21F7076D00E1741F /* SpinUnresolvedFCIRDMBuilder_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5643B7E921F7076D00E1741F /* SpinUnresolvedFCIRDMBuilder_test.cpp */; };
 		5643B7F121F707CE00E1741F /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
 		5643B7F721F707FB00E1741F /* SpinUnresolvedFCIRDMBuilder_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5643B7E921F7076D00E1741F /* SpinUnresolvedFCIRDMBuilder_test.cpp */; };
+		5643B7FC21F85B1E00E1741F /* BaseAPIGVariables.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5643B7FA21F85B1E00E1741F /* BaseAPIGVariables.cpp */; };
+		5643B7FD21F85B1E00E1741F /* BaseAPIGVariables.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5643B7FB21F85B1E00E1741F /* BaseAPIGVariables.hpp */; };
+		5643B80421F85E9000E1741F /* GeminalCoefficientsInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5643B80221F85E9000E1741F /* GeminalCoefficientsInterface.cpp */; };
+		5643B80521F85E9000E1741F /* GeminalCoefficientsInterface.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5643B80321F85E9000E1741F /* GeminalCoefficientsInterface.hpp */; };
+		5643B80921F868A600E1741F /* AP1roGVariables.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5643B80721F868A600E1741F /* AP1roGVariables.cpp */; };
+		5643B80A21F868A600E1741F /* AP1roGVariables.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5643B80821F868A600E1741F /* AP1roGVariables.hpp */; };
+		5643B81121F876D100E1741F /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
+		5643B81721F876F500E1741F /* AP1roGVariables_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5643B80621F867C200E1741F /* AP1roGVariables_test.cpp */; };
+		5643B81C21F87F6700E1741F /* AP1roGBivariationalSolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5643B81A21F87F6700E1741F /* AP1roGBivariationalSolver.cpp */; };
+		5643B81D21F87F6700E1741F /* AP1roGBivariationalSolver.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5643B81B21F87F6700E1741F /* AP1roGBivariationalSolver.hpp */; };
+		5643B82021F88A0B00E1741F /* BaseAP1roGSolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5643B81E21F88A0B00E1741F /* BaseAP1roGSolver.cpp */; };
+		5643B82121F88A0B00E1741F /* BaseAP1roGSolver.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5643B81F21F88A0B00E1741F /* BaseAP1roGSolver.hpp */; };
+		5643B82321F89E6300E1741F /* AP1roGBivariationalSolver_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5643B82221F89E6300E1741F /* AP1roGBivariationalSolver_test.cpp */; };
+		5643B82A21F89F3200E1741F /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
+		5643B83021F89F5E00E1741F /* AP1roGBivariationalSolver_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5643B82221F89E6300E1741F /* AP1roGBivariationalSolver_test.cpp */; };
 		566D229E21B7ED2500F8EB91 /* oo_doci.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FAA721B02E48002C5D40 /* oo_doci.cpp */; };
+		56B0D3B021F9BAC100605997 /* BivariationalCoefficients.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56B0D3AE21F9BAC100605997 /* BivariationalCoefficients.hpp */; };
+		56B0D3B221F9BEFB00605997 /* AP1roG_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56B0D3B121F9BEFB00605997 /* AP1roG_test.cpp */; };
+		56B0D3B921F9C38900605997 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
+		56B0D3C121F9C3AD00605997 /* AP1roG_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56B0D3B121F9BEFB00605997 /* AP1roG_test.cpp */; };
 		56B49B7F21F2128D000F543B /* AP1roGGeminalCoefficients.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56B49B7921F2128C000F543B /* AP1roGGeminalCoefficients.cpp */; };
 		56B49B8021F2128D000F543B /* AP1roG.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56B49B7A21F2128C000F543B /* AP1roG.cpp */; };
 		56B49B8121F2128D000F543B /* AP1roGJacobiOrbitalOptimizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56B49B7B21F2128C000F543B /* AP1roGJacobiOrbitalOptimizer.cpp */; };
 		56B49B8221F2128D000F543B /* APIGGeminalCoefficients.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56B49B7C21F2128D000F543B /* APIGGeminalCoefficients.cpp */; };
-		56B49B8321F2128D000F543B /* BaseAPIGGeminalCoefficients.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56B49B7D21F2128D000F543B /* BaseAPIGGeminalCoefficients.cpp */; };
 		56B49B8421F2128D000F543B /* AP1roGPSESolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56B49B7E21F2128D000F543B /* AP1roGPSESolver.cpp */; };
 		56C64D8621B0713700D44FF0 /* constrained_RHF_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FB4921B02EDE002C5D40 /* constrained_RHF_test.cpp */; };
 		56FBA09F21C2B0420084F088 /* linalg.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56FBA09B21C2B0420084F088 /* linalg.hpp */; };
@@ -1208,13 +1225,6 @@
 			remoteGlobalIDString = 5614F97F21B0295C002C5D40;
 			remoteInfo = gqcp;
 		};
-		5614FEAB21B0418E002C5D40 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5614F97F21B0295C002C5D40;
-			remoteInfo = gqcp;
-		};
 		5614FEB721B04193002C5D40 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
@@ -1235,13 +1245,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 5614FE9D21B04188002C5D40;
 			remoteInfo = OO_AP1roG_test;
-		};
-		5614FECC21B041FC002C5D40 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5614FEA921B0418E002C5D40;
-			remoteInfo = AP1roG_test;
 		};
 		5614FECE21B041FC002C5D40 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1403,6 +1406,48 @@
 			proxyType = 1;
 			remoteGlobalIDString = 5643B7EB21F707CE00E1741F;
 			remoteInfo = SpinUnresolvedFCIRDMBuilder_test;
+		};
+		5643B80D21F876D100E1741F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5614F97F21B0295C002C5D40;
+			remoteInfo = gqcp;
+		};
+		5643B81821F8779400E1741F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5643B80B21F876D100E1741F;
+			remoteInfo = AP1roGVariables_test;
+		};
+		5643B82621F89F3200E1741F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5614F97F21B0295C002C5D40;
+			remoteInfo = gqcp;
+		};
+		5643B83121F89F7F00E1741F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5643B82421F89F3200E1741F;
+			remoteInfo = AP1roGBivariationalSolver_test;
+		};
+		56B0D3B521F9C38900605997 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5614F97F21B0295C002C5D40;
+			remoteInfo = gqcp;
+		};
+		56B0D3BF21F9C3A100605997 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 56B0D3B321F9C38900605997;
+			remoteInfo = AP1roG_test;
 		};
 		56FBA0EF21C2F1A10084F088 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -2075,15 +2120,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
-		5614FEB021B0418E002C5D40 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
 		5614FEBC21B04193002C5D40 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2193,6 +2229,33 @@
 			runOnlyForDeploymentPostprocessing = 1;
 		};
 		5643B7F221F707CE00E1741F /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		5643B81221F876D100E1741F /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		5643B82B21F89F3200E1741F /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		56B0D3BA21F9C38900605997 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -2534,7 +2597,6 @@
 		5614FE8721B0400D002C5D40 /* oo_doci */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = oo_doci; sourceTree = BUILT_PRODUCTS_DIR; };
 		5614FE8C21B0410A002C5D40 /* AP1roGGeminalCoefficients_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AP1roGGeminalCoefficients_test; sourceTree = BUILT_PRODUCTS_DIR; };
 		5614FEA821B04188002C5D40 /* OO_AP1roG_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = OO_AP1roG_test; sourceTree = BUILT_PRODUCTS_DIR; };
-		5614FEB421B0418E002C5D40 /* AP1roG_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AP1roG_test; sourceTree = BUILT_PRODUCTS_DIR; };
 		5614FEC021B04193002C5D40 /* AP1roGPSESolver_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AP1roGPSESolver_test; sourceTree = BUILT_PRODUCTS_DIR; };
 		5614FF6221B043C5002C5D40 /* CISolver_DOCI_Davidson_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CISolver_DOCI_Davidson_test; sourceTree = BUILT_PRODUCTS_DIR; };
 		5614FF6E21B043CC002C5D40 /* CISolver_DOCI_Dense_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CISolver_DOCI_Dense_test; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2549,12 +2611,10 @@
 		56272DB321B6CBFA008BEA47 /* AP1roGJacobiOrbitalOptimizer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AP1roGJacobiOrbitalOptimizer.hpp; sourceTree = "<group>"; };
 		56272DB421B6CBFA008BEA47 /* AP1roGGeminalCoefficients.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AP1roGGeminalCoefficients.hpp; sourceTree = "<group>"; };
 		56272DB521B6CBFA008BEA47 /* AP1roGPSESolver.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AP1roGPSESolver.hpp; sourceTree = "<group>"; };
-		56272DB621B6CBFA008BEA47 /* BaseAPIGGeminalCoefficients.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BaseAPIGGeminalCoefficients.hpp; sourceTree = "<group>"; };
 		56272DB721B6CBFA008BEA47 /* AP1roG.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AP1roG.hpp; sourceTree = "<group>"; };
 		56272DB821B6CBFA008BEA47 /* APIGGeminalCoefficients.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = APIGGeminalCoefficients.hpp; sourceTree = "<group>"; };
 		56272DCD21B6CC2D008BEA47 /* AP1roGGeminalCoefficients_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AP1roGGeminalCoefficients_test.cpp; sourceTree = "<group>"; };
 		56272DCE21B6CC2D008BEA47 /* OO_AP1roG_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OO_AP1roG_test.cpp; sourceTree = "<group>"; };
-		56272DCF21B6CC2D008BEA47 /* AP1roG_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AP1roG_test.cpp; sourceTree = "<group>"; };
 		56272DD021B6CC2D008BEA47 /* AP1roGPSESolver_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AP1roGPSESolver_test.cpp; sourceTree = "<group>"; };
 		56272DD121B6CC2D008BEA47 /* APIGGeminalCoefficients_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = APIGGeminalCoefficients_test.cpp; sourceTree = "<group>"; };
 		56272DE121B6CC7B008BEA47 /* APIGGeminalCoefficients_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = APIGGeminalCoefficients_test; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2568,11 +2628,27 @@
 		5643B7E721F7073F00E1741F /* SpinUnresolvedWaveFunction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpinUnresolvedWaveFunction.cpp; sourceTree = "<group>"; };
 		5643B7E921F7076D00E1741F /* SpinUnresolvedFCIRDMBuilder_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpinUnresolvedFCIRDMBuilder_test.cpp; sourceTree = "<group>"; };
 		5643B7F621F707CE00E1741F /* SpinUnresolvedFCIRDMBuilder_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SpinUnresolvedFCIRDMBuilder_test; sourceTree = BUILT_PRODUCTS_DIR; };
+		5643B7FA21F85B1E00E1741F /* BaseAPIGVariables.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BaseAPIGVariables.cpp; sourceTree = "<group>"; };
+		5643B7FB21F85B1E00E1741F /* BaseAPIGVariables.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BaseAPIGVariables.hpp; sourceTree = "<group>"; };
+		5643B80221F85E9000E1741F /* GeminalCoefficientsInterface.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GeminalCoefficientsInterface.cpp; sourceTree = "<group>"; };
+		5643B80321F85E9000E1741F /* GeminalCoefficientsInterface.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GeminalCoefficientsInterface.hpp; sourceTree = "<group>"; };
+		5643B80621F867C200E1741F /* AP1roGVariables_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AP1roGVariables_test.cpp; sourceTree = "<group>"; };
+		5643B80721F868A600E1741F /* AP1roGVariables.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AP1roGVariables.cpp; sourceTree = "<group>"; };
+		5643B80821F868A600E1741F /* AP1roGVariables.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AP1roGVariables.hpp; sourceTree = "<group>"; };
+		5643B81621F876D100E1741F /* AP1roGVariables_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AP1roGVariables_test; sourceTree = BUILT_PRODUCTS_DIR; };
+		5643B81A21F87F6700E1741F /* AP1roGBivariationalSolver.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AP1roGBivariationalSolver.cpp; sourceTree = "<group>"; };
+		5643B81B21F87F6700E1741F /* AP1roGBivariationalSolver.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AP1roGBivariationalSolver.hpp; sourceTree = "<group>"; };
+		5643B81E21F88A0B00E1741F /* BaseAP1roGSolver.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BaseAP1roGSolver.cpp; sourceTree = "<group>"; };
+		5643B81F21F88A0B00E1741F /* BaseAP1roGSolver.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BaseAP1roGSolver.hpp; sourceTree = "<group>"; };
+		5643B82221F89E6300E1741F /* AP1roGBivariationalSolver_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AP1roGBivariationalSolver_test.cpp; sourceTree = "<group>"; };
+		5643B82F21F89F3200E1741F /* AP1roGBivariationalSolver_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AP1roGBivariationalSolver_test; sourceTree = BUILT_PRODUCTS_DIR; };
+		56B0D3AE21F9BAC100605997 /* BivariationalCoefficients.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BivariationalCoefficients.hpp; sourceTree = "<group>"; };
+		56B0D3B121F9BEFB00605997 /* AP1roG_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AP1roG_test.cpp; sourceTree = "<group>"; };
+		56B0D3BE21F9C38900605997 /* AP1roG_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AP1roG_test; sourceTree = BUILT_PRODUCTS_DIR; };
 		56B49B7921F2128C000F543B /* AP1roGGeminalCoefficients.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AP1roGGeminalCoefficients.cpp; sourceTree = "<group>"; };
 		56B49B7A21F2128C000F543B /* AP1roG.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AP1roG.cpp; sourceTree = "<group>"; };
 		56B49B7B21F2128C000F543B /* AP1roGJacobiOrbitalOptimizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AP1roGJacobiOrbitalOptimizer.cpp; sourceTree = "<group>"; };
 		56B49B7C21F2128D000F543B /* APIGGeminalCoefficients.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = APIGGeminalCoefficients.cpp; sourceTree = "<group>"; };
-		56B49B7D21F2128D000F543B /* BaseAPIGGeminalCoefficients.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseAPIGGeminalCoefficients.cpp; sourceTree = "<group>"; };
 		56B49B7E21F2128D000F543B /* AP1roGPSESolver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AP1roGPSESolver.cpp; sourceTree = "<group>"; };
 		56FBA09B21C2B0420084F088 /* linalg.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = linalg.hpp; sourceTree = "<group>"; };
 		56FBA09D21C2B0420084F088 /* io.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = io.hpp; sourceTree = "<group>"; };
@@ -2611,7 +2687,6 @@
 		56FBA0E521C2D5BF0084F088 /* FindSpectra.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = FindSpectra.cmake; sourceTree = "<group>"; };
 		56FBA0E621C2DFB40084F088 /* HoppingMatrix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HoppingMatrix.cpp; sourceTree = "<group>"; };
 		56FBA0E821C2DFC00084F088 /* HoppingMatrix.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HoppingMatrix.hpp; sourceTree = "<group>"; };
-		56FBA0EA21C2F1610084F088 /* h2o_fci_lowdin_STO-3G.output */ = {isa = PBXFileReference; lastKnownFileType = text; path = "h2o_fci_lowdin_STO-3G.output"; sourceTree = "<group>"; };
 		56FBA0EC21C2F1950084F088 /* HoppingMatrix_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HoppingMatrix_test.cpp; sourceTree = "<group>"; };
 		56FBA0F821C2F1A10084F088 /* HoppingMatrix_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = HoppingMatrix_test; sourceTree = BUILT_PRODUCTS_DIR; };
 		56FBA0FE21C2F3480084F088 /* small_two_ints.data */ = {isa = PBXFileReference; lastKnownFileType = text; path = small_two_ints.data; sourceTree = "<group>"; };
@@ -3033,14 +3108,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5614FEAE21B0418E002C5D40 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5614FEAF21B0418E002C5D40 /* libgqcp.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		5614FEBA21B04193002C5D40 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -3142,6 +3209,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				5643B7F121F707CE00E1741F /* libgqcp.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5643B81021F876D100E1741F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5643B81121F876D100E1741F /* libgqcp.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5643B82921F89F3200E1741F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5643B82A21F89F3200E1741F /* libgqcp.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		56B0D3B821F9C38900605997 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56B0D3B921F9C38900605997 /* libgqcp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3252,7 +3343,6 @@
 				5614FE8721B0400D002C5D40 /* oo_doci */,
 				5614FE8C21B0410A002C5D40 /* AP1roGGeminalCoefficients_test */,
 				5614FEA821B04188002C5D40 /* OO_AP1roG_test */,
-				5614FEB421B0418E002C5D40 /* AP1roG_test */,
 				5614FEC021B04193002C5D40 /* AP1roGPSESolver_test */,
 				5614FF6221B043C5002C5D40 /* CISolver_DOCI_Davidson_test */,
 				5614FF6E21B043CC002C5D40 /* CISolver_DOCI_Dense_test */,
@@ -3308,6 +3398,9 @@
 				56FBA18821C388FD0084F088 /* NewtonSystemOfEquationsSolver_test */,
 				56FBA19421C389050084F088 /* SparseSolver_test */,
 				5643B7F621F707CE00E1741F /* SpinUnresolvedFCIRDMBuilder_test */,
+				5643B81621F876D100E1741F /* AP1roGVariables_test */,
+				5643B82F21F89F3200E1741F /* AP1roGBivariationalSolver_test */,
+				56B0D3BE21F9C38900605997 /* AP1roG_test */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -3810,7 +3903,6 @@
 				5614FB6E21B02EDE002C5D40 /* h2.xyz */,
 				5614FB7421B02EDE002C5D40 /* h2o_631g_klaas.FCIDUMP */,
 				5614FB7321B02EDE002C5D40 /* h2o_crawdad.xyz */,
-				56FBA0EA21C2F1610084F088 /* h2o_fci_lowdin_STO-3G.output */,
 				5614FB7021B02EDE002C5D40 /* h2o_Psi4_GAMESS.xyz */,
 				5614FB6121B02EDE002C5D40 /* h2o_sto-3g_coulomb_horton.data */,
 				5614FB6321B02EDE002C5D40 /* h2o_sto-3g_kinetic_horton.data */,
@@ -3925,11 +4017,16 @@
 			isa = PBXGroup;
 			children = (
 				56272DB721B6CBFA008BEA47 /* AP1roG.hpp */,
+				5643B81B21F87F6700E1741F /* AP1roGBivariationalSolver.hpp */,
 				56272DB421B6CBFA008BEA47 /* AP1roGGeminalCoefficients.hpp */,
 				56272DB321B6CBFA008BEA47 /* AP1roGJacobiOrbitalOptimizer.hpp */,
 				56272DB521B6CBFA008BEA47 /* AP1roGPSESolver.hpp */,
+				5643B80821F868A600E1741F /* AP1roGVariables.hpp */,
 				56272DB821B6CBFA008BEA47 /* APIGGeminalCoefficients.hpp */,
-				56272DB621B6CBFA008BEA47 /* BaseAPIGGeminalCoefficients.hpp */,
+				5643B81F21F88A0B00E1741F /* BaseAP1roGSolver.hpp */,
+				5643B7FB21F85B1E00E1741F /* BaseAPIGVariables.hpp */,
+				56B0D3AE21F9BAC100605997 /* BivariationalCoefficients.hpp */,
+				5643B80321F85E9000E1741F /* GeminalCoefficientsInterface.hpp */,
 			);
 			path = geminals;
 			sourceTree = "<group>";
@@ -3938,11 +4035,15 @@
 			isa = PBXGroup;
 			children = (
 				56B49B7A21F2128C000F543B /* AP1roG.cpp */,
+				5643B81A21F87F6700E1741F /* AP1roGBivariationalSolver.cpp */,
 				56B49B7921F2128C000F543B /* AP1roGGeminalCoefficients.cpp */,
 				56B49B7B21F2128C000F543B /* AP1roGJacobiOrbitalOptimizer.cpp */,
 				56B49B7E21F2128D000F543B /* AP1roGPSESolver.cpp */,
+				5643B80721F868A600E1741F /* AP1roGVariables.cpp */,
 				56B49B7C21F2128D000F543B /* APIGGeminalCoefficients.cpp */,
-				56B49B7D21F2128D000F543B /* BaseAPIGGeminalCoefficients.cpp */,
+				5643B81E21F88A0B00E1741F /* BaseAP1roGSolver.cpp */,
+				5643B7FA21F85B1E00E1741F /* BaseAPIGVariables.cpp */,
+				5643B80221F85E9000E1741F /* GeminalCoefficientsInterface.cpp */,
 			);
 			path = geminals;
 			sourceTree = "<group>";
@@ -3950,9 +4051,11 @@
 		56272DCC21B6CC2D008BEA47 /* geminals */ = {
 			isa = PBXGroup;
 			children = (
-				56272DCF21B6CC2D008BEA47 /* AP1roG_test.cpp */,
+				56B0D3B121F9BEFB00605997 /* AP1roG_test.cpp */,
+				5643B82221F89E6300E1741F /* AP1roGBivariationalSolver_test.cpp */,
 				56272DCD21B6CC2D008BEA47 /* AP1roGGeminalCoefficients_test.cpp */,
 				56272DD021B6CC2D008BEA47 /* AP1roGPSESolver_test.cpp */,
+				5643B80621F867C200E1741F /* AP1roGVariables_test.cpp */,
 				56272DD121B6CC2D008BEA47 /* APIGGeminalCoefficients_test.cpp */,
 				56272DCE21B6CC2D008BEA47 /* OO_AP1roG_test.cpp */,
 			);
@@ -4081,10 +4184,12 @@
 				56272DBB21B6CBFA008BEA47 /* AP1roGPSESolver.hpp in Headers */,
 				5614FA3521B029FB002C5D40 /* BaseOperator.hpp in Headers */,
 				56FBA0C021C2B4AF0084F088 /* Eigenpair.hpp in Headers */,
+				5643B81D21F87F6700E1741F /* AP1roGBivariationalSolver.hpp in Headers */,
 				5614FA4221B029FB002C5D40 /* Hubbard.hpp in Headers */,
 				56FBA0C221C2B4AF0084F088 /* BaseMinimizer.hpp in Headers */,
 				5614FA1D21B029FB002C5D40 /* DOCIRDMBuilder.hpp in Headers */,
 				5614FA1421B029FB002C5D40 /* SelectedFockSpace.hpp in Headers */,
+				5643B7FD21F85B1E00E1741F /* BaseAPIGVariables.hpp in Headers */,
 				5614FA3221B029FB002C5D40 /* OrbitalOptimizationOptions.hpp in Headers */,
 				5614FA1C21B029FB002C5D40 /* RDMCalculator.hpp in Headers */,
 				5614FA3021B029FB002C5D40 /* common.hpp in Headers */,
@@ -4101,10 +4206,12 @@
 				5614FA3921B029FB002C5D40 /* ERNewtonLocalizer.hpp in Headers */,
 				5614FA1A21B029FB002C5D40 /* DIISRHFSCFSolver.hpp in Headers */,
 				5614FA2521B029FB002C5D40 /* Atom.hpp in Headers */,
+				5643B80A21F868A600E1741F /* AP1roGVariables.hpp in Headers */,
 				5614FA4021B029FB002C5D40 /* DOCI.hpp in Headers */,
 				56FBA0C521C2B4AF0084F088 /* EigenproblemSolverOptions.hpp in Headers */,
 				5614FA2A21B029FB002C5D40 /* LibintCommunicator.hpp in Headers */,
 				5614FA1F21B029FB002C5D40 /* BaseRDM.hpp in Headers */,
+				5643B80521F85E9000E1741F /* GeminalCoefficientsInterface.hpp in Headers */,
 				56FBA0BE21C2B4AF0084F088 /* DenseSolver.hpp in Headers */,
 				56FBA0A121C2B0420084F088 /* io.hpp in Headers */,
 				56FBA09F21C2B0420084F088 /* linalg.hpp in Headers */,
@@ -4122,6 +4229,7 @@
 				5614FA3421B029FB002C5D40 /* OneElectronOperator.hpp in Headers */,
 				5643B7E621F7073200E1741F /* SpinUnresolvedWaveFunction.hpp in Headers */,
 				56272DBA21B6CBFA008BEA47 /* AP1roGGeminalCoefficients.hpp in Headers */,
+				5643B82121F88A0B00E1741F /* BaseAP1roGSolver.hpp in Headers */,
 				5614FA1521B029FB002C5D40 /* ONV.hpp in Headers */,
 				5614FA3721B029FB002C5D40 /* CISolver.hpp in Headers */,
 				5614FA2321B029FB002C5D40 /* BaseRDMBuilder.hpp in Headers */,
@@ -4131,6 +4239,7 @@
 				5614FA3621B029FB002C5D40 /* TwoElectronOperator.hpp in Headers */,
 				5614FA2F21B029FB002C5D40 /* JacobiRotationParameters.hpp in Headers */,
 				5614FA3F21B029FB002C5D40 /* HamiltonianParameters.hpp in Headers */,
+				56B0D3B021F9BAC100605997 /* BivariationalCoefficients.hpp in Headers */,
 				5614FA3121B029FB002C5D40 /* RMP2.hpp in Headers */,
 				5614FA3321B029FB002C5D40 /* elements.hpp in Headers */,
 				56FBA0BC21C2B4AF0084F088 /* DavidsonSolver.hpp in Headers */,
@@ -4140,7 +4249,6 @@
 				56272DB921B6CBFA008BEA47 /* AP1roGJacobiOrbitalOptimizer.hpp in Headers */,
 				5614FA1221B029FB002C5D40 /* Configuration.hpp in Headers */,
 				5614FA2121B029FB002C5D40 /* FCIRDMBuilder.hpp in Headers */,
-				56272DBC21B6CBFA008BEA47 /* BaseAPIGGeminalCoefficients.hpp in Headers */,
 				5614FA1721B029FB002C5D40 /* AOBasis.hpp in Headers */,
 				5614FA1B21B029FB002C5D40 /* RHF.hpp in Headers */,
 				5614FA1E21B029FB002C5D40 /* SelectedRDMBuilder.hpp in Headers */,
@@ -4995,24 +5103,6 @@
 			productReference = 5614FEA821B04188002C5D40 /* OO_AP1roG_test */;
 			productType = "com.apple.product-type.tool";
 		};
-		5614FEA921B0418E002C5D40 /* AP1roG_test */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 5614FEB121B0418E002C5D40 /* Build configuration list for PBXNativeTarget "AP1roG_test" */;
-			buildPhases = (
-				5614FEAC21B0418E002C5D40 /* Sources */,
-				5614FEAE21B0418E002C5D40 /* Frameworks */,
-				5614FEB021B0418E002C5D40 /* CopyFiles */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				5614FEAA21B0418E002C5D40 /* PBXTargetDependency */,
-			);
-			name = AP1roG_test;
-			productName = AP1roGGeminalCoefficients_test;
-			productReference = 5614FEB421B0418E002C5D40 /* AP1roG_test */;
-			productType = "com.apple.product-type.tool";
-		};
 		5614FEB521B04193002C5D40 /* AP1roGPSESolver_test */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5614FEBD21B04193002C5D40 /* Build configuration list for PBXNativeTarget "AP1roGPSESolver_test" */;
@@ -5263,6 +5353,60 @@
 			name = SpinUnresolvedFCIRDMBuilder_test;
 			productName = AP1roGGeminalCoefficients_test;
 			productReference = 5643B7F621F707CE00E1741F /* SpinUnresolvedFCIRDMBuilder_test */;
+			productType = "com.apple.product-type.tool";
+		};
+		5643B80B21F876D100E1741F /* AP1roGVariables_test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5643B81321F876D100E1741F /* Build configuration list for PBXNativeTarget "AP1roGVariables_test" */;
+			buildPhases = (
+				5643B80E21F876D100E1741F /* Sources */,
+				5643B81021F876D100E1741F /* Frameworks */,
+				5643B81221F876D100E1741F /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5643B80C21F876D100E1741F /* PBXTargetDependency */,
+			);
+			name = AP1roGVariables_test;
+			productName = AP1roGGeminalCoefficients_test;
+			productReference = 5643B81621F876D100E1741F /* AP1roGVariables_test */;
+			productType = "com.apple.product-type.tool";
+		};
+		5643B82421F89F3200E1741F /* AP1roGBivariationalSolver_test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5643B82C21F89F3200E1741F /* Build configuration list for PBXNativeTarget "AP1roGBivariationalSolver_test" */;
+			buildPhases = (
+				5643B82721F89F3200E1741F /* Sources */,
+				5643B82921F89F3200E1741F /* Frameworks */,
+				5643B82B21F89F3200E1741F /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5643B82521F89F3200E1741F /* PBXTargetDependency */,
+			);
+			name = AP1roGBivariationalSolver_test;
+			productName = AP1roGGeminalCoefficients_test;
+			productReference = 5643B82F21F89F3200E1741F /* AP1roGBivariationalSolver_test */;
+			productType = "com.apple.product-type.tool";
+		};
+		56B0D3B321F9C38900605997 /* AP1roG_test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 56B0D3BB21F9C38900605997 /* Build configuration list for PBXNativeTarget "AP1roG_test" */;
+			buildPhases = (
+				56B0D3B621F9C38900605997 /* Sources */,
+				56B0D3B821F9C38900605997 /* Frameworks */,
+				56B0D3BA21F9C38900605997 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				56B0D3B421F9C38900605997 /* PBXTargetDependency */,
+			);
+			name = AP1roG_test;
+			productName = AP1roGGeminalCoefficients_test;
+			productReference = 56B0D3BE21F9C38900605997 /* AP1roG_test */;
 			productType = "com.apple.product-type.tool";
 		};
 		56FBA0ED21C2F1A10084F088 /* HoppingMatrix_test */ = {
@@ -5516,11 +5660,13 @@
 				5614FFF121B062B4002C5D40 /* ProductFockSpace_test */,
 				5614FFFD21B062BA002C5D40 /* SelectedFockSpace_test */,
 				5614FEC421B041F1002C5D40 /* BUILD_GEMINALS_TESTS */,
+				56B0D3B321F9C38900605997 /* AP1roG_test */,
+				5643B82421F89F3200E1741F /* AP1roGBivariationalSolver_test */,
 				5614FE8B21B0410A002C5D40 /* AP1roGGeminalCoefficients_test */,
-				5614FE9D21B04188002C5D40 /* OO_AP1roG_test */,
-				5614FEA921B0418E002C5D40 /* AP1roG_test */,
 				5614FEB521B04193002C5D40 /* AP1roGPSESolver_test */,
+				5643B80B21F876D100E1741F /* AP1roGVariables_test */,
 				56272DD621B6CC7B008BEA47 /* APIGGeminalCoefficients_test */,
+				5614FE9D21B04188002C5D40 /* OO_AP1roG_test */,
 				5614018D21B063E9002C5D40 /* BUILD_HAMILTONIANBUILDER_TESTS */,
 				5614000921B062C3002C5D40 /* DOCI_test */,
 				5614001521B062C6002C5D40 /* FCI_test */,
@@ -5871,11 +6017,12 @@
 				56FBA0A721C2B06B0084F088 /* miscellaneous.cpp in Sources */,
 				5614FA6721B029FB002C5D40 /* OneElectronOperator.cpp in Sources */,
 				5643B7E421F7070100E1741F /* BaseSpinUnresolvedRDMBuilder.cpp in Sources */,
-				56B49B8321F2128D000F543B /* BaseAPIGGeminalCoefficients.cpp in Sources */,
 				5614FA6321B029FB002C5D40 /* properties.cpp in Sources */,
 				56FBA0DB21C2B4C90084F088 /* BaseMatrixSolver.cpp in Sources */,
 				56B49B7F21F2128D000F543B /* AP1roGGeminalCoefficients.cpp in Sources */,
 				5614FA6D21B029FB002C5D40 /* WaveFunction.cpp in Sources */,
+				5643B80921F868A600E1741F /* AP1roGVariables.cpp in Sources */,
+				5643B82321F89E6300E1741F /* AP1roGBivariationalSolver_test.cpp in Sources */,
 				5614FA4D21B029FB002C5D40 /* ProductFockSpace.cpp in Sources */,
 				5614FA5421B029FB002C5D40 /* PlainRHFSCFSolver.cpp in Sources */,
 				5614FA4721B029FB002C5D40 /* RMP2.cpp in Sources */,
@@ -5906,21 +6053,25 @@
 				56FBA0D721C2B4C90084F088 /* DavidsonSolver.cpp in Sources */,
 				5614FA5221B029FB002C5D40 /* DIISRHFSCFSolver.cpp in Sources */,
 				5614FA5C21B029FB002C5D40 /* RDMCalculator.cpp in Sources */,
+				5643B82021F88A0B00E1741F /* BaseAP1roGSolver.cpp in Sources */,
 				5614FA4C21B029FB002C5D40 /* BaseFockSpace.cpp in Sources */,
 				5614FA5921B029FB002C5D40 /* FCIRDMBuilder.cpp in Sources */,
 				5614FA6C21B029FB002C5D40 /* WaveFunctionReader.cpp in Sources */,
 				56B49B8221F2128D000F543B /* APIGGeminalCoefficients.cpp in Sources */,
 				5614FA4E21B029FB002C5D40 /* SelectedFockSpace.cpp in Sources */,
 				5614FA4621B029FB002C5D40 /* JacobiRotationParameters.cpp in Sources */,
+				5643B80421F85E9000E1741F /* GeminalCoefficientsInterface.cpp in Sources */,
 				5614FA7521B029FB002C5D40 /* DOCINewtonOrbitalOptimizer.cpp in Sources */,
 				56FBA0D621C2B4C90084F088 /* NewtonSystemOfEquationsSolver.cpp in Sources */,
 				56B49B8021F2128D000F543B /* AP1roG.cpp in Sources */,
 				5643B7EA21F7076D00E1741F /* SpinUnresolvedFCIRDMBuilder_test.cpp in Sources */,
+				56B0D3B221F9BEFB00605997 /* AP1roG_test.cpp in Sources */,
 				5614FA7421B029FB002C5D40 /* HamiltonianBuilder.cpp in Sources */,
 				5614FA6521B029FB002C5D40 /* TwoElectronOperator.cpp in Sources */,
 				5614FA5A21B029FB002C5D40 /* SelectedRDMBuilder.cpp in Sources */,
 				5614FA4A21B029FB002C5D40 /* FockSpace.cpp in Sources */,
 				5643B7E821F7074000E1741F /* SpinUnresolvedWaveFunction.cpp in Sources */,
+				5643B7FC21F85B1E00E1741F /* BaseAPIGVariables.cpp in Sources */,
 				5614FA6921B029FB002C5D40 /* BaseERLocalizer.cpp in Sources */,
 				56FBA0A921C2B06B0084F088 /* linalg.cpp in Sources */,
 				5643B7E321F7070100E1741F /* SpinUnresolvedRDMCalculator.cpp in Sources */,
@@ -5928,6 +6079,7 @@
 				56FBA0D321C2B4C90084F088 /* BaseSystemOfEquationsSolver.cpp in Sources */,
 				5614FA6B21B029FB002C5D40 /* ERJacobiLocalizer.cpp in Sources */,
 				56FBA0DC21C2B4C90084F088 /* BaseMinimizer.cpp in Sources */,
+				5643B81C21F87F6700E1741F /* AP1roGBivariationalSolver.cpp in Sources */,
 				56B49B8421F2128D000F543B /* AP1roGPSESolver.cpp in Sources */,
 				5614FA7121B029FB002C5D40 /* Hubbard.cpp in Sources */,
 				5614FA6A21B029FB002C5D40 /* ERNewtonLocalizer.cpp in Sources */,
@@ -6050,14 +6202,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5614FEAC21B0418E002C5D40 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				56272DD421B6CC66008BEA47 /* AP1roG_test.cpp in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		5614FEB821B04193002C5D40 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -6159,6 +6303,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				5643B7F721F707FB00E1741F /* SpinUnresolvedFCIRDMBuilder_test.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5643B80E21F876D100E1741F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5643B81721F876F500E1741F /* AP1roGVariables_test.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5643B82721F89F3200E1741F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5643B83021F89F5E00E1741F /* AP1roGBivariationalSolver_test.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		56B0D3B621F9C38900605997 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56B0D3C121F9C3AD00605997 /* AP1roG_test.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6697,11 +6865,6 @@
 			target = 5614F97F21B0295C002C5D40 /* gqcp */;
 			targetProxy = 5614FE9F21B04188002C5D40 /* PBXContainerItemProxy */;
 		};
-		5614FEAA21B0418E002C5D40 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5614F97F21B0295C002C5D40 /* gqcp */;
-			targetProxy = 5614FEAB21B0418E002C5D40 /* PBXContainerItemProxy */;
-		};
 		5614FEB621B04193002C5D40 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 5614F97F21B0295C002C5D40 /* gqcp */;
@@ -6716,11 +6879,6 @@
 			isa = PBXTargetDependency;
 			target = 5614FE9D21B04188002C5D40 /* OO_AP1roG_test */;
 			targetProxy = 5614FECA21B041FC002C5D40 /* PBXContainerItemProxy */;
-		};
-		5614FECD21B041FC002C5D40 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5614FEA921B0418E002C5D40 /* AP1roG_test */;
-			targetProxy = 5614FECC21B041FC002C5D40 /* PBXContainerItemProxy */;
 		};
 		5614FECF21B041FC002C5D40 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -6836,6 +6994,36 @@
 			isa = PBXTargetDependency;
 			target = 5643B7EB21F707CE00E1741F /* SpinUnresolvedFCIRDMBuilder_test */;
 			targetProxy = 5643B7F821F7080E00E1741F /* PBXContainerItemProxy */;
+		};
+		5643B80C21F876D100E1741F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5614F97F21B0295C002C5D40 /* gqcp */;
+			targetProxy = 5643B80D21F876D100E1741F /* PBXContainerItemProxy */;
+		};
+		5643B81921F8779400E1741F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5643B80B21F876D100E1741F /* AP1roGVariables_test */;
+			targetProxy = 5643B81821F8779400E1741F /* PBXContainerItemProxy */;
+		};
+		5643B82521F89F3200E1741F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5614F97F21B0295C002C5D40 /* gqcp */;
+			targetProxy = 5643B82621F89F3200E1741F /* PBXContainerItemProxy */;
+		};
+		5643B83221F89F7F00E1741F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5643B82421F89F3200E1741F /* AP1roGBivariationalSolver_test */;
+			targetProxy = 5643B83121F89F7F00E1741F /* PBXContainerItemProxy */;
+		};
+		56B0D3B421F9C38900605997 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5614F97F21B0295C002C5D40 /* gqcp */;
+			targetProxy = 56B0D3B521F9C38900605997 /* PBXContainerItemProxy */;
+		};
+		56B0D3C021F9C3A100605997 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 56B0D3B321F9C38900605997 /* AP1roG_test */;
+			targetProxy = 56B0D3BF21F9C3A100605997 /* PBXContainerItemProxy */;
 		};
 		56FBA0EE21C2F1A10084F088 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -8160,22 +8348,6 @@
 			};
 			name = Release;
 		};
-		5614FEB221B0418E002C5D40 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		5614FEB321B0418E002C5D40 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 		5614FEBE21B04193002C5D40 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -8409,6 +8581,54 @@
 			name = Debug;
 		};
 		5643B7F521F707CE00E1741F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		5643B81421F876D100E1741F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		5643B81521F876D100E1741F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		5643B82D21F89F3200E1741F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		5643B82E21F89F3200E1741F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		56B0D3BC21F9C38900605997 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		56B0D3BD21F9C38900605997 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -9160,15 +9380,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5614FEB121B0418E002C5D40 /* Build configuration list for PBXNativeTarget "AP1roG_test" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				5614FEB221B0418E002C5D40 /* Debug */,
-				5614FEB321B0418E002C5D40 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		5614FEBD21B04193002C5D40 /* Build configuration list for PBXNativeTarget "AP1roGPSESolver_test" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -9300,6 +9511,33 @@
 			buildConfigurations = (
 				5643B7F421F707CE00E1741F /* Debug */,
 				5643B7F521F707CE00E1741F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5643B81321F876D100E1741F /* Build configuration list for PBXNativeTarget "AP1roGVariables_test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5643B81421F876D100E1741F /* Debug */,
+				5643B81521F876D100E1741F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5643B82C21F89F3200E1741F /* Build configuration list for PBXNativeTarget "AP1roGBivariationalSolver_test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5643B82D21F89F3200E1741F /* Debug */,
+				5643B82E21F89F3200E1741F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		56B0D3BB21F9C38900605997 /* Build configuration list for PBXNativeTarget "AP1roG_test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				56B0D3BC21F9C38900605997 /* Debug */,
+				56B0D3BD21F9C38900605997 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

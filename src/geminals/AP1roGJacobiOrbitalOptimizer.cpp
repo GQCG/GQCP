@@ -21,10 +21,11 @@
 #include <queue>
 
 #include "optimization/NewtonMinimizer.hpp"
+#include "geminals/AP1roG.hpp"
+#include "geminals/AP1roGPSESolver.hpp"
 
 #include <boost/math/constants/constants.hpp>
 
-#include "geminals/AP1roGPSESolver.hpp"
 
 
 namespace GQCP {
@@ -42,9 +43,7 @@ namespace GQCP {
  *  The initial guess for the geminal coefficients is zero
  */
 AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer(size_t N_P, const HamiltonianParameters& ham_par, double oo_threshold, const size_t maximum_number_of_oo_iterations) :
-    K (ham_par.get_K()),
-    ham_par (ham_par),
-    N_P (N_P),
+    BaseAP1roGSolver(N_P, ham_par),
     oo_threshold (oo_threshold),
     maximum_number_of_oo_iterations (maximum_number_of_oo_iterations)
 {}
@@ -59,13 +58,10 @@ AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer(size_t N_P, const Ham
  *  The initial guess for the geminal coefficients is zero
  */
 AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer(const Molecule& molecule, const HamiltonianParameters& ham_par, double oo_threshold, const size_t maximum_number_of_oo_iterations) :
-    AP1roGJacobiOrbitalOptimizer(molecule.get_N()/2, ham_par, oo_threshold, maximum_number_of_oo_iterations)
-{
-    // Check if we have an even number of electrons
-    if ((molecule.get_N() % 2) != 0) {
-        throw std::invalid_argument("The given number of electrons is odd.");
-    }
-}
+    BaseAP1roGSolver(molecule, ham_par),
+    oo_threshold (oo_threshold),
+    maximum_number_of_oo_iterations (maximum_number_of_oo_iterations)
+{}
 
 
 
@@ -308,7 +304,7 @@ void AP1roGJacobiOrbitalOptimizer::solve() {
     // Solve the PSEs before starting
     AP1roGPSESolver initial_pse_solver (this->N_P, this->ham_par);
     initial_pse_solver.solve();
-    auto G = initial_pse_solver.get_solution().get_geminal_coefficients();
+    auto G = initial_pse_solver.get_geminal_coefficients();
     double E_old = calculateAP1roGEnergy(G, this->ham_par);
 
     size_t iterations = 0;
@@ -345,7 +341,7 @@ void AP1roGJacobiOrbitalOptimizer::solve() {
         // Solve the PSEs in the rotated spatial orbital basis
         AP1roGPSESolver pse_solver (this->N_P, this->ham_par, G);  // use the unrotated solution G as initial guess for the PSEs in the rotated basis
         pse_solver.solve();
-        G = pse_solver.get_solution().get_geminal_coefficients();
+        G = pse_solver.get_geminal_coefficients();
         double E = calculateAP1roGEnergy(G, this->ham_par);
 
         // Check for convergence
@@ -353,8 +349,8 @@ void AP1roGJacobiOrbitalOptimizer::solve() {
             this->is_converged = true;
 
             // Set the solution
-            double electronic_energy = calculateAP1roGEnergy(G, this->ham_par);
-            this->solution = AP1roG(G, electronic_energy);
+            this->geminal_coefficients = G;
+            this->electronic_energy = calculateAP1roGEnergy(this->geminal_coefficients, this->ham_par);
         } else {
             iterations++;
             E_old = E;  // copy the current energy to be able to check for energy convergence.

@@ -17,6 +17,7 @@
 // 
 #include "geminals/AP1roGPSESolver.hpp"
 
+#include "geminals/AP1roG.hpp"
 #include "optimization/NewtonSystemOfEquationsSolver.hpp"
 
 
@@ -26,17 +27,16 @@ namespace GQCP {
 /*
  * CONSTRUCTORS
  */
+
 /**
  *  @param N_P          the number of electrons
  *  @param ham_par      Hamiltonian parameters in an orthonormal orbital basis
  *  @param G            the initial guess for the AP1roG gemial coefficients
  */
 AP1roGPSESolver::AP1roGPSESolver(size_t N_P, const HamiltonianParameters& ham_par, const AP1roGGeminalCoefficients& G) :
-    K (ham_par.get_K()),
-    ham_par (ham_par),
-    N_P (N_P),
-    initial_geminal_coefficients (G)
+    BaseAP1roGSolver(N_P, ham_par, G)
 {}
+
 
 /**
  *  @param N_P          the number of electrons
@@ -45,7 +45,7 @@ AP1roGPSESolver::AP1roGPSESolver(size_t N_P, const HamiltonianParameters& ham_pa
  *  The initial guess for the geminal coefficients is zero
  */
 AP1roGPSESolver::AP1roGPSESolver(size_t N_P, const HamiltonianParameters& ham_par) :
-    AP1roGPSESolver(N_P, ham_par, AP1roGGeminalCoefficients(N_P, ham_par.get_K()))
+    BaseAP1roGSolver(N_P, ham_par)
 {}
 
 
@@ -55,12 +55,8 @@ AP1roGPSESolver::AP1roGPSESolver(size_t N_P, const HamiltonianParameters& ham_pa
  *  @param G            the initial guess for the AP1roG gemial coefficients
  */
 AP1roGPSESolver::AP1roGPSESolver(const Molecule& molecule, const HamiltonianParameters& ham_par, const AP1roGGeminalCoefficients& G) :
-    AP1roGPSESolver(molecule.get_N()/2, ham_par, G)
+    BaseAP1roGSolver(molecule, ham_par, G)
 {
-    // Check if we have an even number of electrons
-    if ((molecule.get_N() % 2) != 0) {
-        throw std::invalid_argument("The given number of electrons is odd.");
-    }
 }
 
 
@@ -71,7 +67,7 @@ AP1roGPSESolver::AP1roGPSESolver(const Molecule& molecule, const HamiltonianPara
  *  The initial guess for the geminal coefficients is zero
  */
 AP1roGPSESolver::AP1roGPSESolver(const Molecule& molecule, const HamiltonianParameters& ham_par) :
-    AP1roGPSESolver(molecule, ham_par, AP1roGGeminalCoefficients(molecule.get_N()/2, ham_par.get_K()))
+    BaseAP1roGSolver(molecule, ham_par)
 {}
 
 
@@ -79,6 +75,7 @@ AP1roGPSESolver::AP1roGPSESolver(const Molecule& molecule, const HamiltonianPara
 /*
  *  PUBLIC METHODS
  */
+
 /**
  *  @param G        the AP1roG geminal coefficients
  *  @param i        the subscript for the coordinate function
@@ -163,16 +160,19 @@ Eigen::MatrixXd AP1roGPSESolver::calculateJacobian(const Eigen::VectorXd& g) con
 
     Eigen::MatrixXd J = Eigen::MatrixXd::Zero(number_of_geminal_coefficients, number_of_geminal_coefficients);
     // Loop over all Jacobian elements to construct it
-    for (size_t mu = 0; mu < number_of_geminal_coefficients; mu++) {
-        for (size_t nu = 0; nu < number_of_geminal_coefficients; nu++) {
+    for (size_t row_index = 0; row_index < number_of_geminal_coefficients; row_index++) {
+        for (size_t column_index = 0; column_index < number_of_geminal_coefficients; column_index++) {
 
-            // Convert the vector indices mu and nu into matrix indices
-            size_t i = G.matrixIndexMajor(nu);
-            size_t a = G.matrixIndexMinor(nu);
-            size_t k = G.matrixIndexMajor(mu);
-            size_t c = G.matrixIndexMinor(mu);
+            // In our definitions, we have:
+            //      row indices refer to the coordinate functions
+            size_t i = G.matrixIndexMajor(row_index);
+            size_t a = G.matrixIndexMinor(row_index);
 
-            J(mu, nu) = this->calculateJacobianElement(G, i, a, k, c);
+            //      column indices refer to geminal coefficients
+            size_t k = G.matrixIndexMajor(column_index);
+            size_t c = G.matrixIndexMinor(column_index);
+
+            J(row_index,column_index) = this->calculateJacobianElement(G, i, a, k, c);
         }
     }
 
@@ -271,15 +271,14 @@ void AP1roGPSESolver::solve() {
     MatrixFunction J = [this](const Eigen::VectorXd& x) { return this->calculateJacobian(x); };
 
 
-    Eigen::VectorXd x0 = this->initial_geminal_coefficients.asVector();
+    Eigen::VectorXd x0 = this->geminal_coefficients.asVector();
     NewtonSystemOfEquationsSolver syseq_solver (x0, f, J);
     syseq_solver.solve();
 
 
     // Set the solution
-    AP1roGGeminalCoefficients geminal_coefficients (syseq_solver.get_solution(), this->N_P, this->K);
-    double electronic_energy = calculateAP1roGEnergy(geminal_coefficients, this->ham_par);
-    this->solution = AP1roG(geminal_coefficients, electronic_energy);
+    this->geminal_coefficients = AP1roGGeminalCoefficients(syseq_solver.get_solution(), this->N_P, this->K);
+    this->electronic_energy = calculateAP1roGEnergy(this->geminal_coefficients, this->ham_par);
 }
 
 

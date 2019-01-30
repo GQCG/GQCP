@@ -15,60 +15,16 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "geminals/BaseAPIGGeminalCoefficients.hpp"
-
-#include "FockSpace/FockSpace.hpp"
-
-
-#include <iostream>
+#include "geminals/GeminalCoefficientsInterface.hpp"
 
 
 namespace GQCP {
 
 
 /*
- *  CONSTRUCTORS
+ *  DESTRUCTOR
  */
-
-/**
- *  @param g        the geminal coefficients in a vector representation that is in row-major storage
- *
- *  @param N_P      the number of electron pairs (= the number of geminals)
- *  @param K        the number of spatial orbitals
- */
-BaseAPIGGeminalCoefficients::BaseAPIGGeminalCoefficients(const Eigen::VectorXd& g, size_t N_P, size_t K) :
-    N_P (N_P),
-    K (K),
-    g (g)
-{
-    // The base constructor just sets the members, derived constructors should perform subsequent checks on the arguments
-}
-
-
-/**
- *  Default constructor setting everything to zero
- */
-BaseAPIGGeminalCoefficients::BaseAPIGGeminalCoefficients() :
-    BaseAPIGGeminalCoefficients(Eigen::VectorXd::Zero(0), 0, 0)
-{}
-
-
-
-/*
- *  OPERATORS
- */
-
-/**
- *  @param i        the major (geminal, subscript, non-contiguous) index
- *  @param p        the minor (orbital, superscript, contiguous) index
- *
- *  @return the geminal coefficient G_i^p
- */
-double BaseAPIGGeminalCoefficients::operator()(size_t i, size_t p) const {
-    size_t mu = this->vectorIndex(i, p);
-    return this->operator()(mu);
-}
-
+GeminalCoefficientsInterface::~GeminalCoefficientsInterface() {}
 
 
 /*
@@ -80,7 +36,7 @@ double BaseAPIGGeminalCoefficients::operator()(size_t i, size_t p) const {
  *
  *  @return the wave function expansion corresponding to the geminal coefficients
  */
-WaveFunction BaseAPIGGeminalCoefficients::toWaveFunction(const FockSpace& fock_space) const {
+WaveFunction GeminalCoefficientsInterface::toWaveFunction(const FockSpace& fock_space) const {
 
     // The FockSpace can't be marked const, as makeONV() and setNext() are non-const methods
 

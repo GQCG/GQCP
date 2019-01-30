@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "56B0D3B321F9C38900605997"
-               BuildableName = "AP1roG_test"
-               BlueprintName = "AP1roG_test"
+               BlueprintIdentifier = "5643B80B21F876D100E1741F"
+               BuildableName = "AP1roGVariables_test"
+               BlueprintName = "AP1roGVariables_test"
                ReferencedContainer = "container:gqcp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "56B0D3B321F9C38900605997"
-            BuildableName = "AP1roG_test"
-            BlueprintName = "AP1roG_test"
+            BlueprintIdentifier = "5643B80B21F876D100E1741F"
+            BuildableName = "AP1roGVariables_test"
+            BlueprintName = "AP1roGVariables_test"
             ReferencedContainer = "container:gqcp.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -46,8 +46,7 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
-      useCustomWorkingDirectory = "YES"
-      customWorkingDirectory = "/Users/laurentlemmens/Software/GQCG/gqcp/tests"
+      useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
@@ -56,19 +55,12 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "56B0D3B321F9C38900605997"
-            BuildableName = "AP1roG_test"
-            BlueprintName = "AP1roG_test"
+            BlueprintIdentifier = "5643B80B21F876D100E1741F"
+            BuildableName = "AP1roGVariables_test"
+            BlueprintName = "AP1roGVariables_test"
             ReferencedContainer = "container:gqcp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <EnvironmentVariables>
-         <EnvironmentVariable
-            key = "LIBINT_DATA_PATH"
-            value = "/usr/local/libint/2.3.1/share/libint/2.3.1/basis"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-      </EnvironmentVariables>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -82,9 +74,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "56B0D3B321F9C38900605997"
-            BuildableName = "AP1roG_test"
-            BlueprintName = "AP1roG_test"
+            BlueprintIdentifier = "5643B80B21F876D100E1741F"
+            BuildableName = "AP1roGVariables_test"
+            BlueprintName = "AP1roGVariables_test"
             ReferencedContainer = "container:gqcp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

@@ -19,27 +19,16 @@
 #define AP1roGPSESolver_hpp
 
 
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
-#include "Molecule.hpp"
-#include "geminals/AP1roGGeminalCoefficients.hpp"
-#include "geminals/AP1roG.hpp"
+#include "geminals/BaseAP1roGSolver.hpp"
+
 
 namespace GQCP {
+
 
 /**
  *  A class that is able to solve the AP1roG PSE equations
  */
-class AP1roGPSESolver {
-private:
-    size_t K;  // the number of special orbitals
-    size_t N_P;  // the number of electron pairs
-    AP1roGGeminalCoefficients initial_geminal_coefficients;
-    
-    HamiltonianParameters ham_par;
-
-    AP1roG solution;
-
-
+class AP1roGPSESolver : public BaseAP1roGSolver {
 public:
     // CONSTRUCTORS
     /**
@@ -71,10 +60,6 @@ public:
      *  The initial guess for the geminal coefficients is zero
      */
     AP1roGPSESolver(const Molecule& molecule, const HamiltonianParameters& ham_par);
-
-
-    // GETTERS
-    const AP1roG& get_solution() const { return this->solution; }
 
 
     // PUBLIC METHODS
@@ -115,7 +100,7 @@ public:
     /**
      *  Set up and solve the projected Schrödinger equations for AP1roG
      */
-    void solve();
+    void solve() override;
 };
 
 
