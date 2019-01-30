@@ -14,11 +14,11 @@ namespace GQCP {
  *  Class that recursively computes and stores T-order derivatives and the associated function values for unary functions
  */
 template<size_t T>
-class NumericalDerivator {
+class NumericalDerivativeCalculator {
 protected:
     double derivative;
     double function_value;
-    std::shared_ptr<NumericalDerivator<T-1>> precursor;
+    std::shared_ptr<NumericalDerivativeCalculator<T-1>> precursor;  // lower order DerivativeCalculator
 
     /**
      *  Numerically computes the derivative as : (-1)^(T+1) 1/(s^T) * sum^T_i=0 (-1)^(i+1) * (T)choose(i) * f(x + i*s)
@@ -37,17 +37,28 @@ protected:
     }
 
 public:
-    explicit NumericalDerivator(std::shared_ptr<NumericalDerivator<T-1>> precursor) : precursor(precursor) {};
+    // CONSTRUCTORS
+    /**
+     *  Constructor for initialization of derived instances
+     *
+     * @param precursor
+     */
+    explicit NumericalDerivativeCalculator(std::shared_ptr<NumericalDerivativeCalculator<T-1>> precursor) : precursor(precursor) {};
 
-    NumericalDerivator (const UnaryFunction& uf, double start, double step_size) : precursor(std::make_shared<NumericalDerivator<T-1>>(uf, start, step_size)){
+    /**
+     *  Recursively constructs T-th order down to 0-th order NumericalDerivativeCalculator
+     *
+     *  @param uf                    The Unary function we derive
+     *  @param start                 starting parameter around which we derive
+     *  @param step_size             step size for the numeric derivation approach
+     */
+    NumericalDerivativeCalculator (const UnaryFunction& uf, double start, double step_size) : precursor(std::make_shared<NumericalDerivativeCalculator<T-1>>(uf, start, step_size))
+    {
         this->function_value = uf(start + step_size*T);
         this->derivative = calculateDerivative(step_size);
     }
 
-    /**
-     *  @param order                order of the derivative that is requested
-     *  @return the derivative of the requested order
-     */
+    // GETTERS
     double get_derivative(size_t order = T) const {
         if (order > T) {
             throw std::invalid_argument("requested derivative order was not computed");
@@ -71,23 +82,33 @@ public:
     }
 };
 
+
 /**
  *  Zero-th order template specialization
  */
 template<>
-class NumericalDerivator<0> {
+class NumericalDerivativeCalculator<0> {
 protected:
     double derivative;
     double function_value;
 
 public:
-    NumericalDerivator() = default;
+    // CONSTRUCTORS
+    NumericalDerivativeCalculator() = default;
 
-    NumericalDerivator (const UnaryFunction& uf, double start, double step_size) {
+    /**
+     *  Constructs 0-th order NumericalDerivativeCalculator
+     *
+     *  @param uf                    The Unary function we derive
+     *  @param start                 starting parameter around which we derive
+     *  @param step_size             step size for the numeric derivation approach
+     */
+    NumericalDerivativeCalculator (const UnaryFunction& uf, double start, double step_size) {
         this->function_value = uf(start);
         this->derivative = this->function_value;
     }
 
+    // GETTERS
     double get_derivative(size_t order = 0) const {
         if (order != 0) {
             throw std::invalid_argument("requested derivative order was not computed");
@@ -105,51 +126,72 @@ public:
     }
 };
 
+
 /**
- *  Class that recursively computes and stores T-order derivatives and the associated function values and eigenvectors for unary numeric eigen problems requiring a guess vector input
+ *  Class that recursively computes and stores T-order derivatives and the associated function values and eigenvectors for numeric eigenproblems requiring a guess vector input
  */
 using NumericEigenProblem = std::function<Eigenpair (double x, const Eigen::VectorXd& guess)>;
 
 template<size_t T>
-class NumericalGuessDerivator : public NumericalDerivator<T> {
+class NumericalGuessDerivativeCalculator : public NumericalDerivativeCalculator<T> {
 private:
     Eigen::VectorXd eigenvector;
 
 public:
-    NumericalGuessDerivator (const NumericEigenProblem& uf, double start, double step_size, const Eigen::MatrixXd& guess) :
-    NumericalDerivator<T>(std::make_shared<NumericalGuessDerivator<T-1>>(uf, start, step_size, guess))
+    // CONSTRUCTORS
+    /**
+     *  Recursively constructs T-th order down to 0-th order NumericalGuessDerivativeCalculator
+     *
+     *  @param nef                   NumericEigenProblem function based on a single parameter
+     *  @param start                 starting parameter around which we derive
+     *  @param step_size             step size for the numeric derivation approach
+     */
+    NumericalGuessDerivativeCalculator (const NumericEigenProblem& uf, double start, double step_size, const Eigen::MatrixXd& guess) : NumericalDerivativeCalculator<T>(std::make_shared<NumericalGuessDerivativeCalculator<T-1>>(uf, start, step_size, guess))
     {
-        const Eigenpair& eigenpair = uf(start + T*step_size, static_cast<const NumericalGuessDerivator<T-1>&>(*this->precursor).get_eigenvector());
+        const Eigenpair& eigenpair = uf(start + T*step_size, static_cast<const NumericalGuessDerivativeCalculator<T-1>&>(*this->precursor).get_eigenvector());
         this->function_value = eigenpair.get_eigenvalue();
         this->eigenvector = eigenpair.get_eigenvector();
         this->derivative = this->calculateDerivative(step_size);
     }
 
+    // GETTERS
     const Eigen::VectorXd& get_eigenvector(size_t order = T) const {
         if (order > T) {
             throw std::invalid_argument("eigenvector of requested order was not computed");
         } else if  (order == T)  {
             return this->eigenvector;
         } else {
-            return static_cast<const NumericalGuessDerivator<T-1>&>(*this->precursor).get_eigenvector(order);
+            return static_cast<const NumericalGuessDerivativeCalculator<T-1>&>(*this->precursor).get_eigenvector(order);
         }
     }
 };
+
 
 /**
  *  Zero-th order template specialization
  */
 template<>
-class NumericalGuessDerivator<0> : public NumericalDerivator<0> {
+class NumericalGuessDerivativeCalculator<0> : public NumericalDerivativeCalculator<0> {
+private:
     Eigen::VectorXd eigenvector;
+
 public:
-    NumericalGuessDerivator (const NumericEigenProblem& uf, double start, double step_size, const Eigen::MatrixXd& guess) : NumericalDerivator<0>() {
-        const Eigenpair& eigenpair = uf(start, guess);
+    // CONSTRUCTORS
+    /**
+     *  Constructs 0-th order NumericalGuessDerivativeCalculator
+     *
+     *  @param nef                   NumericEigenProblem function based on a single parameter
+     *  @param start                 starting parameter around which we derive
+     *  @param step_size             step size for the numeric derivation approach
+     */
+    NumericalGuessDerivativeCalculator (const NumericEigenProblem& nef, double start, double step_size, const Eigen::MatrixXd& guess) : NumericalDerivativeCalculator<0>() {
+        const Eigenpair& eigenpair = nef(start, guess);
         this->function_value = eigenpair.get_eigenvalue();
         this->eigenvector = eigenpair.get_eigenvector();
         this->derivative = this->function_value;
     }
 
+    // GETTERS
     const Eigen::VectorXd& get_eigenvector(size_t order = 0) const {
         if (order != 0) {
             throw std::invalid_argument("eigenvector of requested order was not computed");
@@ -157,15 +199,10 @@ public:
             return this->eigenvector;
         }
     }
-
 };
 
 
-
-
-
-
-}
+}  // GQCP
 
 
 #endif  // GQCP_NUMERICALDERIVATIVE_HPP
