@@ -490,6 +490,7 @@
 		56272DD321B6CC5D008BEA47 /* OO_AP1roG_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56272DCE21B6CC2D008BEA47 /* OO_AP1roG_test.cpp */; };
 		56272DDC21B6CC7B008BEA47 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
 		56272DE221B6CC93008BEA47 /* APIGGeminalCoefficients_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56272DD121B6CC2D008BEA47 /* APIGGeminalCoefficients_test.cpp */; };
+		56288CE62201E17700403B47 /* version.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56288CE52201E17600403B47 /* version.hpp */; };
 		5643B7DC21F706F000E1741F /* BaseSpinUnresolvedRDMBuilder.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5643B7D921F706EF00E1741F /* BaseSpinUnresolvedRDMBuilder.hpp */; };
 		5643B7DD21F706F000E1741F /* SpinUnresolvedRDMCalculator.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5643B7DA21F706EF00E1741F /* SpinUnresolvedRDMCalculator.hpp */; };
 		5643B7DE21F706F000E1741F /* SpinUnresolvedFCIRDMBuilder.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5643B7DB21F706EF00E1741F /* SpinUnresolvedFCIRDMBuilder.hpp */; };
@@ -2434,7 +2435,6 @@
 		5614F9D321B029FB002C5D40 /* JacobiRotationParameters.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JacobiRotationParameters.cpp; sourceTree = "<group>"; };
 		5614F9D421B029FB002C5D40 /* RMP2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RMP2.cpp; sourceTree = "<group>"; };
 		5614F9D521B029FB002C5D40 /* elements.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = elements.cpp; sourceTree = "<group>"; };
-		5614F9D621B029FB002C5D40 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		5614F9D721B029FB002C5D40 /* Molecule.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Molecule.cpp; sourceTree = "<group>"; };
 		5614F9D921B029FB002C5D40 /* FockSpace.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FockSpace.cpp; sourceTree = "<group>"; };
 		5614F9DA21B029FB002C5D40 /* ONV.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ONV.cpp; sourceTree = "<group>"; };
@@ -2479,9 +2479,7 @@
 		5614FA8921B02A8A002C5D40 /* build.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = build.sh; sourceTree = "<group>"; };
 		5614FA8A21B02A8A002C5D40 /* meta.yaml */ = {isa = PBXFileReference; lastKnownFileType = text; path = meta.yaml; sourceTree = "<group>"; };
 		5614FA8B21B02A8A002C5D40 /* HEADER */ = {isa = PBXFileReference; lastKnownFileType = text; path = HEADER; sourceTree = "<group>"; };
-		5614FA8D21B02A8A002C5D40 /* InstallLibrary.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = InstallLibrary.cmake; sourceTree = "<group>"; };
 		5614FA8E21B02A8A002C5D40 /* FindEigen3.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = FindEigen3.cmake; sourceTree = "<group>"; };
-		5614FA8F21B02A8A002C5D40 /* SetCMakeEnvironment.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = SetCMakeEnvironment.cmake; sourceTree = "<group>"; };
 		5614FA9121B02A8A002C5D40 /* ConfigVersion.cmake.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = ConfigVersion.cmake.in; sourceTree = "<group>"; };
 		5614FA9221B02A8A002C5D40 /* FindLibint2.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = FindLibint2.cmake; sourceTree = "<group>"; };
 		5614FA9321B02A8A002C5D40 /* FindPackages.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = FindPackages.cmake; sourceTree = "<group>"; };
@@ -2490,16 +2488,12 @@
 		5614FA9821B02A8B002C5D40 /* CONTRIBUTORS */ = {isa = PBXFileReference; lastKnownFileType = text; path = CONTRIBUTORS; sourceTree = "<group>"; };
 		5614FA9921B02A8B002C5D40 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		5614FA9B21B02A8B002C5D40 /* Doxyfile.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = Doxyfile.in; sourceTree = "<group>"; };
-		5614FA9C21B02A8B002C5D40 /* gqcp_UML_diagram.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gqcp_UML_diagram.png; sourceTree = "<group>"; };
-		5614FA9D21B02A8B002C5D40 /* gqcp.puml */ = {isa = PBXFileReference; lastKnownFileType = text; path = gqcp.puml; sourceTree = "<group>"; };
 		5614FA9E21B02A8B002C5D40 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		5614FAA121B02D25002C5D40 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		5614FAA221B02D25002C5D40 /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
 		5614FAA421B02E48002C5D40 /* fci_lowdin.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = fci_lowdin.cpp; sourceTree = "<group>"; };
 		5614FAA521B02E48002C5D40 /* hubbard.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = hubbard.cpp; sourceTree = "<group>"; };
-		5614FAA621B02E48002C5D40 /* CMakeLists.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		5614FAA721B02E48002C5D40 /* oo_doci.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = oo_doci.cpp; sourceTree = "<group>"; };
-		5614FAA921B02E48002C5D40 /* CMakeLists.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		5614FAAB21B02E48002C5D40 /* fci_matvec.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = fci_matvec.cpp; sourceTree = "<group>"; };
 		5614FAAC21B02E48002C5D40 /* fci_matrix.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = fci_matrix.cpp; sourceTree = "<group>"; };
 		5614FAAD21B02E48002C5D40 /* fci_hchain.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = fci_hchain.cpp; sourceTree = "<group>"; };
@@ -2515,7 +2509,6 @@
 		5614FB3E21B02EDE002C5D40 /* Atom_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Atom_test.cpp; sourceTree = "<group>"; };
 		5614FB3F21B02EDE002C5D40 /* LibintCommunicator_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LibintCommunicator_test.cpp; sourceTree = "<group>"; };
 		5614FB4021B02EDE002C5D40 /* AOBasis_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AOBasis_test.cpp; sourceTree = "<group>"; };
-		5614FB4121B02EDE002C5D40 /* CMakeLists.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		5614FB4221B02EDE002C5D40 /* RMP2_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RMP2_test.cpp; sourceTree = "<group>"; };
 		5614FB4421B02EDE002C5D40 /* SelectedFockSpace_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SelectedFockSpace_test.cpp; sourceTree = "<group>"; };
 		5614FB4521B02EDE002C5D40 /* FockSpace_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FockSpace_test.cpp; sourceTree = "<group>"; };
@@ -2618,6 +2611,23 @@
 		56272DD021B6CC2D008BEA47 /* AP1roGPSESolver_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AP1roGPSESolver_test.cpp; sourceTree = "<group>"; };
 		56272DD121B6CC2D008BEA47 /* APIGGeminalCoefficients_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = APIGGeminalCoefficients_test.cpp; sourceTree = "<group>"; };
 		56272DE121B6CC7B008BEA47 /* APIGGeminalCoefficients_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = APIGGeminalCoefficients_test; sourceTree = BUILT_PRODUCTS_DIR; };
+		56288CD22201B92200403B47 /* Options.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = Options.cmake; sourceTree = "<group>"; };
+		56288CD32201BA3000403B47 /* Sources.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = Sources.cmake; sourceTree = "<group>"; };
+		56288CD42201BACE00403B47 /* Headers.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = Headers.cmake; sourceTree = "<group>"; };
+		56288CD52201BB4E00403B47 /* Tests.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = Tests.cmake; sourceTree = "<group>"; };
+		56288CD62201BBA600403B47 /* Drivers.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = Drivers.cmake; sourceTree = "<group>"; };
+		56288CD82201BC8A00403B47 /* CMakeDefinitions.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = CMakeDefinitions.cmake; sourceTree = "<group>"; };
+		56288CDA2201BD0200403B47 /* Compiler.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = Compiler.cmake; sourceTree = "<group>"; };
+		56288CDB2201BD8C00403B47 /* Benchmarks.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = Benchmarks.cmake; sourceTree = "<group>"; };
+		56288CDC2201C36B00403B47 /* InstallDirectories.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = InstallDirectories.cmake; sourceTree = "<group>"; };
+		56288CDD2201C5E600403B47 /* CMakeLists.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
+		56288CDE2201C61800403B47 /* CMakeLists.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
+		56288CDF2201C65600403B47 /* CMakeLists.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
+		56288CE02201C68400403B47 /* CMakeLists.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
+		56288CE22201CEB800403B47 /* ParseInputFiles.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = ParseInputFiles.cmake; sourceTree = "<group>"; };
+		56288CE32201D84B00403B47 /* gqcp.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = gqcp.hpp; sourceTree = "<group>"; };
+		56288CE42201DDE100403B47 /* Git.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = Git.cmake; sourceTree = "<group>"; };
+		56288CE52201E17600403B47 /* version.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = version.hpp; sourceTree = "<group>"; };
 		5643B7D921F706EF00E1741F /* BaseSpinUnresolvedRDMBuilder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BaseSpinUnresolvedRDMBuilder.hpp; sourceTree = "<group>"; };
 		5643B7DA21F706EF00E1741F /* SpinUnresolvedRDMCalculator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SpinUnresolvedRDMCalculator.hpp; sourceTree = "<group>"; };
 		5643B7DB21F706EF00E1741F /* SpinUnresolvedFCIRDMBuilder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SpinUnresolvedFCIRDMBuilder.hpp; sourceTree = "<group>"; };
@@ -2679,9 +2689,8 @@
 		56FBA0D021C2B4C90084F088 /* BaseMatrixSolver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseMatrixSolver.cpp; sourceTree = "<group>"; };
 		56FBA0D121C2B4C90084F088 /* BaseMinimizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseMinimizer.cpp; sourceTree = "<group>"; };
 		56FBA0D221C2B4C90084F088 /* BaseEigenproblemSolver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseEigenproblemSolver.cpp; sourceTree = "<group>"; };
-		56FBA0DF21C2CEE10084F088 /* ConfigureDriver.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = ConfigureDriver.cmake; sourceTree = "<group>"; };
-		56FBA0E021C2CEE10084F088 /* ConfigureTest.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = ConfigureTest.cmake; sourceTree = "<group>"; };
-		56FBA0E121C2CEE10084F088 /* ConfigureExecutable.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = ConfigureExecutable.cmake; sourceTree = "<group>"; };
+		56FBA0DF21C2CEE10084F088 /* ConfigureDrivers.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = ConfigureDrivers.cmake; sourceTree = "<group>"; };
+		56FBA0E021C2CEE10084F088 /* ConfigureTests.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = ConfigureTests.cmake; sourceTree = "<group>"; };
 		56FBA0E221C2CEE10084F088 /* ConfigureLibrary.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = ConfigureLibrary.cmake; sourceTree = "<group>"; };
 		56FBA0E321C2CEE10084F088 /* ConfigureBenchmarks.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = ConfigureBenchmarks.cmake; sourceTree = "<group>"; };
 		56FBA0E521C2D5BF0084F088 /* FindSpectra.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = FindSpectra.cmake; sourceTree = "<group>"; };
@@ -3408,9 +3417,11 @@
 		5614F98E21B029FB002C5D40 /* include */ = {
 			isa = PBXGroup;
 			children = (
+				56288CE52201E17600403B47 /* version.hpp */,
 				5614F9BE21B029FB002C5D40 /* CISolver */,
 				5614F99121B029FB002C5D40 /* FockSpace */,
 				56272DB221B6CBFA008BEA47 /* geminals */,
+				56288CE32201D84B00403B47 /* gqcp.hpp */,
 				5614F9CB21B029FB002C5D40 /* HamiltonianBuilder */,
 				5614F9C721B029FB002C5D40 /* HamiltonianParameters */,
 				5614F9C021B029FB002C5D40 /* Localization */,
@@ -3421,7 +3432,6 @@
 				5614F99A21B029FB002C5D40 /* RHF */,
 				5614FA7621B02A16002C5D40 /* singles */,
 				56FBA09A21C2B0260084F088 /* utilities */,
-				5614F98F21B029FB002C5D40 /* version.hpp.in */,
 				5614F9C421B029FB002C5D40 /* WaveFunction */,
 			);
 			path = include;
@@ -3541,8 +3551,8 @@
 		5614F9D121B029FB002C5D40 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				5614F9D621B029FB002C5D40 /* CMakeLists.txt */,
 				5614F9FC21B029FB002C5D40 /* CISolver */,
+				56288CDF2201C65600403B47 /* CMakeLists.txt */,
 				5614F9D821B029FB002C5D40 /* FockSpace */,
 				56272DBF21B6CC0D008BEA47 /* geminals */,
 				5614FA0921B029FB002C5D40 /* HamiltonianBuilder */,
@@ -3725,24 +3735,12 @@
 		5614FA8C21B02A8A002C5D40 /* cmake */ = {
 			isa = PBXGroup;
 			children = (
-				56FBA0E421C2D57D0084F088 /* Find */,
+				56288CE12201CDF700403B47 /* Parse */,
 				56FBA0DE21C2CEE10084F088 /* Configure */,
-				5614FA8D21B02A8A002C5D40 /* InstallLibrary.cmake */,
-				5614FA8F21B02A8A002C5D40 /* SetCMakeEnvironment.cmake */,
-				5614FA9121B02A8A002C5D40 /* ConfigVersion.cmake.in */,
-				5614FA9421B02A8A002C5D40 /* Config.cmake.in */,
+				56288CD72201BC4F00403B47 /* Definitions */,
+				56FBA0E421C2D57D0084F088 /* Find */,
 			);
 			path = cmake;
-			sourceTree = "<group>";
-		};
-		5614FA9A21B02A8B002C5D40 /* docs */ = {
-			isa = PBXGroup;
-			children = (
-				5614FA9B21B02A8B002C5D40 /* Doxyfile.in */,
-				5614FA9C21B02A8B002C5D40 /* gqcp_UML_diagram.png */,
-				5614FA9D21B02A8B002C5D40 /* gqcp.puml */,
-			);
-			path = docs;
 			sourceTree = "<group>";
 		};
 		5614FA9F21B02A90002C5D40 /* extra */ = {
@@ -3753,7 +3751,6 @@
 				5614FA8C21B02A8A002C5D40 /* cmake */,
 				5614FA8621B02A8A002C5D40 /* CMakeLists.txt */,
 				5614FA9821B02A8B002C5D40 /* CONTRIBUTORS */,
-				5614FA9A21B02A8B002C5D40 /* docs */,
 				5614FA9921B02A8B002C5D40 /* LICENSE */,
 				5614FA9E21B02A8B002C5D40 /* README.md */,
 				5614FA8721B02A8A002C5D40 /* tools */,
@@ -3764,7 +3761,7 @@
 		5614FAA321B02E48002C5D40 /* drivers */ = {
 			isa = PBXGroup;
 			children = (
-				5614FAA621B02E48002C5D40 /* CMakeLists.txt */,
+				56288CDE2201C61800403B47 /* CMakeLists.txt */,
 				5614FAA421B02E48002C5D40 /* fci_lowdin.cpp */,
 				5614FAA521B02E48002C5D40 /* hubbard.cpp */,
 				5614FAA721B02E48002C5D40 /* oo_doci.cpp */,
@@ -3775,10 +3772,10 @@
 		5614FAA821B02E48002C5D40 /* benchmarks */ = {
 			isa = PBXGroup;
 			children = (
-				5614FAA921B02E48002C5D40 /* CMakeLists.txt */,
-				5614FAAA21B02E48002C5D40 /* FCI */,
 				5614FAAE21B02E48002C5D40 /* benchmark_input */,
+				56288CDD2201C5E600403B47 /* CMakeLists.txt */,
 				5614FAB021B02E48002C5D40 /* DOCI */,
+				5614FAAA21B02E48002C5D40 /* FCI */,
 				5614FAB421B02E48002C5D40 /* Hubbard */,
 			);
 			path = benchmarks;
@@ -3826,7 +3823,7 @@
 			isa = PBXGroup;
 			children = (
 				5614FB7E21B02EDE002C5D40 /* CISolver */,
-				5614FB4121B02EDE002C5D40 /* CMakeLists.txt */,
+				56288CE02201C68400403B47 /* CMakeLists.txt */,
 				5614FB5F21B02EDE002C5D40 /* data */,
 				5614FB4321B02EDE002C5D40 /* FockSpace */,
 				56272DCC21B6CC2D008BEA47 /* geminals */,
@@ -4062,6 +4059,35 @@
 			path = geminals;
 			sourceTree = "<group>";
 		};
+		56288CD72201BC4F00403B47 /* Definitions */ = {
+			isa = PBXGroup;
+			children = (
+				56288CDB2201BD8C00403B47 /* Benchmarks.cmake */,
+				56288CD82201BC8A00403B47 /* CMakeDefinitions.cmake */,
+				56288CDA2201BD0200403B47 /* Compiler.cmake */,
+				56288CD62201BBA600403B47 /* Drivers.cmake */,
+				56288CE42201DDE100403B47 /* Git.cmake */,
+				56288CD42201BACE00403B47 /* Headers.cmake */,
+				56288CDC2201C36B00403B47 /* InstallDirectories.cmake */,
+				56288CD22201B92200403B47 /* Options.cmake */,
+				56288CD32201BA3000403B47 /* Sources.cmake */,
+				56288CD52201BB4E00403B47 /* Tests.cmake */,
+			);
+			path = Definitions;
+			sourceTree = "<group>";
+		};
+		56288CE12201CDF700403B47 /* Parse */ = {
+			isa = PBXGroup;
+			children = (
+				5614FA9421B02A8A002C5D40 /* Config.cmake.in */,
+				5614FA9121B02A8A002C5D40 /* ConfigVersion.cmake.in */,
+				5614FA9B21B02A8B002C5D40 /* Doxyfile.in */,
+				56288CE22201CEB800403B47 /* ParseInputFiles.cmake */,
+				5614F98F21B029FB002C5D40 /* version.hpp.in */,
+			);
+			path = Parse;
+			sourceTree = "<group>";
+		};
 		56FBA09A21C2B0260084F088 /* utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -4122,9 +4148,8 @@
 		56FBA0DE21C2CEE10084F088 /* Configure */ = {
 			isa = PBXGroup;
 			children = (
-				56FBA0DF21C2CEE10084F088 /* ConfigureDriver.cmake */,
-				56FBA0E021C2CEE10084F088 /* ConfigureTest.cmake */,
-				56FBA0E121C2CEE10084F088 /* ConfigureExecutable.cmake */,
+				56FBA0DF21C2CEE10084F088 /* ConfigureDrivers.cmake */,
+				56FBA0E021C2CEE10084F088 /* ConfigureTests.cmake */,
 				56FBA0E221C2CEE10084F088 /* ConfigureLibrary.cmake */,
 				56FBA0E321C2CEE10084F088 /* ConfigureBenchmarks.cmake */,
 			);
@@ -4244,6 +4269,7 @@
 				5614FA3321B029FB002C5D40 /* elements.hpp in Headers */,
 				56FBA0BC21C2B4AF0084F088 /* DavidsonSolver.hpp in Headers */,
 				5614FA3C21B029FB002C5D40 /* WaveFunctionReader.hpp in Headers */,
+				56288CE62201E17700403B47 /* version.hpp in Headers */,
 				56FBA0C721C2B4AF0084F088 /* SparseSolver.hpp in Headers */,
 				56FBA0BF21C2B4AF0084F088 /* NewtonMinimizer.hpp in Headers */,
 				56272DB921B6CBFA008BEA47 /* AP1roGJacobiOrbitalOptimizer.hpp in Headers */,
