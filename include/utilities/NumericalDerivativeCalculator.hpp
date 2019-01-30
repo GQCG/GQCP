@@ -6,6 +6,7 @@
 #include "common.hpp"
 #include "optimization/Eigenpair.hpp"
 #include "FockSpace/FockSpace.hpp"
+#include "miscellaneous.hpp"
 
 
 namespace GQCP {
@@ -24,12 +25,13 @@ protected:
      *  Numerically computes the derivative as : (-1)^(T+1) 1/(s^T) * sum^T_i=0 (-1)^(i+1) * (T)choose(i) * f(x + i*s)
      *
      *  @param s             a given step size to perform the T-order numerical derivative of a function
+     *
      *  @return the T-th order derivative
      */
     double calculateDerivative(double s) {
         double derivative = 0;
         for (size_t i = 0; i < T+1; i++) {
-            derivative += pow(-1,(i+1)) * FockSpace::calculateDimension(T,i) * this->get_function_value(i);
+            derivative += pow(-1,(i+1)) * binomialCoefficient(T,i) * this->get_function_value(i);
         }
         derivative /= pow(s, T);
         derivative *= pow(-1, T+1);

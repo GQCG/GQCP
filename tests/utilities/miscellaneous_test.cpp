@@ -191,3 +191,12 @@ BOOST_AUTO_TEST_CASE ( matrixIndex ) {
     BOOST_CHECK_EQUAL(GQCP::matrixIndexMinor(2, cols), 2);
     BOOST_CHECK_EQUAL(GQCP::matrixIndexMinor(7, cols), 2);
 }
+
+
+BOOST_AUTO_TEST_CASE ( binomialCoefficient ) {
+
+    BOOST_CHECK_EQUAL(GQCP::binomialCoefficient(10, 1), 10);
+    BOOST_CHECK_EQUAL(GQCP::binomialCoefficient(6, 2), 15);
+    BOOST_CHECK_EQUAL(GQCP::binomialCoefficient(8, 3), 56);
+    BOOST_CHECK_THROW(GQCP::binomialCoefficient(100, 50), boost::numeric::positive_overflow);
+}

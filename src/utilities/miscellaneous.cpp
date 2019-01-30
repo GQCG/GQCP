@@ -24,6 +24,7 @@
 
 
 #include <boost/numeric/conversion/converter.hpp>
+#include <boost/math/special_functions.hpp>
 
 
 namespace GQCP {
@@ -266,6 +267,17 @@ size_t matrixIndexMinor(size_t v, size_t cols, size_t skipped) {
  */
 size_t vectorIndex(size_t i, size_t j, size_t cols, size_t skipped) {
     return (j - skipped) + (cols - skipped) * i;
+}
+
+/**
+ *  @param K        total elements of set
+ *  @param N        elements of chosen subset
+ *
+ *  @return the binomial coefficient
+ */
+size_t binomialCoefficient(size_t K, size_t N) {
+    auto dim_double = boost::math::binomial_coefficient<double>(static_cast<unsigned>(K), static_cast<unsigned>(N));
+    return boost::numeric::converter<size_t, double>::convert(dim_double);
 }
 
 

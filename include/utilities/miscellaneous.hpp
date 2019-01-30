@@ -116,6 +116,15 @@ size_t matrixIndexMinor(size_t v, size_t cols, size_t skipped=0);
  */
 size_t vectorIndex(size_t i, size_t j, size_t cols, size_t skipped=0);
 
+/**
+ *  @param K        total elements of set
+ *  @param N        elements of chosen subset
+ *
+ *  @return the binomial coefficient
+ */
+size_t binomialCoefficient(size_t K, size_t N);
+
+
 }  // namespace GQCP
 
 

@@ -14,11 +14,10 @@
 // 
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
+//
 #include "FockSpace/FockSpace.hpp"
 
-#include <boost/numeric/conversion/converter.hpp>
-#include <boost/math/special_functions.hpp>
+#include <utilities/miscellaneous.hpp>
 
 
 namespace GQCP {
@@ -123,8 +122,7 @@ FockSpace::FockSpace(size_t K, size_t N) :
  *  @return the dimension of the Fock space
  */
 size_t FockSpace::calculateDimension(size_t K, size_t N) {
-    auto dim_double = boost::math::binomial_coefficient<double>(static_cast<unsigned>(K), static_cast<unsigned>(N));
-    return boost::numeric::converter<double, size_t>::convert(dim_double);
+    return binomialCoefficient(K, N);
 }
 
 
