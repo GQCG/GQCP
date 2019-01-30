@@ -14,6 +14,7 @@ if (NOT CMAKE_BUILD_TYPE)
 endif()
 message(STATUS "Building ${LIBRARY_NAME} in ${CMAKE_BUILD_TYPE} mode")
 
+include(${CMAKE_SOURCE_DIR}/cmake/Definitions/Compiler.cmake)
 
 include(${CMAKE_SOURCE_DIR}/cmake/Definitions/Options.cmake)
 
