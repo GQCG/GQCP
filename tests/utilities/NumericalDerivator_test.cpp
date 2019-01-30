@@ -25,17 +25,14 @@
 
 
 
-BOOST_AUTO_TEST_CASE ( basic_function ) {
+BOOST_AUTO_TEST_CASE ( derive_xcubed ) {
 
+    GQCP::UnaryFunction xcubed = [](double x) { return pow(x, 3);};
+    GQCP::NumericalDerivator<4> derivator (xcubed, 0, 0.001);
 
-    GQCP::UnaryFunction xsquared = [](double x) { return pow(x, 3);};
-
-    GQCP::NumericalDerivator<4> num (xsquared, 0, 0.001);
-
-    double threshold = 1e-10;
-    BOOST_CHECK(num.get_derivative(0) == 0);
-    BOOST_CHECK(std::abs(num.get_derivative(1) - 1e-06) < threshold);
-    BOOST_CHECK(std::abs(num.get_derivative(2) - 0.006) < threshold);
-    BOOST_CHECK(std::abs(num.get_derivative(3) - 6) < threshold);
-    BOOST_CHECK(std::abs(num.get_derivative(4) - 0) < threshold);
+    BOOST_CHECK(derivator.get_derivative(0) == 0);
+    BOOST_CHECK(std::abs(derivator.get_derivative(1) - 1e-06) < 1e-10);
+    BOOST_CHECK(std::abs(derivator.get_derivative(2) - 0.006) < 1e-10);
+    BOOST_CHECK(std::abs(derivator.get_derivative(3) - 6) < 1e-10);
+    BOOST_CHECK(std::abs(derivator.get_derivative(4) - 0) < 1e-10);
 }
