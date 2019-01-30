@@ -1,5 +1,7 @@
 # Configure and install the drivers
 
+message(STATUS ${PROJECT_DRIVERS_SOURCE_FILES})
+
 
 foreach(DRIVER_SOURCE ${PROJECT_DRIVERS_SOURCE_FILES})
     # Extract the filename without extension (NAME_WE) as a name for our executable

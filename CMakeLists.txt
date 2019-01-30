@@ -19,7 +19,6 @@ include(${CMAKE_SOURCE_DIR}/cmake/Parse/ParseInputFiles.cmake)
 
 # Configure and build
 add_subdirectory(${PROJECT_SOURCE_FOLDER})
-add_subdirectory(${PROJECT_DRIVERS_FOLDER})
 
 if (BUILD_BENCHMARKS)
     add_subdirectory(${PROJECT_BENCHMARKS_FOLDER})
