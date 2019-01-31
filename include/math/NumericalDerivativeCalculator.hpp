@@ -20,7 +20,9 @@
 
 
 #include "BaseNumericalDerivativeCalculator.hpp"
+
 #include "common.hpp"
+
 
 namespace GQCP {
 

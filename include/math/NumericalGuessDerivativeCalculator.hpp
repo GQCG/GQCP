@@ -20,7 +20,9 @@
 
 
 #include "BaseNumericalDerivativeCalculator.hpp"
+
 #include "optimization/Eigenpair.hpp"
+
 
 namespace GQCP {
 

@@ -40,7 +40,10 @@ BaseNumericalDerivativeCalculator::BaseNumericalDerivativeCalculator (double sta
 BaseNumericalDerivativeCalculator::~BaseNumericalDerivativeCalculator() {}
 
 
-// PROTECTED METHODS
+/*
+ * PROTECTED METHODS
+ */
+
 /**
  *  Numerically computes the derivative as : (-1)^(n+1) 1/(s^n) * sum^n_i=0 (-1)^(i+1) * (n)choose(i) * f(x + i*s)
  *
