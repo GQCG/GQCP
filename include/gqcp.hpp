@@ -112,5 +112,7 @@
 #include "RMP2.hpp"
 #include "units.hpp"
 
+#include "version.hpp"
+
 
 #endif  // GQCP_HPP
