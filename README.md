@@ -91,7 +91,7 @@ For this library, there are several extra options you can pass to the `cmake ..`
 * `-DINSTALLATION_PREFIX=prefix`, with `prefix` (defaulted to `/usr/local`) the installation prefix you want the library to be installed it. This option controls where the library is installed:
     * the header files will be installed in `prefix/gqcp/include`
     * the compiled library will be installed in `prefix/gqcp/lib`
-    * drivers (optionsal) and benchmarks (optional) will be installed in `prefix/gqcp/bin`
+    * drivers (optional) and benchmarks (optional) will be installed in `prefix/gqcp/bin`
     * CMake target files will be installed in `prefix/gqcp/cmake`
 
 
