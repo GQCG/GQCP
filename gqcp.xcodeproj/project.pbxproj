@@ -8041,8 +8041,6 @@
 				EXECUTABLE_PREFIX = lib;
 				HEADER_SEARCH_PATHS = (
 					/opt/local/include/eigen3,
-					/usr/local/cpputil/include/,
-					/usr/local/numopt/include,
 					/opt/local/include/,
 					/usr/local/libint/2.3.1/include/,
 					/usr/local/include/,
@@ -8063,8 +8061,6 @@
 				EXECUTABLE_PREFIX = lib;
 				HEADER_SEARCH_PATHS = (
 					/opt/local/include/eigen3,
-					/usr/local/cpputil/include/,
-					/usr/local/numopt/include,
 					/opt/local/include/,
 					/usr/local/libint/2.3.1/include/,
 					/usr/local/include/,
