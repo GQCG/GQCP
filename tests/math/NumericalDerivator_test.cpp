@@ -21,14 +21,20 @@
 #include <boost/test/unit_test.hpp>
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
 
-#include "utilities/NumericalDerivativeCalculator.hpp"
+#include "math/NumericalDerivativeCalculator.hpp"
+#include "math/NumericalGuessDerivativeCalculator.hpp"
+
 
 
 
 BOOST_AUTO_TEST_CASE ( derive_xcubed ) {
 
     GQCP::UnaryFunction xcubed = [](double x) { return pow(x, 3);};
-    GQCP::NumericalDerivativeCalculator<4> derivator (xcubed, 0, 0.001);
+
+
+    GQCP::NumericalDerivativeCalculator derivator (xcubed, 0, 0.001);
+
+    derivator.calculateDerivatives(4);
 
     BOOST_CHECK(derivator.get_derivative(0) == 0);
     BOOST_CHECK(std::abs(derivator.get_derivative(1) - 1e-06) < 1e-10);
@@ -38,13 +44,14 @@ BOOST_AUTO_TEST_CASE ( derive_xcubed ) {
 }
 
 
-
 BOOST_AUTO_TEST_CASE ( derive_eigenproblem ) {
 
     GQCP::UnaryFunction xcubed = [](double x) { return pow(x, 3);};
-    GQCP::NumericEigenProblem example = [xcubed](double x, const Eigen::VectorXd& q) {return GQCP::Eigenpair(xcubed(x),2*q);};
+    GQCP::UnaryNumericEigenProblemFunction example = [xcubed](double x, const Eigen::VectorXd& q) {return GQCP::Eigenpair(xcubed(x),2*q);};
     Eigen::VectorXd q = Eigen::VectorXd::Ones(1);
-    GQCP::NumericalGuessDerivativeCalculator<4> derivator (example, 0, 0.001, q);
+    GQCP::NumericalGuessDerivativeCalculator derivator (example, q, 0, 0.001);
+
+    derivator.calculateDerivatives(4);
 
     BOOST_CHECK(derivator.get_derivative(0) == 0);
     BOOST_CHECK(std::abs(derivator.get_derivative(1) - 1e-06) < 1e-10);

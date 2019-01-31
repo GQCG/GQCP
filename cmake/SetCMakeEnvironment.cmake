@@ -46,6 +46,10 @@ set(PROJECT_SOURCE_FILES
         ${PROJECT_SOURCE_FOLDER}/Localization/ERJacobiLocalizer.cpp
         ${PROJECT_SOURCE_FOLDER}/Localization/ERNewtonLocalizer.cpp
 
+        ${PROJECT_SOURCE_FOLDER}/math/BaseNumericalDerivativeCalculator.cpp
+        ${PROJECT_SOURCE_FOLDER}/math/NumericalDerivativeCalculator.cpp
+        ${PROJECT_SOURCE_FOLDER}/math/NumericalGuessDerivativeCalculator.cpp
+
         ${PROJECT_SOURCE_FOLDER}/Operator/BaseOperator.cpp
         ${PROJECT_SOURCE_FOLDER}/Operator/OneElectronOperator.cpp
         ${PROJECT_SOURCE_FOLDER}/Operator/TwoElectronOperator.cpp
@@ -135,6 +139,10 @@ set(PROJECT_INCLUDE_FILES
         ${PROJECT_INCLUDE_FOLDER}/Localization/ERJacobiLocalizer.hpp
         ${PROJECT_INCLUDE_FOLDER}/Localization/ERNewtonLocalizer.hpp
 
+        ${PROJECT_INCLUDE_FOLDER}/math/BaseNumericalDerivativeCalculator.hpp
+        ${PROJECT_INCLUDE_FOLDER}/math/NumericalDerivativeCalculator.hpp
+        ${PROJECT_INCLUDE_FOLDER}/math/NumericalGuessDerivativeCalculator.hpp
+
         ${PROJECT_INCLUDE_FOLDER}/Operator/BaseOperator.hpp
         ${PROJECT_INCLUDE_FOLDER}/Operator/OneElectronOperator.hpp
         ${PROJECT_INCLUDE_FOLDER}/Operator/TwoElectronOperator.hpp
@@ -176,7 +184,6 @@ set(PROJECT_INCLUDE_FILES
         ${PROJECT_INCLUDE_FOLDER}/utilities/io.hpp
         ${PROJECT_INCLUDE_FOLDER}/utilities/linalg.hpp
         ${PROJECT_INCLUDE_FOLDER}/utilities/miscellaneous.hpp
-        ${PROJECT_INCLUDE_FOLDER}/utilities/NumericalDerivator.hpp
 
         ${PROJECT_INCLUDE_FOLDER}/WaveFunction/SpinUnresolvedWaveFunction.hpp
         ${PROJECT_INCLUDE_FOLDER}/WaveFunction/WaveFunction.hpp
@@ -226,6 +233,8 @@ set(PROJECT_TEST_SOURCE_FILES
         ${PROJECT_TESTS_FOLDER}/Localization/ERJacobiLocalizer_test.cpp
         ${PROJECT_TESTS_FOLDER}/Localization/ERNewtonLocalizer_test.cpp
 
+        ${PROJECT_TESTS_FOLDER}/math/NumericalDerivator_test.cpp
+
         ${PROJECT_TESTS_FOLDER}/Operator/OneElectronOperator_test.cpp
         ${PROJECT_TESTS_FOLDER}/Operator/TwoElectronOperator_test.cpp
 
@@ -253,7 +262,6 @@ set(PROJECT_TEST_SOURCE_FILES
         ${PROJECT_TESTS_FOLDER}/utilities/io_test.cpp
         ${PROJECT_TESTS_FOLDER}/utilities/linalg_test.cpp
         ${PROJECT_TESTS_FOLDER}/utilities/miscellaneous_test.cpp
-        ${PROJECT_TESTS_FOLDER}/utilities/NumericalDerivator_test.cpp
 
         ${PROJECT_TESTS_FOLDER}/WaveFunction/WaveFunction_test.cpp
 
