@@ -1,6 +1,6 @@
 // This file is part of GQCG-gqcp.
 // 
-// Copyright (C) 2017-2018  the GQCG developers
+// Copyright (C) 2017-2019  the GQCG developers
 // 
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -21,9 +21,15 @@
 namespace GQCP {
 
 
-AOBasis::AOBasis(const GQCP::Molecule& molecule, std::string basis_set) :
+/**
+ *  Constructor that creates an AOBasis from a basisset name
+ *
+ *  @param molecule         the molecule to which the AO basis corresponds
+ *  @param basis_set        the name of the basisset
+ */
+AOBasis::AOBasis(const Molecule& molecule, const std::string& basis_set) :
     atoms (molecule.get_atoms()),
-    basis_functions (libint2::BasisSet(std::move(basis_set), GQCP::LibintCommunicator::get().interface(this->atoms))),  // construct a libint2::BasisSet
+    basis_functions (libint2::BasisSet(std::move(basis_set), LibintCommunicator::get().interface(this->atoms))),  // construct a libint2::BasisSet
     number_of_basis_functions (static_cast<size_t>(this->basis_functions.nbf()))
 {}
 

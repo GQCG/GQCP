@@ -1,6 +1,6 @@
 // This file is part of GQCG-gqcp.
 // 
-// Copyright (C) 2017-2018  the GQCG developers
+// Copyright (C) 2017-2019  the GQCG developers
 // 
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -20,55 +20,59 @@
 
 
 #include "FockSpace/BaseFockSpace.hpp"
-#include "FockSpace/FockSpaceProduct.hpp"
+#include "FockSpace/ProductFockSpace.hpp"
 #include "Configuration.hpp"
-
-#include <boost/numeric/conversion/converter.hpp>
-#include <boost/math/special_functions.hpp>
 
 
 namespace GQCP {
 
 
 /**
- *  A Fock space that is flexible in the number of states that span it.
- *  The configurations are represented as a Configuration:
- *  a combination of two ONVs, holding the alpha and beta ONVs.
+ *  A class that represents a Fock space that is flexible in the number of states that span it
+ *
+ *  Configurations are represented as a Configuration: a combination of an alpha and a beta ONV
  */
-class SelectedFockSpace : public GQCP::BaseFockSpace {
+class SelectedFockSpace : public BaseFockSpace {
 private:
     size_t N_alpha;  // number of alpha electrons
     size_t N_beta;  // number of beta electrons
 
-    std::vector<GQCP::Configuration> configurations;
+    std::vector<Configuration> configurations;
 
     /**
-     *  Member taking two string arguments and creating a Configuration
-     *  @param onv1 a string representation read from right to left
-     *  @param onv2 a string representation read from right to left
-     *  @return a Configuration
-     *  !!! only works for up to 64 bits !!!
+     *  @param onv1     the alpha ONV as a string representation read from right to left
+     *  @param onv2     the beta ONV as a string representation read from right to left
+     *
+     *  @return the configuration that holds both ONVs
+     *
+     *  IMPORTANT: only works for up to 64 bits!
      */
-    Configuration makeConfiguration(const std::string& onv1, const std::string& onv2);
+    Configuration makeConfiguration(const std::string& onv1, const std::string& onv2) const;
 
 public:
     // CONSTRUCTORS
-    SelectedFockSpace() = default;
+    SelectedFockSpace() = default;  // need a default constructor
+
     /**
-     *  Constructor given a @param K (spatial orbitals), N_alpha and N_beta (electrons);
-     *  the initial dimension of the space is 0, as no selections are made.
+     *  A constructor with initial Fock space dimension of 0
+     *
+     *  @param K            the number of orbitals
+     *  @param N_alpha      the number of alpha electrons
+     *  @param N_beta       the number of beta electrons
      */
     SelectedFockSpace(size_t K, size_t N_alpha, size_t N_beta);
 
     /**
-     * Constructor that generates expansion of a given FockSpaceProduct
-     * @param fock_space generated Fock space
+     *  A constructor that generates the configurations based off the given ProductFockSpace.
+     *
+     *  @param fock_space       the ProductFockSpace from which the configurations should be generated
      */
-    explicit SelectedFockSpace(const FockSpaceProduct& fock_space);
+    explicit SelectedFockSpace(const ProductFockSpace& fock_space);
 
     /**
-     * Constructor that generates expansion of a given FockSpace
-     * @param fock_space generated Fock space
+     *  A constructor that generates the configurations based off the given FockSpace.
+     *
+     *  @param fock_space       the FockSpace from which the configurations should be generated
      */
     explicit SelectedFockSpace(const FockSpace& fock_space);
 
@@ -76,22 +80,24 @@ public:
     // GETTERS
     size_t get_N_alpha() const { return this->N_alpha; }
     size_t get_N_beta() const { return this->N_beta; }
-    Configuration get_configuration(size_t index) const { return this->configurations[index]; }
+    const Configuration& get_configuration(size_t index) const { return this->configurations[index]; }
     FockSpaceType get_type() const override { return FockSpaceType::SelectedFockSpace; }
 
 
     // PUBLIC METHODS
     /**
-     *  Member taking two string arguments to add a Configuration
-     *  @see makeConfiguration()
-     *  add a Configuration to @var configurations
+     *  Make a configuration (see makeConfiguration()) and add it to this Fock space
+     *
+     *  @param onv1     the alpha ONV as a string representation read from right to left
+     *  @param onv2     the beta ONV as a string representation read from right to left
      */
     void addConfiguration(const std::string& onv1, const std::string& onv2);
 
     /**
-     *  Member taking two vector<string> arguments to add Configurations
-     *  @see makeConfiguration()
-     *  add multiple Configurations to @var configurations
+     *  Make configurations (see makeConfiguration()) and add them to the Fock space
+     *
+     *  @param onv1s     the alpha ONVs as string representations read from right to left
+     *  @param onv2s     the beta ONVs as string representations read from right to left
      */
     void addConfiguration(const std::vector<std::string>& onv1s, const std::vector<std::string>& onv2s);
 };

@@ -1,6 +1,6 @@
 // This file is part of GQCG-gqcp.
 // 
-// Copyright (C) 2017-2018  the GQCG developers
+// Copyright (C) 2017-2019  the GQCG developers
 // 
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -29,16 +29,54 @@
 namespace GQCP {
 
 
+
 /*
- *  PRIVATE METHODS
+ *  CONSTRUCTORS
  */
 
 /**
- *  Parse a @param xyz_filename to @return a std::vector<GQCP::Atom>.
- *
- *  The coordinates in the .xyz-file should be in Angstrom: this function converts them immediately to Bohr (a.u.)
+ *  @param atoms        the atoms that make up the molecule, with coordinates in bohr
+ *  @param charge       the charge of the molecule:
+ *                          +1 -> cation (one electron less than the neutral molecule)
+ *                           0 -> neutral molecule
+ *                          -1 -> anion (one electron more than the neutral molecule)
  */
-std::vector<GQCP::Atom> Molecule::parseXYZFile(const std::string& xyz_filename) {
+Molecule::Molecule(const std::vector<Atom>& atoms, int charge) :
+    atoms (atoms),
+    N (this->calculateTotalNucleicCharge() - charge)
+{
+    // Check if the total positive charge is valid, e.g. H^(2+) does not exist
+    if (charge > 0) {
+        if (this->calculateTotalNucleicCharge() < charge) {
+            throw std::invalid_argument("You cannot create a molecule with these atoms and this much of a total positive charge.");
+        }
+    }
+
+    // Check if there are no duplicate atoms
+    std::vector<Atom> atoms_copy = this->atoms;
+
+    // Sort and unique
+    std::sort(atoms_copy.begin(), atoms_copy.end());
+    auto last_it = std::unique(atoms_copy.begin(), atoms_copy.end());
+
+    // If the iterator returned from unique is the same as the end iterator, there are no duplicate items
+    if (last_it != atoms_copy.end()) {
+        throw std::invalid_argument("There can't be two equal atoms on the same position.");
+    }
+}
+
+
+
+/*
+ *  NAMED CONSTRUCTORS
+ */
+
+/**
+ *  @param xyz_filename     the .xyz-file that contains the molecular coordinates in Angstrom
+ *
+ *  @return a vector of Atoms that are in the given xyz-file
+ */
+Molecule Molecule::Readxyz(const std::string& xyz_filename, int charge) {
 
     // Find the extension of the given path (https://stackoverflow.com/a/51992)
     std::string extension;
@@ -73,7 +111,9 @@ std::vector<GQCP::Atom> Molecule::parseXYZFile(const std::string& xyz_filename) 
 
 
         // Next lines are the atoms
-        std::vector<GQCP::Atom> atoms;
+        std::vector<Atom> atoms;
+        atoms.reserve(number_of_atoms);
+
         while (std::getline(input_file_stream, line)) {
             std::string symbol;
             double x_angstrom, y_angstrom, z_angstrom;
@@ -82,96 +122,89 @@ std::vector<GQCP::Atom> Molecule::parseXYZFile(const std::string& xyz_filename) 
             iss >> symbol >> x_angstrom >> y_angstrom >> z_angstrom;
 
             // Convert the (x,y,z)-coordinates that are in Angstrom to Bohr
-            double x_bohr = GQCP::units::angstrom_to_bohr(x_angstrom);
-            double y_bohr = GQCP::units::angstrom_to_bohr(y_angstrom);
-            double z_bohr = GQCP::units::angstrom_to_bohr(z_angstrom);
+            double x_bohr = units::angstrom_to_bohr(x_angstrom);
+            double y_bohr = units::angstrom_to_bohr(y_angstrom);
+            double z_bohr = units::angstrom_to_bohr(z_angstrom);
 
-            atoms.emplace_back(GQCP::elements::elementToAtomicNumber(symbol), x_bohr, y_bohr, z_bohr);
+            atoms.emplace_back(elements::elementToAtomicNumber(symbol), x_bohr, y_bohr, z_bohr);
         }
 
 
         if (number_of_atoms > atoms.size()) {
             throw std::invalid_argument("The .xyz-file contains more atoms than specified on its first line.");
         } else {
-            return atoms;
+            return Molecule(atoms, charge);
         }
     }
 }
 
 
-
-/*
- *  CONSTRUCTORS
- */
-
 /**
- *  Constructor from a @param atoms: a given std::vector of GQCP::Atoms and a @param molecular_charge
- *      The constructed molecule instance corresponds to an ion:
- *          charge = +1 -> cation (one electron less than the neutral molecule)
- *          charge = 0  -> neutral molecule
- *          charge = -1 -> anion (one electron more than the neutral molecule)
+ *  @param n            the number of H atoms
+ *  @param spacing      the internuclear spacing in bohr
+ *  @param charge       the total charge
  *
- *  IMPORTANT!!! The coordinates of the atoms should be input in Bohr.
+ *  @return a charged H-chain with equal internuclear spacing
  */
-Molecule::Molecule(const std::vector<GQCP::Atom>& atoms, int molecular_charge) :
-    atoms (atoms),
-    N (this->calculateTotalNucleicCharge() - molecular_charge)
-{
-    // Check if the total positive charge is valid, e.g. H^(2+) does not exist
-    if (molecular_charge > 0) {
-        if (this->calculateTotalNucleicCharge() < molecular_charge) {
-            throw std::invalid_argument("You cannot create a molecule with these atoms and this much of a total positive charge.");
-        }
+Molecule Molecule::HChain(size_t n, double spacing, int charge) {
+
+    if (n == 0) {
+        throw std::invalid_argument("Can not create a H-chain consisting of zero atoms.");
     }
 
-    // Check if there are no duplicate atoms
-    // The atoms are const, so we will make a copy to check if there are duplicates
-    auto atoms_copy = this->atoms;
-
-    // Sort and unique
-    std::sort(atoms_copy.begin(), atoms_copy.end());
-    auto last_it = std::unique(atoms_copy.begin(), atoms_copy.end());
-
-    // If the iterator returned from unique is the same as the end iterator, there are no duplicate items
-    if (last_it != atoms_copy.end()) {
-        throw std::invalid_argument("There can't be two equal atoms on the same position.");
+    if (spacing < 0.0) {
+        throw std::invalid_argument("Can't have a negative spacing.");
     }
+
+
+    std::vector<Atom> h_chain;
+
+    // Put all H-atoms on a line on the x-axis: the first H is on the origin
+    double x = 0.0;  // the current x-coordinate
+    for (size_t i = 0; i < n; i++) {
+        h_chain.emplace_back(1, x, 0.0, 0.0);
+
+        x += spacing;  // proceed to the next H-atom
+    }
+
+    return Molecule(h_chain, charge);
 }
 
 
 /**
- *  Constructor from a @param atoms: a given std::vector of GQCP::Atoms
+ *  @param n        the number of H2-molecules
+ *  @param a        the internuclear distance in bohr
+ *  @param b        the intermolecular distance in bohr
+ *  @param charge   the total charge
  *
- *  IMPORTANT!!! The coordinates of the atoms should be input in Bohr.
+ *  @return a charged H2-chain
  */
-Molecule::Molecule(const std::vector<GQCP::Atom>& atoms) :
-    Molecule (atoms, 0)
-{}
+Molecule Molecule::H2Chain(size_t n, double a, double b, int charge) {
+
+    if (n == 0) {
+        throw std::invalid_argument("Can not create a H2-chain consisting of zero H2-molecules.");
+    }
+
+    if ((a < 0.0) || (b < 0.0)) {
+        throw std::invalid_argument("Can't have a negative spacing.");
+    }
 
 
-/**
- *  Constructor from a given @param xyz_filename and a @param molecular_charge
- *      The constructed molecule instance corresponds to an ion:
- *          charge = +1 -> cation (one electron less than the neutral molecule)
- *          charge = 0  -> neutral molecule
- *          charge = -1 -> anion (one electron more than the neutral molecule)
- *
- *  IMPORTANT!!! The coordinates of the atoms in the .xyz-file should be in Angstrom, but we convert them internally to Bohr
- */
-Molecule::Molecule(const std::string& xyz_filename, int molecular_charge) :
-    Molecule (Molecule::parseXYZFile(xyz_filename), molecular_charge)
-{}
+    std::vector<Atom> h_chain;
 
+    // Put all H-atoms on a line on the x-axis: the first H is on the origin
+    double x = 0.0;  // the current x-coordinate
+    for (size_t i = 0; i < n; i++) {
 
-/**
- *  Constructor from a given @param xyz_filename
- *      The constructed molecule instance corresponds to a neutral atom (i.e. N = sum of nucleus charges)
- *
- *  IMPORTANT!!! The coordinates of the atoms in the .xyz-file should be in Angstrom, but we convert them internally to Bohr
- */
-Molecule::Molecule(const std::string& xyz_filename) :
-    Molecule (xyz_filename, 0)
-{}
+        h_chain.emplace_back(1, x, 0.0, 0.0);  // the first H-atom
+        x += a;  // add internuclear distance (we're within a H2-molecule)
+        h_chain.emplace_back(1, x, 0.0, 0.0);  // the second H-atom
+
+        x += b;  // proceed to the next H2-molecule
+    }
+
+    return Molecule(h_chain, charge);
+}
 
 
 
@@ -180,18 +213,23 @@ Molecule::Molecule(const std::string& xyz_filename) :
  */
 
 /**
- *  @return if this is equal to @param other, within the default GQCP::Atom::tolerance_for_comparison for the coordinates of the atoms
+ *  @param other        the other molecule
+ *
+ *  @return if this molecule is equal to the other, within the default Atom::tolerance_for_comparison for the coordinates of the atoms
  */
-bool Molecule::operator==(const GQCP::Molecule& other) const {
+bool Molecule::operator==(const Molecule& other) const {
 
-    return this->isEqualTo(other, GQCP::Atom::tolerance_for_comparison);
+    return this->isEqualTo(other, Atom::tolerance_for_comparison);
 }
 
 
 /**
- *  Overloading of operator<< for a GQCP::Molecule to be used with streams
+ *  @param os           the output stream which the molecule should be concatenated to
+ *  @param molecule     the molecule that should be concatenated to the output stream
+ *
+ *  @return the updated output stream
  */
-std::ostream& operator<<(std::ostream& os, const GQCP::Molecule& molecule) {
+std::ostream& operator<<(std::ostream& os, const Molecule& molecule) {
 
     for (const auto& atom : molecule.atoms) {
         os << atom;
@@ -207,24 +245,27 @@ std::ostream& operator<<(std::ostream& os, const GQCP::Molecule& molecule) {
  */
 
 /**
- *  @return if this is equal to @param other, within the given @param tolerance for the coordinates of the atoms
+ *  @param other        the other molecule
+ *  @param tolerance    the tolerance for the coordinates of the atoms
+ *
+ *  @return if this is equal to the other, within the given tolerance
  */
-bool Molecule::isEqualTo(const GQCP::Molecule& other, double tolerance) const {
+bool Molecule::isEqualTo(const Molecule& other, double tolerance) const {
 
     if (this->N != other.get_N()) {
         return false;
     }
 
-    // We don't want the order of the atoms to matter in a GQCP::Molecule comparison
-    // We have implemented a custom GQCP::Atom::operator< so we can sort std::vectors of GQCP::Atoms
+    // We don't want the order of the atoms to matter in a Molecule comparison
+    // We have implemented a custom Atom::operator< so we can sort std::vectors of Atoms
     // Make a copy of the atoms because std::sort modifies
     auto this_atoms = this->atoms;
     auto other_atoms = other.atoms;
 
 
     // Make lambda expressions for the comparators, since we want to hand over the tolerance argument
-    auto smaller_than_atom = [this, tolerance](const GQCP::Atom& lhs, const GQCP::Atom& rhs) { return lhs.isSmallerThan(rhs, tolerance); };
-    auto equal_atom = [this, tolerance](const GQCP::Atom& lhs, const GQCP::Atom& rhs) { return lhs.isEqualTo(rhs, tolerance); };
+    auto smaller_than_atom = [this, tolerance](const Atom& lhs, const Atom& rhs) { return lhs.isSmallerThan(rhs, tolerance); };
+    auto equal_atom = [this, tolerance](const Atom& lhs, const Atom& rhs) { return lhs.isEqualTo(rhs, tolerance); };
 
 
     std::sort(this_atoms.begin(), this_atoms.end(), smaller_than_atom);
@@ -250,7 +291,10 @@ size_t Molecule::calculateTotalNucleicCharge() const {
 
 
 /**
- * @return the distance between two the two atoms at @param index1 and @param index2
+ *  @param index1   the index of the first atom
+ *  @param index2   the index of the second atom
+ *
+ *  @return the distance between the two atoms at index1 and index2 in bohr
  */
 double Molecule::calculateInternuclearDistance(size_t index1, size_t index2) const {
 
@@ -283,6 +327,21 @@ double Molecule::calculateInternuclearRepulsionEnergy() const {
     }
 
     return internuclear_repulsion_energy;
+}
+
+
+/**
+ *  @return the electrical dipole moment generated by the nuclear framework
+ */
+Eigen::Vector3d Molecule::calculateNuclearDipoleMoment() const {
+
+    Eigen::Vector3d m = Eigen::Vector3d::Zero();
+
+    for (const auto& atom : this->atoms) {
+        m += atom.atomic_number * atom.position;
+    }
+
+    return m;
 }
 
 

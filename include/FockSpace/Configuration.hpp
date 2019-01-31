@@ -1,6 +1,6 @@
 // This file is part of GQCG-gqcp.
 // 
-// Copyright (C) 2017-2018  the GQCG developers
+// Copyright (C) 2017-2019  the GQCG developers
 // 
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -26,8 +26,7 @@ namespace GQCP {
 
 
 /**
- *  Struct containing an electron distribution
- *  represented by the alpha and beta ONV.
+ *  A struct that represents the combination of an alpha and beta ONV
  */
 struct Configuration {
     ONV onv_alpha;

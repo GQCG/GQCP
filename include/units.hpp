@@ -1,6 +1,6 @@
 // This file is part of GQCG-gqcp.
 // 
-// Copyright (C) 2017-2018  the GQCG developers
+// Copyright (C) 2017-2019  the GQCG developers
 // 
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -35,14 +35,18 @@ struct CODATA2014 {
 
 
 /**
- *  Given a @param value_in_bohr, @return the value in Angstrom
+ *  @param value_in_bohr        a distance expressed in bohr
+ *
+ *  @return the value in angstrom
  */
-inline double bohr_to_angstrom(double value_in_bohr) { return value_in_bohr * GQCP::units::constants::CODATA2014::angstrom_per_bohr; }
+inline double bohr_to_angstrom(double value_in_bohr) { return value_in_bohr * constants::CODATA2014::angstrom_per_bohr; }
 
 /**
- *  Given a @param value_in_angstrom, @return the value in Bohr (a.u.)
+ *  @param value_in_angstrom        a distance expressed in angstrom
+ *
+ *  @return the value in bohr (a.u.)
  */
-inline double angstrom_to_bohr(double value_in_angstrom) { return value_in_angstrom * GQCP::units::constants::CODATA2014::bohr_per_angstrom; }
+inline double angstrom_to_bohr(double value_in_angstrom) { return value_in_angstrom * constants::CODATA2014::bohr_per_angstrom; }
 
 
 

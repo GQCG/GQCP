@@ -1,6 +1,6 @@
 // This file is part of GQCG-gqcp.
 // 
-// Copyright (C) 2017-2018  the GQCG developers
+// Copyright (C) 2017-2019  the GQCG developers
 // 
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -17,18 +17,17 @@
 // 
 #define BOOST_TEST_MODULE "DOCI_orbital_optimization_test"
 
+#include <boost/test/unit_test.hpp>
+#include <boost/test/included/unit_test.hpp>
+
 #include "DOCINewtonOrbitalOptimizer.hpp"
 
-#include "HamiltonianParameters/HamiltonianParameters_constructors.hpp"
+#include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "HamiltonianBuilder/FCI.hpp"
 #include "HamiltonianBuilder/DOCI.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
 #include "RDM/FCIRDMBuilder.hpp"
 #include "CISolver/CISolver.hpp"
-
-#include <boost/test/unit_test.hpp>
-#include <boost/test/included/unit_test.hpp>
-
 
 // dim = 2 for DOCI
 BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_sto_3g ) {
@@ -38,11 +37,10 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_sto_3g ) {
 
 
     // Prepare molecular Hamiltonian parameters in the RHF basis
-    GQCP::Molecule h2 ("../tests/data/h2_cristina.xyz");
+    auto h2 = GQCP::Molecule::Readxyz("data/h2_cristina.xyz");
     double internuclear_repulsion_energy = h2.calculateInternuclearRepulsionEnergy();  // 0.713176780299327
-    auto ao_basis = std::make_shared<GQCP::AOBasis>(h2, "STO-3G");
-    auto K = ao_basis->get_number_of_basis_functions();
-    auto ao_mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
+    auto ao_mol_ham_par = GQCP::HamiltonianParameters::Molecular(h2, "STO-3G");
+    auto K = ao_mol_ham_par.get_K();
 
     GQCP::PlainRHFSCFSolver plain_scf_solver (ao_mol_ham_par, h2);
     plain_scf_solver.solve();
@@ -54,7 +52,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_sto_3g ) {
     // Do the DOCI orbital optimization using specified solver options
     GQCP::FockSpace fock_space (K, h2.get_N()/2);  // dim = 120
     GQCP::DOCI doci (fock_space);
-    numopt::eigenproblem::DenseSolverOptions solver_options;
+    GQCP::DenseSolverOptions solver_options;
     GQCP::DOCINewtonOrbitalOptimizer orbital_optimizer (doci, mol_ham_par);
     orbital_optimizer.solve(solver_options);
 
@@ -74,11 +72,10 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31g ) {
 
 
     // Prepare molecular Hamiltonian parameters in the RHF basis
-    GQCP::Molecule h2 ("../tests/data/h2_cristina.xyz");
+    auto h2 = GQCP::Molecule::Readxyz("data/h2_cristina.xyz");
     double internuclear_repulsion_energy = h2.calculateInternuclearRepulsionEnergy();  // 0.713176780299327
-    auto ao_basis = std::make_shared<GQCP::AOBasis>(h2, "6-31G");
-    auto K = ao_basis->get_number_of_basis_functions();
-    auto ao_mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
+    auto ao_mol_ham_par = GQCP::HamiltonianParameters::Molecular(h2, "6-31G");
+    auto K = ao_mol_ham_par.get_K();
 
     GQCP::PlainRHFSCFSolver plain_scf_solver (ao_mol_ham_par, h2);
     plain_scf_solver.solve();
@@ -90,13 +87,13 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31g ) {
     // Transform the molecular Hamiltonian parameters to the FCI natural basis
     size_t N_a = h2.get_N() / 2;
     size_t N_b = h2.get_N() / 2;
-    GQCP::FockSpaceProduct fci_fock_space (K, N_a, N_b);  // dim = 441
+    GQCP::ProductFockSpace fci_fock_space (K, N_a, N_b);  // dim = 441
     GQCP::FCI fci (fci_fock_space);
     GQCP::CISolver fci_solver (fci, mol_ham_par);
-    numopt::eigenproblem::DenseSolverOptions solver_options;
+    GQCP::DenseSolverOptions solver_options;
     fci_solver.solve(solver_options);
 
-    Eigen::VectorXd coef = fci_solver.get_wavefunction().get_coefficients();
+    Eigen::VectorXd coef = fci_solver.makeWavefunction().get_coefficients();
     GQCP::FCIRDMBuilder fci_rdm_builder (fci_fock_space);
     GQCP::OneRDM one_rdm = fci_rdm_builder.calculate1RDMs(coef).one_rdm;
     Eigen::MatrixXd U = one_rdm.diagonalize();
@@ -124,11 +121,11 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx ) {
     double reference_fci_energy = -1.16514875501195;
 
     // Prepare molecular Hamiltonian parameters in the RHF basis
-    GQCP::Molecule h2 ("../tests/data/h2_cristina.xyz");
+    auto h2 = GQCP::Molecule::Readxyz("data/h2_cristina.xyz");
     double internuclear_repulsion_energy = h2.calculateInternuclearRepulsionEnergy();  // 0.713176780299327
-    auto ao_basis = std::make_shared<GQCP::AOBasis>(h2, "6-31G**");
-    auto K = ao_basis->get_number_of_basis_functions();
-    auto ao_mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
+    auto ao_mol_ham_par = GQCP::HamiltonianParameters::Molecular(h2, "6-31G**");
+    auto K = ao_mol_ham_par.get_K();
+
 
     GQCP::PlainRHFSCFSolver plain_scf_solver (ao_mol_ham_par, h2);
     plain_scf_solver.solve();
@@ -140,13 +137,13 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx ) {
     // Transform the molecular Hamiltonian parameters to the FCI natural basis
     size_t N_a = h2.get_N() / 2;
     size_t N_b = h2.get_N() / 2;
-    GQCP::FockSpaceProduct fci_fock_space (K, N_a, N_b);  // dim = 441
+    GQCP::ProductFockSpace fci_fock_space (K, N_a, N_b);  // dim = 441
     GQCP::FCI fci (fci_fock_space);
     GQCP::CISolver fci_solver (fci, mol_ham_par);
-    numopt::eigenproblem::DenseSolverOptions solver_options;
+    GQCP::DenseSolverOptions solver_options;
     fci_solver.solve(solver_options);
 
-    Eigen::VectorXd coef = fci_solver.get_wavefunction().get_coefficients();
+    Eigen::VectorXd coef = fci_solver.makeWavefunction().get_coefficients();
     GQCP::FCIRDMBuilder fci_rdm_builder (fci_fock_space);
     GQCP::OneRDM one_rdm = fci_rdm_builder.calculate1RDMs(coef).one_rdm;
     Eigen::MatrixXd U = one_rdm.diagonalize();
@@ -174,11 +171,11 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx_Davidson ) {
     double reference_fci_energy = -1.16514875501195;
 
     // Prepare molecular Hamiltonian parameters in the RHF basis
-    GQCP::Molecule h2 ("../tests/data/h2_cristina.xyz");
+    auto h2 = GQCP::Molecule::Readxyz("data/h2_cristina.xyz");
     double internuclear_repulsion_energy = h2.calculateInternuclearRepulsionEnergy();  // 0.713176780299327
-    auto ao_basis = std::make_shared<GQCP::AOBasis>(h2, "6-31G**");
-    auto K = ao_basis->get_number_of_basis_functions();
-    auto ao_mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
+    auto ao_mol_ham_par = GQCP::HamiltonianParameters::Molecular(h2, "6-31G**");
+    auto K = ao_mol_ham_par.get_K();
+
 
     GQCP::PlainRHFSCFSolver plain_scf_solver (ao_mol_ham_par, h2);
     plain_scf_solver.solve();
@@ -190,13 +187,13 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx_Davidson ) {
     // Transform the molecular Hamiltonian parameters to the FCI natural basis
     size_t N_a = h2.get_N() / 2;
     size_t N_b = h2.get_N() / 2;
-    GQCP::FockSpaceProduct fci_fock_space (K, N_a, N_b);  // dim = 441
+    GQCP::ProductFockSpace fci_fock_space (K, N_a, N_b);  // dim = 441
     GQCP::FCI fci (fci_fock_space);
     GQCP::CISolver fci_solver (fci, mol_ham_par);
-    numopt::eigenproblem::DenseSolverOptions solver_options;
+    GQCP::DenseSolverOptions solver_options;
     fci_solver.solve(solver_options);
 
-    Eigen::VectorXd coef = fci_solver.get_wavefunction().get_coefficients();
+    Eigen::VectorXd coef = fci_solver.makeWavefunction().get_coefficients();
     GQCP::FCIRDMBuilder fci_rdm_builder (fci_fock_space);
     GQCP::OneRDM one_rdm = fci_rdm_builder.calculate1RDMs(coef).one_rdm;
     Eigen::MatrixXd U = one_rdm.diagonalize();
@@ -208,7 +205,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx_Davidson ) {
     GQCP::FockSpace doci_fock_space (K, h2.get_N()/2);  // dim = 120
     GQCP::DOCI doci (doci_fock_space);
     Eigen::VectorXd initial_g = doci_fock_space.HartreeFockExpansion();
-    numopt::eigenproblem::DavidsonSolverOptions davidson_solver_options (initial_g);
+    GQCP::DavidsonSolverOptions davidson_solver_options (initial_g);
     GQCP::DOCINewtonOrbitalOptimizer orbital_optimizer (doci, mol_ham_par);
     orbital_optimizer.solve(davidson_solver_options);
 

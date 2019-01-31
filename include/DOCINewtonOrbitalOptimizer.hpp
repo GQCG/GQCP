@@ -1,6 +1,6 @@
 // This file is part of GQCG-gqcp.
 // 
-// Copyright (C) 2017-2018  the GQCG developers
+// Copyright (C) 2017-2019  the GQCG developers
 // 
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -23,7 +23,8 @@
 #include "OrbitalOptimizationOptions.hpp"
 #include "WaveFunction/WaveFunction.hpp"
 
-#include <numopt.hpp>
+#include "optimization/Eigenpair.hpp"
+#include "optimization/EigenproblemSolverOptions.hpp"
 
 
 namespace GQCP {
@@ -37,36 +38,42 @@ namespace GQCP {
  */
 class DOCINewtonOrbitalOptimizer {
 private:
-    GQCP::DOCI doci;  // the DOCI Hamiltonian builder
-    GQCP::HamiltonianParameters ham_par;
+    DOCI doci;  // the DOCI Hamiltonian builder
+    HamiltonianParameters ham_par;
 
     bool is_converged = false;
-    std::vector<numopt::eigenproblem::Eigenpair> eigenpairs;  // eigenvalues and -vectors
+    std::vector<Eigenpair> eigenpairs;  // eigenvalues and -vectors
 
 
 public:
     // CONSTRUCTORS
     /**
-     *  Constructor based on a given @param doci instance and Hamiltonian parameters @param ham_par
+     *  @param doci         the DOCI HamiltonianBuilder
+     *  @param ham_par      the Hamiltonian parameters in an orthonormal basis
      */
-    DOCINewtonOrbitalOptimizer(const GQCP::DOCI& doci, const GQCP::HamiltonianParameters& ham_par);
+    DOCINewtonOrbitalOptimizer(const DOCI& doci, const HamiltonianParameters& ham_par);
+
 
     // GETTERS
-    std::vector<numopt::eigenproblem::Eigenpair> get_eigenpairs() const;
-    numopt::eigenproblem::Eigenpair get_eigenpair(size_t index = 0) const;
+    const std::vector<Eigenpair>& get_eigenpairs() const;
+    const Eigenpair& get_eigenpair(size_t index = 0) const;
+
 
     // PUBLIC METHODS
     /**
-     *  Perform the orbital optimization, given @param solver_options for the CI solver and the @param oo_options for the orbital optimization
+     *  Do the orbital optimization for DOCI
      *
-     *  The default values for the OrbitalOptimiationOptions are used when no options are supplied.
+     *  @param solver_options       solver options for the CI solver
+     *  @param oo_options           options for the orbital optimization
      */
-    void solve(numopt::eigenproblem::BaseSolverOptions& solver_options, const GQCP::OrbitalOptimizationOptions& oo_options=GQCP::OrbitalOptimizationOptions());
+    void solve(BaseSolverOptions& solver_options, const OrbitalOptimizationOptions& oo_options=OrbitalOptimizationOptions());
 
     /**
-     *  @return a WaveFunction instance after performing the orbital optimization for a given eigenvector at @param index
+     *  @param index        the index of the index-th excited state
+     *
+     *  @return the index-th excited state after doing the OO-DOCI calculation
      */
-    GQCP::WaveFunction get_wavefunction(size_t index = 0);
+    WaveFunction makeWavefunction(size_t index = 0) const;
 };
 
 

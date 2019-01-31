@@ -1,6 +1,6 @@
 // This file is part of GQCG-gqcp.
 // 
-// Copyright (C) 2017-2018  the GQCG developers
+// Copyright (C) 2017-2019  the GQCG developers
 // 
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -16,15 +16,15 @@
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
 #define BOOST_TEST_MODULE "DenseDOCISolver"
+#include <boost/test/unit_test.hpp>
+#include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
+
 
 
 #include "CISolver/CISolver.hpp"
 #include "HamiltonianBuilder/DOCI.hpp"
-#include "HamiltonianParameters/HamiltonianParameters_constructors.hpp"
+#include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
-
-#include <boost/test/unit_test.hpp>
-#include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
 
 
 
@@ -35,7 +35,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_beh_cation_klaas_dense ) {
 
     // Do a DOCI calculation based on a given FCIDUMP file
     // Create the Hamiltonian Parameters
-    auto ham_par = GQCP::readFCIDUMPFile("../tests/data/beh_cation_631g_caitlin.FCIDUMP");
+    auto ham_par = GQCP::HamiltonianParameters::ReadFCIDUMP("data/beh_cation_631g_caitlin.FCIDUMP");
 
     // The species contains 4 electrons and 16 basis functions, this requires a single Fock Space of 16 orbitals and 2 electrons
     GQCP::FockSpace fock_space (16, 2);  // dim = 120
@@ -45,7 +45,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_beh_cation_klaas_dense ) {
 
     // Solve the dense DOCI eigenvalue problem
     GQCP::CISolver ci_solver (doci, ham_par);
-    numopt::eigenproblem::DenseSolverOptions solver_options;
+    GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
     // Retrieve the eigenvalues
@@ -66,7 +66,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_lih_klaas_dense ) {
 
     // Do a DOCI calculation based on a given FCIDUMP file
     // Create the Hamiltonian Parameters
-    auto ham_par = GQCP::readFCIDUMPFile("../tests/data/lih_631g_caitlin.FCIDUMP");
+    auto ham_par = GQCP::HamiltonianParameters::ReadFCIDUMP("data/lih_631g_caitlin.FCIDUMP");
 
     // The species contains 4 electrons and 16 basis functions, this requires a single Fock Space of 16 orbitals and 2 electrons
     GQCP::FockSpace fock_space (16, 2);  // dim = 120
@@ -76,7 +76,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_lih_klaas_dense ) {
 
     // Solve the dense DOCI eigenvalue problem
     GQCP::CISolver ci_solver (doci, ham_par);
-    numopt::eigenproblem::DenseSolverOptions solver_options;
+    GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
     // Retrieve the eigenvalues
@@ -97,7 +97,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_li2_klaas_dense ) {
 
     // Do a DOCI calculation based on a given FCIDUMP file
     // Create the Hamiltonian Parameters
-    auto ham_par = GQCP::readFCIDUMPFile("../tests/data/li2_321g_klaas.FCIDUMP");
+    auto ham_par = GQCP::HamiltonianParameters::ReadFCIDUMP("data/li2_321g_klaas.FCIDUMP");
 
     // The species contains 4 electrons and 16 basis functions, this requires a single Fock Space of 16 orbitals and 2 electrons
     GQCP::FockSpace fock_space (18, 3);  // dim = 816
@@ -107,7 +107,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_li2_klaas_dense ) {
 
     // Solve the dense DOCI eigenvalue problem
     GQCP::CISolver ci_solver (doci, ham_par);
-    numopt::eigenproblem::DenseSolverOptions solver_options;
+    GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
     // Retrieve the eigenvalues

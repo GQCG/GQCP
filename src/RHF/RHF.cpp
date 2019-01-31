@@ -1,6 +1,6 @@
 // This file is part of GQCG-gqcp.
 // 
-// Copyright (C) 2017-2018  the GQCG developers
+// Copyright (C) 2017-2019  the GQCG developers
 // 
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -35,6 +35,10 @@ RHF::RHF() :
 
 /**
  *  Constructor based on given converged solutions of the RHF SCF equations
+ *
+ *  @param electronic_energy    the converged RHF electronic energy
+ *  @param C                    the coefficient matrix, i.e. the transformation matrix from the AO basis to the RHF MO basis
+ *  @param orbital_energies     the RHF MO energies
  */
 RHF::RHF(double electronic_energy, const Eigen::MatrixXd& C, const Eigen::VectorXd& orbital_energies) :
     electronic_energy (electronic_energy),
@@ -48,27 +52,56 @@ RHF::RHF(double electronic_energy, const Eigen::MatrixXd& C, const Eigen::Vector
  *  HELPER METHODS
  */
 /**
- *  @return the RHF 1-RDM expressed in the AO basis, given the @param coefficient matrix C and the number of electrons @param N
+ *  @param K    the number of spatial orbitals
+ *  @param N    the number of electrons
+ *
+ *  @return the RHF 1-RDM expressed in an orthonormal basis
+ */
+OneRDM calculateRHF1RDM(size_t K, size_t N) {
+
+    if (N % 2 != 0) {
+        throw std::invalid_argument("The number of given electrons cannot be odd for RHF.");
+    }
+
+    // The 1-RDM for RHF looks like (for K=5, N=6)
+    //    2  0  0  0  0
+    //    0  2  0  0  0
+    //    0  0  2  0  0
+    //    0  0  0  0  0
+    //    0  0  0  0  0
+
+    Eigen::MatrixXd D_MO = Eigen::MatrixXd::Zero(K, K);
+    D_MO.topLeftCorner(N/2, N/2) = 2 * Eigen::MatrixXd::Identity(N/2, N/2);
+
+    return OneRDM(D_MO);
+}
+
+
+/**
+ *  @param C    the coefficient matrix, specifying the transformation to the AO basis
+ *  @param N    the number of electrons
+ *
+ *  @return the RHF 1-RDM expressed in the AO basis
  */
 Eigen::MatrixXd calculateRHFAO1RDM(const Eigen::MatrixXd& C, size_t N) {
 
     size_t K = C.rows();
+    Eigen::MatrixXd D_MO = calculateRHF1RDM(K, N).get_matrix_representation();
 
-    // Construct the RHF density matrix in MO basis
-    Eigen::MatrixXd D_MO = Eigen::MatrixXd::Zero(K, K);
-    D_MO.topLeftCorner(N/2, N/2) = 2 * Eigen::MatrixXd::Identity(N/2,N/2);
-
-    // Transform the MO density matrix to AO basis
+    // Transform the MO 1-RDM to an AO basis
     return C * D_MO * C.adjoint();
 }
 
 
 /**
- *  @return the RHF Fock matrix in the AO basis, given the @param D_AO density matrix in AO basis and @param ham_par_ptr Hamiltonian parameters
+ *  Calculate the RHF Fock matrix F = H_core + G, in which G is a contraction of the density matrix and the two-electron integrals
  *
- *  The RHF Fock matrix is calculated as F = H + G, in which G is a contraction of the density matrix and the two-electron integrals
+ *  @param D_AO     the RHF density matrix in AO basis
+ *  @param ham_par  The Hamiltonian parameters in AO basis
+ *
+ *  @return the RHF Fock matrix expressed in the AO basis
  */
-Eigen::MatrixXd calculateRHFAOFockMatrix(const Eigen::MatrixXd& D_AO, GQCP::HamiltonianParameters ham_par) {
+Eigen::MatrixXd calculateRHFAOFockMatrix(const Eigen::MatrixXd& D_AO, HamiltonianParameters ham_par) {
 
     // To perform the contraction, we will first have to convert the Eigen::MatrixXd D_AO to an Eigen::Tensor<const double, 2> D_AO_tensor, as contractions are only implemented for Eigen::Tensors
     Eigen::TensorMap<Eigen::Tensor<const double, 2>> D_AO_tensor (D_AO.data(), D_AO.rows(), D_AO.cols());
@@ -97,7 +130,11 @@ Eigen::MatrixXd calculateRHFAOFockMatrix(const Eigen::MatrixXd& D_AO, GQCP::Hami
 
 
 /**
- *  @return the RHF electronic energy based on the RHF AO density matrix @param: D_AO, the core Hamiltonian @param: H_core_AO and the Fock matrix @param: F_AO
+ *  @param D_AO         the RHF density matrix in AO basis
+ *  @param H_core_AO    the core Hamiltonian parameters in AO basis
+ *  @param F_AO         the Fock matrix in AO basis
+ *
+ *  @return the RHF electronic energy
  */
 double calculateRHFElectronicEnergy(const Eigen::MatrixXd& D_AO, const Eigen::MatrixXd& H_core_AO, const Eigen::MatrixXd& F_AO) {
 
@@ -122,7 +159,9 @@ double calculateRHFElectronicEnergy(const Eigen::MatrixXd& D_AO, const Eigen::Ma
 
 
 /**
- *  @return the RHF HOMO index a number of electrons @param N
+ *  @param N    the number of electrons
+ *
+ *  @return the RHF HOMO index
  */
 size_t RHFHOMOIndex(size_t N) {
 
@@ -135,7 +174,10 @@ size_t RHFHOMOIndex(size_t N) {
 
 
 /**
- *  @return the RHF LUMO index given a number of orbitals @param K and a number of electrons @param N
+ *  @param K    the number of spatial orbitals
+ *  @param N    the number of electrons
+ *
+ *  @return the RHF LUMO index
  */
 size_t RHFLUMOIndex(size_t K, size_t N) {
 

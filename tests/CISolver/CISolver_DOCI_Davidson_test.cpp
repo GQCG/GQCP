@@ -1,6 +1,6 @@
 // This file is part of GQCG-gqcp.
 // 
-// Copyright (C) 2017-2018  the GQCG developers
+// Copyright (C) 2017-2019  the GQCG developers
 // 
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -18,13 +18,13 @@
 #define BOOST_TEST_MODULE "DavidsonDOCISolver"
 
 
-#include "CISolver/CISolver.hpp"
-#include "HamiltonianBuilder/DOCI.hpp"
-#include "HamiltonianParameters/HamiltonianParameters_constructors.hpp"
-#include "RHF/PlainRHFSCFSolver.hpp"
-
 #include <boost/test/unit_test.hpp>
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
+
+#include "CISolver/CISolver.hpp"
+#include "HamiltonianBuilder/DOCI.hpp"
+#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "RHF/PlainRHFSCFSolver.hpp"
 
 
 
@@ -36,7 +36,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_h2o_sto3g_klaas_Davidson ) {
 
     // Do a DOCI calculation based on a given FCIDUMP file
     // Create the Hamiltonian Parameters
-    auto ham_par = GQCP::readFCIDUMPFile("../tests/data/h2o_sto3g_klaas.FCIDUMP");
+    auto ham_par = GQCP::HamiltonianParameters::ReadFCIDUMP("data/h2o_sto3g_klaas.FCIDUMP");
 
     // The species contains 10 electrons and 7 basis functions, this requires a single Fock Space of 7 orbitals and 5 electrons
     GQCP::FockSpace fock_space (ham_par.get_K(), 5);  // dim = 21
@@ -47,7 +47,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_h2o_sto3g_klaas_Davidson ) {
     // Solve the Davidson DOCI eigenvalue problem
     GQCP::CISolver ci_solver (doci, ham_par);
     Eigen::VectorXd initial_g = fock_space.HartreeFockExpansion();
-    numopt::eigenproblem::DavidsonSolverOptions solver_options (initial_g);
+    GQCP::DavidsonSolverOptions solver_options (initial_g);
     ci_solver.solve(solver_options);
 
     // Retrieve the eigenvalues
@@ -63,12 +63,9 @@ BOOST_AUTO_TEST_CASE ( DOCI_h2o_sto3g_klaas_Davidson ) {
 
 BOOST_AUTO_TEST_CASE ( DOCI_h2_sto3g_dense_vs_Davidson ) {
 
-    // Create a Molecule and an AOBasis
-    GQCP::Molecule h2 ("../tests/data/h2.xyz");
-    auto ao_basis = std::make_shared<GQCP::AOBasis>(h2, "STO-3G");
-
-    // Create the molecular Hamiltonian parameters for this molecule and basis
-    auto mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
+    // Create the molecular Hamiltonian parameters in an AO basis
+    auto h2 = GQCP::Molecule::Readxyz("data/h2.xyz");
+    auto mol_ham_par = GQCP::HamiltonianParameters::Molecular(h2, "STO-3G");
 
     // Create a plain RHF SCF solver and solve the SCF equations
     GQCP::PlainRHFSCFSolver plain_scf_solver (mol_ham_par, h2);
@@ -86,14 +83,14 @@ BOOST_AUTO_TEST_CASE ( DOCI_h2_sto3g_dense_vs_Davidson ) {
 
     // Solve Davidson
     Eigen::VectorXd initial_g = fock_space.HartreeFockExpansion();
-    numopt::eigenproblem::DavidsonSolverOptions davidson_solver_options (initial_g);
+    GQCP::DavidsonSolverOptions davidson_solver_options (initial_g);
     ci_solver.solve(davidson_solver_options);
 
     // Retrieve the eigenvalues
     auto doci_davidson_eigenvalue = ci_solver.get_eigenpair().get_eigenvalue();
 
     // Solve Dense
-    numopt::eigenproblem::DenseSolverOptions dense_solver_options;
+    GQCP::DenseSolverOptions dense_solver_options;
     ci_solver.solve(dense_solver_options);
 
     // Retrieve the eigenvalues
@@ -105,12 +102,9 @@ BOOST_AUTO_TEST_CASE ( DOCI_h2_sto3g_dense_vs_Davidson ) {
 
 BOOST_AUTO_TEST_CASE ( DOCI_h2_631g_dense_vs_Davidson ) {
 
-    // Create a Molecule and an AOBasis
-    GQCP::Molecule h2 ("../tests/data/h2.xyz");
-    auto ao_basis = std::make_shared<GQCP::AOBasis>(h2, "6-31G");
-
-    // Create the molecular Hamiltonian parameters for this molecule and basis
-    auto mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
+    // Create the molecular Hamiltonian parameters in an AO basis
+    auto h2 = GQCP::Molecule::Readxyz("data/h2.xyz");
+    auto mol_ham_par = GQCP::HamiltonianParameters::Molecular(h2, "6-31G");
 
     // Create a plain RHF SCF solver and solve the SCF equations
     GQCP::PlainRHFSCFSolver plain_scf_solver (mol_ham_par, h2);
@@ -128,14 +122,14 @@ BOOST_AUTO_TEST_CASE ( DOCI_h2_631g_dense_vs_Davidson ) {
 
     // Solve Davidson
     Eigen::VectorXd initial_g = fock_space.HartreeFockExpansion();
-    numopt::eigenproblem::DavidsonSolverOptions davidson_solver_options (initial_g);
+    GQCP::DavidsonSolverOptions davidson_solver_options (initial_g);
     ci_solver.solve(davidson_solver_options);
 
     // Retrieve the eigenvalues
     auto doci_davidson_eigenvalue = ci_solver.get_eigenpair().get_eigenvalue();
 
     // Solve Dense
-    numopt::eigenproblem::DenseSolverOptions dense_solver_options;
+    GQCP::DenseSolverOptions dense_solver_options;
     ci_solver.solve(dense_solver_options);
 
     // Retrieve the eigenvalues
@@ -153,7 +147,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_beh_cation_631g_klaas_Davidson ) {
 
     // Do a DOCI calculation based on a given FCIDUMP file
     // Create the Hamiltonian Parameters
-    auto ham_par = GQCP::readFCIDUMPFile("../tests/data/beh_cation_631g_caitlin.FCIDUMP");
+    auto ham_par = GQCP::HamiltonianParameters::ReadFCIDUMP("data/beh_cation_631g_caitlin.FCIDUMP");
 
     // The species contains 4 electrons and 16 basis functions, this requires a single Fock Space of 16 orbitals and 2 electrons
     GQCP::FockSpace fock_space (ham_par.get_K(), 2);  // dim = 120
@@ -164,7 +158,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_beh_cation_631g_klaas_Davidson ) {
     // Solve the Davidson DOCI eigenvalue problem
     GQCP::CISolver ci_solver (doci, ham_par);
     Eigen::VectorXd initial_g = fock_space.HartreeFockExpansion();
-    numopt::eigenproblem::DavidsonSolverOptions solver_options (initial_g);
+    GQCP::DavidsonSolverOptions solver_options (initial_g);
     ci_solver.solve(solver_options);
 
     // Retrieve the eigenvalues
@@ -186,7 +180,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_n2_sto3g_klaas_Davidson ) {
 
     // Do a DOCI calculation based on a given FCIDUMP file
     // Create the Hamiltonian Parameters
-    auto ham_par = GQCP::readFCIDUMPFile("../tests/data/n2_sto-3g_klaas.FCIDUMP");
+    auto ham_par = GQCP::HamiltonianParameters::ReadFCIDUMP("data/n2_sto-3g_klaas.FCIDUMP");
 
     GQCP::FockSpace fock_space (ham_par.get_K(), 7);  // dim = 120
 
@@ -196,7 +190,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_n2_sto3g_klaas_Davidson ) {
     // Solve the Davidson DOCI eigenvalue problem
     GQCP::CISolver ci_solver (doci, ham_par);
     Eigen::VectorXd initial_g = fock_space.HartreeFockExpansion();
-    numopt::eigenproblem::DavidsonSolverOptions solver_options (initial_g);
+    GQCP::DavidsonSolverOptions solver_options (initial_g);
     ci_solver.solve(solver_options);
 
     // Retrieve the eigenvalues
@@ -218,7 +212,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_lih_631g_klaas_Davidson ) {
 
     // Do a DOCI calculation based on a given FCIDUMP file
     // Create the Hamiltonian Parameters
-    auto ham_par = GQCP::readFCIDUMPFile("../tests/data/lih_631g_caitlin.FCIDUMP");
+    auto ham_par = GQCP::HamiltonianParameters::ReadFCIDUMP("data/lih_631g_caitlin.FCIDUMP");
 
     GQCP::FockSpace fock_space (ham_par.get_K(), 2);  // dim = 120
 
@@ -228,7 +222,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_lih_631g_klaas_Davidson ) {
     // Solve the Davidson DOCI eigenvalue problem
     GQCP::CISolver ci_solver (doci, ham_par);
     Eigen::VectorXd initial_g = fock_space.HartreeFockExpansion();
-    numopt::eigenproblem::DavidsonSolverOptions solver_options (initial_g);
+    GQCP::DavidsonSolverOptions solver_options (initial_g);
     ci_solver.solve(solver_options);
 
     // Retrieve the eigenvalues
@@ -250,7 +244,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_li2_321g_klaas_Davidson ) {
 
     // Do a DOCI calculation based on a given FCIDUMP file
     // Create the Hamiltonian Parameters
-    auto ham_par = GQCP::readFCIDUMPFile("../tests/data/li2_321g_klaas.FCIDUMP");
+    auto ham_par = GQCP::HamiltonianParameters::ReadFCIDUMP("data/li2_321g_klaas.FCIDUMP");
 
     GQCP::FockSpace fock_space (ham_par.get_K(), 3);  // dim = 816
 
@@ -260,7 +254,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_li2_321g_klaas_Davidson ) {
     // Solve the Davidson DOCI eigenvalue problem
     GQCP::CISolver ci_solver (doci, ham_par);
     Eigen::VectorXd initial_g = fock_space.HartreeFockExpansion();
-    numopt::eigenproblem::DavidsonSolverOptions solver_options (initial_g);
+    GQCP::DavidsonSolverOptions solver_options (initial_g);
     ci_solver.solve(solver_options);
 
     // Retrieve the eigenvalues
@@ -282,7 +276,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_h2o_631g_klaas_Davidson ) {
 
     // Do a DOCI calculation based on a given FCIDUMP file
     // Create the Hamiltonian Parameters
-    auto ham_par = GQCP::readFCIDUMPFile("../tests/data/h2o_631g_klaas.FCIDUMP");
+    auto ham_par = GQCP::HamiltonianParameters::ReadFCIDUMP("data/h2o_631g_klaas.FCIDUMP");
 
     GQCP::FockSpace fock_space (ham_par.get_K(), 5);  // dim = 1287
 
@@ -292,7 +286,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_h2o_631g_klaas_Davidson ) {
     // Solve the Davidson DOCI eigenvalue problem
     GQCP::CISolver ci_solver (doci, ham_par);
     Eigen::VectorXd initial_g = fock_space.HartreeFockExpansion();
-    numopt::eigenproblem::DavidsonSolverOptions solver_options (initial_g);
+    GQCP::DavidsonSolverOptions solver_options (initial_g);
     ci_solver.solve(solver_options);
 
     // Retrieve the eigenvalues
@@ -314,7 +308,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_lif_631g_klaas_Davidson ) {
 
     // Do a DOCI calculation based on a given FCIDUMP file
     // Create the Hamiltonian Parameters
-    auto ham_par = GQCP::readFCIDUMPFile("../tests/data/lif_631g_klaas.FCIDUMP");
+    auto ham_par = GQCP::readFCIDUMPFile("data/lif_631g_klaas.FCIDUMP");
 
     GQCP::FockSpace fock_space (ham_par.get_K(), 6);  // dim = 376740
 
@@ -324,7 +318,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_lif_631g_klaas_Davidson ) {
     // Solve the Davidson DOCI eigenvalue problem
     GQCP::CISolver ci_solver (doci, ham_par);
     Eigen::VectorXd initial_g = fock_space.HartreeFockExpansion();
-    numopt::eigenproblem::DavidsonSolverOptions solver_options (initial_g);
+    GQCP::DavidsonSolverOptions solver_options (initial_g);
     ci_solver.solve(solver_options);
 
     // Retrieve the eigenvalues

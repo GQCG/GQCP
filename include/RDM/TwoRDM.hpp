@@ -1,6 +1,6 @@
 // This file is part of GQCG-gqcp.
 // 
-// Copyright (C) 2017-2018  the GQCG developers
+// Copyright (C) 2017-2019  the GQCG developers
 // 
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -26,8 +26,9 @@
 
 namespace GQCP {
 
+
 /**
- *  A class that holds the tensor representations of a 2RDM
+ *  A class that represents a 2-RDM
  */
 class TwoRDM : public BaseRDM {
 private:
@@ -36,25 +37,48 @@ private:
 
 public:
     // CONSTRUCTORS
+    /**
+     *  @param d    the explicit matrix representation of the 2-RDM
+     */
     explicit TwoRDM(const Eigen::Tensor<double, 4>& d);
 
 
     // GETTERS
-    Eigen::Tensor<double, 4> get_matrix_representation() const { return this->d; }
-    double get(size_t p, size_t q, size_t r, size_t s) const { return this->d(p, q, r, s); }
+    const Eigen::Tensor<double, 4>& get_matrix_representation() const { return this->d; }
+
+
+    // OPERATORS
+    /**
+     *  @return the matrix element at position (p,q,r,s)
+     */
+    double operator()(size_t p, size_t q, size_t r, size_t s) const { return this->d(p,q,r,s); }
+
+    /**
+     *  @param other    the other TwoRDM
+     *
+     *  @return if the matrix representation of this 2-RDM is equal to the matrix representation of the other, within the default tolerance specified by isEqualTo()
+     */
+    bool operator==(const TwoRDM& other) const;
 
 
     // PUBLIC METHODS
     /**
-     *  @return the trace of the 2-RDM @param: d(p,p,q,q)
+     *  @param other        the other TwoRDM
+     *  @param tolerance    the tolerance for equality of the matrix representations
+     *
+     *  @return if the matrix representation of this 2-RDM is equal to the matrix representation of the other, given a tolerance
      */
-    double trace();
+    bool isEqualTo(const TwoRDM& other, double tolerance=1.0e-08) const;
 
     /**
-     *  @return a partial contraction of the 2-RDM,
-     *  where D(p,q) = d(p,q,r,r)
+     *  @return the trace of the 2-RDM, i.e. d(p,p,q,q)
      */
-    Eigen::MatrixXd reduce();
+    double trace() const;
+
+    /**
+     *  @return a partial contraction of the 2-RDM, where D(p,q) = d(p,q,r,r)
+     */
+    Eigen::MatrixXd reduce() const;
 };
 
 

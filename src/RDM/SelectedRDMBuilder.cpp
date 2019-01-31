@@ -1,6 +1,6 @@
 // This file is part of GQCG-gqcp.
 // 
-// Copyright (C) 2017-2018  the GQCG developers
+// Copyright (C) 2017-2019  the GQCG developers
 // 
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -36,9 +36,11 @@ SelectedRDMBuilder::SelectedRDMBuilder(const SelectedFockSpace& fock_space) :
  */
 
 /**
- *  @return 1RDM from a coefficient vector @param x
+ *  @param x        the coefficient vector representing the 'selected' wave function
+ *
+ *  @return all 1-RDMs given a coefficient vector
  */
-OneRDMs SelectedRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) {
+OneRDMs SelectedRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) const {
 
     // Initialize as zero matrices
     size_t K = this->fock_space.get_K();
@@ -84,8 +86,8 @@ OneRDMs SelectedRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) {
             if ((alpha_I.countNumberOfDifferences(alpha_J) == 2) && (beta_I.countNumberOfDifferences(beta_J) == 0)) {
 
                 // Find the orbitals that are occupied in one string, and aren't in the other
-                size_t p = alpha_I.findOccupiedDifferences(alpha_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
-                size_t q = alpha_J.findOccupiedDifferences(alpha_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+                size_t p = alpha_I.findDifferentOccupations(alpha_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+                size_t q = alpha_J.findDifferentOccupations(alpha_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
 
                 // Calculate the total sign, and include it in the RDM contribution
                 int sign = alpha_I.operatorPhaseFactor(p) * alpha_J.operatorPhaseFactor(q);
@@ -98,8 +100,8 @@ OneRDMs SelectedRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) {
             if ((alpha_I.countNumberOfDifferences(alpha_J) == 0) && (beta_I.countNumberOfDifferences(beta_J) == 2)) {
 
                 // Find the orbitals that are occupied in one string, and aren't in the other
-                size_t p = beta_I.findOccupiedDifferences(beta_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
-                size_t q = beta_J.findOccupiedDifferences(beta_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+                size_t p = beta_I.findDifferentOccupations(beta_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+                size_t q = beta_J.findDifferentOccupations(beta_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
 
                 // Calculate the total sign, and include it in the RDM contribution
                 int sign = beta_I.operatorPhaseFactor(p) * beta_J.operatorPhaseFactor(q);
@@ -118,9 +120,11 @@ OneRDMs SelectedRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) {
 
 
 /**
- *  @return 2RDM from a coefficient vector @param x
+ *  @param x        the coefficient vector representing the 'selected' wave function
+ *
+ *  @return all 2-RDMs given a coefficient vector
  */
-TwoRDMs SelectedRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) {
+TwoRDMs SelectedRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) const {
 
     
     // Initialize as zero matrices
@@ -194,8 +198,8 @@ TwoRDMs SelectedRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) {
             if ((alpha_I.countNumberOfDifferences(alpha_J) == 2) && (beta_I.countNumberOfDifferences(beta_J) == 0)) {
 
                 // Find the orbitals that are occupied in one string, and aren't in the other
-                size_t p = alpha_I.findOccupiedDifferences(alpha_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
-                size_t q = alpha_J.findOccupiedDifferences(alpha_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+                size_t p = alpha_I.findDifferentOccupations(alpha_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+                size_t q = alpha_J.findDifferentOccupations(alpha_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
 
                 // Calculate the total sign
                 int sign = alpha_I.operatorPhaseFactor(p) * alpha_J.operatorPhaseFactor(q);
@@ -235,8 +239,8 @@ TwoRDMs SelectedRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) {
             if ((alpha_I.countNumberOfDifferences(alpha_J) == 0) && (beta_I.countNumberOfDifferences(beta_J) == 2)) {
 
                 // Find the orbitals that are occupied in one string, and aren't in the other
-                size_t p = beta_I.findOccupiedDifferences(beta_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
-                size_t q = beta_J.findOccupiedDifferences(beta_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+                size_t p = beta_I.findDifferentOccupations(beta_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+                size_t q = beta_J.findDifferentOccupations(beta_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
 
                 // Calculate the total sign
                 int sign = beta_I.operatorPhaseFactor(p) * beta_J.operatorPhaseFactor(q);
@@ -276,11 +280,11 @@ TwoRDMs SelectedRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) {
             if ((alpha_I.countNumberOfDifferences(alpha_J) == 2) && (beta_I.countNumberOfDifferences(beta_J) == 2)) {
 
                 // Find the orbitals that are occupied in one string, and aren't in the other
-                size_t p = alpha_I.findOccupiedDifferences(alpha_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
-                size_t q = alpha_J.findOccupiedDifferences(alpha_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+                size_t p = alpha_I.findDifferentOccupations(alpha_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+                size_t q = alpha_J.findDifferentOccupations(alpha_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
 
-                size_t r = beta_I.findOccupiedDifferences(beta_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
-                size_t s = beta_J.findOccupiedDifferences(beta_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+                size_t r = beta_I.findDifferentOccupations(beta_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+                size_t s = beta_J.findDifferentOccupations(beta_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
 
                 // Calculate the total sign, and include it in the 2-RDM contribution
                 int sign = alpha_I.operatorPhaseFactor(p) * alpha_J.operatorPhaseFactor(q) * beta_I.operatorPhaseFactor(r) * beta_J.operatorPhaseFactor(s);
@@ -296,11 +300,11 @@ TwoRDMs SelectedRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) {
             if ((alpha_I.countNumberOfDifferences(alpha_J) == 4) && (beta_I.countNumberOfDifferences(beta_J) == 0)) {
 
                 // Find the orbitals that are occupied in one string, and aren't in the other
-                std::vector<size_t> occupied_indices_I = alpha_I.findOccupiedDifferences(alpha_J);  // we're sure this has two elements
+                std::vector<size_t> occupied_indices_I = alpha_I.findDifferentOccupations(alpha_J);  // we're sure this has two elements
                 size_t p = occupied_indices_I[0];
                 size_t r = occupied_indices_I[1];
 
-                std::vector<size_t> occupied_indices_J = alpha_J.findOccupiedDifferences(alpha_I);  // we're sure this has two elements
+                std::vector<size_t> occupied_indices_J = alpha_J.findDifferentOccupations(alpha_I);  // we're sure this has two elements
                 size_t q = occupied_indices_J[0];
                 size_t s = occupied_indices_J[1];
 
@@ -323,11 +327,11 @@ TwoRDMs SelectedRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) {
             if ((alpha_I.countNumberOfDifferences(alpha_J) == 0) && (beta_I.countNumberOfDifferences(beta_J) == 4)) {
 
                 // Find the orbitals that are occupied in one string, and aren't in the other
-                std::vector<size_t> occupied_indices_I = beta_I.findOccupiedDifferences(beta_J);  // we're sure this has two elements
+                std::vector<size_t> occupied_indices_I = beta_I.findDifferentOccupations(beta_J);  // we're sure this has two elements
                 size_t p = occupied_indices_I[0];
                 size_t r = occupied_indices_I[1];
 
-                std::vector<size_t> occupied_indices_J = beta_J.findOccupiedDifferences(beta_I);  // we're sure this has two elements
+                std::vector<size_t> occupied_indices_J = beta_J.findDifferentOccupations(beta_I);  // we're sure this has two elements
                 size_t q = occupied_indices_J[0];
                 size_t s = occupied_indices_J[1];
 
@@ -354,6 +358,20 @@ TwoRDMs SelectedRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) {
     TwoRDM two_rdm_bbaa (d_bbaa);
     TwoRDM two_rdm_bbbb (d_bbbb);
     return TwoRDMs (two_rdm_aaaa, two_rdm_aabb, two_rdm_bbaa, two_rdm_bbbb);
+}
+
+
+/**
+ *  @param bra_indices      the indices of the orbitals that should be annihilated on the left (on the bra)
+ *  @param ket_indices      the indices of the orbitals that should be annihilated on the right (on the ket)
+ *  @param x                the coefficient vector representing the 'selected" wave function
+ *
+ *  @return an element of the N-RDM, as specified by the given bra and ket indices
+ *
+ *      calculateElement({0, 1}, {2, 1}) would calculate d^{(2)} (0, 1, 1, 2): the operator string would be a^\dagger_0 a^\dagger_1 a_2 a_1
+ */
+double SelectedRDMBuilder::calculateElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices, const Eigen::VectorXd& x) const {
+    throw std::runtime_error ("calculateElement is not implemented for SelectedRDMs");
 }
 
 

@@ -1,6 +1,6 @@
 // This file is part of GQCG-gqcp.
 // 
-// Copyright (C) 2017-2018  the GQCG developers
+// Copyright (C) 2017-2019  the GQCG developers
 // 
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -16,18 +16,17 @@
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
 #define BOOST_TEST_MODULE "HamiltonianParameters"
-
-
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
-
-#include "miscellaneous.hpp"
-
 #include <boost/math/constants/constants.hpp>
-
-#include <cpputil.hpp>
 
 #include <boost/test/unit_test.hpp>
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
+
+#include "HamiltonianParameters/HamiltonianParameters.hpp"
+
+#include "utilities/miscellaneous.hpp"
+#include "RHF/PlainRHFSCFSolver.hpp"
+#include "utilities/linalg.hpp"
+
 
 
 /*
@@ -37,7 +36,7 @@
  *  @return a toy 2-RDM where
  *      d(i,j,k,l) = l + 2k + 4j + 8i
  */
-Eigen::Tensor<double, 4> calculateToy2RDMTensor () {
+Eigen::Tensor<double, 4> calculateToy2RDMTensor() {
     Eigen::Tensor<double, 4> d (2, 2, 2, 2);
 
     for (size_t i = 0; i < 2; i++) {
@@ -64,7 +63,7 @@ Eigen::Tensor<double, 4> calculateToy2RDMTensor () {
  *  @return toy 2-electron integrals where
  *      g(i,j,k,l) = delta_ij delta_kl - delta_il delta_jk
  */
-Eigen::Tensor<double, 4> calculateToyTwoElectronIntegralsTensor () {
+Eigen::Tensor<double, 4> calculateToyTwoElectronIntegralsTensor() {
     Eigen::Tensor<double, 4> g (2, 2, 2, 2);
     g.setZero();
 
@@ -90,13 +89,13 @@ Eigen::Tensor<double, 4> calculateToyTwoElectronIntegralsTensor () {
 
 
 /*
- * UNIT TESTS
+ * UNIT TESTS - CONSTRUCTORS
  */
 
 BOOST_AUTO_TEST_CASE ( HamiltonianParameters_constructor ) {
 
     // Create an AOBasis
-    GQCP::Molecule water ("../tests/data/h2o.xyz");
+    auto water = GQCP::Molecule::Readxyz("data/h2o.xyz");
     auto ao_basis_ptr = std::make_shared<GQCP::AOBasis>(water, "STO-3G");
 
 
@@ -203,30 +202,6 @@ BOOST_AUTO_TEST_CASE ( rotate_overlap_matrix ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( randomRotate ) {
-
-    // Create random HamiltonianParameters
-    GQCP::Molecule water ("../tests/data/h2o.xyz");
-    auto ao_basis_ptr = std::make_shared<GQCP::AOBasis>(water, "STO-3G");
-
-    size_t K = ao_basis_ptr->get_number_of_basis_functions();
-    GQCP::OneElectronOperator S (Eigen::MatrixXd::Random(K, K));
-
-    GQCP::OneElectronOperator H_core (Eigen::MatrixXd::Random(K, K));
-    Eigen::Tensor<double, 4> g_tensor (K, K, K, K);
-    g_tensor.setRandom();
-    GQCP::TwoElectronOperator g (g_tensor);
-
-    Eigen::MatrixXd C = Eigen::MatrixXd::Random(K, K);
-
-    GQCP::HamiltonianParameters random_hamiltonian_parameters (ao_basis_ptr, S, H_core, g, C);
-
-
-    // Check if the function randomRotate() is still available
-    random_hamiltonian_parameters.randomRotate();
-}
-
-
 BOOST_AUTO_TEST_CASE ( constructor_C ) {
 
     // Create dummy Hamiltonian parameters
@@ -249,6 +224,94 @@ BOOST_AUTO_TEST_CASE ( constructor_C ) {
     GQCP::HamiltonianParameters transformed_random_hamiltonian_parameters (random_hamiltonian_parameters, T);
 }
 
+
+/*
+ *  UNIT TESTS - NAMED CONSTRUCTORS
+ */
+
+BOOST_AUTO_TEST_CASE ( constructMolecularHamiltonianParameters ) {
+
+    // Set up a basis
+    auto h2 = GQCP::Molecule::Readxyz("data/h2_szabo.xyz");
+    auto ao_basis = std::make_shared<GQCP::AOBasis>(h2, "STO-3G");
+
+
+    // Check if we can construct the molecular Hamiltonian parameters
+    auto mol_ham_par = GQCP::HamiltonianParameters::Molecular(ao_basis);
+    auto g = mol_ham_par.get_g();
+
+
+    // Check with reference values from Szabo
+    Eigen::MatrixXd ref_S (2, 2);
+    ref_S << 1.0,    0.6593,
+             0.6593, 1.0;
+
+    Eigen::MatrixXd ref_H_core (2, 2);
+    ref_H_core << -1.1204, -0.9584,
+                  -0.9584, -1.1204;
+
+
+    BOOST_CHECK(mol_ham_par.get_S().get_matrix_representation().isApprox(ref_S, 1.0e-04));
+    BOOST_CHECK(mol_ham_par.get_h().get_matrix_representation().isApprox(ref_H_core, 1.0e-04));
+
+    BOOST_CHECK(std::abs(g(0,0,0,0) - 0.7746) < 1.0e-04);
+    BOOST_CHECK(std::abs(g(0,0,0,0) - g(1,1,1,1)) < 1.0e-12);
+    BOOST_CHECK(std::abs(g(0,0,1,1) - 0.5697) < 1.0e-04);
+    BOOST_CHECK(std::abs(g(1,0,0,0) - 0.4441) < 1.0e-04);
+    BOOST_CHECK(std::abs(g(1,0,0,0) - g(1,1,1,0)) < 1.0e-12);
+    BOOST_CHECK(std::abs(g(1,0,1,0) - 0.2970) < 1.0e-04);
+}
+
+
+BOOST_AUTO_TEST_CASE ( FCIDUMP_reader ) {
+
+    auto fcidump_ham_par = GQCP::HamiltonianParameters::ReadFCIDUMP("data/beh_cation_631g_caitlin.FCIDUMP");
+
+    // Check if the one-electron integrals are read in correctly from a previous implementation
+    GQCP::OneElectronOperator h_SO = fcidump_ham_par.get_h();
+
+    BOOST_CHECK(std::abs(h_SO(0,0) - (-8.34082)) < 1.0e-5);
+    BOOST_CHECK(std::abs(h_SO(5,1) - 0.381418) < 1.0e-6);
+    BOOST_CHECK(std::abs(h_SO(14,0) - 0.163205) < 1.0e-6);
+    BOOST_CHECK(std::abs(h_SO(13,6) - (-5.53204e-16)) < 1.0e-16);
+    BOOST_CHECK(std::abs(h_SO(15,11) - (-0.110721)) < 1.0e-6);
+
+
+    // Check if the two-electron integrals are read in correctly from a previous implementation
+    GQCP::TwoElectronOperator g_SO = fcidump_ham_par.get_g();
+
+    BOOST_CHECK(std::abs(g_SO(2,5,4,4) - 0.0139645) < 1.0e-6);
+    BOOST_CHECK(std::abs(g_SO(2,6,3,0) - 5.16622e-18) < 1.0e-17);
+    BOOST_CHECK(std::abs(g_SO(3,1,3,0) - (-0.0141251)) <  1.0e-6);
+    BOOST_CHECK(std::abs(g_SO(4,6,4,6) - 0.0107791) < 1.0e-6);
+    BOOST_CHECK(std::abs(g_SO(4,15,11,1) - (9.33375e-19)) < 1.0e-17);
+    BOOST_CHECK(std::abs(g_SO(6,10,5,9) - (-3.81422e-18)) < 1.0e-17);
+    BOOST_CHECK(std::abs(g_SO(7,7,2,1) - (-0.031278)) < 1.0e-6);
+    BOOST_CHECK(std::abs(g_SO(8,15,9,9) - (-2.80093e-17)) < 1.0e-16);
+    BOOST_CHECK(std::abs(g_SO(9,14,0,9) - 0.00161985) < 1.0e-7);
+    BOOST_CHECK(std::abs(g_SO(10,1,4,3) - 0.00264603) < 1.0e-7);
+    BOOST_CHECK(std::abs(g_SO(11,4,9,3) - (-0.0256623)) < 1.0e-6);
+    BOOST_CHECK(std::abs(g_SO(12,9,0,4) - 0.0055472) < 1.0e-6);
+    BOOST_CHECK(std::abs(g_SO(13,15,15,13) - 0.00766898) < 1.0e-7);
+    BOOST_CHECK(std::abs(g_SO(14,2,12,3) - 0.0104266) < 1.0e-7);
+    BOOST_CHECK(std::abs(g_SO(15,5,10,10) - 0.00562608) < 1.0e-7);
+}
+
+
+BOOST_AUTO_TEST_CASE ( FCIDUMP_reader_HORTON ) {
+
+    // Check the same reference value that HORTON does
+    auto fcidump_ham_par = GQCP::HamiltonianParameters::ReadFCIDUMP("data/h2_psi4_horton.FCIDUMP");
+
+    GQCP::TwoElectronOperator g_SO = fcidump_ham_par.get_g();
+    BOOST_CHECK(std::abs(g_SO(6,5,1,0) - 0.0533584656) <  1.0e-7);
+}
+
+
+
+/*
+ *  UNIT TESTS - METHODS
+ */
 
 BOOST_AUTO_TEST_CASE ( calculate_generalized_Fock_matrix_and_super_invalid_arguments ) {
 
@@ -361,5 +424,93 @@ BOOST_AUTO_TEST_CASE ( calculate_generalized_Fock_matrix_and_super ) {
     }
 
     BOOST_CHECK(F_ref.isApprox(ham_par.calculateGeneralizedFockMatrix(D, d).get_matrix_representation(), 1.0e-12));
-    BOOST_CHECK(cpputil::linalg::areEqual(W_ref, ham_par.calculateSuperGeneralizedFockMatrix(D, d).get_matrix_representation(), 1.0e-12));
+    BOOST_CHECK(GQCP::areEqual(W_ref, ham_par.calculateSuperGeneralizedFockMatrix(D, d).get_matrix_representation(), 1.0e-12));
+}
+
+
+BOOST_AUTO_TEST_CASE ( calculateEdmistonRuedenbergLocalizationIndex ) {
+
+    // Create toy Hamiltonian parameters: only the two-electron integrals are important
+    size_t K = 5;
+    Eigen::MatrixXd S = Eigen::MatrixXd::Identity(K, K);
+    GQCP::OneElectronOperator S_op (S);
+
+    Eigen::MatrixXd H = Eigen::MatrixXd::Random(K, K);
+    GQCP::OneElectronOperator H_op (H);
+
+    Eigen::Tensor<double, 4> g (K, K, K, K);
+    g.setZero();
+    for (size_t i = 0; i < K; i++) {
+        g(i,i,i,i) = 2*static_cast<float>(i);
+    }
+    GQCP::TwoElectronOperator g_op (g);
+
+    GQCP::HamiltonianParameters ham_par (nullptr, S_op, H_op, g_op, Eigen::MatrixXd::Identity(K, K));
+
+
+    BOOST_CHECK(std::abs(ham_par.calculateEdmistonRuedenbergLocalizationIndex(3) - 6.0) < 1.0e-08);
+    BOOST_CHECK(std::abs(ham_par.calculateEdmistonRuedenbergLocalizationIndex(4) - 12.0) < 1.0e-08);
+}
+
+
+BOOST_AUTO_TEST_CASE ( effective_one_electron_integrals ) {
+
+    size_t K = 4;
+    auto K_ = static_cast<double>(K);
+
+    // Set up toy 2-electron integrals and put them into Hamiltonian parameters
+    Eigen::Tensor<double, 4> g (K, K, K, K);
+    g.setZero();
+
+    for (size_t i = 0; i < K; i++) {
+        for (size_t j = 0; j < K; j++) {
+            for (size_t k = 0; k < K; k++) {
+                for (size_t l = 0; l < K; l++) {
+                    g(i,j,k,l) = (i+1) + 2*(j+1) + 4*(k+1) + 8*(l+1);
+                }
+            }
+        }
+    }
+
+    GQCP::OneElectronOperator S_op (Eigen::MatrixXd::Identity(K, K));
+    GQCP::OneElectronOperator h_op (Eigen::MatrixXd::Zero(K, K));
+    GQCP::TwoElectronOperator g_op (g);
+    Eigen::MatrixXd C = Eigen::MatrixXd::Identity(K, K);
+    GQCP::HamiltonianParameters ham_par (nullptr, S_op, h_op, g_op, C);
+
+
+    // Set up the reference effective one-electron integrals by manual calculation
+    Eigen::MatrixXd k_ref = Eigen::MatrixXd::Zero(K, K);
+    for (size_t p = 0; p < K; p++) {
+        for (size_t q = 0; q < K; q++) {
+            auto p_ = static_cast<double>(p) + 1;
+            auto q_ = static_cast<double>(q) + 1;
+
+            k_ref(p,q) = -K_ / 2 * (p_ + 8*q_ + 3*K_ + 3);
+        }
+    }
+
+    BOOST_CHECK(k_ref.isApprox(ham_par.calculateEffectiveOneElectronIntegrals().get_matrix_representation(), 1.0e-08));
+}
+
+
+BOOST_AUTO_TEST_CASE ( areOrbitalsOrthonormal ) {
+
+    // We assume that the orbitals in an FCIDUMP file are orthonormal
+    auto ham_par_fcidump = GQCP::HamiltonianParameters::ReadFCIDUMP("data/h2_psi4_horton.FCIDUMP");
+    BOOST_CHECK(ham_par_fcidump.areOrbitalsOrthonormal());
+
+
+    // The orbitals in an AO basis are not orthonormal
+    auto h2o = GQCP::Molecule::Readxyz("data/h2o.xyz");
+    auto ao_ham_par = GQCP::HamiltonianParameters::Molecular(h2o, "STO-3G");
+    BOOST_CHECK(!ao_ham_par.areOrbitalsOrthonormal());
+
+
+    // The orbitals in the RHF basis are orthonormal
+    GQCP::PlainRHFSCFSolver plain_scf_solver (ao_ham_par, h2o);
+    plain_scf_solver.solve();
+    auto rhf = plain_scf_solver.get_solution();
+    auto mol_ham_par = GQCP::HamiltonianParameters(ao_ham_par, rhf.get_C());
+    BOOST_CHECK(mol_ham_par.areOrbitalsOrthonormal());
 }

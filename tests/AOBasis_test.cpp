@@ -1,6 +1,6 @@
 // This file is part of GQCG-gqcp.
 // 
-// Copyright (C) 2017-2018  the GQCG developers
+// Copyright (C) 2017-2019  the GQCG developers
 // 
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -17,19 +17,19 @@
 // 
 #define BOOST_TEST_MODULE "AOBasis"
 
+#include <boost/test/unit_test.hpp>
+#include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
 
 #include "AOBasis.hpp"
 
 #include "Molecule.hpp"
 
-#include <boost/test/unit_test.hpp>
-#include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
 
 
 BOOST_AUTO_TEST_CASE ( AOBasis_constructor ) {
 
     // Check if we can construct an AOBasis object
-    GQCP::Molecule water ("../tests/data/h2o.xyz");
+    auto water = GQCP::Molecule::Readxyz("data/h2o.xyz");
     GQCP::AOBasis basis (water, "STO-3G");
 }
 
@@ -37,7 +37,7 @@ BOOST_AUTO_TEST_CASE ( AOBasis_constructor ) {
 BOOST_AUTO_TEST_CASE ( number_of_basis_functions ) {
 
     // Check the number of basis functions in water
-    GQCP::Molecule water ("../tests/data/h2o.xyz");
+    auto water = GQCP::Molecule::Readxyz("data/h2o.xyz");
     GQCP::AOBasis basis (water, "STO-3G");
 
     BOOST_CHECK_EQUAL(basis.get_number_of_basis_functions(), 7);

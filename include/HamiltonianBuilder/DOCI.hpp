@@ -1,6 +1,6 @@
 // This file is part of GQCG-gqcp.
 // 
-// Copyright (C) 2017-2018  the GQCG developers
+// Copyright (C) 2017-2019  the GQCG developers
 // 
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -30,13 +30,9 @@ namespace GQCP {
 
 
 /**
- *  Doubly occupied configuration interaction builds a hamiltonian matrix
- *  based on a wavefunction only containing doubly occupied configurations.
- *  This means that the combined ONV from both the alpha and beta Fock space
- *  requires the individual ONVs to be identical (beta configuration = alpha configuration).
- *  In turn this is only possible when both Fock spaces are identical.
+ *  A HamiltonianBuilder for DOCI: it builds the matrix representation of the DOCI Hamiltonian, in a Fock space where orbitals are either doubly occupied or unoccupied.
  */
-class DOCI : public GQCP::HamiltonianBuilder {
+class DOCI : public HamiltonianBuilder {
 private:
     FockSpace fock_space;  // both the alpha and beta Fock space
 
@@ -44,7 +40,7 @@ private:
 public:
     // CONSTRUCTORS
     /**
-     *  Constructor given a @param fock_space
+     *  @param fock_space       the full Fock space, identical for alpha and beta
      */
     explicit DOCI(const FockSpace& fock_space);
 
@@ -53,26 +49,33 @@ public:
     ~DOCI() = default;
 
 
+    // OVERRIDDEN GETTERS
+    const BaseFockSpace* get_fock_space() const override { return &fock_space; }
+
+
     // OVERRIDDEN PUBLIC METHODS
     /**
-     *  @return the Hamiltonian matrix as an Eigen::MatrixXd given @param hamiltonian_parameters
+     *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis
+     *
+     *  @return the DOCI Hamiltonian matrix
      */
-    Eigen::MatrixXd constructHamiltonian(const HamiltonianParameters& hamiltonian_parameters) override;
+    Eigen::MatrixXd constructHamiltonian(const HamiltonianParameters& hamiltonian_parameters) const override;
 
     /**
-     *  @return the action of the Hamiltonian (@param hamiltonian_parameters and @param diagonal) on the coefficient vector @param x
+     *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis
+     *  @param x                            the vector upon which the DOCI Hamiltonian acts
+     *  @param diagonal                     the diagonal of the DOCI Hamiltonian matrix
+     *
+     *  @return the action of the DOCI Hamiltonian on the coefficient vector
      */
-    Eigen::VectorXd matrixVectorProduct(const HamiltonianParameters& hamiltonian_parameters, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) override;
+    Eigen::VectorXd matrixVectorProduct(const HamiltonianParameters& hamiltonian_parameters, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) const override;
 
     /**
-     *  @return the diagonal of the matrix representation of the Hamiltonian given @param hamiltonian_parameters
+     *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis
+     *
+     *  @return the diagonal of the matrix representation of the DOCI Hamiltonian
      */
-    Eigen::VectorXd calculateDiagonal(const HamiltonianParameters& hamiltonian_parameters) override;
-
-    /**
-     *  @return the fock space of the HamiltonianBuilder
-     */
-    BaseFockSpace* get_fock_space() override { return &fock_space; }
+    Eigen::VectorXd calculateDiagonal(const HamiltonianParameters& hamiltonian_parameters) const override;
 };
 
 

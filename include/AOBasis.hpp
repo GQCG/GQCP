@@ -1,6 +1,6 @@
 // This file is part of GQCG-gqcp.
 // 
-// Copyright (C) 2017-2018  the GQCG developers
+// Copyright (C) 2017-2019  the GQCG developers
 // 
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -36,18 +36,24 @@ namespace GQCP {
  */
 class AOBasis {
 private:
-    const std::vector<GQCP::Atom> atoms;
-    const libint2::BasisSet basis_functions;
-    const size_t number_of_basis_functions;
+    std::vector<Atom> atoms;
+    libint2::BasisSet basis_functions;
+    size_t number_of_basis_functions;
 
 public:
     // CONSTRUCTOR
-    AOBasis(const GQCP::Molecule& molecule, std::string basis_set);
+    /**
+     *  Constructor that creates an AOBasis from a basisset name
+     *
+     *  @param molecule         the molecule to which the AO basis corresponds
+     *  @param basis_set        the name of the basisset
+     */
+    AOBasis(const Molecule& molecule, const std::string& basis_set);
 
 
     // GETTERS
-    std::vector<GQCP::Atom> get_atoms() const { return this->atoms; }
-    libint2::BasisSet get_basis_functions() const { return this->basis_functions; }
+    const std::vector<Atom>& get_atoms() const { return this->atoms; }
+    const libint2::BasisSet& get_basis_functions() const { return this->basis_functions; }
     size_t get_number_of_basis_functions() const { return this->number_of_basis_functions; }
 };
 

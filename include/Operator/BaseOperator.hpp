@@ -1,6 +1,6 @@
 // This file is part of GQCG-gqcp.
 // 
-// Copyright (C) 2017-2018  the GQCG developers
+// Copyright (C) 2017-2019  the GQCG developers
 // 
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -39,7 +39,7 @@ protected:
 public:
     // CONSTRUCTORS
     /**
-     *  Constructor based on a given @param dimension
+     * @param dimension     the dimension of the operator, i.e. the number of orbitals
      */
     explicit BaseOperator(size_t dimension);
 
@@ -50,33 +50,27 @@ public:
 
     // PUBLIC METHODS
     /**
-     *  Transform the matrix representation of an operator using the transformation matrix @param T
+     *  In-place transform the matrix representation of the operator
      *
-     *  Note that the transformation matrix @param T is used as
+     *  @param T    the transformation matrix between the old and the new orbital basis, it is used as
      *      b' = b T ,
-     *  in which the basis functions are collected as elements of a row vector b
+     *   in which the basis functions are collected as elements of a row vector b
      */
     virtual void transform(const Eigen::MatrixXd& T) = 0;
 
     /**
-     *  Rotate the matrix representation of an operator using a unitary rotation matrix @param U
+     *  In-place rotate the matrix representation of the operator
      *
-     *  Note that the rotation matrix @param U is used as
-     *      b' = b U ,
-     *  in which the basis functions are collected as elements of a row vector b.
+     *  @param U     the unitary transformation (i.e. rotation) matrix, see transform() for how the transformation matrix between the two bases should be represented
      */
     virtual void rotate(const Eigen::MatrixXd& U) = 0;
 
     /**
-     *  Rotate the matrix representation of an operator using the unitary Jacobi rotation matrix U constructed from the @param jacobi_rotation_parameters
+     *  In-place rotate the matrix representation of the operator using a unitary Jacobi rotation matrix constructed from the Jacobi rotation parameters
      *
-     *  Note that
-     *      - the rotation matrix @param U is used as
-     *          b' = b U ,
-     *        in which the basis functions are collected as elements of a row vector b.
-     *      - we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
+     *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix. See transform() for how the transformation matrix between the two bases should be represented
      */
-    virtual void rotate(const GQCP::JacobiRotationParameters& jacobi_rotation_parameters) = 0;
+    virtual void rotate(const JacobiRotationParameters& jacobi_rotation_parameters) = 0;
 };
 
 

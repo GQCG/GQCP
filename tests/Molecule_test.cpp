@@ -1,6 +1,6 @@
 // This file is part of GQCG-gqcp.
 // 
-// Copyright (C) 2017-2018  the GQCG developers
+// Copyright (C) 2017-2019  the GQCG developers
 // 
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -17,11 +17,10 @@
 // 
 #define BOOST_TEST_MODULE "Molecule"
 
-
-#include "Molecule.hpp"
-
 #include <boost/test/unit_test.hpp>
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise clang++ will complain
+
+#include "Molecule.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( constructor_atoms_charge ) {
@@ -94,24 +93,24 @@ BOOST_AUTO_TEST_CASE ( calculateTotalNucleicCharge ) {
 BOOST_AUTO_TEST_CASE ( parseXYZFile ) {
 
     // Make sure we get an error when a nonsense path is given for the .xyz file name
-    BOOST_REQUIRE_THROW(GQCP::Molecule ("this is a nonsense data path"), std::runtime_error);
+    BOOST_REQUIRE_THROW(GQCP::Molecule::Readxyz("this is a nonsense data path"), std::runtime_error);
 
     // Make sure we get an error when a path with a wrong extension is given
-    BOOST_REQUIRE_THROW(GQCP::Molecule ("../tests/ref_data/nuclear.data"), std::runtime_error);
+    BOOST_REQUIRE_THROW(GQCP::Molecule::Readxyz("data/small_vector.data"), std::runtime_error);
 
     // Make sure we don't get an error when a correct path is given
-    BOOST_REQUIRE_NO_THROW(GQCP::Molecule ("../tests/data/h2o.xyz"));
+    BOOST_REQUIRE_NO_THROW(GQCP::Molecule::Readxyz("data/h2o.xyz"));
 }
 
 
 BOOST_AUTO_TEST_CASE ( molecule_ion_constructor ) {
 
     // Create some Molecule objects
-    const std::string xyzfilename = "../tests/data/h2o.xyz";
-    GQCP::Molecule water (xyzfilename);
-    GQCP::Molecule water_anion (xyzfilename, -1);
-    GQCP::Molecule water_neutral (xyzfilename, 0);
-    GQCP::Molecule water_cation (xyzfilename, +1);
+    const std::string xyzfilename = "data/h2o.xyz";
+    auto water = GQCP::Molecule::Readxyz(xyzfilename);
+    auto water_anion = GQCP::Molecule::Readxyz(xyzfilename, -1);
+    auto water_neutral = GQCP::Molecule::Readxyz(xyzfilename, 0);
+    auto water_cation = GQCP::Molecule::Readxyz(xyzfilename, +1);
 
     // Test the number of electrons created by the constructor
     BOOST_CHECK_EQUAL(water.get_N(), 10);
@@ -200,7 +199,7 @@ BOOST_AUTO_TEST_CASE ( xyz_filename_constructor ) {
     };
     GQCP::Molecule molecule_atoms (atoms);
 
-    GQCP::Molecule molecule_xyz ("../tests/data/h2o.xyz");
+    auto molecule_xyz = GQCP::Molecule::Readxyz("data/h2o.xyz");
 
     // Check if the conversion from Bohr to Angstrom is correct
     BOOST_CHECK(molecule_atoms.isEqualTo(molecule_xyz, 1.0e-05));
@@ -237,7 +236,7 @@ BOOST_AUTO_TEST_CASE ( methods_h2 ) {
     double ref_internuclear_repulsion_energy = 0.714285658963;
 
     // Create the hydrogen gas molecule
-    GQCP::Molecule h2 ("../tests/data/h2_szabo.xyz");
+    auto h2 = GQCP::Molecule::Readxyz("data/h2_szabo.xyz");
 
     // Test the basic methods
     BOOST_CHECK_EQUAL(h2.numberOfAtoms(), 2);
@@ -254,7 +253,7 @@ BOOST_AUTO_TEST_CASE ( methods_water ) {
     double ref_internuclear_repulsion_energy = 8.00236693455;
 
     // Create the water molecule
-    GQCP::Molecule water ("../tests/data/h2o.xyz");
+    auto water = GQCP::Molecule::Readxyz("data/h2o.xyz");
 
     // Test the basic methods
     BOOST_CHECK_EQUAL(water.numberOfAtoms(), 3);
@@ -262,4 +261,70 @@ BOOST_AUTO_TEST_CASE ( methods_water ) {
 
     // Test the calculation of the nuclear repulsion energy
     BOOST_CHECK(std::abs(water.calculateInternuclearRepulsionEnergy() - ref_internuclear_repulsion_energy) < 1.0e-07);  // reference data from horton
+}
+
+
+BOOST_AUTO_TEST_CASE ( calculateNuclearDipoleMoment ) {
+
+    // Check the nuclear dipole moment for a toy molecule
+    GQCP::Atom H {1,  0, 1, 2};
+    GQCP::Atom O {8,  2, 4, 8};
+    GQCP::Molecule molecule (std::vector<GQCP::Atom>{H, O});
+
+    BOOST_CHECK(molecule.calculateNuclearDipoleMoment().isApprox(Eigen::Vector3d{16, 33, 66}));
+}
+
+
+BOOST_AUTO_TEST_CASE ( HChain_throws ) {
+
+    BOOST_CHECK_THROW(GQCP::Molecule::HChain(0, 1.0, +0), std::invalid_argument);  // can't create 0 H-atoms
+    BOOST_CHECK_THROW(GQCP::Molecule::HChain(1, -1.0, +0), std::invalid_argument);  // can't have negative spacing
+}
+
+
+BOOST_AUTO_TEST_CASE ( H2Chain_throws ) {
+
+    BOOST_CHECK_THROW(GQCP::Molecule::H2Chain(0, 1.0, 2.0, +0), std::invalid_argument);  // can't create 0 H2-molecules
+    BOOST_CHECK_THROW(GQCP::Molecule::H2Chain(1, -1.0, 1.0, +0), std::invalid_argument);  // can't have negative spacing
+    BOOST_CHECK_THROW(GQCP::Molecule::H2Chain(1, 1.0, -1.0, +0), std::invalid_argument);  // can't have negative spacing
+}
+
+
+BOOST_AUTO_TEST_CASE ( HChain ) {
+
+    GQCP::Molecule h_chain = GQCP::Molecule::HChain(3, 1.0);
+    BOOST_CHECK(h_chain.numberOfAtoms() == 3);
+    BOOST_CHECK(h_chain.get_N() == 3);
+    BOOST_CHECK(std::abs(h_chain.calculateInternuclearDistance(0, 1) - 1.0) < 1.0e-12);
+    BOOST_CHECK(std::abs(h_chain.calculateInternuclearDistance(0, 2) - 2.0) < 1.0e-12);
+
+
+    GQCP::Molecule h_chain_charged = GQCP::Molecule::HChain(4, 1.5, +2);
+    BOOST_CHECK(h_chain_charged.numberOfAtoms() == 4);
+    BOOST_CHECK(h_chain_charged.get_N() == 2);
+    BOOST_CHECK(std::abs(h_chain_charged.calculateInternuclearDistance(0, 1) - 1.5) < 1.0e-12);
+    BOOST_CHECK(std::abs(h_chain_charged.calculateInternuclearDistance(0, 2) - 3.0) < 1.0e-12);
+    BOOST_CHECK(std::abs(h_chain_charged.calculateInternuclearDistance(0, 3) - 4.5) < 1.0e-12);
+    BOOST_CHECK(std::abs(h_chain_charged.calculateInternuclearDistance(1, 2) - 1.5) < 1.0e-12);
+    BOOST_CHECK(std::abs(h_chain_charged.calculateInternuclearDistance(1, 3) - 3.0) < 1.0e-12);
+    BOOST_CHECK(std::abs(h_chain_charged.calculateInternuclearDistance(2, 3) - 1.5) < 1.0e-12);
+}
+
+
+BOOST_AUTO_TEST_CASE ( H2Chain ) {
+
+    GQCP::Molecule h2_chain = GQCP::Molecule::H2Chain(2, 1.0, 1.5);
+    BOOST_CHECK(h2_chain.numberOfAtoms() == 4);
+    BOOST_CHECK(h2_chain.get_N() == 4);
+    BOOST_CHECK(std::abs(h2_chain.calculateInternuclearDistance(0, 1) - 1.0) < 1.0e-12);
+    BOOST_CHECK(std::abs(h2_chain.calculateInternuclearDistance(0, 2) - 2.5) < 1.0e-12);
+    BOOST_CHECK(std::abs(h2_chain.calculateInternuclearDistance(0, 3) - 3.5) < 1.0e-12);
+    BOOST_CHECK(std::abs(h2_chain.calculateInternuclearDistance(1, 2) - 1.5) < 1.0e-12);
+    BOOST_CHECK(std::abs(h2_chain.calculateInternuclearDistance(1, 3) - 2.5) < 1.0e-12);
+    BOOST_CHECK(std::abs(h2_chain.calculateInternuclearDistance(2, 3) - 1.0) < 1.0e-12);
+
+
+    GQCP::Molecule h2_chain_charged = GQCP::Molecule::H2Chain(4, 2.0, 3.8, -2);
+    BOOST_CHECK(h2_chain_charged.numberOfAtoms() == 8);
+    BOOST_CHECK(h2_chain_charged.get_N() == 10);
 }

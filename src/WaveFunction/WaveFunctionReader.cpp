@@ -1,6 +1,6 @@
 // This file is part of GQCG-gqcp.
 // 
-// Copyright (C) 2017-2018  the GQCG developers
+// Copyright (C) 2017-2019  the GQCG developers
 // 
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -33,7 +33,7 @@ namespace GQCP {
  */
 
 /**
- *  Constructor based on a given @param GAMESS_filename
+ *  @param GAMESS_filename      the name of the GAMESS file that contains the 'selected' wave function expansion
  */
 WaveFunctionReader::WaveFunctionReader(const std::string& GAMESS_filename)
 {

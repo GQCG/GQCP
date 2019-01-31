@@ -1,6 +1,6 @@
 // This file is part of GQCG-gqcp.
 // 
-// Copyright (C) 2017-2018  the GQCG developers
+// Copyright (C) 2017-2019  the GQCG developers
 // 
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -28,10 +28,12 @@
 namespace GQCP {
 
 
-typedef std::vector<size_t> Vectoru;
-typedef std::vector<Vectoru> Matrixu;
+using Vectoru = std::vector<size_t>;
+using Matrixu = std::vector<Vectoru>;
 using VectorXs = Eigen::Matrix<size_t, Eigen::Dynamic, 1>;
 
+using VectorFunction = std::function<Eigen::VectorXd (const Eigen::VectorXd&)>;
+using MatrixFunction = std::function<Eigen::MatrixXd (const Eigen::VectorXd&)>;
 
 }  // namespace GQCP
 

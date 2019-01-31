@@ -1,6 +1,6 @@
 // This file is part of GQCG-gqcp.
 // 
-// Copyright (C) 2017-2018  the GQCG developers
+// Copyright (C) 2017-2019  the GQCG developers
 // 
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -27,9 +27,13 @@ namespace GQCP {
 
 
 /**
- *  @return the RMP2 energy correction based on given @param Hamiltonian parameters ham_par, a given @param molecule and a converged solution @param rhf to the RHF SCF equations
+ *  @param ham_par      Hamiltonian parameters in an orthornomal orbital basis
+ *  @param molecule     the molecule for which the energy correction should be calculated
+ *  @param rhf          the converged solution to the RHF SCF equations
+ *
+ *  @return the RMP2 energy correction
  */
-double calculateRMP2EnergyCorrection(const GQCP::HamiltonianParameters& ham_par, const GQCP::Molecule& molecule, const GQCP::RHF& rhf);
+double calculateRMP2EnergyCorrection(const HamiltonianParameters& ham_par, const Molecule& molecule, const RHF& rhf);
 
 
 }  // namespace GQCP

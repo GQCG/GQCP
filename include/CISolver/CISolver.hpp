@@ -1,6 +1,6 @@
 // This file is part of GQCG-gqcp.
 // 
-// Copyright (C) 2017-2018  the GQCG developers
+// Copyright (C) 2017-2019  the GQCG developers
 // 
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -19,54 +19,59 @@
 #define GQCP_CISOLVER_HPP
 
 
-
 #include "HamiltonianBuilder/HamiltonianBuilder.hpp"
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "WaveFunction/WaveFunction.hpp"
 
-#include <numopt.hpp>
+#include "optimization/Eigenpair.hpp"
+#include "optimization/EigenproblemSolverOptions.hpp"
 
 
 namespace GQCP {
 
 
 /**
- *  Class which solves the CI eigenvalue problem and requires a HamiltonianBuilder and HamiltonianParameters
- *  so that it can find a set of eigenvalues and -vectors for the Hamiltonian (which cannot always be stored in memory)
+ *  A class which solves the CI eigenvalue problem related to a HamiltonianBuilder
  */
 class CISolver {
 private:
-    HamiltonianBuilder* hamiltonian_builder;
+    const HamiltonianBuilder* hamiltonian_builder;
     HamiltonianParameters hamiltonian_parameters;
 
-    std::vector<numopt::eigenproblem::Eigenpair> eigenpairs;  // eigenvalues and -vectors
+    std::vector<Eigenpair> eigenpairs;  // eigenvalues and -vectors
 
 public:
     // CONSTRUCTORS
     /**
-     *  Constructor given a @param hamiltonian_builder and @param hamiltonian_parameters
+     *  @param hamiltonian_builder      the HamiltonianBuilder for which the CI eigenvalue problem should be solved
+     *  @param hamiltonian_parameters   the Hamiltonian parameters in an orthonormal basis
      */
-    CISolver(HamiltonianBuilder& hamiltonian_builder, const HamiltonianParameters& hamiltonian_parameters);
+    CISolver(const HamiltonianBuilder& hamiltonian_builder, const HamiltonianParameters& hamiltonian_parameters);
 
 
     // GETTERS
-    std::vector<numopt::eigenproblem::Eigenpair> get_eigenpairs() const { return this->eigenpairs; }
-    numopt::eigenproblem::Eigenpair get_eigenpair(size_t index = 0) const { return this->eigenpairs[index]; }
+    const std::vector<Eigenpair>& get_eigenpairs() const { return this->eigenpairs; }
+    const Eigenpair& get_eigenpair(size_t index = 0) const { return this->eigenpairs[index]; }
 
 
     // PUBLIC METHODS
     /**
-     *  solves the CI problem, setting the eigenpairs
+     *  @param solver_options       specify a type of solver and its options
+     *
+     *  Solve the CI eigenvalue problem and set the eigenpairs internally
      */
-    void solve(numopt::eigenproblem::BaseSolverOptions& solver_options);
+    void solve(const BaseSolverOptions& solver_options);
 
     /**
-     *  @return WaveFunction instance after solving the CI problem for a given eigenvector at @param index
+     *  @param index        the index of the index-th excited state
+     *
+     *  @return the index-th excited state after solving the CI eigenvalue problem
      */
-    GQCP::WaveFunction get_wavefunction(size_t index = 0);
+    WaveFunction makeWavefunction(size_t index = 0) const;
 };
 
 
 }  // namespace GQCP
+
 
 #endif  // GQCP_CISOLVER_HPP

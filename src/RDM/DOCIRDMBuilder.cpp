@@ -1,6 +1,6 @@
 // This file is part of GQCG-gqcp.
 // 
-// Copyright (C) 2017-2018  the GQCG developers
+// Copyright (C) 2017-2019  the GQCG developers
 // 
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -34,9 +34,11 @@ DOCIRDMBuilder::DOCIRDMBuilder(const FockSpace& fock_space) :
  */
 
 /**
- *  @return 1RDM from a coefficient vector @param x
+ *  @param x        the coefficient vector representing the DOCI wave function
+ *
+ *  @return all 1-RDMs given a coefficient vector
  */
-OneRDMs DOCIRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) {
+OneRDMs DOCIRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) const {
     // The formulas for the DOCI 1-RDMs can be found in (https://github.com/lelemmen/electronic_structure)
 
     size_t K = this->fock_space.get_K();
@@ -46,19 +48,19 @@ OneRDMs DOCIRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) {
     Eigen::MatrixXd D = Eigen::MatrixXd::Zero(K, K);
 
     // Create the first ONV (with address 0). In DOCI, the Fock space for alpha and beta is equal so we just use one
-    ONV onv = this->fock_space.get_ONV(0);   
+    ONV onv = this->fock_space.makeONV(0);   
 
 
     for (size_t I = 0; I < dim; I++) {  // I loops over all the addresses of the spin strings
 
         for (size_t e1 = 0; e1 < this->fock_space.get_N(); e1++) {  // e1 (electron 1) loops over the (number of) electrons
-            size_t p = onv.get_occupied_index(e1);  // retrieve the index of the orbital the electron occupies
+            size_t p = onv.get_occupation_index(e1);  // retrieve the index of the orbital the electron occupies
             double c_I = x(I);  // coefficient of the I-th basis vector
             D(p,p) += 2*std::pow(c_I, 2);
         }
         
         if (I < dim-1) {
-            this->fock_space.setNext(onv);
+            this->fock_space.setNextONV(onv);
         }
     }
 
@@ -66,10 +68,13 @@ OneRDMs DOCIRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) {
     return OneRDMs (one_rdm);
 }
 
+
 /**
- *  @return 2RDM from a coefficient vector @param x
+ *  @param x        the coefficient vector representing the DOCI wave function
+ *
+ *  @return all 2-RDMs given a coefficient vector
  */
-TwoRDMs DOCIRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) {
+TwoRDMs DOCIRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) const {
 
     // The formulas for the DOCI 2-RDMs can be found in (https://github.com/lelemmen/electronic_structure)
 
@@ -82,7 +87,7 @@ TwoRDMs DOCIRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) {
     d_aabb.setZero();
 
     // Create the first ONV (with address 0). In DOCI, the Fock space for alpha and beta is equal so we just use one
-    ONV onv = this->fock_space.get_ONV(0);   
+    ONV onv = this->fock_space.makeONV(0);   
 
 
     for (size_t I = 0; I < dim; I++) {  // I loops over all the addresses of the spin strings
@@ -121,7 +126,7 @@ TwoRDMs DOCIRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) {
         }
 
         if ( I < dim-1) {
-            this->fock_space.setNext(onv);
+            this->fock_space.setNextONV(onv);
         }
     }
 
@@ -133,6 +138,19 @@ TwoRDMs DOCIRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) {
     return TwoRDMs (two_rdm_aaaa, two_rdm_aabb, two_rdm_bbaa, two_rdm_bbbb);
 }
 
+
+/**
+ *  @param bra_indices      the indices of the orbitals that should be annihilated on the left (on the bra)
+ *  @param ket_indices      the indices of the orbitals that should be annihilated on the right (on the ket)
+ *  @param x                the coefficient vector representing the DOCI wave function
+ *
+ *  @return an element of the N-RDM, as specified by the given bra and ket indices
+ *
+ *      calculateElement({0, 1}, {2, 1}) would calculate d^{(2)} (0, 1, 1, 2): the operator string would be a^\dagger_0 a^\dagger_1 a_2 a_1
+ */
+double DOCIRDMBuilder::calculateElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices, const Eigen::VectorXd& x) const {
+    throw std::runtime_error ("calculateElement is not implemented for DOCIRDMs");
+}
 
 
 }  // namespace GQCP

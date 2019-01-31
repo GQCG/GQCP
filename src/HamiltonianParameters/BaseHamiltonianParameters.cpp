@@ -1,6 +1,6 @@
 // This file is part of GQCG-gqcp.
 // 
-// Copyright (C) 2017-2018  the GQCG developers
+// Copyright (C) 2017-2019  the GQCG developers
 // 
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -26,10 +26,12 @@ namespace GQCP {
  */
 
 /**
- *  Constructor based on a given @param ao_basis_sptr
+ *  @param ao_basis     the initial AO basis
+ *  @param scalar       the scalar interaction term
  */
-BaseHamiltonianParameters::BaseHamiltonianParameters(std::shared_ptr<GQCP::AOBasis> ao_basis) :
-    ao_basis (std::move(ao_basis))
+BaseHamiltonianParameters::BaseHamiltonianParameters(std::shared_ptr<AOBasis> ao_basis, double scalar) :
+    ao_basis (std::move(ao_basis)),
+    scalar (scalar)
 {}
 
 

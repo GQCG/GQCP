@@ -1,6 +1,6 @@
 // This file is part of GQCG-gqcp.
 // 
-// Copyright (C) 2017-2018  the GQCG developers
+// Copyright (C) 2017-2019  the GQCG developers
 // 
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -26,23 +26,28 @@ namespace GQCP {
 
 
 /**
- *  A plain RHF SCF solver.
+ *  A class that implements a plain RHF SCF algorithm
  */
-class PlainRHFSCFSolver : public GQCP::RHFSCFSolver {
+class PlainRHFSCFSolver : public RHFSCFSolver {
 private:
     /**
-     *  Calculate a new Fock matrix (expressed in AO basis), i.e. this is the 'plain' RHF SCF step.
+     *  Update the Fock matrix, i.e. calculate the Fock matrix to be used in the next iteration of the SCF procedure: the 'new' Fock matrix is just F = H_core + G
      *
-     *  The new Fock matrix is calculated as F = H_core + G, i.e. the new Fock matrix is just the AO Fock matrix
+     *  @param D_AO     the RHF density matrix in AO basis
+     *
+     *  @return the new Fock matrix (expressed in AO basis)
      */
     Eigen::MatrixXd calculateNewFockMatrix(const Eigen::MatrixXd& D_AO) override;
 
 public:
     // CONSTRUCTORS
     /**
-     *  Constructor based on given Hamiltonian parameters @param ham_par, @param molecule, @param maximum_number_of_iterations and @param SCF threshold
+     *  @param ham_par                          the Hamiltonian parameters in AO basis
+     *  @param molecule                         the molecule used for the SCF calculation
+     *  @param threshold                        the convergence treshold on the Frobenius norm on the AO density matrix
+     *  @param maximum_number_of_iterations     the maximum number of iterations for the SCF procedure
      */
-    PlainRHFSCFSolver(GQCP::HamiltonianParameters ham_par, GQCP::Molecule molecule, double threshold=1.0e-08, size_t maximum_number_of_iterations=128);
+    PlainRHFSCFSolver(HamiltonianParameters ham_par, Molecule molecule, double threshold=1.0e-08, size_t maximum_number_of_iterations=128);
 };
 
 

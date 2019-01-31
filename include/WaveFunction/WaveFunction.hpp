@@ -1,6 +1,6 @@
 // This file is part of GQCG-gqcp.
 // 
-// Copyright (C) 2017-2018  the GQCG developers
+// Copyright (C) 2017-2019  the GQCG developers
 // 
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -20,7 +20,6 @@
 
 
 #include "FockSpace/BaseFockSpace.hpp"
-
 #include "common.hpp"
 
 
@@ -29,22 +28,34 @@ namespace GQCP {
 
 
 /**
- *  WaveFunction contains the expansion coefficients in its given FockSpace
+ *  A class that represents a wave function: expansion coefficients in a Fock space
  */
 class WaveFunction {
 private:
-    BaseFockSpace* fock_space;
+    std::shared_ptr<BaseFockSpace> fock_space;
     Eigen::VectorXd coefficients;  // Expansion coefficients of a wave function in the Fock space
 
 public:
     // CONSTRUCTORS
     WaveFunction() = default;
-    WaveFunction(BaseFockSpace& base_fock_space, const Eigen::VectorXd& coefficients);
+
+    /**
+     *  @param base_fock_space      the Fock space in which the wave function 'lives'
+     *  @param coefficients         the expansion coefficients
+     */
+    WaveFunction(const BaseFockSpace& base_fock_space, const Eigen::VectorXd& coefficients);
 
 
     // GETTERS
-    Eigen::VectorXd get_coefficients() const { return coefficients; }
-    BaseFockSpace& get_fock_space() const { return *fock_space; }
+    const Eigen::VectorXd& get_coefficients() const { return coefficients; }
+    const BaseFockSpace& get_fock_space() const { return *fock_space; }
+
+
+    // PUBLIC METHODS
+    /**
+     *  @return the Shannon entropy (or information content) of the wave function
+     */
+    double calculateShannonEntropy() const;
 };
 
 

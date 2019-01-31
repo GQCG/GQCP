@@ -1,6 +1,6 @@
 // This file is part of GQCG-gqcp.
 // 
-// Copyright (C) 2017-2018  the GQCG developers
+// Copyright (C) 2017-2019  the GQCG developers
 // 
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -17,6 +17,10 @@
 // 
 #include "CISolver/CISolver.hpp"
 
+#include "optimization/DenseSolver.hpp"
+#include "optimization/DavidsonSolver.hpp"
+#include "optimization/SparseSolver.hpp"
+
 
 namespace GQCP {
 
@@ -26,9 +30,10 @@ namespace GQCP {
  */
 
 /**
- *  Constructor given a @param hamiltonian_builder and @param hamiltonian_parameters
+ *  @param hamiltonian_builder      the HamiltonianBuilder for which the CI eigenvalue problem should be solved
+ *  @param hamiltonian_parameters   the Hamiltonian parameters in an orthonormal basis
  */
-CISolver::CISolver(HamiltonianBuilder& hamiltonian_builder, const HamiltonianParameters& hamiltonian_parameters) :
+CISolver::CISolver(const HamiltonianBuilder& hamiltonian_builder, const HamiltonianParameters& hamiltonian_parameters) :
     hamiltonian_builder (&hamiltonian_builder),
     hamiltonian_parameters (hamiltonian_parameters)
 {
@@ -45,17 +50,19 @@ CISolver::CISolver(HamiltonianBuilder& hamiltonian_builder, const HamiltonianPar
  */
 
 /**
- *  solves the CI problem, setting the eigenvectors and -values
+ *  @param solver_options       specify a type of solver and its options
+ *
+ *  Solve the CI eigenvalue problem and set the eigenpairs internally
  */
-void CISolver::solve(numopt::eigenproblem::BaseSolverOptions& solver_options) {
-    numopt::eigenproblem::SolverType solver_type = solver_options.get_solver_type();
-    switch (solver_type) {
+void CISolver::solve(const BaseSolverOptions& solver_options) {
 
-        case numopt::eigenproblem::SolverType::DENSE: {
+    switch (solver_options.get_solver_type()) {
+
+        case SolverType::DENSE: {
 
             Eigen::MatrixXd matrix = this->hamiltonian_builder->constructHamiltonian(this->hamiltonian_parameters);
 
-            numopt::eigenproblem::DenseSolver solver = numopt::eigenproblem::DenseSolver(matrix, dynamic_cast<numopt::eigenproblem::DenseSolverOptions&>(solver_options));
+            DenseSolver solver (matrix, dynamic_cast<const DenseSolverOptions&>(solver_options));
 
             solver.solve();
             this->eigenpairs = solver.get_eigenpairs();
@@ -63,12 +70,12 @@ void CISolver::solve(numopt::eigenproblem::BaseSolverOptions& solver_options) {
             break;
         }
 
-        case numopt::eigenproblem::SolverType::DAVIDSON: {
+        case SolverType::DAVIDSON: {
 
             Eigen::VectorXd diagonal = this->hamiltonian_builder->calculateDiagonal(this->hamiltonian_parameters);
-            numopt::VectorFunction matrixVectorProduct = [this, &diagonal](const Eigen::VectorXd& x) { return hamiltonian_builder->matrixVectorProduct(hamiltonian_parameters, x, diagonal); };
+            VectorFunction matrixVectorProduct = [this, &diagonal](const Eigen::VectorXd& x) { return hamiltonian_builder->matrixVectorProduct(hamiltonian_parameters, x, diagonal); };
 
-            numopt::eigenproblem::DavidsonSolver solver = numopt::eigenproblem::DavidsonSolver(matrixVectorProduct, diagonal, dynamic_cast<numopt::eigenproblem::DavidsonSolverOptions&>(solver_options));
+            DavidsonSolver solver (matrixVectorProduct, diagonal, dynamic_cast<const DavidsonSolverOptions&>(solver_options));
 
             solver.solve();
             this->eigenpairs = solver.get_eigenpairs();
@@ -76,17 +83,20 @@ void CISolver::solve(numopt::eigenproblem::BaseSolverOptions& solver_options) {
             break;
         }
 
-        case numopt::eigenproblem::SolverType::SPARSE: {
+        case SolverType::SPARSE: {
             throw std::invalid_argument("Sparse not implemented");
             break;
         }
     }
 }
 
+
 /**
- *  @return WaveFunction instance after solving the CI problem for a given eigenvector at @param index
+ *  @param index        the index of the index-th excited state
+ *
+ *  @return the index-th excited state after solving the CI eigenvalue problem
  */
-GQCP::WaveFunction CISolver::get_wavefunction(size_t index) {
+WaveFunction CISolver::makeWavefunction(size_t index) const {
     if (index > this->eigenpairs.size()) {
         throw std::logic_error("Not enough requested eigenpairs for the given index.");
     }

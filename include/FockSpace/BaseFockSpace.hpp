@@ -1,6 +1,6 @@
 // This file is part of GQCG-gqcp.
 // 
-// Copyright (C) 2017-2018  the GQCG developers
+// Copyright (C) 2017-2019  the GQCG developers
 // 
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -23,16 +23,15 @@
 #include "FockSpace/FockSpaceType.hpp"
 #include "common.hpp"
 
+#include <iostream>
+#include <memory>
 
 
 namespace GQCP {
 
 
 /**
- *  A base class for the Fock space
- *  Interfacing requires the Fock space to generate an ONV from a given address
- *  transform a given ONV into the next ONV (in the full or selected space)
- *  and retrieve the address of a given ONV in the space
+ *  A base class for the representation of a Fock space
  */
 class BaseFockSpace {
 protected:
@@ -43,11 +42,23 @@ protected:
     // PROTECTED CONSTRUCTORS
     BaseFockSpace() = default;
     /**
-     *  Protected constructor given a @param K and @param dim
+     *  @param K        the number of orbitals
+     *  @param dim      the dimension of the Fock space
      */
-    explicit BaseFockSpace(size_t K, size_t dim);
+    BaseFockSpace(size_t K, size_t dim);
 
 public:
+    // NAMED CONSTRUCTORS
+    /**
+     *  Clones a derived BaseFockSpace instance to the heap memory
+     *
+     *  @param fock_space     reference to a derived BaseFockSpace instance to be cloned.
+     *
+     *  @return a shared pointer owning the heap-cloned Fock space
+     */
+    static std::shared_ptr<BaseFockSpace> CloneToHeap(const BaseFockSpace& fock_space);
+
+
     // DESTRUCTOR
     /**
      *  Provide a pure virtual destructor to make the class abstract
@@ -63,9 +74,19 @@ public:
 
     // PUBLIC METHODS
     /**
-     *  Creates a Hartree-Fock coefficient expansion (single Slater expansion of the first configuration in the Fock space)
+     *  @return the coefficient vector for the Hartree-Fock wave function (i.e. the 'first' ONV/Slater determinant)
      */
-    Eigen::VectorXd HartreeFockExpansion();
+    Eigen::VectorXd HartreeFockExpansion() const;
+
+    /**
+     *  @return a random normalized coefficient vector, with coefficients uniformly distributed in [-1, 1]
+     */
+    Eigen::VectorXd randomExpansion() const;
+
+    /**
+     *  @return a constant normalized coefficients vector (i.e. all the coefficients are equal)
+     */
+    Eigen::VectorXd constantExpansion() const;
 };
 
 

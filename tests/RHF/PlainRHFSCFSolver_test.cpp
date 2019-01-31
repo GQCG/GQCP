@@ -1,6 +1,6 @@
 // This file is part of GQCG-gqcp.
 // 
-// Copyright (C) 2017-2018  the GQCG developers
+// Copyright (C) 2017-2019  the GQCG developers
 // 
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -17,14 +17,27 @@
 // 
 #define BOOST_TEST_MODULE "PlainRHFSCFSolver"
 
-#include "RHF/PlainRHFSCFSolver.hpp"
-#include "HamiltonianParameters/HamiltonianParameters_constructors.hpp"
-
-#include <cpputil.hpp>
-
 #include <boost/test/unit_test.hpp>
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
 
+#include "RHF/PlainRHFSCFSolver.hpp"
+#include "HamiltonianParameters/HamiltonianParameters.hpp"
+
+#include "utilities/linalg.hpp"
+
+
+
+BOOST_AUTO_TEST_CASE ( constructor ) {
+
+    // Check a correct constructor with an even number of electrons
+    auto h2 = GQCP::Molecule::Readxyz("data/h2_szabo.xyz");
+    auto mol_ham_par = GQCP::HamiltonianParameters::Molecular(h2, "STO-3G");
+    GQCP::PlainRHFSCFSolver plain_solver (mol_ham_par, h2);
+
+    // Check if a faulty constructor with an odd number of electron throws
+    auto h2_ion = GQCP::Molecule::Readxyz("data/h2_szabo.xyz", +1);
+    BOOST_CHECK_THROW(GQCP::PlainRHFSCFSolver (mol_ham_par, h2_ion), std::invalid_argument);
+}
 
 
 BOOST_AUTO_TEST_CASE ( h2_sto3g_szabo_plain ) {
@@ -33,12 +46,9 @@ BOOST_AUTO_TEST_CASE ( h2_sto3g_szabo_plain ) {
     double ref_total_energy = -1.1167;
 
 
-    // Create a Molecule and an AOBasis
-    GQCP::Molecule h2 ("../tests/data/h2_szabo.xyz");
-    auto ao_basis = std::make_shared<GQCP::AOBasis>(h2, "STO-3G");
-
-    // Create the molecular Hamiltonian parameters for this molecule and basis
-    auto mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
+    // Create the molecular Hamiltonian parameters in an AO basis
+    auto h2 = GQCP::Molecule::Readxyz("data/h2_szabo.xyz");
+    auto mol_ham_par = GQCP::HamiltonianParameters::Molecular(h2, "STO-3G");
 
 
     // Create a plain RHF SCF solver and solve the SCF equations
@@ -72,9 +82,8 @@ BOOST_AUTO_TEST_CASE ( h2o_sto3g_horton_plain ) {
 
 
     // Do our own RHF calculation
-    GQCP::Molecule water ("../tests/data/h2o.xyz");
-    auto ao_basis = std::make_shared<GQCP::AOBasis>(water, "STO-3G");
-    auto mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
+    auto water = GQCP::Molecule::Readxyz("data/h2o.xyz");
+    auto mol_ham_par = GQCP::HamiltonianParameters::Molecular(water, "STO-3G");
 
     GQCP::PlainRHFSCFSolver plain_scf_solver (mol_ham_par, water);
     plain_scf_solver.solve();
@@ -86,8 +95,8 @@ BOOST_AUTO_TEST_CASE ( h2o_sto3g_horton_plain ) {
 
     // Check the calculated results with the reference
     BOOST_CHECK(std::abs(total_energy - ref_total_energy) < 1.0e-06);
-    BOOST_CHECK(cpputil::linalg::areEqualEigenvalues(ref_orbital_energies, rhf.get_orbital_energies(), 1.0e-06));
-    BOOST_CHECK(cpputil::linalg::areEqualSetsOfEigenvectors(ref_C, rhf.get_C(), 1.0e-05));
+    BOOST_CHECK(GQCP::areEqualEigenvalues(ref_orbital_energies, rhf.get_orbital_energies(), 1.0e-06));
+    BOOST_CHECK(GQCP::areEqualSetsOfEigenvectors(ref_C, rhf.get_C(), 1.0e-05));
 }
 
 
@@ -98,12 +107,11 @@ BOOST_AUTO_TEST_CASE ( crawdad_h2o_sto3g_plain ) {
 
 
     // Do our own RHF calculation
-    GQCP::Molecule water ("../tests/data/h2o_crawdad.xyz");
+    auto water = GQCP::Molecule::Readxyz("data/h2o_crawdad.xyz");
     // Check if the internuclear distance between O and H is really 1.1 A (= 2.07869 bohr), as specified in the text
     BOOST_REQUIRE(std::abs(water.calculateInternuclearDistance(0, 1) - 2.07869) < 1.0e-4);
 
-    auto ao_basis = std::make_shared<GQCP::AOBasis>(water, "STO-3G");
-    auto mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
+    auto mol_ham_par = GQCP::HamiltonianParameters::Molecular(water, "STO-3G");
 
     GQCP::PlainRHFSCFSolver plain_scf_solver (mol_ham_par, water);
     plain_scf_solver.solve();
@@ -122,12 +130,11 @@ BOOST_AUTO_TEST_CASE ( crawdad_ch4_sto3g_plain ) {
     double ref_total_energy = -39.726850324347;
 
     // Do our own RHF calculation
-    GQCP::Molecule methane ("../tests/data/ch4_crawdad.xyz");
+    auto methane = GQCP::Molecule::Readxyz("data/ch4_crawdad.xyz");
     // Check if the internuclear distance between C and H is really around 2.05 bohr, which is the bond distance Wikipedia (108.7 pm) specifies
     BOOST_CHECK(std::abs(methane.calculateInternuclearDistance(0, 1) - 2.05) < 1.0e-1);
 
-    auto ao_basis = std::make_shared<GQCP::AOBasis>(methane, "STO-3G");
-    auto mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
+    auto mol_ham_par = GQCP::HamiltonianParameters::Molecular(methane, "STO-3G");
 
     GQCP::PlainRHFSCFSolver plain_scf_solver (mol_ham_par, methane);
     plain_scf_solver.solve();
@@ -146,9 +153,8 @@ BOOST_AUTO_TEST_CASE ( h2_631gdp_plain ) {
 
 
     // Do our own RHF calculation
-    GQCP::Molecule h2 ("../tests/data/h2_olsens.xyz");
-    auto ao_basis = std::make_shared<GQCP::AOBasis>(h2, "6-31g**");
-    auto mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
+    auto h2 = GQCP::Molecule::Readxyz("data/h2_olsens.xyz");
+    auto mol_ham_par = GQCP::HamiltonianParameters::Molecular(h2, "6-31g**");
 
     GQCP::PlainRHFSCFSolver plain_scf_solver (mol_ham_par, h2);
     plain_scf_solver.solve();

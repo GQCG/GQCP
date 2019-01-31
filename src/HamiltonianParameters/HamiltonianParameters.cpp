@@ -1,6 +1,6 @@
 // This file is part of GQCG-gqcp.
 // 
-// Copyright (C) 2017-2018  the GQCG developers
+// Copyright (C) 2017-2019  the GQCG developers
 // 
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -16,8 +16,9 @@
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "LibintCommunicator.hpp"
 
-#include "miscellaneous.hpp"
+#include "utilities/miscellaneous.hpp"
 
 
 namespace GQCP {
@@ -28,17 +29,20 @@ namespace GQCP {
  */
 
 /**
- *  Constructor based on a given @param ao_basis, overlap @param S, one-electron operator @param h, two-electron
- *  operator @param g and a transformation matrix between the current molecular orbitals and the atomic orbitals
- *  @param C
+ *  @param ao_basis     the initial AO basis
+ *  @param S            the overlap integrals
+ *  @param h            the one-electron integrals H_core
+ *  @param g            the two-electron integrals
+ *  @param C            a transformation matrix between the current molecular orbitals and the atomic orbitals
+ *  @param scalar       the scalar interaction term
  */
-HamiltonianParameters::HamiltonianParameters(std::shared_ptr<GQCP::AOBasis> ao_basis, const GQCP::OneElectronOperator& S, const GQCP::OneElectronOperator& h, const GQCP::TwoElectronOperator& g, const Eigen::MatrixXd& C) :
-    BaseHamiltonianParameters(std::move(ao_basis)),
+HamiltonianParameters::HamiltonianParameters(std::shared_ptr<AOBasis> ao_basis, const OneElectronOperator& S, const OneElectronOperator& h, const TwoElectronOperator& g, const Eigen::MatrixXd& C, double scalar) :
+    BaseHamiltonianParameters(std::move(ao_basis), scalar),
     K (S.get_dim()),
     S (S),
     h (h),
     g (g),
-    C (C)
+    T_total (C)
 {
     // Check if the dimensions of all matrix representations are compatible
     auto error = std::invalid_argument("The dimensions of the operators and coefficient matrix are incompatible.");
@@ -61,20 +65,288 @@ HamiltonianParameters::HamiltonianParameters(std::shared_ptr<GQCP::AOBasis> ao_b
 
 
 /**
- *  Constructor based on given Hamiltonian parameters @param ham_par and a transformation matrix @param C.
+ *  A constructor that transforms the given Hamiltonian parameters with a transformation matrix
  *
- *  If the initial Hamiltonian parameters @param ham_par are expressed in the basis B, the constructed instance represents the Hamiltonian parameters in the transformed basis B'. The basis transformation between B and B' is given by the transformation matrix @param C.
+ *  @param ham_par      the current Hamiltonian parameters
+ *  @param C            the transformation matrix to be applied to the given Hamiltonian parameters
  */
-HamiltonianParameters::HamiltonianParameters(const GQCP::HamiltonianParameters& ham_par, const Eigen::MatrixXd& C) :
-    BaseHamiltonianParameters(ham_par.ao_basis),
+HamiltonianParameters::HamiltonianParameters(const HamiltonianParameters& ham_par, const Eigen::MatrixXd& C) :
+    BaseHamiltonianParameters(ham_par.ao_basis, ham_par.scalar),
     K (ham_par.S.get_dim()),
     S (ham_par.S),
     h (ham_par.h),
     g (ham_par.g),
-    C (ham_par.C)
+    T_total (ham_par.T_total)
 {
     // We have now initialized the new Hamiltonian parameters to be a copy of the given Hamiltonian parameters, so now we will transform
     this->transform(C);
+}
+
+
+
+/*
+ *  NAMED CONSTRUCTORS
+ */
+
+/**
+ *  Construct the molecular Hamiltonian parameters in an AO basis
+ *
+ *  @param ao_basis     the AO basis in which the Hamiltonian parameters should be expressed
+ *  @param scalar       the scalar energy term (usually the internuclear repulsion energy)
+ *
+ *  @return Hamiltonian parameters corresponding to the molecular Hamiltonian in an AO basis. The molecular Hamiltonian has
+ *      - scalar contributions:
+ *          - internuclear repulsion
+ *      - one-electron contributions:
+ *          - kinetic
+ *          - nuclear attraction
+ *      - two-electron contributions:
+ *          - Coulomb repulsion
+ */
+HamiltonianParameters HamiltonianParameters::Molecular(std::shared_ptr<AOBasis> ao_basis, double scalar) {
+
+    // Calculate the integrals for the molecular Hamiltonian
+    auto S = LibintCommunicator::get().calculateOverlapIntegrals(*ao_basis);
+    auto T = LibintCommunicator::get().calculateKineticIntegrals(*ao_basis);
+    auto V = LibintCommunicator::get().calculateNuclearIntegrals(*ao_basis);
+    auto H = T + V;
+
+    auto g = LibintCommunicator::get().calculateCoulombRepulsionIntegrals(*ao_basis);
+
+
+    // Construct the initial transformation matrix: the identity matrix
+    auto nbf = ao_basis->get_number_of_basis_functions();
+    Eigen::MatrixXd C = Eigen::MatrixXd::Identity(nbf, nbf);
+
+
+    return HamiltonianParameters(ao_basis, S, H, g, C, scalar);
+}
+
+
+/**
+ *  Construct the molecular Hamiltonian parameters in an AO basis
+ *
+ *  @param molecule     the molecule for which the Hamiltonian parameters should be calculated
+ *  @param basisset     the name of the basisset corresponding to the AO basis
+ *
+ *  @return Hamiltonian parameters corresponding to the molecular Hamiltonian in an AO basis. The molecular Hamiltonian has
+ *      - scalar contributions:
+ *          - internuclear repulsion
+ *      - one-electron contributions:
+ *          - kinetic
+ *          - nuclear attraction
+ *      - two-electron contributions:
+ *          - Coulomb repulsion
+ */
+HamiltonianParameters HamiltonianParameters::Molecular(const Molecule& molecule, const std::string& basisset) {
+
+    auto ao_basis = std::make_shared<AOBasis>(molecule, basisset);
+
+    return HamiltonianParameters::Molecular(ao_basis, molecule.calculateInternuclearRepulsionEnergy());
+}
+
+
+/**
+ *  @param K        the number of orbitals
+ *
+ *  @return a set of random Hamiltonian parameters with values uniformly distributed between [-1,1]
+ */
+HamiltonianParameters HamiltonianParameters::Random(size_t K) {
+
+    OneElectronOperator S (Eigen::MatrixXd::Identity(K, K));  // the underlying orbital basis can be chosen as orthonormal, since the form of the underlying orbitals doesn't really matter
+    Eigen::MatrixXd C (Eigen::MatrixXd::Identity(K, K));  // the transformation matrix C here doesn't really mean anything, because it doesn't link to any AO basis
+
+    OneElectronOperator H (Eigen::MatrixXd::Random(K, K));  // uniformly distributed between [-1,1]
+
+
+    // Unfortunately, the Tensor module provides uniform random distributions between [0, 1]
+    Eigen::Tensor<double, 4> g_tensor (K, K, K, K);
+    g_tensor.setRandom();
+
+    // Move the distribution from [0, 1] -> [-1, 1]
+    for (size_t i = 0; i < K; i++) {
+        for (size_t j = 0; j < K; j++) {
+            for (size_t k = 0; k < K; k++) {
+                for (size_t l = 0; l < K; l++) {
+                    g_tensor(i,j,k,l) = 2*g_tensor(i,j,k,l) - 1;  // scale from [0, 1] -> [0, 2] -> [-1, 1]
+                }
+            }
+        }
+    }
+    TwoElectronOperator g (g_tensor);
+
+    std::shared_ptr<AOBasis> ao_basis;  // nullptr because it doesn't make sense to set an AOBasis
+
+
+    // Get a random scalar
+    std::random_device random_device;  // used to seed PRNG
+    std::mt19937 random_generator (random_device());
+    std::uniform_real_distribution<double> double_distribution (-1.0, 1.0);
+    double scalar = double_distribution(random_generator);
+
+    return HamiltonianParameters(ao_basis, S, H, g, C, scalar);
+}
+
+/**
+ *  @param fcidump_file     the name of the FCIDUMP file
+ *
+ *  @return Hamiltonian parameters corresponding to the contents of an FCIDUMP file
+ */
+HamiltonianParameters HamiltonianParameters::ReadFCIDUMP(const std::string& fcidump_file) {
+
+    // Find the extension of the given path (https://stackoverflow.com/a/51992)
+    std::string extension;
+    std::string::size_type idx = fcidump_file.rfind('.');
+
+    if (idx != std::string::npos) {
+        extension = fcidump_file.substr(idx+1);
+    } else {
+        throw std::runtime_error("I did not find an extension in your given path.");
+    }
+
+    if (!(extension == "FCIDUMP")) {
+        throw std::runtime_error("You did not provide a .FCIDUMP file name");
+    }
+
+    // If the xyz_filename isn't properly converted into an input file stream, we assume the user supplied a wrong file
+    std::ifstream input_file_stream (fcidump_file);
+
+    if (!input_file_stream.good()) {
+        throw std::runtime_error("The provided FCIDUMP file is illegible. Maybe you specified a wrong path?");
+    }
+
+
+
+    // Do the actual parsing
+
+    //  Get the number of orbitals to check if it's a valid FCIDUMP file
+    std::string start_line;  // first line contains orbitals and electron count
+    std::getline(input_file_stream, start_line);
+    std::stringstream linestream (start_line);
+
+    size_t K = 0;
+    char iter;
+
+    while (linestream >> iter) {
+        if (iter == '=') {
+            linestream >> K;  // right here we have the number of orbitals
+            break;  // we can finish reading the linestream after we found K
+        }
+    }
+
+    if (K == 0) {
+        throw std::invalid_argument("The .FCIDUMP-file is invalid: could not read a number of orbitals.");
+    }
+
+
+    double scalar = 0.0;
+    Eigen::MatrixXd h_SO = Eigen::MatrixXd::Zero(K, K);
+    Eigen::Tensor<double, 4> g_SO (K, K, K, K);
+    g_SO.setZero();
+
+    //  Skip 3 lines
+    for (size_t counter = 0; counter < 3; counter++) {
+        std::getline(input_file_stream, start_line);
+    }
+
+
+    //  Start reading in the one- and two-electron integrals
+    double x;
+    size_t i, j, a, b;
+
+    std::string line;
+    while (std::getline(input_file_stream, line)) {
+        std::istringstream iss (line);
+
+        // Based on what the values of the indices are, we can read one-electron integrals, two-electron integrals and the internuclear repulsion energy
+        //  See also (http://hande.readthedocs.io/en/latest/manual/integrals.html)
+        //  I think the documentation is a bit unclear for the two-electron integrals, but we can rest assured that FCIDUMP files give the two-electron integrals in CHEMIST's notation.
+        iss >> x >> i >> a >> j >> b;
+
+        //  Internuclear repulsion energy
+        if ((i == 0) && (j == 0) && (a == 0) && (b == 0)) {
+            scalar = x;
+        }
+
+        //  Single-particle eigenvalues (skipped)
+        else if ((a == 0) && (j == 0) && (b == 0)) {}
+
+        //  One-electron integrals (h_core)
+        else if ((j == 0) && (b == 0)) {
+            size_t p = i - 1;
+            size_t q = a - 1;
+            h_SO(p,q) = x;
+
+            // Apply the permutational symmetry for real orbitals
+            h_SO(q,p) = x;
+        }
+
+        //  Two-electron integrals are given in CHEMIST'S NOTATION, so just copy them over
+        else if ((i > 0) && (a > 0) && (j > 0) && (b > 0)) {
+            size_t p = i - 1;
+            size_t q = a - 1;
+            size_t r = j - 1;
+            size_t s = b - 1;
+            g_SO(p,q,r,s) = x;
+
+            // Apply the permutational symmetries for real orbitals
+            g_SO(p,q,s,r) = x;
+            g_SO(q,p,r,s) = x;
+            g_SO(q,p,s,r) = x;
+
+            g_SO(r,s,p,q) = x;
+            g_SO(s,r,p,q) = x;
+            g_SO(r,s,q,p) = x;
+            g_SO(s,r,q,p) = x;
+        }
+    }  // while loop
+
+
+    // Make the ingredients to construct HamiltonianParameters
+    std::shared_ptr<AOBasis> ao_basis;  // nullptr
+    OneElectronOperator S (Eigen::MatrixXd::Identity(K, K));
+    OneElectronOperator H_core (h_SO);
+    TwoElectronOperator G (g_SO);
+    Eigen::MatrixXd C = Eigen::MatrixXd::Identity(K, K);
+
+    return HamiltonianParameters(ao_basis, S, H_core, G, C, scalar);
+}
+
+
+/**
+ *  @param H      a Hubbard hopping matrix
+ *
+ *  @return Hubbard Hamiltonian parameters generated from the Hubbard hopping matrix
+ */
+HamiltonianParameters HamiltonianParameters::Hubbard(const HoppingMatrix& H) {
+
+    size_t K = H.numberOfLatticeSites();
+
+    Eigen::MatrixXd h_SO = Eigen::MatrixXd::Zero(K, K);
+    Eigen::Tensor<double, 4> g_SO (K, K, K, K);
+    g_SO.setZero();
+
+
+    for (size_t i = 0; i < K; i++) {
+        for (size_t j = i; j < K; j++) {
+            if (i == j) {
+                g_SO(i,i,i,i) = H(i,i);
+            } else {
+                h_SO(i,j) = H(i,j);
+                h_SO(j,i) = H(j,i);
+            }
+        }
+    }
+
+
+    // Make the ingredients to construct HamiltonianParameters
+    std::shared_ptr<AOBasis> ao_basis;  // nullptr
+    OneElectronOperator S (Eigen::MatrixXd::Identity(K, K));
+    OneElectronOperator H_core (h_SO);
+    TwoElectronOperator G (g_SO);
+    Eigen::MatrixXd C = Eigen::MatrixXd::Identity(K, K);
+
+    return HamiltonianParameters(ao_basis, S, H_core, G, C);  // no scalar term
 }
 
 
@@ -84,16 +356,29 @@ HamiltonianParameters::HamiltonianParameters(const GQCP::HamiltonianParameters& 
  */
 
 /**
- *  Given a transformation matrix @param T that links the new molecular orbital basis to the old molecular orbital basis,
- *  in the sense that
- *       b' = b T ,
- *  in which the molecular orbitals are collected as elements of a row vector b, transform
- *      - the one-electron interaction operator (i.e. the core Hamiltonian)
- *      - the two-electron interaction operator
+ *  @return if the underlying spatial orbital basis of the Hamiltonian parameters is orthonormal
+ */
+bool HamiltonianParameters::areOrbitalsOrthonormal() const {
+
+    return this->S.get_matrix_representation().isApprox(Eigen::MatrixXd::Identity(this->K, this->K));
+}
+
+
+
+/*
+ *  PUBLIC METHODS - TRANSFORMATIONS
+ */
+
+/**
+ *  In-place transform the matrix representations of Hamiltonian parameters
+ *
+ *  @param T    the transformation matrix between the old and the new orbital basis, it is used as
+ *      b' = b T ,
+ *   in which the basis functions are collected as elements of a row vector b
  *
  *  Furthermore
- *      - @member S now gives the overlap matrix in the new molecular orbital basis
- *      - @member C is updated to reflect the total transformation between the new molecular orbital basis and the initial atomic orbitals
+ *      - the overlap matrix S now gives the overlap matrix in the new molecular orbital basis
+ *      - the coefficient matrix C is updated to reflect the total transformation between the new molecular orbital basis and the initial atomic orbitals
  */
 void HamiltonianParameters::transform(const Eigen::MatrixXd& T) {
 
@@ -102,19 +387,16 @@ void HamiltonianParameters::transform(const Eigen::MatrixXd& T) {
     this->h.transform(T);
     this->g.transform(T);
 
-    this->C = this->C * T;  // use the correct transformation formula for subsequent transformations
+    this->T_total = this->T_total * T;  // use the correct transformation formula for subsequent transformations
 }
 
 
 /**
- *  Given a unitary rotation matrix @param U that links the new molecular orbital basis to the old molecular orbital basis,
- *  in the sense that
- *       b' = b U ,
- *  in which the molecular orbitals are collected as elements of a row vector b, transform
- *      - the one-electron interaction operator (i.e. the core Hamiltonian)
- *      - the two-electron interaction operator
+ *  In-place rotate the matrix representations of the Hamiltonian parameters
  *
- *  Furthermore, @member C is updated to reflect the total transformation between the new molecular orbital basis and the initial atomic orbitals
+ *  @param U     the unitary transformation (i.e. rotation) matrix, see transform() for how the transformation matrix between the two bases should be represented
+ *
+ *  Furthermore, the coefficient matrix C is updated to reflect the total transformation between the new molecular orbital basis and the initial atomic orbitals
  */
 void HamiltonianParameters::rotate(const Eigen::MatrixXd& U) {
 
@@ -127,9 +409,7 @@ void HamiltonianParameters::rotate(const Eigen::MatrixXd& U) {
 
 
 /**
- *  Using a random rotation matrix, transform:
- *      - the one-electron interaction operator (i.e. the core Hamiltonian)
- *      - the two-electron interaction operator
+ *  Using a random rotation matrix, transform the matrix representations of the Hamiltonian parameters
  */
 void HamiltonianParameters::randomRotate() {
 
@@ -144,16 +424,13 @@ void HamiltonianParameters::randomRotate() {
 
 
 /**
- *  Given @param jacobi_rotation_parameters that represent a unitary rotation matrix @param U (using a (cos, sin, -sin, cos) definition for the Jacobi rotation matrix) that links the new molecular orbital basis to the old molecular orbital basis,
- *  in the sense that
- *       b' = b U ,
- *  in which the molecular orbitals are collected as elements of a row vector b, transform
- *      - the one-electron interaction operator (i.e. the core Hamiltonian)
- *      - the two-electron interaction operator
+ *  In-place rotate the matrix representations of the Hamiltonian parameters using a unitary Jacobi rotation matrix constructed from the Jacobi rotation parameters
  *
- *  Furthermore @member C is updated to reflect the total transformation between the new molecular orbital basis and the initial atomic orbitals
+ *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix. See transform() for how the transformation matrix between the two bases should be represented
+ *
+ *  Furthermore the coefficient matrix C is updated to reflect the total transformation between the new molecular orbital basis and the initial atomic orbitals
  */
-void HamiltonianParameters::rotate(const GQCP::JacobiRotationParameters& jacobi_rotation_parameters) {
+void HamiltonianParameters::rotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
 
     this->S.rotate(jacobi_rotation_parameters);
     this->h.rotate(jacobi_rotation_parameters);
@@ -162,54 +439,67 @@ void HamiltonianParameters::rotate(const GQCP::JacobiRotationParameters& jacobi_
 
     // Create a Jacobi rotation matrix to transform the coefficient matrix with
     size_t K = this->h.get_dim();  // number of spatial orbitals
-    auto J = GQCP::jacobiRotationMatrix(jacobi_rotation_parameters, K);
-    this->C = this->C * J;
+    auto J = jacobiRotationMatrix(jacobi_rotation_parameters, K);
+    this->T_total = this->T_total * J;
 }
 
 
 /**
- *  Given @param one_rdm and @param two_rdm
- *  @return the energy as a result of the contraction of the 1- and 2-RDMs with the one- and two-electron integrals
+ *  Transform the Hamiltonian parameters to the Löwdin basis (i.e. T = S^{-1/2})
  */
-    double HamiltonianParameters::calculateEnergy(const GQCP::OneRDM& one_rdm, const GQCP::TwoRDM& two_rdm) const {
+void HamiltonianParameters::LowdinOrthonormalize() {
 
-    double energy_by_contraction = (this->h.get_matrix_representation() * one_rdm.get_matrix_representation()).trace();
-
-    Eigen::Tensor<double, 4> d = two_rdm.get_matrix_representation();
-    Eigen::Tensor<double, 4> g = this->g.get_matrix_representation();
-
-    // Specify the contractions for the relevant contraction of the two-electron integrals and the 2-RDM
-    //      0.5 g(p q r s) d(p q r s)
-    Eigen::array<Eigen::IndexPair<int>, 4> contractions = {Eigen::IndexPair<int>(0,0), Eigen::IndexPair<int>(1,1), Eigen::IndexPair<int>(2,2), Eigen::IndexPair<int>(3,3)};
-    //      Perform the contraction
-    Eigen::Tensor<double, 0> contraction = 0.5 * g.contract(d, contractions);
-
-    // As the contraction is a scalar (a tensor of rank 0), we should access by (0).
-    energy_by_contraction += contraction(0);
-
-    return energy_by_contraction;
+    // The transformation matrix to the Löwdin basis is T = S^{-1/2}
+    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes (this->S.get_matrix_representation());
+    this->transform(saes.operatorInverseSqrt());
 }
 
 
-/**
- *  Given a @param one_rdm and a @param two_rdm, @return the generalized Fock matrix F as a OneElectronOperator
+
+/*
+ *  PUBLIC METHODS - CALCULATIONS OF VALUES
  */
-GQCP::OneElectronOperator HamiltonianParameters::calculateGeneralizedFockMatrix(const GQCP::OneRDM& one_rdm, const GQCP::TwoRDM& two_rdm) const {
+
+/**
+ *  @param N_P      the number of electron pairs
+ *
+ *  @return the Edmiston-Ruedenberg localization index g(i,i,i,i)
+ */
+double HamiltonianParameters::calculateEdmistonRuedenbergLocalizationIndex(size_t N_P) const {
+
+    double localization_index = 0.0;
+
+    // TODO: when Eigen releases TensorTrace, use it here
+    for (size_t i = 0; i < N_P; i++) {
+        localization_index += this->g(i,i,i,i);
+    }
+
+    return localization_index;
+}
+
+
+
+/*
+ *  PUBLIC METHODS - CALCULATIONS OF ONE-ELECTRON OPERATORS
+ */
+
+/**
+ *  @param D      the 1-RDM
+ *  @param d      the 2-RDM
+ *
+ *  @return the generalized Fock matrix
+ */
+OneElectronOperator HamiltonianParameters::calculateGeneralizedFockMatrix(const OneRDM& D, const TwoRDM& d) const {
 
     // Check if dimensions are compatible
-    if (one_rdm.get_dim() != this->K) {
+    if (D.get_dim() != this->K) {
         throw std::invalid_argument("The 1-RDM is not compatible with the HamiltonianParameters.");
     }
 
-    if (two_rdm.get_dim() != this->K) {
+    if (d.get_dim() != this->K) {
         throw std::invalid_argument("The 2-RDM is not compatible with the HamiltonianParameters.");
     }
 
-
-    Eigen::MatrixXd h = this->h.get_matrix_representation();
-    Eigen::Tensor<double, 4> g = this->g.get_matrix_representation();
-    Eigen::MatrixXd D = one_rdm.get_matrix_representation();
-    Eigen::Tensor<double, 4> d = two_rdm.get_matrix_representation();
 
     // A KISS implementation of the calculation of the generalized Fock matrix F
     Eigen::MatrixXd F = Eigen::MatrixXd::Zero(this->K, this->K);
@@ -234,32 +524,91 @@ GQCP::OneElectronOperator HamiltonianParameters::calculateGeneralizedFockMatrix(
     }  // F elements loop
 
 
-    return GQCP::OneElectronOperator(F);
+    return OneElectronOperator(F);
 }
 
 
 /**
- *  Given a @param one_rdm and a @param two_rdm, calculate and @return the super-generalized Fock matrix W as a TwoElectronOperator
+ *  @return the effective one-electron integrals
  */
-GQCP::TwoElectronOperator HamiltonianParameters::calculateSuperGeneralizedFockMatrix(const GQCP::OneRDM& one_rdm, const GQCP::TwoRDM& two_rdm) const {
+OneElectronOperator HamiltonianParameters::calculateEffectiveOneElectronIntegrals() const {
+
+    Eigen::MatrixXd k = this->h.get_matrix_representation();
+
+    for (size_t p = 0; p < this->K; p++) {
+        for (size_t q = 0; q < this->K; q++) {
+            for (size_t r = 0; r < this->K; r++) {
+                k(p,q) -= 0.5 * this->g(p, r, r, q);
+            }
+        }
+    }
+
+    return OneElectronOperator(k);
+}
+
+
+/**
+ *  @param ao_list     indices of the AOs used for the Mulliken populations
+ *
+ *  @return the Mulliken operator for a set of AOs
+ */
+OneElectronOperator HamiltonianParameters::calculateMullikenOperator(const Vectoru& ao_list) const {
+
+
+    if (!this->get_ao_basis()) {
+        throw std::invalid_argument("The Hamiltonian parameters have no underlying AO basis, Mulliken analysis is not possible.");
+    }
+
+    if (ao_list.size() > this->K) {
+        throw std::invalid_argument("To many AOs are selected");
+    }
+
+    // Create the partitioning matrix (diagonal matrix with values set to 1 of selected AOs
+    Eigen::MatrixXd p_a = Eigen::MatrixXd::Zero(this->K, this->K);
+
+    for (size_t index : ao_list) {
+        if (index >= this->K) {
+            throw std::invalid_argument("AO index is too large");
+        }
+
+        p_a(index, index) = 1;
+    }
+
+    OneElectronOperator S_AO = this->S;
+    S_AO.transform(T_total.inverse());
+    Eigen::MatrixXd S_AO_mat = S_AO.get_matrix_representation();
+
+    Eigen::MatrixXd mulliken_matrix = (T_total.adjoint() * p_a * S_AO_mat * T_total + T_total.adjoint() * S_AO_mat * p_a * T_total)/2 ;
+
+    return OneElectronOperator(mulliken_matrix);
+}
+
+
+
+/*
+ *  PUBLIC METHODS - CALCULATIONS OF TWO-ELECTRON OPERATORS
+ */
+
+/**
+ *  @param D      the 1-RDM
+ *  @param d      the 2-RDM
+ *
+ *  @return the super-generalized Fock matrix
+ */
+TwoElectronOperator HamiltonianParameters::calculateSuperGeneralizedFockMatrix(const OneRDM& D, const TwoRDM& d) const {
 
     // Check if dimensions are compatible
-    if (one_rdm.get_dim() != this->K) {
+    if (D.get_dim() != this->K) {
         throw std::invalid_argument("The 1-RDM is not compatible with the HamiltonianParameters.");
     }
 
-    if (two_rdm.get_dim() != this->K) {
+    if (d.get_dim() != this->K) {
         throw std::invalid_argument("The 2-RDM is not compatible with the HamiltonianParameters.");
     }
 
 
-    Eigen::MatrixXd h = this->h.get_matrix_representation();
-    Eigen::Tensor<double, 4> g = this->g.get_matrix_representation();
-    Eigen::MatrixXd D = one_rdm.get_matrix_representation();
-    Eigen::Tensor<double, 4> d = two_rdm.get_matrix_representation();
-
     // We have to calculate the generalized Fock matrix F first
-    Eigen::MatrixXd F = this->calculateGeneralizedFockMatrix(one_rdm, two_rdm).get_matrix_representation();
+    OneElectronOperator F = this->calculateGeneralizedFockMatrix(D, d);
 
     // A KISS implementation of the calculation of the super generalized Fock matrix W
     Eigen::Tensor<double, 4> W (this->K, this->K, this->K, this->K);
@@ -275,12 +624,12 @@ GQCP::TwoElectronOperator HamiltonianParameters::calculateSuperGeneralizedFockMa
                     }
 
                     // One-electron part
-                    W(p,q,r,s) -= h(s,p) * D(r,q);
+                    W(p,q,r,s) -= this->h(s,p) * D(r,q);
 
                     // Two-electron part
                     for (size_t t = 0; t < this->K; t++) {
                         for (size_t u = 0; u < this->K; u++) {
-                            W(p,q,r,s) += g(s,t,q,u) * d(r,t,p,u) - g(s,t,u,p) * d(r,t,u,q) - g(s,p,t,u) * d(r,q,t,u);
+                            W(p,q,r,s) += this->g(s,t,q,u) * d(r,t,p,u) - this->g(s,t,u,p) * d(r,t,u,q) - this->g(s,p,t,u) * d(r,q,t,u);
                         }
                     }  // two-electron part
                 }
@@ -289,9 +638,63 @@ GQCP::TwoElectronOperator HamiltonianParameters::calculateSuperGeneralizedFockMa
     }  // W elements loop
 
 
-    return GQCP::TwoElectronOperator(W);
+    return TwoElectronOperator(W);
 };
 
+
+
+/*
+ *  PUBLIC METHODS - CONSTRAINTS
+ */
+  
+/**  
+ *  Constrain the Hamiltonian parameters according to the convention: - lambda * constraint
+ *
+ *  @param one_op   the one-electron operator used as a constraint
+ *  @param two_op   the two-electron operator used as a constraint
+ *  @param lambda   Lagrangian multiplier for the constraint
+ *
+ *  @return a copy of the constrained Hamiltonian parameters
+ */
+HamiltonianParameters HamiltonianParameters::constrain(const OneElectronOperator& one_op, const TwoElectronOperator& two_op, double lambda) const {
+
+    OneElectronOperator hc (this->get_h().get_matrix_representation() - lambda*one_op.get_matrix_representation());
+    TwoElectronOperator gc (this->get_g().get_matrix_representation() - lambda*two_op.get_matrix_representation());
+
+    return HamiltonianParameters(this->ao_basis, this->S, hc, gc, this->T_total);
+}
+
+
+/**
+ *  Constrain the Hamiltonian parameters according to the convention: - lambda * constraint
+ *
+ *  @param one_op   the one-electron operator used as a constraint
+ *  @param lambda   Lagrangian multiplier for the constraint
+ *
+ *  @return a copy of the constrained Hamiltonian parameters
+ */
+HamiltonianParameters HamiltonianParameters::constrain(const OneElectronOperator& one_op, double lambda) const {
+
+    OneElectronOperator hc (this->get_h().get_matrix_representation() - lambda*one_op.get_matrix_representation());
+
+    return HamiltonianParameters(this->ao_basis, this->S, hc, this->g, this->T_total);
+}
+
+
+/**
+ *  Constrain the Hamiltonian parameters according to the convention: - lambda * constraint
+ *
+ *  @param two_op   the two-electron operator used as a constraint
+ *  @param lambda   Lagrangian multiplier for the constraint
+ *
+ *  @return a copy of the constrained Hamiltonian parameters
+ */
+HamiltonianParameters HamiltonianParameters::constrain(const TwoElectronOperator& two_op, double lambda) const {
+
+    TwoElectronOperator gc (this->get_g().get_matrix_representation() - lambda*two_op.get_matrix_representation());
+
+    return HamiltonianParameters(this->ao_basis, this->S, this->h, gc, this->T_total);
+}
 
 
 }  // namespace GQCP

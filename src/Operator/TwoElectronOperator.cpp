@@ -1,6 +1,6 @@
 // This file is part of GQCG-gqcp.
 // 
-// Copyright (C) 2017-2018  the GQCG developers
+// Copyright (C) 2017-2019  the GQCG developers
 // 
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -19,14 +19,15 @@
 
 #include <iostream>
 
-#include "miscellaneous.hpp"
+#include "utilities/linalg.hpp"
+#include "utilities/miscellaneous.hpp"
 
 
 namespace GQCP {
 
 
 /**
- *  Constructor based on a given @param tensor
+ *  @param tensor   the explicit matrix representation of the two-electron operator
  */
 TwoElectronOperator::TwoElectronOperator(const Eigen::Tensor<double, 4>& tensor) :
     BaseOperator(tensor.dimensions()[0]),
@@ -40,17 +41,42 @@ TwoElectronOperator::TwoElectronOperator(const Eigen::Tensor<double, 4>& tensor)
 }
 
 
+/*
+ *  OPERATORS
+ */
+/**
+ *  @param other    the other TwoElectronOperator
+ *
+ *  @return if the matrix representation of this operator is equal to the matrix representation of the other, within the default tolerance specified by isEqualTo()
+ */
+bool TwoElectronOperator::operator==(const TwoElectronOperator& other) const {
+    return this->isEqualTo(other);
+}
+
+
 
 /*
  *  PUBLIC METHODS
  */
 
 /**
- *  Transform the matrix representation of a two-electron operator using the transformation matrix @param T
+ *  @param other        the other TwoElectronOperator
+ *  @param tolerance    the tolerance for equality of the matrix representations
  *
- *  Note that the transformation matrix @param T is used as
+ *  @return if the matrix representation of this operator is equal to the matrix representation of the other, given a tolerance
+ */
+bool TwoElectronOperator::isEqualTo(const TwoElectronOperator& other, double tolerance) const {
+    
+    return areEqual(this->tensor, other.tensor, tolerance);
+}
+
+
+/**
+ *  In-place transform the matrix representation of the two-electron operator
+ *
+ *  @param T    the transformation matrix between the old and the new orbital basis, it is used as
  *      b' = b T ,
- *  in which the basis functions are collected as elements of a row vector b
+ *   in which the basis functions are collected as elements of a row vector b
  */
 void TwoElectronOperator::transform(const Eigen::MatrixXd& T) {
 
@@ -90,11 +116,9 @@ void TwoElectronOperator::transform(const Eigen::MatrixXd& T) {
 
 
 /**
- *  Rotate the matrix representation of a two-electron operator using a unitary rotation matrix @param U
+ *  In-place rotate the matrix representation of the one-electron operator
  *
- *  Note that the rotation matrix @param U is used as
- *      b' = b U ,
- *  in which the basis functions are collected as elements of a row vector b.
+ *  @param U     the unitary transformation (i.e. rotation) matrix, see transform() for how the transformation matrix between the two bases should be represented
  */
 void TwoElectronOperator::rotate(const Eigen::MatrixXd& U) {
 
@@ -108,15 +132,11 @@ void TwoElectronOperator::rotate(const Eigen::MatrixXd& U) {
 
 
 /**
- *  Rotate the matrix representation of a two-electron operator using the unitary Jacobi rotation matrix U constructed from the @param jacobi_rotation_parameters
+ *  In-place rotate the matrix representation of the operator using a unitary Jacobi rotation matrix constructed from the Jacobi rotation parameters
  *
- *  Note that
- *      - the rotation matrix @param U is used as
- *          b' = b U ,
- *        in which the basis functions are collected as elements of a row vector b.
- *      - we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
+ *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix. See transform() for how the transformation matrix between the two bases should be represented
  */
-void TwoElectronOperator::rotate(const GQCP::JacobiRotationParameters& jacobi_rotation_parameters) {
+void TwoElectronOperator::rotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
 
     /**
      *  While waiting for an analogous Eigen::Tensor Jacobi module, we implement this rotation by constructing a

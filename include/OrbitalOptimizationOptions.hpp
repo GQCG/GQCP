@@ -1,6 +1,6 @@
 // This file is part of GQCG-gqcp.
 // 
-// Copyright (C) 2017-2018  the GQCG developers
+// Copyright (C) 2017-2019  the GQCG developers
 // 
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -25,6 +25,9 @@
 namespace GQCP {
 
 
+/**
+ *  A struct that holds options for orbital optimization
+ */
 struct OrbitalOptimizationOptions {
     double convergence_threshold = 1.0e-08;
     size_t maximum_number_of_iterations = 128;

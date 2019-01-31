@@ -1,6 +1,6 @@
 // This file is part of GQCG-gqcp.
 // 
-// Copyright (C) 2017-2018  the GQCG developers
+// Copyright (C) 2017-2019  the GQCG developers
 // 
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -17,14 +17,14 @@
 // 
 #define BOOST_TEST_MODULE "OneElectronOperator"
 
+#include <boost/test/unit_test.hpp>
+#include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
+
 
 #include "Operator/OneElectronOperator.hpp"
 
 #include "JacobiRotationParameters.hpp"
-#include "miscellaneous.hpp"
-
-#include <boost/test/unit_test.hpp>
-#include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
+#include "utilities/miscellaneous.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( OneElectronOperator_constructor ) {
@@ -56,12 +56,24 @@ BOOST_AUTO_TEST_CASE ( operator_plus ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( OneElectronOperator_getters ) {
+BOOST_AUTO_TEST_CASE ( isEqualTo ) {
 
-    Eigen::MatrixXd matrix = Eigen::MatrixXd::Zero(4, 4);
-    GQCP::OneElectronOperator O (matrix);
+    Eigen::MatrixXd A = Eigen::MatrixXd::Random(3, 3);
+    GQCP::OneElectronOperator O1 (A);
+    GQCP::OneElectronOperator O2 (A);
+    BOOST_CHECK(O1.isEqualTo(O2, 1.0e-05));
 
-    O.get_matrix_representation();
+    GQCP::OneElectronOperator O3 (2*A);
+    BOOST_CHECK(!(O3.isEqualTo(O1)));
+}
+
+
+BOOST_AUTO_TEST_CASE ( operator_equals ) {
+
+    Eigen::MatrixXd A = Eigen::MatrixXd::Random(3, 3);
+    GQCP::OneElectronOperator O1 (A);
+    GQCP::OneElectronOperator O2 (A);
+    BOOST_CHECK(O1 == O2);
 }
 
 

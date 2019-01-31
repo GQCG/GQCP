@@ -1,6 +1,6 @@
 // This file is part of GQCG-gqcp.
 // 
-// Copyright (C) 2017-2018  the GQCG developers
+// Copyright (C) 2017-2019  the GQCG developers
 // 
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -17,17 +17,18 @@
 // 
 #define BOOST_TEST_MODULE "RDMCalculator_test"
 
-
-#include "RDM/RDMCalculator.hpp"
-
-#include "FockSpace/FockSpace.hpp"
-#include "FockSpace/FockSpaceProduct.hpp"
-#include "CISolver/CISolver.hpp"
-#include "HamiltonianBuilder/DOCI.hpp"
-#include "HamiltonianParameters/HamiltonianParameters_constructors.hpp"
-
 #include <boost/test/unit_test.hpp>
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
+
+
+#include "RDM/RDMCalculator.hpp"
+#include "RDM/SpinUnresolvedRDMCalculator.hpp"
+
+#include "FockSpace/FockSpace.hpp"
+#include "FockSpace/ProductFockSpace.hpp"
+#include "CISolver/CISolver.hpp"
+#include "HamiltonianBuilder/DOCI.hpp"
+#include "HamiltonianParameters/HamiltonianParameters.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( constructor ) {
@@ -36,7 +37,7 @@ BOOST_AUTO_TEST_CASE ( constructor ) {
 
     // Get the 1-RDM from DOCI
     size_t N = 4;  // 4 electrons
-    auto ham_par = GQCP::readFCIDUMPFile("../tests/data/lih_631g_caitlin.FCIDUMP");
+    auto ham_par = GQCP::HamiltonianParameters::ReadFCIDUMP("data/lih_631g_caitlin.FCIDUMP");
     size_t K = ham_par.get_K();  // 16 SO
 
     // Abstract pointer to test RDM
@@ -48,15 +49,63 @@ BOOST_AUTO_TEST_CASE ( constructor ) {
     // Specify solver options and solve the eigenvalue problem
     // Solve the dense DOCI eigenvalue problem
     GQCP::CISolver ci_solver (doci, ham_par);
-    numopt::eigenproblem::DenseSolverOptions solver_options;
+    GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
     Eigen::VectorXd coef = ci_solver.get_eigenpair().get_eigenvector();
     
     // Check if the DOCI 1-RDM has the proper trace.
     GQCP::RDMCalculator doci_rdm (*fock_space_dy);
-    GQCP::OneRDMs one_rdms = doci_rdm.calculate1RDMs(coef);
+    doci_rdm.set_coefficients(coef);
+    GQCP::OneRDMs one_rdms = doci_rdm.calculate1RDMs();
 
     BOOST_CHECK(std::abs(one_rdms.one_rdm.trace() - N) < 1.0e-12);
 }
 
+BOOST_AUTO_TEST_CASE ( no_vector_throws ) {
+
+    size_t K = 5;
+    size_t N = 4;
+    GQCP::FockSpace fock_space (K, N);
+
+    Eigen::VectorXd coeff (fock_space.get_dimension());
+    coeff << 1, 1, -2, 4, -5;
+
+    // Test if throws when no vector is set
+    GQCP::RDMCalculator doci_rdm (fock_space);
+    BOOST_CHECK_THROW(GQCP::OneRDMs one_rdms = doci_rdm.calculate1RDMs(), std::logic_error);
+}
+
+
+BOOST_AUTO_TEST_CASE ( operator_call_throw ) {
+
+    // Create a test wave function
+    size_t M = 3;
+    size_t N = 1;
+    GQCP::FockSpace fock_space (M, N);
+
+    Eigen::VectorXd coeff (fock_space.get_dimension());
+    coeff << 1, 2, -3;
+    GQCP::SpinUnresolvedRDMCalculator d (fock_space);
+    d.set_coefficients(coeff);
+    BOOST_CHECK_THROW(d(0), std::invalid_argument);  // need an even number of indices
+}
+
+
+BOOST_AUTO_TEST_CASE ( operator_call ) {
+
+    // Create a test wave function
+    size_t M = 3;
+    size_t N = 2;
+    GQCP::FockSpace fock_space (M, N);
+
+    Eigen::VectorXd coeff (fock_space.get_dimension());
+    coeff << 1, 2, -3;
+    GQCP::SpinUnresolvedRDMCalculator d (fock_space);
+    d.set_coefficients(coeff);
+
+    BOOST_CHECK(std::abs(d(0,1,1,2) - (-3.0)) < 1.0e-12);  // d(0,1,1,2) : a^\dagger_0 a^\dagger_1 a_2 a_1
+    BOOST_CHECK(std::abs(d(2,0,0,1) - (-2.0)) < 1.0e-12);  // d(2,0,0,1) : a^\dagger_2 a^\dagger_0 a^1 a_0
+    BOOST_CHECK(std::abs(d(0,2,2,0) - (-4.0)) < 1.0e-12);  // d(0,2,2,0) : a^\dagger_0 a^dagger_2 a_0 a_2
+    BOOST_CHECK(std::abs(d(0,2,0,0) - 0.0) < 1.0e-12);     // d(0,2,0,0) : a^\dagger_0 a^dagger_0 a_0 a_2, double annihilation gives 0.0
+}

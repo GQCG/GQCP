@@ -1,6 +1,6 @@
 // This file is part of GQCG-gqcp.
 // 
-// Copyright (C) 2017-2018  the GQCG developers
+// Copyright (C) 2017-2019  the GQCG developers
 // 
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -17,6 +17,8 @@
 // 
 #include "RDM/TwoRDM.hpp"
 
+#include "utilities/linalg.hpp"
+
 
 namespace GQCP {
 
@@ -25,6 +27,9 @@ namespace GQCP {
  *  CONSTRUCTORS
  */
 
+/**
+ *  @param d    the explicit matrix representation of the 2-RDM
+ */
 TwoRDM::TwoRDM(const Eigen::Tensor<double, 4>& d) :
     BaseRDM (d.dimensions()[0]),
     d (d)
@@ -36,14 +41,39 @@ TwoRDM::TwoRDM(const Eigen::Tensor<double, 4>& d) :
     }
 }
 
+
+/*
+ *  OPERATORS
+ */
+/**
+ *  @param other    the other TwoRDM
+ *
+ *  @return if the matrix representation of this 2-RDM is equal to the matrix representation of the other, within the default tolerance specified by isEqualTo()
+ */
+bool TwoRDM::operator==(const TwoRDM& other) const {
+    return this->isEqualTo(other);
+}
+
+
 /*
  *  PUBLIC METHODS
  */
 
 /**
- *  @return the trace of the 2-RDM @param: d(p,p,q,q)
+ *  @param other        the other TwoRDM
+ *  @param tolerance    the tolerance for equality of the matrix representations
+ *
+ *  @return if the matrix representation of this 2-RDM is equal to the matrix representation of the other, given a tolerance
  */
-double TwoRDM::trace() {
+bool TwoRDM::isEqualTo(const TwoRDM& other, double tolerance) const {
+    return areEqual(this->d, other.d, tolerance);
+}
+
+
+/**
+ *  @return the trace of the 2-RDM, i.e. d(p,p,q,q)
+ */
+double TwoRDM::trace() const {
     // TODO: when Eigen3 releases tensor.trace(), use it to implement the reduction
 
     auto K = static_cast<size_t>(this->d.dimension(1));
@@ -60,10 +90,9 @@ double TwoRDM::trace() {
 
 
 /**
- *  @return a partial contraction of the 2-RDM,
- *  where D(p,q) = d(p,q,r,r)
+ *  @return a partial contraction of the 2-RDM, where D(p,q) = d(p,q,r,r)
  */
-Eigen::MatrixXd TwoRDM::reduce() {
+Eigen::MatrixXd TwoRDM::reduce() const {
     // TODO: when Eigen3 releases tensor.trace(), use it to implement the reduction
 
     auto K = static_cast<size_t>(this->d.dimension(1));
@@ -80,5 +109,5 @@ Eigen::MatrixXd TwoRDM::reduce() {
     return D;
 }
 
-}  // namespace GQCP
 
+}  // namespace GQCP

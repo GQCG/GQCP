@@ -1,6 +1,6 @@
 // This file is part of GQCG-gqcp.
 // 
-// Copyright (C) 2017-2018  the GQCG developers
+// Copyright (C) 2017-2019  the GQCG developers
 // 
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -29,8 +29,7 @@ namespace GQCP {
 
 
 /**
- *  BaseRDMBuilder is an abstract base class for the calculation of a density matrix from a given wave function
- *  or coefficient expansion in a Fock space
+ *  BaseRDMBuilder is an abstract base class whose derived classes are capable of calculating 1- and 2-RDMs from wave functions in a spin resolved basis
  */
 class BaseRDMBuilder {
 public:
@@ -45,21 +44,35 @@ public:
     virtual ~BaseRDMBuilder() = 0;
 
 
+    // PURE VIRTUAL GETTERS
+    virtual BaseFockSpace* get_fock_space() = 0;
+
+
     // PURE VIRTUAL PUBLIC METHODS
     /**
-     *  @return all 1-RDMs from a coefficient vector @param x
+     *  @param x        the coefficient vector representing the wave function
+     *
+     *  @return all 1-RDMs given a coefficient vector
      */
-    virtual OneRDMs calculate1RDMs(const Eigen::VectorXd& x) = 0;
+    virtual OneRDMs calculate1RDMs(const Eigen::VectorXd& x) const = 0;
 
     /**
-     *  @return all 2-RDMs from a coefficient vector @param x
+     *  @param x        the coefficient vector representing the wave function
+     *
+     *  @return all 2-RDMs given a coefficient vector
      */
-    virtual TwoRDMs calculate2RDMs(const Eigen::VectorXd& x) = 0;
+    virtual TwoRDMs calculate2RDMs(const Eigen::VectorXd& x) const = 0;
 
     /**
-     *  @return the Fock space of the RDMBuilder
+     *  @param bra_indices      the indices of the orbitals that should be annihilated on the left (on the bra)
+     *  @param ket_indices      the indices of the orbitals that should be annihilated on the right (on the ket)
+     *  @param x                the coefficient vector representing the wave function
+     *
+     *  @return an element of the spin-summed (total) N-RDM, as specified by the given bra and ket indices.
+     *
+     *      calculateElement({0, 1}, {2, 1}) would calculate d^{(2)} (0, 1, 1, 2): the operator string would be a^\dagger_0 a^\dagger_1 a_2 a_1
      */
-    virtual BaseFockSpace* get_fock_space() = 0;
+    virtual double calculateElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices, const Eigen::VectorXd& x) const = 0;
 };
 
 

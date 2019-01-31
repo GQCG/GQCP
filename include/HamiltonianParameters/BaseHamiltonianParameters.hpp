@@ -1,6 +1,6 @@
 // This file is part of GQCG-gqcp.
 // 
-// Copyright (C) 2017-2018  the GQCG developers
+// Copyright (C) 2017-2019  the GQCG developers
 // 
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -27,16 +27,21 @@
 namespace GQCP {
 
 
+/**
+ *  A base class for representing Hamiltonian parameters, i.e. the one- and two-electron integrals in the second-quantized expression of the Hamiltonian
+ */
 class BaseHamiltonianParameters {
 protected:
-    std::shared_ptr<GQCP::AOBasis> ao_basis;  // the initial atomic orbitals
+    double scalar;  // a scalar interaction term
+    std::shared_ptr<AOBasis> ao_basis;  // the initial atomic orbitals
 
 public:
-    // CONSTRUCTOR
+    // CONSTRUCTORS
     /**
-     *  Constructor based on a given @param ao_basis
+     *  @param ao_basis     the initial AO basis
+     *  @param scalar       the scalar interaction term
      */
-    explicit BaseHamiltonianParameters(std::shared_ptr<GQCP::AOBasis> ao_basis);
+    BaseHamiltonianParameters(std::shared_ptr<AOBasis> ao_basis, double scalar=0.0);
 
 
     // DESTRUCTOR
@@ -44,6 +49,10 @@ public:
      *  Provide a pure virtual destructor to make the class abstract
      */
     virtual ~BaseHamiltonianParameters() = 0;
+
+    // GETTERS
+    const std::shared_ptr<AOBasis>& get_ao_basis() const { return this->ao_basis; }
+    double get_scalar() const { return this->scalar; }
 };
 
 

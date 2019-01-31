@@ -1,6 +1,6 @@
 // This file is part of GQCG-gqcp.
 // 
-// Copyright (C) 2017-2018  the GQCG developers
+// Copyright (C) 2017-2019  the GQCG developers
 // 
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -17,15 +17,15 @@
 // 
 #define BOOST_TEST_MODULE "DenseDOCISolver"
 
-
-#include "CISolver/CISolver.hpp"
-#include "FockSpace/FockSpaceProduct.hpp"
-#include "HamiltonianBuilder/FCI.hpp"
-#include "HamiltonianParameters/HamiltonianParameters_constructors.hpp"
-#include "RHF/PlainRHFSCFSolver.hpp"
-
 #include <boost/test/unit_test.hpp>
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
+
+#include "CISolver/CISolver.hpp"
+#include "FockSpace/ProductFockSpace.hpp"
+#include "HamiltonianBuilder/FCI.hpp"
+#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "RHF/PlainRHFSCFSolver.hpp"
+
 
 
 
@@ -33,12 +33,9 @@ BOOST_AUTO_TEST_CASE ( test_random_rotation_diagonal_dense_fci ) {
 
     // Check if a random rotation has no effect on the sum of the diagonal elements
 
-    // Create a Molecule and an AOBasis
-    GQCP::Molecule h2o ("../tests/data/h2o.xyz");
-    auto ao_basis = std::make_shared<GQCP::AOBasis>(h2o, "STO-3G");
-
-    // Create the molecular Hamiltonian parameters for this molecule and basis
-    auto mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
+    // Create the molecular Hamiltonian parameters in an AO basis
+    auto h2o = GQCP::Molecule::Readxyz("data/h2o.xyz");
+    auto mol_ham_par = GQCP::HamiltonianParameters::Molecular(h2o, "STO-3G");
     auto K = mol_ham_par.get_K();
 
     // Create a plain RHF SCF solver and solve the SCF equations
@@ -49,7 +46,7 @@ BOOST_AUTO_TEST_CASE ( test_random_rotation_diagonal_dense_fci ) {
     // Transform the ham_par
     mol_ham_par.transform(rhf.get_C());
 
-    GQCP::FockSpaceProduct fock_space (K, h2o.get_N()/2, h2o.get_N()/2);  // dim = 2
+    GQCP::ProductFockSpace fock_space (K, h2o.get_N()/2, h2o.get_N()/2);  // dim = 2
 
     // Create the FCI module
     GQCP::FCI fci (fock_space);
@@ -76,12 +73,9 @@ BOOST_AUTO_TEST_CASE ( FCI_H2_Cristina_dense ) {
     // Cristina's H2 FCI energy/OO-DOCI energy
     double reference_fci_energy = -1.1651486697;
 
-    // Create a Molecule and an AOBasis
-    GQCP::Molecule h2 ("../tests/data/h2_cristina.xyz");
-    auto ao_basis = std::make_shared<GQCP::AOBasis>(h2, "6-31g**");
-
-    // Create the molecular Hamiltonian parameters for this molecule and basis
-    auto mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
+    // Create the molecular Hamiltonian parameters in an AO basis
+    auto h2 = GQCP::Molecule::Readxyz("data/h2_cristina.xyz");
+    auto mol_ham_par = GQCP::HamiltonianParameters::Molecular(h2, "6-31g**");
     auto K = mol_ham_par.get_K();
 
     // Create a plain RHF SCF solver and solve the SCF equations
@@ -92,14 +86,14 @@ BOOST_AUTO_TEST_CASE ( FCI_H2_Cristina_dense ) {
     // Transform the ham_par
     mol_ham_par.transform(rhf.get_C());
 
-    GQCP::FockSpaceProduct fock_space (K, h2.get_N()/2, h2.get_N()/2);  // dim = 100
+    GQCP::ProductFockSpace fock_space (K, h2.get_N()/2, h2.get_N()/2);  // dim = 100
 
     // Create the FCI module
     GQCP::FCI fci (fock_space);
     GQCP::CISolver ci_solver (fci, mol_ham_par);
 
     // Solve Dense
-    numopt::eigenproblem::DenseSolverOptions dense_solver_options;
+    GQCP::DenseSolverOptions dense_solver_options;
     ci_solver.solve(dense_solver_options);
 
     // Retrieve the eigenvalues
@@ -118,12 +112,9 @@ BOOST_AUTO_TEST_CASE ( FCI_H2O_Psi4_GAMESS_dense ) {
     // Psi4 and GAMESS' FCI energy
     double reference_fci_energy = -75.0129803939602;
 
-    // Create a Molecule and an AOBasis
-    GQCP::Molecule h2o ("../tests/data/h2o_Psi4_GAMESS.xyz");
-    auto ao_basis = std::make_shared<GQCP::AOBasis>(h2o, "STO-3G");
-
-    // Create the molecular Hamiltonian parameters for this molecule and basis
-    auto mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);
+    // Create the molecular Hamiltonian parameters in an AO basis
+    auto h2o = GQCP::Molecule::Readxyz("data/h2o_Psi4_GAMESS.xyz");
+    auto mol_ham_par = GQCP::HamiltonianParameters::Molecular(h2o, "STO-3G");
     auto K = mol_ham_par.get_K();
 
     // Create a plain RHF SCF solver and solve the SCF equations
@@ -134,14 +125,14 @@ BOOST_AUTO_TEST_CASE ( FCI_H2O_Psi4_GAMESS_dense ) {
     // Transform the ham_par
     mol_ham_par.transform(rhf.get_C());
 
-    GQCP::FockSpaceProduct fock_space (K, h2o.get_N()/2, h2o.get_N()/2);  // dim = 441
+    GQCP::ProductFockSpace fock_space (K, h2o.get_N()/2, h2o.get_N()/2);  // dim = 441
 
     // Create the FCI module
     GQCP::FCI fci (fock_space);
     GQCP::CISolver ci_solver (fci, mol_ham_par);
 
     // Solve Dense
-    numopt::eigenproblem::DenseSolverOptions dense_solver_options;
+    GQCP::DenseSolverOptions dense_solver_options;
     ci_solver.solve(dense_solver_options);
 
     // Retrieve the eigenvalues
@@ -161,7 +152,7 @@ BOOST_AUTO_TEST_CASE ( FCI_He_Cristina_dense ) {
     double reference_fci_energy = -2.902533599;
 
     // Create a Molecule and an AOBasis
-    GQCP::Molecule he ("../tests/data/h2o_Psi4_GAMESS.xyz");
+    GQCP::Molecule he ("data/h2o_Psi4_GAMESS.xyz");
     auto ao_basis = std::make_shared<GQCP::AOBasis>(he, "aug-cc-pVQZ");
 
     // Create the molecular Hamiltonian parameters for this molecule and basis
@@ -176,14 +167,14 @@ BOOST_AUTO_TEST_CASE ( FCI_He_Cristina_dense ) {
     // Transform the ham_par
     mol_ham_par.transform(rhf.get_C());
 
-    GQCP::FockSpaceProduct fock_space (K, he.get_N()/2, he.get_N()/2);  // dim = 2116
+    GQCP::ProductFockSpace fock_space (K, he.get_N()/2, he.get_N()/2);  // dim = 2116
 
     // Create the FCI module
     GQCP::FCI fci (fock_space);
     GQCP::CISolver ci_solver (fci, mol_ham_par);
 
     // Solve Dense
-    numopt::eigenproblem::DenseSolverOptions dense_solver_options;
+    GQCP::DenseSolverOptions dense_solver_options;
     ci_solver.solve(dense_solver_options);
 
     // Retrieve the eigenvalues

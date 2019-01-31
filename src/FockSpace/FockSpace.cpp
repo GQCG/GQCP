@@ -1,6 +1,6 @@
 // This file is part of GQCG-gqcp.
 // 
-// Copyright (C) 2017-2018  the GQCG developers
+// Copyright (C) 2017-2019  the GQCG developers
 // 
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -17,22 +17,27 @@
 // 
 #include "FockSpace/FockSpace.hpp"
 
+#include <boost/numeric/conversion/converter.hpp>
+#include <boost/math/special_functions.hpp>
+
 
 namespace GQCP {
 
 
 /*
- * PRIVATE METHODS
+ *  PRIVATE METHODS
  */
 
 /**
- *  In-place permute the unsigned representation of the @param ONV, giving the next bitstring permutation in reverse lexical ordering.
+ *  @param representation       a representation of an ONV
+ *
+ *  @return the next bitstring permutation
  *
  *      Examples:
  *          011 -> 101
  *          101 -> 110
  */
-size_t FockSpace::ulongNextPermutation(size_t representation) {
+size_t FockSpace::ulongNextPermutation(size_t representation) const {
 
     // t gets this->representation's least significant 0 bits set to 1
     unsigned long t = representation | (representation - 1UL);
@@ -49,16 +54,15 @@ size_t FockSpace::ulongNextPermutation(size_t representation) {
  */
 
 /**
- *  Constructor given a @param K (spatial orbitals), N (electrons)
- *  on which the dimensions of the Fock space are based
+ *  @param K        the number of orbitals
+ *  @param N        the number of electrons
  */
-
 FockSpace::FockSpace(size_t K, size_t N) :
         BaseFockSpace(K, FockSpace::calculateDimension(K, N)),
         N (N)
 {
     // Create a zero matrix of dimensions (K+1)x(N+1)
-    this->vertex_weights = GQCP::Matrixu(this->K + 1, GQCP::Vectoru(this->N + 1, 0));
+    this->vertex_weights = Matrixu(this->K + 1, Vectoru(this->N + 1, 0));
 
     // K=5   N=2
     // [ 0 0 0 ]
@@ -113,8 +117,9 @@ FockSpace::FockSpace(size_t K, size_t N) :
  */
 
 /**
- *  Given a number of spatial orbitals @param K
- *  and a number of electrons  @param N,
+ *  @param K        the number of orbitals
+ *  @param N        the number of electrons
+ *
  *  @return the dimension of the Fock space
  */
 size_t FockSpace::calculateDimension(size_t K, size_t N) {
@@ -129,9 +134,56 @@ size_t FockSpace::calculateDimension(size_t K, size_t N) {
  */
 
 /**
- *  @return the ONV with the corresponding address in the considered space
+ *  @param address      the address (i.e. the ordening number) of the ONV
+ *
+ *  @return the ONV with the corresponding address
  */
-ONV FockSpace::get_ONV(size_t address) {
+ONV FockSpace::makeONV(size_t address) const {
+    ONV onv (this->K, this->N);
+    this->transformONV(onv, address);
+    return onv;
+}
+
+
+/**
+ *  Set the current ONV to the next ONV: performs ulongNextPermutation() and updates the corresponding occupation indices of the ONV occupation array
+ *
+ *  @param onv      the current ONV
+ */
+void FockSpace::setNextONV(ONV& onv) const {
+    onv.set_representation(ulongNextPermutation(onv.get_unsigned_representation()));
+}
+
+
+/**
+ *  @param onv      the ONV
+ *
+ *  @return the address (i.e. the ordering number) of the given ONV
+ */
+size_t FockSpace::getAddress(const ONV& onv) const {
+    // An implementation of the formula in Helgaker, starting the addressing count from zero
+    size_t address = 0;
+    size_t electron_count = 0;  // counts the number of electrons in the spin string up to orbital p
+    unsigned long unsigned_onv = onv.get_unsigned_representation();  // copy the unsigned_representation of the onv
+
+    while(unsigned_onv != 0) {  // we will remove the least significant bit each loop, we are finished when no bits are left
+        size_t p = __builtin_ctzl(unsigned_onv);  // p is the orbital index counter (starting from 1)
+        electron_count++;  // each bit is an electron hence we add it up to the electron count
+        address += this->get_vertex_weights(p , electron_count);
+        unsigned_onv ^= unsigned_onv & -unsigned_onv;  // flip the least significant bit
+    }
+    return address;
+}
+
+
+/**
+ *  Transform an ONV to one with corresponding to the given address
+ *
+ *  @param onv          the ONV
+ *  @param address      the address to which the ONV will be set
+ */
+void FockSpace::transformONV(ONV& onv, size_t address) const {
+
     size_t representation;
     if (this->N == 0) {
         representation = 0;
@@ -155,37 +207,77 @@ ONV FockSpace::get_ONV(size_t address) {
             }
         }
     }
-    return ONV(this->K, this->N, representation);
+    onv.set_representation(representation);
 }
 
-
 /**
- *  sets @param ONV to the next ONV in the space
- *  performs the ulongNextPermutation() function
- *  and updates the corresponding occupation indices
- *  of the ONV occupation vector
+ *  @param onv       the ONV
+ *
+ *  @return the amount of ONVs (with a larger address) this ONV would couple with given a one electron operator
  */
-void FockSpace::setNext(ONV& onv) {
-    onv.set_representation(ulongNextPermutation(onv.get_unsigned_representation()));
-}
+size_t FockSpace::countOneElectronCouplings(const ONV& onv) const {
+    size_t V = K-N;  // amount of virtual orbitals
+    size_t coupling_count = 0;
 
-
-/**
- *  @return the Fock space address (i.e. the ordering number) of the @param onv in reverse lexical ordering, in the fock space.
- */
-size_t FockSpace::getAddress(const ONV& onv) {
-    // An implementation of the formula in Helgaker, starting the addressing count from zero
-    size_t address = 0;
-    size_t electron_count = 0;  // counts the number of electrons in the spin string up to orbital p
-    unsigned long unsigned_onv = onv.get_unsigned_representation();  // copy the unsigned_representation of the onv
-
-    while(unsigned_onv != 0) {  // we will remove the least significant bit each loop, we are finished when no bits are left
-        size_t p = __builtin_ctzl(unsigned_onv);  // p is the orbital index counter (starting from 1)
-        electron_count++;  // each bit is an electron hence we add it up to the electron count
-        address += get_vertex_weights(p , electron_count);
-        unsigned_onv ^= unsigned_onv & -unsigned_onv;  // flip the least significant bit
+    for (size_t e1 = 0; e1 < this->N; e1++) {
+        size_t p = onv.get_occupation_index(e1);
+        coupling_count += (V + e1 - p);  // amount of virtuals with an index larger than p
     }
-    return address;
+
+    return coupling_count;
+}
+
+
+/**
+ *  @param onv       the ONV
+ *
+ *  @return the amount of ONVs (with a larger address) this ONV would couple with given a two electron operator
+ */
+size_t FockSpace::countTwoElectronCouplings(const ONV& onv) const {
+
+    size_t V = K-N; // amount of virtual orbitals
+    size_t coupling_count = 0;
+
+    for (size_t e1 = 0; e1 < this->N; e1++){
+
+        size_t p = onv.get_occupation_index(e1);
+        coupling_count += (V + e1 - p);  //  one electron part
+
+        for (size_t e2 = e1+1; e2 < this->N; e2++){
+
+            size_t q = onv.get_occupation_index(e2);
+            size_t coupling_count2 = (V + e2 - q);
+            coupling_count += (V-coupling_count2)*coupling_count2;
+
+            if(coupling_count2 > 1 ){
+                coupling_count += calculateDimension(coupling_count2, 2);
+            }
+        }
+    }
+
+    return coupling_count;
+}
+
+
+/**
+ *  @return the amount non-zero couplings of a one electron coupling scheme in the Fock space
+ */
+size_t FockSpace::countTotalOneElectronCouplings() const {
+    return (K-N)*N*(dim);
+}
+
+
+/**
+ *  @return the amount non-zero couplings of a two electron coupling scheme in the Fock space
+ */
+size_t FockSpace::countTotalTwoElectronCouplings() const {
+
+    size_t two_electron_permutation = 0; // all distributions for two electrons over the virtual orbitals
+    if (K-N >= 2) {
+        two_electron_permutation = calculateDimension(K-N, 2)*N*(N-1)*(dim)/2;
+    }
+
+    return two_electron_permutation + countTotalOneElectronCouplings();
 }
 
 

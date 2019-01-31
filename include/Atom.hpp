@@ -1,6 +1,6 @@
 // This file is part of GQCG-gqcp.
 // 
-// Copyright (C) 2017-2018  the GQCG developers
+// Copyright (C) 2017-2019  the GQCG developers
 // 
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -22,67 +22,85 @@
 #include <iostream>
 #include <stdlib.h>
 
+#include <Eigen/Dense>
+
 
 namespace GQCP {
 
 /**
- *  A data-holder struct to represent an atom with
- *      - an @member atomic_charge
- *      - coordinates @member x, @member y, @member z
+ *  A class to represent an atom with an atomic charge and a position in space (in bohr)
  */
-struct Atom {
+class Atom {
 public:
     size_t atomic_number;
-    double x;
-    double y;
-    double z;
+    Eigen::Vector3d position;  // in bohr
 
-    static constexpr double tolerance_for_comparison = 1.0e-08;
+    static constexpr double tolerance_for_comparison = 1.0e-08;  // in bohr
 
 public:
     // CONSTRUCTORS
     /**
-     *  Constructor based on a given @param atomic_number and the coordinates @param x, @param y, @param z
+     *  @param atomic_number        the atomic number (Z) of the atom
+     *  @param x                    the x-position of the atom in bohr
+     *  @param y                    the y-position of the atom in bohr
+     *  @param z                    the z-position of the atom in bohr
      */
-    Atom (size_t atomic_number, double x, double y, double z);
+    Atom(size_t atomic_number, double x, double y, double z);
 
 
     // OPERATORS
     /**
-     *  @return if this is equal to @param other, within the @member tolerance_for_comparison for the coordinates
-     */
-    bool operator==(const GQCP::Atom& other) const;
-
-    /**
-     *  @return if this is smaller than @param other, within the @member tolerance_for_comparison for the coordinates
+     *  @param other        the other atom
      *
-     *  @member atomic_number takes precedence over @member x, over @member y, over @member z
+     *  @return if this atom is equal to the other, within a default tolerance for the coordinates
      */
-    bool operator<(const GQCP::Atom& other) const;
+    bool operator==(const Atom& other) const;
 
     /**
-     *  Overloading of operator<< for a GQCP::Atom to be used with streams
+     *  A custom implementation for the comparison (and thus ordening) of atoms. The atomic_number takes precedence over the x-coordinate, which takes precedence over the y-coordinate, which in turn takes precedence over the z-coordinate
+     *
+     *  @param other        the other atom
+     *
+     *  @return if this atom is 'smaller' than the other, within a default tolerance for the coordinates
      */
-    friend std::ostream& operator<<(std::ostream& os, const GQCP::Atom& atom);
+    bool operator<(const Atom& other) const;
+
+    /**
+     *  Overloading of operator<< for a Atom to be used with ostreams
+     *
+     *  @param os       the output stream to which the atom should be concatenated
+     *  @param atom     the atom which should be concatenated to the output stream
+     *
+     *  @return the updated output stream
+     */
+    friend std::ostream& operator<<(std::ostream& os, const Atom& atom);
 
 
     // PUBLIC METHODS
     /**
-     *  @return if this is equal to @param other, within the given @param tolerance for the coordinates
-     */
-    bool isEqualTo(const GQCP::Atom& other, double tolerance=Atom::tolerance_for_comparison) const;
-
-    /**
-     *  @return if this is smaller than @param other, within the given @param tolerance for the coordinates
+     *  @param other        the other atom
+     *  @param tolerance    the tolerance for equality of positions
      *
-     *  @member atomic_number takes precedence over @member x, over @member y, over @member z
+     *  @return if this atom is equal to the other
      */
-    bool isSmallerThan(const GQCP::Atom& other, double tolerance=Atom::tolerance_for_comparison) const;
+    bool isEqualTo(const Atom& other, double tolerance=Atom::tolerance_for_comparison) const;
 
     /**
-     * @return the distance between this and @param other
+     *  A custom implementation for the comparison (and thus ordening) of atoms. The atomic_number takes precedence over the x-coordinate, which takes precedence over the y-coordinate, which in turn takes precedence over the z-coordinate
+     *
+     *  @param other        the other atom
+     *  @param tolerance    the tolerance for equality of positions
+     *
+     *  @return if this atom is 'smaller' than the other, within a default tolerance for the coordinates
      */
-    double calculateDistance(const GQCP::Atom& other) const;
+    bool isSmallerThan(const Atom& other, double tolerance=Atom::tolerance_for_comparison) const;
+
+    /**
+     *  @param other        the other atom
+     *
+     *  @return the Euclidian distance between this atom and the other
+     */
+    double calculateDistance(const Atom& other) const;
 };
 
 

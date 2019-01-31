@@ -1,6 +1,6 @@
 // This file is part of GQCG-gqcp.
 // 
-// Copyright (C) 2017-2018  the GQCG developers
+// Copyright (C) 2017-2019  the GQCG developers
 // 
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -22,18 +22,22 @@ namespace GQCP {
 
 
 /**
- *  @return the RMP2 energy correction based on given @param Hamiltonian parameters ham_par, a given @param molecule and a converged solution @param rhf to the RHF SCF equations
+ *  @param ham_par      Hamiltonian parameters in an orthornomal orbital basis
+ *  @param molecule     the molecule for which the energy correction should be calculated
+ *  @param rhf          the converged solution to the RHF SCF equations
+ *
+ *  @return the RMP2 energy correction
  */
-double calculateRMP2EnergyCorrection(const GQCP::HamiltonianParameters& ham_par, const GQCP::Molecule& molecule, const GQCP::RHF& rhf) {
+double calculateRMP2EnergyCorrection(const HamiltonianParameters& ham_par, const Molecule& molecule, const RHF& rhf) {
 
     size_t N = molecule.get_N();
+    size_t K = ham_par.get_K();
 
-    Eigen::Tensor<double, 4> g = ham_par.get_g().get_matrix_representation();
-    size_t K = g.dimension(0);  // TODO: change to ham_par.dim after rebase
+    size_t HOMO_index = RHFHOMOIndex(N);
+    size_t LUMO_index = RHFLUMOIndex(K, N);
 
 
-    size_t HOMO_index = GQCP::RHFHOMOIndex(N);
-    size_t LUMO_index = GQCP::RHFLUMOIndex(K, N);
+    TwoElectronOperator g = ham_par.get_g();
 
     double E = 0.0;
     //  loop over all occupied orbitals (0 <= HOMO )

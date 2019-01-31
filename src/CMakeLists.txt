@@ -1,13 +1,14 @@
-# src-level CMakeLists.txt
+include(${CMAKE_SOURCE_DIR}/cmake/Configure/ConfigureLibrary.cmake)
 
+# Generate documentation
+if (BUILD_DOCS)
+    set(DOXYGEN_IN ${CMAKE_SOURCE_DIR}/cmake/Parse/Doxyfile.in)
+    set(DOXYGEN_OUT ${CMAKE_BINARY_DIR}/Doxyfile)
 
-# We want to make a static library target called "GQCP", based on the project source files
-add_library(${LIBRARY_NAME} ${LIBRARY_TYPE} ${PROJECT_SOURCE_FILES} ${PROJECT_INCLUDE_FILES})
+    configure_file(${DOXYGEN_IN} ${DOXYGEN_OUT} @ONLY)
 
-
-# Configure the library: include headers and link to libraries
-include(${CMAKE_SOURCE_DIR}/cmake/ConfigureLibrary.cmake)
-
-
-# Make the install target for this library
-include(${CMAKE_SOURCE_DIR}/cmake/InstallLibrary.cmake)
+    add_custom_target(docs ALL
+            COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_OUT}
+            WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+            VERBATIM)
+endif()

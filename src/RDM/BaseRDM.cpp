@@ -1,6 +1,6 @@
 // This file is part of GQCG-gqcp.
 // 
-// Copyright (C) 2017-2018  the GQCG developers
+// Copyright (C) 2017-2019  the GQCG developers
 // 
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -27,7 +27,7 @@ namespace GQCP {
  */
 
 /**
- *  Constructor based on a given @param dimension
+ *  @param dimension    the dimension of the matrix representation of the operator (i.e. the number of orbitals)
  */
 BaseRDM::BaseRDM(size_t dimension) :
     dim (dimension)

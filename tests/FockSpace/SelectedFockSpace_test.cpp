@@ -1,6 +1,6 @@
 // This file is part of GQCG-gqcp.
 // 
-// Copyright (C) 2017-2018  the GQCG developers
+// Copyright (C) 2017-2019  the GQCG developers
 // 
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -17,21 +17,21 @@
 // 
 #define BOOST_TEST_MODULE "SelectedFockSpace"
 
+#include <boost/test/unit_test.hpp>
+#include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
+
 
 #include "FockSpace/SelectedFockSpace.hpp"
 
 #include "WaveFunction/WaveFunctionReader.hpp"
 
 
-#include <boost/test/unit_test.hpp>
-#include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
-
 
 BOOST_AUTO_TEST_CASE ( constructor ) {
 
     BOOST_CHECK_NO_THROW(GQCP::SelectedFockSpace (10, 5, 5));
 
-    GQCP::FockSpaceProduct fock_space_product (10, 5, 5);
+    GQCP::ProductFockSpace fock_space_product (10, 5, 5);
     GQCP::FockSpace fock_space (10, 5);
 
     BOOST_CHECK_NO_THROW(GQCP::SelectedFockSpace fock (fock_space_product));
@@ -90,7 +90,7 @@ BOOST_AUTO_TEST_CASE ( reader_test ) {
 
     // We will test if we can construct a selected fock space and a corresponding coefficients
     // through an input file
-    GQCP::WaveFunctionReader test_reader ("../tests/data/test_GAMESS_expansion");
+    GQCP::WaveFunctionReader test_reader ("data/test_GAMESS_expansion");
 
 
     // Check read vector is correct

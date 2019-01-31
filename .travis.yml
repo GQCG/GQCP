@@ -1,98 +1,106 @@
 # Specify the virtual environment
-dist: trusty
+dist: xenial
 sudo: true
-
 
 # Specify the project language and the compiler to test to
 language: cpp
 compiler: gcc
 
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - gcc-8
+      - g++-8
+      - cmake
 
 # Enable Slack notifications, disable e-mail
 notifications:
     slack: GQCG:5PZ5ibXCwNU1b5ToWbHVIqnI
     email: false
 
+before_cache:
+    - rm -rf $HOME/miniconda/locks $HOME/miniconda/pkgs $HOME/miniconda/var $HOME/miniconda/conda-meta/history
+    - pip uninstall -y cardboardlint
 
-# Install Miniconda and CMake
+# Cache miniconda for faster build procedures
+cache:
+    directories:
+        - $HOME/miniconda
+        - $HOME/download
+
 before_install:
-  # Install Miniconda
-  - if [[ "${TRAVIS_PYTHON_VERSION}" == "2.7" ]]; then
-      wget wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O miniconda.sh;
-    else
-      wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
-    fi
-  - bash miniconda.sh -b -p ${HOME}/miniconda
-  - export PATH="${HOME}/miniconda/bin:${PATH}"
-  - hash -r
-  - conda config --set always_yes yes --set changeps1 no
-  - conda update -q conda
+    # Install Miniconda
+    - if [ -d $HOME/miniconda/bin ]; then
+        echo "Miniconda already installed.";
+      else
+        echo "Installing miniconda.";
+        rm -rf $HOME/miniconda;
+        mkdir -p $HOME/download;
+        if [[ "${TRAVIS_PYTHON_VERSION}" == "2.7" ]]; then
+            wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O $HOME/download/miniconda.sh;
+        else
+            wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O $HOME/download/miniconda.sh;
+        fi;
+        bash $HOME/download/miniconda.sh -b -p ${HOME}/miniconda;
+      fi
 
-  # Install a recent version of CMake
-  - conda install -c conda-forge cmake
+    # Add headers and libraries to path
+    - export CONDA_HOME=${HOME}/miniconda
+    - export C_INCLUDE_PATH=${CONDA_HOME}/include:${C_INCLUDE_PATH}
+    - export CPLUS_INCLUDE_PATH=${CONDA_HOME}/include:${CPLUS_INCLUDE_PATH}
+    - export LIBRARY_PATH=${CONDA_HOME}/lib:${LIBRARY_PATH}
+    - export LD_LIBRARY_PATH=${CONDA_HOME}/lib:${LD_LIBRARY_PATH}
+    - export DYLD_FALLBACK_LIBRARY_PATH=${CONDA_HOME}/lib:${DYLD_FALLBACK_LIBRARY_PATH}
 
+    # Set GCC 8 compiler
+    - export CC=/usr/bin/gcc-8
+    - export CXX=/usr/bin/g++-8
+    - gcc -v && g++ -v && cmake --version
 
 # Install general dependencies
 install:
-  # Install Boost before Eigen
-  - conda install -c conda-forge boost-cpp
-  - export BOOST_ROOT=${HOME}/miniconda/include
 
-  # Install Eigen
-  - conda install -c conda-forge eigen
+    # Configure conda
+    - source $HOME/miniconda/bin/activate
+    - hash -r
+    - conda config --set always_yes yes --set changeps1 no
 
-  # Install cpputil
-  - mkdir /tmp/cpputil && cd /tmp/cpputil
-  - git clone https://github.com/GQCG/cpputil.git --branch master --single-branch
-  - cd cpputil
-  - mkdir build && cd build
-  - cmake .. && make && make test && sudo make install
+    # Install a recent version of CMake, Boost and eigen if they are not yet already installed.
+    - if [ ! -f $HOME/miniconda/bin/cmake ]; then
+        conda install -c conda-forge cmake boost-cpp eigen;
+        conda install -c gqcg libint;
+      else
+        echo "Using already installed packages.";
+      fi
+    - export LIBINT_DATA_PATH=${HOME}/miniconda/share/libint/2.3.1/basis
 
-  # Install Spectra as dependency for numopt
-  - cd /usr/local/
-  - sudo git clone https://github.com/yixuan/spectra.git
-
-  # Install numopt
-  - mkdir /tmp/numopt && cd /tmp/numopt
-  - git clone https://github.com/GQCG/numopt.git --branch master --single-branch
-  - cd numopt
-  - mkdir build && cd build
-  - cmake .. && make && make test && sudo make install
-
-  # We can't install libint2 (2.2.0+) through APT.
-  # Since compiling libint2 takes around 15 minutes on Travis, it is a good idea to cache it (see also below)
-  - |
-    if [ ! -d /tmp/libint/libint-2.3.1 ]; then
-       mkdir -p /tmp/libint && cd /tmp/libint
-       curl -OL "https://github.com/evaleev/libint/archive/v2.3.1.tar.gz"
-       tar -xvzf v2.3.1.tar.gz
-       cd libint-2.3.1
-       ./autogen.sh
-       mkdir build && cd build
-       ../configure CXXFLAGS=-I${BOOST_ROOT}
-       make export
-       tar -xvzf libint-2.3.1.tgz
-       cd libint-2.3.1
-       ./configure CXXFLAGS=-I${BOOST_ROOT}
-       make
-       sudo make install
-    else
-      cd /tmp/libint/libint-2.3.1/build/libint-2.3.1
-      sudo make install
-    fi
-
-  # Finally, since libint often complains about reading the basis sets, specify a LIBINT_DATA_PATH to help libint find the files.
-  - export LIBINT_DATA_PATH=/usr/local/libint/2.3.1/share/libint/2.3.1/basis
-
+    # Install google benchmark
+    - mkdir /tmp/bench && cd /tmp/bench
+    # Fork from tmhuysen for cmake fix
+    - git clone https://github.com/tmhuysen/benchmark.git
+    # Benchmark requires Google Test as a dependency. Add the source tree as a subdirectory.
+    - cd benchmark
+    - git clone https://github.com/google/googletest.git
+    - mkdir build && cd build
+    - cmake .. -DCMAKE_BUILD_TYPE=RELEASE
+    - make -j3 && sudo make install
 
 # Run the build script
 script:
   - cd ${TRAVIS_BUILD_DIR}
   - mkdir build && cd build
-  - cmake ..
-  - make && make test && sudo make install
+  - cmake .. -DBUILD_BENCHMARKS=ON -DBUILD_DRIVERS=ON -DBOOST_LIBRARYDIR=${HOME}/miniconda/lib -DBOOST_INCLUDEDIR=${HOME}/miniconda/include
+  - make -j3 VERBOSE=1 && make test ARGS=-j3 && sudo make install
 
-
-cache:
-    directories:  # add the libint compilation to the cache
-    - /tmp/libint
+# Run the benchmarks
+  - cd benchmarks
+  - ./doci_case --benchmark_counters_tabular=true
+  - ./doci_matrix --benchmark_counters_tabular=true
+  - ./doci_matvec --benchmark_counters_tabular=true
+  - ./fci_matrix --benchmark_counters_tabular=true
+  - ./fci_matvec --benchmark_counters_tabular=true
+  - ./hubbard_diagonalization --benchmark_counters_tabular=true
+  - ./hubbard_matrix --benchmark_counters_tabular=true
+  - ./hubbard_matvec --benchmark_counters_tabular=true
