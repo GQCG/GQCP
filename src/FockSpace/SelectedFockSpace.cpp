@@ -90,8 +90,8 @@ SelectedFockSpace::SelectedFockSpace(const ProductFockSpace& fock_space) :
 
     std::vector<Configuration> configurations;
 
-    FockSpace fock_space_alpha = fock_space.get_fock_space_alpha();
-    FockSpace fock_space_beta = fock_space.get_fock_space_beta();
+    const FockSpace& fock_space_alpha = fock_space.get_fock_space_alpha();
+    const FockSpace& fock_space_beta = fock_space.get_fock_space_beta();
 
     auto dim_alpha = fock_space_alpha.get_dimension();
     auto dim_beta = fock_space_beta.get_dimension();
