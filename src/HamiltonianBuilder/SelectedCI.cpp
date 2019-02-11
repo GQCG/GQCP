@@ -323,8 +323,8 @@ Eigen::VectorXd SelectedCI::calculateDiagonal(const HamiltonianParameters &hamil
         }  // loop over q
 
     }  // alpha address (Ia) loop
-    return diagonal;
 
+    return diagonal;
 }
 
 
