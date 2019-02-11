@@ -468,9 +468,8 @@ Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters& hamiltonia
 
     Eigen::VectorXd matvec = diagonal.cwiseProduct(x);
 
-    Eigen::Map<Eigen::MatrixXd> matvecmap(matvec.data(), dim_alpha, dim_beta);
-    Eigen::Map<const Eigen::MatrixXd> xmap(x.data(), dim_alpha, dim_beta);
-
+    Eigen::Map<Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor>> matvecmap(matvec.data(), dim_alpha, dim_beta);
+    Eigen::Map<const Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor>> xmap(x.data(), dim_alpha, dim_beta);
 
     for (size_t p = 0; p<K; p++) {
         // sigma(pp) * X * theta(pp)
