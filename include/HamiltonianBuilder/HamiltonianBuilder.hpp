@@ -29,6 +29,14 @@
 
 namespace GQCP {
 
+/**
+ *  Typedef for a type of function that handles where to 'put' a calculated value (e.g. matrix or vector).
+ *
+ *  @param I        index or address of an ONV
+ *  @param J        index or address of ONV that couples with ONV I
+ *  @param value    value related to the coupling
+ */
+using PassToMethod = std::function<void (size_t I, size_t J, double value)>;
 
 /**
  *  A base class whose derived classes are able to construct matrix representations of the Hamiltonian in a Fock space

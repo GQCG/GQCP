@@ -42,30 +42,30 @@ BOOST_AUTO_TEST_CASE ( SelectedCI_constructor ) {
 
 BOOST_AUTO_TEST_CASE ( SelectedCI_public_methods ) {
 
-    // Create random HamiltonianParameters to check compatibility
+    // Create random HamiltonianParameters to check compatibility of the arguments
     size_t K = 5;
     auto random_hamiltonian_parameters = GQCP::HamiltonianParameters::Random(K);
 
     // Create a compatible Fock space
     GQCP::ProductFockSpace product_fock_space (K, 3, 3);
     GQCP::SelectedFockSpace fock_space (product_fock_space);
-    GQCP::SelectedCI random_sci (fock_space);
-    Eigen::VectorXd x = random_sci.calculateDiagonal(random_hamiltonian_parameters);
-    BOOST_CHECK_NO_THROW(random_sci.constructHamiltonian(random_hamiltonian_parameters));
-    BOOST_CHECK_NO_THROW(random_sci.matrixVectorProduct(random_hamiltonian_parameters, x, x));
+    GQCP::SelectedCI random_selected_ci (fock_space);
+    Eigen::VectorXd x = random_selected_ci.calculateDiagonal(random_hamiltonian_parameters);
+    BOOST_CHECK_NO_THROW(random_selected_ci.constructHamiltonian(random_hamiltonian_parameters));
+    BOOST_CHECK_NO_THROW(random_selected_ci.matrixVectorProduct(random_hamiltonian_parameters, x, x));
 
     // Create an incompatible Fock space
     GQCP::ProductFockSpace product_fock_space_invalid (K+1, 3, 3);
     GQCP::SelectedFockSpace fock_space_invalid (product_fock_space_invalid);
-    GQCP::SelectedCI random_sci_invalid (fock_space_invalid);
-    BOOST_CHECK_THROW(random_sci_invalid.constructHamiltonian(random_hamiltonian_parameters), std::invalid_argument);
-    BOOST_CHECK_THROW(random_sci_invalid.matrixVectorProduct(random_hamiltonian_parameters, x, x), std::invalid_argument);
+    GQCP::SelectedCI random_selected_ci_invalid (fock_space_invalid);
+    BOOST_CHECK_THROW(random_selected_ci_invalid.constructHamiltonian(random_hamiltonian_parameters), std::invalid_argument);
+    BOOST_CHECK_THROW(random_selected_ci_invalid.matrixVectorProduct(random_hamiltonian_parameters, x, x), std::invalid_argument);
 }
 
 
 BOOST_AUTO_TEST_CASE ( SelectedCI_vs_FCI ) {
 
-    // Create H-chain HamiltonianParameters to test results
+    // Create H-chain HamiltonianParameters to test results from FCI and selected CI
     size_t K = 4;
     GQCP::Molecule H4 = GQCP::Molecule::HChain(K, 1.1);
     auto hamiltonian_parameters = GQCP::HamiltonianParameters::Molecular(H4, "STO-3G");
@@ -74,28 +74,27 @@ BOOST_AUTO_TEST_CASE ( SelectedCI_vs_FCI ) {
     GQCP::ProductFockSpace product_fock_space (K, 2, 2);
     GQCP::SelectedFockSpace fock_space (product_fock_space);
 
-    // The SelectedFockSpace includes the same configurations as the ProductFockSpace
-    // These builder instances should return the same results.
-    GQCP::SelectedCI sci (fock_space);
+    // The SelectedFockSpace includes the same configurations as the ProductFockSpace, so the HamiltonianBuilders should return the same results
+    GQCP::SelectedCI selected_ci (fock_space);
     GQCP::FCI fci (product_fock_space);
 
-    Eigen::VectorXd sx = sci.calculateDiagonal(hamiltonian_parameters);
-    Eigen::VectorXd fx = fci.calculateDiagonal(hamiltonian_parameters);
+    Eigen::VectorXd selected_ci_diagonal = selected_ci.calculateDiagonal(hamiltonian_parameters);
+    Eigen::VectorXd fci_diagonal = fci.calculateDiagonal(hamiltonian_parameters);
 
-    Eigen::VectorXd s_mv = sci.matrixVectorProduct(hamiltonian_parameters, sx, sx);
-    Eigen::VectorXd f_mv = fci.matrixVectorProduct(hamiltonian_parameters, fx, fx);
+    Eigen::VectorXd selected_ci_matvec = selected_ci.matrixVectorProduct(hamiltonian_parameters, selected_ci_diagonal, selected_ci_diagonal);
+    Eigen::VectorXd fci_matvec = fci.matrixVectorProduct(hamiltonian_parameters, fci_diagonal, fci_diagonal);
 
-    Eigen::MatrixXd s_ham = sci.constructHamiltonian(hamiltonian_parameters);
-    Eigen::MatrixXd f_ham = fci.constructHamiltonian(hamiltonian_parameters);
+    Eigen::MatrixXd selected_ci_hamiltonian = selected_ci.constructHamiltonian(hamiltonian_parameters);
+    Eigen::MatrixXd fci_hamiltonian = fci.constructHamiltonian(hamiltonian_parameters);
 
-    BOOST_CHECK(sx.isApprox(fx));
-    BOOST_CHECK(s_mv.isApprox(f_mv));
-    BOOST_CHECK(s_ham.isApprox(f_ham));
+    BOOST_CHECK(selected_ci_diagonal.isApprox(fci_diagonal));
+    BOOST_CHECK(selected_ci_matvec.isApprox(fci_matvec));
+    BOOST_CHECK(selected_ci_hamiltonian.isApprox(fci_hamiltonian));
 }
 
 BOOST_AUTO_TEST_CASE ( SelectedCI_vs_DOCI ) {
 
-    // Create H-chain HamiltonianParameters to test results
+    // Create H-chain HamiltonianParameters to test results from DOCI and selected CI
     size_t K = 4;
     GQCP::Molecule H4 = GQCP::Molecule::HChain(K, 1.1);
     auto hamiltonian_parameters = GQCP::HamiltonianParameters::Molecular(H4, "STO-3G");
@@ -106,19 +105,19 @@ BOOST_AUTO_TEST_CASE ( SelectedCI_vs_DOCI ) {
 
     // The SelectedFockSpace includes the same configurations as the FockSpace
     // These builder instances should return the same results.
-    GQCP::SelectedCI sci (fock_space);
+    GQCP::SelectedCI selected_ci (fock_space);
     GQCP::DOCI doci (do_fock_space);
 
-    Eigen::VectorXd sx = sci.calculateDiagonal(hamiltonian_parameters);
-    Eigen::VectorXd dx = doci.calculateDiagonal(hamiltonian_parameters);
+    Eigen::VectorXd selected_ci_diagonal = selected_ci.calculateDiagonal(hamiltonian_parameters);
+    Eigen::VectorXd doci_diagonal = doci.calculateDiagonal(hamiltonian_parameters);
 
-    Eigen::VectorXd s_mv = sci.matrixVectorProduct(hamiltonian_parameters, sx, sx);
-    Eigen::VectorXd d_mv = doci.matrixVectorProduct(hamiltonian_parameters, dx, dx);
+    Eigen::VectorXd selected_ci_matvec = selected_ci.matrixVectorProduct(hamiltonian_parameters, selected_ci_diagonal, selected_ci_diagonal);
+    Eigen::VectorXd doci_matvec = doci.matrixVectorProduct(hamiltonian_parameters, doci_diagonal, doci_diagonal);
 
-    Eigen::MatrixXd s_ham = sci.constructHamiltonian(hamiltonian_parameters);
-    Eigen::MatrixXd d_ham = doci.constructHamiltonian(hamiltonian_parameters);
+    Eigen::MatrixXd selected_ci_hamiltonian = selected_ci.constructHamiltonian(hamiltonian_parameters);
+    Eigen::MatrixXd doci_hamiltonian = doci.constructHamiltonian(hamiltonian_parameters);
 
-    BOOST_CHECK(sx.isApprox(dx));
-    BOOST_CHECK(s_mv.isApprox(d_mv));
-    BOOST_CHECK(s_ham.isApprox(d_ham));
+    BOOST_CHECK(selected_ci_diagonal.isApprox(doci_diagonal));
+    BOOST_CHECK(selected_ci_matvec.isApprox(doci_matvec));
+    BOOST_CHECK(selected_ci_hamiltonian.isApprox(doci_hamiltonian));
 }

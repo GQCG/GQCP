@@ -26,27 +26,22 @@
 
 namespace GQCP {
 
-
-// Typedef for a function that will be passed to the evaluation, it defines to what and how the evaluated results will be added
-using PassToMethod = std::function<void (size_t I, size_t J, double value)>;
-
-
 /**
  *  SelectedCI builds a Hamiltonian matrix in the Selected Fock space
  */
 class SelectedCI : public HamiltonianBuilder {
 private:
-    SelectedFockSpace fock_space;  // fock space containing the alpha and beta Fock space
-
+    SelectedFockSpace fock_space;  // contains both the alpha and beta Fock space
     
     // PRIVATE METHODS
     /**
-     *  Evaluate the hamiltonian elements
+     *  Evaluate all Hamiltonian elements, putting the results in the Hamiltonian matrix or matvec through the `method` function
+     *  This function is used both in `constructHamiltonian()` and `matrixVectorProduct()` to avoid duplicate code.
      *
-     *  @param hamiltonian_parameters   the orthogonal Hamiltonian parameters
-     *  @param method                   the used method: constructHamiltonian() or matrixVectorProduct()
+     *  @param hamiltonian_parameters   the Hamiltonian parameters in an orthonormal basis
+     *  @param method                   the method depending to how you wish to construct the Hamiltonian
      */
-    void evaluateHamiltonian(const HamiltonianParameters& hamiltonian_parameters, const PassToMethod& method) const;
+    void evaluateHamiltonianElements(const HamiltonianParameters& hamiltonian_parameters, const PassToMethod& method) const;
 public:
 
     // CONSTRUCTORS
