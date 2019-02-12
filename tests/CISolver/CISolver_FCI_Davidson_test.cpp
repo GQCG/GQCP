@@ -153,3 +153,45 @@ BOOST_AUTO_TEST_CASE ( FCI_H2O_STO_3G_dense_vs_Davidson ) {
 
     BOOST_CHECK(std::abs(fci_dense_eigenvalue - fci_davidson_eigenvalue) < 1.0e-08);
 }
+
+BOOST_AUTO_TEST_CASE ( FCI_H6_STO_3G_dense_vs_Davidson ) {
+
+    // Check if the dense FCI energy is equal to the Davidson (with matvec) FCI energy
+
+    // Create the molecular Hamiltonian parameters in an AO basis
+    size_t K = 6;
+    GQCP::Molecule H6 = GQCP::Molecule::HChain(K, 1.1);
+    auto mol_ham_par = GQCP::HamiltonianParameters::Molecular(H6, "STO-3G");
+
+    // Create a plain RHF SCF solver and solve the SCF equations
+    GQCP::PlainRHFSCFSolver plain_scf_solver (mol_ham_par, H6);
+    plain_scf_solver.solve();
+    auto rhf = plain_scf_solver.get_solution();
+
+    // Transform the ham_par
+    mol_ham_par.transform(rhf.get_C());
+
+    GQCP::ProductFockSpace fock_space (K, 3, 2);  // dim = 300
+
+    // Create the FCI module
+    GQCP::FCI fci (fock_space);
+    GQCP::CISolver ci_solver (fci, mol_ham_par);
+
+    // Solve Davidson
+    Eigen::VectorXd initial_g = fock_space.HartreeFockExpansion();
+    GQCP::DavidsonSolverOptions davidson_solver_options (initial_g);
+    ci_solver.solve(davidson_solver_options);
+
+    // Retrieve the eigenvalues
+    auto fci_davidson_eigenvalue = ci_solver.get_eigenpair().get_eigenvalue();
+
+    // Solve Dense
+    GQCP::DenseSolverOptions dense_solver_options;
+    ci_solver.solve(dense_solver_options);
+
+    // Retrieve the eigenvalues
+    auto fci_dense_eigenvalue = ci_solver.get_eigenpair().get_eigenvalue();
+
+    BOOST_CHECK(std::abs(fci_dense_eigenvalue - fci_davidson_eigenvalue) < 1.0e-08);
+}
+
