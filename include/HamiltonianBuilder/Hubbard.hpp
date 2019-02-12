@@ -26,11 +26,6 @@
 
 namespace GQCP {
 
-
-// Typedef for a function that will be passed to the evaluation, it defines to what and how the evaluated results will be added
-using PassToMethod = std::function<void (size_t I, size_t J, double value)>;
-
-
 /**
  *  Hubbard builds a a Hubbard Hamiltonian matrix in the FCI Fock space
  *

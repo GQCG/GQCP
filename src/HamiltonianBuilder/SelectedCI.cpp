@@ -24,17 +24,15 @@ namespace GQCP {
  *  PRIVATE METHODS
  */
 
-/**
- *  Evaluate the hamiltonian elements
- *
- *  @param hamiltonian_parameters   the orthogonal Hamiltonian parameters
- *  @param method                   the used method: constructHamiltonian() or matrixVectorProduct()
- */
-void SelectedCI::evaluateHamiltonian(const HamiltonianParameters& hamiltonian_parameters, const PassToMethod& method) const {
+// This file is part of GQCG-gqcp.
+
+void SelectedCI::evaluateHamiltonianElements(const HamiltonianParameters& hamiltonian_parameters, const PassToMethod& method) const {
 
     size_t dim = fock_space.get_dimension();
     size_t K = fock_space.get_K();
 
+    auto h = hamiltonian_parameters.get_h();
+    auto g = hamiltonian_parameters.get_g();
 
     for (size_t I = 0; I < dim; I++) {  // loop over all addresses (1)
         Configuration configuration_I = this->fock_space.get_configuration(I);
@@ -57,7 +55,7 @@ void SelectedCI::evaluateHamiltonian(const HamiltonianParameters& hamiltonian_pa
                 // Calculate the total sign
                 int sign = alpha_I.operatorPhaseFactor(p) * alpha_J.operatorPhaseFactor(q);
 
-                double value = hamiltonian_parameters.get_h()(p,q);
+                double value = h(p,q);
 
                 method(I, J, sign*value);
                 method(J, I, sign*value);
@@ -67,10 +65,10 @@ void SelectedCI::evaluateHamiltonian(const HamiltonianParameters& hamiltonian_pa
                     if (alpha_I.isOccupied(r) && alpha_J.isOccupied(r)) {  // r must be occupied on the left and on the right
                         if ((p != r) && (q != r)) {  // can't create or annihilate the same orbital
 
-                            double value = 0.5 * (hamiltonian_parameters.get_g()(p,q,r,r)
-                                               - hamiltonian_parameters.get_g()(r,q,p,r)
-                                               - hamiltonian_parameters.get_g()(p,r,r,q)
-                                               + hamiltonian_parameters.get_g()(r,r,p,q));
+                            double value = 0.5 * (g(p,q,r,r)
+                                               - g(r,q,p,r)
+                                               - g(p,r,r,q)
+                                               + g(r,r,p,q));
 
                             method(I, J, sign*value);
                             method(J, I, sign*value);
@@ -79,8 +77,8 @@ void SelectedCI::evaluateHamiltonian(const HamiltonianParameters& hamiltonian_pa
 
                     if (beta_I.isOccupied(r)) {  // beta_I == beta_J from the previous if-branch
 
-                        double value = 0.5 * (hamiltonian_parameters.get_g()(p,q,r,r)
-                                           +  hamiltonian_parameters.get_g()(r,r,p,q));
+                        double value = 0.5 * (g(p,q,r,r)
+                                           +  g(r,r,p,q));
 
                         method(I, J, sign*value);
                         method(J, I, sign*value);
@@ -99,7 +97,7 @@ void SelectedCI::evaluateHamiltonian(const HamiltonianParameters& hamiltonian_pa
                 // Calculate the total sign
                 int sign = beta_I.operatorPhaseFactor(p) * beta_J.operatorPhaseFactor(q);
 
-                double value = hamiltonian_parameters.get_h()(p,q);
+                double value = h(p,q);
 
                 method(I, J, sign*value);
                 method(J, I, sign*value);
@@ -108,10 +106,10 @@ void SelectedCI::evaluateHamiltonian(const HamiltonianParameters& hamiltonian_pa
 
                     if (beta_I.isOccupied(r) && beta_J.isOccupied(r)) {  // r must be occupied on the left and on the right
                         if ((p != r) && (q != r)) {  // can't create or annihilate the same orbital
-                            double value = 0.5 * (hamiltonian_parameters.get_g()(p,q,r,r)
-                                               -  hamiltonian_parameters.get_g()(r,q,p,r)
-                                               -  hamiltonian_parameters.get_g()(p,r,r,q)
-                                               +  hamiltonian_parameters.get_g()(r,r,p,q));
+                            double value = 0.5 * (g(p,q,r,r)
+                                               -  g(r,q,p,r)
+                                               -  g(p,r,r,q)
+                                               +  g(r,r,p,q));
 
                             method(I, J, sign*value);
                             method(J, I, sign*value);
@@ -120,8 +118,8 @@ void SelectedCI::evaluateHamiltonian(const HamiltonianParameters& hamiltonian_pa
 
                     if (alpha_I.isOccupied(r)) {  // alpha_I == alpha_J from the previous if-branch
 
-                        double value =  0.5 * (hamiltonian_parameters.get_g()(p,q,r,r)
-                                            +  hamiltonian_parameters.get_g()(r,r,p,q));
+                        double value =  0.5 * (g(p,q,r,r)
+                                            +  g(r,r,p,q));
 
                         method(I, J, sign*value);
                         method(J, I, sign*value);
@@ -140,8 +138,8 @@ void SelectedCI::evaluateHamiltonian(const HamiltonianParameters& hamiltonian_pa
                 size_t s = beta_J.findDifferentOccupations(beta_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
 
                 int sign = alpha_I.operatorPhaseFactor(p) * alpha_J.operatorPhaseFactor(q) * beta_I.operatorPhaseFactor(r) * beta_J.operatorPhaseFactor(s);
-                double value = 0.5 * (hamiltonian_parameters.get_g()(p,q,r,s)
-                                   +  hamiltonian_parameters.get_g()(r,s,p,q));
+                double value = 0.5 * (g(p,q,r,s)
+                                   +  g(r,s,p,q));
 
                 method(I, J, sign*value);
                 method(J, I, sign*value);
@@ -161,10 +159,10 @@ void SelectedCI::evaluateHamiltonian(const HamiltonianParameters& hamiltonian_pa
 
                 int sign = alpha_I.operatorPhaseFactor(p) * alpha_I.operatorPhaseFactor(r) * alpha_J.operatorPhaseFactor(q) * alpha_J.operatorPhaseFactor(s);
 
-                double value = 0.5 * (hamiltonian_parameters.get_g()(p,q,r,s)
-                                   -  hamiltonian_parameters.get_g()(p,s,r,q)
-                                   -  hamiltonian_parameters.get_g()(r,q,p,s)
-                                   +  hamiltonian_parameters.get_g()(r,s,p,q));
+                double value = 0.5 * (g(p,q,r,s)
+                                   -  g(p,s,r,q)
+                                   -  g(r,q,p,s)
+                                   +  g(r,s,p,q));
 
                 method(I, J, sign*value);
                 method(J, I, sign*value);
@@ -184,10 +182,10 @@ void SelectedCI::evaluateHamiltonian(const HamiltonianParameters& hamiltonian_pa
 
                 int sign = beta_I.operatorPhaseFactor(p) * beta_I.operatorPhaseFactor(r) * beta_J.operatorPhaseFactor(q) * beta_J.operatorPhaseFactor(s);
 
-                double value = 0.5 * (hamiltonian_parameters.get_g()(p,q,r,s)
-                                   -  hamiltonian_parameters.get_g()(p,s,r,q)
-                                   -  hamiltonian_parameters.get_g()(r,q,p,s)
-                                   +  hamiltonian_parameters.get_g()(r,s,p,q));
+                double value = 0.5 * (g(p,q,r,s)
+                                   -  g(p,s,r,q)
+                                   -  g(r,q,p,s)
+                                   +  g(r,s,p,q));
 
                 method(I, J, sign*value);
                 method(J, I, sign*value);
@@ -231,10 +229,10 @@ Eigen::MatrixXd SelectedCI::constructHamiltonian(const HamiltonianParameters& ha
     Eigen::MatrixXd result_matrix = Eigen::MatrixXd::Zero(dim, dim);
     result_matrix += this->calculateDiagonal(hamiltonian_parameters).asDiagonal();
 
-    // We pass to a matrix and create the corresponding lambda function
+    // We should put the calculated elements inside the result matrix
     PassToMethod addToMatrix = [&result_matrix](size_t I, size_t J, double value) { result_matrix(I, J) += value; };
 
-    this->evaluateHamiltonian(hamiltonian_parameters, addToMatrix);
+    this->evaluateHamiltonianElements(hamiltonian_parameters, addToMatrix);
     return result_matrix;
 }
 
@@ -255,10 +253,10 @@ Eigen::VectorXd SelectedCI::matrixVectorProduct(const HamiltonianParameters& ham
 
     Eigen::VectorXd matvec = diagonal.cwiseProduct(x);
 
-    // We pass to a the matvec and create the corresponding lambda function
+    // We should pass the calculated elements to the resulting vector and perform the product
     PassToMethod addToMatvec = [&matvec, &x](size_t I, size_t J, double value) { matvec(I) += value * x(J); };
 
-    this->evaluateHamiltonian(hamiltonian_parameters, addToMatvec);
+    this->evaluateHamiltonianElements(hamiltonian_parameters, addToMatvec);
 
     return matvec;
 }
@@ -278,6 +276,9 @@ Eigen::VectorXd SelectedCI::calculateDiagonal(const HamiltonianParameters &hamil
 
     auto dim = fock_space.get_dimension();
 
+    auto h = hamiltonian_parameters.get_h();
+    auto g = hamiltonian_parameters.get_g();
+
     // Diagonal contributions
     Eigen::VectorXd diagonal = Eigen::VectorXd::Zero(dim);
 
@@ -288,35 +289,35 @@ Eigen::VectorXd SelectedCI::calculateDiagonal(const HamiltonianParameters &hamil
 
         for (size_t p = 0; p < K; p++) {
             if (alpha_I.isOccupied(p)) {
-                diagonal(I) += hamiltonian_parameters.get_h()(p,p);
+                diagonal(I) += h(p,p);
                 for (size_t q = 0; q < K; q++) {
 
                     if (p != q) {  // can't create/annihilate the same orbital twice
                         if (alpha_I.isOccupied(q)) {
-                            diagonal(I) += 0.5 * hamiltonian_parameters.get_g()(p,p,q,q);
-                            diagonal(I) -= 0.5 * hamiltonian_parameters.get_g()(p,q,q,p);
+                            diagonal(I) += 0.5 * g(p,p,q,q);
+                            diagonal(I) -= 0.5 * g(p,q,q,p);
                         }
                     }
 
                     if (beta_I.isOccupied(q)) {
-                        diagonal(I) += 0.5 * hamiltonian_parameters.get_g()(p,p,q,q);
+                        diagonal(I) += 0.5 * g(p,p,q,q);
                     }
                 }  // loop over q
             }
 
             if (beta_I.isOccupied(p)) {
-                diagonal(I) += hamiltonian_parameters.get_h()(p,p);
+                diagonal(I) += h(p,p);
                 for (size_t q = 0; q < K; q++) {
 
                     if (p != q) {  // can't create/annihilate the same orbital twice
                         if (beta_I.isOccupied(q)) {
-                            diagonal(I) += 0.5 * hamiltonian_parameters.get_g()(p,p,q,q);
-                            diagonal(I) -= 0.5 * hamiltonian_parameters.get_g()(p,q,q,p);
+                            diagonal(I) += 0.5 * g(p,p,q,q);
+                            diagonal(I) -= 0.5 * g(p,q,q,p);
                         }
                     }
 
                     if (alpha_I.isOccupied(q)) {
-                        diagonal(I) += 0.5 * hamiltonian_parameters.get_g()(p,p,q,q);
+                        diagonal(I) += 0.5 * g(p,p,q,q);
                     }
                 }  // loop over q
             }
