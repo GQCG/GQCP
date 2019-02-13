@@ -29,8 +29,8 @@ namespace GQCP {
 /**
  *  @param fock_space       the frozen prdouct Fock space
  */
-FrozenCoreFCI::FrozenCoreFCI(const ProductFrozenFockSpace& fock_space) :
-    FrozenCore (make::shared<FCI>(fock_space.get_sub_space()), fock_space.get_X()),
+FrozenCoreFCI::FrozenCoreFCI(const FrozenProductFockSpace& fock_space) :
+    FrozenCore (std::make_shared<FCI>(fock_space.get_sub_space()), fock_space.get_X()),
     fock_space (fock_space)
 {}
 

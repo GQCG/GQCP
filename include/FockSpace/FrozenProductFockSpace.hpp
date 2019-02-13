@@ -32,6 +32,7 @@ namespace GQCP {
  */
 class FrozenProductFockSpace: public BaseFockSpace {
 private:
+    size_t X;
     FrozenFockSpace fock_space_alpha;
     FrozenFockSpace fock_space_beta;
 
@@ -56,6 +57,7 @@ public:
     // GETTERS
     size_t get_N_alpha() const { return this->fock_space_alpha.get_N(); }
     size_t get_N_beta() const { return this->fock_space_beta.get_N(); }
+    size_t get_X() const { return this->X;}
     const FrozenFockSpace& get_fock_space_alpha() const { return this->fock_space_alpha; }
     const FrozenFockSpace& get_fock_space_beta() const { return this->fock_space_beta; }
 

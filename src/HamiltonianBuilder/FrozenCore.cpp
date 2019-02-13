@@ -180,8 +180,8 @@ HamiltonianParameters FrozenCore::freezeHamiltonianParameters(const HamiltonianP
  */
 double FrozenCore::diagonalValue(const HamiltonianParameters &hamiltonian_parameters, size_t X) const {
 
-    auto g = hamiltonian_parameters.get_g();
-    auto h = hamiltonian_parameters.get_g();
+    const auto& g = hamiltonian_parameters.get_g();
+    const auto& h = hamiltonian_parameters.get_h();
     double value = 0;
 
     for (size_t i = 0; i < X; i++) {

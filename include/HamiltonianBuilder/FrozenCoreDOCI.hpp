@@ -20,7 +20,7 @@
 
 
 #include "HamiltonianBuilder/FrozenCore.hpp"
-#include "HamiltonianBuilder/FrozenFockSpace.hpp"
+#include "FockSpace/FrozenFockSpace.hpp"
 #include "HamiltonianBuilder/DOCI.hpp"
 
 

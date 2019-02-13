@@ -38,9 +38,6 @@ public:
     // CONSTRUCTORS
     FrozenCore(std::shared_ptr<HamiltonianBuilder> hamiltonian_builder, size_t X);
 
-    // PURE VIRTUAL GETTERS
-    virtual const BaseFockSpace* get_fock_space() const = 0;
-
 
     // OVERRIDDEN PUBLIC METHODS
     /**

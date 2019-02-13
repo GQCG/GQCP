@@ -20,7 +20,7 @@
 
 
 #include "HamiltonianBuilder/FrozenCore.hpp"
-#include "HamiltonianBuilder/FrozenProductFockSpace.hpp"
+#include "FockSpace/FrozenProductFockSpace.hpp"
 #include "HamiltonianBuilder/FCI.hpp"
 
 

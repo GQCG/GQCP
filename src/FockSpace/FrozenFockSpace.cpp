@@ -70,7 +70,7 @@ ONV FrozenFockSpace::makeONV(size_t address) const {
  *  @param onv      the current ONV
  */
 void FrozenFockSpace::setNextONV(ONV& onv) const {
-    onv.set_representation(this->fock_space.ulongNextPermutation(onv.get_unsigned_representation() >> 1) << 1 + 1);
+    onv.set_representation((this->fock_space.ulongNextPermutation(onv.get_unsigned_representation() >> 1) << 1) + 1);
 }
 
 
@@ -91,7 +91,7 @@ size_t FrozenFockSpace::getAddress(const ONV& onv) const {
  *  @param address      the address to which the ONV will be set
  */
 void FrozenFockSpace::transformONV(ONV& onv, size_t address) const {
-    onv.set_representation((this->fock_space.calculateRepresentation(address) << 1) + 1;);
+    onv.set_representation((this->fock_space.calculateRepresentation(address) << 1) + 1);
 }
 
 
@@ -135,7 +135,7 @@ size_t FrozenFockSpace::countTwoElectronCouplings(const ONV& onv) const {
             coupling_count += (V-coupling_count2)*coupling_count2;
 
             if(coupling_count2 > 1 ){
-                coupling_count += calculateDimension(coupling_count2, 2);
+                coupling_count += FockSpace::calculateDimension(coupling_count2, 2);
             }
         }
     }

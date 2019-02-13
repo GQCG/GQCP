@@ -35,7 +35,8 @@ FrozenProductFockSpace::FrozenProductFockSpace(size_t K, size_t N_alpha, size_t 
         BaseFockSpace(K, ProductFockSpace::calculateDimension(K-X, N_alpha-X, N_beta-X)),
         fock_space_alpha (FrozenFockSpace(K, N_alpha, X)),
         fock_space_beta (FrozenFockSpace(K, N_beta, X)),
-        fock_space (K-X, N_alpha-X, N_beta-X)
+        fock_space (K-X, N_alpha-X, N_beta-X),
+        X (X)
 {}
 
 
