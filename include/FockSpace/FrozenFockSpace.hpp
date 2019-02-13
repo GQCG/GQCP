@@ -18,7 +18,7 @@ class FrozenFockSpace: public BaseFockSpace, public FockPermutator {
 private:
     size_t N;  // number of electrons
     size_t X;  // number of frozen orbitals
-    FockSpace fock_space // non-frozen sub Fock space
+    FockSpace fock_space; // non-frozen sub Fock space
 
 public:
     // CONSTRUCTORS

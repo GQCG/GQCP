@@ -32,18 +32,17 @@ namespace GQCP {
  *  @param X        the number of frozen orbitals
  */
 FrozenFockSpace::FrozenFockSpace(size_t K, size_t N, size_t X) :
-        BaseFockSpace(K, FockSpace::CalculateDimension(K-X,N-X)),
+        BaseFockSpace(K, FockSpace::calculateDimension(K-X, N-X)),
+        fock_space(K-X, N-X),
         N (N),
         X (X)
-{
-    this->fock_space = FockSpace(K-X, N-X);
-}
+{}
 
 /**
  *  @param fock_space       non-frozen sub Fock space
  *  @param X                the number of frozen orbitals
  */
-FrozenFockSpace(const FockSpace& fock_space, size_t X) :
+FrozenFockSpace::FrozenFockSpace(const FockSpace& fock_space, size_t X) :
     FrozenFockSpace(fock_space.get_K(), fock_space.get_N(), X)
 {}
 

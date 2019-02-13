@@ -11,6 +11,8 @@ set(PROJECT_SOURCE_FILES
 
         ${PROJECT_SOURCE_FOLDER}/FockSpace/BaseFockSpace.cpp
         ${PROJECT_SOURCE_FOLDER}/FockSpace/FockSpace.cpp
+        ${PROJECT_SOURCE_FOLDER}/FockSpace/FrozenFockSpace.cpp
+        ${PROJECT_SOURCE_FOLDER}/FockSpace/FrozenProductFockSpace.cpp
         ${PROJECT_SOURCE_FOLDER}/FockSpace/ONV.cpp
         ${PROJECT_SOURCE_FOLDER}/FockSpace/ProductFockSpace.cpp
         ${PROJECT_SOURCE_FOLDER}/FockSpace/SelectedFockSpace.cpp
