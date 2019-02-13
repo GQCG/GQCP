@@ -20,7 +20,7 @@
 
 
 #include "FockSpace/BaseFockSpace.hpp"
-#include "FockSpace/FockSpace.hpp"
+#include "FockSpace/ProductFockSpace.hpp"
 #include "FockSpace/FrozenFockSpace.hpp"
 
 
@@ -47,23 +47,19 @@ public:
      */
     FrozenProductFockSpace(size_t K, size_t N_alpha, size_t N_beta, size_t X);
 
-
     /**
      *  @param fock_space       non-frozen sub product Fock space
      *  @param X                the number of frozen orbitals
      */
     FrozenProductFockSpace(const ProductFockSpace& fock_space, size_t X);
 
-
-    // DESTRUCTORS
-    ~FrozenProductFockSpace() override = default;
-
-
     // GETTERS
     size_t get_N_alpha() const { return this->fock_space_alpha.get_N(); }
     size_t get_N_beta() const { return this->fock_space_beta.get_N(); }
     const FrozenFockSpace& get_fock_space_alpha() const { return this->fock_space_alpha; }
     const FrozenFockSpace& get_fock_space_beta() const { return this->fock_space_beta; }
+
+    const ProductFockSpace& get_sub_space() const { return this->fock_space; }
     FockSpaceType get_type() const override { return FockSpaceType::FrozenProductFockSpace; }
 };
 

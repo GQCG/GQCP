@@ -19,7 +19,7 @@
 #define GQCP_DOCI_HPP
 
 
-#include "HamiltonianBuilder.hpp"
+#include "HamiltonianBuilder/HamiltonianBuilder.hpp"
 #include "FockSpace/FockSpace.hpp"
 
 #include <memory>

@@ -20,6 +20,21 @@
 
 namespace GQCP {
 
+/*
+ *  CONSTRUCTORS
+ */
+
+FrozenCore::FrozenCore(std::shared_ptr<GQCP::HamiltonianBuilder> hamiltonian_builder, size_t X) :
+        HamiltonianBuilder(),
+        hamiltonian_builder (hamiltonian_builder),
+        X (X)
+{}
+
+
+
+/*
+ *  OVERRIDDEN PUBLIC METHODS
+ */
 
 /**
  *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis
@@ -32,11 +47,11 @@ Eigen::MatrixXd FrozenCore::constructHamiltonian(const HamiltonianParameters& ha
     HamiltonianParameters frozen_ham_par = this->freezeHamiltonianParameters(hamiltonian_parameters, X);
 
     // calculate Hamiltonian matrix through conventional CI
-    Eigen::MatrixXd total_hamiltonian = this->hamiltonian_builder->calculateHamiltonian(frozen_ham_par);
+    Eigen::MatrixXd total_hamiltonian = this->hamiltonian_builder->constructHamiltonian(frozen_ham_par);
 
     // diagonal correction
-    Eigen::VectorXd diagonal = Eigen::VectorXd::Ones(this->get_fock_space().get_dimension());
-    double value = this->diagonalValue(hamiltonian_parameters);
+    Eigen::VectorXd diagonal = Eigen::VectorXd::Ones(this->get_fock_space()->get_dimension());
+    double value = this->diagonalValue(hamiltonian_parameters, X);
     total_hamiltonian += (value * diagonal).asDiagonal();
 
     return total_hamiltonian;
@@ -74,7 +89,7 @@ Eigen::VectorXd FrozenCore::calculateDiagonal(const HamiltonianParameters& hamil
     Eigen::VectorXd diagonal = this->hamiltonian_builder->calculateDiagonal(frozen_ham_par);
 
     // diagonal correction
-    double value = this->diagonalValue(hamiltonian_parameters);
+    double value = this->diagonalValue(hamiltonian_parameters, X);
     diagonal += (value * diagonal);
 
     return diagonal;
@@ -107,13 +122,13 @@ HamiltonianParameters FrozenCore::freezeHamiltonianParameters(const HamiltonianP
     g_SO.setZero();
 
     // copy two electron integrals from the non-frozen orbitals
-    auto g = hamiltonian_parameters.get_g();
+    const auto& g = hamiltonian_parameters.get_g();
 
-    for (int i = freeze; i < K; i++) {
-        for (int j = freeze; j < K; j++) {
-            for (int l = freeze; l < K; l++) {
-                for (int m = freeze; m < K; m++) {
-                    g_SO(i - freeze, j - freeze, l - freeze, m - freeze) = g(i,j,l,m);
+    for (size_t i = X; i < K; i++) {
+        for (size_t j = X; j < K; j++) {
+            for (size_t l = X; l < K; l++) {
+                for (size_t m = X; m < K; m++) {
+                    g_SO(i - X, j - X, l - X, m - X) = g(i,j,l,m);
                 }
             }
         }
@@ -151,7 +166,7 @@ HamiltonianParameters FrozenCore::freezeHamiltonianParameters(const HamiltonianP
     }
 
     OneElectronOperator H_new (h);
-    Eigen::MatrixXd C = Eigen::MatrixXd(T_total.block(X, X, Kn, Kn));
+    Eigen::MatrixXd C = Eigen::MatrixXd(hamiltonian_parameters.get_T_total().block(X, X, Kn, Kn));
     TwoElectronOperator g_new (g_SO);
 
     return HamiltonianParameters(ao_basis, S, H_new, g_new, C);

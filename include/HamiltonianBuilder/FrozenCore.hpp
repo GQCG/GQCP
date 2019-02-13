@@ -30,11 +30,14 @@ namespace GQCP {
  *  Base class containing general functions related to frozen core CI
  */
 class FrozenCore : public HamiltonianBuilder {
-private:
+protected:
     std::shared_ptr<HamiltonianBuilder> hamiltonian_builder;
     size_t X;
 
 public:
+    // CONSTRUCTORS
+    FrozenCore(std::shared_ptr<HamiltonianBuilder> hamiltonian_builder, size_t X);
+
     // PURE VIRTUAL GETTERS
     virtual const BaseFockSpace* get_fock_space() const = 0;
 

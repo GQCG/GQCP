@@ -48,10 +48,6 @@ using PassToMethod = std::function<void (size_t I, size_t J, double value)>;
  */
 class HamiltonianBuilder {
 public:
-    // CONSTRUCTOR
-//    HamiltonianBuilder() = default;
-
-
     // DESTRUCTOR
     /**
      *  Provide a pure virtual destructor for the abstract base class

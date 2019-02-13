@@ -60,6 +60,7 @@ public:
     // GETTERS
     size_t get_N() const { return this->N; }
     size_t get_X() const { return this->X; }
+    const FockSpace& get_sub_space() const { return this->fock_space; }
     FockSpaceType get_type() const override { return FockSpaceType::FrozenFockSpace; }
 
 
