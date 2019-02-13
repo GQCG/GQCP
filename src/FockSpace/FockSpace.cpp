@@ -48,6 +48,26 @@ size_t FockSpace::ulongNextPermutation(size_t representation) const {
 }
 
 
+/**
+ *  @param representation      a representation of an ONV
+ *
+ *  @return the address (i.e. the ordering number) of the given ONV
+ */
+size_t FockSpace::getAddress(size_t unsigned_onv) const {
+    // An implementation of the formula in Helgaker, starting the addressing count from zero
+    size_t address = 0;
+    size_t electron_count = 0;  // counts the number of electrons in the spin string up to orbital p
+    while(unsigned_onv != 0) {  // we will remove the least significant bit each loop, we are finished when no bits are left
+        size_t p = __builtin_ctzl(unsigned_onv);  // p is the orbital index counter (starting from 1)
+        electron_count++;  // each bit is an electron hence we add it up to the electron count
+        address += this->get_vertex_weights(p , electron_count);
+        unsigned_onv ^= unsigned_onv & -unsigned_onv;  // flip the least significant bit
+    }
+    return address;
+
+}
+
+
 
 /*
  *  CONSTRUCTORS
@@ -161,18 +181,7 @@ void FockSpace::setNextONV(ONV& onv) const {
  *  @return the address (i.e. the ordering number) of the given ONV
  */
 size_t FockSpace::getAddress(const ONV& onv) const {
-    // An implementation of the formula in Helgaker, starting the addressing count from zero
-    size_t address = 0;
-    size_t electron_count = 0;  // counts the number of electrons in the spin string up to orbital p
-    unsigned long unsigned_onv = onv.get_unsigned_representation();  // copy the unsigned_representation of the onv
-
-    while(unsigned_onv != 0) {  // we will remove the least significant bit each loop, we are finished when no bits are left
-        size_t p = __builtin_ctzl(unsigned_onv);  // p is the orbital index counter (starting from 1)
-        electron_count++;  // each bit is an electron hence we add it up to the electron count
-        address += this->get_vertex_weights(p , electron_count);
-        unsigned_onv ^= unsigned_onv & -unsigned_onv;  // flip the least significant bit
-    }
-    return address;
+    return this->getAddress(onv.get_unsigned_representation());
 }
 
 

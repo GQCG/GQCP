@@ -1,5 +1,5 @@
 // This file is part of GQCG-gqcp.
-//
+// 
 // Copyright (C) 2017-2019  the GQCG developers
 // 
 // GQCG-gqcp is free software: you can redistribute it and/or modify
@@ -15,10 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "FockSpace/ProductFockSpace.hpp"
-
-#include <boost/numeric/conversion/converter.hpp>
-#include <boost/math/special_functions.hpp>
+#include "FockSpace/FrozenProductFockSpace.hpp"
 
 
 namespace GQCP {
@@ -32,30 +29,22 @@ namespace GQCP {
  *  @param K            the number of orbitals (equal for alpha and beta)
  *  @param N_alpha      the number of alpha electrons
  *  @param N_beta       the number of beta electrons
+ *  @param X        the number of frozen orbitals
  */
-ProductFockSpace::ProductFockSpace(size_t K, size_t N_alpha, size_t N_beta) :
-        BaseFockSpace(K, ProductFockSpace::calculateDimension(K, N_alpha, N_beta)),
-        fock_space_alpha (FockSpace(K, N_alpha)),
-        fock_space_beta (FockSpace(K, N_beta))
+FrozenProductFockSpace::FrozenProductFockSpace(size_t K, size_t N_alpha, size_t N_beta, size_t X) :
+        BaseFockSpace(K, ProductFockSpace::calculateDimension(K-X, N_alpha-X, N_beta-X)),
+        fock_space_alpha (FrozenFockSpace(K, N_alpha, X)),
+        fock_space_beta (FrozenFockSpace(K, N_beta, X)),
+        fock_space (K-X, N_alpha-X, N_beta-X)
 {}
 
 
-/*
- *  STATIC PUBLIC METHODS
- */
-
 /**
- *  @param K            the number of orbitals (equal for alpha and beta)
- *  @param N_alpha      the number of alpha electrons
- *  @param N_beta       the number of beta electrons
- *
- *  @return the dimension of the product Fock space
+ *  @param fock_space       non-frozen sub product Fock space
+ *  @param X                the number of frozen orbitals
  */
-size_t ProductFockSpace::calculateDimension(size_t K, size_t N_alpha, size_t N_beta) {
-    size_t alpha_dim = FockSpace::calculateDimension(K, N_alpha);
-    size_t beta_dim = FockSpace::calculateDimension(K, N_beta);
-    return boost::numeric::converter<double, size_t>::convert(beta_dim * alpha_dim);
-}
-
+FrozenProductFockSpace(const ProductFockSpace& fock_space, size_t X) :
+    FrozenProductFockSpace(fock_space.get_K(), fock_space.get_N_alpha(), fock_space.get_N_beta(), X)
+{}
 
 }  // namespace GQCP

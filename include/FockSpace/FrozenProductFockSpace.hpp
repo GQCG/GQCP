@@ -15,12 +15,13 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCP_PRODUCTFOCKSPACE_HPP
-#define GQCP_PRODUCTFOCKSPACE_HPP
+#ifndef GQCP_FROZENPRODUCTFOCKSPACE_HPP
+#define GQCP_FROZENPRODUCTFOCKSPACE_HPP
 
 
 #include "FockSpace/BaseFockSpace.hpp"
 #include "FockSpace/FockSpace.hpp"
+#include "FockSpace/FrozenFockSpace.hpp"
 
 
 namespace GQCP {
@@ -29,11 +30,12 @@ namespace GQCP {
 /**
  *  A class that represents the product of two full Fock spaces (alpha and beta).
  */
-class ProductFockSpace: public BaseFockSpace {
+class FrozenProductFockSpace: public BaseFockSpace {
 private:
-    FockSpace fock_space_alpha;
-    FockSpace fock_space_beta;
+    FrozenFockSpace fock_space_alpha;
+    FrozenFockSpace fock_space_beta;
 
+    ProductFockSpace fock_space;  // non-frozen sub Fock space
 
 public:
     // CONSTRUCTORS
@@ -41,31 +43,28 @@ public:
      *  @param K            the number of orbitals (equal for alpha and beta)
      *  @param N_alpha      the number of alpha electrons
      *  @param N_beta       the number of beta electrons
+     *  @param X        the number of frozen orbitals
      */
-    ProductFockSpace(size_t K, size_t N_alpha, size_t N_beta);
+    FrozenProductFockSpace(size_t K, size_t N_alpha, size_t N_beta, size_t X);
+
+
+    /**
+     *  @param fock_space       non-frozen sub product Fock space
+     *  @param X                the number of frozen orbitals
+     */
+    FrozenProductFockSpace(const ProductFockSpace& fock_space, size_t X);
 
 
     // DESTRUCTORS
-    ~ProductFockSpace() override = default;
+    ~FrozenProductFockSpace() override = default;
 
 
     // GETTERS
     size_t get_N_alpha() const { return this->fock_space_alpha.get_N(); }
     size_t get_N_beta() const { return this->fock_space_beta.get_N(); }
-    const FockSpace& get_fock_space_alpha() const { return this->fock_space_alpha; }
-    const FockSpace& get_fock_space_beta() const { return this->fock_space_beta; }
-    FockSpaceType get_type() const override { return FockSpaceType::ProductFockSpace; }
-
-
-    // STATIC PUBLIC METHODS
-    /**
-     *  @param K            the number of orbitals (equal for alpha and beta)
-     *  @param N_alpha      the number of alpha electrons
-     *  @param N_beta       the number of beta electrons
-     *
-     *  @return the dimension of the product Fock space
-     */
-    static size_t calculateDimension(size_t K, size_t N_alpha, size_t N_beta);
+    const FrozenFockSpace& get_fock_space_alpha() const { return this->fock_space_alpha; }
+    const FrozenFockSpace& get_fock_space_beta() const { return this->fock_space_beta; }
+    FockSpaceType get_type() const override { return FockSpaceType::FrozenProductFockSpace; }
 };
 
 
