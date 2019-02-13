@@ -36,7 +36,7 @@ protected:
 
 public:
     // CONSTRUCTORS
-    FrozenCore(std::shared_ptr<HamiltonianBuilder>& hamiltonian_builder, size_t X);
+    FrozenCore(std::shared_ptr<HamiltonianBuilder> hamiltonian_builder, size_t X);
 
 
     // OVERRIDDEN PUBLIC METHODS

@@ -72,7 +72,7 @@ BOOST_AUTO_TEST_CASE ( SelectedCI_vs_FrozenCoreDOCI ) {
     GQCP::FrozenFockSpace frozen_fock_space (K, 3, 1);
     GQCP::SelectedFockSpace fock_space (frozen_fock_space);
 
-    // The SelectedFockSpace includes the same configurations as the ProductFockSpace
+    // The SelectedFockSpace includes the same configurations as the FrozenFockSpace
     // These builder instances should return the same results.
     GQCP::SelectedCI random_sci (fock_space);
     GQCP::FrozenCoreDOCI random_frozen_core_doci (frozen_fock_space);

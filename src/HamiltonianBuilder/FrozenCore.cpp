@@ -1,3 +1,5 @@
+#include <utility>
+
 // This file is part of GQCG-gqcp.
 //
 // Copyright (C) 2017-2019  the GQCG developers
@@ -24,9 +26,9 @@ namespace GQCP {
  *  CONSTRUCTORS
  */
 
-FrozenCore::FrozenCore(std::shared_ptr<GQCP::HamiltonianBuilder>& hamiltonian_builder, size_t X) :
+FrozenCore::FrozenCore(std::shared_ptr<GQCP::HamiltonianBuilder> hamiltonian_builder, size_t X) :
         HamiltonianBuilder(),
-        hamiltonian_builder (hamiltonian_builder),
+        hamiltonian_builder (std::move(hamiltonian_builder)),
         X (X)
 {}
 
