@@ -33,6 +33,7 @@ set(PROJECT_INCLUDE_FILES
 
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianBuilder/DOCI.hpp
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianBuilder/FCI.hpp
+        ${PROJECT_INCLUDE_FOLDER}/HamiltonianBuilder/FrozenCore.hpp
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianBuilder/HamiltonianBuilder.hpp
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianBuilder/Hubbard.hpp
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianBuilder/SelectedCI.hpp

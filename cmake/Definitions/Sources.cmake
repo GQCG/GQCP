@@ -30,6 +30,7 @@ set(PROJECT_SOURCE_FILES
 
         ${PROJECT_SOURCE_FOLDER}/HamiltonianBuilder/DOCI.cpp
         ${PROJECT_SOURCE_FOLDER}/HamiltonianBuilder/FCI.cpp
+        ${PROJECT_SOURCE_FOLDER}/HamiltonianBuilder/FrozenCore.cpp
         ${PROJECT_SOURCE_FOLDER}/HamiltonianBuilder/HamiltonianBuilder.cpp
         ${PROJECT_SOURCE_FOLDER}/HamiltonianBuilder/Hubbard.cpp
         ${PROJECT_SOURCE_FOLDER}/HamiltonianBuilder/SelectedCI.cpp
