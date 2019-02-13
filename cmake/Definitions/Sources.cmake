@@ -10,6 +10,7 @@ set(PROJECT_SOURCE_FILES
         ${PROJECT_SOURCE_FOLDER}/CISolver/CISolver.cpp
 
         ${PROJECT_SOURCE_FOLDER}/FockSpace/BaseFockSpace.cpp
+        ${PROJECT_SOURCE_FOLDER}/FockSpace/FockPermutator.cpp
         ${PROJECT_SOURCE_FOLDER}/FockSpace/FockSpace.cpp
         ${PROJECT_SOURCE_FOLDER}/FockSpace/FrozenFockSpace.cpp
         ${PROJECT_SOURCE_FOLDER}/FockSpace/FrozenProductFockSpace.cpp

@@ -24,7 +24,7 @@ namespace GQCP {
  *  CONSTRUCTORS
  */
 
-FrozenCore::FrozenCore(std::shared_ptr<GQCP::HamiltonianBuilder> hamiltonian_builder, size_t X) :
+FrozenCore::FrozenCore(std::shared_ptr<GQCP::HamiltonianBuilder>& hamiltonian_builder, size_t X) :
         HamiltonianBuilder(),
         hamiltonian_builder (hamiltonian_builder),
         X (X)
@@ -90,7 +90,7 @@ Eigen::VectorXd FrozenCore::calculateDiagonal(const HamiltonianParameters& hamil
 
     // diagonal correction
     double value = this->diagonalValue(hamiltonian_parameters, X);
-    diagonal += (value * diagonal);
+    diagonal += (value * Eigen::VectorXd::Ones(this->get_fock_space()->get_dimension()));
 
     return diagonal;
 }
@@ -182,6 +182,7 @@ double FrozenCore::diagonalValue(const HamiltonianParameters &hamiltonian_parame
 
     const auto& g = hamiltonian_parameters.get_g();
     const auto& h = hamiltonian_parameters.get_h();
+
     double value = 0;
 
     for (size_t i = 0; i < X; i++) {
