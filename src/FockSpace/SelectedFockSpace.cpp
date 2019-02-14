@@ -126,7 +126,6 @@ SelectedFockSpace::SelectedFockSpace(const ProductFockSpace& fock_space) :
 SelectedFockSpace::SelectedFockSpace(const FockSpace& fock_space) :
         SelectedFockSpace (fock_space.get_K(), fock_space.get_N(), fock_space.get_N())
 {
-
     std::vector<Configuration> configurations;
 
     auto dim = fock_space.get_dimension();
@@ -140,12 +139,10 @@ SelectedFockSpace::SelectedFockSpace(const FockSpace& fock_space) :
         if (I < dim - 1) {  // prevent the last permutation to occur
             fock_space.setNextONV(onv);
         }
-
     }
 
     this->dim = dim;
     this->configurations = configurations;
-
 }
 
 
@@ -184,6 +181,30 @@ SelectedFockSpace::SelectedFockSpace(const FrozenProductFockSpace& fock_space) :
     this->dim = fock_space.get_dimension();
     this->configurations = configurations;
 }
+
+
+SelectedFockSpace::SelectedFockSpace(const FrozenFockSpace& fock_space) :
+        SelectedFockSpace (fock_space.get_K(), fock_space.get_N(), fock_space.get_N())
+{
+    std::vector<Configuration> configurations;
+
+    auto dim = fock_space.get_dimension();
+
+    // Iterate over the Fock space and add all onvs as doubly occupied configurations
+    ONV onv = fock_space.makeONV(0);
+    for (size_t I = 0; I < dim; I++) {
+
+        configurations.push_back(Configuration {onv, onv});
+
+        if (I < dim - 1) {  // prevent the last permutation to occur
+            fock_space.setNextONV(onv);
+        }
+    }
+
+    this->dim = dim;
+    this->configurations = configurations;
+}
+
 /*
  *  PUBLIC METHODS
  */

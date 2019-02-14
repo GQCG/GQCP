@@ -80,9 +80,19 @@ public:
     /**
      *  A constructor that generates the configurations based off the given frozen product Fock space.
      *
-     *  @param fock_space       the FockSpace from which the configurations should be generated
+     *  @param fock_space       the FrozenProductFockSpace from which the configurations should be generated
      */
     explicit SelectedFockSpace(const FrozenProductFockSpace& fock_space);
+
+    /**
+     *  A constructor that generates the configurations based off the given frozen Fock space.
+     *
+     *  @param fock_space       the FrozenFockSpace from which the configurations should be generated
+     */
+    explicit SelectedFockSpace(const FrozenFockSpace& fock_space);
+
+
+
 
 
     // GETTERS
