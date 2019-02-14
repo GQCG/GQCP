@@ -364,7 +364,7 @@
 		5614FA2C21B029FB002C5D40 /* expectation_values.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5614F9B221B029FB002C5D40 /* expectation_values.hpp */; };
 		5614FA2E21B029FB002C5D40 /* units.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5614F9B421B029FB002C5D40 /* units.hpp */; };
 		5614FA2F21B029FB002C5D40 /* JacobiRotationParameters.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5614F9B521B029FB002C5D40 /* JacobiRotationParameters.hpp */; };
-		5614FA3021B029FB002C5D40 /* common.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5614F9B621B029FB002C5D40 /* common.hpp */; };
+		5614FA3021B029FB002C5D40 /* typedefs.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5614F9B621B029FB002C5D40 /* typedefs.hpp */; };
 		5614FA3121B029FB002C5D40 /* RMP2.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5614F9B721B029FB002C5D40 /* RMP2.hpp */; };
 		5614FA3221B029FB002C5D40 /* OrbitalOptimizationOptions.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5614F9B821B029FB002C5D40 /* OrbitalOptimizationOptions.hpp */; };
 		5614FA3321B029FB002C5D40 /* elements.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5614F9B921B029FB002C5D40 /* elements.hpp */; };
@@ -2440,7 +2440,7 @@
 		5614F9B221B029FB002C5D40 /* expectation_values.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = expectation_values.hpp; sourceTree = "<group>"; };
 		5614F9B421B029FB002C5D40 /* units.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = units.hpp; sourceTree = "<group>"; };
 		5614F9B521B029FB002C5D40 /* JacobiRotationParameters.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = JacobiRotationParameters.hpp; sourceTree = "<group>"; };
-		5614F9B621B029FB002C5D40 /* common.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = common.hpp; sourceTree = "<group>"; };
+		5614F9B621B029FB002C5D40 /* typedefs.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = typedefs.hpp; sourceTree = "<group>"; };
 		5614F9B721B029FB002C5D40 /* RMP2.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = RMP2.hpp; sourceTree = "<group>"; };
 		5614F9B821B029FB002C5D40 /* OrbitalOptimizationOptions.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = OrbitalOptimizationOptions.hpp; sourceTree = "<group>"; };
 		5614F9B921B029FB002C5D40 /* elements.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = elements.hpp; sourceTree = "<group>"; };
@@ -3458,7 +3458,6 @@
 		5614F98E21B029FB002C5D40 /* include */ = {
 			isa = PBXGroup;
 			children = (
-				56288CE52201E17600403B47 /* version.hpp */,
 				5614F9BE21B029FB002C5D40 /* CISolver */,
 				5614F99121B029FB002C5D40 /* FockSpace */,
 				56272DB221B6CBFA008BEA47 /* geminals */,
@@ -3466,6 +3465,7 @@
 				5614F9CB21B029FB002C5D40 /* HamiltonianBuilder */,
 				5614F9C721B029FB002C5D40 /* HamiltonianParameters */,
 				5614F9C021B029FB002C5D40 /* Localization */,
+				56C8397D22159E6D00FA98A0 /* math */,
 				5614F9BA21B029FB002C5D40 /* Operator */,
 				56FBA0AA21C2B4660084F088 /* optimization */,
 				5614F9B021B029FB002C5D40 /* properties */,
@@ -3473,6 +3473,7 @@
 				5614F99A21B029FB002C5D40 /* RHF */,
 				5614FA7621B02A16002C5D40 /* singles */,
 				56FBA09A21C2B0260084F088 /* utilities */,
+				56288CE52201E17600403B47 /* version.hpp */,
 				5614F9C421B029FB002C5D40 /* WaveFunction */,
 			);
 			path = include;
@@ -3600,6 +3601,7 @@
 				5614FA0921B029FB002C5D40 /* HamiltonianBuilder */,
 				5614FA0521B029FB002C5D40 /* HamiltonianParameters */,
 				5614F9FE21B029FB002C5D40 /* Localization */,
+				56C8397E22159E9700FA98A0 /* math */,
 				5614F9F821B029FB002C5D40 /* Operator */,
 				56FBA0AB21C2B48D0084F088 /* optimization */,
 				5614F9F421B029FB002C5D40 /* properties */,
@@ -3727,7 +3729,6 @@
 			children = (
 				5614F99921B029FB002C5D40 /* AOBasis.hpp */,
 				5614F9A921B029FB002C5D40 /* Atom.hpp */,
-				5614F9B621B029FB002C5D40 /* common.hpp */,
 				5614F99021B029FB002C5D40 /* DOCINewtonOrbitalOptimizer.hpp */,
 				5614F9B921B029FB002C5D40 /* elements.hpp */,
 				56FBA0E821C2DFC00084F088 /* HoppingMatrix.hpp */,
@@ -3736,6 +3737,7 @@
 				5614F9D021B029FB002C5D40 /* Molecule.hpp */,
 				5614F9B821B029FB002C5D40 /* OrbitalOptimizationOptions.hpp */,
 				5614F9B721B029FB002C5D40 /* RMP2.hpp */,
+				5614F9B621B029FB002C5D40 /* typedefs.hpp */,
 				5614F9B421B029FB002C5D40 /* units.hpp */,
 			);
 			name = singles;
@@ -4132,6 +4134,20 @@
 			path = Parse;
 			sourceTree = "<group>";
 		};
+		56C8397D22159E6D00FA98A0 /* math */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = math;
+			sourceTree = "<group>";
+		};
+		56C8397E22159E9700FA98A0 /* math */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = math;
+			sourceTree = "<group>";
+		};
 		56FBA09A21C2B0260084F088 /* utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -4262,7 +4278,7 @@
 				5643B7FD21F85B1E00E1741F /* BaseAPIGVariables.hpp in Headers */,
 				5614FA3221B029FB002C5D40 /* OrbitalOptimizationOptions.hpp in Headers */,
 				5614FA1C21B029FB002C5D40 /* RDMCalculator.hpp in Headers */,
-				5614FA3021B029FB002C5D40 /* common.hpp in Headers */,
+				5614FA3021B029FB002C5D40 /* typedefs.hpp in Headers */,
 				5614FA4121B029FB002C5D40 /* HamiltonianBuilder.hpp in Headers */,
 				5614FA2221B029FB002C5D40 /* RDMs.hpp in Headers */,
 				56FBA0C321C2B4AF0084F088 /* NewtonSystemOfEquationsSolver.hpp in Headers */,

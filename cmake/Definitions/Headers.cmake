@@ -88,7 +88,6 @@ set(PROJECT_INCLUDE_FILES
 
         ${PROJECT_INCLUDE_FOLDER}/AOBasis.hpp
         ${PROJECT_INCLUDE_FOLDER}/Atom.hpp
-        ${PROJECT_INCLUDE_FOLDER}/common.hpp
         ${PROJECT_INCLUDE_FOLDER}/DOCINewtonOrbitalOptimizer.hpp
         ${PROJECT_INCLUDE_FOLDER}/elements.hpp
         ${PROJECT_INCLUDE_FOLDER}/HoppingMatrix.hpp
@@ -96,5 +95,6 @@ set(PROJECT_INCLUDE_FILES
         ${PROJECT_INCLUDE_FOLDER}/LibintCommunicator.hpp
         ${PROJECT_INCLUDE_FOLDER}/Molecule.hpp
         ${PROJECT_INCLUDE_FOLDER}/RMP2.hpp
+        ${PROJECT_INCLUDE_FOLDER}/typedefs.hpp
         ${PROJECT_INCLUDE_FOLDER}/units.hpp
     )
