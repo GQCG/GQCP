@@ -49,7 +49,7 @@ FCI::FCI(const ProductFockSpace& fock_space) :
  *
  *  @return The sparse matrix containing all Hamiltonian elements for the Fock space pertaining to a single spin
  */
-Eigen::SparseMatrix<double> FCI::calculateSpinSeparatedHamiltonian(const FockSpace& fock_space, const HamiltonianParameters& hamiltonian_parameters) const {
+Eigen::SparseMatrix<double> FCI::calculateSpinSeparatedHamiltonian(const FockSpace& fock_space, const HamiltonianParameters<double>& hamiltonian_parameters) const {
     size_t K = fock_space.get_K();
     size_t N = fock_space.get_N();
     size_t dim = fock_space.get_dimension();
@@ -58,7 +58,7 @@ Eigen::SparseMatrix<double> FCI::calculateSpinSeparatedHamiltonian(const FockSpa
     std::vector<Eigen::Triplet<double>> triplet_vector;
     triplet_vector.reserve(fock_space.countTotalTwoElectronCouplings());
 
-    OneElectronOperator k = hamiltonian_parameters.calculateEffectiveOneElectronIntegrals();
+    auto k = hamiltonian_parameters.calculateEffectiveOneElectronIntegrals();
 
     ONV onv = fock_space.makeONV(0);  // onv with address 0
     for (size_t I = 0; I < dim; I++) {  // I loops over all addresses in the Fock space
@@ -247,7 +247,7 @@ Eigen::SparseMatrix<double> FCI::calculateSpinSeparatedHamiltonian(const FockSpa
  *
  *  @return The sparse matrix containing the calculated two-electron integrals mapped to one-electron couplings
  */
-Eigen::SparseMatrix<double> FCI::calculateTwoElectronIntermediate(size_t r, size_t s, const HamiltonianParameters& hamiltonian_parameters, const FockSpace& fock_space) const {
+Eigen::SparseMatrix<double> FCI::calculateTwoElectronIntermediate(size_t r, size_t s, const HamiltonianParameters<double>& hamiltonian_parameters, const FockSpace& fock_space) const {
 
     const bool do_diagonal = (r != s);
 
@@ -383,7 +383,7 @@ std::vector<Eigen::SparseMatrix<double>> FCI::calculateOneElectronCouplingsInter
  *
  *  @return the FCI Hamiltonian matrix
  */
-Eigen::MatrixXd FCI::constructHamiltonian(const HamiltonianParameters& hamiltonian_parameters) const {
+Eigen::MatrixXd FCI::constructHamiltonian(const HamiltonianParameters<double>& hamiltonian_parameters) const {
 
     auto K = hamiltonian_parameters.get_h().get_dim();
     if (K != this->fock_space.get_K()) {
@@ -453,7 +453,7 @@ Eigen::MatrixXd FCI::constructHamiltonian(const HamiltonianParameters& hamiltoni
  *
  *  @return the action of the FCI Hamiltonian on the coefficient vector
  */
-Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters& hamiltonian_parameters, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) const {
+Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters<double>& hamiltonian_parameters, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) const {
     auto K = hamiltonian_parameters.get_h().get_dim();
     if (K != this->fock_space.get_K()) {
         throw std::invalid_argument("Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
@@ -464,7 +464,6 @@ Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters& hamiltonia
 
     auto dim_alpha = fock_space_alpha.get_dimension();
     auto dim_beta = fock_space_beta.get_dimension();
-    auto dim = fock_space.get_dimension();
 
     Eigen::VectorXd matvec = diagonal.cwiseProduct(x);
 
@@ -494,7 +493,7 @@ Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters& hamiltonia
  *
  *  @return the diagonal of the matrix representation of the Hamiltonian
  */
-Eigen::VectorXd FCI::calculateDiagonal(const HamiltonianParameters& hamiltonian_parameters) const {
+Eigen::VectorXd FCI::calculateDiagonal(const HamiltonianParameters<double>& hamiltonian_parameters) const {
 
     auto K = hamiltonian_parameters.get_h().get_dim();
     if (K != this->fock_space.get_K()) {
@@ -511,8 +510,7 @@ Eigen::VectorXd FCI::calculateDiagonal(const HamiltonianParameters& hamiltonian_
     // Diagonal contributions
     Eigen::VectorXd diagonal =  Eigen::VectorXd::Zero(dim);
 
-    // Calculate the effective one-electron integrals
-    OneElectronOperator k = hamiltonian_parameters.calculateEffectiveOneElectronIntegrals();
+    auto k = hamiltonian_parameters.calculateEffectiveOneElectronIntegrals();
 
     ONV onv_alpha = fock_space_alpha.makeONV(0);
     ONV onv_beta = fock_space_beta.makeONV(0);

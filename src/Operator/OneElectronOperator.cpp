@@ -27,27 +27,27 @@ namespace GQCP {
  *  CONSTRUCTOR
  */
 
-/**
- *  A default constructor setting everything to zero
- */
-OneElectronOperator::OneElectronOperator() :
-    BaseOperator(0),
-    matrix (Eigen::MatrixXd::Zero(0, 0))
-{}
+///**
+// *  A default constructor setting everything to zero
+// */
+//OneElectronOperator::OneElectronOperator() :
+//    BaseOperator(0),
+//    matrix (Eigen::MatrixXd::Zero(0, 0))
+//{}
 
 
-/**
- *  @param matrix   the explicit matrix representation of the one-electron operator
- */
-OneElectronOperator::OneElectronOperator(const Eigen::MatrixXd& matrix) :
-    BaseOperator(matrix.cols()),
-    matrix (matrix)
-{
-    // Check if the one-electron integrals are represented as a square matrix
-    if (matrix.cols() != matrix.rows()) {
-        throw std::invalid_argument("One-electron integrals have to be represented as a square matrix.");
-    }
-}
+///**
+// *  @param matrix   the explicit matrix representation of the one-electron operator
+// */
+//OneElectronOperator::OneElectronOperator(const Eigen::MatrixXd& matrix) :
+//    BaseOperator(matrix.cols()),
+//    matrix (matrix)
+//{
+//    // Check if the one-electron integrals are represented as a square matrix
+//    if (matrix.cols() != matrix.rows()) {
+//        throw std::invalid_argument("One-electron integrals have to be represented as a square matrix.");
+//    }
+//}
 
 
 
@@ -55,33 +55,33 @@ OneElectronOperator::OneElectronOperator(const Eigen::MatrixXd& matrix) :
  *  OPERATORS
  */
 
-/**
- *  @param other    the other OneElectronOperator
- *
- *  @return the sum of two OneElectronOperators, i.e. a OneElectronOperator whose matrix representation is the sum of the two matrix representations of the given OneElectronOperators
- */
-OneElectronOperator OneElectronOperator::operator+(const OneElectronOperator& other) const {
-    
-    return OneElectronOperator(this->matrix + other.matrix);
-}
+///**
+// *  @param other    the other OneElectronOperator
+// *
+// *  @return the sum of two OneElectronOperators, i.e. a OneElectronOperator whose matrix representation is the sum of the two matrix representations of the given OneElectronOperators
+// */
+//OneElectronOperator OneElectronOperator::operator+(const OneElectronOperator& other) const {
+//
+//    return OneElectronOperator(this->matrix + other.matrix);
+//}
 
 
-/**
- *  @param other    the other OneElectronOperator
- *
- *  @return if the matrix representation of this operator is equal to the matrix representation of the, within the default tolerance specified by isEqualTo()
- */
-bool OneElectronOperator::operator==(const OneElectronOperator& other) const {
-    return this->isEqualTo(other);
-}
+///**
+// *  @param other    the other OneElectronOperator
+// *
+// *  @return if the matrix representation of this operator is equal to the matrix representation of the, within the default tolerance specified by isEqualTo()
+// */
+//bool OneElectronOperator::operator==(const OneElectronOperator& other) const {
+//    return this->isEqualTo(other);
+//}
 
 
-/**
- *  @return a OneElectronOperator whose matrix representation is negated
- */
-OneElectronOperator OneElectronOperator::operator-() const {
-    return OneElectronOperator(-this->matrix);
-}
+///**
+// *  @return a OneElectronOperator whose matrix representation is negated
+// */
+//OneElectronOperator OneElectronOperator::operator-() const {
+//    return OneElectronOperator(-this->matrix);
+//}
 
 
 
@@ -89,66 +89,66 @@ OneElectronOperator OneElectronOperator::operator-() const {
  *  PUBLIC METHODS
  */
 
-/**
- *  @param other        the other OneElectronOperator
- *  @param tolerance    the tolerance for equality of the matrix representations
- *
- *  @return if the matrix representation of this operator is equal to the matrix representation of the other, given a tolerance
- */
-bool OneElectronOperator::isEqualTo(const OneElectronOperator& other, double tolerance) const {
-    return this->matrix.isApprox(other.matrix, tolerance);
-}
+///**
+// *  @param other        the other OneElectronOperator
+// *  @param tolerance    the tolerance for equality of the matrix representations
+// *
+// *  @return if the matrix representation of this operator is equal to the matrix representation of the other, given a tolerance
+// */
+//bool OneElectronOperator::isEqualTo(const OneElectronOperator& other, double tolerance) const {
+//    return this->matrix.isApprox(other.matrix, tolerance);
+//}
 
 
-/**
- *  In-place transform the matrix representation of the one-electron operator
- *
- *  @param T    the transformation matrix between the old and the new orbital basis, it is used as
- *      b' = b T ,
- *   in which the basis functions are collected as elements of a row vector b
- */
-void OneElectronOperator::transform(const Eigen::MatrixXd& T) {
-    this->matrix = T.adjoint() * this->matrix * T;
-}
+///**
+// *  In-place transform the matrix representation of the one-electron operator
+// *
+// *  @param T    the transformation matrix between the old and the new orbital basis, it is used as
+// *      b' = b T ,
+// *   in which the basis functions are collected as elements of a row vector b
+// */
+//void OneElectronOperator::transform(const Eigen::MatrixXd& T) {
+//    this->matrix = T.adjoint() * this->matrix * T;
+//}
 
 
-/**
- *  In-place rotate the matrix representation of the one-electron operator
- *
- *  @param U     the unitary transformation (i.e. rotation) matrix, see transform() for how the transformation matrix between the two bases should be represented
- */
-void OneElectronOperator::rotate(const Eigen::MatrixXd& U) {
-
-    // Check if the given matrix is actually unitary
-    if (!U.isUnitary(1.0e-12)) {
-        throw std::invalid_argument("The given matrix is not unitary.");
-    }
-
-    this->transform(U);
-}
+///**
+// *  In-place rotate the matrix representation of the one-electron operator
+// *
+// *  @param U     the unitary transformation (i.e. rotation) matrix, see transform() for how the transformation matrix between the two bases should be represented
+// */
+//void OneElectronOperator::rotate(const Eigen::MatrixXd& U) {
+//
+//    // Check if the given matrix is actually unitary
+//    if (!U.isUnitary(1.0e-12)) {
+//        throw std::invalid_argument("The given matrix is not unitary.");
+//    }
+//
+//    this->transform(U);
+//}
 
 
 /**
  *  In-place rotate the matrix representation of the operator using a unitary Jacobi rotation matrix constructed from the Jacobi rotation parameters
  *
  *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix. See transform() for how the transformation matrix between the two bases should be represented
- */
-void OneElectronOperator::rotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
-
-    auto p = jacobi_rotation_parameters.get_p();
-    auto q = jacobi_rotation_parameters.get_q();
-    auto angle = jacobi_rotation_parameters.get_angle();
-
-    double c = std::cos(angle);
-    double s = std::sin(angle);
-
-
-    // Use Eigen's Jacobi module to apply the Jacobi rotations directly (cfr. T.adjoint() * h * T)
-    Eigen::JacobiRotation<double> jacobi (c, s);
-
-    this->matrix.applyOnTheLeft(p, q, jacobi.adjoint());
-    this->matrix.applyOnTheRight(p, q, jacobi);
-}
+// */
+//void OneElectronOperator::rotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
+//
+//    auto p = jacobi_rotation_parameters.get_p();
+//    auto q = jacobi_rotation_parameters.get_q();
+//    auto angle = jacobi_rotation_parameters.get_angle();
+//
+//    double c = std::cos(angle);
+//    double s = std::sin(angle);
+//
+//
+//    // Use Eigen's Jacobi module to apply the Jacobi rotations directly (cfr. T.adjoint() * h * T)
+//    Eigen::JacobiRotation<double> jacobi (c, s);
+//
+//    this->matrix.applyOnTheLeft(p, q, jacobi.adjoint());
+//    this->matrix.applyOnTheRight(p, q, jacobi);
+//}
 
 
 

@@ -33,7 +33,7 @@ namespace GQCP {
  */
 Eigen::MatrixXd DIISRHFSCFSolver::calculateNewFockMatrix(const Eigen::MatrixXd& D_AO) {
 
-    Eigen::MatrixXd S = this->ham_par.get_S().get_matrix_representation();
+    auto S = this->ham_par.get_S();
 
     // Calculate the Fock matrix based off the density matrix
     auto f_AO = calculateRHFAOFockMatrix(D_AO, this->ham_par);
@@ -95,7 +95,7 @@ Eigen::MatrixXd DIISRHFSCFSolver::calculateNewFockMatrix(const Eigen::MatrixXd& 
  *  @param threshold                        the convergence treshold on the Frobenius norm on the AO density matrix
  *  @param maximum_number_of_iterations     the maximum number of iterations for the SCF procedure
  */
-DIISRHFSCFSolver::DIISRHFSCFSolver(HamiltonianParameters ham_par, Molecule molecule, size_t maximum_subspace_dimension, double threshold, size_t maximum_number_of_iterations) :
+DIISRHFSCFSolver::DIISRHFSCFSolver(HamiltonianParameters<double> ham_par, Molecule molecule, size_t maximum_subspace_dimension, double threshold, size_t maximum_number_of_iterations) :
     RHFSCFSolver(ham_par, molecule, threshold, maximum_number_of_iterations),
     maximum_subspace_dimension (maximum_subspace_dimension)
 {}

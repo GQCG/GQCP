@@ -67,7 +67,7 @@ private:
      *  @param i            the index of spatial orbital 1
      *  @param j            the index of spatial orbital 2
      */
-    void calculateJacobiCoefficients(const HamiltonianParameters& ham_par, size_t i, size_t j);
+    void calculateJacobiCoefficients(const HamiltonianParameters<double>& ham_par, size_t i, size_t j);
 
     /**
      *  @param ham_par      the Hamiltonian parameters in an orthonormal basis
@@ -76,14 +76,14 @@ private:
      *
      *  @return the angle which maximizes the Edmiston-Ruedenberg localization index for the orbitals i and j
      */
-    double calculateMaximizingRotationAngle(const HamiltonianParameters& ham_par, size_t i, size_t j) const;
+    double calculateMaximizingRotationAngle(const HamiltonianParameters<double>& ham_par, size_t i, size_t j) const;
 
     /**
      *  @param ham_par      the Hamiltonian parameters (in an orthonormal basis) that contain the two-electron integrals upon which the Edmiston-Ruedenberg localization index is calculated
      *
      *  @return the maximal Edmiston-Ruedenberg for the current Jacobi coefficients A, B, C
      */
-    double calculateMaximalLocalizationIndex(const HamiltonianParameters& ham_par) const;
+    double calculateMaximalLocalizationIndex(const HamiltonianParameters<double>& ham_par) const;
 
 
 public:
@@ -102,7 +102,7 @@ public:
      *
      *  @param ham_par      the Hamiltonian parameters (in an orthonormal basis) that should be localized
      */
-    void localize(HamiltonianParameters& ham_par) override;
+    void localize(HamiltonianParameters<double>& ham_par) override;
 };
 
 

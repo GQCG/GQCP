@@ -15,19 +15,19 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 //
-#define BOOST_TEST_MODULE "SquareMatrixX"
+#define BOOST_TEST_MODULE "SquareMatrix"
 
 #include <boost/test/unit_test.hpp>
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
 
-#include "math/SquareMatrixX.hpp"
+#include "math/SquareMatrix.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( constructor ) {
 
     auto M1 = Eigen::MatrixXd::Zero(2, 2);
-    BOOST_CHECK_NO_THROW(GQCP::SquareMatrixX<double> op (M1));
+    BOOST_CHECK_NO_THROW(GQCP::SquareMatrix<double> square_M1 (M1));
 
     auto M2 = Eigen::MatrixXd::Zero(2, 1);
-    BOOST_CHECK_THROW(GQCP::SquareMatrixX<double> op (M2), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::SquareMatrix<double> square_M2 (M2), std::invalid_argument);
 }

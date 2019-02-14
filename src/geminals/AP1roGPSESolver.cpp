@@ -33,7 +33,7 @@ namespace GQCP {
  *  @param ham_par      Hamiltonian parameters in an orthonormal orbital basis
  *  @param G            the initial guess for the AP1roG gemial coefficients
  */
-AP1roGPSESolver::AP1roGPSESolver(size_t N_P, const HamiltonianParameters& ham_par, const AP1roGGeminalCoefficients& G) :
+AP1roGPSESolver::AP1roGPSESolver(size_t N_P, const HamiltonianParameters<double>& ham_par, const AP1roGGeminalCoefficients& G) :
     BaseAP1roGSolver(N_P, ham_par, G)
 {}
 
@@ -44,7 +44,7 @@ AP1roGPSESolver::AP1roGPSESolver(size_t N_P, const HamiltonianParameters& ham_pa
  *
  *  The initial guess for the geminal coefficients is zero
  */
-AP1roGPSESolver::AP1roGPSESolver(size_t N_P, const HamiltonianParameters& ham_par) :
+AP1roGPSESolver::AP1roGPSESolver(size_t N_P, const HamiltonianParameters<double>& ham_par) :
     BaseAP1roGSolver(N_P, ham_par)
 {}
 
@@ -54,7 +54,7 @@ AP1roGPSESolver::AP1roGPSESolver(size_t N_P, const HamiltonianParameters& ham_pa
  *  @param ham_par      Hamiltonian parameters in an orthonormal orbital basis
  *  @param G            the initial guess for the AP1roG gemial coefficients
  */
-AP1roGPSESolver::AP1roGPSESolver(const Molecule& molecule, const HamiltonianParameters& ham_par, const AP1roGGeminalCoefficients& G) :
+AP1roGPSESolver::AP1roGPSESolver(const Molecule& molecule, const HamiltonianParameters<double>& ham_par, const AP1roGGeminalCoefficients& G) :
     BaseAP1roGSolver(molecule, ham_par, G)
 {
 }
@@ -66,7 +66,7 @@ AP1roGPSESolver::AP1roGPSESolver(const Molecule& molecule, const HamiltonianPara
  *
  *  The initial guess for the geminal coefficients is zero
  */
-AP1roGPSESolver::AP1roGPSESolver(const Molecule& molecule, const HamiltonianParameters& ham_par) :
+AP1roGPSESolver::AP1roGPSESolver(const Molecule& molecule, const HamiltonianParameters<double>& ham_par) :
     BaseAP1roGSolver(molecule, ham_par)
 {}
 
@@ -87,8 +87,8 @@ AP1roGPSESolver::AP1roGPSESolver(const Molecule& molecule, const HamiltonianPara
  */
 double AP1roGPSESolver::calculateJacobianElement(const AP1roGGeminalCoefficients& G, size_t i, size_t a, size_t k, size_t c) const {
 
-    OneElectronOperator h_SO = this->ham_par.get_h();
-    TwoElectronOperator g_SO = this->ham_par.get_g();
+    auto h_SO = this->ham_par.get_h();
+    auto g_SO = this->ham_par.get_g();
 
     double j_el = 0.0;
 
@@ -189,8 +189,8 @@ Eigen::MatrixXd AP1roGPSESolver::calculateJacobian(const Eigen::VectorXd& g) con
  */
 double AP1roGPSESolver::calculateCoordinateFunction(const AP1roGGeminalCoefficients& G, size_t i, size_t a) const {
 
-    OneElectronOperator h_SO = this->ham_par.get_h();
-    TwoElectronOperator g_SO = this->ham_par.get_g();
+    auto h_SO = this->ham_par.get_h();
+    auto g_SO = this->ham_par.get_g();
 
     double f = 0.0;
 

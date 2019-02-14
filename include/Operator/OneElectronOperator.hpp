@@ -21,73 +21,56 @@
 
 #include <Eigen/Dense>
 
-#include "BaseOperator.hpp"
+#include "JacobiRotationParameters.hpp"
+#include "math/SquareMatrix.hpp"
+#include "Operator.hpp"
 
 
 namespace GQCP {
 
 
-
 /**
  *  A class that represents a one-electron operator in an orbital basis
+ *
+ *  @tparam Scalar      the scalar type
  */
-class OneElectronOperator : public BaseOperator {
-private:
-    Eigen::MatrixXd matrix;  // the matrix representation of the one-electron operator
-
-
+template <typename Scalar>
+class OneElectronOperator : public SquareMatrix<Scalar>, public Operator<Scalar> {
 public:
-    // CONSTRUCTORS
-    /**
-     *  A default constructor setting everything to zero
+
+    /*
+     *  CONSTRUCTORS
      */
-    OneElectronOperator();  // need a default constructor
+
+    /**
+     *  Default constructor
+     */
+    OneElectronOperator() :
+        SquareMatrix<Scalar>()
+    {}
+
 
     /**
      *  @param matrix   the explicit matrix representation of the one-electron operator
+     *
+     *  Note that this should accept any Matrix<Scalar> (instead of SquareMatrix<Scalar>) because we want other Eigen return types to be accepted as well, like after a product of OneElectronOperators
      */
-    explicit OneElectronOperator(const Eigen::MatrixXd& matrix);
+    explicit OneElectronOperator(const Matrix<Scalar>& matrix) :
+        SquareMatrix<Scalar>(matrix)
+    {}
+
+
+    /**
+     *  A default constructor setting everything to zero
+     */
+//    OneElectronOperator();  // need a default constructor
 
 
     // GETTERS
-    const Eigen::MatrixXd& get_matrix_representation() const { return this->matrix; }
+//    const Eigen::MatrixXd& get_matrix_representation() const { return this->matrix; }
 
 
-    // OPERATORS
-    /**
-     *  @return the matrix element at position (p,q)
-     */
-    double operator()(size_t p, size_t q) const { return this->matrix(p,q); }
-
-    /**
-     *  @param other    the other OneElectronOperator
-     *
-     *  @return the sum of two OneElectronOperators, i.e. a OneElectronOperator whose matrix representation is the sum of the two matrix representations of the given OneElectronOperators
-     */
-    OneElectronOperator operator+(const OneElectronOperator& other) const;
-
-    /**
-     *  @return a OneElectronOperator whose matrix representation is negated
-     */
-    OneElectronOperator operator-() const;
-
-    /**
-     *  @param other    the other OneElectronOperator
-     *
-     *  @return if the matrix representation of this operator is equal to the matrix representation of the other, within the default tolerance specified by isEqualTo()
-     */
-    bool operator==(const OneElectronOperator& other) const;
-
-
-    // PUBLIC METHODS
-    /**
-     *  @param other        the other OneElectronOperator
-     *  @param tolerance    the tolerance for equality of the matrix representations
-     *
-     *  @return if the matrix representation of this operator is equal to the matrix representation of the other, given a tolerance
-     */
-    bool isEqualTo(const OneElectronOperator& other, double tolerance=1.0e-08) const;
-
+    // OVERRIDDEN PUBLIC METHODS
     /**
      *  In-place transform the matrix representation of the one-electron operator
      *
@@ -95,21 +78,32 @@ public:
      *      b' = b T ,
      *   in which the basis functions are collected as elements of a row vector b
      */
-    void transform(const Eigen::MatrixXd& T) override;
+    void transform(const SquareMatrix<Scalar>& T) override {
+        *this = OneElectronOperator<Scalar>(T.adjoint() * (*this) * T);  // this has no aliasing issues (https://eigen.tuxfamily.org/dox/group__TopicAliasing.html)
+    }
 
     /**
-     *  In-place rotate the matrix representation of the one-electron operator
-     *
-     *  @param U     the unitary transformation (i.e. rotation) matrix, see transform() for how the transformation matrix between the two bases should be represented
-     */
-    void rotate(const Eigen::MatrixXd& U) override;
-
-    /**
-     *  In-place rotate the matrix representation of the operator using a unitary Jacobi rotation matrix constructed from the Jacobi rotation parameters
+     *  In-place rotate the matrix representation of the one-electron operator using a unitary Jacobi rotation matrix constructed from the Jacobi rotation parameters. Note that this function is only available for real (double) matrix representations
      *
      *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix. See transform() for how the transformation matrix between the two bases should be represented
      */
-    void rotate(const JacobiRotationParameters& jacobi_rotation_parameters) override;
+    template<typename Z = Scalar>
+    enable_if_t<std::is_same<Z, double>::value> rotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
+
+        auto p = jacobi_rotation_parameters.get_p();
+        auto q = jacobi_rotation_parameters.get_q();
+        auto angle = jacobi_rotation_parameters.get_angle();
+
+        double c = std::cos(angle);
+        double s = std::sin(angle);
+
+
+        // Use Eigen's Jacobi module to apply the Jacobi rotations directly (cfr. T.adjoint() * M * T)
+        Eigen::JacobiRotation<double> jacobi (c, s);
+
+        this->applyOnTheLeft(p, q, jacobi.adjoint());
+        this->applyOnTheRight(p, q, jacobi);
+    }
 };
 
 

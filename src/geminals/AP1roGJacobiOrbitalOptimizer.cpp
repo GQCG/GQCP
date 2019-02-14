@@ -42,7 +42,7 @@ namespace GQCP {
 
  *  The initial guess for the geminal coefficients is zero
  */
-AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer(size_t N_P, const HamiltonianParameters& ham_par, double oo_threshold, const size_t maximum_number_of_oo_iterations) :
+AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer(size_t N_P, const HamiltonianParameters<double>& ham_par, double oo_threshold, const size_t maximum_number_of_oo_iterations) :
     BaseAP1roGSolver(N_P, ham_par),
     oo_threshold (oo_threshold),
     maximum_number_of_oo_iterations (maximum_number_of_oo_iterations)
@@ -57,7 +57,7 @@ AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer(size_t N_P, const Ham
  *
  *  The initial guess for the geminal coefficients is zero
  */
-AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer(const Molecule& molecule, const HamiltonianParameters& ham_par, double oo_threshold, const size_t maximum_number_of_oo_iterations) :
+AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer(const Molecule& molecule, const HamiltonianParameters<double>& ham_par, double oo_threshold, const size_t maximum_number_of_oo_iterations) :
     BaseAP1roGSolver(molecule, ham_par),
     oo_threshold (oo_threshold),
     maximum_number_of_oo_iterations (maximum_number_of_oo_iterations)
@@ -80,8 +80,8 @@ AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer(const Molecule& molec
  */
 void AP1roGJacobiOrbitalOptimizer::calculateJacobiCoefficients(size_t p, size_t q, const AP1roGGeminalCoefficients& G) {
 
-    OneElectronOperator h_SO = this->ham_par.get_h();
-    TwoElectronOperator g_SO = this->ham_par.get_g();
+    auto h_SO = this->ham_par.get_h();
+    auto g_SO = this->ham_par.get_g();
 
 
     // Implementation of the Jacobi rotation coefficients with disjoint cases for p and q

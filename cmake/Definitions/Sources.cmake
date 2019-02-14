@@ -33,7 +33,6 @@ set(PROJECT_SOURCE_FILES
         ${PROJECT_SOURCE_FOLDER}/HamiltonianBuilder/SelectedCI.cpp
 
         ${PROJECT_SOURCE_FOLDER}/HamiltonianParameters/BaseHamiltonianParameters.cpp
-        ${PROJECT_SOURCE_FOLDER}/HamiltonianParameters/HamiltonianParameters.cpp
 
         ${PROJECT_SOURCE_FOLDER}/Localization/BaseERLocalizer.cpp
         ${PROJECT_SOURCE_FOLDER}/Localization/ERJacobiLocalizer.cpp
@@ -51,7 +50,6 @@ set(PROJECT_SOURCE_FILES
         ${PROJECT_SOURCE_FOLDER}/math/optimization/SparseSolver.cpp
         ${PROJECT_SOURCE_FOLDER}/math/optimization/step.cpp
 
-        ${PROJECT_SOURCE_FOLDER}/Operator/BaseOperator.cpp
         ${PROJECT_SOURCE_FOLDER}/Operator/OneElectronOperator.cpp
         ${PROJECT_SOURCE_FOLDER}/Operator/TwoElectronOperator.cpp
 

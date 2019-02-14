@@ -37,7 +37,7 @@ namespace GQCP {
  *  @param doci         the DOCI HamiltonianBuilder
  *  @param ham_par      the Hamiltonian parameters in an orthonormal basis
  */
-DOCINewtonOrbitalOptimizer::DOCINewtonOrbitalOptimizer(const DOCI& doci, const HamiltonianParameters& ham_par) :
+DOCINewtonOrbitalOptimizer::DOCINewtonOrbitalOptimizer(const DOCI& doci, const HamiltonianParameters<double>& ham_par) :
     doci (doci),
     ham_par (ham_par)
 {}
@@ -91,13 +91,13 @@ void DOCINewtonOrbitalOptimizer::solve(BaseSolverOptions& solver_options, const 
 
 
         // Calculate the electronic gradient at kappa = 0
-        Eigen::MatrixXd F = this->ham_par.calculateGeneralizedFockMatrix(D, d).get_matrix_representation();
+        auto F = this->ham_par.calculateGeneralizedFockMatrix(D, d);
         Eigen::MatrixXd gradient_matrix = 2 * (F - F.transpose());
         Eigen::VectorXd gradient_vector = strictLowerTriangle(gradient_matrix);  // gradient vector with the free parameters, at kappa = 0
 
 
         // Calculate the electronic Hessian at kappa = 0
-        TwoElectronOperator W = this->ham_par.calculateSuperGeneralizedFockMatrix(D, d);
+        auto W = this->ham_par.calculateSuperGeneralizedFockMatrix(D, d);
         Eigen::Tensor<double, 4> hessian_tensor (K, K, K, K);
         hessian_tensor.setZero();
 
@@ -159,7 +159,7 @@ void DOCINewtonOrbitalOptimizer::solve(BaseSolverOptions& solver_options, const 
 
 
         // Transform the integrals to the new orthonormal basis
-        this->ham_par.rotate(U);  // this checks if U is actually unitary
+        this->ham_par.Operator<double>::rotate(U);  // this checks if U is actually unitary
 
 
         // If we're using a Davidson solver, we should update the initial guesses in the solver_options to be the current eigenvectors

@@ -78,7 +78,7 @@ public:
 
      *  The initial guess for the geminal coefficients is zero
      */
-    AP1roGJacobiOrbitalOptimizer(size_t N_P, const HamiltonianParameters& ham_par, double oo_threshold=1.0e-08, const size_t maximum_number_of_oo_iterations=128);
+    AP1roGJacobiOrbitalOptimizer(size_t N_P, const HamiltonianParameters<double>& ham_par, double oo_threshold=1.0e-08, const size_t maximum_number_of_oo_iterations=128);
 
     /**
      *  @param molecule                             the molecule used for the OO-AP1roG calculation
@@ -88,7 +88,7 @@ public:
      *
      *  The initial guess for the geminal coefficients is zero
      */
-    AP1roGJacobiOrbitalOptimizer(const Molecule& molecule, const HamiltonianParameters& ham_par, double oo_threshold=1.0e-08, const size_t maximum_number_of_oo_iterations=128);
+    AP1roGJacobiOrbitalOptimizer(const Molecule& molecule, const HamiltonianParameters<double>& ham_par, double oo_threshold=1.0e-08, const size_t maximum_number_of_oo_iterations=128);
 
 
     // PUBLIC METHODS

@@ -31,16 +31,16 @@ namespace GQCP {
  *
  *  @return the expectation value of the one-electron operator
  */
-double calculateExpectationValue(const OneElectronOperator& one_op, const OneRDM& one_rdm) {
+double calculateExpectationValue(const OneElectronOperator<double>& one_op, const OneRDM& one_rdm) {
 
     if (one_op.get_dim() != one_rdm.get_dim()) {
         throw std::invalid_argument("The given one-electron integrals are not compatible with the 1-RDM.");
     }
 
-    auto h = one_op.get_matrix_representation();
+//    auto h = one_op.get_matrix_representation();
     auto D = one_rdm.get_matrix_representation();
 
-    return (h * D).trace();
+    return (one_op * D).trace();
 }
 
 
@@ -55,20 +55,20 @@ double calculateExpectationValue(const OneElectronOperator& one_op, const OneRDM
  *
  *  @return the expectation value of the one-electron operator: this includes the prefactor 1/2
  */
-double calculateExpectationValue(const TwoElectronOperator& two_op, const TwoRDM& two_rdm) {
+double calculateExpectationValue(const TwoElectronOperator<double>& two_op, const TwoRDM& two_rdm) {
 
     if (two_op.get_dim() != two_rdm.get_dim()) {
         throw std::invalid_argument("The given two-electron integrals are not compatible with the 2-RDM.");
     }
 
-    auto g = two_op.get_matrix_representation();
+//    auto g = two_op.get_matrix_representation();
     auto d = two_rdm.get_matrix_representation();
 
     // Specify the contractions for the relevant contraction of the two-electron integrals and the 2-RDM
     //      0.5 g(p q r s) d(p q r s)
     Eigen::array<Eigen::IndexPair<int>, 4> contractions = {Eigen::IndexPair<int>(0,0), Eigen::IndexPair<int>(1,1), Eigen::IndexPair<int>(2,2), Eigen::IndexPair<int>(3,3)};
     //      Perform the contraction
-    Eigen::Tensor<double, 0> contraction = 0.5 * g.contract(d, contractions);
+    Eigen::Tensor<double, 0> contraction = 0.5 * two_op.contract(d, contractions);
 
     // As the contraction is a scalar (a tensor of rank 0), we should access by (0).
     return contraction(0);
@@ -87,7 +87,7 @@ double calculateExpectationValue(const TwoElectronOperator& two_op, const TwoRDM
  *
  *  @return the expectation value of the 'Hamiltonian' represented by the Hamiltonian parameters
  */
-double calculateExpectationValue(const HamiltonianParameters& ham_par, const OneRDM& one_rdm, const TwoRDM& two_rdm) {
+double calculateExpectationValue(const HamiltonianParameters<double>& ham_par, const OneRDM& one_rdm, const TwoRDM& two_rdm) {
 
     return ham_par.get_scalar() + calculateExpectationValue(ham_par.get_h(), one_rdm) + calculateExpectationValue(ham_par.get_g(), two_rdm);
 }

@@ -21,9 +21,11 @@
 
 #include <complex>
 #include <cstdlib>
+#include <type_traits>
 #include <vector>
 
 #include <Eigen/Dense>
+#include <unsupported/Eigen/CXX11/Tensor>
 
 
 /**
@@ -46,9 +48,9 @@ using cd = std::complex<double>;
 using Vectoru = std::vector<size_t>;
 
 template<typename Scalar>
-using VectorX = Eigen::Matrix<Scalar, Eigen::Dynamic, 1>;
+using Vector = Eigen::Matrix<Scalar, Eigen::Dynamic, 1>;
 
-using VectorXs = VectorX<size_t>;
+using VectorXs = Vector<size_t>;
 
 
 /*
@@ -57,8 +59,7 @@ using VectorXs = VectorX<size_t>;
 using Matrixu = std::vector<Vectoru>;
 
 template<typename Scalar>
-using MatrixX = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
-
+using Matrix = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
 
 
 /*
@@ -66,6 +67,20 @@ using MatrixX = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
  */
 using VectorFunction = std::function<Eigen::VectorXd (const Eigen::VectorXd&)>;
 using MatrixFunction = std::function<Eigen::MatrixXd (const Eigen::VectorXd&)>;
+
+
+/*
+ *  TENSORS
+ */
+template<typename Scalar>
+using FourIndexTensor = Eigen::Tensor<Scalar, 4>;
+
+
+/*
+ *  FEATURES
+ */
+template<bool B, class T = void>
+using enable_if_t = typename std::enable_if<B,T>::type;  // only implemented in C++14
 
 
 }  // namespace GQCP

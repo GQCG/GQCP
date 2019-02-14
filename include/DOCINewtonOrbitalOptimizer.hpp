@@ -39,7 +39,7 @@ namespace GQCP {
 class DOCINewtonOrbitalOptimizer {
 private:
     DOCI doci;  // the DOCI Hamiltonian builder
-    HamiltonianParameters ham_par;
+    HamiltonianParameters<double> ham_par;
 
     bool is_converged = false;
     std::vector<Eigenpair> eigenpairs;  // eigenvalues and -vectors
@@ -51,7 +51,7 @@ public:
      *  @param doci         the DOCI HamiltonianBuilder
      *  @param ham_par      the Hamiltonian parameters in an orthonormal basis
      */
-    DOCINewtonOrbitalOptimizer(const DOCI& doci, const HamiltonianParameters& ham_par);
+    DOCINewtonOrbitalOptimizer(const DOCI& doci, const HamiltonianParameters<double>& ham_par);
 
 
     // GETTERS

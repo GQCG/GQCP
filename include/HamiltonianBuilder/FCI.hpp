@@ -44,7 +44,7 @@ private:
      *
      *  @return The sparse matrix containing all Hamiltonian elements for the Fock space pertaining to a single spin
      */
-    Eigen::SparseMatrix<double> calculateSpinSeparatedHamiltonian(const FockSpace& fock_space, const HamiltonianParameters& hamiltonian_parameters) const;
+    Eigen::SparseMatrix<double> calculateSpinSeparatedHamiltonian(const FockSpace& fock_space, const HamiltonianParameters<double>& hamiltonian_parameters) const;
 
     /**
      *  Calculates theta(rs): all one-electron couplings for a (spin) Fock space
@@ -57,7 +57,7 @@ private:
      *
      *  @return The sparse matrix containing the calculated two-electron integrals mapped to one-electron couplings
      */
-    Eigen::SparseMatrix<double> calculateTwoElectronIntermediate(size_t r, size_t s, const HamiltonianParameters& hamiltonian_parameters, const FockSpace& fock_space) const;
+    Eigen::SparseMatrix<double> calculateTwoElectronIntermediate(size_t r, size_t s, const HamiltonianParameters<double>& hamiltonian_parameters, const FockSpace& fock_space) const;
 
     /**
      *  Calculates sigma(pq) + sigma(qp)'s: all one-electron couplings for each annihilation-creation pair in the (spin) Fock space
@@ -90,7 +90,7 @@ public:
      *
      *  @return the FCI Hamiltonian matrix
      */
-    Eigen::MatrixXd constructHamiltonian(const HamiltonianParameters& hamiltonian_parameters) const override;
+    Eigen::MatrixXd constructHamiltonian(const HamiltonianParameters<double>& hamiltonian_parameters) const override;
 
     /**
      *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis
@@ -99,14 +99,14 @@ public:
      *
      *  @return the action of the FCI Hamiltonian on the coefficient vector
      */
-    Eigen::VectorXd matrixVectorProduct(const HamiltonianParameters& hamiltonian_parameters, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) const override;
+    Eigen::VectorXd matrixVectorProduct(const HamiltonianParameters<double>& hamiltonian_parameters, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) const override;
 
     /**
      *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis
      *
      *  @return the diagonal of the matrix representation of the Hamiltonian
      */
-    Eigen::VectorXd calculateDiagonal(const HamiltonianParameters& hamiltonian_parameters) const override;
+    Eigen::VectorXd calculateDiagonal(const HamiltonianParameters<double>& hamiltonian_parameters) const override;
 };
 
 

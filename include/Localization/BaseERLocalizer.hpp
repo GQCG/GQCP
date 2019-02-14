@@ -53,7 +53,7 @@ public:
      *
      *  @param ham_par      the Hamiltonian parameters (in an orthonormal basis) that should be localized
      */
-    virtual void localize(HamiltonianParameters& ham_par) = 0;
+    virtual void localize(HamiltonianParameters<double>& ham_par) = 0;
 };
 
 

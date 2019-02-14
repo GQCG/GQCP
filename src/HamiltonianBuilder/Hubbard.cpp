@@ -33,7 +33,7 @@ namespace GQCP {
  *  @param hamiltonian_parameters   the Hubbard Hamiltonian parameters
  *  @param method                   the used method: constructHamiltonian() or matrixVectorProduct()
  */
-void Hubbard::oneOperatorModule(const FockSpace& fock_space_target, const FockSpace& fock_space_fixed, bool target_is_major, const HamiltonianParameters& hamiltonian_parameters, const PassToMethod& method) const {
+void Hubbard::oneOperatorModule(const FockSpace& fock_space_target, const FockSpace& fock_space_fixed, bool target_is_major, const HamiltonianParameters<double>& hamiltonian_parameters, const PassToMethod& method) const {
 
     size_t K = fock_space_target.get_K();
     size_t N = fock_space_target.get_N();
@@ -151,7 +151,7 @@ Hubbard::Hubbard(const ProductFockSpace& fock_space) :
  *
  *  @return the Hubbard Hamiltonian matrix
  */
-Eigen::MatrixXd Hubbard::constructHamiltonian(const HamiltonianParameters& hamiltonian_parameters) const {
+Eigen::MatrixXd Hubbard::constructHamiltonian(const HamiltonianParameters<double>& hamiltonian_parameters) const {
     auto K = hamiltonian_parameters.get_h().get_dim();
     if (K != this->fock_space.get_K()) {
         throw std::invalid_argument("Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
@@ -185,7 +185,7 @@ Eigen::MatrixXd Hubbard::constructHamiltonian(const HamiltonianParameters& hamil
  *
  *  @return the action of the Hubbard Hamiltonian on the coefficient vector
  */
-Eigen::VectorXd Hubbard::matrixVectorProduct(const HamiltonianParameters& hamiltonian_parameters, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) const {
+Eigen::VectorXd Hubbard::matrixVectorProduct(const HamiltonianParameters<double>& hamiltonian_parameters, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) const {
 
     auto K = hamiltonian_parameters.get_h().get_dim();
     if (K != this->fock_space.get_K()) {
@@ -215,7 +215,7 @@ Eigen::VectorXd Hubbard::matrixVectorProduct(const HamiltonianParameters& hamilt
  *
  *  @return the diagonal of the matrix representation of the Hubbard Hamiltonian
  */
-Eigen::VectorXd Hubbard::calculateDiagonal(const HamiltonianParameters &hamiltonian_parameters) const {
+Eigen::VectorXd Hubbard::calculateDiagonal(const HamiltonianParameters<double>& hamiltonian_parameters) const {
 
     auto K = hamiltonian_parameters.get_h().get_dim();
     if (K != this->fock_space.get_K()) {

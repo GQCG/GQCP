@@ -44,7 +44,7 @@ DOCI::DOCI(const FockSpace& fock_space) :
  *
  *  @return the DOCI Hamiltonian matrix
  */
-Eigen::MatrixXd DOCI::constructHamiltonian(const HamiltonianParameters& hamiltonian_parameters) const {
+Eigen::MatrixXd DOCI::constructHamiltonian(const HamiltonianParameters<double>& hamiltonian_parameters) const {
     
     auto K = hamiltonian_parameters.get_h().get_dim();
     if (K != this->fock_space.get_K()) {
@@ -111,7 +111,7 @@ Eigen::MatrixXd DOCI::constructHamiltonian(const HamiltonianParameters& hamilton
  *
  *  @return the action of the DOCI Hamiltonian on the coefficient vector
  */
-Eigen::VectorXd DOCI::matrixVectorProduct(const HamiltonianParameters& hamiltonian_parameters, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) const {
+Eigen::VectorXd DOCI::matrixVectorProduct(const HamiltonianParameters<double>& hamiltonian_parameters, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) const {
 
     auto K = hamiltonian_parameters.get_h().get_dim();
     if (K != this->fock_space.get_K()) {
@@ -179,7 +179,7 @@ Eigen::VectorXd DOCI::matrixVectorProduct(const HamiltonianParameters& hamiltoni
  *
  *  @return the diagonal of the matrix representation of the Hamiltonian given @param hamiltonian_parameters
  */
-Eigen::VectorXd DOCI::calculateDiagonal(const HamiltonianParameters& hamiltonian_parameters) const {
+Eigen::VectorXd DOCI::calculateDiagonal(const HamiltonianParameters<double>& hamiltonian_parameters) const {
     size_t dim = this->fock_space.get_dimension();
     Eigen::VectorXd diagonal = Eigen::VectorXd::Zero(dim);
 

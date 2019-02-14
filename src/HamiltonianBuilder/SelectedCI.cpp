@@ -24,9 +24,7 @@ namespace GQCP {
  *  PRIVATE METHODS
  */
 
-// This file is part of GQCG-gqcp.
-
-void SelectedCI::evaluateHamiltonianElements(const HamiltonianParameters& hamiltonian_parameters, const PassToMethod& method) const {
+void SelectedCI::evaluateHamiltonianElements(const HamiltonianParameters<double>& hamiltonian_parameters, const PassToMethod& method) const {
 
     size_t dim = fock_space.get_dimension();
     size_t K = fock_space.get_K();
@@ -218,7 +216,7 @@ SelectedCI::SelectedCI(const SelectedFockSpace& fock_space) :
  *
  *  @return the SelectedCI Hamiltonian matrix
  */
-Eigen::MatrixXd SelectedCI::constructHamiltonian(const HamiltonianParameters& hamiltonian_parameters) const {
+Eigen::MatrixXd SelectedCI::constructHamiltonian(const HamiltonianParameters<double>& hamiltonian_parameters) const {
     auto K = hamiltonian_parameters.get_h().get_dim();
     if (K != this->fock_space.get_K()) {
         throw std::invalid_argument("Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
@@ -244,7 +242,7 @@ Eigen::MatrixXd SelectedCI::constructHamiltonian(const HamiltonianParameters& ha
  *
  *  @return the action of the SelectedCI Hamiltonian on the coefficient vector
  */
-Eigen::VectorXd SelectedCI::matrixVectorProduct(const HamiltonianParameters& hamiltonian_parameters, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) const {
+Eigen::VectorXd SelectedCI::matrixVectorProduct(const HamiltonianParameters<double>& hamiltonian_parameters, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) const {
 
     auto K = hamiltonian_parameters.get_h().get_dim();
     if (K != this->fock_space.get_K()) {
@@ -267,7 +265,7 @@ Eigen::VectorXd SelectedCI::matrixVectorProduct(const HamiltonianParameters& ham
  *
  *  @return the diagonal of the matrix representation of the SelectedCI Hamiltonian
  */
-Eigen::VectorXd SelectedCI::calculateDiagonal(const HamiltonianParameters &hamiltonian_parameters) const {
+Eigen::VectorXd SelectedCI::calculateDiagonal(const HamiltonianParameters<double>& hamiltonian_parameters) const {
 
     auto K = hamiltonian_parameters.get_h().get_dim();
     if (K != this->fock_space.get_K()) {

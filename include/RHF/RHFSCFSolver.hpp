@@ -38,7 +38,7 @@ protected:
     double threshold;
     bool is_converged = false;
 
-    HamiltonianParameters ham_par;  // Hamiltonian parameters expressed in an AO basis
+    HamiltonianParameters<double> ham_par;  // Hamiltonian parameters expressed in an AO basis
     Molecule molecule;
 
     RHF solution;
@@ -62,7 +62,7 @@ public:
      *  @param threshold                        the convergence treshold on the Frobenius norm on the AO density matrix
      *  @param maximum_number_of_iterations     the maximum number of iterations for the SCF procedure
      */
-    RHFSCFSolver(HamiltonianParameters ham_par, Molecule molecule, double threshold=1.0e-08, size_t maximum_number_of_iterations=128);
+    RHFSCFSolver(const HamiltonianParameters<double>& ham_par, const Molecule& molecule, double threshold=1.0e-08, size_t maximum_number_of_iterations=128);
 
     // GETTERS
     const RHF& get_solution() const { return this->solution; }

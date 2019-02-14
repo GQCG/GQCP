@@ -91,7 +91,7 @@ Eigen::MatrixXd calculateRHFAO1RDM(const Eigen::MatrixXd& C, size_t N);
  *
  *  @return the RHF Fock matrix expressed in the AO basis
  */
-Eigen::MatrixXd calculateRHFAOFockMatrix(const Eigen::MatrixXd& D_AO, HamiltonianParameters ham_par);
+Eigen::MatrixXd calculateRHFAOFockMatrix(const Eigen::MatrixXd& D_AO, const HamiltonianParameters<double>& ham_par);
 
 /**
  *  @param D_AO         the RHF density matrix in AO basis
