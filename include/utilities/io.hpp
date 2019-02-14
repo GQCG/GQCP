@@ -30,7 +30,7 @@ namespace GQCP {
 
 
 /**
-  *  Read a vector from a given file and put the elements in the given vector
+ *  Read a vector from a given file and put the elements in the given vector
  *
  *  @param filename     the name of the file to be read in
  *  @param v            the vector that gets the contents of the file
