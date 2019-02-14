@@ -18,7 +18,7 @@
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 //
 #include "HamiltonianBuilder/FrozenCore.hpp"
-
+#include "utilities/linalg.hpp"
 
 namespace GQCP {
 
@@ -120,21 +120,10 @@ HamiltonianParameters FrozenCore::freezeHamiltonianParameters(const HamiltonianP
     OneElectronOperator S (hamiltonian_parameters.get_S().get_matrix_representation().block(X, X, Kn, Kn));
     Eigen::MatrixXd h (hamiltonian_parameters.get_h().get_matrix_representation().block(X, X, Kn, Kn));
 
-    Eigen::Tensor<double, 4> g_SO (Kn, Kn, Kn, Kn);
-    g_SO.setZero();
-
-    // copy two electron integrals from the non-frozen orbitals
     const auto& g = hamiltonian_parameters.get_g();
 
-    for (size_t i = X; i < K; i++) {
-        for (size_t j = X; j < K; j++) {
-            for (size_t l = X; l < K; l++) {
-                for (size_t m = X; m < K; m++) {
-                    g_SO(i - X, j - X, l - X, m - X) = g(i,j,l,m);
-                }
-            }
-        }
-    }
+    // copy two electron integrals from the non-frozen orbitals
+    Eigen::Tensor<double, 4> g_SO = tensorBlockCreation(g.get_matrix_representation(), X, X, X, X);
 
     // Modify one electron integrals with the missing frozen orbital two electron integral evaluations according to the frozen core CI algorithm
     for (int i = 0; i < Kn; i++) {

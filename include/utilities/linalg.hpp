@@ -129,8 +129,8 @@ void tensorBlockAddition(Eigen::Tensor<double, 4>& T_target, const Eigen::Tensor
 /**
  *  Copies a matrix into a target tensor starting from given indices
  *
- *  @tparam r               indicates which starting index (1,2,3,4) should correspond to the 1st matrix index
- *  @tparam s               indicates which starting index (1,2,3,4) should correspond to the 2nd matrix index
+ *  @tparam r               indicates which starting index (0,1,2,3) should correspond to the 1st matrix index
+ *  @tparam s               indicates which starting index (0,1,2,3) should correspond to the 2nd matrix index
  *
  *  @param T_target         a rank-4 tensor
  *  @param M                a matrix
@@ -143,10 +143,32 @@ void tensorBlockAddition(Eigen::Tensor<double, 4>& T_target, const Eigen::Tensor
 template<size_t r, size_t s>
 void tensorBlockAddition(Eigen::Tensor<double, 4>& T_target, const Eigen::MatrixXd& M, size_t i, size_t j, size_t k, size_t l) {
 
+    size_t ia[4] = {1,0,0,0};
+    size_t ja[4] = {0,1,0,0};
+    size_t ka[4] = {0,0,1,0};
+    size_t la[4] = {0,0,0,1};
 
-
+    for (size_t x = 0; x < M.rows(); x++) {
+        for (size_t y = 0; y < M.cols(); y++) {
+            T_target(i + x * ia[r] + y * ia[s], j + x * ja[r] + y * ja[s], k + x * ka[r] + y * ka[s], l + x * la[r] + y * la[s]) += M(x,y);
+        }
+    }
 }
 
+
+/**
+ *  Creates a rank-4 tensor from an other rank-4 tensor starting from given indices
+ *
+ *  @param T                a smaller rank-4 tensor
+ *
+ *  @param i                1st starting index of the starting tensor
+ *  @param j                2nd starting index of the starting tensor
+ *  @param k                3rd starting index of the starting tensor
+ *  @param l                4th starting index of the starting tensor
+ *
+ *  @param desize           early cut-off of index iteration
+ */
+Eigen::Tensor<double, 4> tensorBlockCreation(const Eigen::Tensor<double, 4>& T, size_t i, size_t j, size_t k, size_t l, size_t desize = 0);
 
 }  // namespace GQCP
 

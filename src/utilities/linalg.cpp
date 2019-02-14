@@ -279,4 +279,60 @@ Eigen::MatrixXd strictLowerTriangle(const Eigen::Tensor<double, 4>& T) {
 }
 
 
+/**
+ *  Copies a rank-4 tensor into an other rank-4 tensor starting from given indices
+ *
+ *  @param T_target         a rank-4 tensor
+ *  @param T                a rank-4 tensor
+ *
+ *  @param i                1st starting index of the starting tensor
+ *  @param j                2nd starting index of the starting tensor
+ *  @param k                3rd starting index of the starting tensor
+ *  @param l                4th starting index of the starting tensor
+ */
+void tensorBlockAddition(Eigen::Tensor<double, 4>& T_target, const Eigen::Tensor<double, 4>& T, size_t i, size_t j, size_t k, size_t l) {
+
+    for (size_t p = 0; p < T.dimension(0); p++) {
+        for (size_t q = 0; q < T.dimension(1); q++) {
+            for (size_t r = 0; r < T.dimension(2); r++) {
+                for (size_t s = 0; s < T.dimension(3); s++) {
+                    T_target(i + p, j + q, k + r, l + s) += T(p, q, r, s);
+                }
+            }
+        }
+    }
+}
+
+
+/**
+ *  Creates a rank-4 tensor from an other rank-4 tensor starting from given indices
+ *
+ *  @param T                a smaller rank-4 tensor
+ *
+ *  @param i                1st starting index of the starting tensor
+ *  @param j                2nd starting index of the starting tensor
+ *  @param k                3rd starting index of the starting tensor
+ *  @param l                4th starting index of the starting tensor
+ *
+ *  @param desize           early cut-off of index iteration
+ */
+Eigen::Tensor<double, 4> tensorBlockCreation(const Eigen::Tensor<double, 4>& T, size_t i, size_t j, size_t k, size_t l, size_t desize) {
+
+    Eigen::Tensor<double, 4> T_result (T.dimension(0) - i - desize, T.dimension(1) - j - desize, T.dimension(2) - k - desize, T.dimension(3) - l - desize);
+    T_result.setZero();
+
+    for (size_t p = 0; p < T_result.dimension(0); p++) {
+        for (size_t q = 0; q < T_result.dimension(1); q++) {
+            for (size_t r = 0; r < T_result.dimension(2); r++) {
+                for (size_t s = 0; s < T_result.dimension(3); s++) {
+                    T_result(p, q, r, s) = T(i + p, j + q, k + r, l + s);
+                }
+            }
+        }
+    }
+
+    return T_result;
+};
+
+
 }  // namespace GQCP
