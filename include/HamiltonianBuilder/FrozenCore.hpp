@@ -77,7 +77,7 @@ public:
      *  @param hamiltonian_parameters              the Hamiltonian parameters in an orthonormal orbital basis
      *  @param X                                   amount of frozen core orbitals
      *
-     *  @return the diagonal correct value for the frozen core CI algorithm
+     *  @return the diagonal correction value for the frozen core CI algorithm
      */
     double diagonalValue(const HamiltonianParameters& hamiltonian_parameters, size_t X) const;
 };

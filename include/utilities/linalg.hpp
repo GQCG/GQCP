@@ -112,6 +112,42 @@ Eigen::MatrixXd toMatrix(const Eigen::Tensor<double, 4>& T);
 Eigen::MatrixXd strictLowerTriangle(const Eigen::Tensor<double, 4>& T);
 
 
+/**
+ *  Copies a rank-4 tensor into an other rank-4 tensor starting from given indices
+ *
+ *  @param T_target         a rank-4 tensor
+ *  @param T                a smaller rank-4 tensor
+ *
+ *  @param i                1st starting index of the starting tensor
+ *  @param j                2nd starting index of the starting tensor
+ *  @param k                3rd starting index of the starting tensor
+ *  @param l                4th starting index of the starting tensor
+ */
+void tensorBlockAddition(Eigen::Tensor<double, 4>& T_target, const Eigen::Tensor<double, 4>& T, size_t i, size_t j, size_t k, size_t l);
+
+
+/**
+ *  Copies a matrix into a target tensor starting from given indices
+ *
+ *  @tparam r               indicates which starting index (1,2,3,4) should correspond to the 1st matrix index
+ *  @tparam s               indicates which starting index (1,2,3,4) should correspond to the 2nd matrix index
+ *
+ *  @param T_target         a rank-4 tensor
+ *  @param M                a matrix
+ *
+ *  @param i                1st starting index of the starting tensor
+ *  @param j                2nd starting index of the starting tensor
+ *  @param k                3rd starting index of the starting tensor
+ *  @param l                4th starting index of the starting tensor
+ */
+template<size_t r, size_t s>
+void tensorBlockAddition(Eigen::Tensor<double, 4>& T_target, const Eigen::MatrixXd& M, size_t i, size_t j, size_t k, size_t l) {
+
+
+
+}
+
+
 }  // namespace GQCP
 
 

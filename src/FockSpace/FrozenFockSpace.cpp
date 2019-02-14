@@ -70,7 +70,7 @@ ONV FrozenFockSpace::makeONV(size_t address) const {
  *  @param onv      the current ONV
  */
 void FrozenFockSpace::setNextONV(ONV& onv) const {
-    onv.set_representation((this->fock_space.ulongNextPermutation(onv.get_unsigned_representation() >> 1) << 1) + 1);
+    onv.set_representation((this->fock_space.ulongNextPermutation(onv.get_unsigned_representation() >> X) << X) + pow(2,X)-1);
 }
 
 
@@ -80,7 +80,7 @@ void FrozenFockSpace::setNextONV(ONV& onv) const {
  *  @return the address (i.e. the ordering number) of the given ONV
  */
 size_t FrozenFockSpace::getAddress(const ONV& onv) const {
-    return this->fock_space.getAddress(onv.get_unsigned_representation() >> 1);
+    return this->fock_space.getAddress(onv.get_unsigned_representation() >> X);
 }
 
 
@@ -91,7 +91,7 @@ size_t FrozenFockSpace::getAddress(const ONV& onv) const {
  *  @param address      the address to which the ONV will be set
  */
 void FrozenFockSpace::transformONV(ONV& onv, size_t address) const {
-    onv.set_representation((this->fock_space.calculateRepresentation(address) << 1) + 1);
+    onv.set_representation((this->fock_space.calculateRepresentation(address) << X) + pow(2,X)-1);
 }
 
 

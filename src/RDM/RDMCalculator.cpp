@@ -87,6 +87,18 @@ RDMCalculator::RDMCalculator(const BaseFockSpace& fock_space) {
 
             break;
         }
+
+        case FockSpaceType::FrozenFockSpace: {
+            this->rdm_builder = std::make_shared<FrozenCoreDOCIRDMBuilder>(dynamic_cast<const FrozenFockSpace&>(fock_space));
+
+            break;
+        }
+
+        case FockSpaceType::FrozenProductFockSpace: {
+            this->rdm_builder = std::make_shared<FrozenCoreFCIRDMBuilder>(dynamic_cast<const FrozenProductFockSpace&>(fock_space));
+
+            break;
+        }
     }
 }
 

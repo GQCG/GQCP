@@ -53,6 +53,7 @@ set(PROJECT_TEST_SOURCE_FILES
 
         ${PROJECT_TESTS_FOLDER}/RDM/DOCIRDMBuilder_test.cpp
         ${PROJECT_TESTS_FOLDER}/RDM/FCIRDMBuilder_test.cpp
+        ${PROJECT_TESTS_FOLDER}/RDM/FrozenCoreRDMBuilder_test.cpp
         ${PROJECT_TESTS_FOLDER}/RDM/RDMCalculator_test.cpp
         ${PROJECT_TESTS_FOLDER}/RDM/SelectedRDMBuilder_test.cpp
         ${PROJECT_TESTS_FOLDER}/RDM/SpinUnresolvedFCIRDMBuilder_test.cpp
