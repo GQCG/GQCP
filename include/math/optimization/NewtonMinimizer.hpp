@@ -21,7 +21,7 @@
 
 
 #include "optimization/BaseMinimizer.hpp"
-#include "common.hpp"
+#include "typedefs.hpp"
 
 
 

@@ -21,7 +21,7 @@
 
 #include <Eigen/Dense>
 
-#include "common.hpp"
+#include "typedefs.hpp"
 
 
 

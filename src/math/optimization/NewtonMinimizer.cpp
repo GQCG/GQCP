@@ -17,7 +17,7 @@
 // 
 #include "optimization/NewtonMinimizer.hpp"
 
-#include "common.hpp"
+#include "typedefs.hpp"
 #include "optimization/NewtonSystemOfEquationsSolver.hpp"
 
 

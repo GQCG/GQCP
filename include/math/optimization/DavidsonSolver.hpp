@@ -22,7 +22,7 @@
 #include "optimization/BaseEigenproblemSolver.hpp"
 #include "optimization/EigenproblemSolverOptions.hpp"
 
-#include "common.hpp"
+#include "typedefs.hpp"
 
 
 

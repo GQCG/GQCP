@@ -19,7 +19,7 @@
 #define GQCP_STEP_HPP
 
 
-#include "common.hpp"
+#include "typedefs.hpp"
 
 #include <Eigen/Dense>
 

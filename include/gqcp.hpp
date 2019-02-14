@@ -101,7 +101,7 @@
 // Single files, not in a special include directory
 #include "AOBasis.hpp"
 #include "Atom.hpp"
-#include "common.hpp"
+#include "typedefs.hpp"
 #include "DOCINewtonOrbitalOptimizer.hpp"
 #include "elements.hpp"
 #include "HoppingMatrix.hpp"

@@ -21,7 +21,7 @@
 #include <Eigen/Dense>
 
 #include "optimization/BaseSystemOfEquationsSolver.hpp"
-#include "common.hpp"
+#include "typedefs.hpp"
 
 
 

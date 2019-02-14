@@ -18,7 +18,7 @@
 #ifndef GQCP_HAMILTONIANPARAMETERS_HPP
 #define GQCP_HAMILTONIANPARAMETERS_HPP
 
-#include "common.hpp"
+#include "typedefs.hpp"
 #include "HamiltonianParameters/BaseHamiltonianParameters.hpp"
 #include "HoppingMatrix.hpp"
 #include "JacobiRotationParameters.hpp"

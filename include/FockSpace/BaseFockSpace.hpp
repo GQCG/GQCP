@@ -21,7 +21,7 @@
 
 #include "ONV.hpp"
 #include "FockSpace/FockSpaceType.hpp"
-#include "common.hpp"
+#include "typedefs.hpp"
 
 #include <iostream>
 #include <memory>
