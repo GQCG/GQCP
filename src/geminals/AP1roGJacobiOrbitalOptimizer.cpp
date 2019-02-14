@@ -20,7 +20,7 @@
 #include <cmath>
 #include <queue>
 
-#include "optimization/NewtonMinimizer.hpp"
+#include "math/optimization/NewtonMinimizer.hpp"
 #include "geminals/AP1roG.hpp"
 #include "geminals/AP1roGPSESolver.hpp"
 

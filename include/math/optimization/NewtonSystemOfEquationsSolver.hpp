@@ -20,7 +20,7 @@
 
 #include <Eigen/Dense>
 
-#include "optimization/BaseSystemOfEquationsSolver.hpp"
+#include "math/optimization/BaseSystemOfEquationsSolver.hpp"
 #include "typedefs.hpp"
 
 

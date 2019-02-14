@@ -15,10 +15,10 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "optimization/NewtonMinimizer.hpp"
+#include "math/optimization/NewtonMinimizer.hpp"
 
 #include "typedefs.hpp"
-#include "optimization/NewtonSystemOfEquationsSolver.hpp"
+#include "math/optimization/NewtonSystemOfEquationsSolver.hpp"
 
 
 

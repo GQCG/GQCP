@@ -23,8 +23,8 @@
 #include "RDM/RDMCalculator.hpp"
 
 #include "utilities/linalg.hpp"
-#include "optimization/step.hpp"
-#include "optimization/EigenproblemSolverOptions.hpp"
+#include "math/optimization/step.hpp"
+#include "math/optimization/EigenproblemSolverOptions.hpp"
 
 
 namespace GQCP {

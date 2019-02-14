@@ -19,7 +19,7 @@
 #define GQCP_BASEEIGENPROBLEMSOLVER_HPP
 
 
-#include "optimization/Eigenpair.hpp"
+#include "math/optimization/Eigenpair.hpp"
 
 #include <cstddef>
 #include <Eigen/Dense>

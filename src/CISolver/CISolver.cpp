@@ -17,9 +17,9 @@
 // 
 #include "CISolver/CISolver.hpp"
 
-#include "optimization/DenseSolver.hpp"
-#include "optimization/DavidsonSolver.hpp"
-#include "optimization/SparseSolver.hpp"
+#include "math/optimization/DenseSolver.hpp"
+#include "math/optimization/DavidsonSolver.hpp"
+#include "math/optimization/SparseSolver.hpp"
 
 
 namespace GQCP {

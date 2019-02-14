@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "optimization/step.hpp"
+#include "math/optimization/step.hpp"
 
 
 namespace GQCP {

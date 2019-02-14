@@ -19,8 +19,8 @@
 #define GQCP_DAVIDSONSOLVER_HPP
 
 
-#include "optimization/BaseEigenproblemSolver.hpp"
-#include "optimization/EigenproblemSolverOptions.hpp"
+#include "math/optimization/BaseEigenproblemSolver.hpp"
+#include "math/optimization/EigenproblemSolverOptions.hpp"
 
 #include "typedefs.hpp"
 

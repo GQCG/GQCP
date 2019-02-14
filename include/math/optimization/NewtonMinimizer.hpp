@@ -20,7 +20,7 @@
 
 
 
-#include "optimization/BaseMinimizer.hpp"
+#include "math/optimization/BaseMinimizer.hpp"
 #include "typedefs.hpp"
 
 

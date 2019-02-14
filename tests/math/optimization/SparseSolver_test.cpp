@@ -20,7 +20,7 @@
 #include <boost/test/unit_test.hpp>
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
 
-#include "optimization/SparseSolver.hpp"
+#include "math/optimization/SparseSolver.hpp"
 
 #include "Spectra/SymEigsSolver.h"
 #include "Spectra/MatOp/SparseSymMatProd.h"

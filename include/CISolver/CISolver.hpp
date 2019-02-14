@@ -23,8 +23,8 @@
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "WaveFunction/WaveFunction.hpp"
 
-#include "optimization/Eigenpair.hpp"
-#include "optimization/EigenproblemSolverOptions.hpp"
+#include "math/optimization/Eigenpair.hpp"
+#include "math/optimization/EigenproblemSolverOptions.hpp"
 
 
 namespace GQCP {

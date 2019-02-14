@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "optimization/DavidsonSolver.hpp"
+#include "math/optimization/DavidsonSolver.hpp"
 #include <iostream>
 
 

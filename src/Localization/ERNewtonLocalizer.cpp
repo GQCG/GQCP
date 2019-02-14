@@ -18,7 +18,7 @@
 #include "Localization/ERNewtonLocalizer.hpp"
 
 #include "utilities/linalg.hpp"
-#include "optimization/step.hpp"
+#include "math/optimization/step.hpp"
 
 
 #include <unsupported/Eigen/MatrixFunctions>
