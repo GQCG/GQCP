@@ -307,7 +307,7 @@ void tensorBlockAddition(Eigen::Tensor<double, 4>& T_target, const Eigen::Tensor
 /**
  *  Creates a rank-4 tensor from an other rank-4 tensor starting from given indices
  *
- *  @param T                a smaller rank-4 tensor
+ *  @param T                a rank-4 tensor
  *
  *  @param i                1st starting index of the starting tensor
  *  @param j                2nd starting index of the starting tensor
