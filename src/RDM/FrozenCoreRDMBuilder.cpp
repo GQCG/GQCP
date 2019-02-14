@@ -86,28 +86,51 @@ TwoRDMs FrozenCoreRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) const {
     Eigen::Tensor<double, 4> d_bbbb (K,K,K,K);
     d_bbbb.setZero();
 
-    // Retrieve one RDMs to implement the frozen RDM formulas
-    OneRDMs one_rdms = this->calculate1RDMs(x);
+    // Retrieve sub one RDMs to implement the frozen RDM formulas
+    OneRDMs one_rdms = this->rdm_builder->calculate1RDMs(x);
     auto D_aa = one_rdms.one_rdm_aa.get_matrix_representation();
     auto D_bb = one_rdms.one_rdm_bb.get_matrix_representation();
 
     // Implement frozen RDM formulas
     for (size_t p = 0; p < this->X; p++) {
-        GQCP::tensorBlockAddition<0,1>(d_aaaa, D_aa, 0, 0, p, p);
-        GQCP::tensorBlockAddition<2,3>(d_aaaa, D_aa, p, p, 0, 0);
-        GQCP::tensorBlockAddition<2,1>(d_aaaa, -1*D_aa, p, 0, 0, p);
-        GQCP::tensorBlockAddition<3,0>(d_aaaa, -1*D_aa, 0, p, p, 0);
 
-        GQCP::tensorBlockAddition<0,1>(d_bbbb, D_bb, 0, 0, p, p);
-        GQCP::tensorBlockAddition<2,3>(d_bbbb, D_bb, p, p, 0, 0);
-        GQCP::tensorBlockAddition<2,1>(d_bbbb, -1*D_bb, p, 0, 0, p);
-        GQCP::tensorBlockAddition<3,0>(d_bbbb, -1*D_bb, 0, p, p, 0);
+        GQCP::tensorBlockAddition<0,1>(d_aaaa, D_aa, this->X, this->X, p, p);
+        GQCP::tensorBlockAddition<2,3>(d_aaaa, D_aa, p, p, this->X, this->X);
+        GQCP::tensorBlockAddition<2,1>(d_aaaa, -1*D_aa, p, this->X, this->X, p);
+        GQCP::tensorBlockAddition<3,0>(d_aaaa, -1*D_aa, this->X, p, p, this->X);
 
-        GQCP::tensorBlockAddition<2,3>(d_aabb, D_bb, p, p, 0, 0);
-        GQCP::tensorBlockAddition<0,1>(d_aabb, D_aa, 0, 0, p, p);
+        GQCP::tensorBlockAddition<0,1>(d_bbbb, D_bb, this->X, this->X, p, p);
+        GQCP::tensorBlockAddition<2,3>(d_bbbb, D_bb, p, p, this->X, this->X);
+        GQCP::tensorBlockAddition<2,1>(d_bbbb, -1*D_bb, p, this->X, this->X, p);
+        GQCP::tensorBlockAddition<3,0>(d_bbbb, -1*D_bb, this->X, p, p, this->X);
 
-        GQCP::tensorBlockAddition<2,3>(d_bbaa, D_aa, p, p, 0, 0);
-        GQCP::tensorBlockAddition<0,1>(d_bbaa, D_bb, 0, 0, p, p);
+        GQCP::tensorBlockAddition<2,3>(d_aabb, D_bb, p, p, this->X, this->X);
+        GQCP::tensorBlockAddition<0,1>(d_aabb, D_aa, this->X, this->X, p, p);
+
+        GQCP::tensorBlockAddition<2,3>(d_bbaa, D_aa, p, p, this->X, this->X);
+        GQCP::tensorBlockAddition<0,1>(d_bbaa, D_bb, this->X, this->X, p, p);
+
+        d_bbaa(p,p,p,p) = 1;
+        d_aabb(p,p,p,p) = 1;
+
+        for (size_t q = p +1; q < this->X; q++) {
+
+            d_aaaa(p,p,q,q) = 1;
+            d_aaaa(q,q,p,p) = 1;
+            d_aaaa(p,q,q,p) = -1;
+            d_aaaa(q,p,p,q) = -1;
+
+            d_bbbb(p,p,q,q) = 1;
+            d_bbbb(q,q,p,p) = 1;
+            d_bbbb(p,q,q,p) = -1;
+            d_bbbb(q,p,p,q) = -1;
+
+            d_aabb(p,p,q,q) = 1;
+            d_bbaa(p,p,q,q) = 1;
+
+            d_aabb(q,q,p,p) = 1;
+            d_bbaa(q,q,p,p) = 1;
+        }
     }
 
     // retrieve non frozen sub-space 2RDMs

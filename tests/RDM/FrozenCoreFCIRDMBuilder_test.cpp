@@ -67,7 +67,7 @@ BOOST_AUTO_TEST_CASE ( FrozenCoreFCI_one_rdms ) {
 
 BOOST_AUTO_TEST_CASE ( FrozenCoreFCI_two_rdms ) {
 
-    size_t K = 5;
+    size_t K = 4;
     GQCP::Molecule H5 = GQCP::Molecule::HChain(K, 1.1);
     auto ham_par = GQCP::HamiltonianParameters::Molecular(H5, "STO-3G");
 
@@ -88,6 +88,7 @@ BOOST_AUTO_TEST_CASE ( FrozenCoreFCI_two_rdms ) {
     GQCP::FrozenCoreFCIRDMBuilder fci_rdm(fock_space);
     GQCP::TwoRDMs two_rdms_s = sci_rdm.calculate2RDMs(coef);
     GQCP::TwoRDMs two_rdms = fci_rdm.calculate2RDMs(coef);
+
 
     BOOST_CHECK(GQCP::areEqual(two_rdms_s.two_rdm_aaaa.get_matrix_representation(), two_rdms.two_rdm_aaaa.get_matrix_representation(), 1.0e-06));
     BOOST_CHECK(GQCP::areEqual(two_rdms_s.two_rdm_aabb.get_matrix_representation(), two_rdms.two_rdm_aabb.get_matrix_representation(), 1.0e-06));
