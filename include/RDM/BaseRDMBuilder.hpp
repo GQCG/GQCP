@@ -45,7 +45,7 @@ public:
 
 
     // PURE VIRTUAL GETTERS
-    virtual BaseFockSpace* get_fock_space() const = 0;
+    virtual const BaseFockSpace* get_fock_space() const = 0;
 
 
     // PURE VIRTUAL PUBLIC METHODS

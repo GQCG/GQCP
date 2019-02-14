@@ -41,7 +41,7 @@ public:
     explicit FrozenCoreFCIRDMBuilder(const FrozenProductFockSpace& fock_space);
 
     // OVERRIDDEN GETTERS
-    BaseFockSpace* get_fock_space() override { return &fock_space; }
+    const BaseFockSpace* get_fock_space() const override { return &fock_space; }
 };
 
 
