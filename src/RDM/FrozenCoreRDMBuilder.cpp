@@ -15,7 +15,8 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "RDM/BaseRDMBuilder.hpp"
+#include "RDM/FrozenCoreRDMBuilder.hpp"
+#include "utilities/linalg.hpp"
 
 
 namespace GQCP {
@@ -23,7 +24,6 @@ namespace GQCP {
 /*
  *  CONSTRUCTORS
  */
-
 FrozenCoreRDMBuilder::FrozenCoreRDMBuilder(std::shared_ptr<BaseRDMBuilder> rdm_builder, size_t X) :
         BaseRDMBuilder(),
         rdm_builder (std::move(rdm_builder)),
@@ -41,24 +41,26 @@ FrozenCoreRDMBuilder::FrozenCoreRDMBuilder(std::shared_ptr<BaseRDMBuilder> rdm_b
  *
  *  @return all 1-RDMs given a coefficient vector
  */
-OneRDMs calculate1RDMs(const Eigen::VectorXd& x) const {
+OneRDMs FrozenCoreRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) const {
 
     auto K = this->rdm_builder->get_fock_space().get_K();
 
     Eigen::MatrixXd D_aa = Eigen::MatrixXd::Zero(K, K);
     Eigen::MatrixXd D_bb = Eigen::MatrixXd::Zero(K, K);
 
-    auto Kn = K - X;
+    auto Kn = K - this->X;
 
-    for (size_t i = 0; i < X; i++) {
+    for (size_t i = 0; i < this->X; i++) {
         D_aa(i,i) = 1;
         D_bb(i,i) = 1;
     }
 
+    // Retrieve 1RDMs from non-frozen sub-space
     OneRDMs sub_1rdms = this->rdm_builder->calculate1RDMs(x);
 
-    D_aa.block(X, X, Kn, Kn) += sub_1rdms.one_rdm_aa.get_matrix_representation();
-    D_bb.block(X, X, Kn, Kn) += sub_1rdms.one_rdm_bb.get_matrix_representation();
+    // Incorporate sub rdms into total rdms
+    D_aa.block(this->X, this->X, Kn, Kn) += sub_1rdms.one_rdm_aa.get_matrix_representation();
+    D_bb.block(this->X, this->X, Kn, Kn) += sub_1rdms.one_rdm_bb.get_matrix_representation();
 
     OneRDM one_rdm_aa (D_aa);
     OneRDM one_rdm_bb (D_bb);
@@ -71,14 +73,9 @@ OneRDMs calculate1RDMs(const Eigen::VectorXd& x) const {
  *
  *  @return all 2-RDMs given a coefficient vector
  */
-TwoRDMs calculate2RDMs(const Eigen::VectorXd& x) const {
+TwoRDMs FrozenCoreRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) const {
 
-    auto K = this->rdm_builder->get_fock_space().get_K();
-    OneRDMs one_rdms = this->calculate1RDMs(x);
-    TwoRDMs sub_2rdms = this->rdm_builder->calculate2RDMs(x);
-
-    auto D_aa = one_rdms.one_rdm_aa;
-    auto D_bb = one_rdms.one_rdm_bb;
+    auto K = this->rdm_builder->get_fock_space()->get_K();
 
     Eigen::Tensor<double, 4> d_aaaa (K,K,K,K);
     d_aaaa.setZero();
@@ -89,7 +86,13 @@ TwoRDMs calculate2RDMs(const Eigen::VectorXd& x) const {
     Eigen::Tensor<double, 4> d_bbbb (K,K,K,K);
     d_bbbb.setZero();
 
-    for (size_t p = 0; p < X; p++) {
+    // Retrieve one RDMs to implement the frozen RDM formulas
+    OneRDMs one_rdms = this->calculate1RDMs(x);
+    auto D_aa = one_rdms.one_rdm_aa.get_matrix_representation();
+    auto D_bb = one_rdms.one_rdm_bb.get_matrix_representation();
+
+    // Implement frozen RDM formulas
+    for (size_t p = 0; p < this->X; p++) {
         GQCP::tensorBlockAddition<0,1>(d_aaaa, D_aa, 0, 0, 0, 0);
         GQCP::tensorBlockAddition<2,3>(d_aaaa, D_aa, 0, 0, 0, 0);
         GQCP::tensorBlockAddition<2,1>(d_aaaa, -1*D_aa, 0, 0, 0, 0);
@@ -107,10 +110,14 @@ TwoRDMs calculate2RDMs(const Eigen::VectorXd& x) const {
         GQCP::tensorBlockAddition<0,1>(d_bbaa, D_bb, 0, 0, 0, 0);
     }
 
-    GQCP::tensorBlockAddition(d_aaaa, sub_2rdms.two_rdm_aaaa, X, X, X, X);
-    GQCP::tensorBlockAddition(d_bbbb, sub_2rdms.two_rdm_bbbb, X, X, X, X);
-    GQCP::tensorBlockAddition(d_aabb, sub_2rdms.two_rdm_aabb, X, X, X, X);
-    GQCP::tensorBlockAddition(d_bbaa, sub_2rdms.two_rdm_bbaa, X, X, X, X);
+    // retrieve non frozen sub-space 2RDMs
+    TwoRDMs sub_2rdms = this->rdm_builder->calculate2RDMs(x);
+
+    // incorporate into the total 2RDMs
+    GQCP::tensorBlockAddition(d_aaaa, sub_2rdms.two_rdm_aaaa.get_matrix_representation(), this->X, this->X, this->X, this->X);
+    GQCP::tensorBlockAddition(d_bbbb, sub_2rdms.two_rdm_bbbb.get_matrix_representation(), this->X, this->X, this->X, this->X);
+    GQCP::tensorBlockAddition(d_aabb, sub_2rdms.two_rdm_aabb.get_matrix_representation(), this->X, this->X, this->X, this->X);
+    GQCP::tensorBlockAddition(d_bbaa, sub_2rdms.two_rdm_bbaa.get_matrix_representation(), this->X, this->X, this->X, this->X);
 
     TwoRDM two_rdm_aaaa (d_aaaa);
     TwoRDM two_rdm_aabb (d_aabb);
@@ -129,7 +136,7 @@ TwoRDMs calculate2RDMs(const Eigen::VectorXd& x) const {
  *
  *      calculateElement({0, 1}, {2, 1}) would calculate d^{(2)} (0, 1, 1, 2): the operator string would be a^\dagger_0 a^\dagger_1 a_2 a_1
  */
-double calculateElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices, const Eigen::VectorXd& x) const {
+double FrozenCoreRDMBuilder::calculateElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices, const Eigen::VectorXd& x) const {
     throw std::runtime_error ("calculateElement is not implemented for FrozenCore RDMs");
 };
 

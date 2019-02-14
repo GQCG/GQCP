@@ -16,6 +16,7 @@
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
 #include "RDM/FrozenCoreFCIRDMBuilder.hpp"
+#include "RDM/FCIRDMBuilder.hpp"
 
 
 namespace GQCP {

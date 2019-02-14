@@ -176,6 +176,7 @@ double FrozenCore::diagonalValue(const HamiltonianParameters &hamiltonian_parame
 
     double value = 0;
 
+    // calculate the diagonal attributed to the frozen orbitals
     for (size_t i = 0; i < X; i++) {
         value += 2*h(i,i) + g(i,i,i,i);
         for (size_t j = i+1; j < X; j++) {

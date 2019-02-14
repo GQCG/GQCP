@@ -72,8 +72,9 @@ set(PROJECT_INCLUDE_FILES
         ${PROJECT_INCLUDE_FOLDER}/RDM/BaseSpinUnresolvedRDMBuilder.hpp
         ${PROJECT_INCLUDE_FOLDER}/RDM/DOCIRDMBuilder.hpp
         ${PROJECT_INCLUDE_FOLDER}/RDM/FCIRDMBuilder.hpp
-        ${PROJECT_INCLUDE_FOLDER}/RDM/FrozenCoreFCIRDMBuilder.hpp
         ${PROJECT_INCLUDE_FOLDER}/RDM/FrozenCoreDOCIRDMBuilder.hpp
+        ${PROJECT_INCLUDE_FOLDER}/RDM/FrozenCoreFCIRDMBuilder.hpp
+        ${PROJECT_INCLUDE_FOLDER}/RDM/FrozenCoreRDMBuilder.hpp
         ${PROJECT_INCLUDE_FOLDER}/RDM/OneRDM.hpp
         ${PROJECT_INCLUDE_FOLDER}/RDM/RDMCalculator.hpp
         ${PROJECT_INCLUDE_FOLDER}/RDM/RDMs.hpp
