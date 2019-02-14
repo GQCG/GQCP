@@ -37,15 +37,15 @@ set(PROJECT_TEST_SOURCE_FILES
         ${PROJECT_TESTS_FOLDER}/Localization/ERJacobiLocalizer_test.cpp
         ${PROJECT_TESTS_FOLDER}/Localization/ERNewtonLocalizer_test.cpp
 
+        ${PROJECT_TESTS_FOLDER}/math/optimization/DavidsonSolver_test.cpp
+        ${PROJECT_TESTS_FOLDER}/math/optimization/DenseSolver_test.cpp
+        ${PROJECT_TESTS_FOLDER}/math/optimization/Eigenpair_test.cpp
+        ${PROJECT_TESTS_FOLDER}/math/optimization/NewtonMinimizer_test.cpp
+        ${PROJECT_TESTS_FOLDER}/math/optimization/NewtonSystemOfEquationsSolver_test.cpp
+        ${PROJECT_TESTS_FOLDER}/math/optimization/SparseSolver_test.cpp
+
         ${PROJECT_TESTS_FOLDER}/Operator/OneElectronOperator_test.cpp
         ${PROJECT_TESTS_FOLDER}/Operator/TwoElectronOperator_test.cpp
-
-        ${PROJECT_TESTS_FOLDER}/optimization/DavidsonSolver_test.cpp
-        ${PROJECT_TESTS_FOLDER}/optimization/DenseSolver_test.cpp
-        ${PROJECT_TESTS_FOLDER}/optimization/Eigenpair_test.cpp
-        ${PROJECT_TESTS_FOLDER}/optimization/NewtonMinimizer_test.cpp
-        ${PROJECT_TESTS_FOLDER}/optimization/NewtonSystemOfEquationsSolver_test.cpp
-        ${PROJECT_TESTS_FOLDER}/optimization/SparseSolver_test.cpp
 
         ${PROJECT_TESTS_FOLDER}/properties/expectation_values_test.cpp
         ${PROJECT_TESTS_FOLDER}/properties/properties_test.cpp

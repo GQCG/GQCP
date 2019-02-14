@@ -39,21 +39,21 @@ set(PROJECT_SOURCE_FILES
         ${PROJECT_SOURCE_FOLDER}/Localization/ERJacobiLocalizer.cpp
         ${PROJECT_SOURCE_FOLDER}/Localization/ERNewtonLocalizer.cpp
 
+        ${PROJECT_SOURCE_FOLDER}/math/optimization/BaseEigenproblemSolver.cpp
+        ${PROJECT_SOURCE_FOLDER}/math/optimization/BaseMatrixSolver.cpp
+        ${PROJECT_SOURCE_FOLDER}/math/optimization/BaseMinimizer.cpp
+        ${PROJECT_SOURCE_FOLDER}/math/optimization/BaseSystemOfEquationsSolver.cpp
+        ${PROJECT_SOURCE_FOLDER}/math/optimization/DavidsonSolver.cpp
+        ${PROJECT_SOURCE_FOLDER}/math/optimization/DenseSolver.cpp
+        ${PROJECT_SOURCE_FOLDER}/math/optimization/Eigenpair.cpp
+        ${PROJECT_SOURCE_FOLDER}/math/optimization/NewtonMinimizer.cpp
+        ${PROJECT_SOURCE_FOLDER}/math/optimization/NewtonSystemOfEquationsSolver.cpp
+        ${PROJECT_SOURCE_FOLDER}/math/optimization/SparseSolver.cpp
+        ${PROJECT_SOURCE_FOLDER}/math/optimization/step.cpp
+
         ${PROJECT_SOURCE_FOLDER}/Operator/BaseOperator.cpp
         ${PROJECT_SOURCE_FOLDER}/Operator/OneElectronOperator.cpp
         ${PROJECT_SOURCE_FOLDER}/Operator/TwoElectronOperator.cpp
-
-        ${PROJECT_SOURCE_FOLDER}/optimization/BaseEigenproblemSolver.cpp
-        ${PROJECT_SOURCE_FOLDER}/optimization/BaseMatrixSolver.cpp
-        ${PROJECT_SOURCE_FOLDER}/optimization/BaseMinimizer.cpp
-        ${PROJECT_SOURCE_FOLDER}/optimization/BaseSystemOfEquationsSolver.cpp
-        ${PROJECT_SOURCE_FOLDER}/optimization/DavidsonSolver.cpp
-        ${PROJECT_SOURCE_FOLDER}/optimization/DenseSolver.cpp
-        ${PROJECT_SOURCE_FOLDER}/optimization/Eigenpair.cpp
-        ${PROJECT_SOURCE_FOLDER}/optimization/NewtonMinimizer.cpp
-        ${PROJECT_SOURCE_FOLDER}/optimization/NewtonSystemOfEquationsSolver.cpp
-        ${PROJECT_SOURCE_FOLDER}/optimization/SparseSolver.cpp
-        ${PROJECT_SOURCE_FOLDER}/optimization/step.cpp
 
         ${PROJECT_SOURCE_FOLDER}/properties/expectation_values.cpp
         ${PROJECT_SOURCE_FOLDER}/properties/properties.cpp

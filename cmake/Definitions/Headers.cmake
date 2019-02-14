@@ -41,22 +41,22 @@ set(PROJECT_INCLUDE_FILES
         ${PROJECT_INCLUDE_FOLDER}/Localization/ERJacobiLocalizer.hpp
         ${PROJECT_INCLUDE_FOLDER}/Localization/ERNewtonLocalizer.hpp
 
+        ${PROJECT_INCLUDE_FOLDER}/math/optimization/BaseEigenproblemSolver.hpp
+        ${PROJECT_INCLUDE_FOLDER}/math/optimization/BaseMatrixSolver.hpp
+        ${PROJECT_INCLUDE_FOLDER}/math/optimization/BaseMinimizer.hpp
+        ${PROJECT_INCLUDE_FOLDER}/math/optimization/BaseSystemOfEquationsSolver.hpp
+        ${PROJECT_INCLUDE_FOLDER}/math/optimization/DavidsonSolver.hpp
+        ${PROJECT_INCLUDE_FOLDER}/math/optimization/DenseSolver.hpp
+        ${PROJECT_INCLUDE_FOLDER}/math/optimization/Eigenpair.hpp
+        ${PROJECT_INCLUDE_FOLDER}/math/optimization/EigenproblemSolverOptions.hpp
+        ${PROJECT_INCLUDE_FOLDER}/math/optimization/NewtonMinimizer.hpp
+        ${PROJECT_INCLUDE_FOLDER}/math/optimization/NewtonSystemOfEquationsSolver.hpp
+        ${PROJECT_INCLUDE_FOLDER}/math/optimization/SparseSolver.hpp
+        ${PROJECT_INCLUDE_FOLDER}/math/optimization/step.hpp
+
         ${PROJECT_INCLUDE_FOLDER}/Operator/BaseOperator.hpp
         ${PROJECT_INCLUDE_FOLDER}/Operator/OneElectronOperator.hpp
         ${PROJECT_INCLUDE_FOLDER}/Operator/TwoElectronOperator.hpp
-
-        ${PROJECT_INCLUDE_FOLDER}/optimization/BaseEigenproblemSolver.hpp
-        ${PROJECT_INCLUDE_FOLDER}/optimization/BaseMatrixSolver.hpp
-        ${PROJECT_INCLUDE_FOLDER}/optimization/BaseMinimizer.hpp
-        ${PROJECT_INCLUDE_FOLDER}/optimization/BaseSystemOfEquationsSolver.hpp
-        ${PROJECT_INCLUDE_FOLDER}/optimization/DavidsonSolver.hpp
-        ${PROJECT_INCLUDE_FOLDER}/optimization/DenseSolver.hpp
-        ${PROJECT_INCLUDE_FOLDER}/optimization/Eigenpair.hpp
-        ${PROJECT_INCLUDE_FOLDER}/optimization/EigenproblemSolverOptions.hpp
-        ${PROJECT_INCLUDE_FOLDER}/optimization/NewtonMinimizer.hpp
-        ${PROJECT_INCLUDE_FOLDER}/optimization/NewtonSystemOfEquationsSolver.hpp
-        ${PROJECT_INCLUDE_FOLDER}/optimization/SparseSolver.hpp
-        ${PROJECT_INCLUDE_FOLDER}/optimization/step.hpp
 
         ${PROJECT_INCLUDE_FOLDER}/properties/expectation_values.hpp
         ${PROJECT_INCLUDE_FOLDER}/properties/properties.hpp

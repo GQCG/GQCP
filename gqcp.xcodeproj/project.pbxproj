@@ -3467,7 +3467,6 @@
 				5614F9C021B029FB002C5D40 /* Localization */,
 				56C8397D22159E6D00FA98A0 /* math */,
 				5614F9BA21B029FB002C5D40 /* Operator */,
-				56FBA0AA21C2B4660084F088 /* optimization */,
 				5614F9B021B029FB002C5D40 /* properties */,
 				5614F99F21B029FB002C5D40 /* RDM */,
 				5614F99A21B029FB002C5D40 /* RHF */,
@@ -3603,7 +3602,6 @@
 				5614F9FE21B029FB002C5D40 /* Localization */,
 				56C8397E22159E9700FA98A0 /* math */,
 				5614F9F821B029FB002C5D40 /* Operator */,
-				56FBA0AB21C2B48D0084F088 /* optimization */,
 				5614F9F421B029FB002C5D40 /* properties */,
 				5614F9E521B029FB002C5D40 /* RDM */,
 				5614F9E021B029FB002C5D40 /* RHF */,
@@ -3875,8 +3873,8 @@
 				5614FB8F21B02EDE002C5D40 /* HamiltonianBuilder */,
 				5614FB8C21B02EDE002C5D40 /* HamiltonianParameters */,
 				5614FB8721B02EDE002C5D40 /* Localization */,
+				56C8397F2215A09D00FA98A0 /* math */,
 				5614FB7B21B02EDE002C5D40 /* Operator */,
-				56FBA0FB21C2F2BA0084F088 /* optimization */,
 				5614FB5921B02EDE002C5D40 /* properties */,
 				5614FB4D21B02EDE002C5D40 /* RDM */,
 				5614FB4821B02EDE002C5D40 /* RHF */,
@@ -4137,6 +4135,7 @@
 		56C8397D22159E6D00FA98A0 /* math */ = {
 			isa = PBXGroup;
 			children = (
+				56FBA0AA21C2B4660084F088 /* optimization */,
 			);
 			path = math;
 			sourceTree = "<group>";
@@ -4144,6 +4143,15 @@
 		56C8397E22159E9700FA98A0 /* math */ = {
 			isa = PBXGroup;
 			children = (
+				56FBA0AB21C2B48D0084F088 /* optimization */,
+			);
+			path = math;
+			sourceTree = "<group>";
+		};
+		56C8397F2215A09D00FA98A0 /* math */ = {
+			isa = PBXGroup;
+			children = (
+				56FBA0FB21C2F2BA0084F088 /* optimization */,
 			);
 			path = math;
 			sourceTree = "<group>";
