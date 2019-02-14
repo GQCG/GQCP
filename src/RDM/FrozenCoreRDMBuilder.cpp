@@ -77,7 +77,47 @@ TwoRDMs calculate2RDMs(const Eigen::VectorXd& x) const {
     OneRDMs one_rdms = this->calculate1RDMs(x);
     TwoRDMs sub_2rdms = this->rdm_builder->calculate2RDMs(x);
 
+    auto D_aa = one_rdms.one_rdm_aa;
+    auto D_bb = one_rdms.one_rdm_bb;
 
+    Eigen::Tensor<double, 4> d_aaaa (K,K,K,K);
+    d_aaaa.setZero();
+    Eigen::Tensor<double, 4> d_aabb (K,K,K,K);
+    d_aabb.setZero();
+    Eigen::Tensor<double, 4> d_bbaa (K,K,K,K);
+    d_bbaa.setZero();
+    Eigen::Tensor<double, 4> d_bbbb (K,K,K,K);
+    d_bbbb.setZero();
+
+    for (size_t p = 0; p < X; p++) {
+        GQCP::tensorBlockAddition<0,1>(d_aaaa, D_aa, 0, 0, 0, 0);
+        GQCP::tensorBlockAddition<2,3>(d_aaaa, D_aa, 0, 0, 0, 0);
+        GQCP::tensorBlockAddition<2,1>(d_aaaa, -1*D_aa, 0, 0, 0, 0);
+        GQCP::tensorBlockAddition<3,0>(d_aaaa, -1*D_aa, 0, 0, 0, 0);
+
+        GQCP::tensorBlockAddition<0,1>(d_bbbb, D_bb, 0, 0, 0, 0);
+        GQCP::tensorBlockAddition<2,3>(d_bbbb, D_bb, 0, 0, 0, 0);
+        GQCP::tensorBlockAddition<2,1>(d_bbbb, -1*D_bb, 0, 0, 0, 0);
+        GQCP::tensorBlockAddition<3,0>(d_bbbb, -1*D_bb, 0, 0, 0, 0);
+
+        GQCP::tensorBlockAddition<2,3>(d_aabb, D_bb, 0, 0, 0, 0);
+        GQCP::tensorBlockAddition<0,1>(d_aabb, D_aa, 0, 0, 0, 0);
+
+        GQCP::tensorBlockAddition<2,3>(d_bbaa, D_aa, 0, 0, 0, 0);
+        GQCP::tensorBlockAddition<0,1>(d_bbaa, D_bb, 0, 0, 0, 0);
+    }
+
+    GQCP::tensorBlockAddition(d_aaaa, sub_2rdms.two_rdm_aaaa, X, X, X, X);
+    GQCP::tensorBlockAddition(d_bbbb, sub_2rdms.two_rdm_bbbb, X, X, X, X);
+    GQCP::tensorBlockAddition(d_aabb, sub_2rdms.two_rdm_aabb, X, X, X, X);
+    GQCP::tensorBlockAddition(d_bbaa, sub_2rdms.two_rdm_bbaa, X, X, X, X);
+
+    TwoRDM two_rdm_aaaa (d_aaaa);
+    TwoRDM two_rdm_aabb (d_aabb);
+    TwoRDM two_rdm_bbaa (d_bbaa);
+    TwoRDM two_rdm_bbbb (d_bbbb);
+
+    return TwoRDMs (two_rdm_aaaa, two_rdm_aabb, two_rdm_bbaa, two_rdm_bbbb);
 };
 
 /**

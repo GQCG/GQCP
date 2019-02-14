@@ -402,8 +402,10 @@ BOOST_AUTO_TEST_CASE ( tensorBlockCreation ) {
         }
     }
 
+    // Create sub tensor
     auto T2 = GQCP::tensorBlockCreation(T1, 1, 1, 1, 1);
 
+    // Test accordingly
     size_t dim2 = 2;
     for (size_t i = 0; i < dim2; i++) {
         for (size_t j = 0; j < dim2; j++) {

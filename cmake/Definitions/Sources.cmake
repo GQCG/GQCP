@@ -69,6 +69,8 @@ set(PROJECT_SOURCE_FILES
         ${PROJECT_SOURCE_FOLDER}/RDM/BaseSpinUnresolvedRDMBuilder.cpp
         ${PROJECT_SOURCE_FOLDER}/RDM/DOCIRDMBuilder.cpp
         ${PROJECT_SOURCE_FOLDER}/RDM/FCIRDMBuilder.cpp
+        ${PROJECT_SOURCE_FOLDER}/RDM/FrozenCoreFCIRDMBuilder.cpp
+        ${PROJECT_SOURCE_FOLDER}/RDM/FrozenCoreDOCIRDMBuilder.cpp
         ${PROJECT_SOURCE_FOLDER}/RDM/OneRDM.cpp
         ${PROJECT_SOURCE_FOLDER}/RDM/RDMCalculator.cpp
         ${PROJECT_SOURCE_FOLDER}/RDM/RDMs.cpp

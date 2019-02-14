@@ -15,38 +15,37 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCP_FROZENCOREFCI_HPP
-#define GQCP_FROZENCOREFCI_HPP
+#ifndef GQCP_FROZENCOREDOCIRDMBUILDER_HPP
+#define GQCP_FROZENCOREDOCIRDMBUILDER_HPP
 
 
-#include "HamiltonianBuilder/FrozenCore.hpp"
 #include "FockSpace/FrozenProductFockSpace.hpp"
-#include "HamiltonianBuilder/FCI.hpp"
+#include "RDM/FrozenCoreRDMBuilder.hpp"
+#include "RDM/RDMs.hpp"
 
 
 namespace GQCP {
 
 
 /**
- *  A HamiltonianBuilder for frozen core FCI: it builds the matrix representation of the frozen core FCI Hamiltonian.
+ *  A class capable of calculating 1- and 2-RDMs from wave functions expanded in the frozen DOCI Fock space
  */
-class FrozenCoreFCI : public FrozenCore {
-private:
-    FrozenProductFockSpace fock_space;  // contains both the frozen alpha and beta Fock space
+class FrozenCoreDOCIRDMBuilder : public FrozenCoreRDMBuilder {
+    FrozenFockSpace fock_space;  // both the frozen alpha and beta Fock space
 
 public:
     // CONSTRUCTORS
     /**
-     *  @param fock_space       the frozen product Fock space
+     *  @param fock_space       the frozen Fock space
      */
-    explicit FrozenCoreFCI(const FrozenProductFockSpace& fock_space);
+    explicit FrozenCoreDOCIRDMBuilder(const FrozenFockSpace& fock_space);
 
     // OVERRIDDEN GETTERS
-    const BaseFockSpace* get_fock_space() const override { return &fock_space; }
+    BaseFockSpace* get_fock_space() override { return &fock_space; }
 };
 
 
 }  // namespace GQCP
 
 
-#endif  // GQCP_FCI_HPP
+#endif  // GQCP_FROZENCOREDOCIRDMBUILDER_HPP

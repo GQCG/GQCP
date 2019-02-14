@@ -15,12 +15,12 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCP_FCIRDMBUILDER_HPP
-#define GQCP_FCIRDMBUILDER_HPP
+#ifndef GQCP_FROZENCOREFCIRDMBUILDER_HPP
+#define GQCP_FROZENCOREFCIRDMBUILDER_HPP
 
 
 #include "FockSpace/FrozenProductFockSpace.hpp"
-#include "RDM/BaseRDMBuilder.hpp"
+#include "RDM/FrozenCoreRDMBuilder.hpp"
 #include "RDM/RDMs.hpp"
 
 
@@ -28,54 +28,24 @@ namespace GQCP {
 
 
 /**
- *  A class capable of calculating 1- and 2-RDMs from wave functions expanded in the full CI product Fock space
+ *  A class capable of calculating 1- and 2-RDMs from wave functions expanded in the frozen full CI product Fock space
  */
-class FCIRDMBuilder : public BaseRDMBuilder {
-    ProductFockSpace fock_space;  // Fock space containing the alpha and beta Fock space
-
+class FrozenCoreFCIRDMBuilder : public FrozenCoreRDMBuilder {
+    FrozenProductFockSpace fock_space;  // contains both the frozen alpha and beta Fock space
 
 public:
     // CONSTRUCTORS
-    explicit FCIRDMBuilder(const ProductFockSpace& fock_space);
-
-
-    // DESTRUCTOR
-    ~FCIRDMBuilder() = default;
-
+    /**
+     *  @param fock_space       the frozen product Fock space
+     */
+    explicit FrozenCoreFCIRDMBuilder(const FrozenProductFockSpace& fock_space);
 
     // OVERRIDDEN GETTERS
     BaseFockSpace* get_fock_space() override { return &fock_space; }
-
-
-    // OVERRIDDEN PUBLIC METHODS
-    /**
-     *  @param x        the coefficient vector representing the FCI wave function
-     *
-     *  @return all 1-RDMs given a coefficient vector
-     */
-    OneRDMs calculate1RDMs(const Eigen::VectorXd& x) const override;
-
-    /**
-     *  @param x        the coefficient vector representing the FCI wave function
-     *
-     *  @return all 2-RDMs given a coefficient vector
-     */
-    TwoRDMs calculate2RDMs(const Eigen::VectorXd& x) const override;
-
-    /**
-     *  @param bra_indices      the indices of the orbitals that should be annihilated on the left (on the bra)
-     *  @param ket_indices      the indices of the orbitals that should be annihilated on the right (on the ket)
-     *  @param x                the coefficient vector representing the FCI wave function
-     *
-     *  @return an element of the spin-summed (total) N-RDM, as specified by the given bra and ket indices
-     *
-     *      calculateElement({0, 1}, {2, 1}) would calculate d^{(2)} (0, 1, 1, 2): the operator string would be a^\dagger_0 a^\dagger_1 a_2 a_1
-     */
-    double calculateElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices, const Eigen::VectorXd& x) const override;
 };
 
 
 }  // namespace GQCP
 
 
-#endif  // GQCP_FCIRDMBUILDER_HPP
+#endif  // GQCP_FROZENCOREFCIRDMBUILDER_HPP
