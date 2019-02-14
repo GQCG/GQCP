@@ -43,7 +43,7 @@ FrozenCoreRDMBuilder::FrozenCoreRDMBuilder(std::shared_ptr<BaseRDMBuilder> rdm_b
  */
 OneRDMs FrozenCoreRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) const {
 
-    auto K = this->rdm_builder->get_fock_space()->get_K() + this->X;
+    auto K = this->get_fock_space()->get_K();
 
     Eigen::MatrixXd D_aa = Eigen::MatrixXd::Zero(K, K);
     Eigen::MatrixXd D_bb = Eigen::MatrixXd::Zero(K, K);
@@ -75,7 +75,7 @@ OneRDMs FrozenCoreRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) const {
  */
 TwoRDMs FrozenCoreRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) const {
 
-    auto K = this->rdm_builder->get_fock_space()->get_K() + this->X;
+    auto K = this->get_fock_space()->get_K();
 
     Eigen::Tensor<double, 4> d_aaaa (K,K,K,K);
     d_aaaa.setZero();
