@@ -98,11 +98,11 @@ BOOST_AUTO_TEST_CASE ( OneElectronOperator_rotate_throws ) {
 
     // Check if a non-unitary matrix as transformation matrix causes a throw
     Eigen::MatrixXd U (Eigen::MatrixXd::Random(dim, dim));
-    BOOST_CHECK_THROW(M.Operator<double>::rotate(U), std::invalid_argument);
+    BOOST_CHECK_THROW(M.rotate(U), std::invalid_argument);
 
 
     // Check if a unitary matrix as transformation matrix is accepted
-    M.Operator<double>::rotate(GQCP::SquareMatrix<double>(GQCP::Matrix<double>::Identity(dim, dim)));
+    M.rotate(GQCP::SquareMatrix<double>(GQCP::Matrix<double>::Identity(dim, dim)));
 }
 
 
@@ -123,7 +123,7 @@ BOOST_AUTO_TEST_CASE ( OneElectronOperator_rotate_JacobiRotationParameters ) {
 
 
     M1.rotate(jacobi_rotation_parameters);
-    M2.Operator<double>::rotate(U);
+    M2.rotate(U);
 
 
     BOOST_CHECK(M1.isApprox(M2, 1.0e-12));

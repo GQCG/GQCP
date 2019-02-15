@@ -82,6 +82,19 @@ public:
         *this = OneElectronOperator<Scalar>(T.adjoint() * (*this) * T);  // this has no aliasing issues (https://eigen.tuxfamily.org/dox/group__TopicAliasing.html)
     }
 
+
+    /**
+     *  If we have
+     *      OneElectronOperator<Scalar> one_op;
+     *
+     *  This makes sure that we can call
+     *      one_op.rotate(U);
+     *  instead of the syntax
+     *      one_op.Operator<Scalar>::rotate(U);
+     */
+    using Operator<Scalar>::rotate;
+
+
     /**
      *  In-place rotate the matrix representation of the one-electron operator using a unitary Jacobi rotation matrix constructed from the Jacobi rotation parameters. Note that this function is only available for real (double) matrix representations
      *

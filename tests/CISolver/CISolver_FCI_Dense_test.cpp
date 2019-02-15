@@ -59,7 +59,7 @@ BOOST_AUTO_TEST_CASE ( test_random_rotation_diagonal_dense_fci ) {
     Eigen::MatrixXd U_random = unitary_solver.eigenvectors();
 
     // Rotate the hampar using the random unitary matrix
-    mol_ham_par.Operator<double>::rotate(U_random);
+    mol_ham_par.rotate(U_random);
 
     Eigen::VectorXd diagonal2 = fci.calculateDiagonal(mol_ham_par);
 

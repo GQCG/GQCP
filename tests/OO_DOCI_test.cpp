@@ -98,7 +98,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31g ) {
     GQCP::OneRDM one_rdm = fci_rdm_builder.calculate1RDMs(coef).one_rdm;
     Eigen::MatrixXd U = one_rdm.diagonalize();
 
-    mol_ham_par.Operator<double>::rotate(U);
+    mol_ham_par.rotate(U);
 
 
     // Do the DOCI orbital optimization, using the FCI natural orbitals
@@ -148,7 +148,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx ) {
     GQCP::OneRDM one_rdm = fci_rdm_builder.calculate1RDMs(coef).one_rdm;
     Eigen::MatrixXd U = one_rdm.diagonalize();
 
-    mol_ham_par.Operator<double>::rotate(U);
+    mol_ham_par.rotate(U);
 
 
     // Do the DOCI orbital optimization, using the FCI natural orbitals
@@ -198,7 +198,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx_Davidson ) {
     GQCP::OneRDM one_rdm = fci_rdm_builder.calculate1RDMs(coef).one_rdm;
     Eigen::MatrixXd U = one_rdm.diagonalize();
 
-    mol_ham_par.Operator<double>::rotate(U);
+    mol_ham_par.rotate(U);
 
 
     // Do the DOCI orbital optimization, using the FCI natural orbitals

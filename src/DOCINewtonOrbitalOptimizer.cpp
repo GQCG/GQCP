@@ -159,7 +159,7 @@ void DOCINewtonOrbitalOptimizer::solve(BaseSolverOptions& solver_options, const 
 
 
         // Transform the integrals to the new orthonormal basis
-        this->ham_par.Operator<double>::rotate(U);  // this checks if U is actually unitary
+        this->ham_par.rotate(U);  // this checks if U is actually unitary
 
 
         // If we're using a Davidson solver, we should update the initial guesses in the solver_options to be the current eigenvectors

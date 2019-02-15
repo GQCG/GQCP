@@ -206,7 +206,7 @@ void ERNewtonLocalizer::localize(HamiltonianParameters<double>& ham_par) {
 
 
         // Transform the integrals to the new orthonormal basis
-        ham_par.Operator<double>::rotate(U);  // this checks if U is actually unitary
+        ham_par.rotate(U);  // this checks if U is actually unitary
     }  // while not converged
 }
 

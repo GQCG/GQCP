@@ -424,6 +424,18 @@ public:
 
 
     /**
+     *  If we have
+     *      HamiltonianParameters<Scalar> ham_par;
+     *
+     *  This makes sure that we can call
+     *      ham_par.rotate(U);
+     *  instead of the syntax
+     *      ham_par.Operator<Scalar>::rotate(U);
+     */
+    using Operator<Scalar>::rotate;
+
+
+    /**
      *  In-place rotate the matrix representations of the Hamiltonian parameters using a unitary Jacobi rotation matrix constructed from the Jacobi rotation parameters. Note that this function is only available for real (double) matrix representations
      *
      *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix. See transform() for how the transformation matrix between the two bases should be represented

@@ -102,6 +102,18 @@ public:
 
 
     /**
+     *  If we have
+     *      TwoElectronOperator<Scalar> two_op;
+     *
+     *  This makes sure that we can call
+     *      two_op.rotate(U);
+     *  instead of the syntax
+     *      two_op.Operator<Scalar>::rotate(U);
+     */
+    using Operator<Scalar>::rotate;
+
+
+    /**
      *  In-place rotate the matrix representation of the two-electron operator using a unitary Jacobi rotation matrix constructed from the Jacobi rotation parameters. Note that this function is only available for real (double) matrix representations
      *
      *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix. See transform() for how the transformation matrix between the two bases should be represented
@@ -116,7 +128,7 @@ public:
         auto dim = static_cast<size_t>(this->dimension(0));  // .dimension() returns a long
         auto J = SquareMatrix<double>(jacobiRotationMatrix(jacobi_rotation_parameters, dim));  // this is sure to return a unitary matrix
 
-        this->Operator<Scalar>::rotate(J);
+        this->rotate(J);
     }
 };
 
