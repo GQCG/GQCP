@@ -79,7 +79,7 @@ BOOST_AUTO_TEST_CASE ( TwoElectronOperator_transform_olsens ) {
     GQCP::TwoElectronOperator<double> G (g);
     G.transform(T);
 
-    BOOST_CHECK(GQCP::areEqual(g, g_transformed_ref, 1.0e-12));
+    BOOST_CHECK(GQCP::areEqual(G, g_transformed_ref, 1.0e-12));
 }
 
 
