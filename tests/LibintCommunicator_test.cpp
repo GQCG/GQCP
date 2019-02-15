@@ -81,7 +81,7 @@ BOOST_AUTO_TEST_CASE( Szabo_integrals_h2_sto3g ) {
     auto T = GQCP::LibintCommunicator::get().calculateKineticIntegrals(basis);
     auto V = GQCP::LibintCommunicator::get().calculateNuclearIntegrals(basis);
 
-    auto H_core = GQCP::OneElectronOperator(T.get_matrix_representation() + V.get_matrix_representation());
+    auto H_core = GQCP::OneElectronOperator<double>(T + V);
 
     auto g = GQCP::LibintCommunicator::get().calculateCoulombRepulsionIntegrals(basis);
 
@@ -99,21 +99,21 @@ BOOST_AUTO_TEST_CASE( Szabo_integrals_h2_sto3g ) {
     ref_H_core << -1.1204, -0.9584,
                   -0.9584, -1.1204;
 
-    BOOST_CHECK(S.get_matrix_representation().isApprox(ref_S, 1.0e-04));
-    BOOST_CHECK(T.get_matrix_representation().isApprox(ref_T, 1.0e-04));
-    BOOST_CHECK(H_core.get_matrix_representation().isApprox(ref_H_core, 1.0e-04));
+    BOOST_CHECK(S.isApprox(ref_S, 1.0e-04));
+    BOOST_CHECK(T.isApprox(ref_T, 1.0e-04));
+    BOOST_CHECK(H_core.isApprox(ref_H_core, 1.0e-04));
 
 
     // The two-electron integrals in Szabo are given in chemist's notation, so this confirms that the LibintCommunicator gives them in chemist's notation as well
-    BOOST_CHECK(std::abs(g.get_matrix_representation()(0,0,0,0) - 0.7746) < 1.0e-04);
-    BOOST_CHECK(std::abs(g.get_matrix_representation()(0,0,0,0) - g.get_matrix_representation()(1,1,1,1)) < 1.0e-12);
+    BOOST_CHECK(std::abs(g(0,0,0,0) - 0.7746) < 1.0e-04);
+    BOOST_CHECK(std::abs(g(0,0,0,0) - g(1,1,1,1)) < 1.0e-12);
 
-    BOOST_CHECK(std::abs(g.get_matrix_representation()(0,0,1,1) - 0.5697) < 1.0e-04);
+    BOOST_CHECK(std::abs(g(0,0,1,1) - 0.5697) < 1.0e-04);
 
-    BOOST_CHECK(std::abs(g.get_matrix_representation()(1,0,0,0) - 0.4441) < 1.0e-04);
-    BOOST_CHECK(std::abs(g.get_matrix_representation()(1,0,0,0) - g.get_matrix_representation()(1,1,1,0)) < 1.0e-12);
+    BOOST_CHECK(std::abs(g(1,0,0,0) - 0.4441) < 1.0e-04);
+    BOOST_CHECK(std::abs(g(1,0,0,0) - g(1,1,1,0)) < 1.0e-12);
 
-    BOOST_CHECK(std::abs(g.get_matrix_representation()(1,0,1,0) - 0.2970) < 1.0e-04);
+    BOOST_CHECK(std::abs(g(1,0,1,0) - 0.2970) < 1.0e-04);
 }
 
 
@@ -147,8 +147,8 @@ BOOST_AUTO_TEST_CASE( HORTON_integrals_h2o_sto3g ) {
 
 
     // Check if the calculated integrals are equal to those of HORTON
-    BOOST_CHECK(S.get_matrix_representation().isApprox(ref_S, 1.0e-08));
-    BOOST_CHECK(T.get_matrix_representation().isApprox(ref_T, 1.0e-08));
-    BOOST_CHECK(V.get_matrix_representation().isApprox(ref_V, 1.0e-08));
-    BOOST_CHECK(GQCP::areEqual(g.get_matrix_representation(), ref_g, 1.0e-06));
+    BOOST_CHECK(S.isApprox(ref_S, 1.0e-08));
+    BOOST_CHECK(T.isApprox(ref_T, 1.0e-08));
+    BOOST_CHECK(V.isApprox(ref_V, 1.0e-08));
+    BOOST_CHECK(GQCP::areEqual(g, ref_g, 1.0e-06));
 }

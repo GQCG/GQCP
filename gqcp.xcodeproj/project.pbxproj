@@ -421,8 +421,6 @@
 		5614FA6221B029FB002C5D40 /* expectation_values.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614F9F521B029FB002C5D40 /* expectation_values.cpp */; };
 		5614FA6321B029FB002C5D40 /* properties.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614F9F621B029FB002C5D40 /* properties.cpp */; };
 		5614FA6421B029FB002C5D40 /* AOBasis.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614F9F721B029FB002C5D40 /* AOBasis.cpp */; };
-		5614FA6521B029FB002C5D40 /* TwoElectronOperator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614F9F921B029FB002C5D40 /* TwoElectronOperator.cpp */; };
-		5614FA6721B029FB002C5D40 /* OneElectronOperator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614F9FB21B029FB002C5D40 /* OneElectronOperator.cpp */; };
 		5614FA6821B029FB002C5D40 /* CISolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614F9FD21B029FB002C5D40 /* CISolver.cpp */; };
 		5614FA6921B029FB002C5D40 /* BaseERLocalizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614F9FF21B029FB002C5D40 /* BaseERLocalizer.cpp */; };
 		5614FA6A21B029FB002C5D40 /* ERNewtonLocalizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FA0021B029FB002C5D40 /* ERNewtonLocalizer.cpp */; };
@@ -2537,8 +2535,6 @@
 		5614F9F521B029FB002C5D40 /* expectation_values.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = expectation_values.cpp; sourceTree = "<group>"; };
 		5614F9F621B029FB002C5D40 /* properties.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = properties.cpp; sourceTree = "<group>"; };
 		5614F9F721B029FB002C5D40 /* AOBasis.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AOBasis.cpp; sourceTree = "<group>"; };
-		5614F9F921B029FB002C5D40 /* TwoElectronOperator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TwoElectronOperator.cpp; sourceTree = "<group>"; };
-		5614F9FB21B029FB002C5D40 /* OneElectronOperator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OneElectronOperator.cpp; sourceTree = "<group>"; };
 		5614F9FD21B029FB002C5D40 /* CISolver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CISolver.cpp; sourceTree = "<group>"; };
 		5614F9FF21B029FB002C5D40 /* BaseERLocalizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseERLocalizer.cpp; sourceTree = "<group>"; };
 		5614FA0021B029FB002C5D40 /* ERNewtonLocalizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ERNewtonLocalizer.cpp; sourceTree = "<group>"; };
@@ -3674,7 +3670,6 @@
 				5614FA0521B029FB002C5D40 /* HamiltonianParameters */,
 				5614F9FE21B029FB002C5D40 /* Localization */,
 				56C8397E22159E9700FA98A0 /* math */,
-				5614F9F821B029FB002C5D40 /* Operator */,
 				5614F9F421B029FB002C5D40 /* properties */,
 				5614F9E521B029FB002C5D40 /* RDM */,
 				5614F9E021B029FB002C5D40 /* RHF */,
@@ -3734,15 +3729,6 @@
 				5614F9F621B029FB002C5D40 /* properties.cpp */,
 			);
 			path = properties;
-			sourceTree = "<group>";
-		};
-		5614F9F821B029FB002C5D40 /* Operator */ = {
-			isa = PBXGroup;
-			children = (
-				5614F9FB21B029FB002C5D40 /* OneElectronOperator.cpp */,
-				5614F9F921B029FB002C5D40 /* TwoElectronOperator.cpp */,
-			);
-			path = Operator;
 			sourceTree = "<group>";
 		};
 		5614F9FC21B029FB002C5D40 /* CISolver */ = {
@@ -6248,7 +6234,6 @@
 				5614FA5621B029FB002C5D40 /* BaseRDMBuilder.cpp in Sources */,
 				56B49B8121F2128D000F543B /* AP1roGJacobiOrbitalOptimizer.cpp in Sources */,
 				56FBA0A721C2B06B0084F088 /* miscellaneous.cpp in Sources */,
-				5614FA6721B029FB002C5D40 /* OneElectronOperator.cpp in Sources */,
 				5643B7E421F7070100E1741F /* BaseSpinUnresolvedRDMBuilder.cpp in Sources */,
 				5614FA6321B029FB002C5D40 /* properties.cpp in Sources */,
 				56FBA0DB21C2B4C90084F088 /* BaseMatrixSolver.cpp in Sources */,
@@ -6296,7 +6281,6 @@
 				56FBA0D621C2B4C90084F088 /* NewtonSystemOfEquationsSolver.cpp in Sources */,
 				56B49B8021F2128D000F543B /* AP1roG.cpp in Sources */,
 				5614FA7421B029FB002C5D40 /* HamiltonianBuilder.cpp in Sources */,
-				5614FA6521B029FB002C5D40 /* TwoElectronOperator.cpp in Sources */,
 				5614FA5A21B029FB002C5D40 /* SelectedRDMBuilder.cpp in Sources */,
 				5614FA4A21B029FB002C5D40 /* FockSpace.cpp in Sources */,
 				5643B7E821F7074000E1741F /* SpinUnresolvedWaveFunction.cpp in Sources */,

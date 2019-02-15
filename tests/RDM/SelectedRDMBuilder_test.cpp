@@ -44,7 +44,7 @@ BOOST_AUTO_TEST_CASE ( one_rdms_fci_H2_6_31G ) {
 
     // Create the molecular Hamiltonian parameters in the AO basis
     auto h2 = GQCP::Molecule::Readxyz("data/h2.xyz");
-    auto ham_par = GQCP::HamiltonianParameters::Molecular(h2, "6-31G");
+    auto ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2, "6-31G");
     size_t K = ham_par.get_K();  // 4
 
     GQCP::ProductFockSpace fock_space (K, N_a, N_b);  // dim = 16
@@ -86,7 +86,7 @@ BOOST_AUTO_TEST_CASE ( two_rdms_fci_H2_6_31G ) {
 
     // Create the molecular Hamiltonian parameters in the AO basis
     auto h2 = GQCP::Molecule::Readxyz("data/h2.xyz");
-    auto ham_par = GQCP::HamiltonianParameters::Molecular(h2, "6-31G");
+    auto ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2, "6-31G");
     size_t K = ham_par.get_K();  // 4
 
     GQCP::ProductFockSpace fock_space (K, N_a, N_b);  // dim = 16
@@ -128,7 +128,7 @@ BOOST_AUTO_TEST_CASE ( one_rdms_doci_H2_6_31G ) {
 
     // Create the molecular Hamiltonian parameters in the AO basis
     auto h2 = GQCP::Molecule::Readxyz("data/h2.xyz");
-    auto ham_par = GQCP::HamiltonianParameters::Molecular(h2, "6-31G");
+    auto ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2, "6-31G");
     size_t K = ham_par.get_K();  // 4
 
     GQCP::FockSpace fock_space (K, N);  // dim = 4
@@ -168,7 +168,7 @@ BOOST_AUTO_TEST_CASE ( two_rdms_doci_H2_6_31G ) {
 
     // Create the molecular Hamiltonian parameters in the AO basis
     auto h2 = GQCP::Molecule::Readxyz("data/h2.xyz");
-    auto ham_par = GQCP::HamiltonianParameters::Molecular(h2, "6-31G");
+    auto ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2, "6-31G");
     size_t K = ham_par.get_K();  // 4
 
     GQCP::FockSpace fock_space (K, N);  // dim = 4

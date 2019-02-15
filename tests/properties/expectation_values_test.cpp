@@ -34,7 +34,7 @@
 
 BOOST_AUTO_TEST_CASE ( one_electron_throw ) {
 
-    GQCP::OneElectronOperator h (Eigen::MatrixXd::Zero(2, 2));
+    GQCP::OneElectronOperator<double> h (Eigen::MatrixXd::Zero(2, 2));
     GQCP::OneRDM D_valid (Eigen::MatrixXd::Zero(2, 2));
     GQCP::OneRDM D_invalid (Eigen::MatrixXd::Zero(3, 3));
 
@@ -47,7 +47,7 @@ BOOST_AUTO_TEST_CASE ( two_electron_throw ) {
 
     Eigen::Tensor<double, 4> g_tensor (2, 2, 2, 2);
     g_tensor.setZero();
-    GQCP::TwoElectronOperator g (g_tensor);
+    GQCP::TwoElectronOperator<double> g (g_tensor);
 
     Eigen::Tensor<double, 4> d_tensor_valid (2, 2, 2, 2);
     d_tensor_valid.setZero();
@@ -70,7 +70,7 @@ BOOST_AUTO_TEST_CASE ( mulliken_N2_STO_3G ) {
     std::vector<GQCP::Atom> atoms {N_1, N_2};
     GQCP::Molecule N2 (atoms);
 
-    auto ham_par = GQCP::HamiltonianParameters::Molecular(N2, "STO-3G");
+    auto ham_par = GQCP::HamiltonianParameters<double>::Molecular(N2, "STO-3G");
     size_t K = ham_par.get_K();
 
     // We include all basis functions
@@ -79,7 +79,7 @@ BOOST_AUTO_TEST_CASE ( mulliken_N2_STO_3G ) {
         gto_list[i] = i;
     }
 
-    GQCP::OneElectronOperator mulliken = ham_par.calculateMullikenOperator(gto_list);
+    GQCP::OneElectronOperator<double> mulliken = ham_par.calculateMullikenOperator(gto_list);
 
     size_t N = N2.get_N();
 

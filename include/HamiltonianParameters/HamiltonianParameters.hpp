@@ -85,7 +85,7 @@ public:
         }
 
 
-        if (S.get_matrix_representation().isZero(1.0e-08)) {
+        if (S.isZero(1.0e-08)) {
             throw std::invalid_argument("The underlying overlap matrix cannot be a zero matrix.");
         }
     }
@@ -97,7 +97,7 @@ public:
      *  @param ham_par      the current Hamiltonian parameters
      *  @param C            the transformation matrix to be applied to the given Hamiltonian parameters
      */
-    HamiltonianParameters(const HamiltonianParameters& ham_par, const SquareMatrix<Scalar>& C) :
+    HamiltonianParameters(const HamiltonianParameters<Scalar>& ham_par, const SquareMatrix<Scalar>& C) :
         HamiltonianParameters<Scalar>(ham_par.ao_basis, ham_par.S, ham_par.h, ham_par.g, ham_par.T_total, ham_par.scalar)
     {
         // We have now initialized the new Hamiltonian parameters to be a copy of the given Hamiltonian parameters, so now we will transform
@@ -130,17 +130,16 @@ public:
         auto S = LibintCommunicator::get().calculateOverlapIntegrals(*ao_basis);
         auto T = LibintCommunicator::get().calculateKineticIntegrals(*ao_basis);
         auto V = LibintCommunicator::get().calculateNuclearIntegrals(*ao_basis);
-        auto H = T + V;
+        auto H = OneElectronOperator<double>(T + V);
 
         auto g = LibintCommunicator::get().calculateCoulombRepulsionIntegrals(*ao_basis);
 
 
         // Construct the initial transformation matrix: the identity matrix
         auto nbf = ao_basis->get_number_of_basis_functions();
-        Eigen::MatrixXd C = Eigen::MatrixXd::Identity(nbf, nbf);
+        auto T_total = SquareMatrix<double>(Matrix<double>::Identity(nbf, nbf));
 
-
-        return HamiltonianParameters(ao_basis, S, H, g, C, scalar);
+        return HamiltonianParameters(ao_basis, S, H, g, T_total, scalar);
     }
 
 
@@ -559,7 +558,7 @@ public:
         }
 
         if (ao_list.size() > this->K) {
-            throw std::invalid_argument("To many AOs are selected");
+            throw std::invalid_argument("Too many AOs are selected");
         }
 
         // Create the partitioning matrix (diagonal matrix with values set to 1 of selected AOs
@@ -574,10 +573,10 @@ public:
         }
 
         OneElectronOperator<Scalar> S_AO = this->S;
-        S_AO.transform(T_total.inverse());
-        Eigen::MatrixXd S_AO_mat = S_AO.get_matrix_representation();
+        auto T_inverse = SquareMatrix<double>(T_total.inverse());
+        S_AO.transform(T_inverse);
 
-        Eigen::MatrixXd mulliken_matrix = (T_total.adjoint() * p_a * S_AO_mat * T_total + T_total.adjoint() * S_AO_mat * p_a * T_total)/2 ;
+        Eigen::MatrixXd mulliken_matrix = (T_total.adjoint() * p_a * S_AO * T_total + T_total.adjoint() * S_AO * p_a * T_total)/2 ;
 
         return OneElectronOperator<double>(mulliken_matrix);
     }
@@ -667,7 +666,7 @@ public:
      *
      *  Note that this method is only available for real matrix representations
      */
-    template<typename Z>
+    template<typename Z = Scalar>
     enable_if_t<std::is_same<Z, double>::value, HamiltonianParameters<double>> constrain(const OneElectronOperator<double>& one_op, const TwoElectronOperator<double>& two_op, double lambda) const {
 
         OneElectronOperator<double> h_constrained (this->h - lambda*one_op);
@@ -686,7 +685,7 @@ public:
      *
      *  Note that this method is only available for real matrix representations
      */
-    template<typename Z>
+    template<typename Z = Scalar>
     enable_if_t<std::is_same<Z, double>::value, HamiltonianParameters<double>> constrain(const OneElectronOperator<double>& one_op, double lambda) const {
 
         OneElectronOperator<double> h_constrained (this->h - lambda*one_op);
@@ -704,7 +703,7 @@ public:
      *
      *  Note that this method is only available for real matrix representations
      */
-    template<typename Z>
+    template<typename Z = Scalar>
     enable_if_t<std::is_same<Z, double>::value, HamiltonianParameters<double>> constrain(const TwoElectronOperator<double>& two_op, double lambda) const {
 
         TwoElectronOperator<double> g_constrained (this->g - lambda*two_op);

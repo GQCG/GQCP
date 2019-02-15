@@ -47,7 +47,7 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "YES"
-      customWorkingDirectory = "/Users/laurentlemmens/Software/GQCG/gqcp/build/exe"
+      customWorkingDirectory = "/Users/laurentlemmens/Software/GQCG/gqcp/tests"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
@@ -64,7 +64,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "-f ../data/h2o.xyz"
+            argument = "-f ./data/h2o.xyz"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

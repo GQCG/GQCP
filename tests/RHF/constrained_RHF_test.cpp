@@ -31,7 +31,7 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test ) {
 
     // Create a Molecule and an AOBasis with the assumed geometry
     auto CO = GQCP::Molecule::Readxyz("data/CO_mulliken.xyz");
-    auto ao_ham_par = GQCP::HamiltonianParameters::Molecular(CO, "STO-3G");
+    auto ao_ham_par = GQCP::HamiltonianParameters<double>::Molecular(CO, "STO-3G");
 
     size_t K = ao_ham_par.get_K();
     size_t N = CO.get_N();
@@ -76,7 +76,7 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test ) {
         // Calculate the Mulliken operator
         auto mulliken_operator = ao_ham_par.calculateMullikenOperator(gto_list);
 
-        // Contrain the original Hamiltonian parameters
+        // Constrain the original Hamiltonian parameters
         auto constrained_ham_par = ao_ham_par.constrain(mulliken_operator, i);
 
         // Create a DIIS RHF SCF solver and solve the SCF equations
@@ -115,7 +115,7 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test_random_transformation) {
 
     // Create a Molecule and an AOBasis with the assumed geometry
     auto CO = GQCP::Molecule::Readxyz("data/CO_mulliken.xyz");
-    auto ao_ham_par = GQCP::HamiltonianParameters::Molecular(CO, "STO-3G");
+    auto ao_ham_par = GQCP::HamiltonianParameters<double>::Molecular(CO, "STO-3G");
 
     size_t K = ao_ham_par.get_K();
     size_t N = CO.get_N();

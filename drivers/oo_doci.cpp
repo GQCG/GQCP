@@ -76,7 +76,7 @@ int main (int argc, char** argv) {
 
 
     output_file << "Basisset: " << basisset << std::endl << std::endl;
-    auto ao_mol_ham_par = GQCP::HamiltonianParameters::Molecular(molecule, basisset);
+    auto ao_mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(molecule, basisset);
     size_t K = ao_mol_ham_par.get_K();
 
 
@@ -85,7 +85,7 @@ int main (int argc, char** argv) {
     auto rhf = diis_scf_solver.get_solution();
 
     output_file << "Transformation matrix to the RHF orbitals: " << std::endl << rhf.get_C() << std::endl << std::endl;
-    auto mol_ham_par = GQCP::HamiltonianParameters(ao_mol_ham_par, rhf.get_C());
+    auto mol_ham_par = GQCP::HamiltonianParameters<double>(ao_mol_ham_par, rhf.get_C());
 
 
     // Localize the RHF-orbitals

@@ -15,7 +15,7 @@ static void constructHamiltonian(benchmark::State& state) {
     GQCP::ProductFockSpace fock_space (K, N, N);
     GQCP::FCI fci (fock_space);
 
-    GQCP::HamiltonianParameters ham_par = GQCP::HamiltonianParameters::Random(K);
+    GQCP::HamiltonianParameters<double> ham_par = GQCP::HamiltonianParameters<double>::Random(K);
 
     // Code inside this loop is measured repeatedly
     for (auto _ : state) {

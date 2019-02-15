@@ -36,7 +36,7 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_dense ) {
     // Create the Hamiltonian parameters for a random Hubbard hopping matrix
     size_t K = 4;
     auto H = GQCP::HoppingMatrix::Random(K);
-    auto mol_ham_par = GQCP::HamiltonianParameters::Hubbard(H);
+    auto mol_ham_par = GQCP::HamiltonianParameters<double>::Hubbard(H);
 
 
     // Create the Hubbard and FCI modules
@@ -68,7 +68,7 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_dense_large ) {
     // Create the Hamiltonian parameters for a random Hubbard hopping matrix
     size_t K = 6;
     auto H = GQCP::HoppingMatrix::Random(K);
-    auto mol_ham_par = GQCP::HamiltonianParameters::Hubbard(H);
+    auto mol_ham_par = GQCP::HamiltonianParameters<double>::Hubbard(H);
 
 
     // Create the Hubbard and FCI modules
@@ -114,7 +114,7 @@ BOOST_AUTO_TEST_CASE ( four_site_chain_ward ) {
 
         // Create the Hamiltonian parameters for the Hubbard model
         GQCP::HoppingMatrix H (A, t, U_list[i]);
-        auto ham_par = GQCP::HamiltonianParameters::Hubbard(H);
+        auto ham_par = GQCP::HamiltonianParameters<double>::Hubbard(H);
 
 
         // Solve the dense eigenvalue problem
@@ -154,7 +154,7 @@ BOOST_AUTO_TEST_CASE ( six_site_ring_ward ) {
 
         // Create the Hamiltonian parameters for the Hubbard model
         GQCP::HoppingMatrix H (A, t, U_list[i]);
-        auto ham_par = GQCP::HamiltonianParameters::Hubbard(H);
+        auto ham_par = GQCP::HamiltonianParameters<double>::Hubbard(H);
 
 
         // Solve the dense eigenvalue problem

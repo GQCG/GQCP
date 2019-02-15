@@ -50,9 +50,6 @@ set(PROJECT_SOURCE_FILES
         ${PROJECT_SOURCE_FOLDER}/math/optimization/SparseSolver.cpp
         ${PROJECT_SOURCE_FOLDER}/math/optimization/step.cpp
 
-        ${PROJECT_SOURCE_FOLDER}/Operator/OneElectronOperator.cpp
-        ${PROJECT_SOURCE_FOLDER}/Operator/TwoElectronOperator.cpp
-
         ${PROJECT_SOURCE_FOLDER}/properties/expectation_values.cpp
         ${PROJECT_SOURCE_FOLDER}/properties/properties.cpp
 
