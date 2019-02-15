@@ -15,6 +15,8 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
+#include <RDM/FrozenCoreDOCIRDMBuilder.hpp>
+#include <RDM/FrozenCoreFCIRDMBuilder.hpp>
 #include "RDM/RDMCalculator.hpp"
 
 #include "RDM/DOCIRDMBuilder.hpp"
@@ -72,7 +74,6 @@ RDMCalculator::RDMCalculator(const BaseFockSpace& fock_space) {
 
         case FockSpaceType::FockSpace: {
             this->rdm_builder = std::make_shared<DOCIRDMBuilder>(dynamic_cast<const FockSpace&>(fock_space));
-
             break;
         }
 
@@ -89,13 +90,13 @@ RDMCalculator::RDMCalculator(const BaseFockSpace& fock_space) {
         }
 
         case FockSpaceType::FrozenFockSpace: {
-            //this->rdm_builder = std::make_shared<FrozenCoreDOCIRDMBuilder>(dynamic_cast<const FrozenFockSpace&>(fock_space));
+            this->rdm_builder = std::make_shared<FrozenCoreDOCIRDMBuilder>(dynamic_cast<const FrozenFockSpace&>(fock_space));
 
             break;
         }
 
         case FockSpaceType::FrozenProductFockSpace: {
-            //this->rdm_builder = std::make_shared<FrozenCoreFCIRDMBuilder>(dynamic_cast<const FrozenProductFockSpace&>(fock_space));
+            this->rdm_builder = std::make_shared<FrozenCoreFCIRDMBuilder>(dynamic_cast<const FrozenProductFockSpace&>(fock_space));
 
             break;
         }
