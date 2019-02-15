@@ -143,6 +143,7 @@ void tensorBlockAddition(Eigen::Tensor<double, 4>& T_target, const Eigen::Tensor
 template<size_t r, size_t s>
 void tensorBlockAddition(Eigen::Tensor<double, 4>& T_target, const Eigen::MatrixXd& M, size_t i, size_t j, size_t k, size_t l) {
 
+    // Initialize series of arrays with 1 or 0 values, so that the correct tensor indices given by the template argument correspond to the matrix indices
     size_t ia[4] = {1,0,0,0};
     size_t ja[4] = {0,1,0,0};
     size_t ka[4] = {0,0,1,0};

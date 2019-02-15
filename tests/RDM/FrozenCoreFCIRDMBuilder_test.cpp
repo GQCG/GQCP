@@ -83,7 +83,7 @@ BOOST_AUTO_TEST_CASE ( FrozenCoreFCI_two_rdms ) {
 
     Eigen::VectorXd coef = ci_solver.get_eigenpair().get_eigenvector();
 
-    // Get the frozen core FCI and SelectedCI 1-RDMS
+    // Get the frozen core FCI and SelectedCI 2-RDMS
     GQCP::SelectedRDMBuilder sci_rdm(selected_fock_space);
     GQCP::FrozenCoreFCIRDMBuilder fci_rdm(fock_space);
     GQCP::TwoRDMs two_rdms_s = sci_rdm.calculate2RDMs(coef);

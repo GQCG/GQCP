@@ -50,6 +50,7 @@ OneRDMs FrozenCoreRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) const {
 
     auto Kn = K - this->X;
 
+    // frozen orbital values
     for (size_t i = 0; i < this->X; i++) {
         D_aa(i,i) = 1;
         D_bb(i,i) = 1;

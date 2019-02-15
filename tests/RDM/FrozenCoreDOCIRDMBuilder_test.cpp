@@ -41,7 +41,7 @@ BOOST_AUTO_TEST_CASE ( FrozenCoreDOCI_one_rdms ) {
     GQCP::Molecule H5 = GQCP::Molecule::HChain(K, 1.1);
     auto ham_par = GQCP::HamiltonianParameters::Molecular(H5, "STO-3G");
 
-    GQCP::FrozenFockSpace fock_space (K, 3, 2);  // dim = 16
+    GQCP::FrozenFockSpace fock_space (K, 3, 2);
     GQCP::SelectedFockSpace selected_fock_space (fock_space);
     GQCP::FrozenCoreDOCI doci (fock_space);
 
@@ -71,7 +71,7 @@ BOOST_AUTO_TEST_CASE ( FrozenCoreDOCI_two_rdms ) {
     GQCP::Molecule H5 = GQCP::Molecule::HChain(K, 1.1);
     auto ham_par = GQCP::HamiltonianParameters::Molecular(H5, "STO-3G");
 
-    GQCP::FrozenFockSpace fock_space (K, 3, 2);  // dim = 16
+    GQCP::FrozenFockSpace fock_space (K, 3, 2);
     GQCP::SelectedFockSpace selected_fock_space (fock_space);
     GQCP::FrozenCoreDOCI doci (fock_space);
 
@@ -83,7 +83,7 @@ BOOST_AUTO_TEST_CASE ( FrozenCoreDOCI_two_rdms ) {
 
     Eigen::VectorXd coef = ci_solver.get_eigenpair().get_eigenvector();
 
-    // Get the frozen core DOCI and SelectedCI 1-RDMS
+    // Get the frozen core DOCI and SelectedCI 2-RDMS
     GQCP::SelectedRDMBuilder sci_rdm(selected_fock_space);
     GQCP::FrozenCoreDOCIRDMBuilder doci_rdm(fock_space);
     GQCP::TwoRDMs two_rdms_s = sci_rdm.calculate2RDMs(coef);
