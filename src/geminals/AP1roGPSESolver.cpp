@@ -87,8 +87,8 @@ AP1roGPSESolver::AP1roGPSESolver(const Molecule& molecule, const HamiltonianPara
  */
 double AP1roGPSESolver::calculateJacobianElement(const AP1roGGeminalCoefficients& G, size_t i, size_t a, size_t k, size_t c) const {
 
-    auto h_SO = this->ham_par.get_h();
-    auto g_SO = this->ham_par.get_g();
+    auto h = this->ham_par.get_h();
+    auto g = this->ham_par.get_g();
 
     double j_el = 0.0;
 
@@ -101,10 +101,10 @@ double AP1roGPSESolver::calculateJacobianElement(const AP1roGGeminalCoefficients
         }
 
         else {  // i!=k and a == c
-            j_el += g_SO(k,i,k,i) - 2 * g_SO(k,a,k,a) * G(i,a);
+            j_el += g(k,i,k,i) - 2 * g(k,a,k,a) * G(i,a);
 
             for (size_t b = this->N_P; b < this->K; b++) {
-                j_el += g_SO(k,b,k,b) * G(i,b);
+                j_el += g(k,b,k,b) * G(i,b);
             }
 
         }
@@ -113,32 +113,32 @@ double AP1roGPSESolver::calculateJacobianElement(const AP1roGGeminalCoefficients
     else {  // i==k
 
         if (a != c) {  // i==k and a!=c
-            j_el += g_SO(a,c,a,c) - 2 * g_SO(i,c,i,c) * G(i,a);
+            j_el += g(a,c,a,c) - 2 * g(i,c,i,c) * G(i,a);
 
             for (size_t j = 0; j < this->N_P; j++) {
-                j_el += g_SO(j,c,j,c) * G(j,a);
+                j_el += g(j,c,j,c) * G(j,a);
             }
         }
 
         else {  // i==k and a==c
 
-            j_el += 2 * (h_SO(a,a) - h_SO(i,i));
+            j_el += 2 * (h(a,a) - h(i,i));
 
-            j_el += g_SO(a,a,a,a) + g_SO(i,i,i,i);
+            j_el += g(a,a,a,a) + g(i,i,i,i);
 
-            j_el -= 2 * (2 * g_SO(a,a,i,i) - g_SO(a,i,i,a));
+            j_el -= 2 * (2 * g(a,a,i,i) - g(a,i,i,a));
 
 
             for (size_t j = 0; j < this->N_P; j++) {
-                j_el += 2 * (2 * g_SO(a,a,j,j) - g_SO(a,j,j,a)) - (2 * g_SO(i,i,j,j) - g_SO(i,j,j,i));
+                j_el += 2 * (2 * g(a,a,j,j) - g(a,j,j,a)) - (2 * g(i,i,j,j) - g(i,j,j,i));
             }
 
             for (size_t j = 0; j < this->N_P; j++) {
-                j_el -= g_SO(j,a,j,a) * G(j,a);
+                j_el -= g(j,a,j,a) * G(j,a);
             }
 
             for (size_t b = this->N_P; b < this->K; b++) {
-                j_el -= g_SO(i,b,i,b) * G(i,b);
+                j_el -= g(i,b,i,b) * G(i,b);
             }
         }
 
@@ -189,33 +189,33 @@ Eigen::MatrixXd AP1roGPSESolver::calculateJacobian(const Eigen::VectorXd& g) con
  */
 double AP1roGPSESolver::calculateCoordinateFunction(const AP1roGGeminalCoefficients& G, size_t i, size_t a) const {
 
-    auto h_SO = this->ham_par.get_h();
-    auto g_SO = this->ham_par.get_g();
+    auto h = this->ham_par.get_h();
+    auto g = this->ham_par.get_g();
 
     double f = 0.0;
 
     // A KISS implementation of the AP1roG pSE equations
-    f += g_SO(a,i,a,i) * (1 - std::pow(G(i,a), 2));
+    f += g(a,i,a,i) * (1 - std::pow(G(i,a), 2));
 
     for (size_t j = 0; j < this->N_P; j++) {
         if (j != i) {
-            f += 2 * ((2 * g_SO(a,a,j,j) - g_SO(a,j,j,a)) - (2 * g_SO(i,i,j,j) - g_SO(i,j,j,i))) * G(i,a);
+            f += 2 * ((2 * g(a,a,j,j) - g(a,j,j,a)) - (2 * g(i,i,j,j) - g(i,j,j,i))) * G(i,a);
         }
     }
 
-    f += 2 * (h_SO(a,a) - h_SO(i,i)) * G(i,a);
+    f += 2 * (h(a,a) - h(i,i)) * G(i,a);
 
-    f += (g_SO(a,a,a,a) - g_SO(i,i,i,i)) * G(i,a);
+    f += (g(a,a,a,a) - g(i,i,i,i)) * G(i,a);
 
     for (size_t b = this->N_P; b < this->K; b++) {
         if (b != a) {
-            f += (g_SO(a,b,a,b) - g_SO(i,b,i,b) * G(i,a)) * G(i,b);
+            f += (g(a,b,a,b) - g(i,b,i,b) * G(i,a)) * G(i,b);
         }
     }
 
     for (size_t j = 0; j < this->N_P; j++) {
         if (j != i) {
-            f += (g_SO(j,i,j,i) - g_SO(j,a,j,a) * G(i,a)) * G(j,a);
+            f += (g(j,i,j,i) - g(j,a,j,a) * G(i,a)) * G(j,a);
         }
     }
 
@@ -224,7 +224,7 @@ double AP1roGPSESolver::calculateCoordinateFunction(const AP1roGGeminalCoefficie
 
             for (size_t j = 0; j < this->N_P; j++) {
                 if (j != i) {
-                    f += g_SO(j,b,j,b) * G(j,a) * G(i,b);
+                    f += g(j,b,j,b) * G(j,a) * G(i,b);
                 }
             }
 

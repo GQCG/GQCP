@@ -18,6 +18,7 @@ public:
     /*
      *  PUBLIC PURE VIRTUAL METHODS
      */
+
     /**
      *  In-place transform the matrix representation of the operator
      *
@@ -31,6 +32,7 @@ public:
     /*
      *  PUBLIC METHODS
      */
+
     /**
      *  In-place rotate the matrix representation of the operator
      *

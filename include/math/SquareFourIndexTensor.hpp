@@ -18,7 +18,10 @@ template<typename Scalar>
 class SquareFourIndexTensor: public FourIndexTensor<Scalar> {
 public:
 
-    // CONSTRUCTORS
+    /*
+     *  CONSTRUCTORS
+     */
+
     /**
      *  Default constructor
      */
@@ -41,7 +44,10 @@ public:
     }
 
 
-    // GETTERS
+    /*
+     *  GETTERS
+     */
+
     size_t get_dim() const {
         return this->dimension(0);  // all tensor dimensions are equal because of the constructor
     }

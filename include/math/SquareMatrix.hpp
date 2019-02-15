@@ -17,7 +17,10 @@ template<typename Scalar>
 class SquareMatrix : public Matrix<Scalar> {
 public:
 
-    // CONSTRUCTORS
+    /*
+     *  CONSTRUCTORS
+     */
+
     /**
      *  Default constructor
      */
@@ -39,9 +42,10 @@ public:
     }
 
 
+    /*
+     *  GETTERS
+     */
 
-
-    // GETTERS
     size_t get_dim() const {
         return this->cols();  // equals this->rows()
     }

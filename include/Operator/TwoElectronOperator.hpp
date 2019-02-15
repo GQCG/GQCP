@@ -57,6 +57,10 @@ public:
     {}
 
 
+    /*
+     *  OVERRIDDEN PUBLIC METHODS
+     */
+
     /**
      *  In-place transform the matrix representation of the two-electron operator
      *
@@ -100,6 +104,10 @@ public:
         *this = TwoElectronOperator<Scalar>(g_transformed);
     }
 
+
+    /*
+     *  PUBLIC METHODS
+     */
 
     /**
      *  If we have

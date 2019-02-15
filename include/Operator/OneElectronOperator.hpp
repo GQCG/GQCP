@@ -60,17 +60,10 @@ public:
     {}
 
 
-    /**
-     *  A default constructor setting everything to zero
+    /*
+     *  OVERRIDDEN PUBLIC METHODS
      */
-//    OneElectronOperator();  // need a default constructor
 
-
-    // GETTERS
-//    const Eigen::MatrixXd& get_matrix_representation() const { return this->matrix; }
-
-
-    // OVERRIDDEN PUBLIC METHODS
     /**
      *  In-place transform the matrix representation of the one-electron operator
      *
@@ -82,6 +75,10 @@ public:
         *this = OneElectronOperator<Scalar>(T.adjoint() * (*this) * T);  // this has no aliasing issues (https://eigen.tuxfamily.org/dox/group__TopicAliasing.html)
     }
 
+
+    /*
+     *  PUBLIC METHODS
+     */
 
     /**
      *  If we have
