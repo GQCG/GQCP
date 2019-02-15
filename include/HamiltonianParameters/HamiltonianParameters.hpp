@@ -397,7 +397,7 @@ public:
      *  @return if the underlying spatial orbital basis of the Hamiltonian parameters is orthonormal
      */
     bool areOrbitalsOrthonormal() const {
-        return this->S.get_matrix_representation().isApprox(Eigen::MatrixXd::Identity(this->K, this->K));
+        return this->S.isApprox(Matrix<Scalar>::Identity(this->K, this->K));
     }
 
 
@@ -451,8 +451,11 @@ public:
     // OTHER TRANSFORMATION FORMULAS
     /**
      *  Using a random rotation matrix, transform the matrix representations of the Hamiltonian parameters
+     *
+     *  Note that this method is only available for real matrix representations
      */
-    void randomRotate() {
+    template<typename Z = Scalar>
+    enable_if_t<std::is_same<Z, double>::value> randomRotate() {
 
         // Get a random unitary matrix by diagonalizing a random symmetric matrix
         Eigen::MatrixXd A_random = Eigen::MatrixXd::Random(this->K, this->K);
@@ -469,7 +472,7 @@ public:
     void LowdinOrthonormalize() {
 
         // The transformation matrix to the Löwdin basis is T = S^{-1/2}
-        Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes (this->S.get_matrix_representation());  // can we use this->S?
+        Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes (this->S);  // can we use this->S?
         this->transform(saes.operatorInverseSqrt());
     }
 
@@ -479,14 +482,17 @@ public:
      *  @param N_P      the number of electron pairs
      *
      *  @return the Edmiston-Ruedenberg localization index g(i,i,i,i)
+     *
+     *  Note that this method is only available for real matrix representations
      */
-    double calculateEdmistonRuedenbergLocalizationIndex(size_t N_P) const {
+    template<typename Z = Scalar>
+    enable_if_t<std::is_same<Z, double>::value, double> calculateEdmistonRuedenbergLocalizationIndex(size_t N_P) const {
 
         double localization_index = 0.0;
 
         // TODO: when Eigen releases TensorTrace, use it here
         for (size_t i = 0; i < N_P; i++) {
-            localization_index += this->g(i,i,i,i);  // is this always real?
+            localization_index += this->g(i,i,i,i);
         }
 
         return localization_index;
@@ -542,8 +548,11 @@ public:
      *  @param ao_list     indices of the AOs used for the Mulliken populations
      *
      *  @return the Mulliken operator for a set of AOs
+     *
+     *  Note that this method is only available for real matrix representations
      */
-    OneElectronOperator<Scalar> calculateMullikenOperator(const Vectoru& ao_list) const {
+    template<typename Z = Scalar>
+    enable_if_t<std::is_same<Z, double>::value, OneElectronOperator<double>> calculateMullikenOperator(const Vectoru& ao_list) const {
 
         if (!this->get_ao_basis()) {
             throw std::invalid_argument("The Hamiltonian parameters have no underlying AO basis, Mulliken analysis is not possible.");
@@ -570,7 +579,7 @@ public:
 
         Eigen::MatrixXd mulliken_matrix = (T_total.adjoint() * p_a * S_AO_mat * T_total + T_total.adjoint() * S_AO_mat * p_a * T_total)/2 ;
 
-        return OneElectronOperator<Scalar>(mulliken_matrix);
+        return OneElectronOperator<double>(mulliken_matrix);
     }
 
     /**
@@ -655,13 +664,16 @@ public:
      *  @param lambda   Lagrangian multiplier for the constraint
      *
      *  @return a copy of the constrained Hamiltonian parameters
+     *
+     *  Note that this method is only available for real matrix representations
      */
-    HamiltonianParameters<Scalar> constrain(const OneElectronOperator<Scalar>& one_op, const TwoElectronOperator<Scalar>& two_op, double lambda) const {
+    template<typename Z>
+    enable_if_t<std::is_same<Z, double>::value, HamiltonianParameters<double>> constrain(const OneElectronOperator<double>& one_op, const TwoElectronOperator<double>& two_op, double lambda) const {
 
-        OneElectronOperator<Scalar> hc (this->get_h().get_matrix_representation() - lambda*one_op.get_matrix_representation());
-        TwoElectronOperator<Scalar> gc (this->get_g().get_matrix_representation() - lambda*two_op.get_matrix_representation());
+        OneElectronOperator<double> h_constrained (this->h - lambda*one_op);
+        TwoElectronOperator<double> g_constrained (this->g - lambda*two_op);
 
-        return HamiltonianParameters(this->ao_basis, this->S, hc, gc, this->T_total);
+        return HamiltonianParameters(this->ao_basis, this->S, h_constrained, g_constrained, this->T_total);
     }
 
     /**
@@ -671,12 +683,15 @@ public:
      *  @param lambda   Lagrangian multiplier for the constraint
      *
      *  @return a copy of the constrained Hamiltonian parameters
+     *
+     *  Note that this method is only available for real matrix representations
      */
-    HamiltonianParameters<Scalar> constrain(const OneElectronOperator<Scalar>& one_op, double lambda) const {
+    template<typename Z>
+    enable_if_t<std::is_same<Z, double>::value, HamiltonianParameters<double>> constrain(const OneElectronOperator<double>& one_op, double lambda) const {
 
-        OneElectronOperator<Scalar> hc (this->get_h().get_matrix_representation() - lambda*one_op.get_matrix_representation());
+        OneElectronOperator<double> h_constrained (this->h - lambda*one_op);
 
-        return HamiltonianParameters(this->ao_basis, this->S, hc, this->g, this->T_total);
+        return HamiltonianParameters(this->ao_basis, this->S, h_constrained, this->g, this->T_total);
     }
 
     /**
@@ -686,12 +701,15 @@ public:
      *  @param lambda   Lagrangian multiplier for the constraint
      *
      *  @return a copy of the constrained Hamiltonian parameters
+     *
+     *  Note that this method is only available for real matrix representations
      */
-    HamiltonianParameters<Scalar> constrain(const TwoElectronOperator<Scalar>& two_op, double lambda) const {
+    template<typename Z>
+    enable_if_t<std::is_same<Z, double>::value, HamiltonianParameters<double>> constrain(const TwoElectronOperator<double>& two_op, double lambda) const {
 
-        TwoElectronOperator<Scalar> gc (this->get_g().get_matrix_representation() - lambda*two_op.get_matrix_representation());
+        TwoElectronOperator<double> g_constrained (this->g - lambda*two_op);
 
-        return HamiltonianParameters(this->ao_basis, this->S, this->h, gc, this->T_total);
+        return HamiltonianParameters(this->ao_basis, this->S, this->h, g_constrained, this->T_total);
     }
 };
 
