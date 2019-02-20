@@ -31,7 +31,7 @@ namespace GQCP {
  *
  *  Utilizes a full non frozen sub Fock space
  */
-class FrozenFockSpace: public BaseFockSpace, public FockPermutator {
+class FrozenFockSpace: public BaseFockSpace, public FockPermutator<FrozenFockSpace> {
 private:
     size_t N;  // number of electrons
     size_t X;  // number of frozen orbitals
@@ -58,41 +58,50 @@ public:
 
 
     // GETTERS
-    size_t get_N() const { return this->N; }
     size_t get_X() const { return this->X; }
     const FockSpace& get_sub_space() const { return this->fock_space; }
     FockSpaceType get_type() const override { return FockSpaceType::FrozenFockSpace; }
 
 
-    // PUBLIC METHODS
+    // OVERRIDEN PUBLIC METHODS
     /**
-     *  @param address      the address (i.e. the ordening number) of the ONV
+     *  @param representation       a representation of an ONV
      *
-     *  @return the ONV with the corresponding address
+     *  @return the next bitstring permutation in the frozen Fock space
+     *
+     *      Examples (first orbital is frozen):
+     *          0101 -> 1001
+     *         01101 -> 10011
      */
-    ONV makeONV(size_t address) const override;
+    size_t ulongNextPermutation(size_t representation) const override;
 
     /**
-     *  Set the current ONV to the next ONV: performs ulongNextPermutation() and updates the corresponding occupation indices of the ONV occupation array
-     *
-     *  @param onv      the current ONV
-     */
-    void setNextONV(ONV& onv) const override;
-
-    /**
-     *  @param onv      the ONV
+     *  @param representation      a representation of an ONV
      *
      *  @return the address (i.e. the ordering number) of the given ONV
      */
-    size_t getAddress(const ONV& onv) const override;
+    size_t getAddress(size_t representation) const override;
 
     /**
-     *  Transform an ONV to one corresponding to the given address
+      *  Calculate unsigned representation for a given address
+      *
+      *  @param address                 the address of the representation is calculated
+      *
+      *  @return unsigned representation of the address
+      */
+    size_t calculateRepresentation(size_t address) const override;
+
+    // PUBLIC METHODS
+    /**
+     *  If we have
+     *      FrozenFockSpace fock_space;
      *
-     *  @param onv          the ONV
-     *  @param address      the address to which the ONV will be set
+     *  This makes sure that we can call
+     *      fock_space.getAddress(onv);
+     *  instead of the syntax
+     *      fock_space.FockPermutator<FrozenFockSpace>::getAddress(onv);
      */
-    void transformONV(ONV& onv, size_t address) const override;
+    using FockPermutator<FrozenFockSpace>::getAddress;
 
     /**
      *  @param onv       the ONV

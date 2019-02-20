@@ -16,6 +16,8 @@ set(PROJECT_TEST_SOURCE_FILES
         ${PROJECT_TESTS_FOLDER}/CISolver/CISolver_test.cpp
 
         ${PROJECT_TESTS_FOLDER}/FockSpace/FockSpace_test.cpp
+        ${PROJECT_TESTS_FOLDER}/FockSpace/FrozenFockSpace_test.cpp
+        ${PROJECT_TESTS_FOLDER}/FockSpace/FrozenProductFockSpace_test.cpp
         ${PROJECT_TESTS_FOLDER}/FockSpace/ONV_test.cpp
         ${PROJECT_TESTS_FOLDER}/FockSpace/SelectedFockSpace_test.cpp
         ${PROJECT_TESTS_FOLDER}/FockSpace/ProductFockSpace_test.cpp
@@ -29,6 +31,7 @@ set(PROJECT_TEST_SOURCE_FILES
 
         ${PROJECT_TESTS_FOLDER}/HamiltonianBuilder/DOCI_test.cpp
         ${PROJECT_TESTS_FOLDER}/HamiltonianBuilder/FCI_test.cpp
+        ${PROJECT_TESTS_FOLDER}/HamiltonianBuilder/FrozenCoreDOCI_test.cpp
         ${PROJECT_TESTS_FOLDER}/HamiltonianBuilder/FrozenCoreFCI_test.cpp
         ${PROJECT_TESTS_FOLDER}/HamiltonianBuilder/Hubbard_test.cpp
         ${PROJECT_TESTS_FOLDER}/HamiltonianBuilder/SelectedCI_test.cpp

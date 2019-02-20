@@ -32,8 +32,9 @@ namespace GQCP {
  *  @param X        the number of frozen orbitals
  */
 FrozenFockSpace::FrozenFockSpace(size_t K, size_t N, size_t X) :
-        BaseFockSpace(K, FockSpace::calculateDimension(K-X, N-X)),
-        fock_space(K-X, N-X),
+        BaseFockSpace (K, FockSpace::calculateDimension(K-X, N-X)),
+        FockPermutator (N),
+        fock_space (K-X, N-X),
         N (N),
         X (X)
 {}
@@ -49,51 +50,53 @@ FrozenFockSpace::FrozenFockSpace(const FockSpace& fock_space, size_t X) :
 
 
 /*
- *  PUBLIC METHODS
+ *  PUBLIC OVERRIDEN METHODS
  */
 
 /**
- *  @param address      the address (i.e. the ordening number) of the ONV
+ *  @param representation       a representation of an ONV
  *
- *  @return the ONV with the corresponding address
- */
-ONV FrozenFockSpace::makeONV(size_t address) const {
-    ONV onv (this->K, this->N);
-    this->transformONV(onv, address);
-    return onv;
-}
-
-
-/**
- *  Set the current ONV to the next ONV
+ *  @return the next bitstring permutation in the frozen Fock space
  *
- *  @param onv      the current ONV
+ *      Examples (first orbital is frozen):
+ *          0101 -> 1001
+ *         01101 -> 10011
  */
-void FrozenFockSpace::setNextONV(ONV& onv) const {
-    onv.set_representation((this->fock_space.ulongNextPermutation(onv.get_unsigned_representation() >> X) << X) + pow(2,X)-1);
-}
-
+size_t FrozenFockSpace::ulongNextPermutation(size_t representation) const {
+    // generate the permutation from the sub space, bitshift left X amount of times to remove the frozen orbital indices
+    size_t sub_permutation = this->fock_space.ulongNextPermutation(representation >> this->X);
+    // transform the permutation to the frozen core space, by bitshifting right X amount of times and filling the new indices with 1's (by adding 2^X - 1)
+    return (sub_permutation << this->X) + (pow(2,this->X)-1);
+};
 
 /**
- *  @param onv                                              the ONV
+ *  @param representation      a representation of an ONV
  *
  *  @return the address (i.e. the ordering number) of the given ONV
  */
-size_t FrozenFockSpace::getAddress(const ONV& onv) const {
-    return this->fock_space.getAddress(onv.get_unsigned_representation() >> X);
-}
-
+size_t FrozenFockSpace::getAddress(size_t representation) const {
+    // transform the representation to the sub space, by bitshifting left X amount of times to remove the frozen orbital indices
+    // address of the total ONV in the frozen Fock space is identical to that of the sub ONV in the sub Fock space.
+    return this->fock_space.getAddress(representation >> this->X);
+};
 
 /**
- *  Transform an ONV to one with corresponding to the given address
- *
- *  @param onv          the ONV
- *  @param address      the address to which the ONV will be set
- */
-void FrozenFockSpace::transformONV(ONV& onv, size_t address) const {
-    onv.set_representation((this->fock_space.calculateRepresentation(address) << X) + pow(2,X)-1);
-}
+  *  Calculate unsigned representation for a given address
+  *
+  *  @param address                 the address of the representation is calculated
+  *
+  *  @return unsigned representation of the address
+  */
+size_t FrozenFockSpace::calculateRepresentation(size_t address) const {
+    // generate the representation in sub space and transform the permutation to the frozen core space, by bitshifting right X amount of times and filling the new indices with 1's (by adding 2^X - 1)
+    return ((this->fock_space.calculateRepresentation(address) << X) + pow(2,X)-1);
+};
 
+
+
+/*
+ *  PUBLIC METHODS
+ */
 
 /**
  *  @param onv       the ONV

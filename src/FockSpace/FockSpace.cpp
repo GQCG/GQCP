@@ -24,81 +24,6 @@
 namespace GQCP {
 
 
-/*
- *  PRIVATE METHODS
- */
-
-/**
- *  @param representation       a representation of an ONV
- *
- *  @return the next bitstring permutation
- *
- *      Examples:
- *          011 -> 101
- *          101 -> 110
- */
-size_t FockSpace::ulongNextPermutation(size_t representation) const {
-
-    // t gets this->representation's least significant 0 bits set to 1
-    unsigned long t = representation | (representation - 1UL);
-
-    // Next set to 1 the most significant bit to change,
-    // set to 0 the least significant ones, and add the necessary 1 bits.
-    return (t + 1UL) | (((~t & (t+1UL)) - 1UL) >> (__builtin_ctzl(representation) + 1UL));
-}
-
-
-/**
- *  @param representation      a representation of an ONV
- *
- *  @return the address (i.e. the ordering number) of the given ONV
- */
-size_t FockSpace::getAddress(size_t unsigned_onv) const {
-    // An implementation of the formula in Helgaker, starting the addressing count from zero
-    size_t address = 0;
-    size_t electron_count = 0;  // counts the number of electrons in the spin string up to orbital p
-    while(unsigned_onv != 0) {  // we will remove the least significant bit each loop, we are finished when no bits are left
-        size_t p = __builtin_ctzl(unsigned_onv);  // p is the orbital index counter (starting from 1)
-        electron_count++;  // each bit is an electron hence we add it up to the electron count
-        address += this->get_vertex_weights(p , electron_count);
-        unsigned_onv ^= unsigned_onv & -unsigned_onv;  // flip the least significant bit
-    }
-    return address;
-
-}
-
-
-/**
-  *  Calculate unsigned representation for a given address
-  *
-  *  @param address                 the address of the representation is calculated
-  *
-  *  @return unsigned representation of the address
-  */
-size_t FockSpace::calculateRepresentation(size_t address) const {
-    size_t representation = 0;
-    if (this->N != 0) {
-        representation = 0;
-        size_t m = this->N;  // counts the number of electrons in the spin string up to orbital p
-
-        for (size_t p = this->K; p > 0; p--) {  // p is an orbital index
-            size_t weight = get_vertex_weights(p-1, m);
-
-            if (weight <= address) {  // the algorithm can move diagonally, so we found an occupied orbital
-                address -= weight;
-                representation |= ((1) << (p - 1));  // set the (p-1)th bit: see (https://stackoverflow.com/a/47990)
-
-                m--;  // since we found an occupied orbital, we have one electron less
-                if (m == 0) {
-                    break;
-                }
-            }
-        }
-    }
-    return representation;
-}
-
-
 
 /*
  *  CONSTRUCTORS
@@ -109,8 +34,8 @@ size_t FockSpace::calculateRepresentation(size_t address) const {
  *  @param N        the number of electrons
  */
 FockSpace::FockSpace(size_t K, size_t N) :
-        BaseFockSpace(K, FockSpace::calculateDimension(K, N)),
-        N (N)
+        BaseFockSpace (K, FockSpace::calculateDimension(K, N)),
+        FockPermutator (N)
 {
     // Create a zero matrix of dimensions (K+1)x(N+1)
     this->vertex_weights = Matrixu(this->K + 1, Vectoru(this->N + 1, 0));
@@ -185,46 +110,75 @@ size_t FockSpace::calculateDimension(size_t K, size_t N) {
  */
 
 /**
- *  @param address      the address (i.e. the ordening number) of the ONV
+ *  @param representation       a representation of an ONV
  *
- *  @return the ONV with the corresponding address
+ *  @return the next bitstring permutation
+ *
+ *      Examples:
+ *          011 -> 101
+ *          101 -> 110
  */
-ONV FockSpace::makeONV(size_t address) const {
-    ONV onv (this->K, this->N);
-    this->transformONV(onv, address);
-    return onv;
+size_t FockSpace::ulongNextPermutation(size_t representation) const {
+
+    // t gets this->representation's least significant 0 bits set to 1
+    unsigned long t = representation | (representation - 1UL);
+
+    // Next set to 1 the most significant bit to change,
+    // set to 0 the least significant ones, and add the necessary 1 bits.
+    return (t + 1UL) | (((~t & (t+1UL)) - 1UL) >> (__builtin_ctzl(representation) + 1UL));
 }
 
 
 /**
- *  Set the current ONV to the next ONV: performs ulongNextPermutation() and updates the corresponding occupation indices of the ONV occupation array
- *
- *  @param onv      the current ONV
- */
-void FockSpace::setNextONV(ONV& onv) const {
-    onv.set_representation(ulongNextPermutation(onv.get_unsigned_representation()));
-}
-
-
-/**
- *  @param onv      the ONV
+ *  @param representation      a representation of an ONV
  *
  *  @return the address (i.e. the ordering number) of the given ONV
  */
-size_t FockSpace::getAddress(const ONV& onv) const {
-    return this->getAddress(onv.get_unsigned_representation());
+size_t FockSpace::getAddress(size_t unsigned_onv) const {
+    // An implementation of the formula in Helgaker, starting the addressing count from zero
+    size_t address = 0;
+    size_t electron_count = 0;  // counts the number of electrons in the spin string up to orbital p
+    while(unsigned_onv != 0) {  // we will remove the least significant bit each loop, we are finished when no bits are left
+        size_t p = __builtin_ctzl(unsigned_onv);  // p is the orbital index counter (starting from 1)
+        electron_count++;  // each bit is an electron hence we add it up to the electron count
+        address += this->get_vertex_weights(p , electron_count);
+        unsigned_onv ^= unsigned_onv & -unsigned_onv;  // flip the least significant bit
+    }
+    return address;
+
 }
 
 
 /**
- *  Transform an ONV to one with corresponding to the given address
+ *  Calculate unsigned representation for a given address
  *
- *  @param onv          the ONV
- *  @param address      the address to which the ONV will be set
+ *  @param address                 the address of the representation is calculated
+ *
+ *  @return unsigned representation of the address
  */
-void FockSpace::transformONV(ONV& onv, size_t address) const {
-    onv.set_representation(calculateRepresentation(address));
+size_t FockSpace::calculateRepresentation(size_t address) const {
+    size_t representation = 0;
+    if (this->N != 0) {
+        representation = 0;
+        size_t m = this->N;  // counts the number of electrons in the spin string up to orbital p
+
+        for (size_t p = this->K; p > 0; p--) {  // p is an orbital index
+            size_t weight = get_vertex_weights(p-1, m);
+
+            if (weight <= address) {  // the algorithm can move diagonally, so we found an occupied orbital
+                address -= weight;
+                representation |= ((1) << (p - 1));  // set the (p-1)th bit: see (https://stackoverflow.com/a/47990)
+
+                m--;  // since we found an occupied orbital, we have one electron less
+                if (m == 0) {
+                    break;
+                }
+            }
+        }
+    }
+    return representation;
 }
+
 
 /**
  *  @param onv       the ONV

@@ -26,15 +26,66 @@ namespace GQCP {
 
 
 /**
- *  An interface for Fock spaces who permute ONVs
+ *  An interface for Fock spaces who manipulate (generate, permutate) ONVs
  */
+
+/**
+ *  This class utilizes the CRTP or curiously recurring template pattern.
+ *  This allows compile-time identification of pure virtual functions called within a non virtual base method.
+ *  This method requires derived classes to derive from the base with the derived class as template parameter
+ *  e.g. "Derived : public Base<Derived>"
+ *
+ *  Example of why this is required is found in this class:
+ *       ulongNextPermutation(size_t representation) is pure virtual
+ *       setNextONV(ONV &onv) is implemented in the base and calls "ulongNextPermutation(size_t representation)"
+ *       and contains "auto& fock_space = static_cast<const DerivedPermutator&>(*this)" a self-cast to the derived instance
+ *       allowing compile-time identification of the called method and thus inlining
+ */
+template<typename DerivedPermutator>
 class FockPermutator {
+protected:
+    size_t N;
+
 public:
+    // CONSTRUCTOR
+    FockPermutator(size_t N) : N (N)
+    {};
+
+
     // DESTRUCTOR
     /**
-     *  Provide a pure virtual destructor to make the class abstract
+     *  Provide a virtual destructor to make the class abstract
      */
-    virtual ~FockPermutator() = 0;
+    virtual ~FockPermutator() {};
+
+
+    // GETTERS
+    size_t get_N() const { return this->N; }
+
+
+    // VIRTUAL PUBLIC METHODS
+    /**
+     *  @param representation       a representation of an ONV
+     *
+     *  @return the next bitstring permutation in the Fock space
+     */
+    virtual size_t ulongNextPermutation(size_t representation) const = 0;
+
+    /**
+     *  @param representation      a representation of an ONV
+     *
+     *  @return the address (i.e. the ordering number) of the given ONV
+     */
+    virtual size_t getAddress(size_t representation) const = 0;
+
+    /**
+      *  Calculate unsigned representation for a given address
+      *
+      *  @param address                 the address of the representation is calculated
+      *
+      *  @return unsigned representation of the address
+      */
+    virtual size_t calculateRepresentation(size_t address) const = 0;
 
 
     // PUBLIC METHODS
@@ -43,21 +94,35 @@ public:
      *
      *  @return the ONV with the corresponding address
      */
-    virtual ONV makeONV(size_t address) const = 0;
+    ONV makeONV(size_t address) const {
+
+        auto& fock_space = static_cast<const DerivedPermutator&>(*this);  // cast to DerivedPermutator for compile-time identification of the function called
+
+        ONV onv (fock_space.get_K(), this->N);
+        fock_space.transformONV(onv, address);
+
+        return onv;
+    };
 
     /**
      *  Set the current ONV to the next ONV: performs ulongNextPermutation() and updates the corresponding occupation indices of the ONV occupation array
      *
      *  @param onv      the current ONV
      */
-    virtual void setNextONV(ONV &onv) const = 0;
+    void setNextONV(ONV &onv) const {
+        auto& fock_space = static_cast<const DerivedPermutator&>(*this);  // cast to DerivedPermutator for compile-time identification of the function called
+        onv.set_representation(fock_space.ulongNextPermutation(onv.get_unsigned_representation()));
+    };
 
     /**
      *  @param onv      the ONV
      *
      *  @return the address (i.e. the ordering number) of the given ONV
      */
-    virtual size_t getAddress(const ONV &onv) const = 0;
+    size_t getAddress(const ONV &onv) const {
+        auto& fock_space = static_cast<const DerivedPermutator&>(*this);  // cast to DerivedPermutator for compile-time identification of the function called
+        return fock_space.getAddress(onv.get_unsigned_representation());
+    };
 
     /**
      *  Transform an ONV to one corresponding to the given address
@@ -65,11 +130,14 @@ public:
      *  @param onv          the ONV
      *  @param address      the address to which the ONV will be set
      */
-    virtual void transformONV(ONV &onv, size_t address) const = 0;
+    void transformONV(ONV &onv, size_t address) const {
+        auto& fock_space = static_cast<const DerivedPermutator&>(*this);  // cast to DerivedPermutator for compile-time identification of the function called
+        onv.set_representation((fock_space.calculateRepresentation(address)));
+    };
 };
 
 
 }  // namespace GQCP
 
 
-#endif //GQCP_FOCKPERMUTATOR_HPP
+#endif  // GQCP_FOCKPERMUTATOR_HPP
