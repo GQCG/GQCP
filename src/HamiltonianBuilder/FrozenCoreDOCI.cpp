@@ -27,10 +27,10 @@ namespace GQCP {
  */
 
 /**
- *  @param fock_space       the frozen Fock space, identical for alpha and beta
+ *  @param fock_space       the frozen Fock space (identical for alpha and beta)
  */
 FrozenCoreDOCI::FrozenCoreDOCI(const FrozenFockSpace& fock_space) :
-    FrozenCore (std::make_shared<DOCI>(fock_space.get_sub_space()), fock_space.get_X()),
+    FrozenCore(std::make_shared<DOCI>(fock_space.get_active_fock_space()), fock_space.get_number_of_frozen_orbitals()),
     fock_space (fock_space)
 {}
 

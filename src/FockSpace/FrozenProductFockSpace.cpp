@@ -26,23 +26,23 @@ namespace GQCP {
  */
 
 /**
- *  @param K            the number of orbitals (equal for alpha and beta)
- *  @param N_alpha      the number of alpha electrons
- *  @param N_beta       the number of beta electrons
- *  @param X            the number of frozen orbitals
+ *  @param K            the total number of orbitals (equal for alpha and beta)
+ *  @param N_alpha      the total number of alpha electrons
+ *  @param N_beta       the total number of beta electrons
+ *  @param X            the number of frozen orbitals and electrons (equal for alpha and beta)
  */
 FrozenProductFockSpace::FrozenProductFockSpace(size_t K, size_t N_alpha, size_t N_beta, size_t X) :
         BaseFockSpace(K, ProductFockSpace::calculateDimension(K-X, N_alpha-X, N_beta-X)),
-        fock_space_alpha (FrozenFockSpace(K, N_alpha, X)),
-        fock_space_beta (FrozenFockSpace(K, N_beta, X)),
-        fock_space (K-X, N_alpha-X, N_beta-X),
+        frozen_fock_space_alpha (FrozenFockSpace(K, N_alpha, X)),
+        frozen_fock_space_beta (FrozenFockSpace(K, N_beta, X)),
+        active_product_fock_space (ProductFockSpace(K-X, N_alpha-X, N_beta-X)),
         X (X)
 {}
 
 
 /**
- *  @param fock_space       non-frozen sub product Fock space
- *  @param X                the number of frozen orbitals
+ *  @param fock_space       (to be frozen) product Fock space
+ *  @param X                the number of frozen orbitals and electrons (equal for alpha and beta)
  */
 FrozenProductFockSpace::FrozenProductFockSpace(const ProductFockSpace& fock_space, size_t X) :
     FrozenProductFockSpace(fock_space.get_K(), fock_space.get_N_alpha(), fock_space.get_N_beta(), X)

@@ -44,18 +44,14 @@ namespace GQCP {
 template<typename DerivedPermutator>
 class FockPermutator {
 protected:
-    size_t N;
+    size_t N;  // number of electrons
 
 public:
     // CONSTRUCTOR
-    FockPermutator(size_t N) : N (N)
-    {};
+    FockPermutator(size_t N) : N (N) {};
 
 
     // DESTRUCTOR
-    /**
-     *  Provide a virtual destructor to make the class abstract
-     */
     virtual ~FockPermutator() {};
 
 
@@ -86,6 +82,30 @@ public:
       *  @return unsigned representation of the address
       */
     virtual size_t calculateRepresentation(size_t address) const = 0;
+
+    /**
+     *  @param onv       the ONV
+     *
+     *  @return the amount of ONVs (with a larger address) this ONV would couple with given a one electron operator
+     */
+    virtual size_t countOneElectronCouplings(const ONV& onv) const = 0;
+
+    /**
+     *  @param onv       the ONV
+     *
+     *  @return the amount of ONVs (with a larger address) this ONV would couple with given a two electron operator
+     */
+    virtual size_t countTwoElectronCouplings(const ONV& onv) const = 0;
+
+    /**
+     *  @return the amount non-zero (non-diagonal) couplings of a one electron coupling scheme in the Fock space
+     */
+    virtual size_t countTotalOneElectronCouplings() const = 0;
+
+    /**
+     *  @return the amount non-zero (non-diagonal) couplings of a two electron coupling scheme in the Fock space
+     */
+    virtual size_t countTotalTwoElectronCouplings() const = 0;
 
 
     // PUBLIC METHODS

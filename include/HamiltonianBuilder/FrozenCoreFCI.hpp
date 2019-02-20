@@ -28,7 +28,7 @@ namespace GQCP {
 
 
 /**
- *  A HamiltonianBuilder for frozen core FCI: it builds the matrix representation of the frozen core FCI Hamiltonian.
+ *  A class capable of generating the matrix representation of the frozen core FCI Hamiltonian
  */
 class FrozenCoreFCI : public FrozenCore {
 private:
@@ -40,6 +40,7 @@ public:
      *  @param fock_space       the frozen product Fock space
      */
     explicit FrozenCoreFCI(const FrozenProductFockSpace& fock_space);
+
 
     // OVERRIDDEN GETTERS
     const BaseFockSpace* get_fock_space() const override { return &fock_space; }

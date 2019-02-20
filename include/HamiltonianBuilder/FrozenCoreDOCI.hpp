@@ -28,7 +28,7 @@ namespace GQCP {
 
 
 /**
- *  A HamiltonianBuilder for frozen core DOCI: it builds the matrix representation of the frozen core DOCI Hamiltonian, in a Fock space where orbitals are either doubly occupied or unoccupied.
+ *  A class capable of generating the matrix representation of the frozen core DOCI Hamiltonian
  */
 class FrozenCoreDOCI : public FrozenCore {
 private:
@@ -37,9 +37,10 @@ private:
 public:
     // CONSTRUCTORS
     /**
-     *  @param fock_space       the frozen Fock space, identical for alpha and beta
+     *  @param fock_space       the frozen Fock space (identical for alpha and beta)
      */
     explicit FrozenCoreDOCI(const FrozenFockSpace& fock_space);
+
 
     // OVERRIDDEN GETTERS
     const BaseFockSpace* get_fock_space() const override { return &fock_space; }
@@ -49,4 +50,4 @@ public:
 }  // namespace GQCP
 
 
-#endif  // GQCP_DOCI_HPP
+#endif  // GQCP_FROZENCOREDOCI_HPP

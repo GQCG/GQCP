@@ -156,26 +156,26 @@ SelectedFockSpace::SelectedFockSpace(const FrozenProductFockSpace& fock_space) :
 {
     std::vector<Configuration> configurations;
 
-    const FrozenFockSpace& fock_space_alpha = fock_space.get_fock_space_alpha();
-    const FrozenFockSpace& fock_space_beta = fock_space.get_fock_space_beta();
+    const FrozenFockSpace& frozen_fock_space_alpha = fock_space.get_frozen_fock_space_alpha();
+    const FrozenFockSpace& frozen_fock_space_beta = fock_space.get_frozen_fock_space_beta();
 
-    auto dim_alpha = fock_space_alpha.get_dimension();
-    auto dim_beta = fock_space_beta.get_dimension();
+    auto dim_alpha = frozen_fock_space_alpha.get_dimension();
+    auto dim_beta = frozen_fock_space_beta.get_dimension();
 
-    ONV alpha = fock_space_alpha.makeONV(0);
+    ONV alpha = frozen_fock_space_alpha.makeONV(0);
     for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {
 
-        ONV beta = fock_space_beta.makeONV(0);
+        ONV beta = frozen_fock_space_beta.makeONV(0);
         for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {
 
             configurations.push_back(Configuration {alpha, beta});
 
             if (I_beta < dim_beta - 1) {  // prevent the last permutation to occur
-                fock_space_beta.setNextONV(beta);
+                frozen_fock_space_beta.setNextONV(beta);
             }
         }
         if (I_alpha < dim_alpha - 1) {  // prevent the last permutation to occur
-            fock_space_alpha.setNextONV(alpha);
+            frozen_fock_space_alpha.setNextONV(alpha);
         }
     }
     this->dim = fock_space.get_dimension();

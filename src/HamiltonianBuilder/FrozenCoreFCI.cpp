@@ -27,10 +27,10 @@ namespace GQCP {
  */
 
 /**
- *  @param fock_space       the frozen prdouct Fock space
+ *  @param fock_space       the frozen product Fock space
  */
 FrozenCoreFCI::FrozenCoreFCI(const FrozenProductFockSpace& fock_space) :
-    FrozenCore (std::make_shared<FCI>(fock_space.get_sub_space()), fock_space.get_X()),
+    FrozenCore(std::make_shared<FCI>(fock_space.get_active_product_fock_space()), fock_space.get_number_of_frozen_orbitals()),
     fock_space (fock_space)
 {}
 

@@ -15,8 +15,8 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCP_FrozenCoreRDMBUILDER_HPP
-#define GQCP_FrozenCoreRDMBUILDER_HPP
+#ifndef GQCP_FROZENCORERDMBUILDER_HPP
+#define GQCP_FROZENCORERDMBUILDER_HPP
 
 
 #include "RDM/BaseRDMBuilder.hpp"
@@ -30,11 +30,15 @@ namespace GQCP {
  *  A class capable of calculating 1- and 2-RDMs from wave functions expanded in the full CI product Fock space
  */
 class FrozenCoreRDMBuilder : public BaseRDMBuilder {
-    std::shared_ptr<BaseRDMBuilder> rdm_builder;
-    size_t X;
+    size_t X;  // number of frozen orbitals/electrons
+    std::shared_ptr<BaseRDMBuilder> rdm_builder;  // active (non-frozen core) RDM builder performing the BaseRDMBuilder interface in the active space with the frozen core CI wave function
 
 public:
     // CONSTRUCTORS
+    /**
+     *  @param rdm_builder                  shared pointer to active (non-frozen core) RDM builder
+     *  @param X                            the number of frozen orbitals
+     */
     FrozenCoreRDMBuilder(std::shared_ptr<BaseRDMBuilder> rdm_builder, size_t X);
 
 
@@ -69,4 +73,4 @@ public:
 }  // namespace GQCP
 
 
-#endif  // GQCP_FrozenCoreRDMBUILDER_HPP
+#endif  // GQCP_FROZENCORERDMBUILDER_HPP

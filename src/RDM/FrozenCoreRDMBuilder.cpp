@@ -24,6 +24,11 @@ namespace GQCP {
 /*
  *  CONSTRUCTORS
  */
+
+/**
+ *  @param rdm_builder                  shared pointer to active (non-frozen core) RDM builder
+ *  @param X                            the number of frozen orbitals
+ */
 FrozenCoreRDMBuilder::FrozenCoreRDMBuilder(std::shared_ptr<BaseRDMBuilder> rdm_builder, size_t X) :
         BaseRDMBuilder(),
         rdm_builder (std::move(rdm_builder)),

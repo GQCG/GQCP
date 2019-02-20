@@ -27,10 +27,10 @@ namespace GQCP {
  */
 enum class FockSpaceType {
     FockSpace,
-    ProductFockSpace,
-    SelectedFockSpace,
     FrozenFockSpace,
-    FrozenProductFockSpace
+    FrozenProductFockSpace,
+    ProductFockSpace,
+    SelectedFockSpace
 };
 
 

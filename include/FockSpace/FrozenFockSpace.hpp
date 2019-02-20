@@ -27,39 +27,36 @@ namespace GQCP {
 
 
 /**
- *  The frozen Fock space for a number of orbitals and number of electrons
- *
- *  Utilizes a full non frozen sub Fock space
+ *  A class that represents a frozen Fock space: this is a subspace of the N-electron Fock space in which the first X orbitals are always occupied
  */
 class FrozenFockSpace: public BaseFockSpace, public FockPermutator<FrozenFockSpace> {
 private:
-    size_t N;  // number of electrons
-    size_t X;  // number of frozen orbitals
-    FockSpace fock_space; // non-frozen sub Fock space
+    size_t X;  // number of frozen orbitals/electrons
+    FockSpace active_fock_space;  // Fock space containing only the active electrons (N-X) and orbitals (K-X)
 
 public:
     // CONSTRUCTORS
     /**
-     *  @param K        the number of orbitals
-     *  @param N        the number of electrons
-     *  @param X        the number of frozen orbitals
+     *  @param K        the total number of orbitals
+     *  @param N        the total number of electrons
+     *  @param X        the number of frozen orbitals and electrons
      */
     FrozenFockSpace(size_t K, size_t N, size_t X);
 
     /**
-     *  @param fock_space       non-frozen sub Fock space
-     *  @param X                the number of frozen orbitals
+     *  @param fock_space       (to be frozen) full Fock space
+     *  @param X                the number of frozen orbitals and electrons
      */
     FrozenFockSpace(const FockSpace& fock_space, size_t X);
 
 
-    // DESTRUCTORS
+    // DESTRUCTOR
     ~FrozenFockSpace() override = default;
 
 
     // GETTERS
-    size_t get_X() const { return this->X; }
-    const FockSpace& get_sub_space() const { return this->fock_space; }
+    size_t get_number_of_frozen_orbitals() const { return this->X; }
+    const FockSpace& get_active_fock_space() const { return this->active_fock_space; }
     FockSpaceType get_type() const override { return FockSpaceType::FrozenFockSpace; }
 
 
@@ -91,6 +88,30 @@ public:
       */
     size_t calculateRepresentation(size_t address) const override;
 
+    /**
+     *  @param onv       the ONV
+     *
+     *  @return the amount of ONVs (with a larger address) this ONV would couple with given a one electron operator
+     */
+    size_t countOneElectronCouplings(const ONV& onv) const override;
+
+    /**
+     *  @param onv       the ONV
+     *
+     *  @return the amount of ONVs (with a larger address) this ONV would couple with given a two electron operator
+     */
+    size_t countTwoElectronCouplings(const ONV& onv) const override;
+
+    /**
+     *  @return the amount non-zero (non-diagonal) couplings of a one electron coupling scheme in the Fock space
+     */
+    size_t countTotalOneElectronCouplings() const override;
+
+    /**
+     *  @return the amount non-zero (non-diagonal) couplings of a two electron coupling scheme in the Fock space
+     */
+    size_t countTotalTwoElectronCouplings() const override;
+
     // PUBLIC METHODS
     /**
      *  If we have
@@ -102,30 +123,6 @@ public:
      *      fock_space.FockPermutator<FrozenFockSpace>::getAddress(onv);
      */
     using FockPermutator<FrozenFockSpace>::getAddress;
-
-    /**
-     *  @param onv       the ONV
-     *
-     *  @return the amount of ONVs (with a larger address) this ONV would couple with given a one electron operator
-     */
-    size_t countOneElectronCouplings(const ONV& onv) const;
-
-    /**
-     *  @param onv       the ONV
-     *
-     *  @return the amount of ONVs (with a larger address) this ONV would couple with given a two electron operator
-     */
-    size_t countTwoElectronCouplings(const ONV& onv) const;
-
-    /**
-     *  @return the amount non-zero (non-diagonal) couplings of a one electron coupling scheme in the Fock space
-     */
-    size_t countTotalOneElectronCouplings() const;
-
-    /**
-     *  @return the amount non-zero (non-diagonal) couplings of a two electron coupling scheme in the Fock space
-     */
-    size_t countTotalTwoElectronCouplings() const;
 };
 
 

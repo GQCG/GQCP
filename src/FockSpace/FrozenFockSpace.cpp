@@ -27,21 +27,20 @@ namespace GQCP {
  */
 
 /**
- *  @param K        the number of orbitals
- *  @param N        the number of electrons
- *  @param X        the number of frozen orbitals
+ *  @param K        the total number of orbitals
+ *  @param N        the total number of electrons
+ *  @param X        the number of frozen orbitals and electrons
  */
 FrozenFockSpace::FrozenFockSpace(size_t K, size_t N, size_t X) :
         BaseFockSpace (K, FockSpace::calculateDimension(K-X, N-X)),
         FockPermutator (N),
-        fock_space (K-X, N-X),
-        N (N),
+        active_fock_space (K-X, N-X),
         X (X)
 {}
 
 /**
- *  @param fock_space       non-frozen sub Fock space
- *  @param X                the number of frozen orbitals
+ *  @param fock_space       (to be frozen) full Fock space
+ *  @param X                the number of frozen orbitals and electrons
  */
 FrozenFockSpace::FrozenFockSpace(const FockSpace& fock_space, size_t X) :
     FrozenFockSpace(fock_space.get_K(), fock_space.get_N(), X)
@@ -63,10 +62,12 @@ FrozenFockSpace::FrozenFockSpace(const FockSpace& fock_space, size_t X) :
  *         01101 -> 10011
  */
 size_t FrozenFockSpace::ulongNextPermutation(size_t representation) const {
-    // generate the permutation from the sub space, bitshift left X amount of times to remove the frozen orbital indices
-    size_t sub_permutation = this->fock_space.ulongNextPermutation(representation >> this->X);
-    // transform the permutation to the frozen core space, by bitshifting right X amount of times and filling the new indices with 1's (by adding 2^X - 1)
-    return (sub_permutation << this->X) + (pow(2,this->X)-1);
+    // generate the permutation from the active space, bitshift left X amount of times to remove the frozen orbital indices before passing it to the active space
+    size_t sub_permutation = this->active_fock_space.ulongNextPermutation(representation >> this->X);
+    // transform the permutation to the frozen core space, by bitshifting right X amount of times and filling the new 0 bits with 1's (by adding 2^X - 1)
+    representation <<= X;
+    representation += static_cast<size_t>(pow(2,X)-1);
+    return representation;
 };
 
 /**
@@ -77,7 +78,7 @@ size_t FrozenFockSpace::ulongNextPermutation(size_t representation) const {
 size_t FrozenFockSpace::getAddress(size_t representation) const {
     // transform the representation to the sub space, by bitshifting left X amount of times to remove the frozen orbital indices
     // address of the total ONV in the frozen Fock space is identical to that of the sub ONV in the sub Fock space.
-    return this->fock_space.getAddress(representation >> this->X);
+    return this->active_fock_space.getAddress(representation >> this->X);
 };
 
 /**
@@ -88,8 +89,13 @@ size_t FrozenFockSpace::getAddress(size_t representation) const {
   *  @return unsigned representation of the address
   */
 size_t FrozenFockSpace::calculateRepresentation(size_t address) const {
-    // generate the representation in sub space and transform the permutation to the frozen core space, by bitshifting right X amount of times and filling the new indices with 1's (by adding 2^X - 1)
-    return ((this->fock_space.calculateRepresentation(address) << X) + pow(2,X)-1);
+    // generate the representation in the active space
+    size_t representation = this->active_fock_space.calculateRepresentation(address);
+
+    // transform the permutation to the frozen core space, by bitshifting right X amount of times and filling the new 0 bits with 1's (by adding 2^X - 1)
+    representation <<= X;
+    representation += static_cast<size_t>(pow(2,X)-1);
+    return representation;
 };
 
 
@@ -107,7 +113,7 @@ size_t FrozenFockSpace::countOneElectronCouplings(const ONV& onv) const {
     size_t V = K-N;  // amount of virtual orbitals
     size_t coupling_count = 0;
 
-    for (size_t e1 = 1; e1 < this->N; e1++) {
+    for (size_t e1 = this->X; e1 < this->N; e1++) {  // start from X to ignore the frozen electrons
         size_t p = onv.get_occupation_index(e1);
         coupling_count += (V + e1 - p);  // amount of virtuals with an index larger than p
     }
@@ -126,7 +132,7 @@ size_t FrozenFockSpace::countTwoElectronCouplings(const ONV& onv) const {
     size_t V = K-N; // amount of virtual orbitals
     size_t coupling_count = 0;
 
-    for (size_t e1 = 1; e1 < this->N; e1++){
+    for (size_t e1 = this->X; e1 < this->N; e1++){  // start from X to ignore the frozen electrons
 
         size_t p = onv.get_occupation_index(e1);
         coupling_count += (V + e1 - p);  //  one electron part
@@ -151,7 +157,7 @@ size_t FrozenFockSpace::countTwoElectronCouplings(const ONV& onv) const {
  *  @return the amount non-zero couplings of a one electron coupling scheme in the Fock space
  */
 size_t FrozenFockSpace::countTotalOneElectronCouplings() const {
-    return this->fock_space.countTotalOneElectronCouplings();
+    return this->active_fock_space.countTotalOneElectronCouplings();
 }
 
 
@@ -159,7 +165,7 @@ size_t FrozenFockSpace::countTotalOneElectronCouplings() const {
  *  @return the amount non-zero couplings of a two electron coupling scheme in the Fock space
  */
 size_t FrozenFockSpace::countTotalTwoElectronCouplings() const {
-    return this->fock_space.countTotalTwoElectronCouplings();
+    return this->active_fock_space.countTotalTwoElectronCouplings();
 }
 
 

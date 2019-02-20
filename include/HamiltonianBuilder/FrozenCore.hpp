@@ -15,8 +15,8 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 //
-#ifndef GQCP_FROZENCOREINTERFACE_HPP
-#define GQCP_FROZENCOREINTERFACE_HPP
+#ifndef GQCP_FROZENCORE_HPP
+#define GQCP_FROZENCORE_HPP
 
 
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
@@ -31,11 +31,15 @@ namespace GQCP {
  */
 class FrozenCore : public HamiltonianBuilder {
 protected:
-    std::shared_ptr<HamiltonianBuilder> hamiltonian_builder;
-    size_t X;
+    size_t X;  // number of frozen orbitals/electrons
+    std::shared_ptr<HamiltonianBuilder> hamiltonian_builder;  // non-frozen core Hamiltonian builder performing the HamiltonianBuilder interface in the active space with the frozen Hamiltonian parameters
 
 public:
     // CONSTRUCTORS
+    /**
+     *  @param hamiltonian_builder           shared pointer to active (non-frozen core) Hamiltonian builder
+     *  @param X                             the number of frozen orbitals
+     */
     FrozenCore(std::shared_ptr<HamiltonianBuilder> hamiltonian_builder, size_t X);
 
 
@@ -43,7 +47,7 @@ public:
     /**
      *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis
      *
-     *  @return the Hamiltonian matrix
+     *  @return the frozen core Hamiltonian matrix
      */
     Eigen::MatrixXd constructHamiltonian(const HamiltonianParameters& hamiltonian_parameters) const override;
 
@@ -52,14 +56,14 @@ public:
      *  @param x                            the vector upon which the Hamiltonian acts
      *  @param diagonal                     the diagonal of the Hamiltonian matrix
      *
-     *  @return the action of the Hamiltonian on the coefficient vector
+     *  @return the action of the frozen core Hamiltonian on the coefficient vector
      */
     Eigen::VectorXd matrixVectorProduct(const HamiltonianParameters& hamiltonian_parameters, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) const override;
 
     /**
      *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis
      *
-     *  @return the diagonal of the matrix representation of the Hamiltonian
+     *  @return the diagonal of the matrix representation of the frozen core Hamiltonian
      */
     Eigen::VectorXd calculateDiagonal(const HamiltonianParameters& hamiltonian_parameters) const override;
 
@@ -67,23 +71,24 @@ public:
     // PUBLIC METHODS
     /**
      *  @param hamiltonian_parameters              the Hamiltonian parameters in an orthonormal orbital basis
-     *  @param X                                   amount of frozen core orbitals
+     *  @param X                                   the number of frozen orbitals
      *
-     *  @return new set of Hamiltonian parameters modified to fit the frozen core CI algorithm
+     *  @return a set of 'frozen' Hamiltonian parameters which cover two-electron integral evaluations from the active and inactive orbitals
+     *  (see https://drive.google.com/file/d/1Fnhv2XyNO9Xw9YDoJOXU21_6_x2llntI/view?usp=sharing)
      */
     HamiltonianParameters freezeHamiltonianParameters(const HamiltonianParameters& hamiltonian_parameters, size_t X) const;
 
     /**
      *  @param hamiltonian_parameters              the Hamiltonian parameters in an orthonormal orbital basis
-     *  @param X                                   amount of frozen core orbitals
+     *  @param X                                   the number of frozen orbitals
      *
-     *  @return the diagonal correction value for the frozen core CI algorithm
+     *  @return the diagonal from strictly evaluating the frozen orbitals in the Fock space
      */
-    double diagonalValue(const HamiltonianParameters& hamiltonian_parameters, size_t X) const;
+    Eigen::VectorXd calculateFrozenCoreDiagonal(const HamiltonianParameters& hamiltonian_parameters, size_t X) const;
 };
 
 
 }  // namespace GQCP
 
 
-#endif //GQCP_FROZENCOREINTERFACE_HPP
+#endif  // GQCP_FROZENCORE_HPP

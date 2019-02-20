@@ -113,10 +113,10 @@ Eigen::MatrixXd strictLowerTriangle(const Eigen::Tensor<double, 4>& T);
 
 
 /**
- *  Copies a rank-4 tensor into an other rank-4 tensor starting from given indices
+ *  Adds a rank-4 tensor to an other rank-4 tensor starting from given indices
  *
- *  @param T_target         a rank-4 tensor
- *  @param T                a rank-4 tensor
+ *  @param T_target         the target rank-4 tensor upon which the addition is performed
+ *  @param T                a rank-4 tensor who's value are added to the target
  *
  *  @param i                1st starting index of the starting tensor
  *  @param j                2nd starting index of the starting tensor
@@ -127,18 +127,27 @@ void tensorBlockAddition(Eigen::Tensor<double, 4>& T_target, const Eigen::Tensor
 
 
 /**
- *  Copies a matrix into a target tensor starting from given indices
+ *  Adds a matrix to a target tensor starting from given indices
  *
  *  @tparam r               indicates which starting index (0,1,2,3) should correspond to the 1st matrix index
  *  @tparam s               indicates which starting index (0,1,2,3) should correspond to the 2nd matrix index
  *
- *  @param T_target         a rank-4 tensor
+ *  @param T_target         the target rank-4 tensor upon which the addition is performed
  *  @param M                a matrix
  *
  *  @param i                1st starting index of the starting tensor
  *  @param j                2nd starting index of the starting tensor
  *  @param k                3rd starting index of the starting tensor
  *  @param l                4th starting index of the starting tensor
+ *
+ *
+ *  Example:
+ *      Given a rank-4 tensor of dimensions (10,10,10,10), and a matrix of dimensions (3,3)
+ *      When choosing r and s as 2,1 respectively, and i,j,k,l as 1,2,1,0
+ *      The matrix is added to the tensor with 1th index starting at i and 4th index starting at l held fixed at 1 and 0 respectively
+ *      While 2nd index starting from j (2) now is mapped to the 2nd matrix (s=1) element and 3rd index starting from k (1) is mapped to 1st (r=2)
+ *      meaning that the additions follow : tensor(1,2,1,0) += M(0,0), tensor(1,3,1,0) += M(0,1), ..., tensor(1,3,4,0) += M(3,1), tensor(1,4,4,0) += M(3,2), etc
+ *      and for other indices we find : tensor(2,2,1,0) += 0 (no changes, these are obviously not performed)
  */
 template<size_t r, size_t s>
 void tensorBlockAddition(Eigen::Tensor<double, 4>& T_target, const Eigen::MatrixXd& M, size_t i, size_t j, size_t k, size_t l) {
@@ -151,7 +160,13 @@ void tensorBlockAddition(Eigen::Tensor<double, 4>& T_target, const Eigen::Matrix
 
     for (size_t x = 0; x < M.rows(); x++) {
         for (size_t y = 0; y < M.cols(); y++) {
-            T_target(i + x * ia[r] + y * ia[s], j + x * ja[r] + y * ja[s], k + x * ka[r] + y * ka[s], l + x * la[r] + y * la[s]) += M(x,y);
+
+            size_t i_effective = i + x * ia[r] + y * ia[s];
+            size_t j_effective = j + x * ja[r] + y * ja[s];
+            size_t k_effective = k + x * ka[r] + y * ka[s];
+            size_t l_effective = l + x * la[r] + y * la[s];
+
+            T_target(i_effective, j_effective, k_effective, l_effective) += M(x,y);
         }
     }
 }

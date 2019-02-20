@@ -94,6 +94,30 @@ public:
       */
     size_t calculateRepresentation(size_t address) const override;
 
+    /**
+     *  @param onv       the ONV
+     *
+     *  @return the amount of ONVs (with a larger address) this ONV would couple with given a one electron operator
+     */
+    size_t countOneElectronCouplings(const ONV& onv) const override;
+
+    /**
+     *  @param onv       the ONV
+     *
+     *  @return the amount of ONVs (with a larger address) this ONV would couple with given a two electron operator
+     */
+    size_t countTwoElectronCouplings(const ONV& onv) const override;
+
+    /**
+     *  @return the amount non-zero (non-diagonal) couplings of a one electron coupling scheme in the Fock space
+     */
+    size_t countTotalOneElectronCouplings() const override;
+
+    /**
+     *  @return the amount non-zero (non-diagonal) couplings of a two electron coupling scheme in the Fock space
+     */
+    size_t countTotalTwoElectronCouplings() const override;
+
 
     // PUBLIC METHODS
     /**
@@ -106,30 +130,6 @@ public:
      *      fock_space.FockPermutator<FockSpace>::getAddress(onv);
      */
     using FockPermutator<FockSpace>::getAddress;
-
-    /**
-     *  @param onv       the ONV
-     *
-     *  @return the amount of ONVs (with a larger address) this ONV would couple with given a one electron operator
-     */
-    size_t countOneElectronCouplings(const ONV& onv) const;
-
-    /**
-     *  @param onv       the ONV
-     *
-     *  @return the amount of ONVs (with a larger address) this ONV would couple with given a two electron operator
-     */
-    size_t countTwoElectronCouplings(const ONV& onv) const;
-
-    /**
-     *  @return the amount non-zero (non-diagonal) couplings of a one electron coupling scheme in the Fock space
-     */
-    size_t countTotalOneElectronCouplings() const;
-
-    /**
-     *  @return the amount non-zero (non-diagonal) couplings of a two electron coupling scheme in the Fock space
-     */
-    size_t countTotalTwoElectronCouplings() const;
 
     /**
      *  Find the next unoccupied orbital in a given ONV,
