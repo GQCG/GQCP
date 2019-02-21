@@ -172,7 +172,7 @@ Eigen::VectorXd FrozenCoreCI::calculateFrozenCoreDiagonal(const HamiltonianParam
     const auto& g = hamiltonian_parameters.get_g();
     const auto& h = hamiltonian_parameters.get_h();
 
-    // The diagonal correction is the same for each ONV
+    // The diagonal value for the frozen orbitals is the same for each ONV
     double value = 0;
     for (size_t i = 0; i < X; i++) {
 
