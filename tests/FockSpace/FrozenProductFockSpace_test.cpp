@@ -23,8 +23,6 @@
 
 #include "FockSpace/FrozenProductFockSpace.hpp"
 
-#include "FockSpace/ProductFockSpace.hpp"
-
 
 
 BOOST_AUTO_TEST_CASE ( FrozenProductFockSpace_constructor ) {
@@ -44,9 +42,10 @@ BOOST_AUTO_TEST_CASE ( FrozenProductFockSpace_constructor ) {
     BOOST_CHECK_NO_THROW(GQCP::FrozenProductFockSpace (product_fock_space, 5));
 }
 
-BOOST_AUTO_TEST_CASE ( FrozenProductFockSpace_membertest ) {
+BOOST_AUTO_TEST_CASE ( FrozenProductFockSpace_member_test ) {
 
     GQCP::FrozenProductFockSpace frozen_space (10, 5, 5, 2);
+
     const GQCP::FrozenFockSpace& alpha_member = frozen_space.get_frozen_fock_space_alpha();
     const GQCP::FrozenFockSpace& beta_member = frozen_space.get_frozen_fock_space_beta();
 
