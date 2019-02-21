@@ -32,7 +32,7 @@ namespace GQCP {
 class FrozenFockSpace: public BaseFockSpace, public FockPermutator<FrozenFockSpace> {
 private:
     size_t X;  // number of frozen orbitals/electrons
-    FockSpace active_fock_space;  // Fock space containing only the active electrons (N-X) and orbitals (K-X)
+    FockSpace active_fock_space;  // active (non-frozen) Fock space containing only the active electrons (N-X) and orbitals (K-X)
 
 public:
     // CONSTRUCTORS
@@ -129,4 +129,4 @@ public:
 }  // namespace GQCP
 
 
-#endif //GQCP_FROZENFOCKSPACE_HPP
+#endif  // GQCP_FROZENFOCKSPACE_HPP

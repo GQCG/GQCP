@@ -19,7 +19,7 @@
 #define GQCP_FROZENCOREDOCI_HPP
 
 
-#include "HamiltonianBuilder/FrozenCore.hpp"
+#include "HamiltonianBuilder/FrozenCoreCI.hpp"
 #include "FockSpace/FrozenFockSpace.hpp"
 #include "HamiltonianBuilder/DOCI.hpp"
 
@@ -30,7 +30,7 @@ namespace GQCP {
 /**
  *  A class capable of generating the matrix representation of the frozen core DOCI Hamiltonian
  */
-class FrozenCoreDOCI : public FrozenCore {
+class FrozenCoreDOCI : public FrozenCoreCI {
 private:
     FrozenFockSpace fock_space;  // both the alpha and beta Fock space
 

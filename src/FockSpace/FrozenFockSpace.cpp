@@ -32,8 +32,8 @@ namespace GQCP {
  *  @param X        the number of frozen orbitals and electrons
  */
 FrozenFockSpace::FrozenFockSpace(size_t K, size_t N, size_t X) :
-        BaseFockSpace (K, FockSpace::calculateDimension(K-X, N-X)),
-        FockPermutator (N),
+        BaseFockSpace(K, FockSpace::calculateDimension(K-X, N-X)),
+        FockPermutator(N),
         active_fock_space (K-X, N-X),
         X (X)
 {}
@@ -65,9 +65,9 @@ size_t FrozenFockSpace::ulongNextPermutation(size_t representation) const {
     // generate the permutation from the active space, bitshift left X amount of times to remove the frozen orbital indices before passing it to the active space
     size_t sub_permutation = this->active_fock_space.ulongNextPermutation(representation >> this->X);
     // transform the permutation to the frozen core space, by bitshifting right X amount of times and filling the new 0 bits with 1's (by adding 2^X - 1)
-    representation <<= X;
-    representation += static_cast<size_t>(pow(2,X)-1);
-    return representation;
+    sub_permutation <<= X;
+    sub_permutation += static_cast<size_t>(pow(2,X)-1);
+    return sub_permutation;
 };
 
 /**

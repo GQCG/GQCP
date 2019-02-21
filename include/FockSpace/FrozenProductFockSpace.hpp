@@ -37,7 +37,7 @@ private:
     FrozenFockSpace frozen_fock_space_alpha;
     FrozenFockSpace frozen_fock_space_beta;
 
-    ProductFockSpace active_product_fock_space;  // product Fock space containing only the active electrons (N_alpha-X, N_beta-X) and orbitals (K-X)
+    ProductFockSpace active_product_fock_space;  // active (non-frozen) product Fock space containing only the active electrons (N_alpha-X, N_beta-X) and orbitals (K-X)
 
 public:
     // CONSTRUCTORS

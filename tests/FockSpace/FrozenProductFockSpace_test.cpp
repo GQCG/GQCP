@@ -42,5 +42,17 @@ BOOST_AUTO_TEST_CASE ( FrozenProductFockSpace_constructor ) {
     BOOST_CHECK_NO_THROW(GQCP::FrozenProductFockSpace (product_fock_space, 3));
     BOOST_CHECK_NO_THROW(GQCP::FrozenProductFockSpace (product_fock_space, 4));
     BOOST_CHECK_NO_THROW(GQCP::FrozenProductFockSpace (product_fock_space, 5));
-    BOOST_CHECK_NO_THROW(GQCP::FrozenProductFockSpace (product_fock_space, 6));
+}
+
+BOOST_AUTO_TEST_CASE ( FrozenProductFockSpace_membertest ) {
+
+    GQCP::FrozenProductFockSpace frozen_space (10, 5, 5, 2);
+    const GQCP::FrozenFockSpace& alpha_member = frozen_space.get_frozen_fock_space_alpha();
+    const GQCP::FrozenFockSpace& beta_member = frozen_space.get_frozen_fock_space_beta();
+
+    BOOST_CHECK(alpha_member.get_N() == 5);
+    BOOST_CHECK(beta_member.get_N() == 5);
+
+    BOOST_CHECK(alpha_member.get_K() == 10);
+    BOOST_CHECK(beta_member.get_K() == 10);
 }

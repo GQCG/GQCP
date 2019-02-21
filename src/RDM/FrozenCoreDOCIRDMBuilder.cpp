@@ -26,7 +26,7 @@ namespace GQCP {
  *  CONSTRUCTOR
  */
 FrozenCoreDOCIRDMBuilder::FrozenCoreDOCIRDMBuilder(const FrozenFockSpace& fock_space) :
-    FrozenCoreRDMBuilder (std::make_shared<DOCIRDMBuilder>(fock_space.get_active_fock_space()),
+    FrozenCoreRDMBuilder(std::make_shared<DOCIRDMBuilder>(fock_space.get_active_fock_space()),
                           fock_space.get_number_of_frozen_orbitals()),
     fock_space (fock_space)
 {}

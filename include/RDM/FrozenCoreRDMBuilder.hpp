@@ -31,7 +31,7 @@ namespace GQCP {
  */
 class FrozenCoreRDMBuilder : public BaseRDMBuilder {
     size_t X;  // number of frozen orbitals/electrons
-    std::shared_ptr<BaseRDMBuilder> rdm_builder;  // active (non-frozen core) RDM builder performing the BaseRDMBuilder interface in the active space with the frozen core CI wave function
+    std::shared_ptr<BaseRDMBuilder> active_rdm_builder;  // active (non-frozen core) RDM builder performing the BaseRDMBuilder interface in the active space with the frozen core CI wave function
 
 public:
     // CONSTRUCTORS

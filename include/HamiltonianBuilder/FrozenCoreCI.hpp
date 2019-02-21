@@ -27,12 +27,12 @@ namespace GQCP {
 
 
 /**
- *  Base class containing general functions related to frozen core CI
+ *  (base) Class implementing general functions related to frozen core CI
  */
-class FrozenCore : public HamiltonianBuilder {
+class FrozenCoreCI : public HamiltonianBuilder {
 protected:
     size_t X;  // number of frozen orbitals/electrons
-    std::shared_ptr<HamiltonianBuilder> hamiltonian_builder;  // non-frozen core Hamiltonian builder performing the HamiltonianBuilder interface in the active space with the frozen Hamiltonian parameters
+    std::shared_ptr<HamiltonianBuilder> active_hamiltonian_builder;  // non-frozen core Hamiltonian builder performing the HamiltonianBuilder interface in the active space with the frozen Hamiltonian parameters
 
 public:
     // CONSTRUCTORS
@@ -40,7 +40,7 @@ public:
      *  @param hamiltonian_builder           shared pointer to active (non-frozen core) Hamiltonian builder
      *  @param X                             the number of frozen orbitals
      */
-    FrozenCore(std::shared_ptr<HamiltonianBuilder> hamiltonian_builder, size_t X);
+    FrozenCoreCI(std::shared_ptr<HamiltonianBuilder> hamiltonian_builder, size_t X);
 
 
     // OVERRIDDEN PUBLIC METHODS

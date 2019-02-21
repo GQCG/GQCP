@@ -26,7 +26,7 @@ namespace GQCP {
 
 
 /**
- *  An interface for Fock spaces who manipulate (generate, permutate) ONVs
+ *  An interface for Fock spaces who manipulate (generate, permutate) ONVs and can calculate the address of an ONV given the representation
  */
 
 /**
