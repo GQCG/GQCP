@@ -533,6 +533,23 @@
 		56C0407B2212BD4500C61BB0 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
 		56C040812212BD6700C61BB0 /* SelectedCI_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56C040682212BD1800C61BB0 /* SelectedCI_test.cpp */; };
 		56C64D8621B0713700D44FF0 /* constrained_RHF_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5614FB4921B02EDE002C5D40 /* constrained_RHF_test.cpp */; };
+		56D62FFB221FD459001081EB /* FockPermutator.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56D62FF8221FD458001081EB /* FockPermutator.hpp */; };
+		56D62FFC221FD459001081EB /* FrozenProductFockSpace.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56D62FF9221FD459001081EB /* FrozenProductFockSpace.hpp */; };
+		56D62FFD221FD459001081EB /* FrozenFockSpace.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56D62FFA221FD459001081EB /* FrozenFockSpace.hpp */; };
+		56D63001221FD469001081EB /* FrozenCoreFCI.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56D62FFE221FD469001081EB /* FrozenCoreFCI.hpp */; };
+		56D63002221FD469001081EB /* FrozenCoreCI.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56D62FFF221FD469001081EB /* FrozenCoreCI.hpp */; };
+		56D63003221FD469001081EB /* FrozenCoreDOCI.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56D63000221FD469001081EB /* FrozenCoreDOCI.hpp */; };
+		56D63007221FD47A001081EB /* FrozenCoreRDMBuilder.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56D63004221FD47A001081EB /* FrozenCoreRDMBuilder.hpp */; };
+		56D63008221FD47A001081EB /* FrozenCoreDOCIRDMBuilder.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56D63005221FD47A001081EB /* FrozenCoreDOCIRDMBuilder.hpp */; };
+		56D63009221FD47A001081EB /* FrozenCoreFCIRDMBuilder.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56D63006221FD47A001081EB /* FrozenCoreFCIRDMBuilder.hpp */; };
+		56D6300C221FD4A8001081EB /* FrozenFockSpace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56D6300A221FD4A8001081EB /* FrozenFockSpace.cpp */; };
+		56D6300D221FD4A8001081EB /* FrozenProductFockSpace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56D6300B221FD4A8001081EB /* FrozenProductFockSpace.cpp */; };
+		56D63011221FD4B6001081EB /* FrozenCoreFCI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56D6300E221FD4B5001081EB /* FrozenCoreFCI.cpp */; };
+		56D63012221FD4B6001081EB /* FrozenCoreCI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56D6300F221FD4B6001081EB /* FrozenCoreCI.cpp */; };
+		56D63013221FD4B6001081EB /* FrozenCoreDOCI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56D63010221FD4B6001081EB /* FrozenCoreDOCI.cpp */; };
+		56D63017221FD4C5001081EB /* FrozenCoreDOCIRDMBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56D63014221FD4C5001081EB /* FrozenCoreDOCIRDMBuilder.cpp */; };
+		56D63018221FD4C5001081EB /* FrozenCoreFCIRDMBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56D63015221FD4C5001081EB /* FrozenCoreFCIRDMBuilder.cpp */; };
+		56D63019221FD4C5001081EB /* FrozenCoreRDMBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56D63016221FD4C5001081EB /* FrozenCoreRDMBuilder.cpp */; };
 		56FBA09F21C2B0420084F088 /* linalg.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56FBA09B21C2B0420084F088 /* linalg.hpp */; };
 		56FBA0A121C2B0420084F088 /* io.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56FBA09D21C2B0420084F088 /* io.hpp */; };
 		56FBA0A221C2B0420084F088 /* miscellaneous.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56FBA09E21C2B0420084F088 /* miscellaneous.hpp */; };
@@ -2600,8 +2617,6 @@
 		5614FB9021B02EDE002C5D40 /* Hubbard_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Hubbard_test.cpp; sourceTree = "<group>"; };
 		5614FB9121B02EDE002C5D40 /* FCI_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FCI_test.cpp; sourceTree = "<group>"; };
 		5614FB9221B02EDE002C5D40 /* DOCI_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DOCI_test.cpp; sourceTree = "<group>"; };
-		5614FDB821B034D5002C5D40 /* libcpputil.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libcpputil.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		5614FDBA21B034D5002C5D40 /* libnumopt.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libnumopt.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5614FDBC21B034F8002C5D40 /* libint2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libint2.a; path = ../../../../../usr/local/libint/2.3.1/lib/libint2.a; sourceTree = "<group>"; };
 		5614FDBE21B03525002C5D40 /* libbenchmark.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libbenchmark.a; path = ../../../../../usr/local/lib/libbenchmark.a; sourceTree = "<group>"; };
 		5614FDCE21B0367B002C5D40 /* fci_matrix */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = fci_matrix; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2692,6 +2707,23 @@
 		56C040662212BCDC00C61BB0 /* SelectedCI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SelectedCI.cpp; sourceTree = "<group>"; };
 		56C040682212BD1800C61BB0 /* SelectedCI_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SelectedCI_test.cpp; sourceTree = "<group>"; };
 		56C040802212BD4500C61BB0 /* SelectedCI_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SelectedCI_test; sourceTree = BUILT_PRODUCTS_DIR; };
+		56D62FF8221FD458001081EB /* FockPermutator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FockPermutator.hpp; sourceTree = "<group>"; };
+		56D62FF9221FD459001081EB /* FrozenProductFockSpace.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FrozenProductFockSpace.hpp; sourceTree = "<group>"; };
+		56D62FFA221FD459001081EB /* FrozenFockSpace.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FrozenFockSpace.hpp; sourceTree = "<group>"; };
+		56D62FFE221FD469001081EB /* FrozenCoreFCI.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FrozenCoreFCI.hpp; sourceTree = "<group>"; };
+		56D62FFF221FD469001081EB /* FrozenCoreCI.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FrozenCoreCI.hpp; sourceTree = "<group>"; };
+		56D63000221FD469001081EB /* FrozenCoreDOCI.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FrozenCoreDOCI.hpp; sourceTree = "<group>"; };
+		56D63004221FD47A001081EB /* FrozenCoreRDMBuilder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FrozenCoreRDMBuilder.hpp; sourceTree = "<group>"; };
+		56D63005221FD47A001081EB /* FrozenCoreDOCIRDMBuilder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FrozenCoreDOCIRDMBuilder.hpp; sourceTree = "<group>"; };
+		56D63006221FD47A001081EB /* FrozenCoreFCIRDMBuilder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FrozenCoreFCIRDMBuilder.hpp; sourceTree = "<group>"; };
+		56D6300A221FD4A8001081EB /* FrozenFockSpace.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrozenFockSpace.cpp; sourceTree = "<group>"; };
+		56D6300B221FD4A8001081EB /* FrozenProductFockSpace.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrozenProductFockSpace.cpp; sourceTree = "<group>"; };
+		56D6300E221FD4B5001081EB /* FrozenCoreFCI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrozenCoreFCI.cpp; sourceTree = "<group>"; };
+		56D6300F221FD4B6001081EB /* FrozenCoreCI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrozenCoreCI.cpp; sourceTree = "<group>"; };
+		56D63010221FD4B6001081EB /* FrozenCoreDOCI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrozenCoreDOCI.cpp; sourceTree = "<group>"; };
+		56D63014221FD4C5001081EB /* FrozenCoreDOCIRDMBuilder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrozenCoreDOCIRDMBuilder.cpp; sourceTree = "<group>"; };
+		56D63015221FD4C5001081EB /* FrozenCoreFCIRDMBuilder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrozenCoreFCIRDMBuilder.cpp; sourceTree = "<group>"; };
+		56D63016221FD4C5001081EB /* FrozenCoreRDMBuilder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrozenCoreRDMBuilder.cpp; sourceTree = "<group>"; };
 		56FBA09B21C2B0420084F088 /* linalg.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = linalg.hpp; sourceTree = "<group>"; };
 		56FBA09D21C2B0420084F088 /* io.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = io.hpp; sourceTree = "<group>"; };
 		56FBA09E21C2B0420084F088 /* miscellaneous.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = miscellaneous.hpp; sourceTree = "<group>"; };
@@ -3483,8 +3515,11 @@
 			children = (
 				5614F99221B029FB002C5D40 /* BaseFockSpace.hpp */,
 				5614F99421B029FB002C5D40 /* Configuration.hpp */,
+				56D62FF8221FD458001081EB /* FockPermutator.hpp */,
 				5614F99821B029FB002C5D40 /* FockSpace.hpp */,
 				5614F99521B029FB002C5D40 /* FockSpaceType.hpp */,
+				56D62FFA221FD459001081EB /* FrozenFockSpace.hpp */,
+				56D62FF9221FD459001081EB /* FrozenProductFockSpace.hpp */,
 				5614F99721B029FB002C5D40 /* ONV.hpp */,
 				5614F99321B029FB002C5D40 /* ProductFockSpace.hpp */,
 				5614F99621B029FB002C5D40 /* SelectedFockSpace.hpp */,
@@ -3511,6 +3546,9 @@
 				5643B7D921F706EF00E1741F /* BaseSpinUnresolvedRDMBuilder.hpp */,
 				5614F9A121B029FB002C5D40 /* DOCIRDMBuilder.hpp */,
 				5614F9A521B029FB002C5D40 /* FCIRDMBuilder.hpp */,
+				56D63005221FD47A001081EB /* FrozenCoreDOCIRDMBuilder.hpp */,
+				56D63006221FD47A001081EB /* FrozenCoreFCIRDMBuilder.hpp */,
+				56D63004221FD47A001081EB /* FrozenCoreRDMBuilder.hpp */,
 				5614F9A421B029FB002C5D40 /* OneRDM.hpp */,
 				5614F9A021B029FB002C5D40 /* RDMCalculator.hpp */,
 				5614F9A621B029FB002C5D40 /* RDMs.hpp */,
@@ -3583,6 +3621,9 @@
 			children = (
 				5614F9CC21B029FB002C5D40 /* DOCI.hpp */,
 				5614F9CF21B029FB002C5D40 /* FCI.hpp */,
+				56D62FFF221FD469001081EB /* FrozenCoreCI.hpp */,
+				56D63000221FD469001081EB /* FrozenCoreDOCI.hpp */,
+				56D62FFE221FD469001081EB /* FrozenCoreFCI.hpp */,
 				5614F9CD21B029FB002C5D40 /* HamiltonianBuilder.hpp */,
 				5614F9CE21B029FB002C5D40 /* Hubbard.hpp */,
 				56C040642212BCC800C61BB0 /* SelectedCI.hpp */,
@@ -3617,6 +3658,8 @@
 			children = (
 				5614F9DB21B029FB002C5D40 /* BaseFockSpace.cpp */,
 				5614F9D921B029FB002C5D40 /* FockSpace.cpp */,
+				56D6300A221FD4A8001081EB /* FrozenFockSpace.cpp */,
+				56D6300B221FD4A8001081EB /* FrozenProductFockSpace.cpp */,
 				5614F9DA21B029FB002C5D40 /* ONV.cpp */,
 				5614F9DC21B029FB002C5D40 /* ProductFockSpace.cpp */,
 				5614F9DD21B029FB002C5D40 /* SelectedFockSpace.cpp */,
@@ -3643,6 +3686,9 @@
 				5643B7E121F7070100E1741F /* BaseSpinUnresolvedRDMBuilder.cpp */,
 				5614F9EE21B029FB002C5D40 /* DOCIRDMBuilder.cpp */,
 				5614F9EA21B029FB002C5D40 /* FCIRDMBuilder.cpp */,
+				56D63014221FD4C5001081EB /* FrozenCoreDOCIRDMBuilder.cpp */,
+				56D63015221FD4C5001081EB /* FrozenCoreFCIRDMBuilder.cpp */,
+				56D63016221FD4C5001081EB /* FrozenCoreRDMBuilder.cpp */,
 				5614F9E921B029FB002C5D40 /* OneRDM.cpp */,
 				5614F9ED21B029FB002C5D40 /* RDMCalculator.cpp */,
 				5614F9E621B029FB002C5D40 /* RDMs.cpp */,
@@ -3715,6 +3761,9 @@
 			children = (
 				5614FA0C21B029FB002C5D40 /* DOCI.cpp */,
 				5614FA0B21B029FB002C5D40 /* FCI.cpp */,
+				56D6300F221FD4B6001081EB /* FrozenCoreCI.cpp */,
+				56D63010221FD4B6001081EB /* FrozenCoreDOCI.cpp */,
+				56D6300E221FD4B5001081EB /* FrozenCoreFCI.cpp */,
 				5614FA0D21B029FB002C5D40 /* HamiltonianBuilder.cpp */,
 				5614FA0A21B029FB002C5D40 /* Hubbard.cpp */,
 				56C040662212BCDC00C61BB0 /* SelectedCI.cpp */,
@@ -4048,8 +4097,6 @@
 				5614FE6C21B03A9D002C5D40 /* libboost_program_options-mt.dylib */,
 				5614FDBE21B03525002C5D40 /* libbenchmark.a */,
 				5614FDBC21B034F8002C5D40 /* libint2.a */,
-				5614FDB821B034D5002C5D40 /* libcpputil.a */,
-				5614FDBA21B034D5002C5D40 /* libnumopt.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -4243,10 +4290,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				56C040652212BCC800C61BB0 /* SelectedCI.hpp in Headers */,
+				56D63008221FD47A001081EB /* FrozenCoreDOCIRDMBuilder.hpp in Headers */,
 				5614FA3B21B029FB002C5D40 /* WaveFunction.hpp in Headers */,
 				56FBA0C621C2B4AF0084F088 /* BaseMatrixSolver.hpp in Headers */,
 				56272DBD21B6CBFA008BEA47 /* AP1roG.hpp in Headers */,
 				5643B7DD21F706F000E1741F /* SpinUnresolvedRDMCalculator.hpp in Headers */,
+				56D63009221FD47A001081EB /* FrozenCoreFCIRDMBuilder.hpp in Headers */,
+				56D63007221FD47A001081EB /* FrozenCoreRDMBuilder.hpp in Headers */,
 				56FBA0E921C2DFC00084F088 /* HoppingMatrix.hpp in Headers */,
 				5614FA3D21B029FB002C5D40 /* BaseHamiltonianParameters.hpp in Headers */,
 				5614FA0F21B029FB002C5D40 /* DOCINewtonOrbitalOptimizer.hpp in Headers */,
@@ -4262,6 +4312,7 @@
 				5643B7FD21F85B1E00E1741F /* BaseAPIGVariables.hpp in Headers */,
 				5614FA3221B029FB002C5D40 /* OrbitalOptimizationOptions.hpp in Headers */,
 				5614FA1C21B029FB002C5D40 /* RDMCalculator.hpp in Headers */,
+				56D62FFB221FD459001081EB /* FockPermutator.hpp in Headers */,
 				5614FA3021B029FB002C5D40 /* common.hpp in Headers */,
 				5614FA4121B029FB002C5D40 /* HamiltonianBuilder.hpp in Headers */,
 				5614FA2221B029FB002C5D40 /* RDMs.hpp in Headers */,
@@ -4311,11 +4362,15 @@
 				5614FA3F21B029FB002C5D40 /* HamiltonianParameters.hpp in Headers */,
 				56B0D3B021F9BAC100605997 /* BivariationalCoefficients.hpp in Headers */,
 				5614FA3121B029FB002C5D40 /* RMP2.hpp in Headers */,
+				56D63003221FD469001081EB /* FrozenCoreDOCI.hpp in Headers */,
 				5614FA3321B029FB002C5D40 /* elements.hpp in Headers */,
 				56FBA0BC21C2B4AF0084F088 /* DavidsonSolver.hpp in Headers */,
+				56D63001221FD469001081EB /* FrozenCoreFCI.hpp in Headers */,
 				5614FA3C21B029FB002C5D40 /* WaveFunctionReader.hpp in Headers */,
 				56288CE62201E17700403B47 /* version.hpp in Headers */,
+				56D62FFC221FD459001081EB /* FrozenProductFockSpace.hpp in Headers */,
 				56FBA0C721C2B4AF0084F088 /* SparseSolver.hpp in Headers */,
+				56D62FFD221FD459001081EB /* FrozenFockSpace.hpp in Headers */,
 				56FBA0BF21C2B4AF0084F088 /* NewtonMinimizer.hpp in Headers */,
 				56272DB921B6CBFA008BEA47 /* AP1roGJacobiOrbitalOptimizer.hpp in Headers */,
 				5614FA1221B029FB002C5D40 /* Configuration.hpp in Headers */,
@@ -4323,6 +4378,7 @@
 				5614FA1721B029FB002C5D40 /* AOBasis.hpp in Headers */,
 				5614FA1B21B029FB002C5D40 /* RHF.hpp in Headers */,
 				5614FA1E21B029FB002C5D40 /* SelectedRDMBuilder.hpp in Headers */,
+				56D63002221FD469001081EB /* FrozenCoreCI.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6115,14 +6171,17 @@
 				5643B80921F868A600E1741F /* AP1roGVariables.cpp in Sources */,
 				5643B82321F89E6300E1741F /* AP1roGBivariationalSolver_test.cpp in Sources */,
 				5614FA4D21B029FB002C5D40 /* ProductFockSpace.cpp in Sources */,
+				56D63018221FD4C5001081EB /* FrozenCoreFCIRDMBuilder.cpp in Sources */,
 				5614FA5421B029FB002C5D40 /* PlainRHFSCFSolver.cpp in Sources */,
 				5614FA4721B029FB002C5D40 /* RMP2.cpp in Sources */,
+				56D63019221FD4C5001081EB /* FrozenCoreRDMBuilder.cpp in Sources */,
 				56FBA0A821C2B06B0084F088 /* io.cpp in Sources */,
 				5614FA5021B029FB002C5D40 /* LibintCommunicator.cpp in Sources */,
 				5614FA5321B029FB002C5D40 /* RHFSCFSolver.cpp in Sources */,
 				5614FA5D21B029FB002C5D40 /* DOCIRDMBuilder.cpp in Sources */,
 				5614FA4921B029FB002C5D40 /* Molecule.cpp in Sources */,
 				5614FA7021B029FB002C5D40 /* BaseHamiltonianParameters.cpp in Sources */,
+				56D6300D221FD4A8001081EB /* FrozenProductFockSpace.cpp in Sources */,
 				5614FA5721B029FB002C5D40 /* TwoRDM.cpp in Sources */,
 				5614FA6E21B029FB002C5D40 /* HamiltonianParameters.cpp in Sources */,
 				56FBA0D521C2B4C90084F088 /* NewtonMinimizer.cpp in Sources */,
@@ -6130,10 +6189,12 @@
 				5614FA5121B029FB002C5D40 /* RHF.cpp in Sources */,
 				5614FA6221B029FB002C5D40 /* expectation_values.cpp in Sources */,
 				56FBA0D821C2B4C90084F088 /* DenseSolver.cpp in Sources */,
+				56D63017221FD4C5001081EB /* FrozenCoreDOCIRDMBuilder.cpp in Sources */,
 				5614FA6821B029FB002C5D40 /* CISolver.cpp in Sources */,
 				56FBA0DD21C2B4C90084F088 /* BaseEigenproblemSolver.cpp in Sources */,
 				5614FA5521B029FB002C5D40 /* RDMs.cpp in Sources */,
 				56FBA0D921C2B4C90084F088 /* SparseSolver.cpp in Sources */,
+				56D63013221FD4B6001081EB /* FrozenCoreDOCI.cpp in Sources */,
 				5643B7E221F7070100E1741F /* SpinUnresolvedFCIRDMBuilder.cpp in Sources */,
 				5614FA4821B029FB002C5D40 /* elements.cpp in Sources */,
 				56FBA0DA21C2B4C90084F088 /* step.cpp in Sources */,
@@ -6143,6 +6204,7 @@
 				5614FA6621B029FB002C5D40 /* BaseOperator.cpp in Sources */,
 				56FBA0D721C2B4C90084F088 /* DavidsonSolver.cpp in Sources */,
 				5614FA5221B029FB002C5D40 /* DIISRHFSCFSolver.cpp in Sources */,
+				56D63012221FD4B6001081EB /* FrozenCoreCI.cpp in Sources */,
 				5614FA5C21B029FB002C5D40 /* RDMCalculator.cpp in Sources */,
 				5643B82021F88A0B00E1741F /* BaseAP1roGSolver.cpp in Sources */,
 				5614FA4C21B029FB002C5D40 /* BaseFockSpace.cpp in Sources */,
@@ -6153,6 +6215,7 @@
 				5614FA4621B029FB002C5D40 /* JacobiRotationParameters.cpp in Sources */,
 				5643B80421F85E9000E1741F /* GeminalCoefficientsInterface.cpp in Sources */,
 				5614FA7521B029FB002C5D40 /* DOCINewtonOrbitalOptimizer.cpp in Sources */,
+				56D6300C221FD4A8001081EB /* FrozenFockSpace.cpp in Sources */,
 				56FBA0D621C2B4C90084F088 /* NewtonSystemOfEquationsSolver.cpp in Sources */,
 				56B49B8021F2128D000F543B /* AP1roG.cpp in Sources */,
 				5643B7EA21F7076D00E1741F /* SpinUnresolvedFCIRDMBuilder_test.cpp in Sources */,
@@ -6170,6 +6233,7 @@
 				56FBA0D321C2B4C90084F088 /* BaseSystemOfEquationsSolver.cpp in Sources */,
 				5614FA6B21B029FB002C5D40 /* ERJacobiLocalizer.cpp in Sources */,
 				56FBA0DC21C2B4C90084F088 /* BaseMinimizer.cpp in Sources */,
+				56D63011221FD4B6001081EB /* FrozenCoreFCI.cpp in Sources */,
 				5643B81C21F87F6700E1741F /* AP1roGBivariationalSolver.cpp in Sources */,
 				56B49B8421F2128D000F543B /* AP1roGPSESolver.cpp in Sources */,
 				5614FA7121B029FB002C5D40 /* Hubbard.cpp in Sources */,
