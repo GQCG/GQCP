@@ -126,7 +126,7 @@ public:
      */
     ONV makeONV(size_t address) const {
 
-        const auto fock_space = this->derived();
+        const auto& fock_space = this->derived();
 
         ONV onv (fock_space.get_K(), this->N);
         fock_space.transformONV(onv, address);
@@ -140,7 +140,7 @@ public:
      */
     void setNextONV(ONV &onv) const {
 
-        const auto fock_space = this->derived();
+        const auto& fock_space = this->derived();
         onv.set_representation(fock_space.ulongNextPermutation(onv.get_unsigned_representation()));
     }
 
@@ -151,7 +151,7 @@ public:
      */
     size_t getAddress(const ONV &onv) const {
 
-        const auto fock_space = this->derived();
+        const auto& fock_space = this->derived();
         return fock_space.getAddress(onv.get_unsigned_representation());
     };
 
@@ -163,7 +163,7 @@ public:
      */
     void transformONV(ONV &onv, size_t address) const {
 
-        const auto fock_space = this->derived();
+        const auto& fock_space = this->derived();
         onv.set_representation((fock_space.calculateRepresentation(address)));
     }
 };
