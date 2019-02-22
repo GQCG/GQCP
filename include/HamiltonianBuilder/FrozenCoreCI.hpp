@@ -53,12 +53,12 @@ public:
 
     /**
      *  @param ham_par      the Hamiltonian parameters in an orthonormal orbital basis
-     *  @param x            the vector upon which the Hamiltonian acts
+     *  @param x            the (set of) vector(s) upon which the Hamiltonian acts
      *  @param diagonal     the diagonal of the Hamiltonian matrix
      *
      *  @return the action of the frozen core Hamiltonian on the coefficient vector
      */
-    Eigen::VectorXd matrixVectorProduct(const HamiltonianParameters<double>& ham_par, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) const override;
+    Eigen::MatrixXd matrixVectorProduct(const HamiltonianParameters<double>& ham_par, const Eigen::MatrixXd& x, const Eigen::VectorXd& diagonal) const override;
 
     /**
      *  @param ham_par      the Hamiltonian parameters in an orthonormal orbital basis

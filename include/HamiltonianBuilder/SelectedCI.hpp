@@ -69,12 +69,12 @@ public:
 
     /**
      *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis
-     *  @param x                            the vector upon which the SelectedCI Hamiltonian acts
+     *  @param x                            the (set of) vector(s) upon which the SelectedCI Hamiltonian acts
      *  @param diagonal                     the diagonal of the SelectedCI Hamiltonian matrix
      *
      *  @return the action of the SelectedCI Hamiltonian on the coefficient vector
      */
-    Eigen::VectorXd matrixVectorProduct(const HamiltonianParameters<double>& hamiltonian_parameters, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) const override;
+    Eigen::MatrixXd matrixVectorProduct(const HamiltonianParameters<double>& hamiltonian_parameters, const Eigen::MatrixXd& x, const Eigen::VectorXd& diagonal) const override;
 
     /**
      *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis

@@ -106,12 +106,12 @@ Eigen::MatrixXd DOCI::constructHamiltonian(const HamiltonianParameters<double>& 
 
 /**
  *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis
- *  @param x                            the vector upon which the DOCI Hamiltonian acts
+ *  @param x                            the (set of) vector(s) upon which the DOCI Hamiltonian acts
  *  @param diagonal                     the diagonal of the DOCI Hamiltonian matrix
  *
  *  @return the action of the DOCI Hamiltonian on the coefficient vector
  */
-Eigen::VectorXd DOCI::matrixVectorProduct(const HamiltonianParameters<double>& hamiltonian_parameters, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) const {
+Eigen::MatrixXd DOCI::matrixVectorProduct(const HamiltonianParameters<double>& hamiltonian_parameters, const Eigen::MatrixXd& x, const Eigen::VectorXd& diagonal) const {
 
     auto K = hamiltonian_parameters.get_h().get_dim();
     if (K != this->fock_space.get_K()) {
@@ -124,13 +124,15 @@ Eigen::VectorXd DOCI::matrixVectorProduct(const HamiltonianParameters<double>& h
     size_t N = this->fock_space.get_N();
 
     // Diagonal contributions
-    Eigen::VectorXd matvec = diagonal.cwiseProduct(x);
+    Eigen::MatrixXd matvec = diagonal.cwiseProduct(x);
+
+    // storing all values associated with I-th position of the matvec in vector_I for a single matvec access at the end of each iteration
+    Eigen::VectorXd vector_I = Eigen::VectorXd::Zero(x.cols());
 
     for (size_t I = 0; I < dim; I++) {  // I loops over all the addresses of the onv
 
-        // double_I and J reduce vector accessing and writing
-        double double_I = 0;
-        double double_J = x(I);
+        // vector_J reduce vector accessing
+        const Eigen::VectorXd& vector_J = x.row(I);
 
         for (size_t e1 = 0; e1 < N; e1++) {  // e1 (electron 1) loops over the (number of) electrons
             size_t p = onv.get_occupation_index(e1);  // retrieve the index of a given electron
@@ -149,8 +151,8 @@ Eigen::VectorXd DOCI::matrixVectorProduct(const HamiltonianParameters<double>& h
             while (q < K) {
                 size_t J = address + this->fock_space.get_vertex_weights(q, e2);
 
-                double_I += hamiltonian_parameters.get_g()(p, q, p, q) * x(J);
-                matvec(J) += hamiltonian_parameters.get_g()(p, q, p, q) * double_J;
+                vector_I += hamiltonian_parameters.get_g()(p, q, p, q) * x.row(J);
+                matvec.row(J) += hamiltonian_parameters.get_g()(p, q, p, q) * vector_J;
 
                 q++;  // go to the next orbital
 
@@ -166,7 +168,8 @@ Eigen::VectorXd DOCI::matrixVectorProduct(const HamiltonianParameters<double>& h
             this->fock_space.setNextONV(onv);
         }
 
-        matvec(I) += double_I;
+        matvec.row(I) += vector_I;
+        vector_I.setZero();
 
     }  // address (I) loop
 

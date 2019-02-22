@@ -448,7 +448,7 @@ Eigen::MatrixXd FCI::constructHamiltonian(const HamiltonianParameters<double>& h
 
 /**
  *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis
- *  @param x                            the vector upon which the FCI Hamiltonian acts
+ *  @param x                            the (set of) vector(s) upon which the FCI Hamiltonian acts
  *  @param diagonal                     the diagonal of the FCI Hamiltonian matrix
  *
  *  @return the action of the FCI Hamiltonian on the coefficient vector

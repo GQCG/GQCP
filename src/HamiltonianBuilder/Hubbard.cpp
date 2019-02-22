@@ -180,7 +180,7 @@ Eigen::MatrixXd Hubbard::constructHamiltonian(const HamiltonianParameters<double
 
 /**
  *  @param hamiltonian_parameters       the Hubbard Hamiltonian parameters in an orthonormal orbital basis
- *  @param x                            the vector upon which the Hubbard Hamiltonian acts
+ *  @param x                            the (set of) vector(s) upon which the Hubbard Hamiltonian acts
  *  @param diagonal                     the diagonal of the Hubbard Hamiltonian matrix
  *
  *  @return the action of the Hubbard Hamiltonian on the coefficient vector

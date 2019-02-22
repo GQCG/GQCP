@@ -237,7 +237,7 @@ Eigen::MatrixXd SelectedCI::constructHamiltonian(const HamiltonianParameters<dou
 
 /**
  *  @param hamiltonian_parameters       the SelectedCI Hamiltonian parameters in an orthonormal orbital basis
- *  @param x                            the vector upon which the SelectedCI Hamiltonian acts
+ *  @param x                            the (set of) vector(s) upon which the SelectedCI Hamiltonian acts
  *  @param diagonal                     the diagonal of the SelectedCI Hamiltonian matrix
  *
  *  @return the action of the SelectedCI Hamiltonian on the coefficient vector

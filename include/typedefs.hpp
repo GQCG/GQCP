@@ -67,6 +67,7 @@ using Matrix = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
  */
 using VectorFunction = std::function<Eigen::VectorXd (const Eigen::VectorXd&)>;
 using MatrixFunction = std::function<Eigen::MatrixXd (const Eigen::VectorXd&)>;
+using VectorsFunction = std::function<Eigen::MatrixXd (const Eigen::MatrixXd&)>;
 
 
 /*
