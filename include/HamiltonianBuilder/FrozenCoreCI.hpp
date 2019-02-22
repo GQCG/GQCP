@@ -45,46 +45,46 @@ public:
 
     // OVERRIDDEN PUBLIC METHODS
     /**
-     *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis
+     *  @param ham_par      the Hamiltonian parameters in an orthonormal orbital basis
      *
      *  @return the frozen core Hamiltonian matrix
      */
-    Eigen::MatrixXd constructHamiltonian(const HamiltonianParameters& hamiltonian_parameters) const override;
+    Eigen::MatrixXd constructHamiltonian(const HamiltonianParameters<double>& ham_par) const override;
 
     /**
-     *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis
-     *  @param x                            the vector upon which the Hamiltonian acts
-     *  @param diagonal                     the diagonal of the Hamiltonian matrix
+     *  @param ham_par      the Hamiltonian parameters in an orthonormal orbital basis
+     *  @param x            the vector upon which the Hamiltonian acts
+     *  @param diagonal     the diagonal of the Hamiltonian matrix
      *
      *  @return the action of the frozen core Hamiltonian on the coefficient vector
      */
-    Eigen::VectorXd matrixVectorProduct(const HamiltonianParameters& hamiltonian_parameters, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) const override;
+    Eigen::VectorXd matrixVectorProduct(const HamiltonianParameters<double>& ham_par, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) const override;
 
     /**
-     *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis
+     *  @param ham_par      the Hamiltonian parameters in an orthonormal orbital basis
      *
      *  @return the diagonal of the matrix representation of the frozen core Hamiltonian
      */
-    Eigen::VectorXd calculateDiagonal(const HamiltonianParameters& hamiltonian_parameters) const override;
+    Eigen::VectorXd calculateDiagonal(const HamiltonianParameters<double>& ham_par) const override;
 
 
     // PUBLIC METHODS
     /**
-     *  @param hamiltonian_parameters              the Hamiltonian parameters in an orthonormal orbital basis
-     *  @param X                                   the number of frozen orbitals
+     *  @param ham_par      the Hamiltonian parameters in an orthonormal orbital basis
+     *  @param X            the number of frozen orbitals
      *
      *  @return a set of 'frozen' Hamiltonian parameters which cover two-electron integral evaluations from the active and inactive orbitals
      *  (see https://drive.google.com/file/d/1Fnhv2XyNO9Xw9YDoJOXU21_6_x2llntI/view?usp=sharing)
      */
-    HamiltonianParameters freezeHamiltonianParameters(const HamiltonianParameters& hamiltonian_parameters, size_t X) const;
+    HamiltonianParameters<double> freezeHamiltonianParameters(const HamiltonianParameters<double>& ham_par, size_t X) const;
 
     /**
-     *  @param hamiltonian_parameters              the Hamiltonian parameters in an orthonormal orbital basis
-     *  @param X                                   the number of frozen orbitals
+     *  @param ham_par      the Hamiltonian parameters in an orthonormal orbital basis
+     *  @param X            the number of frozen orbitals
      *
      *  @return the diagonal from strictly evaluating the frozen orbitals in the Fock space
      */
-    Eigen::VectorXd calculateFrozenCoreDiagonal(const HamiltonianParameters& hamiltonian_parameters, size_t X) const;
+    Eigen::VectorXd calculateFrozenCoreDiagonal(const HamiltonianParameters<double>& ham_par, size_t X) const;
 };
 
 

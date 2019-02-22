@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "56D63066221FDAA9001081EB"
-               BuildableName = "FrozenCoreFCIRDMBuilder_test copy"
-               BlueprintName = "FrozenCoreFCIRDMBuilder_test copy"
+               BlueprintIdentifier = "56D630E2221FE7A5001081EB"
+               BuildableName = "FrozenCoreFCIRDMBuilder_test"
+               BlueprintName = "FrozenCoreFCIRDMBuilder_test"
                ReferencedContainer = "container:gqcp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "56D63066221FDAA9001081EB"
-            BuildableName = "FrozenCoreFCIRDMBuilder_test copy"
-            BlueprintName = "FrozenCoreFCIRDMBuilder_test copy"
+            BlueprintIdentifier = "56D630E2221FE7A5001081EB"
+            BuildableName = "FrozenCoreFCIRDMBuilder_test"
+            BlueprintName = "FrozenCoreFCIRDMBuilder_test"
             ReferencedContainer = "container:gqcp.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -55,9 +55,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "56D63066221FDAA9001081EB"
-            BuildableName = "FrozenCoreFCIRDMBuilder_test copy"
-            BlueprintName = "FrozenCoreFCIRDMBuilder_test copy"
+            BlueprintIdentifier = "56D630E2221FE7A5001081EB"
+            BuildableName = "FrozenCoreFCIRDMBuilder_test"
+            BlueprintName = "FrozenCoreFCIRDMBuilder_test"
             ReferencedContainer = "container:gqcp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -81,9 +81,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "56D63066221FDAA9001081EB"
-            BuildableName = "FrozenCoreFCIRDMBuilder_test copy"
-            BlueprintName = "FrozenCoreFCIRDMBuilder_test copy"
+            BlueprintIdentifier = "56D630E2221FE7A5001081EB"
+            BuildableName = "FrozenCoreFCIRDMBuilder_test"
+            BlueprintName = "FrozenCoreFCIRDMBuilder_test"
             ReferencedContainer = "container:gqcp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

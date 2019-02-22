@@ -42,7 +42,7 @@ BOOST_AUTO_TEST_CASE ( FrozenCoreDOCI_public_methods ) {
 
     // Create random HamiltonianParameters to check compatibility
     size_t K = 5;
-    auto random_hamiltonian_parameters = GQCP::HamiltonianParameters::Random(K);
+    auto random_hamiltonian_parameters = GQCP::HamiltonianParameters<double>::Random(K);
 
 
     // Create a compatible Fock space
@@ -66,7 +66,7 @@ BOOST_AUTO_TEST_CASE ( SelectedCI_vs_FrozenCoreDOCI ) {
     // Create H-chain HamiltonianParameters to test results
     size_t K = 5;
     GQCP::Molecule H5 = GQCP::Molecule::HChain(K, 1.1);
-    auto random_hamiltonian_parameters = GQCP::HamiltonianParameters::Molecular(H5, "STO-3G");
+    auto random_hamiltonian_parameters = GQCP::HamiltonianParameters<double>::Molecular(H5, "STO-3G");
 
     // Create compatible Fock spaces
     GQCP::FrozenFockSpace frozen_fock_space (K, 3, 1);

@@ -44,21 +44,21 @@ FrozenCoreCI::FrozenCoreCI(std::shared_ptr<GQCP::HamiltonianBuilder> hamiltonian
  */
 
 /**
- *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis
+ *  @param ham_par      the Hamiltonian parameters in an orthonormal orbital basis
  *
  *  @return the frozen core Hamiltonian matrix
  */
-Eigen::MatrixXd FrozenCoreCI::constructHamiltonian(const HamiltonianParameters& hamiltonian_parameters) const {
+Eigen::MatrixXd FrozenCoreCI::constructHamiltonian(const HamiltonianParameters<double>& ham_par) const {
 
     // Freeze Hamiltonian parameters
-    HamiltonianParameters frozen_ham_par = this->freezeHamiltonianParameters(hamiltonian_parameters, X);
+    HamiltonianParameters<double> frozen_ham_par = this->freezeHamiltonianParameters(ham_par, X);
 
     // calculate Hamiltonian matrix through conventional CI
     Eigen::MatrixXd total_hamiltonian = this->active_hamiltonian_builder->constructHamiltonian(frozen_ham_par);
 
     // diagonal correction
     Eigen::VectorXd diagonal = Eigen::VectorXd::Ones(this->get_fock_space()->get_dimension());
-    auto frozen_core_diagonal = this->calculateFrozenCoreDiagonal(hamiltonian_parameters, this->X);
+    auto frozen_core_diagonal = this->calculateFrozenCoreDiagonal(ham_par, this->X);
     total_hamiltonian += frozen_core_diagonal.asDiagonal();
 
     return total_hamiltonian;
@@ -66,15 +66,15 @@ Eigen::MatrixXd FrozenCoreCI::constructHamiltonian(const HamiltonianParameters& 
 
 
 /**
- *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis
- *  @param x                            the vector upon which the Hamiltonian acts
- *  @param diagonal                     the diagonal of the Hamiltonian matrix
+ *  @param ham_par      the Hamiltonian parameters in an orthonormal orbital basis
+ *  @param x            the vector upon which the Hamiltonian acts
+ *  @param diagonal     the diagonal of the Hamiltonian matrix
  *
  *  @return the action of the frozen core Hamiltonian on the coefficient vector
  */
-Eigen::VectorXd FrozenCoreCI::matrixVectorProduct(const HamiltonianParameters& hamiltonian_parameters, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) const {
+Eigen::VectorXd FrozenCoreCI::matrixVectorProduct(const HamiltonianParameters<double>& ham_par, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) const {
 
-    HamiltonianParameters frozen_ham_par = this->freezeHamiltonianParameters(hamiltonian_parameters, X);
+    HamiltonianParameters<double> frozen_ham_par = this->freezeHamiltonianParameters(ham_par, X);
 
     // perform matvec in the active space with "frozen" Hamiltonian parameters
     return this->active_hamiltonian_builder->matrixVectorProduct(frozen_ham_par, x, diagonal);
@@ -82,19 +82,19 @@ Eigen::VectorXd FrozenCoreCI::matrixVectorProduct(const HamiltonianParameters& h
 
 
 /**
- *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis
+ *  @param ham_par      the Hamiltonian parameters in an orthonormal orbital basis
  *
  *  @return the diagonal of the matrix representation of the frozen core Hamiltonian
  */
-Eigen::VectorXd FrozenCoreCI::calculateDiagonal(const HamiltonianParameters& hamiltonian_parameters) const {
+Eigen::VectorXd FrozenCoreCI::calculateDiagonal(const HamiltonianParameters<double>& ham_par) const {
 
-    HamiltonianParameters frozen_ham_par = this->freezeHamiltonianParameters(hamiltonian_parameters, this->X);
+    HamiltonianParameters<double> frozen_ham_par = this->freezeHamiltonianParameters(ham_par, this->X);
 
     // calculate diagonal in the active space with the "frozen" Hamiltonian parameters
     Eigen::VectorXd diagonal = this->active_hamiltonian_builder->calculateDiagonal(frozen_ham_par);
 
     // calculate diagonal for the frozen orbitals
-    auto frozen_core_diagonal = this->calculateFrozenCoreDiagonal(hamiltonian_parameters, this->X);
+    auto frozen_core_diagonal = this->calculateFrozenCoreDiagonal(ham_par, this->X);
 
     return diagonal + frozen_core_diagonal;
 }
@@ -106,39 +106,33 @@ Eigen::VectorXd FrozenCoreCI::calculateDiagonal(const HamiltonianParameters& ham
  */
 
 /**
- *  @param hamiltonian_parameters               the Hamiltonian parameters in an orthonormal orbital basis
- *  @param X                                    the number of frozen orbitals
+ *  @param ham_par      the Hamiltonian parameters in an orthonormal orbital basis
+ *  @param X            the number of frozen orbitals
  *
  *  @return a set of 'frozen' Hamiltonian parameters which cover two-electron integral evaluations from the active and inactive orbitals
  *  (see https://drive.google.com/file/d/1Fnhv2XyNO9Xw9YDoJOXU21_6_x2llntI/view?usp=sharing)
  */
-HamiltonianParameters FrozenCoreCI::freezeHamiltonianParameters(const HamiltonianParameters &hamiltonian_parameters, size_t X) const {
+HamiltonianParameters<double> FrozenCoreCI::freezeHamiltonianParameters(const HamiltonianParameters<double>& ham_par, size_t X) const {
 
-    size_t K = hamiltonian_parameters.get_K();
+    size_t K = ham_par.get_K();
     size_t K_active = K - X;  // number of non-frozen orbitals
 
-    std::shared_ptr<AOBasis> ao_basis;  // nullptr
 
     // Copy one-electron integrals from the non-frozen orbitals
-    OneElectronOperator S (hamiltonian_parameters.get_S().get_matrix_representation().block(X, X, K_active, K_active));
-    Eigen::MatrixXd h (hamiltonian_parameters.get_h().get_matrix_representation().block(X, X, K_active, K_active));
-
-    const auto& g = hamiltonian_parameters.get_g();
+    OneElectronOperator<double> S (ham_par.get_S().block(X, X, K_active, K_active));  // active
+    OneElectronOperator<double> h (ham_par.get_h().block(X, X, K_active, K_active));  // active
 
     // Copy two-electron integrals from the non-frozen orbitals
-    Eigen::Tensor<double, 4> g_SO = tensorBlockCreation(g.get_matrix_representation(), X, X, X, X);
+    const auto& g = ham_par.get_g();  // total
 
     // 'Freeze' the Hamiltonian parameters
-    // This amounts to modifying the one-electron integrals using derived formulas
+    // This amounts to modifying the (active) one-electron integrals using derived formulas
     for (size_t i = 0; i < K_active; i++) {  // iterate over the active orbitals
 
         size_t q = i + X;  // map active orbitals indexes to total orbital indexes (those including the frozen orbitals)
 
         for (size_t l = 0; l < X; l++) {  // iterate over the frozen orbitals
-            h(i,i) += g(q, q, l, l);
-            h(i,i) += g(l, l, q, q);
-            h(i,i) -= g(q, l, l, q)/2;
-            h(i,i) -= g(l, q, q, l)/2;
+            h(i,i) += g(q,q,l,l) + g(l,l,q,q) - g(q,l,l,q)/2 - g(l,q,q,l)/2;
         }
 
         for (size_t j = i+1; j < K_active; j++) {  // iterate over the active orbitals
@@ -147,30 +141,30 @@ HamiltonianParameters FrozenCoreCI::freezeHamiltonianParameters(const Hamiltonia
 
             for (size_t l = 0; l < X; l++) {  // iterate over the frozen orbitals
 
-                h(i,j) += g(q, p, l, l) + g(l, l, q, p) - g(q, l, l, p)/2 - g(l, p, q, l)/2;
-                h(j,i) += g(p, q, l, l) + g(l, l, p, q) - g(p, l, l, q)/2 - g(l, q, p, l)/2;
+                h(i,j) += g(q,p,l,l) + g(l,l,q,p) - g(q,l,l,p)/2 - g(l,p,q,l)/2;
+                h(j,i) += g(p,q,l,l) + g(l,l,p,q) - g(p,l,l,q)/2 - g(l,q,p,l)/2;
             }
         }
     }
 
-    OneElectronOperator H_new (h);
-    Eigen::MatrixXd T = Eigen::MatrixXd(hamiltonian_parameters.get_T_total().block(X, X, K_active, K_active));
-    TwoElectronOperator g_new (g_SO);
+    std::shared_ptr<AOBasis> ao_basis;  // nullptr
+    TwoElectronOperator<double> g_new (tensorBlockCreation(ham_par.get_g(), X, X, X, X));
+    Eigen::MatrixXd T = ham_par.get_T_total().block(X, X, K_active, K_active);
 
-    return HamiltonianParameters(ao_basis, S, H_new, g_new, T);
+    return HamiltonianParameters<double>(ao_basis, S, h, g_new, T);
 }
 
 
 /**
- *  @param hamiltonian_parameters              the Hamiltonian parameters in an orthonormal orbital basis
- *  @param X                                   the number of frozen orbitals
+ *  @param ham_par      the Hamiltonian parameters in an orthonormal orbital basis
+ *  @param X            the number of frozen orbitals
  *
  *  @return the diagonal from strictly evaluating the frozen orbitals in the Fock space
  */
-Eigen::VectorXd FrozenCoreCI::calculateFrozenCoreDiagonal(const HamiltonianParameters& hamiltonian_parameters, size_t X) const {
+Eigen::VectorXd FrozenCoreCI::calculateFrozenCoreDiagonal(const HamiltonianParameters<double>& ham_par, size_t X) const {
 
-    const auto& g = hamiltonian_parameters.get_g();
-    const auto& h = hamiltonian_parameters.get_h();
+    const auto& g = ham_par.get_g();
+    const auto& h = ham_par.get_h();
 
     // The diagonal value for the frozen orbitals is the same for each ONV
     double value = 0;

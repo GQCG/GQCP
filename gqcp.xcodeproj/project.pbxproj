@@ -543,6 +543,35 @@
 		56C8399D2215B1CB00FA98A0 /* SquareFourIndexTensor.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56C8399B2215B1CB00FA98A0 /* SquareFourIndexTensor.hpp */; };
 		56C839A52215B50E00FA98A0 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
 		56C839AB2215B52B00FA98A0 /* SquareFourIndexTensor_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56C8399E2215B3E700FA98A0 /* SquareFourIndexTensor_test.cpp */; };
+		56D6307A221FE59D001081EB /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
+		56D63083221FE5BE001081EB /* FockPermutator.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56D63080221FE5BE001081EB /* FockPermutator.hpp */; };
+		56D63084221FE5BE001081EB /* FrozenProductFockSpace.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56D63081221FE5BE001081EB /* FrozenProductFockSpace.hpp */; };
+		56D63085221FE5BE001081EB /* FrozenFockSpace.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56D63082221FE5BE001081EB /* FrozenFockSpace.hpp */; };
+		56D6308C221FE5C9001081EB /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
+		56D63094221FE5F1001081EB /* FrozenFockSpace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56D63092221FE5F1001081EB /* FrozenFockSpace.cpp */; };
+		56D63095221FE5F1001081EB /* FrozenProductFockSpace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56D63093221FE5F1001081EB /* FrozenProductFockSpace.cpp */; };
+		56D6309A221FE60D001081EB /* FrozenFockSpace_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56D63096221FE603001081EB /* FrozenFockSpace_test.cpp */; };
+		56D6309B221FE616001081EB /* FrozenProductFockSpace_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56D63097221FE603001081EB /* FrozenProductFockSpace_test.cpp */; };
+		56D6309F221FE647001081EB /* FrozenCoreFCI.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56D6309C221FE647001081EB /* FrozenCoreFCI.hpp */; };
+		56D630A0221FE647001081EB /* FrozenCoreCI.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56D6309D221FE647001081EB /* FrozenCoreCI.hpp */; };
+		56D630A1221FE647001081EB /* FrozenCoreDOCI.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56D6309E221FE647001081EB /* FrozenCoreDOCI.hpp */; };
+		56D630A5221FE657001081EB /* FrozenCoreFCI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56D630A2221FE656001081EB /* FrozenCoreFCI.cpp */; };
+		56D630A6221FE657001081EB /* FrozenCoreCI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56D630A3221FE656001081EB /* FrozenCoreCI.cpp */; };
+		56D630A7221FE657001081EB /* FrozenCoreDOCI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56D630A4221FE656001081EB /* FrozenCoreDOCI.cpp */; };
+		56D630B2221FE673001081EB /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
+		56D630BE221FE67B001081EB /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
+		56D630C4221FE69B001081EB /* FrozenCoreDOCI_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56D630A9221FE66D001081EB /* FrozenCoreDOCI_test.cpp */; };
+		56D630C5221FE6A6001081EB /* FrozenCoreFCI_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56D630A8221FE66D001081EB /* FrozenCoreFCI_test.cpp */; };
+		56D630C9221FE776001081EB /* FrozenCoreRDMBuilder.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56D630C6221FE776001081EB /* FrozenCoreRDMBuilder.hpp */; };
+		56D630CA221FE776001081EB /* FrozenCoreDOCIRDMBuilder.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56D630C7221FE776001081EB /* FrozenCoreDOCIRDMBuilder.hpp */; };
+		56D630CB221FE776001081EB /* FrozenCoreFCIRDMBuilder.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56D630C8221FE776001081EB /* FrozenCoreFCIRDMBuilder.hpp */; };
+		56D630CF221FE785001081EB /* FrozenCoreDOCIRDMBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56D630CC221FE785001081EB /* FrozenCoreDOCIRDMBuilder.cpp */; };
+		56D630D0221FE785001081EB /* FrozenCoreFCIRDMBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56D630CD221FE785001081EB /* FrozenCoreFCIRDMBuilder.cpp */; };
+		56D630D1221FE785001081EB /* FrozenCoreRDMBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56D630CE221FE785001081EB /* FrozenCoreRDMBuilder.cpp */; };
+		56D630DC221FE79E001081EB /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
+		56D630E8221FE7A5001081EB /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
+		56D630EE221FE7B6001081EB /* FrozenCoreDOCIRDMBuilder_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56D630D2221FE794001081EB /* FrozenCoreDOCIRDMBuilder_test.cpp */; };
+		56D630EF221FE7C2001081EB /* FrozenCoreFCIRDMBuilder_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56D630D3221FE794001081EB /* FrozenCoreFCIRDMBuilder_test.cpp */; };
 		56FBA09F21C2B0420084F088 /* linalg.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56FBA09B21C2B0420084F088 /* linalg.hpp */; };
 		56FBA0A121C2B0420084F088 /* io.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56FBA09D21C2B0420084F088 /* io.hpp */; };
 		56FBA0A221C2B0420084F088 /* miscellaneous.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56FBA09E21C2B0420084F088 /* miscellaneous.hpp */; };
@@ -1500,6 +1529,48 @@
 			remoteGlobalIDString = 5614F97F21B0295C002C5D40;
 			remoteInfo = gqcp;
 		};
+		56D63076221FE59D001081EB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5614F97F21B0295C002C5D40;
+			remoteInfo = gqcp;
+		};
+		56D63088221FE5C9001081EB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5614F97F21B0295C002C5D40;
+			remoteInfo = gqcp;
+		};
+		56D630AE221FE673001081EB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5614F97F21B0295C002C5D40;
+			remoteInfo = gqcp;
+		};
+		56D630BA221FE67B001081EB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5614F97F21B0295C002C5D40;
+			remoteInfo = gqcp;
+		};
+		56D630D8221FE79E001081EB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5614F97F21B0295C002C5D40;
+			remoteInfo = gqcp;
+		};
+		56D630E4221FE7A5001081EB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5614F97F21B0295C002C5D40;
+			remoteInfo = gqcp;
+		};
 		56FBA0EF21C2F1A10084F088 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
@@ -2342,6 +2413,60 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
+		56D6307B221FE59D001081EB /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		56D6308D221FE5C9001081EB /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		56D630B3221FE673001081EB /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		56D630BF221FE67B001081EB /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		56D630DD221FE79E001081EB /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		56D630E9221FE7A5001081EB /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		56FBA0F421C2F1A10084F088 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2743,6 +2868,35 @@
 		56C8399B2215B1CB00FA98A0 /* SquareFourIndexTensor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SquareFourIndexTensor.hpp; sourceTree = "<group>"; };
 		56C8399E2215B3E700FA98A0 /* SquareFourIndexTensor_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SquareFourIndexTensor_test.cpp; sourceTree = "<group>"; };
 		56C839AA2215B50E00FA98A0 /* SquareFourIndexTensor_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SquareFourIndexTensor_test; sourceTree = BUILT_PRODUCTS_DIR; };
+		56D6307F221FE59D001081EB /* FrozenFockSpace_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = FrozenFockSpace_test; sourceTree = BUILT_PRODUCTS_DIR; };
+		56D63080221FE5BE001081EB /* FockPermutator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FockPermutator.hpp; sourceTree = "<group>"; };
+		56D63081221FE5BE001081EB /* FrozenProductFockSpace.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FrozenProductFockSpace.hpp; sourceTree = "<group>"; };
+		56D63082221FE5BE001081EB /* FrozenFockSpace.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FrozenFockSpace.hpp; sourceTree = "<group>"; };
+		56D63091221FE5C9001081EB /* FrozenProductFockSpace_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = FrozenProductFockSpace_test; sourceTree = BUILT_PRODUCTS_DIR; };
+		56D63092221FE5F1001081EB /* FrozenFockSpace.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrozenFockSpace.cpp; sourceTree = "<group>"; };
+		56D63093221FE5F1001081EB /* FrozenProductFockSpace.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrozenProductFockSpace.cpp; sourceTree = "<group>"; };
+		56D63096221FE603001081EB /* FrozenFockSpace_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrozenFockSpace_test.cpp; sourceTree = "<group>"; };
+		56D63097221FE603001081EB /* FrozenProductFockSpace_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrozenProductFockSpace_test.cpp; sourceTree = "<group>"; };
+		56D6309C221FE647001081EB /* FrozenCoreFCI.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FrozenCoreFCI.hpp; sourceTree = "<group>"; };
+		56D6309D221FE647001081EB /* FrozenCoreCI.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FrozenCoreCI.hpp; sourceTree = "<group>"; };
+		56D6309E221FE647001081EB /* FrozenCoreDOCI.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FrozenCoreDOCI.hpp; sourceTree = "<group>"; };
+		56D630A2221FE656001081EB /* FrozenCoreFCI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrozenCoreFCI.cpp; sourceTree = "<group>"; };
+		56D630A3221FE656001081EB /* FrozenCoreCI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrozenCoreCI.cpp; sourceTree = "<group>"; };
+		56D630A4221FE656001081EB /* FrozenCoreDOCI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrozenCoreDOCI.cpp; sourceTree = "<group>"; };
+		56D630A8221FE66D001081EB /* FrozenCoreFCI_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrozenCoreFCI_test.cpp; sourceTree = "<group>"; };
+		56D630A9221FE66D001081EB /* FrozenCoreDOCI_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrozenCoreDOCI_test.cpp; sourceTree = "<group>"; };
+		56D630B7221FE673001081EB /* FrozenCoreDOCI_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = FrozenCoreDOCI_test; sourceTree = BUILT_PRODUCTS_DIR; };
+		56D630C3221FE67B001081EB /* FrozenCoreFCI_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = FrozenCoreFCI_test; sourceTree = BUILT_PRODUCTS_DIR; };
+		56D630C6221FE776001081EB /* FrozenCoreRDMBuilder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FrozenCoreRDMBuilder.hpp; sourceTree = "<group>"; };
+		56D630C7221FE776001081EB /* FrozenCoreDOCIRDMBuilder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FrozenCoreDOCIRDMBuilder.hpp; sourceTree = "<group>"; };
+		56D630C8221FE776001081EB /* FrozenCoreFCIRDMBuilder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FrozenCoreFCIRDMBuilder.hpp; sourceTree = "<group>"; };
+		56D630CC221FE785001081EB /* FrozenCoreDOCIRDMBuilder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrozenCoreDOCIRDMBuilder.cpp; sourceTree = "<group>"; };
+		56D630CD221FE785001081EB /* FrozenCoreFCIRDMBuilder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrozenCoreFCIRDMBuilder.cpp; sourceTree = "<group>"; };
+		56D630CE221FE785001081EB /* FrozenCoreRDMBuilder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrozenCoreRDMBuilder.cpp; sourceTree = "<group>"; };
+		56D630D2221FE794001081EB /* FrozenCoreDOCIRDMBuilder_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrozenCoreDOCIRDMBuilder_test.cpp; sourceTree = "<group>"; };
+		56D630D3221FE794001081EB /* FrozenCoreFCIRDMBuilder_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrozenCoreFCIRDMBuilder_test.cpp; sourceTree = "<group>"; };
+		56D630E1221FE79E001081EB /* FrozenCoreDOCIRDMBuilder_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = FrozenCoreDOCIRDMBuilder_test; sourceTree = BUILT_PRODUCTS_DIR; };
+		56D630ED221FE7A5001081EB /* FrozenCoreFCIRDMBuilder_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = FrozenCoreFCIRDMBuilder_test; sourceTree = BUILT_PRODUCTS_DIR; };
 		56FBA09B21C2B0420084F088 /* linalg.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = linalg.hpp; sourceTree = "<group>"; };
 		56FBA09D21C2B0420084F088 /* io.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = io.hpp; sourceTree = "<group>"; };
 		56FBA09E21C2B0420084F088 /* miscellaneous.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = miscellaneous.hpp; sourceTree = "<group>"; };
@@ -3352,6 +3506,54 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		56D63079221FE59D001081EB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56D6307A221FE59D001081EB /* libgqcp.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		56D6308B221FE5C9001081EB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56D6308C221FE5C9001081EB /* libgqcp.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		56D630B1221FE673001081EB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56D630B2221FE673001081EB /* libgqcp.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		56D630BD221FE67B001081EB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56D630BE221FE67B001081EB /* libgqcp.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		56D630DB221FE79E001081EB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56D630DC221FE79E001081EB /* libgqcp.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		56D630E7221FE7A5001081EB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56D630E8221FE7A5001081EB /* libgqcp.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		56FBA0F221C2F1A10084F088 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -3520,6 +3722,12 @@
 				56C040802212BD4500C61BB0 /* SelectedCI_test */,
 				56C839962215A4E200FA98A0 /* SquareMatrix_test */,
 				56C839AA2215B50E00FA98A0 /* SquareFourIndexTensor_test */,
+				56D6307F221FE59D001081EB /* FrozenFockSpace_test */,
+				56D63091221FE5C9001081EB /* FrozenProductFockSpace_test */,
+				56D630B7221FE673001081EB /* FrozenCoreDOCI_test */,
+				56D630C3221FE67B001081EB /* FrozenCoreFCI_test */,
+				56D630E1221FE79E001081EB /* FrozenCoreDOCIRDMBuilder_test */,
+				56D630ED221FE7A5001081EB /* FrozenCoreFCIRDMBuilder_test */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -3552,8 +3760,11 @@
 			children = (
 				5614F99221B029FB002C5D40 /* BaseFockSpace.hpp */,
 				5614F99421B029FB002C5D40 /* Configuration.hpp */,
+				56D63080221FE5BE001081EB /* FockPermutator.hpp */,
 				5614F99821B029FB002C5D40 /* FockSpace.hpp */,
 				5614F99521B029FB002C5D40 /* FockSpaceType.hpp */,
+				56D63082221FE5BE001081EB /* FrozenFockSpace.hpp */,
+				56D63081221FE5BE001081EB /* FrozenProductFockSpace.hpp */,
 				5614F99721B029FB002C5D40 /* ONV.hpp */,
 				5614F99321B029FB002C5D40 /* ProductFockSpace.hpp */,
 				5614F99621B029FB002C5D40 /* SelectedFockSpace.hpp */,
@@ -3580,6 +3791,9 @@
 				5643B7D921F706EF00E1741F /* BaseSpinUnresolvedRDMBuilder.hpp */,
 				5614F9A121B029FB002C5D40 /* DOCIRDMBuilder.hpp */,
 				5614F9A521B029FB002C5D40 /* FCIRDMBuilder.hpp */,
+				56D630C7221FE776001081EB /* FrozenCoreDOCIRDMBuilder.hpp */,
+				56D630C8221FE776001081EB /* FrozenCoreFCIRDMBuilder.hpp */,
+				56D630C6221FE776001081EB /* FrozenCoreRDMBuilder.hpp */,
 				5614F9A421B029FB002C5D40 /* OneRDM.hpp */,
 				5614F9A021B029FB002C5D40 /* RDMCalculator.hpp */,
 				5614F9A621B029FB002C5D40 /* RDMs.hpp */,
@@ -3652,6 +3866,9 @@
 			children = (
 				5614F9CC21B029FB002C5D40 /* DOCI.hpp */,
 				5614F9CF21B029FB002C5D40 /* FCI.hpp */,
+				56D6309D221FE647001081EB /* FrozenCoreCI.hpp */,
+				56D6309E221FE647001081EB /* FrozenCoreDOCI.hpp */,
+				56D6309C221FE647001081EB /* FrozenCoreFCI.hpp */,
 				5614F9CD21B029FB002C5D40 /* HamiltonianBuilder.hpp */,
 				5614F9CE21B029FB002C5D40 /* Hubbard.hpp */,
 				56C040642212BCC800C61BB0 /* SelectedCI.hpp */,
@@ -3685,6 +3902,8 @@
 			children = (
 				5614F9DB21B029FB002C5D40 /* BaseFockSpace.cpp */,
 				5614F9D921B029FB002C5D40 /* FockSpace.cpp */,
+				56D63092221FE5F1001081EB /* FrozenFockSpace.cpp */,
+				56D63093221FE5F1001081EB /* FrozenProductFockSpace.cpp */,
 				5614F9DA21B029FB002C5D40 /* ONV.cpp */,
 				5614F9DC21B029FB002C5D40 /* ProductFockSpace.cpp */,
 				5614F9DD21B029FB002C5D40 /* SelectedFockSpace.cpp */,
@@ -3711,6 +3930,9 @@
 				5643B7E121F7070100E1741F /* BaseSpinUnresolvedRDMBuilder.cpp */,
 				5614F9EE21B029FB002C5D40 /* DOCIRDMBuilder.cpp */,
 				5614F9EA21B029FB002C5D40 /* FCIRDMBuilder.cpp */,
+				56D630CC221FE785001081EB /* FrozenCoreDOCIRDMBuilder.cpp */,
+				56D630CD221FE785001081EB /* FrozenCoreFCIRDMBuilder.cpp */,
+				56D630CE221FE785001081EB /* FrozenCoreRDMBuilder.cpp */,
 				5614F9E921B029FB002C5D40 /* OneRDM.cpp */,
 				5614F9ED21B029FB002C5D40 /* RDMCalculator.cpp */,
 				5614F9E621B029FB002C5D40 /* RDMs.cpp */,
@@ -3772,6 +3994,9 @@
 			children = (
 				5614FA0C21B029FB002C5D40 /* DOCI.cpp */,
 				5614FA0B21B029FB002C5D40 /* FCI.cpp */,
+				56D630A3221FE656001081EB /* FrozenCoreCI.cpp */,
+				56D630A4221FE656001081EB /* FrozenCoreDOCI.cpp */,
+				56D630A2221FE656001081EB /* FrozenCoreFCI.cpp */,
 				5614FA0D21B029FB002C5D40 /* HamiltonianBuilder.cpp */,
 				5614FA0A21B029FB002C5D40 /* Hubbard.cpp */,
 				56C040662212BCDC00C61BB0 /* SelectedCI.cpp */,
@@ -3946,6 +4171,8 @@
 			isa = PBXGroup;
 			children = (
 				5614FB4521B02EDE002C5D40 /* FockSpace_test.cpp */,
+				56D63096221FE603001081EB /* FrozenFockSpace_test.cpp */,
+				56D63097221FE603001081EB /* FrozenProductFockSpace_test.cpp */,
 				5614FB4621B02EDE002C5D40 /* ONV_test.cpp */,
 				5614FB4721B02EDE002C5D40 /* ProductFockSpace_test.cpp */,
 				5614FB4421B02EDE002C5D40 /* SelectedFockSpace_test.cpp */,
@@ -3969,6 +4196,8 @@
 			children = (
 				5614FB4F21B02EDE002C5D40 /* DOCIRDMBuilder_test.cpp */,
 				5614FB5321B02EDE002C5D40 /* FCIRDMBuilder_test.cpp */,
+				56D630D2221FE794001081EB /* FrozenCoreDOCIRDMBuilder_test.cpp */,
+				56D630D3221FE794001081EB /* FrozenCoreFCIRDMBuilder_test.cpp */,
 				5614FB5021B02EDE002C5D40 /* OneRDM_test.cpp */,
 				5614FB4E21B02EDE002C5D40 /* RDMCalculator_test.cpp */,
 				5614FB5221B02EDE002C5D40 /* SelectedRDMBuilder_test.cpp */,
@@ -4076,6 +4305,8 @@
 			children = (
 				5614FB9221B02EDE002C5D40 /* DOCI_test.cpp */,
 				5614FB9121B02EDE002C5D40 /* FCI_test.cpp */,
+				56D630A9221FE66D001081EB /* FrozenCoreDOCI_test.cpp */,
+				56D630A8221FE66D001081EB /* FrozenCoreFCI_test.cpp */,
 				5614FB9021B02EDE002C5D40 /* Hubbard_test.cpp */,
 				56C040682212BD1800C61BB0 /* SelectedCI_test.cpp */,
 			);
@@ -4332,9 +4563,12 @@
 				56FBA0C621C2B4AF0084F088 /* BaseMatrixSolver.hpp in Headers */,
 				56272DBD21B6CBFA008BEA47 /* AP1roG.hpp in Headers */,
 				5643B7DD21F706F000E1741F /* SpinUnresolvedRDMCalculator.hpp in Headers */,
+				56D630CA221FE776001081EB /* FrozenCoreDOCIRDMBuilder.hpp in Headers */,
+				56D630C9221FE776001081EB /* FrozenCoreRDMBuilder.hpp in Headers */,
 				56FBA0E921C2DFC00084F088 /* HoppingMatrix.hpp in Headers */,
 				5614FA3D21B029FB002C5D40 /* BaseHamiltonianParameters.hpp in Headers */,
 				5614FA0F21B029FB002C5D40 /* DOCINewtonOrbitalOptimizer.hpp in Headers */,
+				56D63084221FE5BE001081EB /* FrozenProductFockSpace.hpp in Headers */,
 				56FBA0C421C2B4AF0084F088 /* BaseEigenproblemSolver.hpp in Headers */,
 				56272DBB21B6CBFA008BEA47 /* AP1roGPSESolver.hpp in Headers */,
 				56FBA0C021C2B4AF0084F088 /* Eigenpair.hpp in Headers */,
@@ -4352,6 +4586,7 @@
 				56FBA0C321C2B4AF0084F088 /* NewtonSystemOfEquationsSolver.hpp in Headers */,
 				5614FA2C21B029FB002C5D40 /* expectation_values.hpp in Headers */,
 				56272DBE21B6CBFA008BEA47 /* APIGGeminalCoefficients.hpp in Headers */,
+				56D63085221FE5BE001081EB /* FrozenFockSpace.hpp in Headers */,
 				5614FA3821B029FB002C5D40 /* ERJacobiLocalizer.hpp in Headers */,
 				5614FA2421B029FB002C5D40 /* TwoRDM.hpp in Headers */,
 				56FBA0BB21C2B4AF0084F088 /* BaseSystemOfEquationsSolver.hpp in Headers */,
@@ -4373,6 +4608,7 @@
 				56FBA0A221C2B0420084F088 /* miscellaneous.hpp in Headers */,
 				5614FA1621B029FB002C5D40 /* FockSpace.hpp in Headers */,
 				5614FA3A21B029FB002C5D40 /* BaseERLocalizer.hpp in Headers */,
+				56D630CB221FE776001081EB /* FrozenCoreFCIRDMBuilder.hpp in Headers */,
 				5614FA2021B029FB002C5D40 /* OneRDM.hpp in Headers */,
 				5614FA1921B029FB002C5D40 /* PlainRHFSCFSolver.hpp in Headers */,
 				5614FA1821B029FB002C5D40 /* RHFSCFSolver.hpp in Headers */,
@@ -4388,12 +4624,14 @@
 				56272DBA21B6CBFA008BEA47 /* AP1roGGeminalCoefficients.hpp in Headers */,
 				5643B82121F88A0B00E1741F /* BaseAP1roGSolver.hpp in Headers */,
 				5614FA1521B029FB002C5D40 /* ONV.hpp in Headers */,
+				56D630A0221FE647001081EB /* FrozenCoreCI.hpp in Headers */,
 				5614FA3721B029FB002C5D40 /* CISolver.hpp in Headers */,
 				5614FA2321B029FB002C5D40 /* BaseRDMBuilder.hpp in Headers */,
 				5614FA1321B029FB002C5D40 /* FockSpaceType.hpp in Headers */,
 				56FBA0C121C2B4AF0084F088 /* step.hpp in Headers */,
 				5614FA1021B029FB002C5D40 /* BaseFockSpace.hpp in Headers */,
 				5614FA3621B029FB002C5D40 /* TwoElectronOperator.hpp in Headers */,
+				56D630A1221FE647001081EB /* FrozenCoreDOCI.hpp in Headers */,
 				5614FA2F21B029FB002C5D40 /* JacobiRotationParameters.hpp in Headers */,
 				5614FA3F21B029FB002C5D40 /* HamiltonianParameters.hpp in Headers */,
 				56B0D3B021F9BAC100605997 /* BivariationalCoefficients.hpp in Headers */,
@@ -4409,6 +4647,8 @@
 				5614FA2121B029FB002C5D40 /* FCIRDMBuilder.hpp in Headers */,
 				5614FA1721B029FB002C5D40 /* AOBasis.hpp in Headers */,
 				5614FA1B21B029FB002C5D40 /* RHF.hpp in Headers */,
+				56D63083221FE5BE001081EB /* FockPermutator.hpp in Headers */,
+				56D6309F221FE647001081EB /* FrozenCoreFCI.hpp in Headers */,
 				5614FA1E21B029FB002C5D40 /* SelectedRDMBuilder.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5621,6 +5861,114 @@
 			productReference = 56C839AA2215B50E00FA98A0 /* SquareFourIndexTensor_test */;
 			productType = "com.apple.product-type.tool";
 		};
+		56D63074221FE59D001081EB /* FrozenFockSpace_test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 56D6307C221FE59D001081EB /* Build configuration list for PBXNativeTarget "FrozenFockSpace_test" */;
+			buildPhases = (
+				56D63077221FE59D001081EB /* Sources */,
+				56D63079221FE59D001081EB /* Frameworks */,
+				56D6307B221FE59D001081EB /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				56D63075221FE59D001081EB /* PBXTargetDependency */,
+			);
+			name = FrozenFockSpace_test;
+			productName = AP1roGGeminalCoefficients_test;
+			productReference = 56D6307F221FE59D001081EB /* FrozenFockSpace_test */;
+			productType = "com.apple.product-type.tool";
+		};
+		56D63086221FE5C9001081EB /* FrozenProductFockSpace_test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 56D6308E221FE5C9001081EB /* Build configuration list for PBXNativeTarget "FrozenProductFockSpace_test" */;
+			buildPhases = (
+				56D63089221FE5C9001081EB /* Sources */,
+				56D6308B221FE5C9001081EB /* Frameworks */,
+				56D6308D221FE5C9001081EB /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				56D63087221FE5C9001081EB /* PBXTargetDependency */,
+			);
+			name = FrozenProductFockSpace_test;
+			productName = AP1roGGeminalCoefficients_test;
+			productReference = 56D63091221FE5C9001081EB /* FrozenProductFockSpace_test */;
+			productType = "com.apple.product-type.tool";
+		};
+		56D630AC221FE673001081EB /* FrozenCoreDOCI_test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 56D630B4221FE673001081EB /* Build configuration list for PBXNativeTarget "FrozenCoreDOCI_test" */;
+			buildPhases = (
+				56D630AF221FE673001081EB /* Sources */,
+				56D630B1221FE673001081EB /* Frameworks */,
+				56D630B3221FE673001081EB /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				56D630AD221FE673001081EB /* PBXTargetDependency */,
+			);
+			name = FrozenCoreDOCI_test;
+			productName = AP1roGGeminalCoefficients_test;
+			productReference = 56D630B7221FE673001081EB /* FrozenCoreDOCI_test */;
+			productType = "com.apple.product-type.tool";
+		};
+		56D630B8221FE67B001081EB /* FrozenCoreFCI_test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 56D630C0221FE67B001081EB /* Build configuration list for PBXNativeTarget "FrozenCoreFCI_test" */;
+			buildPhases = (
+				56D630BB221FE67B001081EB /* Sources */,
+				56D630BD221FE67B001081EB /* Frameworks */,
+				56D630BF221FE67B001081EB /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				56D630B9221FE67B001081EB /* PBXTargetDependency */,
+			);
+			name = FrozenCoreFCI_test;
+			productName = AP1roGGeminalCoefficients_test;
+			productReference = 56D630C3221FE67B001081EB /* FrozenCoreFCI_test */;
+			productType = "com.apple.product-type.tool";
+		};
+		56D630D6221FE79E001081EB /* FrozenCoreDOCIRDMBuilder_test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 56D630DE221FE79E001081EB /* Build configuration list for PBXNativeTarget "FrozenCoreDOCIRDMBuilder_test" */;
+			buildPhases = (
+				56D630D9221FE79E001081EB /* Sources */,
+				56D630DB221FE79E001081EB /* Frameworks */,
+				56D630DD221FE79E001081EB /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				56D630D7221FE79E001081EB /* PBXTargetDependency */,
+			);
+			name = FrozenCoreDOCIRDMBuilder_test;
+			productName = AP1roGGeminalCoefficients_test;
+			productReference = 56D630E1221FE79E001081EB /* FrozenCoreDOCIRDMBuilder_test */;
+			productType = "com.apple.product-type.tool";
+		};
+		56D630E2221FE7A5001081EB /* FrozenCoreFCIRDMBuilder_test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 56D630EA221FE7A5001081EB /* Build configuration list for PBXNativeTarget "FrozenCoreFCIRDMBuilder_test" */;
+			buildPhases = (
+				56D630E5221FE7A5001081EB /* Sources */,
+				56D630E7221FE7A5001081EB /* Frameworks */,
+				56D630E9221FE7A5001081EB /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				56D630E3221FE7A5001081EB /* PBXTargetDependency */,
+			);
+			name = FrozenCoreFCIRDMBuilder_test;
+			productName = AP1roGGeminalCoefficients_test;
+			productReference = 56D630ED221FE7A5001081EB /* FrozenCoreFCIRDMBuilder_test */;
+			productType = "com.apple.product-type.tool";
+		};
 		56FBA0ED21C2F1A10084F088 /* HoppingMatrix_test */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 56FBA0F521C2F1A10084F088 /* Build configuration list for PBXNativeTarget "HoppingMatrix_test" */;
@@ -5871,6 +6219,8 @@
 				5614FF9F21B043F3002C5D40 /* CISolver_test */,
 				5614018921B063D5002C5D40 /* BUILD_FOCKSPACE_TESTS */,
 				5614FFD921B062A8002C5D40 /* FockSpace_test */,
+				56D63074221FE59D001081EB /* FrozenFockSpace_test */,
+				56D63086221FE5C9001081EB /* FrozenProductFockSpace_test */,
 				5614FFE521B062AF002C5D40 /* ONV_test */,
 				5614FFF121B062B4002C5D40 /* ProductFockSpace_test */,
 				5614FFFD21B062BA002C5D40 /* SelectedFockSpace_test */,
@@ -5885,6 +6235,8 @@
 				5614018D21B063E9002C5D40 /* BUILD_HAMILTONIANBUILDER_TESTS */,
 				5614000921B062C3002C5D40 /* DOCI_test */,
 				5614001521B062C6002C5D40 /* FCI_test */,
+				56D630AC221FE673001081EB /* FrozenCoreDOCI_test */,
+				56D630B8221FE67B001081EB /* FrozenCoreFCI_test */,
 				5614002121B062CD002C5D40 /* Hubbard_test */,
 				56C040752212BD4500C61BB0 /* SelectedCI_test */,
 				5614019121B063FF002C5D40 /* BUILD_HAMILTONIANPARAMETERS_TESTS */,
@@ -5912,6 +6264,8 @@
 				561401A121B06455002C5D40 /* BUILD_RDM_TESTS */,
 				5614008D21B0630F002C5D40 /* DOCIRDMBuilder_test */,
 				5614009921B0631A002C5D40 /* FCIRDMBuilder_test */,
+				56D630D6221FE79E001081EB /* FrozenCoreDOCIRDMBuilder_test */,
+				56D630E2221FE7A5001081EB /* FrozenCoreFCIRDMBuilder_test */,
 				561400A521B06320002C5D40 /* OneRDM_test */,
 				561400B121B06329002C5D40 /* RDMCalculator_test */,
 				561400BD21B06330002C5D40 /* SelectedRDMBuilder_test */,
@@ -6238,11 +6592,13 @@
 				5614FA6321B029FB002C5D40 /* properties.cpp in Sources */,
 				56FBA0DB21C2B4C90084F088 /* BaseMatrixSolver.cpp in Sources */,
 				56B49B7F21F2128D000F543B /* AP1roGGeminalCoefficients.cpp in Sources */,
+				56D630D1221FE785001081EB /* FrozenCoreRDMBuilder.cpp in Sources */,
 				56C040672212BCDC00C61BB0 /* SelectedCI.cpp in Sources */,
 				5614FA6D21B029FB002C5D40 /* WaveFunction.cpp in Sources */,
 				5643B80921F868A600E1741F /* AP1roGVariables.cpp in Sources */,
 				5614FA4D21B029FB002C5D40 /* ProductFockSpace.cpp in Sources */,
 				5614FA5421B029FB002C5D40 /* PlainRHFSCFSolver.cpp in Sources */,
+				56D63095221FE5F1001081EB /* FrozenProductFockSpace.cpp in Sources */,
 				5614FA4721B029FB002C5D40 /* RMP2.cpp in Sources */,
 				56FBA0A821C2B06B0084F088 /* io.cpp in Sources */,
 				5614FA5021B029FB002C5D40 /* LibintCommunicator.cpp in Sources */,
@@ -6250,6 +6606,7 @@
 				5614FA5D21B029FB002C5D40 /* DOCIRDMBuilder.cpp in Sources */,
 				5614FA4921B029FB002C5D40 /* Molecule.cpp in Sources */,
 				5614FA7021B029FB002C5D40 /* BaseHamiltonianParameters.cpp in Sources */,
+				56D630D0221FE785001081EB /* FrozenCoreFCIRDMBuilder.cpp in Sources */,
 				5614FA5721B029FB002C5D40 /* TwoRDM.cpp in Sources */,
 				56FBA0D521C2B4C90084F088 /* NewtonMinimizer.cpp in Sources */,
 				5614FA7221B029FB002C5D40 /* FCI.cpp in Sources */,
@@ -6268,6 +6625,7 @@
 				5614FA5821B029FB002C5D40 /* OneRDM.cpp in Sources */,
 				56FBA0D721C2B4C90084F088 /* DavidsonSolver.cpp in Sources */,
 				5614FA5221B029FB002C5D40 /* DIISRHFSCFSolver.cpp in Sources */,
+				56D63094221FE5F1001081EB /* FrozenFockSpace.cpp in Sources */,
 				5614FA5C21B029FB002C5D40 /* RDMCalculator.cpp in Sources */,
 				5643B82021F88A0B00E1741F /* BaseAP1roGSolver.cpp in Sources */,
 				5614FA4C21B029FB002C5D40 /* BaseFockSpace.cpp in Sources */,
@@ -6280,7 +6638,10 @@
 				5614FA7521B029FB002C5D40 /* DOCINewtonOrbitalOptimizer.cpp in Sources */,
 				56FBA0D621C2B4C90084F088 /* NewtonSystemOfEquationsSolver.cpp in Sources */,
 				56B49B8021F2128D000F543B /* AP1roG.cpp in Sources */,
+				56D630A5221FE657001081EB /* FrozenCoreFCI.cpp in Sources */,
 				5614FA7421B029FB002C5D40 /* HamiltonianBuilder.cpp in Sources */,
+				56D630A7221FE657001081EB /* FrozenCoreDOCI.cpp in Sources */,
+				56D630CF221FE785001081EB /* FrozenCoreDOCIRDMBuilder.cpp in Sources */,
 				5614FA5A21B029FB002C5D40 /* SelectedRDMBuilder.cpp in Sources */,
 				5614FA4A21B029FB002C5D40 /* FockSpace.cpp in Sources */,
 				5643B7E821F7074000E1741F /* SpinUnresolvedWaveFunction.cpp in Sources */,
@@ -6288,6 +6649,7 @@
 				5614FA6921B029FB002C5D40 /* BaseERLocalizer.cpp in Sources */,
 				56FBA0A921C2B06B0084F088 /* linalg.cpp in Sources */,
 				5643B7E321F7070100E1741F /* SpinUnresolvedRDMCalculator.cpp in Sources */,
+				56D630A6221FE657001081EB /* FrozenCoreCI.cpp in Sources */,
 				5614FA4B21B029FB002C5D40 /* ONV.cpp in Sources */,
 				56FBA0D321C2B4C90084F088 /* BaseSystemOfEquationsSolver.cpp in Sources */,
 				5614FA6B21B029FB002C5D40 /* ERJacobiLocalizer.cpp in Sources */,
@@ -6564,6 +6926,54 @@
 			buildActionMask = 2147483647;
 			files = (
 				56C839AB2215B52B00FA98A0 /* SquareFourIndexTensor_test.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		56D63077221FE59D001081EB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56D6309A221FE60D001081EB /* FrozenFockSpace_test.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		56D63089221FE5C9001081EB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56D6309B221FE616001081EB /* FrozenProductFockSpace_test.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		56D630AF221FE673001081EB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56D630C4221FE69B001081EB /* FrozenCoreDOCI_test.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		56D630BB221FE67B001081EB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56D630C5221FE6A6001081EB /* FrozenCoreFCI_test.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		56D630D9221FE79E001081EB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56D630EE221FE7B6001081EB /* FrozenCoreDOCIRDMBuilder_test.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		56D630E5221FE7A5001081EB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56D630EF221FE7C2001081EB /* FrozenCoreFCIRDMBuilder_test.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7286,6 +7696,36 @@
 			isa = PBXTargetDependency;
 			target = 5614F97F21B0295C002C5D40 /* gqcp */;
 			targetProxy = 56C839A12215B50E00FA98A0 /* PBXContainerItemProxy */;
+		};
+		56D63075221FE59D001081EB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5614F97F21B0295C002C5D40 /* gqcp */;
+			targetProxy = 56D63076221FE59D001081EB /* PBXContainerItemProxy */;
+		};
+		56D63087221FE5C9001081EB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5614F97F21B0295C002C5D40 /* gqcp */;
+			targetProxy = 56D63088221FE5C9001081EB /* PBXContainerItemProxy */;
+		};
+		56D630AD221FE673001081EB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5614F97F21B0295C002C5D40 /* gqcp */;
+			targetProxy = 56D630AE221FE673001081EB /* PBXContainerItemProxy */;
+		};
+		56D630B9221FE67B001081EB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5614F97F21B0295C002C5D40 /* gqcp */;
+			targetProxy = 56D630BA221FE67B001081EB /* PBXContainerItemProxy */;
+		};
+		56D630D7221FE79E001081EB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5614F97F21B0295C002C5D40 /* gqcp */;
+			targetProxy = 56D630D8221FE79E001081EB /* PBXContainerItemProxy */;
+		};
+		56D630E3221FE7A5001081EB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5614F97F21B0295C002C5D40 /* gqcp */;
+			targetProxy = 56D630E4221FE7A5001081EB /* PBXContainerItemProxy */;
 		};
 		56FBA0EE21C2F1A10084F088 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -8958,6 +9398,102 @@
 			};
 			name = Release;
 		};
+		56D6307D221FE59D001081EB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		56D6307E221FE59D001081EB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		56D6308F221FE5C9001081EB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		56D63090221FE5C9001081EB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		56D630B5221FE673001081EB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		56D630B6221FE673001081EB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		56D630C1221FE67B001081EB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		56D630C2221FE67B001081EB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		56D630DF221FE79E001081EB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		56D630E0221FE79E001081EB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		56D630EB221FE7A5001081EB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		56D630EC221FE7A5001081EB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		56FBA0F621C2F1A10084F088 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -9896,6 +10432,60 @@
 			buildConfigurations = (
 				56C839A82215B50E00FA98A0 /* Debug */,
 				56C839A92215B50E00FA98A0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		56D6307C221FE59D001081EB /* Build configuration list for PBXNativeTarget "FrozenFockSpace_test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				56D6307D221FE59D001081EB /* Debug */,
+				56D6307E221FE59D001081EB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		56D6308E221FE5C9001081EB /* Build configuration list for PBXNativeTarget "FrozenProductFockSpace_test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				56D6308F221FE5C9001081EB /* Debug */,
+				56D63090221FE5C9001081EB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		56D630B4221FE673001081EB /* Build configuration list for PBXNativeTarget "FrozenCoreDOCI_test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				56D630B5221FE673001081EB /* Debug */,
+				56D630B6221FE673001081EB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		56D630C0221FE67B001081EB /* Build configuration list for PBXNativeTarget "FrozenCoreFCI_test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				56D630C1221FE67B001081EB /* Debug */,
+				56D630C2221FE67B001081EB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		56D630DE221FE79E001081EB /* Build configuration list for PBXNativeTarget "FrozenCoreDOCIRDMBuilder_test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				56D630DF221FE79E001081EB /* Debug */,
+				56D630E0221FE79E001081EB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		56D630EA221FE7A5001081EB /* Build configuration list for PBXNativeTarget "FrozenCoreFCIRDMBuilder_test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				56D630EB221FE7A5001081EB /* Debug */,
+				56D630EC221FE7A5001081EB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
