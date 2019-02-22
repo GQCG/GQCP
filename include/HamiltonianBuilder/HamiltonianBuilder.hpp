@@ -72,7 +72,7 @@ public:
      *  @param x                            the (set of) vector(s) upon which the Hamiltonian acts
      *  @param diagonal                     the diagonal of the Hamiltonian matrix
      *
-     *  @return the action of the Hamiltonian on the coefficient vector
+     *  @return the action of the Hamiltonian on the coefficient vector(s)
      */
     virtual Eigen::MatrixXd matrixVectorProduct(const HamiltonianParameters<double>& hamiltonian_parameters, const Eigen::MatrixXd& x, const Eigen::VectorXd& diagonal) const = 0;
 

@@ -70,9 +70,9 @@ Eigen::MatrixXd FrozenCoreCI::constructHamiltonian(const HamiltonianParameters<d
  *  @param x            the (set of) vector(s) upon which the Hamiltonian acts
  *  @param diagonal     the diagonal of the Hamiltonian matrix
  *
- *  @return the action of the frozen core Hamiltonian on the coefficient vector
+ *  @return the action of the frozen core Hamiltonian on the coefficient vector(s)
  */
-Eigen::VectorXd FrozenCoreCI::matrixVectorProduct(const HamiltonianParameters<double>& ham_par, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) const {
+Eigen::MatrixXd FrozenCoreCI::matrixVectorProduct(const HamiltonianParameters<double>& ham_par, const Eigen::MatrixXd& x, const Eigen::VectorXd& diagonal) const {
 
     HamiltonianParameters<double> frozen_ham_par = this->freezeHamiltonianParameters(ham_par, X);
 

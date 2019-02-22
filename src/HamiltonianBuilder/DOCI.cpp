@@ -109,7 +109,7 @@ Eigen::MatrixXd DOCI::constructHamiltonian(const HamiltonianParameters<double>& 
  *  @param x                            the (set of) vector(s) upon which the DOCI Hamiltonian acts
  *  @param diagonal                     the diagonal of the DOCI Hamiltonian matrix
  *
- *  @return the action of the DOCI Hamiltonian on the coefficient vector
+ *  @return the action of the DOCI Hamiltonian on the coefficient vector(s)
  */
 Eigen::MatrixXd DOCI::matrixVectorProduct(const HamiltonianParameters<double>& hamiltonian_parameters, const Eigen::MatrixXd& x, const Eigen::VectorXd& diagonal) const {
 
@@ -124,7 +124,7 @@ Eigen::MatrixXd DOCI::matrixVectorProduct(const HamiltonianParameters<double>& h
     size_t N = this->fock_space.get_N();
 
     // Diagonal contributions
-    Eigen::MatrixXd matvec = diagonal.cwiseProduct(x);
+    Eigen::MatrixXd matvec = diagonal.asDiagonal()*x;
 
     // storing all values associated with I-th position of the matvec in vector_I for a single matvec access at the end of each iteration
     Eigen::VectorXd vector_I = Eigen::VectorXd::Zero(x.cols());

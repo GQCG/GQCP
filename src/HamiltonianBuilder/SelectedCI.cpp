@@ -252,7 +252,7 @@ Eigen::VectorXd SelectedCI::matrixVectorProduct(const HamiltonianParameters<doub
     Eigen::VectorXd matvec = diagonal.cwiseProduct(x);
 
     // We should pass the calculated elements to the resulting vector and perform the product
-    PassToMethod addToMatvec = [&matvec, &x](size_t I, size_t J, double value) { matvec(I) += value * x(J); };
+    PassToMethod addToMatvec = [&matvec, &x](size_t I, size_t J, double value) { matvec.row(I) += value * x.row(J); };
 
     this->evaluateHamiltonianElements(hamiltonian_parameters, addToMatvec);
 

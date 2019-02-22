@@ -72,7 +72,7 @@ public:
      *  @param x                            the (set of) vector(s) upon which the SelectedCI Hamiltonian acts
      *  @param diagonal                     the diagonal of the SelectedCI Hamiltonian matrix
      *
-     *  @return the action of the SelectedCI Hamiltonian on the coefficient vector
+     *  @return the action of the SelectedCI Hamiltonian on the coefficient vector(s)
      */
     Eigen::MatrixXd matrixVectorProduct(const HamiltonianParameters<double>& hamiltonian_parameters, const Eigen::MatrixXd& x, const Eigen::VectorXd& diagonal) const override;
 

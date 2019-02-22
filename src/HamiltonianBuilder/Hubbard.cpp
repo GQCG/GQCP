@@ -183,9 +183,9 @@ Eigen::MatrixXd Hubbard::constructHamiltonian(const HamiltonianParameters<double
  *  @param x                            the (set of) vector(s) upon which the Hubbard Hamiltonian acts
  *  @param diagonal                     the diagonal of the Hubbard Hamiltonian matrix
  *
- *  @return the action of the Hubbard Hamiltonian on the coefficient vector
+ *  @return the action of the Hubbard Hamiltonian on the coefficient vector(s)
  */
-Eigen::VectorXd Hubbard::matrixVectorProduct(const HamiltonianParameters<double>& hamiltonian_parameters, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) const {
+Eigen::MatrixXd Hubbard::matrixVectorProduct(const HamiltonianParameters<double>& hamiltonian_parameters, const Eigen::MatrixXd& x, const Eigen::VectorXd& diagonal) const {
 
     auto K = hamiltonian_parameters.get_h().get_dim();
     if (K != this->fock_space.get_K()) {
@@ -195,10 +195,10 @@ Eigen::VectorXd Hubbard::matrixVectorProduct(const HamiltonianParameters<double>
     FockSpace fock_space_alpha = fock_space.get_fock_space_alpha();
     FockSpace fock_space_beta = fock_space.get_fock_space_beta();
 
-    Eigen::VectorXd matvec = diagonal.cwiseProduct(x);
+    Eigen::MatrixXd matvec = diagonal.asDiagonal() * x;
 
     // We pass to a the matvec and create the corresponding lambda function
-    PassToMethod addToMatvec = [&matvec, &x](size_t I, size_t J, double value) { matvec(I) += value * x(J); };
+    PassToMethod addToMatvec = [&matvec, &x](size_t I, size_t J, double value) { matvec.row(I) += value * x.row(J); };
 
     // perform one electron evaluations, one for the alpha component and one for the beta component.
     // In our case alpha will be major and thus when alpha is the "target" (the operators evaluated)

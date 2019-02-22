@@ -97,7 +97,7 @@ public:
      *  @param x                            the (set of) vector(s) upon which the FCI Hamiltonian acts
      *  @param diagonal                     the diagonal of the FCI Hamiltonian matrix
      *
-     *  @return the action of the FCI Hamiltonian on the coefficient vector
+     *  @return the action of the FCI Hamiltonian on the coefficient vector(s)
      */
     Eigen::MatrixXd matrixVectorProduct(const HamiltonianParameters<double>& hamiltonian_parameters, const Eigen::MatrixXd& x, const Eigen::VectorXd& diagonal) const override;
 

@@ -66,7 +66,7 @@ public:
      *  @param x                            the (set of) vector(s) upon which the DOCI Hamiltonian acts
      *  @param diagonal                     the diagonal of the DOCI Hamiltonian matrix
      *
-     *  @return the action of the DOCI Hamiltonian on the coefficient vector
+     *  @return the action of the DOCI Hamiltonian on the coefficient vector(s)
      */
     Eigen::MatrixXd matrixVectorProduct(const HamiltonianParameters<double>& hamiltonian_parameters, const Eigen::MatrixXd& x, const Eigen::VectorXd& diagonal) const override;
 

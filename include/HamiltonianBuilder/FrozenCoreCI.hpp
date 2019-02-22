@@ -56,7 +56,7 @@ public:
      *  @param x            the (set of) vector(s) upon which the Hamiltonian acts
      *  @param diagonal     the diagonal of the Hamiltonian matrix
      *
-     *  @return the action of the frozen core Hamiltonian on the coefficient vector
+     *  @return the action of the frozen core Hamiltonian on the coefficient vector(s)
      */
     Eigen::MatrixXd matrixVectorProduct(const HamiltonianParameters<double>& ham_par, const Eigen::MatrixXd& x, const Eigen::VectorXd& diagonal) const override;
 
