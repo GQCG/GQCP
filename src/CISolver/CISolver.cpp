@@ -73,7 +73,7 @@ void CISolver::solve(const BaseSolverOptions& solver_options) {
         case SolverType::DAVIDSON: {
 
             Eigen::VectorXd diagonal = this->hamiltonian_builder->calculateDiagonal(this->hamiltonian_parameters);
-            VectorFunction matrixVectorProduct = [this, &diagonal](const Eigen::VectorXd& x) { return hamiltonian_builder->matrixVectorProduct(hamiltonian_parameters, x, diagonal); };
+            VectorFunction matrixVectorProduct = [this, &diagonal](const Eigen::MatrixXd& x) { return hamiltonian_builder->matrixVectorProduct(hamiltonian_parameters, x, diagonal); };
 
             DavidsonSolver solver (matrixVectorProduct, diagonal, dynamic_cast<const DavidsonSolverOptions&>(solver_options));
 
