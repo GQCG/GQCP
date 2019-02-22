@@ -35,7 +35,7 @@ namespace GQCP {
  *
  *  @return the AP1roG electronic energy
  */
-double calculateAP1roGEnergy(const AP1roGGeminalCoefficients& G, const HamiltonianParameters& ham_par);
+double calculateAP1roGEnergy(const AP1roGGeminalCoefficients& G, const HamiltonianParameters<double>& ham_par);
 
 /**
  *  @param G            the AP1roG geminal coefficients

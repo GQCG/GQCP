@@ -41,7 +41,7 @@ private:
      *  @param hamiltonian_parameters   the Hamiltonian parameters in an orthonormal basis
      *  @param method                   the method depending to how you wish to construct the Hamiltonian
      */
-    void evaluateHamiltonianElements(const HamiltonianParameters& hamiltonian_parameters, const PassToMethod& method) const;
+    void evaluateHamiltonianElements(const HamiltonianParameters<double>& hamiltonian_parameters, const PassToMethod& method) const;
 public:
 
     // CONSTRUCTORS
@@ -65,7 +65,7 @@ public:
      *
      *  @return the SelectedCI Hamiltonian matrix
      */
-    Eigen::MatrixXd constructHamiltonian(const HamiltonianParameters& hamiltonian_parameters) const override;
+    Eigen::MatrixXd constructHamiltonian(const HamiltonianParameters<double>& hamiltonian_parameters) const override;
 
     /**
      *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis
@@ -74,14 +74,14 @@ public:
      *
      *  @return the action of the SelectedCI Hamiltonian on the coefficient vector
      */
-    Eigen::VectorXd matrixVectorProduct(const HamiltonianParameters& hamiltonian_parameters, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) const override;
+    Eigen::VectorXd matrixVectorProduct(const HamiltonianParameters<double>& hamiltonian_parameters, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) const override;
 
     /**
      *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis
      *
      *  @return the diagonal of the matrix representation of the SelectedCI Hamiltonian
      */
-    Eigen::VectorXd calculateDiagonal(const HamiltonianParameters& hamiltonian_parameters) const override;
+    Eigen::VectorXd calculateDiagonal(const HamiltonianParameters<double>& hamiltonian_parameters) const override;
 };
 
 

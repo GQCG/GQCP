@@ -101,7 +101,7 @@ Eigen::MatrixXd calculateRHFAO1RDM(const Eigen::MatrixXd& C, size_t N) {
  *
  *  @return the RHF Fock matrix expressed in the AO basis
  */
-Eigen::MatrixXd calculateRHFAOFockMatrix(const Eigen::MatrixXd& D_AO, HamiltonianParameters ham_par) {
+Eigen::MatrixXd calculateRHFAOFockMatrix(const Eigen::MatrixXd& D_AO, const HamiltonianParameters<double>& ham_par) {
 
     // To perform the contraction, we will first have to convert the Eigen::MatrixXd D_AO to an Eigen::Tensor<const double, 2> D_AO_tensor, as contractions are only implemented for Eigen::Tensors
     Eigen::TensorMap<Eigen::Tensor<const double, 2>> D_AO_tensor (D_AO.data(), D_AO.rows(), D_AO.cols());
@@ -114,7 +114,8 @@ Eigen::MatrixXd calculateRHFAOFockMatrix(const Eigen::MatrixXd& D_AO, Hamiltonia
     Eigen::array<Eigen::IndexPair<int>, 2> exchange_contraction_pair = {Eigen::IndexPair<int>(1, 0), Eigen::IndexPair<int>(2, 1)};
 
     // Calculate both contractions (and incorporate prefactors)
-    Eigen::Tensor<double, 4> g = ham_par.get_g().get_matrix_representation();  // two-electron integrals
+//    Eigen::Tensor<double, 4> g = ham_par.get_g().get_matrix_representation();  // two-electron integrals
+    auto g = ham_par.get_g();
     Eigen::Tensor<double, 2> direct_contraction = g.contract(D_AO_tensor, direct_contraction_pair);
     Eigen::Tensor<double, 2> exchange_contraction = -0.5 * g.contract(D_AO_tensor, exchange_contraction_pair);
 
@@ -124,7 +125,9 @@ Eigen::MatrixXd calculateRHFAOFockMatrix(const Eigen::MatrixXd& D_AO, Hamiltonia
 
 
     // Return the final result
-    Eigen::MatrixXd H_core = ham_par.get_h().get_matrix_representation();
+//    Eigen::MatrixXd H_core = ham_par.get_h().get_matrix_representation();
+    auto H_core = ham_par.get_h();
+
     return H_core + G1 + G2;
 }
 

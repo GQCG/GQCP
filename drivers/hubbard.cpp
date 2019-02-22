@@ -84,7 +84,7 @@ int main (int argc, char** argv) {
     GQCP::HoppingMatrix H = GQCP::HoppingMatrix::FromUpperTriangle(triagonal);
 
     // Actual calculations
-    auto ham_par = GQCP::HamiltonianParameters::Hubbard(H);
+    auto ham_par = GQCP::HamiltonianParameters<double>::Hubbard(H);
     if (ham_par.get_K() != K) {
         throw std::invalid_argument("The given number of sites does not match the triagonal");
     }

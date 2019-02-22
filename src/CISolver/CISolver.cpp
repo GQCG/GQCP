@@ -17,9 +17,9 @@
 // 
 #include "CISolver/CISolver.hpp"
 
-#include "optimization/DenseSolver.hpp"
-#include "optimization/DavidsonSolver.hpp"
-#include "optimization/SparseSolver.hpp"
+#include "math/optimization/DenseSolver.hpp"
+#include "math/optimization/DavidsonSolver.hpp"
+#include "math/optimization/SparseSolver.hpp"
 
 
 namespace GQCP {
@@ -33,7 +33,7 @@ namespace GQCP {
  *  @param hamiltonian_builder      the HamiltonianBuilder for which the CI eigenvalue problem should be solved
  *  @param hamiltonian_parameters   the Hamiltonian parameters in an orthonormal basis
  */
-CISolver::CISolver(const HamiltonianBuilder& hamiltonian_builder, const HamiltonianParameters& hamiltonian_parameters) :
+CISolver::CISolver(const HamiltonianBuilder& hamiltonian_builder, const HamiltonianParameters<double>& hamiltonian_parameters) :
     hamiltonian_builder (&hamiltonian_builder),
     hamiltonian_parameters (hamiltonian_parameters)
 {

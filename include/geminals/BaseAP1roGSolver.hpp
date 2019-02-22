@@ -38,7 +38,7 @@ protected:
 
     AP1roGGeminalCoefficients geminal_coefficients;  // the converged geminal coefficients
 
-    HamiltonianParameters ham_par;
+    HamiltonianParameters<double> ham_par;
 
 
 public:
@@ -48,7 +48,7 @@ public:
      *  @param ham_par      Hamiltonian parameters in an orthonormal orbital basis
      *  @param G            the initial guess for the AP1roG gemial coefficients
      */
-    BaseAP1roGSolver(size_t N_P, const HamiltonianParameters& ham_par, const AP1roGGeminalCoefficients& G);
+    BaseAP1roGSolver(size_t N_P, const HamiltonianParameters<double>& ham_par, const AP1roGGeminalCoefficients& G);
 
     /**
      *  @param N_P          the number of electrons
@@ -56,14 +56,14 @@ public:
      *
      *  The initial guess for the geminal coefficients is zero
      */
-    BaseAP1roGSolver(size_t N_P, const HamiltonianParameters& ham_par);
+    BaseAP1roGSolver(size_t N_P, const HamiltonianParameters<double>& ham_par);
 
     /**
      *  @param molecule     the molecule used for the AP1roG calculation
      *  @param ham_par      Hamiltonian parameters in an orthonormal orbital basis
      *  @param G            the initial guess for the AP1roG gemial coefficients
      */
-    BaseAP1roGSolver(const Molecule& molecule, const HamiltonianParameters& ham_par, const AP1roGGeminalCoefficients& G);
+    BaseAP1roGSolver(const Molecule& molecule, const HamiltonianParameters<double>& ham_par, const AP1roGGeminalCoefficients& G);
 
     /**
      *  @param molecule     the molecule used for the AP1roG calculation
@@ -71,7 +71,7 @@ public:
      *
      *  The initial guess for the geminal coefficients is zero
      */
-    BaseAP1roGSolver(const Molecule& molecule, const HamiltonianParameters& ham_par);
+    BaseAP1roGSolver(const Molecule& molecule, const HamiltonianParameters<double>& ham_par);
 
 
     // DESTRUCTOR
@@ -81,7 +81,7 @@ public:
     // GETTERS
     double get_electronic_energy() const { return this->electronic_energy; }
     const AP1roGGeminalCoefficients& get_geminal_coefficients() const { return this->geminal_coefficients; }
-    const HamiltonianParameters& get_ham_par() const { return this->ham_par; }
+    const HamiltonianParameters<double>& get_ham_par() const { return this->ham_par; }
 
 
     // PUBLIC METHODS

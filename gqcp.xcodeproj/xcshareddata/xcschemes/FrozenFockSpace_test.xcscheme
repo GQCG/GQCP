@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "56D6301E221FD8D1001081EB"
+               BlueprintIdentifier = "56D63074221FE59D001081EB"
                BuildableName = "FrozenFockSpace_test"
                BlueprintName = "FrozenFockSpace_test"
                ReferencedContainer = "container:gqcp.xcodeproj">
@@ -32,7 +32,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "56D6301E221FD8D1001081EB"
+            BlueprintIdentifier = "56D63074221FE59D001081EB"
             BuildableName = "FrozenFockSpace_test"
             BlueprintName = "FrozenFockSpace_test"
             ReferencedContainer = "container:gqcp.xcodeproj">
@@ -55,7 +55,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "56D6301E221FD8D1001081EB"
+            BlueprintIdentifier = "56D63074221FE59D001081EB"
             BuildableName = "FrozenFockSpace_test"
             BlueprintName = "FrozenFockSpace_test"
             ReferencedContainer = "container:gqcp.xcodeproj">
@@ -74,7 +74,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "56D6301E221FD8D1001081EB"
+            BlueprintIdentifier = "56D63074221FE59D001081EB"
             BuildableName = "FrozenFockSpace_test"
             BlueprintName = "FrozenFockSpace_test"
             ReferencedContainer = "container:gqcp.xcodeproj">

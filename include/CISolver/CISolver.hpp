@@ -23,8 +23,8 @@
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "WaveFunction/WaveFunction.hpp"
 
-#include "optimization/Eigenpair.hpp"
-#include "optimization/EigenproblemSolverOptions.hpp"
+#include "math/optimization/Eigenpair.hpp"
+#include "math/optimization/EigenproblemSolverOptions.hpp"
 
 
 namespace GQCP {
@@ -36,7 +36,7 @@ namespace GQCP {
 class CISolver {
 private:
     const HamiltonianBuilder* hamiltonian_builder;
-    HamiltonianParameters hamiltonian_parameters;
+    HamiltonianParameters<double> hamiltonian_parameters;
 
     std::vector<Eigenpair> eigenpairs;  // eigenvalues and -vectors
 
@@ -46,7 +46,7 @@ public:
      *  @param hamiltonian_builder      the HamiltonianBuilder for which the CI eigenvalue problem should be solved
      *  @param hamiltonian_parameters   the Hamiltonian parameters in an orthonormal basis
      */
-    CISolver(const HamiltonianBuilder& hamiltonian_builder, const HamiltonianParameters& hamiltonian_parameters);
+    CISolver(const HamiltonianBuilder& hamiltonian_builder, const HamiltonianParameters<double>& hamiltonian_parameters);
 
 
     // GETTERS

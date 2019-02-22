@@ -33,37 +33,12 @@ BOOST_AUTO_TEST_CASE ( TwoElectronOperator_constructor ) {
 
     // Check a correct constructor
     Eigen::Tensor<double, 4> tensor (3, 3, 3, 3);
-    GQCP::TwoElectronOperator O (tensor);
+    GQCP::TwoElectronOperator<double> O (tensor);
 
 
     // Check a faulty constructor
     Eigen::Tensor<double, 4> tensor2 (3, 3, 3, 2);
-    BOOST_CHECK_THROW(GQCP::TwoElectronOperator O2 (tensor2), std::invalid_argument);
-}
-
-
-BOOST_AUTO_TEST_CASE ( isEqualTo ) {
-
-    Eigen::Tensor<double, 4> A (3, 3, 3, 3);
-    A.setRandom();
-
-    GQCP::TwoElectronOperator O1 (A);
-    GQCP::TwoElectronOperator O2 (A);
-    BOOST_CHECK(O1.isEqualTo(O2, 1.0e-05));
-
-    GQCP::TwoElectronOperator O3 (2*A);
-    BOOST_CHECK(!(O3.isEqualTo(O1)));
-}
-
-
-BOOST_AUTO_TEST_CASE ( operator_equals ) {
-
-    Eigen::Tensor<double, 4> A (3, 3, 3, 3);
-    A.setRandom();
-
-    GQCP::TwoElectronOperator O1 (A);
-    GQCP::TwoElectronOperator O2 (A);
-    BOOST_CHECK(O1 == O2);
+    BOOST_CHECK_THROW(GQCP::TwoElectronOperator<double> O2 (tensor2), std::invalid_argument);
 }
 
 
@@ -72,12 +47,12 @@ BOOST_AUTO_TEST_CASE ( TwoElectronOperator_transform_trivial ) {
     // Let's test a trivial transformation: i.e. with T being a unit matrix
     Eigen::Tensor<double, 4> g (3, 3, 3, 3);
     g.setRandom();
-    GQCP::TwoElectronOperator G (g);
+    GQCP::TwoElectronOperator<double> G (g);
 
     Eigen::MatrixXd T = Eigen::MatrixXd::Identity(3, 3);
     G.transform(T);
 
-    BOOST_CHECK(GQCP::areEqual(g, G.get_matrix_representation(), 1.0e-12));
+    BOOST_CHECK(GQCP::areEqual(g, g, 1.0e-12));
 }
 
 
@@ -101,10 +76,10 @@ BOOST_AUTO_TEST_CASE ( TwoElectronOperator_transform_olsens ) {
             }
         }
     }
-    GQCP::TwoElectronOperator G (g);
+    GQCP::TwoElectronOperator<double> G (g);
     G.transform(T);
 
-    BOOST_CHECK(GQCP::areEqual(G.get_matrix_representation(), g_transformed_ref, 1.0e-12));
+    BOOST_CHECK(GQCP::areEqual(G, g_transformed_ref, 1.0e-12));
 }
 
 
@@ -114,7 +89,7 @@ BOOST_AUTO_TEST_CASE ( TwoElectronOperator_rotate_throws ) {
     size_t dim = 3;
     Eigen::Tensor<double, 4> g (dim, dim, dim, dim);
     g.setRandom();
-    GQCP::TwoElectronOperator G (g);
+    GQCP::TwoElectronOperator<double> G (g);
 
 
     // Check if a non-unitary matrix as transformation matrix causes a throw
@@ -123,7 +98,7 @@ BOOST_AUTO_TEST_CASE ( TwoElectronOperator_rotate_throws ) {
 
 
     // Check if a unitary matrix as transformation matrix is accepted
-    G.rotate(Eigen::MatrixXd::Identity(dim, dim));
+    G.rotate(GQCP::SquareMatrix<double>(Eigen::MatrixXd::Identity(dim, dim)));
 }
 
 
@@ -133,8 +108,8 @@ BOOST_AUTO_TEST_CASE ( TwoElectronOperator_rotate_JacobiRotationParameters ) {
     size_t dim = 5;
     Eigen::Tensor<double, 4> g (dim, dim, dim, dim);
     g.setRandom();
-    GQCP::TwoElectronOperator G1 (g);
-    GQCP::TwoElectronOperator G2 (g);
+    GQCP::TwoElectronOperator<double> G1 (g);
+    GQCP::TwoElectronOperator<double> G2 (g);
 
 
     // Check that using a Jacobi transformation (rotation) matrix as U is equal to the custom transformation (rotation)
@@ -148,5 +123,5 @@ BOOST_AUTO_TEST_CASE ( TwoElectronOperator_rotate_JacobiRotationParameters ) {
     G2.rotate(U);
 
 
-    BOOST_CHECK(GQCP::areEqual(G1.get_matrix_representation(), G2.get_matrix_representation(), 1.0e-12));
+    BOOST_CHECK(GQCP::areEqual(G1, G2, 1.0e-12));
 }

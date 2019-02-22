@@ -48,7 +48,7 @@ private:
      *  @param hamiltonian_parameters   the Hubbard Hamiltonian parameters
      *  @param method                   the used method: constructHamiltonian() or matrixVectorProduct()
      */
-    void oneOperatorModule(const FockSpace& fock_space_target, const FockSpace& fock_space_fixed, bool target_is_major, const HamiltonianParameters& hamiltonian_parameters, const PassToMethod& method) const;
+    void oneOperatorModule(const FockSpace& fock_space_target, const FockSpace& fock_space_fixed, bool target_is_major, const HamiltonianParameters<double>& hamiltonian_parameters, const PassToMethod& method) const;
 
 
 public:
@@ -74,7 +74,7 @@ public:
      *
      *  @return the Hubbard Hamiltonian matrix
      */
-    Eigen::MatrixXd constructHamiltonian(const HamiltonianParameters& hamiltonian_parameters) const override;
+    Eigen::MatrixXd constructHamiltonian(const HamiltonianParameters<double>& hamiltonian_parameters) const override;
 
     /**
      *  @param hamiltonian_parameters       the Hubbard Hamiltonian parameters in an orthonormal orbital basis
@@ -83,14 +83,14 @@ public:
      *
      *  @return the action of the Hubbard Hamiltonian on the coefficient vector
      */
-    Eigen::VectorXd matrixVectorProduct(const HamiltonianParameters& hamiltonian_parameters, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) const override;
+    Eigen::VectorXd matrixVectorProduct(const HamiltonianParameters<double>& hamiltonian_parameters, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) const override;
 
     /**
      *  @param hamiltonian_parameters       the Hubbard Hamiltonian parameters in an orthonormal orbital basis
      *
      *  @return the diagonal of the matrix representation of the Hubbard Hamiltonian
      */
-    Eigen::VectorXd calculateDiagonal(const HamiltonianParameters& hamiltonian_parameters) const override;
+    Eigen::VectorXd calculateDiagonal(const HamiltonianParameters<double>& hamiltonian_parameters) const override;
 };
 
 

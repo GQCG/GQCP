@@ -65,7 +65,7 @@ public:
      *
      *  @return the AP1roG geminal coefficients in the weak interaction limit
      */
-    static AP1roGGeminalCoefficients WeakInteractionLimit(const HamiltonianParameters& ham_par, size_t N_P);
+    static AP1roGGeminalCoefficients WeakInteractionLimit(const HamiltonianParameters<double>& ham_par, size_t N_P);
 
 
     // DESTRUCTOR

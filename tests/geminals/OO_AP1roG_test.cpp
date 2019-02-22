@@ -36,12 +36,12 @@ BOOST_AUTO_TEST_CASE ( lih_6_31G_calculateEnergyAfterRotation ) {
 
     // Construct the molecular Hamiltonian parameters in the RHF basis
     auto lih = GQCP::Molecule::Readxyz("data/lih_olsens.xyz");
-    auto ao_mol_ham_par = GQCP::HamiltonianParameters::Molecular(lih, "6-31G");
+    auto ao_mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(lih, "6-31G");
 
     GQCP::PlainRHFSCFSolver plain_scf_solver (ao_mol_ham_par, lih);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
-    auto mol_ham_par = GQCP::HamiltonianParameters(ao_mol_ham_par, rhf.get_C());
+    auto mol_ham_par = GQCP::HamiltonianParameters<double>(ao_mol_ham_par, rhf.get_C());
 
 
     // Loop over all possible Jacobi pairs for a given (random) angle and check if the analytical result matches the numerical result
@@ -81,12 +81,12 @@ BOOST_AUTO_TEST_CASE ( lih_6_31G_orbitalOptimize ) {
 
     // Construct the molecular Hamiltonian parameters in the RHF basis
     auto lih = GQCP::Molecule::Readxyz("data/lih_olsens.xyz");
-    auto ao_mol_ham_par =  GQCP::HamiltonianParameters::Molecular(lih, "6-31G");
+    auto ao_mol_ham_par =  GQCP::HamiltonianParameters<double>::Molecular(lih, "6-31G");
 
     GQCP::PlainRHFSCFSolver plain_scf_solver (ao_mol_ham_par, lih);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
-    auto mol_ham_par = GQCP::HamiltonianParameters(ao_mol_ham_par, rhf.get_C());
+    auto mol_ham_par = GQCP::HamiltonianParameters<double>(ao_mol_ham_par, rhf.get_C());
 
 
     // Get the initial AP1roG energy

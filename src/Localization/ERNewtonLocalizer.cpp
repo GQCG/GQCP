@@ -18,7 +18,7 @@
 #include "Localization/ERNewtonLocalizer.hpp"
 
 #include "utilities/linalg.hpp"
-#include "optimization/step.hpp"
+#include "math/optimization/step.hpp"
 
 
 #include <unsupported/Eigen/MatrixFunctions>
@@ -38,7 +38,7 @@ namespace GQCP {
  *
  *  @return the element (i,j) of the Edmiston-Ruedenberg localization index gradient
  */
-double ERNewtonLocalizer::calculateGradientElement(const HamiltonianParameters& ham_par, size_t i, size_t j) const {
+double ERNewtonLocalizer::calculateGradientElement(const HamiltonianParameters<double>& ham_par, size_t i, size_t j) const {
 
     auto g = ham_par.get_g();
 
@@ -51,7 +51,7 @@ double ERNewtonLocalizer::calculateGradientElement(const HamiltonianParameters& 
  *
  *  @return the gradient of the Edmiston-Ruedenberg localization index as a matrix
  */
-Eigen::MatrixXd ERNewtonLocalizer::calculateGradient(const HamiltonianParameters& ham_par) const {
+Eigen::MatrixXd ERNewtonLocalizer::calculateGradient(const HamiltonianParameters<double>& ham_par) const {
 
     Eigen::MatrixXd G = Eigen::MatrixXd::Zero(this->N_P, this->N_P);
 
@@ -74,7 +74,7 @@ Eigen::MatrixXd ERNewtonLocalizer::calculateGradient(const HamiltonianParameters
  *
  *  @return the element (i,j,k,l) of the Edmiston-Ruedenberg localization index Hessian
  */
-double ERNewtonLocalizer::calculateHessianElement(const HamiltonianParameters& ham_par, size_t i, size_t j, size_t k, size_t l) const {
+double ERNewtonLocalizer::calculateHessianElement(const HamiltonianParameters<double>& ham_par, size_t i, size_t j, size_t k, size_t l) const {
 
     auto g = ham_par.get_g();
 
@@ -105,7 +105,7 @@ double ERNewtonLocalizer::calculateHessianElement(const HamiltonianParameters& h
  *
  *  @return the Hessian of the Edmiston-Ruedenberg localization index as a tensor
  */
-Eigen::Tensor<double, 4> ERNewtonLocalizer::calculateHessian(const HamiltonianParameters& ham_par) const {
+Eigen::Tensor<double, 4> ERNewtonLocalizer::calculateHessian(const HamiltonianParameters<double>& ham_par) const {
 
     Eigen::Tensor<double, 4> H (this->N_P, this->N_P, this->N_P, this->N_P);
     H.setZero();
@@ -149,7 +149,7 @@ ERNewtonLocalizer::ERNewtonLocalizer(size_t N_P, double threshold, size_t maximu
  *
  *  @param ham_par      the Hamiltonian parameters (in an orthonormal basis) that should be localized
  */
-void ERNewtonLocalizer::localize(HamiltonianParameters& ham_par) {
+void ERNewtonLocalizer::localize(HamiltonianParameters<double>& ham_par) {
 
     size_t dim = this->N_P * (this->N_P - 1) / 2 - 1;  // number of free occupied-occupied orbital rotation parameters
 

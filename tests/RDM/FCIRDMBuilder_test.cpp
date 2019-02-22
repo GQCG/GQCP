@@ -41,7 +41,7 @@ BOOST_AUTO_TEST_CASE ( H2O_1RDM_spin_trace_FCI ) {
 
     // Create the molecular Hamiltonian parameters in the AO basis
     auto h2o = GQCP::Molecule::Readxyz("data/h2o_Psi4_GAMESS.xyz");
-    auto ham_par = GQCP::HamiltonianParameters::Molecular(h2o, "STO-3G");
+    auto ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2o, "STO-3G");
     size_t K = ham_par.get_K();  // SO 7
 
     GQCP::ProductFockSpace fock_space (K, N_a, N_b);  // dim = 441
@@ -75,7 +75,7 @@ BOOST_AUTO_TEST_CASE ( H2O_2RDM_spin_trace_FCI ) {
 
     // Create the molecular Hamiltonian parameters in the AO basis
     auto h2o = GQCP::Molecule::Readxyz("data/h2o_Psi4_GAMESS.xyz");
-    auto ham_par = GQCP::HamiltonianParameters::Molecular(h2o, "STO-3G");
+    auto ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2o, "STO-3G");
     size_t K = ham_par.get_K();  // SO 7
 
     GQCP::ProductFockSpace fock_space (K, N_a, N_b);  // dim = 441
@@ -111,7 +111,7 @@ BOOST_AUTO_TEST_CASE ( H2O_1RDM_2RDM_trace_FCI ) {
 
     // Create the molecular Hamiltonian parameters in the AO basis
     auto h2o = GQCP::Molecule::Readxyz("data/h2o_Psi4_GAMESS.xyz");
-    auto ham_par = GQCP::HamiltonianParameters::Molecular(h2o, "STO-3G");
+    auto ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2o, "STO-3G");
     size_t K = ham_par.get_K();  // SO 7
 
     GQCP::ProductFockSpace fock_space (K, N_a, N_b);  // dim = 441
@@ -145,7 +145,7 @@ BOOST_AUTO_TEST_CASE ( H2O_energy_RDM_contraction_FCI ) {
 
     // Create the molecular Hamiltonian parameters in the AO basis
     auto h2o = GQCP::Molecule::Readxyz("data/h2o_Psi4_GAMESS.xyz");
-    auto ham_par = GQCP::HamiltonianParameters::Molecular(h2o, "STO-3G");
+    auto ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2o, "STO-3G");
     size_t K = ham_par.get_K();  // SO 7
 
     GQCP::ProductFockSpace fock_space (K, N_a, N_b);  // dim = 441
@@ -180,7 +180,7 @@ BOOST_AUTO_TEST_CASE ( H2O_energy_RDM_contraction_FCI_wavefunction ) {
 
     // Create the molecular Hamiltonian parameters in the AO basis
     auto h2o = GQCP::Molecule::Readxyz("../tests/data/h2o_Psi4_GAMESS.xyz");
-    auto ham_par = GQCP::HamiltonianParameters::Molecular(h2o, "STO-3G");
+    auto ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2o, "STO-3G");
     size_t K = ham_par.get_K();  // SO 7
 
     GQCP::ProductFockSpace fock_space (K, N_a, N_b);  // dim = 441

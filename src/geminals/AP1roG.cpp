@@ -27,23 +27,23 @@ namespace GQCP {
  *
  *  @return the AP1roG electronic energy
  */
-double calculateAP1roGEnergy(const AP1roGGeminalCoefficients& G, const HamiltonianParameters& ham_par) {
+double calculateAP1roGEnergy(const AP1roGGeminalCoefficients& G, const HamiltonianParameters<double>& ham_par) {
 
-    OneElectronOperator h_SO = ham_par.get_h();
-    TwoElectronOperator g_SO = ham_par.get_g();
+    auto h = ham_par.get_h();
+    auto g = ham_par.get_g();
 
 
     // KISS implementation of the AP1roG energy
     double E = 0.0;
     for (size_t j = 0; j < G.get_N_P(); j++) {
-        E += 2 * h_SO(j,j);
+        E += 2 * h(j,j);
 
         for (size_t k = 0; k < G.get_N_P(); k++) {
-            E += 2 * g_SO(k,k,j,j) - g_SO(k,j,j,k);
+            E += 2 * g(k,k,j,j) - g(k,j,j,k);
         }
 
         for (size_t b = G.get_N_P(); b < G.get_K(); b++) {
-            E += g_SO(j,b,j,b) * G(j,b);
+            E += g(j,b,j,b) * G(j,b);
         }
     }
 

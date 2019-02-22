@@ -55,7 +55,7 @@ public:
      *  @param G            the initial guess for the AP1roG gemial coefficients
      *  @param extra_eq     the specification of the extra equation
      */
-    AP1roGBivariationalSolver(size_t N_P, const HamiltonianParameters& ham_par, const AP1roGGeminalCoefficients& G, ExtraEquation extra_eq = ExtraEquation::q0);
+    AP1roGBivariationalSolver(size_t N_P, const HamiltonianParameters<double>& ham_par, const AP1roGGeminalCoefficients& G, ExtraEquation extra_eq = ExtraEquation::q0);
 
     /**
      *  @param N_P          the number of electrons
@@ -64,7 +64,7 @@ public:
      *
      *  The initial guess for the geminal coefficients is zero
      */
-    AP1roGBivariationalSolver(size_t N_P, const HamiltonianParameters& ham_par, ExtraEquation extra_eq = ExtraEquation::q0);
+    AP1roGBivariationalSolver(size_t N_P, const HamiltonianParameters<double>& ham_par, ExtraEquation extra_eq = ExtraEquation::q0);
 
     /**
      *  @param molecule     the molecule used for the AP1roG calculation
@@ -72,7 +72,7 @@ public:
      *  @param G            the initial guess for the AP1roG gemial coefficients
      *  @param extra_eq     the specification of the extra equation
      */
-    AP1roGBivariationalSolver(const Molecule& molecule, const HamiltonianParameters& ham_par, const AP1roGGeminalCoefficients& G, ExtraEquation extra_eq = ExtraEquation::q0);
+    AP1roGBivariationalSolver(const Molecule& molecule, const HamiltonianParameters<double>& ham_par, const AP1roGGeminalCoefficients& G, ExtraEquation extra_eq = ExtraEquation::q0);
 
     /**
      *  @param molecule     the molecule used for the AP1roG calculation
@@ -81,7 +81,7 @@ public:
      *
      *  The initial guess for the geminal coefficients is zero
      */
-    AP1roGBivariationalSolver(const Molecule& molecule, const HamiltonianParameters& ham_par, ExtraEquation extra_eq = ExtraEquation::q0);
+    AP1roGBivariationalSolver(const Molecule& molecule, const HamiltonianParameters<double>& ham_par, ExtraEquation extra_eq = ExtraEquation::q0);
 
 
     // GETTERS

@@ -69,7 +69,7 @@ AP1roGGeminalCoefficients::AP1roGGeminalCoefficients(size_t N_P, size_t K) :
  *
  *  @return the AP1roG geminal coefficients in the weak interaction limit
  */
-AP1roGGeminalCoefficients AP1roGGeminalCoefficients::WeakInteractionLimit(const HamiltonianParameters& ham_par, size_t N_P) {
+AP1roGGeminalCoefficients AP1roGGeminalCoefficients::WeakInteractionLimit(const HamiltonianParameters<double>& ham_par, size_t N_P) {
 
     auto K = ham_par.get_K();
     auto number_of_geminal_coefficients = AP1roGGeminalCoefficients::numberOfGeminalCoefficients(N_P, K);

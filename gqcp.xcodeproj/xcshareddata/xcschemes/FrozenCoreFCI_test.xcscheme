@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "56D63048221FD9A0001081EB"
+               BlueprintIdentifier = "56D630B8221FE67B001081EB"
                BuildableName = "FrozenCoreFCI_test"
                BlueprintName = "FrozenCoreFCI_test"
                ReferencedContainer = "container:gqcp.xcodeproj">
@@ -32,7 +32,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "56D63048221FD9A0001081EB"
+            BlueprintIdentifier = "56D630B8221FE67B001081EB"
             BuildableName = "FrozenCoreFCI_test"
             BlueprintName = "FrozenCoreFCI_test"
             ReferencedContainer = "container:gqcp.xcodeproj">
@@ -55,7 +55,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "56D63048221FD9A0001081EB"
+            BlueprintIdentifier = "56D630B8221FE67B001081EB"
             BuildableName = "FrozenCoreFCI_test"
             BlueprintName = "FrozenCoreFCI_test"
             ReferencedContainer = "container:gqcp.xcodeproj">
@@ -81,7 +81,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "56D63048221FD9A0001081EB"
+            BlueprintIdentifier = "56D630B8221FE67B001081EB"
             BuildableName = "FrozenCoreFCI_test"
             BlueprintName = "FrozenCoreFCI_test"
             ReferencedContainer = "container:gqcp.xcodeproj">

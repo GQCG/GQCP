@@ -33,7 +33,7 @@ namespace GQCP {
  *  @param G            the initial guess for the AP1roG gemial coefficients
  *  @param extra_eq     the specification of the extra equation
  */
-AP1roGBivariationalSolver::AP1roGBivariationalSolver(size_t N_P, const HamiltonianParameters& ham_par, const AP1roGGeminalCoefficients& G, ExtraEquation extra_eq) :
+AP1roGBivariationalSolver::AP1roGBivariationalSolver(size_t N_P, const HamiltonianParameters<double>& ham_par, const AP1roGGeminalCoefficients& G, ExtraEquation extra_eq) :
     BaseAP1roGSolver(N_P, ham_par, G),
     extra_eq (extra_eq)
 {}
@@ -46,7 +46,7 @@ AP1roGBivariationalSolver::AP1roGBivariationalSolver(size_t N_P, const Hamiltoni
  *
  *  The initial guess for the geminal coefficients is zero
  */
-AP1roGBivariationalSolver::AP1roGBivariationalSolver(size_t N_P, const HamiltonianParameters& ham_par, ExtraEquation extra_eq) :
+AP1roGBivariationalSolver::AP1roGBivariationalSolver(size_t N_P, const HamiltonianParameters<double>& ham_par, ExtraEquation extra_eq) :
     BaseAP1roGSolver(N_P, ham_par),
     extra_eq (extra_eq)
 {}
@@ -58,7 +58,7 @@ AP1roGBivariationalSolver::AP1roGBivariationalSolver(size_t N_P, const Hamiltoni
  *  @param G            the initial guess for the AP1roG gemial coefficients
  *  @param extra_eq     the specification of the extra equation
  */
-AP1roGBivariationalSolver::AP1roGBivariationalSolver(const Molecule& molecule, const HamiltonianParameters& ham_par, const AP1roGGeminalCoefficients& G, ExtraEquation extra_eq) :
+AP1roGBivariationalSolver::AP1roGBivariationalSolver(const Molecule& molecule, const HamiltonianParameters<double>& ham_par, const AP1roGGeminalCoefficients& G, ExtraEquation extra_eq) :
     BaseAP1roGSolver(molecule, ham_par, G),
     extra_eq (extra_eq)
 {}
@@ -71,7 +71,7 @@ AP1roGBivariationalSolver::AP1roGBivariationalSolver(const Molecule& molecule, c
  *
  *  The initial guess for the geminal coefficients is zero
  */
-AP1roGBivariationalSolver::AP1roGBivariationalSolver(const Molecule& molecule, const HamiltonianParameters& ham_par, ExtraEquation extra_eq) :
+AP1roGBivariationalSolver::AP1roGBivariationalSolver(const Molecule& molecule, const HamiltonianParameters<double>& ham_par, ExtraEquation extra_eq) :
     BaseAP1roGSolver(molecule, ham_par),
     extra_eq (extra_eq)
 {}

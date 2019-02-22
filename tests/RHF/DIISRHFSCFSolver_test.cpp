@@ -31,7 +31,7 @@ BOOST_AUTO_TEST_CASE ( constructor ) {
 
     // Check a correct constructor with an even number of electrons
     auto h2 = GQCP::Molecule::Readxyz("data/h2_szabo.xyz");
-    auto mol_ham_par = GQCP::HamiltonianParameters::Molecular(h2, "STO-3G");
+    auto mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2, "STO-3G");
     GQCP::DIISRHFSCFSolver diis_solver (mol_ham_par, h2);
 
     // Check if a faulty constructor with an odd number of electron throws
@@ -48,7 +48,7 @@ BOOST_AUTO_TEST_CASE ( h2_sto3g_szabo_DIIS ) {
 
     // Create the molecular Hamiltonian parameters in an AO basis
     auto h2 = GQCP::Molecule::Readxyz("data/h2_szabo.xyz");
-    auto mol_ham_par = GQCP::HamiltonianParameters::Molecular(h2, "STO-3G");
+    auto mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2, "STO-3G");
 
 
     // Create a plain RHF SCF solver and solve the SCF equations
@@ -83,7 +83,7 @@ BOOST_AUTO_TEST_CASE ( h2o_sto3g_horton_DIIS ) {
 
     // Do our own RHF calculation
     auto water = GQCP::Molecule::Readxyz("data/h2o.xyz");
-    auto mol_ham_par = GQCP::HamiltonianParameters::Molecular(water, "STO-3G");
+    auto mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(water, "STO-3G");
 
     GQCP::DIISRHFSCFSolver diis_scf_solver (mol_ham_par, water);
     diis_scf_solver.solve();
@@ -111,7 +111,7 @@ BOOST_AUTO_TEST_CASE ( crawdad_h2o_sto3g_DIIS ) {
     // Check if the internuclear distance between O and H is really 1.1 A (= 2.07869 bohr), as specified in the text
     BOOST_REQUIRE(std::abs(water.calculateInternuclearDistance(0, 1) - 2.07869) < 1.0e-4);
 
-    auto mol_ham_par = GQCP::HamiltonianParameters::Molecular(water, "STO-3G");
+    auto mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(water, "STO-3G");
 
     GQCP::DIISRHFSCFSolver diis_scf_solver (mol_ham_par, water);
     diis_scf_solver.solve();
@@ -134,7 +134,7 @@ BOOST_AUTO_TEST_CASE ( crawdad_ch4_sto3g_DIIS ) {
     // Check if the internuclear distance between C and H is really around 2.05 bohr, which is the bond distance Wikipedia (108.7 pm) specifies
     BOOST_CHECK(std::abs(methane.calculateInternuclearDistance(0, 1) - 2.05) < 1.0e-1);
 
-    auto mol_ham_par = GQCP::HamiltonianParameters::Molecular(methane, "STO-3G");
+    auto mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(methane, "STO-3G");
 
     GQCP::DIISRHFSCFSolver diis_scf_solver (mol_ham_par, methane);
     diis_scf_solver.solve();
@@ -154,7 +154,7 @@ BOOST_AUTO_TEST_CASE ( h2_631gdp_DIIS ) {
 
     // Do our own RHF calculation
     auto h2 = GQCP::Molecule::Readxyz("data/h2_olsens.xyz");
-    auto mol_ham_par = GQCP::HamiltonianParameters::Molecular(h2, "6-31g**");
+    auto mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2, "6-31g**");
 
     GQCP::DIISRHFSCFSolver diis_scf_solver (mol_ham_par, h2);
     diis_scf_solver.solve();

@@ -30,7 +30,7 @@ namespace GQCP {
  *  @param threshold                        the convergence treshold on the Frobenius norm on the AO density matrix
  *  @param maximum_number_of_iterations     the maximum number of iterations for the SCF procedure
  */
-RHFSCFSolver::RHFSCFSolver(HamiltonianParameters ham_par, Molecule molecule, double threshold, size_t maximum_number_of_iterations) :
+RHFSCFSolver::RHFSCFSolver(const HamiltonianParameters<double>& ham_par, const Molecule& molecule, double threshold, size_t maximum_number_of_iterations) :
     ham_par (ham_par),
     molecule (molecule),
     maximum_number_of_iterations (maximum_number_of_iterations),
@@ -52,8 +52,8 @@ RHFSCFSolver::RHFSCFSolver(HamiltonianParameters ham_par, Molecule molecule, dou
  */
 void RHFSCFSolver::solve() {
 
-    Eigen::MatrixXd H_core = this->ham_par.get_h().get_matrix_representation();
-    Eigen::MatrixXd S = this->ham_par.get_S().get_matrix_representation();
+    auto H_core = this->ham_par.get_h();
+    auto S = this->ham_par.get_S();
 
 
     // Obtain an initial guess for the AO density matrix by solving the generalized eigenvalue problem for H_core
@@ -79,9 +79,9 @@ void RHFSCFSolver::solve() {
             this->is_converged = true;
 
             // After the SCF procedure, we end up with canonical spatial orbitals, i.e. the Fock matrix should be diagonal in this basis
-            OneElectronOperator F (F_AO);
+            OneElectronOperator<double> F (F_AO);
             F.transform(C);  // transform F to the MO basis with C
-            if (!(F.get_matrix_representation().isDiagonal())) {
+            if (!(F.isDiagonal())) {
                 throw std::runtime_error("The RHF SCF procedure is converged but the MO Fock matrix is not diagonal.");
             }
 

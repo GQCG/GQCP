@@ -40,7 +40,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_public_methods ) {
 
     // Create random HamiltonianParameters to check compatibility
     size_t K = 5;
-    auto random_hamiltonian_parameters = GQCP::HamiltonianParameters::Random(K);
+    auto random_hamiltonian_parameters = GQCP::HamiltonianParameters<double>::Random(K);
 
     // Create a compatible Fock space
     GQCP::FockSpace fock_space (K, 3);

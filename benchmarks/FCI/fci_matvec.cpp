@@ -15,7 +15,7 @@ static void matvec(benchmark::State& state) {
     GQCP::ProductFockSpace fock_space (K, N, N);
     GQCP::FCI fci (fock_space);
 
-    GQCP::HamiltonianParameters ham_par = GQCP::HamiltonianParameters::Random(K);
+    GQCP::HamiltonianParameters<double> ham_par = GQCP::HamiltonianParameters<double>::Random(K);
     Eigen::VectorXd diagonal = fci.calculateDiagonal(ham_par);
     Eigen::VectorXd x = fock_space.randomExpansion();
 

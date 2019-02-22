@@ -36,7 +36,7 @@ public:
      *  @param ham_par      Hamiltonian parameters in an orthonormal orbital basis
      *  @param G            the initial guess for the AP1roG gemial coefficients
      */
-    AP1roGPSESolver(size_t N_P, const HamiltonianParameters& ham_par, const AP1roGGeminalCoefficients& G);
+    AP1roGPSESolver(size_t N_P, const HamiltonianParameters<double>& ham_par, const AP1roGGeminalCoefficients& G);
 
     /**
      *  @param N_P          the number of electrons
@@ -44,14 +44,14 @@ public:
      *
      *  The initial guess for the geminal coefficients is zero
      */
-    AP1roGPSESolver(size_t N_P, const HamiltonianParameters& ham_par);
+    AP1roGPSESolver(size_t N_P, const HamiltonianParameters<double>& ham_par);
 
     /**
      *  @param molecule     the molecule used for the AP1roG calculation
      *  @param ham_par      Hamiltonian parameters in an orthonormal orbital basis
      *  @param G            the initial guess for the AP1roG gemial coefficients
      */
-    AP1roGPSESolver(const Molecule& molecule, const HamiltonianParameters& ham_par, const AP1roGGeminalCoefficients& G);
+    AP1roGPSESolver(const Molecule& molecule, const HamiltonianParameters<double>& ham_par, const AP1roGGeminalCoefficients& G);
 
     /**
      *  @param molecule     the molecule used for the AP1roG calculation
@@ -59,7 +59,7 @@ public:
      *
      *  The initial guess for the geminal coefficients is zero
      */
-    AP1roGPSESolver(const Molecule& molecule, const HamiltonianParameters& ham_par);
+    AP1roGPSESolver(const Molecule& molecule, const HamiltonianParameters<double>& ham_par);
 
 
     // PUBLIC METHODS

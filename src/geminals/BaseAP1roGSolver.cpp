@@ -30,7 +30,7 @@ namespace GQCP {
  *  @param ham_par      Hamiltonian parameters in an orthonormal orbital basis
  *  @param G            the initial guess for the AP1roG gemial coefficients
  */
-BaseAP1roGSolver::BaseAP1roGSolver(size_t N_P, const HamiltonianParameters& ham_par, const AP1roGGeminalCoefficients& G) :
+BaseAP1roGSolver::BaseAP1roGSolver(size_t N_P, const HamiltonianParameters<double>& ham_par, const AP1roGGeminalCoefficients& G) :
     K (ham_par.get_K()),
     ham_par (ham_par),
     N_P (N_P),
@@ -43,7 +43,7 @@ BaseAP1roGSolver::BaseAP1roGSolver(size_t N_P, const HamiltonianParameters& ham_
  *
  *  The initial guess for the geminal coefficients is zero
  */
-BaseAP1roGSolver::BaseAP1roGSolver(size_t N_P, const HamiltonianParameters& ham_par) :
+BaseAP1roGSolver::BaseAP1roGSolver(size_t N_P, const HamiltonianParameters<double>& ham_par) :
     BaseAP1roGSolver(N_P, ham_par, AP1roGGeminalCoefficients(N_P, ham_par.get_K()))
 {}
 
@@ -53,7 +53,7 @@ BaseAP1roGSolver::BaseAP1roGSolver(size_t N_P, const HamiltonianParameters& ham_
  *  @param ham_par      Hamiltonian parameters in an orthonormal orbital basis
  *  @param G            the initial guess for the AP1roG gemial coefficients
  */
-BaseAP1roGSolver::BaseAP1roGSolver(const Molecule& molecule, const HamiltonianParameters& ham_par, const AP1roGGeminalCoefficients& G) :
+BaseAP1roGSolver::BaseAP1roGSolver(const Molecule& molecule, const HamiltonianParameters<double>& ham_par, const AP1roGGeminalCoefficients& G) :
     BaseAP1roGSolver(molecule.get_N()/2, ham_par, G)
 {
     // Check if we have an even number of electrons
@@ -69,8 +69,8 @@ BaseAP1roGSolver::BaseAP1roGSolver(const Molecule& molecule, const HamiltonianPa
  *
  *  The initial guess for the geminal coefficients is zero
  */
-BaseAP1roGSolver::BaseAP1roGSolver(const Molecule& molecule, const HamiltonianParameters& ham_par) :
-BaseAP1roGSolver(molecule, ham_par, AP1roGGeminalCoefficients(molecule.get_N()/2, ham_par.get_K()))
+BaseAP1roGSolver::BaseAP1roGSolver(const Molecule& molecule, const HamiltonianParameters<double>& ham_par) :
+    BaseAP1roGSolver(molecule, ham_par, AP1roGGeminalCoefficients(molecule.get_N()/2, ham_par.get_K()))
 {}
 
 

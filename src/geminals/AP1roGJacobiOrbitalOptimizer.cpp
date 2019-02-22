@@ -20,7 +20,7 @@
 #include <cmath>
 #include <queue>
 
-#include "optimization/NewtonMinimizer.hpp"
+#include "math/optimization/NewtonMinimizer.hpp"
 #include "geminals/AP1roG.hpp"
 #include "geminals/AP1roGPSESolver.hpp"
 
@@ -42,7 +42,7 @@ namespace GQCP {
 
  *  The initial guess for the geminal coefficients is zero
  */
-AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer(size_t N_P, const HamiltonianParameters& ham_par, double oo_threshold, const size_t maximum_number_of_oo_iterations) :
+AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer(size_t N_P, const HamiltonianParameters<double>& ham_par, double oo_threshold, const size_t maximum_number_of_oo_iterations) :
     BaseAP1roGSolver(N_P, ham_par),
     oo_threshold (oo_threshold),
     maximum_number_of_oo_iterations (maximum_number_of_oo_iterations)
@@ -57,7 +57,7 @@ AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer(size_t N_P, const Ham
  *
  *  The initial guess for the geminal coefficients is zero
  */
-AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer(const Molecule& molecule, const HamiltonianParameters& ham_par, double oo_threshold, const size_t maximum_number_of_oo_iterations) :
+AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer(const Molecule& molecule, const HamiltonianParameters<double>& ham_par, double oo_threshold, const size_t maximum_number_of_oo_iterations) :
     BaseAP1roGSolver(molecule, ham_par),
     oo_threshold (oo_threshold),
     maximum_number_of_oo_iterations (maximum_number_of_oo_iterations)
@@ -80,8 +80,8 @@ AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer(const Molecule& molec
  */
 void AP1roGJacobiOrbitalOptimizer::calculateJacobiCoefficients(size_t p, size_t q, const AP1roGGeminalCoefficients& G) {
 
-    OneElectronOperator h_SO = this->ham_par.get_h();
-    TwoElectronOperator g_SO = this->ham_par.get_g();
+    auto h = this->ham_par.get_h();
+    auto g = this->ham_par.get_g();
 
 
     // Implementation of the Jacobi rotation coefficients with disjoint cases for p and q
@@ -95,9 +95,9 @@ void AP1roGJacobiOrbitalOptimizer::calculateJacobiCoefficients(size_t p, size_t 
 
 
         for (size_t b = this->N_P; b < this->K; b++) {
-            this->A1 -= 0.5 * (g_SO(b,p,b,p) - g_SO(b,q,b,q)) * (G(p,b) - G(q,b));
-            this->B1 += 0.5 * (g_SO(b,p,b,p) - g_SO(b,q,b,q)) * (G(p,b) - G(q,b));
-            this->C1 += g_SO(b,p,b,q) * (G(q,b) - G(p,b));
+            this->A1 -= 0.5 * (g(b,p,b,p) - g(b,q,b,q)) * (G(p,b) - G(q,b));
+            this->B1 += 0.5 * (g(b,p,b,p) - g(b,q,b,q)) * (G(p,b) - G(q,b));
+            this->C1 += g(b,p,b,q) * (G(q,b) - G(p,b));
         }
     }
 
@@ -112,22 +112,22 @@ void AP1roGJacobiOrbitalOptimizer::calculateJacobiCoefficients(size_t p, size_t 
         this->E2 = 0.0;
 
 
-        this->A2 += h_SO(p,p) - h_SO(q,q) + 0.375 * (g_SO(p,p,p,p) + g_SO(q,q,q,q)) * (1 - G(q,p)) - 0.25 * g_SO(p,p,q,q) * (7 + G(q,p)) + 0.5 * g_SO(p,q,p,q) * (3 + G(q,p));
-        this->B2 += h_SO(q,q) - h_SO(p,p) + 2 * g_SO(p,p,q,q) + 0.5 * (g_SO(p,p,p,p) + g_SO(q,q,q,q)) * (G(q,p) - 1) - g_SO(p,q,p,q) * (1 + G(q,p));
-        this->C2 += 2 * h_SO(p,q) + (g_SO(p,p,p,q) - g_SO(p,q,q,q)) * (1 - G(q,p));
-        this->D2 += 0.125 * (g_SO(p,p,p,p) + g_SO(q,q,q,q) - 2 * (g_SO(p,p,q,q) + 2 * g_SO(p,q,p,q))) * (1 - G(q,p));
-        this->E2 += 0.5 * (g_SO(p,p,p,q) - g_SO(p,q,q,q)) * (G(q,p) - 1);
+        this->A2 += h(p,p) - h(q,q) + 0.375 * (g(p,p,p,p) + g(q,q,q,q)) * (1 - G(q,p)) - 0.25 * g(p,p,q,q) * (7 + G(q,p)) + 0.5 * g(p,q,p,q) * (3 + G(q,p));
+        this->B2 += h(q,q) - h(p,p) + 2 * g(p,p,q,q) + 0.5 * (g(p,p,p,p) + g(q,q,q,q)) * (G(q,p) - 1) - g(p,q,p,q) * (1 + G(q,p));
+        this->C2 += 2 * h(p,q) + (g(p,p,p,q) - g(p,q,q,q)) * (1 - G(q,p));
+        this->D2 += 0.125 * (g(p,p,p,p) + g(q,q,q,q) - 2 * (g(p,p,q,q) + 2 * g(p,q,p,q))) * (1 - G(q,p));
+        this->E2 += 0.5 * (g(p,p,p,q) - g(p,q,q,q)) * (G(q,p) - 1);
 
         for (size_t j = 0; j < this->N_P; j++) {
-            this->A2 += 2 * (g_SO(j,j,p,p) - g_SO(j,j,q,q)) - 0.5 * (g_SO(j,p,j,p) - g_SO(j,q,j,q)) * (2 + G(j,p));
-            this->B2 += 2 * (g_SO(j,j,q,q) - g_SO(j,j,p,p)) + 0.5 * (g_SO(j,p,j,p) - g_SO(j,q,j,q)) * (2 + G(j,p));
-            this->C2 += 4 * g_SO(j,j,p,q) - g_SO(j,p,j,q) * (2 + G(j,p));
+            this->A2 += 2 * (g(j,j,p,p) - g(j,j,q,q)) - 0.5 * (g(j,p,j,p) - g(j,q,j,q)) * (2 + G(j,p));
+            this->B2 += 2 * (g(j,j,q,q) - g(j,j,p,p)) + 0.5 * (g(j,p,j,p) - g(j,q,j,q)) * (2 + G(j,p));
+            this->C2 += 4 * g(j,j,p,q) - g(j,p,j,q) * (2 + G(j,p));
         }
 
         for (size_t b = this->N_P; b < this->K; b++) {
-            this->A2 += 0.5 * (g_SO(b,p,b,p) - g_SO(b,q,b,q)) * G(q,b);
-            this->B2 += 0.5 * (g_SO(b,q,b,q) - g_SO(b,p,b,p)) * G(q,b);
-            this->C2 += g_SO(b,p,b,q) * G(q,b);
+            this->A2 += 0.5 * (g(b,p,b,p) - g(b,q,b,q)) * G(q,b);
+            this->B2 += 0.5 * (g(b,q,b,q) - g(b,p,b,p)) * G(q,b);
+            this->C2 += g(b,p,b,q) * G(q,b);
         }
     }
 
@@ -141,9 +141,9 @@ void AP1roGJacobiOrbitalOptimizer::calculateJacobiCoefficients(size_t p, size_t 
 
 
         for (size_t j = 0; j < this->N_P; j++) {
-            this->A3 -= 0.5 * (g_SO(j,p,j,p) - g_SO(j,q,j,q)) * (G(j,p) - G(j,q));
-            this->B3 += 0.5 * (g_SO(j,p,j,p) - g_SO(j,q,j,q)) * (G(j,p) - G(j,q));
-            this->C3 += g_SO(j,p,j,q) * (G(j,q) - G(j,p));
+            this->A3 -= 0.5 * (g(j,p,j,p) - g(j,q,j,q)) * (G(j,p) - G(j,q));
+            this->B3 += 0.5 * (g(j,p,j,p) - g(j,q,j,q)) * (G(j,p) - G(j,q));
+            this->C3 += g(j,p,j,q) * (G(j,q) - G(j,p));
         }
     }
 
