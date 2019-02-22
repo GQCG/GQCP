@@ -69,6 +69,16 @@ std::shared_ptr<BaseFockSpace> BaseFockSpace::CloneToHeap(const BaseFockSpace& f
             fock_space_ptr = std::make_shared<SelectedFockSpace>(SelectedFockSpace(dynamic_cast<const SelectedFockSpace&>(fock_space)));
             break;
         }
+
+        case FockSpaceType::FrozenFockSpace: {
+            fock_space_ptr = std::make_shared<FrozenFockSpace>(FrozenFockSpace(dynamic_cast<const FrozenFockSpace&>(fock_space)));
+            break;
+        }
+
+        case FockSpaceType::FrozenProductFockSpace: {
+            fock_space_ptr = std::make_shared<FrozenProductFockSpace>(FrozenProductFockSpace(dynamic_cast<const FrozenProductFockSpace&>(fock_space)));
+            break;
+        }
     }
 
     return fock_space_ptr;

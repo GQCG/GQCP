@@ -297,3 +297,123 @@ BOOST_AUTO_TEST_CASE ( strictLowerTriangle_tensor ) {
 
     BOOST_CHECK(M2_ref.isApprox(GQCP::strictLowerTriangle(T2)));
 }
+
+
+BOOST_AUTO_TEST_CASE ( tensorBlockAddition_tensor ) {
+
+    // Create an example 3x3x3x3 tensor
+    size_t dim1 = 3;
+    Eigen::Tensor<double, 4> T1 (dim1, dim1, dim1, dim1);
+    for (size_t i = 0; i < dim1; i++) {
+        for (size_t j = 0; j < dim1; j++) {
+            for (size_t k = 0; k < dim1; k++) {
+                for (size_t l = 0; l < dim1; l++) {
+                    T1(i,j,k,l) = l + 3*k + 9*j + 27*i;
+                }
+            }
+        }
+    }
+
+    // Create an example 2x2x2x2 tensor
+    size_t dim2 = 2;
+    Eigen::Tensor<double, 4> T2 (dim2, dim2, dim2, dim2);
+    for (size_t i = 0; i < dim2; i++) {
+        for (size_t j = 0; j < dim2; j++) {
+            for (size_t k = 0; k < dim2; k++) {
+                for (size_t l = 0; l < dim2; l++) {
+                    T2(i,j,k,l) = 2*l + j + 10*i;
+                }
+            }
+        }
+    }
+
+    // Add the smaller tensor and test if addition went correctly
+    GQCP::tensorBlockAddition(T1, T2, 0, 0, 0, 0);
+    for (size_t i = 0; i < dim2; i++) {
+        for (size_t j = 0; j < dim2; j++) {
+            for (size_t k = 0; k < dim2; k++) {
+                for (size_t l = 0; l < dim2; l++) {
+                    BOOST_CHECK(T1(i,j,k,l) == l + 3*k + 9*j + 27*i + 2*l + j + 10*i);
+                }
+            }
+        }
+    }
+}
+
+
+BOOST_AUTO_TEST_CASE ( tensorBlockAddition_matrix ) {
+
+    // Create an example 3x3x3x3 tensor
+    size_t dim1 = 3;
+    Eigen::Tensor<double, 4> T1 (dim1, dim1, dim1, dim1);
+    for (size_t i = 0; i < dim1; i++) {
+        for (size_t j = 0; j < dim1; j++) {
+            for (size_t k = 0; k < dim1; k++) {
+                for (size_t l = 0; l < dim1; l++) {
+                    T1(i,j,k,l) = l + 3*k + 9*j + 27*i;
+                }
+            }
+        }
+    }
+
+    // Create an example 2x2 matrix
+    size_t dim2 = 2;
+    Eigen::MatrixXd M = Eigen::MatrixXd::Zero(dim2, dim2);
+    for (size_t i = 0; i < dim2; i++) {
+        for (size_t j = 0; j < dim2; j++) {
+            M(i,j) = 100 * i + 95*j;
+        }
+    }
+
+    // copy the tensor
+    auto T2 = T1;
+    auto T3 = T1;
+
+    // Add the matrix to the tensor and test if addition went correctly
+    GQCP::tensorBlockAddition<0,1>(T2, M, 0, 0, 0, 0);
+    for (size_t i = 0; i < dim2; i++) {
+        for (size_t j = 0; j < dim2; j++) {
+            BOOST_CHECK(T2(i,j,0,0) == 9*j + 27*i + 100 * i + 95*j);
+        }
+    }
+
+    // Add the matrix to the tensor and test if addition went correctly
+    GQCP::tensorBlockAddition<2,1>(T3, M, 0, 0, 0, 0);
+    for (size_t i = 0; i < dim2; i++) {
+        for (size_t j = 0; j < dim2; j++) {
+            BOOST_CHECK(T3(0,j,i,0) == 3*i + 9*j + 100 * i + 95*j);
+        }
+    }
+}
+
+
+BOOST_AUTO_TEST_CASE ( tensorBlockCreation ) {
+
+    // Create an example 3x3x3x3 tensor
+    size_t dim1 = 3;
+    Eigen::Tensor<double, 4> T1 (dim1, dim1, dim1, dim1);
+    for (size_t i = 0; i < dim1; i++) {
+        for (size_t j = 0; j < dim1; j++) {
+            for (size_t k = 0; k < dim1; k++) {
+                for (size_t l = 0; l < dim1; l++) {
+                    T1(i,j,k,l) = l + 3*k + 9*j + 27*i;
+                }
+            }
+        }
+    }
+
+    // Create sub tensor
+    auto T2 = GQCP::tensorBlockCreation(T1, 1, 1, 1, 1);
+
+    // Test accordingly
+    size_t dim2 = 2;
+    for (size_t i = 0; i < dim2; i++) {
+        for (size_t j = 0; j < dim2; j++) {
+            for (size_t k = 0; k < dim2; k++) {
+                for (size_t l = 0; l < dim2; l++) {
+                    BOOST_CHECK(T2(i,j,k,l) = (l+1) + 3*(k+1) + 9*(j+1) + 27*(i+1));
+                }
+            }
+        }
+    }
+}

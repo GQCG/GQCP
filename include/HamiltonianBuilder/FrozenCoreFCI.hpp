@@ -15,26 +15,39 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCG_FOCKSPACETYPE_HPP
-#define GQCG_FOCKSPACETYPE_HPP
+#ifndef GQCP_FROZENCOREFCI_HPP
+#define GQCP_FROZENCOREFCI_HPP
+
+
+#include "HamiltonianBuilder/FrozenCoreCI.hpp"
+#include "FockSpace/FrozenProductFockSpace.hpp"
+#include "HamiltonianBuilder/FCI.hpp"
 
 
 namespace GQCP {
 
-    
+
 /**
- *  An enum class for the implemented Fock space types
+ *  A class capable of generating the matrix representation of the frozen core FCI Hamiltonian
  */
-enum class FockSpaceType {
-    FockSpace,
-    FrozenFockSpace,
-    FrozenProductFockSpace,
-    ProductFockSpace,
-    SelectedFockSpace
+class FrozenCoreFCI : public FrozenCoreCI {
+private:
+    FrozenProductFockSpace fock_space;  // contains both the frozen alpha and beta Fock space
+
+public:
+    // CONSTRUCTORS
+    /**
+     *  @param fock_space       the frozen product Fock space
+     */
+    explicit FrozenCoreFCI(const FrozenProductFockSpace& fock_space);
+
+
+    // OVERRIDDEN GETTERS
+    const BaseFockSpace* get_fock_space() const override { return &fock_space; }
 };
 
 
-}  // namespace GQCG
+}  // namespace GQCP
 
 
-#endif  // GQCG_FOCKSPACETYPE_HPP
+#endif  // GQCP_FCI_HPP

@@ -20,6 +20,7 @@
 
 
 #include "FockSpace/BaseFockSpace.hpp"
+#include "FockSpace/FockPermutator.hpp"
 
 
 
@@ -32,24 +33,9 @@ namespace GQCP {
  *  The ONVs and addresses are linked with a hashing function calculated with an addressing scheme. The implementation of the addressing scheme is from Molecular Electronic-Structure Theory (August 2000) by Trygve Helgaker, Poul Jorgensen, and Jeppe Olsen
  *
  */
-class FockSpace: public BaseFockSpace {
+class FockSpace: public BaseFockSpace, public FockPermutator<FockSpace> {
 private:
-    size_t N;  // number of electrons
     Matrixu vertex_weights;  // vertex_weights of the addressing scheme
-
-
-    // PRIVATE METHODS
-    /**
-     *  @param representation       a representation of an ONV
-     *
-     *  @return the next bitstring permutation
-     *
-     *      Examples:
-     *          011 -> 101
-     *          101 -> 110
-     */
-    size_t ulongNextPermutation(size_t representation) const;
-
 
 public:
     // CONSTRUCTORS
@@ -67,7 +53,6 @@ public:
     // GETTERS
     size_t get_vertex_weights(size_t p, size_t m) const { return this->vertex_weights[p][m]; }
     const Matrixu& get_vertex_weights() const { return this->vertex_weights; }
-    size_t get_N() const { return this->N; }
     FockSpaceType get_type() const override { return FockSpaceType::FockSpace; }
 
 
@@ -81,59 +66,70 @@ public:
     static size_t calculateDimension(size_t K, size_t N);
 
 
-    // PUBLIC METHODS
+    // PUBLIC OVERRIDEN METHODS
     /**
-     *  @param address      the address (i.e. the ordening number) of the ONV
+     *  @param representation       a representation of an ONV
      *
-     *  @return the ONV with the corresponding address
+     *  @return the next bitstring permutation in the Fock space
+     *
+     *      Examples:
+     *          011 -> 101
+     *          101 -> 110
      */
-    ONV makeONV(size_t address) const;
+    size_t ulongNextPermutation(size_t representation) const override;
 
     /**
-     *  Set the current ONV to the next ONV: performs ulongNextPermutation() and updates the corresponding occupation indices of the ONV occupation array
-     *
-     *  @param onv      the current ONV
-     */
-    void setNextONV(ONV& onv) const;
-
-    /**
-     *  @param onv      the ONV
+     *  @param representation      a representation of an ONV
      *
      *  @return the address (i.e. the ordering number) of the given ONV
      */
-    size_t getAddress(const ONV& onv) const;
-  
+    size_t getAddress(size_t representation) const override;
+
     /**
-     *  Transform an ONV to one corresponding to the given address
-     *
-     *  @param onv          the ONV
-     *  @param address      the address to which the ONV will be set
-     */
-    void transformONV(ONV& onv, size_t address) const;
+      *  Calculate unsigned representation for a given address
+      *
+      *  @param address                 the address of the representation is calculated
+      *
+      *  @return unsigned representation of the address
+      */
+    size_t calculateRepresentation(size_t address) const override;
 
     /**
      *  @param onv       the ONV
      *
      *  @return the amount of ONVs (with a larger address) this ONV would couple with given a one electron operator
      */
-    size_t countOneElectronCouplings(const ONV& onv) const;
+    size_t countOneElectronCouplings(const ONV& onv) const override;
 
     /**
      *  @param onv       the ONV
      *
      *  @return the amount of ONVs (with a larger address) this ONV would couple with given a two electron operator
      */
-    size_t countTwoElectronCouplings(const ONV& onv) const;
+    size_t countTwoElectronCouplings(const ONV& onv) const override;
 
     /**
      *  @return the amount non-zero (non-diagonal) couplings of a one electron coupling scheme in the Fock space
      */
-    size_t countTotalOneElectronCouplings() const;
+    size_t countTotalOneElectronCouplings() const override;
 
     /**
      *  @return the amount non-zero (non-diagonal) couplings of a two electron coupling scheme in the Fock space
      */
-    size_t countTotalTwoElectronCouplings() const;
+    size_t countTotalTwoElectronCouplings() const override;
+
+
+    // PUBLIC METHODS
+    /**
+     *  If we have
+     *      FockSpace fock_space;
+     *
+     *  This makes sure that we can call
+     *      fock_space.getAddress(onv);
+     *  instead of the syntax
+     *      fock_space.FockPermutator<FockSpace>::getAddress(onv);
+     */
+    using FockPermutator<FockSpace>::getAddress;
 
     /**
      *  Find the next unoccupied orbital in a given ONV,

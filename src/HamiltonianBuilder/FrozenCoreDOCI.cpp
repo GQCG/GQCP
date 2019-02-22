@@ -15,26 +15,25 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCG_FOCKSPACETYPE_HPP
-#define GQCG_FOCKSPACETYPE_HPP
+#include "HamiltonianBuilder/FrozenCoreDOCI.hpp"
+#include "HamiltonianBuilder/DOCI.hpp"
 
 
 namespace GQCP {
 
-    
-/**
- *  An enum class for the implemented Fock space types
+
+/*
+ *  CONSTRUCTORS
  */
-enum class FockSpaceType {
-    FockSpace,
-    FrozenFockSpace,
-    FrozenProductFockSpace,
-    ProductFockSpace,
-    SelectedFockSpace
-};
+
+/**
+ *  @param fock_space       the frozen Fock space (identical for alpha and beta)
+ */
+FrozenCoreDOCI::FrozenCoreDOCI(const FrozenFockSpace& fock_space) :
+    FrozenCoreCI(std::make_shared<DOCI>(fock_space.get_active_fock_space()), fock_space.get_number_of_frozen_orbitals()),
+    fock_space (fock_space)
+{}
 
 
-}  // namespace GQCG
 
-
-#endif  // GQCG_FOCKSPACETYPE_HPP
+}  // namespace GQCP

@@ -15,26 +15,20 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCG_FOCKSPACETYPE_HPP
-#define GQCG_FOCKSPACETYPE_HPP
+#include "RDM/FrozenCoreDOCIRDMBuilder.hpp"
+#include "RDM/DOCIRDMBuilder.hpp"
 
 
 namespace GQCP {
 
-    
-/**
- *  An enum class for the implemented Fock space types
+
+/*
+ *  CONSTRUCTOR
  */
-enum class FockSpaceType {
-    FockSpace,
-    FrozenFockSpace,
-    FrozenProductFockSpace,
-    ProductFockSpace,
-    SelectedFockSpace
-};
+FrozenCoreDOCIRDMBuilder::FrozenCoreDOCIRDMBuilder(const FrozenFockSpace& fock_space) :
+    FrozenCoreRDMBuilder(std::make_shared<DOCIRDMBuilder>(fock_space.get_active_fock_space()),
+                          fock_space.get_number_of_frozen_orbitals()),
+    fock_space (fock_space)
+{}
 
-
-}  // namespace GQCG
-
-
-#endif  // GQCG_FOCKSPACETYPE_HPP
+}  // namespace GQCP
