@@ -226,3 +226,72 @@ BOOST_AUTO_TEST_CASE ( coupling_count ) {
     BOOST_CHECK(2*coupling_count1 == fock_space2.countTotalOneElectronCouplings());
     BOOST_CHECK(2*coupling_count2 == fock_space2.countTotalTwoElectronCouplings());
 }
+
+BOOST_AUTO_TEST_CASE ( ONV_address_setNext_fullspace ) {
+
+    // Here we will test a full permutation through a Fock space of K = 15, N = 5
+    GQCP::FockSpace fock_space (15, 5);
+
+    // Retrieve the first ONV of the Fock space
+    GQCP::ONV onv_test = fock_space.makeONV(0);
+
+    const size_t dimension_fock_space = 3003;
+    bool is_correct = true;  // variable that is updated to false if an unexpected result occurs
+
+    // Iterate through the Fock space in reverse lexicographical order and test whether address matches
+    for (size_t i = 0; i < dimension_fock_space; i++) {
+
+        // Tests address
+        if (i != fock_space.getAddress(onv_test)) {
+            is_correct = false;
+        }
+
+        // transforms the given ONV to the next ONV in the Fock space
+        if (i < dimension_fock_space - 1) {
+            fock_space.setNextONV(onv_test);
+        }
+    }
+
+    // Checks if no unexpected results occured in a full iteration
+    BOOST_CHECK(is_correct);
+}
+
+
+BOOST_AUTO_TEST_CASE ( FockSpace_getAddress ) {
+
+    GQCP::FockSpace fock_space (6, 3);
+
+    // The address of the string "010011" (19) should be 4
+    GQCP::ONV onv (6, 3, 19);
+
+    BOOST_CHECK_EQUAL(fock_space.getAddress(onv), 4);
+}
+
+
+BOOST_AUTO_TEST_CASE ( FockSpace_setNext ) {
+
+    GQCP::FockSpace fock_space (5, 3);
+    // K = 5, N = 3 <-> "00111"
+    GQCP::ONV onv = fock_space.makeONV(0);
+    // The lexical permutations are: "00111" (7), "01011" (11), "01101" (13), "01110" (14), etc.
+
+    // Check permutations one after the other
+
+    fock_space.setNextONV(onv);  // "01011" (11)
+    BOOST_CHECK_EQUAL(onv.get_unsigned_representation(), 11);
+    GQCP::VectorXs x1 (3);
+    x1 << 0, 1, 3;
+    BOOST_CHECK(x1.isApprox(onv.get_occupation_indices()));
+
+    fock_space.setNextONV(onv);  // "01101" (13)
+    BOOST_CHECK_EQUAL(onv.get_unsigned_representation(), 13);
+    GQCP::VectorXs x2 (3);
+    x2 << 0, 2, 3;
+    BOOST_CHECK(x2.isApprox(onv.get_occupation_indices()));
+
+    fock_space.setNextONV(onv);  // "01110" (14)
+    BOOST_CHECK_EQUAL(onv.get_unsigned_representation(), 14);
+    GQCP::VectorXs x3 (3);
+    x3 << 1, 2, 3;
+    BOOST_CHECK(x3.isApprox(onv.get_occupation_indices()));
+}

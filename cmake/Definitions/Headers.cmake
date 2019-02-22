@@ -11,7 +11,10 @@ set(PROJECT_INCLUDE_FILES
 
         ${PROJECT_INCLUDE_FOLDER}/FockSpace/BaseFockSpace.hpp
         ${PROJECT_INCLUDE_FOLDER}/FockSpace/Configuration.hpp
+        ${PROJECT_INCLUDE_FOLDER}/FockSpace/FockPermutator.hpp
         ${PROJECT_INCLUDE_FOLDER}/FockSpace/FockSpace.hpp
+        ${PROJECT_INCLUDE_FOLDER}/FockSpace/FrozenFockSpace.hpp
+        ${PROJECT_INCLUDE_FOLDER}/FockSpace/FrozenProductFockSpace.hpp
         ${PROJECT_INCLUDE_FOLDER}/FockSpace/FockSpaceType.hpp
         ${PROJECT_INCLUDE_FOLDER}/FockSpace/ONV.hpp
         ${PROJECT_INCLUDE_FOLDER}/FockSpace/SelectedFockSpace.hpp
@@ -30,6 +33,9 @@ set(PROJECT_INCLUDE_FILES
 
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianBuilder/DOCI.hpp
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianBuilder/FCI.hpp
+        ${PROJECT_INCLUDE_FOLDER}/HamiltonianBuilder/FrozenCoreCI.hpp
+        ${PROJECT_INCLUDE_FOLDER}/HamiltonianBuilder/FrozenCoreDOCI.hpp
+        ${PROJECT_INCLUDE_FOLDER}/HamiltonianBuilder/FrozenCoreFCI.hpp
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianBuilder/HamiltonianBuilder.hpp
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianBuilder/Hubbard.hpp
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianBuilder/SelectedCI.hpp
@@ -66,6 +72,9 @@ set(PROJECT_INCLUDE_FILES
         ${PROJECT_INCLUDE_FOLDER}/RDM/BaseSpinUnresolvedRDMBuilder.hpp
         ${PROJECT_INCLUDE_FOLDER}/RDM/DOCIRDMBuilder.hpp
         ${PROJECT_INCLUDE_FOLDER}/RDM/FCIRDMBuilder.hpp
+        ${PROJECT_INCLUDE_FOLDER}/RDM/FrozenCoreDOCIRDMBuilder.hpp
+        ${PROJECT_INCLUDE_FOLDER}/RDM/FrozenCoreFCIRDMBuilder.hpp
+        ${PROJECT_INCLUDE_FOLDER}/RDM/FrozenCoreRDMBuilder.hpp
         ${PROJECT_INCLUDE_FOLDER}/RDM/OneRDM.hpp
         ${PROJECT_INCLUDE_FOLDER}/RDM/RDMCalculator.hpp
         ${PROJECT_INCLUDE_FOLDER}/RDM/RDMs.hpp

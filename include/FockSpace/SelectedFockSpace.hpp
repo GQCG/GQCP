@@ -21,6 +21,7 @@
 
 #include "FockSpace/BaseFockSpace.hpp"
 #include "FockSpace/ProductFockSpace.hpp"
+#include "FockSpace/FrozenProductFockSpace.hpp"
 #include "Configuration.hpp"
 
 
@@ -63,18 +64,32 @@ public:
     SelectedFockSpace(size_t K, size_t N_alpha, size_t N_beta);
 
     /**
-     *  A constructor that generates the configurations based off the given ProductFockSpace.
+     *  A constructor that generates the configurations based on the given ProductFockSpace.
      *
-     *  @param fock_space       the ProductFockSpace from which the configurations should be generated
+     *  @param fock_space       the product Fock space from which the configurations should be generated
      */
     explicit SelectedFockSpace(const ProductFockSpace& fock_space);
 
     /**
-     *  A constructor that generates the configurations based off the given FockSpace.
+     *  A constructor that generates the configurations based on the given FockSpace.
      *
-     *  @param fock_space       the FockSpace from which the configurations should be generated
+     *  @param fock_space       the Fock space from which the configurations should be generated
      */
     explicit SelectedFockSpace(const FockSpace& fock_space);
+
+    /**
+     *  A constructor that generates the configurations based on the given frozen product Fock space.
+     *
+     *  @param fock_space       the frozen product Fock space from which the configurations should be generated
+     */
+    explicit SelectedFockSpace(const FrozenProductFockSpace& fock_space);
+
+    /**
+     *  A constructor that generates the configurations based on the given frozen Fock space.
+     *
+     *  @param fock_space       the frozen Fock space from which the configurations should be generated
+     */
+    explicit SelectedFockSpace(const FrozenFockSpace& fock_space);
 
 
     // GETTERS

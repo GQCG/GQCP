@@ -43,7 +43,7 @@ public:
 
 
     // OVERRIDDEN GETTERS
-    BaseFockSpace* get_fock_space() override { return &fock_space; }
+    const BaseFockSpace* get_fock_space() const override { return &fock_space; }
 
 
     // OVERRIDDEN PUBLIC METHODS

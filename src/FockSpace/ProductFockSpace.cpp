@@ -1,5 +1,5 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
 // 
 // GQCG-gqcp is free software: you can redistribute it and/or modify
@@ -36,9 +36,7 @@ namespace GQCP {
 ProductFockSpace::ProductFockSpace(size_t K, size_t N_alpha, size_t N_beta) :
         BaseFockSpace(K, ProductFockSpace::calculateDimension(K, N_alpha, N_beta)),
         fock_space_alpha (FockSpace(K, N_alpha)),
-        fock_space_beta (FockSpace(K, N_beta)),
-        N_alpha (N_alpha),
-        N_beta (N_beta)
+        fock_space_beta (FockSpace(K, N_beta))
 {}
 
 

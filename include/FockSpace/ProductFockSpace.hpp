@@ -31,9 +31,6 @@ namespace GQCP {
  */
 class ProductFockSpace: public BaseFockSpace {
 private:
-    size_t N_alpha;  // number of alpha electrons
-    size_t N_beta;  // number of beta electrons
-
     FockSpace fock_space_alpha;
     FockSpace fock_space_beta;
 
@@ -53,8 +50,8 @@ public:
 
 
     // GETTERS
-    size_t get_N_alpha() const { return this->N_alpha; }
-    size_t get_N_beta() const { return this->N_beta; }
+    size_t get_N_alpha() const { return this->fock_space_alpha.get_N(); }
+    size_t get_N_beta() const { return this->fock_space_beta.get_N(); }
     const FockSpace& get_fock_space_alpha() const { return this->fock_space_alpha; }
     const FockSpace& get_fock_space_beta() const { return this->fock_space_beta; }
     FockSpaceType get_type() const override { return FockSpaceType::ProductFockSpace; }

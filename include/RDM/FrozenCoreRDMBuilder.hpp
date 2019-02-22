@@ -15,11 +15,10 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCP_SELECTEDRDMBUILDER_HPP
-#define GQCP_SELECTEDRDMBUILDER_HPP
+#ifndef GQCP_FROZENCORERDMBUILDER_HPP
+#define GQCP_FROZENCORERDMBUILDER_HPP
 
 
-#include "FockSpace/SelectedFockSpace.hpp"
 #include "RDM/BaseRDMBuilder.hpp"
 #include "RDM/RDMs.hpp"
 
@@ -28,35 +27,31 @@ namespace GQCP {
 
 
 /**
- *  A class capable of calculating 1- and 2-RDMs from wave functions expanded in a selected Fock space
+ *  A class capable of calculating 1- and 2-RDMs from wave functions expanded in the full CI product Fock space
  */
-class SelectedRDMBuilder : public BaseRDMBuilder {
-    SelectedFockSpace fock_space;  // Fock space containing the selected configurations
-
+class FrozenCoreRDMBuilder : public BaseRDMBuilder {
+    size_t X;  // number of frozen orbitals/electrons
+    std::shared_ptr<BaseRDMBuilder> active_rdm_builder;  // active (non-frozen core) RDM builder performing the BaseRDMBuilder interface in the active space with the frozen core CI wave function
 
 public:
     // CONSTRUCTORS
-    explicit SelectedRDMBuilder (const SelectedFockSpace& fock_space);
-
-
-    // DESTRUCTOR
-    ~SelectedRDMBuilder() = default;
-
-
-    // OVERRIDDEN GETTERS
-    const BaseFockSpace* get_fock_space() const override { return &fock_space; }
+    /**
+     *  @param rdm_builder                  shared pointer to active (non-frozen core) RDM builder
+     *  @param X                            the number of frozen orbitals
+     */
+    FrozenCoreRDMBuilder(std::shared_ptr<BaseRDMBuilder> rdm_builder, size_t X);
 
 
     // OVERRIDDEN PUBLIC METHODS
     /**
-     *  @param x        the coefficient vector representing the 'selected' wave function
+     *  @param x        the coefficient vector representing the wave function
      *
      *  @return all 1-RDMs given a coefficient vector
      */
     OneRDMs calculate1RDMs(const Eigen::VectorXd& x) const override;
 
     /**
-     *  @param x        the coefficient vector representing the 'selected' wave function
+     *  @param x        the coefficient vector representing the wave function
      *
      *  @return all 2-RDMs given a coefficient vector
      */
@@ -65,7 +60,7 @@ public:
     /**
      *  @param bra_indices      the indices of the orbitals that should be annihilated on the left (on the bra)
      *  @param ket_indices      the indices of the orbitals that should be annihilated on the right (on the ket)
-     *  @param x                the coefficient vector representing the 'selected' wave function
+     *  @param x                the coefficient vector representing the wave function
      *
      *  @return an element of the spin-summed (total) N-RDM, as specified by the given bra and ket indices
      *
@@ -78,4 +73,4 @@ public:
 }  // namespace GQCP
 
 
-#endif  // GQCP_SELECTEDRDMBUILDER_HPP
+#endif  // GQCP_FROZENCORERDMBUILDER_HPP
