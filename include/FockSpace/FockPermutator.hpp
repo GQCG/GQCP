@@ -48,11 +48,11 @@ protected:
 
 public:
     // CONSTRUCTOR
-    FockPermutator(size_t N) : N (N) {};
+    FockPermutator(size_t N) : N (N) {}
 
 
     // DESTRUCTOR
-    virtual ~FockPermutator() {};
+    virtual ~FockPermutator() {}
 
 
     // GETTERS
@@ -110,19 +110,28 @@ public:
 
     // PUBLIC METHODS
     /**
+     *  @return this as a DerivedPermutator (done at compile-time)
+     */
+    DerivedPermutator& derived() { return static_cast<DerivedPermutator&>(*this); }
+
+    /**
+     *  @return this as a const DerivedPermutator (done at compile-time)
+     */
+    const DerivedPermutator& derived() const { return static_cast<const DerivedPermutator&>(*this); }
+
+    /**
      *  @param address      the address (i.e. the ordening number) of the ONV
      *
      *  @return the ONV with the corresponding address
      */
     ONV makeONV(size_t address) const {
 
-        auto& fock_space = static_cast<const DerivedPermutator&>(*this);  // cast to DerivedPermutator for compile-time identification of the function called
+        const auto fock_space = this->derived();
 
         ONV onv (fock_space.get_K(), this->N);
         fock_space.transformONV(onv, address);
-
         return onv;
-    };
+    }
 
     /**
      *  Set the current ONV to the next ONV: performs ulongNextPermutation() and updates the corresponding occupation indices of the ONV occupation array
@@ -130,9 +139,10 @@ public:
      *  @param onv      the current ONV
      */
     void setNextONV(ONV &onv) const {
-        auto& fock_space = static_cast<const DerivedPermutator&>(*this);  // cast to DerivedPermutator for compile-time identification of the function called
+
+        const auto fock_space = this->derived();
         onv.set_representation(fock_space.ulongNextPermutation(onv.get_unsigned_representation()));
-    };
+    }
 
     /**
      *  @param onv      the ONV
@@ -140,7 +150,8 @@ public:
      *  @return the address (i.e. the ordering number) of the given ONV
      */
     size_t getAddress(const ONV &onv) const {
-        auto& fock_space = static_cast<const DerivedPermutator&>(*this);  // cast to DerivedPermutator for compile-time identification of the function called
+
+        const auto fock_space = this->derived();
         return fock_space.getAddress(onv.get_unsigned_representation());
     };
 
@@ -151,9 +162,10 @@ public:
      *  @param address      the address to which the ONV will be set
      */
     void transformONV(ONV &onv, size_t address) const {
-        auto& fock_space = static_cast<const DerivedPermutator&>(*this);  // cast to DerivedPermutator for compile-time identification of the function called
+
+        const auto fock_space = this->derived();
         onv.set_representation((fock_space.calculateRepresentation(address)));
-    };
+    }
 };
 
 
