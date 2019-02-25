@@ -473,6 +473,8 @@ Eigen::MatrixXd FCI::matrixVectorProduct(const HamiltonianParameters<double>& ha
         const Eigen::MatrixXd& sigma = this->alpha_couplings[p*(K+K+1-p)/2];
 
         for (size_t i = 0; i < matvec.cols(); i++) {
+
+            // map vectors colums to matrices for "smart" multiplication
             Eigen::Map<Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor>> matvecmap(matvec.col(i).data(), dim_alpha, dim_beta);
             Eigen::Map<const Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor>> xmap(x.col(i).data(), dim_alpha, dim_beta);
 
@@ -486,6 +488,8 @@ Eigen::MatrixXd FCI::matrixVectorProduct(const HamiltonianParameters<double>& ha
             const Eigen::MatrixXd& sigma = this->alpha_couplings[p*(K+K+1-p)/2 + q - p];
 
             for (size_t i = 0; i < matvec.cols(); i++) {
+
+                // map vectors colums to matrices for "smart" multiplication
                 Eigen::Map<Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor>> matvecmap(matvec.col(i).data(), dim_alpha, dim_beta);
                 Eigen::Map<const Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor>> xmap(x.col(i).data(), dim_alpha, dim_beta);
 
@@ -499,6 +503,8 @@ Eigen::MatrixXd FCI::matrixVectorProduct(const HamiltonianParameters<double>& ha
     Eigen::SparseMatrix<double> alpha_hamiltonian = this->calculateSpinSeparatedHamiltonian(fock_space_alpha, hamiltonian_parameters);
 
     for (size_t i = 0; i < matvec.cols(); i++) {
+
+        // map vectors colums to matrices for "smart" multiplication
         Eigen::Map<Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor>> matvecmap(matvec.col(i).data(), dim_alpha, dim_beta);
         Eigen::Map<const Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor>> xmap(x.col(i).data(), dim_alpha, dim_beta);
 
