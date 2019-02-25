@@ -414,6 +414,7 @@ Eigen::SparseMatrix<double> FCI::calculateSpinSeparatedOneElectronOperator(const
 
                 size_t J = address + fock_space.get_vertex_weights(q, e2);
                 triplet_vector.emplace_back(I, J, sign * one_electron_operator(p, q));
+                triplet_vector.emplace_back(J, I, sign * one_electron_operator(q, p));
                 q++;
 
                 fock_space.shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign);
