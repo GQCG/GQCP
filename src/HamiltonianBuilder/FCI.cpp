@@ -467,34 +467,43 @@ Eigen::MatrixXd FCI::matrixVectorProduct(const HamiltonianParameters<double>& ha
 
     Eigen::MatrixXd matvec = diagonal.asDiagonal() * x;
 
-    // map
-    Eigen::Map<Eigen::MatrixXd> matvecmap_beta (matvec.data(), dim_beta, dim_alpha * matvec.cols());
-    Eigen::Map<Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor>> matvecmap_alpha (matvec.data(), dim_beta * matvec.cols(), dim_alpha);
-
-    Eigen::Map<const Eigen::MatrixXd> xmap_beta (x.data(), dim_beta, dim_alpha * matvec.cols());
-    Eigen::Map<const Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor>> xmap_alpha (x.data(), dim_beta * matvec.cols(), dim_alpha);
-
     for (size_t p = 0; p<K; p++) {
 
-        // alpha_coeff = sigma(pp) * X * theta(pp)
-        const Eigen::MatrixXd& alpha_coeff = this->alpha_couplings[p*(K+K+1-p)/2] * xmap_alpha;
-        // re-map alpha_coeff from
-        matvecmap_beta += Eigen::Map<const Eigen::MatrixXd> (alpha_coeff.data(), dim_beta, dim_alpha * matvec.cols()) * calculateTwoElectronIntermediate(p, p, hamiltonian_parameters, fock_space_beta);
+        const Eigen::MatrixXd& theta = calculateTwoElectronIntermediate(p, p, hamiltonian_parameters, fock_space_beta);
+        const Eigen::MatrixXd& sigma = this->alpha_couplings[p*(K+K+1-p)/2];
+
+        for (size_t i = 0; i < matvec.cols(); i++) {
+            Eigen::Map<Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor>> matvecmap(matvec.col(i).data(), dim_alpha, dim_beta);
+            Eigen::Map<const Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor>> xmap(x.col(i).data(), dim_alpha, dim_beta);
+
+            // sigma(pp) * X * theta(pp)
+            matvecmap += sigma * xmap * theta;
+        }
 
         for (size_t q = p + 1; q<K; q++) {
 
-            // (sigma(pq) + sigma(qp)) * X * theta(pq)
-            const Eigen::MatrixXd& alpha_coeff = this->alpha_couplings[p*(K+K+1-p)/2 + q - p] * xmap_alpha;
-            matvecmap_beta += Eigen::Map<const Eigen::MatrixXd> (alpha_coeff.data(), dim_beta, dim_alpha * matvec.cols()) * calculateTwoElectronIntermediate(p, q, hamiltonian_parameters, fock_space_beta);
+            const Eigen::MatrixXd& theta = calculateTwoElectronIntermediate(p, q, hamiltonian_parameters, fock_space_beta);
+            const Eigen::MatrixXd& sigma = this->alpha_couplings[p*(K+K+1-p)/2 + q - p];
 
+            for (size_t i = 0; i < matvec.cols(); i++) {
+                Eigen::Map<Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor>> matvecmap(matvec.col(i).data(), dim_alpha, dim_beta);
+                Eigen::Map<const Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor>> xmap(x.col(i).data(), dim_alpha, dim_beta);
+
+                // (sigma(pq) + sigma(qp)) * X * theta(pq)
+                matvecmap += sigma * xmap * theta;
+            }
         }
     }
 
     Eigen::SparseMatrix<double> beta_hamiltonian = this->calculateSpinSeparatedHamiltonian(fock_space_beta, hamiltonian_parameters);
     Eigen::SparseMatrix<double> alpha_hamiltonian = this->calculateSpinSeparatedHamiltonian(fock_space_alpha, hamiltonian_parameters);
 
-    matvecmap_beta += xmap_beta * beta_hamiltonian;
-    matvecmap_alpha += alpha_hamiltonian * xmap_alpha;
+    for (size_t i = 0; i < matvec.cols(); i++) {
+        Eigen::Map<Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor>> matvecmap(matvec.col(i).data(), dim_alpha, dim_beta);
+        Eigen::Map<const Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor>> xmap(x.col(i).data(), dim_alpha, dim_beta);
+
+        matvecmap += alpha_hamiltonian * xmap + xmap * beta_hamiltonian;
+    }
 
     return matvec;
 }
