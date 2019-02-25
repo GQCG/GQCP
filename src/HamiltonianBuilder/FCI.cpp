@@ -38,7 +38,7 @@ FCI::FCI(const ProductFockSpace& fock_space) :
 
 
 /*
- *  PRIVATE METHODS
+ *  PUBLIC METHODS
  */
 
 /**
@@ -50,6 +50,7 @@ FCI::FCI(const ProductFockSpace& fock_space) :
  *  @return The sparse matrix containing all Hamiltonian elements for the Fock space pertaining to a single spin
  */
 Eigen::SparseMatrix<double> FCI::calculateSpinSeparatedHamiltonian(const FockSpace& fock_space, const HamiltonianParameters<double>& hamiltonian_parameters) const {
+
     size_t K = fock_space.get_K();
     size_t N = fock_space.get_N();
     size_t dim = fock_space.get_dimension();
@@ -372,6 +373,58 @@ std::vector<Eigen::SparseMatrix<double>> FCI::calculateOneElectronCouplingsInter
 
     return sparse_matrices;
 }
+
+/**
+    *  Calculates the one-electron operator matrix in the alpha or beta Fock space
+    *
+    *  @param fock_space                   Fock space for the spin specific Hamiltonian
+    *  @param hamiltonian_parameters       The Hamiltonian parameters in an orthonormal orbital basis
+    *
+    *  @return The sparse matrix containing all one-electron operator elements for the Fock space pertaining to a single spin
+    */
+Eigen::SparseMatrix<double> FCI::calculateSpinSeparatedOneElectronOperator(const FockSpace& fock_space, const OneElectronOperator<double>& one_electron_operator) const {
+
+    size_t K = fock_space.get_K();
+    size_t N = fock_space.get_N();
+    size_t dim = fock_space.get_dimension();
+
+    Eigen::SparseMatrix<double> operator_matrix (fock_space.get_dimension(), fock_space.get_dimension());
+    std::vector<Eigen::Triplet<double>> triplet_vector;
+    triplet_vector.reserve(fock_space.countTotalOneElectronCouplings());
+
+    ONV onv = fock_space.makeONV(0);  // onv with address 0
+    for (size_t I = 0; I < dim; I++) {  // I loops over all addresses in the Fock space
+        if (I > 0) {
+            fock_space.setNextONV(onv);
+        }
+
+        for (size_t e1 = 0; e1 < N; e1++) {  // A1 (annihilation 1)
+
+            size_t p = onv.get_occupation_index(e1);  // retrieve the index of a given electron
+            size_t address = I - fock_space.get_vertex_weights(p, e1 + 1);
+
+            size_t e2 = e1 + 1;
+            size_t q = p + 1;
+
+            int sign = 1;
+
+            fock_space.shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign);
+
+            while (q < K) {
+
+                size_t J = address + fock_space.get_vertex_weights(q, e2);
+                triplet_vector.emplace_back(I, J, sign * one_electron_operator(p, q));
+                q++;
+
+                fock_space.shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign);
+            }
+        }
+    }
+
+    operator_matrix.setFromTriplets(triplet_vector.begin(),triplet_vector.end());
+
+    return operator_matrix;
+};
 
 
 /*

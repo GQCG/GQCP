@@ -34,8 +34,23 @@ class FCI : public HamiltonianBuilder {
 private:
     ProductFockSpace fock_space;  // fock space containing the alpha and beta Fock space
     std::vector<Eigen::SparseMatrix<double>> alpha_couplings;
+public:
+    // CONSTRUCTORS
+    /**
+     *  @param fock_space       the full alpha and beta product Fock space
+     */
+    explicit FCI(const ProductFockSpace& fock_space);
 
-    // PRIVATE METHODS
+
+    // DESTRUCTOR
+    ~FCI() = default;
+
+
+    // OVERRIDDEN GETTERS
+    const BaseFockSpace* get_fock_space() const override { return &fock_space; }
+
+
+    // PUBLIC METHODS
     /**
      *  Calculates the Hamiltonian matrix in the alpha or beta Fock space
      *
@@ -67,21 +82,16 @@ private:
      *      Ordered as: sigma(00), sigma(01) + sigma(10), sigma(02)+ sigma(20), ...
      */
     std::vector<Eigen::SparseMatrix<double>> calculateOneElectronCouplingsIntermediates(const FockSpace& fock_space) const;
-public:
 
-    // CONSTRUCTORS
     /**
-     *  @param fock_space       the full alpha and beta product Fock space
+     *  Calculates the one-electron operator  matrix in the alpha or beta Fock space
+     *
+     *  @param fock_space                   Fock space for the spin specific Hamiltonian
+     *  @param hamiltonian_parameters       The Hamiltonian parameters in an orthonormal orbital basis
+     *
+     *  @return The sparse matrix containing all one-electron operator  elements for the Fock space pertaining to a single spin
      */
-    explicit FCI(const ProductFockSpace& fock_space);
-
-
-    // DESTRUCTOR
-    ~FCI() = default;
-
-
-    // OVERRIDDEN GETTERS
-    const BaseFockSpace* get_fock_space() const override { return &fock_space; }
+    Eigen::SparseMatrix<double> calculateSpinSeparatedOneElectronOperator(const FockSpace& fock_space, const OneElectronOperator<double>& one_electron_operator) const;
 
 
     // OVERRIDDEN PUBLIC METHODS
