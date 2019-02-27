@@ -1,7 +1,11 @@
 #include "CartesianGTO.hpp"
 
 #include <boost/math/constants/constants.hpp>
+#include <boost/math/special_functions/factorials.hpp>
 
+
+
+#include <iostream>
 
 namespace GQCP {
 
@@ -20,6 +24,11 @@ CartesianGTO::CartesianGTO(double alpha, const std::array<size_t, 3>& exponents,
     exponents (exponents),
     center (center)
 {
+    if (alpha < 0) {
+        throw std::invalid_argument("CartesianGTO::CartesianGTO(): the exponent must be larger than 0.");
+    }
+
+
     this->N = this->calculateNormalizationFactor();
 }
 
@@ -46,24 +55,13 @@ double CartesianGTO::operator()(const Eigen::Vector3d& r) const {
 
     Eigen::Vector3d delta_r = r - this->center;
 
-    double value = 1.0;
+    double value = this->N;
     value *= std::pow(delta_r.x(), this->exponents[0]);
     value *= std::pow(delta_r.y(), this->exponents[1]);
     value *= std::pow(delta_r.z(), this->exponents[2]);
 
     return value * std::exp(-this->alpha * delta_r.squaredNorm());
 }
-
-
-///**
-// *  @return the product of two CartesianGTOs, i.e. the Gaussian product rule
-// */
-//CartesianGTO CartesianGTO::operator*(const CartesianGTO& rhs) const {
-//
-//
-//
-//}
-
 
 
 /*
@@ -82,7 +80,13 @@ double CartesianGTO::calculateNormalizationFactorComponent(double alpha, size_t 
 
     double value = 1.0;
     value *= std::pow(2*alpha / pi, 0.25);
-    value *= std::pow(std::pow(4*alpha, c) / boost::math::double_factorial<double>(2*static_cast<unsigned>(c) - 1), 0.5);
+
+    if (c > 0) {  // if c==0, the following factor becomes 1
+        auto df = boost::math::double_factorial<double>(2*static_cast<unsigned>(c) - 1);  // df: double factorial
+
+        value *= std::pow(std::pow(4*alpha, c) / df, 0.5);
+    }
+
     return value;
 }
 

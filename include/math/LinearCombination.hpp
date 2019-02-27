@@ -11,6 +11,9 @@ namespace GQCP {
 
 /**
  *  @tparam T    a type of scalar function
+ *
+ *  TODO: T should be a scalar function?
+ *  TODO: double should also become a template?
  */
 template <typename T>
 class LinearCombination : public MultipliableScalarFunction<typename T::Valued, typename T::Scalar, T::Cols> {
@@ -62,6 +65,10 @@ public:
             throw std::invalid_argument("Can't convert a non-zero integer to a zero vector");
         }
     }
+
+
+    const std::vector<double>& get_coefficients() const { return this->coefficients; }
+    const std::vector<T>& get_functions() const { return this->functions; }
 
 
     /*

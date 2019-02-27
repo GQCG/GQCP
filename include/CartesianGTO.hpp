@@ -9,11 +9,11 @@
 namespace GQCP {
 
 /**
- *  A class representing a Cartesian Gaussian-type orbital (GTO). It is often referred to as a 'primitive'
+ *  A class representing a Cartesian Gaussian-type orbital (GTO), which is often referred to as a 'primitive'
  *
- *  Mathematically, a Cartesian GTO is a real-valued scalar function taking an Euclidean vector (3D-vector) as argument
+ *  Mathematically speaking, a Cartesian GTO is a real-valued scalar function taking an Euclidean vector (3D-vector) as argument
  *
- *  Contracted GTOs can then be expressed as linear combinations of GTOs: LinearCombination<CartesianGTO>
+ *  Contracted GTOs can be expressed as linear combinations of GTOs: LinearCombination<CartesianGTO>
  */
 class CartesianGTO : public ScalarFunction<double, double, 3> {
 public:
@@ -38,6 +38,12 @@ public:
     CartesianGTO();
 
 
+    // GETTERS
+    double get_exponent() const { return this->alpha; }
+    const std::array<size_t, 3>& get_exponents() const { return this->exponents; }
+    const Eigen::Vector3d& get_center() const { return this->center; }
+
+
     // OPERATORS
     /**
      *  @param r        the value at which the GTO should be evaluated
@@ -45,11 +51,6 @@ public:
      *  @return the value of the GTO at the given position
      */
     double operator()(const Eigen::Vector3d& r) const override;
-
-//    /**
-//     *  @return the product of two CartesianGTOs, i.e. the Gaussian product rule
-//     */
-//    CartesianGTO operator*(const CartesianGTO& rhs) const;
 
 
     // PUBLIC METHODS
@@ -80,7 +81,7 @@ public:
 };
 
 
-}
+}  // namespace GQCP
 
 
 #endif  /* CartesianGTO_hpp */

@@ -75,6 +75,7 @@ set(PROJECT_TEST_SOURCE_FILES
 
         ${PROJECT_TESTS_FOLDER}/AOBasis_test.cpp
         ${PROJECT_TESTS_FOLDER}/Atom_test.cpp
+        ${PROJECT_TESTS_FOLDER}/CartesianGTO_test.cpp
         ${PROJECT_TESTS_FOLDER}/elements_test.cpp
         ${PROJECT_TESTS_FOLDER}/HoppingMatrix_test.cpp
         ${PROJECT_TESTS_FOLDER}/JacobiRotationParameters_test.cpp
