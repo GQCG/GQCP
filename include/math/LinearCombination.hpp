@@ -240,13 +240,13 @@ struct NumTraits<GQCP::LinearCombination<CoefficientScalar, T>> : public NumTrai
 
 // Enable custom scalar type (LinearCombination) * its coefficient scalar
 template<typename CoefficientScalar, typename T>
-struct Eigen::ScalarBinaryOpTraits<GQCP::LinearCombination<CoefficientScalar, T>, CoefficientScalar, Eigen::internal::scalar_product_op<GQCP::LinearCombination<CoefficientScalar, T>, CoefficientScalar>> {
+struct ScalarBinaryOpTraits<GQCP::LinearCombination<CoefficientScalar, T>, CoefficientScalar, Eigen::internal::scalar_product_op<GQCP::LinearCombination<CoefficientScalar, T>, CoefficientScalar>> {
     using ReturnType = GQCP::LinearCombination<CoefficientScalar, T>;
 };
 
 // Enable coefficient scalar * custom scalar type (LinearCombination)
 template<typename CoefficientScalar, typename T>
-struct Eigen::ScalarBinaryOpTraits<CoefficientScalar, GQCP::LinearCombination<CoefficientScalar, T>, Eigen::internal::scalar_product_op<CoefficientScalar, GQCP::LinearCombination<CoefficientScalar, T>>> {
+struct ScalarBinaryOpTraits<CoefficientScalar, GQCP::LinearCombination<CoefficientScalar, T>, Eigen::internal::scalar_product_op<CoefficientScalar, GQCP::LinearCombination<CoefficientScalar, T>>> {
     using ReturnType = GQCP::LinearCombination<CoefficientScalar, T>;
 };
 
