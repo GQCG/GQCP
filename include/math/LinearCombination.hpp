@@ -2,6 +2,9 @@
 #define LinearCombination_hpp
 
 
+#include "math/MultipliableScalarFunction.hpp"
+
+
 
 namespace GQCP {
 
@@ -159,6 +162,50 @@ public:
 
 
 }  // namespace GQCP
+
+
+
+
+/*
+ *  Make GQCP::LinearCombination<T> an Eigen scalar type
+ */
+
+namespace Eigen {
+
+template<typename T>
+struct NumTraits<GQCP::LinearCombination<T>> : public NumTraits<double> {  // permits to get the epsilon, dummy_precision, lowest, highest functions
+
+    using Real = GQCP::LinearCombination<T>;
+    using NonInteger = GQCP::LinearCombination<T>;
+    using Nested = GQCP::LinearCombination<T>;
+
+    enum {
+        IsComplex = 0,
+        IsInteger = 0,
+        IsSigned = 1,
+        RequireInitialization = 1,
+        ReadCost = 1,
+        AddCost = 5,
+        MulCost = 1000
+    };
+};
+
+
+// Enable custom scalar * double
+template<typename T>
+struct Eigen::ScalarBinaryOpTraits<GQCP::LinearCombination<T>, double, Eigen::internal::scalar_product_op<GQCP::LinearCombination<T>, double>> {
+    using ReturnType = GQCP::LinearCombination<T>;
+};
+
+// Enable double * custom scalar
+template<typename T>
+struct Eigen::ScalarBinaryOpTraits<double, GQCP::LinearCombination<T>, Eigen::internal::scalar_product_op<double, GQCP::LinearCombination<T>>> {
+    using ReturnType = GQCP::LinearCombination<T>;
+};
+
+
+}  // namespace Eigen
+
 
 
 #endif  /* LinearCombination_hpp */
