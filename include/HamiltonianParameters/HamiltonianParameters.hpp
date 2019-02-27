@@ -41,7 +41,7 @@ namespace GQCP {
  *  @tparam Scalar      the scalar type
  */
 template<typename Scalar>
-class HamiltonianParameters : public BaseHamiltonianParameters, public Operator<Scalar> {
+class HamiltonianParameters : public BaseHamiltonianParameters, public Operator<HamiltonianParameters<Scalar>> {
 private:
     size_t K;  // the number of spatial orbitals
 
@@ -412,7 +412,7 @@ public:
      *      - the overlap matrix S now gives the overlap matrix in the new molecular orbital basis
      *      - the total transformation matrix T_total is updated to reflect the total transformation between the new molecular orbital basis and the initial atomic orbitals
      */
-    void transform(const SquareMatrix<Scalar>& T) override {
+    void transform(const SquareMatrix<Scalar>& T) {
 
         this->S.transform(T);
 
@@ -423,16 +423,7 @@ public:
     }
 
 
-    /**
-     *  If we have
-     *      HamiltonianParameters<Scalar> ham_par;
-     *
-     *  This makes sure that we can call
-     *      ham_par.rotate(U);
-     *  instead of the syntax
-     *      ham_par.Operator<Scalar>::rotate(U);
-     */
-    using Operator<Scalar>::rotate;
+    using Operator<HamiltonianParameters<Scalar>>::rotate;  // bring over rotate() from the base class
 
 
     /**

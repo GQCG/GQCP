@@ -1,5 +1,5 @@
-#ifndef IntegralParameters_hpp
-#define IntegralParameters_hpp
+#ifndef Operator_hpp
+#define Operator_hpp
 
 
 #include "typedefs.hpp"
@@ -10,23 +10,22 @@ namespace GQCP {
 
 /**
  *  An interface for second-quantized operators: they should implement the transformation formulas for their matrix representations in an orbital basis
+ *
+ *  Since Operator::rotate() is implemented in the base class using a derived-class transform(), we use CRTP as static polymorphism
  */
-template<typename Scalar>
+template <typename DerivedOperator>
 class Operator {
 public:
 
-    /*
-     *  PUBLIC PURE VIRTUAL METHODS
+    /**
+     *  @return this as a DerivedOperator (done at compile time)
      */
+    DerivedOperator& derived() { return static_cast<DerivedOperator&>(*this); }
 
     /**
-     *  In-place transform the matrix representation of the operator
-     *
-     *  @param T    the transformation matrix between the old and the new orbital basis, it is used as
-     *      b' = b T ,
-     *   in which the basis functions are collected as elements of a row vector b
+     *  @return this as a const DerivedOperator (done at compile time)
      */
-    virtual void transform(const SquareMatrix<Scalar>& T) = 0;
+    const DerivedOperator& derived() const { return static_cast<DerivedOperator&>(*this); }
 
 
     /*
@@ -38,6 +37,7 @@ public:
      *
      *  @param U     the unitary transformation (i.e. rotation) matrix, see transform() for how the transformation matrix between the two bases should be represented
      */
+    template<typename Scalar>
     void rotate(const SquareMatrix<Scalar>& U) {
 
         // Check if the given matrix is actually unitary
@@ -45,7 +45,7 @@ public:
             throw std::invalid_argument("The given transformation matrix is not unitary.");
         }
 
-        this->transform(U);
+        this->derived().transform(U);
     }
 
 
@@ -53,7 +53,7 @@ public:
 };
 
 
-}
+}  // namespace GQCP
 
 
-#endif /* IntegralParameters_hpp */
+#endif  /* Operator_hpp */

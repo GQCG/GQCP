@@ -25,7 +25,7 @@ auto rhf = plain_scf_solver.get_solution();
 
 
 // Transform the Hamiltonian parameters to the RHF basis
-mol_ham_par.transform(rhf.get_C());
+mol_ham_par.transform(SquareMatrix<double>(rhf.get_C()));
 
 
 // Set up the FCI Fock space

@@ -35,7 +35,7 @@ namespace GQCP {
  *  @tparam Scalar      the scalar type
  */
 template <typename Scalar>
-class OneElectronOperator : public SquareMatrix<Scalar>, public Operator<Scalar> {
+class OneElectronOperator : public SquareMatrix<Scalar>, public Operator<OneElectronOperator<Scalar>> {
 public:
 
     /*
@@ -67,11 +67,16 @@ public:
     /**
      *  In-place transform the matrix representation of the one-electron operator
      *
+     *  @tparam TransformationScalar        the type of scalar used for the transformation matrix
+     *
      *  @param T    the transformation matrix between the old and the new orbital basis, it is used as
      *      b' = b T ,
      *   in which the basis functions are collected as elements of a row vector b
+     *
+     *  Note that in order to use these transformation formulas, the multiplication between TransformationScalar and Scalar should be 'enabled'. See LinearCombination.hpp for an example
      */
-    void transform(const SquareMatrix<Scalar>& T) override {
+    template <typename TransformationScalar = Scalar>
+    void transform(const SquareMatrix<TransformationScalar>& T) {
         *this = OneElectronOperator<Scalar>(T.adjoint() * (*this) * T);  // this has no aliasing issues (https://eigen.tuxfamily.org/dox/group__TopicAliasing.html)
     }
 
@@ -80,16 +85,7 @@ public:
      *  PUBLIC METHODS
      */
 
-    /**
-     *  If we have
-     *      OneElectronOperator<Scalar> one_op;
-     *
-     *  This makes sure that we can call
-     *      one_op.rotate(U);
-     *  instead of the syntax
-     *      one_op.Operator<Scalar>::rotate(U);
-     */
-    using Operator<Scalar>::rotate;
+    using Operator<OneElectronOperator<Scalar>>::rotate;  // bring over rotate from the base class
 
 
     /**

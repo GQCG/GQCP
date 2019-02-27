@@ -50,7 +50,7 @@ BOOST_AUTO_TEST_CASE ( TwoElectronOperator_transform_trivial ) {
     GQCP::TwoElectronOperator<double> G (g);
 
     Eigen::MatrixXd T = Eigen::MatrixXd::Identity(3, 3);
-    G.transform(T);
+    G.transform(GQCP::SquareMatrix<double>(T));
 
     BOOST_CHECK(GQCP::areEqual(g, g, 1.0e-12));
 }
@@ -77,7 +77,7 @@ BOOST_AUTO_TEST_CASE ( TwoElectronOperator_transform_olsens ) {
         }
     }
     GQCP::TwoElectronOperator<double> G (g);
-    G.transform(T);
+    G.transform(GQCP::SquareMatrix<double>(T));
 
     BOOST_CHECK(GQCP::areEqual(G, g_transformed_ref, 1.0e-12));
 }
@@ -94,7 +94,7 @@ BOOST_AUTO_TEST_CASE ( TwoElectronOperator_rotate_throws ) {
 
     // Check if a non-unitary matrix as transformation matrix causes a throw
     Eigen::MatrixXd U (Eigen::MatrixXd::Random(dim, dim));
-    BOOST_CHECK_THROW(G.rotate(U), std::invalid_argument);
+    BOOST_CHECK_THROW(G.rotate(GQCP::SquareMatrix<double>(U)), std::invalid_argument);
 
 
     // Check if a unitary matrix as transformation matrix is accepted
@@ -120,7 +120,7 @@ BOOST_AUTO_TEST_CASE ( TwoElectronOperator_rotate_JacobiRotationParameters ) {
 
 
     G1.rotate(jacobi_rotation_parameters);
-    G2.rotate(U);
+    G2.rotate(GQCP::SquareMatrix<double>(U));
 
 
     BOOST_CHECK(GQCP::areEqual(G1, G2, 1.0e-12));

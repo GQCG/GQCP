@@ -80,7 +80,7 @@ void RHFSCFSolver::solve() {
 
             // After the SCF procedure, we end up with canonical spatial orbitals, i.e. the Fock matrix should be diagonal in this basis
             OneElectronOperator<double> F (F_AO);
-            F.transform(C);  // transform F to the MO basis with C
+            F.transform(SquareMatrix<double>(C));  // transform F to the MO basis with C
             if (!(F.isDiagonal())) {
                 throw std::runtime_error("The RHF SCF procedure is converged but the MO Fock matrix is not diagonal.");
             }
