@@ -488,6 +488,10 @@
 		5614FFDF21B062A8002C5D40 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
 		5614FFEB21B062AF002C5D40 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
 		5614FFF721B062B4002C5D40 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
+		562241E222259864001436D0 /* ScalarFunction.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 562241E122259864001436D0 /* ScalarFunction.hpp */; };
+		562241E52225B3DC001436D0 /* CartesianGTO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 562241E32225B3DC001436D0 /* CartesianGTO.cpp */; };
+		562241E62225B3DC001436D0 /* CartesianGTO.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 562241E42225B3DC001436D0 /* CartesianGTO.hpp */; };
+		562241E82225B7F3001436D0 /* LinearCombination.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 562241E72225B7F3001436D0 /* LinearCombination.hpp */; };
 		56272DB921B6CBFA008BEA47 /* AP1roGJacobiOrbitalOptimizer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56272DB321B6CBFA008BEA47 /* AP1roGJacobiOrbitalOptimizer.hpp */; };
 		56272DBA21B6CBFA008BEA47 /* AP1roGGeminalCoefficients.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56272DB421B6CBFA008BEA47 /* AP1roGGeminalCoefficients.hpp */; };
 		56272DBB21B6CBFA008BEA47 /* AP1roGPSESolver.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56272DB521B6CBFA008BEA47 /* AP1roGPSESolver.hpp */; };
@@ -2798,6 +2802,10 @@
 		5614FFE421B062A8002C5D40 /* FockSpace_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = FockSpace_test; sourceTree = BUILT_PRODUCTS_DIR; };
 		5614FFF021B062AF002C5D40 /* ONV_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ONV_test; sourceTree = BUILT_PRODUCTS_DIR; };
 		5614FFFC21B062B4002C5D40 /* ProductFockSpace_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ProductFockSpace_test; sourceTree = BUILT_PRODUCTS_DIR; };
+		562241E122259864001436D0 /* ScalarFunction.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ScalarFunction.hpp; sourceTree = "<group>"; };
+		562241E32225B3DC001436D0 /* CartesianGTO.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = CartesianGTO.cpp; path = ../include/CartesianGTO.cpp; sourceTree = "<group>"; };
+		562241E42225B3DC001436D0 /* CartesianGTO.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CartesianGTO.hpp; sourceTree = "<group>"; };
+		562241E72225B7F3001436D0 /* LinearCombination.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LinearCombination.hpp; sourceTree = "<group>"; };
 		56272DB321B6CBFA008BEA47 /* AP1roGJacobiOrbitalOptimizer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AP1roGJacobiOrbitalOptimizer.hpp; sourceTree = "<group>"; };
 		56272DB421B6CBFA008BEA47 /* AP1roGGeminalCoefficients.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AP1roGGeminalCoefficients.hpp; sourceTree = "<group>"; };
 		56272DB521B6CBFA008BEA47 /* AP1roGPSESolver.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AP1roGPSESolver.hpp; sourceTree = "<group>"; };
@@ -4009,6 +4017,7 @@
 			children = (
 				5614F99921B029FB002C5D40 /* AOBasis.hpp */,
 				5614F9A921B029FB002C5D40 /* Atom.hpp */,
+				562241E42225B3DC001436D0 /* CartesianGTO.hpp */,
 				5614F99021B029FB002C5D40 /* DOCINewtonOrbitalOptimizer.hpp */,
 				5614F9B921B029FB002C5D40 /* elements.hpp */,
 				56FBA0E821C2DFC00084F088 /* HoppingMatrix.hpp */,
@@ -4028,6 +4037,7 @@
 			children = (
 				5614F9F721B029FB002C5D40 /* AOBasis.cpp */,
 				5614F9DE21B029FB002C5D40 /* Atom.cpp */,
+				562241E32225B3DC001436D0 /* CartesianGTO.cpp */,
 				5614FA0E21B029FB002C5D40 /* DOCINewtonOrbitalOptimizer.cpp */,
 				5614F9D521B029FB002C5D40 /* elements.cpp */,
 				56FBA0E621C2DFB40084F088 /* HoppingMatrix.cpp */,
@@ -4426,6 +4436,8 @@
 				56FBA0AA21C2B4660084F088 /* optimization */,
 				56C8399B2215B1CB00FA98A0 /* SquareFourIndexTensor.hpp */,
 				56C839812215A30400FA98A0 /* SquareMatrix.hpp */,
+				562241E122259864001436D0 /* ScalarFunction.hpp */,
+				562241E72225B7F3001436D0 /* LinearCombination.hpp */,
 			);
 			path = math;
 			sourceTree = "<group>";
@@ -4578,10 +4590,12 @@
 				5614FA1D21B029FB002C5D40 /* DOCIRDMBuilder.hpp in Headers */,
 				5614FA1421B029FB002C5D40 /* SelectedFockSpace.hpp in Headers */,
 				5643B7FD21F85B1E00E1741F /* BaseAPIGVariables.hpp in Headers */,
+				562241E82225B7F3001436D0 /* LinearCombination.hpp in Headers */,
 				5614FA3221B029FB002C5D40 /* OrbitalOptimizationOptions.hpp in Headers */,
 				5614FA1C21B029FB002C5D40 /* RDMCalculator.hpp in Headers */,
 				5614FA3021B029FB002C5D40 /* typedefs.hpp in Headers */,
 				5614FA4121B029FB002C5D40 /* HamiltonianBuilder.hpp in Headers */,
+				562241E62225B3DC001436D0 /* CartesianGTO.hpp in Headers */,
 				5614FA2221B029FB002C5D40 /* RDMs.hpp in Headers */,
 				56FBA0C321C2B4AF0084F088 /* NewtonSystemOfEquationsSolver.hpp in Headers */,
 				5614FA2C21B029FB002C5D40 /* expectation_values.hpp in Headers */,
@@ -4632,6 +4646,7 @@
 				5614FA1021B029FB002C5D40 /* BaseFockSpace.hpp in Headers */,
 				5614FA3621B029FB002C5D40 /* TwoElectronOperator.hpp in Headers */,
 				56D630A1221FE647001081EB /* FrozenCoreDOCI.hpp in Headers */,
+				562241E222259864001436D0 /* ScalarFunction.hpp in Headers */,
 				5614FA2F21B029FB002C5D40 /* JacobiRotationParameters.hpp in Headers */,
 				5614FA3F21B029FB002C5D40 /* HamiltonianParameters.hpp in Headers */,
 				56B0D3B021F9BAC100605997 /* BivariationalCoefficients.hpp in Headers */,
@@ -6596,6 +6611,7 @@
 				56C040672212BCDC00C61BB0 /* SelectedCI.cpp in Sources */,
 				5614FA6D21B029FB002C5D40 /* WaveFunction.cpp in Sources */,
 				5643B80921F868A600E1741F /* AP1roGVariables.cpp in Sources */,
+				562241E52225B3DC001436D0 /* CartesianGTO.cpp in Sources */,
 				5614FA4D21B029FB002C5D40 /* ProductFockSpace.cpp in Sources */,
 				5614FA5421B029FB002C5D40 /* PlainRHFSCFSolver.cpp in Sources */,
 				56D63095221FE5F1001081EB /* FrozenProductFockSpace.cpp in Sources */,

@@ -47,10 +47,13 @@ using cd = std::complex<double>;
  */
 using Vectoru = std::vector<size_t>;
 
-template<typename Scalar>
-using Vector = Eigen::Matrix<Scalar, Eigen::Dynamic, 1>;
+template<typename Scalar, int Cols>
+using Vector = Eigen::Matrix<Scalar, Cols, 1>;
 
-using VectorXs = Vector<size_t>;
+template<typename Scalar>
+using VectorX = Vector<Scalar, Eigen::Dynamic>;
+
+using VectorXs = VectorX<size_t>;
 
 
 /*
