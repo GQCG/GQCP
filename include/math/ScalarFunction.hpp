@@ -13,7 +13,7 @@ namespace GQCP {
  *
  *  @tparam _Valued     the return type of the scalar function
  *  @tparam _Scalar     the type of the scalars of the input vector
- *  @tparam _Cols       the dimension of the input vector, an integer, or Eigen::Dynamic representing an unknown number of columns at compile time
+ *  @tparam _Cols       the dimension of the input vector: an integer, or Eigen::Dynamic representing an unknown number of columns at compile time
  */
 template <typename _Valued, typename _Scalar, int _Cols>
 class ScalarFunction {
@@ -28,7 +28,9 @@ public:
 
 
     /**
-     *  operator() implements the notion of a `_Valued`-valued scalar function, accepting a vector of `_Scalar`s
+     *  @param x        the vector/point at which the scalar function is to be evaluated
+     *
+     *  @return the scalar function value at the given point
      */
     virtual _Valued operator()(const Vector<_Scalar, _Cols>& x) const = 0;
 };
@@ -38,4 +40,4 @@ public:
 
 
 
-#endif /* ScalarFunction_hpp */
+#endif  /* ScalarFunction_hpp */

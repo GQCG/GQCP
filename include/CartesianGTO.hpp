@@ -72,12 +72,12 @@ public:
      *
      *  @return the derivative of this Cartesian GTO (with respect to the electronic coordinates) in the x-, y-, or z-direction
      */
-    LinearCombination<CartesianGTO> calculateDerivative(size_t c) const;
+    LinearCombination<double, CartesianGTO> calculateDerivative(size_t c) const;
 
     /**
      *  @return the gradient of this Cartesian GTO with respect to the electronic coordinates
      */
-    Vector<LinearCombination<CartesianGTO>, 3> calculateGradient() const;
+    Vector<LinearCombination<double, CartesianGTO>, 3> calculateGradient() const;
 };
 
 

@@ -110,7 +110,7 @@ double CartesianGTO::calculateNormalizationFactor() const {
  *
  *  @return the derivative of this Cartesian GTO (with respect to the electronic coordinates) in the x-, y-, or z-direction
  */
-LinearCombination<CartesianGTO> CartesianGTO::calculateDerivative(size_t c) const {
+LinearCombination<double, CartesianGTO> CartesianGTO::calculateDerivative(size_t c) const {
 
     // Derivative of the exponential
     std::array<size_t, 3> alpha_exponents = this->exponents;
@@ -135,7 +135,7 @@ LinearCombination<CartesianGTO> CartesianGTO::calculateDerivative(size_t c) cons
     CartesianGTO alpha_derivative (this->alpha, alpha_exponents, this->center);
     double alpha_coefficient = -2 * this->alpha;
 
-    LinearCombination<CartesianGTO> lc (alpha_coefficient, alpha_derivative);  // lc: linear combination
+    LinearCombination<double, CartesianGTO> lc (alpha_coefficient, alpha_derivative);  // lc: linear combination
 
 
     // If the exponent in x, y or z is non-zero, there is an extra contribution of the linear term
@@ -162,7 +162,7 @@ LinearCombination<CartesianGTO> CartesianGTO::calculateDerivative(size_t c) cons
         CartesianGTO linear_derivative (this->alpha, linear_exponents, this->center);
         double linear_coefficient = this->exponents[c];
 
-        lc += LinearCombination<CartesianGTO>(linear_coefficient, linear_derivative);
+        lc += LinearCombination<double, CartesianGTO>(linear_coefficient, linear_derivative);
     }
 
     return lc;
@@ -172,9 +172,9 @@ LinearCombination<CartesianGTO> CartesianGTO::calculateDerivative(size_t c) cons
 /**
  *  @return the gradient of this Cartesian GTO with respect to the electronic coordinates
  */
-Vector<LinearCombination<CartesianGTO>, 3> CartesianGTO::calculateGradient() const {
+Vector<LinearCombination<double, CartesianGTO>, 3> CartesianGTO::calculateGradient() const {
 
-    Vector<LinearCombination<CartesianGTO>, 3> gradient;
+    Vector<LinearCombination<double, CartesianGTO>, 3> gradient;
     for (size_t c : {0, 1, 2}) {
         gradient(c) = this->calculateDerivative(c);
     }
