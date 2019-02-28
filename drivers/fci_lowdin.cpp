@@ -75,8 +75,9 @@ int main (int argc, char** argv) {
     // Calculate the 1-RDM in the NO basis
     auto fci_wavefunction = ci_solver.makeWavefunction();
     GQCP::RDMCalculator fci_rdm (fci_wavefunction);
-    GQCP::OneRDM D = fci_rdm.calculate1RDMs().one_rdm;
-    D.diagonalize();
+    GQCP::OneRDM<double> D = fci_rdm.calculate1RDMs().one_rdm;
+
+    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes (D);
 
 
     // Print the energy to an output file
@@ -89,7 +90,7 @@ int main (int argc, char** argv) {
 
     output_file << "TOTAL ENERGY: " << std::setprecision(15) << fci_energy + internuclear_repulsion_energy << std::endl << std::endl;
 
-    output_file << "1-DM IN NATURAL ORBITAL BASIS\n" << D.get_matrix_representation().diagonal() << std::endl << std::endl;
+    output_file << "1-DM IN NATURAL ORBITAL BASIS\n" << saes.eigenvalues() << std::endl << std::endl;
 
     output_file.close();
 }

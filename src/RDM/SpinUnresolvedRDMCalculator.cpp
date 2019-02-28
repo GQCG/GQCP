@@ -58,16 +58,24 @@ SpinUnresolvedRDMCalculator::SpinUnresolvedRDMCalculator(const SpinUnresolvedWav
 /**
  *  @return the 1-RDM if a given coefficient vector is set
  */
-OneRDM SpinUnresolvedRDMCalculator::calculate1RDM() const {
-    if (this->coefficients.rows() == 0) { throw std::logic_error("No vector has been set."); }
+OneRDM<double> SpinUnresolvedRDMCalculator::calculate1RDM() const {
+
+    if (this->coefficients.rows() == 0) {
+        throw std::logic_error("No vector has been set.");
+    }
+
     return rdm_builder.calculate1RDM(this->coefficients);
 }
 
 /**
  *  @return the 2-RDM if a given coefficient vector is set
  */
-TwoRDM SpinUnresolvedRDMCalculator::calculate2RDM() const {
-    if (this->coefficients.rows() == 0) { throw std::logic_error("No vector has been set."); }
+TwoRDM<double> SpinUnresolvedRDMCalculator::calculate2RDM() const {
+
+    if (this->coefficients.rows() == 0) {
+        throw std::logic_error("No vector has been set.");
+    }
+
     return rdm_builder.calculate2RDM(this->coefficients);
 }
 
@@ -81,7 +89,11 @@ TwoRDM SpinUnresolvedRDMCalculator::calculate2RDM() const {
  *      calculateElement({0, 1}, {2, 1}) would calculate d^{(2)} (0, 1, 1, 2): the operator string would be a^\dagger_0 a^\dagger_1 a_2 a_1
  */
 double SpinUnresolvedRDMCalculator::calculateElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices) const {
-    if (this->coefficients.rows() == 0) { throw std::logic_error("No vector has been set."); }
+
+    if (this->coefficients.rows() == 0) {
+        throw std::logic_error("No vector has been set.");
+    }
+
     return this->rdm_builder.calculateElement(bra_indices, ket_indices, this->coefficients);
 }
 

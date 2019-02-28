@@ -19,9 +19,9 @@
 #define GQCP_SELECTEDRDMBUILDER_HPP
 
 
+#include "RDM/RDMs.hpp"
 #include "FockSpace/SelectedFockSpace.hpp"
 #include "RDM/BaseRDMBuilder.hpp"
-#include "RDM/RDMs.hpp"
 
 
 namespace GQCP {
@@ -53,14 +53,14 @@ public:
      *
      *  @return all 1-RDMs given a coefficient vector
      */
-    OneRDMs calculate1RDMs(const Eigen::VectorXd& x) const override;
+    OneRDMs<double> calculate1RDMs(const Eigen::VectorXd& x) const override;
 
     /**
      *  @param x        the coefficient vector representing the 'selected' wave function
      *
      *  @return all 2-RDMs given a coefficient vector
      */
-    TwoRDMs calculate2RDMs(const Eigen::VectorXd& x) const override;
+    TwoRDMs<double> calculate2RDMs(const Eigen::VectorXd& x) const override;
 
     /**
      *  @param bra_indices      the indices of the orbitals that should be annihilated on the left (on the bra)

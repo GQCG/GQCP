@@ -54,14 +54,14 @@ public:
      *
      *  @return the 1-RDM given a coefficient vector
      */
-    virtual OneRDM calculate1RDM(const Eigen::VectorXd& x) const = 0;
+    virtual OneRDM<double> calculate1RDM(const Eigen::VectorXd& x) const = 0;
 
     /**
      *  @param x        the coefficient vector representing the wave function
      *
      *  @return the 2-RDM given a coefficient vector
      */
-    virtual TwoRDM calculate2RDM(const Eigen::VectorXd& x) const = 0;
+    virtual TwoRDM<double> calculate2RDM(const Eigen::VectorXd& x) const = 0;
 
     /**
      *  @param bra_indices      the indices of the orbitals that should be annihilated on the left (on the bra)

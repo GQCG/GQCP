@@ -66,12 +66,12 @@ public:
     /**
      *  @return the 1-RDM if a given coefficient vector is set
      */
-    OneRDM calculate1RDM() const;
+    OneRDM<double> calculate1RDM() const;
 
     /**
      *  @return the 2-RDM if a given coefficient vector is set
      */
-    TwoRDM calculate2RDM() const;
+    TwoRDM<double> calculate2RDM() const;
 
     /**
      *  @param bra_indices      the indices of the orbitals that should be annihilated on the left (on the bra)

@@ -35,8 +35,8 @@
 BOOST_AUTO_TEST_CASE ( one_electron_throw ) {
 
     GQCP::OneElectronOperator<double> h (Eigen::MatrixXd::Zero(2, 2));
-    GQCP::OneRDM D_valid (Eigen::MatrixXd::Zero(2, 2));
-    GQCP::OneRDM D_invalid (Eigen::MatrixXd::Zero(3, 3));
+    GQCP::OneRDM<double> D_valid (Eigen::MatrixXd::Zero(2, 2));
+    GQCP::OneRDM<double> D_invalid (Eigen::MatrixXd::Zero(3, 3));
 
     BOOST_CHECK_THROW(GQCP::calculateExpectationValue(h, D_invalid), std::invalid_argument);
     BOOST_CHECK_NO_THROW(GQCP::calculateExpectationValue(h, D_valid));
@@ -53,8 +53,8 @@ BOOST_AUTO_TEST_CASE ( two_electron_throw ) {
     d_tensor_valid.setZero();
     Eigen::Tensor<double, 4> d_tensor_invalid (3, 3, 3, 3);
     d_tensor_valid.setZero();
-    GQCP::TwoRDM d_valid (d_tensor_valid);
-    GQCP::TwoRDM d_invalid (d_tensor_invalid);
+    GQCP::TwoRDM<double> d_valid (d_tensor_valid);
+    GQCP::TwoRDM<double> d_invalid (d_tensor_invalid);
 
     BOOST_CHECK_THROW(GQCP::calculateExpectationValue(g, d_invalid), std::invalid_argument);
     BOOST_CHECK_NO_THROW(GQCP::calculateExpectationValue(g, d_valid));
@@ -85,7 +85,7 @@ BOOST_AUTO_TEST_CASE ( mulliken_N2_STO_3G ) {
 
     // Create a 1-RDM for N2
     Eigen::MatrixXd D = Eigen::MatrixXd::Zero(K, K);
-    GQCP::OneRDM one_rdm = GQCP::calculateRHF1RDM(K, N);
+    GQCP::OneRDM<double> one_rdm = GQCP::calculateRHF1RDM(K, N);
 
     double mulliken_population = GQCP::calculateExpectationValue(mulliken, one_rdm);
     BOOST_CHECK(std::abs(mulliken_population - (N)) < 1.0e-08);
@@ -109,7 +109,7 @@ BOOST_AUTO_TEST_CASE ( mulliken_N2_STO_3G ) {
 
     GQCP::RDMCalculator rdm_calculator (ci_solver.makeWavefunction());
 
-    GQCP::OneRDMs one_rdms = rdm_calculator.calculate1RDMs();
+    GQCP::OneRDMs<double> one_rdms = rdm_calculator.calculate1RDMs();
 
     double mulliken_population_2 = GQCP::calculateExpectationValue(mulliken, one_rdms.one_rdm);
     BOOST_CHECK(std::abs(mulliken_population_2 - (N)) < 1.0e-08);

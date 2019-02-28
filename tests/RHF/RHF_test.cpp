@@ -48,11 +48,8 @@ BOOST_AUTO_TEST_CASE ( RHF_1RDM_matrix ) {
              0, 0, 0, 0, 0,
              0, 0, 0, 0, 0;
 
-    BOOST_CHECK(GQCP::calculateRHF1RDM(K, N).get_matrix_representation().isApprox(D_ref));
+    BOOST_CHECK(GQCP::calculateRHF1RDM(K, N).isApprox(D_ref));
 }
-
-
-
 
 
 BOOST_AUTO_TEST_CASE ( HOMO_LUMO_index ) {

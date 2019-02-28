@@ -78,7 +78,7 @@ double calculateOverlap(const AP1roGGeminalCoefficients& G, const BivariationalC
  *
  *  @return the AP1roG 1-DM
  */
-OneRDM calculate1RDM(const AP1roGGeminalCoefficients& G, const BivariationalCoefficients& Q) {
+OneRDM<double> calculate1RDM(const AP1roGGeminalCoefficients& G, const BivariationalCoefficients& Q) {
 
     Eigen::MatrixXd D = Eigen::MatrixXd::Zero(G.get_K(), G.get_K());
     double overlap = calculateOverlap(G, Q);
@@ -117,7 +117,7 @@ OneRDM calculate1RDM(const AP1roGGeminalCoefficients& G, const BivariationalCoef
         D(a,a) = 2 / overlap * intermediate;
     }
 
-    return OneRDM(D);
+    return OneRDM<double>(D);
 }
 
 
@@ -291,7 +291,7 @@ Eigen::MatrixXd calculatePair2RDM(const AP1roGGeminalCoefficients& G, const Biva
  *
  *  @return the AP1roG 2-DM
  */
-TwoRDM calculate2RDM(const AP1roGGeminalCoefficients& G, const BivariationalCoefficients& Q) {
+TwoRDM<double> calculate2RDM(const AP1roGGeminalCoefficients& G, const BivariationalCoefficients& Q) {
 
     size_t K = G.get_K();
     Eigen::Tensor<double, 4> d (K, K, K, K);
@@ -325,7 +325,7 @@ TwoRDM calculate2RDM(const AP1roGGeminalCoefficients& G, const BivariationalCoef
         }
     }  // spatial orbital loops
 
-    return TwoRDM(d);
+    return TwoRDM<double>(d);
 }
 
 

@@ -38,14 +38,14 @@ DOCIRDMBuilder::DOCIRDMBuilder(const FockSpace& fock_space) :
  *
  *  @return all 1-RDMs given a coefficient vector
  */
-OneRDMs DOCIRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) const {
+OneRDMs<double> DOCIRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) const {
     // The formulas for the DOCI 1-RDMs can be found in (https://github.com/lelemmen/electronic_structure)
 
     size_t K = this->fock_space.get_K();
     size_t dim = this->fock_space.get_dimension();
 
     // For DOCI, one rdm covers both spins
-    Eigen::MatrixXd D = Eigen::MatrixXd::Zero(K, K);
+    auto D = OneRDM<double>(Eigen::MatrixXd::Zero(K, K));
 
     // Create the first ONV (with address 0). In DOCI, the Fock space for alpha and beta is equal so we just use one
     ONV onv = this->fock_space.makeONV(0);   
@@ -64,8 +64,7 @@ OneRDMs DOCIRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) const {
         }
     }
 
-    OneRDM one_rdm (D);
-    return OneRDMs (one_rdm);
+    return D;
 }
 
 
@@ -74,17 +73,22 @@ OneRDMs DOCIRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) const {
  *
  *  @return all 2-RDMs given a coefficient vector
  */
-TwoRDMs DOCIRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) const {
+TwoRDMs<double> DOCIRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) const {
 
     // The formulas for the DOCI 2-RDMs can be found in (https://github.com/lelemmen/electronic_structure)
 
     size_t K = this->fock_space.get_K();
     size_t dim = this->fock_space.get_dimension();
-    
-    Eigen::Tensor<double, 4> d_aaaa (K, K, K, K);
-    d_aaaa.setZero();
-    Eigen::Tensor<double, 4> d_aabb (K, K, K, K);
-    d_aabb.setZero();
+
+
+    Eigen::Tensor<double, 4> d_aaaa_tensor (K, K, K, K);
+    d_aaaa_tensor.setZero();
+    Eigen::Tensor<double, 4> d_aabb_tensor (K, K, K, K);
+    d_aabb_tensor.setZero();
+
+    auto d_aaaa = TwoRDM<double>(d_aaaa_tensor);
+    auto d_aabb = TwoRDM<double>(d_aabb_tensor);
+
 
     // Create the first ONV (with address 0). In DOCI, the Fock space for alpha and beta is equal so we just use one
     ONV onv = this->fock_space.makeONV(0);   
@@ -131,11 +135,7 @@ TwoRDMs DOCIRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) const {
     }
 
     // For DOCI, we have additional symmetries (two_rdm_aaaa = two_rdm_bbbb, two_rdm_aabb = two_rdm_bbaa)
-    TwoRDM two_rdm_aaaa (d_aaaa);
-    TwoRDM two_rdm_aabb (d_aabb);
-    TwoRDM two_rdm_bbaa (d_aabb);
-    TwoRDM two_rdm_bbbb (d_aaaa);
-    return TwoRDMs (two_rdm_aaaa, two_rdm_aabb, two_rdm_bbaa, two_rdm_bbbb);
+    return TwoRDMs<double>(d_aaaa, d_aabb, d_aabb, d_aaaa);
 }
 
 
@@ -149,7 +149,7 @@ TwoRDMs DOCIRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) const {
  *      calculateElement({0, 1}, {2, 1}) would calculate d^{(2)} (0, 1, 1, 2): the operator string would be a^\dagger_0 a^\dagger_1 a_2 a_1
  */
 double DOCIRDMBuilder::calculateElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices, const Eigen::VectorXd& x) const {
-    throw std::runtime_error ("calculateElement is not implemented for DOCIRDMs");
+    throw std::runtime_error("calculateElement is not implemented for DOCIRDMs");
 }
 
 

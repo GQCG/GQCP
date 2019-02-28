@@ -51,7 +51,7 @@ double calculateOverlap(const AP1roGGeminalCoefficients& G, const BivariationalC
  *
  *  @return the AP1roG 1-DM
  */
-OneRDM calculate1RDM(const AP1roGGeminalCoefficients& G, const BivariationalCoefficients& Q);
+OneRDM<double> calculate1RDM(const AP1roGGeminalCoefficients& G, const BivariationalCoefficients& Q);
 
 /**
  *  @param G            the AP1roG geminal coefficients
@@ -75,7 +75,7 @@ Eigen::MatrixXd calculatePair2RDM(const AP1roGGeminalCoefficients& G, const Biva
  *
  *  @return the AP1roG 2-DM
  */
-TwoRDM calculate2RDM(const AP1roGGeminalCoefficients& G, const BivariationalCoefficients& Q);
+TwoRDM<double> calculate2RDM(const AP1roGGeminalCoefficients& G, const BivariationalCoefficients& Q);
 
 
 

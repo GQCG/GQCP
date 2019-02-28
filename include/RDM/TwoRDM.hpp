@@ -19,9 +19,8 @@
 #define GQCP_TWORDM_HPP
 
 
-#include "RDM/BaseRDM.hpp"
-
-#include <unsupported/Eigen/CXX11/Tensor>
+#include "math/SquareFourIndexTensor.hpp"
+#include "RDM/OneRDM.hpp"
 
 
 namespace GQCP {
@@ -29,56 +28,77 @@ namespace GQCP {
 
 /**
  *  A class that represents a 2-RDM
+ *
+ *  @tparam Scalar      the scalar type
  */
-class TwoRDM : public BaseRDM {
-private:
-    Eigen::Tensor<double, 4> d;
-
-
+template<typename Scalar>
+class TwoRDM : public SquareFourIndexTensor<Scalar> {
 public:
-    // CONSTRUCTORS
-    /**
-     *  @param d    the explicit matrix representation of the 2-RDM
+
+    /*
+     * CONSTRUCTORS
      */
-    explicit TwoRDM(const Eigen::Tensor<double, 4>& d);
-
-
-    // GETTERS
-    const Eigen::Tensor<double, 4>& get_matrix_representation() const { return this->d; }
-
-
-    // OPERATORS
-    /**
-     *  @return the matrix element at position (p,q,r,s)
-     */
-    double operator()(size_t p, size_t q, size_t r, size_t s) const { return this->d(p,q,r,s); }
 
     /**
-     *  @param other    the other TwoRDM
-     *
-     *  @return if the matrix representation of this 2-RDM is equal to the matrix representation of the other, within the default tolerance specified by isEqualTo()
+     *  Default constructor
      */
-    bool operator==(const TwoRDM& other) const;
+    TwoRDM() :
+        SquareFourIndexTensor<Scalar>()
+    {}
 
 
-    // PUBLIC METHODS
     /**
-     *  @param other        the other TwoRDM
-     *  @param tolerance    the tolerance for equality of the matrix representations
-     *
-     *  @return if the matrix representation of this 2-RDM is equal to the matrix representation of the other, given a tolerance
+     *  @param tensor   the explicit matrix representation of the two-electron operator
      */
-    bool isEqualTo(const TwoRDM& other, double tolerance=1.0e-08) const;
+    explicit TwoRDM(const FourIndexTensor<double>& tensor) :
+        SquareFourIndexTensor<Scalar>(tensor)
+    {}
+
+
+
+    /*
+     * CONSTRUCTORS
+     */
 
     /**
      *  @return the trace of the 2-RDM, i.e. d(p,p,q,q)
      */
-    double trace() const;
+    Scalar trace() const {
+        // TODO: when Eigen3 releases tensor.trace(), use it to implement the reduction
+
+        auto K = static_cast<size_t>(this->dimension(0));
+
+        Scalar trace {};
+        for (size_t p = 0; p < K; p++) {
+            for (size_t q = 0; q < K; q++) {
+                trace += this->operator()(p,p,q,q);
+            }
+        }
+
+        return trace;
+    }
+
 
     /**
      *  @return a partial contraction of the 2-RDM, where D(p,q) = d(p,q,r,r)
      */
-    Eigen::MatrixXd reduce() const;
+    OneRDM<Scalar> reduce() const {
+
+        // TODO: when Eigen3 releases tensor.trace(), use it to implement the reduction
+
+        auto K = static_cast<size_t>(this->dimension(0));
+
+        auto D = OneRDM<double>(Eigen::MatrixXd::Zero(K, K));
+        for (size_t p = 0; p < K; p++) {
+            for (size_t q = 0; q < K; q++) {
+                for (size_t r = 0; r < K; r++) {
+                    D(p,q) += this->operator()(p,q,r,r);
+                }
+            }
+        }
+
+        return OneRDM<Scalar>(D);
+    }
 };
 
 

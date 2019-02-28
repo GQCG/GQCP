@@ -66,7 +66,6 @@ set(PROJECT_INCLUDE_FILES
         ${PROJECT_INCLUDE_FOLDER}/properties/expectation_values.hpp
         ${PROJECT_INCLUDE_FOLDER}/properties/properties.hpp
 
-        ${PROJECT_INCLUDE_FOLDER}/RDM/BaseRDM.hpp
         ${PROJECT_INCLUDE_FOLDER}/RDM/BaseRDMBuilder.hpp
         ${PROJECT_INCLUDE_FOLDER}/RDM/BaseSpinUnresolvedRDMBuilder.hpp
         ${PROJECT_INCLUDE_FOLDER}/RDM/DOCIRDMBuilder.hpp
