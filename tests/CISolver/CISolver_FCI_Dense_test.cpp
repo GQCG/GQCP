@@ -43,7 +43,7 @@ BOOST_AUTO_TEST_CASE ( test_random_rotation_diagonal_dense_fci ) {
     auto rhf = plain_scf_solver.get_solution();
 
     // Transform the ham_par
-    mol_ham_par.transform(GQCP::SquareMatrix<double>(rhf.get_C()));
+    mol_ham_par.transform(rhf.get_C());
 
     GQCP::ProductFockSpace fock_space (K, h2o.get_N()/2, h2o.get_N()/2);  // dim = 2
 
@@ -83,7 +83,7 @@ BOOST_AUTO_TEST_CASE ( FCI_H2_Cristina_dense ) {
     auto rhf = plain_scf_solver.get_solution();
 
     // Transform the ham_par
-    mol_ham_par.transform(GQCP::SquareMatrix<double>(rhf.get_C()));
+    mol_ham_par.transform(rhf.get_C());
 
     GQCP::ProductFockSpace fock_space (K, h2.get_N()/2, h2.get_N()/2);  // dim = 100
 
@@ -122,7 +122,7 @@ BOOST_AUTO_TEST_CASE ( FCI_H2O_Psi4_GAMESS_dense ) {
     auto rhf = plain_scf_solver.get_solution();
 
     // Transform the ham_par
-    mol_ham_par.transform(GQCP::SquareMatrix<double>(rhf.get_C()));
+    mol_ham_par.transform(rhf.get_C());
 
     GQCP::ProductFockSpace fock_space (K, h2o.get_N()/2, h2o.get_N()/2);  // dim = 441
 
@@ -164,7 +164,7 @@ BOOST_AUTO_TEST_CASE ( FCI_He_Cristina_dense ) {
     auto rhf = plain_scf_solver.get_solution();
 
     // Transform the ham_par
-    mol_ham_par.transform(GQCP::SquareMatrix<double>(rhf.get_C()));
+    mol_ham_par.transform(rhf.get_C());
 
     GQCP::ProductFockSpace fock_space (K, he.get_N()/2, he.get_N()/2);  // dim = 2116
 
