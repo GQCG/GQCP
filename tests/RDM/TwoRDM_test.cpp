@@ -24,6 +24,41 @@
 #include "RDM/TwoRDM.hpp"
 
 
+/*
+ *  HELPER FUNCTIONS
+ */
+
+/**
+ *  @return a toy 2-RDM where
+ *      d(i,j,k,l) = l + 2k + 4j + 8i
+ */
+GQCP::TwoRDM<double> calculateToy2RDMTensor() {
+    Eigen::Tensor<double, 4> d (2, 2, 2, 2);
+
+    for (size_t i = 0; i < 2; i++) {
+        for (size_t j = 0; j < 2; j++) {
+            for (size_t k = 0; k < 2; k++) {
+                for (size_t l = 0; l < 2; l++) {
+                    auto i_ = static_cast<double>(i);
+                    auto j_ = static_cast<double>(j);
+                    auto k_ = static_cast<double>(k);
+                    auto l_ = static_cast<double>(l);
+
+                    d(i,j,k,l) = l_ + 2*k_ + 4*j_ + 8*i_;
+                }
+            }
+        }
+    }
+
+    return GQCP::TwoRDM<double>(d);
+};
+
+
+
+/*
+ *  UNIT TESTS
+ */
+
 BOOST_AUTO_TEST_CASE ( TwoRDM_constructor ) {
 
     // Check a correct constructor
@@ -34,4 +69,25 @@ BOOST_AUTO_TEST_CASE ( TwoRDM_constructor ) {
     // Check a faulty constructor
     Eigen::Tensor<double, 4> tensor2 (3, 3, 3, 2);
     BOOST_CHECK_THROW(GQCP::TwoRDM<double> d2 (tensor2), std::invalid_argument);
+}
+
+
+BOOST_AUTO_TEST_CASE ( trace ) {
+
+    auto d = calculateToy2RDMTensor();
+
+    BOOST_CHECK(std::abs(d.trace() - 30.0) < 1.0e-12);  // manual calculation
+}
+
+
+BOOST_AUTO_TEST_CASE ( reduce ) {
+
+    auto d = calculateToy2RDMTensor();
+
+    Eigen::MatrixXd D_ref = Eigen::MatrixXd::Zero(2, 2);
+
+    D_ref <<  3, 11,
+             19, 27;
+
+    BOOST_CHECK(D_ref.isApprox(d.reduce(), 1.0e-12));
 }

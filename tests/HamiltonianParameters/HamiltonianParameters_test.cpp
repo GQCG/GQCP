@@ -32,6 +32,7 @@
 /*
  *  HELPER FUNCTIONS
  */
+
 /**
  *  @return a toy 2-RDM where
  *      d(i,j,k,l) = l + 2k + 4j + 8i
@@ -89,7 +90,7 @@ Eigen::Tensor<double, 4> calculateToyTwoElectronIntegralsTensor() {
 
 
 /*
- * UNIT TESTS - CONSTRUCTORS
+ *  UNIT TESTS - CONSTRUCTORS
  */
 
 BOOST_AUTO_TEST_CASE ( HamiltonianParameters_constructor ) {
