@@ -50,10 +50,10 @@ public:
 
 
     /**
-     *  Default constructor: construct a zero vector
+     *  Default constructor: construct a 'zero vector', i.e. an empty linear combination
      */
     LinearCombination() :
-        LinearCombination(std::vector<CoefficientScalar> {}, std::vector<T> {T()})
+        LinearCombination(std::vector<CoefficientScalar> {}, std::vector<T> {})
     {}
 
 
@@ -129,6 +129,11 @@ public:
      *  @return the product of this with a scalar
      */
     LinearCombination operator*(CoefficientScalar scalar) const {
+
+        if (std::abs(scalar) < 1.0e-16) {  // multiplication by zero returns a 'zero vector'
+            return LinearCombination();
+        }
+
         auto coefficients = this->coefficients;
 
         for (auto& coeff : coefficients) {

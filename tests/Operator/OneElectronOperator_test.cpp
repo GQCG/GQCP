@@ -23,6 +23,7 @@
 
 #include "Operator/OneElectronOperator.hpp"
 
+#include "CartesianGTO.hpp"
 #include "JacobiRotationParameters.hpp"
 #include "utilities/miscellaneous.hpp"
 
@@ -127,4 +128,82 @@ BOOST_AUTO_TEST_CASE ( OneElectronOperator_rotate_JacobiRotationParameters ) {
 
 
     BOOST_CHECK(M1.isApprox(M2, 1.0e-12));
+}
+
+
+BOOST_AUTO_TEST_CASE ( transformation_GTO_integrals ) {
+
+    // Test the transformation of a one-electron operator consisting of GTOs
+
+    // Build up the one-electron operator with linear combinations of GTOs
+    Eigen::Vector3d center = Eigen::Vector3d::Zero();
+
+    double coeff1 = 1.0;
+    std::array<size_t, 3> exp1 {1, 0, 0};
+    GQCP::CartesianGTO gto1 (1.0, exp1, center);
+
+    double coeff2 = 2.0;
+    std::array<size_t, 3> exp2 {0, 1, 0};
+    GQCP::CartesianGTO gto2 (2.0, exp2, center);
+
+    double coeff3 = -1.0;
+    std::array<size_t, 3> exp3 {1, 1, 0};
+    GQCP::CartesianGTO gto3 (1.0, exp3, center);
+
+    double coeff4 = 1.0;
+    std::array<size_t, 3> exp4 {0, 0, 2};
+    GQCP::CartesianGTO gto4 (3.0, exp4, center);
+
+    double coeff5 = 2.5;
+    std::array<size_t, 3> exp5 {1, 1, 1};
+    GQCP::CartesianGTO gto5 (0.5, exp5, center);
+
+    double coeff6 = -1.0;
+    std::array<size_t, 3> exp6 {0, 1, 1};
+    GQCP::CartesianGTO gto6 (0.5, exp6, center);
+
+
+    std::vector<double> lc1_coeff {coeff1};
+    std::vector<double> lc2_coeff {coeff2, coeff3};
+    std::vector<double> lc3_coeff {coeff4, coeff5};
+    std::vector<double> lc4_coeff {coeff6};
+
+    std::vector<GQCP::CartesianGTO> lc1_funcs {gto1};
+    std::vector<GQCP::CartesianGTO> lc2_funcs {gto2, gto3};
+    std::vector<GQCP::CartesianGTO> lc3_funcs {gto4, gto5};
+    std::vector<GQCP::CartesianGTO> lc4_funcs {gto6};
+
+
+    GQCP::LinearCombination<double, GQCP::CartesianGTO> lc1 (lc1_coeff, lc1_funcs);
+    GQCP::LinearCombination<double, GQCP::CartesianGTO> lc2 (lc2_coeff, lc2_funcs);
+    GQCP::LinearCombination<double, GQCP::CartesianGTO> lc3 (lc3_coeff, lc3_funcs);
+    GQCP::LinearCombination<double, GQCP::CartesianGTO> lc4 (lc4_coeff, lc4_funcs);
+
+
+    Eigen::Matrix<GQCP::LinearCombination<double, GQCP::CartesianGTO>, 2, 2> rho;
+    rho << lc1, lc2, lc3, lc4;
+
+
+    // Create the transformation matrix
+    Eigen::Matrix2d T = Eigen::Matrix2d::Zero();
+    T << 2.0, 1.0, 1.0, 0.0;
+
+
+    Eigen::Matrix<GQCP::LinearCombination<double, GQCP::CartesianGTO>, 2, 2> rho_transformed = T.adjoint() * rho * T;
+
+
+    // Check the coefficients of the results
+    std::vector<double> ref_coeff_result_01 {2.0, 1.0, 2.5};
+    auto coeff_result_01 = rho_transformed(0,1).get_coefficients();
+    for (size_t i = 0; i < ref_coeff_result_01.size(); i++) {
+        BOOST_CHECK(std::abs(ref_coeff_result_01[i] - coeff_result_01[i]) < 1.0e-12);
+    }
+    BOOST_CHECK(ref_coeff_result_01.size() == coeff_result_01.size());
+
+    std::vector<double> ref_coeff_result_11 {1.0};
+    auto coeff_result_11 = rho_transformed(1,1).get_coefficients();
+    for (size_t i = 0; i < ref_coeff_result_11.size(); i++) {
+        BOOST_CHECK(std::abs(ref_coeff_result_11[i] - coeff_result_11[i]) < 1.0e-12);
+    }
+    BOOST_CHECK(ref_coeff_result_11.size() == coeff_result_11.size());
 }
