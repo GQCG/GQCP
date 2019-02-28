@@ -183,5 +183,4 @@ Vector<LinearCombination<double, CartesianGTO>, 3> CartesianGTO::calculateGradie
 }
 
 
-
 }  // namespace GQCP

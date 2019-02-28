@@ -25,11 +25,6 @@
 #include "math/ScalarFunction.hpp"
 
 
-
-
-#include <iostream>
-
-
 namespace GQCP {
 
 
@@ -131,7 +126,7 @@ public:
                 result_op(i,j) = (*this)(i,j).operator()(x);
             }
         }
-        
+
         return OneElectronOperator<typename Z::Valued>(result_op);
     }
 };
