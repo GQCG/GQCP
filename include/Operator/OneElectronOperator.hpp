@@ -19,11 +19,15 @@
 #define GQCP_ONEELECTRONOPERATOR_HPP
 
 
-#include <Eigen/Dense>
-
 #include "JacobiRotationParameters.hpp"
 #include "math/SquareMatrix.hpp"
 #include "Operator.hpp"
+#include "math/ScalarFunction.hpp"
+
+
+
+
+#include <iostream>
 
 
 namespace GQCP {
@@ -61,7 +65,7 @@ public:
 
 
     /*
-     *  OVERRIDDEN PUBLIC METHODS
+     *  PUBLIC METHODS
      */
 
     /**
@@ -80,10 +84,6 @@ public:
         *this = OneElectronOperator<Scalar>(T.adjoint() * (*this) * T);  // this has no aliasing issues (https://eigen.tuxfamily.org/dox/group__TopicAliasing.html)
     }
 
-
-    /*
-     *  PUBLIC METHODS
-     */
 
     using Operator<OneElectronOperator<Scalar>>::rotate;  // bring over rotate from the base class
 
@@ -109,6 +109,30 @@ public:
 
         this->applyOnTheLeft(p, q, jacobi.adjoint());
         this->applyOnTheRight(p, q, jacobi);
+    }
+
+
+    /**
+     *  @param x        the vector/point at which the scalar functions should be evaluated
+     *
+     *  @return a one-electron operator corresponding to the evaluated scalar functions
+     *
+     *  Note that this function is only available for OneElectronOperators whose Scalar is a derived class of ScalarFunction
+     */
+    template <typename Z = Scalar>
+    enable_if_t<std::is_base_of<ScalarFunction<typename Z::Valued, typename Z::Scalar, Z::Cols>, Z>::value,
+    OneElectronOperator<typename Z::Valued>> evaluate(const Vector<typename Z::Scalar, Z::Cols>& x) const {
+
+        Eigen::Matrix<typename Z::Valued, SquareMatrix<Z>::Rows, SquareMatrix<Z>::Cols> result (this->rows(), this->cols());
+        auto result_op = SquareMatrix<typename Z::Valued>(result);
+
+        for (size_t i = 0; i < this->rows(); i++) {
+            for (size_t j = 0; j < this->cols(); j++) {
+                result_op(i,j) = (*this)(i,j).operator()(x);
+            }
+        }
+        
+        return OneElectronOperator<typename Z::Valued>(result_op);
     }
 };
 

@@ -58,7 +58,7 @@ public:
 
 
     /*
-     *  OVERRIDDEN PUBLIC METHODS
+     *  PUBLIC METHODS
      */
 
     /**
@@ -110,9 +110,6 @@ public:
     }
 
 
-    /*
-     *  PUBLIC METHODS
-     */
     using Operator<TwoElectronOperator<Scalar>>::rotate;  // bring over rotate() from the base class
 
 

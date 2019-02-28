@@ -17,6 +17,12 @@ template<typename Scalar>
 class SquareMatrix : public Matrix<Scalar> {
 public:
 
+    enum {
+        Rows = Matrix<Scalar>::RowsAtCompileTime,
+        Cols = Matrix<Scalar>::ColsAtCompileTime
+    };
+
+
     /*
      *  CONSTRUCTORS
      */

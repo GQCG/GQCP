@@ -131,7 +131,7 @@ BOOST_AUTO_TEST_CASE ( OneElectronOperator_rotate_JacobiRotationParameters ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( transformation_GTO_integrals ) {
+BOOST_AUTO_TEST_CASE ( OneElectronOperator_of_GTOs ) {
 
     // Test the transformation of a one-electron operator consisting of GTOs
 
@@ -141,26 +141,32 @@ BOOST_AUTO_TEST_CASE ( transformation_GTO_integrals ) {
     double coeff1 = 1.0;
     std::array<size_t, 3> exp1 {1, 0, 0};
     GQCP::CartesianGTO gto1 (1.0, exp1, center);
+    double N1 = gto1.calculateNormalizationFactor();
 
     double coeff2 = 2.0;
     std::array<size_t, 3> exp2 {0, 1, 0};
     GQCP::CartesianGTO gto2 (2.0, exp2, center);
+    double N2 = gto2.calculateNormalizationFactor();
 
     double coeff3 = -1.0;
     std::array<size_t, 3> exp3 {1, 1, 0};
     GQCP::CartesianGTO gto3 (1.0, exp3, center);
+    double N3 = gto3.calculateNormalizationFactor();
 
     double coeff4 = 1.0;
     std::array<size_t, 3> exp4 {0, 0, 2};
     GQCP::CartesianGTO gto4 (3.0, exp4, center);
+    double N4 = gto4.calculateNormalizationFactor();
 
     double coeff5 = 2.5;
     std::array<size_t, 3> exp5 {1, 1, 1};
     GQCP::CartesianGTO gto5 (0.5, exp5, center);
+    double N5 = gto5.calculateNormalizationFactor();
 
     double coeff6 = -1.0;
     std::array<size_t, 3> exp6 {0, 1, 1};
-    GQCP::CartesianGTO gto6 (0.5, exp6, center);
+    GQCP::CartesianGTO gto6 (2.5, exp6, center);
+    double N6 = gto6.calculateNormalizationFactor();
 
 
     std::vector<double> lc1_coeff {coeff1};
@@ -190,6 +196,7 @@ BOOST_AUTO_TEST_CASE ( transformation_GTO_integrals ) {
 
 
     Eigen::Matrix<GQCP::LinearCombination<double, GQCP::CartesianGTO>, 2, 2> rho_transformed = T.adjoint() * rho * T;
+    auto rho_transformed_op = GQCP::OneElectronOperator<GQCP::LinearCombination<double, GQCP::CartesianGTO>>(rho_transformed);
 
 
     // Check the coefficients of the results
@@ -206,4 +213,21 @@ BOOST_AUTO_TEST_CASE ( transformation_GTO_integrals ) {
         BOOST_CHECK(std::abs(ref_coeff_result_11[i] - coeff_result_11[i]) < 1.0e-12);
     }
     BOOST_CHECK(ref_coeff_result_11.size() == coeff_result_11.size());
+
+
+    // Test .evaluate(r) for a OneElectronOperator consisting of GTOs
+    Eigen::Vector3d r = Eigen::Vector3d::Zero();
+    r << 1.0, 1.0, 1.0;
+
+    Eigen::Matrix2d ref_rho_evaluated = Eigen::Matrix2d::Zero();
+    double ref_rho_evaluated_00 = 4*N1 * std::exp(-3.0) + 4*N2 * std::exp(-6.0) - 2*N3* std::exp(-3.0) + 2*N4 * std::exp(-9.0) + 5*N5 * std::exp(-1.5) - 1*N6 * std::exp(-7.5);
+    double ref_rho_evaluated_01 = 2*N1 * std::exp(-3.0) + 1*N4 * std::exp(-9.0) + 2.5*N5 * std::exp(-1.5);
+    double ref_rho_evaluated_10 = 2*N1 * std::exp(-3.0) + 2*N2 * std::exp(-6.0) - 1*N3 * std::exp(-3.0);
+    double ref_rho_evaluated_11 = 1*N1  * std::exp(-3.0);
+    ref_rho_evaluated << ref_rho_evaluated_00, ref_rho_evaluated_01, ref_rho_evaluated_10, ref_rho_evaluated_11;
+
+    auto rho_evaluated_op = rho_transformed_op.evaluate(r);
+
+
+    BOOST_CHECK(ref_rho_evaluated.isApprox(rho_evaluated_op, 1.0e-12));
 }
