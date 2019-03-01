@@ -1,3 +1,20 @@
+// This file is part of GQCG-gqcp.
+// 
+// Copyright (C) 2017-2019  the GQCG developers
+// 
+// GQCG-gqcp is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// GQCG-gqcp is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+// 
+// You should have received a copy of the GNU Lesser General Public License
+// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
+// 
 #ifndef LinearCombination_hpp
 #define LinearCombination_hpp
 
@@ -240,13 +257,13 @@ struct NumTraits<GQCP::LinearCombination<CoefficientScalar, T>> : public NumTrai
 };
 
 
-// Enable custom scalar type (LinearCombination) * its coefficient scalar
+// Enable the scalar product of a LinearCombination<CoefficientScalar, T> with its own CoefficientScalar (both sides)
+
 template<typename CoefficientScalar, typename T>
 struct ScalarBinaryOpTraits<GQCP::LinearCombination<CoefficientScalar, T>, CoefficientScalar, Eigen::internal::scalar_product_op<GQCP::LinearCombination<CoefficientScalar, T>, CoefficientScalar>> {
     using ReturnType = GQCP::LinearCombination<CoefficientScalar, T>;
 };
 
-// Enable coefficient scalar * custom scalar type (LinearCombination)
 template<typename CoefficientScalar, typename T>
 struct ScalarBinaryOpTraits<CoefficientScalar, GQCP::LinearCombination<CoefficientScalar, T>, Eigen::internal::scalar_product_op<CoefficientScalar, GQCP::LinearCombination<CoefficientScalar, T>>> {
     using ReturnType = GQCP::LinearCombination<CoefficientScalar, T>;

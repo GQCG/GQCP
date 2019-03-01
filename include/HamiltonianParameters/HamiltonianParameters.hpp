@@ -54,7 +54,11 @@ private:
 
 
 public:
-    // CONSTRUCTORS
+
+    /*
+     *  CONSTRUCTORS
+     */
+
     /**
      *  @param ao_basis     the initial AO basis
      *  @param S            the overlap integrals
@@ -105,7 +109,11 @@ public:
     }
 
 
-    // NAMED CONSTRUCTORS
+
+    /*
+     *  NAMED CONSTRUCTORS
+     */
+
     /**
      *  Construct the molecular Hamiltonian parameters in an AO basis
      *
@@ -168,6 +176,7 @@ public:
         return HamiltonianParameters::Molecular(ao_basis, molecule.calculateInternuclearRepulsionEnergy());
     }
 
+
     /**
      *  @param K        the number of orbitals
      *
@@ -211,6 +220,7 @@ public:
         return HamiltonianParameters<double>(ao_basis, S, H, g, C, scalar);
     }
 
+
     /**
      *  @param fcidump_file     the name of the FCIDUMP file
      *
@@ -241,7 +251,6 @@ public:
         if (!input_file_stream.good()) {
             throw std::runtime_error("The provided FCIDUMP file is illegible. Maybe you specified a wrong path?");
         }
-
 
 
         // Do the actual parsing
@@ -339,6 +348,7 @@ public:
         return HamiltonianParameters(ao_basis, S, H_core, G, C, scalar);
     }
 
+
     /**
      *  @param H      a Hubbard hopping matrix
      *
@@ -379,11 +389,18 @@ public:
     }
 
 
-    // DESTRUCTORS
+
+    /*
+     *  DESTRUCTORS
+     */
+
     ~HamiltonianParameters() override = default;
 
     
-    // GETTERS
+    /*
+     *  GETTERS
+     */
+
     const OneElectronOperator<Scalar>& get_S() const { return this->S; }
     const OneElectronOperator<Scalar>& get_h() const { return this->h; }
     const TwoElectronOperator<Scalar>& get_g() const { return this->g; }
@@ -391,7 +408,10 @@ public:
     size_t get_K() const { return this->K; }
 
 
-    // PUBLIC METHODS
+    /*
+     *  PUBLIC METHODS
+     */
+
     /**
      *  @return if the underlying spatial orbital basis of the Hamiltonian parameters is orthonormal
      */
@@ -400,7 +420,6 @@ public:
     }
 
 
-    // OVERRIDDEN PUBLIC METHODS
     /**
      *  In-place transform the matrix representations of Hamiltonian parameters
      *
@@ -412,7 +431,8 @@ public:
      *      - the overlap matrix S now gives the overlap matrix in the new molecular orbital basis
      *      - the total transformation matrix T_total is updated to reflect the total transformation between the new molecular orbital basis and the initial atomic orbitals
      */
-    void transform(const SquareMatrix<Scalar>& T) {
+    template <typename TransformationScalar = Scalar>
+    void transform(const SquareMatrix<TransformationScalar>& T) {
 
         this->S.transform(T);
 
