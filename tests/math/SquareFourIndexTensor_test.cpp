@@ -31,5 +31,5 @@ BOOST_AUTO_TEST_CASE ( constructor ) {
     BOOST_CHECK_NO_THROW(GQCP::SquareFourIndexTensor<double> square_T1 (T1));
 
     Eigen::Tensor<double, 4> T2 (2, 1, 2, 2);
-    BOOST_CHECK_THROW(GQCP::SquareFourIndexTensor<double> square_T2 (T1), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::SquareFourIndexTensor<double> square_T2 (T2), std::invalid_argument);
 }
