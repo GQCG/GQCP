@@ -30,9 +30,9 @@ namespace GQCP {
  *  @param X                            the number of frozen orbitals
  */
 FrozenCoreRDMBuilder::FrozenCoreRDMBuilder(std::shared_ptr<BaseRDMBuilder> rdm_builder, size_t X) :
-        BaseRDMBuilder(),
-        active_rdm_builder (std::move(rdm_builder)),
-        X (X)
+    BaseRDMBuilder(),
+    active_rdm_builder (std::move(rdm_builder)),
+    X (X)
 {}
 
 
@@ -46,12 +46,12 @@ FrozenCoreRDMBuilder::FrozenCoreRDMBuilder(std::shared_ptr<BaseRDMBuilder> rdm_b
  *
  *  @return all 1-RDMs given a coefficient vector
  */
-OneRDMs FrozenCoreRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) const {
+OneRDMs<double> FrozenCoreRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) const {
 
     auto K = this->get_fock_space()->get_K();
 
-    Eigen::MatrixXd D_aa = Eigen::MatrixXd::Zero(K, K);
-    Eigen::MatrixXd D_bb = Eigen::MatrixXd::Zero(K, K);
+    auto D_aa = OneRDM<double>(Eigen::MatrixXd::Zero(K, K));
+    auto D_bb = OneRDM<double>(Eigen::MatrixXd::Zero(K, K));
 
     auto K_active = K - this->X;
 
@@ -61,39 +61,41 @@ OneRDMs FrozenCoreRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) const {
         D_bb(i,i) = 1;
     }
 
-    OneRDMs sub_1rdms = this->active_rdm_builder->calculate1RDMs(x);
+    OneRDMs<double> sub_1rdms = this->active_rdm_builder->calculate1RDMs(x);
 
     // Incorporate the submatrices from the active space
-    D_aa.block(this->X, this->X, K_active, K_active) += sub_1rdms.one_rdm_aa.get_matrix_representation();
-    D_bb.block(this->X, this->X, K_active, K_active) += sub_1rdms.one_rdm_bb.get_matrix_representation();
+    D_aa.block(this->X, this->X, K_active, K_active) += sub_1rdms.one_rdm_aa;
+    D_bb.block(this->X, this->X, K_active, K_active) += sub_1rdms.one_rdm_bb;
 
-    OneRDM one_rdm_aa (D_aa);
-    OneRDM one_rdm_bb (D_bb);
-
-    return OneRDMs(one_rdm_aa, one_rdm_bb);
+    return OneRDMs<double>(D_aa, D_bb);
 };
+
 
 /**
  *  @param x        the coefficient vector representing the wave function
  *
  *  @return all 2-RDMs given a coefficient vector
  */
-TwoRDMs FrozenCoreRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) const {
+TwoRDMs<double> FrozenCoreRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) const {
 
     auto K = this->get_fock_space()->get_K();
 
-    Eigen::Tensor<double, 4> d_aaaa (K,K,K,K);
+    Eigen::Tensor<double, 4> d_aaaa (K, K, K, K);
     d_aaaa.setZero();
-    Eigen::Tensor<double, 4> d_aabb (K,K,K,K);
+
+    Eigen::Tensor<double, 4> d_aabb (K, K, K, K);
     d_aabb.setZero();
-    Eigen::Tensor<double, 4> d_bbaa (K,K,K,K);
+
+    Eigen::Tensor<double, 4> d_bbaa (K, K, K, K);
     d_bbaa.setZero();
-    Eigen::Tensor<double, 4> d_bbbb (K,K,K,K);
+
+    Eigen::Tensor<double, 4> d_bbbb (K, K, K, K);
     d_bbbb.setZero();
 
-    OneRDMs one_rdms = this->active_rdm_builder->calculate1RDMs(x);
-    auto D_aa = one_rdms.one_rdm_aa.get_matrix_representation();
-    auto D_bb = one_rdms.one_rdm_bb.get_matrix_representation();
+
+    OneRDMs<double> one_rdms = this->active_rdm_builder->calculate1RDMs(x);
+    auto D_aa = one_rdms.one_rdm_aa;
+    auto D_bb = one_rdms.one_rdm_bb;
 
     // Implement frozen RDM formulas
     for (size_t p = 0; p < this->X; p++) {  // iterate over frozen orbitals
@@ -143,21 +145,18 @@ TwoRDMs FrozenCoreRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) const {
         }
     }
 
-    TwoRDMs sub_2rdms = this->active_rdm_builder->calculate2RDMs(x);
 
-    // Incorporate into the total 2RDMs
-    GQCP::tensorBlockAddition(d_aaaa, sub_2rdms.two_rdm_aaaa.get_matrix_representation(), this->X, this->X, this->X, this->X);
-    GQCP::tensorBlockAddition(d_bbbb, sub_2rdms.two_rdm_bbbb.get_matrix_representation(), this->X, this->X, this->X, this->X);
-    GQCP::tensorBlockAddition(d_aabb, sub_2rdms.two_rdm_aabb.get_matrix_representation(), this->X, this->X, this->X, this->X);
-    GQCP::tensorBlockAddition(d_bbaa, sub_2rdms.two_rdm_bbaa.get_matrix_representation(), this->X, this->X, this->X, this->X);
+    // Incorporate the 2-RDM subblocks into the total 2RDMs
+    TwoRDMs<double> sub_2rdms = this->active_rdm_builder->calculate2RDMs(x);
 
-    TwoRDM two_rdm_aaaa (d_aaaa);
-    TwoRDM two_rdm_aabb (d_aabb);
-    TwoRDM two_rdm_bbaa (d_bbaa);
-    TwoRDM two_rdm_bbbb (d_bbbb);
+    GQCP::tensorBlockAddition(d_aaaa, sub_2rdms.two_rdm_aaaa, this->X, this->X, this->X, this->X);
+    GQCP::tensorBlockAddition(d_bbbb, sub_2rdms.two_rdm_bbbb, this->X, this->X, this->X, this->X);
+    GQCP::tensorBlockAddition(d_aabb, sub_2rdms.two_rdm_aabb, this->X, this->X, this->X, this->X);
+    GQCP::tensorBlockAddition(d_bbaa, sub_2rdms.two_rdm_bbaa, this->X, this->X, this->X, this->X);
 
-    return TwoRDMs(two_rdm_aaaa, two_rdm_aabb, two_rdm_bbaa, two_rdm_bbbb);
+    return TwoRDMs<double>(d_aaaa, d_aabb, d_bbaa, d_bbbb);
 };
+
 
 /**
  *  @param bra_indices      the indices of the orbitals that should be annihilated on the left (on the bra)
@@ -171,5 +170,6 @@ TwoRDMs FrozenCoreRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) const {
 double FrozenCoreRDMBuilder::calculateElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices, const Eigen::VectorXd& x) const {
     throw std::runtime_error ("calculateElement is not implemented for FrozenCoreCI RDMs");
 };
+
 
 }  // namespace GQCG

@@ -57,7 +57,7 @@ BOOST_AUTO_TEST_CASE ( H2O_1RDM_spin_trace_FCI ) {
 
     // Check if the FCI 1-RDMs have the proper trace.
     GQCP::FCIRDMBuilder fci_rdm (fock_space);
-    GQCP::OneRDMs one_rdms = fci_rdm.calculate1RDMs(coef);
+    GQCP::OneRDMs<double> one_rdms = fci_rdm.calculate1RDMs(coef);
 
 
     BOOST_CHECK(std::abs(one_rdms.one_rdm_aa.trace() - N_a) < 1.0e-12);
@@ -91,7 +91,7 @@ BOOST_AUTO_TEST_CASE ( H2O_2RDM_spin_trace_FCI ) {
 
     // Check if the FCI 2-RDMs have the proper trace.
     GQCP::FCIRDMBuilder fci_rdm (fock_space);
-    GQCP::TwoRDMs two_rdms = fci_rdm.calculate2RDMs(coef);
+    GQCP::TwoRDMs<double> two_rdms = fci_rdm.calculate2RDMs(coef);
 
 
     BOOST_CHECK(std::abs(two_rdms.two_rdm_aaaa.trace() - N_a*(N_a-1)) < 1.0e-12);
@@ -127,12 +127,12 @@ BOOST_AUTO_TEST_CASE ( H2O_1RDM_2RDM_trace_FCI ) {
 
     // Check if the 2-RDM contraction matches the reduction.
     GQCP::FCIRDMBuilder fci_rdm (fock_space);
-    GQCP::TwoRDMs two_rdms = fci_rdm.calculate2RDMs(coef);
-    GQCP::OneRDMs one_rdms = fci_rdm.calculate1RDMs(coef);
+    GQCP::TwoRDMs<double> two_rdms = fci_rdm.calculate2RDMs(coef);
+    GQCP::OneRDMs<double> one_rdms = fci_rdm.calculate1RDMs(coef);
 
 
     Eigen::MatrixXd D_from_reduction = (1.0/(N-1)) * two_rdms.two_rdm.reduce();
-    BOOST_CHECK(one_rdms.one_rdm.get_matrix_representation().isApprox(D_from_reduction, 1.0e-12));
+    BOOST_CHECK(one_rdms.one_rdm.isApprox(D_from_reduction, 1.0e-12));
 }
 
 
@@ -162,8 +162,8 @@ BOOST_AUTO_TEST_CASE ( H2O_energy_RDM_contraction_FCI ) {
 
     // Check if the contraction energy matches the fci eigenvalue.
     GQCP::FCIRDMBuilder fci_rdm (fock_space);
-    GQCP::TwoRDMs two_rdms = fci_rdm.calculate2RDMs(coef);
-    GQCP::OneRDMs one_rdms = fci_rdm.calculate1RDMs(coef);
+    GQCP::TwoRDMs<double> two_rdms = fci_rdm.calculate2RDMs(coef);
+    GQCP::OneRDMs<double> one_rdms = fci_rdm.calculate1RDMs(coef);
 
     double energy_by_contraction = GQCP::calculateExpectationValue(ham_par, one_rdms.one_rdm, two_rdms.two_rdm) - h2o.calculateInternuclearRepulsionEnergy();  // subtract the internuclear repulsion energy because it is not included in the Hamiltonian matrix
 
@@ -197,8 +197,8 @@ BOOST_AUTO_TEST_CASE ( H2O_energy_RDM_contraction_FCI_wavefunction ) {
 
     // Check if the contraction energy matches the fci eigenvalue.
     GQCP::RDMCalculator fci_rdm (wavefunction);
-    GQCP::TwoRDMs two_rdms = fci_rdm.calculate2RDMs();
-    GQCP::OneRDMs one_rdms = fci_rdm.calculate1RDMs();
+    GQCP::TwoRDMs<double> two_rdms = fci_rdm.calculate2RDMs();
+    GQCP::OneRDMs<double> one_rdms = fci_rdm.calculate1RDMs();
 
     double energy_by_contraction = GQCP::calculateExpectationValue(ham_par, one_rdms.one_rdm, two_rdms.two_rdm) - h2o.calculateInternuclearRepulsionEnergy();  // subtract the internuclear repulsion energy because it is not included in the Hamiltonian matrix
 

@@ -32,6 +32,7 @@
 /*
  *  HELPER FUNCTIONS
  */
+
 /**
  *  @return a toy 2-RDM where
  *      d(i,j,k,l) = l + 2k + 4j + 8i
@@ -89,7 +90,7 @@ Eigen::Tensor<double, 4> calculateToyTwoElectronIntegralsTensor() {
 
 
 /*
- * UNIT TESTS - CONSTRUCTORS
+ *  UNIT TESTS - CONSTRUCTORS
  */
 
 BOOST_AUTO_TEST_CASE ( HamiltonianParameters_constructor ) {
@@ -325,13 +326,13 @@ BOOST_AUTO_TEST_CASE ( calculate_generalized_Fock_matrix_and_super_invalid_argum
 
 
     // Create valid and invalid density matrices (with respect to the dimensions of the SOBasis)
-    GQCP::OneRDM D_valid (Eigen::MatrixXd::Zero(2, 2));
-    GQCP::OneRDM D_invalid (Eigen::MatrixXd::Zero(3, 3));
+    GQCP::OneRDM<double> D_valid (Eigen::MatrixXd::Zero(2, 2));
+    GQCP::OneRDM<double> D_invalid (Eigen::MatrixXd::Zero(3, 3));
 
     Eigen::Tensor<double, 4> d_valid_tensor (2, 2, 2, 2);
     Eigen::Tensor<double, 4> d_invalid_tensor (3, 3, 3, 3);
-    GQCP::TwoRDM d_valid (d_valid_tensor);
-    GQCP::TwoRDM d_invalid (d_invalid_tensor);
+    GQCP::TwoRDM<double> d_valid (d_valid_tensor);
+    GQCP::TwoRDM<double> d_invalid (d_invalid_tensor);
 
 
     // Test a faulty function calls
@@ -355,9 +356,9 @@ BOOST_AUTO_TEST_CASE ( calculate_generalized_Fock_matrix_and_super ) {
     Eigen::MatrixXd D_matrix (2, 2);
     D_matrix << 0, 1,
                 2, 3;
-    GQCP::OneRDM D (D_matrix);
+    GQCP::OneRDM<double> D (D_matrix);
 
-    GQCP::TwoRDM d (calculateToy2RDMTensor());
+    GQCP::TwoRDM<double> d (calculateToy2RDMTensor());
 
     // Set up the toy SOBasis
     std::shared_ptr<GQCP::AOBasis> ao_basis;

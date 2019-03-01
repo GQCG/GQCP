@@ -517,15 +517,15 @@ public:
      *
      *  @return the generalized Fock matrix
      */
-    OneElectronOperator<Scalar> calculateGeneralizedFockMatrix(const OneRDM& D, const TwoRDM& d) const {
+    OneElectronOperator<Scalar> calculateGeneralizedFockMatrix(const OneRDM<double>& D, const TwoRDM<double>& d) const {
 
         // Check if dimensions are compatible
-        if (D.get_dim() != this->K) {
-            throw std::invalid_argument("The 1-RDM is not compatible with the HamiltonianParameters.");
+        if (D.cols() != this->K) {
+            throw std::invalid_argument("HamiltonianParameters::calculateGeneralizedFockMatrix(): The 1-RDM is not compatible with the HamiltonianParameters.");
         }
 
-        if (d.get_dim() != this->K) {
-            throw std::invalid_argument("The 2-RDM is not compatible with the HamiltonianParameters.");
+        if (d.dimension(0) != this->K) {
+            throw std::invalid_argument("HamiltonianParameters::calculateGeneralizedFockMatrix(): The 2-RDM is not compatible with the HamiltonianParameters.");
         }
 
 
@@ -619,15 +619,15 @@ public:
      *
      *  @return the super-generalized Fock matrix
      */
-    TwoElectronOperator<Scalar> calculateSuperGeneralizedFockMatrix(const OneRDM& D, const TwoRDM& d) const {
+    TwoElectronOperator<Scalar> calculateSuperGeneralizedFockMatrix(const OneRDM<double>& D, const TwoRDM<double>& d) const {
 
         // Check if dimensions are compatible
-        if (D.get_dim() != this->K) {
-            throw std::invalid_argument("The 1-RDM is not compatible with the HamiltonianParameters.");
+        if (D.cols() != this->K) {
+            throw std::invalid_argument("HamiltonianParameters::calculateGeneralizedFockMatrix(): The 1-RDM is not compatible with the HamiltonianParameters.");
         }
 
-        if (d.get_dim() != this->K) {
-            throw std::invalid_argument("The 2-RDM is not compatible with the HamiltonianParameters.");
+        if (d.dimension(0) != this->K) {
+            throw std::invalid_argument("HamiltonianParameters::calculateGeneralizedFockMatrix(): The 2-RDM is not compatible with the HamiltonianParameters.");
         }
 
 

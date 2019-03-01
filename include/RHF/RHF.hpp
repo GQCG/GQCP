@@ -73,7 +73,7 @@ public:
  *
  *  @return the RHF 1-RDM expressed in an orthonormal basis
  */
-OneRDM calculateRHF1RDM(size_t K, size_t N);
+OneRDM<double> calculateRHF1RDM(size_t K, size_t N);
 
 /**
  *  @param C    the coefficient matrix, specifying the transformation to the AO basis

@@ -19,67 +19,40 @@
 #define GQCP_ONERDM_HPP
 
 
-#include "RDM/BaseRDM.hpp"
-
-#include <Eigen/Dense>
+#include "math/SquareMatrix.hpp"
 
 
 namespace GQCP {
 
 /**
  *  A class that represents a 1-RDM
+ *
+ *  @tparam Scalar      the scalar type
  */
-class OneRDM : public BaseRDM {
-private:
-    Eigen::MatrixXd D;
-
-
+template <typename Scalar>
+class OneRDM : public SquareMatrix<Scalar> {
 public:
-    // CONSTRUCTORS
-    /**
-     *  @param D    the explicit matrix representation of the 1-RDM
+
+    /*
+     *  CONSTRUCTORS
      */
-    explicit OneRDM(const Eigen::MatrixXd& D);
 
-
-    // GETTERS
-    const Eigen::MatrixXd& get_matrix_representation() const { return this->D; }
-
-
-    // OPERATORS
     /**
-     *  @return the matrix element at position (p,q)
+     *  Default constructor
      */
-    double operator()(size_t p, size_t q) const { return this->D(p,q); }
+    OneRDM() :
+        SquareMatrix<Scalar>()
+    {}
+
 
     /**
-     *  @param other    the other OneRDM
+     *  @param matrix   the explicit matrix representation of the one-electron operator
      *
-     *  @return if the matrix representation of this 1-RDM is equal to the matrix representation of the other, within the default tolerance specified by isEqualTo()
+     *  Note that this should accept any Matrix<Scalar> (instead of SquareMatrix<Scalar>) because we want other Eigen return types to be accepted as well, like after a product of OneElectronOperators
      */
-    bool operator==(const OneRDM& other) const;
-
-
-    // PUBLIC METHODS
-    /**
-     *  @param other        the other OneRDM
-     *  @param tolerance    the tolerance for equality of the matrix representations
-     *
-     *  @return if the matrix representation of this 1-RDM is equal to the matrix representation of the other, given a tolerance
-     */
-    bool isEqualTo(const OneRDM& other, double tolerance=1.0e-08) const;
-
-    /**
-     *  @return the 1-RDM's trace
-     */
-    double trace() const;
-
-    /**
-     *  In-place diagonalize the 1-RDM
-     *
-     *  @return the eigenvectors of the 1-RDM
-     */
-    Eigen::MatrixXd diagonalize();
+    explicit OneRDM(const Matrix<Scalar>& matrix) :
+        SquareMatrix<Scalar>(matrix)
+    {}
 };
 
 

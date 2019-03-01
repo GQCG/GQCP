@@ -40,16 +40,14 @@ SelectedRDMBuilder::SelectedRDMBuilder(const SelectedFockSpace& fock_space) :
  *
  *  @return all 1-RDMs given a coefficient vector
  */
-OneRDMs SelectedRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) const {
+OneRDMs<double> SelectedRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) const {
 
-    // Initialize as zero matrices
     size_t K = this->fock_space.get_K();
-
-    Eigen::MatrixXd D_aa = Eigen::MatrixXd::Zero(K, K);
-    Eigen::MatrixXd D_bb = Eigen::MatrixXd::Zero(K, K);
-    
-    
     size_t dim = fock_space.get_dimension();
+
+    auto D_aa = OneRDM<double>(Eigen::MatrixXd::Zero(K, K));
+    auto D_bb = OneRDM<double>(Eigen::MatrixXd::Zero(K, K));
+    
 
     for (size_t I = 0; I < dim; I++) {  // loop over all addresses (1)
         Configuration configuration_I = this->fock_space.get_configuration(I);
@@ -112,10 +110,8 @@ OneRDMs SelectedRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) const {
         }  // loop over addresses J > I
     }  // loop over addresses I
 
-    OneRDM one_rdm_aa (D_aa);
-    OneRDM one_rdm_bb (D_bb);
-    // The total 1-RDM is the sum of the spin components
-    return OneRDMs (one_rdm_aa, one_rdm_bb);
+    return OneRDMs<double>(D_aa, D_bb);  // the total 1-RDM is the sum of the spin components
+
 }
 
 
@@ -124,22 +120,28 @@ OneRDMs SelectedRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) const {
  *
  *  @return all 2-RDMs given a coefficient vector
  */
-TwoRDMs SelectedRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) const {
+TwoRDMs<double> SelectedRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) const {
 
-    
-    // Initialize as zero matrices
     size_t K = this->fock_space.get_K();
-
     size_t dim = fock_space.get_dimension();
-    
-    Eigen::Tensor<double, 4> d_aaaa (K,K,K,K);
-    d_aaaa.setZero();
-    Eigen::Tensor<double, 4> d_aabb (K,K,K,K);
-    d_aabb.setZero();
-    Eigen::Tensor<double, 4> d_bbaa (K,K,K,K);
-    d_bbaa.setZero();
-    Eigen::Tensor<double, 4> d_bbbb (K,K,K,K);
-    d_bbbb.setZero();
+
+
+    Eigen::Tensor<double, 4> d_aaaa_tensor (K,K,K,K);
+    d_aaaa_tensor.setZero();
+    auto d_aaaa = TwoRDM<double>(d_aaaa_tensor);
+
+    Eigen::Tensor<double, 4> d_aabb_tensor (K,K,K,K);
+    d_aabb_tensor.setZero();
+    auto d_aabb = TwoRDM<double>(d_aabb_tensor);
+
+    Eigen::Tensor<double, 4> d_bbaa_tensor (K,K,K,K);
+    d_bbaa_tensor.setZero();
+    auto d_bbaa = TwoRDM<double>(d_bbaa_tensor);
+
+    Eigen::Tensor<double, 4> d_bbbb_tensor (K,K,K,K);
+    d_bbbb_tensor.setZero();
+    auto d_bbbb = TwoRDM<double>(d_bbbb_tensor);
+
 
     for (size_t I = 0; I < dim; I++) {  // loop over all addresses I
 
@@ -353,11 +355,7 @@ TwoRDMs SelectedRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) const {
 
     }  // loop over all addresses I
 
-    TwoRDM two_rdm_aaaa (d_aaaa);
-    TwoRDM two_rdm_aabb (d_aabb);
-    TwoRDM two_rdm_bbaa (d_bbaa);
-    TwoRDM two_rdm_bbbb (d_bbbb);
-    return TwoRDMs (two_rdm_aaaa, two_rdm_aabb, two_rdm_bbaa, two_rdm_bbbb);
+    return TwoRDMs<double>(d_aaaa, d_aabb, d_bbaa, d_bbbb);
 }
 
 

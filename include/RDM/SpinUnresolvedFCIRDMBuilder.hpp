@@ -52,14 +52,14 @@ public:
      *
      *  @return the 1-RDM given a coefficient vector
      */
-    OneRDM calculate1RDM(const Eigen::VectorXd& x) const override;
+    OneRDM<double> calculate1RDM(const Eigen::VectorXd& x) const override;
 
     /**
      *  @param x        the coefficient vector representing the UnresolvedCI wave function
      *
      *  @return the 2-RDM given a coefficient vector
      */
-    TwoRDM calculate2RDM(const Eigen::VectorXd& x) const override;
+    TwoRDM<double> calculate2RDM(const Eigen::VectorXd& x) const override;
 
     /**
      *  @param bra_indices      the indices of the orbitals that should be annihilated on the left (on the bra)

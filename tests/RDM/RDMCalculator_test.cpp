@@ -57,7 +57,7 @@ BOOST_AUTO_TEST_CASE ( constructor ) {
     // Check if the DOCI 1-RDM has the proper trace.
     GQCP::RDMCalculator doci_rdm (*fock_space_dy);
     doci_rdm.set_coefficients(coef);
-    GQCP::OneRDMs one_rdms = doci_rdm.calculate1RDMs();
+    GQCP::OneRDMs<double> one_rdms = doci_rdm.calculate1RDMs();
 
     BOOST_CHECK(std::abs(one_rdms.one_rdm.trace() - N) < 1.0e-12);
 }
@@ -73,7 +73,7 @@ BOOST_AUTO_TEST_CASE ( no_vector_throws ) {
 
     // Test if throws when no vector is set
     GQCP::RDMCalculator doci_rdm (fock_space);
-    BOOST_CHECK_THROW(GQCP::OneRDMs one_rdms = doci_rdm.calculate1RDMs(), std::logic_error);
+    BOOST_CHECK_THROW(doci_rdm.calculate1RDMs(), std::logic_error);
 }
 
 

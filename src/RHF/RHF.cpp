@@ -57,7 +57,7 @@ RHF::RHF(double electronic_energy, const Eigen::MatrixXd& C, const Eigen::Vector
  *
  *  @return the RHF 1-RDM expressed in an orthonormal basis
  */
-OneRDM calculateRHF1RDM(size_t K, size_t N) {
+OneRDM<double> calculateRHF1RDM(size_t K, size_t N) {
 
     if (N % 2 != 0) {
         throw std::invalid_argument("The number of given electrons cannot be odd for RHF.");
@@ -73,7 +73,7 @@ OneRDM calculateRHF1RDM(size_t K, size_t N) {
     Eigen::MatrixXd D_MO = Eigen::MatrixXd::Zero(K, K);
     D_MO.topLeftCorner(N/2, N/2) = 2 * Eigen::MatrixXd::Identity(N/2, N/2);
 
-    return OneRDM(D_MO);
+    return OneRDM<double>(D_MO);
 }
 
 
@@ -86,7 +86,7 @@ OneRDM calculateRHF1RDM(size_t K, size_t N) {
 Eigen::MatrixXd calculateRHFAO1RDM(const Eigen::MatrixXd& C, size_t N) {
 
     size_t K = C.rows();
-    Eigen::MatrixXd D_MO = calculateRHF1RDM(K, N).get_matrix_representation();
+    Eigen::MatrixXd D_MO = calculateRHF1RDM(K, N);
 
     // Transform the MO 1-RDM to an AO basis
     return C * D_MO * C.adjoint();

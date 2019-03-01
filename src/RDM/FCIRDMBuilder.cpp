@@ -38,13 +38,13 @@ FCIRDMBuilder::FCIRDMBuilder(const ProductFockSpace& fock_space) :
  *
  *  @return all 1-RDMs given a coefficient vector
  */
-OneRDMs FCIRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) const {
+OneRDMs<double> FCIRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) const {
 
     // Initialize as zero matrices
     size_t K = this->fock_space.get_K();
 
-    Eigen::MatrixXd D_aa = Eigen::MatrixXd::Zero(K, K);
-    Eigen::MatrixXd D_bb = Eigen::MatrixXd::Zero(K, K);
+    auto D_aa = OneRDM<double>(Eigen::MatrixXd::Zero(K, K));
+    auto D_bb = OneRDM<double>(Eigen::MatrixXd::Zero(K, K));
 
     FockSpace fock_space_alpha = fock_space.get_fock_space_alpha();
     FockSpace fock_space_beta = fock_space.get_fock_space_beta();
@@ -143,9 +143,7 @@ OneRDMs FCIRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) const {
         }
 
     }  // I_beta loop
-    OneRDM one_rdm_aa (D_aa);
-    OneRDM one_rdm_bb (D_bb);
-    return OneRDMs (one_rdm_aa, one_rdm_bb);
+    return OneRDMs<double>(D_aa, D_bb);
 }
 
 
@@ -154,7 +152,7 @@ OneRDMs FCIRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) const {
  *
  *  @return all 2-RDMs given a coefficient vector
  */
-TwoRDMs FCIRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) const {
+TwoRDMs<double> FCIRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) const {
 
 
     // KISS implementation of the 2-DMs (no symmetry relations are used yet)
@@ -168,14 +166,17 @@ TwoRDMs FCIRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) const {
     // Initialize as zero matrices
     size_t K = this->fock_space.get_K();
 
-    Eigen::Tensor<double, 4> d_aaaa (K,K,K,K);
-    d_aaaa.setZero();
-    Eigen::Tensor<double, 4> d_aabb (K,K,K,K);
-    d_aabb.setZero();
-    Eigen::Tensor<double, 4> d_bbaa (K,K,K,K);
-    d_bbaa.setZero();
-    Eigen::Tensor<double, 4> d_bbbb (K,K,K,K);
-    d_bbbb.setZero();
+    Eigen::Tensor<double, 4> d_aaaa_tensor (K,K,K,K);
+    d_aaaa_tensor.setZero();
+    auto d_aaaa = TwoRDM<double>(d_aaaa_tensor);
+
+    Eigen::Tensor<double, 4> d_aabb_tensor (K,K,K,K);
+    d_aabb_tensor.setZero();
+    auto d_aabb = TwoRDM<double>(d_aabb_tensor);
+
+    Eigen::Tensor<double, 4> d_bbbb_tensor (K,K,K,K);
+    d_bbbb_tensor.setZero();
+    auto d_bbbb = TwoRDM<double>(d_bbbb_tensor);
 
 
     // ALPHA-ALPHA-ALPHA-ALPHA
@@ -304,7 +305,7 @@ TwoRDMs FCIRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) const {
     // BETA-BETA-ALPHA-ALPHA
     // We know that d^aabb_pqrs = d^bbaa_rspq
     Eigen::array<int, 4> shuffle {2, 3, 0, 1};  // array specifying the axes that should be swapped
-    d_bbaa = d_aabb.shuffle(shuffle);
+    auto d_bbaa = TwoRDM<double>(Eigen::Tensor<double, 4>(d_aabb.shuffle(shuffle)));
 
 
     // BETA-BETA-BETA-BETA
@@ -364,11 +365,7 @@ TwoRDMs FCIRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) const {
 
     }  // loop over I_beta
 
-    TwoRDM two_rdm_aaaa (d_aaaa);
-    TwoRDM two_rdm_aabb (d_aabb);
-    TwoRDM two_rdm_bbaa (d_bbaa);
-    TwoRDM two_rdm_bbbb (d_bbbb);
-    return TwoRDMs (two_rdm_aaaa, two_rdm_aabb, two_rdm_bbaa, two_rdm_bbbb);
+    return TwoRDMs<double>(d_aaaa, d_aabb, d_bbaa, d_bbbb);
 }
 
 

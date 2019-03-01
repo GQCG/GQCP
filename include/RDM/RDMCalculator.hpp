@@ -44,6 +44,7 @@ private:
 public:
     // CONSTRUCTOR
     RDMCalculator() = default;
+
     /**
      *  Allocate a DOCIRDMBuilder
      *
@@ -78,20 +79,22 @@ public:
      *  @param wavefunction       the wave function holding the coefficient vector and a Fock space on which the RDMBuilder should be based
      */
     explicit RDMCalculator(const WaveFunction& wavefunction);
-    
+
+
     // SETTERS
     void set_coefficients(const Eigen::VectorXd& coefficients) { this->coefficients = coefficients; };
+
 
     // PUBLIC METHODS
     /**
      *  @return all 1-RDMs if a given coefficient vector is set
      */
-    OneRDMs calculate1RDMs() const;
+    OneRDMs<double> calculate1RDMs() const;
 
     /**
      *  @return all 2-RDMs if a given coefficient vector is set
      */
-    TwoRDMs calculate2RDMs() const;
+    TwoRDMs<double> calculate2RDMs() const;
 
     /**
      *  @param bra_indices      the indices of the orbitals that should be annihilated on the left (on the bra)

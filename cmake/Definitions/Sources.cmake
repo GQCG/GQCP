@@ -58,7 +58,6 @@ set(PROJECT_SOURCE_FILES
         ${PROJECT_SOURCE_FOLDER}/properties/expectation_values.cpp
         ${PROJECT_SOURCE_FOLDER}/properties/properties.cpp
 
-        ${PROJECT_SOURCE_FOLDER}/RDM/BaseRDM.cpp
         ${PROJECT_SOURCE_FOLDER}/RDM/BaseRDMBuilder.cpp
         ${PROJECT_SOURCE_FOLDER}/RDM/BaseSpinUnresolvedRDMBuilder.cpp
         ${PROJECT_SOURCE_FOLDER}/RDM/DOCIRDMBuilder.cpp
@@ -66,13 +65,10 @@ set(PROJECT_SOURCE_FILES
         ${PROJECT_SOURCE_FOLDER}/RDM/FrozenCoreDOCIRDMBuilder.cpp
         ${PROJECT_SOURCE_FOLDER}/RDM/FrozenCoreFCIRDMBuilder.cpp
         ${PROJECT_SOURCE_FOLDER}/RDM/FrozenCoreRDMBuilder.cpp
-        ${PROJECT_SOURCE_FOLDER}/RDM/OneRDM.cpp
         ${PROJECT_SOURCE_FOLDER}/RDM/RDMCalculator.cpp
-        ${PROJECT_SOURCE_FOLDER}/RDM/RDMs.cpp
         ${PROJECT_SOURCE_FOLDER}/RDM/SelectedRDMBuilder.cpp
         ${PROJECT_SOURCE_FOLDER}/RDM/SpinUnresolvedFCIRDMBuilder.cpp
         ${PROJECT_SOURCE_FOLDER}/RDM/SpinUnresolvedRDMCalculator.cpp
-        ${PROJECT_SOURCE_FOLDER}/RDM/TwoRDM.cpp
 
         ${PROJECT_SOURCE_FOLDER}/RHF/DIISRHFSCFSolver.cpp
         ${PROJECT_SOURCE_FOLDER}/RHF/PlainRHFSCFSolver.cpp
