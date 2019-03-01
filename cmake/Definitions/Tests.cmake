@@ -50,7 +50,7 @@ set(PROJECT_TEST_SOURCE_FILES
 
         ${PROJECT_TESTS_FOLDER}/math/LinearCombination_test.cpp
         ${PROJECT_TESTS_FOLDER}/math/SquareFourIndexTensor_test.cpp
-        ${PROJECT_TESTS_FOLDER}/math/SuqareMatrix_test.cpp
+        ${PROJECT_TESTS_FOLDER}/math/SquareMatrix_test.cpp
 
         ${PROJECT_TESTS_FOLDER}/Operator/OneElectronOperator_test.cpp
         ${PROJECT_TESTS_FOLDER}/Operator/TwoElectronOperator_test.cpp

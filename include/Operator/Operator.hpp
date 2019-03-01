@@ -28,7 +28,8 @@ namespace GQCP {
 /**
  *  An interface for second-quantized operators: they should implement the transformation formulas for their matrix representations in an orbital basis
  *
- *  Since Operator::rotate() is implemented in the base class using a derived-class transform(), we use CRTP as static polymorphism
+ *  CRTP is used for the static polymorphism, so the code will only compile if
+ *      - DerivedOperator implements a suitable transform() method
  */
 template <typename DerivedOperator>
 class Operator {
