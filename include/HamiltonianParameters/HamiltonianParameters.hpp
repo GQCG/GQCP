@@ -495,7 +495,7 @@ public:
 
         // The transformation matrix to the Löwdin basis is T = S^{-1/2}
         Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes (this->S);  // can we use this->S?
-        this->transform(saes.operatorInverseSqrt());
+        this->transform(SquareMatrix<double>(saes.operatorInverseSqrt()));
     }
 
 

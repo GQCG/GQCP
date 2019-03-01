@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "562990B422292E0900005FA7"
-               BuildableName = "LinearCombination_test"
-               BlueprintName = "LinearCombination_test"
+               BuildableName = "ScalarFunction_test"
+               BlueprintName = "ScalarFunction_test"
                ReferencedContainer = "container:gqcp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,8 +33,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "562990B422292E0900005FA7"
-            BuildableName = "LinearCombination_test"
-            BlueprintName = "LinearCombination_test"
+            BuildableName = "ScalarFunction_test"
+            BlueprintName = "ScalarFunction_test"
             ReferencedContainer = "container:gqcp.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -56,8 +56,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "562990B422292E0900005FA7"
-            BuildableName = "LinearCombination_test"
-            BlueprintName = "LinearCombination_test"
+            BuildableName = "ScalarFunction_test"
+            BlueprintName = "ScalarFunction_test"
             ReferencedContainer = "container:gqcp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -75,8 +75,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "562990B422292E0900005FA7"
-            BuildableName = "LinearCombination_test"
-            BlueprintName = "LinearCombination_test"
+            BuildableName = "ScalarFunction_test"
+            BlueprintName = "ScalarFunction_test"
             ReferencedContainer = "container:gqcp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

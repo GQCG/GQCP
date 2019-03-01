@@ -48,7 +48,7 @@ set(PROJECT_TEST_SOURCE_FILES
         ${PROJECT_TESTS_FOLDER}/math/optimization/NewtonSystemOfEquationsSolver_test.cpp
         ${PROJECT_TESTS_FOLDER}/math/optimization/SparseSolver_test.cpp
 
-        ${PROJECT_TESTS_FOLDER}/math/LinearCombination_test.cpp
+        ${PROJECT_TESTS_FOLDER}/math/ScalarFunction_test.cpp
         ${PROJECT_TESTS_FOLDER}/math/SquareFourIndexTensor_test.cpp
         ${PROJECT_TESTS_FOLDER}/math/SquareMatrix_test.cpp
 
