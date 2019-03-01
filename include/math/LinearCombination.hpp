@@ -19,9 +19,7 @@
 #define LinearCombination_hpp
 
 
-#include <type_traits>
-
-#include "math/MultipliableScalarFunction.hpp"
+#include "math/ScalarFunction.hpp"
 
 
 
@@ -35,7 +33,7 @@ namespace GQCP {
  *  @tparam CoefficientScalar       the type of scalar that is used as coefficient
  */
 template <typename CoefficientScalar, typename T>
-class LinearCombination : public MultipliableScalarFunction<typename T::Valued, typename T::Scalar, T::Cols> {
+class LinearCombination : public ScalarFunction<typename T::Valued, typename T::Scalar, T::Cols> {
     static_assert(std::is_base_of<ScalarFunction<typename T::Valued, typename T::Scalar, T::Cols>, T>::value, "LinearCombination: T must derive from ScalarFunction");
 
 
@@ -167,7 +165,7 @@ public:
         return rhs.operator*(scalar);
     }
 
-    using MultipliableScalarFunction<typename T::Valued, typename T::Scalar, T::Cols>::operator*;
+    using ScalarFunction<typename T::Valued, typename T::Scalar, T::Cols>::operator*;
 
 
     /**

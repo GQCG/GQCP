@@ -1,34 +1,35 @@
 // This file is part of GQCG-gqcp.
-// 
+//
 // Copyright (C) 2017-2019  the GQCG developers
-// 
+//
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // GQCG-gqcp is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
-// 
-#define BOOST_TEST_MODULE "LinearCombination"
+//
+#define BOOST_TEST_MODULE "ScalarFunction"
 
 #include <boost/test/unit_test.hpp>
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
 
-#include "math/LinearCombination.hpp"
+#include "math/ScalarFunction.hpp"
 
 #include "CartesianGTO.hpp"
 
 
-BOOST_AUTO_TEST_CASE ( multipliable_product ) {
 
-    // LinearCombination inherits from MultipliableScalarFunction, so we can use the class to test MultipliableScalarFunction and ScalarFunctionProduct behavior
+BOOST_AUTO_TEST_CASE ( ScalarFunctionProduct ) {
 
+    // LinearCombination inherits from ScalarFunction, so we can use the class to test the behavior of ScalarFunctionProduct
+    // Therefore, this test also makes sure that ScalarFunctionProduct correctly compiles with T1 and T2 having the same ::Cols and ::Scalar
 
     Eigen::Vector3d center = Eigen::Vector3d::Zero();
 
@@ -58,5 +59,4 @@ BOOST_AUTO_TEST_CASE ( multipliable_product ) {
 
 
     BOOST_CHECK(std::abs(evaluation - ref_evaluation) < 1.0e-12);
-
 }

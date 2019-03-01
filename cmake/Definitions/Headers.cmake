@@ -61,9 +61,7 @@ set(PROJECT_INCLUDE_FILES
         ${PROJECT_INCLUDE_FOLDER}/math/optimization/step.hpp
 
         ${PROJECT_INCLUDE_FOLDER}/math/LinearCombination.hpp
-        ${PROJECT_INCLUDE_FOLDER}/math/MultipliableScalarFunction.hpp
         ${PROJECT_INCLUDE_FOLDER}/math/ScalarFunction.hpp
-        ${PROJECT_INCLUDE_FOLDER}/math/ScalarFunctionProduct.hpp
         ${PROJECT_INCLUDE_FOLDER}/math/LinearCombination.hpp
         ${PROJECT_INCLUDE_FOLDER}/math/SquareFourIndexTensor.hpp
         ${PROJECT_INCLUDE_FOLDER}/math/SquareMatrix.hpp
