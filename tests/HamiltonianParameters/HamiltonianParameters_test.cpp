@@ -159,7 +159,7 @@ BOOST_AUTO_TEST_CASE ( rotate_argument ) {
     T << 0.5, 0.5, -2.0,
          3.0, 0.0,  1.5,
          0.0, 0.0,  2.5;
-    BOOST_CHECK_THROW(ham_par.rotate(T), std::invalid_argument);
+    BOOST_CHECK_THROW(ham_par.rotate(GQCP::SquareMatrix<double>(T)), std::invalid_argument);
 }
 
 
@@ -198,7 +198,7 @@ BOOST_AUTO_TEST_CASE ( rotate_overlap_matrix ) {
     // Check for a unitary transformation
     GQCP::HamiltonianParameters<double> ham_par (nullptr, S_op, H_op, g_op, GQCP::SquareMatrix<double>(GQCP::Matrix<double>::Random(K, K)));
     Eigen::MatrixXd J = GQCP::jacobiRotationMatrix(jacobi_rotation_parameters, K);
-    ham_par.rotate(J);
+    ham_par.rotate(GQCP::SquareMatrix<double>(J));
     BOOST_CHECK(ham_par.get_S().isApprox(S_rotated_ref, 1.0e-08));
 }
 

@@ -48,6 +48,10 @@ set(PROJECT_TEST_SOURCE_FILES
         ${PROJECT_TESTS_FOLDER}/math/optimization/NewtonSystemOfEquationsSolver_test.cpp
         ${PROJECT_TESTS_FOLDER}/math/optimization/SparseSolver_test.cpp
 
+        ${PROJECT_TESTS_FOLDER}/math/ScalarFunction_test.cpp
+        ${PROJECT_TESTS_FOLDER}/math/SquareFourIndexTensor_test.cpp
+        ${PROJECT_TESTS_FOLDER}/math/SquareMatrix_test.cpp
+
         ${PROJECT_TESTS_FOLDER}/Operator/OneElectronOperator_test.cpp
         ${PROJECT_TESTS_FOLDER}/Operator/TwoElectronOperator_test.cpp
 
@@ -75,6 +79,7 @@ set(PROJECT_TEST_SOURCE_FILES
 
         ${PROJECT_TESTS_FOLDER}/AOBasis_test.cpp
         ${PROJECT_TESTS_FOLDER}/Atom_test.cpp
+        ${PROJECT_TESTS_FOLDER}/CartesianGTO_test.cpp
         ${PROJECT_TESTS_FOLDER}/elements_test.cpp
         ${PROJECT_TESTS_FOLDER}/HoppingMatrix_test.cpp
         ${PROJECT_TESTS_FOLDER}/JacobiRotationParameters_test.cpp

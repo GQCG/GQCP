@@ -22,9 +22,6 @@
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "RDM/OneRDM.hpp"
 
-#include <Eigen/Dense>
-#include <unsupported/Eigen/CXX11/Tensor>
-
 
 namespace GQCP {
 
@@ -34,7 +31,7 @@ namespace GQCP {
 class RHF {
 private:
     double electronic_energy;
-    Eigen::MatrixXd C;  // transformation matrix from the AO basis to the RHF MO basis
+    SquareMatrix<double> C;  // transformation matrix from the AO basis to the RHF MO basis
     Eigen::VectorXd orbital_energies;  // sorted in ascending energies
 
 
@@ -52,12 +49,12 @@ public:
      *  @param C                    the coefficient matrix, i.e. the transformation matrix from the AO basis to the RHF MO basis
      *  @param orbital_energies     the RHF MO energies
      */
-    RHF(double electronic_energy, const Eigen::MatrixXd& C, const Eigen::VectorXd& orbital_energies);
+    RHF(double electronic_energy, const SquareMatrix<double>& C, const Eigen::VectorXd& orbital_energies);
 
 
     // GETTERS
     double get_electronic_energy() const { return this->electronic_energy; }
-    const Eigen::MatrixXd& get_C() const { return this->C; }
+    const SquareMatrix<double>& get_C() const { return this->C; }
     const Eigen::VectorXd& get_orbital_energies() const { return this->orbital_energies; }
     double get_orbital_energies(size_t index) const { return this->orbital_energies(index); }
 };
@@ -81,7 +78,7 @@ OneRDM<double> calculateRHF1RDM(size_t K, size_t N);
  *
  *  @return the RHF 1-RDM expressed in the AO basis
  */
-Eigen::MatrixXd calculateRHFAO1RDM(const Eigen::MatrixXd& C, size_t N);
+Eigen::MatrixXd calculateRHFAO1RDM(const SquareMatrix<double>& C, size_t N);
 
 /**
  *  Calculate the RHF Fock matrix F = H_core + G, in which G is a contraction of the density matrix and the two-electron integrals

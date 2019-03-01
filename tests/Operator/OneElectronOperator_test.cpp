@@ -23,6 +23,7 @@
 
 #include "Operator/OneElectronOperator.hpp"
 
+#include "CartesianGTO.hpp"
 #include "JacobiRotationParameters.hpp"
 #include "utilities/miscellaneous.hpp"
 
@@ -40,22 +41,6 @@ BOOST_AUTO_TEST_CASE ( OneElectronOperator_constructor ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( operator_plus ) {
-    
-    // Construct two OneElectronOperators
-    size_t K = 5;
-    Eigen::MatrixXd matrix1 = Eigen::MatrixXd::Random(K, K);
-    Eigen::MatrixXd matrix2 = Eigen::MatrixXd::Random(K, K);
-    
-    GQCP::OneElectronOperator<double> M1 (matrix1);
-    GQCP::OneElectronOperator<double> M2 (matrix2);
-    
-    
-    // Check if operator+ works
-    BOOST_CHECK((M1 + M2).isApprox(matrix1 + matrix2, 1.0e-12));
-}
-
-
 BOOST_AUTO_TEST_CASE ( OneElectronOperator_transform_trivial ) {
 
     // Let's test a trivial transformation: i.e. with T being a unit matrix
@@ -63,7 +48,7 @@ BOOST_AUTO_TEST_CASE ( OneElectronOperator_transform_trivial ) {
     GQCP::OneElectronOperator<double> H (h);
 
     Eigen::MatrixXd T = Eigen::MatrixXd::Identity(3, 3);
-    H.transform(T);
+    H.transform(GQCP::SquareMatrix<double>(T));
 
     BOOST_CHECK(H.isApprox(h, 1.0e-12));
 }
@@ -82,8 +67,8 @@ BOOST_AUTO_TEST_CASE ( OneElectronOperator_transform_and_inverse ) {
     Eigen::MatrixXd T_inverse = T.inverse();
 
 
-    H.transform(T);
-    H.transform(T_inverse);
+    H.transform(GQCP::SquareMatrix<double>(T));
+    H.transform(GQCP::SquareMatrix<double>(T_inverse));
 
     BOOST_CHECK(H.isApprox(h, 1.0e-12));
 }
@@ -98,7 +83,7 @@ BOOST_AUTO_TEST_CASE ( OneElectronOperator_rotate_throws ) {
 
     // Check if a non-unitary matrix as transformation matrix causes a throw
     Eigen::MatrixXd U (Eigen::MatrixXd::Random(dim, dim));
-    BOOST_CHECK_THROW(M.rotate(U), std::invalid_argument);
+    BOOST_CHECK_THROW(M.rotate(GQCP::SquareMatrix<double>(U)), std::invalid_argument);
 
 
     // Check if a unitary matrix as transformation matrix is accepted
@@ -123,8 +108,93 @@ BOOST_AUTO_TEST_CASE ( OneElectronOperator_rotate_JacobiRotationParameters ) {
 
 
     M1.rotate(jacobi_rotation_parameters);
-    M2.rotate(U);
+    M2.rotate(GQCP::SquareMatrix<double>(U));
 
 
     BOOST_CHECK(M1.isApprox(M2, 1.0e-12));
+}
+
+
+BOOST_AUTO_TEST_CASE ( OneElectronOperator_of_GTOs ) {
+
+    // Test the transformation of a one-electron operator consisting of GTOs
+
+    // Build up the one-electron operator with linear combinations of GTOs
+    Eigen::Vector3d center = Eigen::Vector3d::Zero();
+
+    double coeff1 = 1.0;
+    GQCP::CartesianGTO gto1 (1.0, {1, 0, 0}, center);
+    double N1 = gto1.calculateNormalizationFactor();
+
+    double coeff2 = 2.0;
+    GQCP::CartesianGTO gto2 (2.0, {0, 1, 0}, center);
+    double N2 = gto2.calculateNormalizationFactor();
+
+    double coeff3 = -1.0;
+    GQCP::CartesianGTO gto3 (1.0, {1, 1, 0}, center);
+    double N3 = gto3.calculateNormalizationFactor();
+
+    double coeff4 = 1.0;
+    GQCP::CartesianGTO gto4 (3.0, {0, 0, 2}, center);
+    double N4 = gto4.calculateNormalizationFactor();
+
+    double coeff5 = 2.5;
+    GQCP::CartesianGTO gto5 (0.5, {1, 1, 1}, center);
+    double N5 = gto5.calculateNormalizationFactor();
+
+    double coeff6 = -1.0;
+    GQCP::CartesianGTO gto6 (2.5, {0, 1, 1}, center);
+    double N6 = gto6.calculateNormalizationFactor();
+
+
+    GQCP::LinearCombination<double, GQCP::CartesianGTO> lc1 (coeff1, gto1);
+    GQCP::LinearCombination<double, GQCP::CartesianGTO> lc2 ({coeff2, coeff3}, {gto2, gto3});
+    GQCP::LinearCombination<double, GQCP::CartesianGTO> lc3 ({coeff4, coeff5}, {gto4, gto5});
+    GQCP::LinearCombination<double, GQCP::CartesianGTO> lc4 (coeff6, gto6);
+
+
+    Eigen::Matrix<GQCP::LinearCombination<double, GQCP::CartesianGTO>, 2, 2> rho;
+    rho << lc1, lc2, lc3, lc4;
+
+
+    // Create the transformation matrix
+    Eigen::Matrix2d T = Eigen::Matrix2d::Zero();
+    T << 2.0, 1.0, 1.0, 0.0;
+
+
+    Eigen::Matrix<GQCP::LinearCombination<double, GQCP::CartesianGTO>, 2, 2> rho_transformed = T.adjoint() * rho * T;
+    auto rho_transformed_op = GQCP::OneElectronOperator<GQCP::LinearCombination<double, GQCP::CartesianGTO>>(rho_transformed);
+
+
+    // Check the coefficients of the transformed operator
+    std::vector<double> ref_coeff_result_01 {2.0, 1.0, 2.5};
+    auto coeff_result_01 = rho_transformed(0,1).get_coefficients();
+    for (size_t i = 0; i < ref_coeff_result_01.size(); i++) {
+        BOOST_CHECK(std::abs(ref_coeff_result_01[i] - coeff_result_01[i]) < 1.0e-12);
+    }
+    BOOST_CHECK(ref_coeff_result_01.size() == coeff_result_01.size());
+
+    std::vector<double> ref_coeff_result_11 {1.0};
+    auto coeff_result_11 = rho_transformed(1,1).get_coefficients();
+    for (size_t i = 0; i < ref_coeff_result_11.size(); i++) {
+        BOOST_CHECK(std::abs(ref_coeff_result_11[i] - coeff_result_11[i]) < 1.0e-12);
+    }
+    BOOST_CHECK(ref_coeff_result_11.size() == coeff_result_11.size());
+
+
+    // Test .evaluate(r) for a OneElectronOperator consisting of GTOs
+    Eigen::Vector3d r = Eigen::Vector3d::Zero();
+    r << 1.0, 1.0, 1.0;
+
+    Eigen::Matrix2d ref_rho_evaluated = Eigen::Matrix2d::Zero();
+    double ref_rho_evaluated_00 = 4*N1 * std::exp(-3.0) + 4*N2 * std::exp(-6.0) - 2*N3* std::exp(-3.0) + 2*N4 * std::exp(-9.0) + 5*N5 * std::exp(-1.5) - 1*N6 * std::exp(-7.5);
+    double ref_rho_evaluated_01 = 2*N1 * std::exp(-3.0) + 1*N4 * std::exp(-9.0) + 2.5*N5 * std::exp(-1.5);
+    double ref_rho_evaluated_10 = 2*N1 * std::exp(-3.0) + 2*N2 * std::exp(-6.0) - 1*N3 * std::exp(-3.0);
+    double ref_rho_evaluated_11 = 1*N1  * std::exp(-3.0);
+    ref_rho_evaluated << ref_rho_evaluated_00, ref_rho_evaluated_01, ref_rho_evaluated_10, ref_rho_evaluated_11;
+
+    auto rho_evaluated_op = rho_transformed_op.evaluate(r);
+
+
+    BOOST_CHECK(ref_rho_evaluated.isApprox(rho_evaluated_op, 1.0e-12));
 }

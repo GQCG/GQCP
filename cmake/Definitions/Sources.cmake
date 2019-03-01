@@ -85,6 +85,7 @@ set(PROJECT_SOURCE_FILES
 
         ${PROJECT_SOURCE_FOLDER}/AOBasis.cpp
         ${PROJECT_SOURCE_FOLDER}/Atom.cpp
+        ${PROJECT_SOURCE_FOLDER}/CartesianGTO.cpp
         ${PROJECT_SOURCE_FOLDER}/DOCINewtonOrbitalOptimizer.cpp
         ${PROJECT_SOURCE_FOLDER}/elements.cpp
         ${PROJECT_SOURCE_FOLDER}/HoppingMatrix.cpp

@@ -1,5 +1,5 @@
 // This file is part of GQCG-gqcp.
-//
+// 
 // Copyright (C) 2017-2019  the GQCG developers
 // 
 // GQCG-gqcp is free software: you can redistribute it and/or modify

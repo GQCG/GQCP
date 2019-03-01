@@ -34,7 +34,7 @@ namespace GQCP {
  *  @tparam Scalar      the scalar type
  */
 template<typename Scalar>
-class TwoElectronOperator : public SquareFourIndexTensor<Scalar>, public Operator<Scalar> {
+class TwoElectronOperator : public SquareFourIndexTensor<Scalar>, public Operator<TwoElectronOperator<Scalar>> {
 public:
 
     /*
@@ -58,22 +58,27 @@ public:
 
 
     /*
-     *  OVERRIDDEN PUBLIC METHODS
+     *  PUBLIC METHODS
      */
 
     /**
      *  In-place transform the matrix representation of the two-electron operator
      *
+     *  @tparam TransformationScalar        the type of scalar used for the transformation matrix
+
      *  @param T    the transformation matrix between the old and the new orbital basis, it is used as
      *      b' = b T ,
      *   in which the basis functions are collected as elements of a row vector b
+     *
+     *  Note that in order to use these transformation formulas, the multiplication between TransformationScalar and Scalar should be 'enabled'. See LinearCombination.hpp for an example
      */
-    void transform(const SquareMatrix<Scalar>& T) override {
+    template <typename TransformationScalar = Scalar>
+    void transform(const SquareMatrix<TransformationScalar>& T) {
 
         // Since we're only getting T as a matrix, we should make the appropriate tensor to perform contractions
-        // For the const Eigen::MatrixXd& argument, we need the const double in the template
+        // For the const argument, we need the const in the template
         //      For more info, see: https://stackoverflow.com/questions/45283468/eigen-const-tensormap
-        Eigen::TensorMap<Eigen::Tensor<const double, 2>> T_tensor (T.data(), T.rows(), T.cols());
+        Eigen::TensorMap<Eigen::Tensor<const TransformationScalar, 2>> T_tensor (T.data(), T.rows(), T.cols());
 
 
         // We will have to do four single contractions, so we specify the contraction indices
@@ -98,27 +103,14 @@ public:
 
         // Calculate the contractions. We write this as one large contraction to
         //  1) avoid storing intermediate contractions
-        //  2) let Eigen3 figure out some optimizations
-        Eigen::Tensor<double, 4> g_transformed = T_tensor.conjugate().contract(T_tensor.contract(this->contract(T_tensor.conjugate(), contraction_pair1).shuffle(shuffle_1).contract(T_tensor, contraction_pair2), contraction_pair3).shuffle(shuffle_3), contraction_pair4);
+        //  2) let Eigen figure out some optimizations
+        Eigen::Tensor<Scalar, 4> g_transformed = T_tensor.conjugate().contract(T_tensor.contract(this->contract(T_tensor.conjugate(), contraction_pair1).shuffle(shuffle_1).contract(T_tensor, contraction_pair2), contraction_pair3).shuffle(shuffle_3), contraction_pair4);
 
         *this = TwoElectronOperator<Scalar>(g_transformed);
     }
 
 
-    /*
-     *  PUBLIC METHODS
-     */
-
-    /**
-     *  If we have
-     *      TwoElectronOperator<Scalar> two_op;
-     *
-     *  This makes sure that we can call
-     *      two_op.rotate(U);
-     *  instead of the syntax
-     *      two_op.Operator<Scalar>::rotate(U);
-     */
-    using Operator<Scalar>::rotate;
+    using Operator<TwoElectronOperator<Scalar>>::rotate;  // bring over rotate() from the base class
 
 
     /**
