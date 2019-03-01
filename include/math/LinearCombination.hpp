@@ -16,9 +16,6 @@ namespace GQCP {
  *
  *  @tparam T                       the type of scalar function
  *  @tparam CoefficientScalar       the type of scalar that is used as coefficient
- *
- *  TODO: T should be a scalar function?
- *  TODO: double should also become a template?
  */
 template <typename CoefficientScalar, typename T>
 class LinearCombination : public MultipliableScalarFunction<typename T::Valued, typename T::Scalar, T::Cols> {

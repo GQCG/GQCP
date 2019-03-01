@@ -41,22 +41,6 @@ BOOST_AUTO_TEST_CASE ( OneElectronOperator_constructor ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( operator_plus ) {
-    
-    // Construct two OneElectronOperators
-    size_t K = 5;
-    Eigen::MatrixXd matrix1 = Eigen::MatrixXd::Random(K, K);
-    Eigen::MatrixXd matrix2 = Eigen::MatrixXd::Random(K, K);
-    
-    GQCP::OneElectronOperator<double> M1 (matrix1);
-    GQCP::OneElectronOperator<double> M2 (matrix2);
-    
-    
-    // Check if operator+ works
-    BOOST_CHECK((M1 + M2).isApprox(matrix1 + matrix2, 1.0e-12));
-}
-
-
 BOOST_AUTO_TEST_CASE ( OneElectronOperator_transform_trivial ) {
 
     // Let's test a trivial transformation: i.e. with T being a unit matrix
@@ -139,51 +123,34 @@ BOOST_AUTO_TEST_CASE ( OneElectronOperator_of_GTOs ) {
     Eigen::Vector3d center = Eigen::Vector3d::Zero();
 
     double coeff1 = 1.0;
-    std::array<size_t, 3> exp1 {1, 0, 0};
-    GQCP::CartesianGTO gto1 (1.0, exp1, center);
+    GQCP::CartesianGTO gto1 (1.0, {1, 0, 0}, center);
     double N1 = gto1.calculateNormalizationFactor();
 
     double coeff2 = 2.0;
-    std::array<size_t, 3> exp2 {0, 1, 0};
-    GQCP::CartesianGTO gto2 (2.0, exp2, center);
+    GQCP::CartesianGTO gto2 (2.0, {0, 1, 0}, center);
     double N2 = gto2.calculateNormalizationFactor();
 
     double coeff3 = -1.0;
-    std::array<size_t, 3> exp3 {1, 1, 0};
-    GQCP::CartesianGTO gto3 (1.0, exp3, center);
+    GQCP::CartesianGTO gto3 (1.0, {1, 1, 0}, center);
     double N3 = gto3.calculateNormalizationFactor();
 
     double coeff4 = 1.0;
-    std::array<size_t, 3> exp4 {0, 0, 2};
-    GQCP::CartesianGTO gto4 (3.0, exp4, center);
+    GQCP::CartesianGTO gto4 (3.0, {0, 0, 2}, center);
     double N4 = gto4.calculateNormalizationFactor();
 
     double coeff5 = 2.5;
-    std::array<size_t, 3> exp5 {1, 1, 1};
-    GQCP::CartesianGTO gto5 (0.5, exp5, center);
+    GQCP::CartesianGTO gto5 (0.5, {1, 1, 1}, center);
     double N5 = gto5.calculateNormalizationFactor();
 
     double coeff6 = -1.0;
-    std::array<size_t, 3> exp6 {0, 1, 1};
-    GQCP::CartesianGTO gto6 (2.5, exp6, center);
+    GQCP::CartesianGTO gto6 (2.5, {0, 1, 1}, center);
     double N6 = gto6.calculateNormalizationFactor();
 
 
-    std::vector<double> lc1_coeff {coeff1};
-    std::vector<double> lc2_coeff {coeff2, coeff3};
-    std::vector<double> lc3_coeff {coeff4, coeff5};
-    std::vector<double> lc4_coeff {coeff6};
-
-    std::vector<GQCP::CartesianGTO> lc1_funcs {gto1};
-    std::vector<GQCP::CartesianGTO> lc2_funcs {gto2, gto3};
-    std::vector<GQCP::CartesianGTO> lc3_funcs {gto4, gto5};
-    std::vector<GQCP::CartesianGTO> lc4_funcs {gto6};
-
-
-    GQCP::LinearCombination<double, GQCP::CartesianGTO> lc1 (lc1_coeff, lc1_funcs);
-    GQCP::LinearCombination<double, GQCP::CartesianGTO> lc2 (lc2_coeff, lc2_funcs);
-    GQCP::LinearCombination<double, GQCP::CartesianGTO> lc3 (lc3_coeff, lc3_funcs);
-    GQCP::LinearCombination<double, GQCP::CartesianGTO> lc4 (lc4_coeff, lc4_funcs);
+    GQCP::LinearCombination<double, GQCP::CartesianGTO> lc1 (coeff1, gto1);
+    GQCP::LinearCombination<double, GQCP::CartesianGTO> lc2 ({coeff2, coeff3}, {gto2, gto3});
+    GQCP::LinearCombination<double, GQCP::CartesianGTO> lc3 ({coeff4, coeff5}, {gto4, gto5});
+    GQCP::LinearCombination<double, GQCP::CartesianGTO> lc4 (coeff6, gto6);
 
 
     Eigen::Matrix<GQCP::LinearCombination<double, GQCP::CartesianGTO>, 2, 2> rho;
@@ -199,7 +166,7 @@ BOOST_AUTO_TEST_CASE ( OneElectronOperator_of_GTOs ) {
     auto rho_transformed_op = GQCP::OneElectronOperator<GQCP::LinearCombination<double, GQCP::CartesianGTO>>(rho_transformed);
 
 
-    // Check the coefficients of the results
+    // Check the coefficients of the transformed operator
     std::vector<double> ref_coeff_result_01 {2.0, 1.0, 2.5};
     auto coeff_result_01 = rho_transformed(0,1).get_coefficients();
     for (size_t i = 0; i < ref_coeff_result_01.size(); i++) {

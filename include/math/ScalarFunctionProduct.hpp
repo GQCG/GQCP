@@ -16,8 +16,6 @@ namespace GQCP {
  *  operator() returns the product of the operator()s of both or the arguments
  *
  *  @tparam T    the types of the scalar functions
- *
- *  TODO: make sure T1 and T2 are actually scalar functions (or derived classes)
  */
 template <typename T>
 class ScalarFunctionProduct : public ScalarFunction<typename T::Valued, typename T::Scalar, T::Cols> {
@@ -30,7 +28,11 @@ private:
 
 
 public:
-    // CONSTRUCTORS
+
+    /*
+     *  CONSTRUCTORS
+     */
+
     /**
      *  @param lhs      the left-hand side of the product
      *  @param rhs      the right-hand side of the product
@@ -41,7 +43,10 @@ public:
     {}
 
 
-    // OPERATORS
+    /*
+     *  OPERATORS
+     */
+
     /**
      *  @param x        the vector/point at which the scalar function product is to be evaluated
      *
