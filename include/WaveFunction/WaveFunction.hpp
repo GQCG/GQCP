@@ -33,13 +33,15 @@ namespace GQCP {
 class WaveFunction {
 private:
     std::shared_ptr<BaseFockSpace> fock_space;
-    Eigen::VectorXd coefficients;  // Expansion coefficients of a wave function in the Fock space
+    Eigen::VectorXd coefficients;  // the expansion coefficients in the Fock space
 
 public:
     // CONSTRUCTORS
     WaveFunction() = default;
 
     /**
+     *  Construct a normalized wave function from possibly non-normalized coefficients
+     *
      *  @param base_fock_space      the Fock space in which the wave function 'lives'
      *  @param coefficients         the expansion coefficients
      */
