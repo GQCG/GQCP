@@ -60,6 +60,7 @@ BOOST_AUTO_TEST_CASE ( toWaveFunction_example1 ) {
 
     Eigen::VectorXd ref_coefficients (3);
     ref_coefficients << 1, 2, 3;
+    ref_coefficients.normalize();
 
     GQCP::FockSpace fock_space (K, N_P);
     BOOST_CHECK(ref_coefficients.isApprox(gem_coeff.toWaveFunction(fock_space).get_coefficients()));
@@ -77,6 +78,7 @@ BOOST_AUTO_TEST_CASE ( toWaveFunction_example2 ) {
 
     Eigen::VectorXd ref_coefficients (3);
     ref_coefficients << 1, 3, 2;
+    ref_coefficients.normalize();
 
     GQCP::FockSpace fock_space (K, N_P);
     BOOST_CHECK(ref_coefficients.isApprox(gem_coeff.toWaveFunction(fock_space).get_coefficients()));
@@ -94,6 +96,7 @@ BOOST_AUTO_TEST_CASE ( toWaveFunction_example3 ) {
 
     Eigen::VectorXd ref_coefficients (10);
     ref_coefficients << 1, 5, 2, 6, 3, 27, 7, 4, 34, 45;
+    ref_coefficients.normalize();
 
     GQCP::FockSpace fock_space (K, N_P);
     BOOST_CHECK(ref_coefficients.isApprox(gem_coeff.toWaveFunction(fock_space).get_coefficients()));

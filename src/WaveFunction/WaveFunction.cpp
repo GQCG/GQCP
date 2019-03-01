@@ -26,13 +26,19 @@ namespace GQCP {
  */
 
 /**
+ *  Construct a normalized wave function from possibly non-normalized coefficients
+ *
  *  @param base_fock_space      the Fock space in which the wave function 'lives'
  *  @param coefficients         the expansion coefficients
  */
 WaveFunction::WaveFunction(const BaseFockSpace& base_fock_space, const Eigen::VectorXd& coefficients) :
     fock_space (BaseFockSpace::CloneToHeap(base_fock_space)),
     coefficients (coefficients)
-{}
+{
+    if (std::abs(this->coefficients.norm() - 1.0) > 1.0e-12) {  // normalize the coefficients if they aren't
+        this->coefficients.normalize();
+    }
+}
 
 
 
