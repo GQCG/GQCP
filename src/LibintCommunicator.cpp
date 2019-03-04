@@ -203,7 +203,7 @@ OneElectronOperator<double> LibintCommunicator::calculateNuclearIntegrals(const 
  *
  *  @return the Cartesian components of the electrical dipole operator, expressed in the given AO basis
  */
-std::array<OneElectronOperator<double>, 3> LibintCommunicator::calculateDipoleIntegrals(const AOBasis& ao_basis, const Eigen::Vector3d& origin) const {
+std::array<OneElectronOperator<double>, 3> LibintCommunicator::calculateDipoleIntegrals(const AOBasis& ao_basis, const Vector<double, 3>& origin) const {
 
     std::array<double, 3> origin_array {origin.x(), origin.y(), origin.z()};
 

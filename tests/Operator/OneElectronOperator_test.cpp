@@ -120,7 +120,7 @@ BOOST_AUTO_TEST_CASE ( OneElectronOperator_of_GTOs ) {
     // Test the transformation of a one-electron operator consisting of GTOs
 
     // Build up the one-electron operator with linear combinations of GTOs
-    Eigen::Vector3d center = Eigen::Vector3d::Zero();
+    GQCP::Vector<double, 3> center = GQCP::Vector<double, 3>::Zero();
 
     double coeff1 = 1.0;
     GQCP::CartesianGTO gto1 (1.0, {1, 0, 0}, center);
@@ -183,7 +183,7 @@ BOOST_AUTO_TEST_CASE ( OneElectronOperator_of_GTOs ) {
 
 
     // Test .evaluate(r) for a OneElectronOperator consisting of GTOs
-    Eigen::Vector3d r = Eigen::Vector3d::Zero();
+    GQCP::Vector<double, 3> r = GQCP::Vector<double, 3>::Zero();
     r << 1.0, 1.0, 1.0;
 
     Eigen::Matrix2d ref_rho_evaluated = Eigen::Matrix2d::Zero();

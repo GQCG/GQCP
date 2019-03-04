@@ -32,9 +32,9 @@ namespace GQCP {
  *  @param X                             the number of frozen orbitals
  */
 FrozenCoreCI::FrozenCoreCI(std::shared_ptr<GQCP::HamiltonianBuilder> hamiltonian_builder, size_t X) :
-        HamiltonianBuilder(),
-        active_hamiltonian_builder (std::move(hamiltonian_builder)),
-        X (X)
+    HamiltonianBuilder(),
+    active_hamiltonian_builder (std::move(hamiltonian_builder)),
+    X (X)
 {}
 
 
@@ -151,7 +151,7 @@ HamiltonianParameters<double> FrozenCoreCI::freezeHamiltonianParameters(const Ha
     TwoElectronOperator<double> g_new (tensorBlockCreation(ham_par.get_g(), X, X, X, X));
     Eigen::MatrixXd T = ham_par.get_T_total().block(X, X, K_active, K_active);
 
-    return HamiltonianParameters<double>(ao_basis, S, h, g_new, T);
+    return HamiltonianParameters<double>(ao_basis, S, h, g_new, SquareMatrix<double>(T));
 }
 
 

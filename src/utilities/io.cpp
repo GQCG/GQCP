@@ -27,42 +27,42 @@
 namespace GQCP {
 
 
-/**
- *  @param filename     the name of the file to be read in
- *  @param v            the vector that gets the contents of the file
- *
- *  Read a vector from a given file and put the elements in the given vector
- */
-void readVectorFromFile(const std::string& filename, Eigen::VectorXd& v) {
-
-    v.setZero();
-
-    std::ifstream file (filename);
-    size_t index = 0;
-    if (file.is_open()) {
-        std::string line;
-
-        while (std::getline(file, line)) {
-            std::vector<std::string> splitted_line;  // create a container for the line to be split in
-
-            // Split the line on any whitespace or tabs.
-            boost::split(splitted_line, line, boost::is_any_of(" \t"), boost::token_compress_on);
-
-            if (splitted_line.size() != 1) {
-                throw std::runtime_error("Found a line that doesn't contain exactly 1 field delimited by whitespace.");
-            }
-
-            auto value = std::stod(splitted_line[0]);
-            v(index) = value;
-
-            ++index;
-        }
-
-        file.close();
-    } else {
-        throw std::runtime_error("Cannot open the given file. Maybe you specified a wrong path?");
-    }
-}
+///**
+// *  @param filename     the name of the file to be read in
+// *  @param v            the vector that gets the contents of the file
+// *
+// *  Read a vector from a given file and put the elements in the given vector
+// */
+//void readVectorFromFile(const std::string& filename, Eigen::VectorXd& v) {
+//
+//    v.setZero();
+//
+//    std::ifstream file (filename);
+//    size_t index = 0;
+//    if (file.is_open()) {
+//        std::string line;
+//
+//        while (std::getline(file, line)) {
+//            std::vector<std::string> splitted_line;  // create a container for the line to be split in
+//
+//            // Split the line on any whitespace or tabs.
+//            boost::split(splitted_line, line, boost::is_any_of(" \t"), boost::token_compress_on);
+//
+//            if (splitted_line.size() != 1) {
+//                throw std::runtime_error("Found a line that doesn't contain exactly 1 field delimited by whitespace.");
+//            }
+//
+//            auto value = std::stod(splitted_line[0]);
+//            v(index) = value;
+//
+//            ++index;
+//        }
+//
+//        file.close();
+//    } else {
+//        throw std::runtime_error("Cannot open the given file. Maybe you specified a wrong path?");
+//    }
+//}
 
 
 /**

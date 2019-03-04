@@ -37,9 +37,11 @@ namespace GQCP {
  *  @param z                    the z-position of the atom in bohr
  */
 Atom::Atom(size_t atomic_number, double x, double y, double z) :
-    atomic_number (atomic_number),
-    position (Eigen::Vector3d {x, y, z})
-{}
+    atomic_number (atomic_number)
+//    position (Vector<double, 3> {x, y, z})
+{
+    position << x, y, z;
+}
 
 
 

@@ -24,8 +24,7 @@
 #include "Operator/OneElectronOperator.hpp"
 #include "Operator/TwoElectronOperator.hpp"
 
-#include <Eigen/Dense>
-#include <unsupported/Eigen/CXX11/Tensor>
+#include <boost/preprocessor.hpp>  // include preprocessor before libint to fix libint-boost bug
 #include <libint2.hpp>
 
 
@@ -185,7 +184,7 @@ public:
      *
      *  @return the Cartesian components of the electrical dipole operator, expressed in the given AO basis
      */
-    std::array<OneElectronOperator<double>, 3> calculateDipoleIntegrals(const AOBasis& ao_basis, const Eigen::Vector3d& origin=Eigen::Vector3d::Zero()) const;
+    std::array<OneElectronOperator<double>, 3> calculateDipoleIntegrals(const AOBasis& ao_basis, const Vector<double, 3>& origin=Vector<double, 3>::Zero()) const;
 
     /**
      *  @param ao_basis     the AO basis used for the calculation of the Coulomb repulsion integrals
@@ -196,8 +195,6 @@ public:
 
 
 };
-
-
 
 
 }  // namespace GQCP

@@ -34,3 +34,35 @@ BOOST_AUTO_TEST_CASE ( constructor_assignment ) {
     GQCP::MatrixX<double> M2 = A + B;
     GQCP::MatrixX<double> M3 = 2*A;
 }
+
+
+BOOST_AUTO_TEST_CASE ( vector_FromFile ) {
+
+    size_t rows = 7;
+
+    // Check that there's an error when a wrong path is supplied
+    BOOST_CHECK_THROW(GQCP::VectorX<double>::FromFile("data/small_vector.dat", rows), std::runtime_error);  // should be 'datA'
+
+
+    // Check that there's no error when a correct path is supplied
+    BOOST_CHECK_NO_THROW(GQCP::VectorX<double>::FromFile("data/small_vector.data", rows));
+
+
+    // Check that there's an error when the matrix is incompatible with the given file
+    BOOST_CHECK_THROW(GQCP::VectorX<double>::FromFile("ref_data/h2o_sto-3g_two_electron_horton.data", rows), std::runtime_error);  // can't read in two-electron data in a vector
+}
+
+
+
+BOOST_AUTO_TEST_CASE ( readVectorFromFile_example ) {
+
+    // Test the read function on a small example
+    size_t rows = 4;
+    GQCP::VectorX<double> v_ref (rows);
+    v_ref << 1.5, -0.2, 0.002, 8.3314;
+
+    auto v = GQCP::VectorX<double>::FromFile("data/small_vector.data", rows);
+
+
+    BOOST_CHECK(v.isApprox(v_ref, 1.0e-8));
+}

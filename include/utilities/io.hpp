@@ -29,13 +29,13 @@
 namespace GQCP {
 
 
-/**
- *  Read a vector from a given file and put the elements in the given vector
- *
- *  @param filename     the name of the file to be read in
- *  @param v            the vector that gets the contents of the file
- */
-void readVectorFromFile(const std::string& filename, Eigen::VectorXd& v);
+///**
+// *  Read a vector from a given file and put the elements in the given vector
+// *
+// *  @param filename     the name of the file to be read in
+// *  @param v            the vector that gets the contents of the file
+// */
+//void readVectorFromFile(const std::string& filename, Eigen::VectorXd& v);
 
 /**
  *  Read a matrix from a given file and put the elements in the given matrix

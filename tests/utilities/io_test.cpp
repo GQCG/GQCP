@@ -29,22 +29,7 @@
 
 
 
-BOOST_AUTO_TEST_CASE ( readVectorFromFile_throw ) {
 
-    Eigen::VectorXd v = Eigen::VectorXd::Zero(7);
-
-
-    // Check that there's an error when a wrong path is supplied.
-    BOOST_CHECK_THROW(GQCP::readVectorFromFile("data/small_vector.dat", v), std::runtime_error);  // should be 'datA'
-
-
-    // Check that there's no error when a correct path is supplied.
-    BOOST_CHECK_NO_THROW(GQCP::readVectorFromFile("data/small_vector.data", v));
-
-
-    // Check that there's an error when the matrix is incompatible with the given file.
-    BOOST_CHECK_THROW(GQCP::readVectorFromFile("ref_data/h2o_sto-3g_two_electron_horton.data", v), std::runtime_error);  // can't read in two-electron data in a vector
-}
 
 
 BOOST_AUTO_TEST_CASE ( readArrayFromFile_matrix_throw ) {
@@ -85,18 +70,7 @@ BOOST_AUTO_TEST_CASE ( readArrayFromFile_tensor_throw ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( readVectorFromFile_example ) {
 
-    // Test the read function on a small example
-    Eigen::VectorXd v (4);
-    Eigen::VectorXd v_ref (4);
-    v_ref << 1.5, -0.2, 0.002, 8.3314;
-
-    GQCP::readVectorFromFile("data/small_vector.data", v);
-
-
-    BOOST_CHECK(v.isApprox(v_ref, 1.0e-8));
-}
 
 
 BOOST_AUTO_TEST_CASE ( readArrayFromFile_matrix_example ) {

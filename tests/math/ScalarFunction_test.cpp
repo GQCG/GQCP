@@ -31,7 +31,7 @@ BOOST_AUTO_TEST_CASE ( ScalarFunctionProduct ) {
     // LinearCombination inherits from ScalarFunction, so we can use the class to test the behavior of ScalarFunctionProduct
     // Therefore, this test also makes sure that ScalarFunctionProduct correctly compiles with T1 and T2 having the same ::Cols and ::Scalar
 
-    Eigen::Vector3d center = Eigen::Vector3d::Zero();
+    GQCP::Vector<double, 3> center = GQCP::Vector<double, 3>::Zero();
 
     GQCP::CartesianGTO gto1 (1.0, {1, 0, 0}, center);
     double coefficient1 = 1.0;
@@ -51,7 +51,7 @@ BOOST_AUTO_TEST_CASE ( ScalarFunctionProduct ) {
 
 
     // Evaluate the product of two LinearCombinations at a point
-    Eigen::Vector3d r = Eigen::Vector3d::Zero();
+    GQCP::Vector<double, 3> r = GQCP::Vector<double, 3>::Zero();
     r << 1.0, 1.0, 1.0;
 
     double ref_evaluation = 1*N1*std::exp(-3.0) * (-2*N2*std::exp(-6.0) + 0.75*N3*std::exp(-1.5));  // manual calculation

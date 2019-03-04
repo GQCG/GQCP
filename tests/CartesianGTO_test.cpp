@@ -27,7 +27,7 @@
 BOOST_AUTO_TEST_CASE ( constructor ) {
 
     std::array<size_t, 3> exponents {0, 0, 0};
-    Eigen::Vector3d center = Eigen::Vector3d::Zero();
+    GQCP::Vector<double, 3> center = GQCP::Vector<double, 3>::Zero();
 
     BOOST_CHECK_THROW(GQCP::CartesianGTO gto (-1.0, exponents, center), std::invalid_argument);  // exponent in the exponential cannot be negative
 }
@@ -36,7 +36,7 @@ BOOST_AUTO_TEST_CASE ( constructor ) {
 BOOST_AUTO_TEST_CASE ( calculateNormalizationFactor ) {
 
     std::array<size_t, 3> exponents1 {1, 0, 1};
-    Eigen::Vector3d center = Eigen::Vector3d::Zero();
+    GQCP::Vector<double, 3> center = GQCP::Vector<double, 3>::Zero();
     GQCP::CartesianGTO gto1 (1.0, exponents1, center);
 
     BOOST_CHECK(std::abs(gto1.calculateNormalizationFactor() - 2.8508218814) < 1.0e-09);  // 'manual' calculation
@@ -51,9 +51,9 @@ BOOST_AUTO_TEST_CASE ( calculateNormalizationFactor ) {
 BOOST_AUTO_TEST_CASE ( operator_call ) {
 
     std::array<size_t, 3> exponents1 {1, 0, 1};
-    Eigen::Vector3d center1;
+    GQCP::Vector<double, 3> center1;
     center1 << 1.0, 0.0, -0.5;
-    Eigen::Vector3d r1;
+    GQCP::Vector<double, 3> r1;
     r1 << 0.0, 1.0, 0.0;
     GQCP::CartesianGTO gto1 (1.0, exponents1, center1);
 
@@ -61,9 +61,9 @@ BOOST_AUTO_TEST_CASE ( operator_call ) {
 
 
     std::array<size_t, 3> exponents2 {1, 2, 3};
-    Eigen::Vector3d center2;
+    GQCP::Vector<double, 3> center2;
     center2 << 0.0, 1.0, 0.0;
-    Eigen::Vector3d r2;
+    GQCP::Vector<double, 3> r2;
     r2 << -1.0, -1.0, 1.0;
     GQCP::CartesianGTO gto2 (2.5, exponents2, center2);
 
@@ -74,7 +74,7 @@ BOOST_AUTO_TEST_CASE ( operator_call ) {
 BOOST_AUTO_TEST_CASE ( calculateDerivative ) {
 
     std::array<size_t, 3> exponents1 {1, 0, 1};
-    Eigen::Vector3d center = Eigen::Vector3d::Zero();
+    GQCP::Vector<double, 3> center = GQCP::Vector<double, 3>::Zero();
     GQCP::CartesianGTO gto1 (1.0, exponents1, center);
 
     BOOST_REQUIRE_THROW(gto1.calculateDerivative(5), std::invalid_argument);

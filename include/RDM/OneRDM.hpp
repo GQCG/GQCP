@@ -50,7 +50,7 @@ public:
      *
      *  Note that this should accept any Matrix<Scalar> (instead of SquareMatrix<Scalar>) because we want other Eigen return types to be accepted as well, like after a product of OneElectronOperators
      */
-    explicit OneRDM(const Matrix<Scalar>& matrix) :
+    explicit OneRDM(const MatrixX<Scalar>& matrix) :
         SquareMatrix<Scalar>(matrix)
     {}
 };

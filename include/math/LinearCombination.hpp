@@ -21,6 +21,7 @@
 
 #include "math/ScalarFunction.hpp"
 
+#include <vector>
 
 
 namespace GQCP {
@@ -193,7 +194,7 @@ public:
      *
      *  @return the scalar function value of this linear combination at the given point
      */
-    typename T::Valued operator()(const Eigen::Matrix<typename T::Scalar, T::Cols, 1>& x) const override {
+    typename T::Valued operator()(const Vector<typename T::Scalar, T::Cols>& x) const override {
         size_t n = this->functions.size();
 
         CoefficientScalar value {};  // default initialization

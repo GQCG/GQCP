@@ -63,7 +63,7 @@ BOOST_AUTO_TEST_CASE ( dipole_CO_STO_3G ) {
         dipole_component.transform(rhf.get_C());
     }
 
-    Eigen::Vector3d total_dipole_moment = CO.calculateNuclearDipoleMoment() + GQCP::calculateElectronicDipoleMoment(dipole_components, D);
+    GQCP::Vector<double, 3> total_dipole_moment = CO.calculateNuclearDipoleMoment() + GQCP::calculateElectronicDipoleMoment(dipole_components, D);
     BOOST_CHECK(std::abs(total_dipole_moment.norm() - (0.049)) < 1.0e-03);
 }
 
@@ -103,6 +103,6 @@ BOOST_AUTO_TEST_CASE ( dipole_N2_STO_3G ) {
         dipole_component.transform(rhf.get_C());
     }
 
-    Eigen::Vector3d total_dipole_moment = N2.calculateNuclearDipoleMoment() + GQCP::calculateElectronicDipoleMoment(dipole_components, D);
+    GQCP::Vector<double, 3> total_dipole_moment = N2.calculateNuclearDipoleMoment() + GQCP::calculateElectronicDipoleMoment(dipole_components, D);
     BOOST_CHECK(std::abs(total_dipole_moment.norm() - (0.0)) < 1.0e-08);
 }

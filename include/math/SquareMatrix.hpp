@@ -19,7 +19,7 @@
 #define SquareMatrix_hpp
 
 
-#include "typedefs.hpp"
+#include "math/Matrix.hpp"
 
 
 namespace GQCP {
@@ -31,12 +31,12 @@ namespace GQCP {
  *  @tparam Scalar      the scalar type
  */
 template<typename Scalar>
-class SquareMatrix : public Matrix<Scalar> {
+class SquareMatrix : public MatrixX<Scalar> {
 public:
 
     enum {
-        Rows = Matrix<Scalar>::RowsAtCompileTime,
-        Cols = Matrix<Scalar>::ColsAtCompileTime
+        Rows = MatrixX<Scalar>::RowsAtCompileTime,
+        Cols = MatrixX<Scalar>::ColsAtCompileTime
     };
 
 
@@ -47,7 +47,7 @@ public:
     /**
      *  Default constructor
      */
-    SquareMatrix() : Matrix<Scalar>() {}
+    SquareMatrix() : MatrixX<Scalar>() {}
 
 
     /**
@@ -55,8 +55,8 @@ public:
      *
      *  @param matrix       the matrix that should be square
      */
-    SquareMatrix(const Matrix<Scalar>& matrix) :
-        Matrix<Scalar>(matrix)  // the compiler should call the move constructor here
+    SquareMatrix(const MatrixX<Scalar>& matrix) :
+        MatrixX<Scalar>(matrix)  // the compiler should call the move constructor here
     {
         // Check if the given matrix is square
         if (this->cols() != this->rows()) {

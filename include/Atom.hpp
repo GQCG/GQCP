@@ -22,7 +22,7 @@
 #include <iostream>
 #include <stdlib.h>
 
-#include <Eigen/Dense>
+#include "math/Matrix.hpp"
 
 
 namespace GQCP {
@@ -33,7 +33,7 @@ namespace GQCP {
 class Atom {
 public:
     size_t atomic_number;
-    Eigen::Vector3d position;  // in bohr
+    Vector<double, 3> position;  // in bohr
 
     static constexpr double tolerance_for_comparison = 1.0e-08;  // in bohr
 

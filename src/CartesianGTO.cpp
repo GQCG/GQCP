@@ -36,7 +36,7 @@ namespace GQCP {
  *  @param exponents    the exponents of x, y and z, in that order
  *  @param center       the center of the Cartesian GTO
  */
-CartesianGTO::CartesianGTO(double alpha, const std::array<size_t, 3>& exponents, const Eigen::Vector3d& center) :
+CartesianGTO::CartesianGTO(double alpha, const std::array<size_t, 3>& exponents, const Vector<double, 3>& center) :
     alpha (alpha),
     exponents (exponents),
     center (center)
@@ -54,7 +54,7 @@ CartesianGTO::CartesianGTO(double alpha, const std::array<size_t, 3>& exponents,
  *  Default constructor setting everything to zero
  */
 CartesianGTO::CartesianGTO() :
-    CartesianGTO(0.0, std::array<size_t, 3> {0, 0, 0}, Eigen::Vector3d::Zero())
+    CartesianGTO(0.0, std::array<size_t, 3> {0, 0, 0}, Vector<double, 3>::Zero())
 {}
 
 
@@ -68,9 +68,9 @@ CartesianGTO::CartesianGTO() :
  *
  *  @return the value of the GTO at the given position
  */
-double CartesianGTO::operator()(const Eigen::Vector3d& r) const {
+double CartesianGTO::operator()(const Vector<double, 3>& r) const {
 
-    Eigen::Vector3d delta_r = r - this->center;
+    Vector<double, 3> delta_r = r - this->center;
 
     double value = this->N;
     value *= std::pow(delta_r.x(), this->exponents[0]);

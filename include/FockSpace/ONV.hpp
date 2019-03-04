@@ -19,9 +19,7 @@
 #define GQCP_ONV_HPP
 
 
-#include <Eigen/Dense>
-
-#include "typedefs.hpp"
+#include "math/Matrix.hpp"
 
 
 

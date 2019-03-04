@@ -20,10 +20,10 @@
 
 
 /*
- *  This file contains the source code for ScalarFunctionProduct and ScalarFunction
+ *  This file contains the source code for both ScalarFunctionProduct and ScalarFunction
  */
 
-#include "typedefs.hpp"
+#include "math/Matrix.hpp"
 
 
 namespace GQCP {

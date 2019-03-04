@@ -145,7 +145,7 @@ public:
 
         // Construct the initial transformation matrix: the identity matrix
         auto nbf = ao_basis->get_number_of_basis_functions();
-        auto T_total = SquareMatrix<double>(Matrix<double>::Identity(nbf, nbf));
+        auto T_total = SquareMatrix<double>(MatrixX<double>::Identity(nbf, nbf));
 
         return HamiltonianParameters(ao_basis, S, H, g, T_total, scalar);
     }
@@ -186,10 +186,10 @@ public:
      */
     template<typename Z = Scalar>
     static enable_if_t<std::is_same<Z, double>::value, HamiltonianParameters<double>> Random(size_t K) {
-        OneElectronOperator<double> S (Matrix<double>::Identity(K, K));  // the underlying orbital basis can be chosen as orthonormal, since the form of the underlying orbitals doesn't really matter
-        Matrix<double> C (Matrix<double>::Identity(K, K));  // the transformation matrix C here doesn't really mean anything, because it doesn't link to any AO basis
+        OneElectronOperator<double> S (MatrixX<double>::Identity(K, K));  // the underlying orbital basis can be chosen as orthonormal, since the form of the underlying orbitals doesn't really matter
+        MatrixX<double> C (MatrixX<double>::Identity(K, K));  // the transformation matrix C here doesn't really mean anything, because it doesn't link to any AO basis
 
-        OneElectronOperator<double> H (Matrix<double>::Random(K, K));  // uniformly distributed between [-1,1]
+        OneElectronOperator<double> H (MatrixX<double>::Random(K, K));  // uniformly distributed between [-1,1]
 
 
         // Unfortunately, the Tensor module provides uniform random distributions between [0, 1]
@@ -416,7 +416,7 @@ public:
      *  @return if the underlying spatial orbital basis of the Hamiltonian parameters is orthonormal
      */
     bool areOrbitalsOrthonormal() const {
-        return this->S.isApprox(Matrix<Scalar>::Identity(this->K, this->K));
+        return this->S.isApprox(MatrixX<Scalar>::Identity(this->K, this->K));
     }
 
 
