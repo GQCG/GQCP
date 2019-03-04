@@ -124,7 +124,12 @@ FockSpace::FockSpace(size_t K, size_t N) :
  */
 size_t FockSpace::calculateDimension(size_t K, size_t N) {
     auto dim_double = boost::math::binomial_coefficient<double>(static_cast<unsigned>(K), static_cast<unsigned>(N));
-    return boost::numeric::converter<double, size_t>::convert(dim_double);
+    try {
+        return boost::numeric::converter<double, size_t>::convert(dim_double);
+    } catch (boost::exception &e) {
+        e << errmsg_info{"FockSpace::calculateDimension(size_t, size_t): " + e.what()};
+        throw;
+    }
 }
 
 

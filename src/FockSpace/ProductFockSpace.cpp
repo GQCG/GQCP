@@ -56,7 +56,12 @@ ProductFockSpace::ProductFockSpace(size_t K, size_t N_alpha, size_t N_beta) :
 size_t ProductFockSpace::calculateDimension(size_t K, size_t N_alpha, size_t N_beta) {
     size_t alpha_dim = FockSpace::calculateDimension(K, N_alpha);
     size_t beta_dim = FockSpace::calculateDimension(K, N_beta);
-    return boost::numeric::converter<double, size_t>::convert(beta_dim * alpha_dim);
+    try {
+        return boost::numeric::converter<double, size_t>::convert(alpha_dim * beta_dim);
+    } catch (boost::exception &e) {
+        e << errmsg_info{"ProductFockSpace::calculateDimension(size_t, size_t, size_t): " + e.what()};
+        throw;
+    }
 }
 
 

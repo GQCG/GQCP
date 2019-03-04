@@ -53,6 +53,8 @@ BOOST_AUTO_TEST_CASE ( FockSpace_dimension ) {
     BOOST_CHECK_EQUAL(GQCP::FockSpace::calculateDimension(10, 1), 10);
     BOOST_CHECK_EQUAL(GQCP::FockSpace::calculateDimension(6, 2), 15);
     BOOST_CHECK_EQUAL(GQCP::FockSpace::calculateDimension(8, 3), 56);
+
+    BOOST_CHECK_THROW(GQCP::binomialCoefficient(100, 50), boost::numeric::positive_overflow);
 }
 
 
