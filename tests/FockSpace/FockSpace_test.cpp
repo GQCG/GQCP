@@ -18,6 +18,7 @@
 #define BOOST_TEST_MODULE "FockSpace"
 #include <boost/test/unit_test.hpp>
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
+#include <boost/numeric/conversion/cast.hpp>
 
 
 #include "FockSpace/FockSpace.hpp"
@@ -54,7 +55,9 @@ BOOST_AUTO_TEST_CASE ( FockSpace_dimension ) {
     BOOST_CHECK_EQUAL(GQCP::FockSpace::calculateDimension(6, 2), 15);
     BOOST_CHECK_EQUAL(GQCP::FockSpace::calculateDimension(8, 3), 56);
 
-    BOOST_CHECK_THROW(GQCP::binomialCoefficient(100, 50), boost::numeric::positive_overflow);
+    BOOST_CHECK_THROW(GQCP::FockSpace::calculateDimension(100, 50), std::overflow_error);
+
+
 }
 
 
