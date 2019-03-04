@@ -18,7 +18,6 @@
 #define BOOST_TEST_MODULE "FockSpace"
 #include <boost/test/unit_test.hpp>
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
-#include <boost/numeric/conversion/cast.hpp>
 
 
 #include "FockSpace/FockSpace.hpp"
