@@ -100,7 +100,11 @@ FockSpace::FockSpace(size_t K, size_t N) :
  */
 size_t FockSpace::calculateDimension(size_t K, size_t N) {
     auto dim_double = boost::math::binomial_coefficient<double>(static_cast<unsigned>(K), static_cast<unsigned>(N));
-    return boost::numeric::converter<double, size_t>::convert(dim_double);
+    try {
+        return boost::numeric::converter<size_t, double>::convert(dim_double);
+    } catch (boost::numeric::bad_numeric_cast &e) {
+        throw std::overflow_error("FockSpace::calculateDimension(size_t, size_t): "+ std::string(e.what()));
+    }
 }
 
 
