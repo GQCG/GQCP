@@ -41,19 +41,6 @@ BOOST_AUTO_TEST_CASE ( OneElectronOperator_constructor ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( constructor_assignment ) {
-
-    // A small check to see if the interface of the constructor and assignment operator works as expected
-
-    GQCP::MatrixX<double> A = GQCP::MatrixX<double>::Random(3, 3);
-    GQCP::MatrixX<double> B = GQCP::MatrixX<double>::Random(3, 3);
-
-    GQCP::OneElectronOperator<double> M1 (A * B);
-    GQCP::OneElectronOperator<double> M2 = A + B;
-    GQCP::OneElectronOperator<double> M3 = 2*A;
-}
-
-
 BOOST_AUTO_TEST_CASE ( OneElectronOperator_transform_trivial ) {
 
     // Let's test a trivial transformation: i.e. with T being a unit matrix

@@ -41,18 +41,6 @@ BOOST_AUTO_TEST_CASE ( TwoElectronOperator_constructor ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( constructor_assignment ) {
-
-    // A small check to see if the interface of the constructor and assignment operator works as expected
-
-    GQCP::SquareRankFourTensor<double> A (2);
-    GQCP::SquareRankFourTensor<double> B (2);
-
-    GQCP::TwoElectronOperator<double> T1 (A.Eigen() + B.Eigen());
-    GQCP::TwoElectronOperator<double> T2 = 2 * B.Eigen();
-}
-
-
 BOOST_AUTO_TEST_CASE ( TwoElectronOperator_transform_trivial ) {
 
     // Let's test a trivial transformation: i.e. with T being a unit matrix
