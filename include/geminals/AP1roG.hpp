@@ -59,7 +59,7 @@ OneRDM<double> calculate1RDM(const AP1roGGeminalCoefficients& G, const Bivariati
  *
  *  @return the AP1roG number 2-RDM (the Delta-matrix in the notes)
  */
-Eigen::MatrixXd calculateNumber2RDM(const AP1roGGeminalCoefficients& G, const BivariationalCoefficients& Q);
+MatrixX<double> calculateNumber2RDM(const AP1roGGeminalCoefficients& G, const BivariationalCoefficients& Q);
 
 /**
  *  @param G            the AP1roG geminal coefficients
@@ -67,7 +67,7 @@ Eigen::MatrixXd calculateNumber2RDM(const AP1roGGeminalCoefficients& G, const Bi
  *
  *  @return the AP1roG pair 2-RDM (the Pi-matrix in the notes)
  */
-Eigen::MatrixXd calculatePair2RDM(const AP1roGGeminalCoefficients& G, const BivariationalCoefficients& Q);
+MatrixX<double> calculatePair2RDM(const AP1roGGeminalCoefficients& G, const BivariationalCoefficients& Q);
 
 /**
  *  @param G            the AP1roG geminal coefficients

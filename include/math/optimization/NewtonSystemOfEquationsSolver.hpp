@@ -18,11 +18,10 @@
 #ifndef GQCP_NEWTONSYSTEMOFEQUATIONSSOLVER_HPP
 #define GQCP_NEWTONSYSTEMOFEQUATIONSSOLVER_HPP
 
-#include <Eigen/Dense>
 
 #include "math/optimization/BaseSystemOfEquationsSolver.hpp"
+#include "math/Matrix.hpp"
 #include "typedefs.hpp"
-
 
 
 namespace GQCP {
@@ -46,7 +45,7 @@ public:
      *  @param convergence_threshold            the threshold used to determine convergence
      *  @param maximum_number_of_iterations     the maximum number of iterations in the algorithm
      */
-    NewtonSystemOfEquationsSolver(const Eigen::VectorXd& x0, const VectorFunction& f, const MatrixFunction& J, double convergence_threshold = 1.0e-08, size_t maximum_number_of_iterations = 128);
+    NewtonSystemOfEquationsSolver(const VectorX<double>& x0, const VectorFunction& f, const MatrixFunction& J, double convergence_threshold = 1.0e-08, size_t maximum_number_of_iterations = 128);
 
 
     // OVERRIDDEN PUBLIC METHODS

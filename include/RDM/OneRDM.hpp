@@ -27,32 +27,25 @@ namespace GQCP {
 /**
  *  A class that represents a 1-RDM
  *
- *  @tparam Scalar      the scalar type
+ *  @tparam _Scalar     the scalar type
  */
-template <typename Scalar>
-class OneRDM : public SquareMatrix<Scalar> {
+template <typename _Scalar>
+class OneRDM : public SquareMatrix<_Scalar> {
+public:
+
+    using Scalar = _Scalar;
+
+    using BaseRepresentation = SquareMatrix<Scalar>;
+    using Self = OneRDM<Scalar>;
+
+
 public:
 
     /*
      *  CONSTRUCTORS
      */
 
-    /**
-     *  Default constructor
-     */
-    OneRDM() :
-        SquareMatrix<Scalar>()
-    {}
-
-
-    /**
-     *  @param matrix   the explicit matrix representation of the one-electron operator
-     *
-     *  Note that this should accept any Matrix<Scalar> (instead of SquareMatrix<Scalar>) because we want other Eigen return types to be accepted as well, like after a product of OneElectronOperators
-     */
-    explicit OneRDM(const MatrixX<Scalar>& matrix) :
-        SquareMatrix<Scalar>(matrix)
-    {}
+    using SquareMatrix<Scalar>::SquareMatrix;  // use base constructors
 };
 
 

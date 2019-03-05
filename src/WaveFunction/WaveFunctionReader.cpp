@@ -71,7 +71,7 @@ WaveFunctionReader::WaveFunctionReader(const std::string& GAMESS_filename)
         }
     }
 
-    this->coefficients = Eigen::VectorXd::Zero(space_size);
+    this->coefficients = VectorX<double>::Zero(space_size);
 
 
     std::getline(input_file_stream, line);

@@ -63,7 +63,7 @@ TwoElectronOperator<double> LibintCommunicator::calculateTwoElectronIntegrals(li
 
 
     // Initialize the rank-4 two-electron integrals tensor and set to zero
-    Eigen::Tensor<double, 4> tensor (nbf, nbf, nbf, nbf);
+    TwoElectronOperator<double> tensor (nbf);
     tensor.setZero();
 
 

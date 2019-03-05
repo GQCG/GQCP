@@ -27,11 +27,24 @@
 BOOST_AUTO_TEST_CASE ( OneRDM_constructor ) {
 
     // Check a correct constructor
-    Eigen::MatrixXd matrix = Eigen::MatrixXd::Zero(4, 4);
+    GQCP::MatrixX<double> matrix = GQCP::MatrixX<double>::Zero(4, 4);
     GQCP::OneRDM<double> D (matrix);
 
 
     // Check a faulty constructor
-    Eigen::MatrixXd matrix2 = Eigen::MatrixXd::Zero(3, 4);
+    GQCP::MatrixX<double> matrix2 = GQCP::MatrixX<double>::Zero(3, 4);
     BOOST_CHECK_THROW(GQCP::OneRDM<double> D2 (matrix2), std::invalid_argument);
+}
+
+
+BOOST_AUTO_TEST_CASE ( constructor_assignment ) {
+
+    // A small check to see if the interface of the constructor and assignment operator works as expected
+
+    GQCP::MatrixX<double> A = GQCP::MatrixX<double>::Random(3, 3);
+    GQCP::MatrixX<double> B = GQCP::MatrixX<double>::Random(3, 3);
+
+    GQCP::OneRDM<double> M1 (A * B);
+    GQCP::OneRDM<double> M2 = A + B;
+    GQCP::OneRDM<double> M3 = 2*A;
 }

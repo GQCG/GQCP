@@ -38,7 +38,7 @@ SpinUnresolvedFCIRDMBuilder::SpinUnresolvedFCIRDMBuilder(const FockSpace& fock_s
  *
  *  @return the 1-RDM given a coefficient vector
  */
-OneRDM<double> SpinUnresolvedFCIRDMBuilder::calculate1RDM(const Eigen::VectorXd& x) const {
+OneRDM<double> SpinUnresolvedFCIRDMBuilder::calculate1RDM(const VectorX<double>& x) const {
     throw std::runtime_error("SpinUnresolvedFCIRDMBuilder::calculate1RDMs(): not implemented yet");
 }
 
@@ -48,7 +48,7 @@ OneRDM<double> SpinUnresolvedFCIRDMBuilder::calculate1RDM(const Eigen::VectorXd&
      *
      *  @return the 2-RDM given a coefficient vector
      */
-TwoRDM<double> SpinUnresolvedFCIRDMBuilder::calculate2RDM(const Eigen::VectorXd& x) const {
+TwoRDM<double> SpinUnresolvedFCIRDMBuilder::calculate2RDM(const VectorX<double>& x) const {
     throw std::runtime_error("SpinUnresolvedFCIRDMBuilder::calculate2RDMs(): not implemented yet");
 }
 
@@ -62,7 +62,7 @@ TwoRDM<double> SpinUnresolvedFCIRDMBuilder::calculate2RDM(const Eigen::VectorXd&
  *
  *      calculateElement({0, 1}, {2, 1}) would calculate d^{(2)} (0, 1, 1, 2): the operator string would be a^\dagger_0 a^\dagger_1 a_2 a_1
  */
-double SpinUnresolvedFCIRDMBuilder::calculateElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices, const Eigen::VectorXd& x) const {
+double SpinUnresolvedFCIRDMBuilder::calculateElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices, const VectorX<double>& x) const {
     // The ket indices should be reversed because the annihilators on the ket should be applied from right to left
     std::vector<size_t> ket_indices_reversed = ket_indices;
     std::reverse(ket_indices_reversed.begin(), ket_indices_reversed.end());

@@ -19,10 +19,9 @@
 #define APIGGeminalCoefficients_hpp
 
 
-#include <Eigen/Dense>
-
 #include "geminals/BaseAPIGVariables.hpp"
 #include "geminals/GeminalCoefficientsInterface.hpp"
+#include "math/Matrix.hpp"
 #include "WaveFunction/WaveFunction.hpp"
 
 
@@ -47,7 +46,7 @@ public:
      *  @param N_P      the number of electron pairs (= the number of geminals)
      *  @param K        the number of spatial orbitals
      */
-    APIGGeminalCoefficients(const Eigen::VectorXd& g, size_t N_P, size_t K);
+    APIGGeminalCoefficients(const VectorX<double>& g, size_t N_P, size_t K);
 
     /**
      *  Constructor that sets the geminal coefficients to zero
@@ -60,7 +59,7 @@ public:
     /**
      *  @param G        the geminal coefficients in a matrix representation
      */
-    APIGGeminalCoefficients(const Eigen::MatrixXd& G);
+    APIGGeminalCoefficients(const MatrixX<double>& G);
 
 
     // DESTRUCTOR
@@ -81,7 +80,7 @@ public:
     /**
      *  @return the geminal coefficients in matrix form
      */
-    Eigen::MatrixXd asMatrix() const override;
+    MatrixX<double> asMatrix() const override;
 
     /**
      *  @param vector_index     the vector index of the geminal coefficient

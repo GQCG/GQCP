@@ -31,23 +31,36 @@
 BOOST_AUTO_TEST_CASE ( OneElectronOperator_constructor ) {
 
     // Check a correct constructor
-    Eigen::MatrixXd matrix = Eigen::MatrixXd::Zero(4, 4);
+    GQCP::MatrixX<double> matrix = GQCP::MatrixX<double>::Zero(4, 4);
     GQCP::OneElectronOperator<double> O (matrix);
 
 
     // Check a faulty constructor
-    Eigen::MatrixXd matrix2 = Eigen::MatrixXd::Zero(3, 4);
+    GQCP::MatrixX<double> matrix2 = GQCP::MatrixX<double>::Zero(3, 4);
     BOOST_CHECK_THROW(GQCP::OneElectronOperator<double> O2 (matrix2), std::invalid_argument);
+}
+
+
+BOOST_AUTO_TEST_CASE ( constructor_assignment ) {
+
+    // A small check to see if the interface of the constructor and assignment operator works as expected
+
+    GQCP::MatrixX<double> A = GQCP::MatrixX<double>::Random(3, 3);
+    GQCP::MatrixX<double> B = GQCP::MatrixX<double>::Random(3, 3);
+
+    GQCP::OneElectronOperator<double> M1 (A * B);
+    GQCP::OneElectronOperator<double> M2 = A + B;
+    GQCP::OneElectronOperator<double> M3 = 2*A;
 }
 
 
 BOOST_AUTO_TEST_CASE ( OneElectronOperator_transform_trivial ) {
 
     // Let's test a trivial transformation: i.e. with T being a unit matrix
-    Eigen::MatrixXd h = Eigen::MatrixXd::Random(3, 3);
+    GQCP::MatrixX<double> h = GQCP::MatrixX<double>::Random(3, 3);
     GQCP::OneElectronOperator<double> H (h);
 
-    Eigen::MatrixXd T = Eigen::MatrixXd::Identity(3, 3);
+    GQCP::MatrixX<double> T = GQCP::MatrixX<double>::Identity(3, 3);
     H.transform(GQCP::SquareMatrix<double>(T));
 
     BOOST_CHECK(H.isApprox(h, 1.0e-12));
@@ -57,14 +70,14 @@ BOOST_AUTO_TEST_CASE ( OneElectronOperator_transform_trivial ) {
 BOOST_AUTO_TEST_CASE ( OneElectronOperator_transform_and_inverse ) {
 
     // Let's test if, if we transform h with T and then with T_inverse, we get effectively do nothing
-    Eigen::MatrixXd h = Eigen::MatrixXd::Random(3, 3);
+    GQCP::MatrixX<double> h = GQCP::MatrixX<double>::Random(3, 3);
     GQCP::OneElectronOperator<double> H (h);
 
-    Eigen::MatrixXd T (3, 3);
+    GQCP::MatrixX<double> T (3, 3);
     T << 1,  0,  0,
          0, -2,  0,
          0,  0,  3;
-    Eigen::MatrixXd T_inverse = T.inverse();
+    GQCP::MatrixX<double> T_inverse = T.inverse();
 
 
     H.transform(GQCP::SquareMatrix<double>(T));
@@ -78,11 +91,11 @@ BOOST_AUTO_TEST_CASE ( OneElectronOperator_rotate_throws ) {
 
     // Create a random OneElectronOperator
     size_t dim = 3;
-    GQCP::OneElectronOperator<double> M (Eigen::MatrixXd::Random(dim, dim));
+    GQCP::OneElectronOperator<double> M (GQCP::MatrixX<double>::Random(dim, dim));
 
 
     // Check if a non-unitary matrix as transformation matrix causes a throw
-    Eigen::MatrixXd U (Eigen::MatrixXd::Random(dim, dim));
+    GQCP::MatrixX<double> U (GQCP::MatrixX<double>::Random(dim, dim));
     BOOST_CHECK_THROW(M.rotate(GQCP::SquareMatrix<double>(U)), std::invalid_argument);
 
 
@@ -95,7 +108,7 @@ BOOST_AUTO_TEST_CASE ( OneElectronOperator_rotate_JacobiRotationParameters ) {
 
     // Create a random OneElectronOperator
     size_t dim = 5;
-    Eigen::MatrixXd m = Eigen::MatrixXd::Random(dim, dim);
+    GQCP::MatrixX<double> m = GQCP::MatrixX<double>::Random(dim, dim);
     GQCP::OneElectronOperator<double> M1 (m);
     GQCP::OneElectronOperator<double> M2 (m);
 
@@ -104,7 +117,7 @@ BOOST_AUTO_TEST_CASE ( OneElectronOperator_rotate_JacobiRotationParameters ) {
     // with custom JacobiRotationParameters
     GQCP::JacobiRotationParameters jacobi_rotation_parameters (4, 2, 56.81);
 
-    auto U = GQCP::jacobiRotationMatrix(jacobi_rotation_parameters, dim);
+    auto U = GQCP::SquareMatrix<double>::FromJacobi(jacobi_rotation_parameters, dim);
 
 
     M1.rotate(jacobi_rotation_parameters);

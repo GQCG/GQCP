@@ -45,7 +45,7 @@ BOOST_AUTO_TEST_CASE ( constructor ) {
 BOOST_AUTO_TEST_CASE ( constructor_vector ) {
 
     // Check a correct constructor
-    Eigen::VectorXd g = Eigen::VectorXd::Zero(10);
+    GQCP::VectorX<double> g = GQCP::VectorX<double>::Zero(10);
     BOOST_CHECK_NO_THROW(GQCP::APIGGeminalCoefficients (g, 2, 5));
 
     // Check wrong parameters N_P and K
@@ -57,12 +57,12 @@ BOOST_AUTO_TEST_CASE ( constructor_vector ) {
 BOOST_AUTO_TEST_CASE ( asMatrix ) {
 
     // For N_P=2 and K=5, we have an APIG geminal coefficient matrix that looks like the following matrix:
-    Eigen::MatrixXd G (2, 5);
+    GQCP::MatrixX<double> G (2, 5);
     G << 1, 2, 3, 4, 5,
          6, 7, 8, 9, 10;
 
     // The geminal coefficients, arranged in a vector, are then represented by the following vector:
-    Eigen::VectorXd g (10);
+    GQCP::VectorX<double> g (10);
     g << 1, 2, 3, 4, 5, 6, 7, 8, 9, 10;
 
 
@@ -111,7 +111,7 @@ BOOST_AUTO_TEST_CASE ( operator_call ) {
     // Make an example for geminal coefficients for N_P=2 and K=5
     //      1 2 3 4 5
     //      6 7 8 9 10
-    Eigen::VectorXd g (10);
+    GQCP::VectorX<double> g (10);
     g << 1, 2, 3, 4, 5, 6, 7, 8, 9, 10;
     GQCP::APIGGeminalCoefficients gem_coeff (g, 2, 5);
 
@@ -131,11 +131,11 @@ BOOST_AUTO_TEST_CASE ( toWaveFunction_example1 ) {
     size_t K = 3;
     size_t N_P = 1;
 
-    Eigen::VectorXd g (3);
+    GQCP::VectorX<double> g (3);
     g << 1, 2, 3;
     GQCP::APIGGeminalCoefficients gem_coeff (g, N_P, K);
 
-    Eigen::VectorXd ref_coefficients (3);
+    GQCP::VectorX<double> ref_coefficients (3);
     ref_coefficients << 1, 2, 3;
     ref_coefficients.normalize();
 
@@ -149,11 +149,11 @@ BOOST_AUTO_TEST_CASE ( toWaveFunction_example2 ) {
     size_t K = 3;
     size_t N_P = 2;
 
-    Eigen::VectorXd g (6);
+    GQCP::VectorX<double> g (6);
     g << 1, 2, 3, 4, 5, 6;
     GQCP::APIGGeminalCoefficients gem_coeff (g, N_P, K);
 
-    Eigen::VectorXd ref_coefficients (3);
+    GQCP::VectorX<double> ref_coefficients (3);
     ref_coefficients << 13, 18, 27;
     ref_coefficients.normalize();
 
@@ -167,11 +167,11 @@ BOOST_AUTO_TEST_CASE ( toWaveFunction_example3 ) {
     size_t K = 5;
     size_t N_P = 2;
 
-    Eigen::VectorXd g (10);
+    GQCP::VectorX<double> g (10);
     g << 1, 2, 3, 4, 5, 6, 7, 8, 9, 10;
     GQCP::APIGGeminalCoefficients gem_coeff (g, N_P, K);
 
-    Eigen::VectorXd ref_coefficients (10);
+    GQCP::VectorX<double> ref_coefficients (10);
     ref_coefficients << 19, 26, 37, 33, 46, 59, 40, 55, 70, 85;
     ref_coefficients.normalize();
 

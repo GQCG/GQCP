@@ -80,7 +80,7 @@ double BaseEigenproblemSolver::get_eigenvalue(size_t i) const {
  *
  *  @return the i-th lowest eigenvector
  */
-const Eigen::VectorXd& BaseEigenproblemSolver::get_eigenvector(size_t i) const {
+const VectorX<double>& BaseEigenproblemSolver::get_eigenvector(size_t i) const {
 
     return this->get_eigenpair(i).get_eigenvector();
 }

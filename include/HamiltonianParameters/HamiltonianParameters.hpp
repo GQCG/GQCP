@@ -193,20 +193,19 @@ public:
 
 
         // Unfortunately, the Tensor module provides uniform random distributions between [0, 1]
-        FourIndexTensor<double> g_tensor (K, K, K, K);
-        g_tensor.setRandom();
+        TwoElectronOperator<double> g (K);
+        g.setRandom();
 
         // Move the distribution from [0, 1] -> [-1, 1]
         for (size_t i = 0; i < K; i++) {
             for (size_t j = 0; j < K; j++) {
                 for (size_t k = 0; k < K; k++) {
                     for (size_t l = 0; l < K; l++) {
-                        g_tensor(i,j,k,l) = 2*g_tensor(i,j,k,l) - 1;  // scale from [0, 1] -> [0, 2] -> [-1, 1]
+                        g(i,j,k,l) = 2*g(i,j,k,l) - 1;  // scale from [0, 1] -> [0, 2] -> [-1, 1]
                     }
                 }
             }
         }
-        TwoElectronOperator<double> g (g_tensor);
 
         std::shared_ptr<AOBasis> ao_basis;  // nullptr because it doesn't make sense to set an AOBasis
 
@@ -276,8 +275,8 @@ public:
 
 
         double scalar = 0.0;
-        Eigen::MatrixXd h_SO = Eigen::MatrixXd::Zero(K, K);
-        Eigen::Tensor<double, 4> g_SO (K, K, K, K);
+        MatrixX<double> h_SO = MatrixX<double>::Zero(K, K);
+        SquareRankFourTensor<double> g_SO (K);
         g_SO.setZero();
 
         //  Skip 3 lines
@@ -340,10 +339,10 @@ public:
 
         // Make the ingredients to construct HamiltonianParameters
         std::shared_ptr<AOBasis> ao_basis;  // nullptr
-        OneElectronOperator<Scalar> S (Eigen::MatrixXd::Identity(K, K));
+        OneElectronOperator<Scalar> S (MatrixX<double>::Identity(K, K));
         OneElectronOperator<Scalar> H_core (h_SO);
         TwoElectronOperator<Scalar> G (g_SO);
-        Eigen::MatrixXd C = Eigen::MatrixXd::Identity(K, K);
+        MatrixX<double> C = MatrixX<double>::Identity(K, K);
 
         return HamiltonianParameters(ao_basis, S, H_core, G, C, scalar);
     }
@@ -361,8 +360,8 @@ public:
 
         size_t K = H.numberOfLatticeSites();
 
-        Eigen::MatrixXd h_SO = Eigen::MatrixXd::Zero(K, K);
-        Eigen::Tensor<double, 4> g_SO (K, K, K, K);
+        MatrixX<double> h_SO = MatrixX<double>::Zero(K, K);
+        SquareRankFourTensor<double> g_SO (K);
         g_SO.setZero();
 
 
@@ -380,10 +379,10 @@ public:
 
         // Make the ingredients to construct HamiltonianParameters
         std::shared_ptr<AOBasis> ao_basis;  // nullptr
-        OneElectronOperator<Scalar> S (Eigen::MatrixXd::Identity(K, K));
+        OneElectronOperator<Scalar> S (MatrixX<double>::Identity(K, K));
         OneElectronOperator<Scalar> H_core (h_SO);
         TwoElectronOperator<Scalar> G (g_SO);
-        Eigen::MatrixXd C = Eigen::MatrixXd::Identity(K, K);
+        MatrixX<double> C = MatrixX<double>::Identity(K, K);
 
         return HamiltonianParameters(ao_basis, S, H_core, G, C);  // no scalar term
     }
@@ -465,8 +464,10 @@ public:
 
         // Create a Jacobi rotation matrix to transform the coefficient matrix with
         size_t K = this->h.get_dim();  // number of spatial orbitals
-        auto J = jacobiRotationMatrix(jacobi_rotation_parameters, K);
-        this->T_total = SquareMatrix<Scalar>(this->T_total * J);
+        auto J = SquareMatrix<double>::FromJacobi(jacobi_rotation_parameters, K);
+//        this->T_total = SquareMatrix<Scalar>(this->T_total * J);
+        this->T_total = this->T_total * J;
+
     }
 
 
@@ -480,10 +481,10 @@ public:
     enable_if_t<std::is_same<Z, double>::value> randomRotate() {
 
         // Get a random unitary matrix by diagonalizing a random symmetric matrix
-        Eigen::MatrixXd A_random = Eigen::MatrixXd::Random(this->K, this->K);
-        Eigen::MatrixXd A_symmetric = A_random + A_random.transpose();
+        MatrixX<double> A_random = MatrixX<double>::Random(this->K, this->K);
+        MatrixX<double> A_symmetric = A_random + A_random.transpose();
         Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> unitary_solver (A_symmetric);
-        Eigen::MatrixXd U_random = unitary_solver.eigenvectors();
+        MatrixX<double> U_random = unitary_solver.eigenvectors();
 
         this->rotate(U_random);
     }
@@ -541,7 +542,7 @@ public:
 
 
         // A KISS implementation of the calculation of the generalized Fock matrix F
-        Eigen::MatrixXd F = Eigen::MatrixXd::Zero(this->K, this->K);
+        MatrixX<double> F = MatrixX<double>::Zero(this->K, this->K);
         for (size_t p = 0; p < this->K; p++) {
             for (size_t q = 0; q < this->K; q++) {
 
@@ -585,7 +586,7 @@ public:
         }
 
         // Create the partitioning matrix (diagonal matrix with values set to 1 of selected AOs
-        Eigen::MatrixXd p_a = Eigen::MatrixXd::Zero(this->K, this->K);
+        MatrixX<double> p_a = MatrixX<double>::Zero(this->K, this->K);
 
         for (size_t index : ao_list) {
             if (index >= this->K) {
@@ -599,7 +600,7 @@ public:
         auto T_inverse = SquareMatrix<double>(T_total.inverse());
         S_AO.transform(T_inverse);
 
-        Eigen::MatrixXd mulliken_matrix = (T_total.adjoint() * p_a * S_AO * T_total + T_total.adjoint() * S_AO * p_a * T_total)/2 ;
+        MatrixX<double> mulliken_matrix = (T_total.adjoint() * p_a * S_AO * T_total + T_total.adjoint() * S_AO * p_a * T_total)/2 ;
 
         return OneElectronOperator<double>(mulliken_matrix);
     }
@@ -646,7 +647,7 @@ public:
         OneElectronOperator<Scalar> F = this->calculateGeneralizedFockMatrix(D, d);
 
         // A KISS implementation of the calculation of the super generalized Fock matrix W
-        Eigen::Tensor<double, 4> W (this->K, this->K, this->K, this->K);
+        SquareRankFourTensor<double> W (this->K);
         W.setZero();
         for (size_t p = 0; p < this->K; p++) {
             for (size_t q = 0; q < this->K; q++) {

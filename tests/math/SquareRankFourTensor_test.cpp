@@ -25,11 +25,11 @@
 
 BOOST_AUTO_TEST_CASE ( square_constructor ) {
 
-    Eigen::Tensor<double, 4> T1 (2, 2, 2, 2);
+    GQCP::Tensor<double, 4> T1 (2, 2, 2, 2);
     T1.setZero();
     BOOST_CHECK_NO_THROW(GQCP::SquareRankFourTensor<double> square_T1 (T1));
 
-    Eigen::Tensor<double, 4> T2 (2, 1, 2, 2);
+    GQCP::Tensor<double, 4> T2 (2, 1, 2, 2);
     BOOST_CHECK_THROW(GQCP::SquareRankFourTensor<double> square_T2 (T2), std::invalid_argument);  // not square
 }
 
@@ -38,11 +38,15 @@ BOOST_AUTO_TEST_CASE ( constructor_assignment ) {
 
     // A small check to see if the interface of the constructor and assignment operator works as expected
 
-    Eigen::Tensor<double, 4> A (2, 2, 2, 2);
-    Eigen::Tensor<double, 4> B (2, 2, 2, 2);
+    GQCP::SquareRankFourTensor<double> A (2);
+    GQCP::SquareRankFourTensor<double> B (2);
 
-    GQCP::SquareRankFourTensor<double> T1 (A + B);
-    GQCP::SquareRankFourTensor<double> T2 = 2 * B;
+    GQCP::SquareRankFourTensor<double> T1 (A.Eigen() + B.Eigen());
+    GQCP::SquareRankFourTensor<double> T2 = 2 * B.Eigen();
+
+    GQCP::SquareRankFourTensor<double> T3 (T1.Eigen() + T2.Eigen());
+    GQCP::SquareRankFourTensor<double> T4 = (T1.Eigen() + T2.Eigen());
+    GQCP::SquareRankFourTensor<double> T5 = 3 * T2.Eigen();
 }
 
 

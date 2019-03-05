@@ -97,7 +97,7 @@ struct TwoRDMs {
      *  @param two_rdm_bbbb     the beta-beta-beta-beta 2-RDM
      */
     TwoRDMs(const TwoRDM<Scalar>& two_rdm_aaaa, const TwoRDM<Scalar>& two_rdm_aabb, const TwoRDM<Scalar>& two_rdm_bbaa, const TwoRDM<Scalar>& two_rdm_bbbb) :
-        two_rdm (two_rdm_aaaa + two_rdm_aabb + two_rdm_bbaa + two_rdm_bbbb),
+        two_rdm (two_rdm_aaaa.Eigen() + two_rdm_aabb.Eigen() + two_rdm_bbaa.Eigen() + two_rdm_bbbb.Eigen()),
         two_rdm_aaaa (two_rdm_aaaa),
         two_rdm_aabb (two_rdm_aabb),
         two_rdm_bbaa (two_rdm_bbaa),

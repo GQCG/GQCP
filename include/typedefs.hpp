@@ -24,12 +24,10 @@
 #include <type_traits>
 #include <vector>
 
-#include <Eigen/Dense>
-#include <unsupported/Eigen/CXX11/Tensor>
 
 
 /**
- *  A header that contains all typedefs inside the GQCP namespace
+ *  A header that contains general typedefs inside the GQCP namespace
  */
 
 
@@ -52,13 +50,6 @@ using Vectoru = std::vector<size_t>;
  *  MATRICES
  */
 using Matrixu = std::vector<Vectoru>;
-
-
-/*
- *  FUNCTIONS
- */
-using VectorFunction = std::function<Eigen::VectorXd (const Eigen::VectorXd&)>;
-using MatrixFunction = std::function<Eigen::MatrixXd (const Eigen::VectorXd&)>;
 
 
 /*

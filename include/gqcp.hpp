@@ -69,6 +69,13 @@
 #include "math/optimization/SparseSolver.hpp"
 #include "math/optimization/step.hpp"
 
+#include "math/LinearCombination.hpp"
+#include "math/Matrix.hpp"
+#include "math/ScalarFunction.hpp"
+#include "math/SquareMatrix.hpp"
+#include "math/SquareRankFourTensor.hpp"
+#include "math/Tensor.hpp"
+
 #include "properties/expectation_values.hpp"
 #include "properties/properties.hpp"
 
@@ -89,7 +96,6 @@
 #include "RHF/RHF.hpp"
 #include "RHF/RHFSCFSolver.hpp"
 
-#include "utilities/io.hpp"
 #include "utilities/linalg.hpp"
 #include "utilities/miscellaneous.hpp"
 

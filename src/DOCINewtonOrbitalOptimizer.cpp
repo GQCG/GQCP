@@ -92,13 +92,13 @@ void DOCINewtonOrbitalOptimizer::solve(BaseSolverOptions& solver_options, const 
 
         // Calculate the electronic gradient at kappa = 0
         auto F = this->ham_par.calculateGeneralizedFockMatrix(D, d);
-        Eigen::MatrixXd gradient_matrix = 2 * (F - F.transpose());
-        Eigen::VectorXd gradient_vector = strictLowerTriangle(gradient_matrix);  // gradient vector with the free parameters, at kappa = 0
+        SquareMatrix<double> gradient_matrix = 2 * (F - F.transpose());
+        VectorX<double> gradient_vector = gradient_matrix.strictLowerTriangle();  // gradient vector with the free parameters, at kappa = 0
 
 
         // Calculate the electronic Hessian at kappa = 0
         auto W = this->ham_par.calculateSuperGeneralizedFockMatrix(D, d);
-        Eigen::Tensor<double, 4> hessian_tensor (K, K, K, K);
+        SquareRankFourTensor<double> hessian_tensor (K);
         hessian_tensor.setZero();
 
         for (size_t p = 0; p < K; p++) {
@@ -110,16 +110,16 @@ void DOCINewtonOrbitalOptimizer::solve(BaseSolverOptions& solver_options, const 
                 }
             }
         }
-        Eigen::MatrixXd hessian_matrix = strictLowerTriangle(hessian_tensor);  // hessian matrix with only the free parameters, at kappa = 0
+        auto hessian_matrix = hessian_tensor.pairWiseStrictReduce();  // hessian matrix with only the free parameters, at kappa = 0  // pairWiseStrictReduce
 
         Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> hessian_solver (hessian_matrix);
 
 
         // Perform a Newton-step to find orbital rotation parameters kappa
-        VectorFunction gradient_function = [gradient_vector](const Eigen::VectorXd& x) { return gradient_vector; };
-        MatrixFunction hessian_function = [hessian_matrix](const Eigen::VectorXd& x) { return hessian_matrix; };
+        VectorFunction gradient_function = [gradient_vector](const VectorX<double>& x) { return gradient_vector; };
+        MatrixFunction hessian_function = [hessian_matrix](const VectorX<double>& x) { return hessian_matrix; };
 
-        Eigen::VectorXd kappa_vector = newtonStep(Eigen::VectorXd::Zero(K), gradient_function, hessian_function);  // with only the free parameters
+        VectorX<double> kappa_vector = newtonStep(VectorX<double>::Zero(K), gradient_function, hessian_function);  // with only the free parameters
 
 
         // If the calculated norm is zero, we have reached a critical point
@@ -149,13 +149,13 @@ void DOCINewtonOrbitalOptimizer::solve(BaseSolverOptions& solver_options, const 
 
 
         // Change kappa back to a matrix
-        Eigen::MatrixXd kappa_matrix = fillStrictLowerTriangle(kappa_vector);  // containing all parameters, so this is in anti-Hermitian (anti-symmetric) form
-        Eigen::MatrixXd kappa_matrix_transpose = kappa_matrix.transpose();  // store the transpose in an auxiliary variable to avoid aliasing issues
-        kappa_matrix -= kappa_matrix_transpose;  // fillStrictLowerTriangle only returns the lower triangle, so we must construct the anti-Hermitian (anti-symmetric) matrix
+        auto kappa_matrix = GQCP::SquareMatrix<double>::FromStrictTriangle(kappa_vector);  // containing all parameters, so this is in anti-Hermitian (anti-symmetric) form
+        MatrixX<double> kappa_matrix_transpose = kappa_matrix.transpose();  // store the transpose in an auxiliary variable to avoid aliasing issues
+        kappa_matrix -= kappa_matrix_transpose;  // FromStrictTriangle only returns the lower triangle, so we must construct the anti-Hermitian (anti-symmetric) matrix
 
 
         // Calculate the unitary rotation matrix that we can use to rotate the basis
-        Eigen::MatrixXd U = (-kappa_matrix).exp();
+        MatrixX<double> U = (-kappa_matrix).exp();
 
 
         // Transform the integrals to the new orthonormal basis

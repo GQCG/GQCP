@@ -26,25 +26,25 @@
 
 BOOST_AUTO_TEST_CASE ( constructor_throws ) {
 
-    Eigen::MatrixXd H1 (3, 4);
+    GQCP::MatrixX<double> H1 (3, 4);
     BOOST_CHECK_THROW(GQCP::HoppingMatrix H (H1), std::invalid_argument);  // not square
 
-    Eigen::MatrixXd H2 = Eigen::MatrixXd::Random(3, 3);
+    GQCP::MatrixX<double> H2 = GQCP::MatrixX<double>::Random(3, 3);
     BOOST_CHECK_THROW(GQCP::HoppingMatrix H (H2), std::invalid_argument);  // not symmetric
 
 
-    Eigen::MatrixXd H3 = H2 + H2.transpose();
+    GQCP::MatrixX<double> H3 = H2 + H2.transpose();
     BOOST_CHECK_NO_THROW(GQCP::HoppingMatrix H (H3));
 }
 
 
 BOOST_AUTO_TEST_CASE ( FromUpperTriangle_throws ) {
 
-    Eigen::VectorXd v1 (8);
+    GQCP::VectorX<double> v1 (8);
     BOOST_CHECK_THROW(GQCP::HoppingMatrix::FromUpperTriangle(v1), std::invalid_argument);  // 8 is not a square number
 
 
-    Eigen::VectorXd v2 (6);
+    GQCP::VectorX<double> v2 (6);
     BOOST_CHECK_NO_THROW(GQCP::HoppingMatrix::FromUpperTriangle(v2));
 }
 
@@ -52,7 +52,7 @@ BOOST_AUTO_TEST_CASE ( FromUpperTriangle_throws ) {
 BOOST_AUTO_TEST_CASE ( triangle_adjacency_matrix ) {
 
     // Check the conversion to a triangle hopping matrix
-    Eigen::MatrixXd A = Eigen::MatrixXd::Zero(3, 3);
+    GQCP::MatrixX<double> A = GQCP::MatrixX<double>::Zero(3, 3);
     A << 0, 1, 1,
          1, 0, 1,
          1, 1, 0;
@@ -61,11 +61,11 @@ BOOST_AUTO_TEST_CASE ( triangle_adjacency_matrix ) {
     GQCP::HoppingMatrix H (A, t, U);
 
 
-    Eigen::MatrixXd H_ref = Eigen::MatrixXd::Zero(3, 3);
+    GQCP::MatrixX<double> H_ref = GQCP::MatrixX<double>::Zero(3, 3);
     H_ref << U, -t, -t,
             -t,  U, -t,
             -t, -t,  U;
 
 
-    BOOST_CHECK(H_ref.isApprox(H.asMatrix()));
+    BOOST_CHECK(H_ref.isApprox(H));
 }

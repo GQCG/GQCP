@@ -26,10 +26,10 @@
 BOOST_AUTO_TEST_CASE ( areEqualEigenvectors ) {
 
     // Test areEqualEigenvectors with an example.
-    Eigen::VectorXd a (3);
-    Eigen::VectorXd b (3);
-    Eigen::VectorXd c (3);
-    Eigen::VectorXd d (3);
+    GQCP::VectorX<double> a (3);
+    GQCP::VectorX<double> b (3);
+    GQCP::VectorX<double> c (3);
+    GQCP::VectorX<double> d (3);
 
     a << 2, 3, 1;
     b << 2, 3, 1;
@@ -49,14 +49,14 @@ BOOST_AUTO_TEST_CASE ( areEqualEigenvectors ) {
 BOOST_AUTO_TEST_CASE ( areEqualSetsOfEigenvectors_throws ) {
 
     // Check for throws if the dimensions aren't compatible.
-    Eigen::MatrixXd C1 (3, 3);
-    Eigen::MatrixXd C2 (3, 2);
+    GQCP::MatrixX<double> C1 (3, 3);
+    GQCP::MatrixX<double> C2 (3, 2);
 
     BOOST_CHECK_THROW(GQCP::areEqualSetsOfEigenvectors(C1, C2, 1.0e-6), std::invalid_argument);
 
 
     // Check for no throw if the dimensions are compatible
-    Eigen::MatrixXd C3 (3, 3);
+    GQCP::MatrixX<double> C3 (3, 3);
 
     BOOST_CHECK_NO_THROW(GQCP::areEqualSetsOfEigenvectors(C1, C3, 1.0e-6));
 }
@@ -65,10 +65,10 @@ BOOST_AUTO_TEST_CASE ( areEqualSetsOfEigenvectors_throws ) {
 BOOST_AUTO_TEST_CASE ( areEqualSetsOfEigenvectors_example ) {
 
     // Test areEqualSetsOfEigenvectors with an example
-    Eigen::MatrixXd eigenvectors1 (2, 2);
-    Eigen::MatrixXd eigenvectors2 (2, 2);
-    Eigen::MatrixXd eigenvectors3 (2, 2);
-    Eigen::MatrixXd eigenvectors4 (2, 2);
+    GQCP::MatrixX<double> eigenvectors1 (2, 2);
+    GQCP::MatrixX<double> eigenvectors2 (2, 2);
+    GQCP::MatrixX<double> eigenvectors3 (2, 2);
+    GQCP::MatrixX<double> eigenvectors4 (2, 2);
 
     eigenvectors1 << 0,  2,
                      1, -1;

@@ -58,19 +58,19 @@ void RHFSCFSolver::solve() {
 
     // Obtain an initial guess for the AO density matrix by solving the generalized eigenvalue problem for H_core
     Eigen::GeneralizedSelfAdjointEigenSolver<Eigen::MatrixXd> initial_generalized_eigensolver (H_core, S);
-    Eigen::MatrixXd C = initial_generalized_eigensolver.eigenvectors();
-    Eigen::MatrixXd D_AO = calculateRHFAO1RDM(SquareMatrix<double>(C), this->molecule.get_N());
+    MatrixX<double> C = initial_generalized_eigensolver.eigenvectors();
+    MatrixX<double> D_AO = calculateRHFAO1RDM(SquareMatrix<double>(C), this->molecule.get_N());
 
 
     size_t iteration_counter = 0;
     while (!(this->is_converged)) {
-        Eigen::MatrixXd F_AO = this->calculateNewFockMatrix(D_AO);
+        MatrixX<double> F_AO = this->calculateNewFockMatrix(D_AO);
 
         // Solve the generalized eigenvalue problem for the Fock matrix to get an improved density matrix
         Eigen::GeneralizedSelfAdjointEigenSolver<Eigen::MatrixXd> generalized_eigensolver (F_AO, S);
         C = generalized_eigensolver.eigenvectors();
 
-        Eigen::MatrixXd D_AO_previous = D_AO;  // store the previous density matrix to be able to check on convergence
+        MatrixX<double> D_AO_previous = D_AO;  // store the previous density matrix to be able to check on convergence
         D_AO = calculateRHFAO1RDM(SquareMatrix<double>(C), this->molecule.get_N());
 
 

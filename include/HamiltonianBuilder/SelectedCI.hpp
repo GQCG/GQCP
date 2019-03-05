@@ -65,7 +65,7 @@ public:
      *
      *  @return the SelectedCI Hamiltonian matrix
      */
-    Eigen::MatrixXd constructHamiltonian(const HamiltonianParameters<double>& hamiltonian_parameters) const override;
+    MatrixX<double> constructHamiltonian(const HamiltonianParameters<double>& hamiltonian_parameters) const override;
 
     /**
      *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis
@@ -74,14 +74,14 @@ public:
      *
      *  @return the action of the SelectedCI Hamiltonian on the coefficient vector
      */
-    Eigen::VectorXd matrixVectorProduct(const HamiltonianParameters<double>& hamiltonian_parameters, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) const override;
+    VectorX<double> matrixVectorProduct(const HamiltonianParameters<double>& hamiltonian_parameters, const VectorX<double>& x, const VectorX<double>& diagonal) const override;
 
     /**
      *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis
      *
      *  @return the diagonal of the matrix representation of the SelectedCI Hamiltonian
      */
-    Eigen::VectorXd calculateDiagonal(const HamiltonianParameters<double>& hamiltonian_parameters) const override;
+    VectorX<double> calculateDiagonal(const HamiltonianParameters<double>& hamiltonian_parameters) const override;
 };
 
 

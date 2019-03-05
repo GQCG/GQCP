@@ -39,7 +39,7 @@ BOOST_AUTO_TEST_CASE ( calculateOverlap ) {
 
     // Set all bivariational coefficients to 1
     size_t dim = GQCP::AP1roGVariables::numberOfVariables(N_P, K);
-    Eigen::VectorXd q = Eigen::VectorXd::Zero(dim);
+    GQCP::VectorX<double> q = GQCP::VectorX<double>::Zero(dim);
     for (size_t mu = 0; mu < dim; mu++) {
         q(mu) = 1.0;
     }
@@ -48,7 +48,7 @@ BOOST_AUTO_TEST_CASE ( calculateOverlap ) {
 
 
     // Set the geminal coefficients to i*a
-    Eigen::VectorXd g = Eigen::VectorXd::Zero(dim);
+    GQCP::VectorX<double> g = GQCP::VectorX<double>::Zero(dim);
     for (size_t i = 0; i < N_P; i++) {
         for (size_t a = N_P; a < K; a++) {
             size_t vector_index = Q.q.vectorIndex(i, a);

@@ -69,9 +69,9 @@ private:
 
         // Initialize the N components of the matrix representations of the operator
         const auto nbf = static_cast<size_t>(basisset.nbf());  // number of basis functions
-        std::array<Eigen::MatrixXd, N> matrix_components;
+        std::array<MatrixX<double>, N> matrix_components;
         for (auto& matrix : matrix_components) {
-            matrix = Eigen::MatrixXd::Zero(nbf, nbf);
+            matrix = MatrixX<double>::Zero(nbf, nbf);
         }
 
 

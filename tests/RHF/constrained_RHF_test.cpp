@@ -120,7 +120,7 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test_random_transformation) {
     size_t K = ao_ham_par.get_K();
     size_t N = CO.get_N();
 
-    Eigen::MatrixXd T = Eigen::MatrixXd::Random(K, K);
+    GQCP::MatrixX<double> T = GQCP::MatrixX<double>::Random(K, K);
     // set diagonal elements to 1
     for (int i = 0; i < K; i++) {
         T(i,i) = 1;

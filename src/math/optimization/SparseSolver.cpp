@@ -79,7 +79,7 @@ void SparseSolver::solve() {
 
         for (size_t i = 0; i < this->number_of_requested_eigenpairs; i++) {
             double eigenvalue = spectra_sparse_eigensolver.eigenvalues()(i);
-            Eigen::VectorXd eigenvector = spectra_sparse_eigensolver.eigenvectors().col(i);
+            VectorX<double> eigenvector = spectra_sparse_eigensolver.eigenvectors().col(i);
 
             this->eigenpairs.emplace_back(eigenvalue, eigenvector);  // already reserved in the base constructor
         }

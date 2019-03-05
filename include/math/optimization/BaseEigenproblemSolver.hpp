@@ -20,9 +20,10 @@
 
 
 #include "math/optimization/Eigenpair.hpp"
+#include "math/Matrix.hpp"
+
 
 #include <cstddef>
-#include <Eigen/Dense>
 #include <vector>
 
 
@@ -78,7 +79,7 @@ public:
      *
      *  @return the i-th lowest eigenvector
      */
-    const Eigen::VectorXd& get_eigenvector(size_t i = 0) const;
+    const VectorX<double>& get_eigenvector(size_t i = 0) const;
 
 
     // PUBLIC PURE VIRTUAL METHODS

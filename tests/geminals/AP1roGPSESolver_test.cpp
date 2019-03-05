@@ -58,7 +58,7 @@ BOOST_AUTO_TEST_CASE ( h2_631gdp ) {
     //  AP1roG coefficients: [-0.05949796, -0.05454253, -0.03709503, -0.02899231, -0.02899231, -0.01317386, -0.00852702, -0.00852702, -0.00517996]
 
     double ref_ap1rog_energy = -1.8696828608304892;
-    Eigen::VectorXd ref_ap1rog_coefficients (9);
+    GQCP::VectorX<double> ref_ap1rog_coefficients (9);
     ref_ap1rog_coefficients << -0.05949796, -0.05454253, -0.03709503, -0.02899231, -0.02899231, -0.01317386, -0.00852702, -0.00852702, -0.00517996;
 
 
@@ -78,7 +78,7 @@ BOOST_AUTO_TEST_CASE ( h2_631gdp ) {
     ap1rog_pse_solver.solve();
 
     double electronic_energy = ap1rog_pse_solver.get_electronic_energy();
-    Eigen::VectorXd ap1rog_coefficients = ap1rog_pse_solver.get_geminal_coefficients().asVector();
+    GQCP::VectorX<double> ap1rog_coefficients = ap1rog_pse_solver.get_geminal_coefficients().asVector();
 
 
     BOOST_CHECK(std::abs(electronic_energy - ref_ap1rog_energy) < 1.0e-05);
@@ -96,7 +96,7 @@ BOOST_AUTO_TEST_CASE ( h2_631gdp_weak_interaction_limit ) {
     //  AP1roG coefficients: [-0.05949796, -0.05454253, -0.03709503, -0.02899231, -0.02899231, -0.01317386, -0.00852702, -0.00852702, -0.00517996]
 
     double ref_ap1rog_energy = -1.8696828608304892;
-    Eigen::VectorXd ref_ap1rog_coefficients (9);
+    GQCP::VectorX<double> ref_ap1rog_coefficients (9);
     ref_ap1rog_coefficients << -0.05949796, -0.05454253, -0.03709503, -0.02899231, -0.02899231, -0.01317386, -0.00852702, -0.00852702, -0.00517996;
 
 
@@ -117,7 +117,7 @@ BOOST_AUTO_TEST_CASE ( h2_631gdp_weak_interaction_limit ) {
     ap1rog_pse_solver.solve();
 
     double electronic_energy = ap1rog_pse_solver.get_electronic_energy();
-    Eigen::VectorXd ap1rog_coefficients = ap1rog_pse_solver.get_geminal_coefficients().asVector();
+    GQCP::VectorX<double> ap1rog_coefficients = ap1rog_pse_solver.get_geminal_coefficients().asVector();
 
 
     BOOST_CHECK(std::abs(electronic_energy - ref_ap1rog_energy) < 1.0e-05);

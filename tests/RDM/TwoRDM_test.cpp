@@ -33,7 +33,8 @@
  *      d(i,j,k,l) = l + 2k + 4j + 8i
  */
 GQCP::TwoRDM<double> calculateToy2RDMTensor() {
-    Eigen::Tensor<double, 4> d (2, 2, 2, 2);
+
+    GQCP::TwoRDM<double> d (2);
 
     for (size_t i = 0; i < 2; i++) {
         for (size_t j = 0; j < 2; j++) {
@@ -50,7 +51,7 @@ GQCP::TwoRDM<double> calculateToy2RDMTensor() {
         }
     }
 
-    return GQCP::TwoRDM<double>(d);
+    return d;
 };
 
 
@@ -62,12 +63,12 @@ GQCP::TwoRDM<double> calculateToy2RDMTensor() {
 BOOST_AUTO_TEST_CASE ( TwoRDM_constructor ) {
 
     // Check a correct constructor
-    Eigen::Tensor<double, 4> tensor (3, 3, 3, 3);
-    GQCP::TwoRDM<double> d (tensor);
+    GQCP::Tensor<double, 4> tensor (3, 3, 3, 3);
+    BOOST_CHECK_NO_THROW(GQCP::TwoRDM<double> d (tensor));
 
 
     // Check a faulty constructor
-    Eigen::Tensor<double, 4> tensor2 (3, 3, 3, 2);
+    GQCP::Tensor<double, 4> tensor2 (3, 3, 3, 2);
     BOOST_CHECK_THROW(GQCP::TwoRDM<double> d2 (tensor2), std::invalid_argument);
 }
 
@@ -84,7 +85,7 @@ BOOST_AUTO_TEST_CASE ( reduce ) {
 
     auto d = calculateToy2RDMTensor();
 
-    Eigen::MatrixXd D_ref = Eigen::MatrixXd::Zero(2, 2);
+    GQCP::MatrixX<double> D_ref = GQCP::MatrixX<double>::Zero(2, 2);
 
     D_ref <<  3, 11,
              19, 27;

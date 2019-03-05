@@ -50,7 +50,7 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_davidson ) {
 
 
     // Solve with Davidson
-    Eigen::VectorXd initial_guess = fock_space.randomExpansion();
+    GQCP::VectorX<double> initial_guess = fock_space.randomExpansion();
     GQCP::DavidsonSolverOptions solver_options (initial_guess);
     hubbard_solver.solve(solver_options);
     fci_solver.solve(solver_options);
@@ -83,7 +83,7 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_davidson_large ) {
 
 
     // Solve with Davidson
-    Eigen::VectorXd initial_guess = fock_space.randomExpansion();
+    GQCP::VectorX<double> initial_guess = fock_space.randomExpansion();
     GQCP::DavidsonSolverOptions solver_options (initial_guess);
     hubbard_solver.solve(solver_options);
     fci_solver.solve(solver_options);

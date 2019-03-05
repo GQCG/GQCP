@@ -42,7 +42,7 @@ namespace GQCP {
  *  @param collapsed_subspace_dimension         the dimension of the subspace after collapse
  *  @param maximum_number_of_iterations         the maximum number of Davidson iterations
  */
-DavidsonSolver::DavidsonSolver(const VectorFunction& matrixVectorProduct, const Eigen::VectorXd& diagonal, const Eigen::MatrixXd& V_0, size_t number_of_requested_eigenpairs, double convergence_threshold, double correction_threshold, size_t maximum_subspace_dimension, size_t collapsed_subspace_dimension, size_t maximum_number_of_iterations) :
+DavidsonSolver::DavidsonSolver(const VectorFunction& matrixVectorProduct, const VectorX<double>& diagonal, const MatrixX<double>& V_0, size_t number_of_requested_eigenpairs, double convergence_threshold, double correction_threshold, size_t maximum_subspace_dimension, size_t collapsed_subspace_dimension, size_t maximum_number_of_iterations) :
     BaseEigenproblemSolver(static_cast<size_t>(V_0.rows()), number_of_requested_eigenpairs),
     matrixVectorProduct (matrixVectorProduct),
     diagonal (diagonal),
@@ -77,8 +77,8 @@ DavidsonSolver::DavidsonSolver(const VectorFunction& matrixVectorProduct, const 
  *  @param collapsed_subspace_dimension         the dimension of the subspace after collapse
  *  @param maximum_number_of_iterations         the maximum number of Davidson iterations
  */
-DavidsonSolver::DavidsonSolver(const Eigen::MatrixXd& A, const Eigen::MatrixXd& V_0, size_t number_of_requested_eigenpairs, double convergence_threshold, double correction_threshold, size_t maximum_subspace_dimension, size_t collapsed_subspace_dimension, size_t maximum_number_of_iterations) :
-    DavidsonSolver([A](const Eigen::VectorXd& x) { return A * x; },  // lambda matrix-vector product function created from the given matrix A
+DavidsonSolver::DavidsonSolver(const MatrixX<double>& A, const MatrixX<double>& V_0, size_t number_of_requested_eigenpairs, double convergence_threshold, double correction_threshold, size_t maximum_subspace_dimension, size_t collapsed_subspace_dimension, size_t maximum_number_of_iterations) :
+    DavidsonSolver([A](const VectorX<double>& x) { return A * x; },  // lambda matrix-vector product function created from the given matrix A
                    A.diagonal(), V_0, number_of_requested_eigenpairs, convergence_threshold, correction_threshold, maximum_subspace_dimension, collapsed_subspace_dimension, maximum_number_of_iterations)
 {}
 
@@ -88,7 +88,7 @@ DavidsonSolver::DavidsonSolver(const Eigen::MatrixXd& A, const Eigen::MatrixXd& 
  *  @param diagonal                     the diagonal of the matrix
  *  @param davidson_solver_options      the options specified for solving the Davidson eigenvalue problem
  */
-DavidsonSolver::DavidsonSolver(const VectorFunction& matrixVectorProduct, const Eigen::VectorXd& diagonal,
+DavidsonSolver::DavidsonSolver(const VectorFunction& matrixVectorProduct, const VectorX<double>& diagonal,
                                const DavidsonSolverOptions& davidson_solver_options) :
    DavidsonSolver(matrixVectorProduct, diagonal, davidson_solver_options.X_0, davidson_solver_options.number_of_requested_eigenpairs, davidson_solver_options.convergence_threshold, davidson_solver_options.correction_threshold, davidson_solver_options.maximum_subspace_dimension, davidson_solver_options.collapsed_subspace_dimension, davidson_solver_options.maximum_number_of_iterations)
 {}
@@ -98,8 +98,8 @@ DavidsonSolver::DavidsonSolver(const VectorFunction& matrixVectorProduct, const 
  *  @param A                            the matrix to be diagonalized
  *  @param davidson_solver_options      the options specified for solving the Davidson eigenvalue problem
  */
-DavidsonSolver::DavidsonSolver(const Eigen::MatrixXd& A, const DavidsonSolverOptions& davidson_solver_options) :
-    DavidsonSolver([A](const Eigen::VectorXd& x) { return A * x; },  // lambda matrix-vector product function created from the given matrix A
+DavidsonSolver::DavidsonSolver(const MatrixX<double>& A, const DavidsonSolverOptions& davidson_solver_options) :
+    DavidsonSolver([A](const VectorX<double>& x) { return A * x; },  // lambda matrix-vector product function created from the given matrix A
                    A.diagonal(), davidson_solver_options)
 {}
 
@@ -134,15 +134,15 @@ size_t DavidsonSolver::get_number_of_iterations() const {
 void DavidsonSolver::solve() {
 
     // Calculate the expensive matrix-vector products for all given initial guesses, and store them in VA
-    Eigen::MatrixXd VA = Eigen::MatrixXd::Zero(this->dim, this->V_0.cols());
+    MatrixX<double> VA = MatrixX<double>::Zero(this->dim, this->V_0.cols());
 
     for (size_t j = 0; j < this->V_0.cols(); j++) {
         VA.col(j) = this->matrixVectorProduct(this->V_0.col(j));
     }
 
     // Calculate the initial subspace matrix S
-    Eigen::MatrixXd V = this->V_0;
-    Eigen::MatrixXd S = V.transpose() * VA;
+    MatrixX<double> V = this->V_0;
+    MatrixX<double> S = V.transpose() * VA;
 
 
     // this->number_of_iterations starts at 0
@@ -151,20 +151,20 @@ void DavidsonSolver::solve() {
         // Lambda contains the requested number of eigenvalues, Z contains the corresponding eigenvectors
         // Z is a (subspace_dimension x number_of_requested_eigenpairs)- matrix
         Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> eigensolver (S);
-        Eigen::VectorXd Lambda = eigensolver.eigenvalues().head(this->number_of_requested_eigenpairs);
-        Eigen::MatrixXd Z = eigensolver.eigenvectors().topLeftCorner(S.cols(), this->number_of_requested_eigenpairs);
+        VectorX<double> Lambda = eigensolver.eigenvalues().head(this->number_of_requested_eigenpairs);
+        MatrixX<double> Z = eigensolver.eigenvectors().topLeftCorner(S.cols(), this->number_of_requested_eigenpairs);
 
 
         // Calculate new guesses for the eigenvectors
         // X is a (dim x number_of_requested_eigenpairs)-matrix
-        Eigen::MatrixXd X = V * Z;
+        MatrixX<double> X = V * Z;
 
 
         // Calculate the residual vectors and solve the residual equations
         //  Calculate the residual vectors in the matrix R (dim x number_of_requested_eigenpairs)
         //  Calculate the correction vectors in the matrix Delta (dim x number_of_requested_eigenpairs)
-        Eigen::MatrixXd R = Eigen::MatrixXd::Zero(this->dim, this->number_of_requested_eigenpairs);
-        Eigen::MatrixXd Delta = Eigen::MatrixXd::Zero(this->dim, this->number_of_requested_eigenpairs);
+        MatrixX<double> R = MatrixX<double>::Zero(this->dim, this->number_of_requested_eigenpairs);
+        MatrixX<double> Delta = MatrixX<double>::Zero(this->dim, this->number_of_requested_eigenpairs);
         for (size_t column_index = 0; column_index < R.cols(); column_index++) {
 
             // Calculate the residual vectors
@@ -172,7 +172,7 @@ void DavidsonSolver::solve() {
 
             // Solve the residual equations
             // The implementation of these equations is adapted from Klaas Gunst's DOCI code (https://github.com/klgunst/doci)
-            Eigen::VectorXd denominator = this->diagonal - Eigen::VectorXd::Constant(this->dim, Lambda(column_index));
+            VectorX<double> denominator = this->diagonal - VectorX<double>::Constant(this->dim, Lambda(column_index));
             Delta.col(column_index) = (denominator.array().abs() > this->correction_threshold).select(R.col(column_index).array() / denominator.array().abs(),
                                                                                                       R.col(column_index) / this->correction_threshold);
             Delta.col(column_index).normalize();
@@ -188,7 +188,7 @@ void DavidsonSolver::solve() {
             // Set the eigenvalues and eigenvectors in this->eigenpairs
             for (size_t i = 0; i < this->number_of_requested_eigenpairs; i++) {
                 double eigenvalue = Lambda(i);
-                Eigen::VectorXd eigenvector = X.col(i);
+                VectorX<double> eigenvector = X.col(i);
 
                 this->eigenpairs.emplace_back(eigenvalue, eigenvector);  // already reserved in the base constructor
             }
@@ -210,7 +210,7 @@ void DavidsonSolver::solve() {
         for (size_t column_index = 0; column_index < Delta.cols(); column_index++) {
 
             // Project the correction vectors on the orthogonal complement of V
-            Eigen::VectorXd v = Delta.col(column_index) - V * (V.transpose() * Delta.col(column_index));
+            VectorX<double> v = Delta.col(column_index) - V * (V.transpose() * Delta.col(column_index));
 
             double norm = v.norm();  // calculate the norm before normalizing: if the norm is large enough, we include it in the subspace
             v.normalize();
@@ -219,7 +219,7 @@ void DavidsonSolver::solve() {
 
                 // If needed, do a subspace collapse
                 if (V.cols() == this->maximum_subspace_dimension) {
-                    Eigen::MatrixXd lowest_eigenvectors = eigensolver.eigenvectors().topLeftCorner(S.cols(), this->collapsed_subspace_dimension);
+                    MatrixX<double> lowest_eigenvectors = eigensolver.eigenvectors().topLeftCorner(S.cols(), this->collapsed_subspace_dimension);
 
                     // The new subspace vectors are linear combinations of current subspace vectors, with coefficients found in the lowest eigenvectors of the subspace matrix
                     V = V * lowest_eigenvectors;
@@ -231,11 +231,11 @@ void DavidsonSolver::solve() {
                 V.conservativeResize(Eigen::NoChange, V.cols()+1);
                 V.col(V.cols()-1) = v;
 
-                Eigen::VectorXd vA = this->matrixVectorProduct(v);  // calculate the expensive matrix-vector product if a new vector is added to the subspace
+                VectorX<double> vA = this->matrixVectorProduct(v);  // calculate the expensive matrix-vector product if a new vector is added to the subspace
                 VA.conservativeResize(Eigen::NoChange, VA.cols()+1);
                 VA.col(VA.cols()-1) = vA;
             }
-            assert((V.transpose() * V).isApprox(Eigen::MatrixXd::Identity(V.cols(), V.cols()), 1.0e-08));  // make sure that the subspace vectors are orthonormal
+            assert((V.transpose() * V).isApprox(MatrixX<double>::Identity(V.cols(), V.cols()), 1.0e-08));  // make sure that the subspace vectors are orthonormal
         }
 
         // Calculate the new subspace matrix
@@ -249,7 +249,7 @@ void DavidsonSolver::solve() {
 
         for (auto j = previous_subspace_dimension-1; j < current_subspace_dimension; j++) {  // -1 because of computers
             // Only calculate the rows of S that haven't been calculated yet
-            Eigen::VectorXd s_j = V.transpose() * VA.col(j);  // s_j = V^T vA_j
+            VectorX<double> s_j = V.transpose() * VA.col(j);  // s_j = V^T vA_j
             S.col(j) = s_j;
             S.row(j) = s_j;
         }

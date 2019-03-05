@@ -47,7 +47,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_public_methods ) {
     GQCP::DOCI random_doci (fock_space);
 
     // Test the public DOCI methods
-    Eigen::VectorXd x = random_doci.calculateDiagonal(random_hamiltonian_parameters);
+    GQCP::VectorX<double> x = random_doci.calculateDiagonal(random_hamiltonian_parameters);
     BOOST_CHECK_NO_THROW(random_doci.constructHamiltonian(random_hamiltonian_parameters));
     BOOST_CHECK_NO_THROW(random_doci.matrixVectorProduct(random_hamiltonian_parameters, x, x));
 

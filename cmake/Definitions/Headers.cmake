@@ -61,10 +61,11 @@ set(PROJECT_INCLUDE_FILES
         ${PROJECT_INCLUDE_FOLDER}/math/optimization/step.hpp
 
         ${PROJECT_INCLUDE_FOLDER}/math/LinearCombination.hpp
+        ${PROJECT_INCLUDE_FOLDER}/math/Matrix.hpp
         ${PROJECT_INCLUDE_FOLDER}/math/ScalarFunction.hpp
-        ${PROJECT_INCLUDE_FOLDER}/math/LinearCombination.hpp
-        ${PROJECT_INCLUDE_FOLDER}/math/SquareRankFourTensor.hpp
         ${PROJECT_INCLUDE_FOLDER}/math/SquareMatrix.hpp
+        ${PROJECT_INCLUDE_FOLDER}/math/SquareRankFourTensor.hpp
+        ${PROJECT_INCLUDE_FOLDER}/math/Tensor.hpp
 
         ${PROJECT_INCLUDE_FOLDER}/Operator/OneElectronOperator.hpp
         ${PROJECT_INCLUDE_FOLDER}/Operator/TwoElectronOperator.hpp
@@ -92,7 +93,6 @@ set(PROJECT_INCLUDE_FILES
         ${PROJECT_INCLUDE_FOLDER}/RHF/RHF.hpp
         ${PROJECT_INCLUDE_FOLDER}/RHF/RHFSCFSolver.hpp
 
-        ${PROJECT_INCLUDE_FOLDER}/utilities/io.hpp
         ${PROJECT_INCLUDE_FOLDER}/utilities/linalg.hpp
         ${PROJECT_INCLUDE_FOLDER}/utilities/miscellaneous.hpp
 

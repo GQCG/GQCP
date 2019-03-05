@@ -22,7 +22,6 @@
 
 #include "LibintCommunicator.hpp"
 
-#include "utilities/io.hpp"
 #include "utilities/linalg.hpp"
 
 
@@ -87,15 +86,15 @@ BOOST_AUTO_TEST_CASE( Szabo_integrals_h2_sto3g ) {
 
 
     // Fill in the reference values from Szabo
-    Eigen::MatrixXd ref_S (2, 2);
+    GQCP::MatrixX<double> ref_S (2, 2);
     ref_S << 1.0,    0.6593,
              0.6593, 1.0;
 
-    Eigen::MatrixXd ref_T (2, 2);
+    GQCP::MatrixX<double> ref_T (2, 2);
     ref_T << 0.7600, 0.2365,
              0.2365, 0.7600;
 
-    Eigen::MatrixXd ref_H_core (2, 2);
+    GQCP::MatrixX<double> ref_H_core (2, 2);
     ref_H_core << -1.1204, -0.9584,
                   -0.9584, -1.1204;
 
@@ -135,20 +134,15 @@ BOOST_AUTO_TEST_CASE( HORTON_integrals_h2o_sto3g ) {
 
 
     // Read in reference data from HORTON
-    Eigen::MatrixXd ref_S (nbf, nbf);
-    Eigen::MatrixXd ref_T (nbf, nbf);
-    Eigen::MatrixXd ref_V (nbf, nbf);
-    Eigen::Tensor<double, 4> ref_g (nbf, nbf, nbf, nbf);
-
-    GQCP::readArrayFromFile("data/h2o_sto-3g_overlap_horton.data", ref_S);
-    GQCP::readArrayFromFile("data/h2o_sto-3g_kinetic_horton.data", ref_T);
-    GQCP::readArrayFromFile("data/h2o_sto-3g_nuclear_horton.data", ref_V);
-    GQCP::readArrayFromFile("data/h2o_sto-3g_coulomb_horton.data", ref_g);
+    GQCP::SquareMatrix<double> ref_S = GQCP::SquareMatrix<double>::FromFile("data/h2o_sto-3g_overlap_horton.data", nbf, nbf);
+    GQCP::SquareMatrix<double> ref_T = GQCP::SquareMatrix<double>::FromFile("data/h2o_sto-3g_kinetic_horton.data", nbf, nbf);
+    GQCP::SquareMatrix<double> ref_V = GQCP::SquareMatrix<double>::FromFile("data/h2o_sto-3g_nuclear_horton.data", nbf, nbf);
+    GQCP::SquareRankFourTensor<double> ref_g = GQCP::SquareRankFourTensor<double>::FromFile("data/h2o_sto-3g_coulomb_horton.data", nbf);
 
 
     // Check if the calculated integrals are equal to those of HORTON
     BOOST_CHECK(S.isApprox(ref_S, 1.0e-08));
     BOOST_CHECK(T.isApprox(ref_T, 1.0e-08));
     BOOST_CHECK(V.isApprox(ref_V, 1.0e-08));
-    BOOST_CHECK(GQCP::areEqual(g, ref_g, 1.0e-06));
+    BOOST_CHECK(g.isApprox(ref_g, 1.0e-06));
 }

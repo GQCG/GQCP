@@ -37,8 +37,8 @@
  *  @return a toy 2-RDM where
  *      d(i,j,k,l) = l + 2k + 4j + 8i
  */
-Eigen::Tensor<double, 4> calculateToy2RDMTensor() {
-    Eigen::Tensor<double, 4> d (2, 2, 2, 2);
+GQCP::SquareRankFourTensor<double> calculateToy2RDMTensor() {
+    GQCP::SquareRankFourTensor<double> d (2);
 
     for (size_t i = 0; i < 2; i++) {
         for (size_t j = 0; j < 2; j++) {
@@ -64,8 +64,8 @@ Eigen::Tensor<double, 4> calculateToy2RDMTensor() {
  *  @return toy 2-electron integrals where
  *      g(i,j,k,l) = delta_ij delta_kl - delta_il delta_jk
  */
-Eigen::Tensor<double, 4> calculateToyTwoElectronIntegralsTensor() {
-    Eigen::Tensor<double, 4> g (2, 2, 2, 2);
+GQCP::SquareRankFourTensor<double> calculateToyTwoElectronIntegralsTensor() {
+    GQCP::SquareRankFourTensor<double> g (2);
     g.setZero();
 
     for (size_t i = 0; i < 2; i++) {
@@ -102,14 +102,14 @@ BOOST_AUTO_TEST_CASE ( HamiltonianParameters_constructor ) {
 
     // Create One- and TwoElectronOperators (and a transformation matrix) with compatible dimensions
     size_t K = ao_basis_ptr->get_number_of_basis_functions();
-    GQCP::OneElectronOperator<double> S (Eigen::MatrixXd::Random(K, K));
-    GQCP::OneElectronOperator<double> H_core (Eigen::MatrixXd::Random(K, K));
+    GQCP::OneElectronOperator<double> S (GQCP::MatrixX<double>::Random(K, K));
+    GQCP::OneElectronOperator<double> H_core (GQCP::MatrixX<double>::Random(K, K));
 
-    Eigen::Tensor<double, 4> g_tensor (K, K, K, K);
+    GQCP::SquareRankFourTensor<double> g_tensor (K);
     g_tensor.setRandom();
     GQCP::TwoElectronOperator<double> g (g_tensor);
 
-    Eigen::MatrixXd C = Eigen::MatrixXd::Random(K, K);
+    GQCP::MatrixX<double> C = GQCP::MatrixX<double>::Random(K, K);
 
 
     // Check if a correct constructor works
@@ -117,14 +117,14 @@ BOOST_AUTO_TEST_CASE ( HamiltonianParameters_constructor ) {
 
 
     // Check if wrong arguments result in a throw
-    GQCP::OneElectronOperator<double> S_faulty (Eigen::MatrixXd::Random(K+1, K+1));
-    GQCP::OneElectronOperator<double> H_core_faulty (Eigen::MatrixXd::Random(K+1, K+1));
+    GQCP::OneElectronOperator<double> S_faulty (GQCP::MatrixX<double>::Random(K+1, K+1));
+    GQCP::OneElectronOperator<double> H_core_faulty (GQCP::MatrixX<double>::Random(K+1, K+1));
 
-    Eigen::Tensor<double, 4> g_tensor_faulty (K+1, K+1, K+1, K+1);
+    GQCP::SquareRankFourTensor<double> g_tensor_faulty (K+1);
     g_tensor_faulty.setRandom();
     GQCP::TwoElectronOperator<double> g_faulty (g_tensor_faulty);
 
-    Eigen::MatrixXd C_faulty = Eigen::MatrixXd::Random(K+1, K+1);
+    GQCP::MatrixX<double> C_faulty = GQCP::MatrixX<double>::Random(K+1, K+1);
 
     BOOST_CHECK_THROW(GQCP::HamiltonianParameters<double> (ao_basis_ptr, S_faulty, H_core, g, C), std::invalid_argument);
     BOOST_CHECK_THROW(GQCP::HamiltonianParameters<double> (ao_basis_ptr, S, H_core_faulty, g, C), std::invalid_argument);
@@ -132,7 +132,7 @@ BOOST_AUTO_TEST_CASE ( HamiltonianParameters_constructor ) {
     BOOST_CHECK_THROW(GQCP::HamiltonianParameters<double> (ao_basis_ptr, S, H_core, g, C_faulty), std::invalid_argument);
 
     // Check if we can't use a zero matrix as overlap matrix
-    GQCP::OneElectronOperator<double> S_zero (Eigen::MatrixXd::Zero(K, K));
+    GQCP::OneElectronOperator<double> S_zero (GQCP::MatrixX<double>::Zero(K, K));
     BOOST_CHECK_THROW(GQCP::HamiltonianParameters<double> (ao_basis_ptr, S_zero, H_core, g, C), std::invalid_argument);
 }
 
@@ -141,13 +141,13 @@ BOOST_AUTO_TEST_CASE ( rotate_argument ) {
 
     // Create well-behaved Hamiltonian parameters
     size_t K = 3;
-    Eigen::MatrixXd S = Eigen::MatrixXd::Random(K, K);
+    GQCP::MatrixX<double> S = GQCP::MatrixX<double>::Random(K, K);
     GQCP::OneElectronOperator<double> S_op (S);
 
-    Eigen::MatrixXd H = Eigen::MatrixXd::Random(K, K);
+    GQCP::MatrixX<double> H = GQCP::MatrixX<double>::Random(K, K);
     GQCP::OneElectronOperator<double> H_op (H);
 
-    Eigen::Tensor<double, 4> g (K, K, K, K);
+    GQCP::SquareRankFourTensor<double> g (K);
     g.setRandom();
     GQCP::TwoElectronOperator<double> g_op (g);
 
@@ -155,7 +155,7 @@ BOOST_AUTO_TEST_CASE ( rotate_argument ) {
 
 
     // Check if we can't rotate with a non-unitary matrix
-    Eigen::MatrixXd T (K, K);
+    GQCP::MatrixX<double> T (K, K);
     T << 0.5, 0.5, -2.0,
          3.0, 0.0,  1.5,
          0.0, 0.0,  2.5;
@@ -169,22 +169,22 @@ BOOST_AUTO_TEST_CASE ( rotate_overlap_matrix ) {
     GQCP::JacobiRotationParameters jacobi_rotation_parameters {1, 0, boost::math::constants::half_pi<double>()};  // interchanges two orbitals
 
     size_t K = 3;
-    Eigen::MatrixXd S (K, K);
+    GQCP::MatrixX<double> S (K, K);
     S << 1.0, 0.5, 0.0,
          0.5, 2.0, 0.0,
          0.0, 0.0, 1.0;
     GQCP::OneElectronOperator<double> S_op (S);
 
-    Eigen::MatrixXd S_rotated_ref (K, K);  // manual calculation
+    GQCP::MatrixX<double> S_rotated_ref (K, K);  // manual calculation
     S_rotated_ref <<  2.0, -0.5, 0.0,
                      -0.5,  1.0, 0.0,
                       0.0,  0.0, 1.0;
 
 
-    Eigen::MatrixXd H = Eigen::MatrixXd::Random(K, K);
+    GQCP::MatrixX<double> H = GQCP::MatrixX<double>::Random(K, K);
     GQCP::OneElectronOperator<double> H_op (H);
 
-    Eigen::Tensor<double, 4> g (K, K, K, K);
+    GQCP::SquareRankFourTensor<double> g (K);
     g.setRandom();
     GQCP::TwoElectronOperator<double> g_op (g);
 
@@ -197,7 +197,7 @@ BOOST_AUTO_TEST_CASE ( rotate_overlap_matrix ) {
 
     // Check for a unitary transformation
     GQCP::HamiltonianParameters<double> ham_par (nullptr, S_op, H_op, g_op, GQCP::SquareMatrix<double>(GQCP::Matrix<double>::Random(K, K)));
-    Eigen::MatrixXd J = GQCP::jacobiRotationMatrix(jacobi_rotation_parameters, K);
+    auto J = GQCP::SquareMatrix<double>::FromJacobi(jacobi_rotation_parameters, K);
     ham_par.rotate(GQCP::SquareMatrix<double>(J));
     BOOST_CHECK(ham_par.get_S().isApprox(S_rotated_ref, 1.0e-08));
 }
@@ -208,20 +208,18 @@ BOOST_AUTO_TEST_CASE ( constructor_C ) {
     // Create dummy Hamiltonian parameters
     std::shared_ptr<GQCP::AOBasis> ao_basis;
     size_t K = 4;
-    GQCP::OneElectronOperator<double> S (Eigen::MatrixXd::Random(K, K));
-    GQCP::OneElectronOperator<double> H_core (Eigen::MatrixXd::Random(K, K));
+    GQCP::OneElectronOperator<double> S (GQCP::MatrixX<double>::Random(K, K));
+    GQCP::OneElectronOperator<double> H_core (GQCP::MatrixX<double>::Random(K, K));
 
-    Eigen::Tensor<double, 4> g_tensor (K, K, K, K);
-    g_tensor.setRandom();
-    GQCP::TwoElectronOperator<double> g (g_tensor);
+    GQCP::TwoElectronOperator<double> g (K);
 
-    Eigen::MatrixXd C = Eigen::MatrixXd::Random(K, K);
+    GQCP::MatrixX<double> C = GQCP::MatrixX<double>::Random(K, K);
 
     GQCP::HamiltonianParameters<double> random_hamiltonian_parameters (ao_basis, S, H_core, g, C);
 
 
     // Check if we can create transformed Hamiltonian parameters
-    Eigen::MatrixXd T = Eigen::MatrixXd::Random(K, K);
+    GQCP::MatrixX<double> T = GQCP::MatrixX<double>::Random(K, K);
     GQCP::HamiltonianParameters<double> transformed_random_hamiltonian_parameters (random_hamiltonian_parameters, T);
 }
 
@@ -243,11 +241,11 @@ BOOST_AUTO_TEST_CASE ( constructMolecularHamiltonianParameters ) {
 
 
     // Check with reference values from Szabo
-    Eigen::MatrixXd ref_S (2, 2);
+    GQCP::MatrixX<double> ref_S (2, 2);
     ref_S << 1.0,    0.6593,
              0.6593, 1.0;
 
-    Eigen::MatrixXd ref_H_core (2, 2);
+    GQCP::MatrixX<double> ref_H_core (2, 2);
     ref_H_core << -1.1204, -0.9584,
                   -0.9584, -1.1204;
 
@@ -318,21 +316,18 @@ BOOST_AUTO_TEST_CASE ( calculate_generalized_Fock_matrix_and_super_invalid_argum
 
     // Initialize toy HamiltonianParameters
     std::shared_ptr<GQCP::AOBasis> ao_basis;
-    GQCP::OneElectronOperator<double> S (Eigen::MatrixXd::Identity(2, 2));
-    GQCP::OneElectronOperator<double> h (Eigen::MatrixXd::Zero(2, 2));
-    Eigen::Tensor<double, 4> g_tensor (2, 2, 2, 2);
-    GQCP::TwoElectronOperator<double> g (g_tensor);
+    GQCP::OneElectronOperator<double> S (GQCP::MatrixX<double>::Identity(2, 2));
+    GQCP::OneElectronOperator<double> h (GQCP::MatrixX<double>::Zero(2, 2));
+    GQCP::TwoElectronOperator<double> g (2);
     GQCP::HamiltonianParameters<double> ham_par (ao_basis, S, h, g, GQCP::SquareMatrix<double>(GQCP::Matrix<double>::Identity(2, 2)));
 
 
     // Create valid and invalid density matrices (with respect to the dimensions of the SOBasis)
-    GQCP::OneRDM<double> D_valid (Eigen::MatrixXd::Zero(2, 2));
-    GQCP::OneRDM<double> D_invalid (Eigen::MatrixXd::Zero(3, 3));
+    GQCP::OneRDM<double> D_valid (GQCP::MatrixX<double>::Zero(2, 2));
+    GQCP::OneRDM<double> D_invalid (GQCP::MatrixX<double>::Zero(3, 3));
 
-    Eigen::Tensor<double, 4> d_valid_tensor (2, 2, 2, 2);
-    Eigen::Tensor<double, 4> d_invalid_tensor (3, 3, 3, 3);
-    GQCP::TwoRDM<double> d_valid (d_valid_tensor);
-    GQCP::TwoRDM<double> d_invalid (d_invalid_tensor);
+    GQCP::TwoRDM<double> d_valid (2);
+    GQCP::TwoRDM<double> d_invalid (3);
 
 
     // Test a faulty function calls
@@ -353,7 +348,7 @@ BOOST_AUTO_TEST_CASE ( calculate_generalized_Fock_matrix_and_super ) {
 
     // We test the function by a manual calculation of nonsensical toy 1- and 2-RDMS and one- and two-electron integrals
     // Set up the toy 1- and 2-RDMs
-    Eigen::MatrixXd D_matrix (2, 2);
+    GQCP::MatrixX<double> D_matrix (2, 2);
     D_matrix << 0, 1,
                 2, 3;
     GQCP::OneRDM<double> D (D_matrix);
@@ -362,8 +357,8 @@ BOOST_AUTO_TEST_CASE ( calculate_generalized_Fock_matrix_and_super ) {
 
     // Set up the toy SOBasis
     std::shared_ptr<GQCP::AOBasis> ao_basis;
-    GQCP::OneElectronOperator<double> S (Eigen::MatrixXd::Identity(2, 2));
-    Eigen::MatrixXd h_matrix (2, 2);
+    GQCP::OneElectronOperator<double> S (GQCP::MatrixX<double>::Identity(2, 2));
+    GQCP::MatrixX<double> h_matrix (2, 2);
     h_matrix << 1, 0,
                 0, 1;
     GQCP::OneElectronOperator<double> h (h_matrix);
@@ -372,7 +367,7 @@ BOOST_AUTO_TEST_CASE ( calculate_generalized_Fock_matrix_and_super ) {
 
 
     // Construct the reference generalized Fock matrix
-    Eigen::MatrixXd F_ref = Eigen::MatrixXd::Zero(2, 2);
+    GQCP::MatrixX<double> F_ref = GQCP::MatrixX<double>::Zero(2, 2);
     for (size_t p = 0; p < 2; p++) {
         for (size_t q = 0; q < 2; q++) {
             auto p_ = static_cast<double>(p);
@@ -393,7 +388,7 @@ BOOST_AUTO_TEST_CASE ( calculate_generalized_Fock_matrix_and_super ) {
 
 
     // Construct the reference super generalized Fock matrix
-    Eigen::Tensor<double, 4> W_ref (2, 2, 2, 2);
+    GQCP::SquareRankFourTensor<double> W_ref (2);
     W_ref.setZero();
     for (size_t p = 0; p < 2; p++) {
         for (size_t q = 0; q < 2; q++) {
@@ -425,7 +420,7 @@ BOOST_AUTO_TEST_CASE ( calculate_generalized_Fock_matrix_and_super ) {
     }
 
     BOOST_CHECK(F_ref.isApprox(ham_par.calculateGeneralizedFockMatrix(D, d), 1.0e-12));
-    BOOST_CHECK(GQCP::areEqual(W_ref, ham_par.calculateSuperGeneralizedFockMatrix(D, d), 1.0e-12));
+    BOOST_CHECK(W_ref.isApprox(ham_par.calculateSuperGeneralizedFockMatrix(D, d), 1.0e-12));
 }
 
 
@@ -433,13 +428,13 @@ BOOST_AUTO_TEST_CASE ( calculateEdmistonRuedenbergLocalizationIndex ) {
 
     // Create toy Hamiltonian parameters: only the two-electron integrals are important
     size_t K = 5;
-    Eigen::MatrixXd S = Eigen::MatrixXd::Identity(K, K);
+    GQCP::MatrixX<double> S = GQCP::MatrixX<double>::Identity(K, K);
     GQCP::OneElectronOperator<double> S_op (S);
 
-    Eigen::MatrixXd H = Eigen::MatrixXd::Random(K, K);
+    GQCP::MatrixX<double> H = GQCP::MatrixX<double>::Random(K, K);
     GQCP::OneElectronOperator<double> H_op (H);
 
-    Eigen::Tensor<double, 4> g (K, K, K, K);
+    GQCP::SquareRankFourTensor<double> g (K);
     g.setZero();
     for (size_t i = 0; i < K; i++) {
         g(i,i,i,i) = 2*static_cast<float>(i);
@@ -460,7 +455,7 @@ BOOST_AUTO_TEST_CASE ( effective_one_electron_integrals ) {
     auto K_ = static_cast<double>(K);
 
     // Set up toy 2-electron integrals and put them into Hamiltonian parameters
-    Eigen::Tensor<double, 4> g (K, K, K, K);
+    GQCP::SquareRankFourTensor<double> g (K);
     g.setZero();
 
     for (size_t i = 0; i < K; i++) {
@@ -473,15 +468,15 @@ BOOST_AUTO_TEST_CASE ( effective_one_electron_integrals ) {
         }
     }
 
-    GQCP::OneElectronOperator<double> S_op (Eigen::MatrixXd::Identity(K, K));
-    GQCP::OneElectronOperator<double> h_op (Eigen::MatrixXd::Zero(K, K));
+    GQCP::OneElectronOperator<double> S_op (GQCP::MatrixX<double>::Identity(K, K));
+    GQCP::OneElectronOperator<double> h_op (GQCP::MatrixX<double>::Zero(K, K));
     GQCP::TwoElectronOperator<double> g_op (g);
-    Eigen::MatrixXd C = Eigen::MatrixXd::Identity(K, K);
+    GQCP::MatrixX<double> C = GQCP::MatrixX<double>::Identity(K, K);
     GQCP::HamiltonianParameters<double> ham_par (nullptr, S_op, h_op, g_op, C);
 
 
     // Set up the reference effective one-electron integrals by manual calculation
-    Eigen::MatrixXd k_ref = Eigen::MatrixXd::Zero(K, K);
+    GQCP::MatrixX<double> k_ref = GQCP::MatrixX<double>::Zero(K, K);
     for (size_t p = 0; p < K; p++) {
         for (size_t q = 0; q < K; q++) {
             auto p_ = static_cast<double>(p) + 1;

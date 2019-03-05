@@ -46,12 +46,12 @@ FrozenCoreRDMBuilder::FrozenCoreRDMBuilder(std::shared_ptr<BaseRDMBuilder> rdm_b
  *
  *  @return all 1-RDMs given a coefficient vector
  */
-OneRDMs<double> FrozenCoreRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) const {
+OneRDMs<double> FrozenCoreRDMBuilder::calculate1RDMs(const VectorX<double>& x) const {
 
     auto K = this->get_fock_space()->get_K();
 
-    auto D_aa = OneRDM<double>(Eigen::MatrixXd::Zero(K, K));
-    auto D_bb = OneRDM<double>(Eigen::MatrixXd::Zero(K, K));
+    auto D_aa = OneRDM<double>(MatrixX<double>::Zero(K, K));
+    auto D_bb = OneRDM<double>(MatrixX<double>::Zero(K, K));
 
     auto K_active = K - this->X;
 
@@ -76,7 +76,7 @@ OneRDMs<double> FrozenCoreRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) c
  *
  *  @return all 2-RDMs given a coefficient vector
  */
-TwoRDMs<double> FrozenCoreRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) const {
+TwoRDMs<double> FrozenCoreRDMBuilder::calculate2RDMs(const VectorX<double>& x) const {
 
     auto K = this->get_fock_space()->get_K();
 
@@ -167,7 +167,7 @@ TwoRDMs<double> FrozenCoreRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) c
  *
  *      calculateElement({0, 1}, {2, 1}) would calculate d^{(2)} (0, 1, 1, 2): the operator string would be a^\dagger_0 a^\dagger_1 a_2 a_1
  */
-double FrozenCoreRDMBuilder::calculateElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices, const Eigen::VectorXd& x) const {
+double FrozenCoreRDMBuilder::calculateElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices, const VectorX<double>& x) const {
     throw std::runtime_error ("calculateElement is not implemented for FrozenCoreCI RDMs");
 };
 

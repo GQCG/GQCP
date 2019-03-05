@@ -13,6 +13,9 @@ namespace GQCP {
 /**
  *  An extension of the Eigen::Tensor class, with extra operations
  *
+ *  @tparam _Scalar     the scalar representation type
+ *  @tparam _Rank       the rank of the tensor, i.e. the number of indices
+ *
  *  We have decided to inherit from Eigen::Tensor, because we will use different hierarchies: see also: https://eigen.tuxfamily.org/dox-devel/TopicCustomizing_InheritingMatrix.html
  */
 template <typename _Scalar, int _Rank>
@@ -34,7 +37,7 @@ public:
      *  CONSTRUCTORS
      */
 
-    using Base::Base;  // inherit Base constructors
+    using Eigen::Tensor<Scalar, Rank>::Tensor;  // inherit base constructors
 
 
     /*
@@ -42,22 +45,20 @@ public:
      */
 
     /**
+     *  @param T            a rank-4 tensor
      *
-     *  @param T                a rank-4 tensor
+     *  @param i            1st starting index
+     *  @param j            2nd starting index
+     *  @param k            3rd starting index
+     *  @param l            4th starting index
+     *  @param desize       early cut-off of index iteration
      *
-     *  @param i                1st starting index of the starting tensor
-     *  @param j                2nd starting index of the starting tensor
-     *  @param k                3rd starting index of the starting tensor
-     *  @param l                4th starting index of the starting tensor
-     *
-     *  @param desize           early cut-off of index iteration
-     *
-     *  @return a rank-4 tensor from an other rank-4 tensor starting from given indices
+     *  @return a rank-4 tensor from an other rank-4 tensor, starting from given indices
      */
     template <int Z = Rank>
     static enable_if_t<Z == 4, Self> FromBlock(const Self& T, size_t i, size_t j, size_t k, size_t l, size_t desize=0) {
 
-        Eigen::Tensor<double, 4> T_result (T.dimension(0) - i - desize, T.dimension(1) - j - desize, T.dimension(2) - k - desize, T.dimension(3) - l - desize);
+        Tensor<double, Rank> T_result (T.dimension(0) - i - desize, T.dimension(1) - j - desize, T.dimension(2) - k - desize, T.dimension(3) - l - desize);
         T_result.setZero();
 
         for (size_t p = 0; p < T_result.dimension(0); p++) {
@@ -77,6 +78,14 @@ public:
     /*
      *  PUBLIC METHODS
      */
+
+    /**
+     *  @return this as an Eigen::Tensor, as a work-around to fix Eigen::Tensor expressions
+     */
+    const Base& Eigen() const {
+        return static_cast<const Base&>(*this);
+    }
+
 
     /**
      *  @param other        the other tensor
@@ -100,8 +109,6 @@ public:
      *  @param tolerance    the tolerance for element-wise comparison
      *
      *  @return if this is approximately equal to the other
-     *
-     *  This function is implemented because Eigen::Tensor does not have an isApprox yet.
      */
     template <int Z = Rank>
     enable_if_t<Z == 4, bool> isApprox(const Self& other, double tolerance = 1.0e-12) const {
@@ -128,9 +135,9 @@ public:
 
 
     /**
-     *  Print the contents to an output stream
+     *  Print the contents of this to an output stream
      *
-     *  @param output_stream            the stream used for outputting
+     *  @param output_stream        the stream used for outputting
      */
     template <int Z = Rank>
     enable_if_t<Z == 4> print(std::ostream& output_stream = std::cout) const {
@@ -189,12 +196,13 @@ public:
     /**
      *  Add a rank-4 tensor into this, starting from given indices
      *
-     *  @param T                a rank-4 tensor
+     *  @param T        a rank-4 tensor
+     *  @param i        1st starting index
+     *  @param j        2nd starting index
+     *  @param k        3rd starting index
+     *  @param l        4th starting index
      *
-     *  @param i                1st starting index of the starting tensor
-     *  @param j                2nd starting index of the starting tensor
-     *  @param k                3rd starting index of the starting tensor
-     *  @param l                4th starting index of the starting tensor
+     *  @return a reference to updated this
      */
     template <int Z = Rank>
     enable_if_t<Z == 4, Self&> addBlock(const Self& T, size_t i, size_t j, size_t k, size_t l) {

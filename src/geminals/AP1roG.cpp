@@ -80,7 +80,7 @@ double calculateOverlap(const AP1roGGeminalCoefficients& G, const BivariationalC
  */
 OneRDM<double> calculate1RDM(const AP1roGGeminalCoefficients& G, const BivariationalCoefficients& Q) {
 
-    Eigen::MatrixXd D = Eigen::MatrixXd::Zero(G.get_K(), G.get_K());
+    MatrixX<double> D = MatrixX<double>::Zero(G.get_K(), G.get_K());
     double overlap = calculateOverlap(G, Q);
 
     AP1roGVariables q = Q.q;
@@ -128,13 +128,13 @@ OneRDM<double> calculate1RDM(const AP1roGGeminalCoefficients& G, const Bivariati
  *
  *  @return the AP1roG number 2-RDM (the Delta-matrix in the notes)
  */
-Eigen::MatrixXd calculateNumber2RDM(const AP1roGGeminalCoefficients& G, const BivariationalCoefficients& Q) {
+MatrixX<double> calculateNumber2RDM(const AP1roGGeminalCoefficients& G, const BivariationalCoefficients& Q) {
 
     size_t N_P = G.get_N_P();
     size_t K = G.get_K();
     double overlap = calculateOverlap(G, Q);
 
-    Eigen::MatrixXd Delta = Eigen::MatrixXd::Zero(K, K);
+    MatrixX<double> Delta = MatrixX<double>::Zero(K, K);
 
 
     // KISS-implementation
@@ -206,13 +206,13 @@ Eigen::MatrixXd calculateNumber2RDM(const AP1roGGeminalCoefficients& G, const Bi
  *
  *  @return the AP1roG pair 2-RDM (the Pi-matrix in the notes)
  */
-Eigen::MatrixXd calculatePair2RDM(const AP1roGGeminalCoefficients& G, const BivariationalCoefficients& Q) {
+MatrixX<double> calculatePair2RDM(const AP1roGGeminalCoefficients& G, const BivariationalCoefficients& Q) {
 
     size_t N_P = G.get_N_P();
     size_t K = G.get_K();
     double overlap = calculateOverlap(G, Q);
 
-    Eigen::MatrixXd Pi = Eigen::MatrixXd::Zero(K, K);
+    MatrixX<double> Pi = MatrixX<double>::Zero(K, K);
 
 
     // KISS-implementation
@@ -294,12 +294,12 @@ Eigen::MatrixXd calculatePair2RDM(const AP1roGGeminalCoefficients& G, const Biva
 TwoRDM<double> calculate2RDM(const AP1roGGeminalCoefficients& G, const BivariationalCoefficients& Q) {
 
     size_t K = G.get_K();
-    Eigen::Tensor<double, 4> d (K, K, K, K);
+    SquareRankFourTensor<double> d (K);
     d.setZero();
 
 
-    Eigen::MatrixXd Delta = calculateNumber2RDM(G, Q);
-    Eigen::MatrixXd Pi = calculatePair2RDM(G, Q);
+    MatrixX<double> Delta = calculateNumber2RDM(G, Q);
+    MatrixX<double> Pi = calculatePair2RDM(G, Q);
 
     // KISS-implementation
     for (size_t p = 0; p < K; p++) {

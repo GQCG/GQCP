@@ -40,13 +40,13 @@ SelectedRDMBuilder::SelectedRDMBuilder(const SelectedFockSpace& fock_space) :
  *
  *  @return all 1-RDMs given a coefficient vector
  */
-OneRDMs<double> SelectedRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) const {
+OneRDMs<double> SelectedRDMBuilder::calculate1RDMs(const VectorX<double>& x) const {
 
     size_t K = this->fock_space.get_K();
     size_t dim = fock_space.get_dimension();
 
-    auto D_aa = OneRDM<double>(Eigen::MatrixXd::Zero(K, K));
-    auto D_bb = OneRDM<double>(Eigen::MatrixXd::Zero(K, K));
+    auto D_aa = OneRDM<double>(MatrixX<double>::Zero(K, K));
+    auto D_bb = OneRDM<double>(MatrixX<double>::Zero(K, K));
     
 
     for (size_t I = 0; I < dim; I++) {  // loop over all addresses (1)
@@ -120,7 +120,7 @@ OneRDMs<double> SelectedRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) con
  *
  *  @return all 2-RDMs given a coefficient vector
  */
-TwoRDMs<double> SelectedRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) const {
+TwoRDMs<double> SelectedRDMBuilder::calculate2RDMs(const VectorX<double>& x) const {
 
     size_t K = this->fock_space.get_K();
     size_t dim = fock_space.get_dimension();
@@ -364,7 +364,7 @@ TwoRDMs<double> SelectedRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) con
  *
  *      calculateElement({0, 1}, {2, 1}) would calculate d^{(2)} (0, 1, 1, 2): the operator string would be a^\dagger_0 a^\dagger_1 a_2 a_1
  */
-double SelectedRDMBuilder::calculateElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices, const Eigen::VectorXd& x) const {
+double SelectedRDMBuilder::calculateElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices, const VectorX<double>& x) const {
     throw std::runtime_error ("calculateElement is not implemented for SelectedRDMs");
 }
 

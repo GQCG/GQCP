@@ -35,7 +35,7 @@ namespace GQCP {
  */
 Eigenpair::Eigenpair(size_t dimension) :
     eigenvalue (0.0),
-    eigenvector (Eigen::VectorXd::Zero(dimension))
+    eigenvector (VectorX<double>::Zero(dimension))
 {}
 
 
@@ -43,7 +43,7 @@ Eigenpair::Eigenpair(size_t dimension) :
  *  @param eigenvalue       the eigenvalue
  *  @param eigenvector      the eigenvector
  */
-Eigenpair::Eigenpair(double eigenvalue, const Eigen::VectorXd& eigenvector) :
+Eigenpair::Eigenpair(double eigenvalue, const VectorX<double>& eigenvector) :
     eigenvalue (eigenvalue),
     eigenvector (eigenvector)
 {}

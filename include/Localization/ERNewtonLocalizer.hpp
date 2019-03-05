@@ -46,7 +46,7 @@ private:
      *
      *  @return the gradient of the Edmiston-Ruedenberg localization index as a matrix
      */
-    Eigen::MatrixXd calculateGradient(const HamiltonianParameters<double>& ham_par) const;
+    SquareMatrix<double> calculateGradient(const HamiltonianParameters<double>& ham_par) const;
 
     /**
      *  @param ham_par      the Hamiltonian parameters (in an orthonormal basis) containing the two-electron integrals
@@ -64,7 +64,7 @@ private:
      *
      *  @return the Hessian of the Edmiston-Ruedenberg localization index as a tensor
      */
-    Eigen::Tensor<double, 4> calculateHessian(const HamiltonianParameters<double>& ham_par) const;
+    SquareRankFourTensor<double> calculateHessian(const HamiltonianParameters<double>& ham_par) const;
 
 
 public:

@@ -39,7 +39,7 @@ namespace GQCP {
 class RDMCalculator {
 private:
     std::shared_ptr<BaseRDMBuilder> rdm_builder;
-    Eigen::VectorXd coefficients;
+    VectorX<double> coefficients;
 
 public:
     // CONSTRUCTOR
@@ -82,7 +82,7 @@ public:
 
 
     // SETTERS
-    void set_coefficients(const Eigen::VectorXd& coefficients) { this->coefficients = coefficients; };
+    void set_coefficients(const VectorX<double>& coefficients) { this->coefficients = coefficients; };
 
 
     // PUBLIC METHODS

@@ -52,7 +52,7 @@ BOOST_AUTO_TEST_CASE ( constructor ) {
     GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
-    Eigen::VectorXd coef = ci_solver.get_eigenpair().get_eigenvector();
+    GQCP::VectorX<double> coef = ci_solver.get_eigenpair().get_eigenvector();
     
     // Check if the DOCI 1-RDM has the proper trace.
     GQCP::RDMCalculator doci_rdm (*fock_space_dy);
@@ -68,7 +68,7 @@ BOOST_AUTO_TEST_CASE ( no_vector_throws ) {
     size_t N = 4;
     GQCP::FockSpace fock_space (K, N);
 
-    Eigen::VectorXd coeff (fock_space.get_dimension());
+    GQCP::VectorX<double> coeff (fock_space.get_dimension());
     coeff << 1, 1, -2, 4, -5;
 
     // Test if throws when no vector is set
@@ -84,7 +84,7 @@ BOOST_AUTO_TEST_CASE ( operator_call_throw ) {
     size_t N = 1;
     GQCP::FockSpace fock_space (M, N);
 
-    Eigen::VectorXd coeff (fock_space.get_dimension());
+    GQCP::VectorX<double> coeff (fock_space.get_dimension());
     coeff << 1, 2, -3;
     GQCP::SpinUnresolvedRDMCalculator d (fock_space);
     d.set_coefficients(coeff);
@@ -99,7 +99,7 @@ BOOST_AUTO_TEST_CASE ( operator_call ) {
     size_t N = 2;
     GQCP::FockSpace fock_space (M, N);
 
-    Eigen::VectorXd coeff (fock_space.get_dimension());
+    GQCP::VectorX<double> coeff (fock_space.get_dimension());
     coeff << 1, 2, -3;
     GQCP::SpinUnresolvedRDMCalculator d (fock_space);
     d.set_coefficients(coeff);

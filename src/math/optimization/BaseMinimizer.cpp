@@ -31,7 +31,7 @@ namespace GQCP {
  *  @param convergence_threshold            the threshold for convergence on the norm of the gradient
  *  @param maximum_number_of_iterations     the maximum number of iterations in the algorithm
  */
-BaseMinimizer::BaseMinimizer(const Eigen::VectorXd& x0, double convergence_threshold, size_t maximum_number_of_iterations) :
+BaseMinimizer::BaseMinimizer(const VectorX<double>& x0, double convergence_threshold, size_t maximum_number_of_iterations) :
     x(x0),
     convergence_threshold(convergence_threshold),
     maximum_number_of_iterations(maximum_number_of_iterations)
@@ -42,7 +42,7 @@ BaseMinimizer::BaseMinimizer(const Eigen::VectorXd& x0, double convergence_thres
 /*
  *  GETTERS
  */
-const Eigen::VectorXd& BaseMinimizer::get_solution() const {
+const VectorX<double>& BaseMinimizer::get_solution() const {
     if (!this->is_solved) {
         throw std::logic_error("The solution hasn't been found and you are trying to get it.");
     } else {

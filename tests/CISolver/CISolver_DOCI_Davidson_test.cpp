@@ -46,7 +46,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_h2o_sto3g_klaas_Davidson ) {
 
     // Solve the Davidson DOCI eigenvalue problem
     GQCP::CISolver ci_solver (doci, ham_par);
-    Eigen::VectorXd initial_g = fock_space.HartreeFockExpansion();
+    GQCP::VectorX<double> initial_g = fock_space.HartreeFockExpansion();
     GQCP::DavidsonSolverOptions solver_options (initial_g);
     ci_solver.solve(solver_options);
 
@@ -82,7 +82,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_h2_sto3g_dense_vs_Davidson ) {
     GQCP::CISolver ci_solver (doci, mol_ham_par);
 
     // Solve Davidson
-    Eigen::VectorXd initial_g = fock_space.HartreeFockExpansion();
+    GQCP::VectorX<double> initial_g = fock_space.HartreeFockExpansion();
     GQCP::DavidsonSolverOptions davidson_solver_options (initial_g);
     ci_solver.solve(davidson_solver_options);
 
@@ -121,7 +121,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_h2_631g_dense_vs_Davidson ) {
     GQCP::CISolver ci_solver (doci, mol_ham_par);
 
     // Solve Davidson
-    Eigen::VectorXd initial_g = fock_space.HartreeFockExpansion();
+    GQCP::VectorX<double> initial_g = fock_space.HartreeFockExpansion();
     GQCP::DavidsonSolverOptions davidson_solver_options (initial_g);
     ci_solver.solve(davidson_solver_options);
 
@@ -157,7 +157,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_beh_cation_631g_klaas_Davidson ) {
 
     // Solve the Davidson DOCI eigenvalue problem
     GQCP::CISolver ci_solver (doci, ham_par);
-    Eigen::VectorXd initial_g = fock_space.HartreeFockExpansion();
+    GQCP::VectorX<double> initial_g = fock_space.HartreeFockExpansion();
     GQCP::DavidsonSolverOptions solver_options (initial_g);
     ci_solver.solve(solver_options);
 
@@ -189,7 +189,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_n2_sto3g_klaas_Davidson ) {
 
     // Solve the Davidson DOCI eigenvalue problem
     GQCP::CISolver ci_solver (doci, ham_par);
-    Eigen::VectorXd initial_g = fock_space.HartreeFockExpansion();
+    GQCP::VectorX<double> initial_g = fock_space.HartreeFockExpansion();
     GQCP::DavidsonSolverOptions solver_options (initial_g);
     ci_solver.solve(solver_options);
 
@@ -221,7 +221,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_lih_631g_klaas_Davidson ) {
 
     // Solve the Davidson DOCI eigenvalue problem
     GQCP::CISolver ci_solver (doci, ham_par);
-    Eigen::VectorXd initial_g = fock_space.HartreeFockExpansion();
+    GQCP::VectorX<double> initial_g = fock_space.HartreeFockExpansion();
     GQCP::DavidsonSolverOptions solver_options (initial_g);
     ci_solver.solve(solver_options);
 
@@ -253,7 +253,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_li2_321g_klaas_Davidson ) {
 
     // Solve the Davidson DOCI eigenvalue problem
     GQCP::CISolver ci_solver (doci, ham_par);
-    Eigen::VectorXd initial_g = fock_space.HartreeFockExpansion();
+    GQCP::VectorX<double> initial_g = fock_space.HartreeFockExpansion();
     GQCP::DavidsonSolverOptions solver_options (initial_g);
     ci_solver.solve(solver_options);
 
@@ -285,7 +285,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_h2o_631g_klaas_Davidson ) {
 
     // Solve the Davidson DOCI eigenvalue problem
     GQCP::CISolver ci_solver (doci, ham_par);
-    Eigen::VectorXd initial_g = fock_space.HartreeFockExpansion();
+    GQCP::VectorX<double> initial_g = fock_space.HartreeFockExpansion();
     GQCP::DavidsonSolverOptions solver_options (initial_g);
     ci_solver.solve(solver_options);
 
@@ -317,7 +317,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_lif_631g_klaas_Davidson ) {
 
     // Solve the Davidson DOCI eigenvalue problem
     GQCP::CISolver ci_solver (doci, ham_par);
-    Eigen::VectorXd initial_g = fock_space.HartreeFockExpansion();
+    GQCP::VectorX<double> initial_g = fock_space.HartreeFockExpansion();
     GQCP::DavidsonSolverOptions solver_options (initial_g);
     ci_solver.solve(solver_options);
 

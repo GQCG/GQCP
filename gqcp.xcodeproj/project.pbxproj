@@ -222,6 +222,11 @@
 			buildPhases = (
 			);
 			dependencies = (
+				56A5D111222EC3F200C1CF22 /* PBXTargetDependency */,
+				56A5D113222EC3F200C1CF22 /* PBXTargetDependency */,
+				56A5D115222EC3F200C1CF22 /* PBXTargetDependency */,
+				56A5D117222EC3F200C1CF22 /* PBXTargetDependency */,
+				56A5D119222EC3F200C1CF22 /* PBXTargetDependency */,
 				56C8398A2215A4D400FA98A0 /* PBXTargetDependency */,
 			);
 			name = BUILD_MATH_TESTS;
@@ -297,7 +302,6 @@
 		561400AB21B06320002C5D40 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
 		561400B721B06329002C5D40 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
 		561400C321B06330002C5D40 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
-		561400CF21B06337002C5D40 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
 		561400DB21B06340002C5D40 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
 		561400E721B06349002C5D40 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
 		561400F321B06351002C5D40 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
@@ -530,6 +534,9 @@
 		56884F6B222C00C700F68062 /* Tensor_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56884F5E222C004200F68062 /* Tensor_test.cpp */; };
 		569630362226CEA80019DEAD /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
 		5696303C2226CEC50019DEAD /* CartesianGTO_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5696302F2226CDDF0019DEAD /* CartesianGTO_test.cpp */; };
+		56A5D100222E7EDF00C1CF22 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
+		56A5D109222E7EFE00C1CF22 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
+		56A5D10F222EA86300C1CF22 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
 		56B0D3B021F9BAC100605997 /* BivariationalCoefficients.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56B0D3AE21F9BAC100605997 /* BivariationalCoefficients.hpp */; };
 		56B0D3B921F9C38900605997 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
 		56B0D3C121F9C3AD00605997 /* AP1roG_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56B0D3B121F9BEFB00605997 /* AP1roG_test.cpp */; };
@@ -734,13 +741,6 @@
 			remoteInfo = gqcp;
 		};
 		561400BF21B06330002C5D40 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5614F97F21B0295C002C5D40;
-			remoteInfo = gqcp;
-		};
-		561400CB21B06337002C5D40 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
 			proxyType = 1;
@@ -1495,6 +1495,62 @@
 			proxyType = 1;
 			remoteGlobalIDString = 5614F97F21B0295C002C5D40;
 			remoteInfo = gqcp;
+		};
+		56A5D0FE222E7EDB00C1CF22 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5614F97F21B0295C002C5D40;
+			remoteInfo = gqcp;
+		};
+		56A5D107222E7EFA00C1CF22 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5614F97F21B0295C002C5D40;
+			remoteInfo = gqcp;
+		};
+		56A5D10D222EA86000C1CF22 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5614F97F21B0295C002C5D40;
+			remoteInfo = gqcp;
+		};
+		56A5D110222EC3F200C1CF22 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 56884F51222BDBB700F68062;
+			remoteInfo = Matrix_test;
+		};
+		56A5D112222EC3F200C1CF22 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 562990B422292E0900005FA7;
+			remoteInfo = ScalarFunction_test;
+		};
+		56A5D114222EC3F200C1CF22 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 56C8398B2215A4E200FA98A0;
+			remoteInfo = SquareMatrix_test;
+		};
+		56A5D116222EC3F200C1CF22 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 56C8399F2215B50E00FA98A0;
+			remoteInfo = SquareRankFourTensor_test;
+		};
+		56A5D118222EC3F200C1CF22 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 56884F5F222C00BC00F68062;
+			remoteInfo = Tensor_test;
 		};
 		56B0D3B521F9C38900605997 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -3148,7 +3204,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				561400CF21B06337002C5D40 /* libgqcp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3536,6 +3591,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56A5D100222E7EDF00C1CF22 /* libgqcp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3543,6 +3599,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56A5D109222E7EFE00C1CF22 /* libgqcp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3581,6 +3638,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56A5D10F222EA86300C1CF22 /* libgqcp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5056,7 +5114,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				561400CA21B06337002C5D40 /* PBXTargetDependency */,
 			);
 			name = TwoRDM_test;
 			productName = AP1roGGeminalCoefficients_test;
@@ -5919,6 +5976,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				56A5D0FF222E7EDB00C1CF22 /* PBXTargetDependency */,
 			);
 			name = Matrix_test;
 			productName = AP1roGGeminalCoefficients_test;
@@ -5936,6 +5994,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				56A5D108222E7EFA00C1CF22 /* PBXTargetDependency */,
 			);
 			name = Tensor_test;
 			productName = AP1roGGeminalCoefficients_test;
@@ -6024,6 +6083,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				56A5D10E222EA86000C1CF22 /* PBXTargetDependency */,
 			);
 			name = SquareRankFourTensor_test;
 			productName = AP1roGGeminalCoefficients_test;
@@ -7332,11 +7392,6 @@
 			target = 5614F97F21B0295C002C5D40 /* gqcp */;
 			targetProxy = 561400BF21B06330002C5D40 /* PBXContainerItemProxy */;
 		};
-		561400CA21B06337002C5D40 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5614F97F21B0295C002C5D40 /* gqcp */;
-			targetProxy = 561400CB21B06337002C5D40 /* PBXContainerItemProxy */;
-		};
 		561400D621B06340002C5D40 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 5614F97F21B0295C002C5D40 /* gqcp */;
@@ -7871,6 +7926,46 @@
 			isa = PBXTargetDependency;
 			target = 5614F97F21B0295C002C5D40 /* gqcp */;
 			targetProxy = 569630322226CEA80019DEAD /* PBXContainerItemProxy */;
+		};
+		56A5D0FF222E7EDB00C1CF22 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5614F97F21B0295C002C5D40 /* gqcp */;
+			targetProxy = 56A5D0FE222E7EDB00C1CF22 /* PBXContainerItemProxy */;
+		};
+		56A5D108222E7EFA00C1CF22 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5614F97F21B0295C002C5D40 /* gqcp */;
+			targetProxy = 56A5D107222E7EFA00C1CF22 /* PBXContainerItemProxy */;
+		};
+		56A5D10E222EA86000C1CF22 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5614F97F21B0295C002C5D40 /* gqcp */;
+			targetProxy = 56A5D10D222EA86000C1CF22 /* PBXContainerItemProxy */;
+		};
+		56A5D111222EC3F200C1CF22 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 56884F51222BDBB700F68062 /* Matrix_test */;
+			targetProxy = 56A5D110222EC3F200C1CF22 /* PBXContainerItemProxy */;
+		};
+		56A5D113222EC3F200C1CF22 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 562990B422292E0900005FA7 /* ScalarFunction_test */;
+			targetProxy = 56A5D112222EC3F200C1CF22 /* PBXContainerItemProxy */;
+		};
+		56A5D115222EC3F200C1CF22 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 56C8398B2215A4E200FA98A0 /* SquareMatrix_test */;
+			targetProxy = 56A5D114222EC3F200C1CF22 /* PBXContainerItemProxy */;
+		};
+		56A5D117222EC3F200C1CF22 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 56C8399F2215B50E00FA98A0 /* SquareRankFourTensor_test */;
+			targetProxy = 56A5D116222EC3F200C1CF22 /* PBXContainerItemProxy */;
+		};
+		56A5D119222EC3F200C1CF22 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 56884F5F222C00BC00F68062 /* Tensor_test */;
+			targetProxy = 56A5D118222EC3F200C1CF22 /* PBXContainerItemProxy */;
 		};
 		56B0D3B421F9C38900605997 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

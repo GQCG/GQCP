@@ -216,7 +216,7 @@ SelectedCI::SelectedCI(const SelectedFockSpace& fock_space) :
  *
  *  @return the SelectedCI Hamiltonian matrix
  */
-Eigen::MatrixXd SelectedCI::constructHamiltonian(const HamiltonianParameters<double>& hamiltonian_parameters) const {
+MatrixX<double> SelectedCI::constructHamiltonian(const HamiltonianParameters<double>& hamiltonian_parameters) const {
     auto K = hamiltonian_parameters.get_h().get_dim();
     if (K != this->fock_space.get_K()) {
         throw std::invalid_argument("Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
@@ -224,7 +224,7 @@ Eigen::MatrixXd SelectedCI::constructHamiltonian(const HamiltonianParameters<dou
 
     auto dim = fock_space.get_dimension();
 
-    Eigen::MatrixXd result_matrix = Eigen::MatrixXd::Zero(dim, dim);
+    MatrixX<double> result_matrix = MatrixX<double>::Zero(dim, dim);
     result_matrix += this->calculateDiagonal(hamiltonian_parameters).asDiagonal();
 
     // We should put the calculated elements inside the result matrix
@@ -242,14 +242,14 @@ Eigen::MatrixXd SelectedCI::constructHamiltonian(const HamiltonianParameters<dou
  *
  *  @return the action of the SelectedCI Hamiltonian on the coefficient vector
  */
-Eigen::VectorXd SelectedCI::matrixVectorProduct(const HamiltonianParameters<double>& hamiltonian_parameters, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) const {
+VectorX<double> SelectedCI::matrixVectorProduct(const HamiltonianParameters<double>& hamiltonian_parameters, const VectorX<double>& x, const VectorX<double>& diagonal) const {
 
     auto K = hamiltonian_parameters.get_h().get_dim();
     if (K != this->fock_space.get_K()) {
         throw std::invalid_argument("Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
     }
 
-    Eigen::VectorXd matvec = diagonal.cwiseProduct(x);
+    VectorX<double> matvec = diagonal.cwiseProduct(x);
 
     // We should pass the calculated elements to the resulting vector and perform the product
     PassToMethod addToMatvec = [&matvec, &x](size_t I, size_t J, double value) { matvec(I) += value * x(J); };
@@ -265,7 +265,7 @@ Eigen::VectorXd SelectedCI::matrixVectorProduct(const HamiltonianParameters<doub
  *
  *  @return the diagonal of the matrix representation of the SelectedCI Hamiltonian
  */
-Eigen::VectorXd SelectedCI::calculateDiagonal(const HamiltonianParameters<double>& hamiltonian_parameters) const {
+VectorX<double> SelectedCI::calculateDiagonal(const HamiltonianParameters<double>& hamiltonian_parameters) const {
 
     auto K = hamiltonian_parameters.get_h().get_dim();
     if (K != this->fock_space.get_K()) {
@@ -278,7 +278,7 @@ Eigen::VectorXd SelectedCI::calculateDiagonal(const HamiltonianParameters<double
     auto g = hamiltonian_parameters.get_g();
 
     // Diagonal contributions
-    Eigen::VectorXd diagonal = Eigen::VectorXd::Zero(dim);
+    VectorX<double> diagonal = VectorX<double>::Zero(dim);
 
     for (size_t I = 0; I < dim; I++) {  // Ia loops over addresses of alpha onvs
         Configuration configuration_I = this->fock_space.get_configuration(I);

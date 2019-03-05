@@ -31,16 +31,11 @@ namespace GQCP {
 /**
  *  @param H        the Hubbard hopping matrix
  */
-HoppingMatrix::HoppingMatrix(const Eigen::MatrixXd& H) :
-    K (H.cols()),
-    H (H)
+HoppingMatrix::HoppingMatrix(const SquareMatrix<double>& H) :
+    SquareMatrix<double>(H)
 {
-    if (H.cols() != H.rows()) {
-        throw std::invalid_argument("The given hopping matrix must be square. Did you maybe pass an upper triangle instead of a full hopping matrix?");
-    }
-
     if (!H.transpose().isApprox(H)) {
-        throw std::invalid_argument("The given hopping matrix must be symmetric.");
+        throw std::invalid_argument("HoppingMatrix::HoppingMatrix(const SquareMatrix<double>&): The given hopping matrix must be symmetric.");
     }
 }
 
@@ -52,18 +47,9 @@ HoppingMatrix::HoppingMatrix(const Eigen::MatrixXd& H) :
  *  @param t        the Hubbard parameter t. Note that a positive value for t means a negative neighbour hopping term
  *  @param U        the Hubbard parameter U
  */
-HoppingMatrix::HoppingMatrix(const Eigen::MatrixXd& A, double t, double U) :
-    K (A.cols()),
-    H (U * Eigen::MatrixXd::Identity(this->K, this->K) - t * A)
-{
-    if (A.cols() != A.rows()) {
-        throw std::invalid_argument("The given adjacency matrix must be square.");
-    }
-
-    if (!A.transpose().isApprox(A)) {
-        throw std::invalid_argument("The given adjacency matrix must be symmetric.");
-    }
-}
+HoppingMatrix::HoppingMatrix(const SquareMatrix<double>& A, double t, double U) :
+    HoppingMatrix(U * MatrixX<double>::Identity(A.get_dim(), A.get_dim()) - t * A)
+{}
 
 
 
@@ -76,7 +62,7 @@ HoppingMatrix::HoppingMatrix(const Eigen::MatrixXd& A, double t, double U) :
  *
  *  @return the hopping matrix that corresponds to the given upper triangle
  */
-HoppingMatrix HoppingMatrix::FromUpperTriangle(const Eigen::VectorXd& upper_triangle) {
+HoppingMatrix HoppingMatrix::FromUpperTriangle(const VectorX<double>& upper_triangle) {
 
     // Check if the given upper triangle is valid
     size_t x = upper_triangle.size();
@@ -87,7 +73,7 @@ HoppingMatrix HoppingMatrix::FromUpperTriangle(const Eigen::VectorXd& upper_tria
     }
 
 
-    return HoppingMatrix(fromUpperTriangle(upper_triangle));
+    return SquareMatrix<double>::FullFromTriangle(upper_triangle);
 }
 
 
@@ -98,7 +84,7 @@ HoppingMatrix HoppingMatrix::FromUpperTriangle(const Eigen::VectorXd& upper_tria
  */
 HoppingMatrix HoppingMatrix::Random(size_t K) {
 
-    Eigen::VectorXd v = Eigen::VectorXd::Random(K*(K+1)/2);  // random free variables
+    VectorX<double> v = VectorX<double>::Random(K*(K+1)/2);  // random free variables
 
     return HoppingMatrix::FromUpperTriangle(v);
 }

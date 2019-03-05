@@ -22,6 +22,10 @@ constexpr auto Dynamic = Eigen::Dynamic;
 /**
  *  An extension of the Eigen::Matrix class, with extra operations
  *
+ *  @tparam _Scalar     the scalar representation type
+ *  @tparam _Rows       the number of rows (int or Dynamic)
+ *  @tparam _Cols       the number of columns (int or Dynamic)
+ *
  *  We have decided to inherit from Eigen::Matrix, because we will use different hierarchies: see also: https://eigen.tuxfamily.org/dox-devel/TopicCustomizing_InheritingMatrix.html
  */
 template <typename _Scalar = double, int _Rows = Dynamic, int _Cols = Dynamic>
@@ -41,7 +45,7 @@ public:
 private:
 
     static constexpr bool is_vector = (Cols == 1);
-    static constexpr bool is_matrix = (Cols >= 2) || (Cols == Dynamic);  // if this is not a vector
+    static constexpr bool is_matrix = (Cols >= 2) || (Cols == Dynamic);
 
 
 public:
@@ -49,7 +53,7 @@ public:
     /*
      *  CONSTRUCTORS
      */
-    using Base::Base;  // inherit Base constructors
+    using Eigen::Matrix<Scalar, Rows, Cols>::Matrix;  // inherit base constructors
 
 
     /*
@@ -57,7 +61,7 @@ public:
      */
 
     /**
-     *  Read a vector from a given file
+     *  Construct a vector by reading in a file
      *
      *  @param filename     the name of the file to be read in
      *  @param rows         the number of expected rows
@@ -80,7 +84,7 @@ public:
                 boost::split(splitted_line, line, boost::is_any_of(" \t"), boost::token_compress_on);
 
                 if (splitted_line.size() != 1) {
-                    throw std::runtime_error("Found a line that doesn't contain exactly 1 field delimited by whitespace.");
+                    throw std::runtime_error("Matrix::FromFile(const std::string&, size_t): Found a line that doesn't contain exactly 1 field delimited by whitespace.");
                 }
 
                 auto value = std::stod(splitted_line[0]);
@@ -91,7 +95,7 @@ public:
 
             file.close();
         } else {
-            throw std::runtime_error("Cannot open the given file. Maybe you specified a wrong path?");
+            throw std::runtime_error("Matrix::FromFile(const std::string&, size_t): Cannot open the given file. Maybe you specified a wrong path?");
         }
 
         return result;
@@ -99,7 +103,7 @@ public:
 
 
     /**
-     *  Read a matrix from a given file
+     *  Construct a matrix by reading in a file
      *
      *  @param filename     the name of the file to be read in
      *  @param rows         the number of expected rows
@@ -121,7 +125,7 @@ public:
                 boost::split(splitted_line, line, boost::is_any_of(" \t"), boost::token_compress_on);
 
                 if (splitted_line.size() != 3) {
-                    throw std::runtime_error("Found a line that doesn't contain exactly 3 fields delimited by whitespace.");
+                    throw std::runtime_error("Matrix::FromFile(const std::string&, size_t, size_t): Found a line that doesn't contain exactly 3 fields delimited by whitespace.");
                 }
 
                 auto i = std::stoi(splitted_line[0]);
@@ -133,7 +137,7 @@ public:
 
             file.close();
         } else {
-            throw std::runtime_error("Cannot open the given file. Maybe you specified a wrong path?");
+            throw std::runtime_error("Matrix::FromFile(const std::string&, size_t, size_t): Cannot open the given file. Maybe you specified a wrong path?");
         }
 
         return result;
@@ -146,7 +150,7 @@ public:
      */
 
     /**
-     *  Print the contents of a matrix to an output filestream
+     *  Print the contents of a this to an output filestream
      *
      *  @param output_stream        the stream used for outputting
      */
@@ -215,6 +219,10 @@ template <typename Scalar>
 using VectorX = Vector<Scalar, Dynamic>;
 
 using VectorXs = VectorX<size_t>;
+
+
+using VectorFunction = std::function<VectorX<double> (const VectorX<double>&)>;
+using MatrixFunction = std::function<MatrixX<double> (const VectorX<double>&)>;
 
 
 }  // namespace GQCP

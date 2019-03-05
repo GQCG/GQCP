@@ -46,7 +46,7 @@ BOOST_AUTO_TEST_CASE ( FCI_public_methods ) {
     // Create a compatible Fock space
     GQCP::ProductFockSpace fock_space (K, 3, 3);
     GQCP::FCI random_fci (fock_space);
-    Eigen::VectorXd x = random_fci.calculateDiagonal(random_hamiltonian_parameters);
+    GQCP::VectorX<double> x = random_fci.calculateDiagonal(random_hamiltonian_parameters);
     BOOST_CHECK_NO_THROW(random_fci.constructHamiltonian(random_hamiltonian_parameters));
     BOOST_CHECK_NO_THROW(random_fci.matrixVectorProduct(random_hamiltonian_parameters, x, x));
 

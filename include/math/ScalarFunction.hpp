@@ -98,7 +98,7 @@ public:
      *
      *  @return the product of the evaluated left-hand and right-hand side scalar functions
      */
-    Valued operator()(const Eigen::Matrix<Scalar, Cols, 1>& x) const override {
+    Valued operator()(const Vector<Scalar, Cols>& x) const override {
         return this->lhs(x) * this->rhs(x);
     }
 };

@@ -48,7 +48,7 @@ BOOST_AUTO_TEST_CASE ( FrozenCoreFCI_public_methods ) {
     // Create a compatible Fock space
     GQCP::FrozenProductFockSpace fock_space (K, 3, 3, 1);
     GQCP::FrozenCoreFCI random_fci (fock_space);
-    Eigen::VectorXd x = random_fci.calculateDiagonal(random_hamiltonian_parameters);
+    GQCP::VectorX<double> x = random_fci.calculateDiagonal(random_hamiltonian_parameters);
     BOOST_CHECK_NO_THROW(random_fci.constructHamiltonian(random_hamiltonian_parameters));
     BOOST_CHECK_NO_THROW(random_fci.matrixVectorProduct(random_hamiltonian_parameters, x, x));
 
@@ -77,14 +77,14 @@ BOOST_AUTO_TEST_CASE ( SelectedCI_vs_FrozenCoreFCI ) {
     GQCP::SelectedCI random_sci (fock_space);
     GQCP::FrozenCoreFCI random_frozen_core_fci (product_fock_space);
 
-    Eigen::VectorXd sci_diagonal = random_sci.calculateDiagonal(random_hamiltonian_parameters);
-    Eigen::VectorXd fci_diagonal = random_frozen_core_fci.calculateDiagonal(random_hamiltonian_parameters);
+    GQCP::VectorX<double> sci_diagonal = random_sci.calculateDiagonal(random_hamiltonian_parameters);
+    GQCP::VectorX<double> fci_diagonal = random_frozen_core_fci.calculateDiagonal(random_hamiltonian_parameters);
 
-    Eigen::VectorXd sci_matvec = random_sci.matrixVectorProduct(random_hamiltonian_parameters, sci_diagonal, sci_diagonal);
-    Eigen::VectorXd fci_matvec = random_frozen_core_fci.matrixVectorProduct(random_hamiltonian_parameters, fci_diagonal, fci_diagonal);
+    GQCP::VectorX<double> sci_matvec = random_sci.matrixVectorProduct(random_hamiltonian_parameters, sci_diagonal, sci_diagonal);
+    GQCP::VectorX<double> fci_matvec = random_frozen_core_fci.matrixVectorProduct(random_hamiltonian_parameters, fci_diagonal, fci_diagonal);
 
-    Eigen::MatrixXd sci_ham = random_sci.constructHamiltonian(random_hamiltonian_parameters);
-    Eigen::MatrixXd fci_ham = random_frozen_core_fci.constructHamiltonian(random_hamiltonian_parameters);
+    GQCP::MatrixX<double> sci_ham = random_sci.constructHamiltonian(random_hamiltonian_parameters);
+    GQCP::MatrixX<double> fci_ham = random_frozen_core_fci.constructHamiltonian(random_hamiltonian_parameters);
 
     BOOST_CHECK(sci_diagonal.isApprox(fci_diagonal));
     BOOST_CHECK(sci_matvec.isApprox(fci_matvec));

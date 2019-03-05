@@ -38,13 +38,13 @@ FCIRDMBuilder::FCIRDMBuilder(const ProductFockSpace& fock_space) :
  *
  *  @return all 1-RDMs given a coefficient vector
  */
-OneRDMs<double> FCIRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) const {
+OneRDMs<double> FCIRDMBuilder::calculate1RDMs(const VectorX<double>& x) const {
 
     // Initialize as zero matrices
     size_t K = this->fock_space.get_K();
 
-    auto D_aa = OneRDM<double>(Eigen::MatrixXd::Zero(K, K));
-    auto D_bb = OneRDM<double>(Eigen::MatrixXd::Zero(K, K));
+    auto D_aa = OneRDM<double>(MatrixX<double>::Zero(K, K));
+    auto D_bb = OneRDM<double>(MatrixX<double>::Zero(K, K));
 
     FockSpace fock_space_alpha = fock_space.get_fock_space_alpha();
     FockSpace fock_space_beta = fock_space.get_fock_space_beta();
@@ -152,7 +152,7 @@ OneRDMs<double> FCIRDMBuilder::calculate1RDMs(const Eigen::VectorXd& x) const {
  *
  *  @return all 2-RDMs given a coefficient vector
  */
-TwoRDMs<double> FCIRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) const {
+TwoRDMs<double> FCIRDMBuilder::calculate2RDMs(const VectorX<double>& x) const {
 
 
     // KISS implementation of the 2-DMs (no symmetry relations are used yet)
@@ -166,17 +166,14 @@ TwoRDMs<double> FCIRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) const {
     // Initialize as zero matrices
     size_t K = this->fock_space.get_K();
 
-    Eigen::Tensor<double, 4> d_aaaa_tensor (K,K,K,K);
-    d_aaaa_tensor.setZero();
-    auto d_aaaa = TwoRDM<double>(d_aaaa_tensor);
+    TwoRDM<double> d_aaaa (K);
+    d_aaaa.setZero();
 
-    Eigen::Tensor<double, 4> d_aabb_tensor (K,K,K,K);
-    d_aabb_tensor.setZero();
-    auto d_aabb = TwoRDM<double>(d_aabb_tensor);
+    TwoRDM<double> d_aabb (K);
+    d_aabb.setZero();
 
-    Eigen::Tensor<double, 4> d_bbbb_tensor (K,K,K,K);
-    d_bbbb_tensor.setZero();
-    auto d_bbbb = TwoRDM<double>(d_bbbb_tensor);
+    TwoRDM<double> d_bbbb (K);
+    d_bbbb.setZero();
 
 
     // ALPHA-ALPHA-ALPHA-ALPHA
@@ -305,7 +302,7 @@ TwoRDMs<double> FCIRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) const {
     // BETA-BETA-ALPHA-ALPHA
     // We know that d^aabb_pqrs = d^bbaa_rspq
     Eigen::array<int, 4> shuffle {2, 3, 0, 1};  // array specifying the axes that should be swapped
-    auto d_bbaa = TwoRDM<double>(Eigen::Tensor<double, 4>(d_aabb.shuffle(shuffle)));
+    auto d_bbaa = TwoRDM<double>(SquareRankFourTensor<double>(d_aabb.shuffle(shuffle)));
 
 
     // BETA-BETA-BETA-BETA
@@ -378,7 +375,7 @@ TwoRDMs<double> FCIRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) const {
  *
  *      calculateElement({0, 1}, {2, 1}) would calculate d^{(2)} (0, 1, 1, 2): the operator string would be a^\dagger_0 a^\dagger_1 a_2 a_1
  */
-double FCIRDMBuilder::calculateElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices, const Eigen::VectorXd& x) const {
+double FCIRDMBuilder::calculateElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices, const VectorX<double>& x) const {
     throw std::runtime_error ("calculateElement is not implemented for FCIRDMs");
 }
 

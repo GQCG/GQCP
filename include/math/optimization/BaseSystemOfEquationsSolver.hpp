@@ -19,9 +19,7 @@
 #define GQCP_BASESYSTEMOFEQUATIONSSOLVER_HPP
 
 
-
-#include <Eigen/Dense>
-
+#include "math/Matrix.hpp"
 
 
 namespace GQCP {
@@ -37,7 +35,7 @@ protected:
 
     double is_solved = false;
 
-    Eigen::VectorXd x;  // initial guess, current guess or final solution to the problem
+    VectorX<double> x;  // initial guess, current guess or final solution to the problem
 
 
 public:
@@ -47,7 +45,7 @@ public:
      *  @param convergence_threshold            the threshold for convergence on the norm of the gradient
      *  @param maximum_number_of_iterations     the maximum number of iterations in the algorithm
      */
-    BaseSystemOfEquationsSolver(const Eigen::VectorXd& x0, double convergence_threshold = 1.0e-08, size_t maximum_number_of_iterations = 128);
+    BaseSystemOfEquationsSolver(const VectorX<double>& x0, double convergence_threshold = 1.0e-08, size_t maximum_number_of_iterations = 128);
 
 
     // DESTRUCTOR
@@ -55,7 +53,7 @@ public:
 
 
     // GETTERS
-    const Eigen::VectorXd& get_solution() const;
+    const VectorX<double>& get_solution() const;
 
 
     // PUBLIC PURE VIRTUAL METHODS

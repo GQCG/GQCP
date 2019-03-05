@@ -27,8 +27,8 @@ BOOST_AUTO_TEST_CASE ( constructor_assignment ) {
 
     // A small check to see if the interface of the constructor and assignment operator works as expected
 
-    Eigen::MatrixXd A = Eigen::MatrixXd::Random(3, 3);
-    Eigen::MatrixXd B = Eigen::MatrixXd::Random(3, 3);
+    GQCP::MatrixX<double> A = GQCP::MatrixX<double>::Random(3, 3);
+    GQCP::MatrixX<double> B = GQCP::MatrixX<double>::Random(3, 3);
 
     GQCP::MatrixX<double> M1 (A * B);
     GQCP::MatrixX<double> M2 = A + B;
@@ -118,7 +118,7 @@ BOOST_AUTO_TEST_CASE ( minors ) {
             10, 11, 12;
     BOOST_CHECK(A_00.isApprox(A.minor(0, 0)));
 
-    Eigen::MatrixXd A_21 (2, 3);
+    GQCP::MatrixX<double> A_21 (2, 3);
     A_21 << 1, 3, 4,
             5, 7, 8;
     BOOST_CHECK(A_21.isApprox(A.minor(2, 1)));

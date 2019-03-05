@@ -19,7 +19,7 @@
 #define HoppingMatrix_hpp
 
 
-#include <Eigen/Dense>
+#include "math/SquareMatrix.hpp"
 
 
 namespace GQCP {
@@ -28,18 +28,13 @@ namespace GQCP {
 /**
  *  A class that represents a Hubbard hopping matrix
  */
-class HoppingMatrix {
-private:
-    size_t K;  // the number of lattice sites
-    Eigen::MatrixXd H;  // the Hubbard hopping matrix
-
-
+class HoppingMatrix : public SquareMatrix<double> {
 public:
     // CONSTRUCTORS
     /**
      *  @param H        the Hubbard hopping matrix
      */
-    explicit HoppingMatrix(const Eigen::MatrixXd& H);
+    HoppingMatrix(const SquareMatrix<double>& H);
 
     /**
      *  Generate the Hubbard hopping matrix from an adjacency matrix and parameters U and t
@@ -48,7 +43,7 @@ public:
      *  @param t        the Hubbard parameter t. Note that a positive value for t means a negative neighbour hopping term
      *  @param U        the Hubbard parameter U
      */
-    HoppingMatrix(const Eigen::MatrixXd& A, double t, double U);
+    HoppingMatrix(const SquareMatrix<double>& A, double t, double U);
 
 
     // NAMED CONSTRUCTORS
@@ -57,7 +52,7 @@ public:
      *
      *  @return the hopping matrix that corresponds to the given upper triangle
      */
-    static HoppingMatrix FromUpperTriangle(const Eigen::VectorXd& upper_triangle);
+    static HoppingMatrix FromUpperTriangle(const VectorX<double>& upper_triangle);
 
     /**
      *  @param K        the number of lattice sites
@@ -67,20 +62,11 @@ public:
     static HoppingMatrix Random(size_t K);
 
 
-    // OPERATORS
-    double operator()(size_t i, size_t j) const { return this->H(i,j); }
-
-
     // PUBLIC METHODS
-    /**
-     *  @return the Hubbard hopping matrix
-     */
-    const Eigen::MatrixXd& asMatrix() const { return this->H; }
-
     /**
      *  @return the number of lattice sites corresponding to the Hubbard hopping matrix
      */
-    size_t numberOfLatticeSites() const { return this->K; }
+    size_t numberOfLatticeSites() const { return this->get_dim(); }
 };
 
 

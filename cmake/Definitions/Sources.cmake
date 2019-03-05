@@ -75,7 +75,6 @@ set(PROJECT_SOURCE_FILES
         ${PROJECT_SOURCE_FOLDER}/RHF/RHF.cpp
         ${PROJECT_SOURCE_FOLDER}/RHF/RHFSCFSolver.cpp
 
-        ${PROJECT_SOURCE_FOLDER}/utilities/io.cpp
         ${PROJECT_SOURCE_FOLDER}/utilities/linalg.cpp
         ${PROJECT_SOURCE_FOLDER}/utilities/miscellaneous.cpp
 

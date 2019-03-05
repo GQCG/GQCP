@@ -97,8 +97,8 @@ void AP1roGBivariationalSolver::solve() {
     // Initialize and solve the linear system Aq=b
     size_t dim = 1 + this->N_P * (this->K - N_P);
 
-    Eigen::VectorXd b = Eigen::VectorXd::Zero(dim);
-    Eigen::MatrixXd A = Eigen::MatrixXd::Zero(dim, dim);
+    VectorX<double> b = VectorX<double>::Zero(dim);
+    MatrixX<double> A = MatrixX<double>::Zero(dim, dim);
 
     //      Initialize the extra equation
     switch (this->extra_eq) {
@@ -151,7 +151,7 @@ void AP1roGBivariationalSolver::solve() {
     }
 
     Eigen::HouseholderQR<Eigen::MatrixXd> linear_solver (A);
-    Eigen::VectorXd q = linear_solver.solve(b);
+    VectorX<double> q = linear_solver.solve(b);
     assert(std::abs((A * q).norm() - 1) < 1.0e-12);
 
 

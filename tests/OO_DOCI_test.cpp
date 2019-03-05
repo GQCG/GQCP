@@ -93,12 +93,12 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31g ) {
     GQCP::DenseSolverOptions solver_options;
     fci_solver.solve(solver_options);
 
-    Eigen::VectorXd coef = fci_solver.makeWavefunction().get_coefficients();
+    GQCP::VectorX<double> coef = fci_solver.makeWavefunction().get_coefficients();
     GQCP::FCIRDMBuilder fci_rdm_builder (fci_fock_space);
     GQCP::OneRDM<double> one_rdm = fci_rdm_builder.calculate1RDMs(coef).one_rdm;
 
     Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes (one_rdm);
-    Eigen::MatrixXd U = saes.eigenvectors();
+    GQCP::MatrixX<double> U = saes.eigenvectors();
 
     mol_ham_par.rotate(GQCP::SquareMatrix<double>(U));
 
@@ -145,12 +145,12 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx ) {
     GQCP::DenseSolverOptions solver_options;
     fci_solver.solve(solver_options);
 
-    Eigen::VectorXd coef = fci_solver.makeWavefunction().get_coefficients();
+    GQCP::VectorX<double> coef = fci_solver.makeWavefunction().get_coefficients();
     GQCP::FCIRDMBuilder fci_rdm_builder (fci_fock_space);
     GQCP::OneRDM<double> one_rdm = fci_rdm_builder.calculate1RDMs(coef).one_rdm;
 
     Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes (one_rdm);
-    Eigen::MatrixXd U = saes.eigenvectors();
+    GQCP::MatrixX<double> U = saes.eigenvectors();
 
     mol_ham_par.rotate(GQCP::SquareMatrix<double>(U));
 
@@ -197,12 +197,12 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx_Davidson ) {
     GQCP::DenseSolverOptions solver_options;
     fci_solver.solve(solver_options);
 
-    Eigen::VectorXd coef = fci_solver.makeWavefunction().get_coefficients();
+    GQCP::VectorX<double> coef = fci_solver.makeWavefunction().get_coefficients();
     GQCP::FCIRDMBuilder fci_rdm_builder (fci_fock_space);
     GQCP::OneRDM<double> one_rdm = fci_rdm_builder.calculate1RDMs(coef).one_rdm;
 
     Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes (one_rdm);
-    Eigen::MatrixXd U = saes.eigenvectors();
+    GQCP::MatrixX<double> U = saes.eigenvectors();
 
     mol_ham_par.rotate(GQCP::SquareMatrix<double>(U));
 
@@ -210,7 +210,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx_Davidson ) {
     // Do the DOCI orbital optimization, using the FCI natural orbitals
     GQCP::FockSpace doci_fock_space (K, h2.get_N()/2);  // dim = 120
     GQCP::DOCI doci (doci_fock_space);
-    Eigen::VectorXd initial_g = doci_fock_space.HartreeFockExpansion();
+    GQCP::VectorX<double> initial_g = doci_fock_space.HartreeFockExpansion();
     GQCP::DavidsonSolverOptions davidson_solver_options (initial_g);
     GQCP::DOCINewtonOrbitalOptimizer orbital_optimizer (doci, mol_ham_par);
     orbital_optimizer.solve(davidson_solver_options);

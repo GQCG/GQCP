@@ -31,7 +31,7 @@ namespace GQCP {
  *
  *  @tparam _Scalar     the scalar type
  */
-template<typename _Scalar>
+template <typename _Scalar>
 class TwoRDM : public SquareRankFourTensor<_Scalar> {
 public:
 
@@ -46,8 +46,7 @@ public:
      *  CONSTRUCTORS
      */
 
-    using BaseRepresentation::BaseRepresentation;  // inherit BaseRepresentation constructors
-
+    using SquareRankFourTensor<Scalar>::SquareRankFourTensor;  // use base constructors
 
 
     /*
@@ -82,7 +81,7 @@ public:
 
         auto K = static_cast<size_t>(this->dimension(0));
 
-        auto D = OneRDM<double>(Eigen::MatrixXd::Zero(K, K));
+        auto D = OneRDM<double>(MatrixX<double>::Zero(K, K));
         for (size_t p = 0; p < K; p++) {
             for (size_t q = 0; q < K; q++) {
                 for (size_t r = 0; r < K; r++) {

@@ -36,7 +36,7 @@ BOOST_AUTO_TEST_CASE ( constructor ) {
 BOOST_AUTO_TEST_CASE ( constructor_vector ) {
 
     // Check a correct constructor
-    Eigen::VectorXd x = Eigen::VectorXd::Zero(6);
+    GQCP::VectorX<double> x = GQCP::VectorX<double>::Zero(6);
     BOOST_CHECK_NO_THROW(GQCP::AP1roGVariables (x, 2, 5));
 
     // Check wrong parameters N_P and K
@@ -48,12 +48,12 @@ BOOST_AUTO_TEST_CASE ( constructor_vector ) {
 BOOST_AUTO_TEST_CASE ( asMatrix ) {
 
     // For N_P=2 and K=5, we have an AP1roG variables matrix that looks like the following matrix:
-    Eigen::MatrixXd X (2, 3);
+    GQCP::MatrixX<double> X (2, 3);
     X << 1, 2, 3,
          4, 5, 6;
 
     // The variables arranged in a vector are then represented by:
-    Eigen::VectorXd x (6);
+    GQCP::VectorX<double> x (6);
     x << 1, 2, 3, 4, 5, 6;
 
 
@@ -104,7 +104,7 @@ BOOST_AUTO_TEST_CASE ( operator_call ) {
     // Make an example for geminal coefficients for N_P=2 and K=5
     //      . .  1 2 3
     //      . .  4 5 6
-    Eigen::VectorXd g (6);
+    GQCP::VectorX<double> g (6);
     g << 1, 2, 3, 4, 5, 6;
     GQCP::AP1roGVariables variables (g, 2, 5);
 

@@ -38,7 +38,7 @@ namespace GQCP {
 class SpinUnresolvedRDMCalculator {
 private:
     SpinUnresolvedFCIRDMBuilder rdm_builder;
-    Eigen::VectorXd coefficients;
+    VectorX<double> coefficients;
 
 public:
     // CONSTRUCTORS
@@ -60,7 +60,7 @@ public:
 
 
     // SETTERS
-    void set_coefficients(const Eigen::VectorXd& coefficients) { this->coefficients = coefficients; };
+    void set_coefficients(const VectorX<double>& coefficients) { this->coefficients = coefficients; };
 
     // PUBLIC METHODS
     /**

@@ -21,8 +21,7 @@
 
 #include "Atom.hpp"
 #include "Molecule.hpp"
-
-#include <Eigen/Dense>
+#include "math/Matrix.hpp"
 
 #include <boost/preprocessor.hpp>  // include boost/preprocessor before libint to fix libint-boost bug
 #include <libint2.hpp>  // TODO: remove this when we have GQCP::BasisSet

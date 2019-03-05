@@ -29,7 +29,7 @@ namespace GQCP {
  *  @param fock_space           the Fock space in which the wave function 'lives'
  *  @param coefficients         the expansion coefficients
  */
-SpinUnresolvedWaveFunction::SpinUnresolvedWaveFunction(const FockSpace& fock_space, const Eigen::VectorXd& coefficients) :
+SpinUnresolvedWaveFunction::SpinUnresolvedWaveFunction(const FockSpace& fock_space, const VectorX<double>& coefficients) :
         WaveFunction(fock_space, coefficients)
 {}
 

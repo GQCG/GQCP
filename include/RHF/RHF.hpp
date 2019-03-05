@@ -32,7 +32,7 @@ class RHF {
 private:
     double electronic_energy;
     SquareMatrix<double> C;  // transformation matrix from the AO basis to the RHF MO basis
-    Eigen::VectorXd orbital_energies;  // sorted in ascending energies
+    VectorX<double> orbital_energies;  // sorted in ascending energies
 
 
 public:
@@ -49,13 +49,13 @@ public:
      *  @param C                    the coefficient matrix, i.e. the transformation matrix from the AO basis to the RHF MO basis
      *  @param orbital_energies     the RHF MO energies
      */
-    RHF(double electronic_energy, const SquareMatrix<double>& C, const Eigen::VectorXd& orbital_energies);
+    RHF(double electronic_energy, const SquareMatrix<double>& C, const VectorX<double>& orbital_energies);
 
 
     // GETTERS
     double get_electronic_energy() const { return this->electronic_energy; }
     const SquareMatrix<double>& get_C() const { return this->C; }
-    const Eigen::VectorXd& get_orbital_energies() const { return this->orbital_energies; }
+    const VectorX<double>& get_orbital_energies() const { return this->orbital_energies; }
     double get_orbital_energies(size_t index) const { return this->orbital_energies(index); }
 };
 
@@ -78,7 +78,7 @@ OneRDM<double> calculateRHF1RDM(size_t K, size_t N);
  *
  *  @return the RHF 1-RDM expressed in the AO basis
  */
-Eigen::MatrixXd calculateRHFAO1RDM(const SquareMatrix<double>& C, size_t N);
+MatrixX<double> calculateRHFAO1RDM(const SquareMatrix<double>& C, size_t N);
 
 /**
  *  Calculate the RHF Fock matrix F = H_core + G, in which G is a contraction of the density matrix and the two-electron integrals
@@ -88,7 +88,7 @@ Eigen::MatrixXd calculateRHFAO1RDM(const SquareMatrix<double>& C, size_t N);
  *
  *  @return the RHF Fock matrix expressed in the AO basis
  */
-Eigen::MatrixXd calculateRHFAOFockMatrix(const Eigen::MatrixXd& D_AO, const HamiltonianParameters<double>& ham_par);
+MatrixX<double> calculateRHFAOFockMatrix(const MatrixX<double>& D_AO, const HamiltonianParameters<double>& ham_par);
 
 /**
  *  @param D_AO         the RHF density matrix in AO basis
@@ -97,7 +97,7 @@ Eigen::MatrixXd calculateRHFAOFockMatrix(const Eigen::MatrixXd& D_AO, const Hami
  *
  *  @return the RHF electronic energy
  */
-double calculateRHFElectronicEnergy(const Eigen::MatrixXd& D_AO, const Eigen::MatrixXd& H_core_AO, const Eigen::MatrixXd& F_AO);
+double calculateRHFElectronicEnergy(const MatrixX<double>& D_AO, const MatrixX<double>& H_core_AO, const MatrixX<double>& F_AO);
 
 /**
  *  @param N    the number of electrons

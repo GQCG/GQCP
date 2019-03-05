@@ -38,16 +38,18 @@ class TwoElectronOperator : public SquareRankFourTensor<_Scalar>, public Operato
 public:
 
     using Scalar = _Scalar;
-    using BaseRepresentation = SquareRankFourTensor<Scalar>;
+
+    using BaseRepresentation = SquareMatrix<Scalar>;
+    using Self = TwoElectronOperator<Scalar>;
 
 
 public:
 
     /*
-     * CONSTRUCTORS
+     *  CONSTRUCTORS
      */
 
-    using BaseRepresentation::BaseRepresentation;  // inherit BaseRepresentation constructors
+    using SquareRankFourTensor<Scalar>::SquareRankFourTensor;  // use base constructors
 
 
 
@@ -120,7 +122,7 @@ public:
          */
 
         auto dim = static_cast<size_t>(this->dimension(0));  // .dimension() returns a long
-        auto J = SquareMatrix<double>(jacobiRotationMatrix(jacobi_rotation_parameters, dim));  // this is sure to return a unitary matrix
+        auto J = SquareMatrix<double>::FromJacobi(jacobi_rotation_parameters, dim);  // this is sure to return a unitary matrix
 
         this->rotate(J);
     }

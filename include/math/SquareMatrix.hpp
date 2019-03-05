@@ -21,7 +21,7 @@
 
 #include "math/Matrix.hpp"
 
-#include "miscellaneous.hpp"
+#include "utilities/miscellaneous.hpp"
 #include "JacobiRotationParameters.hpp"
 
 #include <boost/numeric/conversion/converter.hpp>
@@ -170,7 +170,7 @@ public:
      *  @param jacobi_rotation_parameters       the parameters that define the Jacobi rotation matrix
      *  @param M                                the dimension of the resulting matrix
      *
-     *  @return the corresponding Jacobi rotation matrix. Note that we work with the (cos, sin, -sin, cos) definition of the Jacobi rotation matrix
+     *  @return the corresponding Jacobi rotation matrix. Note that we work with the (cos, sin, -sin, cos) definition
      */
     static Self FromJacobi(const JacobiRotationParameters& jacobi_rotation_parameters, size_t M) {
 
@@ -200,7 +200,7 @@ public:
      */
 
     /**
-     *  @return the strictly lower triangular matrix (i.e. without the diagonal elements) as a vector in column-major form
+     *  @return the strict lower triangular matrix (i.e. without the diagonal elements) as a vector in column-major form
      *
      *          5
      *          1   5       -> (1, 2, 3)
@@ -245,7 +245,9 @@ public:
 
 
     /**
-     *  @return the permanent of the given square matrix using the Ryser algorithm.  Note that this algorithm does not work for dimensions larger than 64 (see https://www.codeproject.com/Articles/21282/%2FArticles%2F21282%2FCompute-Permanent-of-a-Matrix-with-Ryser-s-Algorit)
+     *  @return the permanent of the given square matrix using the Ryser algorithm
+     *
+     *  Note that this algorithm does not work for dimensions larger than 64: see https://www.codeproject.com/Articles/21282/%2FArticles%2F21282%2FCompute-Permanent-of-a-Matrix-with-Ryser-s-Algorit
      */
     double permanent_ryser() const {
 

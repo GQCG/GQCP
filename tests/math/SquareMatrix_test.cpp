@@ -45,6 +45,10 @@ BOOST_AUTO_TEST_CASE ( constructor_assignment ) {
     GQCP::SquareMatrix<double> M1 (A * B);
     GQCP::SquareMatrix<double> M2 = A + B;
     GQCP::SquareMatrix<double> M3 = 2*A;
+
+    GQCP::SquareMatrix<double> M4 (M1 * M2);
+    GQCP::SquareMatrix<double> M5 = M2 + M3;
+    GQCP::SquareMatrix<double> M6 = 4*M2;
 }
 
 

@@ -34,8 +34,8 @@ class DIISRHFSCFSolver : public RHFSCFSolver {
 private:
     size_t maximum_subspace_dimension;
 
-    std::deque<Eigen::MatrixXd> fock_matrix_deque = {};  // deque of Fock matrices used in the DIIS algorithm
-    std::deque<Eigen::MatrixXd> error_matrix_deque = {};  // deque of error matrices used in the DIIS algorithm
+    std::deque<MatrixX<double>> fock_matrix_deque = {};  // deque of Fock matrices used in the DIIS algorithm
+    std::deque<MatrixX<double>> error_matrix_deque = {};  // deque of error matrices used in the DIIS algorithm
 
 
     // PRIVATE METHODS
@@ -46,7 +46,7 @@ private:
      *
      *  @return the new Fock matrix (expressed in AO basis)
      */
-    Eigen::MatrixXd calculateNewFockMatrix(const Eigen::MatrixXd& D_AO) override;
+    MatrixX<double> calculateNewFockMatrix(const MatrixX<double>& D_AO) override;
 
 public:
     // CONSTRUCTORS

@@ -31,7 +31,7 @@ namespace GQCP {
  *  @param N_P      the number of electron pairs (= the number of geminals)
  *  @param K        the number of spatial orbitals
  */
-BaseAPIGVariables::BaseAPIGVariables(const Eigen::VectorXd& x, size_t N_P, size_t K) :
+BaseAPIGVariables::BaseAPIGVariables(const VectorX<double>& x, size_t N_P, size_t K) :
     N_P (N_P),
     K (K),
     x (x)
@@ -44,7 +44,7 @@ BaseAPIGVariables::BaseAPIGVariables(const Eigen::VectorXd& x, size_t N_P, size_
  *  Default constructor setting everything to zero
  */
 BaseAPIGVariables::BaseAPIGVariables() :
-    BaseAPIGVariables(Eigen::VectorXd::Zero(0), 0, 0)
+    BaseAPIGVariables(VectorX<double>::Zero(0), 0, 0)
 {}
 
 

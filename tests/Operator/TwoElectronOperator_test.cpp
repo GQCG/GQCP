@@ -23,7 +23,6 @@
 
 #include "Operator/TwoElectronOperator.hpp"
 
-#include "utilities/io.hpp"
 #include "utilities/linalg.hpp"
 
 #include "utilities/miscellaneous.hpp"
@@ -32,45 +31,59 @@
 BOOST_AUTO_TEST_CASE ( TwoElectronOperator_constructor ) {
 
     // Check a correct constructor
-    Eigen::Tensor<double, 4> tensor (3, 3, 3, 3);
+    GQCP::Tensor<double, 4> tensor (3, 3, 3, 3);
     GQCP::TwoElectronOperator<double> O (tensor);
 
 
     // Check a faulty constructor
-    Eigen::Tensor<double, 4> tensor2 (3, 3, 3, 2);
+    GQCP::Tensor<double, 4> tensor2 (3, 3, 3, 2);
     BOOST_CHECK_THROW(GQCP::TwoElectronOperator<double> O2 (tensor2), std::invalid_argument);
+}
+
+
+BOOST_AUTO_TEST_CASE ( constructor_assignment ) {
+
+    // A small check to see if the interface of the constructor and assignment operator works as expected
+
+    GQCP::SquareRankFourTensor<double> A (2);
+    GQCP::SquareRankFourTensor<double> B (2);
+
+    GQCP::TwoElectronOperator<double> T1 (A.Eigen() + B.Eigen());
+    GQCP::TwoElectronOperator<double> T2 = 2 * B.Eigen();
 }
 
 
 BOOST_AUTO_TEST_CASE ( TwoElectronOperator_transform_trivial ) {
 
     // Let's test a trivial transformation: i.e. with T being a unit matrix
-    Eigen::Tensor<double, 4> g (3, 3, 3, 3);
+    GQCP::SquareRankFourTensor<double> g (3);
     g.setRandom();
     GQCP::TwoElectronOperator<double> G (g);
 
-    Eigen::MatrixXd T = Eigen::MatrixXd::Identity(3, 3);
+    auto G_copy = G;
+
+    GQCP::MatrixX<double> T = GQCP::MatrixX<double>::Identity(3, 3);
     G.transform(GQCP::SquareMatrix<double>(T));
 
-    BOOST_CHECK(GQCP::areEqual(g, g, 1.0e-12));
+    BOOST_CHECK(G_copy.isApprox(G, 1.0e-12));
 }
 
 
 BOOST_AUTO_TEST_CASE ( TwoElectronOperator_transform_olsens ) {
 
     // We can find a reference algorithm in the olsens module from Ayer's lab
-    Eigen::Tensor<double, 4> g_transformed_ref (2, 2, 2, 2);
-    GQCP::readArrayFromFile("data/rotated_two_electron_integrals_olsens.data", g_transformed_ref);
+    size_t dim = 2;
+    GQCP::TwoElectronOperator<double> g_transformed_ref = GQCP::TwoElectronOperator<double>::FromFile("data/rotated_two_electron_integrals_olsens.data", dim);
 
     // Set an example transformation matrix and two-electron integrals tensor
-    Eigen::MatrixXd T (2, 2);
+    GQCP::MatrixX<double> T (dim, dim);
     T << 1, 2, 3, 4;
 
-    Eigen::Tensor<double, 4> g (2, 2, 2, 2);
-    for (size_t i = 0; i < 2; i++) {
-        for (size_t j = 0; j < 2; j++) {
-            for (size_t k = 0; k < 2; k++) {
-                for (size_t l = 0; l < 2; l++) {
+    GQCP::SquareRankFourTensor<double> g (dim);
+    for (size_t i = 0; i < dim; i++) {
+        for (size_t j = 0; j < dim; j++) {
+            for (size_t k = 0; k < dim; k++) {
+                for (size_t l = 0; l < dim; l++) {
                     g(i, j, k, l) = l + 2*k + 4*j + 8*i;
                 }
             }
@@ -79,7 +92,7 @@ BOOST_AUTO_TEST_CASE ( TwoElectronOperator_transform_olsens ) {
     GQCP::TwoElectronOperator<double> G (g);
     G.transform(GQCP::SquareMatrix<double>(T));
 
-    BOOST_CHECK(GQCP::areEqual(G, g_transformed_ref, 1.0e-12));
+    BOOST_CHECK(G.isApprox(g_transformed_ref, 1.0e-12));
 }
 
 
@@ -87,18 +100,18 @@ BOOST_AUTO_TEST_CASE ( TwoElectronOperator_rotate_throws ) {
 
     // Create a random TwoElectronOperator
     size_t dim = 3;
-    Eigen::Tensor<double, 4> g (dim, dim, dim, dim);
+    GQCP::SquareRankFourTensor<double> g (dim);
     g.setRandom();
     GQCP::TwoElectronOperator<double> G (g);
 
 
     // Check if a non-unitary matrix as transformation matrix causes a throw
-    Eigen::MatrixXd U (Eigen::MatrixXd::Random(dim, dim));
+    GQCP::MatrixX<double> U (GQCP::MatrixX<double>::Random(dim, dim));
     BOOST_CHECK_THROW(G.rotate(GQCP::SquareMatrix<double>(U)), std::invalid_argument);
 
 
     // Check if a unitary matrix as transformation matrix is accepted
-    G.rotate(GQCP::SquareMatrix<double>(Eigen::MatrixXd::Identity(dim, dim)));
+    G.rotate(GQCP::SquareMatrix<double>(GQCP::MatrixX<double>::Identity(dim, dim)));
 }
 
 
@@ -106,7 +119,7 @@ BOOST_AUTO_TEST_CASE ( TwoElectronOperator_rotate_JacobiRotationParameters ) {
 
     // Create a random TwoElectronOperator
     size_t dim = 5;
-    Eigen::Tensor<double, 4> g (dim, dim, dim, dim);
+    GQCP::SquareRankFourTensor<double> g (dim);
     g.setRandom();
     GQCP::TwoElectronOperator<double> G1 (g);
     GQCP::TwoElectronOperator<double> G2 (g);
@@ -116,12 +129,12 @@ BOOST_AUTO_TEST_CASE ( TwoElectronOperator_rotate_JacobiRotationParameters ) {
     // with custom JacobiRotationParameters
     GQCP::JacobiRotationParameters jacobi_rotation_parameters (4, 2, 56.81);
 
-    auto U = GQCP::jacobiRotationMatrix(jacobi_rotation_parameters, dim);
+    auto U = GQCP::SquareMatrix<double>::FromJacobi(jacobi_rotation_parameters, dim);
 
 
     G1.rotate(jacobi_rotation_parameters);
     G2.rotate(GQCP::SquareMatrix<double>(U));
 
 
-    BOOST_CHECK(GQCP::areEqual(G1, G2, 1.0e-12));
+    BOOST_CHECK(G1.isApprox(G2, 1.0e-12));
 }

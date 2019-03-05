@@ -42,7 +42,7 @@ AP1roGGeminalCoefficients::AP1roGGeminalCoefficients() :
  *  @param N_P      the number of electron pairs (= the number of geminals)
  *  @param K        the number of spatial orbitals
  */
-AP1roGGeminalCoefficients::AP1roGGeminalCoefficients(const Eigen::VectorXd& g, size_t N_P, size_t K) :
+AP1roGGeminalCoefficients::AP1roGGeminalCoefficients(const VectorX<double>& g, size_t N_P, size_t K) :
     AP1roGVariables(g, N_P, K)
 {}
 
@@ -77,7 +77,7 @@ AP1roGGeminalCoefficients AP1roGGeminalCoefficients::WeakInteractionLimit(const 
     auto g = ham_par.get_g();  // two-electron integrals
 
     // Provide the weak interaction limit values for the geminal coefficients
-    Eigen::VectorXd g_vector = Eigen::VectorXd::Zero(number_of_geminal_coefficients);
+    VectorX<double> g_vector = VectorX<double>::Zero(number_of_geminal_coefficients);
     for (size_t mu = 0; mu < number_of_geminal_coefficients; mu++) {
         size_t i = GQCP::matrixIndexMajor(mu, K, N_P);
         size_t a = GQCP::matrixIndexMinor(mu, K, N_P);
@@ -122,13 +122,13 @@ size_t AP1roGGeminalCoefficients::numberOfGeminalCoefficients(size_t N_P, size_t
 /**
  *  @return the geminal coefficients in matrix form
  */
-Eigen::MatrixXd AP1roGGeminalCoefficients::asMatrix() const {
+MatrixX<double> AP1roGGeminalCoefficients::asMatrix() const {
 
     // Initialize the geminal coefficient matrix
-    Eigen::MatrixXd G = Eigen::MatrixXd::Zero(this->N_P, this->K);
+    MatrixX<double> G = MatrixX<double>::Zero(this->N_P, this->K);
 
     // The AP1roG coefficients are the identity matrix in the leftmost (N_P x N_P)-block
-    G.topLeftCorner(this->N_P, this->N_P) = Eigen::MatrixXd::Identity(this->N_P, this->N_P);
+    G.topLeftCorner(this->N_P, this->N_P) = MatrixX<double>::Identity(this->N_P, this->N_P);
 
     // Set the right AP1roG coefficient block
     using RowMajorMatrixXd = Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor>;
