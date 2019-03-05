@@ -66,7 +66,6 @@ struct OneRDMs {
         one_rdm_aa (one_rdm_aa),
         one_rdm_bb (one_rdm_bb)
     {}
-
 };
 
 
@@ -97,14 +96,13 @@ struct TwoRDMs {
      *  @param two_rdm_bbaa     the beta-beta-alpha-alpha 2-RDM
      *  @param two_rdm_bbbb     the beta-beta-beta-beta 2-RDM
      */
-    TwoRDMs(const Eigen::Tensor<double, 4>& two_rdm_aaaa, const Eigen::Tensor<double, 4>& two_rdm_aabb, const Eigen::Tensor<double, 4>& two_rdm_bbaa, const Eigen::Tensor<double, 4>& two_rdm_bbbb) :
-        two_rdm (TwoRDM<double>(two_rdm_aaaa + two_rdm_aabb + two_rdm_bbaa + two_rdm_bbbb)),
+    TwoRDMs(const TwoRDM<Scalar>& two_rdm_aaaa, const TwoRDM<Scalar>& two_rdm_aabb, const TwoRDM<Scalar>& two_rdm_bbaa, const TwoRDM<Scalar>& two_rdm_bbbb) :
+        two_rdm (two_rdm_aaaa + two_rdm_aabb + two_rdm_bbaa + two_rdm_bbbb),
         two_rdm_aaaa (two_rdm_aaaa),
         two_rdm_aabb (two_rdm_aabb),
         two_rdm_bbaa (two_rdm_bbaa),
         two_rdm_bbbb (two_rdm_bbbb)
     {}
-
 };
 
 

@@ -20,7 +20,7 @@
 
 
 #include "JacobiRotationParameters.hpp"
-#include "math/SquareFourIndexTensor.hpp"
+#include "math/SquareRankFourTensor.hpp"
 #include "Operator/Operator.hpp"
 #include "utilities/miscellaneous.hpp"
 
@@ -31,30 +31,24 @@ namespace GQCP {
 /**
  *  A class that represents a two-electron operator in an orbital basis
  *
- *  @tparam Scalar      the scalar type
+ *  @tparam _Scalar     the scalar type
  */
-template<typename Scalar>
-class TwoElectronOperator : public SquareFourIndexTensor<Scalar>, public Operator<TwoElectronOperator<Scalar>> {
+template<typename _Scalar>
+class TwoElectronOperator : public SquareRankFourTensor<_Scalar>, public Operator<TwoElectronOperator<_Scalar>> {
+public:
+
+    using Scalar = _Scalar;
+    using BaseRepresentation = SquareRankFourTensor<Scalar>;
+
+
 public:
 
     /*
      * CONSTRUCTORS
      */
 
-    /**
-     *  Default constructor
-     */
-    TwoElectronOperator() :
-        SquareFourIndexTensor<Scalar>()
-    {}
+    using BaseRepresentation::BaseRepresentation;  // inherit BaseRepresentation constructors
 
-
-    /**
-     *  @param tensor   the explicit matrix representation of the two-electron operator
-     */
-    explicit TwoElectronOperator(const SquareFourIndexTensor<Scalar>& tensor) :
-        SquareFourIndexTensor<Scalar>(tensor)
-    {}
 
 
     /*

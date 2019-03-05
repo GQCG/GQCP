@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "56C8399F2215B50E00FA98A0"
-               BuildableName = "SquareFourIndexTensor_test"
-               BlueprintName = "SquareFourIndexTensor_test"
+               BuildableName = "SquareRankFourTensor_test"
+               BlueprintName = "SquareRankFourTensor_test"
                ReferencedContainer = "container:gqcp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,8 +33,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "56C8399F2215B50E00FA98A0"
-            BuildableName = "SquareFourIndexTensor_test"
-            BlueprintName = "SquareFourIndexTensor_test"
+            BuildableName = "SquareRankFourTensor_test"
+            BlueprintName = "SquareRankFourTensor_test"
             ReferencedContainer = "container:gqcp.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -46,7 +46,8 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
-      useCustomWorkingDirectory = "NO"
+      useCustomWorkingDirectory = "YES"
+      customWorkingDirectory = "/Users/laurentlemmens/Software/GQCG/gqcp/tests/"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
@@ -56,8 +57,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "56C8399F2215B50E00FA98A0"
-            BuildableName = "SquareFourIndexTensor_test"
-            BlueprintName = "SquareFourIndexTensor_test"
+            BuildableName = "SquareRankFourTensor_test"
+            BlueprintName = "SquareRankFourTensor_test"
             ReferencedContainer = "container:gqcp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -75,8 +76,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "56C8399F2215B50E00FA98A0"
-            BuildableName = "SquareFourIndexTensor_test"
-            BlueprintName = "SquareFourIndexTensor_test"
+            BuildableName = "SquareRankFourTensor_test"
+            BlueprintName = "SquareRankFourTensor_test"
             ReferencedContainer = "container:gqcp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

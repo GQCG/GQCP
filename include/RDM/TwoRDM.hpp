@@ -19,7 +19,7 @@
 #define GQCP_TWORDM_HPP
 
 
-#include "math/SquareFourIndexTensor.hpp"
+#include "math/SquareRankFourTensor.hpp"
 #include "RDM/OneRDM.hpp"
 
 
@@ -29,35 +29,29 @@ namespace GQCP {
 /**
  *  A class that represents a 2-RDM
  *
- *  @tparam Scalar      the scalar type
+ *  @tparam _Scalar     the scalar type
  */
-template<typename Scalar>
-class TwoRDM : public SquareFourIndexTensor<Scalar> {
+template<typename _Scalar>
+class TwoRDM : public SquareRankFourTensor<_Scalar> {
+public:
+
+    using Scalar = _Scalar;
+
+    using BaseRepresentation = SquareRankFourTensor<Scalar>;
+
+
 public:
 
     /*
-     * CONSTRUCTORS
+     *  CONSTRUCTORS
      */
 
-    /**
-     *  Default constructor
-     */
-    TwoRDM() :
-        SquareFourIndexTensor<Scalar>()
-    {}
-
-
-    /**
-     *  @param tensor   the explicit matrix representation of the two-electron operator
-     */
-    explicit TwoRDM(const FourIndexTensor<double>& tensor) :
-        SquareFourIndexTensor<Scalar>(tensor)
-    {}
+    using BaseRepresentation::BaseRepresentation;  // inherit BaseRepresentation constructors
 
 
 
     /*
-     * CONSTRUCTORS
+     *  PUBLIC METHODS
      */
 
     /**

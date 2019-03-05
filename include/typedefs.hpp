@@ -62,13 +62,6 @@ using MatrixFunction = std::function<Eigen::MatrixXd (const Eigen::VectorXd&)>;
 
 
 /*
- *  TENSORS
- */
-template<typename Scalar>
-using FourIndexTensor = Eigen::Tensor<Scalar, 4>;
-
-
-/*
  *  FEATURES
  */
 template<bool B, class T = void>

@@ -80,16 +80,16 @@ TwoRDMs<double> FrozenCoreRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) c
 
     auto K = this->get_fock_space()->get_K();
 
-    Eigen::Tensor<double, 4> d_aaaa (K, K, K, K);
+    TwoRDM<double> d_aaaa (K);
     d_aaaa.setZero();
 
-    Eigen::Tensor<double, 4> d_aabb (K, K, K, K);
+    TwoRDM<double> d_aabb (K);
     d_aabb.setZero();
 
-    Eigen::Tensor<double, 4> d_bbaa (K, K, K, K);
+    TwoRDM<double> d_bbaa (K);
     d_bbaa.setZero();
 
-    Eigen::Tensor<double, 4> d_bbbb (K, K, K, K);
+    TwoRDM<double> d_bbbb (K);
     d_bbbb.setZero();
 
 
@@ -104,21 +104,21 @@ TwoRDMs<double> FrozenCoreRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) c
         //      frozen orbital indices (p) must always have one annihilation and one creation index (always occupied)
         //      values are dictated by the 'active' orbital indices and correspond to that of the active 1RDMs
         //      Hence we start adding the 1RDMs starting from index 'X' the number frozen orbitals
-        GQCP::tensorBlockAddition<0,1>(d_aaaa, D_aa, this->X, this->X, p, p);
-        GQCP::tensorBlockAddition<2,3>(d_aaaa, D_aa, p, p, this->X, this->X);
-        GQCP::tensorBlockAddition<2,1>(d_aaaa, -D_aa, p, this->X, this->X, p);
-        GQCP::tensorBlockAddition<3,0>(d_aaaa, -D_aa, this->X, p, p, this->X);
+        d_aaaa.addBlock<0,1>(D_aa, this->X, this->X, p, p);
+        d_aaaa.addBlock<2,3>(D_aa, p, p, this->X, this->X);
+        d_aaaa.addBlock<2,1>(-D_aa, p, this->X, this->X, p);
+        d_aaaa.addBlock<3,0>(-D_aa, this->X, p, p, this->X);
 
-        GQCP::tensorBlockAddition<0,1>(d_bbbb, D_bb, this->X, this->X, p, p);
-        GQCP::tensorBlockAddition<2,3>(d_bbbb, D_bb, p, p, this->X, this->X);
-        GQCP::tensorBlockAddition<2,1>(d_bbbb, -D_bb, p, this->X, this->X, p);
-        GQCP::tensorBlockAddition<3,0>(d_bbbb, -D_bb, this->X, p, p, this->X);
+        d_bbbb.addBlock<0,1>(D_bb, this->X, this->X, p, p);
+        d_bbbb.addBlock<2,3>(D_bb, p, p, this->X, this->X);
+        d_bbbb.addBlock<2,1>(-D_bb, p, this->X, this->X, p);
+        d_bbbb.addBlock<3,0>(-D_bb, this->X, p, p, this->X);
 
-        GQCP::tensorBlockAddition<2,3>(d_aabb, D_bb, p, p, this->X, this->X);
-        GQCP::tensorBlockAddition<0,1>(d_aabb, D_aa, this->X, this->X, p, p);
+        d_aabb.addBlock<2,3>(D_bb, p, p, this->X, this->X);
+        d_aabb.addBlock<0,1>(D_aa, this->X, this->X, p, p);
 
-        GQCP::tensorBlockAddition<2,3>(d_bbaa, D_aa, p, p, this->X, this->X);
-        GQCP::tensorBlockAddition<0,1>(d_bbaa, D_bb, this->X, this->X, p, p);
+        d_bbaa.addBlock<2,3>(D_aa, p, p, this->X, this->X);
+        d_bbaa.addBlock<0,1>(D_bb, this->X, this->X, p, p);
 
 
         // Set the values for the frozen orbital
@@ -149,10 +149,10 @@ TwoRDMs<double> FrozenCoreRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) c
     // Incorporate the 2-RDM subblocks into the total 2RDMs
     TwoRDMs<double> sub_2rdms = this->active_rdm_builder->calculate2RDMs(x);
 
-    GQCP::tensorBlockAddition(d_aaaa, sub_2rdms.two_rdm_aaaa, this->X, this->X, this->X, this->X);
-    GQCP::tensorBlockAddition(d_bbbb, sub_2rdms.two_rdm_bbbb, this->X, this->X, this->X, this->X);
-    GQCP::tensorBlockAddition(d_aabb, sub_2rdms.two_rdm_aabb, this->X, this->X, this->X, this->X);
-    GQCP::tensorBlockAddition(d_bbaa, sub_2rdms.two_rdm_bbaa, this->X, this->X, this->X, this->X);
+    d_aaaa.addBlock(sub_2rdms.two_rdm_aaaa, this->X, this->X, this->X, this->X);
+    d_bbbb.addBlock(sub_2rdms.two_rdm_bbbb, this->X, this->X, this->X, this->X);
+    d_aabb.addBlock(sub_2rdms.two_rdm_aabb, this->X, this->X, this->X, this->X);
+    d_bbaa.addBlock(sub_2rdms.two_rdm_bbaa, this->X, this->X, this->X, this->X);
 
     return TwoRDMs<double>(d_aaaa, d_aabb, d_bbaa, d_bbbb);
 };

@@ -126,21 +126,17 @@ TwoRDMs<double> SelectedRDMBuilder::calculate2RDMs(const Eigen::VectorXd& x) con
     size_t dim = fock_space.get_dimension();
 
 
-    Eigen::Tensor<double, 4> d_aaaa_tensor (K,K,K,K);
-    d_aaaa_tensor.setZero();
-    auto d_aaaa = TwoRDM<double>(d_aaaa_tensor);
+    TwoRDM<double> d_aaaa (K);
+    d_aaaa.setZero();
 
-    Eigen::Tensor<double, 4> d_aabb_tensor (K,K,K,K);
-    d_aabb_tensor.setZero();
-    auto d_aabb = TwoRDM<double>(d_aabb_tensor);
+    TwoRDM<double> d_aabb (K);
+    d_aabb.setZero();
 
-    Eigen::Tensor<double, 4> d_bbaa_tensor (K,K,K,K);
-    d_bbaa_tensor.setZero();
-    auto d_bbaa = TwoRDM<double>(d_bbaa_tensor);
+    TwoRDM<double> d_bbaa (K);
+    d_bbaa.setZero();
 
-    Eigen::Tensor<double, 4> d_bbbb_tensor (K,K,K,K);
-    d_bbbb_tensor.setZero();
-    auto d_bbbb = TwoRDM<double>(d_bbbb_tensor);
+    TwoRDM<double> d_bbbb (K);
+    d_bbbb.setZero();
 
 
     for (size_t I = 0; I < dim; I++) {  // loop over all addresses I

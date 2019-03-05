@@ -49,7 +49,7 @@ set(PROJECT_TEST_SOURCE_FILES
         ${PROJECT_TESTS_FOLDER}/math/optimization/SparseSolver_test.cpp
 
         ${PROJECT_TESTS_FOLDER}/math/ScalarFunction_test.cpp
-        ${PROJECT_TESTS_FOLDER}/math/SquareFourIndexTensor_test.cpp
+        ${PROJECT_TESTS_FOLDER}/math/SquareRankFourTensor_test.cpp
         ${PROJECT_TESTS_FOLDER}/math/SquareMatrix_test.cpp
 
         ${PROJECT_TESTS_FOLDER}/Operator/OneElectronOperator_test.cpp
