@@ -65,7 +65,7 @@ public:
      *
      *  @return the SelectedCI Hamiltonian matrix
      */
-    MatrixX<double> constructHamiltonian(const HamiltonianParameters<double>& hamiltonian_parameters) const override;
+    SquareMatrix<double> constructHamiltonian(const HamiltonianParameters<double>& hamiltonian_parameters) const override;
 
     /**
      *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis

@@ -86,15 +86,15 @@ BOOST_AUTO_TEST_CASE( Szabo_integrals_h2_sto3g ) {
 
 
     // Fill in the reference values from Szabo
-    GQCP::MatrixX<double> ref_S (2, 2);
+    GQCP::OneElectronOperator<double> ref_S (2);
     ref_S << 1.0,    0.6593,
              0.6593, 1.0;
 
-    GQCP::MatrixX<double> ref_T (2, 2);
+    GQCP::OneElectronOperator<double> ref_T (2);
     ref_T << 0.7600, 0.2365,
              0.2365, 0.7600;
 
-    GQCP::MatrixX<double> ref_H_core (2, 2);
+    GQCP::OneElectronOperator<double> ref_H_core (2);
     ref_H_core << -1.1204, -0.9584,
                   -0.9584, -1.1204;
 

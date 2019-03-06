@@ -77,7 +77,7 @@ DavidsonSolver::DavidsonSolver(const VectorFunction& matrixVectorProduct, const 
  *  @param collapsed_subspace_dimension         the dimension of the subspace after collapse
  *  @param maximum_number_of_iterations         the maximum number of Davidson iterations
  */
-DavidsonSolver::DavidsonSolver(const MatrixX<double>& A, const MatrixX<double>& V_0, size_t number_of_requested_eigenpairs, double convergence_threshold, double correction_threshold, size_t maximum_subspace_dimension, size_t collapsed_subspace_dimension, size_t maximum_number_of_iterations) :
+DavidsonSolver::DavidsonSolver(const SquareMatrix<double>& A, const MatrixX<double>& V_0, size_t number_of_requested_eigenpairs, double convergence_threshold, double correction_threshold, size_t maximum_subspace_dimension, size_t collapsed_subspace_dimension, size_t maximum_number_of_iterations) :
     DavidsonSolver([A](const VectorX<double>& x) { return A * x; },  // lambda matrix-vector product function created from the given matrix A
                    A.diagonal(), V_0, number_of_requested_eigenpairs, convergence_threshold, correction_threshold, maximum_subspace_dimension, collapsed_subspace_dimension, maximum_number_of_iterations)
 {}
@@ -98,7 +98,7 @@ DavidsonSolver::DavidsonSolver(const VectorFunction& matrixVectorProduct, const 
  *  @param A                            the matrix to be diagonalized
  *  @param davidson_solver_options      the options specified for solving the Davidson eigenvalue problem
  */
-DavidsonSolver::DavidsonSolver(const MatrixX<double>& A, const DavidsonSolverOptions& davidson_solver_options) :
+DavidsonSolver::DavidsonSolver(const SquareMatrix<double>& A, const DavidsonSolverOptions& davidson_solver_options) :
     DavidsonSolver([A](const VectorX<double>& x) { return A * x; },  // lambda matrix-vector product function created from the given matrix A
                    A.diagonal(), davidson_solver_options)
 {}

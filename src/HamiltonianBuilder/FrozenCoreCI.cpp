@@ -48,13 +48,13 @@ FrozenCoreCI::FrozenCoreCI(std::shared_ptr<GQCP::HamiltonianBuilder> hamiltonian
  *
  *  @return the frozen core Hamiltonian matrix
  */
-MatrixX<double> FrozenCoreCI::constructHamiltonian(const HamiltonianParameters<double>& ham_par) const {
+SquareMatrix<double> FrozenCoreCI::constructHamiltonian(const HamiltonianParameters<double>& ham_par) const {
 
     // Freeze Hamiltonian parameters
     HamiltonianParameters<double> frozen_ham_par = this->freezeHamiltonianParameters(ham_par, X);
 
     // calculate Hamiltonian matrix through conventional CI
-    MatrixX<double> total_hamiltonian = this->active_hamiltonian_builder->constructHamiltonian(frozen_ham_par);
+    SquareMatrix<double> total_hamiltonian = this->active_hamiltonian_builder->constructHamiltonian(frozen_ham_par);
 
     // diagonal correction
     VectorX<double> diagonal = VectorX<double>::Ones(this->get_fock_space()->get_dimension());
@@ -148,11 +148,10 @@ HamiltonianParameters<double> FrozenCoreCI::freezeHamiltonianParameters(const Ha
     }
 
     std::shared_ptr<AOBasis> ao_basis;  // nullptr
-//    TwoElectronOperator<double> g_new (tensorBlockCreation(ham_par.get_g(), X, X, X, X));
     auto g_new = TwoElectronOperator<double>::FromBlock(ham_par.get_g(), X, X, X, X);
-    MatrixX<double> T = ham_par.get_T_total().block(X, X, K_active, K_active);
+    SquareMatrix<double> T = ham_par.get_T_total().block(X, X, K_active, K_active);
 
-    return HamiltonianParameters<double>(ao_basis, S, h, g_new, SquareMatrix<double>(T));
+    return HamiltonianParameters<double>(ao_basis, S, h, g_new, T);
 }
 
 

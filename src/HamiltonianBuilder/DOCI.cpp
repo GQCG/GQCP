@@ -44,7 +44,7 @@ DOCI::DOCI(const FockSpace& fock_space) :
  *
  *  @return the DOCI Hamiltonian matrix
  */
-MatrixX<double> DOCI::constructHamiltonian(const HamiltonianParameters<double>& hamiltonian_parameters) const {
+SquareMatrix<double> DOCI::constructHamiltonian(const HamiltonianParameters<double>& hamiltonian_parameters) const {
     
     auto K = hamiltonian_parameters.get_h().get_dim();
     if (K != this->fock_space.get_K()) {
@@ -52,7 +52,7 @@ MatrixX<double> DOCI::constructHamiltonian(const HamiltonianParameters<double>& 
     }
     size_t dim = this->fock_space.get_dimension();
     VectorX<double> diagonal = calculateDiagonal(hamiltonian_parameters);
-    MatrixX<double> result_matrix = MatrixX<double>::Zero(dim, dim);
+    SquareMatrix<double> result_matrix = SquareMatrix<double>::Zero(dim, dim);
     size_t N = this->fock_space.get_N();
 
     // Create the first spin string. Since in DOCI, alpha == beta, we can just treat them as one and multiply all contributions by 2
@@ -177,7 +177,7 @@ VectorX<double> DOCI::matrixVectorProduct(const HamiltonianParameters<double>& h
 /**
  *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis
  *
- *  @return the diagonal of the matrix representation of the Hamiltonian given @param hamiltonian_parameters
+ *  @return the diagonal of the matrix representation of the DOCI Hamiltonian
  */
 VectorX<double> DOCI::calculateDiagonal(const HamiltonianParameters<double>& hamiltonian_parameters) const {
     size_t dim = this->fock_space.get_dimension();

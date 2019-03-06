@@ -144,7 +144,7 @@ BOOST_AUTO_TEST_CASE ( pairWiseReduce ) {
         }
     }
 
-    GQCP::MatrixX<double> M1_ref (4, 4);
+    GQCP::SquareMatrix<double> M1_ref (4);
     M1_ref <<  0,  2,  1,  3,
                8, 10,  9, 11,
                4,  6,  5,  7,

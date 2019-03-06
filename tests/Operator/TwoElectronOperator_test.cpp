@@ -50,8 +50,8 @@ BOOST_AUTO_TEST_CASE ( TwoElectronOperator_transform_trivial ) {
 
     auto G_copy = G;
 
-    GQCP::MatrixX<double> T = GQCP::MatrixX<double>::Identity(3, 3);
-    G.transform(GQCP::SquareMatrix<double>(T));
+    GQCP::SquareMatrix<double> T = GQCP::SquareMatrix<double>::Identity(3, 3);
+    G.transform(T);
 
     BOOST_CHECK(G_copy.isApprox(G, 1.0e-12));
 }
@@ -64,21 +64,21 @@ BOOST_AUTO_TEST_CASE ( TwoElectronOperator_transform_olsens ) {
     GQCP::TwoElectronOperator<double> g_transformed_ref = GQCP::TwoElectronOperator<double>::FromFile("data/rotated_two_electron_integrals_olsens.data", dim);
 
     // Set an example transformation matrix and two-electron integrals tensor
-    GQCP::MatrixX<double> T (dim, dim);
-    T << 1, 2, 3, 4;
+    GQCP::SquareMatrix<double> T (dim);
+    T << 1, 2,
+         3, 4;
 
-    GQCP::SquareRankFourTensor<double> g (dim);
+    GQCP::TwoElectronOperator<double> G (dim);
     for (size_t i = 0; i < dim; i++) {
         for (size_t j = 0; j < dim; j++) {
             for (size_t k = 0; k < dim; k++) {
                 for (size_t l = 0; l < dim; l++) {
-                    g(i, j, k, l) = l + 2*k + 4*j + 8*i;
+                    G(i, j, k, l) = l + 2*k + 4*j + 8*i;
                 }
             }
         }
     }
-    GQCP::TwoElectronOperator<double> G (g);
-    G.transform(GQCP::SquareMatrix<double>(T));
+    G.transform(T);
 
     BOOST_CHECK(G.isApprox(g_transformed_ref, 1.0e-12));
 }
@@ -94,12 +94,13 @@ BOOST_AUTO_TEST_CASE ( TwoElectronOperator_rotate_throws ) {
 
 
     // Check if a non-unitary matrix as transformation matrix causes a throw
-    GQCP::MatrixX<double> U (GQCP::MatrixX<double>::Random(dim, dim));
+    GQCP::SquareMatrix<double> U = GQCP::SquareMatrix<double>::Random(dim, dim);
     BOOST_CHECK_THROW(G.rotate(GQCP::SquareMatrix<double>(U)), std::invalid_argument);
 
 
     // Check if a unitary matrix as transformation matrix is accepted
-    G.rotate(GQCP::SquareMatrix<double>(GQCP::MatrixX<double>::Identity(dim, dim)));
+    GQCP::SquareMatrix<double> T = GQCP::SquareMatrix<double>::Identity(dim, dim);
+    G.rotate(T);
 }
 
 

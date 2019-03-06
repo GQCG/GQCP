@@ -45,7 +45,7 @@ OneRDMs<double> DOCIRDMBuilder::calculate1RDMs(const VectorX<double>& x) const {
     size_t dim = this->fock_space.get_dimension();
 
     // For DOCI, one rdm covers both spins
-    auto D = OneRDM<double>(MatrixX<double>::Zero(K, K));
+    OneRDM<double> D = OneRDM<double>::Zero(K, K);
 
     // Create the first ONV (with address 0). In DOCI, the Fock space for alpha and beta is equal so we just use one
     ONV onv = this->fock_space.makeONV(0);   

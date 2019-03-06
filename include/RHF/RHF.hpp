@@ -78,7 +78,7 @@ OneRDM<double> calculateRHF1RDM(size_t K, size_t N);
  *
  *  @return the RHF 1-RDM expressed in the AO basis
  */
-MatrixX<double> calculateRHFAO1RDM(const SquareMatrix<double>& C, size_t N);
+OneRDM<double> calculateRHFAO1RDM(const SquareMatrix<double>& C, size_t N);
 
 /**
  *  Calculate the RHF Fock matrix F = H_core + G, in which G is a contraction of the density matrix and the two-electron integrals
@@ -88,7 +88,7 @@ MatrixX<double> calculateRHFAO1RDM(const SquareMatrix<double>& C, size_t N);
  *
  *  @return the RHF Fock matrix expressed in the AO basis
  */
-MatrixX<double> calculateRHFAOFockMatrix(const MatrixX<double>& D_AO, const HamiltonianParameters<double>& ham_par);
+OneElectronOperator<double> calculateRHFAOFockMatrix(const OneRDM<double>& D_AO, const HamiltonianParameters<double>& ham_par);
 
 /**
  *  @param D_AO         the RHF density matrix in AO basis
@@ -97,7 +97,7 @@ MatrixX<double> calculateRHFAOFockMatrix(const MatrixX<double>& D_AO, const Hami
  *
  *  @return the RHF electronic energy
  */
-double calculateRHFElectronicEnergy(const MatrixX<double>& D_AO, const MatrixX<double>& H_core_AO, const MatrixX<double>& F_AO);
+double calculateRHFElectronicEnergy(const OneRDM<double>& D_AO, const OneElectronOperator<double>& H_core_AO, const OneElectronOperator<double>& F_AO);
 
 /**
  *  @param N    the number of electrons

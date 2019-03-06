@@ -150,7 +150,7 @@ BOOST_AUTO_TEST_CASE ( addBlock ) {
 
     // Create an example 2x2 matrix
     size_t dim2 = 2;
-    GQCP::MatrixX<double> M = GQCP::MatrixX<double>::Zero(dim2, dim2);
+    GQCP::SquareMatrix<double> M = GQCP::SquareMatrix<double>::Zero(dim2, dim2);
     for (size_t i = 0; i < dim2; i++) {
         for (size_t j = 0; j < dim2; j++) {
             M(i,j) = 100 * i + 95*j;

@@ -150,16 +150,16 @@ void DOCINewtonOrbitalOptimizer::solve(BaseSolverOptions& solver_options, const 
 
         // Change kappa back to a matrix
         auto kappa_matrix = GQCP::SquareMatrix<double>::FromStrictTriangle(kappa_vector);  // containing all parameters, so this is in anti-Hermitian (anti-symmetric) form
-        MatrixX<double> kappa_matrix_transpose = kappa_matrix.transpose();  // store the transpose in an auxiliary variable to avoid aliasing issues
+        SquareMatrix<double> kappa_matrix_transpose = kappa_matrix.transpose();  // store the transpose in an auxiliary variable to avoid aliasing issues
         kappa_matrix -= kappa_matrix_transpose;  // FromStrictTriangle only returns the lower triangle, so we must construct the anti-Hermitian (anti-symmetric) matrix
 
 
         // Calculate the unitary rotation matrix that we can use to rotate the basis
-        MatrixX<double> U = (-kappa_matrix).exp();
+        SquareMatrix<double> U = (-kappa_matrix).exp();
 
 
         // Transform the integrals to the new orthonormal basis
-        this->ham_par.rotate(SquareMatrix<double>(U));  // this checks if U is actually unitary
+        this->ham_par.rotate(U);  // this checks if U is actually unitary
 
 
         // If we're using a Davidson solver, we should update the initial guesses in the solver_options to be the current eigenvectors

@@ -236,6 +236,7 @@ Eigen::SparseMatrix<double> FCI::calculateSpinSeparatedHamiltonian(const FockSpa
     return hamiltonian;
 }
 
+
 /**
  *  Calculates theta(rs): all one-electron couplings for a (spin) Fock space
  *  and attributes two-electron integrals based on the one-electron coupling and two chosen fixed indexes
@@ -305,6 +306,7 @@ Eigen::SparseMatrix<double> FCI::calculateTwoElectronIntermediate(size_t r, size
     sparse_matrix.setFromTriplets(triplet_vector.begin(),triplet_vector.end());
     return sparse_matrix;
 }
+
 
 /**
  *  Calculates sigma(pq) + sigma(qp)'s: all one-electron couplings for each annihilation-creation pair in the (spin) Fock space
@@ -383,14 +385,14 @@ std::vector<Eigen::SparseMatrix<double>> FCI::calculateOneElectronCouplingsInter
  *
  *  @return the FCI Hamiltonian matrix
  */
-MatrixX<double> FCI::constructHamiltonian(const HamiltonianParameters<double>& hamiltonian_parameters) const {
+SquareMatrix<double> FCI::constructHamiltonian(const HamiltonianParameters<double>& hamiltonian_parameters) const {
 
     auto K = hamiltonian_parameters.get_h().get_dim();
     if (K != this->fock_space.get_K()) {
         throw std::invalid_argument("Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
     }
 
-    MatrixX<double> total_hamiltonian = MatrixX<double>::Zero(this->fock_space.get_dimension(), this->fock_space.get_dimension());
+    SquareMatrix<double> total_hamiltonian = SquareMatrix<double>::Zero(this->fock_space.get_dimension(), this->fock_space.get_dimension());
     
     FockSpace fock_space_alpha = fock_space.get_fock_space_alpha();
     FockSpace fock_space_beta = fock_space.get_fock_space_beta();
@@ -407,7 +409,7 @@ MatrixX<double> FCI::constructHamiltonian(const HamiltonianParameters<double>& h
     }
 
     // ALPHA separated evaluations
-    MatrixX<double> ones = MatrixX<double>::Identity(dim_beta, dim_beta);
+    SquareMatrix<double> ones = SquareMatrix<double>::Identity(dim_beta, dim_beta);
     for (int i = 0; i < alpha_hamiltonian.outerSize(); ++i){
         for (Eigen::SparseMatrix<double>::InnerIterator it(alpha_hamiltonian, i); it; ++it) {
             total_hamiltonian.block(it.row() * dim_beta, it.col() * dim_beta, dim_beta, dim_beta) += it.value()*ones;

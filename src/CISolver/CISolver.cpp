@@ -60,7 +60,7 @@ void CISolver::solve(const BaseSolverOptions& solver_options) {
 
         case SolverType::DENSE: {
 
-            MatrixX<double> matrix = this->hamiltonian_builder->constructHamiltonian(this->hamiltonian_parameters);
+            auto matrix = this->hamiltonian_builder->constructHamiltonian(this->hamiltonian_parameters);
 
             DenseSolver solver (matrix, dynamic_cast<const DenseSolverOptions&>(solver_options));
 
@@ -72,7 +72,7 @@ void CISolver::solve(const BaseSolverOptions& solver_options) {
 
         case SolverType::DAVIDSON: {
 
-            VectorX<double> diagonal = this->hamiltonian_builder->calculateDiagonal(this->hamiltonian_parameters);
+            auto diagonal = this->hamiltonian_builder->calculateDiagonal(this->hamiltonian_parameters);
             VectorFunction matrixVectorProduct = [this, &diagonal](const VectorX<double>& x) { return hamiltonian_builder->matrixVectorProduct(hamiltonian_parameters, x, diagonal); };
 
             DavidsonSolver solver (matrixVectorProduct, diagonal, dynamic_cast<const DavidsonSolverOptions&>(solver_options));

@@ -17,6 +17,8 @@
 // 
 #include "math/optimization/step.hpp"
 
+#include "math/SquareMatrix.hpp"
+
 
 namespace GQCP {
 
@@ -33,7 +35,7 @@ VectorX<double> newtonStep(const VectorX<double>& x, const VectorFunction& f, co
 
     // Calculate f(x) and J(x), i.e. the values of the vector field and its Jacobian at the given x
     VectorX<double> f_vector = f(x);
-    MatrixX<double> J_matrix = J(x);
+    SquareMatrix<double> J_matrix = J(x);
 
     // Return the actual Newton step
     return J_matrix.colPivHouseholderQr().solve(-f_vector);

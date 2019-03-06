@@ -29,7 +29,7 @@ namespace GQCP {
  *  Default constructor setting everything to zero
  */
 RHF::RHF() :
-    RHF(0.0, SquareMatrix<double>(MatrixX<double>::Zero(0, 0)), VectorX<double>::Zero(0))
+    RHF(0.0, SquareMatrix<double>::Zero(0, 0), VectorX<double>::Zero(0))
 {}
 
 
@@ -70,10 +70,10 @@ OneRDM<double> calculateRHF1RDM(size_t K, size_t N) {
     //    0  0  0  0  0
     //    0  0  0  0  0
 
-    MatrixX<double> D_MO = MatrixX<double>::Zero(K, K);
-    D_MO.topLeftCorner(N/2, N/2) = 2 * MatrixX<double>::Identity(N/2, N/2);
+    OneRDM<double> D_MO = OneRDM<double>::Zero(K, K);
+    D_MO.topLeftCorner(N/2, N/2) = 2 * SquareMatrix<double>::Identity(N/2, N/2);
 
-    return OneRDM<double>(D_MO);
+    return D_MO;
 }
 
 
@@ -83,10 +83,10 @@ OneRDM<double> calculateRHF1RDM(size_t K, size_t N) {
  *
  *  @return the RHF 1-RDM expressed in the AO basis
  */
-MatrixX<double> calculateRHFAO1RDM(const SquareMatrix<double>& C, size_t N) {
+OneRDM<double> calculateRHFAO1RDM(const SquareMatrix<double>& C, size_t N) {
 
     size_t K = C.rows();
-    MatrixX<double> D_MO = calculateRHF1RDM(K, N);
+    auto D_MO = calculateRHF1RDM(K, N);
 
     // Transform the MO 1-RDM to an AO basis
     return C * D_MO * C.adjoint();
@@ -101,7 +101,7 @@ MatrixX<double> calculateRHFAO1RDM(const SquareMatrix<double>& C, size_t N) {
  *
  *  @return the RHF Fock matrix expressed in the AO basis
  */
-MatrixX<double> calculateRHFAOFockMatrix(const MatrixX<double>& D_AO, const HamiltonianParameters<double>& ham_par) {
+OneElectronOperator<double> calculateRHFAOFockMatrix(const OneRDM<double>& D_AO, const HamiltonianParameters<double>& ham_par) {
 
     // To perform the contraction, we will first have to convert the MatrixX<double> D_AO to an Eigen::Tensor<const double, 2> D_AO_tensor, as contractions are only implemented for Eigen::Tensors
     Eigen::TensorMap<Eigen::Tensor<const double, 2>> D_AO_tensor (D_AO.data(), D_AO.rows(), D_AO.cols());
@@ -137,10 +137,10 @@ MatrixX<double> calculateRHFAOFockMatrix(const MatrixX<double>& D_AO, const Hami
  *
  *  @return the RHF electronic energy
  */
-double calculateRHFElectronicEnergy(const MatrixX<double>& D_AO, const MatrixX<double>& H_core_AO, const MatrixX<double>& F_AO) {
+double calculateRHFElectronicEnergy(const OneRDM<double>& D_AO, const OneElectronOperator<double>& H_core_AO, const OneElectronOperator<double>& F_AO) {
 
     // First, calculate the sum of H_core and F (this saves a contraction)
-    MatrixX<double> Z = H_core_AO + F_AO;
+    OneElectronOperator<double> Z = H_core_AO + F_AO;
 
     // Convert the matrices Z and P to an Eigen::Tensor<double, 2> P_tensor, as contractions are only implemented for Eigen::Tensors
     Eigen::TensorMap<Eigen::Tensor<const double, 2>> D_AO_tensor (D_AO.data(), D_AO.rows(), D_AO.cols());

@@ -98,9 +98,9 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31g ) {
     GQCP::OneRDM<double> one_rdm = fci_rdm_builder.calculate1RDMs(coef).one_rdm;
 
     Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes (one_rdm);
-    GQCP::MatrixX<double> U = saes.eigenvectors();
+    GQCP::SquareMatrix<double> U = saes.eigenvectors();
 
-    mol_ham_par.rotate(GQCP::SquareMatrix<double>(U));
+    mol_ham_par.rotate(U);
 
 
     // Do the DOCI orbital optimization, using the FCI natural orbitals
@@ -150,9 +150,9 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx ) {
     GQCP::OneRDM<double> one_rdm = fci_rdm_builder.calculate1RDMs(coef).one_rdm;
 
     Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes (one_rdm);
-    GQCP::MatrixX<double> U = saes.eigenvectors();
+    GQCP::SquareMatrix<double> U = saes.eigenvectors();
 
-    mol_ham_par.rotate(GQCP::SquareMatrix<double>(U));
+    mol_ham_par.rotate(U);
 
 
     // Do the DOCI orbital optimization, using the FCI natural orbitals
@@ -202,9 +202,9 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx_Davidson ) {
     GQCP::OneRDM<double> one_rdm = fci_rdm_builder.calculate1RDMs(coef).one_rdm;
 
     Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes (one_rdm);
-    GQCP::MatrixX<double> U = saes.eigenvectors();
+    GQCP::SquareMatrix<double> U = saes.eigenvectors();
 
-    mol_ham_par.rotate(GQCP::SquareMatrix<double>(U));
+    mol_ham_par.rotate(U);
 
 
     // Do the DOCI orbital optimization, using the FCI natural orbitals

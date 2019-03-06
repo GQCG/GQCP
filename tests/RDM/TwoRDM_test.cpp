@@ -85,7 +85,7 @@ BOOST_AUTO_TEST_CASE ( reduce ) {
 
     auto d = calculateToy2RDMTensor();
 
-    GQCP::MatrixX<double> D_ref = GQCP::MatrixX<double>::Zero(2, 2);
+    GQCP::OneRDM<double> D_ref = GQCP::OneRDM<double>::Zero(2, 2);
 
     D_ref <<  3, 11,
              19, 27;

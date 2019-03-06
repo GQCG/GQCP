@@ -50,8 +50,8 @@ OneRDMs<double> FrozenCoreRDMBuilder::calculate1RDMs(const VectorX<double>& x) c
 
     auto K = this->get_fock_space()->get_K();
 
-    auto D_aa = OneRDM<double>(MatrixX<double>::Zero(K, K));
-    auto D_bb = OneRDM<double>(MatrixX<double>::Zero(K, K));
+    OneRDM<double> D_aa = OneRDM<double>::Zero(K, K);
+    OneRDM<double> D_bb = OneRDM<double>::Zero(K, K);
 
     auto K_active = K - this->X;
 

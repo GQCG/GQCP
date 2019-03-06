@@ -74,8 +74,8 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI ) {
     GQCP::Hubbard hubbard (fock_space);
     GQCP::FCI fci (fock_space);
 
-    GQCP::MatrixX<double> hubbard_ham = hubbard.constructHamiltonian(mol_ham_par);
-    GQCP::MatrixX<double> fci_ham = fci.constructHamiltonian(mol_ham_par);
+    GQCP::SquareMatrix<double> hubbard_ham = hubbard.constructHamiltonian(mol_ham_par);
+    GQCP::SquareMatrix<double> fci_ham = fci.constructHamiltonian(mol_ham_par);
 
     BOOST_CHECK(hubbard_ham.isApprox(fci_ham));
 }
@@ -95,8 +95,8 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_large ) {
     GQCP::Hubbard hubbard (fock_space);
     GQCP::FCI fci (fock_space);
 
-    GQCP::MatrixX<double> hubbard_ham = hubbard.constructHamiltonian(mol_ham_par);
-    GQCP::MatrixX<double> fci_ham = fci.constructHamiltonian(mol_ham_par);
+    GQCP::SquareMatrix<double> hubbard_ham = hubbard.constructHamiltonian(mol_ham_par);
+    GQCP::SquareMatrix<double> fci_ham = fci.constructHamiltonian(mol_ham_par);
     BOOST_CHECK(hubbard_ham.isApprox(fci_ham));
 }
 

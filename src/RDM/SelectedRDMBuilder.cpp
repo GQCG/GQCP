@@ -45,9 +45,9 @@ OneRDMs<double> SelectedRDMBuilder::calculate1RDMs(const VectorX<double>& x) con
     size_t K = this->fock_space.get_K();
     size_t dim = fock_space.get_dimension();
 
-    auto D_aa = OneRDM<double>(MatrixX<double>::Zero(K, K));
-    auto D_bb = OneRDM<double>(MatrixX<double>::Zero(K, K));
-    
+    OneRDM<double> D_aa = OneRDM<double>::Zero(K, K);
+    OneRDM<double> D_bb = OneRDM<double>::Zero(K, K);
+
 
     for (size_t I = 0; I < dim; I++) {  // loop over all addresses (1)
         Configuration configuration_I = this->fock_space.get_configuration(I);

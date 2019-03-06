@@ -119,8 +119,7 @@ public:
                 result_op(i,j) = (*this)(i,j).operator()(x);
             }
         }
-
-        return OneElectronOperator<typename Z::Valued>(result_op);
+        return result_op;
     }
 };
 

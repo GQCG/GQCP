@@ -98,7 +98,7 @@ void AP1roGBivariationalSolver::solve() {
     size_t dim = 1 + this->N_P * (this->K - N_P);
 
     VectorX<double> b = VectorX<double>::Zero(dim);
-    MatrixX<double> A = MatrixX<double>::Zero(dim, dim);
+    SquareMatrix<double> A = SquareMatrix<double>::Zero(dim, dim);
 
     //      Initialize the extra equation
     switch (this->extra_eq) {

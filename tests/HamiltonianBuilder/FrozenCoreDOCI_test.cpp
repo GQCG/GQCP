@@ -83,8 +83,8 @@ BOOST_AUTO_TEST_CASE ( SelectedCI_vs_FrozenCoreDOCI ) {
     GQCP::VectorX<double> sci_matvec = random_sci.matrixVectorProduct(random_hamiltonian_parameters, sci_diagonal, sci_diagonal);
     GQCP::VectorX<double> doci_matvec = random_frozen_core_doci.matrixVectorProduct(random_hamiltonian_parameters, doci_diagonal, doci_diagonal);
 
-    GQCP::MatrixX<double> sci_ham = random_sci.constructHamiltonian(random_hamiltonian_parameters);
-    GQCP::MatrixX<double> doci_ham = random_frozen_core_doci.constructHamiltonian(random_hamiltonian_parameters);
+    GQCP::SquareMatrix<double> sci_ham = random_sci.constructHamiltonian(random_hamiltonian_parameters);
+    GQCP::SquareMatrix<double> doci_ham = random_frozen_core_doci.constructHamiltonian(random_hamiltonian_parameters);
 
     BOOST_CHECK(sci_diagonal.isApprox(doci_diagonal));
     BOOST_CHECK(sci_matvec.isApprox(doci_matvec));

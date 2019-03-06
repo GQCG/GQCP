@@ -48,7 +48,7 @@ HoppingMatrix::HoppingMatrix(const SquareMatrix<double>& H) :
  *  @param U        the Hubbard parameter U
  */
 HoppingMatrix::HoppingMatrix(const SquareMatrix<double>& A, double t, double U) :
-    HoppingMatrix(U * MatrixX<double>::Identity(A.get_dim(), A.get_dim()) - t * A)
+    HoppingMatrix(U * SquareMatrix<double>::Identity(A.get_dim(), A.get_dim()) - t * A)
 {}
 
 

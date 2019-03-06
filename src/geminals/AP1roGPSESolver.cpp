@@ -153,12 +153,12 @@ double AP1roGPSESolver::calculateJacobianElement(const AP1roGGeminalCoefficients
  *
  *  @return the Jacobian at the given geminal coefficients
  */
-MatrixX<double> AP1roGPSESolver::calculateJacobian(const VectorX<double>& g) const {
+SquareMatrix<double> AP1roGPSESolver::calculateJacobian(const VectorX<double>& g) const {
 
     AP1roGGeminalCoefficients G (g, this->N_P, this->K);
     size_t number_of_geminal_coefficients = AP1roGGeminalCoefficients::numberOfGeminalCoefficients(N_P, K);
 
-    MatrixX<double> J = MatrixX<double>::Zero(number_of_geminal_coefficients, number_of_geminal_coefficients);
+    SquareMatrix<double> J = SquareMatrix<double>::Zero(number_of_geminal_coefficients, number_of_geminal_coefficients);
     // Loop over all Jacobian elements to construct it
     for (size_t row_index = 0; row_index < number_of_geminal_coefficients; row_index++) {
         for (size_t column_index = 0; column_index < number_of_geminal_coefficients; column_index++) {

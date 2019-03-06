@@ -69,9 +69,9 @@ private:
 
         // Initialize the N components of the matrix representations of the operator
         const auto nbf = static_cast<size_t>(basisset.nbf());  // number of basis functions
-        std::array<MatrixX<double>, N> matrix_components;
-        for (auto& matrix : matrix_components) {
-            matrix = MatrixX<double>::Zero(nbf, nbf);
+        std::array<OneElectronOperator<double>, N> operator_components;
+        for (auto& op : operator_components) {
+            op = OneElectronOperator<double>::Zero(nbf, nbf);
         }
 
 
@@ -106,7 +106,7 @@ private:
 
                         for (size_t i = 0; i < N; i++) {
                             double computed_integral = calculated_integrals[i][f2 + f1 * nbf_sh2];  // integrals are packed in row-major form
-                            matrix_components[i](bf1 + f1, bf2 + f2) = computed_integral;
+                            operator_components[i](bf1 + f1, bf2 + f2) = computed_integral;
                         }
 
                     }
@@ -114,13 +114,6 @@ private:
 
             }
         }  // shell loops
-
-
-        // Wrap the matrix representations into a OneElectronOperator
-        std::array<OneElectronOperator<double>, N> operator_components;
-        for (size_t i = 0; i < N; i++) {
-            operator_components[i] = OneElectronOperator<double>(matrix_components[i]);
-        }
 
         return operator_components;
     }

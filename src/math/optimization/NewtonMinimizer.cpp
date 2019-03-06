@@ -19,8 +19,7 @@
 
 #include "typedefs.hpp"
 #include "math/optimization/NewtonSystemOfEquationsSolver.hpp"
-
-
+#include "math/SquareMatrix.hpp"
 
 #include <iostream>
 
@@ -64,7 +63,7 @@ void NewtonMinimizer::solve() {
     // For mathematical correctness, the Jacobian of the gradient is the transpose of the Hessian of the scalar function
     // behind it
     MatrixFunction H_t = [this](const VectorX<double>& x) {
-        MatrixX<double> H = this->H(x);
+        SquareMatrix<double> H = this->H(x);
         H.transposeInPlace();
         return H;
     };

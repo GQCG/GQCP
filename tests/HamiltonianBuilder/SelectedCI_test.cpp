@@ -84,8 +84,8 @@ BOOST_AUTO_TEST_CASE ( SelectedCI_vs_FCI ) {
     GQCP::VectorX<double> selected_ci_matvec = selected_ci.matrixVectorProduct(hamiltonian_parameters, selected_ci_diagonal, selected_ci_diagonal);
     GQCP::VectorX<double> fci_matvec = fci.matrixVectorProduct(hamiltonian_parameters, fci_diagonal, fci_diagonal);
 
-    GQCP::MatrixX<double> selected_ci_hamiltonian = selected_ci.constructHamiltonian(hamiltonian_parameters);
-    GQCP::MatrixX<double> fci_hamiltonian = fci.constructHamiltonian(hamiltonian_parameters);
+    GQCP::SquareMatrix<double> selected_ci_hamiltonian = selected_ci.constructHamiltonian(hamiltonian_parameters);
+    GQCP::SquareMatrix<double> fci_hamiltonian = fci.constructHamiltonian(hamiltonian_parameters);
 
     BOOST_CHECK(selected_ci_diagonal.isApprox(fci_diagonal));
     BOOST_CHECK(selected_ci_matvec.isApprox(fci_matvec));
@@ -114,8 +114,8 @@ BOOST_AUTO_TEST_CASE ( SelectedCI_vs_DOCI ) {
     GQCP::VectorX<double> selected_ci_matvec = selected_ci.matrixVectorProduct(hamiltonian_parameters, selected_ci_diagonal, selected_ci_diagonal);
     GQCP::VectorX<double> doci_matvec = doci.matrixVectorProduct(hamiltonian_parameters, doci_diagonal, doci_diagonal);
 
-    GQCP::MatrixX<double> selected_ci_hamiltonian = selected_ci.constructHamiltonian(hamiltonian_parameters);
-    GQCP::MatrixX<double> doci_hamiltonian = doci.constructHamiltonian(hamiltonian_parameters);
+    GQCP::SquareMatrix<double> selected_ci_hamiltonian = selected_ci.constructHamiltonian(hamiltonian_parameters);
+    GQCP::SquareMatrix<double> doci_hamiltonian = doci.constructHamiltonian(hamiltonian_parameters);
 
     BOOST_CHECK(selected_ci_diagonal.isApprox(doci_diagonal));
     BOOST_CHECK(selected_ci_matvec.isApprox(doci_matvec));

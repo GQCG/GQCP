@@ -30,7 +30,7 @@
 BOOST_AUTO_TEST_CASE ( constructor ) {
 
     // Create an example matrix
-    GQCP::MatrixX<double> A = GQCP::MatrixX<double>::Zero(2, 2);
+    GQCP::SquareMatrix<double> A = GQCP::SquareMatrix<double>::Zero(2, 2);
 
     // Test constructors with one supplied guess vector
     GQCP::VectorX<double> x_0 = GQCP::VectorX<double>::Constant(2, 1);
@@ -62,7 +62,7 @@ BOOST_AUTO_TEST_CASE ( constructor ) {
 BOOST_AUTO_TEST_CASE ( constructor_raw ) {
 
     // Create an example matrix
-    GQCP::MatrixX<double> A = GQCP::MatrixX<double>::Zero(2, 2);
+    GQCP::SquareMatrix<double> A = GQCP::SquareMatrix<double>::Zero(2, 2);
 
     // Test constructors with one supplied guess vector
     GQCP::VectorX<double> x_0 = GQCP::VectorX<double>::Constant(2, 1);
@@ -80,7 +80,7 @@ BOOST_AUTO_TEST_CASE ( constructor_raw ) {
 BOOST_AUTO_TEST_CASE ( diagonal_getter_Davidson ) {
 
     // Test the diagonal getter for Davidson
-    GQCP::MatrixX<double> A = GQCP::MatrixX<double>::Identity(2, 2);
+    GQCP::SquareMatrix<double> A = GQCP::SquareMatrix<double>::Identity(2, 2);
     GQCP::VectorX<double> x_0 = GQCP::VectorX<double>::Constant(2, 1);
 
     GQCP::DavidsonSolver davidson_solver (A, GQCP::DavidsonSolverOptions (x_0));
@@ -95,7 +95,7 @@ BOOST_AUTO_TEST_CASE ( esqc_example_solver ) {
 
 
     // Build up the example matrix
-    GQCP::MatrixX<double> A = GQCP::MatrixX<double>::Constant(5, 5, 0.1);
+    GQCP::SquareMatrix<double> A = GQCP::SquareMatrix<double>::Constant(5, 5, 0.1);
     A(0,0) = 1.0;
     A(1,1) = 2.0;
     A(2,2) = 3.0;
@@ -134,7 +134,7 @@ BOOST_AUTO_TEST_CASE ( liu_50 ) {
 
     // Let's prepare the Liu reference test (liu1978)
     size_t N = 50;
-    GQCP::MatrixX<double> A = GQCP::MatrixX<double>::Ones(N, N);
+    GQCP::SquareMatrix<double> A = GQCP::SquareMatrix<double>::Ones(N, N);
     for (size_t i = 0; i < N; i++) {
         if (i < 5) {
             A(i, i) = 1 + 0.1 * i;
@@ -174,7 +174,7 @@ BOOST_AUTO_TEST_CASE ( liu_50_collapse ) {
 
     // Let's prepare the Liu reference test (liu1978)
     size_t N = 50;
-    GQCP::MatrixX<double> A = GQCP::MatrixX<double>::Ones(N, N);
+    GQCP::SquareMatrix<double> A = GQCP::SquareMatrix<double>::Ones(N, N);
     for (size_t i = 0; i < N; i++) {
         if (i < 5) {
             A(i, i) = 1 + 0.1 * i;
@@ -220,7 +220,7 @@ BOOST_AUTO_TEST_CASE ( liu_50_number_of_requested_eigenpairs ) {
 
     // Let's prepare the Liu reference test (liu1978)
     size_t N = 50;
-    GQCP::MatrixX<double> A = GQCP::MatrixX<double>::Ones(N, N);
+    GQCP::SquareMatrix<double> A = GQCP::SquareMatrix<double>::Ones(N, N);
     for (size_t i = 0; i < N; i++) {
         if (i < 5) {
             A(i, i) = 1 + 0.1 * i;
@@ -265,7 +265,7 @@ BOOST_AUTO_TEST_CASE ( liu_1000 ) {
 
     // Let's prepare the Liu reference test (liu1978)
     size_t N = 1000;
-    GQCP::MatrixX<double> A = GQCP::MatrixX<double>::Ones(N, N);
+    GQCP::SquareMatrix<double> A = GQCP::SquareMatrix<double>::Ones(N, N);
     for (size_t i = 0; i < N; i++) {
         if (i < 5) {
             A(i, i) = 1 + 0.1 * i;
@@ -305,7 +305,7 @@ BOOST_AUTO_TEST_CASE ( liu_1000_collapse ) {
 
     // Let's prepare the Liu reference test (liu1978)
     size_t N = 1000;
-    GQCP::MatrixX<double> A = GQCP::MatrixX<double>::Ones(N, N);
+    GQCP::SquareMatrix<double> A = GQCP::SquareMatrix<double>::Ones(N, N);
     for (size_t i = 0; i < N; i++) {
         if (i < 5) {
             A(i, i) = 1 + 0.1 * i;
@@ -349,7 +349,7 @@ BOOST_AUTO_TEST_CASE ( liu_1000_number_of_requested_eigenpairs ) {
 
     // Let's prepare the Liu reference test (liu1978)
     size_t N = 1000;
-    GQCP::MatrixX<double> A = GQCP::MatrixX<double>::Ones(N, N);
+    GQCP::SquareMatrix<double> A = GQCP::SquareMatrix<double>::Ones(N, N);
     for (size_t i = 0; i < N; i++) {
         if (i < 5) {
             A(i, i) = 1 + 0.1 * i;

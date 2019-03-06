@@ -22,6 +22,8 @@
 #include "math/optimization/BaseEigenproblemSolver.hpp"
 #include "math/optimization/EigenproblemSolverOptions.hpp"
 
+#include "math/SquareMatrix.hpp"
+
 #include "typedefs.hpp"
 
 
@@ -71,7 +73,7 @@ public:
      *  @param collapsed_subspace_dimension         the dimension of the subspace after collapse
      *  @param maximum_number_of_iterations         the maximum number of Davidson iterations
      */
-    DavidsonSolver(const MatrixX<double>& A, const MatrixX<double>& V_0, size_t number_of_requested_eigenpairs = 1, double convergence_threshold = 1.0e-08, double correction_threshold = 1.0e-12, size_t maximum_subspace_dimension = 15, size_t collapsed_subspace_dimension = 2, size_t maximum_number_of_iterations = 128);
+    DavidsonSolver(const SquareMatrix<double>& A, const MatrixX<double>& V_0, size_t number_of_requested_eigenpairs = 1, double convergence_threshold = 1.0e-08, double correction_threshold = 1.0e-12, size_t maximum_subspace_dimension = 15, size_t collapsed_subspace_dimension = 2, size_t maximum_number_of_iterations = 128);
 
     /**
      *  @param matrixVectorProduct          a vector function that returns the matrix-vector product (i.e. the matrix-vector product representation of the matrix)
@@ -84,7 +86,7 @@ public:
      *  @param A                            the matrix to be diagonalized
      *  @param davidson_solver_options      the options specified for solving the Davidson eigenvalue problem
      */
-    DavidsonSolver(const MatrixX<double>& A, const DavidsonSolverOptions& davidson_solver_options);
+    DavidsonSolver(const SquareMatrix<double>& A, const DavidsonSolverOptions& davidson_solver_options);
 
 
     // DESTRUCTOR

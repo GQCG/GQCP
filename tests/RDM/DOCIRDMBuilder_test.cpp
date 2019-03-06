@@ -115,7 +115,7 @@ BOOST_AUTO_TEST_CASE ( lih_1RDM_2RDM_trace_DOCI ) {
     GQCP::OneRDMs<double> one_rdms = doci_rdm.calculate1RDMs(coef);
 
 
-    GQCP::MatrixX<double> D_from_reduction = (1.0/(N-1)) * two_rdms.two_rdm.reduce();
+    GQCP::OneRDM<double> D_from_reduction = (1.0/(N-1)) * two_rdms.two_rdm.reduce();
     BOOST_CHECK(one_rdms.one_rdm.isApprox(D_from_reduction, 1.0e-12));
 }
 
@@ -178,7 +178,7 @@ BOOST_AUTO_TEST_CASE ( lih_1RDM_2RDM_trace_DOCI_wavefunction ) {
     GQCP::TwoRDMs<double> two_rdms = doci_rdm.calculate2RDMs();
     GQCP::OneRDMs<double> one_rdms = doci_rdm.calculate1RDMs();
 
-    GQCP::MatrixX<double> D_from_reduction = (1.0/(N-1)) * two_rdms.two_rdm.reduce();
+    GQCP::OneRDM<double> D_from_reduction = (1.0/(N-1)) * two_rdms.two_rdm.reduce();
     BOOST_CHECK(one_rdms.one_rdm.isApprox(D_from_reduction, 1.0e-12));
 }
 

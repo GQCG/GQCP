@@ -81,7 +81,7 @@ public:
 
         auto K = static_cast<size_t>(this->dimension(0));
 
-        auto D = OneRDM<double>(MatrixX<double>::Zero(K, K));
+        OneRDM<double> D = OneRDM<double>::Zero(K, K);
         for (size_t p = 0; p < K; p++) {
             for (size_t q = 0; q < K; q++) {
                 for (size_t r = 0; r < K; r++) {
@@ -90,7 +90,7 @@ public:
             }
         }
 
-        return OneRDM<Scalar>(D);
+        return D;
     }
 };
 

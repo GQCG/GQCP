@@ -52,7 +52,7 @@ protected:
      *
      *  @return the new Fock matrix (expressed in AO basis)
      */
-    virtual MatrixX<double> calculateNewFockMatrix(const MatrixX<double>& D_AO) = 0;
+    virtual OneElectronOperator<double> calculateNewFockMatrix(const OneRDM<double>& D_AO) = 0;
 
 public:
     // CONSTRUCTORS

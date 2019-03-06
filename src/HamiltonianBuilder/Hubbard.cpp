@@ -151,7 +151,7 @@ Hubbard::Hubbard(const ProductFockSpace& fock_space) :
  *
  *  @return the Hubbard Hamiltonian matrix
  */
-MatrixX<double> Hubbard::constructHamiltonian(const HamiltonianParameters<double>& hamiltonian_parameters) const {
+SquareMatrix<double> Hubbard::constructHamiltonian(const HamiltonianParameters<double>& hamiltonian_parameters) const {
     auto K = hamiltonian_parameters.get_h().get_dim();
     if (K != this->fock_space.get_K()) {
         throw std::invalid_argument("Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
@@ -162,7 +162,7 @@ MatrixX<double> Hubbard::constructHamiltonian(const HamiltonianParameters<double
 
     auto dim = fock_space.get_dimension();
 
-    MatrixX<double> result_matrix = MatrixX<double>::Zero(dim, dim);
+    SquareMatrix<double> result_matrix = SquareMatrix<double>::Zero(dim, dim);
     result_matrix += this->calculateDiagonal(hamiltonian_parameters).asDiagonal();
 
     // We pass to a matrix and create the corresponding lambda function

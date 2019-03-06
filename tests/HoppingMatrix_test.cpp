@@ -52,7 +52,7 @@ BOOST_AUTO_TEST_CASE ( FromUpperTriangle_throws ) {
 BOOST_AUTO_TEST_CASE ( triangle_adjacency_matrix ) {
 
     // Check the conversion to a triangle hopping matrix
-    GQCP::MatrixX<double> A = GQCP::MatrixX<double>::Zero(3, 3);
+    GQCP::SquareMatrix<double> A = GQCP::SquareMatrix<double>::Zero(3, 3);
     A << 0, 1, 1,
          1, 0, 1,
          1, 1, 0;
@@ -61,7 +61,7 @@ BOOST_AUTO_TEST_CASE ( triangle_adjacency_matrix ) {
     GQCP::HoppingMatrix H (A, t, U);
 
 
-    GQCP::MatrixX<double> H_ref = GQCP::MatrixX<double>::Zero(3, 3);
+    GQCP::SquareMatrix<double> H_ref = GQCP::SquareMatrix<double>::Zero(3, 3);
     H_ref << U, -t, -t,
             -t,  U, -t,
             -t, -t,  U;

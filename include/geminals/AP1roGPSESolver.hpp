@@ -79,7 +79,7 @@ public:
      *
      *  @return the Jacobian at the given geminal coefficients
      */
-    MatrixX<double> calculateJacobian(const VectorX<double>& g) const;
+    SquareMatrix<double> calculateJacobian(const VectorX<double>& g) const;
 
     /**
      *  @param G        the AP1roG geminal coefficients

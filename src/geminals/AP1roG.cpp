@@ -80,7 +80,7 @@ double calculateOverlap(const AP1roGGeminalCoefficients& G, const BivariationalC
  */
 OneRDM<double> calculate1RDM(const AP1roGGeminalCoefficients& G, const BivariationalCoefficients& Q) {
 
-    MatrixX<double> D = MatrixX<double>::Zero(G.get_K(), G.get_K());
+    OneRDM<double> D = OneRDM<double>::Zero(G.get_K(), G.get_K());
     double overlap = calculateOverlap(G, Q);
 
     AP1roGVariables q = Q.q;
@@ -117,7 +117,7 @@ OneRDM<double> calculate1RDM(const AP1roGGeminalCoefficients& G, const Bivariati
         D(a,a) = 2 / overlap * intermediate;
     }
 
-    return OneRDM<double>(D);
+    return D;
 }
 
 
@@ -128,13 +128,13 @@ OneRDM<double> calculate1RDM(const AP1roGGeminalCoefficients& G, const Bivariati
  *
  *  @return the AP1roG number 2-RDM (the Delta-matrix in the notes)
  */
-MatrixX<double> calculateNumber2RDM(const AP1roGGeminalCoefficients& G, const BivariationalCoefficients& Q) {
+SquareMatrix<double> calculateNumber2RDM(const AP1roGGeminalCoefficients& G, const BivariationalCoefficients& Q) {
 
     size_t N_P = G.get_N_P();
     size_t K = G.get_K();
     double overlap = calculateOverlap(G, Q);
 
-    MatrixX<double> Delta = MatrixX<double>::Zero(K, K);
+    SquareMatrix<double> Delta = SquareMatrix<double>::Zero(K, K);
 
 
     // KISS-implementation
@@ -206,13 +206,13 @@ MatrixX<double> calculateNumber2RDM(const AP1roGGeminalCoefficients& G, const Bi
  *
  *  @return the AP1roG pair 2-RDM (the Pi-matrix in the notes)
  */
-MatrixX<double> calculatePair2RDM(const AP1roGGeminalCoefficients& G, const BivariationalCoefficients& Q) {
+SquareMatrix<double> calculatePair2RDM(const AP1roGGeminalCoefficients& G, const BivariationalCoefficients& Q) {
 
     size_t N_P = G.get_N_P();
     size_t K = G.get_K();
     double overlap = calculateOverlap(G, Q);
 
-    MatrixX<double> Pi = MatrixX<double>::Zero(K, K);
+    SquareMatrix<double> Pi = SquareMatrix<double>::Zero(K, K);
 
 
     // KISS-implementation
@@ -294,12 +294,12 @@ MatrixX<double> calculatePair2RDM(const AP1roGGeminalCoefficients& G, const Biva
 TwoRDM<double> calculate2RDM(const AP1roGGeminalCoefficients& G, const BivariationalCoefficients& Q) {
 
     size_t K = G.get_K();
-    SquareRankFourTensor<double> d (K);
+    TwoRDM<double> d (K);
     d.setZero();
 
 
-    MatrixX<double> Delta = calculateNumber2RDM(G, Q);
-    MatrixX<double> Pi = calculatePair2RDM(G, Q);
+    auto Delta = calculateNumber2RDM(G, Q);
+    auto Pi = calculatePair2RDM(G, Q);
 
     // KISS-implementation
     for (size_t p = 0; p < K; p++) {
@@ -325,7 +325,7 @@ TwoRDM<double> calculate2RDM(const AP1roGGeminalCoefficients& G, const Bivariati
         }
     }  // spatial orbital loops
 
-    return TwoRDM<double>(d);
+    return d;
 }
 
 

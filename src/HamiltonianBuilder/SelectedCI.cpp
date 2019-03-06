@@ -216,7 +216,7 @@ SelectedCI::SelectedCI(const SelectedFockSpace& fock_space) :
  *
  *  @return the SelectedCI Hamiltonian matrix
  */
-MatrixX<double> SelectedCI::constructHamiltonian(const HamiltonianParameters<double>& hamiltonian_parameters) const {
+SquareMatrix<double> SelectedCI::constructHamiltonian(const HamiltonianParameters<double>& hamiltonian_parameters) const {
     auto K = hamiltonian_parameters.get_h().get_dim();
     if (K != this->fock_space.get_K()) {
         throw std::invalid_argument("Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
@@ -224,7 +224,7 @@ MatrixX<double> SelectedCI::constructHamiltonian(const HamiltonianParameters<dou
 
     auto dim = fock_space.get_dimension();
 
-    MatrixX<double> result_matrix = MatrixX<double>::Zero(dim, dim);
+    SquareMatrix<double> result_matrix = SquareMatrix<double>::Zero(dim, dim);
     result_matrix += this->calculateDiagonal(hamiltonian_parameters).asDiagonal();
 
     // We should put the calculated elements inside the result matrix

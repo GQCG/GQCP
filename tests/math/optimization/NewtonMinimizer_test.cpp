@@ -21,6 +21,7 @@
 
 
 #include "math/optimization/NewtonMinimizer.hpp"
+#include "math/SquareMatrix.hpp"
 
 
 
@@ -47,8 +48,8 @@ GQCP::VectorX<double> grad(const GQCP::VectorX<double>& x) {
 /**
  *  Implement the Hessian of the scalar function
  */
-GQCP::MatrixX<double> H(const GQCP::VectorX<double>& x) {
-    return 2 * GQCP::MatrixX<double>::Identity(x.size(), x.size());
+GQCP::SquareMatrix<double> H(const GQCP::VectorX<double>& x) {
+    return 2 * GQCP::SquareMatrix<double>::Identity(x.size(), x.size());
 }
 
 
@@ -66,7 +67,7 @@ BOOST_AUTO_TEST_CASE ( norm_squared_function_minimization ) {
     GQCP::VectorX<double> grad_test (2);
     grad_test << 2, 2;
 
-    GQCP::MatrixX<double> H_test (2, 2);
+    GQCP::SquareMatrix<double> H_test (2);
     H_test << 2, 0,
               0, 2;
 

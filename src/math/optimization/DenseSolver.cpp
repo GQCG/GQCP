@@ -32,7 +32,7 @@ namespace GQCP {
  *  @param matrix                               the full dense representation of the matrix
  *  @param number_of_requested_eigenpairs       the number of eigenpairs the eigensolver should find
  */
-DenseSolver::DenseSolver(const MatrixX<double>& matrix, size_t number_of_requested_eigenpairs) :
+DenseSolver::DenseSolver(const SquareMatrix<double>& matrix, size_t number_of_requested_eigenpairs) :
     BaseMatrixSolver(matrix.cols(), number_of_requested_eigenpairs),
     matrix (matrix)
 {
@@ -45,7 +45,7 @@ DenseSolver::DenseSolver(const MatrixX<double>& matrix, size_t number_of_request
  *  @param number_of_requested_eigenpairs       the number of eigenpairs the eigensolver should find
  */
 DenseSolver::DenseSolver(size_t dim, size_t number_of_requested_eigenpairs) :
-    DenseSolver(MatrixX<double>::Zero(dim, dim), number_of_requested_eigenpairs)
+    DenseSolver(SquareMatrix<double>::Zero(dim, dim), number_of_requested_eigenpairs)
 {}
 
 
@@ -53,7 +53,7 @@ DenseSolver::DenseSolver(size_t dim, size_t number_of_requested_eigenpairs) :
  *  @param matrix                   the full dense representation of the matrix
  *  @param dense_solver_options     the options to be used for the dense eigenproblem algorithm
  */
-DenseSolver::DenseSolver(const MatrixX<double>& matrix, const DenseSolverOptions& dense_solver_options) :
+DenseSolver::DenseSolver(const SquareMatrix<double>& matrix, const DenseSolverOptions& dense_solver_options) :
     DenseSolver(matrix, dense_solver_options.number_of_requested_eigenpairs)
 {}
 

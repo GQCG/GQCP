@@ -53,7 +53,7 @@ double ERNewtonLocalizer::calculateGradientElement(const HamiltonianParameters<d
  */
 SquareMatrix<double> ERNewtonLocalizer::calculateGradient(const HamiltonianParameters<double>& ham_par) const {
 
-    SquareMatrix<double> G = MatrixX<double>::Zero(this->N_P, this->N_P);
+    SquareMatrix<double> G = SquareMatrix<double>::Zero(this->N_P, this->N_P);
 
     for (size_t i = 0; i < this->N_P; i++) {
         for (size_t j = 0; j < this->N_P; j++) {
@@ -156,14 +156,14 @@ void ERNewtonLocalizer::localize(HamiltonianParameters<double>& ham_par) {
     while (!(this->is_converged)) {
 
         // Calculate the gradient and Hessian with only the free parameters, at kappa = 0
-        VectorX<double> gradient_vector = this->calculateGradient(ham_par).strictLowerTriangle();  // strictLowerTriangle
-        MatrixX<double> hessian_matrix = this->calculateHessian(ham_par).pairWiseStrictReduce();  // pairWiseStrictReduce
+        auto gradient_vector = this->calculateGradient(ham_par).strictLowerTriangle();
+        auto hessian_matrix = this->calculateHessian(ham_par).pairWiseStrictReduce();
 
         // Perform a Newton-step to find orbital rotation parameters kappa
         VectorFunction gradient_function = [gradient_vector] (const VectorX<double>& x) { return gradient_vector; };
         MatrixFunction hessian_function = [hessian_matrix] (const VectorX<double>& x) { return hessian_matrix; };
 
-        VectorX<double> kappa_vector = newtonStep(VectorX<double>::Zero(dim), gradient_function, hessian_function);  // with only the free parameters
+        auto kappa_vector = newtonStep(VectorX<double>::Zero(dim), gradient_function, hessian_function);  // with only the free parameters
 
 
         // If the calculated norm is zero, we have reached a critical point
@@ -194,19 +194,19 @@ void ERNewtonLocalizer::localize(HamiltonianParameters<double>& ham_par) {
 
         // The current kappa vector corresponds to the occupied-occupied rotation: the full kappa matrix contains o-o, o-v and v-v blocks
         auto kappa_matrix_occupied = GQCP::SquareMatrix<double>::FromStrictTriangle(kappa_vector);  // containing all parameters, so this is in anti-Hermitian (anti-symmetric) form
-        MatrixX<double> kappa_matrix_transpose_occupied = kappa_matrix_occupied.transpose();  // store the transpose in an auxiliary variable to avoid aliasing issues
+        SquareMatrix<double> kappa_matrix_transpose_occupied = kappa_matrix_occupied.transpose();  // store the transpose in an auxiliary variable to avoid aliasing issues
         kappa_matrix_occupied -= kappa_matrix_transpose_occupied;  // FromStrictTriangle only returns the lower triangle, so we must construct the anti-Hermitian (anti-symmetric) matrix
 
-        MatrixX<double> kappa_matrix = MatrixX<double>::Zero(ham_par.get_K(), ham_par.get_K());
+        SquareMatrix<double> kappa_matrix = SquareMatrix<double>::Zero(ham_par.get_K(), ham_par.get_K());
         kappa_matrix.topLeftCorner(this->N_P, this->N_P) = kappa_matrix_occupied;
 
 
         // Calculate the unitary rotation matrix that we can use to rotate the basis
-        MatrixX<double> U = (-kappa_matrix).exp();
+        SquareMatrix<double> U = (-kappa_matrix).exp();
 
 
         // Transform the integrals to the new orthonormal basis
-        ham_par.rotate(SquareMatrix<double>(U));  // this checks if U is actually unitary
+        ham_par.rotate(U);  // this checks if U is actually unitary
     }  // while not converged
 }
 

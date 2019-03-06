@@ -34,9 +34,9 @@
 
 BOOST_AUTO_TEST_CASE ( one_electron_throw ) {
 
-    GQCP::OneElectronOperator<double> h (GQCP::MatrixX<double>::Zero(2, 2));
-    GQCP::OneRDM<double> D_valid (GQCP::MatrixX<double>::Zero(2, 2));
-    GQCP::OneRDM<double> D_invalid (GQCP::MatrixX<double>::Zero(3, 3));
+    GQCP::OneElectronOperator<double> h = GQCP::OneElectronOperator<double>::Zero(2, 2);
+    GQCP::OneRDM<double> D_valid = GQCP::OneRDM<double>::Zero(2, 2);
+    GQCP::OneRDM<double> D_invalid = GQCP::OneRDM<double>::Zero(3, 3);
 
     BOOST_CHECK_THROW(GQCP::calculateExpectationValue(h, D_invalid), std::invalid_argument);
     BOOST_CHECK_NO_THROW(GQCP::calculateExpectationValue(h, D_valid));
@@ -84,7 +84,6 @@ BOOST_AUTO_TEST_CASE ( mulliken_N2_STO_3G ) {
     size_t N = N2.get_N();
 
     // Create a 1-RDM for N2
-    GQCP::MatrixX<double> D = GQCP::MatrixX<double>::Zero(K, K);
     GQCP::OneRDM<double> one_rdm = GQCP::calculateRHF1RDM(K, N);
 
     double mulliken_population = GQCP::calculateExpectationValue(mulliken, one_rdm);

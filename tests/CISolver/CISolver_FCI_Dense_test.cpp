@@ -52,14 +52,8 @@ BOOST_AUTO_TEST_CASE ( test_random_rotation_diagonal_dense_fci ) {
 
     GQCP::VectorX<double> diagonal1 = fci.calculateDiagonal(mol_ham_par);
 
-    // Get a random unitary matrix by diagonalizing a random symmetric matrix
-    GQCP::MatrixX<double> A_random = GQCP::MatrixX<double>::Random(K, K);
-    GQCP::MatrixX<double> A_symmetric = A_random + A_random.transpose();
-    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> unitary_solver (A_symmetric);
-    GQCP::MatrixX<double> U_random = unitary_solver.eigenvectors();
-
     // Rotate the hampar using the random unitary matrix
-    mol_ham_par.rotate(GQCP::SquareMatrix<double>(U_random));
+    mol_ham_par.randomRotate();
 
     GQCP::VectorX<double> diagonal2 = fci.calculateDiagonal(mol_ham_par);
 

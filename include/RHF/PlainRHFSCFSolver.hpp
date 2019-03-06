@@ -37,7 +37,7 @@ private:
      *
      *  @return the new Fock matrix (expressed in AO basis)
      */
-    MatrixX<double> calculateNewFockMatrix(const MatrixX<double>& D_AO) override;
+    OneElectronOperator<double> calculateNewFockMatrix(const OneRDM<double>& D_AO) override;
 
 public:
     // CONSTRUCTORS

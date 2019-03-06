@@ -47,9 +47,9 @@ BOOST_AUTO_TEST_CASE ( diagonal_getter_dense ) {
 BOOST_AUTO_TEST_CASE ( simple_dense ) {
 
     // Construct a random symmetric matrix and diagonalize it
-    GQCP::MatrixX<double> A = GQCP::MatrixX<double>::Random(10,10);
-    GQCP::MatrixX<double> AT = A.transpose();
-    GQCP::MatrixX<double> B = A + AT;
+    GQCP::SquareMatrix<double> A = GQCP::SquareMatrix<double>::Random(10,10);
+    GQCP::SquareMatrix<double> AT = A.transpose();
+    GQCP::SquareMatrix<double> B = A + AT;
 
     Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> self_adjoint_eigensolver (B);
     double ref_lowest_eigenvalue = self_adjoint_eigensolver.eigenvalues()(0);
@@ -81,9 +81,9 @@ BOOST_AUTO_TEST_CASE ( simple_dense ) {
 BOOST_AUTO_TEST_CASE ( simple_dense_direct_constructor ) {
 
     // Construct a random symmetric matrix and diagonalize it
-    GQCP::MatrixX<double> A = GQCP::MatrixX<double>::Random(10,10);
-    GQCP::MatrixX<double> AT = A.transpose();
-    GQCP::MatrixX<double> B = A + AT;
+    GQCP::SquareMatrix<double> A = GQCP::SquareMatrix<double>::Random(10,10);
+    GQCP::SquareMatrix<double> AT = A.transpose();
+    GQCP::SquareMatrix<double> B = A + AT;
 
     Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> self_adjoint_eigensolver (B);
     double ref_lowest_eigenvalue = self_adjoint_eigensolver.eigenvalues()(0);
@@ -114,9 +114,9 @@ BOOST_AUTO_TEST_CASE ( simple_dense_number_of_requested_eigenpairs ) {
     size_t dim = 10;
 
     // Construct a random symmetric matrix and diagonalize it
-    GQCP::MatrixX<double> A = GQCP::MatrixX<double>::Random(dim,dim);
-    GQCP::MatrixX<double> AT = A.transpose();
-    GQCP::MatrixX<double> B = A + AT;
+    GQCP::SquareMatrix<double> A = GQCP::SquareMatrix<double>::Random(dim,dim);
+    GQCP::SquareMatrix<double> AT = A.transpose();
+    GQCP::SquareMatrix<double> B = A + AT;
 
     Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> self_adjoint_eigensolver (B);
     GQCP::VectorX<double> ref_lowest_eigenvalues = self_adjoint_eigensolver.eigenvalues().head(number_of_requested_eigenpairs);

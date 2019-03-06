@@ -49,7 +49,7 @@ public:
      *
      *  @return the frozen core Hamiltonian matrix
      */
-    MatrixX<double> constructHamiltonian(const HamiltonianParameters<double>& ham_par) const override;
+    SquareMatrix<double> constructHamiltonian(const HamiltonianParameters<double>& ham_par) const override;
 
     /**
      *  @param ham_par      the Hamiltonian parameters in an orthonormal orbital basis

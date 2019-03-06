@@ -65,7 +65,7 @@ public:
      *
      *  @return the Hamiltonian matrix
      */
-    virtual MatrixX<double> constructHamiltonian(const HamiltonianParameters<double>& hamiltonian_parameters) const = 0;
+    virtual SquareMatrix<double> constructHamiltonian(const HamiltonianParameters<double>& hamiltonian_parameters) const = 0;
 
     /**
      *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis

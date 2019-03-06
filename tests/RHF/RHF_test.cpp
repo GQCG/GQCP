@@ -41,7 +41,7 @@ BOOST_AUTO_TEST_CASE ( RHF_1RDM_matrix ) {
     // Test a reference RHF 1-RDM in an orthonormal basis
     size_t K = 5;
     size_t N = 6;
-    GQCP::MatrixX<double> D_ref (K, K);
+    GQCP::OneRDM<double> D_ref (K);
     D_ref << 2, 0, 0, 0, 0,
              0, 2, 0, 0, 0,
              0, 0, 2, 0, 0,

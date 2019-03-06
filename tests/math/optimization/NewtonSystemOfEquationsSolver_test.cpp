@@ -21,7 +21,7 @@
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
 
 #include "math/optimization/NewtonSystemOfEquationsSolver.hpp"
-
+#include "math/SquareMatrix.hpp"
 
 
 /*
@@ -45,9 +45,9 @@ GQCP::VectorX<double> f(const GQCP::VectorX<double>& x) {
 /**
  *  Implement the Jacobian of the previous function
  */
-GQCP::MatrixX<double> J(const GQCP::VectorX<double>& x) {
+GQCP::SquareMatrix<double> J(const GQCP::VectorX<double>& x) {
 
-    GQCP::MatrixX<double> J (2, 2);
+    GQCP::SquareMatrix<double> J (2);
 
     J << 2 * x(0), 2 * x(1),
          4 * x(0), 4 * x(1);
@@ -67,7 +67,7 @@ BOOST_AUTO_TEST_CASE ( norm_squared_function_syseq ) {
     GQCP::VectorX<double> f_test (2);
     f_test << 2, 4;
 
-    GQCP::MatrixX<double> J_test (2, 2);
+    GQCP::SquareMatrix<double> J_test (2);
     J_test << 2, 2,
               4, 4;
 

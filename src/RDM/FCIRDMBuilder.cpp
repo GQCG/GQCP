@@ -43,8 +43,8 @@ OneRDMs<double> FCIRDMBuilder::calculate1RDMs(const VectorX<double>& x) const {
     // Initialize as zero matrices
     size_t K = this->fock_space.get_K();
 
-    auto D_aa = OneRDM<double>(MatrixX<double>::Zero(K, K));
-    auto D_bb = OneRDM<double>(MatrixX<double>::Zero(K, K));
+    OneRDM<double> D_aa = OneRDM<double>::Zero(K, K);
+    OneRDM<double> D_bb = OneRDM<double>::Zero(K, K);
 
     FockSpace fock_space_alpha = fock_space.get_fock_space_alpha();
     FockSpace fock_space_beta = fock_space.get_fock_space_beta();
