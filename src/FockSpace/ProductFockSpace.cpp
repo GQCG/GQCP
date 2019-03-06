@@ -52,9 +52,14 @@ ProductFockSpace::ProductFockSpace(size_t K, size_t N_alpha, size_t N_beta) :
  *  @return the dimension of the product Fock space
  */
 size_t ProductFockSpace::calculateDimension(size_t K, size_t N_alpha, size_t N_beta) {
-    size_t alpha_dim = FockSpace::calculateDimension(K, N_alpha);
-    size_t beta_dim = FockSpace::calculateDimension(K, N_beta);
-    return boost::numeric::converter<double, size_t>::convert(beta_dim * alpha_dim);
+    double alpha_dim = FockSpace::calculateDimension(K, N_alpha);
+    double beta_dim = FockSpace::calculateDimension(K, N_beta);
+    try {
+        return boost::numeric::converter<size_t, double>::convert(alpha_dim * beta_dim);
+    } catch (boost::numeric::bad_numeric_cast &e) {
+        throw std::overflow_error("ProductFockSpace::calculateDimension(size_t, size_t, size_t): "+ std::string(e.what()));
+
+    }
 }
 
 
