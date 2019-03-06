@@ -40,4 +40,7 @@ BOOST_AUTO_TEST_CASE ( ProductFockSpace_dimension) {
     BOOST_CHECK_EQUAL(GQCP::ProductFockSpace::calculateDimension(10, 2, 0), 45);
     BOOST_CHECK_EQUAL(GQCP::ProductFockSpace::calculateDimension(6, 3, 1), 120);
     BOOST_CHECK_EQUAL(GQCP::ProductFockSpace::calculateDimension(8, 4, 2), 1960);
+
+    BOOST_CHECK_THROW(GQCP::ProductFockSpace::calculateDimension(60, 25, 25), std::overflow_error);
+
 }
