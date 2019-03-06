@@ -115,18 +115,15 @@ OneElectronOperator<double> calculateRHFAOFockMatrix(const OneRDM<double>& D_AO,
 
     // Calculate both contractions (and incorporate prefactors)
     auto g = ham_par.get_g();
-    Eigen::Tensor<double, 2> direct_contraction = g.contract(D_AO_tensor, direct_contraction_pair);
-    Eigen::Tensor<double, 2> exchange_contraction = -0.5 * g.contract(D_AO_tensor, exchange_contraction_pair);
+    Tensor<double, 2> direct_contraction = g.contract(D_AO_tensor, direct_contraction_pair);
+    Tensor<double, 2> exchange_contraction = -0.5 * g.contract(D_AO_tensor, exchange_contraction_pair);
 
     // The previous contractions are Eigen::Tensor<double 2> instances. In order to calculate the total G matrix, we will convert them back into MatrixX<double>
     Eigen::Map<Eigen::MatrixXd> G1 (direct_contraction.data(), direct_contraction.dimension(0), direct_contraction.dimension(1));
     Eigen::Map<Eigen::MatrixXd> G2 (exchange_contraction.data(), exchange_contraction.dimension(0), exchange_contraction.dimension(1));
 
 
-    // Return the final result
-    auto H_core = ham_par.get_h();
-
-    return H_core + G1 + G2;
+    return ham_par.get_h() + G1 + G2;
 }
 
 
@@ -152,7 +149,7 @@ double calculateRHFElectronicEnergy(const OneRDM<double>& D_AO, const OneElectro
     Eigen::array<Eigen::IndexPair<int>, 2> contraction_pair = {Eigen::IndexPair<int>(0, 1), Eigen::IndexPair<int>(1, 0)};
 
     // Calculate the double contraction (with prefactor 0.5)
-    Eigen::Tensor<double, 0> contraction = 0.5 * D_AO_tensor.contract(Z_tensor, contraction_pair);
+    Tensor<double, 0> contraction = 0.5 * D_AO_tensor.contract(Z_tensor, contraction_pair);
 
     // As the double contraction of two matrices is a scalar (a tensor of rank 0), we should access the value as (0)
     return contraction(0);

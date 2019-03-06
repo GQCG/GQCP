@@ -110,7 +110,7 @@ void DOCINewtonOrbitalOptimizer::solve(BaseSolverOptions& solver_options, const 
                 }
             }
         }
-        auto hessian_matrix = hessian_tensor.pairWiseStrictReduce();  // hessian matrix with only the free parameters, at kappa = 0  // pairWiseStrictReduce
+        auto hessian_matrix = hessian_tensor.pairWiseStrictReduce();  // hessian matrix with only the free parameters, at kappa = 0
 
         Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> hessian_solver (hessian_matrix);
 

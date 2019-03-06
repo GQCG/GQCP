@@ -642,7 +642,7 @@ public:
         OneElectronOperator<Scalar> F = this->calculateGeneralizedFockMatrix(D, d);
 
         // A KISS implementation of the calculation of the super generalized Fock matrix W
-        SquareRankFourTensor<double> W (this->K);
+        TwoElectronOperator<Scalar> W (this->K);
         W.setZero();
         for (size_t p = 0; p < this->K; p++) {
             for (size_t q = 0; q < this->K; q++) {
@@ -669,7 +669,7 @@ public:
         }  // W elements loop
 
 
-        return TwoElectronOperator<Scalar>(W);
+        return W;
     }
 
 

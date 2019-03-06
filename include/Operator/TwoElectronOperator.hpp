@@ -100,9 +100,9 @@ public:
         // Calculate the contractions. We write this as one large contraction to
         //  1) avoid storing intermediate contractions
         //  2) let Eigen figure out some optimizations
-        Eigen::Tensor<Scalar, 4> g_transformed = T_tensor.conjugate().contract(T_tensor.contract(this->contract(T_tensor.conjugate(), contraction_pair1).shuffle(shuffle_1).contract(T_tensor, contraction_pair2), contraction_pair3).shuffle(shuffle_3), contraction_pair4);
+        TwoElectronOperator<Scalar> g_transformed = T_tensor.conjugate().contract(T_tensor.contract(this->contract(T_tensor.conjugate(), contraction_pair1).shuffle(shuffle_1).contract(T_tensor, contraction_pair2), contraction_pair3).shuffle(shuffle_3), contraction_pair4);
 
-        *this = TwoElectronOperator<Scalar>(g_transformed);
+        *this = g_transformed;
     }
 
 

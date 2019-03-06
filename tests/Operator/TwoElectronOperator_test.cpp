@@ -44,9 +44,7 @@ BOOST_AUTO_TEST_CASE ( TwoElectronOperator_constructor ) {
 BOOST_AUTO_TEST_CASE ( TwoElectronOperator_transform_trivial ) {
 
     // Let's test a trivial transformation: i.e. with T being a unit matrix
-    GQCP::SquareRankFourTensor<double> g (3);
-    g.setRandom();
-    GQCP::TwoElectronOperator<double> G (g);
+    GQCP::TwoElectronOperator<double> G (3);
 
     auto G_copy = G;
 

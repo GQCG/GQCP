@@ -45,16 +45,10 @@ BOOST_AUTO_TEST_CASE ( one_electron_throw ) {
 
 BOOST_AUTO_TEST_CASE ( two_electron_throw ) {
 
-    GQCP::SquareRankFourTensor<double> g_tensor (2);
-    g_tensor.setZero();
-    GQCP::TwoElectronOperator<double> g (g_tensor);
+    GQCP::TwoElectronOperator<double> g (2);
 
-    GQCP::SquareRankFourTensor<double> d_tensor_valid (2);
-    d_tensor_valid.setZero();
-    GQCP::SquareRankFourTensor<double> d_tensor_invalid (3);
-    d_tensor_valid.setZero();
-    GQCP::TwoRDM<double> d_valid (d_tensor_valid);
-    GQCP::TwoRDM<double> d_invalid (d_tensor_invalid);
+    GQCP::TwoRDM<double> d_valid (2);
+    GQCP::TwoRDM<double> d_invalid (3);
 
     BOOST_CHECK_THROW(GQCP::calculateExpectationValue(g, d_invalid), std::invalid_argument);
     BOOST_CHECK_NO_THROW(GQCP::calculateExpectationValue(g, d_valid));

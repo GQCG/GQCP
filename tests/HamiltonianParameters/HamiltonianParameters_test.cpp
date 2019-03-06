@@ -37,9 +37,9 @@
  *  @return a toy 2-RDM where
  *      d(i,j,k,l) = l + 2k + 4j + 8i
  */
-GQCP::SquareRankFourTensor<double> calculateToy2RDMTensor() {
-    GQCP::SquareRankFourTensor<double> d (2);
+GQCP::TwoRDM<double> calculateToy2RDMTensor() {
 
+    GQCP::TwoRDM<double> d (2);
     for (size_t i = 0; i < 2; i++) {
         for (size_t j = 0; j < 2; j++) {
             for (size_t k = 0; k < 2; k++) {
@@ -64,8 +64,9 @@ GQCP::SquareRankFourTensor<double> calculateToy2RDMTensor() {
  *  @return toy 2-electron integrals where
  *      g(i,j,k,l) = delta_ij delta_kl - delta_il delta_jk
  */
-GQCP::SquareRankFourTensor<double> calculateToyTwoElectronIntegralsTensor() {
-    GQCP::SquareRankFourTensor<double> g (2);
+GQCP::TwoElectronOperator<double> calculateToyTwoElectronIntegralsTensor() {
+
+    GQCP::TwoElectronOperator<double> g (2);
     g.setZero();
 
     for (size_t i = 0; i < 2; i++) {
@@ -375,7 +376,7 @@ BOOST_AUTO_TEST_CASE ( calculate_generalized_Fock_matrix_and_super ) {
 
 
     // Construct the reference super generalized Fock matrix
-    GQCP::SquareRankFourTensor<double> W_ref (2);
+    GQCP::TwoElectronOperator<double> W_ref (2);
     W_ref.setZero();
     for (size_t p = 0; p < 2; p++) {
         for (size_t q = 0; q < 2; q++) {

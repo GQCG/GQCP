@@ -134,10 +134,10 @@ BOOST_AUTO_TEST_CASE( HORTON_integrals_h2o_sto3g ) {
 
 
     // Read in reference data from HORTON
-    GQCP::SquareMatrix<double> ref_S = GQCP::SquareMatrix<double>::FromFile("data/h2o_sto-3g_overlap_horton.data", nbf, nbf);
-    GQCP::SquareMatrix<double> ref_T = GQCP::SquareMatrix<double>::FromFile("data/h2o_sto-3g_kinetic_horton.data", nbf, nbf);
-    GQCP::SquareMatrix<double> ref_V = GQCP::SquareMatrix<double>::FromFile("data/h2o_sto-3g_nuclear_horton.data", nbf, nbf);
-    GQCP::SquareRankFourTensor<double> ref_g = GQCP::SquareRankFourTensor<double>::FromFile("data/h2o_sto-3g_coulomb_horton.data", nbf);
+    GQCP::OneElectronOperator<double> ref_S = GQCP::OneElectronOperator<double>::FromFile("data/h2o_sto-3g_overlap_horton.data", nbf, nbf);
+    GQCP::OneElectronOperator<double> ref_T = GQCP::OneElectronOperator<double>::FromFile("data/h2o_sto-3g_kinetic_horton.data", nbf, nbf);
+    GQCP::OneElectronOperator<double> ref_V = GQCP::OneElectronOperator<double>::FromFile("data/h2o_sto-3g_nuclear_horton.data", nbf, nbf);
+    GQCP::TwoElectronOperator<double> ref_g = GQCP::TwoElectronOperator<double>::FromFile("data/h2o_sto-3g_coulomb_horton.data", nbf);
 
 
     // Check if the calculated integrals are equal to those of HORTON

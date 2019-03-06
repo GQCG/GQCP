@@ -302,7 +302,7 @@ TwoRDMs<double> FCIRDMBuilder::calculate2RDMs(const VectorX<double>& x) const {
     // BETA-BETA-ALPHA-ALPHA
     // We know that d^aabb_pqrs = d^bbaa_rspq
     Eigen::array<int, 4> shuffle {2, 3, 0, 1};  // array specifying the axes that should be swapped
-    auto d_bbaa = TwoRDM<double>(SquareRankFourTensor<double>(d_aabb.shuffle(shuffle)));
+    TwoRDM<double> d_bbaa (d_aabb.Eigen().shuffle(shuffle));
 
 
     // BETA-BETA-BETA-BETA
