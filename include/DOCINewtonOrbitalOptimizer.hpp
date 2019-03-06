@@ -57,7 +57,7 @@ public:
     // GETTERS
     const std::vector<Eigenpair>& get_eigenpairs() const;
     const Eigenpair& get_eigenpair(size_t index = 0) const;
-    const HamiltonianParameters& get_ham_par() const { return this->ham_par; }
+    const HamiltonianParameters<double>& get_ham_par() const { return this->ham_par; }
 
 
     // PUBLIC METHODS
