@@ -189,7 +189,7 @@ public:
      *  @return the i-j minor (i.e. delete the i-th row and j-th column)
      */
     template <typename Z = Self>  // enable_if must have Z inside
-    enable_if_t<Self::is_matrix, Z> minor(size_t i, size_t j) const {
+    enable_if_t<Self::is_matrix, Z> (minor)(size_t i, size_t j) const {  // wrap minor inside braces as a fix for the GCC macro 'minor'
 
         // Delete the i-th row
         Self A_i = Self::Zero(this->rows() - 1, this->cols());
