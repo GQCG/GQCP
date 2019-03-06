@@ -164,6 +164,7 @@
 			buildPhases = (
 			);
 			dependencies = (
+				56A5D11B222FEC7D00C1CF22 /* PBXTargetDependency */,
 				56FBA12E21C388540084F088 /* PBXTargetDependency */,
 				56FBA13021C388540084F088 /* PBXTargetDependency */,
 				56FBA13221C388540084F088 /* PBXTargetDependency */,
@@ -1551,6 +1552,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 56884F5F222C00BC00F68062;
 			remoteInfo = Tensor_test;
+		};
+		56A5D11A222FEC7D00C1CF22 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 56C839852215A4B300FA98A0;
+			remoteInfo = BUILD_MATH_TESTS;
 		};
 		56B0D3B521F9C38900605997 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -7966,6 +7974,11 @@
 			isa = PBXTargetDependency;
 			target = 56884F5F222C00BC00F68062 /* Tensor_test */;
 			targetProxy = 56A5D118222EC3F200C1CF22 /* PBXContainerItemProxy */;
+		};
+		56A5D11B222FEC7D00C1CF22 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 56C839852215A4B300FA98A0 /* BUILD_MATH_TESTS */;
+			targetProxy = 56A5D11A222FEC7D00C1CF22 /* PBXContainerItemProxy */;
 		};
 		56B0D3B421F9C38900605997 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
