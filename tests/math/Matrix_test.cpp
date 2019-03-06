@@ -105,7 +105,7 @@ BOOST_AUTO_TEST_CASE ( print ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( minors ) {
+BOOST_AUTO_TEST_CASE ( matrixMinor ) {
 
     GQCP::MatrixX<double> A (3, 4);
     A << 1,  2,  3,  4,
@@ -116,10 +116,10 @@ BOOST_AUTO_TEST_CASE ( minors ) {
     GQCP::MatrixX<double> A_00 (2, 3);
     A_00 <<  6,  7,  8,
             10, 11, 12;
-    BOOST_CHECK(A_00.isApprox(A.minor(0, 0)));
+    BOOST_CHECK(A_00.isApprox(A.matrixMinor(0, 0)));
 
     GQCP::MatrixX<double> A_21 (2, 3);
     A_21 << 1, 3, 4,
             5, 7, 8;
-    BOOST_CHECK(A_21.isApprox(A.minor(2, 1)));
+    BOOST_CHECK(A_21.isApprox(A.matrixMinor(2, 1)));
 }

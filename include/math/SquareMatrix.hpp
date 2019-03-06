@@ -237,7 +237,7 @@ public:
         size_t j = 0;  // develop by the first column
         double value = 0.0;
         for (size_t i = 0; i < this->rows(); i++) {
-            value += this->operator()(i,j) * SquareMatrix<Scalar>(this->minor(i,j)).permanent_combinatorial();  // need to convert because 'minor' is a Base function and isn't guaranteed to be square
+            value += this->operator()(i,j) * SquareMatrix<Scalar>(this->matrixMinor(i,j)).permanent_combinatorial();  // need to convert because 'minor' is a Base function and isn't guaranteed to be square
         }
 
         return value;
