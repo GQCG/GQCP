@@ -51,9 +51,9 @@ double ERNewtonLocalizer::calculateGradientElement(const HamiltonianParameters<d
  *
  *  @return the gradient of the Edmiston-Ruedenberg localization index as a matrix
  */
-Eigen::MatrixXd ERNewtonLocalizer::calculateGradient(const HamiltonianParameters<double>& ham_par) const {
+SquareMatrix<double> ERNewtonLocalizer::calculateGradient(const HamiltonianParameters<double>& ham_par) const {
 
-    Eigen::MatrixXd G = Eigen::MatrixXd::Zero(this->N_P, this->N_P);
+    SquareMatrix<double> G = SquareMatrix<double>::Zero(this->N_P, this->N_P);
 
     for (size_t i = 0; i < this->N_P; i++) {
         for (size_t j = 0; j < this->N_P; j++) {
@@ -105,9 +105,9 @@ double ERNewtonLocalizer::calculateHessianElement(const HamiltonianParameters<do
  *
  *  @return the Hessian of the Edmiston-Ruedenberg localization index as a tensor
  */
-Eigen::Tensor<double, 4> ERNewtonLocalizer::calculateHessian(const HamiltonianParameters<double>& ham_par) const {
+SquareRankFourTensor<double> ERNewtonLocalizer::calculateHessian(const HamiltonianParameters<double>& ham_par) const {
 
-    Eigen::Tensor<double, 4> H (this->N_P, this->N_P, this->N_P, this->N_P);
+    SquareRankFourTensor<double> H (this->N_P);
     H.setZero();
 
     for (size_t i = 0; i < this->N_P; i++) {
@@ -156,14 +156,14 @@ void ERNewtonLocalizer::localize(HamiltonianParameters<double>& ham_par) {
     while (!(this->is_converged)) {
 
         // Calculate the gradient and Hessian with only the free parameters, at kappa = 0
-        Eigen::VectorXd gradient_vector = strictLowerTriangle(this->calculateGradient(ham_par));
-        Eigen::MatrixXd hessian_matrix = strictLowerTriangle(this->calculateHessian(ham_par));
+        auto gradient_vector = this->calculateGradient(ham_par).strictLowerTriangle();
+        auto hessian_matrix = this->calculateHessian(ham_par).pairWiseStrictReduce();
 
         // Perform a Newton-step to find orbital rotation parameters kappa
-        VectorFunction gradient_function = [gradient_vector] (const Eigen::VectorXd& x) { return gradient_vector; };
-        MatrixFunction hessian_function = [hessian_matrix] (const Eigen::VectorXd& x) { return hessian_matrix; };
+        VectorFunction gradient_function = [gradient_vector] (const VectorX<double>& x) { return gradient_vector; };
+        MatrixFunction hessian_function = [hessian_matrix] (const VectorX<double>& x) { return hessian_matrix; };
 
-        Eigen::VectorXd kappa_vector = newtonStep(Eigen::VectorXd::Zero(dim), gradient_function, hessian_function);  // with only the free parameters
+        auto kappa_vector = newtonStep(VectorX<double>::Zero(dim), gradient_function, hessian_function);  // with only the free parameters
 
 
         // If the calculated norm is zero, we have reached a critical point
@@ -193,20 +193,20 @@ void ERNewtonLocalizer::localize(HamiltonianParameters<double>& ham_par) {
         // Change kappa from the occupied-occupied vector to the full matrix
 
         // The current kappa vector corresponds to the occupied-occupied rotation: the full kappa matrix contains o-o, o-v and v-v blocks
-        Eigen::MatrixXd kappa_matrix_occupied = fillStrictLowerTriangle(kappa_vector);  // containing all parameters, so this is in anti-Hermitian (anti-symmetric) form
-        Eigen::MatrixXd kappa_matrix_transpose_occupied = kappa_matrix_occupied.transpose();  // store the transpose in an auxiliary variable to avoid aliasing issues
-        kappa_matrix_occupied -= kappa_matrix_transpose_occupied;  // fillStrictLowerTriangle only returns the lower triangle, so we must construct the anti-Hermitian (anti-symmetric) matrix
+        auto kappa_matrix_occupied = GQCP::SquareMatrix<double>::FromStrictTriangle(kappa_vector);  // containing all parameters, so this is in anti-Hermitian (anti-symmetric) form
+        SquareMatrix<double> kappa_matrix_transpose_occupied = kappa_matrix_occupied.transpose();  // store the transpose in an auxiliary variable to avoid aliasing issues
+        kappa_matrix_occupied -= kappa_matrix_transpose_occupied;  // FromStrictTriangle only returns the lower triangle, so we must construct the anti-Hermitian (anti-symmetric) matrix
 
-        Eigen::MatrixXd kappa_matrix = Eigen::MatrixXd::Zero(ham_par.get_K(), ham_par.get_K());
+        SquareMatrix<double> kappa_matrix = SquareMatrix<double>::Zero(ham_par.get_K(), ham_par.get_K());
         kappa_matrix.topLeftCorner(this->N_P, this->N_P) = kappa_matrix_occupied;
 
 
         // Calculate the unitary rotation matrix that we can use to rotate the basis
-        Eigen::MatrixXd U = (-kappa_matrix).exp();
+        SquareMatrix<double> U = (-kappa_matrix).exp();
 
 
         // Transform the integrals to the new orthonormal basis
-        ham_par.rotate(SquareMatrix<double>(U));  // this checks if U is actually unitary
+        ham_par.rotate(U);  // this checks if U is actually unitary
     }  // while not converged
 }
 

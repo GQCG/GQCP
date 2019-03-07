@@ -63,8 +63,8 @@ TwoElectronOperator<double> LibintCommunicator::calculateTwoElectronIntegrals(li
 
 
     // Initialize the rank-4 two-electron integrals tensor and set to zero
-    Eigen::Tensor<double, 4> tensor (nbf, nbf, nbf, nbf);
-    tensor.setZero();
+    TwoElectronOperator<double> g (nbf);
+    g.setZero();
 
 
     // Construct the libint2 engine
@@ -116,7 +116,7 @@ TwoElectronOperator<double> LibintCommunicator::calculateTwoElectronIntegrals(li
                                     auto computed_integral = calculated_integrals[f4 + nbf_sh4 * (f3 + nbf_sh3 * (f2 + nbf_sh2 * (f1)))];  // integrals are packed in row-major form
 
                                     // Two-electron integrals are given in CHEMIST'S notation: (11|22)
-                                    tensor(f1 + bf1, f2 + bf2, f3 + bf3, f4 + bf4) = computed_integral;
+                                    g(f1 + bf1, f2 + bf2, f3 + bf3, f4 + bf4) = computed_integral;
                                 }
                             }
                         }
@@ -127,7 +127,7 @@ TwoElectronOperator<double> LibintCommunicator::calculateTwoElectronIntegrals(li
         }
     } // shell loops
 
-    return TwoElectronOperator<double>(tensor);
+    return g;
 };
 
 
@@ -203,7 +203,7 @@ OneElectronOperator<double> LibintCommunicator::calculateNuclearIntegrals(const 
  *
  *  @return the Cartesian components of the electrical dipole operator, expressed in the given AO basis
  */
-std::array<OneElectronOperator<double>, 3> LibintCommunicator::calculateDipoleIntegrals(const AOBasis& ao_basis, const Eigen::Vector3d& origin) const {
+std::array<OneElectronOperator<double>, 3> LibintCommunicator::calculateDipoleIntegrals(const AOBasis& ao_basis, const Vector<double, 3>& origin) const {
 
     std::array<double, 3> origin_array {origin.x(), origin.y(), origin.z()};
 

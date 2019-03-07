@@ -145,7 +145,7 @@ public:
 
         // Construct the initial transformation matrix: the identity matrix
         auto nbf = ao_basis->get_number_of_basis_functions();
-        auto T_total = SquareMatrix<double>(Matrix<double>::Identity(nbf, nbf));
+        SquareMatrix<double> T_total = SquareMatrix<double>::Identity(nbf, nbf);
 
         return HamiltonianParameters(ao_basis, S, H, g, T_total, scalar);
     }
@@ -186,27 +186,26 @@ public:
      */
     template<typename Z = Scalar>
     static enable_if_t<std::is_same<Z, double>::value, HamiltonianParameters<double>> Random(size_t K) {
-        OneElectronOperator<double> S (Matrix<double>::Identity(K, K));  // the underlying orbital basis can be chosen as orthonormal, since the form of the underlying orbitals doesn't really matter
-        Matrix<double> C (Matrix<double>::Identity(K, K));  // the transformation matrix C here doesn't really mean anything, because it doesn't link to any AO basis
+        OneElectronOperator<double> S = OneElectronOperator<double>::Identity(K, K);  // the underlying orbital basis can be chosen as orthonormal, since the form of the underlying orbitals doesn't really matter
+        SquareMatrix<double> C = SquareMatrix<double>::Identity(K, K);  // the transformation matrix C here doesn't really mean anything, because it doesn't link to any AO basis
 
-        OneElectronOperator<double> H (Matrix<double>::Random(K, K));  // uniformly distributed between [-1,1]
+        OneElectronOperator<double> H = OneElectronOperator<double>::Random(K, K);  // uniformly distributed between [-1,1]
 
 
         // Unfortunately, the Tensor module provides uniform random distributions between [0, 1]
-        FourIndexTensor<double> g_tensor (K, K, K, K);
-        g_tensor.setRandom();
+        TwoElectronOperator<double> g (K);
+        g.setRandom();
 
         // Move the distribution from [0, 1] -> [-1, 1]
         for (size_t i = 0; i < K; i++) {
             for (size_t j = 0; j < K; j++) {
                 for (size_t k = 0; k < K; k++) {
                     for (size_t l = 0; l < K; l++) {
-                        g_tensor(i,j,k,l) = 2*g_tensor(i,j,k,l) - 1;  // scale from [0, 1] -> [0, 2] -> [-1, 1]
+                        g(i,j,k,l) = 2*g(i,j,k,l) - 1;  // scale from [0, 1] -> [0, 2] -> [-1, 1]
                     }
                 }
             }
         }
-        TwoElectronOperator<double> g (g_tensor);
 
         std::shared_ptr<AOBasis> ao_basis;  // nullptr because it doesn't make sense to set an AOBasis
 
@@ -276,9 +275,9 @@ public:
 
 
         double scalar = 0.0;
-        Eigen::MatrixXd h_SO = Eigen::MatrixXd::Zero(K, K);
-        Eigen::Tensor<double, 4> g_SO (K, K, K, K);
-        g_SO.setZero();
+        OneElectronOperator<double> h_core = OneElectronOperator<double>::Zero(K, K);
+        TwoElectronOperator<double> g (K);
+        g.setZero();
 
         //  Skip 3 lines
         for (size_t counter = 0; counter < 3; counter++) {
@@ -311,10 +310,10 @@ public:
             else if ((j == 0) && (b == 0)) {
                 size_t p = i - 1;
                 size_t q = a - 1;
-                h_SO(p,q) = x;
+                h_core(p,q) = x;
 
                 // Apply the permutational symmetry for real orbitals
-                h_SO(q,p) = x;
+                h_core(q,p) = x;
             }
 
             //  Two-electron integrals are given in CHEMIST'S NOTATION, so just copy them over
@@ -323,29 +322,27 @@ public:
                 size_t q = a - 1;
                 size_t r = j - 1;
                 size_t s = b - 1;
-                g_SO(p,q,r,s) = x;
+                g(p,q,r,s) = x;
 
                 // Apply the permutational symmetries for real orbitals
-                g_SO(p,q,s,r) = x;
-                g_SO(q,p,r,s) = x;
-                g_SO(q,p,s,r) = x;
+                g(p,q,s,r) = x;
+                g(q,p,r,s) = x;
+                g(q,p,s,r) = x;
 
-                g_SO(r,s,p,q) = x;
-                g_SO(s,r,p,q) = x;
-                g_SO(r,s,q,p) = x;
-                g_SO(s,r,q,p) = x;
+                g(r,s,p,q) = x;
+                g(s,r,p,q) = x;
+                g(r,s,q,p) = x;
+                g(s,r,q,p) = x;
             }
         }  // while loop
 
 
         // Make the ingredients to construct HamiltonianParameters
         std::shared_ptr<AOBasis> ao_basis;  // nullptr
-        OneElectronOperator<Scalar> S (Eigen::MatrixXd::Identity(K, K));
-        OneElectronOperator<Scalar> H_core (h_SO);
-        TwoElectronOperator<Scalar> G (g_SO);
-        Eigen::MatrixXd C = Eigen::MatrixXd::Identity(K, K);
+        OneElectronOperator<Scalar> S = OneElectronOperator<double>::Identity(K, K);
+        SquareMatrix<double> C = SquareMatrix<double>::Identity(K, K);
 
-        return HamiltonianParameters(ao_basis, S, H_core, G, C, scalar);
+        return HamiltonianParameters(ao_basis, S, h_core, g, C, scalar);
     }
 
 
@@ -361,18 +358,18 @@ public:
 
         size_t K = H.numberOfLatticeSites();
 
-        Eigen::MatrixXd h_SO = Eigen::MatrixXd::Zero(K, K);
-        Eigen::Tensor<double, 4> g_SO (K, K, K, K);
-        g_SO.setZero();
+        OneElectronOperator<double> h = OneElectronOperator<double>::Zero(K, K);
+        TwoElectronOperator<double> g (K);
+        g.setZero();
 
 
         for (size_t i = 0; i < K; i++) {
             for (size_t j = i; j < K; j++) {
                 if (i == j) {
-                    g_SO(i,i,i,i) = H(i,i);
+                    g(i,i,i,i) = H(i,i);
                 } else {
-                    h_SO(i,j) = H(i,j);
-                    h_SO(j,i) = H(j,i);
+                    h(i,j) = H(i,j);
+                    h(j,i) = H(j,i);
                 }
             }
         }
@@ -380,12 +377,10 @@ public:
 
         // Make the ingredients to construct HamiltonianParameters
         std::shared_ptr<AOBasis> ao_basis;  // nullptr
-        OneElectronOperator<Scalar> S (Eigen::MatrixXd::Identity(K, K));
-        OneElectronOperator<Scalar> H_core (h_SO);
-        TwoElectronOperator<Scalar> G (g_SO);
-        Eigen::MatrixXd C = Eigen::MatrixXd::Identity(K, K);
+        OneElectronOperator<double> S = OneElectronOperator<double>::Identity(K, K);
+        SquareMatrix<double> C = SquareMatrix<double>::Identity(K, K);
 
-        return HamiltonianParameters(ao_basis, S, H_core, G, C);  // no scalar term
+        return HamiltonianParameters(ao_basis, S, h, g, C);  // no scalar term
     }
 
 
@@ -416,7 +411,7 @@ public:
      *  @return if the underlying spatial orbital basis of the Hamiltonian parameters is orthonormal
      */
     bool areOrbitalsOrthonormal() const {
-        return this->S.isApprox(Matrix<Scalar>::Identity(this->K, this->K));
+        return this->S.isApprox(SquareMatrix<Scalar>::Identity(this->K, this->K));
     }
 
 
@@ -439,7 +434,7 @@ public:
         this->h.transform(T);
         this->g.transform(T);
 
-        this->T_total = SquareMatrix<Scalar>(this->T_total * T);  // use the correct transformation formula for subsequent transformations
+        this->T_total = this->T_total * T;  // use the correct transformation formula for subsequent transformations
     }
 
 
@@ -465,8 +460,9 @@ public:
 
         // Create a Jacobi rotation matrix to transform the coefficient matrix with
         size_t K = this->h.get_dim();  // number of spatial orbitals
-        auto J = jacobiRotationMatrix(jacobi_rotation_parameters, K);
-        this->T_total = SquareMatrix<Scalar>(this->T_total * J);
+        auto J = SquareMatrix<double>::FromJacobi(jacobi_rotation_parameters, K);
+        this->T_total = this->T_total * J;
+
     }
 
 
@@ -480,10 +476,10 @@ public:
     enable_if_t<std::is_same<Z, double>::value> randomRotate() {
 
         // Get a random unitary matrix by diagonalizing a random symmetric matrix
-        Eigen::MatrixXd A_random = Eigen::MatrixXd::Random(this->K, this->K);
-        Eigen::MatrixXd A_symmetric = A_random + A_random.transpose();
+        SquareMatrix<double> A_random = SquareMatrix<double>::Random(this->K, this->K);
+        SquareMatrix<double> A_symmetric = A_random + A_random.transpose();
         Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> unitary_solver (A_symmetric);
-        Eigen::MatrixXd U_random = unitary_solver.eigenvectors();
+        SquareMatrix<double> U_random = unitary_solver.eigenvectors();
 
         this->rotate(U_random);
     }
@@ -541,7 +537,7 @@ public:
 
 
         // A KISS implementation of the calculation of the generalized Fock matrix F
-        Eigen::MatrixXd F = Eigen::MatrixXd::Zero(this->K, this->K);
+        OneElectronOperator<Scalar> F = OneElectronOperator<Scalar>::Zero(this->K, this->K);
         for (size_t p = 0; p < this->K; p++) {
             for (size_t q = 0; q < this->K; q++) {
 
@@ -563,7 +559,7 @@ public:
         }  // F elements loop
 
 
-        return OneElectronOperator<Scalar>(F);
+        return F;
     }
 
     /**
@@ -584,8 +580,8 @@ public:
             throw std::invalid_argument("Too many AOs are selected");
         }
 
-        // Create the partitioning matrix (diagonal matrix with values set to 1 of selected AOs
-        Eigen::MatrixXd p_a = Eigen::MatrixXd::Zero(this->K, this->K);
+        // Create the partitioning matrix (diagonal matrix with values set to 1 of selected AOs)
+        SquareMatrix<double> p_a = SquareMatrix<double>::Zero(this->K, this->K);
 
         for (size_t index : ao_list) {
             if (index >= this->K) {
@@ -596,12 +592,12 @@ public:
         }
 
         OneElectronOperator<Scalar> S_AO = this->S;
-        auto T_inverse = SquareMatrix<double>(T_total.inverse());
+        SquareMatrix<double> T_inverse = T_total.inverse();
         S_AO.transform(T_inverse);
 
-        Eigen::MatrixXd mulliken_matrix = (T_total.adjoint() * p_a * S_AO * T_total + T_total.adjoint() * S_AO * p_a * T_total)/2 ;
+        OneElectronOperator<double> mulliken_matrix = (T_total.adjoint() * p_a * S_AO * T_total + T_total.adjoint() * S_AO * p_a * T_total)/2 ;
 
-        return OneElectronOperator<double>(mulliken_matrix);
+        return mulliken_matrix;
     }
 
     /**
@@ -646,7 +642,7 @@ public:
         OneElectronOperator<Scalar> F = this->calculateGeneralizedFockMatrix(D, d);
 
         // A KISS implementation of the calculation of the super generalized Fock matrix W
-        Eigen::Tensor<double, 4> W (this->K, this->K, this->K, this->K);
+        TwoElectronOperator<Scalar> W (this->K);
         W.setZero();
         for (size_t p = 0; p < this->K; p++) {
             for (size_t q = 0; q < this->K; q++) {
@@ -673,7 +669,7 @@ public:
         }  // W elements loop
 
 
-        return TwoElectronOperator<Scalar>(W);
+        return W;
     }
 
 

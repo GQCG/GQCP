@@ -19,9 +19,7 @@
 #define GQCP_EIGENPAIR_HPP
 
 
-
-#include <Eigen/Dense>
-
+#include "math/Matrix.hpp"
 
 
 namespace GQCP {
@@ -33,7 +31,7 @@ namespace GQCP {
 class Eigenpair {
 private:
     double eigenvalue;
-    Eigen::VectorXd eigenvector;
+    VectorX<double> eigenvector;
 
 
 public:
@@ -49,12 +47,12 @@ public:
      *  @param eigenvalue       the eigenvalue
      *  @param eigenvector      the eigenvector
      */
-    Eigenpair(double eigenvalue, const Eigen::VectorXd& eigenvector);
+    Eigenpair(double eigenvalue, const VectorX<double>& eigenvector);
 
 
     // GETTERS
     double get_eigenvalue() const { return this->eigenvalue; };
-    const Eigen::VectorXd& get_eigenvector() const { return this->eigenvector; };
+    const VectorX<double>& get_eigenvector() const { return this->eigenvector; };
 
 
     // PUBLIC METHODS

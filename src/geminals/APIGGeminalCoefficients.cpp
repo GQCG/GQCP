@@ -17,6 +17,7 @@
 // 
 #include "geminals/APIGGeminalCoefficients.hpp"
 
+#include "math/SquareMatrix.hpp"
 #include "FockSpace/FockSpace.hpp"
 #include "utilities/miscellaneous.hpp"
 
@@ -42,7 +43,7 @@ APIGGeminalCoefficients::APIGGeminalCoefficients() :
  *  @param N_P      the number of electron pairs (= the number of geminals)
  *  @param K        the number of spatial orbitals
  */
-APIGGeminalCoefficients::APIGGeminalCoefficients(const Eigen::VectorXd& g, size_t N_P, size_t K) :
+APIGGeminalCoefficients::APIGGeminalCoefficients(const VectorX<double>& g, size_t N_P, size_t K) :
     BaseAPIGVariables(g, N_P, K)
 {
     if (APIGGeminalCoefficients::numberOfGeminalCoefficients(N_P, K) != g.size()) {
@@ -58,18 +59,18 @@ APIGGeminalCoefficients::APIGGeminalCoefficients(const Eigen::VectorXd& g, size_
  *  @param K        the number of spatial orbitals
  */
 APIGGeminalCoefficients::APIGGeminalCoefficients(size_t N_P, size_t K) :
-    APIGGeminalCoefficients(Eigen::VectorXd::Zero(APIGGeminalCoefficients::numberOfGeminalCoefficients(N_P, K)), N_P, K)
+    APIGGeminalCoefficients(VectorX<double>::Zero(APIGGeminalCoefficients::numberOfGeminalCoefficients(N_P, K)), N_P, K)
 {}
 
 
 /**
  *  @param G        the geminal coefficients in a matrix representation
  */
-APIGGeminalCoefficients::APIGGeminalCoefficients(const Eigen::MatrixXd& G) :
+APIGGeminalCoefficients::APIGGeminalCoefficients(const MatrixX<double>& G) :
     BaseAPIGVariables()
 {
 
-    Eigen::MatrixXd G_transpose = G.transpose();
+    MatrixX<double> G_transpose = G.transpose();
 
     this->x = Eigen::Map<const Eigen::VectorXd>(G_transpose.data(), G_transpose.cols()*G_transpose.rows());
     this->K = G.cols();
@@ -114,7 +115,7 @@ size_t APIGGeminalCoefficients::numberOfGeminalCoefficients(size_t N_P, size_t K
 /**
  *  @return the geminal coefficients in matrix form
  */
-Eigen::MatrixXd APIGGeminalCoefficients::asMatrix() const {
+MatrixX<double> APIGGeminalCoefficients::asMatrix() const {
 
     using RowMajorMatrixXd = Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor>;
     Eigen::RowVectorXd x_row = this->x;
@@ -172,8 +173,8 @@ double APIGGeminalCoefficients::overlap(const ONV& onv) const {
 
 
     // Construct the matrix G(m) which only has the occupied columns of G in the given ONV m
-    Eigen::MatrixXd G = this->asMatrix();  // geminal coefficients as a matrix
-    Eigen::MatrixXd Gm = Eigen::MatrixXd::Zero(this->N_P, this->N_P);
+    MatrixX<double> G = this->asMatrix();  // geminal coefficients as a matrix
+    SquareMatrix<double> Gm = SquareMatrix<double>::Zero(this->N_P, this->N_P);
 
     // TODO: wait until the syntax G(Eigen::placeholders::all, occupation_indices) is released in a stable Eigen release
     for (size_t e = 0; e < this->N_P ; e++) {  // loop over all electrons
@@ -184,7 +185,7 @@ double APIGGeminalCoefficients::overlap(const ONV& onv) const {
 
 
     // Calculate the permanent of Gm to obtain the coefficient
-    return permanent_ryser(Gm);
+    return Gm.permanent_ryser();
 }
 
 

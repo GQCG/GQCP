@@ -20,8 +20,7 @@
 
 
 #include "typedefs.hpp"
-
-#include <Eigen/Dense>
+#include "math/Matrix.hpp"
 
 
 
@@ -36,7 +35,7 @@ namespace GQCP {
  *  @return the Newton step
  *      J(x) p = - f
  */
-Eigen::VectorXd newtonStep(const Eigen::VectorXd& x, const VectorFunction& f, const MatrixFunction& J);
+VectorX<double> newtonStep(const VectorX<double>& x, const VectorFunction& f, const MatrixFunction& J);
 
 
 }  // namespace GQCP

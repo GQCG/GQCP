@@ -19,7 +19,7 @@ static void constructHamiltonian(benchmark::State& state) {
 
     // Code inside this loop is measured repeatedly
     for (auto _ : state) {
-        Eigen::MatrixXd hamiltonian = fci.constructHamiltonian(ham_par);
+        GQCP::SquareMatrix<double> hamiltonian = fci.constructHamiltonian(ham_par);
 
         benchmark::DoNotOptimize(hamiltonian);  // make sure the variable is not optimized away by compiler
     }

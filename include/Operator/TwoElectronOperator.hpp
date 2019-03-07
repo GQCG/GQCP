@@ -20,7 +20,7 @@
 
 
 #include "JacobiRotationParameters.hpp"
-#include "math/SquareFourIndexTensor.hpp"
+#include "math/SquareRankFourTensor.hpp"
 #include "Operator/Operator.hpp"
 #include "utilities/miscellaneous.hpp"
 
@@ -31,30 +31,26 @@ namespace GQCP {
 /**
  *  A class that represents a two-electron operator in an orbital basis
  *
- *  @tparam Scalar      the scalar type
+ *  @tparam _Scalar     the scalar type
  */
-template<typename Scalar>
-class TwoElectronOperator : public SquareFourIndexTensor<Scalar>, public Operator<TwoElectronOperator<Scalar>> {
+template<typename _Scalar>
+class TwoElectronOperator : public SquareRankFourTensor<_Scalar>, public Operator<TwoElectronOperator<_Scalar>> {
+public:
+
+    using Scalar = _Scalar;
+
+    using BaseRepresentation = SquareMatrix<Scalar>;
+    using Self = TwoElectronOperator<Scalar>;
+
+
 public:
 
     /*
-     * CONSTRUCTORS
+     *  CONSTRUCTORS
      */
 
-    /**
-     *  Default constructor
-     */
-    TwoElectronOperator() :
-        SquareFourIndexTensor<Scalar>()
-    {}
+    using SquareRankFourTensor<Scalar>::SquareRankFourTensor;  // use base constructors
 
-
-    /**
-     *  @param tensor   the explicit matrix representation of the two-electron operator
-     */
-    explicit TwoElectronOperator(const SquareFourIndexTensor<Scalar>& tensor) :
-        SquareFourIndexTensor<Scalar>(tensor)
-    {}
 
 
     /*
@@ -104,9 +100,9 @@ public:
         // Calculate the contractions. We write this as one large contraction to
         //  1) avoid storing intermediate contractions
         //  2) let Eigen figure out some optimizations
-        Eigen::Tensor<Scalar, 4> g_transformed = T_tensor.conjugate().contract(T_tensor.contract(this->contract(T_tensor.conjugate(), contraction_pair1).shuffle(shuffle_1).contract(T_tensor, contraction_pair2), contraction_pair3).shuffle(shuffle_3), contraction_pair4);
+        TwoElectronOperator<Scalar> g_transformed = T_tensor.conjugate().contract(T_tensor.contract(this->contract(T_tensor.conjugate(), contraction_pair1).shuffle(shuffle_1).contract(T_tensor, contraction_pair2), contraction_pair3).shuffle(shuffle_3), contraction_pair4);
 
-        *this = TwoElectronOperator<Scalar>(g_transformed);
+        *this = g_transformed;
     }
 
 
@@ -126,7 +122,7 @@ public:
          */
 
         auto dim = static_cast<size_t>(this->dimension(0));  // .dimension() returns a long
-        auto J = SquareMatrix<double>(jacobiRotationMatrix(jacobi_rotation_parameters, dim));  // this is sure to return a unitary matrix
+        auto J = SquareMatrix<double>::FromJacobi(jacobi_rotation_parameters, dim);  // this is sure to return a unitary matrix
 
         this->rotate(J);
     }

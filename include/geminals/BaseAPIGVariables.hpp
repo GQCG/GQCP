@@ -19,7 +19,7 @@
 #define BaseAPIGVariables_hpp
 
 
-#include <Eigen/Dense>
+#include "math/Matrix.hpp"
 
 
 namespace GQCP {
@@ -34,7 +34,7 @@ class BaseAPIGVariables {
 protected:
     size_t N_P;  // the number of electron pairs (= the number of geminals)
     size_t K;  // the number of orbitals
-    Eigen::VectorXd x;  // the variables stored in a row-major form
+    VectorX<double> x;  // the variables stored in a row-major form
 
 
 public:
@@ -45,7 +45,7 @@ public:
      *  @param N_P      the number of electron pairs (= the number of geminals)
      *  @param K        the number of spatial orbitals
      */
-    BaseAPIGVariables(const Eigen::VectorXd& x, size_t N_P, size_t K);
+    BaseAPIGVariables(const VectorX<double>& x, size_t N_P, size_t K);
 
     /**
      *  Default constructor setting everything to zero
@@ -79,12 +79,12 @@ public:
     /**
      *  @return the variables in row-major vector form
      */
-    const Eigen::VectorXd& asVector() const { return this->x; }
+    const VectorX<double>& asVector() const { return this->x; }
 
     /**
      *  @return the variables in matrix form
      */
-    virtual Eigen::MatrixXd asMatrix() const = 0;
+    virtual MatrixX<double> asMatrix() const = 0;
 
     /**
      *  @param vector_index     the vector index of the variable

@@ -28,13 +28,13 @@
 BOOST_AUTO_TEST_CASE ( isEqual ) {
 
     // Create some test eigenvectors
-    Eigen::VectorXd u1 (2);
+    GQCP::VectorX<double> u1 (2);
     u1 << 1, 0;
-    Eigen::VectorXd u2 (2);
+    GQCP::VectorX<double> u2 (2);
     u2 << -1, 0;
-    Eigen::VectorXd v (2);
+    GQCP::VectorX<double> v (2);
     v << 1, 1;
-    Eigen::VectorXd w (3);
+    GQCP::VectorX<double> w (3);
     w << 1, 0, 0;
 
 

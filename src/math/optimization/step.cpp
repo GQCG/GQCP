@@ -17,6 +17,8 @@
 // 
 #include "math/optimization/step.hpp"
 
+#include "math/SquareMatrix.hpp"
+
 
 namespace GQCP {
 
@@ -29,11 +31,11 @@ namespace GQCP {
  *  @return the Newton step
  *      J(x) p = - f
  */
-Eigen::VectorXd newtonStep(const Eigen::VectorXd& x, const VectorFunction& f, const MatrixFunction& J) {
+VectorX<double> newtonStep(const VectorX<double>& x, const VectorFunction& f, const MatrixFunction& J) {
 
     // Calculate f(x) and J(x), i.e. the values of the vector field and its Jacobian at the given x
-    Eigen::VectorXd f_vector = f(x);
-    Eigen::MatrixXd J_matrix = J(x);
+    VectorX<double> f_vector = f(x);
+    SquareMatrix<double> J_matrix = J(x);
 
     // Return the actual Newton step
     return J_matrix.colPivHouseholderQr().solve(-f_vector);

@@ -62,8 +62,7 @@ double calculateExpectationValue(const TwoElectronOperator<double>& two_op, cons
     //      0.5 g(p q r s) d(p q r s)
     Eigen::array<Eigen::IndexPair<int>, 4> contractions = {Eigen::IndexPair<int>(0,0), Eigen::IndexPair<int>(1,1), Eigen::IndexPair<int>(2,2), Eigen::IndexPair<int>(3,3)};
     //      Perform the contraction
-    auto d = static_cast<FourIndexTensor<double>>(two_rdm);
-    Eigen::Tensor<double, 0> contraction = 0.5 * two_op.contract(d, contractions);
+    Eigen::Tensor<double, 0> contraction = 0.5 * two_op.contract(two_rdm.Eigen(), contractions);
 
     // As the contraction is a scalar (a tensor of rank 0), we should access by (0).
     return contraction(0);

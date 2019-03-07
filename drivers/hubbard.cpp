@@ -66,7 +66,7 @@ int main (int argc, char** argv) {
     std::string triagonal_line = csline;
 
     // Read the upper triagonal of the hopping matrix
-    Eigen::VectorXd triagonal;
+    GQCP::VectorX<double> triagonal;
     if (csline.empty()){
         throw std::invalid_argument("Comma-separated was empty!");
     }

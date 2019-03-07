@@ -48,9 +48,11 @@ set(PROJECT_TEST_SOURCE_FILES
         ${PROJECT_TESTS_FOLDER}/math/optimization/NewtonSystemOfEquationsSolver_test.cpp
         ${PROJECT_TESTS_FOLDER}/math/optimization/SparseSolver_test.cpp
 
+        ${PROJECT_TESTS_FOLDER}/math/Matrix_test.cpp
         ${PROJECT_TESTS_FOLDER}/math/ScalarFunction_test.cpp
-        ${PROJECT_TESTS_FOLDER}/math/SquareFourIndexTensor_test.cpp
         ${PROJECT_TESTS_FOLDER}/math/SquareMatrix_test.cpp
+        ${PROJECT_TESTS_FOLDER}/math/SquareRankFourTensor_test.cpp
+        ${PROJECT_TESTS_FOLDER}/math/Tensor_test.cpp
 
         ${PROJECT_TESTS_FOLDER}/Operator/OneElectronOperator_test.cpp
         ${PROJECT_TESTS_FOLDER}/Operator/TwoElectronOperator_test.cpp
@@ -73,7 +75,6 @@ set(PROJECT_TEST_SOURCE_FILES
         ${PROJECT_TESTS_FOLDER}/RHF/PlainRHFSCFSolver_test.cpp
         ${PROJECT_TESTS_FOLDER}/RHF/RHF_test.cpp
 
-        ${PROJECT_TESTS_FOLDER}/utilities/io_test.cpp
         ${PROJECT_TESTS_FOLDER}/utilities/linalg_test.cpp
         ${PROJECT_TESTS_FOLDER}/utilities/miscellaneous_test.cpp
 

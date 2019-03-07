@@ -30,7 +30,7 @@ namespace GQCP {
  *
  *  @return the new Fock matrix (expressed in AO basis)
  */
-Eigen::MatrixXd PlainRHFSCFSolver::calculateNewFockMatrix(const Eigen::MatrixXd& D_AO) {
+OneElectronOperator<double> PlainRHFSCFSolver::calculateNewFockMatrix(const OneRDM<double>& D_AO) {
     return calculateRHFAOFockMatrix(D_AO, this->ham_par);
 }
 

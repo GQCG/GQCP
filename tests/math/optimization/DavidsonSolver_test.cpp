@@ -30,10 +30,10 @@
 BOOST_AUTO_TEST_CASE ( constructor ) {
 
     // Create an example matrix
-    Eigen::MatrixXd A = Eigen::MatrixXd::Zero(2, 2);
+    GQCP::SquareMatrix<double> A = GQCP::SquareMatrix<double>::Zero(2, 2);
 
     // Test constructors with one supplied guess vector
-    Eigen::VectorXd x_0 = Eigen::VectorXd::Constant(2, 1);
+    GQCP::VectorX<double> x_0 = GQCP::VectorX<double>::Constant(2, 1);
 
     // Create the solver options
     GQCP::DavidsonSolverOptions solver_options_faulty (x_0);
@@ -50,7 +50,7 @@ BOOST_AUTO_TEST_CASE ( constructor ) {
 
 
     // Test a constructor with two supplied guess vectors
-    Eigen::MatrixXd Y_0 = Eigen::MatrixXd::Identity(2, 2);
+    GQCP::MatrixX<double> Y_0 = GQCP::MatrixX<double>::Identity(2, 2);
     GQCP::DavidsonSolverOptions solver_options_faulty_2 (Y_0);
     solver_options_faulty_2.maximum_subspace_dimension = 8;
     solver_options_faulty_2.number_of_requested_eigenpairs = 2;
@@ -62,17 +62,17 @@ BOOST_AUTO_TEST_CASE ( constructor ) {
 BOOST_AUTO_TEST_CASE ( constructor_raw ) {
 
     // Create an example matrix
-    Eigen::MatrixXd A = Eigen::MatrixXd::Zero(2, 2);
+    GQCP::SquareMatrix<double> A = GQCP::SquareMatrix<double>::Zero(2, 2);
 
     // Test constructors with one supplied guess vector
-    Eigen::VectorXd x_0 = Eigen::VectorXd::Constant(2, 1);
+    GQCP::VectorX<double> x_0 = GQCP::VectorX<double>::Constant(2, 1);
     BOOST_CHECK_THROW(GQCP::DavidsonSolver davidson_solver (A, x_0, 3, 1.0e-08, 1.0e-12, 4, 8), std::invalid_argument);  // 3 requested eigenpairs: not enough initial guesses
     BOOST_CHECK_THROW(GQCP::DavidsonSolver davidson_solver (A, x_0, 1, 1.0e-08, 1.0e-12, 4, 8), std::invalid_argument);  // collapsed subspace dimension (8) cannot be larger than maximum subspace dimension (4)
     BOOST_CHECK_NO_THROW(GQCP::DavidsonSolver davidson_solver (A, x_0));
 
 
     // Test a constructor with two supplied guess vectors
-    Eigen::MatrixXd Y_0 = Eigen::MatrixXd::Identity(2, 2);
+    GQCP::MatrixX<double> Y_0 = GQCP::MatrixX<double>::Identity(2, 2);
     BOOST_CHECK_THROW(GQCP::DavidsonSolver davidson_solver (A, Y_0, 2, 1.0e-08, 1.0e-12, 8, 1), std::invalid_argument);  // collapsed subspace dimension (1) cannot be smaller number of requested eigenpairs (2)
 }
 
@@ -80,8 +80,8 @@ BOOST_AUTO_TEST_CASE ( constructor_raw ) {
 BOOST_AUTO_TEST_CASE ( diagonal_getter_Davidson ) {
 
     // Test the diagonal getter for Davidson
-    Eigen::MatrixXd A = Eigen::MatrixXd::Identity(2, 2);
-    Eigen::VectorXd x_0 = Eigen::VectorXd::Constant(2, 1);
+    GQCP::SquareMatrix<double> A = GQCP::SquareMatrix<double>::Identity(2, 2);
+    GQCP::VectorX<double> x_0 = GQCP::VectorX<double>::Constant(2, 1);
 
     GQCP::DavidsonSolver davidson_solver (A, GQCP::DavidsonSolverOptions (x_0));
 
@@ -95,7 +95,7 @@ BOOST_AUTO_TEST_CASE ( esqc_example_solver ) {
 
 
     // Build up the example matrix
-    Eigen::MatrixXd A = Eigen::MatrixXd::Constant(5, 5, 0.1);
+    GQCP::SquareMatrix<double> A = GQCP::SquareMatrix<double>::Constant(5, 5, 0.1);
     A(0,0) = 1.0;
     A(1,1) = 2.0;
     A(2,2) = 3.0;
@@ -106,18 +106,18 @@ BOOST_AUTO_TEST_CASE ( esqc_example_solver ) {
     // The solutions to the problem are given in the example
     double ref_lowest_eigenvalue = 0.979;
 
-    Eigen::VectorXd ref_lowest_eigenvector (5);
+    GQCP::VectorX<double> ref_lowest_eigenvector (5);
     ref_lowest_eigenvector << 0.994, -0.083, -0.042, -0.042, -0.042;
 
 
     // Solve using the Davidson diagonalization, supplying an initial guess
-    Eigen::VectorXd x_0 (5);
+    GQCP::VectorX<double> x_0 (5);
     x_0 << 1, 0, 0, 0, 0;
     GQCP::DavidsonSolver davidson_solver (A, GQCP::DavidsonSolverOptions (x_0));
     davidson_solver.solve();
 
     double test_lowest_eigenvalue = davidson_solver.get_eigenvalue();
-    Eigen::VectorXd test_lowest_eigenvector = davidson_solver.get_eigenvector();
+    GQCP::VectorX<double> test_lowest_eigenvector = davidson_solver.get_eigenvector();
 
 
     BOOST_CHECK(std::abs(test_lowest_eigenvalue - ref_lowest_eigenvalue) < 0.005);
@@ -134,7 +134,7 @@ BOOST_AUTO_TEST_CASE ( liu_50 ) {
 
     // Let's prepare the Liu reference test (liu1978)
     size_t N = 50;
-    Eigen::MatrixXd A = Eigen::MatrixXd::Ones(N, N);
+    GQCP::SquareMatrix<double> A = GQCP::SquareMatrix<double>::Ones(N, N);
     for (size_t i = 0; i < N; i++) {
         if (i < 5) {
             A(i, i) = 1 + 0.1 * i;
@@ -147,17 +147,17 @@ BOOST_AUTO_TEST_CASE ( liu_50 ) {
     // Solve the eigenvalue problem with Eigen
     Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> eigensolver (A);
     double ref_lowest_eigenvalue = eigensolver.eigenvalues()(0);
-    Eigen::VectorXd ref_lowest_eigenvector = eigensolver.eigenvectors().col(0);
+    GQCP::VectorX<double> ref_lowest_eigenvector = eigensolver.eigenvectors().col(0);
 
 
     // Solve using the Davidson diagonalization, supplying an initial guess
-    Eigen::VectorXd x_0 = Eigen::VectorXd::Zero(N);
+    GQCP::VectorX<double> x_0 = GQCP::VectorX<double>::Zero(N);
     x_0(0) = 1;
     GQCP::DavidsonSolver davidson_solver (A, GQCP::DavidsonSolverOptions (x_0));
     davidson_solver.solve();
 
     double test_lowest_eigenvalue = davidson_solver.get_eigenvalue();
-    Eigen::VectorXd test_lowest_eigenvector = davidson_solver.get_eigenvector();
+    GQCP::VectorX<double> test_lowest_eigenvector = davidson_solver.get_eigenvector();
 
 
     BOOST_CHECK(std::abs(test_lowest_eigenvalue - ref_lowest_eigenvalue) < 1.0e-08);
@@ -174,7 +174,7 @@ BOOST_AUTO_TEST_CASE ( liu_50_collapse ) {
 
     // Let's prepare the Liu reference test (liu1978)
     size_t N = 50;
-    Eigen::MatrixXd A = Eigen::MatrixXd::Ones(N, N);
+    GQCP::SquareMatrix<double> A = GQCP::SquareMatrix<double>::Ones(N, N);
     for (size_t i = 0; i < N; i++) {
         if (i < 5) {
             A(i, i) = 1 + 0.1 * i;
@@ -187,11 +187,11 @@ BOOST_AUTO_TEST_CASE ( liu_50_collapse ) {
     // Solve the eigenvalue problem with Eigen
     Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> eigensolver (A);
     double ref_eigenvalue = eigensolver.eigenvalues()(0);
-    Eigen::VectorXd ref_eigenvector = eigensolver.eigenvectors().col(0);
+    GQCP::VectorX<double> ref_eigenvector = eigensolver.eigenvectors().col(0);
 
 
     // Solve using the Davidson diagonalization, supplying an initial guess
-    Eigen::VectorXd x_0 = Eigen::VectorXd::Zero(N);
+    GQCP::VectorX<double> x_0 = GQCP::VectorX<double>::Zero(N);
     x_0(0) = 1;
 
     GQCP::DavidsonSolverOptions solver_options (x_0);
@@ -202,7 +202,7 @@ BOOST_AUTO_TEST_CASE ( liu_50_collapse ) {
     davidson_solver.solve();
 
     double test_lowest_eigenvalue = davidson_solver.get_eigenvalue();
-    Eigen::VectorXd test_lowest_eigenvector = davidson_solver.get_eigenvector();
+    GQCP::VectorX<double> test_lowest_eigenvector = davidson_solver.get_eigenvector();
 
 
     BOOST_CHECK(std::abs(test_lowest_eigenvalue - ref_eigenvalue) < 1.0e-08);
@@ -220,7 +220,7 @@ BOOST_AUTO_TEST_CASE ( liu_50_number_of_requested_eigenpairs ) {
 
     // Let's prepare the Liu reference test (liu1978)
     size_t N = 50;
-    Eigen::MatrixXd A = Eigen::MatrixXd::Ones(N, N);
+    GQCP::SquareMatrix<double> A = GQCP::SquareMatrix<double>::Ones(N, N);
     for (size_t i = 0; i < N; i++) {
         if (i < 5) {
             A(i, i) = 1 + 0.1 * i;
@@ -232,8 +232,8 @@ BOOST_AUTO_TEST_CASE ( liu_50_number_of_requested_eigenpairs ) {
 
     // Solve the eigenvalue problem with Eigen
     Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> eigensolver (A);
-    Eigen::VectorXd ref_lowest_eigenvalues = eigensolver.eigenvalues().head(number_of_requested_eigenpairs);
-    Eigen::MatrixXd ref_lowest_eigenvectors = eigensolver.eigenvectors().topLeftCorner(N, number_of_requested_eigenpairs);
+    GQCP::VectorX<double> ref_lowest_eigenvalues = eigensolver.eigenvalues().head(number_of_requested_eigenpairs);
+    GQCP::MatrixX<double> ref_lowest_eigenvectors = eigensolver.eigenvectors().topLeftCorner(N, number_of_requested_eigenpairs);
 
     // Create eigenpairs for the reference eigenpairs
     std::vector<GQCP::Eigenpair> ref_eigenpairs (number_of_requested_eigenpairs);
@@ -242,7 +242,7 @@ BOOST_AUTO_TEST_CASE ( liu_50_number_of_requested_eigenpairs ) {
     }
 
     // Solve using the Davidson diagonalization, supplying the requested amount of  initial guesses
-    Eigen::MatrixXd X_0 = Eigen::MatrixXd::Identity(N, N).topLeftCorner(N, number_of_requested_eigenpairs);
+    GQCP::MatrixX<double> X_0 = GQCP::MatrixX<double>::Identity(N, N).topLeftCorner(N, number_of_requested_eigenpairs);
     GQCP::DavidsonSolverOptions solver_options (X_0);
     solver_options.number_of_requested_eigenpairs = number_of_requested_eigenpairs;
     solver_options.collapsed_subspace_dimension = number_of_requested_eigenpairs;
@@ -265,7 +265,7 @@ BOOST_AUTO_TEST_CASE ( liu_1000 ) {
 
     // Let's prepare the Liu reference test (liu1978)
     size_t N = 1000;
-    Eigen::MatrixXd A = Eigen::MatrixXd::Ones(N, N);
+    GQCP::SquareMatrix<double> A = GQCP::SquareMatrix<double>::Ones(N, N);
     for (size_t i = 0; i < N; i++) {
         if (i < 5) {
             A(i, i) = 1 + 0.1 * i;
@@ -278,17 +278,17 @@ BOOST_AUTO_TEST_CASE ( liu_1000 ) {
     // Solve the eigenvalue problem with Eigen
     Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> eigensolver (A);
     double ref_eigenvalue = eigensolver.eigenvalues()(0);
-    Eigen::VectorXd ref_eigenvector = eigensolver.eigenvectors().col(0);
+    GQCP::VectorX<double> ref_eigenvector = eigensolver.eigenvectors().col(0);
 
 
     // Solve using the Davidson diagonalization, supplying an initial guess
-    Eigen::VectorXd x_0 = Eigen::VectorXd::Zero(N);
+    GQCP::VectorX<double> x_0 = GQCP::VectorX<double>::Zero(N);
     x_0(0) = 1;
     GQCP::DavidsonSolver davidson_solver (A, GQCP::DavidsonSolverOptions (x_0));
     davidson_solver.solve();
 
     double test_lowest_eigenvalue = davidson_solver.get_eigenvalue();
-    Eigen::VectorXd test_lowest_eigenvector = davidson_solver.get_eigenvector();
+    GQCP::VectorX<double> test_lowest_eigenvector = davidson_solver.get_eigenvector();
 
 
     BOOST_CHECK(std::abs(test_lowest_eigenvalue - ref_eigenvalue) < 1.0e-08);
@@ -305,7 +305,7 @@ BOOST_AUTO_TEST_CASE ( liu_1000_collapse ) {
 
     // Let's prepare the Liu reference test (liu1978)
     size_t N = 1000;
-    Eigen::MatrixXd A = Eigen::MatrixXd::Ones(N, N);
+    GQCP::SquareMatrix<double> A = GQCP::SquareMatrix<double>::Ones(N, N);
     for (size_t i = 0; i < N; i++) {
         if (i < 5) {
             A(i, i) = 1 + 0.1 * i;
@@ -318,11 +318,11 @@ BOOST_AUTO_TEST_CASE ( liu_1000_collapse ) {
     // Solve the eigenvalue problem with Eigen
     Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> eigensolver (A);
     double ref_eigenvalue = eigensolver.eigenvalues()(0);
-    Eigen::VectorXd ref_eigenvector = eigensolver.eigenvectors().col(0);
+    GQCP::VectorX<double> ref_eigenvector = eigensolver.eigenvectors().col(0);
 
 
     // Solve using the Davidson diagonalization, supplying an initial guess
-    Eigen::VectorXd x_0 = Eigen::VectorXd::Zero(N);
+    GQCP::VectorX<double> x_0 = GQCP::VectorX<double>::Zero(N);
     x_0(0) = 1;
     GQCP::DavidsonSolverOptions solver_options (x_0);
     solver_options.maximum_subspace_dimension = 10;
@@ -331,7 +331,7 @@ BOOST_AUTO_TEST_CASE ( liu_1000_collapse ) {
     davidson_solver.solve();
 
     double test_lowest_eigenvalue = davidson_solver.get_eigenvalue();
-    Eigen::VectorXd test_lowest_eigenvector = davidson_solver.get_eigenvector();
+    GQCP::VectorX<double> test_lowest_eigenvector = davidson_solver.get_eigenvector();
 
 
     BOOST_CHECK(std::abs(test_lowest_eigenvalue - ref_eigenvalue) < 1.0e-08);
@@ -349,7 +349,7 @@ BOOST_AUTO_TEST_CASE ( liu_1000_number_of_requested_eigenpairs ) {
 
     // Let's prepare the Liu reference test (liu1978)
     size_t N = 1000;
-    Eigen::MatrixXd A = Eigen::MatrixXd::Ones(N, N);
+    GQCP::SquareMatrix<double> A = GQCP::SquareMatrix<double>::Ones(N, N);
     for (size_t i = 0; i < N; i++) {
         if (i < 5) {
             A(i, i) = 1 + 0.1 * i;
@@ -361,8 +361,8 @@ BOOST_AUTO_TEST_CASE ( liu_1000_number_of_requested_eigenpairs ) {
 
     // Solve the eigenvalue problem with Eigen
     Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> eigensolver (A);
-    Eigen::VectorXd ref_lowest_eigenvalues = eigensolver.eigenvalues().head(number_of_requested_eigenpairs);
-    Eigen::MatrixXd ref_lowest_eigenvectors = eigensolver.eigenvectors().topLeftCorner(N, number_of_requested_eigenpairs);
+    GQCP::VectorX<double> ref_lowest_eigenvalues = eigensolver.eigenvalues().head(number_of_requested_eigenpairs);
+    GQCP::MatrixX<double> ref_lowest_eigenvectors = eigensolver.eigenvectors().topLeftCorner(N, number_of_requested_eigenpairs);
 
     // Create eigenpairs for the reference eigenpairs
     std::vector<GQCP::Eigenpair> ref_eigenpairs (number_of_requested_eigenpairs);
@@ -371,7 +371,7 @@ BOOST_AUTO_TEST_CASE ( liu_1000_number_of_requested_eigenpairs ) {
     }
 
     // Solve using the Davidson diagonalization, supplying the requested amount of  initial guesses
-    Eigen::MatrixXd X_0 = Eigen::MatrixXd::Identity(N, N).topLeftCorner(N, number_of_requested_eigenpairs);
+    GQCP::MatrixX<double> X_0 = GQCP::MatrixX<double>::Identity(N, N).topLeftCorner(N, number_of_requested_eigenpairs);
     GQCP::DavidsonSolverOptions solver_options (X_0);
     solver_options.number_of_requested_eigenpairs = number_of_requested_eigenpairs;
     solver_options.collapsed_subspace_dimension = number_of_requested_eigenpairs;

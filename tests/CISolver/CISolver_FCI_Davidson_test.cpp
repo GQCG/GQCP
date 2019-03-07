@@ -53,7 +53,7 @@ BOOST_AUTO_TEST_CASE ( FCI_h2_sto3g_dense_vs_Davidson ) {
     GQCP::CISolver ci_solver (fci, mol_ham_par);
 
     // Solve Davidson
-    Eigen::VectorXd initial_g = fock_space.HartreeFockExpansion();
+    GQCP::VectorX<double> initial_g = fock_space.HartreeFockExpansion();
     GQCP::DavidsonSolverOptions davidson_solver_options (initial_g);
     ci_solver.solve(davidson_solver_options);
 
@@ -95,7 +95,7 @@ BOOST_AUTO_TEST_CASE ( FCI_H2_6_31Gxx_dense_vs_Davidson ) {
     GQCP::CISolver ci_solver (fci, mol_ham_par);
 
     // Solve Davidson
-    Eigen::VectorXd initial_g = fock_space.HartreeFockExpansion();
+    GQCP::VectorX<double> initial_g = fock_space.HartreeFockExpansion();
     GQCP::DavidsonSolverOptions davidson_solver_options (initial_g);
     ci_solver.solve(davidson_solver_options);
 
@@ -137,7 +137,7 @@ BOOST_AUTO_TEST_CASE ( FCI_H2O_STO_3G_dense_vs_Davidson ) {
     GQCP::CISolver ci_solver (fci, mol_ham_par);
 
     // Solve Davidson
-    Eigen::VectorXd initial_g = fock_space.HartreeFockExpansion();
+    GQCP::VectorX<double> initial_g = fock_space.HartreeFockExpansion();
     GQCP::DavidsonSolverOptions davidson_solver_options (initial_g);
     ci_solver.solve(davidson_solver_options);
 
@@ -178,7 +178,7 @@ BOOST_AUTO_TEST_CASE ( FCI_H6_STO_3G_dense_vs_Davidson ) {
     GQCP::CISolver ci_solver (fci, mol_ham_par);
 
     // Solve Davidson
-    Eigen::VectorXd initial_g = fock_space.HartreeFockExpansion();
+    GQCP::VectorX<double> initial_g = fock_space.HartreeFockExpansion();
     GQCP::DavidsonSolverOptions davidson_solver_options (initial_g);
     ci_solver.solve(davidson_solver_options);
 

@@ -48,7 +48,7 @@ BOOST_AUTO_TEST_CASE ( FrozenCoreDOCI_public_methods ) {
     // Create a compatible Fock space
     GQCP::FrozenFockSpace fock_space (K, 3, 1);
     GQCP::FrozenCoreDOCI random_doci (fock_space);
-    Eigen::VectorXd x = random_doci.calculateDiagonal(random_hamiltonian_parameters);
+    GQCP::VectorX<double> x = random_doci.calculateDiagonal(random_hamiltonian_parameters);
     BOOST_CHECK_NO_THROW(random_doci.constructHamiltonian(random_hamiltonian_parameters));
     BOOST_CHECK_NO_THROW(random_doci.matrixVectorProduct(random_hamiltonian_parameters, x, x));
 
@@ -77,14 +77,14 @@ BOOST_AUTO_TEST_CASE ( SelectedCI_vs_FrozenCoreDOCI ) {
     GQCP::SelectedCI random_sci (fock_space);
     GQCP::FrozenCoreDOCI random_frozen_core_doci (frozen_fock_space);
 
-    Eigen::VectorXd sci_diagonal = random_sci.calculateDiagonal(random_hamiltonian_parameters);
-    Eigen::VectorXd doci_diagonal = random_frozen_core_doci.calculateDiagonal(random_hamiltonian_parameters);
+    GQCP::VectorX<double> sci_diagonal = random_sci.calculateDiagonal(random_hamiltonian_parameters);
+    GQCP::VectorX<double> doci_diagonal = random_frozen_core_doci.calculateDiagonal(random_hamiltonian_parameters);
 
-    Eigen::VectorXd sci_matvec = random_sci.matrixVectorProduct(random_hamiltonian_parameters, sci_diagonal, sci_diagonal);
-    Eigen::VectorXd doci_matvec = random_frozen_core_doci.matrixVectorProduct(random_hamiltonian_parameters, doci_diagonal, doci_diagonal);
+    GQCP::VectorX<double> sci_matvec = random_sci.matrixVectorProduct(random_hamiltonian_parameters, sci_diagonal, sci_diagonal);
+    GQCP::VectorX<double> doci_matvec = random_frozen_core_doci.matrixVectorProduct(random_hamiltonian_parameters, doci_diagonal, doci_diagonal);
 
-    Eigen::MatrixXd sci_ham = random_sci.constructHamiltonian(random_hamiltonian_parameters);
-    Eigen::MatrixXd doci_ham = random_frozen_core_doci.constructHamiltonian(random_hamiltonian_parameters);
+    GQCP::SquareMatrix<double> sci_ham = random_sci.constructHamiltonian(random_hamiltonian_parameters);
+    GQCP::SquareMatrix<double> doci_ham = random_frozen_core_doci.constructHamiltonian(random_hamiltonian_parameters);
 
     BOOST_CHECK(sci_diagonal.isApprox(doci_diagonal));
     BOOST_CHECK(sci_matvec.isApprox(doci_matvec));

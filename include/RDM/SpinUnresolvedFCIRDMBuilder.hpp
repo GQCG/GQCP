@@ -52,14 +52,14 @@ public:
      *
      *  @return the 1-RDM given a coefficient vector
      */
-    OneRDM<double> calculate1RDM(const Eigen::VectorXd& x) const override;
+    OneRDM<double> calculate1RDM(const VectorX<double>& x) const override;
 
     /**
      *  @param x        the coefficient vector representing the UnresolvedCI wave function
      *
      *  @return the 2-RDM given a coefficient vector
      */
-    TwoRDM<double> calculate2RDM(const Eigen::VectorXd& x) const override;
+    TwoRDM<double> calculate2RDM(const VectorX<double>& x) const override;
 
     /**
      *  @param bra_indices      the indices of the orbitals that should be annihilated on the left (on the bra)
@@ -70,7 +70,7 @@ public:
      *
      *      calculateElement({0, 1}, {2, 1}) would calculate d^{(2)} (0, 1, 1, 2): the operator string would be a^\dagger_0 a^\dagger_1 a_2 a_1
      */
-    double calculateElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices, const Eigen::VectorXd& x) const override;
+    double calculateElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices, const VectorX<double>& x) const override;
 };
 
 

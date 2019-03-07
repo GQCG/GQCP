@@ -96,7 +96,7 @@ BOOST_AUTO_TEST_CASE ( four_site_chain_ward ) {
     // Create the adjacency matrix for a four-site chain
     size_t K = 4;
     size_t N = 2;  // = N_alpha = N_beta: half-filling
-    Eigen::MatrixXd A = Eigen::MatrixXd::Zero(K, K);
+    GQCP::SquareMatrix<double> A = GQCP::SquareMatrix<double>::Zero(K, K);
     A << 0, 1, 0, 0,
          1, 0, 1, 0,
          0, 1, 0, 1,
@@ -133,7 +133,7 @@ BOOST_AUTO_TEST_CASE ( six_site_ring_ward ) {
     // Create the adjacency matrix for a six-site ring
     size_t K = 6;
     size_t N = 3;  // = N_alpha = N_beta: half-filling
-    Eigen::MatrixXd A = Eigen::MatrixXd::Zero(K, K);
+    GQCP::SquareMatrix<double> A = GQCP::SquareMatrix<double>::Zero(K, K);
     A << 0, 1, 0, 0, 0, 1,
          1, 0, 1, 0, 0, 0,
          0, 1, 0, 1, 0, 0,

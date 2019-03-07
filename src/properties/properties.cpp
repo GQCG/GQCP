@@ -29,11 +29,11 @@ namespace GQCP {
  *
  *  @return the three Cartesian components of the electronic electric dipole moment
  */
-Eigen::Vector3d calculateElectronicDipoleMoment(const std::array<OneElectronOperator<double>, 3>& dipole_operator, const OneRDM<double>& one_rdm) {
+Vector<double, 3> calculateElectronicDipoleMoment(const std::array<OneElectronOperator<double>, 3>& dipole_operator, const OneRDM<double>& one_rdm) {
 
     auto expectation_values = calculateExpectationValues<3>(dipole_operator, one_rdm);
 
-    Eigen::Vector3d electronic_dipole = Eigen::Map<Eigen::Vector3d>(expectation_values.data());
+    Vector<double, 3> electronic_dipole = Eigen::Map<Eigen::Vector3d>(expectation_values.data());
     return electronic_dipole;
 }
 

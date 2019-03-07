@@ -31,32 +31,25 @@ namespace GQCP {
 /**
  *  A class that represents a one-electron operator in an orbital basis
  *
- *  @tparam Scalar      the scalar type
+ *  @tparam _Scalar      the scalar type
  */
-template <typename Scalar>
-class OneElectronOperator : public SquareMatrix<Scalar>, public Operator<OneElectronOperator<Scalar>> {
+template <typename _Scalar>
+class OneElectronOperator : public SquareMatrix<_Scalar>, public Operator<OneElectronOperator<_Scalar>> {
+public:
+
+    using Scalar = _Scalar;
+
+    using BaseRepresentation = SquareMatrix<Scalar>;
+    using Self = OneElectronOperator<Scalar>;
+
+
 public:
 
     /*
      *  CONSTRUCTORS
      */
 
-    /**
-     *  Default constructor
-     */
-    OneElectronOperator() :
-        SquareMatrix<Scalar>()
-    {}
-
-
-    /**
-     *  @param matrix   the explicit matrix representation of the one-electron operator
-     *
-     *  Note that this should accept any Matrix<Scalar> (instead of SquareMatrix<Scalar>) because we want other Eigen return types to be accepted as well, like after a product of OneElectronOperators
-     */
-    explicit OneElectronOperator(const Matrix<Scalar>& matrix) :
-        SquareMatrix<Scalar>(matrix)
-    {}
+    using SquareMatrix<Scalar>::SquareMatrix;  // use base constructors
 
 
     /*
@@ -126,8 +119,7 @@ public:
                 result_op(i,j) = (*this)(i,j).operator()(x);
             }
         }
-
-        return OneElectronOperator<typename Z::Valued>(result_op);
+        return result_op;
     }
 };
 

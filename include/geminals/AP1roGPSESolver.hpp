@@ -79,7 +79,7 @@ public:
      *
      *  @return the Jacobian at the given geminal coefficients
      */
-    Eigen::MatrixXd calculateJacobian(const Eigen::VectorXd& g) const;
+    SquareMatrix<double> calculateJacobian(const VectorX<double>& g) const;
 
     /**
      *  @param G        the AP1roG geminal coefficients
@@ -95,7 +95,7 @@ public:
      *
      *  @return the vector of coordinate functions at the given geminal coefficients
      */
-    Eigen::VectorXd calculateCoordinateFunctions(const Eigen::VectorXd& g) const;
+    VectorX<double> calculateCoordinateFunctions(const VectorX<double>& g) const;
 
     /**
      *  Set up and solve the projected Schrödinger equations for AP1roG

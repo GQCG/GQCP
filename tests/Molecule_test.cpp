@@ -271,7 +271,7 @@ BOOST_AUTO_TEST_CASE ( calculateNuclearDipoleMoment ) {
     GQCP::Atom O {8,  2, 4, 8};
     GQCP::Molecule molecule (std::vector<GQCP::Atom>{H, O});
 
-    BOOST_CHECK(molecule.calculateNuclearDipoleMoment().isApprox(Eigen::Vector3d{16, 33, 66}));
+    BOOST_CHECK(molecule.calculateNuclearDipoleMoment().isApprox(GQCP::Vector<double, 3>{16, 33, 66}));
 }
 
 

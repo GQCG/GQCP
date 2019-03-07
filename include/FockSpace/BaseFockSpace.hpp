@@ -20,7 +20,7 @@
 
 
 #include "FockSpace/FockSpaceType.hpp"
-#include "typedefs.hpp"
+#include "math/Matrix.hpp"
 
 #include <iostream>
 #include <memory>
@@ -75,17 +75,17 @@ public:
     /**
      *  @return the coefficient vector for the Hartree-Fock wave function (i.e. the 'first' ONV/Slater determinant)
      */
-    Eigen::VectorXd HartreeFockExpansion() const;
+    VectorX<double> HartreeFockExpansion() const;
 
     /**
      *  @return a random normalized coefficient vector, with coefficients uniformly distributed in [-1, 1]
      */
-    Eigen::VectorXd randomExpansion() const;
+    VectorX<double> randomExpansion() const;
 
     /**
      *  @return a constant normalized coefficients vector (i.e. all the coefficients are equal)
      */
-    Eigen::VectorXd constantExpansion() const;
+    VectorX<double> constantExpansion() const;
 };
 
 

@@ -32,7 +32,7 @@ namespace GQCP {
 class WaveFunctionReader {
 private:
     SelectedFockSpace fock_space;
-    Eigen::VectorXd coefficients;
+    VectorX<double> coefficients;
     WaveFunction wave_function;
 
 
@@ -45,7 +45,7 @@ public:
 
     // GETTERS
     const SelectedFockSpace& get_fock_space() const { return this->fock_space; }
-    const Eigen::VectorXd& get_coefficients() const { return this->coefficients; }
+    const VectorX<double>& get_coefficients() const { return this->coefficients; }
     const WaveFunction& get_wave_function() const { return this->wave_function; }
 };
 

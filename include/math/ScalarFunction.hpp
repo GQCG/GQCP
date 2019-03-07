@@ -20,10 +20,10 @@
 
 
 /*
- *  This file contains the source code for ScalarFunctionProduct and ScalarFunction
+ *  This file contains the source code for both ScalarFunctionProduct and ScalarFunction
  */
 
-#include "typedefs.hpp"
+#include "math/Matrix.hpp"
 
 
 namespace GQCP {
@@ -98,7 +98,7 @@ public:
      *
      *  @return the product of the evaluated left-hand and right-hand side scalar functions
      */
-    Valued operator()(const Eigen::Matrix<Scalar, Cols, 1>& x) const override {
+    Valued operator()(const Vector<Scalar, Cols>& x) const override {
         return this->lhs(x) * this->rhs(x);
     }
 };

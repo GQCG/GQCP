@@ -20,7 +20,7 @@
 
 
 #include "FockSpace/BaseFockSpace.hpp"
-#include "typedefs.hpp"
+#include "math/Matrix.hpp"
 
 
 
@@ -33,7 +33,7 @@ namespace GQCP {
 class WaveFunction {
 private:
     std::shared_ptr<BaseFockSpace> fock_space;
-    Eigen::VectorXd coefficients;  // the expansion coefficients in the Fock space
+    VectorX<double> coefficients;  // the expansion coefficients in the Fock space
 
 public:
     // CONSTRUCTORS
@@ -45,11 +45,11 @@ public:
      *  @param base_fock_space      the Fock space in which the wave function 'lives'
      *  @param coefficients         the expansion coefficients
      */
-    WaveFunction(const BaseFockSpace& base_fock_space, const Eigen::VectorXd& coefficients);
+    WaveFunction(const BaseFockSpace& base_fock_space, const VectorX<double>& coefficients);
 
 
     // GETTERS
-    const Eigen::VectorXd& get_coefficients() const { return coefficients; }
+    const VectorX<double>& get_coefficients() const { return coefficients; }
     const BaseFockSpace& get_fock_space() const { return *fock_space; }
 
 

@@ -40,7 +40,7 @@ AP1roGVariables::AP1roGVariables() :
      *  @param N_P      the number of electron pairs (= the number of geminals)
      *  @param K        the number of spatial orbitals
      */
-AP1roGVariables::AP1roGVariables(const Eigen::VectorXd& x, size_t N_P, size_t K) :
+AP1roGVariables::AP1roGVariables(const VectorX<double>& x, size_t N_P, size_t K) :
     BaseAPIGVariables(x, N_P, K)
 {
     if (AP1roGVariables::numberOfVariables(N_P, K) != x.size()) {
@@ -56,7 +56,7 @@ AP1roGVariables::AP1roGVariables(const Eigen::VectorXd& x, size_t N_P, size_t K)
  *  @param K        the number of spatial orbitals
  */
 AP1roGVariables::AP1roGVariables(size_t N_P, size_t K) :
-    AP1roGVariables(Eigen::VectorXd::Zero(AP1roGVariables::numberOfVariables(N_P, K)), N_P, K)
+    AP1roGVariables(VectorX<double>::Zero(AP1roGVariables::numberOfVariables(N_P, K)), N_P, K)
 {}
 
 
@@ -90,7 +90,7 @@ size_t AP1roGVariables::numberOfVariables(size_t N_P, size_t K) {
 /**
  *  @return the variables in matrix form
  */
-Eigen::MatrixXd AP1roGVariables::asMatrix() const {
+MatrixX<double> AP1roGVariables::asMatrix() const {
 
     using RowMajorMatrixXd = Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor>;
 

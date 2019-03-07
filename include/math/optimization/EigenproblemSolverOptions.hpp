@@ -19,11 +19,10 @@
 #define GQCP_EIGENPROBLEMSOLVEROPTIONS_HPP
 
 
-#include <utility>
-
+#include "math/Matrix.hpp"
 
 #include <cstddef>
-#include <Eigen/Dense>
+#include <utility>
 
 
 namespace GQCP {
@@ -90,14 +89,14 @@ public:
     size_t collapsed_subspace_dimension = 2;
     size_t maximum_number_of_iterations = 128;
 
-    Eigen::MatrixXd X_0;  // Eigen::MatrixXd of initial guesses, or Eigen::VectorXd of initial guess
+    MatrixX<double> X_0;  // MatrixX<double> of initial guesses, or VectorX<double> of initial guess
 
 
     // CONSTRUCTORS
     /**
      *  @param initial_guess        the initial guess(es) for the Davidson algorithm, specified as column(s) of the given vector/matrix
      */
-    explicit DavidsonSolverOptions(const Eigen::MatrixXd& initial_guess) :
+    explicit DavidsonSolverOptions(const MatrixX<double>& initial_guess) :
         X_0 (initial_guess)
     {}
 

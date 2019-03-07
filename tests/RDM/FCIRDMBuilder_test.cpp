@@ -53,7 +53,7 @@ BOOST_AUTO_TEST_CASE ( H2O_1RDM_spin_trace_FCI ) {
     GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
-    Eigen::VectorXd coef = ci_solver.get_eigenpair().get_eigenvector();
+    GQCP::VectorX<double> coef = ci_solver.get_eigenpair().get_eigenvector();
 
     // Check if the FCI 1-RDMs have the proper trace.
     GQCP::FCIRDMBuilder fci_rdm (fock_space);
@@ -87,7 +87,7 @@ BOOST_AUTO_TEST_CASE ( H2O_2RDM_spin_trace_FCI ) {
     GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
-    Eigen::VectorXd coef = ci_solver.get_eigenpair().get_eigenvector();
+    GQCP::VectorX<double> coef = ci_solver.get_eigenpair().get_eigenvector();
 
     // Check if the FCI 2-RDMs have the proper trace.
     GQCP::FCIRDMBuilder fci_rdm (fock_space);
@@ -123,7 +123,7 @@ BOOST_AUTO_TEST_CASE ( H2O_1RDM_2RDM_trace_FCI ) {
     GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
-    Eigen::VectorXd coef = ci_solver.get_eigenpair().get_eigenvector();
+    GQCP::VectorX<double> coef = ci_solver.get_eigenpair().get_eigenvector();
 
     // Check if the 2-RDM contraction matches the reduction.
     GQCP::FCIRDMBuilder fci_rdm (fock_space);
@@ -131,7 +131,7 @@ BOOST_AUTO_TEST_CASE ( H2O_1RDM_2RDM_trace_FCI ) {
     GQCP::OneRDMs<double> one_rdms = fci_rdm.calculate1RDMs(coef);
 
 
-    Eigen::MatrixXd D_from_reduction = (1.0/(N-1)) * two_rdms.two_rdm.reduce();
+    GQCP::OneRDM<double> D_from_reduction = (1.0/(N-1)) * two_rdms.two_rdm.reduce();
     BOOST_CHECK(one_rdms.one_rdm.isApprox(D_from_reduction, 1.0e-12));
 }
 
@@ -157,7 +157,7 @@ BOOST_AUTO_TEST_CASE ( H2O_energy_RDM_contraction_FCI ) {
     GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
-    Eigen::VectorXd coef = ci_solver.get_eigenpair().get_eigenvector();
+    GQCP::VectorX<double> coef = ci_solver.get_eigenpair().get_eigenvector();
     double energy_by_eigenvalue = ci_solver.get_eigenpair().get_eigenvalue();
 
     // Check if the contraction energy matches the fci eigenvalue.
@@ -214,7 +214,7 @@ BOOST_AUTO_TEST_CASE ( throw_calculate_element ) {
     size_t N = 2;
     GQCP::ProductFockSpace fock_space (K, N, N);
 
-    Eigen::VectorXd coeff (fock_space.get_dimension());
+    GQCP::VectorX<double> coeff (fock_space.get_dimension());
     coeff << 1, 1, -2, 4, -5, -6, 7, 9, 8;
 
     // not implemented yet and should throw

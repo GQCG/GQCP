@@ -19,8 +19,7 @@
 
 #include "typedefs.hpp"
 #include "math/optimization/NewtonSystemOfEquationsSolver.hpp"
-
-
+#include "math/SquareMatrix.hpp"
 
 #include <iostream>
 
@@ -38,7 +37,7 @@ namespace GQCP {
  *  @param convergence_threshold            the threshold used for establishing convergence
  *  @param maximum_number_of_iterations     the maximum number of iterations in the algorithm
  */
-NewtonMinimizer::NewtonMinimizer(const Eigen::VectorXd& x0, const VectorFunction& grad, const MatrixFunction& H, double convergence_threshold, size_t maximum_number_of_iterations) :
+NewtonMinimizer::NewtonMinimizer(const VectorX<double>& x0, const VectorFunction& grad, const MatrixFunction& H, double convergence_threshold, size_t maximum_number_of_iterations) :
     BaseMinimizer(x0, convergence_threshold, maximum_number_of_iterations),
     grad (grad),
     H (H)
@@ -63,8 +62,8 @@ void NewtonMinimizer::solve() {
 
     // For mathematical correctness, the Jacobian of the gradient is the transpose of the Hessian of the scalar function
     // behind it
-    MatrixFunction H_t = [this](const Eigen::VectorXd& x) {
-        Eigen::MatrixXd H = this->H(x);
+    MatrixFunction H_t = [this](const VectorX<double>& x) {
+        SquareMatrix<double> H = this->H(x);
         H.transposeInPlace();
         return H;
     };

@@ -27,13 +27,13 @@
 
 #include "utilities/linalg.hpp"
 
-
+#include <random>
 
 
 BOOST_AUTO_TEST_CASE ( diagonal_getter_sparse ) {
 
     // Test the diagonal getter for a sparse matrix
-    Eigen::VectorXd ref_diagonal (100);
+    GQCP::VectorX<double> ref_diagonal (100);
 
     GQCP::SparseSolver sparse_solver (100);
 
@@ -87,13 +87,13 @@ BOOST_AUTO_TEST_CASE ( simple_sparse ) {
     spectra_sparse_eigensolver.compute();
 
     double ref_lowest_eigenvalue = spectra_sparse_eigensolver.eigenvalues()(0);
-    Eigen::VectorXd ref_lowest_eigenvector = spectra_sparse_eigensolver.eigenvectors().col(0);
+    GQCP::VectorX<double> ref_lowest_eigenvector = spectra_sparse_eigensolver.eigenvectors().col(0);
 
 
     // Find the lowest eigenpair using the sparse solver
     sparse_solver.solve();
     double test_lowest_eigenvalue = sparse_solver.get_eigenvalue();
-    Eigen::VectorXd test_lowest_eigenvector = sparse_solver.get_eigenvector();
+    GQCP::VectorX<double> test_lowest_eigenvector = sparse_solver.get_eigenvector();
 
 
     BOOST_CHECK(std::abs(test_lowest_eigenvalue - ref_lowest_eigenvalue) < 1.0e-08);
@@ -150,8 +150,8 @@ BOOST_AUTO_TEST_CASE ( simple_sparse_number_of_requested_eigenpairs ) {
         spectra_sparse_eigensolver.init();
         spectra_sparse_eigensolver.compute();
 
-        Eigen::VectorXd ref_lowest_eigenvalues = spectra_sparse_eigensolver.eigenvalues().head(number_of_requested_eigenpairs);
-        Eigen::MatrixXd ref_lowest_eigenvectors = spectra_sparse_eigensolver.eigenvectors().topLeftCorner(rows, number_of_requested_eigenpairs);
+        GQCP::VectorX<double> ref_lowest_eigenvalues = spectra_sparse_eigensolver.eigenvalues().head(number_of_requested_eigenpairs);
+        GQCP::MatrixX<double> ref_lowest_eigenvectors = spectra_sparse_eigensolver.eigenvectors().topLeftCorner(rows, number_of_requested_eigenpairs);
 
         // Create eigenpairs for the reference eigenpairs
         std::vector<GQCP::Eigenpair> ref_eigenpairs(number_of_requested_eigenpairs);

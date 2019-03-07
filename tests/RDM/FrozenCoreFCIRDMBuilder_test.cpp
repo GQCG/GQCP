@@ -51,7 +51,7 @@ BOOST_AUTO_TEST_CASE ( FrozenCoreFCI_one_rdms ) {
     GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
-    Eigen::VectorXd coef = ci_solver.get_eigenpair().get_eigenvector();
+    GQCP::VectorX<double> coef = ci_solver.get_eigenpair().get_eigenvector();
 
     // Get the frozen core FCI and SelectedCI 1-RDMS
     GQCP::SelectedRDMBuilder sci_rdm (selected_fock_space);
@@ -82,7 +82,7 @@ BOOST_AUTO_TEST_CASE ( FrozenCoreFCI_two_rdms ) {
     GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
-    Eigen::VectorXd coef = ci_solver.get_eigenpair().get_eigenvector();
+    GQCP::VectorX<double> coef = ci_solver.get_eigenpair().get_eigenvector();
 
     // Get the frozen core FCI and SelectedCI 2-RDMS
     GQCP::SelectedRDMBuilder sci_rdm(selected_fock_space);
@@ -91,9 +91,9 @@ BOOST_AUTO_TEST_CASE ( FrozenCoreFCI_two_rdms ) {
     GQCP::TwoRDMs<double> two_rdms = fci_rdm.calculate2RDMs(coef);
 
 
-    BOOST_CHECK(GQCP::areEqual(two_rdms_s.two_rdm_aaaa, two_rdms.two_rdm_aaaa, 1.0e-06));
-    BOOST_CHECK(GQCP::areEqual(two_rdms_s.two_rdm_aabb, two_rdms.two_rdm_aabb, 1.0e-06));
-    BOOST_CHECK(GQCP::areEqual(two_rdms_s.two_rdm_bbaa, two_rdms.two_rdm_bbaa, 1.0e-06));
-    BOOST_CHECK(GQCP::areEqual(two_rdms_s.two_rdm_bbbb, two_rdms.two_rdm_bbbb, 1.0e-06));
-    BOOST_CHECK(GQCP::areEqual(two_rdms_s.two_rdm, two_rdms.two_rdm, 1.0e-06));
+    BOOST_CHECK(two_rdms_s.two_rdm_aaaa.isApprox(two_rdms.two_rdm_aaaa, 1.0e-06));
+    BOOST_CHECK(two_rdms_s.two_rdm_aabb.isApprox(two_rdms.two_rdm_aabb, 1.0e-06));
+    BOOST_CHECK(two_rdms_s.two_rdm_bbaa.isApprox(two_rdms.two_rdm_bbaa, 1.0e-06));
+    BOOST_CHECK(two_rdms_s.two_rdm_bbbb.isApprox(two_rdms.two_rdm_bbbb, 1.0e-06));
+    BOOST_CHECK(two_rdms_s.two_rdm.isApprox(two_rdms.two_rdm, 1.0e-06));
 }

@@ -104,8 +104,8 @@ BaseFockSpace::~BaseFockSpace() {}
 /**
  *  @return the coefficient vector for the Hartree-Fock wave function (i.e. the 'first' ONV/Slater determinant)
  */
-Eigen::VectorXd BaseFockSpace::HartreeFockExpansion() const {
-    Eigen::VectorXd expansion = Eigen::VectorXd::Zero(this->dim);
+VectorX<double> BaseFockSpace::HartreeFockExpansion() const {
+    VectorX<double> expansion = VectorX<double>::Zero(this->dim);
     expansion(0) = 1;  // first configuration is position 0 (conventional ordering of the Fock space)
     return expansion;
 }
@@ -114,8 +114,8 @@ Eigen::VectorXd BaseFockSpace::HartreeFockExpansion() const {
 /**
  *  @return a random normalized coefficient vector, with coefficients uniformly distributed in [-1, 1]
  */
-Eigen::VectorXd BaseFockSpace::randomExpansion() const {
-    Eigen::VectorXd random = Eigen::VectorXd::Random(this->dim);
+VectorX<double> BaseFockSpace::randomExpansion() const {
+    VectorX<double> random = VectorX<double>::Random(this->dim);
     random.normalize();
     return random;
 }
@@ -124,8 +124,8 @@ Eigen::VectorXd BaseFockSpace::randomExpansion() const {
 /**
  *  @return a constant normalized coefficients vector (i.e. all the coefficients are equal)
  */
-Eigen::VectorXd BaseFockSpace::constantExpansion() const {
-    Eigen::VectorXd constant = Eigen::VectorXd::Ones(this->dim);
+VectorX<double> BaseFockSpace::constantExpansion() const {
+    VectorX<double> constant = VectorX<double>::Ones(this->dim);
     constant.normalize();
     return constant;
 }

@@ -47,7 +47,7 @@ BOOST_AUTO_TEST_CASE ( lih_1RDM_trace ) {
     GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
-    Eigen::VectorXd coef = ci_solver.get_eigenpair().get_eigenvector();
+    GQCP::VectorX<double> coef = ci_solver.get_eigenpair().get_eigenvector();
 
     // Check if the DOCI 1-RDM has the proper trace.
     GQCP::DOCIRDMBuilder doci_rdm (fock_space);
@@ -77,7 +77,7 @@ BOOST_AUTO_TEST_CASE ( lih_2RDM_trace ) {
     GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
-    Eigen::VectorXd coef = ci_solver.get_eigenpair().get_eigenvector();
+    GQCP::VectorX<double> coef = ci_solver.get_eigenpair().get_eigenvector();
 
     // Check if the 2-RDM has the proper trace.
     GQCP::DOCIRDMBuilder doci_rdm (fock_space);
@@ -107,7 +107,7 @@ BOOST_AUTO_TEST_CASE ( lih_1RDM_2RDM_trace_DOCI ) {
     GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
-    Eigen::VectorXd coef = ci_solver.get_eigenpair().get_eigenvector();
+    GQCP::VectorX<double> coef = ci_solver.get_eigenpair().get_eigenvector();
 
     // Check if the 2-RDM contraction matches the reduction.
     GQCP::DOCIRDMBuilder doci_rdm (fock_space);
@@ -115,7 +115,7 @@ BOOST_AUTO_TEST_CASE ( lih_1RDM_2RDM_trace_DOCI ) {
     GQCP::OneRDMs<double> one_rdms = doci_rdm.calculate1RDMs(coef);
 
 
-    Eigen::MatrixXd D_from_reduction = (1.0/(N-1)) * two_rdms.two_rdm.reduce();
+    GQCP::OneRDM<double> D_from_reduction = (1.0/(N-1)) * two_rdms.two_rdm.reduce();
     BOOST_CHECK(one_rdms.one_rdm.isApprox(D_from_reduction, 1.0e-12));
 }
 
@@ -138,7 +138,7 @@ BOOST_AUTO_TEST_CASE ( lih_energy_RDM_contraction_DOCI ) {
     GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
-    Eigen::VectorXd coef = ci_solver.get_eigenpair().get_eigenvector();
+    GQCP::VectorX<double> coef = ci_solver.get_eigenpair().get_eigenvector();
     double energy_by_eigenvalue = ci_solver.get_eigenpair().get_eigenvalue();
 
     // Check if the contraction energy matches the doci eigenvalue.
@@ -178,7 +178,7 @@ BOOST_AUTO_TEST_CASE ( lih_1RDM_2RDM_trace_DOCI_wavefunction ) {
     GQCP::TwoRDMs<double> two_rdms = doci_rdm.calculate2RDMs();
     GQCP::OneRDMs<double> one_rdms = doci_rdm.calculate1RDMs();
 
-    Eigen::MatrixXd D_from_reduction = (1.0/(N-1)) * two_rdms.two_rdm.reduce();
+    GQCP::OneRDM<double> D_from_reduction = (1.0/(N-1)) * two_rdms.two_rdm.reduce();
     BOOST_CHECK(one_rdms.one_rdm.isApprox(D_from_reduction, 1.0e-12));
 }
 
@@ -189,7 +189,7 @@ BOOST_AUTO_TEST_CASE ( throw_calculate_element ) {
     size_t N = 4;
     GQCP::FockSpace fock_space (K, N);
 
-    Eigen::VectorXd coeff (fock_space.get_dimension());
+    GQCP::VectorX<double> coeff (fock_space.get_dimension());
     coeff << 1, 1, -2, 4, -5;
 
     // not implemented yet and should throw

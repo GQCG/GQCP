@@ -151,7 +151,7 @@ Hubbard::Hubbard(const ProductFockSpace& fock_space) :
  *
  *  @return the Hubbard Hamiltonian matrix
  */
-Eigen::MatrixXd Hubbard::constructHamiltonian(const HamiltonianParameters<double>& hamiltonian_parameters) const {
+SquareMatrix<double> Hubbard::constructHamiltonian(const HamiltonianParameters<double>& hamiltonian_parameters) const {
     auto K = hamiltonian_parameters.get_h().get_dim();
     if (K != this->fock_space.get_K()) {
         throw std::invalid_argument("Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
@@ -162,7 +162,7 @@ Eigen::MatrixXd Hubbard::constructHamiltonian(const HamiltonianParameters<double
 
     auto dim = fock_space.get_dimension();
 
-    Eigen::MatrixXd result_matrix = Eigen::MatrixXd::Zero(dim, dim);
+    SquareMatrix<double> result_matrix = SquareMatrix<double>::Zero(dim, dim);
     result_matrix += this->calculateDiagonal(hamiltonian_parameters).asDiagonal();
 
     // We pass to a matrix and create the corresponding lambda function
@@ -185,7 +185,7 @@ Eigen::MatrixXd Hubbard::constructHamiltonian(const HamiltonianParameters<double
  *
  *  @return the action of the Hubbard Hamiltonian on the coefficient vector
  */
-Eigen::VectorXd Hubbard::matrixVectorProduct(const HamiltonianParameters<double>& hamiltonian_parameters, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) const {
+VectorX<double> Hubbard::matrixVectorProduct(const HamiltonianParameters<double>& hamiltonian_parameters, const VectorX<double>& x, const VectorX<double>& diagonal) const {
 
     auto K = hamiltonian_parameters.get_h().get_dim();
     if (K != this->fock_space.get_K()) {
@@ -195,7 +195,7 @@ Eigen::VectorXd Hubbard::matrixVectorProduct(const HamiltonianParameters<double>
     FockSpace fock_space_alpha = fock_space.get_fock_space_alpha();
     FockSpace fock_space_beta = fock_space.get_fock_space_beta();
 
-    Eigen::VectorXd matvec = diagonal.cwiseProduct(x);
+    VectorX<double> matvec = diagonal.cwiseProduct(x);
 
     // We pass to a the matvec and create the corresponding lambda function
     PassToMethod addToMatvec = [&matvec, &x](size_t I, size_t J, double value) { matvec(I) += value * x(J); };
@@ -215,7 +215,7 @@ Eigen::VectorXd Hubbard::matrixVectorProduct(const HamiltonianParameters<double>
  *
  *  @return the diagonal of the matrix representation of the Hubbard Hamiltonian
  */
-Eigen::VectorXd Hubbard::calculateDiagonal(const HamiltonianParameters<double>& hamiltonian_parameters) const {
+VectorX<double> Hubbard::calculateDiagonal(const HamiltonianParameters<double>& hamiltonian_parameters) const {
 
     auto K = hamiltonian_parameters.get_h().get_dim();
     if (K != this->fock_space.get_K()) {
@@ -230,7 +230,7 @@ Eigen::VectorXd Hubbard::calculateDiagonal(const HamiltonianParameters<double>& 
     auto dim = fock_space.get_dimension();
 
     // Diagonal contributions
-    Eigen::VectorXd diagonal = Eigen::VectorXd::Zero(dim);
+    VectorX<double> diagonal = VectorX<double>::Zero(dim);
 
     ONV onv_alpha = fock_space_alpha.makeONV(0);
     ONV onv_beta =  fock_space_beta.makeONV(0);

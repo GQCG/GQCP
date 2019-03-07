@@ -38,7 +38,7 @@ namespace GQCP {
  *  @param convergence_threshold            the threshold used to determine convergence
  *  @param maximum_number_of_iterations     the maximum number of iterations in the algorithm
  */
-NewtonSystemOfEquationsSolver::NewtonSystemOfEquationsSolver(const Eigen::VectorXd& x0, const VectorFunction& f, const MatrixFunction& J, double convergence_threshold, size_t maximum_number_of_iterations) :
+NewtonSystemOfEquationsSolver::NewtonSystemOfEquationsSolver(const VectorX<double>& x0, const VectorFunction& f, const MatrixFunction& J, double convergence_threshold, size_t maximum_number_of_iterations) :
     BaseSystemOfEquationsSolver(x0, convergence_threshold, maximum_number_of_iterations),
     f (f),
     J (J)
@@ -64,7 +64,7 @@ void NewtonSystemOfEquationsSolver::solve() {
     while (!(this->is_solved)) {
 
         // Calculate the Newton step
-        Eigen::VectorXd dx = newtonStep(this->x, this->f, this->J);
+        VectorX<double> dx = newtonStep(this->x, this->f, this->J);
 
         // Update the current coefficients, using the Newton step
         this->x += dx;

@@ -32,7 +32,7 @@ BOOST_AUTO_TEST_CASE ( calculateElement_throws ) {
     size_t N = 1;
     GQCP::FockSpace fock_space (M, N);
 
-    Eigen::VectorXd coeff (fock_space.get_dimension());
+    GQCP::VectorX<double> coeff (fock_space.get_dimension());
     coeff << 1, 2, -3;
     GQCP::SpinUnresolvedFCIRDMBuilder d (fock_space);
 
@@ -49,7 +49,7 @@ BOOST_AUTO_TEST_CASE ( calculateElement_1RDM ) {
     size_t N = 1;
     GQCP::FockSpace fock_space (M, N);
 
-    Eigen::VectorXd coeff (fock_space.get_dimension());
+    GQCP::VectorX<double> coeff (fock_space.get_dimension());
     coeff << 1, 2, -3;
 
 
@@ -68,7 +68,7 @@ BOOST_AUTO_TEST_CASE ( calculateElement_2RDM ) {
     size_t N = 2;
     GQCP::FockSpace fock_space (M, N);
 
-    Eigen::VectorXd coeff (fock_space.get_dimension());
+    GQCP::VectorX<double> coeff (fock_space.get_dimension());
     coeff << 1, 2, -3;
 
 
@@ -88,7 +88,7 @@ BOOST_AUTO_TEST_CASE ( calculateElement_3RDM ) {
     size_t N = 4;
     GQCP::FockSpace fock_space (M, N);
 
-    Eigen::VectorXd coeff (fock_space.get_dimension());
+    GQCP::VectorX<double> coeff (fock_space.get_dimension());
     coeff << 1, 1, -2, 4, -5;
 
 
@@ -108,7 +108,7 @@ BOOST_AUTO_TEST_CASE ( throw_1and2_RDMs ) {
     size_t N = 4;
     GQCP::FockSpace fock_space (M, N);
 
-    Eigen::VectorXd coeff (fock_space.get_dimension());
+    GQCP::VectorX<double> coeff (fock_space.get_dimension());
     coeff << 1, 1, -2, 4, -5;
 
 

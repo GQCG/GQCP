@@ -16,12 +16,12 @@ static void matvec(benchmark::State& state) {
     GQCP::DOCI doci (fock_space);
 
     GQCP::HamiltonianParameters<double> ham_par = GQCP::HamiltonianParameters<double>::Random(K);
-    Eigen::VectorXd diagonal = doci.calculateDiagonal(ham_par);
-    Eigen::VectorXd x = fock_space.randomExpansion();
+    GQCP::VectorX<double> diagonal = doci.calculateDiagonal(ham_par);
+    GQCP::VectorX<double> x = fock_space.randomExpansion();
 
     // Code inside this loop is measured repeatedly
     for (auto _ : state) {
-        Eigen::VectorXd matvec = doci.matrixVectorProduct(ham_par, x, diagonal);
+        GQCP::VectorX<double> matvec = doci.matrixVectorProduct(ham_par, x, diagonal);
 
         benchmark::DoNotOptimize(matvec);  // make sure the variable is not optimized away by compiler
     }

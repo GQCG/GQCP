@@ -19,7 +19,7 @@
 #define GQCP_TWORDM_HPP
 
 
-#include "math/SquareFourIndexTensor.hpp"
+#include "math/SquareRankFourTensor.hpp"
 #include "RDM/OneRDM.hpp"
 
 
@@ -29,35 +29,28 @@ namespace GQCP {
 /**
  *  A class that represents a 2-RDM
  *
- *  @tparam Scalar      the scalar type
+ *  @tparam _Scalar     the scalar type
  */
-template<typename Scalar>
-class TwoRDM : public SquareFourIndexTensor<Scalar> {
+template <typename _Scalar>
+class TwoRDM : public SquareRankFourTensor<_Scalar> {
+public:
+
+    using Scalar = _Scalar;
+
+    using BaseRepresentation = SquareRankFourTensor<Scalar>;
+
+
 public:
 
     /*
-     * CONSTRUCTORS
+     *  CONSTRUCTORS
      */
 
-    /**
-     *  Default constructor
-     */
-    TwoRDM() :
-        SquareFourIndexTensor<Scalar>()
-    {}
-
-
-    /**
-     *  @param tensor   the explicit matrix representation of the two-electron operator
-     */
-    explicit TwoRDM(const FourIndexTensor<double>& tensor) :
-        SquareFourIndexTensor<Scalar>(tensor)
-    {}
-
+    using SquareRankFourTensor<Scalar>::SquareRankFourTensor;  // use base constructors
 
 
     /*
-     * CONSTRUCTORS
+     *  PUBLIC METHODS
      */
 
     /**
@@ -88,7 +81,7 @@ public:
 
         auto K = static_cast<size_t>(this->dimension(0));
 
-        auto D = OneRDM<double>(Eigen::MatrixXd::Zero(K, K));
+        OneRDM<double> D = OneRDM<double>::Zero(K, K);
         for (size_t p = 0; p < K; p++) {
             for (size_t q = 0; q < K; q++) {
                 for (size_t r = 0; r < K; r++) {
@@ -97,7 +90,7 @@ public:
             }
         }
 
-        return OneRDM<Scalar>(D);
+        return D;
     }
 };
 

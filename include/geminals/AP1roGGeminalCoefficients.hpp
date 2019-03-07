@@ -19,11 +19,10 @@
 #define AP1roGGeminalCoefficients_hpp
 
 
-#include <Eigen/Dense>
-
 #include "geminals/AP1roGVariables.hpp"
 #include "geminals/GeminalCoefficientsInterface.hpp"
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "math/Matrix.hpp"
 #include "WaveFunction/WaveFunction.hpp"
 
 
@@ -47,7 +46,7 @@ public:
      *  @param N_P      the number of electron pairs (= the number of geminals)
      *  @param K        the number of spatial orbitals
      */
-    AP1roGGeminalCoefficients(const Eigen::VectorXd& g, size_t N_P, size_t K);
+    AP1roGGeminalCoefficients(const VectorX<double>& g, size_t N_P, size_t K);
 
     /**
      *  Constructor that sets the geminal coefficients to zero
@@ -86,7 +85,7 @@ public:
     /**
      *  @return the geminal coefficients in matrix form
      */
-    Eigen::MatrixXd asMatrix() const override;
+    MatrixX<double> asMatrix() const override;
 
     /**
      *  @param onv      the ONV that is being projected on

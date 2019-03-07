@@ -32,9 +32,9 @@ namespace GQCP {
  *  @param X                             the number of frozen orbitals
  */
 FrozenCoreCI::FrozenCoreCI(std::shared_ptr<GQCP::HamiltonianBuilder> hamiltonian_builder, size_t X) :
-        HamiltonianBuilder(),
-        active_hamiltonian_builder (std::move(hamiltonian_builder)),
-        X (X)
+    HamiltonianBuilder(),
+    active_hamiltonian_builder (std::move(hamiltonian_builder)),
+    X (X)
 {}
 
 
@@ -48,16 +48,16 @@ FrozenCoreCI::FrozenCoreCI(std::shared_ptr<GQCP::HamiltonianBuilder> hamiltonian
  *
  *  @return the frozen core Hamiltonian matrix
  */
-Eigen::MatrixXd FrozenCoreCI::constructHamiltonian(const HamiltonianParameters<double>& ham_par) const {
+SquareMatrix<double> FrozenCoreCI::constructHamiltonian(const HamiltonianParameters<double>& ham_par) const {
 
     // Freeze Hamiltonian parameters
     HamiltonianParameters<double> frozen_ham_par = this->freezeHamiltonianParameters(ham_par, X);
 
     // calculate Hamiltonian matrix through conventional CI
-    Eigen::MatrixXd total_hamiltonian = this->active_hamiltonian_builder->constructHamiltonian(frozen_ham_par);
+    SquareMatrix<double> total_hamiltonian = this->active_hamiltonian_builder->constructHamiltonian(frozen_ham_par);
 
     // diagonal correction
-    Eigen::VectorXd diagonal = Eigen::VectorXd::Ones(this->get_fock_space()->get_dimension());
+    VectorX<double> diagonal = VectorX<double>::Ones(this->get_fock_space()->get_dimension());
     auto frozen_core_diagonal = this->calculateFrozenCoreDiagonal(ham_par, this->X);
     total_hamiltonian += frozen_core_diagonal.asDiagonal();
 
@@ -72,7 +72,7 @@ Eigen::MatrixXd FrozenCoreCI::constructHamiltonian(const HamiltonianParameters<d
  *
  *  @return the action of the frozen core Hamiltonian on the coefficient vector
  */
-Eigen::VectorXd FrozenCoreCI::matrixVectorProduct(const HamiltonianParameters<double>& ham_par, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) const {
+VectorX<double> FrozenCoreCI::matrixVectorProduct(const HamiltonianParameters<double>& ham_par, const VectorX<double>& x, const VectorX<double>& diagonal) const {
 
     HamiltonianParameters<double> frozen_ham_par = this->freezeHamiltonianParameters(ham_par, X);
 
@@ -86,12 +86,12 @@ Eigen::VectorXd FrozenCoreCI::matrixVectorProduct(const HamiltonianParameters<do
  *
  *  @return the diagonal of the matrix representation of the frozen core Hamiltonian
  */
-Eigen::VectorXd FrozenCoreCI::calculateDiagonal(const HamiltonianParameters<double>& ham_par) const {
+VectorX<double> FrozenCoreCI::calculateDiagonal(const HamiltonianParameters<double>& ham_par) const {
 
     HamiltonianParameters<double> frozen_ham_par = this->freezeHamiltonianParameters(ham_par, this->X);
 
     // calculate diagonal in the active space with the "frozen" Hamiltonian parameters
-    Eigen::VectorXd diagonal = this->active_hamiltonian_builder->calculateDiagonal(frozen_ham_par);
+    VectorX<double> diagonal = this->active_hamiltonian_builder->calculateDiagonal(frozen_ham_par);
 
     // calculate diagonal for the frozen orbitals
     auto frozen_core_diagonal = this->calculateFrozenCoreDiagonal(ham_par, this->X);
@@ -148,8 +148,8 @@ HamiltonianParameters<double> FrozenCoreCI::freezeHamiltonianParameters(const Ha
     }
 
     std::shared_ptr<AOBasis> ao_basis;  // nullptr
-    TwoElectronOperator<double> g_new (tensorBlockCreation(ham_par.get_g(), X, X, X, X));
-    Eigen::MatrixXd T = ham_par.get_T_total().block(X, X, K_active, K_active);
+    auto g_new = TwoElectronOperator<double>::FromBlock(ham_par.get_g(), X, X, X, X);
+    SquareMatrix<double> T = ham_par.get_T_total().block(X, X, K_active, K_active);
 
     return HamiltonianParameters<double>(ao_basis, S, h, g_new, T);
 }
@@ -161,7 +161,7 @@ HamiltonianParameters<double> FrozenCoreCI::freezeHamiltonianParameters(const Ha
  *
  *  @return the diagonal from strictly evaluating the frozen orbitals in the Fock space
  */
-Eigen::VectorXd FrozenCoreCI::calculateFrozenCoreDiagonal(const HamiltonianParameters<double>& ham_par, size_t X) const {
+VectorX<double> FrozenCoreCI::calculateFrozenCoreDiagonal(const HamiltonianParameters<double>& ham_par, size_t X) const {
 
     const auto& g = ham_par.get_g();
     const auto& h = ham_par.get_h();
@@ -178,7 +178,7 @@ Eigen::VectorXd FrozenCoreCI::calculateFrozenCoreDiagonal(const HamiltonianParam
         }
     }
 
-    Eigen::VectorXd diagonal = Eigen::VectorXd::Ones(this->get_fock_space()->get_dimension());
+    VectorX<double> diagonal = VectorX<double>::Ones(this->get_fock_space()->get_dimension());
     return value * diagonal;
 }
 

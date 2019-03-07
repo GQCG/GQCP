@@ -31,7 +31,7 @@ namespace GQCP {
  *
  *  @return the new Fock matrix (expressed in AO basis)
  */
-Eigen::MatrixXd DIISRHFSCFSolver::calculateNewFockMatrix(const Eigen::MatrixXd& D_AO) {
+OneElectronOperator<double> DIISRHFSCFSolver::calculateNewFockMatrix(const OneRDM<double>& D_AO) {
 
     auto S = this->ham_par.get_S();
 
@@ -41,7 +41,7 @@ Eigen::MatrixXd DIISRHFSCFSolver::calculateNewFockMatrix(const Eigen::MatrixXd& 
 
     // Update deques for the DIIS procedure
     this->fock_matrix_deque.emplace_back(f_AO);
-    Eigen::MatrixXd error_matrix = f_AO * D_AO * S - S * D_AO * f_AO;
+    SquareMatrix<double> error_matrix = f_AO * D_AO * S - S * D_AO * f_AO;
     this->error_matrix_deque.emplace_back(error_matrix);
 
 
@@ -51,7 +51,7 @@ Eigen::MatrixXd DIISRHFSCFSolver::calculateNewFockMatrix(const Eigen::MatrixXd& 
     if (n == this->maximum_subspace_dimension) {
 
         // Initialize and calculate the augmented B matrix
-        Eigen::MatrixXd B = -1 * Eigen::MatrixXd::Ones(n+1,n+1);  // +1 for the multiplier
+        SquareMatrix<double> B = -1 * SquareMatrix<double>::Ones(n+1,n+1);  // +1 for the multiplier
         B(n,n) = 0;
         for (size_t i = 0; i < n; i++) {
             for (size_t j = 0; j < n; j++) {
@@ -61,16 +61,16 @@ Eigen::MatrixXd DIISRHFSCFSolver::calculateNewFockMatrix(const Eigen::MatrixXd& 
         }
 
         // Initialize the RHS of the system of equations
-        Eigen::VectorXd b = Eigen::VectorXd::Zero(n+1);  // +1 for the multiplier
+        VectorX<double> b = VectorX<double>::Zero(n+1);  // +1 for the multiplier
         b(n) = -1;  // the last entry of b is accessed through n: dimension of b is n+1 - 1 because of computers
 
 
         // Solve the DIIS non-linear equations
-        Eigen::VectorXd y = B.inverse() * b;
+        VectorX<double> y = B.inverse() * b;
 
 
         // Use the coefficients that are in y to construct 'the best' Fock matrix as a linear combination of previous Fock matrices
-        f_AO = Eigen::MatrixXd::Zero(S.cols(), S.cols());
+        f_AO = OneElectronOperator<double>::Zero(S.cols(), S.cols());
         for (size_t i = 0; i < n; i++) {  // n is the current subspace dimension (not equal to the size of the augmented B matrix)
             f_AO += y(i) * this->fock_matrix_deque[i];
         }

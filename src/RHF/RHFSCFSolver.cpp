@@ -58,19 +58,19 @@ void RHFSCFSolver::solve() {
 
     // Obtain an initial guess for the AO density matrix by solving the generalized eigenvalue problem for H_core
     Eigen::GeneralizedSelfAdjointEigenSolver<Eigen::MatrixXd> initial_generalized_eigensolver (H_core, S);
-    Eigen::MatrixXd C = initial_generalized_eigensolver.eigenvectors();
-    Eigen::MatrixXd D_AO = calculateRHFAO1RDM(C, this->molecule.get_N());
+    SquareMatrix<double> C = initial_generalized_eigensolver.eigenvectors();
+    auto D_AO = calculateRHFAO1RDM(C, this->molecule.get_N());
 
 
     size_t iteration_counter = 0;
     while (!(this->is_converged)) {
-        Eigen::MatrixXd F_AO = this->calculateNewFockMatrix(D_AO);
+        auto F_AO = this->calculateNewFockMatrix(D_AO);
 
         // Solve the generalized eigenvalue problem for the Fock matrix to get an improved density matrix
         Eigen::GeneralizedSelfAdjointEigenSolver<Eigen::MatrixXd> generalized_eigensolver (F_AO, S);
         C = generalized_eigensolver.eigenvectors();
 
-        Eigen::MatrixXd D_AO_previous = D_AO;  // store the previous density matrix to be able to check on convergence
+        OneRDM<double> D_AO_previous = D_AO;  // store the previous density matrix to be able to check on convergence
         D_AO = calculateRHFAO1RDM(C, this->molecule.get_N());
 
 
@@ -79,15 +79,15 @@ void RHFSCFSolver::solve() {
             this->is_converged = true;
 
             // After the SCF procedure, we end up with canonical spatial orbitals, i.e. the Fock matrix should be diagonal in this basis
-            OneElectronOperator<double> F (F_AO);
-            F.transform(SquareMatrix<double>(C));  // transform F to the MO basis with C
+            OneElectronOperator<double> F = F_AO;
+            F.transform(C);  // transform F to the MO basis with C
             if (!(F.isDiagonal())) {
                 throw std::runtime_error("The RHF SCF procedure is converged but the MO Fock matrix is not diagonal.");
             }
 
             // Set the converged solution
             auto electronic_energy = calculateRHFElectronicEnergy(D_AO, H_core, F_AO);
-            this->solution = RHF(electronic_energy, C, generalized_eigensolver.eigenvalues());
+            this->solution = RHF(electronic_energy, SquareMatrix<double>(C), generalized_eigensolver.eigenvalues());
 
         } else {  // not converged yet
             iteration_counter++;

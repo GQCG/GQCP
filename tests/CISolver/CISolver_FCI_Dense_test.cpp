@@ -50,18 +50,12 @@ BOOST_AUTO_TEST_CASE ( test_random_rotation_diagonal_dense_fci ) {
     // Create the FCI module
     GQCP::FCI fci (fock_space);
 
-    Eigen::VectorXd diagonal1 = fci.calculateDiagonal(mol_ham_par);
-
-    // Get a random unitary matrix by diagonalizing a random symmetric matrix
-    Eigen::MatrixXd A_random = Eigen::MatrixXd::Random(K, K);
-    Eigen::MatrixXd A_symmetric = A_random + A_random.transpose();
-    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> unitary_solver (A_symmetric);
-    Eigen::MatrixXd U_random = unitary_solver.eigenvectors();
+    GQCP::VectorX<double> diagonal1 = fci.calculateDiagonal(mol_ham_par);
 
     // Rotate the hampar using the random unitary matrix
-    mol_ham_par.rotate(GQCP::SquareMatrix<double>(U_random));
+    mol_ham_par.randomRotate();
 
-    Eigen::VectorXd diagonal2 = fci.calculateDiagonal(mol_ham_par);
+    GQCP::VectorX<double> diagonal2 = fci.calculateDiagonal(mol_ham_par);
 
     BOOST_CHECK(std::abs(diagonal1.sum() - diagonal2.sum()) < 1.0e-10);
 }

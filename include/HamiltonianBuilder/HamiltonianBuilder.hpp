@@ -65,7 +65,7 @@ public:
      *
      *  @return the Hamiltonian matrix
      */
-    virtual Eigen::MatrixXd constructHamiltonian(const HamiltonianParameters<double>& hamiltonian_parameters) const = 0;
+    virtual SquareMatrix<double> constructHamiltonian(const HamiltonianParameters<double>& hamiltonian_parameters) const = 0;
 
     /**
      *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis
@@ -74,14 +74,14 @@ public:
      *
      *  @return the action of the Hamiltonian on the coefficient vector
      */
-    virtual Eigen::VectorXd matrixVectorProduct(const HamiltonianParameters<double>& hamiltonian_parameters, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) const = 0;
+    virtual VectorX<double> matrixVectorProduct(const HamiltonianParameters<double>& hamiltonian_parameters, const VectorX<double>& x, const VectorX<double>& diagonal) const = 0;
 
     /**
      *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis
      *
      *  @return the diagonal of the matrix representation of the Hamiltonian
      */
-    virtual Eigen::VectorXd calculateDiagonal(const HamiltonianParameters<double>& hamiltonian_parameters) const = 0;
+    virtual VectorX<double> calculateDiagonal(const HamiltonianParameters<double>& hamiltonian_parameters) const = 0;
 };
 
 

@@ -39,7 +39,7 @@ public:
      *  @param N_P      the number of electron pairs (= the number of geminals)
      *  @param K        the number of spatial orbitals
      */
-    AP1roGVariables(const Eigen::VectorXd& x, size_t N_P, size_t K);
+    AP1roGVariables(const VectorX<double>& x, size_t N_P, size_t K);
 
     /**
      *  Constructor that sets the variables to zero
@@ -64,7 +64,7 @@ public:
     /**
      *  @return the variables in matrix form
      */
-    virtual Eigen::MatrixXd asMatrix() const override;
+    virtual MatrixX<double> asMatrix() const override;
 
     /**
      *  @param vector_index     the vector index of the variable

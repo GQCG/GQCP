@@ -22,6 +22,7 @@
 
 #include "math/optimization/BaseMatrixSolver.hpp"
 #include "math/optimization/EigenproblemSolverOptions.hpp"
+#include "math/SquareMatrix.hpp"
 
 
 
@@ -34,7 +35,7 @@ namespace GQCP {
  */
 class DenseSolver : public BaseMatrixSolver {
 private:
-    Eigen::MatrixXd matrix;
+    SquareMatrix<double> matrix;
 
 
 public:
@@ -43,7 +44,7 @@ public:
      *  @param matrix                               the full dense representation of the matrix
      *  @param number_of_requested_eigenpairs       the number of eigenpairs the eigensolver should find
      */
-    DenseSolver(const Eigen::MatrixXd& matrix, size_t number_of_requested_eigenpairs = 1);
+    DenseSolver(const SquareMatrix<double>& matrix, size_t number_of_requested_eigenpairs = 1);
 
     /**
      *  Constructor that sets a zero matrix
@@ -57,7 +58,7 @@ public:
      *  @param matrix                   the full dense representation of the matrix
      *  @param dense_solver_options     the options to be used for the dense eigenproblem algorithm
      */
-    DenseSolver(const Eigen::MatrixXd& matrix, const DenseSolverOptions& dense_solver_options);
+    DenseSolver(const SquareMatrix<double>& matrix, const DenseSolverOptions& dense_solver_options);
 
     /**
      *  Constructor that sets a zero matrix
@@ -73,7 +74,7 @@ public:
 
 
     // GETTERS
-    const Eigen::MatrixXd& get_matrix() const { return this->matrix; };
+    const SquareMatrix<double>& get_matrix() const { return this->matrix; };
 
 
     // PUBLIC OVERRIDDEN METHODS

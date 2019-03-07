@@ -34,9 +34,9 @@
 
 BOOST_AUTO_TEST_CASE ( one_electron_throw ) {
 
-    GQCP::OneElectronOperator<double> h (Eigen::MatrixXd::Zero(2, 2));
-    GQCP::OneRDM<double> D_valid (Eigen::MatrixXd::Zero(2, 2));
-    GQCP::OneRDM<double> D_invalid (Eigen::MatrixXd::Zero(3, 3));
+    GQCP::OneElectronOperator<double> h = GQCP::OneElectronOperator<double>::Zero(2, 2);
+    GQCP::OneRDM<double> D_valid = GQCP::OneRDM<double>::Zero(2, 2);
+    GQCP::OneRDM<double> D_invalid = GQCP::OneRDM<double>::Zero(3, 3);
 
     BOOST_CHECK_THROW(GQCP::calculateExpectationValue(h, D_invalid), std::invalid_argument);
     BOOST_CHECK_NO_THROW(GQCP::calculateExpectationValue(h, D_valid));
@@ -45,16 +45,10 @@ BOOST_AUTO_TEST_CASE ( one_electron_throw ) {
 
 BOOST_AUTO_TEST_CASE ( two_electron_throw ) {
 
-    Eigen::Tensor<double, 4> g_tensor (2, 2, 2, 2);
-    g_tensor.setZero();
-    GQCP::TwoElectronOperator<double> g (g_tensor);
+    GQCP::TwoElectronOperator<double> g (2);
 
-    Eigen::Tensor<double, 4> d_tensor_valid (2, 2, 2, 2);
-    d_tensor_valid.setZero();
-    Eigen::Tensor<double, 4> d_tensor_invalid (3, 3, 3, 3);
-    d_tensor_valid.setZero();
-    GQCP::TwoRDM<double> d_valid (d_tensor_valid);
-    GQCP::TwoRDM<double> d_invalid (d_tensor_invalid);
+    GQCP::TwoRDM<double> d_valid (2);
+    GQCP::TwoRDM<double> d_invalid (3);
 
     BOOST_CHECK_THROW(GQCP::calculateExpectationValue(g, d_invalid), std::invalid_argument);
     BOOST_CHECK_NO_THROW(GQCP::calculateExpectationValue(g, d_valid));
@@ -84,7 +78,6 @@ BOOST_AUTO_TEST_CASE ( mulliken_N2_STO_3G ) {
     size_t N = N2.get_N();
 
     // Create a 1-RDM for N2
-    Eigen::MatrixXd D = Eigen::MatrixXd::Zero(K, K);
     GQCP::OneRDM<double> one_rdm = GQCP::calculateRHF1RDM(K, N);
 
     double mulliken_population = GQCP::calculateExpectationValue(mulliken, one_rdm);

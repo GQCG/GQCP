@@ -153,12 +153,12 @@ double AP1roGPSESolver::calculateJacobianElement(const AP1roGGeminalCoefficients
  *
  *  @return the Jacobian at the given geminal coefficients
  */
-Eigen::MatrixXd AP1roGPSESolver::calculateJacobian(const Eigen::VectorXd& g) const {
+SquareMatrix<double> AP1roGPSESolver::calculateJacobian(const VectorX<double>& g) const {
 
     AP1roGGeminalCoefficients G (g, this->N_P, this->K);
     size_t number_of_geminal_coefficients = AP1roGGeminalCoefficients::numberOfGeminalCoefficients(N_P, K);
 
-    Eigen::MatrixXd J = Eigen::MatrixXd::Zero(number_of_geminal_coefficients, number_of_geminal_coefficients);
+    SquareMatrix<double> J = SquareMatrix<double>::Zero(number_of_geminal_coefficients, number_of_geminal_coefficients);
     // Loop over all Jacobian elements to construct it
     for (size_t row_index = 0; row_index < number_of_geminal_coefficients; row_index++) {
         for (size_t column_index = 0; column_index < number_of_geminal_coefficients; column_index++) {
@@ -240,12 +240,12 @@ double AP1roGPSESolver::calculateCoordinateFunction(const AP1roGGeminalCoefficie
  *
  *  @return the vector of coordinate functions at the given geminal coefficients
  */
-Eigen::VectorXd AP1roGPSESolver::calculateCoordinateFunctions(const Eigen::VectorXd& g) const {
+VectorX<double> AP1roGPSESolver::calculateCoordinateFunctions(const VectorX<double>& g) const {
 
     AP1roGGeminalCoefficients G (g, this->N_P, this->K);
     size_t number_of_geminal_coefficients = AP1roGGeminalCoefficients::numberOfGeminalCoefficients(N_P, K);
 
-    Eigen::VectorXd F = Eigen::VectorXd::Zero(number_of_geminal_coefficients);  // the vector of coordinate functions
+    VectorX<double> F = VectorX<double>::Zero(number_of_geminal_coefficients);  // the vector of coordinate functions
     // Loop over all the F elements to construct it
     for (size_t mu = 0; mu < number_of_geminal_coefficients; mu++) {
 
@@ -267,11 +267,11 @@ void AP1roGPSESolver::solve() {
 
     // Solve the AP1roG equations using a Newton-based algorithm
 
-    VectorFunction f = [this](const Eigen::VectorXd& x) { return this->calculateCoordinateFunctions(x); };
-    MatrixFunction J = [this](const Eigen::VectorXd& x) { return this->calculateJacobian(x); };
+    VectorFunction f = [this](const VectorX<double>& x) { return this->calculateCoordinateFunctions(x); };
+    MatrixFunction J = [this](const VectorX<double>& x) { return this->calculateJacobian(x); };
 
 
-    Eigen::VectorXd x0 = this->geminal_coefficients.asVector();
+    VectorX<double> x0 = this->geminal_coefficients.asVector();
     NewtonSystemOfEquationsSolver syseq_solver (x0, f, J);
     syseq_solver.solve();
 

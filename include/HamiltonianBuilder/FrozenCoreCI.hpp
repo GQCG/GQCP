@@ -49,7 +49,7 @@ public:
      *
      *  @return the frozen core Hamiltonian matrix
      */
-    Eigen::MatrixXd constructHamiltonian(const HamiltonianParameters<double>& ham_par) const override;
+    SquareMatrix<double> constructHamiltonian(const HamiltonianParameters<double>& ham_par) const override;
 
     /**
      *  @param ham_par      the Hamiltonian parameters in an orthonormal orbital basis
@@ -58,14 +58,14 @@ public:
      *
      *  @return the action of the frozen core Hamiltonian on the coefficient vector
      */
-    Eigen::VectorXd matrixVectorProduct(const HamiltonianParameters<double>& ham_par, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) const override;
+    VectorX<double> matrixVectorProduct(const HamiltonianParameters<double>& ham_par, const VectorX<double>& x, const VectorX<double>& diagonal) const override;
 
     /**
      *  @param ham_par      the Hamiltonian parameters in an orthonormal orbital basis
      *
      *  @return the diagonal of the matrix representation of the frozen core Hamiltonian
      */
-    Eigen::VectorXd calculateDiagonal(const HamiltonianParameters<double>& ham_par) const override;
+    VectorX<double> calculateDiagonal(const HamiltonianParameters<double>& ham_par) const override;
 
 
     // PUBLIC METHODS
@@ -84,7 +84,7 @@ public:
      *
      *  @return the diagonal from strictly evaluating the frozen orbitals in the Fock space
      */
-    Eigen::VectorXd calculateFrozenCoreDiagonal(const HamiltonianParameters<double>& ham_par, size_t X) const;
+    VectorX<double> calculateFrozenCoreDiagonal(const HamiltonianParameters<double>& ham_par, size_t X) const;
 };
 
 

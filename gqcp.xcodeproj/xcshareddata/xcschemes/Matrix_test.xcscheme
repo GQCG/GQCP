@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "56C8399F2215B50E00FA98A0"
-               BuildableName = "SquareFourIndexTensor_test"
-               BlueprintName = "SquareFourIndexTensor_test"
+               BlueprintIdentifier = "56884F51222BDBB700F68062"
+               BuildableName = "Matrix_test"
+               BlueprintName = "Matrix_test"
                ReferencedContainer = "container:gqcp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "56C8399F2215B50E00FA98A0"
-            BuildableName = "SquareFourIndexTensor_test"
-            BlueprintName = "SquareFourIndexTensor_test"
+            BlueprintIdentifier = "56884F51222BDBB700F68062"
+            BuildableName = "Matrix_test"
+            BlueprintName = "Matrix_test"
             ReferencedContainer = "container:gqcp.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -46,7 +46,8 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
-      useCustomWorkingDirectory = "NO"
+      useCustomWorkingDirectory = "YES"
+      customWorkingDirectory = "/Users/laurentlemmens/Software/GQCG/gqcp/tests"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
@@ -55,9 +56,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "56C8399F2215B50E00FA98A0"
-            BuildableName = "SquareFourIndexTensor_test"
-            BlueprintName = "SquareFourIndexTensor_test"
+            BlueprintIdentifier = "56884F51222BDBB700F68062"
+            BuildableName = "Matrix_test"
+            BlueprintName = "Matrix_test"
             ReferencedContainer = "container:gqcp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -74,9 +75,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "56C8399F2215B50E00FA98A0"
-            BuildableName = "SquareFourIndexTensor_test"
-            BlueprintName = "SquareFourIndexTensor_test"
+            BlueprintIdentifier = "56884F51222BDBB700F68062"
+            BuildableName = "Matrix_test"
+            BlueprintName = "Matrix_test"
             ReferencedContainer = "container:gqcp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

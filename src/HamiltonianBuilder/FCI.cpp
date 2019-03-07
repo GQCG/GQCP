@@ -236,6 +236,7 @@ Eigen::SparseMatrix<double> FCI::calculateSpinSeparatedHamiltonian(const FockSpa
     return hamiltonian;
 }
 
+
 /**
  *  Calculates theta(rs): all one-electron couplings for a (spin) Fock space
  *  and attributes two-electron integrals based on the one-electron coupling and two chosen fixed indexes
@@ -305,6 +306,7 @@ Eigen::SparseMatrix<double> FCI::calculateTwoElectronIntermediate(size_t r, size
     sparse_matrix.setFromTriplets(triplet_vector.begin(),triplet_vector.end());
     return sparse_matrix;
 }
+
 
 /**
  *  Calculates sigma(pq) + sigma(qp)'s: all one-electron couplings for each annihilation-creation pair in the (spin) Fock space
@@ -383,14 +385,14 @@ std::vector<Eigen::SparseMatrix<double>> FCI::calculateOneElectronCouplingsInter
  *
  *  @return the FCI Hamiltonian matrix
  */
-Eigen::MatrixXd FCI::constructHamiltonian(const HamiltonianParameters<double>& hamiltonian_parameters) const {
+SquareMatrix<double> FCI::constructHamiltonian(const HamiltonianParameters<double>& hamiltonian_parameters) const {
 
     auto K = hamiltonian_parameters.get_h().get_dim();
     if (K != this->fock_space.get_K()) {
         throw std::invalid_argument("Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
     }
 
-    Eigen::MatrixXd total_hamiltonian = Eigen::MatrixXd::Zero(this->fock_space.get_dimension(), this->fock_space.get_dimension());
+    SquareMatrix<double> total_hamiltonian = SquareMatrix<double>::Zero(this->fock_space.get_dimension(), this->fock_space.get_dimension());
     
     FockSpace fock_space_alpha = fock_space.get_fock_space_alpha();
     FockSpace fock_space_beta = fock_space.get_fock_space_beta();
@@ -407,7 +409,7 @@ Eigen::MatrixXd FCI::constructHamiltonian(const HamiltonianParameters<double>& h
     }
 
     // ALPHA separated evaluations
-    Eigen::MatrixXd ones = Eigen::MatrixXd::Identity(dim_beta, dim_beta);
+    SquareMatrix<double> ones = SquareMatrix<double>::Identity(dim_beta, dim_beta);
     for (int i = 0; i < alpha_hamiltonian.outerSize(); ++i){
         for (Eigen::SparseMatrix<double>::InnerIterator it(alpha_hamiltonian, i); it; ++it) {
             total_hamiltonian.block(it.row() * dim_beta, it.col() * dim_beta, dim_beta, dim_beta) += it.value()*ones;
@@ -453,7 +455,7 @@ Eigen::MatrixXd FCI::constructHamiltonian(const HamiltonianParameters<double>& h
  *
  *  @return the action of the FCI Hamiltonian on the coefficient vector
  */
-Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters<double>& hamiltonian_parameters, const Eigen::VectorXd& x, const Eigen::VectorXd& diagonal) const {
+VectorX<double> FCI::matrixVectorProduct(const HamiltonianParameters<double>& hamiltonian_parameters, const VectorX<double>& x, const VectorX<double>& diagonal) const {
     auto K = hamiltonian_parameters.get_h().get_dim();
     if (K != this->fock_space.get_K()) {
         throw std::invalid_argument("Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
@@ -465,7 +467,7 @@ Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters<double>& ha
     auto dim_alpha = fock_space_alpha.get_dimension();
     auto dim_beta = fock_space_beta.get_dimension();
 
-    Eigen::VectorXd matvec = diagonal.cwiseProduct(x);
+    VectorX<double> matvec = diagonal.cwiseProduct(x);
 
     Eigen::Map<Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor>> matvecmap(matvec.data(), dim_alpha, dim_beta);
     Eigen::Map<const Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor>> xmap(x.data(), dim_alpha, dim_beta);
@@ -493,7 +495,7 @@ Eigen::VectorXd FCI::matrixVectorProduct(const HamiltonianParameters<double>& ha
  *
  *  @return the diagonal of the matrix representation of the Hamiltonian
  */
-Eigen::VectorXd FCI::calculateDiagonal(const HamiltonianParameters<double>& hamiltonian_parameters) const {
+VectorX<double> FCI::calculateDiagonal(const HamiltonianParameters<double>& hamiltonian_parameters) const {
 
     auto K = hamiltonian_parameters.get_h().get_dim();
     if (K != this->fock_space.get_K()) {
@@ -508,7 +510,7 @@ Eigen::VectorXd FCI::calculateDiagonal(const HamiltonianParameters<double>& hami
     auto dim = fock_space.get_dimension();
 
     // Diagonal contributions
-    Eigen::VectorXd diagonal =  Eigen::VectorXd::Zero(dim);
+    VectorX<double> diagonal =  VectorX<double>::Zero(dim);
 
     auto k = hamiltonian_parameters.calculateEffectiveOneElectronIntegrals();
 

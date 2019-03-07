@@ -37,7 +37,7 @@ public:
     double alpha;  // exponent of the exponential
     double N;  // normalization factor
     std::array<size_t, 3> exponents;  // exponents of (x-X), (y-Y), (z-Z)
-    Eigen::Vector3d center;  // center of the GTO (X, Y, Z)
+    Vector<double, 3> center;  // center of the GTO (X, Y, Z)
 
 
 public:
@@ -47,7 +47,7 @@ public:
      *  @param exponents    the exponents of x, y and z, in that order
      *  @param center       the center of the Cartesian GTO
      */
-    CartesianGTO(double alpha, const std::array<size_t, 3>& exponents, const Eigen::Vector3d& center);
+    CartesianGTO(double alpha, const std::array<size_t, 3>& exponents, const Vector<double, 3>& center);
 
     /**
      *  Default constructor setting everything to zero
@@ -58,7 +58,7 @@ public:
     // GETTERS
     double get_exponent() const { return this->alpha; }
     const std::array<size_t, 3>& get_exponents() const { return this->exponents; }
-    const Eigen::Vector3d& get_center() const { return this->center; }
+    const Vector<double, 3>& get_center() const { return this->center; }
 
 
     // OPERATORS
@@ -67,7 +67,7 @@ public:
      *
      *  @return the value of the GTO at the given position
      */
-    double operator()(const Eigen::Vector3d& r) const override;
+    double operator()(const Vector<double, 3>& r) const override;
 
 
     // STATIC PUBLIC METHODS

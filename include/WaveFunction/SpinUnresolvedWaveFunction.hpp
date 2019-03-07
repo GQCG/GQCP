@@ -34,7 +34,7 @@ class SpinUnresolvedWaveFunction : public WaveFunction {
      *  @param fock_space           the Fock space in which the wave function 'lives'
      *  @param coefficients         the expansion coefficients
      */
-    SpinUnresolvedWaveFunction(const FockSpace& fock_space, const Eigen::VectorXd& coefficients);
+    SpinUnresolvedWaveFunction(const FockSpace& fock_space, const VectorX<double>& coefficients);
 };
 
 

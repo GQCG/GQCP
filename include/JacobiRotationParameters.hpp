@@ -22,8 +22,6 @@
 #include <stdlib.h>
 #include <ostream>
 
-#include <Eigen/Dense>
-
 
 namespace GQCP {
 
