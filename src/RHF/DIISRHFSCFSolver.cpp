@@ -65,8 +65,9 @@ OneElectronOperator<double> DIISRHFSCFSolver::calculateNewFockMatrix(const OneRD
         b(n) = -1;  // the last entry of b is accessed through n: dimension of b is n+1 - 1 because of computers
 
 
-        // Solve the DIIS non-linear equations
-        VectorX<double> y = B.inverse() * b;
+        // Solve the DIIS linear equations B y = b
+        Eigen::HouseholderQR<Eigen::MatrixXd> lin_solver (B);
+        VectorX<double> y = lin_solver.solve(b);
 
 
         // Use the coefficients that are in y to construct 'the best' Fock matrix as a linear combination of previous Fock matrices
