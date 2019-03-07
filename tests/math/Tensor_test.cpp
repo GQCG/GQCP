@@ -180,7 +180,7 @@ BOOST_AUTO_TEST_CASE ( pairWiseReduce ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( addBlock ) {
+BOOST_AUTO_TEST_CASE ( addBlock_tensor ) {
 
     // Create an example 3x3x3x3 tensor
     size_t dim1 = 3;
@@ -217,6 +217,52 @@ BOOST_AUTO_TEST_CASE ( addBlock ) {
                     BOOST_CHECK(T1(i,j,k,l) == l + 3*k + 9*j + 27*i + 2*l + j + 10*i);
                 }
             }
+        }
+    }
+}
+
+
+BOOST_AUTO_TEST_CASE ( addBlock_matrix ) {
+
+    // Create an example 3x3x3x3 tensor
+    size_t dim1 = 3;
+    GQCP::Tensor<double, 4> T1 (dim1, dim1, dim1, dim1);
+    for (size_t i = 0; i < dim1; i++) {
+        for (size_t j = 0; j < dim1; j++) {
+            for (size_t k = 0; k < dim1; k++) {
+                for (size_t l = 0; l < dim1; l++) {
+                    T1(i,j,k,l) = l + 3*k + 9*j + 27*i;
+                }
+            }
+        }
+    }
+
+    // Create an example 2x2 matrix
+    size_t dim2 = 2;
+    GQCP::MatrixX<double> M = GQCP::MatrixX<double>::Zero(dim2, dim2);
+    for (size_t i = 0; i < dim2; i++) {
+        for (size_t j = 0; j < dim2; j++) {
+            M(i,j) = 100 * i + 95*j;
+        }
+    }
+
+    // Copy the tensor
+    auto T2 = T1;
+    auto T3 = T1;
+
+    // Add the matrix to the tensor and test if addition went correctly
+    T2.addBlock<0, 1>(M, 0, 0, 0, 0);
+    for (size_t i = 0; i < dim2; i++) {
+        for (size_t j = 0; j < dim2; j++) {
+            BOOST_CHECK(T2(i,j,0,0) == 9*j + 27*i + 100 * i + 95*j);
+        }
+    }
+
+    // Add the matrix to the tensor and test if addition went correctly
+    T3.addBlock<2, 1>(M, 0, 0, 0, 0);
+    for (size_t i = 0; i < dim2; i++) {
+        for (size_t j = 0; j < dim2; j++) {
+            BOOST_CHECK(T3(0,j,i,0) == 3*i + 9*j + 100 * i + 95*j);
         }
     }
 }

@@ -236,6 +236,54 @@ public:
 
         return (*this);
     }
+
+
+    /**
+     *  Add a matrix to a this tensor starting from given indices
+     *
+     *  @tparam r               indicates which starting index (0,1,2,3) should correspond to the 1st matrix index
+     *  @tparam s               indicates which starting index (0,1,2,3) should correspond to the 2nd matrix index
+     *
+     *  @param M                a matrix
+     *  @param i                1st starting index
+     *  @param j                2nd starting index
+     *  @param k                3rd starting index
+     *  @param l                4th starting index
+     *
+     *  @return a reference to updated this
+     *
+     *
+     *  Example:
+     *      Given a rank-4 tensor of dimensions (10,10,10,10), and a matrix of dimensions (3,3)
+     *      When choosing r and s as 2,1 respectively, and i,j,k,l as 1,2,1,0
+     *      The matrix is added to the tensor with 1st index starting at i and 4th index starting at l held fixed at 1 and 0 respectively
+     *      While 2nd index starting from j (2) now is mapped to the 2nd matrix (s=1) element and 3rd index starting from k (1) is mapped to 1st (r=2)
+     *      meaning that the additions follow : tensor(1,2,1,0) += M(0,0), tensor(1,3,1,0) += M(0,1), ..., tensor(1,3,4,0) += M(3,1), tensor(1,4,4,0) += M(3,2), etc
+     *      and for other indices we find : tensor(2,2,1,0) += 0 (no changes, these are obviously not performed)
+     */
+    template<size_t r, size_t s, int Z = Rank>
+    enable_if_t<Z == 4, Self&> addBlock(const MatrixX<Scalar>& M, size_t i, size_t j, size_t k, size_t l) {
+
+        // Initialize series of arrays with 1 or 0 values, so that the correct tensor indices given by the template argument correspond to the matrix indices
+        size_t ia[4] = {1,0,0,0};
+        size_t ja[4] = {0,1,0,0};
+        size_t ka[4] = {0,0,1,0};
+        size_t la[4] = {0,0,0,1};
+
+        for (size_t x = 0; x < M.rows(); x++) {
+            for (size_t y = 0; y < M.cols(); y++) {
+
+                size_t i_effective = i + x * ia[r] + y * ia[s];
+                size_t j_effective = j + x * ja[r] + y * ja[s];
+                size_t k_effective = k + x * ka[r] + y * ka[s];
+                size_t l_effective = l + x * la[r] + y * la[s];
+
+                this->operator()(i_effective, j_effective, k_effective, l_effective) += M(x,y);
+            }
+        }
+
+        return (*this);
+    }
 };
 
 
