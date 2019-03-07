@@ -65,8 +65,9 @@ Eigen::MatrixXd DIISRHFSCFSolver::calculateNewFockMatrix(const Eigen::MatrixXd& 
         b(n) = -1;  // the last entry of b is accessed through n: dimension of b is n+1 - 1 because of computers
 
 
-        // Solve the DIIS non-linear equations
-        Eigen::VectorXd y = B.inverse() * b;
+        // Solve the DIIS linear equations
+        Eigen::HouseholderQR<Eigen::MatrixXd> linear_solver (B);
+        Eigen::VectorXd y = linear_solver.solve(b);
 
 
         // Use the coefficients that are in y to construct 'the best' Fock matrix as a linear combination of previous Fock matrices
