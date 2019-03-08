@@ -24,6 +24,7 @@ namespace GQCP {
 /*
  *  PRIVATE METHODS
  */
+
 /**
  *  Update the Fock matrix, i.e. calculate the Fock matrix to be used in the next iteration of the SCF procedure, according to the DIIS step
  *
@@ -41,14 +42,13 @@ OneElectronOperator<double> DIISRHFSCFSolver::calculateNewFockMatrix(const OneRD
 
     // Update deques for the DIIS procedure
     this->fock_matrix_deque.emplace_back(f_AO);
-    SquareMatrix<double> error_matrix = f_AO * D_AO * S - S * D_AO * f_AO;
+    OneElectronOperator<double> error_matrix = f_AO * D_AO * S - S * D_AO * f_AO;
     this->error_matrix_deque.emplace_back(error_matrix);
 
 
-    // Do DIIS when the current subspace dimension is large enough
-    // Collapse the subspace, if needed
+    // Enable DIIS when the current subspace dimension is large enough
     size_t n = error_matrix_deque.size();  // n is the current subspace dimension
-    if (n == this->maximum_subspace_dimension) {
+    if (n >= this->minimum_subspace_dimension) {
 
         // Initialize and calculate the augmented B matrix
         SquareMatrix<double> B = -1 * SquareMatrix<double>::Ones(n+1,n+1);  // +1 for the multiplier
@@ -76,10 +76,16 @@ OneElectronOperator<double> DIISRHFSCFSolver::calculateNewFockMatrix(const OneRD
             f_AO += y(i) * this->fock_matrix_deque[i];
         }
 
-        // Remove the oldest entries, which means that we collapse every iteration once the dimension is large enough
+
+    }  // subspace collapse
+
+
+    // Collapse the subspace if it becomes too large, discard the oldest entry
+    if (n > this->maximum_subspace_dimension) {
         this->fock_matrix_deque.pop_front();
         this->error_matrix_deque.pop_front();
-    }  // subspace collapse
+    }
+
 
     return f_AO;
 }
@@ -90,14 +96,17 @@ OneElectronOperator<double> DIISRHFSCFSolver::calculateNewFockMatrix(const OneRD
  *  CONSTRUCTORS
  */
 /**
+
  *  @param ham_par                          the Hamiltonian parameters in AO basis
  *  @param molecule                         the molecule used for the SCF calculation
- *  @param maximum_subspace_dimension       the maximum DIIS subspace dimension before a collapse occurs
+ *  @param minimum_subspace_dimension       the minimum number of Fock matrices that have to be in the subspace before enabling DIIS
+ *  @param maximum_subspace_dimension       the maximum DIIS subspace dimension before the oldest Fock matrices get discarded (one at a time)
  *  @param threshold                        the convergence treshold on the Frobenius norm on the AO density matrix
  *  @param maximum_number_of_iterations     the maximum number of iterations for the SCF procedure
  */
-DIISRHFSCFSolver::DIISRHFSCFSolver(HamiltonianParameters<double> ham_par, Molecule molecule, size_t maximum_subspace_dimension, double threshold, size_t maximum_number_of_iterations) :
+DIISRHFSCFSolver::DIISRHFSCFSolver(HamiltonianParameters<double> ham_par, Molecule molecule, size_t minimum_subspace_dimension, size_t maximum_subspace_dimension, double threshold, size_t maximum_number_of_iterations) :
     RHFSCFSolver(ham_par, molecule, threshold, maximum_number_of_iterations),
+    minimum_subspace_dimension (minimum_subspace_dimension),
     maximum_subspace_dimension (maximum_subspace_dimension)
 {}
 
