@@ -76,11 +76,10 @@ OneElectronOperator<double> DIISRHFSCFSolver::calculateNewFockMatrix(const OneRD
             f_AO += y(i) * this->fock_matrix_deque[i];
         }
 
+    }
 
-    }  // subspace collapse
 
-
-    // Collapse the subspace if it becomes too large, discard the oldest entry
+    // Discard the oldest entry in the Fock matrix subspace if it becomes too large
     if (n > this->maximum_subspace_dimension) {
         this->fock_matrix_deque.pop_front();
         this->error_matrix_deque.pop_front();
