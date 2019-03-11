@@ -1,1 +1,0 @@
-/usr/bin/c++  -g -march=native -m64 -pipe -pthread   CMakeFiles/CISolver_Hubbard_Dense_test.dir/CISolver/CISolver_Hubbard_Dense_test.cpp.o  -o CISolver_Hubbard_Dense_test -Wl,-rpath,/tmp/tmp.bjdnmW1y5W/cmake-build-remote_debug/src:/home/tmhuysen/miniconda/lib ../src/libgqcp.so /home/tmhuysen/miniconda/lib/libboost_program_options.so /home/tmhuysen/miniconda/lib/libint2.so 
