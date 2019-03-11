@@ -124,7 +124,7 @@ void ONV::updateOccupationIndices() {
         l ^= (l & -l);  // flip the least significant bit
     }
     if (representation_electron != this->N) {
-        throw std::invalid_argument("The current representation and electron count are not compatible");
+        throw std::invalid_argument("ONV::updateOccupationIndices(): The current representation and electron count are not compatible");
     }
 }
 
@@ -137,7 +137,7 @@ void ONV::updateOccupationIndices() {
 bool ONV::isOccupied(size_t p) const {
 
     if (p > this->K - 1) {
-        throw std::invalid_argument("The index is out of the bitset bounds");
+        throw std::invalid_argument("ONV::isOccupied(size_t): The index is out of the bitset bounds");
     }
 
     size_t operator_string = 1U << p;
@@ -151,13 +151,6 @@ bool ONV::isOccupied(size_t p) const {
  *  @return if all given indices are occupied
  */
 bool ONV::areOccupied(const std::vector<size_t>& indices) const {
-
-    // Check first if all indices are within bounds
-    for (const auto& index : indices) {
-        if (index > this->K - 1) {
-            throw std::invalid_argument("The index is out of the bitset bounds");
-        }
-    }
 
     for (const auto& index : indices) {
         if (!this->isOccupied(index)) {
@@ -187,13 +180,6 @@ bool ONV::isUnoccupied(size_t p) const {
  */
 bool ONV::areUnoccupied(const std::vector<size_t>& indices) const {
 
-    // Check first if all indices are within bounds
-    for (const auto& index : indices) {
-        if (index > this->K - 1) {
-            throw std::invalid_argument("The index is out of the bitset bounds");
-        }
-    }
-
     for (const auto& index : indices) {
         if (this->isOccupied(index)) {
             return false;
@@ -218,11 +204,11 @@ size_t ONV::slice(size_t index_start, size_t index_end) const {
 
     // First, do some checks
     if (index_end <= index_start) {
-        throw std::invalid_argument("index_end should be larger than index_start.");
+        throw std::invalid_argument("ONV::slice(size_t, size_t): index_end should be larger than index_start.");
     }
 
     if (index_end > this->K + 1) {
-        throw std::invalid_argument("The last slicing index index_end cannot be greater than the number of spatial orbitals K.");
+        throw std::invalid_argument("ONV::slice(size_t, size_t): The last slicing index index_end cannot be greater than the number of spatial orbitals K.");
     }
 
     // The union of these conditions also include the case that index_start > this->K

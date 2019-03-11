@@ -61,7 +61,7 @@ SpinUnresolvedRDMCalculator::SpinUnresolvedRDMCalculator(const SpinUnresolvedWav
 OneRDM<double> SpinUnresolvedRDMCalculator::calculate1RDM() const {
 
     if (this->coefficients.rows() == 0) {
-        throw std::logic_error("No vector has been set.");
+        throw std::logic_error("SpinUnresolvedRDMCalculator::calculate1RDM(): No vector has been set.");
     }
 
     return rdm_builder.calculate1RDM(this->coefficients);
@@ -73,7 +73,7 @@ OneRDM<double> SpinUnresolvedRDMCalculator::calculate1RDM() const {
 TwoRDM<double> SpinUnresolvedRDMCalculator::calculate2RDM() const {
 
     if (this->coefficients.rows() == 0) {
-        throw std::logic_error("No vector has been set.");
+        throw std::logic_error("SpinUnresolvedRDMCalculator::calculate2RDM(): No vector has been set.");
     }
 
     return rdm_builder.calculate2RDM(this->coefficients);
@@ -91,7 +91,7 @@ TwoRDM<double> SpinUnresolvedRDMCalculator::calculate2RDM() const {
 double SpinUnresolvedRDMCalculator::calculateElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices) const {
 
     if (this->coefficients.rows() == 0) {
-        throw std::logic_error("No vector has been set.");
+        throw std::logic_error("SpinUnresolvedRDMCalculator::calculateElement(std::vector<size_t>, std::vector<size_t>): No vector has been set.");
     }
 
     return this->rdm_builder.calculateElement(bra_indices, ket_indices, this->coefficients);

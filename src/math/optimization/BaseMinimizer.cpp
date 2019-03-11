@@ -44,7 +44,7 @@ BaseMinimizer::BaseMinimizer(const VectorX<double>& x0, double convergence_thres
  */
 const VectorX<double>& BaseMinimizer::get_solution() const {
     if (!this->is_solved) {
-        throw std::logic_error("The solution hasn't been found and you are trying to get it.");
+        throw std::logic_error("BaseMinimizer::get_solution(): The solution hasn't been found and you are trying to get it.");
     } else {
         return this->x;
     }

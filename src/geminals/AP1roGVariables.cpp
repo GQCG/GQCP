@@ -44,7 +44,7 @@ AP1roGVariables::AP1roGVariables(const VectorX<double>& x, size_t N_P, size_t K)
     BaseAPIGVariables(x, N_P, K)
 {
     if (AP1roGVariables::numberOfVariables(N_P, K) != x.size()) {
-        throw std::invalid_argument("The specified N_P and K are not compatible with the given vector of variables.");
+        throw std::invalid_argument("AP1roGVariables::AP1roGVariables(const VectorX<double>&, size_t, size_t): The specified N_P and K are not compatible with the given vector of variables.");
     }
 }
 
@@ -75,7 +75,7 @@ size_t AP1roGVariables::numberOfVariables(size_t N_P, size_t K) {
 
     // Check if we can have N_P geminals in K orbitals
     if (N_P >= K) {
-        throw std::invalid_argument("Can't have that many geminals in this few number of orbitals.");
+        throw std::invalid_argument("AP1roGVariables::numberOfVariables(size_t, size_t): Can't have that many geminals in this few number of orbitals.");
     }
 
     return N_P * (K - N_P);
@@ -132,10 +132,10 @@ size_t AP1roGVariables::matrixIndexMinor(size_t vector_index) const {
 size_t AP1roGVariables::vectorIndex(size_t i, size_t a) const {
 
     if (i >= N_P) {
-        throw std::invalid_argument("The major index i (subscript) must be smaller than N_P.");
+        throw std::invalid_argument("AP1roGVariables::vectorIndex(size_t, size_t): The major index i (subscript) must be smaller than N_P.");
     }
     if (a < N_P) {
-        throw std::invalid_argument("The minor index a (superscript) must be larger than or equal to N_P.");
+        throw std::invalid_argument("AP1roGVariables::vectorIndex(size_t, size_t): The minor index a (superscript) must be larger than or equal to N_P.");
     }
 
 

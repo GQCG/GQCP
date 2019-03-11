@@ -48,7 +48,7 @@ const std::vector<Eigenpair>& BaseEigenproblemSolver::get_eigenpairs() const {
     if (this->_is_solved) {
         return this->eigenpairs;
     } else {
-        throw std::logic_error("The eigenvalue problem hasn't been solved yet and you are trying to get the eigenpairs.");
+        throw std::logic_error("BaseEigenproblemSolver::get_eigenpairs(): The eigenvalue problem hasn't been solved yet and you are trying to get the eigenpairs.");
     }
 }
 

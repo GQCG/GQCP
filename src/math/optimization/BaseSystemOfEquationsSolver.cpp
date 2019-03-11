@@ -43,7 +43,7 @@ BaseSystemOfEquationsSolver::BaseSystemOfEquationsSolver(const VectorX<double>& 
  */
 const VectorX<double>& BaseSystemOfEquationsSolver::get_solution() const {
     if (!this->is_solved) {
-        throw std::logic_error("The solution hasn't been found and you are trying to get it.");
+        throw std::logic_error("BaseSystemOfEquationsSolver::get_solution(): The solution hasn't been found and you are trying to get it.");
     } else {
         return this->x;
     }

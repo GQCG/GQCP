@@ -42,7 +42,7 @@ CartesianGTO::CartesianGTO(double alpha, const std::array<size_t, 3>& exponents,
     center (center)
 {
     if (alpha < 0) {
-        throw std::invalid_argument("CartesianGTO::CartesianGTO(): the exponent must be larger than 0.");
+        throw std::invalid_argument("CartesianGTO::CartesianGTO(double, std::array<size_t, 3>, Vector<double, 3>): the exponent must be larger than 0.");
     }
 
 

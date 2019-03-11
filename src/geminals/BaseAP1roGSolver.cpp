@@ -58,7 +58,7 @@ BaseAP1roGSolver::BaseAP1roGSolver(const Molecule& molecule, const HamiltonianPa
 {
     // Check if we have an even number of electrons
     if ((molecule.get_N() % 2) != 0) {
-        throw std::invalid_argument("The given number of electrons is odd.");
+        throw std::invalid_argument("BaseAP1roGSolver::BaseAP1roGSolver(const Molecule&, const HamiltonianParameters<double>&, const AP1roGGeminalCoefficients&): The given number of electrons is odd.");
     }
 }
 

@@ -1,0 +1,1 @@
+/usr/bin/c++  -g -march=native -m64 -pipe -pthread   CMakeFiles/FrozenProductFockSpace_test.dir/FockSpace/FrozenProductFockSpace_test.cpp.o  -o FrozenProductFockSpace_test -Wl,-rpath,/tmp/tmp.bjdnmW1y5W/cmake-build-remote_debug/src:/home/tmhuysen/miniconda/lib ../src/libgqcp.so /home/tmhuysen/miniconda/lib/libboost_program_options.so /home/tmhuysen/miniconda/lib/libint2.so 

@@ -58,11 +58,11 @@ bool areEqualSetsOfEigenvectors(const MatrixX<double>& eigenvectors1, const Matr
 
     // Check if the dimensions of the eigenvectors are equal.
     if (eigenvectors1.cols() != eigenvectors2.cols()) {
-        throw std::invalid_argument("areEqualSetsOfEigenvectors(const MatrixX<double>&, const MatrixX<double>&, double): Cannot compare the two sets of eigenvectors as they have different dimensions.");
+        throw std::invalid_argument("areEqualSetsOfEigenvectors(MatrixX<double>, MatrixX<double>, double): Cannot compare the two sets of eigenvectors as they have different dimensions.");
     }
 
     if (eigenvectors1.rows() != eigenvectors2.rows()) {
-        throw std::invalid_argument("areEqualSetsOfEigenvectors(const MatrixX<double>&, const MatrixX<double>&, double): Cannot compare the two sets of eigenvectors as they have different dimensions.");
+        throw std::invalid_argument("areEqualSetsOfEigenvectors(MatrixX<double>, MatrixX<double>, double): Cannot compare the two sets of eigenvectors as they have different dimensions.");
     }
 
 

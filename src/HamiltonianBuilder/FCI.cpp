@@ -389,7 +389,7 @@ SquareMatrix<double> FCI::constructHamiltonian(const HamiltonianParameters<doubl
 
     auto K = hamiltonian_parameters.get_h().get_dim();
     if (K != this->fock_space.get_K()) {
-        throw std::invalid_argument("Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
+        throw std::invalid_argument("FCI::constructHamiltonian(const HamiltonianParameters<double>&): Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
     }
 
     SquareMatrix<double> total_hamiltonian = SquareMatrix<double>::Zero(this->fock_space.get_dimension(), this->fock_space.get_dimension());
@@ -458,7 +458,7 @@ SquareMatrix<double> FCI::constructHamiltonian(const HamiltonianParameters<doubl
 VectorX<double> FCI::matrixVectorProduct(const HamiltonianParameters<double>& hamiltonian_parameters, const VectorX<double>& x, const VectorX<double>& diagonal) const {
     auto K = hamiltonian_parameters.get_h().get_dim();
     if (K != this->fock_space.get_K()) {
-        throw std::invalid_argument("Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
+        throw std::invalid_argument("FCI::matrixVectorProduct(const HamiltonianParameters<double>&, const VectorX<double>&, const VectorX<double>&): Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
     }
 
     FockSpace fock_space_alpha = fock_space.get_fock_space_alpha();
@@ -499,7 +499,7 @@ VectorX<double> FCI::calculateDiagonal(const HamiltonianParameters<double>& hami
 
     auto K = hamiltonian_parameters.get_h().get_dim();
     if (K != this->fock_space.get_K()) {
-        throw std::invalid_argument("Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
+        throw std::invalid_argument("FCI::calculateDiagonal(const HamiltonianParameters<double>&): Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
     }
 
     FockSpace fock_space_alpha = fock_space.get_fock_space_alpha();

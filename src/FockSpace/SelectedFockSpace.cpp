@@ -43,11 +43,11 @@ Configuration SelectedFockSpace::makeConfiguration(const std::string& onv1, cons
     boost::dynamic_bitset<> beta_transfer (onv2);
 
     if (alpha_transfer.size() != this->K | beta_transfer.size() != this->K) {
-        throw std::invalid_argument("Given string representations for ONVs are not compatible with the number of orbitals of the Fock space");
+        throw std::invalid_argument("SelectedFockSpace::makeConfiguration(const std::string&, const std::string&): Given string representations for ONVs are not compatible with the number of orbitals of the Fock space");
     }
 
     if (alpha_transfer.count() != this->N_alpha | beta_transfer.count() != this->N_beta) {
-        throw std::invalid_argument("Given string representations for ONVs are not compatible with the number of orbitals of the Fock space");
+        throw std::invalid_argument("SelectedFockSpace::makeConfiguration(const std::string&, const std::string&): Given string representations for ONVs are not compatible with the number of orbitals of the Fock space");
     }
 
     size_t alpha_s = alpha_transfer.to_ulong();
@@ -233,7 +233,7 @@ void SelectedFockSpace::addConfiguration(const std::string& onv1, const std::str
 void SelectedFockSpace::addConfiguration(const std::vector<std::string>& onv1s, const std::vector<std::string>& onv2s){
 
     if (onv1s.size() != onv2s.size()) {
-        throw std::invalid_argument("Size of both ONV entry vectors do not match");
+        throw std::invalid_argument("SelectedFockSpace::addConfiguration(const std::string&, const std::string&): Size of both ONV entry vectors do not match");
     }
 
     for (size_t i = 0; i < onv1s.size(); i++) {

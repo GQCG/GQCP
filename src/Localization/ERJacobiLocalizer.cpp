@@ -130,7 +130,7 @@ void ERJacobiLocalizer::localize(HamiltonianParameters<double>& ham_par) {
             this->iterations++;
 
             if (this->iterations == this->maximum_number_of_iterations) {
-                throw std::runtime_error("The localization algorithm did not converge within the given maximum number of iterations.");
+                throw std::runtime_error("ERJacobiLocalizer::localize(HamiltonianParameters<double>&): The localization algorithm did not converge within the given maximum number of iterations.");
             }
         }
 

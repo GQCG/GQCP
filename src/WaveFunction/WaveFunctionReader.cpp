@@ -43,7 +43,7 @@ WaveFunctionReader::WaveFunctionReader(const std::string& GAMESS_filename)
     std::ifstream input_file_stream_count (GAMESS_filename);  // made to count the expansion size
 
     if (!input_file_stream.good()) {
-        throw std::runtime_error("WaveFunctionReader(): The provided GAMESS file is illegible. Maybe you specified a wrong path?");
+        throw std::runtime_error("WaveFunctionReader(std::string): The provided GAMESS file is illegible. Maybe you specified a wrong path?");
     }
 
     // Do the actual parsing
@@ -118,14 +118,14 @@ WaveFunctionReader::WaveFunctionReader(const std::string& GAMESS_filename)
         // Create an alpha ONV for the first field
         trimmed_alpha = boost::algorithm::trim_copy(splitted_line[0]);
         if (trimmed_alpha.length() != K) {
-            throw std::invalid_argument("WaveFunctionReader(): One of the provided alpha ONVs does not have the correct number of orbitals.");
+            throw std::invalid_argument("WaveFunctionReader(std::string): One of the provided alpha ONVs does not have the correct number of orbitals.");
         }
         reversed_alpha = std::string(trimmed_alpha.rbegin(), trimmed_alpha.rend());
 
         // Create a beta ONV for the second field
         trimmed_beta = boost::algorithm::trim_copy(splitted_line[1]);
         if (trimmed_beta.length() != K) {
-            throw std::invalid_argument("WaveFunctionReader(): One of the provided beta ONVs does not have the correct number of orbitals.");
+            throw std::invalid_argument("WaveFunctionReader(std::string): One of the provided beta ONVs does not have the correct number of orbitals.");
         }
         reversed_beta = std::string(trimmed_beta.rbegin(), trimmed_beta.rend());
 

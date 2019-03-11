@@ -69,7 +69,7 @@ HoppingMatrix HoppingMatrix::FromUpperTriangle(const VectorX<double>& upper_tria
     size_t K = (static_cast<size_t>(std::sqrt(1 + 8*x) - 1))/2;  // number of rows and columns
 
     if (K * (K+1) != 2*x) {
-        throw std::invalid_argument("The given upper triangle is not a valid upper triangle");
+        throw std::invalid_argument("HoppingMatrix::FromUpperTriangle(VectorX<double>): The given upper triangle is not a valid upper triangle");
     }
 
 

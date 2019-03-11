@@ -54,15 +54,15 @@ DavidsonSolver::DavidsonSolver(const VectorFunction& matrixVectorProduct, const 
     maximum_number_of_iterations (maximum_number_of_iterations)
 {
     if (V_0.cols() < this->number_of_requested_eigenpairs) {
-        throw std::invalid_argument("You have to specify at least as many initial guesses as number of requested eigenpairs.");
+        throw std::invalid_argument("DavidsonSolver::DavidsonSolver(VectorFunction, VectorX<double>, MatrixX<double>, size_t, double, double, size_t, size_t, size_t): You have to specify at least as many initial guesses as number of requested eigenpairs.");
     }
 
     if (this->collapsed_subspace_dimension < this->number_of_requested_eigenpairs) {
-        throw std::invalid_argument("The collapsed subspace dimension must be at least the number of requested eigenpairs.");
+        throw std::invalid_argument("DavidsonSolver::DavidsonSolver(VectorFunction, VectorX<double>, MatrixX<double>, size_t, double, double, size_t, size_t, size_t): The collapsed subspace dimension must be at least the number of requested eigenpairs.");
     }
 
     if (this->collapsed_subspace_dimension >= this->maximum_subspace_dimension) {
-        throw std::invalid_argument("The collapsed subspace dimension must be smaller than the maximum subspace dimension.");
+        throw std::invalid_argument("DavidsonSolver::DavidsonSolver(VectorFunction, VectorX<double>, MatrixX<double>, size_t, double, double, size_t, size_t, size_t): The collapsed subspace dimension must be smaller than the maximum subspace dimension.");
     }
 }
 
@@ -114,7 +114,7 @@ size_t DavidsonSolver::get_number_of_iterations() const {
     if (this->_is_solved) {
         return this->number_of_iterations;
     } else {
-        throw std::invalid_argument("The Davidson hasn't converged (yet) and you are trying to get the number of iterations.");
+        throw std::invalid_argument("DavidsonSolver::get_number_of_iterations(): The Davidson hasn't converged (yet) and you are trying to get the number of iterations.");
     }
 }
 
@@ -201,7 +201,7 @@ void DavidsonSolver::solve() {
 
             // If we reach more than this->maximum_number_of_iterations, the system is considered not to be converging
             if (this->number_of_iterations >= this->maximum_number_of_iterations) {
-                throw std::runtime_error("The Davidson algorithm did not converge.");
+                throw std::runtime_error("DavidsonSolver::solve(): The Davidson algorithm did not converge.");
             }
         }
 

@@ -47,7 +47,7 @@ APIGGeminalCoefficients::APIGGeminalCoefficients(const VectorX<double>& g, size_
     BaseAPIGVariables(g, N_P, K)
 {
     if (APIGGeminalCoefficients::numberOfGeminalCoefficients(N_P, K) != g.size()) {
-        throw std::invalid_argument("The specified N_P and K are not compatible with the given vector of geminal coefficients.");
+        throw std::invalid_argument("APIGGeminalCoefficients::APIGGeminalCoefficients(const VectorX<double>&, size_t, size_t): The specified N_P and K are not compatible with the given vector of geminal coefficients.");
     }
 }
 
@@ -100,7 +100,7 @@ size_t APIGGeminalCoefficients::numberOfGeminalCoefficients(size_t N_P, size_t K
 
     // Check if we can have N_P geminals in K orbitals
     if (N_P >= K) {
-        throw std::invalid_argument("Can't have that many geminals in this few number of orbitals.");
+        throw std::invalid_argument("APIGGeminalCoefficients::numberOfGeminalCoefficients(size_t, size_t): Can't have that many geminals in this few number of orbitals.");
     }
 
     return N_P * K;
@@ -155,7 +155,7 @@ size_t APIGGeminalCoefficients::matrixIndexMinor(size_t vector_index) const {
 size_t APIGGeminalCoefficients::vectorIndex(size_t i, size_t p) const {
 
     if (i >= N_P) {
-        throw std::invalid_argument("The major index i (subscript) must be smaller than N_P.");
+        throw std::invalid_argument("APIGGeminalCoefficients::vectorIndex(size_t, size_t): The major index i (subscript) must be smaller than N_P.");
     }
 
     return GQCP::vectorIndex(i, p, this->K);

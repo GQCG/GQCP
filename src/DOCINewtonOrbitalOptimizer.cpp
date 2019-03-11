@@ -50,7 +50,7 @@ const std::vector<Eigenpair>& DOCINewtonOrbitalOptimizer::get_eigenpairs() const
     if (this->is_converged) {
         return this->eigenpairs;
     } else {
-        throw std::logic_error("You are trying to get eigenpairs but the orbital optimization hasn't converged (yet).");
+        throw std::logic_error("DOCINewtonOrbitalOptimizer::get_eigenpairs(): You are trying to get eigenpairs but the orbital optimization hasn't converged (yet).");
     }
 }
 
@@ -58,7 +58,7 @@ const Eigenpair& DOCINewtonOrbitalOptimizer::get_eigenpair(size_t index) const {
     if (this->is_converged) {
         return this->eigenpairs[index];
     } else {
-        throw std::logic_error("You are trying to get eigenpairs but the orbital optimization hasn't converged (yet).");
+        throw std::logic_error("DOCINewtonOrbitalOptimizer::get_eigenpair(size_t): You are trying to get eigenpairs but the orbital optimization hasn't converged (yet).");
     }
 }
 
@@ -143,7 +143,7 @@ void DOCINewtonOrbitalOptimizer::solve(BaseSolverOptions& solver_options, const 
             oo_iterations++;
 
             if (oo_iterations >= oo_options.maximum_number_of_iterations) {
-                throw std::runtime_error("DOCINewtonOrbitalOptimizer.solve(): The OO-DOCI procedure failed to converge in the maximum number of allowed iterations.");
+                throw std::runtime_error("DOCINewtonOrbitalOptimizer::solve(BaseSolverOptions, OrbitalOptimizationOptions): The OO-DOCI procedure failed to converge in the maximum number of allowed iterations.");
             }
         }
 
@@ -183,7 +183,7 @@ void DOCINewtonOrbitalOptimizer::solve(BaseSolverOptions& solver_options, const 
  */
 WaveFunction DOCINewtonOrbitalOptimizer::makeWavefunction(size_t index) const {
     if (index > this->eigenpairs.size()) {
-        throw std::logic_error("Not enough requested eigenpairs for the given index.");
+        throw std::logic_error("DOCINewtonOrbitalOptimizer::makeWavefunction(size_t): Not enough requested eigenpairs for the given index.");
     }
     return WaveFunction(*this->doci.get_fock_space(), this->eigenpairs[index].get_eigenvector());
 }

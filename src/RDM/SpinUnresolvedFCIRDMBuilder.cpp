@@ -39,7 +39,7 @@ SpinUnresolvedFCIRDMBuilder::SpinUnresolvedFCIRDMBuilder(const FockSpace& fock_s
  *  @return the 1-RDM given a coefficient vector
  */
 OneRDM<double> SpinUnresolvedFCIRDMBuilder::calculate1RDM(const VectorX<double>& x) const {
-    throw std::runtime_error("SpinUnresolvedFCIRDMBuilder::calculate1RDMs(): not implemented yet");
+    throw std::runtime_error("SpinUnresolvedFCIRDMBuilder::calculate1RDMs(VectorX<double>): not implemented yet");
 }
 
 
@@ -49,7 +49,7 @@ OneRDM<double> SpinUnresolvedFCIRDMBuilder::calculate1RDM(const VectorX<double>&
      *  @return the 2-RDM given a coefficient vector
      */
 TwoRDM<double> SpinUnresolvedFCIRDMBuilder::calculate2RDM(const VectorX<double>& x) const {
-    throw std::runtime_error("SpinUnresolvedFCIRDMBuilder::calculate2RDMs(): not implemented yet");
+    throw std::runtime_error("SpinUnresolvedFCIRDMBuilder::calculate2RDMs(VectorX<double>): not implemented yet");
 }
 
 
