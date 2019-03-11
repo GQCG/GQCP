@@ -32,10 +32,11 @@ namespace GQCP {
 
 class DIISRHFSCFSolver : public RHFSCFSolver {
 private:
-    size_t maximum_subspace_dimension;
+    size_t minimum_subspace_dimension;  // the minimum number of Fock matrices that have to be in the subspace before enabling DIIS
+    size_t maximum_subspace_dimension;  // the maximum DIIS subspace dimension before the oldest Fock matrices get discarded (one at a time)
 
     std::deque<OneElectronOperator<double>> fock_matrix_deque = {};  // deque of Fock matrices used in the DIIS algorithm
-    std::deque<SquareMatrix<double>> error_matrix_deque = {};  // deque of error matrices used in the DIIS algorithm
+    std::deque<OneElectronOperator<double>> error_matrix_deque = {};  // deque of error matrices used in the DIIS algorithm
 
 
     // PRIVATE METHODS
@@ -53,11 +54,12 @@ public:
     /**
      *  @param ham_par                          the Hamiltonian parameters in AO basis
      *  @param molecule                         the molecule used for the SCF calculation
-     *  @param maximum_subspace_dimension       the maximum DIIS subspace dimension before a collapse occurs
+     *  @param minimum_subspace_dimension       the minimum number of Fock matrices that have to be in the subspace before enabling DIIS
+     *  @param maximum_subspace_dimension       the maximum DIIS subspace dimension before the oldest Fock matrices get discarded (one at a time)
      *  @param threshold                        the convergence treshold on the Frobenius norm on the AO density matrix
      *  @param maximum_number_of_iterations     the maximum number of iterations for the SCF procedure
      */
-    DIISRHFSCFSolver(HamiltonianParameters<double> ham_par, Molecule molecule, size_t maximum_subspace_dimension = 6, double threshold=1.0e-08, size_t maximum_number_of_iterations=128);
+    DIISRHFSCFSolver(HamiltonianParameters<double> ham_par, Molecule molecule, size_t minimum_subspace_dimension=6, size_t maximum_subspace_dimension=6, double threshold=1.0e-08, size_t maximum_number_of_iterations=128);
 };
 
 
