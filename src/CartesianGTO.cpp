@@ -151,7 +151,7 @@ LinearCombination<double, CartesianGTO> CartesianGTO::calculateDerivative(size_t
             break;
 
         default:
-            throw std::invalid_argument("CartesianGTO::calculateDerivative: the component can only be 0, 1, or 2");
+            throw std::invalid_argument("CartesianGTO::calculateDerivative(size_t): the component can only be 0, 1, or 2");
             break;
     }
 

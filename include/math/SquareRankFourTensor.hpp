@@ -76,7 +76,7 @@ public:
         // Check if the given tensor is square
         auto dims = this->dimensions();
         if ((dims[0] != dims[1]) || (dims[1] != dims[2]) || (dims[2] != dims[3]) ) {
-            throw std::invalid_argument("SquareRankFourTensor(const Eigen::TensorBase<OtherDerived, AccessLevel>&): The given tensor should have equal dimensions in every rank.");
+            throw std::invalid_argument("SquareRankFourTensor(Eigen::TensorBase<OtherDerived, AccessLevel>): The given tensor should have equal dimensions in every rank.");
         }
     }
 

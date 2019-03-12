@@ -47,7 +47,7 @@ APIGGeminalCoefficients::APIGGeminalCoefficients(const VectorX<double>& g, size_
     BaseAPIGVariables(g, N_P, K)
 {
     if (APIGGeminalCoefficients::numberOfGeminalCoefficients(N_P, K) != g.size()) {
-        throw std::invalid_argument("APIGGeminalCoefficients::APIGGeminalCoefficients(const VectorX<double>&, size_t, size_t): The specified N_P and K are not compatible with the given vector of geminal coefficients.");
+        throw std::invalid_argument("APIGGeminalCoefficients::APIGGeminalCoefficients(VectorX<double>, size_t, size_t): The specified N_P and K are not compatible with the given vector of geminal coefficients.");
     }
 }
 

@@ -154,7 +154,7 @@ Hubbard::Hubbard(const ProductFockSpace& fock_space) :
 SquareMatrix<double> Hubbard::constructHamiltonian(const HamiltonianParameters<double>& hamiltonian_parameters) const {
     auto K = hamiltonian_parameters.get_h().get_dim();
     if (K != this->fock_space.get_K()) {
-        throw std::invalid_argument("Hubbard::constructHamiltonian(const HamiltonianParameters<double>&): Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
+        throw std::invalid_argument("Hubbard::constructHamiltonian(HamiltonianParameters<double>): Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
     }
 
     FockSpace fock_space_alpha = fock_space.get_fock_space_alpha();
@@ -189,7 +189,7 @@ VectorX<double> Hubbard::matrixVectorProduct(const HamiltonianParameters<double>
 
     auto K = hamiltonian_parameters.get_h().get_dim();
     if (K != this->fock_space.get_K()) {
-        throw std::invalid_argument("Hubbard::matrixVectorProduct(const HamiltonianParameters<double>&, const VectorX<double>&, const VectorX<double>&):Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
+        throw std::invalid_argument("Hubbard::matrixVectorProduct(HamiltonianParameters<double>, VectorX<double>, VectorX<double>):Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
     }
 
     FockSpace fock_space_alpha = fock_space.get_fock_space_alpha();
@@ -219,7 +219,7 @@ VectorX<double> Hubbard::calculateDiagonal(const HamiltonianParameters<double>& 
 
     auto K = hamiltonian_parameters.get_h().get_dim();
     if (K != this->fock_space.get_K()) {
-        throw std::invalid_argument("Hubbard::calculateDiagonal(const HamiltonianParameters<double>&): Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
+        throw std::invalid_argument("Hubbard::calculateDiagonal(HamiltonianParameters<double>): Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
     }
 
     FockSpace fock_space_alpha = fock_space.get_fock_space_alpha();

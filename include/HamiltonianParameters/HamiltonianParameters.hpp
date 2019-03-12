@@ -237,18 +237,18 @@ public:
         if (idx != std::string::npos) {
             extension = fcidump_file.substr(idx+1);
         } else {
-            throw std::runtime_error("I did not find an extension in your given path.");
+            throw std::runtime_error("HamiltonianParameters::ReadFCIDUMP(std::string): I did not find an extension in your given path.");
         }
 
         if (!(extension == "FCIDUMP")) {
-            throw std::runtime_error("You did not provide a .FCIDUMP file name");
+            throw std::runtime_error("HamiltonianParameters::ReadFCIDUMP(std::string): You did not provide a .FCIDUMP file name");
         }
 
         // If the xyz_filename isn't properly converted into an input file stream, we assume the user supplied a wrong file
         std::ifstream input_file_stream (fcidump_file);
 
         if (!input_file_stream.good()) {
-            throw std::runtime_error("The provided FCIDUMP file is illegible. Maybe you specified a wrong path?");
+            throw std::runtime_error("HamiltonianParameters::ReadFCIDUMP(std::string): The provided FCIDUMP file is illegible. Maybe you specified a wrong path?");
         }
 
 
@@ -270,7 +270,7 @@ public:
         }
 
         if (K == 0) {
-            throw std::invalid_argument("The .FCIDUMP-file is invalid: could not read a number of orbitals.");
+            throw std::invalid_argument("HamiltonianParameters::ReadFCIDUMP(std::string): The .FCIDUMP-file is invalid: could not read a number of orbitals.");
         }
 
 

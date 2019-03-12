@@ -219,7 +219,7 @@ SelectedCI::SelectedCI(const SelectedFockSpace& fock_space) :
 SquareMatrix<double> SelectedCI::constructHamiltonian(const HamiltonianParameters<double>& hamiltonian_parameters) const {
     auto K = hamiltonian_parameters.get_h().get_dim();
     if (K != this->fock_space.get_K()) {
-        throw std::invalid_argument("SelectedCI::constructHamiltonian(const HamiltonianParameters<double>&): Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
+        throw std::invalid_argument("SelectedCI::constructHamiltonian(HamiltonianParameters<double>): Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
     }
 
     auto dim = fock_space.get_dimension();
@@ -246,7 +246,7 @@ VectorX<double> SelectedCI::matrixVectorProduct(const HamiltonianParameters<doub
 
     auto K = hamiltonian_parameters.get_h().get_dim();
     if (K != this->fock_space.get_K()) {
-        throw std::invalid_argument("SelectedCI::matrixVectorProduct(const HamiltonianParameters<double>&, const VectorX<double>&, const VectorX<double>&): Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
+        throw std::invalid_argument("SelectedCI::matrixVectorProduct(HamiltonianParameters<double>, VectorX<double>, VectorX<double>): Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
     }
 
     VectorX<double> matvec = diagonal.cwiseProduct(x);
@@ -269,7 +269,7 @@ VectorX<double> SelectedCI::calculateDiagonal(const HamiltonianParameters<double
 
     auto K = hamiltonian_parameters.get_h().get_dim();
     if (K != this->fock_space.get_K()) {
-        throw std::invalid_argument("SelectedCI::calculateDiagonal(const HamiltonianParameters<double>&): Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
+        throw std::invalid_argument("SelectedCI::calculateDiagonal(HamiltonianParameters<double>): Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
     }
 
     auto dim = fock_space.get_dimension();

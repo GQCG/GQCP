@@ -101,7 +101,7 @@ public:
                 boost::split(splitted_line, line, boost::is_any_of(" \t"), boost::token_compress_on);
 
                 if (splitted_line.size() != 1) {
-                    throw std::runtime_error("Matrix::FromFile(const std::string&, size_t): Found a line that doesn't contain exactly 1 field delimited by whitespace.");
+                    throw std::runtime_error("Matrix::FromFile(std::string, size_t): Found a line that doesn't contain exactly 1 field delimited by whitespace.");
                 }
 
                 auto value = std::stod(splitted_line[0]);
@@ -112,7 +112,7 @@ public:
 
             file.close();
         } else {
-            throw std::runtime_error("Matrix::FromFile(const std::string&, size_t): Cannot open the given file. Maybe you specified a wrong path?");
+            throw std::runtime_error("Matrix::FromFile(std::string, size_t): Cannot open the given file. Maybe you specified a wrong path?");
         }
 
         return result;
@@ -142,7 +142,7 @@ public:
                 boost::split(splitted_line, line, boost::is_any_of(" \t"), boost::token_compress_on);
 
                 if (splitted_line.size() != 3) {
-                    throw std::runtime_error("Matrix::FromFile(const std::string&, size_t, size_t): Found a line that doesn't contain exactly 3 fields delimited by whitespace.");
+                    throw std::runtime_error("Matrix::FromFile(std::string, size_t, size_t): Found a line that doesn't contain exactly 3 fields delimited by whitespace.");
                 }
 
                 auto i = std::stoi(splitted_line[0]);
@@ -154,7 +154,7 @@ public:
 
             file.close();
         } else {
-            throw std::runtime_error("Matrix::FromFile(const std::string&, size_t, size_t): Cannot open the given file. Maybe you specified a wrong path?");
+            throw std::runtime_error("Matrix::FromFile(std::string, size_t, size_t): Cannot open the given file. Maybe you specified a wrong path?");
         }
 
         return result;

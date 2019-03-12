@@ -84,7 +84,7 @@ void CISolver::solve(const BaseSolverOptions& solver_options) {
         }
 
         case SolverType::SPARSE: {
-            throw std::invalid_argument("CISolver::solve(const BaseSolverOptions): Sparse not implemented");
+            throw std::invalid_argument("CISolver::solve(BaseSolverOptions): Sparse not implemented");
             break;
         }
     }

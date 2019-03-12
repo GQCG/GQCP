@@ -168,7 +168,7 @@ TwoRDMs<double> FrozenCoreRDMBuilder::calculate2RDMs(const VectorX<double>& x) c
  *      calculateElement({0, 1}, {2, 1}) would calculate d^{(2)} (0, 1, 1, 2): the operator string would be a^\dagger_0 a^\dagger_1 a_2 a_1
  */
 double FrozenCoreRDMBuilder::calculateElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices, const VectorX<double>& x) const {
-    throw std::runtime_error ("FrozenCoreRDMBuilder::calculateElement(): calculateElement is not implemented for FrozenCoreCI RDMs");
+    throw std::runtime_error ("FrozenCoreRDMBuilder::calculateElement(std::vector<size_t>, std::vector<size_t>, VectorX<double>): calculateElement is not implemented for FrozenCoreCI RDMs");
 };
 
 

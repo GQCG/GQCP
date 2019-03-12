@@ -43,11 +43,11 @@ Configuration SelectedFockSpace::makeConfiguration(const std::string& onv1, cons
     boost::dynamic_bitset<> beta_transfer (onv2);
 
     if (alpha_transfer.size() != this->K | beta_transfer.size() != this->K) {
-        throw std::invalid_argument("SelectedFockSpace::makeConfiguration(const std::string&, const std::string&): Given string representations for ONVs are not compatible with the number of orbitals of the Fock space");
+        throw std::invalid_argument("SelectedFockSpace::makeConfiguration(std::string, std::string): Given string representations for ONVs are not compatible with the number of orbitals of the Fock space");
     }
 
     if (alpha_transfer.count() != this->N_alpha | beta_transfer.count() != this->N_beta) {
-        throw std::invalid_argument("SelectedFockSpace::makeConfiguration(const std::string&, const std::string&): Given string representations for ONVs are not compatible with the number of orbitals of the Fock space");
+        throw std::invalid_argument("SelectedFockSpace::makeConfiguration(std::string, std::string): Given string representations for ONVs are not compatible with the number of orbitals of the Fock space");
     }
 
     size_t alpha_s = alpha_transfer.to_ulong();

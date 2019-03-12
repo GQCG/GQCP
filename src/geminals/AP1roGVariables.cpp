@@ -44,7 +44,7 @@ AP1roGVariables::AP1roGVariables(const VectorX<double>& x, size_t N_P, size_t K)
     BaseAPIGVariables(x, N_P, K)
 {
     if (AP1roGVariables::numberOfVariables(N_P, K) != x.size()) {
-        throw std::invalid_argument("AP1roGVariables::AP1roGVariables(const VectorX<double>&, size_t, size_t): The specified N_P and K are not compatible with the given vector of variables.");
+        throw std::invalid_argument("AP1roGVariables::AP1roGVariables(VectorX<double>, size_t, size_t): The specified N_P and K are not compatible with the given vector of variables.");
     }
 }
 

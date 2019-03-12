@@ -57,7 +57,7 @@ public:
         functions (functions)
     {
         if (coefficients.size() != functions.size()) {
-            throw std::invalid_argument("LinearCombination(): the number of coefficients and functions should match");
+            throw std::invalid_argument("LinearCombination(std::vector<CoefficientScalar>, std::vector<T>): the number of coefficients and functions should match");
         }
     }
 
