@@ -121,7 +121,7 @@ public:
                 boost::split(splitted_line, line, boost::is_any_of(" \t"), boost::token_compress_on);
 
                 if (splitted_line.size() != 5) {
-                    throw std::runtime_error("Found a line that doesn't contain exactly 5 fields delimited by whitespace.");
+                    throw std::runtime_error("SquareRankFourTensor::FromFile(std::string, size_t): Found a line that doesn't contain exactly 5 fields delimited by whitespace.");
                 }
 
                 auto i = std::stoi(splitted_line[0]);
@@ -135,7 +135,7 @@ public:
 
             file.close();
         } else {
-            throw std::runtime_error("Cannot open the given file. Maybe you specified a wrong path?");
+            throw std::runtime_error("SquareRankFourTensor::FromFile(std::string, size_t): Cannot open the given file. Maybe you specified a wrong path?");
         }
 
         return result;

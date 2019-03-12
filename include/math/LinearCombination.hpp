@@ -100,7 +100,7 @@ public:
         LinearCombination()
     {
         if (zero != 0) {
-            throw std::invalid_argument("LinearCombination(): Can't convert a non-zero integer to a zero vector");
+            throw std::invalid_argument("LinearCombination(int): Can't convert a non-zero integer to a zero vector");
         }
     }
 
@@ -218,7 +218,7 @@ public:
     void append(const std::vector<CoefficientScalar>& coefficients, const std::vector<T>& functions) {
 
         if (coefficients.size() != functions.size()) {
-            throw std::invalid_argument("LinearCombination::append(): the number of coefficients and functions should match");
+            throw std::invalid_argument("LinearCombination::append(std::vector<CoefficientScalar>, std::vector<T>): the number of coefficients and functions should match");
         }
 
         this->coefficients.insert(this->coefficients.end(), coefficients.begin(), coefficients.end());

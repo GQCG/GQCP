@@ -75,7 +75,7 @@ public:
     {
         // Check if the given matrix is square
         if (this->cols() != this->rows()) {
-            throw std::invalid_argument("The given matrix is not square.");
+            throw std::invalid_argument("SquareMatrix::SquareMatrix(Base): The given matrix is not square.");
         }
     }
 
@@ -108,7 +108,7 @@ public:
         auto N = static_cast<size_t>(a.size());  // dimension of the vector
         double K_ = 0.5 + 0.5 * std::sqrt(1 + 8*N);  // dimension of the matrix
         if (std::abs(K_ - std::floor(K_)) > 1.0e-12) {  // if K is not an integer, within the given precision, i.e. N is not a triangular number
-            throw std::invalid_argument("The given vector cannot be stored in the strict lower triangle of a matrix.");
+            throw std::invalid_argument("SquareMatrix::FromStrictTriangle(VectorX<Scalar>): The given vector cannot be stored in the strict lower triangle of a matrix.");
         }
 
         // After the input checking, we are safe to cast K into size_t
@@ -142,7 +142,7 @@ public:
         size_t N = (static_cast<size_t>(sqrt(1 + 8*x) - 1))/2;
 
         if (N * (N+1) != 2*x) {
-            throw std::invalid_argument("The given vector is does not correspond to the upper triagonal of a square matrix.");
+            throw std::invalid_argument("SquareMatrix::FullFromTriangle(VectorX<Scalar>): The given vector is does not correspond to the upper triagonal of a square matrix.");
         }
 
 

@@ -76,7 +76,7 @@ public:
         T_total (C)
     {
         // Check if the dimensions of all matrix representations are compatible
-        auto error = std::invalid_argument("The dimensions of the operators and coefficient matrix are incompatible.");
+        auto error = std::invalid_argument("HamiltonianParameters::HamiltonianParameters(std::shared_ptr<AOBasis>, OneElectronOperator<Scalar>, OneElectronOperator<Scalar>, TwoElectronOperator<Scalar>,SquareMatrix<Scalar>, double): The dimensions of the operators and coefficient matrix are incompatible.");
 
         if (this->ao_basis) {  // ao_basis is not nullptr
             if (this->K != this->ao_basis->get_number_of_basis_functions()) {
@@ -90,7 +90,7 @@ public:
 
 
         if (S.isZero(1.0e-08)) {
-            throw std::invalid_argument("The underlying overlap matrix cannot be a zero matrix.");
+            throw std::invalid_argument("HamiltonianParameters::HamiltonianParameters(std::shared_ptr<AOBasis>, OneElectronOperator<Scalar>, OneElectronOperator<Scalar>, TwoElectronOperator<Scalar>,SquareMatrix<Scalar>, double): The underlying overlap matrix cannot be a zero matrix.");
         }
     }
 
@@ -528,11 +528,11 @@ public:
 
         // Check if dimensions are compatible
         if (D.cols() != this->K) {
-            throw std::invalid_argument("HamiltonianParameters::calculateGeneralizedFockMatrix(): The 1-RDM is not compatible with the HamiltonianParameters.");
+            throw std::invalid_argument("HamiltonianParameters::calculateGeneralizedFockMatrix(OneRDM<double>, TwoRDM<double>): The 1-RDM is not compatible with the HamiltonianParameters.");
         }
 
         if (d.dimension(0) != this->K) {
-            throw std::invalid_argument("HamiltonianParameters::calculateGeneralizedFockMatrix(): The 2-RDM is not compatible with the HamiltonianParameters.");
+            throw std::invalid_argument("HamiltonianParameters::calculateGeneralizedFockMatrix(OneRDM<double>, TwoRDM<double>): The 2-RDM is not compatible with the HamiltonianParameters.");
         }
 
 
@@ -573,11 +573,11 @@ public:
     enable_if_t<std::is_same<Z, double>::value, OneElectronOperator<double>> calculateMullikenOperator(const Vectoru& ao_list) const {
 
         if (!this->get_ao_basis()) {
-            throw std::invalid_argument("The Hamiltonian parameters have no underlying AO basis, Mulliken analysis is not possible.");
+            throw std::invalid_argument("HamiltonianParameters::calculateMullikenOperator(Vectoru): The Hamiltonian parameters have no underlying AO basis, Mulliken analysis is not possible.");
         }
 
         if (ao_list.size() > this->K) {
-            throw std::invalid_argument("Too many AOs are selected");
+            throw std::invalid_argument("HamiltonianParameters::calculateMullikenOperator(Vectoru): Too many AOs are selected");
         }
 
         // Create the partitioning matrix (diagonal matrix with values set to 1 of selected AOs)
@@ -585,7 +585,7 @@ public:
 
         for (size_t index : ao_list) {
             if (index >= this->K) {
-                throw std::invalid_argument("AO index is too large");
+                throw std::invalid_argument("HamiltonianParameters::calculateMullikenOperator(Vectoru): AO index is too large");
             }
 
             p_a(index, index) = 1;
@@ -630,11 +630,11 @@ public:
 
         // Check if dimensions are compatible
         if (D.cols() != this->K) {
-            throw std::invalid_argument("HamiltonianParameters::calculateGeneralizedFockMatrix(): The 1-RDM is not compatible with the HamiltonianParameters.");
+            throw std::invalid_argument("HamiltonianParameters::calculateGeneralizedFockMatrix(OneRDM<double>, TwoRDM<double>): The 1-RDM is not compatible with the HamiltonianParameters.");
         }
 
         if (d.dimension(0) != this->K) {
-            throw std::invalid_argument("HamiltonianParameters::calculateGeneralizedFockMatrix(): The 2-RDM is not compatible with the HamiltonianParameters.");
+            throw std::invalid_argument("HamiltonianParameters::calculateGeneralizedFockMatrix(OneRDM<double>, TwoRDM<double>): The 2-RDM is not compatible with the HamiltonianParameters.");
         }
 
 
