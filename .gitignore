@@ -16,10 +16,7 @@ version.hpp
 
 # Build and back-up folders
 build*/
-cmake-build-release/
-cmake-build-debug/
-cmake-build-remote_debug/
-cmake-build-remote-release/
+cmake-build-*/
 release*/
 debug*/
 
