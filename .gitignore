@@ -18,8 +18,8 @@ version.hpp
 build*/
 cmake-build-release/
 cmake-build-debug/
-cmake-build-release/
 cmake-build-remote_debug/
+cmake-build-remote-release/
 release*/
 debug*/
 
