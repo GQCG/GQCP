@@ -149,7 +149,7 @@ void AP1roGJacobiOrbitalOptimizer::calculateJacobiCoefficients(size_t p, size_t 
 
 
     else {  // this means that p <= q
-        throw std::invalid_argument("The given p and q are invalid: p must be larger than q.");
+        throw std::invalid_argument("AP1roGJacobiOrbitalOptimizer::calculateJacobiCoefficients(size_t, size_t, AP1roGGeminalCoefficients): The given p and q are invalid: p must be larger than q.");
     }
 
     this->are_calculated_jacobi_coefficients = true;
@@ -165,7 +165,7 @@ void AP1roGJacobiOrbitalOptimizer::calculateJacobiCoefficients(size_t p, size_t 
 double AP1roGJacobiOrbitalOptimizer::calculateEnergyAfterJacobiRotation(const JacobiRotationParameters& jacobi_rotation_parameters, const AP1roGGeminalCoefficients& G) const {
 
     if (!this->are_calculated_jacobi_coefficients) {
-        throw std::runtime_error("calculateEnergyAfterJacobiRotation: You haven't calculated the Jacobi coefficients yet. You should call AP1roG::calculateJacobiCoefficients before calling this function.");
+        throw std::runtime_error("AP1roGJacobiOrbitalOptimizer::calculateEnergyAfterJacobiRotation(JacobiRotationParameters, AP1roGGeminalCoefficients): You haven't calculated the Jacobi coefficients yet. You should call AP1roG::calculateJacobiCoefficients before calling this function.");
     }
     // Note that this throw only warns the first time: it does not detect if there have been changes to the coefficients, for example after a recalculation
 
@@ -205,7 +205,7 @@ double AP1roGJacobiOrbitalOptimizer::calculateEnergyAfterJacobiRotation(const Ja
     }
 
     else {  // this means that p <= q
-        throw std::invalid_argument("The given p and q are invalid: p must be larger than q.");
+        throw std::invalid_argument("AP1roGJacobiOrbitalOptimizer::calculateEnergyAfterJacobiRotation(JacobiRotationParameters, AP1roGGeminalCoefficients): The given p and q are invalid: p must be larger than q.");
     }
 }
 
@@ -220,7 +220,7 @@ double AP1roGJacobiOrbitalOptimizer::calculateEnergyAfterJacobiRotation(const Ja
 double AP1roGJacobiOrbitalOptimizer::findOptimalRotationAngle(size_t p, size_t q, const AP1roGGeminalCoefficients& G) const {
 
     if (!this->are_calculated_jacobi_coefficients) {
-        throw std::runtime_error("findOptimalRotationAngle: You haven't calculated the Jacobi coefficients yet. You should call AP1roG::calculateJacobiCoefficients before calling this function.");
+        throw std::runtime_error("AP1roGJacobiOrbitalOptimizer::findOptimalRotationAngle(size_t, size_t, AP1roGGeminalCoefficients): You haven't calculated the Jacobi coefficients yet. You should call AP1roG::calculateJacobiCoefficients before calling this function.");
     }
     // Note that this throw only warns the first time: it does not detect if there have been changes to the coefficients, for example after a recalculation
 
@@ -289,7 +289,7 @@ double AP1roGJacobiOrbitalOptimizer::findOptimalRotationAngle(size_t p, size_t q
 
 
     else {  // this means that p <= q
-        throw std::invalid_argument("The given p and q are invalid: p must be larger than q.");
+        throw std::invalid_argument("AP1roGJacobiOrbitalOptimizer::findOptimalRotationAngle(size_t, size_t, AP1roGGeminalCoefficients): The given p and q are invalid: p must be larger than q.");
     }
 }
 
@@ -328,7 +328,7 @@ void AP1roGJacobiOrbitalOptimizer::solve() {
         // Check for if there were no Jacobi parameters that lower the energy
         double E_promised = min_q.top().energy_after_rotation;
         if (E_promised > E_old) {
-            std::cerr << "Did not find a rotation that would lower the energy." << std::endl;
+            std::cerr << "AP1roGJacobiOrbitalOptimizer::solve(): Did not find a rotation that would lower the energy." << std::endl;
         }
 
 
@@ -356,7 +356,7 @@ void AP1roGJacobiOrbitalOptimizer::solve() {
             E_old = E;  // copy the current energy to be able to check for energy convergence.
 
             if (iterations == this->maximum_number_of_oo_iterations) {
-                throw std::runtime_error("The orbital optimization procedure did not converge.");
+                throw std::runtime_error("AP1roGJacobiOrbitalOptimizer::solve(): The orbital optimization procedure did not converge.");
             }
         }
     }  // while not converged

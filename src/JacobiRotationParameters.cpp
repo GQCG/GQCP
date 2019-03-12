@@ -39,7 +39,7 @@ JacobiRotationParameters::JacobiRotationParameters(size_t p, size_t q, double an
 {
     // Check if p > q
     if (this->p <= this->q) {
-        throw std::invalid_argument("Can't construct a JacobiRotationParameter with p < q.");
+        throw std::invalid_argument("JacobiRotationParameters::JacobiRotationParameters(size_t, size_t, double): Can't construct a JacobiRotationParameter with p < q.");
     }
 }
 

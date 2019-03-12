@@ -64,7 +64,7 @@ bool Eigenpair::isEqual(const Eigenpair& other, double tolerance) const {
 
 
     if (this->eigenvector.size() != other.get_eigenvector().size()) {
-        throw std::invalid_argument("Can't compare eigenpairs with eigenvectors of different dimension.");
+        throw std::invalid_argument("Eigenpair::isEqual(Eigenpair, double): Can't compare eigenpairs with eigenvectors of different dimension.");
     }
 
     if (std::abs(this->eigenvalue - other.eigenvalue) < tolerance) {

@@ -42,7 +42,7 @@ CartesianGTO::CartesianGTO(double alpha, const std::array<size_t, 3>& exponents,
     center (center)
 {
     if (alpha < 0) {
-        throw std::invalid_argument("CartesianGTO::CartesianGTO(): the exponent must be larger than 0.");
+        throw std::invalid_argument("CartesianGTO::CartesianGTO(double, std::array<size_t, 3>, Vector<double, 3>): the exponent must be larger than 0.");
     }
 
 
@@ -151,7 +151,7 @@ LinearCombination<double, CartesianGTO> CartesianGTO::calculateDerivative(size_t
             break;
 
         default:
-            throw std::invalid_argument("CartesianGTO::calculateDerivative: the component can only be 0, 1, or 2");
+            throw std::invalid_argument("CartesianGTO::calculateDerivative(size_t): the component can only be 0, 1, or 2");
             break;
     }
 

@@ -68,7 +68,7 @@ int main (int argc, char** argv) {
     // Read the upper triagonal of the hopping matrix
     GQCP::VectorX<double> triagonal;
     if (csline.empty()){
-        throw std::invalid_argument("Comma-separated was empty!");
+        throw std::invalid_argument("hubbard(driver): Comma-separated was empty!");
     }
 
     // Split comma-separated line
@@ -86,7 +86,7 @@ int main (int argc, char** argv) {
     // Actual calculations
     auto ham_par = GQCP::HamiltonianParameters<double>::Hubbard(H);
     if (ham_par.get_K() != K) {
-        throw std::invalid_argument("The given number of sites does not match the triagonal");
+        throw std::invalid_argument("hubbard(driver): The given number of sites does not match the triagonal");
     }
 
 

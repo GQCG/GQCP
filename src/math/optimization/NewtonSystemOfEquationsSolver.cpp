@@ -78,7 +78,7 @@ void NewtonSystemOfEquationsSolver::solve() {
 
             // If we reach more than this->maximum_number_of_iterations, the system is considered not to be converging
             if (iteration_counter >= this->maximum_number_of_iterations) {
-                throw std::runtime_error("The Newton procedure did not converge.");
+                throw std::runtime_error("NewtonSystemOfEquationsSolver::solve(): The Newton procedure did not converge.");
             }
         }
     }  // while not _is_solved loop

@@ -156,7 +156,7 @@ TwoRDMs<double> RDMCalculator::calculate2RDMs() const {
 double RDMCalculator::calculateElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices) const {
 
     if (this->coefficients.rows() == 0) {
-        throw std::logic_error("RDMCalculator::calculateElement(): No vector has been set.");
+        throw std::logic_error("RDMCalculator::calculateElement(std::vector<size_t>, std::vector<size_t>): No vector has been set.");
     }
 
     return this->rdm_builder->calculateElement(bra_indices, ket_indices, this->coefficients);

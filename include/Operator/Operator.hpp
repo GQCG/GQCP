@@ -60,7 +60,7 @@ public:
 
         // Check if the given matrix is actually unitary
         if (!U.isUnitary(1.0e-12)) {
-            throw std::invalid_argument("The given transformation matrix is not unitary.");
+            throw std::invalid_argument("Operator::rotate(SquareMatrix<Scalar>): The given transformation matrix is not unitary.");
         }
 
         this->derived().transform(U);

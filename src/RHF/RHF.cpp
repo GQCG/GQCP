@@ -60,7 +60,7 @@ RHF::RHF(double electronic_energy, const SquareMatrix<double>& C, const VectorX<
 OneRDM<double> calculateRHF1RDM(size_t K, size_t N) {
 
     if (N % 2 != 0) {
-        throw std::invalid_argument("The number of given electrons cannot be odd for RHF.");
+        throw std::invalid_argument("calculateRHF1RDM(size_t, size_t): The number of given electrons cannot be odd for RHF.");
     }
 
     // The 1-RDM for RHF looks like (for K=5, N=6)
@@ -164,7 +164,7 @@ double calculateRHFElectronicEnergy(const OneRDM<double>& D_AO, const OneElectro
 size_t RHFHOMOIndex(size_t N) {
 
     if (N % 2 != 0) {
-        throw std::invalid_argument("Can't calculate the RHF HOMO index for an odd number of electrons N.");
+        throw std::invalid_argument("RHFHOMOIndex(size_t): Can't calculate the RHF HOMO index for an odd number of electrons N.");
     }
 
     return N / 2 - 1;  // need to subtract 1 because computer indices start at 0
@@ -180,7 +180,7 @@ size_t RHFHOMOIndex(size_t N) {
 size_t RHFLUMOIndex(size_t K, size_t N) {
 
     if (N >= 2 * K) {
-        throw std::invalid_argument("There is no LUMO for the given amount of electrons N and spatial orbitals K");
+        throw std::invalid_argument("RHFLUMOIndex(size_t, size_t): There is no LUMO for the given amount of electrons N and spatial orbitals K");
     }
 
     return RHFHOMOIndex(N) + 1;

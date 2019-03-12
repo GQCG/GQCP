@@ -34,7 +34,7 @@ namespace GQCP {
 double calculateExpectationValue(const OneElectronOperator<double>& one_op, const OneRDM<double>& one_rdm) {
 
     if (one_op.cols() != one_rdm.cols()) {
-        throw std::invalid_argument("calculateExpectationValue(): The given one-electron integrals are not compatible with the 1-RDM.");
+        throw std::invalid_argument("calculateExpectationValue(OneElectronOperator<double>, OneRDM<double>): The given one-electron integrals are not compatible with the 1-RDM.");
     }
 
     return (one_op * one_rdm).trace();
@@ -55,7 +55,7 @@ double calculateExpectationValue(const OneElectronOperator<double>& one_op, cons
 double calculateExpectationValue(const TwoElectronOperator<double>& two_op, const TwoRDM<double>& two_rdm) {
 
     if (two_op.dimension(0) != two_rdm.dimension(0)) {
-        throw std::invalid_argument("The given two-electron integrals are not compatible with the 2-RDM.");
+        throw std::invalid_argument("calculateExpectationValue(TwoElectronOperator<double>, TwoRDM<double>): The given two-electron integrals are not compatible with the 2-RDM.");
     }
 
     // Specify the contractions for the relevant contraction of the two-electron integrals and the 2-RDM

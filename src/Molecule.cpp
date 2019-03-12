@@ -48,7 +48,7 @@ Molecule::Molecule(const std::vector<Atom>& atoms, int charge) :
     // Check if the total positive charge is valid, e.g. H^(2+) does not exist
     if (charge > 0) {
         if (this->calculateTotalNucleicCharge() < charge) {
-            throw std::invalid_argument("You cannot create a molecule with these atoms and this much of a total positive charge.");
+            throw std::invalid_argument("Molecule::Molecule(): You cannot create a molecule with these atoms and this much of a total positive charge.");
         }
     }
 
@@ -61,7 +61,7 @@ Molecule::Molecule(const std::vector<Atom>& atoms, int charge) :
 
     // If the iterator returned from unique is the same as the end iterator, there are no duplicate items
     if (last_it != atoms_copy.end()) {
-        throw std::invalid_argument("There can't be two equal atoms on the same position.");
+        throw std::invalid_argument("Molecule::Molecule(): There can't be two equal atoms on the same position.");
     }
 }
 
@@ -85,17 +85,17 @@ Molecule Molecule::Readxyz(const std::string& xyz_filename, int charge) {
     if (idx != std::string::npos) {
         extension = xyz_filename.substr(idx+1);
     } else {
-        throw std::runtime_error("I did not find an extension in your given path.");
+        throw std::runtime_error("Molecule::Readxyz(const std::string&, int): I did not find an extension in your given path.");
     }
 
     if (!(extension == "xyz")) {
-        throw std::runtime_error("You did not provide a .xyz file name");
+        throw std::runtime_error("Molecule::Readxyz(const std::string&, int): You did not provide a .xyz file name");
     }
 
     // If the xyz_filename isn't properly converted into an input file stream, we assume the user supplied a wrong file
     std::ifstream input_file_stream (xyz_filename);
     if (!input_file_stream.good()) {
-        throw std::runtime_error("The provided .xyz file name is illegible. Maybe you specified a wrong path?");
+        throw std::runtime_error("Molecule::Readxyz(const std::string&, int): The provided .xyz file name is illegible. Maybe you specified a wrong path?");
     } else {
         // Do the actual parsing
         std::string line;
@@ -131,7 +131,7 @@ Molecule Molecule::Readxyz(const std::string& xyz_filename, int charge) {
 
 
         if (number_of_atoms > atoms.size()) {
-            throw std::invalid_argument("The .xyz-file contains more atoms than specified on its first line.");
+            throw std::invalid_argument("Molecule::Readxyz(const std::string&, int): The .xyz-file contains more atoms than specified on its first line.");
         } else {
             return Molecule(atoms, charge);
         }
@@ -149,11 +149,11 @@ Molecule Molecule::Readxyz(const std::string& xyz_filename, int charge) {
 Molecule Molecule::HChain(size_t n, double spacing, int charge) {
 
     if (n == 0) {
-        throw std::invalid_argument("Can not create a H-chain consisting of zero atoms.");
+        throw std::invalid_argument("Molecule::HChain(size_t, double, int): Can not create a H-chain consisting of zero atoms.");
     }
 
     if (spacing < 0.0) {
-        throw std::invalid_argument("Can't have a negative spacing.");
+        throw std::invalid_argument("Molecule::HChain(size_t, double, int): Can't have a negative spacing.");
     }
 
 
@@ -182,11 +182,11 @@ Molecule Molecule::HChain(size_t n, double spacing, int charge) {
 Molecule Molecule::H2Chain(size_t n, double a, double b, int charge) {
 
     if (n == 0) {
-        throw std::invalid_argument("Can not create a H2-chain consisting of zero H2-molecules.");
+        throw std::invalid_argument("Molecule::H2Chain(size_t, double, double, int): Can not create a H2-chain consisting of zero H2-molecules.");
     }
 
     if ((a < 0.0) || (b < 0.0)) {
-        throw std::invalid_argument("Can't have a negative spacing.");
+        throw std::invalid_argument("Molecule::H2Chain(size_t, double, double, int): Can't have a negative spacing.");
     }
 
 
@@ -300,7 +300,7 @@ double Molecule::calculateInternuclearDistance(size_t index1, size_t index2) con
 
     // Check if the indices are within bounds
     if (index1 > this->atoms.size() || index2 > this->atoms.size()) {
-        throw std::invalid_argument("At least one of the given indices is out of bounds.");
+        throw std::invalid_argument("Molecule::calculateInternuclearDistance(size_t, size_t): At least one of the given indices is out of bounds.");
     }
 
     return this->atoms[index1].calculateDistance(this->atoms[index2]);

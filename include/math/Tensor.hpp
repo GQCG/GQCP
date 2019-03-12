@@ -131,7 +131,7 @@ public:
     enable_if_t<Z == 4, bool> isApprox(const Self& other, double tolerance = 1.0e-12) const {
 
         if (!this->hasEqualDimensions(other)) {
-            throw std::invalid_argument("RankFourTensor<Scalar>::isApprox(const Self&, double tolerance): the tensors have different dimensions");
+            throw std::invalid_argument("RankFourTensor<Scalar>::isApprox(Self, double): the tensors have different dimensions");
         }
 
         // Check every pair of values

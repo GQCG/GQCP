@@ -35,9 +35,7 @@ namespace GQCP {
 DenseSolver::DenseSolver(const SquareMatrix<double>& matrix, size_t number_of_requested_eigenpairs) :
     BaseMatrixSolver(matrix.cols(), number_of_requested_eigenpairs),
     matrix (matrix)
-{
-    // TODO: throw if the matrix is not square
-}
+{}
 
 
 /**

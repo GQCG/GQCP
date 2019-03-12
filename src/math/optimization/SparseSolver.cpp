@@ -84,7 +84,7 @@ void SparseSolver::solve() {
             this->eigenpairs.emplace_back(eigenvalue, eigenvector);  // already reserved in the base constructor
         }
     } else {  // if Spectra was not successful
-        throw std::runtime_error("Spectra could not solve the sparse eigenvalue problem.");
+        throw std::runtime_error("SparseSolver::solve(): Spectra could not solve the sparse eigenvalue problem.");
     }
 }
 

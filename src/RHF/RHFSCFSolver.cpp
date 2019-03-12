@@ -38,7 +38,7 @@ RHFSCFSolver::RHFSCFSolver(const HamiltonianParameters<double>& ham_par, const M
 {
     // Check if the given molecule has an even number of electrons
     if ((molecule.get_N() % 2) != 0) {
-        throw std::invalid_argument("The given molecule has an odd number of electrons.");
+        throw std::invalid_argument("RHFSCFSolver::RHFSCFSolver(): The given molecule has an odd number of electrons.");
     }
 }
 
@@ -82,7 +82,7 @@ void RHFSCFSolver::solve() {
             OneElectronOperator<double> F = F_AO;
             F.transform(C);  // transform F to the MO basis with C
             if (!(F.isDiagonal())) {
-                throw std::runtime_error("The RHF SCF procedure is converged but the MO Fock matrix is not diagonal.");
+                throw std::runtime_error("RHFSCFSolver::solve(): The RHF SCF procedure is converged but the MO Fock matrix is not diagonal.");
             }
 
             // Set the converged solution
@@ -94,7 +94,7 @@ void RHFSCFSolver::solve() {
 
             // If we reach more than this->maximum_number_of_iterations, the system is considered not to be converging
             if (iteration_counter >= this->maximum_number_of_iterations) {
-                throw std::runtime_error("The SCF procedure did not converge.");
+                throw std::runtime_error("RHFSCFSolver::solve(): The SCF procedure did not converge.");
             }
         }
     }  // while not converged

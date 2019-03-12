@@ -39,7 +39,7 @@ CISolver::CISolver(const HamiltonianBuilder& hamiltonian_builder, const Hamilton
 {
     auto K = hamiltonian_parameters.get_h().get_dim();
     if (K != this->hamiltonian_builder->get_fock_space()->get_K()) {
-        throw std::invalid_argument("Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
+        throw std::invalid_argument("CISolver::CISolver(HamiltonianBuilder, HamiltonianParameters<double>): Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
     }
 }
 
@@ -84,7 +84,7 @@ void CISolver::solve(const BaseSolverOptions& solver_options) {
         }
 
         case SolverType::SPARSE: {
-            throw std::invalid_argument("Sparse not implemented");
+            throw std::invalid_argument("CISolver::solve(BaseSolverOptions): Sparse not implemented");
             break;
         }
     }
@@ -98,7 +98,7 @@ void CISolver::solve(const BaseSolverOptions& solver_options) {
  */
 WaveFunction CISolver::makeWavefunction(size_t index) const {
     if (index > this->eigenpairs.size()) {
-        throw std::logic_error("Not enough requested eigenpairs for the given index.");
+        throw std::logic_error("CISolver::makeWavefunction(size_t): Not enough requested eigenpairs for the given index.");
     }
     return WaveFunction(*this->hamiltonian_builder->get_fock_space(), this->eigenpairs[index].get_eigenvector());
 }
