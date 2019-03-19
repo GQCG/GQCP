@@ -15,30 +15,42 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#define BOOST_TEST_MODULE "AOBasis"
+#ifndef GQCP_AOBASIS_HPP
+#define GQCP_AOBASIS_HPP
 
-#include <boost/test/unit_test.hpp>
-#include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
 
-#include "AOBasis.hpp"
-
-#include "Molecule.hpp"
+#include "Basis/ShellSet.hpp"
+#include "Operator/OneElectronOperator.hpp"
 
 
 
-BOOST_AUTO_TEST_CASE ( AOBasis_constructor ) {
-
-    // Check if we can construct an AOBasis object
-    auto water = GQCP::Molecule::Readxyz("data/h2o.xyz");
-    GQCP::AOBasis basis (water, "STO-3G");
-}
+namespace GQCP {
 
 
-BOOST_AUTO_TEST_CASE ( number_of_basis_functions ) {
+/**
+ *  A class that represents an atomic orbital basis, i.e. the collection of (scalar) atomic orbitals/basis functions
+ */
+class AOBasis {
+private:
+    ShellSet basisset;  // the underlying basisset that contains shells
 
-    // Check the number of basis functions in water
-    auto water = GQCP::Molecule::Readxyz("data/h2o.xyz");
-    GQCP::AOBasis basis (water, "STO-3G");
 
-    BOOST_CHECK_EQUAL(basis.get_number_of_basis_functions(), 7);
-}
+public:
+    // CONSTRUCTORS
+
+
+    // PUBLIC METHODS - LIBINT INTEGRALS
+    /**
+     *  @return the matrix representation of the overlap operator in this AO basis
+     */
+    OneElectronOperator<double> calculateLibintOverlapIntegrals() const;
+
+
+    // PUBLIC METHODS - LIBCINT INTEGRALS
+};
+
+
+}  // namespace GQCP
+
+
+#endif  // GQCP_AOBASIS_HPP

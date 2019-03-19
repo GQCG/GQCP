@@ -7,6 +7,12 @@ set(PROJECT_INCLUDE_FOLDER ${CMAKE_SOURCE_DIR}/include)
 
 # Find the header files
 set(PROJECT_INCLUDE_FILES
+        ${PROJECT_INCLUDE_FOLDER}/Basis/AOBasis.hpp
+        ${PROJECT_INCLUDE_FOLDER}/Basis/BasisFunction.hpp
+        ${PROJECT_INCLUDE_FOLDER}/Basis/BasisSet.hpp
+        ${PROJECT_INCLUDE_FOLDER}/Basis/CartesianGTO.hpp
+        ${PROJECT_INCLUDE_FOLDER}/Basis/Shell.hpp
+
         ${PROJECT_INCLUDE_FOLDER}/CISolver/CISolver.hpp
 
         ${PROJECT_INCLUDE_FOLDER}/FockSpace/BaseFockSpace.hpp
@@ -99,7 +105,6 @@ set(PROJECT_INCLUDE_FILES
         ${PROJECT_INCLUDE_FOLDER}/WaveFunction/SpinUnresolvedWaveFunction.hpp
         ${PROJECT_INCLUDE_FOLDER}/WaveFunction/WaveFunction.hpp
 
-        ${PROJECT_INCLUDE_FOLDER}/AOBasis.hpp
         ${PROJECT_INCLUDE_FOLDER}/Atom.hpp
         ${PROJECT_INCLUDE_FOLDER}/DOCINewtonOrbitalOptimizer.hpp
         ${PROJECT_INCLUDE_FOLDER}/elements.hpp

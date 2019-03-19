@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "CartesianGTO.hpp"
+#include "Basis/CartesianGTO.hpp"
 
 #include <boost/math/constants/constants.hpp>
 #include <boost/math/special_functions/factorials.hpp>

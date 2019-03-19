@@ -46,7 +46,99 @@ LibintCommunicator::~LibintCommunicator() {
 
 
 /*
- *  PRIVATE METHODS
+ *  PUBLIC METHODS - SINGLETON
+ */
+
+/**
+ *  @return the static singleton instance
+ */
+LibintCommunicator& LibintCommunicator::get() {  // need to return by reference since we deleted the relevant constructor
+    static LibintCommunicator singleton_instance;  // instantiated on first use and guaranteed to be destroyed
+    return singleton_instance;
+}
+
+
+/*
+ *  PUBLIC METHODS - INTERFACING
+ */
+
+/**
+ *  @param atoms        the GQCP-atoms that should be interfaced
+ *
+ *  @return libint2-atoms, interfaced from the given atoms
+ */
+std::vector<libint2::Atom> LibintCommunicator::interface(const std::vector<Atom>& atoms) const {
+
+    std::vector<libint2::Atom> libint_vector;  // start with an empty vector, we're doing push_backs later
+
+    for (const auto& atom : atoms) {
+        libint2::Atom libint_atom {static_cast<int>(atom.atomic_number), atom.position.x(), atom.position.y(), atom.position.z()};
+        libint_vector.push_back(libint_atom);
+    }
+
+    return libint_vector;
+}
+
+
+/**
+ *  @param basisset     the GQCP basisset that should be interfaced
+ *
+ *  @return a libint2::BasisSet, interfaced from the GQCP BasisSet
+ */
+libint2::BasisSet LibintCommunicator::interface(const ShellSet& basisset) const {
+
+    libint2::BasisSet libint2_basisset;  // start with an empty vector, we're doing push_backs later
+    libint2_basisset.reserve(basisset.size());
+
+
+    for (const auto& shell : basisset) {
+        libint2_basisset.push_back(this->interface(shell));
+    }
+
+
+    // At this point in the code, the libint2::BasisSet is 'uninitialized', i.e. its private member _nbf is -1, etc.
+    // Therefore, we are using a hack to force the private libint2::BasisSet::init() being called
+    libint2_basisset.set_pure(false);  // the shells inside GQCP::BasisSet are all Cartesian, so this effectively does nothing
+
+    return libint2_basisset;
+}
+
+
+/**
+ *  @param shell        the GQCP shell that should be interfaced
+ *
+ *  @return a libint2::Shell, interfaced from the GQCP Shell
+ */
+libint2::Shell LibintCommunicator::interface(const Shell& shell) const {
+
+    // Part 1: exponents
+    std::vector<double> libint_alpha = shell.get_exponents();  // libint::Shell::real_t is double, so no need to use real_t
+
+
+    // Part 2: contractions
+    std::vector<libint2::Shell::Contraction> libint_contr;
+    libint_contr.reserve(shell.get_contractions().size());
+
+    for (const auto& contraction : shell.get_contractions()) {
+        auto libint_l = static_cast<int>(contraction.l);
+        bool libint_pure = false;  // our shells are Cartesian
+        std::vector<double> libint_coeff = contraction.coefficients;
+
+        libint2::Shell::Contraction libint_contraction {libint_l, libint_pure, libint_coeff};
+        libint_contr.push_back(libint_contraction);
+    }
+
+
+    // Part 3: origin
+    auto position = shell.get_atom().position;
+    std::array<double, 3> libint_O {position.x(), position.y(), position.z()};
+
+    return libint2::Shell(libint_alpha, libint_contr, libint_O);
+}
+
+
+/*
+ *  PUBLIC METHODS - INTEGRALS
  */
 
 /**
@@ -129,41 +221,6 @@ TwoElectronOperator<double> LibintCommunicator::calculateTwoElectronIntegrals(li
 
     return g;
 };
-
-
-/*
- *  PUBLIC METHODS - SINGLETON
- */
-
-/**
- *  @return the static singleton instance
- */
-LibintCommunicator& LibintCommunicator::get() {  // need to return by reference since we deleted the relevant constructor
-    static LibintCommunicator singleton_instance;  // instantiated on first use and guaranteed to be destroyed
-    return singleton_instance;
-}
-
-
-/*
- *  PUBLIC METHODS
- */
-
-/**
- *  @param atoms        the GQCP-atoms that should be interfaced
- *
- *  @return libint2-atoms, interfaced from the given atoms
- */
-std::vector<libint2::Atom> LibintCommunicator::interface(const std::vector<Atom>& atoms) const {
-
-    std::vector<libint2::Atom> libint_vector;  // start with an empty vector, we're doing push_backs later
-
-    for (const auto& atom : atoms) {
-        libint2::Atom libint_atom {static_cast<int>(atom.atomic_number), atom.position.x(), atom.position.y(), atom.position.z()};
-        libint_vector.push_back(libint_atom);
-    }
-
-    return libint_vector;
-}
 
 
 /**

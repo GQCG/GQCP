@@ -18,6 +18,11 @@
 #ifndef GQCP_HPP
 #define GQCP_HPP
 
+#include "Basis/AOBasis.hpp"
+#include "Basis/BasisFunction.hpp"
+#include "Basis/CartesianGTO.hpp"
+#include "Basis/Shell.hpp"
+#include "Basis/ShellSet.hpp"
 
 #include "CISolver/CISolver.hpp"
 
@@ -105,7 +110,6 @@
 
 
 // Single files, not in a special include directory
-#include "AOBasis.hpp"
 #include "Atom.hpp"
 #include "typedefs.hpp"
 #include "DOCINewtonOrbitalOptimizer.hpp"

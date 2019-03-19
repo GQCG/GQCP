@@ -19,7 +19,7 @@
 #define GQCP_LIBINTCOMMUNICATOR_HPP
 
 
-#include "AOBasis.hpp"
+#include "Basis/AOBasis.hpp"
 #include "Molecule.hpp"
 #include "Operator/OneElectronOperator.hpp"
 #include "Operator/TwoElectronOperator.hpp"
@@ -32,13 +32,13 @@ namespace GQCP {
 
 
 /**
- *  A singleton class that takes care of interfacing with the Libint2 (version >2.2.0) C++ API
+ *  A singleton class that takes care of interfacing with the Libint2 (version 2.3.1) C++ API
  *
- *  Singleton class template from (https://stackoverflow.com/a/1008289)
+ *  Singleton class template from: https://stackoverflow.com/a/1008289
  */
 class LibintCommunicator {
 private:
-    // SINGLETON METHODS
+    // PRIVATE METHODS - SINGLETON
     /**
      *  Private constructor as required by the singleton class design
      */
@@ -54,7 +54,44 @@ private:
     typedef struct {} empty;  // empty_pod is a private typedef for libint2::Engine, so we copy it over
 
 
-    // PRIVATE METHODS
+public:
+    // PUBLIC METHODS - SINGLETON
+    /**
+     *  @return the static singleton instance
+     */
+    static LibintCommunicator& get();
+
+    /**
+     *  Remove the public copy constructor and the public assignment operator
+     */
+    LibintCommunicator(LibintCommunicator const& libint_communicator) = delete;
+    void operator=(LibintCommunicator const& libint_communicator) = delete;
+
+
+    // PUBLIC METHODS - INTERFACING
+    /**
+     *  @param atoms        the GQCP-atoms that should be interfaced
+     *
+     *  @return libint2-atoms, interfaced from the given atoms
+     */
+    std::vector<libint2::Atom> interface(const std::vector<Atom>& atoms) const;
+
+    /**
+     *  @param shellset     the GQCP ShellSet that should be interfaced
+     *
+     *  @return a libint2::BasisSet, interfaced from the GQCP ShellSet
+     */
+    libint2::BasisSet interface(const ShellSet& shellset) const;
+
+    /**
+     *  @param shell        the GQCP shell that should be interfaced
+     *
+     *  @return a libint2::Shell, interfaced from the GQCP Shell
+     */
+    libint2::Shell interface(const Shell& shell) const;
+
+
+    // PUBLIC METHODS - INTEGRALS
     /**
      *  @tparam N               the number of operator components
      *
@@ -128,27 +165,7 @@ private:
     TwoElectronOperator<double> calculateTwoElectronIntegrals(libint2::Operator operator_type, const AOBasis& ao_basis) const;
 
 
-public:
-    // SINGLETON METHODS
-    /**
-     *  @return the static singleton instance
-     */
-    static LibintCommunicator& get();
 
-    /**
-     *  Remove the public copy constructor and the public assignment operator
-     */
-    LibintCommunicator(LibintCommunicator const& libint_communicator) = delete;
-    void operator=(LibintCommunicator const& libint_communicator) = delete;
-
-
-    // PUBLIC METHODS
-    /**
-     *  @param atoms        the GQCP-atoms that should be interfaced
-     *
-     *  @return libint2-atoms, interfaced from the given atoms
-     */
-    std::vector<libint2::Atom> interface(const std::vector<Atom>& atoms) const;
 
     /**
      *  @param ao_basis     the AO basis used for the calculation of the overlap integrals

@@ -21,7 +21,7 @@
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise clang++ will complain
 
 
-#include "CartesianGTO.hpp"
+#include "Basis/CartesianGTO.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( constructor ) {

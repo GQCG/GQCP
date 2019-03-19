@@ -15,23 +15,30 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "AOBasis.hpp"
-#include "LibintCommunicator.hpp"
+#define BOOST_TEST_MODULE "AOBasis"
 
-namespace GQCP {
+#include <boost/test/unit_test.hpp>
+#include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
 
+#include "Basis/AOBasis.hpp"
 
-/**
- *  Constructor that creates an AOBasis from a basisset name
- *
- *  @param molecule         the molecule to which the AO basis corresponds
- *  @param basis_set        the name of the basisset
- */
-AOBasis::AOBasis(const Molecule& molecule, const std::string& basis_set) :
-    atoms (molecule.get_atoms()),
-    basis_functions (libint2::BasisSet(std::move(basis_set), LibintCommunicator::get().interface(this->atoms))),  // construct a libint2::BasisSet
-    number_of_basis_functions (static_cast<size_t>(this->basis_functions.nbf()))
-{}
+#include "Molecule.hpp"
 
 
-}  // namespace GQCP
+
+BOOST_AUTO_TEST_CASE ( AOBasis_constructor ) {
+
+    // Check if we can construct an AOBasis object
+    auto water = GQCP::Molecule::Readxyz("data/h2o.xyz");
+    GQCP::AOBasis basis (water, "STO-3G");
+}
+
+
+BOOST_AUTO_TEST_CASE ( number_of_basis_functions ) {
+
+    // Check the number of basis functions in water
+    auto water = GQCP::Molecule::Readxyz("data/h2o.xyz");
+    GQCP::AOBasis basis (water, "STO-3G");
+
+    BOOST_CHECK_EQUAL(basis.get_number_of_basis_functions(), 7);
+}
