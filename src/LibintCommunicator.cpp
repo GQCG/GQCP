@@ -230,7 +230,7 @@ ShellSet LibintCommunicator::interface(const libint2::BasisSet& libint_basisset,
     ShellSet shell_set;
     shell_set.reserve(this->numberOfShells(libint_basisset));
     for (const auto& libint_shell : libint_basisset) {
-        for (const auto& shell : this->interface(libint_shell)) {
+        for (const auto& shell : this->interface(libint_shell, atoms)) {
             shell_set.push_back(shell);
         }
     }
@@ -244,17 +244,14 @@ ShellSet LibintCommunicator::interface(const libint2::BasisSet& libint_basisset,
  */
 
 /**
- *  @param operator_type    the name of the operator as specified by the enumeration
- *  @param ao_basis         the AO basis in which the two-electron operator should be expressed
+ *  @param operator_type        the name of the operator as specified by the enumeration
+ *  @param libint_basisset      the libint2 basis set representing the AO basis
  *
  *  @return the matrix representation of a two-electron operator in the given AO basis
  */
-TwoElectronOperator<double> LibintCommunicator::calculateTwoElectronIntegrals(libint2::Operator operator_type, const AOBasis& ao_basis) const {
+TwoElectronOperator<double> LibintCommunicator::calculateTwoElectronIntegrals(libint2::Operator operator_type, const libint2::BasisSet& libint_basisset) const {
 
-    // Use the basis_functions that is currently a libint2::BasisSet
-    auto libint_basisset = ao_basis.get_basis_functions();
     const auto nbf = static_cast<size_t>(libint_basisset.nbf());  // nbf: number of basis functions in the basisset
-
 
     // Initialize the rank-4 two-electron integrals tensor and set to zero
     TwoElectronOperator<double> g (nbf);
@@ -323,66 +320,6 @@ TwoElectronOperator<double> LibintCommunicator::calculateTwoElectronIntegrals(li
 
     return g;
 };
-
-
-/**
- *  @param ao_basis     the AO basis used for the calculation of the overlap integrals
- *
- *  @return the overlap integrals expressed in the given AO basis
- */
-OneElectronOperator<double> LibintCommunicator::calculateOverlapIntegrals(const AOBasis& ao_basis) const {
-    return this->calculateOneElectronIntegrals<1>(libint2::Operator::overlap, ao_basis.get_basis_functions())[0];
-}
-
-
-/**
- *  @param ao_basis     the AO basis used for the calculation of the kinetic integrals
- *
- *  @return the kinetic integrals expressed in the given AO basis
- */
-OneElectronOperator<double> LibintCommunicator::calculateKineticIntegrals(const AOBasis& ao_basis) const {
-    return this->calculateOneElectronIntegrals<1>(libint2::Operator::kinetic, ao_basis.get_basis_functions())[0];
-}
-
-
-/**
- *  @param ao_basis     the AO basis used for the calculation of the nuclear attraction integrals
- *
- *  @return the nuclear attraction integrals expressed in the given AO basis
- */
-OneElectronOperator<double> LibintCommunicator::calculateNuclearIntegrals(const AOBasis& ao_basis) const {
-    return this->calculateOneElectronIntegrals<1>(libint2::Operator::nuclear, ao_basis.get_basis_functions(),
-                                                  make_point_charges(this->interface(ao_basis.get_atoms())))[0];
-}
-
-
-/**
- *  @param ao_basis     the AO basis used for the calculation of the dipole repulsion integrals
- *  @param origin       the origin of the dipole
- *
- *  @return the Cartesian components of the electrical dipole operator, expressed in the given AO basis
- */
-std::array<OneElectronOperator<double>, 3> LibintCommunicator::calculateDipoleIntegrals(const AOBasis& ao_basis, const Vector<double, 3>& origin) const {
-
-    std::array<double, 3> origin_array {origin.x(), origin.y(), origin.z()};
-
-    auto all_integrals = this->calculateOneElectronIntegrals<4>(libint2::Operator::emultipole1, ao_basis.get_basis_functions(), origin_array);  // overlap, x, y, z
-
-    // Apply the minus sign which comes from the charge of the electrons -e
-    // We have to cast to OneElectronOperator<double>, because operator-() returns a NegativeReturnType, which can't automatically be converted to a OneElectronOperator
-    return std::array<OneElectronOperator<double>, 3> {OneElectronOperator<double>(-all_integrals[1]), OneElectronOperator<double>(-all_integrals[2]), OneElectronOperator<double>(-all_integrals[3])};  // we don't need the overlap, so ignore [0]
-}
-
-
-/**
- *  @param ao_basis     the AO basis used for the calculation of the Coulomb repulsion integrals
- *
- *  @return the Coulomb repulsion integrals expressed in the given AO basis
- */
-TwoElectronOperator<double> LibintCommunicator::calculateCoulombRepulsionIntegrals(const AOBasis& ao_basis) const {
-    return this->calculateTwoElectronIntegrals(libint2::Operator::coulomb, ao_basis);
-}
-
 
 
 }  // namespace GQCP

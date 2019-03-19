@@ -34,11 +34,90 @@ BOOST_AUTO_TEST_CASE ( AOBasis_constructor ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( number_of_basis_functions ) {
+BOOST_AUTO_TEST_CASE ( numberOfBasisFunctions ) {
 
     // Check the number of basis functions in water
     auto water = GQCP::Molecule::Readxyz("data/h2o.xyz");
     GQCP::AOBasis basis (water, "STO-3G");
 
-    BOOST_CHECK_EQUAL(basis.get_number_of_basis_functions(), 7);
+    BOOST_CHECK_EQUAL(basis.numberOfBasisFunctions(), 7);
+}
+
+
+BOOST_AUTO_TEST_CASE( Szabo_integrals_h2_sto3g ) {
+
+    // We will follow the example in Szabo, section 3.5.2, where it is stated that R = 1.4 a.u. = 0.740848 Angstrom
+    auto h2 = GQCP::Molecule::Readxyz("data/h2_szabo.xyz");
+    GQCP::AOBasis ao_basis (h2, "STO-3G");
+    BOOST_CHECK_EQUAL(ao_basis.numberOfBasisFunctions(), 2);
+
+    // Calculate some integrals
+    auto S = ao_basis.calculateOverlapIntegrals();
+    auto T = ao_basis.calculateKineticIntegrals();
+    auto V = ao_basis.calculateNuclearIntegrals();
+
+    GQCP::OneElectronOperator<double> H_core = T + V;
+
+    auto g = ao_basis.calculateCoulombRepulsionIntegrals();
+
+
+    // Fill in the reference values from Szabo
+    GQCP::OneElectronOperator<double> ref_S (2);
+    ref_S << 1.0,    0.6593,
+             0.6593, 1.0;
+
+    GQCP::OneElectronOperator<double> ref_T (2);
+    ref_T << 0.7600, 0.2365,
+             0.2365, 0.7600;
+
+    GQCP::OneElectronOperator<double> ref_H_core (2);
+    ref_H_core << -1.1204, -0.9584,
+                  -0.9584, -1.1204;
+
+    BOOST_CHECK(S.isApprox(ref_S, 1.0e-04));
+    BOOST_CHECK(T.isApprox(ref_T, 1.0e-04));
+    BOOST_CHECK(H_core.isApprox(ref_H_core, 1.0e-04));
+
+
+    // The two-electron integrals in Szabo are given in chemist's notation, so this confirms that the LibintCommunicator gives them in chemist's notation as well
+    BOOST_CHECK(std::abs(g(0,0,0,0) - 0.7746) < 1.0e-04);
+    BOOST_CHECK(std::abs(g(0,0,0,0) - g(1,1,1,1)) < 1.0e-12);
+
+    BOOST_CHECK(std::abs(g(0,0,1,1) - 0.5697) < 1.0e-04);
+
+    BOOST_CHECK(std::abs(g(1,0,0,0) - 0.4441) < 1.0e-04);
+    BOOST_CHECK(std::abs(g(1,0,0,0) - g(1,1,1,0)) < 1.0e-12);
+
+    BOOST_CHECK(std::abs(g(1,0,1,0) - 0.2970) < 1.0e-04);
+}
+
+
+BOOST_AUTO_TEST_CASE( HORTON_integrals_h2o_sto3g ) {
+
+    // Set up an AO basis
+    auto water = GQCP::Molecule::Readxyz("data/h2o.xyz");
+    GQCP::AOBasis ao_basis (water, "STO-3G");
+    auto nbf = ao_basis.numberOfBasisFunctions();
+
+
+    // Calculate some integrals
+    auto S = ao_basis.calculateOverlapIntegrals();
+    auto T = ao_basis.calculateKineticIntegrals();
+    auto V = ao_basis.calculateNuclearIntegrals();
+
+    auto g = ao_basis.calculateCoulombRepulsionIntegrals();
+
+
+    // Read in reference data from HORTON
+    GQCP::OneElectronOperator<double> ref_S = GQCP::OneElectronOperator<double>::FromFile("data/h2o_sto-3g_overlap_horton.data", nbf, nbf);
+    GQCP::OneElectronOperator<double> ref_T = GQCP::OneElectronOperator<double>::FromFile("data/h2o_sto-3g_kinetic_horton.data", nbf, nbf);
+    GQCP::OneElectronOperator<double> ref_V = GQCP::OneElectronOperator<double>::FromFile("data/h2o_sto-3g_nuclear_horton.data", nbf, nbf);
+    GQCP::TwoElectronOperator<double> ref_g = GQCP::TwoElectronOperator<double>::FromFile("data/h2o_sto-3g_coulomb_horton.data", nbf);
+
+
+    // Check if the calculated integrals are equal to those of HORTON
+    BOOST_CHECK(S.isApprox(ref_S, 1.0e-08));
+    BOOST_CHECK(T.isApprox(ref_T, 1.0e-08));
+    BOOST_CHECK(V.isApprox(ref_V, 1.0e-08));
+    BOOST_CHECK(g.isApprox(ref_g, 1.0e-06));
 }

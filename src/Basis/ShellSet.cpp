@@ -16,10 +16,10 @@ namespace GQCP {
 /**
  *  Construct a ShellSet by placing the shells corresponding to the basisset information on every atom of the molecule
  *
- *  @param basisset_name        the name of the basisset, e.g. "STO-3G"
  *  @param molecule             the molecule containing the atoms on which the shells should be centered
+ *  @param basisset_name        the name of the basisset, e.g. "STO-3G"
  */
-ShellSet::ShellSet(const std::string& basisset_name, const Molecule& molecule) {
+ShellSet::ShellSet(const Molecule& molecule, const std::string& basisset_name) {
 
     // Since we haven't implemented our own BasisSet class, we use libint to read in the basisset specification file and create the shells
     // TODO no longer use libint2 to read this

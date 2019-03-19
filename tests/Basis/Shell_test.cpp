@@ -29,6 +29,6 @@ BOOST_AUTO_TEST_CASE ( Shell_constructor_throws ) {
     std::vector<double> coeff1 {0.5, 1.0};
     std::vector<double> coeff2 {0.5, 1.0, 1.5};
 
-    GQCP::Shell shell1 (0, Atom(), exp1, coeff1);
-    BOOST_CHECK_THROW(GQCP::Shell shell2 (0, Atom(), exp1, coeff2));
+    GQCP::Shell shell1 (0, GQCP::Atom(), exp1, coeff1);
+    BOOST_CHECK_THROW(GQCP::Shell shell2 (0, GQCP::Atom(), exp1, coeff2), std::invalid_argument);
 }

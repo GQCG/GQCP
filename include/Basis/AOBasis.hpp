@@ -21,7 +21,7 @@
 
 #include "Basis/ShellSet.hpp"
 #include "Operator/OneElectronOperator.hpp"
-
+#include "Operator/TwoElectronOperator.hpp"
 
 
 namespace GQCP {
@@ -32,21 +32,58 @@ namespace GQCP {
  */
 class AOBasis {
 private:
-    ShellSet basisset;  // the underlying basisset that contains shells
+    ShellSet shell_set;  // the underlying shell set
 
 
 public:
     // CONSTRUCTORS
+    /**
+     *  Construct an AO basis by placing shells shells corresponding to the basisset information on every atom of the molecule
+     *
+     *  @param molecule             the molecule containing the atoms on which the shells should be centered
+     *  @param basisset_name        the name of the basisset, e.g. "STO-3G"
+     */
+    AOBasis(const Molecule& molecule, const std::string& basisset_name);
+
+
+    // GETTERS
+    const ShellSet& get_shell_set() const { return this->shell_set; }
+
+
+    // PUBLIC METHODS
+    /**
+     *  @return the number of basis functions in this AO basis
+     */
+    size_t numberOfBasisFunctions() const;
 
 
     // PUBLIC METHODS - LIBINT INTEGRALS
     /**
      *  @return the matrix representation of the overlap operator in this AO basis
      */
-    OneElectronOperator<double> calculateLibintOverlapIntegrals() const;
+    OneElectronOperator<double> calculateOverlapIntegrals() const;
 
+    /**
+     *  @return the matrix representation of the kinetic energy operator in this AO basis
+     */
+    OneElectronOperator<double> calculateKineticIntegrals() const;
 
-    // PUBLIC METHODS - LIBCINT INTEGRALS
+    /**
+     *  @return the matrix representation of the nuclear attraction operator in this AO basis
+     */
+    OneElectronOperator<double> calculateNuclearIntegrals() const;
+
+    /**
+     *  @param origin       the origin of the dipole
+     *
+     *  @return the matrix representation of the Cartesian components of the electrical dipole operator in this AO basis
+     */
+    std::array<OneElectronOperator<double>, 3> calculateDipoleIntegrals(const Vector<double, 3>& origin = Vector<double, 3>::Zero()) const;
+
+    /**
+     *  @return the matrix representation of the Coulomb repulsion operator in this AO basis
+     */
+    TwoElectronOperator<double> calculateCoulombRepulsionIntegrals() const;
 };
 
 

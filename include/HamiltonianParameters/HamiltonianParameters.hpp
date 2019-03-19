@@ -79,7 +79,7 @@ public:
         auto error = std::invalid_argument("HamiltonianParameters::HamiltonianParameters(std::shared_ptr<AOBasis>, OneElectronOperator<Scalar>, OneElectronOperator<Scalar>, TwoElectronOperator<Scalar>,SquareMatrix<Scalar>, double): The dimensions of the operators and coefficient matrix are incompatible.");
 
         if (this->ao_basis) {  // ao_basis is not nullptr
-            if (this->K != this->ao_basis->get_number_of_basis_functions()) {
+            if (this->K != this->ao_basis->numberOfBasisFunctions()) {
                 throw error;
             }
         }
@@ -135,16 +135,16 @@ public:
     static enable_if_t<std::is_same<Z, double>::value, HamiltonianParameters<double>> Molecular(std::shared_ptr<AOBasis> ao_basis, double scalar=0.0) {
 
         // Calculate the integrals for the molecular Hamiltonian
-        auto S = LibintCommunicator::get().calculateOverlapIntegrals(*ao_basis);
-        auto T = LibintCommunicator::get().calculateKineticIntegrals(*ao_basis);
-        auto V = LibintCommunicator::get().calculateNuclearIntegrals(*ao_basis);
-        auto H = OneElectronOperator<double>(T + V);
+        auto S = ao_basis->calculateOverlapIntegrals();
+        auto T = ao_basis->calculateKineticIntegrals();
+        auto V = ao_basis->calculateNuclearIntegrals();
+        OneElectronOperator<double> H = T + V;
 
-        auto g = LibintCommunicator::get().calculateCoulombRepulsionIntegrals(*ao_basis);
+        auto g = ao_basis->calculateCoulombRepulsionIntegrals();
 
 
         // Construct the initial transformation matrix: the identity matrix
-        auto nbf = ao_basis->get_number_of_basis_functions();
+        auto nbf = ao_basis->numberOfBasisFunctions();
         SquareMatrix<double> T_total = SquareMatrix<double>::Identity(nbf, nbf);
 
         return HamiltonianParameters(ao_basis, S, H, g, T_total, scalar);

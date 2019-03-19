@@ -24,10 +24,10 @@ public:
     /**
      *  Construct a ShellSet by placing the shells corresponding to the basisset information on every atom of the molecule
      *
-     *  @param basisset_name        the name of the basisset, e.g. "STO-3G"
      *  @param molecule             the molecule containing the atoms on which the shells should be centered
+     *  @param basisset_name        the name of the basisset, e.g. "STO-3G"
      */
-    ShellSet(const std::string& basisset_name, const Molecule& molecule);
+    ShellSet(const Molecule& molecule, const std::string& basisset_name);
 
 
     // PUBLIC METHODS
