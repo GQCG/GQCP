@@ -68,7 +68,14 @@ public:
     void operator=(LibintCommunicator const& libint_communicator) = delete;
 
 
-    // PUBLIC METHODS - INTERFACING
+    // PUBLIC METHODS - INTERFACING (GQCP TO LIBINT)
+    /**
+     *  @param atom         the GQCP-atom that should be interfaced
+     *
+     *  @return a libint2::Atom, interfaced from the given GQCP::Atom
+     */
+    libint2::Atom interface(const Atom& atom) const;
+
     /**
      *  @param atoms        the GQCP-atoms that should be interfaced
      *
@@ -77,18 +84,55 @@ public:
     std::vector<libint2::Atom> interface(const std::vector<Atom>& atoms) const;
 
     /**
-     *  @param shellset     the GQCP ShellSet that should be interfaced
-     *
-     *  @return a libint2::BasisSet, interfaced from the GQCP ShellSet
-     */
-    libint2::BasisSet interface(const ShellSet& shellset) const;
-
-    /**
      *  @param shell        the GQCP shell that should be interfaced
      *
      *  @return a libint2::Shell, interfaced from the GQCP Shell
      */
     libint2::Shell interface(const Shell& shell) const;
+
+    /**
+     *  @param shellset     the GQCP ShellSet that should be interfaced
+     *
+     *  @return a libint2::BasisSet, interfaced from the GQCP ShellSet. Note that it is not possible to create libint2-sp-shells from a GQCP ShellSet
+     */
+    libint2::BasisSet interface(const ShellSet& shellset) const;
+
+
+    // PUBLIC METHODS - INTERFACING (LIBINT TO GQCP)
+
+    /**
+     *  @param libint_shell         the libint2::Shell
+     *
+     *  @return the number of true shells that are contained in the libint2::Shell
+     */
+    size_t numberOfShells(const libint2::Shell& libint_shell) const;
+
+    /**
+     *  @param libint_basisset      the libint2::BasisSet
+     *
+     *  @return the number of true shells that are contained in the libint2::BasisSet
+     */
+    size_t numberOfShells(const libint2::BasisSet& libint_basisset) const;
+
+    /**
+     *  Interface a libint2::Shell to the corresponding list of GQCP::Shells. Note that there is no one-to-one libint -> GQCP conversion, since GQCP does not support 'linked' sp-'shells'
+     *
+     *  @param libint_shell     the libint2 Shell that should be interfaced
+     *  @param atoms            the atoms that can serve as centers of the Shells
+     *
+     *  @return a vector of GQCP::Shells corresponding to one libint2::Shell
+     */
+    std::vector<Shell> interface(const libint2::Shell& libint_shell, const std::vector<Atom>& atoms) const;
+
+    /**
+     *  Interface a libint2::BasisSet to the corresponding GQCP::ShellSet
+     *
+     *  @param libint_basisset      the libint2 Shell that should be interfaced
+     *  @param atoms                the atoms that can serve as centers of the Shells
+     *
+     *  @return a GQCP::ShellSet corresponding to the libint2::BasisSet
+     */
+    ShellSet interface(const libint2::BasisSet& libint_basisset, const std::vector<Atom>& atoms) const;
 
 
     // PUBLIC METHODS - INTEGRALS

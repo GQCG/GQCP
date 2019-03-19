@@ -59,8 +59,21 @@ LibintCommunicator& LibintCommunicator::get() {  // need to return by reference 
 
 
 /*
- *  PUBLIC METHODS - INTERFACING
+ *  PUBLIC METHODS - INTERFACING (GQCP TO LIBINT)
  */
+
+/**
+ *  @param atom         the GQCP-atom that should be interfaced
+ *
+ *  @return a libint2::Atom, interfaced from the given GQCP::Atom
+ */
+libint2::Atom LibintCommunicator::interface(const Atom& atom) const {
+
+    libint2::Atom libint2_atom {static_cast<int>(atom.atomic_number), atom.position.x(), atom.position.y(), atom.position.z()};
+
+    return libint2_atom;
+}
+
 
 /**
  *  @param atoms        the GQCP-atoms that should be interfaced
@@ -70,37 +83,13 @@ LibintCommunicator& LibintCommunicator::get() {  // need to return by reference 
 std::vector<libint2::Atom> LibintCommunicator::interface(const std::vector<Atom>& atoms) const {
 
     std::vector<libint2::Atom> libint_vector;  // start with an empty vector, we're doing push_backs later
+    libint_vector.reserve(atoms.size());
 
     for (const auto& atom : atoms) {
-        libint2::Atom libint_atom {static_cast<int>(atom.atomic_number), atom.position.x(), atom.position.y(), atom.position.z()};
-        libint_vector.push_back(libint_atom);
+        libint_vector.push_back(this->interface(atom));
     }
 
     return libint_vector;
-}
-
-
-/**
- *  @param basisset     the GQCP basisset that should be interfaced
- *
- *  @return a libint2::BasisSet, interfaced from the GQCP BasisSet
- */
-libint2::BasisSet LibintCommunicator::interface(const ShellSet& basisset) const {
-
-    libint2::BasisSet libint2_basisset;  // start with an empty vector, we're doing push_backs later
-    libint2_basisset.reserve(basisset.size());
-
-
-    for (const auto& shell : basisset) {
-        libint2_basisset.push_back(this->interface(shell));
-    }
-
-
-    // At this point in the code, the libint2::BasisSet is 'uninitialized', i.e. its private member _nbf is -1, etc.
-    // Therefore, we are using a hack to force the private libint2::BasisSet::init() being called
-    libint2_basisset.set_pure(false);  // the shells inside GQCP::BasisSet are all Cartesian, so this effectively does nothing
-
-    return libint2_basisset;
 }
 
 
@@ -116,17 +105,12 @@ libint2::Shell LibintCommunicator::interface(const Shell& shell) const {
 
 
     // Part 2: contractions
-    std::vector<libint2::Shell::Contraction> libint_contr;
-    libint_contr.reserve(shell.get_contractions().size());
+    auto libint_l = static_cast<int>(shell.get_l());
+    bool libint_pure = false;  // our shells are Cartesian
+    std::vector<double> libint_coeff = shell.get_coefficients();
+    libint2::Shell::Contraction libint_contraction {libint_l, libint_pure, libint_coeff};
 
-    for (const auto& contraction : shell.get_contractions()) {
-        auto libint_l = static_cast<int>(contraction.l);
-        bool libint_pure = false;  // our shells are Cartesian
-        std::vector<double> libint_coeff = contraction.coefficients;
-
-        libint2::Shell::Contraction libint_contraction {libint_l, libint_pure, libint_coeff};
-        libint_contr.push_back(libint_contraction);
-    }
+    std::vector<libint2::Shell::Contraction> libint_contr {libint_contraction};
 
 
     // Part 3: origin
@@ -134,6 +118,124 @@ libint2::Shell LibintCommunicator::interface(const Shell& shell) const {
     std::array<double, 3> libint_O {position.x(), position.y(), position.z()};
 
     return libint2::Shell(libint_alpha, libint_contr, libint_O);
+}
+
+
+/**
+ *  @param shellset     the GQCP ShellSet that should be interfaced
+ *
+ *  @return a libint2::BasisSet, interfaced from the GQCP ShellSet
+ */
+libint2::BasisSet LibintCommunicator::interface(const ShellSet& shellset) const {
+
+    libint2::BasisSet libint2_basisset;  // start with an empty vector, we're doing push_backs later
+    libint2_basisset.reserve(shellset.size());
+
+
+    for (const auto& shell : shellset) {
+        libint2_basisset.push_back(this->interface(shell));
+    }
+
+
+    // At this point in the code, the libint2::BasisSet is 'uninitialized', i.e. its private member _nbf is -1, etc.
+    // Therefore, we are using a hack to force the private libint2::BasisSet::init() being called
+    libint2_basisset.set_pure(false);  // the shells inside GQCP::BasisSet are all Cartesian, so this effectively does nothing
+
+    return libint2_basisset;
+}
+
+
+/*
+ *  PUBLIC METHODS - INTERFACING (LIBINT TO GQCP)
+ */
+
+/**
+ *  @param libint_shell         the libint2::Shell
+ *
+ *  @return the number of true shells that are contained in the libint shell
+ */
+size_t LibintCommunicator::numberOfShells(const libint2::Shell& libint_shell) const {
+    return libint_shell.ncontr();
+}
+
+
+/**
+ *  @param libint_basisset      the libint2::BasisSet
+ *
+ *  @return the number of true shells that are contained in the libint2::BasisSet
+ */
+size_t LibintCommunicator::numberOfShells(const libint2::BasisSet& libint_basisset) const {
+
+    size_t nsh {};  // number of shells
+
+    for (const auto& libint_shell : libint_basisset) {
+        nsh += this->numberOfShells(libint_shell);
+    }
+
+    return nsh;
+}
+
+
+/**
+ *  Interface a libint2::Shell to the corresponding list of GQCP::Shells. Note that there is no one-to-one libint -> GQCP conversion, since GQCP does not support 'linked' sp-'shells'
+ *
+ *  @param libint_shell     the libint2 Shell that should be interfaced
+ *  @param atoms            the atoms that can serve as centers of the Shells
+ *
+ *  @return a vector of GQCP::Shells
+ */
+std::vector<Shell> LibintCommunicator::interface(const libint2::Shell& libint_shell, const std::vector<Atom>& atoms) const {
+
+    std::vector<double> exponents = libint_shell.alpha;
+
+    std::vector<Shell> shells;
+    shells.reserve(this->numberOfShells(libint_shell));
+    for (const auto& libint_contraction : libint_shell.contr) {
+
+        // Angular momentum and coefficients
+        size_t l = libint_contraction.l;
+        std::vector<double> coefficients = libint_contraction.coeff;
+
+        // Libint2 only stores the origin of the shell, so we have to find the atom corresponding to the copied shell's origin
+        Atom corresponding_atom;
+        for (const Atom& atom : atoms) {
+            Eigen::Map<const Eigen::Matrix<double, 3, 1>> libint_origin_map (libint_shell.O.data());  // convert raw array data to Eigen
+            if (atom.position.isApprox(libint_origin_map, 1.0e-06)) {  // tolerant comparison
+                corresponding_atom = atom;
+                break;
+            }
+        }
+
+        if (corresponding_atom.atomic_number == 0) {
+            throw std::invalid_argument("LibintCommunicator::interface(libint2::Shell, std::vector<Atom>): No given atom matches the center of the libint2::Shell");
+        }
+
+        shells.emplace_back(l, corresponding_atom, exponents, coefficients);
+    }
+
+    return shells;
+}
+
+
+/**
+ *  Interface a libint2::BasisSet to the corresponding GQCP::ShellSet
+ *
+ *  @param libint_basisset      the libint2 Shell that should be interfaced
+ *  @param atoms                the atoms that can serve as centers of the Shells
+ *
+ *  @return a GQCP::ShellSet corresponding to the libint2::BasisSet
+ */
+ShellSet LibintCommunicator::interface(const libint2::BasisSet& libint_basisset, const std::vector<Atom>& atoms) const {
+
+    ShellSet shell_set;
+    shell_set.reserve(this->numberOfShells(libint_basisset));
+    for (const auto& libint_shell : libint_basisset) {
+        for (const auto& shell : this->interface(libint_shell)) {
+            shell_set.push_back(shell);
+        }
+    }
+
+    return shell_set;
 }
 
 

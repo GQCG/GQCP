@@ -28,33 +28,7 @@ ShellSet::ShellSet(const std::string& basisset_name, const Molecule& molecule) {
 
     libint2::BasisSet libint_basis (basisset_name, LibintCommunicator::get().interface(atoms));
 
-    // copy Libint2 shells to GQCP::Shells
-    this->reserve(libint_basis.size());
-    for (const auto& libint_shell : libint_basis) {
-
-
-
-
-        std::vector<Contraction> contractions;
-        contractions.reserve(libint_shell.contr.size());
-
-        // copy libint2 contractions (contr) to gqcp contractions
-        for (const auto &contraction : libint_shell.contr) {
-            contractions.push_back({static_cast<size_t>(contraction.l), contraction.coeff});
-        }
-
-        // Libint2 only stores the origin of the shell, so we have to find the atom corresponding to the copied shell's origin
-        Atom corresponding_atom;
-        for (const Atom &atom : atoms) {
-            Eigen::Map<const Eigen::Matrix<double, 3, 1>> libint_origin_map(libint_shell.O.data());
-            if (atom.position.isApprox(libint_origin_map)) {
-                corresponding_atom = atom;
-                break;
-            }
-        }
-
-        this->emplace_back(corresponding_atom, libint_shell.alpha, contractions);
-    }
+    *this = LibintCommunicator::get().interface(libint_basis, atoms);
 }
 
 
@@ -63,7 +37,7 @@ ShellSet::ShellSet(const std::string& basisset_name, const Molecule& molecule) {
  */
 
 /**
- *  @return the number of shells in this basisset
+ *  @return the number of shells in this shell set
  */
 size_t ShellSet::numberOfShells() const {
     return this->size();
@@ -71,27 +45,26 @@ size_t ShellSet::numberOfShells() const {
 
 
 /**
- *  @return the number of basis functions in this basisset
+ *  @return the number of basis functions in this shell set
  */
 size_t ShellSet::numberOfBasisFunctions() const {
-    size_t number_of_basis_functions = 0;
+
+    size_t nbf {};
     for (const auto& shell : *this) {
-        for (const auto& contraction : shell.get_contractions()) {
-            number_of_basis_functions += contraction.numberOfBasisFunctions();
-        }
+        nbf += shell.numberOfBasisFunctions();
     }
-    return number_of_basis_functions;
+    return nbf;
 }
 
 
 /**
- *  @return an ordered vector of the unique atoms in this basisset
+ *  @return an ordered vector of the unique atoms in this shell set
  */
 std::vector<Atom> ShellSet::atoms() const {
 
     std::vector<Atom> atoms {};
 
-    // Append every unique atom in this basisset's shells
+    // Append every unique atom in this shell set's shells
     for (const auto& shell : *this) {
         auto atom = shell.get_atom();
 

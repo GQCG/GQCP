@@ -31,17 +31,18 @@ public:
 
 
     // PUBLIC METHODS
-    size_t numberOfBasisFunctions() const;
-
-
-
     /**
-     *  @return the number of shells in this basisset
+     *  @return the number of shells in this shell set
      */
     size_t numberOfShells() const;
 
     /**
-     *  @return an ordered vector of the unique atoms in this basisset
+     *  @return the number of basis functions in this shell set
+     */
+    size_t numberOfBasisFunctions() const;
+
+    /**
+     *  @return an ordered vector of the unique atoms in this shell set
      */
     std::vector<Atom> atoms() const;
 
