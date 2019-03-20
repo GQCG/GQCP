@@ -11,7 +11,7 @@ namespace GQCP {
 
 
 /**
- *  A class that represents a basis function and can be evaluated at a point in Euclidean space
+ *  A class that represents a normalized basis function and can be evaluated at a point in Euclidean space
  */
 class BasisFunction : public LinearCombination<double, CartesianGTO> {
 private:

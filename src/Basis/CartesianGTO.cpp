@@ -33,10 +33,10 @@ namespace GQCP {
 
 /**
  *  @param alpha        the exponent of the exponential
- *  @param exponents    the exponents of x, y and z, in that order
+ *  @param exponents    the exponents of x, y and z
  *  @param center       the center of the Cartesian GTO
  */
-CartesianGTO::CartesianGTO(double alpha, const std::array<size_t, 3>& exponents, const Vector<double, 3>& center) :
+CartesianGTO::CartesianGTO(double alpha, const CartesianExponents& exponents, const Vector<double, 3>& center) :
     alpha (alpha),
     exponents (exponents),
     center (center)
@@ -54,7 +54,7 @@ CartesianGTO::CartesianGTO(double alpha, const std::array<size_t, 3>& exponents,
  *  Default constructor setting everything to zero
  */
 CartesianGTO::CartesianGTO() :
-    CartesianGTO(0.0, std::array<size_t, 3> {0, 0, 0}, Vector<double, 3>::Zero())
+    CartesianGTO(0.0, CartesianExponents({0, 0, 0}), Vector<double, 3>::Zero())
 {}
 
 
@@ -73,9 +73,9 @@ double CartesianGTO::operator()(const Vector<double, 3>& r) const {
     Vector<double, 3> delta_r = r - this->center;
 
     double value = this->N;
-    value *= std::pow(delta_r.x(), this->exponents[0]);
-    value *= std::pow(delta_r.y(), this->exponents[1]);
-    value *= std::pow(delta_r.z(), this->exponents[2]);
+    value *= std::pow(delta_r.x(), this->exponents.x());
+    value *= std::pow(delta_r.y(), this->exponents.y());
+    value *= std::pow(delta_r.z(), this->exponents.z());
 
     return value * std::exp(-this->alpha * delta_r.squaredNorm());
 }
@@ -121,7 +121,7 @@ double CartesianGTO::calculateNormalizationFactor() const {
     double value = 1.0;
 
     // The formula is separable in its three components
-    for (const auto& exponent : this->exponents) {
+    for (const auto& exponent : this->exponents.values()) {
         value *= CartesianGTO::calculateNormalizationFactorComponent(this->alpha, exponent);
     }
     return value;
@@ -136,18 +136,18 @@ double CartesianGTO::calculateNormalizationFactor() const {
 LinearCombination<double, CartesianGTO> CartesianGTO::calculateDerivative(size_t c) const {
 
     // Derivative of the exponential
-    std::array<size_t, 3> alpha_exponents = this->exponents;
+    CartesianExponents alpha_exponents = this->exponents;
     switch (c) {  // raise the exponents by one
         case 0:  // x-direction
-            alpha_exponents[0] += 1;
+            alpha_exponents.x() += 1;
             break;
 
         case 1:  // y-direction
-            alpha_exponents[1] += 1;
+            alpha_exponents.y() += 1;
             break;
 
         case 2:  // z-direction
-            alpha_exponents[2] += 1;
+            alpha_exponents.z() += 1;
             break;
 
         default:
@@ -162,20 +162,20 @@ LinearCombination<double, CartesianGTO> CartesianGTO::calculateDerivative(size_t
 
 
     // If the exponent in x, y or z is non-zero, there is an extra contribution of the linear term
-    if (this->exponents[c] > 0) {
+    if (this->exponents.values()[c] > 0) {
 
-        std::array<size_t, 3> linear_exponents = this->exponents;
+        CartesianExponents linear_exponents = this->exponents;
         switch (c) {  // lower the exponents by one
             case 0:  // x-direction
-                linear_exponents[0] -= 1;
+                linear_exponents.x() -= 1;
                 break;
 
             case 1:  // y-direction
-                linear_exponents[1] -= 1;
+                linear_exponents.y() -= 1;
                 break;
 
             case 2:  // z-direction
-                linear_exponents[2] -= 1;
+                linear_exponents.z() -= 1;
                 break;
 
             default:
@@ -183,7 +183,7 @@ LinearCombination<double, CartesianGTO> CartesianGTO::calculateDerivative(size_t
         }
 
         CartesianGTO linear_derivative (this->alpha, linear_exponents, this->center);
-        double linear_coefficient = this->exponents[c];
+        double linear_coefficient = this->exponents.values()[c];
 
         lc += LinearCombination<double, CartesianGTO>(linear_coefficient, linear_derivative);
     }

@@ -21,6 +21,7 @@
 
 #include "math/ScalarFunction.hpp"
 #include "math/LinearCombination.hpp"
+#include "Basis/CartesianExponents.hpp"
 
 
 namespace GQCP {
@@ -36,7 +37,7 @@ class CartesianGTO : public ScalarFunction<double, double, 3> {
 public:
     double alpha;  // exponent of the exponential
     double N;  // normalization factor
-    std::array<size_t, 3> exponents;  // exponents of (x-X), (y-Y), (z-Z)
+    CartesianExponents exponents;  // exponents of (x-X), (y-Y), (z-Z)
     Vector<double, 3> center;  // center of the GTO (X, Y, Z)
 
 
@@ -44,10 +45,10 @@ public:
     // CONSTRUCTORS
     /**
      *  @param alpha        the exponent of the exponential
-     *  @param exponents    the exponents of x, y and z, in that order
+     *  @param exponents    the exponents of x, y and z
      *  @param center       the center of the Cartesian GTO
      */
-    CartesianGTO(double alpha, const std::array<size_t, 3>& exponents, const Vector<double, 3>& center);
+    CartesianGTO(double alpha, const CartesianExponents& exponents, const Vector<double, 3>& center);
 
     /**
      *  Default constructor setting everything to zero
@@ -57,7 +58,7 @@ public:
 
     // GETTERS
     double get_exponent() const { return this->alpha; }
-    const std::array<size_t, 3>& get_exponents() const { return this->exponents; }
+    const CartesianExponents& get_exponents() const { return this->exponents; }
     const Vector<double, 3>& get_center() const { return this->center; }
 
 
