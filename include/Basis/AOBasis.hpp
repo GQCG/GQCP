@@ -38,6 +38,11 @@ private:
 public:
     // CONSTRUCTORS
     /**
+     *  @param shell_set        the set of shells that are placed on the atoms
+     */
+    AOBasis(const ShellSet& shell_set);
+
+    /**
      *  Construct an AO basis by placing shells shells corresponding to the basisset information on every atom of the molecule
      *
      *  @param molecule             the molecule containing the atoms on which the shells should be centered
