@@ -270,7 +270,6 @@
 			buildPhases = (
 			);
 			dependencies = (
-				56FBA1B021C390130084F088 /* PBXTargetDependency */,
 				56FBA1B221C390130084F088 /* PBXTargetDependency */,
 				56FBA1B421C390130084F088 /* PBXTargetDependency */,
 			);
@@ -642,7 +641,6 @@
 		56FBA0E921C2DFC00084F088 /* HoppingMatrix.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56FBA0E821C2DFC00084F088 /* HoppingMatrix.hpp */; };
 		56FBA0F321C2F1A10084F088 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
 		56FBA0F921C2F1B40084F088 /* HoppingMatrix_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56FBA0EC21C2F1950084F088 /* HoppingMatrix_test.cpp */; };
-		56FBA13921C3888A0084F088 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
 		56FBA14621C388AE0084F088 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
 		56FBA14C21C388BD0084F088 /* linalg_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56FBA10421C2F3490084F088 /* linalg_test.cpp */; };
 		56FBA15321C388E70084F088 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
@@ -1810,13 +1808,6 @@
 			remoteGlobalIDString = 56FBA10F21C388040084F088;
 			remoteInfo = BUILD_UTILITIES_TESTS;
 		};
-		56FBA13521C3888A0084F088 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5614F97F21B0295C002C5D40;
-			remoteInfo = gqcp;
-		};
 		56FBA14221C388AE0084F088 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
@@ -1928,13 +1919,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 5614FE7B21B0400D002C5D40;
 			remoteInfo = oo_doci;
-		};
-		56FBA1AF21C390130084F088 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 56FBA13321C3888A0084F088;
-			remoteInfo = io_test;
 		};
 		56FBA1B121C390130084F088 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -2664,15 +2648,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
-		56FBA13A21C3888A0084F088 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
 		56FBA14721C388AE0084F088 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -3159,7 +3134,6 @@
 		56FBA10821C384110084F088 /* DenseSolver_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DenseSolver_test.cpp; sourceTree = "<group>"; };
 		56FBA10921C384110084F088 /* NewtonSystemOfEquationsSolver_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NewtonSystemOfEquationsSolver_test.cpp; sourceTree = "<group>"; };
 		56FBA10A21C384110084F088 /* DavidsonSolver_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DavidsonSolver_test.cpp; sourceTree = "<group>"; };
-		56FBA13E21C3888A0084F088 /* io_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = io_test; sourceTree = BUILT_PRODUCTS_DIR; };
 		56FBA14B21C388AE0084F088 /* linalg_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = linalg_test; sourceTree = BUILT_PRODUCTS_DIR; };
 		56FBA15821C388E70084F088 /* DavidsonSolver_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DavidsonSolver_test; sourceTree = BUILT_PRODUCTS_DIR; };
 		56FBA16421C388EE0084F088 /* DenseSolver_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DenseSolver_test; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -3821,14 +3795,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		56FBA13821C3888A0084F088 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				56FBA13921C3888A0084F088 /* libgqcp.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		56FBA14521C388AE0084F088 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -3966,7 +3932,6 @@
 				5614018821B06397002C5D40 /* units_test */,
 				56272DE121B6CC7B008BEA47 /* APIGGeminalCoefficients_test */,
 				56FBA0F821C2F1A10084F088 /* HoppingMatrix_test */,
-				56FBA13E21C3888A0084F088 /* io_test */,
 				56FBA14B21C388AE0084F088 /* linalg_test */,
 				56FBA15821C388E70084F088 /* DavidsonSolver_test */,
 				56FBA16421C388EE0084F088 /* DenseSolver_test */,
@@ -6416,24 +6381,6 @@
 			productReference = 56FBA0F821C2F1A10084F088 /* HoppingMatrix_test */;
 			productType = "com.apple.product-type.tool";
 		};
-		56FBA13321C3888A0084F088 /* io_test */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 56FBA13B21C3888A0084F088 /* Build configuration list for PBXNativeTarget "io_test" */;
-			buildPhases = (
-				56FBA13621C3888A0084F088 /* Sources */,
-				56FBA13821C3888A0084F088 /* Frameworks */,
-				56FBA13A21C3888A0084F088 /* CopyFiles */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				56FBA13421C3888A0084F088 /* PBXTargetDependency */,
-			);
-			name = io_test;
-			productName = AP1roGGeminalCoefficients_test;
-			productReference = 56FBA13E21C3888A0084F088 /* io_test */;
-			productType = "com.apple.product-type.tool";
-		};
 		56FBA14021C388AE0084F088 /* linalg_test */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 56FBA14821C388AE0084F088 /* Build configuration list for PBXNativeTarget "linalg_test" */;
@@ -6727,7 +6674,6 @@
 				5614017121B06392002C5D40 /* RMP2_test */,
 				5614017D21B06397002C5D40 /* units_test */,
 				56FBA10F21C388040084F088 /* BUILD_UTILITIES_TESTS */,
-				56FBA13321C3888A0084F088 /* io_test */,
 				56FBA14021C388AE0084F088 /* linalg_test */,
 				5614014D21B06383002C5D40 /* miscellaneous_test */,
 				561401A921B06464002C5D40 /* BUILD_WAVEFUNCTION_TESTS */,
@@ -7469,13 +7415,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				56FBA0F921C2F1B40084F088 /* HoppingMatrix_test.cpp in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		56FBA13621C3888A0084F088 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8358,11 +8297,6 @@
 			target = 56FBA10F21C388040084F088 /* BUILD_UTILITIES_TESTS */;
 			targetProxy = 56FBA13121C388540084F088 /* PBXContainerItemProxy */;
 		};
-		56FBA13421C3888A0084F088 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5614F97F21B0295C002C5D40 /* gqcp */;
-			targetProxy = 56FBA13521C3888A0084F088 /* PBXContainerItemProxy */;
-		};
 		56FBA14121C388AE0084F088 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 5614F97F21B0295C002C5D40 /* gqcp */;
@@ -8442,11 +8376,6 @@
 			isa = PBXTargetDependency;
 			target = 5614FE7B21B0400D002C5D40 /* oo_doci */;
 			targetProxy = 56FBA1AB21C389F60084F088 /* PBXContainerItemProxy */;
-		};
-		56FBA1B021C390130084F088 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 56FBA13321C3888A0084F088 /* io_test */;
-			targetProxy = 56FBA1AF21C390130084F088 /* PBXContainerItemProxy */;
 		};
 		56FBA1B221C390130084F088 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -10228,22 +10157,6 @@
 			};
 			name = Release;
 		};
-		56FBA13C21C3888A0084F088 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		56FBA13D21C3888A0084F088 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 		56FBA14921C388AE0084F088 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -11255,15 +11168,6 @@
 			buildConfigurations = (
 				56FBA11521C388180084F088 /* Debug */,
 				56FBA11621C388180084F088 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		56FBA13B21C3888A0084F088 /* Build configuration list for PBXNativeTarget "io_test" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				56FBA13C21C3888A0084F088 /* Debug */,
-				56FBA13D21C3888A0084F088 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

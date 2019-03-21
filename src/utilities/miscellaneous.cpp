@@ -17,6 +17,9 @@
 // 
 #include "utilities/miscellaneous.hpp"
 
+#include <boost/numeric/conversion/converter.hpp>
+#include <boost/math/special_functions.hpp>
+
 #include <chrono>
 #include <iostream>
 
@@ -27,8 +30,8 @@ namespace GQCP {
 /**
  *  Print the time a function takes to be executed
  *
- *  @param function         the function call to be made
  *  @param method_name      the name of function that is to be executed
+ *  @param function         the function call to be made
  */
 void printExecutionTime(const std::string& method_name, const std::function<void()>& function) {
 
