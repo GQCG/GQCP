@@ -44,11 +44,18 @@ BOOST_AUTO_TEST_CASE ( basisFunctions ) {
     GQCP::Shell d_shell (2, GQCP::Atom(), exp, coeff);
 
 
-    for (const auto& bf : s_shell.basisFunctions()) {
+//    for (const auto& bf : s_shell.basisFunctions()) {
+//        std::cout << "Basis function: " << std::endl;
+//        for (const auto& func : bf.get_functions()) {
+//            std::cout << "\tGaussian exponent: " << func.get_gaussian_exponent() << std::endl;
+//        }
+//    }
+
+    for (const auto& bf : p_shell.basisFunctions()) {
+        std::cout << "Basis function: " << std::endl;
         for (const auto& func : bf.get_functions()) {
-            for (const auto& value : func.get_exponents().values()) {
-                std::cout << "exponent: " << value << std::endl;
-            }
+            std::cout << "\tGaussian exponent: " << func.get_gaussian_exponent() << std::endl;
         }
     }
+
 }

@@ -52,18 +52,19 @@ std::vector<BasisFunction> Shell::basisFunctions() const {
     // Generate all Cartesian exponents corresponding to this shell, due to its angular momentum
     std::vector<CartesianExponents> all_exponents;
     all_exponents.reserve(this->numberOfBasisFunctions());
-    for (size_t current_l = 0; current_l <= this->l; current_l++) {
 
-        // Permute all 'raw' exponents: they correspond to the same angular momentum
-        std::array<size_t, 3> exponents {current_l, 0, 0};
-        for (const auto& each : exponents) {
-            std::cout << each << ", ";
-        }
-        std::cout << std::endl;
-        do {
-            all_exponents.push_back(exponents);
-        } while (std::next_permutation(exponents.begin(), exponents.end()));
+    // Permute all 'raw' exponents: they correspond to the same angular momentum
+    auto exponents = CartesianExponents({this->l, 0, 0});
+    std::cout << "exponents: ";
+    for (const auto& each : exponents.values()) {
+        std::cout << each << ", ";
     }
+    std::cout << std::endl;
+
+    do {
+        all_exponents.emplace_back(exponents);
+    } while (std::next_permutation(exponents.begin(), exponents.end()));
+
 
     // The exponents in all_exponents are sorted due to the nature of the previous part of this algorithm
 
@@ -78,10 +79,6 @@ std::vector<BasisFunction> Shell::basisFunctions() const {
         for (size_t i = 0; i < this->contractionLength(); i++) {
             double alpha = this->exponents[i];
             gtos.emplace_back(alpha, exponents, this->atom.position);
-        }
-
-        for (const auto& each : gtos) {
-            std::cout << "GTO exponent: " << each.get_gaussian_exponent() << std::endl;
         }
 
         bfs.emplace_back(LinearCombination<double, CartesianGTO>(coefficients, gtos));

@@ -72,7 +72,7 @@ bool CartesianExponents::operator==(const CartesianExponents& rhs) const {
 /**
  *  @return the underlying values of the Cartesian exponents
  */
-const std::array<size_t, 3>& CartesianExponents::values() const {
+const std::array<CartesianExponents::value_type, 3>& CartesianExponents::values() const {
     return this->exponents;
 }
 
@@ -82,7 +82,7 @@ const std::array<size_t, 3>& CartesianExponents::values() const {
  *
  *  @return the exponent in the given direction
  */
-size_t CartesianExponents::value(CartesianDirection direction) const {
+CartesianExponents::value_type CartesianExponents::value(CartesianDirection direction) const {
 
     switch (direction) {
         case CartesianDirection::x:
@@ -101,17 +101,9 @@ size_t CartesianExponents::value(CartesianDirection direction) const {
 
 
 /**
- *  @return the angular momentum corresponding to these exponents
- */
-size_t CartesianExponents::angularMomentum() const {
-    return std::accumulate(this->exponents.begin(), this->exponents.end(), 0);  // 0 is starting value of the sum
-}
-
-
-/**
  *  @return the exponent belonging to x
  */
-size_t CartesianExponents::x() const {
+CartesianExponents::value_type CartesianExponents::x() const {
     return this->exponents[0];
 }
 
@@ -119,7 +111,7 @@ size_t CartesianExponents::x() const {
 /**
  *  @return a reference to the exponent belonging to x
  */
-size_t& CartesianExponents::x() {
+CartesianExponents::reference CartesianExponents::x() {
     return this->exponents[0];
 }
 
@@ -127,7 +119,7 @@ size_t& CartesianExponents::x() {
 /**
  *  @return the exponent belonging to y
  */
-size_t CartesianExponents::y() const {
+CartesianExponents::value_type CartesianExponents::y() const {
     return this->exponents[1];
 }
 
@@ -135,7 +127,7 @@ size_t CartesianExponents::y() const {
 /**
  *  @return a reference to the exponent belonging to y
  */
-size_t& CartesianExponents::y() {
+CartesianExponents::reference CartesianExponents::y() {
     return this->exponents[1];
 }
 
@@ -143,7 +135,7 @@ size_t& CartesianExponents::y() {
 /**
  *  @return the exponent belonging to z
  */
-size_t CartesianExponents::z() const {
+CartesianExponents::value_type CartesianExponents::z() const {
     return this->exponents[2];
 }
 
@@ -151,8 +143,32 @@ size_t CartesianExponents::z() const {
 /**
  *  @return a reference to the exponent belonging to z
  */
-size_t& CartesianExponents::z() {
+CartesianExponents::reference CartesianExponents::z() {
     return this->exponents[2];
+}
+
+
+/**
+ *  @return the angular momentum corresponding to these exponents
+ */
+CartesianExponents::value_type CartesianExponents::angularMomentum() const {
+    return std::accumulate(this->exponents.begin(), this->exponents.end(), 0);  // 0 is starting value of the sum
+}
+
+
+/**
+ *  @return an iterator to this' begin
+ */
+CartesianExponents::iterator CartesianExponents::begin() {
+    return this->exponents.begin();
+}
+
+
+/**
+ *  @return an iterator to this' end
+ */
+CartesianExponents::iterator CartesianExponents::end() {
+    return this->exponents.end();
 }
 
 
