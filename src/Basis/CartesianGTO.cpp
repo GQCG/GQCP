@@ -54,7 +54,7 @@ CartesianGTO::CartesianGTO(double gaussian_exponent, const CartesianExponents& c
  *  Default constructor setting everything to zero
  */
 CartesianGTO::CartesianGTO() :
-    CartesianGTO(0.0, CartesianExponents({0, 0, 0}), Vector<double, 3>::Zero())
+    CartesianGTO(0.0, CartesianExponents(0, 0, 0), Vector<double, 3>::Zero())
 {}
 
 
@@ -121,7 +121,7 @@ double CartesianGTO::calculateNormalizationFactor() const {
     double value = 1.0;
 
     // The formula is separable in its three Cartesian components
-    for (const auto& exponent : this->cartesian_exponents.values()) {
+    for (const auto& exponent : this->cartesian_exponents.asArray()) {
         value *= CartesianGTO::calculateNormalizationFactorComponent(this->gaussian_exponent, exponent);
     }
     return value;
