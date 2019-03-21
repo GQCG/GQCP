@@ -1,6 +1,7 @@
 #ifndef CartesianExponents_hpp
 #define CartesianExponents_hpp
 
+#include "CartesianDirection.hpp"
 
 #include <array>
 
@@ -48,9 +49,16 @@ public:
 
     // PUBLIC METHODS
     /**
-     *  @return the underlying values of the Cartesian components
+     *  @return the underlying values of the Cartesian exponents
      */
     const std::array<size_t, 3>& values() const;
+
+    /**
+     *  @param direction        the direction (x,y,z) whose exponent should be returned
+     *
+     *  @return the exponent in the given direction
+     */
+    size_t value(CartesianDirection direction) const;
 
     /**
      *  @return the angular momentum corresponding to these exponents

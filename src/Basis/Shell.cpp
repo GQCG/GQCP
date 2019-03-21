@@ -39,4 +39,64 @@ size_t Shell::numberOfBasisFunctions() const {
 }
 
 
+/**
+ *  @return the basis functions that are represented by this shell
+ */
+std::vector<BasisFunction> Shell::basisFunctions() const {
+
+    std::vector<BasisFunction> bfs;  // basis functions
+    bfs.reserve(this->numberOfBasisFunctions());
+
+    std::cout << "Number of basis functions: " << this->numberOfBasisFunctions() << std::endl;
+
+    // Generate all Cartesian exponents corresponding to this shell, due to its angular momentum
+    std::vector<CartesianExponents> all_exponents;
+    all_exponents.reserve(this->numberOfBasisFunctions());
+    for (size_t current_l = 0; current_l <= this->l; current_l++) {
+
+        // Permute all 'raw' exponents: they correspond to the same angular momentum
+        std::array<size_t, 3> exponents {current_l, 0, 0};
+        for (const auto& each : exponents) {
+            std::cout << each << ", ";
+        }
+        std::cout << std::endl;
+        do {
+            all_exponents.push_back(exponents);
+        } while (std::next_permutation(exponents.begin(), exponents.end()));
+    }
+
+    // The exponents in all_exponents are sorted due to the nature of the previous part of this algorithm
+
+    // Create the explicit basis functions corresponding to the previously constructed exponents
+    // The basis functions are linear combinations of CartesianGTOs
+    for (const auto& exponents : all_exponents) {
+
+        // Construct the 'functions' of the linear combination: CartesianGTO
+        std::vector<CartesianGTO> gtos;
+        gtos.reserve(this->contractionLength());
+
+        for (size_t i = 0; i < this->contractionLength(); i++) {
+            double alpha = this->exponents[i];
+            gtos.emplace_back(alpha, exponents, this->atom.position);
+        }
+
+        for (const auto& each : gtos) {
+            std::cout << "GTO exponent: " << each.get_gaussian_exponent() << std::endl;
+        }
+
+        bfs.emplace_back(LinearCombination<double, CartesianGTO>(coefficients, gtos));
+    }
+
+    return bfs;
+}
+
+
+/**
+ *  @return the length of the contraction in the shell, i.e. the number of primitives contracted in this shell
+ */
+size_t Shell::contractionLength() const {
+    return this->coefficients.size();
+}
+
+
 }  // namespace GQCP

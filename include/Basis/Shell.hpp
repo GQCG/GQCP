@@ -3,6 +3,7 @@
 
 
 #include "Atom.hpp"
+#include "Basis/BasisFunction.hpp"
 
 
 namespace GQCP {
@@ -18,7 +19,7 @@ private:
     size_t l;  // angular momentum (x + y + z)
     Atom atom;  // atom on which the shell is centered
     std::vector<double> exponents;  // exponents, shared for every contraction
-    std::vector<double> coefficients;  // contraction coefficients
+    std::vector<double> coefficients;  // contraction coefficients  // TODO: rename to contraction_coefficients?
 
 
 public:
@@ -44,6 +45,16 @@ public:
      *  @return the number of basis functions that are in this shell
      */
     size_t numberOfBasisFunctions() const;
+
+    /**
+     *  @return the basis functions that are represented by this shell
+     */
+    std::vector<BasisFunction> basisFunctions() const;
+
+    /**
+     *  @return the length of the contraction in the shell, i.e. the number of primitives contracted in this shell
+     */
+    size_t contractionLength() const;
 };
 
 

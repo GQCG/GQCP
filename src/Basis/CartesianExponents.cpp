@@ -70,10 +70,33 @@ bool CartesianExponents::operator==(const CartesianExponents& rhs) const {
  */
 
 /**
- *  @return the underlying values of the Cartesian components
+ *  @return the underlying values of the Cartesian exponents
  */
 const std::array<size_t, 3>& CartesianExponents::values() const {
     return this->exponents;
+}
+
+
+/**
+ *  @param direction        the direction (x,y,z) whose exponent should be returned
+ *
+ *  @return the exponent in the given direction
+ */
+size_t CartesianExponents::value(CartesianDirection direction) const {
+
+    switch (direction) {
+        case CartesianDirection::x:
+            return this->x();
+            break;
+
+        case CartesianDirection::y:
+            return this->y();
+            break;
+
+        case CartesianDirection::z:
+            return this->z();
+            break;
+    }
 }
 
 

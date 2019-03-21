@@ -32,3 +32,23 @@ BOOST_AUTO_TEST_CASE ( Shell_constructor_throws ) {
     GQCP::Shell shell1 (0, GQCP::Atom(), exp1, coeff1);
     BOOST_CHECK_THROW(GQCP::Shell shell2 (0, GQCP::Atom(), exp1, coeff2), std::invalid_argument);
 }
+
+
+BOOST_AUTO_TEST_CASE ( basisFunctions ) {
+
+    std::vector<double> exp {1.0, 1.1};
+    std::vector<double> coeff {0.5, 1.0};
+
+    GQCP::Shell s_shell (0, GQCP::Atom(), exp, coeff);
+    GQCP::Shell p_shell (1, GQCP::Atom(), exp, coeff);
+    GQCP::Shell d_shell (2, GQCP::Atom(), exp, coeff);
+
+
+    for (const auto& bf : s_shell.basisFunctions()) {
+        for (const auto& func : bf.get_functions()) {
+            for (const auto& value : func.get_exponents().values()) {
+                std::cout << "exponent: " << value << std::endl;
+            }
+        }
+    }
+}

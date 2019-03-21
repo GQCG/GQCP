@@ -2773,6 +2773,7 @@
 		5614017C21B06392002C5D40 /* RMP2_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RMP2_test; sourceTree = BUILT_PRODUCTS_DIR; };
 		5614018821B06397002C5D40 /* units_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = units_test; sourceTree = BUILT_PRODUCTS_DIR; };
 		56147D412242A1CE00EA2A45 /* CartesianGTO_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CartesianGTO_test; sourceTree = BUILT_PRODUCTS_DIR; };
+		56147D452243B0D100EA2A45 /* CartesianDirection.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CartesianDirection.hpp; sourceTree = "<group>"; };
 		5614F98021B0295C002C5D40 /* libgqcp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libgqcp.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5614F98F21B029FB002C5D40 /* version.hpp.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = version.hpp.in; sourceTree = "<group>"; };
 		5614F99021B029FB002C5D40 /* DOCINewtonOrbitalOptimizer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DOCINewtonOrbitalOptimizer.hpp; sourceTree = "<group>"; };
@@ -4690,6 +4691,7 @@
 			children = (
 				5614F99921B029FB002C5D40 /* AOBasis.hpp */,
 				566EDE912240F1D600D2CA80 /* BasisFunction.hpp */,
+				56147D452243B0D100EA2A45 /* CartesianDirection.hpp */,
 				566EDEB122428ABE00D2CA80 /* CartesianExponents.hpp */,
 				562241E42225B3DC001436D0 /* CartesianGTO.hpp */,
 				566EDE8C2240F0B200D2CA80 /* Shell.hpp */,
