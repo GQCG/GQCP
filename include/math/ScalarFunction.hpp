@@ -67,7 +67,6 @@ private:
 
 
 public:
-
     using Valued = product_t<typename T1::Valued, typename T2::Valued>;
     using Scalar = typename T1::Scalar;  // equal to T2::Scalar
     enum {
@@ -75,6 +74,7 @@ public:
     };
 
 
+public:
     /*
      *  CONSTRUCTORS
      */
@@ -120,8 +120,6 @@ public:
 template <typename _Valued, typename _Scalar, int _Cols>
 class ScalarFunction {
 public:
-
-    // Make sure the template parameters can be accessed like ScalarFunction::Valued
     using Valued = _Valued;
     using Scalar = _Scalar;
     enum {
@@ -129,6 +127,12 @@ public:
     };
 
 
+public:
+
+    /*
+     *  OPERATORS
+     */
+    
     /**
      *  @param x        the vector/point at which the scalar function is to be evaluated
      *

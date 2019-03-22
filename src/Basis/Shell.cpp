@@ -1,5 +1,7 @@
 #include "Basis/Shell.hpp"
 
+#include "utilities/miscellaneous.hpp"
+
 
 namespace GQCP {
 
@@ -47,22 +49,27 @@ std::vector<BasisFunction> Shell::basisFunctions() const {
     std::vector<BasisFunction> bfs;  // basis functions
     bfs.reserve(this->numberOfBasisFunctions());
 
-    std::cout << "Number of basis functions: " << this->numberOfBasisFunctions() << std::endl;
 
-    // Generate all Cartesian exponents corresponding to this shell, according to its angular momentum
-    std::vector<CartesianExponents> all_exponents;
-    all_exponents.reserve(this->numberOfBasisFunctions());
+    // Generate all possible Cartesian exponents corresponding to this shell, according to its angular momentum
+    std::vector<CartesianExponents> all_cartesian_exponents;
+    all_cartesian_exponents.reserve(this->numberOfBasisFunctions());
 
-    // Partition l into maximally 3 integers
-    // make all permutations of all the partitions
+    // Partition l into maximally 3 integers and then make all permutations of these partitions
+    auto unique_partitions = uniquePartitions<3>(this->l);
 
+    for (const auto& partition : unique_partitions) {
+        CartesianExponents exponents (partition);
+        for (const auto& permutation : exponents.allPermutations()) {
+            all_cartesian_exponents.push_back(permutation);
+        }
+    }
 
+    std::sort(all_cartesian_exponents.begin(), all_cartesian_exponents.end());
 
-    // The exponents in all_exponents are sorted due to the nature of the previous part of this algorithm
 
     // Create the explicit basis functions corresponding to the previously constructed exponents
     // The basis functions are linear combinations of CartesianGTOs
-    for (const auto& exponents : all_exponents) {
+    for (const auto& cartesian_exponents : all_cartesian_exponents) {
 
         // Construct the 'functions' of the linear combination: CartesianGTO
         std::vector<CartesianGTO> gtos;
@@ -70,10 +77,10 @@ std::vector<BasisFunction> Shell::basisFunctions() const {
 
         for (size_t i = 0; i < this->contractionLength(); i++) {
             double alpha = this->exponents[i];
-            gtos.emplace_back(alpha, exponents, this->atom.position);
+            gtos.emplace_back(alpha, cartesian_exponents, this->atom.position);
         }
 
-        bfs.emplace_back(LinearCombination<double, CartesianGTO>(coefficients, gtos));
+        bfs.emplace_back(LinearCombination<double, CartesianGTO>(this->coefficients, gtos));
     }
 
     return bfs;

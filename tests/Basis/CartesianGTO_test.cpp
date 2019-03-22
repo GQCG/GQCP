@@ -26,7 +26,7 @@
 
 BOOST_AUTO_TEST_CASE ( constructor ) {
 
-    auto exponents = GQCP::CartesianExponents({0, 0, 0});
+    GQCP::CartesianExponents exponents (0, 0, 0);
     GQCP::Vector<double, 3> center = GQCP::Vector<double, 3>::Zero();
 
     BOOST_CHECK_THROW(GQCP::CartesianGTO gto (-1.0, exponents, center), std::invalid_argument);  // exponent in the exponential cannot be negative
@@ -35,13 +35,13 @@ BOOST_AUTO_TEST_CASE ( constructor ) {
 
 BOOST_AUTO_TEST_CASE ( calculateNormalizationFactor ) {
 
-    auto exponents1 = GQCP::CartesianExponents({1, 0, 1});
+    GQCP::CartesianExponents exponents1 (1, 0, 1);
     GQCP::Vector<double, 3> center = GQCP::Vector<double, 3>::Zero();
     GQCP::CartesianGTO gto1 (1.0, exponents1, center);
 
     BOOST_CHECK(std::abs(gto1.calculateNormalizationFactor() - 2.8508218814) < 1.0e-09);  // 'manual' calculation
 
-    auto exponents2 = GQCP::CartesianExponents({1, 2, 3});
+    GQCP::CartesianExponents exponents2 (1, 2, 3);
     GQCP::CartesianGTO gto2 (2.5, exponents2, center);
 
     BOOST_CHECK(std::abs(gto2.calculateNormalizationFactor() - 211.2315772257) < 1.0e-09);  // 'manual' calculation
@@ -50,7 +50,7 @@ BOOST_AUTO_TEST_CASE ( calculateNormalizationFactor ) {
 
 BOOST_AUTO_TEST_CASE ( operator_call ) {
 
-    auto exponents1 = GQCP::CartesianExponents({1, 0, 1});
+    GQCP::CartesianExponents exponents1 (1, 0, 1);
     GQCP::Vector<double, 3> center1;
     center1 << 1.0, 0.0, -0.5;
     GQCP::Vector<double, 3> r1;
@@ -60,7 +60,7 @@ BOOST_AUTO_TEST_CASE ( operator_call ) {
     BOOST_CHECK(std::abs(gto1(r1) - (-0.1502372078)) < 1.0e-09);  // 'manual' calculation
 
 
-    auto exponents2 = GQCP::CartesianExponents({1, 2, 3});
+    GQCP::CartesianExponents exponents2 (1, 2, 3);
     GQCP::Vector<double, 3> center2;
     center2 << 0.0, 1.0, 0.0;
     GQCP::Vector<double, 3> r2;
@@ -71,9 +71,36 @@ BOOST_AUTO_TEST_CASE ( operator_call ) {
 }
 
 
+BOOST_AUTO_TEST_CASE ( operator_equals ) {
+
+    double gaussian_exponent1 = 1.0;
+    double gaussian_exponent2 = 1.1;
+    GQCP::CartesianExponents cartesian_exponents1 (1, 0, 0);
+    GQCP::CartesianExponents cartesian_exponents2 (0, 1, 0);
+    GQCP::Vector<double, 3> center1 = GQCP::Vector<double, 3>::Zero(3);
+    GQCP::Vector<double, 3> center2 = GQCP::Vector<double, 3>::Ones(3);
+
+
+    // Check for equality
+    BOOST_CHECK(GQCP::CartesianGTO(gaussian_exponent1, cartesian_exponents1, center1) == GQCP::CartesianGTO(gaussian_exponent1, cartesian_exponents1, center1));
+
+    // Check for inequality if the Gaussian exponent doesn't match
+    BOOST_CHECK(!(GQCP::CartesianGTO(gaussian_exponent1, cartesian_exponents1, center1) == GQCP::CartesianGTO(gaussian_exponent2, cartesian_exponents1, center1)));
+
+    // Check for inequality if the Cartesian exponents doesn't match
+    BOOST_CHECK(!(GQCP::CartesianGTO(gaussian_exponent1, cartesian_exponents1, center1) == GQCP::CartesianGTO(gaussian_exponent2, cartesian_exponents1, center1)));
+
+    // Check for inequality if the Cartesian exponents doesn't match
+    BOOST_CHECK(!(GQCP::CartesianGTO(gaussian_exponent1, cartesian_exponents1, center1) == GQCP::CartesianGTO(gaussian_exponent1, cartesian_exponents2, center1)));
+
+    // Check for inequality if the center doesn't match
+    BOOST_CHECK(!(GQCP::CartesianGTO(gaussian_exponent1, cartesian_exponents1, center1) == GQCP::CartesianGTO(gaussian_exponent1, cartesian_exponents1, center2)));
+}
+
+
 BOOST_AUTO_TEST_CASE ( calculateDerivative ) {
 
-    auto exponents1 = GQCP::CartesianExponents({1, 0, 1});
+    GQCP::CartesianExponents exponents1 (1, 0, 1);
     GQCP::Vector<double, 3> center = GQCP::Vector<double, 3>::Zero();
     GQCP::CartesianGTO gto1 (1.0, exponents1, center);
 
@@ -81,8 +108,8 @@ BOOST_AUTO_TEST_CASE ( calculateDerivative ) {
     auto x_derivative1 = gto1.calculateDerivative(GQCP::CartesianDirection::x);
     double ref_coeff1_x1 = -2.0;
     double ref_coeff2_x1 = 1.0;
-    auto ref_exp1_x1 = GQCP::CartesianExponents({2, 0, 1});
-    auto ref_exp2_x1 = GQCP::CartesianExponents({0, 0, 1});
+    GQCP::CartesianExponents ref_exp1_x1 (2, 0, 1);
+    GQCP::CartesianExponents ref_exp2_x1 (0, 0, 1);
 
     BOOST_CHECK(std::abs(x_derivative1.get_coefficients()[0] - ref_coeff1_x1) < 1.0e-12);
     BOOST_CHECK(std::abs(x_derivative1.get_coefficients()[1] - ref_coeff2_x1) < 1.0e-12);
@@ -93,21 +120,21 @@ BOOST_AUTO_TEST_CASE ( calculateDerivative ) {
     // GTO1 - y-component
     auto y_derivative1 = gto1.calculateDerivative(GQCP::CartesianDirection::y);
     double ref_coeff1_y1 = -2.0;
-    auto ref_exp1_y1 = GQCP::CartesianExponents({1, 1, 1});
+    GQCP::CartesianExponents ref_exp1_y1 (1, 1, 1);
 
     BOOST_CHECK(std::abs(y_derivative1.get_coefficients()[0] - ref_coeff1_y1) < 1.0e-12);
     BOOST_CHECK(y_derivative1.get_functions()[0].get_cartesian_exponents() == ref_exp1_y1);
 
 
-    auto exponents2 = GQCP::CartesianExponents({1, 2, 3});
+    GQCP::CartesianExponents exponents2 (1, 2, 3);
     GQCP::CartesianGTO gto2 (2.5, exponents2, center);
 
     // GTO2 - x-component
     auto x_derivative2 = gto2.calculateDerivative(GQCP::CartesianDirection::x);
     double ref_coeff1_x2 = -5.0;
     double ref_coeff2_x2 = 1.0;
-    auto ref_exp1_x2 = GQCP::CartesianExponents({2, 2, 3});
-    auto ref_exp2_x2 = GQCP::CartesianExponents({0, 2, 3});
+    GQCP::CartesianExponents ref_exp1_x2 (2, 2, 3);
+    GQCP::CartesianExponents ref_exp2_x2 (0, 2, 3);
 
     BOOST_CHECK(std::abs(x_derivative2.get_coefficients()[0] - ref_coeff1_x2) < 1.0e-12);
     BOOST_CHECK(std::abs(x_derivative2.get_coefficients()[1] - ref_coeff2_x2) < 1.0e-12);
@@ -118,8 +145,8 @@ BOOST_AUTO_TEST_CASE ( calculateDerivative ) {
     auto z_derivative2 = gto2.calculateDerivative(GQCP::CartesianDirection::z);
     double ref_coeff1_z2 = -5.0;
     double ref_coeff2_z2 = 3.0;
-    auto ref_exp1_z2 = GQCP::CartesianExponents({1, 2, 4});
-    auto ref_exp2_z2 = GQCP::CartesianExponents({1, 2, 2});
+    GQCP::CartesianExponents ref_exp1_z2 (1, 2, 4);
+    GQCP::CartesianExponents ref_exp2_z2 (1, 2, 2);
 
     BOOST_CHECK(std::abs(z_derivative2.get_coefficients()[0] - ref_coeff1_z2) < 1.0e-12);
     BOOST_CHECK(std::abs(z_derivative2.get_coefficients()[1] - ref_coeff2_z2) < 1.0e-12);

@@ -72,6 +72,13 @@ public:
      */
     double operator()(const Vector<double, 3>& r) const override;
 
+    /**
+     *  @param rhs      the right-hand side of the operator ==
+     *
+     *  @return whether two ScalarFunctions are equal
+     */
+    bool operator==(const CartesianGTO& rhs) const;
+
 
     // STATIC PUBLIC METHODS
     /**

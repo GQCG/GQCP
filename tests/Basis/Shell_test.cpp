@@ -36,26 +36,46 @@ BOOST_AUTO_TEST_CASE ( Shell_constructor_throws ) {
 
 BOOST_AUTO_TEST_CASE ( basisFunctions ) {
 
+    // Create a d-shell consisting of 2 contractions and test its basis functions
     std::vector<double> exp {1.0, 1.1};
     std::vector<double> coeff {0.5, 1.0};
+    GQCP::Atom atom {};
+    GQCP::Shell d_shell (2, atom, exp, coeff);
 
-    GQCP::Shell s_shell (0, GQCP::Atom(), exp, coeff);
-    GQCP::Shell p_shell (1, GQCP::Atom(), exp, coeff);
-    GQCP::Shell d_shell (2, GQCP::Atom(), exp, coeff);
+    auto center = atom.position;
+    GQCP::LinearCombination<double, GQCP::CartesianGTO> lc1 {{0.5, 1.0},
+        {GQCP::CartesianGTO(1.0, GQCP::CartesianExponents(2, 0, 0), center),
+         GQCP::CartesianGTO(1.1, GQCP::CartesianExponents(2, 0, 0), center)}};
+
+    GQCP::LinearCombination<double, GQCP::CartesianGTO> lc2 {{0.5, 1.0},
+        {GQCP::CartesianGTO(1.0, GQCP::CartesianExponents(1, 1, 0), center),
+         GQCP::CartesianGTO(1.1, GQCP::CartesianExponents(1, 1, 0), center)}};
+
+    GQCP::LinearCombination<double, GQCP::CartesianGTO> lc3 {{0.5, 1.0},
+        {GQCP::CartesianGTO(1.0, GQCP::CartesianExponents(1, 0, 1), center),
+         GQCP::CartesianGTO(1.1, GQCP::CartesianExponents(1, 0, 1), center)}};
+
+    GQCP::LinearCombination<double, GQCP::CartesianGTO> lc4 {{0.5, 1.0},
+        {GQCP::CartesianGTO(1.0, GQCP::CartesianExponents(0, 2, 0), center),
+         GQCP::CartesianGTO(1.1, GQCP::CartesianExponents(0, 2, 0), center)}};
+
+    GQCP::LinearCombination<double, GQCP::CartesianGTO> lc5 {{0.5, 1.0},
+        {GQCP::CartesianGTO(1.0, GQCP::CartesianExponents(0, 1, 1), center),
+         GQCP::CartesianGTO(1.1, GQCP::CartesianExponents(0, 1, 1), center)}};
+
+    GQCP::LinearCombination<double, GQCP::CartesianGTO> lc6 {{0.5, 1.0},
+        {GQCP::CartesianGTO(1.0, GQCP::CartesianExponents(0, 0, 2), center),
+         GQCP::CartesianGTO(1.1, GQCP::CartesianExponents(0, 0, 2), center)}};
 
 
-//    for (const auto& bf : s_shell.basisFunctions()) {
-//        std::cout << "Basis function: " << std::endl;
-//        for (const auto& func : bf.get_functions()) {
-//            std::cout << "\tGaussian exponent: " << func.get_gaussian_exponent() << std::endl;
-//        }
-//    }
+    GQCP::BasisFunction bf1 (lc1);
+    GQCP::BasisFunction bf2 (lc2);
+    GQCP::BasisFunction bf3 (lc3);
+    GQCP::BasisFunction bf4 (lc4);
+    GQCP::BasisFunction bf5 (lc5);
+    GQCP::BasisFunction bf6 (lc6);
 
-    for (const auto& bf : p_shell.basisFunctions()) {
-        std::cout << "Basis function: " << std::endl;
-        for (const auto& func : bf.get_functions()) {
-            std::cout << "\tGaussian exponent: " << func.get_gaussian_exponent() << std::endl;
-        }
-    }
+    std::vector<GQCP::BasisFunction> ref_bfs {bf1, bf2, bf3, bf4, bf5, bf6};
 
+    BOOST_CHECK(ref_bfs == d_shell.basisFunctions());
 }

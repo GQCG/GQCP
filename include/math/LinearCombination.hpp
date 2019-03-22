@@ -48,6 +48,7 @@ public:
     /*
      *  CONSTRUCTORS
      */
+
     /**
      *  @param coefficients     the coefficients of the linear combination
      *  @param functions        the scalar functions of the linear combination
@@ -108,6 +109,7 @@ public:
     /*
      *  GETTERS
      */
+
     const std::vector<CoefficientScalar>& get_coefficients() const { return this->coefficients; }
     const std::vector<T>& get_functions() const { return this->functions; }
 
@@ -115,6 +117,7 @@ public:
     /*
      *  OPERATORS implementing the notion of linear combinations
      */
+
     /**
      *  @param rhs      the right-hand side of the addition
      *
@@ -187,8 +190,9 @@ public:
 
 
     /*
-     * OTHER OPERATORS
+     *  OTHER OPERATORS
      */
+
     /**
      *  @param x        the vector/point at which the scalar function is to be evaluated
      *
@@ -206,9 +210,21 @@ public:
     }
 
 
+    /**
+     *  @param rhs      the right-hand side of the operator ==
+     *
+     *  @return whether two linear combinations are considered equal
+     */
+    bool operator==(const LinearCombination& rhs) const {
+        return (this->coefficients == rhs.coefficients) && (this->functions == rhs.functions);
+    }
+
+
+
     /*
      *  PUBLIC METHODS
      */
+    
     /**
      *  Append the given coefficients and functions to this linear combination
      *

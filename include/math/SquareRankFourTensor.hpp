@@ -36,7 +36,6 @@ namespace GQCP {
 template<typename _Scalar>
 class SquareRankFourTensor: public Tensor<_Scalar, 4> {
 public:
-
     using Scalar = _Scalar;
 
     using Base = Tensor<Scalar, 4>;
@@ -166,9 +165,7 @@ public:
      *  GETTERS
      */
 
-    size_t get_dim() const {
-        return this->dimension(0);  // all tensor dimensions are equal because of the constructor
-    }
+    size_t get_dim() const { return this->dimension(0); }  // all tensor dimensions are equal because of the constructor
 
 
 

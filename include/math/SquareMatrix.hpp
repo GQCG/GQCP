@@ -38,12 +38,13 @@ namespace GQCP {
 template<typename _Scalar>
 class SquareMatrix : public MatrixX<_Scalar> {
 public:
-
     using Scalar = _Scalar;
 
     using Base = MatrixX<Scalar>;
     using Self = SquareMatrix<Scalar>;
 
+
+public:
 
     /*
      *  CONSTRUCTORS
@@ -91,6 +92,7 @@ public:
     SquareMatrix(const Eigen::MatrixBase<ExpDerived>& exp) :
         Self(Base(exp))  // the Base constructor returns the required type for the square-checking constructor
     {}
+
 
 
     /*
@@ -186,13 +188,13 @@ public:
     }
 
 
+
     /*
      *  GETTERS
      */
 
-    size_t get_dim() const {
-        return this->cols();  // equals this->rows()
-    }
+    size_t get_dim() const { return this->cols(); }  // equals this->rows()
+
 
 
     /*

@@ -48,7 +48,6 @@ constexpr auto Dynamic = Eigen::Dynamic;
 template <typename _Scalar = double, int _Rows = Dynamic, int _Cols = Dynamic>
 class Matrix : public Eigen::Matrix<_Scalar, _Rows, _Cols> {
 public:
-
     using Scalar = _Scalar;
     enum {
         Rows = _Rows,
@@ -60,7 +59,6 @@ public:
 
 
 private:
-
     static constexpr bool is_vector = (Cols == 1);
     static constexpr bool is_matrix = (Cols >= 2) || (Cols == Dynamic);
 
@@ -70,6 +68,7 @@ public:
     /*
      *  CONSTRUCTORS
      */
+
     using Eigen::Matrix<Scalar, Rows, Cols>::Matrix;  // inherit base constructors
 
 

@@ -81,7 +81,17 @@ double CartesianGTO::operator()(const Vector<double, 3>& r) const {
 }
 
 
+/**
+ *  @param rhs      the right-hand side of the operator ==
+ *
+ *  @return whether two ScalarFunctions are equal
+ */
+bool CartesianGTO::operator==(const CartesianGTO& rhs) const {
+    return (std::abs(this->gaussian_exponent - rhs.gaussian_exponent) < 1.0e-12) && (this->cartesian_exponents == rhs.cartesian_exponents) && (this->center.isApprox(rhs.center));
+}
 
+
+    
 /*
  *  STATIC PUBLIC METHODS
  */
