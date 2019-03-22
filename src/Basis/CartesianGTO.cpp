@@ -66,7 +66,7 @@ CartesianGTO::CartesianGTO() :
 /**
  *  @param r        the value at which the GTO should be evaluated
  *
- *  @return the value of the GTO at the given position
+ *  @return the value of the normalized GTO at the given position
  */
 double CartesianGTO::operator()(const Vector<double, 3>& r) const {
 

@@ -72,6 +72,13 @@ public:
      */
     bool operator==(const CartesianExponents& rhs) const;
 
+    /**
+     *  @param rhs      the right-hand side of the operator ==
+     *
+     *  @return if the Cartesian exponents are considered different
+     */
+    bool operator!=(const CartesianExponents& rhs) const;
+
 
     // GETTERS
     size_t x() const { return this->x_exponent; }

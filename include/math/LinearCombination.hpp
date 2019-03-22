@@ -38,7 +38,7 @@ class LinearCombination : public ScalarFunction<typename T::Valued, typename T::
     static_assert(std::is_base_of<ScalarFunction<typename T::Valued, typename T::Scalar, T::Cols>, T>::value, "LinearCombination: T must derive from ScalarFunction");
 
 
-private:
+protected:
     std::vector<CoefficientScalar> coefficients;
     std::vector<T> functions;
 
@@ -239,6 +239,14 @@ public:
 
         this->coefficients.insert(this->coefficients.end(), coefficients.begin(), coefficients.end());
         this->functions.insert(this->functions.end(), functions.begin(), functions.end());
+    }
+
+
+    /**
+     *  @return the length of the linear combination, i.e. the number of coefficients/functions inside it
+     */
+    size_t length() const {
+        return this->coefficients.size();
     }
 };
 

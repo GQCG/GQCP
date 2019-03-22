@@ -96,6 +96,17 @@ bool CartesianExponents::operator==(const CartesianExponents& rhs) const {
 }
 
 
+/**
+ *  @param rhs      the right-hand side of the operator ==
+ *
+ *  @return if the Cartesian exponents are considered different
+ */
+bool CartesianExponents::operator!=(const CartesianExponents& rhs) const {
+    return !(this->operator==(rhs));
+}
+
+
+
 /*
  *  PUBLIC METHODS
  */

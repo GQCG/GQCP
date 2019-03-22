@@ -59,6 +59,7 @@ public:
 
 
     // GETTERS
+    size_t get_N() const { return this->N; }
     double get_gaussian_exponent() const { return this->gaussian_exponent; }
     const CartesianExponents& get_cartesian_exponents() const { return this->cartesian_exponents; }
     const Vector<double, 3>& get_center() const { return this->center; }
@@ -68,7 +69,7 @@ public:
     /**
      *  @param r        the value at which the GTO should be evaluated
      *
-     *  @return the value of the GTO at the given position
+     *  @return the value of the normalized GTO at the given position
      */
     double operator()(const Vector<double, 3>& r) const override;
 

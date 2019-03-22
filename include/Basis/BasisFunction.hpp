@@ -28,7 +28,10 @@ namespace GQCP {
 
 
 /**
- *  A class that represents a normalized basis function and can be evaluated at a point in Euclidean space
+ *  A class that represents a normalized basis function: it is a contraction of CartesianGTOs with the same Cartesian exponents (i.e. only s-type, px-type, ... contractions are allowed)
+ *
+ *
+ *  The difference with a Shell is that a Shell represents (possibly) multiple basis functions and a BasisFunction can be evaluated on a point in Euclidian space
  */
 class BasisFunction : public LinearCombination<double, CartesianGTO> {
 private:
@@ -42,7 +45,13 @@ public:
 public:
     // CONSTRUCTORS
     /**
-     *  @param lc       a linear combination of CartesianGTOs
+     *  Construct a BasisFunction from its underlying linear combination of CartesianGTOs, i.e. its underlying contraction
+     *
+     *  @param lc       a linear combination of CartesianGTOs, a contraction of CartesianGTOs
+     *
+     * Note that:
+     *      - the CartesianGTOs should all have the same Cartesian exponents
+     *      - in order to behave like a normalized linear combination, the coefficients are all multiplied by the total normalization factor
      */
     BasisFunction(const Base& lc);
 
@@ -51,7 +60,7 @@ public:
     /**
      *  @return the total normalization factor of this basis function
      */
-    double calculateNormalizationFactor() const;  // TODO: implement
+    double calculateNormalizationFactor() const;
 };
 
 

@@ -23,6 +23,22 @@
 #include "Basis/BasisFunction.hpp"
 
 
+BOOST_AUTO_TEST_CASE ( constructor ) {
+
+    GQCP::Vector<double, 3> center = GQCP::Vector<double, 3>::Zero(3);
+    GQCP::CartesianGTO gto1 (1.0, GQCP::CartesianExponents(1, 0, 0), center);
+    GQCP::CartesianGTO gto2 (1.1, GQCP::CartesianExponents(1, 0, 0), center);
+    GQCP::CartesianGTO gto3 (1.1, GQCP::CartesianExponents(0, 1, 0), center);
+
+    GQCP::LinearCombination<double, GQCP::CartesianGTO> lc1 {{0.5, 1.0}, {gto1, gto2}};
+    BOOST_CHECK_NO_THROW(GQCP::BasisFunction bf1 (lc1));
+
+    GQCP::LinearCombination<double, GQCP::CartesianGTO> lc2 {{0.5, 1.0}, {gto1, gto3}};
+    BOOST_CHECK_THROW(GQCP::BasisFunction bf2 (lc2), std::invalid_argument);
+}
+
+
+
 BOOST_AUTO_TEST_CASE ( operator_equals ) {
 
     GQCP::Vector<double, 3> center = GQCP::Vector<double, 3>::Zero(3);
