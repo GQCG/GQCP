@@ -4706,11 +4706,11 @@
 			isa = PBXGroup;
 			children = (
 				5614F9F721B029FB002C5D40 /* AOBasis.cpp */,
+				566EDE902240F1D600D2CA80 /* BasisFunction.cpp */,
 				566EDEB022428ABE00D2CA80 /* CartesianExponents.cpp */,
 				562241E32225B3DC001436D0 /* CartesianGTO.cpp */,
 				566EDE8B2240F0B200D2CA80 /* Shell.cpp */,
 				566EDE942240F21A00D2CA80 /* ShellSet.cpp */,
-				566EDE902240F1D600D2CA80 /* BasisFunction.cpp */,
 			);
 			path = Basis;
 			sourceTree = "<group>";
