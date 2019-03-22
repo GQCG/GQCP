@@ -31,7 +31,7 @@ namespace GQCP {
 /**
  *  A class representing a Cartesian Gaussian-type orbital (GTO), which is often referred to as a 'primitive'
  *
- *  Mathematically speaking, a Cartesian GTO is a real-valued scalar functio@n taking an Euclidean vector (3D-vector) as argument
+ *  Mathematically speaking, a Cartesian GTO is a real-valued scalar function taking an Euclidean vector (3D-vector) as argument
  *
  *  Contracted GTOs can be expressed as linear combinations of GTOs: LinearCombination<CartesianGTO>
  */
@@ -89,6 +89,14 @@ public:
      *  @return one of the components of the total normalization factor
      */
     static double calculateNormalizationFactorComponent(double gaussian_exponent, size_t cartesian_exponent);
+
+    /**
+     *  @param gaussian_exponent        the exponent of the GTO
+     *  @param cartesian_exponents      the exponents of the Cartesian functions x, y, z
+     *
+     *  @return the total normalization factor
+     */
+    static double calculateNormalizationFactor(double gaussian_exponent, const CartesianExponents& cartesian_exponents);
 
 
     // PUBLIC METHODS

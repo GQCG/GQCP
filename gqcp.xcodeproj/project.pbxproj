@@ -224,6 +224,7 @@
 			buildPhases = (
 			);
 			dependencies = (
+				567712E022454AC400F377BF /* PBXTargetDependency */,
 				56147D562244D5E100EA2A45 /* PBXTargetDependency */,
 				56147D442242A1ED00EA2A45 /* PBXTargetDependency */,
 				56147D352242A04900EA2A45 /* PBXTargetDependency */,
@@ -559,6 +560,9 @@
 		566EDEB322428ABE00D2CA80 /* CartesianExponents.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 566EDEB122428ABE00D2CA80 /* CartesianExponents.hpp */; };
 		566EDEBB2242907B00D2CA80 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
 		566EDEC12242908B00D2CA80 /* CartesianExponents_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 566EDEB42242901100D2CA80 /* CartesianExponents_test.cpp */; };
+		567712D12245471700F377BF /* ShellSet_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 567712D02245471700F377BF /* ShellSet_test.cpp */; };
+		567712D822454AAC00F377BF /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
+		567712DE22454AB700F377BF /* ShellSet_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 567712D02245471700F377BF /* ShellSet_test.cpp */; };
 		56884F4D222BB3FB00F68062 /* Matrix.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56884F4C222BB3FB00F68062 /* Matrix.hpp */; };
 		56884F4F222BB58400F68062 /* Tensor.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56884F4E222BB58400F68062 /* Tensor.hpp */; };
 		56884F5D222BDBDA00F68062 /* Matrix_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56884F50222BDB2000F68062 /* Matrix_test.cpp */; };
@@ -1587,6 +1591,20 @@
 			remoteGlobalIDString = 5614F97F21B0295C002C5D40;
 			remoteInfo = gqcp;
 		};
+		567712D422454AAC00F377BF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5614F97F21B0295C002C5D40;
+			remoteInfo = gqcp;
+		};
+		567712DF22454AC400F377BF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 567712D222454AAC00F377BF;
+			remoteInfo = ShellSet_test;
+		};
 		56A5D0FE222E7EDB00C1CF22 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
@@ -2557,6 +2575,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
+		567712D922454AAC00F377BF /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		56884F58222BDBB700F68062 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -3055,6 +3082,8 @@
 		566EDEB122428ABE00D2CA80 /* CartesianExponents.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CartesianExponents.hpp; sourceTree = "<group>"; };
 		566EDEB42242901100D2CA80 /* CartesianExponents_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CartesianExponents_test.cpp; sourceTree = "<group>"; };
 		566EDEC02242907B00D2CA80 /* CartesianExponents_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CartesianExponents_test; sourceTree = BUILT_PRODUCTS_DIR; };
+		567712D02245471700F377BF /* ShellSet_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ShellSet_test.cpp; sourceTree = "<group>"; };
+		567712DD22454AAC00F377BF /* ShellSet_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ShellSet_test; sourceTree = BUILT_PRODUCTS_DIR; };
 		56884F4C222BB3FB00F68062 /* Matrix.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Matrix.hpp; sourceTree = "<group>"; };
 		56884F4E222BB58400F68062 /* Tensor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Tensor.hpp; sourceTree = "<group>"; };
 		56884F50222BDB2000F68062 /* Matrix_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Matrix_test.cpp; sourceTree = "<group>"; };
@@ -3728,6 +3757,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		567712D722454AAC00F377BF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				567712D822454AAC00F377BF /* libgqcp.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		56884F56222BDBB700F68062 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -3995,6 +4032,7 @@
 				566EDEC02242907B00D2CA80 /* CartesianExponents_test */,
 				56147D412242A1CE00EA2A45 /* CartesianGTO_test */,
 				56147D532244D5C800EA2A45 /* BasisFunction_test */,
+				567712DD22454AAC00F377BF /* ShellSet_test */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -4723,6 +4761,7 @@
 				566EDEB42242901100D2CA80 /* CartesianExponents_test.cpp */,
 				5696302F2226CDDF0019DEAD /* CartesianGTO_test.cpp */,
 				566EDE982241095300D2CA80 /* Shell_test.cpp */,
+				567712D02245471700F377BF /* ShellSet_test.cpp */,
 			);
 			path = Basis;
 			sourceTree = "<group>";
@@ -6204,6 +6243,24 @@
 			productReference = 566EDEC02242907B00D2CA80 /* CartesianExponents_test */;
 			productType = "com.apple.product-type.tool";
 		};
+		567712D222454AAC00F377BF /* ShellSet_test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 567712DA22454AAC00F377BF /* Build configuration list for PBXNativeTarget "ShellSet_test" */;
+			buildPhases = (
+				567712D522454AAC00F377BF /* Sources */,
+				567712D722454AAC00F377BF /* Frameworks */,
+				567712D922454AAC00F377BF /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				567712D322454AAC00F377BF /* PBXTargetDependency */,
+			);
+			name = ShellSet_test;
+			productName = AP1roGGeminalCoefficients_test;
+			productReference = 567712DD22454AAC00F377BF /* ShellSet_test */;
+			productType = "com.apple.product-type.tool";
+		};
 		56884F51222BDBB700F68062 /* Matrix_test */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 56884F59222BDBB700F68062 /* Build configuration list for PBXNativeTarget "Matrix_test" */;
@@ -6650,6 +6707,7 @@
 				566EDEB52242907B00D2CA80 /* CartesianExponents_test */,
 				56147D362242A1CE00EA2A45 /* CartesianGTO_test */,
 				566EDE9922410A7200D2CA80 /* Shell_test */,
+				567712D222454AAC00F377BF /* ShellSet_test */,
 				5614FF2621B042AF002C5D40 /* BUILD_CISOLVER_TESTS */,
 				5614FF5721B043C5002C5D40 /* CISolver_DOCI_Davidson_test */,
 				5614FF6321B043CC002C5D40 /* CISolver_DOCI_Dense_test */,
@@ -7080,6 +7138,7 @@
 				5614FA4821B029FB002C5D40 /* elements.cpp in Sources */,
 				56FBA0DA21C2B4C90084F088 /* step.cpp in Sources */,
 				56FBA0D421C2B4C90084F088 /* Eigenpair.cpp in Sources */,
+				567712D12245471700F377BF /* ShellSet_test.cpp in Sources */,
 				56FBA0D721C2B4C90084F088 /* DavidsonSolver.cpp in Sources */,
 				5614FA5221B029FB002C5D40 /* DIISRHFSCFSolver.cpp in Sources */,
 				56D63094221FE5F1001081EB /* FrozenFockSpace.cpp in Sources */,
@@ -7376,6 +7435,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				566EDEC12242908B00D2CA80 /* CartesianExponents_test.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		567712D522454AAC00F377BF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				567712DE22454AB700F377BF /* ShellSet_test.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8201,6 +8268,16 @@
 			isa = PBXTargetDependency;
 			target = 5614F97F21B0295C002C5D40 /* gqcp */;
 			targetProxy = 566EDEB72242907B00D2CA80 /* PBXContainerItemProxy */;
+		};
+		567712D322454AAC00F377BF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5614F97F21B0295C002C5D40 /* gqcp */;
+			targetProxy = 567712D422454AAC00F377BF /* PBXContainerItemProxy */;
+		};
+		567712E022454AC400F377BF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 567712D222454AAC00F377BF /* ShellSet_test */;
+			targetProxy = 567712DF22454AC400F377BF /* PBXContainerItemProxy */;
 		};
 		56A5D0FF222E7EDB00C1CF22 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -9976,6 +10053,22 @@
 			};
 			name = Release;
 		};
+		567712DB22454AAC00F377BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		567712DC22454AAC00F377BF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		56884F5A222BDBB700F68062 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -11115,6 +11208,15 @@
 			buildConfigurations = (
 				566EDEBE2242907B00D2CA80 /* Debug */,
 				566EDEBF2242907B00D2CA80 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		567712DA22454AAC00F377BF /* Build configuration list for PBXNativeTarget "ShellSet_test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				567712DB22454AAC00F377BF /* Debug */,
+				567712DC22454AAC00F377BF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -15,8 +15,8 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCP_LIBINTCOMMUNICATOR_HPP
-#define GQCP_LIBINTCOMMUNICATOR_HPP
+#ifndef GQCP_LIBINTINTERFACER_HPP
+#define GQCP_LIBINTINTERFACER_HPP
 
 
 #include "Basis/AOBasis.hpp"
@@ -213,4 +213,4 @@ public:
 }  // namespace GQCP
 
 
-#endif  // GQCP_LIBINTCOMMUNICATOR_HPP
+#endif  // GQCP_LIBINTINTERFACER_HPP

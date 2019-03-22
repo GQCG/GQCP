@@ -31,7 +31,7 @@ BOOST_AUTO_TEST_CASE ( angular_momentum ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( operator_lt ) {
+BOOST_AUTO_TEST_CASE ( operator_smaller ) {
 
     GQCP::CartesianExponents exps1 (1, 0, 0);  // exps: exponents
     GQCP::CartesianExponents exps2 (2, 0, 0);  // exps: exponents
@@ -45,6 +45,17 @@ BOOST_AUTO_TEST_CASE ( operator_lt ) {
     BOOST_CHECK(exps2 < exps3);
     BOOST_CHECK(exps2 < exps4);
     BOOST_CHECK(exps3 < exps4);
+}
+
+
+BOOST_AUTO_TEST_CASE ( operator_equals ) {
+
+    GQCP::CartesianExponents exps1 (1, 0, 0);  // exps: exponents
+    GQCP::CartesianExponents exps2 (1, 0, 0);  // exps: exponents
+    GQCP::CartesianExponents exps3 (2, 0, 0);  // exps: exponents
+
+    BOOST_CHECK(exps1 == exps2);
+    BOOST_CHECK(!(exps1 == exps3));
 }
 
 

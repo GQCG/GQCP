@@ -28,20 +28,35 @@ namespace GQCP {
  */
 
 /**
- *  @param l                the angular momentum of the shell (x + y + z)
- *  @param atom             the atom on which the shell is centered
- *  @param exponents        the exponents, which are shared for every contraction
- *  @param coefficients     the contraction coefficients
+ *  @param l                            the angular momentum of the shell (x + y + z)
+ *  @param atom                         the atom on which the shell is centered
+ *  @param gaussian_exponents           the Gaussian exponents, which are shared for every contraction
+ *  @param contraction_coefficients     the contraction coefficients
  */
-Shell::Shell(size_t l, const Atom& atom, const std::vector<double>& exponents, const std::vector<double>& coefficients) :
+Shell::Shell(size_t l, const Atom& atom, const std::vector<double>& gaussian_exponents, const std::vector<double>& contraction_coefficients) :
     l (l),
     atom (atom),
-    exponents (exponents),
-    coefficients (coefficients)
+    gaussian_exponents (gaussian_exponents),
+    contraction_coefficients (contraction_coefficients)
 {
-    if (exponents.size() != coefficients.size()) {
+    if (gaussian_exponents.size() != contraction_coefficients.size()) {
         throw std::invalid_argument("Shell(size_t, Atom, std::vector<double>, std::vector<double>): the exponents and contraction coefficients must match in size.");
     }
+}
+
+
+
+/*
+ *  OPERATORS
+ */
+
+/**
+ *  @param rhs      the right-hand side of the operator ==
+ *
+ *  @return if this shell is considered equal to the other
+ */
+bool Shell::operator==(const Shell& rhs) const {
+    return (this->l == rhs.l) && (this->atom == rhs.atom) && (this->gaussian_exponents == rhs.gaussian_exponents) && (this->contraction_coefficients == rhs.contraction_coefficients);
 }
 
 
@@ -90,14 +105,14 @@ std::vector<BasisFunction> Shell::basisFunctions() const {
 
         // Construct the 'functions' of the linear combination: CartesianGTO
         std::vector<CartesianGTO> gtos;
-        gtos.reserve(this->contractionLength());
+        gtos.reserve(this->contractionSize());
 
-        for (size_t i = 0; i < this->contractionLength(); i++) {
-            double alpha = this->exponents[i];
+        for (size_t i = 0; i < this->contractionSize(); i++) {
+            double alpha = this->gaussian_exponents[i];
             gtos.emplace_back(alpha, cartesian_exponents, this->atom.position);
         }
 
-        bfs.emplace_back(LinearCombination<double, CartesianGTO>(this->coefficients, gtos));
+        bfs.emplace_back(LinearCombination<double, CartesianGTO>(this->contraction_coefficients, gtos));
     }
 
     return bfs;
@@ -105,10 +120,10 @@ std::vector<BasisFunction> Shell::basisFunctions() const {
 
 
 /**
- *  @return the length of the contraction in the shell, i.e. the number of primitives contracted in this shell
+ *  @return the size of the contraction in the shell, i.e. the number of primitives contracted in this shell
  */
-size_t Shell::contractionLength() const {
-    return this->coefficients.size();
+size_t Shell::contractionSize() const {
+    return this->contraction_coefficients.size();
 }
 
 

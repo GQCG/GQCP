@@ -33,21 +33,6 @@ BOOST_AUTO_TEST_CASE ( constructor ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( calculateNormalizationFactor ) {
-
-    GQCP::CartesianExponents exponents1 (1, 0, 1);
-    GQCP::Vector<double, 3> center = GQCP::Vector<double, 3>::Zero();
-    GQCP::CartesianGTO gto1 (1.0, exponents1, center);
-
-    BOOST_CHECK(std::abs(gto1.calculateNormalizationFactor() - 2.8508218814) < 1.0e-09);  // 'manual' calculation
-
-    GQCP::CartesianExponents exponents2 (1, 2, 3);
-    GQCP::CartesianGTO gto2 (2.5, exponents2, center);
-
-    BOOST_CHECK(std::abs(gto2.calculateNormalizationFactor() - 211.2315772257) < 1.0e-09);  // 'manual' calculation
-}
-
-
 BOOST_AUTO_TEST_CASE ( operator_call ) {
 
     GQCP::CartesianExponents exponents1 (1, 0, 1);
@@ -95,6 +80,21 @@ BOOST_AUTO_TEST_CASE ( operator_equals ) {
 
     // Check for inequality if the center doesn't match
     BOOST_CHECK(!(GQCP::CartesianGTO(gaussian_exponent1, cartesian_exponents1, center1) == GQCP::CartesianGTO(gaussian_exponent1, cartesian_exponents1, center2)));
+}
+
+
+BOOST_AUTO_TEST_CASE ( calculateNormalizationFactor ) {
+
+    GQCP::CartesianExponents exponents1 (1, 0, 1);
+    GQCP::Vector<double, 3> center = GQCP::Vector<double, 3>::Zero();
+    GQCP::CartesianGTO gto1 (1.0, exponents1, center);
+
+    BOOST_CHECK(std::abs(gto1.calculateNormalizationFactor() - 2.8508218814) < 1.0e-09);  // 'manual' calculation
+
+    GQCP::CartesianExponents exponents2 (1, 2, 3);
+    GQCP::CartesianGTO gto2 (2.5, exponents2, center);
+
+    BOOST_CHECK(std::abs(gto2.calculateNormalizationFactor() - 211.2315772257) < 1.0e-09);  // 'manual' calculation
 }
 
 

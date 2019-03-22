@@ -119,6 +119,24 @@ double CartesianGTO::calculateNormalizationFactorComponent(double gaussian_expon
 }
 
 
+/**
+ *  @param gaussian_exponent        the exponent of the GTO
+ *  @param cartesian_exponents      the exponents of the Cartesian functions x, y, z
+ *
+ *  @return the total normalization factor
+ */
+double CartesianGTO::calculateNormalizationFactor(double gaussian_exponent, const CartesianExponents& cartesian_exponents) {
+
+    // The formula is separable in its three Cartesian components
+
+    double value = 1.0;
+    for (const auto& exponent : cartesian_exponents.asArray()) {
+        value *= CartesianGTO::calculateNormalizationFactorComponent(gaussian_exponent, exponent);
+    }
+    return value;
+}
+
+
 
 /*
  *  PUBLIC METHODS
@@ -128,13 +146,7 @@ double CartesianGTO::calculateNormalizationFactorComponent(double gaussian_expon
  *  @return the normalization factor of the Cartesian GTO
  */
 double CartesianGTO::calculateNormalizationFactor() const {
-    double value = 1.0;
-
-    // The formula is separable in its three Cartesian components
-    for (const auto& exponent : this->cartesian_exponents.asArray()) {
-        value *= CartesianGTO::calculateNormalizationFactorComponent(this->gaussian_exponent, exponent);
-    }
-    return value;
+    return CartesianGTO::calculateNormalizationFactor(this->gaussian_exponent, this->cartesian_exponents);
 }
 
 
