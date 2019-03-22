@@ -28,7 +28,7 @@
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "RHF/DIISRHFSCFSolver.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
-#include "LibintCommunicator.hpp"
+#include "LibintInterfacer.hpp"
 #include "units.hpp"
 
 

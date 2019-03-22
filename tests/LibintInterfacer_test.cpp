@@ -15,12 +15,12 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#define BOOST_TEST_MODULE "LibintCommunicator"
+#define BOOST_TEST_MODULE "LibintInterfacer"
 
 #include <boost/test/unit_test.hpp>
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
 
-#include "LibintCommunicator.hpp"
+#include "LibintInterfacer.hpp"
 
 #include "utilities/linalg.hpp"
 
@@ -43,7 +43,7 @@ BOOST_AUTO_TEST_CASE ( atoms_interface ) {
 
 
     // Use the Libint interface to obtain a std::vector<libint2::Atom> from the GQCP ones
-    auto test_libint_atoms = GQCP::LibintCommunicator::get().interface(GQCP_atoms);
+    auto test_libint_atoms = GQCP::LibintInterfacer::get().interface(GQCP_atoms);
 
 
     /**

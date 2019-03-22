@@ -1,5 +1,22 @@
+// This file is part of GQCG-gqcp.
+// 
+// Copyright (C) 2017-2019  the GQCG developers
+// 
+// GQCG-gqcp is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// GQCG-gqcp is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+// 
+// You should have received a copy of the GNU Lesser General Public License
+// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
+// 
 #include "Basis/AOBasis.hpp"
-#include "LibintCommunicator.hpp"
+#include "LibintInterfacer.hpp"
 
 
 namespace GQCP {
@@ -50,8 +67,8 @@ size_t AOBasis::numberOfBasisFunctions() const {
  */
 OneElectronOperator<double> AOBasis::calculateOverlapIntegrals() const {
 
-    auto libint_basisset = LibintCommunicator::get().interface(this->shell_set);
-    return LibintCommunicator::get().calculateOneElectronIntegrals<1>(libint2::Operator::overlap, libint_basisset)[0];
+    auto libint_basisset = LibintInterfacer::get().interface(this->shell_set);
+    return LibintInterfacer::get().calculateOneElectronIntegrals<1>(libint2::Operator::overlap, libint_basisset)[0];
 }
 
 
@@ -60,8 +77,8 @@ OneElectronOperator<double> AOBasis::calculateOverlapIntegrals() const {
  */
 OneElectronOperator<double> AOBasis::calculateKineticIntegrals() const {
 
-    auto libint_basisset = LibintCommunicator::get().interface(this->shell_set);
-    return LibintCommunicator::get().calculateOneElectronIntegrals<1>(libint2::Operator::kinetic, libint_basisset)[0];
+    auto libint_basisset = LibintInterfacer::get().interface(this->shell_set);
+    return LibintInterfacer::get().calculateOneElectronIntegrals<1>(libint2::Operator::kinetic, libint_basisset)[0];
 }
 
 
@@ -70,10 +87,10 @@ OneElectronOperator<double> AOBasis::calculateKineticIntegrals() const {
  */
 OneElectronOperator<double> AOBasis::calculateNuclearIntegrals() const {
 
-    auto libint_basisset = LibintCommunicator::get().interface(this->shell_set);
-    auto libint_atoms = LibintCommunicator::get().interface(this->shell_set.atoms());
+    auto libint_basisset = LibintInterfacer::get().interface(this->shell_set);
+    auto libint_atoms = LibintInterfacer::get().interface(this->shell_set.atoms());
 
-    return LibintCommunicator::get().calculateOneElectronIntegrals<1>(libint2::Operator::nuclear, libint_basisset, make_point_charges(libint_atoms))[0];
+    return LibintInterfacer::get().calculateOneElectronIntegrals<1>(libint2::Operator::nuclear, libint_basisset, make_point_charges(libint_atoms))[0];
 }
 
 
@@ -83,9 +100,9 @@ OneElectronOperator<double> AOBasis::calculateNuclearIntegrals() const {
 std::array<OneElectronOperator<double>, 3> AOBasis::calculateDipoleIntegrals(const Vector<double, 3>& origin) const {
 
     std::array<double, 3> origin_array {origin.x(), origin.y(), origin.z()};
-    auto libint_basisset = LibintCommunicator::get().interface(this->shell_set);
+    auto libint_basisset = LibintInterfacer::get().interface(this->shell_set);
 
-    auto all_integrals = LibintCommunicator::get().calculateOneElectronIntegrals<4>(libint2::Operator::emultipole1, libint_basisset, origin_array);  // overlap, x, y, z
+    auto all_integrals = LibintInterfacer::get().calculateOneElectronIntegrals<4>(libint2::Operator::emultipole1, libint_basisset, origin_array);  // overlap, x, y, z
 
     // Apply the minus sign which comes from the charge of the electrons -e
     return std::array<OneElectronOperator<double>, 3> {-all_integrals[1], -all_integrals[2], -all_integrals[3]};  // we don't need the overlap, so ignore [0]
@@ -97,8 +114,8 @@ std::array<OneElectronOperator<double>, 3> AOBasis::calculateDipoleIntegrals(con
  */
 TwoElectronOperator<double> AOBasis::calculateCoulombRepulsionIntegrals() const {
 
-    auto libint_basisset = LibintCommunicator::get().interface(this->shell_set);
-    return LibintCommunicator::get().calculateTwoElectronIntegrals(libint2::Operator::coulomb, libint_basisset);
+    auto libint_basisset = LibintInterfacer::get().interface(this->shell_set);
+    return LibintInterfacer::get().calculateTwoElectronIntegrals(libint2::Operator::coulomb, libint_basisset);
 }
 
 

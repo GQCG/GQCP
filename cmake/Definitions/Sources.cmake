@@ -94,7 +94,7 @@ set(PROJECT_SOURCE_FILES
         ${PROJECT_SOURCE_FOLDER}/elements.cpp
         ${PROJECT_SOURCE_FOLDER}/HoppingMatrix.cpp
         ${PROJECT_SOURCE_FOLDER}/JacobiRotationParameters.cpp
-        ${PROJECT_SOURCE_FOLDER}/LibintCommunicator.cpp
+        ${PROJECT_SOURCE_FOLDER}/LibintInterfacer.cpp
         ${PROJECT_SOURCE_FOLDER}/Molecule.cpp
         ${PROJECT_SOURCE_FOLDER}/RMP2.cpp
     )

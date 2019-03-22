@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "LibintCommunicator.hpp"
+#include "LibintInterfacer.hpp"
 
 #include <iostream>
 #include <sstream>
@@ -32,7 +32,7 @@ namespace GQCP {
 /**
  *  Private constructor as required by the singleton class design
  */
-LibintCommunicator::LibintCommunicator() {
+LibintInterfacer::LibintInterfacer() {
     libint2::initialize();
 }
 
@@ -40,7 +40,7 @@ LibintCommunicator::LibintCommunicator() {
 /**
  *  Private destructor as required by the singleton class design
  */
-LibintCommunicator::~LibintCommunicator() {
+LibintInterfacer::~LibintInterfacer() {
     libint2::finalize();
 }
 
@@ -52,8 +52,8 @@ LibintCommunicator::~LibintCommunicator() {
 /**
  *  @return the static singleton instance
  */
-LibintCommunicator& LibintCommunicator::get() {  // need to return by reference since we deleted the relevant constructor
-    static LibintCommunicator singleton_instance;  // instantiated on first use and guaranteed to be destroyed
+LibintInterfacer& LibintInterfacer::get() {  // need to return by reference since we deleted the relevant constructor
+    static LibintInterfacer singleton_instance;  // instantiated on first use and guaranteed to be destroyed
     return singleton_instance;
 }
 
@@ -67,7 +67,7 @@ LibintCommunicator& LibintCommunicator::get() {  // need to return by reference 
  *
  *  @return a libint2::Atom, interfaced from the given GQCP::Atom
  */
-libint2::Atom LibintCommunicator::interface(const Atom& atom) const {
+libint2::Atom LibintInterfacer::interface(const Atom& atom) const {
 
     libint2::Atom libint2_atom {static_cast<int>(atom.atomic_number), atom.position.x(), atom.position.y(), atom.position.z()};
 
@@ -80,7 +80,7 @@ libint2::Atom LibintCommunicator::interface(const Atom& atom) const {
  *
  *  @return libint2-atoms, interfaced from the given atoms
  */
-std::vector<libint2::Atom> LibintCommunicator::interface(const std::vector<Atom>& atoms) const {
+std::vector<libint2::Atom> LibintInterfacer::interface(const std::vector<Atom>& atoms) const {
 
     std::vector<libint2::Atom> libint_vector;  // start with an empty vector, we're doing push_backs later
     libint_vector.reserve(atoms.size());
@@ -98,7 +98,7 @@ std::vector<libint2::Atom> LibintCommunicator::interface(const std::vector<Atom>
  *
  *  @return a libint2::Shell, interfaced from the GQCP Shell
  */
-libint2::Shell LibintCommunicator::interface(const Shell& shell) const {
+libint2::Shell LibintInterfacer::interface(const Shell& shell) const {
 
     // Part 1: exponents
     std::vector<double> libint_alpha = shell.get_exponents();  // libint::Shell::real_t is double, so no need to use real_t
@@ -126,7 +126,7 @@ libint2::Shell LibintCommunicator::interface(const Shell& shell) const {
  *
  *  @return a libint2::BasisSet, interfaced from the GQCP ShellSet
  */
-libint2::BasisSet LibintCommunicator::interface(const ShellSet& shellset) const {
+libint2::BasisSet LibintInterfacer::interface(const ShellSet& shellset) const {
 
     libint2::BasisSet libint2_basisset;  // start with an empty vector, we're doing push_backs later
     libint2_basisset.reserve(shellset.size());
@@ -154,7 +154,7 @@ libint2::BasisSet LibintCommunicator::interface(const ShellSet& shellset) const 
  *
  *  @return the number of true shells that are contained in the libint shell
  */
-size_t LibintCommunicator::numberOfShells(const libint2::Shell& libint_shell) const {
+size_t LibintInterfacer::numberOfShells(const libint2::Shell& libint_shell) const {
     return libint_shell.ncontr();
 }
 
@@ -164,7 +164,7 @@ size_t LibintCommunicator::numberOfShells(const libint2::Shell& libint_shell) co
  *
  *  @return the number of true shells that are contained in the libint2::BasisSet
  */
-size_t LibintCommunicator::numberOfShells(const libint2::BasisSet& libint_basisset) const {
+size_t LibintInterfacer::numberOfShells(const libint2::BasisSet& libint_basisset) const {
 
     size_t nsh {};  // number of shells
 
@@ -184,7 +184,7 @@ size_t LibintCommunicator::numberOfShells(const libint2::BasisSet& libint_basiss
  *
  *  @return a vector of GQCP::Shells
  */
-std::vector<Shell> LibintCommunicator::interface(const libint2::Shell& libint_shell, const std::vector<Atom>& atoms) const {
+std::vector<Shell> LibintInterfacer::interface(const libint2::Shell& libint_shell, const std::vector<Atom>& atoms) const {
 
     std::vector<double> exponents = libint_shell.alpha;
 
@@ -207,7 +207,7 @@ std::vector<Shell> LibintCommunicator::interface(const libint2::Shell& libint_sh
         }
 
         if (corresponding_atom.atomic_number == 0) {
-            throw std::invalid_argument("LibintCommunicator::interface(libint2::Shell, std::vector<Atom>): No given atom matches the center of the libint2::Shell");
+            throw std::invalid_argument("LibintInterfacer::interface(libint2::Shell, std::vector<Atom>): No given atom matches the center of the libint2::Shell");
         }
 
         shells.emplace_back(l, corresponding_atom, exponents, coefficients);
@@ -225,7 +225,7 @@ std::vector<Shell> LibintCommunicator::interface(const libint2::Shell& libint_sh
  *
  *  @return a GQCP::ShellSet corresponding to the libint2::BasisSet
  */
-ShellSet LibintCommunicator::interface(const libint2::BasisSet& libint_basisset, const std::vector<Atom>& atoms) const {
+ShellSet LibintInterfacer::interface(const libint2::BasisSet& libint_basisset, const std::vector<Atom>& atoms) const {
 
     ShellSet shell_set;
     shell_set.reserve(this->numberOfShells(libint_basisset));
@@ -249,7 +249,7 @@ ShellSet LibintCommunicator::interface(const libint2::BasisSet& libint_basisset,
  *
  *  @return the matrix representation of a two-electron operator in the given AO basis
  */
-TwoElectronOperator<double> LibintCommunicator::calculateTwoElectronIntegrals(libint2::Operator operator_type, const libint2::BasisSet& libint_basisset) const {
+TwoElectronOperator<double> LibintInterfacer::calculateTwoElectronIntegrals(libint2::Operator operator_type, const libint2::BasisSet& libint_basisset) const {
 
     const auto nbf = static_cast<size_t>(libint_basisset.nbf());  // nbf: number of basis functions in the basisset
 

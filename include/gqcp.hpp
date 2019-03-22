@@ -116,7 +116,7 @@
 #include "elements.hpp"
 #include "HoppingMatrix.hpp"
 #include "JacobiRotationParameters.hpp"
-#include "LibintCommunicator.hpp"
+#include "LibintInterfacer.hpp"
 #include "Molecule.hpp"
 #include "OrbitalOptimizationOptions.hpp"
 #include "RMP2.hpp"

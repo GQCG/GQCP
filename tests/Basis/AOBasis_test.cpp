@@ -61,6 +61,9 @@ BOOST_AUTO_TEST_CASE( Szabo_integrals_h2_sto3g ) {
     auto g = ao_basis.calculateCoulombRepulsionIntegrals();
 
 
+    std::cout << "S: " << std::endl << S << std::endl << std::endl;
+
+
     // Fill in the reference values from Szabo
     GQCP::OneElectronOperator<double> ref_S (2);
     ref_S << 1.0,    0.6593,
@@ -79,7 +82,7 @@ BOOST_AUTO_TEST_CASE( Szabo_integrals_h2_sto3g ) {
     BOOST_CHECK(H_core.isApprox(ref_H_core, 1.0e-04));
 
 
-    // The two-electron integrals in Szabo are given in chemist's notation, so this confirms that the LibintCommunicator gives them in chemist's notation as well
+    // The two-electron integrals in Szabo are given in chemist's notation, so this confirms that AO basis gives them in chemist's notation as well
     BOOST_CHECK(std::abs(g(0,0,0,0) - 0.7746) < 1.0e-04);
     BOOST_CHECK(std::abs(g(0,0,0,0) - g(1,1,1,1)) < 1.0e-12);
 

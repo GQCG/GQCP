@@ -36,18 +36,18 @@ namespace GQCP {
  *
  *  Singleton class template from: https://stackoverflow.com/a/1008289
  */
-class LibintCommunicator {
+class LibintInterfacer {
 private:
     // PRIVATE METHODS - SINGLETON
     /**
      *  Private constructor as required by the singleton class design
      */
-    LibintCommunicator();
+    LibintInterfacer();
 
     /**
      *  Private destructor as required by the singleton class design
      */
-    ~LibintCommunicator();
+    ~LibintInterfacer();
 
 
     // PRIVATE STRUCTS
@@ -59,13 +59,13 @@ public:
     /**
      *  @return the static singleton instance
      */
-    static LibintCommunicator& get();
+    static LibintInterfacer& get();
 
     /**
      *  Remove the public copy constructor and the public assignment operator
      */
-    LibintCommunicator(LibintCommunicator const& libint_communicator) = delete;
-    void operator=(LibintCommunicator const& libint_communicator) = delete;
+    LibintInterfacer(LibintInterfacer const& libint_communicator) = delete;
+    void operator=(LibintInterfacer const& libint_communicator) = delete;
 
 
     // PUBLIC METHODS - INTERFACING (GQCP TO LIBINT)
