@@ -8,7 +8,6 @@ set(PROJECT_TESTS_FOLDER ${CMAKE_SOURCE_DIR}/tests)
 # Find the source files for the tests
 set(PROJECT_TEST_SOURCE_FILES
         ${PROJECT_TESTS_FOLDER}/Basis/AOBasis_test.cpp
-        ${PROJECT_TESTS_FOLDER}/Basis/BasisFunction_test.cpp
         ${PROJECT_TESTS_FOLDER}/Basis/CartesianExponents_test.cpp
         ${PROJECT_TESTS_FOLDER}/Basis/CartesianGTO_test.cpp
         ${PROJECT_TESTS_FOLDER}/Basis/Shell_test.cpp

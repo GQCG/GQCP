@@ -32,18 +32,18 @@ namespace GQCP {
  */
 class AOBasis {
 private:
-    ShellSet shell_set;  // the underlying shell set
+    ShellSet shell_set;  // the underlying collection of shells
 
 
 public:
     // CONSTRUCTORS
     /**
-     *  @param shell_set        the set of shells that are placed on the atoms
+     *  @param shell_set        the underlying collection of shells
      */
     AOBasis(const ShellSet& shell_set);
 
     /**
-     *  Construct an AO basis by placing shells shells corresponding to the basisset information on every atom of the molecule
+     *  Construct an AO basis by placing shells corresponding to the basisset information on every atom of the molecule
      *
      *  @param molecule             the molecule containing the atoms on which the shells should be centered
      *  @param basisset_name        the name of the basisset, e.g. "STO-3G"

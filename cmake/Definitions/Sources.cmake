@@ -8,7 +8,6 @@ set(PROJECT_SOURCE_FOLDER ${CMAKE_SOURCE_DIR}/src)
 # Find the source files
 set(PROJECT_SOURCE_FILES
         ${PROJECT_SOURCE_FOLDER}/Basis/AOBasis.cpp
-        ${PROJECT_SOURCE_FOLDER}/Basis/BasisFunction.cpp
         ${PROJECT_SOURCE_FOLDER}/Basis/CartesianExponents.cpp
         ${PROJECT_SOURCE_FOLDER}/Basis/CartesianGTO.cpp
         ${PROJECT_SOURCE_FOLDER}/Basis/Shell.cpp

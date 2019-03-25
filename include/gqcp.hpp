@@ -19,7 +19,6 @@
 #define GQCP_HPP
 
 #include "Basis/AOBasis.hpp"
-#include "Basis/BasisFunction.hpp"
 #include "Basis/CartesianGTO.hpp"
 #include "Basis/Shell.hpp"
 #include "Basis/ShellSet.hpp"

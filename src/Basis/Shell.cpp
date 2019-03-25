@@ -28,12 +28,14 @@ namespace GQCP {
  */
 
 /**
- *  @param l                            the angular momentum of the shell (x + y + z)
+ *  @param l                            the angular momentum of the shell
  *  @param atom                         the atom on which the shell is centered
  *  @param gaussian_exponents           the Gaussian exponents, which are shared for every contraction
  *  @param contraction_coefficients     the contraction coefficients
+ *  @param pure                         whether the shell is considered to be spherical or not
  */
-Shell::Shell(size_t l, const Atom& atom, const std::vector<double>& gaussian_exponents, const std::vector<double>& contraction_coefficients) :
+Shell::Shell(size_t l, const Atom& atom, const std::vector<double>& gaussian_exponents, const std::vector<double>& contraction_coefficients, bool pure) :
+    pure (pure),
     l (l),
     atom (atom),
     gaussian_exponents (gaussian_exponents),
@@ -69,53 +71,12 @@ bool Shell::operator==(const Shell& rhs) const {
  *  @return the number of basis functions that are in this shell
  */
 size_t Shell::numberOfBasisFunctions() const {
-    return (this->l + 1) * (this->l + 2) / 2;  // Cartesian shell
-}
 
-
-/**
- *  @return the basis functions that are represented by this shell
- */
-std::vector<BasisFunction> Shell::basisFunctions() const {
-
-    std::vector<BasisFunction> bfs;  // basis functions
-    bfs.reserve(this->numberOfBasisFunctions());
-
-
-    // Generate all possible Cartesian exponents corresponding to this shell, according to its angular momentum
-    std::vector<CartesianExponents> all_cartesian_exponents;
-    all_cartesian_exponents.reserve(this->numberOfBasisFunctions());
-
-    // Partition l into maximally 3 integers and then make all permutations of these partitions
-    auto unique_partitions = uniquePartitions<3>(this->l);
-
-    for (const auto& partition : unique_partitions) {
-        CartesianExponents exponents (partition);
-        for (const auto& permutation : exponents.allPermutations()) {
-            all_cartesian_exponents.push_back(permutation);
-        }
+    if (pure) {  // spherical
+        return 2 * this->l + 1;
+    } else {  // Cartesian
+        return (this->l + 1) * (this->l + 2) / 2;
     }
-
-    std::sort(all_cartesian_exponents.begin(), all_cartesian_exponents.end());
-
-
-    // Create the explicit basis functions corresponding to the previously constructed exponents
-    // The basis functions are linear combinations of CartesianGTOs
-    for (const auto& cartesian_exponents : all_cartesian_exponents) {
-
-        // Construct the 'functions' of the linear combination: CartesianGTO
-        std::vector<CartesianGTO> gtos;
-        gtos.reserve(this->contractionSize());
-
-        for (size_t i = 0; i < this->contractionSize(); i++) {
-            double alpha = this->gaussian_exponents[i];
-            gtos.emplace_back(alpha, cartesian_exponents, this->atom.position);
-        }
-
-        bfs.emplace_back(LinearCombination<double, CartesianGTO>(this->contraction_coefficients, gtos));
-    }
-
-    return bfs;
 }
 
 
