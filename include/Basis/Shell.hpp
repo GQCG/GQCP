@@ -27,12 +27,12 @@ namespace GQCP {
 
 /**
  *  A class that represents a shell of GTOs: it specifies in a condensed way which basis functions are on an atom
- *
- *  Note that an inclusion of any normalization factor inside the contraction coefficients is irrelevant if they do not change after the overlap matrix between the underlying basis functions has been calculated and all the integrals are calculated using the same contraction coefficients
  */
 class Shell {
 private:
     bool pure;  // true if spherical, false if Cartesian
+    bool are_embedded_normalization_factors_of_primitives;  // if the normalization factors of the primitives are embedded in the contraction coefficients
+    bool is_normalized;  // if the total normalization factor is already embedded in the contraction coefficients
     size_t l;  // the angular momentum of the shell
     Atom atom;  // atom on which the shell is centered
     std::vector<double> gaussian_exponents;  // Gaussian exponents (i.e. for the exponential), shared for every contraction
@@ -42,13 +42,15 @@ private:
 public:
     // CONSTRUCTORS
     /**
-     *  @param l                            the angular momentum of the shell
-     *  @param atom                         the atom on which the shell is centered
-     *  @param gaussian_exponents           the Gaussian exponents, which are shared for every contraction
-     *  @param contraction_coefficients     the contraction coefficients
-     *  @param pure                         whether the shell is considered to be spherical or not
+     *  @param l                                                    the angular momentum of the shell
+     *  @param atom                                                 the atom on which the shell is centered
+     *  @param gaussian_exponents                                   the Gaussian exponents, which are shared for every contraction
+     *  @param contraction_coefficients                             the contraction coefficients
+     *  @param pure                                                 whether the shell is considered to be spherical or not
+     *  @param are_embedded_normalization_factors_of_primitives     if the normalization factors of the primitives are embedded in the contraction coefficients
+     *  @param is_normalized                                        if the total normalization factor is already embedded in the contraction coefficients
      */
-    Shell(size_t l, const Atom& atom, const std::vector<double>& gaussian_exponents, const std::vector<double>& contraction_coefficients, bool pure=true);
+    Shell(size_t l, const Atom& atom, const std::vector<double>& gaussian_exponents, const std::vector<double>& contraction_coefficients, bool pure=true, bool are_embedded_normalization_factors_of_primitives=false, bool is_normalized=false);
 
 
     // GETTERS
@@ -78,6 +80,25 @@ public:
      *  @return the size of the contraction in the shell, i.e. the number of primitives contracted in this shell
      */
     size_t contractionSize() const;
+
+    /**
+     *  Embed the normalization factor of every Gaussian primitive into its corresponding contraction coefficient. If this has already been done, this function does nothing
+     *
+     *  Note that the normalization factor that is embedded corresponds to the spherical (or axis-aligned Cartesian) GTO
+     */
+    void embedNormalizationFactorsOfPrimitives();
+
+    /**
+     *  Embed the normalization factor of every Gaussian primitive into its corresponding contraction coefficient. If this has already been done, this function does nothing
+     *
+     *  Note that the normalization factor that is embedded corresponds to the spherical (or axis-aligned Cartesian) GTO
+     */
+    void unEmbedNormalizationFactorsOfPrimitives();
+
+    /**
+     *  Embed the total normalization factor of the corresponding linear combination of spherical (or axis-aligned Cartesian) GTOs into the contraction coefficients
+     */
+    void embedNormalizationFactor();
 };
 
 

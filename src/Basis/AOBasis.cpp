@@ -35,7 +35,7 @@ AOBasis::AOBasis(const ShellSet& shell_set) :
 
 
 /**
- *  Construct an AO basis by placing shells shells corresponding to the basisset information on every atom of the molecule
+ *  Construct an AO basis by placing shells corresponding to the basisset information on every atom of the molecule. The contraction coefficients in the underlying shells are modified such that the resulting spherical (or axis-aligned Cartesian) GTOs are normalized
  *
  *  @param molecule             the molecule containing the atoms on which the shells should be centered
  *  @param basisset_name        the name of the basisset, e.g. "STO-3G"
@@ -43,6 +43,7 @@ AOBasis::AOBasis(const ShellSet& shell_set) :
 AOBasis::AOBasis(const Molecule& molecule, const std::string& basisset_name) :
     AOBasis(ShellSet(molecule, basisset_name))
 {}
+
 
 
 /*

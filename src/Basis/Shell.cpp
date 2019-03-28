@@ -17,6 +17,7 @@
 // 
 #include "Basis/Shell.hpp"
 
+#include "Basis/CartesianGTO.hpp"
 #include "utilities/miscellaneous.hpp"
 
 #include <algorithm>
@@ -30,14 +31,18 @@ namespace GQCP {
  */
 
 /**
- *  @param l                            the angular momentum of the shell
- *  @param atom                         the atom on which the shell is centered
- *  @param gaussian_exponents           the Gaussian exponents, which are shared for every contraction
- *  @param contraction_coefficients     the contraction coefficients
- *  @param pure                         whether the shell is considered to be spherical or not
+ *  @param l                                                    the angular momentum of the shell
+ *  @param atom                                                 the atom on which the shell is centered
+ *  @param gaussian_exponents                                   the Gaussian exponents, which are shared for every contraction
+ *  @param contraction_coefficients                             the contraction coefficients
+ *  @param pure                                                 whether the shell is considered to be spherical or not
+ *  @param are_embedded_normalization_factors_of_primitives     if the normalization factors of the primitives are embedded in the contraction coefficients
+ *  @param is_normalized                                        if the total normalization factor is already embedded in the contraction coefficients
  */
-Shell::Shell(size_t l, const Atom& atom, const std::vector<double>& gaussian_exponents, const std::vector<double>& contraction_coefficients, bool pure) :
+Shell::Shell(size_t l, const Atom& atom, const std::vector<double>& gaussian_exponents, const std::vector<double>& contraction_coefficients, bool pure, bool are_embedded_normalization_factors_of_primitives, bool is_normalized) :
     pure (pure),
+    are_embedded_normalization_factors_of_primitives (are_embedded_normalization_factors_of_primitives),
+    is_normalized (is_normalized),
     l (l),
     atom (atom),
     gaussian_exponents (gaussian_exponents),
@@ -109,6 +114,70 @@ size_t Shell::numberOfBasisFunctions() const {
  */
 size_t Shell::contractionSize() const {
     return this->contraction_coefficients.size();
+}
+
+/**
+ *  Embed the normalization factor of every Gaussian primitive into its corresponding contraction coefficient. If this has already been done, this function does nothing
+ *
+ *  Note that the normalization factor that is embedded corresponds to the spherical (or axis-aligned Cartesian) GTO
+ */
+void Shell::embedNormalizationFactorsOfPrimitives() {
+
+    if (!this->are_embedded_normalization_factors_of_primitives) {
+        for (size_t i = 0; i < this->contractionSize(); i++) {
+            this->contraction_coefficients[i] *= CartesianGTO::calculateNormalizationFactor(this->gaussian_exponents[i], CartesianExponents(this->l, 0, 0));  // normalization factor of an axis-aligned Cartesian GTO
+        }
+
+        this->are_embedded_normalization_factors_of_primitives = true;
+    }
+}
+
+
+/**
+ *  Embed the normalization factor of every Gaussian primitive into its corresponding contraction coefficient. If this has already been done, this function does nothing
+ *
+ *  Note that the normalization factor that is embedded corresponds to the spherical (or axis-aligned Cartesian) GTO
+ */
+void Shell::unEmbedNormalizationFactorsOfPrimitives() {
+
+    if (this->are_embedded_normalization_factors_of_primitives) {
+        for (size_t i = 0; i < this->contractionSize(); i++) {
+            this->contraction_coefficients[i] /= CartesianGTO::calculateNormalizationFactor(this->gaussian_exponents[i], CartesianExponents(this->l, 0, 0));  // normalization factor of an axis-aligned Cartesian GTO
+        }
+
+        this->are_embedded_normalization_factors_of_primitives = false;
+    }
+}
+
+
+/**
+ *  Embed the total normalization factor of the corresponding linear combination of spherical (or axis-aligned Cartesian) GTOs into the contraction coefficients
+ */
+void Shell::embedNormalizationFactor() {
+
+    if (!this->is_normalized) {
+
+        // Calculate the total norm of the shell's basis functions (corresponding to axis-aligned Cartesian GTOs)
+        double norm = 0.0;
+        for (size_t i = 0; i < this->contractionSize(); i++) {
+            double c_i = this->contraction_coefficients[i];
+            double alpha_i = this->gaussian_exponents[i];
+
+            for (size_t j = 0; j < this->contractionSize(); j++) {
+                double c_j = this->contraction_coefficients[j];
+                double alpha_j = this->gaussian_exponents[j];
+
+                double pair_exponent = (alpha_i + alpha_j)/2;
+                norm += c_i * c_j * CartesianGTO::calculateNormalizationFactor(pair_exponent, CartesianExponents(this->l, 0, 0));
+            }
+        }
+
+        // Multiply all the contraction coefficients with the total normalization factor
+        for (size_t i = 0; i < this->contractionSize(); i++) {
+            this->contraction_coefficients[i] *= std::pow(norm, -1.0/2.0);
+        }
+        this->is_normalized = true;
+    }
 }
 
 
