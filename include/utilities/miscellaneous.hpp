@@ -25,11 +25,6 @@
 #include <stdlib.h>
 
 
-
-#include <iostream>
-
-
-
 namespace GQCP {
 
 

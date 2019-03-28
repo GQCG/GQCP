@@ -99,21 +99,6 @@ public:
 
 
     // PUBLIC METHODS - INTERFACING (LIBINT TO GQCP)
-
-    /**
-     *  @param libint_shell         the libint2::Shell
-     *
-     *  @return the number of true shells that are contained in the libint2::Shell
-     */
-    size_t numberOfShells(const libint2::Shell& libint_shell) const;
-
-    /**
-     *  @param libint_basisset      the libint2::BasisSet
-     *
-     *  @return the number of true shells that are contained in the libint2::BasisSet
-     */
-    size_t numberOfShells(const libint2::BasisSet& libint_basisset) const;
-
     /**
      *  Interface a libint2::Shell to the corresponding list of GQCP::Shells. Note that there is no one-to-one libint -> GQCP conversion, since GQCP does not support 'linked' sp-'shells'
      *
@@ -133,6 +118,29 @@ public:
      *  @return a GQCP::ShellSet corresponding to the libint2::BasisSet
      */
     ShellSet interface(const libint2::BasisSet& libint_basisset, const std::vector<Atom>& atoms) const;
+
+
+    // PUBLIC METHODS - OTHER LIBINT2-RELATED FUNCTIONS
+    /**
+     *  @param libint_shell         the libint2::Shell
+     *
+     *  @return the number of true shells that are contained in the libint2::Shell
+     */
+    size_t numberOfShells(const libint2::Shell& libint_shell) const;
+
+    /**
+     *  @param libint_basisset      the libint2::BasisSet
+     *
+     *  @return the number of true shells that are contained in the libint2::BasisSet
+     */
+    size_t numberOfShells(const libint2::BasisSet& libint_basisset) const;
+
+    /**
+     *  Undo the libint2 default renormalization (see libint2::Shell::renorm())
+     *
+     *  @param libint_shell         the shell that should be un-renorm()alized
+     */
+    void undo_renorm(libint2::Shell& libint_shell) const;
 
 
     // PUBLIC METHODS - INTEGRALS

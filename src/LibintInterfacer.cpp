@@ -17,6 +17,9 @@
 // 
 #include "LibintInterfacer.hpp"
 
+#include <boost/math/constants/constants.hpp>
+#include <boost/math/special_functions/factorials.hpp>
+
 #include <iostream>
 #include <sstream>
 
@@ -33,7 +36,14 @@ namespace GQCP {
  *  Private constructor as required by the singleton class design
  */
 LibintInterfacer::LibintInterfacer() {
+
+    // Set up the libint2 environment
     libint2::initialize();
+
+
+    // By default, libint2 changes the contraction coefficients in a shell to correspond to a normalized basis function: undo this behavior
+    // Note: libint2 uses a Cartesian normalization factor such that the axis-aligned (i.e. {2,0,0} or {0,3,0}) Cartesian functions are normalized
+    libint2::Shell::do_enforce_unit_normalization(false);
 }
 
 
@@ -41,6 +51,8 @@ LibintInterfacer::LibintInterfacer() {
  *  Private destructor as required by the singleton class design
  */
 LibintInterfacer::~LibintInterfacer() {
+
+    // Finish the libint2 environment
     libint2::finalize();
 }
 
@@ -106,7 +118,7 @@ libint2::Shell LibintInterfacer::interface(const Shell& shell) const {
 
     // Part 2: contractions
     auto libint_l = static_cast<int>(shell.get_l());
-    bool libint_pure = false;  // our shells are Cartesian
+    bool libint_pure = shell.is_pure();
     std::vector<double> libint_coeff = shell.get_contraction_coefficients();
     libint2::Shell::Contraction libint_contraction {libint_l, libint_pure, libint_coeff};
 
@@ -141,6 +153,14 @@ libint2::BasisSet LibintInterfacer::interface(const ShellSet& shellset) const {
     // Therefore, we are using a hack to force the private libint2::BasisSet::init() being called
     libint2_basisset.set_pure(false);  // the shells inside GQCP::BasisSet are all Cartesian, so this effectively does nothing
 
+//    void set_pure(bool solid) {
+//        for(auto& s: *this) {
+//            s.contr[0].pure = solid;
+//        }
+//        init();
+//    }
+
+
     return libint2_basisset;
 }
 
@@ -148,33 +168,6 @@ libint2::BasisSet LibintInterfacer::interface(const ShellSet& shellset) const {
 /*
  *  PUBLIC METHODS - INTERFACING (LIBINT TO GQCP)
  */
-
-/**
- *  @param libint_shell         the libint2::Shell
- *
- *  @return the number of true shells that are contained in the libint shell
- */
-size_t LibintInterfacer::numberOfShells(const libint2::Shell& libint_shell) const {
-    return libint_shell.ncontr();
-}
-
-
-/**
- *  @param libint_basisset      the libint2::BasisSet
- *
- *  @return the number of true shells that are contained in the libint2::BasisSet
- */
-size_t LibintInterfacer::numberOfShells(const libint2::BasisSet& libint_basisset) const {
-
-    size_t nsh {};  // number of shells
-
-    for (const auto& libint_shell : libint_basisset) {
-        nsh += this->numberOfShells(libint_shell);
-    }
-
-    return nsh;
-}
-
 
 /**
  *  Interface a libint2::Shell to the corresponding list of GQCP::Shells. Note that there is no one-to-one libint -> GQCP conversion, since GQCP does not support 'linked' sp-'shells'
@@ -186,11 +179,18 @@ size_t LibintInterfacer::numberOfShells(const libint2::BasisSet& libint_basisset
  */
 std::vector<Shell> LibintInterfacer::interface(const libint2::Shell& libint_shell, const std::vector<Atom>& atoms) const {
 
-    std::vector<double> exponents = libint_shell.alpha;
+
+    // Upon construction from its members, Libint2 renorm()alizes its Shells, so we first undo this
+    auto libint_shell_copy = libint_shell;
+    this->undo_renorm(libint_shell_copy);
+
+
+    // Construct the corresponding GQCP::Shells
+    std::vector<double> exponents = libint_shell_copy.alpha;
 
     std::vector<Shell> shells;
-    shells.reserve(this->numberOfShells(libint_shell));
-    for (const auto& libint_contraction : libint_shell.contr) {
+    shells.reserve(this->numberOfShells(libint_shell_copy));
+    for (const auto& libint_contraction : libint_shell_copy.contr) {
 
         // Angular momentum and coefficients
         size_t l = libint_contraction.l;
@@ -199,7 +199,7 @@ std::vector<Shell> LibintInterfacer::interface(const libint2::Shell& libint_shel
         // Libint2 only stores the origin of the shell, so we have to find the atom corresponding to the copied shell's origin
         Atom corresponding_atom;
         for (const Atom& atom : atoms) {
-            Eigen::Map<const Eigen::Matrix<double, 3, 1>> libint_origin_map (libint_shell.O.data());  // convert raw array data to Eigen
+            Eigen::Map<const Eigen::Matrix<double, 3, 1>> libint_origin_map (libint_shell_copy.O.data());  // convert raw array data to Eigen
             if (atom.position.isApprox(libint_origin_map, 1.0e-06)) {  // tolerant comparison
                 corresponding_atom = atom;
                 break;
@@ -237,6 +237,70 @@ ShellSet LibintInterfacer::interface(const libint2::BasisSet& libint_basisset, c
 
     return shell_set;
 }
+
+
+
+/*
+ *  PUBLIC METHODS - OTHER LIBINT2-RELATED FUNCTIONS
+ */
+
+/**
+ *  @param libint_shell         the libint2::Shell
+ *
+ *  @return the number of true shells that are contained in the libint shell
+ */
+size_t LibintInterfacer::numberOfShells(const libint2::Shell& libint_shell) const {
+    return libint_shell.ncontr();
+}
+
+
+/**
+ *  @param libint_basisset      the libint2::BasisSet
+ *
+ *  @return the number of true shells that are contained in the libint2::BasisSet
+ */
+size_t LibintInterfacer::numberOfShells(const libint2::BasisSet& libint_basisset) const {
+
+    size_t nsh {};  // number of shells
+
+    for (const auto& libint_shell : libint_basisset) {
+        nsh += this->numberOfShells(libint_shell);
+    }
+
+    return nsh;
+}
+
+
+/**
+ *  Undo the libint2 default renormalization (see libint2::Shell::renorm())
+ *
+ *  @param libint_shell         the shell that should be un-renorm()alized
+ */
+void LibintInterfacer::undo_renorm(libint2::Shell& libint_shell) const {
+
+    // Instead of multiplying (what libint2 does), divide each contraction coefficient by the normalization factor
+    for (auto& contraction: libint_shell.contr) {
+        for (size_t p = 0; p != libint_shell.nprim(); ++p) {
+            double alpha = libint_shell.alpha[p];
+            size_t l = contraction.l;
+
+            std::cout << "constraction l " << l << std::endl;
+
+            auto pi = boost::math::constants::pi<double>();
+            auto df = (l == 0)? 1 : boost::math::double_factorial<double>(2*static_cast<unsigned>(l) - 1);  // df: double factorial
+
+            double N = 1.0;  // normalization factor for spherical GTOs and axis-aligned Cartesian GTO
+            N *= std::pow(2 * alpha / pi, 3.0/4.0);
+            N *= std::pow(4 * alpha, l/2.0);
+            N *= std::pow(df, -1.0/2.0);
+
+            std::cout << "Normalization factor: " << N << std::endl;
+
+            contraction.coeff[p] /= N;
+        }
+    }
+}
+
 
 
 /*

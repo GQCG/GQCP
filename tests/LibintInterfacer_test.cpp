@@ -25,7 +25,7 @@
 #include "utilities/linalg.hpp"
 
 
-BOOST_AUTO_TEST_CASE ( atoms_interface ) {
+BOOST_AUTO_TEST_CASE ( atoms_to_libint ) {
 
     std::vector<GQCP::Atom> GQCP_atoms = {
         {1, 0, 3, 0},
@@ -65,4 +65,46 @@ BOOST_AUTO_TEST_CASE ( atoms_interface ) {
     // Check if the interfacing between the Atom types works
     BOOST_CHECK((ref_libint_atoms.size() == test_libint_atoms.size()) &&
                 std::equal(ref_libint_atoms.begin(), ref_libint_atoms.end(), test_libint_atoms.begin(), LibintAtomEqual(1.0e-08)));
+}
+
+
+BOOST_AUTO_TEST_CASE ( shell_to_libint ) {
+
+    /**
+     *  A functor to compare two doubles with respect to a tolerance
+     */
+    struct approx {
+    public:
+        double tolerance;
+
+
+    public:
+        approx(double tolerance = 1.0e-12) : tolerance(tolerance) {}
+
+        bool operator()(double lhs, double rhs) const {
+            return std::abs(lhs - rhs) < tolerance;
+        }
+    };
+
+
+    // Create a GQCP::Shell and its reference
+    GQCP::Atom h (1,  0.0, 0.0, 0.0);
+    GQCP::Shell shell (0, h, {3.42525091, 0.62391373, 0.16885540}, {0.15432897, 0.53532814, 0.44463454}, false);  // a Cartesian s-type shell on the H-atom
+
+    libint2::Shell ref_libint_shell {
+        {3.42525091, 0.62391373, 0.16885540},
+        {
+            {0, false, {0.15432897, 0.53532814, 0.44463454}}
+        },
+        {{0.0, 0.0, 0.0}}
+    };
+
+
+    // Check if the interfacing from a GQCP::Shell to a libint2::Shell works
+    auto libint_shell = GQCP::LibintInterfacer::get().interface(shell);
+
+    BOOST_CHECK(std::equal(ref_libint_shell.alpha.begin(), ref_libint_shell.alpha.end(), libint_shell.alpha.begin(), approx()));  // check Gaussian exponents
+    BOOST_CHECK(std::equal(ref_libint_shell.contr[0].coeff.begin(), ref_libint_shell.contr[0].coeff.end(), libint_shell.contr[0].coeff.begin(), approx()));  // check contraction coefficients
+    BOOST_CHECK(ref_libint_shell.contr[0].pure == libint_shell.contr[0].pure);  // check if both shells have the same type
+    BOOST_CHECK(std::equal(ref_libint_shell.O.begin(), ref_libint_shell.O.end(), libint_shell.O.begin(), approx()));  // check the center
 }

@@ -51,7 +51,7 @@ BOOST_AUTO_TEST_CASE ( numberOfBasisFunctions ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( operator_equals) {
+BOOST_AUTO_TEST_CASE ( operator_equals ) {
 
     size_t l1 = 0;
     size_t l2 = 1;

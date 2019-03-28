@@ -42,20 +42,4 @@ BOOST_AUTO_TEST_CASE ( constructor_basisset ) {
     GQCP::Molecule h2o ({h1, o, h2});
     GQCP::ShellSet shellset (h2o, "STO-3G");
     BOOST_CHECK(ref_shellset == shellset);
-
-
-    for (const auto& shell : shellset) {
-        std::cout << "l: " << shell.get_l() << std::endl;
-        std::cout << "atom: " << shell.get_atom() << std::endl;
-        std::cout << "Gaussian exponents: ";
-        for (const auto& each : shell.get_gaussian_exponents()) {
-            std::cout << each << ' ';
-        }
-        std::cout << std::endl;
-        std::cout << "Contraction coefficients: ";
-        for (const auto& each : shell.get_contraction_coefficients()) {
-            std::cout << each << ' ';
-        }
-        std::cout << std::endl;
-    }
 }
