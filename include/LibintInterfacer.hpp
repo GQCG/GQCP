@@ -86,14 +86,14 @@ public:
     /**
      *  @param shell        the GQCP shell that should be interfaced
      *
-     *  @return a libint2::Shell, interfaced from the GQCP Shell
+     *  @return a libint2::Shell whose renorm()alization has been undone, interfaced from the GQCP Shell
      */
     libint2::Shell interface(const Shell& shell) const;
 
     /**
      *  @param shellset     the GQCP ShellSet that should be interfaced
      *
-     *  @return a libint2::BasisSet, interfaced from the GQCP ShellSet. Note that it is not possible to create libint2-sp-shells from a GQCP ShellSet
+     *  @return a libint2::BasisSet (whose underlying libint2::Shells have been re-renorm()alized), interfaced from the GQCP ShellSet. Note that it is not possible to create libint2-sp-shells from a GQCP ShellSet
      */
     libint2::BasisSet interface(const ShellSet& shellset) const;
 

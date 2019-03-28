@@ -81,9 +81,9 @@ LibintInterfacer& LibintInterfacer::get() {  // need to return by reference sinc
  */
 libint2::Atom LibintInterfacer::interface(const Atom& atom) const {
 
-    libint2::Atom libint2_atom {static_cast<int>(atom.atomic_number), atom.position.x(), atom.position.y(), atom.position.z()};
+    libint2::Atom libint_atom {static_cast<int>(atom.atomic_number), atom.position.x(), atom.position.y(), atom.position.z()};
 
-    return libint2_atom;
+    return libint_atom;
 }
 
 
@@ -108,7 +108,7 @@ std::vector<libint2::Atom> LibintInterfacer::interface(const std::vector<Atom>& 
 /**
  *  @param shell        the GQCP shell that should be interfaced
  *
- *  @return a libint2::Shell, interfaced from the GQCP Shell
+ *  @return a libint2::Shell whose renorm()alization has been undone, interfaced from the GQCP Shell
  */
 libint2::Shell LibintInterfacer::interface(const Shell& shell) const {
 
@@ -122,46 +122,50 @@ libint2::Shell LibintInterfacer::interface(const Shell& shell) const {
     std::vector<double> libint_coeff = shell.get_contraction_coefficients();
     libint2::Shell::Contraction libint_contraction {libint_l, libint_pure, libint_coeff};
 
-    std::vector<libint2::Shell::Contraction> libint_contr {libint_contraction};
-
 
     // Part 3: origin
     auto position = shell.get_atom().position;
     std::array<double, 3> libint_O {position.x(), position.y(), position.z()};
 
-    return libint2::Shell(libint_alpha, libint_contr, libint_O);
+
+    // Make sure that the renorm()alization is undone
+    libint2::Shell libint_shell (libint_alpha, {libint_contraction}, libint_O);
+    this->undo_renorm(libint_shell);
+    return libint_shell;
 }
 
 
 /**
  *  @param shellset     the GQCP ShellSet that should be interfaced
  *
- *  @return a libint2::BasisSet, interfaced from the GQCP ShellSet
+ *  @return a libint2::BasisSet (whose underlying libint2::Shells have been re-renorm()alized), interfaced from the GQCP ShellSet. Note that it is not possible to create libint2-sp-shells from a GQCP ShellSet
  */
 libint2::BasisSet LibintInterfacer::interface(const ShellSet& shellset) const {
 
-    libint2::BasisSet libint2_basisset;  // start with an empty vector, we're doing push_backs later
-    libint2_basisset.reserve(shellset.size());
+    libint2::BasisSet libint_basisset;  // start with an empty vector, we're doing push_backs later
+    libint_basisset.reserve(shellset.size());
 
 
     for (const auto& shell : shellset) {
-        libint2_basisset.push_back(this->interface(shell));
+        libint_basisset.push_back(this->interface(shell));
     }
 
 
     // At this point in the code, the libint2::BasisSet is 'uninitialized', i.e. its private member _nbf is -1, etc.
     // Therefore, we are using a hack to force the private libint2::BasisSet::init() being called
-    libint2_basisset.set_pure(false);  // the shells inside GQCP::BasisSet are all Cartesian, so this effectively does nothing
 
-//    void set_pure(bool solid) {
-//        for(auto& s: *this) {
-//            s.contr[0].pure = solid;
-//        }
-//        init();
-//    }
+    std::vector<bool> pure_flags (libint_basisset.size());
+    for (size_t i = 0; i < libint_basisset.size(); i++) {
+        pure_flags[i] = libint_basisset[i].contr[0].pure;  // the libint2::BasisSet that was created can never have more than one libint2::Shell::Contraction (we split SP-shells)
+    }
 
+    // Call libint2::BasisSet::init() through set_pure, and re-set the 'pure' flags
+    libint_basisset.set_pure(false);
+    for (size_t i = 0; i < libint_basisset.size(); i++) {
+        libint_basisset[i].contr[0].pure = pure_flags[i];
+    }
 
-    return libint2_basisset;
+    return libint_basisset;
 }
 
 
@@ -284,8 +288,6 @@ void LibintInterfacer::undo_renorm(libint2::Shell& libint_shell) const {
             double alpha = libint_shell.alpha[p];
             size_t l = contraction.l;
 
-            std::cout << "constraction l " << l << std::endl;
-
             auto pi = boost::math::constants::pi<double>();
             auto df = (l == 0)? 1 : boost::math::double_factorial<double>(2*static_cast<unsigned>(l) - 1);  // df: double factorial
 
@@ -293,8 +295,6 @@ void LibintInterfacer::undo_renorm(libint2::Shell& libint_shell) const {
             N *= std::pow(2 * alpha / pi, 3.0/4.0);
             N *= std::pow(4 * alpha, l/2.0);
             N *= std::pow(df, -1.0/2.0);
-
-            std::cout << "Normalization factor: " << N << std::endl;
 
             contraction.coeff[p] /= N;
         }
