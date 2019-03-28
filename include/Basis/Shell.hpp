@@ -27,10 +27,12 @@ namespace GQCP {
 
 /**
  *  A class that represents a shell of GTOs: it specifies in a condensed way which basis functions are on an atom
+ *
+ *  Note that an inclusion of any normalization factor inside the contraction coefficients is irrelevant if they do not change after the overlap matrix between the underlying basis functions has been calculated and all the integrals are calculated using the same contraction coefficients
  */
 class Shell {
 private:
-    bool pure;  // true spherical, false: Cartesian
+    bool pure;  // true if spherical, false if Cartesian
     size_t l;  // the angular momentum of the shell
     Atom atom;  // atom on which the shell is centered
     std::vector<double> gaussian_exponents;  // Gaussian exponents (i.e. for the exponential), shared for every contraction

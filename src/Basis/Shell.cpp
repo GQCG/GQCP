@@ -19,6 +19,8 @@
 
 #include "utilities/miscellaneous.hpp"
 
+#include <algorithm>
+
 
 namespace GQCP {
 
@@ -58,7 +60,29 @@ Shell::Shell(size_t l, const Atom& atom, const std::vector<double>& gaussian_exp
  *  @return if this shell is considered equal to the other
  */
 bool Shell::operator==(const Shell& rhs) const {
-    return (this->l == rhs.l) && (this->atom == rhs.atom) && (this->gaussian_exponents == rhs.gaussian_exponents) && (this->contraction_coefficients == rhs.contraction_coefficients);
+
+    /**
+     *  A functor to compare two doubles with respect to a tolerance
+     */
+    struct approx {
+    public:
+        double tolerance;
+
+
+    public:
+        approx(double tolerance = 1.0e-12) : tolerance(tolerance) {}
+
+        bool operator()(double lhs, double rhs) const {
+            return std::abs(lhs - rhs) < tolerance;
+        }
+    };
+
+
+    // Return if all members are equal/close
+    return (this->l == rhs.l) &&
+           (this->atom == rhs.atom) &&
+           (std::equal(this->gaussian_exponents.begin(), this->gaussian_exponents.end(), rhs.gaussian_exponents.begin(), approx())) &&
+           (std::equal(this->contraction_coefficients.begin(), this->contraction_coefficients.end(), rhs.contraction_coefficients.begin(), approx()));
 }
 
 
