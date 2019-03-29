@@ -224,6 +224,7 @@
 			buildPhases = (
 			);
 			dependencies = (
+				564956C7224E0B6F00452E60 /* PBXTargetDependency */,
 				567712E022454AC400F377BF /* PBXTargetDependency */,
 				56147D442242A1ED00EA2A45 /* PBXTargetDependency */,
 				56147D352242A04900EA2A45 /* PBXTargetDependency */,
@@ -287,7 +288,6 @@
 				56FBA11C21C3882B0084F088 /* PBXTargetDependency */,
 				56FBA11E21C3882B0084F088 /* PBXTargetDependency */,
 				56FBA12021C3882B0084F088 /* PBXTargetDependency */,
-				56FBA12221C3882B0084F088 /* PBXTargetDependency */,
 				56FBA12421C3882B0084F088 /* PBXTargetDependency */,
 				56FBA12621C3882B0084F088 /* PBXTargetDependency */,
 				56FBA12821C3882B0084F088 /* PBXTargetDependency */,
@@ -1544,6 +1544,13 @@
 			remoteGlobalIDString = 5643B82421F89F3200E1741F;
 			remoteInfo = AP1roGBivariationalSolver_test;
 		};
+		564956C6224E0B6F00452E60 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5614014121B0637D002C5D40;
+			remoteInfo = LibintInterfacer_test;
+		};
 		566EDE9B22410A7200D2CA80 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
@@ -1760,13 +1767,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 5614013521B06376002C5D40;
 			remoteInfo = JacobiRotationParameters_test;
-		};
-		56FBA12121C3882B0084F088 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5614F97821B0295C002C5D40 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5614014121B0637D002C5D40;
-			remoteInfo = LibintCommunicator_test;
 		};
 		56FBA12321C3882B0084F088 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -4273,7 +4273,6 @@
 				5614F9B921B029FB002C5D40 /* elements.hpp */,
 				56FBA0E821C2DFC00084F088 /* HoppingMatrix.hpp */,
 				5614F9B521B029FB002C5D40 /* JacobiRotationParameters.hpp */,
-				5614F9AF21B029FB002C5D40 /* LibintInterfacer.hpp */,
 				5614F9D021B029FB002C5D40 /* Molecule.hpp */,
 				5614F9B821B029FB002C5D40 /* OrbitalOptimizationOptions.hpp */,
 				5614F9B721B029FB002C5D40 /* RMP2.hpp */,
@@ -4291,7 +4290,6 @@
 				5614F9D521B029FB002C5D40 /* elements.cpp */,
 				56FBA0E621C2DFB40084F088 /* HoppingMatrix.cpp */,
 				5614F9D321B029FB002C5D40 /* JacobiRotationParameters.cpp */,
-				5614F9DF21B029FB002C5D40 /* LibintInterfacer.cpp */,
 				5614F9D721B029FB002C5D40 /* Molecule.cpp */,
 				5614F9D421B029FB002C5D40 /* RMP2.cpp */,
 			);
@@ -4580,7 +4578,6 @@
 				5614FB5D21B02EDE002C5D40 /* elements_test.cpp */,
 				56FBA0EC21C2F1950084F088 /* HoppingMatrix_test.cpp */,
 				5614FB3D21B02EDE002C5D40 /* JacobiRotationParameters_test.cpp */,
-				5614FB3F21B02EDE002C5D40 /* LibintInterfacer_test.cpp */,
 				5614FB7921B02EDE002C5D40 /* Molecule_test.cpp */,
 				5614FB5E21B02EDE002C5D40 /* OO_DOCI_test.cpp */,
 				5614FB4221B02EDE002C5D40 /* RMP2_test.cpp */,
@@ -4692,6 +4689,7 @@
 				56147D452243B0D100EA2A45 /* CartesianDirection.hpp */,
 				566EDEB122428ABE00D2CA80 /* CartesianExponents.hpp */,
 				562241E42225B3DC001436D0 /* CartesianGTO.hpp */,
+				5614F9AF21B029FB002C5D40 /* LibintInterfacer.hpp */,
 				566EDE8C2240F0B200D2CA80 /* Shell.hpp */,
 				566EDE952240F21A00D2CA80 /* ShellSet.hpp */,
 			);
@@ -4704,6 +4702,7 @@
 				5614F9F721B029FB002C5D40 /* AOBasis.cpp */,
 				566EDEB022428ABE00D2CA80 /* CartesianExponents.cpp */,
 				562241E32225B3DC001436D0 /* CartesianGTO.cpp */,
+				5614F9DF21B029FB002C5D40 /* LibintInterfacer.cpp */,
 				566EDE8B2240F0B200D2CA80 /* Shell.cpp */,
 				566EDE942240F21A00D2CA80 /* ShellSet.cpp */,
 			);
@@ -4716,6 +4715,7 @@
 				5614FB4021B02EDE002C5D40 /* AOBasis_test.cpp */,
 				566EDEB42242901100D2CA80 /* CartesianExponents_test.cpp */,
 				5696302F2226CDDF0019DEAD /* CartesianGTO_test.cpp */,
+				5614FB3F21B02EDE002C5D40 /* LibintInterfacer_test.cpp */,
 				566EDE982241095300D2CA80 /* Shell_test.cpp */,
 				567712D02245471700F377BF /* ShellSet_test.cpp */,
 			);
@@ -6643,6 +6643,7 @@
 				5614011121B06368002C5D40 /* AOBasis_test */,
 				566EDEB52242907B00D2CA80 /* CartesianExponents_test */,
 				56147D362242A1CE00EA2A45 /* CartesianGTO_test */,
+				5614014121B0637D002C5D40 /* LibintInterfacer_test */,
 				566EDE9922410A7200D2CA80 /* Shell_test */,
 				567712D222454AAC00F377BF /* ShellSet_test */,
 				5614FF2621B042AF002C5D40 /* BUILD_CISOLVER_TESTS */,
@@ -6720,7 +6721,6 @@
 				5614012921B06371002C5D40 /* elements_test */,
 				56FBA0ED21C2F1A10084F088 /* HoppingMatrix_test */,
 				5614013521B06376002C5D40 /* JacobiRotationParameters_test */,
-				5614014121B0637D002C5D40 /* LibintInterfacer_test */,
 				5614015921B06389002C5D40 /* Molecule_test */,
 				5614016521B0638D002C5D40 /* OO_DOCI_test */,
 				5614017121B06392002C5D40 /* RMP2_test */,
@@ -8167,6 +8167,11 @@
 			target = 5643B82421F89F3200E1741F /* AP1roGBivariationalSolver_test */;
 			targetProxy = 5643B83121F89F7F00E1741F /* PBXContainerItemProxy */;
 		};
+		564956C7224E0B6F00452E60 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5614014121B0637D002C5D40 /* LibintInterfacer_test */;
+			targetProxy = 564956C6224E0B6F00452E60 /* PBXContainerItemProxy */;
+		};
 		566EDE9A22410A7200D2CA80 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 5614F97F21B0295C002C5D40 /* gqcp */;
@@ -8321,11 +8326,6 @@
 			isa = PBXTargetDependency;
 			target = 5614013521B06376002C5D40 /* JacobiRotationParameters_test */;
 			targetProxy = 56FBA11F21C3882B0084F088 /* PBXContainerItemProxy */;
-		};
-		56FBA12221C3882B0084F088 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5614014121B0637D002C5D40 /* LibintInterfacer_test */;
-			targetProxy = 56FBA12121C3882B0084F088 /* PBXContainerItemProxy */;
 		};
 		56FBA12421C3882B0084F088 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

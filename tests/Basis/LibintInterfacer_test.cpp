@@ -20,7 +20,7 @@
 #include <boost/test/unit_test.hpp>
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
 
-#include "LibintInterfacer.hpp"
+#include "Basis/LibintInterfacer.hpp"
 
 #include "utilities/linalg.hpp"
 
@@ -160,6 +160,35 @@ BOOST_AUTO_TEST_CASE ( ShellSet_to_BasisSet ) {
 }
 
 
+BOOST_AUTO_TEST_CASE ( libint_Shell_to_Shell ) {
+
+    // Make some libint Shells
+    libint2::Shell libint_s_shell {};
+    libint_s_shell.alpha = {1.0, 2.0};
+    libint_s_shell.contr = {{0, true, {0.5, -0.5}}};
+    libint_s_shell.O = {0.0, 0.0, 0.0};
+
+    libint2::Shell libint_d_shell {};
+    libint_d_shell.alpha = {4.0, 8.0};
+    libint_d_shell.contr = {{2, false, {1.5, -1.5}}};
+    libint_d_shell.O = {0.0, 0.0, 0.0};
+
+
+    // Create the reference GQCP Shells
+    GQCP::Shell ref_s_shell (0, GQCP::Atom(), {1.0, 2.0}, {0.5, -0.5}, true);
+    GQCP::Shell ref_d_shell (2, GQCP::Atom(), {4.0, 8.0}, {1.5, -1.5}, false);
+
+
+    // Test the libint2::Shell to GQCP::Shell interfacing
+    bool undo_renorm = false;
+    auto s_shell = GQCP::LibintInterfacer::get().interface(libint_s_shell, {GQCP::Atom()}, undo_renorm)[0];
+    auto d_shell = GQCP::LibintInterfacer::get().interface(libint_d_shell, {GQCP::Atom()}, undo_renorm)[0];
+
+    BOOST_CHECK(ref_s_shell == s_shell);
+    BOOST_CHECK(ref_d_shell == d_shell);
+}
+
+
 BOOST_AUTO_TEST_CASE ( BasisSet_to_ShellSet ) {
 
     // Note that this function also tests std::vector<Shell> LibintInterfacer::interface(const libint2::Shell& libint_shell, const std::vector<Atom>& atoms) const;
@@ -170,13 +199,14 @@ BOOST_AUTO_TEST_CASE ( BasisSet_to_ShellSet ) {
     GQCP::Atom o  (8,  0.0, 0.0, 1.0);
     GQCP::Atom h2 (1,  0.0, 0.0, 2.0);
     std::vector<GQCP::Atom> atoms {h1, o, h2};
+    bool pure = false;  // STO-3G represents Cartesian shells
 
     GQCP::ShellSet ref_shellset {
-        GQCP::Shell(0, h1, {  3.42525091,  0.62391373, 0.16885540}, { 0.15432897, 0.53532814, 0.44463454}),
-        GQCP::Shell(0, o,  {130.7093200,  23.8088610,  6.4436083},  { 0.15432897, 0.53532814, 0.44463454}),
-        GQCP::Shell(0, o,  {  5.0331513,   1.1695961,  0.3803890},  {-0.09996723, 0.39951283, 0.70011547}),
-        GQCP::Shell(1, o,  {  5.0331513,   1.1695961,  0.3803890},  { 0.15591627, 0.60768372, 0.39195739}),
-        GQCP::Shell(0, h2, {  3.42525091,  0.62391373, 0.16885540}, { 0.15432897, 0.53532814, 0.44463454})
+        GQCP::Shell(0, h1, {  3.42525091,  0.62391373, 0.16885540}, { 0.15432897, 0.53532814, 0.44463454}, pure),
+        GQCP::Shell(0, o,  {130.7093200,  23.8088610,  6.4436083},  { 0.15432897, 0.53532814, 0.44463454}, pure),
+        GQCP::Shell(0, o,  {  5.0331513,   1.1695961,  0.3803890},  {-0.09996723, 0.39951283, 0.70011547}, pure),
+        GQCP::Shell(1, o,  {  5.0331513,   1.1695961,  0.3803890},  { 0.15591627, 0.60768372, 0.39195739}, pure),
+        GQCP::Shell(0, h2, {  3.42525091,  0.62391373, 0.16885540}, { 0.15432897, 0.53532814, 0.44463454}, pure)
     };
 
     GQCP::Molecule h2o ({h1, o, h2});

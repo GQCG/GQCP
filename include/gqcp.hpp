@@ -19,7 +19,10 @@
 #define GQCP_HPP
 
 #include "Basis/AOBasis.hpp"
+#include "Basis/CartesianDirection.hpp"
+#include "Basis/CartesianExponents.hpp"
 #include "Basis/CartesianGTO.hpp"
+#include "Basis/LibintInterfacer.hpp"
 #include "Basis/Shell.hpp"
 #include "Basis/ShellSet.hpp"
 
@@ -115,7 +118,6 @@
 #include "elements.hpp"
 #include "HoppingMatrix.hpp"
 #include "JacobiRotationParameters.hpp"
-#include "LibintInterfacer.hpp"
 #include "Molecule.hpp"
 #include "OrbitalOptimizationOptions.hpp"
 #include "RMP2.hpp"

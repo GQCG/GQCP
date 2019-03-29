@@ -11,6 +11,7 @@ set(PROJECT_INCLUDE_FILES
         ${PROJECT_INCLUDE_FOLDER}/Basis/CartesianDirection.hpp
         ${PROJECT_INCLUDE_FOLDER}/Basis/CartesianExponents.hpp
         ${PROJECT_INCLUDE_FOLDER}/Basis/CartesianGTO.hpp
+        ${PROJECT_INCLUDE_FOLDER}/Basis/LibintInterfacer.hpp
         ${PROJECT_INCLUDE_FOLDER}/Basis/Shell.hpp
         ${PROJECT_INCLUDE_FOLDER}/Basis/ShellSet.hpp
 
@@ -111,7 +112,6 @@ set(PROJECT_INCLUDE_FILES
         ${PROJECT_INCLUDE_FOLDER}/elements.hpp
         ${PROJECT_INCLUDE_FOLDER}/HoppingMatrix.hpp
         ${PROJECT_INCLUDE_FOLDER}/JacobiRotationParameters.hpp
-        ${PROJECT_INCLUDE_FOLDER}/LibintInterfacer.hpp
         ${PROJECT_INCLUDE_FOLDER}/Molecule.hpp
         ${PROJECT_INCLUDE_FOLDER}/RMP2.hpp
         ${PROJECT_INCLUDE_FOLDER}/typedefs.hpp

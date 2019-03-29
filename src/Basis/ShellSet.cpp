@@ -17,7 +17,7 @@
 // 
 #include "Basis/ShellSet.hpp"
 
-#include "LibintInterfacer.hpp"
+#include "Basis/LibintInterfacer.hpp"
 
 #include <algorithm>
 
@@ -110,6 +110,43 @@ size_t ShellSet::basisFunctionIndex(size_t shell_index) const {
     }
 
     return bf_index;
+}
+
+
+/**
+ *  For every of the shells, embed the normalization factor of every Gaussian primitive into its corresponding contraction coefficient. If this has already been done, this function does nothing
+ *
+ *  Note that the normalization factor that is embedded corresponds to the spherical (or axis-aligned Cartesian) GTO
+ */
+void ShellSet::embedNormalizationFactorsOfPrimitives() {
+
+    for (auto& shell : *this) {
+        shell.embedNormalizationFactorsOfPrimitives();
+    }
+}
+
+    
+/**
+ *  For every of the shells, embed the normalization factor of every Gaussian primitive into its corresponding contraction coefficient. If this has already been done, this function does nothing
+ *
+ *  Note that the normalization factor that is embedded corresponds to the spherical (or axis-aligned Cartesian) GTO
+ */
+void ShellSet::unEmbedNormalizationFactorsOfPrimitives() {
+
+    for (auto& shell : *this) {
+        shell.unEmbedNormalizationFactorsOfPrimitives();
+    }
+}
+
+
+/**
+ *  For every of the shells, embed the total normalization factor of the corresponding linear combination of spherical (or axis-aligned Cartesian) GTOs into the contraction coefficients
+ */
+void ShellSet::embedNormalizationFactors() {
+
+    for (auto& shell : *this) {
+        shell.embedNormalizationFactor();
+    }
 }
 
 

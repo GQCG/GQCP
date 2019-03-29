@@ -25,7 +25,6 @@
 #include "Molecule.hpp"
 
 
-
 BOOST_AUTO_TEST_CASE ( AOBasis_constructor ) {
 
     // Check if we can construct an AOBasis object
@@ -59,9 +58,6 @@ BOOST_AUTO_TEST_CASE( Szabo_integrals_h2_sto3g ) {
     GQCP::OneElectronOperator<double> H_core = T + V;
 
     auto g = ao_basis.calculateCoulombRepulsionIntegrals();
-
-
-    std::cout << "S: " << std::endl << S << std::endl << std::endl;
 
 
     // Fill in the reference values from Szabo
@@ -118,9 +114,9 @@ BOOST_AUTO_TEST_CASE( HORTON_integrals_h2o_sto3g ) {
     GQCP::TwoElectronOperator<double> ref_g = GQCP::TwoElectronOperator<double>::FromFile("data/h2o_sto-3g_coulomb_horton.data", nbf);
 
 
-    // Check if the calculated integrals are equal to those of HORTON
-    BOOST_CHECK(S.isApprox(ref_S, 1.0e-08));
-    BOOST_CHECK(T.isApprox(ref_T, 1.0e-08));
-    BOOST_CHECK(V.isApprox(ref_V, 1.0e-08));
+    // Check if the calculated integrals are close to those of HORTON
+    BOOST_CHECK(S.isApprox(ref_S, 1.0e-07));
+    BOOST_CHECK(T.isApprox(ref_T, 1.0e-07));
+    BOOST_CHECK(V.isApprox(ref_V, 1.0e-07));
     BOOST_CHECK(g.isApprox(ref_g, 1.0e-06));
 }

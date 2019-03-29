@@ -100,14 +100,15 @@ public:
 
     // PUBLIC METHODS - INTERFACING (LIBINT TO GQCP)
     /**
-     *  Interface a libint2::Shell to the corresponding list of GQCP::Shells. Note that there is no one-to-one libint -> GQCP conversion, since GQCP does not support 'linked' sp-'shells'
+     *  Interface a libint2::Shell to the corresponding list of GQCP::Shells. Note that there is no one-to-one libint -> GQCP conversion, since GQCP does not support representing 'linked' sp-'shells'
      *
      *  @param libint_shell     the libint2 Shell that should be interfaced
      *  @param atoms            the atoms that can serve as centers of the Shells
+     *  @param undo_renorm      if the libint2::Shell should be un-renorm()alized
      *
-     *  @return a vector of GQCP::Shells corresponding to one libint2::Shell
+     *  @return a vector of GQCP::Shells
      */
-    std::vector<Shell> interface(const libint2::Shell& libint_shell, const std::vector<Atom>& atoms) const;
+    std::vector<Shell> interface(const libint2::Shell& libint_shell, const std::vector<Atom>& atoms, bool undo_renorm=true) const;
 
     /**
      *  Interface a libint2::BasisSet to the corresponding GQCP::ShellSet

@@ -15,7 +15,9 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "LibintInterfacer.hpp"
+#include "Basis/LibintInterfacer.hpp"
+
+#include "Basis/CartesianGTO.hpp"
 
 #include <boost/math/constants/constants.hpp>
 #include <boost/math/special_functions/factorials.hpp>
@@ -42,7 +44,7 @@ LibintInterfacer::LibintInterfacer() {
 
 
     // By default, libint2 changes the contraction coefficients in a shell to correspond to a normalized basis function: undo this behavior
-    // Note: libint2 uses a Cartesian normalization factor such that the axis-aligned (i.e. {2,0,0} or {0,3,0}) Cartesian functions are normalized
+    // Note: libint2 uses normalization factors such that the axis-aligned (i.e. {2,0,0} or {0,3,0}) Cartesian functions are normalized
     libint2::Shell::do_enforce_unit_normalization(false);
 }
 
@@ -128,7 +130,7 @@ libint2::Shell LibintInterfacer::interface(const Shell& shell) const {
     std::array<double, 3> libint_O {position.x(), position.y(), position.z()};
 
 
-    // Make sure that the renorm()alization is undone
+    // Upon construction, libint2 renorm()alizes the contraction coefficients, so we want to undo this
     libint2::Shell libint_shell (libint_alpha, {libint_contraction}, libint_O);
     this->undo_renorm(libint_shell);
     return libint_shell;
@@ -174,19 +176,21 @@ libint2::BasisSet LibintInterfacer::interface(const ShellSet& shellset) const {
  */
 
 /**
- *  Interface a libint2::Shell to the corresponding list of GQCP::Shells. Note that there is no one-to-one libint -> GQCP conversion, since GQCP does not support 'linked' sp-'shells'
+ *  Interface a libint2::Shell to the corresponding list of GQCP::Shells. Note that there is no one-to-one libint -> GQCP conversion, since GQCP does not support representing 'linked' sp-'shells'
  *
  *  @param libint_shell     the libint2 Shell that should be interfaced
  *  @param atoms            the atoms that can serve as centers of the Shells
+ *  @param undo_renorm      if the libint2::Shell should be un-renorm()alized
  *
  *  @return a vector of GQCP::Shells
  */
-std::vector<Shell> LibintInterfacer::interface(const libint2::Shell& libint_shell, const std::vector<Atom>& atoms) const {
+std::vector<Shell> LibintInterfacer::interface(const libint2::Shell& libint_shell, const std::vector<Atom>& atoms, bool undo_renorm) const {
 
-
-    // Upon construction from its members, Libint2 renorm()alizes its Shells, so we first undo this
+    // If required, undo Libint2's default renorm()alization
     auto libint_shell_copy = libint_shell;
-    this->undo_renorm(libint_shell_copy);
+    if (undo_renorm) {
+        this->undo_renorm(libint_shell_copy);
+    }
 
 
     // Construct the corresponding GQCP::Shells
@@ -201,20 +205,24 @@ std::vector<Shell> LibintInterfacer::interface(const libint2::Shell& libint_shel
         std::vector<double> coefficients = libint_contraction.coeff;
 
         // Libint2 only stores the origin of the shell, so we have to find the atom corresponding to the copied shell's origin
+        Eigen::Map<const Eigen::Matrix<double, 3, 1>> libint_origin_map (libint_shell_copy.O.data());  // convert raw array data to Eigen
         Atom corresponding_atom;
-        for (const Atom& atom : atoms) {
-            Eigen::Map<const Eigen::Matrix<double, 3, 1>> libint_origin_map (libint_shell_copy.O.data());  // convert raw array data to Eigen
+        for (size_t i = 0; i < atoms.size(); i++) {
+            Atom atom = atoms[i];
+
             if (atom.position.isApprox(libint_origin_map, 1.0e-06)) {  // tolerant comparison
                 corresponding_atom = atom;
                 break;
             }
+
+            if (i == (atoms.size() - 1)) {  // if we haven't broken out of the loop after exhausting the possible atoms
+                throw std::invalid_argument("LibintInterfacer::interface(libint2::Shell, std::vector<Atom>): No given atom matches the center of the libint2::Shell");
+            }
         }
 
-        if (corresponding_atom.atomic_number == 0) {
-            throw std::invalid_argument("LibintInterfacer::interface(libint2::Shell, std::vector<Atom>): No given atom matches the center of the libint2::Shell");
-        }
-
-        shells.emplace_back(l, corresponding_atom, exponents, coefficients);
+        // Other flags
+        bool pure = libint_contraction.pure;
+        shells.emplace_back(l, corresponding_atom, exponents, coefficients, pure, false, false);
     }
 
     return shells;
@@ -222,12 +230,12 @@ std::vector<Shell> LibintInterfacer::interface(const libint2::Shell& libint_shel
 
 
 /**
- *  Interface a libint2::BasisSet to the corresponding GQCP::ShellSet
+ *  Interface a libint2::BasisSet to the corresponding GQCP::ShellSet and undo the libint2 renorm()alization
  *
  *  @param libint_basisset      the libint2 Shell that should be interfaced
  *  @param atoms                the atoms that can serve as centers of the Shells
  *
- *  @return a GQCP::ShellSet corresponding to the libint2::BasisSet
+ *  @return a GQCP::ShellSet corresponding to the un-renorm()alized libint2::BasisSet
  */
 ShellSet LibintInterfacer::interface(const libint2::BasisSet& libint_basisset, const std::vector<Atom>& atoms) const {
 
@@ -284,17 +292,11 @@ void LibintInterfacer::undo_renorm(libint2::Shell& libint_shell) const {
 
     // Instead of multiplying (what libint2 does), divide each contraction coefficient by the normalization factor
     for (auto& contraction: libint_shell.contr) {
-        for (size_t p = 0; p != libint_shell.nprim(); ++p) {
+        for (size_t p = 0; p != libint_shell.nprim(); p++) {
             double alpha = libint_shell.alpha[p];
             size_t l = contraction.l;
 
-            auto pi = boost::math::constants::pi<double>();
-            auto df = (l == 0)? 1 : boost::math::double_factorial<double>(2*static_cast<unsigned>(l) - 1);  // df: double factorial
-
-            double N = 1.0;  // normalization factor for spherical GTOs and axis-aligned Cartesian GTO
-            N *= std::pow(2 * alpha / pi, 3.0/4.0);
-            N *= std::pow(4 * alpha, l/2.0);
-            N *= std::pow(df, -1.0/2.0);
+            double N = CartesianGTO::calculateNormalizationFactor(alpha, CartesianExponents(l, 0, 0));
 
             contraction.coeff[p] /= N;
         }

@@ -28,7 +28,7 @@
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "RHF/DIISRHFSCFSolver.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
-#include "LibintInterfacer.hpp"
+#include "Basis/LibintInterfacer.hpp"
 #include "units.hpp"
 
 
@@ -53,6 +53,7 @@ BOOST_AUTO_TEST_CASE ( two_electron_throw ) {
     BOOST_CHECK_THROW(GQCP::calculateExpectationValue(g, d_invalid), std::invalid_argument);
     BOOST_CHECK_NO_THROW(GQCP::calculateExpectationValue(g, d_valid));
 }
+
 
 BOOST_AUTO_TEST_CASE ( mulliken_N2_STO_3G ) {
 
@@ -81,7 +82,8 @@ BOOST_AUTO_TEST_CASE ( mulliken_N2_STO_3G ) {
     GQCP::OneRDM<double> one_rdm = GQCP::calculateRHF1RDM(K, N);
 
     double mulliken_population = GQCP::calculateExpectationValue(mulliken, one_rdm);
-    BOOST_CHECK(std::abs(mulliken_population - (N)) < 1.0e-08);
+    BOOST_CHECK(std::abs(mulliken_population - (N)) < 1.0e-06);
+
 
     // Repeat this for a DOCI-RDM
 
@@ -105,5 +107,5 @@ BOOST_AUTO_TEST_CASE ( mulliken_N2_STO_3G ) {
     GQCP::OneRDMs<double> one_rdms = rdm_calculator.calculate1RDMs();
 
     double mulliken_population_2 = GQCP::calculateExpectationValue(mulliken, one_rdms.one_rdm);
-    BOOST_CHECK(std::abs(mulliken_population_2 - (N)) < 1.0e-08);
+    BOOST_CHECK(std::abs(mulliken_population_2 - (N)) < 1.0e-06);
 }

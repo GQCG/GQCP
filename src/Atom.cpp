@@ -47,7 +47,7 @@ Atom::Atom(size_t atomic_number, double x, double y, double z) :
  *  Default constructor, creating a 'ghost' atom (i.e. Bq) in the origin
  */
 Atom::Atom() :
-    Atom(0,  0, 0, 0)  // Z = 0
+    Atom(0,  0.0, 0.0, 0.0)  // Z = 0
 {}
 
 

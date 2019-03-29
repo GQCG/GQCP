@@ -16,7 +16,7 @@
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
 #include "Basis/AOBasis.hpp"
-#include "LibintInterfacer.hpp"
+#include "Basis/LibintInterfacer.hpp"
 
 
 namespace GQCP {
@@ -42,7 +42,11 @@ AOBasis::AOBasis(const ShellSet& shell_set) :
  */
 AOBasis::AOBasis(const Molecule& molecule, const std::string& basisset_name) :
     AOBasis(ShellSet(molecule, basisset_name))
-{}
+{
+    // At the moment, libint2 is used to read in the STO-3G basisset
+    // This means that we should use libint2's normalization (i.e. only embed the normalization coefficients of the primitives, see LibintInterfacer's destructor)
+    this->shell_set.embedNormalizationFactorsOfPrimitives();
+}
 
 
 

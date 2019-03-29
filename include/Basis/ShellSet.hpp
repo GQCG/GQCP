@@ -69,6 +69,25 @@ public:
      *  @return the (total basis function) index that corresponds to the first basis function in the given shell
      */
     size_t basisFunctionIndex(size_t shell_index) const;
+
+    /**
+     *  For every of the shells, embed the normalization factor of every Gaussian primitive into its corresponding contraction coefficient. If this has already been done, this function does nothing
+     *
+     *  Note that the normalization factor that is embedded corresponds to the spherical (or axis-aligned Cartesian) GTO
+     */
+    void embedNormalizationFactorsOfPrimitives();
+
+    /**
+     *  For every of the shells, embed the normalization factor of every Gaussian primitive into its corresponding contraction coefficient. If this has already been done, this function does nothing
+     *
+     *  Note that the normalization factor that is embedded corresponds to the spherical (or axis-aligned Cartesian) GTO
+     */
+    void unEmbedNormalizationFactorsOfPrimitives();
+
+    /**
+     *  For every of the shells, embed the total normalization factor of the corresponding linear combination of spherical (or axis-aligned Cartesian) GTOs into the contraction coefficients
+     */
+    void embedNormalizationFactors();
 };
 
 
