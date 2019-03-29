@@ -19,10 +19,11 @@
 #define GQCP_MISCELLANEOUS_HPP
 
 
-#include <string>
+#include <algorithm>
 #include <functional>
-#include <vector>
 #include <stdlib.h>
+#include <string>
+#include <vector>
 
 
 namespace GQCP {
