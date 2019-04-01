@@ -58,7 +58,9 @@ CartesianExponents::CartesianExponents(const std::array<size_t, 3>& arr) :
  *
  *  @return if these Cartesian exponents are 'smaller' than the ones on the right-hand side. The following logic is used: lhs < rhs
  *      - if lhs's angular momentum is smaller
- *      - if both angular momenta are equal, a larger x takes precedence over a larger y, over a larger z
+ *      - if both angular momenta are equal, x takes precedence over y, over z
+ *
+ *  This means that {1, 0, 0}(=x) < {2, 0, 0}(=x^2), and {2, 0, 0}(=x^2) < {1, 1, 0}(=xy)
  */
 bool CartesianExponents::operator<(const CartesianExponents& rhs) const {
 

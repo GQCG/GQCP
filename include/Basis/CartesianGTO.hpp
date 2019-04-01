@@ -29,7 +29,7 @@ namespace GQCP {
 
 
 /**
- *  A class representing a Cartesian Gaussian-type orbital (GTO), which is often referred to as a 'primitive'
+ *  A class representing a Cartesian Gaussian-type orbital (GTO), which is often referred to as a Cartesian 'primitive'
  *
  *  Mathematically speaking, a Cartesian GTO is a real-valued scalar function taking an Euclidean vector (3D-vector) as argument
  *

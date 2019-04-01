@@ -35,16 +35,16 @@ AOBasis::AOBasis(const ShellSet& shell_set) :
 
 
 /**
- *  Construct an AO basis by placing shells corresponding to the basisset information on every atom of the molecule. The contraction coefficients in the underlying shells are modified such that the resulting spherical (or axis-aligned Cartesian) GTOs are normalized
+ *  Construct an AO basis by placing shells corresponding to the basisset specification on every atom of the molecule
  *
  *  @param molecule             the molecule containing the atoms on which the shells should be centered
  *  @param basisset_name        the name of the basisset, e.g. "STO-3G"
+ *
+ *  Note that the normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells
  */
 AOBasis::AOBasis(const Molecule& molecule, const std::string& basisset_name) :
     AOBasis(ShellSet(molecule, basisset_name))
 {
-    // At the moment, libint2 is used to read in the STO-3G basisset
-    // This means that we should use libint2's normalization (i.e. only embed the normalization coefficients of the primitives, see LibintInterfacer's destructor)
     this->shell_set.embedNormalizationFactorsOfPrimitives();
 }
 
@@ -64,7 +64,7 @@ size_t AOBasis::numberOfBasisFunctions() const {
 
 
 /*
- *  PUBLIC METHODS - LIBINT INTEGRALS
+ *  PUBLIC METHODS
  */
 
 /**
@@ -100,7 +100,9 @@ OneElectronOperator<double> AOBasis::calculateNuclearIntegrals() const {
 
 
 /**
- *  @return the matrix representation of the Cartesian components of the electrical dipole operator
+ *  @param origin       the origin of the dipole
+ *
+ *  @return the matrix representation of the Cartesian components of the electrical dipole operator in this AO basis
  */
 std::array<OneElectronOperator<double>, 3> AOBasis::calculateDipoleIntegrals(const Vector<double, 3>& origin) const {
 

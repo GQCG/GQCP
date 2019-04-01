@@ -27,6 +27,7 @@
 
 namespace GQCP {
 
+
 /**
  *  A class to represent an atom with an atomic charge and a position in space (in bohr)
  */

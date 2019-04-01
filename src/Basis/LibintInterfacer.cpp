@@ -186,7 +186,7 @@ libint2::BasisSet LibintInterfacer::interface(const ShellSet& shellset) const {
  */
 std::vector<Shell> LibintInterfacer::interface(const libint2::Shell& libint_shell, const std::vector<Atom>& atoms, bool undo_renorm) const {
 
-    // If required, undo Libint2's default renorm()alization
+    // If asked for, undo Libint2's default renorm()alization
     auto libint_shell_copy = libint_shell;
     if (undo_renorm) {
         this->undo_renorm(libint_shell_copy);

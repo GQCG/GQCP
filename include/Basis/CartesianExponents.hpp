@@ -29,7 +29,7 @@ namespace GQCP {
 
 
 /**
- *  A class that represents Cartesian exponents
+ *  A class that represents exponents of the Cartesian functions x, y and z
  */
 class CartesianExponents {
 private:
@@ -61,7 +61,7 @@ public:
      *      - if lhs's angular momentum is smaller
      *      - if both angular momenta are equal, x takes precedence over y, over z
      *
-     *  This means that {1, 0, 0}(x) < {2, 0, 0}(x^2), and {2, 0, 0}(x^2) < {1, 1, 0}(xy)
+     *  This means that {1, 0, 0}(=x) < {2, 0, 0}(=x^2), and {2, 0, 0}(=x^2) < {1, 1, 0}(=xy)
      */
     bool operator<(const CartesianExponents& rhs) const;
 

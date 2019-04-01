@@ -15,14 +15,14 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef BasisSet_hpp
-#define BasisSet_hpp
+#ifndef ShellSet_hpp
+#define ShellSet_hpp
 
-
-#include <vector>
 
 #include "Basis/Shell.hpp"
 #include "Molecule.hpp"
+
+#include <vector>
 
 
 namespace GQCP {
@@ -94,4 +94,4 @@ public:
 }  // namespace GQCP
 
 
-#endif  /* BasisSet_hpp */
+#endif  /* ShellSet_hpp */

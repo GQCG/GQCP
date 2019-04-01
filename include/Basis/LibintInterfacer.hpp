@@ -106,7 +106,7 @@ public:
      *  @param atoms            the atoms that can serve as centers of the Shells
      *  @param undo_renorm      if the libint2::Shell should be un-renorm()alized
      *
-     *  @return a vector of GQCP::Shells
+     *  @return a vector of GQCP::Shells corresponding to the given libint2::Shells
      */
     std::vector<Shell> interface(const libint2::Shell& libint_shell, const std::vector<Atom>& atoms, bool undo_renorm=true) const;
 
