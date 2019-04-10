@@ -216,7 +216,7 @@ Vector<LinearCombination<double, CartesianGTO>, 3> CartesianGTO::calculateGradie
 
     Vector<LinearCombination<double, CartesianGTO>, 3> gradient;
     for (const auto& direction : {CartesianDirection::x, CartesianDirection::y, CartesianDirection::z}) {
-        auto position = static_cast<size_t>(direction);
+        const auto& position = static_cast<size_t>(direction);
         gradient(position) = this->calculateDerivative(direction);
     }
 

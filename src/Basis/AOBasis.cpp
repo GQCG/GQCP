@@ -72,7 +72,7 @@ size_t AOBasis::numberOfBasisFunctions() const {
  */
 OneElectronOperator<double> AOBasis::calculateOverlapIntegrals() const {
 
-    auto libint_basisset = LibintInterfacer::get().interface(this->shell_set);
+    const auto& libint_basisset = LibintInterfacer::get().interface(this->shell_set);
     return LibintInterfacer::get().calculateOneElectronIntegrals<1>(libint2::Operator::overlap, libint_basisset)[0];
 }
 
@@ -82,7 +82,7 @@ OneElectronOperator<double> AOBasis::calculateOverlapIntegrals() const {
  */
 OneElectronOperator<double> AOBasis::calculateKineticIntegrals() const {
 
-    auto libint_basisset = LibintInterfacer::get().interface(this->shell_set);
+    const auto& libint_basisset = LibintInterfacer::get().interface(this->shell_set);
     return LibintInterfacer::get().calculateOneElectronIntegrals<1>(libint2::Operator::kinetic, libint_basisset)[0];
 }
 
@@ -92,8 +92,8 @@ OneElectronOperator<double> AOBasis::calculateKineticIntegrals() const {
  */
 OneElectronOperator<double> AOBasis::calculateNuclearIntegrals() const {
 
-    auto libint_basisset = LibintInterfacer::get().interface(this->shell_set);
-    auto libint_atoms = LibintInterfacer::get().interface(this->shell_set.atoms());
+    const auto& libint_basisset = LibintInterfacer::get().interface(this->shell_set);
+    const auto& libint_atoms = LibintInterfacer::get().interface(this->shell_set.atoms());
 
     return LibintInterfacer::get().calculateOneElectronIntegrals<1>(libint2::Operator::nuclear, libint_basisset, make_point_charges(libint_atoms))[0];
 }
@@ -107,9 +107,9 @@ OneElectronOperator<double> AOBasis::calculateNuclearIntegrals() const {
 std::array<OneElectronOperator<double>, 3> AOBasis::calculateDipoleIntegrals(const Vector<double, 3>& origin) const {
 
     std::array<double, 3> origin_array {origin.x(), origin.y(), origin.z()};
-    auto libint_basisset = LibintInterfacer::get().interface(this->shell_set);
+    const auto& libint_basisset = LibintInterfacer::get().interface(this->shell_set);
 
-    auto all_integrals = LibintInterfacer::get().calculateOneElectronIntegrals<4>(libint2::Operator::emultipole1, libint_basisset, origin_array);  // overlap, x, y, z
+    const auto& all_integrals = LibintInterfacer::get().calculateOneElectronIntegrals<4>(libint2::Operator::emultipole1, libint_basisset, origin_array);  // overlap, x, y, z
 
     // Apply the minus sign which comes from the charge of the electrons -e
     return std::array<OneElectronOperator<double>, 3> {-all_integrals[1], -all_integrals[2], -all_integrals[3]};  // we don't need the overlap, so ignore [0]
@@ -121,7 +121,7 @@ std::array<OneElectronOperator<double>, 3> AOBasis::calculateDipoleIntegrals(con
  */
 TwoElectronOperator<double> AOBasis::calculateCoulombRepulsionIntegrals() const {
 
-    auto libint_basisset = LibintInterfacer::get().interface(this->shell_set);
+    const auto& libint_basisset = LibintInterfacer::get().interface(this->shell_set);
     return LibintInterfacer::get().calculateTwoElectronIntegrals(libint2::Operator::coulomb, libint_basisset);
 }
 
