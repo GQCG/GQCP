@@ -83,9 +83,9 @@ std::vector<Atom> ShellSet::atoms() const {
 
     // Append every unique atom in this shell set's shells
     for (const auto& shell : *this) {
-        auto atom = shell.get_atom();
+        const auto& atom = shell.get_atom();
 
-        auto p = std::find(atoms.begin(), atoms.end(), atom);
+        const auto& p = std::find(atoms.begin(), atoms.end(), atom);
         if (p == atoms.end()) {  // if unique
             atoms.push_back(atom);
         }
