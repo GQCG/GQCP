@@ -115,13 +115,13 @@ std::vector<libint2::Atom> LibintInterfacer::interface(const std::vector<Atom>& 
 libint2::Shell LibintInterfacer::interface(const Shell& shell) const {
 
     // Part 1: exponents
-    std::vector<double> libint_alpha = shell.get_gaussian_exponents();  // libint::Shell::real_t is double, so no need to use real_t
+    const std::vector<double>& libint_alpha = shell.get_gaussian_exponents();  // libint::Shell::real_t is double, so no need to use real_t
 
 
     // Part 2: contractions
-    const auto& libint_l = static_cast<int>(shell.get_l());
+    auto libint_l = static_cast<int>(shell.get_l());
     bool libint_pure = shell.is_pure();
-    std::vector<double> libint_coeff = shell.get_contraction_coefficients();
+    const std::vector<double>& libint_coeff = shell.get_contraction_coefficients();
     libint2::Shell::Contraction libint_contraction {libint_l, libint_pure, libint_coeff};
 
 

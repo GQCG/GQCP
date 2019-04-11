@@ -72,7 +72,7 @@ size_t AOBasis::numberOfBasisFunctions() const {
  */
 OneElectronOperator<double> AOBasis::calculateOverlapIntegrals() const {
 
-    const auto& libint_basisset = LibintInterfacer::get().interface(this->shell_set);
+    auto libint_basisset = LibintInterfacer::get().interface(this->shell_set);
     return LibintInterfacer::get().calculateOneElectronIntegrals<1>(libint2::Operator::overlap, libint_basisset)[0];
 }
 
@@ -82,7 +82,7 @@ OneElectronOperator<double> AOBasis::calculateOverlapIntegrals() const {
  */
 OneElectronOperator<double> AOBasis::calculateKineticIntegrals() const {
 
-    const auto& libint_basisset = LibintInterfacer::get().interface(this->shell_set);
+    auto libint_basisset = LibintInterfacer::get().interface(this->shell_set);
     return LibintInterfacer::get().calculateOneElectronIntegrals<1>(libint2::Operator::kinetic, libint_basisset)[0];
 }
 
@@ -92,8 +92,8 @@ OneElectronOperator<double> AOBasis::calculateKineticIntegrals() const {
  */
 OneElectronOperator<double> AOBasis::calculateNuclearIntegrals() const {
 
-    const auto& libint_basisset = LibintInterfacer::get().interface(this->shell_set);
-    const auto& libint_atoms = LibintInterfacer::get().interface(this->shell_set.atoms());
+    auto libint_basisset = LibintInterfacer::get().interface(this->shell_set);
+    auto libint_atoms = LibintInterfacer::get().interface(this->shell_set.atoms());
 
     return LibintInterfacer::get().calculateOneElectronIntegrals<1>(libint2::Operator::nuclear, libint_basisset, make_point_charges(libint_atoms))[0];
 }
@@ -121,7 +121,7 @@ std::array<OneElectronOperator<double>, 3> AOBasis::calculateDipoleIntegrals(con
  */
 TwoElectronOperator<double> AOBasis::calculateCoulombRepulsionIntegrals() const {
 
-    const auto& libint_basisset = LibintInterfacer::get().interface(this->shell_set);
+    auto libint_basisset = LibintInterfacer::get().interface(this->shell_set);
     return LibintInterfacer::get().calculateTwoElectronIntegrals(libint2::Operator::coulomb, libint_basisset);
 }
 
