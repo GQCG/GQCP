@@ -107,9 +107,9 @@ OneElectronOperator<double> AOBasis::calculateNuclearIntegrals() const {
 std::array<OneElectronOperator<double>, 3> AOBasis::calculateDipoleIntegrals(const Vector<double, 3>& origin) const {
 
     std::array<double, 3> origin_array {origin.x(), origin.y(), origin.z()};
-    const auto& libint_basisset = LibintInterfacer::get().interface(this->shell_set);
 
-    const auto& all_integrals = LibintInterfacer::get().calculateOneElectronIntegrals<4>(libint2::Operator::emultipole1, libint_basisset, origin_array);  // overlap, x, y, z
+    auto libint_basisset = LibintInterfacer::get().interface(this->shell_set);
+    auto all_integrals = LibintInterfacer::get().calculateOneElectronIntegrals<4>(libint2::Operator::emultipole1, libint_basisset, origin_array);  // overlap, x, y, z
 
     // Apply the minus sign which comes from the charge of the electrons -e
     return std::array<OneElectronOperator<double>, 3> {-all_integrals[1], -all_integrals[2], -all_integrals[3]};  // we don't need the overlap, so ignore [0]

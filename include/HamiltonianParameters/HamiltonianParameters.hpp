@@ -134,9 +134,9 @@ public:
     static enable_if_t<std::is_same<Z, double>::value, HamiltonianParameters<double>> Molecular(std::shared_ptr<AOBasis> ao_basis, double scalar=0.0) {
 
         // Calculate the integrals for the molecular Hamiltonian
-        auto S = ao_basis->calculateOverlapIntegrals();
-        auto T = ao_basis->calculateKineticIntegrals();
-        auto V = ao_basis->calculateNuclearIntegrals();
+        const auto S = ao_basis->calculateOverlapIntegrals();
+        const auto T = ao_basis->calculateKineticIntegrals();
+        const auto V = ao_basis->calculateNuclearIntegrals();
         OneElectronOperator<double> H = T + V;
 
         auto g = ao_basis->calculateCoulombRepulsionIntegrals();
