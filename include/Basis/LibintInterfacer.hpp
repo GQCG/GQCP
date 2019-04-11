@@ -169,7 +169,7 @@ public:
         libint2::Engine engine (operator_type, libint_basisset.max_nprim(), static_cast<int>(libint_basisset.max_l()));
         engine.set_params(parameters);
 
-        const auto shell2bf = libint_basisset.shell2bf();  // create a map between (shell index) -> (basis function index)
+        const auto& shell2bf = libint_basisset.shell2bf();  // create a map between (shell index) -> (basis function index)
 
         const auto& calculated_integrals = engine.results();  // vector that holds pointers to computed shell sets
         assert(calculated_integrals.size() == N);             // its size is N, so it holds N pointers to the first computed integral of an integral set
