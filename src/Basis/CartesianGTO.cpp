@@ -73,9 +73,9 @@ double CartesianGTO::operator()(const Vector<double, 3>& r) const {
     Vector<double, 3> delta_r = r - this->center;
 
     double value = this->N;
-    value *= std::pow(delta_r.x(), this->cartesian_exponents.x());
-    value *= std::pow(delta_r.y(), this->cartesian_exponents.y());
-    value *= std::pow(delta_r.z(), this->cartesian_exponents.z());
+    value *= std::pow(delta_r.x(), this->cartesian_exponents.x);
+    value *= std::pow(delta_r.y(), this->cartesian_exponents.y);
+    value *= std::pow(delta_r.z(), this->cartesian_exponents.z);
 
     return value * std::exp(-this->gaussian_exponent * delta_r.squaredNorm());
 }
@@ -163,15 +163,15 @@ LinearCombination<double, CartesianGTO> CartesianGTO::calculateDerivative(Cartes
     CartesianExponents exponential_derivative_exponents = this->cartesian_exponents;
     switch (direction) {  // raise the exponents by one
         case CartesianDirection::x:
-            exponential_derivative_exponents.x() += 1;
+            exponential_derivative_exponents.x += 1;
             break;
 
         case CartesianDirection::y:
-            exponential_derivative_exponents.y() += 1;
+            exponential_derivative_exponents.y += 1;
             break;
 
         case CartesianDirection::z:
-            exponential_derivative_exponents.z() += 1;
+            exponential_derivative_exponents.z += 1;
             break;
     }
 
@@ -187,15 +187,15 @@ LinearCombination<double, CartesianGTO> CartesianGTO::calculateDerivative(Cartes
         CartesianExponents linear_derivative_exponents = this->cartesian_exponents;
         switch (direction) {  // lower the exponents by one
             case CartesianDirection::x:
-                linear_derivative_exponents.x() -= 1;
+                linear_derivative_exponents.x -= 1;
                 break;
 
             case CartesianDirection::y:
-                linear_derivative_exponents.y() -= 1;
+                linear_derivative_exponents.y -= 1;
                 break;
 
             case CartesianDirection::z:
-                linear_derivative_exponents.z() -= 1;
+                linear_derivative_exponents.z -= 1;
                 break;
         }
 

@@ -31,11 +31,11 @@ namespace GQCP {
 /**
  *  A class that represents exponents of the Cartesian functions x, y and z
  */
-class CartesianExponents {
-private:
-    size_t x_exponent;
-    size_t y_exponent;
-    size_t z_exponent;
+struct CartesianExponents {
+public:
+    size_t x;  // the exponent in x
+    size_t y;  // the exponent in y
+    size_t z;  // the exponent in z
 
 
 public:
@@ -78,15 +78,6 @@ public:
      *  @return if the Cartesian exponents are considered different
      */
     bool operator!=(const CartesianExponents& rhs) const;
-
-
-    // GETTERS
-    size_t x() const { return this->x_exponent; }
-    size_t y() const { return this->y_exponent; }
-    size_t z() const { return this->z_exponent; }
-    size_t& x() { return this->x_exponent; }
-    size_t& y() { return this->y_exponent; }
-    size_t& z() { return this->z_exponent; }
 
 
     // PUBLIC METHODS

@@ -32,9 +32,9 @@ namespace GQCP {
  *  @param z        the exponent in z
  */
 CartesianExponents::CartesianExponents(size_t x, size_t y, size_t z) :
-    x_exponent (x),
-    y_exponent (y),
-    z_exponent (z)
+    x (x),
+    y (y),
+    z (z)
 {}
 
 
@@ -42,9 +42,9 @@ CartesianExponents::CartesianExponents(size_t x, size_t y, size_t z) :
  *  @param arr      the array containing the x-, y- and z-exponent in that order
  */
 CartesianExponents::CartesianExponents(const std::array<size_t, 3>& arr) :
-    x_exponent (arr[0]),
-    y_exponent (arr[1]),
-    z_exponent (arr[2])
+    x (arr[0]),
+    y (arr[1]),
+    z (arr[2])
 {}
 
 
@@ -70,17 +70,17 @@ bool CartesianExponents::operator<(const CartesianExponents& rhs) const {
 
     else {
         // Compare x-exponents
-        if (this->x() > rhs.x()) { return true; }
-        else if (this->x() < rhs.x()) { return false; }
+        if (this->x > rhs.x) { return true; }
+        else if (this->x < rhs.x) { return false; }
 
         else {
             // Compare y-exponents
-            if (this->y() > rhs.y()) { return true; }
-            else if (this->y() < rhs.y()) { return false; }
+            if (this->y > rhs.y) { return true; }
+            else if (this->y < rhs.y) { return false; }
 
             else {
                 // Compare z-exponents
-                if (this->z() >= rhs.z()) { return true; }  // if, at the end, the z exponents are equal, then the Cartesian exponents should be considered equal
+                if (this->z >= rhs.z) { return true; }  // if, at the end, the z exponents are equal, then the Cartesian exponents should be considered equal
                 else { return false; }
             }  // same y
         }  // same x
@@ -94,7 +94,7 @@ bool CartesianExponents::operator<(const CartesianExponents& rhs) const {
  *  @return if the Cartesian exponents are considered equal
  */
 bool CartesianExponents::operator==(const CartesianExponents& rhs) const {
-    return (this->x() == rhs.x()) && (this->y() == rhs.y()) && (this->z() == rhs.z());
+    return (this->x == rhs.x) && (this->y == rhs.y) && (this->z == rhs.z);
 }
 
 
@@ -122,15 +122,15 @@ size_t CartesianExponents::value(CartesianDirection direction) const {
 
     switch (direction) {
         case CartesianDirection::x:
-            return this->x();
+            return this->x;
             break;
 
         case CartesianDirection::y:
-            return this->y();
+            return this->y;
             break;
 
         case CartesianDirection::z:
-            return this->z();
+            return this->z;
             break;
     }
 }
@@ -140,7 +140,7 @@ size_t CartesianExponents::value(CartesianDirection direction) const {
  *  @return the angular momentum corresponding to these exponents
  */
 size_t CartesianExponents::angularMomentum() const {
-    return this->x() + this->y() + this->z();
+    return this->x + this->y + this->z;
 }
 
 
@@ -148,7 +148,7 @@ size_t CartesianExponents::angularMomentum() const {
  *  @return the exponents as an array
  */
 std::array<size_t, 3> CartesianExponents::asArray() const {
-    return std::array<size_t, 3> {this->x(), this->y(), this->z()};
+    return std::array<size_t, 3> {this->x, this->y, this->z};
 }
 
 
