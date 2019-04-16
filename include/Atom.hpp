@@ -27,6 +27,7 @@
 
 namespace GQCP {
 
+
 /**
  *  A class to represent an atom with an atomic charge and a position in space (in bohr)
  */
@@ -47,6 +48,11 @@ public:
      */
     Atom(size_t atomic_number, double x, double y, double z);
 
+    /**
+     *  Default constructor, creating a 'ghost' atom (i.e. Bq) in the origin
+     */
+    Atom();
+
 
     // OPERATORS
     /**
@@ -55,6 +61,13 @@ public:
      *  @return if this atom is equal to the other, within a default tolerance for the coordinates
      */
     bool operator==(const Atom& other) const;
+
+    /**
+     *  @param other        the other atom
+     *
+     *  @return if this atom is not equal to the other, within a default tolerance for the coordinates
+     */
+    bool operator!=(const Atom& other) const;
 
     /**
      *  A custom implementation for the comparison (and thus ordening) of atoms. The atomic_number takes precedence over the x-coordinate, which takes precedence over the y-coordinate, which in turn takes precedence over the z-coordinate

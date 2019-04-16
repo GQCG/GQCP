@@ -38,11 +38,17 @@ namespace GQCP {
  */
 Atom::Atom(size_t atomic_number, double x, double y, double z) :
     atomic_number (atomic_number)
-//    position (Vector<double, 3> {x, y, z})
 {
     position << x, y, z;
 }
 
+
+/**
+ *  Default constructor, creating a 'ghost' atom (i.e. Bq) in the origin
+ */
+Atom::Atom() :
+    Atom(0,  0.0, 0.0, 0.0)  // Z = 0
+{}
 
 
 /*
@@ -57,6 +63,16 @@ Atom::Atom(size_t atomic_number, double x, double y, double z) :
 bool Atom::operator==(const Atom& other) const {
 
     return this->isEqualTo(other, Atom::tolerance_for_comparison);
+}
+
+
+/**
+ *  @param other        the other atom
+ *
+ *  @return if this atom is not equal to the other, within a default tolerance for the coordinates
+ */
+bool Atom::operator!=(const Atom& other) const {
+    return !this->operator==(other);
 }
 
 

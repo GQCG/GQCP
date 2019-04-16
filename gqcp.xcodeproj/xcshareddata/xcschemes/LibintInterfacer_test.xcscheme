@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "56FBA13321C3888A0084F088"
-               BuildableName = "io_test"
-               BlueprintName = "io_test"
+               BlueprintIdentifier = "5614014121B0637D002C5D40"
+               BuildableName = "LibintInterfacer_test"
+               BlueprintName = "LibintInterfacer_test"
                ReferencedContainer = "container:gqcp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "56FBA13321C3888A0084F088"
-            BuildableName = "io_test"
-            BlueprintName = "io_test"
+            BlueprintIdentifier = "5614014121B0637D002C5D40"
+            BuildableName = "LibintInterfacer_test"
+            BlueprintName = "LibintInterfacer_test"
             ReferencedContainer = "container:gqcp.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -56,12 +56,19 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "56FBA13321C3888A0084F088"
-            BuildableName = "io_test"
-            BlueprintName = "io_test"
+            BlueprintIdentifier = "5614014121B0637D002C5D40"
+            BuildableName = "LibintInterfacer_test"
+            BlueprintName = "LibintInterfacer_test"
             ReferencedContainer = "container:gqcp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "LIBINT_DATA_PATH"
+            value = "/usr/local/libint/2.3.1/share/libint/2.3.1/basis"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -75,9 +82,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "56FBA13321C3888A0084F088"
-            BuildableName = "io_test"
-            BlueprintName = "io_test"
+            BlueprintIdentifier = "5614014121B0637D002C5D40"
+            BuildableName = "LibintInterfacer_test"
+            BlueprintName = "LibintInterfacer_test"
             ReferencedContainer = "container:gqcp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

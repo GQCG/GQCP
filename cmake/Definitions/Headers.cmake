@@ -7,6 +7,14 @@ set(PROJECT_INCLUDE_FOLDER ${CMAKE_SOURCE_DIR}/include)
 
 # Find the header files
 set(PROJECT_INCLUDE_FILES
+        ${PROJECT_INCLUDE_FOLDER}/Basis/AOBasis.hpp
+        ${PROJECT_INCLUDE_FOLDER}/Basis/CartesianDirection.hpp
+        ${PROJECT_INCLUDE_FOLDER}/Basis/CartesianExponents.hpp
+        ${PROJECT_INCLUDE_FOLDER}/Basis/CartesianGTO.hpp
+        ${PROJECT_INCLUDE_FOLDER}/Basis/LibintInterfacer.hpp
+        ${PROJECT_INCLUDE_FOLDER}/Basis/Shell.hpp
+        ${PROJECT_INCLUDE_FOLDER}/Basis/ShellSet.hpp
+
         ${PROJECT_INCLUDE_FOLDER}/CISolver/CISolver.hpp
 
         ${PROJECT_INCLUDE_FOLDER}/FockSpace/BaseFockSpace.hpp
@@ -99,13 +107,11 @@ set(PROJECT_INCLUDE_FILES
         ${PROJECT_INCLUDE_FOLDER}/WaveFunction/SpinUnresolvedWaveFunction.hpp
         ${PROJECT_INCLUDE_FOLDER}/WaveFunction/WaveFunction.hpp
 
-        ${PROJECT_INCLUDE_FOLDER}/AOBasis.hpp
         ${PROJECT_INCLUDE_FOLDER}/Atom.hpp
         ${PROJECT_INCLUDE_FOLDER}/DOCINewtonOrbitalOptimizer.hpp
         ${PROJECT_INCLUDE_FOLDER}/elements.hpp
         ${PROJECT_INCLUDE_FOLDER}/HoppingMatrix.hpp
         ${PROJECT_INCLUDE_FOLDER}/JacobiRotationParameters.hpp
-        ${PROJECT_INCLUDE_FOLDER}/LibintCommunicator.hpp
         ${PROJECT_INCLUDE_FOLDER}/Molecule.hpp
         ${PROJECT_INCLUDE_FOLDER}/RMP2.hpp
         ${PROJECT_INCLUDE_FOLDER}/typedefs.hpp

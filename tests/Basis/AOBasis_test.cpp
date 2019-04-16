@@ -15,56 +15,31 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#define BOOST_TEST_MODULE "LibintCommunicator"
+#define BOOST_TEST_MODULE "AOBasis"
 
 #include <boost/test/unit_test.hpp>
 #include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
 
-#include "LibintCommunicator.hpp"
+#include "Basis/AOBasis.hpp"
 
-#include "utilities/linalg.hpp"
-
-
-BOOST_AUTO_TEST_CASE ( atoms_interface ) {
-
-    std::vector<GQCP::Atom> GQCP_atoms = {
-        {1, 0, 3, 0},
-        {2, 0, 0, 4},
-        {3, 3, 0, 0},
-        {4, 0, 0, 5}
-    };
-
-    std::vector<libint2::Atom> ref_libint_atoms = {
-        {1, 0, 3, 0},
-        {2, 0, 0, 4},
-        {3, 3, 0, 0},
-        {4, 0, 0, 5}
-    };
+#include "Molecule.hpp"
 
 
-    // Use the Libint interface to obtain a std::vector<libint2::Atom> from the GQCP ones
-    auto test_libint_atoms = GQCP::LibintCommunicator::get().interface(GQCP_atoms);
+BOOST_AUTO_TEST_CASE ( AOBasis_constructor ) {
+
+    // Check if we can construct an AOBasis object
+    auto water = GQCP::Molecule::Readxyz("data/h2o.xyz");
+    GQCP::AOBasis basis (water, "STO-3G");
+}
 
 
-    /**
-     *  Implement a function object to compare (libint_atom) == (libint_atom)
-     */
-    struct LibintAtomEqual {
-        double tolerance;
-        explicit LibintAtomEqual(double tolerance) : tolerance (tolerance) {};
+BOOST_AUTO_TEST_CASE ( numberOfBasisFunctions ) {
 
-        bool operator()(const libint2::Atom& lhs, const libint2::Atom& rhs) {
-            return (lhs.atomic_number == rhs.atomic_number) &&
-                   (std::abs(lhs.x - rhs.x) < tolerance) &&
-                   (std::abs(lhs.y - rhs.y) < tolerance) &&
-                   (std::abs(lhs.z - rhs.z) < tolerance);
-        }
-    };
+    // Check the number of basis functions in water
+    auto water = GQCP::Molecule::Readxyz("data/h2o.xyz");
+    GQCP::AOBasis basis (water, "STO-3G");
 
-
-    // Check if the interfacing between the Atom types works
-    BOOST_CHECK((ref_libint_atoms.size() == test_libint_atoms.size()) &&
-                std::equal(ref_libint_atoms.begin(), ref_libint_atoms.end(), test_libint_atoms.begin(), LibintAtomEqual(1.0e-08)));
+    BOOST_CHECK_EQUAL(basis.numberOfBasisFunctions(), 7);
 }
 
 
@@ -72,17 +47,17 @@ BOOST_AUTO_TEST_CASE( Szabo_integrals_h2_sto3g ) {
 
     // We will follow the example in Szabo, section 3.5.2, where it is stated that R = 1.4 a.u. = 0.740848 Angstrom
     auto h2 = GQCP::Molecule::Readxyz("data/h2_szabo.xyz");
-    GQCP::AOBasis basis (h2, "STO-3G");
-    BOOST_CHECK_EQUAL(basis.get_number_of_basis_functions(), 2);
+    GQCP::AOBasis ao_basis (h2, "STO-3G");
+    BOOST_CHECK_EQUAL(ao_basis.numberOfBasisFunctions(), 2);
 
     // Calculate some integrals
-    auto S = GQCP::LibintCommunicator::get().calculateOverlapIntegrals(basis);
-    auto T = GQCP::LibintCommunicator::get().calculateKineticIntegrals(basis);
-    auto V = GQCP::LibintCommunicator::get().calculateNuclearIntegrals(basis);
+    auto S = ao_basis.calculateOverlapIntegrals();
+    auto T = ao_basis.calculateKineticIntegrals();
+    auto V = ao_basis.calculateNuclearIntegrals();
 
-    auto H_core = GQCP::OneElectronOperator<double>(T + V);
+    GQCP::OneElectronOperator<double> H_core = T + V;
 
-    auto g = GQCP::LibintCommunicator::get().calculateCoulombRepulsionIntegrals(basis);
+    auto g = ao_basis.calculateCoulombRepulsionIntegrals();
 
 
     // Fill in the reference values from Szabo
@@ -103,7 +78,7 @@ BOOST_AUTO_TEST_CASE( Szabo_integrals_h2_sto3g ) {
     BOOST_CHECK(H_core.isApprox(ref_H_core, 1.0e-04));
 
 
-    // The two-electron integrals in Szabo are given in chemist's notation, so this confirms that the LibintCommunicator gives them in chemist's notation as well
+    // The two-electron integrals in Szabo are given in chemist's notation, so this confirms that AO basis gives them in chemist's notation as well
     BOOST_CHECK(std::abs(g(0,0,0,0) - 0.7746) < 1.0e-04);
     BOOST_CHECK(std::abs(g(0,0,0,0) - g(1,1,1,1)) < 1.0e-12);
 
@@ -118,19 +93,18 @@ BOOST_AUTO_TEST_CASE( Szabo_integrals_h2_sto3g ) {
 
 BOOST_AUTO_TEST_CASE( HORTON_integrals_h2o_sto3g ) {
 
-    // Set up a basis
+    // Set up an AO basis
     auto water = GQCP::Molecule::Readxyz("data/h2o.xyz");
-    GQCP::AOBasis basis (water, "STO-3G");
-    auto nbf = basis.get_number_of_basis_functions();
+    GQCP::AOBasis ao_basis (water, "STO-3G");
+    auto nbf = ao_basis.numberOfBasisFunctions();
 
 
     // Calculate some integrals
-    libint2::BasisSet basisset = basis.get_basis_functions();
-    auto S = GQCP::LibintCommunicator::get().calculateOverlapIntegrals(basis);
-    auto T = GQCP::LibintCommunicator::get().calculateKineticIntegrals(basis);
-    auto V = GQCP::LibintCommunicator::get().calculateNuclearIntegrals(basis);
+    auto S = ao_basis.calculateOverlapIntegrals();
+    auto T = ao_basis.calculateKineticIntegrals();
+    auto V = ao_basis.calculateNuclearIntegrals();
 
-    auto g = GQCP::LibintCommunicator::get().calculateCoulombRepulsionIntegrals(basis);
+    auto g = ao_basis.calculateCoulombRepulsionIntegrals();
 
 
     // Read in reference data from HORTON
@@ -140,9 +114,9 @@ BOOST_AUTO_TEST_CASE( HORTON_integrals_h2o_sto3g ) {
     GQCP::TwoElectronOperator<double> ref_g = GQCP::TwoElectronOperator<double>::FromFile("data/h2o_sto-3g_coulomb_horton.data", nbf);
 
 
-    // Check if the calculated integrals are equal to those of HORTON
-    BOOST_CHECK(S.isApprox(ref_S, 1.0e-08));
-    BOOST_CHECK(T.isApprox(ref_T, 1.0e-08));
-    BOOST_CHECK(V.isApprox(ref_V, 1.0e-08));
+    // Check if the calculated integrals are close to those of HORTON
+    BOOST_CHECK(S.isApprox(ref_S, 1.0e-07));
+    BOOST_CHECK(T.isApprox(ref_T, 1.0e-07));
+    BOOST_CHECK(V.isApprox(ref_V, 1.0e-07));
     BOOST_CHECK(g.isApprox(ref_g, 1.0e-06));
 }

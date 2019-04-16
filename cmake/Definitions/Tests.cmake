@@ -7,6 +7,12 @@ set(PROJECT_TESTS_FOLDER ${CMAKE_SOURCE_DIR}/tests)
 
 # Find the source files for the tests
 set(PROJECT_TEST_SOURCE_FILES
+        ${PROJECT_TESTS_FOLDER}/Basis/AOBasis_test.cpp
+        ${PROJECT_TESTS_FOLDER}/Basis/CartesianExponents_test.cpp
+        ${PROJECT_TESTS_FOLDER}/Basis/CartesianGTO_test.cpp
+        ${PROJECT_TESTS_FOLDER}/Basis/LibintInterfacer_test.cpp
+        ${PROJECT_TESTS_FOLDER}/Basis/Shell_test.cpp
+
         ${PROJECT_TESTS_FOLDER}/CISolver/CISolver_DOCI_Davidson_test.cpp
         ${PROJECT_TESTS_FOLDER}/CISolver/CISolver_DOCI_Dense_test.cpp
         ${PROJECT_TESTS_FOLDER}/CISolver/CISolver_FCI_Davidson_test.cpp
@@ -80,13 +86,10 @@ set(PROJECT_TEST_SOURCE_FILES
 
         ${PROJECT_TESTS_FOLDER}/WaveFunction/WaveFunction_test.cpp
 
-        ${PROJECT_TESTS_FOLDER}/AOBasis_test.cpp
         ${PROJECT_TESTS_FOLDER}/Atom_test.cpp
-        ${PROJECT_TESTS_FOLDER}/CartesianGTO_test.cpp
         ${PROJECT_TESTS_FOLDER}/elements_test.cpp
         ${PROJECT_TESTS_FOLDER}/HoppingMatrix_test.cpp
         ${PROJECT_TESTS_FOLDER}/JacobiRotationParameters_test.cpp
-        ${PROJECT_TESTS_FOLDER}/LibintCommunicator_test.cpp
         ${PROJECT_TESTS_FOLDER}/Molecule_test.cpp
         ${PROJECT_TESTS_FOLDER}/OO_DOCI_test.cpp
         ${PROJECT_TESTS_FOLDER}/RMP2_test.cpp

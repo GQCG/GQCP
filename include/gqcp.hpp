@@ -18,6 +18,13 @@
 #ifndef GQCP_HPP
 #define GQCP_HPP
 
+#include "Basis/AOBasis.hpp"
+#include "Basis/CartesianDirection.hpp"
+#include "Basis/CartesianExponents.hpp"
+#include "Basis/CartesianGTO.hpp"
+#include "Basis/LibintInterfacer.hpp"
+#include "Basis/Shell.hpp"
+#include "Basis/ShellSet.hpp"
 
 #include "CISolver/CISolver.hpp"
 
@@ -105,14 +112,12 @@
 
 
 // Single files, not in a special include directory
-#include "AOBasis.hpp"
 #include "Atom.hpp"
 #include "typedefs.hpp"
 #include "DOCINewtonOrbitalOptimizer.hpp"
 #include "elements.hpp"
 #include "HoppingMatrix.hpp"
 #include "JacobiRotationParameters.hpp"
-#include "LibintCommunicator.hpp"
 #include "Molecule.hpp"
 #include "OrbitalOptimizationOptions.hpp"
 #include "RMP2.hpp"

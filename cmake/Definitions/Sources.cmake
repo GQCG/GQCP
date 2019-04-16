@@ -7,6 +7,13 @@ set(PROJECT_SOURCE_FOLDER ${CMAKE_SOURCE_DIR}/src)
 
 # Find the source files
 set(PROJECT_SOURCE_FILES
+        ${PROJECT_SOURCE_FOLDER}/Basis/AOBasis.cpp
+        ${PROJECT_SOURCE_FOLDER}/Basis/CartesianExponents.cpp
+        ${PROJECT_SOURCE_FOLDER}/Basis/CartesianGTO.cpp
+        ${PROJECT_SOURCE_FOLDER}/Basis/LibintInterfacer.cpp
+        ${PROJECT_SOURCE_FOLDER}/Basis/Shell.cpp
+        ${PROJECT_SOURCE_FOLDER}/Basis/ShellSet.cpp
+
         ${PROJECT_SOURCE_FOLDER}/CISolver/CISolver.cpp
 
         ${PROJECT_SOURCE_FOLDER}/FockSpace/BaseFockSpace.cpp
@@ -82,14 +89,11 @@ set(PROJECT_SOURCE_FILES
         ${PROJECT_SOURCE_FOLDER}/WaveFunction/WaveFunction.cpp
         ${PROJECT_SOURCE_FOLDER}/WaveFunction/WaveFunctionReader.cpp
 
-        ${PROJECT_SOURCE_FOLDER}/AOBasis.cpp
         ${PROJECT_SOURCE_FOLDER}/Atom.cpp
-        ${PROJECT_SOURCE_FOLDER}/CartesianGTO.cpp
         ${PROJECT_SOURCE_FOLDER}/DOCINewtonOrbitalOptimizer.cpp
         ${PROJECT_SOURCE_FOLDER}/elements.cpp
         ${PROJECT_SOURCE_FOLDER}/HoppingMatrix.cpp
         ${PROJECT_SOURCE_FOLDER}/JacobiRotationParameters.cpp
-        ${PROJECT_SOURCE_FOLDER}/LibintCommunicator.cpp
         ${PROJECT_SOURCE_FOLDER}/Molecule.cpp
         ${PROJECT_SOURCE_FOLDER}/RMP2.cpp
     )

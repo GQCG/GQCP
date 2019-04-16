@@ -38,7 +38,6 @@ namespace GQCP {
 template <typename _Scalar, int _Rank>
 class Tensor : public Eigen::Tensor<_Scalar, _Rank> {
 public:
-
     using Scalar = _Scalar;
     enum {
         Rank = _Rank

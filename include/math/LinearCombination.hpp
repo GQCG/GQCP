@@ -38,7 +38,7 @@ class LinearCombination : public ScalarFunction<typename T::Valued, typename T::
     static_assert(std::is_base_of<ScalarFunction<typename T::Valued, typename T::Scalar, T::Cols>, T>::value, "LinearCombination: T must derive from ScalarFunction");
 
 
-private:
+protected:
     std::vector<CoefficientScalar> coefficients;
     std::vector<T> functions;
 
@@ -48,6 +48,7 @@ public:
     /*
      *  CONSTRUCTORS
      */
+
     /**
      *  @param coefficients     the coefficients of the linear combination
      *  @param functions        the scalar functions of the linear combination
@@ -108,6 +109,7 @@ public:
     /*
      *  GETTERS
      */
+
     const std::vector<CoefficientScalar>& get_coefficients() const { return this->coefficients; }
     const std::vector<T>& get_functions() const { return this->functions; }
 
@@ -115,6 +117,7 @@ public:
     /*
      *  OPERATORS implementing the notion of linear combinations
      */
+
     /**
      *  @param rhs      the right-hand side of the addition
      *
@@ -187,8 +190,9 @@ public:
 
 
     /*
-     * OTHER OPERATORS
+     *  OTHER OPERATORS
      */
+
     /**
      *  @param x        the vector/point at which the scalar function is to be evaluated
      *
@@ -206,9 +210,21 @@ public:
     }
 
 
+    /**
+     *  @param rhs      the right-hand side of the operator ==
+     *
+     *  @return whether two linear combinations are considered equal
+     */
+    bool operator==(const LinearCombination& rhs) const {
+        return (this->coefficients == rhs.coefficients) && (this->functions == rhs.functions);
+    }
+
+
+
     /*
      *  PUBLIC METHODS
      */
+    
     /**
      *  Append the given coefficients and functions to this linear combination
      *
@@ -223,6 +239,14 @@ public:
 
         this->coefficients.insert(this->coefficients.end(), coefficients.begin(), coefficients.end());
         this->functions.insert(this->functions.end(), functions.begin(), functions.end());
+    }
+
+
+    /**
+     *  @return the length of the linear combination, i.e. the number of coefficients/functions inside it
+     */
+    size_t length() const {
+        return this->coefficients.size();
     }
 };
 

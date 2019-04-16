@@ -25,7 +25,7 @@
 
 #include "RHF/DIISRHFSCFSolver.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
-#include "LibintCommunicator.hpp"
+#include "Basis/LibintInterfacer.hpp"
 #include "units.hpp"
 
 
@@ -41,7 +41,7 @@ BOOST_AUTO_TEST_CASE ( dipole_CO_STO_3G ) {
     auto ao_basis = std::make_shared<GQCP::AOBasis>(CO, "STO-3G");
     auto ao_mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(ao_basis);
 
-    size_t K = ao_basis->get_number_of_basis_functions();
+    size_t K = ao_basis->numberOfBasisFunctions();
     size_t N = CO.get_N();
 
     // Solve the SCF equations
@@ -58,7 +58,7 @@ BOOST_AUTO_TEST_CASE ( dipole_CO_STO_3G ) {
     auto D_AO = GQCP::calculateRHFAO1RDM(rhf.get_C(), N);
 
     // Calculate the dipole integrals, and transform them to the MO basis
-    auto dipole_components = GQCP::LibintCommunicator::get().calculateDipoleIntegrals(*ao_basis);
+    auto dipole_components = ao_basis->calculateDipoleIntegrals();
     for (auto& dipole_component : dipole_components) {
         dipole_component.transform(rhf.get_C());
     }
@@ -81,7 +81,7 @@ BOOST_AUTO_TEST_CASE ( dipole_N2_STO_3G ) {
     auto ao_basis = std::make_shared<GQCP::AOBasis>(N2, "STO-3G");
     auto ao_mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(ao_basis);
 
-    size_t K = ao_basis->get_number_of_basis_functions();
+    size_t K = ao_basis->numberOfBasisFunctions();
     size_t N = N2.get_N();
 
     // Solve the SCF equations
@@ -98,7 +98,7 @@ BOOST_AUTO_TEST_CASE ( dipole_N2_STO_3G ) {
     auto D_AO = GQCP::calculateRHFAO1RDM(rhf.get_C(), N);
 
     // Calculate the dipole integrals, and transform them to the MO basis
-    auto dipole_components = GQCP::LibintCommunicator::get().calculateDipoleIntegrals(*ao_basis);
+    auto dipole_components = ao_basis->calculateDipoleIntegrals();
     for (auto& dipole_component : dipole_components) {
         dipole_component.transform(rhf.get_C());
     }

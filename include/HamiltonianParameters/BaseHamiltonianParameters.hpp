@@ -21,7 +21,7 @@
 
 #include <memory>
 
-#include "AOBasis.hpp"
+#include "Basis/AOBasis.hpp"
 
 
 namespace GQCP {

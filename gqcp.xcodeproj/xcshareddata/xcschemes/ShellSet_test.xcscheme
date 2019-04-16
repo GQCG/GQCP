@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5614014121B0637D002C5D40"
-               BuildableName = "LibintCommunicator_test"
-               BlueprintName = "LibintCommunicator_test"
+               BlueprintIdentifier = "567712D222454AAC00F377BF"
+               BuildableName = "ShellSet_test"
+               BlueprintName = "ShellSet_test"
                ReferencedContainer = "container:gqcp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5614014121B0637D002C5D40"
-            BuildableName = "LibintCommunicator_test"
-            BlueprintName = "LibintCommunicator_test"
+            BlueprintIdentifier = "567712D222454AAC00F377BF"
+            BuildableName = "ShellSet_test"
+            BlueprintName = "ShellSet_test"
             ReferencedContainer = "container:gqcp.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -46,8 +46,7 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
-      useCustomWorkingDirectory = "YES"
-      customWorkingDirectory = "/Users/laurentlemmens/Software/GQCG/gqcp/tests"
+      useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
@@ -56,9 +55,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5614014121B0637D002C5D40"
-            BuildableName = "LibintCommunicator_test"
-            BlueprintName = "LibintCommunicator_test"
+            BlueprintIdentifier = "567712D222454AAC00F377BF"
+            BuildableName = "ShellSet_test"
+            BlueprintName = "ShellSet_test"
             ReferencedContainer = "container:gqcp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -82,9 +81,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5614014121B0637D002C5D40"
-            BuildableName = "LibintCommunicator_test"
-            BlueprintName = "LibintCommunicator_test"
+            BlueprintIdentifier = "567712D222454AAC00F377BF"
+            BuildableName = "ShellSet_test"
+            BlueprintName = "ShellSet_test"
             ReferencedContainer = "container:gqcp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

@@ -78,3 +78,29 @@ BOOST_AUTO_TEST_CASE ( matrixIndex ) {
     BOOST_CHECK_EQUAL(GQCP::matrixIndexMinor(2, cols), 2);
     BOOST_CHECK_EQUAL(GQCP::matrixIndexMinor(7, cols), 2);
 }
+
+
+BOOST_AUTO_TEST_CASE ( sandbox ) {
+
+    // 2-way part 4
+    std::vector<std::array<size_t, 2>> ref_partitions1 {{4, 0}, {3, 1}, {2, 2}};
+    BOOST_CHECK(GQCP::uniquePartitions<2>(4) == ref_partitions1);
+
+    // 3-way part 2
+    std::vector<std::array<size_t, 3>> ref_partitions2 {{2, 0, 0}, {1, 1, 0}};
+    BOOST_CHECK(GQCP::uniquePartitions<3>(2) == ref_partitions2);
+
+    // 3-way part 3
+    std::vector<std::array<size_t, 3>> ref_partitions3 {{3, 0, 0}, {2, 1, 0}, {1, 1, 1}};
+    BOOST_CHECK(GQCP::uniquePartitions<3>(3) == ref_partitions3);
+
+    // 5-way part 5
+    std::vector<std::array<size_t, 5>> ref_partitions4 {{5, 0, 0, 0, 0},
+                                                        {4, 1, 0, 0, 0},
+                                                        {3, 2, 0, 0, 0},
+                                                        {3, 1, 1, 0, 0},
+                                                        {2, 2, 1, 0, 0},
+                                                        {2, 1, 1, 1, 0},
+                                                        {1, 1, 1, 1, 1}};
+    BOOST_CHECK(GQCP::uniquePartitions<5>(5) == ref_partitions4);
+}

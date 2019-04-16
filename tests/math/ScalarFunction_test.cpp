@@ -22,7 +22,7 @@
 
 #include "math/ScalarFunction.hpp"
 
-#include "CartesianGTO.hpp"
+#include "Basis/CartesianGTO.hpp"
 
 
 
