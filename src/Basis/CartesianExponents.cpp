@@ -123,15 +123,12 @@ size_t CartesianExponents::value(CartesianDirection direction) const {
     switch (direction) {
         case CartesianDirection::x:
             return this->x;
-            break;
 
         case CartesianDirection::y:
             return this->y;
-            break;
 
         case CartesianDirection::z:
             return this->z;
-            break;
     }
 }
 
