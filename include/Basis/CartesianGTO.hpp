@@ -59,7 +59,7 @@ public:
 
 
     // GETTERS
-    size_t get_N() const { return this->N; }
+    double get_N() const { return this->N; }
     double get_gaussian_exponent() const { return this->gaussian_exponent; }
     const CartesianExponents& get_cartesian_exponents() const { return this->cartesian_exponents; }
     const Vector<double, 3>& get_center() const { return this->center; }
