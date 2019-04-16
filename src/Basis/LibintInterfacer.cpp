@@ -115,18 +115,18 @@ std::vector<libint2::Atom> LibintInterfacer::interface(const std::vector<Atom>& 
 libint2::Shell LibintInterfacer::interface(const Shell& shell) const {
 
     // Part 1: exponents
-    std::vector<double> libint_alpha = shell.get_gaussian_exponents();  // libint::Shell::real_t is double, so no need to use real_t
+    const std::vector<double>& libint_alpha = shell.get_gaussian_exponents();  // libint::Shell::real_t is double, so no need to use real_t
 
 
     // Part 2: contractions
     auto libint_l = static_cast<int>(shell.get_l());
     bool libint_pure = shell.is_pure();
-    std::vector<double> libint_coeff = shell.get_contraction_coefficients();
+    const std::vector<double>& libint_coeff = shell.get_contraction_coefficients();
     libint2::Shell::Contraction libint_contraction {libint_l, libint_pure, libint_coeff};
 
 
     // Part 3: origin
-    auto position = shell.get_atom().position;
+    const auto& position = shell.get_atom().position;
     std::array<double, 3> libint_O {position.x(), position.y(), position.z()};
 
 
@@ -317,7 +317,7 @@ void LibintInterfacer::undo_renorm(libint2::Shell& libint_shell) const {
  */
 TwoElectronOperator<double> LibintInterfacer::calculateTwoElectronIntegrals(libint2::Operator operator_type, const libint2::BasisSet& libint_basisset) const {
 
-    const auto nbf = static_cast<size_t>(libint_basisset.nbf());  // nbf: number of basis functions in the basisset
+    auto nbf = static_cast<size_t>(libint_basisset.nbf());  // nbf: number of basis functions in the basisset
 
     // Initialize the rank-4 two-electron integrals tensor and set to zero
     TwoElectronOperator<double> g (nbf);
@@ -327,9 +327,9 @@ TwoElectronOperator<double> LibintInterfacer::calculateTwoElectronIntegrals(libi
     // Construct the libint2 engine
     libint2::Engine engine(libint2::Operator::coulomb, libint_basisset.max_nprim(), static_cast<int>(libint_basisset.max_l()));  // libint2 requires an int
 
-    const auto shell2bf = libint_basisset.shell2bf();  // maps shell index to bf index
+    const auto& shell2bf = libint_basisset.shell2bf();  // maps shell index to bf index
 
-    const auto &buffer = engine.results();  // vector that holds pointers to computed shell sets
+    const auto& buffer = engine.results();  // vector that holds pointers to computed shell sets
     // actually, buffer.size() is always 1, so buffer[0] is a pointer to
     //      the first calculated integral of these specific shells
     // the values that buffer[0] points to will change after every compute() call
@@ -345,7 +345,7 @@ TwoElectronOperator<double> LibintInterfacer::calculateTwoElectronIntegrals(libi
                     // Calculate integrals between the two shells (obs is a decorated std::vector<libint2::Shell>)
                     engine.compute(libint_basisset[sh1], libint_basisset[sh2], libint_basisset[sh3], libint_basisset[sh4]);
 
-                    auto calculated_integrals = buffer[0];
+                    const auto& calculated_integrals = buffer[0];
 
                     if (calculated_integrals == nullptr) {  // if the zeroth element is nullptr, then the whole shell has been exhausted
                         // or the libint engine predicts that the integrals are below a certain threshold
@@ -370,7 +370,7 @@ TwoElectronOperator<double> LibintInterfacer::calculateTwoElectronIntegrals(libi
                         for (auto f2 = 0L; f2 != nbf_sh2; ++f2) {
                             for (auto f3 = 0L; f3 != nbf_sh3; ++f3) {
                                 for (auto f4 = 0L; f4 != nbf_sh4; ++f4) {
-                                    auto computed_integral = calculated_integrals[f4 + nbf_sh4 * (f3 + nbf_sh3 * (f2 + nbf_sh2 * (f1)))];  // integrals are packed in row-major form
+                                    const auto& computed_integral = calculated_integrals[f4 + nbf_sh4 * (f3 + nbf_sh3 * (f2 + nbf_sh2 * (f1)))];  // integrals are packed in row-major form
 
                                     // Two-electron integrals are given in CHEMIST'S notation: (11|22)
                                     g(f1 + bf1, f2 + bf2, f3 + bf3, f4 + bf4) = computed_integral;
