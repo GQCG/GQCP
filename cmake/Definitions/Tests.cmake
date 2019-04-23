@@ -63,6 +63,7 @@ set(PROJECT_TEST_SOURCE_FILES
         ${PROJECT_TESTS_FOLDER}/Operator/OneElectronOperator_test.cpp
         ${PROJECT_TESTS_FOLDER}/Operator/TwoElectronOperator_test.cpp
 
+        ${PROJECT_TESTS_FOLDER}/properties/atomic_decomposition_test.cpp
         ${PROJECT_TESTS_FOLDER}/properties/expectation_values_test.cpp
         ${PROJECT_TESTS_FOLDER}/properties/properties_test.cpp
 
