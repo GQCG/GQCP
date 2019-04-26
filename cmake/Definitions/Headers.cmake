@@ -48,6 +48,7 @@ set(PROJECT_INCLUDE_FILES
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianBuilder/Hubbard.hpp
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianBuilder/SelectedCI.hpp
 
+        ${PROJECT_INCLUDE_FOLDER}/HamiltonianParameters/AtomicDecompositionParameters.hpp
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianParameters/BaseHamiltonianParameters.hpp
         ${PROJECT_INCLUDE_FOLDER}/HamiltonianParameters/HamiltonianParameters.hpp
 

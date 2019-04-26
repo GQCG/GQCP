@@ -21,6 +21,7 @@
 #include <boost/test/included/unit_test.hpp>
 
 #include "RHF/PlainRHFSCFSolver.hpp"
+#include "HamiltonianParameters/AtomicDecompositionParameters.hpp"
 #include "CISolver/CISolver.hpp"
 #include "RDM/RDMCalculator.hpp"
 #include "HamiltonianBuilder/FCI.hpp"
@@ -276,8 +277,9 @@ BOOST_AUTO_TEST_CASE ( decomposition_CO_STO_3G ) {
     double selfgmod2 = 0;
 
     auto gmod = transform_rdm(g, pa, pa);
-    auto gmod2 = transform_rdm(g, pa, pb);
 
+    auto gmod2 = g;
+    gmod2.fourModeMultiplication<double>(pa, GQCP::SquareMatrix<double>::Identity(K,K), pb, GQCP::SquareMatrix<double>::Identity(K,K));
 
     for (int i = 0; i < K; i++) {
         for (int j = 0; j < K; j++) {
@@ -307,9 +309,86 @@ BOOST_AUTO_TEST_CASE ( decomposition_CO_STO_3G ) {
 
     std::cout<<inter1g<<std::endl;
     std::cout<<selfgmod2<<std::endl;
+}
+
+
+
+BOOST_AUTO_TEST_CASE ( decomposition_H2O_2_STO_3G ) {
+
+
+    // Create the molecular Hamiltonian parameters in an AO basis
+    //auto CO = GQCP::Molecule::Readxyz("data/CO_mulliken.xyz");
+    GQCP::Atom Be (4, 0.0, 0.0, 0.0);
+    GQCP::Atom H (1, 0.0, 0.0, GQCP::units::angstrom_to_bohr(1.134));  // from CCCBDB, STO-3G geometry
+    std::vector<GQCP::Atom> atoms {Be, H};
+    GQCP::Molecule CO (atoms, +1);
+    auto mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(CO, "STO-3G");
+    auto K = mol_ham_par.get_K();
+
+    // Create a plain RHF SCF solver and solve the SCF equations
+    GQCP::PlainRHFSCFSolver plain_scf_solver (mol_ham_par, CO);
+    plain_scf_solver.solve();
+    auto rhf = plain_scf_solver.get_solution();
+
+    const auto& T = rhf.get_C();
+
+    // Transform the ham_par
+    mol_ham_par.transform(T);
+
+    GQCP::ProductFockSpace fock_space (K, CO.get_N()/2, CO.get_N()/2);  // dim = 441
+
+    // Create the FCI module
+    GQCP::FCI fci (fock_space);
+    GQCP::CISolver ci_solver (fci, mol_ham_par);
+
+    // Solve Davidson
+    GQCP::DavidsonSolverOptions solver_options(fock_space.HartreeFockExpansion());
+    ci_solver.solve(solver_options);
+
+    // Retrieve the eigenvector
+    auto fci_coeff = ci_solver.get_eigenpair().get_eigenvector();
+    auto fci_energy = ci_solver.get_eigenpair().get_eigenvalue();
+
+    GQCP::RDMCalculator rdm_calc(fock_space);
+    rdm_calc.set_coefficients(fci_coeff);
+
+    auto one_rdm = rdm_calc.calculate1RDMs().one_rdm;
+    auto two_rdm = rdm_calc.calculate2RDMs().two_rdm;
+
+    // Convert rdm to AObasis
+    GQCP::OneRDM<double> ao_one_rdm = T * (one_rdm) * T.adjoint() ;
+    GQCP::TwoRDM<double> ao_two_rdm = transform_rdm(two_rdm, T.adjoint());
+
+
+    GQCP::AtomicDecompositionParameters adp (mol_ham_par);
+
+
+    double selfaa = GQCP::calculateExpectationValue(adp.net_atomic_parameters[0], ao_one_rdm, ao_two_rdm);
+    double selfbb = GQCP::calculateExpectationValue(adp.net_atomic_parameters[1], ao_one_rdm, ao_two_rdm);
+    double selfab = GQCP::calculateExpectationValue(adp.interaction_parameters[0], ao_one_rdm, ao_two_rdm);
+    double selfa = GQCP::calculateExpectationValue(adp.fragment_parameters[0], ao_one_rdm, ao_two_rdm);
+    double selfb = GQCP::calculateExpectationValue(adp.fragment_parameters[1], ao_one_rdm, ao_two_rdm);
+
+    std::cout<<fci_energy<<std::endl;
+    std::cout<<fci_energy + mol_ham_par.get_scalar()<<std::endl;
+
+    std::cout<<"-----------"<<std::endl;
+
+    std::cout<<selfaa<<std::endl;
+    std::cout<<selfbb<<std::endl;
+    std::cout<<selfab<<std::endl;
+    std::cout<<selfa<<std::endl;
+    std::cout<<selfb<<std::endl;
+    std::cout<<selfaa + selfab/2<<std::endl;
+    std::cout<<selfbb + selfab/2<<std::endl;
+    std::cout<<selfaa+selfbb+selfab<<std::endl;
+    std::cout<<selfa+selfb<<std::endl;
+
+
 
 
 }
+
 
 
 BOOST_AUTO_TEST_CASE ( decomposition_H2O_STO_3G ) {

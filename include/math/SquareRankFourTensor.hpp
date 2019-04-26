@@ -209,6 +209,47 @@ public:
 
         return M;
     }
+
+    /**
+   */
+    template <typename MultiplicationScalar = Scalar>
+    void fourModeMultiplication(const SquareMatrix<MultiplicationScalar>& T1, const SquareMatrix<MultiplicationScalar>& T2, const SquareMatrix<MultiplicationScalar>& T3, const SquareMatrix<MultiplicationScalar>& T4) {
+
+
+        Eigen::TensorMap<Eigen::Tensor<const MultiplicationScalar, 2>> T1_tensor (T1.data(), T1.rows(), T1.cols());
+        Eigen::TensorMap<Eigen::Tensor<const MultiplicationScalar, 2>> T2_tensor (T2.data(), T1.rows(), T1.cols());
+        Eigen::TensorMap<Eigen::Tensor<const MultiplicationScalar, 2>> T3_tensor (T3.data(), T1.rows(), T1.cols());
+        Eigen::TensorMap<Eigen::Tensor<const MultiplicationScalar, 2>> T4_tensor (T4.data(), T1.rows(), T1.cols());
+
+
+        // We will have to do four single contractions, so we specify the contraction indices
+        // Eigen3 does not document its tensor contraction clearly, so see the accepted answer on stackoverflow (https://stackoverflow.com/a/47558349/7930415):
+        //      Eigen3 does not accept a way to specify the output axes: instead, it retains the order from left to right of the axes that survive the contraction.
+        //      This means that, in order to get the right ordering of the axes, we will have to swap axes
+
+        // g(T U V W)  T3(V R) -> a(T U R W) but we get a(T U W R)
+        Eigen::array<Eigen::IndexPair<int>, 1> contraction_pair1 = {Eigen::IndexPair<int>(2, 0)};
+        Eigen::array<int, 4> shuffle_1 {0, 1, 3, 2};
+
+        // a(T U R W)  T4(W S) -> b(T U R S) and we get b(T U R S), so no shuffle is needed
+        Eigen::array<Eigen::IndexPair<int>, 1> contraction_pair2 = {Eigen::IndexPair<int>(3, 0)};
+
+        // T2(U Q)  b(T U R S) -> c(T Q R S) but we get c(Q T R S)
+        Eigen::array<Eigen::IndexPair<int>, 1> contraction_pair3 = {Eigen::IndexPair<int>(0, 1)};
+        Eigen::array<int, 4> shuffle_3 {1, 0, 2, 3};
+
+        // T1(T P)  c(T Q R S) -> g'(P Q R S) and we get g_SO(P Q R S), so no shuffle is needed
+        Eigen::array<Eigen::IndexPair<int>, 1> contraction_pair4 = {Eigen::IndexPair<int>(0, 0)};
+
+
+        // Calculate the contractions. We write this as one large contraction to
+        //  1) avoid storing intermediate contractions
+        //  2) let Eigen figure out some optimizations
+        Self T_transformed = T1_tensor.contract(T2_tensor.contract(this->contract(T3_tensor, contraction_pair1).shuffle(shuffle_1).contract(T4_tensor, contraction_pair2), contraction_pair3).shuffle(shuffle_3), contraction_pair4);
+
+        *this = T_transformed;
+    }
+
 };
 
 
