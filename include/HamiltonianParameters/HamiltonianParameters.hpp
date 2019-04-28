@@ -580,7 +580,7 @@ public:
         }
 
         // Create the partitioning matrix
-        SquareMatrix<double> p_a = SquareMatrix<double>::PartitionMatrix(p_a, this->K);
+        SquareMatrix<double> p_a = SquareMatrix<double>::PartitionMatrix(ao_list, this->K);
 
         OneElectronOperator<Scalar> S_AO = this->S;
         SquareMatrix<double> T_inverse = T_total.inverse();

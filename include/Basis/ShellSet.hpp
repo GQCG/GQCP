@@ -46,8 +46,6 @@ public:
      */
     ShellSet(const Molecule& molecule, const std::string& basisset_name);
 
-    // GETTER
-    const std::string& get_basisset_name() const { return basisset_name; };
 
     // PUBLIC METHODS
     /**

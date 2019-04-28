@@ -40,7 +40,7 @@ struct AtomicDecompositionParameters {
     std::vector<HamiltonianParameters<double>> fragment_parameters;  // vector of total atomic or fragment contributions, E_AA + E_AB/2, E_BB + E_AB/2
 
 
-    explicit AtomicDecompositionParameters (const Molecule& molecule, const std::string& basisset_name) : molecule(molecule), molecular_hamiltonian(HamiltonianParameters<double>::Molecular(molecule, basisset_name)) {
+    explicit AtomicDecompositionParameters (const Molecule& molecule, const std::string& basisset_name) : molecule(molecule), molecular_hamiltonian_parameters(HamiltonianParameters<double>::Molecular(molecule, basisset_name)) {
 
         auto atoms = molecule.get_atoms();
 
