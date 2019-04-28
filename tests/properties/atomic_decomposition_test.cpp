@@ -74,7 +74,7 @@ BOOST_AUTO_TEST_CASE ( decomposition_BeH_cation_STO_3G ) {
     // Transform rdms to the AObasis
     GQCP::OneRDM<double> ao_one_rdm = T * (one_rdm) * T.adjoint();
     GQCP::TwoRDM<double> ao_two_rdm = two_rdm;
-    ao_two_rdm.fourModeMultiplication<double>(T, T.adjoint(), T, T.adjoint());
+    ao_two_rdm.fourModeMultiplication<double>(T.adjoint().conjugate(), T.adjoint(), T.adjoint().conjugate(), T.adjoint());
 
     double self_energy_a = GQCP::calculateExpectationValue(adp.net_atomic_parameters[0], ao_one_rdm, ao_two_rdm);
     double self_energy_b = GQCP::calculateExpectationValue(adp.net_atomic_parameters[1], ao_one_rdm, ao_two_rdm);
