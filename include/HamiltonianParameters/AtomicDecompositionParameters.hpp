@@ -106,7 +106,7 @@ struct AtomicDecompositionParameters {
             auto ham_par = mol_ham_par;
             ham_par.transform<double>(mol_ham_par.get_T_total().inverse());
             auto K = mol_ham_par.get_K();
-            auto atoms = mol_ham_par.get_ao_basis().get_shell_set().atoms();
+            auto atoms = mol_ham_par.get_ao_basis()->get_shell_set().atoms();
 
             if (atoms.size() > 2) {
                     throw std::invalid_argument("HamiltonianParameters::atomicDecomposition(): The Hamiltonian parameters are set up for more than 2 atoms, currently only available for diatomic molecules");
