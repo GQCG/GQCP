@@ -211,7 +211,8 @@ public:
     }
 
     /**
-   */
+     *
+     */
     template <typename MultiplicationScalar = Scalar>
     void fourModeMultiplication(const SquareMatrix<MultiplicationScalar>& T1, const SquareMatrix<MultiplicationScalar>& T2, const SquareMatrix<MultiplicationScalar>& T3, const SquareMatrix<MultiplicationScalar>& T4) {
 

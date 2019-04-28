@@ -34,7 +34,6 @@ namespace GQCP {
 class ShellSet : public std::vector<Shell> {
 public:
     using std::vector<Shell>::vector;  // inherit base constructors
-    std::string basisset_name = "STO-3G";
 
 
 public:

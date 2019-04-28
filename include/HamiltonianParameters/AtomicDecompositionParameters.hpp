@@ -26,32 +26,23 @@ namespace GQCP {
 
 
 /**
- *  A struct that holds the atomic decomposed Hamiltonian Parameters.
+ *  A struct that holds the collection of Hamiltonian Parameters that represent different molecular decompositions.
  *
- *  @tparam Scalar      the scalar type
+ *  Currently only implemented for diatomic molecules
  */
 struct AtomicDecompositionParameters {
 
-    // Molecule molecule;  // decomposed molecule
+    Molecule molecule;  // Decomposed molecule
 
+    HamiltonianParameters<double> molecular_hamiltonian_parameters;  // the Hamiltonian Parameters of the complete molecule
     std::vector<HamiltonianParameters<double>> net_atomic_parameters;  // vector of net atomic Hamiltonian parameters, E_AA, E_BB
     std::vector<HamiltonianParameters<double>> interaction_parameters;  // vector of interaction Hamiltonian parameters, E_AB
     std::vector<HamiltonianParameters<double>> fragment_parameters;  // vector of total atomic or fragment contributions, E_AA + E_AB/2, E_BB + E_AB/2
 
 
+    explicit AtomicDecompositionParameters (const Molecule& molecule, const std::string& basisset_name) : molecule(molecule), molecular_hamiltonian(HamiltonianParameters<double>::Molecular(molecule, basisset_name)) {
 
-
-
-    AtomicDecompositionParameters (const HamiltonianParameters<double>& mol_ham_par){
-
-        if (!mol_ham_par.get_ao_basis()) {
-            throw std::invalid_argument("HamiltonianParameters::atomicDecomposition(): The Hamiltonian parameters have no underlying AO basis, atomic decomposition is not possible.");
-        }
-
-        HamiltonianParameters<double> ham_par = mol_ham_par;
-        ham_par.transform<double>(mol_ham_par.get_T_total().inverse());
-
-        auto atoms = mol_ham_par.get_ao_basis()->get_shell_set().atoms();
+        auto atoms = molecule.get_atoms();
 
         if (atoms.size() > 2) {
             throw std::invalid_argument("HamiltonianParameters::atomicDecomposition(): The Hamiltonian parameters are set up for more than 2 atoms, currently only available for diatomic molecules");
@@ -60,38 +51,47 @@ struct AtomicDecompositionParameters {
         Molecule atom_a ({atoms[0]});
         Molecule atom_b ({atoms[1]});
 
-        auto basisset_name = mol_ham_par.get_ao_basis()->get_shell_set().get_basisset_name();
-        AOBasis aobasis_a (atom_a, mol_ham_par.get_ao_basis()->get_shell_set().get_basisset_name());
-        AOBasis aobasis_b (atom_b, mol_ham_par.get_ao_basis()->get_shell_set().get_basisset_name());
+        auto ao_basis = std::make_shared<AOBasis>(molecule, basisset_name);
+        AOBasis ao_basis_a (atom_a, basisset_name);
+        AOBasis ao_basis_b (atom_b, basisset_name);
 
-        auto Ka = aobasis_a.numberOfBasisFunctions();
-        auto Kb = aobasis_b.numberOfBasisFunctions();
-        auto K = mol_ham_par.get_K();
+        auto Ka = ao_basis_a.numberOfBasisFunctions();
+        auto Kb = ao_basis_b.numberOfBasisFunctions();
+        auto K = ao_basis->numberOfBasisFunctions();
 
-        auto p_a = SquareMatrix<double>::PartitionMatrix(0, Ka, mol_ham_par.get_K());
-        auto p_b = SquareMatrix<double>::PartitionMatrix(Ka, Kb, mol_ham_par.get_K());
+        auto p_a = SquareMatrix<double>::PartitionMatrix(0, Ka, K);
+        auto p_b = SquareMatrix<double>::PartitionMatrix(Ka, Kb, K);
 
+        SquareMatrix<double> identity = SquareMatrix<double>::Identity(K, K);
 
-        OneElectronOperator<double> h_a = p_a * ham_par.get_h() * p_a;
-        OneElectronOperator<double> h_b = p_b * ham_par.get_h() * p_b;
-        OneElectronOperator<double> h_ab = p_b * ham_par.get_h() * p_a + p_a * ham_par.get_h() * p_b;
+        const auto& S = ao_basis->calculateOverlapIntegrals();
+        const auto& T = ao_basis->calculateKineticIntegrals();
+        const auto& V = ao_basis->calculateNuclearIntegrals();
+        const auto& g = ao_basis->calculateCoulombRepulsionIntegrals();
+        auto repulsion = molecule.calculateInternuclearRepulsionEnergy();
 
-        auto g_a = ham_par.get_g();
-        auto g_b = ham_par.get_g();
-        auto g_ab = ham_par.get_g();
-        auto g_ba = ham_par.get_g();
+        OneElectronOperator<double> H = T + V;
 
-        g_a.fourModeMultiplication<double>(p_a, SquareMatrix<double>::Identity(K, K), p_a, SquareMatrix<double>::Identity(K, K));
-        g_b.fourModeMultiplication<double>(p_b, SquareMatrix<double>::Identity(K, K), p_b, SquareMatrix<double>::Identity(K, K));
-        g_ab.fourModeMultiplication<double>(p_a, SquareMatrix<double>::Identity(K, K), p_b, SquareMatrix<double>::Identity(K, K));
-        g_ba.fourModeMultiplication<double>(p_b, SquareMatrix<double>::Identity(K, K), p_a, SquareMatrix<double>::Identity(K, K));
+        OneElectronOperator<double> h_a = p_a * H * p_a;
+        OneElectronOperator<double> h_b = p_b * H * p_b;
+        OneElectronOperator<double> h_ab = p_b * H * p_a + p_a * H * p_b;
+
+        auto g_a = g;
+        auto g_b = g;
+        auto g_ab = g;
+        auto g_ba = g;
+
+        g_a.fourModeMultiplication<double>(p_a, identity, p_a, identity);
+        g_b.fourModeMultiplication<double>(p_b, identity, p_b, identity);
+        g_ab.fourModeMultiplication<double>(p_a, identity, p_b, identity);
+        g_ba.fourModeMultiplication<double>(p_b, identity, p_a, identity);
         GQCP::TwoElectronOperator<double> g_abba = g_ab.Eigen() + g_ba.Eigen();
 
-        HamiltonianParameters<double> HAA(mol_ham_par.get_ao_basis(), ham_par.get_S(), h_a, g_a, SquareMatrix<double>::Identity(mol_ham_par.get_K(), mol_ham_par.get_K()));
-        HamiltonianParameters<double> HBB(mol_ham_par.get_ao_basis(), ham_par.get_S(), h_b, g_b, SquareMatrix<double>::Identity(mol_ham_par.get_K(), mol_ham_par.get_K()));
-        HamiltonianParameters<double> HAB(mol_ham_par.get_ao_basis(), ham_par.get_S(), h_ab, g_abba, SquareMatrix<double>::Identity(mol_ham_par.get_K(), mol_ham_par.get_K()), mol_ham_par.get_scalar());
-        HamiltonianParameters<double> HA(mol_ham_par.get_ao_basis(), ham_par.get_S(), h_a + h_ab/2, g_a.Eigen() + (0.5)*g_abba.Eigen(), SquareMatrix<double>::Identity(mol_ham_par.get_K(), mol_ham_par.get_K()));
-        HamiltonianParameters<double> HB(mol_ham_par.get_ao_basis(), ham_par.get_S(), h_b + h_ab/2, g_b.Eigen() + (0.5)*g_abba.Eigen(), SquareMatrix<double>::Identity(mol_ham_par.get_K(), mol_ham_par.get_K()));
+        HamiltonianParameters<double> HAA(ao_basis, S, h_a, g_a, identity);
+        HamiltonianParameters<double> HBB(ao_basis, S, h_b, g_b, identity);
+        HamiltonianParameters<double> HAB(ao_basis, S, h_ab, g_abba, identity, repulsion);
+        HamiltonianParameters<double> HA(ao_basis, S, h_a + h_ab/2, g_a.Eigen() + (0.5)*g_abba.Eigen(), identity);
+        HamiltonianParameters<double> HB(ao_basis, S, h_b + h_ab/2, g_b.Eigen() + (0.5)*g_abba.Eigen(), identity);
 
         this->net_atomic_parameters = {HAA, HBB};
         this->interaction_parameters = {HAB};
