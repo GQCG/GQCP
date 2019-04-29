@@ -38,6 +38,7 @@ public:
 
 public:
     // CONSTRUCTORS
+    ShellSet() = default;
     /**
      *  Construct a ShellSet by placing the shells corresponding to the basisset information on every atom of the molecule
      *
