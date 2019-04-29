@@ -76,6 +76,7 @@ set(PROJECT_INCLUDE_FILES
         ${PROJECT_INCLUDE_FOLDER}/math/Tensor.hpp
 
         ${PROJECT_INCLUDE_FOLDER}/Operator/OneElectronOperator.hpp
+        ${PROJECT_INCLUDE_FOLDER}/Operator/Operator.hpp
         ${PROJECT_INCLUDE_FOLDER}/Operator/TwoElectronOperator.hpp
 
         ${PROJECT_INCLUDE_FOLDER}/properties/expectation_values.hpp
