@@ -30,8 +30,11 @@
 
 #include "FockSpace/BaseFockSpace.hpp"
 #include "FockSpace/Configuration.hpp"
+#include "FockSpace/FockPermutator.hpp"
 #include "FockSpace/FockSpace.hpp"
 #include "FockSpace/FockSpaceType.hpp"
+#include "FockSpace/FrozenFockSpace.hpp"
+#include "FockSpace/FrozenProductFockSpace.hpp"
 #include "FockSpace/ONV.hpp"
 #include "FockSpace/ProductFockSpace.hpp"
 #include "FockSpace/SelectedFockSpace.hpp"
@@ -50,8 +53,12 @@
 
 #include "HamiltonianBuilder/DOCI.hpp"
 #include "HamiltonianBuilder/FCI.hpp"
+#include "HamiltonianBuilder/FrozenCoreCI.hpp"
+#include "HamiltonianBuilder/FrozenCoreDOCI.hpp"
+#include "HamiltonianBuilder/FrozenCoreFCI.hpp"
 #include "HamiltonianBuilder/HamiltonianBuilder.hpp"
 #include "HamiltonianBuilder/Hubbard.hpp"
+#include "HamiltonianBuilder/SelectedCI.hpp"
 
 #include "HamiltonianParameters/BaseHamiltonianParameters.hpp"
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
@@ -60,8 +67,8 @@
 #include "Localization/ERJacobiLocalizer.hpp"
 #include "Localization/ERNewtonLocalizer.hpp"
 
-#include "Operator/BaseOperator.hpp"
 #include "Operator/OneElectronOperator.hpp"
+#include "Operator/Operator.hpp"
 #include "Operator/TwoElectronOperator.hpp"
 
 #include "math/optimization/BaseEigenproblemSolver.hpp"
@@ -86,17 +93,20 @@
 #include "properties/expectation_values.hpp"
 #include "properties/properties.hpp"
 
-#include "RDM/BaseRDM.hpp"
 #include "RDM/BaseRDMBuilder.hpp"
 #include "RDM/BaseSpinUnresolvedRDMBuilder.hpp"
 #include "RDM/DOCIRDMBuilder.hpp"
 #include "RDM/FCIRDMBuilder.hpp"
+#include "RDM/FrozenCoreDOCIRDMBuilder.hpp"
+#include "RDM/FrozenCoreFCIRDMBuilder.hpp"
+#include "RDM/FrozenCoreRDMBuilder.hpp"
 #include "RDM/OneRDM.hpp"
 #include "RDM/RDMCalculator.hpp"
 #include "RDM/RDMs.hpp"
 #include "RDM/SelectedRDMBuilder.hpp"
 #include "RDM/SpinUnresolvedFCIRDMBuilder.hpp"
 #include "RDM/SpinUnresolvedRDMCalculator.hpp"
+#include "RDM/TwoRDM.hpp"
 
 #include "RHF/DIISRHFSCFSolver.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
@@ -113,7 +123,6 @@
 
 // Single files, not in a special include directory
 #include "Atom.hpp"
-#include "typedefs.hpp"
 #include "DOCINewtonOrbitalOptimizer.hpp"
 #include "elements.hpp"
 #include "HoppingMatrix.hpp"
@@ -121,6 +130,7 @@
 #include "Molecule.hpp"
 #include "OrbitalOptimizationOptions.hpp"
 #include "RMP2.hpp"
+#include "typedefs.hpp"
 #include "units.hpp"
 
 #include "version.hpp"
