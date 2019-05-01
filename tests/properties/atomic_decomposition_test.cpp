@@ -83,10 +83,10 @@ BOOST_AUTO_TEST_CASE ( decomposition_BeH_cation_STO_3G ) {
     double total_energy_a = GQCP::calculateExpectationValue(adp.fragment_parameters[0], ao_one_rdm, ao_two_rdm);
     double total_energy_b = GQCP::calculateExpectationValue(adp.fragment_parameters[1], ao_one_rdm, ao_two_rdm);
 
-    BOOST_CHECK(std::abs(total_energy_a + total_energy_b - fci_energy) < 1.0e-010);
+    BOOST_CHECK(std::abs(total_energy_a + total_energy_b - fci_energy - repulsion) < 1.0e-010);
     BOOST_CHECK(std::abs(self_energy_a + self_energy_b + interaction_energy_ab - fci_energy - repulsion) < 1.0e-010);
-    BOOST_CHECK(std::abs(self_energy_a + interaction_energy_ab / 2 - total_energy_a - repulsion / 2) < 1.0e-010);
-    BOOST_CHECK(std::abs(self_energy_b + interaction_energy_ab / 2 - total_energy_b - repulsion / 2) < 1.0e-010);
+    BOOST_CHECK(std::abs(self_energy_a + interaction_energy_ab / 2 - total_energy_a) < 1.0e-010);
+    BOOST_CHECK(std::abs(self_energy_b + interaction_energy_ab / 2 - total_energy_b) < 1.0e-010);
 
 }
 
@@ -145,9 +145,8 @@ BOOST_AUTO_TEST_CASE ( decomposition_BeH_cation_STO_3G_Mario ) {
     double total_energy_a = GQCP::calculateExpectationValue(adp.fragment_parameters[0], ao_one_rdm, ao_two_rdm);
     double total_energy_b = GQCP::calculateExpectationValue(adp.fragment_parameters[1], ao_one_rdm, ao_two_rdm);
 
-    BOOST_CHECK(std::abs(total_energy_a + total_energy_b - fci_energy) < 1.0e-010);
+    BOOST_CHECK(std::abs(total_energy_a + total_energy_b - fci_energy - repulsion) < 1.0e-010);
     BOOST_CHECK(std::abs(self_energy_a + self_energy_b + interaction_energy_ab - fci_energy - repulsion) < 1.0e-010);
-    BOOST_CHECK(std::abs(self_energy_a + interaction_energy_ab / 2 - total_energy_a - repulsion / 2) < 1.0e-010);
-    BOOST_CHECK(std::abs(self_energy_b + interaction_energy_ab / 2 - total_energy_b - repulsion / 2) < 1.0e-010);
-
+    BOOST_CHECK(std::abs(self_energy_a + interaction_energy_ab / 2 - total_energy_a) < 1.0e-010);
+    BOOST_CHECK(std::abs(self_energy_b + interaction_energy_ab / 2 - total_energy_b) < 1.0e-010);
 }

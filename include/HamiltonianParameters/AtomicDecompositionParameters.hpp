@@ -113,8 +113,8 @@ struct AtomicDecompositionParameters {
         HamiltonianParameters<double> HAA(ao_basis, S, h_a, g_a, identity);
         HamiltonianParameters<double> HBB(ao_basis, S, h_b, g_b, identity);
         HamiltonianParameters<double> HAB(ao_basis, S, h_ab, g_abba, identity, repulsion);
-        HamiltonianParameters<double> HA(ao_basis, S, h_a + h_ab/2, g_a.Eigen() + (0.5)*g_abba.Eigen(), identity);
-        HamiltonianParameters<double> HB(ao_basis, S, h_b + h_ab/2, g_b.Eigen() + (0.5)*g_abba.Eigen(), identity);
+        HamiltonianParameters<double> HA(ao_basis, S, h_a + h_ab/2, g_a.Eigen() + (0.5)*g_abba.Eigen(), identity, repulsion/2);
+        HamiltonianParameters<double> HB(ao_basis, S, h_b + h_ab/2, g_b.Eigen() + (0.5)*g_abba.Eigen(), identity, repulsion/2);
 
         this->net_atomic_parameters = {HAA, HBB};
         this->interaction_parameters = {HAB};
@@ -182,8 +182,8 @@ struct AtomicDecompositionParameters {
         HamiltonianParameters<double> HAA(ao_basis, S, h_a, g_a, identity);
         HamiltonianParameters<double> HBB(ao_basis, S, h_b, g_b, identity);
         HamiltonianParameters<double> HAB(ao_basis, S, h_ab, g_abba, identity, repulsion);
-        HamiltonianParameters<double> HA(ao_basis, S, h_a + h_ab/2, g_a.Eigen() + (0.5)*g_abba.Eigen(), identity);
-        HamiltonianParameters<double> HB(ao_basis, S, h_b + h_ab/2, g_b.Eigen() + (0.5)*g_abba.Eigen(), identity);
+        HamiltonianParameters<double> HA(ao_basis, S, h_a + h_ab/2, g_a.Eigen() + (0.5)*g_abba.Eigen(), identity, repulsion/2);
+        HamiltonianParameters<double> HB(ao_basis, S, h_b + h_ab/2, g_b.Eigen() + (0.5)*g_abba.Eigen(), identity, repulsion/2);
 
         std::vector<HamiltonianParameters<double>> net_atomic_parameters = {HAA, HBB};
         std::vector<HamiltonianParameters<double>> interaction_parameters = {HAB};
