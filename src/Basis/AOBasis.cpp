@@ -70,7 +70,7 @@ size_t AOBasis::numberOfBasisFunctions() const {
 /**
  *  @return the matrix representation of the overlap operator in this AO basis
  */
-OneElectronOperator<double> AOBasis::calculateOverlapIntegrals() const {
+OneElectronOperator<double> AOBasis::calculateLibintOverlapIntegrals() const {
 
     auto libint_basisset = LibintInterfacer::get().interface(this->shell_set);
     return LibintInterfacer::get().calculateOneElectronIntegrals<1>(libint2::Operator::overlap, libint_basisset)[0];
@@ -80,7 +80,7 @@ OneElectronOperator<double> AOBasis::calculateOverlapIntegrals() const {
 /**
  *  @return the matrix representation of the kinetic energy operator in this AO basis
  */
-OneElectronOperator<double> AOBasis::calculateKineticIntegrals() const {
+OneElectronOperator<double> AOBasis::calculateLibintKineticIntegrals() const {
 
     auto libint_basisset = LibintInterfacer::get().interface(this->shell_set);
     return LibintInterfacer::get().calculateOneElectronIntegrals<1>(libint2::Operator::kinetic, libint_basisset)[0];
@@ -90,7 +90,7 @@ OneElectronOperator<double> AOBasis::calculateKineticIntegrals() const {
 /**
  *  @return the matrix representation of the nuclear attraction operator in this AO basis
  */
-OneElectronOperator<double> AOBasis::calculateNuclearIntegrals() const {
+OneElectronOperator<double> AOBasis::calculateLibintNuclearIntegrals() const {
 
     auto libint_basisset = LibintInterfacer::get().interface(this->shell_set);
     auto libint_atoms = LibintInterfacer::get().interface(this->shell_set.atoms());
@@ -104,7 +104,7 @@ OneElectronOperator<double> AOBasis::calculateNuclearIntegrals() const {
  *
  *  @return the matrix representation of the Cartesian components of the electrical dipole operator in this AO basis
  */
-std::array<OneElectronOperator<double>, 3> AOBasis::calculateDipoleIntegrals(const Vector<double, 3>& origin) const {
+std::array<OneElectronOperator<double>, 3> AOBasis::calculateLibintDipoleIntegrals(const Vector<double, 3>& origin) const {
 
     std::array<double, 3> origin_array {origin.x(), origin.y(), origin.z()};
 
@@ -119,7 +119,7 @@ std::array<OneElectronOperator<double>, 3> AOBasis::calculateDipoleIntegrals(con
 /**
  *  @return the matrix representation of the Coulomb repulsion operator in this AO basis
  */
-TwoElectronOperator<double> AOBasis::calculateCoulombRepulsionIntegrals() const {
+TwoElectronOperator<double> AOBasis::calculateLibintCoulombRepulsionIntegrals() const {
 
     auto libint_basisset = LibintInterfacer::get().interface(this->shell_set);
     return LibintInterfacer::get().calculateTwoElectronIntegrals(libint2::Operator::coulomb, libint_basisset);

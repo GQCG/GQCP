@@ -68,29 +68,29 @@ public:
     /**
      *  @return the matrix representation of the overlap operator in this AO basis
      */
-    OneElectronOperator<double> calculateOverlapIntegrals() const;
+    OneElectronOperator<double> calculateLibintOverlapIntegrals() const;
 
     /**
      *  @return the matrix representation of the kinetic energy operator in this AO basis
      */
-    OneElectronOperator<double> calculateKineticIntegrals() const;
+    OneElectronOperator<double> calculateLibintKineticIntegrals() const;
 
     /**
      *  @return the matrix representation of the nuclear attraction operator in this AO basis
      */
-    OneElectronOperator<double> calculateNuclearIntegrals() const;
+    OneElectronOperator<double> calculateLibintNuclearIntegrals() const;
 
     /**
      *  @param origin       the origin of the dipole
      *
      *  @return the matrix representation of the Cartesian components of the electrical dipole operator in this AO basis
      */
-    std::array<OneElectronOperator<double>, 3> calculateDipoleIntegrals(const Vector<double, 3>& origin = Vector<double, 3>::Zero()) const;
+    std::array<OneElectronOperator<double>, 3> calculateLibintDipoleIntegrals(const Vector<double, 3>& origin = Vector<double, 3>::Zero()) const;
 
     /**
      *  @return the matrix representation of the Coulomb repulsion operator in this AO basis
      */
-    TwoElectronOperator<double> calculateCoulombRepulsionIntegrals() const;
+    TwoElectronOperator<double> calculateLibintCoulombRepulsionIntegrals() const;
 };
 
 

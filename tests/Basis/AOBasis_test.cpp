@@ -51,13 +51,13 @@ BOOST_AUTO_TEST_CASE( Szabo_integrals_h2_sto3g ) {
     BOOST_CHECK_EQUAL(ao_basis.numberOfBasisFunctions(), 2);
 
     // Calculate some integrals
-    auto S = ao_basis.calculateOverlapIntegrals();
-    auto T = ao_basis.calculateKineticIntegrals();
-    auto V = ao_basis.calculateNuclearIntegrals();
+    auto S = ao_basis.calculateLibintOverlapIntegrals();
+    auto T = ao_basis.calculateLibintKineticIntegrals();
+    auto V = ao_basis.calculateLibintNuclearIntegrals();
 
     GQCP::OneElectronOperator<double> H_core = T + V;
 
-    auto g = ao_basis.calculateCoulombRepulsionIntegrals();
+    auto g = ao_basis.calculateLibintCoulombRepulsionIntegrals();
 
 
     // Fill in the reference values from Szabo
@@ -100,11 +100,11 @@ BOOST_AUTO_TEST_CASE( HORTON_integrals_h2o_sto3g ) {
 
 
     // Calculate some integrals
-    auto S = ao_basis.calculateOverlapIntegrals();
-    auto T = ao_basis.calculateKineticIntegrals();
-    auto V = ao_basis.calculateNuclearIntegrals();
+    auto S = ao_basis.calculateLibintOverlapIntegrals();
+    auto T = ao_basis.calculateLibintKineticIntegrals();
+    auto V = ao_basis.calculateLibintNuclearIntegrals();
 
-    auto g = ao_basis.calculateCoulombRepulsionIntegrals();
+    auto g = ao_basis.calculateLibintCoulombRepulsionIntegrals();
 
 
     // Read in reference data from HORTON
