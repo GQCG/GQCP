@@ -246,12 +246,61 @@ public:
         // Calculate the contractions. We write this as one large contraction to
         //  1) avoid storing intermediate contractions
         //  2) let Eigen figure out some optimizations
-        Self T_transformed = T1_tensor.contract(T2_tensor.contract(this->contract(T3_tensor, contraction_pair1).shuffle(shuffle_1).contract(T4_tensor, contraction_pair2), contraction_pair3).shuffle(shuffle_3), contraction_pair4);
+        Self T_transformed = T1_tensor.contract(
+
+                T2_tensor.contract(
+
+                        this->contract(T3_tensor, contraction_pair1).shuffle(shuffle_1).contract(T4_tensor, contraction_pair2),
+
+
+                        contraction_pair3).shuffle(shuffle_3),
+
+                contraction_pair4);
+
+        *this = T_transformed;
+    }
+
+
+
+    /**
+     *  In-place contraction of a given matrix with the tensor (T)
+     *
+     *  @tparam TransformationScalar        the type of scalar used for the transformation matrix
+     *  @tparam index                       the index axis which is contracted
+
+     *  @param M                            the contraction matrix: contraction performed with the first index axis
+     *
+     *    e.g.
+     *     if index 0 (1-st) is chosen:
+     *      T_transformed (i, j , k, l) = Sum(q) T (q j k l) * A (q, i)
+     *     if index 2 (3-rd) is chosen:
+     *      T_transformed (i, j , k, l) = Sum(q) T (i j q l) * A (q, k)
+     *
+     */
+    template <typename MultiplicationScalar = Scalar, int index>
+    enable_if_t<index < 4, void> matrixContraction(const SquareMatrix<MultiplicationScalar>& M) {
+
+        Eigen::array<Eigen::IndexPair<int>, 1> contraction_pair = {Eigen::IndexPair<int>(0, index)};
+
+        // Eigen3 does not accept a way to specify the output axes: instead, it retains the order from left to right of the axes that survive the contraction.
+        // This means that, in order to get the right ordering of the axes, we will have to swap axes
+
+        std::array<int, 4> shuffle {1,2,3,0};
+        shuffle[index] = 0;
+        for (int i = index+1; i < 4; i++ ) {
+            shuffle[i] = i;
+        }
+
+        Eigen::TensorMap<Eigen::Tensor<const MultiplicationScalar, 2>> M_tensor (M.data(), M.rows(), M.cols());
+
+        Self T_transformed = M_tensor.contract(this->Eigen(), contraction_pair).shuffle(shuffle);
 
         *this = T_transformed;
     }
 
 };
+
+
 
 
 }  // namespace GQCP

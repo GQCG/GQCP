@@ -104,10 +104,17 @@ struct AtomicDecompositionParameters {
         auto g_ab = g;
         auto g_ba = g;
 
-        g_a.fourModeMultiplication<double>(p_a, identity, p_a, identity);
-        g_b.fourModeMultiplication<double>(p_b, identity, p_b, identity);
-        g_ab.fourModeMultiplication<double>(p_a, identity, p_b, identity);
-        g_ba.fourModeMultiplication<double>(p_b, identity, p_a, identity);
+
+        g_a.matrixContraction<double, 0>(p_a);
+        g_a.matrixContraction<double, 2>(p_a);
+        g_b.matrixContraction<double, 0>(p_b);
+        g_b.matrixContraction<double, 2>(p_b);
+        g_ab.matrixContraction<double, 0>(p_a);
+        g_ab.matrixContraction<double, 2>(p_b);
+        g_ba.matrixContraction<double, 0>(p_b);
+        g_ba.matrixContraction<double, 2>(p_a);
+
+
         GQCP::TwoElectronOperator<double> g_abba = g_ab.Eigen() + g_ba.Eigen();
 
         HamiltonianParameters<double> HAA(ao_basis, S, h_a, g_a, identity);
@@ -173,10 +180,15 @@ struct AtomicDecompositionParameters {
         auto g_ab = g;
         auto g_ba = g;
 
-        g_a.fourModeMultiplication<double>(p_a, identity, p_a, identity);
-        g_b.fourModeMultiplication<double>(p_b, identity, p_b, identity);
-        g_ab.fourModeMultiplication<double>(p_a, identity, p_b, identity);
-        g_ba.fourModeMultiplication<double>(p_b, identity, p_a, identity);
+        g_a.matrixContraction<double, 0>(p_a);
+        g_a.matrixContraction<double, 2>(p_a);
+        g_b.matrixContraction<double, 0>(p_b);
+        g_b.matrixContraction<double, 2>(p_b);
+        g_ab.matrixContraction<double, 0>(p_a);
+        g_ab.matrixContraction<double, 2>(p_b);
+        g_ba.matrixContraction<double, 0>(p_b);
+        g_ba.matrixContraction<double, 2>(p_a);
+
         GQCP::TwoElectronOperator<double> g_abba = g_ab.Eigen() + g_ba.Eigen();
 
         HamiltonianParameters<double> HAA(ao_basis, S, h_a, g_a, identity);
