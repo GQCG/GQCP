@@ -130,14 +130,18 @@ BOOST_AUTO_TEST_CASE ( libcint_vs_libint2_H2O_STO_3G ) {
     const auto S_libcint = ao_basis.calculateLibcintOverlapIntegrals();
     const auto T_libcint = ao_basis.calculateLibcintKineticIntegrals();
     const auto V_libcint = ao_basis.calculateLibcintNuclearIntegrals();
-
+    const auto dipole_libcint = ao_basis.calculateLibcintDipoleIntegrals();
 
     const auto S_libint2 = ao_basis.calculateLibintOverlapIntegrals();
     const auto T_libint2 = ao_basis.calculateLibintKineticIntegrals();
     const auto V_libint2 = ao_basis.calculateLibintNuclearIntegrals();
+    const auto dipole_libint2 = ao_basis.calculateLibintDipoleIntegrals();
 
-
+    
     BOOST_CHECK(S_libcint.isApprox(S_libint2, 1.0e-08));
     BOOST_CHECK(T_libcint.isApprox(T_libint2, 1.0e-08));
     BOOST_CHECK(V_libcint.isApprox(V_libint2, 1.0e-08));
+    for (size_t i = 0; i < 3; i++) {
+        BOOST_CHECK(dipole_libcint[i].isApprox(dipole_libint2[i], 1.0e-08));
+    }
 }
