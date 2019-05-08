@@ -87,6 +87,14 @@ install:
     - cmake .. -DCMAKE_BUILD_TYPE=RELEASE
     - make -j3 && sudo make install
 
+    # Install libcint
+    - mkdir /tmp/libcint && cd /tmp/libcint
+    - git clone https://github.com/sunqm/libcint.git
+    - mkdir build && cd build
+    - cmake -DBUILD_SHARED_LIBS=0 ..
+    - make && sudo make install
+
+
 # Run the build script
 script:
   - cd ${TRAVIS_BUILD_DIR}

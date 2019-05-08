@@ -3031,6 +3031,7 @@
 		563E1C2D2282B84100FADF30 /* libmkl_intel_lp64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmkl_intel_lp64.a; path = ../../../../../opt/intel/compilers_and_libraries_2018.0.104/mac/mkl/lib/libmkl_intel_lp64.a; sourceTree = "<group>"; };
 		563E1C2E2282B84100FADF30 /* libmkl_intel_thread.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmkl_intel_thread.a; path = ../../../../../opt/intel/compilers_and_libraries_2018.0.104/mac/mkl/lib/libmkl_intel_thread.a; sourceTree = "<group>"; };
 		563E1C2F2282B84100FADF30 /* libmkl_core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmkl_core.a; path = ../../../../../opt/intel/compilers_and_libraries_2018.0.104/mac/mkl/lib/libmkl_core.a; sourceTree = "<group>"; };
+		563E1C3322830CA100FADF30 /* FindLibcint.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = FindLibcint.cmake; sourceTree = "<group>"; };
 		5643B7D921F706EF00E1741F /* BaseSpinUnresolvedRDMBuilder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BaseSpinUnresolvedRDMBuilder.hpp; sourceTree = "<group>"; };
 		5643B7DA21F706EF00E1741F /* SpinUnresolvedRDMCalculator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SpinUnresolvedRDMCalculator.hpp; sourceTree = "<group>"; };
 		5643B7DB21F706EF00E1741F /* SpinUnresolvedFCIRDMBuilder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SpinUnresolvedFCIRDMBuilder.hpp; sourceTree = "<group>"; };
@@ -4863,6 +4864,7 @@
 			isa = PBXGroup;
 			children = (
 				5614FA8E21B02A8A002C5D40 /* FindEigen3.cmake */,
+				563E1C3322830CA100FADF30 /* FindLibcint.cmake */,
 				5614FA9221B02A8A002C5D40 /* FindLibint2.cmake */,
 				5614FA9621B02A8A002C5D40 /* FindMKL.cmake */,
 				5614FA9321B02A8A002C5D40 /* FindPackages.cmake */,
