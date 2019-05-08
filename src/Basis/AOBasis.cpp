@@ -179,16 +179,17 @@ std::array<OneElectronOperator<double>, 3> AOBasis::calculateLibcintDipoleIntegr
     // Apply the minus sign which comes from the charge of the electrons -e
     return std::array<OneElectronOperator<double>, 3> {-all_integrals[0], -all_integrals[1], -all_integrals[2]};
 }
-//
-//
-///**
-// *  @return the matrix representation of the Coulomb repulsion operator in this AO basis, using the libcint integral engine
-// */
-//TwoElectronOperator<double> AOBasis::calculateLibcintCoulombRepulsionIntegrals() const {
-//
-//    const LibcintInterfacer libcint_interfacer;
-//    libcint_interfacer.calculateTwoElectronIntegrals(cint2e_cart);
-//}
+
+
+/**
+ *  @return the matrix representation of the Coulomb repulsion operator in this AO basis, using the libcint integral engine
+ */
+TwoElectronOperator<double> AOBasis::calculateLibcintCoulombRepulsionIntegrals() const {
+
+    const LibcintInterfacer libcint_interfacer;
+    auto raw_container = libcint_interfacer.convert(this->shell_set);
+    return libcint_interfacer.calculateTwoElectronIntegrals(cint2e_cart, raw_container);
+}
 
 
 }  // namespace GQCP

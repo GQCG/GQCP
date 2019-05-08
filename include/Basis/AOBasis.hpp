@@ -115,11 +115,11 @@ public:
      *  @return the matrix representation of the Cartesian components of the electrical dipole operator in this AO basis, using the libcint integral engine
      */
     std::array<OneElectronOperator<double>, 3> calculateLibcintDipoleIntegrals(const Vector<double, 3>& origin = Vector<double, 3>::Zero()) const;
-//
-//    /**
-//     *  @return the matrix representation of the Coulomb repulsion operator in this AO basis, using the libcint integral engine
-//     */
-//    TwoElectronOperator<double> calculateLibcintCoulombRepulsionIntegrals() const;
+
+    /**
+     *  @return the matrix representation of the Coulomb repulsion operator in this AO basis, using the libcint integral engine
+     */
+    TwoElectronOperator<double> calculateLibcintCoulombRepulsionIntegrals() const;
 };
 
 

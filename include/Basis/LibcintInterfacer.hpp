@@ -194,12 +194,10 @@ public:
     libcint::RawContainer convert(const ShellSet& shell_set) const;
 
 
-
-
     /**
      *  @tparam N                   the number of libcint operator components
      *
-     *  @param function             the libcint integral function
+     *  @param function             the libcint one-electron integral function
      *  @param raw_container        the data libcint needs to perform calculations
      *
      *  @return an array of N OneElectronOperators corresponding to the matrix representations of the N components of the given operator represented by the libcint function
@@ -240,7 +238,7 @@ public:
                 for (size_t f1 = 0; f1 < nbf_sh1; f1++) {
                     for (size_t f2 = 0; f2 < nbf_sh2; f2++) {
                         for (size_t i = 0; i < N; i++) {
-                            double computed_integral = buf[f1 + nbf_sh1 * (f2 + nbf_sh2 * i)];  // integrals are packed in column-major form
+                            const double& computed_integral = buf[f1 + nbf_sh1 * (f2 + nbf_sh2 * i)];  // integrals are packed in column-major form
                             operator_components[i](bf1 + f1, bf2 + f2) = computed_integral;
                         }
                     }
@@ -258,10 +256,13 @@ public:
     }
 
 
-
-
-
-    TwoElectronOperator<double> calculateTwoElectronIntegrals(const Libint2eFunction& function) const;
+    /**
+     *  @param function             the libcint two-electron integral function
+     *  @param raw_container        the data libcint needs to perform calculations
+     *
+     *  @return an array of N OneElectronOperators corresponding to the matrix representations of the N components of the given operator represented by the libcint function
+     */
+    TwoElectronOperator<double> calculateTwoElectronIntegrals(const Libint2eFunction& function, libcint::RawContainer& raw_container) const;
 };
 
 
