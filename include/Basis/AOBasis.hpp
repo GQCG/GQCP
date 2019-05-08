@@ -64,33 +64,40 @@ public:
     size_t numberOfBasisFunctions() const;
 
 
-    // PUBLIC METHODS - INTEGRALS
+    // PUBLIC METHODS - LIBINT2 INTEGRALS
     /**
-     *  @return the matrix representation of the overlap operator in this AO basis
+     *  @return the matrix representation of the overlap operator in this AO basis, using the libint2 integral engine
      */
     OneElectronOperator<double> calculateLibintOverlapIntegrals() const;
 
     /**
-     *  @return the matrix representation of the kinetic energy operator in this AO basis
+     *  @return the matrix representation of the kinetic energy operator in this AO basis, using the libint2 integral engine
      */
     OneElectronOperator<double> calculateLibintKineticIntegrals() const;
 
     /**
-     *  @return the matrix representation of the nuclear attraction operator in this AO basis
+     *  @return the matrix representation of the nuclear attraction operator in this AO basis, using the libint2 integral engine
      */
     OneElectronOperator<double> calculateLibintNuclearIntegrals() const;
 
     /**
      *  @param origin       the origin of the dipole
      *
-     *  @return the matrix representation of the Cartesian components of the electrical dipole operator in this AO basis
+     *  @return the matrix representation of the Cartesian components of the electrical dipole operator in this AO basis, using the libint2 integral engine
      */
     std::array<OneElectronOperator<double>, 3> calculateLibintDipoleIntegrals(const Vector<double, 3>& origin = Vector<double, 3>::Zero()) const;
 
     /**
-     *  @return the matrix representation of the Coulomb repulsion operator in this AO basis
+     *  @return the matrix representation of the Coulomb repulsion operator in this AO basis, using the libint2 integral engine
      */
     TwoElectronOperator<double> calculateLibintCoulombRepulsionIntegrals() const;
+
+
+    // PUBLIC METHODS - LIBCINT INTEGRALS
+    /**
+     *  @return the matrix representation of the overlap operator in this AO basis, using the libcint integral engine
+     */
+    OneElectronOperator<double> calculateLibcintOverlapIntegrals() const;
 };
 
 

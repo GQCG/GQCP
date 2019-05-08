@@ -520,6 +520,9 @@
 		56288CE62201E17700403B47 /* version.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 56288CE52201E17600403B47 /* version.hpp */; };
 		562990BA22292E0900005FA7 /* libgqcp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5614F98021B0295C002C5D40 /* libgqcp.a */; };
 		562990C222294D8200005FA7 /* ScalarFunction_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 562990C122294CF700005FA7 /* ScalarFunction_test.cpp */; };
+		563E1C252281E2C700FADF30 /* LibcintInterfacer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 563E1C232281E2C700FADF30 /* LibcintInterfacer.cpp */; };
+		563E1C262281E2C700FADF30 /* LibcintInterfacer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 563E1C242281E2C700FADF30 /* LibcintInterfacer.hpp */; };
+		563E1C282282B6DB00FADF30 /* libcint.3.0.14.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 563E1C272282B6DB00FADF30 /* libcint.3.0.14.dylib */; };
 		5643B7DC21F706F000E1741F /* BaseSpinUnresolvedRDMBuilder.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5643B7D921F706EF00E1741F /* BaseSpinUnresolvedRDMBuilder.hpp */; };
 		5643B7DD21F706F000E1741F /* SpinUnresolvedRDMCalculator.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5643B7DA21F706EF00E1741F /* SpinUnresolvedRDMCalculator.hpp */; };
 		5643B7DE21F706F000E1741F /* SpinUnresolvedFCIRDMBuilder.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 5643B7DB21F706EF00E1741F /* SpinUnresolvedFCIRDMBuilder.hpp */; };
@@ -3016,6 +3019,9 @@
 		56288CE52201E17600403B47 /* version.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = version.hpp; sourceTree = "<group>"; };
 		562990BF22292E0900005FA7 /* ScalarFunction_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ScalarFunction_test; sourceTree = BUILT_PRODUCTS_DIR; };
 		562990C122294CF700005FA7 /* ScalarFunction_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ScalarFunction_test.cpp; sourceTree = "<group>"; };
+		563E1C232281E2C700FADF30 /* LibcintInterfacer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LibcintInterfacer.cpp; sourceTree = "<group>"; };
+		563E1C242281E2C700FADF30 /* LibcintInterfacer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LibcintInterfacer.hpp; sourceTree = "<group>"; };
+		563E1C272282B6DB00FADF30 /* libcint.3.0.14.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcint.3.0.14.dylib; path = ../../../../../usr/local/lib/libcint.3.0.14.dylib; sourceTree = "<group>"; };
 		5643B7D921F706EF00E1741F /* BaseSpinUnresolvedRDMBuilder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BaseSpinUnresolvedRDMBuilder.hpp; sourceTree = "<group>"; };
 		5643B7DA21F706EF00E1741F /* SpinUnresolvedRDMCalculator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SpinUnresolvedRDMCalculator.hpp; sourceTree = "<group>"; };
 		5643B7DB21F706EF00E1741F /* SpinUnresolvedFCIRDMBuilder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SpinUnresolvedFCIRDMBuilder.hpp; sourceTree = "<group>"; };
@@ -3445,6 +3451,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				563E1C282282B6DB00FADF30 /* libcint.3.0.14.dylib in Frameworks */,
 				5614FDBD21B034F9002C5D40 /* libint2.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4589,6 +4596,7 @@
 		5614FDB621B033BC002C5D40 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				563E1C272282B6DB00FADF30 /* libcint.3.0.14.dylib */,
 				569630452226D0120019DEAD /* libboost_math_c99-mt.dylib */,
 				569630422226D0110019DEAD /* libboost_math_c99f-mt.dylib */,
 				569630432226D0110019DEAD /* libboost_math_c99l-mt.dylib */,
@@ -4689,6 +4697,7 @@
 				56147D452243B0D100EA2A45 /* CartesianDirection.hpp */,
 				566EDEB122428ABE00D2CA80 /* CartesianExponents.hpp */,
 				562241E42225B3DC001436D0 /* CartesianGTO.hpp */,
+				563E1C242281E2C700FADF30 /* LibcintInterfacer.hpp */,
 				5614F9AF21B029FB002C5D40 /* LibintInterfacer.hpp */,
 				566EDE8C2240F0B200D2CA80 /* Shell.hpp */,
 				566EDE952240F21A00D2CA80 /* ShellSet.hpp */,
@@ -4702,6 +4711,7 @@
 				5614F9F721B029FB002C5D40 /* AOBasis.cpp */,
 				566EDEB022428ABE00D2CA80 /* CartesianExponents.cpp */,
 				562241E32225B3DC001436D0 /* CartesianGTO.cpp */,
+				563E1C232281E2C700FADF30 /* LibcintInterfacer.cpp */,
 				5614F9DF21B029FB002C5D40 /* LibintInterfacer.cpp */,
 				566EDE8B2240F0B200D2CA80 /* Shell.cpp */,
 				566EDE942240F21A00D2CA80 /* ShellSet.cpp */,
@@ -4953,6 +4963,7 @@
 				5614FA2F21B029FB002C5D40 /* JacobiRotationParameters.hpp in Headers */,
 				5614FA3F21B029FB002C5D40 /* HamiltonianParameters.hpp in Headers */,
 				56B0D3B021F9BAC100605997 /* BivariationalCoefficients.hpp in Headers */,
+				563E1C262281E2C700FADF30 /* LibcintInterfacer.hpp in Headers */,
 				56884F4D222BB3FB00F68062 /* Matrix.hpp in Headers */,
 				5614FA3121B029FB002C5D40 /* RMP2.hpp in Headers */,
 				5614FA3321B029FB002C5D40 /* elements.hpp in Headers */,
@@ -7084,6 +7095,7 @@
 				56B49B8021F2128D000F543B /* AP1roG.cpp in Sources */,
 				56D630A5221FE657001081EB /* FrozenCoreFCI.cpp in Sources */,
 				5614FA7421B029FB002C5D40 /* HamiltonianBuilder.cpp in Sources */,
+				563E1C252281E2C700FADF30 /* LibcintInterfacer.cpp in Sources */,
 				56D630A7221FE657001081EB /* FrozenCoreDOCI.cpp in Sources */,
 				56D630CF221FE785001081EB /* FrozenCoreDOCIRDMBuilder.cpp in Sources */,
 				5614FA5A21B029FB002C5D40 /* SelectedRDMBuilder.cpp in Sources */,

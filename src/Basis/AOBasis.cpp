@@ -17,6 +17,7 @@
 // 
 #include "Basis/AOBasis.hpp"
 #include "Basis/LibintInterfacer.hpp"
+#include "Basis/LibcintInterfacer.hpp"
 
 
 namespace GQCP {
@@ -64,7 +65,7 @@ size_t AOBasis::numberOfBasisFunctions() const {
 
 
 /*
- *  PUBLIC METHODS
+ *  PUBLIC METHODS - LIBINT2 INTEGRALS
  */
 
 /**
@@ -123,6 +124,21 @@ TwoElectronOperator<double> AOBasis::calculateLibintCoulombRepulsionIntegrals() 
 
     auto libint_basisset = LibintInterfacer::get().interface(this->shell_set);
     return LibintInterfacer::get().calculateTwoElectronIntegrals(libint2::Operator::coulomb, libint_basisset);
+}
+
+
+
+/*
+ *  PUBLIC METHODS - LIBCINT INTEGRALS
+ */
+
+/**
+ *  @return the matrix representation of the overlap operator in this AO basis, using the libcint integral engine
+ */
+OneElectronOperator<double> AOBasis::calculateLibcintOverlapIntegrals() const {
+
+    const LibcintInterfacer libcint_interfacer;
+    return libcint_interfacer.calculateOneElectronIntegrals(cint1e_ovlp_cart);
 }
 
 

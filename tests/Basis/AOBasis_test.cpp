@@ -120,3 +120,14 @@ BOOST_AUTO_TEST_CASE( HORTON_integrals_h2o_sto3g ) {
     BOOST_CHECK(V.isApprox(ref_V, 1.0e-07));
     BOOST_CHECK(g.isApprox(ref_g, 1.0e-06));
 }
+
+
+BOOST_AUTO_TEST_CASE ( libcint_sandbox ) {
+
+    auto water = GQCP::Molecule::Readxyz("data/h2o.xyz");
+    GQCP::AOBasis ao_basis (water, "STO-3G");
+
+    const auto S = ao_basis.calculateLibcintOverlapIntegrals();
+    std::cout << "S: " << std::endl << S << std::endl << std::endl;
+}
+
