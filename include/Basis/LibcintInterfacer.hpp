@@ -1,3 +1,20 @@
+// This file is part of GQCG-gqcp.
+// 
+// Copyright (C) 2017-2019  the GQCG developers
+// 
+// GQCG-gqcp is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// GQCG-gqcp is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+// 
+// You should have received a copy of the GNU Lesser General Public License
+// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
+// 
 #ifndef LibcintInterfacer_hpp
 #define LibcintInterfacer_hpp
 
@@ -47,58 +64,6 @@ namespace libcint {
 
 static constexpr int atm_slots = ATM_SLOTS;
 static constexpr int bas_slots = BAS_SLOTS;
-
-
-    // https://github.com/sunqm/libcint/blob/master/examples/python_call.py
-
-/**
- *  A wrapper around the libcint "atm" C array
- */
-struct Atom {
-public:
-    int charge_of;  // nuclear charge/atomic number
-    int ptr_coord;  // offset of the x-coordinate of the atom inside the libcint environment
-    int nuc_mod_of;
-    int ptr_zeta;
-    int reserve_atmlot1;
-    int reserve_atmlot2;
-};
-
-
-
-/**
- *  A struct wrapper around the libcint "bas" C array
- */
-struct BasisFunction {
-public:
-    int atom_of;  // index of the corresponding atom
-    int ang_of;  // angular momentum
-    int nprim_of;  // number of primitives
-    int nctr_of;  // number of contractions
-    int kappa_of;
-    int ptr_exp;  // offset of the exponents inside the libcint environment
-    int ptr_coeff;  // offset to the contraction coefficients inside the libcint environment
-    int reserve_baslot;
-};
-
-
-///**
-// *  A struct wrapper around the libcint "env" C array
-// */
-//struct Environment {
-//public:
-//    double buffer [10000];
-//};
-
-
-///**
-// *  A wrapper around libcint::Atoms, libcint::BasisFunctions and libcint::Environment
-// */
-//struct Container {
-//public:
-//    std::vector<Atom> atoms;
-//    std::vector<BasisFunction> basis_functions;
-//};
 
 
 /**
@@ -151,8 +116,6 @@ public:
 
 
 
-
-
 }  // namespace libcint
 
 
@@ -171,20 +134,7 @@ using Libint2eFunction = std::function<int (double*, int*, int*, int, int*, int,
 class LibcintInterfacer {
 public:
 
-
-
-    // PUBLIC METHODS
-
-//    /**
-//     *  @param libcint_container        the wrapper libcint container
-//     *
-//     *  @return the raw information about atoms that libcint can use
-//     */
-//    libcint::RawContainer interface(const libcint::Container& libcint_container) const;
-
-
-
-
+    // PUBLIC METHODS - INTERFACING
 
     /**
      *  @param shell_set        the GQCP::ShellSet whose information should be converted
@@ -193,6 +143,8 @@ public:
      */
     libcint::RawContainer convert(const ShellSet& shell_set) const;
 
+
+    // PUBLIC METHODS - INTEGRALS
 
     /**
      *  @tparam N                   the number of libcint operator components

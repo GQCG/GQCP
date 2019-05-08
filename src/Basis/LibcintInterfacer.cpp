@@ -1,3 +1,20 @@
+// This file is part of GQCG-gqcp.
+// 
+// Copyright (C) 2017-2019  the GQCG developers
+// 
+// GQCG-gqcp is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// GQCG-gqcp is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+// 
+// You should have received a copy of the GNU Lesser General Public License
+// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
+// 
 #include "Basis/LibcintInterfacer.hpp"
 
 
@@ -5,28 +22,9 @@
 namespace GQCP {
 
 
-
-///**
-// *  @param libcint_container        the wrapper libcint container
-// *
-// *  @return the raw information about atoms that libcint can use
-// */
-//libcint::RawContainer LibcintInterfacer::interface(const libcint::Container& libcint_container) const {
-//
-//
-//
-//    const auto& libcint_atoms = libcint_container.atoms;
-//    const auto& natm = libcint_atoms.size();
-//
-//    int offset = PTR_ENV_START;  // an offset such that libcint can retrieve the correct index inside the environment
-//    for (size_t i = 0; i < natm; i++) {
-//    }
-//
-//
-//}
-
-
-
+/*
+ *  PUBLIC METHODS - INTERFACING
+ */
 
 /**
  *  @param shell_set        the GQCP::ShellSet whose information should be converted
@@ -110,6 +108,11 @@ libcint::RawContainer LibcintInterfacer::convert(const ShellSet& shell_set) cons
     return raw_container;
 }
 
+
+
+/*
+ *  PUBLIC METHODS - INTEGRALS
+ */
 
 /**
  *  @param function             the libcint two-electron integral function
