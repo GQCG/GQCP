@@ -151,3 +151,4 @@ BOOST_AUTO_TEST_CASE ( libcint_vs_libint2_H2O_STO_3G ) {
 
 
 // Check with larger basis (d functions)
+// Test dipole with other origin
