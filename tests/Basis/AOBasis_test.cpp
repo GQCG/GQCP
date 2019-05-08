@@ -122,17 +122,22 @@ BOOST_AUTO_TEST_CASE( HORTON_integrals_h2o_sto3g ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( libcint_sandbox ) {
+BOOST_AUTO_TEST_CASE ( libcint_vs_libint2_H2O_STO_3G ) {
 
     auto water = GQCP::Molecule::Readxyz("data/h2o.xyz");
     GQCP::AOBasis ao_basis (water, "STO-3G");
 
-    const auto S = ao_basis.calculateLibcintOverlapIntegrals();
-    std::cout << "S: " << std::endl << S << std::endl << std::endl;
+    const auto S_libcint = ao_basis.calculateLibcintOverlapIntegrals();
+    const auto T_libcint = ao_basis.calculateLibcintKineticIntegrals();
+    const auto V_libcint = ao_basis.calculateLibcintNuclearIntegrals();
 
-    const auto T = ao_basis.calculateLibcintKineticIntegrals();
-    std::cout << "T: " << std::endl << T << std::endl << std::endl;
 
-    const auto V = ao_basis.calculateLibcintNuclearIntegrals();
-    std::cout << "V: " << std::endl << V << std::endl << std::endl;
+    const auto S_libint2 = ao_basis.calculateLibintOverlapIntegrals();
+    const auto T_libint2 = ao_basis.calculateLibintKineticIntegrals();
+    const auto V_libint2 = ao_basis.calculateLibintNuclearIntegrals();
+
+
+    BOOST_CHECK(S_libcint.isApprox(S_libint2, 1.0e-08));
+    BOOST_CHECK(T_libcint.isApprox(T_libint2, 1.0e-08));
+    BOOST_CHECK(V_libcint.isApprox(V_libint2, 1.0e-08));
 }

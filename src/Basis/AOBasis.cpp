@@ -138,7 +138,8 @@ TwoElectronOperator<double> AOBasis::calculateLibintCoulombRepulsionIntegrals() 
 OneElectronOperator<double> AOBasis::calculateLibcintOverlapIntegrals() const {
 
     const LibcintInterfacer libcint_interfacer;
-    return libcint_interfacer.calculateOneElectronIntegrals<1>(cint1e_ovlp_cart)[0];
+    auto raw_container = libcint_interfacer.convert(this->shell_set);
+    return libcint_interfacer.calculateOneElectronIntegrals<1>(cint1e_ovlp_cart, raw_container)[0];
 }
 
 
@@ -148,7 +149,8 @@ OneElectronOperator<double> AOBasis::calculateLibcintOverlapIntegrals() const {
 OneElectronOperator<double> AOBasis::calculateLibcintKineticIntegrals() const {
 
     const LibcintInterfacer libcint_interfacer;
-    return libcint_interfacer.calculateOneElectronIntegrals<1>(cint1e_kin_cart)[0];
+    auto raw_container = libcint_interfacer.convert(this->shell_set);
+    return libcint_interfacer.calculateOneElectronIntegrals<1>(cint1e_kin_cart, raw_container)[0];
 }
 
 
@@ -158,7 +160,8 @@ OneElectronOperator<double> AOBasis::calculateLibcintKineticIntegrals() const {
 OneElectronOperator<double> AOBasis::calculateLibcintNuclearIntegrals() const {
 
     const LibcintInterfacer libcint_interfacer;
-    return libcint_interfacer.calculateOneElectronIntegrals<1>(cint1e_nuc_cart)[0];
+    auto raw_container = libcint_interfacer.convert(this->shell_set);
+    return libcint_interfacer.calculateOneElectronIntegrals<1>(cint1e_nuc_cart, raw_container)[0];
 }
 
 
