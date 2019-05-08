@@ -138,8 +138,53 @@ TwoElectronOperator<double> AOBasis::calculateLibintCoulombRepulsionIntegrals() 
 OneElectronOperator<double> AOBasis::calculateLibcintOverlapIntegrals() const {
 
     const LibcintInterfacer libcint_interfacer;
-    return libcint_interfacer.calculateOneElectronIntegrals(cint1e_ovlp_cart);
+    return libcint_interfacer.calculateOneElectronIntegrals<1>(cint1e_ovlp_cart)[0];
 }
+
+
+/**
+ *  @return the matrix representation of the kinetic energy operator in this AO basis, using the libcint integral engine
+ */
+OneElectronOperator<double> AOBasis::calculateLibcintKineticIntegrals() const {
+
+    const LibcintInterfacer libcint_interfacer;
+    return libcint_interfacer.calculateOneElectronIntegrals<1>(cint1e_kin_cart)[0];
+}
+
+
+/**
+ *  @return the matrix representation of the nuclear attraction operator in this AO basis, using the libcint integral engine
+ */
+OneElectronOperator<double> AOBasis::calculateLibcintNuclearIntegrals() const {
+
+    const LibcintInterfacer libcint_interfacer;
+    return libcint_interfacer.calculateOneElectronIntegrals<1>(cint1e_nuc_cart)[0];
+}
+
+
+///**
+// *  @param origin       the origin of the dipole
+// *
+// *  @return the matrix representation of the Cartesian components of the electrical dipole operator in this AO basis, using the libcint integral engine
+// */
+//std::array<OneElectronOperator<double>, 3> AOBasis::calculateLibcintDipoleIntegrals(const Vector<double, 3>& origin) const {
+//
+//    const LibcintInterfacer libcint_interfacer;
+//    const auto& all_integrals = libcint_interfacer.calculateOneElectronIntegrals<3>(cint1e_r_cart);
+//
+//    // Apply the minus sign which comes from the charge of the electrons -e
+//    return std::array<OneElectronOperator<double>, 3> {-all_integrals[0], -all_integrals[1], -all_integrals[2]};
+//}
+//
+//
+///**
+// *  @return the matrix representation of the Coulomb repulsion operator in this AO basis, using the libcint integral engine
+// */
+//TwoElectronOperator<double> AOBasis::calculateLibcintCoulombRepulsionIntegrals() const {
+//
+//    const LibcintInterfacer libcint_interfacer;
+//    libcint_interfacer.calculateTwoElectronIntegrals(cint2e_cart);
+//}
 
 
 }  // namespace GQCP

@@ -129,5 +129,10 @@ BOOST_AUTO_TEST_CASE ( libcint_sandbox ) {
 
     const auto S = ao_basis.calculateLibcintOverlapIntegrals();
     std::cout << "S: " << std::endl << S << std::endl << std::endl;
-}
 
+    const auto T = ao_basis.calculateLibcintKineticIntegrals();
+    std::cout << "T: " << std::endl << T << std::endl << std::endl;
+
+    const auto V = ao_basis.calculateLibcintNuclearIntegrals();
+    std::cout << "V: " << std::endl << V << std::endl << std::endl;
+}

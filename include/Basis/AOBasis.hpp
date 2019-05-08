@@ -98,6 +98,28 @@ public:
      *  @return the matrix representation of the overlap operator in this AO basis, using the libcint integral engine
      */
     OneElectronOperator<double> calculateLibcintOverlapIntegrals() const;
+
+    /**
+     *  @return the matrix representation of the kinetic energy operator in this AO basis, using the libcint integral engine
+     */
+    OneElectronOperator<double> calculateLibcintKineticIntegrals() const;
+
+    /**
+     *  @return the matrix representation of the nuclear attraction operator in this AO basis, using the libcint integral engine
+     */
+    OneElectronOperator<double> calculateLibcintNuclearIntegrals() const;
+
+//    /**
+//     *  @param origin       the origin of the dipole
+//     *
+//     *  @return the matrix representation of the Cartesian components of the electrical dipole operator in this AO basis, using the libcint integral engine
+//     */
+//    std::array<OneElectronOperator<double>, 3> calculateLibcintDipoleIntegrals(const Vector<double, 3>& origin = Vector<double, 3>::Zero()) const;
+//
+//    /**
+//     *  @return the matrix representation of the Coulomb repulsion operator in this AO basis, using the libcint integral engine
+//     */
+//    TwoElectronOperator<double> calculateLibcintCoulombRepulsionIntegrals() const;
 };
 
 
