@@ -130,9 +130,12 @@ TwoElectronOperator<double> AOBasis::calculateLibintCoulombRepulsionIntegrals() 
 
 /*
  *  PUBLIC METHODS - LIBCINT INTEGRALS
+ *  Note that the Libcint integrals should only be used for Cartesian ShellSets
  */
 
 /**
+ *  Calculate the overlap integrals using Libcint: only use this for all-Cartesian ShellSets
+ *
  *  @return the matrix representation of the overlap operator in this AO basis, using the libcint integral engine
  */
 OneElectronOperator<double> AOBasis::calculateLibcintOverlapIntegrals() const {
@@ -144,6 +147,8 @@ OneElectronOperator<double> AOBasis::calculateLibcintOverlapIntegrals() const {
 
 
 /**
+ *  Calculate the kinetic energy integrals using Libcint: only use this for all-Cartesian ShellSets
+ *
  *  @return the matrix representation of the kinetic energy operator in this AO basis, using the libcint integral engine
  */
 OneElectronOperator<double> AOBasis::calculateLibcintKineticIntegrals() const {
@@ -155,6 +160,8 @@ OneElectronOperator<double> AOBasis::calculateLibcintKineticIntegrals() const {
 
 
 /**
+ *  Calculate the nuclear attraction energy integrals using Libcint: only use this for all-Cartesian ShellSets
+ *
  *  @return the matrix representation of the nuclear attraction operator in this AO basis, using the libcint integral engine
  */
 OneElectronOperator<double> AOBasis::calculateLibcintNuclearIntegrals() const {
@@ -166,6 +173,8 @@ OneElectronOperator<double> AOBasis::calculateLibcintNuclearIntegrals() const {
 
 
 /**
+ *  Calculate the electrical dipole integrals using Libcint: only use this for all-Cartesian ShellSets
+ *
  *  @param origin       the origin of the dipole
  *
  *  @return the matrix representation of the Cartesian components of the electrical dipole operator in this AO basis, using the libcint integral engine
@@ -183,6 +192,8 @@ std::array<OneElectronOperator<double>, 3> AOBasis::calculateLibcintDipoleIntegr
 
 
 /**
+ *  Calculate the Coulomb repulsion energy integrals using Libcint: only use this for all-Cartesian ShellSets
+ *
  *  @return the matrix representation of the Coulomb repulsion operator in this AO basis, using the libcint integral engine
  */
 TwoElectronOperator<double> AOBasis::calculateLibcintCoulombRepulsionIntegrals() const {
