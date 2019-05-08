@@ -143,6 +143,14 @@ public:
      */
     libcint::RawContainer convert(const ShellSet& shell_set) const;
 
+    /**
+     *  Set the origin for the calculation of all vector-related integrals
+     *
+     *  @param raw_container        the libcint::RawContainer that holds the data needed by libcint
+     *  @param origin               the new origin for the calculation of all vector-related integrals
+     */
+    void setCommonOrigin(libcint::RawContainer& raw_container, const Vector<double, 3>& origin) const;
+
 
     // PUBLIC METHODS - INTEGRALS
 

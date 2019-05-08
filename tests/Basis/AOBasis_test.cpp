@@ -150,5 +150,21 @@ BOOST_AUTO_TEST_CASE ( libcint_vs_libint2_H2O_STO_3G ) {
 }
 
 
+BOOST_AUTO_TEST_CASE ( libcint_vs_libint2_dipole_origin ) {
+
+    auto water = GQCP::Molecule::Readxyz("data/h2o.xyz");
+    GQCP::AOBasis ao_basis (water, "STO-3G");
+
+    GQCP::Vector<double, 3> origin;
+    origin << 0.0, 1.0, -0.5;
+
+    const auto dipole_libcint = ao_basis.calculateLibcintDipoleIntegrals(origin);
+    const auto dipole_libint2 = ao_basis.calculateLibintDipoleIntegrals(origin);
+
+    for (size_t i = 0; i < 3; i++) {
+        BOOST_CHECK(dipole_libcint[i].isApprox(dipole_libint2[i], 1.0e-08));
+    }
+}
+
+
 // Check with larger basis (d functions)
-// Test dipole with other origin

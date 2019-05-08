@@ -174,6 +174,7 @@ std::array<OneElectronOperator<double>, 3> AOBasis::calculateLibcintDipoleIntegr
 
     const LibcintInterfacer libcint_interfacer;
     auto raw_container = libcint_interfacer.convert(this->shell_set);
+    libcint_interfacer.setCommonOrigin(raw_container, origin);
     const auto& all_integrals = libcint_interfacer.calculateOneElectronIntegrals<3>(cint1e_r_cart, raw_container);
 
     // Apply the minus sign which comes from the charge of the electrons -e
