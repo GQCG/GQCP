@@ -85,7 +85,7 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test ) {
         auto rhf = diis_scf_solver.get_solution();
 
         // Transform the mulliken operator to the basis in which the RHF energies are calculated
-        mulliken_operator.transform(rhf.get_C());
+        mulliken_operator.basisTransform(rhf.get_C());
 
         // Retrieve the RHF "energy"
         double expectation_value = rhf.get_electronic_energy();
@@ -177,7 +177,7 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test_random_transformation) {
         auto rhf = diis_scf_solver.get_solution();
 
         // Transform the mulliken operator to the basis in which the RHF energies are calculated
-        mulliken_operator.transform(rhf.get_C());
+        mulliken_operator.basisTransform(rhf.get_C());
 
         // Retrieve the RHF "energy"
         double expectation_value = rhf.get_electronic_energy();

@@ -159,6 +159,40 @@ BOOST_AUTO_TEST_CASE ( permanent_combinatorial ) {
 
 }
 
+
+BOOST_AUTO_TEST_CASE ( SquareMatrix_transform_trivial ) {
+
+    // Let's test a trivial transformation: i.e. with T being a unit matrix
+    GQCP::SquareMatrix<double> h = GQCP::SquareMatrix<double>::Random(3, 3);
+    GQCP::SquareMatrix<double> H = h;
+
+    GQCP::SquareMatrix<double> T = GQCP::SquareMatrix<double>::Identity(3, 3);
+    H.basisTransform(T);
+
+    BOOST_CHECK(H.isApprox(h, 1.0e-12));
+}
+
+
+BOOST_AUTO_TEST_CASE ( SquareMatrix_transform_and_inverse ) {
+
+    // Let's test if, if we transform h with T and then with T_inverse, we get effectively do nothing
+    GQCP::SquareMatrix<double> h = GQCP::SquareMatrix<double>::Random(3, 3);
+    GQCP::SquareMatrix<double> H = h;
+
+    GQCP::SquareMatrix<double> T (3);
+    T << 1,  0,  0,
+            0, -2,  0,
+            0,  0,  3;
+    GQCP::SquareMatrix<double> T_inverse = T.inverse();
+
+
+    H.basisTransform(T);
+    H.basisTransform(T_inverse);
+
+    BOOST_CHECK(H.isApprox(h, 1.0e-12));
+}
+
+
 //TODO: enable back after linking to GQCP
 
 //BOOST_AUTO_TEST_CASE ( permanent_ryser ) {

@@ -428,10 +428,10 @@ public:
     template <typename TransformationScalar = Scalar>
     void transform(const SquareMatrix<TransformationScalar>& T) {
 
-        this->S.transform(T);
+        this->S.basisTransform(T);
 
-        this->h.transform(T);
-        this->g.transform(T);
+        this->h.basisTransform(T);
+        this->g.basisTransform(T);
 
         this->T_total = this->T_total * T;  // use the correct transformation formula for subsequent transformations
     }
@@ -584,7 +584,7 @@ public:
 
         OneElectronOperator<Scalar> S_AO = this->S;
         SquareMatrix<double> T_inverse = T_total.inverse();
-        S_AO.transform(T_inverse);
+        S_AO.basisTransform(T_inverse);
 
         OneElectronOperator<double> mulliken_matrix = (T_total.adjoint() * p_a * S_AO * T_total + T_total.adjoint() * S_AO * p_a * T_total)/2 ;
 

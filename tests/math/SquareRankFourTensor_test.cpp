@@ -131,3 +131,17 @@ BOOST_AUTO_TEST_CASE ( pairWiseStrictReduce ) {
 
     BOOST_CHECK(M2_ref.isApprox(T2.pairWiseStrictReduce()));
 }
+
+
+BOOST_AUTO_TEST_CASE ( SquareRankFourTensor_transform_trivial ) {
+
+    // Let's test a trivial transformation: i.e. with T being a unit matrix
+    GQCP::SquareRankFourTensor<double> G (3);
+
+    auto G_copy = G;
+
+    GQCP::SquareMatrix<double> T = GQCP::SquareMatrix<double>::Identity(3, 3);
+    G.basisTransform(T);
+
+    BOOST_CHECK(G_copy.isApprox(G, 1.0e-12));
+}

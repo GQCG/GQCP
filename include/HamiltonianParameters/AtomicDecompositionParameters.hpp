@@ -35,15 +35,22 @@ struct AtomicDecompositionParameters {
     HamiltonianParameters<double> molecular_hamiltonian_parameters;  // the Hamiltonian Parameters of the complete molecule
     std::vector<HamiltonianParameters<double>> net_atomic_parameters;  // vector of net atomic Hamiltonian parameters, E_AA, E_BB
     std::vector<HamiltonianParameters<double>> interaction_parameters;  // vector of interaction Hamiltonian parameters, E_AB
-    std::vector<HamiltonianParameters<double>> fragment_parameters;  // vector of total atomic or fragment contributions, E_AA + E_AB/2, E_BB + E_AB/2
+    std::vector<HamiltonianParameters<double>> atomic_paramereters;  // vector of the total atomic contributions, E_AA + E_AB/2, E_BB + E_AB/2
 
 
-    AtomicDecompositionParameters (const HamiltonianParameters<double>& ham_par, const std::vector<HamiltonianParameters<double>>& net_atomic_parameters,
-            const std::vector<HamiltonianParameters<double>>& interaction_parameters, const std::vector<HamiltonianParameters<double>>& fragment_parameters) :
-    molecular_hamiltonian_parameters(ham_par),
+
+    /**
+     *  @param molecular_hamiltonian_parameters     the complete molecular Hamiltonian parameters
+     *  @param net_atomic_parameters                collection of net atomic Hamiltonian parameters
+     *  @param interaction_parameters               collection of atomic interaction Hamiltonian parameters
+     *  @param atomic_paramereters                  collection of atomic Hamiltonian parameters
+     */
+    AtomicDecompositionParameters (const HamiltonianParameters<double>& molecular_hamiltonian_parameters, const std::vector<HamiltonianParameters<double>>& net_atomic_parameters,
+            const std::vector<HamiltonianParameters<double>>& interaction_parameters, const std::vector<HamiltonianParameters<double>>& atomic_parameters) :
+    molecular_hamiltonian_parameters(molecular_hamiltonian_parameters),
     net_atomic_parameters(net_atomic_parameters),
     interaction_parameters(interaction_parameters),
-    fragment_parameters(fragment_parameters)
+    atomic_parameters(atomic_parameters)
     {};
 
     /**
@@ -63,13 +70,15 @@ struct AtomicDecompositionParameters {
      *
      *  Note that this named constructor is only available for real matrix representations
      */
-     AtomicDecompositionParameters (const Molecule& molecule, const std::string& basisset_name) : molecular_hamiltonian_parameters(HamiltonianParameters<double>::Molecular(molecule, basisset_name)) {
+     static AtomicDecompositionParameters General(const Molecule& molecule, const std::string& basisset_name) {
 
         auto atoms = molecule.get_atoms();
 
         if (atoms.size() > 2) {
-            throw std::invalid_argument("HamiltonianParameters::atomicDecomposition(): The Hamiltonian parameters are set up for more than 2 atoms, currently only available for diatomic molecules");
+            throw std::invalid_argument("AtomicDecompositionParameters::General(Molecule, std::string): The Hamiltonian parameters are set up for more than 2 atoms, currently only available for diatomic molecules");
         }
+
+
 
         Molecule atom_a ({atoms[0]});
         Molecule atom_b ({atoms[1]});
@@ -105,14 +114,14 @@ struct AtomicDecompositionParameters {
         auto g_ba = g;
 
 
-        g_a.matrixContraction<double, 0>(p_a);
-        g_a.matrixContraction<double, 2>(p_a);
-        g_b.matrixContraction<double, 0>(p_b);
-        g_b.matrixContraction<double, 2>(p_b);
-        g_ab.matrixContraction<double, 0>(p_a);
-        g_ab.matrixContraction<double, 2>(p_b);
-        g_ba.matrixContraction<double, 0>(p_b);
-        g_ba.matrixContraction<double, 2>(p_a);
+        g_a.matrixContraction<double>(p_a, 0);
+        g_a.matrixContraction<double>(p_a, 2);
+        g_b.matrixContraction<double>(p_b, 0);
+        g_b.matrixContraction<double>(p_b, 2);
+        g_ab.matrixContraction<double>(p_a, 0);
+        g_ab.matrixContraction<double>(p_b, 2);
+        g_ba.matrixContraction<double>(p_b, 0);
+        g_ba.matrixContraction<double>(p_a, 2);
 
 
         GQCP::TwoElectronOperator<double> g_abba = g_ab.Eigen() + g_ba.Eigen();
@@ -123,17 +132,19 @@ struct AtomicDecompositionParameters {
         HamiltonianParameters<double> HA(ao_basis, S, h_a + h_ab/2, g_a.Eigen() + (0.5)*g_abba.Eigen(), identity, repulsion/2);
         HamiltonianParameters<double> HB(ao_basis, S, h_b + h_ab/2, g_b.Eigen() + (0.5)*g_abba.Eigen(), identity, repulsion/2);
 
-        this->net_atomic_parameters = {HAA, HBB};
-        this->interaction_parameters = {HAB};
-        this->fragment_parameters = {HA, HB};
+        std::vector<HamiltonianParameters<double>> net_atomic_parameters = {HAA, HBB};
+        std::vector<HamiltonianParameters<double>> interaction_parameters = {HAB};
+        std::vector<HamiltonianParameters<double>> atomic_parameters = {HA, HB};
+
+        return AtomicDecompositionParameters(HamiltonianParameters<double>::Molecular(molecule, basisset_name), net_atomic_parameters, interaction_parameters, atomic_parameters);
     };
 
-    static AtomicDecompositionParameters Mario(const Molecule& molecule, const std::string& basisset_name) {
+    static AtomicDecompositionParameters Nuclear(const Molecule &molecule, const std::string &basisset_name) {
 
         auto atoms = molecule.get_atoms();
 
         if (atoms.size() > 2) {
-            throw std::invalid_argument("HamiltonianParameters::atomicDecomposition(): The Hamiltonian parameters are set up for more than 2 atoms, currently only available for diatomic molecules");
+            throw std::invalid_argument("AtomicDecompositionParameters::General(Molecule, std::string): The Hamiltonian parameters are set up for more than 2 atoms, currently only available for diatomic molecules");
         }
 
         Molecule atom_a ({atoms[0]});
@@ -180,14 +191,14 @@ struct AtomicDecompositionParameters {
         auto g_ab = g;
         auto g_ba = g;
 
-        g_a.matrixContraction<double, 0>(p_a);
-        g_a.matrixContraction<double, 2>(p_a);
-        g_b.matrixContraction<double, 0>(p_b);
-        g_b.matrixContraction<double, 2>(p_b);
-        g_ab.matrixContraction<double, 0>(p_a);
-        g_ab.matrixContraction<double, 2>(p_b);
-        g_ba.matrixContraction<double, 0>(p_b);
-        g_ba.matrixContraction<double, 2>(p_a);
+        g_a.matrixContraction<double>(p_a, 0);
+        g_a.matrixContraction<double>(p_a, 2);
+        g_b.matrixContraction<double>(p_b, 0);
+        g_b.matrixContraction<double>(p_b, 2);
+        g_ab.matrixContraction<double>(p_a, 0);
+        g_ab.matrixContraction<double>(p_b, 2);
+        g_ba.matrixContraction<double>(p_b, 0);
+        g_ba.matrixContraction<double>(p_a, 2);
 
         GQCP::TwoElectronOperator<double> g_abba = g_ab.Eigen() + g_ba.Eigen();
 
@@ -199,9 +210,9 @@ struct AtomicDecompositionParameters {
 
         std::vector<HamiltonianParameters<double>> net_atomic_parameters = {HAA, HBB};
         std::vector<HamiltonianParameters<double>> interaction_parameters = {HAB};
-        std::vector<HamiltonianParameters<double>> fragment_parameters = {HA, HB};
+        std::vector<HamiltonianParameters<double>> atomic_parameters = {HA, HB};
 
-        return AtomicDecompositionParameters(HamiltonianParameters<double>::Molecular(molecule, basisset_name), net_atomic_parameters, interaction_parameters, fragment_parameters);
+        return AtomicDecompositionParameters(HamiltonianParameters<double>::Molecular(molecule, basisset_name), net_atomic_parameters, interaction_parameters, atomic_parameters);
     };
 };
 

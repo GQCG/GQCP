@@ -74,14 +74,14 @@ BOOST_AUTO_TEST_CASE ( decomposition_BeH_cation_STO_3G ) {
     // Transform rdms to the AObasis
     GQCP::OneRDM<double> ao_one_rdm = T * (one_rdm) * T.adjoint();
     GQCP::TwoRDM<double> ao_two_rdm = two_rdm;
-    ao_two_rdm.fourModeMultiplication<double>(T.adjoint().conjugate(), T.adjoint(), T.adjoint().conjugate(), T.adjoint());
+    ao_two_rdm.basisTransform<double>(T.adjoint());
 
     double self_energy_a = GQCP::calculateExpectationValue(adp.net_atomic_parameters[0], ao_one_rdm, ao_two_rdm);
     double self_energy_b = GQCP::calculateExpectationValue(adp.net_atomic_parameters[1], ao_one_rdm, ao_two_rdm);
     double interaction_energy_ab = GQCP::calculateExpectationValue(adp.interaction_parameters[0], ao_one_rdm,
                                                                    ao_two_rdm);
-    double total_energy_a = GQCP::calculateExpectationValue(adp.fragment_parameters[0], ao_one_rdm, ao_two_rdm);
-    double total_energy_b = GQCP::calculateExpectationValue(adp.fragment_parameters[1], ao_one_rdm, ao_two_rdm);
+    double total_energy_a = GQCP::calculateExpectationValue(adp.atomic_parameters[0], ao_one_rdm, ao_two_rdm);
+    double total_energy_b = GQCP::calculateExpectationValue(adp.atomic_parameters[1], ao_one_rdm, ao_two_rdm);
 
     BOOST_CHECK(std::abs(total_energy_a + total_energy_b - fci_energy - repulsion) < 1.0e-010);
     BOOST_CHECK(std::abs(self_energy_a + self_energy_b + interaction_energy_ab - fci_energy - repulsion) < 1.0e-010);
@@ -92,14 +92,14 @@ BOOST_AUTO_TEST_CASE ( decomposition_BeH_cation_STO_3G ) {
 
 
 
-BOOST_AUTO_TEST_CASE ( decomposition_BeH_cation_STO_3G_Mario ) {
+BOOST_AUTO_TEST_CASE ( decomposition_BeH_cation_STO_3G_Nuclear ) {
 
     // Create the molecular Hamiltonian parameters in an AO basis
     GQCP::Atom Be(4, 0.0, 0.0, 0.0);
     GQCP::Atom H(1, 0.0, 0.0, GQCP::units::angstrom_to_bohr(1.134));  // from CCCBDB, STO-3G geometry
     std::vector<GQCP::Atom> atoms{Be, H};
     GQCP::Molecule BeH(atoms, +1);
-    GQCP::AtomicDecompositionParameters adp = GQCP::AtomicDecompositionParameters::Mario(BeH, "STO-3G");
+    GQCP::AtomicDecompositionParameters adp = GQCP::AtomicDecompositionParameters::Nuclear(BeH, "STO-3G");
     auto mol_ham_par = adp.molecular_hamiltonian_parameters;
     auto K = mol_ham_par.get_K();
     double repulsion = BeH.calculateInternuclearRepulsionEnergy();
@@ -136,14 +136,14 @@ BOOST_AUTO_TEST_CASE ( decomposition_BeH_cation_STO_3G_Mario ) {
     // Transform rdms to the AObasis
     GQCP::OneRDM<double> ao_one_rdm = T * (one_rdm) * T.adjoint();
     GQCP::TwoRDM<double> ao_two_rdm = two_rdm;
-    ao_two_rdm.fourModeMultiplication<double>(T.adjoint().conjugate(), T.adjoint(), T.adjoint().conjugate(), T.adjoint());
+    ao_two_rdm.basisTransform<double>(T.adjoint().conjugate(), T.adjoint(), T.adjoint().conjugate(), T.adjoint());
 
     double self_energy_a = GQCP::calculateExpectationValue(adp.net_atomic_parameters[0], ao_one_rdm, ao_two_rdm);
     double self_energy_b = GQCP::calculateExpectationValue(adp.net_atomic_parameters[1], ao_one_rdm, ao_two_rdm);
     double interaction_energy_ab = GQCP::calculateExpectationValue(adp.interaction_parameters[0], ao_one_rdm,
                                                                    ao_two_rdm);
-    double total_energy_a = GQCP::calculateExpectationValue(adp.fragment_parameters[0], ao_one_rdm, ao_two_rdm);
-    double total_energy_b = GQCP::calculateExpectationValue(adp.fragment_parameters[1], ao_one_rdm, ao_two_rdm);
+    double total_energy_a = GQCP::calculateExpectationValue(adp.atomic_parameters[0], ao_one_rdm, ao_two_rdm);
+    double total_energy_b = GQCP::calculateExpectationValue(adp.atomic_parameters[1], ao_one_rdm, ao_two_rdm);
 
     BOOST_CHECK(std::abs(total_energy_a + total_energy_b - fci_energy - repulsion) < 1.0e-010);
     BOOST_CHECK(std::abs(self_energy_a + self_energy_b + interaction_energy_ab - fci_energy - repulsion) < 1.0e-010);
