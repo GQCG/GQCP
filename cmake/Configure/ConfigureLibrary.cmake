@@ -23,9 +23,6 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC ${Libint2_LIBRARIES})
 target_include_directories(${LIBRARY_NAME} PUBLIC ${Libcint_INCLUDE_DIRS})
 target_link_libraries(${LIBRARY_NAME} PUBLIC ${Libcint_LIBRARIES})
 
-message(STATUS ${Libcint_INCLUDE_DIRS})
-message(STATUS ${Libcint_LIBRARIES})
-
 
 # Include Spectra
 target_include_directories(${LIBRARY_NAME} PRIVATE ${Spectra_INCLUDE_DIRS})

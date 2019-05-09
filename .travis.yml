@@ -92,7 +92,7 @@ install:
     - git clone https://github.com/sunqm/libcint.git
     - cd libcint
     - mkdir build && cd build
-    - cmake .. -DBUILD_SHARED_LIBS=0
+    - cmake ..
     - make && sudo make install
 
 
