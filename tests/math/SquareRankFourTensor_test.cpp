@@ -160,6 +160,10 @@ BOOST_AUTO_TEST_CASE ( SquareRankFourTensor_matrix_contraction_trivial ) {
         }
     }
 
+    // shuffled tensor
+    std::array<int, 4> shuffle {3,2,1,0};
+    GQCP::SquareRankFourTensor<double> T2  =  GQCP::SquareRankFourTensor<double>(T.Eigen().shuffle(shuffle));
+
     // toy matrix
     GQCP::SquareMatrix<double> A (2);
     for (long i = 0; i < 2; i++) {
@@ -169,9 +173,15 @@ BOOST_AUTO_TEST_CASE ( SquareRankFourTensor_matrix_contraction_trivial ) {
     }
 
     // test rank-4 tensor, data from https://stackoverflow.com/questions/47556726
-    GQCP::SquareRankFourTensor<double> T2 = GQCP::SquareRankFourTensor<double>::FromFile("data/tensor_contraction_test.data", 2);
+    GQCP::SquareRankFourTensor<double> T_test = GQCP::SquareRankFourTensor<double>::FromFile("data/tensor_contraction_test.data", 2);
 
     T.matrixContraction(A, 0);
 
-    BOOST_CHECK(T2.isApprox(T, 1.0e-12));
+    BOOST_CHECK(T_test.isApprox(T_test, 1.0e-12));
+
+    // If we contract the with the last index axis of the shuffled tensor, then shuffle back the results should be the same.
+    T2.matrixContraction(A, 3);
+    GQCP::SquareRankFourTensor<double> T3 = GQCP::SquareRankFourTensor<double>(T2.Eigen().shuffle(shuffle));
+
+    BOOST_CHECK(T3.isApprox(T_test, 1.0e-12));
 }
