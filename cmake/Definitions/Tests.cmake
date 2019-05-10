@@ -12,6 +12,7 @@ set(PROJECT_TEST_SOURCE_FILES
         ${PROJECT_TESTS_FOLDER}/Basis/CartesianGTO_test.cpp
         ${PROJECT_TESTS_FOLDER}/Basis/LibintInterfacer_test.cpp
         ${PROJECT_TESTS_FOLDER}/Basis/Shell_test.cpp
+        ${PROJECT_TESTS_FOLDER}/Basis/ShellSet_test.cpp
 
         ${PROJECT_TESTS_FOLDER}/CISolver/CISolver_DOCI_Davidson_test.cpp
         ${PROJECT_TESTS_FOLDER}/CISolver/CISolver_DOCI_Dense_test.cpp
@@ -28,6 +29,7 @@ set(PROJECT_TEST_SOURCE_FILES
         ${PROJECT_TESTS_FOLDER}/FockSpace/SelectedFockSpace_test.cpp
         ${PROJECT_TESTS_FOLDER}/FockSpace/ProductFockSpace_test.cpp
 
+        ${PROJECT_TESTS_FOLDER}/geminals/AP1roG_test.cpp
         ${PROJECT_TESTS_FOLDER}/geminals/AP1roGBivariationalSolver_test.cpp
         ${PROJECT_TESTS_FOLDER}/geminals/AP1roGGeminalCoefficients_test.cpp
         ${PROJECT_TESTS_FOLDER}/geminals/AP1roGPSESolver_test.cpp

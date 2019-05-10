@@ -10,6 +10,7 @@ set(PROJECT_SOURCE_FILES
         ${PROJECT_SOURCE_FOLDER}/Basis/AOBasis.cpp
         ${PROJECT_SOURCE_FOLDER}/Basis/CartesianExponents.cpp
         ${PROJECT_SOURCE_FOLDER}/Basis/CartesianGTO.cpp
+        ${PROJECT_SOURCE_FOLDER}/Basis/LibcintInterfacer.cpp
         ${PROJECT_SOURCE_FOLDER}/Basis/LibintInterfacer.cpp
         ${PROJECT_SOURCE_FOLDER}/Basis/Shell.cpp
         ${PROJECT_SOURCE_FOLDER}/Basis/ShellSet.cpp

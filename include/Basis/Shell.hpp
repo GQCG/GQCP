@@ -31,8 +31,8 @@ namespace GQCP {
 class Shell {
 private:
     bool pure;  // true if spherical, false if Cartesian
-    bool are_embedded_normalization_factors_of_primitives;  // if the normalization factors of the primitives are embedded in the contraction coefficients
-    bool is_normalized;  // if the total normalization factor is already embedded in the contraction coefficients
+    bool embedded_normalization_factors_of_primitives;  // if the normalization factors of the primitives are embedded in the contraction coefficients
+    bool normalized;  // if the total normalization factor is already embedded in the contraction coefficients
     size_t l;  // the angular momentum of the shell
     Atom atom;  // atom on which the shell is centered
     std::vector<double> gaussian_exponents;  // Gaussian exponents (i.e. for the exponential), shared for every contraction
@@ -55,6 +55,8 @@ public:
 
     // GETTERS
     bool is_pure() const { return this->pure; }
+    bool are_embedded_normalization_factors_of_primitives() const { return this->embedded_normalization_factors_of_primitives; }
+    bool is_normalized() const { return this->normalized; }
     size_t get_l() const { return this->l; }
     const Atom& get_atom() const { return this->atom; }
     const std::vector<double>& get_gaussian_exponents() const { return this->gaussian_exponents; }

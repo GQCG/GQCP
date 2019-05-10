@@ -51,13 +51,13 @@ BOOST_AUTO_TEST_CASE( Szabo_integrals_h2_sto3g ) {
     BOOST_CHECK_EQUAL(ao_basis.numberOfBasisFunctions(), 2);
 
     // Calculate some integrals
-    auto S = ao_basis.calculateOverlapIntegrals();
-    auto T = ao_basis.calculateKineticIntegrals();
-    auto V = ao_basis.calculateNuclearIntegrals();
+    auto S = ao_basis.calculateLibintOverlapIntegrals();
+    auto T = ao_basis.calculateLibintKineticIntegrals();
+    auto V = ao_basis.calculateLibintNuclearIntegrals();
 
     GQCP::OneElectronOperator<double> H_core = T + V;
 
-    auto g = ao_basis.calculateCoulombRepulsionIntegrals();
+    auto g = ao_basis.calculateLibintCoulombRepulsionIntegrals();
 
 
     // Fill in the reference values from Szabo
@@ -100,11 +100,11 @@ BOOST_AUTO_TEST_CASE( HORTON_integrals_h2o_sto3g ) {
 
 
     // Calculate some integrals
-    auto S = ao_basis.calculateOverlapIntegrals();
-    auto T = ao_basis.calculateKineticIntegrals();
-    auto V = ao_basis.calculateNuclearIntegrals();
+    auto S = ao_basis.calculateLibintOverlapIntegrals();
+    auto T = ao_basis.calculateLibintKineticIntegrals();
+    auto V = ao_basis.calculateLibintNuclearIntegrals();
 
-    auto g = ao_basis.calculateCoulombRepulsionIntegrals();
+    auto g = ao_basis.calculateLibintCoulombRepulsionIntegrals();
 
 
     // Read in reference data from HORTON
@@ -119,4 +119,49 @@ BOOST_AUTO_TEST_CASE( HORTON_integrals_h2o_sto3g ) {
     BOOST_CHECK(T.isApprox(ref_T, 1.0e-07));
     BOOST_CHECK(V.isApprox(ref_V, 1.0e-07));
     BOOST_CHECK(g.isApprox(ref_g, 1.0e-06));
+}
+
+
+BOOST_AUTO_TEST_CASE ( libcint_vs_libint2_H2O_STO_3G ) {
+
+    auto water = GQCP::Molecule::Readxyz("data/h2o.xyz");
+    GQCP::AOBasis ao_basis (water, "STO-3G");
+
+    const auto S_libcint = ao_basis.calculateLibcintOverlapIntegrals();
+    const auto T_libcint = ao_basis.calculateLibcintKineticIntegrals();
+    const auto V_libcint = ao_basis.calculateLibcintNuclearIntegrals();
+    const auto dipole_libcint = ao_basis.calculateLibcintDipoleIntegrals();
+    const auto g_libcint = ao_basis.calculateLibcintCoulombRepulsionIntegrals();
+
+    const auto S_libint2 = ao_basis.calculateLibintOverlapIntegrals();
+    const auto T_libint2 = ao_basis.calculateLibintKineticIntegrals();
+    const auto V_libint2 = ao_basis.calculateLibintNuclearIntegrals();
+    const auto dipole_libint2 = ao_basis.calculateLibintDipoleIntegrals();
+    const auto g_libint2 = ao_basis.calculateLibintCoulombRepulsionIntegrals();
+
+    
+    BOOST_CHECK(S_libcint.isApprox(S_libint2, 1.0e-08));
+    BOOST_CHECK(T_libcint.isApprox(T_libint2, 1.0e-08));
+    BOOST_CHECK(V_libcint.isApprox(V_libint2, 1.0e-08));
+    for (size_t i = 0; i < 3; i++) {
+        BOOST_CHECK(dipole_libcint[i].isApprox(dipole_libint2[i], 1.0e-08));
+    }
+    BOOST_CHECK(g_libcint.isApprox(g_libint2, 1.0e-08));
+}
+
+
+BOOST_AUTO_TEST_CASE ( libcint_vs_libint2_dipole_origin ) {
+
+    auto water = GQCP::Molecule::Readxyz("data/h2o.xyz");
+    GQCP::AOBasis ao_basis (water, "STO-3G");
+
+    GQCP::Vector<double, 3> origin;
+    origin << 0.0, 1.0, -0.5;
+
+    const auto dipole_libcint = ao_basis.calculateLibcintDipoleIntegrals(origin);
+    const auto dipole_libint2 = ao_basis.calculateLibintDipoleIntegrals(origin);
+
+    for (size_t i = 0; i < 3; i++) {
+        BOOST_CHECK(dipole_libcint[i].isApprox(dipole_libint2[i], 1.0e-08));
+    }
 }

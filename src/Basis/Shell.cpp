@@ -41,8 +41,8 @@ namespace GQCP {
  */
 Shell::Shell(size_t l, const Atom& atom, const std::vector<double>& gaussian_exponents, const std::vector<double>& contraction_coefficients, bool pure, bool are_embedded_normalization_factors_of_primitives, bool is_normalized) :
     pure (pure),
-    are_embedded_normalization_factors_of_primitives (are_embedded_normalization_factors_of_primitives),
-    is_normalized (is_normalized),
+    embedded_normalization_factors_of_primitives (are_embedded_normalization_factors_of_primitives),
+    normalized (is_normalized),
     l (l),
     atom (atom),
     gaussian_exponents (gaussian_exponents),
@@ -124,12 +124,12 @@ size_t Shell::contractionSize() const {
  */
 void Shell::embedNormalizationFactorsOfPrimitives() {
 
-    if (!this->are_embedded_normalization_factors_of_primitives) {
+    if (!this->embedded_normalization_factors_of_primitives) {
         for (size_t i = 0; i < this->contractionSize(); i++) {
             this->contraction_coefficients[i] *= CartesianGTO::calculateNormalizationFactor(this->gaussian_exponents[i], CartesianExponents(this->l, 0, 0));  // normalization factor of an axis-aligned Cartesian GTO
         }
 
-        this->are_embedded_normalization_factors_of_primitives = true;
+        this->embedded_normalization_factors_of_primitives = true;
     }
 }
 
@@ -141,12 +141,12 @@ void Shell::embedNormalizationFactorsOfPrimitives() {
  */
 void Shell::unEmbedNormalizationFactorsOfPrimitives() {
 
-    if (this->are_embedded_normalization_factors_of_primitives) {
+    if (this->embedded_normalization_factors_of_primitives) {
         for (size_t i = 0; i < this->contractionSize(); i++) {
             this->contraction_coefficients[i] /= CartesianGTO::calculateNormalizationFactor(this->gaussian_exponents[i], CartesianExponents(this->l, 0, 0));  // normalization factor of an axis-aligned Cartesian GTO
         }
 
-        this->are_embedded_normalization_factors_of_primitives = false;
+        this->embedded_normalization_factors_of_primitives = false;
     }
 }
 
@@ -156,7 +156,7 @@ void Shell::unEmbedNormalizationFactorsOfPrimitives() {
  */
 void Shell::embedNormalizationFactor() {
 
-    if (!this->is_normalized) {
+    if (!this->normalized) {
 
         // Calculate the total norm of the shell's basis functions (corresponding to axis-aligned Cartesian GTOs)
         double norm = 0.0;
@@ -177,7 +177,7 @@ void Shell::embedNormalizationFactor() {
         for (size_t i = 0; i < this->contractionSize(); i++) {
             this->contraction_coefficients[i] *= std::pow(norm, -1.0/2.0);
         }
-        this->is_normalized = true;
+        this->normalized = true;
     }
 }
 
