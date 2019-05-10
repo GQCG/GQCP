@@ -92,7 +92,7 @@ BOOST_AUTO_TEST_CASE ( mulliken_N2_STO_3G ) {
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 
-    ham_par.transform(rhf.get_C());
+    ham_par.basisTransform(rhf.get_C());
 
     GQCP::FockSpace fock_space (K, N/2);
     GQCP::DOCI doci (fock_space);

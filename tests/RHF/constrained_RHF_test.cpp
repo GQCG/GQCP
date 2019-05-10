@@ -126,7 +126,7 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test_random_transformation) {
         T(i,i) = 1;
     }
 
-    ao_ham_par.transform(T);
+    ao_ham_par.basisTransform(T);
 
     GQCP::OneRDM<double> one_rdm = GQCP::calculateRHF1RDM(K, N);
 

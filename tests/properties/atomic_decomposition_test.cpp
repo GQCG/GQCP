@@ -48,7 +48,7 @@ BOOST_AUTO_TEST_CASE ( decomposition_BeH_cation_STO_3G_Nuclear ) {
     const auto &T = rhf.get_C();
 
     // Transform the ham_par
-    mol_ham_par.transform(T);
+    mol_ham_par.basisTransform(T);
 
     // Create the FCI module
     GQCP::ProductFockSpace fock_space(K, BeH.get_N() / 2, BeH.get_N() / 2);  // dim = 441

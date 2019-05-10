@@ -426,7 +426,7 @@ public:
      *      - the total transformation matrix T_total is updated to reflect the total transformation between the new molecular orbital basis and the initial atomic orbitals
      */
     template <typename TransformationScalar = Scalar>
-    void basisTransform(const SquareMatrix<TransformationScalar>& T) {
+    void basisTransform(const SquareMatrix<TransformationScalar> &T) {
 
         this->S.basisTransform(T);
 
@@ -490,7 +490,7 @@ public:
 
         // The transformation matrix to the Löwdin basis is T = S^{-1/2}
         Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes (this->S);  // can we use this->S?
-        this->transform(SquareMatrix<double>(saes.operatorInverseSqrt()));
+        this->basisTransform(SquareMatrix<double>(saes.operatorInverseSqrt()));
     }
 
 
