@@ -104,7 +104,7 @@ public:
         HamiltonianParameters<Scalar>(ham_par.ao_basis, ham_par.S, ham_par.h, ham_par.g, ham_par.T_total, ham_par.scalar)
     {
         // We have now initialized the new Hamiltonian parameters to be a copy of the given Hamiltonian parameters, so now we will transform
-        this->transform(C);
+        this->basisTransform(C);
     }
 
 
@@ -426,7 +426,7 @@ public:
      *      - the total transformation matrix T_total is updated to reflect the total transformation between the new molecular orbital basis and the initial atomic orbitals
      */
     template <typename TransformationScalar = Scalar>
-    void transform(const SquareMatrix<TransformationScalar>& T) {
+    void basisTransform(const SquareMatrix<TransformationScalar>& T) {
 
         this->S.basisTransform(T);
 

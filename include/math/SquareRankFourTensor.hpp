@@ -293,6 +293,9 @@ public:
             shuffle[i] = i;
         }
 
+        // Since we're only getting M as a matrix, we should make the appropriate tensor to perform contractions
+        // For the const argument, we need the const in the template
+        //      For more info, see: https://stackoverflow.com/questions/45283468/eigen-const-tensormap
         Eigen::TensorMap<Eigen::Tensor<const MultiplicationScalar, 2>> M_tensor (M.data(), M.rows(), M.cols());
 
         Self T_transformed = M_tensor.contract(this->Eigen(), contraction_pair).shuffle(shuffle);
