@@ -29,41 +29,52 @@
 
 extern "C" {
 
+
 #include <cint.h>
 
 
 /*
- *  FUNCTIONS THAT AREN'T INSIDE <cint.h>
+ *  The following functions are not inside the include header <cint.h>, so we should define them in order to be able to use them in our source code
  */
-int cint1e_ovlp_cart(double* buf, int* shls, int* atm, int natm, int* bas, int nbas, double* env);  // overlap
-int cint1e_kin_cart(double* buf, int* shls, int* atm, int natm, int* bas, int nbas, double* env);  // kinetic energy
-int cint1e_nuc_cart(double* buf, int* shls, int* atm, int natm, int* bas, int nbas, double* env);  // nuclear attraction energy
-int cint1e_r_cart(double* buf, int* shls, int* atm, int natm, int* bas, int nbas, double* env);  // dipole integrals, origin at zero
+FINT cint1e_ovlp_cart(double* buf, const int* shls, const int* atm, int natm, const int* bas, int nbas, const double* env);  // overlap
+FINT cint1e_kin_cart(double* buf, const int* shls, const int* atm, int natm, const int* bas, int nbas, const double* env);  // kinetic energy
+FINT cint1e_nuc_cart(double* buf, const int* shls, const int* atm, int natm, const int* bas, int nbas, const double* env);  // nuclear attraction energy
+FINT cint1e_r_cart(double* buf, const int* shls, const int* atm, int natm, const int* bas, int nbas, const double* env);  // dipole integrals
 
 
 }  // extern "C"
 
 
 
-
 namespace GQCP {
 
 
-/**
- *  Forward declaration
- */
-class LibcintInterfacer;
+class LibcintInterfacer;  // forward declaration before friending
 
 
-
-/*
- *  WRAPPERS AROUND C-STYLE LIBCINT ARRAYS
- */
 namespace libcint {
 
 
-static constexpr int atm_slots = ATM_SLOTS;
-static constexpr int bas_slots = BAS_SLOTS;
+/**
+ *  C++ global variables instead of macro commands
+ */
+static constexpr int ptr_common_orig = PTR_COMMON_ORIG;  // an offset for the origin of vector operators
+static constexpr int ptr_env_start = PTR_ENV_START;  // an offset such that libcint can retrieve the correct index inside the environment, starts at 20
+
+static constexpr int atm_slots = ATM_SLOTS;  // the number of 'slots' (i.e. 'members') for an atom
+static constexpr int charge_of = CHARGE_OF;  // slot offset for atomic charge
+static constexpr int ptr_coord = PTR_COORD;  // slot offset for a 'pointer' of the atom inside the libcint environment
+
+
+static constexpr int bas_slots = BAS_SLOTS;  // the number of 'slots' (i.e. 'members') for a basis function
+static constexpr int atom_of = ATOM_OF;  // slot offset for the corresponding atom in the basis function
+static constexpr int ang_of = ANG_OF;  // slot offset for the angular momentum
+static constexpr int nprim_of = NPRIM_OF;  // slot offset for the number of primitives inside the basis function
+static constexpr int nctr_of = NCTR_OF;  // slot offset for the number of contractions
+static constexpr int ptr_exp = PTR_EXP;  // slot offset for a 'pointer' to the exponents of the shell inside the libcint environment
+static constexpr int ptr_coeff = PTR_COEFF;  // slot offset for a 'pointer' to the contraction coefficients inside the libcint environment
+
+
 
 
 /**
@@ -71,7 +82,6 @@ static constexpr int bas_slots = BAS_SLOTS;
  */
 class RawContainer {
 private:
-    // PRIVATE MEMBERS
     int natm;  // number of atoms
     int nbf;  // number of basis functions
     int nsh;  // the number of shells
@@ -115,15 +125,14 @@ public:
 };
 
 
-
 }  // namespace libcint
 
 
 
 
 
-using Libint1eFunction = std::function<int (double*, int*, int*, int, int*, int, double*)>;
-using Libint2eFunction = std::function<int (double*, int*, int*, int, int*, int, double*, CINTOpt*)>;
+using Libcint1eFunction = std::function<int (double*, const int*, const int*, int, const int*, int, const double*)>;
+using Libcint2eFunction = std::function<int (double*, const int*, const int*, int, const int*, int, const double*, const CINTOpt*)>;
 
 
 
@@ -163,7 +172,7 @@ public:
      *  @return an array of N OneElectronOperators corresponding to the matrix representations of the N components of the given operator represented by the libcint function
      */
     template <size_t N>
-    std::array<OneElectronOperator<double>, N> calculateOneElectronIntegrals(const Libint1eFunction& function, libcint::RawContainer& raw_container) const {
+    std::array<OneElectronOperator<double>, N> calculateOneElectronIntegrals(const Libcint1eFunction& function, libcint::RawContainer& raw_container) const {
 
         // Initialize the components to zero
         const auto& nbf = raw_container.nbf;  // number of basis functions
@@ -222,7 +231,7 @@ public:
      *
      *  @return an array of N OneElectronOperators corresponding to the matrix representations of the N components of the given operator represented by the libcint function
      */
-    TwoElectronOperator<double> calculateTwoElectronIntegrals(const Libint2eFunction& function, libcint::RawContainer& raw_container) const;
+    TwoElectronOperator<double> calculateTwoElectronIntegrals(const Libcint2eFunction& function, libcint::RawContainer& raw_container) const;
 };
 
 

@@ -42,12 +42,12 @@ libcint::RawContainer LibcintInterfacer::convert(const ShellSet& shell_set) cons
 
 
     // Configuration of atom-related data
-    int offset = PTR_ENV_START;  // an offset such that libcint can retrieve the correct index inside the environment, starts at 20
+    int offset = libcint::ptr_env_start;  // an offset such that libcint can retrieve the correct index inside the environment, starts at 20
 
     for (size_t i = 0; i < natm; i++) {
         // Configure a libcint 'atom'
-        raw_container.libcint_atm[CHARGE_OF + ATM_SLOTS * i] = static_cast<int>(atoms[i].atomic_number);  // insert the charge/atomic number
-        raw_container.libcint_atm[PTR_COORD + ATM_SLOTS * i] = offset;  // pointer to the coordinates of the atom inside the libcint environment
+        raw_container.libcint_atm[libcint::charge_of + libcint::atm_slots * i] = static_cast<int>(atoms[i].atomic_number);  // insert the charge/atomic number
+        raw_container.libcint_atm[libcint::ptr_coord + libcint::atm_slots * i] = offset;  // 'pointer' to the coordinates of the atom inside the libcint environment
 
         // Set the atom-related data into the libcint environment
         raw_container.libcint_env[offset + 0] = atoms[i].position.x();  // insert the position of the atoms
@@ -75,14 +75,14 @@ libcint::RawContainer LibcintInterfacer::convert(const ShellSet& shell_set) cons
             atom_index++;
             previous_atom = current_atom;
         }
-        raw_container.libcint_bas[ATOM_OF  + BAS_SLOTS * n] = atom_index;
+        raw_container.libcint_bas[libcint::atom_of + libcint::bas_slots * n] = atom_index;
 
 
         // Set shell-related data into the libcint 'basis' and into the libcint environment
-        raw_container.libcint_bas[ANG_OF    + BAS_SLOTS * n] = static_cast<int>(current_shell.get_l());  // angular momentum
-        raw_container.libcint_bas[NPRIM_OF  + BAS_SLOTS * n] = static_cast<int>(current_shell.contractionSize());  // number of primitives
-        raw_container.libcint_bas[NCTR_OF   + BAS_SLOTS * n] = 1;  // apparently, the number of contractions is always 1 (I'm still not sure what the libcint number of contractions means)
-        raw_container.libcint_bas[PTR_EXP   + BAS_SLOTS * n] = offset;  // pointer to the exponents of the shell inside the libcint environment
+        raw_container.libcint_bas[libcint::ang_of + libcint::bas_slots * n] = static_cast<int>(current_shell.get_l());  // angular momentum
+        raw_container.libcint_bas[libcint::nprim_of + libcint::bas_slots * n] = static_cast<int>(current_shell.contractionSize());  // number of primitives
+        raw_container.libcint_bas[libcint::nctr_of + libcint::bas_slots * n] = 1;  // apparently, the number of contractions is always 1 (I'm still not sure what the libcint number of contractions means)
+        raw_container.libcint_bas[libcint::ptr_exp + libcint::bas_slots * n] = offset;  // pointer to the exponents of the shell inside the libcint environment
 
         const auto& gaussian_exponents = current_shell.get_gaussian_exponents();
         for (size_t e = 0; e < gaussian_exponents.size(); e++, offset++) {  // also increment offset
@@ -90,7 +90,7 @@ libcint::RawContainer LibcintInterfacer::convert(const ShellSet& shell_set) cons
         }
 
 
-        raw_container.libcint_bas[PTR_COEFF + BAS_SLOTS * n] = offset;  // pointer to the contraction coefficients inside the libcint environment
+        raw_container.libcint_bas[libcint::ptr_coeff + libcint::bas_slots * n] = offset;  // pointer to the contraction coefficients inside the libcint environment
         // Input NORMALIZED contraction coefficients inside the libcint 'env'
         if (current_shell.are_embedded_normalization_factors_of_primitives()) {
             current_shell.unEmbedNormalizationFactorsOfPrimitives();
@@ -98,7 +98,7 @@ libcint::RawContainer LibcintInterfacer::convert(const ShellSet& shell_set) cons
 
         const auto& current_contraction_coefficients = current_shell.get_contraction_coefficients();
         for (size_t c = 0; c < current_contraction_coefficients.size(); c++, offset++) {  // also increment offset
-            raw_container.libcint_env[offset] = current_contraction_coefficients[c] * CINTgto_norm(raw_container.libcint_bas[ANG_OF+BAS_SLOTS*n], raw_container.libcint_env[raw_container.libcint_bas[PTR_EXP+BAS_SLOTS*n]+c]);  // use libcint to embed the norm of the primitives into the contraction coefficient
+            raw_container.libcint_env[offset] = current_contraction_coefficients[c] * CINTgto_norm(raw_container.libcint_bas[libcint::ang_of + libcint::bas_slots*n], raw_container.libcint_env[raw_container.libcint_bas[libcint::ptr_exp + libcint::bas_slots*n]+c]);  // use libcint to embed the norm of the primitives into the contraction coefficient
         }
     }  // shell loop
 
@@ -115,9 +115,9 @@ libcint::RawContainer LibcintInterfacer::convert(const ShellSet& shell_set) cons
  */
 void LibcintInterfacer::setCommonOrigin(libcint::RawContainer& raw_container, const Vector<double, 3>& origin) const {
 
-    raw_container.libcint_env[PTR_COMMON_ORIG + 0] = origin.x();
-    raw_container.libcint_env[PTR_COMMON_ORIG + 1] = origin.y();
-    raw_container.libcint_env[PTR_COMMON_ORIG + 2] = origin.z();
+    raw_container.libcint_env[libcint::ptr_common_orig + 0] = origin.x();  // input the origin inside the libcint environment
+    raw_container.libcint_env[libcint::ptr_common_orig + 1] = origin.y();
+    raw_container.libcint_env[libcint::ptr_common_orig + 2] = origin.z();
 }
 
 
@@ -132,7 +132,7 @@ void LibcintInterfacer::setCommonOrigin(libcint::RawContainer& raw_container, co
  *
  *  @return an array of N OneElectronOperators corresponding to the matrix representations of the N components of the given operator represented by the libcint function
  */
-TwoElectronOperator<double> LibcintInterfacer::calculateTwoElectronIntegrals(const Libint2eFunction& function, libcint::RawContainer& raw_container) const {
+TwoElectronOperator<double> LibcintInterfacer::calculateTwoElectronIntegrals(const Libcint2eFunction& function, libcint::RawContainer& raw_container) const {
 
     // Initialize the TwoElectronOperator and set to zero
     const auto& nbf = raw_container.nbf;
