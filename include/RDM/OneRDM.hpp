@@ -19,7 +19,7 @@
 #define GQCP_ONERDM_HPP
 
 
-#include "math/SquareMatrix.hpp"
+#include "math/ChemicalMatrix.hpp"
 
 
 namespace GQCP {
@@ -30,12 +30,12 @@ namespace GQCP {
  *  @tparam _Scalar     the scalar type
  */
 template <typename _Scalar>
-class OneRDM : public SquareMatrix<_Scalar> {
+class OneRDM : public ChemicalMatrix<_Scalar> {
 public:
 
     using Scalar = _Scalar;
 
-    using BaseRepresentation = SquareMatrix<Scalar>;
+    using BaseRepresentation = ChemicalMatrix<Scalar>;
     using Self = OneRDM<Scalar>;
 
 
@@ -45,7 +45,7 @@ public:
      *  CONSTRUCTORS
      */
 
-    using SquareMatrix<Scalar>::SquareMatrix;  // use base constructors
+    using ChemicalMatrix<Scalar>::ChemicalMatrix;  // use base constructors
 };
 
 

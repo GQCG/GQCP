@@ -55,6 +55,7 @@ set(PROJECT_TEST_SOURCE_FILES
         ${PROJECT_TESTS_FOLDER}/math/optimization/SparseSolver_test.cpp
 
         ${PROJECT_TESTS_FOLDER}/math/ChemicalMatrix_test.cpp
+        ${PROJECT_TESTS_FOLDER}/math/ChemicalRankFourTensor_test.cpp
         ${PROJECT_TESTS_FOLDER}/math/Matrix_test.cpp
         ${PROJECT_TESTS_FOLDER}/math/ScalarFunction_test.cpp
         ${PROJECT_TESTS_FOLDER}/math/SquareMatrix_test.cpp

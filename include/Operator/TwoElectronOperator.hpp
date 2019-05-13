@@ -20,7 +20,7 @@
 
 
 #include "JacobiRotationParameters.hpp"
-#include "math/SquareRankFourTensor.hpp"
+#include "math/ChemicalRankFourTensor.hpp"
 #include "Operator/Operator.hpp"
 #include "utilities/miscellaneous.hpp"
 
@@ -34,7 +34,7 @@ namespace GQCP {
  *  @tparam _Scalar     the scalar type
  */
 template<typename _Scalar>
-class TwoElectronOperator : public SquareRankFourTensor<_Scalar>, public Operator<TwoElectronOperator<_Scalar>> {
+class TwoElectronOperator : public ChemicalRankFourTensor<_Scalar>, public Operator<TwoElectronOperator<_Scalar>> {
 public:
 
     using Scalar = _Scalar;
@@ -49,7 +49,7 @@ public:
      *  CONSTRUCTORS
      */
 
-    using SquareRankFourTensor<Scalar>::SquareRankFourTensor;  // use base constructors
+    using ChemicalRankFourTensor<Scalar>::ChemicalRankFourTensor;  // use base constructors
 
 
 

@@ -19,7 +19,7 @@
 #define GQCP_TWORDM_HPP
 
 
-#include "math/SquareRankFourTensor.hpp"
+#include "math/ChemicalRankFourTensor.hpp"
 #include "RDM/OneRDM.hpp"
 
 
@@ -32,12 +32,12 @@ namespace GQCP {
  *  @tparam _Scalar     the scalar type
  */
 template <typename _Scalar>
-class TwoRDM : public SquareRankFourTensor<_Scalar> {
+class TwoRDM : public ChemicalRankFourTensor<_Scalar> {
 public:
 
     using Scalar = _Scalar;
 
-    using BaseRepresentation = SquareRankFourTensor<Scalar>;
+    using BaseRepresentation = ChemicalRankFourTensor<Scalar>;
 
 
 public:
@@ -46,7 +46,7 @@ public:
      *  CONSTRUCTORS
      */
 
-    using SquareRankFourTensor<Scalar>::SquareRankFourTensor;  // use base constructors
+    using ChemicalRankFourTensor<Scalar>::ChemicalRankFourTensor;  // use base constructors
 
 
     /*
