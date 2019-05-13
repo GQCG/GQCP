@@ -162,15 +162,15 @@ BOOST_AUTO_TEST_CASE ( SquareRankFourTensor_matrix_contraction_trivial ) {
     // test rank-4 tensor, data from https://stackoverflow.com/questions/47556726
     GQCP::SquareRankFourTensor<double> T_test = GQCP::SquareRankFourTensor<double>::FromFile("data/tensor_contraction_test.data", 2);
 
-    T.contract(A, 0);
+    T.matrixContraction(A, 0);
 
     BOOST_CHECK(T_test.isApprox(T_test, 1.0e-12));
 
     // If we contract the with the last index axis of the shuffled tensor, then shuffle back the results should be the same.
-    T2.contract(A, 3);
+    T2.matrixContraction(A, 3);
     GQCP::SquareRankFourTensor<double> T3 = GQCP::SquareRankFourTensor<double>(T2.Eigen().shuffle(shuffle));
 
     BOOST_CHECK(T3.isApprox(T_test, 1.0e-12));
 
-    BOOST_CHECK_THROW(T3.contract(A, 5), std::invalid_argument);
+    BOOST_CHECK_THROW(T3.matrixContraction(A, 5), std::invalid_argument);
 }

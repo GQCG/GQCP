@@ -211,9 +211,6 @@ public:
     }
 
 
-    using Tensor<Scalar, 4>::contract;
-
-
     /**
      *  In-place contract of a given matrix with this square rank-4 tensor
      *
@@ -230,7 +227,7 @@ public:
      *
      */
     template <typename MultiplicationScalar = Scalar>
-    void contract(const SquareMatrix<MultiplicationScalar> &M, size_t index) {
+    void matrixContraction(const SquareMatrix<MultiplicationScalar>& M, size_t index) {
 
         if (index >= 4) {
             throw std::invalid_argument("SquareRankFourTensor::matrixContraction(SquareMatrix<MultiplicationScalar>, size_t): The selected index should be smaller than the rank of the tensor.");

@@ -116,17 +116,17 @@ AtomicDecompositionParameters AtomicDecompositionParameters::Nuclear(const Molec
     auto g_ab = g;
     auto g_ba = g;
 
-    g_a.contract<double>(p_a, 0);
-    g_a.contract<double>(p_a, 2);
+    g_a.matrixContraction<double>(p_a, 0);
+    g_a.matrixContraction<double>(p_a, 2);
 
-    g_b.contract<double>(p_b, 0);
-    g_b.contract<double>(p_b, 2);
+    g_b.matrixContraction<double>(p_b, 0);
+    g_b.matrixContraction<double>(p_b, 2);
 
-    g_ab.contract<double>(p_a, 0);
-    g_ab.contract<double>(p_b, 2);
+    g_ab.matrixContraction<double>(p_a, 0);
+    g_ab.matrixContraction<double>(p_b, 2);
 
-    g_ba.contract<double>(p_b, 0);
-    g_ba.contract<double>(p_a, 2);
+    g_ba.matrixContraction<double>(p_b, 0);
+    g_ba.matrixContraction<double>(p_a, 2);
 
     GQCP::TwoElectronOperator<double> g_abba = g_ab.Eigen() + g_ba.Eigen();
 
