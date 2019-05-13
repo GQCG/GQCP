@@ -22,6 +22,7 @@
 #include "JacobiRotationParameters.hpp"
 #include "math/SquareRankFourTensor.hpp"
 #include "Operator/Operator.hpp"
+#include "Operator/OneElectronOperator.hpp"
 #include "utilities/miscellaneous.hpp"
 
 
@@ -125,6 +126,25 @@ public:
         auto J = SquareMatrix<double>::FromJacobi(jacobi_rotation_parameters, dim);  // this is sure to return a unitary matrix
 
         this->rotate(J);
+    }
+
+
+    /**
+     *  @return the two-electron integrals that can be evaluated through a one electron mode as a one-electron operator
+     */
+    template<typename Z = Scalar>
+    OneElectronOperator<Scalar> effectiveOneElectronPartition() {
+        auto k = OneElectronOperator<Scalar>::Zero(this->dimension(0));
+
+        for (size_t p = 0; p < this->K; p++) {
+            for (size_t q = 0; q < this->K; q++) {
+                for (size_t r = 0; r < this->K; r++) {
+                    k(p,q) -= 0.5 * this->g(p,r,r,q);
+                }
+            }
+        }
+
+        return k;
     }
 };
 

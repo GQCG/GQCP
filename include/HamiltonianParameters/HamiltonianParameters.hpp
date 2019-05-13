@@ -604,17 +604,7 @@ public:
      */
     OneElectronOperator<Scalar> calculateEffectiveOneElectronIntegrals() const {
 
-        auto k = this->h;
-
-        for (size_t p = 0; p < this->K; p++) {
-            for (size_t q = 0; q < this->K; q++) {
-                for (size_t r = 0; r < this->K; r++) {
-                    k(p,q) -= 0.5 * this->g(p,r,r,q);
-                }
-            }
-        }
-
-        return k;
+        return this->k + this->g.effectiveOneElectronPartition();
     }
 
 
