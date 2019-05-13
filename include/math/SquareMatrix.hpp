@@ -332,22 +332,6 @@ public:
 
         return value;
     }
-
-    /**
-     *  In-place basis transform of this square matrix
-     *
-     *  @tparam TransformationScalar        the type of scalar used for the transformation matrix
-     *
-     *  @param T    the transformation matrix between the old and the new orbital basis, it is used as
-     *      b' = b T ,
-     *   in which the basis functions are collected as elements of a row vector b
-     *
-     *  Note that in order to use these transformation formulas, the multiplication between TransformationScalar and Scalar should be 'enabled'. See LinearCombination.hpp for an example
-     */
-    template <typename TransformationScalar = Scalar>
-    void basisTransform(const SquareMatrix<TransformationScalar> &T) {
-        *this = Self(T.adjoint() * (*this) * T);  // this has no aliasing issues (https://eigen.tuxfamily.org/dox/group__TopicAliasing.html)
-    }
 };
 
 

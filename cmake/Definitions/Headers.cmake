@@ -69,6 +69,7 @@ set(PROJECT_INCLUDE_FILES
         ${PROJECT_INCLUDE_FOLDER}/math/optimization/SparseSolver.hpp
         ${PROJECT_INCLUDE_FOLDER}/math/optimization/step.hpp
 
+        ${PROJECT_INCLUDE_FOLDER}/math/ChemicalMatrix.hpp
         ${PROJECT_INCLUDE_FOLDER}/math/LinearCombination.hpp
         ${PROJECT_INCLUDE_FOLDER}/math/Matrix.hpp
         ${PROJECT_INCLUDE_FOLDER}/math/ScalarFunction.hpp

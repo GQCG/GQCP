@@ -20,7 +20,7 @@
 
 
 #include "JacobiRotationParameters.hpp"
-#include "math/SquareMatrix.hpp"
+#include "math/ChemicalMatrix.hpp"
 #include "Operator.hpp"
 #include "math/ScalarFunction.hpp"
 
@@ -34,12 +34,12 @@ namespace GQCP {
  *  @tparam _Scalar      the scalar type
  */
 template <typename _Scalar>
-class OneElectronOperator : public SquareMatrix<_Scalar>, public Operator<OneElectronOperator<_Scalar>> {
+class OneElectronOperator : public ChemicalMatrix<_Scalar>, public Operator<OneElectronOperator<_Scalar>> {
 public:
 
     using Scalar = _Scalar;
 
-    using BaseRepresentation = SquareMatrix<Scalar>;
+    using BaseRepresentation = ChemicalMatrix<Scalar>;
     using Self = OneElectronOperator<Scalar>;
 
 
@@ -49,7 +49,7 @@ public:
      *  CONSTRUCTORS
      */
 
-    using SquareMatrix<Scalar>::SquareMatrix;  // use base constructors
+    using ChemicalMatrix<Scalar>::ChemicalMatrix;  // use base constructors
 
 
     /*
@@ -95,8 +95,8 @@ public:
     enable_if_t<std::is_base_of<ScalarFunction<typename Z::Valued, typename Z::Scalar, Z::Cols>, Z>::value,
     OneElectronOperator<typename Z::Valued>> evaluate(const Vector<typename Z::Scalar, Z::Cols>& x) const {
 
-        Eigen::Matrix<typename Z::Valued, SquareMatrix<Z>::Rows, SquareMatrix<Z>::Cols> result (this->rows(), this->cols());
-        auto result_op = SquareMatrix<typename Z::Valued>(result);
+        Eigen::Matrix<typename Z::Valued, ChemicalMatrix<Z>::Rows, ChemicalMatrix<Z>::Cols> result (this->rows(), this->cols());
+        auto result_op = ChemicalMatrix<typename Z::Valued>(result);
 
         for (size_t i = 0; i < this->rows(); i++) {
             for (size_t j = 0; j < this->cols(); j++) {
