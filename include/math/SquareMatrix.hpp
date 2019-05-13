@@ -24,6 +24,7 @@
 #include "utilities/miscellaneous.hpp"
 #include "JacobiRotationParameters.hpp"
 
+#include <numeric>
 #include <boost/numeric/conversion/converter.hpp>
 
 
@@ -219,18 +220,10 @@ public:
     */
     static Self PartitionMatrix(size_t start, size_t range, size_t M) {
 
-        Self A = Self::Zero(M, M);
+        std::vector<size_t> l(range);
+        std::iota(std::begin(l), std::end(l), start);
 
-        for (size_t index = start; index < start+range; index++) {
-
-            if (index >= M) {
-                throw std::invalid_argument("SquareMatrix::PartitionMatrix(size_t, size_t, size_t): index is larger than matrix dimension");
-            }
-
-            A(index, index) = 1;
-        }
-
-        return A;
+        return PartitionMatrix(l, M);
     }
 
 

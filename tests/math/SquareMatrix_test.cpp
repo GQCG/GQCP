@@ -160,56 +160,21 @@ BOOST_AUTO_TEST_CASE ( permanent_combinatorial ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( SquareMatrix_transform_trivial ) {
+BOOST_AUTO_TEST_CASE ( permanent_ryser ) {
 
-    // Let's test a trivial transformation: i.e. with T being a unit matrix
-    GQCP::SquareMatrix<double> h = GQCP::SquareMatrix<double>::Random(3, 3);
-    GQCP::SquareMatrix<double> H = h;
+    GQCP::SquareMatrix<double> A (2);
+    A << 2, 3,
+         9, 1;
+    BOOST_CHECK(std::abs(A.permanent_ryser() - 29.0) < 1.0e-12);
 
-    GQCP::SquareMatrix<double> T = GQCP::SquareMatrix<double>::Identity(3, 3);
-    H.basisTransform(T);
 
-    BOOST_CHECK(H.isApprox(h, 1.0e-12));
+    GQCP::SquareMatrix<double> B (3);
+    B << 1,  2, -3,
+         4, -5,  6,
+         7, -8,  9;
+    BOOST_CHECK(std::abs(B.permanent_ryser() - 264.0) < 1.0e-12);
+
+
+    GQCP::SquareMatrix<double> C = GQCP::SquareMatrix<double>::Random(5, 5);
+    BOOST_CHECK(std::abs(C.permanent_combinatorial() - C.permanent_ryser()) < 1.0e-12);
 }
-
-
-BOOST_AUTO_TEST_CASE ( SquareMatrix_transform_and_inverse ) {
-
-    // Let's test if, if we transform h with T and then with T_inverse, we get effectively do nothing
-    GQCP::SquareMatrix<double> h = GQCP::SquareMatrix<double>::Random(3, 3);
-    GQCP::SquareMatrix<double> H = h;
-
-    GQCP::SquareMatrix<double> T (3);
-    T << 1,  0,  0,
-            0, -2,  0,
-            0,  0,  3;
-    GQCP::SquareMatrix<double> T_inverse = T.inverse();
-
-
-    H.basisTransform(T);
-    H.basisTransform(T_inverse);
-
-    BOOST_CHECK(H.isApprox(h, 1.0e-12));
-}
-
-
-//TODO: enable back after linking to GQCP
-
-//BOOST_AUTO_TEST_CASE ( permanent_ryser ) {
-//
-//    GQCP::SquareMatrix<double> A (2);
-//    A << 2, 3,
-//         9, 1;
-//    BOOST_CHECK(std::abs(A.permanent_ryser() - 29.0) < 1.0e-12);
-//
-//
-//    GQCP::SquareMatrix<double> B (3);
-//    B << 1,  2, -3,
-//         4, -5,  6,
-//         7, -8,  9;
-//    BOOST_CHECK(std::abs(B.permanent_ryser() - 264.0) < 1.0e-12);
-//
-//
-//    GQCP::SquareMatrix<double> C = GQCP::SquareMatrix<double>::Random(5, 5);
-//    BOOST_CHECK(std::abs(C.permanent_combinatorial() - C.permanent_ryser()) < 1.0e-12);
-//}

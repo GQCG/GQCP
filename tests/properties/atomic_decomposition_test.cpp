@@ -37,7 +37,7 @@ BOOST_AUTO_TEST_CASE ( decomposition_BeH_cation_STO_3G_Nuclear ) {
     std::vector<GQCP::Atom> atoms{Be, H};
     GQCP::Molecule BeH(atoms, +1);
     GQCP::AtomicDecompositionParameters adp = GQCP::AtomicDecompositionParameters::Nuclear(BeH, "STO-3G");
-    auto mol_ham_par = adp.molecular_hamiltonian_parameters;
+    auto mol_ham_par = adp.get_molecular_hamiltonian_parameters();
     auto K = mol_ham_par.get_K();
     double repulsion = BeH.calculateInternuclearRepulsionEnergy();
     // Create a plain RHF SCF solver and solve the SCF equations
@@ -77,15 +77,15 @@ BOOST_AUTO_TEST_CASE ( decomposition_BeH_cation_STO_3G_Nuclear ) {
     ao_one_rdm.basisTransform<double>(T.adjoint());
     ao_two_rdm.basisTransform<double>(T.adjoint());
 
-    double self_energy_a = GQCP::calculateExpectationValue(adp.net_atomic_parameters[0], ao_one_rdm, ao_two_rdm);
-    double self_energy_b = GQCP::calculateExpectationValue(adp.net_atomic_parameters[1], ao_one_rdm, ao_two_rdm);
-    double interaction_energy_ab = GQCP::calculateExpectationValue(adp.interaction_parameters[0], ao_one_rdm,
+    double self_energy_a = GQCP::calculateExpectationValue(adp.get_net_atomic_parameters()[0], ao_one_rdm, ao_two_rdm);
+    double self_energy_b = GQCP::calculateExpectationValue(adp.get_net_atomic_parameters()[1], ao_one_rdm, ao_two_rdm);
+    double interaction_energy_ab = GQCP::calculateExpectationValue(adp.get_interaction_parameters()[0], ao_one_rdm,
                                                                    ao_two_rdm);
-    double total_energy_a = GQCP::calculateExpectationValue(adp.atomic_parameters[0], ao_one_rdm, ao_two_rdm);
-    double total_energy_b = GQCP::calculateExpectationValue(adp.atomic_parameters[1], ao_one_rdm, ao_two_rdm);
+    double total_energy_a = GQCP::calculateExpectationValue(adp.get_atomic_parameters()[0], ao_one_rdm, ao_two_rdm);
+    double total_energy_b = GQCP::calculateExpectationValue(adp.get_atomic_parameters()[1], ao_one_rdm, ao_two_rdm);
 
-    BOOST_CHECK(std::abs(total_energy_a + total_energy_b - fci_energy - repulsion) < 1.0e-010);
-    BOOST_CHECK(std::abs(self_energy_a + self_energy_b + interaction_energy_ab - fci_energy - repulsion) < 1.0e-010);
-    BOOST_CHECK(std::abs(self_energy_a + interaction_energy_ab / 2 - total_energy_a) < 1.0e-010);
-    BOOST_CHECK(std::abs(self_energy_b + interaction_energy_ab / 2 - total_energy_b) < 1.0e-010);
+    BOOST_CHECK(std::abs(total_energy_a + total_energy_b - fci_energy - repulsion) < 1.0e-10);
+    BOOST_CHECK(std::abs(self_energy_a + self_energy_b + interaction_energy_ab - fci_energy - repulsion) < 1.0e-10);
+    BOOST_CHECK(std::abs(self_energy_a + interaction_energy_ab / 2 - total_energy_a) < 1.0e-10);
+    BOOST_CHECK(std::abs(self_energy_b + interaction_energy_ab / 2 - total_energy_b) < 1.0e-10);
 }

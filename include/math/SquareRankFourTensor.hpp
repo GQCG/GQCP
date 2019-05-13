@@ -211,8 +211,11 @@ public:
     }
 
 
+    using Tensor<Scalar, 4>::contract;
+
+
     /**
-     *  In-place contraction of a given matrix with this square rank-4 tensor
+     *  In-place contract of a given matrix with this square rank-4 tensor
      *
      *  @tparam TransformationScalar        the type of scalar used for the transformation matrix
      *
@@ -227,7 +230,7 @@ public:
      *
      */
     template <typename MultiplicationScalar = Scalar>
-    void matrixContraction(const SquareMatrix<MultiplicationScalar>& M, size_t index) {
+    void contract(const SquareMatrix<MultiplicationScalar> &M, size_t index) {
 
         if (index >= 4) {
             throw std::invalid_argument("SquareRankFourTensor::matrixContraction(SquareMatrix<MultiplicationScalar>, size_t): The selected index should be smaller than the rank of the tensor.");

@@ -26,16 +26,22 @@ namespace GQCP {
 
 
 /**
- *  A struct that holds the collection of Hamiltonian Parameters that represent different molecular decompositions.
+ *  A class that holds the collection of HamiltonianParameters that represent different molecular decompositions.
  */
-struct AtomicDecompositionParameters {
-
-    HamiltonianParameters<double> molecular_hamiltonian_parameters;  // the Hamiltonian Parameters of the complete molecule
+class AtomicDecompositionParameters {
+private:
+    HamiltonianParameters<double> molecular_hamiltonian_parameters;  // the HamiltonianParameters of the complete molecule
 
     std::vector<HamiltonianParameters<double>> net_atomic_parameters;  // vector of net atomic Hamiltonian parameters
     std::vector<HamiltonianParameters<double>> interaction_parameters;  // vector of interaction Hamiltonian parameters
     std::vector<HamiltonianParameters<double>> atomic_parameters;  // vector of the total atomic contributions
 
+
+public:
+
+    /*
+     *  CONSTRUCTORS
+     */
 
     /**
      *  @param molecular_hamiltonian_parameters     the complete molecular Hamiltonian parameters
@@ -44,13 +50,13 @@ struct AtomicDecompositionParameters {
      *  @param atomic_parameters                    collection of atomic Hamiltonian parameters
      */
     AtomicDecompositionParameters (const HamiltonianParameters<double>& molecular_hamiltonian_parameters, const std::vector<HamiltonianParameters<double>>& net_atomic_parameters,
-            const std::vector<HamiltonianParameters<double>>& interaction_parameters, const std::vector<HamiltonianParameters<double>>& atomic_parameters) :
-    molecular_hamiltonian_parameters(molecular_hamiltonian_parameters),
-    net_atomic_parameters(net_atomic_parameters),
-    interaction_parameters(interaction_parameters),
-    atomic_parameters(atomic_parameters)
-    {};
+            const std::vector<HamiltonianParameters<double>>& interaction_parameters, const std::vector<HamiltonianParameters<double>>& atomic_parameters);
 
+
+
+    /*
+     *  NAMED CONSTRUCTORS
+     */
 
     /**
      *  Constructs net atomic, atomic and atomic interaction Hamiltonian parameters in the AO basis for a diatomic molecule AB.
@@ -76,90 +82,21 @@ struct AtomicDecompositionParameters {
      *      net_atomic_parameters will contains parameters for A then B.
      *      interaction_parameters will contain parameters for the AB interaction.
      *      atomic_parameters will contain parameters for A then B.
-     *
      */
-    static AtomicDecompositionParameters Nuclear(const Molecule &molecule, const std::string &basisset_name) {
+    static AtomicDecompositionParameters Nuclear(const Molecule& molecule, const std::string& basisset_name);
 
-        auto atoms = molecule.get_atoms();
-        auto ao_basis = std::make_shared<AOBasis>(molecule, basisset_name);
 
-        auto K = ao_basis->numberOfBasisFunctions();
-        SquareMatrix<double> T_total = SquareMatrix<double>::Identity(K, K);
 
-        if (atoms.size() > 2) {
-            throw std::invalid_argument("AtomicDecompositionParameters::Nuclear(Molecule, std::string): Only available for diatomic molecules");
-        }
-
-        // retrieve the AObasis for the individual atoms so that we can retrieve net atomic nuclear integrals.
-        AOBasis ao_basis_a ({{atoms[0]}}, basisset_name);
-        AOBasis ao_basis_b ({{atoms[1]}}, basisset_name);
-
-        OneElectronOperator<double> V_a = ao_basis_a.calculateNuclearIntegrals();
-        OneElectronOperator<double> V_b = ao_basis_b.calculateNuclearIntegrals();
-
-        // T_a and T_b are equal to the corresponding block from the molecular kinetic integrals (T_a = T.block(0,0, K_a, K_a))
-        OneElectronOperator<double> T_a = ao_basis_a.calculateKineticIntegrals();
-        OneElectronOperator<double> T_b = ao_basis_b.calculateKineticIntegrals();
-
-        auto K_a = ao_basis_a.numberOfBasisFunctions();
-        auto K_b = ao_basis_b.numberOfBasisFunctions();
-
-        // create partition matrices for both atoms
-        auto p_a = SquareMatrix<double>::PartitionMatrix(0, K_a, K);
-        auto p_b = SquareMatrix<double>::PartitionMatrix(K_a, K_b, K);
-
-        // retrieve the molecular integrals
-        const auto& S = ao_basis->calculateOverlapIntegrals();
-        const auto& T = ao_basis->calculateKineticIntegrals();
-        const auto& V = ao_basis->calculateNuclearIntegrals();
-        const auto& g = ao_basis->calculateCoulombRepulsionIntegrals();
-        auto repulsion = molecule.calculateInternuclearRepulsionEnergy();
-
-        OneElectronOperator<double> H = T + V;
-
-        // Decompose the integrals corresponding to the formula's in Mario's thesis
-        OneElectronOperator<double> h_a = OneElectronOperator<double>::Zero(K, K);
-        OneElectronOperator<double> h_b = OneElectronOperator<double>::Zero(K, K);
-
-        h_a.block(0, 0, K_a, K_a) = T_a + V_a;
-        h_b.block(K_a , K_a, K_b, K_b) = T_b + V_b;
-
-        OneElectronOperator<double> h_ab = H - h_a - h_b;
-
-        auto g_a = g;
-        auto g_b = g;
-        auto g_ab = g;
-        auto g_ba = g;
-
-        g_a.matrixContraction<double>(p_a, 0);
-        g_a.matrixContraction<double>(p_a, 2);
-
-        g_b.matrixContraction<double>(p_b, 0);
-        g_b.matrixContraction<double>(p_b, 2);
-
-        g_ab.matrixContraction<double>(p_a, 0);
-        g_ab.matrixContraction<double>(p_b, 2);
-
-        g_ba.matrixContraction<double>(p_b, 0);
-        g_ba.matrixContraction<double>(p_a, 2);
-
-        GQCP::TwoElectronOperator<double> g_abba = g_ab.Eigen() + g_ba.Eigen();
-
-        HamiltonianParameters<double> HAA(ao_basis, S, h_a, g_a, T_total);
-        HamiltonianParameters<double> HBB(ao_basis, S, h_b, g_b, T_total);
-        HamiltonianParameters<double> HAB(ao_basis, S, h_ab, g_abba, T_total, repulsion);
-        HamiltonianParameters<double> HA(ao_basis, S, h_a + h_ab/2, g_a.Eigen() + (0.5)*g_abba.Eigen(), T_total, repulsion/2);
-        HamiltonianParameters<double> HB(ao_basis, S, h_b + h_ab/2, g_b.Eigen() + (0.5)*g_abba.Eigen(), T_total, repulsion/2);
-
-        std::vector<HamiltonianParameters<double>> net_atomic_parameters = {HAA, HBB};
-        std::vector<HamiltonianParameters<double>> interaction_parameters = {HAB};
-        std::vector<HamiltonianParameters<double>> atomic_parameters = {HA, HB};
-
-        return AtomicDecompositionParameters(HamiltonianParameters<double>::Molecular(molecule, basisset_name), net_atomic_parameters, interaction_parameters, atomic_parameters);
-    };
+    /*
+     *  GETTERS
+     */
+    const HamiltonianParameters<double>& get_molecular_hamiltonian_parameters() const { return this->molecular_hamiltonian_parameters; }
+    const std::vector<HamiltonianParameters<double>>& get_net_atomic_parameters() const { return this->net_atomic_parameters; }
+    const std::vector<HamiltonianParameters<double>>& get_interaction_parameters() const { return this->interaction_parameters; }
+    const std::vector<HamiltonianParameters<double>>& get_atomic_parameters() const { return this->atomic_parameters; }
 };
 
 }  // namespace GQCP
 
 
-#endif //GQCP_ATOMICDECOMPOSITIONPARAMETERS_HPP
+#endif  // GQCP_ATOMICDECOMPOSITIONPARAMETERS_HPP
