@@ -265,8 +265,8 @@ public:
      *
      *  @tparam TransformationScalar        the type of scalar used for the transformation matrix
      *
-     *  @param index                        the index axis which is contracted
      *  @param M                            the contraction matrix: contraction performed with the first index axis
+     *  @param tensor_index                 the index axis which is contracted
      *
      *    e.g.
      *     if index 0 (1-st) is chosen:

@@ -184,4 +184,6 @@ BOOST_AUTO_TEST_CASE ( SquareRankFourTensor_matrix_contraction_trivial ) {
     GQCP::SquareRankFourTensor<double> T3 = GQCP::SquareRankFourTensor<double>(T2.Eigen().shuffle(shuffle));
 
     BOOST_CHECK(T3.isApprox(T_test, 1.0e-12));
+
+    BOOST_CHECK_THROW(T3.matrixContraction(A, 5), std::invalid_argument);
 }
