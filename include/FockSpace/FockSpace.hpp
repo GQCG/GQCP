@@ -275,7 +275,7 @@ public:
     *  eval
     */
    template<class T>
-   T evaluateOperator(OneElectronOperator<double> oe, bool diagonal_values = false) {
+   T evaluateOperator(const OneElectronOperator<double>& oe, bool diagonal_values = false) {
 
        size_t K = this->get_K();
        size_t N = this->get_N();
@@ -336,7 +336,7 @@ public:
      *  eval
      */
     template<class T>
-    T evaluateOperator(TwoElectronOperator<double> te, bool diagonal_values = false) {
+    T evaluateOperator(const TwoElectronOperator<double>& te, bool diagonal_values = false) {
 
         size_t K = this->get_K();
         size_t N = this->get_N();
@@ -543,7 +543,7 @@ public:
      *  eval
      */
     template<class T>
-    T evaluateOperator(HamiltonianParameters<double> ham_par) {
+    T evaluateOperator(const HamiltonianParameters<double>& ham_par) {
 
         return evaluateOperator<T>(ham_par.get_h()) + evaluateOperator<T>(ham_par.get_g());
 

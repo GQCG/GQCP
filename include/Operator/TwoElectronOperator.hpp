@@ -133,7 +133,7 @@ public:
      *  @return the two-electron integrals that can be evaluated through a one electron mode as a one-electron operator
      */
     template<typename Z = Scalar>
-    OneElectronOperator<Scalar> effectiveOneElectronPartition() {
+    OneElectronOperator<Scalar> effectiveOneElectronPartition() const {
         auto k = OneElectronOperator<Scalar>::Zero(this->dimension(0));
 
         for (size_t p = 0; p < this->K; p++) {
