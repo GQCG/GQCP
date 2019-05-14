@@ -62,7 +62,6 @@ private:
 
     };
 
-    template<>
     class conta<Eigen::SparseMatrix<double>> {
         Eigen::SparseMatrix<double> cont;
         std::vector<Eigen::Triplet<double>> triplet_vector;
