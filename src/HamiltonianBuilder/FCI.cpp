@@ -58,7 +58,7 @@ Eigen::SparseMatrix<double> FCI::calculateSpinSeparatedHamiltonian(const FockSpa
     std::vector<Eigen::Triplet<double>> triplet_vector;
     triplet_vector.reserve(fock_space.countTotalTwoElectronCouplings());
 
-    auto k = hamiltonian_parameters.calculateEffectiveOneElectronIntegrals();
+    OneElectronOperator<double> k = hamiltonian_parameters.calculateEffectiveOneElectronIntegrals();
 
     ONV onv = fock_space.makeONV(0);  // onv with address 0
     for (size_t I = 0; I < dim; I++) {  // I loops over all addresses in the Fock space

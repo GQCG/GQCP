@@ -604,7 +604,7 @@ public:
      */
     OneElectronOperator<Scalar> calculateEffectiveOneElectronIntegrals() const {
 
-        return this->k + this->g.effectiveOneElectronPartition();
+        return this->h + this->g.effectiveOneElectronPartition();
     }
 
 
