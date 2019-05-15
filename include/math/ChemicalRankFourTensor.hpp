@@ -38,7 +38,7 @@ class ChemicalRankFourTensor: public SquareRankFourTensor<_Scalar> {
 public:
     using Scalar = _Scalar;
 
-    using Base = Tensor<Scalar, 4>;
+    using Base = SquareRankFourTensor<Scalar>;
     using Self = ChemicalRankFourTensor<Scalar>;
 
 

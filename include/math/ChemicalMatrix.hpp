@@ -35,8 +35,8 @@ class ChemicalMatrix : public SquareMatrix<_Scalar> {
 public:
     using Scalar = _Scalar;
 
-    using Base = MatrixX<Scalar>;
-    using Self = SquareMatrix<Scalar>;
+    using Base = SquareMatrix<Scalar>;
+    using Self = ChemicalMatrix<Scalar>;
 
 
 public:
