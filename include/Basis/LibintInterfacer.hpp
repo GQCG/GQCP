@@ -146,7 +146,7 @@ public:
 
     // PUBLIC METHODS - INTEGRALS
     /**
-     *  @tparam N                   the number of operator components
+     *  @tparam N                   the number of Libint operator components
      *
      *  @param operator_type        the name of the operator as specified by the enumeration
      *  @param libint_basisset      the libint2 basis set representing the AO basis

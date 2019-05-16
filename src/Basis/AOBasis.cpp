@@ -17,6 +17,7 @@
 // 
 #include "Basis/AOBasis.hpp"
 #include "Basis/LibintInterfacer.hpp"
+#include "Basis/LibcintInterfacer.hpp"
 
 
 namespace GQCP {
@@ -64,13 +65,13 @@ size_t AOBasis::numberOfBasisFunctions() const {
 
 
 /*
- *  PUBLIC METHODS
+ *  PUBLIC METHODS - LIBINT2 INTEGRALS
  */
 
 /**
  *  @return the matrix representation of the overlap operator in this AO basis
  */
-OneElectronOperator<double> AOBasis::calculateOverlapIntegrals() const {
+OneElectronOperator<double> AOBasis::calculateLibintOverlapIntegrals() const {
 
     auto libint_basisset = LibintInterfacer::get().interface(this->shell_set);
     return LibintInterfacer::get().calculateOneElectronIntegrals<1>(libint2::Operator::overlap, libint_basisset)[0];
@@ -80,7 +81,7 @@ OneElectronOperator<double> AOBasis::calculateOverlapIntegrals() const {
 /**
  *  @return the matrix representation of the kinetic energy operator in this AO basis
  */
-OneElectronOperator<double> AOBasis::calculateKineticIntegrals() const {
+OneElectronOperator<double> AOBasis::calculateLibintKineticIntegrals() const {
 
     auto libint_basisset = LibintInterfacer::get().interface(this->shell_set);
     return LibintInterfacer::get().calculateOneElectronIntegrals<1>(libint2::Operator::kinetic, libint_basisset)[0];
@@ -90,7 +91,7 @@ OneElectronOperator<double> AOBasis::calculateKineticIntegrals() const {
 /**
  *  @return the matrix representation of the nuclear attraction operator in this AO basis
  */
-OneElectronOperator<double> AOBasis::calculateNuclearIntegrals() const {
+OneElectronOperator<double> AOBasis::calculateLibintNuclearIntegrals() const {
 
     auto libint_basisset = LibintInterfacer::get().interface(this->shell_set);
     auto libint_atoms = LibintInterfacer::get().interface(this->shell_set.atoms());
@@ -104,7 +105,7 @@ OneElectronOperator<double> AOBasis::calculateNuclearIntegrals() const {
  *
  *  @return the matrix representation of the Cartesian components of the electrical dipole operator in this AO basis
  */
-std::array<OneElectronOperator<double>, 3> AOBasis::calculateDipoleIntegrals(const Vector<double, 3>& origin) const {
+std::array<OneElectronOperator<double>, 3> AOBasis::calculateLibintDipoleIntegrals(const Vector<double, 3>& origin) const {
 
     std::array<double, 3> origin_array {origin.x(), origin.y(), origin.z()};
 
@@ -119,10 +120,87 @@ std::array<OneElectronOperator<double>, 3> AOBasis::calculateDipoleIntegrals(con
 /**
  *  @return the matrix representation of the Coulomb repulsion operator in this AO basis
  */
-TwoElectronOperator<double> AOBasis::calculateCoulombRepulsionIntegrals() const {
+TwoElectronOperator<double> AOBasis::calculateLibintCoulombRepulsionIntegrals() const {
 
     auto libint_basisset = LibintInterfacer::get().interface(this->shell_set);
     return LibintInterfacer::get().calculateTwoElectronIntegrals(libint2::Operator::coulomb, libint_basisset);
+}
+
+
+
+/*
+ *  PUBLIC METHODS - LIBCINT INTEGRALS
+ *  Note that the Libcint integrals should only be used for Cartesian ShellSets
+ */
+
+/**
+ *  Calculate the overlap integrals using Libcint: only use this for all-Cartesian ShellSets
+ *
+ *  @return the matrix representation of the overlap operator in this AO basis, using the libcint integral engine
+ */
+OneElectronOperator<double> AOBasis::calculateLibcintOverlapIntegrals() const {
+
+    const LibcintInterfacer libcint_interfacer;
+    auto raw_container = libcint_interfacer.convert(this->shell_set);
+    return libcint_interfacer.calculateOneElectronIntegrals<1>(cint1e_ovlp_cart, raw_container)[0];
+}
+
+
+/**
+ *  Calculate the kinetic energy integrals using Libcint: only use this for all-Cartesian ShellSets
+ *
+ *  @return the matrix representation of the kinetic energy operator in this AO basis, using the libcint integral engine
+ */
+OneElectronOperator<double> AOBasis::calculateLibcintKineticIntegrals() const {
+
+    const LibcintInterfacer libcint_interfacer;
+    auto raw_container = libcint_interfacer.convert(this->shell_set);
+    return libcint_interfacer.calculateOneElectronIntegrals<1>(cint1e_kin_cart, raw_container)[0];
+}
+
+
+/**
+ *  Calculate the nuclear attraction energy integrals using Libcint: only use this for all-Cartesian ShellSets
+ *
+ *  @return the matrix representation of the nuclear attraction operator in this AO basis, using the libcint integral engine
+ */
+OneElectronOperator<double> AOBasis::calculateLibcintNuclearIntegrals() const {
+
+    const LibcintInterfacer libcint_interfacer;
+    auto raw_container = libcint_interfacer.convert(this->shell_set);
+    return libcint_interfacer.calculateOneElectronIntegrals<1>(cint1e_nuc_cart, raw_container)[0];
+}
+
+
+/**
+ *  Calculate the electrical dipole integrals using Libcint: only use this for all-Cartesian ShellSets
+ *
+ *  @param origin       the origin of the dipole
+ *
+ *  @return the matrix representation of the Cartesian components of the electrical dipole operator in this AO basis, using the libcint integral engine
+ */
+std::array<OneElectronOperator<double>, 3> AOBasis::calculateLibcintDipoleIntegrals(const Vector<double, 3>& origin) const {
+
+    const LibcintInterfacer libcint_interfacer;
+    auto raw_container = libcint_interfacer.convert(this->shell_set);
+    libcint_interfacer.setCommonOrigin(raw_container, origin);
+    const auto& all_integrals = libcint_interfacer.calculateOneElectronIntegrals<3>(cint1e_r_cart, raw_container);
+
+    // Apply the minus sign which comes from the charge of the electrons -e
+    return std::array<OneElectronOperator<double>, 3> {-all_integrals[0], -all_integrals[1], -all_integrals[2]};
+}
+
+
+/**
+ *  Calculate the Coulomb repulsion energy integrals using Libcint: only use this for all-Cartesian ShellSets
+ *
+ *  @return the matrix representation of the Coulomb repulsion operator in this AO basis, using the libcint integral engine
+ */
+TwoElectronOperator<double> AOBasis::calculateLibcintCoulombRepulsionIntegrals() const {
+
+    const LibcintInterfacer libcint_interfacer;
+    auto raw_container = libcint_interfacer.convert(this->shell_set);
+    return libcint_interfacer.calculateTwoElectronIntegrals(cint2e_cart, raw_container);
 }
 
 

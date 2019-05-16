@@ -58,7 +58,7 @@ BOOST_AUTO_TEST_CASE ( dipole_CO_STO_3G ) {
     auto D_AO = GQCP::calculateRHFAO1RDM(rhf.get_C(), N);
 
     // Calculate the dipole integrals, and transform them to the MO basis
-    auto dipole_components = ao_basis->calculateDipoleIntegrals();
+    auto dipole_components = ao_basis->calculateLibintDipoleIntegrals();
     for (auto& dipole_component : dipole_components) {
         dipole_component.basisTransform(rhf.get_C());
     }
@@ -98,7 +98,7 @@ BOOST_AUTO_TEST_CASE ( dipole_N2_STO_3G ) {
     auto D_AO = GQCP::calculateRHFAO1RDM(rhf.get_C(), N);
 
     // Calculate the dipole integrals, and transform them to the MO basis
-    auto dipole_components = ao_basis->calculateDipoleIntegrals();
+    auto dipole_components = ao_basis->calculateLibintDipoleIntegrals();
     for (auto& dipole_component : dipole_components) {
         dipole_component.basisTransform(rhf.get_C());
     }

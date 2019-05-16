@@ -11,6 +11,7 @@ set(PROJECT_INCLUDE_FILES
         ${PROJECT_INCLUDE_FOLDER}/Basis/CartesianDirection.hpp
         ${PROJECT_INCLUDE_FOLDER}/Basis/CartesianExponents.hpp
         ${PROJECT_INCLUDE_FOLDER}/Basis/CartesianGTO.hpp
+        ${PROJECT_INCLUDE_FOLDER}/Basis/LibcintInterfacer.hpp
         ${PROJECT_INCLUDE_FOLDER}/Basis/LibintInterfacer.hpp
         ${PROJECT_INCLUDE_FOLDER}/Basis/Shell.hpp
         ${PROJECT_INCLUDE_FOLDER}/Basis/ShellSet.hpp
@@ -79,6 +80,7 @@ set(PROJECT_INCLUDE_FILES
         ${PROJECT_INCLUDE_FOLDER}/math/Tensor.hpp
 
         ${PROJECT_INCLUDE_FOLDER}/Operator/OneElectronOperator.hpp
+        ${PROJECT_INCLUDE_FOLDER}/Operator/Operator.hpp
         ${PROJECT_INCLUDE_FOLDER}/Operator/TwoElectronOperator.hpp
 
         ${PROJECT_INCLUDE_FOLDER}/properties/expectation_values.hpp

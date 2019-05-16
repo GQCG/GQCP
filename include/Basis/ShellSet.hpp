@@ -38,6 +38,7 @@ public:
 
 public:
     // CONSTRUCTORS
+    ShellSet() = default;  // required for Intel compilers
     /**
      *  Construct a ShellSet by placing the shells corresponding to the basisset information on every atom of the molecule
      *
