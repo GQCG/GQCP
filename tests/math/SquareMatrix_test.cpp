@@ -159,23 +159,22 @@ BOOST_AUTO_TEST_CASE ( permanent_combinatorial ) {
 
 }
 
-//TODO: enable back after linking to GQCP
 
-//BOOST_AUTO_TEST_CASE ( permanent_ryser ) {
-//
-//    GQCP::SquareMatrix<double> A (2);
-//    A << 2, 3,
-//         9, 1;
-//    BOOST_CHECK(std::abs(A.permanent_ryser() - 29.0) < 1.0e-12);
-//
-//
-//    GQCP::SquareMatrix<double> B (3);
-//    B << 1,  2, -3,
-//         4, -5,  6,
-//         7, -8,  9;
-//    BOOST_CHECK(std::abs(B.permanent_ryser() - 264.0) < 1.0e-12);
-//
-//
-//    GQCP::SquareMatrix<double> C = GQCP::SquareMatrix<double>::Random(5, 5);
-//    BOOST_CHECK(std::abs(C.permanent_combinatorial() - C.permanent_ryser()) < 1.0e-12);
-//}
+BOOST_AUTO_TEST_CASE ( permanent_ryser ) {
+
+    GQCP::SquareMatrix<double> A (2);
+    A << 2, 3,
+         9, 1;
+    BOOST_CHECK(std::abs(A.permanent_ryser() - 29.0) < 1.0e-12);
+
+
+    GQCP::SquareMatrix<double> B (3);
+    B << 1,  2, -3,
+         4, -5,  6,
+         7, -8,  9;
+    BOOST_CHECK(std::abs(B.permanent_ryser() - 264.0) < 1.0e-12);
+
+
+    GQCP::SquareMatrix<double> C = GQCP::SquareMatrix<double>::Random(5, 5);
+    BOOST_CHECK(std::abs(C.permanent_combinatorial() - C.permanent_ryser()) < 1.0e-12);
+}

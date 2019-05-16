@@ -53,7 +53,7 @@ public:
     /**
      *  In-place rotate the matrix representation of the operator
      *
-     *  @param U     the unitary transformation (i.e. rotation) matrix, see transform() for how the transformation matrix between the two bases should be represented
+     *  @param U     the unitary transformation (i.e. rotation) matrix, see basisTransform() for how the transformation matrix between the two bases should be represented
      */
     template<typename Scalar>
     void rotate(const SquareMatrix<Scalar>& U) {
@@ -63,7 +63,7 @@ public:
             throw std::invalid_argument("Operator::rotate(SquareMatrix<Scalar>): The given transformation matrix is not unitary.");
         }
 
-        this->derived().transform(U);
+        this->derived().basisTransform(U);
     }
 
 

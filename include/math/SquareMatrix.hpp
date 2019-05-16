@@ -24,6 +24,7 @@
 #include "utilities/miscellaneous.hpp"
 #include "JacobiRotationParameters.hpp"
 
+#include <numeric>
 #include <boost/numeric/conversion/converter.hpp>
 
 
@@ -185,6 +186,44 @@ public:
         // And apply the Jacobi rotation as J = I * jacobi_rotation (cfr. B' = B T)
         J.applyOnTheRight(jacobi_rotation_parameters.get_p(), jacobi_rotation_parameters.get_q(), Eigen::JacobiRotation<double> (c, s));
         return J;
+    }
+
+
+    /**
+     *  @param index_list       diagonal indexes which will be set to 1 (others are 0)
+     *  @param M                the dimension of the resulting matrix
+     *
+     * @return the corresponding diagonal partition matrix
+     */
+    static Self PartitionMatrix(const Vectoru& index_list, size_t M) {
+
+        Self A = Self::Zero(M, M);
+
+        for (size_t index : index_list) {
+            if (index >= M) {
+                throw std::invalid_argument("SquareMatrix::PartitionMatrix(Vectoru, size_t): index is larger than matrix dimension");
+            }
+
+            A(index, index) = 1;
+        }
+
+        return A;
+    }
+
+
+   /**
+    *  @param start            starting index of the partition
+    *  @param range            range overwhich the partition indices stretch
+    *  @param M                the dimension of the resulting matrix
+    *
+    * @return the corresponding diagonal partition matrix
+    */
+    static Self PartitionMatrix(size_t start, size_t range, size_t M) {
+
+        std::vector<size_t> l(range);
+        std::iota(std::begin(l), std::end(l), start);
+
+        return PartitionMatrix(l, M);
     }
 
 

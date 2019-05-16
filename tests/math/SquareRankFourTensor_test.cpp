@@ -131,3 +131,46 @@ BOOST_AUTO_TEST_CASE ( pairWiseStrictReduce ) {
 
     BOOST_CHECK(M2_ref.isApprox(T2.pairWiseStrictReduce()));
 }
+
+
+BOOST_AUTO_TEST_CASE ( SquareRankFourTensor_matrix_contraction_trivial ) {
+
+    // toy rank-4 tensor
+    GQCP::SquareRankFourTensor<double> T (2);
+    for (long i = 0; i < 2; i++) {
+        for (long j = 0; j < 2; j++) {
+            for (long k = 0; k < 2; k++) {
+                for (long l = 0; l < 2; l++) {
+                    T(i, j, k, l) = l + 2 * k + 4 * j + 8 * i;
+                }
+            }
+        }
+    }
+
+    // shuffled tensor
+    std::array<int, 4> shuffle {3,2,1,0};
+    GQCP::SquareRankFourTensor<double> T2  =  GQCP::SquareRankFourTensor<double>(T.Eigen().shuffle(shuffle));
+
+    // toy matrix
+    GQCP::SquareMatrix<double> A (2);
+    for (long i = 0; i < 2; i++) {
+        for (long j = 0; j < 2; j++) {
+            A(i, j) = 1 + j + 2 * i;
+        }
+    }
+
+    // test rank-4 tensor, data from https://stackoverflow.com/questions/47556726
+    GQCP::SquareRankFourTensor<double> T_test = GQCP::SquareRankFourTensor<double>::FromFile("data/tensor_contraction_test.data", 2);
+
+    T.matrixContraction(A, 0);
+
+    BOOST_CHECK(T_test.isApprox(T_test, 1.0e-12));
+
+    // If we contract the with the last index axis of the shuffled tensor, then shuffle back the results should be the same.
+    T2.matrixContraction(A, 3);
+    GQCP::SquareRankFourTensor<double> T3 = GQCP::SquareRankFourTensor<double>(T2.Eigen().shuffle(shuffle));
+
+    BOOST_CHECK(T3.isApprox(T_test, 1.0e-12));
+
+    BOOST_CHECK_THROW(T3.matrixContraction(A, 5), std::invalid_argument);
+}

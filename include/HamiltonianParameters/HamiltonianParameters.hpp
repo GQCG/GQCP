@@ -104,7 +104,7 @@ public:
         HamiltonianParameters<Scalar>(ham_par.ao_basis, ham_par.S, ham_par.h, ham_par.g, ham_par.T_total, ham_par.scalar)
     {
         // We have now initialized the new Hamiltonian parameters to be a copy of the given Hamiltonian parameters, so now we will transform
-        this->transform(C);
+        this->basisTransform(C);
     }
 
 
@@ -426,12 +426,12 @@ public:
      *      - the total transformation matrix T_total is updated to reflect the total transformation between the new molecular orbital basis and the initial atomic orbitals
      */
     template <typename TransformationScalar = Scalar>
-    void transform(const SquareMatrix<TransformationScalar>& T) {
+    void basisTransform(const SquareMatrix<TransformationScalar> &T) {
 
-        this->S.transform(T);
+        this->S.basisTransform(T);
 
-        this->h.transform(T);
-        this->g.transform(T);
+        this->h.basisTransform(T);
+        this->g.basisTransform(T);
 
         this->T_total = this->T_total * T;  // use the correct transformation formula for subsequent transformations
     }
@@ -490,7 +490,7 @@ public:
 
         // The transformation matrix to the Löwdin basis is T = S^{-1/2}
         Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes (this->S);  // can we use this->S?
-        this->transform(SquareMatrix<double>(saes.operatorInverseSqrt()));
+        this->basisTransform(SquareMatrix<double>(saes.operatorInverseSqrt()));
     }
 
 
@@ -579,20 +579,12 @@ public:
             throw std::invalid_argument("HamiltonianParameters::calculateMullikenOperator(Vectoru): Too many AOs are selected");
         }
 
-        // Create the partitioning matrix (diagonal matrix with values set to 1 of selected AOs)
-        SquareMatrix<double> p_a = SquareMatrix<double>::Zero(this->K, this->K);
-
-        for (size_t index : ao_list) {
-            if (index >= this->K) {
-                throw std::invalid_argument("HamiltonianParameters::calculateMullikenOperator(Vectoru): AO index is too large");
-            }
-
-            p_a(index, index) = 1;
-        }
+        // Create the partitioning matrix
+        SquareMatrix<double> p_a = SquareMatrix<double>::PartitionMatrix(ao_list, this->K);
 
         OneElectronOperator<Scalar> S_AO = this->S;
         SquareMatrix<double> T_inverse = T_total.inverse();
-        S_AO.transform(T_inverse);
+        S_AO.basisTransform(T_inverse);
 
         OneElectronOperator<double> mulliken_matrix = (T_total.adjoint() * p_a * S_AO * T_total + T_total.adjoint() * S_AO * p_a * T_total)/2 ;
 

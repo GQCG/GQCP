@@ -41,20 +41,6 @@ BOOST_AUTO_TEST_CASE ( TwoElectronOperator_constructor ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( TwoElectronOperator_transform_trivial ) {
-
-    // Let's test a trivial transformation: i.e. with T being a unit matrix
-    GQCP::TwoElectronOperator<double> G (3);
-
-    auto G_copy = G;
-
-    GQCP::SquareMatrix<double> T = GQCP::SquareMatrix<double>::Identity(3, 3);
-    G.transform(T);
-
-    BOOST_CHECK(G_copy.isApprox(G, 1.0e-12));
-}
-
-
 BOOST_AUTO_TEST_CASE ( TwoElectronOperator_transform_olsens ) {
 
     // We can find a reference algorithm in the olsens module from Ayer's lab
@@ -76,7 +62,7 @@ BOOST_AUTO_TEST_CASE ( TwoElectronOperator_transform_olsens ) {
             }
         }
     }
-    G.transform(T);
+    G.basisTransform(T);
 
     BOOST_CHECK(G.isApprox(g_transformed_ref, 1.0e-12));
 }

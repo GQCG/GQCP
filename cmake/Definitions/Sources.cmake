@@ -45,6 +45,7 @@ set(PROJECT_SOURCE_FILES
         ${PROJECT_SOURCE_FOLDER}/HamiltonianBuilder/Hubbard.cpp
         ${PROJECT_SOURCE_FOLDER}/HamiltonianBuilder/SelectedCI.cpp
 
+        ${PROJECT_SOURCE_FOLDER}/HamiltonianParameters/AtomicDecomposition.cpp
         ${PROJECT_SOURCE_FOLDER}/HamiltonianParameters/BaseHamiltonianParameters.cpp
 
         ${PROJECT_SOURCE_FOLDER}/Localization/BaseERLocalizer.cpp

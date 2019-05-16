@@ -20,7 +20,7 @@
 
 
 #include "JacobiRotationParameters.hpp"
-#include "math/SquareMatrix.hpp"
+#include "math/ChemicalMatrix.hpp"
 #include "Operator.hpp"
 #include "math/ScalarFunction.hpp"
 
@@ -34,12 +34,12 @@ namespace GQCP {
  *  @tparam _Scalar      the scalar type
  */
 template <typename _Scalar>
-class OneElectronOperator : public SquareMatrix<_Scalar>, public Operator<OneElectronOperator<_Scalar>> {
+class OneElectronOperator : public ChemicalMatrix<_Scalar>, public Operator<OneElectronOperator<_Scalar>> {
 public:
 
     using Scalar = _Scalar;
 
-    using BaseRepresentation = SquareMatrix<Scalar>;
+    using BaseRepresentation = ChemicalMatrix<Scalar>;
     using Self = OneElectronOperator<Scalar>;
 
 
@@ -49,28 +49,12 @@ public:
      *  CONSTRUCTORS
      */
 
-    using SquareMatrix<Scalar>::SquareMatrix;  // use base constructors
+    using ChemicalMatrix<Scalar>::ChemicalMatrix;  // use base constructors
 
 
     /*
      *  PUBLIC METHODS
      */
-
-    /**
-     *  In-place transform the matrix representation of the one-electron operator
-     *
-     *  @tparam TransformationScalar        the type of scalar used for the transformation matrix
-     *
-     *  @param T    the transformation matrix between the old and the new orbital basis, it is used as
-     *      b' = b T ,
-     *   in which the basis functions are collected as elements of a row vector b
-     *
-     *  Note that in order to use these transformation formulas, the multiplication between TransformationScalar and Scalar should be 'enabled'. See LinearCombination.hpp for an example
-     */
-    template <typename TransformationScalar = Scalar>
-    void transform(const SquareMatrix<TransformationScalar>& T) {
-        *this = OneElectronOperator<Scalar>(T.adjoint() * (*this) * T);  // this has no aliasing issues (https://eigen.tuxfamily.org/dox/group__TopicAliasing.html)
-    }
 
 
     using Operator<OneElectronOperator<Scalar>>::rotate;  // bring over rotate from the base class
@@ -111,8 +95,8 @@ public:
     enable_if_t<std::is_base_of<ScalarFunction<typename Z::Valued, typename Z::Scalar, Z::Cols>, Z>::value,
     OneElectronOperator<typename Z::Valued>> evaluate(const Vector<typename Z::Scalar, Z::Cols>& x) const {
 
-        Eigen::Matrix<typename Z::Valued, SquareMatrix<Z>::Rows, SquareMatrix<Z>::Cols> result (this->rows(), this->cols());
-        auto result_op = SquareMatrix<typename Z::Valued>(result);
+        Eigen::Matrix<typename Z::Valued, ChemicalMatrix<Z>::Rows, ChemicalMatrix<Z>::Cols> result (this->rows(), this->cols());
+        auto result_op = ChemicalMatrix<typename Z::Valued>(result);
 
         for (size_t i = 0; i < this->rows(); i++) {
             for (size_t j = 0; j < this->cols(); j++) {
