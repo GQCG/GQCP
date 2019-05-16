@@ -79,12 +79,12 @@ AtomicDecompositionParameters AtomicDecompositionParameters::Nuclear(const Molec
     AOBasis ao_basis_a ({{atoms[0]}}, basisset_name);
     AOBasis ao_basis_b ({{atoms[1]}}, basisset_name);
 
-    OneElectronOperator<double> V_a = ao_basis_a.calculateNuclearIntegrals();
-    OneElectronOperator<double> V_b = ao_basis_b.calculateNuclearIntegrals();
+    OneElectronOperator<double> V_a = ao_basis_a.calculateLibintNuclearIntegrals();
+    OneElectronOperator<double> V_b = ao_basis_b.calculateLibintNuclearIntegrals();
 
     // T_a and T_b are equal to the corresponding block from the molecular kinetic integrals (T_a = T.block(0,0, K_a, K_a))
-    OneElectronOperator<double> T_a = ao_basis_a.calculateKineticIntegrals();
-    OneElectronOperator<double> T_b = ao_basis_b.calculateKineticIntegrals();
+    OneElectronOperator<double> T_a = ao_basis_a.calculateLibintKineticIntegrals();
+    OneElectronOperator<double> T_b = ao_basis_b.calculateLibintKineticIntegrals();
 
     auto K_a = ao_basis_a.numberOfBasisFunctions();
     auto K_b = ao_basis_b.numberOfBasisFunctions();
@@ -94,10 +94,10 @@ AtomicDecompositionParameters AtomicDecompositionParameters::Nuclear(const Molec
     auto p_b = SquareMatrix<double>::PartitionMatrix(K_a, K_b, K);
 
     // retrieve the molecular integrals
-    const auto& S = ao_basis->calculateOverlapIntegrals();
-    const auto& T = ao_basis->calculateKineticIntegrals();
-    const auto& V = ao_basis->calculateNuclearIntegrals();
-    const auto& g = ao_basis->calculateCoulombRepulsionIntegrals();
+    const auto& S = ao_basis->calculateLibintOverlapIntegrals();
+    const auto& T = ao_basis->calculateLibintKineticIntegrals();
+    const auto& V = ao_basis->calculateLibintNuclearIntegrals();
+    const auto& g = ao_basis->calculateLibintCoulombRepulsionIntegrals();
     auto repulsion = molecule.calculateInternuclearRepulsionEnergy();
 
     OneElectronOperator<double> H = T + V;
