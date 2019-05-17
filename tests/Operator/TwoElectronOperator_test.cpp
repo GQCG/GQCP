@@ -111,3 +111,37 @@ BOOST_AUTO_TEST_CASE ( TwoElectronOperator_rotate_JacobiRotationParameters ) {
 
     BOOST_CHECK(G1.isApprox(G2, 1.0e-12));
 }
+
+
+BOOST_AUTO_TEST_CASE ( TwoElectronOperator_effectiveOneElectronPartition ) {
+
+    size_t K = 4;
+    auto K_ = static_cast<double>(K);
+
+    // Set up toy 2-electron integrals
+    GQCP::TwoElectronOperator<double> g_op (K);
+    g_op.setZero();
+
+    for (size_t i = 0; i < K; i++) {
+        for (size_t j = 0; j < K; j++) {
+            for (size_t k = 0; k < K; k++) {
+                for (size_t l = 0; l < K; l++) {
+                    g_op(i,j,k,l) = (i+1) + 2*(j+1) + 4*(k+1) + 8*(l+1);
+                }
+            }
+        }
+    }
+
+    // Set up the reference effective one-electron integrals by manual calculation
+    GQCP::OneElectronOperator<double> k_ref = GQCP::OneElectronOperator<double>::Zero(K, K);
+    for (size_t p = 0; p < K; p++) {
+        for (size_t q = 0; q < K; q++) {
+            auto p_ = static_cast<double>(p) + 1;
+            auto q_ = static_cast<double>(q) + 1;
+
+            k_ref(p,q) = -K_ / 2 * (p_ + 8*q_ + 3*K_ + 3);
+        }
+    }
+
+    BOOST_CHECK(k_ref.isApprox(g_op.effectiveOneElectronPartition(), 1.0e-08));
+}
