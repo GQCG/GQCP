@@ -222,6 +222,294 @@ public:
             sign *= -1;
         }
     }
+
+
+    template<class Storage>
+    Storage EvaluateOperator(const OneElectronOperator<double>& one_op, bool diagonal_values = true) {
+        EvaluationContainer<Storage> container(this->dim);
+        this->EvaluateOperator<Storage>(one_op, container, diagonal_values);
+        return container.get_container();
+    }
+
+    template<>
+    Eigen::SparseMatrix<double> EvaluateOperator<Eigen::SparseMatrix<double>>(const OneElectronOperator<double>& one_op, bool diagonal_values) {
+        EvaluationContainer<Eigen::SparseMatrix<double>> container(this->dim);
+
+        size_t memory =  this->countTotalOneElectronCouplings();
+        if (diagonal_values) {
+            memory += this->dim;
+        }
+
+        container.reserve(memory);
+        this->EvaluateOperator<Eigen::SparseMatrix<double>>(one_op, container, diagonal_values);
+        container.addToMatrix();
+        return container.get_container();
+    }
+
+    template<class Storage>
+    void EvaluateOperator(const OneElectronOperator<double>& one_op, EvaluationContainer<Storage>& container, bool diagonal_values) {
+        size_t K = this->get_K();
+        size_t N = this->get_N();
+        size_t dim = this->get_dimension();
+
+        ONV onv = this->makeONV(0);  // onv with address 0
+        for (size_t I = 0; I < dim; I++) {  // I loops over all the addresses of the onv
+            for (size_t e1 = 0; e1 < N; e1++) {  // e1 (electron 1) loops over the (number of) electrons
+                size_t p = onv.get_occupation_index(e1);  // retrieve the index of a given electron
+                // remove the weight from the initial address I, because we annihilate
+                size_t address = I - this->get_vertex_weights(p, e1 + 1);
+
+                if(diagonal_values){
+                    container.add(I, I, one_op(p, p));
+                }
+
+                // The e2 iteration counts the amount of encountered electrons for the creation operator
+                // We only consider greater addresses than the initial one (because of symmetry)
+                // Hence we only count electron after the annihilated electron (e1)
+                size_t e2 = e1 + 1;
+                size_t q = p + 1;
+
+                int sign_e2 = 1;
+                // perform a shift
+                this->shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign_e2);
+
+                while (q < K) {
+                    size_t J = address + this->get_vertex_weights(q, e2);
+                    double value = sign_e2*one_op(p, q);
+                    container.add(I, J, value);
+                    container.add(J, I, value);
+
+                    q++; // go to the next orbital
+
+                    // perform a shift
+                    this->shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign_e2);
+                }  //  (creation)
+            } // e1 loop (annihilation)
+
+            // Prevent last permutation
+            if (I < dim - 1) {
+                this->setNextONV(onv);
+            }
+        }
+    }
+
+
+
+
+    template<class Storage>
+    Storage EvaluateOperator(const TwoElectronOperator<double>& one_op, bool diagonal_values = true) {
+        EvaluationContainer<Storage> container(this->dim);
+        this->EvaluateOperator<Storage>(one_op, container, diagonal_values);
+        return container.get_container();
+    }
+
+    template<>
+    Eigen::SparseMatrix<double> EvaluateOperator<Eigen::SparseMatrix<double>>(const TwoElectronOperator<double>& two_op, bool diagonal_values) {
+        EvaluationContainer<Eigen::SparseMatrix<double>> container(this->dim);
+
+        size_t memory =  this->countTotalTwoElectronCouplings();
+        if (diagonal_values) {
+            memory += this->dim;
+        }
+
+        container.reserve(memory);
+        this->EvaluateOperator<Eigen::SparseMatrix<double>>(two_op, container, diagonal_values);
+        container.addToMatrix();
+        return container.get_container();
+    }
+
+    template<class Storage>
+    void EvaluateOperator(const TwoElectronOperator<double>& two_op, EvaluationContainer<Storage>& container, bool diagonal_values) {
+        size_t K = this->get_K();
+        size_t N = this->get_N();
+        size_t dim = this->get_dimension();
+
+        auto k = two_op.effectiveOneElectronPartition();
+
+        ONV onv = this->makeONV(0);  // onv with address 0
+        for (size_t I = 0; I < dim; I++) {  // I loops over all addresses in the Fock space
+            if (I > 0) {
+                this->setNextONV(onv);
+            }
+            int sign1 = -1;  // start with -1 because we flip at the start of the annihilation (so we start at 1, followed by:  -1, 1, ...)
+            for (size_t e1 = 0; e1 < N; e1++) {  // A1 (annihilation 1)
+
+                sign1 *= -1;
+                size_t p = onv.get_occupation_index(e1);  // retrieve the index of a given electron
+                size_t address = I - this->get_vertex_weights(p, e1 + 1);
+
+                // Strictly diagonal values
+                if (diagonal_values) {
+                    container.add(I, I, k(p,p));
+                    for (size_t q = 0; q < K; q++) {  // q loops over SOs
+                        if (onv.isOccupied(q)) {  // q is in Ia
+                            container.add(I, I, 0.5 * two_op(p, p, q, q));
+                        } else {  // q is not in I_alpha
+                            container.add(I, I, 0.5 * two_op(p, p, q, q));
+                        }
+                    }
+                }
+
+                size_t address1 = address;
+                size_t e2 = e1;
+                size_t q = p;
+
+                /**
+                 *  A1 > C1 (annihlation 1 > creation 1)
+                 */
+                int sign2 = sign1;
+                q--;
+                e2--;
+                this->shiftUntilPreviousUnoccupiedOrbital<1>(onv, address1, q, e2, sign2);
+                while (q != -1) {
+
+                    size_t address2 = address1 + this->get_vertex_weights(q, e2 + 2);
+
+                    /**
+                     *  C2 > A2
+                     */
+                    int sign3 = sign1;
+                    for (size_t e3 = e1 + 1; e3 < N; e3++) {
+                        sign3 *= -1;  // initial sign3 = sign of the annhilation, with one extra electron(from crea) = *-1
+                        size_t r = onv.get_occupation_index(e3);
+                        size_t address3 = address2 - this->get_vertex_weights(r, e3 + 1);
+
+                        size_t e4 = e3 + 1;
+                        size_t s = r + 1;
+
+                        int sign4 = sign3;
+                        this->shiftUntilNextUnoccupiedOrbital<1>(onv, address3, s, e4, sign4);
+
+                        while (s < K) {
+                            size_t J = address3 + this->get_vertex_weights(s, e4);
+                            int signev = sign1 * sign2 * sign3 * sign4;
+                            double value = signev * 0.5 * (two_op(p, q, r, s) +
+                                                           two_op(r, s, p, q) -
+                                                           two_op(p, s, r, q) -
+                                                           two_op(r, q, p, s));
+
+
+                            container.add(I,J, value);
+                            container.add(J,I, value);
+
+                            s++;
+                            this->shiftUntilNextUnoccupiedOrbital<1>(onv, address3, s, e4, sign4);
+                        }
+                    }
+                    q--;
+                    this->shiftUntilPreviousUnoccupiedOrbital<1>(onv, address1, q, e2, sign2);
+                }
+
+                e2 = e1 + 1;
+                q = p + 1;
+                sign2 = sign1;
+                this->shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign2);
+
+                /**
+                 *  A1 < C1
+                 */
+                while (q < K) {
+
+                    address1 = address + this->get_vertex_weights(q, e2);
+
+                    /**
+                     *  A2 > C1
+                     */
+                    int sign3 = sign2;
+                    for (size_t e3 = e2; e3 < N; e3++) {
+                        sign3 *= -1; // -1 cause we created electron (creation) sign of A is now the that of C *-1
+                        size_t r = onv.get_occupation_index(e3);
+                        size_t address3 = address1 - this->get_vertex_weights(r, e3 + 1);
+
+                        size_t e4 = e3 + 1;
+                        size_t s = r + 1;
+                        int sign4 = sign3;
+                        this->shiftUntilNextUnoccupiedOrbital<1>(onv, address3, s, e4, sign4);
+
+                        while (s < K) {
+                            size_t J = address3 + this->get_vertex_weights(s, e4);
+                            int signev = sign1 * sign2 * sign3 * sign4;
+
+                            double value = signev * 0.5 * (two_op(p, q, r, s) +
+                                                           two_op(r, s, p, q) -
+                                                           two_op(r, q, p, s) -
+                                                           two_op(p, s, r, q));
+
+                            container.add(I,J, value);
+                            container.add(J,I, value);
+
+                            s++;  // go to the next orbital
+                            this->shiftUntilNextUnoccupiedOrbital<1>(onv, address3, s, e4, sign4);
+
+                        }  // (creation)
+
+                    }
+
+                    size_t r = q;
+                    sign3 = sign2;
+                    size_t address1c = address1;
+
+                    /**
+                     *  A2 < C1, (A2 > A1)
+                     */
+                    for (size_t e3 = e2 - 1; e3 > e1; e3--) {
+                        sign3 *= -1;
+                        size_t e4 = e2;
+                        address1c += this->get_vertex_weights(r, e3) -
+                                     this->get_vertex_weights(r, e3 + 1);
+                        r = onv.get_occupation_index(e3);
+                        size_t address2 = address1c - this->get_vertex_weights(r, e3);
+                        int sign4 = sign2;
+                        size_t s = q + 1;
+                        this->shiftUntilNextUnoccupiedOrbital<1>(onv, address2, s, e4, sign4);
+                        while (s < K) {
+
+                            size_t J = address2 + this->get_vertex_weights(s, e4);
+
+                            int signev = sign1 * sign2 * sign3 * sign4;
+                            double value = signev * 0.5 * (two_op(p, q, r, s) +
+                                                           two_op(r, s, p, q) -
+                                                           two_op(r, q, p, s) -
+                                                           two_op(p, s, r, q));
+
+                            container.add(I,J, value);
+                            container.add(J,I, value);
+
+                            s++;
+                            this->shiftUntilNextUnoccupiedOrbital<1>(onv, address2, s, e4, sign4);
+
+                        }
+                    }
+
+                    /**
+                     *  A2 = C1
+                     */
+                    int signev = sign2 * sign1;
+
+                    double value_I =  k(p, q);  // cover the one electron calculations
+
+                    for (size_t s = 0; s < K; s++) {
+                        if(!onv.isOccupied(s)){
+                            value_I += 0.5 * (two_op(p, s, s, q));
+                        } else {
+
+                            value_I  += 0.5 *  (two_op(s, s, p, q) - two_op(s, q, p, s) + two_op(p, q, s, s));
+                        }
+                    }
+
+                    value_I *= signev;
+
+                    q++;
+
+                    container.add(I,address1, value_I);
+                    container.add(address1,I, value_I);
+
+                    this->shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign2);
+                }
+            }
+        }
+
+    }
 };
 
 

@@ -21,9 +21,12 @@
 
 #include "FockSpace/FockSpaceType.hpp"
 #include "math/Matrix.hpp"
+#include "EvaluationContainer.hpp"
+#include "HamiltonianParameters/HamiltonianParameters.hpp"
 
 #include <iostream>
 #include <memory>
+
 
 
 namespace GQCP {
@@ -86,6 +89,9 @@ public:
      *  @return a constant normalized coefficients vector (i.e. all the coefficients are equal)
      */
     VectorX<double> constantExpansion() const;
+
+
+
 };
 
 
