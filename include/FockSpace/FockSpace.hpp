@@ -133,6 +133,69 @@ public:
     using FockPermutator<FockSpace>::getAddress;
 
     /**
+     *  Evaluate the operator in a dense matrix
+     *
+     *  @param one_op               the one-electron operator to be evaluated in the Fock space
+     *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+     *
+     *  @return the operator's evaluation in a dense matrix with the dimensions of the Fock space
+     */
+    SquareMatrix<double> EvaluateOperatorDense(const OneElectronOperator<double>& one_op, bool diagonal_values = true) const;
+
+    /**
+     *  Evaluate the operator in a sparse matrix
+     *
+     *  @param one_op               the one-electron operator to be evaluated in the Fock space
+     *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+     *
+     *  @return the operator's evaluation in a sparse matrix with the dimensions of the Fock space
+     */
+    Eigen::SparseMatrix<double> EvaluateOperatorSparse(const OneElectronOperator<double>& one_op, bool diagonal_values = true) const;
+
+    /**
+     *  Evaluate the operator in a dense matrix
+     *
+     *  @param two_op               the two-electron operator to be evaluated in the Fock space
+     *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+     *
+     *  @return the operator's evaluation in a dense matrix with the dimensions of the Fock space
+     */
+    SquareMatrix<double> EvaluateOperatorDense(const TwoElectronOperator<double>& two_op, bool diagonal_values = true) const;
+
+    /**
+     *  Evaluate the operator in a sparse matrix
+     *
+     *  @param two_op               the two-electron operator to be evaluated in the Fock space
+     *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+     *
+     *  @return the operator's evaluation in a sparse matrix with the dimensions of the Fock space
+     */
+    Eigen::SparseMatrix<double> EvaluateOperatorSparse(const TwoElectronOperator<double>& two_op, bool diagonal_values = true) const;
+
+    /**
+     *  Evaluate the Hamiltonian in a dense matrix
+     *
+     *  @param ham_par              HamiltonianParameters to be evaluated in the Fock space
+     *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+     *
+     *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the Fock space
+     */
+    SquareMatrix<double> EvaluateOperatorDense(const HamiltonianParameters<double>& ham_par, bool diagonal_values = true) const;
+
+    /**
+     *  Evaluate the Hamiltonian in a sparse matrix
+     *
+     *  @param ham_par              HamiltonianParameters to be evaluated in the Fock space
+     *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+     *
+     *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the Fock space
+     */
+    Eigen::SparseMatrix<double> EvaluateOperatorSparse(const HamiltonianParameters<double>& ham_par, bool diagonal_values = true) const;
+
+
+
+    // PUBLIC TEMPLATED METHODS
+    /**
      *  Find the next unoccupied orbital in a given ONV,
      *  update the electron count, orbital index,
      *  and update the address by calculating a shift
@@ -225,74 +288,6 @@ public:
     }
 
 
-    SquareMatrix<double> EvaluateOperatorDense(const OneElectronOperator<double>& one_op, bool diagonal_values = true) const {
-        EvaluationContainer<SquareMatrix<double>> container(this->dim);
-        this->EvaluateOperator<SquareMatrix<double>>(one_op, container, diagonal_values);
-        return container.get_container();
-    }
-
-
-    Eigen::SparseMatrix<double> EvaluateOperatorSparse(const OneElectronOperator<double>& one_op, bool diagonal_values = true) const {
-        EvaluationContainer<Eigen::SparseMatrix<double>> container(this->dim);
-
-        size_t memory =  this->countTotalOneElectronCouplings();
-        if (diagonal_values) {
-            memory += this->dim;
-        }
-
-        container.reserve(memory);
-        this->EvaluateOperator<Eigen::SparseMatrix<double>>(one_op, container, diagonal_values);
-        container.addToMatrix();
-        return container.get_container();
-    }
-
-
-    SquareMatrix<double> EvaluateOperatorDense(const TwoElectronOperator<double>& one_op, bool diagonal_values = true) const {
-        EvaluationContainer<SquareMatrix<double>> container(this->dim);
-        this->EvaluateOperator<SquareMatrix<double>>(one_op, container, diagonal_values);
-        return container.get_container();
-    }
-
-
-    Eigen::SparseMatrix<double> EvaluateOperatorSparse(const TwoElectronOperator<double>& two_op, bool diagonal_values = true) const {
-        EvaluationContainer<Eigen::SparseMatrix<double>> container(this->dim);
-
-        size_t memory =  this->countTotalTwoElectronCouplings();
-        if (diagonal_values) {
-            memory += this->dim;
-        }
-
-        container.reserve(memory);
-        this->EvaluateOperator<Eigen::SparseMatrix<double>>(two_op, container, diagonal_values);
-        container.addToMatrix();
-        return container.get_container();
-    }
-
-
-    SquareMatrix<double> EvaluateOperatorDense(const HamiltonianParameters<double>& ham_par, bool diagonal_values = true) const {
-        EvaluationContainer<SquareMatrix<double>> container(this->dim);
-        this->EvaluateOperator<SquareMatrix<double>>(ham_par.get_h(), ham_par.get_g(), container, diagonal_values);
-        return container.get_container();
-    }
-
-
-    Eigen::SparseMatrix<double> EvaluateOperatorSparse(const HamiltonianParameters<double>& ham_par, bool diagonal_values = true) const {
-        EvaluationContainer<Eigen::SparseMatrix<double>> container(this->dim);
-
-        size_t memory =  this->countTotalTwoElectronCouplings();
-        if (diagonal_values) {
-            memory += this->dim;
-        }
-
-        container.reserve(memory);
-        this->EvaluateOperator<Eigen::SparseMatrix<double>>(ham_par.get_h(), ham_par.get_g(), container, diagonal_values);
-
-        container.addToMatrix();
-
-        return container.get_container();
-    }
-
-    // Template Evaluation Methods
     template<class Storage>
     void EvaluateOperator(const OneElectronOperator<double>& one_op, EvaluationContainer<Storage>& container, bool diagonal_values = true) const {
         size_t K = this->get_K();
