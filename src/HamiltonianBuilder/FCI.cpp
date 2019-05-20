@@ -42,7 +42,7 @@ OneElectronOperator<double> FCI::oneElectronPartition(size_t p, size_t q, const 
 
     for (size_t i = 0; i < K; i++) {
         for (size_t j = 0; j < K; j++) {
-            k(p, q) += two_op(p, q, i, j);
+            k(i, j) += two_op(p, q, i, j);
         }
     }
 
@@ -93,8 +93,8 @@ SquareMatrix<double> FCI::constructHamiltonian(const HamiltonianParameters<doubl
     for (size_t p = 0; p<K; p++) {
 
         const auto& alpha_coupling = this->alpha_couplings[p*(K+K+1-p)/2];
-        const auto& k = oneElectronPartition(p, p, hamiltonian_parameters.get_g());
-        const auto& beta_two_electron_intermediate = fock_space_beta.EvaluateOperatorSparse(k, false);
+        const auto& P = oneElectronPartition(p, p, hamiltonian_parameters.get_g());
+        const auto& beta_two_electron_intermediate = fock_space_beta.EvaluateOperatorSparse(P, false);
 
         for (int i = 0; i < alpha_coupling.outerSize(); ++i){
             for (Eigen::SparseMatrix<double>::InnerIterator it(alpha_coupling, i); it; ++it) {
@@ -107,8 +107,8 @@ SquareMatrix<double> FCI::constructHamiltonian(const HamiltonianParameters<doubl
         for (size_t q = p + 1; q<K; q++) {
 
             const auto& alpha_coupling = this->alpha_couplings[p*(K+K+1-p)/2 + q - p];
-            const auto& k = oneElectronPartition(p, q, hamiltonian_parameters.get_g());
-            const auto& beta_two_electron_intermediate = fock_space_beta.EvaluateOperatorSparse(k, true);
+            const auto& P = oneElectronPartition(p, q, hamiltonian_parameters.get_g());
+            const auto& beta_two_electron_intermediate = fock_space_beta.EvaluateOperatorSparse(P, true);
 
             for (int i = 0; i < alpha_coupling.outerSize(); ++i){
                 for (Eigen::SparseMatrix<double>::InnerIterator it(alpha_coupling, i); it; ++it) {
@@ -151,15 +151,15 @@ VectorX<double> FCI::matrixVectorProduct(const HamiltonianParameters<double>& ha
 
     for (size_t p = 0; p<K; p++) {
 
-        const auto& k = oneElectronPartition(p, p, hamiltonian_parameters.get_g());
-        const auto& beta_two_electron_intermediate = fock_space_beta.EvaluateOperatorSparse(k, false);
+        const auto& P = oneElectronPartition(p, p, hamiltonian_parameters.get_g());
+        const auto& beta_two_electron_intermediate = fock_space_beta.EvaluateOperatorSparse(P, false);
 
         // sigma(pp) * X * theta(pp)
         matvecmap += this->alpha_couplings[p*(K+K+1-p)/2] * xmap * beta_two_electron_intermediate;
         for (size_t q = p + 1; q<K; q++) {
 
-            const auto& k = oneElectronPartition(p, q, hamiltonian_parameters.get_g());
-            const auto& beta_two_electron_intermediate = fock_space_beta.EvaluateOperatorSparse(k, true);
+            const auto& P = oneElectronPartition(p, q, hamiltonian_parameters.get_g());
+            const auto& beta_two_electron_intermediate = fock_space_beta.EvaluateOperatorSparse(P, true);
 
             // (sigma(pq) + sigma(qp)) * X * theta(pq)
             matvecmap += this->alpha_couplings[p*(K+K+1-p)/2 + q - p] * xmap * beta_two_electron_intermediate;
