@@ -36,37 +36,8 @@ private:
     std::vector<Eigen::SparseMatrix<double>> alpha_couplings;
 
     // PRIVATE METHODS
-    /**
-     *  Calculates the Hamiltonian matrix in the alpha or beta Fock space
-     *
-     *  @param fock_space                   Fock space for the spin specific Hamiltonian
-     *  @param hamiltonian_parameters       The Hamiltonian parameters in an orthonormal orbital basis
-     *
-     *  @return The sparse matrix containing all Hamiltonian elements for the Fock space pertaining to a single spin
-     */
-    Eigen::SparseMatrix<double> calculateSpinSeparatedHamiltonian(const FockSpace& fock_space, const HamiltonianParameters<double>& hamiltonian_parameters) const;
+    OneElectronOperator<double> oneElectronPartition(size_t p, size_t q, const TwoElectronOperator<double>& two_op) const;
 
-    /**
-     *  Calculates theta(rs): all one-electron couplings for a (spin) Fock space
-     *  and attributes two-electron integrals based on the one-electron coupling and two chosen fixed indexes
-     *
-     *  @param r                        First index of the two-electron integral
-     *  @param s                        Second index of the two-electron integral
-     *  @param fock_space               Fock space for the spin specific Hamiltonian
-     *  @param hamiltonian_parameters   The Hamiltonian parameters in an orthonormal orbital basis
-     *
-     *  @return The sparse matrix containing the calculated two-electron integrals mapped to one-electron couplings
-     */
-    Eigen::SparseMatrix<double> calculateTwoElectronIntermediate(size_t r, size_t s, const HamiltonianParameters<double>& hamiltonian_parameters, const FockSpace& fock_space) const;
-
-    /**
-     *  Calculates sigma(pq) + sigma(qp)'s: all one-electron couplings for each annihilation-creation pair in the (spin) Fock space
-     *  and stores them in sparse matrices for each pair combination
-     *
-     *  @return vector of sparse matrices containing the one-electron couplings for the (spin) Fock space
-     *      Ordered as: sigma(00), sigma(01) + sigma(10), sigma(02)+ sigma(20), ...
-     */
-    std::vector<Eigen::SparseMatrix<double>> calculateOneElectronCouplingsIntermediates(const FockSpace& fock_space) const;
 public:
 
     // CONSTRUCTORS
