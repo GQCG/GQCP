@@ -224,15 +224,15 @@ public:
     }
 
 
-    template<class Storage>
-    Storage EvaluateOperator(const OneElectronOperator<double>& one_op, bool diagonal_values = true) {
-        EvaluationContainer<Storage> container(this->dim);
-        this->EvaluateOperator<Storage>(one_op, container, diagonal_values);
+
+    SquareMatrix<double> EvaluateOperatorDense(const OneElectronOperator<double>& one_op, bool diagonal_values = true) {
+        EvaluationContainer<SquareMatrix<double>> container(this->dim);
+        this->EvaluateOperator<SquareMatrix<double>>(one_op, container, diagonal_values);
         return container.get_container();
     }
 
-    template<>
-    Eigen::SparseMatrix<double> EvaluateOperator<Eigen::SparseMatrix<double>>(const OneElectronOperator<double>& one_op, bool diagonal_values) {
+
+    Eigen::SparseMatrix<double> EvaluateOperatorSparse(const OneElectronOperator<double>& one_op, bool diagonal_values) {
         EvaluationContainer<Eigen::SparseMatrix<double>> container(this->dim);
 
         size_t memory =  this->countTotalOneElectronCouplings();
@@ -295,16 +295,14 @@ public:
 
 
 
-
-    template<class Storage>
-    Storage EvaluateOperator(const TwoElectronOperator<double>& one_op, bool diagonal_values = true) {
-        EvaluationContainer<Storage> container(this->dim);
-        this->EvaluateOperator<Storage>(one_op, container, diagonal_values);
+    SquareMatrix<double> EvaluateOperatorDense(const TwoElectronOperator<double>& one_op, bool diagonal_values = true) {
+        EvaluationContainer<SquareMatrix<double>> container(this->dim);
+        this->EvaluateOperator<SquareMatrix<double>>(one_op, container, diagonal_values);
         return container.get_container();
     }
 
-    template<>
-    Eigen::SparseMatrix<double> EvaluateOperator<Eigen::SparseMatrix<double>>(const TwoElectronOperator<double>& two_op, bool diagonal_values) {
+
+    Eigen::SparseMatrix<double> EvaluateOperatorSparse(const TwoElectronOperator<double>& two_op, bool diagonal_values) {
         EvaluationContainer<Eigen::SparseMatrix<double>> container(this->dim);
 
         size_t memory =  this->countTotalTwoElectronCouplings();
