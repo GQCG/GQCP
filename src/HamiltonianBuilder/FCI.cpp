@@ -146,8 +146,8 @@ VectorX<double> FCI::matrixVectorProduct(const HamiltonianParameters<double>& ha
 
     VectorX<double> matvec = diagonal.cwiseProduct(x);
 
-    Eigen::Map<Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor>> matvecmap(matvec.data(), dim_alpha, dim_beta);
-    Eigen::Map<const Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor>> xmap(x.data(), dim_alpha, dim_beta);
+    Eigen::Map<Eigen::MatrixXd> matvecmap(matvec.data(), dim_beta, dim_alpha);
+    Eigen::Map<const Eigen::MatrixXd> xmap(x.data(), dim_beta, dim_alpha);
 
     for (size_t p = 0; p<K; p++) {
 
@@ -155,21 +155,21 @@ VectorX<double> FCI::matrixVectorProduct(const HamiltonianParameters<double>& ha
         const auto& beta_two_electron_intermediate = fock_space_beta.EvaluateOperatorSparse(P, false);
 
         // sigma(pp) * X * theta(pp)
-        matvecmap += this->alpha_couplings[p*(K+K+1-p)/2] * xmap * beta_two_electron_intermediate;
+        matvecmap += beta_two_electron_intermediate * xmap * this->alpha_couplings[p*(K+K+1-p)/2];
         for (size_t q = p + 1; q<K; q++) {
 
             const auto& P = oneElectronPartition(p, q, hamiltonian_parameters.get_g());
             const auto& beta_two_electron_intermediate = fock_space_beta.EvaluateOperatorSparse(P, true);
 
             // (sigma(pq) + sigma(qp)) * X * theta(pq)
-            matvecmap += this->alpha_couplings[p*(K+K+1-p)/2 + q - p] * xmap * beta_two_electron_intermediate;
+            matvecmap += beta_two_electron_intermediate * xmap * this->alpha_couplings[p*(K+K+1-p)/2 + q - p];
         }
     }
 
     auto beta_hamiltonian = fock_space_beta.EvaluateOperatorSparse(hamiltonian_parameters, false);
     auto alpha_hamiltonian = fock_space_alpha.EvaluateOperatorSparse(hamiltonian_parameters, false);
 
-    matvecmap += alpha_hamiltonian * xmap + xmap * beta_hamiltonian;
+    matvecmap += beta_hamiltonian * xmap + xmap * alpha_hamiltonian;
 
     return matvec;
 }

@@ -36,20 +36,7 @@ namespace GQCP {
 class Hubbard : public HamiltonianBuilder {
 private:
     ProductFockSpace fock_space;  // fock space containing the alpha and beta Fock space
-
     
-    // PRIVATE METHODS
-    /**
-     *  Evaluate the one-electron operators for alpha or beta and store the result in a matrix-vector product or a matrix, depending on the method passed
-     *
-     *  @param fock_space_target        the Fock space that is used as a target, i.e. that is evaluated
-     *  @param fock_space_fixed         the Fock space that is not evaluated
-     *  @param target_is_major          whether or not the evaluated component is the major index
-     *  @param hamiltonian_parameters   the Hubbard Hamiltonian parameters
-     *  @param method                   the used method: constructHamiltonian() or matrixVectorProduct()
-     */
-    void oneOperatorModule(const FockSpace& fock_space_target, const FockSpace& fock_space_fixed, bool target_is_major, const HamiltonianParameters<double>& hamiltonian_parameters, const PassToMethod& method) const;
-
 
 public:
 

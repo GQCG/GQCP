@@ -370,4 +370,72 @@ Eigen::SparseMatrix<double> FockSpace::EvaluateOperatorSparse(const HamiltonianP
     return container.get_container();
 }
 
+
+/**
+ *  Calculates sigma(pq) + sigma(qp)'s: all one-electron couplings for each annihilation-creation pair in the (spin) Fock space
+ *  and stores them in sparse matrices for each pair combination
+ *
+ *  @return vector of sparse matrices containing the one-electron couplings for the (spin) Fock space
+ *      Ordered as: sigma(00), sigma(01) + sigma(10), sigma(02)+ sigma(20), ...
+ */
+std::vector<Eigen::SparseMatrix<double>> FockSpace::calculateOneElectronCouplings() const {
+
+    size_t K = this->get_K();
+    size_t N = this->get_N();
+    size_t dim = this->get_dimension();
+
+    std::vector<std::vector<Eigen::Triplet<double>>> sparse_entries(K*(K+1)/2);
+    std::vector<Eigen::SparseMatrix<double>> sparse_matrices(K*(K+1)/2, Eigen::SparseMatrix<double>(dim, dim));
+
+    // Reserve appropriate amount of entries
+    size_t reservation_size = FockSpace::calculateDimension(K-1, N-1);
+    for (size_t p = 0; p < K; p++) {
+        sparse_entries[p*(K+K+1-p)/2].reserve(reservation_size);
+        for (size_t q = p + 1; q < K; q++) {
+            sparse_entries[p*(K+K+1-p)/2 + q - p].reserve(2*reservation_size);
+        }
+    }
+
+
+    ONV onv = this->makeONV(0);  // onv with address 0
+    for (size_t I = 0; I < dim; I++) {  // I loops over all the addresses of the onv
+        for (size_t e1 = 0; e1 < N; e1++) {  // e1 (electron 1) loops over the (number of) electrons
+            size_t p = onv.get_occupation_index(e1);  // retrieve the index of a given electron
+            // remove the weight from the initial address I, because we annihilate
+            size_t address = I - this->get_vertex_weights(p, e1 + 1);
+            // The e2 iteration counts the amount of encountered electrons for the creation operator
+            // We only consider greater addresses than the initial one (because of symmetry)
+            // Hence we only count electron after the annihilated electron (e1)
+            sparse_entries[p*(K+K+1-p)/2].emplace_back(I, I, 1);
+            size_t e2 = e1 + 1;
+            size_t q = p + 1;
+            int sign_e2 = 1;
+            // perform a shift
+            this->shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign_e2);
+            size_t dex = 0;
+            while (q < K) {
+                size_t J = address + this->get_vertex_weights(q, e2);
+
+                sparse_entries[p*(K+K+1-p)/2 + q - p].emplace_back(I, J, sign_e2);
+                sparse_entries[p*(K+K+1-p)/2 + q - p].emplace_back(J, I, sign_e2);
+
+                q++; // go to the next orbital
+                dex++;
+                // perform a shift
+                this->shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign_e2);
+            }  //  (creation)
+        } // e1 loop (annihilation)
+
+        // Prevent last permutation
+        if (I < dim - 1) {
+            this->setNextONV(onv);
+        }
+    }
+
+    for (size_t k = 0; k < K*(K+1)/2 ; k++){
+        sparse_matrices[k].setFromTriplets(sparse_entries[k].begin(), sparse_entries[k].end());
+    }
+
+    return sparse_matrices;
+}
 }  // namespace GQCP
