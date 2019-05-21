@@ -71,6 +71,7 @@ install:
     - if [ ! -f $HOME/miniconda/bin/cmake ]; then
         conda install -c conda-forge cmake boost-cpp eigen blas;
         conda install -c gqcg libint;
+        conda install -c pyscf libcint;
       else
         echo "Using already installed packages.";
       fi
@@ -86,15 +87,6 @@ install:
     - mkdir build && cd build
     - cmake .. -DCMAKE_BUILD_TYPE=RELEASE
     - make -j3 && sudo make install
-
-    # Install libcint
-    - mkdir /tmp/libcint && cd /tmp/libcint
-    - git clone https://github.com/sunqm/libcint.git
-    - cd libcint
-    - mkdir build && cd build
-    - cmake ..
-    - make && sudo make install
-
 
 # Run the build script
 script:

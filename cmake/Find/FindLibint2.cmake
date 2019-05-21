@@ -38,3 +38,12 @@ else()
 
     message(STATUS "Libint2 was found at ${LIBINT_PREFIX}")
 endif()
+
+if (Libint2_FOUND AND NOT TARGET libint2::libint2)
+    add_library(libint2::libint2 SHARED IMPORTED)
+    set_target_properties(libint2::libint2
+            PROPERTIES
+            INTERFACE_INCLUDE_DIRECTORIES ${Libint2_INCLUDE_DIRS}
+            IMPORTED_LOCATION ${Libint2_LIBRARIES}
+            )
+endif()
