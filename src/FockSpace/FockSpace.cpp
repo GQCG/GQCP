@@ -438,4 +438,6 @@ std::vector<Eigen::SparseMatrix<double>> FockSpace::calculateOneElectronCoupling
 
     return sparse_matrices;
 }
+
+
 }  // namespace GQCP

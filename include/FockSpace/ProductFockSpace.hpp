@@ -34,6 +34,10 @@ private:
     FockSpace fock_space_alpha;
     FockSpace fock_space_beta;
 
+    std::vector<Eigen::SparseMatrix<double>> alpha_couplings;
+
+    // PRIVATE METHODS
+    OneElectronOperator<double> oneElectronPartition(size_t p, size_t q, const TwoElectronOperator<double>& two_op) const;
 
 public:
     // CONSTRUCTORS
@@ -66,6 +70,69 @@ public:
      *  @return the dimension of the product Fock space
      */
     static size_t calculateDimension(size_t K, size_t N_alpha, size_t N_beta);
+
+
+    // PUBLIC METHODS
+    /**
+     *  Evaluate the operator in a dense matrix
+     *
+     *  @param one_op               the one-electron operator to be evaluated in the Fock space
+     *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+     *
+     *  @return the operator's evaluation in a dense matrix with the dimensions of the Fock space
+     */
+    SquareMatrix<double> EvaluateOperatorDense(const OneElectronOperator<double>& one_op, bool diagonal_values = true) const;
+
+    /**
+     *  Evaluate the operator in a sparse matrix
+     *
+     *  @param one_op               the one-electron operator to be evaluated in the Fock space
+     *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+     *
+     *  @return the operator's evaluation in a sparse matrix with the dimensions of the Fock space
+     */
+    Eigen::SparseMatrix<double> EvaluateOperatorSparse(const OneElectronOperator<double>& one_op, bool diagonal_values = true) const;
+
+    /**
+     *  Evaluate the operator in a dense matrix
+     *
+     *  @param two_op               the two-electron operator to be evaluated in the Fock space
+     *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+     *
+     *  @return the operator's evaluation in a dense matrix with the dimensions of the Fock space
+     */
+    SquareMatrix<double> EvaluateOperatorDense(const TwoElectronOperator<double>& two_op, bool diagonal_values = true) const;
+
+    /**
+     *  Evaluate the operator in a sparse matrix
+     *
+     *  @param two_op               the two-electron operator to be evaluated in the Fock space
+     *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+     *
+     *  @return the operator's evaluation in a sparse matrix with the dimensions of the Fock space
+     */
+    Eigen::SparseMatrix<double> EvaluateOperatorSparse(const TwoElectronOperator<double>& two_op, bool diagonal_values = true) const;
+
+    /**
+     *  Evaluate the Hamiltonian in a dense matrix
+     *
+     *  @param ham_par              HamiltonianParameters to be evaluated in the Fock space
+     *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+     *
+     *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the Fock space
+     */
+    SquareMatrix<double> EvaluateOperatorDense(const HamiltonianParameters<double>& ham_par, bool diagonal_values = true) const;
+
+    /**
+     *  Evaluate the Hamiltonian in a sparse matrix
+     *
+     *  @param ham_par              HamiltonianParameters to be evaluated in the Fock space
+     *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+     *
+     *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the Fock space
+     */
+    Eigen::SparseMatrix<double> EvaluateOperatorSparse(const HamiltonianParameters<double>& ham_par, bool diagonal_values = true) const;
+
 };
 
 

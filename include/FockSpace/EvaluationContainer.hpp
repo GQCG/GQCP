@@ -82,6 +82,8 @@ class EvaluationContainer<Eigen::SparseMatrix<double>> {
     };
 
     friend class FockSpace;
+    friend class SelectedFockSpace;
+    friend class ProductFockSpace;
 };
 
 
