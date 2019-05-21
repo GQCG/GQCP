@@ -22,8 +22,6 @@
 #include "HamiltonianBuilder/HamiltonianBuilder.hpp"
 #include "FockSpace/ProductFockSpace.hpp"
 
-#include <Eigen/Sparse>
-
 
 namespace GQCP {
 
