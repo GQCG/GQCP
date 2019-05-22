@@ -20,8 +20,6 @@ if("${LIBCINT_PREFIX}" STREQUAL "LIBCINT_PREFIX-NOTFOUND")
     message(FATAL_ERROR "Libcint was not found in the default location /usr/local or through the environment variables")
 
 else()
-    # Set FOUND
-    set(Libcint_FOUND TRUE)
 
     # Set the INCLUDE_DIRS
     set(Libcint_INCLUDE_DIRS "${Libcint_INCLUDE_DIRS};${LIBCINT_PREFIX}/include")
@@ -33,10 +31,16 @@ else()
         if(EXISTS ${LIBCINT_PREFIX}/lib/libcint.dylib)
             set(Libcint_LIBRARIES "${LIBCINT_PREFIX}/lib/libcint.dylib")
         else()
-            set(Libcint_LIBRARIES "${LIBCINT_PREFIX}/lib/libcint.a")
+            if(EXISTS ${LIBCINT_PREFIX}/lib/libcint.a)
+                set(Libcint_LIBRARIES "${LIBCINT_PREFIX}/lib/libcint.a")
+            else()
+                message(FATAL_ERROR "No Libcint library was found in the default location /usr/local or through the environment variables")
+            endif()
         endif()
     endif()
 
+    # Set FOUND
+    set(Libcint_FOUND TRUE)
     message(STATUS "Libcint was found at ${LIBCINT_PREFIX}")
 
 endif()
