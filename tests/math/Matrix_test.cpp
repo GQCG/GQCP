@@ -18,7 +18,7 @@
 #define BOOST_TEST_MODULE "Matrix"
 
 #include <boost/test/unit_test.hpp>
-#include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
+//#include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
 
 #include "math/Matrix.hpp"
 

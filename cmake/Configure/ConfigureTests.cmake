@@ -15,6 +15,7 @@ foreach(TEST_SOURCE ${PROJECT_TEST_SOURCE_FILES})
     # Configure (include headers and link libraries) the test
     configure_executable(${TEST_NAME})
     target_include_directories(${TEST_NAME} PUBLIC ${Spectra_INCLUDE_DIRS})
+    target_compile_definitions(${TEST_NAME} PRIVATE BOOST_TEST_DYN_LINK)
 
     add_test(NAME ${TEST_NAME} COMMAND ${TEST_NAME}
              WORKING_DIRECTORY ${CMAKE_BINARY_DIR})  # the working directory is the out-of-source build directory
