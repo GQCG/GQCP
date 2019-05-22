@@ -145,7 +145,7 @@ BOOST_AUTO_TEST_CASE ( libcint_vs_libint2_H2O_STO_3G ) {
     for (size_t i = 0; i < 3; i++) {
         BOOST_CHECK(dipole_libcint[i].isApprox(dipole_libint2[i], 1.0e-08));
     }
-    //BOOST_CHECK(g_libcint.isApprox(g_libint2, 1.0e-08));
+    BOOST_CHECK(g_libcint.isApprox(g_libint2, 1.0e-08));
 }
 
 
