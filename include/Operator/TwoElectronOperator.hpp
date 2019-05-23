@@ -86,9 +86,10 @@ public:
     OneElectronOperator<Scalar> effectiveOneElectronPartition() const {
 
         auto K = this->dimension(0);
-        //auto k = OneElectronOperator<Scalar>(K);
+
         OneElectronOperator<Scalar> k = OneElectronOperator<Scalar>::Zero(K, K);
 
+        std::cout<<std::endl<<std::endl<<"----------k-------------"<<std::endl<<k<<std::endl;
         for (size_t p = 0; p < K; p++) {
             for (size_t q = 0; q < K; q++) {
                 for (size_t r = 0; r < K; r++) {
@@ -96,6 +97,7 @@ public:
                 }
             }
         }
+        std::cout<<std::endl<<std::endl<<"----------k-------------"<<std::endl<<k<<std::endl;
 
         return k;
     }

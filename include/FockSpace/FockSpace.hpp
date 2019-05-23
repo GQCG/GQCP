@@ -345,7 +345,7 @@ public:
                 // remove the weight from the initial address I, because we annihilate
                 size_t address = I - this->get_vertex_weights(p, e1 + 1);
 
-                if(diagonal_values){
+                if (diagonal_values) {
                     container.add(I, I, one_op(p, p));
                 }
 
@@ -382,7 +382,8 @@ public:
 
     template<class Storage>
     void EvaluateOperator(const TwoElectronOperator<double>& two_op, EvaluationContainer<Storage>& container, bool diagonal_values) const {
-        EvaluateOperator(OneElectronOperator<double>::Zero(this->K, this->K), two_op, container, diagonal_values);
+        OneElectronOperator<double> dummy = OneElectronOperator<double>::Zero(this->K, this->K);
+        EvaluateOperator(dummy, two_op, container, diagonal_values);
     }
 
     template<class Storage>
@@ -391,7 +392,9 @@ public:
         size_t N = this->get_N();
         size_t dim = this->get_dimension();
 
-        auto k = two_op.effectiveOneElectronPartition() + one_op;
+        OneElectronOperator<double> k = two_op.effectiveOneElectronPartition() + one_op;
+        std::cout<<std::endl;
+        std::cout<<k<<std::endl;
 
         ONV onv = this->makeONV(0);  // onv with address 0
         for (size_t I = 0; I < dim; I++) {  // I loops over all addresses in the Fock space

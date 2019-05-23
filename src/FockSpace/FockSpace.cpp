@@ -345,6 +345,7 @@ SquareMatrix<double> FockSpace::evaluateOperatorDense(const HamiltonianParameter
                                                       bool diagonal_values) const {
     EvaluationContainer<SquareMatrix<double>> container(this->dim);
     this->EvaluateOperator<SquareMatrix<double>>(ham_par.get_h(), ham_par.get_g(), container, diagonal_values);
+
     return container.get_container();
 }
 

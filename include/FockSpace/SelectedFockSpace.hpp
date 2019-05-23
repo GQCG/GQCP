@@ -304,7 +304,7 @@ public:
 
                             if (p != q) {  // can't create/annihilate the same orbital twice
                                 if (alpha_I.isOccupied(q)) {
-                                    container.add(I, I, 0.5 * two_op(p,p,q,q));
+                                    container.add(I, I,  0.5 * two_op(p,p,q,q));
                                     container.add(I, I, -0.5 * two_op(p,q,q,p));
                                 }
                             }
