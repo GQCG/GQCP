@@ -139,13 +139,14 @@ public:
      */
     VectorX<double> evaluateOperatorDiagonal(const HamiltonianParameters<double>& ham_par) const override;
 
+    // STATIC PUBLIC METHODS
     /**
      *  @param one_op       the one-electron operator in an orthonormal orbital basis
      *  @param X            the number of frozen orbitals
      *
      *  @return 'frozen' one-electron operator which cover evaluations from the active and inactive orbitals
      */
-    OneElectronOperator<double> freezeOperator(const OneElectronOperator<double>& one_op, size_t X) const;
+    static OneElectronOperator<double> freezeOperator(const OneElectronOperator<double>& one_op, size_t X);
 
     /**
      *  @param two_op       the two-electron operator in an orthonormal orbital basis
@@ -153,7 +154,7 @@ public:
      *
      *  @return 'frozen' two-electron operator which cover evaluations from the active and inactive orbitals
      */
-    FrozenOperators freezeOperator(const TwoElectronOperator<double>& two_op, size_t X) const;
+    static FrozenOperators freezeOperator(const TwoElectronOperator<double>& two_op, size_t X);
 
     // PUBLIC METHODS
     /**
@@ -163,7 +164,7 @@ public:
      *  @return a set of 'frozen' Hamiltonian parameters which cover two-electron integral evaluations from the active and inactive orbitals
      *  (see https://drive.google.com/file/d/1Fnhv2XyNO9Xw9YDoJOXU21_6_x2llntI/view?usp=sharing)
      */
-    HamiltonianParameters<double> freezeOperator(const HamiltonianParameters<double>& ham_par, size_t X) const;
+    static HamiltonianParameters<double> freezeOperator(const HamiltonianParameters<double>& ham_par, size_t X);
 
     /**
      *  @param one_op       the one-electron operator in an orthonormal orbital basis
@@ -171,7 +172,7 @@ public:
      *
      *  @return the operator diagonal from strictly evaluating the frozen orbitals in the Fock space
      */
-    VectorX<double> frozenCoreDiagonal(const OneElectronOperator<double>& one_op, size_t X) const;
+    static VectorX<double> frozenCoreDiagonal(const OneElectronOperator<double>& one_op, size_t X, size_t dimension);
 
     /**
      *  @param two_op       the two-electron operator in an orthonormal orbital basis
@@ -179,15 +180,16 @@ public:
      *
      *  @return the operator diagonal from strictly evaluating the frozen orbitals in the Fock space
      */
-    VectorX<double> frozenCoreDiagonal(const TwoElectronOperator<double>& two_op, size_t X) const;
+    static VectorX<double> frozenCoreDiagonal(const TwoElectronOperator<double>& two_op, size_t X, size_t dimension);
 
     /**
-     *  @param ham_par      the Hamiltonian parameters in an orthonormal orbital basis
-     *  @param X            the number of frozen orbitals
+     *  @param ham_par              the Hamiltonian parameters in an orthonormal orbital basis
+     *  @param X                    the number of frozen orbitals
+     *  @param dimension            the dimension of the diagonal
      *
-     *  @return the Hamiltonian diagonal from strictly evaluating the frozen orbitals in the Fock space
+     *  @return the Hamiltonian diagonal from strictly evaluating the frozen orbitals in a (any) Fock space
      */
-    VectorX<double> frozenCoreDiagonal(const HamiltonianParameters<double>& ham_par, size_t X) const;
+    static VectorX<double> frozenCoreDiagonal(const HamiltonianParameters<double>& ham_par, size_t X, size_t dimension);
 };
 
 

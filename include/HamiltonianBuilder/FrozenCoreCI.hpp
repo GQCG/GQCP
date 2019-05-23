@@ -66,25 +66,6 @@ public:
      *  @return the diagonal of the matrix representation of the frozen core Hamiltonian
      */
     VectorX<double> calculateDiagonal(const HamiltonianParameters<double>& ham_par) const override;
-
-
-    // PUBLIC METHODS
-    /**
-     *  @param ham_par      the Hamiltonian parameters in an orthonormal orbital basis
-     *  @param X            the number of frozen orbitals
-     *
-     *  @return a set of 'frozen' Hamiltonian parameters which cover two-electron integral evaluations from the active and inactive orbitals
-     *  (see https://drive.google.com/file/d/1Fnhv2XyNO9Xw9YDoJOXU21_6_x2llntI/view?usp=sharing)
-     */
-    HamiltonianParameters<double> freezeHamiltonianParameters(const HamiltonianParameters<double>& ham_par, size_t X) const;
-
-    /**
-     *  @param ham_par      the Hamiltonian parameters in an orthonormal orbital basis
-     *  @param X            the number of frozen orbitals
-     *
-     *  @return the diagonal from strictly evaluating the frozen orbitals in the Fock space
-     */
-    VectorX<double> calculateFrozenCoreDiagonal(const HamiltonianParameters<double>& ham_par, size_t X) const;
 };
 
 
