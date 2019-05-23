@@ -67,10 +67,12 @@ As gqcp uses the bassisets packaged with libint, please set the `LIBINT_DATA_PAT
 
     export LIBINT_DATA_PATH=/usr/local/libint/2.3.1/share/libint/2.3.1/basis
 
+Note that conda offers virtual environments that ease installation and linking to these libraries. Please consult the Travis config file for more information.
 
 ### CMake out-of-source build
 
 For a default CMake build, the steps are the following:
+
 1. clone the master branch, which contains the latest release
 
         https://github.com/GQCG/gqcp.git --branch master --single-branch
@@ -79,20 +81,28 @@ For a default CMake build, the steps are the following:
 2. perform an out-of-source build:
 
         mkdir build && cd build
-        cmake ..
+        cmake .. (CMake options)
         make && make test && sudo make install
-
-
 
 ### CMake options
 
-For this library, there are several extra options you can pass to the `cmake ..` command:
+In general, please set and pass the following options to the `cmake ..` command:
 
-* `-DINSTALLATION_PREFIX=prefix`, with `prefix` (defaulted to `/usr/local`) the installation prefix you want the library to be installed it. This option controls where the library is installed:
+* `-DCMAKE_INCLUDE_PATH=include_path`, with `include_path` the path to those includes that are not in default locations such as `/usr/local`.
+   For instance, the include path to the header files of libInt2, libCint, Eigen and the Intel MKL should be added to this variable.
+
+* `-DCMAKE_LIBRARY_PATH=library_path`, with `library_path` the path to those libraries that are not in default locations such as `/usr/local`.
+   For instance, the libInt2, libCint and Intel MKL libraries should be on this search path.
+
+* `-DCMAKE_INSTALL_PREFIX=prefix`, with `prefix` (defaulted to `/usr/local`) the installation prefix you want the library to be installed it. This option controls where the library is installed:
     * the header files will be installed in `prefix/gqcp/include`
     * the compiled library will be installed in `prefix/gqcp/lib`
     * drivers (optional) and benchmarks (optional) will be installed in `prefix/gqcp/bin`
     * CMake target files will be installed in `prefix/gqcp/cmake`
+
+For this library, there are several extra options you can pass to the `cmake ..` command:
+
+* `-DEIGEN_USE_MKL_ALL=TRUE` makes sure that Eigen uses Intel MKL.
 
 
 * `-DBUILD_DOCS=ON` specifies that documentation should be built using Doxygen, in which case Graphviz is required for UML generation. A custom `docs` target will then be configured by CMake, so that
@@ -106,10 +116,6 @@ For this library, there are several extra options you can pass to the `cmake ..`
 
 
 * `-DBUILD_BENCHMARKS=ON` makes sure CMake adds the benchmark executables as targets. This uses [Google benchmark](https://github.com/google/benchmark), so make sure you have this installed if you wish to proceed with benchmarking on your system.
-
-
-* `-DUSE_MKL=ON` specifies that you would like to use MKL as your BLAS library. 
-
 
 
 ### Usage in an external project

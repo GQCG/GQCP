@@ -25,10 +25,14 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC Cint::Cint)
 target_link_libraries(${LIBRARY_NAME} PUBLIC Spectra::Spectra)
 
 # Include MKL
-if (USE_MKL)
-    target_include_directories(${LIBRARY_NAME} PUBLIC ${MKL_INCLUDE_DIRS})
-    target_link_libraries(${LIBRARY_NAME} PUBLIC ${MKL_LIBRARIES})
+if (EIGEN_USE_MKL_ALL)
+    target_include_directories(${LIBRARY_NAME} PUBLIC ${BLAS_INCLUDE_DIR})
+    target_link_libraries(${LIBRARY_NAME} PUBLIC ${BLAS_LIBRARIES})
 endif()
+# Include MKL
+#if (USE_MKL)
+#    target_link_libraries(${LIBRARY_NAME} PUBLIC MKL::MKL)
+#endif()
 
 
 # 2. Install the library

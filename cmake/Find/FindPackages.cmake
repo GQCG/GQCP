@@ -1,6 +1,4 @@
 # Find all packages
-
-
 find_package(Git REQUIRED)
 find_package(Boost REQUIRED COMPONENTS program_options unit_test_framework)
 find_package(Eigen3 3.3.4 REQUIRED)
@@ -12,8 +10,9 @@ if (BUILD_DOCS)
     find_package(Doxygen REQUIRED dot)
 endif()
 
-if (USE_MKL)
-    find_package(MKL REQUIRED)
+if(EIGEN_USE_MKL_ALL)
+    set(BLA_VENDOR Intel10_64lp)
+    find_package(BLAS REQUIRED)
 endif()
 
 if (BUILD_BENCHMARKS)
