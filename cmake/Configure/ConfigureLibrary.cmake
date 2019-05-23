@@ -16,7 +16,7 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC ${Boost_LIBRARIES})
 target_link_libraries(${LIBRARY_NAME} PUBLIC Eigen3::Eigen)
 
 # Include Libint2
-target_link_libraries(${LIBRARY_NAME} PUBLIC libint2::libint2)
+target_link_libraries(${LIBRARY_NAME} PUBLIC Int2::Int2)
 
 # Include Libcint
 target_link_libraries(${LIBRARY_NAME} PUBLIC Cint::Cint)
