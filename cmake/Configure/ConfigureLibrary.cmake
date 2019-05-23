@@ -19,7 +19,7 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC Eigen3::Eigen)
 target_link_libraries(${LIBRARY_NAME} PUBLIC libint2::libint2)
 
 # Include Libcint
-target_link_libraries(${LIBRARY_NAME} PUBLIC libcint::libcint)
+target_link_libraries(${LIBRARY_NAME} PUBLIC Cint::Cint)
 
 # Include Spectra
 target_link_libraries(${LIBRARY_NAME} PUBLIC Spectra::Spectra)
