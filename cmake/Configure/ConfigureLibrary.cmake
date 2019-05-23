@@ -21,6 +21,9 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC Int2::Int2)
 # Include Libcint
 target_link_libraries(${LIBRARY_NAME} PUBLIC Cint::Cint)
 
+# Include Spectra
+target_link_libraries(${LIBRARY_NAME} PUBLIC Spectra::Spectra)
+
 # Include MKL
 if (EIGEN_USE_MKL_ALL)
     target_include_directories(${LIBRARY_NAME} PUBLIC ${BLAS_INCLUDE_DIR})

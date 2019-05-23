@@ -23,7 +23,6 @@ Hints
 ``Int2_ROOT_DIR``
   Define the root directory of the Int2 installation.
 #]=======================================================================]
-
 find_path(Int2_INCLUDE_DIR libint2.hpp HINTS ${Int2_ROOT_DIR}/include)
 find_library(Int2_LIBRARY int2 HINTS ${Int2_ROOT_DIR}/lib)
 mark_as_advanced(Int2_INCLUDE_DIR Int2_LIBRARY)
