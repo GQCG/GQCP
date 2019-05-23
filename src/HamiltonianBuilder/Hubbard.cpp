@@ -50,33 +50,7 @@ SquareMatrix<double> Hubbard::constructHamiltonian(const HamiltonianParameters<d
         throw std::invalid_argument("Hubbard::constructHamiltonian(const HamiltonianParameters<double>&): Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
     }
 
-    SquareMatrix<double> total_hamiltonian = SquareMatrix<double>::Zero(this->fock_space.get_dimension(), this->fock_space.get_dimension());
-
-    FockSpace fock_space_alpha = fock_space.get_fock_space_alpha();
-    FockSpace fock_space_beta = fock_space.get_fock_space_beta();
-
-    auto dim_alpha = fock_space_alpha.get_dimension();
-    auto dim_beta = fock_space_beta.get_dimension();
-
-    auto beta_hamiltonian = fock_space_beta.EvaluateOperatorSparse(hamiltonian_parameters.get_h(), false);
-    auto alpha_hamiltonian = fock_space_alpha.EvaluateOperatorSparse(hamiltonian_parameters.get_h(), false);
-
-    // BETA separated evaluations
-    for (size_t i = 0; i < dim_alpha; i++) {
-        total_hamiltonian.block(i * dim_beta, i * dim_beta, dim_beta, dim_beta) += beta_hamiltonian;
-    }
-
-    // ALPHA separated evaluations
-    SquareMatrix<double> ones = SquareMatrix<double>::Identity(dim_beta, dim_beta);
-    for (int i = 0; i < alpha_hamiltonian.outerSize(); ++i){
-        for (Eigen::SparseMatrix<double>::InnerIterator it(alpha_hamiltonian, i); it; ++it) {
-            total_hamiltonian.block(it.row() * dim_beta, it.col() * dim_beta, dim_beta, dim_beta) += it.value()*ones;
-        }
-    }
-    
-    total_hamiltonian += this->calculateDiagonal(hamiltonian_parameters).asDiagonal();
-
-    return total_hamiltonian;
+    return this->fock_space.evaluateOperatorDense(hamiltonian_parameters.get_h(), true);
 }
 
 
@@ -105,8 +79,8 @@ VectorX<double> Hubbard::matrixVectorProduct(const HamiltonianParameters<double>
     Eigen::Map<Eigen::MatrixXd> matvecmap(matvec.data(), dim_beta, dim_alpha);
     Eigen::Map<const Eigen::MatrixXd> xmap(x.data(), dim_beta, dim_alpha);
 
-    auto beta_hamiltonian = fock_space_beta.EvaluateOperatorSparse(hamiltonian_parameters.get_h(), false);
-    auto alpha_hamiltonian = fock_space_alpha.EvaluateOperatorSparse(hamiltonian_parameters.get_h(), false);
+    auto beta_hamiltonian = fock_space_beta.evaluateOperatorSparse(hamiltonian_parameters.get_h(), false);
+    auto alpha_hamiltonian = fock_space_alpha.evaluateOperatorSparse(hamiltonian_parameters.get_h(), false);
 
     matvecmap += xmap * alpha_hamiltonian + beta_hamiltonian * xmap;
 

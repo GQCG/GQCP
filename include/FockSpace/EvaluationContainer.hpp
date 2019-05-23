@@ -47,6 +47,8 @@ class EvaluationContainer {
     }
 
     friend class FockSpace;
+    friend class SelectedFockSpace;
+    friend class ProductFockSpace;
 };
 
 

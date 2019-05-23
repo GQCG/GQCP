@@ -15,64 +15,39 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCP_PRODUCTFOCKSPACE_HPP
-#define GQCP_PRODUCTFOCKSPACE_HPP
+#ifndef GQCP_FROZENCOREFOCKSPACE_HPP
+#define GQCP_FROZENCOREFOCKSPACE_HPP
 
 
 #include "FockSpace/BaseFockSpace.hpp"
-#include "FockSpace/FockSpace.hpp"
 
 
 namespace GQCP {
 
 
+struct FrozenOperators {
+    OneElectronOperator<double> one_op;
+    TwoElectronOperator<double> two_op;
+};
+
+
 /**
- *  A class that represents the product of two full Fock spaces (alpha and beta).
+ *  A class that represents a frozen Fock space: this is a subspace of the N-electron Fock space in which the first X orbitals are always occupied
  */
-class ProductFockSpace: public BaseFockSpace {
-private:
-    FockSpace fock_space_alpha;
-    FockSpace fock_space_beta;
+class FrozenCoreFockSpace: public BaseFockSpace {
+protected:
 
-    std::vector<Eigen::SparseMatrix<double>> alpha_couplings;
-
-    // PRIVATE METHODS
-    OneElectronOperator<double> oneElectronPartition(size_t p, size_t q, const TwoElectronOperator<double>& two_op) const;
+    size_t X;  // number of frozen orbitals/electrons
+    std::shared_ptr<BaseFockSpace> active_fock_space;  // active (non-frozen) Fock space containing only the active electrons (N-X) and orbitals (K-X)
 
 public:
     // CONSTRUCTORS
     /**
-     *  @param K            the number of orbitals (equal for alpha and beta)
-     *  @param N_alpha      the number of alpha electrons
-     *  @param N_beta       the number of beta electrons
+     *  @param fock_space                    shared pointer to active (non-frozen core) Fock space
+     *  @param X                             the number of frozen orbitals
      */
-    ProductFockSpace(size_t K, size_t N_alpha, size_t N_beta);
+    FrozenCoreFockSpace(std::shared_ptr<BaseFockSpace> fock_space, size_t X);
 
-
-    // DESTRUCTORS
-    ~ProductFockSpace() override = default;
-
-
-    // GETTERS
-    size_t get_N_alpha() const { return this->fock_space_alpha.get_N(); }
-    size_t get_N_beta() const { return this->fock_space_beta.get_N(); }
-    const FockSpace& get_fock_space_alpha() const { return this->fock_space_alpha; }
-    const FockSpace& get_fock_space_beta() const { return this->fock_space_beta; }
-    FockSpaceType get_type() const override { return FockSpaceType::ProductFockSpace; }
-
-
-    // STATIC PUBLIC METHODS
-    /**
-     *  @param K            the number of orbitals (equal for alpha and beta)
-     *  @param N_alpha      the number of alpha electrons
-     *  @param N_beta       the number of beta electrons
-     *
-     *  @return the dimension of the product Fock space
-     */
-    static size_t calculateDimension(size_t K, size_t N_alpha, size_t N_beta);
-
-
-    // PUBLIC METHODS
     /**
      *  Evaluate the operator in a dense matrix
      *
@@ -137,7 +112,6 @@ public:
     Eigen::SparseMatrix<double> evaluateOperatorSparse(const HamiltonianParameters<double>& ham_par,
                                                        bool diagonal_values) const override;
 
-
     /**
      *  Evaluate the diagonal of the operator
      *
@@ -165,10 +139,59 @@ public:
      */
     VectorX<double> evaluateOperatorDiagonal(const HamiltonianParameters<double>& ham_par) const override;
 
+    /**
+     *  @param one_op       the one-electron operator in an orthonormal orbital basis
+     *  @param X            the number of frozen orbitals
+     *
+     *  @return 'frozen' one-electron operator which cover evaluations from the active and inactive orbitals
+     */
+    OneElectronOperator<double> freezeOperator(const OneElectronOperator<double>& one_op, size_t X) const;
+
+    /**
+     *  @param two_op       the two-electron operator in an orthonormal orbital basis
+     *  @param X            the number of frozen orbitals
+     *
+     *  @return 'frozen' two-electron operator which cover evaluations from the active and inactive orbitals
+     */
+    FrozenOperators freezeOperator(const TwoElectronOperator<double>& two_op, size_t X) const;
+
+    // PUBLIC METHODS
+    /**
+     *  @param ham_par      the Hamiltonian parameters in an orthonormal orbital basis
+     *  @param X            the number of frozen orbitals
+     *
+     *  @return a set of 'frozen' Hamiltonian parameters which cover two-electron integral evaluations from the active and inactive orbitals
+     *  (see https://drive.google.com/file/d/1Fnhv2XyNO9Xw9YDoJOXU21_6_x2llntI/view?usp=sharing)
+     */
+    HamiltonianParameters<double> freezeOperator(const HamiltonianParameters<double>& ham_par, size_t X) const;
+
+    /**
+     *  @param one_op       the one-electron operator in an orthonormal orbital basis
+     *  @param X            the number of frozen orbitals
+     *
+     *  @return the operator diagonal from strictly evaluating the frozen orbitals in the Fock space
+     */
+    VectorX<double> frozenCoreDiagonal(const OneElectronOperator<double>& one_op, size_t X) const;
+
+    /**
+     *  @param two_op       the two-electron operator in an orthonormal orbital basis
+     *  @param X            the number of frozen orbitals
+     *
+     *  @return the operator diagonal from strictly evaluating the frozen orbitals in the Fock space
+     */
+    VectorX<double> frozenCoreDiagonal(const TwoElectronOperator<double>& two_op, size_t X) const;
+
+    /**
+     *  @param ham_par      the Hamiltonian parameters in an orthonormal orbital basis
+     *  @param X            the number of frozen orbitals
+     *
+     *  @return the Hamiltonian diagonal from strictly evaluating the frozen orbitals in the Fock space
+     */
+    VectorX<double> frozenCoreDiagonal(const HamiltonianParameters<double>& ham_par, size_t X) const;
 };
 
 
 }  // namespace GQCP
 
 
-#endif  // GQCP_FOCKSPACE_HPP
+#endif  // GQCP_FROZENCOREFOCKSPACE_HPP

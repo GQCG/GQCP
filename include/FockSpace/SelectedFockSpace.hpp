@@ -115,6 +115,328 @@ public:
      *  @param onv2s     the beta ONVs as string representations read from right to left
      */
     void addConfiguration(const std::vector<std::string>& onv1s, const std::vector<std::string>& onv2s);
+
+
+    /**
+     *  Evaluate the operator in a dense matrix
+     *
+     *  @param one_op               the one-electron operator to be evaluated in the Fock space
+     *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+     *
+     *  @return the operator's evaluation in a dense matrix with the dimensions of the Fock space
+     */
+    SquareMatrix<double> evaluateOperatorDense(const OneElectronOperator<double>& one_op, bool diagonal_values) const override;
+
+    /**
+     *  Evaluate the operator in a sparse matrix
+     *
+     *  @param one_op               the one-electron operator to be evaluated in the Fock space
+     *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+     *
+     *  @return the operator's evaluation in a sparse matrix with the dimensions of the Fock space
+     */
+    Eigen::SparseMatrix<double> evaluateOperatorSparse(const OneElectronOperator<double>& one_op,
+                                                       bool diagonal_values) const override;
+
+    /**
+     *  Evaluate the operator in a dense matrix
+     *
+     *  @param two_op               the two-electron operator to be evaluated in the Fock space
+     *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+     *
+     *  @return the operator's evaluation in a dense matrix with the dimensions of the Fock space
+     */
+    SquareMatrix<double> evaluateOperatorDense(const TwoElectronOperator<double>& two_op, bool diagonal_values) const override;
+
+    /**
+     *  Evaluate the operator in a sparse matrix
+     *
+     *  @param two_op               the two-electron operator to be evaluated in the Fock space
+     *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+     *
+     *  @return the operator's evaluation in a sparse matrix with the dimensions of the Fock space
+     */
+    Eigen::SparseMatrix<double> evaluateOperatorSparse(const TwoElectronOperator<double>& two_op,
+                                                       bool diagonal_values) const override;
+
+    /**
+     *  Evaluate the Hamiltonian in a dense matrix
+     *
+     *  @param ham_par              HamiltonianParameters to be evaluated in the Fock space
+     *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+     *
+     *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the Fock space
+     */
+    SquareMatrix<double> evaluateOperatorDense(const HamiltonianParameters<double>& ham_par,
+                                               bool diagonal_values) const override;
+
+    /**
+     *  Evaluate the Hamiltonian in a sparse matrix
+     *
+     *  @param ham_par              HamiltonianParameters to be evaluated in the Fock space
+     *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+     *
+     *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the Fock space
+     */
+    Eigen::SparseMatrix<double> evaluateOperatorSparse(const HamiltonianParameters<double>& ham_par,
+                                                       bool diagonal_values) const override;
+
+
+
+    /**
+     *  Evaluate the diagonal of the operator
+     *
+     *  @param one_op               the one-electron operator to be evaluated in the Fock space
+     *
+     *  @return the operator's diagonal evaluation in a vector with the dimension of the Fock space
+     */
+    VectorX<double> evaluateOperatorDiagonal(const OneElectronOperator<double>& one_op) const override;
+
+    /**
+     *  Evaluate the diagonal of the operator
+     *
+     *  @param two_op               the two-electron operator to be evaluated in the Fock space
+     *
+     *  @return the operator's diagonal evaluation in a vector with the dimension of the Fock space
+     */
+    VectorX<double> evaluateOperatorDiagonal(const TwoElectronOperator<double>& two_op) const override;
+
+    /**
+     *  Evaluate the diagonal of the Hamiltonian
+     *
+     *  @param ham_par              HamiltonianParameters to be evaluated in the Fock space
+     *
+     *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the Fock space
+     */
+    VectorX<double> evaluateOperatorDiagonal(const HamiltonianParameters<double>& ham_par) const override;
+
+
+
+
+    // PUBLIC TEMPLATED METHODS
+    template<class Storage>
+    void EvaluateOperator(const OneElectronOperator<double>& one_op, EvaluationContainer<Storage>& container, bool diagonal_values) const {
+        size_t dim = this->get_dimension();
+
+        for (size_t I = 0; I < dim; I++) {  // loop over all addresses (1)
+            Configuration configuration_I = this->get_configuration(I);
+            ONV alpha_I = configuration_I.onv_alpha;
+            ONV beta_I = configuration_I.onv_beta;
+
+            // Calculate the off-diagonal elements, by going over all other ONVs
+            for (size_t J = I+1; J < dim; J++) {
+
+                Configuration configuration_J = this->get_configuration(J);
+                ONV alpha_J = configuration_J.onv_alpha;
+                ONV beta_J = configuration_J.onv_beta;
+
+                if ((alpha_I.countNumberOfDifferences(alpha_J) == 2) && (beta_I.countNumberOfDifferences(beta_J) == 0)) {
+
+                    // Find the orbitals that are occupied in one string, and aren't in the other
+                    size_t p = alpha_I.findDifferentOccupations(
+                            alpha_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+                    size_t q = alpha_J.findDifferentOccupations(
+                            alpha_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+
+                    // Calculate the total sign
+                    int sign = alpha_I.operatorPhaseFactor(p) * alpha_J.operatorPhaseFactor(q);
+
+                    double value = one_op(p, q);
+
+                    container.add(I, J, sign * value);
+                    container.add(J, I, sign * value);
+                }
+
+                // 0 electron excitations in alpha, 1 in beta
+                if ((alpha_I.countNumberOfDifferences(alpha_J) == 0) && (beta_I.countNumberOfDifferences(beta_J) == 2)) {
+
+
+                    // Find the orbitals that are occupied in one string, and aren't in the other
+                    size_t p = beta_I.findDifferentOccupations(beta_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+                    size_t q = beta_J.findDifferentOccupations(beta_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+
+                    // Calculate the total sign
+                    int sign = beta_I.operatorPhaseFactor(p) * beta_J.operatorPhaseFactor(q);
+
+                    double value = one_op(p,q);
+
+                    container.add(I, J, sign*value);
+                    container.add(J, I, sign*value);
+                }
+            }  // loop over addresses J > I
+        }  // loop over addresses I
+    }
+
+    template<class Storage>
+    void EvaluateOperator(const TwoElectronOperator<double>& two_op, EvaluationContainer<Storage>& container, bool diagonal_values) const {
+        EvaluateOperator(OneElectronOperator<double>::Zero(this->K, this->K), two_op, container, diagonal_values);
+    }
+
+    template<class Storage>
+    void EvaluateOperator(const OneElectronOperator<double>& one_op, const TwoElectronOperator<double>& two_op, EvaluationContainer<Storage>& container, bool diagonal_values) const {
+
+        size_t dim = this->get_dimension();
+        size_t K = this->get_K();
+
+        for (size_t I = 0; I < dim; I++) {  // loop over all addresses (1)
+            Configuration configuration_I = this->get_configuration(I);
+            ONV alpha_I = configuration_I.onv_alpha;
+            ONV beta_I = configuration_I.onv_beta;
+
+            // Calculate the off-diagonal elements, by going over all other ONVs
+            for (size_t J = I+1; J < dim; J++) {
+
+                Configuration configuration_J = this->get_configuration(J);
+                ONV alpha_J = configuration_J.onv_alpha;
+                ONV beta_J = configuration_J.onv_beta;
+
+                if ((alpha_I.countNumberOfDifferences(alpha_J) == 2) && (beta_I.countNumberOfDifferences(beta_J) == 0)) {
+
+                    // Find the orbitals that are occupied in one string, and aren't in the other
+                    size_t p = alpha_I.findDifferentOccupations(alpha_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+                    size_t q = alpha_J.findDifferentOccupations(alpha_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+
+                    // Calculate the total sign
+                    int sign = alpha_I.operatorPhaseFactor(p) * alpha_J.operatorPhaseFactor(q);
+
+                    double value = one_op(p,q);
+
+                    container.add(I, J, sign*value);
+                    container.add(J, I, sign*value);
+
+                    for (size_t r = 0; r < K; r++) {  // r loops over spatial orbitals
+
+                        if (alpha_I.isOccupied(r) && alpha_J.isOccupied(r)) {  // r must be occupied on the left and on the right
+                            if ((p != r) && (q != r)) {  // can't create or annihilate the same orbital
+
+                                double value = 0.5 * (two_op(p,q,r,r)
+                                                      - two_op(r,q,p,r)
+                                                      - two_op(p,r,r,q)
+                                                      + two_op(r,r,p,q));
+
+                                container.add(I, J, sign*value);
+                                container.add(J, I, sign*value);
+                            }
+                        }
+
+                        if (beta_I.isOccupied(r)) {  // beta_I == beta_J from the previous if-branch
+
+                            double value = 0.5 * (two_op(p,q,r,r)
+                                                  +  two_op(r,r,p,q));
+
+                            container.add(I, J, sign*value);
+                            container.add(J, I, sign*value);
+                        }
+                    }
+                }
+
+                // 0 electron excitations in alpha, 1 in beta
+                if ((alpha_I.countNumberOfDifferences(alpha_J) == 0) && (beta_I.countNumberOfDifferences(beta_J) == 2)) {
+
+
+                    // Find the orbitals that are occupied in one string, and aren't in the other
+                    size_t p = beta_I.findDifferentOccupations(beta_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+                    size_t q = beta_J.findDifferentOccupations(beta_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+
+                    // Calculate the total sign
+                    int sign = beta_I.operatorPhaseFactor(p) * beta_J.operatorPhaseFactor(q);
+
+                    double value = one_op(p,q);
+
+                    container.add(I, J, sign*value);
+                    container.add(J, I, sign*value);
+
+                    for (size_t r = 0; r < K; r++) {  // r loops over spatial orbitals
+
+                        if (beta_I.isOccupied(r) && beta_J.isOccupied(r)) {  // r must be occupied on the left and on the right
+                            if ((p != r) && (q != r)) {  // can't create or annihilate the same orbital
+                                double value = 0.5 * (two_op(p,q,r,r)
+                                                      -  two_op(r,q,p,r)
+                                                      -  two_op(p,r,r,q)
+                                                      +  two_op(r,r,p,q));
+
+                                container.add(I, J, sign*value);
+                                container.add(J, I, sign*value);
+                            }
+                        }
+
+                        if (alpha_I.isOccupied(r)) {  // alpha_I == alpha_J from the previous if-branch
+
+                            double value =  0.5 * (two_op(p,q,r,r)
+                                                   +  two_op(r,r,p,q));
+
+                            container.add(I, J, sign*value);
+                            container.add(J, I, sign*value);
+                        }
+                    }
+                }
+
+                // 1 electron excitation in alpha, 1 in beta
+                if ((alpha_I.countNumberOfDifferences(alpha_J) == 2) && (beta_I.countNumberOfDifferences(beta_J) == 2)) {
+
+                    // Find the orbitals that are occupied in one string, and aren't in the other
+                    size_t p = alpha_I.findDifferentOccupations(alpha_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+                    size_t q = alpha_J.findDifferentOccupations(alpha_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+
+                    size_t r = beta_I.findDifferentOccupations(beta_J)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+                    size_t s = beta_J.findDifferentOccupations(beta_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
+
+                    int sign = alpha_I.operatorPhaseFactor(p) * alpha_J.operatorPhaseFactor(q) * beta_I.operatorPhaseFactor(r) * beta_J.operatorPhaseFactor(s);
+                    double value = 0.5 * (two_op(p,q,r,s)
+                                          +  two_op(r,s,p,q));
+
+                    container.add(I, J, sign*value);
+                    container.add(J, I, sign*value);
+                }
+
+                // 2 electron excitations in alpha, 0 in beta
+                if ((alpha_I.countNumberOfDifferences(alpha_J) == 4) && (beta_I.countNumberOfDifferences(beta_J) == 0)) {
+
+                    // Find the orbitals that are occupied in one string, and aren't in the other
+                    std::vector<size_t> occupied_indices_I = alpha_I.findDifferentOccupations(alpha_J);  // we're sure this has two elements
+                    size_t p = occupied_indices_I[0];
+                    size_t r = occupied_indices_I[1];
+
+                    std::vector<size_t> occupied_indices_J = alpha_J.findDifferentOccupations(alpha_I);  // we're sure this has two elements
+                    size_t q = occupied_indices_J[0];
+                    size_t s = occupied_indices_J[1];
+
+                    int sign = alpha_I.operatorPhaseFactor(p) * alpha_I.operatorPhaseFactor(r) * alpha_J.operatorPhaseFactor(q) * alpha_J.operatorPhaseFactor(s);
+
+                    double value = 0.5 * (two_op(p,q,r,s)
+                                          -  two_op(p,s,r,q)
+                                          -  two_op(r,q,p,s)
+                                          +  two_op(r,s,p,q));
+
+                    container.add(I, J, sign*value);
+                    container.add(J, I, sign*value);
+                }
+
+                // 0 electron excitations in alpha, 2 in beta
+                if ((alpha_I.countNumberOfDifferences(alpha_J) == 0) && (beta_I.countNumberOfDifferences(beta_J) == 4)) {
+
+                    // Find the orbitals that are occupied in one string, and aren't in the other
+                    std::vector<size_t> occupied_indices_I = beta_I.findDifferentOccupations(beta_J);  // we're sure this has two elements
+                    size_t p = occupied_indices_I[0];
+                    size_t r = occupied_indices_I[1];
+
+                    std::vector<size_t> occupied_indices_J = beta_J.findDifferentOccupations(beta_I);  // we're sure this has two elements
+                    size_t q = occupied_indices_J[0];
+                    size_t s = occupied_indices_J[1];
+
+                    int sign = beta_I.operatorPhaseFactor(p) * beta_I.operatorPhaseFactor(r) * beta_J.operatorPhaseFactor(q) * beta_J.operatorPhaseFactor(s);
+
+                    double value = 0.5 * (two_op(p,q,r,s)
+                                          -  two_op(p,s,r,q)
+                                          -  two_op(r,q,p,s)
+                                          +  two_op(r,s,p,q));
+
+                    container.add(I, J, sign*value);
+                    container.add(J, I, sign*value);
+                }
+            }  // loop over addresses J > I
+        }  // loop over addresses I
+    }
 };
 
 

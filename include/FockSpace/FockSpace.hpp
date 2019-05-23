@@ -21,7 +21,6 @@
 
 #include "FockSpace/BaseFockSpace.hpp"
 #include "FockSpace/FockPermutator.hpp"
-#include "EvaluationContainer.hpp"
 
 
 namespace GQCP {
@@ -140,7 +139,7 @@ public:
      *
      *  @return the operator's evaluation in a dense matrix with the dimensions of the Fock space
      */
-    SquareMatrix<double> EvaluateOperatorDense(const OneElectronOperator<double>& one_op, bool diagonal_values = true) const;
+    SquareMatrix<double> evaluateOperatorDense(const OneElectronOperator<double>& one_op, bool diagonal_values) const override;
 
     /**
      *  Evaluate the operator in a sparse matrix
@@ -150,7 +149,8 @@ public:
      *
      *  @return the operator's evaluation in a sparse matrix with the dimensions of the Fock space
      */
-    Eigen::SparseMatrix<double> EvaluateOperatorSparse(const OneElectronOperator<double>& one_op, bool diagonal_values = true) const;
+    Eigen::SparseMatrix<double> evaluateOperatorSparse(const OneElectronOperator<double>& one_op,
+                                                       bool diagonal_values) const override;
 
     /**
      *  Evaluate the operator in a dense matrix
@@ -160,7 +160,7 @@ public:
      *
      *  @return the operator's evaluation in a dense matrix with the dimensions of the Fock space
      */
-    SquareMatrix<double> EvaluateOperatorDense(const TwoElectronOperator<double>& two_op, bool diagonal_values = true) const;
+    SquareMatrix<double> evaluateOperatorDense(const TwoElectronOperator<double>& two_op, bool diagonal_values) const override;
 
     /**
      *  Evaluate the operator in a sparse matrix
@@ -170,7 +170,8 @@ public:
      *
      *  @return the operator's evaluation in a sparse matrix with the dimensions of the Fock space
      */
-    Eigen::SparseMatrix<double> EvaluateOperatorSparse(const TwoElectronOperator<double>& two_op, bool diagonal_values = true) const;
+    Eigen::SparseMatrix<double> evaluateOperatorSparse(const TwoElectronOperator<double>& two_op,
+                                                       bool diagonal_values) const override;
 
     /**
      *  Evaluate the Hamiltonian in a dense matrix
@@ -180,7 +181,8 @@ public:
      *
      *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the Fock space
      */
-    SquareMatrix<double> EvaluateOperatorDense(const HamiltonianParameters<double>& ham_par, bool diagonal_values = true) const;
+    SquareMatrix<double> evaluateOperatorDense(const HamiltonianParameters<double>& ham_par,
+                                               bool diagonal_values) const override;
 
     /**
      *  Evaluate the Hamiltonian in a sparse matrix
@@ -190,7 +192,8 @@ public:
      *
      *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the Fock space
      */
-    Eigen::SparseMatrix<double> EvaluateOperatorSparse(const HamiltonianParameters<double>& ham_par, bool diagonal_values = true) const;
+    Eigen::SparseMatrix<double> evaluateOperatorSparse(const HamiltonianParameters<double>& ham_par,
+                                                       bool diagonal_values) const override;
 
     /**
      *  Calculates sigma(pq) + sigma(qp)'s: all one-electron couplings for each annihilation-creation pair in the (spin) Fock space
@@ -200,6 +203,38 @@ public:
      *      Ordered as: sigma(00), sigma(01) + sigma(10), sigma(02)+ sigma(20), ...
      */
     std::vector<Eigen::SparseMatrix<double>> calculateOneElectronCouplings() const;
+
+
+
+    /**
+     *  Evaluate the diagonal of the operator in this Fock space
+     *
+     *  @param one_op               the one-electron operator to be evaluated in the Fock space
+     *
+     *  @return the operator's diagonal evaluation in a vector with the dimension of the Fock space
+     */
+    VectorX<double> evaluateOperatorDiagonal(const OneElectronOperator<double>& one_op) const override;
+
+    /**
+     *  Evaluate the diagonal of the operator in this Fock space
+     *
+     *  @param two_op               the two-electron operator to be evaluated in the Fock space
+     *
+     *  @return the operator's diagonal evaluation in a vector with the dimension of the Fock space
+     */
+    VectorX<double> evaluateOperatorDiagonal(const TwoElectronOperator<double>& two_op) const override;
+
+    /**
+     *  Evaluate the diagonal of the Hamiltonian in this Fock space
+     *
+     *  @param ham_par              HamiltonianParameters to be evaluated in the Fock space
+     *
+     *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the Fock space
+     */
+    VectorX<double> evaluateOperatorDiagonal(const HamiltonianParameters<double>& ham_par) const override;
+
+
+
 
 
 
@@ -282,7 +317,7 @@ public:
      *  @param sign      the sign which is flipped for each iteration
      */
     template<int T>
-    void shiftUntilPreviousUnoccupiedOrbital(const ONV &onv, size_t &address, size_t &q, size_t &e, int &sign) const {
+    void shiftUntilPreviousUnoccupiedOrbital(const ONV& onv, size_t& address, size_t& q, size_t& e, int& sign) const {
 
         // Test whether the current orbital index is occupied
         while (e != -1 && q == onv.get_occupation_index(e)) {
@@ -298,7 +333,7 @@ public:
 
 
     template<class Storage>
-    void EvaluateOperator(const OneElectronOperator<double>& one_op, EvaluationContainer<Storage>& container, bool diagonal_values = true) const {
+    void EvaluateOperator(const OneElectronOperator<double>& one_op, EvaluationContainer<Storage>& container, bool diagonal_values) const {
         size_t K = this->get_K();
         size_t N = this->get_N();
         size_t dim = this->get_dimension();
@@ -346,12 +381,12 @@ public:
 
 
     template<class Storage>
-    void EvaluateOperator(const TwoElectronOperator<double>& two_op, EvaluationContainer<Storage>& container, bool diagonal_values = true) const {
+    void EvaluateOperator(const TwoElectronOperator<double>& two_op, EvaluationContainer<Storage>& container, bool diagonal_values) const {
         EvaluateOperator(OneElectronOperator<double>::Zero(this->K, this->K), two_op, container, diagonal_values);
     }
 
     template<class Storage>
-    void EvaluateOperator(const OneElectronOperator<double>& one_op, const TwoElectronOperator<double>& two_op, EvaluationContainer<Storage>& container, bool diagonal_values = true) const {
+    void EvaluateOperator(const OneElectronOperator<double>& one_op, const TwoElectronOperator<double>& two_op, EvaluationContainer<Storage>& container, bool diagonal_values) const {
         size_t K = this->get_K();
         size_t N = this->get_N();
         size_t dim = this->get_dimension();
@@ -374,9 +409,9 @@ public:
                 if (diagonal_values) {
                     container.add(I, I, k(p,p));
                     for (size_t q = 0; q < K; q++) {  // q loops over SOs
-                        if (onv.isOccupied(q)) {  // q is in Ia
+                        if (onv.isOccupied(q)) {
                             container.add(I, I, 0.5 * two_op(p, p, q, q));
-                        } else {  // q is not in I_alpha
+                        } else {
                             container.add(I, I, 0.5 * two_op(p, p, q, q));
                         }
                     }

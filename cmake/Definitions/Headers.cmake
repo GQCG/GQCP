@@ -23,6 +23,7 @@ set(PROJECT_INCLUDE_FILES
         ${PROJECT_INCLUDE_FOLDER}/FockSpace/EvaluationContainer.hpp
         ${PROJECT_INCLUDE_FOLDER}/FockSpace/FockPermutator.hpp
         ${PROJECT_INCLUDE_FOLDER}/FockSpace/FockSpace.hpp
+        ${PROJECT_INCLUDE_FOLDER}/FockSpace/FrozenCoreFockSpace.hpp
         ${PROJECT_INCLUDE_FOLDER}/FockSpace/FrozenFockSpace.hpp
         ${PROJECT_INCLUDE_FOLDER}/FockSpace/FrozenProductFockSpace.hpp
         ${PROJECT_INCLUDE_FOLDER}/FockSpace/FockSpaceType.hpp

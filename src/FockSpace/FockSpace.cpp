@@ -263,7 +263,7 @@ size_t FockSpace::countTotalTwoElectronCouplings() const {
  *
  *  @return the operator's evaluation in a dense matrix with the dimensions of the Fock space
  */
-SquareMatrix<double> FockSpace::EvaluateOperatorDense(const OneElectronOperator<double>& one_op, bool diagonal_values) const {
+    SquareMatrix<double> FockSpace::evaluateOperatorDense(const OneElectronOperator<double>& one_op, bool diagonal_values) const {
     EvaluationContainer<SquareMatrix<double>> container(this->dim);
     this->EvaluateOperator<SquareMatrix<double>>(one_op, container, diagonal_values);
     return container.get_container();
@@ -278,7 +278,8 @@ SquareMatrix<double> FockSpace::EvaluateOperatorDense(const OneElectronOperator<
  *
  *  @return the operator's evaluation in a sparse matrix with the dimensions of the Fock space
  */
-Eigen::SparseMatrix<double> FockSpace::EvaluateOperatorSparse(const OneElectronOperator<double>& one_op, bool diagonal_values) const {
+Eigen::SparseMatrix<double> FockSpace::evaluateOperatorSparse(const OneElectronOperator<double>& one_op,
+                                                              bool diagonal_values) const {
     EvaluationContainer<Eigen::SparseMatrix<double>> container(this->dim);
 
     size_t memory =  this->countTotalOneElectronCouplings();
@@ -301,7 +302,7 @@ Eigen::SparseMatrix<double> FockSpace::EvaluateOperatorSparse(const OneElectronO
  *
  *  @return the operator's evaluation in a dense matrix with the dimensions of the Fock space
  */
-SquareMatrix<double> FockSpace::EvaluateOperatorDense(const TwoElectronOperator<double>& two_op, bool diagonal_values) const {
+SquareMatrix<double> FockSpace::evaluateOperatorDense(const TwoElectronOperator<double>& two_op, bool diagonal_values) const {
     EvaluationContainer<SquareMatrix<double>> container(this->dim);
     this->EvaluateOperator<SquareMatrix<double>>(two_op, container, diagonal_values);
     return container.get_container();
@@ -316,7 +317,8 @@ SquareMatrix<double> FockSpace::EvaluateOperatorDense(const TwoElectronOperator<
  *
  *  @return the operator's evaluation in a sparse matrix with the dimensions of the Fock space
  */
-Eigen::SparseMatrix<double> FockSpace::EvaluateOperatorSparse(const TwoElectronOperator<double>& two_op, bool diagonal_values) const {
+Eigen::SparseMatrix<double> FockSpace::evaluateOperatorSparse(const TwoElectronOperator<double>& two_op,
+                                                              bool diagonal_values) const {
     EvaluationContainer<Eigen::SparseMatrix<double>> container(this->dim);
 
     size_t memory =  this->countTotalTwoElectronCouplings();
@@ -339,7 +341,8 @@ Eigen::SparseMatrix<double> FockSpace::EvaluateOperatorSparse(const TwoElectronO
  *
  *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the Fock space
  */
-SquareMatrix<double> FockSpace::EvaluateOperatorDense(const HamiltonianParameters<double>& ham_par, bool diagonal_values) const {
+SquareMatrix<double> FockSpace::evaluateOperatorDense(const HamiltonianParameters<double>& ham_par,
+                                                      bool diagonal_values) const {
     EvaluationContainer<SquareMatrix<double>> container(this->dim);
     this->EvaluateOperator<SquareMatrix<double>>(ham_par.get_h(), ham_par.get_g(), container, diagonal_values);
     return container.get_container();
@@ -354,7 +357,8 @@ SquareMatrix<double> FockSpace::EvaluateOperatorDense(const HamiltonianParameter
  *
  *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the Fock space
  */
-Eigen::SparseMatrix<double> FockSpace::EvaluateOperatorSparse(const HamiltonianParameters<double>& ham_par, bool diagonal_values) const {
+Eigen::SparseMatrix<double> FockSpace::evaluateOperatorSparse(const HamiltonianParameters<double>& ham_par,
+                                                              bool diagonal_values) const {
     EvaluationContainer<Eigen::SparseMatrix<double>> container(this->dim);
 
     size_t memory =  this->countTotalTwoElectronCouplings();
@@ -438,6 +442,101 @@ std::vector<Eigen::SparseMatrix<double>> FockSpace::calculateOneElectronCoupling
 
     return sparse_matrices;
 }
+
+
+
+/**
+ *  Evaluate the diagonal of the operator in this Fock space
+ *
+ *  @param one_op               the one-electron operator to be evaluated in the Fock space
+ *
+ *  @return the operator's diagonal evaluation in a vector with the dimension of the Fock space
+ */
+VectorX<double> FockSpace::evaluateOperatorDiagonal(const OneElectronOperator<double>& one_op) const {
+
+    size_t K = this->get_K();
+    size_t N = this->get_N();
+    size_t dim = this->get_dimension();
+
+    VectorX<double> diagonal = VectorX<double>::Zero(dim);
+
+    ONV onv = this->makeONV(0);  // onv with address 0
+    for (size_t I = 0; I < dim; I++) {  // I loops over all addresses in the Fock space
+
+        if (I > 0) {
+            this->setNextONV(onv);
+        }
+
+        for (size_t e1 = 0; e1 < N; e1++) {  // A1 (annihilation 1)
+
+            size_t p = onv.get_occupation_index(e1);
+
+            diagonal(I) += one_op(p, p);
+
+        }
+    }
+
+    return diagonal;
+
+};
+
+/**
+ *  Evaluate the diagonal of the operator in this Fock space
+ *
+ *  @param two_op               the two-electron operator to be evaluated in the Fock space
+ *
+ *  @return the operator's diagonal evaluation in a vector with the dimension of the Fock space
+ */
+VectorX<double> FockSpace::evaluateOperatorDiagonal(const TwoElectronOperator<double>& two_op) const {
+
+    size_t K = this->get_K();
+    size_t N = this->get_N();
+    size_t dim = this->get_dimension();
+
+    VectorX<double> diagonal = VectorX<double>::Zero(dim);
+
+    auto k = two_op.effectiveOneElectronPartition();
+
+    ONV onv = this->makeONV(0);  // onv with address 0
+    for (size_t I = 0; I < dim; I++) {  // I loops over all addresses in the Fock space
+
+        if (I > 0) {
+            this->setNextONV(onv);
+        }
+
+        for (size_t e1 = 0; e1 < N; e1++) {  // A1 (annihilation 1)
+
+            size_t p = onv.get_occupation_index(e1);
+
+            diagonal(I) += k(p, p);
+
+            for (size_t q = 0; q < K; q++) {  // q loops over SOs
+                if (onv.isOccupied(q)) {
+                    diagonal(I) += 0.5 * two_op(p, p, q, q);
+                } else {
+                    diagonal(I) += 0.5 * two_op(p, p, q, q);
+                }
+            }
+
+        }
+    }
+
+    return diagonal;
+
+};
+
+/**
+ *  Evaluate the diagonal of the Hamiltonian in this Fock space
+ *
+ *  @param ham_par              HamiltonianParameters to be evaluated in the Fock space
+ *
+ *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the Fock space
+ */
+VectorX<double> FockSpace::evaluateOperatorDiagonal(const HamiltonianParameters<double>& ham_par) const {
+    return this->evaluateOperatorDiagonal(ham_par.get_h()) + this->evaluateOperatorDiagonal(ham_par.get_g());
+};
+
+
 
 
 }  // namespace GQCP

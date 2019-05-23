@@ -22,6 +22,7 @@
 #include "FockSpace/FockSpaceType.hpp"
 #include "math/Matrix.hpp"
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "EvaluationContainer.hpp"
 
 #include <iostream>
 #include <memory>
@@ -90,6 +91,97 @@ public:
     VectorX<double> constantExpansion() const;
 
 
+    // Virtual
+    /**
+    *  Evaluate the operator in a dense matrix
+    *
+    *  @param one_op               the one-electron operator to be evaluated in the Fock space
+    *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+    *
+    *  @return the operator's evaluation in a dense matrix with the dimensions of the Fock space
+    */
+    virtual SquareMatrix<double> evaluateOperatorDense(const OneElectronOperator<double>& one_op, bool diagonal_values) const = 0;
+
+    /**
+     *  Evaluate the operator in a sparse matrix
+     *
+     *  @param one_op               the one-electron operator to be evaluated in the Fock space
+     *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+     *
+     *  @return the operator's evaluation in a sparse matrix with the dimensions of the Fock space
+     */
+    virtual Eigen::SparseMatrix<double> evaluateOperatorSparse(const OneElectronOperator<double>& one_op,
+                                                               bool diagonal_values) const = 0;
+
+    /**
+     *  Evaluate the operator in a dense matrix
+     *
+     *  @param two_op               the two-electron operator to be evaluated in the Fock space
+     *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+     *
+     *  @return the operator's evaluation in a dense matrix with the dimensions of the Fock space
+     */
+    virtual SquareMatrix<double> evaluateOperatorDense(const TwoElectronOperator<double>& two_op, bool diagonal_values) const = 0;
+
+    /**
+     *  Evaluate the operator in a sparse matrix
+     *
+     *  @param two_op               the two-electron operator to be evaluated in the Fock space
+     *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+     *
+     *  @return the operator's evaluation in a sparse matrix with the dimensions of the Fock space
+     */
+    virtual Eigen::SparseMatrix<double> evaluateOperatorSparse(const TwoElectronOperator<double>& two_op,
+                                                               bool diagonal_values) const = 0;
+
+    /**
+     *  Evaluate the Hamiltonian in a dense matrix
+     *
+     *  @param ham_par              HamiltonianParameters to be evaluated in the Fock space
+     *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+     *
+     *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the Fock space
+     */
+    virtual SquareMatrix<double> evaluateOperatorDense(const HamiltonianParameters<double>& ham_par,
+                                                       bool diagonal_values) const = 0;
+
+    /**
+     *  Evaluate the Hamiltonian in a sparse matrix
+     *
+     *  @param ham_par              HamiltonianParameters to be evaluated in the Fock space
+     *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+     *
+     *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the Fock space
+     */
+    virtual Eigen::SparseMatrix<double> evaluateOperatorSparse(const HamiltonianParameters<double>& ham_par,
+                                                               bool diagonal_values) const = 0;
+
+    /**
+     *  Evaluate the diagonal of the operator
+     *
+     *  @param one_op               the one-electron operator to be evaluated in the Fock space
+     *
+     *  @return the operator's diagonal evaluation in a vector with the dimension of the Fock space
+     */
+    virtual VectorX<double> evaluateOperatorDiagonal(const OneElectronOperator<double>& one_op) const = 0;
+
+    /**
+     *  Evaluate the diagonal of the operator
+     *
+     *  @param two_op               the two-electron operator to be evaluated in the Fock space
+     *
+     *  @return the operator's diagonal evaluation in a vector with the dimension of the Fock space
+     */
+    virtual VectorX<double> evaluateOperatorDiagonal(const TwoElectronOperator<double>& two_op) const = 0;
+
+    /**
+     *  Evaluate the diagonal of the Hamiltonian
+     *
+     *  @param ham_par              HamiltonianParameters to be evaluated in the Fock space
+     *
+     *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the Fock space
+     */
+    virtual VectorX<double> evaluateOperatorDiagonal(const HamiltonianParameters<double>& ham_par) const = 0;
 
 };
 
