@@ -140,6 +140,7 @@ Eigen::SparseMatrix<double> ProductFockSpace::evaluateOperatorSparse(const OneEl
     auto beta_evaluation = fock_space_beta.evaluateOperatorSparse(one_op, diagonal_values);
     auto alpha_evaluation = fock_space_alpha.evaluateOperatorSparse(one_op, diagonal_values);
 
+    /*
     // BETA separated evaluations
     for (size_t i = 0; i < dim_alpha; i++) {
         total_evaluation.block(i * dim_beta, i * dim_beta, dim_beta, dim_beta) += beta_evaluation;
@@ -153,6 +154,7 @@ Eigen::SparseMatrix<double> ProductFockSpace::evaluateOperatorSparse(const OneEl
             total_evaluation.block(it.row() * dim_beta, it.col() * dim_beta, dim_beta, dim_beta) += it.value()*ones;
         }
     }
+    */
     return total_evaluation;
 }
 
@@ -238,7 +240,7 @@ Eigen::SparseMatrix<double> ProductFockSpace::evaluateOperatorSparse(const TwoEl
 
     auto beta_evaluation = fock_space_beta.evaluateOperatorSparse(two_op, diagonal_values);
     auto alpha_evaluation = fock_space_alpha.evaluateOperatorSparse(two_op, diagonal_values);
-
+    /*
     // BETA separated evaluations
     for (size_t i = 0; i < dim_alpha; i++) {
         total_evaluation.block(i * dim_beta, i * dim_beta, dim_beta, dim_beta) += beta_evaluation;
@@ -282,7 +284,7 @@ Eigen::SparseMatrix<double> ProductFockSpace::evaluateOperatorSparse(const TwoEl
             }
         }
     }
-
+    */
     return total_evaluation;
 }
 
@@ -369,7 +371,7 @@ Eigen::SparseMatrix<double> ProductFockSpace::evaluateOperatorSparse(const Hamil
 
     auto beta_evaluation = fock_space_beta.evaluateOperatorSparse(ham_par, diagonal_values);
     auto alpha_evaluation = fock_space_alpha.evaluateOperatorSparse(ham_par, diagonal_values);
-
+    /*
     // BETA separated evaluations
     for (size_t i = 0; i < dim_alpha; i++) {
         total_evaluation.block(i * dim_beta, i * dim_beta, dim_beta, dim_beta) += beta_evaluation;
@@ -413,7 +415,7 @@ Eigen::SparseMatrix<double> ProductFockSpace::evaluateOperatorSparse(const Hamil
             }
         }
     }
-
+    */
     return total_evaluation;
 }
 
