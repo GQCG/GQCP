@@ -514,7 +514,7 @@ VectorX<double> FockSpace::evaluateOperatorDiagonal(const TwoElectronOperator<do
                 if (onv.isOccupied(q)) {
                     diagonal(I) += 0.5 * two_op(p, p, q, q);
                 } else {
-                    diagonal(I) += 0.5 * two_op(p, p, q, q);
+                    diagonal(I) += 0.5 * two_op(p, q, q, p);
                 }
             }
 

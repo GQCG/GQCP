@@ -412,7 +412,7 @@ public:
                         if (onv.isOccupied(q)) {
                             container.add(I, I, 0.5 * two_op(p, p, q, q));
                         } else {
-                            container.add(I, I, 0.5 * two_op(p, p, q, q));
+                            container.add(I, I, 0.5 * two_op(p, q, q, p));
                         }
                     }
                 }

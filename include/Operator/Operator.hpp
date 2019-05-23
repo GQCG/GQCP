@@ -33,6 +33,10 @@ namespace GQCP {
  */
 template <typename DerivedOperator>
 class Operator {
+private:
+    size_t K;  // The orbitals basis in which the operator is expressed
+
+
 public:
 
     /**
@@ -44,6 +48,13 @@ public:
      *  @return this as a const DerivedOperator (done at compile time)
      */
     const DerivedOperator& derived() const { return static_cast<DerivedOperator&>(*this); }
+
+
+    /*
+     *  GETTER
+     */
+
+    size_t get_K() const { return this->derived().get_K(); };
 
 
     /*

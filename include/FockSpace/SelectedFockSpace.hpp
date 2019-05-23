@@ -216,12 +216,25 @@ public:
     // PUBLIC TEMPLATED METHODS
     template<class Storage>
     void EvaluateOperator(const OneElectronOperator<double>& one_op, EvaluationContainer<Storage>& container, bool diagonal_values) const {
+
         size_t dim = this->get_dimension();
 
         for (size_t I = 0; I < dim; I++) {  // loop over all addresses (1)
             Configuration configuration_I = this->get_configuration(I);
             ONV alpha_I = configuration_I.onv_alpha;
             ONV beta_I = configuration_I.onv_beta;
+
+            if (diagonal_values) {
+                for (size_t p = 0; p < K; p++) {
+                    if (alpha_I.isOccupied(p)) {
+                        container.add(I, I, one_op(p, p));
+                    }
+
+                    if (beta_I.isOccupied(p)) {
+                        container.add(I, I, one_op(p,p));
+                    }
+                }  // loop over q
+            }
 
             // Calculate the off-diagonal elements, by going over all other ONVs
             for (size_t J = I+1; J < dim; J++) {
@@ -282,6 +295,44 @@ public:
             Configuration configuration_I = this->get_configuration(I);
             ONV alpha_I = configuration_I.onv_alpha;
             ONV beta_I = configuration_I.onv_beta;
+
+            if (diagonal_values) {
+                for (size_t p = 0; p < K; p++) {
+                    if (alpha_I.isOccupied(p)) {
+                        container.add(I, I, one_op(p,p));
+                        for (size_t q = 0; q < K; q++) {
+
+                            if (p != q) {  // can't create/annihilate the same orbital twice
+                                if (alpha_I.isOccupied(q)) {
+                                    container.add(I, I, 0.5 * two_op(p,p,q,q));
+                                    container.add(I, I, -0.5 * two_op(p,q,q,p));
+                                }
+                            }
+
+                            if (beta_I.isOccupied(q)) {
+                                container.add(I, I, 0.5 * two_op(p,p,q,q));
+                            }
+                        }  // loop over q
+                    }
+
+                    if (beta_I.isOccupied(p)) {
+                        container.add(I, I, one_op(p,p));
+                        for (size_t q = 0; q < K; q++) {
+
+                            if (p != q) {  // can't create/annihilate the same orbital twice
+                                if (beta_I.isOccupied(q)) {
+                                    container.add(I, I, 0.5 * two_op(p,p,q,q));
+                                    container.add(I, I, -0.5 * two_op(p,q,q,p));
+                                }
+                            }
+
+                            if (alpha_I.isOccupied(q)) {
+                                container.add(I, I, 0.5 * two_op(p,p,q,q));
+                            }
+                        }  // loop over q
+                    }
+                }  // loop over q
+            }
 
             // Calculate the off-diagonal elements, by going over all other ONVs
             for (size_t J = I+1; J < dim; J++) {

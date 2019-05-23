@@ -64,6 +64,7 @@ class EvaluationContainer<Eigen::SparseMatrix<double>> {
 
     void reserve(size_t n) {
         triplet_vector.reserve(n);
+        container.reserve(n);
     }
 
     void add(size_t i, size_t j, double value) {
@@ -75,7 +76,7 @@ class EvaluationContainer<Eigen::SparseMatrix<double>> {
         triplet_vector = {};
     }
 
-    const Eigen::SparseMatrix<double> &get_container() const {
+    const Eigen::SparseMatrix<double>& get_container() const {
         return container;
     }
 

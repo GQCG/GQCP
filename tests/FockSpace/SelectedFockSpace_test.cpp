@@ -123,3 +123,49 @@ BOOST_AUTO_TEST_CASE ( reader_test ) {
     BOOST_CHECK(beta2_test == beta2_ref);
 
 }
+
+
+BOOST_AUTO_TEST_CASE ( Selected_Evaluation_Dense ) {
+
+    // Psi4 and GAMESS' FCI energy
+    double reference_fci_energy = -75.0129803939602;
+
+    // Create the molecular Hamiltonian parameters in an AO basis
+    auto h2o = GQCP::Molecule::Readxyz("data/h2o_Psi4_GAMESS.xyz");
+    auto mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2o, "STO-3G");
+    auto K = mol_ham_par.get_K();
+
+    mol_ham_par.LowdinOrthonormalize();
+
+    GQCP::ProductFockSpace fock_space (K, h2o.get_N()/2, h2o.get_N()/2);  // dim = 441
+    GQCP::SelectedFockSpace selected_fock_space (fock_space);
+
+    GQCP::SquareMatrix<double> hamiltonian = selected_fock_space.evaluateOperatorDense(mol_ham_par, true);
+    GQCP::SquareMatrix<double> hamiltonian_no_diagonal = selected_fock_space.evaluateOperatorDense(mol_ham_par, false);
+    GQCP::VectorX<double> hamiltonian_diagonal = selected_fock_space.evaluateOperatorDiagonal(mol_ham_par);
+
+    GQCP::SquareMatrix<double> hamiltonian2 = fock_space.evaluateOperatorDense(mol_ham_par, true);
+    GQCP::SquareMatrix<double> hamiltonian_no_diagonal2 = fock_space.evaluateOperatorDense(mol_ham_par, false);
+    GQCP::VectorX<double> hamiltonian_diagonal2 = fock_space.evaluateOperatorDiagonal(mol_ham_par);
+
+    std::cout<<std::endl;
+    std::cout<<std::endl;
+    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> self_adjoint_eigensolver (hamiltonian);
+    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> self_adjoint_eigensolver2 (hamiltonian2);
+    double test_energy = self_adjoint_eigensolver.eigenvalues()(0) +  h2o.calculateInternuclearRepulsionEnergy();
+    double test_energy2 = self_adjoint_eigensolver2.eigenvalues()(0) +  h2o.calculateInternuclearRepulsionEnergy();
+
+    std::cout<<std::endl;
+    std::cout<<std::endl;
+    std::cout<<std::setprecision(16)<<test_energy;
+    std::cout<<std::endl;
+    std::cout<<std::endl;
+    std::cout<<std::setprecision(16)<<test_energy2;
+
+
+
+    BOOST_CHECK(hamiltonian.isApprox(hamiltonian_no_diagonal + GQCP::SquareMatrix<double>(hamiltonian_diagonal.asDiagonal())));
+    BOOST_CHECK(hamiltonian2.isApprox(hamiltonian_no_diagonal2 + GQCP::SquareMatrix<double>(hamiltonian_diagonal2.asDiagonal())));
+    BOOST_CHECK(hamiltonian2.isApprox(hamiltonian));
+
+}

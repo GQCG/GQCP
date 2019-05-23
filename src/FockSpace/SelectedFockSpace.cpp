@@ -420,8 +420,6 @@ VectorX<double> SelectedFockSpace::evaluateOperatorDiagonal(const TwoElectronOpe
         throw std::invalid_argument("SelectedFockSpace::evaluateOperatorDiagonal(TwoElectronOperator<double>): Basis functions of the Fock space and the operator are incompatible.");
     }
 
-
-
     // Diagonal contributions
     VectorX<double> diagonal = VectorX<double>::Zero(dim);
 

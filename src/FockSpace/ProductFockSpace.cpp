@@ -37,7 +37,9 @@ ProductFockSpace::ProductFockSpace(size_t K, size_t N_alpha, size_t N_beta) :
         BaseFockSpace(K, ProductFockSpace::calculateDimension(K, N_alpha, N_beta)),
         fock_space_alpha (FockSpace(K, N_alpha)),
         fock_space_beta (FockSpace(K, N_beta))
-{}
+{
+    this->alpha_couplings = this->fock_space_alpha.calculateOneElectronCouplings();
+}
 
 
 
@@ -327,7 +329,7 @@ SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const HamiltonianPa
         const auto& P = this->oneElectronPartition(p, p, ham_par.get_g());
         const auto& beta_two_electron_intermediate = this->fock_space_beta.evaluateOperatorDense(P, true);
 
-        for (int i = 0; i < alpha_coupling.outerSize(); ++i){
+        for (int i = 0; i < alpha_coupling.outerSize(); ++i) {
             for (Eigen::SparseMatrix<double>::InnerIterator it(alpha_coupling, i); it; ++it) {
                 // it.value sigma(pp) element multiplied with the sparse matrix theta(pp) : beta_two_electron_intermediate
                 total_evaluation.block(it.row() * dim_beta, it.col() * dim_beta, dim_beta, dim_beta) += it.value()*beta_two_electron_intermediate;
