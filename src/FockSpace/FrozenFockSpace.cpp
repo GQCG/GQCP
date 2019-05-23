@@ -32,7 +32,7 @@ namespace GQCP {
  *  @param X        the number of frozen orbitals and electrons
  */
 FrozenFockSpace::FrozenFockSpace(size_t K, size_t N, size_t X) :
-        BaseFockSpace(K, FockSpace::calculateDimension(K-X, N-X)),
+        FrozenCoreFockSpace(std::make_shared<BaseFockSpace>(FockSpace::calculateDimension(K-X, N-X)), X),
         FockPermutator(N),
         active_fock_space (K-X, N-X),
         X (X)

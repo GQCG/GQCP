@@ -32,7 +32,7 @@ namespace GQCP {
  *  @param X            the number of frozen orbitals and electrons (equal for alpha and beta)
  */
 FrozenProductFockSpace::FrozenProductFockSpace(size_t K, size_t N_alpha, size_t N_beta, size_t X) :
-        BaseFockSpace(K, ProductFockSpace::calculateDimension(K-X, N_alpha-X, N_beta-X)),
+        FrozenCoreFockSpace(std::make_shared<BaseFockSpace>(ProductFockSpace::calculateDimension(K-X, N_alpha-X, N_beta-X)), X),
         frozen_fock_space_alpha (FrozenFockSpace(K, N_alpha, X)),
         frozen_fock_space_beta (FrozenFockSpace(K, N_beta, X)),
         active_product_fock_space (ProductFockSpace(K-X, N_alpha-X, N_beta-X)),
