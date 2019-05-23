@@ -327,7 +327,7 @@ SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const HamiltonianPa
 
         const auto& alpha_coupling = this->alpha_couplings[p*(K+K+1-p)/2];
         const auto& P = this->oneElectronPartition(p, p, ham_par.get_g());
-        const auto& beta_two_electron_intermediate = this->fock_space_beta.evaluateOperatorDense(P, true);
+        const auto& beta_two_electron_intermediate = this->fock_space_beta.evaluateOperatorDense(P, diagonal_values);
 
         for (int i = 0; i < alpha_coupling.outerSize(); ++i) {
             for (Eigen::SparseMatrix<double>::InnerIterator it(alpha_coupling, i); it; ++it) {
@@ -341,7 +341,7 @@ SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const HamiltonianPa
 
             const auto& alpha_coupling = this->alpha_couplings[p*(K+K+1-p)/2 + q - p];
             const auto& P = oneElectronPartition(p, q, ham_par.get_g());
-            const auto& beta_two_electron_intermediate = fock_space_beta.evaluateOperatorDense(P, diagonal_values);
+            const auto& beta_two_electron_intermediate = fock_space_beta.evaluateOperatorDense(P, true);
 
             for (int i = 0; i < alpha_coupling.outerSize(); ++i){
                 for (Eigen::SparseMatrix<double>::InnerIterator it(alpha_coupling, i); it; ++it) {
@@ -452,6 +452,12 @@ VectorX<double> ProductFockSpace::evaluateOperatorDiagonal(const OneElectronOper
 
             }  // e_a loop
 
+            for (size_t e_b = 0; e_b < fock_space_beta.get_N(); e_b++) {  // loop over beta electrons
+
+                size_t p = onv_beta.get_occupation_index(e_b);
+                diagonal(Ia * dim_beta + Ib) += one_op(p, p);
+            }
+
             if (Ib < dim_beta - 1) {  // prevent last permutation to occur
                 fock_space_beta.setNextONV(onv_beta);
             }
@@ -480,7 +486,7 @@ VectorX<double> ProductFockSpace::evaluateOperatorDiagonal(const TwoElectronOper
     // Diagonal contributions
     VectorX<double> diagonal = VectorX<double>::Zero(dim);
 
-    auto k = two_op.effectiveOneElectronPartition();
+    OneElectronOperator<double> k = two_op.effectiveOneElectronPartition();
 
     ONV onv_alpha = fock_space_alpha.makeONV(0);
     ONV onv_beta = fock_space_beta.makeONV(0);

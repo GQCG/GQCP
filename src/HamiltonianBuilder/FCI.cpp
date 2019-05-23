@@ -197,7 +197,7 @@ VectorX<double> FCI::calculateDiagonal(const HamiltonianParameters<double>& hami
     // Diagonal contributions
     VectorX<double> diagonal =  VectorX<double>::Zero(dim);
 
-    auto k = hamiltonian_parameters.calculateEffectiveOneElectronIntegrals();
+    OneElectronOperator<double> k = hamiltonian_parameters.calculateEffectiveOneElectronIntegrals();
 
     ONV onv_alpha = fock_space_alpha.makeONV(0);
     ONV onv_beta = fock_space_beta.makeONV(0);

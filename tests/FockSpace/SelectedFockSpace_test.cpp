@@ -167,5 +167,8 @@ BOOST_AUTO_TEST_CASE ( Selected_Evaluation_Dense ) {
     BOOST_CHECK(hamiltonian.isApprox(hamiltonian_no_diagonal + GQCP::SquareMatrix<double>(hamiltonian_diagonal.asDiagonal())));
     BOOST_CHECK(hamiltonian2.isApprox(hamiltonian_no_diagonal2 + GQCP::SquareMatrix<double>(hamiltonian_diagonal2.asDiagonal())));
     BOOST_CHECK(hamiltonian2.isApprox(hamiltonian));
+    BOOST_CHECK(hamiltonian_diagonal2.isApprox(hamiltonian_diagonal));
+
+
 
 }
