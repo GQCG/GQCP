@@ -1,0 +1,10 @@
+target_sources(gqcp
+        PRIVATE
+            AOBasis.cpp
+            CartesianExponents.cpp
+            CartesianGTO.cpp
+            LibcintInterfacer.cpp
+            LibintInterfacer.cpp
+            Shell.cpp
+            ShellSet.cpp
+        )

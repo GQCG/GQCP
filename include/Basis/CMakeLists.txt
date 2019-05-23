@@ -1,0 +1,11 @@
+target_sources(gqcp
+        PUBLIC
+            AOBasis.hpp
+            CartesianDirection.hpp
+            CartesianExponents.hpp
+            CartesianGTO.hpp
+            LibcintInterfacer.hpp
+            LibintInterfacer.hpp
+            Shell.hpp
+            ShellSet.hpp
+        )

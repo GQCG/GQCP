@@ -1,6 +1,6 @@
 # 1. Configure the library
 
-add_library(${LIBRARY_NAME} ${LIBRARY_TYPE} ${PROJECT_SOURCE_FILES} ${PROJECT_INCLUDE_FILES})
+#add_library(${LIBRARY_NAME} ${LIBRARY_TYPE} ${PROJECT_SOURCE_FILES} ${PROJECT_INCLUDE_FILES})
 
 
 # Include this project's headers, and Spectra (see: https://github.com/arvidn/libtorrent/issues/3101#issuecomment-396195787)

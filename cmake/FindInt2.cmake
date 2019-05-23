@@ -36,5 +36,6 @@ if(Int2_FOUND AND NOT TARGET Int2::Int2)
     set_target_properties(Int2::Int2 PROPERTIES
             INTERFACE_INCLUDE_DIRECTORIES ${Int2_INCLUDE_DIR}
             IMPORTED_LOCATION ${Int2_LIBRARY}
+            INTERFACE_COMPILE_FEATURES cxx_std_11
             )
 endif()
