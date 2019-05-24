@@ -38,7 +38,7 @@ foreach(BENCHMARK_SOURCE ${PROJECT_BENCHMARK_SOURCE_FILES})
     target_link_libraries(${BENCHMARK_NAME} PUBLIC "-lbenchmark")  # link google benchmarks
 
     # Install the benchmark in a separate location
-    install(TARGETS ${BENCHMARK_NAME} RUNTIME DESTINATION ${BIN_INSTALL_DIR})
+    #install(TARGETS ${BENCHMARK_NAME} RUNTIME DESTINATION ${BIN_INSTALL_DIR})
 
 endforeach()
 
