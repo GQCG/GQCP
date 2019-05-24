@@ -1,8 +1,4 @@
 
-
-# List all benchmarks
-
-
 # Find the benchmarks folder
 set(PROJECT_BENCHMARKS_FOLDER ${CMAKE_SOURCE_DIR}/benchmarks)
 
