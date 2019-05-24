@@ -150,7 +150,7 @@ BOOST_AUTO_TEST_CASE ( Selected_Evaluation ) {
     double test_energy = self_adjoint_eigensolver.eigenvalues()(0) +  h2o.calculateInternuclearRepulsionEnergy();
 
 
-    BOOST_CHECK(std::abs(test_energy - reference_fci_energy) < 1e-10);
+    BOOST_CHECK(std::abs(test_energy - reference_fci_energy) < 1e-6);
 
     // Test if non-diagonal evaluation and diagonal evaluations are correct
     BOOST_CHECK(hamiltonian.isApprox(hamiltonian_no_diagonal + GQCP::SquareMatrix<double>(hamiltonian_diagonal.asDiagonal())));

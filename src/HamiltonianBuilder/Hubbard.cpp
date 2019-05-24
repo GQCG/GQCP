@@ -45,7 +45,7 @@ Hubbard::Hubbard(const ProductFockSpace& fock_space) :
  */
 SquareMatrix<double> Hubbard::constructHamiltonian(const HamiltonianParameters<double>& hamiltonian_parameters) const {
     
-    auto K = hamiltonian_parameters.get_h().get_dim();
+    auto K = hamiltonian_parameters.get_K();
     if (K != this->fock_space.get_K()) {
         throw std::invalid_argument("Hubbard::constructHamiltonian(const HamiltonianParameters<double>&): Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
     }
@@ -63,7 +63,7 @@ SquareMatrix<double> Hubbard::constructHamiltonian(const HamiltonianParameters<d
  */
 VectorX<double> Hubbard::matrixVectorProduct(const HamiltonianParameters<double>& hamiltonian_parameters, const VectorX<double>& x, const VectorX<double>& diagonal) const {
 
-    auto K = hamiltonian_parameters.get_h().get_dim();
+    auto K = hamiltonian_parameters.get_K();
     if (K != this->fock_space.get_K()) {
         throw std::invalid_argument("Hubbard::matrixVectorProduct(HamiltonianParameters<double>, VectorX<double>, VectorX<double>): Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
     }
@@ -95,7 +95,7 @@ VectorX<double> Hubbard::matrixVectorProduct(const HamiltonianParameters<double>
  */
 VectorX<double> Hubbard::calculateDiagonal(const HamiltonianParameters<double>& hamiltonian_parameters) const {
 
-    auto K = hamiltonian_parameters.get_h().get_dim();
+    auto K = hamiltonian_parameters.get_K();
     if (K != this->fock_space.get_K()) {
         throw std::invalid_argument("Hubbard::calculateDiagonal(HamiltonianParameters<double>): Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
     }

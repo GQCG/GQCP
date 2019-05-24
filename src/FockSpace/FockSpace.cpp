@@ -263,7 +263,13 @@ size_t FockSpace::countTotalTwoElectronCouplings() const {
  *
  *  @return the operator's evaluation in a dense matrix with the dimensions of the Fock space
  */
-    SquareMatrix<double> FockSpace::evaluateOperatorDense(const OneElectronOperator<double>& one_op, bool diagonal_values) const {
+SquareMatrix<double> FockSpace::evaluateOperatorDense(const OneElectronOperator<double>& one_op, bool diagonal_values) const {
+
+    auto K = one_op.get_K();
+    if (K != this->K) {
+        throw std::invalid_argument("FockSpace::evaluateOperatorDense(OneElectronOperator<double>, bool): Basis functions of the Fock space and one-electron operator are incompatible.");
+    }
+
     EvaluationContainer<SquareMatrix<double>> container(this->dim);
     this->EvaluateOperator<SquareMatrix<double>>(one_op, container, diagonal_values);
     return container.get_container();
@@ -280,6 +286,12 @@ size_t FockSpace::countTotalTwoElectronCouplings() const {
  */
 Eigen::SparseMatrix<double> FockSpace::evaluateOperatorSparse(const OneElectronOperator<double>& one_op,
                                                               bool diagonal_values) const {
+
+    auto K = one_op.get_K();
+    if (K != this->K) {
+        throw std::invalid_argument("FockSpace::evaluateOperatorSparse(OneElectronOperator<double>, bool): Basis functions of the Fock space and one-electron operator are incompatible.");
+    }
+
     EvaluationContainer<Eigen::SparseMatrix<double>> container(this->dim);
 
     size_t memory =  this->countTotalOneElectronCouplings();
@@ -303,6 +315,12 @@ Eigen::SparseMatrix<double> FockSpace::evaluateOperatorSparse(const OneElectronO
  *  @return the operator's evaluation in a dense matrix with the dimensions of the Fock space
  */
 SquareMatrix<double> FockSpace::evaluateOperatorDense(const TwoElectronOperator<double>& two_op, bool diagonal_values) const {
+
+    auto K = two_op.get_K();
+    if (K != this->K) {
+        throw std::invalid_argument("FockSpace::evaluateOperatorSparse(TwoElectronOperator<double>, bool): Basis functions of the Fock space and two-electron operator are incompatible.");
+    }
+
     EvaluationContainer<SquareMatrix<double>> container(this->dim);
     this->EvaluateOperator<SquareMatrix<double>>(two_op, container, diagonal_values);
     return container.get_container();
