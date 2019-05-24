@@ -134,7 +134,7 @@ public:
     /**
      *  Evaluate the operator in a dense matrix
      *
-     *  @param one_op               the one-electron operator to be evaluated in the Fock space
+     *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
      *  @param diagonal_values      bool to indicate if diagonal values will be calculated
      *
      *  @return the operator's evaluation in a dense matrix with the dimensions of the Fock space
@@ -144,7 +144,7 @@ public:
     /**
      *  Evaluate the operator in a sparse matrix
      *
-     *  @param one_op               the one-electron operator to be evaluated in the Fock space
+     *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
      *  @param diagonal_values      bool to indicate if diagonal values will be calculated
      *
      *  @return the operator's evaluation in a sparse matrix with the dimensions of the Fock space
@@ -155,7 +155,7 @@ public:
     /**
      *  Evaluate the operator in a dense matrix
      *
-     *  @param two_op               the two-electron operator to be evaluated in the Fock space
+     *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
      *  @param diagonal_values      bool to indicate if diagonal values will be calculated
      *
      *  @return the operator's evaluation in a dense matrix with the dimensions of the Fock space
@@ -165,36 +165,33 @@ public:
     /**
      *  Evaluate the operator in a sparse matrix
      *
-     *  @param two_op               the two-electron operator to be evaluated in the Fock space
+     *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
      *  @param diagonal_values      bool to indicate if diagonal values will be calculated
      *
      *  @return the operator's evaluation in a sparse matrix with the dimensions of the Fock space
      */
     Eigen::SparseMatrix<double> evaluateOperatorSparse(const TwoElectronOperator<double>& two_op,
                                                        bool diagonal_values) const override;
-
     /**
      *  Evaluate the Hamiltonian in a dense matrix
      *
-     *  @param ham_par              HamiltonianParameters to be evaluated in the Fock space
+     *  @param ham_par              the Hamiltonian parameters in an orthonormal orbital basis to be evaluated in the Fock space
      *  @param diagonal_values      bool to indicate if diagonal values will be calculated
      *
      *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the Fock space
      */
     SquareMatrix<double> evaluateOperatorDense(const HamiltonianParameters<double>& ham_par,
                                                bool diagonal_values) const override;
-
     /**
      *  Evaluate the Hamiltonian in a sparse matrix
      *
-     *  @param ham_par              HamiltonianParameters to be evaluated in the Fock space
+     *  @param ham_par              the Hamiltonian parameters in an orthonormal orbital basis to be evaluated in the Fock space
      *  @param diagonal_values      bool to indicate if diagonal values will be calculated
      *
      *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the Fock space
      */
     Eigen::SparseMatrix<double> evaluateOperatorSparse(const HamiltonianParameters<double>& ham_par,
                                                        bool diagonal_values) const override;
-
     /**
      *  Calculates sigma(pq) + sigma(qp)'s: all one-electron couplings for each annihilation-creation pair in the (spin) Fock space
      *  and stores them in sparse matrices for each pair combination
@@ -204,35 +201,32 @@ public:
      */
     std::vector<Eigen::SparseMatrix<double>> calculateOneElectronCouplings() const;
 
-
-
     /**
-     *  Evaluate the diagonal of the operator in this Fock space
+     *  Evaluate the diagonal of the operator
      *
-     *  @param one_op               the one-electron operator to be evaluated in the Fock space
+     *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
      *
      *  @return the operator's diagonal evaluation in a vector with the dimension of the Fock space
      */
     VectorX<double> evaluateOperatorDiagonal(const OneElectronOperator<double>& one_op) const override;
 
     /**
-     *  Evaluate the diagonal of the operator in this Fock space
+     *  Evaluate the diagonal of the operator
      *
-     *  @param two_op               the two-electron operator to be evaluated in the Fock space
+     *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
      *
      *  @return the operator's diagonal evaluation in a vector with the dimension of the Fock space
      */
     VectorX<double> evaluateOperatorDiagonal(const TwoElectronOperator<double>& two_op) const override;
 
     /**
-     *  Evaluate the diagonal of the Hamiltonian in this Fock space
+     *  Evaluate the diagonal of the Hamiltonian
      *
-     *  @param ham_par              HamiltonianParameters to be evaluated in the Fock space
+     *  @param ham_par              the Hamiltonian parameters in an orthonormal orbital basis to be evaluated in the Fock space
      *
      *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the Fock space
      */
     VectorX<double> evaluateOperatorDiagonal(const HamiltonianParameters<double>& ham_par) const override;
-
 
 
     // PUBLIC TEMPLATED METHODS
@@ -328,9 +322,17 @@ public:
         }
     }
 
-
-    template<class Storage>
-    void EvaluateOperator(const OneElectronOperator<double>& one_op, EvaluationContainer<Storage>& container, bool diagonal_values) const {
+    /**
+     *  Evaluate the operator in a given matrix wrapper in the Fock space
+     *
+     *  @tparam Matrix                       the type of matrix used to store the evaluations
+     *
+     *  @param one_op                        the one-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
+     *  @param container                     matrix in which the evaluations will be stored
+     *  @param diagonal_values               bool to indicate if diagonal values will be calculated
+     */
+    template<class Matrix>
+    void EvaluateOperator(const OneElectronOperator<double>& one_op, EvaluationMatrix<Matrix>& container, bool diagonal_values) const {
         size_t K = this->get_K();
         size_t N = this->get_N();
         size_t dim = this->get_dimension();
@@ -376,14 +378,32 @@ public:
         }
     }
 
-
-    template<class Storage>
-    void EvaluateOperator(const TwoElectronOperator<double>& two_op, EvaluationContainer<Storage>& container, bool diagonal_values) const {
+    /**
+     *  Evaluate the operator in a given matrix wrapper in the Fock space
+     *
+     *  @tparam Matrix                       the type of matrix used to store the evaluations
+     *
+     *  @param two_op                        the two-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
+     *  @param container                     matrix in which the evaluations will be stored
+     *  @param diagonal_values               bool to indicate if diagonal values will be calculated
+     */
+    template<class Matrix>
+    void EvaluateOperator(const TwoElectronOperator<double>& two_op, EvaluationMatrix<Matrix>& container, bool diagonal_values) const {
         EvaluateOperator(OneElectronOperator<double>::Zero(this->K, this->K), two_op, container, diagonal_values);
     }
 
-    template<class Storage>
-    void EvaluateOperator(const OneElectronOperator<double>& one_op, const TwoElectronOperator<double>& two_op, EvaluationContainer<Storage>& container, bool diagonal_values) const {
+    /**
+     *  Evaluate the operators in a given matrix wrapper in the Fock space
+     *
+     *  @tparam Matrix                       the type of matrix used to store the evaluations
+     *
+     *  @param one_op                        the one-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
+     *  @param two_op                        the two-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
+     *  @param container                     matrix in which the evaluations will be stored
+     *  @param diagonal_values               bool to indicate if diagonal values will be calculated
+     */
+    template<class Matrix>
+    void EvaluateOperator(const OneElectronOperator<double>& one_op, const TwoElectronOperator<double>& two_op, EvaluationMatrix<Matrix>& container, bool diagonal_values) const {
         size_t K = this->get_K();
         size_t N = this->get_N();
         size_t dim = this->get_dimension();

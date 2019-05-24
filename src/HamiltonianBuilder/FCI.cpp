@@ -81,14 +81,14 @@ VectorX<double> FCI::matrixVectorProduct(const HamiltonianParameters<double>& ha
         const auto& beta_two_electron_intermediate = fock_space_beta.evaluateOperatorSparse(P, false);
 
         // sigma(pp) * X * theta(pp)
-        matvecmap += beta_two_electron_intermediate * xmap * alpha_couplings[p*(K+K+1-p)/2];
+        matvecmap += beta_two_electron_intermediate * (xmap * alpha_couplings[p*(K+K+1-p)/2]);
         for (size_t q = p + 1; q<K; q++) {
 
             const auto& P = this->fock_space.oneElectronPartition(p, q, hamiltonian_parameters.get_g());
             const auto& beta_two_electron_intermediate = fock_space_beta.evaluateOperatorSparse(P, true);
 
             // (sigma(pq) + sigma(qp)) * X * theta(pq)
-            matvecmap += beta_two_electron_intermediate * xmap * alpha_couplings[p*(K+K+1-p)/2 + q - p];
+            matvecmap += beta_two_electron_intermediate * (xmap * alpha_couplings[p*(K+K+1-p)/2 + q - p]);
         }
     }
 

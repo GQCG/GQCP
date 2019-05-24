@@ -77,7 +77,7 @@ public:
     /**
      *  Evaluate the operator in a dense matrix
      *
-     *  @param one_op               the one-electron operator to be evaluated in the Fock space
+     *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
      *  @param diagonal_values      bool to indicate if diagonal values will be calculated
      *
      *  @return the operator's evaluation in a dense matrix with the dimensions of the Fock space
@@ -87,7 +87,7 @@ public:
     /**
      *  Evaluate the operator in a sparse matrix
      *
-     *  @param one_op               the one-electron operator to be evaluated in the Fock space
+     *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
      *  @param diagonal_values      bool to indicate if diagonal values will be calculated
      *
      *  @return the operator's evaluation in a sparse matrix with the dimensions of the Fock space
@@ -98,7 +98,7 @@ public:
     /**
      *  Evaluate the operator in a dense matrix
      *
-     *  @param two_op               the two-electron operator to be evaluated in the Fock space
+     *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
      *  @param diagonal_values      bool to indicate if diagonal values will be calculated
      *
      *  @return the operator's evaluation in a dense matrix with the dimensions of the Fock space
@@ -108,7 +108,7 @@ public:
     /**
      *  Evaluate the operator in a sparse matrix
      *
-     *  @param two_op               the two-electron operator to be evaluated in the Fock space
+     *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
      *  @param diagonal_values      bool to indicate if diagonal values will be calculated
      *
      *  @return the operator's evaluation in a sparse matrix with the dimensions of the Fock space
@@ -119,7 +119,7 @@ public:
     /**
      *  Evaluate the Hamiltonian in a dense matrix
      *
-     *  @param ham_par              HamiltonianParameters to be evaluated in the Fock space
+     *  @param ham_par              Hamiltonian parameters in an orthonormal orbital basis to be evaluated in the Fock space
      *  @param diagonal_values      bool to indicate if diagonal values will be calculated
      *
      *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the Fock space
@@ -130,7 +130,7 @@ public:
     /**
      *  Evaluate the Hamiltonian in a sparse matrix
      *
-     *  @param ham_par              HamiltonianParameters to be evaluated in the Fock space
+     *  @param ham_par              Hamiltonian parameters in an orthonormal orbital basis to be evaluated in the Fock space
      *  @param diagonal_values      bool to indicate if diagonal values will be calculated
      *
      *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the Fock space
@@ -142,7 +142,7 @@ public:
     /**
      *  Evaluate the diagonal of the operator
      *
-     *  @param one_op               the one-electron operator to be evaluated in the Fock space
+     *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
      *
      *  @return the operator's diagonal evaluation in a vector with the dimension of the Fock space
      */
@@ -151,7 +151,7 @@ public:
     /**
      *  Evaluate the diagonal of the operator
      *
-     *  @param two_op               the two-electron operator to be evaluated in the Fock space
+     *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
      *
      *  @return the operator's diagonal evaluation in a vector with the dimension of the Fock space
      */
@@ -160,7 +160,7 @@ public:
     /**
      *  Evaluate the diagonal of the Hamiltonian
      *
-     *  @param ham_par              HamiltonianParameters to be evaluated in the Fock space
+     *  @param ham_par              Hamiltonian parameters in an orthonormal orbital basis to be evaluated in the Fock space
      *
      *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the Fock space
      */

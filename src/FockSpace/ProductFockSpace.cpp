@@ -92,7 +92,7 @@ size_t ProductFockSpace::calculateDimension(size_t K, size_t N_alpha, size_t N_b
 /**
  *  Evaluate the operator in a dense matrix
  *
- *  @param one_op               the one-electron operator to be evaluated in the Fock space
+ *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
  *  @param diagonal_values      bool to indicate if diagonal values will be calculated
  *
  *  @return the operator's evaluation in a dense matrix with the dimensions of the Fock space
@@ -126,7 +126,7 @@ SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const OneElectronOp
 /**
  *  Evaluate the operator in a sparse matrix
  *
- *  @param one_op               the one-electron operator to be evaluated in the Fock space
+ *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
  *  @param diagonal_values      bool to indicate if diagonal values will be calculated
  *
  *  @return the operator's evaluation in a sparse matrix with the dimensions of the Fock space
@@ -134,6 +134,7 @@ SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const OneElectronOp
 Eigen::SparseMatrix<double> ProductFockSpace::evaluateOperatorSparse(const OneElectronOperator<double>& one_op,
                                                                      bool diagonal_values) const {
 
+    /*
     Eigen::SparseMatrix<double> total_evaluation = Eigen::SparseMatrix<double>(this->get_dimension(), this->get_dimension());
 
     auto dim_alpha = fock_space_alpha.get_dimension();
@@ -142,7 +143,7 @@ Eigen::SparseMatrix<double> ProductFockSpace::evaluateOperatorSparse(const OneEl
     auto beta_evaluation = fock_space_beta.evaluateOperatorSparse(one_op, diagonal_values);
     auto alpha_evaluation = fock_space_alpha.evaluateOperatorSparse(one_op, diagonal_values);
 
-    /*
+
     // BETA separated evaluations
     for (size_t i = 0; i < dim_alpha; i++) {
         total_evaluation.block(i * dim_beta, i * dim_beta, dim_beta, dim_beta) += beta_evaluation;
@@ -157,13 +158,13 @@ Eigen::SparseMatrix<double> ProductFockSpace::evaluateOperatorSparse(const OneEl
         }
     }
     */
-    return total_evaluation;
+    throw std::invalid_argument("ProductFockSpace::evaluateOperatorSparse(OneElectronOperator<double>, bool): Not implemented.");
 }
 
 /**
  *  Evaluate the operator in a dense matrix
  *
- *  @param two_op               the two-electron operator to be evaluated in the Fock space
+ *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
  *  @param diagonal_values      bool to indicate if diagonal values will be calculated
  *
  *  @return the operator's evaluation in a dense matrix with the dimensions of the Fock space
@@ -228,13 +229,14 @@ SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const TwoElectronOp
 /**
  *  Evaluate the operator in a sparse matrix
  *
- *  @param two_op               the two-electron operator to be evaluated in the Fock space
+ *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
  *  @param diagonal_values      bool to indicate if diagonal values will be calculated
  *
  *  @return the operator's evaluation in a sparse matrix with the dimensions of the Fock space
  */
 Eigen::SparseMatrix<double> ProductFockSpace::evaluateOperatorSparse(const TwoElectronOperator<double>& two_op,
                                                                      bool diagonal_values) const {
+     /*
     Eigen::SparseMatrix<double> total_evaluation = Eigen::SparseMatrix<double>(this->get_dimension(), this->get_dimension());
 
     auto dim_alpha = fock_space_alpha.get_dimension();
@@ -242,7 +244,7 @@ Eigen::SparseMatrix<double> ProductFockSpace::evaluateOperatorSparse(const TwoEl
 
     auto beta_evaluation = fock_space_beta.evaluateOperatorSparse(two_op, diagonal_values);
     auto alpha_evaluation = fock_space_alpha.evaluateOperatorSparse(two_op, diagonal_values);
-    /*
+
     // BETA separated evaluations
     for (size_t i = 0; i < dim_alpha; i++) {
         total_evaluation.block(i * dim_beta, i * dim_beta, dim_beta, dim_beta) += beta_evaluation;
@@ -287,13 +289,13 @@ Eigen::SparseMatrix<double> ProductFockSpace::evaluateOperatorSparse(const TwoEl
         }
     }
     */
-    return total_evaluation;
+    throw std::invalid_argument("ProductFockSpace::evaluateOperatorSparse(TwoElectronOperator<double>, bool): Not implemented.");
 }
 
 /**
  *  Evaluate the Hamiltonian in a dense matrix
  *
- *  @param ham_par              HamiltonianParameters to be evaluated in the Fock space
+ *  @param ham_par              Hamiltonian parameters in an orthonormal orbital basis to be evaluated in the Fock space
  *  @param diagonal_values      bool to indicate if diagonal values will be calculated
  *
  *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the Fock space
@@ -358,7 +360,7 @@ SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const HamiltonianPa
 /**
  *  Evaluate the Hamiltonian in a sparse matrix
  *
- *  @param ham_par              HamiltonianParameters to be evaluated in the Fock space
+ *  @param ham_par              Hamiltonian parameters in an orthonormal orbital basis to be evaluated in the Fock space
  *  @param diagonal_values      bool to indicate if diagonal values will be calculated
  *
  *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the Fock space
@@ -366,6 +368,7 @@ SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const HamiltonianPa
 Eigen::SparseMatrix<double> ProductFockSpace::evaluateOperatorSparse(const HamiltonianParameters<double>& ham_par,
                                                                      bool diagonal_values) const {
 
+    /*
     Eigen::SparseMatrix<double> total_evaluation = Eigen::SparseMatrix<double>(this->get_dimension(), this->get_dimension());
 
     auto dim_alpha = fock_space_alpha.get_dimension();
@@ -418,7 +421,7 @@ Eigen::SparseMatrix<double> ProductFockSpace::evaluateOperatorSparse(const Hamil
         }
     }
     */
-    return total_evaluation;
+    throw std::invalid_argument("ProductFockSpace::evaluateOperatorSparse(HamiltonianParameters<double>, bool): Not implemented.");
 }
 
 
@@ -426,11 +429,16 @@ Eigen::SparseMatrix<double> ProductFockSpace::evaluateOperatorSparse(const Hamil
 /**
  *  Evaluate the diagonal of the operator in this Fock space
  *
- *  @param one_op               the one-electron operator to be evaluated in the Fock space
+ *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
  *
  *  @return the operator's diagonal evaluation in a vector with the dimension of the Fock space
  */
 VectorX<double> ProductFockSpace::evaluateOperatorDiagonal(const OneElectronOperator<double>& one_op) const {
+
+    auto K = one_op.get_K();
+    if (K != this->K) {
+        throw std::invalid_argument("ProductFockSpace::evaluateOperatorDiagonal(OneElectronOperator<double>): Basis functions of the Fock space and the operator are incompatible.");
+    }
 
     auto dim_alpha = fock_space_alpha.get_dimension();
     auto dim_beta = fock_space_beta.get_dimension();
@@ -474,11 +482,16 @@ VectorX<double> ProductFockSpace::evaluateOperatorDiagonal(const OneElectronOper
 /**
  *  Evaluate the diagonal of the operator in this Fock space
  *
- *  @param two_op               the two-electron operator to be evaluated in the Fock space
+ *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
  *
  *  @return the operator's diagonal evaluation in a vector with the dimension of the Fock space
  */
 VectorX<double> ProductFockSpace::evaluateOperatorDiagonal(const TwoElectronOperator<double>& two_op) const {
+
+    auto K = two_op.get_K();
+    if (K != this->K) {
+        throw std::invalid_argument("ProductFockSpace::evaluateOperatorDiagonal(TwoElectronOperator<double>): Basis functions of the Fock space and the operator are incompatible.");
+    }
 
     auto dim_alpha = fock_space_alpha.get_dimension();
     auto dim_beta = fock_space_beta.get_dimension();
@@ -546,7 +559,7 @@ VectorX<double> ProductFockSpace::evaluateOperatorDiagonal(const TwoElectronOper
 /**
  *  Evaluate the diagonal of the Hamiltonian in this Fock space
  *
- *  @param ham_par              HamiltonianParameters to be evaluated in the Fock space
+ *  @param ham_par              Hamiltonian parameters in an orthonormal orbital basis to be evaluated in the Fock space
  *
  *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the Fock space
  */
