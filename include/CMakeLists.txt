@@ -11,7 +11,6 @@ target_sources(gqcp
             RMP2.hpp
             typedefs.hpp
             units.hpp
-            version.hpp
         )
 
 add_subdirectory(Basis)
