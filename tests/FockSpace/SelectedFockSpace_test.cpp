@@ -155,14 +155,6 @@ BOOST_AUTO_TEST_CASE ( Selected_Evaluation_Dense ) {
     double test_energy = self_adjoint_eigensolver.eigenvalues()(0) +  h2o.calculateInternuclearRepulsionEnergy();
     double test_energy2 = self_adjoint_eigensolver2.eigenvalues()(0) +  h2o.calculateInternuclearRepulsionEnergy();
 
-    std::cout<<std::endl;
-    std::cout<<std::endl;
-    std::cout<<std::setprecision(16)<<test_energy;
-    std::cout<<std::endl;
-    std::cout<<std::endl;
-    std::cout<<std::setprecision(16)<<test_energy2;
-
-
 
     BOOST_CHECK(hamiltonian.isApprox(hamiltonian_no_diagonal + GQCP::SquareMatrix<double>(hamiltonian_diagonal.asDiagonal())));
     BOOST_CHECK(hamiltonian2.isApprox(hamiltonian_no_diagonal2 + GQCP::SquareMatrix<double>(hamiltonian_diagonal2.asDiagonal())));

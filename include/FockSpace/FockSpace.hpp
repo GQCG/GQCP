@@ -382,8 +382,7 @@ public:
 
     template<class Storage>
     void EvaluateOperator(const TwoElectronOperator<double>& two_op, EvaluationContainer<Storage>& container, bool diagonal_values) const {
-        OneElectronOperator<double> dummy = OneElectronOperator<double>::Zero(this->K, this->K);
-        EvaluateOperator(dummy, two_op, container, diagonal_values);
+        EvaluateOperator(OneElectronOperator<double>::Zero(this->K, this->K), two_op, container, diagonal_values);
     }
 
     template<class Storage>
@@ -393,8 +392,6 @@ public:
         size_t dim = this->get_dimension();
 
         OneElectronOperator<double> k = two_op.effectiveOneElectronPartition() + one_op;
-        std::cout<<std::endl;
-        std::cout<<k<<std::endl;
 
         ONV onv = this->makeONV(0);  // onv with address 0
         for (size_t I = 0; I < dim; I++) {  // I loops over all addresses in the Fock space
