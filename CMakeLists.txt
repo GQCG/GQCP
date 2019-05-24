@@ -5,11 +5,19 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 
 add_library(gqcp SHARED "")
 
+# Supported options
+# -----------------
+option(BUILD_TESTS "Build tests" OFF)
+option(BUILD_DOCS "Build the documentation using Doxygen" OFF)
+option(BUILD_BENCHMARKS "Build benchmarks executables" OFF)
+option(BUILD_DRIVERS "Build standard drivers" OFF)
+option(EIGEN_USE_MKL_ALL "Eigen uses MKL" OFF)
+
 # Look for supporting libraries
 # -----------------------------
 
 find_package(Git REQUIRED)
-find_package(Boost REQUIRED COMPONENTS program_options unit_test_framework)
+find_package(Boost REQUIRED COMPONENTS program_options)
 find_package(Eigen3 3.3.4 REQUIRED)
 find_package(Int2 REQUIRED)
 find_package(Spectra REQUIRED)
@@ -18,6 +26,10 @@ find_package(Cint REQUIRED)
 if(EIGEN_USE_MKL_ALL)
     set(BLA_VENDOR Intel10_64lp)
     find_package(BLAS REQUIRED)
+endif()
+
+if(BUILD_TEST)
+    find_package(Boost REQUIRED COMPONENTS program_options unit_test_framework)
 endif()
 
 if (BUILD_DOCS)
@@ -36,15 +48,8 @@ target_compile_options(gqcp PUBLIC "$<IF:$<CONFIG:Debug>,-g,-O2>")
 target_compile_options(gqcp PUBLIC "$<IF:$<CXX_COMPILER_ID:Intel>,-xHost,-march=native>")
 target_compile_features(gqcp PUBLIC cxx_std_11)
 
-option(BUILD_DOCS "Build the documentation using Doxygen" OFF)
-option(BUILD_BENCHMARKS "Build benchmarks executables" OFF)
-option(BUILD_DRIVERS "Build standard drivers" OFF)
-option(EIGEN_USE_MKL_ALL "Eigen uses MKL" ON)
-
 add_subdirectory(src)
 add_subdirectory(include)
-enable_testing()
-add_subdirectory(tests)
 
 target_include_directories(gqcp
         PUBLIC
@@ -68,6 +73,11 @@ endif()
 
 # Parse additional options
 # ------------------------
+
+if (BUILD_TESTS)
+    enable_testing()
+    add_subdirectory(tests)
+endif()
 
 # Generate documentation
 if (BUILD_DOCS)
@@ -105,31 +115,34 @@ set(BIN_INSTALL_DIR ${PROJECT_INSTALL_DIR}/bin)
 # Install the library
 # -------------------
 
-## To specify that the library target should also be exported, we add the EXPORT option. This is used in conjuction with the install(EXPORT) command below
-#install(TARGETS gqcp
-#        EXPORT gqcp
-#        LIBRARY DESTINATION ${LIBRARY_INSTALL_DIR})
-#
-#
-## Install the header files
-#install(DIRECTORY ${PROJECT_INCLUDE_FOLDER}/ DESTINATION ${INCLUDE_INSTALL_DIR})
-#
-#
-## Export the target library into a ${PROJECT_NAME}Targets.cmake file.
-## The file gqcpConfig.cmake includes this file, to be able to use this library with a find_package(template X.Y.Z) call
-#install(EXPORT ${LIBRARY_NAME}
-#        DESTINATION ${CMAKE_INSTALL_DIR}
-#        FILE ${PROJECT_NAME}Targets.cmake)
-#
-## Install Config.cmake and ConfigVersion.cmake
-#install(FILES
-#        ${CMAKE_SOURCE_DIR}/cmake/Parse/${PROJECT_NAME}Config.cmake
-#        ${CMAKE_SOURCE_DIR}/cmake/Parse/${PROJECT_NAME}ConfigVersion.cmake
-#        DESTINATION ${CMAKE_INSTALL_DIR})
+#[[
+# To specify that the library target should also be exported, we add the EXPORT option. This is used in conjuction with the install(EXPORT) command below
+install(TARGETS gqcp
+        EXPORT gqcp
+        LIBRARY DESTINATION ${LIBRARY_INSTALL_DIR})
 
+# Install the header files
+install(DIRECTORY ${PROJECT_INCLUDE_FOLDER}/ DESTINATION ${INCLUDE_INSTALL_DIR})
 
+# Export the target library into a ${PROJECT_NAME}Targets.cmake file.
+# The file gqcpConfig.cmake includes this file, to be able to use this library with a find_package(template X.Y.Z) call
+install(EXPORT gqcp
+        DESTINATION ${CMAKE_INSTALL_DIR}
+        FILE ${PROJECT_NAME}Targets.cmake)
 
-# From RPATH to full installation path
-# https://stackoverflow.com/questions/30398238/cmake-rpath-not-working-could-not-find-shared-object-file
-#set(CMAKE_INSTALL_RPATH "${LIBRARY_INSTALL_DIR}")
-#set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+# Install Config.cmake and ConfigVersion.cmake
+install(FILES
+        ${CMAKE_SOURCE_DIR}/cmake/Parse/${PROJECT_NAME}Config.cmake
+        ${CMAKE_SOURCE_DIR}/cmake/Parse/${PROJECT_NAME}ConfigVersion.cmake
+        DESTINATION ${CMAKE_INSTALL_DIR})
+]]
+
+# Git related information
+# -----------------------
+
+# Get the long git SHA1 (https://stackoverflow.com/a/21028226/7930415)
+execute_process(COMMAND "${GIT_EXECUTABLE}" describe --always --abbrev=40 --dirty
+        WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
+        OUTPUT_VARIABLE GIT_SHA1
+        ERROR_QUIET
+        OUTPUT_STRIP_TRAILING_WHITESPACE)

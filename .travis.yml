@@ -13,7 +13,6 @@ addons:
     packages:
       - gcc-8
       - g++-8
-      - cmake
 
 # Enable Slack notifications, disable e-mail
 notifications:
@@ -57,7 +56,6 @@ before_install:
     # Set GCC 8 compiler
     - export CC=/usr/bin/gcc-8
     - export CXX=/usr/bin/g++-8
-    - gcc -v && g++ -v && cmake --version
 
 # Install general dependencies
 install:
@@ -93,7 +91,7 @@ install:
 script:
   - cd ${TRAVIS_BUILD_DIR}
   - mkdir build && cd build
-  - cmake .. -DBUILD_BENCHMARKS=ON -DBUILD_DRIVERS=ON -DCMAKE_INCLUDE_PATH=${HOME}/miniconda/include -DCMAKE_LIBRARY_PATH=${HOME}/miniconda/lib -DEIGEN_USE_MKL_ALL=TRUE
+  - cmake .. -DBUILD_TESTS=TRUE-DBUILD_BENCHMARKS=ON -DBUILD_DRIVERS=ON -DCMAKE_INCLUDE_PATH=${HOME}/miniconda/include -DCMAKE_LIBRARY_PATH=${HOME}/miniconda/lib -DEIGEN_USE_MKL_ALL=TRUE
   - make -j3 VERBOSE=1 && env CTEST_OUTPUT_ON_FAILURE=1 make test ARGS=-j3 && sudo make install
 
 # Run the benchmarks
