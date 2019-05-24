@@ -1,27 +1,13 @@
 
-# Find the benchmarks folder
-set(PROJECT_BENCHMARKS_FOLDER ${CMAKE_SOURCE_DIR}/benchmarks)
+set(benchmark_target_sources)
 
-
-# Find the source files for the benchmarks
-set(PROJECT_BENCHMARK_SOURCE_FILES
-        ${PROJECT_BENCHMARKS_FOLDER}/DOCI/doci_case.cpp
-        ${PROJECT_BENCHMARKS_FOLDER}/DOCI/doci_matrix.cpp
-        ${PROJECT_BENCHMARKS_FOLDER}/DOCI/doci_matvec.cpp
-
-        ${PROJECT_BENCHMARKS_FOLDER}/FCI/fci_hchain.cpp
-        ${PROJECT_BENCHMARKS_FOLDER}/FCI/fci_matrix.cpp
-        ${PROJECT_BENCHMARKS_FOLDER}/FCI/fci_matvec.cpp
-
-        ${PROJECT_BENCHMARKS_FOLDER}/Hubbard/hubbard_diagonalization.cpp
-        ${PROJECT_BENCHMARKS_FOLDER}/Hubbard/hubbard_matrix.cpp
-        ${PROJECT_BENCHMARKS_FOLDER}/Hubbard/hubbard_matvec.cpp
-        )
+add_subdirectory(DOCI)
+add_subdirectory(FCI)
+add_subdirectory(Hubbard)
 
 # Provide a function takes the name of a target benchmark executable, and includes/links the appropriate libraries to it
 
-
-foreach(BENCHMARK_SOURCE ${PROJECT_BENCHMARK_SOURCE_FILES})
+foreach(BENCHMARK_SOURCE ${benchmark_target_sources})
     # Extract the filename without extension (NAME_WE) as a name for our executable
     get_filename_component(BENCHMARK_NAME ${BENCHMARK_SOURCE} NAME_WE)
 
