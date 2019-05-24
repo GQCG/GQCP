@@ -1,106 +1,36 @@
-file(COPY data DESTINATION ${CMAKE_BINARY_DIR})  # copy the necessary data files to the out-of-source build directory
-
-# Find the tests folder
-set(PROJECT_TESTS_FOLDER ${CMAKE_SOURCE_DIR}/tests)
 
 
-# Find the source files for the tests
-set(PROJECT_TEST_SOURCE_FILES
-        ${PROJECT_TESTS_FOLDER}/Basis/AOBasis_test.cpp
-        ${PROJECT_TESTS_FOLDER}/Basis/CartesianExponents_test.cpp
-        ${PROJECT_TESTS_FOLDER}/Basis/CartesianGTO_test.cpp
-        ${PROJECT_TESTS_FOLDER}/Basis/LibintInterfacer_test.cpp
-        ${PROJECT_TESTS_FOLDER}/Basis/Shell_test.cpp
-        ${PROJECT_TESTS_FOLDER}/Basis/ShellSet_test.cpp
+set(test_target_sources)
 
-        ${PROJECT_TESTS_FOLDER}/CISolver/CISolver_DOCI_Davidson_test.cpp
-        ${PROJECT_TESTS_FOLDER}/CISolver/CISolver_DOCI_Dense_test.cpp
-        ${PROJECT_TESTS_FOLDER}/CISolver/CISolver_FCI_Davidson_test.cpp
-        ${PROJECT_TESTS_FOLDER}/CISolver/CISolver_FCI_Dense_test.cpp
-        ${PROJECT_TESTS_FOLDER}/CISolver/CISolver_Hubbard_Davidson_test.cpp
-        ${PROJECT_TESTS_FOLDER}/CISolver/CISolver_Hubbard_Dense_test.cpp
-        ${PROJECT_TESTS_FOLDER}/CISolver/CISolver_test.cpp
-
-        ${PROJECT_TESTS_FOLDER}/FockSpace/FockSpace_test.cpp
-        ${PROJECT_TESTS_FOLDER}/FockSpace/FrozenFockSpace_test.cpp
-        ${PROJECT_TESTS_FOLDER}/FockSpace/FrozenProductFockSpace_test.cpp
-        ${PROJECT_TESTS_FOLDER}/FockSpace/ONV_test.cpp
-        ${PROJECT_TESTS_FOLDER}/FockSpace/SelectedFockSpace_test.cpp
-        ${PROJECT_TESTS_FOLDER}/FockSpace/ProductFockSpace_test.cpp
-
-        ${PROJECT_TESTS_FOLDER}/geminals/AP1roG_test.cpp
-        ${PROJECT_TESTS_FOLDER}/geminals/AP1roGBivariationalSolver_test.cpp
-        ${PROJECT_TESTS_FOLDER}/geminals/AP1roGGeminalCoefficients_test.cpp
-        ${PROJECT_TESTS_FOLDER}/geminals/AP1roGPSESolver_test.cpp
-        ${PROJECT_TESTS_FOLDER}/geminals/AP1roGVariables_test.cpp
-        ${PROJECT_TESTS_FOLDER}/geminals/APIGGeminalCoefficients_test.cpp
-        ${PROJECT_TESTS_FOLDER}/geminals/OO_AP1roG_test.cpp
-
-        ${PROJECT_TESTS_FOLDER}/HamiltonianBuilder/DOCI_test.cpp
-        ${PROJECT_TESTS_FOLDER}/HamiltonianBuilder/FCI_test.cpp
-        ${PROJECT_TESTS_FOLDER}/HamiltonianBuilder/FrozenCoreDOCI_test.cpp
-        ${PROJECT_TESTS_FOLDER}/HamiltonianBuilder/FrozenCoreFCI_test.cpp
-        ${PROJECT_TESTS_FOLDER}/HamiltonianBuilder/Hubbard_test.cpp
-        ${PROJECT_TESTS_FOLDER}/HamiltonianBuilder/SelectedCI_test.cpp
-
-        ${PROJECT_TESTS_FOLDER}/HamiltonianParameters/HamiltonianParameters_test.cpp
-
-        ${PROJECT_TESTS_FOLDER}/Localization/ERJacobiLocalizer_test.cpp
-        ${PROJECT_TESTS_FOLDER}/Localization/ERNewtonLocalizer_test.cpp
-
-        ${PROJECT_TESTS_FOLDER}/math/optimization/DavidsonSolver_test.cpp
-        ${PROJECT_TESTS_FOLDER}/math/optimization/DenseSolver_test.cpp
-        ${PROJECT_TESTS_FOLDER}/math/optimization/Eigenpair_test.cpp
-        ${PROJECT_TESTS_FOLDER}/math/optimization/NewtonMinimizer_test.cpp
-        ${PROJECT_TESTS_FOLDER}/math/optimization/NewtonSystemOfEquationsSolver_test.cpp
-        ${PROJECT_TESTS_FOLDER}/math/optimization/SparseSolver_test.cpp
-
-        ${PROJECT_TESTS_FOLDER}/math/ChemicalMatrix_test.cpp
-        ${PROJECT_TESTS_FOLDER}/math/ChemicalRankFourTensor_test.cpp
-        ${PROJECT_TESTS_FOLDER}/math/Matrix_test.cpp
-        ${PROJECT_TESTS_FOLDER}/math/ScalarFunction_test.cpp
-        ${PROJECT_TESTS_FOLDER}/math/SquareMatrix_test.cpp
-        ${PROJECT_TESTS_FOLDER}/math/SquareRankFourTensor_test.cpp
-        ${PROJECT_TESTS_FOLDER}/math/Tensor_test.cpp
-
-        ${PROJECT_TESTS_FOLDER}/Operator/OneElectronOperator_test.cpp
-        ${PROJECT_TESTS_FOLDER}/Operator/TwoElectronOperator_test.cpp
-
-        ${PROJECT_TESTS_FOLDER}/properties/atomic_decomposition_test.cpp
-        ${PROJECT_TESTS_FOLDER}/properties/expectation_values_test.cpp
-        ${PROJECT_TESTS_FOLDER}/properties/properties_test.cpp
-
-        ${PROJECT_TESTS_FOLDER}/RDM/DOCIRDMBuilder_test.cpp
-        ${PROJECT_TESTS_FOLDER}/RDM/FCIRDMBuilder_test.cpp
-        ${PROJECT_TESTS_FOLDER}/RDM/FrozenCoreDOCIRDMBuilder_test.cpp
-        ${PROJECT_TESTS_FOLDER}/RDM/FrozenCoreFCIRDMBuilder_test.cpp
-        ${PROJECT_TESTS_FOLDER}/RDM/OneRDM_test.cpp
-        ${PROJECT_TESTS_FOLDER}/RDM/RDMCalculator_test.cpp
-        ${PROJECT_TESTS_FOLDER}/RDM/SelectedRDMBuilder_test.cpp
-        ${PROJECT_TESTS_FOLDER}/RDM/SpinUnresolvedFCIRDMBuilder_test.cpp
-        ${PROJECT_TESTS_FOLDER}/RDM/TwoRDM_test.cpp
-
-        ${PROJECT_TESTS_FOLDER}/RHF/constrained_RHF_test.cpp
-        ${PROJECT_TESTS_FOLDER}/RHF/DIISRHFSCFSolver_test.cpp
-        ${PROJECT_TESTS_FOLDER}/RHF/PlainRHFSCFSolver_test.cpp
-        ${PROJECT_TESTS_FOLDER}/RHF/RHF_test.cpp
-
-        ${PROJECT_TESTS_FOLDER}/utilities/linalg_test.cpp
-        ${PROJECT_TESTS_FOLDER}/utilities/miscellaneous_test.cpp
-
-        ${PROJECT_TESTS_FOLDER}/WaveFunction/WaveFunction_test.cpp
-
-        ${PROJECT_TESTS_FOLDER}/Atom_test.cpp
-        ${PROJECT_TESTS_FOLDER}/elements_test.cpp
-        ${PROJECT_TESTS_FOLDER}/HoppingMatrix_test.cpp
-        ${PROJECT_TESTS_FOLDER}/JacobiRotationParameters_test.cpp
-        ${PROJECT_TESTS_FOLDER}/Molecule_test.cpp
-        ${PROJECT_TESTS_FOLDER}/OO_DOCI_test.cpp
-        ${PROJECT_TESTS_FOLDER}/RMP2_test.cpp
-        ${PROJECT_TESTS_FOLDER}/units_test.cpp
+list(APPEND test_target_sources
+        Atom_test.cpp
+        elements_test.cpp
+        HoppingMatrix_test.cpp
+        JacobiRotationParameters_test.cpp
+        Molecule_test.cpp
+        OO_DOCI_test.cpp
+        RMP2_test.cpp
+        units_test.cpp
         )
 
-foreach(TEST_SOURCE ${PROJECT_TEST_SOURCE_FILES})
+add_subdirectory(Basis)
+add_subdirectory(CISolver)
+add_subdirectory(FockSpace)
+add_subdirectory(geminals)
+add_subdirectory(HamiltonianBuilder)
+add_subdirectory(HamiltonianParameters)
+add_subdirectory(Localization)
+add_subdirectory(math)
+add_subdirectory(Operator)
+add_subdirectory(properties)
+add_subdirectory(RDM)
+add_subdirectory(RHF)
+add_subdirectory(utilities)
+add_subdirectory(WaveFunction)
+
+file(COPY data DESTINATION ${CMAKE_BINARY_DIR})  # copy the necessary data files to the out-of-source build directory
+
+foreach(TEST_SOURCE ${test_target_sources})
     # Extract the filename without extension (NAME_WE) as a name for our executable
     get_filename_component(TEST_NAME ${TEST_SOURCE} NAME_WE)
 

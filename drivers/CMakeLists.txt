@@ -1,12 +1,12 @@
-set(DRIVER_SOURCES)
+set(driver_target_sources)
 
-list(APPEND DRIVER_SOURCES
+list(APPEND driver_target_sources
         fci_lowdin.cpp
         hubbard.cpp
         oo_doci.cpp
         )
 
-foreach(DRIVER_SOURCE ${DRIVER_SOURCES})
+foreach(DRIVER_SOURCE ${driver_target_sources})
     # Extract the filename without extension (NAME_WE) as a name for our executable
     get_filename_component(DRIVER_NAME ${DRIVER_SOURCE} NAME_WE)
 
