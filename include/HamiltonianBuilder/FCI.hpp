@@ -31,10 +31,7 @@ namespace GQCP {
 class FCI : public HamiltonianBuilder {
 private:
     ProductFockSpace fock_space;  // fock space containing the alpha and beta Fock space
-    std::vector<Eigen::SparseMatrix<double>> alpha_couplings;
 
-    // PRIVATE METHODS
-    OneElectronOperator<double> oneElectronPartition(size_t p, size_t q, const TwoElectronOperator<double>& two_op) const;
 
 public:
 

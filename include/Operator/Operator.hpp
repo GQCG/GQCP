@@ -51,13 +51,6 @@ public:
 
 
     /*
-     *  GETTER
-     */
-
-    size_t get_K() const { return this->derived().get_K(); };
-
-
-    /*
      *  PUBLIC METHODS
      */
 

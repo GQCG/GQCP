@@ -235,9 +235,6 @@ public:
 
 
 
-
-
-
     // PUBLIC TEMPLATED METHODS
     /**
      *  Find the next unoccupied orbital in a given ONV,

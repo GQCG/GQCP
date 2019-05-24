@@ -36,8 +36,6 @@ private:
 
     std::vector<Eigen::SparseMatrix<double>> alpha_couplings;
 
-    // PRIVATE METHODS
-    OneElectronOperator<double> oneElectronPartition(size_t p, size_t q, const TwoElectronOperator<double>& two_op) const;
 
 public:
     // CONSTRUCTORS
@@ -59,6 +57,7 @@ public:
     const FockSpace& get_fock_space_alpha() const { return this->fock_space_alpha; }
     const FockSpace& get_fock_space_beta() const { return this->fock_space_beta; }
     FockSpaceType get_type() const override { return FockSpaceType::ProductFockSpace; }
+    std::vector<Eigen::SparseMatrix<double>> get_alpha_couplings() const { return alpha_couplings; }
 
 
     // STATIC PUBLIC METHODS
@@ -73,6 +72,8 @@ public:
 
 
     // PUBLIC METHODS
+    OneElectronOperator<double> oneElectronPartition(size_t p, size_t q, const TwoElectronOperator<double>& two_op) const;
+
     /**
      *  Evaluate the operator in a dense matrix
      *

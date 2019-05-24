@@ -51,13 +51,6 @@ public:
     using SquareRankFourTensor<Scalar>::SquareRankFourTensor;  // use base constructors
 
 
-    /*
-     *  GETTER
-     */
-
-
-    size_t get_K() const { return this->dimension(0); };
-
 
     /*
      *  PUBLIC METHODS

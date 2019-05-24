@@ -31,23 +31,8 @@ namespace GQCP {
 FCI::FCI(const ProductFockSpace& fock_space) :
         HamiltonianBuilder(),
         fock_space (fock_space)
-{
-    FockSpace alpha_fock_space = fock_space.get_fock_space_alpha();
-    this->alpha_couplings = alpha_fock_space.calculateOneElectronCouplings();
-}
+{}
 
-OneElectronOperator<double> FCI::oneElectronPartition(size_t p, size_t q, const TwoElectronOperator<double>& two_op) const {
-    auto K =  two_op.dimension(0);
-    OneElectronOperator<double> k = OneElectronOperator<double>::Zero(K, K);
-
-    for (size_t i = 0; i < K; i++) {
-        for (size_t j = 0; j < K; j++) {
-            k(i, j) += two_op(p, q, i, j);
-        }
-    }
-
-    return k;
-}
 
 /*
  *  OVERRIDDEN PUBLIC METHODS
@@ -64,6 +49,8 @@ SquareMatrix<double> FCI::constructHamiltonian(const HamiltonianParameters<doubl
     if (K != this->fock_space.get_K()) {
         throw std::invalid_argument("FCI::constructHamiltonian(const HamiltonianParameters<double>&): Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
     }
+
+    const auto& alpha_couplings = this->fock_space.get_alpha_couplings();
 
     SquareMatrix<double> total_hamiltonian = SquareMatrix<double>::Zero(this->fock_space.get_dimension(), this->fock_space.get_dimension());
     
@@ -92,8 +79,8 @@ SquareMatrix<double> FCI::constructHamiltonian(const HamiltonianParameters<doubl
     // MIXED evaluations
     for (size_t p = 0; p<K; p++) {
 
-        const auto& alpha_coupling = this->alpha_couplings[p*(K+K+1-p)/2];
-        const auto& P = oneElectronPartition(p, p, hamiltonian_parameters.get_g());
+        const auto& alpha_coupling = alpha_couplings[p*(K+K+1-p)/2];
+        const auto& P = this->fock_space.oneElectronPartition(p, p, hamiltonian_parameters.get_g());
         const auto& beta_two_electron_intermediate = fock_space_beta.evaluateOperatorSparse(P, false);
 
         for (int i = 0; i < alpha_coupling.outerSize(); ++i){
@@ -106,8 +93,8 @@ SquareMatrix<double> FCI::constructHamiltonian(const HamiltonianParameters<doubl
 
         for (size_t q = p + 1; q<K; q++) {
 
-            const auto& alpha_coupling = this->alpha_couplings[p*(K+K+1-p)/2 + q - p];
-            const auto& P = oneElectronPartition(p, q, hamiltonian_parameters.get_g());
+            const auto& alpha_coupling = alpha_couplings[p*(K+K+1-p)/2 + q - p];
+            const auto& P = this->fock_space.oneElectronPartition(p, q, hamiltonian_parameters.get_g());
             const auto& beta_two_electron_intermediate = fock_space_beta.evaluateOperatorSparse(P, true);
 
             for (int i = 0; i < alpha_coupling.outerSize(); ++i){
@@ -141,6 +128,8 @@ VectorX<double> FCI::matrixVectorProduct(const HamiltonianParameters<double>& ha
     FockSpace fock_space_alpha = fock_space.get_fock_space_alpha();
     FockSpace fock_space_beta = fock_space.get_fock_space_beta();
 
+    const auto& alpha_couplings = this->fock_space.get_alpha_couplings();
+
     auto dim_alpha = fock_space_alpha.get_dimension();
     auto dim_beta = fock_space_beta.get_dimension();
 
@@ -151,18 +140,18 @@ VectorX<double> FCI::matrixVectorProduct(const HamiltonianParameters<double>& ha
 
     for (size_t p = 0; p<K; p++) {
 
-        const auto& P = oneElectronPartition(p, p, hamiltonian_parameters.get_g());
+        const auto& P = this->fock_space.oneElectronPartition(p, p, hamiltonian_parameters.get_g());
         const auto& beta_two_electron_intermediate = fock_space_beta.evaluateOperatorSparse(P, false);
 
         // sigma(pp) * X * theta(pp)
-        matvecmap += beta_two_electron_intermediate * xmap * this->alpha_couplings[p*(K+K+1-p)/2];
+        matvecmap += beta_two_electron_intermediate * xmap * alpha_couplings[p*(K+K+1-p)/2];
         for (size_t q = p + 1; q<K; q++) {
 
-            const auto& P = oneElectronPartition(p, q, hamiltonian_parameters.get_g());
+            const auto& P = this->fock_space.oneElectronPartition(p, q, hamiltonian_parameters.get_g());
             const auto& beta_two_electron_intermediate = fock_space_beta.evaluateOperatorSparse(P, true);
 
             // (sigma(pq) + sigma(qp)) * X * theta(pq)
-            matvecmap += beta_two_electron_intermediate * xmap * this->alpha_couplings[p*(K+K+1-p)/2 + q - p];
+            matvecmap += beta_two_electron_intermediate * xmap * alpha_couplings[p*(K+K+1-p)/2 + q - p];
         }
     }
 

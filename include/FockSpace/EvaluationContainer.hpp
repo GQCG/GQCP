@@ -27,7 +27,7 @@
 namespace GQCP {
 
 /**
- *  Pseudo private class for the Fock Space
+ *  Private class for Fock spaces
  */
 template<class Container>
 class EvaluationContainer {
@@ -46,6 +46,7 @@ class EvaluationContainer {
         return container;
     }
 
+    // Friend Classes
     friend class FockSpace;
     friend class SelectedFockSpace;
     friend class ProductFockSpace;
@@ -84,6 +85,7 @@ class EvaluationContainer<Eigen::SparseMatrix<double>> {
         return triplet_vector;
     };
 
+    // Friend Classes
     friend class FockSpace;
     friend class SelectedFockSpace;
     friend class ProductFockSpace;

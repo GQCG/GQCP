@@ -125,9 +125,9 @@ BOOST_AUTO_TEST_CASE ( reader_test ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( Selected_Evaluation_Dense ) {
+BOOST_AUTO_TEST_CASE ( Selected_Evaluation ) {
 
-    // Psi4 and GAMESS' FCI energy
+    // Psi4 and GAMESS' FCI energy for H2O
     double reference_fci_energy = -75.0129803939602;
 
     // Create the molecular Hamiltonian parameters in an AO basis
@@ -144,23 +144,14 @@ BOOST_AUTO_TEST_CASE ( Selected_Evaluation_Dense ) {
     GQCP::SquareMatrix<double> hamiltonian_no_diagonal = selected_fock_space.evaluateOperatorDense(mol_ham_par, false);
     GQCP::VectorX<double> hamiltonian_diagonal = selected_fock_space.evaluateOperatorDiagonal(mol_ham_par);
 
-    GQCP::SquareMatrix<double> hamiltonian2 = fock_space.evaluateOperatorDense(mol_ham_par, true);
-    GQCP::SquareMatrix<double> hamiltonian_no_diagonal2 = fock_space.evaluateOperatorDense(mol_ham_par, false);
-    GQCP::VectorX<double> hamiltonian_diagonal2 = fock_space.evaluateOperatorDiagonal(mol_ham_par);
-
-    std::cout<<std::endl;
-    std::cout<<std::endl;
+    // Retrieve lowest eigenvalue (fci solution)
     Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> self_adjoint_eigensolver (hamiltonian);
-    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> self_adjoint_eigensolver2 (hamiltonian2);
+
     double test_energy = self_adjoint_eigensolver.eigenvalues()(0) +  h2o.calculateInternuclearRepulsionEnergy();
-    double test_energy2 = self_adjoint_eigensolver2.eigenvalues()(0) +  h2o.calculateInternuclearRepulsionEnergy();
 
 
+    BOOST_CHECK(std::abs(test_energy - reference_fci_energy) < 1e-10);
+
+    // Test if non-diagonal evaluation and diagonal evaluations are correct
     BOOST_CHECK(hamiltonian.isApprox(hamiltonian_no_diagonal + GQCP::SquareMatrix<double>(hamiltonian_diagonal.asDiagonal())));
-    BOOST_CHECK(hamiltonian2.isApprox(hamiltonian_no_diagonal2 + GQCP::SquareMatrix<double>(hamiltonian_diagonal2.asDiagonal())));
-    BOOST_CHECK(hamiltonian2.isApprox(hamiltonian));
-    BOOST_CHECK(hamiltonian_diagonal2.isApprox(hamiltonian_diagonal));
-
-
-
 }

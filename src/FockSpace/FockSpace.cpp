@@ -392,6 +392,10 @@ std::vector<Eigen::SparseMatrix<double>> FockSpace::calculateOneElectronCoupling
     std::vector<std::vector<Eigen::Triplet<double>>> sparse_entries(K*(K+1)/2);
     std::vector<Eigen::SparseMatrix<double>> sparse_matrices(K*(K+1)/2, Eigen::SparseMatrix<double>(dim, dim));
 
+    if (N == 0) {
+        return sparse_matrices;
+    }
+
     // Reserve appropriate amount of entries
     size_t reservation_size = FockSpace::calculateDimension(K-1, N-1);
     for (size_t p = 0; p < K; p++) {
