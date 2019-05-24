@@ -48,7 +48,7 @@ endif()
 target_compile_options(gqcp PUBLIC -m64 -pipe)
 target_compile_options(gqcp PUBLIC "$<IF:$<CONFIG:Debug>,-g,-O2>")
 target_compile_options(gqcp PUBLIC "$<IF:$<CXX_COMPILER_ID:Intel>,-xHost,-march=native>")
-target_compile_options(gqcp PUBLIC "$<$<CXX_COMPILER_ID:GNU>:-lpthread>")
+target_compile_options(gqcp PUBLIC "$<$<CXX_COMPILER_ID:GNU>:-pthread>")
 target_compile_features(gqcp PUBLIC cxx_std_11)
 
 add_subdirectory(src)
@@ -74,6 +74,8 @@ if (EIGEN_USE_MKL_ALL)
     target_link_libraries(gqcp PUBLIC ${BLAS_LIBRARIES})
 endif()
 
+configure_file(cmake/version.hpp.in include/version.hpp @ONLY)
+
 # Parse additional options
 # ------------------------
 
@@ -84,7 +86,7 @@ endif()
 
 # Generate documentation
 if (BUILD_DOCS)
-    set(DOXYGEN_IN ${CMAKE_SOURCE_DIR}/cmake/Parse/Doxyfile.in)
+    set(DOXYGEN_IN cmake/Doxyfile.in)
     set(DOXYGEN_OUT ${CMAKE_BINARY_DIR}/Doxyfile)
 
     configure_file(${DOXYGEN_IN} ${DOXYGEN_OUT} @ONLY)
