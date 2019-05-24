@@ -33,7 +33,8 @@ foreach(BENCHMARK_SOURCE ${PROJECT_BENCHMARK_SOURCE_FILES})
     add_executable(${BENCHMARK_NAME} ${BENCHMARK_SOURCE})
 
     # Configure (include headers and link libraries) the benchmark ...
-    configure_executable(${BENCHMARK_NAME})
+    target_include_directories(${BENCHMARK_NAME} PUBLIC ${CMAKE_SOURCE_DIR}/include)
+    target_link_libraries(${BENCHMARK_NAME} PUBLIC gqcp)
     target_link_libraries(${BENCHMARK_NAME} PUBLIC "-lbenchmark")  # link google benchmarks
 
     # Install the benchmark in a separate location

@@ -95,11 +95,11 @@ if (BUILD_DOCS)
 endif()
 
 if (BUILD_BENCHMARKS)
-    add_subdirectory(${PROJECT_BENCHMARKS_FOLDER})
+    add_subdirectory(benchmarks)
 endif()
 
 if (BUILD_DRIVERS)
-    add_subdirectory(${PROJECT_DRIVERS_FOLDER})
+    add_subdirectory(drivers)
 endif()
 
 # Install the library
