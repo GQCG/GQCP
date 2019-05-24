@@ -14,9 +14,10 @@ foreach(DRIVER_SOURCE ${DRIVER_SOURCES})
     add_executable(${DRIVER_NAME} ${DRIVER_SOURCE})
 
     # Configure (include headers and link libraries) the driver
-    configure_executable(${DRIVER_NAME})
+    target_include_directories(${DRIVER_NAME} PUBLIC ${CMAKE_SOURCE_DIR}/include)
+    target_link_libraries(${DRIVER_NAME} PUBLIC gqcp)
 
     # Install the driver in a separate location
-    install(TARGETS ${DRIVER_NAME} RUNTIME DESTINATION ${BIN_INSTALL_DIR})
+    install(TARGETS ${DRIVER_NAME} RUNTIME DESTINATION bin)
 
 endforeach()
