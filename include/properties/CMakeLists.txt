@@ -1,5 +1,5 @@
 target_sources(gqcp
-        PUBLIC
+        PRIVATE
             expectation_values.hpp
             properties.hpp
         )

@@ -1,5 +1,5 @@
 target_sources(gqcp
-        PUBLIC
+        PRIVATE
             SpinUnresolvedWaveFunction.hpp
             WaveFunction.hpp
             WaveFunctionReader.hpp

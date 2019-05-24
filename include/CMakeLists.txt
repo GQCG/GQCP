@@ -1,5 +1,5 @@
 target_sources(gqcp
-        PUBLIC
+        PRIVATE
             Atom.hpp
             DOCINewtonOrbitalOptimizer.hpp
             elements.hpp

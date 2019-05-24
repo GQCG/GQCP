@@ -1,5 +1,5 @@
 target_sources(gqcp
-        PUBLIC
+        PRIVATE
             BaseERLocalizer.hpp
             ERJacobiLocalizer.hpp
             ERNewtonLocalizer.hpp

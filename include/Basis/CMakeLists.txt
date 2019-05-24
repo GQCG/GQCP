@@ -1,5 +1,5 @@
 target_sources(gqcp
-        PUBLIC
+        PRIVATE
             AOBasis.hpp
             CartesianDirection.hpp
             CartesianExponents.hpp

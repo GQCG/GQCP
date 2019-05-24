@@ -17,9 +17,9 @@ option(EIGEN_USE_MKL_ALL "Eigen uses MKL" OFF)
 # -----------------------------
 
 find_package(Git REQUIRED)
-find_package(Boost REQUIRED COMPONENTS program_options)
 find_package(Eigen3 3.3.4 REQUIRED)
 find_package(Int2 REQUIRED)
+find_package(Boost REQUIRED COMPONENTS program_options unit_test_framework)
 find_package(Spectra REQUIRED)
 find_package(Cint REQUIRED)
 
@@ -28,8 +28,10 @@ if(EIGEN_USE_MKL_ALL)
     find_package(BLAS REQUIRED)
 endif()
 
-if(BUILD_TEST)
+if(BUILD_TESTS)
     find_package(Boost REQUIRED COMPONENTS program_options unit_test_framework)
+else()
+    find_package(Boost REQUIRED COMPONENTS program_options)
 endif()
 
 if (BUILD_DOCS)
@@ -100,42 +102,31 @@ if (BUILD_DRIVERS)
     add_subdirectory(${PROJECT_DRIVERS_FOLDER})
 endif()
 
-# Setup installation directories
-# ------------------------------
-
-if (NOT INSTALLATION_PREFIX)
-    set(INSTALLATION_PREFIX ${CMAKE_INSTALL_PREFIX})
-endif()
-set(PROJECT_INSTALL_DIR ${INSTALLATION_PREFIX}/${PROJECT_NAME_LOWERCASE})
-set(INCLUDE_INSTALL_DIR ${PROJECT_INSTALL_DIR}/include)
-set(CMAKE_INSTALL_DIR ${PROJECT_INSTALL_DIR}/cmake)
-set(LIBRARY_INSTALL_DIR ${PROJECT_INSTALL_DIR}/lib)
-set(BIN_INSTALL_DIR ${PROJECT_INSTALL_DIR}/bin)
-
 # Install the library
 # -------------------
 
-#[[
-# To specify that the library target should also be exported, we add the EXPORT option. This is used in conjuction with the install(EXPORT) command below
-install(TARGETS gqcp
-        EXPORT gqcp
-        LIBRARY DESTINATION ${LIBRARY_INSTALL_DIR})
+install(TARGETS gqcp EXPORT gqcpTargets
+        LIBRARY DESTINATION lib
+        ARCHIVE DESTINATION lib
+        RUNTIME DESTINATION bin
+        INCLUDES DESTINATION include
+        )
 
-# Install the header files
-install(DIRECTORY ${PROJECT_INCLUDE_FOLDER}/ DESTINATION ${INCLUDE_INSTALL_DIR})
+install(EXPORT gqcpTargets
+        FILE gqcpTargets.cmake
+        NAMESPACE gqcp::
+        DESTINATION lib/cmake/gqcp
+        )
 
-# Export the target library into a ${PROJECT_NAME}Targets.cmake file.
-# The file gqcpConfig.cmake includes this file, to be able to use this library with a find_package(template X.Y.Z) call
-install(EXPORT gqcp
-        DESTINATION ${CMAKE_INSTALL_DIR}
-        FILE ${PROJECT_NAME}Targets.cmake)
+include(CMakePackageConfigHelpers)
+write_basic_package_version_file("gqcpConfigVersion.cmake"
+        VERSION ${gqcp_VERSION}
+        COMPATIBILITY SameMajorVersion
+        )
 
-# Install Config.cmake and ConfigVersion.cmake
-install(FILES
-        ${CMAKE_SOURCE_DIR}/cmake/Parse/${PROJECT_NAME}Config.cmake
-        ${CMAKE_SOURCE_DIR}/cmake/Parse/${PROJECT_NAME}ConfigVersion.cmake
-        DESTINATION ${CMAKE_INSTALL_DIR})
-]]
+install(FILES "gqcgConfig.cmake" "gqcpConfigVersion.cmake"
+        DESTINATION lib/cmake/gqcp
+        )
 
 # Git related information
 # -----------------------

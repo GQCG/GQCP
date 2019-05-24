@@ -1,5 +1,5 @@
 target_sources(gqcp
-        PUBLIC
+        PRIVATE
             DIISRHFSCFSolver.hpp
             PlainRHFSCFSolver.hpp
             RHF.hpp

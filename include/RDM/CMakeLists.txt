@@ -1,5 +1,5 @@
 target_sources(gqcp
-        PUBLIC
+        PRIVATE
             BaseRDMBuilder.hpp
             BaseSpinUnresolvedRDMBuilder.hpp
             DOCIRDMBuilder.hpp

@@ -1,5 +1,5 @@
 target_sources(gqcp
-        PUBLIC
+        PRIVATE
             AP1roG.hpp
             AP1roGBivariationalSolver.hpp
             AP1roGGeminalCoefficients.hpp

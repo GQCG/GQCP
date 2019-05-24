@@ -1,5 +1,5 @@
 target_sources(gqcp
-        PUBLIC
+        PRIVATE
             BaseEigenproblemSolver.hpp
             BaseMatrixSolver.hpp
             BaseMinimizer.hpp

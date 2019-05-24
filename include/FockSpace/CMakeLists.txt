@@ -1,5 +1,5 @@
 target_sources(gqcp
-        PUBLIC
+        PRIVATE
             BaseFockSpace.hpp
             Configuration.hpp
             FockPermutator.hpp

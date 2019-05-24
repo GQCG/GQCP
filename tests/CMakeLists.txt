@@ -108,7 +108,7 @@ foreach(TEST_SOURCE ${PROJECT_TEST_SOURCE_FILES})
     add_executable(${TEST_NAME} ${TEST_SOURCE})
 
     # Configure (include headers and link libraries) the test
-    #target_include_directories(${TEST_NAME} PUBLIC ${PROJECT_INCLUDE_FOLDER})
+    target_include_directories(${TEST_NAME} PUBLIC ${CMAKE_SOURCE_DIR}/include)
     target_link_libraries(${TEST_NAME} PUBLIC gqcp)
     target_compile_definitions(${TEST_NAME} PRIVATE BOOST_TEST_DYN_LINK)
 

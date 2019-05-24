@@ -1,5 +1,5 @@
 target_sources(gqcp
-        PUBLIC
+        PRIVATE
             ChemicalMatrix.hpp
             ChemicalRankFourTensor.hpp
             LinearCombination.hpp

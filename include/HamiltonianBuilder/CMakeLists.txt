@@ -1,5 +1,5 @@
 target_sources(gqcp
-        PUBLIC
+        PRIVATE
             DOCI.hpp
             FCI.hpp
             FrozenCoreCI.hpp

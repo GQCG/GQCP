@@ -1,5 +1,5 @@
 target_sources(gqcp
-        PUBLIC
+        PRIVATE
             AtomicDecompositionParameters.hpp
             BaseHamiltonianParameters.hpp
             HamiltonianParameters.hpp

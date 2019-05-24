@@ -1,5 +1,5 @@
 target_sources(gqcp
-        PUBLIC
+        PRIVATE
             linalg.hpp
             miscellaneous.hpp
         )

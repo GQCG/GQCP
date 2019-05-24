@@ -1,5 +1,5 @@
 target_sources(gqcp
-        PUBLIC
+        PRIVATE
             OneElectronOperator.hpp
             Operator.hpp
             TwoElectronOperator.hpp
