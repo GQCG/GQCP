@@ -90,6 +90,7 @@ install:
 
 # Run the build script
 script:
+  - which cmake # test which cmake is being used
   - cd ${TRAVIS_BUILD_DIR}
   - mkdir build && cd build
   - cmake .. -DBUILD_TESTS=TRUE-DBUILD_BENCHMARKS=ON -DBUILD_DRIVERS=ON -DCMAKE_INCLUDE_PATH=${HOME}/miniconda/include -DCMAKE_LIBRARY_PATH=${HOME}/miniconda/lib -DEIGEN_USE_MKL_ALL=TRUE
