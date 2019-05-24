@@ -138,7 +138,6 @@ public:
     Eigen::SparseMatrix<double> evaluateOperatorSparse(const HamiltonianParameters<double>& ham_par,
                                                        bool diagonal_values) const override;
 
-
     /**
      *  Evaluate the diagonal of the operator
      *
