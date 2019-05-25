@@ -47,7 +47,7 @@ SquareMatrix<double> Hubbard::constructHamiltonian(const HamiltonianParameters<d
     
     auto K = hamiltonian_parameters.get_K();
     if (K != this->fock_space.get_K()) {
-        throw std::invalid_argument("Hubbard::constructHamiltonian(const HamiltonianParameters<double>&): Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
+        throw std::invalid_argument("Hubbard::constructHamiltonian(HamiltonianParameters<double>): Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
     }
 
     return this->fock_space.evaluateOperatorDense(hamiltonian_parameters.get_h(), false) + SquareMatrix<double>(this->calculateDiagonal(hamiltonian_parameters).asDiagonal());
