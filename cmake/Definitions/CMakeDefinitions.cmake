@@ -39,7 +39,7 @@ include(${CMAKE_SOURCE_DIR}/cmake/Find/FindPackages.cmake)
 function(configure_executable EXECUTABLE_NAME)
 
     target_include_directories(${EXECUTABLE_NAME} PRIVATE ${PROJECT_INCLUDE_FOLDER})  # include this project
-    target_link_libraries(${EXECUTABLE_NAME} PRIVATE ${LIBRARY_NAME})
+    target_link_libraries(${EXECUTABLE_NAME} PUBLIC ${LIBRARY_NAME})
 
 endfunction(configure_executable)
 

@@ -8,7 +8,6 @@ project(gqcp
 
 set(CMAKE_CXX_STANDARD 11)
 
-
 # Establish the CMake environment - define all CMake variables
 include(${CMAKE_SOURCE_DIR}/cmake/Definitions/CMakeDefinitions.cmake)
 

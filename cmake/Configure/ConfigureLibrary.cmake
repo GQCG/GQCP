@@ -16,23 +16,19 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC ${Boost_LIBRARIES})
 target_link_libraries(${LIBRARY_NAME} PUBLIC Eigen3::Eigen)
 
 # Include Libint2
-target_include_directories(${LIBRARY_NAME} PUBLIC ${Libint2_INCLUDE_DIRS})
-target_link_libraries(${LIBRARY_NAME} PUBLIC ${Libint2_LIBRARIES})
+target_link_libraries(${LIBRARY_NAME} PUBLIC libint2::libint2)
 
 # Include Libcint
-target_include_directories(${LIBRARY_NAME} PUBLIC ${Libcint_INCLUDE_DIRS})
-target_link_libraries(${LIBRARY_NAME} PUBLIC ${Libcint_LIBRARIES})
-
+target_link_libraries(${LIBRARY_NAME} PUBLIC libcint::libcint)
 
 # Include Spectra
-target_include_directories(${LIBRARY_NAME} PRIVATE ${Spectra_INCLUDE_DIRS})
+target_link_libraries(${LIBRARY_NAME} PUBLIC Spectra::Spectra)
 
 # Include MKL
 if (USE_MKL)
     target_include_directories(${LIBRARY_NAME} PUBLIC ${MKL_INCLUDE_DIRS})
     target_link_libraries(${LIBRARY_NAME} PUBLIC ${MKL_LIBRARIES})
 endif()
-
 
 
 # 2. Install the library

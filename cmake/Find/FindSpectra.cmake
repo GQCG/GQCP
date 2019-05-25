@@ -21,3 +21,9 @@ set(Spectra_FOUND TRUE)
 # Set the INCLUDE_DIRS
 set(Spectra_INCLUDE_DIRS "${SPECTRA_PREFIX}/include")
 endif()
+
+if(Spectra_FOUND AND NOT TARGET Spectra::Spectra)
+    add_library(Spectra::Spectra INTERFACE IMPORTED)
+    set_target_properties(Spectra::Spectra PROPERTIES
+            INTERFACE_INCLUDE_DIRECTORIES "${Spectra_INCLUDE_DIRS}")
+endif()

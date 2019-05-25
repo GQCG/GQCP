@@ -19,8 +19,6 @@ find_path(LIBINT_PREFIX include/libint2.hpp HINTS /usr/local/libint/*/ $ENV{LIBI
 if("${LIBINT_PREFIX}" STREQUAL "LIBINT_PREFIX-NOTFOUND")
     message(FATAL_ERROR "Libint2 was not found in the default location /usr/local/libint/x.y.z or through the environment variables")
 else()
-    # Set FOUND
-    set(Libint2_FOUND TRUE)
 
     # Set the INCLUDE_DIRS
     set(Libint2_INCLUDE_DIRS "${Libint2_INCLUDE_DIRS};${LIBINT_PREFIX}/include")
@@ -32,9 +30,25 @@ else()
         if(EXISTS ${LIBINT_PREFIX}/lib/libint2.dylib)
             set(Libint2_LIBRARIES "${Libint2_LIBRARIES};${LIBINT_PREFIX}/lib/libint2.dylib")
         else()
-            set(Libint2_LIBRARIES "${Libint2_LIBRARIES};${LIBINT_PREFIX}/lib/libint2.a")
+            if(EXISTS ${LIBINT_PREFIX}/lib/libint2.a)
+                set(Libint2_LIBRARIES "${Libint2_LIBRARIES};${LIBINT_PREFIX}/lib/libint2.a")
+            else()
+                message(FATAL_ERROR "No Libint2 library was found in the default location /usr/local/libint/x.y.z or through the environment variables")
+            endif()
         endif()
     endif()
 
+    # Set FOUND
+    set(Libint2_FOUND TRUE)
     message(STATUS "Libint2 was found at ${LIBINT_PREFIX}")
+
+endif()
+
+if (Libint2_FOUND AND NOT TARGET libint2::libint2)
+    add_library(libint2::libint2 SHARED IMPORTED)
+    set_target_properties(libint2::libint2
+            PROPERTIES
+            INTERFACE_INCLUDE_DIRECTORIES ${Libint2_INCLUDE_DIRS}
+            IMPORTED_LOCATION ${Libint2_LIBRARIES}
+            )
 endif()

@@ -18,7 +18,6 @@
 #define BOOST_TEST_MODULE "AOBasis"
 
 #include <boost/test/unit_test.hpp>
-#include <boost/test/included/unit_test.hpp>  // include this to get main(), otherwise the compiler will complain
 
 #include "Basis/AOBasis.hpp"
 
@@ -138,7 +137,6 @@ BOOST_AUTO_TEST_CASE ( libcint_vs_libint2_H2O_STO_3G ) {
     const auto V_libint2 = ao_basis.calculateLibintNuclearIntegrals();
     const auto dipole_libint2 = ao_basis.calculateLibintDipoleIntegrals();
     const auto g_libint2 = ao_basis.calculateLibintCoulombRepulsionIntegrals();
-
     
     BOOST_CHECK(S_libcint.isApprox(S_libint2, 1.0e-08));
     BOOST_CHECK(T_libcint.isApprox(T_libint2, 1.0e-08));
@@ -147,6 +145,7 @@ BOOST_AUTO_TEST_CASE ( libcint_vs_libint2_H2O_STO_3G ) {
         BOOST_CHECK(dipole_libcint[i].isApprox(dipole_libint2[i], 1.0e-08));
     }
     BOOST_CHECK(g_libcint.isApprox(g_libint2, 1.0e-08));
+
 }
 
 
