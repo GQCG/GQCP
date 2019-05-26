@@ -198,7 +198,7 @@ SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const TwoElectronOp
 
         const auto& alpha_coupling = this->alpha_couplings[p*(K+K+1-p)/2];
         const auto& P = this->oneElectronPartition(p, p, two_op);
-        const auto& beta_two_electron_intermediate = this->fock_space_beta.evaluateOperatorDense(P, true);
+        const auto& beta_two_electron_intermediate = this->fock_space_beta.evaluateOperatorDense(P, diagonal_values);
 
         for (int i = 0; i < alpha_coupling.outerSize(); ++i){
             for (Eigen::SparseMatrix<double>::InnerIterator it(alpha_coupling, i); it; ++it) {
@@ -212,7 +212,7 @@ SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const TwoElectronOp
 
             const auto& alpha_coupling = this->alpha_couplings[p*(K+K+1-p)/2 + q - p];
             const auto& P = oneElectronPartition(p, q, two_op);
-            const auto& beta_two_electron_intermediate = fock_space_beta.evaluateOperatorDense(P, diagonal_values);
+            const auto& beta_two_electron_intermediate = fock_space_beta.evaluateOperatorDense(P, true);
 
             for (int i = 0; i < alpha_coupling.outerSize(); ++i){
                 for (Eigen::SparseMatrix<double>::InnerIterator it(alpha_coupling, i); it; ++it) {
