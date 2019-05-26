@@ -42,6 +42,7 @@ BOOST_AUTO_TEST_CASE ( FrozenProductFockSpace_constructor ) {
     BOOST_CHECK_NO_THROW(GQCP::FrozenProductFockSpace (product_fock_space, 5));
 }
 
+
 BOOST_AUTO_TEST_CASE ( FrozenProductFockSpace_member_test ) {
 
     GQCP::FrozenProductFockSpace frozen_space (10, 5, 5, 2);
@@ -54,4 +55,21 @@ BOOST_AUTO_TEST_CASE ( FrozenProductFockSpace_member_test ) {
 
     BOOST_CHECK(alpha_member.get_K() == 10);
     BOOST_CHECK(beta_member.get_K() == 10);
+}
+
+
+BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_diagonal_vs_no_diagonal) {
+
+    GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
+    auto parameters = GQCP::HamiltonianParameters<double>::Molecular(hchain, "STO-3G");
+    parameters.LowdinOrthonormalize();
+
+    GQCP::FrozenProductFockSpace fock_space (6, 4, 4, 2);
+
+    GQCP::SquareMatrix<double> hamiltonian = fock_space.evaluateOperatorDense(parameters, true);
+    GQCP::SquareMatrix<double> hamiltonian_no_diagonal = fock_space.evaluateOperatorDense(parameters, false);
+    GQCP::VectorX<double> hamiltonian_diagonal = fock_space.evaluateOperatorDiagonal(parameters);
+
+    // Test if non-diagonal evaluation and diagonal evaluations are correct
+    BOOST_CHECK(hamiltonian.isApprox(hamiltonian_no_diagonal + GQCP::SquareMatrix<double>(hamiltonian_diagonal.asDiagonal())));
 }

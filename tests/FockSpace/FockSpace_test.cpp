@@ -442,3 +442,20 @@ BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_diagonal ) {
     BOOST_CHECK(two_electron_evaluation1.isApprox(two_electron_evaluation2));
     BOOST_CHECK(hamiltonian_evaluation1.isApprox(hamiltonian_evaluation2));
 }
+
+
+BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_diagonal_vs_no_diagonal) {
+
+    GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
+    auto parameters = GQCP::HamiltonianParameters<double>::Molecular(hchain, "STO-3G");
+    parameters.LowdinOrthonormalize();
+
+    GQCP::FockSpace fock_space (6, 4);
+
+    GQCP::SquareMatrix<double> hamiltonian = fock_space.evaluateOperatorDense(parameters, true);
+    GQCP::SquareMatrix<double> hamiltonian_no_diagonal = fock_space.evaluateOperatorDense(parameters, false);
+    GQCP::VectorX<double> hamiltonian_diagonal = fock_space.evaluateOperatorDiagonal(parameters);
+
+    // Test if non-diagonal evaluation and diagonal evaluations are correct
+    BOOST_CHECK(hamiltonian.isApprox(hamiltonian_no_diagonal + GQCP::SquareMatrix<double>(hamiltonian_diagonal.asDiagonal())));
+}

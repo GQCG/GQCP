@@ -38,6 +38,9 @@ class EvaluationMatrix {
     Matrix matrix;  // matrix containing the evaluations
 
     // CONSTRUCTOR
+    /**
+     * @param dimension         the dimensions of the matrix (equal to that of the fock space)
+     */
     EvaluationMatrix(size_t dimension) {
         matrix = Matrix::Zero(dimension, dimension);
     }
@@ -67,7 +70,7 @@ class EvaluationMatrix {
 
 /**
  *  Sparse template specialization is required because insertions into an existing sparse matrix are expensive
- *  Instead elements should only be added to the matrix once all of them are evaluated in a vector of triplets
+ *  Elements should only be added to the matrix once all of them are evaluated in a vector of triplets
  *  Therefor the "add(size_t, size_t, double)" method adds elements to a vector of triplets instead.
  */
 template<>
@@ -77,6 +80,9 @@ class EvaluationMatrix<Eigen::SparseMatrix<double>> {
     std::vector<Eigen::Triplet<double>> triplet_vector;  // vector which temporarily contains the added values
 
     // CONSTRUCTOR
+    /**
+     * @param dimension         the dimensions of the matrix (equal to that of the fock space)
+     */
     EvaluationMatrix(size_t dimension) {
         matrix = Eigen::SparseMatrix<double>(dimension, dimension);
     }

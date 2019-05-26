@@ -21,13 +21,25 @@
 namespace GQCP {
 
 
+/*
+ *  CONSTRUCTORS
+ */
 
-
+/**
+ *  @param fock_space                    shared pointer to active (non-frozen core) Fock space
+ *  @param X                             the number of frozen orbitals
+ */
 BaseFrozenCoreFockSpace::BaseFrozenCoreFockSpace(std::shared_ptr<GQCP::BaseFockSpace> fock_space, size_t X) :
     BaseFockSpace(fock_space->get_K()+X, fock_space->get_dimension()),
     active_fock_space (std::move(fock_space)),
     X (X)
 {}
+
+
+
+/*
+ *  PUBLIC METHODS
+ */
 
 /**
  *  Evaluate the operator in a dense matrix
@@ -115,6 +127,7 @@ SquareMatrix<double> BaseFrozenCoreFockSpace::evaluateOperatorDense(const TwoEle
 
 }
 
+
 /**
  *  Evaluate the operator in a sparse matrix
  *
@@ -145,6 +158,7 @@ Eigen::SparseMatrix<double> BaseFrozenCoreFockSpace::evaluateOperatorSparse(cons
 
 }
 
+
 /**
  *  Evaluate the Hamiltonian in a dense matrix
  *
@@ -172,6 +186,7 @@ SquareMatrix<double> BaseFrozenCoreFockSpace::evaluateOperatorDense(const Hamilt
     return evaluation;
 }
 
+
 /**
  *  Evaluate the Hamiltonian in a sparse matrix
  *
@@ -198,6 +213,7 @@ Eigen::SparseMatrix<double> BaseFrozenCoreFockSpace::evaluateOperatorSparse(cons
     return evaluation;
 }
 
+
 /**
  *  Evaluate the diagonal of the operator
  *
@@ -217,6 +233,7 @@ VectorX<double> BaseFrozenCoreFockSpace::evaluateOperatorDiagonal(const OneElect
 
     return diagonal + frozen_core_diagonal;
 };
+
 
 /**
  *  Evaluate the diagonal of the operator
@@ -239,6 +256,7 @@ VectorX<double> BaseFrozenCoreFockSpace::evaluateOperatorDiagonal(const TwoElect
     return diagonal + frozen_core_diagonal;
 }
 
+
 /**
  *  Evaluate the diagonal of the Hamiltonian
  *
@@ -258,6 +276,7 @@ VectorX<double> BaseFrozenCoreFockSpace::evaluateOperatorDiagonal(const Hamilton
     return diagonal + frozen_core_diagonal;
 }
 
+
 /**
  *  @param one_op       the one-electron operator in an orthonormal orbital basis
  *  @param X            the number of frozen orbitals
@@ -270,11 +289,12 @@ OneElectronOperator<double> BaseFrozenCoreFockSpace::freezeOperator(const OneEle
     return OneElectronOperator<double>(one_op.block(X, X, K_active, K_active));
 }
 
+
 /**
  *  @param two_op       the two-electron operator in an orthonormal orbital basis
  *  @param X            the number of frozen orbitals
  *
- *  @return 'frozen' two-electron operator which cover evaluations from the active and inactive orbitals
+ *  @return 'frozen' two-electron operators as a struct of a one- and two-electron operator which cover evaluations from the active and inactive orbitals
  */
 FrozenOperators BaseFrozenCoreFockSpace::freezeOperator(const TwoElectronOperator<double>& two_op, size_t X) {
 
@@ -306,7 +326,11 @@ FrozenOperators BaseFrozenCoreFockSpace::freezeOperator(const TwoElectronOperato
     return {frozen_one_op, frozen_two_op};
 }
 
-// PUBLIC METHODS
+
+/*
+ *  STATIC PUBLIC METHODS
+ */
+
 /**
  *  @param ham_par      the Hamiltonian parameters in an orthonormal orbital basis
  *  @param X            the number of frozen orbitals
@@ -355,6 +379,7 @@ HamiltonianParameters<double> BaseFrozenCoreFockSpace::freezeOperator(const Hami
     return HamiltonianParameters<double>(ao_basis, S, h, g_new, T);
 }
 
+
 /**
  *  @param one_op       the one-electron operator in an orthonormal orbital basis
  *  @param X            the number of frozen orbitals
@@ -374,6 +399,7 @@ VectorX<double> BaseFrozenCoreFockSpace::frozenCoreDiagonal(const OneElectronOpe
     VectorX<double> diagonal = VectorX<double>::Ones(dimension);
     return value * diagonal;
 }
+
 
 /**
  *  @param two_op       the two-electron operator in an orthonormal orbital basis
@@ -398,6 +424,7 @@ VectorX<double> BaseFrozenCoreFockSpace::frozenCoreDiagonal(const TwoElectronOpe
     VectorX<double> diagonal = VectorX<double>::Ones(dimension);
     return value * diagonal;
 }
+
 
 /**
  *  @param ham_par      the Hamiltonian parameters in an orthonormal orbital basis

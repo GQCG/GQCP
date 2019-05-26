@@ -91,15 +91,15 @@ public:
     VectorX<double> constantExpansion() const;
 
 
-    // Virtual
+    // PUBLIC VIRTUAL METHODS
     /**
-    *  Evaluate the operator in a dense matrix
-    *
-    *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
-    *  @param diagonal_values      bool to indicate if diagonal values will be calculated
-    *
-    *  @return the operator's evaluation in a dense matrix with the dimensions of the Fock space
-    */
+     *  Evaluate the operator in a dense matrix
+     *
+     *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
+     *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+     *
+     *  @return the operator's evaluation in a dense matrix with the dimensions of the Fock space
+     */
     virtual SquareMatrix<double> evaluateOperatorDense(const OneElectronOperator<double>& one_op, bool diagonal_values) const = 0;
 
     /**
@@ -112,7 +112,6 @@ public:
      */
     virtual Eigen::SparseMatrix<double> evaluateOperatorSparse(const OneElectronOperator<double>& one_op,
                                                                bool diagonal_values) const = 0;
-
     /**
      *  Evaluate the operator in a dense matrix
      *
@@ -182,7 +181,6 @@ public:
      *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the Fock space
      */
     virtual VectorX<double> evaluateOperatorDiagonal(const HamiltonianParameters<double>& ham_par) const = 0;
-
 };
 
 

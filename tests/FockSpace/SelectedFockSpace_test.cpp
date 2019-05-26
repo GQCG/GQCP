@@ -125,7 +125,7 @@ BOOST_AUTO_TEST_CASE ( reader_test ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( Selected_Evaluation ) {
+BOOST_AUTO_TEST_CASE ( Selected_Evaluation_H2O ) {
 
     // Psi4 and GAMESS' FCI energy for H2O
     double reference_fci_energy = -75.0129803939602;

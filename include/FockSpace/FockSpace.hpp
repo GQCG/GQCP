@@ -118,19 +118,6 @@ public:
      */
     size_t countTotalTwoElectronCouplings() const override;
 
-
-    // PUBLIC METHODS
-    /**
-     *  If we have
-     *      FockSpace fock_space;
-     *
-     *  This makes sure that we can call
-     *      fock_space.getAddress(onv);
-     *  instead of the syntax
-     *      fock_space.FockPermutator<FockSpace>::getAddress(onv);
-     */
-    using FockPermutator<FockSpace>::getAddress;
-
     /**
      *  Evaluate the operator in a dense matrix
      *
@@ -227,6 +214,19 @@ public:
      *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the Fock space
      */
     VectorX<double> evaluateOperatorDiagonal(const HamiltonianParameters<double>& ham_par) const override;
+
+
+    // PUBLIC METHODS
+    /**
+     *  If we have
+     *      FockSpace fock_space;
+     *
+     *  This makes sure that we can call
+     *      fock_space.getAddress(onv);
+     *  instead of the syntax
+     *      fock_space.FockPermutator<FockSpace>::getAddress(onv);
+     */
+    using FockPermutator<FockSpace>::getAddress;
 
 
     // PUBLIC TEMPLATED METHODS
@@ -328,7 +328,7 @@ public:
      *  @tparam Matrix                       the type of matrix used to store the evaluations
      *
      *  @param one_op                        the one-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
-     *  @param container                     matrix in which the evaluations will be stored
+     *  @param container                     matrix wrapper to which the evaluations are added
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
     template<class Matrix>
@@ -384,7 +384,7 @@ public:
      *  @tparam Matrix                       the type of matrix used to store the evaluations
      *
      *  @param two_op                        the two-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
-     *  @param container                     matrix in which the evaluations will be stored
+     *  @param container                     matrix wrapper to which the evaluations are added
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
     template<class Matrix>
@@ -399,7 +399,7 @@ public:
      *
      *  @param one_op                        the one-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
      *  @param two_op                        the two-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
-     *  @param container                     matrix in which the evaluations will be stored
+     *  @param container                     matrix wrapper to which the evaluations are added
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
     template<class Matrix>
