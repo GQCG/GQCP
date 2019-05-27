@@ -41,7 +41,7 @@ class EvaluationMatrix {
     /**
      * @param dimension         the dimensions of the matrix (equal to that of the fock space)
      */
-    EvaluationMatrix(size_t dimension) :  Matrix::Zero(dimension, dimension) {}
+    EvaluationMatrix(size_t dimension) :  matrix(Matrix::Zero(dimension, dimension)) {}
 
 
     // PUBLIC METHODS

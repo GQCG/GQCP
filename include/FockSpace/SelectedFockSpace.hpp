@@ -510,7 +510,7 @@ public:
             }  // loop over addresses J > I
         }  // loop over addresses I
     }
-}
+};
 
 
 }  // namespace GQCP
