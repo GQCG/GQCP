@@ -23,6 +23,7 @@
 #include "FockSpace/ProductFockSpace.hpp"
 #include "FockSpace/FrozenProductFockSpace.hpp"
 #include "Configuration.hpp"
+#include "FockSpace/EvaluationMatrix.hpp"
 
 
 namespace GQCP {
@@ -177,7 +178,6 @@ public:
     Eigen::SparseMatrix<double> evaluateOperatorSparse(const HamiltonianParameters<double>& ham_par,
                                                        bool diagonal_values) const override;
 
-
     /**
      *  Evaluate the diagonal of the operator
      *
@@ -293,6 +293,7 @@ public:
      */
     template<class Matrix>
     void EvaluateOperator(const TwoElectronOperator<double>& two_op, EvaluationMatrix<Matrix>& container, bool diagonal_values) const {
+        // Calling this combined method for both the one- and two-electron operator does not affect the performance, hence we avoid writting more code by plugging a zero operator in the combined method.
         EvaluateOperator(OneElectronOperator<double>::Zero(this->K, this->K), two_op, container, diagonal_values);
     }
 
@@ -509,7 +510,7 @@ public:
             }  // loop over addresses J > I
         }  // loop over addresses I
     }
-};
+}
 
 
 }  // namespace GQCP

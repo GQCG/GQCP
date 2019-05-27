@@ -1,4 +1,4 @@
-    // This file is part of GQCG-gqcp.
+// This file is part of GQCG-gqcp.
 // 
 // Copyright (C) 2017-2019  the GQCG developers
 // 

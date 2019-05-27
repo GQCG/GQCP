@@ -15,8 +15,8 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 //
-#ifndef GQCP_EVALUATIONCONTAINER_HPP
-#define GQCP_EVALUATIONCONTAINER_HPP
+#ifndef GQCP_EVALUATIONMATRIX_HPP
+#define GQCP_EVALUATIONMATRIX_HPP
 
 
 #include "math/SquareMatrix.hpp"
@@ -27,7 +27,7 @@
 namespace GQCP {
 
 /**
- *  A templated private class for Fock spaces (private constructors with Fock space classes as friend classes)
+ *  A templated private class for Fock spaces (private constructors with Fock spaces friends)
  *  It supports efficient dense or sparse storage for elements evaluated in the Fock space.
  *
  *  @tparam Matrix              the type of matrix in which the evaluations of the Fock space will be stored
@@ -41,9 +41,8 @@ class EvaluationMatrix {
     /**
      * @param dimension         the dimensions of the matrix (equal to that of the fock space)
      */
-    EvaluationMatrix(size_t dimension) {
-        matrix = Matrix::Zero(dimension, dimension);
-    }
+    EvaluationMatrix(size_t dimension) :  Matrix::Zero(dimension, dimension) {}
+
 
     // PUBLIC METHODS
     /**
@@ -54,11 +53,11 @@ class EvaluationMatrix {
      * @param value     the value which is added to a given position in the matrix
      */
     void add(size_t i, size_t j, double value) {
-        matrix(i, j) += value;
+        this->matrix(i, j) += value;
     }
 
     // GETTER
-    const Matrix& get_matrix() const { return matrix; }
+    const Matrix& get_matrix() const { return this->matrix; }
 
     // Friend Classes
     friend class FockSpace;
@@ -71,7 +70,7 @@ class EvaluationMatrix {
 /**
  *  Sparse template specialization is required because insertions into an existing sparse matrix are expensive
  *  Elements should only be added to the matrix once all of them are evaluated in a vector of triplets
- *  Therefor the "add(size_t, size_t, double)" method adds elements to a vector of triplets instead.
+ *  Therefore the "add(size_t, size_t, double)" method adds elements to a vector of triplets instead.
  */
 template<>
 class EvaluationMatrix<Eigen::SparseMatrix<double>> {
@@ -83,9 +82,8 @@ class EvaluationMatrix<Eigen::SparseMatrix<double>> {
     /**
      * @param dimension         the dimensions of the matrix (equal to that of the fock space)
      */
-    EvaluationMatrix(size_t dimension) {
-        matrix = Eigen::SparseMatrix<double>(dimension, dimension);
-    }
+    EvaluationMatrix(size_t dimension) : matrix(Eigen::SparseMatrix<double>(dimension, dimension)) {}
+
 
     // PUBLIC METHODS
     /**
@@ -94,8 +92,8 @@ class EvaluationMatrix<Eigen::SparseMatrix<double>> {
      *  @param n        amount of memory reserved
      */
     void reserve(size_t n) {
-        triplet_vector.reserve(n);
-        matrix.reserve(n);
+        this->triplet_vector.reserve(n);
+        this->matrix.reserve(n);
     }
 
     /**
@@ -112,20 +110,22 @@ class EvaluationMatrix<Eigen::SparseMatrix<double>> {
     }
 
     /**
-     *  Adds all elements stored in the triplet vector to the Sparse matrix
+     *  Fill the sparse matrix with the elements stored in the triplet vector
      *  the more elements that are already present in the matrix, the more expensive this operation becomes
-     *  it is ill-advised to call the method more than once
+     *  Therefore, it is ill-advised to call the method more than once
      *
-     *  after addition to the matrix all elements in the triplet vector are cleared
+     *  After filling, the triplet vector is cleared
      */
     void addToMatrix() {
-        matrix.setFromTriplets(this->triplet_vector.begin(), this->triplet_vector.end());
-        triplet_vector = {};
+        this->matrix.setFromTriplets(this->triplet_vector.begin(), this->triplet_vector.end());
+        this->triplet_vector = {};
     }
 
+
     // GETTERS
-    const Eigen::SparseMatrix<double>& get_matrix() const { return matrix; }
-    const std::vector<Eigen::Triplet<double>> &get_triplets() const { return triplet_vector; }
+    const Eigen::SparseMatrix<double>& get_matrix() const { return this->matrix; }
+    const std::vector<Eigen::Triplet<double>>& get_triplets() const { return triplet_vector; }
+
 
     // Friend Classes
     friend class FockSpace;
@@ -137,4 +137,4 @@ class EvaluationMatrix<Eigen::SparseMatrix<double>> {
 }  // namespace GQCP
 
 
-#endif  // GQCP_EVALUATIONCONTAINER_HPP
+#endif  // GQCP_EVALUATIONMATRIX_HPP

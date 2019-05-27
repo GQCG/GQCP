@@ -16,7 +16,6 @@
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
 #include "FockSpace/FockSpace.hpp"
-
 #include <boost/numeric/conversion/converter.hpp>
 #include <boost/math/special_functions.hpp>
 
@@ -270,7 +269,7 @@ SquareMatrix<double> FockSpace::evaluateOperatorDense(const OneElectronOperator<
         throw std::invalid_argument("FockSpace::evaluateOperatorDense(OneElectronOperator<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
     }
 
-    EvaluationMatrix<SquareMatrix<double>> container(this->dim);
+    EvaluationMatrix<SquareMatrix<double>> container (this->dim);
     this->EvaluateOperator<SquareMatrix<double>>(one_op, container, diagonal_values);
     return container.get_matrix();
 }
@@ -292,9 +291,9 @@ Eigen::SparseMatrix<double> FockSpace::evaluateOperatorSparse(const OneElectronO
         throw std::invalid_argument("FockSpace::evaluateOperatorSparse(OneElectronOperator<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
     }
 
-    EvaluationMatrix<Eigen::SparseMatrix<double>> container(this->dim);
+    EvaluationMatrix<Eigen::SparseMatrix<double>> container (this->dim);
 
-    size_t memory =  this->countTotalOneElectronCouplings();
+    size_t memory = this->countTotalOneElectronCouplings();
     if (diagonal_values) {
         memory += this->dim;
     }
@@ -321,7 +320,7 @@ SquareMatrix<double> FockSpace::evaluateOperatorDense(const TwoElectronOperator<
         throw std::invalid_argument("FockSpace::evaluateOperatorDense(TwoElectronOperator<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
     }
 
-    EvaluationMatrix<SquareMatrix<double>> container(this->dim);
+    EvaluationMatrix<SquareMatrix<double>> container (this->dim);
     this->EvaluateOperator<SquareMatrix<double>>(two_op, container, diagonal_values);
     return container.get_matrix();
 }
@@ -343,9 +342,9 @@ Eigen::SparseMatrix<double> FockSpace::evaluateOperatorSparse(const TwoElectronO
         throw std::invalid_argument("FockSpace::evaluateOperatorSparse(TwoElectronOperator<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
     }
 
-    EvaluationMatrix<Eigen::SparseMatrix<double>> container(this->dim);
+    EvaluationMatrix<Eigen::SparseMatrix<double>> container (this->dim);
 
-    size_t memory =  this->countTotalTwoElectronCouplings();
+    size_t memory = this->countTotalTwoElectronCouplings();
     if (diagonal_values) {
         memory += this->dim;
     }
@@ -373,9 +372,8 @@ SquareMatrix<double> FockSpace::evaluateOperatorDense(const HamiltonianParameter
         throw std::invalid_argument("FockSpace::evaluateOperatorDense(HamiltonianParameters<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
     }
 
-    EvaluationMatrix<SquareMatrix<double>> container(this->dim);
+    EvaluationMatrix<SquareMatrix<double>> container (this->dim);
     this->EvaluateOperator<SquareMatrix<double>>(ham_par.get_h(), ham_par.get_g(), container, diagonal_values);
-
     return container.get_matrix();
 }
 
@@ -396,18 +394,16 @@ Eigen::SparseMatrix<double> FockSpace::evaluateOperatorSparse(const HamiltonianP
         throw std::invalid_argument("FockSpace::evaluateOperatorSparse(HamiltonianParameters<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
     }
 
-    EvaluationMatrix<Eigen::SparseMatrix<double>> container(this->dim);
+    EvaluationMatrix<Eigen::SparseMatrix<double>> container (this->dim);
 
-    size_t memory =  this->countTotalTwoElectronCouplings();
+    size_t memory = this->countTotalTwoElectronCouplings();
     if (diagonal_values) {
         memory += this->dim;
     }
 
     container.reserve(memory);
     this->EvaluateOperator<Eigen::SparseMatrix<double>>(ham_par.get_h(), ham_par.get_g(), container, diagonal_values);
-
     container.addToMatrix();
-
     return container.get_matrix();
 }
 
@@ -425,8 +421,8 @@ std::vector<Eigen::SparseMatrix<double>> FockSpace::calculateOneElectronCoupling
     size_t N = this->get_N();
     size_t dim = this->get_dimension();
 
-    std::vector<std::vector<Eigen::Triplet<double>>> sparse_entries(K*(K+1)/2);
-    std::vector<Eigen::SparseMatrix<double>> sparse_matrices(K*(K+1)/2, Eigen::SparseMatrix<double>(dim, dim));
+    std::vector<std::vector<Eigen::Triplet<double>>> sparse_entries (K*(K+1)/2);
+    std::vector<Eigen::SparseMatrix<double>> sparse_matrices (K*(K+1)/2, Eigen::SparseMatrix<double>(dim, dim));
 
     if (N == 0) {
         return sparse_matrices;
@@ -512,17 +508,15 @@ VectorX<double> FockSpace::evaluateOperatorDiagonal(const OneElectronOperator<do
         }
 
         for (size_t e1 = 0; e1 < N; e1++) {  // A1 (annihilation 1)
-
             size_t p = onv.get_occupation_index(e1);
-
             diagonal(I) += one_op(p, p);
-
         }
     }
 
     return diagonal;
 
 };
+
 
 /**
  *  Evaluate the diagonal of the operator
@@ -553,9 +547,7 @@ VectorX<double> FockSpace::evaluateOperatorDiagonal(const TwoElectronOperator<do
         }
 
         for (size_t e1 = 0; e1 < N; e1++) {  // A1 (annihilation 1)
-
             size_t p = onv.get_occupation_index(e1);
-
             diagonal(I) += k(p, p);
 
             for (size_t q = 0; q < K; q++) {  // q loops over SOs
@@ -570,8 +562,8 @@ VectorX<double> FockSpace::evaluateOperatorDiagonal(const TwoElectronOperator<do
     }
 
     return diagonal;
-
 };
+
 
 /**
  *  Evaluate the diagonal of the Hamiltonian
@@ -589,7 +581,6 @@ VectorX<double> FockSpace::evaluateOperatorDiagonal(const HamiltonianParameters<
 
     return this->evaluateOperatorDiagonal(ham_par.get_h()) + this->evaluateOperatorDiagonal(ham_par.get_g());
 };
-
 
 
 

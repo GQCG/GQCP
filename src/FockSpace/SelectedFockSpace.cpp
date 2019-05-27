@@ -259,7 +259,7 @@ SquareMatrix<double> SelectedFockSpace::evaluateOperatorDense(const OneElectronO
         throw std::invalid_argument("SelectedFockSpace::evaluateOperatorDense(OneElectronOperator<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
     }
 
-    EvaluationMatrix<SquareMatrix<double>> container(this->dim);
+    EvaluationMatrix<SquareMatrix<double>> container (this->dim);
     this->EvaluateOperator<SquareMatrix<double>>(one_op, container, diagonal_values);
     return container.get_matrix();
 }
@@ -280,9 +280,9 @@ Eigen::SparseMatrix<double> SelectedFockSpace::evaluateOperatorSparse(const OneE
         throw std::invalid_argument("SelectedFockSpace::evaluateOperatorSparse(OneElectronOperator<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
     }
 
-    EvaluationMatrix<Eigen::SparseMatrix<double>> container(this->dim);
+    EvaluationMatrix<Eigen::SparseMatrix<double>> container (this->dim);
 
-    // Estimate
+    // Estimate the memory that is needed for the evaluation
     size_t memory = dim * this->K * (this->N_alpha + this->N_beta);
     if (diagonal_values) {
         memory += this->dim;
@@ -310,7 +310,7 @@ SquareMatrix<double> SelectedFockSpace::evaluateOperatorDense(const TwoElectronO
         throw std::invalid_argument("SelectedFockSpace::evaluateOperatorDense(TwoElectronOperator<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
     }
 
-    EvaluationMatrix<SquareMatrix<double>> container(this->dim);
+    EvaluationMatrix<SquareMatrix<double>> container (this->dim);
     this->EvaluateOperator<SquareMatrix<double>>(two_op, container, diagonal_values);
     return container.get_matrix();
 }
@@ -332,9 +332,9 @@ Eigen::SparseMatrix<double> SelectedFockSpace::evaluateOperatorSparse(const TwoE
         throw std::invalid_argument("SelectedFockSpace::evaluateOperatorSparse(TwoElectronOperator<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
     }
 
-    EvaluationMatrix<Eigen::SparseMatrix<double>> container(this->dim);
+    EvaluationMatrix<Eigen::SparseMatrix<double>> container (this->dim);
 
-    // Estimate
+    // Estimate the memory that is needed for the evaluation
     size_t memory = dim * this->K * this->K * (this->N_alpha + this->N_beta)*(this->N_alpha + this->N_beta);
     if (diagonal_values) {
         memory += this->dim;
@@ -362,7 +362,7 @@ SquareMatrix<double> SelectedFockSpace::evaluateOperatorDense(const HamiltonianP
         throw std::invalid_argument("SelectedFockSpace::evaluateOperatorDense(HamiltonianParameters<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
     }
 
-    EvaluationMatrix<SquareMatrix<double>> container(this->dim);
+    EvaluationMatrix<SquareMatrix<double>> container (this->dim);
     this->EvaluateOperator<SquareMatrix<double>>(ham_par.get_h(), ham_par.get_g(), container, diagonal_values);
     return container.get_matrix();
 }
@@ -384,9 +384,9 @@ Eigen::SparseMatrix<double> SelectedFockSpace::evaluateOperatorSparse(const Hami
         throw std::invalid_argument("SelectedFockSpace::evaluateOperatorSparse(HamiltonianParameters<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
     }
 
-    EvaluationMatrix<Eigen::SparseMatrix<double>> container(this->dim);
+    EvaluationMatrix<Eigen::SparseMatrix<double>> container (this->dim);
 
-    // Estimate
+    // Estimate the memory that is needed for the evaluation
     size_t memory = dim * this->K * this->K * (this->N_alpha + this->N_beta) * (this->N_alpha + this->N_beta)/4;
     if (diagonal_values) {
         memory += this->dim;
@@ -394,9 +394,7 @@ Eigen::SparseMatrix<double> SelectedFockSpace::evaluateOperatorSparse(const Hami
 
     container.reserve(memory);
     this->EvaluateOperator<Eigen::SparseMatrix<double>>(ham_par.get_h(), ham_par.get_g(), container, diagonal_values);
-
     container.addToMatrix();
-
     return container.get_matrix();
 }
 
@@ -427,7 +425,6 @@ VectorX<double> SelectedFockSpace::evaluateOperatorDiagonal(const OneElectronOpe
         for (size_t p = 0; p < K; p++) {
             if (alpha_I.isOccupied(p)) {
                 diagonal(I) += one_op(p,p);
-
             }
 
             if (beta_I.isOccupied(p)) {
@@ -499,7 +496,6 @@ VectorX<double> SelectedFockSpace::evaluateOperatorDiagonal(const TwoElectronOpe
     }  // alpha address (Ia) loop
 
     return diagonal;
-
 };
 
 /**

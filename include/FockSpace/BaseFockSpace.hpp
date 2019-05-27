@@ -20,13 +20,12 @@
 
 
 #include "FockSpace/FockSpaceType.hpp"
-#include "math/Matrix.hpp"
+#include "math/SquareMatrix.hpp"
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
-#include "EvaluationMatrix.hpp"
 
+#include <Eigen/Sparse>
 #include <iostream>
 #include <memory>
-
 
 
 namespace GQCP {

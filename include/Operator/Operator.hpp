@@ -33,10 +33,6 @@ namespace GQCP {
  */
 template <typename DerivedOperator>
 class Operator {
-private:
-    size_t K;  // The orbitals basis in which the operator is expressed
-
-
 public:
 
     /**

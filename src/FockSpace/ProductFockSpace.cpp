@@ -44,25 +44,6 @@ ProductFockSpace::ProductFockSpace(size_t K, size_t N_alpha, size_t N_beta) :
 
 
 /*
- *  PRIVATE METHODS
- */
-
-OneElectronOperator<double> ProductFockSpace::oneElectronPartition(size_t p, size_t q, const TwoElectronOperator<double>& two_op) const {
-    auto K =  two_op.dimension(0);
-    OneElectronOperator<double> k = OneElectronOperator<double>::Zero(K, K);
-
-    for (size_t i = 0; i < K; i++) {
-        for (size_t j = 0; j < K; j++) {
-            k(i, j) += two_op(p, q, i, j);
-        }
-    }
-
-    return k;
-}
-
-
-
-/*
  *  STATIC PUBLIC METHODS
  */
 
@@ -85,9 +66,35 @@ size_t ProductFockSpace::calculateDimension(size_t K, size_t N_alpha, size_t N_b
 }
 
 
+
 /*
  * PUBLIC METHODS
  */
+
+/**
+ *  Auxiliary method in order to calculate "theta(pq)",
+ *  it returns a partition of a two-electron operator as one-electron operator
+ *  where A (i,j) = T (p, q, i, j).
+ *
+ *  @param p            first fixed index of the two-electron operator
+ *  @param q            second fixed index of the two-electron operator
+ *  @param two_op       the two-electron operator
+ *
+ *  @return a one-electron operator containing a partition of the two-electron operator
+ */
+OneElectronOperator<double> ProductFockSpace::oneElectronPartition(size_t p, size_t q, const TwoElectronOperator<double>& two_op) const {
+    auto K =  two_op.dimension(0);
+    OneElectronOperator<double> k = OneElectronOperator<double>::Zero(K, K);
+
+    for (size_t i = 0; i < K; i++) {
+        for (size_t j = 0; j < K; j++) {
+            k(i, j) += two_op(p, q, i, j);
+        }
+    }
+
+    return k;
+}
+
 
 /**
  *  Evaluate the operator in a dense matrix
@@ -114,14 +121,16 @@ SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const OneElectronOp
     }
 
     // ALPHA separated evaluations
-    SquareMatrix<double> ones = SquareMatrix<double>::Identity(dim_beta, dim_beta);
-    for (int i = 0; i < alpha_evaluation.cols(); i++){
-        for (int j = 0; j < alpha_evaluation.cols(); j++) {
+    const SquareMatrix<double> ones = SquareMatrix<double>::Identity(dim_beta, dim_beta);
+    for (size_t i = 0; i < alpha_evaluation.cols(); i++){
+        for (size_t j = 0; j < alpha_evaluation.cols(); j++) {
             total_evaluation.block(i * dim_beta, j * dim_beta, dim_beta, dim_beta) += alpha_evaluation(i,j)*ones;
         }
     }
+
     return total_evaluation;
 }
+
 
 /**
  *  Evaluate the operator in a sparse matrix
@@ -134,32 +143,9 @@ SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const OneElectronOp
 Eigen::SparseMatrix<double> ProductFockSpace::evaluateOperatorSparse(const OneElectronOperator<double>& one_op,
                                                                      bool diagonal_values) const {
 
-    /*
-    Eigen::SparseMatrix<double> total_evaluation = Eigen::SparseMatrix<double>(this->get_dimension(), this->get_dimension());
-
-    auto dim_alpha = fock_space_alpha.get_dimension();
-    auto dim_beta = fock_space_beta.get_dimension();
-
-    auto beta_evaluation = fock_space_beta.evaluateOperatorSparse(one_op, diagonal_values);
-    auto alpha_evaluation = fock_space_alpha.evaluateOperatorSparse(one_op, diagonal_values);
-
-
-    // BETA separated evaluations
-    for (size_t i = 0; i < dim_alpha; i++) {
-        total_evaluation.block(i * dim_beta, i * dim_beta, dim_beta, dim_beta) += beta_evaluation;
-    }
-
-    // ALPHA separated evaluations
-    Eigen::SparseMatrix<double> ones = Eigen::SparseMatrix<double>(dim_beta, dim_beta);
-    ones.setIdentity();
-    for (int i = 0; i < alpha_evaluation.cols(); i++){
-        for (Eigen::SparseMatrix<double>::InnerIterator it(alpha_evaluation, i); it; ++it) {
-            total_evaluation.block(it.row() * dim_beta, it.col() * dim_beta, dim_beta, dim_beta) += it.value()*ones;
-        }
-    }
-    */
     throw std::invalid_argument("ProductFockSpace::evaluateOperatorSparse(OneElectronOperator<double>, bool): Not implemented.");
 }
+
 
 /**
  *  Evaluate the operator in a dense matrix
@@ -186,7 +172,7 @@ SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const TwoElectronOp
     }
 
     // ALPHA separated evaluations
-    SquareMatrix<double> ones = SquareMatrix<double>::Identity(dim_beta, dim_beta);
+    const SquareMatrix<double> ones = SquareMatrix<double>::Identity(dim_beta, dim_beta);
     for (int i = 0; i < alpha_evaluation.cols(); i++){
         for (int j = 0; j < alpha_evaluation.cols(); j++) {
             total_evaluation.block(i * dim_beta, j * dim_beta, dim_beta, dim_beta) += alpha_evaluation(i,j)*ones;
@@ -226,6 +212,7 @@ SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const TwoElectronOp
     return total_evaluation;
 }
 
+
 /**
  *  Evaluate the operator in a sparse matrix
  *
@@ -236,61 +223,10 @@ SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const TwoElectronOp
  */
 Eigen::SparseMatrix<double> ProductFockSpace::evaluateOperatorSparse(const TwoElectronOperator<double>& two_op,
                                                                      bool diagonal_values) const {
-     /*
-    Eigen::SparseMatrix<double> total_evaluation = Eigen::SparseMatrix<double>(this->get_dimension(), this->get_dimension());
 
-    auto dim_alpha = fock_space_alpha.get_dimension();
-    auto dim_beta = fock_space_beta.get_dimension();
-
-    auto beta_evaluation = fock_space_beta.evaluateOperatorSparse(two_op, diagonal_values);
-    auto alpha_evaluation = fock_space_alpha.evaluateOperatorSparse(two_op, diagonal_values);
-
-    // BETA separated evaluations
-    for (size_t i = 0; i < dim_alpha; i++) {
-        total_evaluation.block(i * dim_beta, i * dim_beta, dim_beta, dim_beta) += beta_evaluation;
-    }
-
-    // ALPHA separated evaluations
-    Eigen::SparseMatrix<double> ones = Eigen::SparseMatrix<double>(dim_beta, dim_beta);
-    ones.setIdentity();
-    for (int i = 0; i < alpha_evaluation.cols(); i++){
-        for (Eigen::SparseMatrix<double>::InnerIterator it(alpha_evaluation, i); it; ++it) {
-            total_evaluation.block(it.row() * dim_beta, it.col() * dim_beta, dim_beta, dim_beta) += it.value()*ones;
-        }
-    }
-
-    // MIXED evaluations
-    for (size_t p = 0; p<K; p++) {
-
-        const auto& alpha_coupling = this->alpha_couplings[p*(K+K+1-p)/2];
-        const auto& P = this->oneElectronPartition(p, p, two_op);
-        const auto& beta_two_electron_intermediate = this->fock_space_beta.evaluateOperatorSparse(P, true);
-
-        for (int i = 0; i < alpha_coupling.outerSize(); ++i){
-            for (Eigen::SparseMatrix<double>::InnerIterator it(alpha_coupling, i); it; ++it) {
-                // it.value sigma(pp) element multiplied with the sparse matrix theta(pp) : beta_two_electron_intermediate
-                total_evaluation.block(it.row() * dim_beta, it.col() * dim_beta, dim_beta, dim_beta) += it.value()*beta_two_electron_intermediate;
-
-            }
-        }
-
-        for (size_t q = p + 1; q<K; q++) {
-
-            const auto& alpha_coupling = this->alpha_couplings[p*(K+K+1-p)/2 + q - p];
-            const auto& P = oneElectronPartition(p, q, two_op);
-            const auto& beta_two_electron_intermediate = fock_space_beta.evaluateOperatorSparse(P, diagonal_values);
-
-            for (int i = 0; i < alpha_coupling.outerSize(); ++i){
-                for (Eigen::SparseMatrix<double>::InnerIterator it(alpha_coupling, i); it; ++it) {
-                    // it.value (sigma(pq) + sigma(qp)) element multiplied with the sparse matrix theta(pq) : beta_two_electron_intermediate
-                    total_evaluation.block(it.row() * dim_beta, it.col() * dim_beta, dim_beta, dim_beta) += it.value()*beta_two_electron_intermediate;
-                }
-            }
-        }
-    }
-    */
     throw std::invalid_argument("ProductFockSpace::evaluateOperatorSparse(TwoElectronOperator<double>, bool): Not implemented.");
 }
+
 
 /**
  *  Evaluate the Hamiltonian in a dense matrix
@@ -317,7 +253,7 @@ SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const HamiltonianPa
     }
 
     // ALPHA separated evaluations
-    SquareMatrix<double> ones = SquareMatrix<double>::Identity(dim_beta, dim_beta);
+    const SquareMatrix<double> ones = SquareMatrix<double>::Identity(dim_beta, dim_beta);
     for (int i = 0; i < alpha_evaluation.cols(); i++){
         for (int j = 0; j < alpha_evaluation.cols(); j++) {
             total_evaluation.block(i * dim_beta, j * dim_beta, dim_beta, dim_beta) += alpha_evaluation(i,j)*ones;
@@ -357,6 +293,7 @@ SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const HamiltonianPa
     return total_evaluation;
 }
 
+
 /**
  *  Evaluate the Hamiltonian in a sparse matrix
  *
@@ -368,62 +305,8 @@ SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const HamiltonianPa
 Eigen::SparseMatrix<double> ProductFockSpace::evaluateOperatorSparse(const HamiltonianParameters<double>& ham_par,
                                                                      bool diagonal_values) const {
 
-    /*
-    Eigen::SparseMatrix<double> total_evaluation = Eigen::SparseMatrix<double>(this->get_dimension(), this->get_dimension());
-
-    auto dim_alpha = fock_space_alpha.get_dimension();
-    auto dim_beta = fock_space_beta.get_dimension();
-
-    auto beta_evaluation = fock_space_beta.evaluateOperatorSparse(ham_par, diagonal_values);
-    auto alpha_evaluation = fock_space_alpha.evaluateOperatorSparse(ham_par, diagonal_values);
-    /*
-    // BETA separated evaluations
-    for (size_t i = 0; i < dim_alpha; i++) {
-        total_evaluation.block(i * dim_beta, i * dim_beta, dim_beta, dim_beta) += beta_evaluation;
-    }
-
-    // ALPHA separated evaluations
-    Eigen::SparseMatrix<double> ones = Eigen::SparseMatrix<double>(dim_beta, dim_beta);
-    ones.setIdentity();
-    for (int i = 0; i < alpha_evaluation.cols(); i++){
-        for (Eigen::SparseMatrix<double>::InnerIterator it(alpha_evaluation, i); it; ++it) {
-            total_evaluation.block(it.row() * dim_beta, it.col() * dim_beta, dim_beta, dim_beta) += it.value()*ones;
-        }
-    }
-
-    // MIXED evaluations
-    for (size_t p = 0; p<K; p++) {
-
-        const auto& alpha_coupling = this->alpha_couplings[p*(K+K+1-p)/2];
-        const auto& P = this->oneElectronPartition(p, p, ham_par.get_g());
-        const auto& beta_two_electron_intermediate = this->fock_space_beta.evaluateOperatorSparse(P, true);
-
-        for (int i = 0; i < alpha_coupling.outerSize(); ++i){
-            for (Eigen::SparseMatrix<double>::InnerIterator it(alpha_coupling, i); it; ++it) {
-                // it.value sigma(pp) element multiplied with the sparse matrix theta(pp) : beta_two_electron_intermediate
-                total_evaluation.block(it.row() * dim_beta, it.col() * dim_beta, dim_beta, dim_beta) += it.value()*beta_two_electron_intermediate;
-
-            }
-        }
-
-        for (size_t q = p + 1; q<K; q++) {
-
-            const auto& alpha_coupling = this->alpha_couplings[p*(K+K+1-p)/2 + q - p];
-            const auto& P = oneElectronPartition(p, q, ham_par.get_g());
-            const auto& beta_two_electron_intermediate = fock_space_beta.evaluateOperatorSparse(P, diagonal_values);
-
-            for (int i = 0; i < alpha_coupling.outerSize(); ++i){
-                for (Eigen::SparseMatrix<double>::InnerIterator it(alpha_coupling, i); it; ++it) {
-                    // it.value (sigma(pq) + sigma(qp)) element multiplied with the sparse matrix theta(pq) : beta_two_electron_intermediate
-                    total_evaluation.block(it.row() * dim_beta, it.col() * dim_beta, dim_beta, dim_beta) += it.value()*beta_two_electron_intermediate;
-                }
-            }
-        }
-    }
-    */
     throw std::invalid_argument("ProductFockSpace::evaluateOperatorSparse(HamiltonianParameters<double>, bool): Not implemented.");
 }
-
 
 
 /**
@@ -477,7 +360,8 @@ VectorX<double> ProductFockSpace::evaluateOperatorDiagonal(const OneElectronOper
     }  // alpha address (Ia) loop
 
     return diagonal;
-};
+}
+
 
 /**
  *  Evaluate the diagonal of the operator in this Fock space
@@ -553,8 +437,8 @@ VectorX<double> ProductFockSpace::evaluateOperatorDiagonal(const TwoElectronOper
     }  // alpha address (Ia) loop
 
     return diagonal;
+}
 
-};
 
 /**
  *  Evaluate the diagonal of the Hamiltonian in this Fock space
@@ -565,7 +449,7 @@ VectorX<double> ProductFockSpace::evaluateOperatorDiagonal(const TwoElectronOper
  */
 VectorX<double> ProductFockSpace::evaluateOperatorDiagonal(const HamiltonianParameters<double>& ham_par) const {
     return this->evaluateOperatorDiagonal(ham_par.get_h()) + this->evaluateOperatorDiagonal(ham_par.get_g());
-};
+}
 
 
 

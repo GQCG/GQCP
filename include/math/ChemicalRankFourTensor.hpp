@@ -52,10 +52,8 @@ public:
 
 
     /*
-     *  GETTER
+     *  GETTERS
      */
-
-
     size_t get_K() const { return this->dimension(0); };
 
 

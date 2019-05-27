@@ -57,7 +57,7 @@ public:
     const FockSpace& get_fock_space_alpha() const { return this->fock_space_alpha; }
     const FockSpace& get_fock_space_beta() const { return this->fock_space_beta; }
     FockSpaceType get_type() const override { return FockSpaceType::ProductFockSpace; }
-    std::vector<Eigen::SparseMatrix<double>> get_alpha_couplings() const { return alpha_couplings; }
+    const std::vector<Eigen::SparseMatrix<double>>& get_alpha_couplings() const { return alpha_couplings; }
 
 
     // STATIC PUBLIC METHODS
@@ -72,6 +72,17 @@ public:
 
 
     // PUBLIC METHODS
+    /**
+     *  Auxiliary method in order to calculate "theta(pq)",
+     *  it returns a partition of a two-electron operator as one-electron operator
+     *  where A (i,j) = T (p, q, i, j).
+     *
+     *  @param p            first fixed index of the two-electron operator
+     *  @param q            second fixed index of the two-electron operator
+     *  @param two_op       the two-electron operator
+     *
+     *  @return a one-electron operator containing a partition of the two-electron operator
+     */
     OneElectronOperator<double> oneElectronPartition(size_t p, size_t q, const TwoElectronOperator<double>& two_op) const;
 
     /**
