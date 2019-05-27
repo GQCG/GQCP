@@ -1,31 +1,133 @@
-# top-level CMakeLists.txt
+cmake_minimum_required(VERSION 3.13 FATAL_ERROR)
+project(gqcp VERSION 0.2.0 LANGUAGES CXX)
 
-cmake_minimum_required(VERSION 3.9 FATAL_ERROR)
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake) # make CMake look into the ./cmake/ folder for configuration files
 
-project(gqcp
-        VERSION 0.2.0
-        LANGUAGES CXX)
+add_library(gqcp SHARED "")
 
-set(CMAKE_CXX_STANDARD 11)
+# Supported options
+# -----------------
+option(BUILD_TESTS "Build tests" OFF)
+option(BUILD_DOCS "Build the documentation using Doxygen" OFF)
+option(BUILD_BENCHMARKS "Build benchmarks executables" OFF)
+option(BUILD_DRIVERS "Build standard drivers" OFF)
+option(EIGEN_USE_MKL_ALL "Eigen uses MKL" OFF)
 
-# Establish the CMake environment - define all CMake variables
-include(${CMAKE_SOURCE_DIR}/cmake/Definitions/CMakeDefinitions.cmake)
+# Look for supporting libraries
+# -----------------------------
 
+find_package(Git REQUIRED)
+find_package(Eigen3 3.3.4 REQUIRED)
+find_package(Int2 REQUIRED)
+find_package(Boost REQUIRED COMPONENTS program_options unit_test_framework)
+find_package(Spectra REQUIRED)
+find_package(Cint REQUIRED)
 
-# Parse all *.in-files
-include(${CMAKE_SOURCE_DIR}/cmake/Parse/ParseInputFiles.cmake)
+if(EIGEN_USE_MKL_ALL)
+    set(BLA_VENDOR Intel10_64lp)
+    find_package(BLAS REQUIRED)
+endif()
 
+if(BUILD_TESTS)
+    find_package(Boost REQUIRED COMPONENTS program_options unit_test_framework)
+else()
+    find_package(Boost REQUIRED COMPONENTS program_options)
+endif()
 
-# Configure and build
-add_subdirectory(${PROJECT_SOURCE_FOLDER})
+if (BUILD_DOCS)
+    find_package(Doxygen REQUIRED dot)
+endif()
 
 if (BUILD_BENCHMARKS)
-    add_subdirectory(${PROJECT_BENCHMARKS_FOLDER})
+    find_package(benchmark REQUIRED)
+endif()
+
+# Setup library
+# -------------
+
+target_compile_options(gqcp PUBLIC -m64 -pipe)
+target_compile_options(gqcp PUBLIC "$<IF:$<CONFIG:Debug>,-g,-O2>")
+target_compile_options(gqcp PUBLIC "$<IF:$<CXX_COMPILER_ID:Intel>,-xHost,-march=native>")
+target_compile_options(gqcp PUBLIC "$<$<CXX_COMPILER_ID:GNU>:-pthread>")
+target_link_options(gqcp PUBLIC "$<$<CXX_COMPILER_ID:GNU>:-pthread>")
+target_compile_features(gqcp PUBLIC cxx_std_11)
+
+add_subdirectory(src)
+add_subdirectory(include)
+
+target_include_directories(gqcp
+        PUBLIC
+        $<INSTALL_INTERFACE:include>
+        $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
+        )
+
+target_link_libraries(gqcp
+        PUBLIC
+            Eigen3::Eigen
+            Int2::Int2
+            Cint::Cint
+            Spectra::Spectra
+        )
+target_include_directories(gqcp PUBLIC ${Boost_INCLUDE_DIRS})
+target_link_libraries(gqcp PUBLIC ${Boost_LIBRARIES})
+if (EIGEN_USE_MKL_ALL)
+    target_include_directories(gqcp PUBLIC ${BLAS_INCLUDE_DIR})
+    target_link_libraries(gqcp PUBLIC ${BLAS_LIBRARIES})
+endif()
+
+configure_file(cmake/version.hpp.in include/version.hpp @ONLY)
+
+# Parse additional options
+# ------------------------
+
+if (BUILD_TESTS)
+    enable_testing()
+    add_subdirectory(tests)
+endif()
+
+# Generate documentation
+if (BUILD_DOCS)
+    set(DOXYGEN_IN cmake/Doxyfile.in)
+    set(DOXYGEN_OUT ${CMAKE_BINARY_DIR}/Doxyfile)
+
+    configure_file(${DOXYGEN_IN} ${DOXYGEN_OUT} @ONLY)
+
+    add_custom_target(docs ALL
+            COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_OUT}
+            WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+            VERBATIM)
+endif()
+
+if (BUILD_BENCHMARKS)
+    add_subdirectory(benchmarks)
 endif()
 
 if (BUILD_DRIVERS)
-    add_subdirectory(${PROJECT_DRIVERS_FOLDER})
+    add_subdirectory(drivers)
 endif()
 
-enable_testing()
-add_subdirectory(${PROJECT_TESTS_FOLDER})
+# Install the library (relative to the CMAKE_INSTALL_PREFIX)
+# ----------------------------------------------------------
+
+install(TARGETS gqcp EXPORT gqcpTargets
+        LIBRARY DESTINATION lib
+        ARCHIVE DESTINATION lib
+        RUNTIME DESTINATION bin
+        INCLUDES DESTINATION include
+        )
+
+install(EXPORT gqcpTargets
+        FILE gqcpTargets.cmake
+        NAMESPACE gqcp::
+        DESTINATION lib/cmake/gqcp
+        )
+
+# Git related information
+# -----------------------
+
+# Get the long git SHA1 (https://stackoverflow.com/a/21028226/7930415)
+execute_process(COMMAND "${GIT_EXECUTABLE}" describe --always --abbrev=40 --dirty
+        WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
+        OUTPUT_VARIABLE GIT_SHA1
+        ERROR_QUIET
+        OUTPUT_STRIP_TRAILING_WHITESPACE)

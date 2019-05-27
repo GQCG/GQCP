@@ -1,0 +1,14 @@
+target_sources(gqcp
+        PRIVATE
+            BaseRDMBuilder.cpp
+            BaseSpinUnresolvedRDMBuilder.cpp
+            DOCIRDMBuilder.cpp
+            FCIRDMBuilder.cpp
+            FrozenCoreDOCIRDMBuilder.cpp
+            FrozenCoreFCIRDMBuilder.cpp
+            FrozenCoreRDMBuilder.cpp
+            RDMCalculator.cpp
+            SelectedRDMBuilder.cpp
+            SpinUnresolvedFCIRDMBuilder.cpp
+            SpinUnresolvedRDMCalculator.cpp
+        )

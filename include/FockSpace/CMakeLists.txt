@@ -1,0 +1,13 @@
+target_sources(gqcp
+        PRIVATE
+            BaseFockSpace.hpp
+            Configuration.hpp
+            FockPermutator.hpp
+            FockSpace.hpp
+            FockSpaceType.hpp
+            FrozenFockSpace.hpp
+            FrozenProductFockSpace.hpp
+            ONV.hpp
+            ProductFockSpace.hpp
+            SelectedFockSpace.hpp
+        )

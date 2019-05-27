@@ -1,12 +1,16 @@
 target_sources(gqcp
         PRIVATE
-            Atom.cpp
-            DOCINewtonOrbitalOptimizer.cpp
-            elements.cpp
-            HoppingMatrix.cpp
-            JacobiRotationParameters.cpp
-            Molecule.cpp
-            RMP2.cpp
+            Atom.hpp
+            DOCINewtonOrbitalOptimizer.hpp
+            elements.hpp
+            gqcp.hpp
+            HoppingMatrix.hpp
+            JacobiRotationParameters.hpp
+            Molecule.hpp
+            OrbitalOptimizationOptions.hpp
+            RMP2.hpp
+            typedefs.hpp
+            units.hpp
         )
 
 add_subdirectory(Basis)
