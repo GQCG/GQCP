@@ -13,7 +13,6 @@ addons:
     packages:
       - gcc-8
       - g++-8
-      - cmake
 
 # Enable Slack notifications, disable e-mail
 notifications:
@@ -57,7 +56,6 @@ before_install:
     # Set GCC 8 compiler
     - export CC=/usr/bin/gcc-8
     - export CXX=/usr/bin/g++-8
-    - gcc -v && g++ -v && cmake --version
 
 # Install general dependencies
 install:
@@ -69,11 +67,14 @@ install:
 
     # Install a recent version of CMake, Boost and eigen if they are not yet already installed.
     - if [ ! -f $HOME/miniconda/bin/cmake ]; then
-        conda install -c conda-forge cmake boost-cpp eigen blas;
+        conda install -c conda-forge cmake=3.13 boost-cpp eigen blas mkl;
         conda install -c gqcg libint;
+        conda install -c pyscf libcint;
+        conda install -c intel mkl-include mkl-static intel-openmp;
       else
         echo "Using already installed packages.";
       fi
+    - export PATH=${HOME}/miniconda/bin:${PATH} # Use conda CMake
     - export LIBINT_DATA_PATH=${HOME}/miniconda/share/libint/2.3.1/basis
 
     # Install google benchmark
@@ -87,21 +88,12 @@ install:
     - cmake .. -DCMAKE_BUILD_TYPE=RELEASE
     - make -j3 && sudo make install
 
-    # Install libcint
-    - mkdir /tmp/libcint && cd /tmp/libcint
-    - git clone https://github.com/sunqm/libcint.git
-    - cd libcint
-    - mkdir build && cd build
-    - cmake ..
-    - make && sudo make install
-
-
 # Run the build script
 script:
   - cd ${TRAVIS_BUILD_DIR}
   - mkdir build && cd build
-  - cmake .. -DBUILD_BENCHMARKS=ON -DBUILD_DRIVERS=ON -DBOOST_LIBRARYDIR=${HOME}/miniconda/lib -DBOOST_INCLUDEDIR=${HOME}/miniconda/include
-  - make -j3 VERBOSE=1 && make test ARGS=-j3 && sudo make install
+  - cmake .. -DBUILD_TESTS=TRUE -DBUILD_BENCHMARKS=TRUE -DBUILD_DRIVERS=TRUE -DCMAKE_INCLUDE_PATH=${HOME}/miniconda/include -DCMAKE_LIBRARY_PATH=${HOME}/miniconda/lib -DEIGEN_USE_MKL_ALL=TRUE
+  - make -j3 VERBOSE=1 && env CTEST_OUTPUT_ON_FAILURE=1 make test ARGS=-j3 && sudo make install
 
 # Run the benchmarks
   - cd benchmarks

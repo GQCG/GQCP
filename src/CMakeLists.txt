@@ -1,14 +1,24 @@
-include(${CMAKE_SOURCE_DIR}/cmake/Configure/ConfigureLibrary.cmake)
+target_sources(gqcp
+        PRIVATE
+            Atom.cpp
+            DOCINewtonOrbitalOptimizer.cpp
+            elements.cpp
+            HoppingMatrix.cpp
+            JacobiRotationParameters.cpp
+            Molecule.cpp
+            RMP2.cpp
+        )
 
-# Generate documentation
-if (BUILD_DOCS)
-    set(DOXYGEN_IN ${CMAKE_SOURCE_DIR}/cmake/Parse/Doxyfile.in)
-    set(DOXYGEN_OUT ${CMAKE_BINARY_DIR}/Doxyfile)
-
-    configure_file(${DOXYGEN_IN} ${DOXYGEN_OUT} @ONLY)
-
-    add_custom_target(docs ALL
-            COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_OUT}
-            WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-            VERBATIM)
-endif()
+add_subdirectory(Basis)
+add_subdirectory(CISolver)
+add_subdirectory(FockSpace)
+add_subdirectory(geminals)
+add_subdirectory(HamiltonianBuilder)
+add_subdirectory(HamiltonianParameters)
+add_subdirectory(Localization)
+add_subdirectory(math)
+add_subdirectory(properties)
+add_subdirectory(RDM)
+add_subdirectory(RHF)
+add_subdirectory(utilities)
+add_subdirectory(WaveFunction)
