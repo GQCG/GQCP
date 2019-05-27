@@ -95,27 +95,27 @@ In general, please set and pass the following options to the `cmake ..` command:
    For instance, the libInt2, libCint and Intel MKL libraries should be on this search path.
 
 * `-DCMAKE_INSTALL_PREFIX=prefix`, with `prefix` (defaulted to `/usr/local`) the installation prefix you want the library to be installed it. This option controls where the library is installed:
-    * the header files will be installed in `prefix/gqcp/include`
-    * the compiled library will be installed in `prefix/gqcp/lib`
-    * drivers (optional) and benchmarks (optional) will be installed in `prefix/gqcp/bin`
-    * CMake target files will be installed in `prefix/gqcp/cmake`
+    * the header files will be installed in `prefix/include`
+    * the compiled library will be installed in `prefix/lib`
+    * drivers (optional) and benchmarks (optional) will be installed in `prefix/bin`
+    * CMake target files will be installed in `prefix/cmake`
 
 For this library, there are several extra options you can pass to the `cmake ..` command:
 
 * `-DEIGEN_USE_MKL_ALL=TRUE` makes sure that Eigen uses Intel MKL.
 
 
-* `-DBUILD_DOCS=ON` specifies that documentation should be built using Doxygen, in which case Graphviz is required for UML generation. A custom `docs` target will then be configured by CMake, so that
+* `-DBUILD_DOCS=TRUE` specifies that documentation should be built using Doxygen, in which case Graphviz is required for UML generation. A custom `docs` target will then be configured by CMake, so that
 
         make docs
     
     compiles the documentation. After compilation, the HTML documentation can be found in the `docs/html` directory inside your out-of-source `build` directory. Navigating the documentation is easiest if you start with the `index.html` file.
 
 
-* `-DBUILD_DRIVERS=ON` controls that you want to build the extra drivers, which are executables for some common use-cases.
+* `-DBUILD_DRIVERS=TRUE` controls that you want to build the extra drivers, which are executables for some common use-cases.
 
 
-* `-DBUILD_BENCHMARKS=ON` makes sure CMake adds the benchmark executables as targets. This uses [Google benchmark](https://github.com/google/benchmark), so make sure you have this installed if you wish to proceed with benchmarking on your system.
+* `-DBUILD_BENCHMARKS=TRUE` makes sure CMake adds the benchmark executables as targets. This uses [Google benchmark](https://github.com/google/benchmark), so make sure you have this installed if you wish to proceed with benchmarking on your system.
 
 
 ### Usage in an external project

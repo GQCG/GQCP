@@ -8,7 +8,7 @@ Find the Int2 library (https://github.com/evaleev/libint) on the system.
 Result Variables
 ^^^^^^^^^^^^^^^^
 
-This module will set the following variables in your project:
+This module makes a ``Int2::Int2``target and will set the following variables in your project:
 
 ``Int2_FOUND``
   System has the Int2 library installed.
@@ -29,7 +29,7 @@ mark_as_advanced(Int2_INCLUDE_DIR Int2_LIBRARY)
 
 include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(Int2 REQUIRED_VARS
-        Int2_INCLUDE_DIR Int2_LIBRARY)
+        Int2_INCLUDE_DIR Int2_LIBRARY) # sets Int2_FOUND
 
 if(Int2_FOUND AND NOT TARGET Int2::Int2)
     add_library(Int2::Int2 UNKNOWN IMPORTED)

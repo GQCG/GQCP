@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.13 FATAL_ERROR)
 project(gqcp VERSION 0.2.0 LANGUAGES CXX)
 
-list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake) # make CMake look into the ./cmake/ folder for configuration files
 
 add_library(gqcp SHARED "")
 
@@ -106,8 +106,8 @@ if (BUILD_DRIVERS)
     add_subdirectory(drivers)
 endif()
 
-# Install the library
-# -------------------
+# Install the library (relative to the CMAKE_INSTALL_PREFIX)
+# ----------------------------------------------------------
 
 install(TARGETS gqcp EXPORT gqcpTargets
         LIBRARY DESTINATION lib

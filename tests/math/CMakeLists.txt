@@ -11,4 +11,3 @@ list(APPEND test_target_sources
 add_subdirectory(optimization)
 
 set(test_target_sources ${test_target_sources} PARENT_SCOPE)
-
