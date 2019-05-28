@@ -59,7 +59,7 @@ SquareMatrix<double> BaseFrozenCoreFockSpace::evaluateOperatorDense(const OneEle
 
     if (diagonal_values) {
         // Diagonal correction
-        const auto frozen_core_diagonal = BaseFrozenCoreFockSpace::frozenCoreDiagonal(frozen_one_op, this->X, this->active_fock_space->get_dimension());
+        const auto frozen_core_diagonal = BaseFrozenCoreFockSpace::frozenCoreDiagonal(one_op, this->X, this->active_fock_space->get_dimension());
         evaluation += frozen_core_diagonal.asDiagonal();
     }
 
@@ -86,7 +86,7 @@ Eigen::SparseMatrix<double> BaseFrozenCoreFockSpace::evaluateOperatorSparse(cons
 
     if (diagonal_values) {
         // Diagonal correction
-        const auto frozen_core_diagonal = BaseFrozenCoreFockSpace::frozenCoreDiagonal(frozen_one_op, this->X, this->active_fock_space->get_dimension());
+        const auto frozen_core_diagonal = BaseFrozenCoreFockSpace::frozenCoreDiagonal(one_op, this->X, this->active_fock_space->get_dimension());
         evaluation += frozen_core_diagonal.asDiagonal();
     }
 
@@ -113,8 +113,7 @@ SquareMatrix<double> BaseFrozenCoreFockSpace::evaluateOperatorDense(const TwoEle
 
     if (diagonal_values) {
         // Diagonal correction
-        auto frozen_core_diagonal = BaseFrozenCoreFockSpace::frozenCoreDiagonal(frozen_ops.one_op, this->X, this->active_fock_space->get_dimension());
-        frozen_core_diagonal += BaseFrozenCoreFockSpace::frozenCoreDiagonal(frozen_ops.two_op, this->X, this->active_fock_space->get_dimension());
+        const auto frozen_core_diagonal = BaseFrozenCoreFockSpace::frozenCoreDiagonal(two_op, this->X, this->active_fock_space->get_dimension());
         evaluation += frozen_core_diagonal.asDiagonal();
     }
 
@@ -142,8 +141,7 @@ Eigen::SparseMatrix<double> BaseFrozenCoreFockSpace::evaluateOperatorSparse(cons
 
     if (diagonal_values) {
         // Diagonal correction
-        auto frozen_core_diagonal = BaseFrozenCoreFockSpace::frozenCoreDiagonal(frozen_ops.one_op, this->X, this->active_fock_space->get_dimension());
-        frozen_core_diagonal += BaseFrozenCoreFockSpace::frozenCoreDiagonal(frozen_ops.two_op, this->X, this->active_fock_space->get_dimension());
+        const auto frozen_core_diagonal = BaseFrozenCoreFockSpace::frozenCoreDiagonal(two_op, this->X, this->active_fock_space->get_dimension());
         evaluation += frozen_core_diagonal.asDiagonal();
     }
 
@@ -169,7 +167,7 @@ SquareMatrix<double> BaseFrozenCoreFockSpace::evaluateOperatorDense(const Hamilt
 
     if (diagonal_values) {
         // Diagonal correction
-        const auto frozen_core_diagonal = BaseFrozenCoreFockSpace::frozenCoreDiagonal(frozen_ham_par, this->X, this->active_fock_space->get_dimension());
+        const auto frozen_core_diagonal = BaseFrozenCoreFockSpace::frozenCoreDiagonal(ham_par, this->X, this->active_fock_space->get_dimension());
         evaluation += frozen_core_diagonal.asDiagonal();
     }
 
@@ -195,7 +193,7 @@ Eigen::SparseMatrix<double> BaseFrozenCoreFockSpace::evaluateOperatorSparse(cons
 
     if (diagonal_values) {
         // Diagonal correction
-        const auto frozen_core_diagonal = BaseFrozenCoreFockSpace::frozenCoreDiagonal(frozen_ham_par, this->X, this->active_fock_space->get_dimension());
+        const auto frozen_core_diagonal = BaseFrozenCoreFockSpace::frozenCoreDiagonal(ham_par, this->X, this->active_fock_space->get_dimension());
         evaluation += frozen_core_diagonal.asDiagonal();
     }
 
