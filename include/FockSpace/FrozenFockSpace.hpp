@@ -21,6 +21,7 @@
 #include "FockSpace/BaseFockSpace.hpp"
 #include "FockSpace/FockPermutator.hpp"
 #include "FockSpace/FockSpace.hpp"
+#include "FockSpace/BaseFrozenCoreFockSpace.hpp"
 
 
 namespace GQCP {
@@ -29,8 +30,8 @@ namespace GQCP {
 /**
  *  A class that represents a frozen Fock space: this is a subspace of the N-electron Fock space in which the first X orbitals are always occupied
  */
-class FrozenFockSpace: public BaseFockSpace, public FockPermutator<FrozenFockSpace> {
-private:
+class FrozenFockSpace: public BaseFrozenCoreFockSpace, public FockPermutator<FrozenFockSpace> {
+protected:
     size_t X;  // number of frozen orbitals/electrons
     FockSpace active_fock_space;  // active (non-frozen) Fock space containing only the active electrons (N-X) and orbitals (K-X)
 
@@ -111,6 +112,7 @@ public:
      *  @return the amount non-zero (non-diagonal) couplings of a two electron coupling scheme in the Fock space
      */
     size_t countTotalTwoElectronCouplings() const override;
+
 
     // PUBLIC METHODS
     /**

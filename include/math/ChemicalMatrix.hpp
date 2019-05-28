@@ -48,9 +48,14 @@ public:
     using SquareMatrix<Scalar>::SquareMatrix;  // use base constructors
 
 
+    /*
+     *  GETTERS
+     */
+    size_t get_K() const { return this->cols(); };
+
 
     /*
-     *  Public Methods
+     *  PUBLIC METHODS
      */
 
     /**

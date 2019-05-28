@@ -432,46 +432,6 @@ BOOST_AUTO_TEST_CASE ( calculateEdmistonRuedenbergLocalizationIndex ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( effective_one_electron_integrals ) {
-
-    size_t K = 4;
-    auto K_ = static_cast<double>(K);
-
-    // Set up toy 2-electron integrals and put them into Hamiltonian parameters
-    GQCP::SquareRankFourTensor<double> g_op (K);
-    g_op.setZero();
-
-    for (size_t i = 0; i < K; i++) {
-        for (size_t j = 0; j < K; j++) {
-            for (size_t k = 0; k < K; k++) {
-                for (size_t l = 0; l < K; l++) {
-                    g_op(i,j,k,l) = (i+1) + 2*(j+1) + 4*(k+1) + 8*(l+1);
-                }
-            }
-        }
-    }
-
-    GQCP::OneElectronOperator<double> S_op = GQCP::OneElectronOperator<double>::Identity(K, K);
-    GQCP::OneElectronOperator<double> h_op = GQCP::OneElectronOperator<double>::Zero(K, K);
-    GQCP::SquareMatrix<double> C = GQCP::SquareMatrix<double>::Identity(K, K);
-    GQCP::HamiltonianParameters<double> ham_par (nullptr, S_op, h_op, g_op, C);
-
-
-    // Set up the reference effective one-electron integrals by manual calculation
-    GQCP::OneElectronOperator<double> k_ref = GQCP::OneElectronOperator<double>::Zero(K, K);
-    for (size_t p = 0; p < K; p++) {
-        for (size_t q = 0; q < K; q++) {
-            auto p_ = static_cast<double>(p) + 1;
-            auto q_ = static_cast<double>(q) + 1;
-
-            k_ref(p,q) = -K_ / 2 * (p_ + 8*q_ + 3*K_ + 3);
-        }
-    }
-
-    BOOST_CHECK(k_ref.isApprox(ham_par.calculateEffectiveOneElectronIntegrals(), 1.0e-08));
-}
-
-
 BOOST_AUTO_TEST_CASE ( areOrbitalsOrthonormal ) {
 
     // We assume that the orbitals in an FCIDUMP file are orthonormal

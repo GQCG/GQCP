@@ -266,64 +266,7 @@ VectorX<double> SelectedCI::matrixVectorProduct(const HamiltonianParameters<doub
  *  @return the diagonal of the matrix representation of the SelectedCI Hamiltonian
  */
 VectorX<double> SelectedCI::calculateDiagonal(const HamiltonianParameters<double>& hamiltonian_parameters) const {
-
-    auto K = hamiltonian_parameters.get_h().get_dim();
-    if (K != this->fock_space.get_K()) {
-        throw std::invalid_argument("SelectedCI::calculateDiagonal(HamiltonianParameters<double>): Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
-    }
-
-    auto dim = fock_space.get_dimension();
-
-    auto h = hamiltonian_parameters.get_h();
-    auto g = hamiltonian_parameters.get_g();
-
-    // Diagonal contributions
-    VectorX<double> diagonal = VectorX<double>::Zero(dim);
-
-    for (size_t I = 0; I < dim; I++) {  // Ia loops over addresses of alpha onvs
-        Configuration configuration_I = this->fock_space.get_configuration(I);
-        ONV alpha_I = configuration_I.onv_alpha;
-        ONV beta_I = configuration_I.onv_beta;
-
-        for (size_t p = 0; p < K; p++) {
-            if (alpha_I.isOccupied(p)) {
-                diagonal(I) += h(p,p);
-                for (size_t q = 0; q < K; q++) {
-
-                    if (p != q) {  // can't create/annihilate the same orbital twice
-                        if (alpha_I.isOccupied(q)) {
-                            diagonal(I) += 0.5 * g(p,p,q,q);
-                            diagonal(I) -= 0.5 * g(p,q,q,p);
-                        }
-                    }
-
-                    if (beta_I.isOccupied(q)) {
-                        diagonal(I) += 0.5 * g(p,p,q,q);
-                    }
-                }  // loop over q
-            }
-
-            if (beta_I.isOccupied(p)) {
-                diagonal(I) += h(p,p);
-                for (size_t q = 0; q < K; q++) {
-
-                    if (p != q) {  // can't create/annihilate the same orbital twice
-                        if (beta_I.isOccupied(q)) {
-                            diagonal(I) += 0.5 * g(p,p,q,q);
-                            diagonal(I) -= 0.5 * g(p,q,q,p);
-                        }
-                    }
-
-                    if (alpha_I.isOccupied(q)) {
-                        diagonal(I) += 0.5 * g(p,p,q,q);
-                    }
-                }  // loop over q
-            }
-        }  // loop over q
-
-    }  // alpha address (Ia) loop
-
-    return diagonal;
+    return this->fock_space.evaluateOperatorDiagonal(hamiltonian_parameters);
 }
 
 

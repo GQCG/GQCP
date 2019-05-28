@@ -22,6 +22,7 @@
 #include "FockSpace/BaseFockSpace.hpp"
 #include "FockSpace/ProductFockSpace.hpp"
 #include "FockSpace/FrozenFockSpace.hpp"
+#include "FockSpace/BaseFrozenCoreFockSpace.hpp"
 
 
 namespace GQCP {
@@ -30,7 +31,7 @@ namespace GQCP {
 /**
  *  A class that represents the product of two frozen Fock spaces (alpha and beta).
  */
-class FrozenProductFockSpace: public BaseFockSpace {
+class FrozenProductFockSpace: public BaseFrozenCoreFockSpace {
 private:
     size_t X;  // number of frozen orbitals/electrons
 

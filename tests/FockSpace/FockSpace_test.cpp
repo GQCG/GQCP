@@ -20,6 +20,9 @@
 
 
 #include "FockSpace/FockSpace.hpp"
+#include "FockSpace/ProductFockSpace.hpp"
+#include "FockSpace/SelectedFockSpace.hpp"
+#include "HamiltonianParameters/HamiltonianParameters.hpp"
 
 
 
@@ -297,4 +300,161 @@ BOOST_AUTO_TEST_CASE ( FockSpace_setNext ) {
     GQCP::VectorXs x3 (3);
     x3 << 1, 2, 3;
     BOOST_CHECK(x3.isApprox(onv.get_occupation_indices()));
+}
+
+
+BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_Dense_diagonal_true ) {
+    
+    GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
+    auto parameters = GQCP::HamiltonianParameters<double>::Molecular(hchain, "STO-3G");
+    parameters.LowdinOrthonormalize();
+
+    GQCP::FockSpace fock_space (6, 4);
+    GQCP::ProductFockSpace product_fock_space(6, 4, 0);
+    GQCP::SelectedFockSpace selected_fock_space(product_fock_space);
+
+    auto& h = parameters.get_h();
+    auto& g = parameters.get_g();
+
+    auto one_electron_evaluation1 = fock_space.evaluateOperatorDense(h, true);
+    auto one_electron_evaluation2 = selected_fock_space.evaluateOperatorDense(h, true);
+
+    auto two_electron_evaluation1 = fock_space.evaluateOperatorDense(g, true);
+    auto two_electron_evaluation2 = selected_fock_space.evaluateOperatorDense(g, true);
+
+    auto hamiltonian_evaluation1 = fock_space.evaluateOperatorDense(parameters, true);
+    auto hamiltonian_evaluation2 = selected_fock_space.evaluateOperatorDense(parameters, true);
+    
+    BOOST_CHECK(one_electron_evaluation1.isApprox(one_electron_evaluation2));
+    BOOST_CHECK(two_electron_evaluation1.isApprox(two_electron_evaluation2));
+    BOOST_CHECK(hamiltonian_evaluation1.isApprox(hamiltonian_evaluation2));
+}
+
+
+BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_Dense_diagonal_false ) {
+
+    GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
+    auto parameters = GQCP::HamiltonianParameters<double>::Molecular(hchain, "STO-3G");
+    parameters.LowdinOrthonormalize();
+
+    GQCP::FockSpace fock_space (6, 4);
+    GQCP::ProductFockSpace product_fock_space(6, 4, 0);
+    GQCP::SelectedFockSpace selected_fock_space(product_fock_space);
+
+    auto& h = parameters.get_h();
+    auto& g = parameters.get_g();
+
+    auto one_electron_evaluation1 = fock_space.evaluateOperatorDense(h, false);
+    auto one_electron_evaluation2 = selected_fock_space.evaluateOperatorDense(h, false);
+
+    auto two_electron_evaluation1 = fock_space.evaluateOperatorDense(g, false);
+    auto two_electron_evaluation2 = selected_fock_space.evaluateOperatorDense(g, false);
+
+    auto hamiltonian_evaluation1 = fock_space.evaluateOperatorDense(parameters, false);
+    auto hamiltonian_evaluation2 = selected_fock_space.evaluateOperatorDense(parameters, false);
+
+    BOOST_CHECK(one_electron_evaluation1.isApprox(one_electron_evaluation2));
+    BOOST_CHECK(two_electron_evaluation1.isApprox(two_electron_evaluation2));
+    BOOST_CHECK(hamiltonian_evaluation1.isApprox(hamiltonian_evaluation2));
+}
+
+
+BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_Sparse_diagonal_true ) {
+
+    GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
+    auto parameters = GQCP::HamiltonianParameters<double>::Molecular(hchain, "STO-3G");
+    parameters.LowdinOrthonormalize();
+
+    GQCP::FockSpace fock_space (6, 4);
+    GQCP::ProductFockSpace product_fock_space(6, 4, 0);
+    GQCP::SelectedFockSpace selected_fock_space(product_fock_space);
+
+    auto& h = parameters.get_h();
+    auto& g = parameters.get_g();
+
+    auto one_electron_evaluation1 = GQCP::SquareMatrix<double>(fock_space.evaluateOperatorSparse(h, true));
+    auto one_electron_evaluation2 = GQCP::SquareMatrix<double>(selected_fock_space.evaluateOperatorSparse(h, true));
+
+    auto two_electron_evaluation1 = GQCP::SquareMatrix<double>(fock_space.evaluateOperatorSparse(g, true));
+    auto two_electron_evaluation2 = GQCP::SquareMatrix<double>(selected_fock_space.evaluateOperatorSparse(g, true));
+
+    auto hamiltonian_evaluation1 = GQCP::SquareMatrix<double>(fock_space.evaluateOperatorSparse(parameters, true));
+    auto hamiltonian_evaluation2 = GQCP::SquareMatrix<double>(selected_fock_space.evaluateOperatorSparse(parameters, true));
+
+    BOOST_CHECK(one_electron_evaluation1.isApprox(one_electron_evaluation2));
+    BOOST_CHECK(two_electron_evaluation1.isApprox(two_electron_evaluation2));
+    BOOST_CHECK(hamiltonian_evaluation1.isApprox(hamiltonian_evaluation2));
+}
+
+
+BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_Sparse_diagonal_false ) {
+
+    GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
+    auto parameters = GQCP::HamiltonianParameters<double>::Molecular(hchain, "STO-3G");
+    parameters.LowdinOrthonormalize();
+
+    GQCP::FockSpace fock_space (6, 4);
+    GQCP::ProductFockSpace product_fock_space(6, 4, 0);
+    GQCP::SelectedFockSpace selected_fock_space(product_fock_space);
+
+    auto& h = parameters.get_h();
+    auto& g = parameters.get_g();
+
+    auto one_electron_evaluation1 = GQCP::SquareMatrix<double>(fock_space.evaluateOperatorSparse(h, false));
+    auto one_electron_evaluation2 = GQCP::SquareMatrix<double>(selected_fock_space.evaluateOperatorSparse(h, false));
+
+    auto two_electron_evaluation1 = GQCP::SquareMatrix<double>(fock_space.evaluateOperatorSparse(g, false));
+    auto two_electron_evaluation2 = GQCP::SquareMatrix<double>(selected_fock_space.evaluateOperatorSparse(g, false));
+
+    auto hamiltonian_evaluation1 = GQCP::SquareMatrix<double>(fock_space.evaluateOperatorSparse(parameters, false));
+    auto hamiltonian_evaluation2 = GQCP::SquareMatrix<double>(selected_fock_space.evaluateOperatorSparse(parameters, false));
+
+    BOOST_CHECK(one_electron_evaluation1.isApprox(one_electron_evaluation2));
+    BOOST_CHECK(two_electron_evaluation1.isApprox(two_electron_evaluation2));
+    BOOST_CHECK(hamiltonian_evaluation1.isApprox(hamiltonian_evaluation2));
+}
+
+
+BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_diagonal ) {
+
+    GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
+    auto parameters = GQCP::HamiltonianParameters<double>::Molecular(hchain, "STO-3G");
+    parameters.LowdinOrthonormalize();
+
+    GQCP::FockSpace fock_space (6, 4);
+    GQCP::ProductFockSpace product_fock_space(6, 4, 0);
+    GQCP::SelectedFockSpace selected_fock_space(product_fock_space);
+
+    auto& h = parameters.get_h();
+    auto& g = parameters.get_g();
+
+    auto one_electron_evaluation1 = fock_space.evaluateOperatorDiagonal(h);
+    auto one_electron_evaluation2 = selected_fock_space.evaluateOperatorDiagonal(h);
+
+    auto two_electron_evaluation1 = fock_space.evaluateOperatorDiagonal(g);
+    auto two_electron_evaluation2 = selected_fock_space.evaluateOperatorDiagonal(g);
+
+    auto hamiltonian_evaluation1 = fock_space.evaluateOperatorDiagonal(parameters);
+    auto hamiltonian_evaluation2 = selected_fock_space.evaluateOperatorDiagonal(parameters);
+
+    BOOST_CHECK(one_electron_evaluation1.isApprox(one_electron_evaluation2));
+    BOOST_CHECK(two_electron_evaluation1.isApprox(two_electron_evaluation2));
+    BOOST_CHECK(hamiltonian_evaluation1.isApprox(hamiltonian_evaluation2));
+}
+
+
+BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_diagonal_vs_no_diagonal) {
+
+    GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
+    auto parameters = GQCP::HamiltonianParameters<double>::Molecular(hchain, "STO-3G");
+    parameters.LowdinOrthonormalize();
+
+    GQCP::FockSpace fock_space (6, 4);
+
+    GQCP::SquareMatrix<double> hamiltonian = fock_space.evaluateOperatorDense(parameters, true);
+    GQCP::SquareMatrix<double> hamiltonian_no_diagonal = fock_space.evaluateOperatorDense(parameters, false);
+    GQCP::VectorX<double> hamiltonian_diagonal = fock_space.evaluateOperatorDiagonal(parameters);
+
+    // Test if non-diagonal evaluation and diagonal evaluations are correct
+    BOOST_CHECK(hamiltonian.isApprox(hamiltonian_no_diagonal + GQCP::SquareMatrix<double>(hamiltonian_diagonal.asDiagonal())));
 }

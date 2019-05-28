@@ -242,4 +242,273 @@ void SelectedFockSpace::addConfiguration(const std::vector<std::string>& onv1s, 
 }
 
 
+
+/**
+ *  Evaluate the operator in a dense matrix
+ *
+ *  @param one_op               the one-electron operator to be evaluated in the Fock space
+ *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+ *
+ *  @return the operator's evaluation in a dense matrix with the dimensions of the Fock space
+ */
+SquareMatrix<double> SelectedFockSpace::evaluateOperatorDense(const OneElectronOperator<double>& one_op,
+                                                              bool diagonal_values) const {
+
+    auto K = one_op.get_K();
+    if (K != this->K) {
+        throw std::invalid_argument("SelectedFockSpace::evaluateOperatorDense(OneElectronOperator<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
+    }
+
+    EvaluationMatrix<SquareMatrix<double>> container (this->dim);
+    this->EvaluateOperator<SquareMatrix<double>>(one_op, container, diagonal_values);
+    return container.get_matrix();
+}
+
+
+/**
+ *  Evaluate the operator in a sparse matrix
+ *
+ *  @param one_op               the one-electron operator to be evaluated in the Fock space
+ *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+ *
+ *  @return the operator's evaluation in a sparse matrix with the dimensions of the Fock space
+ */
+Eigen::SparseMatrix<double> SelectedFockSpace::evaluateOperatorSparse(const OneElectronOperator<double>& one_op,
+                                                                      bool diagonal_values) const {
+    auto K = one_op.get_K();
+    if (K != this->K) {
+        throw std::invalid_argument("SelectedFockSpace::evaluateOperatorSparse(OneElectronOperator<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
+    }
+
+    EvaluationMatrix<Eigen::SparseMatrix<double>> container (this->dim);
+
+    // Estimate the memory that is needed for the evaluation
+    size_t memory = dim * this->K * (this->N_alpha + this->N_beta);
+    if (diagonal_values) {
+        memory += this->dim;
+    }
+
+    container.reserve(memory);
+    this->EvaluateOperator<Eigen::SparseMatrix<double>>(one_op, container, diagonal_values);
+    container.addToMatrix();
+    return container.get_matrix();
+}
+
+
+/**
+ *  Evaluate the operator in a dense matrix
+ *
+ *  @param two_op               the two-electron operator to be evaluated in the Fock space
+ *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+ *
+ *  @return the operator's evaluation in a dense matrix with the dimensions of the Fock space
+ */
+SquareMatrix<double> SelectedFockSpace::evaluateOperatorDense(const TwoElectronOperator<double>& two_op,
+                                                              bool diagonal_values) const {
+    auto K = two_op.get_K();
+    if (K != this->K) {
+        throw std::invalid_argument("SelectedFockSpace::evaluateOperatorDense(TwoElectronOperator<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
+    }
+
+    EvaluationMatrix<SquareMatrix<double>> container (this->dim);
+    this->EvaluateOperator<SquareMatrix<double>>(two_op, container, diagonal_values);
+    return container.get_matrix();
+}
+
+
+/**
+ *  Evaluate the operator in a sparse matrix
+ *
+ *  @param two_op               the two-electron operator to be evaluated in the Fock space
+ *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+ *
+ *  @return the operator's evaluation in a sparse matrix with the dimensions of the Fock space
+ */
+Eigen::SparseMatrix<double> SelectedFockSpace::evaluateOperatorSparse(const TwoElectronOperator<double>& two_op,
+                                                                      bool diagonal_values) const {
+
+    auto K = two_op.get_K();
+    if (K != this->K) {
+        throw std::invalid_argument("SelectedFockSpace::evaluateOperatorSparse(TwoElectronOperator<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
+    }
+
+    EvaluationMatrix<Eigen::SparseMatrix<double>> container (this->dim);
+
+    // Estimate the memory that is needed for the evaluation
+    size_t memory = dim * this->K * this->K * (this->N_alpha + this->N_beta)*(this->N_alpha + this->N_beta);
+    if (diagonal_values) {
+        memory += this->dim;
+    }
+
+    container.reserve(memory);
+    this->EvaluateOperator<Eigen::SparseMatrix<double>>(two_op, container, diagonal_values);
+    container.addToMatrix();
+    return container.get_matrix();
+}
+
+/**
+ *  Evaluate the Hamiltonian in a dense matrix
+ *
+ *  @param ham_par              HamiltonianParameters to be evaluated in the Fock space
+ *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+ *
+ *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the Fock space
+ */
+SquareMatrix<double> SelectedFockSpace::evaluateOperatorDense(const HamiltonianParameters<double>& ham_par,
+                                                              bool diagonal_values) const {
+
+    auto K = ham_par.get_K();
+    if (K != this->K) {
+        throw std::invalid_argument("SelectedFockSpace::evaluateOperatorDense(HamiltonianParameters<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
+    }
+
+    EvaluationMatrix<SquareMatrix<double>> container (this->dim);
+    this->EvaluateOperator<SquareMatrix<double>>(ham_par.get_h(), ham_par.get_g(), container, diagonal_values);
+    return container.get_matrix();
+}
+
+
+/**
+ *  Evaluate the Hamiltonian in a sparse matrix
+ *
+ *  @param ham_par              HamiltonianParameters to be evaluated in the Fock space
+ *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+ *
+ *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the Fock space
+ */
+Eigen::SparseMatrix<double> SelectedFockSpace::evaluateOperatorSparse(const HamiltonianParameters<double>& ham_par,
+                                                                      bool diagonal_values) const {
+
+    auto K = ham_par.get_K();
+    if (K != this->K) {
+        throw std::invalid_argument("SelectedFockSpace::evaluateOperatorSparse(HamiltonianParameters<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
+    }
+
+    EvaluationMatrix<Eigen::SparseMatrix<double>> container (this->dim);
+
+    // Estimate the memory that is needed for the evaluation
+    size_t memory = dim * this->K * this->K * (this->N_alpha + this->N_beta) * (this->N_alpha + this->N_beta)/4;
+    if (diagonal_values) {
+        memory += this->dim;
+    }
+
+    container.reserve(memory);
+    this->EvaluateOperator<Eigen::SparseMatrix<double>>(ham_par.get_h(), ham_par.get_g(), container, diagonal_values);
+    container.addToMatrix();
+    return container.get_matrix();
+}
+
+
+
+/**
+ *  Evaluate the diagonal of the operator in this Fock space
+ *
+ *  @param one_op               the one-electron operator to be evaluated in the Fock space
+ *
+ *  @return the operator's diagonal evaluation in a vector with the dimension of the Fock space
+ */
+VectorX<double> SelectedFockSpace::evaluateOperatorDiagonal(const OneElectronOperator<double>& one_op) const {
+
+    auto K = one_op.get_K();
+    if (K != this->K) {
+        throw std::invalid_argument("SelectedFockSpace::evaluateOperatorDiagonal(TwoElectronOperator<double>): Basis functions of the Fock space and the operator are incompatible.");
+    }
+
+    // Diagonal contributions
+    VectorX<double> diagonal = VectorX<double>::Zero(dim);
+
+    for (size_t I = 0; I < dim; I++) {  // Ia loops over addresses of alpha onvs
+        Configuration configuration_I = this->get_configuration(I);
+        ONV alpha_I = configuration_I.onv_alpha;
+        ONV beta_I = configuration_I.onv_beta;
+
+        for (size_t p = 0; p < K; p++) {
+            if (alpha_I.isOccupied(p)) {
+                diagonal(I) += one_op(p,p);
+            }
+
+            if (beta_I.isOccupied(p)) {
+                diagonal(I) += one_op(p,p);
+            }
+        }  // loop over q
+
+    }  // alpha address (Ia) loop
+
+    return diagonal;
+};
+
+/**
+ *  Evaluate the diagonal of the operator in this Fock space
+ *
+ *  @param two_op               the two-electron operator to be evaluated in the Fock space
+ *
+ *  @return the operator's diagonal evaluation in a vector with the dimension of the Fock space
+ */
+VectorX<double> SelectedFockSpace::evaluateOperatorDiagonal(const TwoElectronOperator<double>& two_op) const {
+
+    auto K = two_op.get_K();
+    if (K != this->K) {
+        throw std::invalid_argument("SelectedFockSpace::evaluateOperatorDiagonal(TwoElectronOperator<double>): Basis functions of the Fock space and the operator are incompatible.");
+    }
+
+    // Diagonal contributions
+    VectorX<double> diagonal = VectorX<double>::Zero(dim);
+
+    for (size_t I = 0; I < dim; I++) {  // Ia loops over addresses of alpha onvs
+        Configuration configuration_I = this->get_configuration(I);
+        ONV alpha_I = configuration_I.onv_alpha;
+        ONV beta_I = configuration_I.onv_beta;
+
+        for (size_t p = 0; p < K; p++) {
+            if (alpha_I.isOccupied(p)) {
+                for (size_t q = 0; q < K; q++) {
+
+                    if (p != q) {  // can't create/annihilate the same orbital twice
+                        if (alpha_I.isOccupied(q)) {
+                            diagonal(I) += 0.5 * two_op(p,p,q,q);
+                            diagonal(I) -= 0.5 * two_op(p,q,q,p);
+                        }
+                    }
+
+                    if (beta_I.isOccupied(q)) {
+                        diagonal(I) += 0.5 * two_op(p,p,q,q);
+                    }
+                }  // loop over q
+            }
+
+            if (beta_I.isOccupied(p)) {
+                for (size_t q = 0; q < K; q++) {
+
+                    if (p != q) {  // can't create/annihilate the same orbital twice
+                        if (beta_I.isOccupied(q)) {
+                            diagonal(I) += 0.5 * two_op(p,p,q,q);
+                            diagonal(I) -= 0.5 * two_op(p,q,q,p);
+                        }
+                    }
+
+                    if (alpha_I.isOccupied(q)) {
+                        diagonal(I) += 0.5 * two_op(p,p,q,q);
+                    }
+                }  // loop over q
+            }
+        }  // loop over q
+
+    }  // alpha address (Ia) loop
+
+    return diagonal;
+};
+
+/**
+ *  Evaluate the diagonal of the Hamiltonian in this Fock space
+ *
+ *  @param ham_par              HamiltonianParameters to be evaluated in the Fock space
+ *
+ *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the Fock space
+ */
+VectorX<double> SelectedFockSpace::evaluateOperatorDiagonal(const HamiltonianParameters<double>& ham_par) const {
+    return this->evaluateOperatorDiagonal(ham_par.get_h()) + this->evaluateOperatorDiagonal(ham_par.get_g());
+};
+
+
+
 }  // namespace GQCP

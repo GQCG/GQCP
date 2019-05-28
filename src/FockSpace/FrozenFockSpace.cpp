@@ -32,7 +32,7 @@ namespace GQCP {
  *  @param X        the number of frozen orbitals and electrons
  */
 FrozenFockSpace::FrozenFockSpace(size_t K, size_t N, size_t X) :
-        BaseFockSpace(K, FockSpace::calculateDimension(K-X, N-X)),
+        BaseFrozenCoreFockSpace(std::make_shared<FockSpace>(FockSpace(K-X, N-X)), X),
         FockPermutator(N),
         active_fock_space (K-X, N-X),
         X (X)
@@ -70,6 +70,7 @@ size_t FrozenFockSpace::ulongNextPermutation(size_t representation) const {
     return sub_permutation;
 };
 
+
 /**
  *  @param representation      a representation of an ONV
  *
@@ -80,6 +81,7 @@ size_t FrozenFockSpace::getAddress(size_t representation) const {
     // address of the total ONV in the frozen Fock space is identical to that of the sub ONV in the sub Fock space.
     return this->active_fock_space.getAddress(representation >> this->X);
 };
+
 
 /**
   *  Calculate unsigned representation for a given address

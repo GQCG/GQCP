@@ -1,6 +1,8 @@
 target_sources(gqcp
         PRIVATE
             BaseFockSpace.hpp
+            BaseFrozenCoreFockSpace.hpp
+            EvaluationMatrix.hpp
             Configuration.hpp
             FockPermutator.hpp
             FockSpace.hpp
