@@ -104,6 +104,7 @@ For this library, there are several extra options you can pass to the `cmake ..`
 
 * `-DEIGEN_USE_MKL_ALL=TRUE` makes sure that Eigen uses Intel MKL.
 
+* `-DBUILD_TESTS=TRUE` specifies that tests should be built and run.
 
 * `-DBUILD_DOCS=TRUE` specifies that documentation should be built using Doxygen, in which case Graphviz is required for UML generation. A custom `docs` target will then be configured by CMake, so that
 
