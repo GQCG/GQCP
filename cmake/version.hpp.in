@@ -1,6 +1,6 @@
 // This file is part of GQCG-gqcp.
 // 
-// Copyright (C) 2017-2018  the GQCG developers
+// Copyright (C) 2017-2019  the GQCG developers
 // 
 // GQCG-gqcp is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -15,19 +15,33 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef @PROJECT_NAME_UPPERCASE@_VERSION_HPP
-#define @PROJECT_NAME_UPPERCASE@_VERSION_HPP
+#ifndef ${PROJECT_NAME_UPPERCASE}_VERSION_HPP
+#define ${PROJECT_NAME_UPPERCASE}_VERSION_HPP
 
 
-// Define all the version numbers
-#define @PROJECT_NAME_UPPERCASE@_MAJOR_VERSION (@PROJECT_VERSION_MAJOR@)
-#define @PROJECT_NAME_UPPERCASE@_MINOR_VERSION (@PROJECT_VERSION_MINOR@)
-#define @PROJECT_NAME_UPPERCASE@_PATCH_VERSION (@PROJECT_VERSION_PATCH@)
-#define @PROJECT_NAME_UPPERCASE@_VERSION "@PROJECT_VERSION@"
+#include <cstddef>
+#include <string>
 
 
-// Define the current git commit
-#define @PROJECT_NAME_UPPERCASE@_GIT_SHA1 "@GIT_SHA1@"
+
+namespace ${PROJECT_NAME_UPPERCASE} {
 
 
-#endif  // @PROJECT_NAME_UPPERCASE@_VERSION_HPP
+/**
+ *  A class that holds version-related info: the version numbers and the corresponding git SHA1
+ */
+struct Version {
+private:
+    constexpr static size_t major = ${PROJECT_VERSION_MAJOR};
+    constexpr static size_t minor = ${PROJECT_VERSION_MINOR};
+    constexpr static size_t patch = ${PROJECT_VERSION_PATCH};
+    const static auto full = "${PROJECT_VERSION}";
+
+    const static auto git_SHA1 = "${GIT_SHA1}";
+};
+
+
+}  // namespace ${PROJECT_NAME_UPPERCASE}
+
+
+#endif  // ${PROJECT_NAME_UPPERCASE}_VERSION_HPP
