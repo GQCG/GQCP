@@ -89,7 +89,7 @@ OneRDM<double> calculateRHFAO1RDM(const SquareMatrix<double>& C, size_t N) {
     auto D_MO = calculateRHF1RDM(K, N);
 
     // Transform the MO 1-RDM to an AO basis
-    return C * D_MO * C.adjoint();
+    return C.conjugate() * D_MO * C.transpose();
 }
 
 
