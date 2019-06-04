@@ -17,11 +17,11 @@ option(EIGEN_USE_MKL_ALL "Eigen uses MKL" OFF)
 # -----------------------------
 
 find_package(Git REQUIRED)
-find_package(Eigen3 3.3.4 REQUIRED)
+find_package(Eigen3 3.3.4 REQUIRED NO_MODULE)
 find_package(Int2 REQUIRED)
 find_package(Boost REQUIRED COMPONENTS program_options unit_test_framework)
 find_package(Spectra REQUIRED)
-find_package(Cint REQUIRED)
+find_package(Cint REQUIRED NO_MODULE)
 
 if(EIGEN_USE_MKL_ALL)
     set(BLA_VENDOR Intel10_64lp)
@@ -55,10 +55,15 @@ target_compile_features(gqcp PUBLIC cxx_std_11)
 add_subdirectory(src)
 add_subdirectory(include)
 
+configure_file(cmake/version.hpp.in include/version.hpp @ONLY)
+
 target_include_directories(gqcp
         PUBLIC
         $<INSTALL_INTERFACE:include>
         $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
+        $<BUILD_INTERFACE:${CMAKE_BINARY_DIR}/include>
+        PRIVATE
+        ${CMAKE_SOURCE_DIR}/src
         )
 
 target_link_libraries(gqcp
@@ -68,14 +73,13 @@ target_link_libraries(gqcp
             Cint::Cint
             Spectra::Spectra
         )
-target_include_directories(gqcp PUBLIC ${Boost_INCLUDE_DIRS})
+target_include_directories(gqcp PUBLIC $<BUILD_INTERFACE:${Boost_INCLUDE_DIRS}>)
 target_link_libraries(gqcp PUBLIC ${Boost_LIBRARIES})
 if (EIGEN_USE_MKL_ALL)
-    target_include_directories(gqcp PUBLIC ${BLAS_INCLUDE_DIR})
+    target_include_directories(gqcp PUBLIC $<BUILD_INTERFACE:${BLAS_INCLUDE_DIR}>)
     target_link_libraries(gqcp PUBLIC ${BLAS_LIBRARIES})
 endif()
 
-configure_file(cmake/version.hpp.in include/version.hpp @ONLY)
 
 # Parse additional options
 # ------------------------
@@ -109,18 +113,47 @@ endif()
 # Install the library (relative to the CMAKE_INSTALL_PREFIX)
 # ----------------------------------------------------------
 
-install(TARGETS gqcp EXPORT gqcpTargets
+include(GNUInstallDirs)
+
+install(TARGETS gqcp
+        EXPORT gqcp-targets
         LIBRARY DESTINATION lib
         ARCHIVE DESTINATION lib
         RUNTIME DESTINATION bin
         INCLUDES DESTINATION include
         )
 
-install(EXPORT gqcpTargets
-        FILE gqcpTargets.cmake
+install(DIRECTORY ${CMAKE_BINARY_DIR}/include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+
+install(EXPORT gqcp-targets
+        FILE gqcp-targets.cmake
         NAMESPACE gqcp::
-        DESTINATION lib/cmake/gqcp
+        DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/gqcp
         )
+
+# Configure package
+# -----------------
+
+include(CmakePackageConfigHelpers)
+
+configure_package_config_file(
+        ${CMAKE_SOURCE_DIR}/cmake/gqcp-config.cmake.in
+        ${CMAKE_BINARY_DIR}/cmake/gqcp-config.cmake
+        INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/gqcp
+)
+
+write_basic_package_version_file(
+        ${CMAKE_BINARY_DIR}/cmake/gqcp-config-version.cmake
+        VERSION ${gqcp_VERSION}
+        COMPATIBILITY AnyNewerVersion
+)
+
+install(
+        FILES
+        ${CMAKE_BINARY_DIR}/cmake/gqcp-config.cmake
+        ${CMAKE_BINARY_DIR}/cmake/gqcp-config-version.cmake
+        DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/gqcp
+)
 
 # Git related information
 # -----------------------
