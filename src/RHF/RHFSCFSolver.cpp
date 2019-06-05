@@ -68,7 +68,7 @@ void RHFSCFSolver::solve() {
 
         // Solve the generalized eigenvalue problem for the Fock matrix to get an improved density matrix
         Eigen::GeneralizedSelfAdjointEigenSolver<Eigen::MatrixXd> generalized_eigensolver (F_AO, S);
-        C = generalized_eigensolver.eigenvectors();
+        C = generalized_eigensolver.eigenvectors().transpose();
 
         OneRDM<double> D_AO_previous = D_AO;  // store the previous density matrix to be able to check on convergence
         D_AO = calculateRHFAO1RDM(C, this->molecule.get_N());
