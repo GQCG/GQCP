@@ -128,18 +128,18 @@ install(DIRECTORY ${CMAKE_BINARY_DIR}/include/ DESTINATION ${CMAKE_INSTALL_INCLU
 install(EXPORT gqcp-targets
         FILE gqcp-targets.cmake
         NAMESPACE gqcp::
-        DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/gqcp
+        DESTINATION cmake
         )
 
 # Configure package
 # -----------------
 
-include(CmakePackageConfigHelpers)
+include(CMakePackageConfigHelpers)
 
 configure_package_config_file(
         ${CMAKE_SOURCE_DIR}/cmake/gqcp-config.cmake.in
         ${CMAKE_BINARY_DIR}/cmake/gqcp-config.cmake
-        INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/gqcp
+        INSTALL_DESTINATION cmake
 )
 
 write_basic_package_version_file(
@@ -152,7 +152,7 @@ install(
         FILES
         ${CMAKE_BINARY_DIR}/cmake/gqcp-config.cmake
         ${CMAKE_BINARY_DIR}/cmake/gqcp-config-version.cmake
-        DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/gqcp
+        DESTINATION cmake
 )
 
 # Git related information
