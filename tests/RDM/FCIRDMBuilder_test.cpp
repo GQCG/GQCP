@@ -178,7 +178,7 @@ BOOST_AUTO_TEST_CASE ( H2O_energy_RDM_contraction_FCI_wavefunction ) {
     size_t N_b = 5;
 
     // Create the molecular Hamiltonian parameters in the AO basis
-    auto h2o = GQCP::Molecule::Readxyz("../tests/data/h2o_Psi4_GAMESS.xyz");
+    auto h2o = GQCP::Molecule::Readxyz("data/h2o_Psi4_GAMESS.xyz");
     auto ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2o, "STO-3G");
     size_t K = ham_par.get_K();  // SO 7
 
