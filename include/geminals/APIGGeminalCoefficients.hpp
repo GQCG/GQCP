@@ -19,8 +19,8 @@
 #define APIGGeminalCoefficients_hpp
 
 
-#include "geminals/BaseAPIGVariables.hpp"
-#include "geminals/GeminalCoefficientsInterface.hpp"
+#include "Geminals/BaseAPIGVariables.hpp"
+#include "Geminals/GeminalCoefficientsInterface.hpp"
 #include "math/Matrix.hpp"
 #include "WaveFunction/WaveFunction.hpp"
 

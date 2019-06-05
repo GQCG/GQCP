@@ -19,9 +19,9 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "geminals/AP1roG.hpp"
+#include "Geminals/AP1roG.hpp"
 
-#include "geminals/AP1roGBivariationalSolver.hpp"
+#include "Geminals/AP1roGBivariationalSolver.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
 #include "properties/expectation_values.hpp"
 

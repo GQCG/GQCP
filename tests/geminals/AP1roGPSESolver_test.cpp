@@ -18,7 +18,7 @@
 #define BOOST_TEST_MODULE "AP1roGPSESolver"
 #include <boost/test/unit_test.hpp>
 
-#include "geminals/AP1roGPSESolver.hpp"
+#include "Geminals/AP1roGPSESolver.hpp"
 
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"

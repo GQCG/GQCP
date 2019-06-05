@@ -19,9 +19,9 @@
 #define AP1roGBivariationalSolver_hpp
 
 
-#include "geminals/BaseAP1roGSolver.hpp"
-#include "geminals/AP1roGVariables.hpp"
-#include "geminals/BivariationalCoefficients.hpp"
+#include "Geminals/BaseAP1roGSolver.hpp"
+#include "Geminals/AP1roGVariables.hpp"
+#include "Geminals/BivariationalCoefficients.hpp"
 
 
 namespace GQCP {

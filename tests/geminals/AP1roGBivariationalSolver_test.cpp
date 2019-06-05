@@ -19,7 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "geminals/AP1roGBivariationalSolver.hpp"
+#include "Geminals/AP1roGBivariationalSolver.hpp"
 
 #include "RHF/PlainRHFSCFSolver.hpp"
 

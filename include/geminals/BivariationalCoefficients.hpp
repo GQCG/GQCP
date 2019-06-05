@@ -19,7 +19,7 @@
 #define BivariationalCoefficients_hpp
 
 
-#include "geminals/AP1roGVariables.hpp"
+#include "Geminals/AP1roGVariables.hpp"
 
 
 namespace GQCP {

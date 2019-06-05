@@ -12,7 +12,7 @@ target_sources(gqcp
 add_subdirectory(Basis)
 add_subdirectory(CISolver)
 add_subdirectory(FockSpace)
-add_subdirectory(geminals)
+add_subdirectory(Geminals)
 add_subdirectory(HamiltonianBuilder)
 add_subdirectory(HamiltonianParameters)
 add_subdirectory(Localization)

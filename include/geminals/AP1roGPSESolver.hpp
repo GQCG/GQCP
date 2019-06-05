@@ -19,7 +19,7 @@
 #define AP1roGPSESolver_hpp
 
 
-#include "geminals/BaseAP1roGSolver.hpp"
+#include "Geminals/BaseAP1roGSolver.hpp"
 
 
 namespace GQCP {

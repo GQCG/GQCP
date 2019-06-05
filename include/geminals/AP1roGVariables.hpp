@@ -19,7 +19,7 @@
 #define AP1roGVariables_hpp
 
 
-#include "geminals/BaseAPIGVariables.hpp"
+#include "Geminals/BaseAPIGVariables.hpp"
 
 
 namespace GQCP {

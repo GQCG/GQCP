@@ -19,8 +19,8 @@
 #define AP1roG_hpp
 
 
-#include "geminals/AP1roGGeminalCoefficients.hpp"
-#include "geminals/BivariationalCoefficients.hpp"
+#include "Geminals/AP1roGGeminalCoefficients.hpp"
+#include "Geminals/BivariationalCoefficients.hpp"
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "RDM/OneRDM.hpp"
 #include "RDM/TwoRDM.hpp"

@@ -19,7 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "geminals/AP1roGVariables.hpp"
+#include "Geminals/AP1roGVariables.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( constructor ) {

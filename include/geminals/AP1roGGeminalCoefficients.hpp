@@ -19,8 +19,8 @@
 #define AP1roGGeminalCoefficients_hpp
 
 
-#include "geminals/AP1roGVariables.hpp"
-#include "geminals/GeminalCoefficientsInterface.hpp"
+#include "Geminals/AP1roGVariables.hpp"
+#include "Geminals/GeminalCoefficientsInterface.hpp"
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "math/Matrix.hpp"
 #include "WaveFunction/WaveFunction.hpp"
