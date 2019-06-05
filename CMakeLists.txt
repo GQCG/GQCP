@@ -1,9 +1,11 @@
 cmake_minimum_required(VERSION 3.13 FATAL_ERROR)
 project(gqcp VERSION 0.2.0 LANGUAGES CXX)
+string(TOUPPER ${PROJECT_NAME} PROJECT_NAME_UPPERCASE)
 
-list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake) # make CMake look into the ./cmake/ folder for configuration files
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)  # make CMake look into the ./cmake/ folder for configuration files
 
 add_library(gqcp SHARED "")
+
 
 # Supported options
 # -----------------
@@ -13,9 +15,9 @@ option(BUILD_BENCHMARKS "Build benchmarks executables" OFF)
 option(BUILD_DRIVERS "Build standard drivers" OFF)
 option(EIGEN_USE_MKL "Eigen uses MKL" OFF)
 
+
 # Look for supporting libraries
 # -----------------------------
-
 find_package(Git REQUIRED)
 find_package(Eigen3 3.3.4 REQUIRED)
 find_package(Int2 REQUIRED)
@@ -42,9 +44,9 @@ if (BUILD_BENCHMARKS)
     find_package(benchmark REQUIRED)
 endif()
 
+
 # Setup library
 # -------------
-
 target_compile_options(gqcp PUBLIC -m64 -pipe)
 target_compile_options(gqcp PUBLIC "$<IF:$<CONFIG:Debug>,-g,-O2>")
 target_compile_options(gqcp PUBLIC "$<IF:$<CXX_COMPILER_ID:Intel>,-xHost,-march=native>")
@@ -84,13 +86,24 @@ endif()
 
 # Parse additional options
 # ------------------------
-
 if (BUILD_TESTS)
     enable_testing()
     add_subdirectory(tests)
 endif()
 
+
+# Get the long git SHA1 (https://stackoverflow.com/a/21028226/7930415)
+execute_process(COMMAND "${GIT_EXECUTABLE}" describe --always --abbrev=40 --dirty
+        WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
+        OUTPUT_VARIABLE GIT_SHA1
+        ERROR_QUIET
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+)
+configure_file(cmake/version.hpp.in include/version.hpp)
+
+
 # Generate documentation
+# ----------------------
 if (BUILD_DOCS)
     set(DOXYGEN_IN cmake/Doxyfile.in)
     set(DOXYGEN_OUT ${CMAKE_BINARY_DIR}/Doxyfile)
@@ -110,6 +123,7 @@ endif()
 if (BUILD_DRIVERS)
     add_subdirectory(drivers)
 endif()
+
 
 # Install the library (relative to the CMAKE_INSTALL_PREFIX)
 # ----------------------------------------------------------

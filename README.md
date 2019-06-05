@@ -15,7 +15,7 @@ Follow along the following documented example that calculates the FCI energy:
 
 // Create the molecular Hamiltonian parameters in an AO basis
 auto h2o = GQCP::Molecule::Readxyz("data/h2o.xyz");
-auto mol_ham_par = GQCP::HamiltonianParameters::Molecular(h2o, "STO-3G");
+auto mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2o, "STO-3G");
 
 
 // Create a plain RHF SCF solver and solve the SCF equations
@@ -32,13 +32,13 @@ mol_ham_par.transform(rhf.get_C());
 auto K = mol_ham_par.get_K();  // number of spatial orbitials
 auto N_alpha = h2o.get_N()/2;
 auto N_beta = h2o.get_N()/2;
-GQCP::ProductFockSpace fock_space (K, N_alpha, N_beta);  // number of spatial orbitals, number 
+GQCP::ProductFockSpace fock_space (K, N_alpha, N_beta);
 
 
 // Find the lowest eigenvalue using the Davidson algorithm, providing the Hartree-Fock initial guess
 GQCP::FCI fci (fock_space);  // has implemented the FCI matrix-vector product
-    
-Eigen::VectorXd initial_guess = fock_space.HartreeFockExpansion();
+
+auto initial_guess = fock_space.HartreeFockExpansion();
 GQCP::DavidsonSolverOptions davidson_solver_options (initial_guess);  // number of requested eigenpairs defaults to 1
 
 GQCP::CISolver ci_solver (fci, mol_ham_par);
