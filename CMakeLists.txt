@@ -6,7 +6,6 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)  # make CMake look into
 
 add_library(gqcp SHARED "")
 
-
 # Supported options
 # -----------------
 option(BUILD_TESTS "Build tests" OFF)

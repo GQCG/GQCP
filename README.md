@@ -62,6 +62,11 @@ Before installing gqcp, please make sure the following dependencies are availabl
 [![Boost Dependency](https://img.shields.io/badge/Boost-1.65.1+-000000.svg)](http://www.boost.org)
 [![Eigen3 Dependency](https://img.shields.io/badge/Eigen-3.3.4+-000000.svg)](http://eigen.tuxfamily.org/index.php?title=Main_Page)
 [![libint2 Dependency](https://img.shields.io/badge/libint-2.3.1+-000000.svg)](https://github.com/evaleev/libint)
+[![libcint Dependency](https://img.shields.io/badge/libcint-3.0.17+-000000.svg)](https://github.com/GQCG/libcint)
+
+Note that currently the feature/cmake_refactor branch of Libcint has to be installed.
+
+    git clone -b feature/cmake_refactor https://github.com/GQCG/libcint
 
 As gqcp uses the bassisets packaged with libint, please set the `LIBINT_DATA_PATH` environment variable to the folder that contains these bases. In a default installation (of e.g. version v2.3.1), the data path is given by:
 
@@ -88,11 +93,10 @@ For a default CMake build, the steps are the following:
 
 In general, please set and pass the following options to the `cmake ..` command:
 
-* `-DCMAKE_INCLUDE_PATH=include_path`, with `include_path` the path to those includes that are not in default locations such as `/usr/local`.
-   For instance, the include path to the header files of libInt2, libCint, Eigen and the Intel MKL should be added to this variable.
-
-* `-DCMAKE_LIBRARY_PATH=library_path`, with `library_path` the path to those libraries that are not in default locations such as `/usr/local`.
-   For instance, the libInt2, libCint and Intel MKL libraries should be on this search path.
+* `-DCMAKE_PREFIX_PATH=prefix_path`, with `prefix_path` the path to those libraries and includes that are not in default locations, but are grouped together.
+   For instance, setting the prefix_path to `/usr/local` ensures that the folders `cmake`, `lib`, `lib64` and `include` can be found.
+   You should set the prefix to libInt2, libCint, Eigen and Intel MKL.
+   If you have chosen to use conda for some dependencies, `prefix_path` should be set to e.g. `/anaconda3/envs/.../`
 
 * `-DCMAKE_INSTALL_PREFIX=prefix`, with `prefix` (defaulted to `/usr/local`) the installation prefix you want the library to be installed it. This option controls where the library is installed:
     * the header files will be installed in `prefix/include`
