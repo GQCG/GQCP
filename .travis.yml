@@ -88,8 +88,9 @@ install:
     - make -j3 && sudo make install
 
     # Install the GQCG version of Libcint
-    - mkdir /tmp/libcint && cd /tmp/libcint
+    - cd /tmp
     - git clone https://github.com/GQCG/libcint.git
+    - cd libcint
     - mkdir build && cd build
     - cmake ..
     - make -j3 && sudo make install
