@@ -17,7 +17,7 @@ option(EIGEN_USE_MKL_ALL "Eigen uses MKL" OFF)
 # -----------------------------
 
 find_package(Git REQUIRED)
-find_package(Eigen3 3.3.4 REQUIRED NO_MODULE)
+find_package(Eigen3 3.3.4 REQUIRED)
 find_package(Int2 REQUIRED)
 find_package(Boost REQUIRED COMPONENTS program_options unit_test_framework)
 find_package(Spectra REQUIRED)
