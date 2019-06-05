@@ -102,7 +102,7 @@ In general, please set and pass the following options to the `cmake ..` command:
 
 For this library, there are several extra options you can pass to the `cmake ..` command:
 
-* `-DEIGEN_USE_MKL_ALL=TRUE` makes sure that Eigen uses Intel MKL.
+* `-DEIGEN_USE_MKL=TRUE` makes sure that Eigen uses Intel MKL.
 
 * `-DBUILD_TESTS=TRUE` specifies that tests should be built and run.
 
