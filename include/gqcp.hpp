@@ -40,7 +40,7 @@
 #include "FockSpace/SelectedFockSpace.hpp"
 
 #include "Geminals/AP1roG.hpp"
-#include "Geminals/AP1roGBivariationalSolver.hpp"
+#include "Geminals/AP1roGLagrangianOptimizer.hpp"
 #include "Geminals/AP1roGGeminalCoefficients.hpp"
 #include "Geminals/AP1roGJacobiOrbitalOptimizer.hpp"
 #include "Geminals/AP1roGPSESolver.hpp"

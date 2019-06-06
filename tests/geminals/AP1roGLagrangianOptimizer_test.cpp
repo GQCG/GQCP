@@ -15,12 +15,11 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#define BOOST_TEST_MODULE "AP1roGBivariationalSolver"
+#define BOOST_TEST_MODULE "AP1roGLagrangianOptimizer"
 
 #include <boost/test/unit_test.hpp>
 
-#include "Geminals/AP1roGBivariationalSolver.hpp"
-
+#include "Geminals/AP1roGLagrangianOptimizer.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
 
 
@@ -37,11 +36,7 @@ BOOST_AUTO_TEST_CASE ( h2_631gdp ) {
     auto mol_ham_par = GQCP::HamiltonianParameters<double>(ao_mol_ham_par, rhf.get_C());
 
 
-    // Solve the AP1roG bivariational equations with the initial guess of the geminal coefficients being 0
-    GQCP::AP1roGBivariationalSolver bivar_solver1 (h2, mol_ham_par);
+    // Optimize the AP1roG Lagrangian, using an initial guess of the geminal coefficients of 0
+    GQCP::AP1roGLagrangianOptimizer bivar_solver1 (h2, mol_ham_par);
     bivar_solver1.solve();
-
-    // Solve the AP1roG bivariational equations with the initial guess of the geminal coefficients being 0
-    GQCP::AP1roGBivariationalSolver bivar_solver2 (h2, mol_ham_par, GQCP::AP1roGBivariationalSolver::ExtraEquation::norm);
-    bivar_solver2.solve();
 }

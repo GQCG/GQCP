@@ -15,10 +15,11 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef BivariationalCoefficients_hpp
-#define BivariationalCoefficients_hpp
+#ifndef AP1roGLagrangianOptimizer_hpp
+#define AP1roGLagrangianOptimizer_hpp
 
 
+#include "Geminals/BaseAP1roGSolver.hpp"
 #include "Geminals/AP1roGVariables.hpp"
 
 
@@ -26,16 +27,27 @@ namespace GQCP {
 
 
 /**
- *  A struct that holds the solutions (q0, q_i^a) to the bivariational equations
+ *  A class that is able to optimize the AP1roG PSE Lagrangian
  */
-struct BivariationalCoefficients {
-    double q0;
-    AP1roGVariables q;
+class AP1roGLagrangianOptimizer : public BaseAP1roGSolver {
+private:
+    AP1roGVariables multipliers;  // the Lagrangian multipliers
+
+public:
+    // CONSTRUCTORS
+    using BaseAP1roGSolver::BaseAP1roGSolver;  // inherit base constructors
+
+
+    // GETTERS
+    const AP1roGVariables& get_multipliers() const { return this->multipliers; }
+
+
+    // PUBLIC METHODS
+    void solve() override;
 };
 
 
 }  // namespace GQCP
 
 
-
-#endif /* BivariationalCoefficients_hpp */
+#endif  /* AP1roGLagrangianOptimizer_hpp */

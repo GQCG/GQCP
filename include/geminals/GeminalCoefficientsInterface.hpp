@@ -46,11 +46,10 @@ public:
      *  @return the wave function expansion corresponding to the geminal coefficients
      */
     WaveFunction toWaveFunction(const FockSpace& fock_space) const;
-
 };
+
 
 }  // namespace GQCP
 
 
-
-#endif /* GeminalCoefficientsInterface_hpp */
+#endif  /* GeminalCoefficientsInterface_hpp */

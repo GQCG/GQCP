@@ -20,7 +20,6 @@
 
 
 #include "Geminals/AP1roGGeminalCoefficients.hpp"
-#include "Geminals/BivariationalCoefficients.hpp"
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "RDM/OneRDM.hpp"
 #include "RDM/TwoRDM.hpp"
@@ -38,44 +37,36 @@ namespace GQCP {
 double calculateAP1roGEnergy(const AP1roGGeminalCoefficients& G, const HamiltonianParameters<double>& ham_par);
 
 /**
- *  @param G            the AP1roG geminal coefficients
- *  @param Q            the AP1roG bivariational coefficients
- *
- *  @return the overlap between the bivariational coefficients and the geminal coefficients, i.e. <Phi(q)|Psi(p)>
- */
-double calculateOverlap(const AP1roGGeminalCoefficients& G, const BivariationalCoefficients& Q);
-
-/**
- *  @param G            the AP1roG geminal coefficients
- *  @param Q            the AP1roG bivariational coefficients
+ *  @param G                the AP1roG geminal coefficients
+ *  @param multipliers      the AP1roG Lagrangian multipliers
  *
  *  @return the AP1roG 1-DM
  */
-OneRDM<double> calculate1RDM(const AP1roGGeminalCoefficients& G, const BivariationalCoefficients& Q);
+OneRDM<double> calculate1RDM(const AP1roGGeminalCoefficients& G, const AP1roGVariables& multipliers);
 
 /**
- *  @param G            the AP1roG geminal coefficients
- *  @param Q            the AP1roG bivariational coefficients
+ *  @param G                the AP1roG geminal coefficients
+ *  @param multipliers      the AP1roG Lagrangian multipliers
  *
  *  @return the AP1roG number 2-RDM (the Delta-matrix in the notes)
  */
-SquareMatrix<double> calculateNumber2RDM(const AP1roGGeminalCoefficients& G, const BivariationalCoefficients& Q);
+SquareMatrix<double> calculateNumber2RDM(const AP1roGGeminalCoefficients& G, const AP1roGVariables& multipliers);
 
 /**
- *  @param G            the AP1roG geminal coefficients
- *  @param Q            the AP1roG bivariational coefficients
+ *  @param G                the AP1roG geminal coefficients
+ *  @param multipliers      the AP1roG Lagrangian multipliers
  *
  *  @return the AP1roG pair 2-RDM (the Pi-matrix in the notes)
  */
-SquareMatrix<double> calculatePair2RDM(const AP1roGGeminalCoefficients& G, const BivariationalCoefficients& Q);
+SquareMatrix<double> calculatePair2RDM(const AP1roGGeminalCoefficients& G, const AP1roGVariables& multipliers);
 
 /**
- *  @param G            the AP1roG geminal coefficients
- *  @param Q            the AP1roG bivariational coefficients
+ *  @param G                the AP1roG geminal coefficients
+ *  @param multipliers      the AP1roG Lagrangian multipliers
  *
  *  @return the AP1roG 2-DM
  */
-TwoRDM<double> calculate2RDM(const AP1roGGeminalCoefficients& G, const BivariationalCoefficients& Q);
+TwoRDM<double> calculate2RDM(const AP1roGGeminalCoefficients& G, const AP1roGVariables& multipliers);
 
 
 }  // namespace GQCP

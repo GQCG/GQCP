@@ -21,50 +21,10 @@
 
 #include "Geminals/AP1roG.hpp"
 
-#include "Geminals/AP1roGBivariationalSolver.hpp"
+#include "Geminals/AP1roGLagrangianOptimizer.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
 #include "properties/expectation_values.hpp"
 
-
-
-
-BOOST_AUTO_TEST_CASE ( calculateOverlap ) {
-
-    size_t N_P = 5;
-    size_t K = 8;
-    auto N_P_ = static_cast<double>(N_P);
-    auto K_ = static_cast<double>(K);
-
-
-    // Set all bivariational coefficients to 1
-    size_t dim = GQCP::AP1roGVariables::numberOfVariables(N_P, K);
-    GQCP::VectorX<double> q = GQCP::VectorX<double>::Zero(dim);
-    for (size_t mu = 0; mu < dim; mu++) {
-        q(mu) = 1.0;
-    }
-
-    GQCP::BivariationalCoefficients Q {1.0, GQCP::AP1roGVariables(q, N_P, K)};
-
-
-    // Set the geminal coefficients to i*a
-    GQCP::VectorX<double> g = GQCP::VectorX<double>::Zero(dim);
-    for (size_t i = 0; i < N_P; i++) {
-        for (size_t a = N_P; a < K; a++) {
-            size_t vector_index = Q.q.vectorIndex(i, a);
-
-            auto i_ = static_cast<double>(i) + 1;
-            auto a_ = static_cast<double>(a) + 1;
-
-            g(vector_index) = i_ * a_;
-        }
-    }
-
-    GQCP::AP1roGGeminalCoefficients G (g, N_P, K);
-
-
-    // Check with manual formula
-    BOOST_CHECK(std::abs(GQCP::calculateOverlap(G, Q) - (1 + 0.25 * N_P_ * (N_P_ + 1) * (K_ * (K_ + 1) - N_P_ * (N_P_ + 1)))) < 1.0e-12);
-}
 
 
 BOOST_AUTO_TEST_CASE ( energy_as_contraction ) {
@@ -79,19 +39,22 @@ BOOST_AUTO_TEST_CASE ( energy_as_contraction ) {
     auto mol_ham_par = GQCP::HamiltonianParameters<double>(ao_mol_ham_par, rhf.get_C());
 
 
-    // Solve the AP1roG bivariational equations with the initial guess of the geminal coefficients being 0
-    GQCP::AP1roGBivariationalSolver bivar_solver (h2, mol_ham_par);
-    bivar_solver.solve();
-    double electronic_energy = bivar_solver.get_electronic_energy();
-    auto G = bivar_solver.get_geminal_coefficients();
-    auto Q = bivar_solver.get_bivariational_coefficients();
+    // Optimize the AP1roG PSE Lagrangian with the initial guess of the geminal coefficients being 0
+    GQCP::AP1roGLagrangianOptimizer lagrangian_optimizer (h2, mol_ham_par);
+    lagrangian_optimizer.solve();
+    double electronic_energy = lagrangian_optimizer.get_electronic_energy();
+    auto G = lagrangian_optimizer.get_geminal_coefficients();
+    auto multipliers = lagrangian_optimizer.get_multipliers();
 
 
-    // Calculate the 1- and 2-RDM for bivariational AP1roG
-    auto D = GQCP::calculate1RDM(G, Q);
-    auto d = GQCP::calculate2RDM(G, Q);
+    // Calculate the 1- and 2-RDM and check the trace with the one- and two-electron integrals
+    auto D = GQCP::calculate1RDM(G, multipliers);
+    auto d = GQCP::calculate2RDM(G, multipliers);
+
 
     double electronic_energy_by_contraction = GQCP::calculateExpectationValue(mol_ham_par, D, d) - mol_ham_par.get_scalar();  // only the electronic energy
+    std::cout << "contraction: " << electronic_energy_by_contraction << std::endl;
+    std::cout << "energy: " << electronic_energy << std::endl;
 
     BOOST_CHECK(std::abs(electronic_energy_by_contraction - electronic_energy) < 1.0e-09);
 }
