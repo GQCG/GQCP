@@ -127,6 +127,6 @@ For this library, there are several extra options you can pass to the `cmake ..`
 
 If you want to use gqcp in another project, just add
 
-    find_package(gqcp 0.2.0)
+    find_package(gqcp 0.2.0 NO_MODULE)
 
-to its CMake configuration, and it will ben provide  `gqcp_INCLUDE_DIRS` to be used in `target_include_directories` and the target library `gqcp` to be used in `target_link_libraries`.
+to its CMake configuration, and it will ben provide  `gqcp_INCLUDE_DIRS` to be used in `target_include_directories` and the target library `gqcp` to be used in `target_link_libraries`. The `NO_MODULE` option specifies that you will use the CMake config script installed by GQCP.

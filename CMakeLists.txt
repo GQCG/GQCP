@@ -56,7 +56,7 @@ target_compile_features(gqcp PUBLIC cxx_std_11)
 add_subdirectory(src)
 add_subdirectory(include)
 
-configure_file(cmake/version.hpp.in include/version.hpp @ONLY)
+configure_file(cmake/version.hpp.in include/version.hpp)
 
 target_include_directories(gqcp
         PUBLIC
@@ -89,16 +89,6 @@ if (BUILD_TESTS)
     enable_testing()
     add_subdirectory(tests)
 endif()
-
-
-# Get the long git SHA1 (https://stackoverflow.com/a/21028226/7930415)
-execute_process(COMMAND "${GIT_EXECUTABLE}" describe --always --abbrev=40 --dirty
-        WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
-        OUTPUT_VARIABLE GIT_SHA1
-        ERROR_QUIET
-        OUTPUT_STRIP_TRAILING_WHITESPACE
-)
-configure_file(cmake/version.hpp.in include/version.hpp)
 
 
 # Generate documentation
@@ -168,6 +158,7 @@ install(
         ${CMAKE_BINARY_DIR}/cmake/gqcp-config-version.cmake
         DESTINATION cmake
 )
+
 
 # Git related information
 # -----------------------

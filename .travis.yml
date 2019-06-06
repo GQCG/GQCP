@@ -87,7 +87,7 @@ install:
     - cmake .. -DCMAKE_BUILD_TYPE=RELEASE
     - make -j3 && sudo make install
 
-    # Install the GQCG version of Libcint
+    # Install the GQCG fork of Libcint
     - cd /tmp
     - git clone -b feature/cmake_refactor https://github.com/GQCG/libcint.git
     - cd libcint
