@@ -78,14 +78,14 @@ AP1roGPSESolver::AP1roGPSESolver(const Molecule& molecule, const HamiltonianPara
 
 /**
  *  @param G        the AP1roG geminal coefficients
- *  @param i        the subscript for the coordinate function
- *  @param a        the superscript for the coordinate function
- *  @param k        the subscript for the geminal coefficient
- *  @param c        the superscript for the geminal coefficient
+ *  @param j        the subscript for the coordinate function
+ *  @param b        the superscript for the coordinate function
+ *  @param i        the subscript for the geminal coefficient
+ *  @param a        the superscript for the geminal coefficient
  *
  *  @return the Jacobian element with compound indices (i,a) and (k,c) at the given geminal coefficients
  */
-double AP1roGPSESolver::calculateJacobianElement(const AP1roGGeminalCoefficients& G, size_t i, size_t a, size_t k, size_t c) const {
+double AP1roGPSESolver::calculateJacobianElement(const AP1roGGeminalCoefficients& G, const size_t j, const size_t b, const size_t i, const size_t a) const {
 
     auto h = this->ham_par.get_h();
     auto g = this->ham_par.get_g();
@@ -94,51 +94,52 @@ double AP1roGPSESolver::calculateJacobianElement(const AP1roGGeminalCoefficients
 
 
     // KISS implementation of the calculation of Jacobian elements
-    if (i != k) {
+    if (i != j) {
 
-        if (a != c) {  // i!=k and a!=c
+        if (a != b) {  // i!=j and a!=b
             return 0.0;
         }
 
-        else {  // i!=k and a == c
-            j_el += g(k,i,k,i) - 2 * g(k,a,k,a) * G(i,a);
+        else {  // i!=j and a == b
+            j_el += g(i,j,i,j) - 2 * g(i,a,i,a) * G(j,a);
 
-            for (size_t b = this->N_P; b < this->K; b++) {
-                j_el += g(k,b,k,b) * G(i,b);
+            for (size_t c = this->N_P; c < this->K; c++) {
+                j_el += g(i,c,i,c) * G(j,c);
             }
 
         }
     }
 
-    else {  // i==k
+    else {  // i==j
 
-        if (a != c) {  // i==k and a!=c
-            j_el += g(a,c,a,c) - 2 * g(i,c,i,c) * G(i,a);
+        if (a != b) {  // i==j and a!=b
+            j_el += g(b,a,b,a) - 2 * g(i,a,i,a) * G(i,b);
 
-            for (size_t j = 0; j < this->N_P; j++) {
-                j_el += g(j,c,j,c) * G(j,a);
+            for (size_t k = 0; k < this->N_P; k++) {
+                j_el += g(k,a,k,a) * G(k,b);
             }
         }
 
-        else {  // i==k and a==c
+        else {  // i==j and a==b
 
             j_el += 2 * (h(a,a) - h(i,i));
 
-            j_el += g(a,a,a,a) + g(i,i,i,i);
-
             j_el -= 2 * (2 * g(a,a,i,i) - g(a,i,i,a));
 
-
-            for (size_t j = 0; j < this->N_P; j++) {
-                j_el += 2 * (2 * g(a,a,j,j) - g(a,j,j,a)) - (2 * g(i,i,j,j) - g(i,j,j,i));
+            for (size_t k = 0; k < this->N_P; k++) {
+                j_el += 2 * (2 * g(k,k,a,a) - g(a,k,k,a)) - (2 * g(i,i,k,k) - g(i,k,k,i));
             }
 
-            for (size_t j = 0; j < this->N_P; j++) {
-                j_el -= g(j,a,j,a) * G(j,a);
+            for (size_t k = 0; k < this->N_P; k++) {
+                if (k != i) {
+                    j_el -= 2 * g(k,a,k,a) * G(k,a);
+                }
             }
 
-            for (size_t b = this->N_P; b < this->K; b++) {
-                j_el -= g(i,b,i,b) * G(i,b);
+            for (size_t c = this->N_P; c < this->K; c++) {
+                if (c != a) {
+                    j_el -= 2 * g(i,c,i,c) * G(i,c);
+                }
             }
         }
 
@@ -149,30 +150,29 @@ double AP1roGPSESolver::calculateJacobianElement(const AP1roGGeminalCoefficients
 
 
 /**
- *  @param g        the AP1roG geminal coefficients in row-major vector form
+ *  @param G        the AP1roG geminal coefficients
  *
  *  @return the Jacobian at the given geminal coefficients
  */
-SquareMatrix<double> AP1roGPSESolver::calculateJacobian(const VectorX<double>& g) const {
+SquareMatrix<double> AP1roGPSESolver::calculateJacobian(const AP1roGGeminalCoefficients& G) const {
 
-    AP1roGGeminalCoefficients G (g, this->N_P, this->K);
     size_t number_of_geminal_coefficients = AP1roGGeminalCoefficients::numberOfGeminalCoefficients(N_P, K);
 
-    SquareMatrix<double> J = SquareMatrix<double>::Zero(number_of_geminal_coefficients, number_of_geminal_coefficients);
     // Loop over all Jacobian elements to construct it
+    SquareMatrix<double> J = SquareMatrix<double>::Zero(number_of_geminal_coefficients, number_of_geminal_coefficients);
     for (size_t row_index = 0; row_index < number_of_geminal_coefficients; row_index++) {
         for (size_t column_index = 0; column_index < number_of_geminal_coefficients; column_index++) {
 
-            // In our definitions, we have:
-            //      row indices refer to the coordinate functions
-            size_t i = G.matrixIndexMajor(row_index);
-            size_t a = G.matrixIndexMinor(row_index);
+            // Using our convention, the Jacobian is defined as df_j^b/dt_i^a:
+            //      Column indices refer to the coordinate functions
+            size_t j = G.matrixIndexMajor(row_index);
+            size_t b = G.matrixIndexMinor(row_index);
 
-            //      column indices refer to geminal coefficients
-            size_t k = G.matrixIndexMajor(column_index);
-            size_t c = G.matrixIndexMinor(column_index);
+            //      Row indices refer to geminal coefficients
+            size_t i = G.matrixIndexMajor(column_index);
+            size_t a = G.matrixIndexMinor(column_index);
 
-            J(row_index,column_index) = this->calculateJacobianElement(G, i, a, k, c);
+            J(row_index,column_index) = this->calculateJacobianElement(G, j, b, i, a);
         }
     }
 
@@ -187,7 +187,7 @@ SquareMatrix<double> AP1roGPSESolver::calculateJacobian(const VectorX<double>& g
  *
  *  @return the coordinate function with given indices (i,a) at the given geminal coefficients
  */
-double AP1roGPSESolver::calculateCoordinateFunction(const AP1roGGeminalCoefficients& G, size_t i, size_t a) const {
+double AP1roGPSESolver::calculateCoordinateFunction(const AP1roGGeminalCoefficients& G, const size_t i, const size_t a) const {
 
     auto h = this->ham_par.get_h();
     auto g = this->ham_par.get_g();
@@ -236,17 +236,16 @@ double AP1roGPSESolver::calculateCoordinateFunction(const AP1roGGeminalCoefficie
 
 
 /**
- *  @param g        the AP1roG geminal coefficients in row-major vector form
+ *  @param G        the AP1roG geminal coefficients
  *
  *  @return the vector of coordinate functions at the given geminal coefficients
  */
-VectorX<double> AP1roGPSESolver::calculateCoordinateFunctions(const VectorX<double>& g) const {
+VectorX<double> AP1roGPSESolver::calculateCoordinateFunctions(const AP1roGGeminalCoefficients& G) const {
 
-    AP1roGGeminalCoefficients G (g, this->N_P, this->K);
     size_t number_of_geminal_coefficients = AP1roGGeminalCoefficients::numberOfGeminalCoefficients(N_P, K);
 
+    // Loop over all the elements of F to construct it
     VectorX<double> F = VectorX<double>::Zero(number_of_geminal_coefficients);  // the vector of coordinate functions
-    // Loop over all the F elements to construct it
     for (size_t mu = 0; mu < number_of_geminal_coefficients; mu++) {
 
         // Convert the vector indices mu into matrix indices
@@ -267,8 +266,14 @@ void AP1roGPSESolver::solve() {
 
     // Solve the AP1roG equations using a Newton-based algorithm
 
-    VectorFunction f = [this](const VectorX<double>& x) { return this->calculateCoordinateFunctions(x); };
-    MatrixFunction J = [this](const VectorX<double>& x) { return this->calculateJacobian(x); };
+    VectorFunction f = [this](const VectorX<double>& x) { 
+        AP1roGGeminalCoefficients G (x, this->N_P, this->K);
+        return this->calculateCoordinateFunctions(G); 
+    };
+    MatrixFunction J = [this](const VectorX<double>& x) { 
+        AP1roGGeminalCoefficients G (x, this->N_P, this->K);
+        return this->calculateJacobian(G); 
+    };
 
 
     VectorX<double> x0 = this->geminal_coefficients.asVector();

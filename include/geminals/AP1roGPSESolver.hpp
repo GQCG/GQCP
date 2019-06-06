@@ -72,14 +72,14 @@ public:
      *
      *  @return the Jacobian element with compound indices (i,a) and (k,c) at the given geminal coefficients
      */
-    double calculateJacobianElement(const AP1roGGeminalCoefficients& G, size_t i, size_t a, size_t k, size_t c) const;
+    double calculateJacobianElement(const AP1roGGeminalCoefficients& G, const size_t i, const size_t a, const size_t k, const size_t c) const;
 
     /**
-     *  @param g        the AP1roG geminal coefficients in row-major vector form
+     *  @param G        the AP1roG geminal coefficients
      *
      *  @return the Jacobian at the given geminal coefficients
      */
-    SquareMatrix<double> calculateJacobian(const VectorX<double>& g) const;
+    SquareMatrix<double> calculateJacobian(const AP1roGGeminalCoefficients& G) const;
 
     /**
      *  @param G        the AP1roG geminal coefficients
@@ -88,14 +88,14 @@ public:
      *
      *  @return the coordinate function with given indices (i,a) at the given geminal coefficients
      */
-    double calculateCoordinateFunction(const AP1roGGeminalCoefficients& G, size_t i, size_t a) const;
+    double calculateCoordinateFunction(const AP1roGGeminalCoefficients& G, const size_t i, const size_t a) const;
 
     /**
-     *  @param g        the AP1roG geminal coefficients in row-major vector form
+     *  @param G        the AP1roG geminal coefficients
      *
      *  @return the vector of coordinate functions at the given geminal coefficients
      */
-    VectorX<double> calculateCoordinateFunctions(const VectorX<double>& g) const;
+    VectorX<double> calculateCoordinateFunctions(const AP1roGGeminalCoefficients& G) const;
 
     /**
      *  Set up and solve the projected Schrödinger equations for AP1roG

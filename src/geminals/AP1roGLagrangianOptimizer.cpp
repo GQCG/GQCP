@@ -43,7 +43,7 @@ void AP1roGLagrangianOptimizer::solve() {
     // Initialize and solve the linear system Jx=b (x are the Lagrange multipliers)
     size_t dim = this->geminal_coefficients.numberOfGeminalCoefficients(this->N_P, K);
 
-    auto J = pse_solver.calculateJacobian(this->geminal_coefficients.asVector());
+    auto J = pse_solver.calculateJacobian(this->geminal_coefficients);
 
     VectorX<double> b = VectorX<double>::Zero(dim);  // dE/dG_i^a
     for (size_t i = 0; i < this->N_P; i++) {
