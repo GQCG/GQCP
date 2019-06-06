@@ -2,7 +2,6 @@ target_sources(gqcp
         PRIVATE
             AP1roG.hpp
             AP1roGGeminalCoefficients.hpp
-            AP1roGJacobiOrbitalOptimizer.hpp
             AP1roGLagrangianOptimizer.hpp
             AP1roGPSESolver.hpp
             AP1roGVariables.hpp

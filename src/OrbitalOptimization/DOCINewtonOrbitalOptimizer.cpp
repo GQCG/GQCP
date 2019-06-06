@@ -15,16 +15,15 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "DOCINewtonOrbitalOptimizer.hpp"
-
-#include <unsupported/Eigen/MatrixFunctions>
+#include "OrbitalOptimization/DOCINewtonOrbitalOptimizer.hpp"
 
 #include "CISolver/CISolver.hpp"
-#include "RDM/RDMCalculator.hpp"
-
-#include "utilities/linalg.hpp"
 #include "math/optimization/step.hpp"
 #include "math/optimization/EigenproblemSolverOptions.hpp"
+#include "RDM/RDMCalculator.hpp"
+#include "utilities/linalg.hpp"
+
+#include <unsupported/Eigen/MatrixFunctions>
 
 
 namespace GQCP {

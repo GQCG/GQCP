@@ -19,7 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "Geminals/AP1roGJacobiOrbitalOptimizer.hpp"
+#include "OrbitalOptimization/AP1roGJacobiOrbitalOptimizer.hpp"
 
 #include "Geminals/AP1roG.hpp"
 #include "Geminals/AP1roGPSESolver.hpp"

@@ -15,12 +15,11 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#define BOOST_TEST_MODULE "ERNewtonLocalizer"
-
+#define BOOST_TEST_MODULE "ERJacobiLocalizer"
 
 #include <boost/test/unit_test.hpp>
 
-#include "Localization/ERNewtonLocalizer.hpp"
+#include "OrbitalOptimization/Localization/ERJacobiLocalizer.hpp"
 
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 
@@ -38,7 +37,7 @@ BOOST_AUTO_TEST_CASE ( localization_index_raises ) {
 
     double D_before = mol_ham_par.calculateEdmistonRuedenbergLocalizationIndex(N_P);
 
-    GQCP::ERNewtonLocalizer localizer (N_P, 1.0e-04);
+    GQCP::ERJacobiLocalizer localizer (N_P, 1.0e-04);
     localizer.localize(mol_ham_par);  // now the Hamiltonian parameters are in the localized basis
 
     double D_after = mol_ham_par.calculateEdmistonRuedenbergLocalizationIndex(N_P);

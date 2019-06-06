@@ -6,7 +6,6 @@ list(APPEND test_target_sources
         HoppingMatrix_test.cpp
         JacobiRotationParameters_test.cpp
         Molecule_test.cpp
-        OO_DOCI_test.cpp
         RMP2_test.cpp
         units_test.cpp
         )
@@ -17,9 +16,9 @@ add_subdirectory(FockSpace)
 add_subdirectory(Geminals)
 add_subdirectory(HamiltonianBuilder)
 add_subdirectory(HamiltonianParameters)
-add_subdirectory(Localization)
 add_subdirectory(math)
 add_subdirectory(Operator)
+add_subdirectory(OrbitalOptimization)
 add_subdirectory(properties)
 add_subdirectory(RDM)
 add_subdirectory(RHF)

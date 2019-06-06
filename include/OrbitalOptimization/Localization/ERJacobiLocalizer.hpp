@@ -19,7 +19,7 @@
 #define ERJacobiLocalizer_hpp
 
 
-#include "Localization/BaseERLocalizer.hpp"
+#include "OrbitalOptimization/Localization/BaseERLocalizer.hpp"
 
 
 namespace GQCP {

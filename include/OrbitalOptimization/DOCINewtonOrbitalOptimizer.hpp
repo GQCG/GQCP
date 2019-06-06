@@ -18,13 +18,13 @@
 #ifndef DOCINewtonOrbitalOptimizer_hpp
 #define DOCINewtonOrbitalOptimizer_hpp
 
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
-#include "HamiltonianBuilder/DOCI.hpp"
-#include "OrbitalOptimizationOptions.hpp"
-#include "WaveFunction/WaveFunction.hpp"
 
+#include "HamiltonianBuilder/DOCI.hpp"
+#include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "math/optimization/Eigenpair.hpp"
 #include "math/optimization/EigenproblemSolverOptions.hpp"
+#include "OrbitalOptimization/OrbitalOptimizationOptions.hpp"
+#include "WaveFunction/WaveFunction.hpp"
 
 
 namespace GQCP {

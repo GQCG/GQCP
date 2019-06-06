@@ -15,11 +15,10 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "Localization/ERNewtonLocalizer.hpp"
+#include "OrbitalOptimization/Localization/ERNewtonLocalizer.hpp"
 
 #include "utilities/linalg.hpp"
 #include "math/optimization/step.hpp"
-
 
 #include <unsupported/Eigen/MatrixFunctions>
 
