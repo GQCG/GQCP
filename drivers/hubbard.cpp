@@ -19,7 +19,7 @@
 
 #include <boost/algorithm/string.hpp>
 #include <boost/program_options.hpp>
-
+#include <RDM/RDMCalculator.hpp>
 
 
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
@@ -106,12 +106,23 @@ int main (int argc, char** argv) {
     solver.solve(dense_solver_options);
 
 
-    // Print the energy to the console
+    // Print the requested entities
     std::cout << std::setprecision(15);
     for (const GQCP::Eigenpair& eigenpair : solver.get_eigenpairs()) {
-      if (print_eigenvals==true){std::cout << eigenpair.get_eigenvalue() << std::endl;}
-      if (print_eigenvectors==true){std::cout << eigenpair.get_eigenvector() << std::endl;}
-      if (print_1RDM==true){std::cout << eigenpair.get_eigenvalue() << std::endl;}
-      if (print_2RDM==true){std::cout << eigenpair.get_eigenvalue() << std::endl;}
+
+      if (print_eigenvals) {std::cout << eigenpair.get_eigenvalue() << std::endl;}
+      if (print_eigenvectors) {std::cout << eigenpair.get_eigenvector() << std::endl;}
+
+      if (print_1RDM) {
+          GQCP::RDMCalculator rdm_calculator(fock_space);
+          rdm_calculator.set_coefficients(eigenpair.get_eigenvector());
+          std::cout << rdm_calculator.calculate1RDMs().one_rdm << std::endl;
+      }
+
+      if (print_2RDM) {
+          GQCP::RDMCalculator rdm_calculator(fock_space);
+          rdm_calculator.set_coefficients(eigenpair.get_eigenvector());
+          std::cout << rdm_calculator.calculate2RDMs().two_rdm << std::endl;
+      }
     }
 }
