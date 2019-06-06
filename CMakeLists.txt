@@ -6,14 +6,13 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)  # make CMake look into
 
 add_library(gqcp SHARED "")
 
-
 # Supported options
 # -----------------
 option(BUILD_TESTS "Build tests" OFF)
 option(BUILD_DOCS "Build the documentation using Doxygen" OFF)
 option(BUILD_BENCHMARKS "Build benchmarks executables" OFF)
 option(BUILD_DRIVERS "Build standard drivers" OFF)
-option(EIGEN_USE_MKL_ALL "Eigen uses MKL" OFF)
+option(EIGEN_USE_MKL "Eigen uses MKL" OFF)
 
 
 # Look for supporting libraries
@@ -23,9 +22,9 @@ find_package(Eigen3 3.3.4 REQUIRED)
 find_package(Int2 REQUIRED)
 find_package(Boost REQUIRED COMPONENTS program_options unit_test_framework)
 find_package(Spectra REQUIRED)
-find_package(Cint REQUIRED)
+find_package(Cint REQUIRED NO_MODULE)
 
-if(EIGEN_USE_MKL_ALL)
+if(EIGEN_USE_MKL)
     set(BLA_VENDOR Intel10_64lp)
     find_package(BLAS REQUIRED)
 endif()
@@ -57,10 +56,15 @@ target_compile_features(gqcp PUBLIC cxx_std_11)
 add_subdirectory(src)
 add_subdirectory(include)
 
+configure_file(cmake/version.hpp.in include/version.hpp)
+
 target_include_directories(gqcp
         PUBLIC
         $<INSTALL_INTERFACE:include>
         $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
+        $<BUILD_INTERFACE:${CMAKE_BINARY_DIR}/include>
+        PRIVATE
+        ${CMAKE_SOURCE_DIR}/src
         )
 
 target_link_libraries(gqcp
@@ -70,11 +74,12 @@ target_link_libraries(gqcp
             Cint::Cint
             Spectra::Spectra
         )
-target_include_directories(gqcp PUBLIC ${Boost_INCLUDE_DIRS})
+target_include_directories(gqcp PUBLIC $<BUILD_INTERFACE:${Boost_INCLUDE_DIRS}>)
 target_link_libraries(gqcp PUBLIC ${Boost_LIBRARIES})
-if (EIGEN_USE_MKL_ALL)
-    target_include_directories(gqcp PUBLIC ${BLAS_INCLUDE_DIR})
+if (EIGEN_USE_MKL)
+    target_include_directories(gqcp PUBLIC $<BUILD_INTERFACE:${BLAS_INCLUDE_DIR}>)
     target_link_libraries(gqcp PUBLIC ${BLAS_LIBRARIES})
+    target_compile_options(gqcp PUBLIC -DEIGEN_USE_MKL_ALL -DMKL_LP64)
 endif()
 
 
@@ -84,16 +89,6 @@ if (BUILD_TESTS)
     enable_testing()
     add_subdirectory(tests)
 endif()
-
-
-# Get the long git SHA1 (https://stackoverflow.com/a/21028226/7930415)
-execute_process(COMMAND "${GIT_EXECUTABLE}" describe --always --abbrev=40 --dirty
-        WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
-        OUTPUT_VARIABLE GIT_SHA1
-        ERROR_QUIET
-        OUTPUT_STRIP_TRAILING_WHITESPACE
-)
-configure_file(cmake/version.hpp.in include/version.hpp)
 
 
 # Generate documentation
@@ -121,15 +116,56 @@ endif()
 
 # Install the library (relative to the CMAKE_INSTALL_PREFIX)
 # ----------------------------------------------------------
-install(TARGETS gqcp EXPORT gqcpTargets
+
+include(GNUInstallDirs)
+
+install(TARGETS gqcp
+        EXPORT gqcp-targets
         LIBRARY DESTINATION lib
         ARCHIVE DESTINATION lib
         RUNTIME DESTINATION bin
         INCLUDES DESTINATION include
         )
 
-install(EXPORT gqcpTargets
-        FILE gqcpTargets.cmake
+install(DIRECTORY ${CMAKE_BINARY_DIR}/include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+
+install(EXPORT gqcp-targets
+        FILE gqcp-targets.cmake
         NAMESPACE gqcp::
-        DESTINATION lib/cmake/gqcp
+        DESTINATION cmake
         )
+
+# Configure package
+# -----------------
+
+include(CMakePackageConfigHelpers)
+
+configure_package_config_file(
+        ${CMAKE_SOURCE_DIR}/cmake/gqcp-config.cmake.in
+        ${CMAKE_BINARY_DIR}/cmake/gqcp-config.cmake
+        INSTALL_DESTINATION cmake
+)
+
+write_basic_package_version_file(
+        ${CMAKE_BINARY_DIR}/cmake/gqcp-config-version.cmake
+        VERSION ${gqcp_VERSION}
+        COMPATIBILITY AnyNewerVersion
+)
+
+install(
+        FILES
+        ${CMAKE_BINARY_DIR}/cmake/gqcp-config.cmake
+        ${CMAKE_BINARY_DIR}/cmake/gqcp-config-version.cmake
+        DESTINATION cmake
+)
+
+
+# Git related information
+# -----------------------
+
+# Get the long git SHA1 (https://stackoverflow.com/a/21028226/7930415)
+execute_process(COMMAND "${GIT_EXECUTABLE}" describe --always --abbrev=40 --dirty
+        WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
+        OUTPUT_VARIABLE GIT_SHA1
+        ERROR_QUIET
+        OUTPUT_STRIP_TRAILING_WHITESPACE)

@@ -1,29 +1,37 @@
-# FindSpectra.cmake. Find<package>.cmake-template from (https://cmake.org/Wiki/CMake:How_To_Find_Libraries#Writing_find_modules).
+#[=======================================================================[.rst:
+FindSpectra
+--------
 
-# Try to find Spectra
-# Once done, this will define
-#  Spectra_FOUND            spectra is available on the system
-#  Spectra_INCLUDE_DIRS     the spectra include directories
+Find the Spectra header-only library (https://spectralib.org) on the system.
 
-# Since it's a header-only library, the include directories are enough.
+Result Variables
+^^^^^^^^^^^^^^^^
 
-find_path(SPECTRA_PREFIX README.md HINTS ${CMAKE_SOURCE_DIR}/spectra /usr/local/spectra)
+This module makes a ``Spectra::Spectra``target and will set the following variables in your project:
 
-if("${SPECTRA_PREFIX}" STREQUAL "SPECTRA_PREFIX-NOTFOUND")
-message(WARNING "Spectra was not found.")
-else()
-# If found, we let the user know that Spectra was found
-message(STATUS "Spectra was found at ${SPECTRA_PREFIX}")
+``Spectra_FOUND``
+  System has the Spectra library installed.
+``Spectra_INCLUDE_DIR``
+  The Spectra include directories.
 
-# Set Spectra_FOUND
-set(Spectra_FOUND TRUE)
+Hints
+^^^^^
 
-# Set the INCLUDE_DIRS
-set(Spectra_INCLUDE_DIRS "${SPECTRA_PREFIX}/include")
-endif()
+``Spectra_ROOT_DIR``
+  Define the root directory of the Spectra installation.
+#]=======================================================================]
+find_path(Spectra_INCLUDE_DIR Spectra/SymEigsSolver.h HINTS ${CMAKE_SOURCE_DIR}/spectra/include ${Spectra_ROOT_DIR}/include)
+mark_as_advanced(Spectra_INCLUDE_DIR)
+
+include(FindPackageHandleStandardArgs)
+find_package_handle_standard_args(Spectra REQUIRED_VARS
+        Spectra_INCLUDE_DIR) # sets Spectra_FOUND
 
 if(Spectra_FOUND AND NOT TARGET Spectra::Spectra)
     add_library(Spectra::Spectra INTERFACE IMPORTED)
+    target_link_libraries(Spectra::Spectra INTERFACE Eigen3::Eigen)
     set_target_properties(Spectra::Spectra PROPERTIES
-            INTERFACE_INCLUDE_DIRECTORIES "${Spectra_INCLUDE_DIRS}")
+            INTERFACE_INCLUDE_DIRECTORIES ${Spectra_INCLUDE_DIR}
+            INTERFACE_COMPILE_FEATURES cxx_std_11
+            )
 endif()

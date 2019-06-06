@@ -69,7 +69,6 @@ install:
     - if [ ! -f $HOME/miniconda/bin/cmake ]; then
         conda install -c conda-forge cmake=3.13 boost-cpp eigen blas mkl;
         conda install -c gqcg libint;
-        conda install -c pyscf libcint;
         conda install -c intel mkl-include mkl-static intel-openmp;
       else
         echo "Using already installed packages.";
@@ -88,11 +87,19 @@ install:
     - cmake .. -DCMAKE_BUILD_TYPE=RELEASE
     - make -j3 && sudo make install
 
+    # Install the GQCG fork of Libcint
+    - cd /tmp
+    - git clone -b feature/cmake_refactor https://github.com/GQCG/libcint.git
+    - cd libcint
+    - mkdir build && cd build
+    - cmake ..
+    - make -j3 && sudo make install
+
 # Run the build script
 script:
   - cd ${TRAVIS_BUILD_DIR}
   - mkdir build && cd build
-  - cmake .. -DBUILD_TESTS=TRUE -DBUILD_BENCHMARKS=TRUE -DBUILD_DRIVERS=TRUE -DCMAKE_INCLUDE_PATH=${HOME}/miniconda/include -DCMAKE_LIBRARY_PATH=${HOME}/miniconda/lib -DEIGEN_USE_MKL_ALL=TRUE
+  - cmake .. -DBUILD_TESTS=TRUE -DBUILD_BENCHMARKS=TRUE -DBUILD_DRIVERS=TRUE -DCMAKE_INCLUDE_PATH=${HOME}/miniconda/include -DCMAKE_LIBRARY_PATH=${HOME}/miniconda/lib -DEIGEN_USE_MKL=TRUE
   - make -j3 VERBOSE=1 && env CTEST_OUTPUT_ON_FAILURE=1 make test ARGS=-j3 && sudo make install
 
 # Run the benchmarks
