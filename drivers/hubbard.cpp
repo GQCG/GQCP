@@ -28,14 +28,18 @@
 
 
 int main (int argc, char** argv) {
-
+  
     // Input processing
     std::string csline;
     size_t N_alpha;
     size_t N_beta;
     size_t K;
     size_t N_eigenvalues;
-
+    bool print_eigenvals;
+    bool print_eigenvectors;
+    bool print_1RDM;
+    bool print_2RDM;
+    
     namespace po = boost::program_options;
     po::variables_map variables_map;
     try {
@@ -46,8 +50,11 @@ int main (int argc, char** argv) {
         ("N_lowest_states,x", po::value<size_t>(&N_eigenvalues)->default_value(1), "Number of lowest states")
         ("N_alpha,a", po::value<size_t>(&N_alpha)->required(), "number of alpha electrons")
         ("N_beta,b", po::value<size_t>(&N_beta)->required(), "number of beta electrons")
-        ("K,K", po::value<size_t>(&K)->required(), "number of sites");
-
+        ("K,K", po::value<size_t>(&K)->required(), "number of sites")
+	("eigenvals, e", po::value<bool>(&print_eigenvals)->default_value(true), "Print option for eigenvalues")
+	("eigenvectors, v", po::value<bool>(&print_eigenvectors)->default_value(false), "Print option for eigenvectors")
+	("1RDM, o", po::value<bool>(&print_1RDM)->default_value(false), "Print option for 1RDMs")
+	("2RDM, t", po::value<bool>(&print_2RDM)->default_value(false), "Print option for 2RDMs");
         po::store(po::parse_command_line(argc, argv, desc), variables_map);
 
         if (variables_map.count("help")) {
@@ -102,6 +109,9 @@ int main (int argc, char** argv) {
     // Print the energy to the console
     std::cout << std::setprecision(15);
     for (const GQCP::Eigenpair& eigenpair : solver.get_eigenpairs()) {
-        std::cout << eigenpair.get_eigenvalue() << std::endl;
+      if (print_eigenvals==true){std::cout << eigenpair.get_eigenvalue() << std::endl;}
+      if (print_eigenvectors==true){std::cout << eigenpair.get_eigenvector() << std::endl;}
+      if (print_1RDM==true){std::cout << eigenpair.get_eigenvalue() << std::endl;}
+      if (print_2RDM==true){std::cout << eigenpair.get_eigenvalue() << std::endl;}
     }
 }
