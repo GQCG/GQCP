@@ -15,18 +15,20 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#define BOOST_TEST_MODULE "AP1roGBivariationalSolver"
+#define BOOST_TEST_MODULE "AP1roG"
 
 #include <boost/test/unit_test.hpp>
 
-#include "geminals/AP1roGBivariationalSolver.hpp"
+#include "Geminals/AP1roG.hpp"
 
+#include "Geminals/AP1roGLagrangianOptimizer.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
+#include "properties/expectation_values.hpp"
 
 
-BOOST_AUTO_TEST_CASE ( h2_631gdp ) {
 
-    // Prepare molecular Hamiltonian parameters in the RHF basis
+BOOST_AUTO_TEST_CASE ( energy_as_contraction ) {
+
     auto h2 = GQCP::Molecule::Readxyz("data/h2_olsens.xyz");
     auto ao_mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2, "6-31G**");
 
@@ -37,11 +39,18 @@ BOOST_AUTO_TEST_CASE ( h2_631gdp ) {
     auto mol_ham_par = GQCP::HamiltonianParameters<double>(ao_mol_ham_par, rhf.get_C());
 
 
-    // Solve the AP1roG bivariational equations with the initial guess of the geminal coefficients being 0
-    GQCP::AP1roGBivariationalSolver bivar_solver1 (h2, mol_ham_par);
-    bivar_solver1.solve();
+    // Optimize the AP1roG PSE Lagrangian with the initial guess of the geminal coefficients being 0
+    GQCP::AP1roGLagrangianOptimizer lagrangian_optimizer (h2, mol_ham_par);
+    lagrangian_optimizer.solve();
+    double electronic_energy = lagrangian_optimizer.get_electronic_energy();
+    auto G = lagrangian_optimizer.get_geminal_coefficients();
+    auto multipliers = lagrangian_optimizer.get_multipliers();
 
-    // Solve the AP1roG bivariational equations with the initial guess of the geminal coefficients being 0
-    GQCP::AP1roGBivariationalSolver bivar_solver2 (h2, mol_ham_par, GQCP::AP1roGBivariationalSolver::ExtraEquation::norm);
-    bivar_solver2.solve();
+
+    // Calculate the 1- and 2-RDM and check the trace with the one- and two-electron integrals
+    auto D = GQCP::calculate1RDM(G, multipliers);
+    auto d = GQCP::calculate2RDM(G, multipliers);
+
+    double electronic_energy_by_contraction = GQCP::calculateExpectationValue(mol_ham_par, D, d) - mol_ham_par.get_scalar();  // only the electronic energy
+    BOOST_CHECK(std::abs(electronic_energy_by_contraction - electronic_energy) < 1.0e-09);
 }
