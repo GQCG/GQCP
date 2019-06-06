@@ -29,6 +29,7 @@ namespace GQCP {
  *  A struct that holds options for orbital optimization
  */
 struct OrbitalOptimizationOptions {
+    bool should_minimize = true;  // if the algorithm should look for a minimum or not
     double convergence_threshold = 1.0e-08;
     size_t maximum_number_of_iterations = 128;
 };
@@ -37,4 +38,4 @@ struct OrbitalOptimizationOptions {
 }  // namespace GQCP
 
 
-#endif /* OrbitalOptimizationOptions_hpp */
+#endif  /* OrbitalOptimizationOptions_hpp */
