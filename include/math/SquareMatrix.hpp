@@ -101,9 +101,9 @@ public:
      */
 
     /**
-     *  Constructor from a strict lower/upper triangle, and the other elements are set to zero
-     *
      *  @param a        the strict (not including the diagonal) lower/upper triangle of the matrix in column major form
+     * 
+     *  @return a square matrix in which the lower triangle is filled in with its given vector representation; all other elements are set to zero
      */
     static Self FromStrictTriangle(const VectorX<Scalar>& a) {
 
