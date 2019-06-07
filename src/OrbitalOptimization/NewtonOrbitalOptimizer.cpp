@@ -2,6 +2,8 @@
 
 #include "math/optimization/step.hpp"
 
+#include <unsupported/Eigen/MatrixFunctions>
+
 
 namespace GQCP {
 
@@ -35,6 +37,10 @@ bool NewtonOrbitalOptimizer::checkForConvergence(const HamiltonianParameters<dou
         } else {
             return false;
         }
+    }
+
+    else {
+        return false;
     }
 }
 
@@ -70,8 +76,9 @@ SquareMatrix<double> NewtonOrbitalOptimizer::calculateNewRotationMatrix(const Ha
 
 
     // Change kappa back to a matrix
-    auto kappa_matrix = GQCP::SquareMatrix<double>::FromStrictTriangle(kappa_vector);  // lower triangle only
-    kappa_matrix -= kappa_matrix.transposeInPlace();  // add the antisymmetric component
+    auto kappa_matrix = GQCP::SquareMatrix<double>::FromStrictTriangle(kappa);  // lower triangle only
+    GQCP::SquareMatrix<double> kappa_matrix_transpose = kappa_matrix.transpose();
+    kappa_matrix = kappa_matrix - kappa_matrix_transpose;  // add the antisymmetric component
 
     return (-kappa_matrix).exp();  // matrix exponential
 }
@@ -153,7 +160,7 @@ VectorX<double> NewtonOrbitalOptimizer::directionFromHessian() const {
     }
 
     // We shouldn't ever reach these lines, unless this function was wrongly called
-    throw std::invalid_argument("NewtonOrbitalOptimizer::directionFromHessian(): A direction from the Hessian was tried to be generated but the Newton step is well-defined.")
+    throw std::invalid_argument("NewtonOrbitalOptimizer::directionFromHessian(): A direction from the Hessian was tried to be generated but the Newton step is well-defined.");
 }
 
 
