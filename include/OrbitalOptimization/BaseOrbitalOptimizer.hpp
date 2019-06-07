@@ -30,7 +30,7 @@ namespace GQCP {
  *  A base class for orbital optimizers. Due to the generality of the nature of the orbital optimization problem, the main algorithm (see solve()) is implemented inside this base class
  */
 class BaseOrbitalOptimizer {
-private:
+protected:
     OrbitalOptimizationOptions oo_options;
 
 
@@ -42,7 +42,7 @@ public:
     BaseOrbitalOptimizer(const OrbitalOptimizationOptions& oo_options);
 
 
-    // PURE VIRTUAL METHODS
+    // PUBLIC PURE VIRTUAL METHODS
     /**
      *  @param ham_par      the current Hamiltonian parameters
      * 

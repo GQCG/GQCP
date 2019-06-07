@@ -3,6 +3,7 @@ target_sources(gqcp
             AP1roGJacobiOrbitalOptimizer.hpp
             BaseOrbitalOptimizer.hpp
             DOCINewtonOrbitalOptimizer.hpp
+            NewtonOrbitalOptimizer.hpp
             OrbitalOptimizationOptions.hpp
         )
 
