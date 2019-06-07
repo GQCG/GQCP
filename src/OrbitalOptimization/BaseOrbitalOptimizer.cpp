@@ -35,7 +35,7 @@ void BaseOrbitalOptimizer::optimize(HamiltonianParameters<double>& ham_par) {
     }
 
     size_t number_of_oo_iterations {0};
-    while (this->checkForConvergence(ham_par)) {
+    while (!this->checkForConvergence(ham_par)) {  // if not converged
         auto U = this->calculateNewRotationMatrix(ham_par);
         ham_par.rotate(U);
 

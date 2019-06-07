@@ -19,19 +19,24 @@
 #define ERNewtonLocalizer_hpp
 
 
-#include "OrbitalOptimization/Localization/BaseERLocalizer.hpp"
+#include "OrbitalOptimization/NewtonOrbitalOptimizer.hpp"
 
 
 namespace GQCP {
 
 
-
 /**
  *  A class that localizes a set of orthonormal orbitals according to the maximization of the Edmiston-Ruedenberg localization index. A maximum is found using subsequent Newton steps.
  */
-class ERNewtonLocalizer : public BaseERLocalizer {
+class ERNewtonLocalizer : public NewtonOrbitalOptimizer {
+private:
+    // PRIVATE MEMBERS
+    size_t N_P;
+
+
 private:
     // PRIVATE METHODS
+    
     /**
      *  @param ham_par      the Hamiltonian parameters (in an orthonormal basis) containing the two-electron integrals
      *  @param i            the row of the gradient 'matrix'
@@ -69,21 +74,61 @@ private:
 
 public:
     // CONSTRUCTORS
+
     /**
-     *  @param N_P                              the number of electron pairs
-     *  @param threshold                        the threshold for maximization on subsequent localization indices
-     *  @param maximum_number_of_iterations     the maximum number of iterations for the localization algorithm
+     *  @param N_P              the number of electron pairs
+     *  @param oo_options       the orbital optimization options that should be used for the orbital optimization algorithm
      */
-    ERNewtonLocalizer(size_t N_P, double threshold=1.0e-08, size_t maximum_number_of_iterations=128);
+    ERNewtonLocalizer(size_t N_P, const OrbitalOptimizationOptions& oo_options);
+
+
+    // PUBLIC OVERRIDDEN METHODS
+
+    /**
+     *  @param ham_par      the current Hamiltonian parameters
+     *
+     *  @return the current orbital gradient of the Edmiston-Ruedenberg localization index as a matrix
+     */
+    SquareMatrix<double> calculateGradientMatrix(const HamiltonianParameters<double>& ham_par) const override;
+
+    /**
+     *  @param ham_par      the current Hamiltonian parameters
+     *
+     *  @return the current orbital Hessian of the Edmiston-Ruedenberg localization index as a tensor
+     */
+    SquareRankFourTensor<double> calculateHessianTensor(const HamiltonianParameters<double>& ham_par) const override;
+
+    /**
+     *  Use gradient and Hessian information to determine a new direction for the 'full' orbital rotation generators kappa. Note that a distinction is made between 'free' generators, i.e. those that are calculated from the gradient and Hessian information and the 'full' generators, which also include the redundant parameters (that can be set to zero). The 'full' generators are used to calculate the total rotation matrix using the matrix exponential
+     * 
+     *  @param ham_par      the current Hamiltonian parameters
+     * 
+     *  @return the new full set orbital generators, including the redundant parameters
+     */
+    VectorX<double> calculateNewFullOrbitalGenerators(const HamiltonianParameters<double>& ham_par) const override;
 
 
     // PUBLIC METHODS
+
     /**
-     *  Localize the Hamiltonian parameters by maximizing the Edmiston-Ruedenberg localization index, using a Newton-based algorithm
+     *  @param ham_par      the current Hamiltonian parameters
+     *  @param i            the row of the gradient 'matrix'
+     *  @param j            the column of the gradient 'matrix'
      *
-     *  @param ham_par      the Hamiltonian parameters (in an orthonormal basis) that should be localized
+     *  @return the element (i,j) of the Edmiston-Ruedenberg localization index gradient
      */
-    void localize(HamiltonianParameters<double>& ham_par) override;
+    double calculateGradientMatrixElement(const HamiltonianParameters<double>& ham_par, size_t i, size_t j) const;
+
+    /**
+     *  @param ham_par      the current Hamiltonian parameters
+     *  @param i            the first index of the Hessian 'tensor'
+     *  @param j            the second index of the Hessian 'tensor'
+     *  @param k            the third index of the Hessian 'tensor'
+     *  @param l            the fourth index of the Hessian 'tensor'
+     *
+     *  @return the element (i,j,k,l) of the Edmiston-Ruedenberg localization index Hessian
+     */
+    double calculateHessianTensorElement(const HamiltonianParameters<double>& ham_par, size_t i, size_t j, size_t k, size_t l) const;
 };
 
 

@@ -17,27 +17,112 @@
 // 
 #include "OrbitalOptimization/Localization/ERNewtonLocalizer.hpp"
 
-#include "utilities/linalg.hpp"
-#include "math/optimization/step.hpp"
-
-#include <unsupported/Eigen/MatrixFunctions>
-
 
 
 namespace GQCP {
 
 
 /*
- *  PRIVATE METHODS
+ *  CONSTRUCTORS
  */
+
 /**
- *  @param ham_par      the Hamiltonian parameters (in an orthonormal basis) containing the two-electron integrals
+ *  @param N_P              the number of electron pairs
+ *  @param oo_options       the orbital optimization options that should be used for the orbital optimization algorithm
+ */
+ERNewtonLocalizer::ERNewtonLocalizer(size_t N_P, const OrbitalOptimizationOptions& oo_options) :
+    N_P (N_P),
+    NewtonOrbitalOptimizer(oo_options)
+{}
+
+
+
+/*
+ *  PUBLIC OVERRIDDEN METHODS
+ */
+
+/**
+ *  @param ham_par      the current Hamiltonian parameters
+ *
+ *  @return the current orbital gradient of the Edmiston-Ruedenberg localization index as a matrix
+ */
+SquareMatrix<double> ERNewtonLocalizer::calculateGradientMatrix(const HamiltonianParameters<double>& ham_par) const {
+
+    SquareMatrix<double> G = SquareMatrix<double>::Zero(this->N_P, this->N_P);
+
+    for (size_t i = 0; i < this->N_P; i++) {
+        for (size_t j = 0; j < this->N_P; j++) {
+            G(i,j) = this->calculateGradientMatrixElement(ham_par, i,j);
+        }
+    }
+
+    return G;
+}
+
+
+
+/**
+ *  @param ham_par      the current Hamiltonian parameters
+ *
+ *  @return the current orbital Hessian of the Edmiston-Ruedenberg localization index as a tensor
+ */
+SquareRankFourTensor<double> ERNewtonLocalizer::calculateHessianTensor(const HamiltonianParameters<double>& ham_par) const {
+
+    SquareRankFourTensor<double> H (this->N_P);
+    H.setZero();
+
+    for (size_t i = 0; i < this->N_P; i++) {
+        for (size_t j = 0; j < this->N_P; j++) {
+            for (size_t k = 0; k < this->N_P; k++) {
+                for (size_t l = 0; l < this->N_P; l++) {
+                    H(i,j,k,l) = this->calculateHessianTensorElement(ham_par, i,j,k,l);
+                }
+            }
+        }
+    }
+
+    return H;
+}
+
+
+/**
+ *  Use gradient and Hessian information to determine a new direction for the 'full' orbital rotation generators kappa. Note that a distinction is made between 'free' generators, i.e. those that are calculated from the gradient and Hessian information and the 'full' generators, which also include the redundant parameters (that can be set to zero). The 'full' generators are used to calculate the total rotation matrix using the matrix exponential
+ * 
+ *  @param ham_par      the current Hamiltonian parameters
+ * 
+ *  @return the new full set orbital generators, including the redundant parameters
+ */
+VectorX<double> ERNewtonLocalizer::calculateNewFullOrbitalGenerators(const HamiltonianParameters<double>& ham_par) const {
+
+    auto kappa_free = this->calculateNewFreeOrbitalGenerators(ham_par);
+
+    // The free orbital rotation generators only correspond to the occupied-occupied rotations, so we should add the occupied-virtual and virtual-virtual generators
+    size_t K = ham_par.get_K();
+    size_t dim_full = K * (K - 1) / 2;
+    VectorX<double> kappa_full = VectorX<double>::Zero(dim_full);
+
+    size_t dim_free = kappa_free.size();
+    kappa_full.head(dim_free) = kappa_free;
+
+    std::cout << "kappa_full: " << std::endl << kappa_full << std::endl << std::endl;
+
+    return kappa_full;
+}
+
+
+
+/*
+ *  PUBLIC METHODS
+ */
+
+/**
+ *  @param ham_par      the current Hamiltonian parameters
  *  @param i            the row of the gradient 'matrix'
  *  @param j            the column of the gradient 'matrix'
  *
  *  @return the element (i,j) of the Edmiston-Ruedenberg localization index gradient
  */
-double ERNewtonLocalizer::calculateGradientElement(const HamiltonianParameters<double>& ham_par, size_t i, size_t j) const {
+double ERNewtonLocalizer::calculateGradientMatrixElement(const HamiltonianParameters<double>& ham_par, size_t i, size_t j) const {
 
     auto g = ham_par.get_g();
 
@@ -46,26 +131,7 @@ double ERNewtonLocalizer::calculateGradientElement(const HamiltonianParameters<d
 
 
 /**
- *  @param ham_par      the Hamiltonian parameters (in an orthonormal basis) containing the two-electron integrals
- *
- *  @return the gradient of the Edmiston-Ruedenberg localization index as a matrix
- */
-SquareMatrix<double> ERNewtonLocalizer::calculateGradient(const HamiltonianParameters<double>& ham_par) const {
-
-    SquareMatrix<double> G = SquareMatrix<double>::Zero(this->N_P, this->N_P);
-
-    for (size_t i = 0; i < this->N_P; i++) {
-        for (size_t j = 0; j < this->N_P; j++) {
-            G(i,j) = this->calculateGradientElement(ham_par, i,j);
-        }
-    }
-
-    return G;
-}
-
-
-/**
- *  @param ham_par      the Hamiltonian parameters (in an orthonormal basis) containing the two-electron integrals
+ *  @param ham_par      the current Hamiltonian parameters
  *  @param i            the first index of the Hessian 'tensor'
  *  @param j            the second index of the Hessian 'tensor'
  *  @param k            the third index of the Hessian 'tensor'
@@ -73,7 +139,7 @@ SquareMatrix<double> ERNewtonLocalizer::calculateGradient(const HamiltonianParam
  *
  *  @return the element (i,j,k,l) of the Edmiston-Ruedenberg localization index Hessian
  */
-double ERNewtonLocalizer::calculateHessianElement(const HamiltonianParameters<double>& ham_par, size_t i, size_t j, size_t k, size_t l) const {
+double ERNewtonLocalizer::calculateHessianTensorElement(const HamiltonianParameters<double>& ham_par, size_t i, size_t j, size_t k, size_t l) const {
 
     auto g = ham_par.get_g();
 
@@ -98,116 +164,6 @@ double ERNewtonLocalizer::calculateHessianElement(const HamiltonianParameters<do
     return value;
 }
 
-
-/**
- *  @param ham_par      the Hamiltonian parameters (in an orthonormal basis) containing the two-electron integrals
- *
- *  @return the Hessian of the Edmiston-Ruedenberg localization index as a tensor
- */
-SquareRankFourTensor<double> ERNewtonLocalizer::calculateHessian(const HamiltonianParameters<double>& ham_par) const {
-
-    SquareRankFourTensor<double> H (this->N_P);
-    H.setZero();
-
-    for (size_t i = 0; i < this->N_P; i++) {
-        for (size_t j = 0; j < this->N_P; j++) {
-            for (size_t k = 0; k < this->N_P; k++) {
-                for (size_t l = 0; l < this->N_P; l++) {
-                    H(i,j,k,l) = this->calculateHessianElement(ham_par, i,j,k,l);
-                }
-            }
-        }
-    }
-
-    return H;
-}
-
-
-
-/*
- *  CONSTRUCTORS
- */
-
-/**
- *  @param N_P                              the number of electron pairs
- *  @param threshold                        the threshold for maximization on subsequent localization indices
- *  @param maximum_number_of_iterations     the maximum number of iterations for the localization algorithm
- */
-ERNewtonLocalizer::ERNewtonLocalizer(size_t N_P, double threshold, size_t maximum_number_of_iterations) :
-    BaseERLocalizer(N_P, threshold, maximum_number_of_iterations)
-{}
-
-
-
-/*
- *  PUBLIC METHODS
- */
-
-/**
- *  Localize the Hamiltonian parameters by maximizing the Edmiston-Ruedenberg localization index, using a Newton-based algorithm
- *
- *  @param ham_par      the Hamiltonian parameters (in an orthonormal basis) that should be localized
- */
-void ERNewtonLocalizer::localize(HamiltonianParameters<double>& ham_par) {
-
-    size_t dim = this->N_P * (this->N_P - 1) / 2 - 1;  // number of free occupied-occupied orbital rotation parameters
-
-    while (!(this->is_converged)) {
-
-        // Calculate the gradient and Hessian with only the free parameters, at kappa = 0
-        auto gradient_vector = this->calculateGradient(ham_par).strictLowerTriangle();
-        auto hessian_matrix = this->calculateHessian(ham_par).pairWiseStrictReduce();
-
-        // Perform a Newton-step to find orbital rotation parameters kappa
-        VectorFunction gradient_function = [gradient_vector] (const VectorX<double>& x) { return gradient_vector; };
-        MatrixFunction hessian_function = [hessian_matrix] (const VectorX<double>& x) { return hessian_matrix; };
-
-        auto kappa_vector = newtonStep(VectorX<double>::Zero(dim), gradient_function, hessian_function);  // with only the free parameters
-
-
-        // If the calculated norm is zero, we have reached a critical point
-        if (gradient_vector.norm() < this->threshold) {
-
-            // If we have found a critical point, but we have a positive eigenvalue for the Hessian, continue in that direction
-            Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> hessian_solver (hessian_matrix);
-
-            if (hessian_solver.eigenvalues()(dim - 1) > 0) {
-                kappa_vector = hessian_solver.eigenvectors().col(dim - 1);
-            }
-            else {  // the Hessian is confirmed to be negative definite, so we have reached a maximum
-                this->is_converged = true;
-                break;
-            }
-
-
-        } else {
-            this->iterations++;
-
-            if (this->iterations == this->maximum_number_of_iterations) {
-                throw std::runtime_error("ERNewtonLocalizer::localize(HamiltonianParameters<double>): The localization algorithm did not converge within the given maximum number of iterations.");
-            }
-        }
-
-
-        // Change kappa from the occupied-occupied vector to the full matrix
-
-        // The current kappa vector corresponds to the occupied-occupied rotation: the full kappa matrix contains o-o, o-v and v-v blocks
-        auto kappa_matrix_occupied = GQCP::SquareMatrix<double>::FromStrictTriangle(kappa_vector);  // containing all parameters, so this is in anti-Hermitian (anti-symmetric) form
-        SquareMatrix<double> kappa_matrix_transpose_occupied = kappa_matrix_occupied.transpose();  // store the transpose in an auxiliary variable to avoid aliasing issues
-        kappa_matrix_occupied -= kappa_matrix_transpose_occupied;  // FromStrictTriangle only returns the lower triangle, so we must construct the anti-Hermitian (anti-symmetric) matrix
-
-        SquareMatrix<double> kappa_matrix = SquareMatrix<double>::Zero(ham_par.get_K(), ham_par.get_K());
-        kappa_matrix.topLeftCorner(this->N_P, this->N_P) = kappa_matrix_occupied;
-
-
-        // Calculate the unitary rotation matrix that we can use to rotate the basis
-        SquareMatrix<double> U = (-kappa_matrix).exp();
-
-
-        // Transform the integrals to the new orthonormal basis
-        ham_par.rotate(U);  // this checks if U is actually unitary
-    }  // while not converged
-}
 
 
 }  // namespace GQCP

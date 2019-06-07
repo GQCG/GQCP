@@ -19,7 +19,6 @@ class NewtonOrbitalOptimizer : public BaseOrbitalOptimizer {
 protected:
     VectorX<double> gradient;
     SquareMatrix<double> hessian;
-    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> hessian_diagonalizer;
 
 
 public:
@@ -42,6 +41,15 @@ public:
      *  @return the current orbital Hessian as a tensor
      */
     virtual SquareRankFourTensor<double> calculateHessianTensor(const HamiltonianParameters<double>& ham_par) const = 0;
+
+    /**
+     *  Use gradient and Hessian information to determine a new direction for the 'full' orbital rotation generators kappa. Note that a distinction is made between 'free' generators, i.e. those that are calculated from the gradient and Hessian information and the 'full' generators, which also include the redundant parameters (that can be set to zero). The 'full' generators are used to calculate the total rotation matrix using the matrix exponential
+     * 
+     *  @param ham_par      the current Hamiltonian parameters
+     * 
+     *  @return the new full set orbital generators, including the redundant parameters
+     */
+    virtual VectorX<double> calculateNewFullOrbitalGenerators(const HamiltonianParameters<double>& ham_par) const = 0;
 
 
     // PUBLIC OVERRIDDEN METHODS
@@ -99,6 +107,15 @@ public:
      *  @return the new direction from the Hessian if the Newton step is ill-defined
      */
     VectorX<double> directionFromHessian() const;
+
+    /**
+     *  Use gradient and Hessian information to determine a new direction for the 'free' orbital rotation generators kappa. Note that a distinction is made between 'free' generators, i.e. those that are calculated from the gradient and Hessian information and the 'full' generators, which also include the redundant parameters (that can be set to zero). The 'full' generators are used to calculate the total rotation matrix using the matrix exponential
+     * 
+     *  @param ham_par      the current Hamiltonian parameters
+     * 
+     *  @return the new free orbital generators
+     */
+    VectorX<double> calculateNewFreeOrbitalGenerators(const HamiltonianParameters<double>& ham_par) const;
 };
 
 
