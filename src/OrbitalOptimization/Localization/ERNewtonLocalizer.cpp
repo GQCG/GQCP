@@ -92,23 +92,10 @@ SquareRankFourTensor<double> ERNewtonLocalizer::calculateHessianTensor(const Ham
  * 
  *  @return the new full set orbital generators, including the redundant parameters
  */
-VectorX<double> ERNewtonLocalizer::calculateNewFullOrbitalGenerators(const HamiltonianParameters<double>& ham_par) const {
+OrbitalRotationGenerators ERNewtonLocalizer::calculateNewFullOrbitalGenerators(const HamiltonianParameters<double>& ham_par) const {
 
-    auto kappa_free = this->calculateNewFreeOrbitalGenerators(ham_par);
-
-    // The free orbital rotation generators only correspond to the occupied-occupied rotations, so we should add the occupied-virtual and virtual-virtual generators
-    size_t K = ham_par.get_K();
-    size_t dim_full = K * (K - 1) / 2;
-    VectorX<double> kappa_full = VectorX<double>::Zero(dim_full);
-
-    
-
-
-
-    size_t dim_free = kappa_free.size();
-    kappa_full.head(dim_free) = kappa_free;
-
-    std::cout << "kappa_full: " << std::endl << kappa_full << std::endl << std::endl;
+    auto kappa_free = this->calculateNewFreeOrbitalGenerators(ham_par);  // only occupied-occupied
+    auto kappa_full = OrbitalRotationGenerators::FromOccOcc(kappa_free, ham_par.get_K());
 
     return kappa_full;
 }

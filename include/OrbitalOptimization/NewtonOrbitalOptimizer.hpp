@@ -3,6 +3,7 @@
 
 
 #include "OrbitalOptimization/BaseOrbitalOptimizer.hpp"
+#include "OrbitalOptimization/OrbitalRotationGenerators.hpp"
 #include "math/SquareMatrix.hpp"
 #include "math/SquareRankFourTensor.hpp"
 
@@ -49,7 +50,7 @@ public:
      * 
      *  @return the new full set orbital generators, including the redundant parameters
      */
-    virtual VectorX<double> calculateNewFullOrbitalGenerators(const HamiltonianParameters<double>& ham_par) const = 0;
+    virtual OrbitalRotationGenerators calculateNewFullOrbitalGenerators(const HamiltonianParameters<double>& ham_par) const = 0;
 
 
     // PUBLIC OVERRIDDEN METHODS
@@ -115,7 +116,7 @@ public:
      * 
      *  @return the new free orbital generators
      */
-    VectorX<double> calculateNewFreeOrbitalGenerators(const HamiltonianParameters<double>& ham_par) const;
+    OrbitalRotationGenerators calculateNewFreeOrbitalGenerators(const HamiltonianParameters<double>& ham_par) const;
 };
 
 

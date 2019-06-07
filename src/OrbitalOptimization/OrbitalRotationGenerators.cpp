@@ -40,7 +40,7 @@ OrbitalRotationGenerators::OrbitalRotationGenerators(const SquareMatrix<double>&
  * 
  *  @return 'full' orbital rotation generators from the given occupied-occupied generators
  */
-OrbitalRotationGenerators FromOccOcc(const OrbitalRotationGenerators& o_o_generators, const size_t K) {
+OrbitalRotationGenerators OrbitalRotationGenerators::FromOccOcc(const OrbitalRotationGenerators& o_o_generators, const size_t K) {
 
     SquareMatrix<double> kappa_full_matrix = SquareMatrix<double>::Zero(K, K);
 

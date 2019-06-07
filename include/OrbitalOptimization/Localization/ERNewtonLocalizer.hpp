@@ -105,7 +105,7 @@ public:
      * 
      *  @return the new full set orbital generators, including the redundant parameters
      */
-    VectorX<double> calculateNewFullOrbitalGenerators(const HamiltonianParameters<double>& ham_par) const override;
+    OrbitalRotationGenerators calculateNewFullOrbitalGenerators(const HamiltonianParameters<double>& ham_par) const override;
 
 
     // PUBLIC METHODS
