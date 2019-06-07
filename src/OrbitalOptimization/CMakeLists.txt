@@ -4,6 +4,7 @@ target_sources(gqcp
             BaseOrbitalOptimizer.cpp
             DOCINewtonOrbitalOptimizer.cpp
             NewtonOrbitalOptimizer.cpp
+            OrbitalRotationGenerators.cpp
         )
 
 add_subdirectory(Localization)

@@ -105,25 +105,17 @@ public:
      * 
      *  @return a square matrix in which the lower triangle is filled in with its given vector representation; all other elements are set to zero
      */
-    static Self FromStrictTriangle(const VectorX<Scalar>& a) {
+    static Self FromStrictTriangle(const VectorX<Scalar>& v) {
 
-        // Check for valid input
-        auto N = static_cast<size_t>(a.size());  // dimension of the vector
-        double K_ = 0.5 + 0.5 * std::sqrt(1 + 8*N);  // dimension of the matrix
-        if (std::abs(K_ - std::floor(K_)) > 1.0e-12) {  // if K is not an integer, within the given precision, i.e. N is not a triangular number
-            throw std::invalid_argument("SquareMatrix::FromStrictTriangle(VectorX<Scalar>): The given vector cannot be stored in the strict lower triangle of a matrix.");
-        }
-
-        // After the input checking, we are safe to cast K into size_t
-        auto K = static_cast<size_t>(K_);
-        Self A = Self::Zero(K, K);
+        size_t dim = strictTriangularRoot(v.size());
+        Self A = Self::Zero(dim, dim);
 
         size_t column_index = 0;
         size_t row_index = column_index + 1;  // fill the lower triangle
-        for (size_t vector_index = 0; vector_index < N; vector_index++) {
-            A(row_index,column_index) = a(vector_index);
+        for (size_t vector_index = 0; vector_index < v.size(); vector_index++) {
+            A(row_index,column_index) = v(vector_index);
 
-            if (row_index == K-1) {  // -1 because of computers
+            if (row_index == dim-1) {  // -1 because of computers
                 column_index++;
                 row_index = column_index + 1;
             } else {
@@ -141,19 +133,13 @@ public:
      */
     static Self FullFromTriangle(const VectorX<Scalar>& v) {
 
-        size_t x = v.size();
-        size_t N = (static_cast<size_t>(sqrt(1 + 8*x) - 1))/2;
+        size_t dim = triangularRoot(v.size());
 
-        if (N * (N+1) != 2*x) {
-            throw std::invalid_argument("SquareMatrix::FullFromTriangle(VectorX<Scalar>): The given vector is does not correspond to the upper triagonal of a square matrix.");
-        }
-
-
-        Self A = Self::Zero(N, N);
+        Self A = Self::Zero(dim, dim);
 
         size_t k = 0;  // vector index
-        for (size_t i = 0; i < N; i++) {  // row index
-            for (size_t j = i; j < N; j++) {  // column index
+        for (size_t i = 0; i < dim; i++) {  // row index
+            for (size_t j = i; j < dim; j++) {  // column index
                 if (i != j) {
                     A(i,j) = v(k);
                     A(j,i) = v(k);

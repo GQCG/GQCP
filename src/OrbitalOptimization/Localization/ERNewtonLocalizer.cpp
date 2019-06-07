@@ -101,6 +101,10 @@ VectorX<double> ERNewtonLocalizer::calculateNewFullOrbitalGenerators(const Hamil
     size_t dim_full = K * (K - 1) / 2;
     VectorX<double> kappa_full = VectorX<double>::Zero(dim_full);
 
+    
+
+
+
     size_t dim_free = kappa_free.size();
     kappa_full.head(dim_free) = kappa_free;
 

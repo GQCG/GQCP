@@ -101,4 +101,32 @@ size_t vectorIndex(size_t i, size_t j, size_t cols, size_t skipped) {
 }
 
 
+/**
+ *  @param x        the number
+ *
+ *  @return the triangular root of the given number. This is also the dimension of the square matrix whose lower/upper triangle has the given number of elements
+ */
+size_t triangularRoot(const size_t x) {
+
+    size_t n = static_cast<size_t>( (std::sqrt(8*x+1) - 1)/2 );
+
+    if (n * (n+1) != 2*x) {
+        throw std::invalid_argument("triangularRoot(const size_t): The given number does not have a triangular root.");
+    }
+
+    return n;
+}
+
+
+/**
+ *  @param x        the number
+ *
+ *  @return the strict triangular root of the given number. This is also the dimension of the square matrix whose strict lower/upper triangle has the given number of elements
+ */
+size_t strictTriangularRoot(const size_t x) {
+
+    return triangularRoot(x) + 1;
+}
+
+
 }  // namespace GQCP

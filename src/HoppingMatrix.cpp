@@ -64,15 +64,6 @@ HoppingMatrix::HoppingMatrix(const SquareMatrix<double>& A, double t, double U) 
  */
 HoppingMatrix HoppingMatrix::FromUpperTriangle(const VectorX<double>& upper_triangle) {
 
-    // Check if the given upper triangle is valid
-    size_t x = upper_triangle.size();
-    size_t K = (static_cast<size_t>(std::sqrt(1 + 8*x) - 1))/2;  // number of rows and columns
-
-    if (K * (K+1) != 2*x) {
-        throw std::invalid_argument("HoppingMatrix::FromUpperTriangle(VectorX<double>): The given upper triangle is not a valid upper triangle");
-    }
-
-
     return SquareMatrix<double>::FullFromTriangle(upper_triangle);
 }
 

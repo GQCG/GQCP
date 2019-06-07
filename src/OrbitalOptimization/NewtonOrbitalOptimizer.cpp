@@ -28,6 +28,9 @@ bool NewtonOrbitalOptimizer::checkForConvergence(const HamiltonianParameters<dou
     this->gradient = this->calculateGradientVector(ham_par);
     this->hessian = this->calculateHessianMatrix(ham_par);
 
+    std::cout << "gradient: " << std::endl << this->gradient << std::endl << std::endl;
+    std::cout << "hessian: " << std::endl << this->hessian << std::endl << std::endl;
+
     // Check for convergence on the norm
     std::cout << "norm of the gradient: " << this->gradient.norm() << std::endl;
     if (this->gradient.norm() < this->oo_options.convergence_threshold) {
@@ -66,6 +69,8 @@ SquareMatrix<double> NewtonOrbitalOptimizer::calculateNewRotationMatrix(const Ha
     auto full_kappa_matrix = GQCP::SquareMatrix<double>::FromStrictTriangle(full_kappa_vector);  // lower triangle only
     GQCP::SquareMatrix<double> full_kappa_matrix_transpose = full_kappa_matrix.transpose();
     full_kappa_matrix = full_kappa_matrix - full_kappa_matrix_transpose;  // add the antisymmetric component
+
+    std::cout << "Chosen kappa matrix: " << std::endl << full_kappa_matrix << std::endl << std::endl;
 
     return (-full_kappa_matrix).exp();  // matrix exponential
 }

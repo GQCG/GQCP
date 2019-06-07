@@ -127,6 +127,21 @@ std::vector<std::array<size_t, k>> uniquePartitions(size_t n) {
 }
 
 
+/**
+ *  @param x        the number
+ *
+ *  @return the triangular root of the given number. This is also the dimension of the square matrix whose lower/upper triangle has the given number of elements
+ */
+size_t triangularRoot(const size_t x);
+
+/**
+ *  @param x        the number
+ *
+ *  @return the strict triangular root of the given number. This is also the dimension of the square matrix whose strict lower/upper triangle has the given number of elements
+ */
+size_t strictTriangularRoot(const size_t x);
+
+
 }  // namespace GQCP
 
 
