@@ -20,11 +20,13 @@
 
 
 #include "HamiltonianBuilder/DOCI.hpp"
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "math/optimization/Eigenpair.hpp"
 #include "math/optimization/EigenproblemSolverOptions.hpp"
-#include "OrbitalOptimization/OrbitalOptimizationOptions.hpp"
+#include "OrbitalOptimization/NewtonOrbitalOptimizer.hpp"
+#include "RDM/RDMCalculator.hpp"
 #include "WaveFunction/WaveFunction.hpp"
+
+#include <memory>
 
 
 namespace GQCP {
@@ -36,38 +38,62 @@ namespace GQCP {
  *      - solving the Newton step to find the anti-Hermitian orbital rotation parameters
  *      - rotating the underlying spatial orbital basis
  */
-class DOCINewtonOrbitalOptimizer {
+class DOCINewtonOrbitalOptimizer : public NewtonOrbitalOptimizer {
 private:
+    BaseSolverOptions& ci_solver_options;  // the options for the CI solver (i.e. diagonalization of the Hamiltonian)
     DOCI doci;  // the DOCI Hamiltonian builder
-    HamiltonianParameters<double> ham_par;
 
-    bool is_converged = false;
+    RDMCalculator rdm_calculator;
+    OneRDM<double> D;  // spin-summed 1-RDM
+    TwoRDM<double> d;  // spin-summed 2-RDM
+
     std::vector<Eigenpair> eigenpairs;  // eigenvalues and -vectors
 
 
 public:
     // CONSTRUCTORS
+
     /**
-     *  @param doci         the DOCI HamiltonianBuilder
-     *  @param ham_par      the Hamiltonian parameters in an orthonormal basis
+     *  @param doci                     the DOCI HamiltonianBuilder
+     *  @param ci_solver_options        the options for the CI solver (i.e. diagonalization of the Hamiltonian)
+     *  @param oo_options               the options for orbital optimization
      */
-    DOCINewtonOrbitalOptimizer(const DOCI& doci, const HamiltonianParameters<double>& ham_par);
+    DOCINewtonOrbitalOptimizer(const DOCI& doci, BaseSolverOptions& ci_solver_options, const OrbitalOptimizationOptions& oo_options);
 
 
     // GETTERS
+
     const std::vector<Eigenpair>& get_eigenpairs() const;
     const Eigenpair& get_eigenpair(size_t index = 0) const;
-    const HamiltonianParameters<double>& get_ham_par() const { return this->ham_par; }
+
+
+    // OVERRIDDEN PUBLIC METHODS
+
+    /**
+     *  @param ham_par      the current Hamiltonian parameters
+     * 
+     *  @return the current orbital gradient as a matrix
+     */
+    SquareMatrix<double> calculateGradientMatrix(const HamiltonianParameters<double>& ham_par) override;
+
+    /**
+     *  @param ham_par      the current Hamiltonian parameters
+     * 
+     *  @return the current orbital Hessian as a tensor
+     */
+    SquareRankFourTensor<double> calculateHessianTensor(const HamiltonianParameters<double>& ham_par) override;
+
+    /**
+     *  Use gradient and Hessian information to determine a new direction for the 'full' orbital rotation generators kappa. Note that a distinction is made between 'free' generators, i.e. those that are calculated from the gradient and Hessian information and the 'full' generators, which also include the redundant parameters (that can be set to zero). The 'full' generators are used to calculate the total rotation matrix using the matrix exponential
+     * 
+     *  @param ham_par      the current Hamiltonian parameters
+     * 
+     *  @return the new full set orbital generators, including the redundant parameters
+     */
+    OrbitalRotationGenerators calculateNewFullOrbitalGenerators(const HamiltonianParameters<double>& ham_par) override;
 
 
     // PUBLIC METHODS
-    /**
-     *  Do the orbital optimization for DOCI
-     *
-     *  @param solver_options       solver options for the CI solver
-     *  @param oo_options           options for the orbital optimization
-     */
-    void solve(BaseSolverOptions& solver_options, const OrbitalOptimizationOptions& oo_options=OrbitalOptimizationOptions());
 
     /**
      *  @param index        the index of the index-th excited state

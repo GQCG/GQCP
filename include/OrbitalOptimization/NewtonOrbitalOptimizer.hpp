@@ -7,7 +7,6 @@
 #include "math/SquareMatrix.hpp"
 #include "math/SquareRankFourTensor.hpp"
 
-#include "Eigen/Dense"
 
 
 namespace GQCP {
@@ -34,14 +33,14 @@ public:
      * 
      *  @return the current orbital gradient as a matrix
      */
-    virtual SquareMatrix<double> calculateGradientMatrix(const HamiltonianParameters<double>& ham_par) const = 0;
+    virtual SquareMatrix<double> calculateGradientMatrix(const HamiltonianParameters<double>& ham_par) = 0;
 
     /**
      *  @param ham_par      the current Hamiltonian parameters
      * 
      *  @return the current orbital Hessian as a tensor
      */
-    virtual SquareRankFourTensor<double> calculateHessianTensor(const HamiltonianParameters<double>& ham_par) const = 0;
+    virtual SquareRankFourTensor<double> calculateHessianTensor(const HamiltonianParameters<double>& ham_par) = 0;
 
     /**
      *  Use gradient and Hessian information to determine a new direction for the 'full' orbital rotation generators kappa. Note that a distinction is made between 'free' generators, i.e. those that are calculated from the gradient and Hessian information and the 'full' generators, which also include the redundant parameters (that can be set to zero). The 'full' generators are used to calculate the total rotation matrix using the matrix exponential
@@ -50,7 +49,7 @@ public:
      * 
      *  @return the new full set orbital generators, including the redundant parameters
      */
-    virtual OrbitalRotationGenerators calculateNewFullOrbitalGenerators(const HamiltonianParameters<double>& ham_par) const = 0;
+    virtual OrbitalRotationGenerators calculateNewFullOrbitalGenerators(const HamiltonianParameters<double>& ham_par) = 0;
 
 
     // PUBLIC OVERRIDDEN METHODS
@@ -86,19 +85,19 @@ public:
      * 
      *  @return the current orbital gradient as a vector. Matrix indices are converted to vector indices in the convention that p>q
      */
-    VectorX<double> calculateGradientVector(const HamiltonianParameters<double>& ham_par) const;
+    VectorX<double> calculateGradientVector(const HamiltonianParameters<double>& ham_par);
 
     /**
      *  @param ham_par      the current Hamiltonian parameters
      * 
      *  @return the current orbital Hessian as a matrix
      */
-    SquareMatrix<double> calculateHessianMatrix(const HamiltonianParameters<double>& ham_par) const;
+    SquareMatrix<double> calculateHessianMatrix(const HamiltonianParameters<double>& ham_par);
 
     /**
      *  @return if a Newton step would be well-defined (i.e. the Hessian is positive definite for minimizations and negative definite for maximizations)
      */
-    bool newtonStepIsWellDefined() const;
+    bool newtonStepIsWellDefined();
 
     /**
      *  If the Newton step is ill-defined, examine the Hessian and produce a new direction from it:
@@ -107,7 +106,7 @@ public:
      * 
      *  @return the new direction from the Hessian if the Newton step is ill-defined
      */
-    VectorX<double> directionFromHessian() const;
+    VectorX<double> directionFromHessian();
 
     /**
      *  Use gradient and Hessian information to determine a new direction for the 'free' orbital rotation generators kappa. Note that a distinction is made between 'free' generators, i.e. those that are calculated from the gradient and Hessian information and the 'full' generators, which also include the redundant parameters (that can be set to zero). The 'full' generators are used to calculate the total rotation matrix using the matrix exponential
@@ -116,7 +115,7 @@ public:
      * 
      *  @return the new free orbital generators
      */
-    OrbitalRotationGenerators calculateNewFreeOrbitalGenerators(const HamiltonianParameters<double>& ham_par) const;
+    OrbitalRotationGenerators calculateNewFreeOrbitalGenerators(const HamiltonianParameters<double>& ham_par);
 };
 
 

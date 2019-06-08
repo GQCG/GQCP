@@ -46,7 +46,7 @@ ERNewtonLocalizer::ERNewtonLocalizer(size_t N_P, const OrbitalOptimizationOption
  *
  *  @return the current orbital gradient of the Edmiston-Ruedenberg localization index as a matrix
  */
-SquareMatrix<double> ERNewtonLocalizer::calculateGradientMatrix(const HamiltonianParameters<double>& ham_par) const {
+SquareMatrix<double> ERNewtonLocalizer::calculateGradientMatrix(const HamiltonianParameters<double>& ham_par) {
 
     SquareMatrix<double> G = SquareMatrix<double>::Zero(this->N_P, this->N_P);
 
@@ -66,7 +66,7 @@ SquareMatrix<double> ERNewtonLocalizer::calculateGradientMatrix(const Hamiltonia
  *
  *  @return the current orbital Hessian of the Edmiston-Ruedenberg localization index as a tensor
  */
-SquareRankFourTensor<double> ERNewtonLocalizer::calculateHessianTensor(const HamiltonianParameters<double>& ham_par) const {
+SquareRankFourTensor<double> ERNewtonLocalizer::calculateHessianTensor(const HamiltonianParameters<double>& ham_par) {
 
     SquareRankFourTensor<double> H (this->N_P);
     H.setZero();
@@ -92,7 +92,7 @@ SquareRankFourTensor<double> ERNewtonLocalizer::calculateHessianTensor(const Ham
  * 
  *  @return the new full set orbital generators, including the redundant parameters
  */
-OrbitalRotationGenerators ERNewtonLocalizer::calculateNewFullOrbitalGenerators(const HamiltonianParameters<double>& ham_par) const {
+OrbitalRotationGenerators ERNewtonLocalizer::calculateNewFullOrbitalGenerators(const HamiltonianParameters<double>& ham_par) {
 
     auto kappa_free = this->calculateNewFreeOrbitalGenerators(ham_par);  // only occupied-occupied
     auto kappa_full = OrbitalRotationGenerators::FromOccOcc(kappa_free, ham_par.get_K());

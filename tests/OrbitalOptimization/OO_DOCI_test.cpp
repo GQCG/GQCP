@@ -51,9 +51,10 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_sto_3g ) {
     // Do the DOCI orbital optimization using specified solver options
     GQCP::FockSpace fock_space (K, h2.get_N()/2);  // dim = 120
     GQCP::DOCI doci (fock_space);
-    GQCP::DenseSolverOptions solver_options;
-    GQCP::DOCINewtonOrbitalOptimizer orbital_optimizer (doci, mol_ham_par);
-    orbital_optimizer.solve(solver_options);
+    GQCP::DenseSolverOptions ci_solver_options;
+    GQCP::OrbitalOptimizationOptions oo_options;  // default: minimization
+    GQCP::DOCINewtonOrbitalOptimizer orbital_optimizer (doci, ci_solver_options, oo_options);
+    orbital_optimizer.optimize(mol_ham_par);
 
 
     // Check if the OO-DOCI energy is equal to the FCI energy
@@ -89,8 +90,8 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31g ) {
     GQCP::ProductFockSpace fci_fock_space (K, N_a, N_b);  // dim = 441
     GQCP::FCI fci (fci_fock_space);
     GQCP::CISolver fci_solver (fci, mol_ham_par);
-    GQCP::DenseSolverOptions solver_options;
-    fci_solver.solve(solver_options);
+    GQCP::DenseSolverOptions ci_solver_options;
+    fci_solver.solve(ci_solver_options);
 
     GQCP::VectorX<double> coef = fci_solver.makeWavefunction().get_coefficients();
     GQCP::FCIRDMBuilder fci_rdm_builder (fci_fock_space);
@@ -105,8 +106,9 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31g ) {
     // Do the DOCI orbital optimization, using the FCI natural orbitals
     GQCP::FockSpace doci_fock_space (K, h2.get_N()/2);  // dim = 120
     GQCP::DOCI doci (doci_fock_space);
-    GQCP::DOCINewtonOrbitalOptimizer orbital_optimizer (doci, mol_ham_par);
-    orbital_optimizer.solve(solver_options);
+    GQCP::OrbitalOptimizationOptions oo_options;  // default: minimization
+    GQCP::DOCINewtonOrbitalOptimizer orbital_optimizer (doci, ci_solver_options, oo_options);
+    orbital_optimizer.optimize(mol_ham_par);
 
 
     // Check if the OO-DOCI energy is equal to the FCI energy
@@ -141,8 +143,8 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx ) {
     GQCP::ProductFockSpace fci_fock_space (K, N_a, N_b);  // dim = 441
     GQCP::FCI fci (fci_fock_space);
     GQCP::CISolver fci_solver (fci, mol_ham_par);
-    GQCP::DenseSolverOptions solver_options;
-    fci_solver.solve(solver_options);
+    GQCP::DenseSolverOptions ci_solver_options;
+    fci_solver.solve(ci_solver_options);
 
     GQCP::VectorX<double> coef = fci_solver.makeWavefunction().get_coefficients();
     GQCP::FCIRDMBuilder fci_rdm_builder (fci_fock_space);
@@ -157,8 +159,9 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx ) {
     // Do the DOCI orbital optimization, using the FCI natural orbitals
     GQCP::FockSpace doci_fock_space (K, h2.get_N()/2);  // dim = 120
     GQCP::DOCI doci (doci_fock_space);
-    GQCP::DOCINewtonOrbitalOptimizer orbital_optimizer (doci, mol_ham_par);
-    orbital_optimizer.solve(solver_options);
+    GQCP::OrbitalOptimizationOptions oo_options;  // default: minimization
+    GQCP::DOCINewtonOrbitalOptimizer orbital_optimizer (doci, ci_solver_options, oo_options);
+    orbital_optimizer.optimize(mol_ham_par);
 
 
     // Check if the OO-DOCI energy is equal to the FCI energy
@@ -193,8 +196,8 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx_Davidson ) {
     GQCP::ProductFockSpace fci_fock_space (K, N_a, N_b);  // dim = 441
     GQCP::FCI fci (fci_fock_space);
     GQCP::CISolver fci_solver (fci, mol_ham_par);
-    GQCP::DenseSolverOptions solver_options;
-    fci_solver.solve(solver_options);
+    GQCP::DenseSolverOptions ci_solver_options;
+    fci_solver.solve(ci_solver_options);
 
     GQCP::VectorX<double> coef = fci_solver.makeWavefunction().get_coefficients();
     GQCP::FCIRDMBuilder fci_rdm_builder (fci_fock_space);
@@ -211,8 +214,9 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx_Davidson ) {
     GQCP::DOCI doci (doci_fock_space);
     GQCP::VectorX<double> initial_g = doci_fock_space.HartreeFockExpansion();
     GQCP::DavidsonSolverOptions davidson_solver_options (initial_g);
-    GQCP::DOCINewtonOrbitalOptimizer orbital_optimizer (doci, mol_ham_par);
-    orbital_optimizer.solve(davidson_solver_options);
+    GQCP::OrbitalOptimizationOptions oo_options;  // default: minimization
+    GQCP::DOCINewtonOrbitalOptimizer orbital_optimizer (doci, davidson_solver_options, oo_options);
+    orbital_optimizer.optimize(mol_ham_par);
 
 
     // Check if the OO-DOCI energy is equal to the FCI energy

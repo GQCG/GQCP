@@ -89,14 +89,14 @@ public:
      *
      *  @return the current orbital gradient of the Edmiston-Ruedenberg localization index as a matrix
      */
-    SquareMatrix<double> calculateGradientMatrix(const HamiltonianParameters<double>& ham_par) const override;
+    SquareMatrix<double> calculateGradientMatrix(const HamiltonianParameters<double>& ham_par) override;
 
     /**
      *  @param ham_par      the current Hamiltonian parameters
      *
      *  @return the current orbital Hessian of the Edmiston-Ruedenberg localization index as a tensor
      */
-    SquareRankFourTensor<double> calculateHessianTensor(const HamiltonianParameters<double>& ham_par) const override;
+    SquareRankFourTensor<double> calculateHessianTensor(const HamiltonianParameters<double>& ham_par) override;
 
     /**
      *  Use gradient and Hessian information to determine a new direction for the 'full' orbital rotation generators kappa. Note that a distinction is made between 'free' generators, i.e. those that are calculated from the gradient and Hessian information and the 'full' generators, which also include the redundant parameters (that can be set to zero). The 'full' generators are used to calculate the total rotation matrix using the matrix exponential
@@ -105,7 +105,7 @@ public:
      * 
      *  @return the new full set orbital generators, including the redundant parameters
      */
-    OrbitalRotationGenerators calculateNewFullOrbitalGenerators(const HamiltonianParameters<double>& ham_par) const override;
+    OrbitalRotationGenerators calculateNewFullOrbitalGenerators(const HamiltonianParameters<double>& ham_par) override;
 
 
     // PUBLIC METHODS

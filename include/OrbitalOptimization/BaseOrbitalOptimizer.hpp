@@ -31,18 +31,21 @@ namespace GQCP {
  */
 class BaseOrbitalOptimizer {
 protected:
+    bool is_converged = false;  // if the algorithm has converged
     OrbitalOptimizationOptions oo_options;
 
 
 public:
     // CONSTRUCTORS
+
     /**
-     *  @param oo_options       the orbital optimization options that should be used for the orbital optimization algorithm
+     *  @param oo_options               the options for orbital optimization
      */
     BaseOrbitalOptimizer(const OrbitalOptimizationOptions& oo_options);
 
 
     // PUBLIC PURE VIRTUAL METHODS
+
     /**
      *  @param ham_par      the current Hamiltonian parameters
      * 
@@ -59,6 +62,7 @@ public:
 
 
     // PUBLIC METHODS
+    
     /**
      *  Optimize the Hamiltonian parameters by subsequently
      *      - checking for convergence (see checkForConvergence())
