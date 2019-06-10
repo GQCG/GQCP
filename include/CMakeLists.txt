@@ -4,7 +4,6 @@ target_sources(gqcp
             elements.hpp
             gqcp.hpp
             HoppingMatrix.hpp
-            JacobiRotationParameters.hpp
             Molecule.hpp
             RMP2.hpp
             typedefs.hpp

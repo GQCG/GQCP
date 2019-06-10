@@ -4,7 +4,6 @@ list(APPEND test_target_sources
         Atom_test.cpp
         elements_test.cpp
         HoppingMatrix_test.cpp
-        JacobiRotationParameters_test.cpp
         Molecule_test.cpp
         RMP2_test.cpp
         units_test.cpp

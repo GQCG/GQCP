@@ -3,7 +3,6 @@ target_sources(gqcp
             Atom.cpp
             elements.cpp
             HoppingMatrix.cpp
-            JacobiRotationParameters.cpp
             Molecule.cpp
             RMP2.cpp
         )
