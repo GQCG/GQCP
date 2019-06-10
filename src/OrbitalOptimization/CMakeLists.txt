@@ -3,6 +3,7 @@ target_sources(gqcp
             AP1roGJacobiOrbitalOptimizer.cpp
             BaseOrbitalOptimizer.cpp
             DOCINewtonOrbitalOptimizer.cpp
+            JacobiOrbitalOptimizer.cpp
             JacobiRotationParameters.cpp
             NewtonOrbitalOptimizer.cpp
             OrbitalRotationGenerators.cpp

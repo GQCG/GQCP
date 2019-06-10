@@ -38,6 +38,11 @@ private:
 public:
     // CONSTRUCTORS
     /**
+     *  Default constructor
+     */
+    JacobiRotationParameters();
+
+    /**
      *  @param p        the index of the first rotated orbital
      *  @param q        the index of the second rotated orbital
      *  @param angle    the angle of rotation, in radians

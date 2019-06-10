@@ -18,8 +18,11 @@
 #define BOOST_TEST_MODULE "JacobiRotationParameters"
 
 #include <boost/test/unit_test.hpp>
+
+#include "OrbitalOptimization/JacobiRotationParameters.hpp"
+
 #include <iostream>
-#include "JacobiRotationParameters.hpp"
+
 
 
 BOOST_AUTO_TEST_CASE ( JacobiRotationParameters_constructor ) {

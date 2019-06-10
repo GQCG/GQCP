@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "JacobiRotationParameters.hpp"
+#include "OrbitalOptimization/JacobiRotationParameters.hpp"
 
 #include <stdexcept>
 
@@ -26,6 +26,14 @@ namespace GQCP {
 /*
  *  CONSTRUCTORS
  */
+
+/**
+ *  Default constructor
+ */
+JacobiRotationParameters::JacobiRotationParameters() : 
+    JacobiRotationParameters(1, 0, 0.0)
+{}
+
 
 /**
  *  @param p        the index of the first rotated orbital

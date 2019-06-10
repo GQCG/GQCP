@@ -52,8 +52,8 @@ bool JacobiOrbitalOptimizer::checkForConvergence(const HamiltonianParameters<dou
     double old_value = this->calculateScalarFunction(ham_par);
 
     this->optimal_jacobi_with_scalar = this->calculateOptimalJacobiParameters(ham_par);
-
     double new_value = optimal_jacobi_with_scalar.second;
+
     if (std::abs(new_value - old_value) < this->oo_options.convergence_threshold) {
         return true;
     } else {
@@ -87,7 +87,7 @@ std::pair<JacobiRotationParameters, double> JacobiOrbitalOptimizer::calculateOpt
 
     using pair_type = std::pair<JacobiRotationParameters, double>;
 
-    auto comp = [this] (const pair_type& lhs, const pair_type& rhs) {
+    auto cmp = [this] (const pair_type& lhs, const pair_type& rhs) {
         if (this->oo_options.should_minimize) {
             if (lhs.second < rhs.second) {
                 return false;
@@ -105,10 +105,11 @@ std::pair<JacobiRotationParameters, double> JacobiOrbitalOptimizer::calculateOpt
         }
     };
 
-    std::priority_queue<pair_type, std::vector<pair_type>, decltype(comp)> queue;
+    std::priority_queue<pair_type, std::vector<pair_type>, decltype(cmp)> queue (cmp);
+
 
     for (size_t q = 0; q < this->dim; q++) {
-        for (size_t p = p+1; p < this->dim; p++) {  // loop over p>q
+        for (size_t p = q+1; p < this->dim; p++) {  // loop over p>q
             this->calculateJacobiCoefficients(ham_par, p,q);  // initialize the trigoniometric polynomial coefficients
 
             double theta = this->calculateOptimalRotationAngle(ham_par, p,q);

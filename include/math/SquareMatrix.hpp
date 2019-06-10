@@ -22,7 +22,7 @@
 #include "math/Matrix.hpp"
 
 #include "utilities/miscellaneous.hpp"
-#include "JacobiRotationParameters.hpp"
+#include "OrbitalOptimization/JacobiRotationParameters.hpp"
 
 #include <numeric>
 #include <boost/numeric/conversion/converter.hpp>
