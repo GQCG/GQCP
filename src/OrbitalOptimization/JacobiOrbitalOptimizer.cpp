@@ -114,9 +114,9 @@ std::pair<JacobiRotationParameters, double> JacobiOrbitalOptimizer::calculateOpt
             const double theta = this->calculateOptimalRotationAngle(ham_par, p,q);
             const JacobiRotationParameters jacobi_rot_par (p, q, theta);
 
-            const double E_correction = this->calculateScalarFunctionCorrection(ham_par, jacobi_rot_par);
+            const double E_change = this->calculateScalarFunctionChange(ham_par, jacobi_rot_par);
 
-            queue.emplace(jacobi_rot_par, E_correction);  // construct a pair_type
+            queue.emplace(jacobi_rot_par, E_change);  // construct a pair_type
         }
     }
 

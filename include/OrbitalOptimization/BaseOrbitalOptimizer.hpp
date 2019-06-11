@@ -27,7 +27,7 @@ namespace GQCP {
 
 
 /**
- *  A base class for orbital optimizers. Due to the generality of the nature of the orbital optimization problem, the main algorithm (see solve()) is implemented inside this base class
+ *  The base class for orbital optimizers. Due to the generality of the nature of the orbital optimization problem, the main algorithm (see solve()) is implemented inside this base class
  */
 class BaseOrbitalOptimizer {
 protected:

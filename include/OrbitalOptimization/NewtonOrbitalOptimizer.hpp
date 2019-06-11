@@ -13,7 +13,7 @@ namespace GQCP {
 
 
 /**
- *  An intermediate abstract class that can be used to implement a Newton-step based orbital optimization.
+ *  An intermediate abstract class that should be derived from to implement a Newton-step based orbital optimization
  */
 class NewtonOrbitalOptimizer : public BaseOrbitalOptimizer {
 protected:
@@ -29,12 +29,12 @@ public:
     // PUBLIC PURE VIRTUAL METHODS
 
     /**
-     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence
+     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence in this Newton-based orbital optimizer
      */
     virtual void prepareNewtonSpecificConvergenceChecking(const HamiltonianParameters<double>& ham_par) = 0;
 
     /**
-     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to calculate the new rotation matrix
+     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to calculate the new rotation matrix in this Newton-based orbital optimizer
      */
     virtual void prepareNewtonSpecificRotationMatrixCalculation(const HamiltonianParameters<double>& ham_par) = 0;
 

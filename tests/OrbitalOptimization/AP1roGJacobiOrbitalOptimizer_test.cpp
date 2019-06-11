@@ -61,7 +61,7 @@ BOOST_AUTO_TEST_CASE ( lih_6_31G_calculateEnergyAfterRotation ) {
             GQCP::OrbitalOptimizationOptions oo_options;
             GQCP::AP1roGJacobiOrbitalOptimizer orbital_optimizer (lih.get_N()/2, K, oo_options, G);
             orbital_optimizer.calculateJacobiCoefficients(mol_ham_par, p, q);
-            double E_correction_analytical = orbital_optimizer.calculateScalarFunctionCorrection(mol_ham_par, jacobi_rot_par);
+            double E_correction_analytical = orbital_optimizer.calculateScalarFunctionChange(mol_ham_par, jacobi_rot_par);
 
 
             // Calculate the energy after a numerical rotation (using a Jacobi rotation matrix)

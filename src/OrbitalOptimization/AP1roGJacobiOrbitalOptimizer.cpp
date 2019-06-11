@@ -66,6 +66,8 @@ AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer(const size_t N_P, con
 
 /**
  *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence
+ * 
+ *  In the case of this uncoupled AP1roG Jacobi orbital optimizer, we should solve the AP1roG PSEs at the start at every iteration, using the current orbitals
  */
 void AP1roGJacobiOrbitalOptimizer::prepareJacobiSpecificConvergenceChecking(const HamiltonianParameters<double>& ham_par) {
     
@@ -73,8 +75,6 @@ void AP1roGJacobiOrbitalOptimizer::prepareJacobiSpecificConvergenceChecking(cons
     pse_solver.solve();
     this->G = pse_solver.get_geminal_coefficients();
     this->E = pse_solver.get_electronic_energy();
-
-    this->optimal_jacobi_with_scalar = this->calculateOptimalJacobiParameters(ham_par);
 }
 
 
@@ -211,9 +211,9 @@ double AP1roGJacobiOrbitalOptimizer::calculateOptimalRotationAngle(const Hamilto
             const double theta_min = minimizer.get_solution()(0);  // get inside the VectorX<double>
             JacobiRotationParameters jacobi_rot_par {p, q, theta_min};
 
-            const double E_correction = this->calculateScalarFunctionCorrection(ham_par, jacobi_rot_par);
+            const double E_change = this->calculateScalarFunctionChange(ham_par, jacobi_rot_par);
 
-            queue.emplace(jacobi_rot_par, E_correction);  // construct a pair_type
+            queue.emplace(jacobi_rot_par, E_change);  // construct a pair_type
         }  // for theta
 
         const double optimal_theta = queue.top().first.get_angle();
@@ -246,7 +246,7 @@ double AP1roGJacobiOrbitalOptimizer::calculateOptimalRotationAngle(const Hamilto
  * 
  *  @return the value of the scalar function (i.e. the AP1roG energy) if the given Jacobi rotation parameters would be used to rotate the given Hamiltonian parameters
  */
-double AP1roGJacobiOrbitalOptimizer::calculateScalarFunctionCorrection(const HamiltonianParameters<double>& ham_par, const JacobiRotationParameters& jacobi_rot_par) const {
+double AP1roGJacobiOrbitalOptimizer::calculateScalarFunctionChange(const HamiltonianParameters<double>& ham_par, const JacobiRotationParameters& jacobi_rot_par) const {
 
     const size_t p = jacobi_rot_par.get_p();
     const size_t q = jacobi_rot_par.get_q();

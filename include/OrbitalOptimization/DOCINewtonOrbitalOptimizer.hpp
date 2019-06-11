@@ -70,14 +70,14 @@ public:
     // OVERRIDDEN PUBLIC METHODS
 
     /**
-     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence
+     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence in this Newton-based orbital optimizer
      * 
-     *  Needs a little extra
+     *  In the case of this uncoupled DOCI orbital optimizer, the DOCI eigenvalue problem is re-solved in every iteration using the current orbitals
      */
     void prepareNewtonSpecificConvergenceChecking(const HamiltonianParameters<double>& ham_par) override;
 
     /**
-     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to calculate the new rotation matrix
+     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to calculate the new rotation matrix in this Newton-based orbital optimizer
      */
     void prepareNewtonSpecificRotationMatrixCalculation(const HamiltonianParameters<double>& ham_par) override {}
 

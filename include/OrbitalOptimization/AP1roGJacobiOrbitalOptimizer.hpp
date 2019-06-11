@@ -29,7 +29,7 @@ namespace GQCP {
 /**
  *  A class that is used to find a minimum of the electronic energy for AP1roG wave functions with respect to rotations of the underlying spatial orbital basis. By using analytical Jacobi rotations, and subsequently re-solving the AP1roG PSEs, a new orbital basis is found that results in a lower AP1roG energy
  * 
- *  Note that, since this algorithm does not use the Lagrangian, a rotation can jump out of the AP1roG manifold, so this algorithm should be used with care
+ *  Note that, since this algorithm does not use the PSE Lagrangian, a rotation can jump out of the AP1roG manifold, so this algorithm should be used with care
  */
 class AP1roGJacobiOrbitalOptimizer : public JacobiOrbitalOptimizer {
 private:
@@ -74,12 +74,12 @@ public:
     /**
      *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence
      * 
-     *  Needs a little extra
+     *  In the case of this uncoupled AP1roG Jacobi orbital optimizer, we should solve the AP1roG PSEs at the start at every iteration, using the current orbitals
      */
     void prepareJacobiSpecificConvergenceChecking(const HamiltonianParameters<double>& ham_par) override;
 
     /**
-     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to calculate the new rotation matrix
+     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to calculate the new rotation matrix in this specific Jacobi-based orbital optimizer
      */
     void prepareJacobiSpecificRotationMatrixCalculation(const HamiltonianParameters<double>& ham_par) override {}
 
@@ -104,9 +104,9 @@ public:
      *  @param ham_par              the current Hamiltonian parameters
      *  @param jacobi_rot_par       the Jacobi rotation parameters
      * 
-     *  @return the value of the scalar function (i.e. the AP1roG energy) if the given Jacobi rotation parameters would be used to rotate the given Hamiltonian parameters
+     *  @return the change in the value of the scalar function (i.e. the AP1roG energy) if the given Jacobi rotation parameters would be used to rotate the given Hamiltonian parameters
      */
-    double calculateScalarFunctionCorrection(const HamiltonianParameters<double>& ham_par, const JacobiRotationParameters& jacobi_rot_par) const override;
+    double calculateScalarFunctionChange(const HamiltonianParameters<double>& ham_par, const JacobiRotationParameters& jacobi_rot_par) const override;
 };
 
 

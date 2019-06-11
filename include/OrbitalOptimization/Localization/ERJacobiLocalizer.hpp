@@ -76,9 +76,9 @@ public:
      *  @param ham_par              the current Hamiltonian parameters
      *  @param jacobi_rot_par       the Jacobi rotation parameters
      * 
-     *  @return the value of the scalar function (i.e. the ER localization index) if the given Jacobi rotation parameters would be used to rotate the given Hamiltonian parameters
+     *  @return the change in the value of the scalar function (i.e. the ER localization index) if the given Jacobi rotation parameters would be used to rotate the given Hamiltonian parameters
      */
-    double calculateScalarFunctionCorrection(const HamiltonianParameters<double>& ham_par, const JacobiRotationParameters& jacobi_rot_par) const override;
+    double calculateScalarFunctionChange(const HamiltonianParameters<double>& ham_par, const JacobiRotationParameters& jacobi_rot_par) const override;
 };
 
 

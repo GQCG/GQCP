@@ -30,7 +30,7 @@ namespace GQCP {
 
 class JacobiOrbitalOptimizer : public BaseOrbitalOptimizer {
 protected:
-    size_t dim; // the dimension of the orbital space that should be scanned. The valid orbital indices then are 0 ... dim (not included)
+    size_t dim;  // the dimension of the orbital space that should be scanned. The valid orbital indices then are 0 ... dim (not included)
 
     using pair_type = std::pair<JacobiRotationParameters, double>;
     pair_type optimal_jacobi_with_scalar;  // holds the optimal Jacobi parameters and the corresponding value for the scalar function trying to optimize
@@ -49,20 +49,20 @@ public:
     // PUBLIC PURE VIRTUAL METHODS
 
     /**
-     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence
+     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence in this Jacobi-based orbital optimizer
      */
     virtual void prepareJacobiSpecificConvergenceChecking(const HamiltonianParameters<double>& ham_par) = 0;
 
     /**
-     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to calculate the new rotation matrix
+     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to calculate the new rotation matrix in this Jacobi-based orbital optimizer
      */
     virtual void prepareJacobiSpecificRotationMatrixCalculation(const HamiltonianParameters<double>& ham_par) = 0;
 
     /**
      *  Calculate the trigoniometric polynomial coefficients for the given Jacobi rotation indices
      *
-     *  @param p            the index of spatial orbital p
-     *  @param q            the index of spatial orbital q
+     *  @param p            the index of spatial orbital 1
+     *  @param q            the index of spatial orbital 2
      */
     virtual void calculateJacobiCoefficients(const HamiltonianParameters<double>& ham_par, const size_t p, const size_t q) = 0;
 
@@ -79,9 +79,9 @@ public:
      *  @param ham_par              the current Hamiltonian parameters
      *  @param jacobi_rot_par       the Jacobi rotation parameters
      * 
-     *  @return the value of the scalar function if the given Jacobi rotation parameters would be used to rotate the given Hamiltonian parameters
+     *  @return the change in value for the scalar function if the given Jacobi rotation parameters would be used to rotate the given Hamiltonian parameters
      */
-    virtual double calculateScalarFunctionCorrection(const HamiltonianParameters<double>& ham_par, const JacobiRotationParameters& jacobi_rot_par) const = 0;
+    virtual double calculateScalarFunctionChange(const HamiltonianParameters<double>& ham_par, const JacobiRotationParameters& jacobi_rot_par) const = 0;
 
 
     // PUBLIC OVERRIDDEN METHODS

@@ -9,7 +9,7 @@ namespace GQCP {
  */
 
 /**
- *  @param oo_options       the orbital optimization options that should be used for the orbital optimization algorithm
+ *  @param oo_options               the options for orbital optimization
  */
 BaseOrbitalOptimizer::BaseOrbitalOptimizer(const OrbitalOptimizationOptions& oo_options) :
     oo_options (oo_options)

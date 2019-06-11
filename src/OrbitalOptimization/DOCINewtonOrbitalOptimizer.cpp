@@ -72,7 +72,9 @@ const Eigenpair& DOCINewtonOrbitalOptimizer::get_eigenpair(size_t index) const {
 
 
 /**
- *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence
+ *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence in this Newton-based orbital optimizer
+ * 
+ *  In the case of this uncoupled DOCI orbital optimizer, the DOCI eigenvalue problem is re-solved in every iteration using the current orbitals
  */
 void DOCINewtonOrbitalOptimizer::prepareNewtonSpecificConvergenceChecking(const HamiltonianParameters<double>& ham_par) {
 
@@ -111,6 +113,7 @@ SquareMatrix<double> DOCINewtonOrbitalOptimizer::calculateGradientMatrix(const H
     const auto F = ham_par.calculateGeneralizedFockMatrix(this->D, this->d);
     return 2 * (F - F.transpose());
 }
+
 
 /**
  *  @param ham_par      the current Hamiltonian parameters
