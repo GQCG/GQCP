@@ -46,11 +46,14 @@ public:
     // PUBLIC OVERRIDDEN METHODS
 
     /**
-     *  @param ham_par      the Hamiltonian parameters
-     * 
-     *  @return the value of the scalar function (i.e. the ER localization index) that should be optimized
+     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence
      */
-    double calculateScalarFunction(const HamiltonianParameters<double>& ham_par) override;
+    void prepareJacobiSpecificConvergenceChecking(const HamiltonianParameters<double>& ham_par) override {}
+
+    /**
+     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to calculate the new rotation matrix
+     */
+    void prepareJacobiSpecificRotationMatrixCalculation(const HamiltonianParameters<double>& ham_par) override {};
 
     /**
      *  Calculate the trigoniometric polynomial coefficients for the given Jacobi rotation indices
@@ -67,7 +70,7 @@ public:
      *
      *  @return the angle for which the derivative of the scalar function after the Jacobi rotation is zero (and the second derivative is positive), using the current trigoniometric polynomial coefficients
      */
-    double calculateOptimalRotationAngle(const HamiltonianParameters<double>& ham_par, const size_t i, const size_t j) override;
+    double calculateOptimalRotationAngle(const HamiltonianParameters<double>& ham_par, const size_t i, const size_t j) const override;
 
     /**
      *  @param ham_par              the current Hamiltonian parameters
@@ -75,7 +78,7 @@ public:
      * 
      *  @return the value of the scalar function (i.e. the ER localization index) if the given Jacobi rotation parameters would be used to rotate the given Hamiltonian parameters
      */
-    double calculateScalarFunctionCorrection(const HamiltonianParameters<double>& ham_par, const JacobiRotationParameters& jacobi_rot_par) override;
+    double calculateScalarFunctionCorrection(const HamiltonianParameters<double>& ham_par, const JacobiRotationParameters& jacobi_rot_par) const override;
 };
 
 

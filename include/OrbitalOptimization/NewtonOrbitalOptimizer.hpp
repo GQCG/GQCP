@@ -29,18 +29,28 @@ public:
     // PUBLIC PURE VIRTUAL METHODS
 
     /**
+     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence
+     */
+    virtual void prepareNewtonSpecificConvergenceChecking(const HamiltonianParameters<double>& ham_par) = 0;
+
+    /**
+     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to calculate the new rotation matrix
+     */
+    virtual void prepareNewtonSpecificRotationMatrixCalculation(const HamiltonianParameters<double>& ham_par) = 0;
+
+    /**
      *  @param ham_par      the current Hamiltonian parameters
      * 
      *  @return the current orbital gradient as a matrix
      */
-    virtual SquareMatrix<double> calculateGradientMatrix(const HamiltonianParameters<double>& ham_par) = 0;
+    virtual SquareMatrix<double> calculateGradientMatrix(const HamiltonianParameters<double>& ham_par) const = 0;
 
     /**
      *  @param ham_par      the current Hamiltonian parameters
      * 
      *  @return the current orbital Hessian as a tensor
      */
-    virtual SquareRankFourTensor<double> calculateHessianTensor(const HamiltonianParameters<double>& ham_par) = 0;
+    virtual SquareRankFourTensor<double> calculateHessianTensor(const HamiltonianParameters<double>& ham_par) const = 0;
 
     /**
      *  Use gradient and Hessian information to determine a new direction for the 'full' orbital rotation generators kappa. Note that a distinction is made between 'free' generators, i.e. those that are calculated from the gradient and Hessian information and the 'full' generators, which also include the redundant parameters (that can be set to zero). The 'full' generators are used to calculate the total rotation matrix using the matrix exponential
@@ -49,10 +59,15 @@ public:
      * 
      *  @return the new full set orbital generators, including the redundant parameters
      */
-    virtual OrbitalRotationGenerators calculateNewFullOrbitalGenerators(const HamiltonianParameters<double>& ham_par) = 0;
+    virtual OrbitalRotationGenerators calculateNewFullOrbitalGenerators(const HamiltonianParameters<double>& ham_par) const = 0;
 
 
     // PUBLIC OVERRIDDEN METHODS
+
+    /**
+     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence
+     */
+    virtual void prepareConvergenceChecking(const HamiltonianParameters<double>& ham_par) override;
 
     /**
      *  Determine if the algorithm has converged or not
@@ -64,7 +79,12 @@ public:
      * 
      *  @return if the algorithm is considered to be converged
      */
-    bool checkForConvergence(const HamiltonianParameters<double>& ham_par) override;
+    bool checkForConvergence(const HamiltonianParameters<double>& ham_par) const override;
+
+    /**
+     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to calculate the new rotation matrix
+     */
+    void prepareRotationMatrixCalculation(const HamiltonianParameters<double>& ham_par) override;
 
     /**
      *  Produce a new rotation matrix by either
@@ -75,7 +95,7 @@ public:
      * 
      *  @return a unitary matrix that will be used to rotate the current Hamiltonian parameters into the next iteration
      */
-    SquareMatrix<double> calculateNewRotationMatrix(const HamiltonianParameters<double>& ham_par) override;
+    SquareMatrix<double> calculateNewRotationMatrix(const HamiltonianParameters<double>& ham_par) const override;
 
 
     // PUBLIC METHODS
@@ -85,19 +105,19 @@ public:
      * 
      *  @return the current orbital gradient as a vector. Matrix indices are converted to vector indices in the convention that p>q
      */
-    VectorX<double> calculateGradientVector(const HamiltonianParameters<double>& ham_par);
+    VectorX<double> calculateGradientVector(const HamiltonianParameters<double>& ham_par) const;
 
     /**
      *  @param ham_par      the current Hamiltonian parameters
      * 
      *  @return the current orbital Hessian as a matrix
      */
-    SquareMatrix<double> calculateHessianMatrix(const HamiltonianParameters<double>& ham_par);
+    SquareMatrix<double> calculateHessianMatrix(const HamiltonianParameters<double>& ham_par) const;
 
     /**
      *  @return if a Newton step would be well-defined (i.e. the Hessian is positive definite for minimizations and negative definite for maximizations)
      */
-    bool newtonStepIsWellDefined();
+    bool newtonStepIsWellDefined() const;
 
     /**
      *  If the Newton step is ill-defined, examine the Hessian and produce a new direction from it:
@@ -106,7 +126,7 @@ public:
      * 
      *  @return the new direction from the Hessian if the Newton step is ill-defined
      */
-    VectorX<double> directionFromHessian();
+    VectorX<double> directionFromHessian() const;
 
     /**
      *  Use gradient and Hessian information to determine a new direction for the 'free' orbital rotation generators kappa. Note that a distinction is made between 'free' generators, i.e. those that are calculated from the gradient and Hessian information and the 'full' generators, which also include the redundant parameters (that can be set to zero). The 'full' generators are used to calculate the total rotation matrix using the matrix exponential
@@ -115,7 +135,7 @@ public:
      * 
      *  @return the new free orbital generators
      */
-    OrbitalRotationGenerators calculateNewFreeOrbitalGenerators(const HamiltonianParameters<double>& ham_par);
+    OrbitalRotationGenerators calculateNewFreeOrbitalGenerators(const HamiltonianParameters<double>& ham_par)const;
 };
 
 

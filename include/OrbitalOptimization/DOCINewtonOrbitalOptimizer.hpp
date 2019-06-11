@@ -70,18 +70,30 @@ public:
     // OVERRIDDEN PUBLIC METHODS
 
     /**
+     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence
+     * 
+     *  Needs a little extra
+     */
+    void prepareNewtonSpecificConvergenceChecking(const HamiltonianParameters<double>& ham_par) override;
+
+    /**
+     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to calculate the new rotation matrix
+     */
+    void prepareNewtonSpecificRotationMatrixCalculation(const HamiltonianParameters<double>& ham_par) override {}
+
+    /**
      *  @param ham_par      the current Hamiltonian parameters
      * 
      *  @return the current orbital gradient as a matrix
      */
-    SquareMatrix<double> calculateGradientMatrix(const HamiltonianParameters<double>& ham_par) override;
+    SquareMatrix<double> calculateGradientMatrix(const HamiltonianParameters<double>& ham_par) const override;
 
     /**
      *  @param ham_par      the current Hamiltonian parameters
      * 
      *  @return the current orbital Hessian as a tensor
      */
-    SquareRankFourTensor<double> calculateHessianTensor(const HamiltonianParameters<double>& ham_par) override;
+    SquareRankFourTensor<double> calculateHessianTensor(const HamiltonianParameters<double>& ham_par) const override;
 
     /**
      *  Use gradient and Hessian information to determine a new direction for the 'full' orbital rotation generators kappa. Note that a distinction is made between 'free' generators, i.e. those that are calculated from the gradient and Hessian information and the 'full' generators, which also include the redundant parameters (that can be set to zero). The 'full' generators are used to calculate the total rotation matrix using the matrix exponential
@@ -90,7 +102,7 @@ public:
      * 
      *  @return the new full set orbital generators, including the redundant parameters
      */
-    OrbitalRotationGenerators calculateNewFullOrbitalGenerators(const HamiltonianParameters<double>& ham_par) override;
+    OrbitalRotationGenerators calculateNewFullOrbitalGenerators(const HamiltonianParameters<double>& ham_par) const override;
 
 
     // PUBLIC METHODS

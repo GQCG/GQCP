@@ -47,18 +47,28 @@ public:
     // PUBLIC PURE VIRTUAL METHODS
 
     /**
+     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence
+     */
+    virtual void prepareConvergenceChecking(const HamiltonianParameters<double>& ham_par) = 0;
+
+    /**
      *  @param ham_par      the current Hamiltonian parameters
      * 
      *  @return if the algorithm is considered to be converged
      */
-    virtual bool checkForConvergence(const HamiltonianParameters<double>& ham_par) = 0;
+    virtual bool checkForConvergence(const HamiltonianParameters<double>& ham_par) const = 0;
+
+    /**
+     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to calculate the new rotation matrix
+     */
+    virtual void prepareRotationMatrixCalculation(const HamiltonianParameters<double>& ham_par) = 0;
 
     /**
      *  @param ham_par      the current Hamiltonian parameters
      * 
      *  @return a unitary matrix that will be used to rotate the current Hamiltonian parameters into the next iteration
      */
-    virtual SquareMatrix<double> calculateNewRotationMatrix(const HamiltonianParameters<double>& ham_par) = 0;
+    virtual SquareMatrix<double> calculateNewRotationMatrix(const HamiltonianParameters<double>& ham_par) const = 0;
 
 
     // PUBLIC METHODS

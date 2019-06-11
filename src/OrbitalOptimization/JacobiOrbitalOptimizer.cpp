@@ -43,18 +43,27 @@ JacobiOrbitalOptimizer::JacobiOrbitalOptimizer(const size_t dim, const OrbitalOp
  */
 
 /**
+ *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence
+ */
+void JacobiOrbitalOptimizer::prepareConvergenceChecking(const HamiltonianParameters<double>& ham_par) {
+
+    this->prepareJacobiSpecificConvergenceChecking(ham_par);
+
+    // Every Jacobi orbital optimizer should set a pair_type with the best Jacobi rotation parameters
+    this->optimal_jacobi_with_scalar = this->calculateOptimalJacobiParameters(ham_par);
+}
+
+
+/**
  *  @param ham_par      the current Hamiltonian parameters
  * 
  *  @return if the algorithm is considered to be converged
  */
-bool JacobiOrbitalOptimizer::checkForConvergence(const HamiltonianParameters<double>& ham_par) {
+bool JacobiOrbitalOptimizer::checkForConvergence(const HamiltonianParameters<double>& ham_par) const {
 
-    double old_value = this->calculateScalarFunction(ham_par);
+    double correction = optimal_jacobi_with_scalar.second;
 
-    this->optimal_jacobi_with_scalar = this->calculateOptimalJacobiParameters(ham_par);
-    double new_value = optimal_jacobi_with_scalar.second;
-
-    if (std::abs(new_value - old_value) < this->oo_options.convergence_threshold) {
+    if (std::abs(correction) < this->oo_options.convergence_threshold) {
         return true;
     } else {
         return false;
@@ -63,11 +72,21 @@ bool JacobiOrbitalOptimizer::checkForConvergence(const HamiltonianParameters<dou
 
 
 /**
+ *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence
+ */
+void JacobiOrbitalOptimizer::prepareRotationMatrixCalculation(const HamiltonianParameters<double>& ham_par) {
+
+    // There are no special preparations to be done for the general Jacobi orbital optimizer
+    this->prepareJacobiSpecificRotationMatrixCalculation(ham_par);
+}
+
+
+/**
  *  @param ham_par      the current Hamiltonian parameters
  * 
  *  @return a unitary matrix that will be used to rotate the current Hamiltonian parameters into the next iteration
  */
-SquareMatrix<double> JacobiOrbitalOptimizer::calculateNewRotationMatrix(const HamiltonianParameters<double>& ham_par) {
+SquareMatrix<double> JacobiOrbitalOptimizer::calculateNewRotationMatrix(const HamiltonianParameters<double>& ham_par) const {
     return SquareMatrix<double>::FromJacobi(this->optimal_jacobi_with_scalar.first, ham_par.get_K());
 }
 

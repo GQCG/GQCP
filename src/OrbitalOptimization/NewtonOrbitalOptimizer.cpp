@@ -11,7 +11,20 @@ namespace GQCP {
 
 /*
  *  PUBLIC OVERRIDDEN METHODS
- */ 
+ */
+
+/**
+ *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence
+ */
+void NewtonOrbitalOptimizer::prepareConvergenceChecking(const HamiltonianParameters<double>& ham_par) {
+
+    this->prepareNewtonSpecificConvergenceChecking(ham_par);
+
+    // All Newton-based orbital optimizers need to calculate a gradient and Hessian
+    this->gradient = this->calculateGradientVector(ham_par);
+    this->hessian = this->calculateHessianMatrix(ham_par);
+}
+
 
 /**
  *  Determine if the algorithm has converged or not
@@ -23,15 +36,11 @@ namespace GQCP {
  * 
  *  @return if the algorithm is considered to be converged
  */
-bool NewtonOrbitalOptimizer::checkForConvergence(const HamiltonianParameters<double>& ham_par) {
-
-    this->gradient = this->calculateGradientVector(ham_par);
-    this->hessian = this->calculateHessianMatrix(ham_par);
-
+bool NewtonOrbitalOptimizer::checkForConvergence(const HamiltonianParameters<double>& ham_par) const {
 
     // Check for convergence on the norm
     if (this->gradient.norm() < this->oo_options.convergence_threshold) {
-        if (this->newtonStepIsWellDefined()) {
+        if (this->newtonStepIsWellDefined()) {  // needs this->hessian
             return true;
         } else {
             return false;
@@ -45,6 +54,16 @@ bool NewtonOrbitalOptimizer::checkForConvergence(const HamiltonianParameters<dou
 
 
 /**
+ *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to calculate the new rotation matrix
+ */
+void NewtonOrbitalOptimizer::prepareRotationMatrixCalculation(const HamiltonianParameters<double>& ham_par) {
+
+    // There are no special preparations to be done for the general Newton-based orbital optimizer
+    this->prepareNewtonSpecificRotationMatrixCalculation(ham_par);
+}
+
+
+/**
  *  Produce a new rotation matrix by either
  *      - continuing in the direction of the largest (in absolute value) non-conforming eigenvalue (i.e. the smallest (negative) eigenvalue for minimization algorithms and the largest (positive) eigenvalue for maximization algorithms)
  *      - using the Newton step if it is well-defined
@@ -53,7 +72,7 @@ bool NewtonOrbitalOptimizer::checkForConvergence(const HamiltonianParameters<dou
  * 
  *  @return a unitary matrix that will be used to rotate the current Hamiltonian parameters into the next iteration
  */
-SquareMatrix<double> NewtonOrbitalOptimizer::calculateNewRotationMatrix(const HamiltonianParameters<double>& ham_par) {
+SquareMatrix<double> NewtonOrbitalOptimizer::calculateNewRotationMatrix(const HamiltonianParameters<double>& ham_par) const {
 
     // The general goal of this function is to:
     //      1) determine the free orbital rotation generators, using gradient and Hessian information
@@ -76,7 +95,7 @@ SquareMatrix<double> NewtonOrbitalOptimizer::calculateNewRotationMatrix(const Ha
  * 
  *  @return the current orbital gradient as a vector
  */
-VectorX<double> NewtonOrbitalOptimizer::calculateGradientVector(const HamiltonianParameters<double>& ham_par) {
+VectorX<double> NewtonOrbitalOptimizer::calculateGradientVector(const HamiltonianParameters<double>& ham_par) const {
     return this->calculateGradientMatrix(ham_par).strictLowerTriangle();
 }
 
@@ -86,7 +105,7 @@ VectorX<double> NewtonOrbitalOptimizer::calculateGradientVector(const Hamiltonia
  * 
  *  @return the current orbital Hessian as a matrix
  */
-SquareMatrix<double> NewtonOrbitalOptimizer::calculateHessianMatrix(const HamiltonianParameters<double>& ham_par) {
+SquareMatrix<double> NewtonOrbitalOptimizer::calculateHessianMatrix(const HamiltonianParameters<double>& ham_par) const {
     return this->calculateHessianTensor(ham_par).pairWiseStrictReduce();
 }
 
@@ -94,7 +113,7 @@ SquareMatrix<double> NewtonOrbitalOptimizer::calculateHessianMatrix(const Hamilt
 /**
  *  @return if a Newton step would be well-defined (i.e. the Hessian is positive definite for minimizations and negative definite for maximizations)
  */
-bool NewtonOrbitalOptimizer::newtonStepIsWellDefined() {
+bool NewtonOrbitalOptimizer::newtonStepIsWellDefined() const {
 
     Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> hessian_diagonalizer (this->hessian);
 
@@ -128,7 +147,7 @@ bool NewtonOrbitalOptimizer::newtonStepIsWellDefined() {
  * 
  *  @return the new direction from the Hessian if the Newton step is ill-defined
  */
-VectorX<double> NewtonOrbitalOptimizer::directionFromHessian() {
+VectorX<double> NewtonOrbitalOptimizer::directionFromHessian() const {
     
     Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> hessian_diagonalizer (this->hessian);
 
@@ -157,7 +176,7 @@ VectorX<double> NewtonOrbitalOptimizer::directionFromHessian() {
  * 
  *  @return the new free orbital generators
  */
-OrbitalRotationGenerators NewtonOrbitalOptimizer::calculateNewFreeOrbitalGenerators(const HamiltonianParameters<double>& ham_par) {
+OrbitalRotationGenerators NewtonOrbitalOptimizer::calculateNewFreeOrbitalGenerators(const HamiltonianParameters<double>& ham_par) const {
 
     // If the norm hasn't converged, continue in the Newton direction
     // Until we have completely read Nocedal & Wright, this is the way we're doing Newton optimization

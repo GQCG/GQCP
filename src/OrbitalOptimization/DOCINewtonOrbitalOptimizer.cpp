@@ -47,6 +47,7 @@ DOCINewtonOrbitalOptimizer::DOCINewtonOrbitalOptimizer(const DOCI& doci, BaseSol
 /*
  *  GETTERS
  */
+
 const std::vector<Eigenpair>& DOCINewtonOrbitalOptimizer::get_eigenpairs() const {
     if (this->is_converged) {
         return this->eigenpairs;
@@ -69,14 +70,11 @@ const Eigenpair& DOCINewtonOrbitalOptimizer::get_eigenpair(size_t index) const {
  *  OVERRIDDEN PUBLIC METHODS
  */
 
-/**
- *  @param ham_par      the current Hamiltonian parameters
- * 
- *  @return the current orbital gradient as a matrix
- */
-SquareMatrix<double> DOCINewtonOrbitalOptimizer::calculateGradientMatrix(const HamiltonianParameters<double>& ham_par) {
 
-    // In a NewtonOrbitalOptimizer, the gradient is calculated first, so we can do some preparation in this function
+/**
+ *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence
+ */
+void DOCINewtonOrbitalOptimizer::prepareNewtonSpecificConvergenceChecking(const HamiltonianParameters<double>& ham_par) {
 
     // Solve the DOCI eigenvalue problem to obtain DMs from which we can calculate the gradient and the Hessian
     CISolver doci_solver (this->doci, ham_par);
@@ -99,7 +97,15 @@ SquareMatrix<double> DOCINewtonOrbitalOptimizer::calculateGradientMatrix(const H
     this->rdm_calculator.set_coefficients(doci_solver.get_eigenpair().get_eigenvector());
     this->D = this->rdm_calculator.calculate1RDMs().one_rdm;
     this->d = this->rdm_calculator.calculate2RDMs().two_rdm;
+}
 
+
+/**
+ *  @param ham_par      the current Hamiltonian parameters
+ * 
+ *  @return the current orbital gradient as a matrix
+ */
+SquareMatrix<double> DOCINewtonOrbitalOptimizer::calculateGradientMatrix(const HamiltonianParameters<double>& ham_par) const {
 
     // Calculate the gradient from the Fockian matrix
     const auto F = ham_par.calculateGeneralizedFockMatrix(this->D, this->d);
@@ -111,7 +117,7 @@ SquareMatrix<double> DOCINewtonOrbitalOptimizer::calculateGradientMatrix(const H
  * 
  *  @return the current orbital Hessian as a tensor
  */
-SquareRankFourTensor<double> DOCINewtonOrbitalOptimizer::calculateHessianTensor(const HamiltonianParameters<double>& ham_par) {
+SquareRankFourTensor<double> DOCINewtonOrbitalOptimizer::calculateHessianTensor(const HamiltonianParameters<double>& ham_par) const {
 
     const auto K = ham_par.get_K();
 
@@ -133,6 +139,7 @@ SquareRankFourTensor<double> DOCINewtonOrbitalOptimizer::calculateHessianTensor(
     return hessian_tensor;
 }
 
+
 /**
  *  Use gradient and Hessian information to determine a new direction for the 'full' orbital rotation generators kappa. Note that a distinction is made between 'free' generators, i.e. those that are calculated from the gradient and Hessian information and the 'full' generators, which also include the redundant parameters (that can be set to zero). The 'full' generators are used to calculate the total rotation matrix using the matrix exponential
  * 
@@ -140,7 +147,7 @@ SquareRankFourTensor<double> DOCINewtonOrbitalOptimizer::calculateHessianTensor(
  * 
  *  @return the new full set orbital generators, including the redundant parameters
  */
-OrbitalRotationGenerators DOCINewtonOrbitalOptimizer::calculateNewFullOrbitalGenerators(const HamiltonianParameters<double>& ham_par) {
+OrbitalRotationGenerators DOCINewtonOrbitalOptimizer::calculateNewFullOrbitalGenerators(const HamiltonianParameters<double>& ham_par) const {
     return this->calculateNewFreeOrbitalGenerators(ham_par);  // no extra step necessary
 }
 
@@ -157,6 +164,7 @@ OrbitalRotationGenerators DOCINewtonOrbitalOptimizer::calculateNewFullOrbitalGen
  *  @return the index-th excited state after doing the OO-DOCI calculation
  */
 WaveFunction DOCINewtonOrbitalOptimizer::makeWavefunction(size_t index) const {
+    
     if (index > this->eigenpairs.size()) {
         throw std::logic_error("DOCINewtonOrbitalOptimizer::makeWavefunction(size_t): Not enough requested eigenpairs for the given index.");
     }

@@ -42,17 +42,6 @@ ERJacobiLocalizer::ERJacobiLocalizer(size_t N_P, const OrbitalOptimizationOption
  *  PUBLIC OVERRIDDEN METHODS
  */
 
-/**
- *  @param ham_par      the Hamiltonian parameters
- * 
- *  @return the value of the scalar function that should be optimized
- */
-double ERJacobiLocalizer::calculateScalarFunction(const HamiltonianParameters<double>& ham_par) {
-    
-    const size_t N_P = this->dim;
-    return ham_par.calculateEdmistonRuedenbergLocalizationIndex(N_P);
-}
-
 
 /**
  *  Calculate the trigoniometric polynomial coefficients for the given Jacobi rotation
@@ -77,7 +66,7 @@ void ERJacobiLocalizer::calculateJacobiCoefficients(const HamiltonianParameters<
  *
  *  @return the angle for which the derivative of the scalar function after the Jacobi rotation is zero (and the second derivative is positive), using the current trigoniometric polynomial coefficients
  */
-double ERJacobiLocalizer::calculateOptimalRotationAngle(const HamiltonianParameters<double>& ham_par, const size_t i, const size_t j) {
+double ERJacobiLocalizer::calculateOptimalRotationAngle(const HamiltonianParameters<double>& ham_par, const size_t i, const size_t j) const {
 
     double denominator = std::sqrt(std::pow(this->B, 2) + std::pow(this->C, 2));
     return 0.25 * std::atan2(this->C / denominator, this->B / denominator);  // atan(y/x) = std::atan2(y,x)
@@ -90,7 +79,7 @@ double ERJacobiLocalizer::calculateOptimalRotationAngle(const HamiltonianParamet
  * 
  *  @return the value of the scalar function if the given Jacobi rotation parameters would be used to rotate the given Hamiltonian parameters
  */
-double ERJacobiLocalizer::calculateScalarFunctionCorrection(const HamiltonianParameters<double>& ham_par, const JacobiRotationParameters& jacobi_rot_par) {
+double ERJacobiLocalizer::calculateScalarFunctionCorrection(const HamiltonianParameters<double>& ham_par, const JacobiRotationParameters& jacobi_rot_par) const {
 
     return this->A + std::sqrt(std::pow(this->B, 2) + std::pow(this->C, 2));
 }
