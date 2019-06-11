@@ -68,7 +68,7 @@ void ERJacobiLocalizer::calculateJacobiCoefficients(const HamiltonianParameters<
  */
 double ERJacobiLocalizer::calculateOptimalRotationAngle(const HamiltonianParameters<double>& ham_par, const size_t i, const size_t j) const {
 
-    double denominator = std::sqrt(std::pow(this->B, 2) + std::pow(this->C, 2));
+    const double denominator = std::sqrt(std::pow(this->B, 2) + std::pow(this->C, 2));
     return 0.25 * std::atan2(this->C / denominator, this->B / denominator);  // atan(y/x) = std::atan2(y,x)
 }
 

@@ -173,14 +173,14 @@ double AP1roGJacobiOrbitalOptimizer::calculateOptimalRotationAngle(const Hamilto
 
     // Occupied-occupied rotations: if p <= N_P and q <= N_P for computers
     if ((p < this->N_P) && (q < this->N_P)) {
-        double denominator = std::sqrt(std::pow(this->B1, 2) + std::pow(this->C1, 2));
+        const double denominator = std::sqrt(std::pow(this->B1, 2) + std::pow(this->C1, 2));
         return 0.5 * std::atan2(-this->C1 / denominator, -this->B1 / denominator);  // std::atan2(y,x) = tan^-1(y/x)
     }
 
     // Occupied-virtual rotations: if p > N_P and q <= N_P for computers
     else if ((p >= this->N_P) && (q < this->N_P)) {
 
-        auto cmp = this->comparer();
+        const auto cmp = this->comparer();
         std::priority_queue<pair_type, std::vector<pair_type>, decltype(cmp)> queue (cmp);
 
         // Construct a lambda gradient function
@@ -199,21 +199,21 @@ double AP1roGJacobiOrbitalOptimizer::calculateOptimalRotationAngle(const Hamilto
 
 
         // Use three initial guesses to get the minimum
-        auto half_pi = boost::math::constants::half_pi<double>();
-        double quarter_pi = half_pi / 2;
-        std::vector<double> theta_values {0.0, half_pi, quarter_pi};
+        const auto half_pi = boost::math::constants::half_pi<double>();
+        const double quarter_pi = half_pi / 2;
+        const std::vector<const double> theta_values {0.0, half_pi, quarter_pi};
         for (const auto& theta : theta_values) {
             VectorX<double> theta_vec (1);  // we can't implicitly convert a float to an VectorX<double> so we make it ourselves
             theta_vec << theta;
 
             NewtonMinimizer minimizer (theta_vec, gradient_function, hessian_function);
             minimizer.solve();
-            double theta_min = minimizer.get_solution()(0);  // get inside the VectorX<double>
-
+            const double theta_min = minimizer.get_solution()(0);  // get inside the VectorX<double>
             JacobiRotationParameters jacobi_rot_par {p, q, theta_min};
 
-            double E_min = this->calculateScalarFunctionCorrection(ham_par, jacobi_rot_par);
-            queue.emplace(jacobi_rot_par, E_min);
+            const double E_correction = this->calculateScalarFunctionCorrection(ham_par, jacobi_rot_par);
+
+            queue.emplace(jacobi_rot_par, E_correction);  // construct a pair_type
         }  // for theta
 
         const double optimal_theta = queue.top().first.get_angle();
@@ -229,7 +229,7 @@ double AP1roGJacobiOrbitalOptimizer::calculateOptimalRotationAngle(const Hamilto
 
     // Virtual-virtual rotations: if p > N_P and q > N_P for computers
     else if ((p >= this->N_P) && (q >= this->N_P )) {
-        double denominator = std::sqrt(std::pow(this->B3, 2) + std::pow(this->C3, 2));
+        const double denominator = std::sqrt(std::pow(this->B3, 2) + std::pow(this->C3, 2));
         return 0.5 * std::atan2(-this->C3 / denominator, -this->B3 / denominator);  // std::atan2(y,x) = tan^-1(y/x)
     }
 
@@ -248,17 +248,17 @@ double AP1roGJacobiOrbitalOptimizer::calculateOptimalRotationAngle(const Hamilto
  */
 double AP1roGJacobiOrbitalOptimizer::calculateScalarFunctionCorrection(const HamiltonianParameters<double>& ham_par, const JacobiRotationParameters& jacobi_rot_par) const {
 
-    size_t p = jacobi_rot_par.get_p();
-    size_t q = jacobi_rot_par.get_q();
-    double theta = jacobi_rot_par.get_angle();
+    const size_t p = jacobi_rot_par.get_p();
+    const size_t q = jacobi_rot_par.get_q();
+    const double theta = jacobi_rot_par.get_angle();
 
 
     // I've written everything in terms of cos(2 theta), sin(2 theta), cos(4 theta) and sin(4 theta)
-    double c2 = std::cos(2 * theta);
-    double s2 = std::sin(2 * theta);
+    const double c2 = std::cos(2 * theta);
+    const double s2 = std::sin(2 * theta);
 
-    double c4 = std::cos(4 * theta);
-    double s4 = std::sin(4 * theta);
+    const double c4 = std::cos(4 * theta);
+    const double s4 = std::sin(4 * theta);
 
 
     // Implementation of the Jacobi rotated energy with disjoint cases for p and q

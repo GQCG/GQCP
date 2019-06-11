@@ -59,8 +59,8 @@ OrbitalRotationGenerators OrbitalRotationGenerators::FromOccOcc(const OrbitalRot
  */
 SquareMatrix<double> OrbitalRotationGenerators::asMatrix() const {
 
-    auto kappa_matrix = GQCP::SquareMatrix<double>::FromStrictTriangle(this->kappa_vector);  // lower triangle only
-    GQCP::SquareMatrix<double> kappa_matrix_transpose = kappa_matrix.transpose();
+    const auto kappa_matrix = GQCP::SquareMatrix<double>::FromStrictTriangle(this->kappa_vector);  // lower triangle only
+    const GQCP::SquareMatrix<double> kappa_matrix_transpose = kappa_matrix.transpose();
     return kappa_matrix - kappa_matrix_transpose;  // add the antisymmetric component
 }
 
@@ -69,7 +69,6 @@ SquareMatrix<double> OrbitalRotationGenerators::asMatrix() const {
  *  @return the unitary matrix that corresponds to these orbital rotation generators, i.e. exp(-kappa)
  */
 SquareMatrix<double> OrbitalRotationGenerators::calculateRotationMatrix() const {
-
     return (-this->asMatrix()).exp();
 }
 

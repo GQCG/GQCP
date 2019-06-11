@@ -94,8 +94,8 @@ SquareRankFourTensor<double> ERNewtonLocalizer::calculateHessianTensor(const Ham
  */
 OrbitalRotationGenerators ERNewtonLocalizer::calculateNewFullOrbitalGenerators(const HamiltonianParameters<double>& ham_par) const {
 
-    auto kappa_free = this->calculateNewFreeOrbitalGenerators(ham_par);  // only occupied-occupied
-    auto kappa_full = OrbitalRotationGenerators::FromOccOcc(kappa_free, ham_par.get_K());
+    const auto kappa_free = this->calculateNewFreeOrbitalGenerators(ham_par);  // only occupied-occupied
+    const auto kappa_full = OrbitalRotationGenerators::FromOccOcc(kappa_free, ham_par.get_K());
 
     return kappa_full;
 }
@@ -115,7 +115,7 @@ OrbitalRotationGenerators ERNewtonLocalizer::calculateNewFullOrbitalGenerators(c
  */
 double ERNewtonLocalizer::calculateGradientMatrixElement(const HamiltonianParameters<double>& ham_par, size_t i, size_t j) const {
 
-    auto g = ham_par.get_g();
+    const auto g = ham_par.get_g();
 
     return 4 * (g(j,i,i,i) - g(i,j,j,j));
 }
@@ -132,7 +132,7 @@ double ERNewtonLocalizer::calculateGradientMatrixElement(const HamiltonianParame
  */
 double ERNewtonLocalizer::calculateHessianTensorElement(const HamiltonianParameters<double>& ham_par, size_t i, size_t j, size_t k, size_t l) const {
 
-    auto g = ham_par.get_g();
+    const auto g = ham_par.get_g();
 
     // KISS-implementation of the Hessian element for the Edmiston-Ruedenberg localization index
     double value = 0.0;

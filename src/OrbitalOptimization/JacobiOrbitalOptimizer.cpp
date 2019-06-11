@@ -61,9 +61,9 @@ void JacobiOrbitalOptimizer::prepareConvergenceChecking(const HamiltonianParamet
  */
 bool JacobiOrbitalOptimizer::checkForConvergence(const HamiltonianParameters<double>& ham_par) const {
 
-    double correction = optimal_jacobi_with_scalar.second;
+    const double optimal_correction = optimal_jacobi_with_scalar.second;
 
-    if (std::abs(correction) < this->oo_options.convergence_threshold) {
+    if (std::abs(optimal_correction) < this->oo_options.convergence_threshold) {
         return true;
     } else {
         return false;
@@ -104,19 +104,19 @@ SquareMatrix<double> JacobiOrbitalOptimizer::calculateNewRotationMatrix(const Ha
  */
 std::pair<JacobiRotationParameters, double> JacobiOrbitalOptimizer::calculateOptimalJacobiParameters(const HamiltonianParameters<double>& ham_par) {
 
-    auto cmp = this->comparer();
+    const auto cmp = this->comparer();
     std::priority_queue<pair_type, std::vector<pair_type>, decltype(cmp)> queue (cmp);
 
     for (size_t q = 0; q < this->dim; q++) {
         for (size_t p = q+1; p < this->dim; p++) {  // loop over p>q
             this->calculateJacobiCoefficients(ham_par, p,q);  // initialize the trigoniometric polynomial coefficients
 
-            double theta = this->calculateOptimalRotationAngle(ham_par, p,q);
+            const double theta = this->calculateOptimalRotationAngle(ham_par, p,q);
             const JacobiRotationParameters jacobi_rot_par (p, q, theta);
 
-            double rotated_scalar_value = this->calculateScalarFunctionCorrection(ham_par, jacobi_rot_par);
+            const double E_correction = this->calculateScalarFunctionCorrection(ham_par, jacobi_rot_par);
 
-            queue.emplace(jacobi_rot_par, rotated_scalar_value);  // constructs a pair_type
+            queue.emplace(jacobi_rot_par, E_correction);  // construct a pair_type
         }
     }
 

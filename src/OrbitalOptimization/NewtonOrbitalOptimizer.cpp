@@ -79,7 +79,7 @@ SquareMatrix<double> NewtonOrbitalOptimizer::calculateNewRotationMatrix(const Ha
     //      2) determine the full orbital rotation generators, by also including any redundant parameters
     //      3) calculate the unitary rotation matrix from the full orbital rotation generators
 
-    auto full_kappa = this->calculateNewFullOrbitalGenerators(ham_par);  // should internally calculate the free orbital rotation generators
+   const  auto full_kappa = this->calculateNewFullOrbitalGenerators(ham_par);  // should internally calculate the free orbital rotation generators
 
     return full_kappa.calculateRotationMatrix();  // matrix exponential
 }
@@ -130,7 +130,7 @@ bool NewtonOrbitalOptimizer::newtonStepIsWellDefined() const {
     else {  // should maximize
 
         // Can only produce a well-defined ascending Newton step if the Hessian is negative definite
-        size_t dim = this->gradient.size();
+        const size_t dim = this->gradient.size();
         if (hessian_diagonalizer.eigenvalues()(dim - 1) > 0) {  // largest eigenvalue (they are sorted)
             return false;
         } else {
@@ -158,7 +158,7 @@ VectorX<double> NewtonOrbitalOptimizer::directionFromHessian() const {
     }
     
     else {  // should maximize
-        size_t dim = this->gradient.size();
+        const size_t dim = this->gradient.size();
         if (hessian_diagonalizer.eigenvalues()(dim - 1) > 0) {  // largest eigenvalue (they are sorted)
             return hessian_diagonalizer.eigenvectors().col(dim - 1);
         }
@@ -182,9 +182,9 @@ OrbitalRotationGenerators NewtonOrbitalOptimizer::calculateNewFreeOrbitalGenerat
     // Until we have completely read Nocedal & Wright, this is the way we're doing Newton optimization
     if (this->gradient.norm() > this->oo_options.convergence_threshold) {
 
-        size_t dim = this->gradient.size();
-        VectorFunction gradient_function = [this] (const VectorX<double>& x) { return this->gradient; };
-        MatrixFunction hessian_function = [this] (const VectorX<double>& x) { return this->hessian; };
+        const size_t dim = this->gradient.size();
+        const VectorFunction gradient_function = [this] (const VectorX<double>& x) { return this->gradient; };
+        const MatrixFunction hessian_function = [this] (const VectorX<double>& x) { return this->hessian; };
 
         return OrbitalRotationGenerators(newtonStep(VectorX<double>::Zero(dim), gradient_function, hessian_function));  // with only the free parameters
     }

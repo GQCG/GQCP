@@ -164,10 +164,11 @@ OrbitalRotationGenerators DOCINewtonOrbitalOptimizer::calculateNewFullOrbitalGen
  *  @return the index-th excited state after doing the OO-DOCI calculation
  */
 WaveFunction DOCINewtonOrbitalOptimizer::makeWavefunction(size_t index) const {
-    
+
     if (index > this->eigenpairs.size()) {
         throw std::logic_error("DOCINewtonOrbitalOptimizer::makeWavefunction(size_t): Not enough requested eigenpairs for the given index.");
     }
+
     return WaveFunction(*this->doci.get_fock_space(), this->eigenpairs[index].get_eigenvector());
 }
 
