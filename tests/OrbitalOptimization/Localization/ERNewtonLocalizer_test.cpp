@@ -37,12 +37,8 @@ BOOST_AUTO_TEST_CASE ( localization_index_raises ) {
 
     double D_before = mol_ham_par.calculateEdmistonRuedenbergLocalizationIndex(N_P);
 
-
-    GQCP::OrbitalOptimizationOptions oo_options;
-    oo_options.convergence_threshold = 1.0e-04;
-    oo_options.should_minimize = false;
+    const auto oo_options = GQCP::OrbitalOptimizationOptions::OrbitalMaximizationOptions(1.0-04);
     GQCP::ERNewtonLocalizer localizer (N_P, oo_options);
-
     localizer.optimize(mol_ham_par);  // if converged, the Hamiltonian parameters are in the localized basis
 
     double D_after = mol_ham_par.calculateEdmistonRuedenbergLocalizationIndex(N_P);

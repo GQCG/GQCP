@@ -63,7 +63,7 @@ bool JacobiOrbitalOptimizer::checkForConvergence(const HamiltonianParameters<dou
 
     const double optimal_correction = optimal_jacobi_with_scalar.second;
 
-    if (std::abs(optimal_correction) < this->oo_options.convergence_threshold) {
+    if (std::abs(optimal_correction) < this->oo_options.convergenceThreshold()) {
         return true;
     } else {
         return false;
@@ -130,7 +130,7 @@ std::pair<JacobiRotationParameters, double> JacobiOrbitalOptimizer::calculateOpt
 std::function<bool (const JacobiOrbitalOptimizer::pair_type&, const JacobiOrbitalOptimizer::pair_type&)> JacobiOrbitalOptimizer::comparer() const {
 
     return [this] (const pair_type& lhs, const pair_type& rhs) {
-        if (this->oo_options.should_minimize) {
+        if (this->oo_options.shouldMinimize()) {
             if (lhs.second < rhs.second) {
                 return false;
             } else {

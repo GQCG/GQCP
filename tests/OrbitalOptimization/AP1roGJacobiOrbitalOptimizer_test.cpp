@@ -97,8 +97,7 @@ BOOST_AUTO_TEST_CASE ( lih_6_31G_orbitalOptimize ) {
 
 
     // Do an AP1roG orbital optimization using Jacobi rotations
-    GQCP::OrbitalOptimizationOptions oo_options;
-    oo_options.convergence_threshold = 1.0e-04;
+    auto oo_options = GQCP::OrbitalOptimizationOptions::OrbitalMinimizationOptions(1.0e-04);
     GQCP::AP1roGJacobiOrbitalOptimizer orbital_optimizer (lih.get_N()/2, mol_ham_par.get_K(), oo_options);
     orbital_optimizer.optimize(mol_ham_par);
     double optimized_energy = orbital_optimizer.get_electronic_energy();

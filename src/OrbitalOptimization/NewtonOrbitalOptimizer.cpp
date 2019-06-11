@@ -39,7 +39,7 @@ void NewtonOrbitalOptimizer::prepareConvergenceChecking(const HamiltonianParamet
 bool NewtonOrbitalOptimizer::checkForConvergence(const HamiltonianParameters<double>& ham_par) const {
 
     // Check for convergence on the norm
-    if (this->gradient.norm() < this->oo_options.convergence_threshold) {
+    if (this->gradient.norm() < this->oo_options.convergenceThreshold()) {
         if (this->newtonStepIsWellDefined()) {  // needs this->hessian
             return true;
         } else {
@@ -117,7 +117,7 @@ bool NewtonOrbitalOptimizer::newtonStepIsWellDefined() const {
 
     Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> hessian_diagonalizer (this->hessian);
 
-    if (this->oo_options.should_minimize) {
+    if (this->oo_options.shouldMinimize()) {
 
         // Can only produce a well-defined descending Newton step if the Hessian is positive definite
         if (hessian_diagonalizer.eigenvalues()(0) < 0) {
@@ -151,7 +151,7 @@ VectorX<double> NewtonOrbitalOptimizer::directionFromHessian() const {
     
     Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> hessian_diagonalizer (this->hessian);
 
-    if (this->oo_options.should_minimize) {
+    if (this->oo_options.shouldMinimize()) {
         if (hessian_diagonalizer.eigenvalues()(0) < 0) {
             return hessian_diagonalizer.eigenvectors().col(0);
         }
@@ -180,7 +180,7 @@ OrbitalRotationGenerators NewtonOrbitalOptimizer::calculateNewFreeOrbitalGenerat
 
     // If the norm hasn't converged, continue in the Newton direction
     // Until we have completely read Nocedal & Wright, this is the way we're doing Newton optimization
-    if (this->gradient.norm() > this->oo_options.convergence_threshold) {
+    if (this->gradient.norm() > this->oo_options.convergenceThreshold()) {
 
         const size_t dim = this->gradient.size();
         const VectorFunction gradient_function = [this] (const VectorX<double>& x) { return this->gradient; };

@@ -26,12 +26,66 @@ namespace GQCP {
 
 
 /**
- *  A struct that holds options for orbital optimization
+ *  A class that holds options for orbital optimization
  */
-struct OrbitalOptimizationOptions {
-    bool should_minimize = true;  // if the algorithm should look for a minimum or not
-    double convergence_threshold = 1.0e-08;
-    size_t maximum_number_of_iterations = 128;
+class OrbitalOptimizationOptions {
+private:
+    bool should_minimize;  // if the algorithm should look for a minimum or not
+    double convergence_threshold;
+    size_t maximum_number_of_iterations;
+
+
+public:
+    // CONSTRUCTORS
+
+    /**
+     *  @param should_minimize                  if the algorithm should look for a minimum or not
+     *  @param convergence_threshold            the threshold used to check for convergence
+     *  @param maximum_number_of_iterations     the maximum number of iterations that may be used to achieve convergence
+     */
+    OrbitalOptimizationOptions(const bool should_minimize=true, const double convergence_threshold = 1.0e-08, const double maximum_number_of_iterations = 128);
+
+
+    // NAMED CONSTRUCTORS
+
+    /**
+     *  @param convergence_threshold            the threshold used to check for convergence
+     *  @param maximum_number_of_iterations     the maximum number of iterations that may be used to achieve convergence
+     * 
+     *  @return orbital optimization options suited for the maximization of a cost function
+     */
+    static OrbitalOptimizationOptions OrbitalMaximizationOptions(const double convergence_threshold = 1.0e-08, const double maximum_number_of_iterations = 128);
+
+    /**
+     *  @param convergence_threshold            the threshold used to check for convergence
+     *  @param maximum_number_of_iterations     the maximum number of iterations that may be used to achieve convergence
+     * 
+     *  @return orbital optimization options suited for the minimization of a cost function
+     */
+    static OrbitalOptimizationOptions OrbitalMinimizationOptions(const double convergence_threshold = 1.0e-08, const double maximum_number_of_iterations = 128);
+
+
+    // PUBLIC METHODS
+
+    /**
+     *  @return if the algorithm should look for a minimum or not
+     */
+    bool shouldMinimize() const { return this->should_minimize; }
+
+    /**
+     *  @return if the algorithm should look for a maximum or not
+     */
+    bool shouldMaximize() const { return !this->shouldMinimize(); }
+
+    /**
+     *  @return the threshold used to check for convergence
+     */
+    double convergenceThreshold() const { return this->convergence_threshold; }
+
+    /**
+     *  @return the maximum number of iterations that may be used to achieve convergence
+     */
+    size_t maximumNumberOfIterations() const { return this->maximum_number_of_iterations; }
 };
 
 

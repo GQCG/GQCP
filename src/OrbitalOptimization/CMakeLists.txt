@@ -6,6 +6,7 @@ target_sources(gqcp
             JacobiOrbitalOptimizer.cpp
             JacobiRotationParameters.cpp
             NewtonOrbitalOptimizer.cpp
+            OrbitalOptimizationOptions.cpp
             OrbitalRotationGenerators.cpp
         )
 
