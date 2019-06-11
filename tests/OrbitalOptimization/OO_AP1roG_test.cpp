@@ -21,9 +21,8 @@
 
 #include "OrbitalOptimization/AP1roGJacobiOrbitalOptimizer.hpp"
 
-#include "Geminals/AP1roG.hpp"
 #include "Geminals/AP1roGPSESolver.hpp"
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "Geminals/AP1roG.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
 
 
@@ -59,18 +58,21 @@ BOOST_AUTO_TEST_CASE ( lih_6_31G_calculateEnergyAfterRotation ) {
 
 
             // Calculate the analytical energy after rotation
-            GQCP::AP1roGJacobiOrbitalOptimizer orbital_optimizer (lih, mol_ham_par);
-            orbital_optimizer.calculateJacobiCoefficients(p, q, G);
-            double E_rotated_analytical = orbital_optimizer.calculateEnergyAfterJacobiRotation(jacobi_rot_par, G);
+            GQCP::OrbitalOptimizationOptions oo_options;
+            GQCP::AP1roGJacobiOrbitalOptimizer orbital_optimizer (lih.get_N()/2, K, oo_options, G);
+            orbital_optimizer.calculateJacobiCoefficients(mol_ham_par, p, q);
+            double E_correction_analytical = orbital_optimizer.calculateScalarFunctionCorrection(mol_ham_par, jacobi_rot_par);
 
 
             // Calculate the energy after a numerical rotation (using a Jacobi rotation matrix)
+            double E_before = GQCP::calculateAP1roGEnergy(G, mol_ham_par);
             auto mol_ham_par_copy = mol_ham_par;
             mol_ham_par_copy.rotate(jacobi_rot_par);
-            double E_rotated_numerical = GQCP::calculateAP1roGEnergy(G, mol_ham_par_copy);
+            double E_after = GQCP::calculateAP1roGEnergy(G, mol_ham_par_copy);
+            double E_correction_numerical = E_after - E_before;
 
 
-            BOOST_CHECK(std::abs(E_rotated_analytical - E_rotated_numerical) < 1.0e-08);
+            BOOST_CHECK(std::abs(E_correction_analytical - E_correction_numerical) < 1.0e-08);
         }
     }
 }
@@ -95,8 +97,10 @@ BOOST_AUTO_TEST_CASE ( lih_6_31G_orbitalOptimize ) {
 
 
     // Do an AP1roG orbital optimization using Jacobi rotations
-    GQCP::AP1roGJacobiOrbitalOptimizer orbital_optimizer (lih, mol_ham_par);
-    orbital_optimizer.solve();
+    GQCP::OrbitalOptimizationOptions oo_options;
+    oo_options.convergence_threshold = 1.0e-04;
+    GQCP::AP1roGJacobiOrbitalOptimizer orbital_optimizer (lih.get_N()/2, mol_ham_par.get_K(), oo_options);
+    orbital_optimizer.optimize(mol_ham_par);
     double optimized_energy = orbital_optimizer.get_electronic_energy();
 
 

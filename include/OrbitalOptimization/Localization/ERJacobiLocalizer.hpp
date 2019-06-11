@@ -30,8 +30,6 @@ namespace GQCP {
  */
 class ERJacobiLocalizer : public JacobiOrbitalOptimizer {
 private:
-    bool are_calculated_jacobi_coefficients = false;
-
     double A=0.0, B=0.0, C=0.0;  // the Jacobi rotation coefficients
 
 
@@ -50,17 +48,17 @@ public:
     /**
      *  @param ham_par      the Hamiltonian parameters
      * 
-     *  @return the value of the scalar function that should be optimized
+     *  @return the value of the scalar function (i.e. the ER localization index) that should be optimized
      */
-    double calculateScalarFunction(const HamiltonianParameters<double>& ham_par);
+    double calculateScalarFunction(const HamiltonianParameters<double>& ham_par) override;
 
     /**
-     *  Calculate the trigoniometric polynomial coefficients for the given Jacobi rotation
+     *  Calculate the trigoniometric polynomial coefficients for the given Jacobi rotation indices
      *
-     *  @param i            the index of spatial orbital i
-     *  @param j            the index of spatial orbital j
+     *  @param i            the index of spatial orbital 1
+     *  @param j            the index of spatial orbital 2
      */
-    void calculateJacobiCoefficients(const HamiltonianParameters<double>& ham_par, const size_t i, const size_t j);
+    void calculateJacobiCoefficients(const HamiltonianParameters<double>& ham_par, const size_t i, const size_t j) override;
 
     /**
      *  @param ham_par      the current Hamiltonian parameters
@@ -69,15 +67,15 @@ public:
      *
      *  @return the angle for which the derivative of the scalar function after the Jacobi rotation is zero (and the second derivative is positive), using the current trigoniometric polynomial coefficients
      */
-    double calculateOptimalRotationAngle(const HamiltonianParameters<double>& ham_par, const size_t i, const size_t j);
+    double calculateOptimalRotationAngle(const HamiltonianParameters<double>& ham_par, const size_t i, const size_t j) override;
 
     /**
      *  @param ham_par              the current Hamiltonian parameters
      *  @param jacobi_rot_par       the Jacobi rotation parameters
      * 
-     *  @return the value of the scalar function if the given Jacobi rotation parameters would be used to rotate the given Hamiltonian parameters
+     *  @return the value of the scalar function (i.e. the ER localization index) if the given Jacobi rotation parameters would be used to rotate the given Hamiltonian parameters
      */
-    double calculateScalarFunctionAfterJacobiRotation(const HamiltonianParameters<double>& ham_par, const JacobiRotationParameters& jacobi_rot_par);
+    double calculateScalarFunctionCorrection(const HamiltonianParameters<double>& ham_par, const JacobiRotationParameters& jacobi_rot_par) override;
 };
 
 

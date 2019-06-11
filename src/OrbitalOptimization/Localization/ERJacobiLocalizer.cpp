@@ -57,8 +57,8 @@ double ERJacobiLocalizer::calculateScalarFunction(const HamiltonianParameters<do
 /**
  *  Calculate the trigoniometric polynomial coefficients for the given Jacobi rotation
  *
- *  @param p            the index of spatial orbital p
- *  @param q            the index of spatial orbital q
+ *  @param i            the index of spatial orbital 1
+ *  @param j            the index of spatial orbital 2
  */
 void ERJacobiLocalizer::calculateJacobiCoefficients(const HamiltonianParameters<double>& ham_par, const size_t i, const size_t j) {
 
@@ -90,10 +90,9 @@ double ERJacobiLocalizer::calculateOptimalRotationAngle(const HamiltonianParamet
  * 
  *  @return the value of the scalar function if the given Jacobi rotation parameters would be used to rotate the given Hamiltonian parameters
  */
-double ERJacobiLocalizer::calculateScalarFunctionAfterJacobiRotation(const HamiltonianParameters<double>& ham_par, const JacobiRotationParameters& jacobi_rot_par) {
+double ERJacobiLocalizer::calculateScalarFunctionCorrection(const HamiltonianParameters<double>& ham_par, const JacobiRotationParameters& jacobi_rot_par) {
 
-    double D = this->calculateScalarFunction(ham_par);  // the formula is an energy 'correction'
-    return D + this->A + std::sqrt(std::pow(this->B, 2) + std::pow(this->C, 2));
+    return this->A + std::sqrt(std::pow(this->B, 2) + std::pow(this->C, 2));
 }
 
 

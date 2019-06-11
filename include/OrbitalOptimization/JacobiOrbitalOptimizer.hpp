@@ -32,7 +32,8 @@ class JacobiOrbitalOptimizer : public BaseOrbitalOptimizer {
 protected:
     size_t dim; // the dimension of the orbital space that should be scanned. The valid orbital indices then are 0 ... dim (not included)
 
-    std::pair<JacobiRotationParameters, double> optimal_jacobi_with_scalar;  // holds the optimal Jacobi parameters and the corresponding value for the scalar function trying to optimize
+    using pair_type = std::pair<JacobiRotationParameters, double>;
+    pair_type optimal_jacobi_with_scalar;  // holds the optimal Jacobi parameters and the corresponding value for the scalar function trying to optimize
 
 
 public:
@@ -54,7 +55,7 @@ public:
     virtual double calculateScalarFunction(const HamiltonianParameters<double>& ham_par) = 0;
 
     /**
-     *  Calculate the trigoniometric polynomial coefficients for the given Jacobi rotation
+     *  Calculate the trigoniometric polynomial coefficients for the given Jacobi rotation indices
      *
      *  @param p            the index of spatial orbital p
      *  @param q            the index of spatial orbital q
@@ -76,7 +77,7 @@ public:
      * 
      *  @return the value of the scalar function if the given Jacobi rotation parameters would be used to rotate the given Hamiltonian parameters
      */
-    virtual double calculateScalarFunctionAfterJacobiRotation(const HamiltonianParameters<double>& ham_par, const JacobiRotationParameters& jacobi_rot_par) = 0;
+    virtual double calculateScalarFunctionCorrection(const HamiltonianParameters<double>& ham_par, const JacobiRotationParameters& jacobi_rot_par) = 0;
 
 
     // PUBLIC OVERRIDDEN METHODS
@@ -104,6 +105,11 @@ public:
      *  @return the optimal Jacobi rotation parameters and the corresponding value for the scalar function that can be obtained when the Jacobi rotation would have taken place
      */
     std::pair<JacobiRotationParameters, double> calculateOptimalJacobiParameters(const HamiltonianParameters<double>& ham_par);
+
+    /**
+     *  @return the comparer functor that is used to compare two pair_types
+     */
+    std::function<bool (const pair_type&, const pair_type&)> comparer() const;
 };
 
 

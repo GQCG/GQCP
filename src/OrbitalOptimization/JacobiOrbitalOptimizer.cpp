@@ -85,9 +85,32 @@ SquareMatrix<double> JacobiOrbitalOptimizer::calculateNewRotationMatrix(const Ha
  */
 std::pair<JacobiRotationParameters, double> JacobiOrbitalOptimizer::calculateOptimalJacobiParameters(const HamiltonianParameters<double>& ham_par) {
 
-    using pair_type = std::pair<JacobiRotationParameters, double>;
+    auto cmp = this->comparer();
+    std::priority_queue<pair_type, std::vector<pair_type>, decltype(cmp)> queue (cmp);
 
-    auto cmp = [this] (const pair_type& lhs, const pair_type& rhs) {
+    for (size_t q = 0; q < this->dim; q++) {
+        for (size_t p = q+1; p < this->dim; p++) {  // loop over p>q
+            this->calculateJacobiCoefficients(ham_par, p,q);  // initialize the trigoniometric polynomial coefficients
+
+            double theta = this->calculateOptimalRotationAngle(ham_par, p,q);
+            const JacobiRotationParameters jacobi_rot_par (p, q, theta);
+
+            double rotated_scalar_value = this->calculateScalarFunctionCorrection(ham_par, jacobi_rot_par);
+
+            queue.emplace(jacobi_rot_par, rotated_scalar_value);  // constructs a pair_type
+        }
+    }
+
+    return queue.top();
+}
+
+
+/**
+ *  @return the comparer functor that is used to compare two pair_types
+ */
+std::function<bool (const JacobiOrbitalOptimizer::pair_type&, const JacobiOrbitalOptimizer::pair_type&)> JacobiOrbitalOptimizer::comparer() const {
+
+    return [this] (const pair_type& lhs, const pair_type& rhs) {
         if (this->oo_options.should_minimize) {
             if (lhs.second < rhs.second) {
                 return false;
@@ -103,28 +126,8 @@ std::pair<JacobiRotationParameters, double> JacobiOrbitalOptimizer::calculateOpt
                 return false;
             }
         }
-    };
-
-    std::priority_queue<pair_type, std::vector<pair_type>, decltype(cmp)> queue (cmp);
-
-
-    for (size_t q = 0; q < this->dim; q++) {
-        for (size_t p = q+1; p < this->dim; p++) {  // loop over p>q
-            this->calculateJacobiCoefficients(ham_par, p,q);  // initialize the trigoniometric polynomial coefficients
-
-            double theta = this->calculateOptimalRotationAngle(ham_par, p,q);
-            const JacobiRotationParameters jacobi_rot_par (p, q, theta);
-
-            double rotated_scalar_value = this->calculateScalarFunctionAfterJacobiRotation(ham_par, jacobi_rot_par);
-
-            queue.emplace(jacobi_rot_par, rotated_scalar_value);  // constructs a pair_type
-        }
-    }
-
-    return queue.top();
+    };  // lambda function
 }
-
-
 
 
 }  // namespace GQCP
