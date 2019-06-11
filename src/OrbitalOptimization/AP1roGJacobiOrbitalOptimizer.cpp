@@ -201,7 +201,7 @@ double AP1roGJacobiOrbitalOptimizer::calculateOptimalRotationAngle(const Hamilto
         // Use three initial guesses to get the minimum
         const auto half_pi = boost::math::constants::half_pi<double>();
         const double quarter_pi = half_pi / 2;
-        const std::vector<const double> theta_values {0.0, half_pi, quarter_pi};
+        const std::vector<double> theta_values {0.0, half_pi, quarter_pi};
         for (const auto& theta : theta_values) {
             VectorX<double> theta_vec (1);  // we can't implicitly convert a float to an VectorX<double> so we make it ourselves
             theta_vec << theta;
