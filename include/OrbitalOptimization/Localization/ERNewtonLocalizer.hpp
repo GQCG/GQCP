@@ -30,46 +30,7 @@ namespace GQCP {
  */
 class ERNewtonLocalizer : public NewtonOrbitalOptimizer {
 private:
-    // PRIVATE MEMBERS
     size_t N_P;
-
-
-private:
-    // PRIVATE METHODS
-    
-    /**
-     *  @param ham_par      the Hamiltonian parameters (in an orthonormal basis) containing the two-electron integrals
-     *  @param i            the row of the gradient 'matrix'
-     *  @param j            the column of the gradient 'matrix'
-     *
-     *  @return the element (i,j) of the Edmiston-Ruedenberg localization index gradient
-     */
-    double calculateGradientElement(const HamiltonianParameters<double>& ham_par, size_t i, size_t j) const;
-
-    /**
-     *  @param ham_par      the Hamiltonian parameters (in an orthonormal basis) containing the two-electron integrals
-     *
-     *  @return the gradient of the Edmiston-Ruedenberg localization index as a matrix
-     */
-    SquareMatrix<double> calculateGradient(const HamiltonianParameters<double>& ham_par) const;
-
-    /**
-     *  @param ham_par      the Hamiltonian parameters (in an orthonormal basis) containing the two-electron integrals
-     *  @param i            the first index of the Hessian 'tensor'
-     *  @param j            the second index of the Hessian 'tensor'
-     *  @param k            the third index of the Hessian 'tensor'
-     *  @param l            the fourth index of the Hessian 'tensor'
-     *
-     *  @return the element (i,j,k,l) of the Edmiston-Ruedenberg localization index Hessian
-     */
-    double calculateHessianElement(const HamiltonianParameters<double>& ham_par, size_t i, size_t j, size_t k, size_t l) const;
-
-    /**
-     *  @param ham_par      the Hamiltonian parameters (in an orthonormal basis) containing the two-electron integrals
-     *
-     *  @return the Hessian of the Edmiston-Ruedenberg localization index as a tensor
-     */
-    SquareRankFourTensor<double> calculateHessian(const HamiltonianParameters<double>& ham_par) const;
 
 
 public:
