@@ -22,6 +22,7 @@
 #include "Basis/CartesianDirection.hpp"
 #include "Basis/CartesianExponents.hpp"
 #include "Basis/CartesianGTO.hpp"
+#include "Basis/LibcintInterfacer.hpp"
 #include "Basis/LibintInterfacer.hpp"
 #include "Basis/Shell.hpp"
 #include "Basis/ShellSet.hpp"
@@ -29,7 +30,9 @@
 #include "CISolver/CISolver.hpp"
 
 #include "FockSpace/BaseFockSpace.hpp"
+#include "FockSpace/BaseFrozenCoreFockSpace.hpp"
 #include "FockSpace/Configuration.hpp"
+#include "FockSpace/EvaluationMatrix.hpp"
 #include "FockSpace/FockPermutator.hpp"
 #include "FockSpace/FockSpace.hpp"
 #include "FockSpace/FockSpaceType.hpp"
@@ -40,15 +43,13 @@
 #include "FockSpace/SelectedFockSpace.hpp"
 
 #include "Geminals/AP1roG.hpp"
-#include "Geminals/AP1roGLagrangianOptimizer.hpp"
 #include "Geminals/AP1roGGeminalCoefficients.hpp"
-#include "Geminals/AP1roGJacobiOrbitalOptimizer.hpp"
+#include "Geminals/AP1roGLagrangianOptimizer.hpp"
 #include "Geminals/AP1roGPSESolver.hpp"
 #include "Geminals/AP1roGVariables.hpp"
 #include "Geminals/APIGGeminalCoefficients.hpp"
 #include "Geminals/BaseAP1roGSolver.hpp"
 #include "Geminals/BaseAPIGVariables.hpp"
-#include "Geminals/BivariationalCoefficients.hpp"
 #include "Geminals/GeminalCoefficientsInterface.hpp"
 
 #include "HamiltonianBuilder/DOCI.hpp"
@@ -60,22 +61,16 @@
 #include "HamiltonianBuilder/Hubbard.hpp"
 #include "HamiltonianBuilder/SelectedCI.hpp"
 
+#include "HamiltonianParameters/AtomicDecompositionParameters.hpp"
 #include "HamiltonianParameters/BaseHamiltonianParameters.hpp"
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
-
-#include "Localization/BaseERLocalizer.hpp"
-#include "Localization/ERJacobiLocalizer.hpp"
-#include "Localization/ERNewtonLocalizer.hpp"
-
-#include "Operator/OneElectronOperator.hpp"
-#include "Operator/Operator.hpp"
-#include "Operator/TwoElectronOperator.hpp"
 
 #include "math/optimization/BaseEigenproblemSolver.hpp"
 #include "math/optimization/BaseMatrixSolver.hpp"
 #include "math/optimization/BaseMinimizer.hpp"
 #include "math/optimization/BaseSystemOfEquationsSolver.hpp"
 #include "math/optimization/DavidsonSolver.hpp"
+#include "math/optimization/DenseSolver.hpp"
 #include "math/optimization/Eigenpair.hpp"
 #include "math/optimization/EigenproblemSolverOptions.hpp"
 #include "math/optimization/NewtonMinimizer.hpp"
@@ -83,12 +78,30 @@
 #include "math/optimization/SparseSolver.hpp"
 #include "math/optimization/step.hpp"
 
+#include "math/ChemicalMatrix.hpp"
+#include "math/ChemicalRankFourTensor.hpp"
 #include "math/LinearCombination.hpp"
 #include "math/Matrix.hpp"
 #include "math/ScalarFunction.hpp"
 #include "math/SquareMatrix.hpp"
 #include "math/SquareRankFourTensor.hpp"
 #include "math/Tensor.hpp"
+
+#include "Operator/OneElectronOperator.hpp"
+#include "Operator/Operator.hpp"
+#include "Operator/TwoElectronOperator.hpp"
+
+#include "OrbitalOptimization/Localization/ERJacobiLocalizer.hpp"
+#include "OrbitalOptimization/Localization/ERNewtonLocalizer.hpp"
+
+#include "OrbitalOptimization/AP1roGJacobiOrbitalOptimizer.hpp"
+#include "OrbitalOptimization/BaseOrbitalOptimizer.hpp"
+#include "OrbitalOptimization/DOCINewtonOrbitalOptimizer.hpp"
+#include "OrbitalOptimization/JacobiOrbitalOptimizer.hpp"
+#include "OrbitalOptimization/JacobiRotationParameters.hpp"
+#include "OrbitalOptimization/NewtonOrbitalOptimizer.hpp"
+#include "OrbitalOptimization/OrbitalOptimizationOptions.hpp"
+#include "OrbitalOptimization/OrbitalRotationGenerators.hpp"
 
 #include "properties/expectation_values.hpp"
 #include "properties/properties.hpp"
@@ -123,12 +136,9 @@
 
 // Single files, not in a special include directory
 #include "Atom.hpp"
-#include "DOCINewtonOrbitalOptimizer.hpp"
 #include "elements.hpp"
 #include "HoppingMatrix.hpp"
-#include "JacobiRotationParameters.hpp"
 #include "Molecule.hpp"
-#include "OrbitalOptimizationOptions.hpp"
 #include "RMP2.hpp"
 #include "typedefs.hpp"
 #include "units.hpp"
