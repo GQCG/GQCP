@@ -85,17 +85,17 @@ Molecule Molecule::Readxyz(const std::string& xyz_filename, int charge) {
     if (idx != std::string::npos) {
         extension = xyz_filename.substr(idx+1);
     } else {
-        throw std::runtime_error("Molecule::Readxyz(const std::string&, int): I did not find an extension in your given path.");
+        throw std::invalid_argument("Molecule::Readxyz(const std::string&, int): I did not find an extension in your given path.");
     }
 
     if (!(extension == "xyz")) {
-        throw std::runtime_error("Molecule::Readxyz(const std::string&, int): You did not provide a .xyz file name");
+        throw std::invalid_argument("Molecule::Readxyz(const std::string&, int): You did not provide a .xyz file name");
     }
 
     // If the xyz_filename isn't properly converted into an input file stream, we assume the user supplied a wrong file
     std::ifstream input_file_stream (xyz_filename);
     if (!input_file_stream.good()) {
-        throw std::runtime_error("Molecule::Readxyz(const std::string&, int): The provided .xyz file name is illegible. Maybe you specified a wrong path?");
+        throw std::invalid_argument("Molecule::Readxyz(const std::string&, int): The provided .xyz file name is illegible. Maybe you specified a wrong path?");
     } else {
         // Do the actual parsing
         std::string line;

@@ -59,7 +59,7 @@ void BaseOrbitalOptimizer::optimize(HamiltonianParameters<double>& ham_par) {
 
         number_of_oo_iterations++;
         if (number_of_oo_iterations > this->oo_options.maximumNumberOfIterations()) {
-            throw std::invalid_argument("BaseOrbitalOptimizer::optimize(HamiltonianParameters<double>&): The orbital optimization procedure did not converge in the given amount of iterations.");
+            throw std::runtime_error("BaseOrbitalOptimizer::optimize(HamiltonianParameters<double>&): The orbital optimization procedure did not converge in the given amount of iterations.");
         }
     }
 
