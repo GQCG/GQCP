@@ -115,7 +115,6 @@ TwoRDM<double> DOCINewtonOrbitalOptimizer::calculate2RDM() const {
 }
 
 
-
 /**
  *  Use gradient and Hessian information to determine a new direction for the 'full' orbital rotation generators kappa. Note that a distinction is made between 'free' generators, i.e. those that are calculated from the gradient and Hessian information and the 'full' generators, which also include the redundant parameters (that can be set to zero). The 'full' generators are used to calculate the total rotation matrix using the matrix exponential
  * 
@@ -126,7 +125,6 @@ TwoRDM<double> DOCINewtonOrbitalOptimizer::calculate2RDM() const {
 OrbitalRotationGenerators DOCINewtonOrbitalOptimizer::calculateNewFullOrbitalGenerators(const HamiltonianParameters<double>& ham_par) const {
     return this->calculateNewFreeOrbitalGenerators(ham_par);  // no extra step necessary
 }
-
 
 
 
