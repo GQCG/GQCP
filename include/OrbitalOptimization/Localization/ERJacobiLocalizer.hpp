@@ -15,8 +15,8 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef ERJacobiLocalizer_hpp
-#define ERJacobiLocalizer_hpp
+#ifndef GQCP_ERJACOBILOCALIZER_HPP
+#define GQCP_ERJACOBILOCALIZER_HPP
 
 
 #include "OrbitalOptimization/JacobiOrbitalOptimizer.hpp"
@@ -85,4 +85,4 @@ public:
 }  // namespace GQCP
 
 
-#endif /* ERJacobiLocalizer_hpp */
+#endif  // GQCP_ERJACOBILOCALIZER_HPP

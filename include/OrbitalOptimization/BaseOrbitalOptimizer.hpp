@@ -15,8 +15,8 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef BASEORBITALOPTIMIZER_HPP
-#define BASEORBITALOPTIMIZER_HPP
+#ifndef GQCP_BASEORBITALOPTIMIZER_HPP
+#define GQCP_BASEORBITALOPTIMIZER_HPP
 
 
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
@@ -88,4 +88,4 @@ public:
 
 
 
-#endif  /* BASEORBITALOPTIMIZER_HPP */
+#endif  // GQCP_BASEORBITALOPTIMIZER_HPP

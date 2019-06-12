@@ -15,8 +15,8 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef OrbitalOptimizationOptions_hpp
-#define OrbitalOptimizationOptions_hpp
+#ifndef GQCP_ORBITALOPTIMIZATIONOPTIONS_HPP
+#define GQCP_ORBITALOPTIMIZATIONOPTIONS_HPP
 
 
 #include <cstdlib>
@@ -92,4 +92,4 @@ public:
 }  // namespace GQCP
 
 
-#endif  /* OrbitalOptimizationOptions_hpp */
+#endif  // GQCP_ORBITALOPTIMIZATIONOPTIONS_HPP

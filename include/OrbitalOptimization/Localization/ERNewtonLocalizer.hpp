@@ -15,8 +15,8 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef ERNewtonLocalizer_hpp
-#define ERNewtonLocalizer_hpp
+#ifndef GQCP_ERNEWTONLOCALIZER_HPP
+#define GQCP_ERNEWTONLOCALIZER_HPP
 
 
 #include "OrbitalOptimization/NewtonOrbitalOptimizer.hpp"
@@ -107,4 +107,4 @@ public:
 }  // namespace GQCP
 
 
-#endif /* ERNewtonLocalizer_hpp */
+#endif  // GQCP_ERNEWTONLOCALIZER_HPP */

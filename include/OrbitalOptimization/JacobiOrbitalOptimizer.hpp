@@ -28,6 +28,10 @@
 namespace GQCP {
 
 
+
+/**
+ *  An intermediate abstract class that should be derived from to implement a Jacobi rotation based orbital optimization: the change in scalar function due to a Jacobi rotation should be implemented
+ */
 class JacobiOrbitalOptimizer : public BaseOrbitalOptimizer {
 protected:
     size_t dim;  // the dimension of the orbital space that should be scanned. The valid orbital indices then are 0 ... dim (not included)

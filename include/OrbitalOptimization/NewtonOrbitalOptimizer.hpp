@@ -30,7 +30,7 @@ namespace GQCP {
 
 
 /**
- *  An intermediate abstract class that should be derived from to implement a Newton-step based orbital optimization
+ *  An intermediate abstract class that should be derived from to implement a Newton-step based orbital optimization: gradient and Hessian formulas should be implemented
  */
 class NewtonOrbitalOptimizer : public BaseOrbitalOptimizer {
 protected:

@@ -15,8 +15,8 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef AP1roGJacobiOrbitalOptimizer_hpp
-#define AP1roGJacobiOrbitalOptimizer_hpp
+#ifndef GQCP_AP1ROGJACOBIORBITALOPTIMIZER_HPP
+#define GQCP_AP1ROGJACOBIORBITALOPTIMIZER_HPP
 
 
 #include "OrbitalOptimization/JacobiOrbitalOptimizer.hpp"
@@ -113,4 +113,4 @@ public:
 }  // namespace GQCP
 
 
-#endif /* AP1roGJacobiOrbitalOptimizer_hpp */
+#endif  // GQCP_AP1ROGJACOBIORBITALOPTIMIZER_HPP

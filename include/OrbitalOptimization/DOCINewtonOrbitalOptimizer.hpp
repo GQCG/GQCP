@@ -15,8 +15,8 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef DOCINewtonOrbitalOptimizer_hpp
-#define DOCINewtonOrbitalOptimizer_hpp
+#ifndef GQCP_DOCINEWTONORBITALOPTIMIZER_HPP
+#define GQCP_DOCINEWTONORBITALOPTIMIZER_HPP
 
 
 #include "HamiltonianBuilder/DOCI.hpp"
@@ -119,4 +119,4 @@ public:
 }  // namespace GQCP
 
 
-#endif /* DOCINewtonOrbitalOptimizer_hpp */
+#endif  // GQCP_DOCINEWTONORBITALOPTIMIZER_HPP
