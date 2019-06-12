@@ -64,11 +64,6 @@ public:
     void prepareDMCalculation(const HamiltonianParameters<double>& ham_par) override;
 
     /**
-     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to calculate the new rotation matrix in this Newton-based orbital optimizer
-     */
-    void prepareQCMethodNewtonSpecificRotationMatrixCalculation(const HamiltonianParameters<double>& ham_par) override {}
-
-    /**
      *  @return the current 1-DM
      */
     OneRDM<double> calculate1RDM() const override;

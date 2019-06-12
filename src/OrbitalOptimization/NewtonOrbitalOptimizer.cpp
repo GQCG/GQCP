@@ -70,15 +70,6 @@ bool NewtonOrbitalOptimizer::checkForConvergence(const HamiltonianParameters<dou
 }
 
 
-/**
- *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to calculate the new rotation matrix
- */
-void NewtonOrbitalOptimizer::prepareRotationMatrixCalculation(const HamiltonianParameters<double>& ham_par) {
-
-    // There are no special preparations to be done for the general Newton-based orbital optimizer
-    this->prepareNewtonSpecificRotationMatrixCalculation(ham_par);
-}
-
 
 /**
  *  Produce a new rotation matrix by either

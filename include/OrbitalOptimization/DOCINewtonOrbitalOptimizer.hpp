@@ -85,11 +85,6 @@ public:
     TwoRDM<double> calculate2RDM() const override;
 
     /**
-     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to calculate the new rotation matrix in this Newton-based orbital optimizer
-     */
-    void prepareQCMethodNewtonSpecificRotationMatrixCalculation(const HamiltonianParameters<double>& ham_par) override {}
-
-    /**
      *  Use gradient and Hessian information to determine a new direction for the 'full' orbital rotation generators kappa. Note that a distinction is made between 'free' generators, i.e. those that are calculated from the gradient and Hessian information and the 'full' generators, which also include the redundant parameters (that can be set to zero). The 'full' generators are used to calculate the total rotation matrix using the matrix exponential
      * 
      *  @param ham_par      the current Hamiltonian parameters

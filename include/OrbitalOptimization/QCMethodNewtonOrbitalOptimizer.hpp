@@ -47,11 +47,6 @@ public:
     virtual void prepareDMCalculation(const HamiltonianParameters<double>& ham_par) = 0;
 
     /**
-     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to calculate the new rotation matrix in this Newton-based orbital optimizer for quantum chemical methods
-     */
-    virtual void prepareQCMethodNewtonSpecificRotationMatrixCalculation(const HamiltonianParameters<double>& ham_par) = 0;
-
-    /**
      *  @return the current 1-DM
      */
     virtual OneRDM<double> calculate1RDM() const = 0;
@@ -70,11 +65,6 @@ public:
      *  In the case of this uncoupled DOCI orbital optimizer, the DOCI eigenvalue problem is re-solved in every iteration using the current orbitals
      */
     void prepareOrbitalDerivativesCalculation(const HamiltonianParameters<double>& ham_par) override;
-
-    /**
-     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to calculate the new rotation matrix in this Newton-based orbital optimizer for quantum chemical methods
-     */
-    void prepareNewtonSpecificRotationMatrixCalculation(const HamiltonianParameters<double>& ham_par) override;
 
     /**
      *  @param ham_par      the current Hamiltonian parameters

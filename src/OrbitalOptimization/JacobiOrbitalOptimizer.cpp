@@ -72,16 +72,6 @@ bool JacobiOrbitalOptimizer::checkForConvergence(const HamiltonianParameters<dou
 
 
 /**
- *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence
- */
-void JacobiOrbitalOptimizer::prepareRotationMatrixCalculation(const HamiltonianParameters<double>& ham_par) {
-
-    // There are no special preparations to be done for the general Jacobi orbital optimizer
-    this->prepareJacobiSpecificRotationMatrixCalculation(ham_par);
-}
-
-
-/**
  *  @param ham_par      the current Hamiltonian parameters
  * 
  *  @return a unitary matrix that will be used to rotate the current Hamiltonian parameters into the next iteration

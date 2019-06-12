@@ -22,13 +22,6 @@ void QCMethodNewtonOrbitalOptimizer::prepareOrbitalDerivativesCalculation(const 
 }
 
 
-/**
- *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to calculate the new rotation matrix in this Newton-based orbital optimizer for quantum chemical methods
- */
-void QCMethodNewtonOrbitalOptimizer::prepareNewtonSpecificRotationMatrixCalculation(const HamiltonianParameters<double>& ham_par) {
-    this->prepareQCMethodNewtonSpecificRotationMatrixCalculation(ham_par);  // nothing extra is needed here
-}
-
 
 /**
  *  @param ham_par      the current Hamiltonian parameters

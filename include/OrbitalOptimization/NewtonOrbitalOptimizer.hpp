@@ -51,11 +51,6 @@ public:
     virtual void prepareOrbitalDerivativesCalculation(const HamiltonianParameters<double>& ham_par) = 0;
 
     /**
-     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to calculate the new rotation matrix in this Newton-based orbital optimizer
-     */
-    virtual void prepareNewtonSpecificRotationMatrixCalculation(const HamiltonianParameters<double>& ham_par) = 0;
-
-    /**
      *  @param ham_par      the current Hamiltonian parameters
      * 
      *  @return the current orbital gradient as a matrix
@@ -97,11 +92,6 @@ public:
      *  @return if the algorithm is considered to be converged
      */
     bool checkForConvergence(const HamiltonianParameters<double>& ham_par) const override;
-
-    /**
-     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to calculate the new rotation matrix
-     */
-    void prepareRotationMatrixCalculation(const HamiltonianParameters<double>& ham_par) override;
 
     /**
      *  Produce a new rotation matrix by either

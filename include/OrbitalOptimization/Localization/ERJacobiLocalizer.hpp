@@ -51,11 +51,6 @@ public:
     void prepareJacobiSpecificConvergenceChecking(const HamiltonianParameters<double>& ham_par) override {}
 
     /**
-     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to calculate the new rotation matrix
-     */
-    void prepareJacobiSpecificRotationMatrixCalculation(const HamiltonianParameters<double>& ham_par) override {};
-
-    /**
      *  Calculate the trigoniometric polynomial coefficients for the given Jacobi rotation indices
      *
      *  @param i            the index of spatial orbital 1
