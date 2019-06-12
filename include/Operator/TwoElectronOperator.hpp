@@ -18,10 +18,11 @@
 #ifndef GQCP_TWOELECTRONOPERATOR_HPP
 #define GQCP_TWOELECTRONOPERATOR_HPP
 
-
-#include "JacobiRotationParameters.hpp"
 #include "math/ChemicalRankFourTensor.hpp"
+#include "Operator/Operator.hpp"
+
 #include "Operator/OneElectronOperator.hpp"
+#include "OrbitalOptimization/JacobiRotationParameters.hpp"
 #include "utilities/miscellaneous.hpp"
 
 

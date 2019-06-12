@@ -798,10 +798,12 @@ INPUT      = "@CMAKE_SOURCE_DIR@/include" \
 			 "@CMAKE_SOURCE_DIR@/include/Geminals" \
 			 "@CMAKE_SOURCE_DIR@/include/HamiltonianBuilder" \
 			 "@CMAKE_SOURCE_DIR@/include/HamiltonianParameters" \
-			 "@CMAKE_SOURCE_DIR@/include/Localization" \
 			 "@CMAKE_SOURCE_DIR@/include/math" \
 			 "@CMAKE_SOURCE_DIR@/include/Operator" \
+			 "@CMAKE_SOURCE_DIR@/include/OrbitalOptimization" \
+			 "@CMAKE_SOURCE_DIR@/include/properties" \
 			 "@CMAKE_SOURCE_DIR@/include/RDM" \
+			 "@CMAKE_SOURCE_DIR@/include/RHF" \
 			 "@CMAKE_SOURCE_DIR@/include/utilities" \
 			 "@CMAKE_SOURCE_DIR@/include/WaveFunction" \
 			 "@CMAKE_SOURCE_DIR@/README.md" \
@@ -812,8 +814,8 @@ INPUT      = "@CMAKE_SOURCE_DIR@/include" \
 			 "@CMAKE_SOURCE_DIR@/src/Geminals" \
 			 "@CMAKE_SOURCE_DIR@/src/HamiltonianBuilder" \
 			 "@CMAKE_SOURCE_DIR@/src/HamiltonianParameters" \
-			 "@CMAKE_SOURCE_DIR@/src/Localization" \
 			 "@CMAKE_SOURCE_DIR@/src/math" \
+			 "@CMAKE_SOURCE_DIR@/src/OrbitalOptimization" \
 			 "@CMAKE_SOURCE_DIR@/src/properties" \
 			 "@CMAKE_SOURCE_DIR@/src/RDM" \
 			 "@CMAKE_SOURCE_DIR@/src/RHF" \

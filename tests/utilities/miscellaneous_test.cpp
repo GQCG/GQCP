@@ -103,3 +103,13 @@ BOOST_AUTO_TEST_CASE ( sandbox ) {
                                                         {1, 1, 1, 1, 1}};
     BOOST_CHECK(GQCP::uniquePartitions<5>(5) == ref_partitions4);
 }
+
+
+BOOST_AUTO_TEST_CASE ( triangularRoot_strictTriangularRoot ) {
+    
+    BOOST_CHECK(GQCP::triangularRoot(6) == 3);
+    BOOST_CHECK(GQCP::strictTriangularRoot(3) == 3);
+
+    BOOST_CHECK(GQCP::triangularRoot(10) == 4);
+    BOOST_CHECK(GQCP::strictTriangularRoot(6) == 4);
+}

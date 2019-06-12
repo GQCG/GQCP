@@ -15,9 +15,9 @@
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "RHF/DIISRHFSCFSolver.hpp"
 #include "CISolver/CISolver.hpp"
-#include "DOCINewtonOrbitalOptimizer.hpp"
-#include "Localization/ERNewtonLocalizer.hpp"
-#include "Localization/ERJacobiLocalizer.hpp"
+#include "OrbitalOptimization/DOCINewtonOrbitalOptimizer.hpp"
+#include "OrbitalOptimization/Localization/ERNewtonLocalizer.hpp"
+#include "OrbitalOptimization/Localization/ERJacobiLocalizer.hpp"
 
 
 /**
@@ -91,19 +91,25 @@ int main (int argc, char** argv) {
     // Localize the RHF-orbitals
     if (user_wants_localization) {
 
+        auto localization_options = GQCP::OrbitalOptimizationOptions::OrbitalMaximizationOptions();
+
         // Newton to get to the first local minimum
-        GQCP::ERNewtonLocalizer first_newton_localizer (N_P);
-        first_newton_localizer.localize(mol_ham_par);
+        GQCP::ERNewtonLocalizer first_newton_localizer (N_P, localization_options);
+        first_newton_localizer.optimize(mol_ham_par);
 
 
-        // Check if Jacobi finds another minimum (1 iteration)
-        GQCP::ERJacobiLocalizer jacobi_localizer (N_P, 1.0, 1);  // Do 1 iteration, regardless of threshold
-        jacobi_localizer.localize(mol_ham_par);
+        // Check if Jacobi finds another minimum
+        GQCP::ERJacobiLocalizer jacobi_localizer (N_P, localization_options);
+        auto optimal_jacobi_with_scalar = jacobi_localizer.calculateOptimalJacobiParameters(mol_ham_par);
+        if (optimal_jacobi_with_scalar.second > 0) {  // if a Jacobi rotation can find an increase, do it
+            const auto U = GQCP::SquareMatrix<double>::FromJacobi(optimal_jacobi_with_scalar.first, mol_ham_par.get_K());
+            mol_ham_par.rotate(U);
+        }
 
 
         // Newton to get to the next local minimum
-        GQCP::ERNewtonLocalizer second_newton_localizer (N_P);
-        first_newton_localizer.localize(mol_ham_par);
+        GQCP::ERNewtonLocalizer second_newton_localizer (N_P, localization_options);
+        first_newton_localizer.optimize(mol_ham_par);
 
 
         output_file << "Total transformation matrix to the ER-localized orbitals: " << std::endl << mol_ham_par.get_T_total() << std::endl << std::endl;
@@ -114,18 +120,21 @@ int main (int argc, char** argv) {
     GQCP::FockSpace fock_space (K, N_P);
     GQCP::DOCI doci (fock_space);
 
-    GQCP::DOCINewtonOrbitalOptimizer orbital_optimizer (doci, mol_ham_par);
-
+    std::shared_ptr<GQCP::BaseSolverOptions> solver_options;
     if (user_wants_davidson) {
-        GQCP::DavidsonSolverOptions solver_options (fock_space.HartreeFockExpansion());
-        orbital_optimizer.solve(solver_options);
+        solver_options = std::make_shared<GQCP::DavidsonSolverOptions>(fock_space.HartreeFockExpansion());
     } else {
-        GQCP::DenseSolverOptions solver_options;
-        orbital_optimizer.solve(solver_options);
+        solver_options = std::make_shared<GQCP::DenseSolverOptions>();
     }
+
+    auto oo_options = GQCP::OrbitalOptimizationOptions::OrbitalMinimizationOptions();
+    GQCP::DOCINewtonOrbitalOptimizer orbital_optimizer (doci, *solver_options, oo_options);
+        orbital_optimizer.optimize(mol_ham_par);
+    double OO_DOCI_electronic_energy = orbital_optimizer.get_eigenpair().get_eigenvalue();
+
+
     output_file << "Total transformation matrix to the OO-DOCI orbitals: " << std::endl << mol_ham_par.get_T_total() << std::endl << std::endl;
 
-    double OO_DOCI_electronic_energy = orbital_optimizer.get_eigenpair().get_eigenvalue();
     output_file << "Total OO-DOCI energy (internuclear repulsion energy added): " << std::setprecision(15) << OO_DOCI_electronic_energy + mol_ham_par.get_scalar() << std::endl;
 
     output_file.close();

@@ -1,10 +1,8 @@
 target_sources(gqcp
         PRIVATE
             Atom.cpp
-            DOCINewtonOrbitalOptimizer.cpp
             elements.cpp
             HoppingMatrix.cpp
-            JacobiRotationParameters.cpp
             Molecule.cpp
             RMP2.cpp
         )
@@ -15,8 +13,8 @@ add_subdirectory(FockSpace)
 add_subdirectory(Geminals)
 add_subdirectory(HamiltonianBuilder)
 add_subdirectory(HamiltonianParameters)
-add_subdirectory(Localization)
 add_subdirectory(math)
+add_subdirectory(OrbitalOptimization)
 add_subdirectory(properties)
 add_subdirectory(RDM)
 add_subdirectory(RHF)

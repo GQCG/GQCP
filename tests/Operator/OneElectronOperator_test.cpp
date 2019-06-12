@@ -19,11 +19,9 @@
 
 #include <boost/test/unit_test.hpp>
 
-
 #include "Operator/OneElectronOperator.hpp"
 
 #include "Basis/CartesianGTO.hpp"
-#include "JacobiRotationParameters.hpp"
 #include "utilities/miscellaneous.hpp"
 
 

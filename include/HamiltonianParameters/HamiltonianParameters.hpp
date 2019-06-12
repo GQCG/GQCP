@@ -20,10 +20,10 @@
 
 #include "HamiltonianParameters/BaseHamiltonianParameters.hpp"
 #include "HoppingMatrix.hpp"
-#include "JacobiRotationParameters.hpp"
 #include "Molecule.hpp"
 #include "Operator/OneElectronOperator.hpp"
 #include "Operator/TwoElectronOperator.hpp"
+#include "OrbitalOptimization/JacobiRotationParameters.hpp"
 #include "RDM/TwoRDM.hpp"
 #include "RDM/OneRDM.hpp"
 #include "typedefs.hpp"
