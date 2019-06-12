@@ -33,22 +33,21 @@
  */
 
 /**
- *  @return a toy 2-RDM where
- *      d(i,j,k,l) = l + 2k + 4j + 8i
+ *  @return a toy 2-DM:
+ *      d(p,q,r,s) = delta_pq delta_rs
  */
-GQCP::TwoRDM<double> calculateToy2RDMTensor() {
+GQCP::TwoRDM<double> calculateToy2DM() {
 
     GQCP::TwoRDM<double> d (2);
-    for (size_t i = 0; i < 2; i++) {
-        for (size_t j = 0; j < 2; j++) {
-            for (size_t k = 0; k < 2; k++) {
-                for (size_t l = 0; l < 2; l++) {
-                    auto i_ = static_cast<double>(i);
-                    auto j_ = static_cast<double>(j);
-                    auto k_ = static_cast<double>(k);
-                    auto l_ = static_cast<double>(l);
+    d.setZero();
 
-                    d(i,j,k,l) = l_ + 2*k_ + 4*j_ + 8*i_;
+    for (size_t p = 0; p < 2; p++) {
+        for (size_t q = 0; q < 2; q++) {
+            for (size_t r = 0; r < 2; r++) {
+                for (size_t s = 0; s < 2; s++) {
+                    if ((p == q) && (r == s)) {
+                        d(p,q,r,s) = 1;
+                    }
                 }
             }
         }
@@ -60,24 +59,20 @@ GQCP::TwoRDM<double> calculateToy2RDMTensor() {
 
 
 /**
- *  @return toy 2-electron integrals where
- *      g(i,j,k,l) = delta_ij delta_kl - delta_il delta_jk
+ *  @return toy 2-electron integrals:
+ *      g(p,q,r,s) = -0.5 delta_pq delta_rs
  */
-GQCP::TwoElectronOperator<double> calculateToyTwoElectronIntegralsTensor() {
+GQCP::TwoElectronOperator<double> calculateToyTwoElectronIntegrals() {
 
     GQCP::TwoElectronOperator<double> g (2);
     g.setZero();
 
-    for (size_t i = 0; i < 2; i++) {
-        for (size_t j = 0; j < 2; j++) {
-            for (size_t k = 0; k < 2; k++) {
-                for (size_t l = 0; l < 2; l++) {
-                    if ((i == j) and (k == l)) {
-                        g(i,j,k,l) += 1;
-                    }
-
-                    if ((i == l) and (j == k)) {
-                        g(i,j,k,l) -= 1;
+    for (size_t p = 0; p < 2; p++) {
+        for (size_t q = 0; q < 2; q++) {
+            for (size_t r = 0; r < 2; r++) {
+                for (size_t s = 0; s < 2; s++) {
+                    if ((p == q) && (r == s)) {
+                        g(p,q,r,s) = -0.5;
                     }
                 }
             }
@@ -319,95 +314,72 @@ BOOST_AUTO_TEST_CASE ( calculate_generalized_Fock_matrix_and_super_invalid_argum
 
 
     // Test a faulty function calls
-    BOOST_REQUIRE_THROW(ham_par.calculateGeneralizedFockMatrix(D_invalid, d_valid), std::invalid_argument);
-    BOOST_REQUIRE_THROW(ham_par.calculateGeneralizedFockMatrix(D_valid, d_invalid), std::invalid_argument);
+    BOOST_REQUIRE_THROW(ham_par.calculateFockianMatrix(D_invalid, d_valid), std::invalid_argument);
+    BOOST_REQUIRE_THROW(ham_par.calculateFockianMatrix(D_valid, d_invalid), std::invalid_argument);
 
-    BOOST_REQUIRE_THROW(ham_par.calculateSuperGeneralizedFockMatrix(D_invalid, d_valid), std::invalid_argument);
-    BOOST_REQUIRE_THROW(ham_par.calculateSuperGeneralizedFockMatrix(D_valid, d_invalid), std::invalid_argument);
+    BOOST_REQUIRE_THROW(ham_par.calculateSuperFockianMatrix(D_invalid, d_valid), std::invalid_argument);
+    BOOST_REQUIRE_THROW(ham_par.calculateSuperFockianMatrix(D_valid, d_invalid), std::invalid_argument);
 
 
     // Test correct function calls
-    ham_par.calculateGeneralizedFockMatrix(D_valid, d_valid);
-    ham_par.calculateSuperGeneralizedFockMatrix(D_valid, d_valid);
+    ham_par.calculateFockianMatrix(D_valid, d_valid);
+    ham_par.calculateSuperFockianMatrix(D_valid, d_valid);
 }
 
 
-BOOST_AUTO_TEST_CASE ( calculate_generalized_Fock_matrix_and_super ) {
+BOOST_AUTO_TEST_CASE ( calculate_Fockian_and_super ) {
 
     // We test the function by a manual calculation of nonsensical toy 1- and 2-RDMS and one- and two-electron integrals
     // Set up the toy 1- and 2-RDMs
     GQCP::OneRDM<double> D (2);
     D << 0, 1,
-         2, 3;
+         1, 0;
 
-    auto d = calculateToy2RDMTensor();
+    auto d = calculateToy2DM();
 
-    // Set up the toy SOBasis
+    // Set up the toy Hamiltonian parameters
     std::shared_ptr<GQCP::AOBasis> ao_basis;
     GQCP::OneElectronOperator<double> S = GQCP::OneElectronOperator<double>::Identity(2, 2);
     GQCP::OneElectronOperator<double> h (2);
     h << 1, 0,
          0, 1;
 
-    auto g = calculateToyTwoElectronIntegralsTensor();
+    auto g = calculateToyTwoElectronIntegrals();
     GQCP::HamiltonianParameters<double> ham_par (ao_basis, S, h, g, GQCP::SquareMatrix<double>::Identity(2, 2));
 
 
-    // Construct the reference generalized Fock matrix
-    GQCP::OneElectronOperator<double> F_ref = GQCP::OneElectronOperator<double>::Zero(2, 2);
-    for (size_t p = 0; p < 2; p++) {
-        for (size_t q = 0; q < 2; q++) {
-            auto p_ = static_cast<double>(p);
-            auto q_ = static_cast<double>(q);
-
-            // One-electron part is simplified by manual calculation
-            F_ref(p,q) += q_ + 2*p_;
-
-            // Two-electron part is simplified by manual calculation
-            for (size_t r = 0; r < 2; r++) {
-                auto r_ = static_cast<double>(r);
-
-                F_ref(p,q) += r_ + 4*q_;
-                F_ref(p,q) -= q_ + 4*r_;
-            }
-        }
-    }
-
+    // Construct the reference Fockian matrix
+    GQCP::OneElectronOperator<double> F_ref (2);
+    F_ref << -1.00,  1.00,
+              1.00, -1.00;
 
     // Construct the reference super generalized Fock matrix
-    GQCP::TwoElectronOperator<double> W_ref (2);
-    W_ref.setZero();
+    GQCP::TwoElectronOperator<double> G_ref (2);
+    G_ref.setZero();
     for (size_t p = 0; p < 2; p++) {
         for (size_t q = 0; q < 2; q++) {
             for (size_t r = 0; r < 2; r++) {
                 for (size_t s = 0; s < 2; s++) {
-                    auto q_ = static_cast<double>(q);
-                    auto r_ = static_cast<double>(r);
-
-                    if (r == q) {
-                        W_ref(p,q,r,s) += F_ref(p,s);
+                    if (q == r) {
+                        G_ref(p,q,r,s) += F_ref(p,s);
                     }
 
                     // One-electron part is simplified by manual calculation
-                    if (s == p) {
-                        W_ref(p,q,r,s) -= q_ + 2*r_;
+                    if (p == s) {
+                        G_ref(p,q,r,s) -= D(r,q);
                     }
 
                     // Two-electron part is simplified by manual calculation
-                    if (s == p) {
-                        for (size_t t = 0; t < 2; t++) {
-                            auto t_ = static_cast<double>(t);
-
-                            W_ref(p,q,r,s) += 3*t_ - 3*q_;
-                        }
+                    if ((p == s) && (q == r)) {
+                        G_ref(p,q,r,s) += 1;
                     }
                 }
             }
         }
     }
 
-    BOOST_CHECK(F_ref.isApprox(ham_par.calculateGeneralizedFockMatrix(D, d), 1.0e-12));
-    BOOST_CHECK(W_ref.isApprox(ham_par.calculateSuperGeneralizedFockMatrix(D, d), 1.0e-12));
+    BOOST_CHECK(F_ref.isApprox(ham_par.calculateFockianMatrix(D, d), 1.0e-12));
+    BOOST_CHECK(G_ref.isApprox(ham_par.calculateSuperFockianMatrix(D, d), 1.0e-12));
 }
 
 

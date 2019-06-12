@@ -38,7 +38,7 @@ void QCMethodNewtonOrbitalOptimizer::prepareNewtonSpecificRotationMatrixCalculat
 SquareMatrix<double> QCMethodNewtonOrbitalOptimizer::calculateGradientMatrix(const HamiltonianParameters<double>& ham_par) const {
 
     // Calculate the gradient from the Fockian matrix
-    const auto F = ham_par.calculateGeneralizedFockMatrix(this->D, this->d);
+    const auto F = ham_par.calculateFockianMatrix(this->D, this->d);
     return 2 * (F - F.transpose());
 }
 
@@ -53,7 +53,7 @@ SquareRankFourTensor<double> QCMethodNewtonOrbitalOptimizer::calculateHessianTen
     const auto K = ham_par.get_K();
 
     // Calculate the Hessian from the super Fockian matrix
-    const auto G = ham_par.calculateSuperGeneralizedFockMatrix(this->D, this->d);
+    const auto G = ham_par.calculateSuperFockianMatrix(this->D, this->d);
     SquareRankFourTensor<double> hessian_tensor (K);
     hessian_tensor.setZero();
 
