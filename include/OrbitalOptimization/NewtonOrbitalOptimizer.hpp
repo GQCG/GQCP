@@ -30,7 +30,7 @@ namespace GQCP {
 
 
 /**
- *  An intermediate abstract class that should be derived from to implement a Newton-step based orbital optimization: gradient and Hessian formulas should be implemented
+ *  An intermediate abstract class that should be derived from to implement a Newton-step based orbital optimization: the orbital gradient and Hessian are calculated through the DMs
  */
 class NewtonOrbitalOptimizer : public BaseOrbitalOptimizer {
 protected:
@@ -46,9 +46,9 @@ public:
     // PUBLIC PURE VIRTUAL METHODS
 
     /**
-     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence in this Newton-based orbital optimizer
+     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to calculate the first and second orbital derivatives, i.e. the orbital gradient and Hessian
      */
-    virtual void prepareNewtonSpecificConvergenceChecking(const HamiltonianParameters<double>& ham_par) = 0;
+    virtual void prepareOrbitalDerivativesCalculation(const HamiltonianParameters<double>& ham_par) = 0;
 
     /**
      *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to calculate the new rotation matrix in this Newton-based orbital optimizer

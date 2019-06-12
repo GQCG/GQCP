@@ -18,11 +18,11 @@
 #ifndef GQCP_DOCINEWTONORBITALOPTIMIZER_HPP
 #define GQCP_DOCINEWTONORBITALOPTIMIZER_HPP
 
+#include "OrbitalOptimization/QCMethodNewtonOrbitalOptimizer.hpp"
 
 #include "HamiltonianBuilder/DOCI.hpp"
 #include "math/optimization/Eigenpair.hpp"
 #include "math/optimization/EigenproblemSolverOptions.hpp"
-#include "OrbitalOptimization/NewtonOrbitalOptimizer.hpp"
 #include "RDM/RDMCalculator.hpp"
 #include "WaveFunction/WaveFunction.hpp"
 
@@ -38,14 +38,12 @@ namespace GQCP {
  *      - solving the Newton step to find the anti-Hermitian orbital rotation parameters
  *      - rotating the underlying spatial orbital basis
  */
-class DOCINewtonOrbitalOptimizer : public NewtonOrbitalOptimizer {
+class DOCINewtonOrbitalOptimizer : public QCMethodNewtonOrbitalOptimizer {
 private:
     BaseSolverOptions& ci_solver_options;  // the options for the CI solver (i.e. diagonalization of the Hamiltonian)
     DOCI doci;  // the DOCI Hamiltonian builder
 
     RDMCalculator rdm_calculator;
-    OneRDM<double> D;  // spin-summed 1-RDM
-    TwoRDM<double> d;  // spin-summed 2-RDM
 
     std::vector<Eigenpair> eigenpairs;  // eigenvalues and -vectors
 
@@ -67,33 +65,29 @@ public:
     const Eigenpair& get_eigenpair(size_t index = 0) const;
 
 
-    // OVERRIDDEN PUBLIC METHODS
+    // PUBLIC OVERRIDDEN METHODS
 
     /**
      *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence in this Newton-based orbital optimizer
      * 
      *  In the case of this uncoupled DOCI orbital optimizer, the DOCI eigenvalue problem is re-solved in every iteration using the current orbitals
      */
-    void prepareNewtonSpecificConvergenceChecking(const HamiltonianParameters<double>& ham_par) override;
+    void prepareDMCalculation(const HamiltonianParameters<double>& ham_par) override;
+
+    /**
+     *  @return the current 1-DM
+     */
+    OneRDM<double> calculate1RDM() const override;
+
+    /**
+     *  @return the current 2-DM
+     */
+    TwoRDM<double> calculate2RDM() const override;
 
     /**
      *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to calculate the new rotation matrix in this Newton-based orbital optimizer
      */
-    void prepareNewtonSpecificRotationMatrixCalculation(const HamiltonianParameters<double>& ham_par) override {}
-
-    /**
-     *  @param ham_par      the current Hamiltonian parameters
-     * 
-     *  @return the current orbital gradient as a matrix
-     */
-    SquareMatrix<double> calculateGradientMatrix(const HamiltonianParameters<double>& ham_par) const override;
-
-    /**
-     *  @param ham_par      the current Hamiltonian parameters
-     * 
-     *  @return the current orbital Hessian as a tensor
-     */
-    SquareRankFourTensor<double> calculateHessianTensor(const HamiltonianParameters<double>& ham_par) const override;
+    void prepareQCMethodNewtonSpecificRotationMatrixCalculation(const HamiltonianParameters<double>& ham_par) override {}
 
     /**
      *  Use gradient and Hessian information to determine a new direction for the 'full' orbital rotation generators kappa. Note that a distinction is made between 'free' generators, i.e. those that are calculated from the gradient and Hessian information and the 'full' generators, which also include the redundant parameters (that can be set to zero). The 'full' generators are used to calculate the total rotation matrix using the matrix exponential

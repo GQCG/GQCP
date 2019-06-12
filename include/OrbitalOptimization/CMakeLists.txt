@@ -8,6 +8,7 @@ target_sources(gqcp
             NewtonOrbitalOptimizer.hpp
             OrbitalOptimizationOptions.hpp
             OrbitalRotationGenerators.hpp
+            QCMethodNewtonOrbitalOptimizer.hpp
         )
 
 add_subdirectory(Localization)

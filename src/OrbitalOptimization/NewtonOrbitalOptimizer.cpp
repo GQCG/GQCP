@@ -35,7 +35,7 @@ namespace GQCP {
  */
 void NewtonOrbitalOptimizer::prepareConvergenceChecking(const HamiltonianParameters<double>& ham_par) {
 
-    this->prepareNewtonSpecificConvergenceChecking(ham_par);
+    this->prepareOrbitalDerivativesCalculation(ham_par);
 
     // All Newton-based orbital optimizers need to calculate a gradient and Hessian
     this->gradient = this->calculateGradientVector(ham_par);

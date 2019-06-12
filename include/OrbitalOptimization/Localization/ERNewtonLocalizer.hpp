@@ -48,7 +48,7 @@ public:
     /**
      *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence
      */
-    void prepareNewtonSpecificConvergenceChecking(const HamiltonianParameters<double>& ham_par) override {}
+    void prepareOrbitalDerivativesCalculation(const HamiltonianParameters<double>& ham_par) override {}
 
     /**
      *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to calculate the new rotation matrix
