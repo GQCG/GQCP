@@ -7,8 +7,10 @@ target_sources(gqcp
             DavidsonSolver.cpp
             DenseSolver.cpp
             Eigenpair.cpp
+            IterativeIdentitiesHessianModifier.cpp
             NewtonMinimizer.cpp
             NewtonSystemOfEquationsSolver.cpp
             SparseSolver.cpp
             step.cpp
+            UnalteringHessianModifier.cpp
         )
