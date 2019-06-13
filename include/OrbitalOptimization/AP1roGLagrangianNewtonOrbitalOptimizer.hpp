@@ -30,6 +30,8 @@ namespace GQCP {
 class AP1roGLagrangianNewtonOrbitalOptimizer : public QCMethodNewtonOrbitalOptimizer {
 private:
     size_t N_P;  // the number of electron pairs
+    
+    double E;  // the electronic energy
     AP1roGGeminalCoefficients G;  // the current geminal coefficients
     AP1roGVariables multipliers;  // the current Lagrangian multipliers
 
@@ -52,6 +54,13 @@ public:
      *  The initial guess for the geminal coefficients is zero
      */
     AP1roGLagrangianNewtonOrbitalOptimizer(size_t N_P, size_t K, const OrbitalOptimizationOptions& oo_options);
+
+
+    // GETTERS
+
+    double get_electronic_energy() const { return this->E; }
+    const AP1roGGeminalCoefficients& get_geminal_coefficients() const { return this->G; }
+    const AP1roGVariables& get_multipliers() const { return this->multipliers; }
 
 
     // OVERRIDDEN PUBLIC METHODS

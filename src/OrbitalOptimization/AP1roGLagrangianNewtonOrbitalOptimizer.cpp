@@ -48,8 +48,12 @@ void AP1roGLagrangianNewtonOrbitalOptimizer::prepareDMCalculation(const Hamilton
     // Solve the AP1roG PSEs and determine the Lagrangian multipliers
     AP1roGLagrangianOptimizer lagrangian_optimizer (this->N_P, ham_par, this->G);
     lagrangian_optimizer.solve();
+    this->E = lagrangian_optimizer.get_electronic_energy();
     this->G = lagrangian_optimizer.get_geminal_coefficients();
     this->multipliers = lagrangian_optimizer.get_multipliers();
+
+    std::cout << "Current energy: " << this->E << std::endl << std::endl;
+    std::cout << "Current amplitues: " << std::endl << this->G.asMatrix() << std::endl << std::endl;
 }
 
 
@@ -77,6 +81,7 @@ TwoRDM<double> AP1roGLagrangianNewtonOrbitalOptimizer::calculate2RDM() const {
  *  @return the new full set orbital generators, including the redundant parameters
  */
 OrbitalRotationGenerators AP1roGLagrangianNewtonOrbitalOptimizer::calculateNewFullOrbitalGenerators(const HamiltonianParameters<double>& ham_par) const {
+    std::cout << "Current kappa: " << std::endl << this->calculateNewFreeOrbitalGenerators(ham_par).asVector() << std::endl << std::endl;
     return this->calculateNewFreeOrbitalGenerators(ham_par);  // no extra step necessary
 }
 

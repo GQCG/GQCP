@@ -51,11 +51,6 @@ public:
     void prepareOrbitalDerivativesCalculation(const HamiltonianParameters<double>& ham_par) override {}
 
     /**
-     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to calculate the new rotation matrix
-     */
-    void prepareNewtonSpecificRotationMatrixCalculation(const HamiltonianParameters<double>& ham_par) override {}
-
-    /**
      *  @param ham_par      the current Hamiltonian parameters
      *
      *  @return the current orbital gradient of the Edmiston-Ruedenberg localization index as a matrix
