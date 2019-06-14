@@ -36,11 +36,11 @@ namespace GQCP {
  *  @param ci_solver_options        the options for the CI solver (i.e. diagonalization of the Hamiltonian)
  *  @param oo_options               the options for orbital optimization
  */
-DOCINewtonOrbitalOptimizer::DOCINewtonOrbitalOptimizer(const DOCI& doci, BaseSolverOptions& ci_solver_options, const OrbitalOptimizationOptions& oo_options) :
+DOCINewtonOrbitalOptimizer::DOCINewtonOrbitalOptimizer(const DOCI& doci, BaseSolverOptions& ci_solver_options, std::shared_ptr<NewtonOrbitalOptimizationOptions> oo_options) :
     doci (doci),
     ci_solver_options (ci_solver_options),
     rdm_calculator (RDMCalculator(*this->doci.get_fock_space())),
-    QCMethodNewtonOrbitalOptimizer(oo_options)
+    QCMethodNewtonOrbitalOptimizer(std::move(oo_options))
 {}
 
 

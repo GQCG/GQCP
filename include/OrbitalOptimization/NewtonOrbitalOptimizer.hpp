@@ -21,6 +21,7 @@
 
 #include "OrbitalOptimization/BaseOrbitalOptimizer.hpp"
 #include "OrbitalOptimization/OrbitalRotationGenerators.hpp"
+#include "OrbitalOptimization/NewtonOrbitalOptimizationOptions.hpp"
 #include "math/SquareMatrix.hpp"
 #include "math/SquareRankFourTensor.hpp"
 
@@ -40,7 +41,11 @@ protected:
 
 public:
     // CONSTRUCTORS
-    using BaseOrbitalOptimizer::BaseOrbitalOptimizer;  // inherit base constructors
+
+    /**
+     *  @param oo_options               the options for orbital optimization
+     */
+    NewtonOrbitalOptimizer(std::shared_ptr<NewtonOrbitalOptimizationOptions> oo_options);
 
 
     // PUBLIC PURE VIRTUAL METHODS
@@ -133,7 +138,7 @@ public:
      * 
      *  @return the new direction from the Hessian if the Newton step is ill-defined
      */
-    VectorX<double> directionFromHessian() const;
+    VectorX<double> directionFromIndefiniteHessian() const;
 
     /**
      *  Use gradient and Hessian information to determine a new direction for the 'free' orbital rotation generators kappa. Note that a distinction is made between 'free' generators, i.e. those that are calculated from the gradient and Hessian information and the 'full' generators, which also include the redundant parameters (that can be set to zero). The 'full' generators are used to calculate the total rotation matrix using the matrix exponential

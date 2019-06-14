@@ -41,8 +41,8 @@ namespace GQCP {
  *
  *  The initial guess for the geminal coefficients is zero
  */
-AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer(const size_t N_P, const size_t K, const OrbitalOptimizationOptions& oo_options) :
-    AP1roGJacobiOrbitalOptimizer(N_P, K, oo_options, AP1roGGeminalCoefficients(N_P, K))
+AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer(const size_t N_P, const size_t K, std::shared_ptr<OrbitalOptimizationOptions> oo_options) :
+    AP1roGJacobiOrbitalOptimizer(N_P, K, std::move(oo_options), AP1roGGeminalCoefficients(N_P, K))
 {}
 
 
@@ -52,10 +52,10 @@ AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer(const size_t N_P, con
  *  @param oo_options           the options for orbital optimization
  *  @param G                    the initial geminal coefficients
  */
-AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer(const size_t N_P, const size_t K, const OrbitalOptimizationOptions& oo_options, const AP1roGGeminalCoefficients& G) :
+AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer(const size_t N_P, const size_t K, std::shared_ptr<OrbitalOptimizationOptions> oo_options, const AP1roGGeminalCoefficients& G) :
     N_P (N_P),
     G (G),
-    JacobiOrbitalOptimizer(K, oo_options)
+    JacobiOrbitalOptimizer(K, std::move(oo_options))
 {}
 
 

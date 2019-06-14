@@ -15,24 +15,38 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
+#ifndef GQCP_NEWTONORBITALOPTIMIZATIONOPTIONS_HPP
+#define GQCP_NEWTONORBITALOPTIMIZATIONOPTIONS_HPP
+
+
 #include "OrbitalOptimization/OrbitalOptimizationOptions.hpp"
+
+#include "math/optimization/BaseHessianModifier.hpp"
+#include "math/optimization/UnalteringHessianModifier.hpp"
+
+#include <utility>
 
 
 namespace GQCP {
 
 
-/*
- *  CONSTRUCTORS
- */
+class NewtonOrbitalOptimizationOptions : public OrbitalOptimizationOptions {
+private:
+    std::shared_ptr<BaseHessianModifier> hessian_modifier;
 
-/**
- *  @param convergence_threshold            the threshold used to check for convergence
- *  @param maximum_number_of_iterations     the maximum number of iterations that may be used to achieve convergence
- */
-OrbitalOptimizationOptions::OrbitalOptimizationOptions(const double convergence_threshold, const double maximum_number_of_iterations) :
-    convergence_threshold (convergence_threshold),
-    maximum_number_of_iterations (maximum_number_of_iterations)
-{}
+
+public:
+    // CONSTRUCTORS
+
+    /**
+     *  @param hessian_modifier         the modifier functor that should be used when an indefinite Hessian is encountered
+     */
+    NewtonOrbitalOptimizationOptions(std::shared_ptr<BaseHessianModifier> hessian_modifier = std::make_shared<UnalteringHessianModifier>(), const double convergence_threshold = 1.0e-08, const double maximum_number_of_iterations = 128);
+};
 
 
 }  // namespace GQCP
+
+
+
+#endif  // GQCP_NEWTONORBITALOPTIMIZATIONOPTIONS_HPP

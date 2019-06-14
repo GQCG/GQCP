@@ -28,11 +28,11 @@ namespace GQCP {
 
 /**
  *  @param N_P              the number of electron pairs
- *  @param oo_options       the orbital optimization options that should be used for the orbital optimization algorithm
+ *  @param oo_options       the options for orbital optimization
  */
-ERNewtonLocalizer::ERNewtonLocalizer(size_t N_P, const OrbitalOptimizationOptions& oo_options) :
+ERNewtonLocalizer::ERNewtonLocalizer(size_t N_P, std::shared_ptr<NewtonOrbitalOptimizationOptions> oo_options) :
     N_P (N_P),
-    NewtonOrbitalOptimizer(oo_options)
+    NewtonOrbitalOptimizer(std::move(oo_options))
 {}
 
 

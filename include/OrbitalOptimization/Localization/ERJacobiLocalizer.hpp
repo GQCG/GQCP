@@ -40,7 +40,7 @@ public:
      *  @param N_P                  the number of electron pairs
      *  @param oo_options           the options for orbital optimization
      */
-    ERJacobiLocalizer(size_t N_P, const OrbitalOptimizationOptions& oo_options);
+    ERJacobiLocalizer(size_t N_P, std::shared_ptr<OrbitalOptimizationOptions> oo_options);
 
 
     // PUBLIC OVERRIDDEN METHODS

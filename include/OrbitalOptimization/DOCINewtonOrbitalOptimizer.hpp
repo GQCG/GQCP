@@ -56,7 +56,7 @@ public:
      *  @param ci_solver_options        the options for the CI solver (i.e. diagonalization of the Hamiltonian)
      *  @param oo_options               the options for orbital optimization
      */
-    DOCINewtonOrbitalOptimizer(const DOCI& doci, BaseSolverOptions& ci_solver_options, const OrbitalOptimizationOptions& oo_options);
+    DOCINewtonOrbitalOptimizer(const DOCI& doci, BaseSolverOptions& ci_solver_options, std::shared_ptr<NewtonOrbitalOptimizationOptions> oo_options);
 
 
     // GETTERS

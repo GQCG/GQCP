@@ -47,7 +47,7 @@ public:
      *  @param dim              the dimension of the orbital space that should be scanned. The valid orbital indices then are 0 ... dim (not included)
      *  @param oo_options       the options for orbital optimization
      */
-    JacobiOrbitalOptimizer(const size_t dim, const OrbitalOptimizationOptions& oo_options);
+    JacobiOrbitalOptimizer(const size_t dim, std::shared_ptr<OrbitalOptimizationOptions> oo_options);
 
 
     // PUBLIC PURE VIRTUAL METHODS

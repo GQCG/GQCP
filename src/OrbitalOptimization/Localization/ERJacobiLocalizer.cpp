@@ -32,8 +32,8 @@ namespace GQCP {
  *  @param N_P                  the number of electron pairs
  *  @param oo_options           the options for orbital optimization
  */
-ERJacobiLocalizer::ERJacobiLocalizer(size_t N_P, const OrbitalOptimizationOptions& oo_options) :
-    JacobiOrbitalOptimizer(N_P, oo_options)
+ERJacobiLocalizer::ERJacobiLocalizer(size_t N_P, std::shared_ptr<OrbitalOptimizationOptions> oo_options) :
+    JacobiOrbitalOptimizer(N_P, std::move(oo_options))
 {}
 
 
@@ -81,7 +81,7 @@ double ERJacobiLocalizer::calculateOptimalRotationAngle(const HamiltonianParamet
     */
 double ERJacobiLocalizer::calculateScalarFunctionChange(const HamiltonianParameters<double>& ham_par, const JacobiRotationParameters& jacobi_rot_par) const {
 
-    return this->A + std::sqrt(std::pow(this->B, 2) + std::pow(this->C, 2));
+    return - this->A - std::sqrt(std::pow(this->B, 2) + std::pow(this->C, 2));
 }
 
 

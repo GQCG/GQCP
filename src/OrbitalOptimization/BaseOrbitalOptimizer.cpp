@@ -28,8 +28,8 @@ namespace GQCP {
 /**
  *  @param oo_options               the options for orbital optimization
  */
-BaseOrbitalOptimizer::BaseOrbitalOptimizer(const OrbitalOptimizationOptions& oo_options) :
-    oo_options (oo_options)
+BaseOrbitalOptimizer::BaseOrbitalOptimizer(std::shared_ptr<OrbitalOptimizationOptions> oo_options) :
+    oo_options (std::move(oo_options))
 {}
 
 
@@ -57,7 +57,7 @@ void BaseOrbitalOptimizer::optimize(HamiltonianParameters<double>& ham_par) {
         ham_par.rotate(U);
 
         number_of_oo_iterations++;
-        if (number_of_oo_iterations > this->oo_options.maximumNumberOfIterations()) {
+        if (number_of_oo_iterations > this->oo_options->maximumNumberOfIterations()) {
             throw std::runtime_error("BaseOrbitalOptimizer::optimize(HamiltonianParameters<double>&): The orbital optimization procedure did not converge in the given amount of iterations.");
         }
     }

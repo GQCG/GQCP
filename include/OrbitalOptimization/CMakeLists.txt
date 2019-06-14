@@ -6,6 +6,7 @@ target_sources(gqcp
             DOCINewtonOrbitalOptimizer.hpp
             JacobiOrbitalOptimizer.hpp
             JacobiRotationParameters.hpp
+            NewtonOrbitalOptimizationOptions.hpp
             NewtonOrbitalOptimizer.hpp
             OrbitalOptimizationOptions.hpp
             OrbitalRotationGenerators.hpp

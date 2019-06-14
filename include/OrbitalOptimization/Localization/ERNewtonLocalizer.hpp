@@ -38,9 +38,9 @@ public:
 
     /**
      *  @param N_P              the number of electron pairs
-     *  @param oo_options       the orbital optimization options that should be used for the orbital optimization algorithm
+     *  @param oo_options       the options for orbital optimization
      */
-    ERNewtonLocalizer(size_t N_P, const OrbitalOptimizationOptions& oo_options);
+    ERNewtonLocalizer(size_t N_P, std::shared_ptr<NewtonOrbitalOptimizationOptions> oo_options);
 
 
     // PUBLIC OVERRIDDEN METHODS

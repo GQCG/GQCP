@@ -44,7 +44,7 @@ public:
      *  @param G                the initial guess for the AP1roG gemial coefficients
      *  @param oo_options       the options for orbital optimization
      */
-    AP1roGLagrangianNewtonOrbitalOptimizer(size_t N_P, const AP1roGGeminalCoefficients& G, const OrbitalOptimizationOptions& oo_options);
+    AP1roGLagrangianNewtonOrbitalOptimizer(size_t N_P, const AP1roGGeminalCoefficients& G, std::shared_ptr<NewtonOrbitalOptimizationOptions> oo_options);
 
     /**
      *  @param N_P              the number of electron pairs
@@ -53,7 +53,7 @@ public:
      * 
      *  The initial guess for the geminal coefficients is zero
      */
-    AP1roGLagrangianNewtonOrbitalOptimizer(size_t N_P, size_t K, const OrbitalOptimizationOptions& oo_options);
+    AP1roGLagrangianNewtonOrbitalOptimizer(size_t N_P, size_t K, std::shared_ptr<NewtonOrbitalOptimizationOptions> oo_options);
 
 
     // GETTERS

@@ -22,6 +22,8 @@
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "OrbitalOptimization/OrbitalOptimizationOptions.hpp"
 
+#include <utility>
+
 
 namespace GQCP {
 
@@ -32,7 +34,7 @@ namespace GQCP {
 class BaseOrbitalOptimizer {
 protected:
     bool is_converged = false;  // if the algorithm has converged
-    OrbitalOptimizationOptions oo_options;
+    std::shared_ptr<OrbitalOptimizationOptions> oo_options;
 
 
 public:
@@ -41,7 +43,7 @@ public:
     /**
      *  @param oo_options               the options for orbital optimization
      */
-    BaseOrbitalOptimizer(const OrbitalOptimizationOptions& oo_options);
+    BaseOrbitalOptimizer(std::shared_ptr<OrbitalOptimizationOptions> oo_options);
 
 
     // PUBLIC PURE VIRTUAL METHODS
