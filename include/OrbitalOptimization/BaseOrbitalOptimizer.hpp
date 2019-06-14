@@ -20,9 +20,6 @@
 
 
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
-#include "OrbitalOptimization/OrbitalOptimizationOptions.hpp"
-
-#include <utility>
 
 
 namespace GQCP {
@@ -34,16 +31,18 @@ namespace GQCP {
 class BaseOrbitalOptimizer {
 protected:
     bool is_converged = false;  // if the algorithm has converged
-    std::shared_ptr<OrbitalOptimizationOptions> oo_options;
+    double convergence_threshold = 1.0e-08;  // the threshold used to check for convergence
+    size_t maximum_number_of_iterations = 128;  // the maximum number of iterations that may be used to achieve convergence
 
 
 public:
     // CONSTRUCTORS
 
-    /**
-     *  @param oo_options               the options for orbital optimization
+    /*
+     *  @param convergence_threshold            the threshold used to check for convergence
+     *  @param maximum_number_of_iterations     the maximum number of iterations that may be used to achieve convergence
      */
-    BaseOrbitalOptimizer(std::shared_ptr<OrbitalOptimizationOptions> oo_options);
+    BaseOrbitalOptimizer(const double convergence_threshold = 1.0e-08, const size_t maximum_number_of_iterations = 128);
 
 
     // PUBLIC PURE VIRTUAL METHODS
@@ -69,7 +68,7 @@ public:
 
 
     // PUBLIC METHODS
-    
+
     /**
      *  Optimize the Hamiltonian parameters by subsequently
      *      - checking for convergence (see checkForConvergence())

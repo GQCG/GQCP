@@ -34,13 +34,15 @@ namespace GQCP {
 /**
  *  @param doci                     the DOCI HamiltonianBuilder
  *  @param ci_solver_options        the options for the CI solver (i.e. diagonalization of the Hamiltonian)
- *  @param oo_options               the options for orbital optimization
+ *  @param hessian_modifier                 the modifier functor that should be used when an indefinite Hessian is encountered
+ *  @param convergence_threshold            the threshold used to check for convergence
+ *  @param maximum_number_of_iterations     the maximum number of iterations that may be used to achieve convergence
  */
-DOCINewtonOrbitalOptimizer::DOCINewtonOrbitalOptimizer(const DOCI& doci, BaseSolverOptions& ci_solver_options, std::shared_ptr<NewtonOrbitalOptimizationOptions> oo_options) :
+DOCINewtonOrbitalOptimizer::DOCINewtonOrbitalOptimizer(const DOCI& doci, BaseSolverOptions& ci_solver_options, std::shared_ptr<BaseHessianModifier> hessian_modifier, const double convergence_threshold, const size_t maximum_number_of_iterations) :
     doci (doci),
     ci_solver_options (ci_solver_options),
     rdm_calculator (RDMCalculator(*this->doci.get_fock_space())),
-    QCMethodNewtonOrbitalOptimizer(std::move(oo_options))
+    QCMethodNewtonOrbitalOptimizer(hessian_modifier, convergence_threshold, maximum_number_of_iterations)
 {}
 
 

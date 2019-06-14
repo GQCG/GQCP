@@ -23,6 +23,7 @@
 
 #include "RHF/PlainRHFSCFSolver.hpp"
 #include "Geminals/AP1roGLagrangianOptimizer.hpp"
+#include "math/optimization/IterativeIdentitiesHessianModifier.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( lih_6_31G_orbital_optimize ) {
@@ -41,11 +42,12 @@ BOOST_AUTO_TEST_CASE ( lih_6_31G_orbital_optimize ) {
     GQCP::AP1roGLagrangianOptimizer lagrangian_solver (lih, mol_ham_par);
     lagrangian_solver.solve();
     double initial_energy = lagrangian_solver.get_electronic_energy();
+    auto initial_G = lagrangian_solver.get_geminal_coefficients();
 
 
     // Do an AP1roG orbital optimization using Jacobi rotations
-    auto oo_options = GQCP::OrbitalOptimizationOptions::OrbitalMinimizationOptions(1.0e-02);
-    GQCP::AP1roGLagrangianNewtonOrbitalOptimizer orbital_optimizer (lih.get_N()/2, mol_ham_par.get_K(), oo_options);
+    auto hessian_modifier = std::make_shared<GQCP::IterativeIdentitiesHessianModifier>();
+    GQCP::AP1roGLagrangianNewtonOrbitalOptimizer orbital_optimizer (initial_G, hessian_modifier, 1.0e-04);
     orbital_optimizer.optimize(mol_ham_par);
 
     double optimized_energy = orbital_optimizer.get_electronic_energy();

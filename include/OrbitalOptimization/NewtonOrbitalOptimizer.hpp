@@ -21,10 +21,11 @@
 
 #include "OrbitalOptimization/BaseOrbitalOptimizer.hpp"
 #include "OrbitalOptimization/OrbitalRotationGenerators.hpp"
-#include "OrbitalOptimization/NewtonOrbitalOptimizationOptions.hpp"
+#include "math/optimization/BaseHessianModifier.hpp"
 #include "math/SquareMatrix.hpp"
 #include "math/SquareRankFourTensor.hpp"
 
+#include <utility>
 
 
 namespace GQCP {
@@ -35,6 +36,8 @@ namespace GQCP {
  */
 class NewtonOrbitalOptimizer : public BaseOrbitalOptimizer {
 protected:
+    std::shared_ptr<BaseHessianModifier> hessian_modifier;  // the modifier functor that should be used when an indefinite Hessian is encountered
+
     VectorX<double> gradient;
     SquareMatrix<double> hessian;
 
@@ -42,10 +45,12 @@ protected:
 public:
     // CONSTRUCTORS
 
-    /**
-     *  @param oo_options               the options for orbital optimization
+    /*
+     *  @param hessian_modifier                 the modifier functor that should be used when an indefinite Hessian is encountered
+     *  @param convergence_threshold            the threshold used to check for convergence
+     *  @param maximum_number_of_iterations     the maximum number of iterations that may be used to achieve convergence
      */
-    NewtonOrbitalOptimizer(std::shared_ptr<NewtonOrbitalOptimizationOptions> oo_options);
+    NewtonOrbitalOptimizer(std::shared_ptr<BaseHessianModifier> hessian_modifier, const double convergence_threshold = 1.0e-08, const size_t maximum_number_of_iterations = 128);
 
 
     // PUBLIC PURE VIRTUAL METHODS

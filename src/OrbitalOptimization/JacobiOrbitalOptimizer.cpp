@@ -28,12 +28,13 @@ namespace GQCP {
  */
 
 /**
- *  @param dim              the dimension of the orbital space that should be scanned. The valid orbital indices then are 0 ... dim (not included)
- *  @param oo_options       the options for orbital optimization
+ *  @param dim                             the dimension of the orbital space that should be scanned. The valid orbital indices then are 0 ... dim (not included)
+ *  @param convergence_threshold            the threshold used to check for convergence
+ *  @param maximum_number_of_iterations     the maximum number of iterations that may be used to achieve convergence
  */
-JacobiOrbitalOptimizer::JacobiOrbitalOptimizer(const size_t dim, std::shared_ptr<OrbitalOptimizationOptions> oo_options) : 
+JacobiOrbitalOptimizer::JacobiOrbitalOptimizer(const size_t dim, const double convergence_threshold, const size_t maximum_number_of_iterations) :
     dim (dim),
-    BaseOrbitalOptimizer(std::move(oo_options))
+    BaseOrbitalOptimizer(convergence_threshold, maximum_number_of_iterations)
 {}
 
 
@@ -63,7 +64,7 @@ bool JacobiOrbitalOptimizer::checkForConvergence(const HamiltonianParameters<dou
 
     const double optimal_correction = optimal_jacobi_with_scalar.second;
 
-    if (std::abs(optimal_correction) < this->oo_options->convergenceThreshold()) {
+    if (std::abs(optimal_correction) < this->convergence_threshold) {
         return true;
     } else {
         return false;

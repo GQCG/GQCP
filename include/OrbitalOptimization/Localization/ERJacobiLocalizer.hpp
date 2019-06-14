@@ -35,12 +35,7 @@ private:
 
 public:
     // CONSTRUCTORS
-
-    /**
-     *  @param N_P                  the number of electron pairs
-     *  @param oo_options           the options for orbital optimization
-     */
-    ERJacobiLocalizer(size_t N_P, std::shared_ptr<OrbitalOptimizationOptions> oo_options);
+    using JacobiOrbitalOptimizer::JacobiOrbitalOptimizer;  // inherit base constructor
 
 
     // PUBLIC OVERRIDDEN METHODS

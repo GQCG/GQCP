@@ -22,8 +22,6 @@
 #include "OrbitalOptimization/BaseOrbitalOptimizer.hpp"
 #include "OrbitalOptimization/JacobiRotationParameters.hpp"
 
-#include <utility>
-
 
 namespace GQCP {
 
@@ -42,12 +40,13 @@ protected:
 
 public:
     // CONSTRUCTORS
-    
+
     /**
-     *  @param dim              the dimension of the orbital space that should be scanned. The valid orbital indices then are 0 ... dim (not included)
-     *  @param oo_options       the options for orbital optimization
+     *  @param dim                             the dimension of the orbital space that should be scanned. The valid orbital indices then are 0 ... dim (not included)
+     *  @param convergence_threshold            the threshold used to check for convergence
+     *  @param maximum_number_of_iterations     the maximum number of iterations that may be used to achieve convergence
      */
-    JacobiOrbitalOptimizer(const size_t dim, std::shared_ptr<OrbitalOptimizationOptions> oo_options);
+    JacobiOrbitalOptimizer(const size_t dim, const double convergence_threshold = 1.0e-08, const size_t maximum_number_of_iterations = 128);
 
 
     // PUBLIC PURE VIRTUAL METHODS

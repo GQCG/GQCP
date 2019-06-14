@@ -23,9 +23,11 @@
 
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "HamiltonianBuilder/FCI.hpp"
+#include "math/optimization/IterativeIdentitiesHessianModifier.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
 #include "RDM/FCIRDMBuilder.hpp"
 #include "CISolver/CISolver.hpp"
+
 
 
 // dim = 2 for DOCI
@@ -52,8 +54,8 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_sto_3g ) {
     GQCP::FockSpace fock_space (K, h2.get_N()/2);  // dim = 120
     GQCP::DOCI doci (fock_space);
     GQCP::DenseSolverOptions ci_solver_options;
-    auto oo_options = std::make_shared<GQCP::NewtonOrbitalOptimizationOptions>();
-    GQCP::DOCINewtonOrbitalOptimizer orbital_optimizer (doci, ci_solver_options, oo_options);
+    auto hessian_modifier = std::make_shared<GQCP::IterativeIdentitiesHessianModifier>();
+    GQCP::DOCINewtonOrbitalOptimizer orbital_optimizer (doci, ci_solver_options, hessian_modifier);
     orbital_optimizer.optimize(mol_ham_par);
 
 
@@ -106,8 +108,8 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31g ) {
     // Do the DOCI orbital optimization, using the FCI natural orbitals
     GQCP::FockSpace doci_fock_space (K, h2.get_N()/2);  // dim = 120
     GQCP::DOCI doci (doci_fock_space);
-    auto oo_options = std::make_shared<GQCP::NewtonOrbitalOptimizationOptions>();
-    GQCP::DOCINewtonOrbitalOptimizer orbital_optimizer (doci, ci_solver_options, oo_options);
+    auto hessian_modifier = std::make_shared<GQCP::IterativeIdentitiesHessianModifier>();
+    GQCP::DOCINewtonOrbitalOptimizer orbital_optimizer (doci, ci_solver_options, hessian_modifier);
     orbital_optimizer.optimize(mol_ham_par);
 
 
@@ -159,8 +161,8 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx ) {
     // Do the DOCI orbital optimization, using the FCI natural orbitals
     GQCP::FockSpace doci_fock_space (K, h2.get_N()/2);  // dim = 120
     GQCP::DOCI doci (doci_fock_space);
-    auto oo_options = std::make_shared<GQCP::NewtonOrbitalOptimizationOptions>();
-    GQCP::DOCINewtonOrbitalOptimizer orbital_optimizer (doci, ci_solver_options, oo_options);
+    auto hessian_modifier = std::make_shared<GQCP::IterativeIdentitiesHessianModifier>();
+    GQCP::DOCINewtonOrbitalOptimizer orbital_optimizer (doci, ci_solver_options, hessian_modifier);
     orbital_optimizer.optimize(mol_ham_par);
 
 
@@ -214,8 +216,8 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx_Davidson ) {
     GQCP::DOCI doci (doci_fock_space);
     GQCP::VectorX<double> initial_g = doci_fock_space.HartreeFockExpansion();
     GQCP::DavidsonSolverOptions davidson_solver_options (initial_g);
-    auto oo_options = std::make_shared<GQCP::NewtonOrbitalOptimizationOptions>();
-    GQCP::DOCINewtonOrbitalOptimizer orbital_optimizer (doci, davidson_solver_options, oo_options);
+    auto hessian_modifier = std::make_shared<GQCP::IterativeIdentitiesHessianModifier>();
+    GQCP::DOCINewtonOrbitalOptimizer orbital_optimizer (doci, ci_solver_options, hessian_modifier);
     orbital_optimizer.optimize(mol_ham_par);
 
 

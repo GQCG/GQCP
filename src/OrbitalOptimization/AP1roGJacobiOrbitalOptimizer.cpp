@@ -35,27 +35,27 @@ namespace GQCP {
  */
 
 /**
- *  @param N_P                  the number of electron pairs
- *  @param K                    the number of spatial orbitals
- *  @param oo_options           the options for orbital optimization
+ *  @param N_P                              the number of electron pairs
+ *  @param K                                the number of spatial orbitals
+ *  @param convergence_threshold            the threshold used to check for convergence
+ *  @param maximum_number_of_iterations     the maximum number of iterations that may be used to achieve convergence
  *
  *  The initial guess for the geminal coefficients is zero
  */
-AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer(const size_t N_P, const size_t K, std::shared_ptr<OrbitalOptimizationOptions> oo_options) :
-    AP1roGJacobiOrbitalOptimizer(N_P, K, std::move(oo_options), AP1roGGeminalCoefficients(N_P, K))
+AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer(const size_t N_P, const size_t K, const double convergence_threshold, const size_t maximum_number_of_iterations) :
+    AP1roGJacobiOrbitalOptimizer(AP1roGGeminalCoefficients(N_P, K), convergence_threshold, maximum_number_of_iterations)
 {}
 
 
 /**
- *  @param N_P                  the number of electron pairs
- *  @param K                    the number of spatial orbitals
- *  @param oo_options           the options for orbital optimization
- *  @param G                    the initial geminal coefficients
+ *  @param G                                the initial geminal coefficients
+ *  @param convergence_threshold            the threshold used to check for convergence
+ *  @param maximum_number_of_iterations     the maximum number of iterations that may be used to achieve convergence
  */
-AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer(const size_t N_P, const size_t K, std::shared_ptr<OrbitalOptimizationOptions> oo_options, const AP1roGGeminalCoefficients& G) :
-    N_P (N_P),
+AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer(const AP1roGGeminalCoefficients& G, const double convergence_threshold, const size_t maximum_number_of_iterations) :
+    N_P (G.get_N_P()),
     G (G),
-    JacobiOrbitalOptimizer(K, std::move(oo_options))
+    JacobiOrbitalOptimizer(G.get_K(), convergence_threshold, maximum_number_of_iterations)
 {}
 
 

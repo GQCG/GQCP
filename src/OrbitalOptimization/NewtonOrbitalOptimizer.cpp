@@ -31,11 +31,14 @@ namespace GQCP {
  *  CONSTRUCTORS
  */
 
-/**
- *  @param oo_options               the options for orbital optimization
- */
-NewtonOrbitalOptimizer::NewtonOrbitalOptimizer(std::shared_ptr<NewtonOrbitalOptimizationOptions> oo_options) :
-    BaseOrbitalOptimizer(std::move(oo_options))
+/*
+ *  @param hessian_modifier                 the modifier functor that should be used when an indefinite Hessian is encountered
+ *  @param convergence_threshold            the threshold used to check for convergence
+ *  @param maximum_number_of_iterations     the maximum number of iterations that may be used to achieve convergence
+*/
+NewtonOrbitalOptimizer::NewtonOrbitalOptimizer(std::shared_ptr<BaseHessianModifier> hessian_modifier, const double convergence_threshold, const size_t maximum_number_of_iterations) :
+    hessian_modifier (hessian_modifier),
+    BaseOrbitalOptimizer(convergence_threshold, maximum_number_of_iterations)
 {}
 
 
@@ -70,7 +73,7 @@ void NewtonOrbitalOptimizer::prepareConvergenceChecking(const HamiltonianParamet
 bool NewtonOrbitalOptimizer::checkForConvergence(const HamiltonianParameters<double>& ham_par) const {
 
     // Check for convergence on the norm
-    if (this->gradient.norm() < this->oo_options->convergenceThreshold()) {
+    if (this->gradient.norm() < this->convergence_threshold) {
         if (this->newtonStepIsWellDefined()) {  // needs this->hessian
             return true;
         } else {
@@ -171,7 +174,7 @@ VectorX<double> NewtonOrbitalOptimizer::directionFromIndefiniteHessian() const {
 OrbitalRotationGenerators NewtonOrbitalOptimizer::calculateNewFreeOrbitalGenerators(const HamiltonianParameters<double>& ham_par) const {
 
     // If the norm hasn't converged, use the Newton step
-    if (this->gradient.norm() > this->oo_options->convergenceThreshold()) {
+    if (this->gradient.norm() > this->convergence_threshold) {
 
         const size_t dim = this->gradient.size();
         const VectorFunction gradient_function = [this] (const VectorX<double>& x) { return this->gradient; };

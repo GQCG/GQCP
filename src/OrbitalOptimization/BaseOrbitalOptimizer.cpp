@@ -25,11 +25,13 @@ namespace GQCP {
  *  CONSTRUCTORS
  */
 
-/**
- *  @param oo_options               the options for orbital optimization
- */
-BaseOrbitalOptimizer::BaseOrbitalOptimizer(std::shared_ptr<OrbitalOptimizationOptions> oo_options) :
-    oo_options (std::move(oo_options))
+/*
+*  @param convergence_threshold            the threshold used to check for convergence
+*  @param maximum_number_of_iterations     the maximum number of iterations that may be used to achieve convergence
+*/
+BaseOrbitalOptimizer::BaseOrbitalOptimizer(const double convergence_threshold, const size_t maximum_number_of_iterations) :
+    convergence_threshold (convergence_threshold),
+    maximum_number_of_iterations (maximum_number_of_iterations)
 {}
 
 
@@ -57,7 +59,7 @@ void BaseOrbitalOptimizer::optimize(HamiltonianParameters<double>& ham_par) {
         ham_par.rotate(U);
 
         number_of_oo_iterations++;
-        if (number_of_oo_iterations > this->oo_options->maximumNumberOfIterations()) {
+        if (number_of_oo_iterations > this->maximum_number_of_iterations) {
             throw std::runtime_error("BaseOrbitalOptimizer::optimize(HamiltonianParameters<double>&): The orbital optimization procedure did not converge in the given amount of iterations.");
         }
     }

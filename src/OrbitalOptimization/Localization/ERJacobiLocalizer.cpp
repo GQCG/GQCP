@@ -25,23 +25,8 @@ namespace GQCP {
 
 
 /*
- *  CONSTRUCTORS
- */
-
-/**
- *  @param N_P                  the number of electron pairs
- *  @param oo_options           the options for orbital optimization
- */
-ERJacobiLocalizer::ERJacobiLocalizer(size_t N_P, std::shared_ptr<OrbitalOptimizationOptions> oo_options) :
-    JacobiOrbitalOptimizer(N_P, std::move(oo_options))
-{}
-
-
-
-/*
  *  PUBLIC OVERRIDDEN METHODS
  */
-
 
 /**
  *  Calculate the trigoniometric polynomial coefficients for the given Jacobi rotation

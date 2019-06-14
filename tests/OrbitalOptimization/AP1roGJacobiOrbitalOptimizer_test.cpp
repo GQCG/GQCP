@@ -58,8 +58,7 @@ BOOST_AUTO_TEST_CASE ( lih_6_31G_calculateEnergyAfterRotation ) {
 
 
             // Calculate the analytical energy after rotation
-            auto oo_options = std::make_shared<GQCP::OrbitalOptimizationOptions>();
-            GQCP::AP1roGJacobiOrbitalOptimizer orbital_optimizer (lih.get_N()/2, K, oo_options, G);
+            GQCP::AP1roGJacobiOrbitalOptimizer orbital_optimizer (G, 1.0e-04);
             orbital_optimizer.calculateJacobiCoefficients(mol_ham_par, p, q);
             double E_correction_analytical = orbital_optimizer.calculateScalarFunctionChange(mol_ham_par, jacobi_rot_par);
 
@@ -94,11 +93,11 @@ BOOST_AUTO_TEST_CASE ( lih_6_31G_orbitalOptimize ) {
     GQCP::AP1roGPSESolver pse_solver (lih, mol_ham_par);
     pse_solver.solve();
     double initial_energy = pse_solver.get_electronic_energy();
+    const auto initial_G = pse_solver.get_geminal_coefficients();
 
 
     // Do an AP1roG orbital optimization using Jacobi rotations
-    auto oo_options = std::make_shared<GQCP::OrbitalOptimizationOptions>(1.0e-04);
-    GQCP::AP1roGJacobiOrbitalOptimizer orbital_optimizer (lih.get_N()/2, mol_ham_par.get_K(), oo_options);
+    GQCP::AP1roGJacobiOrbitalOptimizer orbital_optimizer (initial_G, 1.0e-04);
     orbital_optimizer.optimize(mol_ham_par);
     double optimized_energy = orbital_optimizer.get_electronic_energy();
 
