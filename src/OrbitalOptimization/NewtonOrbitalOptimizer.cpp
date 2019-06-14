@@ -142,7 +142,7 @@ bool NewtonOrbitalOptimizer::newtonStepIsWellDefined() const {
 
     // Can only produce a well-defined descending Newton step if the Hessian is positive definite
     Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> hessian_diagonalizer (this->hessian);
-    if (hessian_diagonalizer.eigenvalues()(0) < 0) {
+    if (hessian_diagonalizer.eigenvalues()(0) < -1.0e-04) {  // not enough negative curvature to continue; can we change this to -this->convergence_threshold?
         return false;
     } else {
         return true;
@@ -177,8 +177,11 @@ OrbitalRotationGenerators NewtonOrbitalOptimizer::calculateNewFreeOrbitalGenerat
         const size_t dim = this->gradient.size();
         const VectorFunction gradient_function = [this] (const VectorX<double>& x) { return this->gradient; };
 
-        const auto modified_hessian = this->hessian_modifier->operator()(this->hessian);
-        const MatrixFunction hessian_function = [this] (const VectorX<double>& x) { return this->hessian; };
+        auto modified_hessian = this->hessian;
+        if (!this->newtonStepIsWellDefined()) {
+            modified_hessian = this->hessian_modifier->operator()(this->hessian);
+        }
+        const MatrixFunction hessian_function = [&modified_hessian] (const VectorX<double>& x) { return modified_hessian; };
 
         return OrbitalRotationGenerators(newtonStep(VectorX<double>::Zero(dim), gradient_function, hessian_function));  // with only the free parameters
     }

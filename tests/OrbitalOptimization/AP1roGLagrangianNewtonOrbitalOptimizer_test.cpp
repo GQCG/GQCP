@@ -51,7 +51,6 @@ BOOST_AUTO_TEST_CASE ( lih_6_31G_orbital_optimize ) {
     orbital_optimizer.optimize(mol_ham_par);
 
     double optimized_energy = orbital_optimizer.get_electronic_energy();
-    std::cout << optimized_energy << std::endl;
 
 
     // We don't have reference data, so all we can do is check if orbital optimization lowers the energy
