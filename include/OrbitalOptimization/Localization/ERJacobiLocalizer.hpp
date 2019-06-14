@@ -26,7 +26,7 @@ namespace GQCP {
 
 
 /**
- *  A class that localizes a set of orthonormal orbitals according to the maximization of the Edmiston-Ruedenberg localization index. A maximum is found using subsequent Jacobi rotations.
+ *  A class that localizes a set of orthonormal orbitals according to the maximization of the Edmiston-Ruedenberg localization index formulated as a minimization problem. The minimum is found using subsequent Jacobi rotations
  */
 class ERJacobiLocalizer : public JacobiOrbitalOptimizer {
 private:
@@ -66,7 +66,7 @@ public:
      *  @param ham_par              the current Hamiltonian parameters
      *  @param jacobi_rot_par       the Jacobi rotation parameters
      * 
-     *  @return the change in the value of the scalar function (i.e. the ER localization index) if the given Jacobi rotation parameters would be used to rotate the given Hamiltonian parameters
+     *  @return the change in the value of the scalar function (i.e. minus the ER localization index) if the given Jacobi rotation parameters would be used to rotate the given Hamiltonian parameters
      */
     double calculateScalarFunctionChange(const HamiltonianParameters<double>& ham_par, const JacobiRotationParameters& jacobi_rot_par) const override;
 };

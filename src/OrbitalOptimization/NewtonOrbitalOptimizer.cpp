@@ -64,7 +64,7 @@ void NewtonOrbitalOptimizer::prepareConvergenceChecking(const HamiltonianParamet
  *  Determine if the algorithm has converged or not
  *  Specifically for the Newton-step based algorithms, this function
  *      - computes the gradient and checks its norm for convergence
- *      - if the gradient is zero, the Hessian is calculated and diagonalized and positive/negative definiteness is checked
+ *      - if the gradient is zero, the Hessian is calculated and positive definiteness is checked
  * 
  *  @param ham_par      the current Hamiltonian parameters
  * 
@@ -136,7 +136,7 @@ SquareMatrix<double> NewtonOrbitalOptimizer::calculateHessianMatrix(const Hamilt
 
 
 /**
- *  @return if a Newton step would be well-defined (i.e. the Hessian is positive definite for minimizations and negative definite for maximizations)
+ *  @return if a Newton step would be well-defined, i.e. the Hessian is positive definite
  */
 bool NewtonOrbitalOptimizer::newtonStepIsWellDefined() const {
 
@@ -151,9 +151,7 @@ bool NewtonOrbitalOptimizer::newtonStepIsWellDefined() const {
 
 
 /**
- *  If the Newton step is ill-defined, examine the Hessian and produce a new direction from it:
- *      - for minimization algorithms, this is the eigenvector that corresponds to the smallest (negative) eigenvalue of the Hessian
- *      - for maximization algorithms, this is the eigenvector that corresponds to the largest (positive) eigenvalue of the Hessian
+ *  If the Newton step is ill-defined, examine the Hessian and produce a new direction from it: the eigenvector that corresponds to the smallest (negative) eigenvalue of the Hessian
  * 
  *  @return the new direction from the Hessian if the Newton step is ill-defined
  */
@@ -178,6 +176,8 @@ OrbitalRotationGenerators NewtonOrbitalOptimizer::calculateNewFreeOrbitalGenerat
 
         const size_t dim = this->gradient.size();
         const VectorFunction gradient_function = [this] (const VectorX<double>& x) { return this->gradient; };
+
+        const auto modified_hessian = this->hessian_modifier->operator()(this->hessian);
         const MatrixFunction hessian_function = [this] (const VectorX<double>& x) { return this->hessian; };
 
         return OrbitalRotationGenerators(newtonStep(VectorX<double>::Zero(dim), gradient_function, hessian_function));  // with only the free parameters

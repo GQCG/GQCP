@@ -95,7 +95,7 @@ public:
      *  Determine if the algorithm has converged or not
      *  Specifically for the Newton-step based algorithms, this function
      *      - computes the gradient and checks its norm for convergence
-     *      - if the gradient is zero, the Hessian is calculated and diagonalized and positive/negative definiteness is checked
+     *      - if the gradient is zero, the Hessian is calculated and positive definiteness is checked
      * 
      *  @param ham_par      the current Hamiltonian parameters
      * 
@@ -105,7 +105,7 @@ public:
 
     /**
      *  Produce a new rotation matrix by either
-     *      - continuing in the direction of the largest (in absolute value) non-conforming eigenvalue (i.e. the smallest (negative) eigenvalue for minimization algorithms and the largest (positive) eigenvalue for maximization algorithms)
+     *      - continuing in the direction of the i.e. the smallest (negative) eigenvalue
      *      - using the Newton step if it is well-defined
      * 
      *  @param ham_par      the current Hamiltonian parameters
@@ -132,14 +132,12 @@ public:
     SquareMatrix<double> calculateHessianMatrix(const HamiltonianParameters<double>& ham_par) const;
 
     /**
-     *  @return if a Newton step would be well-defined (i.e. the Hessian is positive definite for minimizations and negative definite for maximizations)
+     *  @return if a Newton step would be well-defined, i.e. the Hessian is positive definite
      */
     bool newtonStepIsWellDefined() const;
 
     /**
-     *  If the Newton step is ill-defined, examine the Hessian and produce a new direction from it:
-     *      - for minimization algorithms, this is the eigenvector that corresponds to the smallest (negative) eigenvalue of the Hessian
-     *      - for maximization algorithms, this is the eigenvector that corresponds to the largest (positive) eigenvalue of the Hessian
+     *  If the Newton step is ill-defined, examine the Hessian and produce a new direction from it: the eigenvector that corresponds to the smallest (negative) eigenvalue of the Hessian
      * 
      *  @return the new direction from the Hessian if the Newton step is ill-defined
      */

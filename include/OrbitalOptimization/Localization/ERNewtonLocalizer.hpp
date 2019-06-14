@@ -26,7 +26,7 @@ namespace GQCP {
 
 
 /**
- *  A class that localizes a set of orthonormal orbitals according to the maximization of the Edmiston-Ruedenberg localization index. A maximum is found using subsequent Newton steps.
+ *  A class that localizes a set of orthonormal orbitals according to the maximization of the Edmiston-Ruedenberg localization index formulated as a minimization problem. The minimum is found using subsequent Newton steps
  */
 class ERNewtonLocalizer : public NewtonOrbitalOptimizer {
 private:

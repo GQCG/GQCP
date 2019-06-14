@@ -66,7 +66,7 @@ double ERJacobiLocalizer::calculateOptimalRotationAngle(const HamiltonianParamet
     */
 double ERJacobiLocalizer::calculateScalarFunctionChange(const HamiltonianParameters<double>& ham_par, const JacobiRotationParameters& jacobi_rot_par) const {
 
-    return - this->A - std::sqrt(std::pow(this->B, 2) + std::pow(this->C, 2));
+    return - (this->A + std::sqrt(std::pow(this->B, 2) + std::pow(this->C, 2)));  // formulate as minimization problem
 }
 
 

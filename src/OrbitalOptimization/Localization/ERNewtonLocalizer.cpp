@@ -119,7 +119,7 @@ double ERNewtonLocalizer::calculateGradientMatrixElement(const HamiltonianParame
 
     const auto g = ham_par.get_g();
 
-    return 4 * (g(j,i,i,i) - g(i,j,j,j));
+    return -4 * (g(j,i,i,i) - g(i,j,j,j));  // formulate as minimization problem
 }
 
 
@@ -154,7 +154,7 @@ double ERNewtonLocalizer::calculateHessianTensorElement(const HamiltonianParamet
         value += -2*g(i,k,k,k) - 2*g(k,i,i,i) + 8*g(k,j,i,j) + 4*g(k,i,j,j);
     }
 
-    return value;
+    return -value;  // formulate as minimization problem
 }
 
 
