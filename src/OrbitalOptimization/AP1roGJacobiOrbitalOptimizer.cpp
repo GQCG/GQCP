@@ -174,6 +174,11 @@ double AP1roGJacobiOrbitalOptimizer::calculateOptimalRotationAngle(const Hamilto
     // Occupied-occupied rotations: if p <= N_P and q <= N_P for computers
     if ((p < this->N_P) && (q < this->N_P)) {
         const double denominator = std::sqrt(std::pow(this->B1, 2) + std::pow(this->C1, 2));
+
+        // If the denominator is almost zero, the Jacobi rotation is redundant: the corresponding angle of a 'non'-rotation is 0.0
+        if (denominator < 1.0e-08) {
+            return 0.0;
+        }
         return 0.5 * std::atan2(-this->C1 / denominator, -this->B1 / denominator);  // std::atan2(y,x) = tan^-1(y/x)
     }
 
@@ -230,6 +235,11 @@ double AP1roGJacobiOrbitalOptimizer::calculateOptimalRotationAngle(const Hamilto
     // Virtual-virtual rotations: if p > N_P and q > N_P for computers
     else if ((p >= this->N_P) && (q >= this->N_P )) {
         const double denominator = std::sqrt(std::pow(this->B3, 2) + std::pow(this->C3, 2));
+
+        // If the denominator is almost zero, the Jacobi rotation is redundant: the corresponding angle of a 'non'-rotation is 0.0
+        if (denominator < 1.0e-08) {
+            return 0.0;
+        }
         return 0.5 * std::atan2(-this->C3 / denominator, -this->B3 / denominator);  // std::atan2(y,x) = tan^-1(y/x)
     }
 
