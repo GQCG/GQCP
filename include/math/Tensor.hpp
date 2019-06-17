@@ -53,7 +53,7 @@ public:
      *  CONSTRUCTORS
      */
 
-    using Eigen::Tensor<Scalar, Rank>::Tensor;  // inherit base constructors
+    using Eigen::Tensor<Scalar, _Rank>::Tensor;  // inherit base constructors
 
 
     /*
