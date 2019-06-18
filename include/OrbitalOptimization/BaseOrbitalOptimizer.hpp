@@ -33,6 +33,7 @@ protected:
     bool is_converged = false;  // if the algorithm has converged
     double convergence_threshold = 1.0e-08;  // the threshold used to check for convergence
     size_t maximum_number_of_iterations = 128;  // the maximum number of iterations that may be used to achieve convergence
+    size_t number_of_iterations = 0;  // the number of performed iterations
 
 
 public:
@@ -47,6 +48,10 @@ public:
 
     // DESTRUCTOR
     virtual ~BaseOrbitalOptimizer() = default;
+
+
+    // GETTERS
+    size_t get_number_of_iterations() const { return this->number_of_iterations; }
 
 
     // PUBLIC PURE VIRTUAL METHODS
