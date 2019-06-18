@@ -30,6 +30,10 @@ namespace GQCP {
  */
 class BaseHessianModifier {
 public:
+    // DESTRUCTOR
+    virtual ~BaseHessianModifier() = default;
+
+
     // PUBLIC PURE VIRTUAL METHODS
 
     /**

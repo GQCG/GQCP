@@ -75,7 +75,7 @@ public:
 
 
     // DESTRUCTOR
-    virtual ~BaseAP1roGSolver();
+    virtual ~BaseAP1roGSolver() = default;
 
 
     // GETTERS

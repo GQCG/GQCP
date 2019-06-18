@@ -33,15 +33,12 @@ namespace GQCP {
  */
 class BaseRDMBuilder {
 public:
-    // CONSTRUCTOR
+    // CONSTRUCTORS
     BaseRDMBuilder() = default;
 
 
     // DESTRUCTOR
-    /**
-     *  Provide a pure virtual destructor to make the class abstract
-     */
-    virtual ~BaseRDMBuilder() = 0;
+    virtual ~BaseRDMBuilder() = default;
 
 
     // PURE VIRTUAL GETTERS
@@ -49,6 +46,7 @@ public:
 
 
     // PURE VIRTUAL PUBLIC METHODS
+
     /**
      *  @param x        the coefficient vector representing the wave function
      *

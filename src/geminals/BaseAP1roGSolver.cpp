@@ -37,6 +37,7 @@ BaseAP1roGSolver::BaseAP1roGSolver(size_t N_P, const HamiltonianParameters<doubl
     geminal_coefficients (G)
 {}
 
+
 /**
  *  @param N_P          the number of electrons
  *  @param ham_par      Hamiltonian parameters in an orthonormal orbital basis
@@ -72,14 +73,6 @@ BaseAP1roGSolver::BaseAP1roGSolver(const Molecule& molecule, const HamiltonianPa
 BaseAP1roGSolver::BaseAP1roGSolver(const Molecule& molecule, const HamiltonianParameters<double>& ham_par) :
     BaseAP1roGSolver(molecule, ham_par, AP1roGGeminalCoefficients(molecule.get_N()/2, ham_par.get_K()))
 {}
-
-
-
-/*
- *  DESTRUCTOR
- */
-
-BaseAP1roGSolver::~BaseAP1roGSolver() {}
 
 
 }  // namespace GQCP

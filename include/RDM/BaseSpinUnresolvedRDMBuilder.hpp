@@ -38,10 +38,7 @@ public:
 
 
     // DESTRUCTOR
-    /**
-     *  Provide a pure virtual destructor to make the class abstract
-     */
-    virtual ~BaseSpinUnresolvedRDMBuilder() = 0;
+    virtual ~BaseSpinUnresolvedRDMBuilder() = default;
 
 
     // PURE VIRTUAL GETTERS
@@ -49,6 +46,7 @@ public:
 
 
     // PURE VIRTUAL PUBLIC METHODS
+
     /**
      *  @param x        the coefficient vector representing the wave function
      *

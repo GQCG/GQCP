@@ -87,17 +87,6 @@ std::shared_ptr<BaseFockSpace> BaseFockSpace::CloneToHeap(const BaseFockSpace& f
 
 
 /*
- *  DESTRUCTOR
- */
-
-/**
- *  Provide a pure virtual destructor to make the class abstract
- */
-BaseFockSpace::~BaseFockSpace() {}
-
-
-
-/*
  *  PUBLIC
  */
 

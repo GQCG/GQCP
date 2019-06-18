@@ -128,6 +128,11 @@ public:
 
 
 public:
+    /*
+     *  DESTRUCTOR
+     */
+    virtual ~ScalarFunction() = default;
+
 
     /*
      *  OPERATORS

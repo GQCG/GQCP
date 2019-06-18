@@ -52,8 +52,8 @@ public:
     // CONSTRUCTORS
 
     /**
-     *  @param doci                     the DOCI HamiltonianBuilder
-     *  @param ci_solver_options        the options for the CI solver (i.e. diagonalization of the Hamiltonian)
+     *  @param doci                             the DOCI HamiltonianBuilder
+     *  @param ci_solver_options                the options for the CI solver (i.e. diagonalization of the Hamiltonian)
      *  @param hessian_modifier                 the modifier functor that should be used when an indefinite Hessian is encountered
      *  @param convergence_threshold            the threshold used to check for convergence
      *  @param maximum_number_of_iterations     the maximum number of iterations that may be used to achieve convergence

@@ -41,7 +41,7 @@ public:
 
 
     // DESTRUCTOR
-    ~BaseMatrixSolver() override = default;
+    ~BaseMatrixSolver() = default;
 
 
     // PUBLIC PURE VIRTUAL METHODS

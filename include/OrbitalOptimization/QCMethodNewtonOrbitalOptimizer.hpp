@@ -39,6 +39,15 @@ public:
     using NewtonOrbitalOptimizer::NewtonOrbitalOptimizer;  // inherit base constructors
 
 
+    // DESTRUCTOR
+    virtual ~QCMethodNewtonOrbitalOptimizer() = default;
+
+
+    // GETTERS
+    const OneRDM<double>& get_D() const { return this->D; }
+    const TwoRDM<double>& get_d() const { return this->d; }
+
+
     // PUBLIC PURE VIRTUAL METHODS
 
     /**

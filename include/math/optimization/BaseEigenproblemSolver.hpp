@@ -57,7 +57,6 @@ public:
 
     // GETTERS
     bool is_solved() const { return this->_is_solved; }
-
     const std::vector<Eigenpair>& get_eigenpairs() const;
 
     /**
@@ -83,6 +82,7 @@ public:
 
 
     // PUBLIC PURE VIRTUAL METHODS
+
     /**
      *  Solve the eigenvalue problem associated to the eigenproblem solver
      *
