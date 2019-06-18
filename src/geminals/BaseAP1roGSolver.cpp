@@ -26,36 +26,44 @@ namespace GQCP {
  */
 
 /**
- *  @param N_P          the number of electrons
- *  @param ham_par      Hamiltonian parameters in an orthonormal orbital basis
- *  @param G            the initial guess for the AP1roG gemial coefficients
+ *  @param N_P                                  the number of electrons
+ *  @param ham_par                              Hamiltonian parameters in an orthonormal orbital basis
+ *  @param G                                    the initial guess for the AP1roG gemial coefficients
+ *  @param convergence_threshold                the threshold used to check for convergence on the geminal coefficients
+ *  @param maximum_number_of_iterations         the maximum number of Newton steps that may be used to achieve convergence of the PSEs
  */
-BaseAP1roGSolver::BaseAP1roGSolver(size_t N_P, const HamiltonianParameters<double>& ham_par, const AP1roGGeminalCoefficients& G) :
+BaseAP1roGSolver::BaseAP1roGSolver(size_t N_P, const HamiltonianParameters<double>& ham_par, const AP1roGGeminalCoefficients& G, const double convergence_threshold, const size_t maximum_number_of_iterations) :
     K (ham_par.get_K()),
-    ham_par (ham_par),
     N_P (N_P),
-    geminal_coefficients (G)
+    convergence_threshold (convergence_threshold),
+    maximum_number_of_iterations (maximum_number_of_iterations),
+    geminal_coefficients (G),
+    ham_par (ham_par)
 {}
 
 
 /**
- *  @param N_P          the number of electrons
- *  @param ham_par      Hamiltonian parameters in an orthonormal orbital basis
- *
+ *  @param N_P                                  the number of electrons
+ *  @param ham_par                              Hamiltonian parameters in an orthonormal orbital basis
+ *  @param convergence_threshold                the threshold used to check for convergence on the geminal coefficients
+ *  @param maximum_number_of_iterations         the maximum number of Newton steps that may be used to achieve convergence of the PSEs
+ * 
  *  The initial guess for the geminal coefficients is zero
  */
-BaseAP1roGSolver::BaseAP1roGSolver(size_t N_P, const HamiltonianParameters<double>& ham_par) :
-    BaseAP1roGSolver(N_P, ham_par, AP1roGGeminalCoefficients(N_P, ham_par.get_K()))
+BaseAP1roGSolver::BaseAP1roGSolver(size_t N_P, const HamiltonianParameters<double>& ham_par, const double convergence_threshold, const size_t maximum_number_of_iterations) :
+    BaseAP1roGSolver(N_P, ham_par, AP1roGGeminalCoefficients(N_P, ham_par.get_K()), convergence_threshold, maximum_number_of_iterations)
 {}
 
 
 /**
- *  @param molecule     the molecule used for the AP1roG calculation
- *  @param ham_par      Hamiltonian parameters in an orthonormal orbital basis
- *  @param G            the initial guess for the AP1roG gemial coefficients
+ *  @param molecule                             the molecule used for the AP1roG calculation
+ *  @param ham_par                              Hamiltonian parameters in an orthonormal orbital basis
+ *  @param G                                    the initial guess for the AP1roG gemial coefficients
+ *  @param convergence_threshold                the threshold used to check for convergence on the geminal coefficients
+ *  @param maximum_number_of_iterations         the maximum number of Newton steps that may be used to achieve convergence of the PSEs
  */
-BaseAP1roGSolver::BaseAP1roGSolver(const Molecule& molecule, const HamiltonianParameters<double>& ham_par, const AP1roGGeminalCoefficients& G) :
-    BaseAP1roGSolver(molecule.get_N()/2, ham_par, G)
+BaseAP1roGSolver::BaseAP1roGSolver(const Molecule& molecule, const HamiltonianParameters<double>& ham_par, const AP1roGGeminalCoefficients& G, const double convergence_threshold, const size_t maximum_number_of_iterations) :
+    BaseAP1roGSolver(molecule.get_N()/2, ham_par, G, convergence_threshold, maximum_number_of_iterations)
 {
     // Check if we have an even number of electrons
     if ((molecule.get_N() % 2) != 0) {
@@ -65,13 +73,15 @@ BaseAP1roGSolver::BaseAP1roGSolver(const Molecule& molecule, const HamiltonianPa
 
 
 /**
- *  @param molecule     the molecule used for the AP1roG calculation
- *  @param ham_par      Hamiltonian parameters in an orthonormal orbital basis
+ *  @param molecule                             the molecule used for the AP1roG calculation
+ *  @param ham_par                              Hamiltonian parameters in an orthonormal orbital basis
+ *  @param convergence_threshold                the threshold used to check for convergence on the geminal coefficients
+ *  @param maximum_number_of_iterations         the maximum number of Newton steps that may be used to achieve convergence of the PSEs
  *
  *  The initial guess for the geminal coefficients is zero
  */
-BaseAP1roGSolver::BaseAP1roGSolver(const Molecule& molecule, const HamiltonianParameters<double>& ham_par) :
-    BaseAP1roGSolver(molecule, ham_par, AP1roGGeminalCoefficients(molecule.get_N()/2, ham_par.get_K()))
+BaseAP1roGSolver::BaseAP1roGSolver(const Molecule& molecule, const HamiltonianParameters<double>& ham_par, const double convergence_threshold, const size_t maximum_number_of_iterations) :
+    BaseAP1roGSolver(molecule, ham_par, AP1roGGeminalCoefficients(molecule.get_N()/2, ham_par.get_K()), convergence_threshold, maximum_number_of_iterations)
 {}
 
 

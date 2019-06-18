@@ -31,6 +31,9 @@ class AP1roGLagrangianNewtonOrbitalOptimizer : public QCMethodNewtonOrbitalOptim
 private:
     size_t N_P;  // the number of electron pairs
     
+    double pse_convergence_threshold;  // the threshold used to check for convergence on the geminal coefficients
+    size_t pse_maximum_number_of_iterations;  // maximum number of Newton steps that may be used to achieve convergence of the PSEs
+
     double E;  // the electronic energy
     AP1roGGeminalCoefficients G;  // the current geminal coefficients
     AP1roGVariables multipliers;  // the current Lagrangian multipliers
@@ -40,23 +43,27 @@ public:
     // CONSTRUCTORS
 
     /**
-     *  @param N_P                              the number of electron pairs
-     *  @param K                                the number of spatial orbitals
-     *  @param hessian_modifier                 the modifier functor that should be used when an indefinite Hessian is encountered
-     *  @param convergence_threshold            the threshold used to check for convergence
-     *  @param maximum_number_of_iterations     the maximum number of iterations that may be used to achieve convergence
+     *  @param N_P                                      the number of electron pairs
+     *  @param K                                        the number of spatial orbitals
+     *  @param hessian_modifier                         the modifier functor that should be used when an indefinite Hessian is encountered
+     *  @param oo_convergence_threshold                 the threshold used to check for convergence on the orbital gradient
+     *  @param oo_maximum_number_of_iterations          the maximum number of orbital rotation iterations that may be used to achieve convergence
+     *  @param pse_convergence_threshold                the threshold used to check for convergence on the geminal coefficients
+     *  @param pse_maximum_number_of_iterations         the maximum number of Newton steps that may be used to achieve convergence of the PSEs
      *
      *  The initial guess for the geminal coefficients is zero
      */
-    AP1roGLagrangianNewtonOrbitalOptimizer(const size_t N_P, const size_t K, std::shared_ptr<BaseHessianModifier> hessian_modifier, const double convergence_threshold = 1.0e-08, const size_t maximum_number_of_iterations = 128);
+    AP1roGLagrangianNewtonOrbitalOptimizer(const size_t N_P, const size_t K, std::shared_ptr<BaseHessianModifier> hessian_modifier, const double oo_convergence_threshold = 1.0e-08, const size_t oo_maximum_number_of_iterations = 128, const double pse_convergence_threshold = 1.0e-08, const size_t pse_maximum_number_of_iterations = 128);
 
     /**
-     *  @param G                                the initial geminal coefficients
-     *  @param hessian_modifier                 the modifier functor that should be used when an indefinite Hessian is encountered
-     *  @param convergence_threshold            the threshold used to check for convergence
-     *  @param maximum_number_of_iterations     the maximum number of iterations that may be used to achieve convergence
+     *  @param G                                        the initial geminal coefficients
+     *  @param hessian_modifier                         the modifier functor that should be used when an indefinite Hessian is encountered
+     *  @param oo_convergence_threshold                 the threshold used to check for convergence
+     *  @param oo_maximum_number_of_iterations          the maximum number of iterations that may be used to achieve convergence
+     *  @param pse_convergence_threshold                the threshold used to check for convergence on the geminal coefficients
+     *  @param pse_maximum_number_of_iterations         the maximum number of Newton steps that may be used to achieve convergence of the PSEs
      */
-    AP1roGLagrangianNewtonOrbitalOptimizer(const AP1roGGeminalCoefficients& G, std::shared_ptr<BaseHessianModifier> hessian_modifier, const double convergence_threshold = 1.0e-08, const size_t maximum_number_of_iterations = 128);
+    AP1roGLagrangianNewtonOrbitalOptimizer(const AP1roGGeminalCoefficients& G, std::shared_ptr<BaseHessianModifier> hessian_modifier, const double oo_convergence_threshold = 1.0e-08, const size_t oo_maximum_number_of_iterations = 128, const double pse_convergence_threshold = 1.0e-08, const size_t pse_maximum_number_of_iterations = 128);
 
 
     // GETTERS
