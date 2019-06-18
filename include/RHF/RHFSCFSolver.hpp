@@ -79,9 +79,16 @@ public:
     // PUBLIC METHODS
 
     /**
-     *  Solve the RHF SCF equations
+     *  Solve the RHF SCF equations, obtaining an initial guess by solving the generalized eigenvalue problem for H_core
      */
     void solve();
+
+    /**
+     *  Solve the RHF SCF equations using an initial guess
+     * 
+     *  @param C_initial            the initial guess for the canonical RHF coefficient matrix
+     */
+    void solve(const SquareMatrix<double>& C_initial);
 };
 
 
