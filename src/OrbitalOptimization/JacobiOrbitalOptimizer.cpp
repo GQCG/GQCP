@@ -95,7 +95,7 @@ SquareMatrix<double> JacobiOrbitalOptimizer::calculateNewRotationMatrix(const Ha
  */
 std::pair<JacobiRotationParameters, double> JacobiOrbitalOptimizer::calculateOptimalJacobiParameters(const HamiltonianParameters<double>& ham_par) {
 
-    const auto cmp = this->comparer();
+    const auto& cmp = this->comparer();
     std::priority_queue<pair_type, std::vector<pair_type>, decltype(cmp)> queue (cmp);
 
     for (size_t q = 0; q < this->dim; q++) {

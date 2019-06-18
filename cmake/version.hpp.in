@@ -32,12 +32,12 @@ namespace ${PROJECT_NAME_UPPERCASE} {
  */
 struct Version {
 private:
-    constexpr static size_t major = ${PROJECT_VERSION_MAJOR};
-    constexpr static size_t minor = ${PROJECT_VERSION_MINOR};
-    constexpr static size_t patch = ${PROJECT_VERSION_PATCH};
-    const static auto full = "${PROJECT_VERSION}";
+    static constexpr size_t major = ${PROJECT_VERSION_MAJOR};
+    static constexpr size_t minor = ${PROJECT_VERSION_MINOR};
+    static constexpr size_t patch = ${PROJECT_VERSION_PATCH};
+    static constexpr auto full = "${PROJECT_VERSION}";
 
-    const static auto git_SHA1 = "${GIT_SHA1}";
+    static constexpr auto git_SHA1 = "${GIT_SHA1}";
 };
 
 

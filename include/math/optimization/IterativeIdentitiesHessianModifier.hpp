@@ -45,7 +45,7 @@ public:
      *  @param alpha                the increment factor used to obtain the next scaler tau
      *  @param beta                 the heuristic increment
      */
-    IterativeIdentitiesHessianModifier(const double alpha = 2, const double beta = 1.0e-03);
+    IterativeIdentitiesHessianModifier(const double alpha = 2.0, const double beta = 1.0e-03);
 
 
     // PUBLIC OVERRIDDEN METHODS

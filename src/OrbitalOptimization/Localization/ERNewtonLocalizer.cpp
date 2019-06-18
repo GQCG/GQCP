@@ -117,7 +117,7 @@ OrbitalRotationGenerators ERNewtonLocalizer::calculateNewFullOrbitalGenerators(c
  */
 double ERNewtonLocalizer::calculateGradientMatrixElement(const HamiltonianParameters<double>& ham_par, size_t i, size_t j) const {
 
-    const auto g = ham_par.get_g();
+    const auto& g = ham_par.get_g();
 
     return -4 * (g(j,i,i,i) - g(i,j,j,j));  // formulate as minimization problem
 }
@@ -134,7 +134,7 @@ double ERNewtonLocalizer::calculateGradientMatrixElement(const HamiltonianParame
  */
 double ERNewtonLocalizer::calculateHessianTensorElement(const HamiltonianParameters<double>& ham_par, size_t i, size_t j, size_t k, size_t l) const {
 
-    const auto g = ham_par.get_g();
+    const auto& g = ham_par.get_g();
 
     // KISS-implementation of the Hessian element for the Edmiston-Ruedenberg localization index
     double value = 0.0;

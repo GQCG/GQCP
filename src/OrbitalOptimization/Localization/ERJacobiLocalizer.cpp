@@ -36,7 +36,7 @@ namespace GQCP {
  */
 void ERJacobiLocalizer::calculateJacobiCoefficients(const HamiltonianParameters<double>& ham_par, const size_t i, const size_t j) {
 
-    const auto g = ham_par.get_g();  // two-electron integrals
+    const auto& g = ham_par.get_g();  // two-electron integrals
 
     this->A = 0.25 * (2*g(i,i,j,j) + 4*g(i,j,i,j) - g(i,i,i,i) - g(j,j,j,j));
     this->B = -this->A;
@@ -54,6 +54,11 @@ void ERJacobiLocalizer::calculateJacobiCoefficients(const HamiltonianParameters<
 double ERJacobiLocalizer::calculateOptimalRotationAngle(const HamiltonianParameters<double>& ham_par, const size_t i, const size_t j) const {
 
     const double denominator = std::sqrt(std::pow(this->B, 2) + std::pow(this->C, 2));
+
+    // If the denominator is almost zero, the Jacobi rotation is redundant: the corresponding angle of a 'non'-rotation is 0.0
+    if (denominator < 1.0e-08) {
+        return 0.0;
+    }
     return 0.25 * std::atan2(this->C / denominator, this->B / denominator);  // atan(y/x) = std::atan2(y,x)
 }
 

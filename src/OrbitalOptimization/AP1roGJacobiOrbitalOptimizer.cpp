@@ -86,10 +86,10 @@ void AP1roGJacobiOrbitalOptimizer::prepareJacobiSpecificConvergenceChecking(cons
  */
 void AP1roGJacobiOrbitalOptimizer::calculateJacobiCoefficients(const HamiltonianParameters<double>& ham_par, const size_t p, const size_t q) {
 
-    const auto h = ham_par.get_h();
-    const auto g = ham_par.get_g();
     const size_t K = this->dim;
-    const auto G = this->G;
+    const auto& h = ham_par.get_h();
+    const auto& g = ham_par.get_g();
+    const auto& G = this->G;
 
     // Implementation of the Jacobi rotation coefficients with disjoint cases for p and q
 
@@ -185,7 +185,7 @@ double AP1roGJacobiOrbitalOptimizer::calculateOptimalRotationAngle(const Hamilto
     // Occupied-virtual rotations: if p > N_P and q <= N_P for computers
     else if ((p >= this->N_P) && (q < this->N_P)) {
 
-        const auto cmp = this->comparer();
+        const auto& cmp = this->comparer();
         std::priority_queue<pair_type, std::vector<pair_type>, decltype(cmp)> queue (cmp);
 
         // Construct a lambda gradient function
