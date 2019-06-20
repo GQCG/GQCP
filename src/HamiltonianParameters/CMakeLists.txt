@@ -1,5 +1,5 @@
 target_sources(gqcp
         PRIVATE
-            AtomicDecomposition.cpp
+            AtomicDecompositionParameters.cpp
             BaseHamiltonianParameters.cpp
         )

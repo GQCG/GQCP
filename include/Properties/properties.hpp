@@ -15,9 +15,11 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "Properties/properties.hpp"
+#ifndef properties_hpp
+#define properties_hpp
 
-#include "Properties/expectation_values.hpp"
+#include "Operator/OneElectronOperator.hpp"
+#include "RDM/OneRDM.hpp"
 
 
 namespace GQCP {
@@ -29,13 +31,11 @@ namespace GQCP {
  *
  *  @return the three Cartesian components of the electronic electric dipole moment
  */
-Vector<double, 3> calculateElectronicDipoleMoment(const std::array<OneElectronOperator<double>, 3>& dipole_operator, const OneRDM<double>& one_rdm) {
+Vector<double, 3> calculateElectronicDipoleMoment(const std::array<OneElectronOperator<double>, 3>& dipole_operator, const OneRDM<double>& one_rdm);
 
-    auto expectation_values = calculateExpectationValues<3>(dipole_operator, one_rdm);
-
-    Vector<double, 3> electronic_dipole = Eigen::Map<Eigen::Vector3d>(expectation_values.data());
-    return electronic_dipole;
-}
 
 
 }  // namespace GQCP
+
+
+#endif /* properties_hpp */

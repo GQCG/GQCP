@@ -103,8 +103,8 @@
 #include "OrbitalOptimization/OrbitalOptimizationOptions.hpp"
 #include "OrbitalOptimization/OrbitalRotationGenerators.hpp"
 
-#include "properties/expectation_values.hpp"
-#include "properties/properties.hpp"
+#include "Properties/expectation_values.hpp"
+#include "Properties/properties.hpp"
 
 #include "RDM/BaseRDMBuilder.hpp"
 #include "RDM/BaseSpinUnresolvedRDMBuilder.hpp"

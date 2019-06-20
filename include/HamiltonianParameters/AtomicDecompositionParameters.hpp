@@ -19,8 +19,9 @@
 #define GQCP_ATOMICDECOMPOSITIONPARAMETERS_HPP
 
 
-#include <Molecule.hpp>
+#include "Molecule.hpp"
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
+
 
 namespace GQCP {
 

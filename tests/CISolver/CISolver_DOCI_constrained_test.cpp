@@ -26,7 +26,7 @@
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
 #include "RHF/DIISRHFSCFSolver.hpp"
-#include "properties/expectation_values.hpp"
+#include "Properties/expectation_values.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( CO_DOCI_constrained_dense ) {

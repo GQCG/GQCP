@@ -1,3 +1,4 @@
+
 // This file is part of GQCG-gqcp.
 // 
 // Copyright (C) 2017-2019  the GQCG developers
@@ -24,7 +25,7 @@
 #include "CISolver/CISolver.hpp"
 #include "RDM/RDMCalculator.hpp"
 #include "HamiltonianBuilder/FCI.hpp"
-#include "properties/expectation_values.hpp"
+#include "Properties/expectation_values.hpp"
 #include "units.hpp"
 
 

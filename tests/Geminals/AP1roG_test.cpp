@@ -23,7 +23,7 @@
 
 #include "Geminals/AP1roGLagrangianOptimizer.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
-#include "properties/expectation_values.hpp"
+#include "Properties/expectation_values.hpp"
 
 
 
