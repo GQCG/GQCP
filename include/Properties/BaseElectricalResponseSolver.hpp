@@ -43,7 +43,7 @@ public:
      * 
      *  @return the parameter response constant (k_p), i.e. the second-order parameter partial derivative of the energy/Lagrangian
      */
-    virtual MatrixX<double> calculateParameterResponseConstant(const HamiltonianParameters<double>& ham_par) = 0;
+    virtual SquareMatrix<double> calculateParameterResponseConstant(const HamiltonianParameters<double>& ham_par) = 0;
 
     /**
      *  @param dipole_integrals         the dipole integrals in an orthonormal orbital basis

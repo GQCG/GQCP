@@ -20,15 +20,44 @@
 
 
 #include "Properties/BaseElectricalResponseSolver.hpp"
+#include "Molecule.hpp"
+#include "WaveFunction/WaveFunction.hpp"
 
 
 namespace GQCP {
 
 
 class CIElectricalResponseSolver : public BaseElectricalResponseSolver {
+private:
+    WaveFunction wave_function;  // the CI wave function
+    Molecule molecule;
+
+
 public:
     // CONSTRUCTORS
 
+    /**
+     *  @param wave_function            the CI wave function
+     *  @param molecule                 the molecule
+     */
+    CIElectricalResponseSolver(const WaveFunction& wave_function, const Molecule& molecule);
+
+
+    // PUBLIC OVERRIDDEN METHODS
+
+    /**
+     *  @param ham_par                  the Hamiltonian parameters
+     * 
+     *  @return the parameter response constant (k_p), i.e. the second-order parameter partial derivative of the CI energy
+     */
+    SquareMatrix<double> calculateParameterResponseConstant(const HamiltonianParameters<double>& ham_par) override;
+
+    /**
+     *  @param dipole_integrals         the dipole integrals in an orthonormal orbital basis
+     * 
+     *  @return the parameter response force (F_p), i.e. the first-order parameter partial derivative of the perturbation derivative of the energy
+     */
+    Matrix<double, Dynamic, 3> calculateParameterResponseForce(const std::array<OneElectronOperator<double>, 3>& dipole_integrals) override;
 };
 
 
