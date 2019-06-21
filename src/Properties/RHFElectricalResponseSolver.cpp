@@ -28,7 +28,7 @@ RHFElectricalResponseSolver::RHFElectricalResponseSolver(const size_t N_P) :
  * 
  *  @return the parameter response constant (k_p), i.e. the second-order parameter partial derivative of the RHF energy function
  */
-SquareMatrix<double> RHFElectricalResponseSolver::calculateParameterResponseConstant(const HamiltonianParameters<double>& ham_par) {
+SquareMatrix<double> RHFElectricalResponseSolver::calculateParameterResponseConstant(const HamiltonianParameters<double>& ham_par) const {
 
     // k_p for RHF is the RHF orbital Hessian
     const auto RHF_orbital_hessian_tensor = calculateRHFOrbitalHessianTensor(ham_par, this->N_P);
@@ -45,7 +45,7 @@ SquareMatrix<double> RHFElectricalResponseSolver::calculateParameterResponseCons
  * 
  *  @return the parameter response force (F_p), i.e. the first-order parameter partial derivative of the perturbation derivative of the RHF energy function
  */
-Matrix<double, Dynamic, 3> RHFElectricalResponseSolver::calculateParameterResponseForce(const std::array<OneElectronOperator<double>, 3>& dipole_integrals) {
+Matrix<double, Dynamic, 3> RHFElectricalResponseSolver::calculateParameterResponseForce(const std::array<OneElectronOperator<double>, 3>& dipole_integrals) const {
 
     const auto K = dipole_integrals[0].get_K();
 

@@ -46,14 +46,14 @@ public:
      * 
      *  @return the parameter response constant (k_p), i.e. the second-order parameter partial derivative of the RHF energy function
      */
-    SquareMatrix<double> calculateParameterResponseConstant(const HamiltonianParameters<double>& ham_par) override;
+    SquareMatrix<double> calculateParameterResponseConstant(const HamiltonianParameters<double>& ham_par) const override;
 
     /**
      *  @param dipole_integrals         the dipole integrals in an orthonormal orbital basis
      * 
      *  @return the parameter response force (F_p), i.e. the first-order parameter partial derivative of the perturbation derivative of the RHF energy function
      */
-    Matrix<double, Dynamic, 3> calculateParameterResponseForce(const std::array<OneElectronOperator<double>, 3>& dipole_integrals) override;
+    Matrix<double, Dynamic, 3> calculateParameterResponseForce(const std::array<OneElectronOperator<double>, 3>& dipole_integrals) const override;
 };
 
 
