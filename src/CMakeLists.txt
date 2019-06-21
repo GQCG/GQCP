@@ -8,6 +8,7 @@ target_sources(gqcp
         )
 
 add_subdirectory(Basis)
+add_subdirectory(bindings)
 add_subdirectory(CISolver)
 add_subdirectory(FockSpace)
 add_subdirectory(Geminals)

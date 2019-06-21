@@ -4,8 +4,6 @@ string(TOUPPER ${PROJECT_NAME} PROJECT_NAME_UPPERCASE)
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)  # make CMake look into the ./cmake/ folder for configuration files
 
-add_library(gqcp SHARED "")
-
 # Supported options
 # -----------------
 option(BUILD_TESTS "Build tests" OFF)
@@ -13,7 +11,16 @@ option(BUILD_DOCS "Build the documentation using Doxygen" OFF)
 option(BUILD_BENCHMARKS "Build benchmarks executables" OFF)
 option(BUILD_DRIVERS "Build standard drivers" OFF)
 option(EIGEN_USE_MKL "Eigen uses MKL" OFF)
+option(BUILD_PYTHON_BINDINGS "Build the Python bindings" ON)
 
+
+# Setup libraries
+# ---------------
+add_library(gqcp SHARED "")
+
+if (BUILD_PYTHON_BINDINGS)
+    add_library(pygqcp SHARED "")
+endif()
 
 # Look for supporting libraries
 # -----------------------------
@@ -23,6 +30,10 @@ find_package(Int2 REQUIRED)
 find_package(Boost REQUIRED COMPONENTS program_options unit_test_framework)
 find_package(Spectra REQUIRED)
 find_package(Cint REQUIRED NO_MODULE)
+if (BUILD_PYTHON_BINDINGS)
+    find_package(PythonInterp REQUIRED)
+    find_package(PythonLibs ${PYTHON_VERSION_STRING}  REQUIRED)
+endif()
 
 if(EIGEN_USE_MKL)
     set(BLA_VENDOR Intel10_64lp)
@@ -30,9 +41,17 @@ if(EIGEN_USE_MKL)
 endif()
 
 if(BUILD_TESTS)
-    find_package(Boost REQUIRED COMPONENTS program_options unit_test_framework)
+    if (BUILD_PYTHON_BINDINGS)
+        find_package(Boost REQUIRED COMPONENTS program_options unit_test_framework python${PYTHON_VERSION_MAJOR}${PYTHON_VERSION_MINOR} numpy${PYTHON_VERSION_MAJOR}${PYTHON_VERSION_MINOR})
+    else()
+        find_package(Boost REQUIRED COMPONENTS program_options unit_test_framework)
+    endif()
 else()
-    find_package(Boost REQUIRED COMPONENTS program_options)
+    if (BUILD_PYTHON_BINDINGS)
+        find_package(Boost REQUIRED COMPONENTS program_options python${PYTHON_VERSION_MAJOR}${PYTHON_VERSION_MINOR} numpy${PYTHON_VERSION_MAJOR}${PYTHON_VERSION_MINOR})
+    else()
+        find_package(Boost REQUIRED COMPONENTS program_options)
+    endif()
 endif()
 
 if (BUILD_DOCS)
@@ -76,10 +95,19 @@ target_link_libraries(gqcp
         )
 target_include_directories(gqcp PUBLIC $<BUILD_INTERFACE:${Boost_INCLUDE_DIRS}>)
 target_link_libraries(gqcp PUBLIC ${Boost_LIBRARIES})
+
 if (EIGEN_USE_MKL)
     target_include_directories(gqcp PUBLIC $<BUILD_INTERFACE:${BLAS_INCLUDE_DIR}>)
     target_link_libraries(gqcp PUBLIC ${BLAS_LIBRARIES})
     target_compile_options(gqcp PUBLIC -DEIGEN_USE_MKL_ALL -DMKL_LP64)
+endif()
+
+if (BUILD_PYTHON_BINDINGS)
+    target_include_directories(pygqcp PUBLIC $<BUILD_INTERFACE:${PYTHON_INCLUDE_DIRS}>)
+    target_include_directories(pygqcp PUBLIC $<BUILD_INTERFACE:${Boost_INCLUDE_DIRS}>)
+    target_link_libraries(pygqcp PUBLIC ${Boost_LIBRARIES} ${PYTHON_LIBRARIES} gqcp)
+    set_target_properties(pygqcp PROPERTIES SUFFIX ".so")
+    set_target_properties(pygqcp PROPERTIES PREFIX "")
 endif()
 
 
