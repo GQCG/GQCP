@@ -26,7 +26,7 @@ CIElectricalResponseSolver::CIElectricalResponseSolver(const WaveFunction& wave_
 /**
  *  @param ham_par                  the Hamiltonian parameters
  * 
- *  @return the parameter response constant (k_p), i.e. the second-order parameter partial derivative of the CI energy
+ *  @return the parameter response constant (k_p), i.e. the second-order parameter partial derivative of the CI energy function
  */
 SquareMatrix<double> CIElectricalResponseSolver::calculateParameterResponseConstant(const HamiltonianParameters<double>& ham_par) {
 
@@ -38,7 +38,7 @@ SquareMatrix<double> CIElectricalResponseSolver::calculateParameterResponseConst
 /**
  *  @param dipole_integrals         the dipole integrals in an orthonormal orbital basis
  * 
- *  @return the parameter response force (F_p), i.e. the first-order parameter partial derivative of the perturbation derivative of the energy
+ *  @return the parameter response force (F_p), i.e. the first-order parameter partial derivative of the perturbation derivative of the CI energy function
  */
 Matrix<double, Dynamic, 3> CIElectricalResponseSolver::calculateParameterResponseForce(const std::array<OneElectronOperator<double>, 3>& dipole_integrals) {
 
