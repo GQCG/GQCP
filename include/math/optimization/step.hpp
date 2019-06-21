@@ -37,6 +37,16 @@ namespace GQCP {
  */
 VectorX<double> newtonStep(const VectorX<double>& x, const VectorFunction& f, const MatrixFunction& J);
 
+/**
+ *  Calculate the electric polarizability from the linear wave function response
+ * 
+ *  @param F_p          the electric response force (d^2E/dFdp)
+ *  @param response     the linear wave function response
+ * 
+ *  @return the components of the electric polarizability
+ */
+Matrix<double, 3, 3> calculateElectricPolarizability(const Matrix<double, Dynamic, 3>& F_p, const Matrix<double, Dynamic, 3>& response);
+
 
 }  // namespace GQCP
 

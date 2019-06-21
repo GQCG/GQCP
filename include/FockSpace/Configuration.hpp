@@ -26,6 +26,7 @@ namespace GQCP {
 
 
 <<<<<<< HEAD:include/FockSpace/Configuration.hpp
+<<<<<<< HEAD:include/FockSpace/Configuration.hpp
 /**
  *  A struct that represents the combination of an alpha and beta ONV
  */
@@ -34,6 +35,9 @@ struct Configuration {
     ONV onv_beta;
 =======
 class RHFElectricalResponseSolver : BaseElectricalResponseSolver {
+=======
+class RHFElectricalResponseSolver : public BaseElectricalResponseSolver {
+>>>>>>> Implement electric polarizability for Rayleigh-Ritz energy functions:include/Properties/RHFElectricalResponseSolver.hpp
 private:
     size_t N_P;  // the number of electron pairs
 
