@@ -41,10 +41,7 @@ namespace GQCP {
 class HamiltonianBuilder {
 public:
     // DESTRUCTOR
-    /**
-     *  Provide a pure virtual destructor for the abstract base class
-     */
-    virtual ~HamiltonianBuilder() = 0;
+    virtual ~HamiltonianBuilder() = default;
 
 
     // PURE VIRTUAL GETTERS
@@ -52,6 +49,7 @@ public:
 
 
     // PURE VIRTUAL PUBLIC METHODS
+
     /**
      *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis
      *

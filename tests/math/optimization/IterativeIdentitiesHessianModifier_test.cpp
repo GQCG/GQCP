@@ -15,19 +15,24 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "RDM/BaseRDMBuilder.hpp"
+#define BOOST_TEST_MODULE "IterativeIdentitiesHessianModifier_test"
+
+#include <boost/test/unit_test.hpp>
+
+#include "math/optimization/IterativeIdentitiesHessianModifier.hpp"
+
+#include "Eigen/Dense"
+
+BOOST_AUTO_TEST_CASE ( becomes_positive_definite ) {
+
+    GQCP::SquareMatrix<double> A (2);  // is an indefinite matrix: eigenvalues are approx. -1.7 and 4.7
+    A << -1.0, -2.0,
+         -2.0,  4.0;
 
 
-namespace GQCP {
+    GQCP::IterativeIdentitiesHessianModifier hessian_modifier {};  // default values for the parameters
+    auto modified_hessian = hessian_modifier(A);
 
-/*
- *  DESTRUCTOR
- */
-
-/**
- *  Provide a pure virtual destructor to make the class abstract
- */
-BaseRDMBuilder::~BaseRDMBuilder() {}
-
-
-}  // namespace GQCG
+    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> solver (modified_hessian);
+    BOOST_CHECK(solver.eigenvalues().minCoeff() > 0);  // all eigenvalues should be positive!
+}

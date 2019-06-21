@@ -28,6 +28,7 @@ namespace GQCP {
 class AP1roGVariables : public BaseAPIGVariables {
 public:
     // CONSTRUCTORS
+
     /**
      *  Default constructor setting everything to zero
      */
@@ -50,7 +51,12 @@ public:
     AP1roGVariables(size_t N_P, size_t K);
 
 
+    // DESTRUCTOR
+    virtual ~AP1roGVariables() = default;
+
+
     // STATIC PUBLIC METHODS
+
     /**
      *  @param N_P      the number of electron pairs (= the number of geminals)
      *  @param K        the number of spatial orbitals
@@ -61,6 +67,7 @@ public:
 
 
     // PUBLIC METHODS
+
     /**
      *  @return the variables in matrix form
      */

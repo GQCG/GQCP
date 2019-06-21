@@ -45,6 +45,7 @@ protected:
 
 
     // PROTECTED METHODS
+
     /**
      *  Update the Fock matrix, i.e. calculate the Fock matrix to be used in the next iteration of the SCF procedure
      *
@@ -54,8 +55,10 @@ protected:
      */
     virtual OneElectronOperator<double> calculateNewFockMatrix(const OneRDM<double>& D_AO) = 0;
 
+
 public:
     // CONSTRUCTORS
+
     /**
      *  @param ham_par                          the Hamiltonian parameters in AO basis
      *  @param molecule                         the molecule used for the SCF calculation
@@ -64,13 +67,28 @@ public:
      */
     RHFSCFSolver(const HamiltonianParameters<double>& ham_par, const Molecule& molecule, double threshold=1.0e-08, size_t maximum_number_of_iterations=128);
 
+
+    // DESTRUCTOR
+    virtual ~RHFSCFSolver() = default;
+
+
     // GETTERS
     const RHF& get_solution() const { return this->solution; }
 
+
+    // PUBLIC METHODS
+
     /**
-     *  Solve the RHF SCF equations
+     *  Solve the RHF SCF equations, obtaining an initial guess by solving the generalized eigenvalue problem for H_core
      */
     void solve();
+
+    /**
+     *  Solve the RHF SCF equations using an initial guess
+     * 
+     *  @param C_initial            the initial guess for the canonical RHF coefficient matrix
+     */
+    void solve(const SquareMatrix<double>& C_initial);
 };
 
 

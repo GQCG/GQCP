@@ -15,21 +15,35 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "HamiltonianBuilder/HamiltonianBuilder.hpp"
+#ifndef GQCP_UNALTERINGHESSIANMODIFIER_HPP
+#define GQCP_UNALTERINGHESSIANMODIFIER_HPP
+
+
+#include "math/optimization/BaseHessianModifier.hpp"
 
 
 namespace GQCP {
 
 
-/*
- *  DESTRUCTOR
- */
+class UnalteringHessianModifier : public BaseHessianModifier {
+public:
+    // CONSTRUCTORS
+    using BaseHessianModifier::BaseHessianModifier;  // inherit base constructors
 
-/**
- *  Provide a pure virtual destructor for the abstract base class
- */
-HamiltonianBuilder::~HamiltonianBuilder() {}
 
+    // PUBLIC OVERRIDDEN METHODS
+
+    /**
+     *  @param hessian      the current indefinite Hessian
+     * 
+     *  @return the given Hessian, i.e. do not alter the current hessian
+     */
+    SquareMatrix<double> operator()(const SquareMatrix<double>& hessian) override;
+};
 
 
 }  // namespace GQCP
+
+
+
+#endif  // GQCP_UNALTERINGHESSIANMODIFIER_HPP

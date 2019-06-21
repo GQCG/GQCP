@@ -22,6 +22,7 @@
 #include "OrbitalOptimization/Localization/ERNewtonLocalizer.hpp"
 
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "math/optimization/IterativeIdentitiesHessianModifier.hpp"
 
 
 
@@ -37,8 +38,8 @@ BOOST_AUTO_TEST_CASE ( localization_index_raises ) {
 
     double D_before = mol_ham_par.calculateEdmistonRuedenbergLocalizationIndex(N_P);
 
-    const auto oo_options = GQCP::OrbitalOptimizationOptions::OrbitalMaximizationOptions(1.0e-04);
-    GQCP::ERNewtonLocalizer localizer (N_P, oo_options);
+    auto hessian_modifier = std::make_shared<GQCP::IterativeIdentitiesHessianModifier>();
+    GQCP::ERNewtonLocalizer localizer (N_P, hessian_modifier, 1.0e-04);
     localizer.optimize(mol_ham_par);  // if converged, the Hamiltonian parameters are in the localized basis
 
     double D_after = mol_ham_par.calculateEdmistonRuedenbergLocalizationIndex(N_P);

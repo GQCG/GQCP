@@ -22,12 +22,6 @@ namespace GQCP {
 
 
 /*
- *  DESTRUCTOR
- */
-GeminalCoefficientsInterface::~GeminalCoefficientsInterface() {}
-
-
-/*
  *  PUBLIC METHODS
  */
 

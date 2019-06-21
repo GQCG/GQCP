@@ -40,6 +40,7 @@ protected:
 
 public:
     // CONSTRUCTORS
+
     /**
      *  @param x0                               an initial guess
      *  @param convergence_threshold            the threshold for convergence on the norm of the gradient
@@ -57,6 +58,7 @@ public:
 
 
     // PUBLIC PURE VIRTUAL METHODS
+
     /**
      *  Solve the problem associated to the numerical minimization method
      *

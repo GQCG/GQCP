@@ -31,35 +31,7 @@ namespace GQCP {
 class AP1roGPSESolver : public BaseAP1roGSolver {
 public:
     // CONSTRUCTORS
-    /**
-     *  @param N_P          the number of electrons
-     *  @param ham_par      Hamiltonian parameters in an orthonormal orbital basis
-     *  @param G            the initial guess for the AP1roG gemial coefficients
-     */
-    AP1roGPSESolver(size_t N_P, const HamiltonianParameters<double>& ham_par, const AP1roGGeminalCoefficients& G);
-
-    /**
-     *  @param N_P          the number of electrons
-     *  @param ham_par      Hamiltonian parameters in an orthonormal orbital basis
-     *
-     *  The initial guess for the geminal coefficients is zero
-     */
-    AP1roGPSESolver(size_t N_P, const HamiltonianParameters<double>& ham_par);
-
-    /**
-     *  @param molecule     the molecule used for the AP1roG calculation
-     *  @param ham_par      Hamiltonian parameters in an orthonormal orbital basis
-     *  @param G            the initial guess for the AP1roG gemial coefficients
-     */
-    AP1roGPSESolver(const Molecule& molecule, const HamiltonianParameters<double>& ham_par, const AP1roGGeminalCoefficients& G);
-
-    /**
-     *  @param molecule     the molecule used for the AP1roG calculation
-     *  @param ham_par      Hamiltonian parameters in an orthonormal orbital basis
-     *
-     *  The initial guess for the geminal coefficients is zero
-     */
-    AP1roGPSESolver(const Molecule& molecule, const HamiltonianParameters<double>& ham_par);
+    using BaseAP1roGSolver::BaseAP1roGSolver;  // inherit base constructors
 
 
     // PUBLIC METHODS

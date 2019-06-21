@@ -48,6 +48,10 @@ public:
     size_t number_of_requested_eigenpairs = 1;
 
 
+    // DESTRUCTOR
+    virtual ~BaseSolverOptions() = default;
+
+
     // PURE VIRTUAL METHODS
     virtual SolverType get_solver_type() const = 0;
 };

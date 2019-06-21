@@ -66,6 +66,7 @@
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 
 #include "math/optimization/BaseEigenproblemSolver.hpp"
+#include "math/optimization/BaseHessianModifier.hpp"
 #include "math/optimization/BaseMatrixSolver.hpp"
 #include "math/optimization/BaseMinimizer.hpp"
 #include "math/optimization/BaseSystemOfEquationsSolver.hpp"
@@ -73,10 +74,12 @@
 #include "math/optimization/DenseSolver.hpp"
 #include "math/optimization/Eigenpair.hpp"
 #include "math/optimization/EigenproblemSolverOptions.hpp"
+#include "math/optimization/IterativeIdentitiesHessianModifier.hpp"
 #include "math/optimization/NewtonMinimizer.hpp"
 #include "math/optimization/NewtonSystemOfEquationsSolver.hpp"
 #include "math/optimization/SparseSolver.hpp"
 #include "math/optimization/step.hpp"
+#include "math/optimization/UnalteringHessianModifier.hpp"
 
 #include "math/ChemicalMatrix.hpp"
 #include "math/ChemicalRankFourTensor.hpp"
@@ -95,13 +98,14 @@
 #include "OrbitalOptimization/Localization/ERNewtonLocalizer.hpp"
 
 #include "OrbitalOptimization/AP1roGJacobiOrbitalOptimizer.hpp"
+#include "OrbitalOptimization/AP1roGLagrangianNewtonOrbitalOptimizer.hpp"
 #include "OrbitalOptimization/BaseOrbitalOptimizer.hpp"
 #include "OrbitalOptimization/DOCINewtonOrbitalOptimizer.hpp"
 #include "OrbitalOptimization/JacobiOrbitalOptimizer.hpp"
 #include "OrbitalOptimization/JacobiRotationParameters.hpp"
 #include "OrbitalOptimization/NewtonOrbitalOptimizer.hpp"
-#include "OrbitalOptimization/OrbitalOptimizationOptions.hpp"
 #include "OrbitalOptimization/OrbitalRotationGenerators.hpp"
+#include "OrbitalOptimization/QCMethodNewtonOrbitalOptimizer.hpp"
 
 #include "properties/expectation_values.hpp"
 #include "properties/properties.hpp"

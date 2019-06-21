@@ -15,19 +15,38 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "RDM/BaseSpinUnresolvedRDMBuilder.hpp"
+#ifndef GQCP_BASEHESSIANMODIFIER_HPP
+#define GQCP_BASEHESSIANMODIFIER_HPP
+
+
+#include "math/SquareMatrix.hpp"
 
 
 namespace GQCP {
 
-/*
- *  DESTRUCTOR
- */
 
 /**
- *  Provide a pure virtual destructor to make the class abstract
+ *  A base functor for Hessian modifiers
  */
-BaseSpinUnresolvedRDMBuilder::~BaseSpinUnresolvedRDMBuilder() {}
+class BaseHessianModifier {
+public:
+    // DESTRUCTOR
+    virtual ~BaseHessianModifier() = default;
 
 
-}  // namespace GQCG
+    // PUBLIC PURE VIRTUAL METHODS
+
+    /**
+     *  @param hessian      the current indefinite Hessian
+     * 
+     *  @return a modified Hessian that is made positive (for minimizers) or negative (for maximizers) definite
+     */
+    virtual SquareMatrix<double> operator()(const SquareMatrix<double>& hessian) = 0;
+};
+
+
+}  // namespace GQCP
+
+
+
+#endif  // GQCP_BASEHESSIANMODIFIER_HPP

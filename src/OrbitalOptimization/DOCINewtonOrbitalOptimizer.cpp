@@ -34,14 +34,17 @@ namespace GQCP {
 /**
  *  @param doci                     the DOCI HamiltonianBuilder
  *  @param ci_solver_options        the options for the CI solver (i.e. diagonalization of the Hamiltonian)
- *  @param oo_options               the options for orbital optimization
+ *  @param hessian_modifier                 the modifier functor that should be used when an indefinite Hessian is encountered
+ *  @param convergence_threshold            the threshold used to check for convergence
+ *  @param maximum_number_of_iterations     the maximum number of iterations that may be used to achieve convergence
  */
-DOCINewtonOrbitalOptimizer::DOCINewtonOrbitalOptimizer(const DOCI& doci, BaseSolverOptions& ci_solver_options, const OrbitalOptimizationOptions& oo_options) :
+DOCINewtonOrbitalOptimizer::DOCINewtonOrbitalOptimizer(const DOCI& doci, BaseSolverOptions& ci_solver_options, std::shared_ptr<BaseHessianModifier> hessian_modifier, const double convergence_threshold, const size_t maximum_number_of_iterations) :
     doci (doci),
     ci_solver_options (ci_solver_options),
     rdm_calculator (RDMCalculator(*this->doci.get_fock_space())),
-    NewtonOrbitalOptimizer(oo_options)
+    QCMethodNewtonOrbitalOptimizer(hessian_modifier, convergence_threshold, maximum_number_of_iterations)
 {}
+
 
 
 /*
@@ -70,13 +73,12 @@ const Eigenpair& DOCINewtonOrbitalOptimizer::get_eigenpair(size_t index) const {
  *  OVERRIDDEN PUBLIC METHODS
  */
 
-
 /**
  *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence in this Newton-based orbital optimizer
  * 
  *  In the case of this uncoupled DOCI orbital optimizer, the DOCI eigenvalue problem is re-solved in every iteration using the current orbitals
  */
-void DOCINewtonOrbitalOptimizer::prepareNewtonSpecificConvergenceChecking(const HamiltonianParameters<double>& ham_par) {
+void DOCINewtonOrbitalOptimizer::prepareDMCalculation(const HamiltonianParameters<double>& ham_par) {
 
     // Solve the DOCI eigenvalue problem to obtain DMs from which we can calculate the gradient and the Hessian
     CISolver doci_solver (this->doci, ham_par);
@@ -94,52 +96,24 @@ void DOCINewtonOrbitalOptimizer::prepareNewtonSpecificConvergenceChecking(const 
         this->ci_solver_options = davidson_solver_options;
     }
 
-
-    // Calculate the 1- and 2-DMs
+    // Prepare the calculation of the 1- and 2-DMs by putting in the most current coefficients
     this->rdm_calculator.set_coefficients(doci_solver.get_eigenpair().get_eigenvector());
-    this->D = this->rdm_calculator.calculate1RDMs().one_rdm;
-    this->d = this->rdm_calculator.calculate2RDMs().two_rdm;
 }
 
 
 /**
- *  @param ham_par      the current Hamiltonian parameters
- * 
- *  @return the current orbital gradient as a matrix
+ *  @return the current 1-DM
  */
-SquareMatrix<double> DOCINewtonOrbitalOptimizer::calculateGradientMatrix(const HamiltonianParameters<double>& ham_par) const {
-
-    // Calculate the gradient from the Fockian matrix
-    const auto F = ham_par.calculateGeneralizedFockMatrix(this->D, this->d);
-    return 2 * (F - F.transpose());
+OneRDM<double> DOCINewtonOrbitalOptimizer::calculate1RDM() const {
+    return this->rdm_calculator.calculate1RDMs().one_rdm;
 }
 
 
 /**
- *  @param ham_par      the current Hamiltonian parameters
- * 
- *  @return the current orbital Hessian as a tensor
+ *  @return the current 2-DM
  */
-SquareRankFourTensor<double> DOCINewtonOrbitalOptimizer::calculateHessianTensor(const HamiltonianParameters<double>& ham_par) const {
-
-    const auto K = ham_par.get_K();
-
-    // The 1- and 2-DM have already been calculated in this->calculateGradientMatrix
-    const auto G = ham_par.calculateSuperGeneralizedFockMatrix(this->D, this->d);
-    SquareRankFourTensor<double> hessian_tensor (K);
-    hessian_tensor.setZero();
-
-    for (size_t p = 0; p < K; p++) {
-        for (size_t q = 0; q < K; q++) {
-            for (size_t r = 0; r < K; r++) {
-                for (size_t s = 0; s < K; s++) {
-                    hessian_tensor(p,q,r,s) = G(p,q,r,s) - G(p,q,s,r) + G(q,p,s,r) - G(q,p,r,s) + G(r,s,p,q) - G(r,s,q,p) + G(s,r,q,p) - G(s,r,p,q);
-                }
-            }
-        }
-    }
-
-    return hessian_tensor;
+TwoRDM<double> DOCINewtonOrbitalOptimizer::calculate2RDM() const {
+    return this->rdm_calculator.calculate2RDMs().two_rdm;
 }
 
 
@@ -153,7 +127,6 @@ SquareRankFourTensor<double> DOCINewtonOrbitalOptimizer::calculateHessianTensor(
 OrbitalRotationGenerators DOCINewtonOrbitalOptimizer::calculateNewFullOrbitalGenerators(const HamiltonianParameters<double>& ham_par) const {
     return this->calculateNewFreeOrbitalGenerators(ham_par);  // no extra step necessary
 }
-
 
 
 

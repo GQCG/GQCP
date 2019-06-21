@@ -34,8 +34,7 @@ BOOST_AUTO_TEST_CASE ( localization_index_raises ) {
 
     double D_before = mol_ham_par.calculateEdmistonRuedenbergLocalizationIndex(N_P);
 
-    const auto oo_options = GQCP::OrbitalOptimizationOptions::OrbitalMaximizationOptions(1.0e-04);
-    GQCP::ERJacobiLocalizer localizer (N_P, oo_options);
+    GQCP::ERJacobiLocalizer localizer (N_P, 1.0e-04);
     localizer.optimize(mol_ham_par);  // now the Hamiltonian parameters are in the localized basis
 
     double D_after = mol_ham_par.calculateEdmistonRuedenbergLocalizationIndex(N_P);

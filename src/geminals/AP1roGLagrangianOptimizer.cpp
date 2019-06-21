@@ -33,7 +33,7 @@ void AP1roGLagrangianOptimizer::solve() {
 
 
     // Solve the PSEs and set part of the solutions
-    AP1roGPSESolver pse_solver (this->N_P, this->ham_par, this->geminal_coefficients);
+    AP1roGPSESolver pse_solver (this->N_P, this->ham_par, this->geminal_coefficients, this->convergence_threshold, this->maximum_number_of_iterations);
     pse_solver.solve();
 
     this->geminal_coefficients = pse_solver.get_geminal_coefficients();

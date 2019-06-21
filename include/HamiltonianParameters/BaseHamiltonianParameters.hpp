@@ -37,6 +37,7 @@ protected:
 
 public:
     // CONSTRUCTORS
+
     /**
      *  @param ao_basis     the initial AO basis
      *  @param scalar       the scalar interaction term
@@ -45,10 +46,12 @@ public:
 
 
     // DESTRUCTOR
+
     /**
      *  Provide a pure virtual destructor to make the class abstract
      */
     virtual ~BaseHamiltonianParameters() = 0;
+
 
     // GETTERS
     const std::shared_ptr<AOBasis>& get_ao_basis() const { return this->ao_basis; }
