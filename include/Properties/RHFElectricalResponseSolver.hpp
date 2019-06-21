@@ -25,7 +25,7 @@
 namespace GQCP {
 
 
-class RHFElectricalResponseSolver : BaseElectricalResponseSolver {
+class RHFElectricalResponseSolver : public BaseElectricalResponseSolver {
 private:
     size_t N_P;  // the number of electron pairs
 

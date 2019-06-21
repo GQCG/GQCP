@@ -38,4 +38,18 @@ Vector<double, 3> calculateElectronicDipoleMoment(const std::array<OneElectronOp
 }
 
 
+/**
+ *  Calculate the electric polarizability from the linear wave function response
+ * 
+ *  @param F_p          the electric response force (d^2E/dFdp)
+ *  @param response     the linear wave function response
+ * 
+ *  @return the components of the electric polarizability
+ */
+Matrix<double, 3, 3> calculateElectricPolarizability(const Matrix<double, Dynamic, 3>& F_p, const Matrix<double, Dynamic, 3>& response) {
+
+    return - F_p.transpose() * response;  // no explicit second-order partial perturbation derivative for electrical response
+}
+
+
 }  // namespace GQCP
