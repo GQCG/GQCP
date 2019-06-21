@@ -43,14 +43,14 @@ public:
      * 
      *  @return the parameter response constant (k_p), i.e. the second-order parameter partial derivative of the energy/Lagrangian function
      */
-    virtual SquareMatrix<double> calculateParameterResponseConstant(const HamiltonianParameters<double>& ham_par) = 0;
+    virtual SquareMatrix<double> calculateParameterResponseConstant(const HamiltonianParameters<double>& ham_par) const = 0;
 
     /**
      *  @param dipole_integrals         the dipole integrals in an orthonormal orbital basis
      * 
      *  @return the parameter response force (F_p), i.e. the first-order parameter partial derivative of the perturbation derivative of the energy/Lagrangian function
      */
-    virtual Matrix<double, Dynamic, 3> calculateParameterResponseForce(const std::array<OneElectronOperator<double>, 3>& dipole_integrals) = 0;
+    virtual Matrix<double, Dynamic, 3> calculateParameterResponseForce(const std::array<OneElectronOperator<double>, 3>& dipole_integrals) const = 0;
 
 
     // PUBLIC METHODS
@@ -63,7 +63,7 @@ public:
      * 
      *  @return the wave function response
      */
-    Matrix<double, Dynamic, 3> calculateWaveFunctionResponse(const HamiltonianParameters<double>& ham_par, const std::array<OneElectronOperator<double>, 3>& dipole_integrals);
+    Matrix<double, Dynamic, 3> calculateWaveFunctionResponse(const HamiltonianParameters<double>& ham_par, const std::array<OneElectronOperator<double>, 3>& dipole_integrals) const;
 };
 
 
