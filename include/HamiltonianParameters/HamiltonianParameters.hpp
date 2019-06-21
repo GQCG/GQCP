@@ -167,14 +167,20 @@ public:
      *
      *  Note that this named constructor is only available for real matrix representations
      */
-    template<typename Z = Scalar>
+/*    template<typename Z = Scalar>
     static enable_if_t<std::is_same<Z, double>::value, HamiltonianParameters<double>> Molecular(const Molecule& molecule, const std::string& basisset) {
 
         auto ao_basis = std::make_shared<AOBasis>(molecule, basisset);
 
         return HamiltonianParameters::Molecular(ao_basis, molecule.calculateInternuclearRepulsionEnergy());
-    }
+    }*/
 
+    static HamiltonianParameters<double> Molecular(const Molecule& molecule, const std::string& basisset) {
+
+        auto ao_basis = std::make_shared<AOBasis>(molecule, basisset);
+
+        return HamiltonianParameters::Molecular(ao_basis, molecule.calculateInternuclearRepulsionEnergy());
+    }
 
     /**
      *  @param K        the number of orbitals
@@ -352,7 +358,7 @@ public:
      *
      *  Note that this named constructor is only available for real matrix representations
      */
-    template<typename Z = Scalar>
+/*    template<typename Z = Scalar>
     static enable_if_t<std::is_same<Z, double>::value, HamiltonianParameters<double>> Hubbard(const HoppingMatrix& H) {
 
         size_t K = H.numberOfLatticeSites();
@@ -380,7 +386,37 @@ public:
         SquareMatrix<double> C = SquareMatrix<double>::Identity(K, K);
 
         return HamiltonianParameters(ao_basis, S, h, g, C);  // no scalar term
+    }*/
+
+    static HamiltonianParameters<double> Hubbard(const HoppingMatrix& H) {
+
+        size_t K = H.numberOfLatticeSites();
+
+        OneElectronOperator<double> h = OneElectronOperator<double>::Zero(K, K);
+        TwoElectronOperator<double> g (K);
+        g.setZero();
+
+
+        for (size_t i = 0; i < K; i++) {
+            for (size_t j = i; j < K; j++) {
+                if (i == j) {
+                    g(i,i,i,i) = H(i,i);
+                } else {
+                    h(i,j) = H(i,j);
+                    h(j,i) = H(j,i);
+                }
+            }
+        }
+
+
+        // Make the ingredients to construct HamiltonianParameters
+        std::shared_ptr<AOBasis> ao_basis;  // nullptr
+        OneElectronOperator<double> S = OneElectronOperator<double>::Identity(K, K);
+        SquareMatrix<double> C = SquareMatrix<double>::Identity(K, K);
+
+        return HamiltonianParameters(ao_basis, S, h, g, C);  // no scalar term
     }
+
 
 
 

@@ -41,8 +41,8 @@ class SquareMatrix : public MatrixX<_Scalar> {
 public:
     using Scalar = _Scalar;
 
-    using Base = MatrixX<Scalar>;
-    using Self = SquareMatrix<Scalar>;
+    using Base = MatrixX<_Scalar>;
+    using Self = SquareMatrix<_Scalar>;
 
 
 public:
