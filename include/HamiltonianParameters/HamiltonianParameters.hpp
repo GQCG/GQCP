@@ -394,7 +394,6 @@ public:
     /*
      *  GETTERS
      */
-
     const OneElectronOperator<Scalar>& get_S() const { return this->S; }
     const OneElectronOperator<Scalar>& get_h() const { return this->h; }
     const TwoElectronOperator<Scalar>& get_g() const { return this->g; }
@@ -465,6 +464,11 @@ public:
 
     }
 
+
+
+    /*
+     *  OTHER TRANSFORMATION FORMULAS
+     */
 
     /**
      *  Using a random rotation matrix, transform the matrix representations of the Hamiltonian parameters
@@ -610,6 +614,31 @@ public:
     }
 
 
+    /**
+     *  @param N_P          the number of electron pairs
+     * 
+     *  @return the inactive Fockian matrix
+     */
+    OneElectronOperator<Scalar> calculateInactiveFockian(const size_t N_P) const {
+
+        // A KISS implementation of the calculation of the inactive Fockian matrix
+        OneElectronOperator<Scalar> F = this->h;  // one-electron part
+
+        // Two-electron part
+        for (size_t p = 0; p < this->K; p++) {
+            for (size_t q = 0; q < this->K; q++) {
+
+                for (size_t i = 0; i < N_P; i++) {
+                    F(p,q) += 2*this->g(p,q,i,i) - this->g(p,i,i,q);
+                }
+
+            }
+        }  // F elements loop
+
+        return F;
+    }
+
+
 
     /*
      *  PUBLIC METHODS - CALCULATIONS OF TWO-ELECTRON OPERATORS
@@ -668,6 +697,10 @@ public:
     }
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> Implement inactive Fockian
     /*
      *  PUBLIC METHODS - CONSTRAINTS
      */
