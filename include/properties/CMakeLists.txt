@@ -1,5 +1,9 @@
 target_sources(gqcp
         PRIVATE
+            AP1roGElectricalResponseSolver.hpp
+            BaseElectricalResponseSolver.hpp
+            CIElectricalResponseSolver.hpp
             expectation_values.hpp
             properties.hpp
+            RHFElectricalResponseSolver.hpp
         )
