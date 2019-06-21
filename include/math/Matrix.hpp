@@ -49,10 +49,8 @@ template <typename _Scalar = double, int _Rows = Dynamic, int _Cols = Dynamic>
 class Matrix : public Eigen::Matrix<_Scalar, _Rows, _Cols> {
 public:
     using Scalar = _Scalar;
-    enum {
-        Rows = _Rows,
-        Cols = _Cols
-    };
+    static constexpr auto Rows = _Rows;
+    static constexpr auto Cols = _Cols;
 
     using Self = Matrix<Scalar, Rows, Cols>;
     using Base = Eigen::Matrix<Scalar, Rows, Cols>;
@@ -188,7 +186,7 @@ public:
      *  @return the i-j minor (i.e. delete the i-th row and j-th column)
      */
     template <typename Z = Self>  // enable_if must have Z inside
-    enable_if_t<Self::is_matrix, Z> matrixMinor(size_t i, size_t j) const {  // wrap minor inside braces as a fix for the GCC macro 'minor'
+    enable_if_t<Self::is_matrix, Z> matrixMinor(size_t i, size_t j) const {
 
         // Delete the i-th row
         Self A_i = Self::Zero(this->rows() - 1, this->cols());
@@ -216,6 +214,36 @@ public:
         }
 
         return A_ij;
+    }
+
+
+    /**
+     *  @param start_i      the index at which the rows should start
+     *  @param start_j      the index at which the columns should start
+     * 
+     *  @return this matrix as a vector in a column-major storage, i.e. a pair-wise reduced form of this matrix. The elements of the matrix are put into the vector such that
+     *      v(m) = M(i,j)
+     *
+     *  in which
+     *      m is calculated from i and j in a column-major way
+     */
+    template <typename Z = Matrix<Scalar, Rows, 1>>
+    enable_if_t<Self::is_matrix, Z> pairWiseReduce(const size_t start_i = 0, size_t start_j = 0) const {
+
+        // Initialize the resulting vector
+        Matrix<Scalar, Rows, 1> v ( (this->rows()-start_i)*(this->cols()-start_j) );
+
+        // Calculate the compound indices and bring the elements from the matrix over into the vector
+        size_t vector_index = 0;
+        for (size_t j = start_j; j < this->cols(); j++) {  // "column major" ordering for row_index<-i,j so we do j first, then i
+            for (size_t i = start_i; i < this->rows(); i++) {  // in column major indices, columns are contiguous, so the first of two indices changes more rapidly
+
+                v(vector_index) = this->operator()(i,j);
+                vector_index++;
+            }
+        }
+
+        return v;
     }
 };
 
