@@ -20,6 +20,7 @@
 
 
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "math/SquareRankFourTensor.hpp"
 #include "RDM/OneRDM.hpp"
 
 
@@ -113,6 +114,31 @@ size_t RHFHOMOIndex(size_t N);
  *  @return the RHF LUMO index
  */
 size_t RHFLUMOIndex(size_t K, size_t N);
+
+
+/**
+ *  Specialize the orbital Hessian for RHF
+ * 
+ *  @param ham_par          the Hamiltonian parameters
+ *  @param N_P              the number of electron pairs
+ * 
+ *  @return the RHF orbital Hessian as a tensor
+ */
+SquareRankFourTensor<double> calculateRHFOrbitalHessian(const HamiltonianParameters<double>& ham_par, const size_t N_P);
+
+
+/**
+ *  @param ham_par          the Hamiltonian parameters
+ *  @param N_P              the number of electron pairs
+ *  @param a                the first virtual orbital index
+ *  @param i                the first occupied orbital index
+ *  @param b                the second virtual orbital index
+ *  @param j                the second occupied orbital index
+ * 
+ *  @return an element of the RHF orbital Hessian
+ */
+double calculateRHFOrbitalHessianElement(const HamiltonianParameters<double>& ham_par, const size_t N_P, const size_t a, const size_t i, const size_t b, const size_t j);
+
 
 
 }  // namespace GQCP
