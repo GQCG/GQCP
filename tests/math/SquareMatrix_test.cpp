@@ -116,7 +116,7 @@ BOOST_AUTO_TEST_CASE ( FromTriangle ) {
 //}
 
 
-BOOST_AUTO_TEST_CASE ( strictLowerTriangle ) {
+BOOST_AUTO_TEST_CASE ( pairWiseStrictReduce ) {
 
     GQCP::SquareMatrix<double> A (3);
     A << 1, 2, 3,
@@ -126,7 +126,7 @@ BOOST_AUTO_TEST_CASE ( strictLowerTriangle ) {
     GQCP::VectorX<double> ref_strict_lower_triangle_A (3);
     ref_strict_lower_triangle_A << 4, 7, 8;
 
-    BOOST_CHECK(ref_strict_lower_triangle_A.isApprox(A.strictLowerTriangle()));
+    BOOST_CHECK(ref_strict_lower_triangle_A.isApprox(A.pairWiseStrictReduce()));
 
 
     GQCP::SquareMatrix<double> B (4);
@@ -138,7 +138,7 @@ BOOST_AUTO_TEST_CASE ( strictLowerTriangle ) {
     GQCP::VectorX<double> ref_strict_lower_triangle_B (6);
     ref_strict_lower_triangle_B << 5, 9, 13, 10, 14, 15;
 
-    BOOST_CHECK(ref_strict_lower_triangle_B.isApprox(B.strictLowerTriangle()));
+    BOOST_CHECK(ref_strict_lower_triangle_B.isApprox(B.pairWiseStrictReduce()));
 }
 
 

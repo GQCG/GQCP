@@ -122,3 +122,27 @@ BOOST_AUTO_TEST_CASE ( matrixMinor ) {
             5, 7, 8;
     BOOST_CHECK(A_21.isApprox(A.matrixMinor(2, 1)));
 }
+
+
+BOOST_AUTO_TEST_CASE ( pairWiseReduce ) {
+
+    GQCP::MatrixX<double> M (4, 4);
+    M <<  0,  1,  2,  3,
+          4,  5,  6,  7,
+          8,  9, 10, 11,
+         12, 13, 14, 15;
+
+    
+    // Test default behavior
+    GQCP::VectorX<double> v_ref_1 (16);
+    v_ref_1 << 0, 4, 8, 12, 1, 5, 9, 13, 2, 6, 10, 14, 3, 7, 11, 15;
+
+    BOOST_CHECK(v_ref_1.isApprox(M.pairWiseReduce(), 1.0e-12));
+
+
+    // Test non-default behavior
+    GQCP::VectorX<double> v_ref_2 (9);
+    v_ref_2 << 5, 9, 13, 6, 10, 14, 7, 11, 15;
+
+    BOOST_CHECK(v_ref_2.isApprox(M.pairWiseReduce(1, 1), 1.0e-12));
+}

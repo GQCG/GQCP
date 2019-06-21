@@ -171,6 +171,11 @@ public:
 
 
     /**
+     *  @param start_i      the index at which the first rank should start
+     *  @param start_j      the index at which the second rank should start
+     *  @param start_k      the index at which the third rank should start
+     *  @param start_l      the index at which the fourth rank should start
+     * 
      *  @return a pair-wise reduced form of this rank-4 tensor. The elements of the tensor are put into the matrix such that
      *      M(m,n) = T(i,j,k,l)
      *
@@ -179,21 +184,21 @@ public:
      *      n is calculated from k and l in a column-major way
      */
     template <int Z = Rank>
-    enable_if_t<Z == 4, Matrix<Scalar>> pairWiseReduce() const {
+    enable_if_t<Z == 4, Matrix<Scalar>> pairWiseReduce(const size_t start_i = 0, const size_t start_j = 0, const size_t start_k = 0, const size_t start_l = 0) const {
 
         // Initialize the resulting matrix
         const auto dims = this->dimensions();
-        Matrix<Scalar> M (dims[0]*dims[1], dims[2]*dims[3]);
+        Matrix<Scalar> M ( (dims[0]-start_i)*(dims[1]-start_j), (dims[2]-start_k)*(dims[3]-start_l) );
 
 
         // Calculate the compound indices and bring the elements from the tensor over into the matrix
         size_t row_index = 0;
-        for (size_t j = 0; j < dims[1]; j++) {  // "column major" ordering for row_index<-i,j so we do j first, then i
-            for (size_t i = 0; i < dims[0]; i++) {  // in column major indices, columns are contiguous, so the first of two indices changes more rapidly
+        for (size_t j = start_j; j < dims[1]; j++) {  // "column major" ordering for row_index<-i,j so we do j first, then i
+            for (size_t i = start_i; i < dims[0]; i++) {  // in column major indices, columns are contiguous, so the first of two indices changes more rapidly
 
                 size_t column_index = 0;
-                for (size_t l = 0; l < dims[3]; l++) {  // "column major" ordering for column_index<-k,l so we do l first, then k
-                    for (size_t k = 0; k < dims[2]; k++) {  // in column major indices, columns are contiguous, so the first of two indices changes more rapidly
+                for (size_t l = start_l; l < dims[3]; l++) {  // "column major" ordering for column_index<-k,l so we do l first, then k
+                    for (size_t k = start_k; k < dims[2]; k++) {  // in column major indices, columns are contiguous, so the first of two indices changes more rapidly
 
                         M(row_index,column_index) = this->operator()(i,j,k,l);
 
