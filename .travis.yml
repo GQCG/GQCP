@@ -67,7 +67,7 @@ install:
 
     # Install a recent version of CMake, Boost and eigen if they are not yet already installed.
     - if [ ! -f $HOME/miniconda/bin/cmake ]; then
-        conda install -c conda-forge cmake=3.13 boost-cpp eigen blas mkl;
+        conda install -c conda-forge cmake=3.13 boost boost-cpp eigen blas mkl;
         conda install -c gqcg libint;
         conda install -c intel mkl-include mkl-static intel-openmp;
       else
