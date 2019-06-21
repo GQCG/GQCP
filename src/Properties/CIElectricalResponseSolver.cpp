@@ -46,7 +46,7 @@ Matrix<double, Dynamic, 3> CIElectricalResponseSolver::calculateParameterRespons
     Matrix<double, Dynamic, 3> F_p = Matrix<double, Dynamic, 3>::Zero(dim, 3);
 
 
-    // F_p for DOCI is a matrix-vector product of the total dipole operator and the DOCI wave function
+    // F_p for CI is a matrix-vector product of the total dipole operator and the CI wave function
     const auto nuclear_dipole_moment = this->molecule.calculateNuclearDipoleMoment();
     for (size_t m = 0; m < 3; m++) {  // m loops over the components of the electrical dipole
 
