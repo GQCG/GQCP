@@ -4,4 +4,5 @@ target_sources(gqcp
             CIElectricalResponseSolver.cpp
             expectation_values.cpp
             properties.cpp
+            RHFElectricalResponseSolver.cpp
         )

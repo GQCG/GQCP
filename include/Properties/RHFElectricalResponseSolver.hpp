@@ -26,8 +26,34 @@ namespace GQCP {
 
 
 class RHFElectricalResponseSolver : BaseElectricalResponseSolver {
+private:
+    size_t N_P;  // the number of electron pairs
+
+
 public:
     // CONSTRUCTORS
+
+    /**
+     *  @param N_P          the number of electron pairs
+     */
+    RHFElectricalResponseSolver(const size_t N_P);
+
+
+    // PUBLIC OVERRIDDEN METHODS
+
+    /**
+     *  @param ham_par                  the Hamiltonian parameters
+     * 
+     *  @return the parameter response constant (k_p), i.e. the second-order parameter partial derivative of the RHF energy function
+     */
+    SquareMatrix<double> calculateParameterResponseConstant(const HamiltonianParameters<double>& ham_par) override;
+
+    /**
+     *  @param dipole_integrals         the dipole integrals in an orthonormal orbital basis
+     * 
+     *  @return the parameter response force (F_p), i.e. the first-order parameter partial derivative of the perturbation derivative of the RHF energy function
+     */
+    Matrix<double, Dynamic, 3> calculateParameterResponseForce(const std::array<OneElectronOperator<double>, 3>& dipole_integrals) override;
 };
 
 

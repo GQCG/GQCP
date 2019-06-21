@@ -113,7 +113,7 @@ SquareMatrix<double> NewtonOrbitalOptimizer::calculateNewRotationMatrix(const Ha
  *  @return the current orbital gradient as a vector
  */
 VectorX<double> NewtonOrbitalOptimizer::calculateGradientVector(const HamiltonianParameters<double>& ham_par) const {
-    return this->calculateGradientMatrix(ham_par).strictLowerTriangle();
+    return this->calculateGradientMatrix(ham_par).pairWiseStrictReduce();
 }
 
 
