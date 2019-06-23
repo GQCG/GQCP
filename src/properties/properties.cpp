@@ -48,7 +48,9 @@ Vector<double, 3> calculateElectronicDipoleMoment(const std::array<OneElectronOp
  */
 Matrix<double, 3, 3> calculateElectricPolarizability(const Matrix<double, Dynamic, 3>& F_p, const Matrix<double, Dynamic, 3>& response) {
 
-    return - F_p.transpose() * response;  // no explicit second-order partial perturbation derivative for electrical response
+    // No explicit second-order partial perturbation derivative for electrical response
+
+    return - response.transpose() * F_p;  // minus sign because of definition of electric polarizability
 }
 
 
