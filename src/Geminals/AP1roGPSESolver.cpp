@@ -163,16 +163,16 @@ SquareMatrix<double> AP1roGPSESolver::calculateJacobian(const AP1roGGeminalCoeff
     for (size_t row_index = 0; row_index < number_of_geminal_coefficients; row_index++) {
         for (size_t column_index = 0; column_index < number_of_geminal_coefficients; column_index++) {
 
-            // Using our convention, the Jacobian is defined as df_j^b/dt_i^a:
-            //      Column indices refer to the coordinate functions
-            size_t j = G.matrixIndexMajor(row_index);
-            size_t b = G.matrixIndexMinor(row_index);
-
-            //      Row indices refer to geminal coefficients
+            // Using our convention, the Jacobian J_{ia,jb} is defined as df_i^a/dt_j^b:
+            //      Row indices refer to the coordinate functions
             size_t i = G.matrixIndexMajor(column_index);
             size_t a = G.matrixIndexMinor(column_index);
 
-            J(row_index,column_index) = this->calculateJacobianElement(G, j, b, i, a);
+            //      Column indices refer to geminal coefficients
+            size_t j = G.matrixIndexMajor(row_index);
+            size_t b = G.matrixIndexMinor(row_index);
+
+            J(row_index,column_index) = this->calculateJacobianElement(G, i,a,j,b);
         }
     }
 
