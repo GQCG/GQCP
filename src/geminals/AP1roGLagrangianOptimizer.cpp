@@ -28,7 +28,7 @@ namespace GQCP {
  */
 void AP1roGLagrangianOptimizer::solve() {
 
-    auto g = this->ham_par.get_g();
+    const auto& g = this->ham_par.get_g();
     auto K = this->ham_par.get_K();
 
 
@@ -40,28 +40,28 @@ void AP1roGLagrangianOptimizer::solve() {
     this->electronic_energy = pse_solver.get_electronic_energy();
 
 
-    // Initialize and solve the linear system Jx=b (x are the Lagrange multipliers)
-    size_t dim = this->geminal_coefficients.numberOfGeminalCoefficients(this->N_P, K);
+    // Initialize and solve the linear system k_lambda lambda=b (lambda are the Lagrange multipliers)
+    const size_t dim = this->geminal_coefficients.numberOfGeminalCoefficients(this->N_P, K);
 
-    auto J = pse_solver.calculateJacobian(this->geminal_coefficients);
+    const auto k_lambda = pse_solver.calculateJacobian(this->geminal_coefficients).transpose();
 
     VectorX<double> b = VectorX<double>::Zero(dim);  // dE/dG_i^a
     for (size_t i = 0; i < this->N_P; i++) {
         for (size_t a = this->N_P; a < this->K; a++) {
             size_t row_vector_index = this->geminal_coefficients.vectorIndex(i, a);
 
-            b(row_vector_index) = -g(i,a,i,a);
+            b(row_vector_index) = g(i,a,i,a);
         }
     }
 
-    Eigen::HouseholderQR<Eigen::MatrixXd> linear_solver (J);
-    VectorX<double> x = linear_solver.solve(b);
+    Eigen::HouseholderQR<Eigen::MatrixXd> linear_solver (k_lambda);
+    VectorX<double> lambda = linear_solver.solve(-b);
 
-    if (std::abs((J * x - b).norm()) > 1.0e-12) {
+    if (std::abs((k_lambda * lambda - b).norm()) > 1.0e-12) {
         throw std::runtime_error("void AP1roGLagrangianOptimizer::solve(): The Householder QR decomposition failed.");
     }
 
-    this->multipliers = AP1roGVariables(x, this->N_P, K);
+    this->multipliers = AP1roGVariables(lambda, this->N_P, K);
 }
 
 
