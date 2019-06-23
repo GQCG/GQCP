@@ -35,16 +35,17 @@ public:
 
 
     // PUBLIC METHODS
+
     /**
      *  @param G        the AP1roG geminal coefficients
      *  @param i        the subscript for the coordinate function
      *  @param a        the superscript for the coordinate function
-     *  @param k        the subscript for the geminal coefficient
-     *  @param c        the superscript for the geminal coefficient
+     *  @param j        the subscript for the geminal coefficient
+     *  @param b        the superscript for the geminal coefficient
      *
-     *  @return the Jacobian element with compound indices (i,a) and (k,c) at the given geminal coefficients
+     *  @return the Jacobian element with compound indices (i,a) and (j,b) at the given geminal coefficients
      */
-    double calculateJacobianElement(const AP1roGGeminalCoefficients& G, const size_t i, const size_t a, const size_t k, const size_t c) const;
+    double calculateJacobianElement(const AP1roGGeminalCoefficients& G, const size_t i, const size_t a, const size_t j, const size_t b) const;
 
     /**
      *  @param G        the AP1roG geminal coefficients

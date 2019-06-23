@@ -30,19 +30,19 @@ namespace GQCP {
 
 /**
  *  @param G        the AP1roG geminal coefficients
- *  @param j        the subscript for the coordinate function
- *  @param b        the superscript for the coordinate function
- *  @param i        the subscript for the geminal coefficient
- *  @param a        the superscript for the geminal coefficient
+ *  @param i        the subscript for the coordinate function
+ *  @param a        the superscript for the coordinate function
+ *  @param j        the subscript for the geminal coefficient
+ *  @param b        the superscript for the geminal coefficient
  *
- *  @return the Jacobian element with compound indices (i,a) and (k,c) at the given geminal coefficients
+ *  @return the Jacobian element with compound indices (i,a) and (j,b) at the given geminal coefficients
  */
-double AP1roGPSESolver::calculateJacobianElement(const AP1roGGeminalCoefficients& G, const size_t j, const size_t b, const size_t i, const size_t a) const {
+double AP1roGPSESolver::calculateJacobianElement(const AP1roGGeminalCoefficients& G, const size_t i, const size_t a, const size_t j, const size_t b) const {
 
     const auto& h = this->ham_par.get_h();
     const auto& g = this->ham_par.get_g();
 
-    double j_el = 0.0;
+    double value = 0.0;
 
 
     // KISS implementation of the calculation of Jacobian elements
@@ -53,10 +53,10 @@ double AP1roGPSESolver::calculateJacobianElement(const AP1roGGeminalCoefficients
         }
 
         else {  // i!=j and a == b
-            j_el += g(i,j,i,j) - 2 * g(i,a,i,a) * G(j,a);
+            value += g(j,i,j,i) - 2 * g(j,b,j,b) * G(i,b);
 
             for (size_t c = this->N_P; c < this->K; c++) {
-                j_el += g(i,c,i,c) * G(j,c);
+                value += g(j,c,j,c) * G(i,c);
             }
 
         }
@@ -65,39 +65,39 @@ double AP1roGPSESolver::calculateJacobianElement(const AP1roGGeminalCoefficients
     else {  // i==j
 
         if (a != b) {  // i==j and a!=b
-            j_el += g(b,a,b,a) - 2 * g(i,a,i,a) * G(i,b);
+            value += g(a,b,a,b) - 2 * g(j,b,j,b) * G(j,a);
 
             for (size_t k = 0; k < this->N_P; k++) {
-                j_el += g(k,a,k,a) * G(k,b);
+                value += g(k,b,k,b) * G(k,a);
             }
         }
 
         else {  // i==j and a==b
 
-            j_el += 2 * (h(a,a) - h(i,i));
+            value += 2 * (h(a,a) - h(i,i));
 
-            j_el -= 2 * (2 * g(a,a,i,i) - g(a,i,i,a));
+            value -= 2 * (2 * g(a,a,i,i) - g(a,i,i,a));
 
             for (size_t k = 0; k < this->N_P; k++) {
-                j_el += 2 * (2 * g(k,k,a,a) - g(a,k,k,a)) - (2 * g(i,i,k,k) - g(i,k,k,i));
+                value += 2 * (2 * g(k,k,a,a) - g(a,k,k,a)) - (2 * g(i,i,k,k) - g(i,k,k,i));
             }
 
             for (size_t k = 0; k < this->N_P; k++) {
                 if (k != i) {
-                    j_el -= 2 * g(k,a,k,a) * G(k,a);
+                    value -= 2 * g(k,a,k,a) * G(k,a);
                 }
             }
 
             for (size_t c = this->N_P; c < this->K; c++) {
                 if (c != a) {
-                    j_el -= 2 * g(i,c,i,c) * G(i,c);
+                    value -= 2 * g(i,c,i,c) * G(i,c);
                 }
             }
         }
 
     }
 
-    return j_el;
+    return value;
 }
 
 
