@@ -69,7 +69,6 @@ void NewtonSystemOfEquationsSolver::solve() {
         // Update the current coefficients, using the Newton step
         this->x += dx;
 
-
         // Check for convergence
         if (dx.norm() <= this->convergence_threshold) {
             this->is_solved = true;

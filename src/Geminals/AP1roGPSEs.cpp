@@ -121,8 +121,8 @@ BlockMatrix<double> AP1roGPSEs::evaluateCoordinateFunctions(const AP1roGGeminalC
  */
 VectorFunction AP1roGPSEs::callableCoordinateFunctions() const {
 
-    VectorFunction callable = [this] (const VectorX<double>& x) { 
-        AP1roGGeminalCoefficients G (x, this->N_P, this->K);
+    VectorFunction callable = [this] (const VectorX<double>& x) {
+        auto G = AP1roGGeminalCoefficients::FromColumnMajor(x, this->N_P, this->K);
         return this->evaluateCoordinateFunctions(G).asVector(); 
     };
 
@@ -147,58 +147,104 @@ double AP1roGPSEs::evaluateJacobianElement(const AP1roGGeminalCoefficients& G, c
 
     double value = 0.0;
     // KISS implementation of the calculation of Jacobian elements
-    if (i != j) {
+    if (i == j) {
+        value += g(a,b,a,b) - 2 * g(j,b,j,b) * G(j,a);
 
-        if (a != b) {  // i!=j and a!=b
-            return 0.0;
-        }
-
-        else {  // i!=j and a == b
-            value += g(j,i,j,i) - 2 * g(j,b,j,b) * G(i,b);
-
-            for (size_t c = this->N_P; c < this->K; c++) {
-                value += g(j,c,j,c) * G(i,c);
-            }
-
+        for (size_t k = 0; k < this->N_P; k++) {
+            value += g(k,b,k,b) * G(k,a);
         }
     }
 
-    else {  // i==j
 
-        if (a != b) {  // i==j and a!=b
-            value += g(a,b,a,b) - 2 * g(j,b,j,b) * G(j,a);
+    if (a == b) {
+        value += g(j,i,j,i) - 2 * g(j,b,j,b) * G(i,b);
 
-            for (size_t k = 0; k < this->N_P; k++) {
-                value += g(k,b,k,b) * G(k,a);
+        for (size_t c = this->N_P; c < this->K; c++) {
+            value += g(j,c,j,c) * G(i,c);
+        }
+    }
+
+
+    if ((i == j) && (a == b)) {
+        value += 2 * (h(a,a) - h(i,i));
+
+        value -= 2 * (2 * g(a,a,i,i) - g(a,i,i,a));
+
+        for (size_t k = 0; k < this->N_P; k++) {
+            value += 2 * (2 * g(k,k,a,a) - g(a,k,k,a)) - 2 * (2 * g(i,i,k,k) - g(i,k,k,i));
+        }
+
+        for (size_t k = 0; k < this->N_P; k++) {
+            if (k != i) {
+                value -= 2 * g(k,a,k,a) * G(k,a);
             }
         }
 
-        else {  // i==j and a==b
-
-            value += 2 * (h(a,a) - h(i,i));
-
-            value -= 2 * (2 * g(a,a,i,i) - g(a,i,i,a));
-
-            for (size_t k = 0; k < this->N_P; k++) {
-                value += 2 * (2 * g(k,k,a,a) - g(a,k,k,a)) - (2 * g(i,i,k,k) - g(i,k,k,i));
-            }
-
-            for (size_t k = 0; k < this->N_P; k++) {
-                if (k != i) {
-                    value -= 2 * g(k,a,k,a) * G(k,a);
-                }
-            }
-
-            for (size_t c = this->N_P; c < this->K; c++) {
-                if (c != a) {
-                    value -= 2 * g(i,c,i,c) * G(i,c);
-                }
+        for (size_t c = this->N_P; c < this->K; c++) {
+            if (c != a) {
+                value -= 2 * g(i,c,i,c) * G(i,c);
             }
         }
-
     }
 
     return value;
+
+    // double j_el = 0.0;
+
+
+    // // KISS implementation of the calculation of Jacobian elements
+    // if (i != j) {
+
+    //     if (a != b) {  // i!=j and a!=b
+    //         return 0.0;
+    //     }
+
+    //     else {  // i!=j and a == b
+    //         j_el += g(i,j,i,j) - 2 * g(i,a,i,a) * G(j,a);
+
+    //         for (size_t c = this->N_P; c < this->K; c++) {
+    //             j_el += g(i,c,i,c) * G(j,c);
+    //         }
+
+    //     }
+    // }
+
+    // else {  // i==j
+
+    //     if (a != b) {  // i==j and a!=b
+    //         j_el += g(b,a,b,a) - 2 * g(i,a,i,a) * G(i,b);
+
+    //         for (size_t k = 0; k < this->N_P; k++) {
+    //             j_el += g(k,a,k,a) * G(k,b);
+    //         }
+    //     }
+
+    //     else {  // i==j and a==b
+
+    //         j_el += 2 * (h(a,a) - h(i,i));
+
+    //         j_el -= 2 * (2 * g(a,a,i,i) - g(a,i,i,a));
+
+    //         for (size_t k = 0; k < this->N_P; k++) {
+    //             j_el += 2 * (2 * g(k,k,a,a) - g(a,k,k,a)) - (2 * g(i,i,k,k) - g(i,k,k,i));
+    //         }
+
+    //         for (size_t k = 0; k < this->N_P; k++) {
+    //             if (k != i) {
+    //                 j_el -= 2 * g(k,a,k,a) * G(k,a);
+    //             }
+    //         }
+
+    //         for (size_t c = this->N_P; c < this->K; c++) {
+    //             if (c != a) {
+    //                 j_el -= 2 * g(i,c,i,c) * G(i,c);
+    //             }
+    //         }
+    //     }
+
+    // }
+
+    // return j_el;
 }
 
 
@@ -234,7 +280,7 @@ BlockRankFourTensor<double> AP1roGPSEs::evaluateJacobian(const AP1roGGeminalCoef
 MatrixFunction AP1roGPSEs::callableJacobian() const {
     
     MatrixFunction callable = [this] (const VectorX<double>& x) { 
-        AP1roGGeminalCoefficients G (x, this->N_P, this->K);
+        auto G = AP1roGGeminalCoefficients::FromColumnMajor(x, this->N_P, this->K);
         return this->evaluateJacobian(G).asMatrix();
     };
 

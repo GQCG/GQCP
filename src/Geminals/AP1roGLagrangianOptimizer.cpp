@@ -36,7 +36,7 @@ void AP1roGLagrangianOptimizer::solve() {
 
     // Solve the PSEs and set part of the solutions
     AP1roGPSEs pses (this->ham_par, this->N_P);
-    AP1roGPSESolver pse_solver (pses);
+    AP1roGPSESolver pse_solver (pses, this->convergence_threshold, this->maximum_number_of_iterations);
     this->geminal_coefficients = pse_solver.solve(this->geminal_coefficients);
     this->electronic_energy = calculateAP1roGEnergy(this->geminal_coefficients, this->ham_par);
 

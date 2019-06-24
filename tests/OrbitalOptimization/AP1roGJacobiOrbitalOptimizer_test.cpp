@@ -50,12 +50,12 @@ BOOST_AUTO_TEST_CASE ( lih_6_31G_calculateEnergyAfterRotation ) {
         for (size_t p = q + 1; p < K; p++) {  // p > q
             GQCP::JacobiRotationParameters jacobi_rot_par {p, q, theta};
 
+
             // Construct a new AP1roG instance, since AP1roG.calculateEnergyAfterRotation overwrites this->so_basis
             // AP1roG.calculateEnergyAfterRotation is a function that is only used in testing
             GQCP::AP1roGPSEs pses (mol_ham_par, lih.get_N()/2);
             GQCP::AP1roGPSESolver pse_solver (pses);
             auto G = pse_solver.solve();
-
 
             // Calculate the analytical energy after rotation
             GQCP::AP1roGJacobiOrbitalOptimizer orbital_optimizer (G, 1.0e-04);
@@ -97,7 +97,7 @@ BOOST_AUTO_TEST_CASE ( lih_6_31G_orbitalOptimize ) {
 
 
     // Do an AP1roG orbital optimization using Jacobi rotations
-    GQCP::AP1roGJacobiOrbitalOptimizer orbital_optimizer (initial_G, 1.0e-04);
+    GQCP::AP1roGJacobiOrbitalOptimizer orbital_optimizer (G, 1.0e-04);
     orbital_optimizer.optimize(mol_ham_par);
     double optimized_energy = orbital_optimizer.get_electronic_energy();
 

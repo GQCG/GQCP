@@ -31,7 +31,9 @@ namespace GQCP {
 /**
  *  @param pses         the AP1roG PSEs
  */
-AP1roGPSESolver::AP1roGPSESolver(const AP1roGPSEs& pses) : 
+AP1roGPSESolver::AP1roGPSESolver(const AP1roGPSEs& pses, const double convergence_threshold, const size_t maximum_number_of_iterations) : 
+    convergence_threshold (convergence_threshold),
+    maximum_number_of_iterations (maximum_number_of_iterations),
     pses (pses)
 {}
 
@@ -56,10 +58,10 @@ AP1roGGeminalCoefficients AP1roGPSESolver::solve(const AP1roGGeminalCoefficients
     NewtonSystemOfEquationsSolver syseq_solver (x0, f, J);
     syseq_solver.solve();
 
-
     const auto N_P = this->pses.numberOfElectronPairs();
     const auto K = this->pses.numberOfSpatialOrbitals();
-    return AP1roGGeminalCoefficients(syseq_solver.get_solution(), N_P, K);
+
+    return AP1roGGeminalCoefficients::FromColumnMajor(syseq_solver.get_solution(), N_P, K);
 }
 
 

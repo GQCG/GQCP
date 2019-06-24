@@ -48,6 +48,23 @@ BOOST_AUTO_TEST_CASE ( asMatrix ) {
 }
 
 
+BOOST_AUTO_TEST_CASE ( FromColumnMajor ) {
+
+    // For N_P=2 and K=5, we have an AP1roG geminal coefficient matrix that looks like the following matrix:
+    GQCP::MatrixX<double> G (2, 5);
+    G << 1, 0,  1, 2, 3,
+         0, 1,  4, 5, 6;
+
+
+    // Test that we get the previous representation if we use the following vector that uses column-major indexing
+    GQCP::VectorX<double> g (6);
+    g << 1, 4, 2, 5, 3, 6;
+
+    auto gem_coeff = GQCP::AP1roGGeminalCoefficients::FromColumnMajor(g, 2, 5);
+    BOOST_CHECK(gem_coeff.asMatrix().isApprox(G));
+}
+
+
 BOOST_AUTO_TEST_CASE ( toWaveFunction_example1 ) {
 
     size_t K = 3;

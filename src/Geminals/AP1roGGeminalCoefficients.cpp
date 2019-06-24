@@ -64,6 +64,31 @@ AP1roGGeminalCoefficients::AP1roGGeminalCoefficients(size_t N_P, size_t K) :
  */
 
 /**
+ *  @param g        the geminal coefficients in a vector representation that is in column-major storage
+ *
+ *  @param N_P      the number of electron pairs (= the number of geminals)
+ *  @param K        the number of spatial orbitals
+ */
+AP1roGGeminalCoefficients AP1roGGeminalCoefficients::FromColumnMajor(const VectorX<double>& g, size_t N_P, size_t K) {
+
+    auto number_of_geminal_coefficients = AP1roGGeminalCoefficients::numberOfGeminalCoefficients(N_P, K);
+
+    VectorX<double> g_row_major = VectorX<double>::Zero(number_of_geminal_coefficients);
+
+    for (size_t i = 0; i < N_P; i++) {
+        for (size_t j = 0; j < K-N_P; j++) {
+            size_t row_major_index = i * (K-N_P) + j;
+            size_t column_major_index = j * N_P + i;
+
+            g_row_major(row_major_index) = g(column_major_index);
+        }
+    }
+
+    return AP1roGGeminalCoefficients(g_row_major, N_P, K);
+}
+
+
+/**
  *  @param ham_par      the Hamiltonian parameters
  *  @param N_P          the number of orbitals
  *

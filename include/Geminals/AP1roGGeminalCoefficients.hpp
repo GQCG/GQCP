@@ -58,6 +58,15 @@ public:
 
 
     // NAMED CONSTRUCTORS
+
+    /**
+     *  @param g        the geminal coefficients in a vector representation that is in row-major storage
+     *
+     *  @param N_P      the number of electron pairs (= the number of geminals)
+     *  @param K        the number of spatial orbitals
+     */
+    static AP1roGGeminalCoefficients FromColumnMajor(const VectorX<double>& g, size_t N_P, size_t K);
+
     /**
      *  @param ham_par      the Hamiltonian parameters
      *  @param N_P          the number of electron pairs (= the number of geminals)
