@@ -52,9 +52,9 @@ BOOST_AUTO_TEST_CASE ( lih_6_31G_calculateEnergyAfterRotation ) {
 
             // Construct a new AP1roG instance, since AP1roG.calculateEnergyAfterRotation overwrites this->so_basis
             // AP1roG.calculateEnergyAfterRotation is a function that is only used in testing
-            GQCP::AP1roGPSESolver pse_solver (lih, mol_ham_par);
-            pse_solver.solve();
-            auto G = pse_solver.get_geminal_coefficients();
+            GQCP::AP1roGPSEs pses (mol_ham_par, lih.get_N()/2);
+            GQCP::AP1roGPSESolver pse_solver (pses);
+            auto G = pse_solver.solve();
 
 
             // Calculate the analytical energy after rotation
@@ -90,10 +90,10 @@ BOOST_AUTO_TEST_CASE ( lih_6_31G_orbitalOptimize ) {
 
 
     // Get the initial AP1roG energy
-    GQCP::AP1roGPSESolver pse_solver (lih, mol_ham_par);
-    pse_solver.solve();
-    double initial_energy = pse_solver.get_electronic_energy();
-    const auto initial_G = pse_solver.get_geminal_coefficients();
+    GQCP::AP1roGPSEs pses (mol_ham_par, lih.get_N()/2);
+    GQCP::AP1roGPSESolver pse_solver (pses);
+    auto G = pse_solver.solve();
+    double initial_energy = calculateAP1roGEnergy(G, mol_ham_par);;
 
 
     // Do an AP1roG orbital optimization using Jacobi rotations

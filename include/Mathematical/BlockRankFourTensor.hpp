@@ -85,6 +85,14 @@ public:
      *  @param index4_start         the index of the fourth rank at which the block starts (not included)
      */
     BlockRankFourTensor(const size_t index1_start, const size_t index1_end, const size_t index2_start, const size_t index2_end, const size_t index3_start, const size_t index3_end, const size_t index4_start, const size_t index4_end) :
+        index1_start (index1_start),
+        index1_end (index1_end),
+        index2_start (index2_start),
+        index2_end (index2_end),
+        index3_start (index3_start),
+        index3_end (index3_end),
+        index4_start (index4_start),
+        index4_end (index4_end),
         T (Tensor<Scalar, 4>(index1_end-index1_start, index2_end-index2_start, index3_end-index3_start, index4_end-index4_start))
     {
         T.setZero();
@@ -106,6 +114,26 @@ public:
      */
     Scalar operator()(const size_t index1, const size_t index2, const size_t index3, const size_t index4) const {
 
+        const size_t index1_block = index1 - this->index1_start;  // the first index in the blocked tensor
+        const size_t index2_block = index2 - this->index2_start;  // the second index in the blocked tensor
+        const size_t index3_block = index3 - this->index3_start;  // the third index in the blocked tensor
+        const size_t index4_block = index4 - this->index4_start;  // the fourth index in the blocked tensor
+
+        std::cout << index1_block << ", " << index2_block << ", " << index3_block << ", " << index4_block << std::endl;
+
+        return this->T(index1_block,index2_block,index3_block,index4_block);
+    }
+
+    /**
+     *  @param index1           the first index of the encapsulating tensor
+     *  @param index2           the second index of the encapsulating tensor
+     *  @param index3           the third index of the encapsulating tensor
+     *  @param index4           the fourth index of the encapsulating tensor
+     * 
+     *  @return a writable element of the encapsulating tensor
+     */
+    Scalar& operator()(const size_t index1, const size_t index2, const size_t index3, const size_t index4) {
+
         const size_t index1_block = index1 - index1_start;  // the first index in the blocked tensor
         const size_t index2_block = index2 - index2_start;  // the second index in the blocked tensor
         const size_t index3_block = index3 - index3_start;  // the third index in the blocked tensor
@@ -119,7 +147,7 @@ public:
     /*
      *  PUBLIC METHODS
      */
-    
+
     /**
      *  @return this as a (column-major) matrix
      */

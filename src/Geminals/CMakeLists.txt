@@ -3,6 +3,7 @@ target_sources(gqcp
             AP1roG.cpp
             AP1roGGeminalCoefficients.cpp
             AP1roGLagrangianOptimizer.cpp
+            AP1roGPSEs.cpp
             AP1roGPSESolver.cpp
             AP1roGVariables.cpp
             APIGGeminalCoefficients.cpp

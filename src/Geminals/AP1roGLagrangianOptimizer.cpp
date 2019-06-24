@@ -17,6 +17,8 @@
 // 
 #include "Geminals/AP1roGLagrangianOptimizer.hpp"
 
+#include "Geminals/AP1roG.hpp"
+#include "Geminals/AP1roGPSEs.hpp"
 #include "Geminals/AP1roGPSESolver.hpp"
 
 
@@ -33,31 +35,29 @@ void AP1roGLagrangianOptimizer::solve() {
 
 
     // Solve the PSEs and set part of the solutions
-    AP1roGPSESolver pse_solver (this->N_P, this->ham_par, this->geminal_coefficients, this->convergence_threshold, this->maximum_number_of_iterations);
-    pse_solver.solve();
+    AP1roGPSEs pses (this->ham_par, this->N_P);
+    AP1roGPSESolver pse_solver (pses);
+    pse_solver.solve(this->geminal_coefficients);  // changes the geminal coefficients into the solution
 
-    this->geminal_coefficients = pse_solver.get_geminal_coefficients();
-    this->electronic_energy = pse_solver.get_electronic_energy();
+    this->electronic_energy = calculateAP1roGEnergy(this->geminal_coefficients, this->ham_par);
 
 
     // Initialize and solve the linear system k_lambda lambda=b (lambda are the Lagrange multipliers)
-    const size_t dim = this->geminal_coefficients.numberOfGeminalCoefficients(this->N_P, K);
+    // b_{ia} = dE/dG_i^a
+    const MatrixX<double> k_lambda = pses.evaluateJacobian(this->geminal_coefficients).asMatrix().transpose();
 
-    const auto k_lambda = pse_solver.calculateJacobian(this->geminal_coefficients).transpose();
-
-    VectorX<double> b = VectorX<double>::Zero(dim);  // dE/dG_i^a
+    BlockMatrix<double> b (0, this->N_P, this->N_P, K);
     for (size_t i = 0; i < this->N_P; i++) {
         for (size_t a = this->N_P; a < this->K; a++) {
-            size_t row_vector_index = this->geminal_coefficients.vectorIndex(i, a);
-
-            b(row_vector_index) = g(i,a,i,a);
+            b(i,a) = g(i,a,i,a);
         }
     }
 
     Eigen::HouseholderQR<Eigen::MatrixXd> linear_solver (k_lambda);
-    VectorX<double> lambda = linear_solver.solve(-b);
+    VectorX<double> lambda = linear_solver.solve(-b.asVector());
 
-    if (std::abs((k_lambda * lambda - b).norm()) > 1.0e-12) {
+
+    if (std::abs((k_lambda * lambda + b.asVector()).norm()) > 1.0e-12) {
         throw std::runtime_error("void AP1roGLagrangianOptimizer::solve(): The Householder QR decomposition failed.");
     }
 
