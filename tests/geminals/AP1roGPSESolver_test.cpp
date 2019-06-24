@@ -18,36 +18,12 @@
 #define BOOST_TEST_MODULE "AP1roGPSESolver"
 #include <boost/test/unit_test.hpp>
 
+#include "Geminals/AP1roG.hpp"
 #include "Geminals/AP1roGPSESolver.hpp"
 
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
 
-
-
-BOOST_AUTO_TEST_CASE ( constructor ) {
-
-    // Test a correct constructor
-    auto h2 = GQCP::Molecule::Readxyz("data/h2_szabo.xyz");
-    size_t N = 2;  // number of electrons for H2
-    size_t N_P = N/2;  // number of electron pairs for H2
-    auto mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2, "STO-3G");
-    GQCP::AP1roGPSESolver ap1rog_pse_solver (N_P, mol_ham_par);
-}
-
-
-BOOST_AUTO_TEST_CASE ( constructor_molecule ) {
-
-    // Test a correct constructor
-    // Check if we can also pass a molecule object to the constructor
-    auto h2 = GQCP::Molecule::Readxyz("data/h2_szabo.xyz");
-    auto mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2, "STO-3G");
-    GQCP::AP1roGPSESolver ap1rog_pse_solver (h2, mol_ham_par);
-
-    // Test a faulty constructor
-    auto h2_cation = GQCP::Molecule::Readxyz("data/h2_szabo.xyz", +1);
-    BOOST_CHECK_THROW(GQCP::AP1roGPSESolver(h2_cation, mol_ham_par), std::invalid_argument);  // we can use the same Hamiltonian parameters for molecule and ion
-}
 
 
 BOOST_AUTO_TEST_CASE ( h2_631gdp ) {
@@ -73,15 +49,15 @@ BOOST_AUTO_TEST_CASE ( h2_631gdp ) {
   
   
     // Solve the AP1roG pSE equations with the initial guess being 0
-    GQCP::AP1roGPSESolver ap1rog_pse_solver (h2, mol_ham_par);
-    ap1rog_pse_solver.solve();
-
-    double electronic_energy = ap1rog_pse_solver.get_electronic_energy();
-    GQCP::VectorX<double> ap1rog_coefficients = ap1rog_pse_solver.get_geminal_coefficients().asVector();
+    GQCP::AP1roGPSEs pses (mol_ham_par, h2.get_N()/2);
+    GQCP::AP1roGPSESolver ap1rog_pse_solver (pses);
+    auto G = ap1rog_pse_solver.solve();
+    double electronic_energy = GQCP::calculateAP1roGEnergy(G, mol_ham_par);
 
 
     BOOST_CHECK(std::abs(electronic_energy - ref_ap1rog_energy) < 1.0e-05);
 
+    GQCP::VectorX<double> ap1rog_coefficients = G.asVector();
     for (size_t i = 0; i < 9; i++) {
         BOOST_CHECK(std::abs(ap1rog_coefficients(i) - ref_ap1rog_coefficients(i)) < 1.0e-05);
     }
@@ -112,15 +88,16 @@ BOOST_AUTO_TEST_CASE ( h2_631gdp_weak_interaction_limit ) {
 
 
     // Solve the AP1roG pSE equations, with the initial guess being the weak interaction limit coefficients
-    GQCP::AP1roGPSESolver ap1rog_pse_solver (h2, mol_ham_par, GQCP::AP1roGGeminalCoefficients::WeakInteractionLimit(mol_ham_par, N_P));
-    ap1rog_pse_solver.solve();
-
-    double electronic_energy = ap1rog_pse_solver.get_electronic_energy();
-    GQCP::VectorX<double> ap1rog_coefficients = ap1rog_pse_solver.get_geminal_coefficients().asVector();
+    GQCP::AP1roGPSEs pses (mol_ham_par, h2.get_N()/2);
+    GQCP::AP1roGPSESolver ap1rog_pse_solver (pses);
+    auto G_initial = GQCP::AP1roGGeminalCoefficients::WeakInteractionLimit(mol_ham_par, N_P);
+    auto G = ap1rog_pse_solver.solve();
+    double electronic_energy = GQCP::calculateAP1roGEnergy(G, mol_ham_par);
 
 
     BOOST_CHECK(std::abs(electronic_energy - ref_ap1rog_energy) < 1.0e-05);
 
+    GQCP::VectorX<double> ap1rog_coefficients = G.asVector();
     for (size_t i = 0; i < 9; i++) {
         BOOST_CHECK(std::abs(ap1rog_coefficients(i) - ref_ap1rog_coefficients(i)) < 1.0e-05);
     }

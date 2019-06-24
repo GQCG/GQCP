@@ -18,6 +18,7 @@
 #include "OrbitalOptimization/AP1roGJacobiOrbitalOptimizer.hpp"
 
 #include "Geminals/AP1roG.hpp"
+#include "Geminals/AP1roGPSEs.hpp"
 #include "Geminals/AP1roGPSESolver.hpp"
 #include "Mathematical/Optimization/NewtonMinimizer.hpp"
 
@@ -71,10 +72,10 @@ AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer(const size_t N_P, con
  */
 void AP1roGJacobiOrbitalOptimizer::prepareJacobiSpecificConvergenceChecking(const HamiltonianParameters<double>& ham_par) {
     
-    AP1roGPSESolver pse_solver (this->N_P, ham_par, this->G);
-    pse_solver.solve();
-    this->G = pse_solver.get_geminal_coefficients();
-    this->E = pse_solver.get_electronic_energy();
+    AP1roGPSEs pses (ham_par, this->N_P);
+    AP1roGPSESolver pse_solver (pses);
+    pse_solver.solve(this->G);
+    this->E = calculateAP1roGEnergy(this->G, ham_par);
 }
 
 

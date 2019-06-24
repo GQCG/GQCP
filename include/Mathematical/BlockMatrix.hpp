@@ -59,7 +59,11 @@ public:
      *  @param col_start        the 0-based column index at which the block starts
      *  @param col_end          the 0-based column index at which the block ends (not included)
      */
-    BlockMatrix(const size_t row_start, const size_t row_end, const size_t col_start, const size_t col_end) : 
+    BlockMatrix(const size_t row_start, const size_t row_end, const size_t col_start, const size_t col_end) :
+        row_start (row_start),
+        row_end (row_end),
+        col_start (col_start),
+        col_end (col_end),
         M (MatrixX<Scalar>::Zero(row_end-row_start, col_end-col_start))
     {}
 
@@ -75,6 +79,20 @@ public:
      *  @return an element of the encapsulating matrix
      */
     Scalar operator()(const size_t row, const size_t col) const {
+
+        const size_t row_block = row - row_start;  // the row index in the blocked matrix
+        const size_t col_block = col - col_start;  // the columns index in the blocked matrix
+
+        return this->M(row_block, col_block);
+    }
+
+    /**
+     *  @param row      the row number in the encapsulating matrix
+     *  @param col      the column number in the encapsulating matrix
+     * 
+     *  @return a writable element of the encapsulating matrix
+     */
+    Scalar& operator()(const size_t row, const size_t col) {
 
         const size_t row_block = row - row_start;  // the row index in the blocked matrix
         const size_t col_block = col - col_start;  // the columns index in the blocked matrix
