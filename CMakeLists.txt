@@ -133,7 +133,8 @@ install(TARGETS gqcp
         INCLUDES DESTINATION include
         )
 
-install(DIRECTORY ${CMAKE_BINARY_DIR}/include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+install(DIRECTORY ${CMAKE_SOURCE_DIR}/include/ DESTINATION include)
+install(FILES ${CMAKE_BINARY_DIR}/include/version.hpp DESTINATION include)
 
 install(EXPORT gqcp-targets
         FILE gqcp-targets.cmake
@@ -162,5 +163,8 @@ install(
         FILES
         ${CMAKE_BINARY_DIR}/cmake/gqcp-config.cmake
         ${CMAKE_BINARY_DIR}/cmake/gqcp-config-version.cmake
+        ${CMAKE_SOURCE_DIR}/cmake/FindEigen3.cmake
+        ${CMAKE_SOURCE_DIR}/cmake/FindInt2.cmake
+        ${CMAKE_SOURCE_DIR}/cmake/FindSpectra.cmake
         DESTINATION cmake
 )
