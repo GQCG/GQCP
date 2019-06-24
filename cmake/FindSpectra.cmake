@@ -34,4 +34,9 @@ if(Spectra_FOUND AND NOT TARGET Spectra::Spectra)
             INTERFACE_INCLUDE_DIRECTORIES ${Spectra_INCLUDE_DIR}
             INTERFACE_COMPILE_FEATURES cxx_std_11
             )
+    # Install Spectra
+    install(DIRECTORY ${CMAKE_SOURCE_DIR}/spectra/include/ DESTINATION include)
 endif()
+
+
+
