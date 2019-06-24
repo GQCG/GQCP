@@ -23,6 +23,8 @@
 #include "Molecule.hpp"
 #include "WaveFunction/WaveFunction.hpp"
 
+#include "Geminals/AP1roGGeminalCoefficients.hpp"
+
 
 namespace GQCP {
 
@@ -54,6 +56,7 @@ public:
 
     /**
      *  @param dipole_integrals         the dipole integrals in an orthonormal orbital basis
+     *  @param x                        the first-order parameter response
      * 
      *  @return the parameter response force (F_p), i.e. the first-order parameter partial derivative of the perturbation derivative of the CI energy function
      */
