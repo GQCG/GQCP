@@ -78,6 +78,8 @@
 #include "Mathematical/Optimization/SparseSolver.hpp"
 #include "Mathematical/Optimization/step.hpp"
 
+#include "Mathematical/BlockMatrix.hpp"
+#include "Mathematical/BlockRankFourTensor.hpp"
 #include "Mathematical/ChemicalMatrix.hpp"
 #include "Mathematical/ChemicalRankFourTensor.hpp"
 #include "Mathematical/LinearCombination.hpp"
