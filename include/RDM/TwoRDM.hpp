@@ -19,7 +19,7 @@
 #define GQCP_TWORDM_HPP
 
 
-#include "math/ChemicalRankFourTensor.hpp"
+#include "Mathematical/ChemicalRankFourTensor.hpp"
 #include "RDM/OneRDM.hpp"
 
 

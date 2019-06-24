@@ -19,7 +19,7 @@
 #define BaseAPIGVariables_hpp
 
 
-#include "math/Matrix.hpp"
+#include "Mathematical/Matrix.hpp"
 
 
 namespace GQCP {

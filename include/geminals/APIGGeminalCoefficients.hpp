@@ -21,7 +21,7 @@
 
 #include "Geminals/BaseAPIGVariables.hpp"
 #include "Geminals/GeminalCoefficientsInterface.hpp"
-#include "math/Matrix.hpp"
+#include "Mathematical/Matrix.hpp"
 #include "WaveFunction/WaveFunction.hpp"
 
 

@@ -20,7 +20,7 @@
 
 
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
-#include "math/SquareRankFourTensor.hpp"
+#include "Mathematical/SquareRankFourTensor.hpp"
 #include "RDM/OneRDM.hpp"
 
 

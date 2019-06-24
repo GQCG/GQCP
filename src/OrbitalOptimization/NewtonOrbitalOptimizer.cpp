@@ -17,7 +17,7 @@
 // 
 #include "OrbitalOptimization/NewtonOrbitalOptimizer.hpp"
 
-#include "math/optimization/step.hpp"
+#include "Mathematical/Optimization/step.hpp"
 
 #include "Eigen/Dense"
 #include <unsupported/Eigen/MatrixFunctions>

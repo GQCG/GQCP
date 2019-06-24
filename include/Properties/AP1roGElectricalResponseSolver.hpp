@@ -29,6 +29,49 @@ class AP1roGElectricalResponseSolver : public BaseElectricalResponseSolver {
 public:
     // CONSTRUCTORS
 
+
+    // PUBLIC OVERRIDDEN METHODS
+
+    /**
+     *  @param ham_par                  the Hamiltonian parameters
+     * 
+     *  @return the parameter response constant (k_p), i.e. the first-order parameter partial derivative of the PSEs function (i.e. the Jacobian of the PSEs)
+     */
+    SquareMatrix<double> calculateParameterResponseConstant(const HamiltonianParameters<double>& ham_par) const override;
+
+    /**
+     *  @param dipole_integrals         the dipole integrals in an orthonormal orbital basis
+     * 
+     *  @return the parameter response force (F_p), i.e. the first-order perturbation derivative of the PSEs
+     */
+    Matrix<double, Dynamic, 3> calculateParameterResponseForce(const std::array<OneElectronOperator<double>, 3>& dipole_integrals) const override;
+
+
+    // PUBLIC METHODS
+
+    /**
+     *  @param ham_par                  the Hamiltonian parameters
+     * 
+     *  @return the Lagrangian multiplier response constant (k_lambda), i.e. the first-order perturbation derivative of the PSEs
+     */
+    SquareMatrix<double> calculateMultiplierResponseConstant(const HamiltonianParameters<double>& ham_par) const;
+
+    /**
+     *  @param dipole_integrals         the dipole integrals in an orthonormal orbital basis
+     * 
+     *  @return the Lagrangian multiplier response force (F_p)
+     */
+    Matrix<double, Dynamic, 3> calculateMultiplierResponseForce(const std::array<OneElectronOperator<double>, 3>& dipole_integrals) const;
+
+    /**
+     *  Solve the linear response equations for the Lagrangian multiplier response
+     * 
+     *  @param ham_par                  the Hamiltonian parameters
+     *  @param dipole_integrals         the dipole integrals in an orthonormal orbital basis
+     * 
+     *  @return the Lagrangian multiplier
+     */
+    Matrix<double, Dynamic, 3> calculateMultiplierResponse(const HamiltonianParameters<double>& ham_par, const std::array<OneElectronOperator<double>, 3>& dipole_integrals) const;
 };
 
 
