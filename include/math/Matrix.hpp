@@ -19,14 +19,14 @@
 #define Matrix_hpp
 
 
-#include <fstream>
-#include <iostream>
-
-#include <boost/algorithm/string.hpp>
-
 #include "typedefs.hpp"
 
 #include <Eigen/Dense>
+
+#include <boost/algorithm/string.hpp>
+
+#include <fstream>
+#include <iostream>
 
 
 
