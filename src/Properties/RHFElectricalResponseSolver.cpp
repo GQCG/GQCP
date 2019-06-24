@@ -50,15 +50,25 @@ Matrix<double, Dynamic, 3> RHFElectricalResponseSolver::calculateParameterRespon
     const auto K = dipole_integrals[0].get_K();
 
 
-    const auto dim = K * this->N_P;  // number of non-redundant orbital rotation generators
+    const auto dim = this->N_P * (K - this->N_P);  // number of non-redundant orbital rotation generators
     Matrix<double, Dynamic, 3> F_p = Matrix<double, Dynamic, 3>::Zero(dim, 3);
 
 
     for (size_t m = 0; m < 3; m++) {  // m loops over the components of the electrical dipole
 
+        // Get only the virtual-occupied dipole integrals
+        // FIXME: this code should be gone after the representation refactor
+        Matrix<double> mu_m (K, this->N_P);
+        mu_m.setZero();
+        for (size_t i = 0; i < this->N_P; i++) {
+            for (size_t a = this->N_P; a < K; a++) {
+                mu_m(a,i) = dipole_integrals[m](a,i);
+            }
+        }
+
         // mu_m is a KxK matrix representation of the m-th component of the electrical electron dipole moment
         // Put the virtual-occupied mu_m(a,i) elements into the response force vector
-        F_p.col(m) = dipole_integrals[m].pairWiseReduce(this->N_P, 0);
+        F_p.col(m) = mu_m.pairWiseReduce(this->N_P, 0);
     }
 
     return 4 * F_p;

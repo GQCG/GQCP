@@ -20,11 +20,7 @@
 
 
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
-<<<<<<< HEAD
-#include "math/Matrix.hpp"
-=======
 #include "Mathematical/Matrix.hpp"
->>>>>>> e0ba773e7a7d45aa569ecc2d133dee73a306c134
 #include "Operator/OneElectronOperator.hpp"
 
 #include <array>

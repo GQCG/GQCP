@@ -21,14 +21,9 @@
 
 #include "OrbitalOptimization/BaseOrbitalOptimizer.hpp"
 #include "OrbitalOptimization/OrbitalRotationGenerators.hpp"
-<<<<<<< HEAD
-#include "math/optimization/BaseHessianModifier.hpp"
-#include "math/SquareMatrix.hpp"
-#include "math/SquareRankFourTensor.hpp"
-=======
+#include "Mathematical/Optimization/BaseHessianModifier.hpp"
 #include "Mathematical/SquareMatrix.hpp"
 #include "Mathematical/SquareRankFourTensor.hpp"
->>>>>>> e0ba773e7a7d45aa569ecc2d133dee73a306c134
 
 #include <utility>
 

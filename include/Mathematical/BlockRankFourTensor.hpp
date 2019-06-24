@@ -119,8 +119,6 @@ public:
         const size_t index3_block = index3 - this->index3_start;  // the third index in the blocked tensor
         const size_t index4_block = index4 - this->index4_start;  // the fourth index in the blocked tensor
 
-        std::cout << index1_block << ", " << index2_block << ", " << index3_block << ", " << index4_block << std::endl;
-
         return this->T(index1_block,index2_block,index3_block,index4_block);
     }
 

@@ -195,10 +195,10 @@ size_t RHFLUMOIndex(size_t K, size_t N) {
  * 
  *  @return the RHF orbital Hessian as a tensor
  */
-SquareRankFourTensor<double> calculateRHFOrbitalHessianTensor(const HamiltonianParameters<double>& ham_par, const size_t N_P) {
+Tensor<double, 4> calculateRHFOrbitalHessianTensor(const HamiltonianParameters<double>& ham_par, const size_t N_P) {
 
     const auto K = ham_par.get_K();
-    SquareRankFourTensor<double> hessian (K);
+    Tensor<double, 4> hessian (K, N_P, K, N_P);
     hessian.setZero();
 
     for (size_t a = N_P; a < K; a++) {

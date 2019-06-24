@@ -71,10 +71,10 @@ AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer(const AP1roGGeminalCo
  *  In the case of this uncoupled AP1roG Jacobi orbital optimizer, we should solve the AP1roG PSEs at the start at every iteration, using the current orbitals
  */
 void AP1roGJacobiOrbitalOptimizer::prepareJacobiSpecificConvergenceChecking(const HamiltonianParameters<double>& ham_par) {
-    
+
     AP1roGPSEs pses (ham_par, this->N_P);
     AP1roGPSESolver pse_solver (pses);
-    pse_solver.solve(this->G);
+    this->G = pse_solver.solve(this->G);
     this->E = calculateAP1roGEnergy(this->G, ham_par);
 }
 

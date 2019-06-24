@@ -19,7 +19,7 @@
 #define GQCP_UNALTERINGHESSIANMODIFIER_HPP
 
 
-#include "math/optimization/BaseHessianModifier.hpp"
+#include "Mathematical/Optimization/BaseHessianModifier.hpp"
 
 
 namespace GQCP {
