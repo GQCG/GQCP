@@ -42,15 +42,33 @@ Vector<double, 3> calculateElectronicDipoleMoment(const std::array<OneElectronOp
  *  Calculate the electric polarizability from the linear wave function response
  * 
  *  @param F_p          the electric response force (d^2E/dFdp)
- *  @param response     the linear wave function response
+ *  @param x            the linear wave function response
  * 
  *  @return the components of the electric polarizability
  */
-Matrix<double, 3, 3> calculateElectricPolarizability(const Matrix<double, Dynamic, 3>& F_p, const Matrix<double, Dynamic, 3>& response) {
+Matrix<double, 3, 3> calculateElectricPolarizability(const Matrix<double, Dynamic, 3>& F_p, const Matrix<double, Dynamic, 3>& x) {
 
     // No explicit second-order partial perturbation derivative for electrical response
 
-    return - response.transpose() * F_p;  // minus sign because of definition of electric polarizability
+    return - (x.transpose() * F_p);  // minus sign because of definition of electric polarizability
+}
+
+
+/**
+ *  Calculate the electric polarizability from the linear wave function response and the linear multiplier response
+ * 
+ *  @param F_p              the electric parameter response force
+ *  @param x                the linear wave function response
+ *  @param A_lambda         the first part of the electric multiplier response force
+ *  @param y                the linear multiplier response
+ * 
+ *  @return the components of the electric polarizability
+ */
+Matrix<double, 3, 3> calculateElectricPolarizability(const Matrix<double, Dynamic, 3>& F_p, const Matrix<double, Dynamic, 3>& x, const Matrix<double, Dynamic, 3>& A_lambda, const Matrix<double, Dynamic, 3>& y) {
+
+    // No explicit second-order partial perturbation derivative for electrical response
+
+    return -(x.transpose() * A_lambda + y.transpose() * F_p);  // minus sign because of definition of electric polarizability
 }
 
 
