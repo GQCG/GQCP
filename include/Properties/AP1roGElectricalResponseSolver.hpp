@@ -21,11 +21,19 @@
 
 #include "Properties/BaseElectricalResponseSolver.hpp"
 
+#include "Geminals/AP1roGGeminalCoefficients.hpp"
+
 
 namespace GQCP {
 
 
 class AP1roGElectricalResponseSolver : public BaseElectricalResponseSolver {
+private:
+    size_t N_P;  // the number of electron pairs
+    AP1roGGeminalCoefficients G;  // the geminal coefficients
+    AP1roGVariables lambda;  // the multipliers
+
+
 public:
     // CONSTRUCTORS
 
@@ -52,26 +60,29 @@ public:
     /**
      *  @param ham_par                  the Hamiltonian parameters
      * 
-     *  @return the Lagrangian multiplier response constant (k_lambda), i.e. the first-order perturbation derivative of the PSEs
+     *  @return the Lagrangian multiplier response constant (k_lambda), i.e. the transpose of the parameter multiplier response constant
      */
     SquareMatrix<double> calculateMultiplierResponseConstant(const HamiltonianParameters<double>& ham_par) const;
 
     /**
+     *  @param ham_par                  the Hamiltonian parameters
      *  @param dipole_integrals         the dipole integrals in an orthonormal orbital basis
+     *  @param x                        the first-order parameter response
      * 
-     *  @return the Lagrangian multiplier response force (F_p)
+     *  @return the Lagrangian multiplier response force (F_lambda)
      */
-    Matrix<double, Dynamic, 3> calculateMultiplierResponseForce(const std::array<OneElectronOperator<double>, 3>& dipole_integrals) const;
+    Matrix<double, Dynamic, 3> calculateMultiplierResponseForce(const HamiltonianParameters<double>& ham_par, const std::array<OneElectronOperator<double>, 3>& dipole_integrals, const Matrix<double, Dynamic, 3>& x) const;
 
     /**
      *  Solve the linear response equations for the Lagrangian multiplier response
      * 
      *  @param ham_par                  the Hamiltonian parameters
      *  @param dipole_integrals         the dipole integrals in an orthonormal orbital basis
+     *  @param x                        the first-order parameter response
      * 
-     *  @return the Lagrangian multiplier
+     *  @return the Lagrangian multiplier reponse y
      */
-    Matrix<double, Dynamic, 3> calculateMultiplierResponse(const HamiltonianParameters<double>& ham_par, const std::array<OneElectronOperator<double>, 3>& dipole_integrals) const;
+    Matrix<double, Dynamic, 3> calculateMultiplierResponse(const HamiltonianParameters<double>& ham_par, const std::array<OneElectronOperator<double>, 3>& dipole_integrals, const Matrix<double, Dynamic, 3>& x) const;
 };
 
 

@@ -1,5 +1,6 @@
 target_sources(gqcp
         PRIVATE
+            AP1roGElectricalReponseSolver.cpp
             BaseElectricalResponseSolver.cpp
             CIElectricalResponseSolver.cpp
             expectation_values.cpp
