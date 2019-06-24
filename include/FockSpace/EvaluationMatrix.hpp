@@ -19,7 +19,7 @@
 #define GQCP_EVALUATIONMATRIX_HPP
 
 
-#include "math/SquareMatrix.hpp"
+#include "Mathematical/SquareMatrix.hpp"
 
 #include <Eigen/Sparse>
 

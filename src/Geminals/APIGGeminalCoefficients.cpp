@@ -17,7 +17,7 @@
 // 
 #include "Geminals/APIGGeminalCoefficients.hpp"
 
-#include "math/SquareMatrix.hpp"
+#include "Mathematical/SquareMatrix.hpp"
 #include "FockSpace/FockSpace.hpp"
 #include "utilities/miscellaneous.hpp"
 

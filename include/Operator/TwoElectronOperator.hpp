@@ -18,7 +18,7 @@
 #ifndef GQCP_TWOELECTRONOPERATOR_HPP
 #define GQCP_TWOELECTRONOPERATOR_HPP
 
-#include "math/ChemicalRankFourTensor.hpp"
+#include "Mathematical/ChemicalRankFourTensor.hpp"
 #include "Operator/Operator.hpp"
 
 #include "Operator/OneElectronOperator.hpp"

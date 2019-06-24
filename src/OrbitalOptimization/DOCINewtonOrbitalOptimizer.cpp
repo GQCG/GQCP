@@ -18,7 +18,7 @@
 #include "OrbitalOptimization/DOCINewtonOrbitalOptimizer.hpp"
 
 #include "CISolver/CISolver.hpp"
-#include "math/optimization/step.hpp"
+#include "Mathematical/Optimization/step.hpp"
 #include "RDM/RDMCalculator.hpp"
 #include "utilities/linalg.hpp"
 

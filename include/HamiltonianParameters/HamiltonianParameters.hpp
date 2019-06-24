@@ -465,7 +465,10 @@ public:
     }
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> e0ba773e7a7d45aa569ecc2d133dee73a306c134
     /*
      *  OTHER TRANSFORMATION FORMULAS
      */
@@ -525,7 +528,10 @@ public:
     }
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> e0ba773e7a7d45aa569ecc2d133dee73a306c134
     /*
      *  PUBLIC METHODS - CALCULATIONS OF ONE-ELECTRON OPERATORS
      */
@@ -698,9 +704,13 @@ public:
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> Implement inactive Fockian
+=======
+
+>>>>>>> e0ba773e7a7d45aa569ecc2d133dee73a306c134
     /*
      *  PUBLIC METHODS - CONSTRAINTS
      */

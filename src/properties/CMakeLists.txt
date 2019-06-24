@@ -1,9 +1,0 @@
-target_sources(gqcp
-        PRIVATE
-            AP1roGElectricalReponseSolver.cpp
-            BaseElectricalResponseSolver.cpp
-            DOCIElectricalResponseSolver.cpp
-            expectation_values.cpp
-            properties.cpp
-            RHFElectricalResponseSolver.cpp
-        )

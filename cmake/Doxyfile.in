@@ -798,7 +798,7 @@ INPUT      = "@CMAKE_SOURCE_DIR@/include" \
 			 "@CMAKE_SOURCE_DIR@/include/Geminals" \
 			 "@CMAKE_SOURCE_DIR@/include/HamiltonianBuilder" \
 			 "@CMAKE_SOURCE_DIR@/include/HamiltonianParameters" \
-			 "@CMAKE_SOURCE_DIR@/include/math" \
+			 "@CMAKE_SOURCE_DIR@/include/Mathematical" \
 			 "@CMAKE_SOURCE_DIR@/include/Operator" \
 			 "@CMAKE_SOURCE_DIR@/include/OrbitalOptimization" \
 			 "@CMAKE_SOURCE_DIR@/include/Properties" \
@@ -814,7 +814,7 @@ INPUT      = "@CMAKE_SOURCE_DIR@/include" \
 			 "@CMAKE_SOURCE_DIR@/src/Geminals" \
 			 "@CMAKE_SOURCE_DIR@/src/HamiltonianBuilder" \
 			 "@CMAKE_SOURCE_DIR@/src/HamiltonianParameters" \
-			 "@CMAKE_SOURCE_DIR@/src/math" \
+			 "@CMAKE_SOURCE_DIR@/src/Mathematical" \
 			 "@CMAKE_SOURCE_DIR@/src/OrbitalOptimization" \
 			 "@CMAKE_SOURCE_DIR@/src/Properties" \
 			 "@CMAKE_SOURCE_DIR@/src/RDM" \
