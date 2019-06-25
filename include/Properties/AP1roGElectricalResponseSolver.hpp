@@ -22,6 +22,7 @@
 #include "Properties/BaseElectricalResponseSolver.hpp"
 
 #include "Geminals/AP1roGGeminalCoefficients.hpp"
+#include "Mathematical/BlockRankFourTensor.hpp"
 
 
 namespace GQCP {
@@ -69,6 +70,20 @@ public:
      *  @return the Lagrangian multiplier response constant (k_lambda), i.e. the transpose of the parameter multiplier response constant
      */
     SquareMatrix<double> calculateMultiplierResponseConstant(const HamiltonianParameters<double>& ham_par) const;
+
+    /**
+     *  @param dipole_integrals         the dipole integrals in an orthonormal orbital basis
+     * 
+     *  @return the explicit (i.e. the first part of the) Lagrangian multiplier response force, A_lambda
+     */
+    Matrix<double, Dynamic, 3> calculateExplicitMultiplierResponseForce(const std::array<OneElectronOperator<double>, 3>& dipole_integrals) const;
+
+    /**
+     *  @param ham_par                  the Hamiltonian parameters
+     *
+     *  @return the multiplier force constant of the implicit part (i.e. the second part of the) Lagrangian multiplier response, B_lambda
+     */
+    BlockRankFourTensor<double> calculateImplicitMultiplierResponseForceConstant(const HamiltonianParameters<double>& ham_par) const;
 
     /**
      *  @param ham_par                  the Hamiltonian parameters

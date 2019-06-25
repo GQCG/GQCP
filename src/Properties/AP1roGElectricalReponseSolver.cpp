@@ -108,18 +108,14 @@ SquareMatrix<double> AP1roGElectricalResponseSolver::calculateMultiplierResponse
 
 
 /**
- *  @param ham_par                  the Hamiltonian parameters
  *  @param dipole_integrals         the dipole integrals in an orthonormal orbital basis
- *  @param x                        the first-order parameter response
  * 
- *  @return the Lagrangian multiplier response force (F_lambda)
+ *  @return the explicit (i.e. the first part of the) Lagrangian multiplier response force, A_lambda
  */
-Matrix<double, Dynamic, 3> AP1roGElectricalResponseSolver::calculateMultiplierResponseForce(const HamiltonianParameters<double>& ham_par, const std::array<OneElectronOperator<double>, 3>& dipole_integrals, const Matrix<double, Dynamic, 3>& x) const {
+Matrix<double, Dynamic, 3> AP1roGElectricalResponseSolver::calculateExplicitMultiplierResponseForce(const std::array<OneElectronOperator<double>, 3>& dipole_integrals) const {
 
     const auto K = dipole_integrals[0].get_K();
     const auto dim = this->G.numberOfGeminalCoefficients(this->N_P, K);
-    const auto& g = ham_par.get_g();
-
 
     // Calculate A_lambda by constructing its separate components
     Matrix<double, Dynamic, 3> A_lambda = Matrix<double, Dynamic, 3>::Zero(dim, 3);
@@ -140,11 +136,23 @@ Matrix<double, Dynamic, 3> AP1roGElectricalResponseSolver::calculateMultiplierRe
         A_lambda.col(m) = A_lambda_m.asVector();
     }
 
+    return A_lambda;
+}
 
 
-    // Calculate B_lambda
+/**
+ *  @param ham_par                  the Hamiltonian parameters
+ *
+ *  @return the multiplier force constant of the implicit part (i.e. the second part of the) Lagrangian multiplier response, B_lambda
+ */
+BlockRankFourTensor<double> AP1roGElectricalResponseSolver::calculateImplicitMultiplierResponseForceConstant(const HamiltonianParameters<double>& ham_par) const {
+
+    const auto K = ham_par.get_K();
+    const auto& g = ham_par.get_g();
+
     BlockRankFourTensor<double> B_lambda (0, this->N_P, this->N_P, K, 
                                           0, this->N_P, this->N_P, K);
+
     for (size_t i = 0; i < this->N_P; i++) {
         for (size_t a = this->N_P; a < K; a++) {
             for (size_t j = 0; j < this->N_P; j++) {
@@ -169,6 +177,21 @@ Matrix<double, Dynamic, 3> AP1roGElectricalResponseSolver::calculateMultiplierRe
         }
     }
 
+    return B_lambda;
+}
+
+
+/**
+ *  @param ham_par                  the Hamiltonian parameters
+ *  @param dipole_integrals         the dipole integrals in an orthonormal orbital basis
+ *  @param x                        the first-order parameter response
+ * 
+ *  @return the Lagrangian multiplier response force (F_lambda)
+ */
+Matrix<double, Dynamic, 3> AP1roGElectricalResponseSolver::calculateMultiplierResponseForce(const HamiltonianParameters<double>& ham_par, const std::array<OneElectronOperator<double>, 3>& dipole_integrals, const Matrix<double, Dynamic, 3>& x) const {
+
+    const auto A_lambda = this->calculateExplicitMultiplierResponseForce(dipole_integrals);
+    const auto B_lambda = this->calculateImplicitMultiplierResponseForceConstant(ham_par);
 
     // Calculate F_lambda as F_lambda = A_lambda + B_lambda x
     return A_lambda + B_lambda.asMatrix() * x;
