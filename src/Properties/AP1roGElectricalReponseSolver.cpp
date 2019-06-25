@@ -24,6 +24,22 @@ namespace GQCP {
 
 
 /*
+ *  CONSTRUCTORS
+ */
+
+/**
+ *  @param G            the converged geminal coefficients
+ *  @param lambda       the corresponding Lagrange multipliers
+ */
+AP1roGElectricalResponseSolver::AP1roGElectricalResponseSolver(const AP1roGGeminalCoefficients& G, const AP1roGVariables& lambda) :
+    N_P (G.get_N_P()),
+    G (G),
+    lambda (lambda)
+{}
+
+
+
+/*
  *  PUBLIC OVERRIDDEN METHODS
  */
 

@@ -37,6 +37,12 @@ private:
 public:
     // CONSTRUCTORS
 
+    /**
+     *  @param G            the converged geminal coefficients
+     *  @param lambda       the corresponding Lagrange multipliers
+     */
+    AP1roGElectricalResponseSolver(const AP1roGGeminalCoefficients& G, const AP1roGVariables& lambda);
+
 
     // PUBLIC OVERRIDDEN METHODS
 
