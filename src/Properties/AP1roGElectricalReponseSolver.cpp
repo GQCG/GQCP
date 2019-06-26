@@ -77,7 +77,7 @@ Matrix<double, Dynamic, 3> AP1roGElectricalResponseSolver::calculateParameterRes
         BlockMatrix<double> F_p_m (0, this->N_P, this->N_P, K);
         for (size_t i = 0; i < this->N_P; i++) {
             for (size_t a = this->N_P; a < K; a++) {
-                F_p(i,a) = 2 * (mu_m(i,i) - mu_m(a,a)) * this->G(i,a);
+                F_p_m(i,a) = 2 * (mu_m(i,i) - mu_m(a,a)) * this->G(i,a);
             }
         }
 
