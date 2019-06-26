@@ -10,4 +10,4 @@ target_sources(gqcp
             Tensor.hpp
         )
 
-add_subdirectory(optimization)
+add_subdirectory(Optimization)
