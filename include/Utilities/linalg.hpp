@@ -19,7 +19,7 @@
 #define GQCP_LINALG_HPP
 
 
-#include "math/Matrix.hpp"
+#include "Mathematical/Matrix.hpp"
 
 
 namespace GQCP {

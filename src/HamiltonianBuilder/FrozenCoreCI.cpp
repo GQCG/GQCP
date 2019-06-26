@@ -18,7 +18,7 @@
 #include "HamiltonianBuilder/FrozenCoreCI.hpp"
 #include "FockSpace/BaseFrozenCoreFockSpace.hpp"
 
-#include "utilities/linalg.hpp"
+#include "Utilities/linalg.hpp"
 #include <utility>
 
 

@@ -20,7 +20,7 @@
 
 
 #include "typedefs.hpp"
-#include "math/Matrix.hpp"
+#include "Mathematical/Matrix.hpp"
 
 
 

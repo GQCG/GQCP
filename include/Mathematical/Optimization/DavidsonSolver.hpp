@@ -19,10 +19,10 @@
 #define GQCP_DAVIDSONSOLVER_HPP
 
 
-#include "math/optimization/BaseEigenproblemSolver.hpp"
-#include "math/optimization/EigenproblemSolverOptions.hpp"
+#include "Mathematical/Optimization/BaseEigenproblemSolver.hpp"
+#include "Mathematical/Optimization/EigenproblemSolverOptions.hpp"
 
-#include "math/SquareMatrix.hpp"
+#include "Mathematical/SquareMatrix.hpp"
 
 #include "typedefs.hpp"
 

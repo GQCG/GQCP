@@ -18,7 +18,7 @@
 #include "OrbitalOptimization/DOCINewtonOrbitalOptimizer.hpp"
 #include "OrbitalOptimization/Localization/ERNewtonLocalizer.hpp"
 #include "OrbitalOptimization/Localization/ERJacobiLocalizer.hpp"
-#include "math/optimization/IterativeIdentitiesHessianModifier.hpp"
+#include "Mathematical/Optimization/IterativeIdentitiesHessianModifier.hpp"
 
 
 /**

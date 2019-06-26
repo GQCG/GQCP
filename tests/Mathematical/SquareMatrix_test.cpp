@@ -19,7 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "math/SquareMatrix.hpp"
+#include "Mathematical/SquareMatrix.hpp"
 
 #include <boost/math/constants/constants.hpp>
 

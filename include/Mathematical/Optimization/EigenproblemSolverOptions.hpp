@@ -19,7 +19,7 @@
 #define GQCP_EIGENPROBLEMSOLVEROPTIONS_HPP
 
 
-#include "math/Matrix.hpp"
+#include "Mathematical/Matrix.hpp"
 
 #include <cstddef>
 #include <utility>

@@ -19,9 +19,9 @@
 #define SquareMatrix_hpp
 
 
-#include "math/Matrix.hpp"
+#include "Mathematical/Matrix.hpp"
 
-#include "utilities/miscellaneous.hpp"
+#include "Utilities/miscellaneous.hpp"
 #include "OrbitalOptimization/JacobiRotationParameters.hpp"
 
 #include <numeric>

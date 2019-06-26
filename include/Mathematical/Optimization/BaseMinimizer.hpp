@@ -19,7 +19,7 @@
 #define GQCP_BASEMINIMIZER_HPP
 
 
-#include "math/Matrix.hpp"
+#include "Mathematical/Matrix.hpp"
 
 
 namespace GQCP {

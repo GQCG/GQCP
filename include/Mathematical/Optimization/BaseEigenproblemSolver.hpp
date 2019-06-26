@@ -19,8 +19,8 @@
 #define GQCP_BASEEIGENPROBLEMSOLVER_HPP
 
 
-#include "math/optimization/Eigenpair.hpp"
-#include "math/Matrix.hpp"
+#include "Mathematical/Optimization/Eigenpair.hpp"
+#include "Mathematical/Matrix.hpp"
 
 
 #include <cstddef>

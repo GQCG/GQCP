@@ -19,7 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "properties/expectation_values.hpp"
+#include "Properties/expectation_values.hpp"
 
 #include "RDM/RDMCalculator.hpp"
 #include "CISolver/CISolver.hpp"

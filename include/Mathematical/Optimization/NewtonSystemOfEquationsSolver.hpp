@@ -19,8 +19,8 @@
 #define GQCP_NEWTONSYSTEMOFEQUATIONSSOLVER_HPP
 
 
-#include "math/optimization/BaseSystemOfEquationsSolver.hpp"
-#include "math/Matrix.hpp"
+#include "Mathematical/Optimization/BaseSystemOfEquationsSolver.hpp"
+#include "Mathematical/Matrix.hpp"
 #include "typedefs.hpp"
 
 

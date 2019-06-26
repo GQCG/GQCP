@@ -19,7 +19,7 @@
 #define GQCP_ORBITALROTATIONGENERATORS_HPP
 
 
-#include "math/SquareMatrix.hpp"
+#include "Mathematical/SquareMatrix.hpp"
 
 
 namespace GQCP {

@@ -20,9 +20,9 @@
 
 
 
-#include "math/optimization/BaseMatrixSolver.hpp"
-#include "math/optimization/EigenproblemSolverOptions.hpp"
-#include "math/SquareMatrix.hpp"
+#include "Mathematical/Optimization/BaseMatrixSolver.hpp"
+#include "Mathematical/Optimization/EigenproblemSolverOptions.hpp"
+#include "Mathematical/SquareMatrix.hpp"
 
 
 

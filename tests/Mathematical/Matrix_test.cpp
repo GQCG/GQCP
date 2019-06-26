@@ -19,7 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "math/Matrix.hpp"
+#include "Mathematical/Matrix.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( constructor_assignment ) {

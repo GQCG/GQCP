@@ -19,8 +19,8 @@
 #define ChemicalRankFourTensor_hpp
 
 
-#include "math/SquareRankFourTensor.hpp"
-#include "math/SquareMatrix.hpp"
+#include "Mathematical/SquareRankFourTensor.hpp"
+#include "Mathematical/SquareMatrix.hpp"
 
 #include <iostream>
 

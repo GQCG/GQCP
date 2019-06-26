@@ -22,7 +22,7 @@
 #include <iostream>
 #include <stdlib.h>
 
-#include "math/Matrix.hpp"
+#include "Mathematical/Matrix.hpp"
 
 
 namespace GQCP {

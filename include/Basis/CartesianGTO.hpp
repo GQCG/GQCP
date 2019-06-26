@@ -19,8 +19,8 @@
 #define CartesianGTO_hpp
 
 
-#include "math/ScalarFunction.hpp"
-#include "math/LinearCombination.hpp"
+#include "Mathematical/ScalarFunction.hpp"
+#include "Mathematical/LinearCombination.hpp"
 #include "Basis/CartesianExponents.hpp"
 #include "CartesianDirection.hpp"
 

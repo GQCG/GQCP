@@ -24,7 +24,7 @@
 #include "CISolver/CISolver.hpp"
 #include "RDM/RDMCalculator.hpp"
 #include "HamiltonianBuilder/FCI.hpp"
-#include "properties/expectation_values.hpp"
+#include "Properties/expectation_values.hpp"
 #include "units.hpp"
 
 

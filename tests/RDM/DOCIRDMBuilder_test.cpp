@@ -23,7 +23,7 @@
 #include "CISolver/CISolver.hpp"
 #include "HamiltonianBuilder/DOCI.hpp"
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
-#include "properties/expectation_values.hpp"
+#include "Properties/expectation_values.hpp"
 
 
 

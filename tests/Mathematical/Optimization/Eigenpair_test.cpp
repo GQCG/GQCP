@@ -20,7 +20,7 @@
 #include <boost/test/unit_test.hpp>
 
 
-#include "math/optimization/Eigenpair.hpp"
+#include "Mathematical/Optimization/Eigenpair.hpp"
 
 
 

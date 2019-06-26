@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "properties/expectation_values.hpp"
+#include "Properties/expectation_values.hpp"
 
 
 namespace GQCP {

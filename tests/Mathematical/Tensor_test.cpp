@@ -19,7 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "math/Tensor.hpp"
+#include "Mathematical/Tensor.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( constructor_assignment ) {

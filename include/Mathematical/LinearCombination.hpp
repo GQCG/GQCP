@@ -19,7 +19,7 @@
 #define LinearCombination_hpp
 
 
-#include "math/ScalarFunction.hpp"
+#include "Mathematical/ScalarFunction.hpp"
 
 #include <vector>
 

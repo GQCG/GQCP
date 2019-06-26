@@ -1,4 +1,4 @@
-#include "math/optimization/IterativeIdentitiesHessianModifier.hpp"
+#include "Mathematical/Optimization/IterativeIdentitiesHessianModifier.hpp"
 
 #include "Eigen/Cholesky"
 

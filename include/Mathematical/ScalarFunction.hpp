@@ -23,7 +23,7 @@
  *  This file contains the source code for both ScalarFunctionProduct and ScalarFunction
  */
 
-#include "math/Matrix.hpp"
+#include "Mathematical/Matrix.hpp"
 
 
 namespace GQCP {

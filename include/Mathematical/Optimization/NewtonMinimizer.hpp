@@ -19,7 +19,7 @@
 #define GQCP_NEWTONMINIMIZER_HPP
 
 
-#include "math/optimization/BaseMinimizer.hpp"
+#include "Mathematical/Optimization/BaseMinimizer.hpp"
 #include "typedefs.hpp"
 
 

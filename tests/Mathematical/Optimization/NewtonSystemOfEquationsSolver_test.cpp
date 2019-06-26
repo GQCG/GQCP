@@ -19,8 +19,8 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "math/optimization/NewtonSystemOfEquationsSolver.hpp"
-#include "math/SquareMatrix.hpp"
+#include "Mathematical/Optimization/NewtonSystemOfEquationsSolver.hpp"
+#include "Mathematical/SquareMatrix.hpp"
 
 
 /*

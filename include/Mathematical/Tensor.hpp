@@ -19,7 +19,7 @@
 #define Tensor_h
 
 #include "typedefs.hpp"
-#include "math/Matrix.hpp"
+#include "Mathematical/Matrix.hpp"
 
 #include <unsupported/Eigen/CXX11/Tensor>
 

@@ -19,7 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "utilities/miscellaneous.hpp"
+#include "Utilities/miscellaneous.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( gray_code ) {

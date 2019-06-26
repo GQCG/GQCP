@@ -23,7 +23,7 @@
 
 #include "RHF/PlainRHFSCFSolver.hpp"
 #include "Geminals/AP1roGLagrangianOptimizer.hpp"
-#include "math/optimization/IterativeIdentitiesHessianModifier.hpp"
+#include "Mathematical/Optimization/IterativeIdentitiesHessianModifier.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( lih_6_31G_orbital_optimize ) {

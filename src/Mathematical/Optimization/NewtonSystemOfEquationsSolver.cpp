@@ -15,9 +15,9 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "math/optimization/NewtonSystemOfEquationsSolver.hpp"
+#include "Mathematical/Optimization/NewtonSystemOfEquationsSolver.hpp"
 
-#include "math/optimization/step.hpp"
+#include "Mathematical/Optimization/step.hpp"
 
 #include <iostream>
 

@@ -19,12 +19,12 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "math/optimization/SparseSolver.hpp"
+#include "Mathematical/Optimization/SparseSolver.hpp"
 
 #include "Spectra/SymEigsSolver.h"
 #include "Spectra/MatOp/SparseSymMatProd.h"
 
-#include "utilities/linalg.hpp"
+#include "Utilities/linalg.hpp"
 
 #include <random>
 

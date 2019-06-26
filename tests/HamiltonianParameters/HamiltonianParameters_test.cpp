@@ -22,9 +22,9 @@
 
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 
-#include "utilities/miscellaneous.hpp"
+#include "Utilities/miscellaneous.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
-#include "utilities/linalg.hpp"
+#include "Utilities/linalg.hpp"
 
 
 

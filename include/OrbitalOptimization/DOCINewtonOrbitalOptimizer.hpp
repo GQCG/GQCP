@@ -21,8 +21,8 @@
 #include "OrbitalOptimization/QCMethodNewtonOrbitalOptimizer.hpp"
 
 #include "HamiltonianBuilder/DOCI.hpp"
-#include "math/optimization/Eigenpair.hpp"
-#include "math/optimization/EigenproblemSolverOptions.hpp"
+#include "Mathematical/Optimization/Eigenpair.hpp"
+#include "Mathematical/Optimization/EigenproblemSolverOptions.hpp"
 #include "RDM/RDMCalculator.hpp"
 #include "WaveFunction/WaveFunction.hpp"
 

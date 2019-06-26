@@ -19,7 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "math/SquareRankFourTensor.hpp"
+#include "Mathematical/SquareRankFourTensor.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( square_constructor ) {

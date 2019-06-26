@@ -19,8 +19,8 @@
 #define SquareRankFourTensor_hpp
 
 
-#include "math/Tensor.hpp"
-#include "math/SquareMatrix.hpp"
+#include "Mathematical/Tensor.hpp"
+#include "Mathematical/SquareMatrix.hpp"
 
 #include <iostream>
 

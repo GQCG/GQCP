@@ -19,7 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "math/ScalarFunction.hpp"
+#include "Mathematical/ScalarFunction.hpp"
 
 #include "Basis/CartesianGTO.hpp"
 

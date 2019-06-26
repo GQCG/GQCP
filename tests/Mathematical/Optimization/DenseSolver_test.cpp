@@ -20,9 +20,9 @@
 #include <boost/test/unit_test.hpp>
 
 
-#include "math/optimization/DenseSolver.hpp"
+#include "Mathematical/Optimization/DenseSolver.hpp"
 
-#include "utilities/linalg.hpp"
+#include "Utilities/linalg.hpp"
 
 
 

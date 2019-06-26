@@ -22,7 +22,7 @@
 #include "OrbitalOptimization/Localization/ERNewtonLocalizer.hpp"
 
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
-#include "math/optimization/IterativeIdentitiesHessianModifier.hpp"
+#include "Mathematical/Optimization/IterativeIdentitiesHessianModifier.hpp"
 
 
 

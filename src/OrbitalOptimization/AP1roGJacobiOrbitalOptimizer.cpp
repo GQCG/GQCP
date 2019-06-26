@@ -19,7 +19,7 @@
 
 #include "Geminals/AP1roG.hpp"
 #include "Geminals/AP1roGPSESolver.hpp"
-#include "math/optimization/NewtonMinimizer.hpp"
+#include "Mathematical/Optimization/NewtonMinimizer.hpp"
 
 #include <boost/math/constants/constants.hpp>
 

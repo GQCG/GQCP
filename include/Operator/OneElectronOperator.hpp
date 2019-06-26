@@ -18,10 +18,10 @@
 #ifndef GQCP_ONEELECTRONOPERATOR_HPP
 #define GQCP_ONEELECTRONOPERATOR_HPP
 
-#include "math/ChemicalMatrix.hpp"
+#include "Mathematical/ChemicalMatrix.hpp"
 #include "Operator.hpp"
 
-#include "math/ScalarFunction.hpp"
+#include "Mathematical/ScalarFunction.hpp"
 #include "OrbitalOptimization/JacobiRotationParameters.hpp"
 
 

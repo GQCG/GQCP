@@ -22,8 +22,8 @@
 
 #include <Eigen/Sparse>
 
-#include "math/optimization/BaseMatrixSolver.hpp"
-#include "math/optimization/EigenproblemSolverOptions.hpp"
+#include "Mathematical/Optimization/BaseMatrixSolver.hpp"
+#include "Mathematical/Optimization/EigenproblemSolverOptions.hpp"
 
 
 
