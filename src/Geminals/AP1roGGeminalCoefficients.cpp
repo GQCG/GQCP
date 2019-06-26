@@ -19,7 +19,7 @@
 
 #include "Geminals/APIGGeminalCoefficients.hpp"
 #include "FockSpace/FockSpace.hpp"
-#include "utilities/miscellaneous.hpp"
+#include "Utilities/miscellaneous.hpp"
 
 
 namespace GQCP {

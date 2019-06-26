@@ -23,7 +23,7 @@
 
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "HamiltonianBuilder/FCI.hpp"
-#include "math/optimization/IterativeIdentitiesHessianModifier.hpp"
+#include "Mathematical/Optimization/IterativeIdentitiesHessianModifier.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
 #include "RDM/FCIRDMBuilder.hpp"
 #include "CISolver/CISolver.hpp"

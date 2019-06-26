@@ -17,7 +17,7 @@
 // 
 #include "Geminals/AP1roGVariables.hpp"
 
-#include "utilities/miscellaneous.hpp"
+#include "Utilities/miscellaneous.hpp"
 
 
 namespace GQCP {

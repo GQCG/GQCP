@@ -18,7 +18,7 @@
 #include "Basis/Shell.hpp"
 
 #include "Basis/CartesianGTO.hpp"
-#include "utilities/miscellaneous.hpp"
+#include "Utilities/miscellaneous.hpp"
 
 #include <algorithm>
 

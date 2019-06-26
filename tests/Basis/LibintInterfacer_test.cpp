@@ -21,7 +21,7 @@
 
 #include "Basis/LibintInterfacer.hpp"
 
-#include "utilities/linalg.hpp"
+#include "Utilities/linalg.hpp"
 
 
 /*

@@ -22,7 +22,7 @@
 #include "RHF/DIISRHFSCFSolver.hpp"
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 
-#include "utilities/linalg.hpp"
+#include "Utilities/linalg.hpp"
 
 
 

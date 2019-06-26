@@ -31,7 +31,7 @@
 #include "HamiltonianBuilder/DOCI.hpp"
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 
-#include "utilities/linalg.hpp"
+#include "Utilities/linalg.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( one_rdms_fci_H2_6_31G ) {

@@ -17,9 +17,9 @@
 // 
 #include "Geminals/APIGGeminalCoefficients.hpp"
 
-#include "math/SquareMatrix.hpp"
+#include "Mathematical/SquareMatrix.hpp"
 #include "FockSpace/FockSpace.hpp"
-#include "utilities/miscellaneous.hpp"
+#include "Utilities/miscellaneous.hpp"
 
 
 namespace GQCP {

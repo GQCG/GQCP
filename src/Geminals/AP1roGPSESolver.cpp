@@ -18,7 +18,7 @@
 #include "Geminals/AP1roGPSESolver.hpp"
 
 #include "Geminals/AP1roG.hpp"
-#include "math/optimization/NewtonSystemOfEquationsSolver.hpp"
+#include "Mathematical/Optimization/NewtonSystemOfEquationsSolver.hpp"
 
 
 namespace GQCP {
