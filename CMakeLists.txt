@@ -12,6 +12,7 @@ option(BUILD_TESTS "Build tests" OFF)
 option(BUILD_DOCS "Build the documentation using Doxygen" OFF)
 option(BUILD_BENCHMARKS "Build benchmarks executables" OFF)
 option(BUILD_DRIVERS "Build standard drivers" OFF)
+option(BUILD_PYTHON_BINDINGS "Build the Python bindings" OFF)
 option(EIGEN_USE_MKL "Eigen uses MKL" OFF)
 
 
@@ -41,6 +42,10 @@ endif()
 
 if (BUILD_BENCHMARKS)
     find_package(benchmark REQUIRED)
+endif()
+
+if(BUILD_PYTHON_BINDINGS)
+    find_package(pybind11)
 endif()
 
 
@@ -141,6 +146,15 @@ install(EXPORT gqcp-targets
         NAMESPACE gqcp::
         DESTINATION cmake
         )
+
+if(BUILD_PYTHON_BINDINGS)
+    install(TARGETS gqcpy
+            COMPONENT python
+            RUNTIME DESTINATION bin
+            LIBRARY DESTINATION lib
+            ARCHIVE DESTINATION lib
+            )
+endif()
 
 # Configure package
 # -----------------
