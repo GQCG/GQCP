@@ -10,6 +10,7 @@ target_sources(gqcp
 
 add_subdirectory(Basis)
 add_subdirectory(CISolver)
+add_subdirectory(Drivers)
 add_subdirectory(FockSpace)
 add_subdirectory(Geminals)
 add_subdirectory(HamiltonianBuilder)
