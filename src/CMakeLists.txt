@@ -20,3 +20,7 @@ add_subdirectory(RDM)
 add_subdirectory(RHF)
 add_subdirectory(Utilities)
 add_subdirectory(WaveFunction)
+
+if(BUILD_PYTHON_BINDINGS)
+    add_subdirectory(Bindings)
+endif()
