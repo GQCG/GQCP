@@ -24,22 +24,21 @@
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "CISolver/CISolver.hpp"
 #include "HamiltonianBuilder/Hubbard.hpp"
+#include "RDM/RDMCalculator.hpp"
 
 namespace GQCP {
     class HubbardDriver {
     private:
-        std::string csline;
-        size_t num_states;
-        size_t num_alpha;
-        size_t num_beta;
-        size_t K;
-        std::vector<double> energies;
+        std::shared_ptr<GQCP::ProductFockSpace> fock_space;
+        std::shared_ptr<GQCP::Hubbard> hubbard;
+        std::shared_ptr<GQCP::CISolver> solver;
+        GQCP::DenseSolverOptions dense_solver_options;
 
     public:
         HubbardDriver(std::string csline, size_t num_states, size_t num_alpha, size_t num_beta, size_t K);
 
-        std::vector<double> get_energies() {
-            return this->energies;
-        }
+        std::vector<double> get_energies();
+
+        std::vector<double> get_first_order_rdm();
     };
 }
