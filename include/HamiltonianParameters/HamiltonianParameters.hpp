@@ -19,6 +19,8 @@
 #define GQCP_HAMILTONIANPARAMETERS_HPP
 
 #include "HamiltonianParameters/BaseHamiltonianParameters.hpp"
+#include "Operator/BaseOperator.hpp"
+
 #include "HoppingMatrix.hpp"
 #include "Molecule/Molecule.hpp"
 #include "Operator/OneElectronOperator.hpp"
@@ -41,7 +43,7 @@ namespace GQCP {
  *  @tparam Scalar      the scalar type
  */
 template<typename Scalar>
-class HamiltonianParameters : public BaseHamiltonianParameters, public Operator<HamiltonianParameters<Scalar>> {
+class HamiltonianParameters : public BaseHamiltonianParameters, public BaseOperator<HamiltonianParameters<Scalar>> {
 private:
     size_t K;  // the number of spatial orbitals
 
@@ -420,7 +422,7 @@ public:
     }
 
 
-    using Operator<HamiltonianParameters<Scalar>>::rotate;  // bring over rotate() from the base class
+    using BaseOperator<HamiltonianParameters<Scalar>>::rotate;  // bring over rotate() from the base class
 
 
     /**
