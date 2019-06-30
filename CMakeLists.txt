@@ -45,7 +45,8 @@ if (BUILD_BENCHMARKS)
 endif()
 
 if(BUILD_PYTHON_BINDINGS)
-    find_package(pybind11)
+    find_package(pybind11 REQUIRED)
+    set(python_bindings_sources)
 endif()
 
 
@@ -91,6 +92,19 @@ if (EIGEN_USE_MKL)
     target_include_directories(gqcp PUBLIC $<BUILD_INTERFACE:${BLAS_INCLUDE_DIR}>)
     target_link_libraries(gqcp PUBLIC ${BLAS_LIBRARIES})
     target_compile_options(gqcp PUBLIC -DEIGEN_USE_MKL_ALL -DMKL_LP64)
+endif()
+
+# Setup Python Bindings
+# ---------------------
+
+if(BUILD_PYTHON_BINDINGS)
+    pybind11_add_module(gqcpy MODULE ${python_bindings_sources})
+    target_link_libraries(gqcpy PUBLIC gqcp)
+    set_target_properties(gqcpy PROPERTIES
+            SUFFIX ".so"
+            LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/gqcpy")
+    configure_file(src/Bindings/__init__.py ${CMAKE_BINARY_DIR}/gqcpy/__init__.py)
+    configure_file(src/Bindings/setup.py ${CMAKE_BINARY_DIR}/gqcpy/setup.py)
 endif()
 
 
@@ -146,15 +160,6 @@ install(EXPORT gqcp-targets
         NAMESPACE gqcp::
         DESTINATION cmake
         )
-
-if(BUILD_PYTHON_BINDINGS)
-    install(TARGETS gqcpy
-            COMPONENT python
-            RUNTIME DESTINATION bin
-            LIBRARY DESTINATION lib
-            ARCHIVE DESTINATION lib
-            )
-endif()
 
 # Configure package
 # -----------------
