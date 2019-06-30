@@ -103,9 +103,9 @@ if(BUILD_PYTHON_BINDINGS)
     target_link_libraries(gqcpy PUBLIC gqcp)
     set_target_properties(gqcpy PROPERTIES
             SUFFIX ".so"
-            LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/gqcpy")
-    configure_file(src/Bindings/__init__.py ${CMAKE_BINARY_DIR}/gqcpy/__init__.py)
-    configure_file(src/Bindings/setup.py ${CMAKE_BINARY_DIR}/gqcpy/setup.py)
+            LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}")
+    configure_file(src/Bindings/__init__.py ${CMAKE_BINARY_DIR}/__init__.py)
+    configure_file(src/Bindings/setup.py ${CMAKE_BINARY_DIR}/setup.py)
 endif()
 
 
@@ -193,5 +193,5 @@ install(
 # -----------------------
 
 if(BUILD_PYTHON_BINDINGS)
-    install(CODE "execute_process(COMMAND ${PYTHON_EXECUTABLE} \"\${CMAKE_BINARY_DIR}/gqcpy/setup.py\" install)")
+    install(CODE "execute_process(COMMAND ${PYTHON_EXECUTABLE} \"\${CMAKE_BINARY_DIR}/setup.py\" install)")
 endif()
