@@ -23,4 +23,5 @@ add_subdirectory(WaveFunction)
 
 if(BUILD_PYTHON_BINDINGS)
     add_subdirectory(Bindings)
+    set(python_bindings_sources ${python_bindings_sources} PARENT_SCOPE)
 endif()

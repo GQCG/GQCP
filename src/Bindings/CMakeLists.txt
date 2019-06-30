@@ -1,2 +1,6 @@
-pybind11_add_module(gqcpy MODULE bindings.cpp)
-target_link_libraries(gqcpy PUBLIC gqcp)
+
+list(APPEND python_bindings_sources
+        ${CMAKE_CURRENT_SOURCE_DIR}/bindings.cpp
+        )
+
+set(python_bindings_sources ${python_bindings_sources} PARENT_SCOPE)
