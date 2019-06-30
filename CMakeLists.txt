@@ -193,6 +193,5 @@ install(
 # -----------------------
 
 if(BUILD_PYTHON_BINDINGS)
-    install(CODE
-            "execute_process(COMMAND \"\${PYTHON_EXECUTABLE}\" \"\${CMAKE_BINARY_DIR}/gqcpy/setup.py\" install)")
+    install(CODE "execute_process(COMMAND ${PYTHON_EXECUTABLE} \"\${CMAKE_BINARY_DIR}/gqcpy/setup.py\" install)")
 endif()
