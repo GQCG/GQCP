@@ -45,6 +45,7 @@ if (BUILD_BENCHMARKS)
 endif()
 
 if(BUILD_PYTHON_BINDINGS)
+    find_package(PythonInterp 3 REQUIRED)
     find_package(pybind11 REQUIRED)
     set(python_bindings_sources)
 endif()
@@ -187,3 +188,11 @@ install(
         ${CMAKE_SOURCE_DIR}/cmake/FindSpectra.cmake
         DESTINATION cmake
 )
+
+# Install Python bindings
+# -----------------------
+
+if(BUILD_PYTHON_BINDINGS)
+    install(CODE
+            "execute_process(COMMAND \"\${PYTHON_EXECUTABLE}\" \"\${CMAKE_BINARY_DIR}/gqcpy/setup.py\" install)")
+endif()
