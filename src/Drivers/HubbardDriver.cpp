@@ -2,12 +2,7 @@
 
 namespace GQCP {
 
-    HubbardDriver::HubbardDriver(std::string csline, size_t num_states, size_t num_alpha, size_t num_beta, size_t K) :
-    csline (csline),
-    num_states(num_states),
-    num_alpha(num_alpha),
-    num_beta(num_beta),
-    K(K) {
+    HubbardDriver::HubbardDriver(std::string csline, size_t num_states, size_t num_alpha, size_t num_beta, size_t K) {
 
         std::string triagonal_line = csline;
 
@@ -37,14 +32,25 @@ namespace GQCP {
 
 
         // Initialize and solve the Hubbard eigenvalue problem
-        GQCP::ProductFockSpace fock_space(K, num_alpha, num_beta);
-        GQCP::Hubbard hubbard(fock_space);
-        GQCP::CISolver solver(hubbard, ham_par);
-        GQCP::DenseSolverOptions dense_solver_options;
-        dense_solver_options.number_of_requested_eigenpairs = num_states;
-        solver.solve(dense_solver_options);
-        for (const GQCP::Eigenpair &eigenpair : solver.get_eigenpairs()) {
-            this->energies.push_back(eigenpair.get_eigenvalue());
-        }
+        this->fock_space = std::make_shared<GQCP::ProductFockSpace>(K, num_alpha, num_beta);
+        this->hubbard = std::make_shared<GQCP::Hubbard>(*(this->fock_space));
+        this->solver = std::make_shared<GQCP::CISolver>(*(this->hubbard), ham_par);
+        this->dense_solver_options.number_of_requested_eigenpairs = num_states;
+        this->solver->solve(this->dense_solver_options);
     }
+
+    std::vector<double> GQCP::HubbardDriver::get_energies() {
+        std::vector<double> energies;
+        for (const GQCP::Eigenpair &eigenpair : this->solver->get_eigenpairs()) {
+            energies.push_back(eigenpair.get_eigenvalue());
+        }
+        return energies;
+    }
+
+/*    std::vector<double> HubbardDriver::get_first_order_rdm() {
+        GQCP::RDMCalculator rdm_calculator(*(this->fock_space));
+
+        rdm_calculator.set_coefficients(eigenpair.get_eigenvector());
+
+    }*/
 }
