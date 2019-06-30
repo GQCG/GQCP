@@ -39,6 +39,6 @@ namespace GQCP {
 
         std::vector<double> get_energies();
 
-        std::vector<double> get_first_order_rdm();
+        std::vector<Eigen::MatrixXd> get_first_order_rdms();
     };
 }

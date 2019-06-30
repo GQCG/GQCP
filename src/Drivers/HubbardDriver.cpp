@@ -47,10 +47,13 @@ namespace GQCP {
         return energies;
     }
 
-/*    std::vector<double> HubbardDriver::get_first_order_rdm() {
-        GQCP::RDMCalculator rdm_calculator(*(this->fock_space));
-
-        rdm_calculator.set_coefficients(eigenpair.get_eigenvector());
-
-    }*/
+    std::vector<Eigen::MatrixXd> GQCP::HubbardDriver::get_first_order_rdms() {
+        std::vector<Eigen::MatrixXd> rdms;
+        for (const GQCP::Eigenpair &eigenpair : this->solver->get_eigenpairs()) {
+            GQCP::RDMCalculator rdm_calculator(*(this->fock_space));
+            rdm_calculator.set_coefficients(eigenpair.get_eigenvector());
+            rdms.push_back(static_cast<Eigen::MatrixXd>(rdm_calculator.calculate1RDMs().one_rdm));
+        }
+        return rdms;
+    }
 }
