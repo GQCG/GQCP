@@ -17,6 +17,6 @@ PYBIND11_MODULE(gqcpy, m) {
 
     py::class_<GQCP::HubbardDriver>(m, "HubbardDriver")
             .def(py::init<std::string, size_t, size_t, size_t, size_t>())
-            .def("get_energies", &GQCP::HubbardDriver::get_energies);
-
+            .def("get_energies", &GQCP::HubbardDriver::get_energies)
+            .def("get_first_order_rdms", &GQCP::HubbardDriver::get_first_order_rdms);
 }
