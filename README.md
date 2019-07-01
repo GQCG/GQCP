@@ -103,6 +103,8 @@ In general, please set and pass the following options to the `cmake ..` command:
     * the compiled library will be installed in `prefix/lib`
     * drivers (optional) and benchmarks (optional) will be installed in `prefix/bin`
     * CMake target files will be installed in `prefix/cmake`
+    
+    We note that setting `CMAKE_INSTALL_PREFIX=~/.local` is preferred as this is also makes sure that the installed Python modules can be found automatically.
 
 For this library, there are several extra options you can pass to the `cmake ..` command:
 
