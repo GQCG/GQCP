@@ -2,6 +2,11 @@ cmake_minimum_required(VERSION 3.13 FATAL_ERROR)
 project(gqcp VERSION 0.2.0 LANGUAGES CXX)
 string(TOUPPER ${PROJECT_NAME} PROJECT_NAME_UPPERCASE)
 
+# Improved handling of RPATH settings
+# https://stackoverflow.com/questions/30398238/cmake-rpath-not-working-could-not-find-shared-object-file
+set(CMAKE_INSTALL_RPATH ${CMAKE_INSTALL_PREFIX}/lib)
+set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)  # make CMake look into the ./cmake/ folder for configuration files
 
 add_library(gqcp SHARED "")
@@ -103,9 +108,9 @@ if(BUILD_PYTHON_BINDINGS)
     target_link_libraries(gqcpy PUBLIC gqcp)
     set_target_properties(gqcpy PROPERTIES
             SUFFIX ".so"
-            LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}")
-    configure_file(src/Bindings/__init__.py ${CMAKE_BINARY_DIR}/__init__.py)
-    configure_file(src/Bindings/setup.py ${CMAKE_BINARY_DIR}/setup.py)
+            LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/gqcpy")
+    configure_file(src/Bindings/__init__.py ${CMAKE_BINARY_DIR}/gqcpy/__init__.py)
+    configure_file(src/Bindings/setup.py ${CMAKE_BINARY_DIR}/gqcpy/setup.py)
 endif()
 
 
@@ -193,5 +198,5 @@ install(
 # -----------------------
 
 if(BUILD_PYTHON_BINDINGS)
-    install(CODE "execute_process(COMMAND ${PYTHON_EXECUTABLE} \"\${CMAKE_BINARY_DIR}/setup.py\" install)")
+    install(CODE "execute_process(COMMAND ${PYTHON_EXECUTABLE} \"\${CMAKE_BINARY_DIR}/gqcpy/setup.py\" install --force)")
 endif()
