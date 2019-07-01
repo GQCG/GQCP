@@ -22,7 +22,48 @@ namespace GQCP {
 
 
 /*
- *  PUBLIC STATIC METHODS
+ *  NUCLEAR REPULSION OPERATOR - PUBLIC METHODS
+ */
+
+/**
+ *  @return the scalar value of this nuclear repulsion operator
+ */
+double NuclearRepulsionOperator::value() const {
+
+    double value {0.0};
+
+    // // Sum over every unique nucleus pair
+    // auto natoms = this->numberOfAtoms();
+    // for (size_t i = 0; i < natoms; i++) {
+    //     for (size_t j = i + 1; j < natoms; j++ ) {
+    //         const auto atom1 = this->atoms[i];
+    //         const auto atom2 = this->atoms[j];
+
+    //         // The internuclear repulsion energy (Coulomb) for every nucleus pair is Z1 * Z2 / |R1 - R2|
+    //         value += atom1.atomic_number * atom2.atomic_number / this->calculateInternuclearDistance(i, j);
+    //     }
+    // }
+
+    return value;
+}
+
+
+
+/**
+ *  @return the value of this nuclear dipole operator
+ */
+Vector<double, 3> NuclearRepulsionOperator::value() const {
+
+    
+}
+
+
+
+
+
+
+/*
+ *  OPERATOR - PUBLIC STATIC METHODS
  */
 
 /**
@@ -35,31 +76,31 @@ OverlapOperator Operator::Overlap() {
 
 
 /**
- *  @return a KineticEnergyOperator
+ *  @return a KineticOperator
  */
-KineticEnergyOperator Operator::Kinetic() {
+KineticOperator Operator::Kinetic() {
 
-    return KineticEnergyOperator();
+    return KineticOperator();
 }
 
 
 /**
  *  @param mol              the molecule that contains the nuclear framework
  * 
- *  @return a NuclearAttractionEnergyOperator
+ *  @return a NuclearAttractionOperator
  */
-NuclearAttractionEnergyOperator Operator::NuclearAttraction(const Molecule& mol) {
+NuclearAttractionOperator Operator::NuclearAttraction(const Molecule& mol) {
 
-    return NuclearAttractionEnergyOperator(mol.get_atoms());
+    return NuclearAttractionOperator(mol.get_atoms());
 }
 
 
 /**
- *  @return a CoulombInteractionEnergyOperator
+ *  @return a CoulombRepulsionOperator
  */
-CoulombInteractionEnergyOperator Operator::Coulomb() {
+CoulombRepulsionOperator Operator::Coulomb() {
 
-    return CoulombInteractionEnergyOperator();
+    return CoulombRepulsionOperator();
 }
 
 
