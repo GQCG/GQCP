@@ -7,7 +7,7 @@
 #include "CISolver/CISolver.hpp"
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "HamiltonianBuilder/FCI.hpp"
-#include "Molecule.hpp"
+#include "Molecule/Molecule.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
 
 

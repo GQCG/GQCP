@@ -1,10 +1,8 @@
 target_sources(gqcp
         PRIVATE
-            Atom.hpp
             elements.hpp
             gqcp.hpp
             HoppingMatrix.hpp
-            Molecule.hpp
             RMP2.hpp
             typedefs.hpp
             units.hpp
@@ -17,6 +15,7 @@ add_subdirectory(Geminals)
 add_subdirectory(HamiltonianBuilder)
 add_subdirectory(HamiltonianParameters)
 add_subdirectory(Mathematical)
+add_subdirectory(Molecule)
 add_subdirectory(Operator)
 add_subdirectory(OrbitalOptimization)
 add_subdirectory(Properties)

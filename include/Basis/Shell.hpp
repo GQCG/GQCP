@@ -19,7 +19,7 @@
 #define Shell_hpp
 
 
-#include "Atom.hpp"
+#include "Molecule/Atom.hpp"
 
 
 namespace GQCP {

@@ -23,7 +23,7 @@
 #include <string>
 #include <vector>
 
-#include "Atom.hpp"
+#include "Molecule/Atom.hpp"
 
 
 

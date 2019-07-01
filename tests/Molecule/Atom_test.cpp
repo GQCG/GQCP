@@ -19,8 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-
-#include "Atom.hpp"
+#include "Molecule/Atom.hpp"
 
 
 

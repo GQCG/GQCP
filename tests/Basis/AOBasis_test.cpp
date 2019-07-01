@@ -21,7 +21,7 @@
 
 #include "Basis/AOBasis.hpp"
 
-#include "Molecule.hpp"
+#include "Molecule/Molecule.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( AOBasis_constructor ) {

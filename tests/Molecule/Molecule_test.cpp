@@ -19,7 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "Molecule.hpp"
+#include "Molecule/Molecule.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( constructor_atoms_charge ) {

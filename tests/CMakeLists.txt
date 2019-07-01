@@ -1,10 +1,8 @@
 set(test_target_sources)
 
 list(APPEND test_target_sources
-        Atom_test.cpp
         elements_test.cpp
         HoppingMatrix_test.cpp
-        Molecule_test.cpp
         RMP2_test.cpp
         units_test.cpp
         )
@@ -16,6 +14,7 @@ add_subdirectory(Geminals)
 add_subdirectory(HamiltonianBuilder)
 add_subdirectory(HamiltonianParameters)
 add_subdirectory(Mathematical)
+add_subdirectory(Molecule)
 add_subdirectory(Operator)
 add_subdirectory(OrbitalOptimization)
 add_subdirectory(Properties)

@@ -90,6 +90,9 @@
 #include "Mathematical/SquareRankFourTensor.hpp"
 #include "Mathematical/Tensor.hpp"
 
+#include "Molecule/Atom.hpp"
+#include "Molecule/Molecule.hpp"
+
 #include "Operator/OneElectronOperator.hpp"
 #include "Operator/Operator.hpp"
 #include "Operator/TwoElectronOperator.hpp"
@@ -139,10 +142,8 @@
 
 
 // Single files, not in a special include directory
-#include "Atom.hpp"
 #include "elements.hpp"
 #include "HoppingMatrix.hpp"
-#include "Molecule.hpp"
 #include "RMP2.hpp"
 #include "typedefs.hpp"
 #include "units.hpp"

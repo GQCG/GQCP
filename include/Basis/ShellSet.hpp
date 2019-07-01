@@ -20,7 +20,7 @@
 
 
 #include "Basis/Shell.hpp"
-#include "Molecule.hpp"
+#include "Molecule/Molecule.hpp"
 
 #include <vector>
 
