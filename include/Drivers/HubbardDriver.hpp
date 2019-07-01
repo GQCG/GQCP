@@ -1,16 +1,27 @@
-/**
- *  An executable that calculates the Hubbard energy/energies, starting from a triagonal input specifying the hopping matrix. The energy/energies are printed to the console.
- *
- *  Example execution:
- *      ./hubbard -m "comma-separated upper triagonal" -a "number of alpha electrons" -b "number of beta electrons" -K "number of sites"
- *
- *  For example:
- *      ./hubbard -m "1,2,3,4,5,6" -a 1 -b 2 -K 3
- *  Default amount of eigenvalues is 1, this can be changed with the x flag:
- *      ./hubbard -m "1,2,3,4,5,6" -x 2 -a 1 -b 2 -K 3
- */
+// This file is part of GQCG-gqcp.
+//
+// Copyright (C) 2017-2019  the GQCG developers
+//
+// GQCG-gqcp is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// GQCG-gqcp is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public License
+// along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
+//
+#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "CISolver/CISolver.hpp"
+#include "HamiltonianBuilder/Hubbard.hpp"
+#include "RDM/RDMCalculator.hpp"
 
-
+#include <boost/algorithm/string.hpp>
+#include <boost/program_options.hpp>
 
 #include <cstddef>
 #include <fstream>
@@ -18,27 +29,23 @@
 #include <iostream>
 #include <string>
 
-#include <boost/algorithm/string.hpp>
-#include <boost/program_options.hpp>
-
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
-#include "CISolver/CISolver.hpp"
-#include "HamiltonianBuilder/Hubbard.hpp"
-#include "RDM/RDMCalculator.hpp"
 
 namespace GQCP {
-    class HubbardDriver {
-    private:
-        std::shared_ptr<GQCP::ProductFockSpace> fock_space;
-        std::shared_ptr<GQCP::Hubbard> hubbard;
-        std::shared_ptr<GQCP::CISolver> solver;
-        GQCP::DenseSolverOptions dense_solver_options;
+/**
+*  A class that is able to drive Hubbard calculations.
+*/
+class HubbardDriver {
+private:
+    std::shared_ptr<GQCP::ProductFockSpace> fock_space;
+    std::shared_ptr<GQCP::Hubbard> hubbard;
+    std::shared_ptr<GQCP::CISolver> solver;
+    GQCP::DenseSolverOptions dense_solver_options;
 
-    public:
-        HubbardDriver(std::string csline, size_t num_states, size_t num_alpha, size_t num_beta, size_t K);
+public:
+    HubbardDriver(std::string csline, size_t num_states, size_t num_alpha, size_t num_beta, size_t K);
 
-        std::vector<double> get_energies();
+    std::vector<double> get_energies();
 
-        std::vector<Eigen::MatrixXd> get_first_order_rdms();
-    };
+    std::vector<Eigen::MatrixXd> get_first_order_rdms();
+};
 }
