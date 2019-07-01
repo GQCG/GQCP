@@ -21,6 +21,8 @@
 
 #include "Operator/FirstQuantized/BaseNuclearOperator.hpp"
 #include "Operator/FirstQuantized/BaseMultipoleOperator.hpp"
+#include "Molecule.hpp"
+
 
 
 namespace GQCP {
@@ -75,10 +77,62 @@ public:
     // CONSTRUCTORS
 
     /**
-     *  @param atoms                the atoms that represent the nuclear framework
-     *  @param o        the origin of the multipole
+     *  @param atoms            the atoms that represent the nuclear framework
+     *  @param o                the origin of the multipole
      */
     NuclearDipoleOperator(const std::vector<Atom>& atoms, const Vector<double, 3>& o = Vector<double, 3>::Zero(3));
+};
+
+
+
+/*
+ *  OPERATOR
+ */
+
+/**
+ *  A class that is used to construct operators, much like a factory class does
+ */
+class Operator {
+public:
+
+    // PUBLIC STATIC METHODS
+
+    /**
+     *  @return an OverlapOperator
+     */
+    static OverlapOperator Overlap();
+
+    /**
+     *  @return a KineticEnergyOperator
+     */
+    static KineticEnergyOperator Kinetic();
+
+    /**
+     *  @param mol              the molecule that contains the nuclear framework
+     * 
+     *  @return a NuclearAttractionEnergyOperator
+     */
+    static NuclearAttractionEnergyOperator NuclearAttraction(const Molecule& mol);
+
+    /**
+     *  @return a CoulombInteractionEnergyOperator
+     */
+    static CoulombInteractionEnergyOperator Coulomb();
+
+    /**
+     *  @param origin               the origin of the dipole operator
+     * 
+     *  @return an ElectronicDipoleOperator
+     */
+    static ElectronicDipoleOperator ElectronicDipole(const Vector<double, 3>& o = Vector<double, 3>::Zero(3));
+
+    /**
+     *  @param mol                  the molecule that contains the nuclear framework
+     *  @param origin               the origin of the dipole operator
+     * 
+     *  @return a NuclearDipoleOperator
+     */
+    static NuclearDipoleOperator NuclearDipole(const Molecule& mol, const Vector<double, 3>& o = Vector<double, 3>::Zero(3));
 };
 
 

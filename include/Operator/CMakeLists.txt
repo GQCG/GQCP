@@ -4,3 +4,5 @@ target_sources(gqcp
             OneElectronOperator.hpp
             TwoElectronOperator.hpp
         )
+
+add_subdirectory(FirstQuantized)
