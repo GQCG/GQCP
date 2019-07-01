@@ -18,12 +18,12 @@
 #ifndef GQCP_MOLECULE_HPP
 #define GQCP_MOLECULE_HPP
 
+#include "Molecule/Nucleus.hpp"
+
 
 #include <stdlib.h>
 #include <string>
 #include <vector>
-
-#include "Molecule/Nucleus.hpp"
 
 
 
@@ -32,27 +32,29 @@ namespace GQCP {
 
 
 /**
- *  A class that represents a collection of atoms (with coordinates in bohr) with a number of electrons
+ *  A class that represents a collection of nuclei (with coordinates in bohr) with a number of electrons
  */
 class Molecule {
 private:
-    std::vector<Nucleus> atoms;  // coordinates in bohr
+    std::vector<Nucleus> nuclei;  // coordinates in bohr
     size_t N;  // number of electrons
 
 
 public:
     // CONSTRUCTORS
+
     /**
-     *  @param atoms        the atoms that make up the molecule, with coordinates in bohr
+     *  @param nuclei       the nuclei that make up the molecule, with coordinates in bohr
      *  @param charge       the charge of the molecule:
      *                          +1 -> cation (one electron less than the neutral molecule)
      *                           0 -> neutral molecule
      *                          -1 -> anion (one electron more than the neutral molecule)
      */
-    Molecule(const std::vector<Nucleus>& atoms, int charge=0);
+    Molecule(const std::vector<Nucleus>& nuclei, int charge=0);
 
 
     // NAMED CONSTRUCTORS
+
     /**
      *  Construct a molecule based on the content of a given .xyz-file. In an .xyz-file, the molecular coordinates are in Angstrom
      *
@@ -65,7 +67,7 @@ public:
     static Molecule Readxyz(const std::string& xyz_filename, int charge=0);
 
     /**
-     *  @param n            the number of H atoms
+     *  @param n            the number of H nuclei
      *  @param spacing      the internuclear spacing in bohr
      *  @param charge       the total charge
      *
@@ -88,7 +90,7 @@ public:
     /**
      *  @param other        the other molecule
      *
-     *  @return if this molecule is equal to the other, within the default Nucleus::tolerance_for_comparison for the coordinates of the atoms
+     *  @return if this molecule is equal to the other, within the default Nucleus::tolerance_for_comparison for the coordinates of the nuclei
      */
     bool operator==(const Molecule& other) const;
 
@@ -103,14 +105,14 @@ public:
 
     // GETTERS
     size_t get_N() const { return this->N; }
-    const std::vector<Nucleus>& get_atoms() const { return this->atoms; }
-    size_t numberOfAtoms() const { return this->atoms.size(); }
+    const std::vector<Nucleus>& get_nuclei() const { return this->nuclei; }
+    size_t numberOfAtoms() const { return this->nuclei.size(); }
 
 
     // PUBLIC METHODS
     /**
      *  @param other        the other molecule
-     *  @param tolerance    the tolerance for the coordinates of the atoms
+     *  @param tolerance    the tolerance for the coordinates of the nuclei
      *
      *  @return if this is equal to the other, within the given tolerance
      */
@@ -122,10 +124,10 @@ public:
     size_t calculateTotalNucleicCharge() const;
 
     /**
-     *  @param index1   the index of the first atom
-     *  @param index2   the index of the second atom
+     *  @param index1   the index of the first nucleus
+     *  @param index2   the index of the second nucleus
      *
-     *  @return the distance between the two atoms at index1 and index2 in bohr
+     *  @return the distance between the two nuclei at index1 and index2 in bohr
      */
     double calculateInternuclearDistance(size_t index1, size_t index2) const;
 

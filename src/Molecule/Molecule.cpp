@@ -17,17 +17,17 @@
 // 
 #include "Molecule/Molecule.hpp"
 
+#include "elements.hpp"
+#include "units.hpp"
+
 #include <algorithm>
 #include <fstream>
 #include <sstream>
 #include <stdexcept>
 
-#include "elements.hpp"
-#include "units.hpp"
 
 
 namespace GQCP {
-
 
 
 /*
@@ -35,33 +35,33 @@ namespace GQCP {
  */
 
 /**
- *  @param atoms        the atoms that make up the molecule, with coordinates in bohr
+ *  @param nuclei       the nuclei that make up the molecule, with coordinates in bohr
  *  @param charge       the charge of the molecule:
  *                          +1 -> cation (one electron less than the neutral molecule)
  *                           0 -> neutral molecule
  *                          -1 -> anion (one electron more than the neutral molecule)
  */
-Molecule::Molecule(const std::vector<Nucleus>& atoms, int charge) :
-    atoms (atoms),
+Molecule::Molecule(const std::vector<Nucleus>& nuclei, int charge) :
+    nuclei (nuclei),
     N (this->calculateTotalNucleicCharge() - charge)
 {
     // Check if the total positive charge is valid, e.g. H^(2+) does not exist
     if (charge > 0) {
         if (this->calculateTotalNucleicCharge() < charge) {
-            throw std::invalid_argument("Molecule::Molecule(): You cannot create a molecule with these atoms and this much of a total positive charge.");
+            throw std::invalid_argument("Molecule::Molecule(): You cannot create a molecule with these nuclei and this much of a total positive charge.");
         }
     }
 
-    // Check if there are no duplicate atoms
-    std::vector<Nucleus> atoms_copy = this->atoms;
+    // Check if there are no duplicate nuclei
+    std::vector<Nucleus> nuclei_copy = this->nuclei;
 
     // Sort and unique
-    std::sort(atoms_copy.begin(), atoms_copy.end());
-    auto last_it = std::unique(atoms_copy.begin(), atoms_copy.end());
+    std::sort(nuclei_copy.begin(), nuclei_copy.end());
+    auto last_it = std::unique(nuclei_copy.begin(), nuclei_copy.end());
 
     // If the iterator returned from unique is the same as the end iterator, there are no duplicate items
-    if (last_it != atoms_copy.end()) {
-        throw std::invalid_argument("Molecule::Molecule(): There can't be two equal atoms on the same position.");
+    if (last_it != nuclei_copy.end()) {
+        throw std::invalid_argument("Molecule::Molecule(): There can't be two equal nuclei on the same position.");
     }
 }
 
@@ -72,9 +72,13 @@ Molecule::Molecule(const std::vector<Nucleus>& atoms, int charge) :
  */
 
 /**
- *  @param xyz_filename     the .xyz-file that contains the molecular coordinates in Angstrom
+ *  Construct a molecule based on the content of a given .xyz-file. In an .xyz-file, the molecular coordinates are in Angstrom
  *
- *  @return a vector of Atoms that are in the given xyz-file
+ *  @param xyz_filename     the .xyz-file that contains the molecular coordinates in Angstrom
+ *  @param charge       the charge of the molecule:
+ *                          +1 -> cation (one electron less than the neutral molecule)
+ *                           0 -> neutral molecule
+ *                          -1 -> anion (one electron more than the neutral molecule)
  */
 Molecule Molecule::Readxyz(const std::string& xyz_filename, int charge) {
 
@@ -101,18 +105,18 @@ Molecule Molecule::Readxyz(const std::string& xyz_filename, int charge) {
         std::string line;
 
 
-        // First line is the number of atoms
+        // First line is the number of nuclei
         std::getline(input_file_stream, line);
-        auto number_of_atoms = static_cast<size_t>(std::stoi(line));
+        auto number_of_nuclei = static_cast<size_t>(std::stoi(line));
 
 
         // Second line is empty
         std::getline(input_file_stream, line);
 
 
-        // Next lines are the atoms
-        std::vector<Nucleus> atoms;
-        atoms.reserve(number_of_atoms);
+        // Next lines are the nuclei
+        std::vector<Nucleus> nuclei;
+        nuclei.reserve(number_of_nuclei);
 
         while (std::getline(input_file_stream, line)) {
             std::string symbol;
@@ -126,21 +130,21 @@ Molecule Molecule::Readxyz(const std::string& xyz_filename, int charge) {
             double y_bohr = units::angstrom_to_bohr(y_angstrom);
             double z_bohr = units::angstrom_to_bohr(z_angstrom);
 
-            atoms.emplace_back(elements::elementToAtomicNumber(symbol), x_bohr, y_bohr, z_bohr);
+            nuclei.emplace_back(elements::elementToAtomicNumber(symbol), x_bohr, y_bohr, z_bohr);
         }
 
 
-        if (number_of_atoms > atoms.size()) {
-            throw std::invalid_argument("Molecule::Readxyz(const std::string&, int): The .xyz-file contains more atoms than specified on its first line.");
+        if (number_of_nuclei > nuclei.size()) {
+            throw std::invalid_argument("Molecule::Readxyz(const std::string&, int): The .xyz-file contains more nuclei than specified on its first line.");
         } else {
-            return Molecule(atoms, charge);
+            return Molecule(nuclei, charge);
         }
     }
 }
 
 
 /**
- *  @param n            the number of H atoms
+ *  @param n            the number of H nuclei
  *  @param spacing      the internuclear spacing in bohr
  *  @param charge       the total charge
  *
@@ -149,7 +153,7 @@ Molecule Molecule::Readxyz(const std::string& xyz_filename, int charge) {
 Molecule Molecule::HChain(size_t n, double spacing, int charge) {
 
     if (n == 0) {
-        throw std::invalid_argument("Molecule::HChain(size_t, double, int): Can not create a H-chain consisting of zero atoms.");
+        throw std::invalid_argument("Molecule::HChain(size_t, double, int): Can not create a H-chain consisting of zero nuclei.");
     }
 
     if (spacing < 0.0) {
@@ -159,7 +163,7 @@ Molecule Molecule::HChain(size_t n, double spacing, int charge) {
 
     std::vector<Nucleus> h_chain;
 
-    // Put all H-atoms on a line on the x-axis: the first H is on the origin
+    // Put all H-nuclei on a line on the x-axis: the first H is on the origin
     double x = 0.0;  // the current x-coordinate
     for (size_t i = 0; i < n; i++) {
         h_chain.emplace_back(1, x, 0.0, 0.0);
@@ -192,7 +196,7 @@ Molecule Molecule::H2Chain(size_t n, double a, double b, int charge) {
 
     std::vector<Nucleus> h_chain;
 
-    // Put all H-atoms on a line on the x-axis: the first H is on the origin
+    // Put all H-nuclei on a line on the x-axis: the first H is on the origin
     double x = 0.0;  // the current x-coordinate
     for (size_t i = 0; i < n; i++) {
 
@@ -215,7 +219,7 @@ Molecule Molecule::H2Chain(size_t n, double a, double b, int charge) {
 /**
  *  @param other        the other molecule
  *
- *  @return if this molecule is equal to the other, within the default Nucleus::tolerance_for_comparison for the coordinates of the atoms
+ *  @return if this molecule is equal to the other, within the default Nucleus::tolerance_for_comparison for the coordinates of the nuclei
  */
 bool Molecule::operator==(const Molecule& other) const {
 
@@ -231,8 +235,8 @@ bool Molecule::operator==(const Molecule& other) const {
  */
 std::ostream& operator<<(std::ostream& os, const Molecule& molecule) {
 
-    for (const auto& atom : molecule.atoms) {
-        os << atom;
+    for (const auto& nucleus : molecule.nuclei) {
+        os << nucleus;
     }
 
     return os;
@@ -246,7 +250,7 @@ std::ostream& operator<<(std::ostream& os, const Molecule& molecule) {
 
 /**
  *  @param other        the other molecule
- *  @param tolerance    the tolerance for the coordinates of the atoms
+ *  @param tolerance    the tolerance for the coordinates of the nuclei
  *
  *  @return if this is equal to the other, within the given tolerance
  */
@@ -256,22 +260,22 @@ bool Molecule::isEqualTo(const Molecule& other, double tolerance) const {
         return false;
     }
 
-    // We don't want the order of the atoms to matter in a Molecule comparison
-    // We have implemented a custom Nucleus::operator< so we can sort std::vectors of Atoms
-    // Make a copy of the atoms because std::sort modifies
-    auto this_atoms = this->atoms;
-    auto other_atoms = other.atoms;
+    // We don't want the order of the nuclei to matter in a Molecule comparison
+    // We have implemented a custom Nucleus::operator< so we can sort std::vectors of Nuclei
+    // Make a copy of the nuclei because std::sort modifies
+    auto this_nuclei = this->nuclei;
+    auto other_nuclei = other.nuclei;
 
 
     // Make lambda expressions for the comparators, since we want to hand over the tolerance argument
-    auto smaller_than_atom = [this, tolerance](const Nucleus& lhs, const Nucleus& rhs) { return lhs.isSmallerThan(rhs, tolerance); };
-    auto equal_atom = [this, tolerance](const Nucleus& lhs, const Nucleus& rhs) { return lhs.isEqualTo(rhs, tolerance); };
+    auto smaller_than_nucleus = [this, tolerance](const Nucleus& lhs, const Nucleus& rhs) { return lhs.isSmallerThan(rhs, tolerance); };
+    auto equal_nucleus = [this, tolerance](const Nucleus& lhs, const Nucleus& rhs) { return lhs.isEqualTo(rhs, tolerance); };
 
 
-    std::sort(this_atoms.begin(), this_atoms.end(), smaller_than_atom);
-    std::sort(other_atoms.begin(), other_atoms.end(), smaller_than_atom);
+    std::sort(this_nuclei.begin(), this_nuclei.end(), smaller_than_nucleus);
+    std::sort(other_nuclei.begin(), other_nuclei.end(), smaller_than_nucleus);
 
-    return std::equal(this_atoms.begin(), this_atoms.end(), other_atoms.begin(), equal_atom);
+    return std::equal(this_nuclei.begin(), this_nuclei.end(), other_nuclei.begin(), equal_nucleus);
 }
 
 
@@ -282,8 +286,8 @@ size_t Molecule::calculateTotalNucleicCharge() const {
 
     size_t nucleic_charge = 0;
 
-    for (const auto& atom : this->atoms) {
-        nucleic_charge += atom.atomic_number;
+    for (const auto& nucleus : this->nuclei) {
+        nucleic_charge += nucleus.atomic_number;
     }
 
     return nucleic_charge;
@@ -291,19 +295,19 @@ size_t Molecule::calculateTotalNucleicCharge() const {
 
 
 /**
- *  @param index1   the index of the first atom
- *  @param index2   the index of the second atom
+ *  @param index1   the index of the first nucleus
+ *  @param index2   the index of the second nucleus
  *
- *  @return the distance between the two atoms at index1 and index2 in bohr
+ *  @return the distance between the two nuclei at index1 and index2 in bohr
  */
 double Molecule::calculateInternuclearDistance(size_t index1, size_t index2) const {
 
     // Check if the indices are within bounds
-    if (index1 > this->atoms.size() || index2 > this->atoms.size()) {
+    if (index1 > this->nuclei.size() || index2 > this->nuclei.size()) {
         throw std::invalid_argument("Molecule::calculateInternuclearDistance(size_t, size_t): At least one of the given indices is out of bounds.");
     }
 
-    return this->atoms[index1].calculateDistance(this->atoms[index2]);
+    return this->nuclei[index1].calculateDistance(this->nuclei[index2]);
 }
 
 
@@ -315,14 +319,14 @@ double Molecule::calculateInternuclearRepulsionEnergy() const {
     double internuclear_repulsion_energy = 0.0;
 
     // Sum over every unique nucleus pair
-    auto natoms = this->numberOfAtoms();
-    for (size_t i = 0; i < natoms; i++) {
-        for (size_t j = i + 1; j < natoms; j++ ) {
-            const auto atom1 = this->atoms[i];
-            const auto atom2 = this->atoms[j];
+    auto n_nuclei = this->numberOfAtoms();
+    for (size_t i = 0; i < n_nuclei; i++) {
+        for (size_t j = i + 1; j < n_nuclei; j++ ) {
+            const auto nucleus1 = this->nuclei[i];
+            const auto nucleus2 = this->nuclei[j];
 
             // The internuclear repulsion energy (Coulomb) for every nucleus pair is Z1 * Z2 / |R1 - R2|
-            internuclear_repulsion_energy += atom1.atomic_number * atom2.atomic_number / this->calculateInternuclearDistance(i, j);
+            internuclear_repulsion_energy += nucleus1.atomic_number * nucleus2.atomic_number / this->calculateInternuclearDistance(i, j);
         }
     }
 
@@ -337,8 +341,8 @@ Vector<double, 3> Molecule::calculateNuclearDipoleMoment() const {
 
     Vector<double, 3> m = Vector<double, 3>::Zero();
 
-    for (const auto& atom : this->atoms) {
-        m += atom.atomic_number * atom.position;
+    for (const auto& nucleus : this->nuclei) {
+        m += nucleus.atomic_number * nucleus.position;
     }
 
     return m;

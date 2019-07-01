@@ -51,9 +51,9 @@ public:
  *  UNIT TESTS
  */
 
-BOOST_AUTO_TEST_CASE ( atoms_to_libint ) {
+BOOST_AUTO_TEST_CASE ( nuclei_to_libint ) {
 
-    std::vector<GQCP::Nucleus> GQCP_atoms = {
+    std::vector<GQCP::Nucleus> GQCP_nuclei = {
         {1, 0, 3, 0},
         {2, 0, 0, 4},
         {3, 3, 0, 0},
@@ -69,7 +69,7 @@ BOOST_AUTO_TEST_CASE ( atoms_to_libint ) {
 
 
     // Use the Libint interface to obtain a std::vector<libint2::Atom> from the GQCP ones
-    auto test_libint_atoms = GQCP::LibintInterfacer::get().interface(GQCP_atoms);
+    auto test_libint_atoms = GQCP::LibintInterfacer::get().interface(GQCP_nuclei);
 
 
     /**
@@ -190,14 +190,14 @@ BOOST_AUTO_TEST_CASE ( libint_Shell_to_Shell ) {
 
 BOOST_AUTO_TEST_CASE ( BasisSet_to_ShellSet ) {
 
-    // Note that this function also tests std::vector<Shell> LibintInterfacer::interface(const libint2::Shell& libint_shell, const std::vector<Nucleus>& atoms) const;
+    // Note that this function also tests std::vector<Shell> LibintInterfacer::interface(const libint2::Shell& libint_shell, const std::vector<Nucleus>& nuclei) const;
 
     
     // Create a reference STO-3G shell set on (a weird geometry of) H2O
     GQCP::Nucleus h1 (1,  0.0, 0.0, 0.0);
     GQCP::Nucleus o  (8,  0.0, 0.0, 1.0);
     GQCP::Nucleus h2 (1,  0.0, 0.0, 2.0);
-    std::vector<GQCP::Nucleus> atoms {h1, o, h2};
+    std::vector<GQCP::Nucleus> nuclei {h1, o, h2};
     bool pure = false;  // STO-3G represents Cartesian shells
 
     GQCP::ShellSet ref_shellset {
@@ -212,9 +212,9 @@ BOOST_AUTO_TEST_CASE ( BasisSet_to_ShellSet ) {
 
 
     // Construct the corresponding libint2::BasisSet
-    auto libint_atoms = GQCP::LibintInterfacer::get().interface(atoms);
+    auto libint_atoms = GQCP::LibintInterfacer::get().interface(nuclei);
     libint2::BasisSet libint_basisset ("STO-3G", libint_atoms);
-    auto shellset = GQCP::LibintInterfacer::get().interface(libint_basisset, atoms);
+    auto shellset = GQCP::LibintInterfacer::get().interface(libint_basisset, nuclei);
 
     BOOST_CHECK(ref_shellset == shellset);
 }

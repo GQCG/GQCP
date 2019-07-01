@@ -33,8 +33,8 @@ BOOST_AUTO_TEST_CASE ( decomposition_BeH_cation_STO_3G_Nuclear ) {
     // Create the molecular Hamiltonian parameters in an AO basis
     GQCP::Nucleus Be(4, 0.0, 0.0, 0.0);
     GQCP::Nucleus H(1, 0.0, 0.0, GQCP::units::angstrom_to_bohr(1.134));  // from CCCBDB, STO-3G geometry
-    std::vector<GQCP::Nucleus> atoms{Be, H};
-    GQCP::Molecule BeH(atoms, +1);
+    std::vector<GQCP::Nucleus> nuclei {Be, H};
+    GQCP::Molecule BeH (nuclei, +1);
     GQCP::AtomicDecompositionParameters adp = GQCP::AtomicDecompositionParameters::Nuclear(BeH, "STO-3G");
     auto mol_ham_par = adp.get_molecular_hamiltonian_parameters();
     auto K = mol_ham_par.get_K();

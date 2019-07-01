@@ -33,8 +33,8 @@ namespace GQCP {
  */
 libcint::RawContainer LibcintInterfacer::convert(const ShellSet& shell_set) const{
 
-    const auto& atoms = shell_set.atoms();
-    const auto& natm = atoms.size();
+    const auto& nuclei = shell_set.nuclei();
+    const auto& natm = nuclei.size();
     const auto& nbf = shell_set.numberOfBasisFunctions();
     const auto& nsh = shell_set.size();  // number of shells
 
@@ -46,21 +46,21 @@ libcint::RawContainer LibcintInterfacer::convert(const ShellSet& shell_set) cons
 
     for (size_t i = 0; i < natm; i++) {
         // Configure a libcint 'atom'
-        raw_container.libcint_atm[libcint::charge_of + libcint::atm_slots * i] = static_cast<int>(atoms[i].atomic_number);  // insert the charge/atomic number
+        raw_container.libcint_atm[libcint::charge_of + libcint::atm_slots * i] = static_cast<int>(nuclei[i].atomic_number);  // insert the charge/atomic number
         raw_container.libcint_atm[libcint::ptr_coord + libcint::atm_slots * i] = offset;  // 'pointer' to the coordinates of the atom inside the libcint environment
 
         // Set the atom-related data into the libcint environment
-        raw_container.libcint_env[offset + 0] = atoms[i].position.x();  // insert the position of the atoms
-        raw_container.libcint_env[offset + 1] = atoms[i].position.y();
-        raw_container.libcint_env[offset + 2] = atoms[i].position.z();
+        raw_container.libcint_env[offset + 0] = nuclei[i].position.x();  // insert the position of the nuclei
+        raw_container.libcint_env[offset + 1] = nuclei[i].position.y();
+        raw_container.libcint_env[offset + 2] = nuclei[i].position.z();
         offset += 3;
     }
 
 
 
     // Configuration of shell-related data
-    int atom_index = 0;  // index of the atom the shell is centered on
-    auto previous_atom = shell_set[0].get_atom();  // start with the first atom
+    int nucleus_index = 0;  // index of the nucleus the shell is centered on
+    auto previous_nucleus = shell_set[0].get_nucleus();  // start with the first nucleus
     for (size_t n = 0; n < shell_set.numberOfShells(); n++) {
 
         auto current_shell = shell_set[n];
@@ -69,13 +69,13 @@ libcint::RawContainer LibcintInterfacer::convert(const ShellSet& shell_set) cons
         }
 
 
-        // If there's a new atom, increment the index
-        auto current_atom = current_shell.get_atom();
-        if (current_atom != previous_atom) {
-            atom_index++;
-            previous_atom = current_atom;
+        // If there's a new nucleus, increment the index
+        auto current_nucleus = current_shell.get_nucleus();
+        if (current_nucleus != previous_nucleus) {
+            nucleus_index++;
+            previous_nucleus = current_nucleus;
         }
-        raw_container.libcint_bas[libcint::atom_of + libcint::bas_slots * n] = atom_index;
+        raw_container.libcint_bas[libcint::atom_of + libcint::bas_slots * n] = nucleus_index;
 
 
         // Set shell-related data into the libcint 'basis' and into the libcint environment

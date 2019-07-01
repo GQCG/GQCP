@@ -90,8 +90,8 @@
 #include "Mathematical/SquareRankFourTensor.hpp"
 #include "Mathematical/Tensor.hpp"
 
-#include "Molecule/Nucleus.hpp"
 #include "Molecule/Molecule.hpp"
+#include "Molecule/Nucleus.hpp"
 
 #include "Operator/OneElectronOperator.hpp"
 #include "Operator/Operator.hpp"

@@ -31,9 +31,9 @@ namespace GQCP {
  */
 
 /**
- *  Construct a ShellSet by placing the shells corresponding to the basisset information on every atom of the molecule
+ *  Construct a ShellSet by placing the shells corresponding to the basisset information on every nucleus of the molecule
  *
- *  @param molecule             the molecule containing the atoms on which the shells should be centered
+ *  @param molecule             the molecule containing the nuclei on which the shells should be centered
  *  @param basisset_name        the name of the basisset, e.g. "STO-3G"
  */
 ShellSet::ShellSet(const Molecule& molecule, const std::string& basisset_name) {
@@ -41,11 +41,11 @@ ShellSet::ShellSet(const Molecule& molecule, const std::string& basisset_name) {
     // Since we haven't implemented our own BasisSet class, we use libint to read in the basisset specification file and create the shells
     // TODO no longer use libint2 to read this
 
-    const auto& atoms = molecule.get_atoms();
+    const auto& nuclei = molecule.get_nuclei();
 
-    libint2::BasisSet libint_basis (basisset_name, LibintInterfacer::get().interface(atoms));
+    libint2::BasisSet libint_basis (basisset_name, LibintInterfacer::get().interface(nuclei));
 
-    *this = LibintInterfacer::get().interface(libint_basis, atoms);
+    *this = LibintInterfacer::get().interface(libint_basis, nuclei);
 }
 
 
@@ -75,23 +75,23 @@ size_t ShellSet::numberOfBasisFunctions() const {
 
 
 /**
- *  @return an ordered vector of the unique atoms in this shell set
+ *  @return an ordered vector of the unique nuclei in this shell set
  */
-std::vector<Nucleus> ShellSet::atoms() const {
+std::vector<Nucleus> ShellSet::nuclei() const {
 
-    std::vector<Nucleus> atoms {};
+    std::vector<Nucleus> nuclei {};
 
-    // Append every unique atom in this shell set's shells
+    // Append every unique nucleus in this shell set's shells
     for (const auto& shell : *this) {
-        const auto& atom = shell.get_atom();
+        const auto& nucleus = shell.get_nucleus();
 
-        const auto& p = std::find(atoms.begin(), atoms.end(), atom);
-        if (p == atoms.end()) {  // if unique
-            atoms.push_back(atom);
+        const auto& p = std::find(nuclei.begin(), nuclei.end(), nucleus);
+        if (p == nuclei.end()) {  // if unique
+            nuclei.push_back(nucleus);
         }
     }
 
-    return atoms;
+    return nuclei;
 }
 
 

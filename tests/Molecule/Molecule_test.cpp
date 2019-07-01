@@ -22,10 +22,10 @@
 #include "Molecule/Molecule.hpp"
 
 
-BOOST_AUTO_TEST_CASE ( constructor_atoms_charge ) {
+BOOST_AUTO_TEST_CASE ( constructor_nuclei_charge ) {
 
-    // Create a fictitious molecule from some Atoms (charge, x, y ,z)
-    std::vector<GQCP::Nucleus> atoms = {
+    // Create a fictitious molecule from some nuclei (charge, x, y ,z)
+    std::vector<GQCP::Nucleus> nuclei = {
         {1, 0, 3, 0},
         {2, 0, 0, 4},
         {3, 3, 0, 0},
@@ -33,58 +33,58 @@ BOOST_AUTO_TEST_CASE ( constructor_atoms_charge ) {
     };
 
     // Check if we can create any anion
-    GQCP::Molecule molecule2 (atoms, -2);
+    GQCP::Molecule molecule2 (nuclei, -2);
 
 
     // Check if we can't create a cation with charge larger than the nucleic charge
-    BOOST_CHECK_NO_THROW(GQCP::Molecule (atoms, +3));
-    BOOST_CHECK_THROW(GQCP::Molecule (atoms, +11), std::invalid_argument);
+    BOOST_CHECK_NO_THROW(GQCP::Molecule (nuclei, +3));
+    BOOST_CHECK_THROW(GQCP::Molecule (nuclei, +11), std::invalid_argument);
 }
 
 
-BOOST_AUTO_TEST_CASE ( constructor_atoms ) {
+BOOST_AUTO_TEST_CASE ( constructor_nuclei ) {
 
-    // Create a fictitious molecule from some Atoms (charge, x, y ,z)
-    std::vector<GQCP::Nucleus> atoms = {
+    // Create a fictitious molecule from some nuclei (charge, x, y ,z)
+    std::vector<GQCP::Nucleus> nuclei = {
         {1, 0, 3, 0},
         {2, 0, 0, 4},
         {3, 3, 0, 0},
         {4, 0, 0, 5}
     };
 
-    GQCP::Molecule molecule (atoms);
+    GQCP::Molecule molecule (nuclei);
 }
 
 
-BOOST_AUTO_TEST_CASE ( duplicate_atoms_constructor ) {
+BOOST_AUTO_TEST_CASE ( duplicate_nuclei_constructor ) {
 
-    // Make some atoms
-    GQCP::Nucleus atom1 {1, 0.0, 0.0, 0.0};
-    GQCP::Nucleus atom2 {1, 1.0, 0.0, 0.0};
+    // Make some nuclei
+    GQCP::Nucleus nucleus1 {1, 0.0, 0.0, 0.0};
+    GQCP::Nucleus nucleus2 {1, 1.0, 0.0, 0.0};
 
-    std::vector<GQCP::Nucleus> atoms1 {atom1, atom1};
-    std::vector<GQCP::Nucleus> atoms2 {atom1, atom2};
+    std::vector<GQCP::Nucleus> nuclei1 {nucleus1, nucleus1};
+    std::vector<GQCP::Nucleus> nuclei2 {nucleus1, nucleus2};
 
 
-    // Check if we can't create a Molecule with duplicate atoms
-    BOOST_CHECK_THROW(GQCP::Molecule molecule (atoms1), std::invalid_argument);
+    // Check if we can't create a Molecule with duplicate nuclei
+    BOOST_CHECK_THROW(GQCP::Molecule molecule (nuclei1), std::invalid_argument);
 
     // Check if a correct argument doesn't throw
-    BOOST_CHECK_NO_THROW(GQCP::Molecule molecule (atoms2));
+    BOOST_CHECK_NO_THROW(GQCP::Molecule molecule (nuclei2));
 }
 
 
 BOOST_AUTO_TEST_CASE ( calculateTotalNucleicCharge ) {
 
-    // Create a fictitious molecule from some Atoms (charge, x, y ,z)
-    std::vector<GQCP::Nucleus> atoms = {
+    // Create a fictitious molecule from some nuclei (charge, x, y ,z)
+    std::vector<GQCP::Nucleus> nuclei = {
         {1, 0, 3, 0},
         {2, 0, 0, 4},
         {3, 3, 0, 0},
         {4, 0, 0, 5}
     };
 
-    GQCP::Molecule molecule (atoms);
+    GQCP::Molecule molecule (nuclei);
     BOOST_CHECK_EQUAL(molecule.calculateTotalNucleicCharge(), 10);
 }
 
@@ -121,13 +121,13 @@ BOOST_AUTO_TEST_CASE ( molecule_ion_constructor ) {
 
 BOOST_AUTO_TEST_CASE ( Molecule_operator_ostream ) {
 
-    std::vector<GQCP::Nucleus> atoms = {
+    std::vector<GQCP::Nucleus> nuclei = {
         {1, 0, 3, 0},
         {2, 0, 0, 4},
         {3, 3, 0, 0},
         {4, 0, 0, 5}
     };
-    GQCP::Molecule molecule (atoms);
+    GQCP::Molecule molecule (nuclei);
 
     std::cout << molecule << std::endl;
 }
@@ -135,33 +135,33 @@ BOOST_AUTO_TEST_CASE ( Molecule_operator_ostream ) {
 
 BOOST_AUTO_TEST_CASE ( Molecule_isEqualTo ) {
 
-    // Create some Atoms and Molecules
-    GQCP::Nucleus atom1 {1, 0.0, 0.1, 0.2};
-    GQCP::Nucleus atom2 {2, 0.0, 0.1, 0.2};
-    GQCP::Nucleus atom3 {3, 0.0, 0.1, 0.2};
-    GQCP::Nucleus atom4 {4, 0.1, 0.2, 0.3};
-    GQCP::Nucleus atom5 {3, 0.1, 0.2, 0.3};
+    // Create some nuclei and Molecules
+    GQCP::Nucleus nucleus1 {1, 0.0, 0.1, 0.2};
+    GQCP::Nucleus nucleus2 {2, 0.0, 0.1, 0.2};
+    GQCP::Nucleus nucleus3 {3, 0.0, 0.1, 0.2};
+    GQCP::Nucleus nucleus4 {4, 0.1, 0.2, 0.3};
+    GQCP::Nucleus nucleus5 {3, 0.1, 0.2, 0.3};
 
-    GQCP::Molecule molecule1 {{atom1, atom2, atom3}};
-    GQCP::Molecule molecule2 {{atom1, atom2, atom3}};
-    GQCP::Molecule molecule3 {{atom1, atom2, atom3}, -1};
-    GQCP::Molecule molecule4 {{atom1, atom2, atom5}};
-    GQCP::Molecule molecule5 {{atom1, atom3, atom2}};
-    GQCP::Molecule molecule6 {{atom1, atom2, atom3, atom4}};
+    GQCP::Molecule molecule1 {{nucleus1, nucleus2, nucleus3}};
+    GQCP::Molecule molecule2 {{nucleus1, nucleus2, nucleus3}};
+    GQCP::Molecule molecule3 {{nucleus1, nucleus2, nucleus3}, -1};
+    GQCP::Molecule molecule4 {{nucleus1, nucleus2, nucleus5}};
+    GQCP::Molecule molecule5 {{nucleus1, nucleus3, nucleus2}};
+    GQCP::Molecule molecule6 {{nucleus1, nucleus2, nucleus3, nucleus4}};
 
     // Check if they're equal
     BOOST_CHECK(molecule1.isEqualTo(molecule2));
 
-    // Check if a different charge but same atoms causes inequality
+    // Check if a different charge but same nuclei causes inequality
     BOOST_CHECK(!(molecule1.isEqualTo(molecule3)));
 
-    // Check if different atoms but an equal total charge cause inequality
+    // Check if different nuclei but an equal total charge cause inequality
     BOOST_CHECK(!(molecule1.isEqualTo(molecule4)));
 
     // Check if a different ordering doesn't cause inequality
     BOOST_CHECK(molecule1.isEqualTo(molecule5));
 
-    // Check if a different number of atoms causes inequality
+    // Check if a different number of nuclei causes inequality
     BOOST_CHECK(!(molecule1.isEqualTo(molecule6)));
 
 
@@ -172,15 +172,15 @@ BOOST_AUTO_TEST_CASE ( Molecule_isEqualTo ) {
 
 BOOST_AUTO_TEST_CASE ( Molecule_operator_equals ) {
 
-    // Create some Atoms and Molecules
-    GQCP::Nucleus atom1 {1, 0.0, 0.1, 0.2};
-    GQCP::Nucleus atom2 {2, 0.0, 0.1, 0.2};
-    GQCP::Nucleus atom3 {3, 0.0, 0.1, 0.2};
-    GQCP::Nucleus atom4 {3, 0.1, 0.2, 0.3};
+    // Create some nuclei and Molecules
+    GQCP::Nucleus nucleus1 {1, 0.0, 0.1, 0.2};
+    GQCP::Nucleus nucleus2 {2, 0.0, 0.1, 0.2};
+    GQCP::Nucleus nucleus3 {3, 0.0, 0.1, 0.2};
+    GQCP::Nucleus nucleus4 {3, 0.1, 0.2, 0.3};
 
-    GQCP::Molecule molecule1 {{atom1, atom2, atom3}};
-    GQCP::Molecule molecule2 {{atom1, atom2, atom3}};
-    GQCP::Molecule molecule3 {{atom1, atom2, atom4}};
+    GQCP::Molecule molecule1 {{nucleus1, nucleus2, nucleus3}};
+    GQCP::Molecule molecule2 {{nucleus1, nucleus2, nucleus3}};
+    GQCP::Molecule molecule3 {{nucleus1, nucleus2, nucleus4}};
 
 
     // Check if we can call operator==
@@ -191,30 +191,30 @@ BOOST_AUTO_TEST_CASE ( Molecule_operator_equals ) {
 
 BOOST_AUTO_TEST_CASE ( xyz_filename_constructor ) {
 
-    std::vector<GQCP::Nucleus> atoms {
+    std::vector<GQCP::Nucleus> nuclei {
         {8,  0.0,     -0.143222, 0.0},
         {1,  1.63803,  1.13656,  0.0},
         {1, -1.63803,  1.13656,  0.0}
     };
-    GQCP::Molecule molecule_atoms (atoms);
+    GQCP::Molecule molecule_nuclei (nuclei);
 
     auto molecule_xyz = GQCP::Molecule::Readxyz("data/h2o.xyz");
 
     // Check if the conversion from Bohr to Angstrom is correct
-    BOOST_CHECK(molecule_atoms.isEqualTo(molecule_xyz, 1.0e-05));
+    BOOST_CHECK(molecule_nuclei.isEqualTo(molecule_xyz, 1.0e-05));
 }
 
 
 BOOST_AUTO_TEST_CASE ( calculateInternuclearDistance ) {
 
-    // Create a fictitious molecule from some Atoms (charge, x, y ,z)
-    std::vector<GQCP::Nucleus> atoms = {
+    // Create a fictitious molecule from some nuclei (charge, x, y ,z)
+    std::vector<GQCP::Nucleus> nuclei = {
         {1, 0, 3, 0},
         {2, 0, 0, 4},
         {3, 3, 0, 0},
         {4, 0, 0, 5}
     };
-    GQCP::Molecule molecule (atoms);
+    GQCP::Molecule molecule (nuclei);
 
 
     // Check if we get throws when the indices are out of bounds
@@ -276,7 +276,7 @@ BOOST_AUTO_TEST_CASE ( calculateNuclearDipoleMoment ) {
 
 BOOST_AUTO_TEST_CASE ( HChain_throws ) {
 
-    BOOST_CHECK_THROW(GQCP::Molecule::HChain(0, 1.0, +0), std::invalid_argument);  // can't create 0 H-atoms
+    BOOST_CHECK_THROW(GQCP::Molecule::HChain(0, 1.0, +0), std::invalid_argument);  // can't create 0 H-nuclei
     BOOST_CHECK_THROW(GQCP::Molecule::HChain(1, -1.0, +0), std::invalid_argument);  // can't have negative spacing
 }
 

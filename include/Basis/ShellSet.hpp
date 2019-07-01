@@ -39,10 +39,11 @@ public:
 public:
     // CONSTRUCTORS
     ShellSet() = default;  // required for Intel compilers
+
     /**
-     *  Construct a ShellSet by placing the shells corresponding to the basisset information on every atom of the molecule
+     *  Construct a ShellSet by placing the shells corresponding to the basisset information on every nucleus of the molecule
      *
-     *  @param molecule             the molecule containing the atoms on which the shells should be centered
+     *  @param molecule             the molecule containing the nuclei on which the shells should be centered
      *  @param basisset_name        the name of the basisset, e.g. "STO-3G"
      */
     ShellSet(const Molecule& molecule, const std::string& basisset_name);
@@ -60,9 +61,9 @@ public:
     size_t numberOfBasisFunctions() const;
 
     /**
-     *  @return an ordered vector of the unique atoms in this shell set
+     *  @return an ordered vector of the unique nuclei in this shell set
      */
-    std::vector<Nucleus> atoms() const;
+    std::vector<Nucleus> nuclei() const;
 
     /**
      *  @param shell_index      the index of the shell

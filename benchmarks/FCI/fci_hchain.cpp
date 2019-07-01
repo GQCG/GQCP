@@ -47,7 +47,7 @@ static void fci_davidson_hchain(benchmark::State& state) {
         benchmark::DoNotOptimize(ci_solver);  // make sure the variable is not optimized away by compiler
     }
 
-    state.counters["Hydrogen atoms"] = K;
+    state.counters["Hydrogen nuclei"] = K;
     state.counters["Electrons"] = 2*N_P;
     state.counters["Dimension"] = fock_space.get_dimension();
 }
@@ -86,14 +86,14 @@ static void fci_dense_hchain(benchmark::State& state) {
         benchmark::DoNotOptimize(ci_solver);  // make sure the variable is not optimized away by compiler
     }
 
-    state.counters["Hydrogen atoms"] = K;
+    state.counters["Hydrogen nuclei"] = K;
     state.counters["Electrons"] = 2*N_P;
     state.counters["Dimension"] = fock_space.get_dimension();
 }
 
 static void CustomArguments(benchmark::internal::Benchmark* b) {
     for (int i = 4; i < 11; i++) {  // need int instead of size_t
-        b->Args({i, 4});  // number of hydrogen atoms, 4 electrons
+        b->Args({i, 4});  // number of hydrogen nuclei, 4 electrons
     }
 }
 

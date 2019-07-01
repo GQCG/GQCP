@@ -23,107 +23,107 @@
 
 
 
-BOOST_AUTO_TEST_CASE ( Atom_constructor ) {
+BOOST_AUTO_TEST_CASE ( Nucleus_constructor ) {
 
-    GQCP::Nucleus atom {1, 0.0, 0.1, 0.2};
+    GQCP::Nucleus nucleus {1, 0.0, 0.1, 0.2};
 }
 
 
-BOOST_AUTO_TEST_CASE ( Atom_isSmallerThan ) {
+BOOST_AUTO_TEST_CASE ( Nucleus_isSmallerThan ) {
 
-    GQCP::Nucleus atom1 {1, 0.0, 0.1, 0.2};
-    GQCP::Nucleus atom2 {2, 0.0, 0.1, 0.2};
-    GQCP::Nucleus atom3 {2, 0.1, 0.2, 0.2};
-    GQCP::Nucleus atom4 {2, 0.1, 0.2, 0.3};
+    GQCP::Nucleus nucleus1 {1, 0.0, 0.1, 0.2};
+    GQCP::Nucleus nucleus2 {2, 0.0, 0.1, 0.2};
+    GQCP::Nucleus nucleus3 {2, 0.1, 0.2, 0.2};
+    GQCP::Nucleus nucleus4 {2, 0.1, 0.2, 0.3};
 
 
     // Check if operator< does what is expected
-    BOOST_CHECK(atom1.isSmallerThan(atom2));
-    BOOST_CHECK(atom2.isSmallerThan(atom3));
-    BOOST_CHECK(atom3.isSmallerThan(atom4));
+    BOOST_CHECK(nucleus1.isSmallerThan(nucleus2));
+    BOOST_CHECK(nucleus2.isSmallerThan(nucleus3));
+    BOOST_CHECK(nucleus3.isSmallerThan(nucleus4));
 
-    BOOST_CHECK(!(atom2.isSmallerThan(atom1)));
-    BOOST_CHECK(!(atom3.isSmallerThan(atom2)));
-    BOOST_CHECK(!(atom4.isSmallerThan(atom3)));
+    BOOST_CHECK(!(nucleus2.isSmallerThan(nucleus1)));
+    BOOST_CHECK(!(nucleus3.isSmallerThan(nucleus2)));
+    BOOST_CHECK(!(nucleus4.isSmallerThan(nucleus3)));
 
 
     // Check if the tolerance works
-    BOOST_CHECK(!(atom2.isSmallerThan(atom3, 0.2)));
-    BOOST_CHECK(!(atom3.isSmallerThan(atom2, 0.2)));
+    BOOST_CHECK(!(nucleus2.isSmallerThan(nucleus3, 0.2)));
+    BOOST_CHECK(!(nucleus3.isSmallerThan(nucleus2, 0.2)));
 }
 
 
-BOOST_AUTO_TEST_CASE ( Atom_operator_smaller_than ) {
+BOOST_AUTO_TEST_CASE ( Nucleus_operator_smaller_than ) {
 
-    GQCP::Nucleus atom1 {1, 0.0, 0.1, 0.2};
-    GQCP::Nucleus atom2 {2, 0.0, 0.1, 0.2};
+    GQCP::Nucleus nucleus1 {1, 0.0, 0.1, 0.2};
+    GQCP::Nucleus nucleus2 {2, 0.0, 0.1, 0.2};
 
     // A small test to check if we can operator<
-    BOOST_CHECK(atom1 < atom2);
+    BOOST_CHECK(nucleus1 < nucleus2);
 }
 
 
-BOOST_AUTO_TEST_CASE ( Atom_isEqualTo ) {
+BOOST_AUTO_TEST_CASE ( Nucleus_isEqualTo ) {
 
-    GQCP::Nucleus atom1 {1, 0.0, 0.1, 0.2};
-    GQCP::Nucleus atom2 {1, 0.0, 0.1, 0.2};
-    GQCP::Nucleus atom3 {2, 0.0, 0.1, 0.2};
-    GQCP::Nucleus atom4 {1, 0.1, 0.2, 0.3};
+    GQCP::Nucleus nucleus1 {1, 0.0, 0.1, 0.2};
+    GQCP::Nucleus nucleus2 {1, 0.0, 0.1, 0.2};
+    GQCP::Nucleus nucleus3 {2, 0.0, 0.1, 0.2};
+    GQCP::Nucleus nucleus4 {1, 0.1, 0.2, 0.3};
 
     // Check if they're equal
-    BOOST_CHECK(atom1.isEqualTo(atom2));
+    BOOST_CHECK(nucleus1.isEqualTo(nucleus2));
 
-    // Check if different atomic numbers cause inequality
-    BOOST_CHECK(!(atom1.isEqualTo(atom3)));
+    // Check if different nucleusic numbers cause inequality
+    BOOST_CHECK(!(nucleus1.isEqualTo(nucleus3)));
 
     // Check if different coordinates cause inequality
-    BOOST_CHECK(!(atom1.isEqualTo(atom4)));
+    BOOST_CHECK(!(nucleus1.isEqualTo(nucleus4)));
 
 
     // Check if the tolerance works
-    BOOST_CHECK(atom1.isEqualTo(atom2, 0.2));
+    BOOST_CHECK(nucleus1.isEqualTo(nucleus2, 0.2));
 }
 
 
-BOOST_AUTO_TEST_CASE ( Atom_operator_equals ) {
+BOOST_AUTO_TEST_CASE ( Nucleus_operator_equals ) {
 
-    GQCP::Nucleus atom1 {1, 0.0, 0.1, 0.2};
-    GQCP::Nucleus atom2 {1, 0.0, 0.1, 0.2};
+    GQCP::Nucleus nucleus1 {1, 0.0, 0.1, 0.2};
+    GQCP::Nucleus nucleus2 {1, 0.0, 0.1, 0.2};
 
     // A small test to check if we can operator==
-    BOOST_CHECK(atom1 == atom2);
+    BOOST_CHECK(nucleus1 == nucleus2);
 }
 
 
-BOOST_AUTO_TEST_CASE ( Atom_operator_ostream ) {
+BOOST_AUTO_TEST_CASE ( Nucleus_operator_ostream ) {
 
-    GQCP::Nucleus atom1 {1, 0.0, 0.1, 0.2};
-    GQCP::Nucleus atom2 {2, 0.1, 0.2, 0.3};
+    GQCP::Nucleus nucleus1 {1, 0.0, 0.1, 0.2};
+    GQCP::Nucleus nucleus2 {2, 0.1, 0.2, 0.3};
 
 
-    std::cout << atom1 << std::endl;
-    std::cout << atom2 << std::endl;
+    std::cout << nucleus1 << std::endl;
+    std::cout << nucleus2 << std::endl;
 }
 
 
 BOOST_AUTO_TEST_CASE ( calculateDistance ) {
 
-    // Create some atoms
-    GQCP::Nucleus atom1 {1, 0, 3, 0};
-    GQCP::Nucleus atom2 {1, 0, 0, 4};
-    GQCP::Nucleus atom3 {1, 3, 0, 0};
-    GQCP::Nucleus atom4 {1, 0, 0, 5};
+    // Create some nuclei
+    GQCP::Nucleus nucleus1 {1, 0, 3, 0};
+    GQCP::Nucleus nucleus2 {1, 0, 0, 4};
+    GQCP::Nucleus nucleus3 {1, 3, 0, 0};
+    GQCP::Nucleus nucleus4 {1, 0, 0, 5};
 
 
     // Check their distances
-    BOOST_CHECK(std::abs(atom1.calculateDistance(atom2) - 5) < 1.0e-12);
-    BOOST_CHECK(std::abs(atom1.calculateDistance(atom3) - std::sqrt(18.0)) < 1.0e-12);
-    BOOST_CHECK(std::abs(atom1.calculateDistance(atom2) - atom2.calculateDistance(atom3)) < 1.0e-12);
-    BOOST_CHECK(std::abs(atom2.calculateDistance(atom3) - 5) < 1.0e-12);
-    BOOST_CHECK(std::abs(atom2.calculateDistance(atom4) - 1) < 1.0e-12);
+    BOOST_CHECK(std::abs(nucleus1.calculateDistance(nucleus2) - 5) < 1.0e-12);
+    BOOST_CHECK(std::abs(nucleus1.calculateDistance(nucleus3) - std::sqrt(18.0)) < 1.0e-12);
+    BOOST_CHECK(std::abs(nucleus1.calculateDistance(nucleus2) - nucleus2.calculateDistance(nucleus3)) < 1.0e-12);
+    BOOST_CHECK(std::abs(nucleus2.calculateDistance(nucleus3) - 5) < 1.0e-12);
+    BOOST_CHECK(std::abs(nucleus2.calculateDistance(nucleus4) - 1) < 1.0e-12);
 
     // Check that the distances are symmetric
-    BOOST_CHECK(std::abs(atom1.calculateDistance(atom2) - atom2.calculateDistance(atom1)) < 1.0e-12);
-    BOOST_CHECK(std::abs(atom1.calculateDistance(atom3) - atom3.calculateDistance(atom1)) < 1.0e-12);
-    BOOST_CHECK(std::abs(atom2.calculateDistance(atom3) - atom3.calculateDistance(atom2)) < 1.0e-12);
+    BOOST_CHECK(std::abs(nucleus1.calculateDistance(nucleus2) - nucleus2.calculateDistance(nucleus1)) < 1.0e-12);
+    BOOST_CHECK(std::abs(nucleus1.calculateDistance(nucleus3) - nucleus3.calculateDistance(nucleus1)) < 1.0e-12);
+    BOOST_CHECK(std::abs(nucleus2.calculateDistance(nucleus3) - nucleus3.calculateDistance(nucleus2)) < 1.0e-12);
 }
