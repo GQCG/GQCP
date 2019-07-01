@@ -19,7 +19,7 @@
 #define Shell_hpp
 
 
-#include "Molecule/Atom.hpp"
+#include "Molecule/Nucleus.hpp"
 
 
 namespace GQCP {
@@ -34,7 +34,7 @@ private:
     bool embedded_normalization_factors_of_primitives;  // if the normalization factors of the primitives are embedded in the contraction coefficients
     bool normalized;  // if the total normalization factor is already embedded in the contraction coefficients
     size_t l;  // the angular momentum of the shell
-    Atom atom;  // atom on which the shell is centered
+    Nucleus atom;  // atom on which the shell is centered
     std::vector<double> gaussian_exponents;  // Gaussian exponents (i.e. for the exponential), shared for every contraction
     std::vector<double> contraction_coefficients;
 
@@ -50,7 +50,7 @@ public:
      *  @param are_embedded_normalization_factors_of_primitives     if the normalization factors of the primitives are embedded in the contraction coefficients
      *  @param is_normalized                                        if the total normalization factor is already embedded in the contraction coefficients
      */
-    Shell(size_t l, const Atom& atom, const std::vector<double>& gaussian_exponents, const std::vector<double>& contraction_coefficients, bool pure=true, bool are_embedded_normalization_factors_of_primitives=false, bool is_normalized=false);
+    Shell(size_t l, const Nucleus& atom, const std::vector<double>& gaussian_exponents, const std::vector<double>& contraction_coefficients, bool pure=true, bool are_embedded_normalization_factors_of_primitives=false, bool is_normalized=false);
 
 
     // GETTERS
@@ -58,7 +58,7 @@ public:
     bool are_embedded_normalization_factors_of_primitives() const { return this->embedded_normalization_factors_of_primitives; }
     bool is_normalized() const { return this->normalized; }
     size_t get_l() const { return this->l; }
-    const Atom& get_atom() const { return this->atom; }
+    const Nucleus& get_atom() const { return this->atom; }
     const std::vector<double>& get_gaussian_exponents() const { return this->gaussian_exponents; }
     const std::vector<double>& get_contraction_coefficients() const { return this->contraction_coefficients; }
 

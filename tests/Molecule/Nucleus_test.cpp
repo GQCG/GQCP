@@ -15,26 +15,26 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#define BOOST_TEST_MODULE "Atom"
+#define BOOST_TEST_MODULE "Nucleus"
 
 #include <boost/test/unit_test.hpp>
 
-#include "Molecule/Atom.hpp"
+#include "Molecule/Nucleus.hpp"
 
 
 
 BOOST_AUTO_TEST_CASE ( Atom_constructor ) {
 
-    GQCP::Atom atom {1, 0.0, 0.1, 0.2};
+    GQCP::Nucleus atom {1, 0.0, 0.1, 0.2};
 }
 
 
 BOOST_AUTO_TEST_CASE ( Atom_isSmallerThan ) {
 
-    GQCP::Atom atom1 {1, 0.0, 0.1, 0.2};
-    GQCP::Atom atom2 {2, 0.0, 0.1, 0.2};
-    GQCP::Atom atom3 {2, 0.1, 0.2, 0.2};
-    GQCP::Atom atom4 {2, 0.1, 0.2, 0.3};
+    GQCP::Nucleus atom1 {1, 0.0, 0.1, 0.2};
+    GQCP::Nucleus atom2 {2, 0.0, 0.1, 0.2};
+    GQCP::Nucleus atom3 {2, 0.1, 0.2, 0.2};
+    GQCP::Nucleus atom4 {2, 0.1, 0.2, 0.3};
 
 
     // Check if operator< does what is expected
@@ -55,8 +55,8 @@ BOOST_AUTO_TEST_CASE ( Atom_isSmallerThan ) {
 
 BOOST_AUTO_TEST_CASE ( Atom_operator_smaller_than ) {
 
-    GQCP::Atom atom1 {1, 0.0, 0.1, 0.2};
-    GQCP::Atom atom2 {2, 0.0, 0.1, 0.2};
+    GQCP::Nucleus atom1 {1, 0.0, 0.1, 0.2};
+    GQCP::Nucleus atom2 {2, 0.0, 0.1, 0.2};
 
     // A small test to check if we can operator<
     BOOST_CHECK(atom1 < atom2);
@@ -65,10 +65,10 @@ BOOST_AUTO_TEST_CASE ( Atom_operator_smaller_than ) {
 
 BOOST_AUTO_TEST_CASE ( Atom_isEqualTo ) {
 
-    GQCP::Atom atom1 {1, 0.0, 0.1, 0.2};
-    GQCP::Atom atom2 {1, 0.0, 0.1, 0.2};
-    GQCP::Atom atom3 {2, 0.0, 0.1, 0.2};
-    GQCP::Atom atom4 {1, 0.1, 0.2, 0.3};
+    GQCP::Nucleus atom1 {1, 0.0, 0.1, 0.2};
+    GQCP::Nucleus atom2 {1, 0.0, 0.1, 0.2};
+    GQCP::Nucleus atom3 {2, 0.0, 0.1, 0.2};
+    GQCP::Nucleus atom4 {1, 0.1, 0.2, 0.3};
 
     // Check if they're equal
     BOOST_CHECK(atom1.isEqualTo(atom2));
@@ -87,8 +87,8 @@ BOOST_AUTO_TEST_CASE ( Atom_isEqualTo ) {
 
 BOOST_AUTO_TEST_CASE ( Atom_operator_equals ) {
 
-    GQCP::Atom atom1 {1, 0.0, 0.1, 0.2};
-    GQCP::Atom atom2 {1, 0.0, 0.1, 0.2};
+    GQCP::Nucleus atom1 {1, 0.0, 0.1, 0.2};
+    GQCP::Nucleus atom2 {1, 0.0, 0.1, 0.2};
 
     // A small test to check if we can operator==
     BOOST_CHECK(atom1 == atom2);
@@ -97,8 +97,8 @@ BOOST_AUTO_TEST_CASE ( Atom_operator_equals ) {
 
 BOOST_AUTO_TEST_CASE ( Atom_operator_ostream ) {
 
-    GQCP::Atom atom1 {1, 0.0, 0.1, 0.2};
-    GQCP::Atom atom2 {2, 0.1, 0.2, 0.3};
+    GQCP::Nucleus atom1 {1, 0.0, 0.1, 0.2};
+    GQCP::Nucleus atom2 {2, 0.1, 0.2, 0.3};
 
 
     std::cout << atom1 << std::endl;
@@ -109,10 +109,10 @@ BOOST_AUTO_TEST_CASE ( Atom_operator_ostream ) {
 BOOST_AUTO_TEST_CASE ( calculateDistance ) {
 
     // Create some atoms
-    GQCP::Atom atom1 {1, 0, 3, 0};
-    GQCP::Atom atom2 {1, 0, 0, 4};
-    GQCP::Atom atom3 {1, 3, 0, 0};
-    GQCP::Atom atom4 {1, 0, 0, 5};
+    GQCP::Nucleus atom1 {1, 0, 3, 0};
+    GQCP::Nucleus atom2 {1, 0, 0, 4};
+    GQCP::Nucleus atom3 {1, 3, 0, 0};
+    GQCP::Nucleus atom4 {1, 0, 0, 5};
 
 
     // Check their distances

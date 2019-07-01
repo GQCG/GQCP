@@ -79,9 +79,9 @@ LibintInterfacer& LibintInterfacer::get() {  // need to return by reference sinc
 /**
  *  @param atom         the GQCP-atom that should be interfaced
  *
- *  @return a libint2::Atom, interfaced from the given GQCP::Atom
+ *  @return a libint2::Atom, interfaced from the given GQCP::Nucleus
  */
-libint2::Atom LibintInterfacer::interface(const Atom& atom) const {
+libint2::Atom LibintInterfacer::interface(const Nucleus& atom) const {
 
     libint2::Atom libint_atom {static_cast<int>(atom.atomic_number), atom.position.x(), atom.position.y(), atom.position.z()};
 
@@ -184,7 +184,7 @@ libint2::BasisSet LibintInterfacer::interface(const ShellSet& shellset) const {
  *
  *  @return a vector of GQCP::Shells
  */
-std::vector<Shell> LibintInterfacer::interface(const libint2::Shell& libint_shell, const std::vector<Atom>& atoms, bool undo_renorm) const {
+std::vector<Shell> LibintInterfacer::interface(const libint2::Shell& libint_shell, const std::vector<Nucleus>& atoms, bool undo_renorm) const {
 
     // If asked for, undo Libint2's default renorm()alization
     auto libint_shell_copy = libint_shell;
@@ -206,9 +206,9 @@ std::vector<Shell> LibintInterfacer::interface(const libint2::Shell& libint_shel
 
         // Libint2 only stores the origin of the shell, so we have to find the atom corresponding to the copied shell's origin
         Eigen::Map<const Eigen::Matrix<double, 3, 1>> libint_origin_map (libint_shell_copy.O.data());  // convert raw array data to Eigen
-        Atom corresponding_atom;
+        Nucleus corresponding_atom;
         for (size_t i = 0; i < atoms.size(); i++) {
-            Atom atom = atoms[i];
+            Nucleus atom = atoms[i];
 
             if (atom.position.isApprox(libint_origin_map, 1.0e-06)) {  // tolerant comparison
                 corresponding_atom = atom;
@@ -216,7 +216,7 @@ std::vector<Shell> LibintInterfacer::interface(const libint2::Shell& libint_shel
             }
 
             if (i == (atoms.size() - 1)) {  // if we haven't broken out of the loop after exhausting the possible atoms
-                throw std::invalid_argument("LibintInterfacer::interface(libint2::Shell, std::vector<Atom>): No given atom matches the center of the libint2::Shell");
+                throw std::invalid_argument("LibintInterfacer::interface(libint2::Shell, std::vector<Nucleus>): No given atom matches the center of the libint2::Shell");
             }
         }
 
@@ -237,7 +237,7 @@ std::vector<Shell> LibintInterfacer::interface(const libint2::Shell& libint_shel
  *
  *  @return a GQCP::ShellSet corresponding to the un-renorm()alized libint2::BasisSet
  */
-ShellSet LibintInterfacer::interface(const libint2::BasisSet& libint_basisset, const std::vector<Atom>& atoms) const {
+ShellSet LibintInterfacer::interface(const libint2::BasisSet& libint_basisset, const std::vector<Nucleus>& atoms) const {
 
     ShellSet shell_set;
     shell_set.reserve(this->numberOfShells(libint_basisset));

@@ -25,7 +25,7 @@
 BOOST_AUTO_TEST_CASE ( constructor_atoms_charge ) {
 
     // Create a fictitious molecule from some Atoms (charge, x, y ,z)
-    std::vector<GQCP::Atom> atoms = {
+    std::vector<GQCP::Nucleus> atoms = {
         {1, 0, 3, 0},
         {2, 0, 0, 4},
         {3, 3, 0, 0},
@@ -45,7 +45,7 @@ BOOST_AUTO_TEST_CASE ( constructor_atoms_charge ) {
 BOOST_AUTO_TEST_CASE ( constructor_atoms ) {
 
     // Create a fictitious molecule from some Atoms (charge, x, y ,z)
-    std::vector<GQCP::Atom> atoms = {
+    std::vector<GQCP::Nucleus> atoms = {
         {1, 0, 3, 0},
         {2, 0, 0, 4},
         {3, 3, 0, 0},
@@ -59,11 +59,11 @@ BOOST_AUTO_TEST_CASE ( constructor_atoms ) {
 BOOST_AUTO_TEST_CASE ( duplicate_atoms_constructor ) {
 
     // Make some atoms
-    GQCP::Atom atom1 {1, 0.0, 0.0, 0.0};
-    GQCP::Atom atom2 {1, 1.0, 0.0, 0.0};
+    GQCP::Nucleus atom1 {1, 0.0, 0.0, 0.0};
+    GQCP::Nucleus atom2 {1, 1.0, 0.0, 0.0};
 
-    std::vector<GQCP::Atom> atoms1 {atom1, atom1};
-    std::vector<GQCP::Atom> atoms2 {atom1, atom2};
+    std::vector<GQCP::Nucleus> atoms1 {atom1, atom1};
+    std::vector<GQCP::Nucleus> atoms2 {atom1, atom2};
 
 
     // Check if we can't create a Molecule with duplicate atoms
@@ -77,7 +77,7 @@ BOOST_AUTO_TEST_CASE ( duplicate_atoms_constructor ) {
 BOOST_AUTO_TEST_CASE ( calculateTotalNucleicCharge ) {
 
     // Create a fictitious molecule from some Atoms (charge, x, y ,z)
-    std::vector<GQCP::Atom> atoms = {
+    std::vector<GQCP::Nucleus> atoms = {
         {1, 0, 3, 0},
         {2, 0, 0, 4},
         {3, 3, 0, 0},
@@ -121,7 +121,7 @@ BOOST_AUTO_TEST_CASE ( molecule_ion_constructor ) {
 
 BOOST_AUTO_TEST_CASE ( Molecule_operator_ostream ) {
 
-    std::vector<GQCP::Atom> atoms = {
+    std::vector<GQCP::Nucleus> atoms = {
         {1, 0, 3, 0},
         {2, 0, 0, 4},
         {3, 3, 0, 0},
@@ -136,11 +136,11 @@ BOOST_AUTO_TEST_CASE ( Molecule_operator_ostream ) {
 BOOST_AUTO_TEST_CASE ( Molecule_isEqualTo ) {
 
     // Create some Atoms and Molecules
-    GQCP::Atom atom1 {1, 0.0, 0.1, 0.2};
-    GQCP::Atom atom2 {2, 0.0, 0.1, 0.2};
-    GQCP::Atom atom3 {3, 0.0, 0.1, 0.2};
-    GQCP::Atom atom4 {4, 0.1, 0.2, 0.3};
-    GQCP::Atom atom5 {3, 0.1, 0.2, 0.3};
+    GQCP::Nucleus atom1 {1, 0.0, 0.1, 0.2};
+    GQCP::Nucleus atom2 {2, 0.0, 0.1, 0.2};
+    GQCP::Nucleus atom3 {3, 0.0, 0.1, 0.2};
+    GQCP::Nucleus atom4 {4, 0.1, 0.2, 0.3};
+    GQCP::Nucleus atom5 {3, 0.1, 0.2, 0.3};
 
     GQCP::Molecule molecule1 {{atom1, atom2, atom3}};
     GQCP::Molecule molecule2 {{atom1, atom2, atom3}};
@@ -173,10 +173,10 @@ BOOST_AUTO_TEST_CASE ( Molecule_isEqualTo ) {
 BOOST_AUTO_TEST_CASE ( Molecule_operator_equals ) {
 
     // Create some Atoms and Molecules
-    GQCP::Atom atom1 {1, 0.0, 0.1, 0.2};
-    GQCP::Atom atom2 {2, 0.0, 0.1, 0.2};
-    GQCP::Atom atom3 {3, 0.0, 0.1, 0.2};
-    GQCP::Atom atom4 {3, 0.1, 0.2, 0.3};
+    GQCP::Nucleus atom1 {1, 0.0, 0.1, 0.2};
+    GQCP::Nucleus atom2 {2, 0.0, 0.1, 0.2};
+    GQCP::Nucleus atom3 {3, 0.0, 0.1, 0.2};
+    GQCP::Nucleus atom4 {3, 0.1, 0.2, 0.3};
 
     GQCP::Molecule molecule1 {{atom1, atom2, atom3}};
     GQCP::Molecule molecule2 {{atom1, atom2, atom3}};
@@ -191,7 +191,7 @@ BOOST_AUTO_TEST_CASE ( Molecule_operator_equals ) {
 
 BOOST_AUTO_TEST_CASE ( xyz_filename_constructor ) {
 
-    std::vector<GQCP::Atom> atoms {
+    std::vector<GQCP::Nucleus> atoms {
         {8,  0.0,     -0.143222, 0.0},
         {1,  1.63803,  1.13656,  0.0},
         {1, -1.63803,  1.13656,  0.0}
@@ -208,7 +208,7 @@ BOOST_AUTO_TEST_CASE ( xyz_filename_constructor ) {
 BOOST_AUTO_TEST_CASE ( calculateInternuclearDistance ) {
 
     // Create a fictitious molecule from some Atoms (charge, x, y ,z)
-    std::vector<GQCP::Atom> atoms = {
+    std::vector<GQCP::Nucleus> atoms = {
         {1, 0, 3, 0},
         {2, 0, 0, 4},
         {3, 3, 0, 0},
@@ -266,9 +266,9 @@ BOOST_AUTO_TEST_CASE ( methods_water ) {
 BOOST_AUTO_TEST_CASE ( calculateNuclearDipoleMoment ) {
 
     // Check the nuclear dipole moment for a toy molecule
-    GQCP::Atom H {1,  0, 1, 2};
-    GQCP::Atom O {8,  2, 4, 8};
-    GQCP::Molecule molecule (std::vector<GQCP::Atom>{H, O});
+    GQCP::Nucleus H {1,  0, 1, 2};
+    GQCP::Nucleus O {8,  2, 4, 8};
+    GQCP::Molecule molecule (std::vector<GQCP::Nucleus>{H, O});
 
     BOOST_CHECK(molecule.calculateNuclearDipoleMoment().isApprox(GQCP::Vector<double, 3>{16, 33, 66}));
 }

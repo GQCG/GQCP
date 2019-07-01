@@ -39,7 +39,7 @@ namespace GQCP {
  *  @param are_embedded_normalization_factors_of_primitives     if the normalization factors of the primitives are embedded in the contraction coefficients
  *  @param is_normalized                                        if the total normalization factor is already embedded in the contraction coefficients
  */
-Shell::Shell(size_t l, const Atom& atom, const std::vector<double>& gaussian_exponents, const std::vector<double>& contraction_coefficients, bool pure, bool are_embedded_normalization_factors_of_primitives, bool is_normalized) :
+Shell::Shell(size_t l, const Nucleus& atom, const std::vector<double>& gaussian_exponents, const std::vector<double>& contraction_coefficients, bool pure, bool are_embedded_normalization_factors_of_primitives, bool is_normalized) :
     pure (pure),
     embedded_normalization_factors_of_primitives (are_embedded_normalization_factors_of_primitives),
     normalized (is_normalized),
@@ -49,7 +49,7 @@ Shell::Shell(size_t l, const Atom& atom, const std::vector<double>& gaussian_exp
     contraction_coefficients (contraction_coefficients)
 {
     if (gaussian_exponents.size() != contraction_coefficients.size()) {
-        throw std::invalid_argument("Shell(size_t, Atom, std::vector<double>, std::vector<double>): the exponents and contraction coefficients must match in size.");
+        throw std::invalid_argument("Shell(size_t, Nucleus, std::vector<double>, std::vector<double>): the exponents and contraction coefficients must match in size.");
     }
 }
 

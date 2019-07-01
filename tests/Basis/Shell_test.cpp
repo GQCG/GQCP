@@ -28,8 +28,8 @@ BOOST_AUTO_TEST_CASE ( Shell_constructor_throws ) {
     std::vector<double> coeff1 {0.5, 1.0};
     std::vector<double> coeff2 {0.5, 1.0, 1.5};
 
-    GQCP::Shell shell1 (0, GQCP::Atom(), exp1, coeff1);
-    BOOST_CHECK_THROW(GQCP::Shell shell2 (0, GQCP::Atom(), exp1, coeff2), std::invalid_argument);
+    GQCP::Shell shell1 (0, GQCP::Nucleus(), exp1, coeff1);
+    BOOST_CHECK_THROW(GQCP::Shell shell2 (0, GQCP::Nucleus(), exp1, coeff2), std::invalid_argument);
 }
 
 
@@ -37,7 +37,7 @@ BOOST_AUTO_TEST_CASE ( numberOfBasisFunctions ) {
 
     std::vector<double> exp {1.0, 1.1};
     std::vector<double> coeff {0.5, 1.0};
-    GQCP::Atom atom {};
+    GQCP::Nucleus atom {};
     GQCP::Shell cartesian_s_shell (0, atom, exp, coeff, false);
     GQCP::Shell cartesian_p_shell (1, atom, exp, coeff, false);
     GQCP::Shell cartesian_d_shell (2, atom, exp, coeff, false);
@@ -65,8 +65,8 @@ BOOST_AUTO_TEST_CASE ( operator_equals ) {
 
     size_t l1 = 0;
     size_t l2 = 1;
-    GQCP::Atom atom1 {};
-    GQCP::Atom atom2 (1.0,  0.0, 0.0, 0.0);
+    GQCP::Nucleus atom1 {};
+    GQCP::Nucleus atom2 (1.0,  0.0, 0.0, 0.0);
     std::vector<double> exp1 {1.0, 1.1};
     std::vector<double> exp2 {2.0, 2.1};
     std::vector<double> coeff1 {0.5, 1.0};
@@ -93,7 +93,7 @@ BOOST_AUTO_TEST_CASE ( operator_equals ) {
 BOOST_AUTO_TEST_CASE ( embed_normalization_factor_primitives ) {
 
     std::vector<double> exp {1.0, 1.1};
-    GQCP::Atom atom {};
+    GQCP::Nucleus atom {};
     GQCP::Shell s_shell (0, atom, exp, {0.5, 1.0});
     auto s_shell_copy = s_shell;
 
@@ -116,7 +116,7 @@ BOOST_AUTO_TEST_CASE ( embed_normalization_factor_primitives ) {
 BOOST_AUTO_TEST_CASE ( embed_total_normalization_factor ) {
 
     std::vector<double> exp {1.0, 1.1};
-    GQCP::Atom atom {};
+    GQCP::Nucleus atom {};
     GQCP::Shell s_shell (0, atom, exp, {0.5, 1.0});
 
     GQCP::Shell ref_embedded_shell (0, atom, exp, {0.3854188481329033, 0.7708376962658066});  // manual calculation

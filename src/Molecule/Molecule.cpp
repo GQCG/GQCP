@@ -41,7 +41,7 @@ namespace GQCP {
  *                           0 -> neutral molecule
  *                          -1 -> anion (one electron more than the neutral molecule)
  */
-Molecule::Molecule(const std::vector<Atom>& atoms, int charge) :
+Molecule::Molecule(const std::vector<Nucleus>& atoms, int charge) :
     atoms (atoms),
     N (this->calculateTotalNucleicCharge() - charge)
 {
@@ -53,7 +53,7 @@ Molecule::Molecule(const std::vector<Atom>& atoms, int charge) :
     }
 
     // Check if there are no duplicate atoms
-    std::vector<Atom> atoms_copy = this->atoms;
+    std::vector<Nucleus> atoms_copy = this->atoms;
 
     // Sort and unique
     std::sort(atoms_copy.begin(), atoms_copy.end());
@@ -111,7 +111,7 @@ Molecule Molecule::Readxyz(const std::string& xyz_filename, int charge) {
 
 
         // Next lines are the atoms
-        std::vector<Atom> atoms;
+        std::vector<Nucleus> atoms;
         atoms.reserve(number_of_atoms);
 
         while (std::getline(input_file_stream, line)) {
@@ -157,7 +157,7 @@ Molecule Molecule::HChain(size_t n, double spacing, int charge) {
     }
 
 
-    std::vector<Atom> h_chain;
+    std::vector<Nucleus> h_chain;
 
     // Put all H-atoms on a line on the x-axis: the first H is on the origin
     double x = 0.0;  // the current x-coordinate
@@ -190,7 +190,7 @@ Molecule Molecule::H2Chain(size_t n, double a, double b, int charge) {
     }
 
 
-    std::vector<Atom> h_chain;
+    std::vector<Nucleus> h_chain;
 
     // Put all H-atoms on a line on the x-axis: the first H is on the origin
     double x = 0.0;  // the current x-coordinate
@@ -215,11 +215,11 @@ Molecule Molecule::H2Chain(size_t n, double a, double b, int charge) {
 /**
  *  @param other        the other molecule
  *
- *  @return if this molecule is equal to the other, within the default Atom::tolerance_for_comparison for the coordinates of the atoms
+ *  @return if this molecule is equal to the other, within the default Nucleus::tolerance_for_comparison for the coordinates of the atoms
  */
 bool Molecule::operator==(const Molecule& other) const {
 
-    return this->isEqualTo(other, Atom::tolerance_for_comparison);
+    return this->isEqualTo(other, Nucleus::tolerance_for_comparison);
 }
 
 
@@ -257,15 +257,15 @@ bool Molecule::isEqualTo(const Molecule& other, double tolerance) const {
     }
 
     // We don't want the order of the atoms to matter in a Molecule comparison
-    // We have implemented a custom Atom::operator< so we can sort std::vectors of Atoms
+    // We have implemented a custom Nucleus::operator< so we can sort std::vectors of Atoms
     // Make a copy of the atoms because std::sort modifies
     auto this_atoms = this->atoms;
     auto other_atoms = other.atoms;
 
 
     // Make lambda expressions for the comparators, since we want to hand over the tolerance argument
-    auto smaller_than_atom = [this, tolerance](const Atom& lhs, const Atom& rhs) { return lhs.isSmallerThan(rhs, tolerance); };
-    auto equal_atom = [this, tolerance](const Atom& lhs, const Atom& rhs) { return lhs.isEqualTo(rhs, tolerance); };
+    auto smaller_than_atom = [this, tolerance](const Nucleus& lhs, const Nucleus& rhs) { return lhs.isSmallerThan(rhs, tolerance); };
+    auto equal_atom = [this, tolerance](const Nucleus& lhs, const Nucleus& rhs) { return lhs.isEqualTo(rhs, tolerance); };
 
 
     std::sort(this_atoms.begin(), this_atoms.end(), smaller_than_atom);

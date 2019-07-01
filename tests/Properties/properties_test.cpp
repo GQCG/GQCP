@@ -32,9 +32,9 @@
 BOOST_AUTO_TEST_CASE ( dipole_CO_STO_3G ) {
 
     // Initialize the molecule and molecular Hamiltonian parameters for CO
-    GQCP::Atom C (6, 0.0, 0.0, 0.0);
-    GQCP::Atom O (8, 0.0, 0.0, GQCP::units::angstrom_to_bohr(1.145));  // from CCCBDB, STO-3G geometry
-    std::vector<GQCP::Atom> atoms {C, O};
+    GQCP::Nucleus C (6, 0.0, 0.0, 0.0);
+    GQCP::Nucleus O (8, 0.0, 0.0, GQCP::units::angstrom_to_bohr(1.145));  // from CCCBDB, STO-3G geometry
+    std::vector<GQCP::Nucleus> atoms {C, O};
     GQCP::Molecule CO (atoms);
 
     auto ao_basis = std::make_shared<GQCP::AOBasis>(CO, "STO-3G");
@@ -72,9 +72,9 @@ BOOST_AUTO_TEST_CASE ( dipole_N2_STO_3G ) {
     // Check that the dipole moment of N2 is zero
 
     // Initialize the molecule and molecular Hamiltonian parameters for N2
-    GQCP::Atom N_1 (7, 0.0, 0.0, 0.0);
-    GQCP::Atom N_2 (7, 0.0, 0.0, GQCP::units::angstrom_to_bohr(1.134));  // from CCCBDB, STO-3G geometry
-    std::vector<GQCP::Atom> atoms {N_1, N_2};
+    GQCP::Nucleus N_1 (7, 0.0, 0.0, 0.0);
+    GQCP::Nucleus N_2 (7, 0.0, 0.0, GQCP::units::angstrom_to_bohr(1.134));  // from CCCBDB, STO-3G geometry
+    std::vector<GQCP::Nucleus> atoms {N_1, N_2};
     GQCP::Molecule N2 (atoms);
 
     auto ao_basis = std::make_shared<GQCP::AOBasis>(N2, "STO-3G");

@@ -59,9 +59,9 @@ BOOST_AUTO_TEST_CASE ( mulliken_N2_STO_3G ) {
     // Check that the mulliken population of N2 is 14 (N)
 
     // Initialize the molecule and molecular Hamiltonian parameters for N2
-    GQCP::Atom N_1 (7, 0.0, 0.0, 0.0);
-    GQCP::Atom N_2 (7, 0.0, 0.0, GQCP::units::angstrom_to_bohr(1.134));  // from CCCBDB, STO-3G geometry
-    std::vector<GQCP::Atom> atoms {N_1, N_2};
+    GQCP::Nucleus N_1 (7, 0.0, 0.0, 0.0);
+    GQCP::Nucleus N_2 (7, 0.0, 0.0, GQCP::units::angstrom_to_bohr(1.134));  // from CCCBDB, STO-3G geometry
+    std::vector<GQCP::Nucleus> atoms {N_1, N_2};
     GQCP::Molecule N2 (atoms);
 
     auto ham_par = GQCP::HamiltonianParameters<double>::Molecular(N2, "STO-3G");

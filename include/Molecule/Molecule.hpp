@@ -23,7 +23,7 @@
 #include <string>
 #include <vector>
 
-#include "Molecule/Atom.hpp"
+#include "Molecule/Nucleus.hpp"
 
 
 
@@ -36,7 +36,7 @@ namespace GQCP {
  */
 class Molecule {
 private:
-    std::vector<Atom> atoms;  // coordinates in bohr
+    std::vector<Nucleus> atoms;  // coordinates in bohr
     size_t N;  // number of electrons
 
 
@@ -49,7 +49,7 @@ public:
      *                           0 -> neutral molecule
      *                          -1 -> anion (one electron more than the neutral molecule)
      */
-    Molecule(const std::vector<Atom>& atoms, int charge=0);
+    Molecule(const std::vector<Nucleus>& atoms, int charge=0);
 
 
     // NAMED CONSTRUCTORS
@@ -88,7 +88,7 @@ public:
     /**
      *  @param other        the other molecule
      *
-     *  @return if this molecule is equal to the other, within the default Atom::tolerance_for_comparison for the coordinates of the atoms
+     *  @return if this molecule is equal to the other, within the default Nucleus::tolerance_for_comparison for the coordinates of the atoms
      */
     bool operator==(const Molecule& other) const;
 
@@ -103,7 +103,7 @@ public:
 
     // GETTERS
     size_t get_N() const { return this->N; }
-    const std::vector<Atom>& get_atoms() const { return this->atoms; }
+    const std::vector<Nucleus>& get_atoms() const { return this->atoms; }
     size_t numberOfAtoms() const { return this->atoms.size(); }
 
 
@@ -114,7 +114,7 @@ public:
      *
      *  @return if this is equal to the other, within the given tolerance
      */
-    bool isEqualTo(const Molecule& other, double tolerance=Atom::tolerance_for_comparison) const;
+    bool isEqualTo(const Molecule& other, double tolerance=Nucleus::tolerance_for_comparison) const;
 
     /**
      *  @return the sum of all the charges of the nuclei

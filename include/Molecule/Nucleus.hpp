@@ -19,19 +19,19 @@
 #define GQCP_ATOM_HPP
 
 
+#include "Mathematical/Matrix.hpp"
+
 #include <iostream>
 #include <stdlib.h>
-
-#include "Mathematical/Matrix.hpp"
 
 
 namespace GQCP {
 
 
 /**
- *  A class to represent an atom with an atomic charge and a position in space (in bohr)
+ *  A class that represents a nucleus: it has a charge and a position in space
  */
-class Atom {
+class Nucleus {
 public:
     size_t atomic_number;
     Vector<double, 3> position;  // in bohr
@@ -46,12 +46,12 @@ public:
      *  @param y                    the y-position of the atom in bohr
      *  @param z                    the z-position of the atom in bohr
      */
-    Atom(size_t atomic_number, double x, double y, double z);
+    Nucleus(size_t atomic_number, double x, double y, double z);
 
     /**
      *  Default constructor, creating a 'ghost' atom (i.e. Bq) in the origin
      */
-    Atom();
+    Nucleus();
 
 
     // OPERATORS
@@ -60,14 +60,14 @@ public:
      *
      *  @return if this atom is equal to the other, within a default tolerance for the coordinates
      */
-    bool operator==(const Atom& other) const;
+    bool operator==(const Nucleus& other) const;
 
     /**
      *  @param other        the other atom
      *
      *  @return if this atom is not equal to the other, within a default tolerance for the coordinates
      */
-    bool operator!=(const Atom& other) const;
+    bool operator!=(const Nucleus& other) const;
 
     /**
      *  A custom implementation for the comparison (and thus ordening) of atoms. The atomic_number takes precedence over the x-coordinate, which takes precedence over the y-coordinate, which in turn takes precedence over the z-coordinate
@@ -76,17 +76,17 @@ public:
      *
      *  @return if this atom is 'smaller' than the other, within a default tolerance for the coordinates
      */
-    bool operator<(const Atom& other) const;
+    bool operator<(const Nucleus& other) const;
 
     /**
-     *  Overloading of operator<< for a Atom to be used with ostreams
+     *  Overloading of operator<< for a Nucleus to be used with ostreams
      *
      *  @param os       the output stream to which the atom should be concatenated
      *  @param atom     the atom which should be concatenated to the output stream
      *
      *  @return the updated output stream
      */
-    friend std::ostream& operator<<(std::ostream& os, const Atom& atom);
+    friend std::ostream& operator<<(std::ostream& os, const Nucleus& atom);
 
 
     // PUBLIC METHODS
@@ -96,7 +96,7 @@ public:
      *
      *  @return if this atom is equal to the other
      */
-    bool isEqualTo(const Atom& other, double tolerance=Atom::tolerance_for_comparison) const;
+    bool isEqualTo(const Nucleus& other, double tolerance=Nucleus::tolerance_for_comparison) const;
 
     /**
      *  A custom implementation for the comparison (and thus ordening) of atoms. The atomic_number takes precedence over the x-coordinate, which takes precedence over the y-coordinate, which in turn takes precedence over the z-coordinate
@@ -106,14 +106,14 @@ public:
      *
      *  @return if this atom is 'smaller' than the other, within a default tolerance for the coordinates
      */
-    bool isSmallerThan(const Atom& other, double tolerance=Atom::tolerance_for_comparison) const;
+    bool isSmallerThan(const Nucleus& other, double tolerance=Nucleus::tolerance_for_comparison) const;
 
     /**
      *  @param other        the other atom
      *
      *  @return the Euclidian distance between this atom and the other
      */
-    double calculateDistance(const Atom& other) const;
+    double calculateDistance(const Nucleus& other) const;
 };
 
 

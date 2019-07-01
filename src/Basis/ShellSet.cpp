@@ -77,9 +77,9 @@ size_t ShellSet::numberOfBasisFunctions() const {
 /**
  *  @return an ordered vector of the unique atoms in this shell set
  */
-std::vector<Atom> ShellSet::atoms() const {
+std::vector<Nucleus> ShellSet::atoms() const {
 
-    std::vector<Atom> atoms {};
+    std::vector<Nucleus> atoms {};
 
     // Append every unique atom in this shell set's shells
     for (const auto& shell : *this) {

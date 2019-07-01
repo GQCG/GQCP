@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "Molecule/Atom.hpp"
+#include "Molecule/Nucleus.hpp"
 
 #include <cmath>
 #include <iomanip>
@@ -36,7 +36,7 @@ namespace GQCP {
  *  @param y                    the y-position of the atom in bohr
  *  @param z                    the z-position of the atom in bohr
  */
-Atom::Atom(size_t atomic_number, double x, double y, double z) :
+Nucleus::Nucleus(size_t atomic_number, double x, double y, double z) :
     atomic_number (atomic_number)
 {
     position << x, y, z;
@@ -46,8 +46,8 @@ Atom::Atom(size_t atomic_number, double x, double y, double z) :
 /**
  *  Default constructor, creating a 'ghost' atom (i.e. Bq) in the origin
  */
-Atom::Atom() :
-    Atom(0,  0.0, 0.0, 0.0)  // Z = 0
+Nucleus::Nucleus() :
+    Nucleus(0,  0.0, 0.0, 0.0)  // Z = 0
 {}
 
 
@@ -60,9 +60,9 @@ Atom::Atom() :
  *
  *  @return if this atom is equal to the other, within a default tolerance for the coordinates
  */
-bool Atom::operator==(const Atom& other) const {
+bool Nucleus::operator==(const Nucleus& other) const {
 
-    return this->isEqualTo(other, Atom::tolerance_for_comparison);
+    return this->isEqualTo(other, Nucleus::tolerance_for_comparison);
 }
 
 
@@ -71,7 +71,7 @@ bool Atom::operator==(const Atom& other) const {
  *
  *  @return if this atom is not equal to the other, within a default tolerance for the coordinates
  */
-bool Atom::operator!=(const Atom& other) const {
+bool Nucleus::operator!=(const Nucleus& other) const {
     return !this->operator==(other);
 }
 
@@ -83,21 +83,21 @@ bool Atom::operator!=(const Atom& other) const {
  *
  *  @return if this atom is 'smaller' than the other, within a default tolerance for the coordinates
  */
-bool Atom::operator<(const Atom& other) const {
+bool Nucleus::operator<(const Nucleus& other) const {
 
-    return this->isSmallerThan(other, Atom::tolerance_for_comparison);
+    return this->isSmallerThan(other, Nucleus::tolerance_for_comparison);
 }
 
 
 /**
- *  Overloading of operator<< for a Atom to be used with ostreams
+ *  Overloading of operator<< for a Nucleus to be used with ostreams
  *
  *  @param os       the output stream to which the atom should be concatenated
  *  @param atom     the atom which should be concatenated to the output stream
  *
  *  @return the updated output stream
  */
-std::ostream& operator<<(std::ostream& os, const Atom& atom) {
+std::ostream& operator<<(std::ostream& os, const Nucleus& atom) {
     os << std::left << std::setw(3) << elements::atomicNumberToElement(atom.atomic_number) << '(' << atom.position.x() << ", " << atom.position.y() << ", " << atom.position.z() << ")\n";
     return os;
 }
@@ -113,7 +113,7 @@ std::ostream& operator<<(std::ostream& os, const Atom& atom) {
  *
  *  @return if this atom is equal to the other
  */
-bool Atom::isEqualTo(const Atom& other, double tolerance) const {
+bool Nucleus::isEqualTo(const Nucleus& other, double tolerance) const {
 
     return (this->atomic_number == other.atomic_number) &&
            (std::abs(this->position.x() - other.position.x()) < tolerance) &&
@@ -130,7 +130,7 @@ bool Atom::isEqualTo(const Atom& other, double tolerance) const {
  *
  *  @return if this atom is 'smaller' than the other, within a default tolerance for the coordinates
  */
-bool Atom::isSmallerThan(const Atom& other, double tolerance) const {
+bool Nucleus::isSmallerThan(const Nucleus& other, double tolerance) const {
 
     if (this->atomic_number < other.atomic_number) {
         return true;
@@ -162,7 +162,7 @@ bool Atom::isSmallerThan(const Atom& other, double tolerance) const {
  *
  *  @return the Euclidian distance between this atom and the other
  */
-double Atom::calculateDistance(const Atom& other) const {
+double Nucleus::calculateDistance(const Nucleus& other) const {
 
     return (this->position - other.position).norm();
 }

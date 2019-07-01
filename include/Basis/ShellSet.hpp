@@ -62,7 +62,7 @@ public:
     /**
      *  @return an ordered vector of the unique atoms in this shell set
      */
-    std::vector<Atom> atoms() const;
+    std::vector<Nucleus> atoms() const;
 
     /**
      *  @param shell_index      the index of the shell

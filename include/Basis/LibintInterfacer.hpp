@@ -72,16 +72,16 @@ public:
     /**
      *  @param atom         the GQCP-atom that should be interfaced
      *
-     *  @return a libint2::Atom, interfaced from the given GQCP::Atom
+     *  @return a libint2::Atom, interfaced from the given GQCP::Nucleus
      */
-    libint2::Atom interface(const Atom& atom) const;
+    libint2::Atom interface(const Nucleus& atom) const;
 
     /**
      *  @param atoms        the GQCP-atoms that should be interfaced
      *
      *  @return libint2-atoms, interfaced from the given atoms
      */
-    std::vector<libint2::Atom> interface(const std::vector<Atom>& atoms) const;
+    std::vector<libint2::Atom> interface(const std::vector<Nucleus>& atoms) const;
 
     /**
      *  @param shell        the GQCP shell that should be interfaced
@@ -108,7 +108,7 @@ public:
      *
      *  @return a vector of GQCP::Shells corresponding to the given libint2::Shells
      */
-    std::vector<Shell> interface(const libint2::Shell& libint_shell, const std::vector<Atom>& atoms, bool undo_renorm=true) const;
+    std::vector<Shell> interface(const libint2::Shell& libint_shell, const std::vector<Nucleus>& atoms, bool undo_renorm=true) const;
 
     /**
      *  Interface a libint2::BasisSet to the corresponding GQCP::ShellSet
@@ -118,7 +118,7 @@ public:
      *
      *  @return a GQCP::ShellSet corresponding to the libint2::BasisSet
      */
-    ShellSet interface(const libint2::BasisSet& libint_basisset, const std::vector<Atom>& atoms) const;
+    ShellSet interface(const libint2::BasisSet& libint_basisset, const std::vector<Nucleus>& atoms) const;
 
 
     // PUBLIC METHODS - OTHER LIBINT2-RELATED FUNCTIONS
