@@ -19,7 +19,6 @@
 #define GQCP_HPP
 
 #include "Basis/AOBasis.hpp"
-#include "Basis/CartesianDirection.hpp"
 #include "Basis/CartesianExponents.hpp"
 #include "Basis/CartesianGTO.hpp"
 #include "Basis/LibcintInterfacer.hpp"
@@ -81,6 +80,7 @@
 #include "Mathematical/Optimization/step.hpp"
 #include "Mathematical/Optimization/UnalteringHessianModifier.hpp"
 
+#include "Mathematical/CartesianDirection.hpp"
 #include "Mathematical/ChemicalMatrix.hpp"
 #include "Mathematical/ChemicalRankFourTensor.hpp"
 #include "Mathematical/LinearCombination.hpp"
