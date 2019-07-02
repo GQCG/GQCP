@@ -70,7 +70,7 @@ libcint::RawContainer LibcintInterfacer::convert(const ShellSet& shell_set) cons
 
 
         // If there's a new nucleus, increment the index
-        auto current_nucleus = current_shell.get_nucleus();
+        const auto& current_nucleus = current_shell.get_nucleus();
         if (!Nucleus::equalityComparer()(current_nucleus, previous_nucleus)) {
             nucleus_index++;
             previous_nucleus = current_nucleus;
