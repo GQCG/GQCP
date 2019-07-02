@@ -40,7 +40,7 @@ public:
     /**
      *  @param o        the origin of the multipole
      */
-    BaseMultipoleOperator(const Vector<double, 3>& o = Vector<double, 3>::Zero(3));
+    BaseMultipoleOperator(const Vector<double, 3>& o=Vector<double, 3>::Zero());
 
 
     // DESTRUCTOR

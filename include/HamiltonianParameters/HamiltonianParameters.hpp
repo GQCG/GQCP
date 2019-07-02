@@ -25,6 +25,7 @@
 #include "Molecule/Molecule.hpp"
 #include "Operator/OneElectronOperator.hpp"
 #include "Operator/TwoElectronOperator.hpp"
+#include "Operator/FirstQuantized/Operator.hpp"
 #include "OrbitalOptimization/JacobiRotationParameters.hpp"
 #include "RDM/TwoRDM.hpp"
 #include "RDM/OneRDM.hpp"
@@ -175,7 +176,8 @@ public:
 
         auto ao_basis = std::make_shared<AOBasis>(molecule, basisset);
 
-        return HamiltonianParameters::Molecular(ao_basis, molecule.calculateInternuclearRepulsionEnergy());
+        const double internuclear_repulsion_energy = Operator::NuclearRepulsion(molecule).value();
+        return HamiltonianParameters::Molecular(ao_basis, internuclear_repulsion_energy);
     }
 
 

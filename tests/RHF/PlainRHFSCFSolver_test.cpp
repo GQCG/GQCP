@@ -57,7 +57,7 @@ BOOST_AUTO_TEST_CASE ( h2_sto3g_szabo_plain ) {
 
 
     // Check the total energy
-    double total_energy = rhf.get_electronic_energy() + h2.calculateInternuclearRepulsionEnergy();
+    double total_energy = rhf.get_electronic_energy() + GQCP::Operator::NuclearRepulsion(h2).value();
     BOOST_CHECK(std::abs(total_energy - ref_total_energy) < 1.0e-04);
 }
 
@@ -89,7 +89,7 @@ BOOST_AUTO_TEST_CASE ( h2o_sto3g_horton_plain ) {
     auto rhf = plain_scf_solver.get_solution();
 
     // Check the total energy
-    double total_energy = rhf.get_electronic_energy() + water.calculateInternuclearRepulsionEnergy();
+    double total_energy = rhf.get_electronic_energy() + GQCP::Operator::NuclearRepulsion(water).value();
     BOOST_CHECK(std::abs(total_energy - ref_total_energy) < 1.0e-04);
 
     // Check the calculated results with the reference
@@ -118,7 +118,7 @@ BOOST_AUTO_TEST_CASE ( crawdad_h2o_sto3g_plain ) {
 
 
     // Check the total energy
-    double total_energy = rhf.get_electronic_energy() + water.calculateInternuclearRepulsionEnergy();
+    double total_energy = rhf.get_electronic_energy() + GQCP::Operator::NuclearRepulsion(water).value();
     BOOST_CHECK(std::abs(total_energy - ref_total_energy) < 1.0e-06);
 }
 
@@ -140,7 +140,7 @@ BOOST_AUTO_TEST_CASE ( crawdad_ch4_sto3g_plain ) {
     auto rhf = plain_scf_solver.get_solution();
 
     // Check the total energy
-    double total_energy = rhf.get_electronic_energy() + methane.calculateInternuclearRepulsionEnergy();
+    double total_energy = rhf.get_electronic_energy() + GQCP::Operator::NuclearRepulsion(methane).value();
     BOOST_CHECK(std::abs(total_energy - ref_total_energy) < 1.0e-06);
 }
 

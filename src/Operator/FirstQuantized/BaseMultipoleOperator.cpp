@@ -33,4 +33,10 @@ BaseMultipoleOperator::BaseMultipoleOperator(const Vector<double, 3>& o) :
 {}
 
 
+/*
+ *  DESTRUCTOR
+ */
+
+BaseMultipoleOperator::~BaseMultipoleOperator() {};  // pure virtual destructor should have an empty implementation
+
 }  // namespace GQCP

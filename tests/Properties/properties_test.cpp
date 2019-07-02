@@ -48,7 +48,7 @@ BOOST_AUTO_TEST_CASE ( dipole_CO_STO_3G ) {
     diis_scf_solver.solve();
     auto rhf = diis_scf_solver.get_solution();
 
-    double total_energy = rhf.get_electronic_energy() + CO.calculateInternuclearRepulsionEnergy();
+    double total_energy = rhf.get_electronic_energy() + GQCP::Operator::NuclearRepulsion(CO).value();
     BOOST_REQUIRE(std::abs(total_energy - (-111.225)) < 1.0e-02);  // from CCCBDB, require a correct RHF solution to be found
 
 
@@ -62,7 +62,7 @@ BOOST_AUTO_TEST_CASE ( dipole_CO_STO_3G ) {
         dipole_component.basisTransform(rhf.get_C());
     }
 
-    GQCP::Vector<double, 3> total_dipole_moment = CO.calculateNuclearDipoleMoment() + GQCP::calculateElectronicDipoleMoment(dipole_components, D);
+    GQCP::Vector<double, 3> total_dipole_moment = GQCP::Operator::NuclearDipole(CO).value() + GQCP::calculateElectronicDipoleMoment(dipole_components, D);
     BOOST_CHECK(std::abs(total_dipole_moment.norm() - (0.049)) < 1.0e-03);
 }
 
@@ -88,7 +88,7 @@ BOOST_AUTO_TEST_CASE ( dipole_N2_STO_3G ) {
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 
-    double total_energy = rhf.get_electronic_energy() + N2.calculateInternuclearRepulsionEnergy();
+    double total_energy = rhf.get_electronic_energy() + GQCP::Operator::NuclearRepulsion(N2).value();
     BOOST_REQUIRE(std::abs(total_energy - (-107.500654)) < 1.0e-05);  // from CCCBDB, require a correct RHF solution to be found
 
 
@@ -102,6 +102,6 @@ BOOST_AUTO_TEST_CASE ( dipole_N2_STO_3G ) {
         dipole_component.basisTransform(rhf.get_C());
     }
 
-    GQCP::Vector<double, 3> total_dipole_moment = N2.calculateNuclearDipoleMoment() + GQCP::calculateElectronicDipoleMoment(dipole_components, D);
+    GQCP::Vector<double, 3> total_dipole_moment = GQCP::Operator::NuclearDipole(N2).value() + GQCP::calculateElectronicDipoleMoment(dipole_components, D);
     BOOST_CHECK(std::abs(total_dipole_moment.norm() - (0.0)) < 1.0e-08);
 }

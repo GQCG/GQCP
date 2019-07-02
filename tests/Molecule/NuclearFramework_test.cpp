@@ -95,25 +95,16 @@ BOOST_AUTO_TEST_CASE ( internuclearDistance ) {
 
 BOOST_AUTO_TEST_CASE ( methods_h2 ) {
 
-    // We have reference internuclear repulsion energy from HORTON
-    double ref_internuclear_repulsion_energy = 0.714285658963;
-
     // Create the dihydrogen nuclear framework
     auto h2 = GQCP::NuclearFramework::ReadXYZ("data/h2_szabo.xyz");
 
     // Test the basic methods
     BOOST_CHECK_EQUAL(h2.numberOfNuclei(), 2);
     BOOST_CHECK_EQUAL(h2.totalNucleicCharge(), 2);
-
-    // Test the calculation of the nuclear repulsion energy
-    BOOST_CHECK(std::abs(h2.internuclearRepulsionEnergy() - ref_internuclear_repulsion_energy) < 1.0e-07);  // reference data from horton
 }
 
 
 BOOST_AUTO_TEST_CASE ( methods_water ) {
-
-    // We have reference internuclear repulsion energy from HORTON
-    double ref_internuclear_repulsion_energy = 8.00236693455;
 
     // Create the water nuclear framework
     auto water = GQCP::NuclearFramework::ReadXYZ("data/h2o.xyz");
@@ -121,20 +112,6 @@ BOOST_AUTO_TEST_CASE ( methods_water ) {
     // Test the basic methods
     BOOST_CHECK_EQUAL(water.numberOfNuclei(), 3);
     BOOST_CHECK_EQUAL(water.totalNucleicCharge(), 10);
-
-    // Test the calculation of the nuclear repulsion energy
-    BOOST_CHECK(std::abs(water.internuclearRepulsionEnergy() - ref_internuclear_repulsion_energy) < 1.0e-07);  // reference data from horton
-}
-
-
-BOOST_AUTO_TEST_CASE ( calculateNuclearDipoleMoment ) {
-
-    // Check the nuclear dipole moment for a toy molecule
-    GQCP::Nucleus H {1,  0, 1, 2};
-    GQCP::Nucleus O {8,  2, 4, 8};
-    GQCP::NuclearFramework nuclear_framework ({H, O});
-
-    BOOST_CHECK(nuclear_framework.nuclearDipoleMoment().isApprox(GQCP::Vector<double, 3>{16, 33, 66}));
 }
 
 

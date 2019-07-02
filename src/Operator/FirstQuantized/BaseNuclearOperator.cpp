@@ -26,11 +26,18 @@ namespace GQCP {
  */
 
 /**
- *  @param atoms                the atoms that represent the nuclear framework
+ *  @param nuclear_framework            the nuclear framework underlying a nuclear operator
  */
-BaseNuclearOperator::BaseNuclearOperator(const std::vector<Atom>& atoms) :
-    atoms (atoms)
+BaseNuclearOperator::BaseNuclearOperator(const NuclearFramework& nuclear_framework) :
+    nuclear_framework (nuclear_framework)
 {}
+
+
+/*
+ *  DESTRUCTOR
+ */
+
+BaseNuclearOperator::~BaseNuclearOperator() {};  // pure virtual destructor should have an empty implementation
 
 
 }  // namespace GQCP

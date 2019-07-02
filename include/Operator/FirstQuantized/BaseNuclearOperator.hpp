@@ -19,10 +19,7 @@
 #define GQCP_BASENUCLEAROPERATOR_HPP
 
 
-#include "Atom.hpp"
-
-#include <vector>
-
+#include "Molecule/NuclearFramework.hpp"
 
 
 namespace GQCP {
@@ -33,16 +30,16 @@ namespace GQCP {
  */
 class BaseNuclearOperator {
 protected:
-    std::vector<Atom> atoms;  // the atoms that represent the nuclear framework
+    NuclearFramework nuclear_framework;  // the nuclear framework underlying a nuclear operator
 
 
 public:
     // CONSTRUCTORS
 
     /**
-     *  @param atoms                the atoms that represent the nuclear framework
+     *  @param nuclear_framework            the nuclear framework underlying a nuclear operator
      */
-    BaseNuclearOperator(const std::vector<Atom>& atoms);
+    BaseNuclearOperator(const NuclearFramework& nuclear_framework);
 
 
     // DESTRUCTOR
@@ -54,7 +51,7 @@ public:
     /**
      *  @return the nuclear framework upon which this operator is built
      */
-    const std::vector<Atom>& nuclearFramework() const { return this->atoms; }
+    const NuclearFramework& nuclearFramework() const { return this->nuclear_framework; }
 };
 
 
