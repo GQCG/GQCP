@@ -100,17 +100,21 @@ if (EIGEN_USE_MKL)
     target_compile_options(gqcp PUBLIC -DEIGEN_USE_MKL_ALL -DMKL_LP64)
 endif()
 
+
 # Setup Python Bindings
 # ---------------------
 
-if(BUILD_PYTHON_BINDINGS)
+if (BUILD_PYTHON_BINDINGS)
+    add_subdirectory(pygqcp)
+
     pybind11_add_module(gqcpy MODULE ${python_bindings_sources})
+    
     target_link_libraries(gqcpy PUBLIC gqcp)
     set_target_properties(gqcpy PROPERTIES
             SUFFIX ".so"
             LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/gqcpy")
-    configure_file(src/Bindings/__init__.py.in ${CMAKE_BINARY_DIR}/gqcpy/__init__.py)
-    configure_file(src/Bindings/setup.py.in ${CMAKE_BINARY_DIR}/gqcpy/setup.py)
+    configure_file(pygqcp/__init__.py.in ${CMAKE_BINARY_DIR}/gqcpy/__init__.py)
+    configure_file(pygqcp/setup.py.in ${CMAKE_BINARY_DIR}/gqcpy/setup.py)
 endif()
 
 
@@ -193,6 +197,7 @@ install(
         ${CMAKE_SOURCE_DIR}/cmake/FindSpectra.cmake
         DESTINATION cmake
 )
+
 
 # Install Python bindings
 # -----------------------
