@@ -421,6 +421,9 @@ if (BLA_VENDOR MATCHES "Intel" OR BLA_VENDOR STREQUAL "All")
         endif ()
       endif ()
 
+        message(STATUS "BLAS_MKLROOT_LIB_DIR:")
+        message(STATUS ${_BLAS_MKLROOT_LIB_DIR})
+
       foreach (IT ${BLAS_SEARCH_LIBS})
         string(REPLACE " " ";" SEARCH_LIBS ${IT})
         if (NOT ${_LIBRARIES})
