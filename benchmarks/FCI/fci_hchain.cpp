@@ -26,7 +26,7 @@ static void fci_davidson_hchain(benchmark::State& state) {
     // Create the molecular Hamiltonian parameters for this molecule and basis
     auto mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(hchain, "STO-3G");
     auto K = mol_ham_par.get_K();
-    auto N_P = hchain.get_N()/2;
+    auto N_P = hchain.numberOfElectrons()/2;
     // Create a plain RHF SCF solver and solve the SCF equations
     GQCP::PlainRHFSCFSolver plain_scf_solver (mol_ham_par, hchain);
     plain_scf_solver.solve();
@@ -66,7 +66,7 @@ static void fci_dense_hchain(benchmark::State& state) {
     // Create the molecular Hamiltonian parameters for this molecule and basis
     auto mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(hchain, "STO-3G");
     auto K = mol_ham_par.get_K();
-    auto N_P = hchain.get_N()/2;
+    auto N_P = hchain.numberOfElectrons()/2;
     // Create a plain RHF SCF solver and solve the SCF equations
     GQCP::PlainRHFSCFSolver plain_scf_solver (mol_ham_par, hchain);
     plain_scf_solver.solve();

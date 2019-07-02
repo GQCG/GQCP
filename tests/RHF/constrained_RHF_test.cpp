@@ -29,11 +29,11 @@
 BOOST_AUTO_TEST_CASE ( constrained_CO_test ) {
 
     // Create a Molecule and an AOBasis with the assumed geometry
-    auto CO = GQCP::Molecule::Readxyz("data/CO_mulliken.xyz");
+    auto CO = GQCP::Molecule::ReadXYZ("data/CO_mulliken.xyz");
     auto ao_ham_par = GQCP::HamiltonianParameters<double>::Molecular(CO, "STO-3G");
 
     size_t K = ao_ham_par.get_K();
-    size_t N = CO.get_N();
+    size_t N = CO.numberOfElectrons();
 
     GQCP::OneRDM<double> one_rdm = GQCP::calculateRHF1RDM(K, N);
 
@@ -113,11 +113,11 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test_random_transformation) {
     // This tests if our Mulliken operator remains correct if we transform before the procedure.
 
     // Create a Molecule and an AOBasis with the assumed geometry
-    auto CO = GQCP::Molecule::Readxyz("data/CO_mulliken.xyz");
+    auto CO = GQCP::Molecule::ReadXYZ("data/CO_mulliken.xyz");
     auto ao_ham_par = GQCP::HamiltonianParameters<double>::Molecular(CO, "STO-3G");
 
     size_t K = ao_ham_par.get_K();
-    size_t N = CO.get_N();
+    size_t N = CO.numberOfElectrons();
 
     GQCP::SquareMatrix<double> T = GQCP::SquareMatrix<double>::Random(K, K);
     // set diagonal elements to 1

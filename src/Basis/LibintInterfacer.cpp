@@ -86,7 +86,7 @@ LibintInterfacer& LibintInterfacer::get() {  // need to return by reference sinc
  */
 libint2::Atom LibintInterfacer::interface(const Nucleus& nucleus) const {
 
-    libint2::Atom libint_atom {static_cast<int>(nucleus.atomic_number), nucleus.position.x(), nucleus.position.y(), nucleus.position.z()};
+    libint2::Atom libint_atom {static_cast<int>(nucleus.charge()), nucleus.position().x(), nucleus.position().y(), nucleus.position().z()};
 
     return libint_atom;
 }
@@ -129,7 +129,7 @@ libint2::Shell LibintInterfacer::interface(const Shell& shell) const {
 
 
     // Part 3: origin
-    const auto& position = shell.get_nucleus().position;
+    const auto& position = shell.get_nucleus().position();
     std::array<double, 3> libint_O {position.x(), position.y(), position.z()};
 
 
@@ -213,7 +213,7 @@ std::vector<Shell> LibintInterfacer::interface(const libint2::Shell& libint_shel
         for (size_t i = 0; i < nuclei.size(); i++) {
             Nucleus nucleus = nuclei[i];
 
-            if (nucleus.position.isApprox(libint_origin_map, 1.0e-06)) {  // tolerant comparison
+            if (nucleus.position().isApprox(libint_origin_map, 1.0e-06)) {  // tolerant comparison
                 corresponding_nucleus = nucleus;
                 break;
             }

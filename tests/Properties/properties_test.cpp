@@ -41,7 +41,7 @@ BOOST_AUTO_TEST_CASE ( dipole_CO_STO_3G ) {
     auto ao_mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(ao_basis);
 
     size_t K = ao_basis->numberOfBasisFunctions();
-    size_t N = CO.get_N();
+    size_t N = CO.numberOfElectrons();
 
     // Solve the SCF equations
     GQCP::DIISRHFSCFSolver diis_scf_solver (ao_mol_ham_par, CO);
@@ -81,7 +81,7 @@ BOOST_AUTO_TEST_CASE ( dipole_N2_STO_3G ) {
     auto ao_mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(ao_basis);
 
     size_t K = ao_basis->numberOfBasisFunctions();
-    size_t N = N2.get_N();
+    size_t N = N2.numberOfElectrons();
 
     // Solve the SCF equations
     GQCP::PlainRHFSCFSolver plain_scf_solver (ao_mol_ham_par, N2);  // The DIIS SCF solver seems to find a wrong minimum, so use a plain solver instead

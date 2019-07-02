@@ -70,8 +70,8 @@ int main (int argc, char** argv) {
 
     // Actual calculations
     // Prepare molecular Hamiltonian parameters in the RHF basis
-    auto molecule = GQCP::Molecule::Readxyz(input_xyz_file);
-    size_t N_P = molecule.get_N()/2;
+    auto molecule = GQCP::Molecule::ReadXYZ(input_xyz_file);
+    size_t N_P = molecule.numberOfElectrons()/2;
     output_file << "Molecule geometry" << std::endl;
     output_file << molecule << std::endl;
 

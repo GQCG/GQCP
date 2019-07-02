@@ -50,7 +50,7 @@ BOOST_AUTO_TEST_CASE ( decomposition_BeH_cation_STO_3G_Nuclear ) {
     mol_ham_par.basisTransform(T);
 
     // Create the FCI module
-    GQCP::ProductFockSpace fock_space(K, BeH.get_N() / 2, BeH.get_N() / 2);  // dim = 441
+    GQCP::ProductFockSpace fock_space(K, BeH.numberOfElectrons() / 2, BeH.numberOfElectrons() / 2);  // dim = 441
     GQCP::FCI fci(fock_space);
     GQCP::CISolver ci_solver(fci, mol_ham_par);
 

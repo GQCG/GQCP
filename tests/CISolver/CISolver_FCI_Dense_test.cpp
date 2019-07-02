@@ -32,7 +32,7 @@ BOOST_AUTO_TEST_CASE ( test_random_rotation_diagonal_dense_fci ) {
     // Check if a random rotation has no effect on the sum of the diagonal elements
 
     // Create the molecular Hamiltonian parameters in an AO basis
-    auto h2o = GQCP::Molecule::Readxyz("data/h2o.xyz");
+    auto h2o = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
     auto mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2o, "STO-3G");
     auto K = mol_ham_par.get_K();
 
@@ -44,7 +44,7 @@ BOOST_AUTO_TEST_CASE ( test_random_rotation_diagonal_dense_fci ) {
     // Transform the ham_par
     mol_ham_par.basisTransform(rhf.get_C());
 
-    GQCP::ProductFockSpace fock_space (K, h2o.get_N()/2, h2o.get_N()/2);  // dim = 2
+    GQCP::ProductFockSpace fock_space (K, h2o.numberOfElectrons()/2, h2o.numberOfElectrons()/2);  // dim = 2
 
     // Create the FCI module
     GQCP::FCI fci (fock_space);
@@ -66,7 +66,7 @@ BOOST_AUTO_TEST_CASE ( FCI_H2_Cristina_dense ) {
     double reference_fci_energy = -1.1651486697;
 
     // Create the molecular Hamiltonian parameters in an AO basis
-    auto h2 = GQCP::Molecule::Readxyz("data/h2_cristina.xyz");
+    auto h2 = GQCP::Molecule::ReadXYZ("data/h2_cristina.xyz");
     auto mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2, "6-31g**");
     auto K = mol_ham_par.get_K();
 
@@ -78,7 +78,7 @@ BOOST_AUTO_TEST_CASE ( FCI_H2_Cristina_dense ) {
     // Transform the ham_par
     mol_ham_par.basisTransform(rhf.get_C());
 
-    GQCP::ProductFockSpace fock_space (K, h2.get_N()/2, h2.get_N()/2);  // dim = 100
+    GQCP::ProductFockSpace fock_space (K, h2.numberOfElectrons()/2, h2.numberOfElectrons()/2);  // dim = 100
 
     // Create the FCI module
     GQCP::FCI fci (fock_space);
@@ -105,7 +105,7 @@ BOOST_AUTO_TEST_CASE ( FCI_H2O_Psi4_GAMESS_dense ) {
     double reference_fci_energy = -75.0129803939602;
 
     // Create the molecular Hamiltonian parameters in an AO basis
-    auto h2o = GQCP::Molecule::Readxyz("data/h2o_Psi4_GAMESS.xyz");
+    auto h2o = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
     auto mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2o, "STO-3G");
     auto K = mol_ham_par.get_K();
 
@@ -117,7 +117,7 @@ BOOST_AUTO_TEST_CASE ( FCI_H2O_Psi4_GAMESS_dense ) {
     // Transform the ham_par
     mol_ham_par.basisTransform(rhf.get_C());
 
-    GQCP::ProductFockSpace fock_space (K, h2o.get_N()/2, h2o.get_N()/2);  // dim = 441
+    GQCP::ProductFockSpace fock_space (K, h2o.numberOfElectrons()/2, h2o.numberOfElectrons()/2);  // dim = 441
 
     // Create the FCI module
     GQCP::FCI fci (fock_space);
@@ -159,7 +159,7 @@ BOOST_AUTO_TEST_CASE ( FCI_He_Cristina_dense ) {
     // Transform the ham_par
     mol_ham_par.transform(rhf.get_C());
 
-    GQCP::ProductFockSpace fock_space (K, he.get_N()/2, he.get_N()/2);  // dim = 2116
+    GQCP::ProductFockSpace fock_space (K, he.numberOfElectrons()/2, he.numberOfElectrons()/2);  // dim = 2116
 
     // Create the FCI module
     GQCP::FCI fci (fock_space);

@@ -178,6 +178,18 @@ public:
         return this->operator()(index);
     }
 
+    /**
+     *  @param direction            the Cartesian direction (x, y, or z)
+     * 
+     *  @return a modifiable value in the vector that corresponds to the given direction
+     */
+    template <typename Z = Scalar&>
+    enable_if_t<Self::is_vector && (Rows == 3), Z> operator()(CartesianDirection direction) {
+        
+        const auto& index = static_cast<size_t>(direction);  // 0, 1, or 2
+        return this->operator()(index);
+    }
+
     using Base::operator();  // bring over the other operator() overloads
 
 

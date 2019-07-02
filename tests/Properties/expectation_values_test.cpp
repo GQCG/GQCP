@@ -75,7 +75,7 @@ BOOST_AUTO_TEST_CASE ( mulliken_N2_STO_3G ) {
 
     GQCP::OneElectronOperator<double> mulliken = ham_par.calculateMullikenOperator(gto_list);
 
-    size_t N = N2.get_N();
+    size_t N = N2.numberOfElectrons();
 
     // Create a 1-RDM for N2
     GQCP::OneRDM<double> one_rdm = GQCP::calculateRHF1RDM(K, N);

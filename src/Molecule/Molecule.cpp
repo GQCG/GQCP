@@ -17,15 +17,6 @@
 // 
 #include "Molecule/Molecule.hpp"
 
-#include "elements.hpp"
-#include "units.hpp"
-
-#include <algorithm>
-#include <fstream>
-#include <sstream>
-#include <stdexcept>
-
-
 
 namespace GQCP {
 
@@ -35,6 +26,26 @@ namespace GQCP {
  */
 
 /**
+ *  @param nuclear_framework        the nuclear framework that makes up the molecule, with coordinates in bohr
+ *  @param charge                   the charge of the molecule:
+ *                                      +1 -> cation (one electron less than the neutral molecule)
+ *                                       0 -> neutral molecule
+ *                                      -1 -> anion (one electron more than the neutral molecule)
+ */
+Molecule::Molecule(const NuclearFramework& nuclear_framework, const int charge) :
+    nuclear_framework (nuclear_framework),
+    N (nuclear_framework.totalNucleicCharge() - charge)
+{
+    // Check if the total positive charge is valid, e.g. H^(2+) does not exist
+    if (charge > 0) {
+        if (this->totalNucleicCharge() < charge) {  // OK to compare size_t and int like this
+            throw std::invalid_argument("Molecule::Molecule(NuclearFramework,int): You cannot create a molecule with these nuclei and this much of a total positive charge.");
+        }
+    }
+}
+
+
+/**
  *  @param nuclei       the nuclei that make up the molecule, with coordinates in bohr
  *  @param charge       the charge of the molecule:
  *                          +1 -> cation (one electron less than the neutral molecule)
@@ -42,29 +53,8 @@ namespace GQCP {
  *                          -1 -> anion (one electron more than the neutral molecule)
  */
 Molecule::Molecule(const std::vector<Nucleus>& nuclei, int charge) :
-    nuclei (nuclei),
-    N (this->calculateTotalNucleicCharge() - charge)
-{
-    // Check if the total positive charge is valid, e.g. H^(2+) does not exist
-    if (charge > 0) {
-        if (this->calculateTotalNucleicCharge() < charge) {
-            throw std::invalid_argument("Molecule::Molecule(): You cannot create a molecule with these nuclei and this much of a total positive charge.");
-        }
-    }
-
-    // Check if there are no duplicate nuclei
-    std::vector<Nucleus> nuclei_copy = this->nuclei;
-
-    // Sort and unique
-    std::sort(nuclei_copy.begin(), nuclei_copy.end());
-    auto last_it = std::unique(nuclei_copy.begin(), nuclei_copy.end());
-
-    // If the iterator returned from unique is the same as the end iterator, there are no duplicate items
-    if (last_it != nuclei_copy.end()) {
-        throw std::invalid_argument("Molecule::Molecule(): There can't be two equal nuclei on the same position.");
-    }
-}
-
+    Molecule(NuclearFramework(nuclei), charge)
+{}
 
 
 /*
@@ -80,66 +70,9 @@ Molecule::Molecule(const std::vector<Nucleus>& nuclei, int charge) :
  *                           0 -> neutral molecule
  *                          -1 -> anion (one electron more than the neutral molecule)
  */
-Molecule Molecule::Readxyz(const std::string& xyz_filename, int charge) {
+Molecule Molecule::ReadXYZ(const std::string& xyz_filename, int charge) {
 
-    // Find the extension of the given path (https://stackoverflow.com/a/51992)
-    std::string extension;
-    std::string::size_type idx = xyz_filename.rfind('.');
-
-    if (idx != std::string::npos) {
-        extension = xyz_filename.substr(idx+1);
-    } else {
-        throw std::invalid_argument("Molecule::Readxyz(const std::string&, int): I did not find an extension in your given path.");
-    }
-
-    if (!(extension == "xyz")) {
-        throw std::invalid_argument("Molecule::Readxyz(const std::string&, int): You did not provide a .xyz file name");
-    }
-
-    // If the xyz_filename isn't properly converted into an input file stream, we assume the user supplied a wrong file
-    std::ifstream input_file_stream (xyz_filename);
-    if (!input_file_stream.good()) {
-        throw std::invalid_argument("Molecule::Readxyz(const std::string&, int): The provided .xyz file name is illegible. Maybe you specified a wrong path?");
-    } else {
-        // Do the actual parsing
-        std::string line;
-
-
-        // First line is the number of nuclei
-        std::getline(input_file_stream, line);
-        auto number_of_nuclei = static_cast<size_t>(std::stoi(line));
-
-
-        // Second line is empty
-        std::getline(input_file_stream, line);
-
-
-        // Next lines are the nuclei
-        std::vector<Nucleus> nuclei;
-        nuclei.reserve(number_of_nuclei);
-
-        while (std::getline(input_file_stream, line)) {
-            std::string symbol;
-            double x_angstrom, y_angstrom, z_angstrom;
-
-            std::istringstream iss (line);
-            iss >> symbol >> x_angstrom >> y_angstrom >> z_angstrom;
-
-            // Convert the (x,y,z)-coordinates that are in Angstrom to Bohr
-            double x_bohr = units::angstrom_to_bohr(x_angstrom);
-            double y_bohr = units::angstrom_to_bohr(y_angstrom);
-            double z_bohr = units::angstrom_to_bohr(z_angstrom);
-
-            nuclei.emplace_back(elements::elementToAtomicNumber(symbol), x_bohr, y_bohr, z_bohr);
-        }
-
-
-        if (number_of_nuclei > nuclei.size()) {
-            throw std::invalid_argument("Molecule::Readxyz(const std::string&, int): The .xyz-file contains more nuclei than specified on its first line.");
-        } else {
-            return Molecule(nuclei, charge);
-        }
-    }
+    return Molecule(NuclearFramework::ReadXYZ(xyz_filename), charge);
 }
 
 
@@ -150,28 +83,9 @@ Molecule Molecule::Readxyz(const std::string& xyz_filename, int charge) {
  *
  *  @return a charged H-chain with equal internuclear spacing
  */
-Molecule Molecule::HChain(size_t n, double spacing, int charge) {
+Molecule Molecule::HChain(size_t n, double spacing, int charge, CartesianDirection axis) {
 
-    if (n == 0) {
-        throw std::invalid_argument("Molecule::HChain(size_t, double, int): Can not create a H-chain consisting of zero nuclei.");
-    }
-
-    if (spacing < 0.0) {
-        throw std::invalid_argument("Molecule::HChain(size_t, double, int): Can't have a negative spacing.");
-    }
-
-
-    std::vector<Nucleus> h_chain;
-
-    // Put all H-nuclei on a line on the x-axis: the first H is on the origin
-    double x = 0.0;  // the current x-coordinate
-    for (size_t i = 0; i < n; i++) {
-        h_chain.emplace_back(1, x, 0.0, 0.0);
-
-        x += spacing;  // proceed to the next H-atom
-    }
-
-    return Molecule(h_chain, charge);
+    return Molecule(NuclearFramework::HChain(n, spacing, axis), charge);
 }
 
 
@@ -183,31 +97,9 @@ Molecule Molecule::HChain(size_t n, double spacing, int charge) {
  *
  *  @return a charged H2-chain
  */
-Molecule Molecule::H2Chain(size_t n, double a, double b, int charge) {
+Molecule Molecule::H2Chain(size_t n, double a, double b, int charge, CartesianDirection axis) {
 
-    if (n == 0) {
-        throw std::invalid_argument("Molecule::H2Chain(size_t, double, double, int): Can not create a H2-chain consisting of zero H2-molecules.");
-    }
-
-    if ((a < 0.0) || (b < 0.0)) {
-        throw std::invalid_argument("Molecule::H2Chain(size_t, double, double, int): Can't have a negative spacing.");
-    }
-
-
-    std::vector<Nucleus> h_chain;
-
-    // Put all H-nuclei on a line on the x-axis: the first H is on the origin
-    double x = 0.0;  // the current x-coordinate
-    for (size_t i = 0; i < n; i++) {
-
-        h_chain.emplace_back(1, x, 0.0, 0.0);  // the first H-atom
-        x += a;  // add internuclear distance (we're within a H2-molecule)
-        h_chain.emplace_back(1, x, 0.0, 0.0);  // the second H-atom
-
-        x += b;  // proceed to the next H2-molecule
-    }
-
-    return Molecule(h_chain, charge);
+    return Molecule(NuclearFramework::H2Chain(n, a, b, axis), charge);
 }
 
 
@@ -217,17 +109,6 @@ Molecule Molecule::H2Chain(size_t n, double a, double b, int charge) {
  */
 
 /**
- *  @param other        the other molecule
- *
- *  @return if this molecule is equal to the other, within the default Nucleus::tolerance_for_comparison for the coordinates of the nuclei
- */
-bool Molecule::operator==(const Molecule& other) const {
-
-    return this->isEqualTo(other, Nucleus::tolerance_for_comparison);
-}
-
-
-/**
  *  @param os           the output stream which the molecule should be concatenated to
  *  @param molecule     the molecule that should be concatenated to the output stream
  *
@@ -235,9 +116,8 @@ bool Molecule::operator==(const Molecule& other) const {
  */
 std::ostream& operator<<(std::ostream& os, const Molecule& molecule) {
 
-    for (const auto& nucleus : molecule.nuclei) {
-        os << nucleus;
-    }
+    os << "Number of electrons: " << molecule.numberOfElectrons() << std::endl;
+    os << molecule.nuclearFramework();
 
     return os;
 }
@@ -249,48 +129,11 @@ std::ostream& operator<<(std::ostream& os, const Molecule& molecule) {
  */
 
 /**
- *  @param other        the other molecule
- *  @param tolerance    the tolerance for the coordinates of the nuclei
- *
- *  @return if this is equal to the other, within the given tolerance
- */
-bool Molecule::isEqualTo(const Molecule& other, double tolerance) const {
-
-    if (this->N != other.get_N()) {
-        return false;
-    }
-
-    // We don't want the order of the nuclei to matter in a Molecule comparison
-    // We have implemented a custom Nucleus::operator< so we can sort std::vectors of Nuclei
-    // Make a copy of the nuclei because std::sort modifies
-    auto this_nuclei = this->nuclei;
-    auto other_nuclei = other.nuclei;
-
-
-    // Make lambda expressions for the comparators, since we want to hand over the tolerance argument
-    auto smaller_than_nucleus = [this, tolerance](const Nucleus& lhs, const Nucleus& rhs) { return lhs.isSmallerThan(rhs, tolerance); };
-    auto equal_nucleus = [this, tolerance](const Nucleus& lhs, const Nucleus& rhs) { return lhs.isEqualTo(rhs, tolerance); };
-
-
-    std::sort(this_nuclei.begin(), this_nuclei.end(), smaller_than_nucleus);
-    std::sort(other_nuclei.begin(), other_nuclei.end(), smaller_than_nucleus);
-
-    return std::equal(this_nuclei.begin(), this_nuclei.end(), other_nuclei.begin(), equal_nucleus);
-}
-
-
-/**
  *  @return the sum of all the charges of the nuclei
  */
-size_t Molecule::calculateTotalNucleicCharge() const {
+size_t Molecule::totalNucleicCharge() const {
 
-    size_t nucleic_charge = 0;
-
-    for (const auto& nucleus : this->nuclei) {
-        nucleic_charge += nucleus.atomic_number;
-    }
-
-    return nucleic_charge;
+    return this->nuclear_framework.totalNucleicCharge();
 }
 
 
@@ -300,14 +143,9 @@ size_t Molecule::calculateTotalNucleicCharge() const {
  *
  *  @return the distance between the two nuclei at index1 and index2 in bohr
  */
-double Molecule::calculateInternuclearDistance(size_t index1, size_t index2) const {
+double Molecule::internuclearDistance(const size_t index1, const size_t index2) const {
 
-    // Check if the indices are within bounds
-    if (index1 > this->nuclei.size() || index2 > this->nuclei.size()) {
-        throw std::invalid_argument("Molecule::calculateInternuclearDistance(size_t, size_t): At least one of the given indices is out of bounds.");
-    }
-
-    return this->nuclei[index1].calculateDistance(this->nuclei[index2]);
+    return this->nuclearFramework().internuclearDistance(index1, index2);
 }
 
 
@@ -316,21 +154,7 @@ double Molecule::calculateInternuclearDistance(size_t index1, size_t index2) con
  */
 double Molecule::calculateInternuclearRepulsionEnergy() const {
 
-    double internuclear_repulsion_energy = 0.0;
-
-    // Sum over every unique nucleus pair
-    auto n_nuclei = this->numberOfAtoms();
-    for (size_t i = 0; i < n_nuclei; i++) {
-        for (size_t j = i + 1; j < n_nuclei; j++ ) {
-            const auto nucleus1 = this->nuclei[i];
-            const auto nucleus2 = this->nuclei[j];
-
-            // The internuclear repulsion energy (Coulomb) for every nucleus pair is Z1 * Z2 / |R1 - R2|
-            internuclear_repulsion_energy += nucleus1.atomic_number * nucleus2.atomic_number / this->calculateInternuclearDistance(i, j);
-        }
-    }
-
-    return internuclear_repulsion_energy;
+    return this->nuclearFramework().internuclearRepulsionEnergy();
 }
 
 
@@ -339,13 +163,7 @@ double Molecule::calculateInternuclearRepulsionEnergy() const {
  */
 Vector<double, 3> Molecule::calculateNuclearDipoleMoment() const {
 
-    Vector<double, 3> m = Vector<double, 3>::Zero();
-
-    for (const auto& nucleus : this->nuclei) {
-        m += nucleus.atomic_number * nucleus.position;
-    }
-
-    return m;
+    return this->nuclearFramework().nuclearDipoleMoment();
 }
 
 

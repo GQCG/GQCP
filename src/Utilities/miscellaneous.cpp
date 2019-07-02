@@ -129,4 +129,34 @@ size_t strictTriangularRoot(const size_t x) {
 }
 
 
+/**
+ *  @param filename         the name of the file that should be opened
+ *  @param extension        the expected extension of the filename
+ */
+std::ifstream validateAndOpen(const std::string& filename, const std::string& extension) {
+
+    // Find the extension of the given path (https://stackoverflow.com/a/51992)
+    std::string filename_extension;  // the extension of the given filename
+    std::string::size_type idx = filename.rfind('.');
+
+    if (idx != std::string::npos) {
+        filename_extension = filename.substr(idx+1);
+    } else {
+        throw std::invalid_argument("validateAndOpen(const std::string&, const std::string&): I did not find an extension in your given file name.");
+    }
+
+    if (!(filename_extension == extension)) {
+        throw std::invalid_argument("validateAndOpen(const std::string&, const std::string&): The given filen name does not have the expected extension");
+    }
+
+    // If the filename isn't properly converted into an input file stream, we assume the user supplied a wrong file
+    std::ifstream input_file_stream (filename);
+    if (!input_file_stream.good()) {
+        throw std::invalid_argument("validateAndOpen(const std::string&, const std::string&): The provided file name is illegible. Maybe you specified a wrong path?");
+    } else {
+        return input_file_stream;
+    }
+}
+
+
 }  // namespace GQCP

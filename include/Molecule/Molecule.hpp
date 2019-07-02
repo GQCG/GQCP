@@ -18,12 +18,10 @@
 #ifndef GQCP_MOLECULE_HPP
 #define GQCP_MOLECULE_HPP
 
-#include "Molecule/Nucleus.hpp"
 
+#include "Molecule/NuclearFramework.hpp"
 
-#include <stdlib.h>
-#include <string>
-#include <vector>
+#include <cstdlib>
 
 
 
@@ -32,16 +30,25 @@ namespace GQCP {
 
 
 /**
- *  A class that represents a collection of nuclei (with coordinates in bohr) with a number of electrons
+ *  A class that represents a collection of nuclei with a number of electrons
  */
 class Molecule {
 private:
-    std::vector<Nucleus> nuclei;  // coordinates in bohr
-    size_t N;  // number of electrons
+    NuclearFramework nuclear_framework;  // the underlying nuclear framework
+    size_t N;  // the number of electrons
 
 
 public:
     // CONSTRUCTORS
+
+    /**
+     *  @param nuclear_framework        the nuclear framework that makes up the molecule, with coordinates in bohr
+     *  @param charge                   the charge of the molecule:
+     *                                      +1 -> cation (one electron less than the neutral molecule)
+     *                                       0 -> neutral molecule
+     *                                      -1 -> anion (one electron more than the neutral molecule)
+     */
+    Molecule(const NuclearFramework& nuclear_framework, const int charge=0);
 
     /**
      *  @param nuclei       the nuclei that make up the molecule, with coordinates in bohr
@@ -64,7 +71,7 @@ public:
      *                           0 -> neutral molecule
      *                          -1 -> anion (one electron more than the neutral molecule)
      */
-    static Molecule Readxyz(const std::string& xyz_filename, int charge=0);
+    static Molecule ReadXYZ(const std::string& xyz_filename, int charge=0);
 
     /**
      *  @param n            the number of H nuclei
@@ -73,7 +80,7 @@ public:
      *
      *  @return a H-chain with equal internuclear spacing
      */
-    static Molecule HChain(size_t n, double spacing, int charge=0);
+    static Molecule HChain(size_t n, double spacing, int charge=0, CartesianDirection axis=CartesianDirection::z);
 
     /**
      *  @param n        the number of H2-molecules
@@ -83,16 +90,10 @@ public:
      *
      *  @return a charged H2-chain
      */
-    static Molecule H2Chain(size_t n, double a, double b, int charge=0);
+    static Molecule H2Chain(size_t n, double a, double b, int charge=0, CartesianDirection axis=CartesianDirection::z);
 
 
     // OPERATORS
-    /**
-     *  @param other        the other molecule
-     *
-     *  @return if this molecule is equal to the other, within the default Nucleus::tolerance_for_comparison for the coordinates of the nuclei
-     */
-    bool operator==(const Molecule& other) const;
 
     /**
      *  @param os           the output stream which the molecule should be concatenated to
@@ -103,25 +104,27 @@ public:
     friend std::ostream& operator<<(std::ostream& os, const Molecule& molecule);
 
 
-    // GETTERS
-    size_t get_N() const { return this->N; }
-    const std::vector<Nucleus>& get_nuclei() const { return this->nuclei; }
-    size_t numberOfAtoms() const { return this->nuclei.size(); }
-
-
     // PUBLIC METHODS
-    /**
-     *  @param other        the other molecule
-     *  @param tolerance    the tolerance for the coordinates of the nuclei
-     *
-     *  @return if this is equal to the other, within the given tolerance
-     */
-    bool isEqualTo(const Molecule& other, double tolerance=Nucleus::tolerance_for_comparison) const;
 
     /**
-     *  @return the sum of all the charges of the nuclei
+     *  @return the underlying nuclear framework
      */
-    size_t calculateTotalNucleicCharge() const;
+    const NuclearFramework& nuclearFramework() const { return this->nuclear_framework; }
+
+    /**
+     *  @return the number of electrons in the molecule
+     */
+    size_t numberOfElectrons() const { return this->N; }
+
+    /**
+     *  @return the number of atoms in this molecule
+     */
+    size_t numberOfAtoms() const { return this->nuclear_framework.numberOfNuclei(); }
+
+    /**
+     *  @return the sum of all the charges of the nuclei that are in this molecule
+     */
+    size_t totalNucleicCharge() const;
 
     /**
      *  @param index1   the index of the first nucleus
@@ -129,7 +132,7 @@ public:
      *
      *  @return the distance between the two nuclei at index1 and index2 in bohr
      */
-    double calculateInternuclearDistance(size_t index1, size_t index2) const;
+    double internuclearDistance(const size_t index1, const size_t index2) const;
 
     /**
      *  @return the internuclear repulsion energy due to the nuclear framework

@@ -46,13 +46,13 @@ libcint::RawContainer LibcintInterfacer::convert(const ShellSet& shell_set) cons
 
     for (size_t i = 0; i < natm; i++) {
         // Configure a libcint 'atom'
-        raw_container.libcint_atm[libcint::charge_of + libcint::atm_slots * i] = static_cast<int>(nuclei[i].atomic_number);  // insert the charge/atomic number
+        raw_container.libcint_atm[libcint::charge_of + libcint::atm_slots * i] = static_cast<int>(nuclei[i].charge());  // insert the charge/atomic number
         raw_container.libcint_atm[libcint::ptr_coord + libcint::atm_slots * i] = offset;  // 'pointer' to the coordinates of the atom inside the libcint environment
 
         // Set the atom-related data into the libcint environment
-        raw_container.libcint_env[offset + 0] = nuclei[i].position.x();  // insert the position of the nuclei
-        raw_container.libcint_env[offset + 1] = nuclei[i].position.y();
-        raw_container.libcint_env[offset + 2] = nuclei[i].position.z();
+        raw_container.libcint_env[offset + 0] = nuclei[i].position().x();  // insert the position of the nuclei
+        raw_container.libcint_env[offset + 1] = nuclei[i].position().y();
+        raw_container.libcint_env[offset + 2] = nuclei[i].position().z();
         offset += 3;
     }
 
@@ -71,7 +71,7 @@ libcint::RawContainer LibcintInterfacer::convert(const ShellSet& shell_set) cons
 
         // If there's a new nucleus, increment the index
         auto current_nucleus = current_shell.get_nucleus();
-        if (current_nucleus != previous_nucleus) {
+        if (!Nucleus::equalityComparer()(current_nucleus, previous_nucleus)) {
             nucleus_index++;
             previous_nucleus = current_nucleus;
         }

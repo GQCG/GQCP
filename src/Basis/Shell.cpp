@@ -85,7 +85,7 @@ bool Shell::operator==(const Shell& rhs) const {
 
     // Return if all members are equal/close
     return (this->l == rhs.l) &&
-           (this->nucleus == rhs.nucleus) &&
+           (Nucleus::equalityComparer()(this->nucleus, rhs.nucleus)) &&
            (this->pure == rhs.pure) &&
            (std::equal(this->gaussian_exponents.begin(), this->gaussian_exponents.end(), rhs.gaussian_exponents.begin(), approx())) &&
            (std::equal(this->contraction_coefficients.begin(), this->contraction_coefficients.end(), rhs.contraction_coefficients.begin(), approx()));

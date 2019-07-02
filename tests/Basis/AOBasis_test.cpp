@@ -27,7 +27,7 @@
 BOOST_AUTO_TEST_CASE ( AOBasis_constructor ) {
 
     // Check if we can construct an AOBasis object
-    auto water = GQCP::Molecule::Readxyz("data/h2o.xyz");
+    auto water = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
     GQCP::AOBasis basis (water, "STO-3G");
 }
 
@@ -35,7 +35,7 @@ BOOST_AUTO_TEST_CASE ( AOBasis_constructor ) {
 BOOST_AUTO_TEST_CASE ( numberOfBasisFunctions ) {
 
     // Check the number of basis functions in water
-    auto water = GQCP::Molecule::Readxyz("data/h2o.xyz");
+    auto water = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
     GQCP::AOBasis basis (water, "STO-3G");
 
     BOOST_CHECK_EQUAL(basis.numberOfBasisFunctions(), 7);
@@ -45,7 +45,7 @@ BOOST_AUTO_TEST_CASE ( numberOfBasisFunctions ) {
 BOOST_AUTO_TEST_CASE( Szabo_integrals_h2_sto3g ) {
 
     // We will follow the example in Szabo, section 3.5.2, where it is stated that R = 1.4 a.u. = 0.740848 Angstrom
-    auto h2 = GQCP::Molecule::Readxyz("data/h2_szabo.xyz");
+    auto h2 = GQCP::Molecule::ReadXYZ("data/h2_szabo.xyz");
     GQCP::AOBasis ao_basis (h2, "STO-3G");
     BOOST_CHECK_EQUAL(ao_basis.numberOfBasisFunctions(), 2);
 
@@ -93,7 +93,7 @@ BOOST_AUTO_TEST_CASE( Szabo_integrals_h2_sto3g ) {
 BOOST_AUTO_TEST_CASE( HORTON_integrals_h2o_sto3g ) {
 
     // Set up an AO basis
-    auto water = GQCP::Molecule::Readxyz("data/h2o.xyz");
+    auto water = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
     GQCP::AOBasis ao_basis (water, "STO-3G");
     auto nbf = ao_basis.numberOfBasisFunctions();
 
@@ -123,7 +123,7 @@ BOOST_AUTO_TEST_CASE( HORTON_integrals_h2o_sto3g ) {
 
 BOOST_AUTO_TEST_CASE ( libcint_vs_libint2_H2O_STO_3G ) {
 
-    auto water = GQCP::Molecule::Readxyz("data/h2o.xyz");
+    auto water = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
     GQCP::AOBasis ao_basis (water, "STO-3G");
 
     const auto S_libcint = ao_basis.calculateLibcintOverlapIntegrals();
@@ -151,7 +151,7 @@ BOOST_AUTO_TEST_CASE ( libcint_vs_libint2_H2O_STO_3G ) {
 
 BOOST_AUTO_TEST_CASE ( libcint_vs_libint2_dipole_origin ) {
 
-    auto water = GQCP::Molecule::Readxyz("data/h2o.xyz");
+    auto water = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
     GQCP::AOBasis ao_basis (water, "STO-3G");
 
     GQCP::Vector<double, 3> origin;

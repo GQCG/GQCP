@@ -41,7 +41,7 @@ ShellSet::ShellSet(const Molecule& molecule, const std::string& basisset_name) {
     // Since we haven't implemented our own BasisSet class, we use libint to read in the basisset specification file and create the shells
     // TODO no longer use libint2 to read this
 
-    const auto& nuclei = molecule.get_nuclei();
+    const auto& nuclei = molecule.nuclearFramework().nucleiAsVector();
 
     libint2::BasisSet libint_basis (basisset_name, LibintInterfacer::get().interface(nuclei));
 
@@ -85,7 +85,10 @@ std::vector<Nucleus> ShellSet::nuclei() const {
     for (const auto& shell : *this) {
         const auto& nucleus = shell.get_nucleus();
 
-        const auto& p = std::find(nuclei.begin(), nuclei.end(), nucleus);
+        const auto unary_predicate = [nucleus] (const Nucleus& other) {
+            return Nucleus::equalityComparer()(nucleus, other);
+        };
+        const auto& p = std::find_if(nuclei.begin(), nuclei.end(), unary_predicate);
         if (p == nuclei.end()) {  // if unique
             nuclei.push_back(nucleus);
         }

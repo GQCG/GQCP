@@ -17,10 +17,11 @@
 // 
 #include "Molecule/Nucleus.hpp"
 
+#include "elements.hpp"
+
 #include <cmath>
 #include <iomanip>
 
-#include "elements.hpp"
 
 
 namespace GQCP {
@@ -31,16 +32,26 @@ namespace GQCP {
  */
 
 /**
- *  @param atomic_number        the atomic number (Z) of the nucleus
- *  @param x                    the x-position of the nucleus in bohr
- *  @param y                    the y-position of the nucleus in bohr
- *  @param z                    the z-position of the nucleus in bohr
+ *  @param Z        the atomic number (Z) of the nucleus
+ *  @param x        the x-position of the nucleus in bohr
+ *  @param y        the y-position of the nucleus in bohr
+ *  @param z        the z-position of the nucleus in bohr
  */
-Nucleus::Nucleus(size_t atomic_number, double x, double y, double z) :
-    atomic_number (atomic_number)
+Nucleus::Nucleus(const size_t Z, const double x, const double y, const double z) :
+    Z (Z)
 {
-    position << x, y, z;
+    this->R.setZero();
+    this->R << x, y, z;
 }
+
+
+/**
+ *  @param Z            the atomic number (Z) of the nucleus
+ *  @param position     the position of the nucleus in bohr
+ */
+Nucleus::Nucleus(const size_t Z, const Vector<double, 3>& position) :
+    Nucleus(Z, position.x(), position.y(), position.z())
+{}
 
 
 /**
@@ -51,43 +62,10 @@ Nucleus::Nucleus() :
 {}
 
 
+
 /*
  *  OPERATORS
  */
-
-/**
- *  @param other        the other nucleus
- *
- *  @return if this nucleus is equal to the other, within a default tolerance for the coordinates
- */
-bool Nucleus::operator==(const Nucleus& other) const {
-
-    return this->isEqualTo(other, Nucleus::tolerance_for_comparison);
-}
-
-
-/**
- *  @param other        the other nucleus
- *
- *  @return if this nucleus is not equal to the other, within a default tolerance for the coordinates
- */
-bool Nucleus::operator!=(const Nucleus& other) const {
-    return !this->operator==(other);
-}
-
-
-/**
- *  A custom implementation for the comparison (and thus ordening) of nuclei. The atomic_number takes precedence over the x-coordinate, which takes precedence over the y-coordinate, which in turn takes precedence over the z-coordinate
- *
- *  @param other        the other nucleus
- *
- *  @return if this nucleus is 'smaller' than the other, within a default tolerance for the coordinates
- */
-bool Nucleus::operator<(const Nucleus& other) const {
-
-    return this->isSmallerThan(other, Nucleus::tolerance_for_comparison);
-}
-
 
 /**
  *  Overloading of operator<< for a Nucleus to be used with ostreams
@@ -98,8 +76,58 @@ bool Nucleus::operator<(const Nucleus& other) const {
  *  @return the updated output stream
  */
 std::ostream& operator<<(std::ostream& os, const Nucleus& nucleus) {
-    os << std::left << std::setw(3) << elements::atomicNumberToElement(nucleus.atomic_number) << '(' << nucleus.position.x() << ", " << nucleus.position.y() << ", " << nucleus.position.z() << ")\n";
+    os << std::left << std::setw(3) << elements::atomicNumberToElement(nucleus.charge()) << '(' << nucleus.position().x() << ", " << nucleus.position().y() << ", " << nucleus.position().z() << ")\n";
     return os;
+}
+
+
+
+/*
+ *  STATIC PUBLIC METHODS
+ */
+
+/**
+ *  @return a functor that can be used in sorting atoms. It features a custom implementation, in which the x-coordinate takes precedence over the y-coordinate, which in turn takes precedence over the z-coordinate
+ */
+std::function<bool(const Nucleus&, const Nucleus&)> Nucleus::sortComparer(const double tolerance) {
+
+    const auto sort_comparer_lambda = [tolerance] (const Nucleus& lhs, const Nucleus& rhs) {
+
+        if (std::abs(lhs.position().x() - rhs.position().x()) > tolerance) {  // the difference is meaningful
+            return (lhs.position().x() < rhs.position().x());
+        } else {  // the x-coordinates are considered equal
+
+            if (std::abs(lhs.position().y() - rhs.position().y()) > tolerance) {  // the difference is meaningful
+                return (lhs.position().y() < rhs.position().y());
+            } else {  // the y-coordinates are considered equal
+
+                if (std::abs(lhs.position().z() - rhs.position().z()) > tolerance) {  // the difference is meaningful
+                    return (lhs.position().z() < rhs.position().z());
+                } else {  // the z-coordinates are considered equal
+                    return false;
+                }
+            }  // else y
+        }  // else x
+    };
+
+    return sort_comparer_lambda;
+}
+
+
+/**
+ *  @return a functor that can be used in checking atom for equality. Atoms are equal if their charge and position are equal
+ */
+std::function<bool(const Nucleus&, const Nucleus&)> Nucleus::equalityComparer(const double tolerance) {
+
+    const auto equality_comparer_lambda = [tolerance] (const Nucleus& lhs, const Nucleus& rhs) {
+
+        return (lhs.charge() == rhs.charge()) &&
+           (std::abs(lhs.position().x() - rhs.position().x()) < tolerance) &&
+           (std::abs(lhs.position().y() - rhs.position().y()) < tolerance) &&
+           (std::abs(lhs.position().z() - rhs.position().z()) < tolerance);
+    };
+
+    return equality_comparer_lambda;
 }
 
 
@@ -109,62 +137,12 @@ std::ostream& operator<<(std::ostream& os, const Nucleus& nucleus) {
 
 /**
  *  @param other        the other nucleus
- *  @param tolerance    the tolerance for equality of positions
- *
- *  @return if this nucleus is equal to the other
- */
-bool Nucleus::isEqualTo(const Nucleus& other, double tolerance) const {
-
-    return (this->atomic_number == other.atomic_number) &&
-           (std::abs(this->position.x() - other.position.x()) < tolerance) &&
-           (std::abs(this->position.y() - other.position.y()) < tolerance) &&
-           (std::abs(this->position.z() - other.position.z()) < tolerance);
-}
-
-
-/**
- *  A custom implementation for the comparison (and thus ordening) of nuclei. The atomic_number takes precedence over the x-coordinate, which takes precedence over the y-coordinate, which in turn takes precedence over the z-coordinate
- *
- *  @param other        the other nucleus
- *  @param tolerance    the tolerance for equality of positions
- *
- *  @return if this nucleus is 'smaller' than the other, within a default tolerance for the coordinates
- */
-bool Nucleus::isSmallerThan(const Nucleus& other, double tolerance) const {
-
-    if (this->atomic_number < other.atomic_number) {
-        return true;
-    } else if (this->atomic_number > other.atomic_number) {
-        return false;
-    } else {  // the atomic numbers are equal
-
-        if (std::abs(this->position.x() - other.position.x()) > tolerance) {  // the difference is meaningful
-            return (this->position.x() < other.position.x());
-        } else {  // the x-coordinates are considered equal
-
-            if (std::abs(this->position.y() - other.position.y()) > tolerance) {  // the difference is meaningful
-                return (this->position.y() < other.position.y());
-            } else {  // the y-coordinates are considered equal
-
-                if (std::abs(this->position.z() - other.position.z()) > tolerance) {  // the difference is meaningful
-                    return (this->position.z() < other.position.z());
-                } else {  // the z-coordinates are considered equal
-                    return false;
-                }
-            }  // else y
-        }  // else x
-    }  // else atomic_number
-}
-
-
-/**
- *  @param other        the other nucleus
  *
  *  @return the Euclidian distance between this nucleus and the other
  */
 double Nucleus::calculateDistance(const Nucleus& other) const {
 
-    return (this->position - other.position).norm();
+    return (this->position() - other.position()).norm();
 }
 
 

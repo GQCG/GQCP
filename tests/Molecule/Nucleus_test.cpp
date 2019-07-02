@@ -29,69 +29,48 @@ BOOST_AUTO_TEST_CASE ( Nucleus_constructor ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( Nucleus_isSmallerThan ) {
+BOOST_AUTO_TEST_CASE ( Nucleus_sortComparer ) {
 
     GQCP::Nucleus nucleus1 {1, 0.0, 0.1, 0.2};
     GQCP::Nucleus nucleus2 {2, 0.0, 0.1, 0.2};
     GQCP::Nucleus nucleus3 {2, 0.1, 0.2, 0.2};
-    GQCP::Nucleus nucleus4 {2, 0.1, 0.2, 0.3};
 
 
-    // Check if operator< does what is expected
-    BOOST_CHECK(nucleus1.isSmallerThan(nucleus2));
-    BOOST_CHECK(nucleus2.isSmallerThan(nucleus3));
-    BOOST_CHECK(nucleus3.isSmallerThan(nucleus4));
+    // Check if sortComparer does what is expected
+    const auto sort_comparer = GQCP::Nucleus::sortComparer();
+    BOOST_CHECK(sort_comparer(nucleus1, nucleus3));  // x1 < x2
+    BOOST_CHECK(sort_comparer(nucleus2, nucleus3));  // x1 < x2
 
-    BOOST_CHECK(!(nucleus2.isSmallerThan(nucleus1)));
-    BOOST_CHECK(!(nucleus3.isSmallerThan(nucleus2)));
-    BOOST_CHECK(!(nucleus4.isSmallerThan(nucleus3)));
-
+    BOOST_CHECK(!(sort_comparer(nucleus1, nucleus2)));  // same positions, result should be false
 
     // Check if the tolerance works
-    BOOST_CHECK(!(nucleus2.isSmallerThan(nucleus3, 0.2)));
-    BOOST_CHECK(!(nucleus3.isSmallerThan(nucleus2, 0.2)));
+    const auto sort_comparer_tolerance = GQCP::Nucleus::sortComparer(0.2);
+    BOOST_CHECK(!(sort_comparer_tolerance(nucleus2, nucleus3)));
+    BOOST_CHECK(!(sort_comparer_tolerance(nucleus3, nucleus2)));
 }
 
 
-BOOST_AUTO_TEST_CASE ( Nucleus_operator_smaller_than ) {
-
-    GQCP::Nucleus nucleus1 {1, 0.0, 0.1, 0.2};
-    GQCP::Nucleus nucleus2 {2, 0.0, 0.1, 0.2};
-
-    // A small test to check if we can operator<
-    BOOST_CHECK(nucleus1 < nucleus2);
-}
-
-
-BOOST_AUTO_TEST_CASE ( Nucleus_isEqualTo ) {
+BOOST_AUTO_TEST_CASE ( Nucleus_equalityComparer ) {
 
     GQCP::Nucleus nucleus1 {1, 0.0, 0.1, 0.2};
     GQCP::Nucleus nucleus2 {1, 0.0, 0.1, 0.2};
     GQCP::Nucleus nucleus3 {2, 0.0, 0.1, 0.2};
     GQCP::Nucleus nucleus4 {1, 0.1, 0.2, 0.3};
 
-    // Check if they're equal
-    BOOST_CHECK(nucleus1.isEqualTo(nucleus2));
+    // Check if equalityComparer does what is expected
+    const auto equality_comparer = GQCP::Nucleus::equalityComparer();
+    BOOST_CHECK(equality_comparer(nucleus1, nucleus2));
 
-    // Check if different nucleusic numbers cause inequality
-    BOOST_CHECK(!(nucleus1.isEqualTo(nucleus3)));
+    // Check if different charges cause inequality
+    BOOST_CHECK(!(equality_comparer(nucleus1, nucleus3)));
 
     // Check if different coordinates cause inequality
-    BOOST_CHECK(!(nucleus1.isEqualTo(nucleus4)));
+    BOOST_CHECK(!(equality_comparer(nucleus1, nucleus4)));
 
 
     // Check if the tolerance works
-    BOOST_CHECK(nucleus1.isEqualTo(nucleus2, 0.2));
-}
-
-
-BOOST_AUTO_TEST_CASE ( Nucleus_operator_equals ) {
-
-    GQCP::Nucleus nucleus1 {1, 0.0, 0.1, 0.2};
-    GQCP::Nucleus nucleus2 {1, 0.0, 0.1, 0.2};
-
-    // A small test to check if we can operator==
-    BOOST_CHECK(nucleus1 == nucleus2);
+    const auto equality_comparer_tolerance = GQCP::Nucleus::equalityComparer(0.2);
+    BOOST_CHECK(equality_comparer_tolerance(nucleus1, nucleus2));
 }
 
 

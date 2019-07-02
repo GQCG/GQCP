@@ -37,7 +37,7 @@ RHFSCFSolver::RHFSCFSolver(const HamiltonianParameters<double>& ham_par, const M
     threshold (threshold)
 {
     // Check if the given molecule has an even number of electrons
-    if ((molecule.get_N() % 2) != 0) {
+    if ((molecule.numberOfElectrons() % 2) != 0) {
         throw std::invalid_argument("RHFSCFSolver::RHFSCFSolver(): The given molecule has an odd number of electrons.");
     }
 }
@@ -76,7 +76,7 @@ void RHFSCFSolver::solve(const SquareMatrix<double>& C_initial) {
     const auto& S = this->ham_par.get_S();
 
     auto C = C_initial;
-    auto D_AO = calculateRHFAO1RDM(C, this->molecule.get_N());
+    auto D_AO = calculateRHFAO1RDM(C, this->molecule.numberOfElectrons());
 
 
     size_t iteration_counter = 0;
@@ -88,7 +88,7 @@ void RHFSCFSolver::solve(const SquareMatrix<double>& C_initial) {
         C = generalized_eigensolver.eigenvectors();
 
         OneRDM<double> D_AO_previous = D_AO;  // store the previous density matrix to be able to check on convergence
-        D_AO = calculateRHFAO1RDM(C, this->molecule.get_N());
+        D_AO = calculateRHFAO1RDM(C, this->molecule.numberOfElectrons());
 
 
         // Check for convergence on the AO density matrix
