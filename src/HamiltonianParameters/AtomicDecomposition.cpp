@@ -63,7 +63,7 @@ AtomicDecompositionParameters::AtomicDecompositionParameters (const HamiltonianP
  */
 AtomicDecompositionParameters AtomicDecompositionParameters::Nuclear(const Molecule& molecule, const std::string& basisset_name) {
 
-    auto atoms = molecule.nuclearFramework().nucleiAsVector();
+    const auto& atoms = molecule.nuclearFramework().nucleiAsVector();
     auto ao_basis = std::make_shared<AOBasis>(molecule, basisset_name);
 
     auto K = ao_basis->numberOfBasisFunctions();
