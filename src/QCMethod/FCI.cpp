@@ -1,4 +1,4 @@
-#include "Drivers/FullConfigurationInteractionDriver.hpp"
+#include "QCMethod/FCI.hpp"
 
 namespace GQCP {
 

@@ -802,6 +802,7 @@ INPUT      = "@CMAKE_SOURCE_DIR@/include" \
 			 "@CMAKE_SOURCE_DIR@/include/Operator" \
 			 "@CMAKE_SOURCE_DIR@/include/OrbitalOptimization" \
 			 "@CMAKE_SOURCE_DIR@/include/Properties" \
+			 "@CMAKE_SOURCE_DIR@/include/QCMethod" \
 			 "@CMAKE_SOURCE_DIR@/include/RDM" \
 			 "@CMAKE_SOURCE_DIR@/include/RHF" \
 			 "@CMAKE_SOURCE_DIR@/include/Utilities" \
@@ -817,6 +818,7 @@ INPUT      = "@CMAKE_SOURCE_DIR@/include" \
 			 "@CMAKE_SOURCE_DIR@/src/Mathematical" \
 			 "@CMAKE_SOURCE_DIR@/src/OrbitalOptimization" \
 			 "@CMAKE_SOURCE_DIR@/src/Properties" \
+			 "@CMAKE_SOURCE_DIR@/src/QCMethod" \
 			 "@CMAKE_SOURCE_DIR@/src/RDM" \
 			 "@CMAKE_SOURCE_DIR@/src/RHF" \
 			 "@CMAKE_SOURCE_DIR@/src/Utilities" \
