@@ -20,17 +20,16 @@ option(BUILD_DRIVERS "Build standard drivers" OFF)
 option(BUILD_PYTHON_BINDINGS "Build the Python bindings" OFF)
 option(EIGEN_USE_MKL "Eigen uses MKL" OFF)
 
-
 # Look for supporting libraries
 # -----------------------------
 find_package(Git REQUIRED)
 find_package(Eigen3 3.3.4 REQUIRED)
 find_package(Int2 REQUIRED)
-find_package(Boost REQUIRED COMPONENTS program_options unit_test_framework)
 find_package(Spectra REQUIRED)
-find_package(Cint REQUIRED NO_MODULE)
+find_package(Cint REQUIRED)
 
 if(EIGEN_USE_MKL)
+    set(BLA_STATIC ON)
     set(BLA_VENDOR Intel10_64lp)
     find_package(BLAS REQUIRED)
 endif()
@@ -94,7 +93,7 @@ target_link_libraries(gqcp
         )
 target_include_directories(gqcp PUBLIC $<BUILD_INTERFACE:${Boost_INCLUDE_DIRS}>)
 target_link_libraries(gqcp PUBLIC ${Boost_LIBRARIES})
-if (EIGEN_USE_MKL)
+if (BLAS_FOUND AND EIGEN_USE_MKL)
     target_include_directories(gqcp PUBLIC $<BUILD_INTERFACE:${BLAS_INCLUDE_DIR}>)
     target_link_libraries(gqcp PUBLIC ${BLAS_LIBRARIES})
     target_compile_options(gqcp PUBLIC -DEIGEN_USE_MKL_ALL -DMKL_LP64)
