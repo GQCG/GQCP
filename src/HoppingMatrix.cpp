@@ -81,5 +81,31 @@ HoppingMatrix HoppingMatrix::Random(size_t K) {
 }
 
 
+/**
+ *  @param csline           a comma-separated line that contains the upper triangle (in column-major ordering) of the Hubbard hopping matrix
+ * 
+ *  @return the hopping matrix that corresponds to the given comma-separated line
+ */
+HoppingMatrix HoppingMatrix::FromCSLine(const std::string& csline) {
+
+    if (csline.empty()) {
+        throw std::invalid_argument("HoppingMatrix::FromCSLine(const std::string&): Comma-separated line was empty!");
+    }
+
+    // Split the comma-separated line into a std::vector
+    std::vector<std::string> splitted_line;
+    boost::split(splitted_line, csline, boost::is_any_of(","));
+
+    std::vector<double> triagonal_data;
+    for (const auto& x : splitted_line) {
+        triagonal_data.push_back(std::stod(x));  // immediately convert string to double
+    }
+
+    // Map the std::vector<double> into a VectorX<double> to be used into an other constructor
+    GQCP::VectorX<double> triagonal = Eigen::Map<Eigen::VectorXd>(triagonal_data.data(), triagonal_data.size());
+
+    return GQCP::HoppingMatrix::FromUpperTriangle(triagonal);
+}
+
 
 }  // namespace GQCP
