@@ -115,14 +115,14 @@ BOOST_AUTO_TEST_CASE ( triangularRoot_strictTriangularRoot ) {
 }
 
 
-// BOOST_AUTO_TEST_CASE ( validate ) {
+BOOST_AUTO_TEST_CASE ( validateAndOpen ) {
 
-//     // Make sure we get an error when a nonsense path is given for the .xyz file name
-//     BOOST_REQUIRE_THROW(GQCP::Molecule::ReadXYZ("this is a nonsense data path"), std::invalid_argument);
+    // Make sure we get an error when a nonsense path is given (i.e. no extension)
+    BOOST_REQUIRE_THROW(GQCP::validateAndOpen("this is a nonsense data path", "data"), std::invalid_argument);
 
-//     // Make sure we get an error when a path with a wrong extension is given
-//     BOOST_REQUIRE_THROW(GQCP::Molecule::ReadXYZ("data/small_vector.data"), std::invalid_argument);
+    // Make sure we get an error when a path with a wrong extension is given
+    BOOST_REQUIRE_THROW(GQCP::validateAndOpen("data/small_vector.data", "xyz"), std::invalid_argument);
 
-//     // Make sure we don't get an error when a correct path is given
-//     BOOST_REQUIRE_NO_THROW(GQCP::Molecule::ReadXYZ("data/h2o.xyz"));
-// }
+    // Make sure we don't get an error when a correct path is given
+    BOOST_REQUIRE_NO_THROW(GQCP::validateAndOpen("data/h2o.xyz", "xyz"));
+}

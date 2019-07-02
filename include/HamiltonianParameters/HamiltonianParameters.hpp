@@ -27,6 +27,7 @@
 #include "RDM/TwoRDM.hpp"
 #include "RDM/OneRDM.hpp"
 #include "typedefs.hpp"
+#include "Utilities/miscellaneous.hpp"
 
 
 namespace GQCP {
@@ -229,26 +230,7 @@ public:
     template<typename Z = Scalar>
     static enable_if_t<std::is_same<Z, double>::value, HamiltonianParameters<double>> ReadFCIDUMP(const std::string& fcidump_file) {
 
-        // Find the extension of the given path (https://stackoverflow.com/a/51992)
-        std::string extension;
-        std::string::size_type idx = fcidump_file.rfind('.');
-
-        if (idx != std::string::npos) {
-            extension = fcidump_file.substr(idx+1);
-        } else {
-            throw std::runtime_error("HamiltonianParameters::ReadFCIDUMP(std::string): I did not find an extension in your given path.");
-        }
-
-        if (!(extension == "FCIDUMP")) {
-            throw std::runtime_error("HamiltonianParameters::ReadFCIDUMP(std::string): You did not provide a .FCIDUMP file name");
-        }
-
-        // If the xyz_filename isn't properly converted into an input file stream, we assume the user supplied a wrong file
-        std::ifstream input_file_stream (fcidump_file);
-
-        if (!input_file_stream.good()) {
-            throw std::runtime_error("HamiltonianParameters::ReadFCIDUMP(std::string): The provided FCIDUMP file is illegible. Maybe you specified a wrong path?");
-        }
+        std::ifstream input_file_stream = validateAndOpen(fcidump_file, "FCIDUMP");
 
 
         // Do the actual parsing
