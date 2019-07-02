@@ -818,6 +818,7 @@ INPUT      = "@CMAKE_SOURCE_DIR@/include" \
 			 "@CMAKE_SOURCE_DIR@/src/Mathematical" \
 			 "@CMAKE_SOURCE_DIR@/src/Molecule" \
 			 "@CMAKE_SOURCE_DIR@/src/OrbitalOptimization" \
+			 "@CMAKE_SOURCE_DIR@/src/Operator" \
 			 "@CMAKE_SOURCE_DIR@/src/Properties" \
 			 "@CMAKE_SOURCE_DIR@/src/RDM" \
 			 "@CMAKE_SOURCE_DIR@/src/RHF" \

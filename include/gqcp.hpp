@@ -91,10 +91,15 @@
 #include "Mathematical/Tensor.hpp"
 
 #include "Molecule/Molecule.hpp"
+#include "Molecule/NuclearFramework.hpp"
 #include "Molecule/Nucleus.hpp"
 
+#include "Operator/FirstQuantized/BaseMultipoleOperator.hpp"
+#include "Operator/FirstQuantized/BaseNuclearOperator.hpp"
+#include "Operator/FirstQuantized/Operator.hpp"
+
+#include "Operator/BaseOperator.hpp"
 #include "Operator/OneElectronOperator.hpp"
-#include "Operator/Operator.hpp"
 #include "Operator/TwoElectronOperator.hpp"
 
 #include "OrbitalOptimization/Localization/ERJacobiLocalizer.hpp"
