@@ -30,7 +30,6 @@ find_package(Cint REQUIRED)
 
 if(EIGEN_USE_MKL)
     set(BLA_STATIC ON)
-    set(BLA_VENDOR Intel10_64lp)
     find_package(BLAS REQUIRED)
 endif()
 
