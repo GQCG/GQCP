@@ -29,7 +29,7 @@ find_package(Spectra REQUIRED)
 find_package(Cint REQUIRED)
 
 if(EIGEN_USE_MKL)
-    #set(BLA_STATIC ON)
+    set(BLA_STATIC ON)
     find_package(BLAS REQUIRED)
     find_package(LAPACK REQUIRED)
 endif()
