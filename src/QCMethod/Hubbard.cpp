@@ -44,14 +44,12 @@ namespace QCMethod {
  *  @param num_states       the number of states that should be targeted (the lowest num_states are found)
  *  @param num_alpha        the number of alpha electrons
  *  @param num_beta         the number of beta electrons
- *  @param num_orb          the number of spatial orbitals
  */
-Hubbard::Hubbard(const std::string& csline, const size_t num_states, const size_t num_alpha, const size_t num_beta, const size_t num_orb) :
+Hubbard::Hubbard(const std::string& csline, const size_t num_states, const size_t num_alpha, const size_t num_beta) :
     csline (csline),
     num_states (num_states),
     N_alpha (num_alpha),
-    N_beta (num_beta),
-    K (num_orb)
+    N_beta (num_beta)
 {}
 
 
@@ -68,10 +66,11 @@ void Hubbard::solve() {
     // Build up the Hubbard hopping matrix and the corresponding Hamiltonian parameters
     const GQCP::HoppingMatrix H = GQCP::HoppingMatrix::FromCSLine(csline);
     const auto ham_par = GQCP::HamiltonianParameters<double>::Hubbard(H);
+    const auto K = ham_par.get_K();
 
 
     // Initialize and solve the Hubbard eigenvalue problem
-    ProductFockSpace fock_space (this->K, this->N_alpha, this->N_beta);
+    ProductFockSpace fock_space (K, this->N_alpha, this->N_beta);
     GQCP::Hubbard hubbard_builder (fock_space);
     CISolver ci_solver (hubbard_builder, ham_par);
 

@@ -52,7 +52,7 @@ public:
      *  @param num_beta         the number of beta electrons
      *  @param num_orb          the number of spatial orbitals
      */
-    Hubbard(const std::string& csline, const size_t num_states, const size_t num_alpha, const size_t num_beta, const size_t num_orb);
+    Hubbard(const std::string& csline, const size_t num_states, const size_t num_alpha, const size_t num_beta);
 
 
     // PUBLIC METHODS
