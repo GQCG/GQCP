@@ -68,10 +68,10 @@ void FCI::solve() {
 
 
     // Set the solution
-    double fci_energy = ci_solver.get_eigenpair().get_eigenvalue();
+    double fci_energy = fci_solver.get_eigenpair().get_eigenvalue();
     double internuclear_repulsion_energy = molecule.calculateInternuclearRepulsionEnergy();
 
-    this->energy = fci_energy + internuclear_repulsion_energy;
+    this->energy_solution = fci_energy + internuclear_repulsion_energy;
 }
 
 

@@ -15,25 +15,29 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
-#include <pybind11/stl.h>
-
-#include "QCMethod/Hubbard.hpp"
-
 
 namespace py = pybind11;
 
 
+/**
+ *  As stated in the FAQ (https://pybind11.readthedocs.io/en/stable/faq.html#how-can-i-reduce-the-build-time), it is good practice to split the binding code over multiple files
+ */
 namespace pygqcp {
 
-
-void bindQCMethodHubbard(py::module& module) {
-    py::class_<GQCP::QCMethod::Hubbard>(module, "Hubbard")
-            .def(py::init<const std::string, const size_t, const size_t, const size_t, const size_t>())
-            .def("get_energies", &GQCP::QCMethod::Hubbard::energies)
-            .def("get_one_rdms", &GQCP::QCMethod::Hubbard::oneRDMs);
-}
-
+void bindQCMethodHubbard(py::module& module);
+void bindQCMethodFCI(py::module& module);
 
 }  // namespace pygqcp
+
+
+
+
+/**
+ *  The actual Python binding into the gqcpy Python module
+ */
+PYBIND11_MODULE (gqcpy, module) {
+
+    pygqcp::bindQCMethodHubbard(module);
+    pygqcp::bindQCMethodFCI(module);
+}

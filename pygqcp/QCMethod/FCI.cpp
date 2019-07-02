@@ -25,9 +25,15 @@
 namespace py = pybind11;
 
 
-PYBIND11_MODULE(gqcpy, m) {
+namespace pygqcp {
 
-    py::class_<GQCP::QCMethod::FCI>(m, "FCI")
+
+void bindQCMethodFCI(py::module& module) {
+    py::class_<GQCP::QCMethod::FCI>(module, "FCI")
             .def(py::init<const std::string, const std::string, const size_t, const size_t>())
             .def("get_energy", &GQCP::QCMethod::FCI::energy);
 }
+
+
+
+}  // namespace pygqcp
