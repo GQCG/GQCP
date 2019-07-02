@@ -28,7 +28,7 @@ namespace GQCP {
  */
 
 /**
- *  @param shell_set        the set of shells that are placed on the atoms
+ *  @param shell_set        the set of shells that are placed on the nuclei
  */
 AOBasis::AOBasis(const ShellSet& shell_set) :
     shell_set (shell_set)
@@ -36,9 +36,9 @@ AOBasis::AOBasis(const ShellSet& shell_set) :
 
 
 /**
- *  Construct an AO basis by placing shells corresponding to the basisset specification on every atom of the molecule
+ *  Construct an AO basis by placing shells corresponding to the basisset specification on every nucleus of the molecule
  *
- *  @param molecule             the molecule containing the atoms on which the shells should be centered
+ *  @param molecule             the molecule containing the nuclei on which the shells should be centered
  *  @param basisset_name        the name of the basisset, e.g. "STO-3G"
  *
  *  Note that the normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells
@@ -94,7 +94,7 @@ OneElectronOperator<double> AOBasis::calculateLibintKineticIntegrals() const {
 OneElectronOperator<double> AOBasis::calculateLibintNuclearIntegrals() const {
 
     auto libint_basisset = LibintInterfacer::get().interface(this->shell_set);
-    auto libint_atoms = LibintInterfacer::get().interface(this->shell_set.atoms());
+    auto libint_atoms = LibintInterfacer::get().interface(this->shell_set.nuclei());
 
     return LibintInterfacer::get().calculateOneElectronIntegrals<1>(libint2::Operator::nuclear, libint_basisset, make_point_charges(libint_atoms))[0];
 }

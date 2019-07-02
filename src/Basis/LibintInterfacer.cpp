@@ -30,6 +30,7 @@
 namespace GQCP {
 
 
+
 /*
  *  PRIVATE METHODS - SINGLETON
  */
@@ -59,6 +60,7 @@ LibintInterfacer::~LibintInterfacer() {
 }
 
 
+
 /*
  *  PUBLIC METHODS - SINGLETON
  */
@@ -72,35 +74,36 @@ LibintInterfacer& LibintInterfacer::get() {  // need to return by reference sinc
 }
 
 
+
 /*
  *  PUBLIC METHODS - INTERFACING (GQCP TO LIBINT)
  */
 
 /**
- *  @param atom         the GQCP-atom that should be interfaced
+ *  @param nucleus          the GQCP-nucleus that should be interfaced into a libint2::Atom
  *
- *  @return a libint2::Atom, interfaced from the given GQCP::Atom
+ *  @return a libint2::Atom, interfaced from the given GQCP::Nucleus
  */
-libint2::Atom LibintInterfacer::interface(const Atom& atom) const {
+libint2::Atom LibintInterfacer::interface(const Nucleus& nucleus) const {
 
-    libint2::Atom libint_atom {static_cast<int>(atom.atomic_number), atom.position.x(), atom.position.y(), atom.position.z()};
+    libint2::Atom libint_atom {static_cast<int>(nucleus.charge()), nucleus.position().x(), nucleus.position().y(), nucleus.position().z()};
 
     return libint_atom;
 }
 
 
 /**
- *  @param atoms        the GQCP-atoms that should be interfaced
+ *  @param nuclei           the GQCP-nuclei that should be interfaced
  *
- *  @return libint2-atoms, interfaced from the given atoms
+ *  @return libint2::Atoms, interfaced from the given GQCP nuclei
  */
-std::vector<libint2::Atom> LibintInterfacer::interface(const std::vector<Atom>& atoms) const {
+std::vector<libint2::Atom> LibintInterfacer::interface(const std::vector<Nucleus>& nuclei) const {
 
     std::vector<libint2::Atom> libint_vector;  // start with an empty vector, we're doing push_backs later
-    libint_vector.reserve(atoms.size());
+    libint_vector.reserve(nuclei.size());
 
-    for (const auto& atom : atoms) {
-        libint_vector.push_back(this->interface(atom));
+    for (const auto& nucleus : nuclei) {
+        libint_vector.push_back(this->interface(nucleus));
     }
 
     return libint_vector;
@@ -126,7 +129,7 @@ libint2::Shell LibintInterfacer::interface(const Shell& shell) const {
 
 
     // Part 3: origin
-    const auto& position = shell.get_atom().position;
+    const auto& position = shell.get_nucleus().position();
     std::array<double, 3> libint_O {position.x(), position.y(), position.z()};
 
 
@@ -179,12 +182,12 @@ libint2::BasisSet LibintInterfacer::interface(const ShellSet& shellset) const {
  *  Interface a libint2::Shell to the corresponding list of GQCP::Shells. Note that there is no one-to-one libint -> GQCP conversion, since GQCP does not support representing 'linked' sp-'shells'
  *
  *  @param libint_shell     the libint2 Shell that should be interfaced
- *  @param atoms            the atoms that can serve as centers of the Shells
+ *  @param nuclei           the nuclei that can serve as centers of the Shells
  *  @param undo_renorm      if the libint2::Shell should be un-renorm()alized
  *
  *  @return a vector of GQCP::Shells
  */
-std::vector<Shell> LibintInterfacer::interface(const libint2::Shell& libint_shell, const std::vector<Atom>& atoms, bool undo_renorm) const {
+std::vector<Shell> LibintInterfacer::interface(const libint2::Shell& libint_shell, const std::vector<Nucleus>& nuclei, bool undo_renorm) const {
 
     // If asked for, undo Libint2's default renorm()alization
     auto libint_shell_copy = libint_shell;
@@ -204,25 +207,25 @@ std::vector<Shell> LibintInterfacer::interface(const libint2::Shell& libint_shel
         size_t l = libint_contraction.l;
         std::vector<double> coefficients = libint_contraction.coeff;
 
-        // Libint2 only stores the origin of the shell, so we have to find the atom corresponding to the copied shell's origin
+        // Libint2 only stores the origin of the shell, so we have to find the nucleus corresponding to the copied shell's origin
         Eigen::Map<const Eigen::Matrix<double, 3, 1>> libint_origin_map (libint_shell_copy.O.data());  // convert raw array data to Eigen
-        Atom corresponding_atom;
-        for (size_t i = 0; i < atoms.size(); i++) {
-            Atom atom = atoms[i];
+        Nucleus corresponding_nucleus;
+        for (size_t i = 0; i < nuclei.size(); i++) {
+            Nucleus nucleus = nuclei[i];
 
-            if (atom.position.isApprox(libint_origin_map, 1.0e-06)) {  // tolerant comparison
-                corresponding_atom = atom;
+            if (nucleus.position().isApprox(libint_origin_map, 1.0e-06)) {  // tolerant comparison
+                corresponding_nucleus = nucleus;
                 break;
             }
 
-            if (i == (atoms.size() - 1)) {  // if we haven't broken out of the loop after exhausting the possible atoms
-                throw std::invalid_argument("LibintInterfacer::interface(libint2::Shell, std::vector<Atom>): No given atom matches the center of the libint2::Shell");
+            if (i == (nuclei.size() - 1)) {  // if we haven't broken out of the loop after exhausting the possible nuclei
+                throw std::invalid_argument("LibintInterfacer::interface(libint2::Shell, std::vector<Nucleus>): No given nucleus matches the center of the libint2::Shell");
             }
         }
 
         // Other flags
         bool pure = libint_contraction.pure;
-        shells.emplace_back(l, corresponding_atom, exponents, coefficients, pure, false, false);
+        shells.emplace_back(l, corresponding_nucleus, exponents, coefficients, pure, false, false);
     }
 
     return shells;
@@ -233,16 +236,16 @@ std::vector<Shell> LibintInterfacer::interface(const libint2::Shell& libint_shel
  *  Interface a libint2::BasisSet to the corresponding GQCP::ShellSet and undo the libint2 renorm()alization
  *
  *  @param libint_basisset      the libint2 Shell that should be interfaced
- *  @param atoms                the atoms that can serve as centers of the Shells
+ *  @param nuclei               the nuclei that can serve as centers of the Shells
  *
  *  @return a GQCP::ShellSet corresponding to the un-renorm()alized libint2::BasisSet
  */
-ShellSet LibintInterfacer::interface(const libint2::BasisSet& libint_basisset, const std::vector<Atom>& atoms) const {
+ShellSet LibintInterfacer::interface(const libint2::BasisSet& libint_basisset, const std::vector<Nucleus>& nuclei) const {
 
     ShellSet shell_set;
     shell_set.reserve(this->numberOfShells(libint_basisset));
     for (const auto& libint_shell : libint_basisset) {
-        for (const auto& shell : this->interface(libint_shell, atoms)) {
+        for (const auto& shell : this->interface(libint_shell, nuclei)) {
             shell_set.push_back(shell);
         }
     }

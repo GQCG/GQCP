@@ -25,7 +25,7 @@
 #include "HamiltonianBuilder/DOCI.hpp"
 
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
-#include "Molecule.hpp"
+#include "Molecule/Molecule.hpp"
 
 
 

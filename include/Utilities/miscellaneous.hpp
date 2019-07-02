@@ -20,8 +20,9 @@
 
 
 #include <algorithm>
+#include <cstdlib>
+#include <fstream>
 #include <functional>
-#include <stdlib.h>
 #include <string>
 #include <vector>
 
@@ -140,6 +141,13 @@ size_t triangularRoot(const size_t x);
  *  @return the strict triangular root of the given number. This is also the dimension of the square matrix whose strict lower/upper triangle has the given number of elements
  */
 size_t strictTriangularRoot(const size_t x);
+
+
+/**
+ *  @param filename         the name of the file that should be opened
+ *  @param extension        the expected extension of the filename
+ */
+std::ifstream validateAndOpen(const std::string& filename, const std::string& extension);
 
 
 }  // namespace GQCP

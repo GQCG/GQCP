@@ -20,7 +20,7 @@
 
 #include "Operator/OneElectronOperator.hpp"
 #include "Operator/TwoElectronOperator.hpp"
-#include "Molecule.hpp"
+#include "Molecule/Molecule.hpp"
 #include "Basis/ShellSet.hpp"
 
 #include <functional>

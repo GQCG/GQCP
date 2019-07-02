@@ -28,7 +28,7 @@
 BOOST_AUTO_TEST_CASE ( constructor ) {
 
     // Test a correct constructor
-    auto h2 = GQCP::Molecule::Readxyz("data/h2_szabo.xyz");
+    auto h2 = GQCP::Molecule::ReadXYZ("data/h2_szabo.xyz");
     size_t N = 2;  // number of electrons for H2
     size_t N_P = N/2;  // number of electron pairs for H2
     auto mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2, "STO-3G");
@@ -40,12 +40,12 @@ BOOST_AUTO_TEST_CASE ( constructor_molecule ) {
 
     // Test a correct constructor
     // Check if we can also pass a molecule object to the constructor
-    auto h2 = GQCP::Molecule::Readxyz("data/h2_szabo.xyz");
+    auto h2 = GQCP::Molecule::ReadXYZ("data/h2_szabo.xyz");
     auto mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2, "STO-3G");
     GQCP::AP1roGPSESolver ap1rog_pse_solver (h2, mol_ham_par);
 
     // Test a faulty constructor
-    auto h2_cation = GQCP::Molecule::Readxyz("data/h2_szabo.xyz", +1);
+    auto h2_cation = GQCP::Molecule::ReadXYZ("data/h2_szabo.xyz", +1);
     BOOST_CHECK_THROW(GQCP::AP1roGPSESolver(h2_cation, mol_ham_par), std::invalid_argument);  // we can use the same Hamiltonian parameters for molecule and ion
 }
 
@@ -62,7 +62,7 @@ BOOST_AUTO_TEST_CASE ( h2_631gdp ) {
 
 
     // Prepare molecular Hamiltonian parameters in the RHF basis
-    auto h2 = GQCP::Molecule::Readxyz("data/h2_olsens.xyz");
+    auto h2 = GQCP::Molecule::ReadXYZ("data/h2_olsens.xyz");
     auto ao_mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2, "6-31G**");
 
     GQCP::PlainRHFSCFSolver plain_scf_solver (ao_mol_ham_par, h2);
@@ -100,8 +100,8 @@ BOOST_AUTO_TEST_CASE ( h2_631gdp_weak_interaction_limit ) {
 
 
     // Prepare molecular Hamiltonian parameters in the RHF basis
-    auto h2 = GQCP::Molecule::Readxyz("data/h2_olsens.xyz");
-    size_t N_P = h2.get_N() / 2;
+    auto h2 = GQCP::Molecule::ReadXYZ("data/h2_olsens.xyz");
+    size_t N_P = h2.numberOfElectrons() / 2;
     auto ao_mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2, "6-31G**");
 
     GQCP::PlainRHFSCFSolver plain_scf_solver (ao_mol_ham_par, h2);

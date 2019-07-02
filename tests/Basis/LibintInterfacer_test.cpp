@@ -51,9 +51,9 @@ public:
  *  UNIT TESTS
  */
 
-BOOST_AUTO_TEST_CASE ( atoms_to_libint ) {
+BOOST_AUTO_TEST_CASE ( nuclei_to_libint ) {
 
-    std::vector<GQCP::Atom> GQCP_atoms = {
+    std::vector<GQCP::Nucleus> GQCP_nuclei = {
         {1, 0, 3, 0},
         {2, 0, 0, 4},
         {3, 3, 0, 0},
@@ -69,7 +69,7 @@ BOOST_AUTO_TEST_CASE ( atoms_to_libint ) {
 
 
     // Use the Libint interface to obtain a std::vector<libint2::Atom> from the GQCP ones
-    auto test_libint_atoms = GQCP::LibintInterfacer::get().interface(GQCP_atoms);
+    auto test_libint_atoms = GQCP::LibintInterfacer::get().interface(GQCP_nuclei);
 
 
     /**
@@ -97,7 +97,7 @@ BOOST_AUTO_TEST_CASE ( atoms_to_libint ) {
 BOOST_AUTO_TEST_CASE ( Shell_to_libint ) {
 
     // Create a GQCP::Shell
-    GQCP::Atom h (1,  0.0, 0.0, 0.0);
+    GQCP::Nucleus h (1,  0.0, 0.0, 0.0);
     GQCP::Shell shell (0, h, {3.42525091, 0.62391373, 0.16885540}, {0.15432897, 0.53532814, 0.44463454}, false);  // a Cartesian s-type shell on the H-atom
 
     // Create the reference libint2::Shell (indirectly, because we want to refrain from renorm() being called
@@ -124,8 +124,8 @@ BOOST_AUTO_TEST_CASE ( ShellSet_to_BasisSet ) {
 
 
     // Make a test ShellSet
-    GQCP::Shell s (0, GQCP::Atom(), {1.0, 2.0}, {0.5, -0.5}, true);
-    GQCP::Shell d (2, GQCP::Atom(), {4.0, 8.0}, {1.5, -1.5}, false);
+    GQCP::Shell s (0, GQCP::Nucleus(), {1.0, 2.0}, {0.5, -0.5}, true);
+    GQCP::Shell d (2, GQCP::Nucleus(), {4.0, 8.0}, {1.5, -1.5}, false);
     GQCP::ShellSet shellset {s, d};
 
 
@@ -174,14 +174,14 @@ BOOST_AUTO_TEST_CASE ( libint_Shell_to_Shell ) {
 
 
     // Create the reference GQCP Shells
-    GQCP::Shell ref_s_shell (0, GQCP::Atom(), {1.0, 2.0}, {0.5, -0.5}, true);
-    GQCP::Shell ref_d_shell (2, GQCP::Atom(), {4.0, 8.0}, {1.5, -1.5}, false);
+    GQCP::Shell ref_s_shell (0, GQCP::Nucleus(), {1.0, 2.0}, {0.5, -0.5}, true);
+    GQCP::Shell ref_d_shell (2, GQCP::Nucleus(), {4.0, 8.0}, {1.5, -1.5}, false);
 
 
     // Test the libint2::Shell to GQCP::Shell interfacing
     bool undo_renorm = false;
-    auto s_shell = GQCP::LibintInterfacer::get().interface(libint_s_shell, {GQCP::Atom()}, undo_renorm)[0];
-    auto d_shell = GQCP::LibintInterfacer::get().interface(libint_d_shell, {GQCP::Atom()}, undo_renorm)[0];
+    auto s_shell = GQCP::LibintInterfacer::get().interface(libint_s_shell, {GQCP::Nucleus()}, undo_renorm)[0];
+    auto d_shell = GQCP::LibintInterfacer::get().interface(libint_d_shell, {GQCP::Nucleus()}, undo_renorm)[0];
 
     BOOST_CHECK(ref_s_shell == s_shell);
     BOOST_CHECK(ref_d_shell == d_shell);
@@ -190,14 +190,14 @@ BOOST_AUTO_TEST_CASE ( libint_Shell_to_Shell ) {
 
 BOOST_AUTO_TEST_CASE ( BasisSet_to_ShellSet ) {
 
-    // Note that this function also tests std::vector<Shell> LibintInterfacer::interface(const libint2::Shell& libint_shell, const std::vector<Atom>& atoms) const;
+    // Note that this function also tests std::vector<Shell> LibintInterfacer::interface(const libint2::Shell& libint_shell, const std::vector<Nucleus>& nuclei) const;
 
     
     // Create a reference STO-3G shell set on (a weird geometry of) H2O
-    GQCP::Atom h1 (1,  0.0, 0.0, 0.0);
-    GQCP::Atom o  (8,  0.0, 0.0, 1.0);
-    GQCP::Atom h2 (1,  0.0, 0.0, 2.0);
-    std::vector<GQCP::Atom> atoms {h1, o, h2};
+    GQCP::Nucleus h1 (1,  0.0, 0.0, 0.0);
+    GQCP::Nucleus o  (8,  0.0, 0.0, 1.0);
+    GQCP::Nucleus h2 (1,  0.0, 0.0, 2.0);
+    std::vector<GQCP::Nucleus> nuclei {h1, o, h2};
     bool pure = false;  // STO-3G represents Cartesian shells
 
     GQCP::ShellSet ref_shellset {
@@ -212,9 +212,9 @@ BOOST_AUTO_TEST_CASE ( BasisSet_to_ShellSet ) {
 
 
     // Construct the corresponding libint2::BasisSet
-    auto libint_atoms = GQCP::LibintInterfacer::get().interface(atoms);
+    auto libint_atoms = GQCP::LibintInterfacer::get().interface(nuclei);
     libint2::BasisSet libint_basisset ("STO-3G", libint_atoms);
-    auto shellset = GQCP::LibintInterfacer::get().interface(libint_basisset, atoms);
+    auto shellset = GQCP::LibintInterfacer::get().interface(libint_basisset, nuclei);
 
     BOOST_CHECK(ref_shellset == shellset);
 }

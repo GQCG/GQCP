@@ -19,7 +19,7 @@
 #define CartesianExponents_hpp
 
 
-#include "CartesianDirection.hpp"
+#include "Mathematical/CartesianDirection.hpp"
 
 #include <array>
 #include <vector>

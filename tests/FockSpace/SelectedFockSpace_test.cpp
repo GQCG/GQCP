@@ -130,13 +130,13 @@ BOOST_AUTO_TEST_CASE ( Selected_Evaluation_H2O ) {
     double reference_fci_energy = -75.0129803939602;
 
     // Create the molecular Hamiltonian parameters in an AO basis
-    auto h2o = GQCP::Molecule::Readxyz("data/h2o_Psi4_GAMESS.xyz");
+    auto h2o = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
     auto mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2o, "STO-3G");
     auto K = mol_ham_par.get_K();
 
     mol_ham_par.LowdinOrthonormalize();
 
-    GQCP::ProductFockSpace fock_space (K, h2o.get_N()/2, h2o.get_N()/2);  // dim = 441
+    GQCP::ProductFockSpace fock_space (K, h2o.numberOfElectrons()/2, h2o.numberOfElectrons()/2);  // dim = 441
     GQCP::SelectedFockSpace selected_fock_space (fock_space);
 
     GQCP::SquareMatrix<double> hamiltonian = selected_fock_space.evaluateOperatorDense(mol_ham_par, true);

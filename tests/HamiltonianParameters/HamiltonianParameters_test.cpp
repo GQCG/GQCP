@@ -91,7 +91,7 @@ GQCP::TwoElectronOperator<double> calculateToyTwoElectronIntegrals() {
 BOOST_AUTO_TEST_CASE ( HamiltonianParameters_constructor ) {
 
     // Create an AOBasis
-    auto water = GQCP::Molecule::Readxyz("data/h2o.xyz");
+    auto water = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
     auto ao_basis_ptr = std::make_shared<GQCP::AOBasis>(water, "STO-3G");
 
 
@@ -214,7 +214,7 @@ BOOST_AUTO_TEST_CASE ( constructor_C ) {
 BOOST_AUTO_TEST_CASE ( constructMolecularHamiltonianParameters ) {
 
     // Set up a basis
-    auto h2 = GQCP::Molecule::Readxyz("data/h2_szabo.xyz");
+    auto h2 = GQCP::Molecule::ReadXYZ("data/h2_szabo.xyz");
     auto ao_basis = std::make_shared<GQCP::AOBasis>(h2, "STO-3G");
 
 
@@ -412,7 +412,7 @@ BOOST_AUTO_TEST_CASE ( areOrbitalsOrthonormal ) {
 
 
     // The orbitals in an AO basis are not orthonormal
-    auto h2o = GQCP::Molecule::Readxyz("data/h2o.xyz");
+    auto h2o = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
     auto ao_ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2o, "STO-3G");
     BOOST_CHECK(!ao_ham_par.areOrbitalsOrthonormal());
 

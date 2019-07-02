@@ -20,7 +20,7 @@
 
 
 #include "Basis/AOBasis.hpp"
-#include "Molecule.hpp"
+#include "Molecule/Molecule.hpp"
 #include "Operator/OneElectronOperator.hpp"
 #include "Operator/TwoElectronOperator.hpp"
 
@@ -56,6 +56,7 @@ private:
 
 public:
     // PUBLIC METHODS - SINGLETON
+
     /**
      *  @return the static singleton instance
      */
@@ -69,19 +70,20 @@ public:
 
 
     // PUBLIC METHODS - INTERFACING (GQCP TO LIBINT)
-    /**
-     *  @param atom         the GQCP-atom that should be interfaced
-     *
-     *  @return a libint2::Atom, interfaced from the given GQCP::Atom
-     */
-    libint2::Atom interface(const Atom& atom) const;
 
     /**
-     *  @param atoms        the GQCP-atoms that should be interfaced
+     *  @param nucleus          the GQCP-nucleus that should be interfaced into a libint2::Atom
      *
-     *  @return libint2-atoms, interfaced from the given atoms
+     *  @return a libint2::Atom, interfaced from the given GQCP::Nucleus
      */
-    std::vector<libint2::Atom> interface(const std::vector<Atom>& atoms) const;
+    libint2::Atom interface(const Nucleus& nucleus) const;
+
+    /**
+     *  @param nuclei           the GQCP-nuclei that should be interfaced
+     *
+     *  @return libint2::Atoms, interfaced from the given GQCP nuclei
+     */
+    std::vector<libint2::Atom> interface(const std::vector<Nucleus>& nuclei) const;
 
     /**
      *  @param shell        the GQCP shell that should be interfaced
@@ -103,22 +105,22 @@ public:
      *  Interface a libint2::Shell to the corresponding list of GQCP::Shells. Note that there is no one-to-one libint -> GQCP conversion, since GQCP does not support representing 'linked' sp-'shells'
      *
      *  @param libint_shell     the libint2 Shell that should be interfaced
-     *  @param atoms            the atoms that can serve as centers of the Shells
+     *  @param nuclei           the nuclei that can serve as centers of the Shells
      *  @param undo_renorm      if the libint2::Shell should be un-renorm()alized
      *
      *  @return a vector of GQCP::Shells corresponding to the given libint2::Shells
      */
-    std::vector<Shell> interface(const libint2::Shell& libint_shell, const std::vector<Atom>& atoms, bool undo_renorm=true) const;
+    std::vector<Shell> interface(const libint2::Shell& libint_shell, const std::vector<Nucleus>& nuclei, bool undo_renorm=true) const;
 
     /**
      *  Interface a libint2::BasisSet to the corresponding GQCP::ShellSet
      *
      *  @param libint_basisset      the libint2 Shell that should be interfaced
-     *  @param atoms                the atoms that can serve as centers of the Shells
+     *  @param nuclei               the nuclei that can serve as centers of the Shells
      *
      *  @return a GQCP::ShellSet corresponding to the libint2::BasisSet
      */
-    ShellSet interface(const libint2::BasisSet& libint_basisset, const std::vector<Atom>& atoms) const;
+    ShellSet interface(const libint2::BasisSet& libint_basisset, const std::vector<Nucleus>& nuclei) const;
 
 
     // PUBLIC METHODS - OTHER LIBINT2-RELATED FUNCTIONS

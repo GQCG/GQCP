@@ -14,7 +14,7 @@ Follow along the following documented example that calculates the FCI energy:
 
 
 // Create the molecular Hamiltonian parameters in an AO basis
-auto h2o = GQCP::Molecule::Readxyz("data/h2o.xyz");
+auto h2o = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
 auto mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2o, "STO-3G");
 
 
@@ -30,8 +30,8 @@ mol_ham_par.transform(rhf.get_C());
 
 // Set up the FCI Fock space
 auto K = mol_ham_par.get_K();  // number of spatial orbitials
-auto N_alpha = h2o.get_N()/2;
-auto N_beta = h2o.get_N()/2;
+auto N_alpha = h2o.numberOfElectrons()/2;
+auto N_beta = h2o.numberOfElectrons()/2;
 GQCP::ProductFockSpace fock_space (K, N_alpha, N_beta);
 
 

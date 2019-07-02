@@ -63,10 +63,10 @@ BaseAP1roGSolver::BaseAP1roGSolver(size_t N_P, const HamiltonianParameters<doubl
  *  @param maximum_number_of_iterations         the maximum number of Newton steps that may be used to achieve convergence of the PSEs
  */
 BaseAP1roGSolver::BaseAP1roGSolver(const Molecule& molecule, const HamiltonianParameters<double>& ham_par, const AP1roGGeminalCoefficients& G, const double convergence_threshold, const size_t maximum_number_of_iterations) :
-    BaseAP1roGSolver(molecule.get_N()/2, ham_par, G, convergence_threshold, maximum_number_of_iterations)
+    BaseAP1roGSolver(molecule.numberOfElectrons()/2, ham_par, G, convergence_threshold, maximum_number_of_iterations)
 {
     // Check if we have an even number of electrons
-    if ((molecule.get_N() % 2) != 0) {
+    if ((molecule.numberOfElectrons() % 2) != 0) {
         throw std::invalid_argument("BaseAP1roGSolver::BaseAP1roGSolver(Molecule, HamiltonianParameters<double>, AP1roGGeminalCoefficients): The given number of electrons is odd.");
     }
 }
@@ -81,7 +81,7 @@ BaseAP1roGSolver::BaseAP1roGSolver(const Molecule& molecule, const HamiltonianPa
  *  The initial guess for the geminal coefficients is zero
  */
 BaseAP1roGSolver::BaseAP1roGSolver(const Molecule& molecule, const HamiltonianParameters<double>& ham_par, const double convergence_threshold, const size_t maximum_number_of_iterations) :
-    BaseAP1roGSolver(molecule, ham_par, AP1roGGeminalCoefficients(molecule.get_N()/2, ham_par.get_K()), convergence_threshold, maximum_number_of_iterations)
+    BaseAP1roGSolver(molecule, ham_par, AP1roGGeminalCoefficients(molecule.numberOfElectrons()/2, ham_par.get_K()), convergence_threshold, maximum_number_of_iterations)
 {}
 
 

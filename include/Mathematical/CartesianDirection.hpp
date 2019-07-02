@@ -15,8 +15,8 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef CartesianDirection_h
-#define CartesianDirection_h
+#ifndef GQCP_CARTESIANDIRECTION_HPP
+#define GQCP_CARTESIANDIRECTION_HPP
 
 
 namespace GQCP {
@@ -36,4 +36,4 @@ enum class CartesianDirection {
 
 
 
-#endif  /* CartesianDirection_h */
+#endif  // GQCP_CARTESIANDIRECTION_HPP
