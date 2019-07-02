@@ -32,10 +32,13 @@ namespace GQCP {
  *  OPERATORS 
  */
 
+<<<<<<< HEAD
 /**
  *  These classes represent first-quantized operators. Their integrals, if applicable, can be calculated by combining them with an AO basis
  */
 
+=======
+>>>>>>> 144748636a8e35c96527a7dd3f16dc0a003c7073
 
 /**
  *  A class that represents the overlap operator
@@ -46,15 +49,24 @@ class OverlapOperator {};
 /**
  *  A class that represents the kinetic energy operator for the electrons
  */
+<<<<<<< HEAD
 class KineticOperator {};
+=======
+class KineticEnergyOperator {};
+>>>>>>> 144748636a8e35c96527a7dd3f16dc0a003c7073
 
 
 /**
  *  A class that represents the nuclear attraction energy operator for the electrons
  */
+<<<<<<< HEAD
 class NuclearAttractionOperator : public BaseNuclearOperator {
 public:
     // CONSTRUCTORS
+=======
+class NuclearAttractionEnergyOperator : public BaseNuclearOperator {
+public:
+>>>>>>> 144748636a8e35c96527a7dd3f16dc0a003c7073
     using BaseNuclearOperator::BaseNuclearOperator;  // inherit base constructors
 };
 
@@ -62,7 +74,11 @@ public:
 /**
  *  A class that represents the Coulomb interaction energy operator between the electrons
  */
+<<<<<<< HEAD
 class CoulombRepulsionOperator {};
+=======
+class CoulombInteractionEnergyOperator {};
+>>>>>>> 144748636a8e35c96527a7dd3f16dc0a003c7073
 
 
 /**
@@ -70,12 +86,16 @@ class CoulombRepulsionOperator {};
  */
 class ElectronicDipoleOperator: public BaseMultipoleOperator {
 public:
+<<<<<<< HEAD
     // CONSTRUCTORS
+=======
+>>>>>>> 144748636a8e35c96527a7dd3f16dc0a003c7073
     using BaseMultipoleOperator::BaseMultipoleOperator;  // inherit base constructors
 };
 
 
 /**
+<<<<<<< HEAD
  *  A class that represents the nuclear repulsion operator
  */
 class NuclearRepulsionOperator: public BaseNuclearOperator {
@@ -94,6 +114,8 @@ public:
 
 
 /**
+=======
+>>>>>>> 144748636a8e35c96527a7dd3f16dc0a003c7073
  *  A class that represents the nuclear dipole operator
  */
 class NuclearDipoleOperator: public BaseNuclearOperator, public BaseMultipoleOperator {
@@ -105,6 +127,7 @@ public:
      *  @param o                the origin of the multipole
      */
     NuclearDipoleOperator(const std::vector<Atom>& atoms, const Vector<double, 3>& o = Vector<double, 3>::Zero(3));
+<<<<<<< HEAD
 
 
     // PUBLIC METHODS
@@ -113,6 +136,8 @@ public:
      *  @return the value of this nuclear dipole operator
      */
     Vector<double, 3> value() const;
+=======
+>>>>>>> 144748636a8e35c96527a7dd3f16dc0a003c7073
 };
 
 
@@ -135,13 +160,20 @@ public:
     static OverlapOperator Overlap();
 
     /**
+<<<<<<< HEAD
      *  @return a KineticOperator
      */
     static KineticOperator Kinetic();
+=======
+     *  @return a KineticEnergyOperator
+     */
+    static KineticEnergyOperator Kinetic();
+>>>>>>> 144748636a8e35c96527a7dd3f16dc0a003c7073
 
     /**
      *  @param mol              the molecule that contains the nuclear framework
      * 
+<<<<<<< HEAD
      *  @return a NuclearAttractionOperator
      */
     static NuclearAttractionOperator NuclearAttraction(const Molecule& mol);
@@ -164,6 +196,23 @@ public:
      *  @return a NuclearRepulsionOperator
      */
     static NuclearRepulsionOperator NuclearRepulsion(const Molecule& mol);
+=======
+     *  @return a NuclearAttractionEnergyOperator
+     */
+    static NuclearAttractionEnergyOperator NuclearAttraction(const Molecule& mol);
+
+    /**
+     *  @return a CoulombInteractionEnergyOperator
+     */
+    static CoulombInteractionEnergyOperator Coulomb();
+
+    /**
+     *  @param origin               the origin of the dipole operator
+     * 
+     *  @return an ElectronicDipoleOperator
+     */
+    static ElectronicDipoleOperator ElectronicDipole(const Vector<double, 3>& o = Vector<double, 3>::Zero(3));
+>>>>>>> 144748636a8e35c96527a7dd3f16dc0a003c7073
 
     /**
      *  @param mol                  the molecule that contains the nuclear framework
