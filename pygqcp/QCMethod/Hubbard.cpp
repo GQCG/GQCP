@@ -30,7 +30,8 @@ namespace pygqcp {
 
 void bindQCMethodHubbard(py::module& module) {
     py::class_<GQCP::QCMethod::Hubbard>(module, "Hubbard")
-            .def(py::init<const std::string, const size_t, const size_t, const size_t, const size_t>())
+            .def(py::init<const std::string, const size_t, const size_t, const size_t>())
+            .def("solve", &GQCP::QCMethod::Hubbard::solve)
             .def("get_energies", &GQCP::QCMethod::Hubbard::energies)
             .def("get_one_rdms", &GQCP::QCMethod::Hubbard::oneRDMs);
 }

@@ -31,6 +31,7 @@ namespace pygqcp {
 void bindQCMethodFCI(py::module& module) {
     py::class_<GQCP::QCMethod::FCI>(module, "FCI")
             .def(py::init<const std::string, const std::string, const size_t, const size_t>())
+            .def("solve", &GQCP::QCMethod::FCI::solve)
             .def("get_energy", &GQCP::QCMethod::FCI::energy);
 }
 
