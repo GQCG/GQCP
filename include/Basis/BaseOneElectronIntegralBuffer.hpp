@@ -38,7 +38,7 @@ namespace GQCP {
 template <typename _Scalar, size_t _N>
 class BaseOneElectronIntegralBuffer {
 public:
-    constexpr static auto Scalar = _Scalar;
+    using Scalar = _Scalar;
     constexpr static auto N = _N;
 
 
@@ -110,7 +110,6 @@ public:
 
 
 }  // namespace GQCP
-
 
 
 #endif  // GQCP_BASEONEELECTRONINTEGRALBUFFER_HPP
