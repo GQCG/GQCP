@@ -21,9 +21,9 @@
 #include "Basis/AOBasis.hpp"
 #include "Basis/CartesianExponents.hpp"
 #include "Basis/CartesianGTO.hpp"
+#include "Basis/GTOShell.hpp"
 #include "Basis/LibcintInterfacer.hpp"
 #include "Basis/LibintInterfacer.hpp"
-#include "Basis/Shell.hpp"
 #include "Basis/ShellSet.hpp"
 
 #include "CISolver/CISolver.hpp"

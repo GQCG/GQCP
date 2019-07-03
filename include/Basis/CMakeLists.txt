@@ -4,10 +4,10 @@ target_sources(gqcp
             BaseOneElectronIntegralBuffer.hpp
             CartesianExponents.hpp
             CartesianGTO.hpp
+            GTOShell.hpp
             LibcintInterfacer.hpp
             Libint2OneElectronIntegralEngine.hpp
             LibintInterfacer.hpp
             OneElectronIntegralEngine.hpp
-            Shell.hpp
             ShellSet.hpp
         )

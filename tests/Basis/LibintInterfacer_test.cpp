@@ -96,18 +96,18 @@ BOOST_AUTO_TEST_CASE ( nuclei_to_libint ) {
 
 BOOST_AUTO_TEST_CASE ( Shell_to_libint ) {
 
-    // Create a GQCP::Shell
+    // Create a GQCP::GTOShell
     GQCP::Nucleus h (1,  0.0, 0.0, 0.0);
-    GQCP::Shell shell (0, h, {3.42525091, 0.62391373, 0.16885540}, {0.15432897, 0.53532814, 0.44463454}, false);  // a Cartesian s-type shell on the H-atom
+    GQCP::GTOShell shell (0, h, {3.42525091, 0.62391373, 0.16885540}, {0.15432897, 0.53532814, 0.44463454}, false);  // a Cartesian s-type shell on the H-atom
 
-    // Create the reference libint2::Shell (indirectly, because we want to refrain from renorm() being called
+    // Create the reference libint2::GTOShell (indirectly, because we want to refrain from renorm() being called
     libint2::Shell ref_libint_shell {};
     ref_libint_shell.alpha = {3.42525091, 0.62391373, 0.16885540};
     ref_libint_shell.contr = {{0, false, {0.15432897, 0.53532814, 0.44463454}}};
     ref_libint_shell.O = {0.0, 0.0, 0.0};
 
 
-    // Check if the interfacing from a GQCP::Shell to a libint2::Shell works
+    // Check if the interfacing from a GQCP::GTOShell to a libint2::GTOShell works
     // Note that this function also tests LibintInterfacer::undo_renorm()
     auto libint_shell = GQCP::LibintInterfacer::get().interface(shell);
 
@@ -124,8 +124,8 @@ BOOST_AUTO_TEST_CASE ( ShellSet_to_BasisSet ) {
 
 
     // Make a test ShellSet
-    GQCP::Shell s (0, GQCP::Nucleus(), {1.0, 2.0}, {0.5, -0.5}, true);
-    GQCP::Shell d (2, GQCP::Nucleus(), {4.0, 8.0}, {1.5, -1.5}, false);
+    GQCP::GTOShell s (0, GQCP::Nucleus(), {1.0, 2.0}, {0.5, -0.5}, true);
+    GQCP::GTOShell d (2, GQCP::Nucleus(), {4.0, 8.0}, {1.5, -1.5}, false);
     GQCP::ShellSet shellset {s, d};
 
 
@@ -174,11 +174,11 @@ BOOST_AUTO_TEST_CASE ( libint_Shell_to_Shell ) {
 
 
     // Create the reference GQCP Shells
-    GQCP::Shell ref_s_shell (0, GQCP::Nucleus(), {1.0, 2.0}, {0.5, -0.5}, true);
-    GQCP::Shell ref_d_shell (2, GQCP::Nucleus(), {4.0, 8.0}, {1.5, -1.5}, false);
+    GQCP::GTOShell ref_s_shell (0, GQCP::Nucleus(), {1.0, 2.0}, {0.5, -0.5}, true);
+    GQCP::GTOShell ref_d_shell (2, GQCP::Nucleus(), {4.0, 8.0}, {1.5, -1.5}, false);
 
 
-    // Test the libint2::Shell to GQCP::Shell interfacing
+    // Test the libint2::GTOShell to GQCP::GTOShell interfacing
     bool undo_renorm = false;
     auto s_shell = GQCP::LibintInterfacer::get().interface(libint_s_shell, {GQCP::Nucleus()}, undo_renorm)[0];
     auto d_shell = GQCP::LibintInterfacer::get().interface(libint_d_shell, {GQCP::Nucleus()}, undo_renorm)[0];
@@ -190,7 +190,7 @@ BOOST_AUTO_TEST_CASE ( libint_Shell_to_Shell ) {
 
 BOOST_AUTO_TEST_CASE ( BasisSet_to_ShellSet ) {
 
-    // Note that this function also tests std::vector<Shell> LibintInterfacer::interface(const libint2::Shell& libint_shell, const std::vector<Nucleus>& nuclei) const;
+    // Note that this function also tests std::vector<GTOShell> LibintInterfacer::interface(const libint2::GTOShell& libint_shell, const std::vector<Nucleus>& nuclei) const;
 
     
     // Create a reference STO-3G shell set on (a weird geometry of) H2O
@@ -201,11 +201,11 @@ BOOST_AUTO_TEST_CASE ( BasisSet_to_ShellSet ) {
     bool pure = false;  // STO-3G represents Cartesian shells
 
     GQCP::ShellSet ref_shellset {
-        GQCP::Shell(0, h1, {  3.42525091,  0.62391373, 0.16885540}, { 0.15432897, 0.53532814, 0.44463454}, pure),
-        GQCP::Shell(0, o,  {130.7093200,  23.8088610,  6.4436083},  { 0.15432897, 0.53532814, 0.44463454}, pure),
-        GQCP::Shell(0, o,  {  5.0331513,   1.1695961,  0.3803890},  {-0.09996723, 0.39951283, 0.70011547}, pure),
-        GQCP::Shell(1, o,  {  5.0331513,   1.1695961,  0.3803890},  { 0.15591627, 0.60768372, 0.39195739}, pure),
-        GQCP::Shell(0, h2, {  3.42525091,  0.62391373, 0.16885540}, { 0.15432897, 0.53532814, 0.44463454}, pure)
+        GQCP::GTOShell(0, h1, {  3.42525091,  0.62391373, 0.16885540}, { 0.15432897, 0.53532814, 0.44463454}, pure),
+        GQCP::GTOShell(0, o,  {130.7093200,  23.8088610,  6.4436083},  { 0.15432897, 0.53532814, 0.44463454}, pure),
+        GQCP::GTOShell(0, o,  {  5.0331513,   1.1695961,  0.3803890},  {-0.09996723, 0.39951283, 0.70011547}, pure),
+        GQCP::GTOShell(1, o,  {  5.0331513,   1.1695961,  0.3803890},  { 0.15591627, 0.60768372, 0.39195739}, pure),
+        GQCP::GTOShell(0, h2, {  3.42525091,  0.62391373, 0.16885540}, { 0.15432897, 0.53532814, 0.44463454}, pure)
     };
 
     GQCP::Molecule h2o ({h1, o, h2});

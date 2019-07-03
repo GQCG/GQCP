@@ -88,9 +88,9 @@ public:
     /**
      *  @param shell        the GQCP shell that should be interfaced
      *
-     *  @return a libint2::Shell whose renorm()alization has been undone, interfaced from the GQCP Shell
+     *  @return a libint2::Shell whose renorm()alization has been undone, interfaced from the GQCP GTOShell
      */
-    libint2::Shell interface(const Shell& shell) const;
+    libint2::Shell interface(const GTOShell& shell) const;
 
     /**
      *  @param shellset     the GQCP ShellSet that should be interfaced
@@ -110,7 +110,7 @@ public:
      *
      *  @return a vector of GQCP::Shells corresponding to the given libint2::Shells
      */
-    std::vector<Shell> interface(const libint2::Shell& libint_shell, const std::vector<Nucleus>& nuclei, bool undo_renorm=true) const;
+    std::vector<GTOShell> interface(const libint2::Shell& libint_shell, const std::vector<Nucleus>& nuclei, bool undo_renorm=true) const;
 
     /**
      *  Interface a libint2::BasisSet to the corresponding GQCP::ShellSet

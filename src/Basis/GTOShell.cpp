@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "Basis/Shell.hpp"
+#include "Basis/GTOShell.hpp"
 
 #include "Basis/CartesianGTO.hpp"
 #include "Utilities/miscellaneous.hpp"
@@ -39,7 +39,7 @@ namespace GQCP {
  *  @param are_embedded_normalization_factors_of_primitives     if the normalization factors of the primitives are embedded in the contraction coefficients
  *  @param is_normalized                                        if the total normalization factor is already embedded in the contraction coefficients
  */
-Shell::Shell(size_t l, const Nucleus& nucleus, const std::vector<double>& gaussian_exponents, const std::vector<double>& contraction_coefficients, bool pure, bool are_embedded_normalization_factors_of_primitives, bool is_normalized) :
+GTOShell::GTOShell(size_t l, const Nucleus& nucleus, const std::vector<double>& gaussian_exponents, const std::vector<double>& contraction_coefficients, bool pure, bool are_embedded_normalization_factors_of_primitives, bool is_normalized) :
     pure (pure),
     embedded_normalization_factors_of_primitives (are_embedded_normalization_factors_of_primitives),
     normalized (is_normalized),
@@ -49,7 +49,7 @@ Shell::Shell(size_t l, const Nucleus& nucleus, const std::vector<double>& gaussi
     contraction_coefficients (contraction_coefficients)
 {
     if (gaussian_exponents.size() != contraction_coefficients.size()) {
-        throw std::invalid_argument("Shell(size_t, Nucleus, std::vector<double>, std::vector<double>): the exponents and contraction coefficients must match in size.");
+        throw std::invalid_argument("GTOShell(size_t, Nucleus, std::vector<double>, std::vector<double>): the exponents and contraction coefficients must match in size.");
     }
 }
 
@@ -64,7 +64,7 @@ Shell::Shell(size_t l, const Nucleus& nucleus, const std::vector<double>& gaussi
  *
  *  @return if this shell is considered equal to the other
  */
-bool Shell::operator==(const Shell& rhs) const {
+bool GTOShell::operator==(const GTOShell& rhs) const {
 
     /**
      *  A functor to compare two doubles with respect to a tolerance
@@ -100,7 +100,7 @@ bool Shell::operator==(const Shell& rhs) const {
 /**
  *  @return the number of basis functions that are in this shell
  */
-size_t Shell::numberOfBasisFunctions() const {
+size_t GTOShell::numberOfBasisFunctions() const {
 
     if (pure) {  // spherical
         return 2 * this->l + 1;
@@ -113,7 +113,7 @@ size_t Shell::numberOfBasisFunctions() const {
 /**
  *  @return the size of the contraction in the shell, i.e. the number of primitives contracted in this shell
  */
-size_t Shell::contractionSize() const {
+size_t GTOShell::contractionSize() const {
     return this->contraction_coefficients.size();
 }
 
@@ -122,7 +122,7 @@ size_t Shell::contractionSize() const {
  *
  *  Note that the normalization factor that is embedded corresponds to the spherical (or axis-aligned Cartesian) GTO
  */
-void Shell::embedNormalizationFactorsOfPrimitives() {
+void GTOShell::embedNormalizationFactorsOfPrimitives() {
 
     if (!this->embedded_normalization_factors_of_primitives) {
         for (size_t i = 0; i < this->contractionSize(); i++) {
@@ -139,7 +139,7 @@ void Shell::embedNormalizationFactorsOfPrimitives() {
  *
  *  Note that the normalization factor that is embedded corresponds to the spherical (or axis-aligned Cartesian) GTO
  */
-void Shell::unEmbedNormalizationFactorsOfPrimitives() {
+void GTOShell::unEmbedNormalizationFactorsOfPrimitives() {
 
     if (this->embedded_normalization_factors_of_primitives) {
         for (size_t i = 0; i < this->contractionSize(); i++) {
@@ -154,7 +154,7 @@ void Shell::unEmbedNormalizationFactorsOfPrimitives() {
 /**
  *  Embed the total normalization factor of the corresponding linear combination of spherical (or axis-aligned Cartesian) GTOs into the contraction coefficients
  */
-void Shell::embedNormalizationFactor() {
+void GTOShell::embedNormalizationFactor() {
 
     if (!this->normalized) {
 
