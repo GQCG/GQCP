@@ -17,6 +17,9 @@
 //
 #include "QCMethod/FCI.hpp"
 
+#include "Operator/FirstQuantized/Operator.hpp"
+
+
 namespace GQCP {
 namespace QCMethod {
 
@@ -69,7 +72,7 @@ void FCI::solve() {
 
     // Set the solution
     double fci_energy = fci_solver.get_eigenpair().get_eigenvalue();
-    double internuclear_repulsion_energy = molecule.calculateInternuclearRepulsionEnergy();
+    double internuclear_repulsion_energy = Operator::NuclearRepulsion(molecule).value();
 
     this->energy_solution = fci_energy + internuclear_repulsion_energy;
 }
