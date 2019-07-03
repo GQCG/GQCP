@@ -50,7 +50,7 @@ FCI::FCI(const std::string xyz_filename, const std::string basis_set, const size
 void FCI::solve() {
 
     // Construct the molecular Hamiltonian parameters
-    auto molecule = Molecule::Readxyz(this->xyz_filename);
+    auto molecule = Molecule::ReadXYZ(this->xyz_filename);
     auto mol_ham_par = HamiltonianParameters<double>::Molecular(molecule, this->basis_set);  // in the AO basis
     mol_ham_par.LowdinOrthonormalize();  // now in the Löwdin basis
 
