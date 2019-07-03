@@ -3,7 +3,6 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
 
-#include "Atom.hpp"
 #include "Drivers/HubbardDriver.hpp"
 #include "Drivers/FullConfigurationInteractionDriver.hpp"
 
