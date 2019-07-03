@@ -29,11 +29,11 @@ namespace gqcpy {
 
 
 void bindQCMethodHubbard(py::module& module) {
-    py::class_<GQCP::QCMethod::Hubbard>(module, "Hubbard")
-            .def(py::init<const std::string, const size_t, const size_t, const size_t>())
-            .def("solve", &GQCP::QCMethod::Hubbard::solve)
-            .def("get_energies", &GQCP::QCMethod::Hubbard::energies)
-            .def("get_one_rdms", &GQCP::QCMethod::Hubbard::oneRDMs);
+    py::class_<GQCP::QCMethod::Hubbard>(module, "Hubbard", "Construct and solve the Hubbard Hamiltonian for a given upper triangular part of the (weighted) connectivity matrix.")
+            .def(py::init<const std::string, const size_t, const size_t, const size_t>(), py::arg("upper triangular part as csv"), py::arg("num_states"), py::arg("num_alpha"), py::arg("num_beta"))
+            .def("solve", &GQCP::QCMethod::Hubbard::solve, "Solve the eigenvalue equations such that the energies and eigenvectors become available.")
+            .def("get_energies", &GQCP::QCMethod::Hubbard::energies, "Get the set of lowest energies.")
+            .def("get_one_rdms", &GQCP::QCMethod::Hubbard::oneRDMs, "Get the first order RDM corresponding to the lowest energies.");
 }
 
 
