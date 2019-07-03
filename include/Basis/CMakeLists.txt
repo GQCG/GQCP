@@ -1,6 +1,7 @@
 target_sources(gqcp
         PRIVATE
             AOBasis.hpp
+            BaseOneElectronIntegralBuffer.hpp
             CartesianExponents.hpp
             CartesianGTO.hpp
             LibcintInterfacer.hpp
