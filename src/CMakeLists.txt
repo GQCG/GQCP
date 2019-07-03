@@ -7,7 +7,6 @@ target_sources(gqcp
 
 add_subdirectory(Basis)
 add_subdirectory(CISolver)
-add_subdirectory(Drivers)
 add_subdirectory(FockSpace)
 add_subdirectory(Geminals)
 add_subdirectory(HamiltonianBuilder)
@@ -21,8 +20,3 @@ add_subdirectory(RDM)
 add_subdirectory(RHF)
 add_subdirectory(Utilities)
 add_subdirectory(WaveFunction)
-
-if(BUILD_PYTHON_BINDINGS)
-    add_subdirectory(Bindings)
-    set(python_bindings_sources ${python_bindings_sources} PARENT_SCOPE)
-endif()
