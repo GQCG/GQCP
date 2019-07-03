@@ -5,7 +5,9 @@ target_sources(gqcp
             CartesianExponents.hpp
             CartesianGTO.hpp
             LibcintInterfacer.hpp
+            Libint2OneElectronIntegralEngine.hpp
             LibintInterfacer.hpp
+            OneElectronIntegralEngine.hpp
             Shell.hpp
             ShellSet.hpp
         )
