@@ -1,5 +1,11 @@
 # gqcp 0.2.0
 [![Build Status](https://travis-ci.org/GQCG/gqcp.svg?branch=master)](https://travis-ci.org/GQCG/gqcp)
+[![HPC](https://img.shields.io/badge/UGentHPC-delcatty-green.svg)](https://www.ugent.be/hpc/en)
+[![HPC](https://img.shields.io/badge/UGentHPC-phanpy-green.svg)](https://www.ugent.be/hpc/en)
+[![HPC](https://img.shields.io/badge/UGentHPC-golett-green.svg)](https://www.ugent.be/hpc/en)
+[![HPC](https://img.shields.io/badge/UGentHPC-swalot-green.svg)](https://www.ugent.be/hpc/en)
+[![HPC](https://img.shields.io/badge/UGentHPC-skitty-red.svg)](https://www.ugent.be/hpc/en)
+[![HPC](https://img.shields.io/badge/UGentHPC-victini-red.svg)](https://www.ugent.be/hpc/en)
 
 The Ghent Quantum Chemistry Package is a C++ library for electronic structure calculations.
 
