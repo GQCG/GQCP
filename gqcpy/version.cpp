@@ -33,8 +33,7 @@ void bindVersion(py::module& module) {
         .def_property_readonly_static("minor", [] (py::object) { return GQCP::Version::minor; }, "The GQCP minor version")
         .def_property_readonly_static("patch", [] (py::object) { return GQCP::Version::patch; }, "The GQCP patch version")
         .def_property_readonly_static("full", [] (py::object) { return GQCP::Version::full; }, "The full GQCP version")
-        .def_property_readonly_static("git_sha1", [] (py::object) { return GQCP::Version::git_SHA1; }, "The current GQCP commit SHA1")
-        ;
+        .def_property_readonly_static("git_sha1", [] (py::object) { return GQCP::Version::git_SHA1; }, "The current GQCP commit SHA1");
 }
 
 
