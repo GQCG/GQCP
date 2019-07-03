@@ -16,7 +16,7 @@
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
 #include "WaveFunction/WaveFunction.hpp"
-
+#include "FockSpace/ProductFockSpace.hpp"
 
 namespace GQCP {
 
@@ -61,5 +61,175 @@ double WaveFunction::calculateShannonEntropy() const {
     return - 1 / std::log(2) * (coefficients_squared * log_coefficients_squared).sum();
 }
 
+
+/**
+ *  Transform the underlying ONV basis of the wave function (only for FCI [ProductFockSpace])
+ *
+ *  @param T    the transformation matrix between the old and the new orbital basis
+ */
+void WaveFunction::basisTransform(const SquareMatrix<double>& T) {
+
+    if (fock_space->get_type() != FockSpaceType::ProductFockSpace) {
+        throw std::invalid_argument("WaveFunction::basisTransform(SquareMatrix<double>): This is not an FCI wave function");
+    }
+
+    auto K = fock_space->get_K();
+
+    if (K != T.get_dim()) {
+        throw std::invalid_argument("WaveFunction::basisTransform(SquareMatrix<double>): number of orbitals does not match the dimension of the transformation matrix T");
+    }
+
+    Eigen::FullPivLU<Eigen::MatrixXd> LU_decomposer (T);
+
+    SquareMatrix<double> L = SquareMatrix<double>::Identity(K, K);
+    L.triangularView<Eigen::StrictlyLower>() = LU_decomposer.matrixLU();
+    SquareMatrix<double> U = SquareMatrix<double>(LU_decomposer.matrixLU().triangularView<Eigen::Upper>());
+
+    SquareMatrix<double> t = SquareMatrix<double>::Identity(K, K) - L + U.inverse();
+
+    const auto& product_fock_space = dynamic_cast<const ProductFockSpace&>(*fock_space);
+    const FockSpace& fock_space_alpha = product_fock_space.get_fock_space_alpha();
+    const FockSpace& fock_space_beta = product_fock_space.get_fock_space_beta();
+
+    auto dim_alpha = fock_space_alpha.get_dimension();
+    auto dim_beta = fock_space_beta.get_dimension();
+    auto N_alpha = fock_space_alpha.get_N();
+    auto N_beta = fock_space_beta.get_N();
+
+    VectorX<double> current_coefficients = this->coefficients;
+    VectorX<double> correction_coefficients = VectorX<double>::Zero(product_fock_space.get_dimension());
+
+
+    for (size_t m = 0; m < K; m++) {
+
+        ONV alpha = fock_space_alpha.makeONV(0);
+
+        for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {
+            if (alpha.isOccupied(m)) {
+                for (size_t e1 = 0; e1 < N_alpha; e1++) {  // e1 (electron 1) loops over the (number of) electrons
+                    size_t p = alpha.get_occupation_index(e1);  // retrieve the index of a given electron
+
+                    if (m == p) {
+                        for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {
+                            correction_coefficients(I_alpha * dim_beta + I_beta) +=
+                                    (t(m, m) - 1) * current_coefficients(I_alpha * dim_beta + I_beta);
+                        }
+
+                    }
+
+                    if (p < m) {
+
+                        size_t address = I_alpha - fock_space_alpha.get_vertex_weights(p, e1 + 1);
+                        size_t e2 = e1 + 1;
+                        size_t q = p + 1;
+                        int sign = 1;
+
+                        fock_space_alpha.shiftUntilNextUnoccupiedOrbital<1>(alpha, address, q, e2, sign);
+                        while (q != m) {
+                            q++;
+                            fock_space_alpha.shiftUntilNextUnoccupiedOrbital<1>(alpha, address, q, e2, sign);
+                        }
+
+                        for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {
+                            correction_coefficients(I_alpha * dim_beta + I_beta) +=
+                                    sign * t(p, q) * current_coefficients(address * dim_beta + I_beta);
+                        }
+                    }
+
+                    if (p > m) {
+
+                        size_t address = I_alpha - fock_space_alpha.get_vertex_weights(p, e1 + 1);
+                        size_t e2 = e1 - 1;
+                        size_t q = p - 1;
+
+                        int sign = 1;
+
+                        fock_space_alpha.shiftUntilPreviousUnoccupiedOrbital<1>(alpha, address, q, e2, sign);
+                        while (q != m) {
+                            q--;
+                            fock_space_alpha.shiftUntilPreviousUnoccupiedOrbital<1>(alpha, address, q, e2, sign);
+                        }
+
+                        for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {
+                            correction_coefficients(I_alpha * dim_beta + I_beta) +=
+                                    sign * t(p, q) * current_coefficients(address * dim_beta + I_beta);
+                        }
+                    }
+                }
+            }
+
+            if (I_alpha < dim_alpha - 1) {  // prevent the last permutation to occur
+                fock_space_alpha.setNextONV(alpha);
+            }
+        }
+
+
+        ONV beta = fock_space_beta.makeONV(0);
+
+        for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {
+            if (beta.isOccupied(m)) {
+                for (size_t e1 = 0; e1 < N_beta; e1++) {  // e1 (electron 1) loops over the (number of) electrons
+                    size_t p = beta.get_occupation_index(e1);  // retrieve the index of a given electron
+
+                    if (m == p) {
+                        for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {
+                            correction_coefficients(I_alpha * dim_beta + I_beta) +=
+                                    (t(m, m) - 1) * current_coefficients(I_alpha * dim_beta + I_beta);
+                        }
+
+                    }
+
+                    if (p < m) {
+
+                        size_t address = I_beta - fock_space_beta.get_vertex_weights(p, e1 + 1);
+                        size_t e2 = e1 + 1;
+                        size_t q = p + 1;
+                        int sign = 1;
+
+                        fock_space_beta.shiftUntilNextUnoccupiedOrbital<1>(beta, address, q, e2, sign);
+                        while (q != m) {
+                            q++;
+                            fock_space_beta.shiftUntilNextUnoccupiedOrbital<1>(beta, address, q, e2, sign);
+                        }
+
+                        for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {
+                            correction_coefficients(I_alpha * dim_beta + I_beta) +=
+                                    sign * t(p, q) * current_coefficients(address * dim_beta + I_beta);
+                        }
+                    }
+
+                    if (p > m) {
+
+                        size_t address = I_beta - fock_space_beta.get_vertex_weights(p, e1 + 1);
+                        size_t e2 = e1 - 1;
+                        size_t q = p - 1;
+
+                        int sign = 1;
+
+                        fock_space_beta.shiftUntilPreviousUnoccupiedOrbital<1>(beta, address, q, e2, sign);
+                        while (q != m) {
+                            q--;
+                            fock_space_beta.shiftUntilPreviousUnoccupiedOrbital<1>(beta, address, q, e2, sign);
+                        }
+
+                        for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {
+                            correction_coefficients(I_alpha * dim_beta + I_beta) +=
+                                    sign * t(p, q) * current_coefficients(address * dim_beta + I_beta);
+                        }
+                    }
+                }
+            }
+
+            if (I_beta < dim_beta - 1) {  // prevent the last permutation to occur
+                fock_space_beta.setNextONV(beta);
+            }
+        }
+
+        current_coefficients += correction_coefficients;
+        correction_coefficients.setZero();
+    }
+
+    this->coefficients = current_coefficients;
+}
 
 }  // namespace GQCP

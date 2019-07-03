@@ -221,7 +221,7 @@ public:
     static Self RandomUnitary(size_t M) {
 
         // Get a random unitary matrix by diagonalizing a random symmetric matrix
-        SquareMatrix<double> A_random = SquareMatrix<double>::Random(this->K, this->K);
+        SquareMatrix<double> A_random = SquareMatrix<double>::Random(M, M);
         SquareMatrix<double> A_symmetric = A_random + A_random.transpose();
         Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> unitary_solver (A_symmetric);
 

@@ -58,6 +58,13 @@ public:
      *  @return the Shannon entropy (or information content) of the wave function
      */
     double calculateShannonEntropy() const;
+
+    /**
+     *  Transform the underlying ONV basis of the wave function (only for FCI [ProductFockSpace])
+     *
+     *  @param T    the transformation matrix between the old and the new orbital basis
+     */
+     void basisTransform(const SquareMatrix<double>& T);
 };
 
 
