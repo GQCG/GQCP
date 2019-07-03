@@ -6,7 +6,7 @@ namespace GQCP {
                                                                            std::string basis_set, size_t num_alpha,
                                                                            size_t num_beta) {
 
-        molecule = std::make_shared<GQCP::Molecule>(GQCP::Molecule::Readxyz(xyz_filename));
+        molecule = std::make_shared<GQCP::Molecule>(GQCP::Molecule::ReadXYZ(xyz_filename));
         auto mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(*molecule, basis_set);  // in the AO basis
         mol_ham_par.LowdinOrthonormalize();  // now in the Löwdin basis
 
