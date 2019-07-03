@@ -17,8 +17,10 @@
 // 
 #include "HamiltonianParameters/AtomicDecompositionParameters.hpp"
 
-namespace GQCP {
+#include "Operator/FirstQuantized/Operator.hpp"
 
+
+namespace GQCP {
 
 
 /**
@@ -96,7 +98,7 @@ AtomicDecompositionParameters AtomicDecompositionParameters::Nuclear(const Molec
     const auto& T = ao_basis->calculateLibintKineticIntegrals();
     const auto& V = ao_basis->calculateLibintNuclearIntegrals();
     const auto& g = ao_basis->calculateLibintCoulombRepulsionIntegrals();
-    auto repulsion = molecule.calculateInternuclearRepulsionEnergy();
+    const auto repulsion = Operator::NuclearRepulsion(molecule).value();
 
     OneElectronOperator<double> H = T + V;
 

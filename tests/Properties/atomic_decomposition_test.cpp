@@ -38,7 +38,8 @@ BOOST_AUTO_TEST_CASE ( decomposition_BeH_cation_STO_3G_Nuclear ) {
     GQCP::AtomicDecompositionParameters adp = GQCP::AtomicDecompositionParameters::Nuclear(BeH, "STO-3G");
     auto mol_ham_par = adp.get_molecular_hamiltonian_parameters();
     auto K = mol_ham_par.get_K();
-    double repulsion = BeH.calculateInternuclearRepulsionEnergy();
+    double repulsion = GQCP::Operator::NuclearRepulsion(BeH).value();
+
     // Create a plain RHF SCF solver and solve the SCF equations
     GQCP::PlainRHFSCFSolver plain_scf_solver(mol_ham_par, BeH);
     plain_scf_solver.solve();

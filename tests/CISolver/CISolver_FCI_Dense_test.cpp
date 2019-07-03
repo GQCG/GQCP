@@ -92,7 +92,7 @@ BOOST_AUTO_TEST_CASE ( FCI_H2_Cristina_dense ) {
     auto fci_energy = ci_solver.get_eigenpair().get_eigenvalue();
 
     // Calculate the total FCI energy
-    double internuclear_repulsion_energy = h2.calculateInternuclearRepulsionEnergy();
+    double internuclear_repulsion_energy = GQCP::Operator::NuclearRepulsion(h2).value();
     double test_fci_energy = fci_energy + internuclear_repulsion_energy;
 
     BOOST_CHECK(std::abs(test_fci_energy - (reference_fci_energy)) < 1.0e-06);
@@ -131,7 +131,7 @@ BOOST_AUTO_TEST_CASE ( FCI_H2O_Psi4_GAMESS_dense ) {
     auto fci_energy = ci_solver.get_eigenpair().get_eigenvalue();
 
     // Calculate the total FCI energy
-    double internuclear_repulsion_energy = h2o.calculateInternuclearRepulsionEnergy();
+    double internuclear_repulsion_energy = GQCP::Operator::NuclearRepulsion(h2o).value();
     double test_fci_energy = fci_energy + internuclear_repulsion_energy;
 
     BOOST_CHECK(std::abs(test_fci_energy - (reference_fci_energy)) < 1.0e-06);

@@ -69,7 +69,7 @@ int main (int argc, char** argv) {
     ci_solver.solve(dense_solver_options);
 
     auto fci_energy = ci_solver.get_eigenpair().get_eigenvalue();
-    double internuclear_repulsion_energy = molecule.calculateInternuclearRepulsionEnergy();
+    double internuclear_repulsion_energy = GQCP::Operator::NuclearRepulsion(molecule).value();
 
 
     // Calculate the 1-RDM in the NO basis

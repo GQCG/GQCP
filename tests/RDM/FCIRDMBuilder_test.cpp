@@ -164,7 +164,7 @@ BOOST_AUTO_TEST_CASE ( H2O_energy_RDM_contraction_FCI ) {
     GQCP::TwoRDMs<double> two_rdms = fci_rdm.calculate2RDMs(coef);
     GQCP::OneRDMs<double> one_rdms = fci_rdm.calculate1RDMs(coef);
 
-    double energy_by_contraction = GQCP::calculateExpectationValue(ham_par, one_rdms.one_rdm, two_rdms.two_rdm) - h2o.calculateInternuclearRepulsionEnergy();  // subtract the internuclear repulsion energy because it is not included in the Hamiltonian matrix
+    double energy_by_contraction = GQCP::calculateExpectationValue(ham_par, one_rdms.one_rdm, two_rdms.two_rdm) - GQCP::Operator::NuclearRepulsion(h2o).value();  // subtract the internuclear repulsion energy because it is not included in the Hamiltonian matrix
 
     BOOST_CHECK(std::abs(energy_by_eigenvalue - energy_by_contraction) < 1.0e-12);
 }
@@ -199,7 +199,7 @@ BOOST_AUTO_TEST_CASE ( H2O_energy_RDM_contraction_FCI_wavefunction ) {
     GQCP::TwoRDMs<double> two_rdms = fci_rdm.calculate2RDMs();
     GQCP::OneRDMs<double> one_rdms = fci_rdm.calculate1RDMs();
 
-    double energy_by_contraction = GQCP::calculateExpectationValue(ham_par, one_rdms.one_rdm, two_rdms.two_rdm) - h2o.calculateInternuclearRepulsionEnergy();  // subtract the internuclear repulsion energy because it is not included in the Hamiltonian matrix
+    double energy_by_contraction = GQCP::calculateExpectationValue(ham_par, one_rdms.one_rdm, two_rdms.two_rdm) - GQCP::Operator::NuclearRepulsion(h2o).value();  // subtract the internuclear repulsion energy because it is not included in the Hamiltonian matrix
 
     BOOST_CHECK(std::abs(energy_by_eigenvalue - energy_by_contraction) < 1.0e-12);
 }

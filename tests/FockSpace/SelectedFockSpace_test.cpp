@@ -146,7 +146,8 @@ BOOST_AUTO_TEST_CASE ( Selected_Evaluation_H2O ) {
     // Retrieve lowest eigenvalue (fci solution)
     Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> self_adjoint_eigensolver (hamiltonian);
 
-    double test_energy = self_adjoint_eigensolver.eigenvalues()(0) +  h2o.calculateInternuclearRepulsionEnergy();
+    double internuclear_repulsion_energy = GQCP::Operator::NuclearRepulsion(h2o).value();
+    double test_energy = self_adjoint_eigensolver.eigenvalues()(0) + internuclear_repulsion_energy;
 
 
     BOOST_CHECK(std::abs(test_energy - reference_fci_energy) < 1e-6);

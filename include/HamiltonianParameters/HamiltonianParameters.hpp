@@ -19,10 +19,13 @@
 #define GQCP_HAMILTONIANPARAMETERS_HPP
 
 #include "HamiltonianParameters/BaseHamiltonianParameters.hpp"
+#include "Operator/BaseOperator.hpp"
+
 #include "HoppingMatrix.hpp"
 #include "Molecule/Molecule.hpp"
 #include "Operator/OneElectronOperator.hpp"
 #include "Operator/TwoElectronOperator.hpp"
+#include "Operator/FirstQuantized/Operator.hpp"
 #include "OrbitalOptimization/JacobiRotationParameters.hpp"
 #include "RDM/TwoRDM.hpp"
 #include "RDM/OneRDM.hpp"
@@ -41,7 +44,7 @@ namespace GQCP {
  *  @tparam Scalar      the scalar type
  */
 template<typename Scalar>
-class HamiltonianParameters : public BaseHamiltonianParameters, public Operator<HamiltonianParameters<Scalar>> {
+class HamiltonianParameters : public BaseHamiltonianParameters, public BaseOperator<HamiltonianParameters<Scalar>> {
 private:
     size_t K;  // the number of spatial orbitals
 
@@ -173,7 +176,8 @@ public:
 
         auto ao_basis = std::make_shared<AOBasis>(molecule, basisset);
 
-        return HamiltonianParameters::Molecular(ao_basis, molecule.calculateInternuclearRepulsionEnergy());
+        const double internuclear_repulsion_energy = Operator::NuclearRepulsion(molecule).value();
+        return HamiltonianParameters::Molecular(ao_basis, internuclear_repulsion_energy);
     }
 
 
@@ -420,7 +424,7 @@ public:
     }
 
 
-    using Operator<HamiltonianParameters<Scalar>>::rotate;  // bring over rotate() from the base class
+    using BaseOperator<HamiltonianParameters<Scalar>>::rotate;  // bring over rotate() from the base class
 
 
     /**

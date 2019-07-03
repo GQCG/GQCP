@@ -93,7 +93,8 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test ) {
         double mulliken_population = GQCP::calculateExpectationValue(mulliken_operator, one_rdm);
 
         // Retrieve the total energy by adding the lambda times the expectation value of the constraining operator
-        double total_energy = expectation_value + i * mulliken_population + CO.calculateInternuclearRepulsionEnergy();
+        const double internuclear_repulsion_energy = GQCP::Operator::NuclearRepulsion(CO).value();
+        double total_energy = expectation_value + i * mulliken_population + internuclear_repulsion_energy;
 
         // Mulliken charge on the carbon atom
         double C_charge = 6 - mulliken_population;
@@ -185,7 +186,7 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test_random_transformation) {
         double mulliken_population = GQCP::calculateExpectationValue(mulliken_operator, one_rdm);
 
         // Retrieve the total energy by adding the lambda times the expectation value of the constraining operator
-        double total_energy = expectation_value + i * mulliken_population + CO.calculateInternuclearRepulsionEnergy();
+        double total_energy = expectation_value + i * mulliken_population + GQCP::Operator::NuclearRepulsion(CO).value();
 
         // Mulliken charge on the carbon atom
         double C_charge = 6 - mulliken_population;
