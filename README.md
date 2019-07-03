@@ -80,7 +80,7 @@ For a default CMake build, the steps are the following:
 
 1. clone the master branch, which contains the latest release
 
-        https://github.com/GQCG/gqcp.git --branch master --single-branch
+        https://github.com/GQCG/gqcp.git --branch master --single-branch --recurse-submodules
         cd gqcp
 
 2. perform an out-of-source build:
