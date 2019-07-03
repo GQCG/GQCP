@@ -29,9 +29,7 @@ find_package(Spectra REQUIRED)
 find_package(Cint REQUIRED)
 
 if(EIGEN_USE_MKL)
-    #set(BLA_STATIC ON)
-    find_package(BLAS REQUIRED)
-    find_package(LAPACK REQUIRED)
+    find_package(MKL REQUIRED)
 endif()
 
 if(BUILD_TESTS)
@@ -93,9 +91,11 @@ target_link_libraries(gqcp
         )
 target_include_directories(gqcp PUBLIC $<BUILD_INTERFACE:${Boost_INCLUDE_DIRS}>)
 target_link_libraries(gqcp PUBLIC ${Boost_LIBRARIES})
-if (BLAS_FOUND AND LAPACK_FOUND AND EIGEN_USE_MKL)
-    target_include_directories(gqcp PUBLIC $<BUILD_INTERFACE:${BLAS_INCLUDE_DIR}>)
-    target_link_libraries(gqcp PUBLIC ${BLAS_LIBRARIES})
+if (EIGEN_USE_MKL)
+    target_link_libraries(gqcp
+        PUBLIC
+            MKL::MKL
+        )
     target_compile_options(gqcp PUBLIC -DEIGEN_USE_MKL_ALL -DMKL_LP64)
 endif()
 
