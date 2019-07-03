@@ -19,22 +19,22 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
 
-#include "QCMethod/FCI.hpp"
+#include "QCMethod/Hubbard.hpp"
 
 
 namespace py = pybind11;
 
 
-namespace pygqcp {
+namespace gqcpy {
 
 
-void bindQCMethodFCI(py::module& module) {
-    py::class_<GQCP::QCMethod::FCI>(module, "FCI")
-            .def(py::init<const std::string, const std::string, const size_t, const size_t>())
-            .def("solve", &GQCP::QCMethod::FCI::solve)
-            .def("get_energy", &GQCP::QCMethod::FCI::energy);
+void bindQCMethodHubbard(py::module& module) {
+    py::class_<GQCP::QCMethod::Hubbard>(module, "Hubbard")
+            .def(py::init<const std::string, const size_t, const size_t, const size_t>())
+            .def("solve", &GQCP::QCMethod::Hubbard::solve)
+            .def("get_energies", &GQCP::QCMethod::Hubbard::energies)
+            .def("get_one_rdms", &GQCP::QCMethod::Hubbard::oneRDMs);
 }
 
 
-
-}  // namespace pygqcp
+}  // namespace gqcpy

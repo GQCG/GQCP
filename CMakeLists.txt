@@ -105,7 +105,7 @@ endif()
 # ---------------------
 
 if (BUILD_PYTHON_BINDINGS)
-    add_subdirectory(pygqcp)
+    add_subdirectory(gqcpy)
 
     pybind11_add_module(gqcpy MODULE ${python_bindings_sources})
     
@@ -113,8 +113,8 @@ if (BUILD_PYTHON_BINDINGS)
     set_target_properties(gqcpy PROPERTIES
             SUFFIX ".so"
             LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/gqcpy")
-    configure_file(pygqcp/__init__.py.in ${CMAKE_BINARY_DIR}/gqcpy/__init__.py)
-    configure_file(pygqcp/setup.py.in ${CMAKE_BINARY_DIR}/gqcpy/setup.py)
+    configure_file(gqcpy/__init__.py.in ${CMAKE_BINARY_DIR}/gqcpy/__init__.py)
+    configure_file(gqcpy/setup.py.in ${CMAKE_BINARY_DIR}/gqcpy/setup.py)
 endif()
 
 

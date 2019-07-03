@@ -15,29 +15,26 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
+#include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
+#include <pybind11/stl.h>
+
+#include "QCMethod/FCI.hpp"
+
 
 namespace py = pybind11;
 
 
-/**
- *  As stated in the FAQ (https://pybind11.readthedocs.io/en/stable/faq.html#how-can-i-reduce-the-build-time), it is good practice to split the binding code over multiple files
- */
-namespace pygqcp {
-
-void bindQCMethodHubbard(py::module& module);
-void bindQCMethodFCI(py::module& module);
-
-}  // namespace pygqcp
+namespace gqcpy {
 
 
-
-
-/**
- *  The actual Python binding into the gqcpy Python module
- */
-PYBIND11_MODULE (gqcpy, module) {
-
-    pygqcp::bindQCMethodHubbard(module);
-    pygqcp::bindQCMethodFCI(module);
+void bindQCMethodFCI(py::module& module) {
+    py::class_<GQCP::QCMethod::FCI>(module, "FCI")
+            .def(py::init<const std::string, const std::string, const size_t, const size_t>())
+            .def("solve", &GQCP::QCMethod::FCI::solve)
+            .def("get_energy", &GQCP::QCMethod::FCI::energy);
 }
+
+
+
+}  // namespace gqcpy
