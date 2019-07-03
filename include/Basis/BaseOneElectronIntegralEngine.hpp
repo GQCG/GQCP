@@ -28,26 +28,24 @@ namespace GQCP {
 
 
 /**
- *  A base class to implement one-electron integral engines. Integral engines are used calculate integrals over shells, see also the calculate() call
+ *  A base class to implement one-electron integral engines. Integral engines are used calculate integrals of operators over shells, see also the calculate() call
  * 
  *  @tparam _ShellType          the type of shell the integral engine is able to handle
+ *  @tparam _N                  the number of components the operator has
+ *  @tparam _Scalar             the scalar representation of an integral
+ * 
+ *  _ShellType is a template parameter because that enables compile-time checking of correct arguments
  */
-template <typename _ShellType>
+template <typename _ShellType, size_t _N, typename _Scalar>
 class BaseOneElectronIntegralEngine {
 public:
-    using ShellType = _ShellType;
-
-
-public:
+    using ShellType = _ShellType;  // the type of shell the integral engine is able to handle
+    using Scalar = _Scalar;  // the scalar representation of an integral
+    constexpr static auto N = _N;  // the number of components the operator has
 };
-
-
 
 
 }  // namespace GQCP
 
 
-
-
 #endif  // GQCP_BASEONELECTRONINTEGRALENGINE_HPP
-

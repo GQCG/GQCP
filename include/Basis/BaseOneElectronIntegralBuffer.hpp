@@ -32,14 +32,14 @@ namespace GQCP {
  * 
  *  An integral buffer facilitates placing integrals (see emplace()) that were calculated over shells into the correct matrix representation of an operator in an orbital basis
  * 
- *  @tparam _Scalar         the scalar representation (double or complex) of the integrals
+ *  @tparam _Scalar         the scalar representation of an integral
  *  @tparam _N              the number of components the operator has
  */
 template <typename _Scalar, size_t _N>
 class BaseOneElectronIntegralBuffer {
 public:
-    using Scalar = _Scalar;
-    constexpr static auto N = _N;
+    using Scalar = _Scalar;  // the scalar representation of an integral
+    constexpr static auto N = _N;  // the number of components the operator has
 
 
 private:
