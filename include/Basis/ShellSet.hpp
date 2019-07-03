@@ -19,7 +19,7 @@
 #define ShellSet_hpp
 
 
-#include "Basis/Shell.hpp"
+#include "Basis/GTOShell.hpp"
 #include "Molecule/Molecule.hpp"
 
 #include <vector>
@@ -29,11 +29,11 @@ namespace GQCP {
 
 
 /**
- *  A class that represents a list of shells (and therefore extends std::vector<Shell>)
+ *  A class that represents a list of shells (and therefore extends std::vector<GTOShell>)
  */
-class ShellSet : public std::vector<Shell> {
+class ShellSet : public std::vector<GTOShell> {
 public:
-    using std::vector<Shell>::vector;  // inherit base constructors
+    using std::vector<GTOShell>::vector;  // inherit base constructors
 
 
 public:

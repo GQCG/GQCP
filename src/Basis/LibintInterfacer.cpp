@@ -115,7 +115,7 @@ std::vector<libint2::Atom> LibintInterfacer::interface(const std::vector<Nucleus
  *
  *  @return a libint2::Shell whose renorm()alization has been undone, interfaced from the GQCP Shell
  */
-libint2::Shell LibintInterfacer::interface(const Shell& shell) const {
+libint2::Shell LibintInterfacer::interface(const GTOShell& shell) const {
 
     // Part 1: exponents
     const std::vector<double>& libint_alpha = shell.get_gaussian_exponents();  // libint::Shell::real_t is double, so no need to use real_t
@@ -187,7 +187,7 @@ libint2::BasisSet LibintInterfacer::interface(const ShellSet& shellset) const {
  *
  *  @return a vector of GQCP::Shells
  */
-std::vector<Shell> LibintInterfacer::interface(const libint2::Shell& libint_shell, const std::vector<Nucleus>& nuclei, bool undo_renorm) const {
+std::vector<GTOShell> LibintInterfacer::interface(const libint2::Shell& libint_shell, const std::vector<Nucleus>& nuclei, bool undo_renorm) const {
 
     // If asked for, undo Libint2's default renorm()alization
     auto libint_shell_copy = libint_shell;
@@ -199,7 +199,7 @@ std::vector<Shell> LibintInterfacer::interface(const libint2::Shell& libint_shel
     // Construct the corresponding GQCP::Shells
     std::vector<double> exponents = libint_shell_copy.alpha;
 
-    std::vector<Shell> shells;
+    std::vector<GTOShell> shells;
     shells.reserve(this->numberOfShells(libint_shell_copy));
     for (const auto& libint_contraction : libint_shell_copy.contr) {
 
