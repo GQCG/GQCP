@@ -21,8 +21,11 @@
 
 #include "WaveFunction/WaveFunction.hpp"
 #include "FockSpace/FockSpace.hpp"
-#include "RDM/RDMCalculator.hpp"
-
+#include "CISolver/CISolver.hpp"
+#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "HamiltonianBuilder/FCI.hpp"
+#include "Molecule.hpp"
+#include "RHF/PlainRHFSCFSolver.hpp"
 
 BOOST_AUTO_TEST_CASE ( shannon_entropy ) {
 
@@ -44,40 +47,60 @@ BOOST_AUTO_TEST_CASE ( shannon_entropy ) {
 BOOST_AUTO_TEST_CASE ( transform_wave_function ) {
 
     // Produce a wave function, transform it then pair it against second produced wave function from a transformed basis.
-    
-    // Create a molecule
-    GQCP::Molecule hchain = GQCP::Molecule::HChain(3, 0.742, -1);
+    std::cout<<"Checkpoint0";
+
+        // Create a molecule
+    GQCP::Molecule hchain = GQCP::Molecule::HChain(2, 0.742, 0);
 
     // Create the molecular Hamiltonian parameters for this molecule and basis
     auto mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(hchain, "STO-3G");
     auto K = mol_ham_par.get_K();
     auto N_P = hchain.get_N()/2;
 
+    std::cout<<"K :"<<K<<" ";
+    std::cout<<"N_P :"<<N_P<<" ";
+
     // Create a plain RHF SCF solver and solve the SCF equations
     GQCP::PlainRHFSCFSolver plain_scf_solver (mol_ham_par, hchain);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 
-    mol_ham_par.basisTransform(rhf.get_C());
+    std::cout<<"Checkpoint";
+
+    mol_ham_par.LowdinOrthonormalize();
     GQCP::ProductFockSpace fock_space (K, N_P, N_P);
     GQCP::FCI fci (fock_space);
 
-    GQCP::DenseSolverOptions solver_options ();
+    GQCP::DenseSolverOptions solver_options;
     GQCP::CISolver ci_solver (fci, mol_ham_par);
     ci_solver.solve(solver_options);
 
     // Retrieve the wave function and transform it
     auto wavefunction1 = ci_solver.makeWavefunction();
-    GQCP::SquareMatrix<double> U_random = GQCP::SquareMatrix::RandomUnitary(K);
+    std::cout<<std::endl<<wavefunction1.get_coefficients();
+    std::cout<<std::endl<<"-------------"<<std::endl;
+    GQCP::SquareMatrix<double> U_random = GQCP::SquareMatrix<double>::RandomUnitary(K);
+    std::cout<<U_random;
+    std::cout<<"Checkpoint2";
+
+
     wavefunction1.basisTransform(U_random);
 
     // Generate a new wave function by rotating the basis and performing the FCI again.
-    mol_ham_par.basisTransform(U_random);
+    mol_ham_par.rotate(U_random);
     GQCP::CISolver ci_solver2 (fci, mol_ham_par);
     ci_solver2.solve(solver_options);
 
     auto wavefunction2 = ci_solver2.makeWavefunction();
 
+    std::cout<<std::endl<<wavefunction2.get_coefficients();
+    std::cout<<std::endl<<"-------------"<<std::endl;
+    std::cout<<std::endl<<wavefunction1.get_coefficients();
+
     // Check if they deviate
-    BOOST_CHECK(std::abs(wavefunction2.get_coefficients() - wavefunction1.get_coefficients()) < 1.0e-10);
+    BOOST_CHECK(wavefunction2.get_coefficients().isApprox(wavefunction1.get_coefficients()));
+
+
+
+    BOOST_CHECK(true);
 }
