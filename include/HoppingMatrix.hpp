@@ -15,8 +15,8 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef HoppingMatrix_hpp
-#define HoppingMatrix_hpp
+#ifndef GQCP_HOPPINGMATRIX_HPP
+#define GQCP_HOPPINGMATRIX_HPP
 
 
 #include "Mathematical/SquareMatrix.hpp"
@@ -31,6 +31,7 @@ namespace GQCP {
 class HoppingMatrix : public SquareMatrix<double> {
 public:
     // CONSTRUCTORS
+
     /**
      *  @param H        the Hubbard hopping matrix
      */
@@ -47,6 +48,7 @@ public:
 
 
     // NAMED CONSTRUCTORS
+
     /**
      *  @param upper_triangle       the upper triangle (in column-major ordering) that specifies the Hubbard hopping matrix
      *
@@ -61,8 +63,16 @@ public:
      */
     static HoppingMatrix Random(size_t K);
 
+    /**
+     *  @param csline           a comma-separated line that contains the upper triangle (in column-major ordering) of the Hubbard hopping matrix
+     * 
+     *  @return the hopping matrix that corresponds to the given comma-separated line
+     */
+    static HoppingMatrix FromCSLine(const std::string& csline);
+
 
     // PUBLIC METHODS
+
     /**
      *  @return the number of lattice sites corresponding to the Hubbard hopping matrix
      */
@@ -73,4 +83,4 @@ public:
 }  // namespace GQCP
 
 
-#endif /* HoppingMatrix_hpp */
+#endif /* GQCP_HOPPINGMATRIX_HPP */

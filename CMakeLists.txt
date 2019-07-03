@@ -113,6 +113,23 @@ if(BUILD_PYTHON_BINDINGS)
 endif()
 
 
+# Setup Python Bindings
+# ---------------------
+
+if (BUILD_PYTHON_BINDINGS)
+    add_subdirectory(gqcpy)
+
+    pybind11_add_module(gqcpy MODULE ${python_bindings_sources})
+    
+    target_link_libraries(gqcpy PUBLIC gqcp)
+    set_target_properties(gqcpy PROPERTIES
+            SUFFIX ".so"
+            LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/gqcpy")
+    configure_file(gqcpy/__init__.py.in ${CMAKE_BINARY_DIR}/gqcpy/__init__.py)
+    configure_file(gqcpy/setup.py.in ${CMAKE_BINARY_DIR}/gqcpy/setup.py)
+endif()
+
+
 # Parse additional options
 # ------------------------
 if (BUILD_TESTS)
@@ -192,6 +209,7 @@ install(
         ${CMAKE_SOURCE_DIR}/cmake/FindSpectra.cmake
         DESTINATION cmake
 )
+
 
 # Install Python bindings
 # -----------------------
