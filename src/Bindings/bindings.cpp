@@ -10,8 +10,6 @@
 namespace py = pybind11;
 
 PYBIND11_MODULE(gqcpy, m) {
-    py::class_<GQCP::Atom>(m, "Atom")
-            .def(py::init<int, double, double, double>());
 
     py::class_<GQCP::HubbardDriver>(m, "HubbardDriver")
             .def(py::init<std::string, size_t, size_t, size_t, size_t>())
