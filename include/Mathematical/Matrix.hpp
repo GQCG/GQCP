@@ -198,6 +198,14 @@ public:
      *  PUBLIC METHODS
      */
 
+
+    /**
+     *  @return this as an Eigen::Matrix
+     */
+    const Base& Eigen() const {
+        return static_cast<const Base&>(*this);
+    }
+
     /**
      *  Print the contents of a this to an output filestream
      *

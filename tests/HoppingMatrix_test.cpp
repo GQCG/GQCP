@@ -68,3 +68,17 @@ BOOST_AUTO_TEST_CASE ( triangle_adjacency_matrix ) {
 
     BOOST_CHECK(H_ref.isApprox(H));
 }
+
+
+BOOST_AUTO_TEST_CASE ( FromCSLine ) {
+
+    GQCP::SquareMatrix<double> H_ref = GQCP::SquareMatrix<double>::Zero(3, 3);
+    H_ref << 1, 2, 4,
+             2, 3, 5,
+             4, 5, 6;
+
+    
+    const auto H = GQCP::HoppingMatrix::FromCSLine("1,2,4,3,5,6");
+
+    BOOST_CHECK(H_ref.isApprox(H));
+}

@@ -2,6 +2,11 @@ cmake_minimum_required(VERSION 3.13 FATAL_ERROR)
 project(gqcp VERSION 0.2.0 LANGUAGES CXX)
 string(TOUPPER ${PROJECT_NAME} PROJECT_NAME_UPPERCASE)
 
+# Improved handling of RPATH settings
+# https://stackoverflow.com/questions/30398238/cmake-rpath-not-working-could-not-find-shared-object-file
+set(CMAKE_INSTALL_RPATH ${CMAKE_INSTALL_PREFIX}/lib)
+set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)  # make CMake look into the ./cmake/ folder for configuration files
 
 add_library(gqcp SHARED "")
@@ -12,21 +17,21 @@ option(BUILD_TESTS "Build tests" OFF)
 option(BUILD_DOCS "Build the documentation using Doxygen" OFF)
 option(BUILD_BENCHMARKS "Build benchmarks executables" OFF)
 option(BUILD_DRIVERS "Build standard drivers" OFF)
+option(BUILD_PYTHON_BINDINGS "Build the Python bindings" OFF)
 option(EIGEN_USE_MKL "Eigen uses MKL" OFF)
-
 
 # Look for supporting libraries
 # -----------------------------
 find_package(Git REQUIRED)
 find_package(Eigen3 3.3.4 REQUIRED)
 find_package(Int2 REQUIRED)
-find_package(Boost REQUIRED COMPONENTS program_options unit_test_framework)
 find_package(Spectra REQUIRED)
-find_package(Cint REQUIRED NO_MODULE)
+find_package(Cint REQUIRED)
 
 if(EIGEN_USE_MKL)
-    set(BLA_VENDOR Intel10_64lp)
+    #set(BLA_STATIC ON)
     find_package(BLAS REQUIRED)
+    find_package(LAPACK REQUIRED)
 endif()
 
 if(BUILD_TESTS)
@@ -41,6 +46,12 @@ endif()
 
 if (BUILD_BENCHMARKS)
     find_package(benchmark REQUIRED)
+endif()
+
+if(BUILD_PYTHON_BINDINGS)
+    find_package(PythonInterp 3 REQUIRED)
+    find_package(pybind11 REQUIRED)
+    set(python_bindings_sources)
 endif()
 
 
@@ -82,10 +93,27 @@ target_link_libraries(gqcp
         )
 target_include_directories(gqcp PUBLIC $<BUILD_INTERFACE:${Boost_INCLUDE_DIRS}>)
 target_link_libraries(gqcp PUBLIC ${Boost_LIBRARIES})
-if (EIGEN_USE_MKL)
+if (BLAS_FOUND AND LAPACK_FOUND AND EIGEN_USE_MKL)
     target_include_directories(gqcp PUBLIC $<BUILD_INTERFACE:${BLAS_INCLUDE_DIR}>)
     target_link_libraries(gqcp PUBLIC ${BLAS_LIBRARIES})
     target_compile_options(gqcp PUBLIC -DEIGEN_USE_MKL_ALL -DMKL_LP64)
+endif()
+
+
+# Setup Python Bindings
+# ---------------------
+
+if (BUILD_PYTHON_BINDINGS)
+    add_subdirectory(gqcpy)
+
+    pybind11_add_module(gqcpy MODULE ${python_bindings_sources})
+    
+    target_link_libraries(gqcpy PUBLIC gqcp)
+    set_target_properties(gqcpy PROPERTIES
+            SUFFIX ".so"
+            LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/gqcpy")
+    configure_file(gqcpy/__init__.py.in ${CMAKE_BINARY_DIR}/gqcpy/__init__.py)
+    configure_file(gqcpy/setup.py.in ${CMAKE_BINARY_DIR}/gqcpy/setup.py)
 endif()
 
 
@@ -168,3 +196,11 @@ install(
         ${CMAKE_SOURCE_DIR}/cmake/FindSpectra.cmake
         DESTINATION cmake
 )
+
+
+# Install Python bindings
+# -----------------------
+
+if(BUILD_PYTHON_BINDINGS)
+    install(CODE "execute_process(COMMAND ${PYTHON_EXECUTABLE} \"\${CMAKE_BINARY_DIR}/gqcpy/setup.py\" install --prefix ${CMAKE_INSTALL_PREFIX} --force)")
+endif()
