@@ -78,16 +78,16 @@ target_include_directories(gqcp
         ${CMAKE_SOURCE_DIR}/src
         )
 
-target_link_libraries(gqcp
-        PUBLIC
-            Eigen3::Eigen
-            Int2::Int2
-            Cint::Cint
-            Spectra::Spectra
-            MKL::MKL
-        )
 target_include_directories(gqcp PUBLIC $<BUILD_INTERFACE:${Boost_INCLUDE_DIRS}>)
 target_link_libraries(gqcp PUBLIC ${Boost_LIBRARIES})
+target_link_libraries(gqcp
+        PUBLIC
+        Eigen3::Eigen
+        Int2::Int2
+        Cint::Cint
+        Spectra::Spectra
+        MKL::MKL
+        )
 target_compile_options(gqcp PUBLIC -DEIGEN_USE_MKL_ALL -DMKL_LP64)
 
 
