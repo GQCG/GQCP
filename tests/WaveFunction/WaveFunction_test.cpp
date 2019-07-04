@@ -50,7 +50,7 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function ) {
     std::cout<<"Checkpoint0";
 
         // Create a molecule
-    GQCP::Molecule hchain = GQCP::Molecule::HChain(2, 0.742, 0);
+    GQCP::Molecule hchain = GQCP::Molecule::HChain(3, 0.742, -1);
 
     // Create the molecular Hamiltonian parameters for this molecule and basis
     auto mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(hchain, "STO-3G");
@@ -86,6 +86,7 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function ) {
 
     wavefunction1.basisTransform(U_random);
 
+    GQCP::SquareMatrix<double> U_T = GQCP::SquareMatrix<double>(U_random.transpose());
     // Generate a new wave function by rotating the basis and performing the FCI again.
     mol_ham_par.rotate(U_random);
     GQCP::CISolver ci_solver2 (fci, mol_ham_par);

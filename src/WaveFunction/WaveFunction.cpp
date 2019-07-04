@@ -92,7 +92,7 @@ void WaveFunction::basisTransform(const SquareMatrix<double>& T) {
     std::cout<<std::endl<<U<<std::endl;
     std::cout<<std::endl<<U.inverse()<<std::endl;
 
-    SquareMatrix<double> t =  L + U.inverse();
+    SquareMatrix<double> t =  - L + U.inverse();
 
     const auto& product_fock_space = dynamic_cast<const ProductFockSpace&>(*fock_space);
     const FockSpace& fock_space_alpha = product_fock_space.get_fock_space_alpha();
@@ -130,6 +130,8 @@ void WaveFunction::basisTransform(const SquareMatrix<double>& T) {
                             fock_space_alpha.shiftUntilNextUnoccupiedOrbital<1>(alpha, address, q, e2, sign);
                         }
 
+                        address += fock_space_alpha.get_vertex_weights(q, e2);
+
                         for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {
                             correction_coefficients(I_alpha * dim_beta + I_beta) +=
                                     sign * t(p, m) * current_coefficients(address * dim_beta + I_beta);
@@ -141,7 +143,6 @@ void WaveFunction::basisTransform(const SquareMatrix<double>& T) {
                         size_t address = I_alpha - fock_space_alpha.get_vertex_weights(p, e1 + 1);
                         size_t e2 = e1 - 1;
                         size_t q = p - 1;
-
                         int sign = 1;
 
                         fock_space_alpha.shiftUntilPreviousUnoccupiedOrbital<1>(alpha, address, q, e2, sign);
@@ -150,21 +151,23 @@ void WaveFunction::basisTransform(const SquareMatrix<double>& T) {
                             fock_space_alpha.shiftUntilPreviousUnoccupiedOrbital<1>(alpha, address, q, e2, sign);
                         }
 
+                        address += fock_space_alpha.get_vertex_weights(q, e2 + 2);
+
+                        std::cout<<I_alpha<<" : "<<"p :"<<p<<" m :"<<m<<" address: "<<address<<" sign: "<<sign<<std::endl;
                         for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {
                             correction_coefficients(I_alpha * dim_beta + I_beta) +=
                                     sign * t(p, m) * current_coefficients(address * dim_beta + I_beta);
                         }
                     }
                 }
+
+
+            } else {
+                for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {
+                    correction_coefficients(I_alpha * dim_beta + I_beta) +=
+                            (t(m, m) - 1) * current_coefficients(I_alpha * dim_beta + I_beta);
+                }
             }
-
-
-
-            for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {
-                correction_coefficients(I_alpha * dim_beta + I_beta) +=
-                        (t(m, m) - 1) * current_coefficients(I_alpha * dim_beta + I_beta);
-            }
-
 
 
             if (I_alpha < dim_alpha - 1) {  // prevent the last permutation to occur
@@ -172,8 +175,13 @@ void WaveFunction::basisTransform(const SquareMatrix<double>& T) {
             }
         }
 
+
         current_coefficients += correction_coefficients;
+
+        std::cout<<std::endl<<"alpha "<<m<<" :"<<current_coefficients<<std::endl;
         correction_coefficients.setZero();
+
+        // BETA-BRANCH
 
         ONV beta = fock_space_beta.makeONV(0);
 
@@ -181,7 +189,6 @@ void WaveFunction::basisTransform(const SquareMatrix<double>& T) {
             if (!beta.isOccupied(m)) {
                 for (size_t e1 = 0; e1 < N_beta; e1++) {  // e1 (electron 1) loops over the (number of) electrons
                     size_t p = beta.get_occupation_index(e1);  // retrieve the index of a given electron
-
 
                     if (p < m) {
 
@@ -195,6 +202,8 @@ void WaveFunction::basisTransform(const SquareMatrix<double>& T) {
                             q++;
                             fock_space_beta.shiftUntilNextUnoccupiedOrbital<1>(beta, address, q, e2, sign);
                         }
+
+                        address += fock_space_beta.get_vertex_weights(q, e2);
 
                         for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {
                             correction_coefficients(I_alpha * dim_beta + I_beta) +=
@@ -216,17 +225,19 @@ void WaveFunction::basisTransform(const SquareMatrix<double>& T) {
                             fock_space_beta.shiftUntilPreviousUnoccupiedOrbital<1>(beta, address, q, e2, sign);
                         }
 
+                        address += fock_space_beta.get_vertex_weights(q, e2 + 2);
+
                         for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {
                             correction_coefficients(I_alpha * dim_beta + I_beta) +=
                                     sign * t(p, m) * current_coefficients(I_alpha * dim_beta + address);
                         }
                     }
                 }
-            }
-
-            for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {
-                correction_coefficients(I_alpha * dim_beta + I_beta) +=
-                        (t(m, m) - 1) * current_coefficients(I_alpha * dim_beta + I_beta);
+            } else {
+                for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {
+                    correction_coefficients(I_alpha * dim_beta + I_beta) +=
+                            (t(m, m) - 1) * current_coefficients(I_alpha * dim_beta + I_beta);
+                }
             }
 
             if (I_beta < dim_beta - 1) {  // prevent the last permutation to occur
