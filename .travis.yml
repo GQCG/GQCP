@@ -92,7 +92,7 @@ install:
     - git clone -b feature/cmake_refactor https://github.com/GQCG/libcint.git
     - cd libcint
     - mkdir build && cd build
-    - cmake ..
+    - cmake .. -DUSE_MKL=TRUE
     - make -j3 && sudo make install
 
 # Run the build script
