@@ -16,6 +16,7 @@
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
 #include "Basis/AOBasis.hpp"
+#include "Basis/GTOBasisSet.hpp"
 #include "Basis/LibintInterfacer.hpp"
 #include "Basis/LibcintInterfacer.hpp"
 
@@ -30,7 +31,7 @@ namespace GQCP {
 /**
  *  @param shell_set        the set of shells that are placed on the nuclei
  */
-AOBasis::AOBasis(const ShellSet& shell_set) :
+AOBasis::AOBasis(const ShellSet<GTOShell>& shell_set) :
     shell_set (shell_set)
 {}
 
@@ -44,7 +45,7 @@ AOBasis::AOBasis(const ShellSet& shell_set) :
  *  Note that the normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells
  */
 AOBasis::AOBasis(const Molecule& molecule, const std::string& basisset_name) :
-    AOBasis(ShellSet(molecule, basisset_name))
+    AOBasis(GTOBasisSet(basisset_name).generate(molecule))
 {
     this->shell_set.embedNormalizationFactorsOfPrimitives();
 }

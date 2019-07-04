@@ -19,7 +19,8 @@
 #define GQCP_LIBINTINTERFACER_HPP
 
 
-#include "Basis/AOBasis.hpp"
+#include "Basis/GTOShell.hpp"
+#include "Basis/ShellSet.hpp"
 #include "Molecule/Molecule.hpp"
 #include "Operator/OneElectronOperator.hpp"
 #include "Operator/TwoElectronOperator.hpp"
@@ -97,7 +98,7 @@ public:
      *
      *  @return a libint2::BasisSet (whose underlying libint2::Shells have been re-renorm()alized), interfaced from the GQCP ShellSet. Note that it is not possible to create libint2-sp-shells from a GQCP ShellSet
      */
-    libint2::BasisSet interface(const ShellSet& shellset) const;
+    libint2::BasisSet interface(const ShellSet<GTOShell>& shellset) const;
 
 
     // PUBLIC METHODS - INTERFACING (LIBINT TO GQCP)
@@ -113,14 +114,14 @@ public:
     std::vector<GTOShell> interface(const libint2::Shell& libint_shell, const std::vector<Nucleus>& nuclei, bool undo_renorm=true) const;
 
     /**
-     *  Interface a libint2::BasisSet to the corresponding GQCP::ShellSet
+     *  Interface a libint2::BasisSet to the corresponding GQCP::ShellSet and undo the libint2 renorm()alization
      *
      *  @param libint_basisset      the libint2 Shell that should be interfaced
      *  @param nuclei               the nuclei that can serve as centers of the Shells
      *
-     *  @return a GQCP::ShellSet corresponding to the libint2::BasisSet
+     *  @return a vector of GTOShells corresponding to the un-renorm()alized libint2::BasisSet
      */
-    ShellSet interface(const libint2::BasisSet& libint_basisset, const std::vector<Nucleus>& nuclei) const;
+    std::vector<GTOShell> interface(const libint2::BasisSet& libint_basisset, const std::vector<Nucleus>& nuclei) const;
 
 
     // PUBLIC METHODS - OTHER LIBINT2-RELATED FUNCTIONS

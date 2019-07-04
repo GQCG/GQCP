@@ -15,33 +15,24 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCP_LIBINTONEELECTRONINTEGRALENGINE_HPP
-#define GQCP_LIBINTONEELECTRONINTEGRALENGINE_HPP
-
-
-#include "Basis/BaseOneElectronIntegralEngine.hpp"
-#include "Basis/GTOShell.hpp"
-#include "Basis/LibintInterfacer.hpp"
-#include "Operator/FirstQuantized/Operator.hpp"
-
+#ifndef GQCP_INTEGRALCALCULATOR_HPP
+#define GQCP_INTEGRALCALCULATOR_HPP
 
 
 namespace GQCP {
 
 
 /**
- *  A one-electron integral engine that uses Libint2 as its backend
+ *  A class that calculates integrals over ShellSets: it loops over all shells in the given ShellSets
  */
-template <size_t _N, typename _Scalar>
-class LibintOneElectronIntegralEngine : public BaseOneElectronIntegralEngine<GTOShell, _N, _Scalar> {
-private:
-    libint2::Engine libint2_engine;
-
-
+class OneElectronIntegralCalculator {
 public:
-    // CONSTRUCTORS
-    LibintOneElectronIntegralEngine(const OverlapOperator& op) :
-        libint2_engine ()
+
+    /**
+     *  Calculate all integrals over the basis functions inside the given ShellSets
+     */
+    static auto calculate(,);
+
 
 };
 
@@ -50,4 +41,4 @@ public:
 
 
 
-#endif  // GQCP_LIBINTONEELECTRONINTEGRALENGINE_HPP
+#endif  // GQCP_INTEGRALCALCULATOR_HPP

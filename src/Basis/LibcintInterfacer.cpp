@@ -31,12 +31,12 @@ namespace GQCP {
  *
  *  @return the information in a GQCP::ShellSet as a libcint::Container
  */
-libcint::RawContainer LibcintInterfacer::convert(const ShellSet& shell_set) const{
+libcint::RawContainer LibcintInterfacer::convert(const ShellSet<GTOShell>& shell_set) const{
 
     const auto& nuclei = shell_set.nuclei();
     const auto& natm = nuclei.size();
     const auto& nbf = shell_set.numberOfBasisFunctions();
-    const auto& nsh = shell_set.size();  // number of shells
+    const auto& nsh = shell_set.numberOfShells();
 
     libcint::RawContainer raw_container (natm, nbf, nsh);
 
@@ -60,12 +60,13 @@ libcint::RawContainer LibcintInterfacer::convert(const ShellSet& shell_set) cons
 
     // Configuration of shell-related data
     int nucleus_index = 0;  // index of the nucleus the shell is centered on
-    auto previous_nucleus = shell_set[0].get_nucleus();  // start with the first nucleus
+    const auto& shellset_vector = shell_set.asVector();
+    auto previous_nucleus = shellset_vector[0].get_nucleus();  // start with the first nucleus
     for (size_t n = 0; n < shell_set.numberOfShells(); n++) {
 
-        auto current_shell = shell_set[n];
+        auto current_shell = shellset_vector[n];
         if (current_shell.is_normalized()) {
-            throw std::invalid_argument("LibcintInterfacer::convert(const ShellSet&): The libcint integral engine requires a ShellSet with coefficients that do not hold the total normalization factor.");
+            throw std::invalid_argument("LibcintInterfacer::convert(const ShellSet<GTOShell>&): The libcint integral engine requires a ShellSet with coefficients that do not hold the total normalization factor.");
         }
 
 

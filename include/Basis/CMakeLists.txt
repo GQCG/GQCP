@@ -2,12 +2,15 @@ target_sources(gqcp
         PRIVATE
             AOBasis.hpp
             BaseOneElectronIntegralBuffer.hpp
+            BaseOneElectronIntegralBuffer.hpp
             CartesianExponents.hpp
             CartesianGTO.hpp
+            GTOBasisSet.hpp
             GTOShell.hpp
+            IntegralCalculator.hpp
+            IntegralEngine.hpp
             LibcintInterfacer.hpp
-            LibintOneElectronIntegralEngine.hpp
             LibintInterfacer.hpp
-            OneElectronIntegralEngine.hpp
+            LibintOneElectronIntegralEngine.hpp
             ShellSet.hpp
         )

@@ -19,6 +19,7 @@
 #define GQCP_AOBASIS_HPP
 
 
+#include "Basis/GTOShell.hpp"
 #include "Basis/ShellSet.hpp"
 #include "Operator/OneElectronOperator.hpp"
 #include "Operator/TwoElectronOperator.hpp"
@@ -32,7 +33,7 @@ namespace GQCP {
  */
 class AOBasis {
 private:
-    ShellSet shell_set;  // the underlying collection of shells
+    ShellSet<GTOShell> shell_set;  // the underlying collection of shells
 
 
 public:
@@ -40,7 +41,7 @@ public:
     /**
      *  @param shell_set        the underlying collection of shells
      */
-    AOBasis(const ShellSet& shell_set);
+    AOBasis(const ShellSet<GTOShell>& shell_set);
 
     /**
      *  Construct an AO basis by placing shells corresponding to the basisset specification on every nucleus of the molecule
@@ -54,7 +55,7 @@ public:
 
 
     // GETTERS
-    const ShellSet& get_shell_set() const { return this->shell_set; }
+    const ShellSet<GTOShell>& get_shell_set() const { return this->shell_set; }
 
 
     // PUBLIC METHODS
