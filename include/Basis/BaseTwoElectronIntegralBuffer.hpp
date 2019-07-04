@@ -15,11 +15,11 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCP_BASEONEELECTRONINTEGRALBUFFER_HPP
-#define GQCP_BASEONEELECTRONINTEGRALBUFFER_HPP
+#ifndef GQCP_BASETWOELECTRONINTEGRALBUFFER_HPP
+#define GQCP_BASETWOELECTRONINTEGRALBUFFER_HPP
 
 
-#include "Mathematical/SquareMatrix.hpp"
+#include "Mathematical/SquareRankFourTensor.hpp"
 
 #include <array>
 
@@ -28,7 +28,7 @@ namespace GQCP {
 
 
 /**
- *  A base class to implement buffers for storing one-electron integrals
+ *  A base class to implement buffers for storing two-electron integrals
  * 
  *  An integral buffer facilitates placing integrals (see emplace()) that were calculated over shells into the correct matrix representation of an operator in an orbital basis
  * 
@@ -45,6 +45,9 @@ public:
 private:
     size_t nbf1;  // the number of basis functions in the first shell
     size_t nbf2;  // the number of basis functions in the second shell
+    size_t nbf3;  // the number of basis functions in the third shell
+    size_t nbf4;  // the number of basis functions in the fourth shell
+
 
 
 public:
@@ -56,10 +59,14 @@ public:
     /**
      *  @param nbf1             the number of basis functions in the first shell
      *  @param nbf2             the number of basis functions in the second shell
+     *  @param nbf3             the number of basis functions in the third shell
+     *  @param nbf4             the number of basis functions in the fourth shell
      */
-    BaseOneElectronIntegralBuffer(const size_t nbf1, const size_t nbf2) :
+    BaseOneElectronIntegralBuffer(const size_t nbf1, const size_t nbf2, const size_t nbf3, const size_t nbf4) :
         nbf1 (nbf1),
-        nbf2 (nbf2)
+        nbf2 (nbf2),
+        nbf3 (nbf3),
+        nbf4 (nbf4)
     {}
 
 
@@ -71,7 +78,7 @@ public:
     /**
      *  @return the matrix representation of the integrals that are in this buffer
      */
-    virtual std::array<SquareMatrix<Scalar>, N> integrals() const = 0;
+    virtual std::array<SquareRankFourTensor<Scalar>, N> integrals() const = 0;
 
 
 
@@ -85,9 +92,19 @@ public:
     size_t numberOfBasisFunctionsInShell1() const { return this->nbf1; }
 
     /**
-     *  @return the number of basis functions that are in the first shell
+     *  @return the number of basis functions that are in the second shell
      */
     size_t numberOfBasisFunctionsInShell2() const { return this->nbf2; }
+
+    /**
+     *  @return the number of basis functions that are in the third shell
+     */
+    size_t numberOfBasisFunctionsInShell3() const { return this->nbf3; }
+
+    /**
+     *  @return the number of basis functions that are in the fourth shell
+     */
+    size_t numberOfBasisFunctionsInShell4() const { return this->nbf4; }
 
     /**
      *  Place the calculated integrals over the shells inside the total matrix representation
@@ -95,16 +112,20 @@ public:
      *  @param full_components          the components of the full matrix representation (over all the basis functions) of the operator
      *  @param bf1                      the total basis function index of the first basis function in the first shell
      *  @param bf2                      the total basis function index of the first basis function in the second shell
+     *  @param bf3                      the total basis function index of the first basis function in the third shell
+     *  @param bf4                      the total basis function index of the first basis function in the fourth shell     
      */
-    void emplace(std::array<SquareMatrix<Scalar>, N>& full_components, const size_t bf1, const size_t bf2) const {
+    void emplace(std::array<SquareRankFourTensor<Scalar>, N>& full_components, const size_t bf1, const size_t bf2, const size_t bf3, const size_t bf4) const {
 
         const auto components = this->integrals();  // N components
         for (size_t i = 0; i < N; i++) {
             auto& full_component = full_components[i];
             const auto& component = components[i];
 
-            // Place the calculated integrals inside the correct block
-            full_component.block(bf1, bf2, nbf1, nbf2) = component;
+            // Place the calculated integrals inside the correct block (for Tensors, this is a 'slice')
+            Eigen::array<int, 4> offsets {bf1, bf2, bf3, bf4};
+            Eigen::array<int, 4> extents {this->nbf1, this->nbf2, this->nbf3, this->nbf4};  // length of the slices
+            full_component.slice(offsets, extents) = component;
         }
     }
 };
@@ -113,4 +134,4 @@ public:
 }  // namespace GQCP
 
 
-#endif  // GQCP_BASEONEELECTRONINTEGRALBUFFER_HPP
+#endif  // GQCP_BASETWOELECTRONINTEGRALBUFFER_HPP

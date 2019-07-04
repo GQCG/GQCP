@@ -2,7 +2,9 @@ target_sources(gqcp
         PRIVATE
             AOBasis.hpp
             BaseOneElectronIntegralBuffer.hpp
-            BaseOneElectronIntegralBuffer.hpp
+            BaseOneElectronIntegralEngine.hpp
+            BaseTwoElectronIntegralBuffer.hpp
+            BaseTwoElectronIntegralEngine.hpp
             CartesianExponents.hpp
             CartesianGTO.hpp
             GTOBasisSet.hpp
