@@ -54,3 +54,5 @@ else()
         target_link_libraries(MKL::MKL INTERFACE ${MKL_INTERFACE_LIBRARY} ${MKL_INTEL_THREAD} ${MKL_CORE_LIBRARY} ${MKL_LAPACK} ${MKL_IOMP5} pthread m dl)
     endif()
 endif()
+
+target_link_options(MKL::MKL INTERFACE "$<$<CXX_COMPILER_ID:GNU>:–-no-as-needed>")

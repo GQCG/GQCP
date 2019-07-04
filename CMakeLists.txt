@@ -55,7 +55,7 @@ target_compile_options(gqcp PUBLIC -m64 -pipe)
 target_compile_options(gqcp PUBLIC "$<IF:$<CONFIG:Debug>,-g,-O2>")
 target_compile_options(gqcp PUBLIC "$<IF:$<CXX_COMPILER_ID:Intel>,-xHost,-march=native>")
 target_compile_options(gqcp PUBLIC "$<$<CXX_COMPILER_ID:GNU>:-pthread>")
-target_link_options(gqcp PUBLIC "$<$<CXX_COMPILER_ID:GNU>:–-no-as-needed,-pthread>")
+target_link_options(gqcp PUBLIC "$<$<CXX_COMPILER_ID:GNU>:-pthread>")
 target_compile_features(gqcp PUBLIC cxx_std_11)
 
 add_subdirectory(src)
