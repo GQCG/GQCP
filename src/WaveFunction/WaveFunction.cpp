@@ -17,6 +17,7 @@
 // 
 #include "WaveFunction/WaveFunction.hpp"
 #include "FockSpace/ProductFockSpace.hpp"
+#include "../../include/Mathematical/SquareMatrix.hpp"
 
 namespace GQCP {
 
@@ -79,20 +80,26 @@ void WaveFunction::basisTransform(const SquareMatrix<double>& T) {
         throw std::invalid_argument("WaveFunction::basisTransform(SquareMatrix<double>): number of orbitals does not match the dimension of the transformation matrix T");
     }
 
-    Eigen::FullPivLU<Eigen::MatrixXd> LU_decomposer (T);
+    Eigen::FullPivLU<Eigen::MatrixXd> LU (T);
 
-    SquareMatrix<double> L = SquareMatrix<double>::Zero(K, K);
-    L.triangularView<Eigen::StrictlyLower>() = LU_decomposer.matrixLU();
 
-    std::cout<<std::endl<<LU_decomposer.matrixLU()<<std::endl;
-    std::cout<<std::endl<<L<<std::endl;
+    /*
+    SquareMatrix<double> L = LU_decomposer.matrixL();
+    SquareMatrix<double> U = LU_decomposer.matrixU();
+     */
+    Eigen::PartialPivLU<Eigen::MatrixXd> LU2 = T.lu();
+    SquareMatrix<double> _L = SquareMatrix<double>::Identity(K, K);
+    _L.triangularView<Eigen::StrictlyLower>() = LU2.matrixLU();
+    SquareMatrix<double> L = SquareMatrix<double>(_L);
+    SquareMatrix<double> _U = SquareMatrix<double>(LU2.matrixLU().triangularView<Eigen::Upper>());
+    SquareMatrix<double> U = SquareMatrix<double>(_U );
 
-    SquareMatrix<double> U = SquareMatrix<double>(LU_decomposer.matrixLU().triangularView<Eigen::Upper>());
+    SquareMatrix<double> I = SquareMatrix<double>::Identity(K, K);
 
-    std::cout<<std::endl<<U<<std::endl;
-    std::cout<<std::endl<<U.inverse()<<std::endl;
 
-    SquareMatrix<double> t =  - L + U.inverse();
+    std::cout<<std::endl<<"---------- LU ----------"<<std::endl<<L<<std::endl<<std::endl<<U<<std::endl;
+
+    SquareMatrix<double> t =  I - L + U.inverse();
 
     const auto& product_fock_space = dynamic_cast<const ProductFockSpace&>(*fock_space);
     const FockSpace& fock_space_alpha = product_fock_space.get_fock_space_alpha();
@@ -131,6 +138,7 @@ void WaveFunction::basisTransform(const SquareMatrix<double>& T) {
                         }
 
                         address += fock_space_alpha.get_vertex_weights(q, e2);
+                        std::cout<<"a1:"<<I_alpha<<" : "<<"p :"<<p<<" m :"<<m<<" address: "<<address<<" sign: "<<sign<<std::endl;
 
                         for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {
                             correction_coefficients(I_alpha * dim_beta + I_beta) +=
@@ -153,7 +161,7 @@ void WaveFunction::basisTransform(const SquareMatrix<double>& T) {
 
                         address += fock_space_alpha.get_vertex_weights(q, e2 + 2);
 
-                        std::cout<<I_alpha<<" : "<<"p :"<<p<<" m :"<<m<<" address: "<<address<<" sign: "<<sign<<std::endl;
+                        std::cout<<"a2:"<<I_alpha<<" : "<<"p :"<<p<<" m :"<<m<<" address: "<<address<<" sign: "<<sign<<std::endl;
                         for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {
                             correction_coefficients(I_alpha * dim_beta + I_beta) +=
                                     sign * t(p, m) * current_coefficients(address * dim_beta + I_beta);
@@ -204,6 +212,7 @@ void WaveFunction::basisTransform(const SquareMatrix<double>& T) {
                         }
 
                         address += fock_space_beta.get_vertex_weights(q, e2);
+                        std::cout<<"b1:"<<I_beta<<" : "<<"p :"<<p<<" m :"<<m<<" address: "<<address<<" sign: "<<sign<<std::endl;
 
                         for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {
                             correction_coefficients(I_alpha * dim_beta + I_beta) +=
@@ -224,6 +233,7 @@ void WaveFunction::basisTransform(const SquareMatrix<double>& T) {
                             q--;
                             fock_space_beta.shiftUntilPreviousUnoccupiedOrbital<1>(beta, address, q, e2, sign);
                         }
+                        std::cout<<"b2:"<<I_beta<<" : "<<"p :"<<p<<" m :"<<m<<" address: "<<address<<" sign: "<<sign<<std::endl;
 
                         address += fock_space_beta.get_vertex_weights(q, e2 + 2);
 
@@ -233,6 +243,7 @@ void WaveFunction::basisTransform(const SquareMatrix<double>& T) {
                         }
                     }
                 }
+
             } else {
                 for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {
                     correction_coefficients(I_alpha * dim_beta + I_beta) +=
@@ -245,7 +256,11 @@ void WaveFunction::basisTransform(const SquareMatrix<double>& T) {
             }
         }
 
+
         current_coefficients += correction_coefficients;
+
+        std::cout<<std::endl<<"beta -----------------------------------"<<m<<" :"<<current_coefficients<<std::endl;
+
         correction_coefficients.setZero();
     }
 

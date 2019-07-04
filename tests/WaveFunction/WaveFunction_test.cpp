@@ -50,7 +50,7 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function ) {
     std::cout<<"Checkpoint0";
 
         // Create a molecule
-    GQCP::Molecule hchain = GQCP::Molecule::HChain(3, 0.742, -1);
+    GQCP::Molecule hchain = GQCP::Molecule::HChain(4, 0.742, 0);
 
     // Create the molecular Hamiltonian parameters for this molecule and basis
     auto mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(hchain, "STO-3G");
@@ -60,11 +60,6 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function ) {
     std::cout<<"K :"<<K<<" ";
     std::cout<<"N_P :"<<N_P<<" ";
 
-    // Create a plain RHF SCF solver and solve the SCF equations
-    GQCP::PlainRHFSCFSolver plain_scf_solver (mol_ham_par, hchain);
-    plain_scf_solver.solve();
-    auto rhf = plain_scf_solver.get_solution();
-
     std::cout<<"Checkpoint";
 
     mol_ham_par.LowdinOrthonormalize();
@@ -72,6 +67,8 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function ) {
     GQCP::FCI fci (fock_space);
 
     GQCP::DenseSolverOptions solver_options;
+    //solver_options.number_of_requested_eigenpairs = 0;
+
     GQCP::CISolver ci_solver (fci, mol_ham_par);
     ci_solver.solve(solver_options);
 
@@ -81,19 +78,23 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function ) {
     std::cout<<std::endl<<"-------------"<<std::endl;
     GQCP::SquareMatrix<double> U_random = GQCP::SquareMatrix<double>::RandomUnitary(K);
     std::cout<<U_random;
+
     std::cout<<"Checkpoint2";
 
 
     wavefunction1.basisTransform(U_random);
 
-    GQCP::SquareMatrix<double> U_T = GQCP::SquareMatrix<double>(U_random.transpose());
+    //GQCP::SquareMatrix<double> U_T = GQCP::SquareMatrix<double>(U_random.transpose());
     // Generate a new wave function by rotating the basis and performing the FCI again.
     mol_ham_par.rotate(U_random);
     GQCP::CISolver ci_solver2 (fci, mol_ham_par);
     ci_solver2.solve(solver_options);
 
-    auto wavefunction2 = ci_solver2.makeWavefunction();
+    const auto& pr = ci_solver2.get_eigenpairs();
+    auto wavefunction2 = ci_solver2.makeWavefunction(0);
 
+
+    std::cout<<std::endl<<"-------------"<<std::endl;
     std::cout<<std::endl<<wavefunction2.get_coefficients();
     std::cout<<std::endl<<"-------------"<<std::endl;
     std::cout<<std::endl<<wavefunction1.get_coefficients();

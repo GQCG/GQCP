@@ -97,7 +97,7 @@ void CISolver::solve(const BaseSolverOptions& solver_options) {
  *  @return the index-th excited state after solving the CI eigenvalue problem
  */
 WaveFunction CISolver::makeWavefunction(size_t index) const {
-    if (index > this->eigenpairs.size()) {
+    if (index >= this->eigenpairs.size()) {
         throw std::logic_error("CISolver::makeWavefunction(size_t): Not enough requested eigenpairs for the given index.");
     }
     return WaveFunction(*this->hamiltonian_builder->get_fock_space(), this->eigenpairs[index].get_eigenvector());
