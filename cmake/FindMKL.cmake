@@ -55,4 +55,4 @@ else()
     endif()
 endif()
 
-target_link_options(MKL::MKL INTERFACE "$<$<CXX_COMPILER_ID:GNU>:–-no-as-needed>")
+target_link_options(MKL::MKL INTERFACE "$<$<CXX_COMPILER_ID:GNU>:-Wl,–-no-as-needed>")
