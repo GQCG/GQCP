@@ -80,24 +80,14 @@ void WaveFunction::basisTransform(const SquareMatrix<double>& T) {
         throw std::invalid_argument("WaveFunction::basisTransform(SquareMatrix<double>): number of orbitals does not match the dimension of the transformation matrix T");
     }
 
-    Eigen::FullPivLU<Eigen::MatrixXd> LU (T);
-
-
-    /*
-    SquareMatrix<double> L = LU_decomposer.matrixL();
-    SquareMatrix<double> U = LU_decomposer.matrixU();
-     */
     Eigen::PartialPivLU<Eigen::MatrixXd> LU2 = T.lu();
     SquareMatrix<double> _L = SquareMatrix<double>::Identity(K, K);
     _L.triangularView<Eigen::StrictlyLower>() = LU2.matrixLU();
     SquareMatrix<double> L = SquareMatrix<double>(_L);
-    SquareMatrix<double> _U = SquareMatrix<double>(LU2.matrixLU().triangularView<Eigen::Upper>());
-    SquareMatrix<double> U = SquareMatrix<double>(_U );
+    SquareMatrix<double> U = SquareMatrix<double>(LU2.matrixLU().triangularView<Eigen::Upper>());
 
     SquareMatrix<double> I = SquareMatrix<double>::Identity(K, K);
 
-
-    std::cout<<std::endl<<"---------- LU ----------"<<std::endl<<L<<std::endl<<std::endl<<U<<std::endl;
 
     SquareMatrix<double> t =  I - L + U.inverse();
 
@@ -113,19 +103,17 @@ void WaveFunction::basisTransform(const SquareMatrix<double>& T) {
     VectorX<double> current_coefficients = this->coefficients;
     VectorX<double> correction_coefficients = VectorX<double>::Zero(product_fock_space.get_dimension());
 
-    std::cout<<std::endl<<"t:"<<t<<std::endl;
+    for (size_t m = 0; m < K; m++) {  // Iterate over all orbitals
 
-    for (size_t m = 0; m < K; m++) {
-
+        // Perform alpha and beta CI iterations
+        // Alpha-branch
         ONV alpha = fock_space_alpha.makeONV(0);
-
         for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {
             if (!alpha.isOccupied(m)) {
                 for (size_t e1 = 0; e1 < N_alpha; e1++) {  // e1 (electron 1) loops over the (number of) electrons
                     size_t p = alpha.get_occupation_index(e1);  // retrieve the index of a given electron
 
                     if (p < m) {
-
                         size_t address = I_alpha - fock_space_alpha.get_vertex_weights(p, e1 + 1);
                         size_t e2 = e1 + 1;
                         size_t q = p + 1;
@@ -138,7 +126,6 @@ void WaveFunction::basisTransform(const SquareMatrix<double>& T) {
                         }
 
                         address += fock_space_alpha.get_vertex_weights(q, e2);
-                        std::cout<<"a1:"<<I_alpha<<" : "<<"p :"<<p<<" m :"<<m<<" address: "<<address<<" sign: "<<sign<<std::endl;
 
                         for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {
                             correction_coefficients(I_alpha * dim_beta + I_beta) +=
@@ -147,7 +134,6 @@ void WaveFunction::basisTransform(const SquareMatrix<double>& T) {
                     }
 
                     if (p > m) {
-
                         size_t address = I_alpha - fock_space_alpha.get_vertex_weights(p, e1 + 1);
                         size_t e2 = e1 - 1;
                         size_t q = p - 1;
@@ -161,7 +147,6 @@ void WaveFunction::basisTransform(const SquareMatrix<double>& T) {
 
                         address += fock_space_alpha.get_vertex_weights(q, e2 + 2);
 
-                        std::cout<<"a2:"<<I_alpha<<" : "<<"p :"<<p<<" m :"<<m<<" address: "<<address<<" sign: "<<sign<<std::endl;
                         for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {
                             correction_coefficients(I_alpha * dim_beta + I_beta) +=
                                     sign * t(p, m) * current_coefficients(address * dim_beta + I_beta);
@@ -170,7 +155,7 @@ void WaveFunction::basisTransform(const SquareMatrix<double>& T) {
                 }
 
 
-            } else {
+            } else {  // If orbital m is occupied we can perform an in-place operation
                 for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {
                     correction_coefficients(I_alpha * dim_beta + I_beta) +=
                             (t(m, m) - 1) * current_coefficients(I_alpha * dim_beta + I_beta);
@@ -183,14 +168,9 @@ void WaveFunction::basisTransform(const SquareMatrix<double>& T) {
             }
         }
 
-
         current_coefficients += correction_coefficients;
-
-        std::cout<<std::endl<<"alpha "<<m<<" :"<<current_coefficients<<std::endl;
         correction_coefficients.setZero();
-
-        // BETA-BRANCH
-
+        // Beta-branch
         ONV beta = fock_space_beta.makeONV(0);
 
         for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {
@@ -199,7 +179,6 @@ void WaveFunction::basisTransform(const SquareMatrix<double>& T) {
                     size_t p = beta.get_occupation_index(e1);  // retrieve the index of a given electron
 
                     if (p < m) {
-
                         size_t address = I_beta - fock_space_beta.get_vertex_weights(p, e1 + 1);
                         size_t e2 = e1 + 1;
                         size_t q = p + 1;
@@ -212,7 +191,6 @@ void WaveFunction::basisTransform(const SquareMatrix<double>& T) {
                         }
 
                         address += fock_space_beta.get_vertex_weights(q, e2);
-                        std::cout<<"b1:"<<I_beta<<" : "<<"p :"<<p<<" m :"<<m<<" address: "<<address<<" sign: "<<sign<<std::endl;
 
                         for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {
                             correction_coefficients(I_alpha * dim_beta + I_beta) +=
@@ -221,7 +199,6 @@ void WaveFunction::basisTransform(const SquareMatrix<double>& T) {
                     }
 
                     if (p > m) {
-
                         size_t address = I_beta - fock_space_beta.get_vertex_weights(p, e1 + 1);
                         size_t e2 = e1 - 1;
                         size_t q = p - 1;
@@ -233,7 +210,6 @@ void WaveFunction::basisTransform(const SquareMatrix<double>& T) {
                             q--;
                             fock_space_beta.shiftUntilPreviousUnoccupiedOrbital<1>(beta, address, q, e2, sign);
                         }
-                        std::cout<<"b2:"<<I_beta<<" : "<<"p :"<<p<<" m :"<<m<<" address: "<<address<<" sign: "<<sign<<std::endl;
 
                         address += fock_space_beta.get_vertex_weights(q, e2 + 2);
 
@@ -244,7 +220,7 @@ void WaveFunction::basisTransform(const SquareMatrix<double>& T) {
                     }
                 }
 
-            } else {
+            } else {  // If orbital m is occupied we can perform an in-place operation
                 for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {
                     correction_coefficients(I_alpha * dim_beta + I_beta) +=
                             (t(m, m) - 1) * current_coefficients(I_alpha * dim_beta + I_beta);
@@ -256,11 +232,7 @@ void WaveFunction::basisTransform(const SquareMatrix<double>& T) {
             }
         }
 
-
         current_coefficients += correction_coefficients;
-
-        std::cout<<std::endl<<"beta -----------------------------------"<<m<<" :"<<current_coefficients<<std::endl;
-
         correction_coefficients.setZero();
     }
 

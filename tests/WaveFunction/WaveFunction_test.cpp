@@ -24,8 +24,6 @@
 #include "CISolver/CISolver.hpp"
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "HamiltonianBuilder/FCI.hpp"
-#include "Molecule.hpp"
-#include "RHF/PlainRHFSCFSolver.hpp"
 
 BOOST_AUTO_TEST_CASE ( shannon_entropy ) {
 
@@ -47,9 +45,7 @@ BOOST_AUTO_TEST_CASE ( shannon_entropy ) {
 BOOST_AUTO_TEST_CASE ( transform_wave_function ) {
 
     // Produce a wave function, transform it then pair it against second produced wave function from a transformed basis.
-    std::cout<<"Checkpoint0";
-
-        // Create a molecule
+    // Create a molecule
     GQCP::Molecule hchain = GQCP::Molecule::HChain(4, 0.742, 0);
 
     // Create the molecular Hamiltonian parameters for this molecule and basis
@@ -57,34 +53,21 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function ) {
     auto K = mol_ham_par.get_K();
     auto N_P = hchain.get_N()/2;
 
-    std::cout<<"K :"<<K<<" ";
-    std::cout<<"N_P :"<<N_P<<" ";
-
-    std::cout<<"Checkpoint";
-
     mol_ham_par.LowdinOrthonormalize();
     GQCP::ProductFockSpace fock_space (K, N_P, N_P);
     GQCP::FCI fci (fock_space);
 
     GQCP::DenseSolverOptions solver_options;
-    //solver_options.number_of_requested_eigenpairs = 0;
 
     GQCP::CISolver ci_solver (fci, mol_ham_par);
     ci_solver.solve(solver_options);
 
     // Retrieve the wave function and transform it
     auto wavefunction1 = ci_solver.makeWavefunction();
-    std::cout<<std::endl<<wavefunction1.get_coefficients();
-    std::cout<<std::endl<<"-------------"<<std::endl;
     GQCP::SquareMatrix<double> U_random = GQCP::SquareMatrix<double>::RandomUnitary(K);
-    std::cout<<U_random;
-
-    std::cout<<"Checkpoint2";
-
 
     wavefunction1.basisTransform(U_random);
 
-    //GQCP::SquareMatrix<double> U_T = GQCP::SquareMatrix<double>(U_random.transpose());
     // Generate a new wave function by rotating the basis and performing the FCI again.
     mol_ham_par.rotate(U_random);
     GQCP::CISolver ci_solver2 (fci, mol_ham_par);
@@ -93,16 +76,6 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function ) {
     const auto& pr = ci_solver2.get_eigenpairs();
     auto wavefunction2 = ci_solver2.makeWavefunction(0);
 
-
-    std::cout<<std::endl<<"-------------"<<std::endl;
-    std::cout<<std::endl<<wavefunction2.get_coefficients();
-    std::cout<<std::endl<<"-------------"<<std::endl;
-    std::cout<<std::endl<<wavefunction1.get_coefficients();
-
     // Check if they deviate
     BOOST_CHECK(wavefunction2.get_coefficients().isApprox(wavefunction1.get_coefficients()));
-
-
-
-    BOOST_CHECK(true);
 }
