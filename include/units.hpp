@@ -26,8 +26,8 @@ namespace units {
 namespace constants {
 
 struct CODATA2014 {
-    constexpr static double angstrom_per_bohr = 0.52917721067;
-    constexpr static double bohr_per_angstrom = 1 / angstrom_per_bohr;
+    static constexpr double angstrom_per_bohr = 0.52917721067;
+    static constexpr double bohr_per_angstrom = 1 / angstrom_per_bohr;
 };
 
 }  // namespace constants

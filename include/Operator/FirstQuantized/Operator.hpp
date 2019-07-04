@@ -43,7 +43,7 @@ namespace GQCP {
 class OverlapOperator {
 public:
     using Scalar = double;  // the scalar representation of the operator
-    constexpr static size_t Components = 1;  // the number of components the operator has
+    static constexpr size_t Components = 1;  // the number of components the operator has
 };
 
 
@@ -53,7 +53,7 @@ public:
 class KineticOperator {
 public:
     using Scalar = double;  // the scalar representation of the operator
-    constexpr static size_t Components = 1;  // the number of components the operator has
+    static constexpr size_t Components = 1;  // the number of components the operator has
 };
 
 
@@ -63,7 +63,7 @@ public:
 class NuclearAttractionOperator : public BaseNuclearOperator {
 public:
     using Scalar = double;  // the scalar representation of the operator
-    constexpr static size_t Components = 1;  // the number of components the operator has
+    static constexpr size_t Components = 1;  // the number of components the operator has
 
 
 public:
@@ -78,7 +78,7 @@ public:
 class CoulombRepulsionOperator {
 public:
     using Scalar = double;  // the scalar representation of the operator
-    constexpr static size_t Components = 1;  // the number of components the operator has
+    static constexpr size_t Components = 1;  // the number of components the operator has
 };
 
 
@@ -88,7 +88,7 @@ public:
 class ElectronicDipoleOperator: public BaseMultipoleOperator {
 public:
     using Scalar = double;  // the scalar representation of the operator
-    constexpr static size_t Components = 3;  // the number of components the operator has
+    static constexpr size_t Components = 3;  // the number of components the operator has
 
 
 public:

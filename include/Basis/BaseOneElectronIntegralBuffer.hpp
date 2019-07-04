@@ -39,7 +39,7 @@ template <typename _Scalar, size_t _N>
 class BaseOneElectronIntegralBuffer {
 public:
     using Scalar = _Scalar;  // the scalar representation of an integral
-    constexpr static auto N = _N;  // the number of components the operator has
+    static constexpr auto N = _N;  // the number of components the operator has
 
 
 private:
