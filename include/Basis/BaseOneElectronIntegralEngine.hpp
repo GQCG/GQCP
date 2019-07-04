@@ -42,6 +42,16 @@ public:
     using ShellType = _ShellType;  // the type of shell the integral engine is able to handle
     using Scalar = _Scalar;  // the scalar representation of an integral
     static constexpr auto N = _N;  // the number of components the operator has
+
+
+public:
+    // PUBLIC METHODS
+
+    /**
+     *  @param sh1          the first shell
+     *  @param sh2          the second shell
+     */
+    virtual auto calculate(const ShellType& sh1, const ShellType& sh2) -> std::shared_ptr<BaseOneElectronIntegralBuffer<Scalar, N>> = 0;
 };
 
 
