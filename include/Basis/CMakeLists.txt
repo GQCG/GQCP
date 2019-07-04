@@ -6,7 +6,7 @@ target_sources(gqcp
             CartesianGTO.hpp
             GTOShell.hpp
             LibcintInterfacer.hpp
-            Libint2OneElectronIntegralEngine.hpp
+            LibintOneElectronIntegralEngine.hpp
             LibintInterfacer.hpp
             OneElectronIntegralEngine.hpp
             ShellSet.hpp

@@ -15,11 +15,12 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCP_LIBINT2ONEELECTRONINTEGRALENGINE_HPP
-#define GQCP_LIBINT2ONEELECTRONINTEGRALENGINE_HPP
+#ifndef GQCP_LIBINTONEELECTRONINTEGRALENGINE_HPP
+#define GQCP_LIBINTONEELECTRONINTEGRALENGINE_HPP
 
 
 #include "Basis/BaseOneElectronIntegralEngine.hpp"
+#include "Basis/GTOShell.hpp"
 
 
 namespace GQCP {
@@ -29,7 +30,7 @@ namespace GQCP {
  *  A one-electron integral engine that uses Libint2 as its backend
  */
 template <size_t _N, typename _Scalar>
-class Libint2OneElectronIntegralEngine {
+class LibintOneElectronIntegralEngine : public BaseOneElectronIntegralEngine<GTOShell, _N, _Scalar> {
 };
 
 
@@ -37,4 +38,4 @@ class Libint2OneElectronIntegralEngine {
 
 
 
-#endif  // GQCP_LIBINT2ONEELECTRONINTEGRALENGINE_HPP
+#endif  // GQCP_LIBINTONEELECTRONINTEGRALENGINE_HPP
