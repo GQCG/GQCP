@@ -19,18 +19,38 @@
 #define GQCP_ONEELECTRONINTEGRALENGINE_HPP
 
 
-#include "Basis/BaseOneElectronIntegralEngine.hpp"
+#include "Basis/LibintOneElectronIntegralEngine.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
+#include "typedefs.hpp"
 
 
 namespace GQCP {
 
 
 /**
- *  A class that produces correct derived one-electron integral engines
+ *  A class that produces integral engines, much like a factory class
  */
-class OneElectronIntegralEngine {
+class IntegralEngine {
 public:
+
+    /*
+     *  LIBINT - ONE-ELECTRON ENGINES
+     * 
+     *  The following functions create one-electron integral engine using the Libint integral library backend, with the correct template arguments filled in
+     */
+    static auto Libint(const OverlapOperator& op) -> LibintOneElectronIntegralEngine<OverlapOperator::Components, product_t<OverlapOperator::Scalar, GTOShell::BasisFunction::Valued>>;
+
+    static auto Libint(const KineticOperator& op) -> LibintOneElectronIntegralEngine<KineticOperator::Components, product_t<KineticOperator::Scalar, GTOShell::BasisFunction::Valued>>;
+
+    static auto Libint(const NuclearAttractionOperator& op) -> LibintOneElectronIntegralEngine<NuclearAttractionOperator::Components, product_t<NuclearAttractionOperator::Scalar, GTOShell::BasisFunction::Valued>>;
+
+
+    /*
+     *  LIBINT - TWO-ELECTRON ENGINES
+     * 
+     *  The following functions create two-electron integral engine using the Libint integral library backend, with the correct template arguments filled in
+     */
+    // static auto Libint(const CoulombRepulsionOperator& op) -> LibintTwoElectronIntegralEngine<CoulombRepulsionOperator::Components, product_t<CoulombRepulsionOperator::Scalar, GTOShell::BasisFunction::Valued>>;
 };
 
 
