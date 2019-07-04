@@ -29,7 +29,7 @@ find_path(MKL_INCLUDE_DIR mkl.h HINTS $ENV{MKLROOT}/include)
 find_library(MKL_INTERFACE_LIBRARY NAMES libmkl_intel_lp64.a PATHS $ENV{MKLROOT}/lib $ENV{MKLROOT}/lib/intel64)
 find_library(MKL_INTEL_THREAD NAMES libmkl_intel_thread.a PATHS $ENV{MKLROOT}/lib $ENV{MKLROOT}/lib/intel64)
 find_library(MKL_CORE_LIBRARY NAMES libmkl_core.a PATHS $ENV{MKLROOT}/lib $ENV{MKLROOT}/lib/intel64)
-find_library(MKL_LAPACK NAMES libmkl_lapack95_lp64.a  PATHS $ENV{MKLROOT}/lib $ENV{MKLROOT}/lib/intel64)
+find_library(MKL_LAPACK NAMES libmkl_lapack.a  PATHS $ENV{MKLROOT}/lib $ENV{MKLROOT}/lib/intel64)
 get_filename_component(IOMP5_ROOT $ENV{MKLROOT}/.. ABSOLUTE) # The root of IOMP installation can be one directory above the MKL root.
 find_library(MKL_IOMP5 NAMES libiomp5.so libiomp5.dylib PATHS $ENV{MKLROOT}/lib $ENV{MKLROOT}/lib/intel64 ${IOMP5_ROOT}/lib ${IOMP5_ROOT}/lib/intel64) # This library should be dynamically linked.
 
