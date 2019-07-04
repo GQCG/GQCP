@@ -145,13 +145,12 @@ libint2::Shell LibintInterfacer::interface(const GTOShell& shell) const {
  *
  *  @return a libint2::BasisSet (whose underlying libint2::Shells have been re-renorm()alized), interfaced from the GQCP ShellSet. Note that it is not possible to create libint2-sp-shells from a GQCP ShellSet
  */
-libint2::BasisSet LibintInterfacer::interface(const ShellSet& shellset) const {
+libint2::BasisSet LibintInterfacer::interface(const ShellSet<GTOShell>& shellset) const {
 
     libint2::BasisSet libint_basisset;  // start with an empty vector, we're doing push_backs later
-    libint_basisset.reserve(shellset.size());
+    libint_basisset.reserve(shellset.numberOfShells());
 
-
-    for (const auto& shell : shellset) {
+    for (const auto& shell : shellset.asVector()) {
         libint_basisset.push_back(this->interface(shell));
     }
 
@@ -238,19 +237,19 @@ std::vector<GTOShell> LibintInterfacer::interface(const libint2::Shell& libint_s
  *  @param libint_basisset      the libint2 Shell that should be interfaced
  *  @param nuclei               the nuclei that can serve as centers of the Shells
  *
- *  @return a GQCP::ShellSet corresponding to the un-renorm()alized libint2::BasisSet
+ *  @return a vector of GTOShells corresponding to the un-renorm()alized libint2::BasisSet
  */
-ShellSet LibintInterfacer::interface(const libint2::BasisSet& libint_basisset, const std::vector<Nucleus>& nuclei) const {
+std::vector<GTOShell> LibintInterfacer::interface(const libint2::BasisSet& libint_basisset, const std::vector<Nucleus>& nuclei) const {
 
-    ShellSet shell_set;
-    shell_set.reserve(this->numberOfShells(libint_basisset));
+    std::vector<GTOShell> shells;
+    shells.reserve(this->numberOfShells(libint_basisset));
     for (const auto& libint_shell : libint_basisset) {
         for (const auto& shell : this->interface(libint_shell, nuclei)) {
-            shell_set.push_back(shell);
+            shells.push_back(shell);
         }
     }
 
-    return shell_set;
+    return shells;
 }
 
 

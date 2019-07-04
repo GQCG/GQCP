@@ -18,10 +18,11 @@
 #ifndef LibcintInterfacer_hpp
 #define LibcintInterfacer_hpp
 
+#include "Basis/GTOShell.hpp"
+#include "Basis/ShellSet.hpp"
+#include "Molecule/Molecule.hpp"
 #include "Operator/OneElectronOperator.hpp"
 #include "Operator/TwoElectronOperator.hpp"
-#include "Molecule/Molecule.hpp"
-#include "Basis/ShellSet.hpp"
 
 #include <functional>
 
@@ -150,7 +151,7 @@ public:
      *
      *  @return the information in a GQCP::ShellSet as a libcint::RawContainer
      */
-    libcint::RawContainer convert(const ShellSet& shell_set) const;
+    libcint::RawContainer convert(const ShellSet<GTOShell>& shell_set) const;
 
     /**
      *  Set the origin for the calculation of all vector-related integrals

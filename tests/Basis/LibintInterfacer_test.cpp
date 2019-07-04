@@ -19,8 +19,8 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include "Basis/GTOShell.hpp"
 #include "Basis/LibintInterfacer.hpp"
-
 #include "Utilities/linalg.hpp"
 
 
@@ -126,7 +126,7 @@ BOOST_AUTO_TEST_CASE ( ShellSet_to_BasisSet ) {
     // Make a test ShellSet
     GQCP::GTOShell s (0, GQCP::Nucleus(), {1.0, 2.0}, {0.5, -0.5}, true);
     GQCP::GTOShell d (2, GQCP::Nucleus(), {4.0, 8.0}, {1.5, -1.5}, false);
-    GQCP::ShellSet shellset {s, d};
+    GQCP::ShellSet<GQCP::GTOShell> shellset {s, d};
 
 
     // Make the reference BasisSet
@@ -200,7 +200,7 @@ BOOST_AUTO_TEST_CASE ( BasisSet_to_ShellSet ) {
     std::vector<GQCP::Nucleus> nuclei {h1, o, h2};
     bool pure = false;  // STO-3G represents Cartesian shells
 
-    GQCP::ShellSet ref_shellset {
+    GQCP::ShellSet<GQCP::GTOShell> ref_shellset {
         GQCP::GTOShell(0, h1, {  3.42525091,  0.62391373, 0.16885540}, { 0.15432897, 0.53532814, 0.44463454}, pure),
         GQCP::GTOShell(0, o,  {130.7093200,  23.8088610,  6.4436083},  { 0.15432897, 0.53532814, 0.44463454}, pure),
         GQCP::GTOShell(0, o,  {  5.0331513,   1.1695961,  0.3803890},  {-0.09996723, 0.39951283, 0.70011547}, pure),
@@ -214,7 +214,7 @@ BOOST_AUTO_TEST_CASE ( BasisSet_to_ShellSet ) {
     // Construct the corresponding libint2::BasisSet
     auto libint_atoms = GQCP::LibintInterfacer::get().interface(nuclei);
     libint2::BasisSet libint_basisset ("STO-3G", libint_atoms);
-    auto shellset = GQCP::LibintInterfacer::get().interface(libint_basisset, nuclei);
+    auto shells = GQCP::LibintInterfacer::get().interface(libint_basisset, nuclei);
 
-    BOOST_CHECK(ref_shellset == shellset);
+    BOOST_CHECK(ref_shellset.asVector() == shells);
 }
