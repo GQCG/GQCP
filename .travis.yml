@@ -89,7 +89,7 @@ install:
 
     # Install the GQCG fork of Libcint
     - cd /tmp
-    - git clone -b feature/cmake_refactor https://github.com/GQCG/libcint.git
+    - git clone -b develop https://github.com/GQCG/libcint.git
     - cd libcint
     - mkdir build && cd build
     - cmake ..
