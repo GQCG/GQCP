@@ -45,14 +45,6 @@ before_install:
         bash $HOME/download/miniconda.sh -b -p ${HOME}/miniconda;
       fi
 
-    # Add headers and libraries to path
-    - export CONDA_HOME=${HOME}/miniconda
-    - export C_INCLUDE_PATH=${CONDA_HOME}/include:${C_INCLUDE_PATH}
-    - export CPLUS_INCLUDE_PATH=${CONDA_HOME}/include:${CPLUS_INCLUDE_PATH}
-    - export LIBRARY_PATH=${CONDA_HOME}/lib:${LIBRARY_PATH}
-    - export LD_LIBRARY_PATH=${CONDA_HOME}/lib:${LD_LIBRARY_PATH}
-    - export DYLD_FALLBACK_LIBRARY_PATH=${CONDA_HOME}/lib:${DYLD_FALLBACK_LIBRARY_PATH}
-
     # Set GCC 8 compiler
     - export CC=/usr/bin/gcc-8
     - export CXX=/usr/bin/g++-8
@@ -92,14 +84,14 @@ install:
     - git clone -b develop https://github.com/GQCG/libcint.git
     - cd libcint
     - mkdir build && cd build
-    - cmake .. -DUSE_MKL=TRUE
+    - cmake .. -DUSE_MKL=TRUE -DCMAKE_INSTALL_PREFIX=~/.local -DCMAKE_PREFIX_PATH=${HOME}/miniconda
     - make -j3 && sudo make install
 
 # Run the build script
 script:
   - cd ${TRAVIS_BUILD_DIR}
   - mkdir build && cd build
-  - cmake .. -DBUILD_TESTS=TRUE -DBUILD_BENCHMARKS=TRUE -DBUILD_DRIVERS=TRUE -DBUILD_PYTHON_BINDINGS=TRUE -DCMAKE_INCLUDE_PATH=${HOME}/miniconda/include -DCMAKE_LIBRARY_PATH=${HOME}/miniconda/lib
+  - cmake .. -DBUILD_TESTS=TRUE -DBUILD_BENCHMARKS=TRUE -DBUILD_DRIVERS=TRUE -DBUILD_PYTHON_BINDINGS=TRUE -DCMAKE_INSTALL_PREFIX=~/.local -DCMAKE_PREFIX_PATH=${HOME}/miniconda
   - make -j3 VERBOSE=1 && env CTEST_OUTPUT_ON_FAILURE=1 make test ARGS=-j3 && sudo make install
 
 # Run the benchmarks
