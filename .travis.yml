@@ -92,7 +92,7 @@ install:
     - git clone -b develop https://github.com/GQCG/libcint.git
     - cd libcint
     - mkdir build && cd build
-    - cmake ..
+    - cmake .. -DUSE_MKL=TRUE
     - make -j3 && sudo make install
 
 # Run the build script
