@@ -42,7 +42,7 @@ public:
     static constexpr auto N = _N;  // the number of components the operator has
 
 
-private:
+protected:
     size_t nbf1;  // the number of basis functions in the first shell
     size_t nbf2;  // the number of basis functions in the second shell
 

@@ -12,7 +12,14 @@ target_sources(gqcp
             IntegralCalculator.hpp
             IntegralEngine.hpp
             LibcintInterfacer.hpp
+            LibcintOneElectronIntegralBuffer.hpp
+            LibcintOneElectronIntegralEngine.hpp
+            LibcintTwoElectronIntegralBuffer.hpp
+            LibcintTwoElectronIntegralEngine.hpp
             LibintInterfacer.hpp
+            LibintOneElectronIntegralBuffer.hpp
             LibintOneElectronIntegralEngine.hpp
+            LibintTwoElectronIntegralBuffer.hpp
+            LibintTwoElectronIntegralEngine.hpp
             ShellSet.hpp
         )

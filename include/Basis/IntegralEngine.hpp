@@ -39,12 +39,12 @@ public:
      *  The following functions create one-electron integral engine using the Libint integral library backend, with the correct template arguments filled in
      */
 
-    // TODO: can be generalized if Operators derive from OneElectronOperator and TwoElectronOperator
-    static auto Libint(const OverlapOperator& op) -> LibintOneElectronIntegralEngine<OverlapOperator::Components, product_t<OverlapOperator::Scalar, GTOShell::BasisFunction::Valued>>;
+    // TODO: could be generalized if Operators derive from OneElectronOperator and TwoElectronOperator
+    static auto Libint(const OverlapOperator& op) -> LibintOneElectronIntegralEngine<OverlapOperator::Components>;
 
-    static auto Libint(const KineticOperator& op) -> LibintOneElectronIntegralEngine<KineticOperator::Components, product_t<KineticOperator::Scalar, GTOShell::BasisFunction::Valued>>;
+    static auto Libint(const KineticOperator& op) -> LibintOneElectronIntegralEngine<KineticOperator::Components>;
 
-    static auto Libint(const NuclearAttractionOperator& op) -> LibintOneElectronIntegralEngine<NuclearAttractionOperator::Components, product_t<NuclearAttractionOperator::Scalar, GTOShell::BasisFunction::Valued>>;
+    static auto Libint(const NuclearAttractionOperator& op) -> LibintOneElectronIntegralEngine<NuclearAttractionOperator::Components>;
 
 
     /*

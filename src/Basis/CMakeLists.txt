@@ -5,6 +5,7 @@ target_sources(gqcp
             CartesianGTO.cpp
             GTOBasisSet.cpp
             GTOShell.cpp
+            IntegralEngine.cpp
             LibcintInterfacer.cpp
             LibintInterfacer.cpp
         )

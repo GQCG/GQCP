@@ -15,20 +15,21 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCP_BASEONELECTRONINTEGRALENGINE_HPP
-#define GQCP_BASEONELECTRONINTEGRALENGINE_HPP
+// 
+#ifndef GQCP_LIBCINTONEELECTRONINTEGRALENGINE_HPP
+#define GQCP_LIBCINTONEELECTRONINTEGRALENGINE_HPP
 
 
-#include "Basis/BaseOneElectronIntegralBuffer.hpp"
+#include "Basis/BaseOneElectronIntegralEngine.hpp"
 
-#include <memory>
+#include "Basis/LibcintOneElectronIntegralBuffer.hpp"
 
 
 namespace GQCP {
 
 
 /**
- *  A base class to implement one-electron integral engines. Integral engines are used calculate integrals of operators over shells, see also the calculate() call
+ *  An one-electron integral engine that uses libcint as its backend
  * 
  *  @tparam _ShellType          the type of shell the integral engine is able to handle
  *  @tparam _N                  the number of components the operator has
@@ -37,25 +38,17 @@ namespace GQCP {
  *  _ShellType is a template parameter because that enables compile-time checking of correct arguments
  */
 template <typename _ShellType, size_t _N, typename _Scalar>
-class BaseOneElectronIntegralEngine {
+class LibcintOneElectronIntegralEngine : public BaseOneElectronIntegralEngine<_ShellType, _N, _Scalar> {
 public:
     using ShellType = _ShellType;  // the type of shell the integral engine is able to handle
     using Scalar = _Scalar;  // the scalar representation of an integral
     static constexpr auto N = _N;  // the number of components the operator has
-
-
-public:
-    // PUBLIC METHODS
-
-    /**
-     *  @param shell1           the first shell
-     *  @param shell2           the second shell
-     */
-    virtual std::shared_ptr<BaseOneElectronIntegralBuffer<Scalar, N>> calculate(const ShellType& shell1, const ShellType& shell2) const = 0;
 };
+
 
 
 }  // namespace GQCP
 
 
-#endif  // GQCP_BASEONELECTRONINTEGRALENGINE_HPP
+
+#endif  // GQCP_LIBCINTONEELECTRONINTEGRALENGINE_HPP

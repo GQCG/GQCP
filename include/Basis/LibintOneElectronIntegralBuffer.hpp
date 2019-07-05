@@ -15,57 +15,27 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCP_LIBINTONEELECTRONINTEGRALENGINE_HPP
-#define GQCP_LIBINTONEELECTRONINTEGRALENGINE_HPP
+// 
+#ifndef GQCP_LIBINTONEELECTRONINTEGRALBUFFER_HPP
+#define GQCP_LIBINTONEELECTRONINTEGRALBUFFER_HPP
 
 
-#include "Basis/BaseOneElectronIntegralEngine.hpp"
-
-#include "Basis/GTOShell.hpp"
 #include "Basis/BaseOneElectronIntegralBuffer.hpp"
-#include "Basis/LibintInterfacer.hpp"
-#include "Operator/FirstQuantized/Operator.hpp"
-
 
 
 namespace GQCP {
 
 
 /**
- *  A one-electron integral engine that uses libint as its backend
+ *  A buffer for storing libint one-electron integrals
  * 
- *  @tparam _N                  the number of components the operator has
+ *  @tparam _N              the number of components the operator has
  */
 template <size_t _N>
-class LibintOneElectronIntegralEngine : public BaseOneElectronIntegralEngine<GTOShell, _N, double> {
+class LibintOneElectronIntegralBuffer : public BaseOneElectronIntegralBuffer<double, _N> {
 public:
     using Scalar = double;  // the scalar representation of an integral for libint is always a real number
     static constexpr auto N = _N;  // the number of components the operator has
-
-
-private:
-    libint2::Engine libint2_engine;
-
-
-public:
-    /*
-     *  CONSTRUCTORS
-     */
-
-    LibintOneElectronIntegralEngine(const OverlapOperator& op) :
-        libint2_engine ()
-    {}
-
-
-    /*
-     *  PUBLIC OVERRIDDEN METHODS
-     */
-
-    /**
-     *  @param shell1           the first shell
-     *  @param shell2           the second shell
-     */
-    std::shared_ptr<BaseOneElectronIntegralBuffer<Scalar, N>> calculate(const GTOShell& shell1, const GTOShell& shell2) const override;
 };
 
 
@@ -73,4 +43,4 @@ public:
 
 
 
-#endif  // GQCP_LIBINTONEELECTRONINTEGRALENGINE_HPP
+#endif  // GQCP_LIBINTONEELECTRONINTEGRALBUFFER_HPP
