@@ -64,7 +64,7 @@ double WaveFunction::calculateShannonEntropy() const {
 
 
 /**
- *  Transform the underlying ONV basis of the wave function (only for FCI [ProductFockSpace])
+ *  Transform the underlying ONV basis of the wave function (only for FCI [ProductFockSpace]) as shown in Helgaker 11.9
  *
  *  @param T    the transformation matrix between the old and the new orbital basis
  */
@@ -80,17 +80,20 @@ void WaveFunction::basisTransform(const SquareMatrix<double>& T) {
         throw std::invalid_argument("WaveFunction::basisTransform(SquareMatrix<double>): number of orbitals does not match the dimension of the transformation matrix T");
     }
 
+    // Retrieve LU decomposition for T, TODO: look for more general full-pivot alternative
     Eigen::PartialPivLU<Eigen::MatrixXd> LU2 = T.lu();
-    SquareMatrix<double> _L = SquareMatrix<double>::Identity(K, K);
-    _L.triangularView<Eigen::StrictlyLower>() = LU2.matrixLU();
-    SquareMatrix<double> L = SquareMatrix<double>(_L);
+
+    // Retrieve L
+    SquareMatrix<double> L = SquareMatrix<double>::Identity(K, K);
+    L.triangularView<Eigen::StrictlyLower>() = LU2.matrixLU();
+
+    // Retrive U
     SquareMatrix<double> U = SquareMatrix<double>(LU2.matrixLU().triangularView<Eigen::Upper>());
 
-    SquareMatrix<double> I = SquareMatrix<double>::Identity(K, K);
+    // Calculate t (the operator which allows per-orbital transformation of the wave function)
+    SquareMatrix<double> t =  SquareMatrix<double>::Identity(K, K); - L + U.inverse();
 
-
-    SquareMatrix<double> t =  I - L + U.inverse();
-
+    // FockSpace
     const auto& product_fock_space = dynamic_cast<const ProductFockSpace&>(*fock_space);
     const FockSpace& fock_space_alpha = product_fock_space.get_fock_space_alpha();
     const FockSpace& fock_space_beta = product_fock_space.get_fock_space_beta();
@@ -100,7 +103,9 @@ void WaveFunction::basisTransform(const SquareMatrix<double>& T) {
     auto N_alpha = fock_space_alpha.get_N();
     auto N_beta = fock_space_beta.get_N();
 
-    VectorX<double> current_coefficients = this->coefficients;
+    // Wave function transformtion algorithm
+    VectorX<double> current_coefficients = this->coefficients;  // coefficients will be updated after each orbital transform (C^(n-1)) in Helgaker
+    // each iteration will calculate a set of correction coefficients (Delta C in Helgaker) to update "current_coefficients".
     VectorX<double> correction_coefficients = VectorX<double>::Zero(product_fock_space.get_dimension());
 
     for (size_t m = 0; m < K; m++) {  // Iterate over all orbitals
@@ -170,6 +175,7 @@ void WaveFunction::basisTransform(const SquareMatrix<double>& T) {
 
         current_coefficients += correction_coefficients;
         correction_coefficients.setZero();
+
         // Beta-branch
         ONV beta = fock_space_beta.makeONV(0);
 
