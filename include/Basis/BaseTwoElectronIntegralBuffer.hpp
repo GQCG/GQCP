@@ -36,7 +36,7 @@ namespace GQCP {
  *  @tparam _N              the number of components the operator has
  */
 template <typename _Scalar, size_t _N>
-class BaseOneElectronIntegralBuffer {
+class BaseTwoElectronIntegralBuffer {
 public:
     using Scalar = _Scalar;  // the scalar representation of an integral
     static constexpr auto N = _N;  // the number of components the operator has
@@ -62,7 +62,7 @@ public:
      *  @param nbf3             the number of basis functions in the third shell
      *  @param nbf4             the number of basis functions in the fourth shell
      */
-    BaseOneElectronIntegralBuffer(const size_t nbf1, const size_t nbf2, const size_t nbf3, const size_t nbf4) :
+    BaseTwoElectronIntegralBuffer(const size_t nbf1, const size_t nbf2, const size_t nbf3, const size_t nbf4) :
         nbf1 (nbf1),
         nbf2 (nbf2),
         nbf3 (nbf3),
@@ -123,8 +123,18 @@ public:
             const auto& component = components[i];
 
             // Place the calculated integrals inside the correct block (for Tensors, this is a 'slice')
-            Eigen::array<int, 4> offsets {bf1, bf2, bf3, bf4};
-            Eigen::array<int, 4> extents {this->nbf1, this->nbf2, this->nbf3, this->nbf4};  // length of the slices
+            const auto bf1_int = static_cast<int>(bf1);
+            const auto bf2_int = static_cast<int>(bf2);
+            const auto bf3_int = static_cast<int>(bf3);
+            const auto bf4_int = static_cast<int>(bf4);
+
+            const auto nbf1_int = static_cast<int>(this->nbf1);
+            const auto nbf2_int = static_cast<int>(this->nbf2);
+            const auto nbf3_int = static_cast<int>(this->nbf3);
+            const auto nbf4_int = static_cast<int>(this->nbf4);
+
+            Eigen::array<int, 4> offsets {bf1_int, bf2_int, bf3_int, bf4_int};
+            Eigen::array<int, 4> extents {nbf1_int, nbf2_int, nbf3_int, nbf4_int};  // length of the slices
             full_component.slice(offsets, extents) = component;
         }
     }

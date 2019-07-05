@@ -19,6 +19,8 @@
 #include "Basis/GTOBasisSet.hpp"
 #include "Basis/LibintInterfacer.hpp"
 #include "Basis/LibcintInterfacer.hpp"
+#include "Basis/IntegralEngine.hpp"
+#include "Basis/IntegralCalculator.hpp"
 
 
 namespace GQCP {
@@ -74,8 +76,9 @@ size_t AOBasis::numberOfBasisFunctions() const {
  */
 OneElectronOperator<double> AOBasis::calculateLibintOverlapIntegrals() const {
 
-    auto libint_basisset = LibintInterfacer::get().interface(this->shell_set);
-    return LibintInterfacer::get().calculateOneElectronIntegrals<1>(libint2::Operator::overlap, libint_basisset)[0];
+    const auto engine = IntegralEngine::Libint(Operator::Overlap());
+    const auto integrals = IntegralCalculator::calculate(engine, this->shell_set);
+    return OneElectronOperator<double>(integrals[0]);
 }
 
 

@@ -63,16 +63,20 @@ public:
 
         // Loop over all shells (twice) inside the Shell set and let the engine calculate the integrals of two shells
         const auto nsh = shell_set.numberOfShells();
-        for (size_t sh1 = 0; sh1 < nsh; sh2++) {  // shell 1
-            const auto bf1 = shell_set.basisFunctionIndex(sh1);
+        const auto shells = shell_set.asVector();
+        for (size_t sh1_index = 0; sh1_index < nsh; sh1_index++) {  // shell 1
+            const auto bf1 = shell_set.basisFunctionIndex(sh1_index);
+            const auto shell1 = shells[sh1_index];
 
-            for (size_t sh2 = 0; sh2 < nsh; sh2++) {  // shell 2
-                const auto bf2 = shell_set.basisFunctionIndex(sh2);
+            for (size_t sh2_index = 0; sh2_index < nsh; sh2_index++) {  // shell 2
+                const auto bf2 = shell_set.basisFunctionIndex(sh2_index);
+                const auto shell2 = shells[sh1_index];
 
-                const auto buffer = engine.calculate(sh1, sh2);  // calculate the integrals over the two shells
-                buffer.emplace(components, bf1, bf2);  // place the calculated integrals inside the full matrices
-            }  // sh2
-        }  // sh1
+                // Calculate the integrals over the shells and place the calculated integrals inside the full matrices
+                const auto buffer = engine.calculate(shell1, shell2);
+                buffer->emplace(components, bf1, bf2);
+            }  // sh2_index
+        }  // sh1_index
 
         return components;
     }
@@ -102,24 +106,29 @@ public:
 
         // Loop over all shells (four times) inside the Shell set and let the engine calculate the integrals over four shells
         const auto nsh = shell_set.numberOfShells();
-        for (size_t sh1 = 0; sh1 < nsh; sh2++) {  // shell 1
-            const auto bf1 = shell_set.basisFunctionIndex(sh1);
+        const auto shells = shell_set.asVector();
+        for (size_t sh1_index = 0; sh1_index < nsh; sh1_index++) {  // shell 1
+            const auto bf1 = shell_set.basisFunctionIndex(sh1_index);
+            const auto shell1 = shells[sh1_index];
 
-            for (size_t sh2 = 0; sh2 < nsh; sh2++) {  // shell 2
-                const auto bf2 = shell_set.basisFunctionIndex(sh2);
+            for (size_t sh2_index = 0; sh2_index < nsh; sh2_index++) {  // shell 2
+                const auto bf2 = shell_set.basisFunctionIndex(sh2_index);
+                const auto shell2 = shells[sh2_index];
 
-                for (size_t sh3 = 0; sh3 < nsh; sh3++) {
-                    const auto bf3 = shell_set.basisFunctionIndex(sh3);
-                    
-                    for (size_t sh4 = 0; sh4 < nsh; sh4++) {
-                        const auto bf4 = shell_set.basisFunctionIndex(sh4);
+                for (size_t sh3_index = 0; sh3_index < nsh; sh3_index++) {  // shell 3
+                    const auto bf3 = shell_set.basisFunctionIndex(sh3_index);
+                    const auto shell3 = shells[sh3_index];
 
-                        const auto buffer = engine.calculate(sh1, sh2, sh3, sh4);  // calculate the integrals over the three shells
-                        buffer.emplace(components, bf1, bf2, bf3, bf4);  // place the calculated integrals inside the full tensors
-                    }  // sh4
-                }  // sh3
-            }  // sh2
-        }  // sh1
+                    for (size_t sh4_index = 0; sh4_index < nsh; sh4_index++) {  // shell 4
+                        const auto bf4 = shell_set.basisFunctionIndex(sh4_index);
+                        const auto shell4 = shells[sh4_index];
+
+                        const auto buffer = engine.calculate(shell1, shell2, shell3, shell4);  // calculate the integrals over the three shells
+                        buffer->emplace(components, bf1, bf2, bf3, bf4);  // place the calculated integrals inside the full tensors
+                    }  // sh4_index
+                }  // sh3_index
+            }  // sh2_index
+        }  // sh1_index
 
         return components;
     }
