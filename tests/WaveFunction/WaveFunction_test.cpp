@@ -51,7 +51,7 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function ) {
     // Create the molecular Hamiltonian parameters for this molecule and basis
     auto mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(hchain, "STO-3G");
     auto K = mol_ham_par.get_K();
-    auto N_P = hchain.get_N()/2;
+    auto N_P = hchain.numberOfElectrons()/2;
 
     mol_ham_par.LowdinOrthonormalize();
     GQCP::ProductFockSpace fock_space (K, N_P, N_P);
@@ -73,7 +73,6 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function ) {
     GQCP::CISolver ci_solver2 (fci, mol_ham_par);
     ci_solver2.solve(solver_options);
 
-    const auto& pr = ci_solver2.get_eigenpairs();
     auto wavefunction2 = ci_solver2.makeWavefunction(0);
 
     // Check if they deviate
