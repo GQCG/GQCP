@@ -52,6 +52,8 @@ before_install:
 
 install:
 
+  # Install the Anaconda Client
+  - conda install anaconda-client
   # Setup up the GQCG dev environment
   - conda env create gqcg/gqcg_dev
   # Activate environment
