@@ -25,9 +25,9 @@
 BOOST_AUTO_TEST_CASE ( constructor_basisset ) {
 
     // Create an STO-3G basisset on (a weird geometry of) H2O
-    GQCP::Atom h1 (1,  0.0, 0.0, 0.0);
-    GQCP::Atom o  (8,  0.0, 0.0, 1.0);
-    GQCP::Atom h2 (1,  0.0, 0.0, 2.0);
+    GQCP::Nucleus h1 (1,  0.0, 0.0, 0.0);
+    GQCP::Nucleus o  (8,  0.0, 0.0, 1.0);
+    GQCP::Nucleus h2 (1,  0.0, 0.0, 2.0);
 
     GQCP::ShellSet ref_shellset {
         GQCP::Shell(0, h1, {  3.42525091,  0.62391373, 0.16885540}, { 0.15432897, 0.53532814, 0.44463454}, false),

@@ -19,14 +19,18 @@
 #define GQCP_HAMILTONIANPARAMETERS_HPP
 
 #include "HamiltonianParameters/BaseHamiltonianParameters.hpp"
+#include "Operator/BaseOperator.hpp"
+
 #include "HoppingMatrix.hpp"
-#include "Molecule.hpp"
+#include "Molecule/Molecule.hpp"
 #include "Operator/OneElectronOperator.hpp"
 #include "Operator/TwoElectronOperator.hpp"
+#include "Operator/FirstQuantized/Operator.hpp"
 #include "OrbitalOptimization/JacobiRotationParameters.hpp"
 #include "RDM/TwoRDM.hpp"
 #include "RDM/OneRDM.hpp"
 #include "typedefs.hpp"
+#include "Utilities/miscellaneous.hpp"
 
 
 namespace GQCP {
@@ -40,7 +44,7 @@ namespace GQCP {
  *  @tparam Scalar      the scalar type
  */
 template<typename Scalar>
-class HamiltonianParameters : public BaseHamiltonianParameters, public Operator<HamiltonianParameters<Scalar>> {
+class HamiltonianParameters : public BaseHamiltonianParameters, public BaseOperator<HamiltonianParameters<Scalar>> {
 private:
     size_t K;  // the number of spatial orbitals
 
@@ -172,7 +176,8 @@ public:
 
         auto ao_basis = std::make_shared<AOBasis>(molecule, basisset);
 
-        return HamiltonianParameters::Molecular(ao_basis, molecule.calculateInternuclearRepulsionEnergy());
+        const double internuclear_repulsion_energy = Operator::NuclearRepulsion(molecule).value();
+        return HamiltonianParameters::Molecular(ao_basis, internuclear_repulsion_energy);
     }
 
 
@@ -229,26 +234,7 @@ public:
     template<typename Z = Scalar>
     static enable_if_t<std::is_same<Z, double>::value, HamiltonianParameters<double>> ReadFCIDUMP(const std::string& fcidump_file) {
 
-        // Find the extension of the given path (https://stackoverflow.com/a/51992)
-        std::string extension;
-        std::string::size_type idx = fcidump_file.rfind('.');
-
-        if (idx != std::string::npos) {
-            extension = fcidump_file.substr(idx+1);
-        } else {
-            throw std::runtime_error("HamiltonianParameters::ReadFCIDUMP(std::string): I did not find an extension in your given path.");
-        }
-
-        if (!(extension == "FCIDUMP")) {
-            throw std::runtime_error("HamiltonianParameters::ReadFCIDUMP(std::string): You did not provide a .FCIDUMP file name");
-        }
-
-        // If the xyz_filename isn't properly converted into an input file stream, we assume the user supplied a wrong file
-        std::ifstream input_file_stream (fcidump_file);
-
-        if (!input_file_stream.good()) {
-            throw std::runtime_error("HamiltonianParameters::ReadFCIDUMP(std::string): The provided FCIDUMP file is illegible. Maybe you specified a wrong path?");
-        }
+        std::ifstream input_file_stream = validateAndOpen(fcidump_file, "FCIDUMP");
 
 
         // Do the actual parsing
@@ -438,7 +424,7 @@ public:
     }
 
 
-    using Operator<HamiltonianParameters<Scalar>>::rotate;  // bring over rotate() from the base class
+    using BaseOperator<HamiltonianParameters<Scalar>>::rotate;  // bring over rotate() from the base class
 
 
     /**

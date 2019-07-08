@@ -1,5 +1,11 @@
 # gqcp 0.2.0
 [![Build Status](https://travis-ci.org/GQCG/gqcp.svg?branch=master)](https://travis-ci.org/GQCG/gqcp)
+[![HPC](https://img.shields.io/badge/UGentHPC-delcatty-green.svg)](https://www.ugent.be/hpc/en)
+[![HPC](https://img.shields.io/badge/UGentHPC-phanpy-green.svg)](https://www.ugent.be/hpc/en)
+[![HPC](https://img.shields.io/badge/UGentHPC-golett-green.svg)](https://www.ugent.be/hpc/en)
+[![HPC](https://img.shields.io/badge/UGentHPC-swalot-green.svg)](https://www.ugent.be/hpc/en)
+[![HPC](https://img.shields.io/badge/UGentHPC-skitty-green.svg)](https://www.ugent.be/hpc/en)
+[![HPC](https://img.shields.io/badge/UGentHPC-victini-green.svg)](https://www.ugent.be/hpc/en)
 
 The Ghent Quantum Chemistry Package is a C++ library for electronic structure calculations.
 
@@ -14,7 +20,7 @@ Follow along the following documented example that calculates the FCI energy:
 
 
 // Create the molecular Hamiltonian parameters in an AO basis
-auto h2o = GQCP::Molecule::Readxyz("data/h2o.xyz");
+auto h2o = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
 auto mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2o, "STO-3G");
 
 
@@ -30,8 +36,8 @@ mol_ham_par.transform(rhf.get_C());
 
 // Set up the FCI Fock space
 auto K = mol_ham_par.get_K();  // number of spatial orbitials
-auto N_alpha = h2o.get_N()/2;
-auto N_beta = h2o.get_N()/2;
+auto N_alpha = h2o.numberOfElectrons()/2;
+auto N_beta = h2o.numberOfElectrons()/2;
 GQCP::ProductFockSpace fock_space (K, N_alpha, N_beta);
 
 
@@ -80,7 +86,7 @@ For a default CMake build, the steps are the following:
 
 1. clone the master branch, which contains the latest release
 
-        https://github.com/GQCG/gqcp.git --branch master --single-branch
+        https://github.com/GQCG/gqcp.git --branch master --single-branch --recurse-submodules
         cd gqcp
 
 2. perform an out-of-source build:
@@ -103,6 +109,8 @@ In general, please set and pass the following options to the `cmake ..` command:
     * the compiled library will be installed in `prefix/lib`
     * drivers (optional) and benchmarks (optional) will be installed in `prefix/bin`
     * CMake target files will be installed in `prefix/cmake`
+    
+    We note that setting `CMAKE_INSTALL_PREFIX=~/.local` is preferred as this is also makes sure that the installed Python modules can be found automatically.
 
 For this library, there are several extra options you can pass to the `cmake ..` command:
 
@@ -121,6 +129,8 @@ For this library, there are several extra options you can pass to the `cmake ..`
 
 
 * `-DBUILD_BENCHMARKS=TRUE` makes sure CMake adds the benchmark executables as targets. This uses [Google benchmark](https://github.com/google/benchmark), so make sure you have this installed if you wish to proceed with benchmarking on your system.
+
+* `-DBUILD_PYTHON_BINDINGS=TRUE` makes sure that selected pieces of the GQCP library can be called from Python. This uses [PyBind11](https://github.com/pybind/pybind11), so make sure you have this installed if you wish to use GQCPY on your system.
 
 
 ### Usage in an external project

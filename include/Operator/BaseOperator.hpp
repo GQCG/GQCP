@@ -15,8 +15,8 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef Operator_hpp
-#define Operator_hpp
+#ifndef GQCP_BASEOPERATOR_HPP
+#define GQCP_BASEOPERATOR_HPP
 
 
 #include "typedefs.hpp"
@@ -32,7 +32,7 @@ namespace GQCP {
  *      - DerivedOperator implements a suitable transform() method
  */
 template <typename DerivedOperator>
-class Operator {
+class BaseOperator {
 public:
 
     /**
@@ -74,4 +74,4 @@ public:
 }  // namespace GQCP
 
 
-#endif  /* Operator_hpp */
+#endif  /* GQCP_BASEOPERATOR_HPP */

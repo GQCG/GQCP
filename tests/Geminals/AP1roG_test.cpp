@@ -29,7 +29,7 @@
 
 BOOST_AUTO_TEST_CASE ( energy_as_contraction ) {
 
-    auto h2 = GQCP::Molecule::Readxyz("data/h2_olsens.xyz");
+    auto h2 = GQCP::Molecule::ReadXYZ("data/h2_olsens.xyz");
     auto ao_mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2, "6-31G**");
 
     GQCP::PlainRHFSCFSolver plain_scf_solver (ao_mol_ham_par, h2);

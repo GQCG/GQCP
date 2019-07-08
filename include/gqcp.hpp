@@ -19,7 +19,6 @@
 #define GQCP_HPP
 
 #include "Basis/AOBasis.hpp"
-#include "Basis/CartesianDirection.hpp"
 #include "Basis/CartesianExponents.hpp"
 #include "Basis/CartesianGTO.hpp"
 #include "Basis/LibcintInterfacer.hpp"
@@ -81,6 +80,7 @@
 #include "Mathematical/Optimization/step.hpp"
 #include "Mathematical/Optimization/UnalteringHessianModifier.hpp"
 
+#include "Mathematical/CartesianDirection.hpp"
 #include "Mathematical/ChemicalMatrix.hpp"
 #include "Mathematical/ChemicalRankFourTensor.hpp"
 #include "Mathematical/LinearCombination.hpp"
@@ -90,8 +90,16 @@
 #include "Mathematical/SquareRankFourTensor.hpp"
 #include "Mathematical/Tensor.hpp"
 
+#include "Molecule/Molecule.hpp"
+#include "Molecule/NuclearFramework.hpp"
+#include "Molecule/Nucleus.hpp"
+
+#include "Operator/FirstQuantized/BaseMultipoleOperator.hpp"
+#include "Operator/FirstQuantized/BaseNuclearOperator.hpp"
+#include "Operator/FirstQuantized/Operator.hpp"
+
+#include "Operator/BaseOperator.hpp"
 #include "Operator/OneElectronOperator.hpp"
-#include "Operator/Operator.hpp"
 #include "Operator/TwoElectronOperator.hpp"
 
 #include "OrbitalOptimization/Localization/ERJacobiLocalizer.hpp"
@@ -139,10 +147,8 @@
 
 
 // Single files, not in a special include directory
-#include "Atom.hpp"
 #include "elements.hpp"
 #include "HoppingMatrix.hpp"
-#include "Molecule.hpp"
 #include "RMP2.hpp"
 #include "typedefs.hpp"
 #include "units.hpp"

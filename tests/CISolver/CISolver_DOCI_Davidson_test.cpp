@@ -63,7 +63,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_h2o_sto3g_klaas_Davidson ) {
 BOOST_AUTO_TEST_CASE ( DOCI_h2_sto3g_dense_vs_Davidson ) {
 
     // Create the molecular Hamiltonian parameters in an AO basis
-    auto h2 = GQCP::Molecule::Readxyz("data/h2.xyz");
+    auto h2 = GQCP::Molecule::ReadXYZ("data/h2.xyz");
     auto mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2, "STO-3G");
 
     // Create a plain RHF SCF solver and solve the SCF equations
@@ -74,7 +74,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_h2_sto3g_dense_vs_Davidson ) {
     // Transform the ham_par
     mol_ham_par.basisTransform(rhf.get_C());
 
-    GQCP::FockSpace fock_space (mol_ham_par.get_K(), h2.get_N()/2);  // dim = 2
+    GQCP::FockSpace fock_space (mol_ham_par.get_K(), h2.numberOfElectrons()/2);  // dim = 2
 
     // Create the DOCI module
     GQCP::DOCI doci (fock_space);
@@ -102,7 +102,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_h2_sto3g_dense_vs_Davidson ) {
 BOOST_AUTO_TEST_CASE ( DOCI_h2_631g_dense_vs_Davidson ) {
 
     // Create the molecular Hamiltonian parameters in an AO basis
-    auto h2 = GQCP::Molecule::Readxyz("data/h2.xyz");
+    auto h2 = GQCP::Molecule::ReadXYZ("data/h2.xyz");
     auto mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2, "6-31G");
 
     // Create a plain RHF SCF solver and solve the SCF equations
@@ -113,7 +113,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_h2_631g_dense_vs_Davidson ) {
     // Transform the ham_par
     mol_ham_par.basisTransform(rhf.get_C());
 
-    GQCP::FockSpace fock_space (mol_ham_par.get_K(), h2.get_N()/2);  // dim = 4
+    GQCP::FockSpace fock_space (mol_ham_par.get_K(), h2.numberOfElectrons()/2);  // dim = 4
 
     // Create the DOCI module
     GQCP::DOCI doci (fock_space);

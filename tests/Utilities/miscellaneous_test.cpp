@@ -113,3 +113,16 @@ BOOST_AUTO_TEST_CASE ( triangularRoot_strictTriangularRoot ) {
     BOOST_CHECK(GQCP::triangularRoot(10) == 4);
     BOOST_CHECK(GQCP::strictTriangularRoot(6) == 4);
 }
+
+
+BOOST_AUTO_TEST_CASE ( validateAndOpen ) {
+
+    // Make sure we get an error when a nonsense path is given (i.e. no extension)
+    BOOST_REQUIRE_THROW(GQCP::validateAndOpen("this is a nonsense data path", "data"), std::invalid_argument);
+
+    // Make sure we get an error when a path with a wrong extension is given
+    BOOST_REQUIRE_THROW(GQCP::validateAndOpen("data/small_vector.data", "xyz"), std::invalid_argument);
+
+    // Make sure we don't get an error when a correct path is given
+    BOOST_REQUIRE_NO_THROW(GQCP::validateAndOpen("data/h2o.xyz", "xyz"));
+}

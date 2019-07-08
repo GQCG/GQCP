@@ -32,23 +32,23 @@
 BOOST_AUTO_TEST_CASE ( dipole_CO_STO_3G ) {
 
     // Initialize the molecule and molecular Hamiltonian parameters for CO
-    GQCP::Atom C (6, 0.0, 0.0, 0.0);
-    GQCP::Atom O (8, 0.0, 0.0, GQCP::units::angstrom_to_bohr(1.145));  // from CCCBDB, STO-3G geometry
-    std::vector<GQCP::Atom> atoms {C, O};
-    GQCP::Molecule CO (atoms);
+    GQCP::Nucleus C (6, 0.0, 0.0, 0.0);
+    GQCP::Nucleus O (8, 0.0, 0.0, GQCP::units::angstrom_to_bohr(1.145));  // from CCCBDB, STO-3G geometry
+    std::vector<GQCP::Nucleus> nuclei {C, O};
+    GQCP::Molecule CO (nuclei);
 
     auto ao_basis = std::make_shared<GQCP::AOBasis>(CO, "STO-3G");
     auto ao_mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(ao_basis);
 
     size_t K = ao_basis->numberOfBasisFunctions();
-    size_t N = CO.get_N();
+    size_t N = CO.numberOfElectrons();
 
     // Solve the SCF equations
     GQCP::DIISRHFSCFSolver diis_scf_solver (ao_mol_ham_par, CO);
     diis_scf_solver.solve();
     auto rhf = diis_scf_solver.get_solution();
 
-    double total_energy = rhf.get_electronic_energy() + CO.calculateInternuclearRepulsionEnergy();
+    double total_energy = rhf.get_electronic_energy() + GQCP::Operator::NuclearRepulsion(CO).value();
     BOOST_REQUIRE(std::abs(total_energy - (-111.225)) < 1.0e-02);  // from CCCBDB, require a correct RHF solution to be found
 
 
@@ -62,7 +62,7 @@ BOOST_AUTO_TEST_CASE ( dipole_CO_STO_3G ) {
         dipole_component.basisTransform(rhf.get_C());
     }
 
-    GQCP::Vector<double, 3> total_dipole_moment = CO.calculateNuclearDipoleMoment() + GQCP::calculateElectronicDipoleMoment(dipole_components, D);
+    GQCP::Vector<double, 3> total_dipole_moment = GQCP::Operator::NuclearDipole(CO).value() + GQCP::calculateElectronicDipoleMoment(dipole_components, D);
     BOOST_CHECK(std::abs(total_dipole_moment.norm() - (0.049)) < 1.0e-03);
 }
 
@@ -72,23 +72,23 @@ BOOST_AUTO_TEST_CASE ( dipole_N2_STO_3G ) {
     // Check that the dipole moment of N2 is zero
 
     // Initialize the molecule and molecular Hamiltonian parameters for N2
-    GQCP::Atom N_1 (7, 0.0, 0.0, 0.0);
-    GQCP::Atom N_2 (7, 0.0, 0.0, GQCP::units::angstrom_to_bohr(1.134));  // from CCCBDB, STO-3G geometry
-    std::vector<GQCP::Atom> atoms {N_1, N_2};
-    GQCP::Molecule N2 (atoms);
+    GQCP::Nucleus N_1 (7, 0.0, 0.0, 0.0);
+    GQCP::Nucleus N_2 (7, 0.0, 0.0, GQCP::units::angstrom_to_bohr(1.134));  // from CCCBDB, STO-3G geometry
+    std::vector<GQCP::Nucleus> nuclei {N_1, N_2};
+    GQCP::Molecule N2 (nuclei);
 
     auto ao_basis = std::make_shared<GQCP::AOBasis>(N2, "STO-3G");
     auto ao_mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(ao_basis);
 
     size_t K = ao_basis->numberOfBasisFunctions();
-    size_t N = N2.get_N();
+    size_t N = N2.numberOfElectrons();
 
     // Solve the SCF equations
     GQCP::PlainRHFSCFSolver plain_scf_solver (ao_mol_ham_par, N2);  // The DIIS SCF solver seems to find a wrong minimum, so use a plain solver instead
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 
-    double total_energy = rhf.get_electronic_energy() + N2.calculateInternuclearRepulsionEnergy();
+    double total_energy = rhf.get_electronic_energy() + GQCP::Operator::NuclearRepulsion(N2).value();
     BOOST_REQUIRE(std::abs(total_energy - (-107.500654)) < 1.0e-05);  // from CCCBDB, require a correct RHF solution to be found
 
 
@@ -102,6 +102,6 @@ BOOST_AUTO_TEST_CASE ( dipole_N2_STO_3G ) {
         dipole_component.basisTransform(rhf.get_C());
     }
 
-    GQCP::Vector<double, 3> total_dipole_moment = N2.calculateNuclearDipoleMoment() + GQCP::calculateElectronicDipoleMoment(dipole_components, D);
+    GQCP::Vector<double, 3> total_dipole_moment = GQCP::Operator::NuclearDipole(N2).value() + GQCP::calculateElectronicDipoleMoment(dipole_components, D);
     BOOST_CHECK(std::abs(total_dipole_moment.norm() - (0.0)) < 1.0e-08);
 }

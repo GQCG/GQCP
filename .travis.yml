@@ -45,14 +45,6 @@ before_install:
         bash $HOME/download/miniconda.sh -b -p ${HOME}/miniconda;
       fi
 
-    # Add headers and libraries to path
-    - export CONDA_HOME=${HOME}/miniconda
-    - export C_INCLUDE_PATH=${CONDA_HOME}/include:${C_INCLUDE_PATH}
-    - export CPLUS_INCLUDE_PATH=${CONDA_HOME}/include:${CPLUS_INCLUDE_PATH}
-    - export LIBRARY_PATH=${CONDA_HOME}/lib:${LIBRARY_PATH}
-    - export LD_LIBRARY_PATH=${CONDA_HOME}/lib:${LD_LIBRARY_PATH}
-    - export DYLD_FALLBACK_LIBRARY_PATH=${CONDA_HOME}/lib:${DYLD_FALLBACK_LIBRARY_PATH}
-
     # Set GCC 8 compiler
     - export CC=/usr/bin/gcc-8
     - export CXX=/usr/bin/g++-8
@@ -67,8 +59,8 @@ install:
 
     # Install a recent version of CMake, Boost and eigen if they are not yet already installed.
     - if [ ! -f $HOME/miniconda/bin/cmake ]; then
-        conda install -c conda-forge cmake=3.13 boost-cpp eigen blas mkl;
-        conda install -c gqcg libint;
+        conda install -c conda-forge cmake=3.13 boost-cpp eigen blas mkl pybind11 benchmark;
+        conda install -c gqcg libint spectra;
         conda install -c intel mkl-include mkl-static intel-openmp;
       else
         echo "Using already installed packages.";
@@ -76,30 +68,19 @@ install:
     - export PATH=${HOME}/miniconda/bin:${PATH} # Use conda CMake
     - export LIBINT_DATA_PATH=${HOME}/miniconda/share/libint/2.3.1/basis
 
-    # Install google benchmark
-    - mkdir /tmp/bench && cd /tmp/bench
-    # Fork from tmhuysen for cmake fix
-    - git clone https://github.com/tmhuysen/benchmark.git
-    # Benchmark requires Google Test as a dependency. Add the source tree as a subdirectory.
-    - cd benchmark
-    - git clone https://github.com/google/googletest.git
-    - mkdir build && cd build
-    - cmake .. -DCMAKE_BUILD_TYPE=RELEASE
-    - make -j3 && sudo make install
-
     # Install the GQCG fork of Libcint
     - cd /tmp
-    - git clone -b feature/cmake_refactor https://github.com/GQCG/libcint.git
+    - git clone -b develop https://github.com/GQCG/libcint.git
     - cd libcint
     - mkdir build && cd build
-    - cmake ..
+    - cmake .. -DUSE_MKL=TRUE -DCMAKE_INSTALL_PREFIX=~/.local -DCMAKE_PREFIX_PATH=${HOME}/miniconda
     - make -j3 && sudo make install
 
 # Run the build script
 script:
   - cd ${TRAVIS_BUILD_DIR}
   - mkdir build && cd build
-  - cmake .. -DBUILD_TESTS=TRUE -DBUILD_BENCHMARKS=TRUE -DBUILD_DRIVERS=TRUE -DCMAKE_INCLUDE_PATH=${HOME}/miniconda/include -DCMAKE_LIBRARY_PATH=${HOME}/miniconda/lib -DEIGEN_USE_MKL=TRUE
+  - cmake .. -DBUILD_TESTS=TRUE -DBUILD_BENCHMARKS=TRUE -DBUILD_DRIVERS=TRUE -DBUILD_PYTHON_BINDINGS=TRUE -DCMAKE_INSTALL_PREFIX=~/.local -DCMAKE_PREFIX_PATH=${HOME}/miniconda
   - make -j3 VERBOSE=1 && env CTEST_OUTPUT_ON_FAILURE=1 make test ARGS=-j3 && sudo make install
 
 # Run the benchmarks

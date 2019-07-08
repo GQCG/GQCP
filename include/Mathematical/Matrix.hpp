@@ -15,10 +15,11 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef Matrix_hpp
-#define Matrix_hpp
+#ifndef GQCP_MATRIX_HPP
+#define GQCP_MATRIX_HPP
 
 
+#include "Mathematical/CartesianDirection.hpp"
 #include "typedefs.hpp"
 
 #include <Eigen/Dense>
@@ -162,8 +163,48 @@ public:
 
 
     /*
+     *  OPERATORS
+     */
+
+    /**
+     *  @param direction            the Cartesian direction (x, y, or z)
+     * 
+     *  @return the value in the vector that corresponds to the given direction
+     */
+    template <typename Z = Scalar>
+    enable_if_t<Self::is_vector && (Rows == 3), Z> operator()(CartesianDirection direction) const {
+        
+        const auto& index = static_cast<size_t>(direction);  // 0, 1, or 2
+        return this->operator()(index);
+    }
+
+    /**
+     *  @param direction            the Cartesian direction (x, y, or z)
+     * 
+     *  @return a modifiable value in the vector that corresponds to the given direction
+     */
+    template <typename Z = Scalar&>
+    enable_if_t<Self::is_vector && (Rows == 3), Z> operator()(CartesianDirection direction) {
+        
+        const auto& index = static_cast<size_t>(direction);  // 0, 1, or 2
+        return this->operator()(index);
+    }
+
+    using Base::operator();  // bring over the other operator() overloads
+
+
+
+    /*
      *  PUBLIC METHODS
      */
+
+
+    /**
+     *  @return this as an Eigen::Matrix
+     */
+    const Base& Eigen() const {
+        return static_cast<const Base&>(*this);
+    }
 
     /**
      *  Print the contents of a this to an output filestream
@@ -217,6 +258,9 @@ public:
 
         return A_ij;
     }
+
+
+
 };
 
 
@@ -245,4 +289,4 @@ using MatrixFunction = std::function<MatrixX<double> (const VectorX<double>&)>;
 
 
 
-#endif  /* Matrix_hpp */
+#endif  // GQCP_MATRIX_HPP

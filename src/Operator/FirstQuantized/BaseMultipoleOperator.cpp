@@ -15,25 +15,28 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef CartesianDirection_h
-#define CartesianDirection_h
+#include "Operator/FirstQuantized/BaseMultipoleOperator.hpp"
 
 
 namespace GQCP {
 
 
-/**
- *  An enumeration containing the Cartesian directions
+/*
+ *  CONSTRUCTORS
  */
-enum class CartesianDirection {
-    x = 0,
-    y = 1,
-    z = 2
-};
 
+/**
+ *  @param o        the origin of the multipole
+ */
+BaseMultipoleOperator::BaseMultipoleOperator(const Vector<double, 3>& o) :
+    o (o)
+{}
+
+
+/*
+ *  DESTRUCTOR
+ */
+
+BaseMultipoleOperator::~BaseMultipoleOperator() {};  // pure virtual destructor should have an empty implementation
 
 }  // namespace GQCP
-
-
-
-#endif  /* CartesianDirection_h */

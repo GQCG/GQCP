@@ -38,8 +38,8 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_sto_3g ) {
 
 
     // Prepare molecular Hamiltonian parameters in the RHF basis
-    auto h2 = GQCP::Molecule::Readxyz("data/h2_cristina.xyz");
-    double internuclear_repulsion_energy = h2.calculateInternuclearRepulsionEnergy();  // 0.713176780299327
+    auto h2 = GQCP::Molecule::ReadXYZ("data/h2_cristina.xyz");
+    double internuclear_repulsion_energy = GQCP::Operator::NuclearRepulsion(h2).value();  // 0.713176780299327
     auto ao_mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2, "STO-3G");
     auto K = ao_mol_ham_par.get_K();
 
@@ -51,7 +51,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_sto_3g ) {
 
 
     // Do the DOCI orbital optimization using specified solver options
-    GQCP::FockSpace fock_space (K, h2.get_N()/2);  // dim = 120
+    GQCP::FockSpace fock_space (K, h2.numberOfElectrons()/2);  // dim = 120
     GQCP::DOCI doci (fock_space);
     GQCP::DenseSolverOptions ci_solver_options;
     auto hessian_modifier = std::make_shared<GQCP::IterativeIdentitiesHessianModifier>();
@@ -74,8 +74,8 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31g ) {
 
 
     // Prepare molecular Hamiltonian parameters in the RHF basis
-    auto h2 = GQCP::Molecule::Readxyz("data/h2_cristina.xyz");
-    double internuclear_repulsion_energy = h2.calculateInternuclearRepulsionEnergy();  // 0.713176780299327
+    auto h2 = GQCP::Molecule::ReadXYZ("data/h2_cristina.xyz");
+    double internuclear_repulsion_energy = GQCP::Operator::NuclearRepulsion(h2).value();  // 0.713176780299327
     auto ao_mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2, "6-31G");
     auto K = ao_mol_ham_par.get_K();
 
@@ -87,8 +87,8 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31g ) {
 
 
     // Transform the molecular Hamiltonian parameters to the FCI natural basis
-    size_t N_a = h2.get_N() / 2;
-    size_t N_b = h2.get_N() / 2;
+    size_t N_a = h2.numberOfElectrons() / 2;
+    size_t N_b = h2.numberOfElectrons() / 2;
     GQCP::ProductFockSpace fci_fock_space (K, N_a, N_b);  // dim = 441
     GQCP::FCI fci (fci_fock_space);
     GQCP::CISolver fci_solver (fci, mol_ham_par);
@@ -106,7 +106,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31g ) {
 
 
     // Do the DOCI orbital optimization, using the FCI natural orbitals
-    GQCP::FockSpace doci_fock_space (K, h2.get_N()/2);  // dim = 120
+    GQCP::FockSpace doci_fock_space (K, h2.numberOfElectrons()/2);  // dim = 120
     GQCP::DOCI doci (doci_fock_space);
     auto hessian_modifier = std::make_shared<GQCP::IterativeIdentitiesHessianModifier>();
     GQCP::DOCINewtonOrbitalOptimizer orbital_optimizer (doci, ci_solver_options, hessian_modifier);
@@ -126,8 +126,8 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx ) {
     double reference_fci_energy = -1.16514875501195;
 
     // Prepare molecular Hamiltonian parameters in the RHF basis
-    auto h2 = GQCP::Molecule::Readxyz("data/h2_cristina.xyz");
-    double internuclear_repulsion_energy = h2.calculateInternuclearRepulsionEnergy();  // 0.713176780299327
+    auto h2 = GQCP::Molecule::ReadXYZ("data/h2_cristina.xyz");
+    double internuclear_repulsion_energy = GQCP::Operator::NuclearRepulsion(h2).value();  // 0.713176780299327
     auto ao_mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2, "6-31G**");
     auto K = ao_mol_ham_par.get_K();
 
@@ -140,8 +140,8 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx ) {
 
 
     // Transform the molecular Hamiltonian parameters to the FCI natural basis
-    size_t N_a = h2.get_N() / 2;
-    size_t N_b = h2.get_N() / 2;
+    size_t N_a = h2.numberOfElectrons() / 2;
+    size_t N_b = h2.numberOfElectrons() / 2;
     GQCP::ProductFockSpace fci_fock_space (K, N_a, N_b);  // dim = 441
     GQCP::FCI fci (fci_fock_space);
     GQCP::CISolver fci_solver (fci, mol_ham_par);
@@ -159,7 +159,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx ) {
 
 
     // Do the DOCI orbital optimization, using the FCI natural orbitals
-    GQCP::FockSpace doci_fock_space (K, h2.get_N()/2);  // dim = 120
+    GQCP::FockSpace doci_fock_space (K, h2.numberOfElectrons()/2);  // dim = 120
     GQCP::DOCI doci (doci_fock_space);
     auto hessian_modifier = std::make_shared<GQCP::IterativeIdentitiesHessianModifier>();
     GQCP::DOCINewtonOrbitalOptimizer orbital_optimizer (doci, ci_solver_options, hessian_modifier);
@@ -179,8 +179,8 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx_Davidson ) {
     double reference_fci_energy = -1.16514875501195;
 
     // Prepare molecular Hamiltonian parameters in the RHF basis
-    auto h2 = GQCP::Molecule::Readxyz("data/h2_cristina.xyz");
-    double internuclear_repulsion_energy = h2.calculateInternuclearRepulsionEnergy();  // 0.713176780299327
+    auto h2 = GQCP::Molecule::ReadXYZ("data/h2_cristina.xyz");
+    double internuclear_repulsion_energy = GQCP::Operator::NuclearRepulsion(h2).value();  // 0.713176780299327
     auto ao_mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2, "6-31G**");
     auto K = ao_mol_ham_par.get_K();
 
@@ -193,8 +193,8 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx_Davidson ) {
 
 
     // Transform the molecular Hamiltonian parameters to the FCI natural basis
-    size_t N_a = h2.get_N() / 2;
-    size_t N_b = h2.get_N() / 2;
+    size_t N_a = h2.numberOfElectrons() / 2;
+    size_t N_b = h2.numberOfElectrons() / 2;
     GQCP::ProductFockSpace fci_fock_space (K, N_a, N_b);  // dim = 441
     GQCP::FCI fci (fci_fock_space);
     GQCP::CISolver fci_solver (fci, mol_ham_par);
@@ -212,7 +212,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx_Davidson ) {
 
 
     // Do the DOCI orbital optimization, using the FCI natural orbitals
-    GQCP::FockSpace doci_fock_space (K, h2.get_N()/2);  // dim = 120
+    GQCP::FockSpace doci_fock_space (K, h2.numberOfElectrons()/2);  // dim = 120
     GQCP::DOCI doci (doci_fock_space);
     GQCP::VectorX<double> initial_g = doci_fock_space.HartreeFockExpansion();
     GQCP::DavidsonSolverOptions davidson_solver_options (initial_g);

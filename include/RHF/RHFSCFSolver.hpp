@@ -21,7 +21,7 @@
 
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "RHF.hpp"
-#include "Molecule.hpp"
+#include "Molecule/Molecule.hpp"
 
 
 namespace GQCP {
