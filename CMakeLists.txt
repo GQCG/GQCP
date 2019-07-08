@@ -18,7 +18,6 @@ option(BUILD_DOCS "Build the documentation using Doxygen" OFF)
 option(BUILD_BENCHMARKS "Build benchmarks executables" OFF)
 option(BUILD_DRIVERS "Build standard drivers" OFF)
 option(BUILD_PYTHON_BINDINGS "Build the Python bindings" OFF)
-option(EIGEN_USE_MKL "Eigen uses MKL" OFF)
 
 # Look for supporting libraries
 # -----------------------------
@@ -26,11 +25,8 @@ find_package(Git REQUIRED)
 find_package(Eigen3 3.3.4 REQUIRED)
 find_package(Int2 REQUIRED)
 find_package(Spectra REQUIRED)
-find_package(Cint REQUIRED)
-
-if(EIGEN_USE_MKL)
-    find_package(MKL REQUIRED)
-endif()
+find_package(cint REQUIRED)
+find_package(MKL REQUIRED)
 
 if(BUILD_TESTS)
     find_package(Boost REQUIRED COMPONENTS program_options unit_test_framework)
@@ -86,18 +82,13 @@ target_link_libraries(gqcp
         PUBLIC
             Eigen3::Eigen
             Int2::Int2
-            Cint::Cint
+            cint::cint
             Spectra::Spectra
+            MKL::MKL
         )
 target_include_directories(gqcp PUBLIC $<BUILD_INTERFACE:${Boost_INCLUDE_DIRS}>)
 target_link_libraries(gqcp PUBLIC ${Boost_LIBRARIES})
-if (EIGEN_USE_MKL)
-    target_link_libraries(gqcp
-        PUBLIC
-            MKL::MKL
-        )
-    target_compile_options(gqcp PUBLIC -DEIGEN_USE_MKL_ALL -DMKL_LP64)
-endif()
+target_compile_options(gqcp PUBLIC -DEIGEN_USE_MKL_ALL -DMKL_LP64)
 
 
 # Setup Python Bindings
