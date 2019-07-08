@@ -96,10 +96,17 @@ public:
      */
 
     /**
-     *  @return this as an Eigen::Tensor, as a work-around to fix Eigen::Tensor expressions
+     *  @return this as a const Eigen::Tensor, as a work-around to fix Eigen::Tensor expressions
      */
     const Base& Eigen() const {
         return static_cast<const Base&>(*this);
+    }
+
+    /**
+     *  @return this as a non-const Eigen::Tensor, as a work-around to fix Eigen::Tensor expressions
+     */
+    Base& Eigen() {
+        return static_cast<Base&>(*this);
     }
 
 

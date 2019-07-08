@@ -78,6 +78,42 @@ public:
     const std::vector<ShellType>& asVector() const { return this->shells; }
 
     /**
+     *  @return the maximum angular momentum of the shells
+     */
+    size_t maximumAngularMomentum() const {
+
+        std::vector<size_t> angular_momenta (this->numberOfShells());  // contains the number of primitives for each of the shells
+
+        for (size_t i = 0; i < this->numberOfShells(); i++) {
+            const auto shell = this->shells[i];
+
+            angular_momenta[i] = shell.angularMomentum();
+        }
+
+        const auto it = std::max_element(angular_momenta.begin(), angular_momenta.end());  // iterator
+        return *it;
+    }
+
+
+    /**
+     *  @return the maximum number of primitives that are used inside the shells
+     */
+    size_t maximumNumberOfPrimitives() const {
+
+        std::vector<size_t> number_of_primitives (this->numberOfShells());  // contains the number of primitives for each of the shells
+
+        for (size_t i = 0; i < this->numberOfShells(); i++) {
+            const auto shell = this->shells[i];
+
+            number_of_primitives[i] = shell.contractionSize();
+        }
+
+        const auto it = std::max_element(number_of_primitives.begin(), number_of_primitives.end());  // iterator
+        return *it;
+    }
+    
+
+    /**
      *  @return the number of shells in this shell set
      */
     size_t numberOfShells() const { return this->shells.size(); }

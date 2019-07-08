@@ -306,6 +306,86 @@ void LibintInterfacer::undo_renorm(libint2::Shell& libint_shell) const {
 }
 
 
+/*
+ *  PUBLIC METHODS - ENGINES
+ */
+
+
+/**
+ *  Construct a libint2 engine that corresponds to the given operator
+ * 
+ *  @param op               the overlap operator
+ *  @param max_nprim        the maximum number of primitives per contracted Gaussian shell
+ *  @param max_l            the maximum angular momentum of Gaussian shell
+ * 
+ *  @return the proper libint2 engine
+ */
+libint2::Engine LibintInterfacer::createEngine(const OverlapOperator& op, const size_t max_nprim, const size_t max_l) const {
+
+    return libint2::Engine(libint2::Operator::overlap, max_nprim, static_cast<int>(max_l));
+}
+
+
+/**
+ *  Construct a libint2 engine that corresponds to the given operator
+ * 
+ *  @param op               the kinetic operator
+ *  @param max_nprim        the maximum number of primitives per contracted Gaussian shell
+ *  @param max_l            the maximum angular momentum of Gaussian shell
+ * 
+ *  @return the proper libint2 engine
+ */
+libint2::Engine LibintInterfacer::createEngine(const KineticOperator& op, const size_t max_nprim, const size_t max_l) const {
+
+    return libint2::Engine(libint2::Operator::kinetic, max_nprim, static_cast<int>(max_l));
+}
+
+
+/**
+ *  Construct a libint2 engine that corresponds to the given operator
+ * 
+ *  @param op               the nuclear attraction operator
+ *  @param max_nprim        the maximum number of primitives per contracted Gaussian shell
+ *  @param max_l            the maximum angular momentum of Gaussian shell
+ * 
+ *  @return the proper libint2 engine
+ */
+libint2::Engine LibintInterfacer::createEngine(const NuclearAttractionOperator& op, const size_t max_nprim, const size_t max_l) const {
+
+    return libint2::Engine(libint2::Operator::nuclear, max_nprim, static_cast<int>(max_l));
+}
+
+
+/**
+ *  Construct a libint2 engine that corresponds to the given operator
+ * 
+ *  @param op               the electronic electric dipole operator
+ *  @param max_nprim        the maximum number of primitives per contracted Gaussian shell
+ *  @param max_l            the maximum angular momentum of Gaussian shell
+ * 
+ *  @return the proper libint2 engine
+ */
+libint2::Engine LibintInterfacer::createEngine(const ElectronicDipoleOperator& op, const size_t max_nprim, const size_t max_l) const {
+
+    return libint2::Engine(libint2::Operator::emultipole1, max_nprim, static_cast<int>(max_l));
+}
+
+
+/**
+ *  Construct a libint2 engine that corresponds to the given operator
+ * 
+ *  @param op               the Coulomb repulsion operator
+ *  @param max_nprim        the maximum number of primitives per contracted Gaussian shell
+ *  @param max_l            the maximum angular momentum of Gaussian shell
+ * 
+ *  @return the proper libint2 engine
+ */
+libint2::Engine LibintInterfacer::createEngine(const CoulombRepulsionOperator& op, const size_t max_nprim, const size_t max_l) const {
+
+    return libint2::Engine(libint2::Operator::coulomb, max_nprim, static_cast<int>(max_l));
+}
+
+
 
 /*
  *  PUBLIC METHODS - INTEGRALS

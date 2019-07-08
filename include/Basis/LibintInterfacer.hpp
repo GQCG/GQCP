@@ -22,6 +22,7 @@
 #include "Basis/GTOShell.hpp"
 #include "Basis/ShellSet.hpp"
 #include "Molecule/Molecule.hpp"
+#include "Operator/FirstQuantized/Operator.hpp"
 #include "Operator/OneElectronOperator.hpp"
 #include "Operator/TwoElectronOperator.hpp"
 
@@ -38,6 +39,10 @@ namespace GQCP {
  *  Singleton class template from: https://stackoverflow.com/a/1008289
  */
 class LibintInterfacer {
+public:
+    using libint_target_ptr_vec = libint2::Engine::target_ptr_vec;
+
+
 private:
     // PRIVATE METHODS - SINGLETON
     /**
@@ -145,6 +150,64 @@ public:
      *  @param libint_shell         the shell that should be un-renorm()alized
      */
     void undo_renorm(libint2::Shell& libint_shell) const;
+
+
+    // PUBLIC METHODS - ENGINES
+
+    /**
+     *  Construct a libint2 engine that corresponds to the given operator
+     * 
+     *  @param op               the overlap operator
+     *  @param max_nprim        the maximum number of primitives per contracted Gaussian shell
+     *  @param max_l            the maximum angular momentum of Gaussian shell
+     * 
+     *  @return the proper libint2 engine
+     */
+    libint2::Engine createEngine(const OverlapOperator& op, const size_t max_nprim, const size_t max_l) const;
+
+    /**
+     *  Construct a libint2 engine that corresponds to the given operator
+     * 
+     *  @param op               the kinetic operator
+     *  @param max_nprim        the maximum number of primitives per contracted Gaussian shell
+     *  @param max_l            the maximum angular momentum of Gaussian shell
+     * 
+     *  @return the proper libint2 engine
+     */
+    libint2::Engine createEngine(const KineticOperator& op, const size_t max_nprim, const size_t max_l) const;
+
+    /**
+     *  Construct a libint2 engine that corresponds to the given operator
+     * 
+     *  @param op               the nuclear attraction operator
+     *  @param max_nprim        the maximum number of primitives per contracted Gaussian shell
+     *  @param max_l            the maximum angular momentum of Gaussian shell
+     * 
+     *  @return the proper libint2 engine
+     */
+    libint2::Engine createEngine(const NuclearAttractionOperator& op, const size_t max_nprim, const size_t max_l) const;
+
+    /**
+     *  Construct a libint2 engine that corresponds to the given operator
+     * 
+     *  @param op               the electronic electric dipole operator
+     *  @param max_nprim        the maximum number of primitives per contracted Gaussian shell
+     *  @param max_l            the maximum angular momentum of Gaussian shell
+     * 
+     *  @return the proper libint2 engine
+     */
+    libint2::Engine createEngine(const ElectronicDipoleOperator& op, const size_t max_nprim, const size_t max_l) const;
+
+    /**
+     *  Construct a libint2 engine that corresponds to the given operator
+     * 
+     *  @param op               the Coulomb repulsion operator
+     *  @param max_nprim        the maximum number of primitives per contracted Gaussian shell
+     *  @param max_l            the maximum angular momentum of Gaussian shell
+     * 
+     *  @return the proper libint2 engine
+     */
+    libint2::Engine createEngine(const CoulombRepulsionOperator& op, const size_t max_nprim, const size_t max_l) const;
 
 
     // PUBLIC METHODS - INTEGRALS

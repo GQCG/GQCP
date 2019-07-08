@@ -22,8 +22,8 @@
 #include "Basis/BaseOneElectronIntegralEngine.hpp"
 
 #include "Basis/GTOShell.hpp"
-#include "Basis/BaseOneElectronIntegralBuffer.hpp"
 #include "Basis/LibintInterfacer.hpp"
+#include "Basis/LibintOneElectronIntegralBuffer.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
 
 
@@ -52,9 +52,48 @@ public:
      *  CONSTRUCTORS
      */
 
-    LibintOneElectronIntegralEngine(const OverlapOperator& op) :
-        libint2_engine ()
+    /**
+     *  @param op               the overlap operator
+     *  @param max_nprim        the maximum number of primitives per contracted Gaussian shell
+     *  @param max_l            the maximum angular momentum of Gaussian shell
+     */
+    LibintOneElectronIntegralEngine(const OverlapOperator& op, const size_t max_nprim, const size_t max_l) :
+        libint2_engine (LibintInterfacer::get().createEngine(op, max_nprim, max_l))
     {}
+
+    /**
+     *  @param op               the kinetic operator
+     *  @param max_nprim        the maximum number of primitives per contracted Gaussian shell
+     *  @param max_l            the maximum angular momentum of Gaussian shell
+     */
+    LibintOneElectronIntegralEngine(const KineticOperator& op, const size_t max_nprim, const size_t max_l) :
+        libint2_engine (LibintInterfacer::get().createEngine(op, max_nprim, max_l))
+    {}
+
+    /**
+     *  @param op               the nuclear attraction operator
+     *  @param max_nprim        the maximum number of primitives per contracted Gaussian shell
+     *  @param max_l            the maximum angular momentum of Gaussian shell
+     */
+    LibintOneElectronIntegralEngine(const NuclearAttractionOperator& op, const size_t max_nprim, const size_t max_l) :
+        libint2_engine (LibintInterfacer::get().createEngine(op, max_nprim, max_l))
+    {
+        auto libint_atoms = LibintInterfacer::get().interface(op.nuclearFramework().nucleiAsVector());
+        this->libint2_engine.set_params(libint2::make_point_charges(libint_atoms));
+    }
+
+    /**
+     *  @param op               the electronic electric dipole operator
+     *  @param max_nprim        the maximum number of primitives per contracted Gaussian shell
+     *  @param max_l            the maximum angular momentum of Gaussian shell
+     */
+    LibintOneElectronIntegralEngine(const ElectronicDipoleOperator& op, const size_t max_nprim, const size_t max_l) :
+        libint2_engine (LibintInterfacer::get().createEngine(op, max_nprim, max_l))
+    {
+        std::array<double, 3> libint2_origin_array {op.origin().x(), op.origin().y(), op.origin().z()};
+        this->libint2_engine.set_params(libint2_origin_array);
+    }
+
 
 
     /*
@@ -65,7 +104,15 @@ public:
      *  @param shell1           the first shell
      *  @param shell2           the second shell
      */
-    std::shared_ptr<BaseOneElectronIntegralBuffer<Scalar, N>> calculate(const GTOShell& shell1, const GTOShell& shell2) const override;
+    std::shared_ptr<BaseOneElectronIntegralBuffer<Scalar, N>> calculate(const GTOShell& shell1, const GTOShell& shell2) override {
+
+        const auto libint_shell1 = LibintInterfacer::get().interface(shell1);
+        const auto libint_shell2 = LibintInterfacer::get().interface(shell2);
+
+        const auto& libint2_buffer = this->libint2_engine.results();
+        this->libint2_engine.compute(libint_shell1, libint_shell2);
+        return std::make_shared<LibintOneElectronIntegralBuffer<N>>(libint2_buffer, shell1.numberOfBasisFunctions(), shell2.numberOfBasisFunctions());
+    }
 };
 
 

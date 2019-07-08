@@ -76,7 +76,13 @@ size_t AOBasis::numberOfBasisFunctions() const {
  */
 OneElectronOperator<double> AOBasis::calculateLibintOverlapIntegrals() const {
 
-    const auto engine = IntegralEngine::Libint(Operator::Overlap());
+    // Construct the libint engine
+    const auto max_nprim = this->shell_set.maximumNumberOfPrimitives();
+    const auto max_l = this->shell_set.maximumAngularMomentum();
+    auto engine = IntegralEngine::Libint(Operator::Overlap(), max_nprim, max_l);  // cannot be const because libint2::Engine::compute() is not a const method
+
+
+    // Calculate the integrals using the engine
     const auto integrals = IntegralCalculator::calculate(engine, this->shell_set);
     return OneElectronOperator<double>(integrals[0]);
 }
@@ -87,8 +93,15 @@ OneElectronOperator<double> AOBasis::calculateLibintOverlapIntegrals() const {
  */
 OneElectronOperator<double> AOBasis::calculateLibintKineticIntegrals() const {
 
-    auto libint_basisset = LibintInterfacer::get().interface(this->shell_set);
-    return LibintInterfacer::get().calculateOneElectronIntegrals<1>(libint2::Operator::kinetic, libint_basisset)[0];
+    // Construct the libint engine
+    const auto max_nprim = this->shell_set.maximumNumberOfPrimitives();
+    const auto max_l = this->shell_set.maximumAngularMomentum();
+    auto engine = IntegralEngine::Libint(Operator::Kinetic(), max_nprim, max_l);  // cannot be const because libint2::Engine::compute() is not a const method
+
+
+    // Calculate the integrals using the engine
+    const auto integrals = IntegralCalculator::calculate(engine, this->shell_set);
+    return OneElectronOperator<double>(integrals[0]);
 }
 
 
@@ -97,10 +110,15 @@ OneElectronOperator<double> AOBasis::calculateLibintKineticIntegrals() const {
  */
 OneElectronOperator<double> AOBasis::calculateLibintNuclearIntegrals() const {
 
-    auto libint_basisset = LibintInterfacer::get().interface(this->shell_set);
-    auto libint_atoms = LibintInterfacer::get().interface(this->shell_set.nuclei());
+    // Construct the libint engine
+    const auto max_nprim = this->shell_set.maximumNumberOfPrimitives();
+    const auto max_l = this->shell_set.maximumAngularMomentum();
+    auto engine = IntegralEngine::Libint(Operator::NuclearAttraction(this->shell_set.nuclei()), max_nprim, max_l);  // cannot be const because libint2::Engine::compute() is not a const method
 
-    return LibintInterfacer::get().calculateOneElectronIntegrals<1>(libint2::Operator::nuclear, libint_basisset, make_point_charges(libint_atoms))[0];
+
+    // Calculate the integrals using the engine
+    const auto integrals = IntegralCalculator::calculate(engine, this->shell_set);
+    return OneElectronOperator<double>(integrals[0]);
 }
 
 
@@ -111,10 +129,14 @@ OneElectronOperator<double> AOBasis::calculateLibintNuclearIntegrals() const {
  */
 std::array<OneElectronOperator<double>, 3> AOBasis::calculateLibintDipoleIntegrals(const Vector<double, 3>& origin) const {
 
-    std::array<double, 3> origin_array {origin.x(), origin.y(), origin.z()};
+    // Construct the libint engine
+    const auto max_nprim = this->shell_set.maximumNumberOfPrimitives();
+    const auto max_l = this->shell_set.maximumAngularMomentum();
+    auto engine = IntegralEngine::Libint(Operator::ElectronicDipole(origin), max_nprim, max_l);  // cannot be const because libint2::Engine::compute() is not a const method
 
-    auto libint_basisset = LibintInterfacer::get().interface(this->shell_set);
-    auto all_integrals = LibintInterfacer::get().calculateOneElectronIntegrals<4>(libint2::Operator::emultipole1, libint_basisset, origin_array);  // overlap, x, y, z
+
+    // Calculate the integrals using the engine
+    const auto all_integrals = IntegralCalculator::calculate(engine, this->shell_set);
 
     // Apply the minus sign which comes from the charge of the electrons -e
     return std::array<OneElectronOperator<double>, 3> {-all_integrals[1], -all_integrals[2], -all_integrals[3]};  // we don't need the overlap, so ignore [0]
@@ -126,8 +148,15 @@ std::array<OneElectronOperator<double>, 3> AOBasis::calculateLibintDipoleIntegra
  */
 TwoElectronOperator<double> AOBasis::calculateLibintCoulombRepulsionIntegrals() const {
 
-    auto libint_basisset = LibintInterfacer::get().interface(this->shell_set);
-    return LibintInterfacer::get().calculateTwoElectronIntegrals(libint2::Operator::coulomb, libint_basisset);
+    // Construct the libint engine
+    const auto max_nprim = this->shell_set.maximumNumberOfPrimitives();
+    const auto max_l = this->shell_set.maximumAngularMomentum();
+    auto engine = IntegralEngine::Libint(Operator::Coulomb(), max_nprim, max_l);  // cannot be const because libint2::Engine::compute() is not a const method
+
+
+    // Calculate the integrals using the engine
+    const auto integrals = IntegralCalculator::calculate(engine, this->shell_set);
+    return TwoElectronOperator<double>(integrals[0]);
 }
 
 

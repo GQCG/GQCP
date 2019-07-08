@@ -50,8 +50,10 @@ public:
      *  @param sh2          the second shell
      *  @param sh3          the third shell
      *  @param sh4          the fourth shell
+     * 
+     *  This method is not marked const to allow the Engine's internals to be changed
      */
-    virtual std::shared_ptr<BaseTwoElectronIntegralBuffer<Scalar, N>> calculate(const ShellType& sh1, const ShellType& sh2, const ShellType& sh3, const ShellType& sh4) const = 0;
+    virtual std::shared_ptr<BaseTwoElectronIntegralBuffer<Scalar, N>> calculate(const ShellType& sh1, const ShellType& sh2, const ShellType& sh3, const ShellType& sh4) = 0;
 };
 
 

@@ -43,7 +43,7 @@ public:
     /**
      *  Calculate all one-electron integrals over the basis functions inside the given ShellSets
      * 
-     *  @param engine               the engine that can calculate one-electron integrals over shells
+     *  @param engine               the engine that can calculate one-electron integrals over shells (not const because we allow for non-const Engine::calculate() calls)
      *  @param shell_set            the set of shells over which the integrals should be calculated
      * 
      *  @tparam ShellType           the type of shell the integral engine is able to handle
@@ -51,7 +51,7 @@ public:
      *  @tparam Scalar              the scalar representation of an integral
      */
     template <typename ShellType, size_t N, typename Scalar>
-    static auto calculate(const BaseOneElectronIntegralEngine<ShellType, N, Scalar>& engine, const ShellSet<ShellType>& shell_set) -> std::array<SquareMatrix<Scalar>, N> {
+    static auto calculate(BaseOneElectronIntegralEngine<ShellType, N, Scalar>& engine, const ShellSet<ShellType>& shell_set) -> std::array<SquareMatrix<Scalar>, N> {
 
         // Initialize the N components of the matrix representations of the operator
         const auto nbf = shell_set.numberOfBasisFunctions();
@@ -70,7 +70,7 @@ public:
 
             for (size_t sh2_index = 0; sh2_index < nsh; sh2_index++) {  // shell 2
                 const auto bf2 = shell_set.basisFunctionIndex(sh2_index);
-                const auto shell2 = shells[sh1_index];
+                const auto shell2 = shells[sh2_index];
 
                 // Calculate the integrals over the shells and place the calculated integrals inside the full matrices
                 const auto buffer = engine.calculate(shell1, shell2);
@@ -93,7 +93,7 @@ public:
      *  @tparam Scalar              the scalar representation of an integral
      */
     template <typename ShellType, size_t N, typename Scalar>
-    static auto calculate(const BaseTwoElectronIntegralEngine<ShellType, N, Scalar>& engine, const ShellSet<ShellType>& shell_set) -> std::array<SquareRankFourTensor<Scalar>, N> {
+    static auto calculate(BaseTwoElectronIntegralEngine<ShellType, N, Scalar>& engine, const ShellSet<ShellType>& shell_set) -> std::array<SquareRankFourTensor<Scalar>, N> {
 
         // Initialize the N components of the matrix representations of the operator
         const auto nbf = shell_set.numberOfBasisFunctions();

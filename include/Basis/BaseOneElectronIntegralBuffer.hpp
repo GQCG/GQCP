@@ -71,7 +71,7 @@ public:
     /**
      *  @return the matrix representation of the integrals that are in this buffer
      */
-    virtual std::array<SquareMatrix<Scalar>, N> integrals() const = 0;
+    virtual std::array<Matrix<Scalar>, N> integrals() const = 0;
 
 
 
@@ -98,13 +98,13 @@ public:
      */
     void emplace(std::array<SquareMatrix<Scalar>, N>& full_components, const size_t bf1, const size_t bf2) const {
 
-        const auto components = this->integrals();  // N components
+        const auto partial_components = this->integrals();  // N partial components of the total matrix representation of the operator
         for (size_t i = 0; i < N; i++) {
             auto& full_component = full_components[i];
-            const auto& component = components[i];
+            const auto& partial_component = partial_components[i];
 
             // Place the calculated integrals inside the correct block
-            full_component.block(bf1, bf2, nbf1, nbf2) = component;
+            full_component.block(bf1, bf2, nbf1, nbf2) = partial_component;
         }
     }
 };
