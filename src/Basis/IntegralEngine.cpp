@@ -23,13 +23,75 @@ namespace GQCP {
 
 /*
  *  LIBINT - ONE-ELECTRON ENGINES
- * 
- *  The following functions create one-electron integral engine using the Libint integral library backend, with the correct template arguments filled in
  */
 
-auto IntegralEngine::Libint(const OverlapOperator& op) -> LibintOneElectronIntegralEngine<OverlapOperator::Components> {
+/**
+ *  @param op               the overlap operator
+ *  @param max_nprim        the maximum number of primitives per contracted Gaussian shell
+ *  @param max_l            the maximum angular momentum of Gaussian shell
+ * 
+ *  @return a one-electron integral engine that can calculate integrals over the overlap operator using the Libint integral library backend
+ */
+auto IntegralEngine::Libint(const OverlapOperator& op, const size_t max_nprim, const size_t max_l) -> LibintOneElectronIntegralEngine<OverlapOperator::Components> {
 
-    return LibintOneElectronIntegralEngine<OverlapOperator::Components>(op);
+    return LibintOneElectronIntegralEngine<OverlapOperator::Components>(op, max_nprim, max_l);
+}
+
+
+/**
+ *  @param op               the kinetic operator
+ *  @param max_nprim        the maximum number of primitives per contracted Gaussian shell
+ *  @param max_l            the maximum angular momentum of Gaussian shell
+ * 
+ *  @return a one-electron integral engine that can calculate integrals over the kinetic operator using the Libint integral library backend
+ */
+auto IntegralEngine::Libint(const KineticOperator& op, const size_t max_nprim, const size_t max_l) -> LibintOneElectronIntegralEngine<KineticOperator::Components> {
+
+    return LibintOneElectronIntegralEngine<KineticOperator::Components>(op, max_nprim, max_l);
+}
+
+
+/**
+ *  @param op               the nuclear attraction operator
+ *  @param max_nprim        the maximum number of primitives per contracted Gaussian shell
+ *  @param max_l            the maximum angular momentum of Gaussian shell
+ * 
+ *  @return a one-electron integral engine that can calculate integrals over the nuclear attraction operator using the Libint integral library backend
+ */
+auto IntegralEngine::Libint(const NuclearAttractionOperator& op, const size_t max_nprim, const size_t max_l) -> LibintOneElectronIntegralEngine<NuclearAttractionOperator::Components> {
+
+    return LibintOneElectronIntegralEngine<NuclearAttractionOperator::Components>(op, max_nprim, max_l);
+}
+
+
+/**
+ *  @param op               the electronic electric dipole operator
+ *  @param max_nprim        the maximum number of primitives per contracted Gaussian shell
+ *  @param max_l            the maximum angular momentum of Gaussian shell
+ * 
+ *  @return a one-electron integral engine that can calculate integrals over the electronic electric dipole operator using the Libint integral library backend
+ */
+auto IntegralEngine::Libint(const ElectronicDipoleOperator& op, const size_t max_nprim, const size_t max_l) -> LibintOneElectronIntegralEngine<ElectronicDipoleOperator::Components> {
+
+    return LibintOneElectronIntegralEngine<ElectronicDipoleOperator::Components>(op, max_nprim, max_l);
+}
+
+
+
+/*
+ *  LIBINT - TWO-ELECTRON ENGINES
+ */
+
+/**
+ *  @param op               the Coulomb repulsion operator
+ *  @param max_nprim        the maximum number of primitives per contracted Gaussian shell
+ *  @param max_l            the maximum angular momentum of Gaussian shell
+ * 
+ *  @return a two-electron integral engine that can calculate integrals over the nuclear attraction operator using the Libint integral library backend
+ */
+auto IntegralEngine::Libint(const CoulombRepulsionOperator& op, const size_t max_nprim, const size_t max_l) -> LibintTwoElectronIntegralEngine<CoulombRepulsionOperator::Components> {
+
+    return LibintTwoElectronIntegralEngine<CoulombRepulsionOperator::Components>(op, max_nprim, max_l);
 }
 
 

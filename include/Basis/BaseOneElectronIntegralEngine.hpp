@@ -50,8 +50,10 @@ public:
     /**
      *  @param shell1           the first shell
      *  @param shell2           the second shell
+     * 
+     *  This method is not marked const to allow the Engine's internals to be changed
      */
-    virtual std::shared_ptr<BaseOneElectronIntegralBuffer<Scalar, N>> calculate(const ShellType& shell1, const ShellType& shell2) const = 0;
+    virtual std::shared_ptr<BaseOneElectronIntegralBuffer<Scalar, N>> calculate(const ShellType& shell1, const ShellType& shell2) = 0;
 };
 
 

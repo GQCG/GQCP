@@ -20,6 +20,7 @@
 
 
 #include "Basis/LibintOneElectronIntegralEngine.hpp"
+#include "Basis/LibintTwoElectronIntegralEngine.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
 #include "typedefs.hpp"
 
@@ -35,24 +36,57 @@ public:
 
     /*
      *  LIBINT - ONE-ELECTRON ENGINES
-     * 
-     *  The following functions create one-electron integral engine using the Libint integral library backend, with the correct template arguments filled in
      */
 
-    // TODO: could be generalized if Operators derive from OneElectronOperator and TwoElectronOperator
-    static auto Libint(const OverlapOperator& op) -> LibintOneElectronIntegralEngine<OverlapOperator::Components>;
+    /**
+     *  @param op               the overlap operator
+     *  @param max_nprim        the maximum number of primitives per contracted Gaussian shell
+     *  @param max_l            the maximum angular momentum of Gaussian shell
+     * 
+     *  @return a one-electron integral engine that can calculate integrals over the overlap operator using the Libint integral library backend
+     */
+    static auto Libint(const OverlapOperator& op, const size_t max_nprim, const size_t max_l) -> LibintOneElectronIntegralEngine<OverlapOperator::Components>;
 
-    static auto Libint(const KineticOperator& op) -> LibintOneElectronIntegralEngine<KineticOperator::Components>;
+    /**
+     *  @param op               the kinetic operator
+     *  @param max_nprim        the maximum number of primitives per contracted Gaussian shell
+     *  @param max_l            the maximum angular momentum of Gaussian shell
+     * 
+     *  @return a one-electron integral engine that can calculate integrals over the kinetic operator using the Libint integral library backend
+     */
+    static auto Libint(const KineticOperator& op, const size_t max_nprim, const size_t max_l) -> LibintOneElectronIntegralEngine<KineticOperator::Components>;
 
-    static auto Libint(const NuclearAttractionOperator& op) -> LibintOneElectronIntegralEngine<NuclearAttractionOperator::Components>;
+    /**
+     *  @param op               the nuclear attraction operator
+     *  @param max_nprim        the maximum number of primitives per contracted Gaussian shell
+     *  @param max_l            the maximum angular momentum of Gaussian shell
+     * 
+     *  @return a one-electron integral engine that can calculate integrals over the nuclear attraction operator using the Libint integral library backend
+     */
+    static auto Libint(const NuclearAttractionOperator& op, const size_t max_nprim, const size_t max_l) -> LibintOneElectronIntegralEngine<NuclearAttractionOperator::Components>;
+
+    /**
+     *  @param op               the electronic electric dipole operator
+     *  @param max_nprim        the maximum number of primitives per contracted Gaussian shell
+     *  @param max_l            the maximum angular momentum of Gaussian shell
+     * 
+     *  @return a one-electron integral engine that can calculate integrals over the electronic electric dipole operator using the Libint integral library backend
+     */
+    static auto Libint(const ElectronicDipoleOperator& op, const size_t max_nprim, const size_t max_l) -> LibintOneElectronIntegralEngine<ElectronicDipoleOperator::Components>;
 
 
     /*
      *  LIBINT - TWO-ELECTRON ENGINES
-     * 
-     *  The following functions create two-electron integral engine using the Libint integral library backend, with the correct template arguments filled in
      */
-    // static auto Libint(const CoulombRepulsionOperator& op) -> LibintTwoElectronIntegralEngine<CoulombRepulsionOperator::Components, product_t<CoulombRepulsionOperator::Scalar, GTOShell::BasisFunction::Valued>>;
+
+    /**
+     *  @param op               the Coulomb repulsion operator
+     *  @param max_nprim        the maximum number of primitives per contracted Gaussian shell
+     *  @param max_l            the maximum angular momentum of Gaussian shell
+     * 
+     *  @return a two-electron integral engine that can calculate integrals over the nuclear attraction operator using the Libint integral library backend
+     */
+    static auto Libint(const CoulombRepulsionOperator& op, const size_t max_nprim, const size_t max_l) -> LibintTwoElectronIntegralEngine<CoulombRepulsionOperator::Components>;
 };
 
 

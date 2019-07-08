@@ -41,6 +41,11 @@ public:
      */
     BaseNuclearOperator(const NuclearFramework& nuclear_framework);
 
+    /**
+     *  @param nuclei                       the nuclei that are considered to represent the nuclear framework underlying a nuclear operator
+     */
+    BaseNuclearOperator(const std::vector<Nucleus>& nuclei);
+
 
     // DESTRUCTOR
     virtual ~BaseNuclearOperator() = 0;  // provide a pure virtual destructor to make the class abstract

@@ -42,7 +42,7 @@ public:
     static constexpr auto N = _N;  // the number of components the operator has
 
 
-private:
+protected:
     size_t nbf1;  // the number of basis functions in the first shell
     size_t nbf2;  // the number of basis functions in the second shell
     size_t nbf3;  // the number of basis functions in the third shell
@@ -78,7 +78,7 @@ public:
     /**
      *  @return the matrix representation of the integrals that are in this buffer
      */
-    virtual std::array<SquareRankFourTensor<Scalar>, N> integrals() const = 0;
+    virtual std::array<Tensor<Scalar, 4>, N> integrals() const = 0;
 
 
 
@@ -117,10 +117,10 @@ public:
      */
     void emplace(std::array<SquareRankFourTensor<Scalar>, N>& full_components, const size_t bf1, const size_t bf2, const size_t bf3, const size_t bf4) const {
 
-        const auto components = this->integrals();  // N components
+        auto components = this->integrals();  // N components
         for (size_t i = 0; i < N; i++) {
             auto& full_component = full_components[i];
-            const auto& component = components[i];
+            auto& component = components[i];
 
             // Place the calculated integrals inside the correct block (for Tensors, this is a 'slice')
             const auto bf1_int = static_cast<int>(bf1);
@@ -135,7 +135,7 @@ public:
 
             Eigen::array<int, 4> offsets {bf1_int, bf2_int, bf3_int, bf4_int};
             Eigen::array<int, 4> extents {nbf1_int, nbf2_int, nbf3_int, nbf4_int};  // length of the slices
-            full_component.slice(offsets, extents) = component;
+            full_component.Eigen().slice(offsets, extents) = component.Eigen();
         }
     }
 };

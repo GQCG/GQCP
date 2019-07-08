@@ -78,6 +78,12 @@ public:
 
 
     // PUBLIC METHODS
+
+    /**
+     *  @return the angular momentum of the shell
+     */
+    size_t angularMomentum() const { return this->l; }
+
     /**
      *  @return the number of basis functions that are in this shell
      */

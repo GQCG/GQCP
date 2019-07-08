@@ -32,13 +32,13 @@ namespace GQCP {
  * 
  *  An integral buffer facilitates placing integrals (see emplace()) that were calculated over shells into the correct matrix representation of an operator in an orbital basis
  * 
- *  @tparam _Scalar         the scalar representation of an integral
- *  @tparam _N              the number of components the operator has
+ *  @tparam _IntegralScalar         the scalar representation of an integral
+ *  @tparam _N                      the number of components the corresponding operator has
  */
-template <typename _Scalar, size_t _N>
+template <typename _IntegralScalar, size_t _N>
 class BaseOneElectronIntegralBuffer {
 public:
-    using Scalar = _Scalar;  // the scalar representation of an integral
+    using IntegralScalar = _IntegralScalar;  // the scalar representation of an integral
     static constexpr auto N = _N;  // the number of components the operator has
 
 
@@ -69,9 +69,13 @@ public:
      */
 
     /**
+     *  @param i            the index of the component of the operator
+     *  @param f1           the index of the basis function within shell 1
+     *  @param f2           the index of the basis function within shell 2
+     * 
      *  @return the matrix representation of the integrals that are in this buffer
      */
-    virtual std::array<SquareMatrix<Scalar>, N> integrals() const = 0;
+    virtual IntegralScalar value(const size_t i, const size_t f1, const size_t f2) const = 0;
 
 
 
@@ -98,14 +102,16 @@ public:
      */
     void emplace(std::array<SquareMatrix<Scalar>, N>& full_components, const size_t bf1, const size_t bf2) const {
 
-        const auto components = this->integrals();  // N components
-        for (size_t i = 0; i < N; i++) {
-            auto& full_component = full_components[i];
-            const auto& component = components[i];
+        // Place the calculated integrals inside the matrix representation of the integrals
+        for (size_t f1 = 0; f1 < this->nbf1; f1++) {  // the index of the basis function within shell 1
+            for (size_t f2 = 0; f2 < this->nbf2; f2++) {  // the index of the basis function within shell 2
+                
+                for (size_t i = 0; i < N; i++) {  // loop over the components
+                    full_components[i](bf1 + f1, bf2 + f2) = this->value(i, f1, f2);
+                }  // components
 
-            // Place the calculated integrals inside the correct block
-            full_component.block(bf1, bf2, nbf1, nbf2) = component;
-        }
+            }  // f2
+        }  // f1
     }
 };
 

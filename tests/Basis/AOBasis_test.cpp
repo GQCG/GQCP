@@ -58,7 +58,6 @@ BOOST_AUTO_TEST_CASE( Szabo_integrals_h2_sto3g ) {
 
     auto g = ao_basis.calculateLibintCoulombRepulsionIntegrals();
 
-
     // Fill in the reference values from Szabo
     GQCP::OneElectronOperator<double> ref_S (2);
     ref_S << 1.0,    0.6593,
