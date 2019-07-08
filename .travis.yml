@@ -57,7 +57,7 @@ install:
   # Setup up the GQCG dev environment
   - conda env create gqcg/gqcg_dev
   # Activate environment
-  - conda activate gqcg_dev
+  - source activate gqcg_dev
   # We need access to the basis files of Libint
   - export LIBINT_DATA_PATH=${HOME}/miniconda/envs/gqcg_dev/share/libint/2.3.1/basis
 
