@@ -79,11 +79,19 @@ public:
 
         const auto libint_shell1 = LibintInterfacer::get().interface(shell1);
         const auto libint_shell2 = LibintInterfacer::get().interface(shell2);
+<<<<<<< HEAD
         const auto libint_shell3 = LibintInterfacer::get().interface(shell3);
         const auto libint_shell4 = LibintInterfacer::get().interface(shell4);
 
         const auto& libint2_buffer = this->libint2_engine.results();
         this->libint2_engine.compute(libint_shell1, libint_shell2, libint_shell3, libint_shell4);
+=======
+        const auto libint_shell3 = LibintInterfacer::get().interface(shell2);
+        const auto libint_shell4 = LibintInterfacer::get().interface(shell2);
+
+        const auto& libint2_buffer = this->libint2_engine.results();
+        this->libint2_engine.compute(libint_shell1, libint_shell2, libint_shell4, libint_shell4);
+>>>>>>> Implement Libint engines and buffers
         return std::make_shared<LibintTwoElectronIntegralBuffer<N>>(libint2_buffer, shell1.numberOfBasisFunctions(), shell2.numberOfBasisFunctions(), shell3.numberOfBasisFunctions(), shell4.numberOfBasisFunctions());
     }
 };
