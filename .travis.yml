@@ -53,7 +53,7 @@ before_install:
 install:
 
   # Setup up the GQCG dev environment
-  - conda env create -c gqcg -n gqcg_dev gqcg_dev
+  - conda env create gqcg/gqcg_dev
   # Activate environment
   - conda activate gqcg_dev
   # We need access to the basis files of Libint
