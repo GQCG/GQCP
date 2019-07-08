@@ -55,7 +55,7 @@ install:
   # Install the Anaconda Client
   - conda install anaconda-client --yes
   # Setup up the GQCG dev environment
-  - conda env create gqcg/gqcg_dev --yes
+  - conda env create gqcg/gqcg_dev
   # Activate environment
   - conda activate gqcg_dev
   # We need access to the basis files of Libint
