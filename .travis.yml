@@ -16,65 +16,48 @@ addons:
 
 # Enable Slack notifications, disable e-mail
 notifications:
-    slack: GQCG:5PZ5ibXCwNU1b5ToWbHVIqnI
-    email: false
+  slack: GQCG:5PZ5ibXCwNU1b5ToWbHVIqnI
+  email: false
 
 before_cache:
-    - rm -rf $HOME/miniconda/locks $HOME/miniconda/pkgs $HOME/miniconda/var $HOME/miniconda/conda-meta/history
-    - pip uninstall -y cardboardlint
+  - rm -rf $HOME/miniconda/locks $HOME/miniconda/pkgs $HOME/miniconda/var $HOME/miniconda/conda-meta/history
+  - pip uninstall -y cardboardlint
 
 # Cache miniconda for faster build procedures
 cache:
-    directories:
-        - $HOME/miniconda
-        - $HOME/download
+  directories:
+    - $HOME/miniconda
+    - $HOME/download
 
 before_install:
-    # Install Miniconda
-    - if [ -d $HOME/miniconda/bin ]; then
-        echo "Miniconda already installed.";
+  # Download, install and configure Miniconda
+  - if [ -d $HOME/miniconda/bin ]; then
+      echo "Miniconda already installed.";
+    else
+      echo "Installing miniconda.";
+      rm -rf $HOME/miniconda;
+      mkdir -p $HOME/download;
+      if [[ "${TRAVIS_PYTHON_VERSION}" == "2.7" ]]; then
+          wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O $HOME/download/miniconda.sh;
       else
-        echo "Installing miniconda.";
-        rm -rf $HOME/miniconda;
-        mkdir -p $HOME/download;
-        if [[ "${TRAVIS_PYTHON_VERSION}" == "2.7" ]]; then
-            wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O $HOME/download/miniconda.sh;
-        else
-            wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O $HOME/download/miniconda.sh;
-        fi;
-        bash $HOME/download/miniconda.sh -b -p ${HOME}/miniconda;
-      fi
+          wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O $HOME/download/miniconda.sh;
+      fi;
+      bash $HOME/download/miniconda.sh -b -p ${HOME}/miniconda;
+    fi
+  - export PATH=${HOME}/miniconda/bin:${PATH} # Use conda cmake
 
-    # Set GCC 8 compiler
-    - export CC=/usr/bin/gcc-8
-    - export CXX=/usr/bin/g++-8
+  # Set GCC 8 compiler
+  - export CC=/usr/bin/gcc-8
+  - export CXX=/usr/bin/g++-8
 
-# Install general dependencies
 install:
 
-    # Configure conda
-    - source $HOME/miniconda/bin/activate
-    - hash -r
-    - conda config --set always_yes yes --set changeps1 no
-
-    # Install a recent version of CMake, Boost and eigen if they are not yet already installed.
-    - if [ ! -f $HOME/miniconda/bin/cmake ]; then
-        conda install -c conda-forge cmake=3.13 boost-cpp eigen blas mkl pybind11 benchmark;
-        conda install -c gqcg libint spectra;
-        conda install -c intel mkl-include mkl-static intel-openmp;
-      else
-        echo "Using already installed packages.";
-      fi
-    - export PATH=${HOME}/miniconda/bin:${PATH} # Use conda CMake
-    - export LIBINT_DATA_PATH=${HOME}/miniconda/share/libint/2.3.1/basis
-
-    # Install the GQCG fork of Libcint
-    - cd /tmp
-    - git clone -b develop https://github.com/GQCG/libcint.git
-    - cd libcint
-    - mkdir build && cd build
-    - cmake .. -DUSE_MKL=TRUE -DCMAKE_INSTALL_PREFIX=~/.local -DCMAKE_PREFIX_PATH=${HOME}/miniconda
-    - make -j3 && sudo make install
+  # Setup up the GQCG dev environment
+  - conda create --yes -n gqcg_dev -c gqcg gqcg_dev
+  # Activate environment
+  - conda activate gqcg_dev
+  # We need access to the basis files of Libint
+  - export LIBINT_DATA_PATH=${HOME}/miniconda/envs/gqcg_dev/share/libint/2.3.1/basis
 
 # Run the build script
 script:
