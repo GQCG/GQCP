@@ -70,15 +70,17 @@ Before installing gqcp, please make sure the following dependencies are availabl
 [![libint2 Dependency](https://img.shields.io/badge/libint-2.3.1+-000000.svg)](https://github.com/evaleev/libint)
 [![libcint Dependency](https://img.shields.io/badge/libcint-3.0.17+-000000.svg)](https://github.com/GQCG/libcint)
 
-Note that currently the feature/cmake_refactor branch of Libcint has to be installed.
+One of the easiest options to install these dependencies is to create a conda virtual environment:
 
-    git clone -b feature/cmake_refactor https://github.com/GQCG/libcint
+```bash
+    conda install anaconda-client
+    conda env create gqcg/gqcg_dev --yes
+```
 
-As gqcp uses the bassisets packaged with libint, please set the `LIBINT_DATA_PATH` environment variable to the folder that contains these bases. In a default installation (of e.g. version v2.3.1), the data path is given by:
+As gqcp uses the basis sets packaged with Libint, please set the `LIBINT_DATA_PATH` environment variable to the folder that contains these bases. In a default installation (of e.g. version v2.3.1), the data path is given by:
 
     export LIBINT_DATA_PATH=/usr/local/libint/2.3.1/share/libint/2.3.1/basis
 
-Note that conda offers virtual environments that ease installation and linking to these libraries. Please consult the Travis config file for more information.
 
 ### CMake out-of-source build
 
