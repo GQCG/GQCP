@@ -73,8 +73,8 @@ Before installing gqcp, please make sure the following dependencies are availabl
 One of the easiest options to install these dependencies is to create a conda virtual environment:
 
 ```bash
-    conda install anaconda-client
-    conda env create gqcg/gqcg_dev --yes
+    conda install anaconda-client --yes
+    conda env create gqcg/gqcg_dev
 ```
 
 As gqcp uses the basis sets packaged with Libint, please set the `LIBINT_DATA_PATH` environment variable to the folder that contains these bases. In a default installation (of e.g. version v2.3.1), the data path is given by:
