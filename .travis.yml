@@ -59,7 +59,7 @@ install:
 
     # Install a recent version of CMake, Boost and eigen if they are not yet already installed.
     - if [ ! -f $HOME/miniconda/bin/cmake ]; then
-        conda install -c conda-forge cmake=3.13 boost-cpp eigen blas mkl pybind11;
+        conda install -c conda-forge cmake=3.13 boost-cpp eigen blas mkl pybind11 benchmark;
         conda install -c gqcg libint spectra;
         conda install -c intel mkl-include mkl-static intel-openmp;
       else
@@ -67,17 +67,6 @@ install:
       fi
     - export PATH=${HOME}/miniconda/bin:${PATH} # Use conda CMake
     - export LIBINT_DATA_PATH=${HOME}/miniconda/share/libint/2.3.1/basis
-
-    # Install google benchmark
-    - mkdir /tmp/bench && cd /tmp/bench
-    # Fork from tmhuysen for cmake fix
-    - git clone https://github.com/tmhuysen/benchmark.git
-    # Benchmark requires Google Test as a dependency. Add the source tree as a subdirectory.
-    - cd benchmark
-    - git clone https://github.com/google/googletest.git
-    - mkdir build && cd build
-    - cmake .. -DCMAKE_BUILD_TYPE=RELEASE
-    - make -j3 && sudo make install
 
     # Install the GQCG fork of Libcint
     - cd /tmp
