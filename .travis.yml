@@ -60,8 +60,8 @@ install:
     # Install all dependencies using conda
     - if [ ! -f $HOME/miniconda/bin/cmake ]; then
         conda install -c conda-forge cmake=3.13 boost-cpp eigen blas mkl pybind11 benchmark;
-        conda install -c gqcg libint spectra cint;
         conda install -c intel mkl-include mkl-static intel-openmp;
+        conda install -c gqcg libint spectra cint;
       else
         echo "Using already installed packages.";
       fi
