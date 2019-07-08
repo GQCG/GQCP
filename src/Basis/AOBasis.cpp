@@ -137,9 +137,7 @@ std::array<OneElectronOperator<double>, 3> AOBasis::calculateLibintDipoleIntegra
 
     // Calculate the integrals using the engine
     const auto all_integrals = IntegralCalculator::calculate(engine, this->shell_set);
-
-    // Apply the minus sign which comes from the charge of the electrons -e
-    return std::array<OneElectronOperator<double>, 3> {-all_integrals[1], -all_integrals[2], -all_integrals[3]};  // we don't need the overlap, so ignore [0]
+    return std::array<OneElectronOperator<double>, 3> {all_integrals[0], all_integrals[1], all_integrals[2]};  
 }
 
 

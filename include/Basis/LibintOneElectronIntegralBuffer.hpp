@@ -74,44 +74,13 @@ public:
      */
 
     /**
-     *  @return the matrix representation of the integrals that are in this buffer
-     */
-    std::array<Matrix<IntegralScalar>, N> integrals() const override {
-
-        // Initialize N zero partial components
-        std::array<Matrix<IntegralScalar>, N> partial_components;  // N partial components of the total matrix representation of the operator
-        for (auto& partial_component : partial_components) {
-            partial_component = Matrix<IntegralScalar>::Zero(this->nbf1, this->nbf2);
-        }
-
-
-        // Place the calculated integrals inside the partial components
-        for (size_t f1 = 0; f1 != this->nbf1; f1++) {  // f1: index of basis function within shell 1
-            for (size_t f2 = 0; f2 != this->nbf2; f2++) {  // f2: index of basis function within shell 2
-
-                for (size_t i = 0; i < N; i++) {
-                    partial_components[i](f1, f2) = this->extract(i, f1, f2);
-                }
-
-            }
-        }  // data access loops
-
-        return partial_components;
-    }
-
-
-    /*
-     *  PUBLIC METHODS
-     */
-
-    /**
      *  @param i            the operator component number
      *  @param f1           the index of the basis function within shell 1
      *  @param f2           the index of the basis function within shell 2
      * 
      *  @return the integral corresponding to the given basis functions from the buffer
      */
-    const IntegralScalar& extract(const size_t i, const size_t f1, const size_t f2) const {
+    IntegralScalar value(const size_t i, const size_t f1, const size_t f2) const {
         return this->scaling_factor * this->libint2_buffer[i + this->component_offset][f2 + f1 * this->nbf2]; // integrals are packed in row-major form
     }
 };
