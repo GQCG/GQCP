@@ -68,7 +68,7 @@ double WaveFunction::calculateShannonEntropy() const {
  *
  *  @param T    the transformation matrix between the old and the new orbital basis
  */
-SquareMatrix<double> WaveFunction::basisTransform(const SquareMatrix<double>& T) {
+void WaveFunction::basisTransform(const SquareMatrix<double>& T) {
 
     if (fock_space->get_type() != FockSpaceType::ProductFockSpace) {
         throw std::invalid_argument("WaveFunction::basisTransform(SquareMatrix<double>): This is not an FCI wave function");
@@ -91,16 +91,14 @@ SquareMatrix<double> WaveFunction::basisTransform(const SquareMatrix<double>& T)
     // Retrive U
     SquareMatrix<double> U = SquareMatrix<double>(LU.triangularView<Eigen::Upper>());
 
-    SquareMatrix<double> R = L * U;
 
     SquareMatrix<double> U_in = U.inverse();
     std::cout<< "D : " <<std::endl << T << std::endl;
     std::cout<< "U : " <<std::endl << U << std::endl;
     std::cout<< "L : " <<std::endl << L << std::endl;
-
     // Calculate t (the operator which allows per-orbital transformation of the wave function)
     SquareMatrix<double> _t =  SquareMatrix<double>::Identity(K, K) - L + U_in;
-    SquareMatrix<double> t =  LU2.permutationP.inverse() * _t * ;
+    SquareMatrix<double> t =  LU2.permutationP().inverse() * _t *  LU2.permutationQ().inverse();
 
     // FockSpace
     const auto& product_fock_space = dynamic_cast<const ProductFockSpace&>(*fock_space);
@@ -251,8 +249,6 @@ SquareMatrix<double> WaveFunction::basisTransform(const SquareMatrix<double>& T)
     }
 
     this->coefficients = current_coefficients;
-
-    return R;
 }
 
 }  // namespace GQCP
