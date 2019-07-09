@@ -43,21 +43,21 @@ public:
     /**
      *  Calculate all one-electron integrals over the basis functions inside the given ShellSets
      * 
-     *  @param engine               the engine that can calculate one-electron integrals over shells (not const because we allow for non-const Engine::calculate() calls)
-     *  @param shell_set            the set of shells over which the integrals should be calculated
+     *  @param engine                   the engine that can calculate one-electron integrals over shells (not const because we allow for non-const Engine::calculate() calls)
+     *  @param shell_set                the set of shells over which the integrals should be calculated
      * 
-     *  @tparam ShellType           the type of shell the integral engine is able to handle
-     *  @tparam N                   the number of components the operator has
-     *  @tparam Scalar              the scalar representation of an integral
+     *  @tparam ShellType               the type of shell the integral engine is able to handle
+     *  @tparam N                       the number of components the operator has
+     *  @tparam IntegralScalar          the scalar representation of an integral
      */
-    template <typename ShellType, size_t N, typename Scalar>
-    static auto calculate(BaseOneElectronIntegralEngine<ShellType, N, Scalar>& engine, const ShellSet<ShellType>& shell_set) -> std::array<SquareMatrix<Scalar>, N> {
+    template <typename ShellType, size_t N, typename IntegralScalar>
+    static auto calculate(BaseOneElectronIntegralEngine<ShellType, N, IntegralScalar>& engine, const ShellSet<ShellType>& shell_set) -> std::array<SquareMatrix<IntegralScalar>, N> {
 
         // Initialize the N components of the matrix representations of the operator
         const auto nbf = shell_set.numberOfBasisFunctions();
-        std::array<SquareMatrix<Scalar>, N> components;
+        std::array<SquareMatrix<IntegralScalar>, N> components;
         for (auto& component : components) {
-            component = SquareMatrix<Scalar>::Zero(nbf, nbf);
+            component = SquareMatrix<IntegralScalar>::Zero(nbf, nbf);
         }
 
 
@@ -85,21 +85,21 @@ public:
     /**
      *  Calculate all one-electron integrals over the basis functions inside the given ShellSets
      * 
-     *  @param engine               the engine that can calculate two-electron integrals over shells
-     *  @param shell_set            the set of shells over which the integrals should be calculated
+     *  @param engine                       the engine that can calculate two-electron integrals over shells
+     *  @param shell_set                    the set of shells over which the integrals should be calculated
      * 
-     *  @tparam ShellType           the type of shell the integral engine is able to handle
-     *  @tparam N                   the number of components the operator has
-     *  @tparam Scalar              the scalar representation of an integral
+     *  @tparam ShellType                   the type of shell the integral engine is able to handle
+     *  @tparam N                           the number of components the operator has
+     *  @tparam IntegralScalar              the scalar representation of an integral
      */
-    template <typename ShellType, size_t N, typename Scalar>
-    static auto calculate(BaseTwoElectronIntegralEngine<ShellType, N, Scalar>& engine, const ShellSet<ShellType>& shell_set) -> std::array<SquareRankFourTensor<Scalar>, N> {
+    template <typename ShellType, size_t N, typename IntegralScalar>
+    static auto calculate(BaseTwoElectronIntegralEngine<ShellType, N, IntegralScalar>& engine, const ShellSet<ShellType>& shell_set) -> std::array<SquareRankFourTensor<IntegralScalar>, N> {
 
         // Initialize the N components of the matrix representations of the operator
         const auto nbf = shell_set.numberOfBasisFunctions();
-        std::array<SquareRankFourTensor<Scalar>, N> components;
+        std::array<SquareRankFourTensor<IntegralScalar>, N> components;
         for (auto& component : components) {
-            component = SquareRankFourTensor<Scalar>(nbf);
+            component = SquareRankFourTensor<IntegralScalar>(nbf);
             component.setZero();
         }
 

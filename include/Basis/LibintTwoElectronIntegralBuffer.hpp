@@ -36,7 +36,7 @@ namespace GQCP {
 template <size_t _N>
 class LibintTwoElectronIntegralBuffer : public BaseTwoElectronIntegralBuffer<double, _N> {
 public:
-    using Scalar = double;  // the scalar representation of an integral for libint is always a real number
+    using IntegralScalar = double;  // the scalar representation of an integral for libint is always a real number
     static constexpr auto N = _N;  // the number of components the operator has
 
 
@@ -60,7 +60,7 @@ public:
      */
     LibintTwoElectronIntegralBuffer(const libint2_buffer_t& libint2_buffer, const size_t nbf1, const size_t nbf2, const size_t nbf3, const size_t nbf4) :
         libint2_buffer (libint2_buffer),
-        BaseTwoElectronIntegralBuffer<Scalar, N>(nbf1, nbf2, nbf3, nbf4)
+        BaseTwoElectronIntegralBuffer<IntegralScalar, N>(nbf1, nbf2, nbf3, nbf4)
     {}
 
 
@@ -70,34 +70,17 @@ public:
      */
 
     /**
-     *  @return the matrix representation of the integrals that are in this buffer
+     *  @param i            the index of the component of the operator
+     *  @param f1           the index of the basis function within shell 1
+     *  @param f2           the index of the basis function within shell 2
+     *  @param f3           the index of the basis function within shell 3
+     *  @param f4           the index of the basis function within shell 4
+     * 
+     *  @return a value from this integral buffer
      */
-    std::array<Tensor<Scalar, 4>, N> integrals() const override {
+    IntegralScalar value(const size_t i, const size_t f1, const size_t f2, const size_t f3, const size_t f4) const {
 
-        // Initialize N zero partial components
-        std::array<Tensor<Scalar, 4>, N> partial_components;  // N partial components of the total matrix representation of the operator
-        for (auto& partial_component : partial_components) {
-            partial_component = Tensor<Scalar, 4>(this->nbf1, this->nbf2, this->nbf3, this->nbf4);
-        }
-
-
-        // Place the calculated integrals inside the partial components
-        for (size_t f1 = 0; f1 != this->nbf1; f1++) {  // f1: index of basis function within shell 1
-            for (size_t f2 = 0; f2 != this->nbf2; f2++) {  // f2: index of basis function within shell 2
-                for (size_t f3 = 0; f3 != this->nbf3; f3++) {  // f3: index of basis function within shell 3
-                    for (size_t f4 = 0; f4 != this->nbf4; f4++) {  // f4: index of basis function within shell 4
-
-                        for (size_t i = 0; i < N; i++) {
-                            const Scalar calculated_integral = libint2_buffer[i][f4 + this->nbf4 * (f3 + this->nbf3 * (f2 + this->nbf2 * (f1)))];  // integrals are packed in row-major form
-                            partial_components[i](f1, f2, f3, f4) = calculated_integral;  // in chemist's notation
-                        }
-
-                    }
-                }
-            }
-        }  // data access loops
-
-        return partial_components;
+        return libint2_buffer[i][f4 + this->nbf4 * (f3 + this->nbf3 * (f2 + this->nbf2 * (f1)))];  // integrals are packed in row-major form
     }
 };
 

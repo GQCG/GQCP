@@ -30,13 +30,13 @@ namespace GQCP {
 /**
  *  A buffer for storing libcint two-electron integrals
  * 
- *  @tparam _Scalar         the scalar representation of an integral
- *  @tparam _N              the number of components the operator has
+ *  @tparam _IntegralScalar         the scalar representation of an integral
+ *  @tparam _N                      the number of components the operator has
  */
-template <typename _Scalar, size_t _N>
-class LibcintTwoElectronIntegralBuffer : public BaseTwoElectronIntegralBuffer<_Scalar, _N> {
+template <typename _IntegralScalar, size_t _N>
+class LibcintTwoElectronIntegralBuffer : public BaseTwoElectronIntegralBuffer<_IntegralScalar, _N> {
 public:
-    using Scalar = _Scalar;  // the scalar representation of an integral
+    using IntegralScalar = _IntegralScalar;  // the scalar representation of an integral
     static constexpr auto N = _N;  // the number of components the operator has
 };
 

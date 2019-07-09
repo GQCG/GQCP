@@ -32,13 +32,13 @@ namespace GQCP {
  * 
  *  An integral buffer facilitates placing integrals (see emplace()) that were calculated over shells into the correct matrix representation of an operator in an orbital basis
  * 
- *  @tparam _Scalar         the scalar representation of an integral
- *  @tparam _N              the number of components the operator has
+ *  @tparam _IntegralScalar         the scalar representation of an integral
+ *  @tparam _N                      the number of components the operator has
  */
-template <typename _Scalar, size_t _N>
+template <typename _IntegralScalar, size_t _N>
 class BaseTwoElectronIntegralBuffer {
 public:
-    using Scalar = _Scalar;  // the scalar representation of an integral
+    using IntegralScalar = _IntegralScalar;  // the scalar representation of an integral
     static constexpr auto N = _N;  // the number of components the operator has
 
 
@@ -76,10 +76,15 @@ public:
      */
 
     /**
-     *  @return the matrix representation of the integrals that are in this buffer
+     *  @param i            the index of the component of the operator
+     *  @param f1           the index of the basis function within shell 1
+     *  @param f2           the index of the basis function within shell 2
+     *  @param f3           the index of the basis function within shell 3
+     *  @param f4           the index of the basis function within shell 4
+     * 
+     *  @return a value from this integral buffer
      */
-    virtual std::array<Tensor<Scalar, 4>, N> integrals() const = 0;
-
+    virtual IntegralScalar value(const size_t i, const size_t f1, const size_t f2, const size_t f3, const size_t f4) const = 0;
 
 
     /*
@@ -107,7 +112,7 @@ public:
     size_t numberOfBasisFunctionsInShell4() const { return this->nbf4; }
 
     /**
-     *  Place the calculated integrals over the shells inside the total matrix representation
+     *  Place the calculated integrals inside the matrix representation of the integrals
      * 
      *  @param full_components          the components of the full matrix representation (over all the basis functions) of the operator
      *  @param bf1                      the total basis function index of the first basis function in the first shell
@@ -115,28 +120,22 @@ public:
      *  @param bf3                      the total basis function index of the first basis function in the third shell
      *  @param bf4                      the total basis function index of the first basis function in the fourth shell     
      */
-    void emplace(std::array<SquareRankFourTensor<Scalar>, N>& full_components, const size_t bf1, const size_t bf2, const size_t bf3, const size_t bf4) const {
+    void emplace(std::array<SquareRankFourTensor<IntegralScalar>, N>& full_components, const size_t bf1, const size_t bf2, const size_t bf3, const size_t bf4) const {
 
-        auto components = this->integrals();  // N components
-        for (size_t i = 0; i < N; i++) {
-            auto& full_component = full_components[i];
-            auto& component = components[i];
+        // Place the calculated integrals inside the matrix representation of the integrals
+        for (size_t f1 = 0; f1 != this->nbf1; f1++) {  // f1: index of basis function within shell 1
+            for (size_t f2 = 0; f2 != this->nbf2; f2++) {  // f2: index of basis function within shell 2
+                for (size_t f3 = 0; f3 != this->nbf3; f3++) {  // f3: index of basis function within shell 3
+                    for (size_t f4 = 0; f4 != this->nbf4; f4++) {  // f4: index of basis function within shell 4
 
-            // Place the calculated integrals inside the correct block (for Tensors, this is a 'slice')
-            const auto bf1_int = static_cast<int>(bf1);
-            const auto bf2_int = static_cast<int>(bf2);
-            const auto bf3_int = static_cast<int>(bf3);
-            const auto bf4_int = static_cast<int>(bf4);
+                        for (size_t i = 0; i < N; i++) {
+                            full_components[i](bf1 + f1, bf2 + f2, bf3 + f3, bf4 + f4) = this->value(i, f1, f2, f3, f4);  // in chemist's notation
+                        }  // components
 
-            const auto nbf1_int = static_cast<int>(this->nbf1);
-            const auto nbf2_int = static_cast<int>(this->nbf2);
-            const auto nbf3_int = static_cast<int>(this->nbf3);
-            const auto nbf4_int = static_cast<int>(this->nbf4);
-
-            Eigen::array<int, 4> offsets {bf1_int, bf2_int, bf3_int, bf4_int};
-            Eigen::array<int, 4> extents {nbf1_int, nbf2_int, nbf3_int, nbf4_int};  // length of the slices
-            full_component.Eigen().slice(offsets, extents) = component.Eigen();
-        }
+                    }  // f1
+                }  // f2
+            }  // f3
+        }  // f4
     }
 };
 

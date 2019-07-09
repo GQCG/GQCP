@@ -38,7 +38,7 @@ namespace GQCP {
 template <size_t _N>
 class LibintTwoElectronIntegralEngine : public BaseTwoElectronIntegralEngine<GTOShell, _N, double> {
 public:
-    using Scalar = double;  // the scalar representation of an integral for libint is always a real number
+    using IntegralScalar = double;  // the scalar representation of an integral for libint is always a real number
     static constexpr auto N = _N;  // the number of components the operator has
 
 
@@ -75,7 +75,7 @@ public:
      * 
      *  This method is not marked const to allow the Engine's internals to be changed
      */
-    std::shared_ptr<BaseTwoElectronIntegralBuffer<Scalar, N>> calculate(const GTOShell& shell1, const GTOShell& shell2, const GTOShell& shell3, const GTOShell& shell4) override {
+    std::shared_ptr<BaseTwoElectronIntegralBuffer<IntegralScalar, N>> calculate(const GTOShell& shell1, const GTOShell& shell2, const GTOShell& shell3, const GTOShell& shell4) override {
 
         const auto libint_shell1 = LibintInterfacer::get().interface(shell1);
         const auto libint_shell2 = LibintInterfacer::get().interface(shell2);

@@ -31,17 +31,17 @@ namespace GQCP {
 /**
  *  An one-electron integral engine that uses libcint as its backend
  * 
- *  @tparam _ShellType          the type of shell the integral engine is able to handle
- *  @tparam _N                  the number of components the operator has
- *  @tparam _Scalar             the scalar representation of an integral
+ *  @tparam _ShellType                  the type of shell the integral engine is able to handle
+ *  @tparam _N                          the number of components the operator has
+ *  @tparam _IntegralScalar             the scalar representation of an integral
  * 
  *  _ShellType is a template parameter because that enables compile-time checking of correct arguments
  */
-template <typename _ShellType, size_t _N, typename _Scalar>
-class LibcintOneElectronIntegralEngine : public BaseOneElectronIntegralEngine<_ShellType, _N, _Scalar> {
+template <typename _ShellType, size_t _N, typename _IntegralScalar>
+class LibcintOneElectronIntegralEngine : public BaseOneElectronIntegralEngine<_ShellType, _N, _IntegralScalar> {
 public:
     using ShellType = _ShellType;  // the type of shell the integral engine is able to handle
-    using Scalar = _Scalar;  // the scalar representation of an integral
+    using IntegralScalar = _IntegralScalar;  // the scalar representation of an integral
     static constexpr auto N = _N;  // the number of components the operator has
 };
 

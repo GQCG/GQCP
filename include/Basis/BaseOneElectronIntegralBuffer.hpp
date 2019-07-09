@@ -73,7 +73,7 @@ public:
      *  @param f1           the index of the basis function within shell 1
      *  @param f2           the index of the basis function within shell 2
      * 
-     *  @return the matrix representation of the integrals that are in this buffer
+     *  @return a value from this integral buffer
      */
     virtual IntegralScalar value(const size_t i, const size_t f1, const size_t f2) const = 0;
 
@@ -94,7 +94,7 @@ public:
     size_t numberOfBasisFunctionsInShell2() const { return this->nbf2; }
 
     /**
-     *  Place the calculated integrals over the shells inside the total matrix representation
+     *  Place the calculated integrals inside the matrix representation of the integrals
      * 
      *  @param full_components          the components of the full matrix representation (over all the basis functions) of the operator
      *  @param bf1                      the total basis function index of the first basis function in the first shell
