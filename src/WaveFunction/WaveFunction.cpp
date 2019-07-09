@@ -68,7 +68,7 @@ double WaveFunction::calculateShannonEntropy() const {
  *
  *  @param T    the transformation matrix between the old and the new orbital basis
  */
-SquareMatrix<uble> WaveFunction::basisTransform(const SquareMatrix<double>& T) {
+SquareMatrix<double> WaveFunction::basisTransform(const SquareMatrix<double>& T) {
 
     if (fock_space->get_type() != FockSpaceType::ProductFockSpace) {
         throw std::invalid_argument("WaveFunction::basisTransform(SquareMatrix<double>): This is not an FCI wave function");
@@ -81,7 +81,7 @@ SquareMatrix<uble> WaveFunction::basisTransform(const SquareMatrix<double>& T) {
     }
 
     // Retrieve LU decomposition for T, TODO: look for more general full-pivot alternative
-    Eigen::PartialPivLU<Eigen::MatrixXd> LU2 = T.lu();
+    Eigen::FullPivLU<Eigen::MatrixXd> LU2(T);
     SquareMatrix<double> LU = LU2.matrixLU();
 
     // Retrieve L
@@ -99,7 +99,8 @@ SquareMatrix<uble> WaveFunction::basisTransform(const SquareMatrix<double>& T) {
     std::cout<< "L : " <<std::endl << L << std::endl;
 
     // Calculate t (the operator which allows per-orbital transformation of the wave function)
-    SquareMatrix<double> t =  SquareMatrix<double>::Identity(K, K) - L + U_in;
+    SquareMatrix<double> _t =  SquareMatrix<double>::Identity(K, K) - L + U_in;
+    SquareMatrix<double> t =  LU2.permutationP.inverse() * _t * ;
 
     // FockSpace
     const auto& product_fock_space = dynamic_cast<const ProductFockSpace&>(*fock_space);

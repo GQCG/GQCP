@@ -106,10 +106,10 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h4 ) {
     auto wavefunction1 = ci_solver.makeWavefunction();
     GQCP::SquareMatrix<double> U_random = GQCP::SquareMatrix<double>::RandomUnitary(K);
 
-    GQCP::SquareMatrix<double> x = wavefunction1.basisTransform(U_random);
+    wavefunction1.basisTransform(U_random);
 
     // Generate a new wave function by rotating the basis and performing the FCI again.
-    mol_ham_par.rotate(x);
+    mol_ham_par.rotate(U_random);
     GQCP::CISolver ci_solver2 (fci, mol_ham_par);
     ci_solver2.solve(solver_options);
 
@@ -146,10 +146,10 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h5 ) {
     auto wavefunction1 = ci_solver.makeWavefunction();
     GQCP::SquareMatrix<double> U_random = GQCP::SquareMatrix<double>::RandomUnitary(K);
 
-    GQCP::SquareMatrix<double> x = wavefunction1.basisTransform(U_random);
+    wavefunction1.basisTransform(U_random);
 
     // Generate a new wave function by rotating the basis and performing the FCI again.
-    mol_ham_par.rotate(x);
+    mol_ham_par.rotate(U_random);
     GQCP::CISolver ci_solver2 (fci, mol_ham_par);
     ci_solver2.solve(solver_options);
 
