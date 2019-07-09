@@ -64,7 +64,7 @@ public:
      *
      *  @param T    the transformation matrix between the old and the new orbital basis
      */
-     void basisTransform(const SquareMatrix<double>& T);
+     SquareMatrix<double> basisTransform(const SquareMatrix<double>& T);
 };
 
 

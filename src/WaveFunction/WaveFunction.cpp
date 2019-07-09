@@ -68,7 +68,7 @@ double WaveFunction::calculateShannonEntropy() const {
  *
  *  @param T    the transformation matrix between the old and the new orbital basis
  */
-void WaveFunction::basisTransform(const SquareMatrix<double>& T) {
+SquareMatrix<uble> WaveFunction::basisTransform(const SquareMatrix<double>& T) {
 
     if (fock_space->get_type() != FockSpaceType::ProductFockSpace) {
         throw std::invalid_argument("WaveFunction::basisTransform(SquareMatrix<double>): This is not an FCI wave function");
@@ -82,16 +82,24 @@ void WaveFunction::basisTransform(const SquareMatrix<double>& T) {
 
     // Retrieve LU decomposition for T, TODO: look for more general full-pivot alternative
     Eigen::PartialPivLU<Eigen::MatrixXd> LU2 = T.lu();
+    SquareMatrix<double> LU = LU2.matrixLU();
 
     // Retrieve L
     SquareMatrix<double> L = SquareMatrix<double>::Identity(K, K);
-    L.triangularView<Eigen::StrictlyLower>() = LU2.matrixLU();
+    L.triangularView<Eigen::StrictlyLower>() = LU;
 
     // Retrive U
-    SquareMatrix<double> U = SquareMatrix<double>(LU2.matrixLU().triangularView<Eigen::Upper>());
+    SquareMatrix<double> U = SquareMatrix<double>(LU.triangularView<Eigen::Upper>());
+
+    SquareMatrix<double> R = L * U;
+
+    SquareMatrix<double> U_in = U.inverse();
+    std::cout<< "D : " <<std::endl << T << std::endl;
+    std::cout<< "U : " <<std::endl << U << std::endl;
+    std::cout<< "L : " <<std::endl << L << std::endl;
 
     // Calculate t (the operator which allows per-orbital transformation of the wave function)
-    SquareMatrix<double> t =  SquareMatrix<double>::Identity(K, K); - L + U.inverse();
+    SquareMatrix<double> t =  SquareMatrix<double>::Identity(K, K) - L + U_in;
 
     // FockSpace
     const auto& product_fock_space = dynamic_cast<const ProductFockSpace&>(*fock_space);
@@ -151,7 +159,6 @@ void WaveFunction::basisTransform(const SquareMatrix<double>& T) {
                         }
 
                         address += fock_space_alpha.get_vertex_weights(q, e2 + 2);
-
                         for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {
                             correction_coefficients(I_alpha * dim_beta + I_beta) +=
                                     sign * t(p, m) * current_coefficients(address * dim_beta + I_beta);
@@ -243,6 +250,8 @@ void WaveFunction::basisTransform(const SquareMatrix<double>& T) {
     }
 
     this->coefficients = current_coefficients;
+
+    return R;
 }
 
 }  // namespace GQCP

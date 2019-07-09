@@ -25,6 +25,7 @@
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "HamiltonianBuilder/FCI.hpp"
 
+
 BOOST_AUTO_TEST_CASE ( shannon_entropy ) {
 
     // Set up a test Fock space
@@ -42,11 +43,11 @@ BOOST_AUTO_TEST_CASE ( shannon_entropy ) {
     BOOST_CHECK(std::abs(constant_expansion.calculateShannonEntropy() - reference_entropy) < 1.0e-12);
 }
 
-BOOST_AUTO_TEST_CASE ( transform_wave_function ) {
+BOOST_AUTO_TEST_CASE ( transform_wave_function_h3 ) {
 
     // Produce a wave function, transform it then pair it against second produced wave function from a transformed basis.
     // Create a molecule
-    GQCP::Molecule hchain = GQCP::Molecule::HChain(4, 0.742, 0);
+    GQCP::Molecule hchain = GQCP::Molecule::HChain(3, 0.742, -1);
 
     // Create the molecular Hamiltonian parameters for this molecule and basis
     auto mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(hchain, "STO-3G");
@@ -75,6 +76,85 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function ) {
 
     auto wavefunction2 = ci_solver2.makeWavefunction(0);
 
+    //std::cout<<std::endl<<wavefunction2.get_coefficients()<<std::endl<<"-------"<<std::endl<<wavefunction1.get_coefficients();
     // Check if they deviate
-    BOOST_CHECK(wavefunction2.get_coefficients().isApprox(wavefunction1.get_coefficients()));
+    BOOST_CHECK(wavefunction2.get_coefficients().isApprox(wavefunction1.get_coefficients()) || wavefunction2.get_coefficients().isApprox(-wavefunction1.get_coefficients()));
+}
+
+
+BOOST_AUTO_TEST_CASE ( transform_wave_function_h4 ) {
+
+    // Produce a wave function, transform it then pair it against second produced wave function from a transformed basis.
+    // Create a molecule
+    GQCP::Molecule hchain = GQCP::Molecule::HChain(4, 0.742, 0);
+
+    // Create the molecular Hamiltonian parameters for this molecule and basis
+    auto mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(hchain, "STO-3G");
+    auto K = mol_ham_par.get_K();
+    auto N_P = hchain.numberOfElectrons()/2;
+
+    mol_ham_par.LowdinOrthonormalize();
+    GQCP::ProductFockSpace fock_space (K, N_P, N_P);
+    GQCP::FCI fci (fock_space);
+
+    GQCP::DenseSolverOptions solver_options;
+    solver_options.number_of_requested_eigenpairs = 10;
+    GQCP::CISolver ci_solver (fci, mol_ham_par);
+    ci_solver.solve(solver_options);
+
+    // Retrieve the wave function and transform it
+    auto wavefunction1 = ci_solver.makeWavefunction();
+    GQCP::SquareMatrix<double> U_random = GQCP::SquareMatrix<double>::RandomUnitary(K);
+
+    GQCP::SquareMatrix<double> x = wavefunction1.basisTransform(U_random);
+
+    // Generate a new wave function by rotating the basis and performing the FCI again.
+    mol_ham_par.rotate(x);
+    GQCP::CISolver ci_solver2 (fci, mol_ham_par);
+    ci_solver2.solve(solver_options);
+
+    auto wavefunction2 = ci_solver2.makeWavefunction(0);
+    //std::cout<<std::endl<<wavefunction2.get_coefficients()<<std::endl<<"-------"<<std::endl<<wavefunction1.get_coefficients();
+    // Check if they deviate    
+    BOOST_CHECK(wavefunction2.get_coefficients().isApprox(wavefunction1.get_coefficients()) || wavefunction2.get_coefficients().isApprox(-wavefunction1.get_coefficients()) );
+}
+
+
+BOOST_AUTO_TEST_CASE ( transform_wave_function_h5 ) {
+
+    // Produce a wave function, transform it then pair it against second produced wave function from a transformed basis.
+    // Create a molecule
+    GQCP::Molecule hchain = GQCP::Molecule::HChain(5, 0.742, 0);
+
+    // Create the molecular Hamiltonian parameters for this molecule and basis
+    auto mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(hchain, "STO-3G");
+    auto K = mol_ham_par.get_K();
+    auto N_B = hchain.numberOfElectrons()/2;
+    auto N_A = hchain.numberOfElectrons() - N_B;
+
+    mol_ham_par.LowdinOrthonormalize();
+    GQCP::ProductFockSpace fock_space (K, N_A, N_B);
+    GQCP::FCI fci (fock_space);
+
+    GQCP::DenseSolverOptions solver_options;
+    solver_options.number_of_requested_eigenpairs = 10;
+
+    GQCP::CISolver ci_solver (fci, mol_ham_par);
+    ci_solver.solve(solver_options);
+
+    // Retrieve the wave function and transform it
+    auto wavefunction1 = ci_solver.makeWavefunction();
+    GQCP::SquareMatrix<double> U_random = GQCP::SquareMatrix<double>::RandomUnitary(K);
+
+    GQCP::SquareMatrix<double> x = wavefunction1.basisTransform(U_random);
+
+    // Generate a new wave function by rotating the basis and performing the FCI again.
+    mol_ham_par.rotate(x);
+    GQCP::CISolver ci_solver2 (fci, mol_ham_par);
+    ci_solver2.solve(solver_options);
+
+    auto wavefunction2 = ci_solver2.makeWavefunction(0);
+    //std::cout<<std::endl<<wavefunction2.get_coefficients()<<std::endl<<"-------"<<std::endl<<wavefunction1.get_coefficients();
+    // Check if they deviate
+    BOOST_CHECK(wavefunction2.get_coefficients().isApprox(wavefunction1.get_coefficients()) || wavefunction2.get_coefficients().isApprox(-wavefunction1.get_coefficients()) );
 }
