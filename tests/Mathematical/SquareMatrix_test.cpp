@@ -201,13 +201,8 @@ BOOST_AUTO_TEST_CASE ( NoPivotLUDecomposition ) {
     const auto& L = LU[0];
     const auto& U = LU[1];
 
-    std::cout << std::endl << "L:" << L << std::endl;
-    std::cout << std::endl << "U:" << U << std::endl;
-    std::cout << std::endl << "A:" << L*U << std::endl;
-
     BOOST_CHECK(U.isApprox(U_ref, 1.0e-4));
     BOOST_CHECK(L.isApprox(L_ref, 1.0e-4));
-
 
     // reference data from https://www.geeksforgeeks.org/doolittle-algorithm-lu-decomposition/
     GQCP::SquareMatrix<double> A2 (3);
@@ -229,9 +224,6 @@ BOOST_AUTO_TEST_CASE ( NoPivotLUDecomposition ) {
 
     const auto& L2 = LU2[0];
     const auto& U2 = LU2[1];
-
-    std::cout << std::endl << "L:" << L2 << std::endl;
-    std::cout << std::endl << "U:" << U2 << std::endl;
 
     BOOST_CHECK(U2.isApprox(U_ref2, 1.0e-5));
     BOOST_CHECK(L2.isApprox(L_ref2, 1.0e-5));

@@ -80,25 +80,21 @@ void WaveFunction::basisTransform(const SquareMatrix<double>& T) {
         throw std::invalid_argument("WaveFunction::basisTransform(SquareMatrix<double>): number of orbitals does not match the dimension of the transformation matrix T");
     }
 
-    // Retrieve LU decomposition for T, TODO: look for more general full-pivot alternative
-    Eigen::FullPivLU<Eigen::MatrixXd> LU2(T);
-    SquareMatrix<double> LU = LU2.matrixLU();
+    // Retrieve LU decomposition for T
+    const auto& LU = T.NoPivotLUDecomposition();
 
     // Retrieve L
     SquareMatrix<double> L = SquareMatrix<double>::Identity(K, K);
-    L.triangularView<Eigen::StrictlyLower>() = LU;
+    L.triangularView<Eigen::StrictlyLower>() = LU[0];
 
     // Retrive U
-    SquareMatrix<double> U = SquareMatrix<double>(LU.triangularView<Eigen::Upper>());
+    SquareMatrix<double> U = SquareMatrix<double>(LU[1].triangularView<Eigen::Upper>());
 
 
     SquareMatrix<double> U_in = U.inverse();
-    std::cout<< "D : " <<std::endl << T << std::endl;
-    std::cout<< "U : " <<std::endl << U << std::endl;
-    std::cout<< "L : " <<std::endl << L << std::endl;
+
     // Calculate t (the operator which allows per-orbital transformation of the wave function)
-    SquareMatrix<double> _t =  SquareMatrix<double>::Identity(K, K) - L + U_in;
-    SquareMatrix<double> t =  LU2.permutationP().inverse() * _t *  LU2.permutationQ().inverse();
+    SquareMatrix<double> t =  SquareMatrix<double>::Identity(K, K) - L + U_in;
 
     // FockSpace
     const auto& product_fock_space = dynamic_cast<const ProductFockSpace&>(*fock_space);

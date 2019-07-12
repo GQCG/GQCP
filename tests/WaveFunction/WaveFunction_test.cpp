@@ -76,7 +76,6 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h3 ) {
 
     auto wavefunction2 = ci_solver2.makeWavefunction(0);
 
-    //std::cout<<std::endl<<wavefunction2.get_coefficients()<<std::endl<<"-------"<<std::endl<<wavefunction1.get_coefficients();
     // Check if they deviate
     BOOST_CHECK(wavefunction2.get_coefficients().isApprox(wavefunction1.get_coefficients()) || wavefunction2.get_coefficients().isApprox(-wavefunction1.get_coefficients()));
 }
@@ -113,8 +112,8 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h4 ) {
     GQCP::CISolver ci_solver2 (fci, mol_ham_par);
     ci_solver2.solve(solver_options);
 
-    auto wavefunction2 = ci_solver2.makeWavefunction(0);
-    //std::cout<<std::endl<<wavefunction2.get_coefficients()<<std::endl<<"-------"<<std::endl<<wavefunction1.get_coefficients();
+    auto wavefunction2 = ci_solver2.makeWavefunction();
+
     // Check if they deviate    
     BOOST_CHECK(wavefunction2.get_coefficients().isApprox(wavefunction1.get_coefficients()) || wavefunction2.get_coefficients().isApprox(-wavefunction1.get_coefficients()) );
 }
@@ -153,8 +152,8 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h5 ) {
     GQCP::CISolver ci_solver2 (fci, mol_ham_par);
     ci_solver2.solve(solver_options);
 
-    auto wavefunction2 = ci_solver2.makeWavefunction(0);
-    //std::cout<<std::endl<<wavefunction2.get_coefficients()<<std::endl<<"-------"<<std::endl<<wavefunction1.get_coefficients();
+    auto wavefunction2 = ci_solver2.makeWavefunction();
+
     // Check if they deviate
     BOOST_CHECK(wavefunction2.get_coefficients().isApprox(wavefunction1.get_coefficients()) || wavefunction2.get_coefficients().isApprox(-wavefunction1.get_coefficients()) );
 }

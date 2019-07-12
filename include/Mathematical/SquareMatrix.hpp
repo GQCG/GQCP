@@ -330,16 +330,16 @@ public:
 
 
     /**
-     *  @return an non-pivoted LU decomposition in an arry, with L at position 0 and U on position 1 of the array.
-     *   warning: Pivoting is required to ensure that the decomposition is stable.
+     *  @return an non-pivoted LU decomposition in an array, with L at position 0 and U on position 1 of the array.
+     *   warning: Pivoting is required to ensure that the decomposition is stable. Eigen3 provides partial and full pivot modules.
      */
-    std::array<Self,2> NoPivotLUDecomposition() const {
+    std::array<Self, 2> NoPivotLUDecomposition() const {
 
         auto M = this->get_dim();
 
         Self L = Self::Zero(M, M);
         Self U = Self::Zero(M, M);
-
+        
         // Algorithm from "https://www.geeksforgeeks.org/doolittle-algorithm-lu-decomposition/"
         for (int i = 0; i < M; i++) { 
     
@@ -371,8 +371,35 @@ public:
                 } 
             } 
         } 
-    
-        return std::array<Self,2>({L, U});
+        
+        // Test if the decomposition was stable
+        Self A = Self(L * U);
+        if (A.isApprox(*this)) {
+            return std::array<Self, 2> ({L, U});
+        }
+        
+        // If previous solution is not stable proceed with gaussian elimination algorithm
+        // https://stackoverflow.com/questions/41150997/perform-lu-decomposition-without-pivoting-in-matlab
+
+        L = Self::Identity(M, M);
+        U = Self(*this);
+        
+        for (size_t i = 0; i < M-1; i++) {
+            
+            L.col(i).tail(M-(i+1)) = U.col(i).tail(M-(i+1)) / U(i,i);
+        
+            
+            for (size_t j = i+1; j < M; j++) {
+                U.row(j) += - L(j, i) * U.row(i);
+            }
+        }
+
+        A = Self(L * U);
+        if (!A.isApprox(*this)) {
+            throw std::runtime_error("SquareMatrix<Scalar>::NoPivotLUDecomposition(): The decomposition was not stable");
+        }
+        
+        return std::array<Self, 2> ({L, U});
     }
 };
 
