@@ -387,7 +387,6 @@ public:
         for (size_t i = 0; i < M-1; i++) {
             
             L.col(i).tail(M-(i+1)) = U.col(i).tail(M-(i+1)) / U(i,i);
-        
             
             for (size_t j = i+1; j < M; j++) {
                 U.row(j) += - L(j, i) * U.row(i);
