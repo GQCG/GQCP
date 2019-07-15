@@ -178,9 +178,10 @@ BOOST_AUTO_TEST_CASE ( permanent_ryser ) {
     BOOST_CHECK(std::abs(C.permanent_combinatorial() - C.permanent_ryser()) < 1.0e-12);
 }
 
+
 BOOST_AUTO_TEST_CASE ( NoPivotLUDecomposition ) {
 
-    // reference data from https://stackoverflow.com/questions/41150997/perform-lu-decomposition-without-pivoting-in-matlab
+    // Reference data from https://stackoverflow.com/questions/41150997/perform-lu-decomposition-without-pivoting-in-matlab
     GQCP::SquareMatrix<double> A (3);
     GQCP::SquareMatrix<double> L_ref (3);
     GQCP::SquareMatrix<double> U_ref (3);
@@ -204,19 +205,20 @@ BOOST_AUTO_TEST_CASE ( NoPivotLUDecomposition ) {
     BOOST_CHECK(U.isApprox(U_ref, 1.0e-4));
     BOOST_CHECK(L.isApprox(L_ref, 1.0e-4));
 
-    // reference data from https://www.geeksforgeeks.org/doolittle-algorithm-lu-decomposition/
+
+    // Reference data from https://www.geeksforgeeks.org/doolittle-algorithm-lu-decomposition/
     GQCP::SquareMatrix<double> A2 (3);
     GQCP::SquareMatrix<double> L_ref2 (3);
     GQCP::SquareMatrix<double> U_ref2 (3);
-    A2 <<  2, -1, -2,
+    A2 << 2, -1, -2,
          -4,  6,  3,
          -4, -2,  8;
     
-    L_ref2 <<   1,  0,  0,
+    L_ref2 <<  1,  0,  0,
               -2,  1,  0,
               -2, -1,  1;
 
-    U_ref2 <<  2, -1, -2,
+    U_ref2 << 2, -1, -2,
               0,  4, -1,
               0,  0,  3;    
 
@@ -227,6 +229,4 @@ BOOST_AUTO_TEST_CASE ( NoPivotLUDecomposition ) {
 
     BOOST_CHECK(U2.isApprox(U_ref2, 1.0e-5));
     BOOST_CHECK(L2.isApprox(L_ref2, 1.0e-5));
-
-    
 }

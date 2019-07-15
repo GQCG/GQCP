@@ -43,9 +43,10 @@ BOOST_AUTO_TEST_CASE ( shannon_entropy ) {
     BOOST_CHECK(std::abs(constant_expansion.calculateShannonEntropy() - reference_entropy) < 1.0e-12);
 }
 
+
 BOOST_AUTO_TEST_CASE ( transform_wave_function_h3 ) {
 
-    // Produce a wave function, transform it then pair it against second produced wave function from a transformed basis.
+    // Produce a wave function, transform it, then pair it against second produced wave function from a transformed basis
     // Create a molecule
     GQCP::Molecule hchain = GQCP::Molecule::HChain(3, 0.742, -1);
 
@@ -83,7 +84,7 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h3 ) {
 
 BOOST_AUTO_TEST_CASE ( transform_wave_function_h4 ) {
 
-    // Produce a wave function, transform it then pair it against second produced wave function from a transformed basis.
+    // Produce a wave function, transform it then pair it, against second produced wave function from a transformed basis
     // Create a molecule
     GQCP::Molecule hchain = GQCP::Molecule::HChain(4, 0.742, 0);
 
@@ -121,7 +122,7 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h4 ) {
 
 BOOST_AUTO_TEST_CASE ( transform_wave_function_h5 ) {
 
-    // Produce a wave function, transform it then pair it against second produced wave function from a transformed basis.
+    // Produce a wave function, transform it then pair it, against second produced wave function from a transformed basis
     // Create a molecule
     GQCP::Molecule hchain = GQCP::Molecule::HChain(5, 0.742, 0);
 

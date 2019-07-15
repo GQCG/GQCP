@@ -17,7 +17,7 @@
 // 
 #include "WaveFunction/WaveFunction.hpp"
 #include "FockSpace/ProductFockSpace.hpp"
-#include "../../include/Mathematical/SquareMatrix.hpp"
+#include "Mathematical/SquareMatrix.hpp"
 
 namespace GQCP {
 
@@ -64,7 +64,8 @@ double WaveFunction::calculateShannonEntropy() const {
 
 
 /**
- *  Transform the underlying ONV basis of the wave function (only for FCI [ProductFockSpace]) as shown in Helgaker 11.9
+ *  Transform the underlying ONV basis of the wave function (only for FCI [ProductFockSpace]) and recalculate the ONV expansion coefficients
+
  *
  *  @param T    the transformation matrix between the old and the new orbital basis
  */
@@ -74,7 +75,7 @@ void WaveFunction::basisTransform(const SquareMatrix<double>& T) {
         throw std::invalid_argument("WaveFunction::basisTransform(SquareMatrix<double>): This is not an FCI wave function");
     }
 
-    auto K = fock_space->get_K();
+    const auto K = fock_space->get_K();
 
     if (K != T.get_dim()) {
         throw std::invalid_argument("WaveFunction::basisTransform(SquareMatrix<double>): number of orbitals does not match the dimension of the transformation matrix T");
@@ -87,16 +88,16 @@ void WaveFunction::basisTransform(const SquareMatrix<double>& T) {
     SquareMatrix<double> L = SquareMatrix<double>::Identity(K, K);
     L.triangularView<Eigen::StrictlyLower>() = LU[0];
 
-    // Retrive U
+    // Retrieve U
     SquareMatrix<double> U = SquareMatrix<double>(LU[1].triangularView<Eigen::Upper>());
 
 
-    SquareMatrix<double> U_in = U.inverse();
+    SquareMatrix<double> U_inv = U.inverse();
 
     // Calculate t (the operator which allows per-orbital transformation of the wave function)
-    SquareMatrix<double> t =  SquareMatrix<double>::Identity(K, K) - L + U_in;
+    SquareMatrix<double> t =  SquareMatrix<double>::Identity(K, K) - L + U_inv;
 
-    // FockSpace
+    // Set up Fock space variables for the CI iterations
     const auto& product_fock_space = dynamic_cast<const ProductFockSpace&>(*fock_space);
     const FockSpace& fock_space_alpha = product_fock_space.get_fock_space_alpha();
     const FockSpace& fock_space_beta = product_fock_space.get_fock_space_beta();
@@ -106,12 +107,16 @@ void WaveFunction::basisTransform(const SquareMatrix<double>& T) {
     auto N_alpha = fock_space_alpha.get_N();
     auto N_beta = fock_space_beta.get_N();
 
-    // Wave function transformtion algorithm
+    /*  Wave function transformtion, using the algorithm as in Helgaker chapter 11.9
+     *   each iteration will calculate a set of correction coefficients 
+     *   (Delta C in Helgaker) to update "current_coefficients" the intermediate expansion in between iterations
+     *   each iterations will correct the coefficients with respect to a single orbital "m".
+     */
+
     VectorX<double> current_coefficients = this->coefficients;  // coefficients will be updated after each orbital transform (C^(n-1)) in Helgaker
-    // each iteration will calculate a set of correction coefficients (Delta C in Helgaker) to update "current_coefficients".
     VectorX<double> correction_coefficients = VectorX<double>::Zero(product_fock_space.get_dimension());
 
-    for (size_t m = 0; m < K; m++) {  // Iterate over all orbitals
+    for (size_t m = 0; m < K; m++) {  // iterate over all orbitals
 
         // Perform alpha and beta CI iterations
         // Alpha-branch
@@ -162,7 +167,7 @@ void WaveFunction::basisTransform(const SquareMatrix<double>& T) {
                 }
 
 
-            } else {  // If orbital m is occupied we can perform an in-place operation
+            } else {  // if orbital m is occupied we can perform an in-place operation
                 for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {
                     correction_coefficients(I_alpha * dim_beta + I_beta) +=
                             (t(m, m) - 1) * current_coefficients(I_alpha * dim_beta + I_beta);
@@ -228,7 +233,7 @@ void WaveFunction::basisTransform(const SquareMatrix<double>& T) {
                     }
                 }
 
-            } else {  // If orbital m is occupied we can perform an in-place operation
+            } else {  // if orbital m is occupied we can perform an in-place operation
                 for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {
                     correction_coefficients(I_alpha * dim_beta + I_beta) +=
                             (t(m, m) - 1) * current_coefficients(I_alpha * dim_beta + I_beta);
@@ -243,8 +248,8 @@ void WaveFunction::basisTransform(const SquareMatrix<double>& T) {
         current_coefficients += correction_coefficients;
         correction_coefficients.setZero();
     }
-
     this->coefficients = current_coefficients;
 }
+
 
 }  // namespace GQCP
