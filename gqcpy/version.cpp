@@ -15,11 +15,10 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
 
-#include "QCMethod/FCI.hpp"
+#include "version.hpp"
 
 
 namespace py = pybind11;
@@ -28,13 +27,14 @@ namespace py = pybind11;
 namespace gqcpy {
 
 
-void bindQCMethodFCI(py::module& module) {
-    py::class_<GQCP::QCMethod::FCI>(module, "FCI", "Construct and solve the FCI Hamiltonian.")
-        .def(py::init<const std::string, const std::string, const size_t, const size_t>(), py::arg("xyz_filename"), py::arg("basis_set"), py::arg("num_alpha"), py::arg("num_beta"))
-        .def("solve", &GQCP::QCMethod::FCI::solve, "Solve the eigenvalue equations such that the lowest energy and corresponding eigenvector become available. ")
-        .def("get_energy", &GQCP::QCMethod::FCI::energy, "Get the lowest energy.");
+void bindVersion(py::module& module) {
+    py::class_<GQCP::Version>(module, "Version", "Information on the GQCP version")
+        .def_property_readonly_static("major", [] (py::object) { return GQCP::Version::major; }, "The GQCP major version")
+        .def_property_readonly_static("minor", [] (py::object) { return GQCP::Version::minor; }, "The GQCP minor version")
+        .def_property_readonly_static("patch", [] (py::object) { return GQCP::Version::patch; }, "The GQCP patch version")
+        .def_property_readonly_static("full", [] (py::object) { return GQCP::Version::full; }, "The full GQCP version")
+        .def_property_readonly_static("git_sha1", [] (py::object) { return GQCP::Version::git_SHA1; }, "The current GQCP commit SHA1");
 }
-
 
 
 }  // namespace gqcpy

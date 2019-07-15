@@ -31,7 +31,7 @@ namespace ${PROJECT_NAME_UPPERCASE} {
  *  A class that holds version-related info: the version numbers and the corresponding git SHA1
  */
 struct Version {
-private:
+public:
     static constexpr size_t major = ${PROJECT_VERSION_MAJOR};
     static constexpr size_t minor = ${PROJECT_VERSION_MINOR};
     static constexpr size_t patch = ${PROJECT_VERSION_PATCH};
