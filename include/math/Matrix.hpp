@@ -34,7 +34,8 @@ namespace GQCP {
 
 
 constexpr auto Dynamic = Eigen::Dynamic;
-
+static constexpr auto Rows = _Rows;
+static constexpr auto Cols = _Cols;
 
 /**
  *  An extension of the Eigen::Matrix class, with extra operations
@@ -49,11 +50,6 @@ template <typename _Scalar = double, int _Rows = Dynamic, int _Cols = Dynamic>
 class Matrix : public Eigen::Matrix<_Scalar, _Rows, _Cols> {
 public:
     using Scalar = _Scalar;
-    enum {
-        Rows = _Rows,
-        Cols = _Cols
-    };
-
     using Self = Matrix<Scalar, Rows, Cols>;
     using Base = Eigen::Matrix<Scalar, Rows, Cols>;
 
