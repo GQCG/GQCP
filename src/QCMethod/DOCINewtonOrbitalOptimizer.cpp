@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 //
-#include "QCMethod/FCI.hpp"
+#include "QCMethod/DOCINewtonOrbitalOptimizer.hpp"
 
 #include "Operator/FirstQuantized/Operator.hpp"
 
@@ -34,7 +34,7 @@ namespace QCMethod {
  *  @param num_alpha            the number of alpha electrons
  *  @param num_beta             the number of beta electrons
  */
-FCI::FCI(const std::string& xyz_filename, const std::string& basis_set, const size_t num_alpha, const size_t num_beta) :
+DOCINewtonOrbitalOptimizer::DOCINewtonOrbitalOptimizer(const std::string& xyz_filename, const std::string& basis_set, const size_t num_alpha, const size_t num_beta) :
     xyz_filename (xyz_filename),
     basis_set (basis_set),
     N_alpha (num_alpha),
@@ -50,7 +50,7 @@ FCI::FCI(const std::string& xyz_filename, const std::string& basis_set, const si
 /**
  *  Solve the dense eigenvalue problem for the molecular Hamiltonian in the full Fock space
  */
-void FCI::solve() {
+void DOCINewtonOrbitalOptimizer::solve() {
 
     // Construct the molecular Hamiltonian parameters
     auto molecule = Molecule::ReadXYZ(this->xyz_filename);
@@ -58,10 +58,10 @@ void FCI::solve() {
     mol_ham_par.LowdinOrthonormalize();  // now in the Löwdin basis
 
 
-    // Solve the FCI eigenvalue problem using the dense algorithm
+    // Solve the DOCINewtonOrbitalOptimizer eigenvalue problem using the dense algorithm
     auto K = mol_ham_par.get_K();
     ProductFockSpace fock_space(K, this->N_alpha, this->N_beta);
-    GQCP::FCI fci_builder (fock_space);
+    GQCP::DOCINewtonOrbitalOptimizer fci_builder (fock_space);
 
     CISolver fci_solver (fci_builder, mol_ham_par);
     DenseSolverOptions dense_solver_options;
@@ -79,14 +79,14 @@ void FCI::solve() {
 
 
 /**
- *  @return the ground state FCI energy
+ *  @return the ground state DOCINewtonOrbitalOptimizer energy
  */
-double FCI::energy() const {
+double DOCINewtonOrbitalOptimizer::energy() const {
 
     if (this->is_solved) {
         return this->energy_solution;
     } else {
-        throw std::runtime_error("FCI::energy(): You are trying to get energy but the method hasn't been solved yet.");
+        throw std::runtime_error("DOCINewtonOrbitalOptimizer::energy(): You are trying to get energy but the method hasn't been solved yet.");
     }
 }
 

@@ -15,8 +15,8 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 //
-#ifndef GQCP_QCMETHOD_FCI_HPP
-#define GQCP_QCMETHOD_FCI_HPP
+#ifndef GQCP_QCMETHOD_DOCINEWTONORBITALOPTIMIZER_HPP
+#define GQCP_QCMETHOD_DOCINEWTONORBITALOPTIMIZER_HPP
 
 
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
@@ -33,10 +33,9 @@ namespace QCMethod {
 /**
  *  A class that is a wrapper around solving the dense eigenvalue problem for the molecular Hamiltonian
  */
-class FCI {
+class DOCINewtonOrbitalOptimizer {
 private:
-    size_t N_alpha;  // the number of alpha electrons
-    size_t N_beta;  // the number of beta electrons
+    size_t N_P;
 
     std::string xyz_filename;  // the file that contains the molecule specification (coordinates in angstrom)
     std::string basis_set;  // the basisset that should be used
@@ -54,7 +53,7 @@ public:
      *  @param num_alpha            the number of alpha electrons
      *  @param num_beta             the number of beta electrons
      */
-    FCI(const std::string& xyz_filename, const std::string& basis_set, const size_t num_alpha, const size_t num_beta);
+    DOCINewtonOrbitalOptimizer(const std::string xyz_filename, const std::string basis_set, const bool use_davidson, const bool localize);
 
 
     // PUBLIC METHODS
@@ -75,4 +74,4 @@ public:
 }  // namespace GQCP
 
 
-#endif  // GQCP_QCMETHOD_FCI_HPP
+#endif  // GQCP_QCMETHOD_DOCINEWTONORBITALOPTIMIZER_HPP
