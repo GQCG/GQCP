@@ -213,6 +213,22 @@ public:
     }
 
 
+   /**
+    *  @param M                the dimension of the resulting matrix
+    *
+    *  @return a random unitary matrix
+    */
+    static Self RandomUnitary(size_t M) {
+
+        // Get a random unitary matrix by diagonalizing a random symmetric matrix
+        Self A_random = Self::Random(M, M);
+        Self A_symmetric = A_random + A_random.adjoint();
+        Eigen::SelfAdjointEigenSolver<Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>> unitary_solver (A_symmetric);
+
+        return unitary_solver.eigenvectors();
+    }
+
+    
 
     /*
      *  GETTERS
@@ -311,8 +327,65 @@ public:
 
         return value;
     }
-};
 
+
+    /**
+     *  @return a non-pivoted LU decomposition in an array, with L at position 0 and U on position 1 of the array.
+     *   Warning: pivoting is required to ensure that the decomposition is stable. Eigen3 provides partial and full pivot modules
+     *   When the pivot or permutation of a matrix is not of interest we strongly recommend using Eigen3.
+     */
+    std::array<Self, 2> NoPivotLUDecomposition() const {
+
+        const auto M = this->get_dim();
+
+        Self L = Self::Zero(M, M);
+        Self U = Self::Zero(M, M);
+        
+        // Algorithm from "https://www.geeksforgeeks.org/doolittle-algorithm-lu-decomposition/"
+        for (size_t i = 0; i < M; i++) { 
+    
+            // Systematically solve for the entries of the upper triangular matrix U:
+            //  U_ik = A_ik - (LU)_ik
+            for (size_t k = i; k < M; k++) { 
+    
+                // Summation of L(i, j) * U(j, k) 
+                double sum = 0.0; 
+                for (size_t j = 0; j < i; j++) {
+                    sum += (L(i,j) * U(j,k)); 
+                }
+    
+                // Evaluating U(i, k) 
+                U(i,k) = this->operator()(i,k) - sum; 
+            } 
+    
+            // Systematically solve for the entries of the lower triangular matrix L:
+            //  L_ik = (A_ik - (LU)_ik) / U_kk
+            for (size_t k = i; k < M; k++) { 
+                if (i == k) {
+                    L(i,i) = 1;  // diagonal as 1 
+                } else { 
+    
+                    // Summation of L(k, j) * U(j, i) 
+                    double sum = 0.0; 
+                    for (size_t j = 0; j < i; j++) {
+                        sum += (L(k,j) * U(j,i)); 
+                    }
+    
+                    // Evaluating L(k, i) 
+                    L(k,i) = (this->operator()(k,i) - sum) / U(i,i); 
+                } 
+            } 
+        } 
+        
+        // Test if the decomposition was stable
+        Self A = L * U;
+        if (A.isApprox(*this)) {
+            return std::array<Self, 2> ({L, U});
+        } else {
+            throw std::runtime_error("SquareMatrix<Scalar>::NoPivotLUDecomposition(): The decomposition was not stable");
+        }
+    }
+};
 
 }  // namespace GQCP
 

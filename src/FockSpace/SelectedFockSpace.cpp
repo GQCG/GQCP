@@ -87,7 +87,6 @@ SelectedFockSpace::SelectedFockSpace(size_t K, size_t N_alpha, size_t N_beta) :
 SelectedFockSpace::SelectedFockSpace(const ProductFockSpace& fock_space) :
     SelectedFockSpace (fock_space.get_K(), fock_space.get_N_alpha(), fock_space.get_N_beta())
 {
-
     std::vector<Configuration> configurations;
 
     const FockSpace& fock_space_alpha = fock_space.get_fock_space_alpha();
@@ -114,7 +113,6 @@ SelectedFockSpace::SelectedFockSpace(const ProductFockSpace& fock_space) :
     }
     this->dim = fock_space.get_dimension();
     this->configurations = configurations;
-
 }
 
 
