@@ -78,7 +78,7 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h3 ) {
     auto wavefunction2 = ci_solver2.makeWavefunction(0);
 
     // Check if they deviate
-    BOOST_CHECK(wavefunction2.get_coefficients().isApprox(wavefunction1.get_coefficients()) || wavefunction2.get_coefficients().isApprox(-wavefunction1.get_coefficients()));
+    BOOST_CHECK(wavefunction2.isApprox(wavefunction1));
 }
 
 
@@ -116,7 +116,7 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h4 ) {
     auto wavefunction2 = ci_solver2.makeWavefunction();
 
     // Check if they deviate    
-    BOOST_CHECK(wavefunction2.get_coefficients().isApprox(wavefunction1.get_coefficients()) || wavefunction2.get_coefficients().isApprox(-wavefunction1.get_coefficients()) );
+    BOOST_CHECK(wavefunction2.isApprox(wavefunction1));
 }
 
 
@@ -156,5 +156,5 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h5 ) {
     auto wavefunction2 = ci_solver2.makeWavefunction();
 
     // Check if they deviate
-    BOOST_CHECK(wavefunction2.get_coefficients().isApprox(wavefunction1.get_coefficients()) || wavefunction2.get_coefficients().isApprox(-wavefunction1.get_coefficients()) );
+    BOOST_CHECK(wavefunction2.isApprox(wavefunction1));
 }

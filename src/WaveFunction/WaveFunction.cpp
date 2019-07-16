@@ -18,6 +18,7 @@
 #include "WaveFunction/WaveFunction.hpp"
 #include "FockSpace/ProductFockSpace.hpp"
 #include "Mathematical/SquareMatrix.hpp"
+#include "Utilities/linalg.hpp"
 
 namespace GQCP {
 
@@ -107,7 +108,7 @@ void WaveFunction::basisTransform(const SquareMatrix<double>& T) {
     auto N_alpha = fock_space_alpha.get_N();
     auto N_beta = fock_space_beta.get_N();
 
-    /*  Wave function transformtion, using the algorithm as in Helgaker chapter 11.9
+    /*  Wave function transformation, using the algorithm as in Helgaker chapter 11.9
      *   each iteration will calculate a set of correction coefficients 
      *   (Delta C in Helgaker) to update "current_coefficients" the intermediate expansion in between iterations
      *   each iterations will correct the coefficients with respect to a single orbital "m".
@@ -249,6 +250,22 @@ void WaveFunction::basisTransform(const SquareMatrix<double>& T) {
         correction_coefficients.setZero();
     }
     this->coefficients = current_coefficients;
+}
+
+
+/** 
+ *  @param other            wave function for the comparison
+ *  @param tolerance        tolerance for the comparison of coefficients
+ * 
+ *  @return if two wave functions are equal within a given tolerance
+ */
+bool WaveFunction::isApprox(const WaveFunction& other, double tolerance) const { 
+
+    if (this->fock_space->get_type() != other.fock_space->get_type() || this->fock_space->get_dimension() != other.fock_space->get_dimension()) {
+        return false;
+    }
+
+    return areEqualEigenvectors(this->coefficients, other.coefficients, tolerance);
 }
 
 

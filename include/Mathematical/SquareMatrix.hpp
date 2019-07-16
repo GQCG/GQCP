@@ -344,12 +344,12 @@ public:
         // Algorithm from "https://www.geeksforgeeks.org/doolittle-algorithm-lu-decomposition/"
         for (size_t i = 0; i < M; i++) { 
     
-            // Systematically solve for the entries the upper Triangular U
+            // Systematically solve for the entries of the upper triangular matrix U:
             //  U_ik = A_ik - (LU)_ik
             for (size_t k = i; k < M; k++) { 
     
                 // Summation of L(i, j) * U(j, k) 
-                double sum = 0; 
+                double sum = 0.0; 
                 for (size_t j = 0; j < i; j++) {
                     sum += (L(i,j) * U(j,k)); 
                 }
@@ -358,15 +358,15 @@ public:
                 U(i,k) = this->operator()(i,k) - sum; 
             } 
     
-            // Systematically solve for the entries for the Lower Triangular 
-            // L_ik = (A_ik - (LU)_ik) / U_kk
+            // Systematically solve for the entries of the lower triangular matrix L:
+            //  L_ik = (A_ik - (LU)_ik) / U_kk
             for (size_t k = i; k < M; k++) { 
                 if (i == k) {
                     L(i,i) = 1;  // diagonal as 1 
                 } else { 
     
                     // Summation of L(k, j) * U(j, i) 
-                    double sum = 0; 
+                    double sum = 0.0; 
                     for (size_t j = 0; j < i; j++) {
                         sum += (L(k,j) * U(j,i)); 
                     }

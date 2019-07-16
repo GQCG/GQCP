@@ -65,6 +65,14 @@ public:
      *  @param T    the transformation matrix between the old and the new orbital basis
      */
      void basisTransform(const SquareMatrix<double>& T);
+     
+    /** 
+     *  @param other            wave function for the comparison
+     *  @param tolerance        tolerance for the comparison of coefficients
+     * 
+     *  @return if two wave functions are equal within a given tolerance
+     */
+     bool isApprox(const WaveFunction& other, double tolerance = 1e-10) const;
 };
 
 
