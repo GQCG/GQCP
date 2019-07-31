@@ -31,14 +31,14 @@ namespace QCMethod {
 /**
  *  @param xyz_filename         the file that contains the molecule specification (coordinates in angstrom)
  *  @param basis_set            the basisset that should be used
- *  @param num_alpha            the number of alpha electrons
- *  @param num_beta             the number of beta electrons
+ *  @param use_davidson         indicate if one wants to use davidson to solve the eigenvalue problem (opposed to dense)
+ *  @param localize             indicate if one wants to localize the orbitals before 
  */
-DOCINewtonOrbitalOptimizer::DOCINewtonOrbitalOptimizer(const std::string& xyz_filename, const std::string& basis_set, const size_t num_alpha, const size_t num_beta) :
+DOCINewtonOrbitalOptimizer::DOCINewtonOrbitalOptimizer(const std::string& xyz_filename, const std::string& basis_set, const bool use_davidson, const bool localize) :
     xyz_filename (xyz_filename),
     basis_set (basis_set),
-    N_alpha (num_alpha),
-    N_beta (num_beta)
+    use_davidson (use_davidson),
+    localize (localize)
 {}
 
 
@@ -54,39 +54,83 @@ void DOCINewtonOrbitalOptimizer::solve() {
 
     // Construct the molecular Hamiltonian parameters
     auto molecule = Molecule::ReadXYZ(this->xyz_filename);
-    auto mol_ham_par = HamiltonianParameters<double>::Molecular(molecule, this->basis_set);  // in the AO basis
-    mol_ham_par.LowdinOrthonormalize();  // now in the Löwdin basis
+    auto N_P = molecule.numberOfElectrons()/2;
+    auto ao_mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(molecule, basisset);
+    size_t K = ao_mol_ham_par.get_K();
 
 
-    // Solve the DOCINewtonOrbitalOptimizer eigenvalue problem using the dense algorithm
-    auto K = mol_ham_par.get_K();
-    ProductFockSpace fock_space(K, this->N_alpha, this->N_beta);
-    GQCP::DOCINewtonOrbitalOptimizer fci_builder (fock_space);
+    GQCP::DIISRHFSCFSolver diis_scf_solver (ao_mol_ham_par, molecule);
+    diis_scf_solver.solve();
+    auto rhf = diis_scf_solver.get_solution();
 
-    CISolver fci_solver (fci_builder, mol_ham_par);
-    DenseSolverOptions dense_solver_options;
+    auto mol_ham_par = GQCP::HamiltonianParameters<double>(ao_mol_ham_par, rhf.get_C());
 
-    fci_solver.solve(dense_solver_options);
+    auto hessian_modifier = std::make_shared<GQCP::IterativeIdentitiesHessianModifier>();
+    if (localize) {
+
+        // Newton to get to the first local minimum
+        GQCP::ERNewtonLocalizer first_newton_localizer (N_P, hessian_modifier);
+        first_newton_localizer.optimize(mol_ham_par);
+
+
+        // Check if Jacobi finds another minimum
+        GQCP::ERJacobiLocalizer jacobi_localizer (N_P);
+        auto optimal_jacobi_with_scalar = jacobi_localizer.calculateOptimalJacobiParameters(mol_ham_par);
+        if (optimal_jacobi_with_scalar.second > 0) {  // if a Jacobi rotation can find an increase, do it
+            const auto U = GQCP::SquareMatrix<double>::FromJacobi(optimal_jacobi_with_scalar.first, mol_ham_par.get_K());
+            mol_ham_par.rotate(U);
+        }
+
+
+        // Newton to get to the next local minimum
+        GQCP::ERNewtonLocalizer second_newton_localizer (N_P, hessian_modifier);
+        first_newton_localizer.optimize(mol_ham_par);
+    }
+
+     // Do the DOCI orbital optimization
+    GQCP::FockSpace fock_space (K, N_P);
+    GQCP::DOCI doci (fock_space);
+
+    std::shared_ptr<GQCP::BaseSolverOptions> solver_options;
+    if (user_wants_davidson) {
+        solver_options = std::make_shared<GQCP::DavidsonSolverOptions>(fock_space.HartreeFockExpansion());
+    } else {
+        solver_options = std::make_shared<GQCP::DenseSolverOptions>();
+    }
+
+    GQCP::DOCINewtonOrbitalOptimizer orbital_optimizer (doci, *solver_options, hessian_modifier);
+    orbital_optimizer.optimize(mol_ham_par);
+    double OO_DOCI_electronic_energy = orbital_optimizer.get_eigenpair().get_eigenvalue();
+
     this->is_solved = true;
-
-
-    // Set the solution
-    double fci_energy = fci_solver.get_eigenpair().get_eigenvalue();
     double internuclear_repulsion_energy = Operator::NuclearRepulsion(molecule).value();
-
-    this->energy_solution = fci_energy + internuclear_repulsion_energy;
+    this->energy_solution = OO_DOCI_electronic_energy + internuclear_repulsion_energy;
+    this->T_total = mol_ham_par.get_T_total();  
 }
 
 
 /**
- *  @return the ground state DOCINewtonOrbitalOptimizer energy
- */
+ *  @return the newton orbital optimized ground state DOCI energy
+ */  
 double DOCINewtonOrbitalOptimizer::energy() const {
 
     if (this->is_solved) {
         return this->energy_solution;
     } else {
         throw std::runtime_error("DOCINewtonOrbitalOptimizer::energy(): You are trying to get energy but the method hasn't been solved yet.");
+    }
+}
+
+
+/**
+ *  @return the total transformation matrix to the OO-DOCI orbitals
+ */
+SquareMatrix<double> DOCINewtonOrbitalOptimizer::transformationMatrix() const {
+
+    if (this->is_solved) {
+        return this->T_total;
+    } else {
+        throw std::runtime_error("DOCINewtonOrbitalOptimizer::transformationMatrix(): You are trying to get the total transformation matrix but the method hasn't been solved yet.");
     }
 }
 

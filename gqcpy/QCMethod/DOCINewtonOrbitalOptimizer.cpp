@@ -32,7 +32,8 @@ void bindQCMethodDOCINewtonOrbitalOptimizer(py::module& module) {
     py::class_<GQCP::QCMethod::DOCINewtonOrbitalOptimizer>(module, "DOCINewtonOrbitalOptimizer", "Itertively optimize the orbitals with respect to the DOCI energy by constructing and solving the DOCI Hamiltonian")
         .def(py::init<const std::string, const std::string>(), py::arg("xyz_filename"), py::arg("basis_set"), py::arg("use_davidson", py::arg("localize"))
         .def("solve", &GQCP::QCMethod::DOCINewtonOrbitalOptimizer::solve, "Solve the eigenvalue equations such that the lowest energy and corresponding eigenvector becomes available. ")
-        .def("get_energy", &GQCP::QCMethod::DOCINewtonOrbitalOptimizer::energy, "Get the lowest energy.");
+        .def("get_energy", &GQCP::QCMethod::DOCINewtonOrbitalOptimizer::energy, "Get the lowest energy.")
+        .def("get_transformation_matrix", &GQCP::QCMethod::DOCINewtonOrbitalOptimizer::transformationMatrix, "Get the total transformation matrix.");
 }
 
 
