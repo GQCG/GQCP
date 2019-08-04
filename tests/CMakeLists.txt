@@ -1,4 +1,5 @@
 set(test_target_sources)
+set(test_python)
 
 list(APPEND test_target_sources
         elements_test.cpp
@@ -11,6 +12,7 @@ add_subdirectory(Basis)
 add_subdirectory(CISolver)
 add_subdirectory(FockSpace)
 add_subdirectory(Geminals)
+#add_subdirectory(gqcpy)
 add_subdirectory(HamiltonianBuilder)
 add_subdirectory(HamiltonianParameters)
 add_subdirectory(Mathematical)
@@ -39,6 +41,15 @@ foreach(TEST_SOURCE ${test_target_sources})
     target_compile_definitions(${TEST_NAME} PRIVATE BOOST_TEST_DYN_LINK)
 
     add_test(NAME ${TEST_NAME} COMMAND ${TEST_NAME}
+            WORKING_DIRECTORY ${CMAKE_BINARY_DIR})  # the working directory is the out-of-source build directory
+
+endforeach()
+
+foreach(TEST_SOURCE ${test_python})
+    # Extract the filename without extension (NAME_WE) as a name for our executable
+    get_filename_component(TEST_NAME ${TEST_SOURCE} NAME_WE)
+
+    add_test(NAME ${TEST_NAME} COMMAND Python3::Interpreter -m unittest 
             WORKING_DIRECTORY ${CMAKE_BINARY_DIR})  # the working directory is the out-of-source build directory
 
 endforeach()
