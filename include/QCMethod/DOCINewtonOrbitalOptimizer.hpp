@@ -43,7 +43,7 @@ private:
     bool localize = false;
 
     double energy_solution;
-    SquareMatrix<double> T_total;  // total transformation from atomic orbital basis to the OO-DOCI orbitals
+    GQCP::SquareMatrix<double> T_total;  // total transformation from atomic orbital basis to the OO-DOCI orbitals
 
 public:
     // CONSTRUCTORS
@@ -54,7 +54,7 @@ public:
      *  @param use_davidson         indicate if one wants to use davidson to solve the eigenvalue problem (opposed to dense)
      *  @param localize             indicate if one wants to localize the orbitals before 
      */
-    DOCINewtonOrbitalOptimizer(const std::string xyz_filename, const std::string basis_set, const bool use_davidson = false, const bool localize = false);
+    DOCINewtonOrbitalOptimizer(const std::string& xyz_filename, const std::string& basis_set, const bool use_davidson, const bool localize);
 
 
     // PUBLIC METHODS
@@ -72,7 +72,7 @@ public:
     /**
      *  @return the total transformation matrix to the OO-DOCI orbitals
      */
-    SquareMatrix<double> transformationMatrix() const;
+    const GQCP::SquareMatrix<double>& transformationMatrix() const;
 };
 
 

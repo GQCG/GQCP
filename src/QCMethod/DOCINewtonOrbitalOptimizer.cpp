@@ -17,7 +17,13 @@
 //
 #include "QCMethod/DOCINewtonOrbitalOptimizer.hpp"
 
-#include "Operator/FirstQuantized/Operator.hpp"
+#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "RHF/DIISRHFSCFSolver.hpp"
+#include "CISolver/CISolver.hpp"
+#include "OrbitalOptimization/DOCINewtonOrbitalOptimizer.hpp"
+#include "OrbitalOptimization/Localization/ERNewtonLocalizer.hpp"
+#include "OrbitalOptimization/Localization/ERJacobiLocalizer.hpp"
+#include "Mathematical/Optimization/IterativeIdentitiesHessianModifier.hpp"
 
 
 namespace GQCP {
@@ -55,7 +61,7 @@ void DOCINewtonOrbitalOptimizer::solve() {
     // Construct the molecular Hamiltonian parameters
     auto molecule = Molecule::ReadXYZ(this->xyz_filename);
     auto N_P = molecule.numberOfElectrons()/2;
-    auto ao_mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(molecule, basisset);
+    auto ao_mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(molecule, basis_set);
     size_t K = ao_mol_ham_par.get_K();
 
 
@@ -92,7 +98,7 @@ void DOCINewtonOrbitalOptimizer::solve() {
     GQCP::DOCI doci (fock_space);
 
     std::shared_ptr<GQCP::BaseSolverOptions> solver_options;
-    if (user_wants_davidson) {
+    if (use_davidson) {
         solver_options = std::make_shared<GQCP::DavidsonSolverOptions>(fock_space.HartreeFockExpansion());
     } else {
         solver_options = std::make_shared<GQCP::DenseSolverOptions>();
@@ -125,7 +131,7 @@ double DOCINewtonOrbitalOptimizer::energy() const {
 /**
  *  @return the total transformation matrix to the OO-DOCI orbitals
  */
-SquareMatrix<double> DOCINewtonOrbitalOptimizer::transformationMatrix() const {
+const GQCP::SquareMatrix<double>& DOCINewtonOrbitalOptimizer::transformationMatrix() const {
 
     if (this->is_solved) {
         return this->T_total;

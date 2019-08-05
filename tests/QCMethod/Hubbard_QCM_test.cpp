@@ -59,9 +59,6 @@ BOOST_AUTO_TEST_CASE ( Hubbard_QCM ) {
             rdm_calc.set_coefficients(hubbard_eigenpairs[i].get_eigenvector());
             auto const& one_rdm = rdm_calc.calculate1RDMs().one_rdm;
             BOOST_CHECK(one_rdm.isApprox(hubbard_qcm_1rdms[i], 1.0e-06));
-
-            std::cout<<std::setprecision(16)<<hubbard_qcm_energies[i]<<std::endl;
-            std::cout<<std::endl<<std::endl<<hubbard_qcm_1rdms[i];
     }
 }
 
