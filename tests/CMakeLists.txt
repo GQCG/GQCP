@@ -1,5 +1,4 @@
 set(test_target_sources)
-set(test_python)
 
 list(APPEND test_target_sources
         elements_test.cpp

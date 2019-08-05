@@ -10,6 +10,7 @@ set(python_bindings_sources ${python_bindings_sources} PARENT_SCOPE)
 # Configure tests
 set(test_python)
 add_subdirectory(tests)
+
 foreach(TEST_SOURCE ${test_python})
     # Extract the filename 
     get_filename_component(TEST_NAME ${TEST_SOURCE} NAME)
