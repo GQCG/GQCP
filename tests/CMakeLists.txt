@@ -12,7 +12,7 @@ add_subdirectory(Basis)
 add_subdirectory(CISolver)
 add_subdirectory(FockSpace)
 add_subdirectory(Geminals)
-#add_subdirectory(gqcpy)
+add_subdirectory(gqcpy)
 add_subdirectory(HamiltonianBuilder)
 add_subdirectory(HamiltonianParameters)
 add_subdirectory(Mathematical)
@@ -46,10 +46,14 @@ foreach(TEST_SOURCE ${test_target_sources})
 endforeach()
 
 foreach(TEST_SOURCE ${test_python})
-    # Extract the filename without extension (NAME_WE) as a name for our executable
-    get_filename_component(TEST_NAME ${TEST_SOURCE} NAME_WE)
+    # Extract the filename 
+    get_filename_component(TEST_NAME ${TEST_SOURCE} NAME)
 
-    add_test(NAME ${TEST_NAME} COMMAND Python3::Interpreter -m unittest 
+    # Copy the file to the out-of-source build tests directory
+    configure_file(${TEST_SOURCE} ${CMAKE_BINARY_DIR}/tests/${TEST_NAME} COPYONLY)
+
+    # Add test as python run command
+    add_test(NAME ${TEST_NAME} COMMAND Python3::Interpreter -m unittest ${TEST_NAME}
             WORKING_DIRECTORY ${CMAKE_BINARY_DIR})  # the working directory is the out-of-source build directory
 
 endforeach()

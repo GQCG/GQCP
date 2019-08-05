@@ -27,7 +27,7 @@ find_package(Int2 REQUIRED)
 find_package(Spectra REQUIRED)
 find_package(cint REQUIRED)
 find_package(MKL REQUIRED)
-#find_package(Python3 COMPONENTS Interpreter)
+find_package(Python3 COMPONENTS Interpreter)
 
 if(BUILD_TESTS)
     find_package(Boost REQUIRED COMPONENTS program_options unit_test_framework)
