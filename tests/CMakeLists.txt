@@ -12,7 +12,6 @@ add_subdirectory(Basis)
 add_subdirectory(CISolver)
 add_subdirectory(FockSpace)
 add_subdirectory(Geminals)
-add_subdirectory(gqcpy_tests)
 add_subdirectory(HamiltonianBuilder)
 add_subdirectory(HamiltonianParameters)
 add_subdirectory(Mathematical)
@@ -41,19 +40,6 @@ foreach(TEST_SOURCE ${test_target_sources})
     target_compile_definitions(${TEST_NAME} PRIVATE BOOST_TEST_DYN_LINK)
 
     add_test(NAME ${TEST_NAME} COMMAND ${TEST_NAME}
-            WORKING_DIRECTORY ${CMAKE_BINARY_DIR})  # the working directory is the out-of-source build directory
-
-endforeach()
-
-foreach(TEST_SOURCE ${test_python})
-    # Extract the filename 
-    get_filename_component(TEST_NAME ${TEST_SOURCE} NAME)
-
-    # Copy the file to the out-of-source build tests directory
-    configure_file(${TEST_SOURCE} ${CMAKE_BINARY_DIR}/tests/${TEST_NAME} COPYONLY)
-
-    # Add test as python run command
-    add_test(NAME ${TEST_NAME} COMMAND Python3::Interpreter -m unittest ${TEST_NAME}
             WORKING_DIRECTORY ${CMAKE_BINARY_DIR})  # the working directory is the out-of-source build directory
 
 endforeach()
