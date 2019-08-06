@@ -91,6 +91,13 @@ target_include_directories(gqcp PUBLIC $<BUILD_INTERFACE:${Boost_INCLUDE_DIRS}>)
 target_link_libraries(gqcp PUBLIC ${Boost_LIBRARIES})
 target_compile_options(gqcp PUBLIC -DEIGEN_USE_MKL_ALL -DMKL_LP64)
 
+# Parse additional options
+# ------------------------
+if (BUILD_TESTS)
+    enable_testing()
+    add_subdirectory(tests)
+endif()
+
 
 # Setup Python Bindings
 # ---------------------
@@ -108,13 +115,6 @@ if (BUILD_PYTHON_BINDINGS)
     configure_file(gqcpy/setup.py.in ${CMAKE_BINARY_DIR}/gqcpy/setup.py)
 endif()
 
-
-# Parse additional options
-# ------------------------
-if (BUILD_TESTS)
-    enable_testing()
-    add_subdirectory(tests)
-endif()
 
 
 # Generate documentation
