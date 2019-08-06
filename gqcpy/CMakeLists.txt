@@ -15,10 +15,10 @@ foreach(TEST_SOURCE ${test_python})
     get_filename_component(TEST_NAME ${TEST_SOURCE} NAME)
 
     # Copy the file to the out-of-source build gqcpy tests directory
-    configure_file(${TEST_SOURCE} ${CMAKE_BINARY_DIR} COPYONLY)
+    configure_file(${TEST_SOURCE} ${CMAKE_BINARY_DIR}/gqcpy/tests/${TEST_NAME} COPYONLY)
 
     # Add test as python run command
-    add_test(NAME ${TEST_NAME} COMMAND Python3::Interpreter -m unittest ${CMAKE_BINARY_DIR}/${TEST_NAME}
-            WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
+    add_test(NAME ${TEST_NAME} COMMAND Python3::Interpreter -m unittest ${CMAKE_BINARY_DIR}/gqcpy/tests/${TEST_NAME}
+            WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/gqcpy/tests)
 
 endforeach()
