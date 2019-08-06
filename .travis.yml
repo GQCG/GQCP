@@ -62,6 +62,7 @@ install:
         conda install -c conda-forge cmake=3.13 boost-cpp eigen blas mkl pybind11 benchmark;
         conda install -c gqcg libint spectra;
         conda install -c intel mkl-include mkl-static intel-openmp;
+        conda install numpy;
       else
         echo "Using already installed packages.";
       fi
