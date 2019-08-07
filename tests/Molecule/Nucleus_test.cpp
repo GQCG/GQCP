@@ -17,7 +17,7 @@
 // 
 #define BOOST_TEST_MODULE "Nucleus"
 
-#include <boost/test/unit_test.hpp>
+#include <boost/test/included/unit_test.hpp>
 
 #include "Molecule/Nucleus.hpp"
 

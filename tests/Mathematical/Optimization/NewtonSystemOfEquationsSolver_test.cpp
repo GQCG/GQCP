@@ -17,7 +17,7 @@
 // 
 #define BOOST_TEST_MODULE "NewtonSystemOfEquations"
 
-#include <boost/test/unit_test.hpp>
+#include <boost/test/included/unit_test.hpp>
 
 #include "Mathematical/Optimization/NewtonSystemOfEquationsSolver.hpp"
 #include "Mathematical/SquareMatrix.hpp"

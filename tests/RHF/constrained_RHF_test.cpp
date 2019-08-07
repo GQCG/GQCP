@@ -18,7 +18,7 @@
 #define BOOST_TEST_MODULE "constrained_RHF"
 
 
-#include <boost/test/unit_test.hpp>
+#include <boost/test/included/unit_test.hpp>
 
 #include "RHF/DIISRHFSCFSolver.hpp"
 #include "HamiltonianParameters/HamiltonianParameters.hpp"

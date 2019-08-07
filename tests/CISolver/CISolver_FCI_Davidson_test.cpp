@@ -17,7 +17,7 @@
 // 
 #define BOOST_TEST_MODULE "DavidsonFCISolver"
 
-#include <boost/test/unit_test.hpp>
+#include <boost/test/included/unit_test.hpp>
 
 #include "CISolver/CISolver.hpp"
 #include "HamiltonianBuilder/FCI.hpp"

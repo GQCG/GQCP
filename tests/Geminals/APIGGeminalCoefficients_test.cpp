@@ -17,7 +17,7 @@
 // 
 #define BOOST_TEST_MODULE "APIGGeminalCoefficients"
 
-#include <boost/test/unit_test.hpp>
+#include <boost/test/included/unit_test.hpp>
 
 #include "Geminals/APIGGeminalCoefficients.hpp"
 

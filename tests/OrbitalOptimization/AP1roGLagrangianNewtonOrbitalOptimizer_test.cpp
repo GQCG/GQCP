@@ -17,7 +17,7 @@
 // 
 #define BOOST_TEST_MODULE "AP1roGLagrangianNewtonOrbitalOptimizer_test"
 
-#include <boost/test/unit_test.hpp>
+#include <boost/test/included/unit_test.hpp>
 
 #include "OrbitalOptimization/AP1roGLagrangianNewtonOrbitalOptimizer.hpp"
 

@@ -17,7 +17,7 @@
 // 
 #define BOOST_TEST_MODULE "OO-AP1roG"
 
-#include <boost/test/unit_test.hpp>
+#include <boost/test/included/unit_test.hpp>
 
 #include "OrbitalOptimization/AP1roGJacobiOrbitalOptimizer.hpp"
 

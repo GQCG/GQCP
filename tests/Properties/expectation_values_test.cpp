@@ -17,7 +17,7 @@
 // 
 #define BOOST_TEST_MODULE "expectation_values"
 
-#include <boost/test/unit_test.hpp>
+#include <boost/test/included/unit_test.hpp>
 
 #include "Properties/expectation_values.hpp"
 

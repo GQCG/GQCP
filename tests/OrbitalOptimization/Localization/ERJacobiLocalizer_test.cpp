@@ -17,7 +17,7 @@
 // 
 #define BOOST_TEST_MODULE "ERJacobiLocalizer"
 
-#include <boost/test/unit_test.hpp>
+#include <boost/test/included/unit_test.hpp>
 
 #include "OrbitalOptimization/Localization/ERJacobiLocalizer.hpp"
 

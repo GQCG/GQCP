@@ -17,7 +17,7 @@
 // 
 #define BOOST_TEST_MODULE "atomic_decomposition"
 
-#include <boost/test/unit_test.hpp>
+#include <boost/test/included/unit_test.hpp>
 
 #include "RHF/PlainRHFSCFSolver.hpp"
 #include "HamiltonianParameters/AtomicDecompositionParameters.hpp"

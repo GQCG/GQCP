@@ -17,7 +17,7 @@
 // 
 #define BOOST_TEST_MODULE "Sparse"
 
-#include <boost/test/unit_test.hpp>
+#include <boost/test/included/unit_test.hpp>
 
 #include "Mathematical/Optimization/SparseSolver.hpp"
 

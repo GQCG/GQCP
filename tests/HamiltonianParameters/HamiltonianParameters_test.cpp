@@ -18,7 +18,7 @@
 #define BOOST_TEST_MODULE "HamiltonianParameters"
 #include <boost/math/constants/constants.hpp>
 
-#include <boost/test/unit_test.hpp>
+#include <boost/test/included/unit_test.hpp>
 
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 

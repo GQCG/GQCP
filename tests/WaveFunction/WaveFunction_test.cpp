@@ -17,7 +17,7 @@
 // 
 #define BOOST_TEST_MODULE "WaveFunction"
 
-#include <boost/test/unit_test.hpp>
+#include <boost/test/included/unit_test.hpp>
 
 #include "WaveFunction/WaveFunction.hpp"
 #include "FockSpace/FockSpace.hpp"

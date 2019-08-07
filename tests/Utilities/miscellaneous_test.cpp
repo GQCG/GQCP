@@ -17,7 +17,7 @@
 // 
 #define BOOST_TEST_MODULE "miscellaneous"
 
-#include <boost/test/unit_test.hpp>
+#include <boost/test/included/unit_test.hpp>
 
 #include "Utilities/miscellaneous.hpp"
 

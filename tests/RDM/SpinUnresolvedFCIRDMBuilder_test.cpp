@@ -18,7 +18,7 @@
 #define BOOST_TEST_MODULE "UnresolvedCIRDMBuilder_test"
 
 
-#include <boost/test/unit_test.hpp>
+#include <boost/test/included/unit_test.hpp>
 
 #include "RDM/SpinUnresolvedFCIRDMBuilder.hpp"
 

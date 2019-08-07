@@ -17,7 +17,7 @@
 // 
 #define BOOST_TEST_MODULE "OneElectronOperator"
 
-#include <boost/test/unit_test.hpp>
+#include <boost/test/included/unit_test.hpp>
 
 #include "Operator/OneElectronOperator.hpp"
 

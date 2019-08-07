@@ -17,7 +17,7 @@
 // 
 #define BOOST_TEST_MODULE "linalg_test"
 
-#include <boost/test/unit_test.hpp>
+#include <boost/test/included/unit_test.hpp>
 
 #include "Utilities/linalg.hpp"
 

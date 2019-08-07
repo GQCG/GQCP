@@ -16,7 +16,7 @@
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
 #define BOOST_TEST_MODULE "DOCI_RDM_test"
-#include <boost/test/unit_test.hpp>
+#include <boost/test/included/unit_test.hpp>
 #include "RDM/RDMCalculator.hpp"
 #include "RDM/DOCIRDMBuilder.hpp"
 

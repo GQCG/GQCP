@@ -17,7 +17,7 @@
 // 
 #define BOOST_TEST_MODULE "AP1roGVariables"
 
-#include <boost/test/unit_test.hpp>
+#include <boost/test/included/unit_test.hpp>
 
 #include "Geminals/AP1roGVariables.hpp"
 

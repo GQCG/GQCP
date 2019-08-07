@@ -17,7 +17,7 @@
 // 
 #define BOOST_TEST_MODULE "DOCI_orbital_optimization_test"
 
-#include <boost/test/unit_test.hpp>
+#include <boost/test/included/unit_test.hpp>
 
 #include "OrbitalOptimization/DOCINewtonOrbitalOptimizer.hpp"
 

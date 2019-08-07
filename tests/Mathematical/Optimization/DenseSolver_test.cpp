@@ -17,7 +17,7 @@
 // 
 #define BOOST_TEST_MODULE "Dense"
 
-#include <boost/test/unit_test.hpp>
+#include <boost/test/included/unit_test.hpp>
 
 
 #include "Mathematical/Optimization/DenseSolver.hpp"

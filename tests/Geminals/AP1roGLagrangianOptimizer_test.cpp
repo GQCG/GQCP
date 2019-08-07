@@ -17,7 +17,7 @@
 // 
 #define BOOST_TEST_MODULE "AP1roGLagrangianOptimizer"
 
-#include <boost/test/unit_test.hpp>
+#include <boost/test/included/unit_test.hpp>
 
 #include "Geminals/AP1roGLagrangianOptimizer.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
