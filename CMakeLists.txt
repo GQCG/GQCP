@@ -149,11 +149,11 @@ install(TARGETS gqcp
         LIBRARY DESTINATION lib
         ARCHIVE DESTINATION lib
         RUNTIME DESTINATION bin
-        INCLUDES DESTINATION include
+        INCLUDES DESTINATION include/gqcp
         )
 
-install(DIRECTORY ${CMAKE_SOURCE_DIR}/include/ DESTINATION include)
-install(FILES ${CMAKE_BINARY_DIR}/include/version.hpp DESTINATION include)
+install(DIRECTORY ${CMAKE_SOURCE_DIR}/include/ DESTINATION include/gqcp)
+install(FILES ${CMAKE_BINARY_DIR}/include/version.hpp DESTINATION include/gqcp)
 
 install(EXPORT gqcp-targets
         FILE gqcp-targets.cmake
