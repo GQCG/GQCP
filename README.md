@@ -65,7 +65,7 @@ Usage of this library can be found in the documented `tests` directory, and comm
 
 Before installing gqcp, please make sure the following dependencies are available on your system:
 
-[![Boost Dependency](https://img.shields.io/badge/Boost-1.65.1+-000000.svg)](http://www.boost.org)
+[![Boost Dependency](https://img.shields.io/badge/Boost-<=1.69-000000.svg)](http://www.boost.org)
 [![Eigen3 Dependency](https://img.shields.io/badge/Eigen-3.3.4+-000000.svg)](http://eigen.tuxfamily.org/index.php?title=Main_Page)
 [![libint2 Dependency](https://img.shields.io/badge/libint-2.3.1+-000000.svg)](https://github.com/evaleev/libint)
 [![libcint Dependency](https://img.shields.io/badge/libcint-3.0.17+-000000.svg)](https://github.com/GQCG/libcint)
