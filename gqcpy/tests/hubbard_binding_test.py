@@ -1,6 +1,10 @@
 import unittest
 import numpy as np
 
+# force the local gqcpy to be imported
+import sys
+sys.path.insert(0, '../')
+
 # import our `pybind11`-based extension module
 import gqcpy
 
