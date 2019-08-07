@@ -44,7 +44,7 @@ class HubbardQCM(unittest.TestCase):
         self.assertAlmostEqual(self.energy1, self.ref_energy1)
         self.assertAlmostEqual(self.energy2, self.ref_energy2)
 
-        ''' compare energies with reference '''
+        ''' compare RDMs with reference '''
     def test_1rdms(self):
         self.assertTrue(np.allclose(self.rdm1, self.ref_rdm1))
         self.assertTrue(np.allclose(self.rdm2, self.ref_rdm2))
