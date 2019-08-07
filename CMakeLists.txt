@@ -86,8 +86,7 @@ target_link_libraries(gqcp
             Spectra::Spectra
             MKL::MKL
         )
-target_include_directories(gqcp PUBLIC $<BUILD_INTERFACE:${Boost_INCLUDE_DIRS}>)
-target_link_libraries(gqcp PUBLIC ${Boost_LIBRARIES})
+
 target_compile_options(gqcp PUBLIC -DEIGEN_USE_MKL_ALL -DMKL_LP64)
 
 

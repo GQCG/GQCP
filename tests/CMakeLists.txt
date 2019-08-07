@@ -34,8 +34,7 @@ foreach(TEST_SOURCE ${test_target_sources})
 
     # Configure (include headers and link libraries) the test
     target_include_directories(${TEST_NAME} PUBLIC ${CMAKE_SOURCE_DIR}/include)
-    target_link_libraries(${TEST_NAME} PUBLIC gqcp)
-    target_compile_definitions(${TEST_NAME} PRIVATE BOOST_TEST_DYN_LINK)
+    target_link_libraries(${TEST_NAME} PUBLIC gqcp Boost::unit_test_framework)
 
     add_test(NAME ${TEST_NAME} COMMAND ${TEST_NAME}
             WORKING_DIRECTORY ${CMAKE_BINARY_DIR})  # the working directory is the out-of-source build directory
