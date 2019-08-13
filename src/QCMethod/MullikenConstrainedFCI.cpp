@@ -214,6 +214,7 @@ void MullikenConstrainedFCI::solveMullikenDavidson(const double multiplier, cons
         ci_solver.solve(solver_options);
     } catch (const std::exception& e) {
         std::cout << e.what() << "multiplier: " << multiplier;
+        return;
     }
 
     this->parseSolution(ci_solver.get_eigenpairs(), multiplier);
@@ -256,11 +257,12 @@ void MullikenConstrainedFCI::solveMullikenDense(const double multiplier, const s
     CISolver ci_solver (fci, constrained_ham_par);
     DenseSolverOptions solver_options;
     solver_options.number_of_requested_eigenpairs = nos;
-    
+
     try {
         ci_solver.solve(solver_options);
     } catch (const std::exception& e) {
         std::cout << e.what() << "multiplier: " << multiplier;
+        return;
     }
 
     this->parseSolution(ci_solver.get_eigenpairs(), multiplier);
