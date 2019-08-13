@@ -31,7 +31,7 @@
 #include "HamiltonianBuilder/FrozenCoreFCI.hpp"
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 
-#include "utilities/linalg.hpp"
+#include "Utilities/linalg.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( FrozenCoreFCI_one_rdms ) {

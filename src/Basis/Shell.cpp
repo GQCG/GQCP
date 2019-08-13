@@ -18,7 +18,7 @@
 #include "Basis/Shell.hpp"
 
 #include "Basis/CartesianGTO.hpp"
-#include "utilities/miscellaneous.hpp"
+#include "Utilities/miscellaneous.hpp"
 
 #include <algorithm>
 
@@ -32,24 +32,24 @@ namespace GQCP {
 
 /**
  *  @param l                                                    the angular momentum of the shell
- *  @param atom                                                 the atom on which the shell is centered
+ *  @param nucleus                                              the nucleus on which the shell is centered
  *  @param gaussian_exponents                                   the Gaussian exponents, which are shared for every contraction
  *  @param contraction_coefficients                             the contraction coefficients
  *  @param pure                                                 whether the shell is considered to be spherical or not
  *  @param are_embedded_normalization_factors_of_primitives     if the normalization factors of the primitives are embedded in the contraction coefficients
  *  @param is_normalized                                        if the total normalization factor is already embedded in the contraction coefficients
  */
-Shell::Shell(size_t l, const Atom& atom, const std::vector<double>& gaussian_exponents, const std::vector<double>& contraction_coefficients, bool pure, bool are_embedded_normalization_factors_of_primitives, bool is_normalized) :
+Shell::Shell(size_t l, const Nucleus& nucleus, const std::vector<double>& gaussian_exponents, const std::vector<double>& contraction_coefficients, bool pure, bool are_embedded_normalization_factors_of_primitives, bool is_normalized) :
     pure (pure),
     embedded_normalization_factors_of_primitives (are_embedded_normalization_factors_of_primitives),
     normalized (is_normalized),
     l (l),
-    atom (atom),
+    nucleus (nucleus),
     gaussian_exponents (gaussian_exponents),
     contraction_coefficients (contraction_coefficients)
 {
     if (gaussian_exponents.size() != contraction_coefficients.size()) {
-        throw std::invalid_argument("Shell(size_t, Atom, std::vector<double>, std::vector<double>): the exponents and contraction coefficients must match in size.");
+        throw std::invalid_argument("Shell(size_t, Nucleus, std::vector<double>, std::vector<double>): the exponents and contraction coefficients must match in size.");
     }
 }
 
@@ -85,7 +85,7 @@ bool Shell::operator==(const Shell& rhs) const {
 
     // Return if all members are equal/close
     return (this->l == rhs.l) &&
-           (this->atom == rhs.atom) &&
+           (Nucleus::equalityComparer()(this->nucleus, rhs.nucleus)) &&
            (this->pure == rhs.pure) &&
            (std::equal(this->gaussian_exponents.begin(), this->gaussian_exponents.end(), rhs.gaussian_exponents.begin(), approx())) &&
            (std::equal(this->contraction_coefficients.begin(), this->contraction_coefficients.end(), rhs.contraction_coefficients.begin(), approx()));

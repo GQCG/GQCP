@@ -20,7 +20,7 @@
 
 
 #include "FockSpace/FockSpaceType.hpp"
-#include "math/SquareMatrix.hpp"
+#include "Mathematical/SquareMatrix.hpp"
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 
 #include <Eigen/Sparse>
@@ -48,8 +48,10 @@ protected:
      */
     BaseFockSpace(size_t K, size_t dim);
 
+
 public:
     // NAMED CONSTRUCTORS
+
     /**
      *  Clones a derived BaseFockSpace instance to the heap memory
      *
@@ -61,10 +63,7 @@ public:
 
 
     // DESTRUCTOR
-    /**
-     *  Provide a pure virtual destructor to make the class abstract
-     */
-    virtual ~BaseFockSpace() = 0;
+    virtual ~BaseFockSpace() = default;
 
 
     // GETTERS
@@ -74,6 +73,7 @@ public:
 
 
     // PUBLIC METHODS
+
     /**
      *  @return the coefficient vector for the Hartree-Fock wave function (i.e. the 'first' ONV/Slater determinant)
      */
@@ -91,6 +91,7 @@ public:
 
 
     // PUBLIC VIRTUAL METHODS
+
     /**
      *  Evaluate the operator in a dense matrix
      *

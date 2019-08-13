@@ -22,9 +22,9 @@
 
 #include "Operator/TwoElectronOperator.hpp"
 
-#include "utilities/linalg.hpp"
+#include "Utilities/linalg.hpp"
 
-#include "utilities/miscellaneous.hpp"
+#include "Utilities/miscellaneous.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( TwoElectronOperator_constructor ) {

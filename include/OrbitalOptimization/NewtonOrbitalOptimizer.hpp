@@ -21,39 +21,48 @@
 
 #include "OrbitalOptimization/BaseOrbitalOptimizer.hpp"
 #include "OrbitalOptimization/OrbitalRotationGenerators.hpp"
-#include "math/SquareMatrix.hpp"
-#include "math/SquareRankFourTensor.hpp"
+#include "Mathematical/Optimization/BaseHessianModifier.hpp"
+#include "Mathematical/SquareMatrix.hpp"
+#include "Mathematical/SquareRankFourTensor.hpp"
 
+#include <utility>
 
 
 namespace GQCP {
 
 
 /**
- *  An intermediate abstract class that should be derived from to implement a Newton-step based orbital optimization: gradient and Hessian formulas should be implemented
+ *  An intermediate abstract class that should be derived from to implement a Newton-step based orbital optimization: the orbital gradient and Hessian are calculated through the DMs
  */
 class NewtonOrbitalOptimizer : public BaseOrbitalOptimizer {
 protected:
+    std::shared_ptr<BaseHessianModifier> hessian_modifier;  // the modifier functor that should be used when an indefinite Hessian is encountered
+
     VectorX<double> gradient;
     SquareMatrix<double> hessian;
 
 
 public:
     // CONSTRUCTORS
-    using BaseOrbitalOptimizer::BaseOrbitalOptimizer;  // inherit base constructors
+
+    /*
+     *  @param hessian_modifier                 the modifier functor that should be used when an indefinite Hessian is encountered
+     *  @param convergence_threshold            the threshold used to check for convergence
+     *  @param maximum_number_of_iterations     the maximum number of iterations that may be used to achieve convergence
+     */
+    NewtonOrbitalOptimizer(std::shared_ptr<BaseHessianModifier> hessian_modifier, const double convergence_threshold = 1.0e-08, const size_t maximum_number_of_iterations = 128);
+
+
+    // DESTRUCTOR
+    virtual ~NewtonOrbitalOptimizer() = default;
 
 
     // PUBLIC PURE VIRTUAL METHODS
 
     /**
-     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence in this Newton-based orbital optimizer
+     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to calculate the first and second orbital derivatives, i.e. the orbital gradient and Hessian
      */
-    virtual void prepareNewtonSpecificConvergenceChecking(const HamiltonianParameters<double>& ham_par) = 0;
-
-    /**
-     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to calculate the new rotation matrix in this Newton-based orbital optimizer
-     */
-    virtual void prepareNewtonSpecificRotationMatrixCalculation(const HamiltonianParameters<double>& ham_par) = 0;
+    virtual void prepareOrbitalDerivativesCalculation(const HamiltonianParameters<double>& ham_par) = 0;
 
     /**
      *  @param ham_par      the current Hamiltonian parameters
@@ -90,7 +99,7 @@ public:
      *  Determine if the algorithm has converged or not
      *  Specifically for the Newton-step based algorithms, this function
      *      - computes the gradient and checks its norm for convergence
-     *      - if the gradient is zero, the Hessian is calculated and diagonalized and positive/negative definiteness is checked
+     *      - if the gradient is zero, the Hessian is calculated and positive definiteness is checked
      * 
      *  @param ham_par      the current Hamiltonian parameters
      * 
@@ -99,13 +108,8 @@ public:
     bool checkForConvergence(const HamiltonianParameters<double>& ham_par) const override;
 
     /**
-     *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to calculate the new rotation matrix
-     */
-    void prepareRotationMatrixCalculation(const HamiltonianParameters<double>& ham_par) override;
-
-    /**
      *  Produce a new rotation matrix by either
-     *      - continuing in the direction of the largest (in absolute value) non-conforming eigenvalue (i.e. the smallest (negative) eigenvalue for minimization algorithms and the largest (positive) eigenvalue for maximization algorithms)
+     *      - continuing in the direction of the i.e. the smallest (negative) eigenvalue
      *      - using the Newton step if it is well-defined
      * 
      *  @param ham_par      the current Hamiltonian parameters
@@ -132,18 +136,16 @@ public:
     SquareMatrix<double> calculateHessianMatrix(const HamiltonianParameters<double>& ham_par) const;
 
     /**
-     *  @return if a Newton step would be well-defined (i.e. the Hessian is positive definite for minimizations and negative definite for maximizations)
+     *  @return if a Newton step would be well-defined, i.e. the Hessian is positive definite
      */
     bool newtonStepIsWellDefined() const;
 
     /**
-     *  If the Newton step is ill-defined, examine the Hessian and produce a new direction from it:
-     *      - for minimization algorithms, this is the eigenvector that corresponds to the smallest (negative) eigenvalue of the Hessian
-     *      - for maximization algorithms, this is the eigenvector that corresponds to the largest (positive) eigenvalue of the Hessian
+     *  If the Newton step is ill-defined, examine the Hessian and produce a new direction from it: the eigenvector that corresponds to the smallest (negative) eigenvalue of the Hessian
      * 
      *  @return the new direction from the Hessian if the Newton step is ill-defined
      */
-    VectorX<double> directionFromHessian() const;
+    VectorX<double> directionFromIndefiniteHessian() const;
 
     /**
      *  Use gradient and Hessian information to determine a new direction for the 'free' orbital rotation generators kappa. Note that a distinction is made between 'free' generators, i.e. those that are calculated from the gradient and Hessian information and the 'full' generators, which also include the redundant parameters (that can be set to zero). The 'full' generators are used to calculate the total rotation matrix using the matrix exponential

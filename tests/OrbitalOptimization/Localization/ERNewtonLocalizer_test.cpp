@@ -22,14 +22,15 @@
 #include "OrbitalOptimization/Localization/ERNewtonLocalizer.hpp"
 
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "Mathematical/Optimization/IterativeIdentitiesHessianModifier.hpp"
 
 
 
 BOOST_AUTO_TEST_CASE ( localization_index_raises ) {
 
     // Check if the Edmiston-Ruedenberg localization index is raised after a localization procedure
-    auto h2o = GQCP::Molecule::Readxyz("data/h2o.xyz");
-    size_t N_P = h2o.get_N()/2;
+    auto h2o = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
+    size_t N_P = h2o.numberOfElectrons()/2;
 
     auto mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2o, "STO-3G");  // in AOBasis
     mol_ham_par.LowdinOrthonormalize();  // in the Löwdin basis
@@ -37,8 +38,8 @@ BOOST_AUTO_TEST_CASE ( localization_index_raises ) {
 
     double D_before = mol_ham_par.calculateEdmistonRuedenbergLocalizationIndex(N_P);
 
-    const auto oo_options = GQCP::OrbitalOptimizationOptions::OrbitalMaximizationOptions(1.0e-04);
-    GQCP::ERNewtonLocalizer localizer (N_P, oo_options);
+    auto hessian_modifier = std::make_shared<GQCP::IterativeIdentitiesHessianModifier>();
+    GQCP::ERNewtonLocalizer localizer (N_P, hessian_modifier, 1.0e-04);
     localizer.optimize(mol_ham_par);  // if converged, the Hamiltonian parameters are in the localized basis
 
     double D_after = mol_ham_par.calculateEdmistonRuedenbergLocalizationIndex(N_P);

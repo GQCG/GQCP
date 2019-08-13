@@ -26,7 +26,7 @@
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
 #include "RHF/DIISRHFSCFSolver.hpp"
-#include "properties/expectation_values.hpp"
+#include "Properties/expectation_values.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( CO_DOCI_constrained_dense ) {
@@ -56,7 +56,7 @@ BOOST_AUTO_TEST_CASE ( CO_DOCI_constrained_dense ) {
                  1.000000, 	6.12030270656, 	-111.087663866;
 
     // Create the molecular Hamiltonian parameters for CO
-    auto CO = GQCP::Molecule::Readxyz("data/CO_mulliken.xyz");
+    auto CO = GQCP::Molecule::ReadXYZ("data/CO_mulliken.xyz");
     auto mol_ham_par = GQCP::HamiltonianParameters::Molecular(CO, "STO-3G");
 
     // Create a plain RHF SCF solver and solve the SCF equations
@@ -67,7 +67,7 @@ BOOST_AUTO_TEST_CASE ( CO_DOCI_constrained_dense ) {
     // Transform the ham_par
     mol_ham_par.transform(rhf.get_C());
 
-    GQCP::FockSpace fock_space (mol_ham_par.get_K(), CO.get_N()/2);  // dim = 4
+    GQCP::FockSpace fock_space (mol_ham_par.get_K(), CO.numberOfElectrons()/2);  // dim = 4
 
     // Create the DOCI module
     GQCP::DOCI doci (fock_space);

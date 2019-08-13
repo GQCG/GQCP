@@ -19,7 +19,7 @@
 #define GQCP_ONERDM_HPP
 
 
-#include "math/ChemicalMatrix.hpp"
+#include "Mathematical/ChemicalMatrix.hpp"
 
 
 namespace GQCP {

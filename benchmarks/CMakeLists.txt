@@ -12,9 +12,8 @@ foreach(BENCHMARK_SOURCE ${benchmark_target_sources})
     add_executable(${BENCHMARK_NAME} ${BENCHMARK_SOURCE})
 
     # Configure (include headers and link libraries) the benchmark ...
-    target_include_directories(${BENCHMARK_NAME} PUBLIC ${CMAKE_SOURCE_DIR}/include)
     target_link_libraries(${BENCHMARK_NAME} PUBLIC gqcp)
-    target_link_libraries(${BENCHMARK_NAME} PUBLIC "-lbenchmark")  # link google benchmarks
+    target_link_libraries(${BENCHMARK_NAME} PUBLIC benchmark::benchmark)  # link google benchmarks
 
 endforeach()
 

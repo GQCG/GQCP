@@ -1,9 +1,7 @@
 target_sources(gqcp
         PRIVATE
-            Atom.cpp
             elements.cpp
             HoppingMatrix.cpp
-            Molecule.cpp
             RMP2.cpp
         )
 
@@ -13,10 +11,13 @@ add_subdirectory(FockSpace)
 add_subdirectory(Geminals)
 add_subdirectory(HamiltonianBuilder)
 add_subdirectory(HamiltonianParameters)
-add_subdirectory(math)
+add_subdirectory(Mathematical)
+add_subdirectory(Molecule)
 add_subdirectory(OrbitalOptimization)
-add_subdirectory(properties)
+add_subdirectory(Operator)
+add_subdirectory(Properties)
+add_subdirectory(QCMethod)
 add_subdirectory(RDM)
 add_subdirectory(RHF)
-add_subdirectory(utilities)
+add_subdirectory(Utilities)
 add_subdirectory(WaveFunction)

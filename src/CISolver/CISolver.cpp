@@ -17,9 +17,9 @@
 // 
 #include "CISolver/CISolver.hpp"
 
-#include "math/optimization/DenseSolver.hpp"
-#include "math/optimization/DavidsonSolver.hpp"
-#include "math/optimization/SparseSolver.hpp"
+#include "Mathematical/Optimization/DenseSolver.hpp"
+#include "Mathematical/Optimization/DavidsonSolver.hpp"
+#include "Mathematical/Optimization/SparseSolver.hpp"
 
 
 namespace GQCP {
@@ -97,7 +97,7 @@ void CISolver::solve(const BaseSolverOptions& solver_options) {
  *  @return the index-th excited state after solving the CI eigenvalue problem
  */
 WaveFunction CISolver::makeWavefunction(size_t index) const {
-    if (index > this->eigenpairs.size()) {
+    if (index >= this->eigenpairs.size()) {
         throw std::logic_error("CISolver::makeWavefunction(size_t): Not enough requested eigenpairs for the given index.");
     }
     return WaveFunction(*this->hamiltonian_builder->get_fock_space(), this->eigenpairs[index].get_eigenvector());

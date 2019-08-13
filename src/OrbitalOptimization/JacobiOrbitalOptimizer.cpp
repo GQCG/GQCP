@@ -28,12 +28,13 @@ namespace GQCP {
  */
 
 /**
- *  @param dim              the dimension of the orbital space that should be scanned. The valid orbital indices then are 0 ... dim (not included)
- *  @param oo_options       the options for orbital optimization
+ *  @param dim                             the dimension of the orbital space that should be scanned. The valid orbital indices then are 0 ... dim (not included)
+ *  @param convergence_threshold            the threshold used to check for convergence
+ *  @param maximum_number_of_iterations     the maximum number of iterations that may be used to achieve convergence
  */
-JacobiOrbitalOptimizer::JacobiOrbitalOptimizer(const size_t dim, const OrbitalOptimizationOptions& oo_options) : 
+JacobiOrbitalOptimizer::JacobiOrbitalOptimizer(const size_t dim, const double convergence_threshold, const size_t maximum_number_of_iterations) :
     dim (dim),
-    BaseOrbitalOptimizer(oo_options)
+    BaseOrbitalOptimizer(convergence_threshold, maximum_number_of_iterations)
 {}
 
 
@@ -63,21 +64,11 @@ bool JacobiOrbitalOptimizer::checkForConvergence(const HamiltonianParameters<dou
 
     const double optimal_correction = optimal_jacobi_with_scalar.second;
 
-    if (std::abs(optimal_correction) < this->oo_options.convergenceThreshold()) {
+    if (std::abs(optimal_correction) < this->convergence_threshold) {
         return true;
     } else {
         return false;
     }
-}
-
-
-/**
- *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence
- */
-void JacobiOrbitalOptimizer::prepareRotationMatrixCalculation(const HamiltonianParameters<double>& ham_par) {
-
-    // There are no special preparations to be done for the general Jacobi orbital optimizer
-    this->prepareJacobiSpecificRotationMatrixCalculation(ham_par);
 }
 
 
@@ -104,7 +95,7 @@ SquareMatrix<double> JacobiOrbitalOptimizer::calculateNewRotationMatrix(const Ha
  */
 std::pair<JacobiRotationParameters, double> JacobiOrbitalOptimizer::calculateOptimalJacobiParameters(const HamiltonianParameters<double>& ham_par) {
 
-    const auto cmp = this->comparer();
+    const auto& cmp = this->comparer();
     std::priority_queue<pair_type, std::vector<pair_type>, decltype(cmp)> queue (cmp);
 
     for (size_t q = 0; q < this->dim; q++) {
@@ -130,20 +121,10 @@ std::pair<JacobiRotationParameters, double> JacobiOrbitalOptimizer::calculateOpt
 std::function<bool (const JacobiOrbitalOptimizer::pair_type&, const JacobiOrbitalOptimizer::pair_type&)> JacobiOrbitalOptimizer::comparer() const {
 
     return [this] (const pair_type& lhs, const pair_type& rhs) {
-        if (this->oo_options.shouldMinimize()) {
-            if (lhs.second < rhs.second) {
-                return false;
-            } else {
-                return true;
-            }
-        }
-
-        else {  // should maximize
-            if (lhs.second < rhs.second) {
-                return true;
-            } else {
-                return false;
-            }
+        if (lhs.second < rhs.second) {
+            return false;
+        } else {
+            return true;
         }
     };  // lambda function
 }

@@ -29,7 +29,7 @@ namespace GQCP {
 class GeminalCoefficientsInterface {
 public:
     // DESTRUCTOR
-    virtual ~GeminalCoefficientsInterface();
+    virtual ~GeminalCoefficientsInterface() = default;
 
 
     // PUBLIC METHODS

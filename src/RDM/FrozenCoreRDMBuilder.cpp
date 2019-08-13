@@ -16,7 +16,7 @@
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
 #include "RDM/FrozenCoreRDMBuilder.hpp"
-#include "utilities/linalg.hpp"
+#include "Utilities/linalg.hpp"
 
 
 namespace GQCP {

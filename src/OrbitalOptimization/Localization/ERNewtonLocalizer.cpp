@@ -27,12 +27,14 @@ namespace GQCP {
  */
 
 /**
- *  @param N_P              the number of electron pairs
- *  @param oo_options       the orbital optimization options that should be used for the orbital optimization algorithm
+ *  @param N_P                              the number of electron pairs
+ *  @param hessian_modifier                 the modifier functor that should be used when an indefinite Hessian is encountered
+ *  @param convergence_threshold            the threshold used to check for convergence
+ *  @param maximum_number_of_iterations     the maximum number of iterations that may be used to achieve convergence
  */
-ERNewtonLocalizer::ERNewtonLocalizer(size_t N_P, const OrbitalOptimizationOptions& oo_options) :
+ERNewtonLocalizer::ERNewtonLocalizer(size_t N_P, std::shared_ptr<BaseHessianModifier> hessian_modifier, const double convergence_threshold, const size_t maximum_number_of_iterations) :
     N_P (N_P),
-    NewtonOrbitalOptimizer(oo_options)
+    NewtonOrbitalOptimizer(hessian_modifier, convergence_threshold, maximum_number_of_iterations)
 {}
 
 
@@ -115,9 +117,9 @@ OrbitalRotationGenerators ERNewtonLocalizer::calculateNewFullOrbitalGenerators(c
  */
 double ERNewtonLocalizer::calculateGradientMatrixElement(const HamiltonianParameters<double>& ham_par, size_t i, size_t j) const {
 
-    const auto g = ham_par.get_g();
+    const auto& g = ham_par.get_g();
 
-    return 4 * (g(j,i,i,i) - g(i,j,j,j));
+    return -4 * (g(j,i,i,i) - g(i,j,j,j));  // formulate as minimization problem
 }
 
 
@@ -132,7 +134,7 @@ double ERNewtonLocalizer::calculateGradientMatrixElement(const HamiltonianParame
  */
 double ERNewtonLocalizer::calculateHessianTensorElement(const HamiltonianParameters<double>& ham_par, size_t i, size_t j, size_t k, size_t l) const {
 
-    const auto g = ham_par.get_g();
+    const auto& g = ham_par.get_g();
 
     // KISS-implementation of the Hessian element for the Edmiston-Ruedenberg localization index
     double value = 0.0;
@@ -152,7 +154,7 @@ double ERNewtonLocalizer::calculateHessianTensorElement(const HamiltonianParamet
         value += -2*g(i,k,k,k) - 2*g(k,i,i,i) + 8*g(k,j,i,j) + 4*g(k,i,j,j);
     }
 
-    return value;
+    return -value;  // formulate as minimization problem
 }
 
 

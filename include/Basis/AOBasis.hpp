@@ -43,9 +43,9 @@ public:
     AOBasis(const ShellSet& shell_set);
 
     /**
-     *  Construct an AO basis by placing shells corresponding to the basisset specification on every atom of the molecule
+     *  Construct an AO basis by placing shells corresponding to the basisset specification on every nucleus of the molecule
      *
-     *  @param molecule             the molecule containing the atoms on which the shells should be centered
+     *  @param molecule             the molecule containing the nuclei on which the shells should be centered
      *  @param basisset_name        the name of the basisset, e.g. "STO-3G"
      *
      *  Note that the normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells

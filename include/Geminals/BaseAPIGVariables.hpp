@@ -19,7 +19,7 @@
 #define BaseAPIGVariables_hpp
 
 
-#include "math/Matrix.hpp"
+#include "Mathematical/Matrix.hpp"
 
 
 namespace GQCP {
@@ -39,6 +39,7 @@ protected:
 
 public:
     // CONSTRUCTORS
+
     /**
      *  @param x        the variables in a vector representation that is in row-major storage
      *
@@ -53,7 +54,12 @@ public:
     BaseAPIGVariables();  // default constructor needed
 
 
+    // DESTRUCTOR
+    virtual ~BaseAPIGVariables() = default;
+
+
     // OPERATORS
+
     /**
      *  @param mu       a vector index
      *
@@ -71,11 +77,13 @@ public:
 
 
     // GETTERS
+
     size_t get_N_P() const { return this->N_P; }
     size_t get_K() const { return this->K; }
 
 
     // PUBLIC METHODS
+
     /**
      *  @return the variables in row-major vector form
      */

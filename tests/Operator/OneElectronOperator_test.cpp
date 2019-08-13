@@ -22,7 +22,7 @@
 #include "Operator/OneElectronOperator.hpp"
 
 #include "Basis/CartesianGTO.hpp"
-#include "utilities/miscellaneous.hpp"
+#include "Utilities/miscellaneous.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( OneElectronOperator_constructor ) {

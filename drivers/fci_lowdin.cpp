@@ -55,7 +55,7 @@ int main (int argc, char** argv) {
 
     // Actual calculations
     // Prepare molecular Hamiltonian parameters in the Löwdin basis
-    auto molecule = GQCP::Molecule::Readxyz(input_xyz_file);
+    auto molecule = GQCP::Molecule::ReadXYZ(input_xyz_file);
     auto mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(molecule, basisset);  // in the AO basis
     mol_ham_par.LowdinOrthonormalize();  // now in the Löwdin basis
 
@@ -69,7 +69,7 @@ int main (int argc, char** argv) {
     ci_solver.solve(dense_solver_options);
 
     auto fci_energy = ci_solver.get_eigenpair().get_eigenvalue();
-    double internuclear_repulsion_energy = molecule.calculateInternuclearRepulsionEnergy();
+    double internuclear_repulsion_energy = GQCP::Operator::NuclearRepulsion(molecule).value();
 
 
     // Calculate the 1-RDM in the NO basis

@@ -52,7 +52,7 @@ public:
 
 
     // DESTRUCTOR
-    virtual ~FockPermutator() {}
+    virtual ~FockPermutator() = default;
 
 
     // GETTERS
@@ -60,6 +60,7 @@ public:
 
 
     // VIRTUAL PUBLIC METHODS
+
     /**
      *  @param representation       a representation of an ONV
      *
@@ -109,6 +110,7 @@ public:
 
 
     // PUBLIC METHODS
+
     /**
      *  @return this as a DerivedPermutator (done at compile-time)
      */

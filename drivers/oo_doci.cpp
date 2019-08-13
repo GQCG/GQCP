@@ -18,6 +18,7 @@
 #include "OrbitalOptimization/DOCINewtonOrbitalOptimizer.hpp"
 #include "OrbitalOptimization/Localization/ERNewtonLocalizer.hpp"
 #include "OrbitalOptimization/Localization/ERJacobiLocalizer.hpp"
+#include "Mathematical/Optimization/IterativeIdentitiesHessianModifier.hpp"
 
 
 /**
@@ -69,8 +70,8 @@ int main (int argc, char** argv) {
 
     // Actual calculations
     // Prepare molecular Hamiltonian parameters in the RHF basis
-    auto molecule = GQCP::Molecule::Readxyz(input_xyz_file);
-    size_t N_P = molecule.get_N()/2;
+    auto molecule = GQCP::Molecule::ReadXYZ(input_xyz_file);
+    size_t N_P = molecule.numberOfElectrons()/2;
     output_file << "Molecule geometry" << std::endl;
     output_file << molecule << std::endl;
 
@@ -89,17 +90,16 @@ int main (int argc, char** argv) {
 
 
     // Localize the RHF-orbitals
+    auto hessian_modifier = std::make_shared<GQCP::IterativeIdentitiesHessianModifier>();
     if (user_wants_localization) {
 
-        auto localization_options = GQCP::OrbitalOptimizationOptions::OrbitalMaximizationOptions();
-
         // Newton to get to the first local minimum
-        GQCP::ERNewtonLocalizer first_newton_localizer (N_P, localization_options);
+        GQCP::ERNewtonLocalizer first_newton_localizer (N_P, hessian_modifier);
         first_newton_localizer.optimize(mol_ham_par);
 
 
         // Check if Jacobi finds another minimum
-        GQCP::ERJacobiLocalizer jacobi_localizer (N_P, localization_options);
+        GQCP::ERJacobiLocalizer jacobi_localizer (N_P);
         auto optimal_jacobi_with_scalar = jacobi_localizer.calculateOptimalJacobiParameters(mol_ham_par);
         if (optimal_jacobi_with_scalar.second > 0) {  // if a Jacobi rotation can find an increase, do it
             const auto U = GQCP::SquareMatrix<double>::FromJacobi(optimal_jacobi_with_scalar.first, mol_ham_par.get_K());
@@ -108,7 +108,7 @@ int main (int argc, char** argv) {
 
 
         // Newton to get to the next local minimum
-        GQCP::ERNewtonLocalizer second_newton_localizer (N_P, localization_options);
+        GQCP::ERNewtonLocalizer second_newton_localizer (N_P, hessian_modifier);
         first_newton_localizer.optimize(mol_ham_par);
 
 
@@ -127,9 +127,8 @@ int main (int argc, char** argv) {
         solver_options = std::make_shared<GQCP::DenseSolverOptions>();
     }
 
-    auto oo_options = GQCP::OrbitalOptimizationOptions::OrbitalMinimizationOptions();
-    GQCP::DOCINewtonOrbitalOptimizer orbital_optimizer (doci, *solver_options, oo_options);
-        orbital_optimizer.optimize(mol_ham_par);
+    GQCP::DOCINewtonOrbitalOptimizer orbital_optimizer (doci, *solver_options, hessian_modifier);
+    orbital_optimizer.optimize(mol_ham_par);
     double OO_DOCI_electronic_energy = orbital_optimizer.get_eigenpair().get_eigenvalue();
 
 

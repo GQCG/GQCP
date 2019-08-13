@@ -20,7 +20,7 @@
 
 
 #include "FockSpace/BaseFockSpace.hpp"
-#include "math/Matrix.hpp"
+#include "Mathematical/Matrix.hpp"
 
 
 
@@ -58,6 +58,21 @@ public:
      *  @return the Shannon entropy (or information content) of the wave function
      */
     double calculateShannonEntropy() const;
+
+    /**
+     *  Transform the underlying ONV basis of the wave function (only for FCI [ProductFockSpace]) and recalculate the ONV expansion coefficients
+     *
+     *  @param T    the transformation matrix between the old and the new orbital basis
+     */
+     void basisTransform(const SquareMatrix<double>& T);
+     
+    /** 
+     *  @param other            wave function for the comparison
+     *  @param tolerance        tolerance for the comparison of coefficients
+     * 
+     *  @return if two wave functions are equal within a given tolerance
+     */
+     bool isApprox(const WaveFunction& other, double tolerance = 1e-10) const;
 };
 
 

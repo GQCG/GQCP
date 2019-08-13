@@ -30,7 +30,7 @@ namespace GQCP {
  */
 double calculateRMP2EnergyCorrection(const HamiltonianParameters<double>& ham_par, const Molecule& molecule, const RHF& rhf) {
 
-    size_t N = molecule.get_N();
+    size_t N = molecule.numberOfElectrons();
     size_t K = ham_par.get_K();
 
     size_t HOMO_index = RHFHOMOIndex(N);

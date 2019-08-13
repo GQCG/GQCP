@@ -19,10 +19,9 @@
 #define CartesianGTO_hpp
 
 
-#include "math/ScalarFunction.hpp"
-#include "math/LinearCombination.hpp"
 #include "Basis/CartesianExponents.hpp"
-#include "CartesianDirection.hpp"
+#include "Mathematical/ScalarFunction.hpp"
+#include "Mathematical/LinearCombination.hpp"
 
 
 namespace GQCP {

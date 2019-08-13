@@ -18,12 +18,12 @@
 #ifndef GQCP_TWOELECTRONOPERATOR_HPP
 #define GQCP_TWOELECTRONOPERATOR_HPP
 
-#include "math/ChemicalRankFourTensor.hpp"
-#include "Operator/Operator.hpp"
+#include "Mathematical/ChemicalRankFourTensor.hpp"
+#include "Operator/BaseOperator.hpp"
 
 #include "Operator/OneElectronOperator.hpp"
 #include "OrbitalOptimization/JacobiRotationParameters.hpp"
-#include "utilities/miscellaneous.hpp"
+#include "Utilities/miscellaneous.hpp"
 
 
 namespace GQCP {
@@ -35,7 +35,7 @@ namespace GQCP {
  *  @tparam _Scalar     the scalar type
  */
 template<typename _Scalar>
-class TwoElectronOperator : public ChemicalRankFourTensor<_Scalar>, public Operator<TwoElectronOperator<_Scalar>> {
+class TwoElectronOperator : public ChemicalRankFourTensor<_Scalar>, public BaseOperator<TwoElectronOperator<_Scalar>> {
 public:
 
     using Scalar = _Scalar;
@@ -59,7 +59,7 @@ public:
      */
 
 
-    using Operator<TwoElectronOperator<Scalar>>::rotate;  // bring over rotate() from the base class
+    using BaseOperator<TwoElectronOperator<Scalar>>::rotate;  // bring over rotate() from the base class
 
 
     /**

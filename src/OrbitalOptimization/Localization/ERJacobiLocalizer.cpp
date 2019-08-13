@@ -25,23 +25,8 @@ namespace GQCP {
 
 
 /*
- *  CONSTRUCTORS
- */
-
-/**
- *  @param N_P                  the number of electron pairs
- *  @param oo_options           the options for orbital optimization
- */
-ERJacobiLocalizer::ERJacobiLocalizer(size_t N_P, const OrbitalOptimizationOptions& oo_options) :
-    JacobiOrbitalOptimizer(N_P, oo_options)
-{}
-
-
-
-/*
  *  PUBLIC OVERRIDDEN METHODS
  */
-
 
 /**
  *  Calculate the trigoniometric polynomial coefficients for the given Jacobi rotation
@@ -51,7 +36,7 @@ ERJacobiLocalizer::ERJacobiLocalizer(size_t N_P, const OrbitalOptimizationOption
  */
 void ERJacobiLocalizer::calculateJacobiCoefficients(const HamiltonianParameters<double>& ham_par, const size_t i, const size_t j) {
 
-    const auto g = ham_par.get_g();  // two-electron integrals
+    const auto& g = ham_par.get_g();  // two-electron integrals
 
     this->A = 0.25 * (2*g(i,i,j,j) + 4*g(i,j,i,j) - g(i,i,i,i) - g(j,j,j,j));
     this->B = -this->A;
@@ -69,6 +54,11 @@ void ERJacobiLocalizer::calculateJacobiCoefficients(const HamiltonianParameters<
 double ERJacobiLocalizer::calculateOptimalRotationAngle(const HamiltonianParameters<double>& ham_par, const size_t i, const size_t j) const {
 
     const double denominator = std::sqrt(std::pow(this->B, 2) + std::pow(this->C, 2));
+
+    // If the denominator is almost zero, the Jacobi rotation is redundant: the corresponding angle of a 'non'-rotation is 0.0
+    if (denominator < 1.0e-08) {
+        return 0.0;
+    }
     return 0.25 * std::atan2(this->C / denominator, this->B / denominator);  // atan(y/x) = std::atan2(y,x)
 }
 
@@ -77,11 +67,11 @@ double ERJacobiLocalizer::calculateOptimalRotationAngle(const HamiltonianParamet
  *  @param ham_par              the current Hamiltonian parameters
  *  @param jacobi_rot_par       the Jacobi rotation parameters
  * 
-    *  @return the change in the value of the scalar function (i.e. the ER localization index) if the given Jacobi rotation parameters would be used to rotate the given Hamiltonian parameters
-    */
+ *  @return the change in the value of the scalar function (i.e. the ER localization index) if the given Jacobi rotation parameters would be used to rotate the given Hamiltonian parameters
+ */
 double ERJacobiLocalizer::calculateScalarFunctionChange(const HamiltonianParameters<double>& ham_par, const JacobiRotationParameters& jacobi_rot_par) const {
 
-    return this->A + std::sqrt(std::pow(this->B, 2) + std::pow(this->C, 2));
+    return - (this->A + std::sqrt(std::pow(this->B, 2) + std::pow(this->C, 2)));  // formulate as minimization problem
 }
 
 

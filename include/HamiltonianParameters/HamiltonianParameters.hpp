@@ -19,14 +19,18 @@
 #define GQCP_HAMILTONIANPARAMETERS_HPP
 
 #include "HamiltonianParameters/BaseHamiltonianParameters.hpp"
+#include "Operator/BaseOperator.hpp"
+
 #include "HoppingMatrix.hpp"
-#include "Molecule.hpp"
+#include "Molecule/Molecule.hpp"
 #include "Operator/OneElectronOperator.hpp"
 #include "Operator/TwoElectronOperator.hpp"
+#include "Operator/FirstQuantized/Operator.hpp"
 #include "OrbitalOptimization/JacobiRotationParameters.hpp"
 #include "RDM/TwoRDM.hpp"
 #include "RDM/OneRDM.hpp"
 #include "typedefs.hpp"
+#include "Utilities/miscellaneous.hpp"
 
 
 namespace GQCP {
@@ -40,7 +44,7 @@ namespace GQCP {
  *  @tparam Scalar      the scalar type
  */
 template<typename Scalar>
-class HamiltonianParameters : public BaseHamiltonianParameters, public Operator<HamiltonianParameters<Scalar>> {
+class HamiltonianParameters : public BaseHamiltonianParameters, public BaseOperator<HamiltonianParameters<Scalar>> {
 private:
     size_t K;  // the number of spatial orbitals
 
@@ -172,7 +176,8 @@ public:
 
         auto ao_basis = std::make_shared<AOBasis>(molecule, basisset);
 
-        return HamiltonianParameters::Molecular(ao_basis, molecule.calculateInternuclearRepulsionEnergy());
+        const double internuclear_repulsion_energy = Operator::NuclearRepulsion(molecule).value();
+        return HamiltonianParameters::Molecular(ao_basis, internuclear_repulsion_energy);
     }
 
 
@@ -229,26 +234,7 @@ public:
     template<typename Z = Scalar>
     static enable_if_t<std::is_same<Z, double>::value, HamiltonianParameters<double>> ReadFCIDUMP(const std::string& fcidump_file) {
 
-        // Find the extension of the given path (https://stackoverflow.com/a/51992)
-        std::string extension;
-        std::string::size_type idx = fcidump_file.rfind('.');
-
-        if (idx != std::string::npos) {
-            extension = fcidump_file.substr(idx+1);
-        } else {
-            throw std::runtime_error("HamiltonianParameters::ReadFCIDUMP(std::string): I did not find an extension in your given path.");
-        }
-
-        if (!(extension == "FCIDUMP")) {
-            throw std::runtime_error("HamiltonianParameters::ReadFCIDUMP(std::string): You did not provide a .FCIDUMP file name");
-        }
-
-        // If the xyz_filename isn't properly converted into an input file stream, we assume the user supplied a wrong file
-        std::ifstream input_file_stream (fcidump_file);
-
-        if (!input_file_stream.good()) {
-            throw std::runtime_error("HamiltonianParameters::ReadFCIDUMP(std::string): The provided FCIDUMP file is illegible. Maybe you specified a wrong path?");
-        }
+        std::ifstream input_file_stream = validateAndOpen(fcidump_file, "FCIDUMP");
 
 
         // Do the actual parsing
@@ -385,12 +371,12 @@ public:
 
 
     /*
-     *  DESTRUCTORS
+     *  DESTRUCTOR
      */
 
     ~HamiltonianParameters() override = default;
 
-    
+
     /*
      *  GETTERS
      */
@@ -402,8 +388,9 @@ public:
     size_t get_K() const { return this->K; }
 
 
+
     /*
-     *  PUBLIC METHODS
+     *  PUBLIC METHODS - RELATED TO TRANSFORMATIONS
      */
 
     /**
@@ -437,7 +424,7 @@ public:
     }
 
 
-    using Operator<HamiltonianParameters<Scalar>>::rotate;  // bring over rotate() from the base class
+    using BaseOperator<HamiltonianParameters<Scalar>>::rotate;  // bring over rotate() from the base class
 
 
     /**
@@ -465,7 +452,6 @@ public:
     }
 
 
-    // OTHER TRANSFORMATION FORMULAS
     /**
      *  Using a random rotation matrix, transform the matrix representations of the Hamiltonian parameters
      *
@@ -483,6 +469,7 @@ public:
         this->rotate(U_random);
     }
 
+
     /**
      *  Transform the HamiltonianParameters to the Löwdin basis (i.e. T = S^{-1/2})
      */
@@ -494,7 +481,11 @@ public:
     }
 
 
-    // PUBLIC METHODS - CALCULATIONS OF VALUES
+
+    /*
+     *  PUBLIC METHODS - CALCULATIONS OF VALUES
+     */
+
     /**
      *  @param N_P      the number of electron pairs
      *
@@ -516,22 +507,26 @@ public:
     }
 
 
-    // PUBLIC METHODS - CALCULATIONS OF ONE-ELECTRON OPERATORS
-    /**
-     *  @param D      the 1-RDM
-     *  @param d      the 2-RDM
-     *
-     *  @return the generalized Fock matrix
+
+    /*
+     *  PUBLIC METHODS - CALCULATIONS OF ONE-ELECTRON OPERATORS
      */
-    OneElectronOperator<Scalar> calculateGeneralizedFockMatrix(const OneRDM<double>& D, const TwoRDM<double>& d) const {
+
+    /**
+     *  @param D      the 1-DM (or the response 1-DM for made-variational wave function models)
+     *  @param d      the 2-DM (or the response 2-DM for made-variational wave function models)
+     *
+     *  @return the (generalized) Fockian matrix
+     */
+    OneElectronOperator<Scalar> calculateFockianMatrix(const OneRDM<double>& D, const TwoRDM<double>& d) const {
 
         // Check if dimensions are compatible
         if (D.cols() != this->K) {
-            throw std::invalid_argument("HamiltonianParameters::calculateGeneralizedFockMatrix(OneRDM<double>, TwoRDM<double>): The 1-RDM is not compatible with the HamiltonianParameters.");
+            throw std::invalid_argument("HamiltonianParameters::calculateFockianMatrix(OneRDM<double>, TwoRDM<double>): The 1-RDM is not compatible with the HamiltonianParameters.");
         }
 
         if (d.dimension(0) != this->K) {
-            throw std::invalid_argument("HamiltonianParameters::calculateGeneralizedFockMatrix(OneRDM<double>, TwoRDM<double>): The 2-RDM is not compatible with the HamiltonianParameters.");
+            throw std::invalid_argument("HamiltonianParameters::calculateFockianMatrix(OneRDM<double>, TwoRDM<double>): The 2-RDM is not compatible with the HamiltonianParameters.");
         }
 
 
@@ -542,24 +537,24 @@ public:
 
                 // One-electron part
                 for (size_t r = 0; r < this->K; r++) {
-                    F(p,q) += h(q,r) * D(p,r);
+                    F(p,q) += h(q,r) * (D(p,r) + D(r,p));
                 }
 
                 // Two-electron part
                 for (size_t r = 0; r < this->K; r++) {
                     for (size_t s = 0; s < this->K; s++) {
                         for (size_t t = 0; t < this->K; t++) {
-                            F(p,q) += g(q,r,s,t) * d(p,r,s,t);
+                            F(p,q) += g(q,r,s,t) * (d(p,r,s,t) + d(r,p,s,t));
                         }
                     }
-                }  // two-electron part
+                }
 
             }
         }  // F elements loop
 
-
-        return F;
+        return 0.5 * F;
     }
+
 
     /**
      *  @param ao_list     indices of the AOs used for the Mulliken populations
@@ -591,6 +586,7 @@ public:
         return mulliken_matrix;
     }
 
+
     /**
      *  @return the effective one-electron integrals
      */
@@ -600,48 +596,52 @@ public:
     }
 
 
-    // PUBLIC METHODS - CALCULATIONS OF TWO-ELECTRON OPERATORS
-    /**
-     *  @param D      the 1-RDM
-     *  @param d      the 2-RDM
-     *
-     *  @return the super-generalized Fock matrix
+
+    /*
+     *  PUBLIC METHODS - CALCULATIONS OF TWO-ELECTRON OPERATORS
      */
-    TwoElectronOperator<Scalar> calculateSuperGeneralizedFockMatrix(const OneRDM<double>& D, const TwoRDM<double>& d) const {
+
+    /**
+     *  @param D      the 1-DM (or the response 1-DM for made-variational wave function models)
+     *  @param d      the 2-DM (or the response 2-DM for made-variational wave function models)
+     *
+     *  @return the (generalized) super-Fockian matrix
+     */
+    TwoElectronOperator<Scalar> calculateSuperFockianMatrix(const OneRDM<double>& D, const TwoRDM<double>& d) const {
 
         // Check if dimensions are compatible
         if (D.cols() != this->K) {
-            throw std::invalid_argument("HamiltonianParameters::calculateGeneralizedFockMatrix(OneRDM<double>, TwoRDM<double>): The 1-RDM is not compatible with the HamiltonianParameters.");
+            throw std::invalid_argument("HamiltonianParameters::calculateFockianMatrix(OneRDM<double>, TwoRDM<double>): The 1-RDM is not compatible with the HamiltonianParameters.");
         }
 
         if (d.dimension(0) != this->K) {
-            throw std::invalid_argument("HamiltonianParameters::calculateGeneralizedFockMatrix(OneRDM<double>, TwoRDM<double>): The 2-RDM is not compatible with the HamiltonianParameters.");
+            throw std::invalid_argument("HamiltonianParameters::calculateFockianMatrix(OneRDM<double>, TwoRDM<double>): The 2-RDM is not compatible with the HamiltonianParameters.");
         }
 
 
-        // We have to calculate the generalized Fock matrix F first
-        OneElectronOperator<Scalar> F = this->calculateGeneralizedFockMatrix(D, d);
+        // We have to calculate the Fockian matrix first
+        OneElectronOperator<Scalar> F = this->calculateFockianMatrix(D, d);
 
-        // A KISS implementation of the calculation of the super generalized Fock matrix W
-        TwoElectronOperator<Scalar> W (this->K);
-        W.setZero();
+        // A KISS implementation of the calculation of the super Fockian matrix
+        TwoElectronOperator<Scalar> G (this->K);
+        G.setZero();
         for (size_t p = 0; p < this->K; p++) {
             for (size_t q = 0; q < this->K; q++) {
                 for (size_t r = 0; r < this->K; r++) {
                     for (size_t s = 0; s < this->K; s++) {
 
                         // Generalized Fock matrix part
-                        if (r == q) {
-                            W(p,q,r,s) += F(p,s);
+                        if (q == r) {
+                            G(p,q,r,s) += 2 * F(p,s);
                         }
 
                         // One-electron part
-                        W(p,q,r,s) -= this->h(s,p) * D(r,q);
+                        G(p,q,r,s) -= this->h(s,p) * (D(r,q) + D(q,r));
 
                         // Two-electron part
                         for (size_t t = 0; t < this->K; t++) {
                             for (size_t u = 0; u < this->K; u++) {
-                                W(p,q,r,s) += this->g(s,t,q,u) * d(r,t,p,u) - this->g(s,t,u,p) * d(r,t,u,q) - this->g(s,p,t,u) * d(r,q,t,u);
+                                G(p,q,r,s) += this->g(s,t,q,u) * (d(r,t,p,u) + d(t,r,u,p)) - this->g(s,t,u,p) * (d(r,t,u,q) + d(t,r,q,u)) - this->g(s,p,t,u) * (d(r,q,t,u) + d(q,r,u,t));
                             }
                         }  // two-electron part
                     }
@@ -650,11 +650,14 @@ public:
         }  // W elements loop
 
 
-        return W;
+        return 0.5 * G;
     }
 
 
-    // PUBLIC METHODS - CONSTRAINTS
+    /*
+     *  PUBLIC METHODS - CONSTRAINTS
+     */
+
     /**
      *  Constrain the Hamiltonian parameters according to the convention: - lambda * constraint
      *
@@ -675,6 +678,7 @@ public:
         return HamiltonianParameters(this->ao_basis, this->S, h_constrained, g_constrained, this->T_total);
     }
 
+
     /**
      *  Constrain the Hamiltonian parameters according to the convention: - lambda * constraint
      *
@@ -692,6 +696,7 @@ public:
 
         return HamiltonianParameters(this->ao_basis, this->S, h_constrained, this->g, this->T_total);
     }
+
 
     /**
      *  Constrain the Hamiltonian parameters according to the convention: - lambda * constraint

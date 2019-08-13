@@ -130,13 +130,13 @@ BOOST_AUTO_TEST_CASE ( Selected_Evaluation_H2O ) {
     double reference_fci_energy = -75.0129803939602;
 
     // Create the molecular Hamiltonian parameters in an AO basis
-    auto h2o = GQCP::Molecule::Readxyz("data/h2o_Psi4_GAMESS.xyz");
+    auto h2o = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
     auto mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2o, "STO-3G");
     auto K = mol_ham_par.get_K();
 
     mol_ham_par.LowdinOrthonormalize();
 
-    GQCP::ProductFockSpace fock_space (K, h2o.get_N()/2, h2o.get_N()/2);  // dim = 441
+    GQCP::ProductFockSpace fock_space (K, h2o.numberOfElectrons()/2, h2o.numberOfElectrons()/2);  // dim = 441
     GQCP::SelectedFockSpace selected_fock_space (fock_space);
 
     GQCP::SquareMatrix<double> hamiltonian = selected_fock_space.evaluateOperatorDense(mol_ham_par, true);
@@ -146,7 +146,8 @@ BOOST_AUTO_TEST_CASE ( Selected_Evaluation_H2O ) {
     // Retrieve lowest eigenvalue (fci solution)
     Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> self_adjoint_eigensolver (hamiltonian);
 
-    double test_energy = self_adjoint_eigensolver.eigenvalues()(0) +  h2o.calculateInternuclearRepulsionEnergy();
+    double internuclear_repulsion_energy = GQCP::Operator::NuclearRepulsion(h2o).value();
+    double test_energy = self_adjoint_eigensolver.eigenvalues()(0) + internuclear_repulsion_energy;
 
 
     BOOST_CHECK(std::abs(test_energy - reference_fci_energy) < 1e-6);

@@ -18,10 +18,10 @@
 #ifndef GQCP_ONEELECTRONOPERATOR_HPP
 #define GQCP_ONEELECTRONOPERATOR_HPP
 
-#include "math/ChemicalMatrix.hpp"
-#include "Operator.hpp"
+#include "Mathematical/ChemicalMatrix.hpp"
+#include "Operator/BaseOperator.hpp"
 
-#include "math/ScalarFunction.hpp"
+#include "Mathematical/ScalarFunction.hpp"
 #include "OrbitalOptimization/JacobiRotationParameters.hpp"
 
 
@@ -35,7 +35,7 @@ namespace GQCP {
  *  @tparam _Scalar      the scalar type
  */
 template <typename _Scalar>
-class OneElectronOperator : public ChemicalMatrix<_Scalar>, public Operator<OneElectronOperator<_Scalar>> {
+class OneElectronOperator : public ChemicalMatrix<_Scalar>, public BaseOperator<OneElectronOperator<_Scalar>> {
 public:
 
     using Scalar = _Scalar;
@@ -58,7 +58,7 @@ public:
      */
 
 
-    using Operator<OneElectronOperator<Scalar>>::rotate;  // bring over rotate from the base class
+    using BaseOperator<OneElectronOperator<Scalar>>::rotate;  // bring over rotate from the base class
 
 
     /**

@@ -19,7 +19,7 @@
 #define RMP2_hpp
 
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
-#include "Molecule.hpp"
+#include "Molecule/Molecule.hpp"
 #include "RHF/RHF.hpp"
 
 

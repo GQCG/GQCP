@@ -22,19 +22,19 @@
 #include "RHF/DIISRHFSCFSolver.hpp"
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 
-#include "utilities/linalg.hpp"
+#include "Utilities/linalg.hpp"
 
 
 
 BOOST_AUTO_TEST_CASE ( constructor ) {
 
     // Check a correct constructor with an even number of electrons
-    auto h2 = GQCP::Molecule::Readxyz("data/h2_szabo.xyz");
+    auto h2 = GQCP::Molecule::ReadXYZ("data/h2_szabo.xyz");
     auto mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2, "STO-3G");
     GQCP::DIISRHFSCFSolver diis_solver (mol_ham_par, h2);
 
     // Check if a faulty constructor with an odd number of electron throws
-    auto h2_ion = GQCP::Molecule::Readxyz("data/h2_szabo.xyz", +1);
+    auto h2_ion = GQCP::Molecule::ReadXYZ("data/h2_szabo.xyz", +1);
     BOOST_CHECK_THROW(GQCP::DIISRHFSCFSolver (mol_ham_par, h2_ion), std::invalid_argument);
 }
 
@@ -46,7 +46,7 @@ BOOST_AUTO_TEST_CASE ( h2_sto3g_szabo_DIIS ) {
 
 
     // Create the molecular Hamiltonian parameters in an AO basis
-    auto h2 = GQCP::Molecule::Readxyz("data/h2_szabo.xyz");
+    auto h2 = GQCP::Molecule::ReadXYZ("data/h2_szabo.xyz");
     auto mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2, "STO-3G");
 
 
@@ -57,7 +57,7 @@ BOOST_AUTO_TEST_CASE ( h2_sto3g_szabo_DIIS ) {
 
 
     // Check the total energy
-    double total_energy = rhf.get_electronic_energy() + h2.calculateInternuclearRepulsionEnergy();
+    double total_energy = rhf.get_electronic_energy() + GQCP::Operator::NuclearRepulsion(h2).value();
     BOOST_CHECK(std::abs(total_energy - ref_total_energy) < 1.0e-04);
 }
 
@@ -81,7 +81,7 @@ BOOST_AUTO_TEST_CASE ( h2o_sto3g_horton_DIIS ) {
 
 
     // Do our own RHF calculation
-    auto water = GQCP::Molecule::Readxyz("data/h2o.xyz");
+    auto water = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
     auto mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(water, "STO-3G");
 
     GQCP::DIISRHFSCFSolver diis_scf_solver (mol_ham_par, water);
@@ -89,7 +89,7 @@ BOOST_AUTO_TEST_CASE ( h2o_sto3g_horton_DIIS ) {
     auto rhf = diis_scf_solver.get_solution();
 
     // Check the total energy
-    double total_energy = rhf.get_electronic_energy() + water.calculateInternuclearRepulsionEnergy();
+    double total_energy = rhf.get_electronic_energy() + GQCP::Operator::NuclearRepulsion(water).value();
     BOOST_CHECK(std::abs(total_energy - ref_total_energy) < 1.0e-04);
 
     // Check the calculated results with the reference
@@ -106,9 +106,9 @@ BOOST_AUTO_TEST_CASE ( crawdad_h2o_sto3g_DIIS ) {
 
 
     // Do our own RHF calculation
-    auto water = GQCP::Molecule::Readxyz("data/h2o_crawdad.xyz");
+    auto water = GQCP::Molecule::ReadXYZ("data/h2o_crawdad.xyz");
     // Check if the internuclear distance between O and H is really 1.1 A (= 2.07869 bohr), as specified in the text
-    BOOST_REQUIRE(std::abs(water.calculateInternuclearDistance(0, 1) - 2.07869) < 1.0e-4);
+    BOOST_REQUIRE(std::abs(water.internuclearDistance(0, 1) - 2.07869) < 1.0e-4);
 
     auto mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(water, "STO-3G");
 
@@ -118,7 +118,7 @@ BOOST_AUTO_TEST_CASE ( crawdad_h2o_sto3g_DIIS ) {
 
 
     // Check the total energy
-    double total_energy = rhf.get_electronic_energy() + water.calculateInternuclearRepulsionEnergy();
+    double total_energy = rhf.get_electronic_energy() + GQCP::Operator::NuclearRepulsion(water).value();
     BOOST_CHECK(std::abs(total_energy - ref_total_energy) < 1.0e-06);
 }
 
@@ -129,9 +129,9 @@ BOOST_AUTO_TEST_CASE ( crawdad_ch4_sto3g_DIIS ) {
     double ref_total_energy = -39.726850324347;
 
     // Do our own RHF calculation
-    auto methane = GQCP::Molecule::Readxyz("data/ch4_crawdad.xyz");
+    auto methane = GQCP::Molecule::ReadXYZ("data/ch4_crawdad.xyz");
     // Check if the internuclear distance between C and H is really around 2.05 bohr, which is the bond distance Wikipedia (108.7 pm) specifies
-    BOOST_CHECK(std::abs(methane.calculateInternuclearDistance(0, 1) - 2.05) < 1.0e-1);
+    BOOST_CHECK(std::abs(methane.internuclearDistance(0, 1) - 2.05) < 1.0e-1);
 
     auto mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(methane, "STO-3G");
 
@@ -140,7 +140,7 @@ BOOST_AUTO_TEST_CASE ( crawdad_ch4_sto3g_DIIS ) {
     auto rhf = diis_scf_solver.get_solution();
 
     // Check the total energy
-    double total_energy = rhf.get_electronic_energy() + methane.calculateInternuclearRepulsionEnergy();
+    double total_energy = rhf.get_electronic_energy() + GQCP::Operator::NuclearRepulsion(methane).value();
     BOOST_CHECK(std::abs(total_energy - ref_total_energy) < 1.0e-06);
 }
 
@@ -152,7 +152,7 @@ BOOST_AUTO_TEST_CASE ( h2_631gdp_DIIS ) {
 
 
     // Do our own RHF calculation
-    auto h2 = GQCP::Molecule::Readxyz("data/h2_olsens.xyz");
+    auto h2 = GQCP::Molecule::ReadXYZ("data/h2_olsens.xyz");
     auto mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2, "6-31g**");
 
     GQCP::DIISRHFSCFSolver diis_scf_solver (mol_ham_par, h2);

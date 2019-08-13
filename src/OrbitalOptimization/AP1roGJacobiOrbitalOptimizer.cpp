@@ -19,7 +19,7 @@
 
 #include "Geminals/AP1roG.hpp"
 #include "Geminals/AP1roGPSESolver.hpp"
-#include "math/optimization/NewtonMinimizer.hpp"
+#include "Mathematical/Optimization/NewtonMinimizer.hpp"
 
 #include <boost/math/constants/constants.hpp>
 
@@ -35,27 +35,27 @@ namespace GQCP {
  */
 
 /**
- *  @param N_P                  the number of electron pairs
- *  @param K                    the number of spatial orbitals
- *  @param oo_options           the options for orbital optimization
+ *  @param N_P                              the number of electron pairs
+ *  @param K                                the number of spatial orbitals
+ *  @param convergence_threshold            the threshold used to check for convergence
+ *  @param maximum_number_of_iterations     the maximum number of iterations that may be used to achieve convergence
  *
  *  The initial guess for the geminal coefficients is zero
  */
-AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer(const size_t N_P, const size_t K, const OrbitalOptimizationOptions& oo_options) :
-    AP1roGJacobiOrbitalOptimizer(N_P, K, oo_options, AP1roGGeminalCoefficients(N_P, K))
+AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer(const size_t N_P, const size_t K, const double convergence_threshold, const size_t maximum_number_of_iterations) :
+    AP1roGJacobiOrbitalOptimizer(AP1roGGeminalCoefficients(N_P, K), convergence_threshold, maximum_number_of_iterations)
 {}
 
 
 /**
- *  @param N_P                  the number of electron pairs
- *  @param K                    the number of spatial orbitals
- *  @param oo_options           the options for orbital optimization
- *  @param G                    the initial geminal coefficients
+ *  @param G                                the initial geminal coefficients
+ *  @param convergence_threshold            the threshold used to check for convergence
+ *  @param maximum_number_of_iterations     the maximum number of iterations that may be used to achieve convergence
  */
-AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer(const size_t N_P, const size_t K, const OrbitalOptimizationOptions& oo_options, const AP1roGGeminalCoefficients& G) :
-    N_P (N_P),
+AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer(const AP1roGGeminalCoefficients& G, const double convergence_threshold, const size_t maximum_number_of_iterations) :
+    N_P (G.get_N_P()),
     G (G),
-    JacobiOrbitalOptimizer(K, oo_options)
+    JacobiOrbitalOptimizer(G.get_K(), convergence_threshold, maximum_number_of_iterations)
 {}
 
 
@@ -86,10 +86,10 @@ void AP1roGJacobiOrbitalOptimizer::prepareJacobiSpecificConvergenceChecking(cons
  */
 void AP1roGJacobiOrbitalOptimizer::calculateJacobiCoefficients(const HamiltonianParameters<double>& ham_par, const size_t p, const size_t q) {
 
-    const auto h = ham_par.get_h();
-    const auto g = ham_par.get_g();
     const size_t K = this->dim;
-    const auto G = this->G;
+    const auto& h = ham_par.get_h();
+    const auto& g = ham_par.get_g();
+    const auto& G = this->G;
 
     // Implementation of the Jacobi rotation coefficients with disjoint cases for p and q
 
@@ -174,13 +174,18 @@ double AP1roGJacobiOrbitalOptimizer::calculateOptimalRotationAngle(const Hamilto
     // Occupied-occupied rotations: if p <= N_P and q <= N_P for computers
     if ((p < this->N_P) && (q < this->N_P)) {
         const double denominator = std::sqrt(std::pow(this->B1, 2) + std::pow(this->C1, 2));
+
+        // If the denominator is almost zero, the Jacobi rotation is redundant: the corresponding angle of a 'non'-rotation is 0.0
+        if (denominator < 1.0e-08) {
+            return 0.0;
+        }
         return 0.5 * std::atan2(-this->C1 / denominator, -this->B1 / denominator);  // std::atan2(y,x) = tan^-1(y/x)
     }
 
     // Occupied-virtual rotations: if p > N_P and q <= N_P for computers
     else if ((p >= this->N_P) && (q < this->N_P)) {
 
-        const auto cmp = this->comparer();
+        const auto& cmp = this->comparer();
         std::priority_queue<pair_type, std::vector<pair_type>, decltype(cmp)> queue (cmp);
 
         // Construct a lambda gradient function
@@ -230,6 +235,11 @@ double AP1roGJacobiOrbitalOptimizer::calculateOptimalRotationAngle(const Hamilto
     // Virtual-virtual rotations: if p > N_P and q > N_P for computers
     else if ((p >= this->N_P) && (q >= this->N_P )) {
         const double denominator = std::sqrt(std::pow(this->B3, 2) + std::pow(this->C3, 2));
+
+        // If the denominator is almost zero, the Jacobi rotation is redundant: the corresponding angle of a 'non'-rotation is 0.0
+        if (denominator < 1.0e-08) {
+            return 0.0;
+        }
         return 0.5 * std::atan2(-this->C3 / denominator, -this->B3 / denominator);  // std::atan2(y,x) = tan^-1(y/x)
     }
 

@@ -1,7 +1,5 @@
 target_sources(gqcp
         PRIVATE
-            BaseRDMBuilder.cpp
-            BaseSpinUnresolvedRDMBuilder.cpp
             DOCIRDMBuilder.cpp
             FCIRDMBuilder.cpp
             FrozenCoreDOCIRDMBuilder.cpp

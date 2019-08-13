@@ -2,6 +2,11 @@ cmake_minimum_required(VERSION 3.13 FATAL_ERROR)
 project(gqcp VERSION 0.2.0 LANGUAGES CXX)
 string(TOUPPER ${PROJECT_NAME} PROJECT_NAME_UPPERCASE)
 
+# Improved handling of RPATH settings
+# https://stackoverflow.com/questions/30398238/cmake-rpath-not-working-could-not-find-shared-object-file
+set(CMAKE_INSTALL_RPATH ${CMAKE_INSTALL_PREFIX}/lib)
+set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)  # make CMake look into the ./cmake/ folder for configuration files
 
 add_library(gqcp SHARED "")
@@ -12,22 +17,17 @@ option(BUILD_TESTS "Build tests" OFF)
 option(BUILD_DOCS "Build the documentation using Doxygen" OFF)
 option(BUILD_BENCHMARKS "Build benchmarks executables" OFF)
 option(BUILD_DRIVERS "Build standard drivers" OFF)
-option(EIGEN_USE_MKL "Eigen uses MKL" OFF)
-
+option(BUILD_PYTHON_BINDINGS "Build the Python bindings" OFF)
 
 # Look for supporting libraries
 # -----------------------------
 find_package(Git REQUIRED)
 find_package(Eigen3 3.3.4 REQUIRED)
 find_package(Int2 REQUIRED)
-find_package(Boost REQUIRED COMPONENTS program_options unit_test_framework)
 find_package(Spectra REQUIRED)
-find_package(Cint REQUIRED NO_MODULE)
-
-if(EIGEN_USE_MKL)
-    set(BLA_VENDOR Intel10_64lp)
-    find_package(BLAS REQUIRED)
-endif()
+find_package(cint REQUIRED)
+find_package(MKL REQUIRED)
+find_package(Python3 COMPONENTS Interpreter)
 
 if(BUILD_TESTS)
     find_package(Boost REQUIRED COMPONENTS program_options unit_test_framework)
@@ -43,6 +43,12 @@ if (BUILD_BENCHMARKS)
     find_package(benchmark REQUIRED)
 endif()
 
+if(BUILD_PYTHON_BINDINGS)
+    find_package(PythonInterp 3 REQUIRED)
+    find_package(pybind11 REQUIRED)
+    set(python_bindings_sources)
+endif()
+
 
 # Setup library
 # -------------
@@ -56,6 +62,12 @@ target_compile_features(gqcp PUBLIC cxx_std_11)
 add_subdirectory(src)
 add_subdirectory(include)
 
+# Get the long git SHA1 (https://stackoverflow.com/a/21028226/7930415)
+execute_process(COMMAND "${GIT_EXECUTABLE}" describe --always --abbrev=40 --dirty
+        WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
+        OUTPUT_VARIABLE GIT_SHA1
+        ERROR_QUIET
+        OUTPUT_STRIP_TRAILING_WHITESPACE)
 configure_file(cmake/version.hpp.in include/version.hpp)
 
 target_include_directories(gqcp
@@ -71,17 +83,13 @@ target_link_libraries(gqcp
         PUBLIC
             Eigen3::Eigen
             Int2::Int2
-            Cint::Cint
+            cint::cint
             Spectra::Spectra
+            MKL::MKL
         )
 target_include_directories(gqcp PUBLIC $<BUILD_INTERFACE:${Boost_INCLUDE_DIRS}>)
 target_link_libraries(gqcp PUBLIC ${Boost_LIBRARIES})
-if (EIGEN_USE_MKL)
-    target_include_directories(gqcp PUBLIC $<BUILD_INTERFACE:${BLAS_INCLUDE_DIR}>)
-    target_link_libraries(gqcp PUBLIC ${BLAS_LIBRARIES})
-    target_compile_options(gqcp PUBLIC -DEIGEN_USE_MKL_ALL -DMKL_LP64)
-endif()
-
+target_compile_options(gqcp PUBLIC -DEIGEN_USE_MKL_ALL -DMKL_LP64)
 
 # Parse additional options
 # ------------------------
@@ -89,6 +97,24 @@ if (BUILD_TESTS)
     enable_testing()
     add_subdirectory(tests)
 endif()
+
+
+# Setup Python Bindings
+# ---------------------
+
+if (BUILD_PYTHON_BINDINGS)
+    add_subdirectory(gqcpy)
+
+    pybind11_add_module(gqcpy MODULE ${python_bindings_sources})
+    
+    target_link_libraries(gqcpy PUBLIC gqcp)
+    set_target_properties(gqcpy PROPERTIES
+            SUFFIX ".so"
+            LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/gqcpy")
+    configure_file(gqcpy/__init__.py.in ${CMAKE_BINARY_DIR}/gqcpy/__init__.py)
+    configure_file(gqcpy/setup.py.in ${CMAKE_BINARY_DIR}/gqcpy/setup.py)
+endif()
+
 
 
 # Generate documentation
@@ -127,7 +153,8 @@ install(TARGETS gqcp
         INCLUDES DESTINATION include
         )
 
-install(DIRECTORY ${CMAKE_BINARY_DIR}/include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+install(DIRECTORY ${CMAKE_SOURCE_DIR}/include/ DESTINATION include)
+install(FILES ${CMAKE_BINARY_DIR}/include/version.hpp DESTINATION include)
 
 install(EXPORT gqcp-targets
         FILE gqcp-targets.cmake
@@ -156,16 +183,16 @@ install(
         FILES
         ${CMAKE_BINARY_DIR}/cmake/gqcp-config.cmake
         ${CMAKE_BINARY_DIR}/cmake/gqcp-config-version.cmake
+        ${CMAKE_SOURCE_DIR}/cmake/FindEigen3.cmake
+        ${CMAKE_SOURCE_DIR}/cmake/FindInt2.cmake
+        ${CMAKE_SOURCE_DIR}/cmake/FindMKL.cmake
         DESTINATION cmake
 )
 
 
-# Git related information
+# Install Python bindings
 # -----------------------
 
-# Get the long git SHA1 (https://stackoverflow.com/a/21028226/7930415)
-execute_process(COMMAND "${GIT_EXECUTABLE}" describe --always --abbrev=40 --dirty
-        WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
-        OUTPUT_VARIABLE GIT_SHA1
-        ERROR_QUIET
-        OUTPUT_STRIP_TRAILING_WHITESPACE)
+if(BUILD_PYTHON_BINDINGS)
+    install(CODE "execute_process(COMMAND ${PYTHON_EXECUTABLE} \"\${CMAKE_BINARY_DIR}/gqcpy/setup.py\" install --prefix ${CMAKE_INSTALL_PREFIX} --force)")
+endif()

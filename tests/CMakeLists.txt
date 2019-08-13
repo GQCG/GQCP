@@ -1,10 +1,8 @@
 set(test_target_sources)
 
 list(APPEND test_target_sources
-        Atom_test.cpp
         elements_test.cpp
         HoppingMatrix_test.cpp
-        Molecule_test.cpp
         RMP2_test.cpp
         units_test.cpp
         )
@@ -15,13 +13,15 @@ add_subdirectory(FockSpace)
 add_subdirectory(Geminals)
 add_subdirectory(HamiltonianBuilder)
 add_subdirectory(HamiltonianParameters)
-add_subdirectory(math)
+add_subdirectory(Mathematical)
+add_subdirectory(Molecule)
 add_subdirectory(Operator)
 add_subdirectory(OrbitalOptimization)
-add_subdirectory(properties)
+add_subdirectory(Properties)
+add_subdirectory(QCMethod)
 add_subdirectory(RDM)
 add_subdirectory(RHF)
-add_subdirectory(utilities)
+add_subdirectory(Utilities)
 add_subdirectory(WaveFunction)
 
 file(COPY data DESTINATION ${CMAKE_BINARY_DIR})  # copy the necessary data files to the out-of-source build directory
