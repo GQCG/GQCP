@@ -27,7 +27,7 @@
 BOOST_AUTO_TEST_CASE ( Hubbard_QCM ) {
 
     // Check if the Hubbard module and the Hubbard QCM produce the same results
-    // retrieve a suitable csline
+    // Retrieve a suitable csline
     std::string csline = "-0.999984,-0.736924,0.511211,-0.082700,0.065534,-0.562082,-0.905911,0.357729,0.358593,0.869386";
     size_t K = 4;
     size_t nos = 2;  // number of states
@@ -61,4 +61,3 @@ BOOST_AUTO_TEST_CASE ( Hubbard_QCM ) {
             BOOST_CHECK(one_rdm.isApprox(hubbard_qcm_1rdms[i], 1.0e-06));
     }
 }
-

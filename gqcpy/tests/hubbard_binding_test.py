@@ -1,18 +1,17 @@
 import unittest
 import numpy as np
 
-# force the local gqcpy to be imported
+# Force the local gqcpy to be imported
 import sys
 sys.path.insert(0, '../')
 
-# import our `pybind11`-based extension module
 import gqcpy
 
 
 class HubbardQCM(unittest.TestCase):
 
-    ''' iniates variables to be used by tests '''
     def setUp(self):
+        """ Iniates variables to be used by tests """
         self.csline_input = "-0.999984,-0.736924,0.511211,-0.082700,0.065534,-0.562082,-0.905911,0.357729,0.358593,0.869386"
         self.ref_energy1 = -3.49379514792384
         self.ref_energy2 = -3.01890254187003
@@ -39,13 +38,13 @@ class HubbardQCM(unittest.TestCase):
     def tearDown(self):
         pass
 
-        ''' compare energies with reference '''
     def test_energies(self):
+        """ Compare energes with reference values """
         self.assertAlmostEqual(self.energy1, self.ref_energy1)
         self.assertAlmostEqual(self.energy2, self.ref_energy2)
 
-        ''' compare RDMs with reference '''
     def test_1rdms(self):
+        """ Compare RDMs with reference """
         self.assertTrue(np.allclose(self.rdm1, self.ref_rdm1))
         self.assertTrue(np.allclose(self.rdm2, self.ref_rdm2))
 
