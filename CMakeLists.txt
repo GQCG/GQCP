@@ -27,6 +27,7 @@ find_package(Int2 REQUIRED)
 find_package(Spectra REQUIRED)
 find_package(cint REQUIRED)
 find_package(MKL REQUIRED)
+find_package(Python3 COMPONENTS Interpreter)
 
 if(BUILD_TESTS)
     find_package(Boost REQUIRED COMPONENTS program_options unit_test_framework)
@@ -90,6 +91,13 @@ target_include_directories(gqcp PUBLIC $<BUILD_INTERFACE:${Boost_INCLUDE_DIRS}>)
 target_link_libraries(gqcp PUBLIC ${Boost_LIBRARIES})
 target_compile_options(gqcp PUBLIC -DEIGEN_USE_MKL_ALL -DMKL_LP64)
 
+# Parse additional options
+# ------------------------
+if (BUILD_TESTS)
+    enable_testing()
+    add_subdirectory(tests)
+endif()
+
 
 # Setup Python Bindings
 # ---------------------
@@ -107,13 +115,6 @@ if (BUILD_PYTHON_BINDINGS)
     configure_file(gqcpy/setup.py.in ${CMAKE_BINARY_DIR}/gqcpy/setup.py)
 endif()
 
-
-# Parse additional options
-# ------------------------
-if (BUILD_TESTS)
-    enable_testing()
-    add_subdirectory(tests)
-endif()
 
 
 # Generate documentation

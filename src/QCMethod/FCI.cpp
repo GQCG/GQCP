@@ -34,7 +34,7 @@ namespace QCMethod {
  *  @param num_alpha            the number of alpha electrons
  *  @param num_beta             the number of beta electrons
  */
-FCI::FCI(const std::string xyz_filename, const std::string basis_set, const size_t num_alpha, const size_t num_beta) :
+FCI::FCI(const std::string& xyz_filename, const std::string& basis_set, const size_t num_alpha, const size_t num_beta) :
     xyz_filename (xyz_filename),
     basis_set (basis_set),
     N_alpha (num_alpha),

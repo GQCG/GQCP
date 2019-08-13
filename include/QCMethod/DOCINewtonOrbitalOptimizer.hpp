@@ -15,8 +15,8 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 //
-#ifndef GQCP_QCMETHOD_FCI_HPP
-#define GQCP_QCMETHOD_FCI_HPP
+#ifndef GQCP_QCMETHOD_DOCINEWTONORBITALOPTIMIZER_HPP
+#define GQCP_QCMETHOD_DOCINEWTONORBITALOPTIMIZER_HPP
 
 
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
@@ -31,19 +31,19 @@ namespace QCMethod {
 
 
 /**
- *  A class that is a wrapper around solving the dense eigenvalue problem for the molecular Hamiltonian
+ *  A class that is a wrapper around solving the eigenvalue problem for the molecular Hamiltonian while optimizing the orbitals
  */
-class FCI {
+class DOCINewtonOrbitalOptimizer {
 private:
-    size_t N_alpha;  // the number of alpha electrons
-    size_t N_beta;  // the number of beta electrons
-
     std::string xyz_filename;  // the file that contains the molecule specification (coordinates in angstrom)
     std::string basis_set;  // the basisset that should be used
 
     bool is_solved = false;
-    double energy_solution;
+    bool use_davidson = false;
+    bool localize = false;
 
+    double energy_solution;
+    GQCP::SquareMatrix<double> T_total;  // total transformation from atomic orbital basis to the OO-DOCI orbitals
 
 public:
     // CONSTRUCTORS
@@ -51,23 +51,28 @@ public:
     /**
      *  @param xyz_filename         the file that contains the molecule specification (coordinates in angstrom)
      *  @param basis_set            the basisset that should be used
-     *  @param num_alpha            the number of alpha electrons
-     *  @param num_beta             the number of beta electrons
+     *  @param use_davidson         indicate if one wants to use davidson to solve the eigenvalue problem (opposed to dense)
+     *  @param localize             indicate if one wants to localize the orbitals before 
      */
-    FCI(const std::string& xyz_filename, const std::string& basis_set, const size_t num_alpha, const size_t num_beta);
+    DOCINewtonOrbitalOptimizer(const std::string& xyz_filename, const std::string& basis_set, const bool use_davidson, const bool localize);
 
 
     // PUBLIC METHODS
 
     /**
-     *  Solve the dense eigenvalue problem for the molecular Hamiltonian in the full Fock space
+     *  Solve the eigenvalue problem for the molecular Hamiltonian in the doubly occupied space
      */
     void solve();
 
     /**
-     *  @return the ground state FCI energy
+     *  @return the newton orbital optimized ground state DOCI energy
      */
     double energy() const;
+
+    /**
+     *  @return the total transformation matrix to the OO-DOCI orbitals
+     */
+    const GQCP::SquareMatrix<double>& transformationMatrix() const;
 };
 
 
@@ -75,4 +80,4 @@ public:
 }  // namespace GQCP
 
 
-#endif  // GQCP_QCMETHOD_FCI_HPP
+#endif  // GQCP_QCMETHOD_DOCINEWTONORBITALOPTIMIZER_HPP
