@@ -1,6 +1,6 @@
 target_sources(gqcp
         PRIVATE
-            DOCINewtonOrbitalOptimizer
+            DOCINewtonOrbitalOptimizer.cpp
             Hubbard.cpp
             FCI.cpp
         )
