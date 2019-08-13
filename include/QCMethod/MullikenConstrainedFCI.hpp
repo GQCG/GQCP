@@ -128,15 +128,15 @@ public:
     /**
      *  @return a property of the last solve
      */
-    double energy(size_t index = 0) const { checkAvailableSolutions("energy"); return energy[index]; };
-    double population(size_t index = 0) const { checkAvailableSolutions("population"); return population[index]; };
-    double lambda(size_t index = 0) const { checkAvailableSolutions("lambda"); return lambda[index]; };
-    double entropy(size_t index = 0) const { checkAvailableSolutions("entropy"); return entrophy[index]; };
-    double A_fragment_energy(size_t index = 0) const { checkAvailableSolutions("A_fragment_energy"); checkDiatomicMolecule("A_fragment_energy"); return A_fragment_energy[index]; };
-    double A_fragment_self_energy(size_t index = 0) const { checkAvailableSolutions("A_fragment_self_energy"); checkDiatomicMolecule("A_fragment_self_energy"); return A_fragment_self_energy[index]; };
-    double B_fragment_energy(size_t index = 0) const { checkAvailableSolutions("B_fragment_energy"); checkDiatomicMolecule("B_fragment_energy"); return B_fragment_energy[index]; };
-    double B_fragment_self_energy(size_t index = 0) const { checkAvailableSolutions("B_fragment_self_energy"); checkDiatomicMolecule("B_fragment_self_energy"); return B_fragment_self_energy[index]; };
-    double interaction_energy(size_t index = 0) const { checkAvailableSolutions("interaction_energy"); checkDiatomicMolecule("interaction_energy"); return interaction_energy[index]; };
+    double get_energy(size_t index = 0) const { checkAvailableSolutions("energy"); return energy[index]; };
+    double get_population(size_t index = 0) const { checkAvailableSolutions("population"); return population[index]; };
+    double get_lambda(size_t index = 0) const { checkAvailableSolutions("lambda"); return lambda[index]; };
+    double get_entropy(size_t index = 0) const { checkAvailableSolutions("entropy"); return entrophy[index]; };
+    double get_A_fragment_energy(size_t index = 0) const { checkAvailableSolutions("A_fragment_energy"); checkDiatomicMolecule("A_fragment_energy"); return A_fragment_energy[index]; };
+    double get_A_fragment_self_energy(size_t index = 0) const { checkAvailableSolutions("A_fragment_self_energy"); checkDiatomicMolecule("A_fragment_self_energy"); return A_fragment_self_energy[index]; };
+    double get_B_fragment_energy(size_t index = 0) const { checkAvailableSolutions("B_fragment_energy"); checkDiatomicMolecule("B_fragment_energy"); return B_fragment_energy[index]; };
+    double get_B_fragment_self_energy(size_t index = 0) const { checkAvailableSolutions("B_fragment_self_energy"); checkDiatomicMolecule("B_fragment_self_energy"); return B_fragment_self_energy[index]; };
+    double get_interaction_energy(size_t index = 0) const { checkAvailableSolutions("interaction_energy"); checkDiatomicMolecule("interaction_energy"); return interaction_energy[index]; };
 
     /**
      *  @return all properties

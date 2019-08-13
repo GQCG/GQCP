@@ -19,7 +19,7 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
 
-#include "Molecule/Molecule.hpp"
+#include "QCMethod/MullikenConstrainedFCI.hpp"
 
 
 namespace py = pybind11;
@@ -29,10 +29,21 @@ namespace gqcpy {
 
 
 void bindMolecule(py::module& module) {
-    py::class_<GQCP::QCMethod::MullikenConstrainedFCI>(module, "MullikenConstrainedFCI", "A class that represents a collection of nuclei with a number of electrons")
-        .def(py::init<const std::vector<GQCP::Nucleus>& , const int>(), py::arg("nuclei"), py::arg("charge") = 0)
-        .def("__repr__", [](const GQCP::Molecule& m){ std::ostringstream ss;  ss<<m; return ss.str(); })
-        .def_static("ReadXYZ", &GQCP::Molecule::ReadXYZ, "Construct a molecule based on the content of a given .xyz-file.");
+    py::class_<GQCP::QCMethod::MullikenConstrainedFCI>(module, "MullikenConstrainedFCI", "A that solves the FCI Hamiltonian given a perturbation in the form of a langragian multiplier and the Mulliken operator for a pre specified set of basis functions")
+        .def(py::init<const GQCP::Molecule& , const std::string&, const std::vector<size_t>&, size_t>(), py::arg("molecule"), py::arg("basis_set"),  py::arg("basis_targets"), py::arg("frozencores") = 0)
+        .def("solveMullikenDavidson", (void (GQCP::QCMethod::MullikenConstrainedFCI::*)(const double, const GQCP::VectorX<double>&)) &GQCP::QCMethod::MullikenConstrainedFCI::solveMullikenDavidson, "Solve the eigenvalue problem for a multiplier with the davidson algorithm")
+        .def("solveMullikenDavidson", (void (GQCP::QCMethod::MullikenConstrainedFCI::*)(const double)) &GQCP::QCMethod::MullikenConstrainedFCI::solveMullikenDavidson, "Solve the eigenvalue problem for a multiplier with the davidson algorithm, davidson guess will be the previously stored solution if none is available the Hartree Fock expansion will be used instead")
+        .def("solveMullikenDense", &GQCP::QCMethod::MullikenConstrainedFCI::solveMullikenDense)
+        .def("get_energy", &GQCP::QCMethod::MullikenConstrainedFCI::get_energy, py::arg("index") = 0)
+        .def("get_population", &GQCP::QCMethod::MullikenConstrainedFCI::get_population, py::arg("index") = 0)
+        .def("get_lambda", &GQCP::QCMethod::MullikenConstrainedFCI::get_lambda, py::arg("index") = 0)
+        .def("populaget_entropytion", &GQCP::QCMethod::MullikenConstrainedFCI::get_entropy, py::arg("index") = 0)
+        .def("get_A_fragment_energy", &GQCP::QCMethod::MullikenConstrainedFCI::get_A_fragment_energy, py::arg("index") = 0)
+        .def("get_A_fragment_self_energy", &GQCP::QCMethod::MullikenConstrainedFCI::get_A_fragment_self_energy, py::arg("index") = 0)
+        .def("get_B_fragment_energy", &GQCP::QCMethod::MullikenConstrainedFCI::get_B_fragment_energy, py::arg("index") = 0)
+        .def("get_B_fragment_self_energy", &GQCP::QCMethod::MullikenConstrainedFCI::get_B_fragment_self_energy, py::arg("index") = 0)
+        .def("get_interaction_energy", &GQCP::QCMethod::MullikenConstrainedFCI::get_interaction_energy, py::arg("index") = 0)
+        .def("get_all", &GQCP::QCMethod::MullikenConstrainedFCI::all, "Get all properties from the most recent solve.");
 }
 
 

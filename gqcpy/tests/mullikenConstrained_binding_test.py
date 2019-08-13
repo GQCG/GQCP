@@ -11,14 +11,23 @@ import gqcpy
 
 class MullikenConstrainedQCM(unittest.TestCase):
 
-    ''' iniates variables to be used by tests '''
     def setUp(self):
+        """ Iniates variables to be used by tests  """
         N = gqcpy.Nuclei(7, 0, 0, 0)
         O = gqcpy.Nuclei(8, 7, 0, 0)
-        NO = gqcpy.Molecule([N,O], +1)
+        NO = gqcpy.Molecule([N,O], +1) # The NO+ molecule with an intramolecular distance of 7 bohr
         self.constrained_module = gqcpy.MullikenConstrainedFCI()
-        "-124.450111059414	-2.27812975203	4.37000013448507	0.294476160440132	-51.4005213413705	-51.0749111177636	-73.0495897180439	-72.7239794944369	-0.651220447214087"
 
+        # Reference data obtained from gqcp NO+ calculations
+        self.reference_energy = -124.450111059414
+        self.reference_population = 4.37000013448507
+        self.reference_entropy = 0.294476160440132
+        self.reference_N-fragment_energy = -51.4005213413705
+        self.reference_self_N-fragment_energy = -51.0749111177636
+        self.reference_self_N-fragment_energy = -51.0749111177636
+        self.reference_O-fragment_energy = -73.0495897180439
+        self.reference_self_O-fragment_energy = -72.7239794944369
+        self.reference_interaction_energy = -0.651220447214087
 
     def tearDown(self):
         pass
