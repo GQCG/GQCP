@@ -65,7 +65,7 @@ public:
      *  CONSTRUCTORS
      */
 
-    using Eigen::Matrix<_Scalar, _Rows, _Cols>::Matrix;  // inherit base constructors
+    using Eigen::Matrix<Scalar, _Rows, _Cols>::Matrix;  // inherit base constructors
 
 
     /*
