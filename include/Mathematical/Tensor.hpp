@@ -39,10 +39,7 @@ template <typename _Scalar, int _Rank>
 class Tensor : public Eigen::Tensor<_Scalar, _Rank> {
 public:
     using Scalar = _Scalar;
-    enum {
-        Rank = _Rank
-    };
-
+    static constexpr auto Rank = _Rank;
     using Self = Tensor<Scalar, Rank>;
     using Base = Eigen::Tensor<Scalar, Rank>;
 
@@ -53,7 +50,7 @@ public:
      *  CONSTRUCTORS
      */
 
-    using Eigen::Tensor<Scalar, Rank>::Tensor;  // inherit base constructors
+    using Eigen::Tensor<Scalar, _Rank>::Tensor;  // inherit base constructors
 
 
     /*
