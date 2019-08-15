@@ -14,7 +14,7 @@ foreach(DRIVER_SOURCE ${driver_target_sources})
     add_executable(${DRIVER_NAME} ${DRIVER_SOURCE})
 
     # Configure (include headers and link libraries) the driver
-    target_link_libraries(${DRIVER_NAME} PUBLIC gqcp)
+    target_link_libraries(${DRIVER_NAME} PUBLIC gqcp Boost::program_options)
 
     # Install the driver in a separate location
     install(TARGETS ${DRIVER_NAME} RUNTIME DESTINATION bin)
