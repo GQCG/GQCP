@@ -1,11 +1,10 @@
 import unittest
 import numpy as np
 
-# force the local gqcpy to be imported
+# Force the local gqcpy to be imported
 import sys
 sys.path.insert(0, '../')
 
-# import our `pybind11`-based extension module
 import gqcpy
 
 
@@ -16,14 +15,18 @@ class MullikenConstrainedQCM(unittest.TestCase):
         N = gqcpy.Nuclei(7, 0, 0, 0)
         O = gqcpy.Nuclei(8, 7, 0, 0)
         NO = gqcpy.Molecule([N,O], +1) # The NO+ molecule with an intramolecular distance of 7 bohr
-        self.constrained_module = gqcpy.MullikenConstrainedFCI()
+        basis_targets = [0,1,2,3,4] 
+        basis_set = "STO-3G"
+        
+        self.constrained_module = gqcpy.MullikenConstrainedFCI(NO, basis_set, basis_targets)
 
         # Reference data obtained from gqcp NO+ calculations
+        self.lambda_input = -2.27812975203
+
         self.reference_energy = -124.450111059414
         self.reference_population = 4.37000013448507
         self.reference_entropy = 0.294476160440132
         self.reference_N-fragment_energy = -51.4005213413705
-        self.reference_self_N-fragment_energy = -51.0749111177636
         self.reference_self_N-fragment_energy = -51.0749111177636
         self.reference_O-fragment_energy = -73.0495897180439
         self.reference_self_O-fragment_energy = -72.7239794944369
@@ -32,15 +35,17 @@ class MullikenConstrainedQCM(unittest.TestCase):
     def tearDown(self):
         pass
 
-        ''' compare energies with reference '''
-    def test_energies(self):
-        self.assertAlmostEqual(self.energy1, self.ref_energy1)
-        self.assertAlmostEqual(self.energy2, self.ref_energy2)
-
-        ''' compare RDMs with reference '''
-    def test_1rdms(self):
-        self.assertTrue(np.allclose(self.rdm1, self.ref_rdm1))
-        self.assertTrue(np.allclose(self.rdm2, self.ref_rdm2))
+    def test_properties(self):
+        """ compare properties with reference """
+        self.constrained_module.solveMullikenDavidson(self.lambda_input)
+        self.assertAlmostEqual(self.constrained_module.get_energy(), self.reference_energy)
+        self.assertAlmostEqual(self.constrained_module.get_population(), self.reference_population)
+        self.assertAlmostEqual(self.constrained_module.get_entropy(), self.reference_entropy
+        self.assertAlmostEqual(self.constrained_module.get_A_fragment_energy(), self.reference_N-fragment_energy)
+        self.assertAlmostEqual(self.constrained_module.get_self_A_fragment_energy(), self.reference_self_N-fragment_energy)
+        self.assertAlmostEqual(self.constrained_module.get_B_fragment_energy(), self.reference_O-fragment_energy)
+        self.assertAlmostEqual(self.constrained_module.get_self_B_fragment_energy(), self.reference_self_O-fragment_energy)
+        self.assertAlmostEqual(self.constrained_module.get_interaction_energy(), self.reference_interaction_energy)
 
     
 if __name__ == '__main__':
