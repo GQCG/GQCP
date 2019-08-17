@@ -57,7 +57,7 @@ public:
      *                           0 -> neutral molecule
      *                          -1 -> anion (one electron more than the neutral molecule)
      */
-    Molecule(const std::vector<Nucleus>& nuclei, int charge=0);
+    Molecule(const std::vector<Nucleus>& nuclei, const int charge=0);
 
 
     // NAMED CONSTRUCTORS
@@ -71,7 +71,7 @@ public:
      *                           0 -> neutral molecule
      *                          -1 -> anion (one electron more than the neutral molecule)
      */
-    static Molecule ReadXYZ(const std::string& xyz_filename, int charge=0);
+    static Molecule ReadXYZ(const std::string& xyz_filename, const int charge=0);
 
     /**
      *  @param n            the number of H nuclei

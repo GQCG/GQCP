@@ -52,7 +52,7 @@ Molecule::Molecule(const NuclearFramework& nuclear_framework, const int charge) 
  *                           0 -> neutral molecule
  *                          -1 -> anion (one electron more than the neutral molecule)
  */
-Molecule::Molecule(const std::vector<Nucleus>& nuclei, int charge) :
+Molecule::Molecule(const std::vector<Nucleus>& nuclei, const int charge) :
     Molecule(NuclearFramework(nuclei), charge)
 {}
 
@@ -70,7 +70,7 @@ Molecule::Molecule(const std::vector<Nucleus>& nuclei, int charge) :
  *                           0 -> neutral molecule
  *                          -1 -> anion (one electron more than the neutral molecule)
  */
-Molecule Molecule::ReadXYZ(const std::string& xyz_filename, int charge) {
+Molecule Molecule::ReadXYZ(const std::string& xyz_filename, const int charge) {
 
     return Molecule(NuclearFramework::ReadXYZ(xyz_filename), charge);
 }
