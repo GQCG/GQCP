@@ -131,7 +131,7 @@ public:
     double get_energy(size_t index = 0) const { checkAvailableSolutions("energy"); return energy[index]; };
     double get_population(size_t index = 0) const { checkAvailableSolutions("population"); return population[index]; };
     double get_lambda(size_t index = 0) const { checkAvailableSolutions("lambda"); return lambda[index]; };
-    double get_entropy(size_t index = 0) const { checkAvailableSolutions("entropy"); return entrophy[index]; };
+    double get_entropy(size_t index = 0) const { checkAvailableSolutions("entropy"); return entropy[index]; };
     double get_A_fragment_energy(size_t index = 0) const { checkAvailableSolutions("A_fragment_energy"); checkDiatomicMolecule("A_fragment_energy"); return A_fragment_energy[index]; };
     double get_A_fragment_self_energy(size_t index = 0) const { checkAvailableSolutions("A_fragment_self_energy"); checkDiatomicMolecule("A_fragment_self_energy"); return A_fragment_self_energy[index]; };
     double get_B_fragment_energy(size_t index = 0) const { checkAvailableSolutions("B_fragment_energy"); checkDiatomicMolecule("B_fragment_energy"); return B_fragment_energy[index]; };
@@ -141,7 +141,7 @@ public:
     /**
      *  @return all properties
      */
-    const std::vector<double>& all(size_t index = 0) const; 
+    std::vector<double> all(size_t index = 0) const; 
 };
 
 

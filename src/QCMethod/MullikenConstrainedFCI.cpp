@@ -275,7 +275,7 @@ void MullikenConstrainedFCI::solveMullikenDense(const double multiplier, const s
 }
 
 
-const std::vector<double>& MullikenConstrainedFCI::all(size_t index = 0) const {
+std::vector<double> MullikenConstrainedFCI::all(size_t index) const {
     this->checkAvailableSolutions("all");
 
     size_t number_of_properties = 4;
