@@ -37,7 +37,7 @@ void bindMullikenConstrainedFCI(py::module& module) {
         .def("get_energy", &GQCP::QCMethod::MullikenConstrainedFCI::get_energy, py::arg("index") = 0)
         .def("get_population", &GQCP::QCMethod::MullikenConstrainedFCI::get_population, py::arg("index") = 0)
         .def("get_lambda", &GQCP::QCMethod::MullikenConstrainedFCI::get_lambda, py::arg("index") = 0)
-        .def("populaget_entropytion", &GQCP::QCMethod::MullikenConstrainedFCI::get_entropy, py::arg("index") = 0)
+        .def("get_entropy", &GQCP::QCMethod::MullikenConstrainedFCI::get_entropy, py::arg("index") = 0)
         .def("get_A_fragment_energy", &GQCP::QCMethod::MullikenConstrainedFCI::get_A_fragment_energy, py::arg("index") = 0)
         .def("get_A_fragment_self_energy", &GQCP::QCMethod::MullikenConstrainedFCI::get_A_fragment_self_energy, py::arg("index") = 0)
         .def("get_B_fragment_energy", &GQCP::QCMethod::MullikenConstrainedFCI::get_B_fragment_energy, py::arg("index") = 0)

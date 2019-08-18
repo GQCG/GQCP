@@ -72,6 +72,8 @@ void MullikenConstrainedFCI::parseSolution(const std::vector<Eigenpair>& eigenpa
         this->entropy[i] = wavefunction.calculateShannonEntropy();
 
         if (molecule.numberOfAtoms() == 2) {
+            D.basisTransform<double>(ham_par.get_T_total().adjoint());
+            d.basisTransform<double>(ham_par.get_T_total().adjoint());
             this->A_fragment_energy[i] = calculateExpectationValue(adp.get_atomic_parameters()[0], D, d);
             this->A_fragment_self_energy[i] = calculateExpectationValue(adp.get_net_atomic_parameters()[0], D, d);
             this->B_fragment_energy[i] = calculateExpectationValue(adp.get_atomic_parameters()[1], D, d);
@@ -122,16 +124,19 @@ MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const s
         ham_par (HamiltonianParameters<double>::Molecular(molecule, basis_set)),
         basis_set (basis_set)
 {
-    if (!(molecule.numberOfElectrons() % 2)) {
+    if ((molecule.numberOfElectrons() % 2) > 0) {
         throw std::runtime_error("MullikenConstrainedFCI::MullikenConstrainedFCI(): This module is not available for an odd number of electrons");
     }
 
+    
     auto K = this->ham_par.get_K();
     auto N_P = molecule.numberOfElectrons()/2;
     try {
         GQCP::DIISRHFSCFSolver diis_scf_solver (this->ham_par, molecule, 6, 6, 1e-12, 500);
+        diis_scf_solver.solve();
         auto rhf_solution = diis_scf_solver.get_solution();
         this->ham_par.basisTransform(rhf_solution.get_C());
+
     } catch (const std::exception& e) {
         
         if (molecule.numberOfAtoms() == 2) {
@@ -171,7 +176,7 @@ MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const s
                     std::cout << "Lodwin Orthonormalized" << std::endl;
                     this->ham_par.LowdinOrthonormalize();
                 }
-            } catch (const std::exception& e) {
+            } catch (const std::exception& e) {    
                 std::cout << "Lodwin Orthonormalized" << std::endl;
                 this->ham_par.LowdinOrthonormalize();
             }
@@ -182,13 +187,13 @@ MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const s
         }
 
     }
-
     this->fock_space = FrozenProductFockSpace(K, N_P, N_P, frozencores);
     this->fci = FrozenCoreFCI(fock_space);
     this->mulliken_operator = ham_par.calculateMullikenOperator(basis_targets);
 
     if (molecule.numberOfAtoms() == 2) {
         this->adp = AtomicDecompositionParameters::Nuclear(molecule, basis_set);
+
     }
 
     this->rdm_calculator = RDMCalculator(fock_space);
