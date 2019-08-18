@@ -40,7 +40,7 @@ class MullikenConstrainedQCM(unittest.TestCase):
         self.constrained_module.solveMullikenDavidson(self.lambda_input)
         self.assertAlmostEqual(self.constrained_module.get_energy(), self.reference_energy)
         self.assertAlmostEqual(self.constrained_module.get_population(), self.reference_population)
-        self.assertAlmostEqual(self.constrained_module.get_entropy(), self.reference_entropy
+        self.assertAlmostEqual(self.constrained_module.get_entropy(), self.reference_entropy)
         self.assertAlmostEqual(self.constrained_module.get_A_fragment_energy(), self.reference_N-fragment_energy)
         self.assertAlmostEqual(self.constrained_module.get_self_A_fragment_energy(), self.reference_self_N-fragment_energy)
         self.assertAlmostEqual(self.constrained_module.get_B_fragment_energy(), self.reference_O-fragment_energy)
