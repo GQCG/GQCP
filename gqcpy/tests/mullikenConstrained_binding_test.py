@@ -26,10 +26,10 @@ class MullikenConstrainedQCM(unittest.TestCase):
         self.reference_energy = -124.450111059414
         self.reference_population = 4.37000013448507
         self.reference_entropy = 0.294476160440132
-        self.reference_N-fragment_energy = -51.4005213413705
-        self.reference_self_N-fragment_energy = -51.0749111177636
-        self.reference_O-fragment_energy = -73.0495897180439
-        self.reference_self_O-fragment_energy = -72.7239794944369
+        self.reference_N_fragment_energy = -51.4005213413705
+        self.reference_self_N_fragment_energy = -51.0749111177636
+        self.reference_O_fragment_energy = -73.0495897180439
+        self.reference_self_O_fragment_energy = -72.7239794944369
         self.reference_interaction_energy = -0.651220447214087
 
     def tearDown(self):
@@ -41,10 +41,10 @@ class MullikenConstrainedQCM(unittest.TestCase):
         self.assertAlmostEqual(self.constrained_module.get_energy(), self.reference_energy)
         self.assertAlmostEqual(self.constrained_module.get_population(), self.reference_population)
         self.assertAlmostEqual(self.constrained_module.get_entropy(), self.reference_entropy)
-        self.assertAlmostEqual(self.constrained_module.get_A_fragment_energy(), self.reference_N-fragment_energy)
-        self.assertAlmostEqual(self.constrained_module.get_self_A_fragment_energy(), self.reference_self_N-fragment_energy)
-        self.assertAlmostEqual(self.constrained_module.get_B_fragment_energy(), self.reference_O-fragment_energy)
-        self.assertAlmostEqual(self.constrained_module.get_self_B_fragment_energy(), self.reference_self_O-fragment_energy)
+        self.assertAlmostEqual(self.constrained_module.get_A_fragment_energy(), self.reference_N_fragment_energy)
+        self.assertAlmostEqual(self.constrained_module.get_self_A_fragment_energy(), self.reference_self_N_fragment_energy)
+        self.assertAlmostEqual(self.constrained_module.get_B_fragment_energy(), self.reference_O_fragment_energy)
+        self.assertAlmostEqual(self.constrained_module.get_self_B_fragment_energy(), self.reference_self_O_fragment_energy)
         self.assertAlmostEqual(self.constrained_module.get_interaction_energy(), self.reference_interaction_energy)
 
     
