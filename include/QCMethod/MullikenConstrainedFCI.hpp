@@ -136,7 +136,7 @@ public:
     double get_A_fragment_self_energy(size_t index = 0) const { checkAvailableSolutions("A_fragment_self_energy"); checkDiatomicMolecule("A_fragment_self_energy"); return A_fragment_self_energy[index]; };
     double get_B_fragment_energy(size_t index = 0) const { checkAvailableSolutions("B_fragment_energy"); checkDiatomicMolecule("B_fragment_energy"); return B_fragment_energy[index]; };
     double get_B_fragment_self_energy(size_t index = 0) const { checkAvailableSolutions("B_fragment_self_energy"); checkDiatomicMolecule("B_fragment_self_energy"); return B_fragment_self_energy[index]; };
-    double get_interaction_energy(size_t index = 0) const { checkAvailableSolutions("interaction_energy"); checkDiatomicMolecule("interaction_energy"); return interaction_energy[index]; };
+    double get_interaction_energy(size_t index = 0) const { checkAvailableSolutions("interaction_energy"); checkDiatomicMolecule("interaction_energy"); return interaction_energy[index]; };
 
     /**
      *  @return all properties

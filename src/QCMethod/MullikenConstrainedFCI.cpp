@@ -18,6 +18,7 @@
 #include "QCMethod/MullikenConstrainedFCI.hpp"
 #include "RHF/DIISRHFSCFSolver.hpp"
 #include "Properties/expectation_values.hpp"
+#include <ctime>
 
 namespace GQCP {
 namespace QCMethod {
