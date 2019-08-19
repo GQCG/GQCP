@@ -72,8 +72,10 @@ void MullikenConstrainedFCI::parseSolution(const std::vector<Eigenpair>& eigenpa
         this->entropy[i] = wavefunction.calculateShannonEntropy();
 
         if (molecule.numberOfAtoms() == 2) {
+            // Transform the RDMs to the atomic orbital basis
             D.basisTransform<double>(ham_par.get_T_total().adjoint());
             d.basisTransform<double>(ham_par.get_T_total().adjoint());
+
             this->A_fragment_energy[i] = calculateExpectationValue(adp.get_atomic_parameters()[0], D, d);
             this->A_fragment_self_energy[i] = calculateExpectationValue(adp.get_net_atomic_parameters()[0], D, d);
             this->B_fragment_energy[i] = calculateExpectationValue(adp.get_atomic_parameters()[1], D, d);
@@ -87,7 +89,7 @@ void MullikenConstrainedFCI::parseSolution(const std::vector<Eigenpair>& eigenpa
 
 
 /**
- *  Throws and error if no solution is available
+ *  Throws an error if no solution is available
  *  
  *  @param function_name            name of the function that should throw the error
  */
@@ -98,7 +100,7 @@ void MullikenConstrainedFCI::checkAvailableSolutions(const std::string& function
 }
 
 /**
- *  Throws and error if the molecule is not diatomic
+ *  Throws an error if the molecule is not diatomic
  *  
  *  @param function_name            name of the function that should throw the error
  */
@@ -131,7 +133,9 @@ MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const s
     
     auto K = this->ham_par.get_K();
     auto N_P = molecule.numberOfElectrons()/2;
+
     try {
+        // Try the foward approach of solving the RHF equations
         GQCP::DIISRHFSCFSolver diis_scf_solver (this->ham_par, molecule, 6, 6, 1e-12, 500);
         diis_scf_solver.solve();
         auto rhf_solution = diis_scf_solver.get_solution();
@@ -139,6 +143,9 @@ MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const s
 
     } catch (const std::exception& e) {
         
+        // If the DIIS does not converge, attempt to solve the RHF for the individuals atoms (if diatomic) and recombine the solutions to create a total canonical matrix
+        // Starting from this new basis we re-attempt the regular DIIS
+        // If all else fails perform Lowdin orthonormalization
         if (molecule.numberOfAtoms() == 2) {
             try {
                 const std::vector<Nucleus>& atoms = molecule.nuclearFramework().nucleiAsVector();
@@ -161,11 +168,13 @@ MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const s
                 size_t K1 = ham_par1.get_K();
                 size_t K2 = ham_par2.get_K();
 
+                // Recombine canonical matrices
                 GQCP::SquareMatrix<double> T = Eigen::MatrixXd::Zero(K, K);
                 T.topLeftCorner(K1, K1) += rhf1.get_C();
                 T.bottomRightCorner(K2, K2) += rhf2.get_C();
                 this->ham_par.basisTransform(T);
 
+                // Attempt the DIIS for this basis
                 try {
                     GQCP::DIISRHFSCFSolver diis_scf_solver (this->ham_par, molecule, 6, 6, 1e-12, 500);
                     diis_scf_solver.solve();
@@ -191,9 +200,9 @@ MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const s
     this->fci = FrozenCoreFCI(fock_space);
     this->mulliken_operator = ham_par.calculateMullikenOperator(basis_targets);
 
+    // Atomic Decomposition is only available for diatomic molecules
     if (molecule.numberOfAtoms() == 2) {
         this->adp = AtomicDecompositionParameters::Nuclear(molecule, basis_set);
-
     }
 
     this->rdm_calculator = RDMCalculator(fock_space);

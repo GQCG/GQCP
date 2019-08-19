@@ -118,6 +118,11 @@
 #include "Properties/expectation_values.hpp"
 #include "Properties/properties.hpp"
 
+#include "QCMethod/DOCINewtonOrbitalOptimizer.hpp"
+#include "QCMethod/FCI.hpp"
+#include "QCMethod/Hubbard.hpp"
+#include "QCMethod/MullikenConstrainedFCI.hpp"
+
 #include "RDM/BaseRDMBuilder.hpp"
 #include "RDM/BaseSpinUnresolvedRDMBuilder.hpp"
 #include "RDM/DOCIRDMBuilder.hpp"

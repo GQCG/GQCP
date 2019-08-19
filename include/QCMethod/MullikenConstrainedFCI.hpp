@@ -32,7 +32,7 @@ namespace QCMethod {
 
 
 /**
- *  A class that is a wrapper around solving the dense eigenvalue problem for the molecular Hamiltonian
+ *  A class that solves the FCI Hamiltonian given a perturbation in the form of a langragian multiplier and the Mulliken operator for a pre-specified set of basis functions
  */
 class MullikenConstrainedFCI {
 private:
@@ -75,14 +75,14 @@ private:
     void parseSolution(const std::vector<Eigenpair>& eigenpairs, double multiplier);
 
     /**
-     *  Throws and error if no solution is available
+     *  Throws an error if no solution is available
      *  
      *  @param function_name            name of the function that should throw the error
      */
     void checkAvailableSolutions(const std::string& function_name) const;
 
     /**
-     *  Throws and error if the molecule is not diatomic
+     *  Throws an error if the molecule is not diatomic
      *  
      *  @param function_name            name of the function that should throw the error
      */
@@ -95,7 +95,7 @@ public:
      *  @param molecule                 the molecule that will be solved for
      *  @param basis_set                the basisset that should be used
      *  @param basis_targets            the targeted basis functions for the constraint
-     *  @param multipliers              the set of multipliers for the constraint
+     *  @param frozencores              the amount of frozen cores for the FCI calculation
      */
     MullikenConstrainedFCI(const Molecule& molecule, const std::string& basis_set, const std::vector<size_t>& basis_targets, size_t frozencores = 0);
 
@@ -120,7 +120,7 @@ public:
     /**
      *  Solve the eigenvalue problem for a the next multiplier dense
      * 
-     *  @param multiplier     
+     *  @param multiplier           a given multiplier       
      *  @param nos                  the number of eigenpairs or "states" that should be stored for each multiplier
      */
     void solveMullikenDense(const double multiplier, const size_t nos);
@@ -128,16 +128,17 @@ public:
     /**
      *  @return a property of the last solve
      */
-    double get_energy(size_t index = 0) const { checkAvailableSolutions("energy"); return energy[index]; };
-    double get_population(size_t index = 0) const { checkAvailableSolutions("population"); return population[index]; };
-    double get_lambda(size_t index = 0) const { checkAvailableSolutions("lambda"); return lambda[index]; };
-    double get_entropy(size_t index = 0) const { checkAvailableSolutions("entropy"); return entropy[index]; };
-    double get_A_fragment_energy(size_t index = 0) const { checkAvailableSolutions("A_fragment_energy"); checkDiatomicMolecule("A_fragment_energy"); return A_fragment_energy[index]; };
-    double get_A_fragment_self_energy(size_t index = 0) const { checkAvailableSolutions("A_fragment_self_energy"); checkDiatomicMolecule("A_fragment_self_energy"); return A_fragment_self_energy[index]; };
-    double get_B_fragment_energy(size_t index = 0) const { checkAvailableSolutions("B_fragment_energy"); checkDiatomicMolecule("B_fragment_energy"); return B_fragment_energy[index]; };
-    double get_B_fragment_self_energy(size_t index = 0) const { checkAvailableSolutions("B_fragment_self_energy"); checkDiatomicMolecule("B_fragment_self_energy"); return B_fragment_self_energy[index]; };
-    double get_interaction_energy(size_t index = 0) const { checkAvailableSolutions("interaction_energy"); checkDiatomicMolecule("interaction_energy"); return interaction_energy[index]; };
+    double get_energy(size_t index = 0) const { checkAvailableSolutions("get_energy"); return energy[index]; };
+    double get_population(size_t index = 0) const { checkAvailableSolutions("get_population"); return population[index]; };
+    double get_lambda(size_t index = 0) const { checkAvailableSolutions("get_lambda"); return lambda[index]; };
+    double get_entropy(size_t index = 0) const { checkAvailableSolutions("get_entropy"); return entropy[index]; };
+    double get_A_fragment_energy(size_t index = 0) const { checkAvailableSolutions("get_A_fragment_energy"); checkDiatomicMolecule("get_A_fragment_energy"); return A_fragment_energy[index]; };
+    double get_A_fragment_self_energy(size_t index = 0) const { checkAvailableSolutions("get_A_fragment_self_energy"); checkDiatomicMolecule("get_A_fragment_self_energy"); return A_fragment_self_energy[index]; };
+    double get_B_fragment_energy(size_t index = 0) const { checkAvailableSolutions("get_B_fragment_energy"); checkDiatomicMolecule("get_B_fragment_energy"); return B_fragment_energy[index]; };
+    double get_B_fragment_self_energy(size_t index = 0) const { checkAvailableSolutions("get_B_fragment_self_energy"); checkDiatomicMolecule("get_B_fragment_self_energy"); return B_fragment_self_energy[index]; };
+    double get_interaction_energy(size_t index = 0) const { checkAvailableSolutions("get_interaction_energy"); checkDiatomicMolecule("get_interaction_energy"); return interaction_energy[index]; };
 
+    double get_solve_time() const { checkAvailableSolutions("get_solve_time"); return solve_time; };
     /**
      *  @return all properties
      */

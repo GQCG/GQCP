@@ -29,7 +29,7 @@ namespace gqcpy {
 
 
 void bindMullikenConstrainedFCI(py::module& module) {
-    py::class_<GQCP::QCMethod::MullikenConstrainedFCI>(module, "MullikenConstrainedFCI", "A that solves the FCI Hamiltonian given a perturbation in the form of a langragian multiplier and the Mulliken operator for a pre specified set of basis functions")
+    py::class_<GQCP::QCMethod::MullikenConstrainedFCI>(module, "MullikenConstrainedFCI", "A class that solves the FCI Hamiltonian given a perturbation in the form of a langragian multiplier and the Mulliken operator for a pre-specified set of basis functions")
         .def(py::init<const GQCP::Molecule& , const std::string&, const std::vector<size_t>&, size_t>(), py::arg("molecule"), py::arg("basis_set"),  py::arg("basis_targets"), py::arg("frozencores") = 0)
         .def("solveMullikenDavidson", (void (GQCP::QCMethod::MullikenConstrainedFCI::*)(const double, const GQCP::VectorX<double>&)) &GQCP::QCMethod::MullikenConstrainedFCI::solveMullikenDavidson, "Solve the eigenvalue problem for a multiplier with the davidson algorithm")
         .def("solveMullikenDavidson", (void (GQCP::QCMethod::MullikenConstrainedFCI::*)(const double)) &GQCP::QCMethod::MullikenConstrainedFCI::solveMullikenDavidson, "Solve the eigenvalue problem for a multiplier with the davidson algorithm, davidson guess will be the previously stored solution if none is available the Hartree Fock expansion will be used instead")
