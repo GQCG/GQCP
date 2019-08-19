@@ -16,7 +16,6 @@ add_library(gqcp SHARED "")
 option(BUILD_TESTS "Build tests" OFF)
 option(BUILD_DOCS "Build the documentation using Doxygen" OFF)
 option(BUILD_BENCHMARKS "Build benchmarks executables" OFF)
-option(BUILD_DRIVERS "Build standard drivers" OFF)
 option(BUILD_PYTHON_BINDINGS "Build the Python bindings" OFF)
 
 # Look for supporting libraries
@@ -132,10 +131,6 @@ endif()
 
 if (BUILD_BENCHMARKS)
     add_subdirectory(benchmarks)
-endif()
-
-if (BUILD_DRIVERS)
-    add_subdirectory(drivers)
 endif()
 
 
