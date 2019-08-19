@@ -80,7 +80,7 @@ install:
 script:
   - cd ${TRAVIS_BUILD_DIR}
   - mkdir build && cd build
-  - cmake .. -DBUILD_TESTS=TRUE -DBUILD_BENCHMARKS=TRUE -DBUILD_DRIVERS=TRUE -DBUILD_PYTHON_BINDINGS=TRUE -DCMAKE_INSTALL_PREFIX=~/.local -DCMAKE_PREFIX_PATH=${HOME}/miniconda
+  - cmake .. -DBUILD_TESTS=TRUE -DBUILD_BENCHMARKS=TRUE -DBUILD_PYTHON_BINDINGS=TRUE -DCMAKE_INSTALL_PREFIX=~/.local -DCMAKE_PREFIX_PATH=${HOME}/miniconda
   - make -j3 VERBOSE=1 && env CTEST_OUTPUT_ON_FAILURE=1 make test ARGS=-j3 && sudo make install
 
 # Run the benchmarks
@@ -94,8 +94,7 @@ script:
   - ./hubbard_matrix --benchmark_counters_tabular=true
   - ./hubbard_matvec --benchmark_counters_tabular=true
 
-  # Test if installed library links properly to external driver
-
+# Test if installed library links properly to external driver
   - cd /tmp
   - git clone https://github.com/GQCG/gqcp-link.git
   - cd gqcp-link
