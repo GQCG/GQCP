@@ -43,7 +43,7 @@ void bindMullikenConstrainedFCI(py::module& module) {
         .def("get_B_fragment_energy", &GQCP::QCMethod::MullikenConstrainedFCI::get_B_fragment_energy, py::arg("index") = 0)
         .def("get_B_fragment_self_energy", &GQCP::QCMethod::MullikenConstrainedFCI::get_B_fragment_self_energy, py::arg("index") = 0)
         .def("get_interaction_energy", &GQCP::QCMethod::MullikenConstrainedFCI::get_interaction_energy, py::arg("index") = 0)
-        .def("get_all", &GQCP::QCMethod::MullikenConstrainedFCI::all, "Get all properties from the most recent solve.");
+        .def("all_properties", &GQCP::QCMethod::MullikenConstrainedFCI::all_properties, "Get all properties from the most recent solve.");
 }
 
 
