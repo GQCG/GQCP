@@ -20,8 +20,8 @@
 
 
 #include "Basis/ShellSet.hpp"
-#include "Basis/BaseOneElectronIntegralEngine.hpp"
-#include "Basis/BaseTwoElectronIntegralEngine.hpp"
+#include "Basis/Integrals/BaseOneElectronIntegralEngine.hpp"
+#include "Basis/Integrals/BaseTwoElectronIntegralEngine.hpp"
 
 #include <array>
 #include <memory>

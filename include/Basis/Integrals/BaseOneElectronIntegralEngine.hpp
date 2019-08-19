@@ -15,27 +15,29 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCP_BASETWOELECTRONINTEGRALENGINE_HPP
-#define GQCP_BASETWOELECTRONINTEGRALENGINE_HPP
+#ifndef GQCP_BASEONELECTRONINTEGRALENGINE_HPP
+#define GQCP_BASEONELECTRONINTEGRALENGINE_HPP
 
 
-#include "Basis/BaseTwoElectronIntegralBuffer.hpp"
+#include "Basis/Integrals/BaseOneElectronIntegralBuffer.hpp"
+
+#include <memory>
 
 
 namespace GQCP {
 
 
 /**
- *  A base class to implement two-electron integral engines. Integral engines are used calculate integrals of operators over shells, see also the calculate() call
+ *  A base class to implement one-electron integral engines. Integral engines are used calculate integrals of operators over shells, see also the calculate() call
  * 
- *  @tparam _ShellType                  the type of shell the integral engine is able to handle
- *  @tparam _N                          the number of components the operator has
- *  @tparam _IntegralScalar             the scalar representation of an integral
+ *  @tparam _ShellType              the type of shell the integral engine is able to handle
+ *  @tparam _N                      the number of components the operator has
+ *  @tparam _IntegralScalar         the scalar representation of an integral
  * 
  *  _ShellType is a template parameter because that enables compile-time checking of correct arguments
  */
 template <typename _ShellType, size_t _N, typename _IntegralScalar>
-class BaseTwoElectronIntegralEngine {
+class BaseOneElectronIntegralEngine {
 public:
     using ShellType = _ShellType;  // the type of shell the integral engine is able to handle
     using IntegralScalar = _IntegralScalar;  // the scalar representation of an integral
@@ -46,19 +48,16 @@ public:
     // PUBLIC METHODS
 
     /**
-     *  @param sh1          the first shell
-     *  @param sh2          the second shell
-     *  @param sh3          the third shell
-     *  @param sh4          the fourth shell
+     *  @param shell1           the first shell
+     *  @param shell2           the second shell
      * 
      *  This method is not marked const to allow the Engine's internals to be changed
      */
-    virtual std::shared_ptr<BaseTwoElectronIntegralBuffer<IntegralScalar, N>> calculate(const ShellType& sh1, const ShellType& sh2, const ShellType& sh3, const ShellType& sh4) = 0;
+    virtual std::shared_ptr<BaseOneElectronIntegralBuffer<IntegralScalar, N>> calculate(const ShellType& shell1, const ShellType& shell2) = 0;
 };
 
 
 }  // namespace GQCP
 
 
-
-#endif  // GQCP_BASETWOELECTRONINTEGRALENGINE_HPP
+#endif  // GQCP_BASEONELECTRONINTEGRALENGINE_HPP

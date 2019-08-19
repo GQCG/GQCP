@@ -24,7 +24,7 @@
 
 #include "RHF/DIISRHFSCFSolver.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
-#include "Basis/LibintInterfacer.hpp"
+#include "Basis/Integrals/Interfaces/LibintInterfacer.hpp"
 #include "units.hpp"
 
 

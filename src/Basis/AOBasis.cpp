@@ -17,10 +17,10 @@
 // 
 #include "Basis/AOBasis.hpp"
 #include "Basis/GTOBasisSet.hpp"
-#include "Basis/LibintInterfacer.hpp"
-#include "Basis/LibcintInterfacer.hpp"
-#include "Basis/IntegralEngine.hpp"
-#include "Basis/IntegralCalculator.hpp"
+#include "Basis/Integrals/Interfaces/LibintInterfacer.hpp"
+#include "Basis/Integrals/Interfaces/LibcintInterfacer.hpp"
+#include "Basis/Integrals/IntegralEngine.hpp"
+#include "Basis/Integrals/IntegralCalculator.hpp"
 
 
 namespace GQCP {

@@ -63,6 +63,12 @@ public:
     {}
 
 
+    /*
+     *  DESTRUCTORS
+     */
+    virtual ~BaseOneElectronIntegralBuffer() = default;
+
+
 
     /*
      *  PUBLIC PURE VIRTUAL METHODS

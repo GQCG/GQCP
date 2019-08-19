@@ -19,11 +19,11 @@
 #define GQCP_LIBINTONEELECTRONINTEGRALENGINE_HPP
 
 
-#include "Basis/BaseOneElectronIntegralEngine.hpp"
+#include "Basis/Integrals/BaseOneElectronIntegralEngine.hpp"
 
 #include "Basis/GTOShell.hpp"
-#include "Basis/LibintInterfacer.hpp"
-#include "Basis/LibintOneElectronIntegralBuffer.hpp"
+#include "Basis/Integrals/Interfaces/LibintInterfacer.hpp"
+#include "Basis/Integrals/Interfaces/LibintOneElectronIntegralBuffer.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
 
 

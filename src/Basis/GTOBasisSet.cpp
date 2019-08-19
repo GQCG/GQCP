@@ -17,7 +17,7 @@
 // 
 #include "Basis/GTOBasisSet.hpp"
 
-#include "Basis/LibintInterfacer.hpp"
+#include "Basis/Integrals/Interfaces/LibintInterfacer.hpp"
 
 
 namespace GQCP {

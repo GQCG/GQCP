@@ -20,7 +20,7 @@
 #include <boost/test/unit_test.hpp>
 
 #include "Basis/GTOShell.hpp"
-#include "Basis/LibintInterfacer.hpp"
+#include "Basis/Integrals/Interfaces/LibintInterfacer.hpp"
 #include "Utilities/linalg.hpp"
 
 

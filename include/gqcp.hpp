@@ -19,16 +19,16 @@
 #define GQCP_HPP
 
 #include "Basis/AOBasis.hpp"
-#include "Basis/BaseOneElectronIntegralBuffer.hpp"
-#include "Basis/BaseOneElectronIntegralEngine.hpp"
+#include "Basis/Integrals/BaseOneElectronIntegralBuffer.hpp"
+#include "Basis/Integrals/BaseOneElectronIntegralEngine.hpp"
 #include "Basis/CartesianExponents.hpp"
 #include "Basis/CartesianGTO.hpp"
 #include "Basis/GTOBasisSet.hpp"
 #include "Basis/GTOShell.hpp"
-#include "Basis/IntegralCalculator.hpp"
-#include "Basis/IntegralEngine.hpp"
-#include "Basis/LibcintInterfacer.hpp"
-#include "Basis/LibintInterfacer.hpp"
+#include "Basis/Integrals/IntegralCalculator.hpp"
+#include "Basis/Integrals/IntegralEngine.hpp"
+#include "Basis/Integrals/Interfaces/LibcintInterfacer.hpp"
+#include "Basis/Integrals/Interfaces/LibintInterfacer.hpp"
 #include "LibintOneElectronIntegralEngine.hpp"
 #include "Basis/ShellSet.hpp"
 

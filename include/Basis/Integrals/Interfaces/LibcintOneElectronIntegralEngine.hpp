@@ -20,7 +20,7 @@
 #define GQCP_LIBCINTONEELECTRONINTEGRALENGINE_HPP
 
 
-#include "Basis/BaseOneElectronIntegralEngine.hpp"
+#include "Basis/Integrals/BaseOneElectronIntegralEngine.hpp"
 
 #include "Basis/LibcintOneElectronIntegralBuffer.hpp"
 
@@ -43,6 +43,17 @@ public:
     using ShellType = _ShellType;  // the type of shell the integral engine is able to handle
     using IntegralScalar = _IntegralScalar;  // the scalar representation of an integral
     static constexpr auto N = _N;  // the number of components the operator has
+
+
+private:
+
+
+
+public:
+
+    /*
+     *  CONSTRUCTORS
+     */
 };
 
 

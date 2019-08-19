@@ -15,19 +15,18 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-// 
-#ifndef GQCP_LIBCINTTWOELECTRONINTEGRALENGINE_HPP
-#define GQCP_LIBCINTTWOELECTRONINTEGRALENGINE_HPP
+#ifndef GQCP_BASETWOELECTRONINTEGRALENGINE_HPP
+#define GQCP_BASETWOELECTRONINTEGRALENGINE_HPP
 
 
-#include "Basis/BaseTwoElectronIntegralEngine.hpp"
+#include "Basis/Integrals/BaseTwoElectronIntegralBuffer.hpp"
 
 
 namespace GQCP {
 
 
 /**
- *  An two-electron integral engine that uses libcint as its backend
+ *  A base class to implement two-electron integral engines. Integral engines are used calculate integrals of operators over shells, see also the calculate() call
  * 
  *  @tparam _ShellType                  the type of shell the integral engine is able to handle
  *  @tparam _N                          the number of components the operator has
@@ -36,11 +35,25 @@ namespace GQCP {
  *  _ShellType is a template parameter because that enables compile-time checking of correct arguments
  */
 template <typename _ShellType, size_t _N, typename _IntegralScalar>
-class LibcintTwoElectronIntegralEngine : public BaseTwoElectronIntegralEngine<_ShellType, _N, _IntegralScalar> {
+class BaseTwoElectronIntegralEngine {
 public:
     using ShellType = _ShellType;  // the type of shell the integral engine is able to handle
     using IntegralScalar = _IntegralScalar;  // the scalar representation of an integral
     static constexpr auto N = _N;  // the number of components the operator has
+
+
+public:
+    // PUBLIC METHODS
+
+    /**
+     *  @param sh1          the first shell
+     *  @param sh2          the second shell
+     *  @param sh3          the third shell
+     *  @param sh4          the fourth shell
+     * 
+     *  This method is not marked const to allow the Engine's internals to be changed
+     */
+    virtual std::shared_ptr<BaseTwoElectronIntegralBuffer<IntegralScalar, N>> calculate(const ShellType& sh1, const ShellType& sh2, const ShellType& sh3, const ShellType& sh4) = 0;
 };
 
 
@@ -48,4 +61,4 @@ public:
 
 
 
-#endif  // GQCP_LIBCINTTWOELECTRONINTEGRALENGINE_HPP
+#endif  // GQCP_BASETWOELECTRONINTEGRALENGINE_HPP

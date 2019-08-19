@@ -20,10 +20,10 @@
 #define GQCP_LIBINTTWOELECTRONINTEGRALENGINE_HPP
 
 
-#include "Basis/BaseTwoElectronIntegralEngine.hpp"
+#include "Basis/Integrals/BaseTwoElectronIntegralEngine.hpp"
 
 #include "Basis/GTOShell.hpp"
-#include "Basis/LibintTwoElectronIntegralBuffer.hpp"
+#include "Basis/Integrals/Interfaces/LibintTwoElectronIntegralBuffer.hpp"
 
 
 

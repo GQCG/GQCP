@@ -16,11 +16,11 @@
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
 // 
-#ifndef GQCP_LIBCINTONEELECTRONINTEGRALBUFFER_HPP
-#define GQCP_LIBCINTONEELECTRONINTEGRALBUFFER_HPP
+#ifndef GQCP_LIBCINTTWOELECTRONINTEGRALBUFFER_HPP
+#define GQCP_LIBCINTTWOELECTRONINTEGRALBUFFER_HPP
 
 
-#include "Basis/BaseOneElectronIntegralBuffer.hpp"
+#include "Basis/Integrals/BaseTwoElectronIntegralBuffer.hpp"
 
 
 
@@ -28,13 +28,13 @@ namespace GQCP {
 
 
 /**
- *  A buffer for storing libcint one-electron integrals
+ *  A buffer for storing libcint two-electron integrals
  * 
  *  @tparam _IntegralScalar         the scalar representation of an integral
  *  @tparam _N                      the number of components the operator has
  */
 template <typename _IntegralScalar, size_t _N>
-class LibcintOneElectronIntegralBuffer : public BaseOneElectronIntegralBuffer<_IntegralScalar, _N> {
+class LibcintTwoElectronIntegralBuffer : public BaseTwoElectronIntegralBuffer<_IntegralScalar, _N> {
 public:
     using IntegralScalar = _IntegralScalar;  // the scalar representation of an integral
     static constexpr auto N = _N;  // the number of components the operator has
@@ -46,4 +46,4 @@ public:
 
 
 
-#endif  // GQCP_LIBCINTONEELECTRONINTEGRALBUFFER_HPP
+#endif  // GQCP_LIBCINTTWOELECTRONINTEGRALBUFFER_HPP

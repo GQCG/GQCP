@@ -19,8 +19,8 @@
 #define GQCP_ONEELECTRONINTEGRALENGINE_HPP
 
 
-#include "Basis/LibintOneElectronIntegralEngine.hpp"
-#include "Basis/LibintTwoElectronIntegralEngine.hpp"
+#include "Basis/Integrals/Interfaces/LibintOneElectronIntegralEngine.hpp"
+#include "Basis/Integrals/Interfaces/LibintTwoElectronIntegralEngine.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
 #include "typedefs.hpp"
 

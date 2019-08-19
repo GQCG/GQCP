@@ -16,34 +16,31 @@
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
 // 
-#ifndef GQCP_LIBINTONEELECTRONINTEGRALBUFFER_HPP
-#define GQCP_LIBINTONEELECTRONINTEGRALBUFFER_HPP
+#ifndef GQCP_LIBINTTWOELECTRONINTEGRALBUFFER_HPP
+#define GQCP_LIBINTTWOELECTRONINTEGRALBUFFER_HPP
 
 
-#include "Basis/BaseOneElectronIntegralBuffer.hpp"
 
-#include "Basis/LibintInterfacer.hpp"
+#include "Basis/Integrals/BaseOneElectronIntegralBuffer.hpp"
+
 
 
 namespace GQCP {
 
 
 /**
- *  A buffer for storing libint one-electron integrals
+ *  A buffer for storing libint two-electron integrals
  * 
  *  @tparam _N              the number of components the operator has
  */
 template <size_t _N>
-class LibintOneElectronIntegralBuffer : public BaseOneElectronIntegralBuffer<double, _N> {
+class LibintTwoElectronIntegralBuffer : public BaseTwoElectronIntegralBuffer<double, _N> {
 public:
     using IntegralScalar = double;  // the scalar representation of an integral for libint is always a real number
     static constexpr auto N = _N;  // the number of components the operator has
 
 
 private:
-    size_t component_offset;  // the number of libint components that should be skipped during access of calculated values (libint2::Operator::emultipole1 has 4 libint2 components, but in reality there should only be 1)
-    double scaling_factor;  // a factor that is multiplied to all of the calculated integrals
-
     using libint2_buffer_t = LibintInterfacer::libint_target_ptr_vec;  // t for type
     libint2_buffer_t libint2_buffer;
 
@@ -58,13 +55,12 @@ public:
      *  @param libint2_buffer       the libint2 buffer that contains the calculated integrals
      *  @param nbf1                 the number of basis functions in the first shell
      *  @param nbf2                 the number of basis functions in the second shell
-     *  @param 
+     *  @param nbf3                 the number of basis functions in the third shell
+     *  @param nbf4                 the number of basis functions in the fourth shell
      */
-    LibintOneElectronIntegralBuffer(const libint2_buffer_t& libint2_buffer, const size_t nbf1, const size_t nbf2, const size_t component_offset=0, const double scaling_factor=1.0) :
+    LibintTwoElectronIntegralBuffer(const libint2_buffer_t& libint2_buffer, const size_t nbf1, const size_t nbf2, const size_t nbf3, const size_t nbf4) :
         libint2_buffer (libint2_buffer),
-        component_offset (component_offset),
-        scaling_factor (scaling_factor),
-        BaseOneElectronIntegralBuffer<IntegralScalar, N>(nbf1, nbf2)
+        BaseTwoElectronIntegralBuffer<IntegralScalar, N>(nbf1, nbf2, nbf3, nbf4)
     {}
 
 
@@ -74,20 +70,24 @@ public:
      */
 
     /**
-     *  @param i            the operator component number
+     *  @param i            the index of the component of the operator
      *  @param f1           the index of the basis function within shell 1
      *  @param f2           the index of the basis function within shell 2
+     *  @param f3           the index of the basis function within shell 3
+     *  @param f4           the index of the basis function within shell 4
      * 
-     *  @return the integral corresponding to the given basis functions from the buffer
+     *  @return a value from this integral buffer
      */
-    IntegralScalar value(const size_t i, const size_t f1, const size_t f2) const {
-        return this->scaling_factor * this->libint2_buffer[i + this->component_offset][f2 + f1 * this->nbf2]; // integrals are packed in row-major form
+    IntegralScalar value(const size_t i, const size_t f1, const size_t f2, const size_t f3, const size_t f4) const {
+
+        return libint2_buffer[i][f4 + this->nbf4 * (f3 + this->nbf3 * (f2 + this->nbf2 * (f1)))];  // integrals are packed in row-major form
     }
 };
+
 
 
 }  // namespace GQCP
 
 
 
-#endif  // GQCP_LIBINTONEELECTRONINTEGRALBUFFER_HPP
+#endif  // GQCP_LIBINTTWOELECTRONINTEGRALBUFFER_HPP
