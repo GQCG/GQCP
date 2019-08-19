@@ -11,7 +11,6 @@ import gqcpy
 class Molecule(unittest.TestCase):
 
     def setUp(self):
-         """ iniates variables to be used by tests """
         pass
 
     def tearDown(self):
