@@ -4,6 +4,7 @@ list(APPEND python_bindings_sources
     )
 
 add_subdirectory(QCMethod)
+add_subdirectory(PyClasses)
 
 set(python_bindings_sources ${python_bindings_sources} PARENT_SCOPE)
 
