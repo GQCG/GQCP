@@ -93,3 +93,12 @@ script:
   - ./hubbard_diagonalization --benchmark_counters_tabular=true
   - ./hubbard_matrix --benchmark_counters_tabular=true
   - ./hubbard_matvec --benchmark_counters_tabular=true
+
+  # Test if installed library links properly to external driver
+
+    - cd /tmp
+    - git clone https://github.com/GQCG/gqcp-link.git
+    - cd gqcp-link
+    - mkdir build && cd build
+    - cmake .. -DCMAKE_PREFIX_PATH=${HOME}/miniconda -DCMAKE_MODULE_PATH=~/.local/cmake
+    - make -j3 && ./test_driver
