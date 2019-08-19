@@ -72,7 +72,7 @@ private:
      *  @param eigenpairs           the eigenpairs from the CI solver
      *  @param multiplier           the Lagrangian multiplier associated with the solution
      */ 
-    void parseSolution(const std::vector<Eigenpair>& eigenpairs, double multiplier);
+    void parseSolution(const std::vector<Eigenpair>& eigenpairs, const double multiplier);
 
     /**
      *  Throws an error if no solution is available
@@ -97,7 +97,7 @@ public:
      *  @param basis_targets            the targeted basis functions for the constraint
      *  @param frozencores              the amount of frozen cores for the FCI calculation
      */
-    MullikenConstrainedFCI(const Molecule& molecule, const std::string& basis_set, const std::vector<size_t>& basis_targets, size_t frozencores = 0);
+    MullikenConstrainedFCI(const Molecule& molecule, const std::string& basis_set, const std::vector<size_t>& basis_targets, const size_t frozencores = 0);
 
 
     // PUBLIC METHODS
@@ -126,23 +126,32 @@ public:
     void solveMullikenDense(const double multiplier, const size_t nos);
 
     /**
+     *  @param index                refers to the index of the number of requested states 
+     * 
      *  @return a property of the last solve
      */
-    double get_energy(size_t index = 0) const { checkAvailableSolutions("get_energy"); return energy[index]; };
-    double get_population(size_t index = 0) const { checkAvailableSolutions("get_population"); return population[index]; };
-    double get_lambda(size_t index = 0) const { checkAvailableSolutions("get_lambda"); return lambda[index]; };
-    double get_entropy(size_t index = 0) const { checkAvailableSolutions("get_entropy"); return entropy[index]; };
-    double get_A_fragment_energy(size_t index = 0) const { checkAvailableSolutions("get_A_fragment_energy"); checkDiatomicMolecule("get_A_fragment_energy"); return A_fragment_energy[index]; };
-    double get_A_fragment_self_energy(size_t index = 0) const { checkAvailableSolutions("get_A_fragment_self_energy"); checkDiatomicMolecule("get_A_fragment_self_energy"); return A_fragment_self_energy[index]; };
-    double get_B_fragment_energy(size_t index = 0) const { checkAvailableSolutions("get_B_fragment_energy"); checkDiatomicMolecule("get_B_fragment_energy"); return B_fragment_energy[index]; };
-    double get_B_fragment_self_energy(size_t index = 0) const { checkAvailableSolutions("get_B_fragment_self_energy"); checkDiatomicMolecule("get_B_fragment_self_energy"); return B_fragment_self_energy[index]; };
-    double get_interaction_energy(size_t index = 0) const { checkAvailableSolutions("get_interaction_energy"); checkDiatomicMolecule("get_interaction_energy"); return interaction_energy[index]; };
+    double get_energy(const size_t index = 0) const { this->checkAvailableSolutions("get_energy"); return this->energy[index]; };
+    double get_population(const size_t index = 0) const { this->checkAvailableSolutions("get_population"); return this->population[index]; };
+    double get_lambda(const size_t index = 0) const { this->checkAvailableSolutions("get_lambda"); return this->lambda[index]; };
+    double get_entropy(const size_t index = 0) const { this->checkAvailableSolutions("get_entropy"); return this->entropy[index]; };
+    double get_A_fragment_energy(const size_t index = 0) const { this->checkAvailableSolutions("get_A_fragment_energy"); this->checkDiatomicMolecule("get_A_fragment_energy"); return this->A_fragment_energy[index]; };
+    double get_A_fragment_self_energy(const size_t index = 0) const { this->checkAvailableSolutions("get_A_fragment_self_energy"); this->checkDiatomicMolecule("get_A_fragment_self_energy"); return this->A_fragment_self_energy[index]; };
+    double get_B_fragment_energy(const size_t index = 0) const { this->checkAvailableSolutions("get_B_fragment_energy"); this->checkDiatomicMolecule("get_B_fragment_energy"); return this->B_fragment_energy[index]; };
+    double get_B_fragment_self_energy(const size_t index = 0) const { this->checkAvailableSolutions("get_B_fragment_self_energy"); this->checkDiatomicMolecule("get_B_fragment_self_energy"); return this->B_fragment_self_energy[index]; };
+    double get_interaction_energy(const size_t index = 0) const { this->checkAvailableSolutions("get_interaction_energy"); this->checkDiatomicMolecule("get_interaction_energy"); return this->interaction_energy[index]; };
 
-    double get_solve_time() const { checkAvailableSolutions("get_solve_time"); return solve_time; };
+    const VectorX<double>& get_eigenvector(const size_t index = 0) const { this->checkAvailableSolutions("get_eigenvector"); return this->eigenvector[index]; };
+
+    double get_solve_time() const { this->checkAvailableSolutions("get_solve_time"); return solve_time; };
+    
     /**
-     *  @return all properties
+     *  @param index             refers to the index of the number of requested states 
+     * 
+     *  @return all properties in vector that contains:
+     *      energy, population (on the selected basis functions), lambda (or the multiplier), entropy
+     *      if diatomic we additionally find: A_fragment_energy, A_fragment_self_energy, B_fragment_energy, B_fragment_self_energy and interaction_energy in that order.
      */
-    std::vector<double> all(size_t index = 0) const; 
+    std::vector<double> all_properties(const size_t index = 0) const; 
 };
 
 

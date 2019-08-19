@@ -33,7 +33,7 @@ namespace QCMethod {
  *  
  *  @param eigenpairs           the eigenpairs from the CI solver
  */ 
-void MullikenConstrainedFCI::parseSolution(const std::vector<Eigenpair>& eigenpairs, double multiplier) {
+void MullikenConstrainedFCI::parseSolution(const std::vector<Eigenpair>& eigenpairs, const double multiplier) {
     if (this->energy.size() != eigenpairs.size()) {
 
         this->energy = std::vector<double>(eigenpairs.size());
@@ -52,16 +52,16 @@ void MullikenConstrainedFCI::parseSolution(const std::vector<Eigenpair>& eigenpa
         this->eigenvector = std::vector<VectorX<double>>(eigenpairs.size());
     }
 
-    double internuclear_repulsion_energy = GQCP::Operator::NuclearRepulsion(molecule).value();
+    double internuclear_repulsion_energy = GQCP::Operator::NuclearRepulsion(this->molecule).value();
 
     for (size_t i = 0; i < eigenpairs.size(); i++) {
 
         const auto& pair = eigenpairs[i];
         const auto& fci_coefficients = pair.get_eigenvector();
         double fci_energy = pair.get_eigenvalue();
-        rdm_calculator.set_coefficients(fci_coefficients);
-        OneRDM<double> D = rdm_calculator.calculate1RDMs().one_rdm;
-        TwoRDM<double> d = rdm_calculator.calculate2RDMs().two_rdm;
+        this->rdm_calculator.set_coefficients(fci_coefficients);
+        OneRDM<double> D = this->rdm_calculator.calculate1RDMs().one_rdm;
+        TwoRDM<double> d = this->rdm_calculator.calculate2RDMs().two_rdm;
 
         double population = calculateExpectationValue(mulliken_operator, D);
         WaveFunction wavefunction (fock_space, fci_coefficients);
@@ -106,7 +106,7 @@ void MullikenConstrainedFCI::checkAvailableSolutions(const std::string& function
  */
 void MullikenConstrainedFCI::checkDiatomicMolecule(const std::string& function_name) const {
     if (molecule.numberOfAtoms() != 2) {
-        throw std::runtime_error("MullikenConstrainedFCI::" + function_name + "(): This property only available for diatomic molecules");
+        throw std::runtime_error("MullikenConstrainedFCI::" + function_name + "(): This property is only available for diatomic molecules");
     }
 }
 
@@ -120,7 +120,7 @@ void MullikenConstrainedFCI::checkDiatomicMolecule(const std::string& function_n
  *  @param basis_targets            the targeted basis functions for the constraint
  *  @param multipliers              the set of multipliers for the constraint
  */
-MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const std::string& basis_set, const std::vector<size_t>& basis_targets, size_t frozencores) : 
+MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const std::string& basis_set, const std::vector<size_t>& basis_targets, const size_t frozencores) : 
         basis_targets (basis_targets),
         molecule (molecule),
         ham_par (HamiltonianParameters<double>::Molecular(molecule, basis_set)),
@@ -132,7 +132,7 @@ MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const s
 
     
     auto K = this->ham_par.get_K();
-    auto N_P = molecule.numberOfElectrons()/2;
+    auto N_P = this->molecule.numberOfElectrons()/2;
 
     try {
         // Try the foward approach of solving the RHF equations
@@ -270,7 +270,7 @@ void MullikenConstrainedFCI::solveMullikenDense(const double multiplier, const s
     auto start_time = std::chrono::high_resolution_clock::now();
 
     const auto constrained_ham_par = this->ham_par.constrain(mulliken_operator, multiplier);
-    CISolver ci_solver (fci, constrained_ham_par);
+    CISolver ci_solver (this->fci, constrained_ham_par);
     DenseSolverOptions solver_options;
     solver_options.number_of_requested_eigenpairs = nos;
 
@@ -291,12 +291,12 @@ void MullikenConstrainedFCI::solveMullikenDense(const double multiplier, const s
 }
 
 
-std::vector<double> MullikenConstrainedFCI::all(size_t index) const {
+std::vector<double> MullikenConstrainedFCI::all_properties(const size_t index) const {
     this->checkAvailableSolutions("all");
 
     size_t number_of_properties = 4;
 
-    if (molecule.numberOfAtoms() == 2) {
+    if (this->molecule.numberOfAtoms() == 2) {
         number_of_properties += 5;
     }
 

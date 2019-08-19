@@ -42,9 +42,9 @@ public:
     /*
      *  CONSTRUCTORS
      */
-
     AtomicDecompositionParameters() = default;
     
+
     /**
      *  @param molecular_hamiltonian_parameters     the complete molecular Hamiltonian parameters
      *  @param net_atomic_parameters                collection of net atomic Hamiltonian parameters

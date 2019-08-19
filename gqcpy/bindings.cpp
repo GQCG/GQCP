@@ -31,7 +31,6 @@ void bindQCMethodDOCINewtonOrbitalOptimizer(py::module& module);
 void bindMullikenConstrainedFCI(py::module& module);
 void bindVersion(py::module& module);
 
-// 
 void bindNucleus(py::module& module);
 void bindMolecule(py::module& module);
 
