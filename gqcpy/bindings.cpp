@@ -28,7 +28,11 @@ namespace gqcpy {
 void bindQCMethodHubbard(py::module& module);
 void bindQCMethodFCI(py::module& module);
 void bindQCMethodDOCINewtonOrbitalOptimizer(py::module& module);
+void bindMullikenConstrainedFCI(py::module& module);
 void bindVersion(py::module& module);
+
+void bindNucleus(py::module& module);
+void bindMolecule(py::module& module);
 
 }  // namespace gqcpy
 
@@ -43,5 +47,9 @@ PYBIND11_MODULE (gqcpy, module) {
     gqcpy::bindQCMethodHubbard(module);
     gqcpy::bindQCMethodFCI(module);
     gqcpy::bindQCMethodDOCINewtonOrbitalOptimizer(module);
+    gqcpy::bindMullikenConstrainedFCI(module);
     gqcpy::bindVersion(module);
+
+    gqcpy::bindNucleus(module);
+    gqcpy::bindMolecule(module);
 }

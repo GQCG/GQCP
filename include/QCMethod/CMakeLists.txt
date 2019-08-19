@@ -4,4 +4,5 @@ target_sources(gqcp
             DOCINewtonOrbitalOptimizer.hpp
             Hubbard.hpp
             FCI.hpp
+            MullikenConstrainedFCI.hpp
         )
