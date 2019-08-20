@@ -31,7 +31,7 @@ namespace GQCP {
  *
  *  @return the information in a GQCP::ShellSet as a libcint::Container
  */
-libcint::RawContainer LibcintInterfacer::convert(const ShellSet<GTOShell>& shell_set) const{
+libcint::RawContainer LibcintInterfacer::convert(const ShellSet<GTOShell>& shell_set) const {
 
     const auto& nuclei = shell_set.nuclei();
     const auto& natm = nuclei.size();
@@ -119,6 +119,46 @@ void LibcintInterfacer::setCommonOrigin(libcint::RawContainer& raw_container, co
     raw_container.libcint_env[libcint::ptr_common_orig + 0] = origin.x();  // input the origin inside the libcint environment
     raw_container.libcint_env[libcint::ptr_common_orig + 1] = origin.y();
     raw_container.libcint_env[libcint::ptr_common_orig + 2] = origin.z();
+}
+
+
+/**
+ *  @param op           the overlap operator
+ * 
+ *  @return the Libcint one-electron function that corresponds to the overlap operator
+ */
+Libcint1eFunction LibcintInterfacer::oneElectronFunction(const OverlapOperator& op) const {
+    return cint1e_ovlp_cart;
+}
+
+
+/**
+ *  @param op               the kinetic operator
+ * 
+ *  @return the Libcint one-electron function that corresponds to the kinetic operator
+ */
+Libcint1eFunction LibcintInterfacer::oneElectronFunction(const KineticOperator& op) const {
+    return cint1e_kin_cart;
+}
+
+
+/**
+ *  @param op               the nuclear attraction operator
+ * 
+ *  @return the Libcint one-electron function that corresponds to the nuclear attraction operator
+ */
+Libcint1eFunction LibcintInterfacer::oneElectronFunction(const NuclearAttractionOperator& op) const {
+    return cint1e_nuc_cart;
+}
+
+
+/**
+ *  @param op               the electronic electric dipole operator
+ * 
+ *  @return the Libcint one-electron function that corresponds to the electronic electric dipole operator
+ */
+Libcint1eFunction LibcintInterfacer::oneElectronFunction(const ElectronicDipoleOperator& op) const {
+    return cint1e_r_cart;
 }
 
 

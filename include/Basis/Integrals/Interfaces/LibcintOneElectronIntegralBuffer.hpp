@@ -28,10 +28,12 @@ namespace GQCP {
 
 
 /**
- *  A buffer for storing libcint one-electron integrals
+ *  A buffer for storing Libcint one-electron integrals
  * 
  *  @tparam _IntegralScalar         the scalar representation of an integral
  *  @tparam _N                      the number of components the operator has
+ * 
+ *  @note Since a Libcint function accepts a raw pointer/buffer as an argument, this class should take ownership of the buffer data since the raw buffer is created on the stack. This is done by placing the raw buffer data inside a std::vector.
  */
 template <typename _IntegralScalar, size_t _N>
 class LibcintOneElectronIntegralBuffer : public BaseOneElectronIntegralBuffer<_IntegralScalar, _N> {
@@ -42,8 +44,7 @@ public:
 
 private:
     double scaling_factor;  // a factor that multiplies every calculated value (for example in the dipole integrals, an extra factor -1 should be included)
-    IntegralScalar[] libcint_buffer;  // the raw libcint buffer
-
+    std::vector<IntegralScalar> buffer;  // the libcint integral data converted to a C++ vector
 
 
 public:
@@ -52,24 +53,16 @@ public:
      */
 
     /**
+     *  @param buffer               the libcint integral data, already put inside a vector
      *  @param nbf1                 the number of basis functions in the first shell
      *  @param nbf2                 the number of basis functions in the second shell
      *  @param scaling_factor       a factor that multiplies every calculated value (for example in the dipole integrals, an extra factor -1 should be included)
      */
-    LibcintOneElectronIntegralBuffer(const size_t nbf1, const size_t nbf2, const double scaling_factor=1.0) :
+    LibcintOneElectronIntegralBuffer(const std::vector<IntegralScalar>& buffer, const size_t nbf1, const size_t nbf2, const double scaling_factor=1.0) :
         scaling_factor (scaling_factor),
-        libcint_buffer (new IntegralScalar[N * nbf1 * nbf2]),
-        BaseOneElectronIntegralBuffer(nbf1, nbf2)
+        buffer (buffer),
+        BaseOneElectronIntegralBuffer<IntegralScalar, N>(nbf1, nbf2)
     {}
-
-
-    /*
-     *  DESTRUCTOR
-     */
-    ~LibcintOneElectronIntegralBuffer() {
-        delete[] this->libcint_buffer;
-    }
-
 
 
     /*
@@ -83,8 +76,8 @@ public:
      * 
      *  @return a value from this integral buffer
      */
-    virtual IntegralScalar value(const size_t i, const size_t f1, const size_t f2) const = 0 {
-        return this->scaling_factor * this->libcint_buffer[f1 + this->nbf1 * (f2 + this->nbf2 * i)]
+    virtual IntegralScalar value(const size_t i, const size_t f1, const size_t f2) const {
+        return this->scaling_factor * this->buffer[f1 + this->nbf1 * (f2 + this->nbf2 * i)];
     }
 };
 

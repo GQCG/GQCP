@@ -21,10 +21,12 @@
 #include "Basis/GTOShell.hpp"
 #include "Basis/ShellSet.hpp"
 #include "Molecule/Molecule.hpp"
+#include "Operator/FirstQuantized/Operator.hpp"
 #include "Operator/OneElectronOperator.hpp"
 #include "Operator/TwoElectronOperator.hpp"
 
 #include <functional>
+#include <unordered_map>
 
 
 
@@ -80,6 +82,8 @@ static constexpr int ptr_coeff = PTR_COEFF;  // slot offset for a 'pointer' to t
 
 /**
  *  A wrapper that owns raw libcint 'atm', 'bas' and 'env' arrays
+ * 
+ *  @note There is no easy way to ask a RawContainer the corresponding shell index given a GQCP::GTOShell. This is why we are explicitly holding such a map.
  */
 class RawContainer {
 private:
@@ -93,7 +97,10 @@ private:
 
 
 public:
-    // CONSTRUCTORS
+    /*
+     *  CONSTRUCTORS
+     */
+
     /**
      *  Allocate memory for the raw libcint arrays
      *
@@ -101,7 +108,7 @@ public:
      *  @param nbf          the number of basis functions
      *  @param nsh          the number of shells
      */
-    RawContainer(size_t natm, size_t nbf, size_t nsh) :
+    RawContainer(const size_t natm, const size_t nbf, const size_t nsh) :
         natm (static_cast<int>(natm)),
         nbf (static_cast<int>(nbf)),
         nsh (static_cast<int>(nsh)),
@@ -111,7 +118,10 @@ public:
     {}
 
 
-    // DESTRUCTOR
+    /*
+     *  DESTRUCTOR
+     */
+
     /**
      *  Deallocate the memory used by the raw libcint arrays
      */
@@ -121,7 +131,20 @@ public:
         delete[] this->libcint_env;
     }
 
-    // FRIENDS
+
+    /*
+     *  GETTERS
+     */
+    int numberOfAtoms() const { return this->natm; }
+    int numberOfBasisFunctions() const { return this->nbf; }
+    int numberOfShells() const { return this->nsh; }
+    const int* atmData() const { return this->libcint_atm; }
+    const int* basData() const { return this->libcint_bas; }
+    const double* envData() const { return this->libcint_env; }
+
+    /*
+     *  FRIENDS
+     */
     friend class GQCP::LibcintInterfacer;
 };
 
@@ -144,7 +167,9 @@ using Libcint2eFunction = std::function<int (double*, const int*, const int*, in
 class LibcintInterfacer {
 public:
 
-    // PUBLIC METHODS - INTERFACING
+    /*
+     *  PUBLIC METHODS - INTERFACING
+     */
 
     /**
      *  @param shell_set        the GQCP::ShellSet whose information should be converted
@@ -162,7 +187,38 @@ public:
     void setCommonOrigin(libcint::RawContainer& raw_container, const Vector<double, 3>& origin) const;
 
 
-    // PUBLIC METHODS - INTEGRALS
+    /**
+     *  @param op           the overlap operator
+     * 
+     *  @return the Libcint one-electron function that corresponds to the overlap operator
+     */
+    Libcint1eFunction oneElectronFunction(const OverlapOperator& op) const;
+
+    /**
+     *  @param op               the kinetic operator
+     * 
+     *  @return the Libcint one-electron function that corresponds to the kinetic operator
+     */
+    Libcint1eFunction oneElectronFunction(const KineticOperator& op) const;
+
+    /**
+     *  @param op               the nuclear attraction operator
+     * 
+     *  @return the Libcint one-electron function that corresponds to the nuclear attraction operator
+     */
+    Libcint1eFunction oneElectronFunction(const NuclearAttractionOperator& op) const;
+
+    /**
+     *  @param op               the electronic electric dipole operator
+     * 
+     *  @return the Libcint one-electron function that corresponds to the electronic electric dipole operator
+     */
+    Libcint1eFunction oneElectronFunction(const ElectronicDipoleOperator& op) const;
+
+
+    /*
+     *  PUBLIC METHODS - INTEGRALS
+     */
 
     /**
      *  @tparam N                   the number of libcint operator components

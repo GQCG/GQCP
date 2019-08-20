@@ -83,7 +83,7 @@ public:
 
 
     /**
-     *  Calculate all one-electron integrals over the basis functions inside the given ShellSets
+     *  Calculate all two-electron integrals over the basis functions inside the given ShellSets
      * 
      *  @param engine                       the engine that can calculate two-electron integrals over shells
      *  @param shell_set                    the set of shells over which the integrals should be calculated

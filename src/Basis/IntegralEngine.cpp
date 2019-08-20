@@ -96,4 +96,52 @@ auto IntegralEngine::Libint(const CoulombRepulsionOperator& op, const size_t max
 
 
 
+/*
+ *  LIBCINT - ONE-ELECTRON ENGINES
+ */
+
+/**
+ *  @param op               the overlap operator
+ * 
+ *  @return a one-electron integral engine that can calculate integrals over the overlap operator using the Libcint integral library backend
+ */
+auto IntegralEngine::Libcint(const OverlapOperator& op) -> LibcintOneElectronIntegralEngine<GTOShell, OverlapOperator::Components, double> {
+
+    return LibcintOneElectronIntegralEngine<GTOShell, OverlapOperator::Components, double>(op);
+}
+
+
+/**
+ *  @param op               the kinetic operator
+ * 
+ *  @return a one-electron integral engine that can calculate integrals over the kinetic operator using the Libcint integral library backend
+ */
+auto IntegralEngine::Libcint(const KineticOperator& op) -> LibcintOneElectronIntegralEngine<GTOShell, KineticOperator::Components, double> {
+
+    return LibcintOneElectronIntegralEngine<GTOShell, KineticOperator::Components, double>(op);
+}
+
+
+/**
+ *  @param op               the nuclear attraction operator
+ * 
+ *  @return a one-electron integral engine that can calculate integrals over the nuclear attraction operator using the Libcint integral library backend
+ */
+auto IntegralEngine::Libcint(const NuclearAttractionOperator& op) -> LibcintOneElectronIntegralEngine<GTOShell, NuclearAttractionOperator::Components, double> {
+
+    return LibcintOneElectronIntegralEngine<GTOShell, NuclearAttractionOperator::Components, double>(op);
+}
+
+
+/**
+ *  @param op               the electron electronic dipole operator
+ * 
+ *  @return a one-electron integral engine that can calculate integrals over the electronic dipole operator using the Libcint integral library backend
+ */
+auto IntegralEngine::Libcint(const ElectronicDipoleOperator& op) -> LibcintOneElectronIntegralEngine<GTOShell, ElectronicDipoleOperator::Components, double> {
+
+    return LibcintOneElectronIntegralEngine<GTOShell, ElectronicDipoleOperator::Components, double>(op);
+}
+
+
 }  // namespace GQCP

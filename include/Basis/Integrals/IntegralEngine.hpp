@@ -21,6 +21,7 @@
 
 #include "Basis/Integrals/Interfaces/LibintOneElectronIntegralEngine.hpp"
 #include "Basis/Integrals/Interfaces/LibintTwoElectronIntegralEngine.hpp"
+#include "Basis/Integrals/Interfaces/LibcintOneElectronIntegralEngine.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
 #include "typedefs.hpp"
 
@@ -87,6 +88,39 @@ public:
      *  @return a two-electron integral engine that can calculate integrals over the nuclear attraction operator using the Libint integral library backend
      */
     static auto Libint(const CoulombRepulsionOperator& op, const size_t max_nprim, const size_t max_l) -> LibintTwoElectronIntegralEngine<CoulombRepulsionOperator::Components>;
+
+
+    /*
+     *  LIBCINT - ONE-ELECTRON ENGINES
+     */
+
+    /**
+     *  @param op               the overlap operator
+     * 
+     *  @return a one-electron integral engine that can calculate integrals over the overlap operator using the Libcint integral library backend
+     */
+    static auto Libcint(const OverlapOperator& op) -> LibcintOneElectronIntegralEngine<GTOShell, OverlapOperator::Components, double>;
+
+    /**
+     *  @param op               the kinetic operator
+     * 
+     *  @return a one-electron integral engine that can calculate integrals over the kinetic operator using the Libcint integral library backend
+     */
+    static auto Libcint(const KineticOperator& op) -> LibcintOneElectronIntegralEngine<GTOShell, KineticOperator::Components, double>;
+
+    /**
+     *  @param op               the nuclear attraction operator
+     * 
+     *  @return a one-electron integral engine that can calculate integrals over the nuclear attraction operator using the Libcint integral library backend
+     */
+    static auto Libcint(const NuclearAttractionOperator& op) -> LibcintOneElectronIntegralEngine<GTOShell, NuclearAttractionOperator::Components, double>;
+
+    /**
+     *  @param op               the electron electronic dipole operator
+     * 
+     *  @return a one-electron integral engine that can calculate integrals over the electronic dipole operator using the Libcint integral library backend
+     */
+    static auto Libcint(const ElectronicDipoleOperator& op) -> LibcintOneElectronIntegralEngine<GTOShell, ElectronicDipoleOperator::Components, double>;
 };
 
 

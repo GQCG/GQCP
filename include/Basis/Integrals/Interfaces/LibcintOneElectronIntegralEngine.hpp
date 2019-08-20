@@ -22,7 +22,8 @@
 
 #include "Basis/Integrals/BaseOneElectronIntegralEngine.hpp"
 
-#include "Basis/LibcintOneElectronIntegralBuffer.hpp"
+#include "Basis/Integrals/Interfaces/LibcintOneElectronIntegralBuffer.hpp"
+#include "Basis/Integrals/Interfaces/LibcintInterfacer.hpp"
 
 
 namespace GQCP {
@@ -46,7 +47,10 @@ public:
 
 
 private:
+    Libcint1eFunction libcint_function;  // the libcint one-electron integral function
 
+    // Parameters to pass to the buffer
+    double scaling_factor = 1.0;  // a factor that is multiplied to all of the calculated integrals
 
 
 public:
@@ -54,6 +58,66 @@ public:
     /*
      *  CONSTRUCTORS
      */
+
+    /**
+     *  @param op               the overlap operator
+     */
+    LibcintOneElectronIntegralEngine(const OverlapOperator& op) :
+        libcint_function (LibcintInterfacer().oneElectronFunction(op))
+    {}
+
+    /**
+     *  @param op               the kinetic operator
+     */
+    LibcintOneElectronIntegralEngine(const KineticOperator& op) :
+        libcint_function (LibcintInterfacer().oneElectronFunction(op))
+    {}
+
+    /**
+     *  @param op               the nuclear attraction operator
+     */
+    LibcintOneElectronIntegralEngine(const NuclearAttractionOperator& op) :
+        libcint_function (LibcintInterfacer().oneElectronFunction(op))
+    {}
+
+    /**
+     *  @param op               the electronic electric dipole operator
+     */
+    LibcintOneElectronIntegralEngine(const ElectronicDipoleOperator& op) :
+        libcint_function (LibcintInterfacer().oneElectronFunction(op)),
+        scaling_factor (-1.0)  // apply the minus sign which comes from the charge of the electrons -e
+    {}
+
+
+
+    /*
+     *  PUBLIC OVERRIDDEN METHODS
+     */
+
+    /**
+     *  @param shell1           the first shell
+     *  @param shell2           the second shell
+     */
+    std::shared_ptr<BaseOneElectronIntegralBuffer<IntegralScalar, N>> calculate(const GTOShell& shell1, const GTOShell& shell2) override {
+
+        // Interface the given GTOShells to libcint-compatible data
+        const LibcintInterfacer libcint_interfacer;
+        auto libcint_raw_container = libcint_interfacer.convert({shell1, shell2});
+        int shell_indices[2] = {0, 1};  // we're interfacing for every shell pair, so the shell indices are 0 and 1
+
+
+        // Pre-allocate a raw buffer, because libcint functions expect a data pointer
+        const size_t nbf1 = shell1.numberOfBasisFunctions();
+        const size_t nbf2 = shell2.numberOfBasisFunctions();
+        double libcint_buffer[N * nbf1 * nbf2];
+
+
+        // Let libcint compute the integrals and return the corresponding buffer
+        this->libcint_function(libcint_buffer, shell_indices, libcint_raw_container.atmData(), libcint_raw_container.numberOfAtoms(), libcint_raw_container.basData(), libcint_raw_container.numberOfBasisFunctions(), libcint_raw_container.envData());
+        std::vector<double> buffer_converted (libcint_buffer, libcint_buffer + N*nbf1*nbf2);  // std::vector constructor from .begin() and .end()
+
+        return std::make_shared<LibcintOneElectronIntegralBuffer<IntegralScalar, N>>(buffer_converted, nbf1, nbf2, this->scaling_factor);
+    }
 };
 
 

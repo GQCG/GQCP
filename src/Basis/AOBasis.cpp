@@ -171,9 +171,9 @@ TwoElectronOperator<double> AOBasis::calculateLibintCoulombRepulsionIntegrals() 
  */
 OneElectronOperator<double> AOBasis::calculateLibcintOverlapIntegrals() const {
 
-    const LibcintInterfacer libcint_interfacer;
-    auto raw_container = libcint_interfacer.convert(this->shell_set);
-    return libcint_interfacer.calculateOneElectronIntegrals<1>(cint1e_ovlp_cart, raw_container)[0];
+    auto engine = IntegralEngine::Libcint(Operator::Overlap());  // cannot be const: Libint2 has a non-const compute() method inside its interface
+    const auto integrals = IntegralCalculator::calculate(engine, this->shell_set);
+    return OneElectronOperator<double>(integrals[0]);
 }
 
 
@@ -184,9 +184,9 @@ OneElectronOperator<double> AOBasis::calculateLibcintOverlapIntegrals() const {
  */
 OneElectronOperator<double> AOBasis::calculateLibcintKineticIntegrals() const {
 
-    const LibcintInterfacer libcint_interfacer;
-    auto raw_container = libcint_interfacer.convert(this->shell_set);
-    return libcint_interfacer.calculateOneElectronIntegrals<1>(cint1e_kin_cart, raw_container)[0];
+    auto engine = IntegralEngine::Libcint(Operator::Kinetic());  // cannot be const: Libint2 has a non-const compute() method inside its interface
+    const auto integrals = IntegralCalculator::calculate(engine, this->shell_set);
+    return OneElectronOperator<double>(integrals[0]);
 }
 
 
