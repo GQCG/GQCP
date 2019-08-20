@@ -20,7 +20,7 @@ class FCIQCM(unittest.TestCase):
 
     def test_energies(self):
         """ Compare the energy with a reference value """
-        self.assertAlmostEqual( self.fci_module.get_energy(), self.ref_energy)
+        self.assertAlmostEqual(self.fci_module.get_energy(), self.ref_energy)
 
     
 if __name__ == '__main__':

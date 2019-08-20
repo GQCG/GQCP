@@ -21,7 +21,7 @@ class HubbardQCM(unittest.TestCase):
 
     def test_energies(self):
         """ Compare the energy with a reference value """
-        self.assertAlmostEqual( self.oo_doci_module.get_energy(), self.ref_energy)
+        self.assertAlmostEqual(self.oo_doci_module.get_energy(), self.ref_energy)
 
     
 if __name__ == '__main__':

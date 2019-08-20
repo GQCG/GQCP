@@ -254,7 +254,9 @@ public:
      *       Input : <2,0> (M, 0, 2, 1, 3):
      *       <2,0> dictates that the row index axis of the matrix aligns with the 3rd index axis of the tensor (2nd starting from 0)
      *       and that the column index axis of the matrix aligns with the 1st index axis tensor (0th starting from 0)
-     *       (0, 2, 1, 3) dicates the starting indexes to which the matrix is added, given the input <2,0> this means "2" the 2nd and "3" 4th index are held fixed.
+     *       (0, 2, 1, 3) dictates the starting indexes to which the matrix is added, 
+     *       given the input <2,0> this means the indices of the 2nd (indicated by the "2") and the 4th (indicated by the "3") axes 
+     *       are held fixed because they do not correspond to the entries <2,0>.
      */
     template<size_t r, size_t s, int Z = Rank>
     enable_if_t<Z == 4, Self&> addBlock(const MatrixX<Scalar>& M, size_t i, size_t j, size_t k, size_t l) {
