@@ -70,6 +70,12 @@ public:
     {}
 
 
+    /*
+     *  DESTRUCTOR
+     */
+    virtual ~BaseTwoElectronIntegralBuffer() = default;
+
+
 
     /*
      *  PUBLIC PURE VIRTUAL METHODS

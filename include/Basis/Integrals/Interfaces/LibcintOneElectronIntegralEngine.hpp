@@ -24,9 +24,7 @@
 
 #include "Basis/Integrals/Interfaces/LibcintOneElectronIntegralBuffer.hpp"
 #include "Basis/Integrals/Interfaces/LibcintInterfacer.hpp"
-
-#include <algorithm>
-#include <iterator>
+#include "Utilities/miscellaneous.hpp"
 
 
 namespace GQCP {
@@ -123,15 +121,9 @@ public:
     std::shared_ptr<BaseOneElectronIntegralBuffer<IntegralScalar, N>> calculate(const GTOShell& shell1, const GTOShell& shell2) override {
 
         // Find to which indices in the RawContainer the given shells correspond
-        const auto& it1 = std::find(this->shell_set.asVector().begin(), this->shell_set.asVector().end(), shell1);
-        const auto& shell_index1 = std::distance(this->shell_set.asVector().begin(), it1);
-
-        const auto& it2 = std::find(this->shell_set.asVector().begin(), this->shell_set.asVector().end(), shell2);
-        const auto& shell_index2 = std::distance(this->shell_set.asVector().begin(), it2);
-
         int shell_indices[2];
-        shell_indices[0] = static_cast<int>(shell_index1);
-        shell_indices[1] = static_cast<int>(shell_index2);
+        shell_indices[0] = static_cast<int>(findElementIndex(this->shell_set.asVector(), shell1));
+        shell_indices[1] = static_cast<int>(findElementIndex(this->shell_set.asVector(), shell2));
 
 
         // Pre-allocate a raw buffer, because libcint functions expect a data pointer

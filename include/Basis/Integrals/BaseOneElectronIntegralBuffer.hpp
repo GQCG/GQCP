@@ -64,7 +64,7 @@ public:
 
 
     /*
-     *  DESTRUCTORS
+     *  DESTRUCTOR
      */
     virtual ~BaseOneElectronIntegralBuffer() = default;
 

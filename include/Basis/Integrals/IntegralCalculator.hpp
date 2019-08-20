@@ -31,7 +31,7 @@ namespace GQCP {
 
 
 /**
- *  A class that calculates integrals over ShellSets: it loops over all shells in the given ShellSets
+ *  A class that calculates integrals over ShellSets: it loops over all shells in the given ShellSets. It just has two static member functions, for cleaner interface calls.
  */
 class IntegralCalculator {
 public:

@@ -45,6 +45,10 @@ public:
 
 
 public:
+    // DESTRUCTOR
+    virtual ~BaseOneElectronIntegralEngine() = default;
+
+
     // PUBLIC METHODS
 
     /**

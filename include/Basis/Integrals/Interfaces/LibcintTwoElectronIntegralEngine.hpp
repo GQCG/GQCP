@@ -24,6 +24,7 @@
 
 #include "Basis/Integrals/Interfaces/LibcintTwoElectronIntegralBuffer.hpp"
 #include "Basis/Integrals/Interfaces/LibcintInterfacer.hpp"
+#include "Utilities/miscellaneous.hpp"
 
 
 namespace GQCP {
@@ -86,23 +87,11 @@ public:
     std::shared_ptr<BaseTwoElectronIntegralBuffer<IntegralScalar, N>> calculate(const ShellType& shell1, const ShellType& shell2, const ShellType& shell3, const ShellType& shell4) override {
 
         // Find to which indices in the RawContainer the given shells correspond
-        const auto& it1 = std::find(this->shell_set.asVector().begin(), this->shell_set.asVector().end(), shell1);
-        const auto& shell_index1 = std::distance(this->shell_set.asVector().begin(), it1);
-
-        const auto& it2 = std::find(this->shell_set.asVector().begin(), this->shell_set.asVector().end(), shell2);
-        const auto& shell_index2 = std::distance(this->shell_set.asVector().begin(), it2);
-
-        const auto& it3 = std::find(this->shell_set.asVector().begin(), this->shell_set.asVector().end(), shell3);
-        const auto& shell_index3 = std::distance(this->shell_set.asVector().begin(), it3);
-
-        const auto& it4 = std::find(this->shell_set.asVector().begin(), this->shell_set.asVector().end(), shell4);
-        const auto& shell_index4 = std::distance(this->shell_set.asVector().begin(), it4);
-
         int shell_indices[4];
-        shell_indices[0] = static_cast<int>(shell_index1);
-        shell_indices[1] = static_cast<int>(shell_index2);
-        shell_indices[2] = static_cast<int>(shell_index3);
-        shell_indices[3] = static_cast<int>(shell_index4);
+        shell_indices[0] = static_cast<int>(findElementIndex(this->shell_set.asVector(), shell1));
+        shell_indices[1] = static_cast<int>(findElementIndex(this->shell_set.asVector(), shell2));
+        shell_indices[2] = static_cast<int>(findElementIndex(this->shell_set.asVector(), shell3));
+        shell_indices[3] = static_cast<int>(findElementIndex(this->shell_set.asVector(), shell4));
 
 
         // Pre-allocate a raw buffer, because libcint functions expect a data pointer

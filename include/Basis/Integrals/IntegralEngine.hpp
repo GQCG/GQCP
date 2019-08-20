@@ -31,7 +31,7 @@ namespace GQCP {
 
 
 /**
- *  A class that produces integral engines, much like a factory class
+ *  A class that creates integral engines, much like a factory class would do
  */
 class IntegralEngine {
 public:
