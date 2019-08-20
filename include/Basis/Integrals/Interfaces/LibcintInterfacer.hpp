@@ -186,7 +186,6 @@ public:
      */
     void setCommonOrigin(libcint::RawContainer& raw_container, const Vector<double, 3>& origin) const;
 
-
     /**
      *  @param op           the overlap operator
      * 
@@ -214,6 +213,13 @@ public:
      *  @return the Libcint one-electron function that corresponds to the electronic electric dipole operator
      */
     Libcint1eFunction oneElectronFunction(const ElectronicDipoleOperator& op) const;
+
+    /**
+     *  @param op               the Coulomb repulsion operator
+     * 
+     *  @return the Libcint two-electron function that corresponds to the Coulomb repulsion dipole operator
+     */
+    Libcint2eFunction twoElectronFunction(const CoulombRepulsionOperator& op) const;
 
 
     /*

@@ -46,14 +46,14 @@ public:
     // PUBLIC METHODS
 
     /**
-     *  @param sh1          the first shell
-     *  @param sh2          the second shell
-     *  @param sh3          the third shell
-     *  @param sh4          the fourth shell
+     *  @param shell1          the first shell
+     *  @param shell2          the second shell
+     *  @param shell3          the third shell
+     *  @param shell4          the fourth shell
      * 
      *  This method is not marked const to allow the Engine's internals to be changed
      */
-    virtual std::shared_ptr<BaseTwoElectronIntegralBuffer<IntegralScalar, N>> calculate(const ShellType& sh1, const ShellType& sh2, const ShellType& sh3, const ShellType& sh4) = 0;
+    virtual std::shared_ptr<BaseTwoElectronIntegralBuffer<IntegralScalar, N>> calculate(const ShellType& shell1, const ShellType& shell2, const ShellType& shell3, const ShellType& shell4) = 0;
 };
 
 

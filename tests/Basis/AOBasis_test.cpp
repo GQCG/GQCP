@@ -131,12 +131,15 @@ BOOST_AUTO_TEST_CASE ( libcint_vs_libint2_H2O_STO_3G ) {
     const auto dipole_libcint = ao_basis.calculateLibcintDipoleIntegrals();
     const auto g_libcint = ao_basis.calculateLibcintCoulombRepulsionIntegrals();
 
+    std::cout << "g_libcint " << std::endl;
+    g_libcint.print();
+
     const auto S_libint2 = ao_basis.calculateLibintOverlapIntegrals();
     const auto T_libint2 = ao_basis.calculateLibintKineticIntegrals();
     const auto V_libint2 = ao_basis.calculateLibintNuclearIntegrals();
     const auto dipole_libint2 = ao_basis.calculateLibintDipoleIntegrals();
     const auto g_libint2 = ao_basis.calculateLibintCoulombRepulsionIntegrals();
-    
+
     BOOST_CHECK(S_libcint.isApprox(S_libint2, 1.0e-08));
     BOOST_CHECK(T_libcint.isApprox(T_libint2, 1.0e-08));
     BOOST_CHECK(V_libcint.isApprox(V_libint2, 1.0e-08));

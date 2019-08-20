@@ -22,6 +22,7 @@
 #include "Basis/Integrals/Interfaces/LibintOneElectronIntegralEngine.hpp"
 #include "Basis/Integrals/Interfaces/LibintTwoElectronIntegralEngine.hpp"
 #include "Basis/Integrals/Interfaces/LibcintOneElectronIntegralEngine.hpp"
+#include "Basis/Integrals/Interfaces/LibcintTwoElectronIntegralEngine.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
 #include "typedefs.hpp"
 
@@ -85,7 +86,7 @@ public:
      *  @param max_nprim        the maximum number of primitives per contracted Gaussian shell
      *  @param max_l            the maximum angular momentum of Gaussian shell
      * 
-     *  @return a two-electron integral engine that can calculate integrals over the nuclear attraction operator using the Libint integral library backend
+     *  @return a two-electron integral engine that can calculate integrals over the Coulomb repulsion operator using the Libint integral library backend
      */
     static auto Libint(const CoulombRepulsionOperator& op, const size_t max_nprim, const size_t max_l) -> LibintTwoElectronIntegralEngine<CoulombRepulsionOperator::Components>;
 
@@ -121,6 +122,18 @@ public:
      *  @return a one-electron integral engine that can calculate integrals over the electronic dipole operator using the Libcint integral library backend
      */
     static auto Libcint(const ElectronicDipoleOperator& op) -> LibcintOneElectronIntegralEngine<GTOShell, ElectronicDipoleOperator::Components, double>;
+
+
+    /*
+     *  LIBCINT - TWO-ELECTRON ENGINES
+     */
+
+    /**
+     *  @param op               the Coulomb repulsion operator
+     * 
+     *  @return a two-electron integral engine that can calculate integrals over the Coulomb repulsion operator using the Libcint integral library backend
+     */
+    static auto Libcint(const CoulombRepulsionOperator& op) -> LibcintTwoElectronIntegralEngine<GTOShell, CoulombRepulsionOperator::Components, double>;
 };
 
 

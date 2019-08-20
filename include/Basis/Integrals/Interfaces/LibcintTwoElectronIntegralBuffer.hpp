@@ -38,6 +38,49 @@ class LibcintTwoElectronIntegralBuffer : public BaseTwoElectronIntegralBuffer<_I
 public:
     using IntegralScalar = _IntegralScalar;  // the scalar representation of an integral
     static constexpr auto N = _N;  // the number of components the operator has
+
+
+private:
+    std::vector<IntegralScalar> buffer;  // the libcint integral data converted to a C++ vector
+
+
+public:
+    /*
+     *  CONSTRUCTORS
+     */
+
+    /**
+     *  @param buffer               the libcint integral data, already put inside a vector
+     *  @param nbf1                 the number of basis functions in the first shell
+     *  @param nbf2                 the number of basis functions in the second shell
+     *  @param nbf3                 the number of basis functions in the third shell
+     *  @param nbf4                 the number of basis functions in the fourth shell
+     */
+    LibcintTwoElectronIntegralBuffer(const std::vector<IntegralScalar>& buffer, const size_t nbf1, const size_t nbf2, const size_t nbf3, const size_t nbf4) :
+        buffer (buffer),
+        BaseTwoElectronIntegralBuffer<IntegralScalar, N>(nbf1, nbf2, nbf3, nbf4)
+    {}
+
+
+    /*
+     *  PUBLIC OVERRIDDEN METHODS
+     */
+
+    /**
+     *  @param i            the index of the component of the operator
+     *  @param f1           the index of the basis function within shell 1
+     *  @param f2           the index of the basis function within shell 2
+     *  @param f3           the index of the basis function within shell 3
+     *  @param f4           the index of the basis function within shell 4
+     * 
+     *  @return a value from this integral buffer
+     */
+    virtual IntegralScalar value(const size_t i, const size_t f1, const size_t f2, const size_t f3, const size_t f4) const {
+        // std::cout << "buffer size: " << this->buffer.size() << std::endl;
+        // std::cout << i << ", " << f1 << ", " << f2 << ", " << f3 << ", " << f4 << std::endl;
+        // std::cout << "accessing element: " << f1 + this->nbf1 * (f2 + this->nbf2 * (f3 + this->nbf3 * (f4 + this->nbf4 * i))) << std::endl;
+        return this->buffer[f1 + this->nbf1 * (f2 + this->nbf2 * (f3 + this->nbf3 * (f4 + this->nbf4 * i)))];  // column major
+    }
 };
 
 

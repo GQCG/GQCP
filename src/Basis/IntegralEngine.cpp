@@ -87,7 +87,7 @@ auto IntegralEngine::Libint(const ElectronicDipoleOperator& op, const size_t max
  *  @param max_nprim        the maximum number of primitives per contracted Gaussian shell
  *  @param max_l            the maximum angular momentum of Gaussian shell
  * 
- *  @return a two-electron integral engine that can calculate integrals over the nuclear attraction operator using the Libint integral library backend
+ *  @return a two-electron integral engine that can calculate integrals over the Coulomb repulsion operator using the Libint integral library backend
  */
 auto IntegralEngine::Libint(const CoulombRepulsionOperator& op, const size_t max_nprim, const size_t max_l) -> LibintTwoElectronIntegralEngine<CoulombRepulsionOperator::Components> {
 
@@ -141,6 +141,22 @@ auto IntegralEngine::Libcint(const NuclearAttractionOperator& op) -> LibcintOneE
 auto IntegralEngine::Libcint(const ElectronicDipoleOperator& op) -> LibcintOneElectronIntegralEngine<GTOShell, ElectronicDipoleOperator::Components, double> {
 
     return LibcintOneElectronIntegralEngine<GTOShell, ElectronicDipoleOperator::Components, double>(op);
+}
+
+
+
+/*
+ *  LIBCINT - TWO-ELECTRON ENGINES
+ */
+
+/**
+ *  @param op               the Coulomb repulsion operator
+ * 
+ *  @return a two-electron integral engine that can calculate integrals over the Coulomb repulsion operator using the Libcint integral library backend
+ */
+auto IntegralEngine::Libcint(const CoulombRepulsionOperator& op) -> LibcintTwoElectronIntegralEngine<GTOShell, CoulombRepulsionOperator::Components, double> {
+
+    return LibcintTwoElectronIntegralEngine<GTOShell, CoulombRepulsionOperator::Components, double>(op);
 }
 
 

@@ -162,6 +162,16 @@ Libcint1eFunction LibcintInterfacer::oneElectronFunction(const ElectronicDipoleO
 }
 
 
+/**
+ *  @param op               the Coulomb repulsion operator
+ * 
+ *  @return the Libcint two-electron function that corresponds to the Coulomb repulsion dipole operator
+ */
+Libcint2eFunction LibcintInterfacer::twoElectronFunction(const CoulombRepulsionOperator& op) const {
+    return cint2e_cart;
+}
+
+
 
 /*
  *  PUBLIC METHODS - INTEGRALS

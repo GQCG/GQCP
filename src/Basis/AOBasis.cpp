@@ -197,9 +197,9 @@ OneElectronOperator<double> AOBasis::calculateLibcintKineticIntegrals() const {
  */
 OneElectronOperator<double> AOBasis::calculateLibcintNuclearIntegrals() const {
 
-    const LibcintInterfacer libcint_interfacer;
-    auto raw_container = libcint_interfacer.convert(this->shell_set);
-    return libcint_interfacer.calculateOneElectronIntegrals<1>(cint1e_nuc_cart, raw_container)[0];
+    auto engine = IntegralEngine::Libcint(Operator::NuclearAttraction(this->shell_set.nuclei()));  // cannot be const: Libint2 has a non-const compute() method inside its interface
+    const auto integrals = IntegralCalculator::calculate(engine, this->shell_set);
+    return OneElectronOperator<double>(integrals[0]);
 }
 
 
@@ -229,9 +229,9 @@ std::array<OneElectronOperator<double>, 3> AOBasis::calculateLibcintDipoleIntegr
  */
 TwoElectronOperator<double> AOBasis::calculateLibcintCoulombRepulsionIntegrals() const {
 
-    const LibcintInterfacer libcint_interfacer;
-    auto raw_container = libcint_interfacer.convert(this->shell_set);
-    return libcint_interfacer.calculateTwoElectronIntegrals(cint2e_cart, raw_container);
+    auto engine = IntegralEngine::Libcint(Operator::Coulomb());  // cannot be const: Libint2 has a non-const compute() method inside its interface
+    const auto integrals = IntegralCalculator::calculate(engine, this->shell_set);
+    return TwoElectronOperator<double>(integrals[0]);
 }
 
 

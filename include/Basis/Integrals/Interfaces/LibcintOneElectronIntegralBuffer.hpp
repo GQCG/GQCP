@@ -77,7 +77,7 @@ public:
      *  @return a value from this integral buffer
      */
     virtual IntegralScalar value(const size_t i, const size_t f1, const size_t f2) const {
-        return this->scaling_factor * this->buffer[f1 + this->nbf1 * (f2 + this->nbf2 * i)];
+        return this->scaling_factor * this->buffer[f1 + this->nbf1 * (f2 + this->nbf2 * i)];  // column-major
     }
 };
 
