@@ -25,6 +25,9 @@
 #include "Basis/Integrals/Interfaces/LibcintOneElectronIntegralBuffer.hpp"
 #include "Basis/Integrals/Interfaces/LibcintInterfacer.hpp"
 
+#include <algorithm>
+#include <iterator>
+
 
 namespace GQCP {
 
@@ -36,7 +39,9 @@ namespace GQCP {
  *  @tparam _N                          the number of components the operator has
  *  @tparam _IntegralScalar             the scalar representation of an integral
  * 
- *  _ShellType is a template parameter because that enables compile-time checking of correct arguments
+ *  @note _ShellType is a template parameter because that enables compile-time checking of correct arguments.
+ *  Libcint1eFunction and Libcint2eFunction need the full libcint data (that we store in a RawContainer), because the electron electrical dipole function needs to access the 'common origin' and the nuclear attraction function needs to know all the nuclei that should be taken into account. We therefore keep the full RawContainer as a member.
+ *  In the overridden calculate(const GTOShell&, const GTOShell&) method, the shell indices that correspond to the RawContainer should also be known, which is why we also keep the ShellSet as a member, for easy retrieval of the shell indices.
  */
 template <typename _ShellType, size_t _N, typename _IntegralScalar>
 class LibcintOneElectronIntegralEngine : public BaseOneElectronIntegralEngine<_ShellType, _N, _IntegralScalar> {
@@ -48,6 +53,10 @@ public:
 
 private:
     Libcint1eFunction libcint_function;  // the libcint one-electron integral function
+
+    // Data that has to be kept as a member (see the class note)
+    libcint::RawContainer libcint_raw_container;  // the raw libcint data
+    ShellSet<ShellType> shell_set;  // the corresponding shell set
 
     // Parameters to pass to the buffer
     double scaling_factor = 1.0;  // a factor that is multiplied to all of the calculated integrals
@@ -61,32 +70,45 @@ public:
 
     /**
      *  @param op               the overlap operator
-     */
-    LibcintOneElectronIntegralEngine(const OverlapOperator& op) :
-        libcint_function (LibcintInterfacer().oneElectronFunction(op))
+     *  @param shell_set        the ShellSet whose information should be converted to a RawContainer, which will serve as some kind of 'global' data for the libcint engine to use in all its calculate() calls     */
+    LibcintOneElectronIntegralEngine(const OverlapOperator& op, const ShellSet<ShellType>& shell_set) :
+        libcint_function (LibcintInterfacer().oneElectronFunction(op)),
+        libcint_raw_container (LibcintInterfacer().convert(shell_set)),
+        shell_set (shell_set)
     {}
 
     /**
      *  @param op               the kinetic operator
+     *  @param shell_set        the ShellSet whose information should be converted to a RawContainer, which will serve as some kind of 'global' data for the libcint engine to use in all its calculate() calls
      */
-    LibcintOneElectronIntegralEngine(const KineticOperator& op) :
-        libcint_function (LibcintInterfacer().oneElectronFunction(op))
+    LibcintOneElectronIntegralEngine(const KineticOperator& op, const ShellSet<ShellType>& shell_set) :
+        libcint_function (LibcintInterfacer().oneElectronFunction(op)),
+        libcint_raw_container (LibcintInterfacer().convert(shell_set)),
+        shell_set (shell_set)
     {}
 
     /**
      *  @param op               the nuclear attraction operator
+     *  @param shell_set        the ShellSet whose information should be converted to a RawContainer, which will serve as some kind of 'global' data for the libcint engine to use in all its calculate() calls
      */
-    LibcintOneElectronIntegralEngine(const NuclearAttractionOperator& op) :
-        libcint_function (LibcintInterfacer().oneElectronFunction(op))
+    LibcintOneElectronIntegralEngine(const NuclearAttractionOperator& op, const ShellSet<ShellType>& shell_set) :
+        libcint_function (LibcintInterfacer().oneElectronFunction(op)),
+        libcint_raw_container (LibcintInterfacer().convert(shell_set)),
+        shell_set (shell_set)
     {}
 
     /**
      *  @param op               the electronic electric dipole operator
+     *  @param shell_set        the ShellSet whose information should be converted to a RawContainer, which will serve as some kind of 'global' data for the libcint engine to use in all its calculate() calls
      */
-    LibcintOneElectronIntegralEngine(const ElectronicDipoleOperator& op) :
+    LibcintOneElectronIntegralEngine(const ElectronicDipoleOperator& op, const ShellSet<ShellType>& shell_set) :
         libcint_function (LibcintInterfacer().oneElectronFunction(op)),
+        libcint_raw_container (LibcintInterfacer().convert(shell_set)),
+        shell_set (shell_set),
         scaling_factor (-1.0)  // apply the minus sign which comes from the charge of the electrons -e
-    {}
+    {
+        LibcintInterfacer().setCommonOrigin(this->libcint_raw_container, op.origin());
+    }
 
 
 
@@ -100,10 +122,16 @@ public:
      */
     std::shared_ptr<BaseOneElectronIntegralBuffer<IntegralScalar, N>> calculate(const GTOShell& shell1, const GTOShell& shell2) override {
 
-        // Interface the given GTOShells to libcint-compatible data
-        const LibcintInterfacer libcint_interfacer;
-        auto libcint_raw_container = libcint_interfacer.convert({shell1, shell2});
-        int shell_indices[2] = {0, 1};  // we're interfacing for every shell pair, so the shell indices are 0 and 1
+        // Find to which indices in the RawContainer the given shells correspond
+        const auto& it1 = std::find(this->shell_set.asVector().begin(), this->shell_set.asVector().end(), shell1);
+        const auto& shell_index1 = std::distance(this->shell_set.asVector().begin(), it1);
+
+        const auto& it2 = std::find(this->shell_set.asVector().begin(), this->shell_set.asVector().end(), shell2);
+        const auto& shell_index2 = std::distance(this->shell_set.asVector().begin(), it2);
+
+        int shell_indices[2];
+        shell_indices[0] = static_cast<int>(shell_index1);
+        shell_indices[1] = static_cast<int>(shell_index2);
 
 
         // Pre-allocate a raw buffer, because libcint functions expect a data pointer

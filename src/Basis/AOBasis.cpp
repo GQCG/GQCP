@@ -171,7 +171,7 @@ TwoElectronOperator<double> AOBasis::calculateLibintCoulombRepulsionIntegrals() 
  */
 OneElectronOperator<double> AOBasis::calculateLibcintOverlapIntegrals() const {
 
-    auto engine = IntegralEngine::Libcint(Operator::Overlap());  // cannot be const: Libint2 has a non-const compute() method inside its interface
+    auto engine = IntegralEngine::Libcint(Operator::Overlap(), this->shell_set);  // cannot be const: Libint2 has a non-const compute() method inside its interface
     const auto integrals = IntegralCalculator::calculate(engine, this->shell_set);
     return OneElectronOperator<double>(integrals[0]);
 }
@@ -184,7 +184,7 @@ OneElectronOperator<double> AOBasis::calculateLibcintOverlapIntegrals() const {
  */
 OneElectronOperator<double> AOBasis::calculateLibcintKineticIntegrals() const {
 
-    auto engine = IntegralEngine::Libcint(Operator::Kinetic());  // cannot be const: Libint2 has a non-const compute() method inside its interface
+    auto engine = IntegralEngine::Libcint(Operator::Kinetic(), this->shell_set);  // cannot be const: Libint2 has a non-const compute() method inside its interface
     const auto integrals = IntegralCalculator::calculate(engine, this->shell_set);
     return OneElectronOperator<double>(integrals[0]);
 }
@@ -197,7 +197,7 @@ OneElectronOperator<double> AOBasis::calculateLibcintKineticIntegrals() const {
  */
 OneElectronOperator<double> AOBasis::calculateLibcintNuclearIntegrals() const {
 
-    auto engine = IntegralEngine::Libcint(Operator::NuclearAttraction(this->shell_set.nuclei()));  // cannot be const: Libint2 has a non-const compute() method inside its interface
+    auto engine = IntegralEngine::Libcint(Operator::NuclearAttraction(this->shell_set.nuclei()), this->shell_set);  // cannot be const: Libint2 has a non-const compute() method inside its interface
     const auto integrals = IntegralCalculator::calculate(engine, this->shell_set);
     return OneElectronOperator<double>(integrals[0]);
 }
@@ -212,13 +212,9 @@ OneElectronOperator<double> AOBasis::calculateLibcintNuclearIntegrals() const {
  */
 std::array<OneElectronOperator<double>, 3> AOBasis::calculateLibcintDipoleIntegrals(const Vector<double, 3>& origin) const {
 
-    const LibcintInterfacer libcint_interfacer;
-    auto raw_container = libcint_interfacer.convert(this->shell_set);
-    libcint_interfacer.setCommonOrigin(raw_container, origin);
-    const auto& all_integrals = libcint_interfacer.calculateOneElectronIntegrals<3>(cint1e_r_cart, raw_container);
-
-    // Apply the minus sign which comes from the charge of the electrons -e
-    return std::array<OneElectronOperator<double>, 3> {-all_integrals[0], -all_integrals[1], -all_integrals[2]};
+    auto engine = IntegralEngine::Libcint(Operator::ElectronicDipole(origin), this->shell_set);  // cannot be const: Libint2 has a non-const compute() method inside its interface
+    const auto integrals = IntegralCalculator::calculate(engine, this->shell_set);
+    return std::array<OneElectronOperator<double>, 3> {integrals[0], integrals[1], integrals[2]};
 }
 
 
@@ -229,7 +225,7 @@ std::array<OneElectronOperator<double>, 3> AOBasis::calculateLibcintDipoleIntegr
  */
 TwoElectronOperator<double> AOBasis::calculateLibcintCoulombRepulsionIntegrals() const {
 
-    auto engine = IntegralEngine::Libcint(Operator::Coulomb());  // cannot be const: Libint2 has a non-const compute() method inside its interface
+    auto engine = IntegralEngine::Libcint(Operator::Coulomb(), this->shell_set);  // cannot be const: Libint2 has a non-const compute() method inside its interface
     const auto integrals = IntegralCalculator::calculate(engine, this->shell_set);
     return TwoElectronOperator<double>(integrals[0]);
 }

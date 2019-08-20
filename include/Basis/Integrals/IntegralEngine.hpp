@@ -97,31 +97,35 @@ public:
 
     /**
      *  @param op               the overlap operator
+     *  @param shell_set        the ShellSet whose information should be converted to a RawContainer, which will serve as some kind of 'global' data for the libcint engine to use in all its calculate() calls
      * 
      *  @return a one-electron integral engine that can calculate integrals over the overlap operator using the Libcint integral library backend
      */
-    static auto Libcint(const OverlapOperator& op) -> LibcintOneElectronIntegralEngine<GTOShell, OverlapOperator::Components, double>;
+    static auto Libcint(const OverlapOperator& op, const ShellSet<GTOShell>& shell_set) -> LibcintOneElectronIntegralEngine<GTOShell, OverlapOperator::Components, double>;
 
     /**
      *  @param op               the kinetic operator
+     *  @param shell_set        the ShellSet whose information should be converted to a RawContainer, which will serve as some kind of 'global' data for the libcint engine to use in all its calculate() calls
      * 
      *  @return a one-electron integral engine that can calculate integrals over the kinetic operator using the Libcint integral library backend
      */
-    static auto Libcint(const KineticOperator& op) -> LibcintOneElectronIntegralEngine<GTOShell, KineticOperator::Components, double>;
+    static auto Libcint(const KineticOperator& op, const ShellSet<GTOShell>& shell_set) -> LibcintOneElectronIntegralEngine<GTOShell, KineticOperator::Components, double>;
 
     /**
      *  @param op               the nuclear attraction operator
+     *  @param shell_set        the ShellSet whose information should be converted to a RawContainer, which will serve as some kind of 'global' data for the libcint engine to use in all its calculate() calls
      * 
      *  @return a one-electron integral engine that can calculate integrals over the nuclear attraction operator using the Libcint integral library backend
      */
-    static auto Libcint(const NuclearAttractionOperator& op) -> LibcintOneElectronIntegralEngine<GTOShell, NuclearAttractionOperator::Components, double>;
+    static auto Libcint(const NuclearAttractionOperator& op, const ShellSet<GTOShell>& shell_set) -> LibcintOneElectronIntegralEngine<GTOShell, NuclearAttractionOperator::Components, double>;
 
     /**
      *  @param op               the electron electronic dipole operator
+     *  @param shell_set        the ShellSet whose information should be converted to a RawContainer, which will serve as some kind of 'global' data for the libcint engine to use in all its calculate() calls
      * 
      *  @return a one-electron integral engine that can calculate integrals over the electronic dipole operator using the Libcint integral library backend
      */
-    static auto Libcint(const ElectronicDipoleOperator& op) -> LibcintOneElectronIntegralEngine<GTOShell, ElectronicDipoleOperator::Components, double>;
+    static auto Libcint(const ElectronicDipoleOperator& op, const ShellSet<GTOShell>& shell_set) -> LibcintOneElectronIntegralEngine<GTOShell, ElectronicDipoleOperator::Components, double>;
 
 
     /*
@@ -130,10 +134,11 @@ public:
 
     /**
      *  @param op               the Coulomb repulsion operator
+     *  @param shell_set        the ShellSet whose information should be converted to a RawContainer, which will serve as some kind of 'global' data for the libcint engine to use in all its calculate() calls
      * 
      *  @return a two-electron integral engine that can calculate integrals over the Coulomb repulsion operator using the Libcint integral library backend
      */
-    static auto Libcint(const CoulombRepulsionOperator& op) -> LibcintTwoElectronIntegralEngine<GTOShell, CoulombRepulsionOperator::Components, double>;
+    static auto Libcint(const CoulombRepulsionOperator& op, const ShellSet<GTOShell>& shell_set) -> LibcintTwoElectronIntegralEngine<GTOShell, CoulombRepulsionOperator::Components, double>;
 };
 
 

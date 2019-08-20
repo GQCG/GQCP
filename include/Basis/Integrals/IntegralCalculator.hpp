@@ -110,7 +110,6 @@ public:
         for (size_t sh1_index = 0; sh1_index < nsh; sh1_index++) {  // shell 1
             const auto bf1 = shell_set.basisFunctionIndex(sh1_index);
             const auto shell1 = shells[sh1_index];
-            std::cout << "sh1_index: " << sh1_index << std::endl;
 
             for (size_t sh2_index = 0; sh2_index < nsh; sh2_index++) {  // shell 2
                 const auto bf2 = shell_set.basisFunctionIndex(sh2_index);

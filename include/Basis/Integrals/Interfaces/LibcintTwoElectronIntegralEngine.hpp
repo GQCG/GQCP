@@ -36,7 +36,8 @@ namespace GQCP {
  *  @tparam _N                          the number of components the operator has
  *  @tparam _IntegralScalar             the scalar representation of an integral
  * 
- *  _ShellType is a template parameter because that enables compile-time checking of correct arguments
+ *  @note _ShellType is a template parameter because that enables compile-time checking of correct arguments.
+ *  See also the notes in LibcintOneElectronIntegralEngine
  */
 template <typename _ShellType, size_t _N, typename _IntegralScalar>
 class LibcintTwoElectronIntegralEngine : public BaseTwoElectronIntegralEngine<_ShellType, _N, _IntegralScalar> {
@@ -49,6 +50,9 @@ public:
 private:
     Libcint2eFunction libcint_function;  // the libcint two-electron integral function
 
+    // Data that has to be kept as a member (see the class note)
+    libcint::RawContainer libcint_raw_container;  // the raw libcint data
+    ShellSet<ShellType> shell_set;  // the corresponding shell set
 
 public:
 
@@ -57,10 +61,13 @@ public:
      */
 
     /**
-     *  @param op           the Coulomb repulsion operator
+     *  @param op               the Coulomb repulsion operator
+     *  @param shell_set        the ShellSet whose information should be converted to a RawContainer, which will serve as some kind of 'global' data for the libcint engine to use in all its calculate() calls
      */
-    LibcintTwoElectronIntegralEngine(const CoulombRepulsionOperator& op) :
-        libcint_function (LibcintInterfacer().twoElectronFunction(op))
+    LibcintTwoElectronIntegralEngine(const CoulombRepulsionOperator& op, const ShellSet<ShellType>& shell_set) :
+        libcint_function (LibcintInterfacer().twoElectronFunction(op)),
+        libcint_raw_container (LibcintInterfacer().convert(shell_set)),
+        shell_set (shell_set)
     {}
 
 
@@ -78,10 +85,24 @@ public:
      */
     std::shared_ptr<BaseTwoElectronIntegralBuffer<IntegralScalar, N>> calculate(const ShellType& shell1, const ShellType& shell2, const ShellType& shell3, const ShellType& shell4) override {
 
-        // Interface the given GTOShells to libcint-compatible data
-        const LibcintInterfacer libcint_interfacer;
-        auto libcint_raw_container = libcint_interfacer.convert({shell1, shell2, shell3, shell4});
-        int shell_indices[4] = {0, 1, 2, 3};  // we're interfacing for every shell quartet, so the shell indices are 0, 1, 2, and 3
+        // Find to which indices in the RawContainer the given shells correspond
+        const auto& it1 = std::find(this->shell_set.asVector().begin(), this->shell_set.asVector().end(), shell1);
+        const auto& shell_index1 = std::distance(this->shell_set.asVector().begin(), it1);
+
+        const auto& it2 = std::find(this->shell_set.asVector().begin(), this->shell_set.asVector().end(), shell2);
+        const auto& shell_index2 = std::distance(this->shell_set.asVector().begin(), it2);
+
+        const auto& it3 = std::find(this->shell_set.asVector().begin(), this->shell_set.asVector().end(), shell3);
+        const auto& shell_index3 = std::distance(this->shell_set.asVector().begin(), it3);
+
+        const auto& it4 = std::find(this->shell_set.asVector().begin(), this->shell_set.asVector().end(), shell4);
+        const auto& shell_index4 = std::distance(this->shell_set.asVector().begin(), it4);
+
+        int shell_indices[4];
+        shell_indices[0] = static_cast<int>(shell_index1);
+        shell_indices[1] = static_cast<int>(shell_index2);
+        shell_indices[2] = static_cast<int>(shell_index3);
+        shell_indices[3] = static_cast<int>(shell_index4);
 
 
         // Pre-allocate a raw buffer, because libcint functions expect a data pointer
