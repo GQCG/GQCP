@@ -45,7 +45,7 @@ public:
 public:
 
     // DESTRUCTOR
-    virtual ~BaseTwoElectronIntegralBuffer() = default;
+    virtual ~BaseTwoElectronIntegralEngine() = default;
 
 
     // PUBLIC METHODS
