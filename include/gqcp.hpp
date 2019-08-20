@@ -19,18 +19,29 @@
 #define GQCP_HPP
 
 #include "Basis/AOBasis.hpp"
-#include "Basis/Integrals/BaseOneElectronIntegralBuffer.hpp"
-#include "Basis/Integrals/BaseOneElectronIntegralEngine.hpp"
 #include "Basis/CartesianExponents.hpp"
 #include "Basis/CartesianGTO.hpp"
 #include "Basis/GTOBasisSet.hpp"
 #include "Basis/GTOShell.hpp"
+#include "Basis/ShellSet.hpp"
+
+#include "Basis/Integrals/BaseOneElectronIntegralBuffer.hpp"
+#include "Basis/Integrals/BaseOneElectronIntegralEngine.hpp"
+#include "Basis/Integrals/BaseTwoElectronIntegralBuffer.hpp"
+#include "Basis/Integrals/BaseTwoElectronIntegralEngine.hpp"
 #include "Basis/Integrals/IntegralCalculator.hpp"
 #include "Basis/Integrals/IntegralEngine.hpp"
+
 #include "Basis/Integrals/Interfaces/LibcintInterfacer.hpp"
+#include "Basis/Integrals/Interfaces/LibcintOneElectronIntegralBuffer.hpp"
+#include "Basis/Integrals/Interfaces/LibcintOneElectronIntegralEngine.hpp"
+#include "Basis/Integrals/Interfaces/LibcintTwoElectronIntegralBuffer.hpp"
+#include "Basis/Integrals/Interfaces/LibcintTwoElectronIntegralEngine.hpp"
 #include "Basis/Integrals/Interfaces/LibintInterfacer.hpp"
-#include "LibintOneElectronIntegralEngine.hpp"
-#include "Basis/ShellSet.hpp"
+#include "Basis/Integrals/Interfaces/LibintOneElectronIntegralBuffer.hpp"
+#include "Basis/Integrals/Interfaces/LibintOneElectronIntegralEngine.hpp"
+#include "Basis/Integrals/Interfaces/LibintTwoElectronIntegralBuffer.hpp"
+#include "Basis/Integrals/Interfaces/LibintTwoElectronIntegralEngine.hpp"
 
 #include "CISolver/CISolver.hpp"
 
