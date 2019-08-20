@@ -210,10 +210,10 @@ public:
      *  Add a rank-4 tensor into this, starting from given indices
      *
      *  @param T        a rank-4 tensor
-     *  @param i        1st starting index
-     *  @param j        2nd starting index
-     *  @param k        3rd starting index
-     *  @param l        4th starting index
+     *  @param i                starting index for the 1st index axis of the tensor
+     *  @param j                starting index for the 2nd index axis of the tensor
+     *  @param k                starting index for the 3rd index axis of the tensor
+     *  @param l                starting index for the 4th index axis of the tensor
      *
      *  @return a reference to updated this
      */
@@ -237,25 +237,26 @@ public:
     /**
      *  Add a matrix to a this tensor starting from given indices
      *
-     *  @tparam r               indicates which starting index (0,1,2,3) should correspond to the 1st matrix index
-     *  @tparam s               indicates which starting index (0,1,2,3) should correspond to the 2nd matrix index
+     *  @tparam r               indicates with which tensor index axis (0,1,2,3) the row index axis of the matrix should align 
+     *  @tparam s               indicates with which tensor index axis (0,1,2,3) the column index axis of the matrix should align 
      *
      *  @param M                a matrix
-     *  @param i                1st starting index
-     *  @param j                2nd starting index
-     *  @param k                3rd starting index
-     *  @param l                4th starting index
+     *  @param i                starting index for the 1st index axis of the tensor
+     *  @param j                starting index for the 2nd index axis of the tensor
+     *  @param k                starting index for the 3rd index axis of the tensor
+     *  @param l                starting index for the 4th index axis of the tensor
      *
      *  @return a reference to updated this
      *
      *
      *  Example:
-     *      Given a rank-4 tensor of dimensions (10,10,10,10), and a matrix of dimensions (3,3)
-     *      When choosing r and s as 2,1 respectively, and i,j,k,l as 1,2,1,0
-     *      The matrix is added to the tensor with 1st index starting at i and 4th index starting at l held fixed at 1 and 0 respectively
-     *      While 2nd index starting from j (2) now is mapped to the 2nd matrix (s=1) element and 3rd index starting from k (1) is mapped to 1st (r=2)
-     *      meaning that the additions follow : tensor(1,2,1,0) += M(0,0), tensor(1,3,1,0) += M(0,1), ..., tensor(1,3,4,0) += M(3,1), tensor(1,4,4,0) += M(3,2), etc
-     *      and for other indices we find : tensor(2,2,1,0) += 0 (no changes, these are obviously not performed)
+     *      Given a rank-4 tensor of dimensions (10,10,10,10), and a matrix M of dimensions (3,3)
+     *       Input : <2,0> (M, 0, 2, 1, 3):
+     *       <2,0> dictates that the row index axis of the matrix aligns with the 3rd index axis of the tensor (2nd starting from 0)
+     *       and that the column index axis of the matrix aligns with the 1st index axis tensor (0th starting from 0)
+     *       (0, 2, 1, 3) dictates the starting indexes to which the matrix is added, 
+     *       given the input <2,0> this means the indices of the 2nd (indicated by the "2") and the 4th (indicated by the "3") axes 
+     *       are held fixed because they do not correspond to the entries <2,0>.
      */
     template<size_t r, size_t s, int Z = Rank>
     enable_if_t<Z == 4, Self&> addBlock(const MatrixX<Scalar>& M, size_t i, size_t j, size_t k, size_t l) {

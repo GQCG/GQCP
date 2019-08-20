@@ -87,6 +87,7 @@ BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_Dense_diagonal_true ) {
     auto& h = parameters.get_h();
     auto& g = parameters.get_g();
 
+    // Test the evaluation of the operators with selected Fock space (the reference) versus the that of the product Fock space 
     auto one_electron_evaluation1 = product_fock_space.evaluateOperatorDense(h, true);
     auto one_electron_evaluation2 = selected_fock_space.evaluateOperatorDense(h, true);
 

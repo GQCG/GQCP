@@ -310,12 +310,13 @@ BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_Dense_diagonal_true ) {
     parameters.LowdinOrthonormalize();
 
     GQCP::FockSpace fock_space (6, 4);
-    GQCP::ProductFockSpace product_fock_space(6, 4, 0);
-    GQCP::SelectedFockSpace selected_fock_space(product_fock_space);
+    GQCP::ProductFockSpace product_fock_space (6, 4, 0);  // 4 alpha 0 beta product Fock space as selected Fock space constructor argument will mimic a spin orbital Fock space
+    GQCP::SelectedFockSpace selected_fock_space (product_fock_space);
 
-    auto& h = parameters.get_h();
-    auto& g = parameters.get_g();
+    const auto& h = parameters.get_h();
+    const auto& g = parameters.get_g();
 
+    // Test the evaluation of the operators with selected Fock space (the reference) versus that of the product Fock space 
     auto one_electron_evaluation1 = fock_space.evaluateOperatorDense(h, true);
     auto one_electron_evaluation2 = selected_fock_space.evaluateOperatorDense(h, true);
 
@@ -338,12 +339,13 @@ BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_Dense_diagonal_false ) {
     parameters.LowdinOrthonormalize();
 
     GQCP::FockSpace fock_space (6, 4);
-    GQCP::ProductFockSpace product_fock_space(6, 4, 0);
-    GQCP::SelectedFockSpace selected_fock_space(product_fock_space);
+    GQCP::ProductFockSpace product_fock_space (6, 4, 0);  // 4 alpha 0 beta product Fock space as selected Fock space constructor argument will mimic a spin orbital Fock space
+    GQCP::SelectedFockSpace selected_fock_space (product_fock_space);
 
-    auto& h = parameters.get_h();
-    auto& g = parameters.get_g();
+    const auto& h = parameters.get_h();
+    const auto& g = parameters.get_g();
 
+    // Test the evaluation of the operators with selected Fock space (the reference) versus that of the product Fock space 
     auto one_electron_evaluation1 = fock_space.evaluateOperatorDense(h, false);
     auto one_electron_evaluation2 = selected_fock_space.evaluateOperatorDense(h, false);
 
@@ -366,12 +368,13 @@ BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_Sparse_diagonal_true ) {
     parameters.LowdinOrthonormalize();
 
     GQCP::FockSpace fock_space (6, 4);
-    GQCP::ProductFockSpace product_fock_space(6, 4, 0);
-    GQCP::SelectedFockSpace selected_fock_space(product_fock_space);
+    GQCP::ProductFockSpace product_fock_space (6, 4, 0);  // 4 alpha 0 beta product Fock space as selected Fock space constructor argument will mimic a spin orbital Fock space
+    GQCP::SelectedFockSpace selected_fock_space (product_fock_space);
 
-    auto& h = parameters.get_h();
-    auto& g = parameters.get_g();
+    const auto& h = parameters.get_h();
+    const auto& g = parameters.get_g();
 
+    // Test the evaluation of the operators with selected Fock space (the reference) versus that of the product Fock space 
     auto one_electron_evaluation1 = GQCP::SquareMatrix<double>(fock_space.evaluateOperatorSparse(h, true));
     auto one_electron_evaluation2 = GQCP::SquareMatrix<double>(selected_fock_space.evaluateOperatorSparse(h, true));
 
@@ -394,12 +397,13 @@ BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_Sparse_diagonal_false ) {
     parameters.LowdinOrthonormalize();
 
     GQCP::FockSpace fock_space (6, 4);
-    GQCP::ProductFockSpace product_fock_space(6, 4, 0);
-    GQCP::SelectedFockSpace selected_fock_space(product_fock_space);
+    GQCP::ProductFockSpace product_fock_space (6, 4, 0);  // 4 alpha 0 beta product Fock space as selected Fock space constructor argument will mimic a spin orbital Fock space
+    GQCP::SelectedFockSpace selected_fock_space (product_fock_space);
 
-    auto& h = parameters.get_h();
-    auto& g = parameters.get_g();
+    const auto& h = parameters.get_h();
+    const auto& g = parameters.get_g();
 
+    // Test the evaluation of the operators with selected Fock space (the reference) versus that of the product Fock space 
     auto one_electron_evaluation1 = GQCP::SquareMatrix<double>(fock_space.evaluateOperatorSparse(h, false));
     auto one_electron_evaluation2 = GQCP::SquareMatrix<double>(selected_fock_space.evaluateOperatorSparse(h, false));
 
@@ -422,12 +426,13 @@ BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_diagonal ) {
     parameters.LowdinOrthonormalize();
 
     GQCP::FockSpace fock_space (6, 4);
-    GQCP::ProductFockSpace product_fock_space(6, 4, 0);
-    GQCP::SelectedFockSpace selected_fock_space(product_fock_space);
+    GQCP::ProductFockSpace product_fock_space (6, 4, 0);  // 4 alpha 0 beta product Fock space as selected Fock space constructor argument will mimic a spin orbital Fock space
+    GQCP::SelectedFockSpace selected_fock_space (product_fock_space);
 
-    auto& h = parameters.get_h();
-    auto& g = parameters.get_g();
+    const auto& h = parameters.get_h();
+    const auto& g = parameters.get_g();
 
+    // Test the evaluation of the operators with selected Fock space (the reference) versus that of the product Fock space 
     auto one_electron_evaluation1 = fock_space.evaluateOperatorDiagonal(h);
     auto one_electron_evaluation2 = selected_fock_space.evaluateOperatorDiagonal(h);
 
