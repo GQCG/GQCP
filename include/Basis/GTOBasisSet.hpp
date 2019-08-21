@@ -18,44 +18,47 @@
 #pragma once
 
 
-#include "Molecule/NuclearFramework.hpp"
+#include "Basis/GTOShell.hpp"
+#include "Basis/ShellSet.hpp"
+#include "Molecule/Molecule.hpp"
+
+#include <string>
 
 
 namespace GQCP {
 
 
+
 /**
- *  A base class to represent nuclear first-quantized operators
+ *  A class that represents a Gaussian basis set: it serves as a mold to construct GTOShells
  */
-class BaseNuclearOperator {
-protected:
-    NuclearFramework nuclear_framework;  // the nuclear framework underlying a nuclear operator
+class GTOBasisSet {
+private:
+    std::string basisset_name;  // the name of the basisset
 
 
 public:
     // CONSTRUCTORS
 
     /**
-     *  @param nuclear_framework            the nuclear framework underlying a nuclear operator
+     *  @param basisset_name                the name of the basisset
      */
-    BaseNuclearOperator(const NuclearFramework& nuclear_framework);
-
-    /**
-     *  @param nuclei                       the nuclei that are considered to represent the nuclear framework underlying a nuclear operator
-     */
-    BaseNuclearOperator(const std::vector<Nucleus>& nuclei);
-
-
-    // DESTRUCTOR
-    virtual ~BaseNuclearOperator() = 0;  // provide a pure virtual destructor to make the class abstract
+    GTOBasisSet(const std::string& basisset_name);
 
 
     // PUBLIC METHODS
 
     /**
-     *  @return the nuclear framework upon which this operator is built
+     *  @return the name of the basisset
      */
-    const NuclearFramework& nuclearFramework() const { return this->nuclear_framework; }
+    const std::string& name() const { return this->basisset_name; }
+
+    /**
+     *  @param molecule             the molecule containing the nuclei on which the shells should be centered
+     * 
+     *  @return the shell set by placing the shells corresponding to the basisset information on every nucleus of the molecule
+     */
+    ShellSet<GTOShell> generate(const Molecule& molecule) const;
 };
 
 

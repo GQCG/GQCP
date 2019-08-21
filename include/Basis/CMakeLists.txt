@@ -3,8 +3,9 @@ target_sources(gqcp
             AOBasis.hpp
             CartesianExponents.hpp
             CartesianGTO.hpp
-            LibcintInterfacer.hpp
-            LibintInterfacer.hpp
-            Shell.hpp
+            GTOBasisSet.hpp
+            GTOShell.hpp
             ShellSet.hpp
         )
+
+add_subdirectory(Integrals)

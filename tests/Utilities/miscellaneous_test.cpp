@@ -126,3 +126,12 @@ BOOST_AUTO_TEST_CASE ( validateAndOpen ) {
     // Make sure we don't get an error when a correct path is given
     BOOST_REQUIRE_NO_THROW(GQCP::validateAndOpen("data/h2o.xyz", "xyz"));
 }
+
+
+BOOST_AUTO_TEST_CASE ( findElementIndex ) {
+
+    std::vector<int> vector {1, 2, 3};
+
+    BOOST_REQUIRE_THROW(GQCP::findElementIndex(vector, 0), std::out_of_range);  // 0 is not in the vector
+    BOOST_CHECK_EQUAL(GQCP::findElementIndex(vector, 2), 1);
+}

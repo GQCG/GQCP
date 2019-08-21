@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "Basis/LibcintInterfacer.hpp"
+#include "Basis/Integrals/Interfaces/LibcintInterfacer.hpp"
 
 
 namespace GQCP {
@@ -30,12 +30,12 @@ namespace GQCP {
  *
  *  @return the information in a GQCP::ShellSet as a libcint::Container
  */
-libcint::RawContainer LibcintInterfacer::convert(const ShellSet& shell_set) const{
+libcint::RawContainer LibcintInterfacer::convert(const ShellSet<GTOShell>& shell_set) const {
 
     const auto& nuclei = shell_set.nuclei();
     const auto& natm = nuclei.size();
     const auto& nbf = shell_set.numberOfBasisFunctions();
-    const auto& nsh = shell_set.size();  // number of shells
+    const auto& nsh = shell_set.numberOfShells();
 
     libcint::RawContainer raw_container (natm, nbf, nsh);
 
@@ -59,12 +59,13 @@ libcint::RawContainer LibcintInterfacer::convert(const ShellSet& shell_set) cons
 
     // Configuration of shell-related data
     int nucleus_index = 0;  // index of the nucleus the shell is centered on
-    auto previous_nucleus = shell_set[0].get_nucleus();  // start with the first nucleus
+    const auto& shellset_vector = shell_set.asVector();
+    auto previous_nucleus = shellset_vector[0].get_nucleus();  // start with the first nucleus
     for (size_t n = 0; n < shell_set.numberOfShells(); n++) {
 
-        auto current_shell = shell_set[n];
+        auto current_shell = shellset_vector[n];
         if (current_shell.is_normalized()) {
-            throw std::invalid_argument("LibcintInterfacer::convert(const ShellSet&): The libcint integral engine requires a ShellSet with coefficients that do not hold the total normalization factor.");
+            throw std::invalid_argument("LibcintInterfacer::convert(const ShellSet<GTOShell>&): The libcint integral engine requires a ShellSet with coefficients that do not hold the total normalization factor.");
         }
 
 
@@ -120,84 +121,53 @@ void LibcintInterfacer::setCommonOrigin(libcint::RawContainer& raw_container, co
 }
 
 
-
-/*
- *  PUBLIC METHODS - INTEGRALS
+/**
+ *  @param op           the overlap operator
+ * 
+ *  @return the Libcint one-electron function that corresponds to the overlap operator
  */
+Libcint1eFunction LibcintInterfacer::oneElectronFunction(const OverlapOperator& op) const {
+    return cint1e_ovlp_cart;
+}
+
 
 /**
- *  @param function             the libcint two-electron integral function
- *  @param raw_container        the data libcint needs to perform calculations
- *
- *  @return an array of N OneElectronOperators corresponding to the matrix representations of the N components of the given operator represented by the libcint function
+ *  @param op               the kinetic operator
+ * 
+ *  @return the Libcint one-electron function that corresponds to the kinetic operator
  */
-TwoElectronOperator<double> LibcintInterfacer::calculateTwoElectronIntegrals(const Libcint2eFunction& function, libcint::RawContainer& raw_container) const {
-
-    // Initialize the TwoElectronOperator and set to zero
-    const auto& nbf = raw_container.nbf;
-    TwoElectronOperator<double> g (nbf);
-    g.setZero();
+Libcint1eFunction LibcintInterfacer::oneElectronFunction(const KineticOperator& op) const {
+    return cint1e_kin_cart;
+}
 
 
-
-    // Calculate the integrals over the shells
-    size_t bf1 = 0;  // index of the first basis function in the first shell
-    for (size_t sh1 = 0; sh1 < raw_container.nsh; sh1++) {
-
-        int nbf_sh1 = CINTcgto_cart(static_cast<int>(sh1), raw_container.libcint_bas);  // number of basis functions in first shell
-        size_t bf2 = 0;  // index of the first basis function in the second shell
-        for (size_t sh2 = 0; sh2 < raw_container.nsh; sh2++) {
-
-            int nbf_sh2 = CINTcgto_cart(static_cast<int>(sh2), raw_container.libcint_bas);  // number of basis functions in first shell
-            size_t bf3 = 0;  // index of the first basis function in the third shell
-            for (size_t sh3 = 0; sh3 < raw_container.nsh; sh3++) {
-
-                int nbf_sh3 = CINTcgto_cart(static_cast<int>(sh3), raw_container.libcint_bas);  // number of basis functions in first shell
-                size_t bf4 = 0;  // index of the first basis function in the fourth shell
-                for (size_t sh4 = 0; sh4 < raw_container.nsh; sh4++) {
-
-                    int nbf_sh4 = CINTcgto_cart(static_cast<int>(sh4), raw_container.libcint_bas);  // number of basis functions in fourth shell
+/**
+ *  @param op               the nuclear attraction operator
+ * 
+ *  @return the Libcint one-electron function that corresponds to the nuclear attraction operator
+ */
+Libcint1eFunction LibcintInterfacer::oneElectronFunction(const NuclearAttractionOperator& op) const {
+    return cint1e_nuc_cart;
+}
 
 
-
-                    int shell_indices[4];  // indices of the shells to be calculated over
-                    shell_indices[0] = static_cast<int>(sh1);
-                    shell_indices[1] = static_cast<int>(sh2);
-                    shell_indices[2] = static_cast<int>(sh3);
-                    shell_indices[3] = static_cast<int>(sh4);
-
-
-                    double buf[nbf_sh1 * nbf_sh2 * nbf_sh3 * nbf_sh4];  // buffer where the integrals are calculated to
-                    function(buf, shell_indices, raw_container.libcint_atm, raw_container.natm, raw_container.libcint_bas, raw_container.nbf, raw_container.libcint_env, nullptr);  // TODO: what is result is zero: skip a shell?
+/**
+ *  @param op               the electronic electric dipole operator
+ * 
+ *  @return the Libcint one-electron function that corresponds to the electronic electric dipole operator
+ */
+Libcint1eFunction LibcintInterfacer::oneElectronFunction(const ElectronicDipoleOperator& op) const {
+    return cint1e_r_cart;
+}
 
 
-                    for (size_t f1 = 0; f1 < nbf_sh1; f1++) {
-                        for (size_t f2 = 0; f2 < nbf_sh2; f2++) {
-                            for (size_t f3 = 0; f3 < nbf_sh3; f3++) {
-                                for (size_t f4 = 0; f4 < nbf_sh4; f4++) {
-                                    const double& computed_integral = buf[f1 + nbf_sh1 * (f2 + nbf_sh2 * (f3 + nbf_sh3 * f4))];  // integrals are packed in column-major form
-
-                                    // Two-electron integrals are given in CHEMIST'S notation: (11|22)
-                                    g(f1 + bf1, f2 + bf2, f3 + bf3, f4 + bf4) = computed_integral;
-                                }
-                            }
-                        }
-                    } // data access loops
-
-                    bf4 += nbf_sh4;  // update the 'first basis function' with the encountered number of basis functions
-                }
-
-                bf3 += nbf_sh3;  // update the 'first basis function' with the encountered number of basis functions
-            }
-
-            bf2 += nbf_sh2;  // update the 'first basis function' with the encountered number of basis functions
-        }
-
-        bf1 += nbf_sh1;  // update the 'first basis function' with the encountered number of basis functions
-    }  // shell loops
-
-
-    return g;
+/**
+ *  @param op               the Coulomb repulsion operator
+ * 
+ *  @return the Libcint two-electron function that corresponds to the Coulomb repulsion dipole operator
+ */
+Libcint2eFunction LibcintInterfacer::twoElectronFunction(const CoulombRepulsionOperator& op) const {
+    return cint2e_cart;
 }
 
 

@@ -15,11 +15,11 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#define BOOST_TEST_MODULE "Shell"
+#define BOOST_TEST_MODULE "GTOShell"
 
 #include <boost/test/unit_test.hpp>
 
-#include "Basis/Shell.hpp"
+#include "Basis/GTOShell.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( Shell_constructor_throws ) {
@@ -28,8 +28,8 @@ BOOST_AUTO_TEST_CASE ( Shell_constructor_throws ) {
     std::vector<double> coeff1 {0.5, 1.0};
     std::vector<double> coeff2 {0.5, 1.0, 1.5};
 
-    GQCP::Shell shell1 (0, GQCP::Nucleus(), exp1, coeff1);
-    BOOST_CHECK_THROW(GQCP::Shell shell2 (0, GQCP::Nucleus(), exp1, coeff2), std::invalid_argument);
+    GQCP::GTOShell shell1 (0, GQCP::Nucleus(), exp1, coeff1);
+    BOOST_CHECK_THROW(GQCP::GTOShell shell2 (0, GQCP::Nucleus(), exp1, coeff2), std::invalid_argument);
 }
 
 
@@ -38,10 +38,10 @@ BOOST_AUTO_TEST_CASE ( numberOfBasisFunctions ) {
     std::vector<double> exp {1.0, 1.1};
     std::vector<double> coeff {0.5, 1.0};
     GQCP::Nucleus nucleus {};
-    GQCP::Shell cartesian_s_shell (0, nucleus, exp, coeff, false);
-    GQCP::Shell cartesian_p_shell (1, nucleus, exp, coeff, false);
-    GQCP::Shell cartesian_d_shell (2, nucleus, exp, coeff, false);
-    GQCP::Shell cartesian_f_shell (3, nucleus, exp, coeff, false);
+    GQCP::GTOShell cartesian_s_shell (0, nucleus, exp, coeff, false);
+    GQCP::GTOShell cartesian_p_shell (1, nucleus, exp, coeff, false);
+    GQCP::GTOShell cartesian_d_shell (2, nucleus, exp, coeff, false);
+    GQCP::GTOShell cartesian_f_shell (3, nucleus, exp, coeff, false);
 
     BOOST_CHECK(cartesian_s_shell.numberOfBasisFunctions() == 1);
     BOOST_CHECK(cartesian_p_shell.numberOfBasisFunctions() == 3);
@@ -49,10 +49,10 @@ BOOST_AUTO_TEST_CASE ( numberOfBasisFunctions ) {
     BOOST_CHECK(cartesian_f_shell.numberOfBasisFunctions() == 10);
 
 
-    GQCP::Shell spherical_s_shell (0, nucleus, exp, coeff);
-    GQCP::Shell spherical_p_shell (1, nucleus, exp, coeff);
-    GQCP::Shell spherical_d_shell (2, nucleus, exp, coeff);
-    GQCP::Shell spherical_f_shell (3, nucleus, exp, coeff);
+    GQCP::GTOShell spherical_s_shell (0, nucleus, exp, coeff);
+    GQCP::GTOShell spherical_p_shell (1, nucleus, exp, coeff);
+    GQCP::GTOShell spherical_d_shell (2, nucleus, exp, coeff);
+    GQCP::GTOShell spherical_f_shell (3, nucleus, exp, coeff);
 
     BOOST_CHECK(spherical_s_shell.numberOfBasisFunctions() == 1);
     BOOST_CHECK(spherical_p_shell.numberOfBasisFunctions() == 3);
@@ -74,19 +74,19 @@ BOOST_AUTO_TEST_CASE ( operator_equals ) {
 
 
     // Test for equality
-    BOOST_CHECK(GQCP::Shell(l1, nucleus1, exp1, coeff1) == GQCP::Shell(l1, nucleus1, exp1, coeff1));
+    BOOST_CHECK(GQCP::GTOShell(l1, nucleus1, exp1, coeff1) == GQCP::GTOShell(l1, nucleus1, exp1, coeff1));
 
     // Check if a different angular momentum causes inequality
-    BOOST_CHECK(!(GQCP::Shell(l1, nucleus1, exp1, coeff1) == GQCP::Shell(l2, nucleus1, exp1, coeff1)));
+    BOOST_CHECK(!(GQCP::GTOShell(l1, nucleus1, exp1, coeff1) == GQCP::GTOShell(l2, nucleus1, exp1, coeff1)));
 
     // Check if a different nucleus causes inequality
-    BOOST_CHECK(!(GQCP::Shell(l1, nucleus1, exp1, coeff1) == GQCP::Shell(l1, nucleus2, exp1, coeff1)));
+    BOOST_CHECK(!(GQCP::GTOShell(l1, nucleus1, exp1, coeff1) == GQCP::GTOShell(l1, nucleus2, exp1, coeff1)));
 
     // Check if different Gaussian exponents cause inequality
-    BOOST_CHECK(!(GQCP::Shell(l1, nucleus1, exp1, coeff1) == GQCP::Shell(l1, nucleus1, exp2, coeff1)));
+    BOOST_CHECK(!(GQCP::GTOShell(l1, nucleus1, exp1, coeff1) == GQCP::GTOShell(l1, nucleus1, exp2, coeff1)));
 
     // Check if different contraction coefficients cause inequality
-    BOOST_CHECK(!(GQCP::Shell(l1, nucleus1, exp1, coeff1) == GQCP::Shell(l1, nucleus1, exp1, coeff2)));
+    BOOST_CHECK(!(GQCP::GTOShell(l1, nucleus1, exp1, coeff1) == GQCP::GTOShell(l1, nucleus1, exp1, coeff2)));
 }
 
 
@@ -94,10 +94,10 @@ BOOST_AUTO_TEST_CASE ( embed_normalization_factor_primitives ) {
 
     std::vector<double> exp {1.0, 1.1};
     GQCP::Nucleus nucleus {};
-    GQCP::Shell s_shell (0, nucleus, exp, {0.5, 1.0});
+    GQCP::GTOShell s_shell (0, nucleus, exp, {0.5, 1.0});
     auto s_shell_copy = s_shell;
 
-    GQCP::Shell ref_embedded_shell (0, nucleus, exp, {0.3563527351774951, 0.7655165883890895});  // manual calculation
+    GQCP::GTOShell ref_embedded_shell (0, nucleus, exp, {0.3563527351774951, 0.7655165883890895});  // manual calculation
 
     // Check if embedding and un-embedding is a zero operation
     // Also test the behavior of calling the normalization functions twice
@@ -117,9 +117,9 @@ BOOST_AUTO_TEST_CASE ( embed_total_normalization_factor ) {
 
     std::vector<double> exp {1.0, 1.1};
     GQCP::Nucleus nucleus {};
-    GQCP::Shell s_shell (0, nucleus, exp, {0.5, 1.0});
+    GQCP::GTOShell s_shell (0, nucleus, exp, {0.5, 1.0});
 
-    GQCP::Shell ref_embedded_shell (0, nucleus, exp, {0.3854188481329033, 0.7708376962658066});  // manual calculation
+    GQCP::GTOShell ref_embedded_shell (0, nucleus, exp, {0.3854188481329033, 0.7708376962658066});  // manual calculation
 
 
     // Check if the embedding of the total normalization factor is correct

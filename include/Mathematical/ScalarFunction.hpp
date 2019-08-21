@@ -41,10 +41,6 @@ class ScalarFunction;
  *  ScalarFunctionProduct
  */
 
-template <typename T, typename U>
-using product_t = decltype(std::declval<T>() * std::declval<U>());
-
-
 /**
  *  A class template that represents a product of scalar functions (of the same type), such that the evaluation of a product is the product of the evaluations
  *
