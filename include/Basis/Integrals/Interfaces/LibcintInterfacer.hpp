@@ -15,8 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef LibcintInterfacer_hpp
-#define LibcintInterfacer_hpp
+#pragma once
 
 #include "Basis/GTOShell.hpp"
 #include "Basis/ShellSet.hpp"
@@ -27,7 +26,6 @@
 
 #include <functional>
 #include <unordered_map>
-
 
 
 extern "C" {
@@ -224,6 +222,3 @@ public:
 
 
 }  // namespace GQCP
-
-
-#endif  /* LibcintInterfacer_hpp */

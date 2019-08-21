@@ -16,14 +16,13 @@
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
 // 
-#ifndef GQCP_LIBCINTONEELECTRONINTEGRALENGINE_HPP
-#define GQCP_LIBCINTONEELECTRONINTEGRALENGINE_HPP
+#pragma once
 
 
 #include "Basis/Integrals/BaseOneElectronIntegralEngine.hpp"
 
-#include "Basis/Integrals/Interfaces/LibcintOneElectronIntegralBuffer.hpp"
 #include "Basis/Integrals/Interfaces/LibcintInterfacer.hpp"
+#include "Basis/Integrals/Interfaces/LibcintOneElectronIntegralBuffer.hpp"
 #include "Utilities/miscellaneous.hpp"
 
 
@@ -75,6 +74,7 @@ public:
         shell_set (shell_set)
     {}
 
+
     /**
      *  @param op               the kinetic operator
      *  @param shell_set        the ShellSet whose information should be converted to a RawContainer, which will serve as some kind of 'global' data for the libcint engine to use in all its calculate() calls
@@ -85,6 +85,7 @@ public:
         shell_set (shell_set)
     {}
 
+
     /**
      *  @param op               the nuclear attraction operator
      *  @param shell_set        the ShellSet whose information should be converted to a RawContainer, which will serve as some kind of 'global' data for the libcint engine to use in all its calculate() calls
@@ -94,6 +95,7 @@ public:
         libcint_raw_container (LibcintInterfacer().convert(shell_set)),
         shell_set (shell_set)
     {}
+
 
     /**
      *  @param op               the electronic electric dipole operator
@@ -141,9 +143,4 @@ public:
 };
 
 
-
 }  // namespace GQCP
-
-
-
-#endif  // GQCP_LIBCINTONEELECTRONINTEGRALENGINE_HPP

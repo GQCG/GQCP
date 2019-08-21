@@ -15,8 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCP_LIBINTINTERFACER_HPP
-#define GQCP_LIBINTINTERFACER_HPP
+#pragma once
 
 
 #include "Basis/GTOShell.hpp"
@@ -27,6 +26,7 @@
 #include "Operator/TwoElectronOperator.hpp"
 
 #include <boost/preprocessor.hpp>  // include preprocessor before libint to fix libint-boost bug
+
 #include <libint2.hpp>
 
 
@@ -212,6 +212,3 @@ public:
 
 
 }  // namespace GQCP
-
-
-#endif  // GQCP_LIBINTINTERFACER_HPP

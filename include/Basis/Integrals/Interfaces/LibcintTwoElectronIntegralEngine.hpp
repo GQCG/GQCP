@@ -15,15 +15,13 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-// 
-#ifndef GQCP_LIBCINTTWOELECTRONINTEGRALENGINE_HPP
-#define GQCP_LIBCINTTWOELECTRONINTEGRALENGINE_HPP
+#pragma once
 
 
 #include "Basis/Integrals/BaseTwoElectronIntegralEngine.hpp"
 
-#include "Basis/Integrals/Interfaces/LibcintTwoElectronIntegralBuffer.hpp"
 #include "Basis/Integrals/Interfaces/LibcintInterfacer.hpp"
+#include "Basis/Integrals/Interfaces/LibcintTwoElectronIntegralBuffer.hpp"
 #include "Utilities/miscellaneous.hpp"
 
 
@@ -112,7 +110,3 @@ public:
 
 
 }  // namespace GQCP
-
-
-
-#endif  // GQCP_LIBCINTTWOELECTRONINTEGRALENGINE_HPP

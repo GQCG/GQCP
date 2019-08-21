@@ -15,8 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCP_BASEONELECTRONINTEGRALENGINE_HPP
-#define GQCP_BASEONELECTRONINTEGRALENGINE_HPP
+#pragma once
 
 
 #include "Basis/Integrals/BaseOneElectronIntegralBuffer.hpp"
@@ -62,6 +61,3 @@ public:
 
 
 }  // namespace GQCP
-
-
-#endif  // GQCP_BASEONELECTRONINTEGRALENGINE_HPP

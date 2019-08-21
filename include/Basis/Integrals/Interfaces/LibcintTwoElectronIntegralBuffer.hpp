@@ -15,13 +15,10 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-// 
-#ifndef GQCP_LIBCINTTWOELECTRONINTEGRALBUFFER_HPP
-#define GQCP_LIBCINTTWOELECTRONINTEGRALBUFFER_HPP
+#pragma once
 
 
 #include "Basis/Integrals/BaseTwoElectronIntegralBuffer.hpp"
-
 
 
 namespace GQCP {
@@ -76,17 +73,9 @@ public:
      *  @return a value from this integral buffer
      */
     virtual IntegralScalar value(const size_t i, const size_t f1, const size_t f2, const size_t f3, const size_t f4) const {
-        // std::cout << "buffer size: " << this->buffer.size() << std::endl;
-        // std::cout << i << ", " << f1 << ", " << f2 << ", " << f3 << ", " << f4 << std::endl;
-        // std::cout << "accessing element: " << f1 + this->nbf1 * (f2 + this->nbf2 * (f3 + this->nbf3 * (f4 + this->nbf4 * i))) << std::endl;
         return this->buffer[f1 + this->nbf1 * (f2 + this->nbf2 * (f3 + this->nbf3 * (f4 + this->nbf4 * i)))];  // column major
     }
 };
 
 
-
 }  // namespace GQCP
-
-
-
-#endif  // GQCP_LIBCINTTWOELECTRONINTEGRALBUFFER_HPP

@@ -16,12 +16,10 @@
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
 // 
-#ifndef GQCP_LIBCINTONEELECTRONINTEGRALBUFFER_HPP
-#define GQCP_LIBCINTONEELECTRONINTEGRALBUFFER_HPP
+#pragma once
 
 
 #include "Basis/Integrals/BaseOneElectronIntegralBuffer.hpp"
-
 
 
 namespace GQCP {
@@ -82,9 +80,4 @@ public:
 };
 
 
-
 }  // namespace GQCP
-
-
-
-#endif  // GQCP_LIBCINTONEELECTRONINTEGRALBUFFER_HPP

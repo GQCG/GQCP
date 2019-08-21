@@ -15,8 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCP_LIBINTONEELECTRONINTEGRALENGINE_HPP
-#define GQCP_LIBINTONEELECTRONINTEGRALENGINE_HPP
+#pragma once
 
 
 #include "Basis/Integrals/BaseOneElectronIntegralEngine.hpp"
@@ -25,7 +24,6 @@
 #include "Basis/Integrals/Interfaces/LibintInterfacer.hpp"
 #include "Basis/Integrals/Interfaces/LibintOneElectronIntegralBuffer.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
-
 
 
 namespace GQCP {
@@ -124,7 +122,3 @@ public:
 
 
 }  // namespace GQCP
-
-
-
-#endif  // GQCP_LIBINTONEELECTRONINTEGRALENGINE_HPP

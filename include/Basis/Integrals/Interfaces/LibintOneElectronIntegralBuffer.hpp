@@ -15,10 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-// 
-#ifndef GQCP_LIBINTONEELECTRONINTEGRALBUFFER_HPP
-#define GQCP_LIBINTONEELECTRONINTEGRALBUFFER_HPP
-
+#pragma once
 
 #include "Basis/Integrals/BaseOneElectronIntegralBuffer.hpp"
 
@@ -88,7 +85,3 @@ public:
 
 
 }  // namespace GQCP
-
-
-
-#endif  // GQCP_LIBINTONEELECTRONINTEGRALBUFFER_HPP
