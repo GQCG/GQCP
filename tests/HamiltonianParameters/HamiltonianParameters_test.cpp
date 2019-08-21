@@ -423,3 +423,14 @@ BOOST_AUTO_TEST_CASE ( areOrbitalsOrthonormal ) {
     auto mol_ham_par = GQCP::HamiltonianParameters<double>(ao_ham_par, rhf.get_C());
     BOOST_CHECK(mol_ham_par.areOrbitalsOrthonormal());
 }
+
+BOOST_AUTO_TEST_CASE ( dissociatedMoleculeParameters ) {
+
+    // Test if we can succesfully initialize NO+ at long intra molecular distance
+    auto N = GQCP::Nucleus(7, 3.5, 0, 0);
+    auto O = GQCP::Nucleus(8, -3.5, 0, 0);
+    std::vector<GQCP::Nucleus> nuclei {N,O};
+    auto NO = GQCP::Molecule(nuclei, +1);
+
+    BOOST_CHECK_NO_THROW(GQCP::HamiltonianParameters<double>::Molecular(NO, "STO-3G"));
+}
