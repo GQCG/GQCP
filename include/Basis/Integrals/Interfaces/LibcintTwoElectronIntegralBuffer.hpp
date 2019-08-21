@@ -40,6 +40,8 @@ public:
 private:
     std::vector<IntegralScalar> buffer;  // the libcint integral data converted to a C++ vector
 
+    int result;  // the result of the libcint_function call
+
 
 public:
     /*
@@ -52,9 +54,11 @@ public:
      *  @param nbf2                 the number of basis functions in the second shell
      *  @param nbf3                 the number of basis functions in the third shell
      *  @param nbf4                 the number of basis functions in the fourth shell
+     *  @param result               the result of the libcint_function call
      */
-    LibcintTwoElectronIntegralBuffer(const std::vector<IntegralScalar>& buffer, const size_t nbf1, const size_t nbf2, const size_t nbf3, const size_t nbf4) :
+    LibcintTwoElectronIntegralBuffer(const std::vector<IntegralScalar>& buffer, const size_t nbf1, const size_t nbf2, const size_t nbf3, const size_t nbf4, const int result) :
         buffer (buffer),
+        result (result),
         BaseTwoElectronIntegralBuffer<IntegralScalar, N>(nbf1, nbf2, nbf3, nbf4)
     {}
 
@@ -81,7 +85,7 @@ public:
      *  @return if all the values of the calculated integrals are zero
      */
     bool areIntegralsAllZero() const override {
-        return false;  // the interface for 'not0' is not yet implemented
+        return (result == 0);
     }
 };
 
