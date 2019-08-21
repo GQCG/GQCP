@@ -91,6 +91,11 @@ public:
      */
     virtual IntegralScalar value(const size_t i, const size_t f1, const size_t f2, const size_t f3, const size_t f4) const = 0;
 
+    /**
+     *  @return if all the values of the calculated integrals are zero
+     */
+    virtual bool areIntegralsAllZero() const = 0;
+
 
     /*
      *  PUBLIC METHODS

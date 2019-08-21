@@ -72,8 +72,16 @@ public:
      * 
      *  @return a value from this integral buffer
      */
-    virtual IntegralScalar value(const size_t i, const size_t f1, const size_t f2, const size_t f3, const size_t f4) const {
+    IntegralScalar value(const size_t i, const size_t f1, const size_t f2, const size_t f3, const size_t f4) const override {
         return this->buffer[f1 + this->nbf1 * (f2 + this->nbf2 * (f3 + this->nbf3 * (f4 + this->nbf4 * i)))];  // column major
+    }
+
+
+    /**
+     *  @return if all the values of the calculated integrals are zero
+     */
+    bool areIntegralsAllZero() const override {
+        return false;  // the interface for 'not0' is not yet implemented
     }
 };
 
