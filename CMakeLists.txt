@@ -184,6 +184,7 @@ install(
         ${CMAKE_BINARY_DIR}/cmake/gqcp-config-version.cmake
         ${CMAKE_SOURCE_DIR}/cmake/FindEigen3.cmake
         ${CMAKE_SOURCE_DIR}/cmake/FindInt2.cmake
+        ${CMAKE_SOURCE_DIR}/cmake/FindMKL.cmake
         DESTINATION cmake
 )
 

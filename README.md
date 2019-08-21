@@ -135,8 +135,4 @@ For this library, there are several extra options you can pass to the `cmake ..`
 
 ### Usage in an external project
 
-If you want to use gqcp in another project, just add
-
-    find_package(gqcp 0.2.0 NO_MODULE)
-
-to its CMake configuration, and it will ben provide  `gqcp_INCLUDE_DIRS` to be used in `target_include_directories` and the target library `gqcp` to be used in `target_link_libraries`. The `NO_MODULE` option specifies that you will use the CMake config script installed by GQCP.
+We have created a small [example](https://github.com/GQCG/gqcp-link) which showcases how to use `gqcp` in an external C++ project

@@ -5,7 +5,7 @@ find_dependency(Git REQUIRED)
 find_dependency(Eigen3 3.3.4 REQUIRED MODULE)
 find_dependency(Int2 REQUIRED MODULE)
 find_dependency(Boost REQUIRED COMPONENTS program_options unit_test_framework)
-find_dependency(Spectra REQUIRED MODULE)
+find_dependency(Spectra REQUIRED)
 find_dependency(Cint REQUIRED)
 
 if(NOT TARGET gqcp::gqcp)
