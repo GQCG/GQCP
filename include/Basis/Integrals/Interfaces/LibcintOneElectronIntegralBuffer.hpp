@@ -44,6 +44,8 @@ private:
     double scaling_factor;  // a factor that multiplies every calculated value (for example in the dipole integrals, an extra factor -1 should be included)
     std::vector<IntegralScalar> buffer;  // the libcint integral data converted to a C++ vector
 
+    int result;  // the result of the libcint_function call
+
 
 public:
     /*
@@ -55,10 +57,12 @@ public:
      *  @param nbf1                 the number of basis functions in the first shell
      *  @param nbf2                 the number of basis functions in the second shell
      *  @param scaling_factor       a factor that multiplies every calculated value (for example in the dipole integrals, an extra factor -1 should be included)
+     *  @param result               the result of the libcint_function call
      */
-    LibcintOneElectronIntegralBuffer(const std::vector<IntegralScalar>& buffer, const size_t nbf1, const size_t nbf2, const double scaling_factor=1.0) :
+    LibcintOneElectronIntegralBuffer(const std::vector<IntegralScalar>& buffer, const size_t nbf1, const size_t nbf2, const int result, const double scaling_factor=1.0) :
         scaling_factor (scaling_factor),
         buffer (buffer),
+        result (result),
         BaseOneElectronIntegralBuffer<IntegralScalar, N>(nbf1, nbf2)
     {}
 
@@ -83,7 +87,7 @@ public:
      *  @return if all the values of the calculated integrals are zero
      */
     bool areIntegralsAllZero() const override {
-        return false;  // the interface for 'not0' is not yet implemented
+        return (this->result == 0);
     }
 };
 
