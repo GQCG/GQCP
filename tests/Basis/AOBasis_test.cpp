@@ -164,3 +164,16 @@ BOOST_AUTO_TEST_CASE ( libcint_vs_libint2_dipole_origin ) {
         BOOST_CHECK(dipole_libcint[i].isApprox(dipole_libint2[i], 1.0e-08));
     }
 }
+
+
+BOOST_AUTO_TEST_CASE ( dissociatedMoleculeBasis ) {
+
+    // Test if we can succesfully initialize NO+ at long intra molecular distance
+    auto N = GQCP::Nucleus(7, 3.5, 0, 0);
+    auto O = GQCP::Nucleus(8, -3.5, 0, 0);
+    std::vector<GQCP::Nucleus> nuclei {N,O};
+    auto NO = GQCP::Molecule(nuclei, +1);
+    GQCP::AOBasis basis (NO, "STO-3G");
+
+    BOOST_CHECK_NO_THROW(GQCP::AOBasis basis (NO, "STO-3G"));
+}
