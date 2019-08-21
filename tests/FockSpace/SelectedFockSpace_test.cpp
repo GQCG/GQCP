@@ -19,11 +19,8 @@
 
 #include <boost/test/unit_test.hpp>
 
-
 #include "FockSpace/SelectedFockSpace.hpp"
-
 #include "WaveFunction/WaveFunctionReader.hpp"
-
 
 
 BOOST_AUTO_TEST_CASE ( constructor ) {

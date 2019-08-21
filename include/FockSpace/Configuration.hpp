@@ -15,8 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCP_CONFIGURATION_HPP
-#define GQCP_CONFIGURATION_HPP
+#pragma once
 
 
 #include "ONV.hpp"
@@ -35,6 +34,3 @@ struct Configuration {
 
 
 }  // namespace GQCP
-
-
-#endif  // GQCP_CONFIGURATION_HPP

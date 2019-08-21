@@ -17,9 +17,8 @@
 // 
 #include "Mathematical/Optimization/SparseSolver.hpp"
 
-#include "Spectra/SymEigsSolver.h"
 #include "Spectra/MatOp/SparseSymMatProd.h"
-
+#include "Spectra/SymEigsSolver.h"
 
 
 namespace GQCP {

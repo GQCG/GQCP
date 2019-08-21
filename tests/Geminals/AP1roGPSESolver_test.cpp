@@ -16,13 +16,12 @@
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
 #define BOOST_TEST_MODULE "AP1roGPSESolver"
+
 #include <boost/test/unit_test.hpp>
 
 #include "Geminals/AP1roGPSESolver.hpp"
-
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
-
 
 
 BOOST_AUTO_TEST_CASE ( constructor ) {

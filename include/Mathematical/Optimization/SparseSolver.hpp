@@ -15,16 +15,13 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCP_SPARSESOLVER_HPP
-#define GQCP_SPARSESOLVER_HPP
+#pragma once
 
-
-
-#include <Eigen/Sparse>
 
 #include "Mathematical/Optimization/BaseMatrixSolver.hpp"
 #include "Mathematical/Optimization/EigenproblemSolverOptions.hpp"
 
+#include <Eigen/Sparse>
 
 
 namespace GQCP {
@@ -87,7 +84,3 @@ public:
 
 
 }  // namespace GQCP
-
-
-
-#endif  // GQCP_SPARSESOLVER_HPP

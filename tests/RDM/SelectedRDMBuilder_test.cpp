@@ -17,20 +17,16 @@
 // 
 #define BOOST_TEST_MODULE "Selected_RDM_test"
 
-
 #include <boost/test/unit_test.hpp>
 
-#include "RDM/RDMCalculator.hpp"
-#include "RDM/SelectedRDMBuilder.hpp"
-
+#include "CISolver/CISolver.hpp"
+#include "HamiltonianBuilder/DOCI.hpp"
+#include "HamiltonianBuilder/FCI.hpp"
+#include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "RDM/DOCIRDMBuilder.hpp"
 #include "RDM/FCIRDMBuilder.hpp"
-
-#include "CISolver/CISolver.hpp"
-#include "HamiltonianBuilder/FCI.hpp"
-#include "HamiltonianBuilder/DOCI.hpp"
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
-
+#include "RDM/RDMCalculator.hpp"
+#include "RDM/SelectedRDMBuilder.hpp"
 #include "Utilities/linalg.hpp"
 
 

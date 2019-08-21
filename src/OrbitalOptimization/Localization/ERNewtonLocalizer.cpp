@@ -18,7 +18,6 @@
 #include "OrbitalOptimization/Localization/ERNewtonLocalizer.hpp"
 
 
-
 namespace GQCP {
 
 

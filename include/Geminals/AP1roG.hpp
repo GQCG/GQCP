@@ -15,8 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef AP1roG_hpp
-#define AP1roG_hpp
+#pragma once
 
 
 #include "Geminals/AP1roGGeminalCoefficients.hpp"
@@ -70,6 +69,3 @@ TwoRDM<double> calculate2RDM(const AP1roGGeminalCoefficients& G, const AP1roGVar
 
 
 }  // namespace GQCP
-
-
-#endif /* AP1roG_hpp */

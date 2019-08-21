@@ -19,10 +19,10 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "RMP2.hpp"
-
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
+#include "RMP2.hpp"
+
 
 BOOST_AUTO_TEST_CASE ( crawdad_sto3g_water ) {
 

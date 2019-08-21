@@ -15,8 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCP_SPINUNRESOLVEDWAVEFUNCTION_HPP
-#define GQCP_SPINUNRESOLVEDWAVEFUNCTION_HPP
+#pragma once
 
 
 #include "FockSpace/FockSpace.hpp"
@@ -39,6 +38,3 @@ class SpinUnresolvedWaveFunction : public WaveFunction {
 
 
 }  // namespace GQCP
-
-
-#endif  // GQCP_SPINUNRESOLVEDWAVEFUNCTION_HPP

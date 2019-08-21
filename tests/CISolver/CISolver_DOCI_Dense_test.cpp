@@ -16,15 +16,13 @@
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
 #define BOOST_TEST_MODULE "DenseDOCISolver"
+
 #include <boost/test/unit_test.hpp>
-
-
 
 #include "CISolver/CISolver.hpp"
 #include "HamiltonianBuilder/DOCI.hpp"
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
-
 
 
 BOOST_AUTO_TEST_CASE ( DOCI_beh_cation_klaas_dense ) {

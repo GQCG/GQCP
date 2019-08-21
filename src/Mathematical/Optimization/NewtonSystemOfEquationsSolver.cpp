@@ -22,9 +22,7 @@
 #include <iostream>
 
 
-
 namespace GQCP {
-
 
 
 /*

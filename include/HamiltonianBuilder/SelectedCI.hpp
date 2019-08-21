@@ -15,13 +15,11 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCP_SELECTEDCI_HPP
-#define GQCP_SELECTEDCI_HPP
+#pragma once
 
 
-#include "HamiltonianBuilder/HamiltonianBuilder.hpp"
 #include "FockSpace/SelectedFockSpace.hpp"
-
+#include "HamiltonianBuilder/HamiltonianBuilder.hpp"
 
 
 namespace GQCP {
@@ -98,6 +96,3 @@ public:
 
 
 }  // namespace GQCP
-
-
-#endif  // GQCP_SELECTEDCI_HPP

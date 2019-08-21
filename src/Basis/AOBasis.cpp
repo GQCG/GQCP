@@ -16,6 +16,7 @@
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
 #include "Basis/AOBasis.hpp"
+
 #include "Basis/GTOBasisSet.hpp"
 #include "Basis/Integrals/Interfaces/LibintInterfacer.hpp"
 #include "Basis/Integrals/Interfaces/LibcintInterfacer.hpp"

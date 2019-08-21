@@ -15,13 +15,13 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef ScalarFunction_hpp
-#define ScalarFunction_hpp
-
 
 /*
  *  This file contains the source code for both ScalarFunctionProduct and ScalarFunction
  */
+
+#pragma once
+
 
 #include "Mathematical/Matrix.hpp"
 
@@ -154,7 +154,3 @@ public:
 
 
 }  // namespace GQCP
-
-
-
-#endif  /* ScalarFunction_hpp */

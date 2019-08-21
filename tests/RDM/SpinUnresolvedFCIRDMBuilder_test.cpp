@@ -17,11 +17,9 @@
 // 
 #define BOOST_TEST_MODULE "UnresolvedCIRDMBuilder_test"
 
-
 #include <boost/test/unit_test.hpp>
 
 #include "RDM/SpinUnresolvedFCIRDMBuilder.hpp"
-
 
 
 BOOST_AUTO_TEST_CASE ( calculateElement_throws ) {

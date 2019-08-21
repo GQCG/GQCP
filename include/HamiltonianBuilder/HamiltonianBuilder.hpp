@@ -15,16 +15,14 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCP_HAMILTONIANBUILDER_HPP
-#define GQCP_HAMILTONIANBUILDER_HPP
+#pragma once
 
 
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "FockSpace/BaseFockSpace.hpp"
+#include "HamiltonianParameters/HamiltonianParameters.hpp"
 
 #include <memory>
 #include <utility>
-
 
 
 namespace GQCP {
@@ -76,7 +74,3 @@ public:
 
 
 }  // namespace GQCP
-
-
-
-#endif  // GQCP_HAMILTONIANBUILDER_HPP

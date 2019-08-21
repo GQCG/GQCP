@@ -17,9 +17,9 @@
 // 
 #include "Mathematical/Optimization/NewtonMinimizer.hpp"
 
-#include "typedefs.hpp"
 #include "Mathematical/Optimization/NewtonSystemOfEquationsSolver.hpp"
 #include "Mathematical/SquareMatrix.hpp"
+#include "typedefs.hpp"
 
 #include <iostream>
 

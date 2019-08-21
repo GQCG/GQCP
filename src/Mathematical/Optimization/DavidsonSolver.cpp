@@ -16,12 +16,9 @@
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
 #include "Mathematical/Optimization/DavidsonSolver.hpp"
-#include <iostream>
-
-
 
 #include <chrono>
-
+#include <iostream>
 
 
 namespace GQCP {

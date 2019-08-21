@@ -15,11 +15,10 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef AP1roGLagrangianOptimizer_hpp
-#define AP1roGLagrangianOptimizer_hpp
-
+#pragma once
 
 #include "Geminals/BaseAP1roGSolver.hpp"
+
 #include "Geminals/AP1roGVariables.hpp"
 
 
@@ -48,6 +47,3 @@ public:
 
 
 }  // namespace GQCP
-
-
-#endif  /* AP1roGLagrangianOptimizer_hpp */

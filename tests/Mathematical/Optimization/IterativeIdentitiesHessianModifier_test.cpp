@@ -21,7 +21,8 @@
 
 #include "Mathematical/Optimization/IterativeIdentitiesHessianModifier.hpp"
 
-#include "Eigen/Dense"
+#include <Eigen/Dense>
+
 
 BOOST_AUTO_TEST_CASE ( becomes_positive_definite ) {
 

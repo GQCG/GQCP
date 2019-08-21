@@ -22,7 +22,6 @@
 #include "Geminals/APIGGeminalCoefficients.hpp"
 
 
-
 BOOST_AUTO_TEST_CASE ( numberOfGeminalCoefficients ) {
 
     BOOST_CHECK_EQUAL(GQCP::APIGGeminalCoefficients::numberOfGeminalCoefficients(2, 5), 10);

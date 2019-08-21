@@ -15,8 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCP_ITERATIVEIDENTITIESHESSIANMODIFIER_HPP
-#define GQCP_ITERATIVEIDENTITIESHESSIANMODIFIER_HPP
+#pragma once
 
 
 #include "Mathematical/Optimization/BaseHessianModifier.hpp"
@@ -60,7 +59,3 @@ public:
 
 
 }  // namespace GQCP
-
-
-
-#endif  // GQCP_ITERATIVEIDENTITIESHESSIANMODIFIER_HPP

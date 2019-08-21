@@ -15,12 +15,10 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCP_TWOELECTRONOPERATOR_HPP
-#define GQCP_TWOELECTRONOPERATOR_HPP
+#pragma once
 
 #include "Mathematical/ChemicalRankFourTensor.hpp"
 #include "Operator/BaseOperator.hpp"
-
 #include "Operator/OneElectronOperator.hpp"
 #include "OrbitalOptimization/JacobiRotationParameters.hpp"
 #include "Utilities/miscellaneous.hpp"
@@ -103,8 +101,4 @@ public:
 };
 
 
-
 }  // namespace GQCP
-
-
-#endif  // GQCP_TWOELECTRONOPERATOR_HPP

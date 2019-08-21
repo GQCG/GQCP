@@ -15,12 +15,11 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GeminalCoefficientsInterface_hpp
-#define GeminalCoefficientsInterface_hpp
+#pragma once
 
 
-#include "WaveFunction/WaveFunction.hpp"
 #include "FockSpace/FockSpace.hpp"
+#include "WaveFunction/WaveFunction.hpp"
 
 
 namespace GQCP {
@@ -50,6 +49,3 @@ public:
 
 
 }  // namespace GQCP
-
-
-#endif  /* GeminalCoefficientsInterface_hpp */

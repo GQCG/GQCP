@@ -15,8 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCP_HOPPINGMATRIX_HPP
-#define GQCP_HOPPINGMATRIX_HPP
+#pragma once
 
 
 #include "Mathematical/SquareMatrix.hpp"
@@ -81,6 +80,3 @@ public:
 
 
 }  // namespace GQCP
-
-
-#endif /* GQCP_HOPPINGMATRIX_HPP */

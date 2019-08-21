@@ -15,8 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef AP1roGGeminalCoefficients_hpp
-#define AP1roGGeminalCoefficients_hpp
+#pragma once
 
 
 #include "Geminals/AP1roGVariables.hpp"
@@ -97,7 +96,3 @@ public:
 
 
 }  // namespace GQCP
-
-
-
-#endif /* AP1roGGeminalCoefficients_hpp */

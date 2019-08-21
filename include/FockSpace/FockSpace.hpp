@@ -15,13 +15,13 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCP_FOCKSPACE_HPP
-#define GQCP_FOCKSPACE_HPP
+#pragma once
 
 
 #include "FockSpace/BaseFockSpace.hpp"
-#include "FockSpace/FockPermutator.hpp"
 #include "FockSpace/EvaluationMatrix.hpp"
+#include "FockSpace/FockPermutator.hpp"
+
 
 namespace GQCP {
 
@@ -597,6 +597,3 @@ public:
 
 
 }  // namespace GQCP
-
-
-#endif  // GQCP_FOCKSPACE_HPP

@@ -15,12 +15,12 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCP_ATOMICDECOMPOSITIONPARAMETERS_HPP
-#define GQCP_ATOMICDECOMPOSITIONPARAMETERS_HPP
+#pragma once
 
 
-#include "Molecule/Molecule.hpp"
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "Molecule/Molecule.hpp"
+
 
 namespace GQCP {
 
@@ -98,7 +98,5 @@ public:
     const std::vector<HamiltonianParameters<double>>& get_atomic_parameters() const { return this->atomic_parameters; }
 };
 
+
 }  // namespace GQCP
-
-
-#endif  // GQCP_ATOMICDECOMPOSITIONPARAMETERS_HPP

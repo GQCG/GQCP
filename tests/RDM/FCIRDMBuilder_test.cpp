@@ -19,15 +19,12 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "RDM/RDMCalculator.hpp"
-#include "RDM/FCIRDMBuilder.hpp"
-
 #include "CISolver/CISolver.hpp"
 #include "HamiltonianBuilder/FCI.hpp"
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "RDM/FCIRDMBuilder.hpp"
+#include "RDM/RDMCalculator.hpp"
 #include "Properties/expectation_values.hpp"
-
-
 
 
 BOOST_AUTO_TEST_CASE ( H2O_1RDM_spin_trace_FCI ) {

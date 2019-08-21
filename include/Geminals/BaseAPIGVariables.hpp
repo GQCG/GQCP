@@ -15,8 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef BaseAPIGVariables_hpp
-#define BaseAPIGVariables_hpp
+#pragma once
 
 
 #include "Mathematical/Matrix.hpp"
@@ -119,6 +118,3 @@ public:
 
 
 }  // namespace GQCP
-
-
-#endif /* BaseAPIGVariables_hpp */

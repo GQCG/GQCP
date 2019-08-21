@@ -19,8 +19,6 @@
 
 #include <boost/test/unit_test.hpp>
 
-
-
 #include "HamiltonianBuilder/DOCI.hpp"
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"

@@ -15,8 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCP_HPP
-#define GQCP_HPP
+#pragma once
 
 #include "Basis/AOBasis.hpp"
 #include "Basis/CartesianExponents.hpp"
@@ -176,6 +175,3 @@
 #include "units.hpp"
 
 #include "version.hpp"
-
-
-#endif  // GQCP_HPP

@@ -17,20 +17,16 @@
 // 
 #define BOOST_TEST_MODULE "FrozenCoreFCIRDM_test"
 
-
 #include <boost/test/unit_test.hpp>
-
-#include "RDM/RDMCalculator.hpp"
-#include "RDM/SelectedRDMBuilder.hpp"
-
-#include "RDM/DOCIRDMBuilder.hpp"
-#include "RDM/FCIRDMBuilder.hpp"
-#include "RDM/FrozenCoreFCIRDMBuilder.hpp"
 
 #include "CISolver/CISolver.hpp"
 #include "HamiltonianBuilder/FrozenCoreFCI.hpp"
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
-
+#include "RDM/DOCIRDMBuilder.hpp"
+#include "RDM/FCIRDMBuilder.hpp"
+#include "RDM/FrozenCoreFCIRDMBuilder.hpp"
+#include "RDM/RDMCalculator.hpp"
+#include "RDM/SelectedRDMBuilder.hpp"
 #include "Utilities/linalg.hpp"
 
 

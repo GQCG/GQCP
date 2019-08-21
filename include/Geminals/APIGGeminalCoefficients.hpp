@@ -15,8 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef APIGGeminalCoefficients_hpp
-#define APIGGeminalCoefficients_hpp
+#pragma once
 
 
 #include "Geminals/BaseAPIGVariables.hpp"
@@ -114,7 +113,3 @@ public:
 
 
 }  // namespace GQCP
-
-
-
-#endif /* APIGGeminalCoefficients_hpp */

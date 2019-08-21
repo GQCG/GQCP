@@ -19,11 +19,9 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "RHF/DIISRHFSCFSolver.hpp"
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
-
+#include "RHF/DIISRHFSCFSolver.hpp"
 #include "Utilities/linalg.hpp"
-
 
 
 BOOST_AUTO_TEST_CASE ( constructor ) {

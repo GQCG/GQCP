@@ -26,9 +26,7 @@
 #include <sstream>
 
 
-
 namespace GQCP {
-
 
 
 /*

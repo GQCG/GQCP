@@ -15,8 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCP_COMMON_HPP
-#define GQCP_COMMON_HPP
+#pragma once
 
 
 #include <complex>
@@ -63,6 +62,3 @@ using product_t = decltype(std::declval<T>() * std::declval<U>());
 
 
 }  // namespace GQCP
-
-
-#endif  // GQCP_COMMON_HPP

@@ -15,15 +15,13 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "RDM/FrozenCoreDOCIRDMBuilder.hpp"
-#include "RDM/FrozenCoreFCIRDMBuilder.hpp"
 #include "RDM/RDMCalculator.hpp"
 
 #include "RDM/DOCIRDMBuilder.hpp"
 #include "RDM/FCIRDMBuilder.hpp"
+#include "RDM/FrozenCoreDOCIRDMBuilder.hpp"
+#include "RDM/FrozenCoreFCIRDMBuilder.hpp"
 #include "RDM/SelectedRDMBuilder.hpp"
-#include "RDM/FCIRDMBuilder.hpp"
-
 
 
 namespace GQCP {

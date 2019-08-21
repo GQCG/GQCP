@@ -17,17 +17,13 @@
 // 
 #define BOOST_TEST_MODULE "SelectedCI"
 
-
 #include <boost/test/unit_test.hpp>
 
-#include "HamiltonianBuilder/SelectedCI.hpp"
-#include "HamiltonianBuilder/FCI.hpp"
 #include "HamiltonianBuilder/DOCI.hpp"
-
+#include "HamiltonianBuilder/FCI.hpp"
+#include "HamiltonianBuilder/SelectedCI.hpp"
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "Molecule/Molecule.hpp"
-
-
 
 
 BOOST_AUTO_TEST_CASE ( SelectedCI_constructor ) {

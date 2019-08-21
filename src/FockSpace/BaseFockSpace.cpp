@@ -16,12 +16,14 @@
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
 #include "FockSpace/BaseFockSpace.hpp"
+
 #include "FockSpace/FockSpace.hpp"
 #include "FockSpace/ProductFockSpace.hpp"
 #include "FockSpace/SelectedFockSpace.hpp"
 
 
 namespace GQCP {
+
 
 /*
  * PROTECTED CONSTRUCTORS
@@ -118,7 +120,6 @@ VectorX<double> BaseFockSpace::constantExpansion() const {
     constant.normalize();
     return constant;
 }
-
 
 
 }  // namespace GQCP

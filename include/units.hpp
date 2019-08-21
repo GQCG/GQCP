@@ -15,8 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCP_UNITS_HPP
-#define GQCP_UNITS_HPP
+#pragma once
 
 
 namespace GQCP {
@@ -52,6 +51,3 @@ inline double angstrom_to_bohr(double value_in_angstrom) { return value_in_angst
 
 }  // namespace units
 }  // namespace GQCP
-
-
-#endif  // GQCP_UNITS_HPP

@@ -15,15 +15,15 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCP_BASEOPERATOR_HPP
-#define GQCP_BASEOPERATOR_HPP
+#pragma once
 
 
-#include "typedefs.hpp"
 #include "Mathematical/SquareMatrix.hpp"
+#include "typedefs.hpp"
 
 
 namespace GQCP {
+
 
 /**
  *  An interface for second-quantized operators: they should implement the transformation formulas for their matrix representations in an orbital basis
@@ -72,6 +72,3 @@ public:
 
 
 }  // namespace GQCP
-
-
-#endif  /* GQCP_BASEOPERATOR_HPP */

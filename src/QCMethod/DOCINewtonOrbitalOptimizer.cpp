@@ -17,13 +17,13 @@
 //
 #include "QCMethod/DOCINewtonOrbitalOptimizer.hpp"
 
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
-#include "RHF/DIISRHFSCFSolver.hpp"
 #include "CISolver/CISolver.hpp"
-#include "OrbitalOptimization/DOCINewtonOrbitalOptimizer.hpp"
-#include "OrbitalOptimization/Localization/ERNewtonLocalizer.hpp"
-#include "OrbitalOptimization/Localization/ERJacobiLocalizer.hpp"
+#include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "Mathematical/Optimization/IterativeIdentitiesHessianModifier.hpp"
+#include "OrbitalOptimization/DOCINewtonOrbitalOptimizer.hpp"
+#include "OrbitalOptimization/Localization/ERJacobiLocalizer.hpp"
+#include "OrbitalOptimization/Localization/ERNewtonLocalizer.hpp"
+#include "RHF/DIISRHFSCFSolver.hpp"
 
 
 namespace GQCP {

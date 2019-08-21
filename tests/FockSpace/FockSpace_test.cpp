@@ -16,15 +16,13 @@
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
 #define BOOST_TEST_MODULE "FockSpace"
-#include <boost/test/unit_test.hpp>
 
+#include <boost/test/unit_test.hpp>
 
 #include "FockSpace/FockSpace.hpp"
 #include "FockSpace/ProductFockSpace.hpp"
 #include "FockSpace/SelectedFockSpace.hpp"
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
-
-
 
 
 BOOST_AUTO_TEST_CASE ( FockSpace_constructor ) {

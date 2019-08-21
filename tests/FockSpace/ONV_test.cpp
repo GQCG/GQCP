@@ -17,12 +17,10 @@
 // 
 #define BOOST_TEST_MODULE "ONV"
 
-
 #include <boost/test/unit_test.hpp>
 
-#include "FockSpace/ONV.hpp"
 #include "FockSpace/FockSpace.hpp"
-
+#include "FockSpace/ONV.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( ONV_constructor ) {

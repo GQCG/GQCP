@@ -17,7 +17,6 @@
 // 
 #define BOOST_TEST_MODULE "DavidsonDOCISolver"
 
-
 #include <boost/test/unit_test.hpp>
 
 #include "CISolver/CISolver.hpp"

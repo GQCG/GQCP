@@ -22,7 +22,6 @@
 #include "Geminals/AP1roGGeminalCoefficients.hpp"
 
 
-
 BOOST_AUTO_TEST_CASE ( numberOfGeminalCoefficients ) {
 
     BOOST_CHECK_EQUAL(GQCP::AP1roGGeminalCoefficients::numberOfGeminalCoefficients(2, 5), 6);

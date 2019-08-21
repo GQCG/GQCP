@@ -16,12 +16,12 @@
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
 #include "FockSpace/FockSpace.hpp"
-#include <boost/numeric/conversion/converter.hpp>
+
 #include <boost/math/special_functions.hpp>
+#include <boost/numeric/conversion/converter.hpp>
 
 
 namespace GQCP {
-
 
 
 /*

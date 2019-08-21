@@ -15,17 +15,16 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef SquareMatrix_hpp
-#define SquareMatrix_hpp
+#pragma once
 
 
 #include "Mathematical/Matrix.hpp"
-
-#include "Utilities/miscellaneous.hpp"
 #include "OrbitalOptimization/JacobiRotationParameters.hpp"
+#include "Utilities/miscellaneous.hpp"
+
+#include <boost/numeric/conversion/converter.hpp>
 
 #include <numeric>
-#include <boost/numeric/conversion/converter.hpp>
 
 
 namespace GQCP {
@@ -387,7 +386,5 @@ public:
     }
 };
 
+
 }  // namespace GQCP
-
-
-#endif /* SquareMatrix_hpp */

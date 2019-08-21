@@ -17,13 +17,10 @@
 // 
 #define BOOST_TEST_MODULE "TwoElectronOperator"
 
-
 #include <boost/test/unit_test.hpp>
 
 #include "Operator/TwoElectronOperator.hpp"
-
 #include "Utilities/linalg.hpp"
-
 #include "Utilities/miscellaneous.hpp"
 
 

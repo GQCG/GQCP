@@ -15,8 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCP_EVALUATIONMATRIX_HPP
-#define GQCP_EVALUATIONMATRIX_HPP
+#pragma once
 
 
 #include "Mathematical/SquareMatrix.hpp"
@@ -135,6 +134,3 @@ class EvaluationMatrix<Eigen::SparseMatrix<double>> {
 
 
 }  // namespace GQCP
-
-
-#endif  // GQCP_EVALUATIONMATRIX_HPP

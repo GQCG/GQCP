@@ -15,11 +15,11 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef Tensor_h
-#define Tensor_h
+#pragma once
 
-#include "typedefs.hpp"
+
 #include "Mathematical/Matrix.hpp"
+#include "typedefs.hpp"
 
 #include <unsupported/Eigen/CXX11/Tensor>
 
@@ -292,6 +292,3 @@ public:
 
 
 }  // namespace GQCP
-
-
-#endif  /* Tensor_h */

@@ -15,12 +15,10 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCP_ONV_HPP
-#define GQCP_ONV_HPP
+#pragma once
 
 
 #include "Mathematical/Matrix.hpp"
-
 
 
 namespace GQCP {
@@ -269,5 +267,3 @@ public:
 
 
 }  // namespace GQCP
-
-#endif  // GQCP_ONV_HPP

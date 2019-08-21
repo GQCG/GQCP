@@ -20,7 +20,6 @@
 #include <boost/test/unit_test.hpp>
 
 #include "Basis/AOBasis.hpp"
-
 #include "Molecule/Molecule.hpp"
 
 

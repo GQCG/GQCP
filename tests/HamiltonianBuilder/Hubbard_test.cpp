@@ -20,11 +20,9 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "HamiltonianBuilder/Hubbard.hpp"
-
 #include "HamiltonianBuilder/FCI.hpp"
+#include "HamiltonianBuilder/Hubbard.hpp"
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
-
 
 
 BOOST_AUTO_TEST_CASE ( Hubbard_constructor ) {

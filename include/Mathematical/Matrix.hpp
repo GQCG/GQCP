@@ -15,8 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCP_MATRIX_HPP
-#define GQCP_MATRIX_HPP
+#pragma once
 
 
 #include "Mathematical/CartesianDirection.hpp"
@@ -28,7 +27,6 @@
 
 #include <fstream>
 #include <iostream>
-
 
 
 namespace GQCP {
@@ -291,7 +289,3 @@ using MatrixFunction = std::function<MatrixX<double> (const VectorX<double>&)>;
 
 
 }  // namespace GQCP
-
-
-
-#endif  // GQCP_MATRIX_HPP

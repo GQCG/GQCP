@@ -15,16 +15,15 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCP_HUBBARD_HPP
-#define GQCP_HUBBARD_HPP
+#pragma once
 
 
-#include "HamiltonianBuilder/HamiltonianBuilder.hpp"
 #include "FockSpace/ProductFockSpace.hpp"
-
+#include "HamiltonianBuilder/HamiltonianBuilder.hpp"
 
 
 namespace GQCP {
+
 
 /**
  *  Hubbard builds a a Hubbard Hamiltonian matrix in the FCI Fock space
@@ -83,6 +82,3 @@ public:
 
 
 }  // namespace GQCP
-
-
-#endif  // GQCP_HUBBARD_HPP

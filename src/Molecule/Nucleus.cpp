@@ -23,7 +23,6 @@
 #include <iomanip>
 
 
-
 namespace GQCP {
 
 

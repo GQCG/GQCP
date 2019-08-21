@@ -15,8 +15,8 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef RMP2_hpp
-#define RMP2_hpp
+#pragma once
+
 
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "Molecule/Molecule.hpp"
@@ -37,7 +37,3 @@ double calculateRMP2EnergyCorrection(const HamiltonianParameters<double>& ham_pa
 
 
 }  // namespace GQCP
-
-
-
-#endif /* RMP2_hpp */

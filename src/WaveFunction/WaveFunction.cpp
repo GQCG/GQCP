@@ -16,9 +16,11 @@
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
 #include "WaveFunction/WaveFunction.hpp"
+
 #include "FockSpace/ProductFockSpace.hpp"
 #include "Mathematical/SquareMatrix.hpp"
 #include "Utilities/linalg.hpp"
+
 
 namespace GQCP {
 

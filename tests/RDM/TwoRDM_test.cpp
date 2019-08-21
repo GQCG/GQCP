@@ -17,7 +17,6 @@
 // 
 #define BOOST_TEST_MODULE "TwoRDM"
 
-
 #include <boost/test/unit_test.hpp>
 
 #include "RDM/TwoRDM.hpp"

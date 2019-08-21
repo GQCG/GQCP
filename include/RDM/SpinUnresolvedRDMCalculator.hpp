@@ -15,17 +15,18 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCP_SPINUNRESOLVEDRDMCALCULATOR_HPP
-#define GQCP_SPINUNRESOLVEDRDMCALCULATOR_HPP
+#pragma once
 
-#include "RDM/BaseSpinUnresolvedRDMBuilder.hpp"
+
 #include "FockSpace/FockSpace.hpp"
-#include "WaveFunction/SpinUnresolvedWaveFunction.hpp"
+#include "RDM/BaseSpinUnresolvedRDMBuilder.hpp"
 #include "RDM/SpinUnresolvedFCIRDMBuilder.hpp"
+#include "WaveFunction/SpinUnresolvedWaveFunction.hpp"
 
-#include <boost/range/adaptor/strided.hpp>
 #include <boost/range/adaptor/sliced.hpp>
+#include <boost/range/adaptor/strided.hpp>
 #include <boost/range/algorithm_ext/push_back.hpp>
+
 #include <memory>
 
 
@@ -117,6 +118,3 @@ public:
 
 
 }  // namespace GQCP
-
-
-#endif  // GQCP_SPINUNRESOLVEDRDMCalculator_HPP

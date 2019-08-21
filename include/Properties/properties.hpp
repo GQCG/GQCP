@@ -15,8 +15,8 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef properties_hpp
-#define properties_hpp
+#pragma once
+
 
 #include "Operator/OneElectronOperator.hpp"
 #include "RDM/OneRDM.hpp"
@@ -36,6 +36,3 @@ Vector<double, 3> calculateElectronicDipoleMoment(const std::array<OneElectronOp
 
 
 }  // namespace GQCP
-
-
-#endif /* properties_hpp */

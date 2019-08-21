@@ -15,14 +15,13 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCP_DOCINEWTONORBITALOPTIMIZER_HPP
-#define GQCP_DOCINEWTONORBITALOPTIMIZER_HPP
+#pragma once
 
-#include "OrbitalOptimization/QCMethodNewtonOrbitalOptimizer.hpp"
 
 #include "HamiltonianBuilder/DOCI.hpp"
 #include "Mathematical/Optimization/Eigenpair.hpp"
 #include "Mathematical/Optimization/EigenproblemSolverOptions.hpp"
+#include "OrbitalOptimization/QCMethodNewtonOrbitalOptimizer.hpp"
 #include "RDM/RDMCalculator.hpp"
 #include "WaveFunction/WaveFunction.hpp"
 
@@ -108,6 +107,3 @@ public:
 
 
 }  // namespace GQCP
-
-
-#endif  // GQCP_DOCINEWTONORBITALOPTIMIZER_HPP

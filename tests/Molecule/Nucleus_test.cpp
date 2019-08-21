@@ -22,7 +22,6 @@
 #include "Molecule/Nucleus.hpp"
 
 
-
 BOOST_AUTO_TEST_CASE ( Nucleus_constructor ) {
 
     GQCP::Nucleus nucleus {1, 0.0, 0.1, 0.2};

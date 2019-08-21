@@ -15,13 +15,11 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCP_WAVEFUNCTION_HPP
-#define GQCP_WAVEFUNCTION_HPP
+#pragma once
 
 
 #include "FockSpace/BaseFockSpace.hpp"
 #include "Mathematical/Matrix.hpp"
-
 
 
 namespace GQCP {
@@ -77,6 +75,3 @@ public:
 
 
 }  // namespace GQCP
-
-
-#endif  // GQCP_WAVEFUNCTION_HPP

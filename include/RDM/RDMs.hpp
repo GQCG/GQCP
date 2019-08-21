@@ -15,8 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCP_RDMS_HPP
-#define GQCP_RDMS_HPP
+#pragma once
 
 
 #include "RDM/OneRDM.hpp"
@@ -107,6 +106,3 @@ struct TwoRDMs {
 
 
 }  // namespace GQCP
-
-
-#endif  // GQCP_RDMS_HPP

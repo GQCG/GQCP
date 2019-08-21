@@ -19,11 +19,10 @@
 
 #include <boost/test/unit_test.hpp>
 
-
 #include "CISolver/CISolver.hpp"
 #include "FockSpace/ProductFockSpace.hpp"
-#include "HamiltonianBuilder/Hubbard.hpp"
 #include "HamiltonianBuilder/FCI.hpp"
+#include "HamiltonianBuilder/Hubbard.hpp"
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
 

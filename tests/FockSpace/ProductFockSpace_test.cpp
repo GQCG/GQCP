@@ -17,12 +17,10 @@
 // 
 #define BOOST_TEST_MODULE "ProductFockSpace"
 
-
 #include <boost/test/unit_test.hpp>
 
 #include "FockSpace/ProductFockSpace.hpp"
 #include "FockSpace/SelectedFockSpace.hpp"
-
 
 
 BOOST_AUTO_TEST_CASE ( ProductFockSpace_constructor ) {
