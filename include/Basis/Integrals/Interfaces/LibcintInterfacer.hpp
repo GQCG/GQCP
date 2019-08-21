@@ -50,7 +50,113 @@ FINT cint1e_r_cart(double* buf, const int* shls, const int* atm, int natm, const
 namespace GQCP {
 
 
-class LibcintInterfacer;  // forward declaration before friending
+/*
+ *  Aliases for functions that are used in Libcint
+ */
+
+using Libcint1eFunction = std::function<int (double*, const int*, const int*, int, const int*, int, const double*)>;
+using Libcint2eFunction = std::function<int (double*, const int*, const int*, int, const int*, int, const double*, const CINTOpt*)>;
+using Libcint2eOptimizerFunction = std::function<void (CINTOpt**, const int*, const int, const int*, const int, const double*)>;
+
+
+
+/*
+ *  Forward declarations
+ */
+
+namespace libcint {
+
+
+class RawContainer;
+class RawOptimizer;
+
+
+}  // namespace libcint
+
+
+
+/**
+ *  A class that takes care of the interfacing with the libcint library
+ */
+class LibcintInterfacer {
+public:
+
+    // PUBLIC METHODS - INTERFACING
+
+    /**
+     *  @param shell_set        the GQCP::ShellSet whose information should be converted
+     *
+     *  @return the information in a GQCP::ShellSet as a libcint::RawContainer
+     */
+    libcint::RawContainer convert(const ShellSet<GTOShell>& shell_set) const;
+
+    /**
+     *  Set the origin for the calculation of all vector-related integrals
+     *
+     *  @param raw_container        the libcint::RawContainer that holds the data needed by libcint
+     *  @param origin               the new origin for the calculation of all vector-related integrals
+     */
+    void setCommonOrigin(libcint::RawContainer& raw_container, const Vector<double, 3>& origin) const;
+
+    /**
+     *  @param raw_optimizer                    the libcint::RawOptimizer that contains a raw libcint optimizer struct
+     *  @param libcint_optimizer_function       the function with which the raw_optimizer should be initialized
+     *  @param raw_container                    the libcint::RawContainer that holds the data needed by libcint
+     */
+    void initializeOptimizer(libcint::RawOptimizer& raw_optimizer, const Libcint2eOptimizerFunction& libcint_optimizer_function, const libcint::RawContainer& raw_container) const;
+
+    /**
+     *  @param raw_optimizer                    the libcint::RawOptimizer that contains a raw libcint optimizer struct
+     */
+    void deleteOptimizer(libcint::RawOptimizer& raw_optimizer) const;
+
+
+
+    //  PUBLIC METHODS - INTEGRAL FUNCTIONS
+
+    /**
+     *  @param op           the overlap operator
+     * 
+     *  @return the Libcint one-electron function that corresponds to the overlap operator
+     */
+    Libcint1eFunction oneElectronFunction(const OverlapOperator& op) const;
+
+    /**
+     *  @param op               the kinetic operator
+     * 
+     *  @return the Libcint one-electron function that corresponds to the kinetic operator
+     */
+    Libcint1eFunction oneElectronFunction(const KineticOperator& op) const;
+
+    /**
+     *  @param op               the nuclear attraction operator
+     * 
+     *  @return the Libcint one-electron function that corresponds to the nuclear attraction operator
+     */
+    Libcint1eFunction oneElectronFunction(const NuclearAttractionOperator& op) const;
+
+    /**
+     *  @param op               the electronic electric dipole operator
+     * 
+     *  @return the Libcint one-electron function that corresponds to the electronic electric dipole operator
+     */
+    Libcint1eFunction oneElectronFunction(const ElectronicDipoleOperator& op) const;
+
+    /**
+     *  @param op               the Coulomb repulsion operator
+     * 
+     *  @return the Libcint two-electron function that corresponds to the Coulomb repulsion dipole operator
+     */
+    Libcint2eFunction twoElectronFunction(const CoulombRepulsionOperator& op) const;
+
+    /**
+     *  @param op               the Coulomb repulsion operator
+     * 
+     *  @return the Libcint two-electron optimizer function that corresponds to the Coulomb repulsion dipole operator
+     */
+    Libcint2eOptimizerFunction twoElectronOptimizerFunction(const CoulombRepulsionOperator& op) const;
+};
+
 
 
 namespace libcint {
@@ -77,11 +183,8 @@ static constexpr int ptr_coeff = PTR_COEFF;  // slot offset for a 'pointer' to t
 
 
 
-
 /**
  *  A wrapper that owns raw libcint 'atm', 'bas' and 'env' arrays
- * 
- *  @note There is no easy way to ask a RawContainer the corresponding shell index given a GQCP::GTOShell. This is why we are explicitly holding such a map.
  */
 class RawContainer {
 private:
@@ -147,78 +250,58 @@ public:
 };
 
 
-}  // namespace libcint
-
-
-
-
-
-using Libcint1eFunction = std::function<int (double*, const int*, const int*, int, const int*, int, const double*)>;
-using Libcint2eFunction = std::function<int (double*, const int*, const int*, int, const int*, int, const double*, const CINTOpt*)>;
-
-
-
 
 /**
- *  A class that takes care of the interfacing with the libcint library
+ *  A wrapper that owns a raw libcint CINTOpt struct
  */
-class LibcintInterfacer {
+class RawOptimizer {
+private:
+    CINTOpt* libcint_optimizer;  // the libcint two-electron optimizer struct
+
+
 public:
 
     /*
-     *  PUBLIC METHODS - INTERFACING
+     *  CONSTRUCTORS
+     */
+    RawOptimizer() : 
+        libcint_optimizer (nullptr)
+    {}
+
+
+    /*
+     *  DESTRUCTOR
+     */
+    ~RawOptimizer() {
+        GQCP::LibcintInterfacer().deleteOptimizer(*this);
+    }
+
+
+    /*
+     *  GETTERS
      */
 
-    /**
-     *  @param shell_set        the GQCP::ShellSet whose information should be converted
-     *
-     *  @return the information in a GQCP::ShellSet as a libcint::RawContainer
+    /*
+     *  Return a pointer to a const, similarly to where libcint would use 'opt'
      */
-    libcint::RawContainer convert(const ShellSet<GTOShell>& shell_set) const;
+    const CINTOpt* opt() const {
+        return this->libcint_optimizer;
+    }
 
     /**
-     *  Set the origin for the calculation of all vector-related integrals
-     *
-     *  @param raw_container        the libcint::RawContainer that holds the data needed by libcint
-     *  @param origin               the new origin for the calculation of all vector-related integrals
+     *  Return a (modifiable) pointer to a pointer, similarly to where libcint would use '&opt'
      */
-    void setCommonOrigin(libcint::RawContainer& raw_container, const Vector<double, 3>& origin) const;
+    CINTOpt** refOpt() {
+        return &(this->libcint_optimizer);
+    }
 
-    /**
-     *  @param op           the overlap operator
-     * 
-     *  @return the Libcint one-electron function that corresponds to the overlap operator
-     */
-    Libcint1eFunction oneElectronFunction(const OverlapOperator& op) const;
 
-    /**
-     *  @param op               the kinetic operator
-     * 
-     *  @return the Libcint one-electron function that corresponds to the kinetic operator
+    /*
+     *  FRIENDS
      */
-    Libcint1eFunction oneElectronFunction(const KineticOperator& op) const;
-
-    /**
-     *  @param op               the nuclear attraction operator
-     * 
-     *  @return the Libcint one-electron function that corresponds to the nuclear attraction operator
-     */
-    Libcint1eFunction oneElectronFunction(const NuclearAttractionOperator& op) const;
-
-    /**
-     *  @param op               the electronic electric dipole operator
-     * 
-     *  @return the Libcint one-electron function that corresponds to the electronic electric dipole operator
-     */
-    Libcint1eFunction oneElectronFunction(const ElectronicDipoleOperator& op) const;
-
-    /**
-     *  @param op               the Coulomb repulsion operator
-     * 
-     *  @return the Libcint two-electron function that corresponds to the Coulomb repulsion dipole operator
-     */
-    Libcint2eFunction twoElectronFunction(const CoulombRepulsionOperator& op) const;
+    friend class GQCP::LibcintInterfacer;
 };
 
 
+}  // namespace libcint
 }  // namespace GQCP

@@ -122,6 +122,31 @@ void LibcintInterfacer::setCommonOrigin(libcint::RawContainer& raw_container, co
 
 
 /**
+ *  @param raw_optimizer                    the libcint::RawOptimizer that contains a raw libcint optimizer struct
+ *  @param libcint_optimizer_function       the function with which the raw_optimizer should be initialized
+ *  @param raw_container                    the libcint::RawContainer that holds the data needed by libcint
+ */
+void LibcintInterfacer::initializeOptimizer(libcint::RawOptimizer& raw_optimizer, const Libcint2eOptimizerFunction& libcint_optimizer_function, const libcint::RawContainer& raw_container) const {
+
+    libcint_optimizer_function(raw_optimizer.refOpt(), raw_container.atmData(), raw_container.numberOfAtoms(), raw_container.basData(), raw_container.numberOfBasisFunctions(), raw_container.envData());
+}
+
+
+/**
+ *  @param raw_optimizer                    the libcint::RawOptimizer that contains a raw libcint optimizer struct
+ */
+void LibcintInterfacer::deleteOptimizer(libcint::RawOptimizer& raw_optimizer) const {
+
+    CINTdel_optimizer(raw_optimizer.refOpt());
+}
+
+
+
+/*
+ *  PUBLIC METHODS - INTEGRAL FUNCTIONS
+ */
+
+/**
  *  @param op           the overlap operator
  * 
  *  @return the Libcint one-electron function that corresponds to the overlap operator
@@ -168,6 +193,16 @@ Libcint1eFunction LibcintInterfacer::oneElectronFunction(const ElectronicDipoleO
  */
 Libcint2eFunction LibcintInterfacer::twoElectronFunction(const CoulombRepulsionOperator& op) const {
     return cint2e_cart;
+}
+
+
+/**
+ *  @param op               the Coulomb repulsion operator
+ * 
+ *  @return the Libcint two-electron optimizer function that corresponds to the Coulomb repulsion dipole operator
+ */
+Libcint2eOptimizerFunction LibcintInterfacer::twoElectronOptimizerFunction(const CoulombRepulsionOperator& op) const {
+    return cint2e_cart_optimizer;
 }
 
 
