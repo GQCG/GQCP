@@ -15,16 +15,17 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef LibcintInterfacer_hpp
-#define LibcintInterfacer_hpp
+#pragma once
 
+#include "Basis/GTOShell.hpp"
+#include "Basis/ShellSet.hpp"
+#include "Molecule/Molecule.hpp"
+#include "Operator/FirstQuantized/Operator.hpp"
 #include "Operator/OneElectronOperator.hpp"
 #include "Operator/TwoElectronOperator.hpp"
-#include "Molecule/Molecule.hpp"
-#include "Basis/ShellSet.hpp"
 
 #include <functional>
-
+#include <unordered_map>
 
 
 extern "C" {
@@ -79,6 +80,8 @@ static constexpr int ptr_coeff = PTR_COEFF;  // slot offset for a 'pointer' to t
 
 /**
  *  A wrapper that owns raw libcint 'atm', 'bas' and 'env' arrays
+ * 
+ *  @note There is no easy way to ask a RawContainer the corresponding shell index given a GQCP::GTOShell. This is why we are explicitly holding such a map.
  */
 class RawContainer {
 private:
@@ -92,7 +95,10 @@ private:
 
 
 public:
-    // CONSTRUCTORS
+    /*
+     *  CONSTRUCTORS
+     */
+
     /**
      *  Allocate memory for the raw libcint arrays
      *
@@ -100,7 +106,7 @@ public:
      *  @param nbf          the number of basis functions
      *  @param nsh          the number of shells
      */
-    RawContainer(size_t natm, size_t nbf, size_t nsh) :
+    RawContainer(const size_t natm, const size_t nbf, const size_t nsh) :
         natm (static_cast<int>(natm)),
         nbf (static_cast<int>(nbf)),
         nsh (static_cast<int>(nsh)),
@@ -110,7 +116,10 @@ public:
     {}
 
 
-    // DESTRUCTOR
+    /*
+     *  DESTRUCTOR
+     */
+
     /**
      *  Deallocate the memory used by the raw libcint arrays
      */
@@ -120,7 +129,20 @@ public:
         delete[] this->libcint_env;
     }
 
-    // FRIENDS
+
+    /*
+     *  GETTERS
+     */
+    int numberOfAtoms() const { return this->natm; }
+    int numberOfBasisFunctions() const { return this->nbf; }
+    int numberOfShells() const { return this->nsh; }
+    const int* atmData() const { return this->libcint_atm; }
+    const int* basData() const { return this->libcint_bas; }
+    const double* envData() const { return this->libcint_env; }
+
+    /*
+     *  FRIENDS
+     */
     friend class GQCP::LibcintInterfacer;
 };
 
@@ -143,14 +165,16 @@ using Libcint2eFunction = std::function<int (double*, const int*, const int*, in
 class LibcintInterfacer {
 public:
 
-    // PUBLIC METHODS - INTERFACING
+    /*
+     *  PUBLIC METHODS - INTERFACING
+     */
 
     /**
      *  @param shell_set        the GQCP::ShellSet whose information should be converted
      *
      *  @return the information in a GQCP::ShellSet as a libcint::RawContainer
      */
-    libcint::RawContainer convert(const ShellSet& shell_set) const;
+    libcint::RawContainer convert(const ShellSet<GTOShell>& shell_set) const;
 
     /**
      *  Set the origin for the calculation of all vector-related integrals
@@ -160,82 +184,41 @@ public:
      */
     void setCommonOrigin(libcint::RawContainer& raw_container, const Vector<double, 3>& origin) const;
 
-
-    // PUBLIC METHODS - INTEGRALS
+    /**
+     *  @param op           the overlap operator
+     * 
+     *  @return the Libcint one-electron function that corresponds to the overlap operator
+     */
+    Libcint1eFunction oneElectronFunction(const OverlapOperator& op) const;
 
     /**
-     *  @tparam N                   the number of libcint operator components
-     *
-     *  @param function             the libcint one-electron integral function
-     *  @param raw_container        the data libcint needs to perform calculations
-     *
-     *  @return an array of N OneElectronOperators corresponding to the matrix representations of the N components of the given operator represented by the libcint function
+     *  @param op               the kinetic operator
+     * 
+     *  @return the Libcint one-electron function that corresponds to the kinetic operator
      */
-    template <size_t N>
-    std::array<OneElectronOperator<double>, N> calculateOneElectronIntegrals(const Libcint1eFunction& function, libcint::RawContainer& raw_container) const {
-
-        // Initialize the components to zero
-        const auto& nbf = raw_container.nbf;  // number of basis functions
-        std::array<OneElectronOperator<double>, N> operator_components;
-        for (auto& op : operator_components) {
-            op = OneElectronOperator<double>::Zero(nbf, nbf);
-        }
-
-
-        // Calculate the integrals over the shells
-        size_t bf1 = 0;  // index of the first basis function in the first shell
-        for (size_t sh1 = 0; sh1 < raw_container.nsh; sh1++) {
-
-            int nbf_sh1 = CINTcgto_cart(static_cast<int>(sh1), raw_container.libcint_bas);  // number of basis functions in first shell
-
-            size_t bf2 = 0;  // index of the first basis function in the second shell
-            for (size_t sh2 = 0; sh2 < raw_container.nsh; sh2++) {
-
-                int nbf_sh2 = CINTcgto_cart(static_cast<int>(sh2), raw_container.libcint_bas);  // number of basis functions in second shell
-
-
-                int shell_indices[2];  // indices of the shells to be calculated over
-                shell_indices[0] = static_cast<int>(sh1);
-                shell_indices[1] = static_cast<int>(sh2);
-
-
-                double buf[N * nbf_sh1 * nbf_sh2];  // buffer where the integrals are calculated to
-                function(buf, shell_indices, raw_container.libcint_atm, raw_container.natm, raw_container.libcint_bas, raw_container.nbf, raw_container.libcint_env);  // TODO: what is result is zero: skip a shell?
-
-
-                // Place the calculated integrals in the components of the Operator
-                for (size_t f1 = 0; f1 < nbf_sh1; f1++) {
-                    for (size_t f2 = 0; f2 < nbf_sh2; f2++) {
-                        for (size_t i = 0; i < N; i++) {
-                            const double& computed_integral = buf[f1 + nbf_sh1 * (f2 + nbf_sh2 * i)];  // integrals are packed in column-major form
-                            operator_components[i](bf1 + f1, bf2 + f2) = computed_integral;
-                        }
-                    }
-                }  // data access loops
-
-
-                bf2 += nbf_sh2;  // update the 'first basis function' with the encountered number of basis functions
-            }
-
-            bf1 += nbf_sh1;  // update the 'first basis function' with the encountered number of basis functions
-        }  // shell loops
-
-
-        return operator_components;
-    }
-
+    Libcint1eFunction oneElectronFunction(const KineticOperator& op) const;
 
     /**
-     *  @param function             the libcint two-electron integral function
-     *  @param raw_container        the data libcint needs to perform calculations
-     *
-     *  @return an array of N OneElectronOperators corresponding to the matrix representations of the N components of the given operator represented by the libcint function
+     *  @param op               the nuclear attraction operator
+     * 
+     *  @return the Libcint one-electron function that corresponds to the nuclear attraction operator
      */
-    TwoElectronOperator<double> calculateTwoElectronIntegrals(const Libcint2eFunction& function, libcint::RawContainer& raw_container) const;
+    Libcint1eFunction oneElectronFunction(const NuclearAttractionOperator& op) const;
+
+    /**
+     *  @param op               the electronic electric dipole operator
+     * 
+     *  @return the Libcint one-electron function that corresponds to the electronic electric dipole operator
+     */
+    Libcint1eFunction oneElectronFunction(const ElectronicDipoleOperator& op) const;
+
+    /**
+     *  @param op               the Coulomb repulsion operator
+     * 
+     *  @return the Libcint two-electron function that corresponds to the Coulomb repulsion dipole operator
+     */
+    Libcint2eFunction twoElectronFunction(const CoulombRepulsionOperator& op) const;
 };
 
 
 }  // namespace GQCP
-
-
-#endif  /* LibcintInterfacer_hpp */

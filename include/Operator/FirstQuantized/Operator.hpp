@@ -40,19 +40,32 @@ namespace GQCP {
 /**
  *  A class that represents the overlap operator
  */
-class OverlapOperator {};
+class OverlapOperator {
+public:
+    using Scalar = double;  // the scalar representation of the operator
+    static constexpr size_t Components = 1;  // the number of components the operator has
+};
 
 
 /**
  *  A class that represents the kinetic energy operator for the electrons
  */
-class KineticOperator {};
+class KineticOperator {
+public:
+    using Scalar = double;  // the scalar representation of the operator
+    static constexpr size_t Components = 1;  // the number of components the operator has
+};
 
 
 /**
  *  A class that represents the nuclear attraction energy operator for the electrons
  */
 class NuclearAttractionOperator : public BaseNuclearOperator {
+public:
+    using Scalar = double;  // the scalar representation of the operator
+    static constexpr size_t Components = 1;  // the number of components the operator has
+
+
 public:
     // CONSTRUCTORS
     using BaseNuclearOperator::BaseNuclearOperator;  // inherit base constructors
@@ -62,13 +75,22 @@ public:
 /**
  *  A class that represents the Coulomb interaction energy operator between the electrons
  */
-class CoulombRepulsionOperator {};
+class CoulombRepulsionOperator {
+public:
+    using Scalar = double;  // the scalar representation of the operator
+    static constexpr size_t Components = 1;  // the number of components the operator has
+};
 
 
 /**
  *  A class that represents the electronic dipole operator for the electrons
  */
 class ElectronicDipoleOperator: public BaseMultipoleOperator {
+public:
+    using Scalar = double;  // the scalar representation of the operator
+    static constexpr size_t Components = 3;  // the number of components the operator has
+
+
 public:
     // CONSTRUCTORS
     using BaseMultipoleOperator::BaseMultipoleOperator;  // inherit base constructors

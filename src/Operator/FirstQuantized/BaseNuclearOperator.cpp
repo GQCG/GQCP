@@ -33,6 +33,15 @@ BaseNuclearOperator::BaseNuclearOperator(const NuclearFramework& nuclear_framewo
 {}
 
 
+/**
+ *  @param nuclei                       the nuclei that are considered to represent the nuclear framework underlying a nuclear operator
+ */
+BaseNuclearOperator::BaseNuclearOperator(const std::vector<Nucleus>& nuclei) : 
+    BaseNuclearOperator(NuclearFramework(nuclei))
+{}
+
+
+
 /*
  *  DESTRUCTOR
  */

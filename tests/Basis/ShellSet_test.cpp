@@ -19,7 +19,9 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include "Basis/GTOShell.hpp"
 #include "Basis/ShellSet.hpp"
+#include "Basis/GTOBasisSet.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( constructor_basisset ) {
@@ -29,16 +31,16 @@ BOOST_AUTO_TEST_CASE ( constructor_basisset ) {
     GQCP::Nucleus o  (8,  0.0, 0.0, 1.0);
     GQCP::Nucleus h2 (1,  0.0, 0.0, 2.0);
 
-    GQCP::ShellSet ref_shellset {
-        GQCP::Shell(0, h1, {  3.42525091,  0.62391373, 0.16885540}, { 0.15432897, 0.53532814, 0.44463454}, false),
-        GQCP::Shell(0, o,  {130.7093200,  23.8088610,  6.4436083},  { 0.15432897, 0.53532814, 0.44463454}, false),
-        GQCP::Shell(0, o,  {  5.0331513,   1.1695961,  0.3803890},  {-0.09996723, 0.39951283, 0.70011547}, false),
-        GQCP::Shell(1, o,  {  5.0331513,   1.1695961,  0.3803890},  { 0.15591627, 0.60768372, 0.39195739}, false),
-        GQCP::Shell(0, h2, {  3.42525091,  0.62391373, 0.16885540}, { 0.15432897, 0.53532814, 0.44463454}, false)
+    GQCP::ShellSet<GQCP::GTOShell> ref_shellset {
+        GQCP::GTOShell(0, h1, {  3.42525091,  0.62391373, 0.16885540}, { 0.15432897, 0.53532814, 0.44463454}, false),
+        GQCP::GTOShell(0, o,  {130.7093200,  23.8088610,  6.4436083},  { 0.15432897, 0.53532814, 0.44463454}, false),
+        GQCP::GTOShell(0, o,  {  5.0331513,   1.1695961,  0.3803890},  {-0.09996723, 0.39951283, 0.70011547}, false),
+        GQCP::GTOShell(1, o,  {  5.0331513,   1.1695961,  0.3803890},  { 0.15591627, 0.60768372, 0.39195739}, false),
+        GQCP::GTOShell(0, h2, {  3.42525091,  0.62391373, 0.16885540}, { 0.15432897, 0.53532814, 0.44463454}, false)
     };
 
 
     GQCP::Molecule h2o ({h1, o, h2});
-    GQCP::ShellSet shellset (h2o, "STO-3G");
-    BOOST_CHECK(ref_shellset == shellset);
+    const auto shellset = GQCP::GTOBasisSet("STO-3G").generate(h2o);
+    BOOST_CHECK(ref_shellset.asVector() == shellset.asVector());
 }

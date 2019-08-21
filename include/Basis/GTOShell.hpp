@@ -15,10 +15,10 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef Shell_hpp
-#define Shell_hpp
+#pragma once
 
 
+#include "Basis/CartesianGTO.hpp"
 #include "Molecule/Nucleus.hpp"
 
 
@@ -28,7 +28,7 @@ namespace GQCP {
 /**
  *  A class that represents a shell of GTOs: it specifies in a condensed way which GTOs are on an nucleus
  */
-class Shell {
+class GTOShell {
 private:
     bool pure;  // true if spherical, false if Cartesian
     bool embedded_normalization_factors_of_primitives;  // if the normalization factors of the primitives are embedded in the contraction coefficients
@@ -37,6 +37,10 @@ private:
     Nucleus nucleus;  // nucleus on which the shell is centered
     std::vector<double> gaussian_exponents;  // Gaussian exponents (i.e. for the exponential), shared for every contraction
     std::vector<double> contraction_coefficients;
+
+
+public:
+    using BasisFunction = CartesianGTO;
 
 
 public:
@@ -50,7 +54,7 @@ public:
      *  @param are_embedded_normalization_factors_of_primitives     if the normalization factors of the primitives are embedded in the contraction coefficients
      *  @param is_normalized                                        if the total normalization factor is already embedded in the contraction coefficients
      */
-    Shell(size_t l, const Nucleus& nucleus, const std::vector<double>& gaussian_exponents, const std::vector<double>& contraction_coefficients, bool pure=true, bool are_embedded_normalization_factors_of_primitives=false, bool is_normalized=false);
+    GTOShell(size_t l, const Nucleus& nucleus, const std::vector<double>& gaussian_exponents, const std::vector<double>& contraction_coefficients, bool pure=true, bool are_embedded_normalization_factors_of_primitives=false, bool is_normalized=false);
 
 
     // GETTERS
@@ -69,10 +73,16 @@ public:
      *
      *  @return if this shell is considered equal to the other
      */
-    bool operator==(const Shell& rhs) const;
+    bool operator==(const GTOShell& rhs) const;
 
 
     // PUBLIC METHODS
+
+    /**
+     *  @return the angular momentum of the shell
+     */
+    size_t angularMomentum() const { return this->l; }
+
     /**
      *  @return the number of basis functions that are in this shell
      */
@@ -105,6 +115,3 @@ public:
 
 
 }  // namespace GQCP
-
-
-#endif  /* Shell_hpp */

@@ -3,8 +3,9 @@ target_sources(gqcp
             AOBasis.cpp
             CartesianExponents.cpp
             CartesianGTO.cpp
+            GTOBasisSet.cpp
+            GTOShell.cpp
+            IntegralEngine.cpp
             LibcintInterfacer.cpp
             LibintInterfacer.cpp
-            Shell.cpp
-            ShellSet.cpp
         )

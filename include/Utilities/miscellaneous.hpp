@@ -23,6 +23,7 @@
 #include <cstdlib>
 #include <fstream>
 #include <functional>
+#include <iterator>
 #include <string>
 #include <vector>
 
@@ -148,6 +149,30 @@ size_t strictTriangularRoot(const size_t x);
  *  @param extension        the expected extension of the filename
  */
 std::ifstream validateAndOpen(const std::string& filename, const std::string& extension);
+
+
+/**
+ *  A generalization of std::find
+ * 
+ *  @tparam T           the type of elements stored in the vector
+ * 
+ *  @param vector       the vector containing the elements
+ *  @apram value        the value that should be found
+ * 
+ *  @return the index of the element that should be found in the given vector
+ */
+template <typename T>
+size_t findElementIndex(const std::vector<T>& vector, const T& value) {
+
+    const auto& it = std::find(vector.begin(), vector.end(), value);  // 'it' for iterator
+
+    // Check if the value was found
+    if (it == vector.end()) {
+        throw std::out_of_range("findElementIndex(const std::vector<T>&, const T&): the given value was not found in the given vector");
+    }
+
+    return std::distance(vector.begin(), it);  // the 'difference' between two iterators is an index
+}
 
 
 }  // namespace GQCP
