@@ -18,8 +18,8 @@
 #pragma once
 
 
-#include "Mathematical/SquareMatrix.hpp"
-#include "Mathematical/Tensor.hpp"
+#include "Mathematical/Representation/SquareMatrix.hpp"
+#include "Mathematical/Representation/Tensor.hpp"
 
 #include <iostream>
 

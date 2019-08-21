@@ -20,7 +20,7 @@
 
 #include "Mathematical/Optimization/BaseMatrixSolver.hpp"
 #include "Mathematical/Optimization/EigenproblemSolverOptions.hpp"
-#include "Mathematical/SquareMatrix.hpp"
+#include "Mathematical/Representation/SquareMatrix.hpp"
 
 
 namespace GQCP {

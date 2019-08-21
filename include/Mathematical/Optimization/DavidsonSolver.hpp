@@ -20,7 +20,7 @@
 
 #include "Mathematical/Optimization/BaseEigenproblemSolver.hpp"
 #include "Mathematical/Optimization/EigenproblemSolverOptions.hpp"
-#include "Mathematical/SquareMatrix.hpp"
+#include "Mathematical/Representation/SquareMatrix.hpp"
 #include "typedefs.hpp"
 
 

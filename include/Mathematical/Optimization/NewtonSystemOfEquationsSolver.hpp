@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Mathematical/Matrix.hpp"
+#include "Mathematical/Representation/Matrix.hpp"
 #include "Mathematical/Optimization/BaseSystemOfEquationsSolver.hpp"
 #include "typedefs.hpp"
 

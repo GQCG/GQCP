@@ -19,7 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "Mathematical/ChemicalRankFourTensor.hpp"
+#include "Mathematical/Representation/ChemicalRankFourTensor.hpp"
 
 #include <boost/math/constants/constants.hpp>
 

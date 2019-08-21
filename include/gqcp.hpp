@@ -96,15 +96,16 @@
 #include "Mathematical/Optimization/step.hpp"
 #include "Mathematical/Optimization/UnalteringHessianModifier.hpp"
 
+#include "Mathematical/Representation/ChemicalMatrix.hpp"
+#include "Mathematical/Representation/ChemicalRankFourTensor.hpp"
+#include "Mathematical/Representation/Matrix.hpp"
+#include "Mathematical/Representation/SquareMatrix.hpp"
+#include "Mathematical/Representation/SquareRankFourTensor.hpp"
+#include "Mathematical/Representation/Tensor.hpp"
+
 #include "Mathematical/CartesianDirection.hpp"
-#include "Mathematical/ChemicalMatrix.hpp"
-#include "Mathematical/ChemicalRankFourTensor.hpp"
 #include "Mathematical/LinearCombination.hpp"
-#include "Mathematical/Matrix.hpp"
 #include "Mathematical/ScalarFunction.hpp"
-#include "Mathematical/SquareMatrix.hpp"
-#include "Mathematical/SquareRankFourTensor.hpp"
-#include "Mathematical/Tensor.hpp"
 
 #include "Molecule/Molecule.hpp"
 #include "Molecule/NuclearFramework.hpp"
