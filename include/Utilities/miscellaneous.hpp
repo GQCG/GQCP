@@ -15,8 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCP_MISCELLANEOUS_HPP
-#define GQCP_MISCELLANEOUS_HPP
+#pragma once
 
 
 #include <algorithm>
@@ -151,6 +150,3 @@ std::ifstream validateAndOpen(const std::string& filename, const std::string& ex
 
 
 }  // namespace GQCP
-
-
-#endif  // GQCP_MISCELLANEOUS_HPP

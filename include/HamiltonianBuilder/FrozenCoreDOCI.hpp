@@ -15,13 +15,12 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCP_FROZENCOREDOCI_HPP
-#define GQCP_FROZENCOREDOCI_HPP
+#pragma once
 
 
-#include "HamiltonianBuilder/FrozenCoreCI.hpp"
 #include "FockSpace/FrozenFockSpace.hpp"
 #include "HamiltonianBuilder/DOCI.hpp"
+#include "HamiltonianBuilder/FrozenCoreCI.hpp"
 
 
 namespace GQCP {
@@ -48,6 +47,3 @@ public:
 
 
 }  // namespace GQCP
-
-
-#endif  // GQCP_FROZENCOREDOCI_HPP

@@ -26,7 +26,6 @@
 #include "RHF/PlainRHFSCFSolver.hpp"
 
 
-
 BOOST_AUTO_TEST_CASE ( test_random_rotation_diagonal_dense_fci ) {
 
     // Check if a random rotation has no effect on the sum of the diagonal elements

@@ -18,12 +18,13 @@
 #include "Mathematical/Optimization/BaseMatrixSolver.hpp"
 
 
-
 namespace GQCP {
 
 
+/*
+ *  CONSTRUCTORS
+ */
 
-// CONSTRUCTOR
 /**
  *  @param dim                                  the dimension of the eigenvalue problem
  *  @param number_of_requested_eigenpairs       the number of eigenpairs the solver should find

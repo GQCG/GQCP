@@ -16,16 +16,15 @@
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
 #define BOOST_TEST_MODULE "DOCI_RDM_test"
+
 #include <boost/test/unit_test.hpp>
-#include "RDM/RDMCalculator.hpp"
-#include "RDM/DOCIRDMBuilder.hpp"
 
 #include "CISolver/CISolver.hpp"
 #include "HamiltonianBuilder/DOCI.hpp"
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "Properties/expectation_values.hpp"
-
-
+#include "RDM/DOCIRDMBuilder.hpp"
+#include "RDM/RDMCalculator.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( lih_1RDM_trace ) {

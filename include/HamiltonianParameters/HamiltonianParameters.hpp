@@ -15,20 +15,19 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCP_HAMILTONIANPARAMETERS_HPP
-#define GQCP_HAMILTONIANPARAMETERS_HPP
+#pragma once
+
 
 #include "HamiltonianParameters/BaseHamiltonianParameters.hpp"
-#include "Operator/BaseOperator.hpp"
-
 #include "HoppingMatrix.hpp"
 #include "Molecule/Molecule.hpp"
+#include "Operator/BaseOperator.hpp"
 #include "Operator/OneElectronOperator.hpp"
 #include "Operator/TwoElectronOperator.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
 #include "OrbitalOptimization/JacobiRotationParameters.hpp"
-#include "RDM/TwoRDM.hpp"
 #include "RDM/OneRDM.hpp"
+#include "RDM/TwoRDM.hpp"
 #include "typedefs.hpp"
 #include "Utilities/miscellaneous.hpp"
 
@@ -721,6 +720,3 @@ public:
 
 
 }  // namespace GQCP
-
-
-#endif  // GQCP_HAMILTONIANPARAMETERS_HPP

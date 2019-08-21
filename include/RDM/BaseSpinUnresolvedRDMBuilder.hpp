@@ -15,14 +15,13 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCG_BASESPINUNRESOLVEDRDMBUILDER_HPP
-#define GQCG_BASESPINUNRESOLVEDRDMBUILDER_HPP
+#pragma once
 
 
-#include "RDM/OneRDM.hpp"
-#include "RDM/TwoRDM.hpp"
-#include "RDM/RDMs.hpp"
 #include "FockSpace/BaseFockSpace.hpp"
+#include "RDM/OneRDM.hpp"
+#include "RDM/RDMs.hpp"
+#include "RDM/TwoRDM.hpp"
 
 
 namespace GQCP {
@@ -75,6 +74,3 @@ public:
 
 
 }  // namespace GQCG
-
-
-#endif  // GQCG_BASESPINUNRESOLVEDRDMBUILDER_HPP

@@ -19,11 +19,11 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "WaveFunction/WaveFunction.hpp"
-#include "FockSpace/FockSpace.hpp"
 #include "CISolver/CISolver.hpp"
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "FockSpace/FockSpace.hpp"
 #include "HamiltonianBuilder/FCI.hpp"
+#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "WaveFunction/WaveFunction.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( shannon_entropy ) {

@@ -19,11 +19,9 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "OrbitalOptimization/Localization/ERNewtonLocalizer.hpp"
-
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "Mathematical/Optimization/IterativeIdentitiesHessianModifier.hpp"
-
+#include "OrbitalOptimization/Localization/ERNewtonLocalizer.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( localization_index_raises ) {

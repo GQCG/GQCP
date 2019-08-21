@@ -15,13 +15,12 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef CartesianGTO_hpp
-#define CartesianGTO_hpp
+#pragma once
 
 
 #include "Basis/CartesianExponents.hpp"
-#include "Mathematical/ScalarFunction.hpp"
 #include "Mathematical/LinearCombination.hpp"
+#include "Mathematical/ScalarFunction.hpp"
 
 
 namespace GQCP {
@@ -119,6 +118,3 @@ public:
 
 
 }  // namespace GQCP
-
-
-#endif  /* CartesianGTO_hpp */

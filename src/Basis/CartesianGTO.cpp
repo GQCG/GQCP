@@ -20,9 +20,8 @@
 #include <boost/math/constants/constants.hpp>
 #include <boost/math/special_functions/factorials.hpp>
 
-
-
 #include <iostream>
+
 
 namespace GQCP {
 

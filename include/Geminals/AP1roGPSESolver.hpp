@@ -15,8 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef AP1roGPSESolver_hpp
-#define AP1roGPSESolver_hpp
+#pragma once
 
 
 #include "Geminals/BaseAP1roGSolver.hpp"
@@ -77,7 +76,3 @@ public:
 
 
 }  // namespace GQCP
-
-
-
-#endif /* AP1roGPSESolver_hpp */

@@ -15,8 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCP_ELEMENTS_HPP
-#define GQCP_ELEMENTS_HPP
+#pragma once
 
 
 #include <string>
@@ -42,9 +41,5 @@ size_t elementToAtomicNumber(const std::string& symbol);
 const std::string& atomicNumberToElement(size_t atomic_number);
 
 
-
 }  // namespace elements
 }  // namespace GQCP
-
-
-#endif  // GQCP_ELEMENTS_HPP

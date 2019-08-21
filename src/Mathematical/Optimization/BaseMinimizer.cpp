@@ -18,7 +18,6 @@
 #include "Mathematical/Optimization/BaseMinimizer.hpp"
 
 
-
 namespace GQCP {
 
 

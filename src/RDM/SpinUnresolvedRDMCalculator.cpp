@@ -17,11 +17,10 @@
 // 
 #include "RDM/SpinUnresolvedRDMCalculator.hpp"
 
-#include "RDM/DOCIRDMBuilder.hpp"
 #include "RDM/FCIRDMBuilder.hpp"
+#include "RDM/DOCIRDMBuilder.hpp"
 #include "RDM/SelectedRDMBuilder.hpp"
 #include "RDM/SpinUnresolvedFCIRDMBuilder.hpp"
-
 
 
 namespace GQCP {

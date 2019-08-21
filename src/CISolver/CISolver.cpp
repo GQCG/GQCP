@@ -17,8 +17,8 @@
 // 
 #include "CISolver/CISolver.hpp"
 
-#include "Mathematical/Optimization/DenseSolver.hpp"
 #include "Mathematical/Optimization/DavidsonSolver.hpp"
+#include "Mathematical/Optimization/DenseSolver.hpp"
 #include "Mathematical/Optimization/SparseSolver.hpp"
 
 

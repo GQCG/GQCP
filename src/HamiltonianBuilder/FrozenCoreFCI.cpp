@@ -16,6 +16,7 @@
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
 #include "HamiltonianBuilder/FrozenCoreFCI.hpp"
+
 #include "HamiltonianBuilder/FCI.hpp"
 
 

@@ -17,13 +17,9 @@
 // 
 #define BOOST_TEST_MODULE "units"
 
-
 #include <boost/test/unit_test.hpp>
 
-#include <cstdlib>
-#include <cmath>
 #include "units.hpp"
-
 
 
 BOOST_AUTO_TEST_CASE ( bohr_angstrom ) {

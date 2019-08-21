@@ -15,20 +15,17 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCP_DAVIDSONSOLVER_HPP
-#define GQCP_DAVIDSONSOLVER_HPP
+#pragma once
 
 
 #include "Mathematical/Optimization/BaseEigenproblemSolver.hpp"
 #include "Mathematical/Optimization/EigenproblemSolverOptions.hpp"
-
 #include "Mathematical/SquareMatrix.hpp"
-
 #include "typedefs.hpp"
 
 
-
 namespace GQCP {
+
 
 /**
  *  A class that implements the Davidson algorithm for finding the lowest eigenpair of a (possibly large) diagonally-
@@ -111,7 +108,3 @@ public:
 
 
 }  // namespace GQCP
-
-
-
-#endif  // GQCP_DAVIDSONSOLVER_HPP

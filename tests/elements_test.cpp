@@ -22,7 +22,6 @@
 #include "elements.hpp"
 
 
-
 BOOST_AUTO_TEST_CASE ( elementToAtomicNumber ) {
     
     BOOST_CHECK_EQUAL(GQCP::elements::elementToAtomicNumber("H"), 1);

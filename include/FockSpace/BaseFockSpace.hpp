@@ -15,15 +15,15 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCP_BASEFOCKSPACE_HPP
-#define GQCP_BASEFOCKSPACE_HPP
+#pragma once
 
 
 #include "FockSpace/FockSpaceType.hpp"
-#include "Mathematical/SquareMatrix.hpp"
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "Mathematical/SquareMatrix.hpp"
 
 #include <Eigen/Sparse>
+
 #include <iostream>
 #include <memory>
 
@@ -185,6 +185,3 @@ public:
 
 
 }  // namespace GQCP
-
-
-#endif  // GQCP_BASEFOCKSPACE_HPP

@@ -18,13 +18,13 @@
 #include "Mathematical/Optimization/BaseSystemOfEquationsSolver.hpp"
 
 
-
 namespace GQCP {
 
 
 /*
  *  CONSTRUCTORS
  */
+
 /**
  *  @param x0                               an initial guess
  *  @param convergence_threshold            the threshold for convergence on the norm of the gradient

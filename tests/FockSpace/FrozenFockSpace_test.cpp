@@ -16,13 +16,11 @@
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
 #define BOOST_TEST_MODULE "FrozenFockSpace"
-#include <boost/test/unit_test.hpp>
 
+#include <boost/test/unit_test.hpp>
 
 #include "FockSpace/FrozenFockSpace.hpp"
 #include "FockSpace/FrozenProductFockSpace.hpp"
-
-
 
 
 BOOST_AUTO_TEST_CASE ( FrozenFockSpace_constructor ) {

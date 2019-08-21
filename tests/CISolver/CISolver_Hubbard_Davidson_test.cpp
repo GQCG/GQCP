@@ -19,13 +19,11 @@
 
 #include <boost/test/unit_test.hpp>
 
-
 #include "CISolver/CISolver.hpp"
-#include "HamiltonianBuilder/Hubbard.hpp"
 #include "HamiltonianBuilder/FCI.hpp"
+#include "HamiltonianBuilder/Hubbard.hpp"
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
-
 
 
 BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_davidson ) {

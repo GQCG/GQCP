@@ -15,15 +15,13 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCP_DOCI_HPP
-#define GQCP_DOCI_HPP
+#pragma once
 
 
-#include "HamiltonianBuilder/HamiltonianBuilder.hpp"
 #include "FockSpace/FockSpace.hpp"
+#include "HamiltonianBuilder/HamiltonianBuilder.hpp"
 
 #include <memory>
-
 
 
 namespace GQCP {
@@ -80,6 +78,3 @@ public:
 
 
 }  // namespace GQCP
-
-
-#endif  // GQCP_DOCI_HPP

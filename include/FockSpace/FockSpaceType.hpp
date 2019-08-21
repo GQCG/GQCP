@@ -15,13 +15,12 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCG_FOCKSPACETYPE_HPP
-#define GQCG_FOCKSPACETYPE_HPP
+#pragma once
 
 
 namespace GQCP {
 
-    
+
 /**
  *  An enum class for the implemented Fock space types
  */
@@ -35,6 +34,3 @@ enum class FockSpaceType {
 
 
 }  // namespace GQCG
-
-
-#endif  // GQCG_FOCKSPACETYPE_HPP

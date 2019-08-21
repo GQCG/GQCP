@@ -15,14 +15,13 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 //
-#ifndef GQCP_QCMETHOD_FCI_HPP
-#define GQCP_QCMETHOD_FCI_HPP
+#pragma once
 
 
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "CISolver/CISolver.hpp"
-#include "HamiltonianBuilder/FCI.hpp"
 #include "FockSpace/ProductFockSpace.hpp"
+#include "HamiltonianBuilder/FCI.hpp"
+#include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "RDM/RDMCalculator.hpp"
 
 
@@ -73,6 +72,3 @@ public:
 
 }  // namespace QCMethod
 }  // namespace GQCP
-
-
-#endif  // GQCP_QCMETHOD_FCI_HPP

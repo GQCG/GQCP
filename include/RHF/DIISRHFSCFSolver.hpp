@@ -15,8 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef DIISRHFSCFSolver_hpp
-#define DIISRHFSCFSolver_hpp
+#pragma once
 
 
 #include "RHFSCFSolver.hpp"
@@ -24,11 +23,11 @@
 #include <deque>
 
 
-
 /**
  *  A class that implements the RHF DIIS SCF algorithm
  */
 namespace GQCP {
+
 
 class DIISRHFSCFSolver : public RHFSCFSolver {
 private:
@@ -64,7 +63,3 @@ public:
 
 
 }  // namespace GQCP
-
-
-
-#endif /* DIISRHFSCFSolver_hpp */

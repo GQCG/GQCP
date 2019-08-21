@@ -17,8 +17,8 @@
 // 
 #include "Geminals/AP1roGGeminalCoefficients.hpp"
 
-#include "Geminals/APIGGeminalCoefficients.hpp"
 #include "FockSpace/FockSpace.hpp"
+#include "Geminals/APIGGeminalCoefficients.hpp"
 #include "Utilities/miscellaneous.hpp"
 
 

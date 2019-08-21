@@ -15,8 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef Shell_hpp
-#define Shell_hpp
+#pragma once
 
 
 #include "Molecule/Nucleus.hpp"
@@ -105,6 +104,3 @@ public:
 
 
 }  // namespace GQCP
-
-
-#endif  /* Shell_hpp */

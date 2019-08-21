@@ -16,12 +16,11 @@
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
 #define BOOST_TEST_MODULE "NewtonMinimizer"
-#include <boost/test/unit_test.hpp>
 
+#include <boost/test/unit_test.hpp>
 
 #include "Mathematical/Optimization/NewtonMinimizer.hpp"
 #include "Mathematical/SquareMatrix.hpp"
-
 
 
 /*

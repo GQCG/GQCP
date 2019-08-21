@@ -15,8 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef RHF_hpp
-#define RHF_hpp
+#pragma once
 
 
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
@@ -24,6 +23,7 @@
 
 
 namespace GQCP {
+
 
 /**
  *  A class that represents a converged solution to the RHF SCF equations
@@ -116,6 +116,3 @@ size_t RHFLUMOIndex(size_t K, size_t N);
 
 
 }  // namespace GQCP
-
-
-#endif /* RHF_hpp */

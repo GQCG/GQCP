@@ -17,7 +17,6 @@
 // 
 #define BOOST_TEST_MODULE "HoppingMatrix"
 
-
 #include <boost/test/unit_test.hpp>
 
 #include "HoppingMatrix.hpp"

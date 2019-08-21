@@ -16,9 +16,10 @@
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
 #include "HamiltonianBuilder/FrozenCoreCI.hpp"
-#include "FockSpace/BaseFrozenCoreFockSpace.hpp"
 
+#include "FockSpace/BaseFrozenCoreFockSpace.hpp"
 #include "Utilities/linalg.hpp"
+
 #include <utility>
 
 

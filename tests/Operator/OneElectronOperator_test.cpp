@@ -19,9 +19,8 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "Operator/OneElectronOperator.hpp"
-
 #include "Basis/CartesianGTO.hpp"
+#include "Operator/OneElectronOperator.hpp"
 #include "Utilities/miscellaneous.hpp"
 
 

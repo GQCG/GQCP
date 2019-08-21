@@ -15,12 +15,11 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef ChemicalRankFourTensor_hpp
-#define ChemicalRankFourTensor_hpp
+#pragma once
 
 
-#include "Mathematical/SquareRankFourTensor.hpp"
 #include "Mathematical/SquareMatrix.hpp"
+#include "Mathematical/SquareRankFourTensor.hpp"
 
 #include <iostream>
 
@@ -111,9 +110,4 @@ public:
 };
 
 
-
-
 }  // namespace GQCP
-
-
-#endif  /* ChemicalRankFourTensor_hpp */

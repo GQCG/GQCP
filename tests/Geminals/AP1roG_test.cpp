@@ -20,11 +20,9 @@
 #include <boost/test/unit_test.hpp>
 
 #include "Geminals/AP1roG.hpp"
-
 #include "Geminals/AP1roGLagrangianOptimizer.hpp"
-#include "RHF/PlainRHFSCFSolver.hpp"
 #include "Properties/expectation_values.hpp"
-
+#include "RHF/PlainRHFSCFSolver.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( energy_as_contraction ) {

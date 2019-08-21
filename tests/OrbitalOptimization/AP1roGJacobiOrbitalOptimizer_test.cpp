@@ -19,11 +19,10 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "OrbitalOptimization/AP1roGJacobiOrbitalOptimizer.hpp"
-
-#include "Geminals/AP1roGPSESolver.hpp"
 #include "Geminals/AP1roG.hpp"
+#include "Geminals/AP1roGPSESolver.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
+#include "OrbitalOptimization/AP1roGJacobiOrbitalOptimizer.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( lih_6_31G_calculateEnergyAfterRotation ) {

@@ -24,7 +24,6 @@
 #include <iostream>
 
 
-
 BOOST_AUTO_TEST_CASE ( JacobiRotationParameters_constructor ) {
 
     // Check if a correct constructor works

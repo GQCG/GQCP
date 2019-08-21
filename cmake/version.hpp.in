@@ -15,8 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef ${PROJECT_NAME_UPPERCASE}_VERSION_HPP
-#define ${PROJECT_NAME_UPPERCASE}_VERSION_HPP
+#pragma once
 
 
 #include <cstddef>
@@ -42,6 +41,3 @@ public:
 
 
 }  // namespace ${PROJECT_NAME_UPPERCASE}
-
-
-#endif  // ${PROJECT_NAME_UPPERCASE}_VERSION_HPP

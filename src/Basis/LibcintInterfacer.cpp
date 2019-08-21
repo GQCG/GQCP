@@ -18,7 +18,6 @@
 #include "Basis/LibcintInterfacer.hpp"
 
 
-
 namespace GQCP {
 
 

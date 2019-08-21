@@ -15,13 +15,12 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef BaseAP1roGSolver_hpp
-#define BaseAP1roGSolver_hpp
+#pragma once
 
 
+#include "Geminals/AP1roGGeminalCoefficients.hpp"
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "Molecule/Molecule.hpp"
-#include "Geminals/AP1roGGeminalCoefficients.hpp"
 
 
 namespace GQCP {
@@ -106,6 +105,3 @@ public:
 
 
 }  // namespace GQCP
-
-
-#endif /* BaseAP1roGSolver_hpp */

@@ -15,8 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCP_FCIRDMBUILDER_HPP
-#define GQCP_FCIRDMBUILDER_HPP
+#pragma once
 
 
 #include "FockSpace/ProductFockSpace.hpp"
@@ -76,6 +75,3 @@ public:
 
 
 }  // namespace GQCP
-
-
-#endif  // GQCP_FCIRDMBUILDER_HPP

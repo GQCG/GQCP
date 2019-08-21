@@ -15,14 +15,13 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include <fstream>
-
-#include <boost/algorithm/string.hpp>
-#include <boost/range/adaptors.hpp>
-#include <boost/dynamic_bitset.hpp>
-
 #include "WaveFunction/WaveFunctionReader.hpp"
 
+#include <boost/algorithm/string.hpp>
+#include <boost/dynamic_bitset.hpp>
+#include <boost/range/adaptors.hpp>
+
+#include <fstream>
 
 
 namespace GQCP {

@@ -15,13 +15,13 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCP_FROZENFOCKSPACE_HPP
-#define GQCP_FROZENFOCKSPACE_HPP
+#pragma once
+
 
 #include "FockSpace/BaseFockSpace.hpp"
+#include "FockSpace/BaseFrozenCoreFockSpace.hpp"
 #include "FockSpace/FockPermutator.hpp"
 #include "FockSpace/FockSpace.hpp"
-#include "FockSpace/BaseFrozenCoreFockSpace.hpp"
 
 
 namespace GQCP {
@@ -129,6 +129,3 @@ public:
 
 
 }  // namespace GQCP
-
-
-#endif  // GQCP_FROZENFOCKSPACE_HPP

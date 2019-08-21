@@ -19,15 +19,13 @@
 
 #include <boost/test/unit_test.hpp>
 
-
-#include "RDM/RDMCalculator.hpp"
-#include "RDM/SpinUnresolvedRDMCalculator.hpp"
-
+#include "CISolver/CISolver.hpp"
 #include "FockSpace/FockSpace.hpp"
 #include "FockSpace/ProductFockSpace.hpp"
-#include "CISolver/CISolver.hpp"
 #include "HamiltonianBuilder/DOCI.hpp"
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "RDM/RDMCalculator.hpp"
+#include "RDM/SpinUnresolvedRDMCalculator.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( constructor ) {

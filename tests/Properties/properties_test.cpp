@@ -19,14 +19,11 @@
 
 #include <boost/test/unit_test.hpp>
 
-
+#include "Basis/LibintInterfacer.hpp"
 #include "Properties/properties.hpp"
-
 #include "RHF/DIISRHFSCFSolver.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
-#include "Basis/LibintInterfacer.hpp"
 #include "units.hpp"
-
 
 
 BOOST_AUTO_TEST_CASE ( dipole_CO_STO_3G ) {

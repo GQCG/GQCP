@@ -15,12 +15,12 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef expectation_values_hpp
-#define expectation_values_hpp
+#pragma once
 
+
+#include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "RDM/OneRDM.hpp"
 #include "RDM/TwoRDM.hpp"
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
 
 
 namespace GQCP {
@@ -89,7 +89,3 @@ double calculateExpectationValue(const HamiltonianParameters<double>& ham_par, c
 
 
 }  // namespace GQCP
-
-
-
-#endif /* expectation_values_hpp */

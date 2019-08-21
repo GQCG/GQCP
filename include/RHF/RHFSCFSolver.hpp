@@ -15,13 +15,12 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef RHFSCFSolver_hpp
-#define RHFSCFSolver_hpp
+#pragma once
 
 
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
-#include "RHF.hpp"
 #include "Molecule/Molecule.hpp"
+#include "RHF/RHF.hpp"
 
 
 namespace GQCP {
@@ -93,6 +92,3 @@ public:
 
 
 }  // namespace GQCP
-
-
-#endif /* RHFSCFSolver_hpp */

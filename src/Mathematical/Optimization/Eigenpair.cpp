@@ -20,7 +20,6 @@
 #include "Utilities/linalg.hpp"
 
 
-
 namespace GQCP {
 
 

@@ -15,8 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCP_LINALG_HPP
-#define GQCP_LINALG_HPP
+#pragma once
 
 
 #include "Mathematical/Matrix.hpp"
@@ -54,6 +53,3 @@ bool areEqualSetsOfEigenvectors(const MatrixX<double>& eigenvectors1, const Matr
 
 
 }  // namespace GQCP
-
-
-#endif  // GQCP_LINALG_HPP

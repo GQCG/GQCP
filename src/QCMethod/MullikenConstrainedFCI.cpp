@@ -16,10 +16,13 @@
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 //
 #include "QCMethod/MullikenConstrainedFCI.hpp"
-#include "RHF/DIISRHFSCFSolver.hpp"
+
 #include "Properties/expectation_values.hpp"
+#include "RHF/DIISRHFSCFSolver.hpp"
+
 #include <algorithm>
 #include <chrono>
+
 
 namespace GQCP {
 namespace QCMethod {

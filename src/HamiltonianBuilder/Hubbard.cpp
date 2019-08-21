@@ -20,6 +20,7 @@
 
 namespace GQCP {
 
+
 /*
  *  CONSTRUCTORS
  */

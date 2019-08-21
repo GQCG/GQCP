@@ -20,7 +20,6 @@
 #include <boost/test/unit_test.hpp>
 
 #include "Basis/LibintInterfacer.hpp"
-
 #include "Utilities/linalg.hpp"
 
 

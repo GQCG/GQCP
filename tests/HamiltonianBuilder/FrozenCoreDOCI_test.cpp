@@ -17,15 +17,11 @@
 // 
 #define BOOST_TEST_MODULE "FrozenCoreDOCI"
 
-
 #include <boost/test/unit_test.hpp>
 
 #include "HamiltonianBuilder/FrozenCoreDOCI.hpp"
-
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "HamiltonianBuilder/SelectedCI.hpp"
-
-
+#include "HamiltonianParameters/HamiltonianParameters.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( FrozenCoreDOCI_constructor ) {

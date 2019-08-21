@@ -17,14 +17,10 @@
 // 
 #define BOOST_TEST_MODULE "FCI"
 
-
 #include <boost/test/unit_test.hpp>
 
 #include "HamiltonianBuilder/FCI.hpp"
-
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
-
-
 
 
 BOOST_AUTO_TEST_CASE ( FCI_constructor ) {

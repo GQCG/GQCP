@@ -25,9 +25,6 @@
 #include "RHF/PlainRHFSCFSolver.hpp"
 
 
-
-
-
 BOOST_AUTO_TEST_CASE ( FCI_h2_sto3g_dense_vs_Davidson ) {
 
     // Check if the dense FCI energy is equal to the Davidson (with matvec) FCI energy

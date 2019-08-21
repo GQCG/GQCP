@@ -15,8 +15,8 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCP_RDMCALCULATOR_HPP
-#define GQCP_RDMCALCULATOR_HPP
+#pragma once
+
 
 #include "RDM/BaseRDMBuilder.hpp"
 #include "FockSpace/FockSpace.hpp"
@@ -24,9 +24,10 @@
 #include "FockSpace/SelectedFockSpace.hpp"
 #include "WaveFunction/WaveFunction.hpp"
 
-#include <boost/range/adaptor/strided.hpp>
 #include <boost/range/adaptor/sliced.hpp>
+#include <boost/range/adaptor/strided.hpp>
 #include <boost/range/algorithm_ext/push_back.hpp>
+
 #include <memory>
 
 
@@ -142,6 +143,3 @@ public:
 
 
 }  // namespace GQCP
-
-
-#endif  // GQCP_RDMCALCULATOR_HPP

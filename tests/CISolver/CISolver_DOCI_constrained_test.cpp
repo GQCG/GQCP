@@ -19,14 +19,13 @@
 
 #include <boost/test/unit_test.hpp>
 
-
 #include "CISolver/CISolver.hpp"
-#include "RDM/RDMCalculator.hpp"
 #include "HamiltonianBuilder/DOCI.hpp"
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
-#include "RHF/PlainRHFSCFSolver.hpp"
-#include "RHF/DIISRHFSCFSolver.hpp"
 #include "Properties/expectation_values.hpp"
+#include "RDM/RDMCalculator.hpp"
+#include "RHF/DIISRHFSCFSolver.hpp"
+#include "RHF/PlainRHFSCFSolver.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( CO_DOCI_constrained_dense ) {

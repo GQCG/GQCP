@@ -19,11 +19,11 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "RHF/PlainRHFSCFSolver.hpp"
-#include "HamiltonianParameters/AtomicDecompositionParameters.hpp"
 #include "CISolver/CISolver.hpp"
-#include "RDM/RDMCalculator.hpp"
 #include "HamiltonianBuilder/FCI.hpp"
+#include "HamiltonianParameters/AtomicDecompositionParameters.hpp"
+#include "RDM/RDMCalculator.hpp"
+#include "RHF/PlainRHFSCFSolver.hpp"
 #include "Properties/expectation_values.hpp"
 #include "units.hpp"
 

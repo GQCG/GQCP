@@ -20,7 +20,6 @@
 #include <iostream>
 
 
-
 namespace GQCP {
 
 

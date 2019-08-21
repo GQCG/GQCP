@@ -15,16 +15,14 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef GQCP_CISOLVER_HPP
-#define GQCP_CISOLVER_HPP
+#pragma once
 
 
 #include "HamiltonianBuilder/HamiltonianBuilder.hpp"
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
-#include "WaveFunction/WaveFunction.hpp"
-
 #include "Mathematical/Optimization/Eigenpair.hpp"
 #include "Mathematical/Optimization/EigenproblemSolverOptions.hpp"
+#include "WaveFunction/WaveFunction.hpp"
 
 
 namespace GQCP {
@@ -72,6 +70,3 @@ public:
 
 
 }  // namespace GQCP
-
-
-#endif  // GQCP_CISOLVER_HPP

@@ -19,11 +19,10 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "OrbitalOptimization/AP1roGLagrangianNewtonOrbitalOptimizer.hpp"
-
 #include "RHF/PlainRHFSCFSolver.hpp"
 #include "Geminals/AP1roGLagrangianOptimizer.hpp"
 #include "Mathematical/Optimization/IterativeIdentitiesHessianModifier.hpp"
+#include "OrbitalOptimization/AP1roGLagrangianNewtonOrbitalOptimizer.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( lih_6_31G_orbital_optimize ) {

@@ -19,11 +19,8 @@
 
 #include <boost/test/unit_test.hpp>
 
-
 #include "Mathematical/Optimization/DenseSolver.hpp"
-
 #include "Utilities/linalg.hpp"
-
 
 
 BOOST_AUTO_TEST_CASE ( diagonal_getter_dense ) {

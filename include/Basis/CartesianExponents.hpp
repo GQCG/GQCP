@@ -15,8 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#ifndef CartesianExponents_hpp
-#define CartesianExponents_hpp
+#pragma once
 
 
 #include "Mathematical/CartesianDirection.hpp"
@@ -106,6 +105,3 @@ public:
 
 
 }  // namespace GQCP
-
-
-#endif  /* CartesianExponents_hpp */
