@@ -172,7 +172,5 @@ BOOST_AUTO_TEST_CASE ( dissociatedMoleculeBasis ) {
     auto NO = GQCP::Molecule(nuclei, +1);
     GQCP::AOBasis basis (NO, "STO-3G");
 
-
-
     BOOST_CHECK_NO_THROW(GQCP::AOBasis basis (NO, "STO-3G"));
 }

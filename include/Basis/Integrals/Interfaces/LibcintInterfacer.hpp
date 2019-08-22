@@ -25,7 +25,6 @@
 #include "Operator/TwoElectronOperator.hpp"
 
 #include <functional>
-#include <unordered_map>
 
 
 extern "C" {
@@ -68,7 +67,6 @@ namespace libcint {
 
 
 class RawContainer;
-class RawOptimizer;
 
 
 }  // namespace libcint
@@ -99,16 +97,11 @@ public:
     void setCommonOrigin(libcint::RawContainer& raw_container, const Vector<double, 3>& origin) const;
 
     /**
-     *  @param raw_optimizer                    the libcint::RawOptimizer that contains a raw libcint optimizer struct
+     *  @param libcint_optimizer                the pointer to the raw libcint_optimizer struct
      *  @param libcint_optimizer_function       the function with which the raw_optimizer should be initialized
      *  @param raw_container                    the libcint::RawContainer that holds the data needed by libcint
      */
-    void initializeOptimizer(libcint::RawOptimizer& raw_optimizer, const Libcint2eOptimizerFunction& libcint_optimizer_function, const libcint::RawContainer& raw_container) const;
-
-    /**
-     *  @param raw_optimizer                    the libcint::RawOptimizer that contains a raw libcint optimizer struct
-     */
-    void deleteOptimizer(libcint::RawOptimizer& raw_optimizer) const;
+    void initializeOptimizer(CINTOpt* libcint_optimizer, const Libcint2eOptimizerFunction& libcint_optimizer_function, const libcint::RawContainer& raw_container) const;
 
 
 
@@ -242,59 +235,6 @@ public:
     const int* atmData() const { return this->libcint_atm; }
     const int* basData() const { return this->libcint_bas; }
     const double* envData() const { return this->libcint_env; }
-
-    /*
-     *  FRIENDS
-     */
-    friend class GQCP::LibcintInterfacer;
-};
-
-
-
-/**
- *  A wrapper that owns a raw libcint CINTOpt struct
- */
-class RawOptimizer {
-private:
-    CINTOpt* libcint_optimizer;  // the libcint two-electron optimizer struct
-
-
-public:
-
-    /*
-     *  CONSTRUCTORS
-     */
-    RawOptimizer() : 
-        libcint_optimizer (nullptr)
-    {}
-
-
-    /*
-     *  DESTRUCTOR
-     */
-    ~RawOptimizer() {
-        GQCP::LibcintInterfacer().deleteOptimizer(*this);
-    }
-
-
-    /*
-     *  GETTERS
-     */
-
-    /*
-     *  Return a pointer to a const, similarly to where libcint would use 'opt'
-     */
-    const CINTOpt* opt() const {
-        return this->libcint_optimizer;
-    }
-
-    /**
-     *  Return a (modifiable) pointer to a pointer, similarly to where libcint would use '&opt'
-     */
-    CINTOpt** refOpt() {
-        return &(this->libcint_optimizer);
-    }
-
 
     /*
      *  FRIENDS
