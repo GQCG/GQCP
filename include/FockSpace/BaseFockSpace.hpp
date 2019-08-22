@@ -20,7 +20,7 @@
 
 #include "FockSpace/FockSpaceType.hpp"
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
-#include "Mathematical/SquareMatrix.hpp"
+#include "Mathematical/Representation/SquareMatrix.hpp"
 
 #include <Eigen/Sparse>
 

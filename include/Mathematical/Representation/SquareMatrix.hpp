@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Mathematical/Matrix.hpp"
+#include "Mathematical/Representation/Matrix.hpp"
 #include "OrbitalOptimization/JacobiRotationParameters.hpp"
 #include "Utilities/miscellaneous.hpp"
 
