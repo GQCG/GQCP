@@ -1,0 +1,9 @@
+target_sources(gqcp
+        PRIVATE
+            ChemicalMatrix.hpp
+            ChemicalRankFourTensor.hpp
+            Matrix.hpp
+            SquareMatrix.hpp
+            SquareRankFourTensor.hpp
+            Tensor.hpp
+        )
