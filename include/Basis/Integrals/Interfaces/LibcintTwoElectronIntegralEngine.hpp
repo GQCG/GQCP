@@ -105,13 +105,9 @@ public:
         double libcint_buffer[N * nbf1 * nbf2 * nbf3 * nbf4];
 
 
-        // Let libcint compute the integrals with the aid of the optimization struct and return the corresponding buffer
-        CINTOpt* opt;
-        this->libcint_optimizer_function(&opt, this->libcint_raw_container.atmData(), this->libcint_raw_container.numberOfAtoms(), this->libcint_raw_container.basData(), this->libcint_raw_container.numberOfBasisFunctions(), this->libcint_raw_container.envData());
+        // Let libcint compute the integrals and return the corresponding buffer
+        const auto result = this->libcint_function(libcint_buffer, shell_indices, this->libcint_raw_container.atmData(), this->libcint_raw_container.numberOfAtoms(), this->libcint_raw_container.basData(), this->libcint_raw_container.numberOfBasisFunctions(), this->libcint_raw_container.envData(), nullptr);  // no optimizer struct
 
-        const auto result = this->libcint_function(libcint_buffer, shell_indices, this->libcint_raw_container.atmData(), this->libcint_raw_container.numberOfAtoms(), this->libcint_raw_container.basData(), this->libcint_raw_container.numberOfBasisFunctions(), this->libcint_raw_container.envData(), opt);
-
-        CINTdel_optimizer(&opt);
 
         std::vector<double> buffer_converted (libcint_buffer, libcint_buffer + N*nbf1*nbf2*nbf3*nbf4);  // std::vector constructor from .begin() and .end()
         return std::make_shared<LibcintTwoElectronIntegralBuffer<IntegralScalar, N>>(buffer_converted, nbf1, nbf2, nbf3, nbf4, result);
