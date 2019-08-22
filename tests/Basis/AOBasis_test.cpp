@@ -128,16 +128,13 @@ BOOST_AUTO_TEST_CASE ( libcint_vs_libint2_H2O_STO_3G ) {
     const auto T_libcint = ao_basis.calculateLibcintKineticIntegrals();
     const auto V_libcint = ao_basis.calculateLibcintNuclearIntegrals();
     const auto dipole_libcint = ao_basis.calculateLibcintDipoleIntegrals();
-    // const auto g_libcint = ao_basis.calculateLibcintCoulombRepulsionIntegrals();
-
-    // std::cout << "g_libcint " << std::endl;
-    // g_libcint.print();
+    const auto g_libcint = ao_basis.calculateLibcintCoulombRepulsionIntegrals();
 
     const auto S_libint2 = ao_basis.calculateLibintOverlapIntegrals();
     const auto T_libint2 = ao_basis.calculateLibintKineticIntegrals();
     const auto V_libint2 = ao_basis.calculateLibintNuclearIntegrals();
     const auto dipole_libint2 = ao_basis.calculateLibintDipoleIntegrals();
-    // const auto g_libint2 = ao_basis.calculateLibintCoulombRepulsionIntegrals();
+    const auto g_libint2 = ao_basis.calculateLibintCoulombRepulsionIntegrals();
 
     BOOST_CHECK(S_libcint.isApprox(S_libint2, 1.0e-08));
     BOOST_CHECK(T_libcint.isApprox(T_libint2, 1.0e-08));
@@ -145,7 +142,7 @@ BOOST_AUTO_TEST_CASE ( libcint_vs_libint2_H2O_STO_3G ) {
     for (size_t i = 0; i < 3; i++) {
         BOOST_CHECK(dipole_libcint[i].isApprox(dipole_libint2[i], 1.0e-08));
     }
-    // BOOST_CHECK(g_libcint.isApprox(g_libint2, 1.0e-08));
+    BOOST_CHECK(g_libcint.isApprox(g_libint2, 1.0e-08));
 }
 
 
@@ -163,4 +160,17 @@ BOOST_AUTO_TEST_CASE ( libcint_vs_libint2_dipole_origin ) {
     for (size_t i = 0; i < 3; i++) {
         BOOST_CHECK(dipole_libcint[i].isApprox(dipole_libint2[i], 1.0e-08));
     }
+}
+
+
+BOOST_AUTO_TEST_CASE ( dissociatedMoleculeBasis ) {
+
+    // Test if we can succesfully initialize NO+ at long intra molecular distance
+    auto N = GQCP::Nucleus(7, 3.5, 0, 0);
+    auto O = GQCP::Nucleus(8, -3.5, 0, 0);
+    std::vector<GQCP::Nucleus> nuclei {N,O};
+    auto NO = GQCP::Molecule(nuclei, +1);
+    GQCP::AOBasis basis (NO, "STO-3G");
+
+    BOOST_CHECK_NO_THROW(GQCP::AOBasis basis (NO, "STO-3G"));
 }

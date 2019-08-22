@@ -48,13 +48,16 @@ public:
     virtual ~BaseOneElectronIntegralEngine() = default;
 
 
-    // PUBLIC METHODS
+    // PUBLIC PURE VIRTUAL METHODS
 
     /**
+     *  Calculate all the integrals over the given shells
+     *  @note This method is not marked const to allow the Engine's internals to be changed
+     * 
      *  @param shell1           the first shell
      *  @param shell2           the second shell
      * 
-     *  This method is not marked const to allow the Engine's internals to be changed
+     *  @return a buffer containing the calculated integrals
      */
     virtual std::shared_ptr<BaseOneElectronIntegralBuffer<IntegralScalar, N>> calculate(const ShellType& shell1, const ShellType& shell2) = 0;
 };

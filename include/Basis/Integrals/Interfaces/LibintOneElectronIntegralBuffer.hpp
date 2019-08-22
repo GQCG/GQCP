@@ -78,8 +78,15 @@ public:
      * 
      *  @return the integral corresponding to the given basis functions from the buffer
      */
-    IntegralScalar value(const size_t i, const size_t f1, const size_t f2) const {
+    IntegralScalar value(const size_t i, const size_t f1, const size_t f2) const override {
         return this->scaling_factor * this->libint2_buffer[i + this->component_offset][f2 + f1 * this->nbf2]; // integrals are packed in row-major form
+    }
+
+    /**
+     *  @return if all the values of the calculated integrals are zero
+     */
+    bool areIntegralsAllZero() const override {
+        return (this->libint2_buffer[0] == nullptr);
     }
 };
 

@@ -71,8 +71,12 @@ public:
                 const auto bf2 = shell_set.basisFunctionIndex(sh2_index);
                 const auto shell2 = shells[sh2_index];
 
-                // Calculate the integrals over the shells and place the calculated integrals inside the full matrices
                 const auto buffer = engine.calculate(shell1, shell2);
+
+                // Only if the integrals are not all zero, place them inside the full matrices
+                if (buffer->areIntegralsAllZero()) {
+                    continue;
+                }
                 buffer->emplace(components, bf1, bf2);
             }  // sh2_index
         }  // sh1_index
@@ -122,7 +126,12 @@ public:
                         const auto bf4 = shell_set.basisFunctionIndex(sh4_index);
                         const auto shell4 = shells[sh4_index];
 
-                        const auto buffer = engine.calculate(shell1, shell2, shell3, shell4);  // calculate the integrals over the four shells
+                        const auto buffer = engine.calculate(shell1, shell2, shell3, shell4);
+
+                        // Only if the integrals are not all zero, place them inside the full matrices
+                        if (buffer->areIntegralsAllZero()) {
+                            continue;
+                        }
                         buffer->emplace(components, bf1, bf2, bf3, bf4);  // place the calculated integrals inside the full tensors
                     }  // sh4_index
                 }  // sh3_index
