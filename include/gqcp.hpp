@@ -96,6 +96,8 @@
 #include "Mathematical/Optimization/step.hpp"
 #include "Mathematical/Optimization/UnalteringHessianModifier.hpp"
 
+#include "Mathematical/Representation/BlockMatrix.hpp"
+#include "Mathematical/Representation/BlockRankFourTensor.hpp"
 #include "Mathematical/Representation/ChemicalMatrix.hpp"
 #include "Mathematical/Representation/ChemicalRankFourTensor.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
