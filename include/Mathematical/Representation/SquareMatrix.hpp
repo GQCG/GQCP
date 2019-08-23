@@ -242,15 +242,21 @@ public:
      */
 
     /**
-     *  @return the strict lower triangular matrix (i.e. without the diagonal elements) as a vector in column-major form
+     *  @return a pair-wise strict reduced form of this square matrix. The elements of the matrix are put into the vector such that
+     *      v(m) = M(i,j)
      *
+     *  in which
+     *      m is calculated from i and j in a column-major way, with the restriction that i>j
+     * 
+     *  Note that this is equal to extracting to strict lower triangular matrix as a vector in column major form. Example:
+     * 
      *          5
      *          1   5       -> (1, 2, 3)
      *          2   3   5
      */
-    VectorX<Scalar> strictLowerTriangle() const {
+    VectorX<Scalar> pairWiseStrictReduce() const {
 
-        auto dim = this->get_dim();
+        const auto dim = this->get_dim();
 
         VectorX<Scalar> m = VectorX<Scalar>::Zero((dim*(dim-1)/2));  // strictly lower triangle has dim(dim-1)/2 parameters
 
