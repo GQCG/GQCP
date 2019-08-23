@@ -119,10 +119,10 @@ public:
      */
     Scalar& operator()(const size_t index1, const size_t index2, const size_t index3, const size_t index4) {
 
-        const size_t index1_block = index1 - index1_start;  // the first index in the blocked tensor
-        const size_t index2_block = index2 - index2_start;  // the second index in the blocked tensor
-        const size_t index3_block = index3 - index3_start;  // the third index in the blocked tensor
-        const size_t index4_block = index4 - index4_start;  // the fourth index in the blocked tensor
+        const size_t index1_block = index1 - this->index1_start;  // the first index in the blocked tensor
+        const size_t index2_block = index2 - this->index2_start;  // the second index in the blocked tensor
+        const size_t index3_block = index3 - this->index3_start;  // the third index in the blocked tensor
+        const size_t index4_block = index4 - this->index4_start;  // the fourth index in the blocked tensor
 
         return this->T(index1_block,index2_block,index3_block,index4_block);
     }
@@ -144,7 +144,7 @@ public:
     /**
      *  @return this as a tensor
      */
-    const Tensor<double, 4>& asTensor() const {
+    const Tensor<Scalar, 4>& asTensor() const {
         return this->T;
     }
 };

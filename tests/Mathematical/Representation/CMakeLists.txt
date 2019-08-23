@@ -1,4 +1,6 @@
 list(APPEND test_target_sources
+        ${CMAKE_CURRENT_SOURCE_DIR}/BlockMatrix_test.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/BlockRankFourTensor_test.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/ChemicalMatrix_test.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/ChemicalRankFourTensor_test.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/Matrix_test.cpp

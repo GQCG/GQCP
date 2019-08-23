@@ -51,6 +51,31 @@ public:
      */
 
     /**
+     *  Constructor with a given block matrix
+     * 
+     *  @param row_start        the 0-based row index of the full matrix at which the block starts
+     *  @param row_end          the 0-based row index of the full matrix at which the block ends (not included)
+     *  @param col_start        the 0-based column index of the full matrix at which the block starts
+     *  @param col_end          the 0-based column index of the full matrix at which the block ends (not included)
+     *  @param M                the block matrix
+     */
+    BlockMatrix(const size_t row_start, const size_t row_end, const size_t col_start, const size_t col_end, const MatrixX<Scalar>& M) :
+        row_start (row_start),
+        row_end (row_end),
+        col_start (col_start),
+        col_end (col_end),
+        M (M)
+    {
+        if (row_end - row_start != M.rows()) {
+            throw std::invalid_argument("BlockMatrix(const size_t, const size_t, const size_t, const size_t, const MatrixX<Scalar>&): The given matrix does not have a compatible number of rows.");
+        }
+
+        if (col_end - col_start != M.cols()) {
+            throw std::invalid_argument("BlockMatrix(const size_t, const size_t, const size_t, const size_t, const MatrixX<Scalar>&): The given matrix does not have a compatible number of columns.");
+        }
+    }
+
+    /**
      *  Constructor that initializes a zero block matrix
      * 
      *  @param row_start        the 0-based row index of the full matrix at which the block starts
@@ -59,12 +84,9 @@ public:
      *  @param col_end          the 0-based column index of the full matrix at which the block ends (not included)
      */
     BlockMatrix(const size_t row_start, const size_t row_end, const size_t col_start, const size_t col_end) :
-        row_start (row_start),
-        row_end (row_end),
-        col_start (col_start),
-        col_end (col_end),
-        M (MatrixX<Scalar>::Zero(row_end-row_start, col_end-col_start))
+        BlockMatrix(row_start, row_end, col_start, col_end, MatrixX<Scalar>::Zero(row_end-row_start, col_end-col_start))
     {}
+
 
 
     /*
@@ -79,8 +101,8 @@ public:
      */
     Scalar operator()(const size_t row, const size_t col) const {
 
-        const size_t row_block = row - row_start;  // the row index in the blocked matrix
-        const size_t col_block = col - col_start;  // the columns index in the blocked matrix
+        const size_t row_block = row - this->row_start;  // the row index in the blocked matrix
+        const size_t col_block = col - this->col_start;  // the columns index in the blocked matrix
 
         return this->M(row_block, col_block);
     }
@@ -93,8 +115,8 @@ public:
      */
     Scalar& operator()(const size_t row, const size_t col) {
 
-        const size_t row_block = row - row_start;  // the row index in the blocked matrix
-        const size_t col_block = col - col_start;  // the columns index in the blocked matrix
+        const size_t row_block = row - this->row_start;  // the row index in the blocked matrix
+        const size_t col_block = col - this->col_start;  // the columns index in the blocked matrix
 
         return this->M(row_block, col_block);
     }
