@@ -1,5 +1,7 @@
 target_sources(gqcp
         PRIVATE
+            BlockMatrix.hpp
+            BlockRankFourTensor.hpp
             ChemicalMatrix.hpp
             ChemicalRankFourTensor.hpp
             Matrix.hpp
