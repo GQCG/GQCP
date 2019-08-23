@@ -19,7 +19,7 @@
 
 #include "Mathematical/ChemicalMatrix.hpp"
 #include "Mathematical/ScalarFunction.hpp"
-#include "Operator/BaseOperator.hpp"
+#include "Operator/SecondQuantized/BaseSQOperator.hpp"
 #include "OrbitalOptimization/JacobiRotationParameters.hpp"
 
 
@@ -32,13 +32,13 @@ namespace GQCP {
  *  @tparam _Scalar      the scalar type
  */
 template <typename _Scalar>
-class OneElectronOperator : public ChemicalMatrix<_Scalar>, public BaseOperator<OneElectronOperator<_Scalar>> {
+class SQOneElectronOperator : public ChemicalMatrix<_Scalar>, public BaseSQOperator<SQOneElectronOperator<_Scalar>> {
 public:
 
     using Scalar = _Scalar;
 
     using BaseRepresentation = ChemicalMatrix<Scalar>;
-    using Self = OneElectronOperator<Scalar>;
+    using Self = SQOneElectronOperator<Scalar>;
 
 
 public:
@@ -55,7 +55,7 @@ public:
      */
 
 
-    using BaseOperator<OneElectronOperator<Scalar>>::rotate;  // bring over rotate from the base class
+    using BaseSQOperator<SQOneElectronOperator<Scalar>>::rotate;  // bring over rotate from the base class
 
 
     /**
@@ -87,11 +87,11 @@ public:
      *
      *  @return a one-electron operator corresponding to the evaluated scalar functions
      *
-     *  Note that this function is only available for OneElectronOperators whose Scalar is a derived class of ScalarFunction
+     *  Note that this function is only available for SQOneElectronOperators whose Scalar is a derived class of ScalarFunction
      */
     template <typename Z = Scalar>
     enable_if_t<std::is_base_of<ScalarFunction<typename Z::Valued, typename Z::Scalar, Z::Cols>, Z>::value,
-    OneElectronOperator<typename Z::Valued>> evaluate(const Vector<typename Z::Scalar, Z::Cols>& x) const {
+    SQOneElectronOperator<typename Z::Valued>> evaluate(const Vector<typename Z::Scalar, Z::Cols>& x) const {
 
         Eigen::Matrix<typename Z::Valued, ChemicalMatrix<Z>::Rows, ChemicalMatrix<Z>::Cols> result (this->rows(), this->cols());
         auto result_op = ChemicalMatrix<typename Z::Valued>(result);

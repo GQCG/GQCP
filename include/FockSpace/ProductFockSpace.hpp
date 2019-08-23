@@ -82,7 +82,7 @@ public:
      *
      *  @return a one-electron operator containing a partition of the two-electron operator
      */
-    OneElectronOperator<double> oneElectronPartition(size_t p, size_t q, const TwoElectronOperator<double>& two_op) const;
+    SQOneElectronOperator<double> oneElectronPartition(size_t p, size_t q, const SQTwoElectronOperator<double>& two_op) const;
 
     /**
      *  Evaluate the operator in a dense matrix
@@ -92,7 +92,7 @@ public:
      *
      *  @return the operator's evaluation in a dense matrix with the dimensions of the Fock space
      */
-    SquareMatrix<double> evaluateOperatorDense(const OneElectronOperator<double>& one_op, bool diagonal_values) const override;
+    SquareMatrix<double> evaluateOperatorDense(const SQOneElectronOperator<double>& one_op, bool diagonal_values) const override;
 
     /**
      *  Evaluate the operator in a sparse matrix
@@ -102,7 +102,7 @@ public:
      *
      *  @return the operator's evaluation in a sparse matrix with the dimensions of the Fock space
      */
-    Eigen::SparseMatrix<double> evaluateOperatorSparse(const OneElectronOperator<double>& one_op,
+    Eigen::SparseMatrix<double> evaluateOperatorSparse(const SQOneElectronOperator<double>& one_op,
                                                        bool diagonal_values) const override;
 
     /**
@@ -113,7 +113,7 @@ public:
      *
      *  @return the operator's evaluation in a dense matrix with the dimensions of the Fock space
      */
-    SquareMatrix<double> evaluateOperatorDense(const TwoElectronOperator<double>& two_op, bool diagonal_values) const override;
+    SquareMatrix<double> evaluateOperatorDense(const SQTwoElectronOperator<double>& two_op, bool diagonal_values) const override;
 
     /**
      *  Evaluate the operator in a sparse matrix
@@ -123,7 +123,7 @@ public:
      *
      *  @return the operator's evaluation in a sparse matrix with the dimensions of the Fock space
      */
-    Eigen::SparseMatrix<double> evaluateOperatorSparse(const TwoElectronOperator<double>& two_op,
+    Eigen::SparseMatrix<double> evaluateOperatorSparse(const SQTwoElectronOperator<double>& two_op,
                                                        bool diagonal_values) const override;
 
     /**
@@ -155,7 +155,7 @@ public:
      *
      *  @return the operator's diagonal evaluation in a vector with the dimension of the Fock space
      */
-    VectorX<double> evaluateOperatorDiagonal(const OneElectronOperator<double>& one_op) const override;
+    VectorX<double> evaluateOperatorDiagonal(const SQOneElectronOperator<double>& one_op) const override;
 
     /**
      *  Evaluate the diagonal of the operator
@@ -164,7 +164,7 @@ public:
      *
      *  @return the operator's diagonal evaluation in a vector with the dimension of the Fock space
      */
-    VectorX<double> evaluateOperatorDiagonal(const TwoElectronOperator<double>& two_op) const override;
+    VectorX<double> evaluateOperatorDiagonal(const SQTwoElectronOperator<double>& two_op) const override;
 
     /**
      *  Evaluate the diagonal of the Hamiltonian

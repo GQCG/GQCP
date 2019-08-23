@@ -36,7 +36,7 @@ namespace GQCP {
  *
  *  @return the expectation value of the one-electron operator, with the given 1-RDM
  */
-double calculateExpectationValue(const OneElectronOperator<double>& one_op, const OneRDM<double>& one_rdm);
+double calculateExpectationValue(const SQOneElectronOperator<double>& one_op, const OneRDM<double>& one_rdm);
 
 /**
  *  @tparam N           the number of components of the one-electron operator
@@ -47,7 +47,7 @@ double calculateExpectationValue(const OneElectronOperator<double>& one_op, cons
  *  @return the expectation values of all components of the one-electron operator
  */
 template <size_t N>
-std::array<double, N> calculateExpectationValues(const std::array<OneElectronOperator<double>, N>& one_ops, const OneRDM<double>& one_rdm) {
+std::array<double, N> calculateExpectationValues(const std::array<SQOneElectronOperator<double>, N>& one_ops, const OneRDM<double>& one_rdm) {
 
     std::array<double, N> expectation_values {};  // zero initialization
 
@@ -70,7 +70,7 @@ std::array<double, N> calculateExpectationValues(const std::array<OneElectronOpe
  *
  *  @return the expectation value of the one-electron operator, with the given 2-RDM: this includes the prefactor 1/2
  */
-double calculateExpectationValue(const TwoElectronOperator<double>& two_op, const TwoRDM<double>& two_rdm);
+double calculateExpectationValue(const SQTwoElectronOperator<double>& two_op, const TwoRDM<double>& two_rdm);
 
 
 

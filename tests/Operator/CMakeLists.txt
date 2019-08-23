@@ -1,5 +1,4 @@
-list(APPEND test_target_sources
-        ${CMAKE_CURRENT_SOURCE_DIR}/OneElectronOperator_test.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/TwoElectronOperator_test.cpp
-        )
+add_subdirectory(FirstQuantized)
+add_subdirectory(SecondQuantized)
+
 set(test_target_sources ${test_target_sources} PARENT_SCOPE)

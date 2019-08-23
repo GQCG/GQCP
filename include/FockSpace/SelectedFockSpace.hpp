@@ -124,7 +124,7 @@ public:
      *
      *  @return the operator's evaluation in a dense matrix with the dimensions of the Fock space
      */
-    SquareMatrix<double> evaluateOperatorDense(const OneElectronOperator<double>& one_op, bool diagonal_values) const override;
+    SquareMatrix<double> evaluateOperatorDense(const SQOneElectronOperator<double>& one_op, bool diagonal_values) const override;
 
     /**
      *  Evaluate the operator in a sparse matrix
@@ -134,7 +134,7 @@ public:
      *
      *  @return the operator's evaluation in a sparse matrix with the dimensions of the Fock space
      */
-    Eigen::SparseMatrix<double> evaluateOperatorSparse(const OneElectronOperator<double>& one_op,
+    Eigen::SparseMatrix<double> evaluateOperatorSparse(const SQOneElectronOperator<double>& one_op,
                                                        bool diagonal_values) const override;
     /**
      *  Evaluate the operator in a dense matrix
@@ -144,7 +144,7 @@ public:
      *
      *  @return the operator's evaluation in a dense matrix with the dimensions of the Fock space
      */
-    SquareMatrix<double> evaluateOperatorDense(const TwoElectronOperator<double>& two_op, bool diagonal_values) const override;
+    SquareMatrix<double> evaluateOperatorDense(const SQTwoElectronOperator<double>& two_op, bool diagonal_values) const override;
 
     /**
      *  Evaluate the operator in a sparse matrix
@@ -154,7 +154,7 @@ public:
      *
      *  @return the operator's evaluation in a sparse matrix with the dimensions of the Fock space
      */
-    Eigen::SparseMatrix<double> evaluateOperatorSparse(const TwoElectronOperator<double>& two_op,
+    Eigen::SparseMatrix<double> evaluateOperatorSparse(const SQTwoElectronOperator<double>& two_op,
                                                        bool diagonal_values) const override;
     /**
      *  Evaluate the Hamiltonian in a dense matrix
@@ -184,7 +184,7 @@ public:
      *
      *  @return the operator's diagonal evaluation in a vector with the dimension of the Fock space
      */
-    VectorX<double> evaluateOperatorDiagonal(const OneElectronOperator<double>& one_op) const override;
+    VectorX<double> evaluateOperatorDiagonal(const SQOneElectronOperator<double>& one_op) const override;
 
     /**
      *  Evaluate the diagonal of the operator
@@ -193,7 +193,7 @@ public:
      *
      *  @return the operator's diagonal evaluation in a vector with the dimension of the Fock space
      */
-    VectorX<double> evaluateOperatorDiagonal(const TwoElectronOperator<double>& two_op) const override;
+    VectorX<double> evaluateOperatorDiagonal(const SQTwoElectronOperator<double>& two_op) const override;
 
     /**
      *  Evaluate the diagonal of the Hamiltonian
@@ -216,7 +216,7 @@ public:
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
     template<class Matrix>
-    void EvaluateOperator(const OneElectronOperator<double>& one_op, EvaluationMatrix<Matrix>& container, bool diagonal_values) const {
+    void EvaluateOperator(const SQOneElectronOperator<double>& one_op, EvaluationMatrix<Matrix>& container, bool diagonal_values) const {
 
         size_t dim = this->get_dimension();
 
@@ -291,9 +291,9 @@ public:
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
     template<class Matrix>
-    void EvaluateOperator(const TwoElectronOperator<double>& two_op, EvaluationMatrix<Matrix>& container, bool diagonal_values) const {
+    void EvaluateOperator(const SQTwoElectronOperator<double>& two_op, EvaluationMatrix<Matrix>& container, bool diagonal_values) const {
         // Calling this combined method for both the one- and two-electron operator does not affect the performance, hence we avoid writting more code by plugging a zero operator in the combined method.
-        EvaluateOperator(OneElectronOperator<double>::Zero(this->K, this->K), two_op, container, diagonal_values);
+        EvaluateOperator(SQOneElectronOperator<double>::Zero(this->K, this->K), two_op, container, diagonal_values);
     }
 
     /**
@@ -307,7 +307,7 @@ public:
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
     template<class Matrix>
-    void EvaluateOperator(const OneElectronOperator<double>& one_op, const TwoElectronOperator<double>& two_op, EvaluationMatrix<Matrix>& container, bool diagonal_values) const {
+    void EvaluateOperator(const SQOneElectronOperator<double>& one_op, const SQTwoElectronOperator<double>& two_op, EvaluationMatrix<Matrix>& container, bool diagonal_values) const {
 
         size_t dim = this->get_dimension();
         size_t K = this->get_K();

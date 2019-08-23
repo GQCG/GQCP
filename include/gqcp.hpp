@@ -114,9 +114,9 @@
 #include "Operator/FirstQuantized/BaseNuclearOperator.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
 
-#include "Operator/BaseOperator.hpp"
-#include "Operator/OneElectronOperator.hpp"
-#include "Operator/TwoElectronOperator.hpp"
+#include "Operator/SecondQuantized/BaseSQOperator.hpp"
+#include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
+#include "Operator/SecondQuantized/SQTwoElectronOperator.hpp"
 
 #include "OrbitalOptimization/Localization/ERJacobiLocalizer.hpp"
 #include "OrbitalOptimization/Localization/ERNewtonLocalizer.hpp"

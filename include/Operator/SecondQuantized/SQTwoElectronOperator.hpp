@@ -18,8 +18,8 @@
 #pragma once
 
 #include "Mathematical/ChemicalRankFourTensor.hpp"
-#include "Operator/BaseOperator.hpp"
-#include "Operator/OneElectronOperator.hpp"
+#include "Operator/SecondQuantized/BaseSQOperator.hpp"
+#include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
 #include "OrbitalOptimization/JacobiRotationParameters.hpp"
 #include "Utilities/miscellaneous.hpp"
 
@@ -33,13 +33,13 @@ namespace GQCP {
  *  @tparam _Scalar     the scalar type
  */
 template<typename _Scalar>
-class TwoElectronOperator : public ChemicalRankFourTensor<_Scalar>, public BaseOperator<TwoElectronOperator<_Scalar>> {
+class SQTwoElectronOperator : public ChemicalRankFourTensor<_Scalar>, public BaseSQOperator<SQTwoElectronOperator<_Scalar>> {
 public:
 
     using Scalar = _Scalar;
 
     using BaseRepresentation = SquareMatrix<Scalar>;
-    using Self = TwoElectronOperator<Scalar>;
+    using Self = SQTwoElectronOperator<Scalar>;
 
 
 public:
@@ -57,7 +57,7 @@ public:
      */
 
 
-    using BaseOperator<TwoElectronOperator<Scalar>>::rotate;  // bring over rotate() from the base class
+    using BaseSQOperator<SQTwoElectronOperator<Scalar>>::rotate;  // bring over rotate() from the base class
 
 
     /**
@@ -82,11 +82,11 @@ public:
     /**
      *  @return the two-electron integrals that can be evaluated through a one electron mode as a one-electron operator
      */
-    OneElectronOperator<Scalar> effectiveOneElectronPartition() const {
+    SQOneElectronOperator<Scalar> effectiveOneElectronPartition() const {
 
         auto K = this->dimension(0);
 
-        OneElectronOperator<Scalar> k = OneElectronOperator<Scalar>::Zero(K, K);
+        SQOneElectronOperator<Scalar> k = SQOneElectronOperator<Scalar>::Zero(K, K);
 
         for (size_t p = 0; p < K; p++) {
             for (size_t q = 0; q < K; q++) {

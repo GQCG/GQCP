@@ -24,12 +24,12 @@
 namespace GQCP {
 
 /**
- *  Struct to accommodate the "freezeOperator(TwoElectronOperator<double>)" method
+ *  Struct to accommodate the "freezeOperator(SQTwoElectronOperator<double>)" method
  *  as it returns a one- and two-electron operator
  */
 struct FrozenOperators {
-    OneElectronOperator<double> one_op;
-    TwoElectronOperator<double> two_op;
+    SQOneElectronOperator<double> one_op;
+    SQTwoElectronOperator<double> two_op;
 };
 
 
@@ -59,7 +59,7 @@ public:
      *
      *  @return the operator's evaluation in a dense matrix with the dimensions of the Fock space
      */
-    SquareMatrix<double> evaluateOperatorDense(const OneElectronOperator<double>& one_op, bool diagonal_values) const override;
+    SquareMatrix<double> evaluateOperatorDense(const SQOneElectronOperator<double>& one_op, bool diagonal_values) const override;
 
     /**
      *  Evaluate the operator in a sparse matrix
@@ -69,7 +69,7 @@ public:
      *
      *  @return the operator's evaluation in a sparse matrix with the dimensions of the Fock space
      */
-    Eigen::SparseMatrix<double> evaluateOperatorSparse(const OneElectronOperator<double>& one_op,
+    Eigen::SparseMatrix<double> evaluateOperatorSparse(const SQOneElectronOperator<double>& one_op,
                                                        bool diagonal_values) const override;
     /**
      *  Evaluate the operator in a dense matrix
@@ -79,7 +79,7 @@ public:
      *
      *  @return the operator's evaluation in a dense matrix with the dimensions of the Fock space
      */
-    SquareMatrix<double> evaluateOperatorDense(const TwoElectronOperator<double>& two_op, bool diagonal_values) const override;
+    SquareMatrix<double> evaluateOperatorDense(const SQTwoElectronOperator<double>& two_op, bool diagonal_values) const override;
 
     /**
      *  Evaluate the operator in a sparse matrix
@@ -89,7 +89,7 @@ public:
      *
      *  @return the operator's evaluation in a sparse matrix with the dimensions of the Fock space
      */
-    Eigen::SparseMatrix<double> evaluateOperatorSparse(const TwoElectronOperator<double>& two_op,
+    Eigen::SparseMatrix<double> evaluateOperatorSparse(const SQTwoElectronOperator<double>& two_op,
                                                        bool diagonal_values) const override;
     /**
      *  Evaluate the Hamiltonian in a dense matrix
@@ -118,7 +118,7 @@ public:
      *
      *  @return the operator's diagonal evaluation in a vector with the dimension of the Fock space
      */
-    VectorX<double> evaluateOperatorDiagonal(const OneElectronOperator<double>& one_op) const override;
+    VectorX<double> evaluateOperatorDiagonal(const SQOneElectronOperator<double>& one_op) const override;
 
     /**
      *  Evaluate the diagonal of the operator
@@ -127,7 +127,7 @@ public:
      *
      *  @return the operator's diagonal evaluation in a vector with the dimension of the Fock space
      */
-    VectorX<double> evaluateOperatorDiagonal(const TwoElectronOperator<double>& two_op) const override;
+    VectorX<double> evaluateOperatorDiagonal(const SQTwoElectronOperator<double>& two_op) const override;
 
     /**
      *  Evaluate the diagonal of the Hamiltonian
@@ -146,7 +146,7 @@ public:
      *
      *  @return 'frozen' one-electron operator which cover evaluations from the active and inactive orbitals
      */
-    static OneElectronOperator<double> freezeOperator(const OneElectronOperator<double>& one_op, size_t X);
+    static SQOneElectronOperator<double> freezeOperator(const SQOneElectronOperator<double>& one_op, size_t X);
 
     /**
      *  @param two_op       the two-electron operator in an orthonormal orbital basis
@@ -154,7 +154,7 @@ public:
      *
      *  @return 'frozen' two-electron operators as a struct of a one- and two-electron operator which cover evaluations from the active and inactive orbitals
      */
-    static FrozenOperators freezeOperator(const TwoElectronOperator<double>& two_op, size_t X);
+    static FrozenOperators freezeOperator(const SQTwoElectronOperator<double>& two_op, size_t X);
 
 
     // STATIC PUBLIC METHODS
@@ -173,7 +173,7 @@ public:
      *
      *  @return the operator diagonal from strictly evaluating the frozen orbitals in the Fock space
      */
-    static VectorX<double> frozenCoreDiagonal(const OneElectronOperator<double>& one_op, size_t X, size_t dimension);
+    static VectorX<double> frozenCoreDiagonal(const SQOneElectronOperator<double>& one_op, size_t X, size_t dimension);
 
     /**
      *  @param two_op       the two-electron operator in an orthonormal orbital basis
@@ -181,7 +181,7 @@ public:
      *
      *  @return the operator diagonal from strictly evaluating the frozen orbitals in the Fock space
      */
-    static VectorX<double> frozenCoreDiagonal(const TwoElectronOperator<double>& two_op, size_t X, size_t dimension);
+    static VectorX<double> frozenCoreDiagonal(const SQTwoElectronOperator<double>& two_op, size_t X, size_t dimension);
 
     /**
      *  @param ham_par              the Hamiltonian parameters in an orthonormal orbital basis

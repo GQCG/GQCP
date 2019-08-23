@@ -53,20 +53,20 @@ BOOST_AUTO_TEST_CASE( Szabo_integrals_h2_sto3g ) {
     auto T = ao_basis.calculateLibintKineticIntegrals();
     auto V = ao_basis.calculateLibintNuclearIntegrals();
 
-    GQCP::OneElectronOperator<double> H_core = T + V;
+    GQCP::SQOneElectronOperator<double> H_core = T + V;
 
     auto g = ao_basis.calculateLibintCoulombRepulsionIntegrals();
 
     // Fill in the reference values from Szabo
-    GQCP::OneElectronOperator<double> ref_S (2);
+    GQCP::SQOneElectronOperator<double> ref_S (2);
     ref_S << 1.0,    0.6593,
              0.6593, 1.0;
 
-    GQCP::OneElectronOperator<double> ref_T (2);
+    GQCP::SQOneElectronOperator<double> ref_T (2);
     ref_T << 0.7600, 0.2365,
              0.2365, 0.7600;
 
-    GQCP::OneElectronOperator<double> ref_H_core (2);
+    GQCP::SQOneElectronOperator<double> ref_H_core (2);
     ref_H_core << -1.1204, -0.9584,
                   -0.9584, -1.1204;
 
@@ -105,10 +105,10 @@ BOOST_AUTO_TEST_CASE( HORTON_integrals_h2o_sto3g ) {
 
 
     // Read in reference data from HORTON
-    GQCP::OneElectronOperator<double> ref_S = GQCP::OneElectronOperator<double>::FromFile("data/h2o_sto-3g_overlap_horton.data", nbf, nbf);
-    GQCP::OneElectronOperator<double> ref_T = GQCP::OneElectronOperator<double>::FromFile("data/h2o_sto-3g_kinetic_horton.data", nbf, nbf);
-    GQCP::OneElectronOperator<double> ref_V = GQCP::OneElectronOperator<double>::FromFile("data/h2o_sto-3g_nuclear_horton.data", nbf, nbf);
-    GQCP::TwoElectronOperator<double> ref_g = GQCP::TwoElectronOperator<double>::FromFile("data/h2o_sto-3g_coulomb_horton.data", nbf);
+    GQCP::SQOneElectronOperator<double> ref_S = GQCP::SQOneElectronOperator<double>::FromFile("data/h2o_sto-3g_overlap_horton.data", nbf, nbf);
+    GQCP::SQOneElectronOperator<double> ref_T = GQCP::SQOneElectronOperator<double>::FromFile("data/h2o_sto-3g_kinetic_horton.data", nbf, nbf);
+    GQCP::SQOneElectronOperator<double> ref_V = GQCP::SQOneElectronOperator<double>::FromFile("data/h2o_sto-3g_nuclear_horton.data", nbf, nbf);
+    GQCP::SQTwoElectronOperator<double> ref_g = GQCP::SQTwoElectronOperator<double>::FromFile("data/h2o_sto-3g_coulomb_horton.data", nbf);
 
 
     // Check if the calculated integrals are close to those of HORTON

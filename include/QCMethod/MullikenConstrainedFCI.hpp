@@ -43,7 +43,7 @@ private:
     std::string basis_set;  // the basisset that should be used
     FrozenProductFockSpace fock_space = FrozenProductFockSpace(0, 0, 0, 0); // Default
     FrozenCoreFCI fci = FrozenCoreFCI(FrozenProductFockSpace(0, 0, 0, 0)); 
-    OneElectronOperator<double> mulliken_operator;
+    SQOneElectronOperator<double> mulliken_operator;
     AtomicDecompositionParameters adp = AtomicDecompositionParameters();
     RDMCalculator rdm_calculator = RDMCalculator();
 

@@ -15,33 +15,33 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#define BOOST_TEST_MODULE "OneElectronOperator"
+#define BOOST_TEST_MODULE "SQOneElectronOperator"
 
 #include <boost/test/unit_test.hpp>
 
 #include "Basis/CartesianGTO.hpp"
-#include "Operator/OneElectronOperator.hpp"
+#include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
 #include "Utilities/miscellaneous.hpp"
 
 
-BOOST_AUTO_TEST_CASE ( OneElectronOperator_constructor ) {
+BOOST_AUTO_TEST_CASE ( SQOneElectronOperator_constructor ) {
 
     // Check a correct constructor
     GQCP::MatrixX<double> matrix = GQCP::MatrixX<double>::Zero(4, 4);
-    GQCP::OneElectronOperator<double> O (matrix);
+    GQCP::SQOneElectronOperator<double> O (matrix);
 
 
     // Check a faulty constructor
     GQCP::MatrixX<double> matrix2 = GQCP::MatrixX<double>::Zero(3, 4);
-    BOOST_CHECK_THROW(GQCP::OneElectronOperator<double> O2 (matrix2), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::SQOneElectronOperator<double> O2 (matrix2), std::invalid_argument);
 }
 
 
-BOOST_AUTO_TEST_CASE ( OneElectronOperator_rotate_throws ) {
+BOOST_AUTO_TEST_CASE ( SQOneElectronOperator_rotate_throws ) {
 
-    // Create a random OneElectronOperator
+    // Create a random SQOneElectronOperator
     size_t dim = 3;
-    GQCP::OneElectronOperator<double> M = GQCP::OneElectronOperator<double>::Random(dim, dim);
+    GQCP::SQOneElectronOperator<double> M = GQCP::SQOneElectronOperator<double>::Random(dim, dim);
 
 
     // Check if a non-unitary matrix as transformation matrix causes a throw
@@ -55,13 +55,13 @@ BOOST_AUTO_TEST_CASE ( OneElectronOperator_rotate_throws ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( OneElectronOperator_rotate_JacobiRotationParameters ) {
+BOOST_AUTO_TEST_CASE ( SQOneElectronOperator_rotate_JacobiRotationParameters ) {
 
-    // Create a random OneElectronOperator
+    // Create a random SQOneElectronOperator
     size_t dim = 5;
     GQCP::MatrixX<double> m = GQCP::MatrixX<double>::Random(dim, dim);
-    GQCP::OneElectronOperator<double> M1 (m);
-    GQCP::OneElectronOperator<double> M2 (m);
+    GQCP::SQOneElectronOperator<double> M1 (m);
+    GQCP::SQOneElectronOperator<double> M2 (m);
 
 
     // Check that using a Jacobi transformation (rotation) matrix as U is equal to the custom transformation (rotation)
@@ -79,7 +79,7 @@ BOOST_AUTO_TEST_CASE ( OneElectronOperator_rotate_JacobiRotationParameters ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( OneElectronOperator_of_GTOs ) {
+BOOST_AUTO_TEST_CASE ( SQOneElectronOperator_of_GTOs ) {
 
     // Test the transformation of a one-electron operator consisting of GTOs
 
@@ -127,7 +127,7 @@ BOOST_AUTO_TEST_CASE ( OneElectronOperator_of_GTOs ) {
 
 
     Eigen::Matrix<GQCP::LinearCombination<double, GQCP::CartesianGTO>, 2, 2> rho_transformed = T.adjoint() * rho * T;
-    auto rho_transformed_op = GQCP::OneElectronOperator<GQCP::LinearCombination<double, GQCP::CartesianGTO>>(rho_transformed);
+    auto rho_transformed_op = GQCP::SQOneElectronOperator<GQCP::LinearCombination<double, GQCP::CartesianGTO>>(rho_transformed);
 
 
     // Check the coefficients of the transformed operator
@@ -146,7 +146,7 @@ BOOST_AUTO_TEST_CASE ( OneElectronOperator_of_GTOs ) {
     BOOST_CHECK(ref_coeff_result_11.size() == coeff_result_11.size());
 
 
-    // Test .evaluate(r) for a OneElectronOperator consisting of GTOs
+    // Test .evaluate(r) for a SQOneElectronOperator consisting of GTOs
     GQCP::Vector<double, 3> r = GQCP::Vector<double, 3>::Zero();
     r << 1.0, 1.0, 1.0;
 
