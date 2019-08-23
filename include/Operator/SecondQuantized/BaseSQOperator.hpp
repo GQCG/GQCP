@@ -31,44 +31,41 @@ namespace GQCP {
  *  CRTP is used for the static polymorphism, so the code will only compile if
  *      - DerivedOperator implements a suitable transform() method
  */
-template <typename DerivedOperator>
-class BaseSQOperator {
-public:
+// template <typename DerivedOperator>
+// class BaseSQOperator {
+// public:
 
-    /**
-     *  @return this as a DerivedOperator (done at compile time)
-     */
-    DerivedOperator& derived() { return static_cast<DerivedOperator&>(*this); }
+//     /**
+//      *  @return this as a DerivedOperator (done at compile time)
+//      */
+//     DerivedOperator& derived() { return static_cast<DerivedOperator&>(*this); }
 
-    /**
-     *  @return this as a const DerivedOperator (done at compile time)
-     */
-    const DerivedOperator& derived() const { return static_cast<DerivedOperator&>(*this); }
-
-
-    /*
-     *  PUBLIC METHODS
-     */
-
-    /**
-     *  In-place rotate the matrix representation of the operator
-     *
-     *  @param U     the unitary transformation (i.e. rotation) matrix, see basisTransform() for how the transformation matrix between the two bases should be represented
-     */
-    template<typename Scalar>
-    void rotate(const SquareMatrix<Scalar>& U) {
-
-        // Check if the given matrix is actually unitary
-        if (!U.isUnitary(1.0e-12)) {
-            throw std::invalid_argument("Operator::rotate(SquareMatrix<Scalar>): The given transformation matrix is not unitary.");
-        }
-
-        this->derived().basisTransform(U);
-    }
+//     /**
+//      *  @return this as a const DerivedOperator (done at compile time)
+//      */
+//     const DerivedOperator& derived() const { return static_cast<DerivedOperator&>(*this); }
 
 
-    // Normally, I would have liked to put in the 'only-if-double' Jacobi rotation formula, but a function can't be and templated and virtual
-};
+//     /*
+//      *  PUBLIC METHODS
+//      */
+
+//     // /**
+//     //  *  In-place rotate the matrix representation of the operator
+//     //  *
+//     //  *  @param U     the unitary transformation (i.e. rotation) matrix, see basisTransform() for how the transformation matrix between the two bases should be represented
+//     //  */
+//     // template <typename Scalar>
+//     // void rotate(const SquareMatrix<Scalar>& U) {
+
+//     //     // Check if the given matrix is actually unitary
+//     //     if (!U.isUnitary(1.0e-12)) {
+//     //         throw std::invalid_argument("BaseSQOperator::rotate(SquareMatrix<Scalar>): The given transformation matrix is not unitary.");
+//     //     }
+
+//     //     this->derived().basisTransform(U);
+//     // }
+// };
 
 
 }  // namespace GQCP

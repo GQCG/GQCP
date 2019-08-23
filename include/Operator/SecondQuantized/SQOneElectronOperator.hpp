@@ -17,28 +17,34 @@
 // 
 #pragma once
 
+
 #include "Mathematical/ChemicalMatrix.hpp"
 #include "Mathematical/ScalarFunction.hpp"
-#include "Operator/SecondQuantized/BaseSQOperator.hpp"
+// #include "Operator/SecondQuantized/BaseSQOperator.hpp"
 #include "OrbitalOptimization/JacobiRotationParameters.hpp"
+#include "typedefs.hpp"
 
 
 namespace GQCP {
 
 
 /**
- *  A class that represents a one-electron operator in an orbital basis
+ *  A class that represents a second-quantized one-electron operator: it holds the matrix representation of its parameters, which are (usually) integrals over first-quantized operators
  *
- *  @tparam _Scalar      the scalar type
+ *  @tparam _Scalar             the scalar type
+ *  @tparam _Components         the number of components of the second-quantized operator
  */
-template <typename _Scalar>
-class SQOneElectronOperator : public ChemicalMatrix<_Scalar>, public BaseSQOperator<SQOneElectronOperator<_Scalar>> {
+template <typename _Scalar, size_t _Components>
+// class SQOneElectronOperator : public BaseSQOperator<SQOneElectronOperator<_Scalar>> {
+class SQOneElectronOperator  {
 public:
 
     using Scalar = _Scalar;
+    static constexpr auto Components = _Components;
 
-    using BaseRepresentation = ChemicalMatrix<Scalar>;
-    using Self = SQOneElectronOperator<Scalar>;
+
+private:
+    std::array<ChemicalMatrix<Scalar>, Components> F;  // all the matrix representations of the parameters (integrals) of the different components of this second-quantized operator
 
 
 public:
@@ -47,7 +53,34 @@ public:
      *  CONSTRUCTORS
      */
 
-    using ChemicalMatrix<Scalar>::ChemicalMatrix;  // use base constructors
+    /**
+     *  @param F            all the matrix representations of the parameters (integrals) of the different components of the second-quantized operator
+     */
+    SQOneElectronOperator(const std::array<ChemicalMatrix<Scalar>, Components>& F) : 
+        F (F)
+    {
+        // Check if the given matrix representations have the same dimensions
+        const auto dimension = this->F[0].dimension();
+
+        for (size_t i = 1; i < Components; i++) {
+            if (dimension != this->F[i].dimension()) {
+                throw std::invalid_argument("SQOneElectronOperator(const std::array<ChemicalMatrix<Scalar>, Components>&): The given matrix representations did not have the same dimensions.");
+            }
+        }
+    }
+
+
+    /**
+     *  Construct a one-electron operator with zero parameters
+     * 
+     *  @param dim          the dimension of the matrix representation of the parameters, i.e. the number of orbitals/sites
+     */
+    SQOneElectronOperator(const size_t dim) {
+        for (size_t i = 0; i < Components; i++) {
+            this->F[i] = ChemicalMatrix<Scalar>(dim);
+        }
+    }
+
 
 
     /*
@@ -55,30 +88,70 @@ public:
      */
 
 
-    using BaseSQOperator<SQOneElectronOperator<Scalar>>::rotate;  // bring over rotate from the base class
+    /**
+     *  @return the dimension of the matrix representation of the parameters, i.e. the number of orbitals/sites
+     */
+    size_t dimension() const {
+        return this->F[0].dimension();
+    }
 
 
     /**
-     *  In-place rotate the matrix representation of the one-electron operator using a unitary Jacobi rotation matrix constructed from the Jacobi rotation parameters. Note that this function is only available for real (double) matrix representations
-     *
-     *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix. See transform() for how the transformation matrix between the two bases should be represented
+     *  @return all the matrix representations of the parameters (integrals) of the different components of this second-quantized operator
      */
-    template<typename Z = Scalar>
-    enable_if_t<std::is_same<Z, double>::value> rotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
-
-        auto p = jacobi_rotation_parameters.get_p();
-        auto q = jacobi_rotation_parameters.get_q();
-        auto angle = jacobi_rotation_parameters.get_angle();
-
-        double c = std::cos(angle);
-        double s = std::sin(angle);
+    const std::array<ChemicalMatrix<Scalar>, Components> allParameters() const {
+        return this->F;
+    }
 
 
-        // Use Eigen's Jacobi module to apply the Jacobi rotations directly (cfr. T.adjoint() * M * T)
-        Eigen::JacobiRotation<double> jacobi (c, s);
+    /**
+     *  @param i            the index of the component
+     * 
+     *  @return the matrix representation of the parameters (integrals) of one of the the different components of this second-quantized operator
+     */
+    const ChemicalMatrix<Scalar>& parameters(const size_t i = 0) const {
+        return this->F[i];
+    }
 
-        this->applyOnTheLeft(p, q, jacobi.adjoint());
-        this->applyOnTheRight(p, q, jacobi);
+
+    /**
+     *  @tparam TransformationScalar        the scalar type of the transformation matrix
+     * 
+     *  @param T                            the transformation matrix
+     * 
+     *  @return a second-quantized operator whose matrix representations have been transformed according to the given transformation matrix
+     */
+    template <typename TransformationScalar = Scalar>
+    auto transform(const SquareMatrix<TransformationScalar>& T) const -> SQOneElectronOperator<product_t<Scalar, TransformationScalar>, Components> {
+        
+        using ResultScalar = product_t<Scalar, TransformationScalar>;
+
+        // Transform the matrix representations of the components
+        auto F_copy = F;
+        for (size_t i = 0; i < Components; i++) {
+            F_copy[i] = F[i].basisTransform(T);
+        }
+
+        return SQOneElectronOperator<ResultScalar, Components>(F_copy);
+    }
+
+
+    /**
+     *  @tparam TransformationScalar        the scalar type of the transformation matrix
+     * 
+     *  @param U                            the (unitary) rotation matrix
+     * 
+     *  @return a second-quantized operator whose matrix representations have been rotated according to the given rotation matrix
+     */
+    template <typename TransformationScalar = Scalar>
+    auto rotate(const SquareMatrix<TransformationScalar>& U) const -> SQOneElectronOperator<product_t<Scalar, TransformationScalar>, Components> {
+
+        // Check if the given matrix is actually unitary
+        if (!U.isUnitary(1.0e-12)) {
+            throw std::invalid_argument("SQOneElectronOperator::rotate(const SquareMatrix<TransformationScalar>&): The given transformation matrix is not unitary.");
+        }
+
+        return this->transform(U);
     }
 
 
@@ -91,17 +164,36 @@ public:
      */
     template <typename Z = Scalar>
     enable_if_t<std::is_base_of<ScalarFunction<typename Z::Valued, typename Z::Scalar, Z::Cols>, Z>::value,
-    SQOneElectronOperator<typename Z::Valued>> evaluate(const Vector<typename Z::Scalar, Z::Cols>& x) const {
+    SQOneElectronOperator<typename Z::Valued, Components>> evaluate(const Vector<typename Z::Scalar, Z::Cols>& x) const {
 
-        Eigen::Matrix<typename Z::Valued, ChemicalMatrix<Z>::Rows, ChemicalMatrix<Z>::Cols> result (this->rows(), this->cols());
-        auto result_op = ChemicalMatrix<typename Z::Valued>(result);
+        // Initialize the results
+        SQOneElectronOperator<typename Z::Value, Components> F_evaluated (this->dimension());
 
-        for (size_t i = 0; i < this->rows(); i++) {
-            for (size_t j = 0; j < this->cols(); j++) {
-                result_op(i,j) = (*this)(i,j).operator()(x);
+        // Evaluate all components at the given x
+        for (size_t i = 0; i < Components; i++) {
+            for (size_t m = 0; m < this->rows(); m++) {
+                for (size_t n = 0; n < this->cols(); n++) {
+                    const auto F_i_mn = this->F[i](m,n);  // (m,n)-th element of the i-th component
+                    F_evaluated[i](m,n) = F_i_mn.operator()(x);  // evaluate the ScalarFunction
+                }
             }
         }
-        return result_op;
+
+        return F_evaluated;
+
+
+
+
+
+        // Eigen::Matrix<typename Z::Valued, ChemicalMatrix<Z>::Rows, ChemicalMatrix<Z>::Cols> result (this->rows(), this->cols());
+        // auto result_op = ChemicalMatrix<typename Z::Valued>(result);
+
+        // for (size_t i = 0; i < this->rows(); i++) {
+        //     for (size_t j = 0; j < this->cols(); j++) {
+        //         result_op(i,j) = (*this)(i,j).operator()(x);
+        //     }
+        // }
+        // return result_op;
     }
 };
 
