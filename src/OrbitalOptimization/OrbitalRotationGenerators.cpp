@@ -40,7 +40,7 @@ OrbitalRotationGenerators::OrbitalRotationGenerators(const VectorX<double>& kapp
  *  @param  kappa_vector        the orbital rotation generators represented as the full antisymmetric matrix kappa
  */
 OrbitalRotationGenerators::OrbitalRotationGenerators(const SquareMatrix<double>& kappa_matrix) :
-    OrbitalRotationGenerators(kappa_matrix.strictLowerTriangle())
+    OrbitalRotationGenerators(kappa_matrix.pairWiseStrictReduce())
 {}
 
 

@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Mathematical/SquareRankFourTensor.hpp"
+#include "Mathematical/Representation/SquareRankFourTensor.hpp"
 
 #include <array>
 

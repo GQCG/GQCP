@@ -19,7 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "Mathematical/SquareMatrix.hpp"
+#include "Mathematical/Representation/SquareMatrix.hpp"
 
 #include <boost/math/constants/constants.hpp>
 
@@ -97,26 +97,26 @@ BOOST_AUTO_TEST_CASE ( FromTriangle ) {
     BOOST_CHECK(H_ref.isApprox(GQCP::SquareMatrix<double>::FullFromTriangle(upper_triangle)));
 }
 
-//TODO: enable back after linking to GQCP 
-//BOOST_AUTO_TEST_CASE ( FromJacobi ) {
-//
-//    // A random Jacobi matrix is unitary
-//    BOOST_CHECK(GQCP::SquareMatrix<double>::FromJacobi(GQCP::JacobiRotationParameters(7, 4, 6.9921), 10).isUnitary());
-//    BOOST_CHECK(GQCP::SquareMatrix<double>::FromJacobi(GQCP::JacobiRotationParameters(9, 1, 78.00166), 22).isUnitary());
-//
-//    // Let's see if we can construct the easiest Jacobi matrix, one with theta = pi/2 and dimension 2
-//    // cos(pi/2) = 0, sin(pi/2) = 1
-//    auto pi = boost::math::constants::half_pi<double>();
-//    auto J = GQCP::SquareMatrix<double>::FromJacobi(GQCP::JacobiRotationParameters(1, 0, pi), 2);
-//
-//    BOOST_CHECK(std::abs(J(0,0) - 0) < 1.0e-12);
-//    BOOST_CHECK(std::abs(J(0,1) - (-1)) < 1.0e-12);
-//    BOOST_CHECK(std::abs(J(1,0) - 1) < 1.0e-12);
-//    BOOST_CHECK(std::abs(J(0,0) - 0) < 1.0e-12);
-//}
+
+BOOST_AUTO_TEST_CASE ( FromJacobi ) {
+
+   // A random Jacobi matrix is unitary
+   BOOST_CHECK(GQCP::SquareMatrix<double>::FromJacobi(GQCP::JacobiRotationParameters(7, 4, 6.9921), 10).isUnitary());
+   BOOST_CHECK(GQCP::SquareMatrix<double>::FromJacobi(GQCP::JacobiRotationParameters(9, 1, 78.00166), 22).isUnitary());
+
+   // Let's see if we can construct the easiest Jacobi matrix, one with theta = pi/2 and dimension 2
+   // cos(pi/2) = 0, sin(pi/2) = 1
+   auto pi = boost::math::constants::half_pi<double>();
+   auto J = GQCP::SquareMatrix<double>::FromJacobi(GQCP::JacobiRotationParameters(1, 0, pi), 2);
+
+   BOOST_CHECK(std::abs(J(0,0) - 0) < 1.0e-12);
+   BOOST_CHECK(std::abs(J(0,1) - (-1)) < 1.0e-12);
+   BOOST_CHECK(std::abs(J(1,0) - 1) < 1.0e-12);
+   BOOST_CHECK(std::abs(J(0,0) - 0) < 1.0e-12);
+}
 
 
-BOOST_AUTO_TEST_CASE ( strictLowerTriangle ) {
+BOOST_AUTO_TEST_CASE ( pairWiseStrictReduce ) {
 
     GQCP::SquareMatrix<double> A (3);
     A << 1, 2, 3,
@@ -126,7 +126,7 @@ BOOST_AUTO_TEST_CASE ( strictLowerTriangle ) {
     GQCP::VectorX<double> ref_strict_lower_triangle_A (3);
     ref_strict_lower_triangle_A << 4, 7, 8;
 
-    BOOST_CHECK(ref_strict_lower_triangle_A.isApprox(A.strictLowerTriangle()));
+    BOOST_CHECK(ref_strict_lower_triangle_A.isApprox(A.pairWiseStrictReduce()));
 
 
     GQCP::SquareMatrix<double> B (4);
@@ -138,7 +138,7 @@ BOOST_AUTO_TEST_CASE ( strictLowerTriangle ) {
     GQCP::VectorX<double> ref_strict_lower_triangle_B (6);
     ref_strict_lower_triangle_B << 5, 9, 13, 10, 14, 15;
 
-    BOOST_CHECK(ref_strict_lower_triangle_B.isApprox(B.strictLowerTriangle()));
+    BOOST_CHECK(ref_strict_lower_triangle_B.isApprox(B.pairWiseStrictReduce()));
 }
 
 

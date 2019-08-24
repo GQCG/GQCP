@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Mathematical/Matrix.hpp"
+#include "Mathematical/Representation/Matrix.hpp"
 
 #include <cstddef>
 #include <utility>

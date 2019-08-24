@@ -20,7 +20,7 @@
 #include <boost/test/unit_test.hpp>
 
 #include "Mathematical/Optimization/NewtonSystemOfEquationsSolver.hpp"
-#include "Mathematical/SquareMatrix.hpp"
+#include "Mathematical/Representation/SquareMatrix.hpp"
 
 
 /*

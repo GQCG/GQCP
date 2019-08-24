@@ -19,7 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "Mathematical/Tensor.hpp"
+#include "Mathematical/Representation/Tensor.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( constructor_assignment ) {
@@ -143,13 +143,23 @@ BOOST_AUTO_TEST_CASE ( pairWiseReduce ) {
         }
     }
 
-    GQCP::MatrixX<double> M1_ref (4, 4);
-    M1_ref <<  0,  2,  1,  3,
-               8, 10,  9, 11,
-               4,  6,  5,  7,
-              12, 14, 13, 15;
+    // Test default pairWiseReduce behavior
+    GQCP::MatrixX<double> M1_ref1 (4, 4);
+    M1_ref1 <<  0,  2,  1,  3,
+                8, 10,  9, 11,
+                4,  6,  5,  7,
+               12, 14, 13, 15;
 
-    BOOST_CHECK(M1_ref.isApprox(T1.pairWiseReduce(), 1.0e-12));
+    BOOST_CHECK(M1_ref1.isApprox(T1.pairWiseReduce(), 1.0e-12));
+
+
+    // Test non-default pairWiseReduce behavior
+    GQCP::MatrixX<double> M1_ref2 (2, 4);
+    M1_ref2 <<  4,  6,  5,  7,
+               12, 14, 13, 15;
+    
+    BOOST_CHECK(M1_ref2.isApprox(T1.pairWiseReduce(0,1,0,0), 1.0e-12));
+    std::cout << T1.pairWiseReduce(0,1,0,0) << std::endl;
 
 
     // Create an example 3x3x3x3 tensor

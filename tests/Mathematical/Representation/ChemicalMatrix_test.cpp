@@ -19,7 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "Mathematical/ChemicalMatrix.hpp"
+#include "Mathematical/Representation/ChemicalMatrix.hpp"
 
 #include <boost/math/constants/constants.hpp>
 

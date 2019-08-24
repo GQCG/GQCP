@@ -23,7 +23,7 @@
 #pragma once
 
 
-#include "Mathematical/Matrix.hpp"
+#include "Mathematical/Representation/Matrix.hpp"
 
 
 namespace GQCP {

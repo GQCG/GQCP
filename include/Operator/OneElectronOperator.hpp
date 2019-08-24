@@ -17,7 +17,7 @@
 // 
 #pragma once
 
-#include "Mathematical/ChemicalMatrix.hpp"
+#include "Mathematical/Representation/ChemicalMatrix.hpp"
 #include "Mathematical/ScalarFunction.hpp"
 #include "Operator/BaseOperator.hpp"
 #include "OrbitalOptimization/JacobiRotationParameters.hpp"
