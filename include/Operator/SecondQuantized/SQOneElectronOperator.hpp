@@ -20,9 +20,10 @@
 
 #include "Mathematical/ChemicalMatrix.hpp"
 #include "Mathematical/ScalarFunction.hpp"
-// #include "Operator/SecondQuantized/BaseSQOperator.hpp"
 #include "OrbitalOptimization/JacobiRotationParameters.hpp"
 #include "typedefs.hpp"
+
+#include <array>
 
 
 namespace GQCP {
@@ -31,12 +32,12 @@ namespace GQCP {
 /**
  *  A class that represents a second-quantized one-electron operator: it holds the matrix representation of its parameters, which are (usually) integrals over first-quantized operators
  *
- *  @tparam _Scalar             the scalar type
+ *  @tparam _Scalar             the scalar type, i.e. the scalar representation of one of the parameters
  *  @tparam _Components         the number of components of the second-quantized operator
  */
 template <typename _Scalar, size_t _Components>
 // class SQOneElectronOperator : public BaseSQOperator<SQOneElectronOperator<_Scalar>> {
-class SQOneElectronOperator  {
+class SQOneElectronOperator {
 public:
 
     using Scalar = _Scalar;
@@ -84,9 +85,15 @@ public:
 
 
     /*
-     *  PUBLIC METHODS
+     *  OPERATORS
      */
 
+    // operator+, operator* OtherScalar
+
+
+    /*
+     *  PUBLIC METHODS
+     */
 
     /**
      *  @return the dimension of the matrix representation of the parameters, i.e. the number of orbitals/sites
@@ -107,9 +114,19 @@ public:
     /**
      *  @param i            the index of the component
      * 
-     *  @return the matrix representation of the parameters (integrals) of one of the the different components of this second-quantized operator
+     *  @return a read-only the matrix representation of the parameters (integrals) of one of the the different components of this second-quantized operator
      */
     const ChemicalMatrix<Scalar>& parameters(const size_t i = 0) const {
+        return this->F[i];
+    }
+
+
+    /**
+     *  @param i            the index of the component
+     * 
+     *  @return a writable matrix representation of the parameters (integrals) of one of the the different components of this second-quantized operator
+     */
+    ChemicalMatrix<Scalar>& parameters(const size_t i = 0) {
         return this->F[i];
     }
 
@@ -196,6 +213,17 @@ public:
         // return result_op;
     }
 };
+
+
+
+/*
+ *  Convenience aliases
+ */
+template <typename Scalar>
+using ScalarSQOneElectronOperator = SQOneElectronOperator<Scalar, 1>;
+
+template <typename Scalar>
+using VectorSQOneElectronOperator = SQOneElectronOperator<Scalar, 3>;
 
 
 }  // namespace GQCP

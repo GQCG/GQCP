@@ -28,12 +28,12 @@ BOOST_AUTO_TEST_CASE ( SQOneElectronOperator_constructor ) {
 
     // Check a correct constructor
     GQCP::MatrixX<double> matrix = GQCP::MatrixX<double>::Zero(4, 4);
-    GQCP::SQOneElectronOperator<double> O (matrix);
+    GQCP::ScalarSQOneElectronOperator<double> O (matrix);
 
 
     // Check a faulty constructor
     GQCP::MatrixX<double> matrix2 = GQCP::MatrixX<double>::Zero(3, 4);
-    BOOST_CHECK_THROW(GQCP::SQOneElectronOperator<double> O2 (matrix2), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::ScalarSQOneElectronOperator<double> O2 (matrix2), std::invalid_argument);
 }
 
 
@@ -41,7 +41,7 @@ BOOST_AUTO_TEST_CASE ( SQOneElectronOperator_rotate_throws ) {
 
     // Create a random SQOneElectronOperator
     size_t dim = 3;
-    GQCP::SQOneElectronOperator<double> M = GQCP::SQOneElectronOperator<double>::Random(dim, dim);
+    GQCP::ScalarSQOneElectronOperator<double> M = GQCP::ScalarSQOneElectronOperator<double>::Random(dim, dim);
 
 
     // Check if a non-unitary matrix as transformation matrix causes a throw
@@ -60,8 +60,8 @@ BOOST_AUTO_TEST_CASE ( SQOneElectronOperator_rotate_JacobiRotationParameters ) {
     // Create a random SQOneElectronOperator
     size_t dim = 5;
     GQCP::MatrixX<double> m = GQCP::MatrixX<double>::Random(dim, dim);
-    GQCP::SQOneElectronOperator<double> M1 (m);
-    GQCP::SQOneElectronOperator<double> M2 (m);
+    GQCP::ScalarSQOneElectronOperator<double> M1 (m);
+    GQCP::ScalarSQOneElectronOperator<double> M2 (m);
 
 
     // Check that using a Jacobi transformation (rotation) matrix as U is equal to the custom transformation (rotation)

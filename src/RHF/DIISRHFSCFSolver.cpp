@@ -32,7 +32,7 @@ namespace GQCP {
  *
  *  @return the new Fock matrix (expressed in AO basis)
  */
-SQOneElectronOperator<double> DIISRHFSCFSolver::calculateNewFockMatrix(const OneRDM<double>& D_AO) {
+ScalarSQOneElectronOperator<double> DIISRHFSCFSolver::calculateNewFockMatrix(const OneRDM<double>& D_AO) {
 
     auto S = this->ham_par.get_S();
 
@@ -42,7 +42,7 @@ SQOneElectronOperator<double> DIISRHFSCFSolver::calculateNewFockMatrix(const One
 
     // Update deques for the DIIS procedure
     this->fock_matrix_deque.emplace_back(f_AO);
-    SQOneElectronOperator<double> error_matrix = f_AO * D_AO * S - S * D_AO * f_AO;
+    ScalarSQOneElectronOperator<double> error_matrix = f_AO * D_AO * S - S * D_AO * f_AO;
     this->error_matrix_deque.emplace_back(error_matrix);
 
 
@@ -71,7 +71,7 @@ SQOneElectronOperator<double> DIISRHFSCFSolver::calculateNewFockMatrix(const One
 
 
         // Use the coefficients that are in y to construct 'the best' Fock matrix as a linear combination of previous Fock matrices
-        f_AO = SQOneElectronOperator<double>::Zero(S.cols(), S.cols());
+        f_AO = ScalarSQOneElectronOperator<double>::Zero(S.cols(), S.cols());
         for (size_t i = 0; i < n; i++) {  // n is the current subspace dimension (not equal to the size of the augmented B matrix)
             f_AO += y(i) * this->fock_matrix_deque[i];
         }

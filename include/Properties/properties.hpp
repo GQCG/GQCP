@@ -31,7 +31,7 @@ namespace GQCP {
  *
  *  @return the three Cartesian components of the electronic electric dipole moment
  */
-Vector<double, 3> calculateElectronicDipoleMoment(const std::array<SQOneElectronOperator<double>, 3>& dipole_operator, const OneRDM<double>& one_rdm);
+Vector<double, 3> calculateElectronicDipoleMoment(const VectorSQOneElectronOperator<double>& dipole_operator, const OneRDM<double>& one_rdm);
 
 
 

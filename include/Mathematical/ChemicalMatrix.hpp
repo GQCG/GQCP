@@ -65,6 +65,7 @@ public:
         return this->cols();
     }
 
+
     /**
      *  Basis transform this "chemical" matrix
      *
@@ -73,8 +74,6 @@ public:
      *  @param T    the transformation matrix between the old and the new orbital basis, it is used as
      *      b' = b T ,
      *   in which the basis functions are collected as elements of a row vector b
-     *
-     *  Note that in order to use these transformation formulas, the multiplication between TransformationScalar and Scalar should be 'enabled'. See LinearCombination.hpp for an example
      */
     template <typename TransformationScalar = Scalar>
     auto basisTransform(const SquareMatrix<TransformationScalar> &T) const -> ChemicalMatrix<product_t<Scalar, TransformationScalar>> {

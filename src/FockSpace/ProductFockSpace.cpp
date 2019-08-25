@@ -82,9 +82,9 @@ size_t ProductFockSpace::calculateDimension(size_t K, size_t N_alpha, size_t N_b
  *
  *  @return a one-electron operator containing a partition of the two-electron operator
  */
-SQOneElectronOperator<double> ProductFockSpace::oneElectronPartition(size_t p, size_t q, const SQTwoElectronOperator<double>& two_op) const {
+ScalarSQOneElectronOperator<double> ProductFockSpace::oneElectronPartition(size_t p, size_t q, const ScalarSQTwoElectronOperator<double>& two_op) const {
     auto K =  two_op.dimension(0);
-    SQOneElectronOperator<double> k = SQOneElectronOperator<double>::Zero(K, K);
+    ScalarSQOneElectronOperator<double> k = ScalarSQOneElectronOperator<double>::Zero(K, K);
 
     for (size_t i = 0; i < K; i++) {
         for (size_t j = 0; j < K; j++) {
@@ -104,7 +104,7 @@ SQOneElectronOperator<double> ProductFockSpace::oneElectronPartition(size_t p, s
  *
  *  @return the operator's evaluation in a dense matrix with the dimensions of the Fock space
  */
-SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const SQOneElectronOperator<double>& one_op,
+SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const ScalarSQOneElectronOperator<double>& one_op,
                                                              bool diagonal_values) const {
 
     SquareMatrix<double> total_evaluation = SquareMatrix<double>::Zero(this->get_dimension(), this->get_dimension());
@@ -140,10 +140,10 @@ SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const SQOneElectron
  *
  *  @return the operator's evaluation in a sparse matrix with the dimensions of the Fock space
  */
-Eigen::SparseMatrix<double> ProductFockSpace::evaluateOperatorSparse(const SQOneElectronOperator<double>& one_op,
+Eigen::SparseMatrix<double> ProductFockSpace::evaluateOperatorSparse(const ScalarSQOneElectronOperator<double>& one_op,
                                                                      bool diagonal_values) const {
 
-    throw std::invalid_argument("ProductFockSpace::evaluateOperatorSparse(SQOneElectronOperator<double>, bool): Not implemented.");
+    throw std::invalid_argument("ProductFockSpace::evaluateOperatorSparse(ScalarSQOneElectronOperator<double>, bool): Not implemented.");
 }
 
 
@@ -155,7 +155,7 @@ Eigen::SparseMatrix<double> ProductFockSpace::evaluateOperatorSparse(const SQOne
  *
  *  @return the operator's evaluation in a dense matrix with the dimensions of the Fock space
  */
-SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const SQTwoElectronOperator<double>& two_op,
+SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const ScalarSQTwoElectronOperator<double>& two_op,
                                                              bool diagonal_values) const {
 
     SquareMatrix<double> total_evaluation = SquareMatrix<double>::Zero(this->get_dimension(), this->get_dimension());
@@ -221,10 +221,10 @@ SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const SQTwoElectron
  *
  *  @return the operator's evaluation in a sparse matrix with the dimensions of the Fock space
  */
-Eigen::SparseMatrix<double> ProductFockSpace::evaluateOperatorSparse(const SQTwoElectronOperator<double>& two_op,
+Eigen::SparseMatrix<double> ProductFockSpace::evaluateOperatorSparse(const ScalarSQTwoElectronOperator<double>& two_op,
                                                                      bool diagonal_values) const {
 
-    throw std::invalid_argument("ProductFockSpace::evaluateOperatorSparse(SQTwoElectronOperator<double>, bool): Not implemented.");
+    throw std::invalid_argument("ProductFockSpace::evaluateOperatorSparse(ScalarSQTwoElectronOperator<double>, bool): Not implemented.");
 }
 
 
@@ -316,11 +316,11 @@ Eigen::SparseMatrix<double> ProductFockSpace::evaluateOperatorSparse(const Hamil
  *
  *  @return the operator's diagonal evaluation in a vector with the dimension of the Fock space
  */
-VectorX<double> ProductFockSpace::evaluateOperatorDiagonal(const SQOneElectronOperator<double>& one_op) const {
+VectorX<double> ProductFockSpace::evaluateOperatorDiagonal(const ScalarSQOneElectronOperator<double>& one_op) const {
 
     auto K = one_op.get_K();
     if (K != this->K) {
-        throw std::invalid_argument("ProductFockSpace::evaluateOperatorDiagonal(SQOneElectronOperator<double>): Basis functions of the Fock space and the operator are incompatible.");
+        throw std::invalid_argument("ProductFockSpace::evaluateOperatorDiagonal(ScalarSQOneElectronOperator<double>): Basis functions of the Fock space and the operator are incompatible.");
     }
 
     auto dim_alpha = fock_space_alpha.get_dimension();
@@ -370,11 +370,11 @@ VectorX<double> ProductFockSpace::evaluateOperatorDiagonal(const SQOneElectronOp
  *
  *  @return the operator's diagonal evaluation in a vector with the dimension of the Fock space
  */
-VectorX<double> ProductFockSpace::evaluateOperatorDiagonal(const SQTwoElectronOperator<double>& two_op) const {
+VectorX<double> ProductFockSpace::evaluateOperatorDiagonal(const ScalarSQTwoElectronOperator<double>& two_op) const {
 
     auto K = two_op.get_K();
     if (K != this->K) {
-        throw std::invalid_argument("ProductFockSpace::evaluateOperatorDiagonal(SQTwoElectronOperator<double>): Basis functions of the Fock space and the operator are incompatible.");
+        throw std::invalid_argument("ProductFockSpace::evaluateOperatorDiagonal(ScalarSQTwoElectronOperator<double>): Basis functions of the Fock space and the operator are incompatible.");
     }
 
     auto dim_alpha = fock_space_alpha.get_dimension();
@@ -383,7 +383,7 @@ VectorX<double> ProductFockSpace::evaluateOperatorDiagonal(const SQTwoElectronOp
     // Diagonal contributions
     VectorX<double> diagonal = VectorX<double>::Zero(dim);
 
-    SQOneElectronOperator<double> k = two_op.effectiveOneElectronPartition();
+    ScalarSQOneElectronOperator<double> k = two_op.effectiveOneElectronPartition();
 
     ONV onv_alpha = fock_space_alpha.makeONV(0);
     ONV onv_beta = fock_space_beta.makeONV(0);

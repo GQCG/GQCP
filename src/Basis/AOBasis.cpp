@@ -75,7 +75,7 @@ size_t AOBasis::numberOfBasisFunctions() const {
 /**
  *  @return the matrix representation of the overlap operator in this AO basis
  */
-SQOneElectronOperator<double> AOBasis::calculateLibintOverlapIntegrals() const {
+ScalarSQOneElectronOperator<double> AOBasis::calculateLibintOverlapIntegrals() const {
 
     // Construct the libint engine
     const auto max_nprim = this->shell_set.maximumNumberOfPrimitives();
@@ -85,14 +85,14 @@ SQOneElectronOperator<double> AOBasis::calculateLibintOverlapIntegrals() const {
 
     // Calculate the integrals using the engine
     const auto integrals = IntegralCalculator::calculate(engine, this->shell_set);
-    return SQOneElectronOperator<double>(integrals[0]);
+    return ScalarSQOneElectronOperator<double>(integrals[0]);
 }
 
 
 /**
  *  @return the matrix representation of the kinetic energy operator in this AO basis
  */
-SQOneElectronOperator<double> AOBasis::calculateLibintKineticIntegrals() const {
+ScalarSQOneElectronOperator<double> AOBasis::calculateLibintKineticIntegrals() const {
 
     // Construct the libint engine
     const auto max_nprim = this->shell_set.maximumNumberOfPrimitives();
@@ -102,14 +102,14 @@ SQOneElectronOperator<double> AOBasis::calculateLibintKineticIntegrals() const {
 
     // Calculate the integrals using the engine
     const auto integrals = IntegralCalculator::calculate(engine, this->shell_set);
-    return SQOneElectronOperator<double>(integrals[0]);
+    return ScalarSQOneElectronOperator<double>(integrals[0]);
 }
 
 
 /**
  *  @return the matrix representation of the nuclear attraction operator in this AO basis
  */
-SQOneElectronOperator<double> AOBasis::calculateLibintNuclearIntegrals() const {
+ScalarSQOneElectronOperator<double> AOBasis::calculateLibintNuclearIntegrals() const {
 
     // Construct the libint engine
     const auto max_nprim = this->shell_set.maximumNumberOfPrimitives();
@@ -119,7 +119,7 @@ SQOneElectronOperator<double> AOBasis::calculateLibintNuclearIntegrals() const {
 
     // Calculate the integrals using the engine
     const auto integrals = IntegralCalculator::calculate(engine, this->shell_set);
-    return SQOneElectronOperator<double>(integrals[0]);
+    return ScalarSQOneElectronOperator<double>(integrals[0]);
 }
 
 
@@ -128,7 +128,7 @@ SQOneElectronOperator<double> AOBasis::calculateLibintNuclearIntegrals() const {
  *
  *  @return the matrix representation of the Cartesian components of the electrical dipole operator in this AO basis
  */
-std::array<SQOneElectronOperator<double>, 3> AOBasis::calculateLibintDipoleIntegrals(const Vector<double, 3>& origin) const {
+VectorSQOneElectronOperator<double> AOBasis::calculateLibintDipoleIntegrals(const Vector<double, 3>& origin) const {
 
     // Construct the libint engine
     const auto max_nprim = this->shell_set.maximumNumberOfPrimitives();
@@ -138,14 +138,14 @@ std::array<SQOneElectronOperator<double>, 3> AOBasis::calculateLibintDipoleInteg
 
     // Calculate the integrals using the engine
     const auto all_integrals = IntegralCalculator::calculate(engine, this->shell_set);
-    return std::array<SQOneElectronOperator<double>, 3> {all_integrals[0], all_integrals[1], all_integrals[2]};  
+    return VectorSQOneElectronOperator<double> {all_integrals[0], all_integrals[1], all_integrals[2]};  
 }
 
 
 /**
  *  @return the matrix representation of the Coulomb repulsion operator in this AO basis
  */
-SQTwoElectronOperator<double> AOBasis::calculateLibintCoulombRepulsionIntegrals() const {
+ScalarSQTwoElectronOperator<double> AOBasis::calculateLibintCoulombRepulsionIntegrals() const {
 
     // Construct the libint engine
     const auto max_nprim = this->shell_set.maximumNumberOfPrimitives();
@@ -155,7 +155,7 @@ SQTwoElectronOperator<double> AOBasis::calculateLibintCoulombRepulsionIntegrals(
 
     // Calculate the integrals using the engine
     const auto integrals = IntegralCalculator::calculate(engine, this->shell_set);
-    return SQTwoElectronOperator<double>(integrals[0]);
+    return ScalarSQTwoElectronOperator<double>(integrals[0]);
 }
 
 
@@ -170,11 +170,11 @@ SQTwoElectronOperator<double> AOBasis::calculateLibintCoulombRepulsionIntegrals(
  *
  *  @return the matrix representation of the overlap operator in this AO basis, using the libcint integral engine
  */
-SQOneElectronOperator<double> AOBasis::calculateLibcintOverlapIntegrals() const {
+ScalarSQOneElectronOperator<double> AOBasis::calculateLibcintOverlapIntegrals() const {
 
     auto engine = IntegralEngine::Libcint(Operator::Overlap(), this->shell_set);  // cannot be const: Libint2 has a non-const compute() method inside its interface
     const auto integrals = IntegralCalculator::calculate(engine, this->shell_set);
-    return SQOneElectronOperator<double>(integrals[0]);
+    return ScalarSQOneElectronOperator<double>(integrals[0]);
 }
 
 
@@ -183,11 +183,11 @@ SQOneElectronOperator<double> AOBasis::calculateLibcintOverlapIntegrals() const 
  *
  *  @return the matrix representation of the kinetic energy operator in this AO basis, using the libcint integral engine
  */
-SQOneElectronOperator<double> AOBasis::calculateLibcintKineticIntegrals() const {
+ScalarSQOneElectronOperator<double> AOBasis::calculateLibcintKineticIntegrals() const {
 
     auto engine = IntegralEngine::Libcint(Operator::Kinetic(), this->shell_set);  // cannot be const: Libint2 has a non-const compute() method inside its interface
     const auto integrals = IntegralCalculator::calculate(engine, this->shell_set);
-    return SQOneElectronOperator<double>(integrals[0]);
+    return ScalarSQOneElectronOperator<double>(integrals[0]);
 }
 
 
@@ -196,11 +196,11 @@ SQOneElectronOperator<double> AOBasis::calculateLibcintKineticIntegrals() const 
  *
  *  @return the matrix representation of the nuclear attraction operator in this AO basis, using the libcint integral engine
  */
-SQOneElectronOperator<double> AOBasis::calculateLibcintNuclearIntegrals() const {
+ScalarSQOneElectronOperator<double> AOBasis::calculateLibcintNuclearIntegrals() const {
 
     auto engine = IntegralEngine::Libcint(Operator::NuclearAttraction(this->shell_set.nuclei()), this->shell_set);  // cannot be const: Libint2 has a non-const compute() method inside its interface
     const auto integrals = IntegralCalculator::calculate(engine, this->shell_set);
-    return SQOneElectronOperator<double>(integrals[0]);
+    return ScalarSQOneElectronOperator<double>(integrals[0]);
 }
 
 
@@ -211,11 +211,11 @@ SQOneElectronOperator<double> AOBasis::calculateLibcintNuclearIntegrals() const 
  *
  *  @return the matrix representation of the Cartesian components of the electrical dipole operator in this AO basis, using the libcint integral engine
  */
-std::array<SQOneElectronOperator<double>, 3> AOBasis::calculateLibcintDipoleIntegrals(const Vector<double, 3>& origin) const {
+VectorSQOneElectronOperator<double> AOBasis::calculateLibcintDipoleIntegrals(const Vector<double, 3>& origin) const {
 
     auto engine = IntegralEngine::Libcint(Operator::ElectronicDipole(origin), this->shell_set);  // cannot be const: Libint2 has a non-const compute() method inside its interface
     const auto integrals = IntegralCalculator::calculate(engine, this->shell_set);
-    return std::array<SQOneElectronOperator<double>, 3> {integrals[0], integrals[1], integrals[2]};
+    return VectorSQOneElectronOperator<double> {integrals[0], integrals[1], integrals[2]};
 }
 
 
@@ -224,11 +224,11 @@ std::array<SQOneElectronOperator<double>, 3> AOBasis::calculateLibcintDipoleInte
  *
  *  @return the matrix representation of the Coulomb repulsion operator in this AO basis, using the libcint integral engine
  */
-SQTwoElectronOperator<double> AOBasis::calculateLibcintCoulombRepulsionIntegrals() const {
+ScalarSQTwoElectronOperator<double> AOBasis::calculateLibcintCoulombRepulsionIntegrals() const {
 
     auto engine = IntegralEngine::Libcint(Operator::Coulomb(), this->shell_set);  // cannot be const: Libint2 has a non-const compute() method inside its interface
     const auto integrals = IntegralCalculator::calculate(engine, this->shell_set);
-    return SQTwoElectronOperator<double>(integrals[0]);
+    return ScalarSQTwoElectronOperator<double>(integrals[0]);
 }
 
 

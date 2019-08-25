@@ -52,7 +52,7 @@ protected:
      *
      *  @return the new Fock matrix (expressed in AO basis)
      */
-    virtual SQOneElectronOperator<double> calculateNewFockMatrix(const OneRDM<double>& D_AO) = 0;
+    virtual ScalarSQOneElectronOperator<double> calculateNewFockMatrix(const OneRDM<double>& D_AO) = 0;
 
 
 public:

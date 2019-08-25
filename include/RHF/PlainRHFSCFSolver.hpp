@@ -36,7 +36,7 @@ private:
      *
      *  @return the new Fock matrix (expressed in AO basis)
      */
-    SQOneElectronOperator<double> calculateNewFockMatrix(const OneRDM<double>& D_AO) override;
+    ScalarSQOneElectronOperator<double> calculateNewFockMatrix(const OneRDM<double>& D_AO) override;
 
 public:
     // CONSTRUCTORS

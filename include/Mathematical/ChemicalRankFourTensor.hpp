@@ -56,23 +56,32 @@ public:
     size_t get_K() const { return this->dimension(0); };
 
 
+
     /*
      *  PUBLIC METHODS
      */
 
     /**
-     *  In-place basis transform of the matrix representation of this "chemical" rank-4 tensor
+     *  @return the dimension of this matrix representation of the parameters, i.e. the number of orbitals/sites
+     */
+    size_t dimension() const {
+        return this->dimension(0);
+    }
+
+
+    /**
+     *  Basis transform this "chemical" rank-4 tensor
      *
      *  @tparam TransformationScalar        the type of scalar used for the transformation matrix
 
      *  @param T    the transformation matrix between the old and the new orbital basis, it is used as
      *      b' = b T ,
      *   in which the basis functions are collected as elements of a row vector b
-     *
-     *  Note that in order to use these transformation formulas, the multiplication between TransformationScalar and Scalar should be 'enabled'. See LinearCombination.hpp for an example
      */
     template <typename TransformationScalar = Scalar>
-    void basisTransform(const SquareMatrix<TransformationScalar>& T) {
+    auto basisTransform(const SquareMatrix<TransformationScalar>& T) const -> SquareRankFourTensor<product_t<Scalar, TransformationScalar>> {
+
+        using ResultScalar = product_t<Scalar, TransformationScalar>;
 
         // Since we're only getting T as a matrix, we should make the appropriate tensor to perform contractions
         // For the const argument, we need the const in the template
@@ -103,9 +112,8 @@ public:
         // Calculate the contractions. We write this as one large contraction to
         //  1) avoid storing intermediate contractions
         //  2) let Eigen figure out some optimizations
-        Self g_transformed = T_tensor.conjugate().contract(T_tensor.contract(this->contract(T_tensor.conjugate(), contraction_pair1).shuffle(shuffle_1).contract(T_tensor, contraction_pair2), contraction_pair3).shuffle(shuffle_3), contraction_pair4);
-
-        *this = g_transformed;
+        SquareRankFourTensor<ResultScalar> g_transformed = T_tensor.conjugate().contract(T_tensor.contract(this->contract(T_tensor.conjugate(), contraction_pair1).shuffle(shuffle_1).contract(T_tensor, contraction_pair2), contraction_pair3).shuffle(shuffle_3), contraction_pair4);
+        return g_transformed;
     }
 };
 

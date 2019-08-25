@@ -33,7 +33,7 @@
 
 BOOST_AUTO_TEST_CASE ( one_electron_throw ) {
 
-    GQCP::SQOneElectronOperator<double> h = GQCP::SQOneElectronOperator<double>::Zero(2, 2);
+    GQCP::ScalarSQOneElectronOperator<double> h = GQCP::ScalarSQOneElectronOperator<double>::Zero(2, 2);
     GQCP::OneRDM<double> D_valid = GQCP::OneRDM<double>::Zero(2, 2);
     GQCP::OneRDM<double> D_invalid = GQCP::OneRDM<double>::Zero(3, 3);
 
@@ -44,7 +44,7 @@ BOOST_AUTO_TEST_CASE ( one_electron_throw ) {
 
 BOOST_AUTO_TEST_CASE ( two_electron_throw ) {
 
-    GQCP::SQTwoElectronOperator<double> g (2);
+    GQCP::ScalarSQTwoElectronOperator<double> g (2);
 
     GQCP::TwoRDM<double> d_valid (2);
     GQCP::TwoRDM<double> d_invalid (3);
@@ -73,7 +73,7 @@ BOOST_AUTO_TEST_CASE ( mulliken_N2_STO_3G ) {
         gto_list[i] = i;
     }
 
-    GQCP::SQOneElectronOperator<double> mulliken = ham_par.calculateMullikenOperator(gto_list);
+    GQCP::ScalarSQOneElectronOperator<double> mulliken = ham_par.calculateMullikenOperator(gto_list);
 
     size_t N = N2.numberOfElectrons();
 

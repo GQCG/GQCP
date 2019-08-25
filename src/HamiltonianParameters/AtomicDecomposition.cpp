@@ -79,12 +79,12 @@ AtomicDecompositionParameters AtomicDecompositionParameters::Nuclear(const Molec
     AOBasis ao_basis_a ({{atoms[0]}}, basisset_name);
     AOBasis ao_basis_b ({{atoms[1]}}, basisset_name);
 
-    SQOneElectronOperator<double> V_a = ao_basis_a.calculateLibintNuclearIntegrals();
-    SQOneElectronOperator<double> V_b = ao_basis_b.calculateLibintNuclearIntegrals();
+    ScalarSQOneElectronOperator<double> V_a = ao_basis_a.calculateLibintNuclearIntegrals();
+    ScalarSQOneElectronOperator<double> V_b = ao_basis_b.calculateLibintNuclearIntegrals();
 
     // T_a and T_b are equal to the corresponding block from the molecular kinetic integrals (T_a = T.block(0,0, K_a, K_a))
-    SQOneElectronOperator<double> T_a = ao_basis_a.calculateLibintKineticIntegrals();
-    SQOneElectronOperator<double> T_b = ao_basis_b.calculateLibintKineticIntegrals();
+    ScalarSQOneElectronOperator<double> T_a = ao_basis_a.calculateLibintKineticIntegrals();
+    ScalarSQOneElectronOperator<double> T_b = ao_basis_b.calculateLibintKineticIntegrals();
 
     auto K_a = ao_basis_a.numberOfBasisFunctions();
     auto K_b = ao_basis_b.numberOfBasisFunctions();
@@ -100,16 +100,16 @@ AtomicDecompositionParameters AtomicDecompositionParameters::Nuclear(const Molec
     const auto& g = ao_basis->calculateLibintCoulombRepulsionIntegrals();
     const auto repulsion = Operator::NuclearRepulsion(molecule).value();
 
-    SQOneElectronOperator<double> H = T + V;
+    ScalarSQOneElectronOperator<double> H = T + V;
 
     // Decompose the integrals corresponding to the formula's in Mario's thesis
-    SQOneElectronOperator<double> h_a = SQOneElectronOperator<double>::Zero(K, K);
-    SQOneElectronOperator<double> h_b = SQOneElectronOperator<double>::Zero(K, K);
+    ScalarSQOneElectronOperator<double> h_a = ScalarSQOneElectronOperator<double>::Zero(K, K);
+    ScalarSQOneElectronOperator<double> h_b = ScalarSQOneElectronOperator<double>::Zero(K, K);
 
     h_a.block(0, 0, K_a, K_a) = T_a + V_a;
     h_b.block(K_a , K_a, K_b, K_b) = T_b + V_b;
 
-    SQOneElectronOperator<double> h_ab = H - h_a - h_b;
+    ScalarSQOneElectronOperator<double> h_ab = H - h_a - h_b;
 
     auto g_a = g;
     auto g_b = g;
@@ -128,7 +128,7 @@ AtomicDecompositionParameters AtomicDecompositionParameters::Nuclear(const Molec
     g_ba.matrixContraction<double>(p_b, 0);
     g_ba.matrixContraction<double>(p_a, 2);
 
-    GQCP::SQTwoElectronOperator<double> g_abba = g_ab.Eigen() + g_ba.Eigen();
+    GQCP::ScalarSQTwoElectronOperator<double> g_abba = g_ab.Eigen() + g_ba.Eigen();
 
     HamiltonianParameters<double> HAA(ao_basis, S, h_a, g_a, T_total);
     HamiltonianParameters<double> HBB(ao_basis, S, h_b, g_b, T_total);

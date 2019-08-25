@@ -28,12 +28,12 @@ BOOST_AUTO_TEST_CASE ( SQTwoElectronOperator_constructor ) {
 
     // Check a correct constructor
     GQCP::Tensor<double, 4> tensor (3, 3, 3, 3);
-    GQCP::SQTwoElectronOperator<double> O (tensor);
+    GQCP::ScalarSQTwoElectronOperator<double> O (tensor);
 
 
     // Check a faulty constructor
     GQCP::Tensor<double, 4> tensor2 (3, 3, 3, 2);
-    BOOST_CHECK_THROW(GQCP::SQTwoElectronOperator<double> O2 (tensor2), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::ScalarSQTwoElectronOperator<double> O2 (tensor2), std::invalid_argument);
 }
 
 
@@ -41,14 +41,14 @@ BOOST_AUTO_TEST_CASE ( SQTwoElectronOperator_transform_olsens ) {
 
     // We can find a reference algorithm in the olsens module from Ayer's lab
     size_t dim = 2;
-    GQCP::SQTwoElectronOperator<double> g_transformed_ref = GQCP::SQTwoElectronOperator<double>::FromFile("data/rotated_two_electron_integrals_olsens.data", dim);
+    GQCP::ScalarSQTwoElectronOperator<double> g_transformed_ref = GQCP::ScalarSQTwoElectronOperator<double>::FromFile("data/rotated_two_electron_integrals_olsens.data", dim);
 
     // Set an example transformation matrix and two-electron integrals tensor
     GQCP::SquareMatrix<double> T (dim);
     T << 1, 2,
          3, 4;
 
-    GQCP::SQTwoElectronOperator<double> G (dim);
+    GQCP::ScalarSQTwoElectronOperator<double> G (dim);
     for (size_t i = 0; i < dim; i++) {
         for (size_t j = 0; j < dim; j++) {
             for (size_t k = 0; k < dim; k++) {
@@ -70,7 +70,7 @@ BOOST_AUTO_TEST_CASE ( SQTwoElectronOperator_rotate_throws ) {
     size_t dim = 3;
     GQCP::SquareRankFourTensor<double> g (dim);
     g.setRandom();
-    GQCP::SQTwoElectronOperator<double> G (g);
+    GQCP::ScalarSQTwoElectronOperator<double> G (g);
 
 
     // Check if a non-unitary matrix as transformation matrix causes a throw
@@ -90,8 +90,8 @@ BOOST_AUTO_TEST_CASE ( SQTwoElectronOperator_rotate_JacobiRotationParameters ) {
     size_t dim = 5;
     GQCP::SquareRankFourTensor<double> g (dim);
     g.setRandom();
-    GQCP::SQTwoElectronOperator<double> G1 (g);
-    GQCP::SQTwoElectronOperator<double> G2 (g);
+    GQCP::ScalarSQTwoElectronOperator<double> G1 (g);
+    GQCP::ScalarSQTwoElectronOperator<double> G2 (g);
 
 
     // Check that using a Jacobi transformation (rotation) matrix as U is equal to the custom transformation (rotation)
@@ -115,7 +115,7 @@ BOOST_AUTO_TEST_CASE ( SQTwoElectronOperator_effectiveOneElectronPartition ) {
     auto K_ = static_cast<double>(K);
 
     // Set up toy 2-electron integrals
-    GQCP::SQTwoElectronOperator<double> g_op (K);
+    GQCP::ScalarSQTwoElectronOperator<double> g_op (K);
     g_op.setZero();
 
     for (size_t i = 0; i < K; i++) {
@@ -129,7 +129,7 @@ BOOST_AUTO_TEST_CASE ( SQTwoElectronOperator_effectiveOneElectronPartition ) {
     }
 
     // Set up the reference effective one-electron integrals by manual calculation
-    GQCP::SQOneElectronOperator<double> k_ref = GQCP::SQOneElectronOperator<double>::Zero(K, K);
+    GQCP::ScalarSQOneElectronOperator<double> k_ref = GQCP::ScalarSQOneElectronOperator<double>::Zero(K, K);
     for (size_t p = 0; p < K; p++) {
         for (size_t q = 0; q < K; q++) {
             auto p_ = static_cast<double>(p) + 1;
