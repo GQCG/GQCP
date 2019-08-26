@@ -273,8 +273,8 @@ VectorX<double> BaseFrozenCoreFockSpace::evaluateOperatorDiagonal(const Hamilton
  */
 ScalarSQOneElectronOperator<double> BaseFrozenCoreFockSpace::freezeOperator(const ScalarSQOneElectronOperator<double>& one_op, size_t X) {
 
-    size_t K_active = one_op.cols() - X;
-    return ScalarSQOneElectronOperator<double>(one_op.block(X, X, K_active, K_active));
+    size_t K_active = one_op.dimension() - X;
+    return ScalarSQOneElectronOperator<double>({one_op.parameters().block(X, X, K_active, K_active)});
 }
 
 
@@ -286,29 +286,30 @@ ScalarSQOneElectronOperator<double> BaseFrozenCoreFockSpace::freezeOperator(cons
  */
 FrozenOperators BaseFrozenCoreFockSpace::freezeOperator(const ScalarSQTwoElectronOperator<double>& two_op, size_t X) {
 
-    size_t K_active = two_op.dimension(0) - X;
-    ScalarSQOneElectronOperator<double> frozen_one_op = ScalarSQOneElectronOperator<double>::Zero(K_active, K_active);
-    auto frozen_two_op = ScalarSQTwoElectronOperator<double>::FromBlock(two_op, X, X, X, X);
+    size_t K_active = two_op.dimension() - X;
+    ChemicalMatrix<double> frozen_one_op_par = ChemicalMatrix<double>::Zero(K_active, K_active);
+    const auto& two_op_par = two_op.parameters();
+    const auto frozen_two_op_par = ChemicalRankFourTensor<double>::FromBlock(two_op_par, X, X, X, X);
 
     // Frozen two-electron integrals can be rewritten partially as one electron integrals.
     for (size_t i = 0; i < K_active; i++) {  // iterate over the active orbitals
         size_t q = i + X;  // map active orbitals indexes to total orbital indexes (those including the frozen orbitals)
 
         for (size_t l = 0; l < X; l++) {  // iterate over the frozen orbitals
-            frozen_one_op(i,i) += two_op(q,q,l,l) + two_op(l,l,q,q) - two_op(q,l,l,q)/2 - two_op(l,q,q,l)/2;
+            frozen_one_op_par(i,i) += two_op_par(q,q,l,l) + two_op_par(l,l,q,q) - two_op_par(q,l,l,q)/2 - two_op_par(l,q,q,l)/2;
         }
 
         for (size_t j = i+1; j < K_active; j++) {  // iterate over the active orbitals
             size_t p = j + X;  // map active orbitals indexes to total orbital indexes (those including the frozen orbitals)
 
             for (size_t l = 0; l < X; l++) {  // iterate over the frozen orbitals
-                frozen_one_op(i,j) += two_op(q,p,l,l) + two_op(l,l,q,p) - two_op(q,l,l,p)/2 - two_op(l,p,q,l)/2;
-                frozen_one_op(j,i) += two_op(p,q,l,l) + two_op(l,l,p,q) - two_op(p,l,l,q)/2 - two_op(l,q,p,l)/2;
+                frozen_one_op_par(i,j) += two_op_par(q,p,l,l) + two_op_par(l,l,q,p) - two_op_par(q,l,l,p)/2 - two_op_par(l,p,q,l)/2;
+                frozen_one_op_par(j,i) += two_op_par(p,q,l,l) + two_op_par(l,l,p,q) - two_op_par(p,l,l,q)/2 - two_op_par(l,q,p,l)/2;
             }
         }
     }
 
-    return {frozen_one_op, frozen_two_op};
+    return {ScalarSQOneElectronOperator<double>({frozen_one_op_par}), ScalarSQTwoElectronOperator<double>({frozen_two_op_par})};
 }
 
 
@@ -347,10 +348,12 @@ HamiltonianParameters<double> BaseFrozenCoreFockSpace::freezeOperator(const Hami
  */
 VectorX<double> BaseFrozenCoreFockSpace::frozenCoreDiagonal(const ScalarSQOneElectronOperator<double>& one_op, size_t X,  size_t dimension) {
 
+    const auto& one_op_par = one_op.parameters();
+
     // The diagonal value for the frozen orbitals is the same for each ONV
     double value = 0;
     for (size_t i = 0; i < X; i++) {
-        value += 2*one_op(i,i);
+        value += 2 * one_op_par(i,i);
     }
 
     return  VectorX<double>::Constant(dimension, value);
@@ -365,17 +368,19 @@ VectorX<double> BaseFrozenCoreFockSpace::frozenCoreDiagonal(const ScalarSQOneEle
  */
 VectorX<double> BaseFrozenCoreFockSpace::frozenCoreDiagonal(const ScalarSQTwoElectronOperator<double>& two_op, size_t X, size_t dimension) {
 
+    const auto& two_op_par = two_op.parameters();
+
     // The diagonal value for the frozen orbitals is the same for each ONV
     double value = 0;
     for (size_t i = 0; i < X; i++) {
-        value += two_op(i,i,i,i);
+        value += two_op_par(i,i,i,i);
 
         for (size_t j = i+1; j < X; j++) {
-            value += 2*two_op(i,i,j,j) + 2*two_op(j,j,i,i) - two_op(j,i,i,j) - two_op(i,j,j,i);
+            value += 2*two_op_par(i,i,j,j) + 2*two_op_par(j,j,i,i) - two_op_par(j,i,i,j) - two_op_par(i,j,j,i);
         }
     }
 
-    return  VectorX<double>::Constant(dimension, value);
+    return VectorX<double>::Constant(dimension, value);
 }
 
 

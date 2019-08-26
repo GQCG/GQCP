@@ -87,8 +87,8 @@ void AP1roGJacobiOrbitalOptimizer::prepareJacobiSpecificConvergenceChecking(cons
 void AP1roGJacobiOrbitalOptimizer::calculateJacobiCoefficients(const HamiltonianParameters<double>& ham_par, const size_t p, const size_t q) {
 
     const size_t K = this->dim;
-    const auto& h = ham_par.get_h();
-    const auto& g = ham_par.get_g();
+    const auto& h = ham_par.get_h().parameters();
+    const auto& g = ham_par.get_g().parameters();
     const auto& G = this->G;
 
     // Implementation of the Jacobi rotation coefficients with disjoint cases for p and q

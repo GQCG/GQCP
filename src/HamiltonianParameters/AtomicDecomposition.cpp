@@ -75,41 +75,41 @@ AtomicDecompositionParameters AtomicDecompositionParameters::Nuclear(const Molec
         throw std::invalid_argument("AtomicDecompositionParameters::Nuclear(Molecule, std::string): Only available for diatomic molecules");
     }
 
-    // retrieve the AObasis for the individual atoms so that we can retrieve net atomic nuclear integrals.
+    // Retrieve the AObasis for the individual atoms so that we can retrieve net atomic nuclear integrals.
     AOBasis ao_basis_a ({{atoms[0]}}, basisset_name);
     AOBasis ao_basis_b ({{atoms[1]}}, basisset_name);
 
-    ScalarSQOneElectronOperator<double> V_a = ao_basis_a.calculateLibintNuclearIntegrals();
-    ScalarSQOneElectronOperator<double> V_b = ao_basis_b.calculateLibintNuclearIntegrals();
+    ChemicalMatrix<double> V_a = ao_basis_a.calculateLibintNuclearIntegrals();
+    ChemicalMatrix<double> V_b = ao_basis_b.calculateLibintNuclearIntegrals();
 
     // T_a and T_b are equal to the corresponding block from the molecular kinetic integrals (T_a = T.block(0,0, K_a, K_a))
-    ScalarSQOneElectronOperator<double> T_a = ao_basis_a.calculateLibintKineticIntegrals();
-    ScalarSQOneElectronOperator<double> T_b = ao_basis_b.calculateLibintKineticIntegrals();
+    ChemicalMatrix<double> T_a = ao_basis_a.calculateLibintKineticIntegrals();
+    ChemicalMatrix<double> T_b = ao_basis_b.calculateLibintKineticIntegrals();
 
-    auto K_a = ao_basis_a.numberOfBasisFunctions();
-    auto K_b = ao_basis_b.numberOfBasisFunctions();
+    const auto K_a = ao_basis_a.numberOfBasisFunctions();
+    const auto K_b = ao_basis_b.numberOfBasisFunctions();
 
-    // create partition matrices for both atoms
-    auto p_a = SquareMatrix<double>::PartitionMatrix(0, K_a, K);
-    auto p_b = SquareMatrix<double>::PartitionMatrix(K_a, K_b, K);
+    // Create partition matrices for both atoms
+    const auto p_a = SquareMatrix<double>::PartitionMatrix(0, K_a, K);
+    const auto p_b = SquareMatrix<double>::PartitionMatrix(K_a, K_b, K);
 
-    // retrieve the molecular integrals
+    // Retrieve the molecular integrals
     const auto& S = ao_basis->calculateLibintOverlapIntegrals();
     const auto& T = ao_basis->calculateLibintKineticIntegrals();
     const auto& V = ao_basis->calculateLibintNuclearIntegrals();
     const auto& g = ao_basis->calculateLibintCoulombRepulsionIntegrals();
     const auto repulsion = Operator::NuclearRepulsion(molecule).value();
 
-    ScalarSQOneElectronOperator<double> H = T + V;
+    ChemicalMatrix<double> H = T + V;
 
     // Decompose the integrals corresponding to the formula's in Mario's thesis
-    ScalarSQOneElectronOperator<double> h_a = ScalarSQOneElectronOperator<double>::Zero(K, K);
-    ScalarSQOneElectronOperator<double> h_b = ScalarSQOneElectronOperator<double>::Zero(K, K);
+    ChemicalMatrix<double> h_a = ChemicalMatrix<double>::Zero(K, K);
+    ChemicalMatrix<double> h_b = ChemicalMatrix<double>::Zero(K, K);
 
     h_a.block(0, 0, K_a, K_a) = T_a + V_a;
     h_b.block(K_a , K_a, K_b, K_b) = T_b + V_b;
 
-    ScalarSQOneElectronOperator<double> h_ab = H - h_a - h_b;
+    ChemicalMatrix<double> h_ab = H - h_a - h_b;
 
     auto g_a = g;
     auto g_b = g;
@@ -128,13 +128,13 @@ AtomicDecompositionParameters AtomicDecompositionParameters::Nuclear(const Molec
     g_ba.matrixContraction<double>(p_b, 0);
     g_ba.matrixContraction<double>(p_a, 2);
 
-    GQCP::ScalarSQTwoElectronOperator<double> g_abba = g_ab.Eigen() + g_ba.Eigen();
+    ChemicalRankFourTensor<double> g_abba = g_ab.Eigen() + g_ba.Eigen();
 
-    HamiltonianParameters<double> HAA(ao_basis, S, h_a, g_a, T_total);
-    HamiltonianParameters<double> HBB(ao_basis, S, h_b, g_b, T_total);
-    HamiltonianParameters<double> HAB(ao_basis, S, h_ab, g_abba, T_total, repulsion);
-    HamiltonianParameters<double> HA(ao_basis, S, h_a + h_ab/2, g_a.Eigen() + (0.5)*g_abba.Eigen(), T_total, repulsion/2);
-    HamiltonianParameters<double> HB(ao_basis, S, h_b + h_ab/2, g_b.Eigen() + (0.5)*g_abba.Eigen(), T_total, repulsion/2);
+    HamiltonianParameters<double> HAA (ao_basis, ScalarSQOneElectronOperator<double>({S}), ScalarSQOneElectronOperator<double>({h_a}), ScalarSQTwoElectronOperator<double>({g_a}), T_total);
+    HamiltonianParameters<double> HBB (ao_basis, ScalarSQOneElectronOperator<double>({S}), ScalarSQOneElectronOperator<double>({h_b}), ScalarSQTwoElectronOperator<double>({g_b}), T_total);
+    HamiltonianParameters<double> HAB (ao_basis, ScalarSQOneElectronOperator<double>({S}), ScalarSQOneElectronOperator<double>({h_ab}), ScalarSQTwoElectronOperator<double>({g_abba}), T_total, repulsion);
+    HamiltonianParameters<double> HA (ao_basis, S, ScalarSQOneElectronOperator<double>({h_a + h_ab/2}), ScalarSQTwoElectronOperator<double>({g_a.Eigen() + (0.5)*g_abba.Eigen()}), T_total, repulsion/2);
+    HamiltonianParameters<double> HB (ao_basis, ScalarSQOneElectronOperator<double>({S}), ScalarSQOneElectronOperator<double>({h_b + h_ab/2}), ScalarSQTwoElectronOperator<double>({g_b.Eigen() + (0.5)*g_abba.Eigen()}), T_total, repulsion/2);
 
     std::vector<HamiltonianParameters<double>> net_atomic_parameters = {HAA, HBB};
     std::vector<HamiltonianParameters<double>> interaction_parameters = {HAB};

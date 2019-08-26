@@ -20,8 +20,8 @@
 #include "Basis/GTOBasisSet.hpp"
 #include "Basis/Integrals/Interfaces/LibintInterfacer.hpp"
 #include "Basis/Integrals/Interfaces/LibcintInterfacer.hpp"
-#include "Basis/Integrals/IntegralEngine.hpp"
 #include "Basis/Integrals/IntegralCalculator.hpp"
+#include "Basis/Integrals/IntegralEngine.hpp"
 
 
 namespace GQCP {
@@ -174,7 +174,7 @@ ChemicalMatrix<double> AOBasis::calculateLibcintOverlapIntegrals() const {
 
     auto engine = IntegralEngine::Libcint(Operator::Overlap(), this->shell_set);  // cannot be const: Libint2 has a non-const compute() method inside its interface
     const auto integrals = IntegralCalculator::calculate(engine, this->shell_set);
-    return integrals[0])
+    return integrals[0];
 }
 
 

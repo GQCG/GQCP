@@ -100,6 +100,10 @@ public:
         return this->dimension();
     }
 
+    size_t get_K() const {
+        return this->dimension();
+    }
+
 
     /**
      *  @return all the matrix representations of the parameters (integrals) of the different components of this second-quantized operator

@@ -28,7 +28,7 @@ namespace GQCP {
  */
 void AP1roGLagrangianOptimizer::solve() {
 
-    auto g = this->ham_par.get_g();
+    auto g = this->ham_par.get_g().parameters();
     auto K = this->ham_par.get_K();
 
 
