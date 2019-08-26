@@ -85,15 +85,6 @@ public:
 
 
     /*
-     *  OPERATORS
-     */
-
-    auto operator+(const )
-
-    // operator+, operator* OtherScalar
-
-
-    /*
      *  PUBLIC METHODS
      */
 
@@ -262,6 +253,28 @@ auto operator+(const SQOneElectronOperator<LHSScalar, Components>& lhs, const SQ
     return SQOneElectronOperator<ResultScalar, Components>(F_sum);
 }
 
+
+/**
+ *  Multiply a one-electron operator with a scalar
+ * 
+ *  @tparam Scalar              the scalar type of the scalar
+ *  @tparam OperatorScalar      the scalar type of the operator
+ * 
+ *  @tparam scalar              the scalar of the scalar multiplication
+ *  @tparam op                  the one-electron operator
+ */
+template <typename Scalar, typename OperatorScalar, size_t Components>
+auto operator*(const Scalar& scalar, const SQOneElectronOperator<OperatorScalar, Components>& op) -> SQOneElectronOperator<product_t<Scalar, OperatorScalar>, Components> {
+
+    auto ResultScalar = product_t<Scalar, OperatorScalar>;
+
+    auto F = op.allParameters();
+    for (size_t i = 0; i < Components; i++) {
+        F[i] *= scalar;
+    }
+
+    return SQOneElectronOperator<ResultScalar, Components>(F);
+}
 
 
 }  // namespace GQCP

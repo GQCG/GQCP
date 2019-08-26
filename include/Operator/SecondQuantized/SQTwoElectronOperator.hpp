@@ -80,13 +80,6 @@ public:
     }
 
 
-    /*
-     * OPERATORS
-     */
-    // operator+, operator* OtherScalar
-
-
-
 
     /*
      *  PUBLIC METHODS
@@ -236,7 +229,7 @@ using VectorSQTwoElectronOperator = SQTwoElectronOperator<Scalar, 3>;
  * 
  *  @tparam LHSScalar           the scalar type of the left-hand side
  *  @tparam RHSScalar           the scalar type of the right-hand side
- *  @tparam Components          the number of components of the one-electron operators
+ *  @tparam Components          the number of components of the two-electron operators
  * 
  *  @param lhs                  the left-hand side
  *  @param rhs                  the right-hand side
@@ -253,5 +246,29 @@ auto operator+(const SQTwoElectronOperator<LHSScalar, Components>& lhs, const SQ
 
     return SQTwoElectronOperator<ResultScalar, Components>(G_sum);
 }
+
+
+/**
+ *  Multiply a two-electron operator with a scalar
+ * 
+ *  @tparam Scalar              the scalar type of the scalar
+ *  @tparam OperatorScalar      the scalar type of the operator
+ * 
+ *  @tparam scalar              the scalar of the scalar multiplication
+ *  @tparam op                  the two-electron operator
+ */
+template <typename Scalar, typename OperatorScalar, size_t Components>
+auto operator*(const Scalar& scalar, const SQTwoElectronOperator<OperatorScalar, Components>& op) -> SQTwoElectronOperator<product_t<Scalar, OperatorScalar>, Components> {
+
+    auto ResultScalar = product_t<Scalar, OperatorScalar>;
+
+    auto G = op.allParameters();
+    for (size_t i = 0; i < Components; i++) {
+        G[i] *= scalar;
+    }
+
+    return SQTwoElectronOperator<ResultScalar, Components>(G);
+}
+
 
 }  // namespace GQCP
