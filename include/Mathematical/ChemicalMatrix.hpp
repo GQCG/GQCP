@@ -89,7 +89,8 @@ public:
      *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix. See transform() for how the transformation matrix between the two bases should be represented
      */
     template <typename Z = Scalar>
-    enable_if_t<std::is_same<Z, double>::value, ChemicalMatrix<Z>> basisRotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
+    enable_if_t<std::is_same<Z, double>::value,
+    ChemicalMatrix<product_t<Z, double>>> basisRotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
 
         auto M_copy = *this;
 

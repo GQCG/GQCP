@@ -88,6 +88,8 @@ public:
      *  OPERATORS
      */
 
+    auto operator+(const )
+
     // operator+, operator* OtherScalar
 
 
@@ -139,14 +141,14 @@ public:
      *  @return a second-quantized operator whose matrix representations have been transformed according to the given transformation matrix
      */
     template <typename TransformationScalar = Scalar>
-    auto transform(const SquareMatrix<TransformationScalar>& T) const -> SQOneElectronOperator<product_t<Scalar, TransformationScalar>, Components> {
-        
+    auto transform(const SquareMatrix<TransformationScalar>& T) const -> SQOneElectronOperator<product_t<Scalar, TransformationScalar>, Components> const {
+
         using ResultScalar = product_t<Scalar, TransformationScalar>;
 
         // Transform the matrix representations of the components
-        auto F_copy = F;
+        auto F_copy = this->allParameters();
         for (size_t i = 0; i < Components; i++) {
-            F_copy[i] = F[i].basisTransform(T);
+            F_copy[i] = this->parameters(i).basisTransform(T);
         }
 
         return SQOneElectronOperator<ResultScalar, Components>(F_copy);
@@ -161,7 +163,7 @@ public:
      *  @return a second-quantized operator whose matrix representations have been rotated according to the given rotation matrix
      */
     template <typename TransformationScalar = Scalar>
-    auto rotate(const SquareMatrix<TransformationScalar>& U) const -> SQOneElectronOperator<product_t<Scalar, TransformationScalar>, Components> {
+    auto rotate(const SquareMatrix<TransformationScalar>& U) const -> SQOneElectronOperator<product_t<Scalar, TransformationScalar>, Components> const {
 
         // Check if the given matrix is actually unitary
         if (!U.isUnitary(1.0e-12)) {
@@ -169,6 +171,27 @@ public:
         }
 
         return this->transform(U);
+    }
+
+
+    /**
+     *  Rotate the parameters of this one-electron operator using a unitary Jacobi rotation matrix constructed from the Jacobi rotation parameters. Note that this function is only available for real (double) matrix representations
+     *
+     *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix. See transform() for how the transformation matrix between the two bases should be represented
+     */
+    template<typename Z = Scalar>
+    enable_if_t<std::is_same<Z, double>::value,
+    SQOneElectronOperator<product_t<Z, double>, Components>> rotate(const JacobiRotationParameters& jacobi_rotation_parameters) const {
+
+        using ResultScalar = product_t<Scalar, double>;
+
+        // Transform the matrix representations of the components
+        auto F_copy = this->allParameters();
+        for (size_t i = 0; i < Components; i++) {
+            F_copy[i] = this->parameters(i).basisRotate(jacobi_rotation_parameters);
+        }
+
+        return SQOneElectronOperator<ResultScalar, Components>(F_copy);
     }
 
 
@@ -197,33 +220,48 @@ public:
         }
 
         return F_evaluated;
-
-
-
-
-
-        // Eigen::Matrix<typename Z::Valued, ChemicalMatrix<Z>::Rows, ChemicalMatrix<Z>::Cols> result (this->rows(), this->cols());
-        // auto result_op = ChemicalMatrix<typename Z::Valued>(result);
-
-        // for (size_t i = 0; i < this->rows(); i++) {
-        //     for (size_t j = 0; j < this->cols(); j++) {
-        //         result_op(i,j) = (*this)(i,j).operator()(x);
-        //     }
-        // }
-        // return result_op;
     }
 };
 
 
 
 /*
- *  Convenience aliases
+ *  CONVENIENCE ALIASES
  */
 template <typename Scalar>
 using ScalarSQOneElectronOperator = SQOneElectronOperator<Scalar, 1>;
 
 template <typename Scalar>
 using VectorSQOneElectronOperator = SQOneElectronOperator<Scalar, 3>;
+
+
+/*
+ *  OPERATORS
+ */
+
+/**
+ *  Add two one-electron operators by adding their parameters
+ * 
+ *  @tparam LHSScalar           the scalar type of the left-hand side
+ *  @tparam RHSScalar           the scalar type of the right-hand side
+ *  @tparam Components          the number of components of the one-electron operators
+ * 
+ *  @param lhs                  the left-hand side
+ *  @param rhs                  the right-hand side
+ */
+template <typename LHSScalar, typename RHSScalar, size_t Components>
+auto operator+(const SQOneElectronOperator<LHSScalar, Components>& lhs, const SQOneElectronOperator<RHSScalar, Components>& rhs) -> SQOneElectronOperator<sum_t<LHSScalar, RHSScalar>, Components> {
+
+    auto ResultScalar = sum_t<LHSScalar, RHSScalar>;
+
+    auto F_sum = lhs.allParameters();
+    for (size_t i = 0; i < Components; i++) {
+        F_sum[i] += rhs.parameters(i)
+    }
+
+    return SQOneElectronOperator<ResultScalar, Components>(F_sum);
+}
+
 
 
 }  // namespace GQCP

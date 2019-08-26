@@ -58,6 +58,9 @@ template <bool B, class T = void>
 using enable_if_t = typename std::enable_if<B,T>::type;  // only implemented in C++14
 
 template <typename T, typename U>
+using sum_t = decltype(std::declval<T>() + std::declval<U>());
+
+template <typename T, typename U>
 using product_t = decltype(std::declval<T>() * std::declval<U>());
 
 

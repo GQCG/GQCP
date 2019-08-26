@@ -22,7 +22,6 @@
 #include "HoppingMatrix.hpp"
 #include "Molecule/Molecule.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
-#include "Operator/SecondQuantized/BaseSQOperator.hpp"
 #include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/SQTwoElectronOperator.hpp"
 #include "OrbitalOptimization/JacobiRotationParameters.hpp"
@@ -42,15 +41,15 @@ namespace GQCP {
  *
  *  @tparam Scalar      the scalar type
  */
-template<typename Scalar>
-class HamiltonianParameters : public BaseHamiltonianParameters, public BaseSQOperator<HamiltonianParameters<Scalar>> {
+template <typename Scalar>
+class HamiltonianParameters : public BaseHamiltonianParameters {
 private:
     size_t K;  // the number of spatial orbitals
 
-    SQOneElectronOperator<Scalar> S;  // overlap
+    ScalarSQOneElectronOperator<Scalar> S;  // overlap
 
-    SQOneElectronOperator<Scalar> h;  // one-electron interactions (i.e. the core Hamiltonian)
-    SQTwoElectronOperator<Scalar> g;  // two-electron interactions
+    ScalarSQOneElectronOperator<Scalar> h;  // one-electron interactions (i.e. the core Hamiltonian)
+    ScalarSQTwoElectronOperator<Scalar> g;  // two-electron interactions
 
     SquareMatrix<Scalar> T_total;  // total transformation matrix between the current (restricted) molecular orbitals and the atomic orbitals
 
@@ -71,7 +70,7 @@ public:
      *  @param C            a transformation matrix between the current molecular orbitals and the atomic orbitals
      *  @param scalar       the scalar interaction term
      */
-    HamiltonianParameters(std::shared_ptr<AOBasis> ao_basis, const SQOneElectronOperator<Scalar>& S, const SQOneElectronOperator<Scalar>& h, const SQTwoElectronOperator<Scalar>& g, const SquareMatrix<Scalar>& C, double scalar=0.0) :
+    HamiltonianParameters(std::shared_ptr<AOBasis> ao_basis, const ScalarSQOneElectronOperator<Scalar>& S, const ScalarSQOneElectronOperator<Scalar>& h, const ScalarSQTwoElectronOperator<Scalar>& g, const SquareMatrix<Scalar>& C, double scalar=0.0) :
         BaseHamiltonianParameters(std::move(ao_basis), scalar),
         K (S.get_dim()),
         S (S),
@@ -80,7 +79,7 @@ public:
         T_total (C)
     {
         // Check if the dimensions of all matrix representations are compatible
-        auto error = std::invalid_argument("HamiltonianParameters::HamiltonianParameters(std::shared_ptr<AOBasis>, SQOneElectronOperator<Scalar>, SQOneElectronOperator<Scalar>, SQTwoElectronOperator<Scalar>,SquareMatrix<Scalar>, double): The dimensions of the operators and coefficient matrix are incompatible.");
+        auto error = std::invalid_argument("HamiltonianParameters::HamiltonianParameters(std::shared_ptr<AOBasis>, ScalarSQOneElectronOperator<Scalar>, ScalarSQOneElectronOperator<Scalar>, ScalarSQTwoElectronOperator<Scalar>,SquareMatrix<Scalar>, double): The dimensions of the operators and coefficient matrix are incompatible.");
 
         if (this->ao_basis) {  // ao_basis is not nullptr
             if (this->K != this->ao_basis->numberOfBasisFunctions()) {
@@ -94,7 +93,7 @@ public:
 
 
         if (S.isZero(1.0e-08)) {
-            throw std::invalid_argument("HamiltonianParameters::HamiltonianParameters(std::shared_ptr<AOBasis>, SQOneElectronOperator<Scalar>, SQOneElectronOperator<Scalar>, SQTwoElectronOperator<Scalar>,SquareMatrix<Scalar>, double): The underlying overlap matrix cannot be a zero matrix.");
+            throw std::invalid_argument("HamiltonianParameters::HamiltonianParameters(std::shared_ptr<AOBasis>, ScalarSQOneElectronOperator<Scalar>, ScalarSQOneElectronOperator<Scalar>, ScalarSQTwoElectronOperator<Scalar>,SquareMatrix<Scalar>, double): The underlying overlap matrix cannot be a zero matrix.");
         }
     }
 
@@ -325,7 +324,7 @@ public:
 
         // Make the ingredients to construct HamiltonianParameters
         std::shared_ptr<AOBasis> ao_basis;  // nullptr
-        SQOneElectronOperator<Scalar> S = ScalarSQOneElectronOperator<double>::Identity(K, K);
+        ScalarSQOneElectronOperator<Scalar> S = ScalarSQOneElectronOperator<double>::Identity(K, K);
         SquareMatrix<double> C = SquareMatrix<double>::Identity(K, K);
 
         return HamiltonianParameters(ao_basis, S, h_core, g, C, scalar);
@@ -382,9 +381,9 @@ public:
      *  GETTERS
      */
 
-    const SQOneElectronOperator<Scalar>& get_S() const { return this->S; }
-    const SQOneElectronOperator<Scalar>& get_h() const { return this->h; }
-    const SQTwoElectronOperator<Scalar>& get_g() const { return this->g; }
+    const ScalarSQOneElectronOperator<Scalar>& get_S() const { return this->S; }
+    const ScalarSQOneElectronOperator<Scalar>& get_h() const { return this->h; }
+    const ScalarSQTwoElectronOperator<Scalar>& get_g() const { return this->g; }
     const SquareMatrix<Scalar>& get_T_total() const { return this->T_total; }
     size_t get_K() const { return this->K; }
 
@@ -425,8 +424,7 @@ public:
     }
 
 
-    using BaseSQOperator<HamiltonianParameters<Scalar>>::rotate;  // bring over rotate() from the base class
-
+    
 
     /**
      *  In-place rotate the matrix representations of the Hamiltonian parameters using a unitary Jacobi rotation matrix constructed from the Jacobi rotation parameters. Note that this function is only available for real (double) matrix representations
@@ -519,7 +517,7 @@ public:
      *
      *  @return the (generalized) Fockian matrix
      */
-    SQOneElectronOperator<Scalar> calculateFockianMatrix(const OneRDM<double>& D, const TwoRDM<double>& d) const {
+    ScalarSQOneElectronOperator<Scalar> calculateFockianMatrix(const OneRDM<double>& D, const TwoRDM<double>& d) const {
 
         // Check if dimensions are compatible
         if (D.cols() != this->K) {
@@ -532,7 +530,7 @@ public:
 
 
         // A KISS implementation of the calculation of the generalized Fock matrix F
-        SQOneElectronOperator<Scalar> F = SQOneElectronOperator<Scalar>::Zero(this->K, this->K);
+        ScalarSQOneElectronOperator<Scalar> F = ScalarSQOneElectronOperator<Scalar>::Zero(this->K, this->K);
         for (size_t p = 0; p < this->K; p++) {
             for (size_t q = 0; q < this->K; q++) {
 
@@ -578,7 +576,7 @@ public:
         // Create the partitioning matrix
         SquareMatrix<double> p_a = SquareMatrix<double>::PartitionMatrix(ao_list, this->K);
 
-        SQOneElectronOperator<Scalar> S_AO = this->S;
+        ScalarSQOneElectronOperator<Scalar> S_AO = this->S;
         SquareMatrix<double> T_inverse = T_total.inverse();
         S_AO.basisTransform(T_inverse);
 
@@ -591,7 +589,7 @@ public:
     /**
      *  @return the effective one-electron integrals
      */
-    SQOneElectronOperator<Scalar> calculateEffectiveOneElectronIntegrals() const {
+    ScalarSQOneElectronOperator<Scalar> calculateEffectiveOneElectronIntegrals() const {
 
         return this->h + this->g.effectiveOneElectronPartition();
     }
@@ -608,7 +606,7 @@ public:
      *
      *  @return the (generalized) super-Fockian matrix
      */
-    SQTwoElectronOperator<Scalar> calculateSuperFockianMatrix(const OneRDM<double>& D, const TwoRDM<double>& d) const {
+    ScalarSQTwoElectronOperator<Scalar> calculateSuperFockianMatrix(const OneRDM<double>& D, const TwoRDM<double>& d) const {
 
         // Check if dimensions are compatible
         if (D.cols() != this->K) {
@@ -621,10 +619,10 @@ public:
 
 
         // We have to calculate the Fockian matrix first
-        SQOneElectronOperator<Scalar> F = this->calculateFockianMatrix(D, d);
+        ScalarSQOneElectronOperator<Scalar> F = this->calculateFockianMatrix(D, d);
 
         // A KISS implementation of the calculation of the super Fockian matrix
-        SQTwoElectronOperator<Scalar> G (this->K);
+        ScalarSQTwoElectronOperator<Scalar> G (this->K);
         G.setZero();
         for (size_t p = 0; p < this->K; p++) {
             for (size_t q = 0; q < this->K; q++) {
