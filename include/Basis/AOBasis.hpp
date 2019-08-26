@@ -20,8 +20,10 @@
 
 #include "Basis/GTOShell.hpp"
 #include "Basis/ShellSet.hpp"
-#include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
-#include "Operator/SecondQuantized/SQTwoElectronOperator.hpp"
+#include "Mathematical/Representation/ChemicalMatrix.hpp"
+#include "Mathematical/Representation/ChemicalRankFourTensor.hpp"
+
+#include <array>
 
 
 namespace GQCP {
@@ -68,29 +70,29 @@ public:
     /**
      *  @return the matrix representation of the overlap operator in this AO basis, using the libint2 integral engine
      */
-    ScalarSQOneElectronOperator<double> calculateLibintOverlapIntegrals() const;
+    ChemicalMatrix<double> calculateLibintOverlapIntegrals() const;
 
     /**
      *  @return the matrix representation of the kinetic energy operator in this AO basis, using the libint2 integral engine
      */
-    ScalarSQOneElectronOperator<double> calculateLibintKineticIntegrals() const;
+    ChemicalMatrix<double> calculateLibintKineticIntegrals() const;
 
     /**
      *  @return the matrix representation of the nuclear attraction operator in this AO basis, using the libint2 integral engine
      */
-    ScalarSQOneElectronOperator<double> calculateLibintNuclearIntegrals() const;
+    ChemicalMatrix<double> calculateLibintNuclearIntegrals() const;
 
     /**
      *  @param origin       the origin of the dipole
      *
      *  @return the matrix representation of the Cartesian components of the electrical dipole operator in this AO basis, using the libint2 integral engine
      */
-    VectorSQOneElectronOperator<double> calculateLibintDipoleIntegrals(const Vector<double, 3>& origin = Vector<double, 3>::Zero()) const;
+    std::array<ChemicalMatrix<double>, 3> calculateLibintDipoleIntegrals(const Vector<double, 3>& origin = Vector<double, 3>::Zero()) const;
 
     /**
      *  @return the matrix representation of the Coulomb repulsion operator in this AO basis, using the libint2 integral engine
      */
-    ScalarSQTwoElectronOperator<double> calculateLibintCoulombRepulsionIntegrals() const;
+    ChemicalRankFourTensor<double> calculateLibintCoulombRepulsionIntegrals() const;
 
 
     // PUBLIC METHODS - LIBCINT INTEGRALS
@@ -100,21 +102,21 @@ public:
      *
      *  @return the matrix representation of the overlap operator in this AO basis, using the libcint integral engine
      */
-    ScalarSQOneElectronOperator<double> calculateLibcintOverlapIntegrals() const;
+    ChemicalMatrix<double> calculateLibcintOverlapIntegrals() const;
 
     /**
      *  Calculate the kinetic energy integrals using Libcint: only use this for all-Cartesian ShellSets
      *
      *  @return the matrix representation of the kinetic energy operator in this AO basis, using the libcint integral engine
      */
-    ScalarSQOneElectronOperator<double> calculateLibcintKineticIntegrals() const;
+    ChemicalMatrix<double> calculateLibcintKineticIntegrals() const;
 
     /**
      *  Calculate the nuclear attraction energy integrals using Libcint: only use this for all-Cartesian ShellSets
      *
      *  @return the matrix representation of the nuclear attraction operator in this AO basis, using the libcint integral engine
      */
-    ScalarSQOneElectronOperator<double> calculateLibcintNuclearIntegrals() const;
+    ChemicalMatrix<double> calculateLibcintNuclearIntegrals() const;
 
     /**
      *  Calculate the electrical dipole integrals using Libcint: only use this for all-Cartesian ShellSets
@@ -123,14 +125,14 @@ public:
      *
      *  @return the matrix representation of the Cartesian components of the electrical dipole operator in this AO basis, using the libcint integral engine
      */
-    VectorSQOneElectronOperator<double> calculateLibcintDipoleIntegrals(const Vector<double, 3>& origin = Vector<double, 3>::Zero()) const;
+    std::array<ChemicalMatrix<double>, 3> calculateLibcintDipoleIntegrals(const Vector<double, 3>& origin = Vector<double, 3>::Zero()) const;
 
     /**
      *  Calculate the Coulomb repulsion energy integrals using Libcint: only use this for all-Cartesian ShellSets
      *
      *  @return the matrix representation of the Coulomb repulsion operator in this AO basis, using the libcint integral engine
      */
-    ScalarSQTwoElectronOperator<double> calculateLibcintCoulombRepulsionIntegrals() const;
+    ChemicalRankFourTensor<double> calculateLibcintCoulombRepulsionIntegrals() const;
 };
 
 

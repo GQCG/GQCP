@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Mathematical/SquareMatrix.hpp"
+#include "Mathematical/ChemicalMatrix.hpp"
 
 #include <array>
 
@@ -109,7 +109,7 @@ public:
      *  @param bf1                      the total basis function index of the first basis function in the first shell
      *  @param bf2                      the total basis function index of the first basis function in the second shell
      */
-    void emplace(std::array<SquareMatrix<IntegralScalar>, N>& full_components, const size_t bf1, const size_t bf2) const {
+    void emplace(std::array<ChemicalMatrix<IntegralScalar>, N>& full_components, const size_t bf1, const size_t bf2) const {
 
         // Place the calculated integrals inside the matrix representation of the integrals
         for (size_t f1 = 0; f1 < this->nbf1; f1++) {  // the index of the basis function within shell 1
