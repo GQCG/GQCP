@@ -92,7 +92,7 @@ public:
         }
 
 
-        if (S.isZero(1.0e-08)) {
+        if (S.parameters().isZero(1.0e-08)) {
             throw std::invalid_argument("HamiltonianParameters::HamiltonianParameters(std::shared_ptr<AOBasis>, ScalarSQOneElectronOperator<Scalar>, ScalarSQOneElectronOperator<Scalar>, ScalarSQTwoElectronOperator<Scalar>,SquareMatrix<Scalar>, double): The underlying overlap matrix cannot be a zero matrix.");
         }
     }
@@ -134,16 +134,16 @@ public:
      *
      *  Note that this named constructor is only available for real matrix representations
      */
-    template<typename Z = Scalar>
+    template <typename Z = Scalar>
     static enable_if_t<std::is_same<Z, double>::value, HamiltonianParameters<double>> Molecular(std::shared_ptr<AOBasis> ao_basis, double scalar=0.0) {
 
         // Calculate the integrals for the molecular Hamiltonian
-        const auto S = ao_basis->calculateLibintOverlapIntegrals();
-        const auto T = ao_basis->calculateLibintKineticIntegrals();
-        const auto V = ao_basis->calculateLibintNuclearIntegrals();
+        const ScalarSQOneElectronOperator<Z> S ({ao_basis->calculateLibintOverlapIntegrals()});
+        const ScalarSQOneElectronOperator<Z> T ({ao_basis->calculateLibintKineticIntegrals()});
+        const ScalarSQOneElectronOperator<Z> V ({ao_basis->calculateLibintNuclearIntegrals()});
         ScalarSQOneElectronOperator<double> H = T + V;
 
-        auto g = ao_basis->calculateLibintCoulombRepulsionIntegrals();
+        const ScalarSQTwoElectronOperator<Z> g ({ao_basis->calculateLibintCoulombRepulsionIntegrals()});
 
 
         // Construct the initial transformation matrix: the identity matrix
@@ -389,6 +389,7 @@ public:
     const SquareMatrix<Scalar>& get_T_total() const { return this->T_total; }
     size_t get_K() const { return this->K; }
 
+    size_t dimension() const { return this->K; }
 
 
     /*

@@ -20,8 +20,8 @@
 
 #include "Basis/GTOShell.hpp"
 #include "Basis/ShellSet.hpp"
-#include "Mathematical/Representation/ChemicalMatrix.hpp"
-#include "Mathematical/Representation/ChemicalRankFourTensor.hpp"
+#include "Mathematical/ChemicalMatrix.hpp"
+#include "Mathematical/ChemicalRankFourTensor.hpp"
 
 #include <array>
 

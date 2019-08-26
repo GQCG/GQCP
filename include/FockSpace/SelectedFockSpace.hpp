@@ -396,7 +396,7 @@ public:
 
                         if (beta_I.isOccupied(r)) {  // beta_I == beta_J from the previous if-branch
 
-                            double value = 0.5 * (two_op(p,q,r,r)
+                            double value = 0.5 * (two_op_par(p,q,r,r)
                                                   + two_op_par(r,r,p,q));
 
                             container.add(I, J, sign*value);

@@ -58,10 +58,10 @@ public:
         G (G)
     {
         // Check if the given matrix representations have the same dimensions
-        const auto dimension = this->F[0].dimension();
+        const auto dimension = this->G[0].dimension();
 
         for (size_t i = 1; i < Components; i++) {
-            if (dimension != this->F[i].dimension()) {
+            if (dimension != this->G[i].dimension()) {
                 throw std::invalid_argument("SQOneElectronOperator(const std::array<ChemicalMatrix<Scalar>, Components>&): The given matrix representations did not have the same dimensions.");
             }
         }
@@ -90,6 +90,10 @@ public:
      */
     size_t dimension() const {
         return this->G[0].dimension();
+    }
+
+    size_t get_dim() const {
+        return this->dimension();
     }
 
 

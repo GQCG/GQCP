@@ -65,7 +65,7 @@ public:
      *  @return the dimension of this matrix representation of the parameters, i.e. the number of orbitals/sites
      */
     size_t dimension() const {
-        return this->dimension(0);
+        return this->Base::dimension(0);
     }
 
 
