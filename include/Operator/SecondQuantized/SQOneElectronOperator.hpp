@@ -55,6 +55,8 @@ public:
      */
 
     /**
+     *  
+     * 
      *  @param F            all the matrix representations of the parameters (integrals) of the different components of the second-quantized operator
      */
     SQOneElectronOperator(const std::array<ChemicalMatrix<Scalar>, Components>& F) : 
@@ -72,7 +74,7 @@ public:
 
 
     /**
-     *  Construct a one-electron operator with zero parameters
+     *  Construct a one-electron operator with parameters that are zero
      * 
      *  @param dim          the dimension of the matrix representation of the parameters, i.e. the number of orbitals/sites
      */
@@ -81,7 +83,6 @@ public:
             this->F[i] = ChemicalMatrix<Scalar>(dim);
         }
     }
-
 
 
     /*
@@ -93,6 +94,10 @@ public:
      */
     size_t dimension() const {
         return this->F[0].dimension();
+    }
+
+    size_t get_dim() const {
+        return this->dimension();
     }
 
 
@@ -243,11 +248,11 @@ using VectorSQOneElectronOperator = SQOneElectronOperator<Scalar, 3>;
 template <typename LHSScalar, typename RHSScalar, size_t Components>
 auto operator+(const SQOneElectronOperator<LHSScalar, Components>& lhs, const SQOneElectronOperator<RHSScalar, Components>& rhs) -> SQOneElectronOperator<sum_t<LHSScalar, RHSScalar>, Components> {
 
-    auto ResultScalar = sum_t<LHSScalar, RHSScalar>;
+    using ResultScalar = sum_t<LHSScalar, RHSScalar>;
 
     auto F_sum = lhs.allParameters();
     for (size_t i = 0; i < Components; i++) {
-        F_sum[i] += rhs.parameters(i)
+        F_sum[i] += rhs.parameters(i);
     }
 
     return SQOneElectronOperator<ResultScalar, Components>(F_sum);
@@ -266,7 +271,7 @@ auto operator+(const SQOneElectronOperator<LHSScalar, Components>& lhs, const SQ
 template <typename Scalar, typename OperatorScalar, size_t Components>
 auto operator*(const Scalar& scalar, const SQOneElectronOperator<OperatorScalar, Components>& op) -> SQOneElectronOperator<product_t<Scalar, OperatorScalar>, Components> {
 
-    auto ResultScalar = product_t<Scalar, OperatorScalar>;
+    using ResultScalar = product_t<Scalar, OperatorScalar>;
 
     auto F = op.allParameters();
     for (size_t i = 0; i < Components; i++) {

@@ -237,11 +237,11 @@ using VectorSQTwoElectronOperator = SQTwoElectronOperator<Scalar, 3>;
 template <typename LHSScalar, typename RHSScalar, size_t Components>
 auto operator+(const SQTwoElectronOperator<LHSScalar, Components>& lhs, const SQTwoElectronOperator<RHSScalar, Components>& rhs) -> SQTwoElectronOperator<sum_t<LHSScalar, RHSScalar>, Components> {
 
-    auto ResultScalar = sum_t<LHSScalar, RHSScalar>;
+    using ResultScalar = sum_t<LHSScalar, RHSScalar>;
 
     auto G_sum = lhs.allParameters();
     for (size_t i = 0; i < Components; i++) {
-        G_sum[i] += rhs.parameters(i)
+        G_sum[i] += rhs.parameters(i);
     }
 
     return SQTwoElectronOperator<ResultScalar, Components>(G_sum);
@@ -260,7 +260,7 @@ auto operator+(const SQTwoElectronOperator<LHSScalar, Components>& lhs, const SQ
 template <typename Scalar, typename OperatorScalar, size_t Components>
 auto operator*(const Scalar& scalar, const SQTwoElectronOperator<OperatorScalar, Components>& op) -> SQTwoElectronOperator<product_t<Scalar, OperatorScalar>, Components> {
 
-    auto ResultScalar = product_t<Scalar, OperatorScalar>;
+    using ResultScalar = product_t<Scalar, OperatorScalar>;
 
     auto G = op.allParameters();
     for (size_t i = 0; i < Components; i++) {

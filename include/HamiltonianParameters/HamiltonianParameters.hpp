@@ -188,16 +188,18 @@ public:
      *
      *  Note that this named constructor is only available for real representations
      */
-    template<typename Z = Scalar>
+    template <typename Z = Scalar>
     static enable_if_t<std::is_same<Z, double>::value, HamiltonianParameters<double>> Random(size_t K) {
-        ScalarSQOneElectronOperator<double> S = ScalarSQOneElectronOperator<double>::Identity(K, K);  // the underlying orbital basis can be chosen as orthonormal, since the form of the underlying orbitals doesn't really matter
+
+
+        ScalarSQOneElectronOperator<double> S ({ChemicalMatrix<double>::Identity(K, K)});  // the underlying orbital basis can be chosen as orthonormal, since the form of the underlying orbitals doesn't really matter
         SquareMatrix<double> C = SquareMatrix<double>::Identity(K, K);  // the transformation matrix C here doesn't really mean anything, because it doesn't link to any AO basis
 
-        ScalarSQOneElectronOperator<double> H = ScalarSQOneElectronOperator<double>::Random(K, K);  // uniformly distributed between [-1,1]
+        ScalarSQOneElectronOperator<double> H ({ChemicalMatrix<double>::Random(K, K)});  // uniformly distributed between [-1,1]
 
 
         // Unfortunately, the Tensor module provides uniform random distributions between [0, 1]
-        ScalarSQTwoElectronOperator<double> g (K);
+        ChemicalRankFourTensor<double> g (K);
         g.setRandom();
 
         // Move the distribution from [0, 1] -> [-1, 1]
@@ -220,7 +222,7 @@ public:
         std::uniform_real_distribution<double> double_distribution (-1.0, 1.0);
         double scalar = double_distribution(random_generator);
 
-        return HamiltonianParameters<double>(ao_basis, S, H, g, C, scalar);
+        return HamiltonianParameters<double>(ao_basis, S, H, ScalarSQTwoElectronOperator<double>({g}), C, scalar);
     }
 
 
@@ -260,8 +262,8 @@ public:
 
 
         double scalar = 0.0;
-        ScalarSQOneElectronOperator<double> h_core = ScalarSQOneElectronOperator<double>::Zero(K, K);
-        ScalarSQTwoElectronOperator<double> g (K);
+        ChemicalMatrix<double> h_core = ChemicalMatrix<double>::Zero(K, K);
+        ChemicalRankFourTensor<double> g (K);
         g.setZero();
 
         //  Skip 3 lines
@@ -324,10 +326,10 @@ public:
 
         // Make the ingredients to construct HamiltonianParameters
         std::shared_ptr<AOBasis> ao_basis;  // nullptr
-        ScalarSQOneElectronOperator<Scalar> S = ScalarSQOneElectronOperator<double>::Identity(K, K);
+        ScalarSQOneElectronOperator<Scalar> S ({ChemicalMatrix<double>::Identity(K, K)});
         SquareMatrix<double> C = SquareMatrix<double>::Identity(K, K);
 
-        return HamiltonianParameters(ao_basis, S, h_core, g, C, scalar);
+        return HamiltonianParameters(ao_basis, S, ScalarSQOneElectronOperator<Scalar>({h_core}), ScalarSQOneElectronOperator<Scalar>({g}), C, scalar);
     }
 
 
@@ -341,10 +343,10 @@ public:
     template<typename Z = Scalar>
     static enable_if_t<std::is_same<Z, double>::value, HamiltonianParameters<double>> Hubbard(const HoppingMatrix& H) {
 
-        size_t K = H.numberOfLatticeSites();
+        const size_t K = H.numberOfLatticeSites();
 
-        ScalarSQOneElectronOperator<double> h = ScalarSQOneElectronOperator<double>::Zero(K, K);
-        ScalarSQTwoElectronOperator<double> g (K);
+        ChemicalMatrix<double> h (K);
+        ChemicalRankFourTensor<double> g (K);
         g.setZero();
 
 
@@ -362,10 +364,10 @@ public:
 
         // Make the ingredients to construct HamiltonianParameters
         std::shared_ptr<AOBasis> ao_basis;  // nullptr
-        ScalarSQOneElectronOperator<double> S = ScalarSQOneElectronOperator<double>::Identity(K, K);
+        ScalarSQOneElectronOperator<double> S ({ChemicalMatrix<double>::Identity(K, K)});
         SquareMatrix<double> C = SquareMatrix<double>::Identity(K, K);
 
-        return HamiltonianParameters(ao_basis, S, h, g, C);  // no scalar term
+        return HamiltonianParameters(ao_basis, S, ScalarSQOneElectronOperator<double>({h}), ScalarSQTwoElectronOperator<double>({g}), C);  // no scalar term
     }
 
 
@@ -447,7 +449,6 @@ public:
         size_t K = this->h.get_dim();  // number of spatial orbitals
         auto J = SquareMatrix<double>::FromJacobi(jacobi_rotation_parameters, K);
         this->T_total = this->T_total * J;
-
     }
 
 
@@ -520,11 +521,11 @@ public:
     ScalarSQOneElectronOperator<Scalar> calculateFockianMatrix(const OneRDM<double>& D, const TwoRDM<double>& d) const {
 
         // Check if dimensions are compatible
-        if (D.cols() != this->K) {
+        if (D.dimension() != this->K) {
             throw std::invalid_argument("HamiltonianParameters::calculateFockianMatrix(OneRDM<double>, TwoRDM<double>): The 1-RDM is not compatible with the HamiltonianParameters.");
         }
 
-        if (d.dimension(0) != this->K) {
+        if (d.dimension() != this->K) {
             throw std::invalid_argument("HamiltonianParameters::calculateFockianMatrix(OneRDM<double>, TwoRDM<double>): The 2-RDM is not compatible with the HamiltonianParameters.");
         }
 
@@ -609,11 +610,11 @@ public:
     ScalarSQTwoElectronOperator<Scalar> calculateSuperFockianMatrix(const OneRDM<double>& D, const TwoRDM<double>& d) const {
 
         // Check if dimensions are compatible
-        if (D.cols() != this->K) {
+        if (D.dimension() != this->K) {
             throw std::invalid_argument("HamiltonianParameters::calculateFockianMatrix(OneRDM<double>, TwoRDM<double>): The 1-RDM is not compatible with the HamiltonianParameters.");
         }
 
-        if (d.dimension(0) != this->K) {
+        if (d.dimension() != this->K) {
             throw std::invalid_argument("HamiltonianParameters::calculateFockianMatrix(OneRDM<double>, TwoRDM<double>): The 2-RDM is not compatible with the HamiltonianParameters.");
         }
 
