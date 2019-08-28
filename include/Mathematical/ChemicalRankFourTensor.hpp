@@ -51,13 +51,6 @@ public:
 
 
     /*
-     *  GETTERS
-     */
-    size_t get_K() const { return this->dimension(0); };
-
-
-
-    /*
      *  PUBLIC METHODS
      */
 
@@ -68,20 +61,18 @@ public:
         return this->Base::dimension(0);
     }
 
+    size_t get_K() const { return this->dimension(0); };
+
+
 
     /**
-     *  Basis transform this chemical rank-4 tensor
+     *  In-place transform this chemical rank-4 tensor according to a given basis transformation
      *
-     *  @tparam TransformationScalar        the type of scalar used for the transformation matrix
-
      *  @param T    the transformation matrix between the old and the new orbital basis, it is used as
      *      b' = b T ,
      *   in which the basis functions are collected as elements of a row vector b
      */
-    template <typename TransformationScalar = Scalar>
-    auto basisTransform(const SquareMatrix<TransformationScalar>& T) const -> ChemicalRankFourTensor<product_t<Scalar, TransformationScalar>> {
-
-        using ResultScalar = product_t<Scalar, TransformationScalar>;
+    void basisTransformInPlace(const SquareMatrix<Scalar>& T) {
 
         // Since we're only getting T as a matrix, we should make the appropriate tensor to perform contractions
         // For the const argument, we need the const in the template
@@ -112,26 +103,24 @@ public:
         // Calculate the contractions. We write this as one large contraction to
         //  1) avoid storing intermediate contractions
         //  2) let Eigen figure out some optimizations
-        ChemicalRankFourTensor<ResultScalar> g_transformed = T_tensor.conjugate().contract(T_tensor.contract(this->contract(T_tensor.conjugate(), contraction_pair1).shuffle(shuffle_1).contract(T_tensor, contraction_pair2), contraction_pair3).shuffle(shuffle_3), contraction_pair4);
-        return g_transformed;
+        Self g_transformed = T_tensor.conjugate().contract(T_tensor.contract(this->contract(T_tensor.conjugate(), contraction_pair1).shuffle(shuffle_1).contract(T_tensor, contraction_pair2), contraction_pair3).shuffle(shuffle_3), contraction_pair4);
+        (*this) = g_transformed;
     }
 
 
     /**
-     *  Rotate this chemical rank-4 tensor using Jacobi rotation parameters. Note that this function is only available for real (double) matrix representations
+     *  In-place rotate this chemical rank-4 tensor using Jacobi rotation parameters
      * 
      *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix. See transform() for how the transformation matrix between the two bases should be represented
      */
-    template <typename Z = Scalar>
-    enable_if_t<std::is_same<Z, double>::value,
-    ChemicalRankFourTensor<product_t<Z, double>>> basisRotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
+    void basisRotateInPlace(const JacobiRotationParameters& jacobi_rotation_parameters) {
 
         /**
          *  While waiting for an analogous Eigen::Tensor Jacobi module, we implement this rotation by constructing a Jacobi rotation matrix and then doing a rotation with it
          */
 
-        auto dim = static_cast<size_t>(this->dimension(0));  // .dimension() returns a long
-        auto J = SquareMatrix<double>::FromJacobi(jacobi_rotation_parameters, dim);  // this is sure to return a unitary matrix
+        const auto dim = static_cast<size_t>(this->dimension(0));  // .dimension() returns a long
+        const auto J = SquareMatrix<double>::FromJacobi(jacobi_rotation_parameters, dim);  // this is sure to return a unitary matrix
 
         this->basisTransform(J);
     }

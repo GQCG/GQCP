@@ -104,7 +104,7 @@ public:
     /**
      *  @return all the matrix representations of the parameters (integrals) of the different components of this second-quantized operator
      */
-    const std::array<ChemicalRankFourTensor<Scalar>, Components> allParameters() const {
+    const std::array<ChemicalRankFourTensor<Scalar>, Components>& allParameters() const {
         return this->G;
     }
 
@@ -130,64 +130,46 @@ public:
 
 
     /**
-     *  @tparam TransformationScalar        the scalar type of the transformation matrix
+     *  In-place transform the operator to another basis
      * 
      *  @param T                            the transformation matrix
-     * 
-     *  @return a second-quantized operator whose matrix representations have been transformed according to the given transformation matrix
      */
-    template <typename TransformationScalar = Scalar>
-    auto transform(const SquareMatrix<TransformationScalar>& T) const -> SQTwoElectronOperator<product_t<Scalar, TransformationScalar>, Components> const {
-
-        using ResultScalar = product_t<Scalar, TransformationScalar>;
+    void transform(const SquareMatrix<Scalar>& T) {
 
         // Transform the matrix representations of the components
-        auto G_copy = this->allParameters();
-        for (size_t i = 0; i < Components; i++) {
-            G_copy[i] = this->parameters(i).basisTransform(T);
+        for (auto& g : this->allParameters()) {
+            g.basisTransformInPlace(T);
         }
-
-        return SQTwoElectronOperator<ResultScalar, Components>(G_copy);
     }
 
 
     /**
-     *  @tparam TransformationScalar        the scalar type of the transformation matrix
+     *  In-place rotate the operator to another basis
      * 
      *  @param U                            the (unitary) rotation matrix
-     * 
-     *  @return a second-quantized operator whose matrix representations have been rotated according to the given rotation matrix
      */
-    template <typename TransformationScalar = Scalar>
-    auto rotate(const SquareMatrix<TransformationScalar>& U) const -> SQTwoElectronOperator<product_t<Scalar, TransformationScalar>, Components> const {
+    void rotate(const SquareMatrix<Scalar>& U) {
 
         // Check if the given matrix is actually unitary
         if (!U.isUnitary(1.0e-12)) {
-            throw std::invalid_argument("SQTwoElectronOperator::rotate(const SquareMatrix<TransformationScalar>&): The given transformation matrix is not unitary.");
+            throw std::invalid_argument("SQTwoElectronOperator::rotate(const SquareMatrix<Scalar>&): The given transformation matrix is not unitary.");
         }
 
-        return this->transform(U);
+        this->transform(U);
     }
 
 
     /**
-     *  In-place rotate the matrix representation of the two-electron operator using a unitary Jacobi rotation matrix constructed from the Jacobi rotation parameters. Note that this function is only available for real (double) matrix representations
-     *
+     *  In-place rotate the operator using a unitary Jacobi rotation matrix constructed from the Jacobi rotation parameters
+     * 
      *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix. See transform() for how the transformation matrix between the two bases should be represented
      */
-    template<typename Z = Scalar>
-    enable_if_t<std::is_same<Z, double>::value,
-    SQTwoElectronOperator<product_t<Z, double>, Components>> rotate(const JacobiRotationParameters& jacobi_rotation_parameters) const {
-
-        using ResultScalar = product_t<Scalar, double>;
+    void rotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
 
         // Transform the matrix representations of the components
-        auto G_copy = this->allParameters();
-        for (size_t i = 0; i < Components; i++) {
-            G_copy[i] = this->parameters(i).basisRotate(jacobi_rotation_parameters);
+        for (auto& g : this->allParameters()) {
+            g.basisRotateInPlace(jacobi_rotation_parameters);
         }
-
-        return SQTwoElectronOperator<ResultScalar, Components>(G_copy);
     }
 
 
