@@ -58,7 +58,7 @@ BOOST_AUTO_TEST_CASE ( SQTwoElectronOperator_transform_olsens ) {
             }
         }
     }
-    G.basisTransform(T);
+    G.transform(T);
 
     BOOST_CHECK(G.isApprox(g_transformed_ref, 1.0e-12));
 }

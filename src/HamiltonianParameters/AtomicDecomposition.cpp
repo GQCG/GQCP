@@ -133,7 +133,7 @@ AtomicDecompositionParameters AtomicDecompositionParameters::Nuclear(const Molec
     HamiltonianParameters<double> HAA (ao_basis, ScalarSQOneElectronOperator<double>({S}), ScalarSQOneElectronOperator<double>({h_a}), ScalarSQTwoElectronOperator<double>({g_a}), T_total);
     HamiltonianParameters<double> HBB (ao_basis, ScalarSQOneElectronOperator<double>({S}), ScalarSQOneElectronOperator<double>({h_b}), ScalarSQTwoElectronOperator<double>({g_b}), T_total);
     HamiltonianParameters<double> HAB (ao_basis, ScalarSQOneElectronOperator<double>({S}), ScalarSQOneElectronOperator<double>({h_ab}), ScalarSQTwoElectronOperator<double>({g_abba}), T_total, repulsion);
-    HamiltonianParameters<double> HA (ao_basis, S, ScalarSQOneElectronOperator<double>({h_a + h_ab/2}), ScalarSQTwoElectronOperator<double>({g_a.Eigen() + (0.5)*g_abba.Eigen()}), T_total, repulsion/2);
+    HamiltonianParameters<double> HA (ao_basis, ScalarSQOneElectronOperator<double>({S}), ScalarSQOneElectronOperator<double>({h_a + h_ab/2}), ScalarSQTwoElectronOperator<double>({g_a.Eigen() + (0.5)*g_abba.Eigen()}), T_total, repulsion/2);
     HamiltonianParameters<double> HB (ao_basis, ScalarSQOneElectronOperator<double>({S}), ScalarSQOneElectronOperator<double>({h_b + h_ab/2}), ScalarSQTwoElectronOperator<double>({g_b.Eigen() + (0.5)*g_abba.Eigen()}), T_total, repulsion/2);
 
     std::vector<HamiltonianParameters<double>> net_atomic_parameters = {HAA, HBB};

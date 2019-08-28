@@ -77,7 +77,7 @@ public:
         // Since we're only getting T as a matrix, we should make the appropriate tensor to perform contractions
         // For the const argument, we need the const in the template
         //      For more info, see: https://stackoverflow.com/questions/45283468/eigen-const-tensormap
-        Eigen::TensorMap<Eigen::Tensor<const TransformationScalar, 2>> T_tensor (T.data(), T.rows(), T.cols());
+        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> T_tensor (T.data(), T.rows(), T.cols());
 
 
         // We will have to do four single contractions, so we specify the contraction indices

@@ -71,7 +71,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_h2_sto3g_dense_vs_Davidson ) {
     auto rhf = plain_scf_solver.get_solution();
 
     // Transform the ham_par
-    mol_ham_par.basisTransform(rhf.get_C());
+    mol_ham_par.transform(rhf.get_C());
 
     GQCP::FockSpace fock_space (mol_ham_par.get_K(), h2.numberOfElectrons()/2);  // dim = 2
 
@@ -110,7 +110,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_h2_631g_dense_vs_Davidson ) {
     auto rhf = plain_scf_solver.get_solution();
 
     // Transform the ham_par
-    mol_ham_par.basisTransform(rhf.get_C());
+    mol_ham_par.transform(rhf.get_C());
 
     GQCP::FockSpace fock_space (mol_ham_par.get_K(), h2.numberOfElectrons()/2);  // dim = 4
 

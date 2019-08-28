@@ -142,7 +142,7 @@ MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const s
         GQCP::DIISRHFSCFSolver diis_scf_solver (this->ham_par, molecule, 6, 6, 1e-12, 500);
         diis_scf_solver.solve();
         auto rhf_solution = diis_scf_solver.get_solution();
-        this->ham_par.basisTransform(rhf_solution.get_C());
+        this->ham_par.transform(rhf_solution.get_C());
 
     } catch (const std::exception& e) {
         
@@ -175,14 +175,14 @@ MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const s
                 GQCP::SquareMatrix<double> T = Eigen::MatrixXd::Zero(K, K);
                 T.topLeftCorner(K1, K1) += rhf1.get_C();
                 T.bottomRightCorner(K2, K2) += rhf2.get_C();
-                this->ham_par.basisTransform(T);
+                this->ham_par.transform(T);
 
                 // Attempt the DIIS for this basis
                 try {
                     GQCP::DIISRHFSCFSolver diis_scf_solver (this->ham_par, molecule, 6, 6, 1e-12, 500);
                     diis_scf_solver.solve();
                     auto rhf = diis_scf_solver.get_solution();
-                    this->ham_par.basisTransform(rhf.get_C());
+                    this->ham_par.transform(rhf.get_C());
 
                 } catch (const std::exception& e) {
                     std::cout << "Lodwin Orthonormalized" << std::endl;

@@ -56,7 +56,7 @@ BOOST_AUTO_TEST_CASE ( dipole_CO_STO_3G ) {
     // Calculate the dipole integrals, and transform them to the MO basis
     auto dipole_components = ao_basis->calculateLibintDipoleIntegrals();
     for (auto& dipole_component : dipole_components) {
-        dipole_component.basisTransform(rhf.get_C());
+        dipole_component.transform(rhf.get_C());
     }
 
     GQCP::Vector<double, 3> total_dipole_moment = GQCP::Operator::NuclearDipole(CO).value() + GQCP::calculateElectronicDipoleMoment(dipole_components, D);
@@ -96,7 +96,7 @@ BOOST_AUTO_TEST_CASE ( dipole_N2_STO_3G ) {
     // Calculate the dipole integrals, and transform them to the MO basis
     auto dipole_components = ao_basis->calculateLibintDipoleIntegrals();
     for (auto& dipole_component : dipole_components) {
-        dipole_component.basisTransform(rhf.get_C());
+        dipole_component.transform(rhf.get_C());
     }
 
     GQCP::Vector<double, 3> total_dipole_moment = GQCP::Operator::NuclearDipole(N2).value() + GQCP::calculateElectronicDipoleMoment(dipole_components, D);

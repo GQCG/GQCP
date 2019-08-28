@@ -108,7 +108,7 @@ public:
         HamiltonianParameters<Scalar>(ham_par.ao_basis, ham_par.S, ham_par.h, ham_par.g, ham_par.T_total, ham_par.scalar)
     {
         // We have now initialized the new Hamiltonian parameters to be a copy of the given Hamiltonian parameters, so now we will transform
-        this->basisTransform(C);
+        this->transform(C);
     }
 
 
@@ -415,18 +415,37 @@ public:
      *      - the overlap matrix S now gives the overlap matrix in the new molecular orbital basis
      *      - the total transformation matrix T_total is updated to reflect the total transformation between the new molecular orbital basis and the initial atomic orbitals
      */
-    template <typename TransformationScalar = Scalar>
-    void basisTransform(const SquareMatrix<TransformationScalar> &T) {
+    void transform(const SquareMatrix<Scalar>& T) {
 
-        this->S.basisTransform(T);
+        this->S.transform(T);
 
-        this->h.basisTransform(T);
-        this->g.basisTransform(T);
+        this->h.transform(T);
+        this->g.transform(T);
 
         this->T_total = this->T_total * T;  // use the correct transformation formula for subsequent transformations
     }
 
 
+    /**
+     *  In-place rotate the matrix representations of Hamiltonian parameters
+     *
+     *  @param U    the unitary rotation matrix between the old and the new orbital basis, it is used as
+     *      b' = b T ,
+     *   in which the basis functions are collected as elements of a row vector b
+     *
+     *  Furthermore
+     *      - the overlap matrix S now gives the overlap matrix in the new molecular orbital basis
+     *      - the total transformation matrix T_total is updated to reflect the total transformation between the new molecular orbital basis and the initial atomic orbitals
+     */
+    void rotate(const SquareMatrix<Scalar>& U) {
+
+        this->S.transform(U);
+
+        this->h.transform(U);
+        this->g.transform(U);
+
+        this->T_total = this->T_total * U;  // use the correct transformation formula for subsequent transformations
+    }
 
 
     /**
@@ -478,7 +497,7 @@ public:
 
         // The transformation matrix to the Löwdin basis is T = S^{-1/2}
         Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes (this->S);  // can we use this->S?
-        this->basisTransform(SquareMatrix<double>(saes.operatorInverseSqrt()));
+        this->transform(SquareMatrix<double>(saes.operatorInverseSqrt()));
     }
 
 
@@ -580,7 +599,7 @@ public:
 
         ScalarSQOneElectronOperator<Scalar> S_AO = this->S;
         SquareMatrix<double> T_inverse = T_total.inverse();
-        S_AO.basisTransform(T_inverse);
+        S_AO.transform(T_inverse);
 
         ScalarSQOneElectronOperator<double> mulliken_matrix = (T_total.adjoint() * p_a * S_AO * T_total + T_total.adjoint() * S_AO * p_a * T_total)/2 ;
 

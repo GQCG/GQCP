@@ -40,7 +40,7 @@ BOOST_AUTO_TEST_CASE ( FCI_h2_sto3g_dense_vs_Davidson ) {
     auto rhf = plain_scf_solver.get_solution();
 
     // Transform the ham_par
-    mol_ham_par.basisTransform(rhf.get_C());
+    mol_ham_par.transform(rhf.get_C());
 
     GQCP::ProductFockSpace fock_space (K, h2.numberOfElectrons()/2, h2.numberOfElectrons()/2);  // dim = 2
 
@@ -82,7 +82,7 @@ BOOST_AUTO_TEST_CASE ( FCI_H2_6_31Gxx_dense_vs_Davidson ) {
     auto rhf = plain_scf_solver.get_solution();
 
     // Transform the ham_par
-    mol_ham_par.basisTransform(rhf.get_C());
+    mol_ham_par.transform(rhf.get_C());
 
     GQCP::ProductFockSpace fock_space (K, h2.numberOfElectrons()/2, h2.numberOfElectrons()/2);  // dim = 100
 
@@ -124,7 +124,7 @@ BOOST_AUTO_TEST_CASE ( FCI_H2O_STO_3G_dense_vs_Davidson ) {
     auto rhf = plain_scf_solver.get_solution();
 
     // Transform the ham_par
-    mol_ham_par.basisTransform(rhf.get_C());
+    mol_ham_par.transform(rhf.get_C());
 
     GQCP::ProductFockSpace fock_space (K, h2o.numberOfElectrons()/2, h2o.numberOfElectrons()/2);  // dim = 441
 
@@ -165,7 +165,7 @@ BOOST_AUTO_TEST_CASE ( FCI_H6_STO_3G_dense_vs_Davidson ) {
     auto rhf = plain_scf_solver.get_solution();
 
     // Transform the ham_par
-    mol_ham_par.basisTransform(rhf.get_C());
+    mol_ham_par.transform(rhf.get_C());
 
     GQCP::ProductFockSpace fock_space (K, 3, 2);  // dim = 300
 
