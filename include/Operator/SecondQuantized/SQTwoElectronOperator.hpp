@@ -102,9 +102,17 @@ public:
 
 
     /**
-     *  @return all the matrix representations of the parameters (integrals) of the different components of this second-quantized operator
+     *  @return read-only matrix representations of all the parameters (integrals) of the different components of this second-quantized operator
      */
     const std::array<ChemicalRankFourTensor<Scalar>, Components>& allParameters() const {
+        return this->G;
+    }
+
+
+    /**
+     *  @return writable matrix representations of all the parameters (integrals) of the different components of this second-quantized operator
+     */
+    std::array<ChemicalRankFourTensor<Scalar>, Components>& allParameters() {
         return this->G;
     }
 
@@ -141,6 +149,9 @@ public:
             g.basisTransformInPlace(T);
         }
     }
+
+
+
 
 
     /**
@@ -258,6 +269,44 @@ auto operator*(const Scalar& scalar, const SQTwoElectronOperator<OperatorScalar,
     }
 
     return SQTwoElectronOperator<ResultScalar, Components>(G);
+}
+
+
+/**
+ *  Negate a two-electron operator
+ * 
+ *  @tparam Scalar              the scalar type of the operator
+ *  @tparam Components          the number of components of the one-electron operator
+ * 
+ *  @param op                   the operator
+ */
+template <typename Scalar, size_t Components>
+SQTwoElectronOperator<Scalar, Components> operator-(const SQTwoElectronOperator<Scalar, Components>& op) {
+
+    // Negate the parameters of all the components
+    auto G_copy = op.parameters();
+    for (size_t i = 0; i < Components; i++) {
+        G_copy[i] *= (-1.0);  // negation is scalar multiplication with (-1.0)
+    }
+
+    return SQTwoElectronOperator<Scalar, Components>(G_copy);
+}
+
+
+/**
+ *  Subtract two two-electron operators by adding their parameters
+ * 
+ *  @tparam LHSScalar           the scalar type of the left-hand side
+ *  @tparam RHSScalar           the scalar type of the right-hand side
+ *  @tparam Components          the number of components of the two-electron operators
+ * 
+ *  @param lhs                  the left-hand side
+ *  @param rhs                  the right-hand side
+ */
+template <typename LHSScalar, typename RHSScalar, size_t Components>
+auto operator-(const SQTwoElectronOperator<LHSScalar, Components>& lhs, const SQTwoElectronOperator<RHSScalar, Components>& rhs) -> SQTwoElectronOperator<sum_t<LHSScalar, RHSScalar>, Components> {
+
+    return lhs + (-rhs);
 }
 
 

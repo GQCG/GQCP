@@ -36,7 +36,6 @@ namespace GQCP {
  *  @tparam _Components         the number of components of the second-quantized operator
  */
 template <typename _Scalar, size_t _Components>
-// class SQOneElectronOperator : public BaseSQOperator<SQOneElectronOperator<_Scalar>> {
 class SQOneElectronOperator {
 public:
 
@@ -106,9 +105,17 @@ public:
 
 
     /**
-     *  @return all the matrix representations of the parameters (integrals) of the different components of this second-quantized operator
+     *  @return read-only matrix representations of all the parameters (integrals) of the different components of this second-quantized operator
      */
     const std::array<ChemicalMatrix<Scalar>, Components>& allParameters() const {
+        return this->F;
+    }
+
+
+    /**
+     *  @return writable matrix representations of all the parameters (integrals) of the different components of this second-quantized operator
+     */
+    std::array<ChemicalMatrix<Scalar>, Components>& allParameters() {
         return this->F;
     }
 
@@ -265,6 +272,44 @@ auto operator*(const Scalar& scalar, const SQOneElectronOperator<OperatorScalar,
     }
 
     return SQOneElectronOperator<ResultScalar, Components>(F);
+}
+
+
+/**
+ *  Negate a one-electron operator
+ * 
+ *  @tparam Scalar              the scalar type of the operator
+ *  @tparam Components          the number of components of the one-electron operator
+ * 
+ *  @param op                   the operator
+ */
+template <typename Scalar, size_t Components>
+SQOneElectronOperator<Scalar, Components> operator-(const SQOneElectronOperator<Scalar, Components>& op) {
+
+    // Negate the parameters of all the components
+    auto F_copy = op.parameters();
+    for (size_t i = 0; i < Components; i++) {
+        F_copy[i] *= (-1.0);  // negation is scalar multiplication with (-1.0)
+    }
+
+    return SQOneElectronOperator<Scalar, Components>(F_copy);
+}
+
+
+/**
+ *  Subtract two one-electron operators by adding their parameters
+ * 
+ *  @tparam LHSScalar           the scalar type of the left-hand side
+ *  @tparam RHSScalar           the scalar type of the right-hand side
+ *  @tparam Components          the number of components of the one-electron operators
+ * 
+ *  @param lhs                  the left-hand side
+ *  @param rhs                  the right-hand side
+ */
+template <typename LHSScalar, typename RHSScalar, size_t Components>
+auto operator-(const SQOneElectronOperator<LHSScalar, Components>& lhs, const SQOneElectronOperator<RHSScalar, Components>& rhs) -> SQOneElectronOperator<sum_t<LHSScalar, RHSScalar>, Components> {
+
+    return lhs + (-rhs);
 }
 
 

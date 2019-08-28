@@ -36,7 +36,7 @@ namespace GQCP {
  */
 void ERJacobiLocalizer::calculateJacobiCoefficients(const HamiltonianParameters<double>& ham_par, const size_t i, const size_t j) {
 
-    const auto& g = ham_par.get_g();  // two-electron integrals
+    const auto& g = ham_par.get_g().parameters();  // two-electron integrals
 
     this->A = 0.25 * (2*g(i,i,j,j) + 4*g(i,j,i,j) - g(i,i,i,i) - g(j,j,j,j));
     this->B = -this->A;

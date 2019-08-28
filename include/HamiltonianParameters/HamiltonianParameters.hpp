@@ -496,7 +496,7 @@ public:
     void LowdinOrthonormalize() {
 
         // The transformation matrix to the Löwdin basis is T = S^{-1/2}
-        Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes (this->S);  // can we use this->S?
+        Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes (this->S.parameters());
         this->transform(SquareMatrix<double>(saes.operatorInverseSqrt()));
     }
 
@@ -550,21 +550,25 @@ public:
         }
 
 
+        const auto& h_par = this->h.parameters();
+        const auto& g_par = this->g.parameters();
+
+
         // A KISS implementation of the calculation of the generalized Fock matrix F
-        ScalarSQOneElectronOperator<Scalar> F = ScalarSQOneElectronOperator<Scalar>::Zero(this->K, this->K);
+        ChemicalMatrix<Scalar> F = ChemicalMatrix<Scalar>::Zero(this->K, this->K);
         for (size_t p = 0; p < this->K; p++) {
             for (size_t q = 0; q < this->K; q++) {
 
                 // One-electron part
                 for (size_t r = 0; r < this->K; r++) {
-                    F(p,q) += h(q,r) * (D(p,r) + D(r,p));
+                    F(p,q) += h_par(q,r) * (D(p,r) + D(r,p));
                 }
 
                 // Two-electron part
                 for (size_t r = 0; r < this->K; r++) {
                     for (size_t s = 0; s < this->K; s++) {
                         for (size_t t = 0; t < this->K; t++) {
-                            F(p,q) += g(q,r,s,t) * (d(p,r,s,t) + d(r,p,s,t));
+                            F(p,q) += g_par(q,r,s,t) * (d(p,r,s,t) + d(r,p,s,t));
                         }
                     }
                 }
@@ -572,7 +576,7 @@ public:
             }
         }  // F elements loop
 
-        return 0.5 * F;
+        return ScalarSQOneElectronOperator<Scalar>({0.5 * F});
     }
 
 
@@ -640,10 +644,10 @@ public:
 
 
         // We have to calculate the Fockian matrix first
-        ScalarSQOneElectronOperator<Scalar> F = this->calculateFockianMatrix(D, d);
+        const auto& F = this->calculateFockianMatrix(D, d).parameters();
 
         // A KISS implementation of the calculation of the super Fockian matrix
-        ScalarSQTwoElectronOperator<Scalar> G (this->K);
+        ChemicalRankFourTensor<Scalar> G (this->K);
         G.setZero();
         for (size_t p = 0; p < this->K; p++) {
             for (size_t q = 0; q < this->K; q++) {
@@ -670,7 +674,7 @@ public:
         }  // W elements loop
 
 
-        return 0.5 * G;
+        return ScalarSQTwoElectronOperator<Scalar>({0.5 * G});
     }
 
 
