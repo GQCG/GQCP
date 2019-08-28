@@ -329,7 +329,7 @@ public:
         ScalarSQOneElectronOperator<Scalar> S ({ChemicalMatrix<double>::Identity(K, K)});
         SquareMatrix<double> C = SquareMatrix<double>::Identity(K, K);
 
-        return HamiltonianParameters(ao_basis, S, ScalarSQOneElectronOperator<Scalar>({h_core}), ScalarSQOneElectronOperator<Scalar>({g}), C, scalar);
+        return HamiltonianParameters(ao_basis, S, ScalarSQOneElectronOperator<Scalar>({h_core}), ScalarSQTwoElectronOperator<Scalar>({g}), C, scalar);
     }
 
 
@@ -516,11 +516,12 @@ public:
     template<typename Z = Scalar>
     enable_if_t<std::is_same<Z, double>::value, double> calculateEdmistonRuedenbergLocalizationIndex(size_t N_P) const {
 
-        double localization_index = 0.0;
+        const auto& g_par = this->g.parameters();
 
         // TODO: when Eigen releases TensorTrace, use it here
+        double localization_index = 0.0;
         for (size_t i = 0; i < N_P; i++) {
-            localization_index += this->g(i,i,i,i);
+            localization_index += g_par(i,i,i,i);
         }
 
         return localization_index;

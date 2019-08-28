@@ -54,12 +54,10 @@ BOOST_AUTO_TEST_CASE ( dipole_CO_STO_3G ) {
     auto D_AO = GQCP::calculateRHFAO1RDM(rhf.get_C(), N);
 
     // Calculate the dipole integrals, and transform them to the MO basis
-    auto dipole_components = ao_basis->calculateLibintDipoleIntegrals();
-    for (auto& dipole_component : dipole_components) {
-        dipole_component.transform(rhf.get_C());
-    }
+    auto dipole_op = GQCP::VectorSQOneElectronOperator<double>({ao_basis->calculateLibintDipoleIntegrals()});
+    dipole_op.transform(rhf.get_C());
 
-    GQCP::Vector<double, 3> total_dipole_moment = GQCP::Operator::NuclearDipole(CO).value() + GQCP::calculateElectronicDipoleMoment(dipole_components, D);
+    GQCP::Vector<double, 3> total_dipole_moment = GQCP::Operator::NuclearDipole(CO).value() + GQCP::calculateElectronicDipoleMoment(dipole_op, D);
     BOOST_CHECK(std::abs(total_dipole_moment.norm() - (0.049)) < 1.0e-03);
 }
 
@@ -94,11 +92,9 @@ BOOST_AUTO_TEST_CASE ( dipole_N2_STO_3G ) {
     auto D_AO = GQCP::calculateRHFAO1RDM(rhf.get_C(), N);
 
     // Calculate the dipole integrals, and transform them to the MO basis
-    auto dipole_components = ao_basis->calculateLibintDipoleIntegrals();
-    for (auto& dipole_component : dipole_components) {
-        dipole_component.transform(rhf.get_C());
-    }
+    auto dipole_op = GQCP::VectorSQOneElectronOperator<double>({ao_basis->calculateLibintDipoleIntegrals()});
+    dipole_op.transform(rhf.get_C());
 
-    GQCP::Vector<double, 3> total_dipole_moment = GQCP::Operator::NuclearDipole(N2).value() + GQCP::calculateElectronicDipoleMoment(dipole_components, D);
+    GQCP::Vector<double, 3> total_dipole_moment = GQCP::Operator::NuclearDipole(N2).value() + GQCP::calculateElectronicDipoleMoment(dipole_op, D);
     BOOST_CHECK(std::abs(total_dipole_moment.norm() - (0.0)) < 1.0e-08);
 }

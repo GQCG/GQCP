@@ -33,7 +33,7 @@
 
 BOOST_AUTO_TEST_CASE ( one_electron_throw ) {
 
-    GQCP::ScalarSQOneElectronOperator<double> h = GQCP::ScalarSQOneElectronOperator<double>::Zero(2, 2);
+    GQCP::ScalarSQOneElectronOperator<double> h ({GQCP::ChemicalMatrix<double>::Zero(2, 2)});
     GQCP::OneRDM<double> D_valid = GQCP::OneRDM<double>::Zero(2, 2);
     GQCP::OneRDM<double> D_invalid = GQCP::OneRDM<double>::Zero(3, 3);
 
@@ -80,7 +80,7 @@ BOOST_AUTO_TEST_CASE ( mulliken_N2_STO_3G ) {
     // Create a 1-RDM for N2
     GQCP::OneRDM<double> one_rdm = GQCP::calculateRHF1RDM(K, N);
 
-    double mulliken_population = GQCP::calculateExpectationValue(mulliken, one_rdm);
+    double mulliken_population = GQCP::calculateExpectationValue(mulliken, one_rdm)[0];
     BOOST_CHECK(std::abs(mulliken_population - (N)) < 1.0e-06);
 
 
@@ -105,6 +105,6 @@ BOOST_AUTO_TEST_CASE ( mulliken_N2_STO_3G ) {
 
     GQCP::OneRDMs<double> one_rdms = rdm_calculator.calculate1RDMs();
 
-    double mulliken_population_2 = GQCP::calculateExpectationValue(mulliken, one_rdms.one_rdm);
+    double mulliken_population_2 = GQCP::calculateExpectationValue(mulliken, one_rdms.one_rdm)[0];
     BOOST_CHECK(std::abs(mulliken_population_2 - (N)) < 1.0e-06);
 }

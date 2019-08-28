@@ -79,6 +79,8 @@ void AP1roGLagrangianNewtonOrbitalOptimizer::prepareDMCalculation(const Hamilton
     this->E = lagrangian_optimizer.get_electronic_energy();
     this->G = lagrangian_optimizer.get_geminal_coefficients();
     this->multipliers = lagrangian_optimizer.get_multipliers();
+
+    std::cout << "AP1roG energy: " << this->E << std::endl;
 }
 
 
