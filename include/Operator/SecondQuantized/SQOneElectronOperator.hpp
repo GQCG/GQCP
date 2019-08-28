@@ -169,12 +169,10 @@ public:
      */
     void rotate(const SquareMatrix<Scalar>& U) {
 
-        // Check if the given matrix is actually unitary
-        if (!U.isUnitary(1.0e-12)) {
-            throw std::invalid_argument("SQOneElectronOperator::rotate(const SquareMatrix<Scalar>&): The given transformation matrix is not unitary.");
+        // Transform the matrix representations of the components
+        for (auto& f : this->allParameters()) {
+            f.basisRotateInPlace(U);
         }
-
-        this->transform(U);
     }
 
 

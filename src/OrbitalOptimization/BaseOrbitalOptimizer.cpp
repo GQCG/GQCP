@@ -53,9 +53,11 @@ void BaseOrbitalOptimizer::optimize(HamiltonianParameters<double>& ham_par) {
         throw std::invalid_argument("BaseOrbitalOptimizer::optimize(HamiltonianParameters<double>&): The given Hamiltonian parameters do not belong to an orthonormal basis.");
     }
 
-    while (this->prepareConvergenceChecking(ham_par), !this->checkForConvergence(ham_par)) {  // result of the comma operator is the second operand, if not converged
+    while (this->prepareConvergenceChecking(ham_par), !this->checkForConvergence(ham_par)) {  // result of the comma operator is the second operand, so this expression effectively means "if not converged"
         const auto U = this->calculateNewRotationMatrix(ham_par);
         ham_par.rotate(U);
+
+        std::cout << "U:" << std::endl << U << std::endl << std::endl;
 
         this->number_of_iterations++;
         if (this->number_of_iterations > this->maximum_number_of_iterations) {

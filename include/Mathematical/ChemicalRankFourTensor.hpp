@@ -58,7 +58,7 @@ public:
      *  @return the dimension of this matrix representation of the parameters, i.e. the number of orbitals/sites
      */
     size_t dimension() const {
-        return this->Base::dimension(0);
+        return static_cast<size_t>(this->Base::dimension(0));  // returns a long
     }
 
     size_t get_K() const { return this->dimension(0); };
@@ -109,6 +109,22 @@ public:
 
 
     /**
+     *  In-place rotate this chemical rank-4 tensor using a unitary transformation matrix
+     * 
+     *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix. See transform() for how the transformation matrix between the two bases should be represented
+     */
+    void basisRotateInPlace(const SquareMatrix<double>& U) {
+
+        // Check if the given matrix is actually unitary
+        if (!U.isUnitary(1.0e-12)) {
+            throw std::invalid_argument("ChemicalRankFourTensor::basisRotateInPlace(const SquareMatrix<Scalar>&): The given transformation matrix is not unitary.");
+        }
+
+        this->basisTransformInPlace(U);
+    }
+
+
+    /**
      *  In-place rotate this chemical rank-4 tensor using Jacobi rotation parameters
      * 
      *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix. See transform() for how the transformation matrix between the two bases should be represented
@@ -116,13 +132,12 @@ public:
     void basisRotateInPlace(const JacobiRotationParameters& jacobi_rotation_parameters) {
 
         /**
-         *  While waiting for an analogous Eigen::Tensor Jacobi module, we implement this rotation by constructing a Jacobi rotation matrix and then doing a rotation with it
+         *  While waiting for an analogous Eigen::Tensor Jacobi module, we implement this rotation by constructing a Jacobi rotation matrix and then simply doing a rotation with it
          */
 
-        const auto dim = static_cast<size_t>(this->dimension(0));  // .dimension() returns a long
-        const auto J = SquareMatrix<double>::FromJacobi(jacobi_rotation_parameters, dim);  // this is sure to return a unitary matrix
-
-        this->basisTransformInPlace(J);
+        const auto dim = this->dimension();
+        const auto J = SquareMatrix<double>::FromJacobi(jacobi_rotation_parameters, dim);
+        this->basisRotateInPlace(J);
     }
 };
 

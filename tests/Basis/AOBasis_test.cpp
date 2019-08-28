@@ -41,32 +41,37 @@ BOOST_AUTO_TEST_CASE ( numberOfBasisFunctions ) {
 }
 
 
+/**
+ *  Check integrals calculated by Libint with reference values in Szabo
+ */
 BOOST_AUTO_TEST_CASE( Szabo_integrals_h2_sto3g ) {
 
-    // We will follow the example in Szabo, section 3.5.2, where it is stated that R = 1.4 a.u. = 0.740848 Angstrom
-    auto h2 = GQCP::Molecule::ReadXYZ("data/h2_szabo.xyz");
-    GQCP::AOBasis ao_basis (h2, "STO-3G");
+    // In Szabo, section 3.5.2, we read that the internuclear distance R = 1.4 a.u. = 0.740848 Angstrom
+    const auto h2 = GQCP::Molecule::ReadXYZ("data/h2_szabo.xyz");
+    const GQCP::AOBasis ao_basis (h2, "STO-3G");
     BOOST_CHECK_EQUAL(ao_basis.numberOfBasisFunctions(), 2);
 
-    // Calculate some integrals
-    auto S = ao_basis.calculateLibintOverlapIntegrals();
-    auto T = ao_basis.calculateLibintKineticIntegrals();
-    auto V = ao_basis.calculateLibintNuclearIntegrals();
 
-    GQCP::ScalarSQOneElectronOperator<double> H_core = T + V;
+    // Let Libint2 calculate some integrals
+    const auto S = ao_basis.calculateLibintOverlapIntegrals();
+    const auto T = ao_basis.calculateLibintKineticIntegrals();
+    const auto V = ao_basis.calculateLibintNuclearIntegrals();
 
-    auto g = ao_basis.calculateLibintCoulombRepulsionIntegrals();
+    const GQCP::ChemicalMatrix<double> H_core ({T + V});
 
-    // Fill in the reference values from Szabo
-    GQCP::ScalarSQOneElectronOperator<double> ref_S (2);
+    const auto g = ao_basis.calculateLibintCoulombRepulsionIntegrals();
+
+
+    // Check the one-electron integrals with the reference
+    GQCP::ChemicalMatrix<double> ref_S (2);
     ref_S << 1.0,    0.6593,
              0.6593, 1.0;
 
-    GQCP::ScalarSQOneElectronOperator<double> ref_T (2);
+    GQCP::ChemicalMatrix<double> ref_T (2);
     ref_T << 0.7600, 0.2365,
              0.2365, 0.7600;
 
-    GQCP::ScalarSQOneElectronOperator<double> ref_H_core (2);
+    GQCP::ChemicalMatrix<double> ref_H_core (2);
     ref_H_core << -1.1204, -0.9584,
                   -0.9584, -1.1204;
 
@@ -75,6 +80,7 @@ BOOST_AUTO_TEST_CASE( Szabo_integrals_h2_sto3g ) {
     BOOST_CHECK(H_core.isApprox(ref_H_core, 1.0e-04));
 
 
+    // Check the two-electron integrals with the reference
     // The two-electron integrals in Szabo are given in chemist's notation, so this confirms that AO basis gives them in chemist's notation as well
     BOOST_CHECK(std::abs(g(0,0,0,0) - 0.7746) < 1.0e-04);
     BOOST_CHECK(std::abs(g(0,0,0,0) - g(1,1,1,1)) < 1.0e-12);
@@ -91,24 +97,24 @@ BOOST_AUTO_TEST_CASE( Szabo_integrals_h2_sto3g ) {
 BOOST_AUTO_TEST_CASE( HORTON_integrals_h2o_sto3g ) {
 
     // Set up an AO basis
-    auto water = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
-    GQCP::AOBasis ao_basis (water, "STO-3G");
-    auto nbf = ao_basis.numberOfBasisFunctions();
+    const auto water = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
+    const GQCP::AOBasis ao_basis (water, "STO-3G");
+    const auto nbf = ao_basis.numberOfBasisFunctions();
 
 
     // Calculate some integrals
-    auto S = ao_basis.calculateLibintOverlapIntegrals();
-    auto T = ao_basis.calculateLibintKineticIntegrals();
-    auto V = ao_basis.calculateLibintNuclearIntegrals();
+    const auto S = ao_basis.calculateLibintOverlapIntegrals();
+    const auto T = ao_basis.calculateLibintKineticIntegrals();
+    const auto V = ao_basis.calculateLibintNuclearIntegrals();
 
-    auto g = ao_basis.calculateLibintCoulombRepulsionIntegrals();
+    const auto g = ao_basis.calculateLibintCoulombRepulsionIntegrals();
 
 
     // Read in reference data from HORTON
-    GQCP::ScalarSQOneElectronOperator<double> ref_S = GQCP::ScalarSQOneElectronOperator<double>::FromFile("data/h2o_sto-3g_overlap_horton.data", nbf, nbf);
-    GQCP::ScalarSQOneElectronOperator<double> ref_T = GQCP::ScalarSQOneElectronOperator<double>::FromFile("data/h2o_sto-3g_kinetic_horton.data", nbf, nbf);
-    GQCP::ScalarSQOneElectronOperator<double> ref_V = GQCP::ScalarSQOneElectronOperator<double>::FromFile("data/h2o_sto-3g_nuclear_horton.data", nbf, nbf);
-    GQCP::ScalarSQTwoElectronOperator<double> ref_g = GQCP::ScalarSQTwoElectronOperator<double>::FromFile("data/h2o_sto-3g_coulomb_horton.data", nbf);
+    const auto ref_S = GQCP::ChemicalMatrix<double>::FromFile("data/h2o_sto-3g_overlap_horton.data", nbf, nbf);
+    const auto ref_T = GQCP::ChemicalMatrix<double>::FromFile("data/h2o_sto-3g_kinetic_horton.data", nbf, nbf);
+    const auto ref_V = GQCP::ChemicalMatrix<double>::FromFile("data/h2o_sto-3g_nuclear_horton.data", nbf, nbf);
+    const auto ref_g = GQCP::ChemicalRankFourTensor<double>::FromFile("data/h2o_sto-3g_coulomb_horton.data", nbf);
 
 
     // Check if the calculated integrals are close to those of HORTON

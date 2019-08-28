@@ -67,55 +67,35 @@ public:
     size_t get_K() const { return this->dimension(); };
 
 
-    // /**
-    //  *  Basis transform this "chemical" matrix
-    //  *
-    //  *  @tparam TransformationScalar        the type of scalar used for the transformation matrix
-    //  *
-    //  *  @param T    the transformation matrix between the old and the new orbital basis, it is used as
-    //  *      b' = b T ,
-    //  *   in which the basis functions are collected as elements of a row vector b
-    //  */
-    // template <typename TransformationScalar = Scalar>
-    // auto basisTransform(const SquareMatrix<TransformationScalar>& T) const -> ChemicalMatrix<product_t<Scalar, TransformationScalar>> {
-
-    //     using ResultScalar = product_t<Scalar, TransformationScalar>;
-    //     return ChemicalMatrix<ResultScalar>(T.adjoint() * (*this) * T);
-    // }
-
-
+    /**
+     *  In-place transform this chemical matrix to another basis
+     * 
+     *  @param T                            the transformation matrix
+     */
     void basisTransformInPlace(const SquareMatrix<Scalar>& T) {
-        *this = Self(T.adjoint() * (*this) * T);  // has no aliasing issues (https://eigen.tuxfamily.org/dox/group__TopicAliasing.html)
+
+        (*this) = Self(T.adjoint() * (*this) * T);  // has no aliasing issues (https://eigen.tuxfamily.org/dox/group__TopicAliasing.html)
     }
 
 
+    /**
+     *  In-place transform this chemical matrix to another basis
+     * 
+     *  @param T                            the transformation matrix
+     */
+    void basisRotateInPlace(const SquareMatrix<Scalar>& U) {
 
-    // template <typename Z = Scalar>
-    // enable_if_t<std::is_same<Z, double>::value,
-    // ChemicalMatrix<product_t<Z, double>>> basisRotate(const JacobiRotationParameters& jacobi_rotation_parameters) const {
+        // Check if the given matrix is actually unitary
+        if (!U.isUnitary(1.0e-12)) {
+            throw std::invalid_argument("ChemicalMatrix::basisRotateInPlace(const SquareMatrix<Scalar>&): The given transformation matrix is not unitary.");
+        }
 
-    //     auto M_copy = *this;
-
-    //     auto p = jacobi_rotation_parameters.get_p();
-    //     auto q = jacobi_rotation_parameters.get_q();
-    //     auto angle = jacobi_rotation_parameters.get_angle();
-
-    //     double c = std::cos(angle);
-    //     double s = std::sin(angle);
-
-
-    //     // Use Eigen's Jacobi module to apply the Jacobi rotations directly (cfr. T.adjoint() * M * T)
-    //     Eigen::JacobiRotation<double> jacobi (c, s);
-
-    //     M_copy.applyOnTheLeft(p, q, jacobi.adjoint());
-    //     M_copy.applyOnTheRight(p, q, jacobi);
-
-    //     return M_copy;
-    // }
+        this->basisTransformInPlace(U);
+    }
 
 
     /**
-     *  In-place rotate the matrix representation of the one-electron operator using a unitary Jacobi rotation matrix constructed from the Jacobi rotation parameters
+     *  In-place rotate this chemical matrix using a unitary Jacobi rotation matrix constructed from the Jacobi rotation parameters
      * 
      *  @note This function should only be available for real (double) matrix representations
      *

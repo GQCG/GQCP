@@ -576,6 +576,8 @@ public:
             }
         }  // F elements loop
 
+        std::cout << "F" << std::endl << F << std::endl << std::endl;
+
         return ScalarSQOneElectronOperator<Scalar>({0.5 * F});
     }
 
@@ -652,6 +654,10 @@ public:
         // A KISS implementation of the calculation of the super Fockian matrix
         ChemicalRankFourTensor<Scalar> G (this->K);
         G.setZero();
+
+        // std::cout << "G" << std::endl << G << std::endl << std::endl;
+        std::cout << "G.setZero()" << std::endl;
+
         for (size_t p = 0; p < this->K; p++) {
             for (size_t q = 0; q < this->K; q++) {
                 for (size_t r = 0; r < this->K; r++) {
@@ -676,6 +682,8 @@ public:
             }
         }  // W elements loop
 
+
+        // std::cout << "G" << std::endl << G << std::endl << std::endl;
 
         return ScalarSQTwoElectronOperator<Scalar>({0.5 * G});
     }

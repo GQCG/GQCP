@@ -24,66 +24,28 @@
 #include "Utilities/miscellaneous.hpp"
 
 
+/**
+ *  Check the construction of one-electron operators from matrices
+ */
 BOOST_AUTO_TEST_CASE ( SQOneElectronOperator_constructor ) {
 
     // Check a correct constructor
-    GQCP::MatrixX<double> matrix = GQCP::MatrixX<double>::Zero(4, 4);
-    GQCP::ScalarSQOneElectronOperator<double> O ({matrix});
+    const auto square_matrix = GQCP::SquareMatrix<double>::Zero(4, 4);
+    GQCP::ScalarSQOneElectronOperator<double> O ({square_matrix});
 
 
     // Check a faulty constructor
-    GQCP::MatrixX<double> matrix2 = GQCP::MatrixX<double>::Zero(3, 4);
-    BOOST_CHECK_THROW(GQCP::ScalarSQOneElectronOperator<double> O2 ({matrix2}), std::invalid_argument);
+    GQCP::MatrixX<double> matrix = GQCP::MatrixX<double>::Zero(3, 4);
+    BOOST_CHECK_THROW(GQCP::ScalarSQOneElectronOperator<double> O2 ({matrix}), std::invalid_argument);
 }
 
 
-BOOST_AUTO_TEST_CASE ( SQOneElectronOperator_rotate_throws ) {
+/**
+ *  Check if the transformation of a one-electron operator consisting of linear combinations of GTOs can be supported through the underlying scalar types
+ */
+BOOST_AUTO_TEST_CASE ( SQOneElectronOperator_of_GTOs_transform ) {
 
-    // Create a random SQOneElectronOperator
-    size_t dim = 3;
-    GQCP::ScalarSQOneElectronOperator<double> M ({GQCP::ChemicalMatrix<double>::Random(dim, dim)});
-
-
-    // Check if a non-unitary matrix as transformation matrix causes a throw
-    GQCP::SquareMatrix<double> U = GQCP::SquareMatrix<double>::Random(dim, dim);
-    BOOST_CHECK_THROW(M.rotate(U), std::invalid_argument);
-
-
-    // Check if a unitary matrix as transformation matrix is accepted
-    GQCP::SquareMatrix<double> T = GQCP::SquareMatrix<double>::Identity(dim, dim);
-    M.rotate(T);
-}
-
-
-BOOST_AUTO_TEST_CASE ( SQOneElectronOperator_rotate_JacobiRotationParameters ) {
-
-    // Create a random SQOneElectronOperator
-    size_t dim = 5;
-    GQCP::MatrixX<double> m = GQCP::MatrixX<double>::Random(dim, dim);
-    GQCP::ScalarSQOneElectronOperator<double> M1 ({m});
-    GQCP::ScalarSQOneElectronOperator<double> M2 ({m});
-
-
-    // Check that using a Jacobi transformation (rotation) matrix as U is equal to the custom transformation (rotation)
-    // with custom JacobiRotationParameters
-    GQCP::JacobiRotationParameters jacobi_rotation_parameters (4, 2, 56.81);
-
-    auto U = GQCP::SquareMatrix<double>::FromJacobi(jacobi_rotation_parameters, dim);
-
-
-    M1.rotate(jacobi_rotation_parameters);
-    M2.rotate(GQCP::SquareMatrix<double>(U));
-
-
-    BOOST_CHECK(M1.parameters().isApprox(M2.parameters(), 1.0e-12));
-}
-
-
-BOOST_AUTO_TEST_CASE ( SQOneElectronOperator_of_GTOs ) {
-
-    // Test the transformation of a one-electron operator consisting of GTOs
-
-    // Build up the one-electron operator with linear combinations of GTOs
+    // Create a toy operator of linear combinations of GTOs that correspond to a manual calculation
     GQCP::Vector<double, 3> center = GQCP::Vector<double, 3>::Zero();
 
     double coeff1 = 1.0;
@@ -117,48 +79,105 @@ BOOST_AUTO_TEST_CASE ( SQOneElectronOperator_of_GTOs ) {
     GQCP::LinearCombination<double, GQCP::CartesianGTO> lc4 (coeff6, gto6);
 
 
-    GQCP::Matrix<GQCP::LinearCombination<double, GQCP::CartesianGTO>, 2, 2> rho;
-    rho << lc1, lc2, lc3, lc4;
+    GQCP::Matrix<GQCP::LinearCombination<double, GQCP::CartesianGTO>, 2, 2> rho_par;
+    rho_par << lc1, lc2, 
+               lc3, lc4;
 
 
-    // Create the transformation matrix
+    // Create the transformation matrix and transform the operator manually: .transform() for does not work yet
     GQCP::Matrix<double, 2, 2> T = GQCP::Matrix<double, 2, 2>::Zero();
-    T << 2.0, 1.0, 1.0, 0.0;
+    T << 2.0, 1.0, 
+         1.0, 0.0;
+
+    Eigen::Matrix<GQCP::LinearCombination<double, GQCP::CartesianGTO>, 2, 2> rho_transformed_par = T.adjoint() * rho_par * T;
 
 
-    GQCP::Matrix<GQCP::LinearCombination<double, GQCP::CartesianGTO>, 2, 2> rho_transformed = T.adjoint() * rho * T;
-    GQCP::ScalarSQOneElectronOperator<GQCP::LinearCombination<double, GQCP::CartesianGTO>> rho_transformed_op ({rho_transformed});
-
-
-    // Check the coefficients of the transformed operator
-    std::vector<double> ref_coeff_result_01 {2.0, 1.0, 2.5};
-    auto coeff_result_01 = rho_transformed(0,1).get_coefficients();
+    // Check the coefficients of the transformed operator with a manual calculation
+    const std::vector<double> ref_coeff_result_01 {2.0, 1.0, 2.5};
+    auto coeff_result_01 = rho_transformed_par(0,1).get_coefficients();
     for (size_t i = 0; i < ref_coeff_result_01.size(); i++) {
         BOOST_CHECK(std::abs(ref_coeff_result_01[i] - coeff_result_01[i]) < 1.0e-12);
     }
     BOOST_CHECK(ref_coeff_result_01.size() == coeff_result_01.size());
 
-    std::vector<double> ref_coeff_result_11 {1.0};
-    auto coeff_result_11 = rho_transformed(1,1).get_coefficients();
+    const std::vector<double> ref_coeff_result_11 {1.0};
+    auto coeff_result_11 = rho_transformed_par(1,1).get_coefficients();
     for (size_t i = 0; i < ref_coeff_result_11.size(); i++) {
         BOOST_CHECK(std::abs(ref_coeff_result_11[i] - coeff_result_11[i]) < 1.0e-12);
     }
     BOOST_CHECK(ref_coeff_result_11.size() == coeff_result_11.size());
+}
 
 
-    // Test .evaluate(r) for a SQOneElectronOperator consisting of GTOs
+/**
+ *  Check if we can evaluate a SQOneElectronOperator consisting of GTOs in a given point r
+ */
+
+BOOST_AUTO_TEST_CASE ( SQOneElectronOperator_of_GTOs_evaluate ) {
+
+    // Create a toy operator of linear combinations of GTOs that correspond to a manual calculation. This is a copy-paste of the previous test: I can't make an easy auxiliary function because I also need N1, N2, ...
+    GQCP::Vector<double, 3> center = GQCP::Vector<double, 3>::Zero();
+
+    double coeff1 = 1.0;
+    GQCP::CartesianGTO gto1 (1.0, {1, 0, 0}, center);
+    double N1 = gto1.calculateNormalizationFactor();
+
+    double coeff2 = 2.0;
+    GQCP::CartesianGTO gto2 (2.0, {0, 1, 0}, center);
+    double N2 = gto2.calculateNormalizationFactor();
+
+    double coeff3 = -1.0;
+    GQCP::CartesianGTO gto3 (1.0, {1, 1, 0}, center);
+    double N3 = gto3.calculateNormalizationFactor();
+
+    double coeff4 = 1.0;
+    GQCP::CartesianGTO gto4 (3.0, {0, 0, 2}, center);
+    double N4 = gto4.calculateNormalizationFactor();
+
+    double coeff5 = 2.5;
+    GQCP::CartesianGTO gto5 (0.5, {1, 1, 1}, center);
+    double N5 = gto5.calculateNormalizationFactor();
+
+    double coeff6 = -1.0;
+    GQCP::CartesianGTO gto6 (2.5, {0, 1, 1}, center);
+    double N6 = gto6.calculateNormalizationFactor();
+
+
+    GQCP::LinearCombination<double, GQCP::CartesianGTO> lc1 (coeff1, gto1);
+    GQCP::LinearCombination<double, GQCP::CartesianGTO> lc2 ({coeff2, coeff3}, {gto2, gto3});
+    GQCP::LinearCombination<double, GQCP::CartesianGTO> lc3 ({coeff4, coeff5}, {gto4, gto5});
+    GQCP::LinearCombination<double, GQCP::CartesianGTO> lc4 (coeff6, gto6);
+
+
+    GQCP::Matrix<GQCP::LinearCombination<double, GQCP::CartesianGTO>, 2, 2> rho_par;
+    rho_par << lc1, lc2, 
+               lc3, lc4;
+
+
+    // Create the transformation matrix and transform the operator manually: .transform() for does not work yet
+    GQCP::Matrix<double, 2, 2> T = GQCP::Matrix<double, 2, 2>::Zero();
+    T << 2.0, 1.0, 
+         1.0, 0.0;
+
+    Eigen::Matrix<GQCP::LinearCombination<double, GQCP::CartesianGTO>, 2, 2> rho_transformed_par = T.adjoint() * rho_par * T;
+    GQCP::ScalarSQOneElectronOperator<GQCP::LinearCombination<double, GQCP::CartesianGTO>> rho ({rho_transformed_par});
+
+
+    // Evaluate the operator of GTOs at the given point r
     GQCP::Vector<double, 3> r = GQCP::Vector<double, 3>::Zero();
     r << 1.0, 1.0, 1.0;
 
-    GQCP::Matrix<double, 2, 2> ref_rho_evaluated = GQCP::Matrix<double, 2, 2>::Zero();
+    const auto rho_evaluated_par = rho.evaluate(r).parameters();
+
+
+    // Read in the reference solution and check the results
+    GQCP::ChemicalMatrix<double> ref_rho_evaluated_par = GQCP::ChemicalMatrix<double>::Zero(2, 2);
     double ref_rho_evaluated_00 = 4*N1 * std::exp(-3.0) + 4*N2 * std::exp(-6.0) - 2*N3* std::exp(-3.0) + 2*N4 * std::exp(-9.0) + 5*N5 * std::exp(-1.5) - 1*N6 * std::exp(-7.5);
     double ref_rho_evaluated_01 = 2*N1 * std::exp(-3.0) + 1*N4 * std::exp(-9.0) + 2.5*N5 * std::exp(-1.5);
     double ref_rho_evaluated_10 = 2*N1 * std::exp(-3.0) + 2*N2 * std::exp(-6.0) - 1*N3 * std::exp(-3.0);
     double ref_rho_evaluated_11 = 1*N1 * std::exp(-3.0);
-    ref_rho_evaluated << ref_rho_evaluated_00, ref_rho_evaluated_01, ref_rho_evaluated_10, ref_rho_evaluated_11;
+    ref_rho_evaluated_par << ref_rho_evaluated_00, ref_rho_evaluated_01, 
+                             ref_rho_evaluated_10, ref_rho_evaluated_11;
 
-    auto rho_evaluated_op = rho_transformed_op.evaluate(r);
-
-
-    BOOST_CHECK(ref_rho_evaluated.isApprox(rho_evaluated_op.parameters(), 1.0e-12));
+    BOOST_CHECK(ref_rho_evaluated_par.isApprox(rho_evaluated_par, 1.0e-12));
 }
