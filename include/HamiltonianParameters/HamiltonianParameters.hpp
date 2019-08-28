@@ -605,7 +605,7 @@ public:
         SquareMatrix<double> T_inverse = T_total.inverse();
         S_AO.transform(T_inverse);
 
-        ScalarSQOneElectronOperator<double> mulliken_matrix = (T_total.adjoint() * p_a * S_AO * T_total + T_total.adjoint() * S_AO * p_a * T_total)/2 ;
+        ScalarSQOneElectronOperator<double> mulliken_matrix ({ (T_total.adjoint() * p_a * S_AO.parameters() * T_total + T_total.adjoint() * S_AO.parameters() * p_a * T_total)/2 });
 
         return mulliken_matrix;
     }
@@ -642,6 +642,9 @@ public:
             throw std::invalid_argument("HamiltonianParameters::calculateFockianMatrix(OneRDM<double>, TwoRDM<double>): The 2-RDM is not compatible with the HamiltonianParameters.");
         }
 
+        const auto& h_par = this->h.parameters();
+        const auto& g_par = this->g.parameters();
+
 
         // We have to calculate the Fockian matrix first
         const auto& F = this->calculateFockianMatrix(D, d).parameters();
@@ -660,12 +663,12 @@ public:
                         }
 
                         // One-electron part
-                        G(p,q,r,s) -= this->h(s,p) * (D(r,q) + D(q,r));
+                        G(p,q,r,s) -= h_par(s,p) * (D(r,q) + D(q,r));
 
                         // Two-electron part
                         for (size_t t = 0; t < this->K; t++) {
                             for (size_t u = 0; u < this->K; u++) {
-                                G(p,q,r,s) += this->g(s,t,q,u) * (d(r,t,p,u) + d(t,r,u,p)) - this->g(s,t,u,p) * (d(r,t,u,q) + d(t,r,q,u)) - this->g(s,p,t,u) * (d(r,q,t,u) + d(q,r,u,t));
+                                G(p,q,r,s) += g_par(s,t,q,u) * (d(r,t,p,u) + d(t,r,u,p)) - g_par(s,t,u,p) * (d(r,t,u,q) + d(t,r,q,u)) - g_par(s,p,t,u) * (d(r,q,t,u) + d(q,r,u,t));
                             }
                         }  // two-electron part
                     }

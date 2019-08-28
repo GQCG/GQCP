@@ -53,8 +53,8 @@ RHFSCFSolver::RHFSCFSolver(const HamiltonianParameters<double>& ham_par, const M
  */
 void RHFSCFSolver::solve() {
 
-    const auto& H_core = this->ham_par.get_h();
-    const auto& S = this->ham_par.get_S();
+    const auto& H_core = this->ham_par.get_h().parameters();
+    const auto& S = this->ham_par.get_S().parameters();
 
 
     // Obtain an initial guess for the AO density matrix by solving the generalized eigenvalue problem for H_core
@@ -73,7 +73,7 @@ void RHFSCFSolver::solve() {
 void RHFSCFSolver::solve(const SquareMatrix<double>& C_initial) {
 
     const auto& H_core = this->ham_par.get_h();
-    const auto& S = this->ham_par.get_S();
+    const auto& S = this->ham_par.get_S().parameters();
 
     auto C = C_initial;
     auto D_AO = calculateRHFAO1RDM(C, this->molecule.numberOfElectrons());
@@ -84,7 +84,7 @@ void RHFSCFSolver::solve(const SquareMatrix<double>& C_initial) {
         auto F_AO = this->calculateNewFockMatrix(D_AO);
 
         // Solve the generalized eigenvalue problem for the Fock matrix to get an improved density matrix
-        Eigen::GeneralizedSelfAdjointEigenSolver<Eigen::MatrixXd> generalized_eigensolver (F_AO, S);
+        Eigen::GeneralizedSelfAdjointEigenSolver<Eigen::MatrixXd> generalized_eigensolver (F_AO.parameters(), S);
         C = generalized_eigensolver.eigenvectors();
 
         OneRDM<double> D_AO_previous = D_AO;  // store the previous density matrix to be able to check on convergence
@@ -98,7 +98,7 @@ void RHFSCFSolver::solve(const SquareMatrix<double>& C_initial) {
             // After the SCF procedure, we end up with canonical spatial orbitals, i.e. the Fock matrix should be diagonal in this basis
             ScalarSQOneElectronOperator<double> F = F_AO;
             F.transform(C);  // transform F to the MO basis with C
-            if (!(F.isDiagonal())) {
+            if (!(F.parameters().isDiagonal())) {
                 throw std::runtime_error("RHFSCFSolver::solve(): The RHF SCF procedure is converged but the MO Fock matrix is not diagonal.");
             }
 

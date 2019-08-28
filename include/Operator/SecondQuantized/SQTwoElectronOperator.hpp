@@ -80,6 +80,14 @@ public:
     }
 
 
+    /**
+     *  Default constructor: construct a two-electron operator with parameters that are zero
+     */
+    SQTwoElectronOperator() :
+        SQTwoElectronOperator(0)  // dimensions of the representations are zero
+    {}
+
+
 
     /*
      *  PUBLIC METHODS
@@ -284,7 +292,7 @@ template <typename Scalar, size_t Components>
 SQTwoElectronOperator<Scalar, Components> operator-(const SQTwoElectronOperator<Scalar, Components>& op) {
 
     // Negate the parameters of all the components
-    auto G_copy = op.parameters();
+    auto G_copy = op.allParameters();
     for (size_t i = 0; i < Components; i++) {
         G_copy[i] *= (-1.0);  // negation is scalar multiplication with (-1.0)
     }

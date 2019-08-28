@@ -84,6 +84,14 @@ public:
     }
 
 
+    /**
+     *  Default constructor: construct a one-electron operator with parameters that are zero
+     */
+    SQOneElectronOperator() :
+        SQOneElectronOperator(0)  // dimensions of the representations are zero
+    {}
+
+
     /*
      *  PUBLIC METHODS
      */
@@ -196,19 +204,21 @@ public:
     SQOneElectronOperator<typename Z::Valued, Components>> evaluate(const Vector<typename Z::Scalar, Z::Cols>& x) const {
 
         // Initialize the results
-        SQOneElectronOperator<typename Z::Value, Components> F_evaluated (this->dimension());
+        std::array<ChemicalMatrix<typename Z::Valued>, Components> F_evaluated;  // components are not initialized here
 
         // Evaluate all components at the given x
         for (size_t i = 0; i < Components; i++) {
-            for (size_t m = 0; m < this->rows(); m++) {
-                for (size_t n = 0; n < this->cols(); n++) {
-                    const auto F_i_mn = this->F[i](m,n);  // (m,n)-th element of the i-th component
+            F_evaluated[i] = ChemicalMatrix<typename Z::Valued>::Zero(this->dimension(), this->dimension());  // initialize to zero
+
+            for (size_t m = 0; m < this->dimension(); m++) {
+                for (size_t n = 0; n < this->dimension(); n++) {
+                    const auto F_i_mn = this->parameters(i)(m,n);  // (m,n)-th element of the i-th component
                     F_evaluated[i](m,n) = F_i_mn.operator()(x);  // evaluate the ScalarFunction
                 }
             }
         }
 
-        return F_evaluated;
+        return SQOneElectronOperator<typename Z::Valued, Components>(F_evaluated);
     }
 };
 
@@ -287,7 +297,7 @@ template <typename Scalar, size_t Components>
 SQOneElectronOperator<Scalar, Components> operator-(const SQOneElectronOperator<Scalar, Components>& op) {
 
     // Negate the parameters of all the components
-    auto F_copy = op.parameters();
+    auto F_copy = op.allParameters();
     for (size_t i = 0; i < Components; i++) {
         F_copy[i] *= (-1.0);  // negation is scalar multiplication with (-1.0)
     }

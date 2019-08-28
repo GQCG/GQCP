@@ -74,8 +74,8 @@ BOOST_AUTO_TEST_CASE ( decomposition_BeH_cation_STO_3G_Nuclear ) {
     GQCP::OneRDM<double> ao_one_rdm = one_rdm;
     GQCP::TwoRDM<double> ao_two_rdm = two_rdm;
 
-    ao_one_rdm.basisTransform<double>(T.adjoint());
-    ao_two_rdm.basisTransform<double>(T.adjoint());
+    ao_one_rdm.basisTransformInPlace<double>(T.adjoint());
+    ao_two_rdm.basisTransformInPlace<double>(T.adjoint());
 
     double self_energy_a = GQCP::calculateExpectationValue(adp.get_net_atomic_parameters()[0], ao_one_rdm, ao_two_rdm);
     double self_energy_b = GQCP::calculateExpectationValue(adp.get_net_atomic_parameters()[1], ao_one_rdm, ao_two_rdm);

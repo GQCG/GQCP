@@ -28,12 +28,12 @@ BOOST_AUTO_TEST_CASE ( SQOneElectronOperator_constructor ) {
 
     // Check a correct constructor
     GQCP::MatrixX<double> matrix = GQCP::MatrixX<double>::Zero(4, 4);
-    GQCP::ScalarSQOneElectronOperator<double> O (matrix);
+    GQCP::ScalarSQOneElectronOperator<double> O ({matrix});
 
 
     // Check a faulty constructor
     GQCP::MatrixX<double> matrix2 = GQCP::MatrixX<double>::Zero(3, 4);
-    BOOST_CHECK_THROW(GQCP::ScalarSQOneElectronOperator<double> O2 (matrix2), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::ScalarSQOneElectronOperator<double> O2 ({matrix2}), std::invalid_argument);
 }
 
 
@@ -41,7 +41,7 @@ BOOST_AUTO_TEST_CASE ( SQOneElectronOperator_rotate_throws ) {
 
     // Create a random SQOneElectronOperator
     size_t dim = 3;
-    GQCP::ScalarSQOneElectronOperator<double> M = GQCP::ScalarSQOneElectronOperator<double>::Random(dim, dim);
+    GQCP::ScalarSQOneElectronOperator<double> M ({GQCP::ChemicalMatrix<double>::Random(dim, dim)});
 
 
     // Check if a non-unitary matrix as transformation matrix causes a throw
@@ -60,8 +60,8 @@ BOOST_AUTO_TEST_CASE ( SQOneElectronOperator_rotate_JacobiRotationParameters ) {
     // Create a random SQOneElectronOperator
     size_t dim = 5;
     GQCP::MatrixX<double> m = GQCP::MatrixX<double>::Random(dim, dim);
-    GQCP::ScalarSQOneElectronOperator<double> M1 (m);
-    GQCP::ScalarSQOneElectronOperator<double> M2 (m);
+    GQCP::ScalarSQOneElectronOperator<double> M1 ({m});
+    GQCP::ScalarSQOneElectronOperator<double> M2 ({m});
 
 
     // Check that using a Jacobi transformation (rotation) matrix as U is equal to the custom transformation (rotation)
@@ -75,7 +75,7 @@ BOOST_AUTO_TEST_CASE ( SQOneElectronOperator_rotate_JacobiRotationParameters ) {
     M2.rotate(GQCP::SquareMatrix<double>(U));
 
 
-    BOOST_CHECK(M1.isApprox(M2, 1.0e-12));
+    BOOST_CHECK(M1.parameters().isApprox(M2.parameters(), 1.0e-12));
 }
 
 
@@ -117,17 +117,17 @@ BOOST_AUTO_TEST_CASE ( SQOneElectronOperator_of_GTOs ) {
     GQCP::LinearCombination<double, GQCP::CartesianGTO> lc4 (coeff6, gto6);
 
 
-    Eigen::Matrix<GQCP::LinearCombination<double, GQCP::CartesianGTO>, 2, 2> rho;
+    GQCP::Matrix<GQCP::LinearCombination<double, GQCP::CartesianGTO>, 2, 2> rho;
     rho << lc1, lc2, lc3, lc4;
 
 
     // Create the transformation matrix
-    Eigen::Matrix2d T = Eigen::Matrix2d::Zero();
+    GQCP::Matrix<double, 2, 2> T = GQCP::Matrix<double, 2, 2>::Zero();
     T << 2.0, 1.0, 1.0, 0.0;
 
 
-    Eigen::Matrix<GQCP::LinearCombination<double, GQCP::CartesianGTO>, 2, 2> rho_transformed = T.adjoint() * rho * T;
-    auto rho_transformed_op = GQCP::SQOneElectronOperator<GQCP::LinearCombination<double, GQCP::CartesianGTO>>(rho_transformed);
+    GQCP::Matrix<GQCP::LinearCombination<double, GQCP::CartesianGTO>, 2, 2> rho_transformed = T.adjoint() * rho * T;
+    GQCP::ScalarSQOneElectronOperator<GQCP::LinearCombination<double, GQCP::CartesianGTO>> rho_transformed_op ({rho_transformed});
 
 
     // Check the coefficients of the transformed operator
@@ -150,15 +150,15 @@ BOOST_AUTO_TEST_CASE ( SQOneElectronOperator_of_GTOs ) {
     GQCP::Vector<double, 3> r = GQCP::Vector<double, 3>::Zero();
     r << 1.0, 1.0, 1.0;
 
-    Eigen::Matrix2d ref_rho_evaluated = Eigen::Matrix2d::Zero();
+    GQCP::Matrix<double, 2, 2> ref_rho_evaluated = GQCP::Matrix<double, 2, 2>::Zero();
     double ref_rho_evaluated_00 = 4*N1 * std::exp(-3.0) + 4*N2 * std::exp(-6.0) - 2*N3* std::exp(-3.0) + 2*N4 * std::exp(-9.0) + 5*N5 * std::exp(-1.5) - 1*N6 * std::exp(-7.5);
     double ref_rho_evaluated_01 = 2*N1 * std::exp(-3.0) + 1*N4 * std::exp(-9.0) + 2.5*N5 * std::exp(-1.5);
     double ref_rho_evaluated_10 = 2*N1 * std::exp(-3.0) + 2*N2 * std::exp(-6.0) - 1*N3 * std::exp(-3.0);
-    double ref_rho_evaluated_11 = 1*N1  * std::exp(-3.0);
+    double ref_rho_evaluated_11 = 1*N1 * std::exp(-3.0);
     ref_rho_evaluated << ref_rho_evaluated_00, ref_rho_evaluated_01, ref_rho_evaluated_10, ref_rho_evaluated_11;
 
     auto rho_evaluated_op = rho_transformed_op.evaluate(r);
 
 
-    BOOST_CHECK(ref_rho_evaluated.isApprox(rho_evaluated_op, 1.0e-12));
+    BOOST_CHECK(ref_rho_evaluated.isApprox(rho_evaluated_op.parameters(), 1.0e-12));
 }

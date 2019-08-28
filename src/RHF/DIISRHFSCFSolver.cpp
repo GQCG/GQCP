@@ -42,7 +42,7 @@ ScalarSQOneElectronOperator<double> DIISRHFSCFSolver::calculateNewFockMatrix(con
 
     // Update deques for the DIIS procedure
     this->fock_matrix_deque.emplace_back(f_AO);
-    ScalarSQOneElectronOperator<double> error_matrix = f_AO.parameters() * D_AO * S - S * D_AO * f_AO.parameters();
+    ScalarSQOneElectronOperator<double> error_matrix ({f_AO.parameters() * D_AO * S - S * D_AO * f_AO.parameters()});
     this->error_matrix_deque.emplace_back(error_matrix);
 
 
@@ -71,7 +71,7 @@ ScalarSQOneElectronOperator<double> DIISRHFSCFSolver::calculateNewFockMatrix(con
 
 
         // Use the coefficients that are in y to construct 'the best' Fock matrix as a linear combination of previous Fock matrices
-        ChemicalMatrix<double> f_AO_updated_par = ChemicalMatrix<double>::Zero(S.cols(), S.cols())
+        ChemicalMatrix<double> f_AO_updated_par = ChemicalMatrix<double>::Zero(S.cols(), S.cols());
         for (size_t i = 0; i < n; i++) {  // n is the current subspace dimension (not equal to the size of the augmented B matrix)
             f_AO_updated_par += y(i) * this->fock_matrix_deque[i].parameters();
         }

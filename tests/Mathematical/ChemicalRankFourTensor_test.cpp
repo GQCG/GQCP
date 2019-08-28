@@ -43,7 +43,7 @@ BOOST_AUTO_TEST_CASE ( ChemicalRankFourTensor_transform_trivial ) {
     auto G_copy = G;
 
     GQCP::SquareMatrix<double> T = GQCP::SquareMatrix<double>::Identity(3, 3);
-    G.basisTransform(T);
+    G.basisTransformInPlace(T);
 
     BOOST_CHECK(G_copy.isApprox(G, 1.0e-12));
 }

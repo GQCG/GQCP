@@ -122,7 +122,7 @@ public:
         const auto dim = static_cast<size_t>(this->dimension(0));  // .dimension() returns a long
         const auto J = SquareMatrix<double>::FromJacobi(jacobi_rotation_parameters, dim);  // this is sure to return a unitary matrix
 
-        this->basisTransform(J);
+        this->basisTransformInPlace(J);
     }
 };
 

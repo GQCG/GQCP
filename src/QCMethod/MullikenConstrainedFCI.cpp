@@ -66,7 +66,7 @@ void MullikenConstrainedFCI::parseSolution(const std::vector<Eigenpair>& eigenpa
         OneRDM<double> D = this->rdm_calculator.calculate1RDMs().one_rdm;
         TwoRDM<double> d = this->rdm_calculator.calculate2RDMs().two_rdm;
 
-        double population = calculateExpectationValue(mulliken_operator, D);
+        double population = calculateExpectationValue(mulliken_operator, D)[0];
         WaveFunction wavefunction (fock_space, fci_coefficients);
 
         this->energy[i] = pair.get_eigenvalue() + internuclear_repulsion_energy + multiplier * population;
@@ -76,8 +76,8 @@ void MullikenConstrainedFCI::parseSolution(const std::vector<Eigenpair>& eigenpa
 
         if (molecule.numberOfAtoms() == 2) {
             // Transform the RDMs to the atomic orbital basis
-            D.basisTransform<double>(ham_par.get_T_total().adjoint());
-            d.basisTransform<double>(ham_par.get_T_total().adjoint());
+            D.basisTransformInPlace(ham_par.get_T_total().adjoint());
+            d.basisTransformInPlace(ham_par.get_T_total().adjoint());
 
             this->A_fragment_energy[i] = calculateExpectationValue(adp.get_atomic_parameters()[0], D, d);
             this->A_fragment_self_energy[i] = calculateExpectationValue(adp.get_net_atomic_parameters()[0], D, d);

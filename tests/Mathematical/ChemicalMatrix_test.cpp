@@ -41,7 +41,7 @@ BOOST_AUTO_TEST_CASE ( ChemicalMatrix_transform_trivial ) {
     GQCP::ChemicalMatrix<double> H = h;
 
     GQCP::ChemicalMatrix<double> T = GQCP::ChemicalMatrix<double>::Identity(3, 3);
-    H.basisTransform(T);
+    H.basisTransformInPlace(T);
 
     BOOST_CHECK(H.isApprox(h, 1.0e-12));
 }
@@ -60,8 +60,8 @@ BOOST_AUTO_TEST_CASE ( ChemicalMatrix_transform_and_inverse ) {
     GQCP::ChemicalMatrix<double> T_inverse = T.inverse();
 
 
-    H.basisTransform(T);
-    H.basisTransform(T_inverse);
+    H.basisTransformInPlace(T);
+    H.basisTransformInPlace(T_inverse);
 
     BOOST_CHECK(H.isApprox(h, 1.0e-12));
 }
