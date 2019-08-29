@@ -541,42 +541,7 @@ public:
      */
     SquareMatrix<Scalar> calculateFockianMatrix(const OneRDM<double>& D, const TwoRDM<double>& d) const {
 
-        // Check if dimensions are compatible
-        if (D.dimension() != this->K) {
-            throw std::invalid_argument("HamiltonianParameters::calculateFockianMatrix(OneRDM<double>, TwoRDM<double>): The 1-RDM is not compatible with the HamiltonianParameters.");
-        }
-
-        if (d.dimension() != this->K) {
-            throw std::invalid_argument("HamiltonianParameters::calculateFockianMatrix(OneRDM<double>, TwoRDM<double>): The 2-RDM is not compatible with the HamiltonianParameters.");
-        }
-
-
-        const auto& h_par = this->h.parameters();
-        const auto& g_par = this->g.parameters();
-
-        // A KISS implementation of the calculation of the generalized Fock matrix F
-        SquareMatrix<Scalar> F = SquareMatrix<Scalar>::Zero(this->K, this->K);
-        for (size_t p = 0; p < this->K; p++) {
-            for (size_t q = 0; q < this->K; q++) {
-
-                // One-electron part
-                for (size_t r = 0; r < this->K; r++) {
-                    F(p,q) += h_par(q,r) * (D(p,r) + D(r,p));
-                }
-
-                // Two-electron part
-                for (size_t r = 0; r < this->K; r++) {
-                    for (size_t s = 0; s < this->K; s++) {
-                        for (size_t t = 0; t < this->K; t++) {
-                            F(p,q) += g_par(q,r,s,t) * (d(p,r,s,t) + d(r,p,s,t));
-                        }
-                    }
-                }
-
-            }
-        }  // F elements loop
-
-        return 0.5 * F;
+        return this->h.calculateFockianMatrix(D, d)[0] + this->g.calculateFockianMatrix(D, d)[0];  // HamiltonianParameters are a combination of scalar parameters
     }
 
 

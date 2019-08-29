@@ -20,6 +20,8 @@
 #include "Mathematical/ChemicalRankFourTensor.hpp"
 #include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
 #include "OrbitalOptimization/JacobiRotationParameters.hpp"
+#include "RDM/OneRDM.hpp"
+#include "RDM/TwoRDM.hpp"
 #include "Utilities/miscellaneous.hpp"
 
 #include <array>
@@ -160,9 +162,6 @@ public:
     }
 
 
-
-
-
     /**
      *  In-place rotate the operator to another basis
      * 
@@ -215,6 +214,50 @@ public:
         }  // loop over components
 
         return F;
+    }
+
+
+    /**
+     *  @param D      the 1-DM (or the response 1-DM for made-variational wave function models)
+     *  @param d      the 2-DM (or the response 2-DM for made-variational wave function models)
+     *
+     *  @return the (generalized) Fockian matrix for each of the components
+     */
+    std::array<SquareMatrix<Scalar>, Components> calculateFockianMatrix(const OneRDM<double>& D, const TwoRDM<double>& d) const {
+
+        // Check if dimensions are compatible
+        if (D.dimension() != this->dimension()) {
+            throw std::invalid_argument("SQTwoElectronOperator::calculateFockianMatrix(OneRDM<double>, TwoRDM<double>): The 1-RDM is not compatible with the one-electron operator.");
+        }
+
+        if (d.dimension() != this->dimension()) {
+            throw std::invalid_argument("SQTwoElectronOperator::calculateFockianMatrix(OneRDM<double>, TwoRDM<double>): The 2-RDM is not compatible with the one-electron operator.");
+        }
+
+
+        // A KISS implementation of the calculation of the generalized Fock matrix F
+        std::array<SquareMatrix<Scalar>, Components> Fs;  // Fock matrices (hence the 's')
+        for (size_t i = 0; i < Components; i++) {
+
+            // Calculate the Fockian matrix for every component and add it to the array
+            SquareMatrix<Scalar> F = SquareMatrix<Scalar>::Zero(this->dimension(), this->dimension());
+            for (size_t p = 0; p < this->dimension(); p++) {
+                for (size_t q = 0; q < this->dimension(); q++) {
+
+                    for (size_t r = 0; r < this->dimension(); r++) {
+                        for (size_t s = 0; s < this->dimension(); s++) {
+                            for (size_t t = 0; t < this->dimension(); t++) {
+                                F(p,q) += this->parameters(i)(q,r,s,t) * (d(p,r,s,t) + d(r,p,s,t));
+                            }
+                        }
+                    }
+
+                }
+            }  // F elements loop
+            Fs[i] = 0.5 * F;
+        }
+
+        return Fs;
     }
 };
 
