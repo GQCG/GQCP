@@ -36,21 +36,17 @@ BOOST_AUTO_TEST_CASE ( lih_6_31G_orbital_optimize ) {
     auto rhf = plain_scf_solver.get_solution();
     auto mol_ham_par = GQCP::HamiltonianParameters<double>(ao_mol_ham_par, rhf.get_C());
 
-    std::cout << "got here" << std::endl;
     // Get the initial AP1roG energy
     GQCP::AP1roGLagrangianOptimizer lagrangian_solver (lih, mol_ham_par);
     lagrangian_solver.solve();
     double initial_energy = lagrangian_solver.get_electronic_energy();
     auto initial_G = lagrangian_solver.get_geminal_coefficients();
 
-    std::cout << "got here 2" << std::endl;
     // Do an AP1roG orbital optimization using Jacobi rotations
     auto hessian_modifier = std::make_shared<GQCP::IterativeIdentitiesHessianModifier>();
     GQCP::AP1roGLagrangianNewtonOrbitalOptimizer orbital_optimizer (initial_G, hessian_modifier, 1.0e-04);
-    std::cout << "got here 3" << std::endl;
     orbital_optimizer.optimize(mol_ham_par);
 
-    std::cout << "got here 4" << std::endl;
     double optimized_energy = orbital_optimizer.get_electronic_energy();
 
 

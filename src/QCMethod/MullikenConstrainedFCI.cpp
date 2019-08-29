@@ -185,16 +185,14 @@ MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const s
                     this->ham_par.transform(rhf.get_C());
 
                 } catch (const std::exception& e) {
-                    std::cout << "Lodwin Orthonormalized" << std::endl;
                     this->ham_par.LowdinOrthonormalize();
                 }
+
             } catch (const std::exception& e) {    
-                std::cout << "Lodwin Orthonormalized" << std::endl;
                 this->ham_par.LowdinOrthonormalize();
             }
 
         } else {
-            std::cout << "Lodwin Orthonormalized" << std::endl;
             this->ham_par.LowdinOrthonormalize();
         }
 

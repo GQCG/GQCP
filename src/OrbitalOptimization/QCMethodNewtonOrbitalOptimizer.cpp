@@ -36,8 +36,6 @@ void QCMethodNewtonOrbitalOptimizer::prepareOrbitalDerivativesCalculation(const 
 
     this->D = this->calculate1RDM();
     this->d = this->calculate2RDM();
-
-    std::cout << "Prepared DMs." << std::endl;
 }
 
 
@@ -67,9 +65,6 @@ SquareRankFourTensor<double> QCMethodNewtonOrbitalOptimizer::calculateHessianTen
     // Calculate the Hessian from the super Fockian matrix
     const auto G = ham_par.calculateSuperFockianMatrix(this->D, this->d).parameters();
 
-    // std::cout << "G: " << std::endl << G << std::endl << std::endl;
-
-
 
     SquareRankFourTensor<double> hessian_tensor (K);
     hessian_tensor.setZero();
@@ -84,8 +79,6 @@ SquareRankFourTensor<double> QCMethodNewtonOrbitalOptimizer::calculateHessianTen
         }
     }
 
-
-    // std::cout << "Hessian tensor: " << std::endl << hessian_tensor << std::endl << std::endl;
 
     return hessian_tensor;
 }
