@@ -391,7 +391,7 @@ public:
      */
     template<class Matrix>
     void EvaluateOperator(const ScalarSQTwoElectronOperator<double>& two_op, EvaluationMatrix<Matrix>& container, bool diagonal_values) const {
-        // Calling this combined method for both the one- and two-electron operator does not affect the performance, hence we avoid writting more code by plugging a zero operator in the combined method.
+        // Calling this combined method for both the one- and two-electron operator does not affect the performance, hence we avoid writing more code by plugging a zero operator in the combined method
         EvaluateOperator(ScalarSQOneElectronOperator<double>(this->K), two_op, container, diagonal_values);
     }
 
@@ -583,7 +583,7 @@ public:
                         if(!onv.isOccupied(s)){
                             value_I += 0.5 * (two_op_par(p, s, s, q));
                         } else {
-                            value_I  += 0.5 * (two_op_par(s, s, p, q) - two_op_par(s, q, p, s) + two_op_par(p, q, s, s));
+                            value_I += 0.5 * (two_op_par(s, s, p, q) - two_op_par(s, q, p, s) + two_op_par(p, q, s, s));
                         }
                     }
 

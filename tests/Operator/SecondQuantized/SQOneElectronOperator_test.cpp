@@ -41,6 +41,48 @@ BOOST_AUTO_TEST_CASE ( SQOneElectronOperator_constructor ) {
 
 
 /**
+ *  Check if the zero constructor actually sets its parameters to zeros
+ */
+BOOST_AUTO_TEST_CASE ( SQOneElectronOperator_zero_constructor ) {
+
+    const size_t dim = 2;
+    const GQCP::ScalarSQOneElectronOperator<double> one_op (2);  // should initialize to zeros
+
+    BOOST_CHECK_EQUAL(one_op.dimension(), dim);
+    BOOST_CHECK(one_op.parameters().isZero(1.0e-08));
+}
+
+
+/**
+ *  Check if addition of operators works as expected
+ */
+BOOST_AUTO_TEST_CASE ( SQOneElectronOperator_addition ) {
+
+    const size_t dim = 2;
+
+    // Initialize two test matrices and convert them into operators
+    GQCP::ChemicalMatrix<double> M1 (dim);
+    M1 << 1.0, 2.0,
+          3.0, 4.0;
+    const GQCP::ScalarSQOneElectronOperator<double> op1 ({M1});
+
+    GQCP::ChemicalMatrix<double> M2 (dim);
+    M2 << 5.0, 6.0,
+          7.0, 8.0;
+    const GQCP::ScalarSQOneElectronOperator<double> op2 ({M2});
+
+
+    // Initialize the reference and check the result
+    GQCP::ChemicalMatrix<double> M_sum_ref (dim);
+    M_sum_ref <<  6.0,  8.0,
+                 10.0, 12.0;
+    
+    const auto op_sum = op1 + op2;
+    BOOST_CHECK(op_sum.parameters().isApprox(M_sum_ref, 1.0e-08));
+}
+
+
+/**
  *  Check if the transformation of a one-electron operator consisting of linear combinations of GTOs can be supported through the underlying scalar types
  */
 BOOST_AUTO_TEST_CASE ( SQOneElectronOperator_of_GTOs_transform ) {

@@ -41,9 +41,22 @@ BOOST_AUTO_TEST_CASE ( SQTwoElectronOperator_constructor ) {
 
 
 /**
+ *  Check if the zero constructor really sets is parameters to all zeros
+ */
+BOOST_AUTO_TEST_CASE ( SQTwoElectronOperator_zero_constructor ) {
+
+    const size_t dim = 2;
+    GQCP::ScalarSQOneElectronOperator<double> op (dim);
+
+    BOOST_CHECK_EQUAL(op.dimension(), dim);
+    BOOST_CHECK(op.parameters().isZero(1.0e-08));
+}
+
+
+/**
  *  Check if the formulas in effectiveOneElectronPartition are implemented correctly
  */
-BOOST_AUTO_TEST_CASE ( ChemicalRankFourTensor_effectiveOneElectronPartition ) {
+BOOST_AUTO_TEST_CASE ( SQTwoElectronOperator_effectiveOneElectronPartition ) {
 
     const size_t K = 4;
     auto K_ = static_cast<double>(K);

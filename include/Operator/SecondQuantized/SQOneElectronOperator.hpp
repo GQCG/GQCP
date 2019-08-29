@@ -79,7 +79,7 @@ public:
      */
     SQOneElectronOperator(const size_t dim) {
         for (size_t i = 0; i < Components; i++) {
-            this->F[i] = ChemicalMatrix<Scalar>(dim);
+            this->F[i] = ChemicalMatrix<Scalar>::Zero(dim, dim);
         }
     }
 

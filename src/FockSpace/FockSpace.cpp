@@ -314,7 +314,8 @@ Eigen::SparseMatrix<double> FockSpace::evaluateOperatorSparse(const ScalarSQOneE
  */
 SquareMatrix<double> FockSpace::evaluateOperatorDense(const ScalarSQTwoElectronOperator<double>& two_op, bool diagonal_values) const {
 
-    auto K = two_op.dimension();
+
+    const auto K = two_op.dimension();
     if (K != this->K) {
         throw std::invalid_argument("FockSpace::evaluateOperatorDense(ScalarSQTwoElectronOperator<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
     }
@@ -513,7 +514,6 @@ VectorX<double> FockSpace::evaluateOperatorDiagonal(const ScalarSQOneElectronOpe
     }
 
     return diagonal;
-
 };
 
 

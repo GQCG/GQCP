@@ -45,18 +45,18 @@ BOOST_AUTO_TEST_CASE ( decomposition_BeH_cation_STO_3G_Nuclear ) {
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 
-    const auto &T = rhf.get_C();
+    const auto& T = rhf.get_C();
 
     // Transform the ham_par
     mol_ham_par.transform(T);
 
     // Create the FCI module
-    GQCP::ProductFockSpace fock_space(K, BeH.numberOfElectrons() / 2, BeH.numberOfElectrons() / 2);  // dim = 441
-    GQCP::FCI fci(fock_space);
-    GQCP::CISolver ci_solver(fci, mol_ham_par);
+    GQCP::ProductFockSpace fock_space (K, BeH.numberOfElectrons() / 2, BeH.numberOfElectrons() / 2);  // dim = 441
+    GQCP::FCI fci (fock_space);
+    GQCP::CISolver ci_solver (fci, mol_ham_par);
 
     // Solve Davidson
-    GQCP::DavidsonSolverOptions solver_options(fock_space.HartreeFockExpansion());
+    GQCP::DavidsonSolverOptions solver_options (fock_space.HartreeFockExpansion());
     ci_solver.solve(solver_options);
 
     // Retrieve the eigenpair

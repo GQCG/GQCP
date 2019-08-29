@@ -76,6 +76,7 @@ public:
     SQTwoElectronOperator(const size_t dim) {
         for (size_t i = 0; i < Components; i++) {
             this->G[i] = ChemicalRankFourTensor<Scalar>(dim);
+            this->G[i].setZero();
         }
     }
 
@@ -202,14 +203,16 @@ public:
 
         // Use a formula to set the parameters
         for (size_t i = 0; i < Components; i++) {
+
             for (size_t p = 0; p < K; p++) {
                 for (size_t q = 0; q < K; q++) {
                     for (size_t r = 0; r < K; r++) {
-                        F.parameters(i)(p,q) -= 0.5 * this->parameters(i)(p, r, r, q);
+                        F.parameters(i)(p,q) -= 0.5 * this->parameters(i)(p,r,r,q);
                     }
                 }
             }
-        }
+
+        }  // loop over components
 
         return F;
     }

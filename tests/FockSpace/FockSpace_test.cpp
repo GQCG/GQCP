@@ -55,8 +55,6 @@ BOOST_AUTO_TEST_CASE ( FockSpace_dimension ) {
     BOOST_CHECK_EQUAL(GQCP::FockSpace::calculateDimension(8, 3), 56);
 
     BOOST_CHECK_THROW(GQCP::FockSpace::calculateDimension(100, 50), std::overflow_error);
-
-
 }
 
 
@@ -231,6 +229,7 @@ BOOST_AUTO_TEST_CASE ( coupling_count ) {
     BOOST_CHECK(2*coupling_count2 == fock_space2.countTotalTwoElectronCouplings());
 }
 
+
 BOOST_AUTO_TEST_CASE ( ONV_address_setNext_fullspace ) {
 
     // Here we will test a full permutation through a Fock space of K = 15, N = 5
@@ -323,7 +322,7 @@ BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_Dense_diagonal_true ) {
 
     auto hamiltonian_evaluation1 = fock_space.evaluateOperatorDense(parameters, true);
     auto hamiltonian_evaluation2 = selected_fock_space.evaluateOperatorDense(parameters, true);
-    
+
     BOOST_CHECK(one_electron_evaluation1.isApprox(one_electron_evaluation2));
     BOOST_CHECK(two_electron_evaluation1.isApprox(two_electron_evaluation2));
     BOOST_CHECK(hamiltonian_evaluation1.isApprox(hamiltonian_evaluation2));
