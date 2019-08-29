@@ -110,8 +110,7 @@ public:
      *
      *  @return the operator's evaluation in a sparse matrix with the dimensions of the Fock space
      */
-    virtual Eigen::SparseMatrix<double> evaluateOperatorSparse(const ScalarSQOneElectronOperator<double>& one_op,
-                                                               bool diagonal_values) const = 0;
+    virtual Eigen::SparseMatrix<double> evaluateOperatorSparse(const ScalarSQOneElectronOperator<double>& one_op, bool diagonal_values) const = 0;
     /**
      *  Evaluate the operator in a dense matrix
      *
@@ -130,8 +129,7 @@ public:
      *
      *  @return the operator's evaluation in a sparse matrix with the dimensions of the Fock space
      */
-    virtual Eigen::SparseMatrix<double> evaluateOperatorSparse(const ScalarSQTwoElectronOperator<double>& two_op,
-                                                               bool diagonal_values) const = 0;
+    virtual Eigen::SparseMatrix<double> evaluateOperatorSparse(const ScalarSQTwoElectronOperator<double>& two_op, bool diagonal_values) const = 0;
 
     /**
      *  Evaluate the Hamiltonian in a dense matrix
@@ -141,8 +139,7 @@ public:
      *
      *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the Fock space
      */
-    virtual SquareMatrix<double> evaluateOperatorDense(const HamiltonianParameters<double>& ham_par,
-                                                       bool diagonal_values) const = 0;
+    virtual SquareMatrix<double> evaluateOperatorDense(const HamiltonianParameters<double>& ham_par, bool diagonal_values) const = 0;
 
     /**
      *  Evaluate the Hamiltonian in a sparse matrix
@@ -152,8 +149,7 @@ public:
      *
      *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the Fock space
      */
-    virtual Eigen::SparseMatrix<double> evaluateOperatorSparse(const HamiltonianParameters<double>& ham_par,
-                                                               bool diagonal_values) const = 0;
+    virtual Eigen::SparseMatrix<double> evaluateOperatorSparse(const HamiltonianParameters<double>& ham_par, bool diagonal_values) const = 0;
 
     /**
      *  Evaluate the diagonal of the operator

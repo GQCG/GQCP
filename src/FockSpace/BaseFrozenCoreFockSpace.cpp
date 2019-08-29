@@ -75,8 +75,7 @@ SquareMatrix<double> BaseFrozenCoreFockSpace::evaluateOperatorDense(const Scalar
  *
  *  @return the operator's evaluation in a sparse matrix with the dimensions of the Fock space
  */
-Eigen::SparseMatrix<double> BaseFrozenCoreFockSpace::evaluateOperatorSparse(const ScalarSQOneElectronOperator<double>& one_op,
-                                                   bool diagonal_values) const {
+Eigen::SparseMatrix<double> BaseFrozenCoreFockSpace::evaluateOperatorSparse(const ScalarSQOneElectronOperator<double>& one_op, bool diagonal_values) const {
 
     // Freeze the operator
     ScalarSQOneElectronOperator<double> frozen_one_op = BaseFrozenCoreFockSpace::freezeOperator(one_op, this->X);
@@ -129,8 +128,7 @@ SquareMatrix<double> BaseFrozenCoreFockSpace::evaluateOperatorDense(const Scalar
  *
  *  @return the operator's evaluation in a sparse matrix with the dimensions of the Fock space
  */
-Eigen::SparseMatrix<double> BaseFrozenCoreFockSpace::evaluateOperatorSparse(const ScalarSQTwoElectronOperator<double>& two_op,
-                                                   bool diagonal_values) const {
+Eigen::SparseMatrix<double> BaseFrozenCoreFockSpace::evaluateOperatorSparse(const ScalarSQTwoElectronOperator<double>& two_op, bool diagonal_values) const {
 
     // Freeze the operators
     const auto frozen_ops = BaseFrozenCoreFockSpace::freezeOperator(two_op, this->X);
@@ -157,8 +155,7 @@ Eigen::SparseMatrix<double> BaseFrozenCoreFockSpace::evaluateOperatorSparse(cons
  *
  *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the Fock space
  */
-SquareMatrix<double> BaseFrozenCoreFockSpace::evaluateOperatorDense(const HamiltonianParameters<double>& ham_par,
-                                           bool diagonal_values) const  {
+SquareMatrix<double> BaseFrozenCoreFockSpace::evaluateOperatorDense(const HamiltonianParameters<double>& ham_par, bool diagonal_values) const {
     // Freeze the operators
     const auto frozen_ham_par = BaseFrozenCoreFockSpace::freezeOperator(ham_par, this->X);
 
@@ -183,8 +180,8 @@ SquareMatrix<double> BaseFrozenCoreFockSpace::evaluateOperatorDense(const Hamilt
  *
  *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the Fock space
  */
-Eigen::SparseMatrix<double> BaseFrozenCoreFockSpace::evaluateOperatorSparse(const HamiltonianParameters<double>& ham_par,
-                                                   bool diagonal_values) const  {
+Eigen::SparseMatrix<double> BaseFrozenCoreFockSpace::evaluateOperatorSparse(const HamiltonianParameters<double>& ham_par, bool diagonal_values) const {
+
     // Freeze the operators
     const auto frozen_ham_par = BaseFrozenCoreFockSpace::freezeOperator(ham_par, this->X);
 
@@ -346,7 +343,7 @@ HamiltonianParameters<double> BaseFrozenCoreFockSpace::freezeOperator(const Hami
  *
  *  @return the operator diagonal from strictly evaluating the frozen orbitals in the Fock space
  */
-VectorX<double> BaseFrozenCoreFockSpace::frozenCoreDiagonal(const ScalarSQOneElectronOperator<double>& one_op, size_t X,  size_t dimension) {
+VectorX<double> BaseFrozenCoreFockSpace::frozenCoreDiagonal(const ScalarSQOneElectronOperator<double>& one_op, size_t X, size_t dimension) {
 
     const auto& one_op_par = one_op.parameters();
 

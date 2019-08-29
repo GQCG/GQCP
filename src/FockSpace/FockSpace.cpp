@@ -537,7 +537,7 @@ VectorX<double> FockSpace::evaluateOperatorDiagonal(const ScalarSQTwoElectronOpe
     VectorX<double> diagonal = VectorX<double>::Zero(dim);
 
     const auto k_par = two_op.effectiveOneElectronPartition().parameters();
-    const auto two_op_par = two_op.parameters();
+    const auto& two_op_par = two_op.parameters();
 
     ONV onv = this->makeONV(0);  // onv with address 0
     for (size_t I = 0; I < dim; I++) {  // I loops over all addresses in the Fock space

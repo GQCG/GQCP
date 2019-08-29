@@ -345,7 +345,7 @@ public:
 
         const size_t K = H.numberOfLatticeSites();
 
-        ChemicalMatrix<double> h (K);
+        ChemicalMatrix<double> h = ChemicalMatrix<double>::Zero(K, K);
         ChemicalRankFourTensor<double> g (K);
         g.setZero();
 
@@ -439,10 +439,10 @@ public:
      */
     void rotate(const SquareMatrix<Scalar>& U) {
 
-        this->S.transform(U);
+        this->S.rotate(U);
 
-        this->h.transform(U);
-        this->g.transform(U);
+        this->h.rotate(U);
+        this->g.rotate(U);
 
         this->T_total = this->T_total * U;  // use the correct transformation formula for subsequent transformations
     }
@@ -554,7 +554,6 @@ public:
         const auto& h_par = this->h.parameters();
         const auto& g_par = this->g.parameters();
 
-
         // A KISS implementation of the calculation of the generalized Fock matrix F
         ChemicalMatrix<Scalar> F = ChemicalMatrix<Scalar>::Zero(this->K, this->K);
         for (size_t p = 0; p < this->K; p++) {
@@ -576,8 +575,6 @@ public:
 
             }
         }  // F elements loop
-
-        std::cout << "F" << std::endl << F << std::endl << std::endl;
 
         return ScalarSQOneElectronOperator<Scalar>({0.5 * F});
     }
@@ -650,14 +647,11 @@ public:
 
 
         // We have to calculate the Fockian matrix first
-        const auto& F = this->calculateFockianMatrix(D, d).parameters();
+        const auto F = this->calculateFockianMatrix(D, d).parameters();
 
         // A KISS implementation of the calculation of the super Fockian matrix
         ChemicalRankFourTensor<Scalar> G (this->K);
         G.setZero();
-
-        // std::cout << "G" << std::endl << G << std::endl << std::endl;
-        std::cout << "G.setZero()" << std::endl;
 
         for (size_t p = 0; p < this->K; p++) {
             for (size_t q = 0; q < this->K; q++) {
@@ -681,10 +675,7 @@ public:
                     }
                 }
             }
-        }  // W elements loop
-
-
-        // std::cout << "G" << std::endl << G << std::endl << std::endl;
+        }  // G elements loop
 
         return ScalarSQTwoElectronOperator<Scalar>({0.5 * G});
     }

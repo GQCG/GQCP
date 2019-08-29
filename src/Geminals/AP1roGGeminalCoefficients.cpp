@@ -71,10 +71,10 @@ AP1roGGeminalCoefficients::AP1roGGeminalCoefficients(size_t N_P, size_t K) :
  */
 AP1roGGeminalCoefficients AP1roGGeminalCoefficients::WeakInteractionLimit(const HamiltonianParameters<double>& ham_par, size_t N_P) {
 
-    auto K = ham_par.get_K();
-    auto number_of_geminal_coefficients = AP1roGGeminalCoefficients::numberOfGeminalCoefficients(N_P, K);
-    auto h = ham_par.get_h().parameters();  // core Hamiltonian integrals
-    auto g = ham_par.get_g().parameters();  // two-electron integrals
+    const auto K = ham_par.get_K();
+    const auto number_of_geminal_coefficients = AP1roGGeminalCoefficients::numberOfGeminalCoefficients(N_P, K);
+    const auto& h = ham_par.get_h().parameters();  // core Hamiltonian integrals
+    const auto& g = ham_par.get_g().parameters();  // two-electron integrals
 
     // Provide the weak interaction limit values for the geminal coefficients
     VectorX<double> g_vector = VectorX<double>::Zero(number_of_geminal_coefficients);

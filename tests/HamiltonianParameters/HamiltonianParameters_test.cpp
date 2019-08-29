@@ -339,7 +339,7 @@ BOOST_AUTO_TEST_CASE ( calculate_Fockian_and_super ) {
     // Set up the toy Hamiltonian parameters
     std::shared_ptr<GQCP::AOBasis> ao_basis;
     GQCP::ChemicalMatrix<double> S = GQCP::ChemicalMatrix<double>::Identity(2, 2);
-    GQCP::ChemicalMatrix<double> h (2);
+    GQCP::ChemicalMatrix<double> h = GQCP::ChemicalMatrix<double>::Zero(2, 2);
     h << 1, 0,
          0, 1;
 
