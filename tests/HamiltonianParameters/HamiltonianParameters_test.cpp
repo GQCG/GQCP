@@ -312,6 +312,7 @@ BOOST_AUTO_TEST_CASE ( calculate_generalized_Fock_matrix_and_super_invalid_argum
     GQCP::TwoRDM<double> d_invalid (3);
 
 
+
     // Test a faulty function calls
     BOOST_REQUIRE_THROW(ham_par.calculateFockianMatrix(D_invalid, d_valid), std::invalid_argument);
     BOOST_REQUIRE_THROW(ham_par.calculateFockianMatrix(D_valid, d_invalid), std::invalid_argument);

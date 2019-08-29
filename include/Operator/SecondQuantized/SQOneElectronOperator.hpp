@@ -237,25 +237,78 @@ public:
         }
 
 
-        // A KISS implementation of the calculation of the generalized Fock matrix F
+        // A KISS implementation of the calculation of the Fockian matrix
         std::array<SquareMatrix<Scalar>, Components> Fs;  // Fock matrices (hence the 's')
         for (size_t i = 0; i < Components; i++) {
 
+            const auto& f_i = this->parameters(i);  // the matrix representation of the parameters of the i-th component
+
             // Calculate the Fockian matrix for every component and add it to the array
-            SquareMatrix<Scalar> F = SquareMatrix<Scalar>::Zero(this->dimension(), this->dimension());
+            SquareMatrix<Scalar> F_i = SquareMatrix<Scalar>::Zero(this->dimension(), this->dimension());  // the Fockian matrix of the i-th component
             for (size_t p = 0; p < this->dimension(); p++) {
                 for (size_t q = 0; q < this->dimension(); q++) {
 
                     for (size_t r = 0; r < this->dimension(); r++) {
-                        F(p,q) += this->parameters(i)(q,r) * (D(p,r) + D(r,p));
+                        F_i(p,q) += f_i(q,r) * (D(p,r) + D(r,p));
                     }
 
                 }
-            }  // F elements loop
-            Fs[i] = 0.5 * F;
+            }  // F_i elements loop
+            Fs[i] = 0.5 * F_i;
         }
 
         return Fs;
+    }
+
+
+    /**
+     *  @param D      the 1-DM (or the response 1-DM for made-variational wave function models)
+     *  @param d      the 2-DM (or the response 2-DM for made-variational wave function models)
+     *
+     *  @return the (generalized) super-Fockian matrix
+     */
+    std::array<SquareRankFourTensor<Scalar>, Components> calculateSuperFockianMatrix(const OneRDM<double>& D, const TwoRDM<double>& d) const {
+
+        // Check if dimensions are compatible
+        if (D.dimension() != this->dimension()) {
+            throw std::invalid_argument("SQOneElectronOperator::calculateFockianMatrix(OneRDM<double>, TwoRDM<double>): The 1-RDM is not compatible with the one-electron operator.");
+        }
+
+        if (d.dimension() != this->dimension()) {
+            throw std::invalid_argument("SQOneElectronOperator::calculateFockianMatrix(OneRDM<double>, TwoRDM<double>): The 2-RDM is not compatible with the one-electron operator.");
+        }
+
+
+        // A KISS implementation of the calculation of the super-Fockian matrix
+        std::array<SquareRankFourTensor<Scalar>, Components> Gs;  // multiple Gs, hence the 's'
+        const auto Fs = this->calculateFockianMatrix(D, d);  // the Fockian matrices are necessary in the calculation
+        for (size_t i = 0; i < Components; i++) {
+            
+            const auto& f_i = this->parameters(i);  // the matrix representation of the parameters of the i-th component
+            const auto& F_i = Fs[i];  // the Fockian matrix of the i-th component
+
+            // Calculate the super-Fockian matrix for every component and add it to the array
+            SquareRankFourTensor<Scalar> G_i (this->dimension());
+            G_i.setZero();
+            for (size_t p = 0; p < this->dimension(); p++) {
+                for (size_t q = 0; q < this->dimension(); q++) {
+                    for (size_t r = 0; r < this->dimension(); r++) {
+                        for (size_t s = 0; s < this->dimension(); s++) {
+
+                            if (q == r) {
+                                G_i(p,q,r,s) += 2 * F_i(p,s);
+                            }
+
+                            G_i(p,q,r,s) -= f_i(s,p) * (D(r,q) + D(q,r));
+
+                        }
+                    }
+                }
+            }  // G_i elements loop
+            Gs[i] = 0.5 * G_i;
+        }
+
+        return Gs;
     }
 };
 

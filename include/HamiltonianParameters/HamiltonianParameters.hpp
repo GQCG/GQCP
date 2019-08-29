@@ -598,51 +598,7 @@ public:
      */
     SquareRankFourTensor<Scalar> calculateSuperFockianMatrix(const OneRDM<double>& D, const TwoRDM<double>& d) const {
 
-        // Check if dimensions are compatible
-        if (D.dimension() != this->K) {
-            throw std::invalid_argument("HamiltonianParameters::calculateFockianMatrix(OneRDM<double>, TwoRDM<double>): The 1-RDM is not compatible with the HamiltonianParameters.");
-        }
-
-        if (d.dimension() != this->K) {
-            throw std::invalid_argument("HamiltonianParameters::calculateFockianMatrix(OneRDM<double>, TwoRDM<double>): The 2-RDM is not compatible with the HamiltonianParameters.");
-        }
-
-        const auto& h_par = this->h.parameters();
-        const auto& g_par = this->g.parameters();
-
-
-        // We have to calculate the Fockian matrix first
-        const auto F = this->calculateFockianMatrix(D, d);
-
-        // A KISS implementation of the calculation of the super Fockian matrix
-        SquareRankFourTensor<Scalar> G (this->K);
-        G.setZero();
-
-        for (size_t p = 0; p < this->K; p++) {
-            for (size_t q = 0; q < this->K; q++) {
-                for (size_t r = 0; r < this->K; r++) {
-                    for (size_t s = 0; s < this->K; s++) {
-
-                        // Generalized Fock matrix part
-                        if (q == r) {
-                            G(p,q,r,s) += 2 * F(p,s);
-                        }
-
-                        // One-electron part
-                        G(p,q,r,s) -= h_par(s,p) * (D(r,q) + D(q,r));
-
-                        // Two-electron part
-                        for (size_t t = 0; t < this->K; t++) {
-                            for (size_t u = 0; u < this->K; u++) {
-                                G(p,q,r,s) += g_par(s,t,q,u) * (d(r,t,p,u) + d(t,r,u,p)) - g_par(s,t,u,p) * (d(r,t,u,q) + d(t,r,q,u)) - g_par(s,p,t,u) * (d(r,q,t,u) + d(q,r,u,t));
-                            }
-                        }  // two-electron part
-                    }
-                }
-            }
-        }  // G elements loop
-
-        return 0.5 * G;
+        return this->h.calculateSuperFockianMatrix(D, d)[0].Eigen() + this->g.calculateSuperFockianMatrix(D, d)[0].Eigen();  // HamiltonianParameters are ScalarSQOperators
     }
 
 
