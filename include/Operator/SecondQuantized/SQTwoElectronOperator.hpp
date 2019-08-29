@@ -17,7 +17,7 @@
 // 
 #pragma once
 
-#include "Mathematical/ChemicalRankFourTensor.hpp"
+#include "Mathematical/Representation/ChemicalRankFourTensor.hpp"
 #include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
 #include "OrbitalOptimization/JacobiRotationParameters.hpp"
 #include "RDM/OneRDM.hpp"
