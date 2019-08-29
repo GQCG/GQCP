@@ -18,8 +18,8 @@
 #pragma once
 
 
-#include "Mathematical/Matrix.hpp"
 #include "Mathematical/Optimization/Eigenpair.hpp"
+#include "Mathematical/Representation/Matrix.hpp"
 
 #include <cstddef>
 #include <vector>

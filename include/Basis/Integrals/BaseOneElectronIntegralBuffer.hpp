@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Mathematical/ChemicalMatrix.hpp"
+#include "Mathematical/Representation/ChemicalMatrix.hpp"
 
 #include <array>
 

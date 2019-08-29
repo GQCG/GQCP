@@ -15,33 +15,30 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#pragma once
+#define BOOST_TEST_MODULE "BlockRankFourTensor_test"
+
+#include <boost/test/unit_test.hpp>
+
+#include "Mathematical/Representation/BlockRankFourTensor.hpp"
 
 
-#include "Mathematical/Representation/SquareMatrix.hpp"
+BOOST_AUTO_TEST_CASE ( operator_call ) {
+
+    // A zero block tensor of dimension 2
+    GQCP::BlockRankFourTensor<size_t> B (1,3, 1,3, 1,3, 1,3);
 
 
-namespace GQCP {
+    // The BlockRankFourTensor B's operator() should behave like so:
+    // Set some values
+    B(1,1,1,1) = 1;
+    B(1,2,2,2) = 2;
+    B(1,2,2,1) = 3;
+    B(1,2,1,2) = 4;
 
-
-/**
- *  A base functor for Hessian modifiers
- */
-class BaseHessianModifier {
-public:
-    // DESTRUCTOR
-    virtual ~BaseHessianModifier() = default;
-
-
-    // PUBLIC PURE VIRTUAL METHODS
-
-    /**
-     *  @param hessian      the current indefinite Hessian
-     * 
-     *  @return a modified Hessian that is made positive (for minimizers) or negative (for maximizers) definite
-     */
-    virtual SquareMatrix<double> operator()(const SquareMatrix<double>& hessian) = 0;
-};
-
-
-}  // namespace GQCP
+    // Extract the updated block and check if the values are filled in at the correct positions
+    const auto block = B.asTensor();
+    BOOST_CHECK(block(0,0,0,0) == 1);
+    BOOST_CHECK(block(0,1,1,1) == 2);
+    BOOST_CHECK(block(0,1,1,0) == 3);
+    BOOST_CHECK(block(0,1,0,1) == 4);
+}

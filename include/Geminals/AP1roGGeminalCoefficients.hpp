@@ -21,7 +21,7 @@
 #include "Geminals/AP1roGVariables.hpp"
 #include "Geminals/GeminalCoefficientsInterface.hpp"
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
-#include "Mathematical/Matrix.hpp"
+#include "Mathematical/Representation/Matrix.hpp"
 #include "WaveFunction/WaveFunction.hpp"
 
 

@@ -18,7 +18,7 @@
 #include "WaveFunction/WaveFunction.hpp"
 
 #include "FockSpace/ProductFockSpace.hpp"
-#include "Mathematical/SquareMatrix.hpp"
+#include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Utilities/linalg.hpp"
 
 

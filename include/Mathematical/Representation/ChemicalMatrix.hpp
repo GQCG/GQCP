@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Mathematical/SquareMatrix.hpp"
+#include "Mathematical/Representation/SquareMatrix.hpp"
 #include "typedefs.hpp"
 
 

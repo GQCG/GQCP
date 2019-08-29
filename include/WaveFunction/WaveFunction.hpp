@@ -19,7 +19,7 @@
 
 
 #include "FockSpace/BaseFockSpace.hpp"
-#include "Mathematical/Matrix.hpp"
+#include "Mathematical/Representation/Matrix.hpp"
 
 
 namespace GQCP {
