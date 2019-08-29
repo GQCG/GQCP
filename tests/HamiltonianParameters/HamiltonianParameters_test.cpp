@@ -378,6 +378,7 @@ BOOST_AUTO_TEST_CASE ( calculate_Fockian_and_super ) {
         }
     }
 
+
     BOOST_CHECK(F_ref.isApprox(ham_par.calculateFockianMatrix(D, d), 1.0e-12));
     BOOST_CHECK(G_ref.isApprox(ham_par.calculateSuperFockianMatrix(D, d), 1.0e-12));
 }

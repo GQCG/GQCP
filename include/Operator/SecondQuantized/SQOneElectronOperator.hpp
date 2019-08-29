@@ -46,7 +46,7 @@ public:
 
 
 private:
-    std::array<ChemicalMatrix<Scalar>, Components> F;  // all the matrix representations of the parameters (integrals) of the different components of this second-quantized operator
+    std::array<ChemicalMatrix<Scalar>, Components> fs;  // all the matrix representations (hence the s) of the parameters (integrals) of the different components of this second-quantized operator
 
 
 public:
@@ -56,17 +56,18 @@ public:
      */
 
     /**
-     *  @param F            all the matrix representations of the parameters (integrals) of the different components of the second-quantized operator
+     *  @param fs           all the matrix representations (hence the s) of the parameters (integrals) of the different components of this second-quantized operator
      */
-    SQOneElectronOperator(const std::array<ChemicalMatrix<Scalar>, Components>& F) : 
-        F (F)
+    SQOneElectronOperator(const std::array<ChemicalMatrix<Scalar>, Components>& fs) : 
+        fs (fs)
     {
         // Check if the given matrix representations have the same dimensions
-        const auto dimension = this->F[0].dimension();
-
+        const auto dimension_of_first = this->fs[0].dimension();
         for (size_t i = 1; i < Components; i++) {
-            if (dimension != this->F[i].dimension()) {
-                throw std::invalid_argument("SQOneElectronOperator(const std::array<ChemicalMatrix<Scalar>, Components>&): The given matrix representations did not have the same dimensions.");
+
+            const auto dimension_of_ith = this->fs[i].dimension();
+            if (dimension_of_first != dimension_of_ith) {
+                throw std::invalid_argument("SQOneElectronOperator(const std::array<ChemicalMatrix<Scalar>, Components>&): The given matrix representations do not have the same dimensions.");
             }
         }
     }
@@ -79,7 +80,7 @@ public:
      */
     SQOneElectronOperator(const size_t dim) {
         for (size_t i = 0; i < Components; i++) {
-            this->F[i] = ChemicalMatrix<Scalar>::Zero(dim, dim);
+            this->fs[i] = ChemicalMatrix<Scalar>::Zero(dim, dim);
         }
     }
 
@@ -100,7 +101,7 @@ public:
      *  @return the dimension of the matrix representation of the parameters, i.e. the number of orbitals/sites
      */
     size_t dimension() const {
-        return this->F[0].dimension();
+        return this->fs[0].dimension();  // all the dimensions are the same, this is checked in the constructor
     }
 
     size_t get_dim() const {
@@ -116,7 +117,7 @@ public:
      *  @return read-only matrix representations of all the parameters (integrals) of the different components of this second-quantized operator
      */
     const std::array<ChemicalMatrix<Scalar>, Components>& allParameters() const {
-        return this->F;
+        return this->fs;
     }
 
 
@@ -124,7 +125,7 @@ public:
      *  @return writable matrix representations of all the parameters (integrals) of the different components of this second-quantized operator
      */
     std::array<ChemicalMatrix<Scalar>, Components>& allParameters() {
-        return this->F;
+        return this->fs;
     }
 
 
@@ -134,7 +135,7 @@ public:
      *  @return a read-only the matrix representation of the parameters (integrals) of one of the the different components of this second-quantized operator
      */
     const ChemicalMatrix<Scalar>& parameters(const size_t i = 0) const {
-        return this->F[i];
+        return this->fs[i];
     }
 
 
@@ -144,7 +145,7 @@ public:
      *  @return a writable matrix representation of the parameters (integrals) of one of the the different components of this second-quantized operator
      */
     ChemicalMatrix<Scalar>& parameters(const size_t i = 0) {
-        return this->F[i];
+        return this->fs[i];
     }
 
 
@@ -366,12 +367,12 @@ auto operator*(const Scalar& scalar, const SQOneElectronOperator<OperatorScalar,
 
     using ResultScalar = product_t<Scalar, OperatorScalar>;
 
-    auto F = op.allParameters();
-    for (size_t i = 0; i < Components; i++) {
-        F[i] *= scalar;
+    auto fs = op.allParameters();
+    for (auto& f : fs) {
+        f *= scalar;
     }
 
-    return SQOneElectronOperator<ResultScalar, Components>(F);
+    return SQOneElectronOperator<ResultScalar, Components>(fs);
 }
 
 

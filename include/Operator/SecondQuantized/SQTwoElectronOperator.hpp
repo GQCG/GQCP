@@ -45,7 +45,7 @@ public:
 
 
 private:
-    std::array<ChemicalRankFourTensor<Scalar>, Components> G;  // all the matrix representations of the parameters (integrals) of the different components of this second-quantized operator
+    std::array<ChemicalRankFourTensor<Scalar>, Components> gs;  // all the matrix representations (hence the 's') of the parameters (integrals) of the different components of this second-quantized operator
 
 public:
 
@@ -54,17 +54,19 @@ public:
      */
 
     /**
-     *  @param G            all the matrix representations of the parameters (integrals) of the different components of the second-quantized operator
+     *  @param gs            all the matrix representations (hence the 's') of the parameters (integrals) of the different components of this second-quantized operator
      */
-    SQTwoElectronOperator(const std::array<ChemicalRankFourTensor<Scalar>, Components>& G) : 
-        G (G)
+    SQTwoElectronOperator(const std::array<ChemicalRankFourTensor<Scalar>, Components>& gs) : 
+        gs (gs)
     {
         // Check if the given matrix representations have the same dimensions
-        const auto dimension = this->G[0].dimension();
+        const auto dimension_of_first = this->gs[0].dimension();
 
         for (size_t i = 1; i < Components; i++) {
-            if (dimension != this->G[i].dimension()) {
-                throw std::invalid_argument("SQOneElectronOperator(const std::array<ChemicalMatrix<Scalar>, Components>&): The given matrix representations did not have the same dimensions.");
+
+            const auto dimension_of_ith = this->gs[i].dimension();
+            if (dimension_of_first != dimension_of_ith) {
+                throw std::invalid_argument("SQTwoElectronOperator(const std::array<ChemicalMatrix<Scalar>, Components>&): The given matrix representations do not have the same dimensions.");
             }
         }
     }
@@ -77,8 +79,8 @@ public:
      */
     SQTwoElectronOperator(const size_t dim) {
         for (size_t i = 0; i < Components; i++) {
-            this->G[i] = ChemicalRankFourTensor<Scalar>(dim);
-            this->G[i].setZero();
+            this->gs[i] = ChemicalRankFourTensor<Scalar>(dim);
+            this->gs[i].setZero();
         }
     }
 
@@ -100,7 +102,7 @@ public:
      *  @return the dimension of the matrix representation of the parameters, i.e. the number of orbitals/sites
      */
     size_t dimension() const {
-        return this->G[0].dimension();
+        return this->gs[0].dimension();  // all dimensions are the same, this is checked in the constructors
     }
 
     size_t get_dim() const {
@@ -116,7 +118,7 @@ public:
      *  @return read-only matrix representations of all the parameters (integrals) of the different components of this second-quantized operator
      */
     const std::array<ChemicalRankFourTensor<Scalar>, Components>& allParameters() const {
-        return this->G;
+        return this->gs;
     }
 
 
@@ -124,7 +126,7 @@ public:
      *  @return writable matrix representations of all the parameters (integrals) of the different components of this second-quantized operator
      */
     std::array<ChemicalRankFourTensor<Scalar>, Components>& allParameters() {
-        return this->G;
+        return this->gs;
     }
 
 
@@ -134,7 +136,7 @@ public:
      *  @return a read-only matrix representation of the parameters (integrals) of one of the the different components of this second-quantized operator
      */
     const ChemicalRankFourTensor<Scalar>& parameters(const size_t i = 0) const {
-        return this->G[i];
+        return this->gs[i];
     }
 
 
@@ -144,7 +146,7 @@ public:
      *  @return a writable the matrix representation of the parameters (integrals) of one of the the different components of this second-quantized operator
      */
     ChemicalRankFourTensor<Scalar>& parameters(const size_t i = 0) {
-        return this->G[i];
+        return this->gs[i];
     }
 
 
