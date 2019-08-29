@@ -348,7 +348,7 @@ BOOST_AUTO_TEST_CASE ( calculate_Fockian_and_super ) {
 
 
     // Construct the reference Fockian matrix
-    GQCP::ChemicalMatrix<double> F_ref (2);
+    GQCP::SquareMatrix<double> F_ref (2);
     F_ref << -1.00,  1.00,
               1.00, -1.00;
 
@@ -377,8 +377,8 @@ BOOST_AUTO_TEST_CASE ( calculate_Fockian_and_super ) {
         }
     }
 
-    BOOST_CHECK(F_ref.isApprox(ham_par.calculateFockianMatrix(D, d).parameters(), 1.0e-12));
-    BOOST_CHECK(G_ref.isApprox(ham_par.calculateSuperFockianMatrix(D, d).parameters(), 1.0e-12));
+    BOOST_CHECK(F_ref.isApprox(ham_par.calculateFockianMatrix(D, d), 1.0e-12));
+    BOOST_CHECK(G_ref.isApprox(ham_par.calculateSuperFockianMatrix(D, d), 1.0e-12));
 }
 
 

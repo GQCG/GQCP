@@ -539,7 +539,7 @@ public:
      *
      *  @return the (generalized) Fockian matrix
      */
-    ScalarSQOneElectronOperator<Scalar> calculateFockianMatrix(const OneRDM<double>& D, const TwoRDM<double>& d) const {
+    SquareMatrix<Scalar> calculateFockianMatrix(const OneRDM<double>& D, const TwoRDM<double>& d) const {
 
         // Check if dimensions are compatible
         if (D.dimension() != this->K) {
@@ -555,7 +555,7 @@ public:
         const auto& g_par = this->g.parameters();
 
         // A KISS implementation of the calculation of the generalized Fock matrix F
-        ChemicalMatrix<Scalar> F = ChemicalMatrix<Scalar>::Zero(this->K, this->K);
+        SquareMatrix<Scalar> F = SquareMatrix<Scalar>::Zero(this->K, this->K);
         for (size_t p = 0; p < this->K; p++) {
             for (size_t q = 0; q < this->K; q++) {
 
@@ -576,7 +576,7 @@ public:
             }
         }  // F elements loop
 
-        return ScalarSQOneElectronOperator<Scalar>({0.5 * F});
+        return 0.5 * F;
     }
 
 
@@ -631,7 +631,7 @@ public:
      *
      *  @return the (generalized) super-Fockian matrix
      */
-    ScalarSQTwoElectronOperator<Scalar> calculateSuperFockianMatrix(const OneRDM<double>& D, const TwoRDM<double>& d) const {
+    SquareRankFourTensor<Scalar> calculateSuperFockianMatrix(const OneRDM<double>& D, const TwoRDM<double>& d) const {
 
         // Check if dimensions are compatible
         if (D.dimension() != this->K) {
@@ -647,10 +647,10 @@ public:
 
 
         // We have to calculate the Fockian matrix first
-        const auto F = this->calculateFockianMatrix(D, d).parameters();
+        const auto F = this->calculateFockianMatrix(D, d);
 
         // A KISS implementation of the calculation of the super Fockian matrix
-        ChemicalRankFourTensor<Scalar> G (this->K);
+        SquareRankFourTensor<Scalar> G (this->K);
         G.setZero();
 
         for (size_t p = 0; p < this->K; p++) {
@@ -677,7 +677,7 @@ public:
             }
         }  // G elements loop
 
-        return ScalarSQTwoElectronOperator<Scalar>({0.5 * G});
+        return 0.5 * G;
     }
 
 
