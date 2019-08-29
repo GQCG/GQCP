@@ -394,13 +394,7 @@ auto operator*(const Scalar& scalar, const SQTwoElectronOperator<OperatorScalar,
 template <typename Scalar, size_t Components>
 SQTwoElectronOperator<Scalar, Components> operator-(const SQTwoElectronOperator<Scalar, Components>& op) {
 
-    // Negate the parameters of all the components
-    auto G_copy = op.allParameters();
-    for (size_t i = 0; i < Components; i++) {
-        G_copy[i] *= (-1.0);  // negation is scalar multiplication with (-1.0)
-    }
-
-    return SQTwoElectronOperator<Scalar, Components>(G_copy);
+    return (-1.0) * op;  // negation is scalar multiplication with (-1.0)
 }
 
 
