@@ -34,7 +34,7 @@ BOOST_AUTO_TEST_CASE ( dipole_CO_STO_3G ) {
     std::vector<GQCP::Nucleus> nuclei {C, O};
     GQCP::Molecule CO (nuclei);
 
-    auto ao_basis = std::make_shared<GQCP::AOBasis>(CO, "STO-3G");
+    auto ao_basis = std::make_shared<GQCP::ScalarBasis<GQCP::GTOShell>>(CO, "STO-3G");
     auto ao_mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(ao_basis);
 
     size_t K = ao_basis->numberOfBasisFunctions();
@@ -72,7 +72,7 @@ BOOST_AUTO_TEST_CASE ( dipole_N2_STO_3G ) {
     std::vector<GQCP::Nucleus> nuclei {N_1, N_2};
     GQCP::Molecule N2 (nuclei);
 
-    auto ao_basis = std::make_shared<GQCP::AOBasis>(N2, "STO-3G");
+    auto ao_basis = std::make_shared<GQCP::ScalarBasis<GQCP::GTOShell>>(N2, "STO-3G");
     auto ao_mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(ao_basis);
 
     size_t K = ao_basis->numberOfBasisFunctions();

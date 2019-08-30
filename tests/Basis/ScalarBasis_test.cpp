@@ -15,19 +15,19 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#define BOOST_TEST_MODULE "AOBasis"
+#define BOOST_TEST_MODULE "ScalarBasis"
 
 #include <boost/test/unit_test.hpp>
 
-#include "Basis/AOBasis.hpp"
+#include "Basis/ScalarBasis.hpp"
 #include "Molecule/Molecule.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( AOBasis_constructor ) {
 
-    // Check if we can construct an AOBasis object
+    // Check if we can construct an ScalarBasis<GTOShell> object
     auto water = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
-    GQCP::AOBasis basis (water, "STO-3G");
+    GQCP::ScalarBasis<GQCP::GTOShell> basis (water, "STO-3G");
 }
 
 
@@ -35,7 +35,7 @@ BOOST_AUTO_TEST_CASE ( numberOfBasisFunctions ) {
 
     // Check the number of basis functions in water
     auto water = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
-    GQCP::AOBasis basis (water, "STO-3G");
+    GQCP::ScalarBasis<GQCP::GTOShell> basis (water, "STO-3G");
 
     BOOST_CHECK_EQUAL(basis.numberOfBasisFunctions(), 7);
 }
@@ -48,7 +48,7 @@ BOOST_AUTO_TEST_CASE( Szabo_integrals_h2_sto3g ) {
 
     // In Szabo, section 3.5.2, we read that the internuclear distance R = 1.4 a.u. = 0.740848 Angstrom
     const auto h2 = GQCP::Molecule::ReadXYZ("data/h2_szabo.xyz");
-    const GQCP::AOBasis ao_basis (h2, "STO-3G");
+    const GQCP::ScalarBasis<GQCP::GTOShell> ao_basis (h2, "STO-3G");
     BOOST_CHECK_EQUAL(ao_basis.numberOfBasisFunctions(), 2);
 
 
@@ -98,7 +98,7 @@ BOOST_AUTO_TEST_CASE( HORTON_integrals_h2o_sto3g ) {
 
     // Set up an AO basis
     const auto water = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
-    const GQCP::AOBasis ao_basis (water, "STO-3G");
+    const GQCP::ScalarBasis<GQCP::GTOShell> ao_basis (water, "STO-3G");
     const auto nbf = ao_basis.numberOfBasisFunctions();
 
 
@@ -128,7 +128,7 @@ BOOST_AUTO_TEST_CASE( HORTON_integrals_h2o_sto3g ) {
 BOOST_AUTO_TEST_CASE ( libcint_vs_libint2_H2O_STO_3G ) {
 
     auto water = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
-    GQCP::AOBasis ao_basis (water, "STO-3G");
+    GQCP::ScalarBasis<GQCP::GTOShell> ao_basis (water, "STO-3G");
 
     const auto S_libcint = ao_basis.calculateLibcintOverlapIntegrals();
     const auto T_libcint = ao_basis.calculateLibcintKineticIntegrals();
@@ -155,7 +155,7 @@ BOOST_AUTO_TEST_CASE ( libcint_vs_libint2_H2O_STO_3G ) {
 BOOST_AUTO_TEST_CASE ( libcint_vs_libint2_dipole_origin ) {
 
     auto water = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
-    GQCP::AOBasis ao_basis (water, "STO-3G");
+    GQCP::ScalarBasis<GQCP::GTOShell> ao_basis (water, "STO-3G");
 
     GQCP::Vector<double, 3> origin;
     origin << 0.0, 1.0, -0.5;
@@ -176,7 +176,7 @@ BOOST_AUTO_TEST_CASE ( dissociatedMoleculeBasis ) {
     auto O = GQCP::Nucleus(8, -3.5, 0, 0);
     std::vector<GQCP::Nucleus> nuclei {N,O};
     auto NO = GQCP::Molecule(nuclei, +1);
-    GQCP::AOBasis basis (NO, "STO-3G");
+    GQCP::ScalarBasis<GQCP::GTOShell> basis (NO, "STO-3G");
 
-    BOOST_CHECK_NO_THROW(GQCP::AOBasis basis (NO, "STO-3G"));
+    BOOST_CHECK_NO_THROW(GQCP::ScalarBasis<GQCP::GTOShell> basis (NO, "STO-3G"));
 }

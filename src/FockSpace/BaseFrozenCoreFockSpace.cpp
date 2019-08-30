@@ -329,7 +329,7 @@ HamiltonianParameters<double> BaseFrozenCoreFockSpace::freezeOperator(const Hami
     ScalarSQOneElectronOperator<double> S = BaseFrozenCoreFockSpace::freezeOperator(ham_par.get_S(), X);  // active
     ScalarSQOneElectronOperator<double> h = BaseFrozenCoreFockSpace::freezeOperator(ham_par.get_h(), X) + frozen_components_g.one_op;  // active
 
-    std::shared_ptr<AOBasis> ao_basis;  // nullptr
+    std::shared_ptr<ScalarBasis<GTOShell>> ao_basis;  // nullptr
     ScalarSQTwoElectronOperator<double> g = frozen_components_g.two_op;
     SquareMatrix<double> T = ham_par.get_T_total().block(X, X, K_active, K_active);
 

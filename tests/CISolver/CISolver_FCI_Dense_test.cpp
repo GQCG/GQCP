@@ -142,9 +142,9 @@ BOOST_AUTO_TEST_CASE ( FCI_He_Cristina_dense ) {
     // Cristina's He FCI energy
     double reference_fci_energy = -2.902533599;
 
-    // Create a Molecule and an AOBasis
+    // Create a Molecule and an ScalarBasis<GTOShell>
     GQCP::Molecule he ("data/h2o_Psi4_GAMESS.xyz");
-    auto ao_basis = std::make_shared<GQCP::AOBasis>(he, "aug-cc-pVQZ");
+    auto ao_basis = std::make_shared<GQCP::ScalarBasis<GTOShell>>(he, "aug-cc-pVQZ");
 
     // Create the molecular Hamiltonian parameters for this molecule and basis
     auto mol_ham_par = GQCP::constructMolecularHamiltonianParameters(ao_basis);

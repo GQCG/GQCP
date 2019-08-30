@@ -70,7 +70,7 @@ public:
      *  @param C            a transformation matrix between the current molecular orbitals and the atomic orbitals
      *  @param scalar       the scalar interaction term
      */
-    HamiltonianParameters(std::shared_ptr<AOBasis> ao_basis, const ScalarSQOneElectronOperator<Scalar>& S, const ScalarSQOneElectronOperator<Scalar>& h, const ScalarSQTwoElectronOperator<Scalar>& g, const SquareMatrix<Scalar>& C, double scalar=0.0) :
+    HamiltonianParameters(std::shared_ptr<ScalarBasis<GTOShell>> ao_basis, const ScalarSQOneElectronOperator<Scalar>& S, const ScalarSQOneElectronOperator<Scalar>& h, const ScalarSQTwoElectronOperator<Scalar>& g, const SquareMatrix<Scalar>& C, double scalar=0.0) :
         BaseHamiltonianParameters(std::move(ao_basis), scalar),
         K (S.get_dim()),
         S (S),
@@ -79,7 +79,7 @@ public:
         T_total (C)
     {
         // Check if the dimensions of all matrix representations are compatible
-        auto error = std::invalid_argument("HamiltonianParameters::HamiltonianParameters(std::shared_ptr<AOBasis>, ScalarSQOneElectronOperator<Scalar>, ScalarSQOneElectronOperator<Scalar>, ScalarSQTwoElectronOperator<Scalar>,SquareMatrix<Scalar>, double): The dimensions of the operators and coefficient matrix are incompatible.");
+        auto error = std::invalid_argument("HamiltonianParameters::HamiltonianParameters(std::shared_ptr<ScalarBasis<GTOShell>>, ScalarSQOneElectronOperator<Scalar>, ScalarSQOneElectronOperator<Scalar>, ScalarSQTwoElectronOperator<Scalar>,SquareMatrix<Scalar>, double): The dimensions of the operators and coefficient matrix are incompatible.");
 
         if (this->ao_basis) {  // ao_basis is not nullptr
             if (this->K != this->ao_basis->numberOfBasisFunctions()) {
@@ -93,7 +93,7 @@ public:
 
 
         if (S.parameters().isZero(1.0e-08)) {
-            throw std::invalid_argument("HamiltonianParameters::HamiltonianParameters(std::shared_ptr<AOBasis>, ScalarSQOneElectronOperator<Scalar>, ScalarSQOneElectronOperator<Scalar>, ScalarSQTwoElectronOperator<Scalar>,SquareMatrix<Scalar>, double): The underlying overlap matrix cannot be a zero matrix.");
+            throw std::invalid_argument("HamiltonianParameters::HamiltonianParameters(std::shared_ptr<ScalarBasis<GTOShell>>, ScalarSQOneElectronOperator<Scalar>, ScalarSQOneElectronOperator<Scalar>, ScalarSQTwoElectronOperator<Scalar>,SquareMatrix<Scalar>, double): The underlying overlap matrix cannot be a zero matrix.");
         }
     }
 
@@ -135,7 +135,7 @@ public:
      *  Note that this named constructor is only available for real matrix representations
      */
     template <typename Z = Scalar>
-    static enable_if_t<std::is_same<Z, double>::value, HamiltonianParameters<double>> Molecular(std::shared_ptr<AOBasis> ao_basis, double scalar=0.0) {
+    static enable_if_t<std::is_same<Z, double>::value, HamiltonianParameters<double>> Molecular(std::shared_ptr<ScalarBasis<GTOShell>> ao_basis, double scalar=0.0) {
 
         // Calculate the integrals for the molecular Hamiltonian
         const ScalarSQOneElectronOperator<Z> S ({ao_basis->calculateLibintOverlapIntegrals()});
@@ -174,7 +174,7 @@ public:
     template<typename Z = Scalar>
     static enable_if_t<std::is_same<Z, double>::value, HamiltonianParameters<double>> Molecular(const Molecule& molecule, const std::string& basisset) {
 
-        auto ao_basis = std::make_shared<AOBasis>(molecule, basisset);
+        auto ao_basis = std::make_shared<ScalarBasis<GTOShell>>(molecule, basisset);
 
         const double internuclear_repulsion_energy = Operator::NuclearRepulsion(molecule).value();
         return HamiltonianParameters::Molecular(ao_basis, internuclear_repulsion_energy);
@@ -213,7 +213,7 @@ public:
             }
         }
 
-        std::shared_ptr<AOBasis> ao_basis;  // nullptr because it doesn't make sense to set an AOBasis
+        std::shared_ptr<ScalarBasis<GTOShell>> ao_basis;  // nullptr because it doesn't make sense to set a scalar basis
 
 
         // Get a random scalar
@@ -325,7 +325,7 @@ public:
 
 
         // Make the ingredients to construct HamiltonianParameters
-        std::shared_ptr<AOBasis> ao_basis;  // nullptr
+        std::shared_ptr<ScalarBasis<GTOShell>> ao_basis;  // nullptr
         ScalarSQOneElectronOperator<Scalar> S ({ChemicalMatrix<double>::Identity(K, K)});
         SquareMatrix<double> C = SquareMatrix<double>::Identity(K, K);
 
@@ -363,7 +363,7 @@ public:
 
 
         // Make the ingredients to construct HamiltonianParameters
-        std::shared_ptr<AOBasis> ao_basis;  // nullptr
+        std::shared_ptr<ScalarBasis<GTOShell>> ao_basis;  // nullptr
         ScalarSQOneElectronOperator<double> S ({ChemicalMatrix<double>::Identity(K, K)});
         SquareMatrix<double> C = SquareMatrix<double>::Identity(K, K);
 

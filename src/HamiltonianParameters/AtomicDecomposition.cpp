@@ -66,7 +66,7 @@ AtomicDecompositionParameters::AtomicDecompositionParameters (const HamiltonianP
 AtomicDecompositionParameters AtomicDecompositionParameters::Nuclear(const Molecule& molecule, const std::string& basisset_name) {
 
     const auto& atoms = molecule.nuclearFramework().nucleiAsVector();
-    auto ao_basis = std::make_shared<AOBasis>(molecule, basisset_name);
+    auto ao_basis = std::make_shared<ScalarBasis<GTOShell>>(molecule, basisset_name);
 
     auto K = ao_basis->numberOfBasisFunctions();
     SquareMatrix<double> T_total = SquareMatrix<double>::Identity(K, K);
@@ -76,8 +76,8 @@ AtomicDecompositionParameters AtomicDecompositionParameters::Nuclear(const Molec
     }
 
     // Retrieve the AObasis for the individual atoms so that we can retrieve net atomic nuclear integrals.
-    AOBasis ao_basis_a ({{atoms[0]}}, basisset_name);
-    AOBasis ao_basis_b ({{atoms[1]}}, basisset_name);
+    ScalarBasis<GTOShell> ao_basis_a ({{atoms[0]}}, basisset_name);
+    ScalarBasis<GTOShell> ao_basis_b ({{atoms[1]}}, basisset_name);
 
     ChemicalMatrix<double> V_a = ao_basis_a.calculateLibintNuclearIntegrals();
     ChemicalMatrix<double> V_b = ao_basis_b.calculateLibintNuclearIntegrals();

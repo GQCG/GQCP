@@ -38,6 +38,7 @@ template <typename _ShellType>
 class ShellSet {
 public:
     using ShellType = _ShellType;  // the type of shell that is contained in this set
+    using BasisFunction = typename ShellType::BasisFunction;  // the type of basis function that the shell can produce
 
 
 private:
@@ -206,6 +207,14 @@ public:
         for (auto& shell : this->shells) {
             shell.embedNormalizationFactor();
         }
+    }
+
+    /**
+     *  @return the basis functions that 'are' in this shell
+     */
+    std::vector<LinearCombination<double, BasisFunction>> basisFunctions() const {
+
+        throw std::runtime_error("ShellSet::basisFunctions(): This method has not been implemented yet.");
     }
 };
 

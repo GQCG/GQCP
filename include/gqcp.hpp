@@ -17,12 +17,13 @@
 // 
 #pragma once
 
-#include "Basis/AOBasis.hpp"
 #include "Basis/CartesianExponents.hpp"
 #include "Basis/CartesianGTO.hpp"
 #include "Basis/GTOBasisSet.hpp"
 #include "Basis/GTOShell.hpp"
+#include "Basis/ScalarBasis.hpp"
 #include "Basis/ShellSet.hpp"
+#include "Basis/SPBasis.hpp"
 
 #include "Basis/Integrals/BaseOneElectronIntegralBuffer.hpp"
 #include "Basis/Integrals/BaseOneElectronIntegralEngine.hpp"
