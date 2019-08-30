@@ -66,7 +66,7 @@ public:
 
 
     /**
-     *  Construct an scalar basis by placing shells corresponding to the basisset specification on every nucleus of the molecule
+     *  Construct a scalar basis by placing shells corresponding to the basisset specification on every nucleus of the molecule
      *
      *  @param molecule             the molecule containing the nuclei on which the shells should be centered
      *  @param basisset_name        the name of the basisset, e.g. "STO-3G"
