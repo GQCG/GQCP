@@ -23,7 +23,7 @@
 #include "Molecule/Molecule.hpp"
 
 
-BOOST_AUTO_TEST_CASE ( AOBasis_constructor ) {
+BOOST_AUTO_TEST_CASE ( Scalar_basis_constructor ) {
 
     // Check if we can construct an ScalarBasis<GTOShell> object
     auto water = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
