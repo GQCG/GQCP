@@ -32,7 +32,7 @@ static void fci_davidson_hchain(benchmark::State& state) {
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 
-    mol_ham_par.basisTransform(rhf.get_C());
+    mol_ham_par.transform(rhf.get_C());
     GQCP::ProductFockSpace fock_space (K, N_P, N_P);
     GQCP::FCI fci (fock_space);
 
@@ -72,7 +72,7 @@ static void fci_dense_hchain(benchmark::State& state) {
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 
-    mol_ham_par.basisTransform(rhf.get_C());
+    mol_ham_par.transform(rhf.get_C());
     GQCP::ProductFockSpace fock_space (K, N_P, N_P);
     GQCP::FCI fci (fock_space);
 

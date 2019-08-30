@@ -97,17 +97,19 @@ BOOST_AUTO_TEST_CASE ( FromTriangle ) {
     BOOST_CHECK(H_ref.isApprox(GQCP::SquareMatrix<double>::FullFromTriangle(upper_triangle)));
 }
 
-
+/**
+ *  Check the construction of Jacobi rotation matrices from JacobiRotationParameters
+ */
 BOOST_AUTO_TEST_CASE ( FromJacobi ) {
 
    // A random Jacobi matrix is unitary
    BOOST_CHECK(GQCP::SquareMatrix<double>::FromJacobi(GQCP::JacobiRotationParameters(7, 4, 6.9921), 10).isUnitary());
    BOOST_CHECK(GQCP::SquareMatrix<double>::FromJacobi(GQCP::JacobiRotationParameters(9, 1, 78.00166), 22).isUnitary());
 
-   // Let's see if we can construct the easiest Jacobi matrix, one with theta = pi/2 and dimension 2
-   // cos(pi/2) = 0, sin(pi/2) = 1
-   auto pi = boost::math::constants::half_pi<double>();
-   auto J = GQCP::SquareMatrix<double>::FromJacobi(GQCP::JacobiRotationParameters(1, 0, pi), 2);
+
+   // Check the cos, sin, -sin, cos convention. Since p>q, this means we should end up with cos, -sin, sin, cos in the Jacobi rotation matrix
+   const auto half_pi = boost::math::constants::half_pi<double>();
+   const auto J = GQCP::SquareMatrix<double>::FromJacobi(GQCP::JacobiRotationParameters(1, 0, half_pi), 2);
 
    BOOST_CHECK(std::abs(J(0,0) - 0) < 1.0e-12);
    BOOST_CHECK(std::abs(J(0,1) - (-1)) < 1.0e-12);

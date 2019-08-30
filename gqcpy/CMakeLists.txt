@@ -8,13 +8,14 @@ add_subdirectory(PyClasses)
 
 set(python_bindings_sources ${python_bindings_sources} PARENT_SCOPE)
 
+
 # Configure tests
-set(test_python)
+set(python_test_target_sources)
 add_subdirectory(tests)
 
 file(COPY tests/data DESTINATION ${CMAKE_BINARY_DIR}/gqcpy/tests)  # copy the necessary data files to the out-of-source build directory
 
-foreach(TEST_SOURCE ${test_python})
+foreach(TEST_SOURCE ${python_test_target_sources})
     # Extract the filename 
     get_filename_component(TEST_NAME ${TEST_SOURCE} NAME)
 
@@ -24,5 +25,4 @@ foreach(TEST_SOURCE ${test_python})
     # Add test as python run command
     add_test(NAME ${TEST_NAME} COMMAND Python3::Interpreter -m unittest ${CMAKE_BINARY_DIR}/gqcpy/tests/${TEST_NAME}
             WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/gqcpy/tests)
-
 endforeach()

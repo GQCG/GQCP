@@ -24,44 +24,94 @@
 #include <boost/math/constants/constants.hpp>
 
 
+/**
+ *  Check the constructor API for ChemicalMatrix
+ */
 BOOST_AUTO_TEST_CASE ( constructor ) {
 
-    auto M1 = GQCP::ChemicalMatrix<double>::Zero(2, 2);
-    BOOST_CHECK_NO_THROW(GQCP::ChemicalMatrix<double> square_M1 (M1));
+    const GQCP::ChemicalMatrix<double> M1 = GQCP::ChemicalMatrix<double>::Zero(2, 2);
+    BOOST_CHECK_NO_THROW(GQCP::ChemicalMatrix<double> chemical_matrix (M1));
 
-    auto M2 = GQCP::ChemicalMatrix<double>::Zero(2, 1);
-    BOOST_CHECK_THROW(GQCP::ChemicalMatrix<double> square_M2 (M2), std::invalid_argument);
+    const GQCP::MatrixX<double> M2 = GQCP::MatrixX<double>::Zero(2, 1);
+    BOOST_CHECK_THROW(GQCP::ChemicalMatrix<double> chemical_matrix (M2), std::invalid_argument);
 }
 
 
+/**
+ *  Check the basis transformation formula with a trivial transformation: T being a unit matrix
+ */
 BOOST_AUTO_TEST_CASE ( ChemicalMatrix_transform_trivial ) {
 
-    // Let's test a trivial transformation: i.e. with T being a unit matrix
+    const GQCP::ChemicalMatrix<double> T = GQCP::ChemicalMatrix<double>::Identity(3, 3);
+
     GQCP::ChemicalMatrix<double> h = GQCP::ChemicalMatrix<double>::Random(3, 3);
-    GQCP::ChemicalMatrix<double> H = h;
+    const GQCP::ChemicalMatrix<double> h_copy = h;
+    h.basisTransformInPlace(T);
 
-    GQCP::ChemicalMatrix<double> T = GQCP::ChemicalMatrix<double>::Identity(3, 3);
-    H.basisTransform(T);
-
-    BOOST_CHECK(H.isApprox(h, 1.0e-12));
+    BOOST_CHECK(h_copy.isApprox(h, 1.0e-12));
 }
 
 
+/**
+ *  Check if we transform with a transformation matrix and its inverse, we get a zero operation
+ */
 BOOST_AUTO_TEST_CASE ( ChemicalMatrix_transform_and_inverse ) {
 
-    // Let's test if, if we transform h with T and then with T_inverse, we get effectively do nothing
-    GQCP::ChemicalMatrix<double> h = GQCP::ChemicalMatrix<double>::Random(3, 3);
-    GQCP::ChemicalMatrix<double> H = h;
-
     GQCP::ChemicalMatrix<double> T (3);
-    T <<    1,  0,  0,
-            0, -2,  0,
-            0,  0,  3;
-    GQCP::ChemicalMatrix<double> T_inverse = T.inverse();
+    T << 1,  0,  0,
+         0, -2,  0,
+         0,  0,  3;
+    const GQCP::ChemicalMatrix<double> T_inverse = T.inverse();
 
 
-    H.basisTransform(T);
-    H.basisTransform(T_inverse);
+    GQCP::ChemicalMatrix<double> h = GQCP::ChemicalMatrix<double>::Random(3, 3);
+    GQCP::ChemicalMatrix<double> h_copy = h;
+    h.basisTransformInPlace(T);
+    h.basisTransformInPlace(T_inverse);
 
-    BOOST_CHECK(H.isApprox(h, 1.0e-12));
+    BOOST_CHECK(h.isApprox(h_copy, 1.0e-12));
+}
+
+
+/**
+ *  Check if we can't rotate with a unitary matrix
+ */
+BOOST_AUTO_TEST_CASE ( ChemicalMatrix_rotate_throws ) {
+
+    // Create a random ChemicalMatrix
+    size_t dim = 3;
+    GQCP::ChemicalMatrix<double> M = GQCP::ChemicalMatrix<double>::Random(dim, dim);
+
+
+    // Check if a non-unitary matrix as transformation matrix causes a throw
+    const GQCP::SquareMatrix<double> T = GQCP::SquareMatrix<double>::Random(dim, dim);
+    BOOST_CHECK_THROW(M.basisRotateInPlace(T), std::invalid_argument);
+
+
+    // Check if a unitary matrix as transformation matrix is accepted
+    const GQCP::SquareMatrix<double> U= GQCP::SquareMatrix<double>::Identity(dim, dim);
+    M.basisRotateInPlace(U);
+}
+
+
+/**
+ *  Check if rotating with JacobiRotationParameters is the same as with the corresponding Jacobi rotation matrix
+ */
+BOOST_AUTO_TEST_CASE ( SQOneElectronOperator_rotate_JacobiRotationParameters ) {
+
+    // Create a random ChemicalMatrix
+    const size_t dim = 5;
+    GQCP::ChemicalMatrix<double> M1 = GQCP::ChemicalMatrix<double>::Random(dim, dim);
+    auto M2 = M1;
+
+    // Create random Jacobi rotation parameters and the corresponding Jacobi rotation matrix
+    GQCP::JacobiRotationParameters jacobi_rotation_parameters (4, 2, 56.81);
+    const auto J = GQCP::SquareMatrix<double>::FromJacobi(jacobi_rotation_parameters, dim);
+
+
+    // Rotate and check the result
+    M1.basisRotateInPlace(jacobi_rotation_parameters);
+    M2.basisRotateInPlace(J);
+
+    BOOST_CHECK(M1.isApprox(M2, 1.0e-12));
 }

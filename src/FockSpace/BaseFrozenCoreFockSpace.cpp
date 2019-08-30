@@ -49,10 +49,10 @@ BaseFrozenCoreFockSpace::BaseFrozenCoreFockSpace(std::shared_ptr<GQCP::BaseFockS
  *
  *  @return the operator's evaluation in a dense matrix with the dimensions of the Fock space
  */
-SquareMatrix<double> BaseFrozenCoreFockSpace::evaluateOperatorDense(const OneElectronOperator<double>& one_op, bool diagonal_values) const {
+SquareMatrix<double> BaseFrozenCoreFockSpace::evaluateOperatorDense(const ScalarSQOneElectronOperator<double>& one_op, bool diagonal_values) const {
 
     // Freeze Hamiltonian parameters
-    OneElectronOperator<double> frozen_one_op = BaseFrozenCoreFockSpace::freezeOperator(one_op, this->X);
+    ScalarSQOneElectronOperator<double> frozen_one_op = BaseFrozenCoreFockSpace::freezeOperator(one_op, this->X);
 
     // Evaluate the frozen operator in the active space
     auto evaluation = this->active_fock_space->evaluateOperatorDense(frozen_one_op, diagonal_values);
@@ -75,11 +75,10 @@ SquareMatrix<double> BaseFrozenCoreFockSpace::evaluateOperatorDense(const OneEle
  *
  *  @return the operator's evaluation in a sparse matrix with the dimensions of the Fock space
  */
-Eigen::SparseMatrix<double> BaseFrozenCoreFockSpace::evaluateOperatorSparse(const OneElectronOperator<double>& one_op,
-                                                   bool diagonal_values) const {
+Eigen::SparseMatrix<double> BaseFrozenCoreFockSpace::evaluateOperatorSparse(const ScalarSQOneElectronOperator<double>& one_op, bool diagonal_values) const {
 
     // Freeze the operator
-    OneElectronOperator<double> frozen_one_op = BaseFrozenCoreFockSpace::freezeOperator(one_op, this->X);
+    ScalarSQOneElectronOperator<double> frozen_one_op = BaseFrozenCoreFockSpace::freezeOperator(one_op, this->X);
 
     // Evaluate the frozen operator in the active space
     auto evaluation = this->active_fock_space->evaluateOperatorSparse(frozen_one_op, diagonal_values);
@@ -102,7 +101,7 @@ Eigen::SparseMatrix<double> BaseFrozenCoreFockSpace::evaluateOperatorSparse(cons
  *
  *  @return the operator's evaluation in a dense matrix with the dimensions of the Fock space
  */
-SquareMatrix<double> BaseFrozenCoreFockSpace::evaluateOperatorDense(const TwoElectronOperator<double>& two_op, bool diagonal_values) const {
+SquareMatrix<double> BaseFrozenCoreFockSpace::evaluateOperatorDense(const ScalarSQTwoElectronOperator<double>& two_op, bool diagonal_values) const {
 
     // Freeze the operators
     const auto frozen_ops = BaseFrozenCoreFockSpace::freezeOperator(two_op, this->X);
@@ -129,8 +128,7 @@ SquareMatrix<double> BaseFrozenCoreFockSpace::evaluateOperatorDense(const TwoEle
  *
  *  @return the operator's evaluation in a sparse matrix with the dimensions of the Fock space
  */
-Eigen::SparseMatrix<double> BaseFrozenCoreFockSpace::evaluateOperatorSparse(const TwoElectronOperator<double>& two_op,
-                                                   bool diagonal_values) const {
+Eigen::SparseMatrix<double> BaseFrozenCoreFockSpace::evaluateOperatorSparse(const ScalarSQTwoElectronOperator<double>& two_op, bool diagonal_values) const {
 
     // Freeze the operators
     const auto frozen_ops = BaseFrozenCoreFockSpace::freezeOperator(two_op, this->X);
@@ -157,8 +155,7 @@ Eigen::SparseMatrix<double> BaseFrozenCoreFockSpace::evaluateOperatorSparse(cons
  *
  *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the Fock space
  */
-SquareMatrix<double> BaseFrozenCoreFockSpace::evaluateOperatorDense(const HamiltonianParameters<double>& ham_par,
-                                           bool diagonal_values) const  {
+SquareMatrix<double> BaseFrozenCoreFockSpace::evaluateOperatorDense(const HamiltonianParameters<double>& ham_par, bool diagonal_values) const {
     // Freeze the operators
     const auto frozen_ham_par = BaseFrozenCoreFockSpace::freezeOperator(ham_par, this->X);
 
@@ -183,8 +180,8 @@ SquareMatrix<double> BaseFrozenCoreFockSpace::evaluateOperatorDense(const Hamilt
  *
  *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the Fock space
  */
-Eigen::SparseMatrix<double> BaseFrozenCoreFockSpace::evaluateOperatorSparse(const HamiltonianParameters<double>& ham_par,
-                                                   bool diagonal_values) const  {
+Eigen::SparseMatrix<double> BaseFrozenCoreFockSpace::evaluateOperatorSparse(const HamiltonianParameters<double>& ham_par, bool diagonal_values) const {
+
     // Freeze the operators
     const auto frozen_ham_par = BaseFrozenCoreFockSpace::freezeOperator(ham_par, this->X);
 
@@ -208,7 +205,7 @@ Eigen::SparseMatrix<double> BaseFrozenCoreFockSpace::evaluateOperatorSparse(cons
  *
  *  @return the operator's diagonal evaluation in a vector with the dimension of the Fock space
  */
-VectorX<double> BaseFrozenCoreFockSpace::evaluateOperatorDiagonal(const OneElectronOperator<double>& one_op) const {
+VectorX<double> BaseFrozenCoreFockSpace::evaluateOperatorDiagonal(const ScalarSQOneElectronOperator<double>& one_op) const {
 
     const auto frozen_op = BaseFrozenCoreFockSpace::freezeOperator(one_op, this->X);
 
@@ -229,7 +226,7 @@ VectorX<double> BaseFrozenCoreFockSpace::evaluateOperatorDiagonal(const OneElect
  *
  *  @return the operator's diagonal evaluation in a vector with the dimension of the Fock space
  */
-VectorX<double> BaseFrozenCoreFockSpace::evaluateOperatorDiagonal(const TwoElectronOperator<double>& two_op) const {
+VectorX<double> BaseFrozenCoreFockSpace::evaluateOperatorDiagonal(const ScalarSQTwoElectronOperator<double>& two_op) const {
 
     const auto frozen_ops = BaseFrozenCoreFockSpace::freezeOperator(two_op, this->X);
 
@@ -271,10 +268,10 @@ VectorX<double> BaseFrozenCoreFockSpace::evaluateOperatorDiagonal(const Hamilton
  *
  *  @return 'frozen' one-electron operator which cover evaluations from the active and inactive orbitals
  */
-OneElectronOperator<double> BaseFrozenCoreFockSpace::freezeOperator(const OneElectronOperator<double>& one_op, size_t X) {
+ScalarSQOneElectronOperator<double> BaseFrozenCoreFockSpace::freezeOperator(const ScalarSQOneElectronOperator<double>& one_op, size_t X) {
 
-    size_t K_active = one_op.cols() - X;
-    return OneElectronOperator<double>(one_op.block(X, X, K_active, K_active));
+    size_t K_active = one_op.dimension() - X;
+    return ScalarSQOneElectronOperator<double>({one_op.parameters().block(X, X, K_active, K_active)});
 }
 
 
@@ -284,31 +281,32 @@ OneElectronOperator<double> BaseFrozenCoreFockSpace::freezeOperator(const OneEle
  *
  *  @return 'frozen' two-electron operators as a struct of a one- and two-electron operator which cover evaluations from the active and inactive orbitals
  */
-FrozenOperators BaseFrozenCoreFockSpace::freezeOperator(const TwoElectronOperator<double>& two_op, size_t X) {
+FrozenOperators BaseFrozenCoreFockSpace::freezeOperator(const ScalarSQTwoElectronOperator<double>& two_op, size_t X) {
 
-    size_t K_active = two_op.dimension(0) - X;
-    OneElectronOperator<double> frozen_one_op = OneElectronOperator<double>::Zero(K_active, K_active);
-    auto frozen_two_op = TwoElectronOperator<double>::FromBlock(two_op, X, X, X, X);
+    size_t K_active = two_op.dimension() - X;
+    ChemicalMatrix<double> frozen_one_op_par = ChemicalMatrix<double>::Zero(K_active, K_active);
+    const auto& two_op_par = two_op.parameters();
+    const auto frozen_two_op_par = ChemicalRankFourTensor<double>::FromBlock(two_op_par, X, X, X, X);
 
     // Frozen two-electron integrals can be rewritten partially as one electron integrals.
     for (size_t i = 0; i < K_active; i++) {  // iterate over the active orbitals
         size_t q = i + X;  // map active orbitals indexes to total orbital indexes (those including the frozen orbitals)
 
         for (size_t l = 0; l < X; l++) {  // iterate over the frozen orbitals
-            frozen_one_op(i,i) += two_op(q,q,l,l) + two_op(l,l,q,q) - two_op(q,l,l,q)/2 - two_op(l,q,q,l)/2;
+            frozen_one_op_par(i,i) += two_op_par(q,q,l,l) + two_op_par(l,l,q,q) - two_op_par(q,l,l,q)/2 - two_op_par(l,q,q,l)/2;
         }
 
         for (size_t j = i+1; j < K_active; j++) {  // iterate over the active orbitals
             size_t p = j + X;  // map active orbitals indexes to total orbital indexes (those including the frozen orbitals)
 
             for (size_t l = 0; l < X; l++) {  // iterate over the frozen orbitals
-                frozen_one_op(i,j) += two_op(q,p,l,l) + two_op(l,l,q,p) - two_op(q,l,l,p)/2 - two_op(l,p,q,l)/2;
-                frozen_one_op(j,i) += two_op(p,q,l,l) + two_op(l,l,p,q) - two_op(p,l,l,q)/2 - two_op(l,q,p,l)/2;
+                frozen_one_op_par(i,j) += two_op_par(q,p,l,l) + two_op_par(l,l,q,p) - two_op_par(q,l,l,p)/2 - two_op_par(l,p,q,l)/2;
+                frozen_one_op_par(j,i) += two_op_par(p,q,l,l) + two_op_par(l,l,p,q) - two_op_par(p,l,l,q)/2 - two_op_par(l,q,p,l)/2;
             }
         }
     }
 
-    return {frozen_one_op, frozen_two_op};
+    return {ScalarSQOneElectronOperator<double>({frozen_one_op_par}), ScalarSQTwoElectronOperator<double>({frozen_two_op_par})};
 }
 
 
@@ -328,11 +326,11 @@ HamiltonianParameters<double> BaseFrozenCoreFockSpace::freezeOperator(const Hami
     size_t K_active = ham_par.get_K() - X;  // number of non-frozen orbitals
 
     const auto frozen_components_g = BaseFrozenCoreFockSpace::freezeOperator(ham_par.get_g(), X);
-    OneElectronOperator<double> S = BaseFrozenCoreFockSpace::freezeOperator(ham_par.get_S(), X);  // active
-    OneElectronOperator<double> h = BaseFrozenCoreFockSpace::freezeOperator(ham_par.get_h(), X) + frozen_components_g.one_op;  // active
+    ScalarSQOneElectronOperator<double> S = BaseFrozenCoreFockSpace::freezeOperator(ham_par.get_S(), X);  // active
+    ScalarSQOneElectronOperator<double> h = BaseFrozenCoreFockSpace::freezeOperator(ham_par.get_h(), X) + frozen_components_g.one_op;  // active
 
     std::shared_ptr<AOBasis> ao_basis;  // nullptr
-    TwoElectronOperator<double> g = frozen_components_g.two_op;
+    ScalarSQTwoElectronOperator<double> g = frozen_components_g.two_op;
     SquareMatrix<double> T = ham_par.get_T_total().block(X, X, K_active, K_active);
 
     return HamiltonianParameters<double>(ao_basis, S, h, g, T);
@@ -345,12 +343,14 @@ HamiltonianParameters<double> BaseFrozenCoreFockSpace::freezeOperator(const Hami
  *
  *  @return the operator diagonal from strictly evaluating the frozen orbitals in the Fock space
  */
-VectorX<double> BaseFrozenCoreFockSpace::frozenCoreDiagonal(const OneElectronOperator<double>& one_op, size_t X,  size_t dimension) {
+VectorX<double> BaseFrozenCoreFockSpace::frozenCoreDiagonal(const ScalarSQOneElectronOperator<double>& one_op, size_t X, size_t dimension) {
+
+    const auto& one_op_par = one_op.parameters();
 
     // The diagonal value for the frozen orbitals is the same for each ONV
     double value = 0;
     for (size_t i = 0; i < X; i++) {
-        value += 2*one_op(i,i);
+        value += 2 * one_op_par(i,i);
     }
 
     return  VectorX<double>::Constant(dimension, value);
@@ -363,19 +363,21 @@ VectorX<double> BaseFrozenCoreFockSpace::frozenCoreDiagonal(const OneElectronOpe
  *
  *  @return the operator diagonal from strictly evaluating the frozen orbitals in the Fock space
  */
-VectorX<double> BaseFrozenCoreFockSpace::frozenCoreDiagonal(const TwoElectronOperator<double>& two_op, size_t X, size_t dimension) {
+VectorX<double> BaseFrozenCoreFockSpace::frozenCoreDiagonal(const ScalarSQTwoElectronOperator<double>& two_op, size_t X, size_t dimension) {
+
+    const auto& two_op_par = two_op.parameters();
 
     // The diagonal value for the frozen orbitals is the same for each ONV
     double value = 0;
     for (size_t i = 0; i < X; i++) {
-        value += two_op(i,i,i,i);
+        value += two_op_par(i,i,i,i);
 
         for (size_t j = i+1; j < X; j++) {
-            value += 2*two_op(i,i,j,j) + 2*two_op(j,j,i,i) - two_op(j,i,i,j) - two_op(i,j,j,i);
+            value += 2*two_op_par(i,i,j,j) + 2*two_op_par(j,j,i,i) - two_op_par(j,i,i,j) - two_op_par(i,j,j,i);
         }
     }
 
-    return  VectorX<double>::Constant(dimension, value);
+    return VectorX<double>::Constant(dimension, value);
 }
 
 

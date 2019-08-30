@@ -45,18 +45,18 @@ BOOST_AUTO_TEST_CASE ( decomposition_BeH_cation_STO_3G_Nuclear ) {
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 
-    const auto &T = rhf.get_C();
+    const auto& T = rhf.get_C();
 
     // Transform the ham_par
-    mol_ham_par.basisTransform(T);
+    mol_ham_par.transform(T);
 
     // Create the FCI module
-    GQCP::ProductFockSpace fock_space(K, BeH.numberOfElectrons() / 2, BeH.numberOfElectrons() / 2);  // dim = 441
-    GQCP::FCI fci(fock_space);
-    GQCP::CISolver ci_solver(fci, mol_ham_par);
+    GQCP::ProductFockSpace fock_space (K, BeH.numberOfElectrons() / 2, BeH.numberOfElectrons() / 2);  // dim = 441
+    GQCP::FCI fci (fock_space);
+    GQCP::CISolver ci_solver (fci, mol_ham_par);
 
     // Solve Davidson
-    GQCP::DavidsonSolverOptions solver_options(fock_space.HartreeFockExpansion());
+    GQCP::DavidsonSolverOptions solver_options (fock_space.HartreeFockExpansion());
     ci_solver.solve(solver_options);
 
     // Retrieve the eigenpair
@@ -74,13 +74,12 @@ BOOST_AUTO_TEST_CASE ( decomposition_BeH_cation_STO_3G_Nuclear ) {
     GQCP::OneRDM<double> ao_one_rdm = one_rdm;
     GQCP::TwoRDM<double> ao_two_rdm = two_rdm;
 
-    ao_one_rdm.basisTransform<double>(T.adjoint());
-    ao_two_rdm.basisTransform<double>(T.adjoint());
+    ao_one_rdm.basisTransformInPlace(T.adjoint());
+    ao_two_rdm.basisTransformInPlace(T.adjoint());
 
     double self_energy_a = GQCP::calculateExpectationValue(adp.get_net_atomic_parameters()[0], ao_one_rdm, ao_two_rdm);
     double self_energy_b = GQCP::calculateExpectationValue(adp.get_net_atomic_parameters()[1], ao_one_rdm, ao_two_rdm);
-    double interaction_energy_ab = GQCP::calculateExpectationValue(adp.get_interaction_parameters()[0], ao_one_rdm,
-                                                                   ao_two_rdm);
+    double interaction_energy_ab = GQCP::calculateExpectationValue(adp.get_interaction_parameters()[0], ao_one_rdm, ao_two_rdm);
     double total_energy_a = GQCP::calculateExpectationValue(adp.get_atomic_parameters()[0], ao_one_rdm, ao_two_rdm);
     double total_energy_b = GQCP::calculateExpectationValue(adp.get_atomic_parameters()[1], ao_one_rdm, ao_two_rdm);
 

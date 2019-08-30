@@ -66,7 +66,7 @@ void MullikenConstrainedFCI::parseSolution(const std::vector<Eigenpair>& eigenpa
         OneRDM<double> D = this->rdm_calculator.calculate1RDMs().one_rdm;
         TwoRDM<double> d = this->rdm_calculator.calculate2RDMs().two_rdm;
 
-        double population = calculateExpectationValue(mulliken_operator, D);
+        double population = calculateExpectationValue(mulliken_operator, D)[0];
         WaveFunction wavefunction (fock_space, fci_coefficients);
 
         this->energy[i] = pair.get_eigenvalue() + internuclear_repulsion_energy + multiplier * population;
@@ -76,8 +76,8 @@ void MullikenConstrainedFCI::parseSolution(const std::vector<Eigenpair>& eigenpa
 
         if (molecule.numberOfAtoms() == 2) {
             // Transform the RDMs to the atomic orbital basis
-            D.basisTransform<double>(ham_par.get_T_total().adjoint());
-            d.basisTransform<double>(ham_par.get_T_total().adjoint());
+            D.basisTransformInPlace(ham_par.get_T_total().adjoint());
+            d.basisTransformInPlace(ham_par.get_T_total().adjoint());
 
             this->A_fragment_energy[i] = calculateExpectationValue(adp.get_atomic_parameters()[0], D, d);
             this->A_fragment_self_energy[i] = calculateExpectationValue(adp.get_net_atomic_parameters()[0], D, d);
@@ -142,7 +142,7 @@ MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const s
         GQCP::DIISRHFSCFSolver diis_scf_solver (this->ham_par, molecule, 6, 6, 1e-12, 500);
         diis_scf_solver.solve();
         auto rhf_solution = diis_scf_solver.get_solution();
-        this->ham_par.basisTransform(rhf_solution.get_C());
+        this->ham_par.transform(rhf_solution.get_C());
 
     } catch (const std::exception& e) {
         
@@ -175,26 +175,24 @@ MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const s
                 GQCP::SquareMatrix<double> T = Eigen::MatrixXd::Zero(K, K);
                 T.topLeftCorner(K1, K1) += rhf1.get_C();
                 T.bottomRightCorner(K2, K2) += rhf2.get_C();
-                this->ham_par.basisTransform(T);
+                this->ham_par.transform(T);
 
                 // Attempt the DIIS for this basis
                 try {
                     GQCP::DIISRHFSCFSolver diis_scf_solver (this->ham_par, molecule, 6, 6, 1e-12, 500);
                     diis_scf_solver.solve();
                     auto rhf = diis_scf_solver.get_solution();
-                    this->ham_par.basisTransform(rhf.get_C());
+                    this->ham_par.transform(rhf.get_C());
 
                 } catch (const std::exception& e) {
-                    std::cout << "Lodwin Orthonormalized" << std::endl;
                     this->ham_par.LowdinOrthonormalize();
                 }
+
             } catch (const std::exception& e) {    
-                std::cout << "Lodwin Orthonormalized" << std::endl;
                 this->ham_par.LowdinOrthonormalize();
             }
 
         } else {
-            std::cout << "Lodwin Orthonormalized" << std::endl;
             this->ham_par.LowdinOrthonormalize();
         }
 

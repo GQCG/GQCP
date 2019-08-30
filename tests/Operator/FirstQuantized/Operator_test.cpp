@@ -19,7 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "Operator/Operator.hpp"
+#include "Operator/FirstQuantized/Operator.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( NuclearRepulsion_h2 ) {
@@ -44,7 +44,7 @@ BOOST_AUTO_TEST_CASE ( NuclearRepulsion_h2o ) {
     auto water = GQCP::NuclearFramework::ReadXYZ("data/h2o.xyz");
 
     // Test the calculation of the nuclear repulsion energy
-    BOOST_CHECK(std::abs(GQCP::Operator::NuclearRepulsion(h2).value() - ref_internuclear_repulsion_energy) < 1.0e-07);  // reference data from horton
+    BOOST_CHECK(std::abs(GQCP::Operator::NuclearRepulsion(water).value() - ref_internuclear_repulsion_energy) < 1.0e-07);  // reference data from horton
 }
 
 

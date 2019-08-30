@@ -21,10 +21,9 @@
 #include "HamiltonianParameters/BaseHamiltonianParameters.hpp"
 #include "HoppingMatrix.hpp"
 #include "Molecule/Molecule.hpp"
-#include "Operator/BaseOperator.hpp"
-#include "Operator/OneElectronOperator.hpp"
-#include "Operator/TwoElectronOperator.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
+#include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
+#include "Operator/SecondQuantized/SQTwoElectronOperator.hpp"
 #include "OrbitalOptimization/JacobiRotationParameters.hpp"
 #include "RDM/OneRDM.hpp"
 #include "RDM/TwoRDM.hpp"
@@ -42,15 +41,15 @@ namespace GQCP {
  *
  *  @tparam Scalar      the scalar type
  */
-template<typename Scalar>
-class HamiltonianParameters : public BaseHamiltonianParameters, public BaseOperator<HamiltonianParameters<Scalar>> {
+template <typename Scalar>
+class HamiltonianParameters : public BaseHamiltonianParameters {
 private:
     size_t K;  // the number of spatial orbitals
 
-    OneElectronOperator<Scalar> S;  // overlap
+    ScalarSQOneElectronOperator<Scalar> S;  // overlap
 
-    OneElectronOperator<Scalar> h;  // one-electron interactions (i.e. the core Hamiltonian)
-    TwoElectronOperator<Scalar> g;  // two-electron interactions
+    ScalarSQOneElectronOperator<Scalar> h;  // one-electron interactions (i.e. the core Hamiltonian)
+    ScalarSQTwoElectronOperator<Scalar> g;  // two-electron interactions
 
     SquareMatrix<Scalar> T_total;  // total transformation matrix between the current (restricted) molecular orbitals and the atomic orbitals
 
@@ -71,7 +70,7 @@ public:
      *  @param C            a transformation matrix between the current molecular orbitals and the atomic orbitals
      *  @param scalar       the scalar interaction term
      */
-    HamiltonianParameters(std::shared_ptr<AOBasis> ao_basis, const OneElectronOperator<Scalar>& S, const OneElectronOperator<Scalar>& h, const TwoElectronOperator<Scalar>& g, const SquareMatrix<Scalar>& C, double scalar=0.0) :
+    HamiltonianParameters(std::shared_ptr<AOBasis> ao_basis, const ScalarSQOneElectronOperator<Scalar>& S, const ScalarSQOneElectronOperator<Scalar>& h, const ScalarSQTwoElectronOperator<Scalar>& g, const SquareMatrix<Scalar>& C, double scalar=0.0) :
         BaseHamiltonianParameters(std::move(ao_basis), scalar),
         K (S.get_dim()),
         S (S),
@@ -80,7 +79,7 @@ public:
         T_total (C)
     {
         // Check if the dimensions of all matrix representations are compatible
-        auto error = std::invalid_argument("HamiltonianParameters::HamiltonianParameters(std::shared_ptr<AOBasis>, OneElectronOperator<Scalar>, OneElectronOperator<Scalar>, TwoElectronOperator<Scalar>,SquareMatrix<Scalar>, double): The dimensions of the operators and coefficient matrix are incompatible.");
+        auto error = std::invalid_argument("HamiltonianParameters::HamiltonianParameters(std::shared_ptr<AOBasis>, ScalarSQOneElectronOperator<Scalar>, ScalarSQOneElectronOperator<Scalar>, ScalarSQTwoElectronOperator<Scalar>,SquareMatrix<Scalar>, double): The dimensions of the operators and coefficient matrix are incompatible.");
 
         if (this->ao_basis) {  // ao_basis is not nullptr
             if (this->K != this->ao_basis->numberOfBasisFunctions()) {
@@ -93,8 +92,8 @@ public:
         }
 
 
-        if (S.isZero(1.0e-08)) {
-            throw std::invalid_argument("HamiltonianParameters::HamiltonianParameters(std::shared_ptr<AOBasis>, OneElectronOperator<Scalar>, OneElectronOperator<Scalar>, TwoElectronOperator<Scalar>,SquareMatrix<Scalar>, double): The underlying overlap matrix cannot be a zero matrix.");
+        if (S.parameters().isZero(1.0e-08)) {
+            throw std::invalid_argument("HamiltonianParameters::HamiltonianParameters(std::shared_ptr<AOBasis>, ScalarSQOneElectronOperator<Scalar>, ScalarSQOneElectronOperator<Scalar>, ScalarSQTwoElectronOperator<Scalar>,SquareMatrix<Scalar>, double): The underlying overlap matrix cannot be a zero matrix.");
         }
     }
 
@@ -109,7 +108,7 @@ public:
         HamiltonianParameters<Scalar>(ham_par.ao_basis, ham_par.S, ham_par.h, ham_par.g, ham_par.T_total, ham_par.scalar)
     {
         // We have now initialized the new Hamiltonian parameters to be a copy of the given Hamiltonian parameters, so now we will transform
-        this->basisTransform(C);
+        this->transform(C);
     }
 
 
@@ -135,16 +134,16 @@ public:
      *
      *  Note that this named constructor is only available for real matrix representations
      */
-    template<typename Z = Scalar>
+    template <typename Z = Scalar>
     static enable_if_t<std::is_same<Z, double>::value, HamiltonianParameters<double>> Molecular(std::shared_ptr<AOBasis> ao_basis, double scalar=0.0) {
 
         // Calculate the integrals for the molecular Hamiltonian
-        const auto S = ao_basis->calculateLibintOverlapIntegrals();
-        const auto T = ao_basis->calculateLibintKineticIntegrals();
-        const auto V = ao_basis->calculateLibintNuclearIntegrals();
-        OneElectronOperator<double> H = T + V;
+        const ScalarSQOneElectronOperator<Z> S ({ao_basis->calculateLibintOverlapIntegrals()});
+        const ScalarSQOneElectronOperator<Z> T ({ao_basis->calculateLibintKineticIntegrals()});
+        const ScalarSQOneElectronOperator<Z> V ({ao_basis->calculateLibintNuclearIntegrals()});
+        ScalarSQOneElectronOperator<double> H = T + V;
 
-        auto g = ao_basis->calculateLibintCoulombRepulsionIntegrals();
+        const ScalarSQTwoElectronOperator<Z> g ({ao_basis->calculateLibintCoulombRepulsionIntegrals()});
 
 
         // Construct the initial transformation matrix: the identity matrix
@@ -189,16 +188,18 @@ public:
      *
      *  Note that this named constructor is only available for real representations
      */
-    template<typename Z = Scalar>
+    template <typename Z = Scalar>
     static enable_if_t<std::is_same<Z, double>::value, HamiltonianParameters<double>> Random(size_t K) {
-        OneElectronOperator<double> S = OneElectronOperator<double>::Identity(K, K);  // the underlying orbital basis can be chosen as orthonormal, since the form of the underlying orbitals doesn't really matter
+
+
+        ScalarSQOneElectronOperator<double> S ({ChemicalMatrix<double>::Identity(K, K)});  // the underlying orbital basis can be chosen as orthonormal, since the form of the underlying orbitals doesn't really matter
         SquareMatrix<double> C = SquareMatrix<double>::Identity(K, K);  // the transformation matrix C here doesn't really mean anything, because it doesn't link to any AO basis
 
-        OneElectronOperator<double> H = OneElectronOperator<double>::Random(K, K);  // uniformly distributed between [-1,1]
+        ScalarSQOneElectronOperator<double> H ({ChemicalMatrix<double>::Random(K, K)});  // uniformly distributed between [-1,1]
 
 
         // Unfortunately, the Tensor module provides uniform random distributions between [0, 1]
-        TwoElectronOperator<double> g (K);
+        ChemicalRankFourTensor<double> g (K);
         g.setRandom();
 
         // Move the distribution from [0, 1] -> [-1, 1]
@@ -221,7 +222,7 @@ public:
         std::uniform_real_distribution<double> double_distribution (-1.0, 1.0);
         double scalar = double_distribution(random_generator);
 
-        return HamiltonianParameters<double>(ao_basis, S, H, g, C, scalar);
+        return HamiltonianParameters<double>(ao_basis, S, H, ScalarSQTwoElectronOperator<double>({g}), C, scalar);
     }
 
 
@@ -261,8 +262,8 @@ public:
 
 
         double scalar = 0.0;
-        OneElectronOperator<double> h_core = OneElectronOperator<double>::Zero(K, K);
-        TwoElectronOperator<double> g (K);
+        ChemicalMatrix<double> h_core = ChemicalMatrix<double>::Zero(K, K);
+        ChemicalRankFourTensor<double> g (K);
         g.setZero();
 
         //  Skip 3 lines
@@ -325,10 +326,10 @@ public:
 
         // Make the ingredients to construct HamiltonianParameters
         std::shared_ptr<AOBasis> ao_basis;  // nullptr
-        OneElectronOperator<Scalar> S = OneElectronOperator<double>::Identity(K, K);
+        ScalarSQOneElectronOperator<Scalar> S ({ChemicalMatrix<double>::Identity(K, K)});
         SquareMatrix<double> C = SquareMatrix<double>::Identity(K, K);
 
-        return HamiltonianParameters(ao_basis, S, h_core, g, C, scalar);
+        return HamiltonianParameters(ao_basis, S, ScalarSQOneElectronOperator<Scalar>({h_core}), ScalarSQTwoElectronOperator<Scalar>({g}), C, scalar);
     }
 
 
@@ -342,10 +343,10 @@ public:
     template<typename Z = Scalar>
     static enable_if_t<std::is_same<Z, double>::value, HamiltonianParameters<double>> Hubbard(const HoppingMatrix& H) {
 
-        size_t K = H.numberOfLatticeSites();
+        const size_t K = H.numberOfLatticeSites();
 
-        OneElectronOperator<double> h = OneElectronOperator<double>::Zero(K, K);
-        TwoElectronOperator<double> g (K);
+        ChemicalMatrix<double> h = ChemicalMatrix<double>::Zero(K, K);
+        ChemicalRankFourTensor<double> g (K);
         g.setZero();
 
 
@@ -363,10 +364,10 @@ public:
 
         // Make the ingredients to construct HamiltonianParameters
         std::shared_ptr<AOBasis> ao_basis;  // nullptr
-        OneElectronOperator<double> S = OneElectronOperator<double>::Identity(K, K);
+        ScalarSQOneElectronOperator<double> S ({ChemicalMatrix<double>::Identity(K, K)});
         SquareMatrix<double> C = SquareMatrix<double>::Identity(K, K);
 
-        return HamiltonianParameters(ao_basis, S, h, g, C);  // no scalar term
+        return HamiltonianParameters(ao_basis, S, ScalarSQOneElectronOperator<double>({h}), ScalarSQTwoElectronOperator<double>({g}), C);  // no scalar term
     }
 
 
@@ -382,12 +383,13 @@ public:
      *  GETTERS
      */
 
-    const OneElectronOperator<Scalar>& get_S() const { return this->S; }
-    const OneElectronOperator<Scalar>& get_h() const { return this->h; }
-    const TwoElectronOperator<Scalar>& get_g() const { return this->g; }
+    const ScalarSQOneElectronOperator<Scalar>& get_S() const { return this->S; }
+    const ScalarSQOneElectronOperator<Scalar>& get_h() const { return this->h; }
+    const ScalarSQTwoElectronOperator<Scalar>& get_g() const { return this->g; }
     const SquareMatrix<Scalar>& get_T_total() const { return this->T_total; }
     size_t get_K() const { return this->K; }
 
+    size_t dimension() const { return this->K; }
 
 
     /*
@@ -398,7 +400,7 @@ public:
      *  @return if the underlying spatial orbital basis of the Hamiltonian parameters is orthonormal
      */
     bool areOrbitalsOrthonormal() const {
-        return this->S.isApprox(SquareMatrix<Scalar>::Identity(this->K, this->K));
+        return this->S.parameters().isApprox(SquareMatrix<Scalar>::Identity(this->K, this->K));
     }
 
 
@@ -413,19 +415,37 @@ public:
      *      - the overlap matrix S now gives the overlap matrix in the new molecular orbital basis
      *      - the total transformation matrix T_total is updated to reflect the total transformation between the new molecular orbital basis and the initial atomic orbitals
      */
-    template <typename TransformationScalar = Scalar>
-    void basisTransform(const SquareMatrix<TransformationScalar> &T) {
+    void transform(const SquareMatrix<Scalar>& T) {
 
-        this->S.basisTransform(T);
+        this->S.transform(T);
 
-        this->h.basisTransform(T);
-        this->g.basisTransform(T);
+        this->h.transform(T);
+        this->g.transform(T);
 
         this->T_total = this->T_total * T;  // use the correct transformation formula for subsequent transformations
     }
 
 
-    using BaseOperator<HamiltonianParameters<Scalar>>::rotate;  // bring over rotate() from the base class
+    /**
+     *  In-place rotate the matrix representations of Hamiltonian parameters
+     *
+     *  @param U    the unitary rotation matrix between the old and the new orbital basis, it is used as
+     *      b' = b T ,
+     *   in which the basis functions are collected as elements of a row vector b
+     *
+     *  Furthermore
+     *      - the overlap matrix S now gives the overlap matrix in the new molecular orbital basis
+     *      - the total transformation matrix T_total is updated to reflect the total transformation between the new molecular orbital basis and the initial atomic orbitals
+     */
+    void rotate(const SquareMatrix<Scalar>& U) {
+
+        this->S.rotate(U);
+
+        this->h.rotate(U);
+        this->g.rotate(U);
+
+        this->T_total = this->T_total * U;  // use the correct transformation formula for subsequent transformations
+    }
 
 
     /**
@@ -449,7 +469,6 @@ public:
         size_t K = this->h.get_dim();  // number of spatial orbitals
         auto J = SquareMatrix<double>::FromJacobi(jacobi_rotation_parameters, K);
         this->T_total = this->T_total * J;
-
     }
 
 
@@ -477,8 +496,8 @@ public:
     void LowdinOrthonormalize() {
 
         // The transformation matrix to the Löwdin basis is T = S^{-1/2}
-        Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes (this->S);  // can we use this->S?
-        this->basisTransform(SquareMatrix<double>(saes.operatorInverseSqrt()));
+        Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes (this->S.parameters());
+        this->transform(SquareMatrix<double>(saes.operatorInverseSqrt()));
     }
 
 
@@ -497,11 +516,12 @@ public:
     template<typename Z = Scalar>
     enable_if_t<std::is_same<Z, double>::value, double> calculateEdmistonRuedenbergLocalizationIndex(size_t N_P) const {
 
-        double localization_index = 0.0;
+        const auto& g_par = this->g.parameters();
 
         // TODO: when Eigen releases TensorTrace, use it here
+        double localization_index = 0.0;
         for (size_t i = 0; i < N_P; i++) {
-            localization_index += this->g(i,i,i,i);
+            localization_index += g_par(i,i,i,i);
         }
 
         return localization_index;
@@ -519,41 +539,9 @@ public:
      *
      *  @return the (generalized) Fockian matrix
      */
-    OneElectronOperator<Scalar> calculateFockianMatrix(const OneRDM<double>& D, const TwoRDM<double>& d) const {
+    SquareMatrix<Scalar> calculateFockianMatrix(const OneRDM<double>& D, const TwoRDM<double>& d) const {
 
-        // Check if dimensions are compatible
-        if (D.cols() != this->K) {
-            throw std::invalid_argument("HamiltonianParameters::calculateFockianMatrix(OneRDM<double>, TwoRDM<double>): The 1-RDM is not compatible with the HamiltonianParameters.");
-        }
-
-        if (d.dimension(0) != this->K) {
-            throw std::invalid_argument("HamiltonianParameters::calculateFockianMatrix(OneRDM<double>, TwoRDM<double>): The 2-RDM is not compatible with the HamiltonianParameters.");
-        }
-
-
-        // A KISS implementation of the calculation of the generalized Fock matrix F
-        OneElectronOperator<Scalar> F = OneElectronOperator<Scalar>::Zero(this->K, this->K);
-        for (size_t p = 0; p < this->K; p++) {
-            for (size_t q = 0; q < this->K; q++) {
-
-                // One-electron part
-                for (size_t r = 0; r < this->K; r++) {
-                    F(p,q) += h(q,r) * (D(p,r) + D(r,p));
-                }
-
-                // Two-electron part
-                for (size_t r = 0; r < this->K; r++) {
-                    for (size_t s = 0; s < this->K; s++) {
-                        for (size_t t = 0; t < this->K; t++) {
-                            F(p,q) += g(q,r,s,t) * (d(p,r,s,t) + d(r,p,s,t));
-                        }
-                    }
-                }
-
-            }
-        }  // F elements loop
-
-        return 0.5 * F;
+        return this->h.calculateFockianMatrix(D, d)[0] + this->g.calculateFockianMatrix(D, d)[0];  // HamiltonianParameters are a combination of scalar parameters
     }
 
 
@@ -565,7 +553,7 @@ public:
      *  Note that this method is only available for real matrix representations
      */
     template<typename Z = Scalar>
-    enable_if_t<std::is_same<Z, double>::value, OneElectronOperator<double>> calculateMullikenOperator(const Vectoru& ao_list) const {
+    enable_if_t<std::is_same<Z, double>::value, ScalarSQOneElectronOperator<double>> calculateMullikenOperator(const Vectoru& ao_list) const {
 
         if (!this->get_ao_basis()) {
             throw std::invalid_argument("HamiltonianParameters::calculateMullikenOperator(Vectoru): The Hamiltonian parameters have no underlying AO basis, Mulliken analysis is not possible.");
@@ -578,11 +566,11 @@ public:
         // Create the partitioning matrix
         SquareMatrix<double> p_a = SquareMatrix<double>::PartitionMatrix(ao_list, this->K);
 
-        OneElectronOperator<Scalar> S_AO = this->S;
+        ScalarSQOneElectronOperator<Scalar> S_AO = this->S;
         SquareMatrix<double> T_inverse = T_total.inverse();
-        S_AO.basisTransform(T_inverse);
+        S_AO.transform(T_inverse);
 
-        OneElectronOperator<double> mulliken_matrix = (T_total.adjoint() * p_a * S_AO * T_total + T_total.adjoint() * S_AO * p_a * T_total)/2 ;
+        ScalarSQOneElectronOperator<double> mulliken_matrix ({ (T_total.adjoint() * p_a * S_AO.parameters() * T_total + T_total.adjoint() * S_AO.parameters() * p_a * T_total)/2 });
 
         return mulliken_matrix;
     }
@@ -591,7 +579,7 @@ public:
     /**
      *  @return the effective one-electron integrals
      */
-    OneElectronOperator<Scalar> calculateEffectiveOneElectronIntegrals() const {
+    ScalarSQOneElectronOperator<Scalar> calculateEffectiveOneElectronIntegrals() const {
 
         return this->h + this->g.effectiveOneElectronPartition();
     }
@@ -608,50 +596,9 @@ public:
      *
      *  @return the (generalized) super-Fockian matrix
      */
-    TwoElectronOperator<Scalar> calculateSuperFockianMatrix(const OneRDM<double>& D, const TwoRDM<double>& d) const {
+    SquareRankFourTensor<Scalar> calculateSuperFockianMatrix(const OneRDM<double>& D, const TwoRDM<double>& d) const {
 
-        // Check if dimensions are compatible
-        if (D.cols() != this->K) {
-            throw std::invalid_argument("HamiltonianParameters::calculateFockianMatrix(OneRDM<double>, TwoRDM<double>): The 1-RDM is not compatible with the HamiltonianParameters.");
-        }
-
-        if (d.dimension(0) != this->K) {
-            throw std::invalid_argument("HamiltonianParameters::calculateFockianMatrix(OneRDM<double>, TwoRDM<double>): The 2-RDM is not compatible with the HamiltonianParameters.");
-        }
-
-
-        // We have to calculate the Fockian matrix first
-        OneElectronOperator<Scalar> F = this->calculateFockianMatrix(D, d);
-
-        // A KISS implementation of the calculation of the super Fockian matrix
-        TwoElectronOperator<Scalar> G (this->K);
-        G.setZero();
-        for (size_t p = 0; p < this->K; p++) {
-            for (size_t q = 0; q < this->K; q++) {
-                for (size_t r = 0; r < this->K; r++) {
-                    for (size_t s = 0; s < this->K; s++) {
-
-                        // Generalized Fock matrix part
-                        if (q == r) {
-                            G(p,q,r,s) += 2 * F(p,s);
-                        }
-
-                        // One-electron part
-                        G(p,q,r,s) -= this->h(s,p) * (D(r,q) + D(q,r));
-
-                        // Two-electron part
-                        for (size_t t = 0; t < this->K; t++) {
-                            for (size_t u = 0; u < this->K; u++) {
-                                G(p,q,r,s) += this->g(s,t,q,u) * (d(r,t,p,u) + d(t,r,u,p)) - this->g(s,t,u,p) * (d(r,t,u,q) + d(t,r,q,u)) - this->g(s,p,t,u) * (d(r,q,t,u) + d(q,r,u,t));
-                            }
-                        }  // two-electron part
-                    }
-                }
-            }
-        }  // W elements loop
-
-
-        return 0.5 * G;
+        return this->h.calculateSuperFockianMatrix(D, d)[0].Eigen() + this->g.calculateSuperFockianMatrix(D, d)[0].Eigen();  // HamiltonianParameters are ScalarSQOperators
     }
 
 
@@ -671,10 +618,10 @@ public:
      *  Note that this method is only available for real matrix representations
      */
     template<typename Z = Scalar>
-    enable_if_t<std::is_same<Z, double>::value, HamiltonianParameters<double>> constrain(const OneElectronOperator<double>& one_op, const TwoElectronOperator<double>& two_op, double lambda) const {
+    enable_if_t<std::is_same<Z, double>::value, HamiltonianParameters<double>> constrain(const ScalarSQOneElectronOperator<double>& one_op, const ScalarSQTwoElectronOperator<double>& two_op, double lambda) const {
 
-        OneElectronOperator<double> h_constrained (this->h - lambda*one_op);
-        TwoElectronOperator<double> g_constrained (this->g - lambda*two_op);
+        ScalarSQOneElectronOperator<double> h_constrained (this->h - lambda*one_op);
+        ScalarSQTwoElectronOperator<double> g_constrained (this->g - lambda*two_op);
 
         return HamiltonianParameters(this->ao_basis, this->S, h_constrained, g_constrained, this->T_total);
     }
@@ -691,9 +638,9 @@ public:
      *  Note that this method is only available for real matrix representations
      */
     template<typename Z = Scalar>
-    enable_if_t<std::is_same<Z, double>::value, HamiltonianParameters<double>> constrain(const OneElectronOperator<double>& one_op, double lambda) const {
+    enable_if_t<std::is_same<Z, double>::value, HamiltonianParameters<double>> constrain(const ScalarSQOneElectronOperator<double>& one_op, double lambda) const {
 
-        OneElectronOperator<double> h_constrained (this->h - lambda*one_op);
+        ScalarSQOneElectronOperator<double> h_constrained (this->h - lambda*one_op);
 
         return HamiltonianParameters(this->ao_basis, this->S, h_constrained, this->g, this->T_total);
     }
@@ -710,9 +657,9 @@ public:
      *  Note that this method is only available for real matrix representations
      */
     template<typename Z = Scalar>
-    enable_if_t<std::is_same<Z, double>::value, HamiltonianParameters<double>> constrain(const TwoElectronOperator<double>& two_op, double lambda) const {
+    enable_if_t<std::is_same<Z, double>::value, HamiltonianParameters<double>> constrain(const ScalarSQTwoElectronOperator<double>& two_op, double lambda) const {
 
-        TwoElectronOperator<double> g_constrained (this->g - lambda*two_op);
+        ScalarSQTwoElectronOperator<double> g_constrained (this->g - lambda*two_op);
 
         return HamiltonianParameters(this->ao_basis, this->S, this->h, g_constrained, this->T_total);
     }

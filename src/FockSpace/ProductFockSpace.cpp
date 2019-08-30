@@ -82,17 +82,20 @@ size_t ProductFockSpace::calculateDimension(size_t K, size_t N_alpha, size_t N_b
  *
  *  @return a one-electron operator containing a partition of the two-electron operator
  */
-OneElectronOperator<double> ProductFockSpace::oneElectronPartition(size_t p, size_t q, const TwoElectronOperator<double>& two_op) const {
-    auto K =  two_op.dimension(0);
-    OneElectronOperator<double> k = OneElectronOperator<double>::Zero(K, K);
+ScalarSQOneElectronOperator<double> ProductFockSpace::oneElectronPartition(size_t p, size_t q, const ScalarSQTwoElectronOperator<double>& two_op) const {
+
+    const auto& two_op_par = two_op.parameters();
+
+    const auto K = two_op.dimension();
+    ChemicalMatrix<double> k_par = ChemicalMatrix<double>::Zero(K, K);
 
     for (size_t i = 0; i < K; i++) {
         for (size_t j = 0; j < K; j++) {
-            k(i, j) += two_op(p, q, i, j);
+            k_par(i,j) += two_op_par(p,q,i,j);
         }
     }
 
-    return k;
+    return ScalarSQOneElectronOperator<double>({k_par});
 }
 
 
@@ -104,7 +107,7 @@ OneElectronOperator<double> ProductFockSpace::oneElectronPartition(size_t p, siz
  *
  *  @return the operator's evaluation in a dense matrix with the dimensions of the Fock space
  */
-SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const OneElectronOperator<double>& one_op,
+SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const ScalarSQOneElectronOperator<double>& one_op,
                                                              bool diagonal_values) const {
 
     SquareMatrix<double> total_evaluation = SquareMatrix<double>::Zero(this->get_dimension(), this->get_dimension());
@@ -140,10 +143,10 @@ SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const OneElectronOp
  *
  *  @return the operator's evaluation in a sparse matrix with the dimensions of the Fock space
  */
-Eigen::SparseMatrix<double> ProductFockSpace::evaluateOperatorSparse(const OneElectronOperator<double>& one_op,
+Eigen::SparseMatrix<double> ProductFockSpace::evaluateOperatorSparse(const ScalarSQOneElectronOperator<double>& one_op,
                                                                      bool diagonal_values) const {
 
-    throw std::invalid_argument("ProductFockSpace::evaluateOperatorSparse(OneElectronOperator<double>, bool): Not implemented.");
+    throw std::invalid_argument("ProductFockSpace::evaluateOperatorSparse(ScalarSQOneElectronOperator<double>, bool): Not implemented.");
 }
 
 
@@ -155,7 +158,7 @@ Eigen::SparseMatrix<double> ProductFockSpace::evaluateOperatorSparse(const OneEl
  *
  *  @return the operator's evaluation in a dense matrix with the dimensions of the Fock space
  */
-SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const TwoElectronOperator<double>& two_op,
+SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const ScalarSQTwoElectronOperator<double>& two_op,
                                                              bool diagonal_values) const {
 
     SquareMatrix<double> total_evaluation = SquareMatrix<double>::Zero(this->get_dimension(), this->get_dimension());
@@ -221,10 +224,10 @@ SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const TwoElectronOp
  *
  *  @return the operator's evaluation in a sparse matrix with the dimensions of the Fock space
  */
-Eigen::SparseMatrix<double> ProductFockSpace::evaluateOperatorSparse(const TwoElectronOperator<double>& two_op,
+Eigen::SparseMatrix<double> ProductFockSpace::evaluateOperatorSparse(const ScalarSQTwoElectronOperator<double>& two_op,
                                                                      bool diagonal_values) const {
 
-    throw std::invalid_argument("ProductFockSpace::evaluateOperatorSparse(TwoElectronOperator<double>, bool): Not implemented.");
+    throw std::invalid_argument("ProductFockSpace::evaluateOperatorSparse(ScalarSQTwoElectronOperator<double>, bool): Not implemented.");
 }
 
 
@@ -316,17 +319,18 @@ Eigen::SparseMatrix<double> ProductFockSpace::evaluateOperatorSparse(const Hamil
  *
  *  @return the operator's diagonal evaluation in a vector with the dimension of the Fock space
  */
-VectorX<double> ProductFockSpace::evaluateOperatorDiagonal(const OneElectronOperator<double>& one_op) const {
+VectorX<double> ProductFockSpace::evaluateOperatorDiagonal(const ScalarSQOneElectronOperator<double>& one_op) const {
 
-    auto K = one_op.get_K();
+    const auto K = one_op.get_K();
     if (K != this->K) {
-        throw std::invalid_argument("ProductFockSpace::evaluateOperatorDiagonal(OneElectronOperator<double>): Basis functions of the Fock space and the operator are incompatible.");
+        throw std::invalid_argument("ProductFockSpace::evaluateOperatorDiagonal(ScalarSQOneElectronOperator<double>): Basis functions of the Fock space and the operator are incompatible.");
     }
 
-    auto dim_alpha = fock_space_alpha.get_dimension();
-    auto dim_beta = fock_space_beta.get_dimension();
+    const auto dim_alpha = fock_space_alpha.get_dimension();
+    const auto dim_beta = fock_space_beta.get_dimension();
+    const auto& one_op_par = one_op.parameters();
 
-    VectorX<double> diagonal = VectorX<double>::Zero(dim);
+    VectorX<double> diagonal = VectorX<double>::Zero(this->dim);
 
     ONV onv_alpha = fock_space_alpha.makeONV(0);
     ONV onv_beta = fock_space_beta.makeONV(0);
@@ -339,14 +343,14 @@ VectorX<double> ProductFockSpace::evaluateOperatorDiagonal(const OneElectronOper
             for (size_t e_a = 0; e_a < fock_space_alpha.get_N(); e_a++) {  // loop over alpha electrons
 
                 size_t p = onv_alpha.get_occupation_index(e_a);
-                diagonal(Ia * dim_beta + Ib) += one_op(p, p);
+                diagonal(Ia * dim_beta + Ib) += one_op_par(p, p);
 
             }  // e_a loop
 
             for (size_t e_b = 0; e_b < fock_space_beta.get_N(); e_b++) {  // loop over beta electrons
 
                 size_t p = onv_beta.get_occupation_index(e_b);
-                diagonal(Ia * dim_beta + Ib) += one_op(p, p);
+                diagonal(Ia * dim_beta + Ib) += one_op_par(p, p);
             }
 
             if (Ib < dim_beta - 1) {  // prevent last permutation to occur
@@ -370,20 +374,20 @@ VectorX<double> ProductFockSpace::evaluateOperatorDiagonal(const OneElectronOper
  *
  *  @return the operator's diagonal evaluation in a vector with the dimension of the Fock space
  */
-VectorX<double> ProductFockSpace::evaluateOperatorDiagonal(const TwoElectronOperator<double>& two_op) const {
+VectorX<double> ProductFockSpace::evaluateOperatorDiagonal(const ScalarSQTwoElectronOperator<double>& two_op) const {
 
-    auto K = two_op.get_K();
+    const auto K = two_op.get_K();
     if (K != this->K) {
-        throw std::invalid_argument("ProductFockSpace::evaluateOperatorDiagonal(TwoElectronOperator<double>): Basis functions of the Fock space and the operator are incompatible.");
+        throw std::invalid_argument("ProductFockSpace::evaluateOperatorDiagonal(ScalarSQTwoElectronOperator<double>): Basis functions of the Fock space and the operator are incompatible.");
     }
 
-    auto dim_alpha = fock_space_alpha.get_dimension();
-    auto dim_beta = fock_space_beta.get_dimension();
+    const auto dim_alpha = fock_space_alpha.get_dimension();
+    const auto dim_beta = fock_space_beta.get_dimension();
+    const auto& two_op_par = two_op.parameters();
+    const auto k = two_op.effectiveOneElectronPartition().parameters();
 
     // Diagonal contributions
-    VectorX<double> diagonal = VectorX<double>::Zero(dim);
-
-    OneElectronOperator<double> k = two_op.effectiveOneElectronPartition();
+    VectorX<double> diagonal = VectorX<double>::Zero(this->dim);
 
     ONV onv_alpha = fock_space_alpha.makeONV(0);
     ONV onv_beta = fock_space_beta.makeONV(0);
@@ -400,13 +404,13 @@ VectorX<double> ProductFockSpace::evaluateOperatorDiagonal(const TwoElectronOper
 
                 for (size_t q = 0; q < K; q++) {  // q loops over SOs
                     if (onv_alpha.isOccupied(q)) {  // q is in Ia
-                        diagonal(Ia * dim_beta + Ib) += 0.5 * two_op(p, p, q, q);
+                        diagonal(Ia * dim_beta + Ib) += 0.5 * two_op_par(p, p, q, q);
                     } else {  // q is not in I_alpha
-                        diagonal(Ia * dim_beta + Ib) += 0.5 * two_op(p, q, q, p);
+                        diagonal(Ia * dim_beta + Ib) += 0.5 * two_op_par(p, q, q, p);
                     }
 
                     if (onv_beta.isOccupied(q)) {  // q is in Ib
-                        diagonal(Ia * dim_beta + Ib) += two_op(p, p, q, q);
+                        diagonal(Ia * dim_beta + Ib) += two_op_par(p, p, q, q);
                     }
                 }  // q loop
             }  // e_a loop
@@ -418,10 +422,10 @@ VectorX<double> ProductFockSpace::evaluateOperatorDiagonal(const TwoElectronOper
 
                 for (size_t q = 0; q < K; q++) {  // q loops over SOs
                     if (onv_beta.isOccupied(q)) {  // q is in Ib
-                        diagonal(Ia * dim_beta + Ib) += 0.5 * two_op(p, p, q, q);
+                        diagonal(Ia * dim_beta + Ib) += 0.5 * two_op_par(p, p, q, q);
 
                     } else {  // q is not in I_beta
-                        diagonal(Ia * dim_beta + Ib) += 0.5 * two_op(p, q, q, p);
+                        diagonal(Ia * dim_beta + Ib) += 0.5 * two_op_par(p, q, q, p);
                     }
                 }  // q loop
             }  // e_b loop

@@ -34,8 +34,8 @@ private:
     size_t minimum_subspace_dimension;  // the minimum number of Fock matrices that have to be in the subspace before enabling DIIS
     size_t maximum_subspace_dimension;  // the maximum DIIS subspace dimension before the oldest Fock matrices get discarded (one at a time)
 
-    std::deque<OneElectronOperator<double>> fock_matrix_deque = {};  // deque of Fock matrices used in the DIIS algorithm
-    std::deque<OneElectronOperator<double>> error_matrix_deque = {};  // deque of error matrices used in the DIIS algorithm
+    std::deque<ScalarSQOneElectronOperator<double>> fock_matrix_deque = {};  // deque of Fock matrices used in the DIIS algorithm
+    std::deque<ScalarSQOneElectronOperator<double>> error_matrix_deque = {};  // deque of error matrices used in the DIIS algorithm
 
 
     // PRIVATE METHODS
@@ -46,7 +46,7 @@ private:
      *
      *  @return the new Fock matrix (expressed in AO basis)
      */
-    OneElectronOperator<double> calculateNewFockMatrix(const OneRDM<double>& D_AO) override;
+    ScalarSQOneElectronOperator<double> calculateNewFockMatrix(const OneRDM<double>& D_AO) override;
 
 public:
     // CONSTRUCTORS

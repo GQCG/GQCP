@@ -101,7 +101,7 @@ OneRDM<double> calculateRHFAO1RDM(const SquareMatrix<double>& C, size_t N) {
  *
  *  @return the RHF Fock matrix expressed in the AO basis
  */
-OneElectronOperator<double> calculateRHFAOFockMatrix(const OneRDM<double>& D_AO, const HamiltonianParameters<double>& ham_par) {
+ScalarSQOneElectronOperator<double> calculateRHFAOFockMatrix(const OneRDM<double>& D_AO, const HamiltonianParameters<double>& ham_par) {
 
     // To perform the contraction, we will first have to convert the MatrixX<double> D_AO to an Eigen::Tensor<const double, 2> D_AO_tensor, as contractions are only implemented for Eigen::Tensors
     Eigen::TensorMap<Eigen::Tensor<const double, 2>> D_AO_tensor (D_AO.data(), D_AO.rows(), D_AO.cols());
@@ -114,7 +114,7 @@ OneElectronOperator<double> calculateRHFAOFockMatrix(const OneRDM<double>& D_AO,
     Eigen::array<Eigen::IndexPair<int>, 2> exchange_contraction_pair = {Eigen::IndexPair<int>(1, 0), Eigen::IndexPair<int>(2, 1)};
 
     // Calculate both contractions (and incorporate prefactors)
-    auto g = ham_par.get_g();
+    const auto& g = ham_par.get_g().parameters();
     Tensor<double, 2> direct_contraction = g.contract(D_AO_tensor, direct_contraction_pair);
     Tensor<double, 2> exchange_contraction = -0.5 * g.contract(D_AO_tensor, exchange_contraction_pair);
 
@@ -123,7 +123,7 @@ OneElectronOperator<double> calculateRHFAOFockMatrix(const OneRDM<double>& D_AO,
     Eigen::Map<Eigen::MatrixXd> G2 (exchange_contraction.data(), exchange_contraction.dimension(0), exchange_contraction.dimension(1));
 
 
-    return ham_par.get_h() + G1 + G2;
+    return ScalarSQOneElectronOperator<double>({ham_par.get_h().parameters() + G1 + G2});
 }
 
 
@@ -134,14 +134,14 @@ OneElectronOperator<double> calculateRHFAOFockMatrix(const OneRDM<double>& D_AO,
  *
  *  @return the RHF electronic energy
  */
-double calculateRHFElectronicEnergy(const OneRDM<double>& D_AO, const OneElectronOperator<double>& H_core_AO, const OneElectronOperator<double>& F_AO) {
+double calculateRHFElectronicEnergy(const OneRDM<double>& D_AO, const ScalarSQOneElectronOperator<double>& H_core_AO, const ScalarSQOneElectronOperator<double>& F_AO) {
 
     // First, calculate the sum of H_core and F (this saves a contraction)
-    OneElectronOperator<double> Z = H_core_AO + F_AO;
+    ScalarSQOneElectronOperator<double> Z = H_core_AO + F_AO;
 
     // Convert the matrices Z and P to an Eigen::Tensor<double, 2> P_tensor, as contractions are only implemented for Eigen::Tensors
     Eigen::TensorMap<Eigen::Tensor<const double, 2>> D_AO_tensor (D_AO.data(), D_AO.rows(), D_AO.cols());
-    Eigen::TensorMap<Eigen::Tensor<double, 2>> Z_tensor (Z.data(), D_AO.rows(), D_AO.cols());
+    Eigen::TensorMap<Eigen::Tensor<double, 2>> Z_tensor (Z.parameters().data(), D_AO.rows(), D_AO.cols());
 
     // Specify the contraction pair
     // To calculate the electronic energy, we must perform a double contraction

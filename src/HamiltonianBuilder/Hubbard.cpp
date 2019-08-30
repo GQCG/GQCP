@@ -96,7 +96,7 @@ VectorX<double> Hubbard::matrixVectorProduct(const HamiltonianParameters<double>
  */
 VectorX<double> Hubbard::calculateDiagonal(const HamiltonianParameters<double>& hamiltonian_parameters) const {
 
-    auto K = hamiltonian_parameters.get_K();
+    const auto K = hamiltonian_parameters.get_K();
     if (K != this->fock_space.get_K()) {
         throw std::invalid_argument("Hubbard::calculateDiagonal(HamiltonianParameters<double>): Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
     }
@@ -104,23 +104,25 @@ VectorX<double> Hubbard::calculateDiagonal(const HamiltonianParameters<double>& 
     FockSpace fock_space_alpha = fock_space.get_fock_space_alpha();
     FockSpace fock_space_beta = fock_space.get_fock_space_beta();
 
-    auto dim_alpha = fock_space_alpha.get_dimension();
-    auto dim_beta = fock_space_beta.get_dimension();
-    auto dim = fock_space.get_dimension();
+    const auto dim_alpha = fock_space_alpha.get_dimension();
+    const auto dim_beta = fock_space_beta.get_dimension();
+    const auto dim = fock_space.get_dimension();
+    const auto& g = hamiltonian_parameters.get_g().parameters();
 
     // Diagonal contributions
     VectorX<double> diagonal = VectorX<double>::Zero(dim);
 
     ONV onv_alpha = fock_space_alpha.makeONV(0);
-    ONV onv_beta =  fock_space_beta.makeONV(0);
+    ONV onv_beta = fock_space_beta.makeONV(0);
     for (size_t Ia = 0; Ia < dim_alpha; Ia++) {  // Ia loops over addresses of alpha onvs
         fock_space_beta.transformONV(onv_beta, 0);
+
         for (size_t Ib = 0; Ib < dim_beta; Ib++) {  // Ib loops over addresses of beta onvs
             size_t address = Ia * dim_beta + Ib;
             // find all double occupations
             Vectoru occupations = onv_alpha.findMatchingOccupations(onv_beta);
-            for (size_t p : occupations){
-                diagonal(address) += hamiltonian_parameters.get_g()(p,p,p,p);
+            for (size_t p : occupations) {
+                diagonal(address) += g(p,p,p,p);
             }
             if (Ib < dim_beta - 1) {  // prevent last permutation to occur
                 fock_space_beta.setNextONV(onv_beta);

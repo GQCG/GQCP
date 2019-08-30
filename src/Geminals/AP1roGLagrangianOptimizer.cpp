@@ -28,8 +28,8 @@ namespace GQCP {
  */
 void AP1roGLagrangianOptimizer::solve() {
 
-    auto g = this->ham_par.get_g();
-    auto K = this->ham_par.get_K();
+    const auto K = this->ham_par.get_K();
+    const auto& g = this->ham_par.get_g().parameters();
 
 
     // Solve the PSEs and set part of the solutions

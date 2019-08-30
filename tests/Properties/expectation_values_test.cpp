@@ -33,7 +33,7 @@
 
 BOOST_AUTO_TEST_CASE ( one_electron_throw ) {
 
-    GQCP::OneElectronOperator<double> h = GQCP::OneElectronOperator<double>::Zero(2, 2);
+    GQCP::ScalarSQOneElectronOperator<double> h ({GQCP::ChemicalMatrix<double>::Zero(2, 2)});
     GQCP::OneRDM<double> D_valid = GQCP::OneRDM<double>::Zero(2, 2);
     GQCP::OneRDM<double> D_invalid = GQCP::OneRDM<double>::Zero(3, 3);
 
@@ -44,7 +44,7 @@ BOOST_AUTO_TEST_CASE ( one_electron_throw ) {
 
 BOOST_AUTO_TEST_CASE ( two_electron_throw ) {
 
-    GQCP::TwoElectronOperator<double> g (2);
+    GQCP::ScalarSQTwoElectronOperator<double> g (2);
 
     GQCP::TwoRDM<double> d_valid (2);
     GQCP::TwoRDM<double> d_invalid (3);
@@ -73,14 +73,14 @@ BOOST_AUTO_TEST_CASE ( mulliken_N2_STO_3G ) {
         gto_list[i] = i;
     }
 
-    GQCP::OneElectronOperator<double> mulliken = ham_par.calculateMullikenOperator(gto_list);
+    GQCP::ScalarSQOneElectronOperator<double> mulliken = ham_par.calculateMullikenOperator(gto_list);
 
     size_t N = N2.numberOfElectrons();
 
     // Create a 1-RDM for N2
     GQCP::OneRDM<double> one_rdm = GQCP::calculateRHF1RDM(K, N);
 
-    double mulliken_population = GQCP::calculateExpectationValue(mulliken, one_rdm);
+    double mulliken_population = GQCP::calculateExpectationValue(mulliken, one_rdm)[0];
     BOOST_CHECK(std::abs(mulliken_population - (N)) < 1.0e-06);
 
 
@@ -91,7 +91,7 @@ BOOST_AUTO_TEST_CASE ( mulliken_N2_STO_3G ) {
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 
-    ham_par.basisTransform(rhf.get_C());
+    ham_par.transform(rhf.get_C());
 
     GQCP::FockSpace fock_space (K, N/2);
     GQCP::DOCI doci (fock_space);
@@ -105,6 +105,6 @@ BOOST_AUTO_TEST_CASE ( mulliken_N2_STO_3G ) {
 
     GQCP::OneRDMs<double> one_rdms = rdm_calculator.calculate1RDMs();
 
-    double mulliken_population_2 = GQCP::calculateExpectationValue(mulliken, one_rdms.one_rdm);
+    double mulliken_population_2 = GQCP::calculateExpectationValue(mulliken, one_rdms.one_rdm)[0];
     BOOST_CHECK(std::abs(mulliken_population_2 - (N)) < 1.0e-06);
 }

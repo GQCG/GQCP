@@ -32,9 +32,9 @@ namespace GQCP {
  *
  *  @return the new Fock matrix (expressed in AO basis)
  */
-OneElectronOperator<double> DIISRHFSCFSolver::calculateNewFockMatrix(const OneRDM<double>& D_AO) {
+ScalarSQOneElectronOperator<double> DIISRHFSCFSolver::calculateNewFockMatrix(const OneRDM<double>& D_AO) {
 
-    auto S = this->ham_par.get_S();
+    const auto S = this->ham_par.get_S().parameters();
 
     // Calculate the Fock matrix based off the density matrix
     auto f_AO = calculateRHFAOFockMatrix(D_AO, this->ham_par);
@@ -42,7 +42,7 @@ OneElectronOperator<double> DIISRHFSCFSolver::calculateNewFockMatrix(const OneRD
 
     // Update deques for the DIIS procedure
     this->fock_matrix_deque.emplace_back(f_AO);
-    OneElectronOperator<double> error_matrix = f_AO * D_AO * S - S * D_AO * f_AO;
+    ScalarSQOneElectronOperator<double> error_matrix ({f_AO.parameters() * D_AO * S - S * D_AO * f_AO.parameters()});
     this->error_matrix_deque.emplace_back(error_matrix);
 
 
@@ -56,7 +56,7 @@ OneElectronOperator<double> DIISRHFSCFSolver::calculateNewFockMatrix(const OneRD
         for (size_t i = 0; i < n; i++) {
             for (size_t j = 0; j < n; j++) {
                 // B(i,j) = Tr(e_i^T e_j)
-                B(i,j) = (this->error_matrix_deque[i].transpose() * this->error_matrix_deque[j]).trace();
+                B(i,j) = (this->error_matrix_deque[i].parameters().transpose() * this->error_matrix_deque[j].parameters()).trace();
             }
         }
 
@@ -71,10 +71,12 @@ OneElectronOperator<double> DIISRHFSCFSolver::calculateNewFockMatrix(const OneRD
 
 
         // Use the coefficients that are in y to construct 'the best' Fock matrix as a linear combination of previous Fock matrices
-        f_AO = OneElectronOperator<double>::Zero(S.cols(), S.cols());
+        ChemicalMatrix<double> f_AO_updated_par = ChemicalMatrix<double>::Zero(S.cols(), S.cols());
         for (size_t i = 0; i < n; i++) {  // n is the current subspace dimension (not equal to the size of the augmented B matrix)
-            f_AO += y(i) * this->fock_matrix_deque[i];
+            f_AO_updated_par += y(i) * this->fock_matrix_deque[i].parameters();
         }
+
+        f_AO = ScalarSQOneElectronOperator<double>({f_AO_updated_par});
 
     }
 

@@ -31,7 +31,7 @@ namespace GQCP {
  *  In the case of this uncoupled DOCI orbital optimizer, the DOCI eigenvalue problem is re-solved in every iteration using the current orbitals
  */
 void QCMethodNewtonOrbitalOptimizer::prepareOrbitalDerivativesCalculation(const HamiltonianParameters<double>& ham_par) {
-    
+
     this->prepareDMCalculation(ham_par);  // this should prepare the calculation of the 1- and 2-DMs
 
     this->D = this->calculate1RDM();
@@ -64,6 +64,8 @@ SquareRankFourTensor<double> QCMethodNewtonOrbitalOptimizer::calculateHessianTen
 
     // Calculate the Hessian from the super Fockian matrix
     const auto G = ham_par.calculateSuperFockianMatrix(this->D, this->d);
+
+
     SquareRankFourTensor<double> hessian_tensor (K);
     hessian_tensor.setZero();
 
@@ -76,6 +78,7 @@ SquareRankFourTensor<double> QCMethodNewtonOrbitalOptimizer::calculateHessianTen
             }
         }
     }
+
 
     return hessian_tensor;
 }

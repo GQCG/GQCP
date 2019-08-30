@@ -51,33 +51,33 @@ public:
 
 
     /*
-     *  GETTERS
-     */
-    size_t get_K() const { return this->dimension(0); };
-
-
-    /*
      *  PUBLIC METHODS
      */
 
     /**
-     *  In-place basis transform of the matrix representation of this "chemical" rank-4 tensor
-     *
-     *  @tparam TransformationScalar        the type of scalar used for the transformation matrix
+     *  @return the dimension of this matrix representation of the parameters, i.e. the number of orbitals/sites
+     */
+    size_t dimension() const {
+        return static_cast<size_t>(this->Base::dimension(0));  // returns a long
+    }
 
+    size_t get_K() const { return this->dimension(0); };
+
+
+
+    /**
+     *  In-place transform this chemical rank-4 tensor according to a given basis transformation
+     *
      *  @param T    the transformation matrix between the old and the new orbital basis, it is used as
      *      b' = b T ,
      *   in which the basis functions are collected as elements of a row vector b
-     *
-     *  Note that in order to use these transformation formulas, the multiplication between TransformationScalar and Scalar should be 'enabled'. See LinearCombination.hpp for an example
      */
-    template <typename TransformationScalar = Scalar>
-    void basisTransform(const SquareMatrix<TransformationScalar>& T) {
+    void basisTransformInPlace(const SquareMatrix<Scalar>& T) {
 
         // Since we're only getting T as a matrix, we should make the appropriate tensor to perform contractions
         // For the const argument, we need the const in the template
         //      For more info, see: https://stackoverflow.com/questions/45283468/eigen-const-tensormap
-        Eigen::TensorMap<Eigen::Tensor<const TransformationScalar, 2>> T_tensor (T.data(), T.rows(), T.cols());
+        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> T_tensor (T.data(), T.rows(), T.cols());
 
 
         // We will have to do four single contractions, so we specify the contraction indices
@@ -104,8 +104,40 @@ public:
         //  1) avoid storing intermediate contractions
         //  2) let Eigen figure out some optimizations
         Self g_transformed = T_tensor.conjugate().contract(T_tensor.contract(this->contract(T_tensor.conjugate(), contraction_pair1).shuffle(shuffle_1).contract(T_tensor, contraction_pair2), contraction_pair3).shuffle(shuffle_3), contraction_pair4);
+        (*this) = g_transformed;
+    }
 
-        *this = g_transformed;
+
+    /**
+     *  In-place rotate this chemical rank-4 tensor using a unitary transformation matrix
+     * 
+     *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix. See transform() for how the transformation matrix between the two bases should be represented
+     */
+    void basisRotateInPlace(const SquareMatrix<double>& U) {
+
+        // Check if the given matrix is actually unitary
+        if (!U.isUnitary(1.0e-12)) {
+            throw std::invalid_argument("ChemicalRankFourTensor::basisRotateInPlace(const SquareMatrix<Scalar>&): The given transformation matrix is not unitary.");
+        }
+
+        this->basisTransformInPlace(U);
+    }
+
+
+    /**
+     *  In-place rotate this chemical rank-4 tensor using Jacobi rotation parameters
+     * 
+     *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix. See transform() for how the transformation matrix between the two bases should be represented
+     */
+    void basisRotateInPlace(const JacobiRotationParameters& jacobi_rotation_parameters) {
+
+        /**
+         *  While waiting for an analogous Eigen::Tensor Jacobi module, we implement this rotation by constructing a Jacobi rotation matrix and then simply doing a rotation with it
+         */
+
+        const auto dim = this->dimension();
+        const auto J = SquareMatrix<double>::FromJacobi(jacobi_rotation_parameters, dim);
+        this->basisRotateInPlace(J);
     }
 };
 

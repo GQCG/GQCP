@@ -24,12 +24,11 @@
 namespace GQCP {
 
 /**
- *  Struct to accommodate the "freezeOperator(TwoElectronOperator<double>)" method
- *  as it returns a one- and two-electron operator
+ *  Struct to accommodate the "freezeOperator(ScalarSQTwoElectronOperator<double>)" method, as it returns a one- and two-electron operator
  */
 struct FrozenOperators {
-    OneElectronOperator<double> one_op;
-    TwoElectronOperator<double> two_op;
+    ScalarSQOneElectronOperator<double> one_op;
+    ScalarSQTwoElectronOperator<double> two_op;
 };
 
 
@@ -59,7 +58,7 @@ public:
      *
      *  @return the operator's evaluation in a dense matrix with the dimensions of the Fock space
      */
-    SquareMatrix<double> evaluateOperatorDense(const OneElectronOperator<double>& one_op, bool diagonal_values) const override;
+    SquareMatrix<double> evaluateOperatorDense(const ScalarSQOneElectronOperator<double>& one_op, bool diagonal_values) const override;
 
     /**
      *  Evaluate the operator in a sparse matrix
@@ -69,8 +68,7 @@ public:
      *
      *  @return the operator's evaluation in a sparse matrix with the dimensions of the Fock space
      */
-    Eigen::SparseMatrix<double> evaluateOperatorSparse(const OneElectronOperator<double>& one_op,
-                                                       bool diagonal_values) const override;
+    Eigen::SparseMatrix<double> evaluateOperatorSparse(const ScalarSQOneElectronOperator<double>& one_op, bool diagonal_values) const override;
     /**
      *  Evaluate the operator in a dense matrix
      *
@@ -79,7 +77,7 @@ public:
      *
      *  @return the operator's evaluation in a dense matrix with the dimensions of the Fock space
      */
-    SquareMatrix<double> evaluateOperatorDense(const TwoElectronOperator<double>& two_op, bool diagonal_values) const override;
+    SquareMatrix<double> evaluateOperatorDense(const ScalarSQTwoElectronOperator<double>& two_op, bool diagonal_values) const override;
 
     /**
      *  Evaluate the operator in a sparse matrix
@@ -89,8 +87,7 @@ public:
      *
      *  @return the operator's evaluation in a sparse matrix with the dimensions of the Fock space
      */
-    Eigen::SparseMatrix<double> evaluateOperatorSparse(const TwoElectronOperator<double>& two_op,
-                                                       bool diagonal_values) const override;
+    Eigen::SparseMatrix<double> evaluateOperatorSparse(const ScalarSQTwoElectronOperator<double>& two_op, bool diagonal_values) const override;
     /**
      *  Evaluate the Hamiltonian in a dense matrix
      *
@@ -99,8 +96,7 @@ public:
      *
      *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the Fock space
      */
-    SquareMatrix<double> evaluateOperatorDense(const HamiltonianParameters<double>& ham_par,
-                                               bool diagonal_values) const override;
+    SquareMatrix<double> evaluateOperatorDense(const HamiltonianParameters<double>& ham_par, bool diagonal_values) const override;
     /**
      *  Evaluate the Hamiltonian in a sparse matrix
      *
@@ -109,8 +105,7 @@ public:
      *
      *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the Fock space
      */
-    Eigen::SparseMatrix<double> evaluateOperatorSparse(const HamiltonianParameters<double>& ham_par,
-                                                       bool diagonal_values) const override;
+    Eigen::SparseMatrix<double> evaluateOperatorSparse(const HamiltonianParameters<double>& ham_par, bool diagonal_values) const override;
     /**
      *  Evaluate the diagonal of the operator
      *
@@ -118,7 +113,7 @@ public:
      *
      *  @return the operator's diagonal evaluation in a vector with the dimension of the Fock space
      */
-    VectorX<double> evaluateOperatorDiagonal(const OneElectronOperator<double>& one_op) const override;
+    VectorX<double> evaluateOperatorDiagonal(const ScalarSQOneElectronOperator<double>& one_op) const override;
 
     /**
      *  Evaluate the diagonal of the operator
@@ -127,7 +122,7 @@ public:
      *
      *  @return the operator's diagonal evaluation in a vector with the dimension of the Fock space
      */
-    VectorX<double> evaluateOperatorDiagonal(const TwoElectronOperator<double>& two_op) const override;
+    VectorX<double> evaluateOperatorDiagonal(const ScalarSQTwoElectronOperator<double>& two_op) const override;
 
     /**
      *  Evaluate the diagonal of the Hamiltonian
@@ -146,7 +141,7 @@ public:
      *
      *  @return 'frozen' one-electron operator which cover evaluations from the active and inactive orbitals
      */
-    static OneElectronOperator<double> freezeOperator(const OneElectronOperator<double>& one_op, size_t X);
+    static ScalarSQOneElectronOperator<double> freezeOperator(const ScalarSQOneElectronOperator<double>& one_op, size_t X);
 
     /**
      *  @param two_op       the two-electron operator in an orthonormal orbital basis
@@ -154,7 +149,7 @@ public:
      *
      *  @return 'frozen' two-electron operators as a struct of a one- and two-electron operator which cover evaluations from the active and inactive orbitals
      */
-    static FrozenOperators freezeOperator(const TwoElectronOperator<double>& two_op, size_t X);
+    static FrozenOperators freezeOperator(const ScalarSQTwoElectronOperator<double>& two_op, size_t X);
 
 
     // STATIC PUBLIC METHODS
@@ -173,7 +168,7 @@ public:
      *
      *  @return the operator diagonal from strictly evaluating the frozen orbitals in the Fock space
      */
-    static VectorX<double> frozenCoreDiagonal(const OneElectronOperator<double>& one_op, size_t X, size_t dimension);
+    static VectorX<double> frozenCoreDiagonal(const ScalarSQOneElectronOperator<double>& one_op, size_t X, size_t dimension);
 
     /**
      *  @param two_op       the two-electron operator in an orthonormal orbital basis
@@ -181,7 +176,7 @@ public:
      *
      *  @return the operator diagonal from strictly evaluating the frozen orbitals in the Fock space
      */
-    static VectorX<double> frozenCoreDiagonal(const TwoElectronOperator<double>& two_op, size_t X, size_t dimension);
+    static VectorX<double> frozenCoreDiagonal(const ScalarSQTwoElectronOperator<double>& two_op, size_t X, size_t dimension);
 
     /**
      *  @param ham_par              the Hamiltonian parameters in an orthonormal orbital basis

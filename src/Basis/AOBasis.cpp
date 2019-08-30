@@ -20,8 +20,8 @@
 #include "Basis/GTOBasisSet.hpp"
 #include "Basis/Integrals/Interfaces/LibintInterfacer.hpp"
 #include "Basis/Integrals/Interfaces/LibcintInterfacer.hpp"
-#include "Basis/Integrals/IntegralEngine.hpp"
 #include "Basis/Integrals/IntegralCalculator.hpp"
+#include "Basis/Integrals/IntegralEngine.hpp"
 
 
 namespace GQCP {
@@ -75,7 +75,7 @@ size_t AOBasis::numberOfBasisFunctions() const {
 /**
  *  @return the matrix representation of the overlap operator in this AO basis
  */
-OneElectronOperator<double> AOBasis::calculateLibintOverlapIntegrals() const {
+ChemicalMatrix<double> AOBasis::calculateLibintOverlapIntegrals() const {
 
     // Construct the libint engine
     const auto max_nprim = this->shell_set.maximumNumberOfPrimitives();
@@ -85,14 +85,14 @@ OneElectronOperator<double> AOBasis::calculateLibintOverlapIntegrals() const {
 
     // Calculate the integrals using the engine
     const auto integrals = IntegralCalculator::calculate(engine, this->shell_set);
-    return OneElectronOperator<double>(integrals[0]);
+    return integrals[0];
 }
 
 
 /**
  *  @return the matrix representation of the kinetic energy operator in this AO basis
  */
-OneElectronOperator<double> AOBasis::calculateLibintKineticIntegrals() const {
+ChemicalMatrix<double> AOBasis::calculateLibintKineticIntegrals() const {
 
     // Construct the libint engine
     const auto max_nprim = this->shell_set.maximumNumberOfPrimitives();
@@ -102,14 +102,14 @@ OneElectronOperator<double> AOBasis::calculateLibintKineticIntegrals() const {
 
     // Calculate the integrals using the engine
     const auto integrals = IntegralCalculator::calculate(engine, this->shell_set);
-    return OneElectronOperator<double>(integrals[0]);
+    return integrals[0];
 }
 
 
 /**
  *  @return the matrix representation of the nuclear attraction operator in this AO basis
  */
-OneElectronOperator<double> AOBasis::calculateLibintNuclearIntegrals() const {
+ChemicalMatrix<double> AOBasis::calculateLibintNuclearIntegrals() const {
 
     // Construct the libint engine
     const auto max_nprim = this->shell_set.maximumNumberOfPrimitives();
@@ -119,7 +119,7 @@ OneElectronOperator<double> AOBasis::calculateLibintNuclearIntegrals() const {
 
     // Calculate the integrals using the engine
     const auto integrals = IntegralCalculator::calculate(engine, this->shell_set);
-    return OneElectronOperator<double>(integrals[0]);
+    return integrals[0];
 }
 
 
@@ -128,7 +128,7 @@ OneElectronOperator<double> AOBasis::calculateLibintNuclearIntegrals() const {
  *
  *  @return the matrix representation of the Cartesian components of the electrical dipole operator in this AO basis
  */
-std::array<OneElectronOperator<double>, 3> AOBasis::calculateLibintDipoleIntegrals(const Vector<double, 3>& origin) const {
+std::array<ChemicalMatrix<double>, 3> AOBasis::calculateLibintDipoleIntegrals(const Vector<double, 3>& origin) const {
 
     // Construct the libint engine
     const auto max_nprim = this->shell_set.maximumNumberOfPrimitives();
@@ -138,14 +138,14 @@ std::array<OneElectronOperator<double>, 3> AOBasis::calculateLibintDipoleIntegra
 
     // Calculate the integrals using the engine
     const auto all_integrals = IntegralCalculator::calculate(engine, this->shell_set);
-    return std::array<OneElectronOperator<double>, 3> {all_integrals[0], all_integrals[1], all_integrals[2]};  
+    return {all_integrals[0], all_integrals[1], all_integrals[2]};
 }
 
 
 /**
  *  @return the matrix representation of the Coulomb repulsion operator in this AO basis
  */
-TwoElectronOperator<double> AOBasis::calculateLibintCoulombRepulsionIntegrals() const {
+ChemicalRankFourTensor<double> AOBasis::calculateLibintCoulombRepulsionIntegrals() const {
 
     // Construct the libint engine
     const auto max_nprim = this->shell_set.maximumNumberOfPrimitives();
@@ -155,7 +155,7 @@ TwoElectronOperator<double> AOBasis::calculateLibintCoulombRepulsionIntegrals() 
 
     // Calculate the integrals using the engine
     const auto integrals = IntegralCalculator::calculate(engine, this->shell_set);
-    return TwoElectronOperator<double>(integrals[0]);
+    return integrals[0];
 }
 
 
@@ -170,11 +170,11 @@ TwoElectronOperator<double> AOBasis::calculateLibintCoulombRepulsionIntegrals() 
  *
  *  @return the matrix representation of the overlap operator in this AO basis, using the libcint integral engine
  */
-OneElectronOperator<double> AOBasis::calculateLibcintOverlapIntegrals() const {
+ChemicalMatrix<double> AOBasis::calculateLibcintOverlapIntegrals() const {
 
     auto engine = IntegralEngine::Libcint(Operator::Overlap(), this->shell_set);  // cannot be const: Libint2 has a non-const compute() method inside its interface
     const auto integrals = IntegralCalculator::calculate(engine, this->shell_set);
-    return OneElectronOperator<double>(integrals[0]);
+    return integrals[0];
 }
 
 
@@ -183,11 +183,11 @@ OneElectronOperator<double> AOBasis::calculateLibcintOverlapIntegrals() const {
  *
  *  @return the matrix representation of the kinetic energy operator in this AO basis, using the libcint integral engine
  */
-OneElectronOperator<double> AOBasis::calculateLibcintKineticIntegrals() const {
+ChemicalMatrix<double> AOBasis::calculateLibcintKineticIntegrals() const {
 
     auto engine = IntegralEngine::Libcint(Operator::Kinetic(), this->shell_set);  // cannot be const: Libint2 has a non-const compute() method inside its interface
     const auto integrals = IntegralCalculator::calculate(engine, this->shell_set);
-    return OneElectronOperator<double>(integrals[0]);
+    return integrals[0];
 }
 
 
@@ -196,11 +196,11 @@ OneElectronOperator<double> AOBasis::calculateLibcintKineticIntegrals() const {
  *
  *  @return the matrix representation of the nuclear attraction operator in this AO basis, using the libcint integral engine
  */
-OneElectronOperator<double> AOBasis::calculateLibcintNuclearIntegrals() const {
+ChemicalMatrix<double> AOBasis::calculateLibcintNuclearIntegrals() const {
 
     auto engine = IntegralEngine::Libcint(Operator::NuclearAttraction(this->shell_set.nuclei()), this->shell_set);  // cannot be const: Libint2 has a non-const compute() method inside its interface
     const auto integrals = IntegralCalculator::calculate(engine, this->shell_set);
-    return OneElectronOperator<double>(integrals[0]);
+    return integrals[0];
 }
 
 
@@ -211,11 +211,11 @@ OneElectronOperator<double> AOBasis::calculateLibcintNuclearIntegrals() const {
  *
  *  @return the matrix representation of the Cartesian components of the electrical dipole operator in this AO basis, using the libcint integral engine
  */
-std::array<OneElectronOperator<double>, 3> AOBasis::calculateLibcintDipoleIntegrals(const Vector<double, 3>& origin) const {
+std::array<ChemicalMatrix<double>, 3> AOBasis::calculateLibcintDipoleIntegrals(const Vector<double, 3>& origin) const {
 
     auto engine = IntegralEngine::Libcint(Operator::ElectronicDipole(origin), this->shell_set);  // cannot be const: Libint2 has a non-const compute() method inside its interface
     const auto integrals = IntegralCalculator::calculate(engine, this->shell_set);
-    return std::array<OneElectronOperator<double>, 3> {integrals[0], integrals[1], integrals[2]};
+    return {integrals[0], integrals[1], integrals[2]};
 }
 
 
@@ -224,11 +224,11 @@ std::array<OneElectronOperator<double>, 3> AOBasis::calculateLibcintDipoleIntegr
  *
  *  @return the matrix representation of the Coulomb repulsion operator in this AO basis, using the libcint integral engine
  */
-TwoElectronOperator<double> AOBasis::calculateLibcintCoulombRepulsionIntegrals() const {
+ChemicalRankFourTensor<double> AOBasis::calculateLibcintCoulombRepulsionIntegrals() const {
 
     auto engine = IntegralEngine::Libcint(Operator::Coulomb(), this->shell_set);  // cannot be const: Libint2 has a non-const compute() method inside its interface
     const auto integrals = IntegralCalculator::calculate(engine, this->shell_set);
-    return TwoElectronOperator<double>(integrals[0]);
+    return integrals[0];
 }
 
 

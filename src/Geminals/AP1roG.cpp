@@ -29,8 +29,8 @@ namespace GQCP {
  */
 double calculateAP1roGEnergy(const AP1roGGeminalCoefficients& G, const HamiltonianParameters<double>& ham_par) {
 
-    auto h = ham_par.get_h();
-    auto g = ham_par.get_g();
+    const auto& h = ham_par.get_h().parameters();
+    const auto& g = ham_par.get_g().parameters();
 
 
     // KISS implementation of the AP1roG energy

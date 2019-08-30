@@ -126,7 +126,7 @@ public:
      *
      *  @return the operator's evaluation in a dense matrix with the dimensions of the Fock space
      */
-    SquareMatrix<double> evaluateOperatorDense(const OneElectronOperator<double>& one_op, bool diagonal_values) const override;
+    SquareMatrix<double> evaluateOperatorDense(const ScalarSQOneElectronOperator<double>& one_op, bool diagonal_values) const override;
 
     /**
      *  Evaluate the operator in a sparse matrix
@@ -136,8 +136,7 @@ public:
      *
      *  @return the operator's evaluation in a sparse matrix with the dimensions of the Fock space
      */
-    Eigen::SparseMatrix<double> evaluateOperatorSparse(const OneElectronOperator<double>& one_op,
-                                                       bool diagonal_values) const override;
+    Eigen::SparseMatrix<double> evaluateOperatorSparse(const ScalarSQOneElectronOperator<double>& one_op, bool diagonal_values) const override;
 
     /**
      *  Evaluate the operator in a dense matrix
@@ -147,7 +146,7 @@ public:
      *
      *  @return the operator's evaluation in a dense matrix with the dimensions of the Fock space
      */
-    SquareMatrix<double> evaluateOperatorDense(const TwoElectronOperator<double>& two_op, bool diagonal_values) const override;
+    SquareMatrix<double> evaluateOperatorDense(const ScalarSQTwoElectronOperator<double>& two_op, bool diagonal_values) const override;
 
     /**
      *  Evaluate the operator in a sparse matrix
@@ -157,8 +156,8 @@ public:
      *
      *  @return the operator's evaluation in a sparse matrix with the dimensions of the Fock space
      */
-    Eigen::SparseMatrix<double> evaluateOperatorSparse(const TwoElectronOperator<double>& two_op,
-                                                       bool diagonal_values) const override;
+    Eigen::SparseMatrix<double> evaluateOperatorSparse(const ScalarSQTwoElectronOperator<double>& two_op, bool diagonal_values) const override;
+
     /**
      *  Evaluate the Hamiltonian in a dense matrix
      *
@@ -167,8 +166,8 @@ public:
      *
      *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the Fock space
      */
-    SquareMatrix<double> evaluateOperatorDense(const HamiltonianParameters<double>& ham_par,
-                                               bool diagonal_values) const override;
+    SquareMatrix<double> evaluateOperatorDense(const HamiltonianParameters<double>& ham_par, bool diagonal_values) const override;
+
     /**
      *  Evaluate the Hamiltonian in a sparse matrix
      *
@@ -177,8 +176,8 @@ public:
      *
      *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the Fock space
      */
-    Eigen::SparseMatrix<double> evaluateOperatorSparse(const HamiltonianParameters<double>& ham_par,
-                                                       bool diagonal_values) const override;
+    Eigen::SparseMatrix<double> evaluateOperatorSparse(const HamiltonianParameters<double>& ham_par, bool diagonal_values) const override;
+
     /**
      *  Calculates sigma(pq) + sigma(qp)'s: all one-electron couplings for each annihilation-creation pair in the (spin) Fock space
      *  and stores them in sparse matrices for each pair combination
@@ -195,7 +194,7 @@ public:
      *
      *  @return the operator's diagonal evaluation in a vector with the dimension of the Fock space
      */
-    VectorX<double> evaluateOperatorDiagonal(const OneElectronOperator<double>& one_op) const override;
+    VectorX<double> evaluateOperatorDiagonal(const ScalarSQOneElectronOperator<double>& one_op) const override;
 
     /**
      *  Evaluate the diagonal of the operator
@@ -204,7 +203,7 @@ public:
      *
      *  @return the operator's diagonal evaluation in a vector with the dimension of the Fock space
      */
-    VectorX<double> evaluateOperatorDiagonal(const TwoElectronOperator<double>& two_op) const override;
+    VectorX<double> evaluateOperatorDiagonal(const ScalarSQTwoElectronOperator<double>& two_op) const override;
 
     /**
      *  Evaluate the diagonal of the Hamiltonian
@@ -332,10 +331,13 @@ public:
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
     template<class Matrix>
-    void EvaluateOperator(const OneElectronOperator<double>& one_op, EvaluationMatrix<Matrix>& container, bool diagonal_values) const {
-        size_t K = this->get_K();
-        size_t N = this->get_N();
-        size_t dim = this->get_dimension();
+    void EvaluateOperator(const ScalarSQOneElectronOperator<double>& one_op, EvaluationMatrix<Matrix>& container, bool diagonal_values) const {
+
+        const auto& one_op_par = one_op.parameters();
+
+        const size_t K = this->get_K();
+        const size_t N = this->get_N();
+        const size_t dim = this->get_dimension();
 
         ONV onv = this->makeONV(0);  // onv with address 0
         for (size_t I = 0; I < dim; I++) {  // I loops over all the addresses of the onv
@@ -345,7 +347,7 @@ public:
                 size_t address = I - this->get_vertex_weights(p, e1 + 1);
 
                 if (diagonal_values) {
-                    container.add(I, I, one_op(p, p));
+                    container.add(I, I, one_op_par(p, p));
                 }
 
                 // The e2 iteration counts the amount of encountered electrons for the creation operator
@@ -360,7 +362,7 @@ public:
 
                 while (q < K) {
                     size_t J = address + this->get_vertex_weights(q, e2);
-                    double value = sign_e2*one_op(p, q);
+                    double value = sign_e2*one_op_par(p, q);
                     container.add(I, J, value);
                     container.add(J, I, value);
 
@@ -388,10 +390,11 @@ public:
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
     template<class Matrix>
-    void EvaluateOperator(const TwoElectronOperator<double>& two_op, EvaluationMatrix<Matrix>& container, bool diagonal_values) const {
-        // Calling this combined method for both the one- and two-electron operator does not affect the performance, hence we avoid writting more code by plugging a zero operator in the combined method.
-        EvaluateOperator(OneElectronOperator<double>::Zero(this->K, this->K), two_op, container, diagonal_values);
+    void EvaluateOperator(const ScalarSQTwoElectronOperator<double>& two_op, EvaluationMatrix<Matrix>& container, bool diagonal_values) const {
+        // Calling this combined method for both the one- and two-electron operator does not affect the performance, hence we avoid writing more code by plugging a zero operator in the combined method
+        EvaluateOperator(ScalarSQOneElectronOperator<double>(this->K), two_op, container, diagonal_values);
     }
+
 
     /**
      *  Evaluate the operators in a given matrix wrapper in the Fock space
@@ -404,12 +407,16 @@ public:
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
     template<class Matrix>
-    void EvaluateOperator(const OneElectronOperator<double>& one_op, const TwoElectronOperator<double>& two_op, EvaluationMatrix<Matrix>& container, bool diagonal_values) const {
-        size_t K = this->get_K();
-        size_t N = this->get_N();
-        size_t dim = this->get_dimension();
+    void EvaluateOperator(const ScalarSQOneElectronOperator<double>& one_op, const ScalarSQTwoElectronOperator<double>& two_op, EvaluationMatrix<Matrix>& container, bool diagonal_values) const {
 
-        OneElectronOperator<double> k = two_op.effectiveOneElectronPartition() + one_op;
+        const auto& two_op_par = two_op.parameters();
+
+        const size_t K = this->get_K();
+        const size_t N = this->get_N();
+        const size_t dim = this->get_dimension();
+
+        ScalarSQOneElectronOperator<double> k = two_op.effectiveOneElectronPartition() + one_op;
+        const auto& k_par = k.parameters();
 
         ONV onv = this->makeONV(0);  // onv with address 0
         for (size_t I = 0; I < dim; I++) {  // I loops over all addresses in the Fock space
@@ -425,12 +432,12 @@ public:
 
                 // Strictly diagonal values
                 if (diagonal_values) {
-                    container.add(I, I, k(p,p));
+                    container.add(I, I, k_par(p,p));
                     for (size_t q = 0; q < K; q++) {  // q loops over SOs
                         if (onv.isOccupied(q)) {
-                            container.add(I, I, 0.5 * two_op(p, p, q, q));
+                            container.add(I, I, 0.5 * two_op_par(p, p, q, q));
                         } else {
-                            container.add(I, I, 0.5 * two_op(p, q, q, p));
+                            container.add(I, I, 0.5 * two_op_par(p, q, q, p));
                         }
                     }
                 }
@@ -468,10 +475,10 @@ public:
                         while (s < K) {
                             size_t J = address3 + this->get_vertex_weights(s, e4);
                             int signev = sign1 * sign2 * sign3 * sign4;
-                            double value = signev * 0.5 * (two_op(p, q, r, s) +
-                                                           two_op(r, s, p, q) -
-                                                           two_op(p, s, r, q) -
-                                                           two_op(r, q, p, s));
+                            double value = signev * 0.5 * (two_op_par(p, q, r, s) +
+                                                           two_op_par(r, s, p, q) -
+                                                           two_op_par(p, s, r, q) -
+                                                           two_op_par(r, q, p, s));
 
 
                             container.add(I,J, value);
@@ -515,10 +522,10 @@ public:
                             size_t J = address3 + this->get_vertex_weights(s, e4);
                             int signev = sign1 * sign2 * sign3 * sign4;
 
-                            double value = signev * 0.5 * (two_op(p, q, r, s) +
-                                                           two_op(r, s, p, q) -
-                                                           two_op(r, q, p, s) -
-                                                           two_op(p, s, r, q));
+                            double value = signev * 0.5 * (two_op_par(p, q, r, s) +
+                                                           two_op_par(r, s, p, q) -
+                                                           two_op_par(r, q, p, s) -
+                                                           two_op_par(p, s, r, q));
 
                             container.add(I,J, value);
                             container.add(J,I, value);
@@ -540,8 +547,7 @@ public:
                     for (size_t e3 = e2 - 1; e3 > e1; e3--) {
                         sign3 *= -1;
                         size_t e4 = e2;
-                        address1c += this->get_vertex_weights(r, e3) -
-                                     this->get_vertex_weights(r, e3 + 1);
+                        address1c += this->get_vertex_weights(r, e3) - this->get_vertex_weights(r, e3 + 1);
                         r = onv.get_occupation_index(e3);
                         size_t address2 = address1c - this->get_vertex_weights(r, e3);
                         int sign4 = sign2;
@@ -552,10 +558,10 @@ public:
                             size_t J = address2 + this->get_vertex_weights(s, e4);
 
                             int signev = sign1 * sign2 * sign3 * sign4;
-                            double value = signev * 0.5 * (two_op(p, q, r, s) +
-                                                           two_op(r, s, p, q) -
-                                                           two_op(r, q, p, s) -
-                                                           two_op(p, s, r, q));
+                            double value = signev * 0.5 * (two_op_par(p, q, r, s) +
+                                                           two_op_par(r, s, p, q) -
+                                                           two_op_par(r, q, p, s) -
+                                                           two_op_par(p, s, r, q));
 
                             container.add(I,J, value);
                             container.add(J,I, value);
@@ -571,13 +577,13 @@ public:
                      */
                     int signev = sign2 * sign1;
 
-                    double value_I =  k(p, q);  // cover the one electron calculations
+                    double value_I = k_par(p, q);  // cover the one electron calculations
 
                     for (size_t s = 0; s < K; s++) {
                         if(!onv.isOccupied(s)){
-                            value_I += 0.5 * (two_op(p, s, s, q));
+                            value_I += 0.5 * (two_op_par(p, s, s, q));
                         } else {
-                            value_I  += 0.5 * (two_op(s, s, p, q) - two_op(s, q, p, s) + two_op(p, q, s, s));
+                            value_I += 0.5 * (two_op_par(s, s, p, q) - two_op_par(s, q, p, s) + two_op_par(p, q, s, s));
                         }
                     }
 

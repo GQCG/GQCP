@@ -27,11 +27,11 @@ namespace GQCP {
 
 void SelectedCI::evaluateHamiltonianElements(const HamiltonianParameters<double>& hamiltonian_parameters, const PassToMethod& method) const {
 
-    size_t dim = fock_space.get_dimension();
-    size_t K = fock_space.get_K();
+    const size_t dim = fock_space.get_dimension();
+    const size_t K = fock_space.get_K();
 
-    auto h = hamiltonian_parameters.get_h();
-    auto g = hamiltonian_parameters.get_g();
+    const auto& h = hamiltonian_parameters.get_h().parameters();
+    const auto& g = hamiltonian_parameters.get_g().parameters();
 
     for (size_t I = 0; I < dim; I++) {  // loop over all addresses (1)
         Configuration configuration_I = this->fock_space.get_configuration(I);
@@ -64,10 +64,7 @@ void SelectedCI::evaluateHamiltonianElements(const HamiltonianParameters<double>
                     if (alpha_I.isOccupied(r) && alpha_J.isOccupied(r)) {  // r must be occupied on the left and on the right
                         if ((p != r) && (q != r)) {  // can't create or annihilate the same orbital
 
-                            double value = 0.5 * (g(p,q,r,r)
-                                               - g(r,q,p,r)
-                                               - g(p,r,r,q)
-                                               + g(r,r,p,q));
+                            double value = 0.5 * (g(p,q,r,r) - g(r,q,p,r) - g(p,r,r,q) + g(r,r,p,q));
 
                             method(I, J, sign*value);
                             method(J, I, sign*value);
@@ -76,8 +73,7 @@ void SelectedCI::evaluateHamiltonianElements(const HamiltonianParameters<double>
 
                     if (beta_I.isOccupied(r)) {  // beta_I == beta_J from the previous if-branch
 
-                        double value = 0.5 * (g(p,q,r,r)
-                                           +  g(r,r,p,q));
+                        double value = 0.5 * (g(p,q,r,r) + g(r,r,p,q));
 
                         method(I, J, sign*value);
                         method(J, I, sign*value);
@@ -105,10 +101,7 @@ void SelectedCI::evaluateHamiltonianElements(const HamiltonianParameters<double>
 
                     if (beta_I.isOccupied(r) && beta_J.isOccupied(r)) {  // r must be occupied on the left and on the right
                         if ((p != r) && (q != r)) {  // can't create or annihilate the same orbital
-                            double value = 0.5 * (g(p,q,r,r)
-                                               -  g(r,q,p,r)
-                                               -  g(p,r,r,q)
-                                               +  g(r,r,p,q));
+                            double value = 0.5 * (g(p,q,r,r) - g(r,q,p,r) - g(p,r,r,q) + g(r,r,p,q));
 
                             method(I, J, sign*value);
                             method(J, I, sign*value);
@@ -117,8 +110,7 @@ void SelectedCI::evaluateHamiltonianElements(const HamiltonianParameters<double>
 
                     if (alpha_I.isOccupied(r)) {  // alpha_I == alpha_J from the previous if-branch
 
-                        double value =  0.5 * (g(p,q,r,r)
-                                            +  g(r,r,p,q));
+                        double value =  0.5 * (g(p,q,r,r) + g(r,r,p,q));
 
                         method(I, J, sign*value);
                         method(J, I, sign*value);
@@ -137,8 +129,7 @@ void SelectedCI::evaluateHamiltonianElements(const HamiltonianParameters<double>
                 size_t s = beta_J.findDifferentOccupations(beta_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
 
                 int sign = alpha_I.operatorPhaseFactor(p) * alpha_J.operatorPhaseFactor(q) * beta_I.operatorPhaseFactor(r) * beta_J.operatorPhaseFactor(s);
-                double value = 0.5 * (g(p,q,r,s)
-                                   +  g(r,s,p,q));
+                double value = 0.5 * (g(p,q,r,s) + g(r,s,p,q));
 
                 method(I, J, sign*value);
                 method(J, I, sign*value);
@@ -158,10 +149,7 @@ void SelectedCI::evaluateHamiltonianElements(const HamiltonianParameters<double>
 
                 int sign = alpha_I.operatorPhaseFactor(p) * alpha_I.operatorPhaseFactor(r) * alpha_J.operatorPhaseFactor(q) * alpha_J.operatorPhaseFactor(s);
 
-                double value = 0.5 * (g(p,q,r,s)
-                                   -  g(p,s,r,q)
-                                   -  g(r,q,p,s)
-                                   +  g(r,s,p,q));
+                double value = 0.5 * (g(p,q,r,s) - g(p,s,r,q) - g(r,q,p,s) + g(r,s,p,q));
 
                 method(I, J, sign*value);
                 method(J, I, sign*value);
@@ -181,10 +169,7 @@ void SelectedCI::evaluateHamiltonianElements(const HamiltonianParameters<double>
 
                 int sign = beta_I.operatorPhaseFactor(p) * beta_I.operatorPhaseFactor(r) * beta_J.operatorPhaseFactor(q) * beta_J.operatorPhaseFactor(s);
 
-                double value = 0.5 * (g(p,q,r,s)
-                                   -  g(p,s,r,q)
-                                   -  g(r,q,p,s)
-                                   +  g(r,s,p,q));
+                double value = 0.5 * (g(p,q,r,s) - g(p,s,r,q) - g(r,q,p,s) + g(r,s,p,q));
 
                 method(I, J, sign*value);
                 method(J, I, sign*value);
