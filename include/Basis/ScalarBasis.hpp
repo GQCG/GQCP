@@ -19,6 +19,7 @@
 
 
 #include "Basis/GTOBasisSet.hpp"
+#include "Basis/GTOShell.hpp"
 #include "Basis/ShellSet.hpp"
 #include "Basis/Integrals/Interfaces/LibintInterfacer.hpp"
 #include "Basis/Integrals/Interfaces/LibcintInterfacer.hpp"
@@ -28,24 +29,26 @@
 #include "Mathematical/Representation/ChemicalMatrix.hpp"
 #include "Mathematical/Representation/ChemicalRankFourTensor.hpp"
 
+#include <type_traits>
+
 
 namespace GQCP {
 
 
 /**
- *  A class that represents a scalar basis: it represents a collection of scalar basis functions. It provides an interface to obtain basis functions and calculate integrals
+ *  A class that represents a scalar basis: it represents a collection of scalar basis functions. It provides an interface to obtain basis functions and calculate integrals over the shell type
  *
- * @tparam _Shell       the type of shell that this scalar basis contains
+ * @tparam _ShellType       the type of shell that this scalar basis contains
  */
-template <typename _Shell>
+template <typename _ShellType>
 class ScalarBasis {
 public:
-    using Shell = _Shell;
-    using BasisFunction = typename Shell::BasisFunction;
+    using ShellType = _ShellType;
+    using BasisFunction = typename ShellType::BasisFunction;
 
 
 private:
-    ShellSet<Shell> shell_set;  // a collection of shells that represents this scalar basis
+    ShellSet<ShellType> shell_set;  // a collection of shells that represents this scalar basis
 
 
 public:
@@ -57,7 +60,7 @@ public:
     /**
      *  @param shell_set        a collection of shells that represents this scalar basis
      */
-    ScalarBasis(const ShellSet<Shell>& shell_set): 
+    ScalarBasis(const ShellSet<ShellType>& shell_set): 
         shell_set (shell_set)
     {}
 
@@ -108,6 +111,7 @@ public:
      *  @return the matrix representation of the overlap operator in this AO basis, using the libint2 integral engine
      */
     ChemicalMatrix<double> calculateLibintOverlapIntegrals() const {
+        static_assert(std::is_same<ShellType, GTOShell>::value, "Can only calculate Libint2 integrals over GTOShells");
 
         // Construct the libint engine
         const auto max_nprim = this->shell_set.maximumNumberOfPrimitives();
@@ -125,6 +129,7 @@ public:
      *  @return the matrix representation of the kinetic energy operator in this AO basis, using the libint2 integral engine
      */
     ChemicalMatrix<double> calculateLibintKineticIntegrals() const {
+        static_assert(std::is_same<ShellType, GTOShell>::value, "Can only calculate Libint2 integrals over GTOShells");
 
         // Construct the libint engine
         const auto max_nprim = this->shell_set.maximumNumberOfPrimitives();
@@ -142,6 +147,7 @@ public:
      *  @return the matrix representation of the nuclear attraction operator in this AO basis, using the libint2 integral engine
      */
     ChemicalMatrix<double> calculateLibintNuclearIntegrals() const {
+        static_assert(std::is_same<ShellType, GTOShell>::value, "Can only calculate Libint2 integrals over GTOShells");
 
         // Construct the libint engine
         const auto max_nprim = this->shell_set.maximumNumberOfPrimitives();
@@ -161,6 +167,7 @@ public:
      *  @return the matrix representation of the Cartesian components of the electrical dipole operator in this AO basis, using the libint2 integral engine
      */
     std::array<ChemicalMatrix<double>, 3> calculateLibintDipoleIntegrals(const Vector<double, 3>& origin = Vector<double, 3>::Zero()) const {
+        static_assert(std::is_same<ShellType, GTOShell>::value, "Can only calculate Libint2 integrals over GTOShells");
 
         // Construct the libint engine
         const auto max_nprim = this->shell_set.maximumNumberOfPrimitives();
@@ -178,6 +185,7 @@ public:
      *  @return the matrix representation of the Coulomb repulsion operator in this AO basis, using the libint2 integral engine
      */
     ChemicalRankFourTensor<double> calculateLibintCoulombRepulsionIntegrals() const {
+        static_assert(std::is_same<ShellType, GTOShell>::value, "Can only calculate Libint2 integrals over GTOShells");
 
         // Construct the libint engine
         const auto max_nprim = this->shell_set.maximumNumberOfPrimitives();
@@ -203,6 +211,7 @@ public:
      *  @return the matrix representation of the overlap operator in this AO basis, using the libcint integral engine
      */
     ChemicalMatrix<double> calculateLibcintOverlapIntegrals() const {
+        static_assert(std::is_same<ShellType, GTOShell>::value, "Can only calculate Libint2 integrals over GTOShells");
 
         auto engine = IntegralEngine::Libcint(Operator::Overlap(), this->shell_set);  // cannot be const: Libint2 has a non-const compute() method inside its interface
         const auto integrals = IntegralCalculator::calculate(engine, this->shell_set);
@@ -216,6 +225,7 @@ public:
      *  @return the matrix representation of the kinetic energy operator in this AO basis, using the libcint integral engine
      */
     ChemicalMatrix<double> calculateLibcintKineticIntegrals() const {
+        static_assert(std::is_same<ShellType, GTOShell>::value, "Can only calculate Libint2 integrals over GTOShells");
 
         auto engine = IntegralEngine::Libcint(Operator::Kinetic(), this->shell_set);  // cannot be const: Libint2 has a non-const compute() method inside its interface
         const auto integrals = IntegralCalculator::calculate(engine, this->shell_set);
@@ -229,6 +239,7 @@ public:
      *  @return the matrix representation of the nuclear attraction operator in this AO basis, using the libcint integral engine
      */
     ChemicalMatrix<double> calculateLibcintNuclearIntegrals() const {
+        static_assert(std::is_same<ShellType, GTOShell>::value, "Can only calculate Libint2 integrals over GTOShells");
 
         auto engine = IntegralEngine::Libcint(Operator::NuclearAttraction(this->shell_set.nuclei()), this->shell_set);  // cannot be const: Libint2 has a non-const compute() method inside its interface
         const auto integrals = IntegralCalculator::calculate(engine, this->shell_set);
@@ -244,6 +255,7 @@ public:
      *  @return the matrix representation of the Cartesian components of the electrical dipole operator in this AO basis, using the libcint integral engine
      */
     std::array<ChemicalMatrix<double>, 3> calculateLibcintDipoleIntegrals(const Vector<double, 3>& origin = Vector<double, 3>::Zero()) const {
+        static_assert(std::is_same<ShellType, GTOShell>::value, "Can only calculate Libint2 integrals over GTOShells");
 
         auto engine = IntegralEngine::Libcint(Operator::ElectronicDipole(origin), this->shell_set);  // cannot be const: Libint2 has a non-const compute() method inside its interface
         const auto integrals = IntegralCalculator::calculate(engine, this->shell_set);
@@ -256,6 +268,7 @@ public:
      *  @return the matrix representation of the Coulomb repulsion operator in this AO basis, using the libcint integral engine
      */
     ChemicalRankFourTensor<double> calculateLibcintCoulombRepulsionIntegrals() const {
+        static_assert(std::is_same<ShellType, GTOShell>::value, "Can only calculate Libint2 integrals over GTOShells");
 
         auto engine = IntegralEngine::Libcint(Operator::Coulomb(), this->shell_set);  // cannot be const: Libint2 has a non-const compute() method inside its interface
         const auto integrals = IntegralCalculator::calculate(engine, this->shell_set);
