@@ -171,7 +171,7 @@ public:
         const auto S = this->overlapMatrix();
 
         const auto dim = this->numberOfOrbitals();
-        return S.isApprox(SquareMatrix<TransformationScalar>::Identity(this->dim, this->dim), precision);
+        return S.isApprox(SquareMatrix<TransformationScalar>::Identity(dim, dim), precision);
     }
 
 
@@ -180,7 +180,7 @@ public:
      * 
      *  @return transformation matrix to the Löwdin basis: T = S^{-1/2}
      */
-    SquareMatrix<TransformationScalar> LowdinOrthonormalize() {
+    void LowdinOrthonormalize() {
 
         // The transformation matrix to the Löwdin basis is T = S^{-1/2}
         auto S = this->scalar_basis.calculateLibintOverlapIntegrals();  // in the underlying (possibly orthonormal) scalar basis

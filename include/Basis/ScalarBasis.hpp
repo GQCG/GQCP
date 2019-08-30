@@ -72,8 +72,12 @@ public:
      *  @param basisset_name        the name of the basisset, e.g. "STO-3G"
      *
      *  Note that the normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells
+     * 
+     *  @note This constructor is only available for GTOShells (for the std::enable_if, see https://stackoverflow.com/a/17842695/7930415)
      */
-    ScalarBasis(const Molecule& molecule, const std::string& basisset_name) :
+    template <typename Z = GTOShell>
+    ScalarBasis(const Molecule& molecule, const std::string& basisset_name,
+                typename std::enable_if<std::is_same<Z, GTOShell>::value>::type* = 0) :
         ScalarBasis(GTOBasisSet(basisset_name).generate(molecule))
     {
         this->shell_set.embedNormalizationFactorsOfPrimitives();

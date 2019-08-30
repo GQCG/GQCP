@@ -56,7 +56,6 @@ BOOST_AUTO_TEST_CASE( Szabo_integrals_h2_sto3g ) {
     const auto S = ao_basis.calculateLibintOverlapIntegrals();
     const auto T = ao_basis.calculateLibintKineticIntegrals();
     const auto V = ao_basis.calculateLibintNuclearIntegrals();
-
     const GQCP::ChemicalMatrix<double> H_core = T + V;
 
     const auto g = ao_basis.calculateLibintCoulombRepulsionIntegrals();
