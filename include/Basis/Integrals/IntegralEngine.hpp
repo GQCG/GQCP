@@ -22,7 +22,11 @@
 #include "Basis/Integrals/Interfaces/LibcintTwoElectronIntegralEngine.hpp"
 #include "Basis/Integrals/Interfaces/LibintOneElectronIntegralEngine.hpp"
 #include "Basis/Integrals/Interfaces/LibintTwoElectronIntegralEngine.hpp"
-#include "Operator/FirstQuantized/Operator.hpp"
+#include "Operator/FirstQuantized/CoulombRepulsionOperator.hpp"
+#include "Operator/FirstQuantized/ElectronicDipoleOperator.hpp"
+#include "Operator/FirstQuantized/KineticOperator.hpp"
+#include "Operator/FirstQuantized/NuclearAttractionOperator.hpp"
+#include "Operator/FirstQuantized/OverlapOperator.hpp"
 #include "typedefs.hpp"
 
 

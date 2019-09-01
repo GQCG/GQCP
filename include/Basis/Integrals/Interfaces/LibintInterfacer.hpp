@@ -21,7 +21,11 @@
 #include "Basis/GTOShell.hpp"
 #include "Basis/ShellSet.hpp"
 #include "Molecule/Molecule.hpp"
-#include "Operator/FirstQuantized/Operator.hpp"
+#include "Operator/FirstQuantized/CoulombRepulsionOperator.hpp"
+#include "Operator/FirstQuantized/ElectronicDipoleOperator.hpp"
+#include "Operator/FirstQuantized/KineticOperator.hpp"
+#include "Operator/FirstQuantized/NuclearAttractionOperator.hpp"
+#include "Operator/FirstQuantized/OverlapOperator.hpp"
 #include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/SQTwoElectronOperator.hpp"
 

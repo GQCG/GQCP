@@ -18,10 +18,13 @@
 #pragma once
 
 
+#include "Basis/ScalarBasis.hpp"
+#include "Basis/SPBasis.hpp"
 #include "HamiltonianParameters/BaseHamiltonianParameters.hpp"
 #include "HoppingMatrix.hpp"
 #include "Molecule/Molecule.hpp"
-#include "Operator/FirstQuantized/Operator.hpp"
+#include "Operator/FirstQuantized/NuclearRepulsionOperator.hpp"
+#include "Operator/FirstQuantized/OverlapOperator.hpp"
 #include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/SQTwoElectronOperator.hpp"
 #include "OrbitalOptimization/JacobiRotationParameters.hpp"
@@ -137,8 +140,11 @@ public:
     template <typename Z = Scalar>
     static enable_if_t<std::is_same<Z, double>::value, HamiltonianParameters<double>> Molecular(std::shared_ptr<ScalarBasis<GTOShell>> ao_basis, double scalar=0.0) {
 
+        const SPBasis<Z, GTOShell> sp_basis (*ao_basis);
+
         // Calculate the integrals for the molecular Hamiltonian
-        const ScalarSQOneElectronOperator<Z> S ({ao_basis->calculateLibintOverlapIntegrals()});
+        const auto S = Operator::Overlap().quantize(sp_basis);
+        // const ScalarSQOneElectronOperator<Z> S ({ao_basis->calculateLibintOverlapIntegrals()});
         const ScalarSQOneElectronOperator<Z> T ({ao_basis->calculateLibintKineticIntegrals()});
         const ScalarSQOneElectronOperator<Z> V ({ao_basis->calculateLibintNuclearIntegrals()});
         ScalarSQOneElectronOperator<double> H = T + V;

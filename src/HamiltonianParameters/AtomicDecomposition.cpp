@@ -17,7 +17,7 @@
 // 
 #include "HamiltonianParameters/AtomicDecompositionParameters.hpp"
 
-#include "Operator/FirstQuantized/Operator.hpp"
+#include "Operator/FirstQuantized/NuclearRepulsionOperator.hpp"
 
 
 namespace GQCP {

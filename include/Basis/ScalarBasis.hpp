@@ -35,6 +35,14 @@
 namespace GQCP {
 
 
+/*
+ *  FORWARD DECLARATIONS
+ */
+template <typename TransformationScalar, typename ShellType>
+class SPBasis;
+
+
+
 /**
  *  A class that represents a scalar basis: it represents a collection of scalar basis functions. It provides an interface to obtain basis functions and calculate integrals over the shell type
  *

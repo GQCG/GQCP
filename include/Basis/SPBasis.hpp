@@ -199,6 +199,11 @@ public:
         S.basisTransformInPlace(this->T_total);  // in this single-particle basis
         return S;
     }
+
+    /**
+     *  @return the underlying scalar basis
+     */
+    const ScalarBasis<ShellType>& scalarBasis() const { return this->scalar_basis; }
 };
 
 
