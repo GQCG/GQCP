@@ -49,10 +49,10 @@ public:
  *  CONVENIENCE ALIASES
  */
 template <typename Scalar>
-using ScalarFQTwoElectronOperator = FQTwoElectronOperator<Scalar, 1>;
+using BaseScalarFQTwoElectronOperator = BaseFQTwoElectronOperator<Scalar, 1>;
 
 template <typename Scalar>
-using VectorFQTwoElectronOperator = FQTwoElectronOperator<Scalar, 3>;
+using BaseVectorFQTwoElectronOperator = BaseFQTwoElectronOperator<Scalar, 3>;
 
 
 }  // namespace GQCP

@@ -202,7 +202,7 @@ public:
     void LowdinOrthonormalize() {
 
         // The transformation matrix to the Löwdin basis is T = S^{-1/2}
-        auto S = this->scalar_basis.calculateLibintOverlapIntegrals();  // in the underlying (possibly orthonormal) scalar basis
+        auto S = this->scalar_basis.calculateLibintIntegrals(Operator::Overlap());  // in the underlying (possibly orthonormal) scalar basis
         Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes (S);
 
         this->T_total = SquareMatrix<double>(saes.operatorInverseSqrt());
@@ -214,7 +214,7 @@ public:
      */
     SquareMatrix<TransformationScalar> overlapMatrix() const {
 
-        auto S = this->scalar_basis.calculateLibintOverlapIntegrals();  // in the underlying scalar basis
+        auto S = this->scalar_basis.calculateLibintIntegrals(Operator::Overlap());  // in the underlying scalar basis
         S.basisTransformInPlace(this->T_total);  // in this single-particle basis
         return S;
     }
@@ -234,7 +234,7 @@ public:
         using ResultScalar = product_t<OverlapOperator::Scalar, TransformationScalar>;
         using ResultOperator = SQOneElectronOperator<ResultScalar, OverlapOperator::Components>;
 
-        ResultOperator op ({this->scalarBasis().calculateLibintOverlapIntegrals()});  // op for 'operator'
+        ResultOperator op ({this->scalarBasis().calculateLibintIntegrals(fq_op)});  // op for 'operator'
         op.transform(this->transformationMatrix());
         return op;
     }
@@ -250,7 +250,7 @@ public:
         using ResultScalar = product_t<KineticOperator::Scalar, TransformationScalar>;
         using ResultOperator = SQOneElectronOperator<ResultScalar, KineticOperator::Components>;
 
-        ResultOperator op ({this->scalarBasis().calculateLibintKineticIntegrals()});  // op for 'operator'
+        ResultOperator op ({this->scalarBasis().calculateLibintIntegrals(fq_op)});  // op for 'operator'
         op.transform(this->transformationMatrix());
         return op;
     }
@@ -266,7 +266,7 @@ public:
         using ResultScalar = product_t<NuclearAttractionOperator::Scalar, TransformationScalar>;
         using ResultOperator = SQOneElectronOperator<ResultScalar, NuclearAttractionOperator::Components>;
 
-        ResultOperator op ({this->scalarBasis().calculateLibintNuclearIntegrals()});  // op for 'operator'
+        ResultOperator op ({this->scalarBasis().calculateLibintIntegrals(fq_op)});  // op for 'operator'
         op.transform(this->transformationMatrix());
         return op;
     }
@@ -282,7 +282,7 @@ public:
         using ResultScalar = product_t<ElectronicDipoleOperator::Scalar, TransformationScalar>;
         using ResultOperator = SQOneElectronOperator<ResultScalar, ElectronicDipoleOperator::Components>;
 
-        ResultOperator op ({this->scalarBasis().calculateLibintDipoleIntegrals(fq_op.origin())});  // op for 'operator'
+        ResultOperator op ({this->scalarBasis().calculateLibintIntegrals(fq_op)});  // op for 'operator'
         op.transform(this->transformationMatrix());
         return op;
     }
@@ -298,7 +298,7 @@ public:
         using ResultScalar = product_t<CoulombRepulsionOperator::Scalar, TransformationScalar>;
         using ResultOperator = SQTwoElectronOperator<ResultScalar, CoulombRepulsionOperator::Components>;
 
-        ResultOperator op ({this->scalarBasis().calculateLibintCoulombRepulsionIntegrals()});  // op for 'operator'
+        ResultOperator op ({this->scalarBasis().calculateLibintIntegrals(fq_op)});  // op for 'operator'
         op.transform(this->transformationMatrix());
         return op;
     }

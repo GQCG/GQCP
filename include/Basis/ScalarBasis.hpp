@@ -137,51 +137,16 @@ public:
      */
 
     /**
-     *  @return the matrix representation of the overlap operator in this AO basis, using the libint2 integral engine
+     *  @param fq_op            the first-quantized operator
+     * 
+     *  @return the matrix representation (integrals) of the given first-quantized operator in this scalar basis
      */
-    ChemicalMatrix<double> calculateLibintOverlapIntegrals() const {
+    ChemicalMatrix<double> calculateLibintIntegrals(const OverlapOperator& fq_op) const {
         static_assert(std::is_same<ShellType, GTOShell>::value, "Can only calculate Libint2 integrals over GTOShells");
 
         // Construct the libint engine
         const auto max_nprim = this->shell_set.maximumNumberOfPrimitives();
         const auto max_l = this->shell_set.maximumAngularMomentum();
-        auto engine = IntegralEngine::Libint(Operator::Overlap(), max_nprim, max_l);  // cannot be const because libint2::Engine::compute() is not a const method
-
-
-        // Calculate the integrals using the engine
-        const auto integrals = IntegralCalculator::calculate(engine, this->shell_set);
-        return integrals[0];
-    }
-
-
-    /**
-     *  @return the matrix representation of the kinetic energy operator in this AO basis, using the libint2 integral engine
-     */
-    ChemicalMatrix<double> calculateLibintKineticIntegrals() const {
-        static_assert(std::is_same<ShellType, GTOShell>::value, "Can only calculate Libint2 integrals over GTOShells");
-
-        // Construct the libint engine
-        const auto max_nprim = this->shell_set.maximumNumberOfPrimitives();
-        const auto max_l = this->shell_set.maximumAngularMomentum();
-        auto engine = IntegralEngine::Libint(Operator::Kinetic(), max_nprim, max_l);  // cannot be const because libint2::Engine::compute() is not a const method
-
-
-        // Calculate the integrals using the engine
-        const auto integrals = IntegralCalculator::calculate(engine, this->shell_set);
-        return integrals[0];
-    }
-
-
-    /**
-     *  @return the matrix representation of the nuclear attraction operator in this AO basis, using the libint2 integral engine
-     */
-    ChemicalMatrix<double> calculateLibintNuclearIntegrals() const {
-        static_assert(std::is_same<ShellType, GTOShell>::value, "Can only calculate Libint2 integrals over GTOShells");
-
-        // Construct the libint engine
-        const auto max_nprim = this->shell_set.maximumNumberOfPrimitives();
-        const auto max_l = this->shell_set.maximumAngularMomentum();
-        const auto fq_op = Operator::NuclearAttraction(NuclearFramework(this->shell_set.nuclei()));  // the first-quantized operator
         auto engine = IntegralEngine::Libint(fq_op, max_nprim, max_l);  // cannot be const because libint2::Engine::compute() is not a const method
 
 
@@ -192,35 +157,77 @@ public:
 
 
     /**
-     *  @param origin       the origin of the dipole
-     *
-     *  @return the matrix representation of the Cartesian components of the electrical dipole operator in this AO basis, using the libint2 integral engine
+     *  @param fq_op            the first-quantized operator
+     * 
+     *  @return the matrix representation (integrals) of the given first-quantized operator in this scalar basis
      */
-    std::array<ChemicalMatrix<double>, 3> calculateLibintDipoleIntegrals(const Vector<double, 3>& origin = Vector<double, 3>::Zero()) const {
+    ChemicalMatrix<double> calculateLibintIntegrals(const KineticOperator& fq_op) const {
         static_assert(std::is_same<ShellType, GTOShell>::value, "Can only calculate Libint2 integrals over GTOShells");
 
         // Construct the libint engine
         const auto max_nprim = this->shell_set.maximumNumberOfPrimitives();
         const auto max_l = this->shell_set.maximumAngularMomentum();
-        auto engine = IntegralEngine::Libint(Operator::ElectronicDipole(origin), max_nprim, max_l);  // cannot be const because libint2::Engine::compute() is not a const method
+        auto engine = IntegralEngine::Libint(fq_op, max_nprim, max_l);  // cannot be const because libint2::Engine::compute() is not a const method
 
 
         // Calculate the integrals using the engine
-        const auto all_integrals = IntegralCalculator::calculate(engine, this->shell_set);
-        return {all_integrals[0], all_integrals[1], all_integrals[2]};
+        const auto integrals = IntegralCalculator::calculate(engine, this->shell_set);
+        return integrals[0];
     }
 
 
     /**
-     *  @return the matrix representation of the Coulomb repulsion operator in this AO basis, using the libint2 integral engine
+     *  @param fq_op            the first-quantized operator
+     * 
+     *  @return the matrix representation (integrals) of the given first-quantized operator in this scalar basis
      */
-    ChemicalRankFourTensor<double> calculateLibintCoulombRepulsionIntegrals() const {
+    ChemicalMatrix<double> calculateLibintIntegrals(const NuclearAttractionOperator& fq_op) const {
         static_assert(std::is_same<ShellType, GTOShell>::value, "Can only calculate Libint2 integrals over GTOShells");
 
         // Construct the libint engine
         const auto max_nprim = this->shell_set.maximumNumberOfPrimitives();
         const auto max_l = this->shell_set.maximumAngularMomentum();
-        auto engine = IntegralEngine::Libint(Operator::Coulomb(), max_nprim, max_l);  // cannot be const because libint2::Engine::compute() is not a const method
+        auto engine = IntegralEngine::Libint(fq_op, max_nprim, max_l);  // cannot be const because libint2::Engine::compute() is not a const method
+
+
+        // Calculate the integrals using the engine
+        const auto integrals = IntegralCalculator::calculate(engine, this->shell_set);
+        return integrals[0];
+    }
+
+
+    /**
+     *  @param fq_op            the first-quantized operator
+     * 
+     *  @return the matrix representation (integrals) of the given first-quantized operator in this scalar basis
+     */
+    std::array<ChemicalMatrix<double>, 3>  calculateLibintIntegrals(const ElectronicDipoleOperator& fq_op) const {
+        static_assert(std::is_same<ShellType, GTOShell>::value, "Can only calculate Libint2 integrals over GTOShells");
+
+        // Construct the libint engine
+        const auto max_nprim = this->shell_set.maximumNumberOfPrimitives();
+        const auto max_l = this->shell_set.maximumAngularMomentum();
+        auto engine = IntegralEngine::Libint(fq_op, max_nprim, max_l);  // cannot be const because libint2::Engine::compute() is not a const method
+
+
+        // Calculate the integrals using the engine
+        const auto integrals = IntegralCalculator::calculate(engine, this->shell_set);
+        return {integrals[0], integrals[1], integrals[2]};
+    }
+
+
+    /**
+     *  @param fq_op            the first-quantized operator
+     * 
+     *  @return the matrix representation (integrals) of the given first-quantized operator in this scalar basis
+     */
+    ChemicalRankFourTensor<double> calculateLibintIntegrals(const CoulombRepulsionOperator& fq_op) const {
+        static_assert(std::is_same<ShellType, GTOShell>::value, "Can only calculate Libint2 integrals over GTOShells");
+
+        // Construct the libint engine
+        const auto max_nprim = this->shell_set.maximumNumberOfPrimitives();
+        const auto max_l = this->shell_set.maximumAngularMomentum();
+        auto engine = IntegralEngine::Libint(fq_op, max_nprim, max_l);  // cannot be const because libint2::Engine::compute() is not a const method
 
 
         // Calculate the integrals using the engine
@@ -238,12 +245,14 @@ public:
     /**
      *  Calculate the overlap integrals using Libcint: only use this for all-Cartesian ShellSets
      *
+     *  @param fq_op            the first-quantized operator
+     * 
      *  @return the matrix representation of the overlap operator in this AO basis, using the libcint integral engine
      */
-    ChemicalMatrix<double> calculateLibcintOverlapIntegrals() const {
+    ChemicalMatrix<double> calculateLibcintIntegrals(const OverlapOperator& fq_op) const {
         static_assert(std::is_same<ShellType, GTOShell>::value, "Can only calculate Libint2 integrals over GTOShells");
 
-        auto engine = IntegralEngine::Libcint(Operator::Overlap(), this->shell_set);  // cannot be const: Libint2 has a non-const compute() method inside its interface
+        auto engine = IntegralEngine::Libcint(fq_op, this->shell_set);  // cannot be const: Libint2 has a non-const compute() method inside its interface
         const auto integrals = IntegralCalculator::calculate(engine, this->shell_set);
         return integrals[0];
     }
@@ -252,12 +261,14 @@ public:
     /**
      *  Calculate the kinetic energy integrals using Libcint: only use this for all-Cartesian ShellSets
      *
+     *  @param fq_op            the first-quantized operator
+     * 
      *  @return the matrix representation of the kinetic energy operator in this AO basis, using the libcint integral engine
      */
-    ChemicalMatrix<double> calculateLibcintKineticIntegrals() const {
+    ChemicalMatrix<double> calculateLibcintIntegrals(const KineticOperator& fq_op) const {
         static_assert(std::is_same<ShellType, GTOShell>::value, "Can only calculate Libint2 integrals over GTOShells");
 
-        auto engine = IntegralEngine::Libcint(Operator::Kinetic(), this->shell_set);  // cannot be const: Libint2 has a non-const compute() method inside its interface
+        auto engine = IntegralEngine::Libcint(fq_op, this->shell_set);  // cannot be const: Libint2 has a non-const compute() method inside its interface
         const auto integrals = IntegralCalculator::calculate(engine, this->shell_set);
         return integrals[0];
     }
@@ -266,12 +277,13 @@ public:
     /**
      *  Calculate the nuclear attraction energy integrals using Libcint: only use this for all-Cartesian ShellSets
      *
+     *  @param fq_op            the first-quantized operator
+     * 
      *  @return the matrix representation of the nuclear attraction operator in this AO basis, using the libcint integral engine
      */
-    ChemicalMatrix<double> calculateLibcintNuclearIntegrals() const {
+    ChemicalMatrix<double> calculateLibcintIntegrals(const NuclearAttractionOperator& fq_op) const {
         static_assert(std::is_same<ShellType, GTOShell>::value, "Can only calculate Libint2 integrals over GTOShells");
 
-        const auto fq_op = Operator::NuclearAttraction(NuclearFramework(this->shell_set.nuclei()));  // the first-quantized operator
         auto engine = IntegralEngine::Libcint(fq_op, this->shell_set);  // cannot be const: Libint2 has a non-const compute() method inside its interface
         const auto integrals = IntegralCalculator::calculate(engine, this->shell_set);
         return integrals[0];
@@ -281,14 +293,14 @@ public:
     /**
      *  Calculate the electrical dipole integrals using Libcint: only use this for all-Cartesian ShellSets
      *
-     *  @param origin       the origin of the dipole
+     *  @param fq_op            the first-quantized operator
      *
      *  @return the matrix representation of the Cartesian components of the electrical dipole operator in this AO basis, using the libcint integral engine
      */
-    std::array<ChemicalMatrix<double>, 3> calculateLibcintDipoleIntegrals(const Vector<double, 3>& origin = Vector<double, 3>::Zero()) const {
+    std::array<ChemicalMatrix<double>, 3> calculateLibcintIntegrals(const ElectronicDipoleOperator& fq_op) const {
         static_assert(std::is_same<ShellType, GTOShell>::value, "Can only calculate Libint2 integrals over GTOShells");
 
-        auto engine = IntegralEngine::Libcint(Operator::ElectronicDipole(origin), this->shell_set);  // cannot be const: Libint2 has a non-const compute() method inside its interface
+        auto engine = IntegralEngine::Libcint(fq_op, this->shell_set);  // cannot be const: Libint2 has a non-const compute() method inside its interface
         const auto integrals = IntegralCalculator::calculate(engine, this->shell_set);
         return {integrals[0], integrals[1], integrals[2]};
     }
@@ -296,12 +308,14 @@ public:
     /**
      *  Calculate the Coulomb repulsion energy integrals using Libcint: only use this for all-Cartesian ShellSets
      *
+     *  @param fq_op            the first-quantized operator
+     * 
      *  @return the matrix representation of the Coulomb repulsion operator in this AO basis, using the libcint integral engine
      */
-    ChemicalRankFourTensor<double> calculateLibcintCoulombRepulsionIntegrals() const {
+    ChemicalRankFourTensor<double> calculateLibcintIntegrals(const CoulombRepulsionOperator& fq_op) const {
         static_assert(std::is_same<ShellType, GTOShell>::value, "Can only calculate Libint2 integrals over GTOShells");
 
-        auto engine = IntegralEngine::Libcint(Operator::Coulomb(), this->shell_set);  // cannot be const: Libint2 has a non-const compute() method inside its interface
+        auto engine = IntegralEngine::Libcint(fq_op, this->shell_set);  // cannot be const: Libint2 has a non-const compute() method inside its interface
         const auto integrals = IntegralCalculator::calculate(engine, this->shell_set);
         return integrals[0];
     }
