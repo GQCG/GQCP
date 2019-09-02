@@ -114,6 +114,8 @@
 #include "Molecule/NuclearFramework.hpp"
 #include "Molecule/Nucleus.hpp"
 
+#include "Operator/FirstQuantized/BaseFQOneElectronOperator.hpp"
+#include "Operator/FirstQuantized/BaseFQTwoElectronOperator.hpp"
 #include "Operator/FirstQuantized/BaseMultipoleOperator.hpp"
 #include "Operator/FirstQuantized/BaseNuclearOperator.hpp"
 #include "Operator/FirstQuantized/CoulombRepulsionOperator.hpp"

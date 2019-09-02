@@ -18,9 +18,7 @@
 #pragma once
 
 
-#include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
-
-#include <cstddef>
+#include "Operator/FirstQuantized/BaseFQOneElectronOperator.hpp"
 
 
 namespace GQCP {
@@ -29,11 +27,7 @@ namespace GQCP {
 /**
  *  A class that represents the overlap operator
  */
-class OverlapOperator {
-public:
-    using Scalar = double;  // the scalar representation of the operator
-    static constexpr size_t Components = 1;  // the number of components the operator has
-};
+class OverlapOperator : public BaseFQOneElectronOperator<double, 1> {};
 
 
 }  // namespace GQCP

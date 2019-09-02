@@ -194,5 +194,3 @@ BOOST_AUTO_TEST_CASE ( dissociatedMoleculeBasis ) {
 
     BOOST_CHECK_NO_THROW(GQCP::ScalarBasis<GQCP::GTOShell> basis (NO, "STO-3G"));
 }
-
-

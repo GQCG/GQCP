@@ -1,5 +1,7 @@
 target_sources(gqcp
         PRIVATE
+            BaseFQOneElectronOperator.hpp
+            BaseFQTwoElectronOperator.hpp
             BaseMultipoleOperator.hpp
             BaseNuclearOperator.hpp
             CoulombRepulsionOperator.hpp

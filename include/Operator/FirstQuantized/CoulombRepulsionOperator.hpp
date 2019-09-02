@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include <cstddef>
+#include "Operator/FirstQuantized/BaseFQTwoElectronOperator.hpp"
 
 
 namespace GQCP {
@@ -27,11 +27,7 @@ namespace GQCP {
 /**
  *  A class that represents the Coulomb interaction energy operator between the electrons
  */
-class CoulombRepulsionOperator {
-public:
-    using Scalar = double;  // the scalar representation of the operator
-    static constexpr size_t Components = 1;  // the number of components the operator has
-};
+class CoulombRepulsionOperator : public BaseFQTwoElectronOperator<double, 1> {};
 
 
 }  // namespace GQCP

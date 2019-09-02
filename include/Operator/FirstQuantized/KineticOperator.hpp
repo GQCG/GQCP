@@ -18,20 +18,16 @@
 #pragma once
 
 
-#include <cstddef>
+#include "Operator/FirstQuantized/BaseFQOneElectronOperator.hpp"
 
 
 namespace GQCP {
 
 
 /**
- *  A class that represents the kinetic energy operator for the electrons
+ *  A class that represents the (non-relativistic) kinetic energy operator for the electrons
  */
-class KineticOperator {
-public:
-    using Scalar = double;  // the scalar representation of the operator
-    static constexpr size_t Components = 1;  // the number of components the operator has
-};
+class KineticOperator : public BaseFQOneElectronOperator<double, 1> {};
 
 
 }  // namespace GQCP

@@ -18,21 +18,41 @@
 #pragma once
 
 
-#include "Operator/FirstQuantized/BaseMultipoleOperator.hpp"
-#include "Operator/FirstQuantized/BaseFQOneElectronOperator.hpp"
+#include <cstddef>
 
 
 namespace GQCP {
 
 
 /**
- *  A class that represents the electronic dipole operator for the electrons
+ *  A base class used to represent two-electron operators
+ * 
+ *  @tparam _Scalar         the scalar representation of the operator
+ *  @tparam _Components     the number of components the operator has
  */
-class ElectronicDipoleOperator: public BaseFQOneElectronOperator<double, 3>, public BaseMultipoleOperator {
+template <typename _Scalar, size_t _Components>
+class BaseFQTwoElectronOperator {
 public:
-    // CONSTRUCTORS
-    using BaseMultipoleOperator::BaseMultipoleOperator;  // inherit base constructors
+    using Scalar = _Scalar;  // the scalar representation of the operator
+    static constexpr auto Components = _Components;  // the number of components the operator has
+
+
+public:
+    // DESTRUCTORS
+
+    virtual ~BaseFQTwoElectronOperator() {}
 };
+
+
+
+/*
+ *  CONVENIENCE ALIASES
+ */
+template <typename Scalar>
+using ScalarFQTwoElectronOperator = FQTwoElectronOperator<Scalar, 1>;
+
+template <typename Scalar>
+using VectorFQTwoElectronOperator = FQTwoElectronOperator<Scalar, 3>;
 
 
 }  // namespace GQCP
