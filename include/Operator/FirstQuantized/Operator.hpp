@@ -51,6 +51,13 @@ public:
     static KineticOperator Kinetic();
 
     /**
+     *  @param nuclear_framework            the nuclear framework
+     * 
+     *  @return a NuclearAttractionOperator
+     */
+    static NuclearAttractionOperator NuclearAttraction(const NuclearFramework& nuclear_framework);
+
+    /**
      *  @param mol              the molecule that contains the nuclear framework
      * 
      *  @return a NuclearAttractionOperator

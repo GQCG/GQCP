@@ -23,11 +23,7 @@
 #include "Basis/GTOShell.hpp"
 #include "Basis/Integrals/Interfaces/LibintInterfacer.hpp"
 #include "Basis/Integrals/Interfaces/LibintOneElectronIntegralBuffer.hpp"
-#include "Operator/FirstQuantized/CoulombRepulsionOperator.hpp"
-#include "Operator/FirstQuantized/ElectronicDipoleOperator.hpp"
-#include "Operator/FirstQuantized/KineticOperator.hpp"
-#include "Operator/FirstQuantized/NuclearAttractionOperator.hpp"
-#include "Operator/FirstQuantized/OverlapOperator.hpp"
+#include "Operator/FirstQuantized/Operator.hpp"
 
 
 namespace GQCP {

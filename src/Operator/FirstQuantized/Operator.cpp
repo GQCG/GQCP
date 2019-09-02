@@ -44,13 +44,24 @@ KineticOperator Operator::Kinetic() {
 
 
 /**
+ *  @param nuclear_framework            the nuclear framework
+ * 
+ *  @return a NuclearAttractionOperator
+ */
+NuclearAttractionOperator Operator::NuclearAttraction(const NuclearFramework& nuclear_framework) {
+
+    return NuclearAttractionOperator(nuclear_framework);
+}
+
+
+/**
  *  @param mol              the molecule that contains the nuclear framework
  * 
  *  @return a NuclearAttractionOperator
  */
 NuclearAttractionOperator Operator::NuclearAttraction(const Molecule& mol) {
 
-    return NuclearAttractionOperator(mol.nuclearFramework());
+    return Operator::NuclearAttraction(mol.nuclearFramework());
 }
 
 

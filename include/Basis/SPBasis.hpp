@@ -20,6 +20,8 @@
 
 #include "Basis/ScalarBasis.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
+#include "Operator/FirstQuantized/Operator.hpp"
+#include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
 #include "OrbitalOptimization/JacobiRotationParameters.hpp"
 
 #include <Eigen/Dense>
@@ -204,6 +206,85 @@ public:
      *  @return the underlying scalar basis
      */
     const ScalarBasis<ShellType>& scalarBasis() const { return this->scalar_basis; }
+
+    /**
+     *  @param fq_op        the first-quantized operator
+     * 
+     *  @return the second-quantized operator corresponding to the given first-quantized operator
+     */
+    auto quantize(const OverlapOperator& fq_op) const -> SQOneElectronOperator<product_t<OverlapOperator::Scalar, TransformationScalar>, OverlapOperator::Components> {
+
+        using ResultScalar = product_t<OverlapOperator::Scalar, TransformationScalar>;
+        using ResultOperator = SQOneElectronOperator<ResultScalar, OverlapOperator::Components>;
+
+        ResultOperator op ({this->scalarBasis().calculateLibintOverlapIntegrals()});  // op for 'operator'
+        op.transform(this->transformationMatrix());
+        return op;
+    }
+
+
+    /**
+     *  @param fq_op        the first-quantized operator
+     * 
+     *  @return the second-quantized operator corresponding to the given first-quantized operator
+     */
+    auto quantize(const KineticOperator& fq_op) const -> SQOneElectronOperator<product_t<KineticOperator::Scalar, TransformationScalar>, KineticOperator::Components> {
+
+        using ResultScalar = product_t<KineticOperator::Scalar, TransformationScalar>;
+        using ResultOperator = SQOneElectronOperator<ResultScalar, KineticOperator::Components>;
+
+        ResultOperator op ({this->scalarBasis().calculateLibintKineticIntegrals()});  // op for 'operator'
+        op.transform(this->transformationMatrix());
+        return op;
+    }
+
+
+    /**
+     *  @param fq_op        the first-quantized operator
+     * 
+     *  @return the second-quantized operator corresponding to the given first-quantized operator
+     */
+    auto quantize(const NuclearAttractionOperator& fq_op) const -> SQOneElectronOperator<product_t<NuclearAttractionOperator::Scalar, TransformationScalar>, NuclearAttractionOperator::Components> {
+
+        using ResultScalar = product_t<NuclearAttractionOperator::Scalar, TransformationScalar>;
+        using ResultOperator = SQOneElectronOperator<ResultScalar, NuclearAttractionOperator::Components>;
+
+        ResultOperator op ({this->scalarBasis().calculateLibintNuclearIntegrals()});  // op for 'operator'
+        op.transform(this->transformationMatrix());
+        return op;
+    }
+
+
+    /**
+     *  @param fq_op        the first-quantized operator
+     * 
+     *  @return the second-quantized operator corresponding to the given first-quantized operator
+     */
+    auto quantize(const ElectronicDipoleOperator& fq_op) const -> SQOneElectronOperator<product_t<ElectronicDipoleOperator::Scalar, TransformationScalar>, ElectronicDipoleOperator::Components> {
+
+        using ResultScalar = product_t<ElectronicDipoleOperator::Scalar, TransformationScalar>;
+        using ResultOperator = SQOneElectronOperator<ResultScalar, ElectronicDipoleOperator::Components>;
+
+        ResultOperator op ({this->scalarBasis().calculateLibintNuclearIntegrals(fq_op.origin())});  // op for 'operator'
+        op.transform(this->transformationMatrix());
+        return op;
+    }
+
+
+    /**
+     *  @param fq_op        the first-quantized operator
+     * 
+     *  @return the second-quantized operator corresponding to the given first-quantized operator
+     */
+    auto quantize(const CoulombRepulsionOperator& fq_op) const -> SQTwoElectronOperator<product_t<CoulombRepulsionOperator::Scalar, TransformationScalar>, CoulombRepulsionOperator::Components> {
+
+        using ResultScalar = product_t<NuclearAttractionOperator::Scalar, TransformationScalar>;
+        using ResultOperator = SQTwoElectronOperator<ResultScalar, CoulombRepulsionOperator::Components>;
+
+        ResultOperator op ({this->scalarBasis().calculateLibintCoulombRepulsionIntegrals()});  // op for 'operator'
+        op.transform(this->transformationMatrix());
+        return op;
+    }
 };
 
 

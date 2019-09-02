@@ -28,6 +28,7 @@
 #include "Mathematical/LinearCombination.hpp"
 #include "Mathematical/Representation/ChemicalMatrix.hpp"
 #include "Mathematical/Representation/ChemicalRankFourTensor.hpp"
+#include "Operator/FirstQuantized/Operator.hpp"
 
 #include <type_traits>
 
@@ -98,6 +99,11 @@ public:
      */
 
     /**
+     *  @return the underlying set of shells
+     */
+    const ShellSet<ShellType>& shellSet() const { return this->shell_set; }
+
+    /**
      *  @return the number of basis functions that 'are' in this scalar basis
      */
     size_t numberOfBasisFunctions() const { return this->shell_set.numberOfBasisFunctions(); }
@@ -164,7 +170,8 @@ public:
         // Construct the libint engine
         const auto max_nprim = this->shell_set.maximumNumberOfPrimitives();
         const auto max_l = this->shell_set.maximumAngularMomentum();
-        auto engine = IntegralEngine::Libint(Operator::NuclearAttraction(this->shell_set.nuclei()), max_nprim, max_l);  // cannot be const because libint2::Engine::compute() is not a const method
+        const auto fq_op = Operator::NuclearAttraction(NuclearFramework(this->shell_set.nuclei()));
+        auto engine = IntegralEngine::Libint(fq_op, max_nprim, max_l);  // cannot be const because libint2::Engine::compute() is not a const method
 
 
         // Calculate the integrals using the engine

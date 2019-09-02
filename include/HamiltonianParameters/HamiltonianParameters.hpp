@@ -141,15 +141,15 @@ public:
     static enable_if_t<std::is_same<Z, double>::value, HamiltonianParameters<double>> Molecular(std::shared_ptr<ScalarBasis<GTOShell>> ao_basis, double scalar=0.0) {
 
         const SPBasis<Z, GTOShell> sp_basis (*ao_basis);
+        const NuclearFramework nuclear_framework (ao_basis->shellSet().nuclei());
 
         // Calculate the integrals for the molecular Hamiltonian
-        const auto S = Operator::Overlap().quantize(sp_basis);
-        // const ScalarSQOneElectronOperator<Z> S ({ao_basis->calculateLibintOverlapIntegrals()});
-        const ScalarSQOneElectronOperator<Z> T ({ao_basis->calculateLibintKineticIntegrals()});
-        const ScalarSQOneElectronOperator<Z> V ({ao_basis->calculateLibintNuclearIntegrals()});
+        const auto S = sp_basis.quantize(Operator::Overlap());
+        const auto T = sp_basis.quantize(Operator::Kinetic());
+        const auto V = sp_basis.quantize(Operator::NuclearAttraction(nuclear_framework));
         ScalarSQOneElectronOperator<double> H = T + V;
 
-        const ScalarSQTwoElectronOperator<Z> g ({ao_basis->calculateLibintCoulombRepulsionIntegrals()});
+        const auto g = sp_basis.quantize(Operator::Coulomb());
 
 
         // Construct the initial transformation matrix: the identity matrix
