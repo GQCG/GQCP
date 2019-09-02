@@ -6,7 +6,7 @@ target_sources(gqcp
             GTOShell.hpp
             ScalarBasis.hpp
             ShellSet.hpp
-            SPBasis.hpp
+            SingleParticleBasis.hpp
         )
 
 add_subdirectory(Integrals)

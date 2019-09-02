@@ -23,7 +23,7 @@
 #include "Basis/GTOShell.hpp"
 #include "Basis/ScalarBasis.hpp"
 #include "Basis/ShellSet.hpp"
-#include "Basis/SPBasis.hpp"
+#include "Basis/SingleParticleBasis.hpp"
 
 #include "Basis/Integrals/BaseOneElectronIntegralBuffer.hpp"
 #include "Basis/Integrals/BaseOneElectronIntegralEngine.hpp"

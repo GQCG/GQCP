@@ -19,7 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "Basis/SPBasis.hpp"
+#include "Basis/SingleParticleBasis.hpp"
 
 
 /**
@@ -29,7 +29,7 @@ BOOST_AUTO_TEST_CASE ( Lowdin_orthonormal ) {
 
     // Construct the initial single-particle basis (corresponding to the underlying GTOs)
     const auto h2 = GQCP::Molecule::ReadXYZ("data/h2.xyz");
-    GQCP::SPBasis<double, GQCP::GTOShell> sp_basis (h2, "STO-3G");
+    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2, "STO-3G");
 
     BOOST_REQUIRE_EQUAL(sp_basis.numberOfOrbitals(), 2);
 

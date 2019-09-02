@@ -19,7 +19,7 @@
 
 
 #include "Basis/ScalarBasis.hpp"
-#include "Basis/SPBasis.hpp"
+#include "Basis/SingleParticleBasis.hpp"
 #include "HamiltonianParameters/BaseHamiltonianParameters.hpp"
 #include "HoppingMatrix.hpp"
 #include "Molecule/Molecule.hpp"
@@ -140,7 +140,7 @@ public:
     template <typename Z = Scalar>
     static enable_if_t<std::is_same<Z, double>::value, HamiltonianParameters<double>> Molecular(std::shared_ptr<ScalarBasis<GTOShell>> ao_basis, double scalar=0.0) {
 
-        const SPBasis<Z, GTOShell> sp_basis (*ao_basis);
+        const SingleParticleBasis<Z, GTOShell> sp_basis (*ao_basis);
         const NuclearFramework nuclear_framework (ao_basis->shellSet().nuclei());
 
         // Calculate the integrals for the molecular Hamiltonian

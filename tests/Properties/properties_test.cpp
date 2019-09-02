@@ -55,7 +55,7 @@ BOOST_AUTO_TEST_CASE ( dipole_CO_STO_3G ) {
     auto D_AO = GQCP::calculateRHFAO1RDM(rhf.get_C(), N);
 
     // Calculate the dipole integrals, and transform them to the MO basis
-    const GQCP::SPBasis<double, GQCP::GTOShell> sp_basis (*ao_basis);
+    const GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (*ao_basis);
     auto dipole_op = sp_basis.quantize(GQCP::Operator::ElectronicDipole());
     dipole_op.transform(rhf.get_C());
 
@@ -94,7 +94,7 @@ BOOST_AUTO_TEST_CASE ( dipole_N2_STO_3G ) {
     auto D_AO = GQCP::calculateRHFAO1RDM(rhf.get_C(), N);
 
     // Calculate the dipole integrals, and transform them to the MO basis
-    const GQCP::SPBasis<double, GQCP::GTOShell> sp_basis (*ao_basis);
+    const GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (*ao_basis);
     auto dipole_op = sp_basis.quantize(GQCP::Operator::ElectronicDipole());
     dipole_op.transform(rhf.get_C());
 

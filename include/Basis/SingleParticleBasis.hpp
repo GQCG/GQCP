@@ -39,7 +39,7 @@ namespace GQCP {
  *  @tparam _TransformationScalar       the scalar type of the transformation matrix that connects the scalar basis with the current single-particle 'orbitals'
  */
 template <typename _TransformationScalar, typename _ShellType>
-class SPBasis {
+class SingleParticleBasis {
 public:
     using ShellType = _ShellType;
     using BasisFunction = typename ShellType::BasisFunction;
@@ -61,7 +61,7 @@ public:
      *  @param scalar_basis             the underlying scalar basis
      *  @param T_total                  the transformation matrix between the scalar basis and the current orbitals
      */
-    SPBasis(const ScalarBasis<ShellType>& scalar_basis, const SquareMatrix<TransformationScalar>& T_total) :
+    SingleParticleBasis(const ScalarBasis<ShellType>& scalar_basis, const SquareMatrix<TransformationScalar>& T_total) :
         scalar_basis (scalar_basis),
         T_total (T_total)
     {}
@@ -72,8 +72,8 @@ public:
      * 
      *  @param scalar_basis             the underlying scalar basis
      */
-    SPBasis(const ScalarBasis<ShellType>& scalar_basis) : 
-        SPBasis(scalar_basis, SquareMatrix<double>::Identity(scalar_basis.numberOfBasisFunctions(), scalar_basis.numberOfBasisFunctions()))
+    SingleParticleBasis(const ScalarBasis<ShellType>& scalar_basis) : 
+        SingleParticleBasis(scalar_basis, SquareMatrix<double>::Identity(scalar_basis.numberOfBasisFunctions(), scalar_basis.numberOfBasisFunctions()))
     {}
 
 
@@ -86,8 +86,8 @@ public:
      *  @note the normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells
      *  @note the resulting single-particle basis is (most likeley) non-orthogonal
      */
-    SPBasis(const NuclearFramework& nuclear_framework, const std::string& basisset_name) :
-        SPBasis(ScalarBasis<ShellType>(nuclear_framework, basisset_name))
+    SingleParticleBasis(const NuclearFramework& nuclear_framework, const std::string& basisset_name) :
+        SingleParticleBasis(ScalarBasis<ShellType>(nuclear_framework, basisset_name))
     {}
 
 
@@ -100,8 +100,8 @@ public:
      *  @note the normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells
      *  @note the resulting single-particle basis is (most likeley) non-orthogonal
      */
-    SPBasis(const Molecule& molecule, const std::string& basisset_name) :
-        SPBasis(ScalarBasis<ShellType>(molecule, basisset_name))
+    SingleParticleBasis(const Molecule& molecule, const std::string& basisset_name) :
+        SingleParticleBasis(ScalarBasis<ShellType>(molecule, basisset_name))
     {}
 
 
@@ -124,7 +124,7 @@ public:
      */
     std::vector<LinearCombination<double, BasisFunction>> basisFunctions() const { 
 
-        std::runtime_error("SPBasis::basisFunctions(): This method hasn't been implemented yet");
+        std::runtime_error("SingleParticleBasis::basisFunctions(): This method hasn't been implemented yet");
     }
 
 
@@ -155,7 +155,7 @@ public:
 
         // Check if the given matrix is actually unitary
         if (!U.isUnitary(1.0e-12)) {
-            throw std::invalid_argument("SPBasis::rotate(const SquareMatrix<TransformationScalar>&): The given transformation matrix is not unitary.");
+            throw std::invalid_argument("SingleParticleBasis::rotate(const SquareMatrix<TransformationScalar>&): The given transformation matrix is not unitary.");
         }
 
         this->transform(U);

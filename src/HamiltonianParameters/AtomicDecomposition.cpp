@@ -17,7 +17,7 @@
 // 
 #include "HamiltonianParameters/AtomicDecompositionParameters.hpp"
 
-#include "Basis/SPBasis.hpp"
+#include "Basis/SingleParticleBasis.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
 
 
@@ -74,15 +74,15 @@ AtomicDecompositionParameters AtomicDecompositionParameters::Nuclear(const Molec
     const auto K = ao_basis->numberOfBasisFunctions();
     SquareMatrix<double> T_total = SquareMatrix<double>::Identity(K, K);
 
-    const SPBasis<double, GTOShell> sp_basis (*ao_basis);
+    const SingleParticleBasis<double, GTOShell> sp_basis (*ao_basis);
 
 
     // Retrieve an AO basis for the individual atoms so that we can retrieve net atomic nuclear integrals
     const NuclearFramework nuclear_framework_a ({atoms[0]});
     const NuclearFramework nuclear_framework_b ({atoms[1]});
 
-    SPBasis<double, GTOShell> sp_basis_a (nuclear_framework_a, basisset_name);  // in non-orthogonal AO basis
-    SPBasis<double, GTOShell> sp_basis_b (nuclear_framework_b, basisset_name);  // in non-orthogonal AO basis
+    SingleParticleBasis<double, GTOShell> sp_basis_a (nuclear_framework_a, basisset_name);  // in non-orthogonal AO basis
+    SingleParticleBasis<double, GTOShell> sp_basis_b (nuclear_framework_b, basisset_name);  // in non-orthogonal AO basis
 
     const auto K_a = sp_basis_a.numberOfBasisFunctions();
     const auto K_b = sp_basis_b.numberOfBasisFunctions();
