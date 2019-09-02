@@ -89,9 +89,9 @@ GQCP::ScalarSQTwoElectronOperator<double> calculateToyTwoElectronIntegrals() {
 
 BOOST_AUTO_TEST_CASE ( HamiltonianParameters_constructor ) {
 
-    // Create an AOBasis
+    // Create a scalar basis
     auto water = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
-    auto ao_basis_ptr = std::make_shared<GQCP::AOBasis>(water, "STO-3G");
+    auto ao_basis_ptr = std::make_shared<GQCP::ScalarBasis<GQCP::GTOShell>>(water, "STO-3G");
 
 
     // Create One- and SQTwoElectronOperators (and a transformation matrix) with compatible dimensions
@@ -188,7 +188,7 @@ BOOST_AUTO_TEST_CASE ( rotate_overlap_matrix ) {
 BOOST_AUTO_TEST_CASE ( constructor_C ) {
 
     // Create dummy Hamiltonian parameters
-    std::shared_ptr<GQCP::AOBasis> ao_basis;
+    std::shared_ptr<GQCP::ScalarBasis<GQCP::GTOShell>> ao_basis;
     size_t K = 4;
     GQCP::ChemicalMatrix<double> S = GQCP::ChemicalMatrix<double>::Random(K, K);
     GQCP::ChemicalMatrix<double> H_core = GQCP::ChemicalMatrix<double>::Random(K, K);
@@ -214,7 +214,7 @@ BOOST_AUTO_TEST_CASE ( constructMolecularHamiltonianParameters ) {
 
     // Set up a basis
     auto h2 = GQCP::Molecule::ReadXYZ("data/h2_szabo.xyz");
-    auto ao_basis = std::make_shared<GQCP::AOBasis>(h2, "STO-3G");
+    auto ao_basis = std::make_shared<GQCP::ScalarBasis<GQCP::GTOShell>>(h2, "STO-3G");
 
 
     // Check if we can construct the molecular Hamiltonian parameters
@@ -297,7 +297,7 @@ BOOST_AUTO_TEST_CASE ( FCIDUMP_reader_HORTON ) {
 BOOST_AUTO_TEST_CASE ( calculate_generalized_Fock_matrix_and_super_invalid_arguments ) {
 
     // Initialize toy HamiltonianParameters
-    std::shared_ptr<GQCP::AOBasis> ao_basis;
+    std::shared_ptr<GQCP::ScalarBasis<GQCP::GTOShell>> ao_basis;
     GQCP::ChemicalMatrix<double> S = GQCP::ChemicalMatrix<double>::Identity(2, 2);
     GQCP::ChemicalMatrix<double> h = GQCP::ChemicalMatrix<double>::Zero(2, 2);
     GQCP::ChemicalRankFourTensor<double> g (2);
@@ -338,7 +338,7 @@ BOOST_AUTO_TEST_CASE ( calculate_Fockian_and_super ) {
     auto d = calculateToy2DM();
 
     // Set up the toy Hamiltonian parameters
-    std::shared_ptr<GQCP::AOBasis> ao_basis;
+    std::shared_ptr<GQCP::ScalarBasis<GQCP::GTOShell>> ao_basis;
     GQCP::ChemicalMatrix<double> S = GQCP::ChemicalMatrix<double>::Identity(2, 2);
     GQCP::ChemicalMatrix<double> h = GQCP::ChemicalMatrix<double>::Zero(2, 2);
     h << 1, 0,

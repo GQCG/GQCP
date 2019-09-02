@@ -41,19 +41,29 @@ GTOBasisSet::GTOBasisSet(const std::string& basisset_name) :
  */
 
 /**
+ *  @param nuclear_framework            the nuclear framework containing the nuclei on which the shells should be centered
+ * 
+ *  @return the shell set by placing the shells corresponding to the basisset information on every nucleus of the nuclear framework
+ */
+ShellSet<GTOShell> GTOBasisSet::generate(const NuclearFramework& nuclear_framework) const {
+
+    // TODO no longer use libint2 to read this
+
+    const auto& nuclei = nuclear_framework.nucleiAsVector();
+    libint2::BasisSet libint_basis (basisset_name, LibintInterfacer::get().interface(nuclei));
+
+    return LibintInterfacer::get().interface(libint_basis, nuclei);
+}
+
+
+/**
  *  @param molecule             the molecule containing the nuclei on which the shells should be centered
  * 
  *  @return the shell set by placing the shells corresponding to the basisset information on every nucleus of the molecule
  */
 ShellSet<GTOShell> GTOBasisSet::generate(const Molecule& molecule) const {
 
-    // TODO no longer use libint2 to read this
-
-    const auto& nuclei = molecule.nuclearFramework().nucleiAsVector();
-
-    libint2::BasisSet libint_basis (basisset_name, LibintInterfacer::get().interface(nuclei));
-
-    return LibintInterfacer::get().interface(libint_basis, nuclei);
+    return this->generate(molecule.nuclearFramework());
 }
 
 

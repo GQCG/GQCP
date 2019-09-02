@@ -18,131 +18,22 @@
 #pragma once
 
 
-#include "Operator/FirstQuantized/BaseMultipoleOperator.hpp"
-#include "Operator/FirstQuantized/BaseNuclearOperator.hpp"
+#include "Operator/FirstQuantized/CoulombRepulsionOperator.hpp"
+#include "Operator/FirstQuantized/ElectronicDipoleOperator.hpp"
+#include "Operator/FirstQuantized/KineticOperator.hpp"
+#include "Operator/FirstQuantized/NuclearAttractionOperator.hpp"
+#include "Operator/FirstQuantized/NuclearDipoleOperator.hpp"
+#include "Operator/FirstQuantized/NuclearRepulsionOperator.hpp"
+#include "Operator/FirstQuantized/OverlapOperator.hpp"
+
 #include "Molecule/Molecule.hpp"
 
 
 namespace GQCP {
 
 
-/*
- *  OPERATORS 
- */
-
 /**
- *  These classes represent first-quantized operators. Their integrals, if applicable, can be calculated by combining them with an AO basis
- */
-
-
-/**
- *  A class that represents the overlap operator
- */
-class OverlapOperator {
-public:
-    using Scalar = double;  // the scalar representation of the operator
-    static constexpr size_t Components = 1;  // the number of components the operator has
-};
-
-
-/**
- *  A class that represents the kinetic energy operator for the electrons
- */
-class KineticOperator {
-public:
-    using Scalar = double;  // the scalar representation of the operator
-    static constexpr size_t Components = 1;  // the number of components the operator has
-};
-
-
-/**
- *  A class that represents the nuclear attraction energy operator for the electrons
- */
-class NuclearAttractionOperator : public BaseNuclearOperator {
-public:
-    using Scalar = double;  // the scalar representation of the operator
-    static constexpr size_t Components = 1;  // the number of components the operator has
-
-
-public:
-    // CONSTRUCTORS
-    using BaseNuclearOperator::BaseNuclearOperator;  // inherit base constructors
-};
-
-
-/**
- *  A class that represents the Coulomb interaction energy operator between the electrons
- */
-class CoulombRepulsionOperator {
-public:
-    using Scalar = double;  // the scalar representation of the operator
-    static constexpr size_t Components = 1;  // the number of components the operator has
-};
-
-
-/**
- *  A class that represents the electronic dipole operator for the electrons
- */
-class ElectronicDipoleOperator: public BaseMultipoleOperator {
-public:
-    using Scalar = double;  // the scalar representation of the operator
-    static constexpr size_t Components = 3;  // the number of components the operator has
-
-
-public:
-    // CONSTRUCTORS
-    using BaseMultipoleOperator::BaseMultipoleOperator;  // inherit base constructors
-};
-
-
-/**
- *  A class that represents the nuclear repulsion operator
- */
-class NuclearRepulsionOperator: public BaseNuclearOperator {
-public:
-    // CONSTRUCTORS
-    using BaseNuclearOperator::BaseNuclearOperator;  // inherit base constructors
-
-
-    // PUBLIC METHODS
-
-    /**
-     *  @return the scalar value of this nuclear repulsion operator
-     */
-    double value() const;
-};
-
-
-/**
- *  A class that represents the nuclear dipole operator
- */
-class NuclearDipoleOperator: public BaseNuclearOperator, public BaseMultipoleOperator {
-public:
-    // CONSTRUCTORS
-
-    /**
-     *  @param nuclear_framework            the nuclear framework underlying a nuclear operator
-     *  @param o                            the origin of the multipole
-     */
-    NuclearDipoleOperator(const NuclearFramework& nuclear_framework, const Vector<double, 3>& o=Vector<double, 3>::Zero());
-
-
-    // PUBLIC METHODS
-
-    /**
-     *  @return the value of this nuclear dipole operator
-     */
-    Vector<double, 3> value() const;
-};
-
-
-
-/*
- *  OPERATOR
- */
-
-/**
- *  A class that is used to construct operators, much like a factory class does
+ *  A class that is used to construct operators using static methods, much like a factory class does
  */
 class Operator {
 public:
@@ -158,6 +49,13 @@ public:
      *  @return a KineticOperator
      */
     static KineticOperator Kinetic();
+
+    /**
+     *  @param nuclear_framework            the nuclear framework
+     * 
+     *  @return a NuclearAttractionOperator
+     */
+    static NuclearAttractionOperator NuclearAttraction(const NuclearFramework& nuclear_framework);
 
     /**
      *  @param mol              the molecule that contains the nuclear framework

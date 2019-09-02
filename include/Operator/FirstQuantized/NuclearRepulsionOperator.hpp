@@ -15,36 +15,31 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "HamiltonianParameters/BaseHamiltonianParameters.hpp"
+#pragma once
+
+
+#include "Operator/FirstQuantized/BaseNuclearOperator.hpp"
 
 
 namespace GQCP {
 
 
-/*
- *  CONSTRUCTORS
- */
-
 /**
- *  @param ao_basis     the initial AO basis
- *  @param scalar       the scalar interaction term
+ *  A class that represents the nuclear repulsion operator
  */
-BaseHamiltonianParameters::BaseHamiltonianParameters(std::shared_ptr<ScalarBasis<GTOShell>> ao_basis, double scalar) :
-    ao_basis (std::move(ao_basis)),
-    scalar (scalar)
-{}
+class NuclearRepulsionOperator: public BaseNuclearOperator {
+public:
+    // CONSTRUCTORS
+    using BaseNuclearOperator::BaseNuclearOperator;  // inherit base constructors
 
 
+    // PUBLIC METHODS
 
-/*
- *  DESTRUCTOR
- */
-
-/**
- *  Provide a pure virtual destructor to make the class abstract
- */
-BaseHamiltonianParameters::~BaseHamiltonianParameters() {}
-
+    /**
+     *  @return the scalar value of this nuclear repulsion operator
+     */
+    double value() const;
+};
 
 
 }  // namespace GQCP

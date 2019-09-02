@@ -17,12 +17,13 @@
 // 
 #pragma once
 
-#include "Basis/AOBasis.hpp"
 #include "Basis/CartesianExponents.hpp"
 #include "Basis/CartesianGTO.hpp"
 #include "Basis/GTOBasisSet.hpp"
 #include "Basis/GTOShell.hpp"
+#include "Basis/ScalarBasis.hpp"
 #include "Basis/ShellSet.hpp"
+#include "Basis/SingleParticleBasis.hpp"
 
 #include "Basis/Integrals/BaseOneElectronIntegralBuffer.hpp"
 #include "Basis/Integrals/BaseOneElectronIntegralEngine.hpp"
@@ -113,9 +114,17 @@
 #include "Molecule/NuclearFramework.hpp"
 #include "Molecule/Nucleus.hpp"
 
+#include "Operator/FirstQuantized/BaseFQOneElectronOperator.hpp"
+#include "Operator/FirstQuantized/BaseFQTwoElectronOperator.hpp"
 #include "Operator/FirstQuantized/BaseMultipoleOperator.hpp"
 #include "Operator/FirstQuantized/BaseNuclearOperator.hpp"
+#include "Operator/FirstQuantized/CoulombRepulsionOperator.hpp"
+#include "Operator/FirstQuantized/ElectronicDipoleOperator.hpp"
+#include "Operator/FirstQuantized/KineticOperator.hpp"
+#include "Operator/FirstQuantized/NuclearAttractionOperator.hpp"
+#include "Operator/FirstQuantized/NuclearDipoleOperator.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
+#include "Operator/FirstQuantized/OverlapOperator.hpp"
 
 #include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/SQTwoElectronOperator.hpp"

@@ -28,7 +28,7 @@
 
 BOOST_AUTO_TEST_CASE ( constrained_CO_test ) {
 
-    // Create a Molecule and an AOBasis with the assumed geometry
+    // Create a Molecule and the corresponding HamiltonianParameters
     auto CO = GQCP::Molecule::ReadXYZ("data/CO_mulliken.xyz");
     auto ao_ham_par = GQCP::HamiltonianParameters<double>::Molecular(CO, "STO-3G");
 
@@ -113,7 +113,7 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test_random_transformation) {
     // The Hartree-Fock procedure should be invariant under random transformations
     // This tests if our Mulliken operator remains correct if we transform before the procedure.
 
-    // Create a Molecule and an AOBasis with the assumed geometry
+    // Create a Molecule and the corresponding HamiltonianParameters
     auto CO = GQCP::Molecule::ReadXYZ("data/CO_mulliken.xyz");
     auto ao_ham_par = GQCP::HamiltonianParameters<double>::Molecular(CO, "STO-3G");
 

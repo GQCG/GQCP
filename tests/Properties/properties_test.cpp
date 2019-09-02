@@ -20,6 +20,7 @@
 #include <boost/test/unit_test.hpp>
 
 #include "Basis/Integrals/Interfaces/LibintInterfacer.hpp"
+#include "Operator/FirstQuantized/Operator.hpp"
 #include "Properties/properties.hpp"
 #include "RHF/DIISRHFSCFSolver.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
@@ -34,7 +35,7 @@ BOOST_AUTO_TEST_CASE ( dipole_CO_STO_3G ) {
     std::vector<GQCP::Nucleus> nuclei {C, O};
     GQCP::Molecule CO (nuclei);
 
-    auto ao_basis = std::make_shared<GQCP::AOBasis>(CO, "STO-3G");
+    auto ao_basis = std::make_shared<GQCP::ScalarBasis<GQCP::GTOShell>>(CO, "STO-3G");
     auto ao_mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(ao_basis);
 
     size_t K = ao_basis->numberOfBasisFunctions();
@@ -54,7 +55,8 @@ BOOST_AUTO_TEST_CASE ( dipole_CO_STO_3G ) {
     auto D_AO = GQCP::calculateRHFAO1RDM(rhf.get_C(), N);
 
     // Calculate the dipole integrals, and transform them to the MO basis
-    auto dipole_op = GQCP::VectorSQOneElectronOperator<double>({ao_basis->calculateLibintDipoleIntegrals()});
+    const GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (*ao_basis);
+    auto dipole_op = sp_basis.quantize(GQCP::Operator::ElectronicDipole());
     dipole_op.transform(rhf.get_C());
 
     GQCP::Vector<double, 3> total_dipole_moment = GQCP::Operator::NuclearDipole(CO).value() + GQCP::calculateElectronicDipoleMoment(dipole_op, D);
@@ -72,7 +74,7 @@ BOOST_AUTO_TEST_CASE ( dipole_N2_STO_3G ) {
     std::vector<GQCP::Nucleus> nuclei {N_1, N_2};
     GQCP::Molecule N2 (nuclei);
 
-    auto ao_basis = std::make_shared<GQCP::AOBasis>(N2, "STO-3G");
+    auto ao_basis = std::make_shared<GQCP::ScalarBasis<GQCP::GTOShell>>(N2, "STO-3G");
     auto ao_mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(ao_basis);
 
     size_t K = ao_basis->numberOfBasisFunctions();
@@ -92,7 +94,8 @@ BOOST_AUTO_TEST_CASE ( dipole_N2_STO_3G ) {
     auto D_AO = GQCP::calculateRHFAO1RDM(rhf.get_C(), N);
 
     // Calculate the dipole integrals, and transform them to the MO basis
-    auto dipole_op = GQCP::VectorSQOneElectronOperator<double>({ao_basis->calculateLibintDipoleIntegrals()});
+    const GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (*ao_basis);
+    auto dipole_op = sp_basis.quantize(GQCP::Operator::ElectronicDipole());
     dipole_op.transform(rhf.get_C());
 
     GQCP::Vector<double, 3> total_dipole_moment = GQCP::Operator::NuclearDipole(N2).value() + GQCP::calculateElectronicDipoleMoment(dipole_op, D);

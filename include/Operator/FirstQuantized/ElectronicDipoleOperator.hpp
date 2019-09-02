@@ -15,36 +15,24 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "HamiltonianParameters/BaseHamiltonianParameters.hpp"
+#pragma once
+
+
+#include "Operator/FirstQuantized/BaseMultipoleOperator.hpp"
+#include "Operator/FirstQuantized/BaseFQOneElectronOperator.hpp"
 
 
 namespace GQCP {
 
 
-/*
- *  CONSTRUCTORS
- */
-
 /**
- *  @param ao_basis     the initial AO basis
- *  @param scalar       the scalar interaction term
+ *  A class that represents the electronic dipole operator for the electrons
  */
-BaseHamiltonianParameters::BaseHamiltonianParameters(std::shared_ptr<ScalarBasis<GTOShell>> ao_basis, double scalar) :
-    ao_basis (std::move(ao_basis)),
-    scalar (scalar)
-{}
-
-
-
-/*
- *  DESTRUCTOR
- */
-
-/**
- *  Provide a pure virtual destructor to make the class abstract
- */
-BaseHamiltonianParameters::~BaseHamiltonianParameters() {}
-
+class ElectronicDipoleOperator: public BaseFQOneElectronOperator<double, 3>, public BaseMultipoleOperator {
+public:
+    // CONSTRUCTORS
+    using BaseMultipoleOperator::BaseMultipoleOperator;  // inherit base constructors
+};
 
 
 }  // namespace GQCP

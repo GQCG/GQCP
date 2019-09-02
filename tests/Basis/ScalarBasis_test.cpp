@@ -15,19 +15,20 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#define BOOST_TEST_MODULE "AOBasis"
+#define BOOST_TEST_MODULE "ScalarBasis"
 
 #include <boost/test/unit_test.hpp>
 
-#include "Basis/AOBasis.hpp"
+#include "Basis/ScalarBasis.hpp"
 #include "Molecule/Molecule.hpp"
+#include "Operator/FirstQuantized/Operator.hpp"
 
 
-BOOST_AUTO_TEST_CASE ( AOBasis_constructor ) {
+BOOST_AUTO_TEST_CASE ( Scalar_basis_constructor ) {
 
-    // Check if we can construct an AOBasis object
+    // Check if we can construct an ScalarBasis<GTOShell> object
     auto water = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
-    GQCP::AOBasis basis (water, "STO-3G");
+    GQCP::ScalarBasis<GQCP::GTOShell> basis (water, "STO-3G");
 }
 
 
@@ -35,9 +36,24 @@ BOOST_AUTO_TEST_CASE ( numberOfBasisFunctions ) {
 
     // Check the number of basis functions in water
     auto water = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
-    GQCP::AOBasis basis (water, "STO-3G");
+    GQCP::ScalarBasis<GQCP::GTOShell> basis (water, "STO-3G");
 
     BOOST_CHECK_EQUAL(basis.numberOfBasisFunctions(), 7);
+}
+
+
+/**
+ *  Check if the underlying shell set created from a molecule is the same as the one created from a nuclear framework
+ */
+BOOST_AUTO_TEST_CASE ( molecule_nuclear_framework ) {
+
+    // Create the two scalar bases and check if the underlying shell sets are equal
+    const auto water = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
+
+    GQCP::ScalarBasis<GQCP::GTOShell> basis_molecule (water, "STO-3G");
+    GQCP::ScalarBasis<GQCP::GTOShell> basis_nuclear_framework (water.nuclearFramework(), "STO-3G");
+
+    BOOST_CHECK(basis_molecule.shellSet().asVector() == basis_nuclear_framework.shellSet().asVector());
 }
 
 
@@ -48,18 +64,17 @@ BOOST_AUTO_TEST_CASE( Szabo_integrals_h2_sto3g ) {
 
     // In Szabo, section 3.5.2, we read that the internuclear distance R = 1.4 a.u. = 0.740848 Angstrom
     const auto h2 = GQCP::Molecule::ReadXYZ("data/h2_szabo.xyz");
-    const GQCP::AOBasis ao_basis (h2, "STO-3G");
+    const GQCP::ScalarBasis<GQCP::GTOShell> ao_basis (h2, "STO-3G");
     BOOST_CHECK_EQUAL(ao_basis.numberOfBasisFunctions(), 2);
 
 
     // Let Libint2 calculate some integrals
-    const auto S = ao_basis.calculateLibintOverlapIntegrals();
-    const auto T = ao_basis.calculateLibintKineticIntegrals();
-    const auto V = ao_basis.calculateLibintNuclearIntegrals();
-
+    const auto S = ao_basis.calculateLibintIntegrals(GQCP::Operator::Overlap());
+    const auto T = ao_basis.calculateLibintIntegrals(GQCP::Operator::Kinetic());
+    const auto V = ao_basis.calculateLibintIntegrals(GQCP::Operator::NuclearAttraction(h2));
     const GQCP::ChemicalMatrix<double> H_core = T + V;
 
-    const auto g = ao_basis.calculateLibintCoulombRepulsionIntegrals();
+    const auto g = ao_basis.calculateLibintIntegrals(GQCP::Operator::Coulomb());
 
 
     // Check the one-electron integrals with the reference
@@ -98,16 +113,15 @@ BOOST_AUTO_TEST_CASE( HORTON_integrals_h2o_sto3g ) {
 
     // Set up an AO basis
     const auto water = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
-    const GQCP::AOBasis ao_basis (water, "STO-3G");
+    const GQCP::ScalarBasis<GQCP::GTOShell> ao_basis (water, "STO-3G");
     const auto nbf = ao_basis.numberOfBasisFunctions();
 
 
     // Calculate some integrals
-    const auto S = ao_basis.calculateLibintOverlapIntegrals();
-    const auto T = ao_basis.calculateLibintKineticIntegrals();
-    const auto V = ao_basis.calculateLibintNuclearIntegrals();
-
-    const auto g = ao_basis.calculateLibintCoulombRepulsionIntegrals();
+    const auto S = ao_basis.calculateLibintIntegrals(GQCP::Operator::Overlap());
+    const auto T = ao_basis.calculateLibintIntegrals(GQCP::Operator::Kinetic());
+    const auto V = ao_basis.calculateLibintIntegrals(GQCP::Operator::NuclearAttraction(water));
+    const auto g = ao_basis.calculateLibintIntegrals(GQCP::Operator::Coulomb());
 
 
     // Read in reference data from HORTON
@@ -128,19 +142,19 @@ BOOST_AUTO_TEST_CASE( HORTON_integrals_h2o_sto3g ) {
 BOOST_AUTO_TEST_CASE ( libcint_vs_libint2_H2O_STO_3G ) {
 
     auto water = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
-    GQCP::AOBasis ao_basis (water, "STO-3G");
+    GQCP::ScalarBasis<GQCP::GTOShell> ao_basis (water, "STO-3G");
 
-    const auto S_libcint = ao_basis.calculateLibcintOverlapIntegrals();
-    const auto T_libcint = ao_basis.calculateLibcintKineticIntegrals();
-    const auto V_libcint = ao_basis.calculateLibcintNuclearIntegrals();
-    const auto dipole_libcint = ao_basis.calculateLibcintDipoleIntegrals();
-    const auto g_libcint = ao_basis.calculateLibcintCoulombRepulsionIntegrals();
+    const auto S_libcint = ao_basis.calculateLibcintIntegrals(GQCP::Operator::Overlap());
+    const auto T_libcint = ao_basis.calculateLibcintIntegrals(GQCP::Operator::Kinetic());
+    const auto V_libcint = ao_basis.calculateLibcintIntegrals(GQCP::Operator::NuclearAttraction(water));
+    const auto dipole_libcint = ao_basis.calculateLibcintIntegrals(GQCP::Operator::ElectronicDipole());
+    const auto g_libcint = ao_basis.calculateLibcintIntegrals(GQCP::Operator::Coulomb());
 
-    const auto S_libint2 = ao_basis.calculateLibintOverlapIntegrals();
-    const auto T_libint2 = ao_basis.calculateLibintKineticIntegrals();
-    const auto V_libint2 = ao_basis.calculateLibintNuclearIntegrals();
-    const auto dipole_libint2 = ao_basis.calculateLibintDipoleIntegrals();
-    const auto g_libint2 = ao_basis.calculateLibintCoulombRepulsionIntegrals();
+    const auto S_libint2 = ao_basis.calculateLibintIntegrals(GQCP::Operator::Overlap());
+    const auto T_libint2 = ao_basis.calculateLibintIntegrals(GQCP::Operator::Kinetic());
+    const auto V_libint2 = ao_basis.calculateLibintIntegrals(GQCP::Operator::NuclearAttraction(water));
+    const auto dipole_libint2 = ao_basis.calculateLibintIntegrals(GQCP::Operator::ElectronicDipole());
+    const auto g_libint2 = ao_basis.calculateLibintIntegrals(GQCP::Operator::Coulomb());
 
     BOOST_CHECK(S_libcint.isApprox(S_libint2, 1.0e-08));
     BOOST_CHECK(T_libcint.isApprox(T_libint2, 1.0e-08));
@@ -155,13 +169,13 @@ BOOST_AUTO_TEST_CASE ( libcint_vs_libint2_H2O_STO_3G ) {
 BOOST_AUTO_TEST_CASE ( libcint_vs_libint2_dipole_origin ) {
 
     auto water = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
-    GQCP::AOBasis ao_basis (water, "STO-3G");
+    GQCP::ScalarBasis<GQCP::GTOShell> ao_basis (water, "STO-3G");
 
     GQCP::Vector<double, 3> origin;
     origin << 0.0, 1.0, -0.5;
 
-    const auto dipole_libcint = ao_basis.calculateLibcintDipoleIntegrals(origin);
-    const auto dipole_libint2 = ao_basis.calculateLibintDipoleIntegrals(origin);
+    const auto dipole_libcint = ao_basis.calculateLibcintIntegrals(GQCP::Operator::ElectronicDipole(origin));
+    const auto dipole_libint2 = ao_basis.calculateLibintIntegrals(GQCP::Operator::ElectronicDipole(origin));
 
     for (size_t i = 0; i < 3; i++) {
         BOOST_CHECK(dipole_libcint[i].isApprox(dipole_libint2[i], 1.0e-08));
@@ -176,7 +190,10 @@ BOOST_AUTO_TEST_CASE ( dissociatedMoleculeBasis ) {
     auto O = GQCP::Nucleus(8, -3.5, 0, 0);
     std::vector<GQCP::Nucleus> nuclei {N,O};
     auto NO = GQCP::Molecule(nuclei, +1);
-    GQCP::AOBasis basis (NO, "STO-3G");
+    GQCP::ScalarBasis<GQCP::GTOShell> basis (NO, "STO-3G");
 
-    BOOST_CHECK_NO_THROW(GQCP::AOBasis basis (NO, "STO-3G"));
+    BOOST_CHECK_NO_THROW(GQCP::ScalarBasis<GQCP::GTOShell> basis (NO, "STO-3G"));
 }
+
+
+

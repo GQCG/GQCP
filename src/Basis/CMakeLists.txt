@@ -1,6 +1,5 @@
 target_sources(gqcp
         PRIVATE
-            AOBasis.cpp
             CartesianExponents.cpp
             CartesianGTO.cpp
             GTOBasisSet.cpp

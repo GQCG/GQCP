@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "HamiltonianParameters/BaseHamiltonianParameters.hpp"
+#include "Operator/FirstQuantized/NuclearDipoleOperator.hpp"
 
 
 namespace GQCP {
@@ -26,25 +26,34 @@ namespace GQCP {
  */
 
 /**
- *  @param ao_basis     the initial AO basis
- *  @param scalar       the scalar interaction term
+ *  @param nuclear_framework            the nuclear framework underlying a nuclear operator
+ *  @param o                            the origin of the multipole
  */
-BaseHamiltonianParameters::BaseHamiltonianParameters(std::shared_ptr<ScalarBasis<GTOShell>> ao_basis, double scalar) :
-    ao_basis (std::move(ao_basis)),
-    scalar (scalar)
+NuclearDipoleOperator::NuclearDipoleOperator(const NuclearFramework& nuclear_framework, const Vector<double, 3>& o) :
+    BaseNuclearOperator(nuclear_framework),
+    BaseMultipoleOperator(o)
 {}
 
 
 
 /*
- *  DESTRUCTOR
+ *  PUBLIC METHODS
  */
 
 /**
- *  Provide a pure virtual destructor to make the class abstract
+ *  @return the value of this nuclear dipole operator
  */
-BaseHamiltonianParameters::~BaseHamiltonianParameters() {}
+Vector<double, 3> NuclearDipoleOperator::value() const {
 
+    Vector<double, 3> mu = Vector<double, 3>::Zero();
+
+    const auto& nuclei = this->nuclear_framework.nucleiAsVector();
+    for (const auto& nucleus : nuclei) {
+        mu += nucleus.charge() * nucleus.position();
+    }
+
+    return mu;
+}
 
 
 }  // namespace GQCP

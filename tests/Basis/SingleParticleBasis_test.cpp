@@ -15,36 +15,26 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "HamiltonianParameters/BaseHamiltonianParameters.hpp"
+#define BOOST_TEST_MODULE "SPBasis_test"
 
+#include <boost/test/unit_test.hpp>
 
-namespace GQCP {
+#include "Basis/SingleParticleBasis.hpp"
 
-
-/*
- *  CONSTRUCTORS
- */
 
 /**
- *  @param ao_basis     the initial AO basis
- *  @param scalar       the scalar interaction term
+ *  Check if using a Löwdin-orthonormalization ensures an orthonormal single-particle basis
  */
-BaseHamiltonianParameters::BaseHamiltonianParameters(std::shared_ptr<ScalarBasis<GTOShell>> ao_basis, double scalar) :
-    ao_basis (std::move(ao_basis)),
-    scalar (scalar)
-{}
+BOOST_AUTO_TEST_CASE ( Lowdin_orthonormal ) {
+
+    // Construct the initial single-particle basis (corresponding to the underlying GTOs)
+    const auto h2 = GQCP::Molecule::ReadXYZ("data/h2.xyz");
+    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2, "STO-3G");
+
+    BOOST_REQUIRE_EQUAL(sp_basis.numberOfOrbitals(), 2);
 
 
-
-/*
- *  DESTRUCTOR
- */
-
-/**
- *  Provide a pure virtual destructor to make the class abstract
- */
-BaseHamiltonianParameters::~BaseHamiltonianParameters() {}
-
-
-
-}  // namespace GQCP
+    // Löwdin-orthonormalize and check the result
+    sp_basis.LowdinOrthonormalize();
+    BOOST_CHECK(sp_basis.isOrthonormal());
+}

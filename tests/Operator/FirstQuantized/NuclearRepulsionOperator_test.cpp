@@ -15,11 +15,11 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#define BOOST_TEST_MODULE "Operator"
+#define BOOST_TEST_MODULE "NuclearRepulsionOperator_test"
 
 #include <boost/test/unit_test.hpp>
 
-#include "Operator/FirstQuantized/Operator.hpp"
+#include "Operator/FirstQuantized/NuclearRepulsionOperator.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( NuclearRepulsion_h2 ) {
@@ -31,7 +31,7 @@ BOOST_AUTO_TEST_CASE ( NuclearRepulsion_h2 ) {
     auto h2 = GQCP::NuclearFramework::ReadXYZ("data/h2_szabo.xyz");
 
     // Test the calculation of the nuclear repulsion energy for hydrogen 
-    BOOST_CHECK(std::abs(GQCP::Operator::NuclearRepulsion(h2).value() - ref_internuclear_repulsion_energy) < 1.0e-07);  // reference data from horton
+    BOOST_CHECK(std::abs(GQCP::NuclearRepulsionOperator(h2).value() - ref_internuclear_repulsion_energy) < 1.0e-07);  // reference data from horton
 }
 
 
@@ -44,17 +44,5 @@ BOOST_AUTO_TEST_CASE ( NuclearRepulsion_h2o ) {
     auto water = GQCP::NuclearFramework::ReadXYZ("data/h2o.xyz");
 
     // Test the calculation of the nuclear repulsion energy
-    BOOST_CHECK(std::abs(GQCP::Operator::NuclearRepulsion(water).value() - ref_internuclear_repulsion_energy) < 1.0e-07);  // reference data from horton
-}
-
-
-BOOST_AUTO_TEST_CASE ( NuclearDipole ) {
-
-    // Check the nuclear dipole moment for a toy molecule
-    GQCP::Nucleus H {1,  0, 1, 2};
-    GQCP::Nucleus O {8,  2, 4, 8};
-    GQCP::NuclearFramework nuclear_framework ({H, O});
-
-    const auto dipole = GQCP::Operator::NuclearDipole(nuclear_framework).value();
-    BOOST_CHECK(dipole.isApprox(GQCP::Vector<double, 3>{16, 33, 66}));
+    BOOST_CHECK(std::abs(GQCP::NuclearRepulsionOperator(water).value() - ref_internuclear_repulsion_energy) < 1.0e-07);  // reference data from horton
 }

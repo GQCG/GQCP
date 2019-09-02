@@ -15,36 +15,20 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "HamiltonianParameters/BaseHamiltonianParameters.hpp"
+#define BOOST_TEST_MODULE "NuclearDipoleOperator_test"
+
+#include <boost/test/unit_test.hpp>
+
+#include "Operator/FirstQuantized/NuclearDipoleOperator.hpp"
 
 
-namespace GQCP {
+BOOST_AUTO_TEST_CASE ( NuclearDipole ) {
 
+    // Check the nuclear dipole moment for a toy molecule
+    GQCP::Nucleus H {1,  0, 1, 2};
+    GQCP::Nucleus O {8,  2, 4, 8};
+    GQCP::NuclearFramework nuclear_framework ({H, O});
 
-/*
- *  CONSTRUCTORS
- */
-
-/**
- *  @param ao_basis     the initial AO basis
- *  @param scalar       the scalar interaction term
- */
-BaseHamiltonianParameters::BaseHamiltonianParameters(std::shared_ptr<ScalarBasis<GTOShell>> ao_basis, double scalar) :
-    ao_basis (std::move(ao_basis)),
-    scalar (scalar)
-{}
-
-
-
-/*
- *  DESTRUCTOR
- */
-
-/**
- *  Provide a pure virtual destructor to make the class abstract
- */
-BaseHamiltonianParameters::~BaseHamiltonianParameters() {}
-
-
-
-}  // namespace GQCP
+    const auto dipole = GQCP::NuclearDipoleOperator(nuclear_framework).value();
+    BOOST_CHECK(dipole.isApprox(GQCP::Vector<double, 3>{16, 33, 66}));
+}
