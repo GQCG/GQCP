@@ -295,7 +295,7 @@ public:
      */
     auto quantize(const CoulombRepulsionOperator& fq_op) const -> SQTwoElectronOperator<product_t<CoulombRepulsionOperator::Scalar, TransformationScalar>, CoulombRepulsionOperator::Components> {
 
-        using ResultScalar = product_t<NuclearAttractionOperator::Scalar, TransformationScalar>;
+        using ResultScalar = product_t<CoulombRepulsionOperator::Scalar, TransformationScalar>;
         using ResultOperator = SQTwoElectronOperator<ResultScalar, CoulombRepulsionOperator::Components>;
 
         ResultOperator op ({this->scalarBasis().calculateLibintCoulombRepulsionIntegrals()});  // op for 'operator'

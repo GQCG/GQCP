@@ -38,14 +38,6 @@
 namespace GQCP {
 
 
-/*
- *  FORWARD DECLARATIONS
- */
-template <typename TransformationScalar, typename ShellType>
-class SPBasis;
-
-
-
 /**
  *  A class that represents a scalar basis: it represents a collection of scalar basis functions. It provides an interface to obtain basis functions and calculate integrals over the shell type
  *
@@ -108,7 +100,7 @@ public:
     template <typename Z = GTOShell>
     ScalarBasis(const Molecule& molecule, const std::string& basisset_name,
                 typename std::enable_if<std::is_same<Z, GTOShell>::value>::type* = 0) :
-        ScalarBasis(GTOBasisSet(basisset_name).generate(molecule.nuclearFramework()))
+        ScalarBasis(molecule.nuclearFramework(), basisset_name)
     {}
 
 

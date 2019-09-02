@@ -47,7 +47,6 @@ BOOST_AUTO_TEST_CASE ( dipole_CO_STO_3G ) {
     auto rhf = diis_scf_solver.get_solution();
 
     double total_energy = rhf.get_electronic_energy() + GQCP::Operator::NuclearRepulsion(CO).value();
-    std::cout << "total energy: " << total_energy << std::endl;
     BOOST_REQUIRE(std::abs(total_energy - (-111.225)) < 1.0e-02);  // from CCCBDB, require a correct RHF solution to be found
 
 

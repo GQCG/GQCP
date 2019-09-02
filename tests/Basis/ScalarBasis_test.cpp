@@ -42,6 +42,21 @@ BOOST_AUTO_TEST_CASE ( numberOfBasisFunctions ) {
 
 
 /**
+ *  Check if the underlying shell set created from a molecule is the same as the one created from a nuclear framework
+ */
+BOOST_AUTO_TEST_CASE ( molecule_nuclear_framework ) {
+
+    // Create the two scalar bases and check if the underlying shell sets are equal
+    const auto water = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
+
+    GQCP::ScalarBasis<GQCP::GTOShell> basis_molecule (water, "STO-3G");
+    GQCP::ScalarBasis<GQCP::GTOShell> basis_nuclear_framework (water.nuclearFramework(), "STO-3G");
+
+    BOOST_CHECK(basis_molecule.shellSet().asVector() == basis_nuclear_framework.shellSet().asVector());
+}
+
+
+/**
  *  Check integrals calculated by Libint with reference values in Szabo
  */
 BOOST_AUTO_TEST_CASE( Szabo_integrals_h2_sto3g ) {
@@ -179,3 +194,5 @@ BOOST_AUTO_TEST_CASE ( dissociatedMoleculeBasis ) {
 
     BOOST_CHECK_NO_THROW(GQCP::ScalarBasis<GQCP::GTOShell> basis (NO, "STO-3G"));
 }
+
+
