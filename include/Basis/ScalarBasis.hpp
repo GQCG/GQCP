@@ -170,7 +170,7 @@ public:
         // Construct the libint engine
         const auto max_nprim = this->shell_set.maximumNumberOfPrimitives();
         const auto max_l = this->shell_set.maximumAngularMomentum();
-        const auto fq_op = Operator::NuclearAttraction(NuclearFramework(this->shell_set.nuclei()));
+        const auto fq_op = Operator::NuclearAttraction(NuclearFramework(this->shell_set.nuclei()));  // the first-quantized operator
         auto engine = IntegralEngine::Libint(fq_op, max_nprim, max_l);  // cannot be const because libint2::Engine::compute() is not a const method
 
 
@@ -260,7 +260,8 @@ public:
     ChemicalMatrix<double> calculateLibcintNuclearIntegrals() const {
         static_assert(std::is_same<ShellType, GTOShell>::value, "Can only calculate Libint2 integrals over GTOShells");
 
-        auto engine = IntegralEngine::Libcint(Operator::NuclearAttraction(this->shell_set.nuclei()), this->shell_set);  // cannot be const: Libint2 has a non-const compute() method inside its interface
+        const auto fq_op = Operator::NuclearAttraction(NuclearFramework(this->shell_set.nuclei()));  // the first-quantized operator
+        auto engine = IntegralEngine::Libcint(fq_op, this->shell_set);  // cannot be const: Libint2 has a non-const compute() method inside its interface
         const auto integrals = IntegralCalculator::calculate(engine, this->shell_set);
         return integrals[0];
     }
