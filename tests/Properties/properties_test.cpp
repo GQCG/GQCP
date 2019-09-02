@@ -20,6 +20,7 @@
 #include <boost/test/unit_test.hpp>
 
 #include "Basis/Integrals/Interfaces/LibintInterfacer.hpp"
+#include "Operator/FirstQuantized/Operator.hpp"
 #include "Properties/properties.hpp"
 #include "RHF/DIISRHFSCFSolver.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
@@ -46,6 +47,7 @@ BOOST_AUTO_TEST_CASE ( dipole_CO_STO_3G ) {
     auto rhf = diis_scf_solver.get_solution();
 
     double total_energy = rhf.get_electronic_energy() + GQCP::Operator::NuclearRepulsion(CO).value();
+    std::cout << "total energy: " << total_energy << std::endl;
     BOOST_REQUIRE(std::abs(total_energy - (-111.225)) < 1.0e-02);  // from CCCBDB, require a correct RHF solution to be found
 
 
@@ -54,7 +56,8 @@ BOOST_AUTO_TEST_CASE ( dipole_CO_STO_3G ) {
     auto D_AO = GQCP::calculateRHFAO1RDM(rhf.get_C(), N);
 
     // Calculate the dipole integrals, and transform them to the MO basis
-    auto dipole_op = GQCP::VectorSQOneElectronOperator<double>({ao_basis->calculateLibintDipoleIntegrals()});
+    const GQCP::SPBasis<double, GQCP::GTOShell> sp_basis (*ao_basis);
+    auto dipole_op = sp_basis.quantize(GQCP::Operator::ElectronicDipole());
     dipole_op.transform(rhf.get_C());
 
     GQCP::Vector<double, 3> total_dipole_moment = GQCP::Operator::NuclearDipole(CO).value() + GQCP::calculateElectronicDipoleMoment(dipole_op, D);
@@ -92,7 +95,8 @@ BOOST_AUTO_TEST_CASE ( dipole_N2_STO_3G ) {
     auto D_AO = GQCP::calculateRHFAO1RDM(rhf.get_C(), N);
 
     // Calculate the dipole integrals, and transform them to the MO basis
-    auto dipole_op = GQCP::VectorSQOneElectronOperator<double>({ao_basis->calculateLibintDipoleIntegrals()});
+    const GQCP::SPBasis<double, GQCP::GTOShell> sp_basis (*ao_basis);
+    auto dipole_op = sp_basis.quantize(GQCP::Operator::ElectronicDipole());
     dipole_op.transform(rhf.get_C());
 
     GQCP::Vector<double, 3> total_dipole_moment = GQCP::Operator::NuclearDipole(N2).value() + GQCP::calculateElectronicDipoleMoment(dipole_op, D);

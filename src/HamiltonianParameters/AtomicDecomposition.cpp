@@ -17,7 +17,8 @@
 // 
 #include "HamiltonianParameters/AtomicDecompositionParameters.hpp"
 
-#include "Operator/FirstQuantized/NuclearRepulsionOperator.hpp"
+#include "Basis/SPBasis.hpp"
+#include "Operator/FirstQuantized/Operator.hpp"
 
 
 namespace GQCP {
@@ -29,8 +30,7 @@ namespace GQCP {
  *  @param interaction_parameters               collection of atomic interaction Hamiltonian parameters
  *  @param atomic_parameters                    collection of atomic Hamiltonian parameters
  */
-AtomicDecompositionParameters::AtomicDecompositionParameters (const HamiltonianParameters<double>& molecular_hamiltonian_parameters, const std::vector<HamiltonianParameters<double>>& net_atomic_parameters,
-                               const std::vector<HamiltonianParameters<double>>& interaction_parameters, const std::vector<HamiltonianParameters<double>>& atomic_parameters) :
+AtomicDecompositionParameters::AtomicDecompositionParameters (const HamiltonianParameters<double>& molecular_hamiltonian_parameters, const std::vector<HamiltonianParameters<double>>& net_atomic_parameters, const std::vector<HamiltonianParameters<double>>& interaction_parameters, const std::vector<HamiltonianParameters<double>>& atomic_parameters) :
         molecular_hamiltonian_parameters (molecular_hamiltonian_parameters),
         net_atomic_parameters (net_atomic_parameters),
         interaction_parameters (interaction_parameters),
@@ -66,38 +66,43 @@ AtomicDecompositionParameters::AtomicDecompositionParameters (const HamiltonianP
 AtomicDecompositionParameters AtomicDecompositionParameters::Nuclear(const Molecule& molecule, const std::string& basisset_name) {
 
     const auto& atoms = molecule.nuclearFramework().nucleiAsVector();
-    auto ao_basis = std::make_shared<ScalarBasis<GTOShell>>(molecule, basisset_name);
-
-    auto K = ao_basis->numberOfBasisFunctions();
-    SquareMatrix<double> T_total = SquareMatrix<double>::Identity(K, K);
-
     if (atoms.size() > 2) {
         throw std::invalid_argument("AtomicDecompositionParameters::Nuclear(Molecule, std::string): Only available for diatomic molecules");
     }
 
-    // Retrieve the AObasis for the individual atoms so that we can retrieve net atomic nuclear integrals.
-    ScalarBasis<GTOShell> ao_basis_a ({{atoms[0]}}, basisset_name);
-    ScalarBasis<GTOShell> ao_basis_b ({{atoms[1]}}, basisset_name);
+    const auto ao_basis = std::make_shared<ScalarBasis<GTOShell>>(molecule, basisset_name);
+    const auto K = ao_basis->numberOfBasisFunctions();
+    SquareMatrix<double> T_total = SquareMatrix<double>::Identity(K, K);
 
-    ChemicalMatrix<double> V_a = ao_basis_a.calculateLibintNuclearIntegrals();
-    ChemicalMatrix<double> V_b = ao_basis_b.calculateLibintNuclearIntegrals();
+    const SPBasis<double, GTOShell> sp_basis (*ao_basis);
+
+
+    // Retrieve an AO basis for the individual atoms so that we can retrieve net atomic nuclear integrals
+    const NuclearFramework nuclear_framework_a ({atoms[0]});
+    const NuclearFramework nuclear_framework_b ({atoms[1]});
+
+    SPBasis<double, GTOShell> sp_basis_a (nuclear_framework_a, basisset_name);  // in non-orthogonal AO basis
+    SPBasis<double, GTOShell> sp_basis_b (nuclear_framework_b, basisset_name);  // in non-orthogonal AO basis
+
+    const auto K_a = sp_basis_a.numberOfBasisFunctions();
+    const auto K_b = sp_basis_b.numberOfBasisFunctions();
+
+    ChemicalMatrix<double> V_a = sp_basis_a.quantize(Operator::NuclearAttraction(nuclear_framework_a)).parameters();
+    ChemicalMatrix<double> V_b = sp_basis_b.quantize(Operator::NuclearAttraction(nuclear_framework_b)).parameters();
 
     // T_a and T_b are equal to the corresponding block from the molecular kinetic integrals (T_a = T.block(0,0, K_a, K_a))
-    ChemicalMatrix<double> T_a = ao_basis_a.calculateLibintKineticIntegrals();
-    ChemicalMatrix<double> T_b = ao_basis_b.calculateLibintKineticIntegrals();
-
-    const auto K_a = ao_basis_a.numberOfBasisFunctions();
-    const auto K_b = ao_basis_b.numberOfBasisFunctions();
+    ChemicalMatrix<double> T_a = sp_basis_a.quantize(Operator::Kinetic()).parameters();
+    ChemicalMatrix<double> T_b = sp_basis_b.quantize(Operator::Kinetic()).parameters();
 
     // Create partition matrices for both atoms
     const auto p_a = SquareMatrix<double>::PartitionMatrix(0, K_a, K);
     const auto p_b = SquareMatrix<double>::PartitionMatrix(K_a, K_b, K);
 
     // Retrieve the molecular integrals
-    const auto& S = ao_basis->calculateLibintOverlapIntegrals();
-    const auto& T = ao_basis->calculateLibintKineticIntegrals();
-    const auto& V = ao_basis->calculateLibintNuclearIntegrals();
-    const auto& g = ao_basis->calculateLibintCoulombRepulsionIntegrals();
+    const auto S = sp_basis.quantize(Operator::Overlap()).parameters();
+    const auto T = sp_basis.quantize(Operator::Kinetic()).parameters();
+    const auto V = sp_basis.quantize(Operator::NuclearAttraction(molecule)).parameters();
+    const auto g = sp_basis.quantize(Operator::Coulomb()).parameters();
     const auto repulsion = Operator::NuclearRepulsion(molecule).value();
 
     ChemicalMatrix<double> H = T + V;

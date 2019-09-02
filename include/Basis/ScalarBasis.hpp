@@ -28,6 +28,8 @@
 #include "Mathematical/LinearCombination.hpp"
 #include "Mathematical/Representation/ChemicalMatrix.hpp"
 #include "Mathematical/Representation/ChemicalRankFourTensor.hpp"
+#include "Molecule/Molecule.hpp"
+#include "Molecule/NuclearFramework.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
 
 #include <type_traits>
@@ -75,6 +77,25 @@ public:
 
 
     /**
+     *  Construct a scalar basis by placing shells corresponding to the basisset specification on every nucleus of the nuclear framework
+     *
+     *  @param nuclear_framework        the nuclear framework containing the nuclei on which the shells should be centered
+     *  @param basisset_name            the name of the basisset, e.g. "STO-3G"
+     *
+     *  Note that the normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells
+     * 
+     *  @note This constructor is only available for GTOShells (for the std::enable_if, see https://stackoverflow.com/a/17842695/7930415)
+     */
+    template <typename Z = GTOShell>
+    ScalarBasis(const NuclearFramework& nuclear_framework, const std::string& basisset_name,
+                typename std::enable_if<std::is_same<Z, GTOShell>::value>::type* = 0) :
+        ScalarBasis(GTOBasisSet(basisset_name).generate(nuclear_framework))
+    {
+        this->shell_set.embedNormalizationFactorsOfPrimitives();
+    }
+
+
+    /**
      *  Construct a scalar basis by placing shells corresponding to the basisset specification on every nucleus of the molecule
      *
      *  @param molecule             the molecule containing the nuclei on which the shells should be centered
@@ -87,10 +108,8 @@ public:
     template <typename Z = GTOShell>
     ScalarBasis(const Molecule& molecule, const std::string& basisset_name,
                 typename std::enable_if<std::is_same<Z, GTOShell>::value>::type* = 0) :
-        ScalarBasis(GTOBasisSet(basisset_name).generate(molecule))
-    {
-        this->shell_set.embedNormalizationFactorsOfPrimitives();
-    }
+        ScalarBasis(GTOBasisSet(basisset_name).generate(molecule.nuclearFramework()))
+    {}
 
 
 

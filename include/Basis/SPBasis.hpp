@@ -20,6 +20,8 @@
 
 #include "Basis/ScalarBasis.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
+#include "Molecule/Molecule.hpp"
+#include "Molecule/NuclearFramework.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
 #include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
 #include "OrbitalOptimization/JacobiRotationParameters.hpp"
@@ -73,6 +75,21 @@ public:
     SPBasis(const ScalarBasis<ShellType>& scalar_basis) : 
         SPBasis(scalar_basis, SquareMatrix<double>::Identity(scalar_basis.numberOfBasisFunctions(), scalar_basis.numberOfBasisFunctions()))
     {}
+
+
+    /**
+     *  Construct a single-particle basis by placing shells corresponding to the basisset specification on every nucleus of the nuclear framework
+     *
+     *  @param nuclear_framework        the nuclear framework containing the nuclei on which the shells should be centered
+     *  @param basisset_name            the name of the basisset, e.g. "STO-3G"
+     *
+     *  @note the normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells
+     *  @note the resulting single-particle basis is (most likeley) non-orthogonal
+     */
+    SPBasis(const NuclearFramework& nuclear_framework, const std::string& basisset_name) :
+        SPBasis(ScalarBasis<ShellType>(nuclear_framework, basisset_name))
+    {}
+
 
     /**
      *  Construct a single-particle basis by placing shells corresponding to the basisset specification on every nucleus of the molecule
@@ -265,7 +282,7 @@ public:
         using ResultScalar = product_t<ElectronicDipoleOperator::Scalar, TransformationScalar>;
         using ResultOperator = SQOneElectronOperator<ResultScalar, ElectronicDipoleOperator::Components>;
 
-        ResultOperator op ({this->scalarBasis().calculateLibintNuclearIntegrals(fq_op.origin())});  // op for 'operator'
+        ResultOperator op ({this->scalarBasis().calculateLibintDipoleIntegrals(fq_op.origin())});  // op for 'operator'
         op.transform(this->transformationMatrix());
         return op;
     }

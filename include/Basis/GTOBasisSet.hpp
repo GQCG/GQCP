@@ -21,6 +21,7 @@
 #include "Basis/GTOShell.hpp"
 #include "Basis/ShellSet.hpp"
 #include "Molecule/Molecule.hpp"
+#include "Molecule/NuclearFramework.hpp"
 
 #include <string>
 
@@ -52,6 +53,13 @@ public:
      *  @return the name of the basisset
      */
     const std::string& name() const { return this->basisset_name; }
+
+    /**
+     *  @param nuclear_framework            the nuclear framework containing the nuclei on which the shells should be centered
+     * 
+     *  @return the shell set by placing the shells corresponding to the basisset information on every nucleus of the nuclear framework
+     */
+    ShellSet<GTOShell> generate(const NuclearFramework& nuclear_framework) const;
 
     /**
      *  @param molecule             the molecule containing the nuclei on which the shells should be centered
