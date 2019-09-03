@@ -72,21 +72,21 @@ BOOST_AUTO_TEST_CASE( Szabo_integrals_h2_sto3g ) {
     const auto S = ao_basis.calculateLibintIntegrals(GQCP::Operator::Overlap());
     const auto T = ao_basis.calculateLibintIntegrals(GQCP::Operator::Kinetic());
     const auto V = ao_basis.calculateLibintIntegrals(GQCP::Operator::NuclearAttraction(h2));
-    const GQCP::ChemicalMatrix<double> H_core = T + V;
+    const GQCP::QCMatrix<double> H_core = T + V;
 
     const auto g = ao_basis.calculateLibintIntegrals(GQCP::Operator::Coulomb());
 
 
     // Check the one-electron integrals with the reference
-    GQCP::ChemicalMatrix<double> ref_S (2);
+    GQCP::QCMatrix<double> ref_S (2);
     ref_S << 1.0,    0.6593,
              0.6593, 1.0;
 
-    GQCP::ChemicalMatrix<double> ref_T (2);
+    GQCP::QCMatrix<double> ref_T (2);
     ref_T << 0.7600, 0.2365,
              0.2365, 0.7600;
 
-    GQCP::ChemicalMatrix<double> ref_H_core (2);
+    GQCP::QCMatrix<double> ref_H_core (2);
     ref_H_core << -1.1204, -0.9584,
                   -0.9584, -1.1204;
 
@@ -125,10 +125,10 @@ BOOST_AUTO_TEST_CASE( HORTON_integrals_h2o_sto3g ) {
 
 
     // Read in reference data from HORTON
-    const auto ref_S = GQCP::ChemicalMatrix<double>::FromFile("data/h2o_sto-3g_overlap_horton.data", nbf, nbf);
-    const auto ref_T = GQCP::ChemicalMatrix<double>::FromFile("data/h2o_sto-3g_kinetic_horton.data", nbf, nbf);
-    const auto ref_V = GQCP::ChemicalMatrix<double>::FromFile("data/h2o_sto-3g_nuclear_horton.data", nbf, nbf);
-    const auto ref_g = GQCP::ChemicalRankFourTensor<double>::FromFile("data/h2o_sto-3g_coulomb_horton.data", nbf);
+    const auto ref_S = GQCP::QCMatrix<double>::FromFile("data/h2o_sto-3g_overlap_horton.data", nbf, nbf);
+    const auto ref_T = GQCP::QCMatrix<double>::FromFile("data/h2o_sto-3g_kinetic_horton.data", nbf, nbf);
+    const auto ref_V = GQCP::QCMatrix<double>::FromFile("data/h2o_sto-3g_nuclear_horton.data", nbf, nbf);
+    const auto ref_g = GQCP::QCRankFourTensor<double>::FromFile("data/h2o_sto-3g_coulomb_horton.data", nbf);
 
 
     // Check if the calculated integrals are close to those of HORTON

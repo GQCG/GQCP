@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Mathematical/Representation/ChemicalMatrix.hpp"
+#include "Mathematical/Representation/QCMatrix.hpp"
 
 
 namespace GQCP {
@@ -29,12 +29,12 @@ namespace GQCP {
  *  @tparam _Scalar     the scalar type
  */
 template <typename _Scalar>
-class OneRDM : public ChemicalMatrix<_Scalar> {
+class OneRDM : public QCMatrix<_Scalar> {
 public:
 
     using Scalar = _Scalar;
 
-    using BaseRepresentation = ChemicalMatrix<Scalar>;
+    using BaseRepresentation = QCMatrix<Scalar>;
     using Self = OneRDM<Scalar>;
 
 
@@ -44,7 +44,7 @@ public:
      *  CONSTRUCTORS
      */
 
-    using ChemicalMatrix<Scalar>::ChemicalMatrix;  // use base constructors
+    using QCMatrix<Scalar>::QCMatrix;  // use base constructors
 };
 
 

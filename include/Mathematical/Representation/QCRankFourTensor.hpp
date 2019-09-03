@@ -33,12 +33,12 @@ namespace GQCP {
  *  @tparam _Scalar      the scalar type
  */
 template<typename _Scalar>
-class ChemicalRankFourTensor: public SquareRankFourTensor<_Scalar> {
+class QCRankFourTensor: public SquareRankFourTensor<_Scalar> {
 public:
     using Scalar = _Scalar;
 
     using Base = SquareRankFourTensor<Scalar>;
-    using Self = ChemicalRankFourTensor<Scalar>;
+    using Self = QCRankFourTensor<Scalar>;
 
 
 public:
@@ -115,7 +115,7 @@ public:
 
         // Check if the given matrix is actually unitary
         if (!U.isUnitary(1.0e-12)) {
-            throw std::invalid_argument("ChemicalRankFourTensor::basisRotateInPlace(const TransformationMatrix<Scalar>&): The given transformation matrix is not unitary.");
+            throw std::invalid_argument("QCRankFourTensor::basisRotateInPlace(const TransformationMatrix<Scalar>&): The given transformation matrix is not unitary.");
         }
 
         this->basisTransformInPlace(U);

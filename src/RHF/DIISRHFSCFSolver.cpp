@@ -71,7 +71,7 @@ ScalarSQOneElectronOperator<double> DIISRHFSCFSolver::calculateNewFockMatrix(con
 
 
         // Use the coefficients that are in y to construct 'the best' Fock matrix as a linear combination of previous Fock matrices
-        ChemicalMatrix<double> f_AO_updated_par = ChemicalMatrix<double>::Zero(S.cols(), S.cols());
+        QCMatrix<double> f_AO_updated_par = QCMatrix<double>::Zero(S.cols(), S.cols());
         for (size_t i = 0; i < n; i++) {  // n is the current subspace dimension (not equal to the size of the augmented B matrix)
             f_AO_updated_par += y(i) * this->fock_matrix_deque[i].parameters();
         }

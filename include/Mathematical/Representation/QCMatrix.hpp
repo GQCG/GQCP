@@ -32,12 +32,12 @@ namespace GQCP {
  *  @tparam _Scalar      the scalar type
  */
 template <typename _Scalar>
-class ChemicalMatrix : public SquareMatrix<_Scalar> {
+class QCMatrix : public SquareMatrix<_Scalar> {
 public:
     using Scalar = _Scalar;
 
     using Base = SquareMatrix<Scalar>;
-    using Self = ChemicalMatrix<Scalar>;
+    using Self = QCMatrix<Scalar>;
 
 
 public:
@@ -88,7 +88,7 @@ public:
 
         // Check if the given matrix is actually unitary
         if (!U.isUnitary(1.0e-12)) {
-            throw std::invalid_argument("ChemicalMatrix::basisRotateInPlace(const TransformationMatrix<Scalar>&): The given transformation matrix is not unitary.");
+            throw std::invalid_argument("QCMatrix::basisRotateInPlace(const TransformationMatrix<Scalar>&): The given transformation matrix is not unitary.");
         }
 
         this->basisTransformInPlace(U);

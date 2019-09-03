@@ -100,9 +100,9 @@
 
 #include "Mathematical/Representation/BlockMatrix.hpp"
 #include "Mathematical/Representation/BlockRankFourTensor.hpp"
-#include "Mathematical/Representation/ChemicalMatrix.hpp"
-#include "Mathematical/Representation/ChemicalRankFourTensor.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
+#include "Mathematical/Representation/QCMatrix.hpp"
+#include "Mathematical/Representation/QCRankFourTensor.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Mathematical/Representation/SquareRankFourTensor.hpp"
 #include "Mathematical/Representation/Tensor.hpp"

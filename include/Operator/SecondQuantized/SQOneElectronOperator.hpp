@@ -19,7 +19,7 @@
 
 
 #include "Basis/TransformationMatrix.hpp"
-#include "Mathematical/Representation/ChemicalMatrix.hpp"
+#include "Mathematical/Representation/QCMatrix.hpp"
 #include "Mathematical/ScalarFunction.hpp"
 #include "OrbitalOptimization/JacobiRotationParameters.hpp"
 #include "RDM/OneRDM.hpp"
@@ -47,7 +47,7 @@ public:
 
 
 private:
-    std::array<ChemicalMatrix<Scalar>, Components> fs;  // all the matrix representations (hence the s) of the parameters (integrals) of the different components of this second-quantized operator
+    std::array<QCMatrix<Scalar>, Components> fs;  // all the matrix representations (hence the s) of the parameters (integrals) of the different components of this second-quantized operator
 
 
 public:
@@ -59,7 +59,7 @@ public:
     /**
      *  @param fs           all the matrix representations (hence the s) of the parameters (integrals) of the different components of this second-quantized operator
      */
-    SQOneElectronOperator(const std::array<ChemicalMatrix<Scalar>, Components>& fs) : 
+    SQOneElectronOperator(const std::array<QCMatrix<Scalar>, Components>& fs) : 
         fs (fs)
     {
         // Check if the given matrix representations have the same dimensions
@@ -68,7 +68,7 @@ public:
 
             const auto dimension_of_ith = this->fs[i].dimension();
             if (dimension_of_first != dimension_of_ith) {
-                throw std::invalid_argument("SQOneElectronOperator(const std::array<ChemicalMatrix<Scalar>, Components>&): The given matrix representations do not have the same dimensions.");
+                throw std::invalid_argument("SQOneElectronOperator(const std::array<QCMatrix<Scalar>, Components>&): The given matrix representations do not have the same dimensions.");
             }
         }
     }
@@ -81,7 +81,7 @@ public:
      */
     SQOneElectronOperator(const size_t dim) {
         for (size_t i = 0; i < Components; i++) {
-            this->fs[i] = ChemicalMatrix<Scalar>::Zero(dim, dim);
+            this->fs[i] = QCMatrix<Scalar>::Zero(dim, dim);
         }
     }
 
@@ -117,7 +117,7 @@ public:
     /**
      *  @return read-only matrix representations of all the parameters (integrals) of the different components of this second-quantized operator
      */
-    const std::array<ChemicalMatrix<Scalar>, Components>& allParameters() const {
+    const std::array<QCMatrix<Scalar>, Components>& allParameters() const {
         return this->fs;
     }
 
@@ -125,7 +125,7 @@ public:
     /**
      *  @return writable matrix representations of all the parameters (integrals) of the different components of this second-quantized operator
      */
-    std::array<ChemicalMatrix<Scalar>, Components>& allParameters() {
+    std::array<QCMatrix<Scalar>, Components>& allParameters() {
         return this->fs;
     }
 
@@ -135,7 +135,7 @@ public:
      * 
      *  @return a read-only the matrix representation of the parameters (integrals) of one of the the different components of this second-quantized operator
      */
-    const ChemicalMatrix<Scalar>& parameters(const size_t i = 0) const {
+    const QCMatrix<Scalar>& parameters(const size_t i = 0) const {
         return this->fs[i];
     }
 
@@ -145,7 +145,7 @@ public:
      * 
      *  @return a writable matrix representation of the parameters (integrals) of one of the the different components of this second-quantized operator
      */
-    ChemicalMatrix<Scalar>& parameters(const size_t i = 0) {
+    QCMatrix<Scalar>& parameters(const size_t i = 0) {
         return this->fs[i];
     }
 
@@ -204,11 +204,11 @@ public:
     SQOneElectronOperator<typename Z::Valued, Components>> evaluate(const Vector<typename Z::Scalar, Z::Cols>& x) const {
 
         // Initialize the results
-        std::array<ChemicalMatrix<typename Z::Valued>, Components> F_evaluated;  // components are not initialized here
+        std::array<QCMatrix<typename Z::Valued>, Components> F_evaluated;  // components are not initialized here
 
         // Evaluate all components at the given x
         for (size_t i = 0; i < Components; i++) {
-            F_evaluated[i] = ChemicalMatrix<typename Z::Valued>::Zero(this->dimension(), this->dimension());  // initialize to zero
+            F_evaluated[i] = QCMatrix<typename Z::Valued>::Zero(this->dimension(), this->dimension());  // initialize to zero
 
             for (size_t m = 0; m < this->dimension(); m++) {
                 for (size_t n = 0; n < this->dimension(); n++) {

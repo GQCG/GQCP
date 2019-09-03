@@ -87,7 +87,7 @@ ScalarSQOneElectronOperator<double> ProductFockSpace::oneElectronPartition(size_
     const auto& two_op_par = two_op.parameters();
 
     const auto K = two_op.dimension();
-    ChemicalMatrix<double> k_par = ChemicalMatrix<double>::Zero(K, K);
+    QCMatrix<double> k_par = QCMatrix<double>::Zero(K, K);
 
     for (size_t i = 0; i < K; i++) {
         for (size_t j = 0; j < K; j++) {

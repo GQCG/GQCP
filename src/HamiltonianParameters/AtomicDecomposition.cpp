@@ -87,12 +87,12 @@ AtomicDecompositionParameters AtomicDecompositionParameters::Nuclear(const Molec
     const auto K_a = sp_basis_a.numberOfBasisFunctions();
     const auto K_b = sp_basis_b.numberOfBasisFunctions();
 
-    ChemicalMatrix<double> V_a = sp_basis_a.quantize(Operator::NuclearAttraction(nuclear_framework_a)).parameters();
-    ChemicalMatrix<double> V_b = sp_basis_b.quantize(Operator::NuclearAttraction(nuclear_framework_b)).parameters();
+    QCMatrix<double> V_a = sp_basis_a.quantize(Operator::NuclearAttraction(nuclear_framework_a)).parameters();
+    QCMatrix<double> V_b = sp_basis_b.quantize(Operator::NuclearAttraction(nuclear_framework_b)).parameters();
 
     // T_a and T_b are equal to the corresponding block from the molecular kinetic integrals (T_a = T.block(0,0, K_a, K_a))
-    ChemicalMatrix<double> T_a = sp_basis_a.quantize(Operator::Kinetic()).parameters();
-    ChemicalMatrix<double> T_b = sp_basis_b.quantize(Operator::Kinetic()).parameters();
+    QCMatrix<double> T_a = sp_basis_a.quantize(Operator::Kinetic()).parameters();
+    QCMatrix<double> T_b = sp_basis_b.quantize(Operator::Kinetic()).parameters();
 
     // Create partition matrices for both atoms
     const auto p_a = SquareMatrix<double>::PartitionMatrix(0, K_a, K);
@@ -105,16 +105,16 @@ AtomicDecompositionParameters AtomicDecompositionParameters::Nuclear(const Molec
     const auto g = sp_basis.quantize(Operator::Coulomb()).parameters();
     const auto repulsion = Operator::NuclearRepulsion(molecule).value();
 
-    ChemicalMatrix<double> H = T + V;
+    QCMatrix<double> H = T + V;
 
     // Decompose the integrals corresponding to the formula's in Mario's thesis
-    ChemicalMatrix<double> h_a = ChemicalMatrix<double>::Zero(K, K);
-    ChemicalMatrix<double> h_b = ChemicalMatrix<double>::Zero(K, K);
+    QCMatrix<double> h_a = QCMatrix<double>::Zero(K, K);
+    QCMatrix<double> h_b = QCMatrix<double>::Zero(K, K);
 
     h_a.block(0, 0, K_a, K_a) = T_a + V_a;
     h_b.block(K_a , K_a, K_b, K_b) = T_b + V_b;
 
-    ChemicalMatrix<double> h_ab = H - h_a - h_b;
+    QCMatrix<double> h_ab = H - h_a - h_b;
 
     auto g_a = g;
     auto g_b = g;
@@ -133,7 +133,7 @@ AtomicDecompositionParameters AtomicDecompositionParameters::Nuclear(const Molec
     g_ba.matrixContraction<double>(p_b, 0);
     g_ba.matrixContraction<double>(p_a, 2);
 
-    ChemicalRankFourTensor<double> g_abba = g_ab.Eigen() + g_ba.Eigen();
+    QCRankFourTensor<double> g_abba = g_ab.Eigen() + g_ba.Eigen();
 
     HamiltonianParameters<double> HAA (ao_basis, ScalarSQOneElectronOperator<double>({S}), ScalarSQOneElectronOperator<double>({h_a}), ScalarSQTwoElectronOperator<double>({g_a}), T_total);
     HamiltonianParameters<double> HBB (ao_basis, ScalarSQOneElectronOperator<double>({S}), ScalarSQOneElectronOperator<double>({h_b}), ScalarSQTwoElectronOperator<double>({g_b}), T_total);

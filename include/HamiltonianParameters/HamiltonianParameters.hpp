@@ -199,14 +199,14 @@ public:
     static enable_if_t<std::is_same<Z, double>::value, HamiltonianParameters<double>> Random(size_t K) {
 
 
-        ScalarSQOneElectronOperator<double> S ({ChemicalMatrix<double>::Identity(K, K)});  // the underlying orbital basis can be chosen as orthonormal, since the form of the underlying orbitals doesn't really matter
+        ScalarSQOneElectronOperator<double> S ({QCMatrix<double>::Identity(K, K)});  // the underlying orbital basis can be chosen as orthonormal, since the form of the underlying orbitals doesn't really matter
         TransformationMatrix<double> C = TransformationMatrix<double>::Identity(K, K);  // the transformation matrix here doesn't really mean anything, because it doesn't link to any AO basis
 
-        ScalarSQOneElectronOperator<double> H ({ChemicalMatrix<double>::Random(K, K)});  // uniformly distributed between [-1,1]
+        ScalarSQOneElectronOperator<double> H ({QCMatrix<double>::Random(K, K)});  // uniformly distributed between [-1,1]
 
 
         // Unfortunately, the Tensor module provides uniform random distributions between [0, 1]
-        ChemicalRankFourTensor<double> g (K);
+        QCRankFourTensor<double> g (K);
         g.setRandom();
 
         // Move the distribution from [0, 1] -> [-1, 1]
@@ -269,8 +269,8 @@ public:
 
 
         double scalar = 0.0;
-        ChemicalMatrix<double> h_core = ChemicalMatrix<double>::Zero(K, K);
-        ChemicalRankFourTensor<double> g (K);
+        QCMatrix<double> h_core = QCMatrix<double>::Zero(K, K);
+        QCRankFourTensor<double> g (K);
         g.setZero();
 
         //  Skip 3 lines
@@ -333,7 +333,7 @@ public:
 
         // Make the ingredients to construct HamiltonianParameters
         std::shared_ptr<ScalarBasis<GTOShell>> ao_basis;  // nullptr
-        ScalarSQOneElectronOperator<Scalar> S ({ChemicalMatrix<double>::Identity(K, K)});
+        ScalarSQOneElectronOperator<Scalar> S ({QCMatrix<double>::Identity(K, K)});
         TransformationMatrix<double> C = TransformationMatrix<double>::Identity(K, K);
 
         return HamiltonianParameters(ao_basis, S, ScalarSQOneElectronOperator<Scalar>({h_core}), ScalarSQTwoElectronOperator<Scalar>({g}), C, scalar);
@@ -352,8 +352,8 @@ public:
 
         const size_t K = H.numberOfLatticeSites();
 
-        ChemicalMatrix<double> h = ChemicalMatrix<double>::Zero(K, K);
-        ChemicalRankFourTensor<double> g (K);
+        QCMatrix<double> h = QCMatrix<double>::Zero(K, K);
+        QCRankFourTensor<double> g (K);
         g.setZero();
 
 
@@ -371,7 +371,7 @@ public:
 
         // Make the ingredients to construct HamiltonianParameters
         std::shared_ptr<ScalarBasis<GTOShell>> ao_basis;  // nullptr
-        ScalarSQOneElectronOperator<double> S ({ChemicalMatrix<double>::Identity(K, K)});
+        ScalarSQOneElectronOperator<double> S ({QCMatrix<double>::Identity(K, K)});
         TransformationMatrix<double> C = TransformationMatrix<double>::Identity(K, K);
 
         return HamiltonianParameters(ao_basis, S, ScalarSQOneElectronOperator<double>({h}), ScalarSQTwoElectronOperator<double>({g}), C);  // no scalar term

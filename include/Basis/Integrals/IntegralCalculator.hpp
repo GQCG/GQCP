@@ -50,13 +50,13 @@ public:
      *  @tparam IntegralScalar          the scalar representation of an integral
      */
     template <typename ShellType, size_t N, typename IntegralScalar>
-    static auto calculate(BaseOneElectronIntegralEngine<ShellType, N, IntegralScalar>& engine, const ShellSet<ShellType>& shell_set) -> std::array<ChemicalMatrix<IntegralScalar>, N> {
+    static auto calculate(BaseOneElectronIntegralEngine<ShellType, N, IntegralScalar>& engine, const ShellSet<ShellType>& shell_set) -> std::array<QCMatrix<IntegralScalar>, N> {
 
         // Initialize the N components of the matrix representations of the operator
         const auto nbf = shell_set.numberOfBasisFunctions();
-        std::array<ChemicalMatrix<IntegralScalar>, N> components;
+        std::array<QCMatrix<IntegralScalar>, N> components;
         for (auto& component : components) {
-            component = ChemicalMatrix<IntegralScalar>::Zero(nbf, nbf);
+            component = QCMatrix<IntegralScalar>::Zero(nbf, nbf);
         }
 
 
@@ -96,13 +96,13 @@ public:
      *  @tparam IntegralScalar              the scalar representation of an integral
      */
     template <typename ShellType, size_t N, typename IntegralScalar>
-    static auto calculate(BaseTwoElectronIntegralEngine<ShellType, N, IntegralScalar>& engine, const ShellSet<ShellType>& shell_set) -> std::array<ChemicalRankFourTensor<IntegralScalar>, N> {
+    static auto calculate(BaseTwoElectronIntegralEngine<ShellType, N, IntegralScalar>& engine, const ShellSet<ShellType>& shell_set) -> std::array<QCRankFourTensor<IntegralScalar>, N> {
 
         // Initialize the N components of the matrix representations of the operator
         const auto nbf = shell_set.numberOfBasisFunctions();
-        std::array<ChemicalRankFourTensor<IntegralScalar>, N> components;
+        std::array<QCRankFourTensor<IntegralScalar>, N> components;
         for (auto& component : components) {
-            component = ChemicalRankFourTensor<IntegralScalar>(nbf);
+            component = QCRankFourTensor<IntegralScalar>(nbf);
             component.setZero();
         }
 
