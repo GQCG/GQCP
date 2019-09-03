@@ -72,7 +72,7 @@ AtomicDecompositionParameters AtomicDecompositionParameters::Nuclear(const Molec
 
     const auto ao_basis = std::make_shared<ScalarBasis<GTOShell>>(molecule, basisset_name);
     const auto K = ao_basis->numberOfBasisFunctions();
-    SquareMatrix<double> T_total = SquareMatrix<double>::Identity(K, K);
+    TransformationMatrix<double> T_total = TransformationMatrix<double>::Identity(K, K);
 
     const SingleParticleBasis<double, GTOShell> sp_basis (*ao_basis);
 

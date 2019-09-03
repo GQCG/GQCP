@@ -20,6 +20,7 @@
 
 #include "Basis/ScalarBasis.hpp"
 #include "Basis/SingleParticleBasis.hpp"
+#include "Basis/TransformationMatrix.hpp"
 #include "HamiltonianParameters/BaseHamiltonianParameters.hpp"
 #include "HoppingMatrix.hpp"
 #include "Molecule/Molecule.hpp"
@@ -54,7 +55,7 @@ private:
     ScalarSQOneElectronOperator<Scalar> h;  // one-electron interactions (i.e. the core Hamiltonian)
     ScalarSQTwoElectronOperator<Scalar> g;  // two-electron interactions
 
-    SquareMatrix<Scalar> T_total;  // total transformation matrix between the current (restricted) molecular orbitals and the atomic orbitals
+    TransformationMatrix<Scalar> T_total;  // total transformation matrix between the current (restricted) molecular orbitals and the atomic orbitals
 
 
 public:
@@ -73,7 +74,7 @@ public:
      *  @param C            a transformation matrix between the current molecular orbitals and the atomic orbitals
      *  @param scalar       the scalar interaction term
      */
-    HamiltonianParameters(std::shared_ptr<ScalarBasis<GTOShell>> ao_basis, const ScalarSQOneElectronOperator<Scalar>& S, const ScalarSQOneElectronOperator<Scalar>& h, const ScalarSQTwoElectronOperator<Scalar>& g, const SquareMatrix<Scalar>& C, double scalar=0.0) :
+    HamiltonianParameters(std::shared_ptr<ScalarBasis<GTOShell>> ao_basis, const ScalarSQOneElectronOperator<Scalar>& S, const ScalarSQOneElectronOperator<Scalar>& h, const ScalarSQTwoElectronOperator<Scalar>& g, const TransformationMatrix<Scalar>& C, double scalar=0.0) :
         BaseHamiltonianParameters(std::move(ao_basis), scalar),
         K (S.get_dim()),
         S (S),
@@ -82,7 +83,7 @@ public:
         T_total (C)
     {
         // Check if the dimensions of all matrix representations are compatible
-        auto error = std::invalid_argument("HamiltonianParameters::HamiltonianParameters(std::shared_ptr<ScalarBasis<GTOShell>>, ScalarSQOneElectronOperator<Scalar>, ScalarSQOneElectronOperator<Scalar>, ScalarSQTwoElectronOperator<Scalar>,SquareMatrix<Scalar>, double): The dimensions of the operators and coefficient matrix are incompatible.");
+        auto error = std::invalid_argument("HamiltonianParameters::HamiltonianParameters(std::shared_ptr<ScalarBasis<GTOShell>>, ScalarSQOneElectronOperator<Scalar>, ScalarSQOneElectronOperator<Scalar>, ScalarSQTwoElectronOperator<Scalar>,TransformationMatrix<Scalar>, double): The dimensions of the operators and coefficient matrix are incompatible.");
 
         if (this->ao_basis) {  // ao_basis is not nullptr
             if (this->K != this->ao_basis->numberOfBasisFunctions()) {
@@ -96,7 +97,7 @@ public:
 
 
         if (S.parameters().isZero(1.0e-08)) {
-            throw std::invalid_argument("HamiltonianParameters::HamiltonianParameters(std::shared_ptr<ScalarBasis<GTOShell>>, ScalarSQOneElectronOperator<Scalar>, ScalarSQOneElectronOperator<Scalar>, ScalarSQTwoElectronOperator<Scalar>,SquareMatrix<Scalar>, double): The underlying overlap matrix cannot be a zero matrix.");
+            throw std::invalid_argument("HamiltonianParameters::HamiltonianParameters(std::shared_ptr<ScalarBasis<GTOShell>>, ScalarSQOneElectronOperator<Scalar>, ScalarSQOneElectronOperator<Scalar>, ScalarSQTwoElectronOperator<Scalar>,TransformationMatrix<Scalar>, double): The underlying overlap matrix cannot be a zero matrix.");
         }
     }
 
@@ -107,7 +108,7 @@ public:
      *  @param ham_par      the current Hamiltonian parameters
      *  @param C            the transformation matrix to be applied to the given Hamiltonian parameters
      */
-    HamiltonianParameters(const HamiltonianParameters<Scalar>& ham_par, const SquareMatrix<Scalar>& C) :
+    HamiltonianParameters(const HamiltonianParameters<Scalar>& ham_par, const TransformationMatrix<Scalar>& C) :
         HamiltonianParameters<Scalar>(ham_par.ao_basis, ham_par.S, ham_par.h, ham_par.g, ham_par.T_total, ham_par.scalar)
     {
         // We have now initialized the new Hamiltonian parameters to be a copy of the given Hamiltonian parameters, so now we will transform
@@ -154,7 +155,7 @@ public:
 
         // Construct the initial transformation matrix: the identity matrix
         auto nbf = ao_basis->numberOfBasisFunctions();
-        SquareMatrix<double> T_total = SquareMatrix<double>::Identity(nbf, nbf);
+        TransformationMatrix<double> T_total = TransformationMatrix<double>::Identity(nbf, nbf);
 
         return HamiltonianParameters(ao_basis, S, H, g, T_total, scalar);
     }
@@ -199,7 +200,7 @@ public:
 
 
         ScalarSQOneElectronOperator<double> S ({ChemicalMatrix<double>::Identity(K, K)});  // the underlying orbital basis can be chosen as orthonormal, since the form of the underlying orbitals doesn't really matter
-        SquareMatrix<double> C = SquareMatrix<double>::Identity(K, K);  // the transformation matrix C here doesn't really mean anything, because it doesn't link to any AO basis
+        TransformationMatrix<double> C = TransformationMatrix<double>::Identity(K, K);  // the transformation matrix here doesn't really mean anything, because it doesn't link to any AO basis
 
         ScalarSQOneElectronOperator<double> H ({ChemicalMatrix<double>::Random(K, K)});  // uniformly distributed between [-1,1]
 
@@ -333,7 +334,7 @@ public:
         // Make the ingredients to construct HamiltonianParameters
         std::shared_ptr<ScalarBasis<GTOShell>> ao_basis;  // nullptr
         ScalarSQOneElectronOperator<Scalar> S ({ChemicalMatrix<double>::Identity(K, K)});
-        SquareMatrix<double> C = SquareMatrix<double>::Identity(K, K);
+        TransformationMatrix<double> C = TransformationMatrix<double>::Identity(K, K);
 
         return HamiltonianParameters(ao_basis, S, ScalarSQOneElectronOperator<Scalar>({h_core}), ScalarSQTwoElectronOperator<Scalar>({g}), C, scalar);
     }
@@ -371,7 +372,7 @@ public:
         // Make the ingredients to construct HamiltonianParameters
         std::shared_ptr<ScalarBasis<GTOShell>> ao_basis;  // nullptr
         ScalarSQOneElectronOperator<double> S ({ChemicalMatrix<double>::Identity(K, K)});
-        SquareMatrix<double> C = SquareMatrix<double>::Identity(K, K);
+        TransformationMatrix<double> C = TransformationMatrix<double>::Identity(K, K);
 
         return HamiltonianParameters(ao_basis, S, ScalarSQOneElectronOperator<double>({h}), ScalarSQTwoElectronOperator<double>({g}), C);  // no scalar term
     }
@@ -392,7 +393,7 @@ public:
     const ScalarSQOneElectronOperator<Scalar>& get_S() const { return this->S; }
     const ScalarSQOneElectronOperator<Scalar>& get_h() const { return this->h; }
     const ScalarSQTwoElectronOperator<Scalar>& get_g() const { return this->g; }
-    const SquareMatrix<Scalar>& get_T_total() const { return this->T_total; }
+    const TransformationMatrix<Scalar>& get_T_total() const { return this->T_total; }
     size_t get_K() const { return this->K; }
 
     size_t dimension() const { return this->K; }
@@ -421,14 +422,14 @@ public:
      *      - the overlap matrix S now gives the overlap matrix in the new molecular orbital basis
      *      - the total transformation matrix T_total is updated to reflect the total transformation between the new molecular orbital basis and the initial atomic orbitals
      */
-    void transform(const SquareMatrix<Scalar>& T) {
+    void transform(const TransformationMatrix<Scalar>& T) {
 
         this->S.transform(T);
 
         this->h.transform(T);
         this->g.transform(T);
 
-        this->T_total = this->T_total * T;  // use the correct transformation formula for subsequent transformations
+        this->T_total.transform(T);
     }
 
 
@@ -443,14 +444,14 @@ public:
      *      - the overlap matrix S now gives the overlap matrix in the new molecular orbital basis
      *      - the total transformation matrix T_total is updated to reflect the total transformation between the new molecular orbital basis and the initial atomic orbitals
      */
-    void rotate(const SquareMatrix<Scalar>& U) {
+    void rotate(const TransformationMatrix<Scalar>& U) {
 
         this->S.rotate(U);
 
         this->h.rotate(U);
         this->g.rotate(U);
 
-        this->T_total = this->T_total * U;  // use the correct transformation formula for subsequent transformations
+        this->T_total.transform(U);
     }
 
 
@@ -470,11 +471,10 @@ public:
         this->h.rotate(jacobi_rotation_parameters);
         this->g.rotate(jacobi_rotation_parameters);
 
-
         // Create a Jacobi rotation matrix to transform the coefficient matrix with
         size_t K = this->h.get_dim();  // number of spatial orbitals
-        auto J = SquareMatrix<double>::FromJacobi(jacobi_rotation_parameters, K);
-        this->T_total = this->T_total * J;
+        auto J = TransformationMatrix<double>::FromJacobi(jacobi_rotation_parameters, K);
+        this->T_total.transform(J);
     }
 
 
@@ -487,10 +487,10 @@ public:
     enable_if_t<std::is_same<Z, double>::value> randomRotate() {
 
         // Get a random unitary matrix by diagonalizing a random symmetric matrix
-        SquareMatrix<double> A_random = SquareMatrix<double>::Random(this->K, this->K);
-        SquareMatrix<double> A_symmetric = A_random + A_random.transpose();
+        TransformationMatrix<double> A_random = TransformationMatrix<double>::Random(this->K, this->K);
+        TransformationMatrix<double> A_symmetric = A_random + A_random.transpose();
         Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> unitary_solver (A_symmetric);
-        SquareMatrix<double> U_random = unitary_solver.eigenvectors();
+        TransformationMatrix<double> U_random = unitary_solver.eigenvectors();
 
         this->rotate(U_random);
     }
@@ -503,7 +503,7 @@ public:
 
         // The transformation matrix to the Löwdin basis is T = S^{-1/2}
         Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes (this->S.parameters());
-        this->transform(SquareMatrix<double>(saes.operatorInverseSqrt()));
+        this->transform(TransformationMatrix<double>(saes.operatorInverseSqrt()));
     }
 
 
@@ -573,7 +573,7 @@ public:
         SquareMatrix<double> p_a = SquareMatrix<double>::PartitionMatrix(ao_list, this->K);
 
         ScalarSQOneElectronOperator<Scalar> S_AO = this->S;
-        SquareMatrix<double> T_inverse = T_total.inverse();
+        TransformationMatrix<double> T_inverse = T_total.inverse();
         S_AO.transform(T_inverse);
 
         ScalarSQOneElectronOperator<double> mulliken_matrix ({ (T_total.adjoint() * p_a * S_AO.parameters() * T_total + T_total.adjoint() * S_AO.parameters() * p_a * T_total)/2 });

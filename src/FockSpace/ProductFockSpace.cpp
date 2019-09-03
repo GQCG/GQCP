@@ -107,8 +107,7 @@ ScalarSQOneElectronOperator<double> ProductFockSpace::oneElectronPartition(size_
  *
  *  @return the operator's evaluation in a dense matrix with the dimensions of the Fock space
  */
-SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const ScalarSQOneElectronOperator<double>& one_op,
-                                                             bool diagonal_values) const {
+SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const ScalarSQOneElectronOperator<double>& one_op, bool diagonal_values) const {
 
     SquareMatrix<double> total_evaluation = SquareMatrix<double>::Zero(this->get_dimension(), this->get_dimension());
 
@@ -143,8 +142,7 @@ SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const ScalarSQOneEl
  *
  *  @return the operator's evaluation in a sparse matrix with the dimensions of the Fock space
  */
-Eigen::SparseMatrix<double> ProductFockSpace::evaluateOperatorSparse(const ScalarSQOneElectronOperator<double>& one_op,
-                                                                     bool diagonal_values) const {
+Eigen::SparseMatrix<double> ProductFockSpace::evaluateOperatorSparse(const ScalarSQOneElectronOperator<double>& one_op, bool diagonal_values) const {
 
     throw std::invalid_argument("ProductFockSpace::evaluateOperatorSparse(ScalarSQOneElectronOperator<double>, bool): Not implemented.");
 }
@@ -158,8 +156,7 @@ Eigen::SparseMatrix<double> ProductFockSpace::evaluateOperatorSparse(const Scala
  *
  *  @return the operator's evaluation in a dense matrix with the dimensions of the Fock space
  */
-SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const ScalarSQTwoElectronOperator<double>& two_op,
-                                                             bool diagonal_values) const {
+SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const ScalarSQTwoElectronOperator<double>& two_op, bool diagonal_values) const {
 
     SquareMatrix<double> total_evaluation = SquareMatrix<double>::Zero(this->get_dimension(), this->get_dimension());
 
@@ -224,8 +221,7 @@ SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const ScalarSQTwoEl
  *
  *  @return the operator's evaluation in a sparse matrix with the dimensions of the Fock space
  */
-Eigen::SparseMatrix<double> ProductFockSpace::evaluateOperatorSparse(const ScalarSQTwoElectronOperator<double>& two_op,
-                                                                     bool diagonal_values) const {
+Eigen::SparseMatrix<double> ProductFockSpace::evaluateOperatorSparse(const ScalarSQTwoElectronOperator<double>& two_op, bool diagonal_values) const {
 
     throw std::invalid_argument("ProductFockSpace::evaluateOperatorSparse(ScalarSQTwoElectronOperator<double>, bool): Not implemented.");
 }
@@ -239,8 +235,7 @@ Eigen::SparseMatrix<double> ProductFockSpace::evaluateOperatorSparse(const Scala
  *
  *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the Fock space
  */
-SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const HamiltonianParameters<double>& ham_par,
-                                                             bool diagonal_values) const {
+SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const HamiltonianParameters<double>& ham_par, bool diagonal_values) const {
 
     SquareMatrix<double> total_evaluation = SquareMatrix<double>::Zero(this->get_dimension(), this->get_dimension());
 
@@ -305,8 +300,7 @@ SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const HamiltonianPa
  *
  *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the Fock space
  */
-Eigen::SparseMatrix<double> ProductFockSpace::evaluateOperatorSparse(const HamiltonianParameters<double>& ham_par,
-                                                                     bool diagonal_values) const {
+Eigen::SparseMatrix<double> ProductFockSpace::evaluateOperatorSparse(const HamiltonianParameters<double>& ham_par, bool diagonal_values) const {
 
     throw std::invalid_argument("ProductFockSpace::evaluateOperatorSparse(HamiltonianParameters<double>, bool): Not implemented.");
 }

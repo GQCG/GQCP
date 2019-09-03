@@ -18,6 +18,7 @@
 #pragma once
 
 
+#include "Basis/TransformationMatrix.hpp"
 #include "OrbitalOptimization/BaseOrbitalOptimizer.hpp"
 #include "OrbitalOptimization/OrbitalRotationGenerators.hpp"
 #include "Mathematical/Optimization/BaseHessianModifier.hpp"
@@ -115,7 +116,7 @@ public:
      * 
      *  @return a unitary matrix that will be used to rotate the current Hamiltonian parameters into the next iteration
      */
-    SquareMatrix<double> calculateNewRotationMatrix(const HamiltonianParameters<double>& ham_par) const override;
+    TransformationMatrix<double> calculateNewRotationMatrix(const HamiltonianParameters<double>& ham_par) const override;
 
 
     // PUBLIC METHODS

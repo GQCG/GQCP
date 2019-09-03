@@ -84,12 +84,12 @@ BOOST_AUTO_TEST_CASE ( ChemicalMatrix_rotate_throws ) {
 
 
     // Check if a non-unitary matrix as transformation matrix causes a throw
-    const GQCP::SquareMatrix<double> T = GQCP::SquareMatrix<double>::Random(dim, dim);
+    const GQCP::TransformationMatrix<double> T = GQCP::TransformationMatrix<double>::Random(dim, dim);
     BOOST_CHECK_THROW(M.basisRotateInPlace(T), std::invalid_argument);
 
 
     // Check if a unitary matrix as transformation matrix is accepted
-    const GQCP::SquareMatrix<double> U= GQCP::SquareMatrix<double>::Identity(dim, dim);
+    const GQCP::TransformationMatrix<double> U = GQCP::TransformationMatrix<double>::Identity(dim, dim);
     M.basisRotateInPlace(U);
 }
 
@@ -106,7 +106,7 @@ BOOST_AUTO_TEST_CASE ( SQOneElectronOperator_rotate_JacobiRotationParameters ) {
 
     // Create random Jacobi rotation parameters and the corresponding Jacobi rotation matrix
     GQCP::JacobiRotationParameters jacobi_rotation_parameters (4, 2, 56.81);
-    const auto J = GQCP::SquareMatrix<double>::FromJacobi(jacobi_rotation_parameters, dim);
+    const auto J = GQCP::TransformationMatrix<double>::FromJacobi(jacobi_rotation_parameters, dim);
 
 
     // Rotate and check the result

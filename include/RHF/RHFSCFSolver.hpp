@@ -18,6 +18,7 @@
 #pragma once
 
 
+#include "Basis/TransformationMatrix.hpp"
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "Molecule/Molecule.hpp"
 #include "RHF/RHF.hpp"
@@ -87,7 +88,7 @@ public:
      * 
      *  @param C_initial            the initial guess for the canonical RHF coefficient matrix
      */
-    void solve(const SquareMatrix<double>& C_initial);
+    void solve(const TransformationMatrix<double>& C_initial);
 };
 
 

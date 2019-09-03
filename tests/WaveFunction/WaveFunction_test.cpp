@@ -66,7 +66,7 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h3 ) {
 
     // Retrieve the wave function and transform it
     auto wavefunction1 = ci_solver.makeWavefunction();
-    GQCP::SquareMatrix<double> U_random = GQCP::SquareMatrix<double>::RandomUnitary(K);
+    GQCP::TransformationMatrix<double> U_random = GQCP::TransformationMatrix<double>::RandomUnitary(K);
 
     wavefunction1.basisTransform(U_random);
 
@@ -104,7 +104,7 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h4 ) {
 
     // Retrieve the wave function and transform it
     auto wavefunction1 = ci_solver.makeWavefunction();
-    GQCP::SquareMatrix<double> U_random = GQCP::SquareMatrix<double>::RandomUnitary(K);
+    GQCP::TransformationMatrix<double> U_random = GQCP::TransformationMatrix<double>::RandomUnitary(K);
 
     wavefunction1.basisTransform(U_random);
 
@@ -144,7 +144,7 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h5 ) {
 
     // Retrieve the wave function and transform it
     auto wavefunction1 = ci_solver.makeWavefunction();
-    GQCP::SquareMatrix<double> U_random = GQCP::SquareMatrix<double>::RandomUnitary(K);
+    GQCP::TransformationMatrix<double> U_random = GQCP::TransformationMatrix<double>::RandomUnitary(K);
 
     wavefunction1.basisTransform(U_random);
 

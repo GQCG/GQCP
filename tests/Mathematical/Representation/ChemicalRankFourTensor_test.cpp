@@ -43,7 +43,7 @@ BOOST_AUTO_TEST_CASE ( constructor ) {
  */
 BOOST_AUTO_TEST_CASE ( ChemicalRankFourTensor_basisTransformInPlace_trivial ) {
 
-    const GQCP::SquareMatrix<double> T = GQCP::SquareMatrix<double>::Identity(3, 3);
+    const GQCP::TransformationMatrix<double> T = GQCP::TransformationMatrix<double>::Identity(3, 3);
 
     GQCP::ChemicalRankFourTensor<double> G (3);
     const auto G_copy = G;  // the reference
@@ -60,7 +60,7 @@ BOOST_AUTO_TEST_CASE ( SQTwoElectronOperator_transform_olsens ) {
 
     // Set an example transformation matrix and two-electron integrals tensor
     const size_t dim = 2;
-    GQCP::SquareMatrix<double> T (dim);
+    GQCP::TransformationMatrix<double> T (dim);
     T << 1, 2,
          3, 4;
 
@@ -96,12 +96,12 @@ BOOST_AUTO_TEST_CASE ( ChemicalRankFourTensor_rotate_throws ) {
 
 
     // Check if a non-unitary matrix as transformation matrix causes a throw
-    const GQCP::SquareMatrix<double> T = GQCP::SquareMatrix<double>::Random(dim, dim);  // chances are practically zero that a random matrix is unitary
-    BOOST_CHECK_THROW(g.basisRotateInPlace(GQCP::SquareMatrix<double>(T)), std::invalid_argument);
+    const GQCP::TransformationMatrix<double> T = GQCP::TransformationMatrix<double>::Random(dim, dim);  // chances are practically zero that a random matrix is unitary
+    BOOST_CHECK_THROW(g.basisRotateInPlace(GQCP::TransformationMatrix<double>(T)), std::invalid_argument);
 
 
     // Check if a unitary matrix as transformation matrix is accepted
-    GQCP::SquareMatrix<double> U = GQCP::SquareMatrix<double>::Identity(dim, dim);
+    GQCP::TransformationMatrix<double> U = GQCP::TransformationMatrix<double>::Identity(dim, dim);
     g.basisRotateInPlace(U);
 }
 
@@ -120,7 +120,7 @@ BOOST_AUTO_TEST_CASE ( ChemicalRankFourTensor_basisRotateInPlace_JacobiRotationP
 
 
     const GQCP::JacobiRotationParameters jacobi_rotation_parameters (4, 2, 56.81);
-    const auto U = GQCP::SquareMatrix<double>::FromJacobi(jacobi_rotation_parameters, dim);
+    const auto U = GQCP::TransformationMatrix<double>::FromJacobi(jacobi_rotation_parameters, dim);
 
     G1.basisRotateInPlace(jacobi_rotation_parameters);
     G2.basisRotateInPlace(U);

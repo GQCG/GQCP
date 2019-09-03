@@ -19,6 +19,7 @@
 
 
 #include "Basis/ScalarBasis.hpp"
+#include "Basis/TransformationMatrix.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Molecule/Molecule.hpp"
 #include "Molecule/NuclearFramework.hpp"
@@ -48,7 +49,7 @@ public:
 
 private:
     ScalarBasis<ShellType> scalar_basis;  // the underlying scalar basis
-    SquareMatrix<TransformationScalar> T_total;  // the transformation matrix between the scalar basis and the current orbitals
+    TransformationMatrix<TransformationScalar> T_total;  // the transformation matrix between the scalar basis and the current orbitals
 
 
 public:
@@ -61,7 +62,7 @@ public:
      *  @param scalar_basis             the underlying scalar basis
      *  @param T_total                  the transformation matrix between the scalar basis and the current orbitals
      */
-    SingleParticleBasis(const ScalarBasis<ShellType>& scalar_basis, const SquareMatrix<TransformationScalar>& T_total) :
+    SingleParticleBasis(const ScalarBasis<ShellType>& scalar_basis, const TransformationMatrix<TransformationScalar>& T_total) :
         scalar_basis (scalar_basis),
         T_total (T_total)
     {}
@@ -73,7 +74,7 @@ public:
      *  @param scalar_basis             the underlying scalar basis
      */
     SingleParticleBasis(const ScalarBasis<ShellType>& scalar_basis) : 
-        SingleParticleBasis(scalar_basis, SquareMatrix<double>::Identity(scalar_basis.numberOfBasisFunctions(), scalar_basis.numberOfBasisFunctions()))
+        SingleParticleBasis(scalar_basis, TransformationMatrix<double>::Identity(scalar_basis.numberOfBasisFunctions(), scalar_basis.numberOfBasisFunctions()))
     {}
 
 
@@ -140,9 +141,9 @@ public:
      * 
      *  @param T            the transformation matrix
      */
-    void transform(const SquareMatrix<TransformationScalar>& T) {
+    void transform(const TransformationMatrix<TransformationScalar>& T) {
 
-        this->T_total = this->T_total * T;
+        this->T_total.transform(T);
     }
 
 
@@ -151,11 +152,11 @@ public:
      * 
      *  @param U            the unitary transformation matrix
      */
-    void rotate(const SquareMatrix<TransformationScalar>& U) {
+    void rotate(const TransformationMatrix<TransformationScalar>& U) {
 
         // Check if the given matrix is actually unitary
         if (!U.isUnitary(1.0e-12)) {
-            throw std::invalid_argument("SingleParticleBasis::rotate(const SquareMatrix<TransformationScalar>&): The given transformation matrix is not unitary.");
+            throw std::invalid_argument("SingleParticleBasis::rotate(const TransformationMatrix<TransformationScalar>&): The given transformation matrix is not unitary.");
         }
 
         this->transform(U);
@@ -170,7 +171,7 @@ public:
     void rotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
 
         const auto dim = this->numberOfOrbitals();
-        const auto J = SquareMatrix<double>::FromJacobi(jacobi_rotation_parameters, dim);
+        const auto J = TransformationMatrix<double>::FromJacobi(jacobi_rotation_parameters, dim);
         this->rotate(J);
     }
 
@@ -178,7 +179,7 @@ public:
     /**
      *  @return the transformation matrix between the scalar basis and the current orbitals
      */
-    SquareMatrix<TransformationScalar> transformationMatrix() const { return this->T_total; }
+    TransformationMatrix<TransformationScalar> transformationMatrix() const { return this->T_total; }
 
     /**
      *  @param precision                the precision used to test orthonormality
@@ -205,7 +206,7 @@ public:
         auto S = this->scalar_basis.calculateLibintIntegrals(Operator::Overlap());  // in the underlying (possibly orthonormal) scalar basis
         Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes (S);
 
-        this->T_total = SquareMatrix<double>(saes.operatorInverseSqrt());
+        this->T_total = TransformationMatrix<double>(saes.operatorInverseSqrt());
     }
 
 

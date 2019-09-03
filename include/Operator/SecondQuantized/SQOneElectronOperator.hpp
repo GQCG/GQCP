@@ -18,6 +18,7 @@
 #pragma once
 
 
+#include "Basis/TransformationMatrix.hpp"
 #include "Mathematical/Representation/ChemicalMatrix.hpp"
 #include "Mathematical/ScalarFunction.hpp"
 #include "OrbitalOptimization/JacobiRotationParameters.hpp"
@@ -154,7 +155,7 @@ public:
      * 
      *  @param T                            the transformation matrix
      */
-    void transform(const SquareMatrix<Scalar>& T) {
+    void transform(const TransformationMatrix<Scalar>& T) {
 
         // Transform the matrix representations of the components
         for (auto& f : this->allParameters()) {
@@ -168,7 +169,7 @@ public:
      * 
      *  @param U                            the (unitary) rotation matrix
      */
-    void rotate(const SquareMatrix<Scalar>& U) {
+    void rotate(const TransformationMatrix<Scalar>& U) {
 
         // Transform the matrix representations of the components
         for (auto& f : this->allParameters()) {

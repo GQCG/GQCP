@@ -72,16 +72,16 @@ double WaveFunction::calculateShannonEntropy() const {
  *
  *  @param T    the transformation matrix between the old and the new orbital basis
  */
-void WaveFunction::basisTransform(const SquareMatrix<double>& T) {
+void WaveFunction::basisTransform(const TransformationMatrix<double>& T) {
 
     if (fock_space->get_type() != FockSpaceType::ProductFockSpace) {
-        throw std::invalid_argument("WaveFunction::basisTransform(SquareMatrix<double>): This is not an FCI wave function");
+        throw std::invalid_argument("WaveFunction::basisTransform(TransformationMatrix<double>): This is not an FCI wave function");
     }
 
     const auto K = fock_space->get_K();
 
     if (K != T.get_dim()) {
-        throw std::invalid_argument("WaveFunction::basisTransform(SquareMatrix<double>): number of orbitals does not match the dimension of the transformation matrix T");
+        throw std::invalid_argument("WaveFunction::basisTransform(TransformationMatrix<double>): number of orbitals does not match the dimension of the transformation matrix T");
     }
 
     // Retrieve LU decomposition for T
@@ -93,12 +93,10 @@ void WaveFunction::basisTransform(const SquareMatrix<double>& T) {
 
     // Retrieve U
     SquareMatrix<double> U = SquareMatrix<double>(LU[1].triangularView<Eigen::Upper>());
-
-
     SquareMatrix<double> U_inv = U.inverse();
 
     // Calculate t (the operator which allows per-orbital transformation of the wave function)
-    SquareMatrix<double> t =  SquareMatrix<double>::Identity(K, K) - L + U_inv;
+    SquareMatrix<double> t = SquareMatrix<double>::Identity(K, K) - L + U_inv;
 
     // Set up Fock space variables for the CI iterations
     const auto& product_fock_space = dynamic_cast<const ProductFockSpace&>(*fock_space);

@@ -59,7 +59,7 @@ void RHFSCFSolver::solve() {
 
     // Obtain an initial guess for the AO density matrix by solving the generalized eigenvalue problem for H_core
     Eigen::GeneralizedSelfAdjointEigenSolver<Eigen::MatrixXd> initial_generalized_eigensolver (H_core, S);
-    SquareMatrix<double> C_initial = initial_generalized_eigensolver.eigenvectors();
+    TransformationMatrix<double> C_initial = initial_generalized_eigensolver.eigenvectors();
 
     this->solve(C_initial);
 }
@@ -70,7 +70,7 @@ void RHFSCFSolver::solve() {
  * 
  *  @param C        the initial guess for the canonical RHF coefficient matrix
  */
-void RHFSCFSolver::solve(const SquareMatrix<double>& C_initial) {
+void RHFSCFSolver::solve(const TransformationMatrix<double>& C_initial) {
 
     const auto& H_core = this->ham_par.get_h();
     const auto& S = this->ham_par.get_S().parameters();
@@ -104,7 +104,7 @@ void RHFSCFSolver::solve(const SquareMatrix<double>& C_initial) {
 
             // Set the converged solution
             auto electronic_energy = calculateRHFElectronicEnergy(D_AO, H_core, F_AO);
-            this->solution = RHF(electronic_energy, SquareMatrix<double>(C), generalized_eigensolver.eigenvalues());
+            this->solution = RHF(electronic_energy, TransformationMatrix<double>(C), generalized_eigensolver.eigenvalues());
 
         } else {  // not converged yet
             iteration_counter++;

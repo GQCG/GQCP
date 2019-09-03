@@ -29,7 +29,7 @@ namespace GQCP {
  *  Default constructor setting everything to zero
  */
 RHF::RHF() :
-    RHF(0.0, SquareMatrix<double>::Zero(0, 0), VectorX<double>::Zero(0))
+    RHF(0.0, TransformationMatrix<double>::Zero(0, 0), VectorX<double>::Zero(0))
 {}
 
 
@@ -40,7 +40,7 @@ RHF::RHF() :
  *  @param C                    the coefficient matrix, i.e. the transformation matrix from the AO basis to the RHF MO basis
  *  @param orbital_energies     the RHF MO energies
  */
-RHF::RHF(double electronic_energy, const SquareMatrix<double>& C, const VectorX<double>& orbital_energies) :
+RHF::RHF(double electronic_energy, const TransformationMatrix<double>& C, const VectorX<double>& orbital_energies) :
     electronic_energy (electronic_energy),
     C (C),
     orbital_energies (orbital_energies)
@@ -83,7 +83,7 @@ OneRDM<double> calculateRHF1RDM(size_t K, size_t N) {
  *
  *  @return the RHF 1-RDM expressed in the AO basis
  */
-OneRDM<double> calculateRHFAO1RDM(const SquareMatrix<double>& C, size_t N) {
+OneRDM<double> calculateRHFAO1RDM(const TransformationMatrix<double>& C, size_t N) {
 
     size_t K = C.rows();
     auto D_MO = calculateRHF1RDM(K, N);

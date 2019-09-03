@@ -85,7 +85,7 @@ SquareMatrix<double> OrbitalRotationGenerators::asMatrix() const {
 /**
  *  @return the unitary matrix that corresponds to these orbital rotation generators, i.e. exp(-kappa)
  */
-SquareMatrix<double> OrbitalRotationGenerators::calculateRotationMatrix() const {
+TransformationMatrix<double> OrbitalRotationGenerators::calculateRotationMatrix() const {
     return (-this->asMatrix()).exp();
 }
 

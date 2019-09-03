@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Mathematical/Representation/SquareMatrix.hpp"
+#include "Basis/TransformationMatrix.hpp"
 #include "Mathematical/Representation/SquareRankFourTensor.hpp"
 
 #include <iostream>
@@ -72,7 +72,7 @@ public:
      *      b' = b T ,
      *   in which the basis functions are collected as elements of a row vector b
      */
-    void basisTransformInPlace(const SquareMatrix<Scalar>& T) {
+    void basisTransformInPlace(const TransformationMatrix<Scalar>& T) {
 
         // Since we're only getting T as a matrix, we should make the appropriate tensor to perform contractions
         // For the const argument, we need the const in the template
@@ -113,11 +113,11 @@ public:
      * 
      *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix. See transform() for how the transformation matrix between the two bases should be represented
      */
-    void basisRotateInPlace(const SquareMatrix<double>& U) {
+    void basisRotateInPlace(const TransformationMatrix<double>& U) {
 
         // Check if the given matrix is actually unitary
         if (!U.isUnitary(1.0e-12)) {
-            throw std::invalid_argument("ChemicalRankFourTensor::basisRotateInPlace(const SquareMatrix<Scalar>&): The given transformation matrix is not unitary.");
+            throw std::invalid_argument("ChemicalRankFourTensor::basisRotateInPlace(const TransformationMatrix<Scalar>&): The given transformation matrix is not unitary.");
         }
 
         this->basisTransformInPlace(U);
@@ -136,7 +136,7 @@ public:
          */
 
         const auto dim = this->dimension();
-        const auto J = SquareMatrix<double>::FromJacobi(jacobi_rotation_parameters, dim);
+        const auto J = TransformationMatrix<double>::FromJacobi(jacobi_rotation_parameters, dim);
         this->basisRotateInPlace(J);
     }
 };
