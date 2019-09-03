@@ -414,9 +414,7 @@ public:
     /**
      *  In-place transform the matrix representations of Hamiltonian parameters
      *
-     *  @param T    the transformation matrix between the old and the new orbital basis, it is used as
-     *      b' = b T ,
-     *   in which the basis functions are collected as elements of a row vector b
+     *  @param T    the transformation matrix between the old and the new orbital basis
      *
      *  Furthermore
      *      - the overlap matrix S now gives the overlap matrix in the new molecular orbital basis
@@ -436,9 +434,7 @@ public:
     /**
      *  In-place rotate the matrix representations of Hamiltonian parameters
      *
-     *  @param U    the unitary rotation matrix between the old and the new orbital basis, it is used as
-     *      b' = b T ,
-     *   in which the basis functions are collected as elements of a row vector b
+     *  @param U    the unitary rotation matrix between the old and the new orbital basis
      *
      *  Furthermore
      *      - the overlap matrix S now gives the overlap matrix in the new molecular orbital basis
@@ -458,7 +454,7 @@ public:
     /**
      *  In-place rotate the matrix representations of the Hamiltonian parameters using a unitary Jacobi rotation matrix constructed from the Jacobi rotation parameters. Note that this function is only available for real (double) matrix representations
      *
-     *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix. See transform() for how the transformation matrix between the two bases should be represented
+     *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
      *
      *  Furthermore
      *      - the overlap matrix S now gives the overlap matrix in the new molecular orbital basis

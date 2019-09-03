@@ -68,9 +68,7 @@ public:
     /**
      *  In-place transform this chemical rank-4 tensor according to a given basis transformation
      *
-     *  @param T    the transformation matrix between the old and the new orbital basis, it is used as
-     *      b' = b T ,
-     *   in which the basis functions are collected as elements of a row vector b
+     *  @param T    the transformation matrix between the old and the new orbital basis
      */
     void basisTransformInPlace(const TransformationMatrix<Scalar>& T) {
 
@@ -111,7 +109,7 @@ public:
     /**
      *  In-place rotate this chemical rank-4 tensor using a unitary transformation matrix
      * 
-     *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix. See transform() for how the transformation matrix between the two bases should be represented
+     *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
      */
     void basisRotateInPlace(const TransformationMatrix<double>& U) {
 
@@ -127,7 +125,7 @@ public:
     /**
      *  In-place rotate this chemical rank-4 tensor using Jacobi rotation parameters
      * 
-     *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix. See transform() for how the transformation matrix between the two bases should be represented
+     *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
      */
     void basisRotateInPlace(const JacobiRotationParameters& jacobi_rotation_parameters) {
 

@@ -183,7 +183,7 @@ public:
     /**
      *  In-place rotate the operator using a unitary Jacobi rotation matrix constructed from the Jacobi rotation parameters
      * 
-     *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix. See transform() for how the transformation matrix between the two bases should be represented
+     *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
      */
     void rotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
 

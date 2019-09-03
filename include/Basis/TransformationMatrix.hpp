@@ -25,7 +25,9 @@ namespace GQCP {
 
 
 /**
- *  A class that represents a transformation matrix between two orbital bases.
+ *  A class that represents a transformation matrix between two orbital bases. The matrix representation of this transformation matrix is such that a new orbital basis b' is found as
+ *      b' = b T ,
+ *   in which the current orbitals are collected as elements of a row vector b
  * 
  *  @tparam TransformationScalar            the scalar representation of one of the elements of the transformation matrix
  */

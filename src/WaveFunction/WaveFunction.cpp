@@ -68,7 +68,6 @@ double WaveFunction::calculateShannonEntropy() const {
 
 /**
  *  Transform the underlying ONV basis of the wave function (only for FCI [ProductFockSpace]) and recalculate the ONV expansion coefficients
-
  *
  *  @param T    the transformation matrix between the old and the new orbital basis
  */
