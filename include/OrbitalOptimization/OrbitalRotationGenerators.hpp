@@ -18,6 +18,7 @@
 #pragma once
 
 
+#include "Basis/TransformationMatrix.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 
 
@@ -75,7 +76,7 @@ public:
     /**
      *  @return the unitary matrix that corresponds to these orbital rotation generators, i.e. exp(-kappa)
      */
-    SquareMatrix<double> calculateRotationMatrix() const;
+    TransformationMatrix<double> calculateRotationMatrix() const;
 
     /*
      *  @return the number of spatial orbitals that can be rotated using these orbital rotation generators

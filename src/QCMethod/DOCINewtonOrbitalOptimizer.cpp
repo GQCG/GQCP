@@ -83,7 +83,7 @@ void DOCINewtonOrbitalOptimizer::solve() {
         GQCP::ERJacobiLocalizer jacobi_localizer (N_P);
         auto optimal_jacobi_with_scalar = jacobi_localizer.calculateOptimalJacobiParameters(mol_ham_par);
         if (optimal_jacobi_with_scalar.second > 0) {  // if a Jacobi rotation can find an increase, do it
-            const auto U = GQCP::SquareMatrix<double>::FromJacobi(optimal_jacobi_with_scalar.first, mol_ham_par.get_K());
+            const auto U = GQCP::TransformationMatrix<double>::FromJacobi(optimal_jacobi_with_scalar.first, mol_ham_par.get_K());
             mol_ham_par.rotate(U);
         }
 
@@ -131,7 +131,7 @@ double DOCINewtonOrbitalOptimizer::energy() const {
 /**
  *  @return the total transformation matrix to the OO-DOCI orbitals
  */
-const GQCP::SquareMatrix<double>& DOCINewtonOrbitalOptimizer::transformationMatrix() const {
+const GQCP::TransformationMatrix<double>& DOCINewtonOrbitalOptimizer::transformationMatrix() const {
 
     if (this->is_solved) {
         return this->T_total;

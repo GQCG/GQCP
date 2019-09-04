@@ -18,6 +18,7 @@
 #pragma once
 
 
+#include "Basis/TransformationMatrix.hpp"
 #include "CISolver/CISolver.hpp"
 #include "FockSpace/ProductFockSpace.hpp"
 #include "HamiltonianBuilder/FCI.hpp"
@@ -42,7 +43,7 @@ private:
     bool localize = false;
 
     double energy_solution;
-    GQCP::SquareMatrix<double> T_total;  // total transformation from atomic orbital basis to the OO-DOCI orbitals
+    GQCP::TransformationMatrix<double> T_total;  // total transformation from atomic orbital basis to the OO-DOCI orbitals
 
 public:
     // CONSTRUCTORS
@@ -71,7 +72,7 @@ public:
     /**
      *  @return the total transformation matrix to the OO-DOCI orbitals
      */
-    const GQCP::SquareMatrix<double>& transformationMatrix() const;
+    const GQCP::TransformationMatrix<double>& transformationMatrix() const;
 };
 
 

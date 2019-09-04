@@ -18,6 +18,7 @@
 #pragma once
 
 
+#include "Basis/TransformationMatrix.hpp"
 #include "HamiltonianParameters/HamiltonianParameters.hpp"
 
 
@@ -72,7 +73,7 @@ public:
      * 
      *  @return a unitary matrix that will be used to rotate the current Hamiltonian parameters into the next iteration
      */
-    virtual SquareMatrix<double> calculateNewRotationMatrix(const HamiltonianParameters<double>& ham_par) const = 0;
+    virtual TransformationMatrix<double> calculateNewRotationMatrix(const HamiltonianParameters<double>& ham_par) const = 0;
 
 
     // PUBLIC METHODS

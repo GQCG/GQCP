@@ -172,7 +172,7 @@ MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const s
                 size_t K2 = ham_par2.get_K();
 
                 // Recombine canonical matrices
-                GQCP::SquareMatrix<double> T = Eigen::MatrixXd::Zero(K, K);
+                GQCP::TransformationMatrix<double> T = Eigen::MatrixXd::Zero(K, K);
                 T.topLeftCorner(K1, K1) += rhf1.get_C();
                 T.bottomRightCorner(K2, K2) += rhf2.get_C();
                 this->ham_par.transform(T);

@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Mathematical/Representation/ChemicalRankFourTensor.hpp"
+#include "Mathematical/Representation/QCRankFourTensor.hpp"
 #include "RDM/OneRDM.hpp"
 
 
@@ -31,12 +31,12 @@ namespace GQCP {
  *  @tparam _Scalar     the scalar type
  */
 template <typename _Scalar>
-class TwoRDM : public ChemicalRankFourTensor<_Scalar> {
+class TwoRDM : public QCRankFourTensor<_Scalar> {
 public:
 
     using Scalar = _Scalar;
 
-    using BaseRepresentation = ChemicalRankFourTensor<Scalar>;
+    using BaseRepresentation = QCRankFourTensor<Scalar>;
 
 
 public:
@@ -45,7 +45,7 @@ public:
      *  CONSTRUCTORS
      */
 
-    using ChemicalRankFourTensor<Scalar>::ChemicalRankFourTensor;  // use base constructors
+    using QCRankFourTensor<Scalar>::QCRankFourTensor;  // use base constructors
 
 
     /*

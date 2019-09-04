@@ -6,6 +6,7 @@ list(APPEND test_target_sources
         ${CMAKE_CURRENT_SOURCE_DIR}/ScalarBasis_test.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/ShellSet_test.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/SingleParticleBasis_test.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/TransformationMatrix_test.cpp
         )
 
 set(test_target_sources ${test_target_sources} PARENT_SCOPE)

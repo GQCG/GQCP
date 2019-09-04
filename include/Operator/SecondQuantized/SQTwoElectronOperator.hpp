@@ -17,7 +17,9 @@
 // 
 #pragma once
 
-#include "Mathematical/Representation/ChemicalRankFourTensor.hpp"
+
+#include "Basis/TransformationMatrix.hpp"
+#include "Mathematical/Representation/QCRankFourTensor.hpp"
 #include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
 #include "OrbitalOptimization/JacobiRotationParameters.hpp"
 #include "RDM/OneRDM.hpp"
@@ -45,7 +47,7 @@ public:
 
 
 private:
-    std::array<ChemicalRankFourTensor<Scalar>, Components> gs;  // all the matrix representations (hence the 's') of the parameters (integrals) of the different components of this second-quantized operator
+    std::array<QCRankFourTensor<Scalar>, Components> gs;  // all the matrix representations (hence the 's') of the parameters (integrals) of the different components of this second-quantized operator
 
 public:
 
@@ -56,7 +58,7 @@ public:
     /**
      *  @param gs            all the matrix representations (hence the 's') of the parameters (integrals) of the different components of this second-quantized operator
      */
-    SQTwoElectronOperator(const std::array<ChemicalRankFourTensor<Scalar>, Components>& gs) : 
+    SQTwoElectronOperator(const std::array<QCRankFourTensor<Scalar>, Components>& gs) : 
         gs (gs)
     {
         // Check if the given matrix representations have the same dimensions
@@ -66,7 +68,7 @@ public:
 
             const auto dimension_of_ith = this->gs[i].dimension();
             if (dimension_of_first != dimension_of_ith) {
-                throw std::invalid_argument("SQTwoElectronOperator(const std::array<ChemicalMatrix<Scalar>, Components>&): The given matrix representations do not have the same dimensions.");
+                throw std::invalid_argument("SQTwoElectronOperator(const std::array<QCMatrix<Scalar>, Components>&): The given matrix representations do not have the same dimensions.");
             }
         }
     }
@@ -79,7 +81,7 @@ public:
      */
     SQTwoElectronOperator(const size_t dim) {
         for (size_t i = 0; i < Components; i++) {
-            this->gs[i] = ChemicalRankFourTensor<Scalar>(dim);
+            this->gs[i] = QCRankFourTensor<Scalar>(dim);
             this->gs[i].setZero();
         }
     }
@@ -117,7 +119,7 @@ public:
     /**
      *  @return read-only matrix representations of all the parameters (integrals) of the different components of this second-quantized operator
      */
-    const std::array<ChemicalRankFourTensor<Scalar>, Components>& allParameters() const {
+    const std::array<QCRankFourTensor<Scalar>, Components>& allParameters() const {
         return this->gs;
     }
 
@@ -125,7 +127,7 @@ public:
     /**
      *  @return writable matrix representations of all the parameters (integrals) of the different components of this second-quantized operator
      */
-    std::array<ChemicalRankFourTensor<Scalar>, Components>& allParameters() {
+    std::array<QCRankFourTensor<Scalar>, Components>& allParameters() {
         return this->gs;
     }
 
@@ -135,7 +137,7 @@ public:
      * 
      *  @return a read-only matrix representation of the parameters (integrals) of one of the the different components of this second-quantized operator
      */
-    const ChemicalRankFourTensor<Scalar>& parameters(const size_t i = 0) const {
+    const QCRankFourTensor<Scalar>& parameters(const size_t i = 0) const {
         return this->gs[i];
     }
 
@@ -145,7 +147,7 @@ public:
      * 
      *  @return a writable the matrix representation of the parameters (integrals) of one of the the different components of this second-quantized operator
      */
-    ChemicalRankFourTensor<Scalar>& parameters(const size_t i = 0) {
+    QCRankFourTensor<Scalar>& parameters(const size_t i = 0) {
         return this->gs[i];
     }
 
@@ -155,7 +157,7 @@ public:
      * 
      *  @param T                            the transformation matrix
      */
-    void transform(const SquareMatrix<Scalar>& T) {
+    void transform(const TransformationMatrix<Scalar>& T) {
 
         // Transform the matrix representations of the components
         for (auto& g : this->allParameters()) {
@@ -169,7 +171,7 @@ public:
      * 
      *  @param U                            the (unitary) rotation matrix
      */
-    void rotate(const SquareMatrix<Scalar>& U) {
+    void rotate(const TransformationMatrix<Scalar>& U) {
 
         // Transform the matrix representations of the components
         for (auto& g : this->allParameters()) {
@@ -181,7 +183,7 @@ public:
     /**
      *  In-place rotate the operator using a unitary Jacobi rotation matrix constructed from the Jacobi rotation parameters
      * 
-     *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix. See transform() for how the transformation matrix between the two bases should be represented
+     *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
      */
     void rotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
 

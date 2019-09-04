@@ -18,6 +18,7 @@
 #pragma once
 
 
+#include "Basis/TransformationMatrix.hpp"
 #include "FockSpace/BaseFockSpace.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
 
@@ -62,7 +63,7 @@ public:
      *
      *  @param T    the transformation matrix between the old and the new orbital basis
      */
-     void basisTransform(const SquareMatrix<double>& T);
+     void basisTransform(const TransformationMatrix<double>& T);
      
     /** 
      *  @param other            wave function for the comparison

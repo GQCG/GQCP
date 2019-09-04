@@ -284,9 +284,9 @@ ScalarSQOneElectronOperator<double> BaseFrozenCoreFockSpace::freezeOperator(cons
 FrozenOperators BaseFrozenCoreFockSpace::freezeOperator(const ScalarSQTwoElectronOperator<double>& two_op, size_t X) {
 
     size_t K_active = two_op.dimension() - X;
-    ChemicalMatrix<double> frozen_one_op_par = ChemicalMatrix<double>::Zero(K_active, K_active);
+    QCMatrix<double> frozen_one_op_par = QCMatrix<double>::Zero(K_active, K_active);
     const auto& two_op_par = two_op.parameters();
-    const auto frozen_two_op_par = ChemicalRankFourTensor<double>::FromBlock(two_op_par, X, X, X, X);
+    const auto frozen_two_op_par = QCRankFourTensor<double>::FromBlock(two_op_par, X, X, X, X);
 
     // Frozen two-electron integrals can be rewritten partially as one electron integrals.
     for (size_t i = 0; i < K_active; i++) {  // iterate over the active orbitals

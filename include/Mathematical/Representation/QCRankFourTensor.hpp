@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Mathematical/Representation/SquareMatrix.hpp"
+#include "Basis/TransformationMatrix.hpp"
 #include "Mathematical/Representation/SquareRankFourTensor.hpp"
 
 #include <iostream>
@@ -33,12 +33,12 @@ namespace GQCP {
  *  @tparam _Scalar      the scalar type
  */
 template<typename _Scalar>
-class ChemicalRankFourTensor: public SquareRankFourTensor<_Scalar> {
+class QCRankFourTensor: public SquareRankFourTensor<_Scalar> {
 public:
     using Scalar = _Scalar;
 
     using Base = SquareRankFourTensor<Scalar>;
-    using Self = ChemicalRankFourTensor<Scalar>;
+    using Self = QCRankFourTensor<Scalar>;
 
 
 public:
@@ -68,11 +68,9 @@ public:
     /**
      *  In-place transform this chemical rank-4 tensor according to a given basis transformation
      *
-     *  @param T    the transformation matrix between the old and the new orbital basis, it is used as
-     *      b' = b T ,
-     *   in which the basis functions are collected as elements of a row vector b
+     *  @param T    the transformation matrix between the old and the new orbital basis
      */
-    void basisTransformInPlace(const SquareMatrix<Scalar>& T) {
+    void basisTransformInPlace(const TransformationMatrix<Scalar>& T) {
 
         // Since we're only getting T as a matrix, we should make the appropriate tensor to perform contractions
         // For the const argument, we need the const in the template
@@ -111,13 +109,13 @@ public:
     /**
      *  In-place rotate this chemical rank-4 tensor using a unitary transformation matrix
      * 
-     *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix. See transform() for how the transformation matrix between the two bases should be represented
+     *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
      */
-    void basisRotateInPlace(const SquareMatrix<double>& U) {
+    void basisRotateInPlace(const TransformationMatrix<double>& U) {
 
         // Check if the given matrix is actually unitary
         if (!U.isUnitary(1.0e-12)) {
-            throw std::invalid_argument("ChemicalRankFourTensor::basisRotateInPlace(const SquareMatrix<Scalar>&): The given transformation matrix is not unitary.");
+            throw std::invalid_argument("QCRankFourTensor::basisRotateInPlace(const TransformationMatrix<Scalar>&): The given transformation matrix is not unitary.");
         }
 
         this->basisTransformInPlace(U);
@@ -127,7 +125,7 @@ public:
     /**
      *  In-place rotate this chemical rank-4 tensor using Jacobi rotation parameters
      * 
-     *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix. See transform() for how the transformation matrix between the two bases should be represented
+     *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
      */
     void basisRotateInPlace(const JacobiRotationParameters& jacobi_rotation_parameters) {
 
@@ -136,7 +134,7 @@ public:
          */
 
         const auto dim = this->dimension();
-        const auto J = SquareMatrix<double>::FromJacobi(jacobi_rotation_parameters, dim);
+        const auto J = TransformationMatrix<double>::FromJacobi(jacobi_rotation_parameters, dim);
         this->basisRotateInPlace(J);
     }
 };

@@ -18,6 +18,7 @@
 #pragma once
 
 
+#include "Basis/TransformationMatrix.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 #include "typedefs.hpp"
 
@@ -31,12 +32,12 @@ namespace GQCP {
  *  @tparam _Scalar      the scalar type
  */
 template <typename _Scalar>
-class ChemicalMatrix : public SquareMatrix<_Scalar> {
+class QCMatrix : public SquareMatrix<_Scalar> {
 public:
     using Scalar = _Scalar;
 
     using Base = SquareMatrix<Scalar>;
-    using Self = ChemicalMatrix<Scalar>;
+    using Self = QCMatrix<Scalar>;
 
 
 public:
@@ -72,7 +73,7 @@ public:
      * 
      *  @param T                            the transformation matrix
      */
-    void basisTransformInPlace(const SquareMatrix<Scalar>& T) {
+    void basisTransformInPlace(const TransformationMatrix<Scalar>& T) {
 
         (*this) = Self(T.adjoint() * (*this) * T);  // has no aliasing issues (https://eigen.tuxfamily.org/dox/group__TopicAliasing.html)
     }
@@ -83,11 +84,11 @@ public:
      * 
      *  @param T                            the transformation matrix
      */
-    void basisRotateInPlace(const SquareMatrix<Scalar>& U) {
+    void basisRotateInPlace(const TransformationMatrix<Scalar>& U) {
 
         // Check if the given matrix is actually unitary
         if (!U.isUnitary(1.0e-12)) {
-            throw std::invalid_argument("ChemicalMatrix::basisRotateInPlace(const SquareMatrix<Scalar>&): The given transformation matrix is not unitary.");
+            throw std::invalid_argument("QCMatrix::basisRotateInPlace(const TransformationMatrix<Scalar>&): The given transformation matrix is not unitary.");
         }
 
         this->basisTransformInPlace(U);

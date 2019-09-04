@@ -61,19 +61,19 @@ BOOST_AUTO_TEST_CASE ( SQOneElectronOperator_addition ) {
     const size_t dim = 2;
 
     // Initialize two test matrices and convert them into operators
-    GQCP::ChemicalMatrix<double> M1 (dim);
+    GQCP::QCMatrix<double> M1 (dim);
     M1 << 1.0, 2.0,
           3.0, 4.0;
     const GQCP::ScalarSQOneElectronOperator<double> op1 ({M1});
 
-    GQCP::ChemicalMatrix<double> M2 (dim);
+    GQCP::QCMatrix<double> M2 (dim);
     M2 << 5.0, 6.0,
           7.0, 8.0;
     const GQCP::ScalarSQOneElectronOperator<double> op2 ({M2});
 
 
     // Initialize the reference and check the result
-    GQCP::ChemicalMatrix<double> M_sum_ref (dim);
+    GQCP::QCMatrix<double> M_sum_ref (dim);
     M_sum_ref <<  6.0,  8.0,
                  10.0, 12.0;
     
@@ -213,7 +213,7 @@ BOOST_AUTO_TEST_CASE ( SQOneElectronOperator_of_GTOs_evaluate ) {
 
 
     // Read in the reference solution and check the results
-    GQCP::ChemicalMatrix<double> ref_rho_evaluated_par = GQCP::ChemicalMatrix<double>::Zero(2, 2);
+    GQCP::QCMatrix<double> ref_rho_evaluated_par = GQCP::QCMatrix<double>::Zero(2, 2);
     double ref_rho_evaluated_00 = 4*N1 * std::exp(-3.0) + 4*N2 * std::exp(-6.0) - 2*N3* std::exp(-3.0) + 2*N4 * std::exp(-9.0) + 5*N5 * std::exp(-1.5) - 1*N6 * std::exp(-7.5);
     double ref_rho_evaluated_01 = 2*N1 * std::exp(-3.0) + 1*N4 * std::exp(-9.0) + 2.5*N5 * std::exp(-1.5);
     double ref_rho_evaluated_10 = 2*N1 * std::exp(-3.0) + 2*N2 * std::exp(-6.0) - 1*N3 * std::exp(-3.0);

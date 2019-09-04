@@ -97,7 +97,7 @@ bool NewtonOrbitalOptimizer::checkForConvergence(const HamiltonianParameters<dou
  * 
  *  @return a unitary matrix that will be used to rotate the current Hamiltonian parameters into the next iteration
  */
-SquareMatrix<double> NewtonOrbitalOptimizer::calculateNewRotationMatrix(const HamiltonianParameters<double>& ham_par) const {
+TransformationMatrix<double> NewtonOrbitalOptimizer::calculateNewRotationMatrix(const HamiltonianParameters<double>& ham_par) const {
 
     // The general goal of this function is to:
     //      1) determine the free orbital rotation generators, using gradient and Hessian information

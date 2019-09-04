@@ -15,37 +15,37 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#define BOOST_TEST_MODULE "ChemicalRankFourTensor"
+#define BOOST_TEST_MODULE "QCRankFourTensor"
 
 #include <boost/test/unit_test.hpp>
 
-#include "Mathematical/Representation/ChemicalRankFourTensor.hpp"
+#include "Mathematical/Representation/QCRankFourTensor.hpp"
 
 #include <boost/math/constants/constants.hpp>
 
 
 /**
- *  Check the interface for ChemicalRankFourTensor constructors
+ *  Check the interface for QCRankFourTensor constructors
  */
 BOOST_AUTO_TEST_CASE ( constructor ) {
 
     GQCP::Tensor<double, 4> T1 (2, 2, 2, 2);
     T1.setZero();
-    BOOST_CHECK_NO_THROW(GQCP::ChemicalRankFourTensor<double> square_T1 (T1));
+    BOOST_CHECK_NO_THROW(GQCP::QCRankFourTensor<double> square_T1 (T1));
 
     const GQCP::Tensor<double, 4> T2 (2, 1, 2, 2);
-    BOOST_CHECK_THROW(GQCP::ChemicalRankFourTensor<double> square_T2 (T2), std::invalid_argument);  // not square
+    BOOST_CHECK_THROW(GQCP::QCRankFourTensor<double> square_T2 (T2), std::invalid_argument);  // not square
 }
 
 
 /**
  *  Check the basis transformation formula for a trivial case: T being a unit matrix
  */
-BOOST_AUTO_TEST_CASE ( ChemicalRankFourTensor_basisTransformInPlace_trivial ) {
+BOOST_AUTO_TEST_CASE ( QCRankFourTensor_basisTransformInPlace_trivial ) {
 
-    const GQCP::SquareMatrix<double> T = GQCP::SquareMatrix<double>::Identity(3, 3);
+    const GQCP::TransformationMatrix<double> T = GQCP::TransformationMatrix<double>::Identity(3, 3);
 
-    GQCP::ChemicalRankFourTensor<double> G (3);
+    GQCP::QCRankFourTensor<double> G (3);
     const auto G_copy = G;  // the reference
     G.basisTransformInPlace(T);
 
@@ -60,11 +60,11 @@ BOOST_AUTO_TEST_CASE ( SQTwoElectronOperator_transform_olsens ) {
 
     // Set an example transformation matrix and two-electron integrals tensor
     const size_t dim = 2;
-    GQCP::SquareMatrix<double> T (dim);
+    GQCP::TransformationMatrix<double> T (dim);
     T << 1, 2,
          3, 4;
 
-    GQCP::ChemicalRankFourTensor<double> G (dim);
+    GQCP::QCRankFourTensor<double> G (dim);
     G.setZero();
     for (size_t i = 0; i < dim; i++) {
         for (size_t j = 0; j < dim; j++) {
@@ -79,7 +79,7 @@ BOOST_AUTO_TEST_CASE ( SQTwoElectronOperator_transform_olsens ) {
 
 
     // Read in the reference and check
-    const GQCP::ChemicalRankFourTensor<double> g_transformed_ref = GQCP::ChemicalRankFourTensor<double>::FromFile("data/rotated_two_electron_integrals_olsens.data", dim);
+    const GQCP::QCRankFourTensor<double> g_transformed_ref = GQCP::QCRankFourTensor<double>::FromFile("data/rotated_two_electron_integrals_olsens.data", dim);
     BOOST_CHECK(G.isApprox(g_transformed_ref, 1.0e-12));
 }
 
@@ -87,21 +87,21 @@ BOOST_AUTO_TEST_CASE ( SQTwoElectronOperator_transform_olsens ) {
 /**
  *  Check if the code throws errors concerning non-unitary matrices being given to .rotate()
  */
-BOOST_AUTO_TEST_CASE ( ChemicalRankFourTensor_rotate_throws ) {
+BOOST_AUTO_TEST_CASE ( QCRankFourTensor_rotate_throws ) {
 
-    // Create a random ChemicalRankFourTensor
+    // Create a random QCRankFourTensor
     const size_t dim = 3;
-    GQCP::ChemicalRankFourTensor<double> g (dim);
+    GQCP::QCRankFourTensor<double> g (dim);
     g.setRandom();
 
 
     // Check if a non-unitary matrix as transformation matrix causes a throw
-    const GQCP::SquareMatrix<double> T = GQCP::SquareMatrix<double>::Random(dim, dim);  // chances are practically zero that a random matrix is unitary
-    BOOST_CHECK_THROW(g.basisRotateInPlace(GQCP::SquareMatrix<double>(T)), std::invalid_argument);
+    const GQCP::TransformationMatrix<double> T = GQCP::TransformationMatrix<double>::Random(dim, dim);  // chances are practically zero that a random matrix is unitary
+    BOOST_CHECK_THROW(g.basisRotateInPlace(GQCP::TransformationMatrix<double>(T)), std::invalid_argument);
 
 
     // Check if a unitary matrix as transformation matrix is accepted
-    GQCP::SquareMatrix<double> U = GQCP::SquareMatrix<double>::Identity(dim, dim);
+    GQCP::TransformationMatrix<double> U = GQCP::TransformationMatrix<double>::Identity(dim, dim);
     g.basisRotateInPlace(U);
 }
 
@@ -109,18 +109,18 @@ BOOST_AUTO_TEST_CASE ( ChemicalRankFourTensor_rotate_throws ) {
 /**
  *  Check that rotating using JacobiRotationParameters is the same as using the corresponding Jacobi rotation matrix
  */
-BOOST_AUTO_TEST_CASE ( ChemicalRankFourTensor_basisRotateInPlace_JacobiRotationParameters ) {
+BOOST_AUTO_TEST_CASE ( QCRankFourTensor_basisRotateInPlace_JacobiRotationParameters ) {
 
-    // Create a random ChemicalRankFourTensor
+    // Create a random QCRankFourTensor
     const size_t dim = 5;
-    GQCP::ChemicalRankFourTensor<double> g (dim);
+    GQCP::QCRankFourTensor<double> g (dim);
     g.setRandom();
-    GQCP::ChemicalRankFourTensor<double> G1 (g);
-    GQCP::ChemicalRankFourTensor<double> G2 (g);
+    GQCP::QCRankFourTensor<double> G1 (g);
+    GQCP::QCRankFourTensor<double> G2 (g);
 
 
     const GQCP::JacobiRotationParameters jacobi_rotation_parameters (4, 2, 56.81);
-    const auto U = GQCP::SquareMatrix<double>::FromJacobi(jacobi_rotation_parameters, dim);
+    const auto U = GQCP::TransformationMatrix<double>::FromJacobi(jacobi_rotation_parameters, dim);
 
     G1.basisRotateInPlace(jacobi_rotation_parameters);
     G2.basisRotateInPlace(U);

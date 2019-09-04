@@ -103,7 +103,7 @@ public:
      * 
      *  @return a unitary matrix that will be used to rotate the current Hamiltonian parameters into the next iteration
      */
-    SquareMatrix<double> calculateNewRotationMatrix(const HamiltonianParameters<double>& ham_par) const override;
+    TransformationMatrix<double> calculateNewRotationMatrix(const HamiltonianParameters<double>& ham_par) const override;
 
 
     // PUBLIC METHODS

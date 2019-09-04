@@ -68,7 +68,7 @@ BOOST_AUTO_TEST_CASE ( h2o_sto3g_horton_plain ) {
     GQCP::VectorX<double> ref_orbital_energies (7);  // the STO-3G basisset has 7 basis functions for water
     ref_orbital_energies << -20.26289322, -1.20969863, -0.54796582, -0.43652631, -0.38758791, 0.47762043, 0.5881361;
 
-    GQCP::SquareMatrix<double> ref_C (7);
+    GQCP::TransformationMatrix<double> ref_C (7);
     ref_C << -9.94434594e-01, -2.39158997e-01,  3.61117086e-17, -9.36837259e-02,  3.73303682e-31, -1.11639152e-01, -9.04958229e-17,
              -2.40970260e-02,  8.85736467e-01, -1.62817254e-16,  4.79589270e-01, -1.93821120e-30,  6.69575233e-01,  5.16088339e-16,
               1.59542752e-18,  5.29309704e-17, -6.07288675e-01, -1.49717339e-16,  8.94470461e-17, -8.85143477e-16,  9.19231270e-01,

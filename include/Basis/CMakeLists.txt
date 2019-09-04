@@ -7,6 +7,7 @@ target_sources(gqcp
             ScalarBasis.hpp
             ShellSet.hpp
             SingleParticleBasis.hpp
+            TransformationMatrix.hpp
         )
 
 add_subdirectory(Integrals)

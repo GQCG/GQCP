@@ -73,7 +73,6 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI ) {
 
     GQCP::SquareMatrix<double> hubbard_ham = hubbard.constructHamiltonian(mol_ham_par);
     GQCP::SquareMatrix<double> fci_ham = fci.constructHamiltonian(mol_ham_par);
-
     BOOST_CHECK(hubbard_ham.isApprox(fci_ham));
 }
 

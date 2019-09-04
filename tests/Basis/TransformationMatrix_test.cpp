@@ -15,37 +15,33 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#pragma once
+#define BOOST_TEST_MODULE "TransformationMatrix_test"
 
+#include <boost/test/unit_test.hpp>
 
-#include "Mathematical/Representation/QCMatrix.hpp"
+#include "Basis/TransformationMatrix.hpp"
 
-
-namespace GQCP {
 
 /**
- *  A class that represents a 1-RDM
- *
- *  @tparam _Scalar     the scalar type
+ *  Check if the 'product' of two transformation matrices behaves as expected
  */
-template <typename _Scalar>
-class OneRDM : public QCMatrix<_Scalar> {
-public:
+BOOST_AUTO_TEST_CASE ( transform ) {
 
-    using Scalar = _Scalar;
+    // Create two transformation matrices
+    GQCP::TransformationMatrix<double> T1 (2);
+    T1 << 1.0, 0.0,
+          1.0, 3.0;
 
-    using BaseRepresentation = QCMatrix<Scalar>;
-    using Self = OneRDM<Scalar>;
-
-
-public:
-
-    /*
-     *  CONSTRUCTORS
-     */
-
-    using QCMatrix<Scalar>::QCMatrix;  // use base constructors
-};
+    GQCP::TransformationMatrix<double> T2 (2);
+    T2 << 1.0, 2.0,
+          3.0, 4.0;
 
 
-}  // namespace GQCP
+    // Set up and check the expected result
+    GQCP::TransformationMatrix<double> T_total (2);
+    T_total <<  1.0,  2.0,
+               10.0, 14.0;
+
+    T1.transform(T2);  // first do T1, then T2
+    BOOST_CHECK(T1.isApprox(T_total, 1.0e-08));
+}

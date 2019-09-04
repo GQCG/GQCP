@@ -120,7 +120,7 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test_random_transformation) {
     size_t K = ao_ham_par.get_K();
     size_t N = CO.numberOfElectrons();
 
-    GQCP::SquareMatrix<double> T = GQCP::SquareMatrix<double>::Random(K, K);
+    GQCP::TransformationMatrix<double> T = GQCP::TransformationMatrix<double>::Random(K, K);
     // set diagonal elements to 1
     for (int i = 0; i < K; i++) {
         T(i,i) = 1;

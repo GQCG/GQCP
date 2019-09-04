@@ -30,7 +30,7 @@
 BOOST_AUTO_TEST_CASE ( SQTwoElectronOperator_constructor ) {
 
     // Check a correct constructor
-    const GQCP::ChemicalRankFourTensor<double> tensor (3);
+    const GQCP::QCRankFourTensor<double> tensor (3);
     GQCP::ScalarSQTwoElectronOperator<double> O ({tensor});
 
 
@@ -62,7 +62,7 @@ BOOST_AUTO_TEST_CASE ( SQTwoElectronOperator_effectiveOneElectronPartition ) {
     auto K_ = static_cast<double>(K);
 
     // Set up toy 2-electron integrals
-    GQCP::ChemicalRankFourTensor<double> g_par (K);
+    GQCP::QCRankFourTensor<double> g_par (K);
     g_par.setZero();
 
     for (size_t i = 0; i < K; i++) {
@@ -79,7 +79,7 @@ BOOST_AUTO_TEST_CASE ( SQTwoElectronOperator_effectiveOneElectronPartition ) {
 
 
     // Set up the reference effective one-electron integrals by manual calculation
-    GQCP::ChemicalMatrix<double> k_par_ref = GQCP::ChemicalMatrix<double>::Zero(K, K);  // reference parameters
+    GQCP::QCMatrix<double> k_par_ref = GQCP::QCMatrix<double>::Zero(K, K);  // reference parameters
     for (size_t p = 0; p < K; p++) {
         for (size_t q = 0; q < K; q++) {
             auto p_ = static_cast<double>(p) + 1;
