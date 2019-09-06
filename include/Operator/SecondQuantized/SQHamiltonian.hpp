@@ -39,11 +39,9 @@ namespace GQCP {
 
 
 /**
- *  A class for representing Hamiltonian parameters, i.e. the one- and two-electron integrals in the second-quantized expression of the Hamiltonian
+ *  A class for representing the second-quantized electronic Hamiltonian, it consists of one-electron and two-electron contributions
  *
- *  This class can be used for restricted calculations, i.e. the alpha and beta integrals are equal
- *
- *  @tparam Scalar      the scalar type
+ *  @tparam Scalar      the scalar type of the second-quantized parameters (i.e. the integrals)
  */
 template <typename Scalar>
 class SQHamiltonian : public BaseHamiltonianParameters {
@@ -72,10 +70,9 @@ public:
      *  @param h            the one-electron integrals H_core
      *  @param g            the two-electron integrals
      *  @param C            a transformation matrix between the current molecular orbitals and the atomic orbitals
-     *  @param scalar       the scalar interaction term
      */
-    SQHamiltonian(std::shared_ptr<ScalarBasis<GTOShell>> ao_basis, const ScalarSQOneElectronOperator<Scalar>& S, const ScalarSQOneElectronOperator<Scalar>& h, const ScalarSQTwoElectronOperator<Scalar>& g, const TransformationMatrix<Scalar>& C, double scalar=0.0) :
-        BaseHamiltonianParameters(std::move(ao_basis), scalar),
+    SQHamiltonian(std::shared_ptr<ScalarBasis<GTOShell>> ao_basis, const ScalarSQOneElectronOperator<Scalar>& S, const ScalarSQOneElectronOperator<Scalar>& h, const ScalarSQTwoElectronOperator<Scalar>& g, const TransformationMatrix<Scalar>& C) :
+        BaseHamiltonianParameters(std::move(ao_basis)),
         K (S.get_dim()),
         S (S),
         h (h),
@@ -109,7 +106,7 @@ public:
      *  @param C            the transformation matrix to be applied to the given Hamiltonian parameters
      */
     SQHamiltonian(const SQHamiltonian<Scalar>& ham_par, const TransformationMatrix<Scalar>& C) :
-        SQHamiltonian<Scalar>(ham_par.ao_basis, ham_par.S, ham_par.h, ham_par.g, ham_par.T_total, ham_par.scalar)
+        SQHamiltonian<Scalar>(ham_par.ao_basis, ham_par.S, ham_par.h, ham_par.g, ham_par.T_total)
     {
         // We have now initialized the new Hamiltonian parameters to be a copy of the given Hamiltonian parameters, so now we will transform
         this->transform(C);
@@ -125,11 +122,8 @@ public:
      *  Construct the molecular Hamiltonian parameters in an AO basis
      *
      *  @param ao_basis     the AO basis in which the Hamiltonian parameters should be expressed
-     *  @param scalar       the scalar energy term (usually the internuclear repulsion energy)
      *
      *  @return Hamiltonian parameters corresponding to the molecular Hamiltonian in an AO basis. The molecular Hamiltonian has
-     *      - scalar contributions:
-     *          - internuclear repulsion
      *      - one-electron contributions:
      *          - kinetic
      *          - nuclear attraction
@@ -139,7 +133,7 @@ public:
      *  Note that this named constructor is only available for real matrix representations
      */
     template <typename Z = Scalar>
-    static enable_if_t<std::is_same<Z, double>::value, SQHamiltonian<double>> Molecular(std::shared_ptr<ScalarBasis<GTOShell>> ao_basis, double scalar=0.0) {
+    static enable_if_t<std::is_same<Z, double>::value, SQHamiltonian<double>> Molecular(std::shared_ptr<ScalarBasis<GTOShell>> ao_basis) {
 
         const SingleParticleBasis<Z, GTOShell> sp_basis (*ao_basis);
         const NuclearFramework nuclear_framework (ao_basis->shellSet().nuclei());
@@ -157,7 +151,7 @@ public:
         auto nbf = ao_basis->numberOfBasisFunctions();
         TransformationMatrix<double> T_total = TransformationMatrix<double>::Identity(nbf, nbf);
 
-        return SQHamiltonian(ao_basis, S, H, g, T_total, scalar);
+        return SQHamiltonian(ao_basis, S, H, g, T_total);
     }
 
 
@@ -168,8 +162,6 @@ public:
      *  @param basisset     the name of the basisset corresponding to the AO basis
      *
      *  @return Hamiltonian parameters corresponding to the molecular Hamiltonian in an AO basis. The molecular Hamiltonian has
-     *      - scalar contributions:
-     *          - internuclear repulsion
      *      - one-electron contributions:
      *          - kinetic
      *          - nuclear attraction
@@ -182,9 +174,7 @@ public:
     static enable_if_t<std::is_same<Z, double>::value, SQHamiltonian<double>> Molecular(const Molecule& molecule, const std::string& basisset) {
 
         auto ao_basis = std::make_shared<ScalarBasis<GTOShell>>(molecule, basisset);
-
-        const double internuclear_repulsion_energy = Operator::NuclearRepulsion(molecule).value();
-        return SQHamiltonian::Molecular(ao_basis, internuclear_repulsion_energy);
+        return SQHamiltonian::Molecular(ao_basis);
     }
 
 
@@ -222,14 +212,7 @@ public:
 
         std::shared_ptr<ScalarBasis<GTOShell>> ao_basis;  // nullptr because it doesn't make sense to set a scalar basis
 
-
-        // Get a random scalar
-        std::random_device random_device;  // used to seed PRNG
-        std::mt19937 random_generator (random_device());
-        std::uniform_real_distribution<double> double_distribution (-1.0, 1.0);
-        double scalar = double_distribution(random_generator);
-
-        return SQHamiltonian<double>(ao_basis, S, H, ScalarSQTwoElectronOperator<double>({g}), C, scalar);
+        return SQHamiltonian<double>(ao_basis, S, H, ScalarSQTwoElectronOperator<double>({g}), C);
     }
 
 
@@ -268,7 +251,6 @@ public:
         }
 
 
-        double scalar = 0.0;
         QCMatrix<double> h_core = QCMatrix<double>::Zero(K, K);
         QCRankFourTensor<double> g (K);
         g.setZero();
@@ -292,13 +274,8 @@ public:
             //  I think the documentation is a bit unclear for the two-electron integrals, but we can rest assured that FCIDUMP files give the two-electron integrals in CHEMIST's notation.
             iss >> x >> i >> a >> j >> b;
 
-            //  Internuclear repulsion energy
-            if ((i == 0) && (j == 0) && (a == 0) && (b == 0)) {
-                scalar = x;
-            }
-
             //  Single-particle eigenvalues (skipped)
-            else if ((a == 0) && (j == 0) && (b == 0)) {}
+            if ((a == 0) && (j == 0) && (b == 0)) {}
 
             //  One-electron integrals (h_core)
             else if ((j == 0) && (b == 0)) {
@@ -336,7 +313,7 @@ public:
         ScalarSQOneElectronOperator<Scalar> S ({QCMatrix<double>::Identity(K, K)});
         TransformationMatrix<double> C = TransformationMatrix<double>::Identity(K, K);
 
-        return SQHamiltonian(ao_basis, S, ScalarSQOneElectronOperator<Scalar>({h_core}), ScalarSQTwoElectronOperator<Scalar>({g}), C, scalar);
+        return SQHamiltonian(ao_basis, S, ScalarSQOneElectronOperator<Scalar>({h_core}), ScalarSQTwoElectronOperator<Scalar>({g}), C);
     }
 
 
@@ -374,7 +351,7 @@ public:
         ScalarSQOneElectronOperator<double> S ({QCMatrix<double>::Identity(K, K)});
         TransformationMatrix<double> C = TransformationMatrix<double>::Identity(K, K);
 
-        return SQHamiltonian(ao_basis, S, ScalarSQOneElectronOperator<double>({h}), ScalarSQTwoElectronOperator<double>({g}), C);  // no scalar term
+        return SQHamiltonian(ao_basis, S, ScalarSQOneElectronOperator<double>({h}), ScalarSQTwoElectronOperator<double>({g}), C);
     }
 
 
@@ -564,7 +541,7 @@ public:
      */
     SquareMatrix<Scalar> calculateFockianMatrix(const OneRDM<double>& D, const TwoRDM<double>& d) const {
 
-        return this->h.calculateFockianMatrix(D, d)[0] + this->g.calculateFockianMatrix(D, d)[0];  // SQHamiltonian are a combination of scalar parameters
+        return this->h.calculateFockianMatrix(D, d)[0] + this->g.calculateFockianMatrix(D, d)[0];  // SQHamiltonian has one- and two-electron contributions, so access with [0] accordingly
     }
 
 

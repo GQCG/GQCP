@@ -29,9 +29,8 @@ namespace GQCP {
  *  @param ao_basis     the initial AO basis
  *  @param scalar       the scalar interaction term
  */
-BaseHamiltonianParameters::BaseHamiltonianParameters(std::shared_ptr<ScalarBasis<GTOShell>> ao_basis, double scalar) :
-    ao_basis (std::move(ao_basis)),
-    scalar (scalar)
+BaseHamiltonianParameters::BaseHamiltonianParameters(std::shared_ptr<ScalarBasis<GTOShell>> ao_basis) :
+    ao_basis (std::move(ao_basis))
 {}
 
 

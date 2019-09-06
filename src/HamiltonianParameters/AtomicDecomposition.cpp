@@ -103,7 +103,6 @@ AtomicDecompositionParameters AtomicDecompositionParameters::Nuclear(const Molec
     const auto T = sp_basis.quantize(Operator::Kinetic()).parameters();
     const auto V = sp_basis.quantize(Operator::NuclearAttraction(molecule)).parameters();
     const auto g = sp_basis.quantize(Operator::Coulomb()).parameters();
-    const auto repulsion = Operator::NuclearRepulsion(molecule).value();
 
     QCMatrix<double> H = T + V;
 
@@ -137,9 +136,9 @@ AtomicDecompositionParameters AtomicDecompositionParameters::Nuclear(const Molec
 
     SQHamiltonian<double> HAA (ao_basis, ScalarSQOneElectronOperator<double>({S}), ScalarSQOneElectronOperator<double>({h_a}), ScalarSQTwoElectronOperator<double>({g_a}), T_total);
     SQHamiltonian<double> HBB (ao_basis, ScalarSQOneElectronOperator<double>({S}), ScalarSQOneElectronOperator<double>({h_b}), ScalarSQTwoElectronOperator<double>({g_b}), T_total);
-    SQHamiltonian<double> HAB (ao_basis, ScalarSQOneElectronOperator<double>({S}), ScalarSQOneElectronOperator<double>({h_ab}), ScalarSQTwoElectronOperator<double>({g_abba}), T_total, repulsion);
-    SQHamiltonian<double> HA (ao_basis, ScalarSQOneElectronOperator<double>({S}), ScalarSQOneElectronOperator<double>({h_a + h_ab/2}), ScalarSQTwoElectronOperator<double>({g_a.Eigen() + (0.5)*g_abba.Eigen()}), T_total, repulsion/2);
-    SQHamiltonian<double> HB (ao_basis, ScalarSQOneElectronOperator<double>({S}), ScalarSQOneElectronOperator<double>({h_b + h_ab/2}), ScalarSQTwoElectronOperator<double>({g_b.Eigen() + (0.5)*g_abba.Eigen()}), T_total, repulsion/2);
+    SQHamiltonian<double> HAB (ao_basis, ScalarSQOneElectronOperator<double>({S}), ScalarSQOneElectronOperator<double>({h_ab}), ScalarSQTwoElectronOperator<double>({g_abba}), T_total);
+    SQHamiltonian<double> HA (ao_basis, ScalarSQOneElectronOperator<double>({S}), ScalarSQOneElectronOperator<double>({h_a + h_ab/2}), ScalarSQTwoElectronOperator<double>({g_a.Eigen() + (0.5)*g_abba.Eigen()}), T_total);
+    SQHamiltonian<double> HB (ao_basis, ScalarSQOneElectronOperator<double>({S}), ScalarSQOneElectronOperator<double>({h_b + h_ab/2}), ScalarSQTwoElectronOperator<double>({g_b.Eigen() + (0.5)*g_abba.Eigen()}), T_total);
 
     std::vector<SQHamiltonian<double>> net_atomic_parameters = {HAA, HBB};
     std::vector<SQHamiltonian<double>> interaction_parameters = {HAB};

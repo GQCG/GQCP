@@ -31,7 +31,6 @@ namespace GQCP {
  */
 class BaseHamiltonianParameters {
 protected:
-    double scalar;  // a scalar interaction term
     std::shared_ptr<ScalarBasis<GTOShell>> ao_basis;  // the initial atomic orbitals
 
 public:
@@ -43,7 +42,7 @@ public:
      *  @param ao_basis     the initial AO basis
      *  @param scalar       the scalar interaction term
      */
-    BaseHamiltonianParameters(std::shared_ptr<ScalarBasis<GTOShell>> ao_basis, double scalar=0.0);
+    BaseHamiltonianParameters(std::shared_ptr<ScalarBasis<GTOShell>> ao_basis);
 
 
     // DESTRUCTOR
@@ -56,7 +55,6 @@ public:
 
     // GETTERS
     const std::shared_ptr<ScalarBasis<GTOShell>>& get_ao_basis() const { return this->ao_basis; }
-    double get_scalar() const { return this->scalar; }
 };
 
 

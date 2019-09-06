@@ -79,11 +79,11 @@ void MullikenConstrainedFCI::parseSolution(const std::vector<Eigenpair>& eigenpa
             D.basisTransformInPlace(ham_par.get_T_total().adjoint());
             d.basisTransformInPlace(ham_par.get_T_total().adjoint());
 
-            this->A_fragment_energy[i] = calculateExpectationValue(adp.get_atomic_parameters()[0], D, d);
+            this->A_fragment_energy[i] = calculateExpectationValue(adp.get_atomic_parameters()[0], D, d) + internuclear_repulsion_energy/2;
             this->A_fragment_self_energy[i] = calculateExpectationValue(adp.get_net_atomic_parameters()[0], D, d);
-            this->B_fragment_energy[i] = calculateExpectationValue(adp.get_atomic_parameters()[1], D, d);
+            this->B_fragment_energy[i] = calculateExpectationValue(adp.get_atomic_parameters()[1], D, d) + internuclear_repulsion_energy/2;
             this->B_fragment_self_energy[i] = calculateExpectationValue(adp.get_net_atomic_parameters()[1], D, d);
-            this->interaction_energy[i] = calculateExpectationValue(adp.get_interaction_parameters()[0], D, d);
+            this->interaction_energy[i] = calculateExpectationValue(adp.get_interaction_parameters()[0], D, d) + internuclear_repulsion_energy;
         }
 
         this->eigenvector[i] = fci_coefficients;
