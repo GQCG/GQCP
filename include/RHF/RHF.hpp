@@ -19,7 +19,7 @@
 
 
 #include "Basis/TransformationMatrix.hpp"
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "RDM/OneRDM.hpp"
 
 
@@ -89,7 +89,7 @@ OneRDM<double> calculateRHFAO1RDM(const TransformationMatrix<double>& C, size_t 
  *
  *  @return the RHF Fock matrix expressed in the AO basis
  */
-ScalarSQOneElectronOperator<double> calculateRHFAOFockMatrix(const OneRDM<double>& D_AO, const HamiltonianParameters<double>& ham_par);
+ScalarSQOneElectronOperator<double> calculateRHFAOFockMatrix(const OneRDM<double>& D_AO, const SQHamiltonian<double>& ham_par);
 
 /**
  *  @param D_AO         the RHF density matrix in AO basis

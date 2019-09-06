@@ -44,11 +44,11 @@ DOCI::DOCI(const FockSpace& fock_space) :
  *
  *  @return the DOCI Hamiltonian matrix
  */
-SquareMatrix<double> DOCI::constructHamiltonian(const HamiltonianParameters<double>& hamiltonian_parameters) const {
+SquareMatrix<double> DOCI::constructHamiltonian(const SQHamiltonian<double>& hamiltonian_parameters) const {
 
     const auto K = hamiltonian_parameters.get_h().get_dim();
     if (K != this->fock_space.get_K()) {
-        throw std::invalid_argument("DOCI::constructHamiltonian(HamiltonianParameters<double>): The number of orbitals for the Fock space and Hamiltonian parameters are incompatible.");
+        throw std::invalid_argument("DOCI::constructHamiltonian(SQHamiltonian<double>): The number of orbitals for the Fock space and Hamiltonian parameters are incompatible.");
     }
 
     const size_t dim = this->fock_space.get_dimension();
@@ -115,11 +115,11 @@ SquareMatrix<double> DOCI::constructHamiltonian(const HamiltonianParameters<doub
  *
  *  @return the action of the DOCI Hamiltonian on the coefficient vector
  */
-VectorX<double> DOCI::matrixVectorProduct(const HamiltonianParameters<double>& hamiltonian_parameters, const VectorX<double>& x, const VectorX<double>& diagonal) const {
+VectorX<double> DOCI::matrixVectorProduct(const SQHamiltonian<double>& hamiltonian_parameters, const VectorX<double>& x, const VectorX<double>& diagonal) const {
 
     const auto K = hamiltonian_parameters.get_h().get_dim();
     if (K != this->fock_space.get_K()) {
-        throw std::invalid_argument("DOCI::matrixVectorProduct(HamiltonianParameters<double>, VectorX<double>, VectorX<double>): The number of orbitals for the Fock space and Hamiltonian parameters are incompatible.");
+        throw std::invalid_argument("DOCI::matrixVectorProduct(SQHamiltonian<double>, VectorX<double>, VectorX<double>): The number of orbitals for the Fock space and Hamiltonian parameters are incompatible.");
     }
 
     const size_t N = this->fock_space.get_N();
@@ -186,11 +186,11 @@ VectorX<double> DOCI::matrixVectorProduct(const HamiltonianParameters<double>& h
  *
  *  @return the diagonal of the matrix representation of the DOCI Hamiltonian
  */
-VectorX<double> DOCI::calculateDiagonal(const HamiltonianParameters<double>& hamiltonian_parameters) const {
+VectorX<double> DOCI::calculateDiagonal(const SQHamiltonian<double>& hamiltonian_parameters) const {
 
     const auto K = hamiltonian_parameters.get_h().get_dim();
     if (K != this->fock_space.get_K()) {
-        throw std::invalid_argument("DOCI::calculateDiagonal(HamiltonianParameters<double>): Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
+        throw std::invalid_argument("DOCI::calculateDiagonal(SQHamiltonian<double>): Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
     }
 
     const size_t dim = this->fock_space.get_dimension();

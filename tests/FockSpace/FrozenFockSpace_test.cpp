@@ -123,7 +123,7 @@ BOOST_AUTO_TEST_CASE ( address_setNext_frozen_space ) {
 BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_diagonal_vs_no_diagonal) {
 
     GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
-    auto parameters = GQCP::HamiltonianParameters<double>::Molecular(hchain, "STO-3G");
+    auto parameters = GQCP::SQHamiltonian<double>::Molecular(hchain, "STO-3G");
     parameters.LowdinOrthonormalize();
 
     GQCP::FrozenFockSpace fock_space (6, 4, 2);

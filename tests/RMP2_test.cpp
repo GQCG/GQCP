@@ -19,7 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
 #include "RMP2.hpp"
 
@@ -32,12 +32,12 @@ BOOST_AUTO_TEST_CASE ( crawdad_sto3g_water ) {
 
     // Create molecular Hamiltonian parameters in the RHF basis
     auto water = GQCP::Molecule::ReadXYZ("data/h2o_crawdad.xyz");
-    auto ao_mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(water, "STO-3G");
+    auto ao_mol_ham_par = GQCP::SQHamiltonian<double>::Molecular(water, "STO-3G");
 
     GQCP::PlainRHFSCFSolver plain_scf_solver (ao_mol_ham_par, water);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
-    auto mol_ham_par = GQCP::HamiltonianParameters<double>(ao_mol_ham_par, rhf.get_C());
+    auto mol_ham_par = GQCP::SQHamiltonian<double>(ao_mol_ham_par, rhf.get_C());
 
 
     // Check if the RMP2 correction is correct
@@ -53,12 +53,12 @@ BOOST_AUTO_TEST_CASE ( crawdad_sto3g_methane ) {
 
     // Create molecular Hamiltonian parameters in the RHF basis
     auto methane = GQCP::Molecule::ReadXYZ("data/ch4_crawdad.xyz");
-    auto ao_mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(methane, "STO-3G");
+    auto ao_mol_ham_par = GQCP::SQHamiltonian<double>::Molecular(methane, "STO-3G");
 
     GQCP::PlainRHFSCFSolver plain_scf_solver (ao_mol_ham_par, methane);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
-    auto mol_ham_par = GQCP::HamiltonianParameters<double>(ao_mol_ham_par, rhf.get_C());
+    auto mol_ham_par = GQCP::SQHamiltonian<double>(ao_mol_ham_par, rhf.get_C());
 
 
     // Check if the RMP2 correction is correct

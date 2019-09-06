@@ -22,7 +22,7 @@
 #include "CISolver/CISolver.hpp"
 #include "HamiltonianBuilder/FCI.hpp"
 #include "HamiltonianBuilder/Hubbard.hpp"
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
 
 
@@ -33,7 +33,7 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_davidson ) {
     // Create the Hamiltonian parameters for a random Hubbard hopping matrix
     size_t K = 4;
     auto H = GQCP::HoppingMatrix::Random(K);
-    auto mol_ham_par = GQCP::HamiltonianParameters<double>::Hubbard(H);
+    auto mol_ham_par = GQCP::SQHamiltonian<double>::Hubbard(H);
 
 
     // Create the Hubbard and FCI modules
@@ -66,7 +66,7 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_davidson_large ) {
     // Create the Hamiltonian parameters for a random Hubbard hopping matrix
     size_t K = 6;
     auto H = GQCP::HoppingMatrix::Random(K);
-    auto mol_ham_par = GQCP::HamiltonianParameters<double>::Hubbard(H);
+    auto mol_ham_par = GQCP::SQHamiltonian<double>::Hubbard(H);
 
 
     // Create the Hubbard and FCI modules

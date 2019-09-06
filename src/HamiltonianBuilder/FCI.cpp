@@ -43,7 +43,7 @@ FCI::FCI(const ProductFockSpace& fock_space) :
  *
  *  @return the FCI Hamiltonian matrix
  */
-SquareMatrix<double> FCI::constructHamiltonian(const HamiltonianParameters<double>& hamiltonian_parameters) const {
+SquareMatrix<double> FCI::constructHamiltonian(const SQHamiltonian<double>& hamiltonian_parameters) const {
 
     return this->fock_space.evaluateOperatorDense(hamiltonian_parameters, true);
 }
@@ -56,10 +56,10 @@ SquareMatrix<double> FCI::constructHamiltonian(const HamiltonianParameters<doubl
  *
  *  @return the action of the FCI Hamiltonian on the coefficient vector
  */
-VectorX<double> FCI::matrixVectorProduct(const HamiltonianParameters<double>& hamiltonian_parameters, const VectorX<double>& x, const VectorX<double>& diagonal) const {
+VectorX<double> FCI::matrixVectorProduct(const SQHamiltonian<double>& hamiltonian_parameters, const VectorX<double>& x, const VectorX<double>& diagonal) const {
     auto K = hamiltonian_parameters.get_h().get_dim();
     if (K != this->fock_space.get_K()) {
-        throw std::invalid_argument("FCI::matrixVectorProduct(HamiltonianParameters<double>, VectorX<double>, VectorX<double>): Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
+        throw std::invalid_argument("FCI::matrixVectorProduct(SQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
     }
 
     FockSpace fock_space_alpha = fock_space.get_fock_space_alpha();
@@ -106,7 +106,7 @@ VectorX<double> FCI::matrixVectorProduct(const HamiltonianParameters<double>& ha
  *
  *  @return the diagonal of the matrix representation of the Hamiltonian
  */
-VectorX<double> FCI::calculateDiagonal(const HamiltonianParameters<double>& hamiltonian_parameters) const {
+VectorX<double> FCI::calculateDiagonal(const SQHamiltonian<double>& hamiltonian_parameters) const {
 
    return this->fock_space.evaluateOperatorDiagonal(hamiltonian_parameters);
 }

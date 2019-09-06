@@ -58,7 +58,7 @@ public:
      *  @param threshold                        the convergence treshold on the Frobenius norm on the AO density matrix
      *  @param maximum_number_of_iterations     the maximum number of iterations for the SCF procedure
      */
-    DIISRHFSCFSolver(HamiltonianParameters<double> ham_par, Molecule molecule, size_t minimum_subspace_dimension=6, size_t maximum_subspace_dimension=6, double threshold=1.0e-08, size_t maximum_number_of_iterations=128);
+    DIISRHFSCFSolver(SQHamiltonian<double> ham_par, Molecule molecule, size_t minimum_subspace_dimension=6, size_t maximum_subspace_dimension=6, double threshold=1.0e-08, size_t maximum_number_of_iterations=128);
 };
 
 

@@ -19,7 +19,7 @@
 
 
 #include "FockSpace/FockSpaceType.hpp"
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 
 #include <Eigen/Sparse>
@@ -139,7 +139,7 @@ public:
      *
      *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the Fock space
      */
-    virtual SquareMatrix<double> evaluateOperatorDense(const HamiltonianParameters<double>& ham_par, bool diagonal_values) const = 0;
+    virtual SquareMatrix<double> evaluateOperatorDense(const SQHamiltonian<double>& ham_par, bool diagonal_values) const = 0;
 
     /**
      *  Evaluate the Hamiltonian in a sparse matrix
@@ -149,7 +149,7 @@ public:
      *
      *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the Fock space
      */
-    virtual Eigen::SparseMatrix<double> evaluateOperatorSparse(const HamiltonianParameters<double>& ham_par, bool diagonal_values) const = 0;
+    virtual Eigen::SparseMatrix<double> evaluateOperatorSparse(const SQHamiltonian<double>& ham_par, bool diagonal_values) const = 0;
 
     /**
      *  Evaluate the diagonal of the operator
@@ -176,7 +176,7 @@ public:
      *
      *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the Fock space
      */
-    virtual VectorX<double> evaluateOperatorDiagonal(const HamiltonianParameters<double>& ham_par) const = 0;
+    virtual VectorX<double> evaluateOperatorDiagonal(const SQHamiltonian<double>& ham_par) const = 0;
 };
 
 

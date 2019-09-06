@@ -20,7 +20,7 @@
 
 #include "Geminals/AP1roGVariables.hpp"
 #include "Geminals/GeminalCoefficientsInterface.hpp"
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
 #include "WaveFunction/WaveFunction.hpp"
 
@@ -63,7 +63,7 @@ public:
      *
      *  @return the AP1roG geminal coefficients in the weak interaction limit
      */
-    static AP1roGGeminalCoefficients WeakInteractionLimit(const HamiltonianParameters<double>& ham_par, size_t N_P);
+    static AP1roGGeminalCoefficients WeakInteractionLimit(const SQHamiltonian<double>& ham_par, size_t N_P);
 
 
     // DESTRUCTOR

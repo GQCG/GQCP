@@ -164,7 +164,7 @@ public:
      *
      *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the Fock space
      */
-    SquareMatrix<double> evaluateOperatorDense(const HamiltonianParameters<double>& ham_par,
+    SquareMatrix<double> evaluateOperatorDense(const SQHamiltonian<double>& ham_par,
                                                bool diagonal_values) const override;
     /**
      *  Evaluate the Hamiltonian in a sparse matrix
@@ -174,7 +174,7 @@ public:
      *
      *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the Fock space
      */
-    Eigen::SparseMatrix<double> evaluateOperatorSparse(const HamiltonianParameters<double>& ham_par,
+    Eigen::SparseMatrix<double> evaluateOperatorSparse(const SQHamiltonian<double>& ham_par,
                                                        bool diagonal_values) const override;
 
     /**
@@ -202,7 +202,7 @@ public:
      *
      *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the Fock space
      */
-    VectorX<double> evaluateOperatorDiagonal(const HamiltonianParameters<double>& ham_par) const override;
+    VectorX<double> evaluateOperatorDiagonal(const SQHamiltonian<double>& ham_par) const override;
 
 
     // PUBLIC TEMPLATED METHODS

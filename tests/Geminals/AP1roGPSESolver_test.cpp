@@ -20,7 +20,7 @@
 #include <boost/test/unit_test.hpp>
 
 #include "Geminals/AP1roGPSESolver.hpp"
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
 
 
@@ -30,7 +30,7 @@ BOOST_AUTO_TEST_CASE ( constructor ) {
     auto h2 = GQCP::Molecule::ReadXYZ("data/h2_szabo.xyz");
     size_t N = 2;  // number of electrons for H2
     size_t N_P = N/2;  // number of electron pairs for H2
-    auto mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2, "STO-3G");
+    auto mol_ham_par = GQCP::SQHamiltonian<double>::Molecular(h2, "STO-3G");
     GQCP::AP1roGPSESolver ap1rog_pse_solver (N_P, mol_ham_par);
 }
 
@@ -40,7 +40,7 @@ BOOST_AUTO_TEST_CASE ( constructor_molecule ) {
     // Test a correct constructor
     // Check if we can also pass a molecule object to the constructor
     auto h2 = GQCP::Molecule::ReadXYZ("data/h2_szabo.xyz");
-    auto mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2, "STO-3G");
+    auto mol_ham_par = GQCP::SQHamiltonian<double>::Molecular(h2, "STO-3G");
     GQCP::AP1roGPSESolver ap1rog_pse_solver (h2, mol_ham_par);
 
     // Test a faulty constructor
@@ -62,13 +62,13 @@ BOOST_AUTO_TEST_CASE ( h2_631gdp ) {
 
     // Prepare molecular Hamiltonian parameters in the RHF basis
     auto h2 = GQCP::Molecule::ReadXYZ("data/h2_olsens.xyz");
-    auto ao_mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2, "6-31G**");
+    auto ao_mol_ham_par = GQCP::SQHamiltonian<double>::Molecular(h2, "6-31G**");
 
     GQCP::PlainRHFSCFSolver plain_scf_solver (ao_mol_ham_par, h2);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 
-    auto mol_ham_par = GQCP::HamiltonianParameters<double>(ao_mol_ham_par, rhf.get_C());
+    auto mol_ham_par = GQCP::SQHamiltonian<double>(ao_mol_ham_par, rhf.get_C());
   
   
     // Solve the AP1roG pSE equations with the initial guess being 0
@@ -101,13 +101,13 @@ BOOST_AUTO_TEST_CASE ( h2_631gdp_weak_interaction_limit ) {
     // Prepare molecular Hamiltonian parameters in the RHF basis
     auto h2 = GQCP::Molecule::ReadXYZ("data/h2_olsens.xyz");
     size_t N_P = h2.numberOfElectrons() / 2;
-    auto ao_mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2, "6-31G**");
+    auto ao_mol_ham_par = GQCP::SQHamiltonian<double>::Molecular(h2, "6-31G**");
 
     GQCP::PlainRHFSCFSolver plain_scf_solver (ao_mol_ham_par, h2);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 
-    auto mol_ham_par = GQCP::HamiltonianParameters<double>(ao_mol_ham_par, rhf.get_C());
+    auto mol_ham_par = GQCP::SQHamiltonian<double>(ao_mol_ham_par, rhf.get_C());
 
 
     // Solve the AP1roG pSE equations, with the initial guess being the weak interaction limit coefficients

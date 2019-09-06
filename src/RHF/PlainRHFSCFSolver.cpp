@@ -45,7 +45,7 @@ ScalarSQOneElectronOperator<double> PlainRHFSCFSolver::calculateNewFockMatrix(co
  *  @param threshold                        the convergence treshold on the Frobenius norm on the AO density matrix
  *  @param maximum_number_of_iterations     the maximum number of iterations for the SCF procedure
  */
-PlainRHFSCFSolver::PlainRHFSCFSolver(const HamiltonianParameters<double>& ham_par, const Molecule& molecule, double threshold, size_t maximum_number_of_iterations) :
+PlainRHFSCFSolver::PlainRHFSCFSolver(const SQHamiltonian<double>& ham_par, const Molecule& molecule, double threshold, size_t maximum_number_of_iterations) :
     RHFSCFSolver(ham_par, molecule, threshold, maximum_number_of_iterations)
 {}
 

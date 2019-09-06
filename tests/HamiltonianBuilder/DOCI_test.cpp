@@ -20,7 +20,7 @@
 #include <boost/test/unit_test.hpp>
 
 #include "HamiltonianBuilder/DOCI.hpp"
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
 
 
@@ -37,7 +37,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_public_methods ) {
 
     // Create random HamiltonianParameters to check compatibility
     size_t K = 5;
-    auto random_hamiltonian_parameters = GQCP::HamiltonianParameters<double>::Random(K);
+    auto random_hamiltonian_parameters = GQCP::SQHamiltonian<double>::Random(K);
 
     // Create a compatible Fock space
     GQCP::FockSpace fock_space (K, 3);

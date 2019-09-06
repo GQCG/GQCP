@@ -54,7 +54,7 @@ void FCI::solve() {
 
     // Construct the molecular Hamiltonian parameters
     auto molecule = Molecule::ReadXYZ(this->xyz_filename);
-    auto mol_ham_par = HamiltonianParameters<double>::Molecular(molecule, this->basis_set);  // in the AO basis
+    auto mol_ham_par = SQHamiltonian<double>::Molecular(molecule, this->basis_set);  // in the AO basis
     mol_ham_par.LowdinOrthonormalize();  // now in the Löwdin basis
 
 

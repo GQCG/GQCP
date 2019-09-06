@@ -235,7 +235,7 @@ Eigen::SparseMatrix<double> ProductFockSpace::evaluateOperatorSparse(const Scala
  *
  *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the Fock space
  */
-SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const HamiltonianParameters<double>& ham_par, bool diagonal_values) const {
+SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const SQHamiltonian<double>& ham_par, bool diagonal_values) const {
 
     SquareMatrix<double> total_evaluation = SquareMatrix<double>::Zero(this->get_dimension(), this->get_dimension());
 
@@ -300,9 +300,9 @@ SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const HamiltonianPa
  *
  *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the Fock space
  */
-Eigen::SparseMatrix<double> ProductFockSpace::evaluateOperatorSparse(const HamiltonianParameters<double>& ham_par, bool diagonal_values) const {
+Eigen::SparseMatrix<double> ProductFockSpace::evaluateOperatorSparse(const SQHamiltonian<double>& ham_par, bool diagonal_values) const {
 
-    throw std::invalid_argument("ProductFockSpace::evaluateOperatorSparse(HamiltonianParameters<double>, bool): Not implemented.");
+    throw std::invalid_argument("ProductFockSpace::evaluateOperatorSparse(SQHamiltonian<double>, bool): Not implemented.");
 }
 
 
@@ -445,7 +445,7 @@ VectorX<double> ProductFockSpace::evaluateOperatorDiagonal(const ScalarSQTwoElec
  *
  *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the Fock space
  */
-VectorX<double> ProductFockSpace::evaluateOperatorDiagonal(const HamiltonianParameters<double>& ham_par) const {
+VectorX<double> ProductFockSpace::evaluateOperatorDiagonal(const SQHamiltonian<double>& ham_par) const {
     return this->evaluateOperatorDiagonal(ham_par.get_h()) + this->evaluateOperatorDiagonal(ham_par.get_g());
 }
 

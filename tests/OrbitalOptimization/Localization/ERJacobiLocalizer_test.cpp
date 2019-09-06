@@ -28,7 +28,7 @@ BOOST_AUTO_TEST_CASE ( localization_index_raises ) {
     auto h2o = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
     size_t N_P = h2o.numberOfElectrons()/2;
 
-    auto mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2o, "STO-3G");  // in the initial scalar basis
+    auto mol_ham_par = GQCP::SQHamiltonian<double>::Molecular(h2o, "STO-3G");  // in the initial scalar basis
     mol_ham_par.LowdinOrthonormalize();  // in the Löwdin basis
 
 

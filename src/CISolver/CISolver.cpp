@@ -33,13 +33,13 @@ namespace GQCP {
  *  @param hamiltonian_builder      the HamiltonianBuilder for which the CI eigenvalue problem should be solved
  *  @param hamiltonian_parameters   the Hamiltonian parameters in an orthonormal basis
  */
-CISolver::CISolver(const HamiltonianBuilder& hamiltonian_builder, const HamiltonianParameters<double>& hamiltonian_parameters) :
+CISolver::CISolver(const HamiltonianBuilder& hamiltonian_builder, const SQHamiltonian<double>& hamiltonian_parameters) :
     hamiltonian_builder (&hamiltonian_builder),
     hamiltonian_parameters (hamiltonian_parameters)
 {
     const auto K = hamiltonian_parameters.get_h().get_dim();
     if (K != this->hamiltonian_builder->get_fock_space()->get_K()) {
-        throw std::invalid_argument("CISolver::CISolver(HamiltonianBuilder, HamiltonianParameters<double>): Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
+        throw std::invalid_argument("CISolver::CISolver(HamiltonianBuilder, SQHamiltonian<double>): Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
     }
 }
 

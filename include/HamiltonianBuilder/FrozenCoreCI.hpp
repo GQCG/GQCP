@@ -19,7 +19,7 @@
 
 
 #include "HamiltonianBuilder/HamiltonianBuilder.hpp"
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 
 
 namespace GQCP {
@@ -48,7 +48,7 @@ public:
      *
      *  @return the frozen core Hamiltonian matrix
      */
-    SquareMatrix<double> constructHamiltonian(const HamiltonianParameters<double>& ham_par) const override;
+    SquareMatrix<double> constructHamiltonian(const SQHamiltonian<double>& ham_par) const override;
 
     /**
      *  @param ham_par      the Hamiltonian parameters in an orthonormal orbital basis
@@ -57,14 +57,14 @@ public:
      *
      *  @return the action of the frozen core Hamiltonian on the coefficient vector
      */
-    VectorX<double> matrixVectorProduct(const HamiltonianParameters<double>& ham_par, const VectorX<double>& x, const VectorX<double>& diagonal) const override;
+    VectorX<double> matrixVectorProduct(const SQHamiltonian<double>& ham_par, const VectorX<double>& x, const VectorX<double>& diagonal) const override;
 
     /**
      *  @param ham_par      the Hamiltonian parameters in an orthonormal orbital basis
      *
      *  @return the diagonal of the matrix representation of the frozen core Hamiltonian
      */
-    VectorX<double> calculateDiagonal(const HamiltonianParameters<double>& ham_par) const override;
+    VectorX<double> calculateDiagonal(const SQHamiltonian<double>& ham_par) const override;
 };
 
 

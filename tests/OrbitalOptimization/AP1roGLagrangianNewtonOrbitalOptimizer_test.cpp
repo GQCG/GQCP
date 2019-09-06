@@ -29,12 +29,12 @@ BOOST_AUTO_TEST_CASE ( lih_6_31G_orbital_optimize ) {
 
     // Construct the molecular Hamiltonian parameters in the RHF basis
     auto lih = GQCP::Molecule::ReadXYZ("data/lih_olsens.xyz");
-    auto ao_mol_ham_par =  GQCP::HamiltonianParameters<double>::Molecular(lih, "6-31G");
+    auto ao_mol_ham_par =  GQCP::SQHamiltonian<double>::Molecular(lih, "6-31G");
 
     GQCP::PlainRHFSCFSolver plain_scf_solver (ao_mol_ham_par, lih);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
-    auto mol_ham_par = GQCP::HamiltonianParameters<double>(ao_mol_ham_par, rhf.get_C());
+    auto mol_ham_par = GQCP::SQHamiltonian<double>(ao_mol_ham_par, rhf.get_C());
 
     // Get the initial AP1roG energy
     GQCP::AP1roGLagrangianOptimizer lagrangian_solver (lih, mol_ham_par);

@@ -19,7 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Properties/expectation_values.hpp"
 #include "RHF/DIISRHFSCFSolver.hpp"
 
@@ -30,7 +30,7 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test ) {
 
     // Create a Molecule and the corresponding HamiltonianParameters
     auto CO = GQCP::Molecule::ReadXYZ("data/CO_mulliken.xyz");
-    auto ao_ham_par = GQCP::HamiltonianParameters<double>::Molecular(CO, "STO-3G");
+    auto ao_ham_par = GQCP::SQHamiltonian<double>::Molecular(CO, "STO-3G");
 
     size_t K = ao_ham_par.get_K();
     size_t N = CO.numberOfElectrons();
@@ -115,7 +115,7 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test_random_transformation) {
 
     // Create a Molecule and the corresponding HamiltonianParameters
     auto CO = GQCP::Molecule::ReadXYZ("data/CO_mulliken.xyz");
-    auto ao_ham_par = GQCP::HamiltonianParameters<double>::Molecular(CO, "STO-3G");
+    auto ao_ham_par = GQCP::SQHamiltonian<double>::Molecular(CO, "STO-3G");
 
     size_t K = ao_ham_par.get_K();
     size_t N = CO.numberOfElectrons();

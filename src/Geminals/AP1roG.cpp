@@ -27,7 +27,7 @@ namespace GQCP {
  *
  *  @return the AP1roG electronic energy
  */
-double calculateAP1roGEnergy(const AP1roGGeminalCoefficients& G, const HamiltonianParameters<double>& ham_par) {
+double calculateAP1roGEnergy(const AP1roGGeminalCoefficients& G, const SQHamiltonian<double>& ham_par) {
 
     const auto& h = ham_par.get_h().parameters();
     const auto& g = ham_par.get_g().parameters();

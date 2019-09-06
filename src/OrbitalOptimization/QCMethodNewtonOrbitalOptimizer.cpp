@@ -30,7 +30,7 @@ namespace GQCP {
  * 
  *  In the case of this uncoupled DOCI orbital optimizer, the DOCI eigenvalue problem is re-solved in every iteration using the current orbitals
  */
-void QCMethodNewtonOrbitalOptimizer::prepareOrbitalDerivativesCalculation(const HamiltonianParameters<double>& ham_par) {
+void QCMethodNewtonOrbitalOptimizer::prepareOrbitalDerivativesCalculation(const SQHamiltonian<double>& ham_par) {
 
     this->prepareDMCalculation(ham_par);  // this should prepare the calculation of the 1- and 2-DMs
 
@@ -45,7 +45,7 @@ void QCMethodNewtonOrbitalOptimizer::prepareOrbitalDerivativesCalculation(const 
  * 
  *  @return the current orbital gradient as a matrix
  */
-SquareMatrix<double> QCMethodNewtonOrbitalOptimizer::calculateGradientMatrix(const HamiltonianParameters<double>& ham_par) const {
+SquareMatrix<double> QCMethodNewtonOrbitalOptimizer::calculateGradientMatrix(const SQHamiltonian<double>& ham_par) const {
 
     // Calculate the gradient from the Fockian matrix
     const auto F = ham_par.calculateFockianMatrix(this->D, this->d);
@@ -58,7 +58,7 @@ SquareMatrix<double> QCMethodNewtonOrbitalOptimizer::calculateGradientMatrix(con
  * 
  *  @return the current orbital Hessian as a tensor
  */
-SquareRankFourTensor<double> QCMethodNewtonOrbitalOptimizer::calculateHessianTensor(const HamiltonianParameters<double>& ham_par) const {
+SquareRankFourTensor<double> QCMethodNewtonOrbitalOptimizer::calculateHessianTensor(const SQHamiltonian<double>& ham_par) const {
 
     const auto K = ham_par.get_K();
 

@@ -47,7 +47,7 @@ ERNewtonLocalizer::ERNewtonLocalizer(size_t N_P, std::shared_ptr<BaseHessianModi
  *
  *  @return the current orbital gradient of the Edmiston-Ruedenberg localization index as a matrix
  */
-SquareMatrix<double> ERNewtonLocalizer::calculateGradientMatrix(const HamiltonianParameters<double>& ham_par) const {
+SquareMatrix<double> ERNewtonLocalizer::calculateGradientMatrix(const SQHamiltonian<double>& ham_par) const {
 
     SquareMatrix<double> G = SquareMatrix<double>::Zero(this->N_P, this->N_P);
 
@@ -67,7 +67,7 @@ SquareMatrix<double> ERNewtonLocalizer::calculateGradientMatrix(const Hamiltonia
  *
  *  @return the current orbital Hessian of the Edmiston-Ruedenberg localization index as a tensor
  */
-SquareRankFourTensor<double> ERNewtonLocalizer::calculateHessianTensor(const HamiltonianParameters<double>& ham_par) const {
+SquareRankFourTensor<double> ERNewtonLocalizer::calculateHessianTensor(const SQHamiltonian<double>& ham_par) const {
 
     SquareRankFourTensor<double> H (this->N_P);
     H.setZero();
@@ -93,7 +93,7 @@ SquareRankFourTensor<double> ERNewtonLocalizer::calculateHessianTensor(const Ham
  * 
  *  @return the new full set orbital generators, including the redundant parameters
  */
-OrbitalRotationGenerators ERNewtonLocalizer::calculateNewFullOrbitalGenerators(const HamiltonianParameters<double>& ham_par) const {
+OrbitalRotationGenerators ERNewtonLocalizer::calculateNewFullOrbitalGenerators(const SQHamiltonian<double>& ham_par) const {
 
     const auto kappa_free = this->calculateNewFreeOrbitalGenerators(ham_par);  // only occupied-occupied
     const auto kappa_full = OrbitalRotationGenerators::FromOccOcc(kappa_free, ham_par.get_K());
@@ -114,7 +114,7 @@ OrbitalRotationGenerators ERNewtonLocalizer::calculateNewFullOrbitalGenerators(c
  *
  *  @return the element (i,j) of the Edmiston-Ruedenberg localization index gradient
  */
-double ERNewtonLocalizer::calculateGradientMatrixElement(const HamiltonianParameters<double>& ham_par, size_t i, size_t j) const {
+double ERNewtonLocalizer::calculateGradientMatrixElement(const SQHamiltonian<double>& ham_par, size_t i, size_t j) const {
 
     const auto& g = ham_par.get_g().parameters();
 
@@ -131,7 +131,7 @@ double ERNewtonLocalizer::calculateGradientMatrixElement(const HamiltonianParame
  *
  *  @return the element (i,j,k,l) of the Edmiston-Ruedenberg localization index Hessian
  */
-double ERNewtonLocalizer::calculateHessianTensorElement(const HamiltonianParameters<double>& ham_par, size_t i, size_t j, size_t k, size_t l) const {
+double ERNewtonLocalizer::calculateHessianTensorElement(const SQHamiltonian<double>& ham_par, size_t i, size_t j, size_t k, size_t l) const {
 
     const auto& g = ham_par.get_g().parameters();
 

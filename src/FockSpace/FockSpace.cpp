@@ -363,11 +363,11 @@ Eigen::SparseMatrix<double> FockSpace::evaluateOperatorSparse(const ScalarSQTwoE
  *
  *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the Fock space
  */
-SquareMatrix<double> FockSpace::evaluateOperatorDense(const HamiltonianParameters<double>& ham_par, bool diagonal_values) const {
+SquareMatrix<double> FockSpace::evaluateOperatorDense(const SQHamiltonian<double>& ham_par, bool diagonal_values) const {
 
     auto K = ham_par.dimension();
     if (K != this->K) {
-        throw std::invalid_argument("FockSpace::evaluateOperatorDense(HamiltonianParameters<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
+        throw std::invalid_argument("FockSpace::evaluateOperatorDense(SQHamiltonian<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
     }
 
     EvaluationMatrix<SquareMatrix<double>> container (this->dim);
@@ -384,11 +384,11 @@ SquareMatrix<double> FockSpace::evaluateOperatorDense(const HamiltonianParameter
  *
  *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the Fock space
  */
-Eigen::SparseMatrix<double> FockSpace::evaluateOperatorSparse(const HamiltonianParameters<double>& ham_par, bool diagonal_values) const {
+Eigen::SparseMatrix<double> FockSpace::evaluateOperatorSparse(const SQHamiltonian<double>& ham_par, bool diagonal_values) const {
 
     auto K = ham_par.dimension();
     if (K != this->K) {
-        throw std::invalid_argument("FockSpace::evaluateOperatorSparse(HamiltonianParameters<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
+        throw std::invalid_argument("FockSpace::evaluateOperatorSparse(SQHamiltonian<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
     }
 
     EvaluationMatrix<Eigen::SparseMatrix<double>> container (this->dim);
@@ -572,11 +572,11 @@ VectorX<double> FockSpace::evaluateOperatorDiagonal(const ScalarSQTwoElectronOpe
  *
  *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the Fock space
  */
-VectorX<double> FockSpace::evaluateOperatorDiagonal(const HamiltonianParameters<double>& ham_par) const {
+VectorX<double> FockSpace::evaluateOperatorDiagonal(const SQHamiltonian<double>& ham_par) const {
 
     auto K = ham_par.dimension();
     if (K != this->K) {
-        throw std::invalid_argument("FockSpace::evaluateOperatorDiagonal(HamiltonianParameters<double>): Basis functions of the Fock space and the operator are incompatible.");
+        throw std::invalid_argument("FockSpace::evaluateOperatorDiagonal(SQHamiltonian<double>): Basis functions of the Fock space and the operator are incompatible.");
     }
 
     return this->evaluateOperatorDiagonal(ham_par.get_h()) + this->evaluateOperatorDiagonal(ham_par.get_g());

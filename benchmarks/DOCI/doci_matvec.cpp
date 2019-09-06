@@ -4,7 +4,7 @@
 
 #include <benchmark/benchmark.h>
 
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "HamiltonianBuilder/DOCI.hpp"
 
 
@@ -15,7 +15,7 @@ static void matvec(benchmark::State& state) {
     GQCP::FockSpace fock_space (K, N);
     GQCP::DOCI doci (fock_space);
 
-    GQCP::HamiltonianParameters<double> ham_par = GQCP::HamiltonianParameters<double>::Random(K);
+    GQCP::SQHamiltonian<double> ham_par = GQCP::SQHamiltonian<double>::Random(K);
     GQCP::VectorX<double> diagonal = doci.calculateDiagonal(ham_par);
     GQCP::VectorX<double> x = fock_space.randomExpansion();
 

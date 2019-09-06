@@ -4,7 +4,7 @@
 
 #include <benchmark/benchmark.h>
 
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "HamiltonianBuilder/Hubbard.hpp"
 
 
@@ -15,7 +15,7 @@ static void constructHamiltonian(benchmark::State& state) {
     GQCP::ProductFockSpace fock_space (K, N, N);
     GQCP::Hubbard hubbard (fock_space);
 
-    auto ham_par = GQCP::HamiltonianParameters<double>::Random(K);
+    auto ham_par = GQCP::SQHamiltonian<double>::Random(K);
 
     // Code inside this loop is measured repeatedly
     for (auto _ : state) {

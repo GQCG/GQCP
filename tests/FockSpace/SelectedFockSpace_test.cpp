@@ -128,7 +128,7 @@ BOOST_AUTO_TEST_CASE ( Selected_Evaluation_H2O ) {
 
     // Create the molecular Hamiltonian parameters in an AO basis
     auto h2o = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
-    auto mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2o, "STO-3G");
+    auto mol_ham_par = GQCP::SQHamiltonian<double>::Molecular(h2o, "STO-3G");
     auto K = mol_ham_par.get_K();
 
     mol_ham_par.LowdinOrthonormalize();

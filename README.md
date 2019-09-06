@@ -21,7 +21,7 @@ Follow along the following documented example that calculates the FCI energy:
 
 // Create the molecular Hamiltonian parameters in an AO basis
 auto h2o = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
-auto mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2o, "STO-3G");
+auto mol_ham_par = GQCP::SQHamiltonian<double>::Molecular(h2o, "STO-3G");
 
 
 // Create a plain RHF SCF solver and solve the SCF equations

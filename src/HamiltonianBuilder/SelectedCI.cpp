@@ -25,7 +25,7 @@ namespace GQCP {
  *  PRIVATE METHODS
  */
 
-void SelectedCI::evaluateHamiltonianElements(const HamiltonianParameters<double>& hamiltonian_parameters, const PassToMethod& method) const {
+void SelectedCI::evaluateHamiltonianElements(const SQHamiltonian<double>& hamiltonian_parameters, const PassToMethod& method) const {
 
     const size_t dim = fock_space.get_dimension();
     const size_t K = fock_space.get_K();
@@ -202,10 +202,10 @@ SelectedCI::SelectedCI(const SelectedFockSpace& fock_space) :
  *
  *  @return the SelectedCI Hamiltonian matrix
  */
-SquareMatrix<double> SelectedCI::constructHamiltonian(const HamiltonianParameters<double>& hamiltonian_parameters) const {
+SquareMatrix<double> SelectedCI::constructHamiltonian(const SQHamiltonian<double>& hamiltonian_parameters) const {
     auto K = hamiltonian_parameters.get_h().get_dim();
     if (K != this->fock_space.get_K()) {
-        throw std::invalid_argument("SelectedCI::constructHamiltonian(HamiltonianParameters<double>): Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
+        throw std::invalid_argument("SelectedCI::constructHamiltonian(SQHamiltonian<double>): Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
     }
 
     auto dim = fock_space.get_dimension();
@@ -228,11 +228,11 @@ SquareMatrix<double> SelectedCI::constructHamiltonian(const HamiltonianParameter
  *
  *  @return the action of the SelectedCI Hamiltonian on the coefficient vector
  */
-VectorX<double> SelectedCI::matrixVectorProduct(const HamiltonianParameters<double>& hamiltonian_parameters, const VectorX<double>& x, const VectorX<double>& diagonal) const {
+VectorX<double> SelectedCI::matrixVectorProduct(const SQHamiltonian<double>& hamiltonian_parameters, const VectorX<double>& x, const VectorX<double>& diagonal) const {
 
     auto K = hamiltonian_parameters.get_h().get_dim();
     if (K != this->fock_space.get_K()) {
-        throw std::invalid_argument("SelectedCI::matrixVectorProduct(HamiltonianParameters<double>, VectorX<double>, VectorX<double>): Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
+        throw std::invalid_argument("SelectedCI::matrixVectorProduct(SQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
     }
 
     VectorX<double> matvec = diagonal.cwiseProduct(x);
@@ -251,7 +251,7 @@ VectorX<double> SelectedCI::matrixVectorProduct(const HamiltonianParameters<doub
  *
  *  @return the diagonal of the matrix representation of the SelectedCI Hamiltonian
  */
-VectorX<double> SelectedCI::calculateDiagonal(const HamiltonianParameters<double>& hamiltonian_parameters) const {
+VectorX<double> SelectedCI::calculateDiagonal(const SQHamiltonian<double>& hamiltonian_parameters) const {
     return this->fock_space.evaluateOperatorDiagonal(hamiltonian_parameters);
 }
 

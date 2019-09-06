@@ -21,7 +21,7 @@
 
 #include "CISolver/CISolver.hpp"
 #include "HamiltonianBuilder/FCI.hpp"
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Mathematical/Optimization/IterativeIdentitiesHessianModifier.hpp"
 #include "RDM/FCIRDMBuilder.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
@@ -38,14 +38,14 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_sto_3g ) {
     // Prepare molecular Hamiltonian parameters in the RHF basis
     auto h2 = GQCP::Molecule::ReadXYZ("data/h2_cristina.xyz");
     double internuclear_repulsion_energy = GQCP::Operator::NuclearRepulsion(h2).value();  // 0.713176780299327
-    auto ao_mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2, "STO-3G");
+    auto ao_mol_ham_par = GQCP::SQHamiltonian<double>::Molecular(h2, "STO-3G");
     auto K = ao_mol_ham_par.get_K();
 
     GQCP::PlainRHFSCFSolver plain_scf_solver (ao_mol_ham_par, h2);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 
-    auto mol_ham_par = GQCP::HamiltonianParameters<double>(ao_mol_ham_par, rhf.get_C());
+    auto mol_ham_par = GQCP::SQHamiltonian<double>(ao_mol_ham_par, rhf.get_C());
 
 
     // Do the DOCI orbital optimization using specified solver options
@@ -74,14 +74,14 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31g ) {
     // Prepare molecular Hamiltonian parameters in the RHF basis
     auto h2 = GQCP::Molecule::ReadXYZ("data/h2_cristina.xyz");
     double internuclear_repulsion_energy = GQCP::Operator::NuclearRepulsion(h2).value();  // 0.713176780299327
-    auto ao_mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2, "6-31G");
+    auto ao_mol_ham_par = GQCP::SQHamiltonian<double>::Molecular(h2, "6-31G");
     auto K = ao_mol_ham_par.get_K();
 
     GQCP::PlainRHFSCFSolver plain_scf_solver (ao_mol_ham_par, h2);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 
-    auto mol_ham_par = GQCP::HamiltonianParameters<double>(ao_mol_ham_par, rhf.get_C());
+    auto mol_ham_par = GQCP::SQHamiltonian<double>(ao_mol_ham_par, rhf.get_C());
 
 
     // Transform the molecular Hamiltonian parameters to the FCI natural basis
@@ -126,7 +126,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx ) {
     // Prepare molecular Hamiltonian parameters in the RHF basis
     auto h2 = GQCP::Molecule::ReadXYZ("data/h2_cristina.xyz");
     double internuclear_repulsion_energy = GQCP::Operator::NuclearRepulsion(h2).value();  // 0.713176780299327
-    auto ao_mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2, "6-31G**");
+    auto ao_mol_ham_par = GQCP::SQHamiltonian<double>::Molecular(h2, "6-31G**");
     auto K = ao_mol_ham_par.get_K();
 
 
@@ -134,7 +134,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx ) {
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 
-    auto mol_ham_par = GQCP::HamiltonianParameters<double>(ao_mol_ham_par, rhf.get_C());
+    auto mol_ham_par = GQCP::SQHamiltonian<double>(ao_mol_ham_par, rhf.get_C());
 
 
     // Transform the molecular Hamiltonian parameters to the FCI natural basis
@@ -179,7 +179,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx_Davidson ) {
     // Prepare molecular Hamiltonian parameters in the RHF basis
     auto h2 = GQCP::Molecule::ReadXYZ("data/h2_cristina.xyz");
     double internuclear_repulsion_energy = GQCP::Operator::NuclearRepulsion(h2).value();  // 0.713176780299327
-    auto ao_mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2, "6-31G**");
+    auto ao_mol_ham_par = GQCP::SQHamiltonian<double>::Molecular(h2, "6-31G**");
     auto K = ao_mol_ham_par.get_K();
 
 
@@ -187,7 +187,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx_Davidson ) {
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 
-    auto mol_ham_par = GQCP::HamiltonianParameters<double>(ao_mol_ham_par, rhf.get_C());
+    auto mol_ham_par = GQCP::SQHamiltonian<double>(ao_mol_ham_par, rhf.get_C());
 
 
     // Transform the molecular Hamiltonian parameters to the FCI natural basis

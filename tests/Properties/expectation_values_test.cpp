@@ -24,7 +24,7 @@
 #include "Basis/Integrals/Interfaces/LibintInterfacer.hpp"
 #include "CISolver/CISolver.hpp"
 #include "HamiltonianBuilder/DOCI.hpp"
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "RDM/RDMCalculator.hpp"
 #include "RHF/DIISRHFSCFSolver.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
@@ -64,7 +64,7 @@ BOOST_AUTO_TEST_CASE ( mulliken_N2_STO_3G ) {
     std::vector<GQCP::Nucleus> nuclei {N_1, N_2};
     GQCP::Molecule N2 (nuclei);
 
-    auto ham_par = GQCP::HamiltonianParameters<double>::Molecular(N2, "STO-3G");
+    auto ham_par = GQCP::SQHamiltonian<double>::Molecular(N2, "STO-3G");
     size_t K = ham_par.get_K();
 
     // We include all basis functions

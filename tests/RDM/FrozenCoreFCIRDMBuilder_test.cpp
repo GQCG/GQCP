@@ -21,7 +21,7 @@
 
 #include "CISolver/CISolver.hpp"
 #include "HamiltonianBuilder/FrozenCoreFCI.hpp"
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "RDM/DOCIRDMBuilder.hpp"
 #include "RDM/FCIRDMBuilder.hpp"
 #include "RDM/FrozenCoreFCIRDMBuilder.hpp"
@@ -34,7 +34,7 @@ BOOST_AUTO_TEST_CASE ( FrozenCoreFCI_one_rdms ) {
 
     size_t K = 5;
     GQCP::Molecule H5 = GQCP::Molecule::HChain(K, 1.1);
-    auto ham_par = GQCP::HamiltonianParameters<double>::Molecular(H5, "STO-3G");
+    auto ham_par = GQCP::SQHamiltonian<double>::Molecular(H5, "STO-3G");
 
     GQCP::FrozenProductFockSpace fock_space (K, 3, 3, 2);
     GQCP::SelectedFockSpace selected_fock_space (fock_space);
@@ -65,7 +65,7 @@ BOOST_AUTO_TEST_CASE ( FrozenCoreFCI_two_rdms ) {
 
     size_t K = 4;
     GQCP::Molecule H5 = GQCP::Molecule::HChain(K, 1.1);
-    auto ham_par = GQCP::HamiltonianParameters<double>::Molecular(H5, "STO-3G");
+    auto ham_par = GQCP::SQHamiltonian<double>::Molecular(H5, "STO-3G");
 
     GQCP::FrozenProductFockSpace fock_space (K, 3, 3, 2);
     GQCP::SelectedFockSpace selected_fock_space (fock_space);

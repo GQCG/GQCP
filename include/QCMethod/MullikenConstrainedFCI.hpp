@@ -23,7 +23,7 @@
 #include "HamiltonianBuilder/FCI.hpp"
 #include "HamiltonianBuilder/FrozenCoreFCI.hpp"
 #include "HamiltonianParameters/AtomicDecompositionParameters.hpp"
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "RDM/RDMCalculator.hpp"
 
 
@@ -39,7 +39,7 @@ private:
     double solve_time;
     std::vector<size_t> basis_targets;
     Molecule molecule;
-    HamiltonianParameters<double> ham_par;
+    SQHamiltonian<double> ham_par;
     std::string basis_set;  // the basisset that should be used
     FrozenProductFockSpace fock_space = FrozenProductFockSpace(0, 0, 0, 0); // Default
     FrozenCoreFCI fci = FrozenCoreFCI(FrozenProductFockSpace(0, 0, 0, 0)); 

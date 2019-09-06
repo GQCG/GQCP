@@ -6,7 +6,7 @@
 
 #include "CISolver/CISolver.hpp"
 
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "HamiltonianBuilder/Hubbard.hpp"
 
 
@@ -17,7 +17,7 @@ static void constructHamiltonian(benchmark::State& state) {
     GQCP::ProductFockSpace fock_space (K, N, N);
     GQCP::Hubbard hubbard (fock_space);
 
-    GQCP::HamiltonianParameters<double> ham_par = GQCP::HamiltonianParameters<double>::Random(K);
+    GQCP::SQHamiltonian<double> ham_par = GQCP::SQHamiltonian<double>::Random(K);
     GQCP::DenseSolverOptions solver_options;
 
     // Code inside this loop is measured repeatedly

@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "RDM/OneRDM.hpp"
 #include "RDM/TwoRDM.hpp"
 
@@ -101,7 +101,7 @@ std::array<double, Components> calculateExpectationValue(const SQTwoElectronOper
  *
  *  @return the expectation value of the 'Hamiltonian' represented by the Hamiltonian parameters
  */
-double calculateExpectationValue(const HamiltonianParameters<double>& ham_par, const OneRDM<double>& one_rdm, const TwoRDM<double>& two_rdm);
+double calculateExpectationValue(const SQHamiltonian<double>& ham_par, const OneRDM<double>& one_rdm, const TwoRDM<double>& two_rdm);
 
 
 }  // namespace GQCP

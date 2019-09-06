@@ -47,7 +47,7 @@ BOOST_AUTO_TEST_CASE ( ProductFockSpace_dimension) {
 BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_Dense_diagonal_true ) {
 
     GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
-    auto parameters = GQCP::HamiltonianParameters<double>::Molecular(hchain, "STO-3G");
+    auto parameters = GQCP::SQHamiltonian<double>::Molecular(hchain, "STO-3G");
     parameters.LowdinOrthonormalize();
 
     GQCP::ProductFockSpace product_fock_space (6, 4, 4);
@@ -75,7 +75,7 @@ BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_Dense_diagonal_true ) {
 BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_Dense_diagonal_false ) {
 
     GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
-    auto parameters = GQCP::HamiltonianParameters<double>::Molecular(hchain, "STO-3G");
+    auto parameters = GQCP::SQHamiltonian<double>::Molecular(hchain, "STO-3G");
     parameters.LowdinOrthonormalize();
 
     GQCP::ProductFockSpace product_fock_space (6, 4, 4);
@@ -103,7 +103,7 @@ BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_Dense_diagonal_false ) {
 BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_diagonal ) {
 
     GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
-    auto parameters = GQCP::HamiltonianParameters<double>::Molecular(hchain, "STO-3G");
+    auto parameters = GQCP::SQHamiltonian<double>::Molecular(hchain, "STO-3G");
     parameters.LowdinOrthonormalize();
 
     GQCP::ProductFockSpace product_fock_space (6, 4, 4);
@@ -131,7 +131,7 @@ BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_diagonal ) {
 BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_diagonal_vs_no_diagonal) {
 
     GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
-    auto parameters = GQCP::HamiltonianParameters<double>::Molecular(hchain, "STO-3G");
+    auto parameters = GQCP::SQHamiltonian<double>::Molecular(hchain, "STO-3G");
     parameters.LowdinOrthonormalize();
 
     GQCP::ProductFockSpace product_fock_space (6, 4, 4);

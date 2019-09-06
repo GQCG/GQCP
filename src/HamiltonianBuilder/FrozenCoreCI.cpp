@@ -50,10 +50,10 @@ FrozenCoreCI::FrozenCoreCI(std::shared_ptr<GQCP::HamiltonianBuilder> hamiltonian
  *
  *  @return the frozen core Hamiltonian matrix
  */
-SquareMatrix<double> FrozenCoreCI::constructHamiltonian(const HamiltonianParameters<double>& ham_par) const {
+SquareMatrix<double> FrozenCoreCI::constructHamiltonian(const SQHamiltonian<double>& ham_par) const {
 
     // Freeze Hamiltonian parameters
-    HamiltonianParameters<double> frozen_ham_par =  BaseFrozenCoreFockSpace::freezeOperator(ham_par, X);
+    SQHamiltonian<double> frozen_ham_par =  BaseFrozenCoreFockSpace::freezeOperator(ham_par, X);
 
     // calculate Hamiltonian matrix through conventional CI
     SquareMatrix<double> total_hamiltonian = this->active_hamiltonian_builder->constructHamiltonian(frozen_ham_par);
@@ -74,9 +74,9 @@ SquareMatrix<double> FrozenCoreCI::constructHamiltonian(const HamiltonianParamet
  *
  *  @return the action of the frozen core Hamiltonian on the coefficient vector
  */
-VectorX<double> FrozenCoreCI::matrixVectorProduct(const HamiltonianParameters<double>& ham_par, const VectorX<double>& x, const VectorX<double>& diagonal) const {
+VectorX<double> FrozenCoreCI::matrixVectorProduct(const SQHamiltonian<double>& ham_par, const VectorX<double>& x, const VectorX<double>& diagonal) const {
 
-    HamiltonianParameters<double> frozen_ham_par =  BaseFrozenCoreFockSpace::freezeOperator(ham_par, X);
+    SQHamiltonian<double> frozen_ham_par =  BaseFrozenCoreFockSpace::freezeOperator(ham_par, X);
 
     // perform matvec in the active space with "frozen" Hamiltonian parameters
     return this->active_hamiltonian_builder->matrixVectorProduct(frozen_ham_par, x, diagonal);
@@ -88,9 +88,9 @@ VectorX<double> FrozenCoreCI::matrixVectorProduct(const HamiltonianParameters<do
  *
  *  @return the diagonal of the matrix representation of the frozen core Hamiltonian
  */
-VectorX<double> FrozenCoreCI::calculateDiagonal(const HamiltonianParameters<double>& ham_par) const {
+VectorX<double> FrozenCoreCI::calculateDiagonal(const SQHamiltonian<double>& ham_par) const {
 
-    HamiltonianParameters<double> frozen_ham_par =  BaseFrozenCoreFockSpace::freezeOperator(ham_par, this->X);
+    SQHamiltonian<double> frozen_ham_par =  BaseFrozenCoreFockSpace::freezeOperator(ham_par, this->X);
 
     // calculate diagonal in the active space with the "frozen" Hamiltonian parameters
     VectorX<double> diagonal = this->active_hamiltonian_builder->calculateDiagonal(frozen_ham_par);

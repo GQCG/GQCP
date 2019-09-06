@@ -19,7 +19,7 @@
 
 #include "CISolver/CISolver.hpp"
 #include "HamiltonianBuilder/Hubbard.hpp"
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "RDM/RDMCalculator.hpp"
 
 #include <boost/algorithm/string.hpp>
@@ -65,7 +65,7 @@ void Hubbard::solve() {
 
     // Build up the Hubbard hopping matrix and the corresponding Hamiltonian parameters
     const GQCP::HoppingMatrix H = GQCP::HoppingMatrix::FromCSLine(csline);
-    const auto ham_par = GQCP::HamiltonianParameters<double>::Hubbard(H);
+    const auto ham_par = GQCP::SQHamiltonian<double>::Hubbard(H);
     const auto K = ham_par.get_K();
 
 

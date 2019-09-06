@@ -30,7 +30,7 @@ namespace GQCP {
  *  @param interaction_parameters               collection of atomic interaction Hamiltonian parameters
  *  @param atomic_parameters                    collection of atomic Hamiltonian parameters
  */
-AtomicDecompositionParameters::AtomicDecompositionParameters (const HamiltonianParameters<double>& molecular_hamiltonian_parameters, const std::vector<HamiltonianParameters<double>>& net_atomic_parameters, const std::vector<HamiltonianParameters<double>>& interaction_parameters, const std::vector<HamiltonianParameters<double>>& atomic_parameters) :
+AtomicDecompositionParameters::AtomicDecompositionParameters (const SQHamiltonian<double>& molecular_hamiltonian_parameters, const std::vector<SQHamiltonian<double>>& net_atomic_parameters, const std::vector<SQHamiltonian<double>>& interaction_parameters, const std::vector<SQHamiltonian<double>>& atomic_parameters) :
         molecular_hamiltonian_parameters (molecular_hamiltonian_parameters),
         net_atomic_parameters (net_atomic_parameters),
         interaction_parameters (interaction_parameters),
@@ -135,17 +135,17 @@ AtomicDecompositionParameters AtomicDecompositionParameters::Nuclear(const Molec
 
     QCRankFourTensor<double> g_abba = g_ab.Eigen() + g_ba.Eigen();
 
-    HamiltonianParameters<double> HAA (ao_basis, ScalarSQOneElectronOperator<double>({S}), ScalarSQOneElectronOperator<double>({h_a}), ScalarSQTwoElectronOperator<double>({g_a}), T_total);
-    HamiltonianParameters<double> HBB (ao_basis, ScalarSQOneElectronOperator<double>({S}), ScalarSQOneElectronOperator<double>({h_b}), ScalarSQTwoElectronOperator<double>({g_b}), T_total);
-    HamiltonianParameters<double> HAB (ao_basis, ScalarSQOneElectronOperator<double>({S}), ScalarSQOneElectronOperator<double>({h_ab}), ScalarSQTwoElectronOperator<double>({g_abba}), T_total, repulsion);
-    HamiltonianParameters<double> HA (ao_basis, ScalarSQOneElectronOperator<double>({S}), ScalarSQOneElectronOperator<double>({h_a + h_ab/2}), ScalarSQTwoElectronOperator<double>({g_a.Eigen() + (0.5)*g_abba.Eigen()}), T_total, repulsion/2);
-    HamiltonianParameters<double> HB (ao_basis, ScalarSQOneElectronOperator<double>({S}), ScalarSQOneElectronOperator<double>({h_b + h_ab/2}), ScalarSQTwoElectronOperator<double>({g_b.Eigen() + (0.5)*g_abba.Eigen()}), T_total, repulsion/2);
+    SQHamiltonian<double> HAA (ao_basis, ScalarSQOneElectronOperator<double>({S}), ScalarSQOneElectronOperator<double>({h_a}), ScalarSQTwoElectronOperator<double>({g_a}), T_total);
+    SQHamiltonian<double> HBB (ao_basis, ScalarSQOneElectronOperator<double>({S}), ScalarSQOneElectronOperator<double>({h_b}), ScalarSQTwoElectronOperator<double>({g_b}), T_total);
+    SQHamiltonian<double> HAB (ao_basis, ScalarSQOneElectronOperator<double>({S}), ScalarSQOneElectronOperator<double>({h_ab}), ScalarSQTwoElectronOperator<double>({g_abba}), T_total, repulsion);
+    SQHamiltonian<double> HA (ao_basis, ScalarSQOneElectronOperator<double>({S}), ScalarSQOneElectronOperator<double>({h_a + h_ab/2}), ScalarSQTwoElectronOperator<double>({g_a.Eigen() + (0.5)*g_abba.Eigen()}), T_total, repulsion/2);
+    SQHamiltonian<double> HB (ao_basis, ScalarSQOneElectronOperator<double>({S}), ScalarSQOneElectronOperator<double>({h_b + h_ab/2}), ScalarSQTwoElectronOperator<double>({g_b.Eigen() + (0.5)*g_abba.Eigen()}), T_total, repulsion/2);
 
-    std::vector<HamiltonianParameters<double>> net_atomic_parameters = {HAA, HBB};
-    std::vector<HamiltonianParameters<double>> interaction_parameters = {HAB};
-    std::vector<HamiltonianParameters<double>> atomic_parameters = {HA, HB};
+    std::vector<SQHamiltonian<double>> net_atomic_parameters = {HAA, HBB};
+    std::vector<SQHamiltonian<double>> interaction_parameters = {HAB};
+    std::vector<SQHamiltonian<double>> atomic_parameters = {HA, HB};
 
-    return AtomicDecompositionParameters(HamiltonianParameters<double>::Molecular(molecule, basisset_name), net_atomic_parameters, interaction_parameters, atomic_parameters);
+    return AtomicDecompositionParameters(SQHamiltonian<double>::Molecular(molecule, basisset_name), net_atomic_parameters, interaction_parameters, atomic_parameters);
 }
 
 

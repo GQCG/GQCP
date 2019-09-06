@@ -22,7 +22,7 @@
 #include "HamiltonianBuilder/DOCI.hpp"
 #include "HamiltonianBuilder/FCI.hpp"
 #include "HamiltonianBuilder/SelectedCI.hpp"
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Molecule/Molecule.hpp"
 
 
@@ -39,7 +39,7 @@ BOOST_AUTO_TEST_CASE ( SelectedCI_public_methods ) {
 
     // Create random HamiltonianParameters to check compatibility of the arguments
     size_t K = 5;
-    auto random_hamiltonian_parameters = GQCP::HamiltonianParameters<double>::Random(K);
+    auto random_hamiltonian_parameters = GQCP::SQHamiltonian<double>::Random(K);
 
     // Create a compatible Fock space
     GQCP::ProductFockSpace product_fock_space (K, 3, 3);
@@ -63,7 +63,7 @@ BOOST_AUTO_TEST_CASE ( SelectedCI_vs_FCI ) {
     // Create H-chain HamiltonianParameters to test results from FCI and selected CI
     size_t K = 4;
     GQCP::Molecule H4 = GQCP::Molecule::HChain(K, 1.1);
-    auto hamiltonian_parameters = GQCP::HamiltonianParameters<double>::Molecular(H4, "STO-3G");
+    auto hamiltonian_parameters = GQCP::SQHamiltonian<double>::Molecular(H4, "STO-3G");
 
     // Create compatible Fock spaces
     GQCP::ProductFockSpace product_fock_space (K, 2, 2);
@@ -92,7 +92,7 @@ BOOST_AUTO_TEST_CASE ( SelectedCI_vs_DOCI ) {
     // Create H-chain HamiltonianParameters to test results from DOCI and selected CI
     size_t K = 4;
     GQCP::Molecule H4 = GQCP::Molecule::HChain(K, 1.1);
-    auto hamiltonian_parameters = GQCP::HamiltonianParameters<double>::Molecular(H4, "STO-3G");
+    auto hamiltonian_parameters = GQCP::SQHamiltonian<double>::Molecular(H4, "STO-3G");
 
     // Create compatible Fock spaces
     GQCP::FockSpace do_fock_space (K, 2);

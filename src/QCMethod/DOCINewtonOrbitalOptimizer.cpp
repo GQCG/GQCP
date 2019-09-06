@@ -18,7 +18,7 @@
 #include "QCMethod/DOCINewtonOrbitalOptimizer.hpp"
 
 #include "CISolver/CISolver.hpp"
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Mathematical/Optimization/IterativeIdentitiesHessianModifier.hpp"
 #include "OrbitalOptimization/DOCINewtonOrbitalOptimizer.hpp"
 #include "OrbitalOptimization/Localization/ERJacobiLocalizer.hpp"
@@ -61,7 +61,7 @@ void DOCINewtonOrbitalOptimizer::solve() {
     // Construct the molecular Hamiltonian parameters
     auto molecule = Molecule::ReadXYZ(this->xyz_filename);
     auto N_P = molecule.numberOfElectrons()/2;
-    auto ao_mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(molecule, basis_set);
+    auto ao_mol_ham_par = GQCP::SQHamiltonian<double>::Molecular(molecule, basis_set);
     size_t K = ao_mol_ham_par.get_K();
 
 
@@ -69,7 +69,7 @@ void DOCINewtonOrbitalOptimizer::solve() {
     diis_scf_solver.solve();
     auto rhf = diis_scf_solver.get_solution();
 
-    auto mol_ham_par = GQCP::HamiltonianParameters<double>(ao_mol_ham_par, rhf.get_C());
+    auto mol_ham_par = GQCP::SQHamiltonian<double>(ao_mol_ham_par, rhf.get_C());
 
     auto hessian_modifier = std::make_shared<GQCP::IterativeIdentitiesHessianModifier>();
     if (localize) {

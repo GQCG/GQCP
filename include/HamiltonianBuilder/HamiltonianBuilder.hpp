@@ -19,7 +19,7 @@
 
 
 #include "FockSpace/BaseFockSpace.hpp"
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 
 #include <memory>
 #include <utility>
@@ -53,7 +53,7 @@ public:
      *
      *  @return the Hamiltonian matrix
      */
-    virtual SquareMatrix<double> constructHamiltonian(const HamiltonianParameters<double>& hamiltonian_parameters) const = 0;
+    virtual SquareMatrix<double> constructHamiltonian(const SQHamiltonian<double>& hamiltonian_parameters) const = 0;
 
     /**
      *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis
@@ -62,14 +62,14 @@ public:
      *
      *  @return the action of the Hamiltonian on the coefficient vector
      */
-    virtual VectorX<double> matrixVectorProduct(const HamiltonianParameters<double>& hamiltonian_parameters, const VectorX<double>& x, const VectorX<double>& diagonal) const = 0;
+    virtual VectorX<double> matrixVectorProduct(const SQHamiltonian<double>& hamiltonian_parameters, const VectorX<double>& x, const VectorX<double>& diagonal) const = 0;
 
     /**
      *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis
      *
      *  @return the diagonal of the matrix representation of the Hamiltonian
      */
-    virtual VectorX<double> calculateDiagonal(const HamiltonianParameters<double>& hamiltonian_parameters) const = 0;
+    virtual VectorX<double> calculateDiagonal(const SQHamiltonian<double>& hamiltonian_parameters) const = 0;
 };
 
 

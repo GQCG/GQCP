@@ -50,7 +50,7 @@ private:
      *  @param hamiltonian_parameters   the Hamiltonian parameters in an orthonormal basis
      *  @param method                   the method depending to how you wish to construct the Hamiltonian
      */
-    void evaluateHamiltonianElements(const HamiltonianParameters<double>& hamiltonian_parameters, const PassToMethod& method) const;
+    void evaluateHamiltonianElements(const SQHamiltonian<double>& hamiltonian_parameters, const PassToMethod& method) const;
 public:
 
     // CONSTRUCTORS
@@ -74,7 +74,7 @@ public:
      *
      *  @return the SelectedCI Hamiltonian matrix
      */
-    SquareMatrix<double> constructHamiltonian(const HamiltonianParameters<double>& hamiltonian_parameters) const override;
+    SquareMatrix<double> constructHamiltonian(const SQHamiltonian<double>& hamiltonian_parameters) const override;
 
     /**
      *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis
@@ -83,14 +83,14 @@ public:
      *
      *  @return the action of the SelectedCI Hamiltonian on the coefficient vector
      */
-    VectorX<double> matrixVectorProduct(const HamiltonianParameters<double>& hamiltonian_parameters, const VectorX<double>& x, const VectorX<double>& diagonal) const override;
+    VectorX<double> matrixVectorProduct(const SQHamiltonian<double>& hamiltonian_parameters, const VectorX<double>& x, const VectorX<double>& diagonal) const override;
 
     /**
      *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis
      *
      *  @return the diagonal of the matrix representation of the SelectedCI Hamiltonian
      */
-    VectorX<double> calculateDiagonal(const HamiltonianParameters<double>& hamiltonian_parameters) const override;
+    VectorX<double> calculateDiagonal(const SQHamiltonian<double>& hamiltonian_parameters) const override;
 };
 
 

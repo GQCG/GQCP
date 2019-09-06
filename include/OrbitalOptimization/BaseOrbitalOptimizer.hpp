@@ -19,7 +19,7 @@
 
 
 #include "Basis/TransformationMatrix.hpp"
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 
 
 namespace GQCP {
@@ -59,21 +59,21 @@ public:
     /**
      *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence
      */
-    virtual void prepareConvergenceChecking(const HamiltonianParameters<double>& ham_par) = 0;
+    virtual void prepareConvergenceChecking(const SQHamiltonian<double>& ham_par) = 0;
 
     /**
      *  @param ham_par      the current Hamiltonian parameters
      * 
      *  @return if the algorithm is considered to be converged
      */
-    virtual bool checkForConvergence(const HamiltonianParameters<double>& ham_par) const = 0;
+    virtual bool checkForConvergence(const SQHamiltonian<double>& ham_par) const = 0;
 
     /**
      *  @param ham_par      the current Hamiltonian parameters
      * 
      *  @return a unitary matrix that will be used to rotate the current Hamiltonian parameters into the next iteration
      */
-    virtual TransformationMatrix<double> calculateNewRotationMatrix(const HamiltonianParameters<double>& ham_par) const = 0;
+    virtual TransformationMatrix<double> calculateNewRotationMatrix(const SQHamiltonian<double>& ham_par) const = 0;
 
 
     // PUBLIC METHODS
@@ -85,7 +85,7 @@ public:
      * 
      *  @param ham_par      the initial (guess for the) Hamiltonian parameters
      */
-    void optimize(HamiltonianParameters<double>& ham_par);
+    void optimize(SQHamiltonian<double>& ham_par);
 };
 
 

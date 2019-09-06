@@ -22,7 +22,7 @@
 
 #include "HamiltonianBuilder/FCI.hpp"
 #include "HamiltonianBuilder/Hubbard.hpp"
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( Hubbard_constructor ) {
@@ -36,7 +36,7 @@ BOOST_AUTO_TEST_CASE ( Hubbard_constructor ) {
 BOOST_AUTO_TEST_CASE ( Hubbard_public_methods ) {
 
     size_t K = 7;
-    auto random_hamiltonian_parameters = GQCP::HamiltonianParameters<double>::Random(K);
+    auto random_hamiltonian_parameters = GQCP::SQHamiltonian<double>::Random(K);
 
 
     // Create a compatible Fock space
@@ -63,7 +63,7 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI ) {
     size_t K = 4;
     size_t N = 2;
     auto H = GQCP::HoppingMatrix::Random(K);
-    auto mol_ham_par = GQCP::HamiltonianParameters<double>::Hubbard(H);
+    auto mol_ham_par = GQCP::SQHamiltonian<double>::Hubbard(H);
 
 
     // Check if the Hamiltonian matrix is equal for FCI and Hubbard
@@ -83,7 +83,7 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_large ) {
     size_t K = 6;
     size_t N = 3;
     auto H = GQCP::HoppingMatrix::Random(K);
-    auto mol_ham_par = GQCP::HamiltonianParameters<double>::Hubbard(H);
+    auto mol_ham_par = GQCP::SQHamiltonian<double>::Hubbard(H);
 
 
     // Check if the Hamiltonian matrix is equal for FCI and Hubbard
@@ -103,7 +103,7 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_matvec ) {
     size_t K = 4;
     size_t N = 2;
     auto H = GQCP::HoppingMatrix::Random(K);
-    auto mol_ham_par = GQCP::HamiltonianParameters<double>::Hubbard(H);
+    auto mol_ham_par = GQCP::SQHamiltonian<double>::Hubbard(H);
 
 
     // Check if FCI and Hubbard have the same matvec for Hubbard Hamiltonian parameters
@@ -128,7 +128,7 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_large_matvec ) {
     size_t K = 6;
     size_t N = 3;
     auto H = GQCP::HoppingMatrix::Random(K);
-    auto mol_ham_par = GQCP::HamiltonianParameters<double>::Hubbard(H);
+    auto mol_ham_par = GQCP::SQHamiltonian<double>::Hubbard(H);
 
 
     // Check if FCI and Hubbard have the same matvec for Hubbard Hamiltonian parameters

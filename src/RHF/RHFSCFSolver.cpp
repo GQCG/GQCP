@@ -30,7 +30,7 @@ namespace GQCP {
  *  @param threshold                        the convergence treshold on the Frobenius norm on the AO density matrix
  *  @param maximum_number_of_iterations     the maximum number of iterations for the SCF procedure
  */
-RHFSCFSolver::RHFSCFSolver(const HamiltonianParameters<double>& ham_par, const Molecule& molecule, double threshold, size_t maximum_number_of_iterations) :
+RHFSCFSolver::RHFSCFSolver(const SQHamiltonian<double>& ham_par, const Molecule& molecule, double threshold, size_t maximum_number_of_iterations) :
     ham_par (ham_par),
     molecule (molecule),
     maximum_number_of_iterations (maximum_number_of_iterations),

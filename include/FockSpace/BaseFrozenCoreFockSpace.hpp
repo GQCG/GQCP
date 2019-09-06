@@ -96,7 +96,7 @@ public:
      *
      *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the Fock space
      */
-    SquareMatrix<double> evaluateOperatorDense(const HamiltonianParameters<double>& ham_par, bool diagonal_values) const override;
+    SquareMatrix<double> evaluateOperatorDense(const SQHamiltonian<double>& ham_par, bool diagonal_values) const override;
     /**
      *  Evaluate the Hamiltonian in a sparse matrix
      *
@@ -105,7 +105,7 @@ public:
      *
      *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the Fock space
      */
-    Eigen::SparseMatrix<double> evaluateOperatorSparse(const HamiltonianParameters<double>& ham_par, bool diagonal_values) const override;
+    Eigen::SparseMatrix<double> evaluateOperatorSparse(const SQHamiltonian<double>& ham_par, bool diagonal_values) const override;
     /**
      *  Evaluate the diagonal of the operator
      *
@@ -131,7 +131,7 @@ public:
      *
      *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the Fock space
      */
-    VectorX<double> evaluateOperatorDiagonal(const HamiltonianParameters<double>& ham_par) const override;
+    VectorX<double> evaluateOperatorDiagonal(const SQHamiltonian<double>& ham_par) const override;
 
 
     // STATIC PUBLIC METHODS
@@ -160,7 +160,7 @@ public:
      *  @return a set of 'frozen' Hamiltonian parameters which cover two-electron integral evaluations from the active and inactive orbitals
      *  (see https://drive.google.com/file/d/1Fnhv2XyNO9Xw9YDoJOXU21_6_x2llntI/view?usp=sharing)
      */
-    static HamiltonianParameters<double> freezeOperator(const HamiltonianParameters<double>& ham_par, size_t X);
+    static SQHamiltonian<double> freezeOperator(const SQHamiltonian<double>& ham_par, size_t X);
 
     /**
      *  @param one_op       the one-electron operator in an orthonormal orbital basis
@@ -185,7 +185,7 @@ public:
      *
      *  @return the Hamiltonian diagonal from strictly evaluating the frozen orbitals in a (any) Fock space
      */
-    static VectorX<double> frozenCoreDiagonal(const HamiltonianParameters<double>& ham_par, size_t X, size_t dimension);
+    static VectorX<double> frozenCoreDiagonal(const SQHamiltonian<double>& ham_par, size_t X, size_t dimension);
 };
 
 

@@ -77,7 +77,7 @@ const Eigenpair& DOCINewtonOrbitalOptimizer::get_eigenpair(size_t index) const {
  * 
  *  In the case of this uncoupled DOCI orbital optimizer, the DOCI eigenvalue problem is re-solved in every iteration using the current orbitals
  */
-void DOCINewtonOrbitalOptimizer::prepareDMCalculation(const HamiltonianParameters<double>& ham_par) {
+void DOCINewtonOrbitalOptimizer::prepareDMCalculation(const SQHamiltonian<double>& ham_par) {
 
     // Solve the DOCI eigenvalue problem to obtain DMs from which we can calculate the gradient and the Hessian
     CISolver doci_solver (this->doci, ham_par);
@@ -123,7 +123,7 @@ TwoRDM<double> DOCINewtonOrbitalOptimizer::calculate2RDM() const {
  * 
  *  @return the new full set orbital generators, including the redundant parameters
  */
-OrbitalRotationGenerators DOCINewtonOrbitalOptimizer::calculateNewFullOrbitalGenerators(const HamiltonianParameters<double>& ham_par) const {
+OrbitalRotationGenerators DOCINewtonOrbitalOptimizer::calculateNewFullOrbitalGenerators(const SQHamiltonian<double>& ham_par) const {
     return this->calculateNewFreeOrbitalGenerators(ham_par);  // no extra step necessary
 }
 

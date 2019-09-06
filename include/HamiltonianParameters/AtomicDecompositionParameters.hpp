@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Molecule/Molecule.hpp"
 
 
@@ -30,11 +30,11 @@ namespace GQCP {
  */
 class AtomicDecompositionParameters {
 private:
-    HamiltonianParameters<double> molecular_hamiltonian_parameters;  // the HamiltonianParameters of the complete molecule
+    SQHamiltonian<double> molecular_hamiltonian_parameters;  // the HamiltonianParameters of the complete molecule
 
-    std::vector<HamiltonianParameters<double>> net_atomic_parameters;  // vector of net atomic Hamiltonian parameters
-    std::vector<HamiltonianParameters<double>> interaction_parameters;  // vector of interaction Hamiltonian parameters
-    std::vector<HamiltonianParameters<double>> atomic_parameters;  // vector of the total atomic contributions
+    std::vector<SQHamiltonian<double>> net_atomic_parameters;  // vector of net atomic Hamiltonian parameters
+    std::vector<SQHamiltonian<double>> interaction_parameters;  // vector of interaction Hamiltonian parameters
+    std::vector<SQHamiltonian<double>> atomic_parameters;  // vector of the total atomic contributions
 
 
 public:
@@ -51,8 +51,8 @@ public:
      *  @param interaction_parameters               collection of atomic interaction Hamiltonian parameters
      *  @param atomic_parameters                    collection of atomic Hamiltonian parameters
      */
-    AtomicDecompositionParameters (const HamiltonianParameters<double>& molecular_hamiltonian_parameters, const std::vector<HamiltonianParameters<double>>& net_atomic_parameters,
-            const std::vector<HamiltonianParameters<double>>& interaction_parameters, const std::vector<HamiltonianParameters<double>>& atomic_parameters);
+    AtomicDecompositionParameters (const SQHamiltonian<double>& molecular_hamiltonian_parameters, const std::vector<SQHamiltonian<double>>& net_atomic_parameters,
+            const std::vector<SQHamiltonian<double>>& interaction_parameters, const std::vector<SQHamiltonian<double>>& atomic_parameters);
 
 
 
@@ -92,10 +92,10 @@ public:
     /*
      *  GETTERS
      */
-    const HamiltonianParameters<double>& get_molecular_hamiltonian_parameters() const { return this->molecular_hamiltonian_parameters; }
-    const std::vector<HamiltonianParameters<double>>& get_net_atomic_parameters() const { return this->net_atomic_parameters; }
-    const std::vector<HamiltonianParameters<double>>& get_interaction_parameters() const { return this->interaction_parameters; }
-    const std::vector<HamiltonianParameters<double>>& get_atomic_parameters() const { return this->atomic_parameters; }
+    const SQHamiltonian<double>& get_molecular_hamiltonian_parameters() const { return this->molecular_hamiltonian_parameters; }
+    const std::vector<SQHamiltonian<double>>& get_net_atomic_parameters() const { return this->net_atomic_parameters; }
+    const std::vector<SQHamiltonian<double>>& get_interaction_parameters() const { return this->interaction_parameters; }
+    const std::vector<SQHamiltonian<double>>& get_atomic_parameters() const { return this->atomic_parameters; }
 };
 
 

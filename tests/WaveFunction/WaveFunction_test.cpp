@@ -22,7 +22,7 @@
 #include "CISolver/CISolver.hpp"
 #include "FockSpace/FockSpace.hpp"
 #include "HamiltonianBuilder/FCI.hpp"
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "WaveFunction/WaveFunction.hpp"
 
 
@@ -51,7 +51,7 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h3 ) {
     GQCP::Molecule hchain = GQCP::Molecule::HChain(3, 0.742, -1);
 
     // Create the molecular Hamiltonian parameters for this molecule and basis
-    auto mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(hchain, "STO-3G");
+    auto mol_ham_par = GQCP::SQHamiltonian<double>::Molecular(hchain, "STO-3G");
     auto K = mol_ham_par.get_K();
     auto N_P = hchain.numberOfElectrons()/2;
 
@@ -89,7 +89,7 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h4 ) {
     GQCP::Molecule hchain = GQCP::Molecule::HChain(4, 0.742, 0);
 
     // Create the molecular Hamiltonian parameters for this molecule and basis
-    auto mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(hchain, "STO-3G");
+    auto mol_ham_par = GQCP::SQHamiltonian<double>::Molecular(hchain, "STO-3G");
     auto K = mol_ham_par.get_K();
     auto N_P = hchain.numberOfElectrons()/2;
 
@@ -127,7 +127,7 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h5 ) {
     GQCP::Molecule hchain = GQCP::Molecule::HChain(5, 0.742, 0);
 
     // Create the molecular Hamiltonian parameters for this molecule and basis
-    auto mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(hchain, "STO-3G");
+    auto mol_ham_par = GQCP::SQHamiltonian<double>::Molecular(hchain, "STO-3G");
     auto K = mol_ham_par.get_K();
     auto N_B = hchain.numberOfElectrons()/2;
     auto N_A = hchain.numberOfElectrons() - N_B;

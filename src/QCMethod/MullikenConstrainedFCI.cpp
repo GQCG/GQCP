@@ -126,7 +126,7 @@ void MullikenConstrainedFCI::checkDiatomicMolecule(const std::string& function_n
 MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const std::string& basis_set, const std::vector<size_t>& basis_targets, const size_t frozencores) : 
         basis_targets (basis_targets),
         molecule (molecule),
-        ham_par (HamiltonianParameters<double>::Molecular(molecule, basis_set)),
+        ham_par (SQHamiltonian<double>::Molecular(molecule, basis_set)),
         basis_set (basis_set)
 {
     if ((molecule.numberOfElectrons() % 2) > 0) {
@@ -156,8 +156,8 @@ MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const s
                 GQCP::Molecule mol_fraction1(std::vector<GQCP::Nucleus>{atoms[0]}, charge);
                 GQCP::Molecule mol_fraction2(std::vector<GQCP::Nucleus>{atoms[1]}, 0);
 
-                auto ham_par1 = GQCP::HamiltonianParameters<double>::Molecular(mol_fraction1, basis_set);
-                auto ham_par2 = GQCP::HamiltonianParameters<double>::Molecular(mol_fraction2, basis_set);
+                auto ham_par1 = GQCP::SQHamiltonian<double>::Molecular(mol_fraction1, basis_set);
+                auto ham_par2 = GQCP::SQHamiltonian<double>::Molecular(mol_fraction2, basis_set);
 
                 // Perform DIIS RHF for individual fractions
                 GQCP::DIISRHFSCFSolver diis_scf_solver1 (ham_par1, mol_fraction1, 6, 6, 1e-12, 500);

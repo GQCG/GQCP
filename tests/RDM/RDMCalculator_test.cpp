@@ -23,7 +23,7 @@
 #include "FockSpace/FockSpace.hpp"
 #include "FockSpace/ProductFockSpace.hpp"
 #include "HamiltonianBuilder/DOCI.hpp"
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "RDM/RDMCalculator.hpp"
 #include "RDM/SpinUnresolvedRDMCalculator.hpp"
 
@@ -34,7 +34,7 @@ BOOST_AUTO_TEST_CASE ( constructor ) {
 
     // Get the 1-RDM from DOCI
     size_t N = 4;  // 4 electrons
-    auto ham_par = GQCP::HamiltonianParameters<double>::ReadFCIDUMP("data/lih_631g_caitlin.FCIDUMP");
+    auto ham_par = GQCP::SQHamiltonian<double>::ReadFCIDUMP("data/lih_631g_caitlin.FCIDUMP");
     size_t K = ham_par.get_K();  // 16 SO
 
     // Abstract pointer to test RDM

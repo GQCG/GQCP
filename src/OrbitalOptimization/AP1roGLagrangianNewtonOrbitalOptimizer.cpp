@@ -71,7 +71,7 @@ AP1roGLagrangianNewtonOrbitalOptimizer::AP1roGLagrangianNewtonOrbitalOptimizer(c
  * 
  *  In the case of this uncoupled AP1roG Lagrangian orbital optimizer, the PSEs are re-solved in every iteration using the current orbitals
  */
-void AP1roGLagrangianNewtonOrbitalOptimizer::prepareDMCalculation(const HamiltonianParameters<double>& ham_par) {
+void AP1roGLagrangianNewtonOrbitalOptimizer::prepareDMCalculation(const SQHamiltonian<double>& ham_par) {
 
     // Solve the AP1roG PSEs and determine the Lagrangian multipliers
     AP1roGLagrangianOptimizer lagrangian_optimizer (this->N_P, ham_par, this->G, this->pse_convergence_threshold, this->pse_maximum_number_of_iterations);
@@ -105,7 +105,7 @@ TwoRDM<double> AP1roGLagrangianNewtonOrbitalOptimizer::calculate2RDM() const {
  * 
  *  @return the new full set orbital generators, including the redundant parameters
  */
-OrbitalRotationGenerators AP1roGLagrangianNewtonOrbitalOptimizer::calculateNewFullOrbitalGenerators(const HamiltonianParameters<double>& ham_par) const {
+OrbitalRotationGenerators AP1roGLagrangianNewtonOrbitalOptimizer::calculateNewFullOrbitalGenerators(const SQHamiltonian<double>& ham_par) const {
     return this->calculateNewFreeOrbitalGenerators(ham_par);  // no extra step necessary
 }
 

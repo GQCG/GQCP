@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Molecule/Molecule.hpp"
 #include "RHF/RHF.hpp"
 
@@ -33,7 +33,7 @@ namespace GQCP {
  *
  *  @return the RMP2 energy correction
  */
-double calculateRMP2EnergyCorrection(const HamiltonianParameters<double>& ham_par, const Molecule& molecule, const RHF& rhf);
+double calculateRMP2EnergyCorrection(const SQHamiltonian<double>& ham_par, const Molecule& molecule, const RHF& rhf);
 
 
 }  // namespace GQCP

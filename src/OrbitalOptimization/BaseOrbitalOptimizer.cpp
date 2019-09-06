@@ -47,10 +47,10 @@ BaseOrbitalOptimizer::BaseOrbitalOptimizer(const double convergence_threshold, c
  * 
  *  @param ham_par      the initial (guess for the) Hamiltonian parameters
  */
-void BaseOrbitalOptimizer::optimize(HamiltonianParameters<double>& ham_par) {
+void BaseOrbitalOptimizer::optimize(SQHamiltonian<double>& ham_par) {
 
     if (!ham_par.areOrbitalsOrthonormal()) {
-        throw std::invalid_argument("BaseOrbitalOptimizer::optimize(HamiltonianParameters<double>&): The given Hamiltonian parameters do not belong to an orthonormal basis.");
+        throw std::invalid_argument("BaseOrbitalOptimizer::optimize(SQHamiltonian<double>&): The given Hamiltonian parameters do not belong to an orthonormal basis.");
     }
 
     while (this->prepareConvergenceChecking(ham_par), !this->checkForConvergence(ham_par)) {  // result of the comma operator is the second operand, so this expression effectively means "if not converged"
@@ -59,7 +59,7 @@ void BaseOrbitalOptimizer::optimize(HamiltonianParameters<double>& ham_par) {
 
         this->number_of_iterations++;
         if (this->number_of_iterations > this->maximum_number_of_iterations) {
-            throw std::runtime_error("BaseOrbitalOptimizer::optimize(HamiltonianParameters<double>&): The orbital optimization procedure did not converge in the given amount of iterations.");
+            throw std::runtime_error("BaseOrbitalOptimizer::optimize(SQHamiltonian<double>&): The orbital optimization procedure did not converge in the given amount of iterations.");
         }
     }
 

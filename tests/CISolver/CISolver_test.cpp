@@ -21,7 +21,7 @@
 
 #include "CISolver/CISolver.hpp"
 #include "HamiltonianBuilder/DOCI.hpp"
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 
 
 
@@ -29,7 +29,7 @@ BOOST_AUTO_TEST_CASE ( Solver_constructor ) {
 
     // Create random HamiltonianParameters
     size_t K = 7;
-    auto random_hamiltonian_parameters = GQCP::HamiltonianParameters<double>::Random(K);
+    auto random_hamiltonian_parameters = GQCP::SQHamiltonian<double>::Random(K);
 
     // Create a compatible Fock space
     GQCP::FockSpace fock_space (K, 3);

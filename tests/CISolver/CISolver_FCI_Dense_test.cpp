@@ -22,7 +22,7 @@
 #include "CISolver/CISolver.hpp"
 #include "FockSpace/ProductFockSpace.hpp"
 #include "HamiltonianBuilder/FCI.hpp"
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
 
 
@@ -32,7 +32,7 @@ BOOST_AUTO_TEST_CASE ( test_random_rotation_diagonal_dense_fci ) {
 
     // Create the molecular Hamiltonian parameters in an AO basis
     auto h2o = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
-    auto mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2o, "STO-3G");
+    auto mol_ham_par = GQCP::SQHamiltonian<double>::Molecular(h2o, "STO-3G");
     auto K = mol_ham_par.get_K();
 
     // Create a plain RHF SCF solver and solve the SCF equations
@@ -66,7 +66,7 @@ BOOST_AUTO_TEST_CASE ( FCI_H2_Cristina_dense ) {
 
     // Create the molecular Hamiltonian parameters in an AO basis
     auto h2 = GQCP::Molecule::ReadXYZ("data/h2_cristina.xyz");
-    auto mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2, "6-31g**");
+    auto mol_ham_par = GQCP::SQHamiltonian<double>::Molecular(h2, "6-31g**");
     auto K = mol_ham_par.get_K();
 
     // Create a plain RHF SCF solver and solve the SCF equations
@@ -105,7 +105,7 @@ BOOST_AUTO_TEST_CASE ( FCI_H2O_Psi4_GAMESS_dense ) {
 
     // Create the molecular Hamiltonian parameters in an AO basis
     auto h2o = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
-    auto mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2o, "STO-3G");
+    auto mol_ham_par = GQCP::SQHamiltonian<double>::Molecular(h2o, "STO-3G");
     auto K = mol_ham_par.get_K();
 
     // Create a plain RHF SCF solver and solve the SCF equations

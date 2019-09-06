@@ -28,13 +28,13 @@
 BOOST_AUTO_TEST_CASE ( energy_as_contraction ) {
 
     auto h2 = GQCP::Molecule::ReadXYZ("data/h2_olsens.xyz");
-    auto ao_mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2, "6-31G**");
+    auto ao_mol_ham_par = GQCP::SQHamiltonian<double>::Molecular(h2, "6-31G**");
 
     GQCP::PlainRHFSCFSolver plain_scf_solver (ao_mol_ham_par, h2);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 
-    auto mol_ham_par = GQCP::HamiltonianParameters<double>(ao_mol_ham_par, rhf.get_C());
+    auto mol_ham_par = GQCP::SQHamiltonian<double>(ao_mol_ham_par, rhf.get_C());
 
 
     // Optimize the AP1roG PSE Lagrangian with the initial guess of the geminal coefficients being 0

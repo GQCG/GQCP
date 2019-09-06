@@ -80,7 +80,6 @@
 
 #include "HamiltonianParameters/AtomicDecompositionParameters.hpp"
 #include "HamiltonianParameters/BaseHamiltonianParameters.hpp"
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
 
 #include "Mathematical/Optimization/BaseEigenproblemSolver.hpp"
 #include "Mathematical/Optimization/BaseHessianModifier.hpp"
@@ -127,6 +126,7 @@
 #include "Operator/FirstQuantized/Operator.hpp"
 #include "Operator/FirstQuantized/OverlapOperator.hpp"
 
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/SQTwoElectronOperator.hpp"
 

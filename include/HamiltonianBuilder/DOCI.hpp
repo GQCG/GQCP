@@ -57,7 +57,7 @@ public:
      *
      *  @return the DOCI Hamiltonian matrix
      */
-    SquareMatrix<double> constructHamiltonian(const HamiltonianParameters<double>& hamiltonian_parameters) const override;
+    SquareMatrix<double> constructHamiltonian(const SQHamiltonian<double>& hamiltonian_parameters) const override;
 
     /**
      *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis
@@ -66,14 +66,14 @@ public:
      *
      *  @return the action of the DOCI Hamiltonian on the coefficient vector
      */
-    VectorX<double> matrixVectorProduct(const HamiltonianParameters<double>& hamiltonian_parameters, const VectorX<double>& x, const VectorX<double>& diagonal) const override;
+    VectorX<double> matrixVectorProduct(const SQHamiltonian<double>& hamiltonian_parameters, const VectorX<double>& x, const VectorX<double>& diagonal) const override;
 
     /**
      *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis
      *
      *  @return the diagonal of the matrix representation of the DOCI Hamiltonian
      */
-    VectorX<double> calculateDiagonal(const HamiltonianParameters<double>& hamiltonian_parameters) const override;
+    VectorX<double> calculateDiagonal(const SQHamiltonian<double>& hamiltonian_parameters) const override;
 };
 
 

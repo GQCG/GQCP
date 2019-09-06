@@ -52,7 +52,7 @@ public:
     /**
      *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to calculate the 1- and 2-DMs
      */
-    virtual void prepareDMCalculation(const HamiltonianParameters<double>& ham_par) = 0;
+    virtual void prepareDMCalculation(const SQHamiltonian<double>& ham_par) = 0;
 
     /**
      *  @return the current 1-DM
@@ -72,21 +72,21 @@ public:
      * 
      *  In the case of this uncoupled DOCI orbital optimizer, the DOCI eigenvalue problem is re-solved in every iteration using the current orbitals
      */
-    void prepareOrbitalDerivativesCalculation(const HamiltonianParameters<double>& ham_par) override;
+    void prepareOrbitalDerivativesCalculation(const SQHamiltonian<double>& ham_par) override;
 
     /**
      *  @param ham_par      the current Hamiltonian parameters
      * 
      *  @return the current orbital gradient as a matrix
      */
-    SquareMatrix<double> calculateGradientMatrix(const HamiltonianParameters<double>& ham_par) const override;
+    SquareMatrix<double> calculateGradientMatrix(const SQHamiltonian<double>& ham_par) const override;
 
     /**
      *  @param ham_par      the current Hamiltonian parameters
      * 
      *  @return the current orbital Hessian as a tensor
      */
-    SquareRankFourTensor<double> calculateHessianTensor(const HamiltonianParameters<double>& ham_par) const override;
+    SquareRankFourTensor<double> calculateHessianTensor(const SQHamiltonian<double>& ham_par) const override;
 };
 
 

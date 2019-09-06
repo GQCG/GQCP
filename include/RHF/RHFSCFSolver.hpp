@@ -19,7 +19,7 @@
 
 
 #include "Basis/TransformationMatrix.hpp"
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Molecule/Molecule.hpp"
 #include "RHF/RHF.hpp"
 
@@ -38,7 +38,7 @@ protected:
     double threshold;
     bool is_converged = false;
 
-    HamiltonianParameters<double> ham_par;  // Hamiltonian parameters expressed in an AO basis
+    SQHamiltonian<double> ham_par;  // Hamiltonian parameters expressed in an AO basis
     Molecule molecule;
 
     RHF solution;
@@ -65,7 +65,7 @@ public:
      *  @param threshold                        the convergence treshold on the Frobenius norm on the AO density matrix
      *  @param maximum_number_of_iterations     the maximum number of iterations for the SCF procedure
      */
-    RHFSCFSolver(const HamiltonianParameters<double>& ham_par, const Molecule& molecule, double threshold=1.0e-08, size_t maximum_number_of_iterations=128);
+    RHFSCFSolver(const SQHamiltonian<double>& ham_par, const Molecule& molecule, double threshold=1.0e-08, size_t maximum_number_of_iterations=128);
 
 
     // DESTRUCTOR

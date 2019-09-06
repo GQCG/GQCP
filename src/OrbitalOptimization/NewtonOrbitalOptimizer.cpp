@@ -50,7 +50,7 @@ NewtonOrbitalOptimizer::NewtonOrbitalOptimizer(std::shared_ptr<BaseHessianModifi
 /**
  *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence
  */
-void NewtonOrbitalOptimizer::prepareConvergenceChecking(const HamiltonianParameters<double>& ham_par) {
+void NewtonOrbitalOptimizer::prepareConvergenceChecking(const SQHamiltonian<double>& ham_par) {
 
     this->prepareOrbitalDerivativesCalculation(ham_par);
 
@@ -70,7 +70,7 @@ void NewtonOrbitalOptimizer::prepareConvergenceChecking(const HamiltonianParamet
  * 
  *  @return if the algorithm is considered to be converged
  */
-bool NewtonOrbitalOptimizer::checkForConvergence(const HamiltonianParameters<double>& ham_par) const {
+bool NewtonOrbitalOptimizer::checkForConvergence(const SQHamiltonian<double>& ham_par) const {
 
     // Check for convergence on the norm
     if (this->gradient.norm() < this->convergence_threshold) {
@@ -97,7 +97,7 @@ bool NewtonOrbitalOptimizer::checkForConvergence(const HamiltonianParameters<dou
  * 
  *  @return a unitary matrix that will be used to rotate the current Hamiltonian parameters into the next iteration
  */
-TransformationMatrix<double> NewtonOrbitalOptimizer::calculateNewRotationMatrix(const HamiltonianParameters<double>& ham_par) const {
+TransformationMatrix<double> NewtonOrbitalOptimizer::calculateNewRotationMatrix(const SQHamiltonian<double>& ham_par) const {
 
     // The general goal of this function is to:
     //      1) determine the free orbital rotation generators, using gradient and Hessian information
@@ -120,7 +120,7 @@ TransformationMatrix<double> NewtonOrbitalOptimizer::calculateNewRotationMatrix(
  * 
  *  @return the current orbital gradient as a vector
  */
-VectorX<double> NewtonOrbitalOptimizer::calculateGradientVector(const HamiltonianParameters<double>& ham_par) const {
+VectorX<double> NewtonOrbitalOptimizer::calculateGradientVector(const SQHamiltonian<double>& ham_par) const {
     return this->calculateGradientMatrix(ham_par).pairWiseStrictReduce();
 }
 
@@ -130,7 +130,7 @@ VectorX<double> NewtonOrbitalOptimizer::calculateGradientVector(const Hamiltonia
  * 
  *  @return the current orbital Hessian as a matrix
  */
-SquareMatrix<double> NewtonOrbitalOptimizer::calculateHessianMatrix(const HamiltonianParameters<double>& ham_par) const {
+SquareMatrix<double> NewtonOrbitalOptimizer::calculateHessianMatrix(const SQHamiltonian<double>& ham_par) const {
     return this->calculateHessianTensor(ham_par).pairWiseStrictReduce();
 }
 
@@ -169,7 +169,7 @@ VectorX<double> NewtonOrbitalOptimizer::directionFromIndefiniteHessian() const {
  * 
  *  @return the new free orbital generators
  */
-OrbitalRotationGenerators NewtonOrbitalOptimizer::calculateNewFreeOrbitalGenerators(const HamiltonianParameters<double>& ham_par) const {
+OrbitalRotationGenerators NewtonOrbitalOptimizer::calculateNewFreeOrbitalGenerators(const SQHamiltonian<double>& ham_par) const {
 
     // If the norm hasn't converged, use the Newton step
     if (this->gradient.norm() > this->convergence_threshold) {
