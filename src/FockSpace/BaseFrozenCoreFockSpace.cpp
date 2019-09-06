@@ -325,9 +325,9 @@ SQHamiltonian<double> BaseFrozenCoreFockSpace::freezeOperator(const SQHamiltonia
 
     size_t K_active = ham_par.get_K() - X;  // number of non-frozen orbitals
 
-    const auto frozen_components_g = BaseFrozenCoreFockSpace::freezeOperator(ham_par.get_g(), X);
+    const auto frozen_components_g = BaseFrozenCoreFockSpace::freezeOperator(ham_par.twoElectron(), X);
     ScalarSQOneElectronOperator<double> S = BaseFrozenCoreFockSpace::freezeOperator(ham_par.get_S(), X);  // active
-    ScalarSQOneElectronOperator<double> h = BaseFrozenCoreFockSpace::freezeOperator(ham_par.get_h(), X) + frozen_components_g.one_op;  // active
+    ScalarSQOneElectronOperator<double> h = BaseFrozenCoreFockSpace::freezeOperator(ham_par.core(), X) + frozen_components_g.one_op;  // active
 
     std::shared_ptr<ScalarBasis<GTOShell>> ao_basis;  // nullptr
     ScalarSQTwoElectronOperator<double> g = frozen_components_g.two_op;
@@ -388,7 +388,7 @@ VectorX<double> BaseFrozenCoreFockSpace::frozenCoreDiagonal(const ScalarSQTwoEle
  *  @return the Hamiltonian diagonal from strictly evaluating the frozen orbitals in the Fock space
  */
 VectorX<double> BaseFrozenCoreFockSpace::frozenCoreDiagonal(const SQHamiltonian<double>& ham_par, size_t X,  size_t dimension) {
-    return BaseFrozenCoreFockSpace::frozenCoreDiagonal(ham_par.get_h(), X, dimension) + BaseFrozenCoreFockSpace::frozenCoreDiagonal(ham_par.get_g(), X, dimension);
+    return BaseFrozenCoreFockSpace::frozenCoreDiagonal(ham_par.core(), X, dimension) + BaseFrozenCoreFockSpace::frozenCoreDiagonal(ham_par.twoElectron(), X, dimension);
 }
 
 

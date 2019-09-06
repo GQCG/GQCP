@@ -51,7 +51,7 @@ SquareMatrix<double> Hubbard::constructHamiltonian(const SQHamiltonian<double>& 
         throw std::invalid_argument("Hubbard::constructHamiltonian(SQHamiltonian<double>): Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
     }
 
-    return this->fock_space.evaluateOperatorDense(hamiltonian_parameters.get_h(), false) + SquareMatrix<double>(this->calculateDiagonal(hamiltonian_parameters).asDiagonal());
+    return this->fock_space.evaluateOperatorDense(hamiltonian_parameters.core(), false) + SquareMatrix<double>(this->calculateDiagonal(hamiltonian_parameters).asDiagonal());
 }
 
 
@@ -80,8 +80,8 @@ VectorX<double> Hubbard::matrixVectorProduct(const SQHamiltonian<double>& hamilt
     Eigen::Map<Eigen::MatrixXd> matvecmap(matvec.data(), dim_beta, dim_alpha);
     Eigen::Map<const Eigen::MatrixXd> xmap(x.data(), dim_beta, dim_alpha);
 
-    auto beta_hamiltonian = fock_space_beta.evaluateOperatorSparse(hamiltonian_parameters.get_h(), false);
-    auto alpha_hamiltonian = fock_space_alpha.evaluateOperatorSparse(hamiltonian_parameters.get_h(), false);
+    auto beta_hamiltonian = fock_space_beta.evaluateOperatorSparse(hamiltonian_parameters.core(), false);
+    auto alpha_hamiltonian = fock_space_alpha.evaluateOperatorSparse(hamiltonian_parameters.core(), false);
 
     matvecmap += xmap * alpha_hamiltonian + beta_hamiltonian * xmap;
 
@@ -107,7 +107,7 @@ VectorX<double> Hubbard::calculateDiagonal(const SQHamiltonian<double>& hamilton
     const auto dim_alpha = fock_space_alpha.get_dimension();
     const auto dim_beta = fock_space_beta.get_dimension();
     const auto dim = fock_space.get_dimension();
-    const auto& g = hamiltonian_parameters.get_g().parameters();
+    const auto& g = hamiltonian_parameters.twoElectron().parameters();
 
     // Diagonal contributions
     VectorX<double> diagonal = VectorX<double>::Zero(dim);

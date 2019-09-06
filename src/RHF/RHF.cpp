@@ -114,7 +114,7 @@ ScalarSQOneElectronOperator<double> calculateRHFAOFockMatrix(const OneRDM<double
     Eigen::array<Eigen::IndexPair<int>, 2> exchange_contraction_pair = {Eigen::IndexPair<int>(1, 0), Eigen::IndexPair<int>(2, 1)};
 
     // Calculate both contractions (and incorporate prefactors)
-    const auto& g = ham_par.get_g().parameters();
+    const auto& g = ham_par.twoElectron().parameters();
     Tensor<double, 2> direct_contraction = g.contract(D_AO_tensor, direct_contraction_pair);
     Tensor<double, 2> exchange_contraction = -0.5 * g.contract(D_AO_tensor, exchange_contraction_pair);
 
@@ -123,7 +123,7 @@ ScalarSQOneElectronOperator<double> calculateRHFAOFockMatrix(const OneRDM<double
     Eigen::Map<Eigen::MatrixXd> G2 (exchange_contraction.data(), exchange_contraction.dimension(0), exchange_contraction.dimension(1));
 
 
-    return ScalarSQOneElectronOperator<double>({ham_par.get_h().parameters() + G1 + G2});
+    return ScalarSQOneElectronOperator<double>({ham_par.core().parameters() + G1 + G2});
 }
 
 

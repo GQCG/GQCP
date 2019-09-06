@@ -82,8 +82,8 @@ BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_Dense_diagonal_true ) {
     GQCP::FrozenProductFockSpace product_fock_space(6, 4, 4, 2);
     GQCP::SelectedFockSpace selected_fock_space(product_fock_space);
 
-    auto& h = parameters.get_h();
-    auto& g = parameters.get_g();
+    auto& h = parameters.core();
+    auto& g = parameters.twoElectron();
 
     // Test the evaluation of the operators with selected Fock space (the reference) versus the that of the product Fock space 
     auto one_electron_evaluation1 = product_fock_space.evaluateOperatorDense(h, true);
@@ -110,8 +110,8 @@ BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_Dense_diagonal_false ) {
     GQCP::FrozenProductFockSpace product_fock_space(6, 4, 4, 2);
     GQCP::SelectedFockSpace selected_fock_space(product_fock_space);
 
-    auto& h = parameters.get_h();
-    auto& g = parameters.get_g();
+    auto& h = parameters.core();
+    auto& g = parameters.twoElectron();
 
     auto one_electron_evaluation1 = product_fock_space.evaluateOperatorDense(h, false);
     auto one_electron_evaluation2 = selected_fock_space.evaluateOperatorDense(h, false);
@@ -137,8 +137,8 @@ BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_diagonal ) {
     GQCP::FrozenProductFockSpace product_fock_space(6, 4, 4, 2);
     GQCP::SelectedFockSpace selected_fock_space(product_fock_space);
 
-    auto& h = parameters.get_h();
-    auto& g = parameters.get_g();
+    auto& h = parameters.core();
+    auto& g = parameters.twoElectron();
 
     auto one_electron_evaluation1 = product_fock_space.evaluateOperatorDiagonal(h);
     auto one_electron_evaluation2 = selected_fock_space.evaluateOperatorDiagonal(h);

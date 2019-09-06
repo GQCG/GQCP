@@ -30,8 +30,8 @@ void SelectedCI::evaluateHamiltonianElements(const SQHamiltonian<double>& hamilt
     const size_t dim = fock_space.get_dimension();
     const size_t K = fock_space.get_K();
 
-    const auto& h = hamiltonian_parameters.get_h().parameters();
-    const auto& g = hamiltonian_parameters.get_g().parameters();
+    const auto& h = hamiltonian_parameters.core().parameters();
+    const auto& g = hamiltonian_parameters.twoElectron().parameters();
 
     for (size_t I = 0; I < dim; I++) {  // loop over all addresses (1)
         Configuration configuration_I = this->fock_space.get_configuration(I);
@@ -203,7 +203,7 @@ SelectedCI::SelectedCI(const SelectedFockSpace& fock_space) :
  *  @return the SelectedCI Hamiltonian matrix
  */
 SquareMatrix<double> SelectedCI::constructHamiltonian(const SQHamiltonian<double>& hamiltonian_parameters) const {
-    auto K = hamiltonian_parameters.get_h().get_dim();
+    auto K = hamiltonian_parameters.core().get_dim();
     if (K != this->fock_space.get_K()) {
         throw std::invalid_argument("SelectedCI::constructHamiltonian(SQHamiltonian<double>): Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
     }
@@ -230,7 +230,7 @@ SquareMatrix<double> SelectedCI::constructHamiltonian(const SQHamiltonian<double
  */
 VectorX<double> SelectedCI::matrixVectorProduct(const SQHamiltonian<double>& hamiltonian_parameters, const VectorX<double>& x, const VectorX<double>& diagonal) const {
 
-    auto K = hamiltonian_parameters.get_h().get_dim();
+    auto K = hamiltonian_parameters.core().get_dim();
     if (K != this->fock_space.get_K()) {
         throw std::invalid_argument("SelectedCI::matrixVectorProduct(SQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
     }

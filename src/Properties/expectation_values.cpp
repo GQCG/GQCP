@@ -34,7 +34,7 @@ namespace GQCP {
  */
 double calculateExpectationValue(const SQHamiltonian<double>& ham_par, const OneRDM<double>& one_rdm, const TwoRDM<double>& two_rdm) {
 
-    return ham_par.get_scalar() + calculateExpectationValue(ham_par.get_h(), one_rdm)[0] + calculateExpectationValue(ham_par.get_g(), two_rdm)[0];
+    return ham_par.get_scalar() + calculateExpectationValue(ham_par.core(), one_rdm)[0] + calculateExpectationValue(ham_par.twoElectron(), two_rdm)[0];
 }
 
 

@@ -359,7 +359,7 @@ SquareMatrix<double> SelectedFockSpace::evaluateOperatorDense(const SQHamiltonia
     }
 
     EvaluationMatrix<SquareMatrix<double>> container (this->dim);
-    this->EvaluateOperator<SquareMatrix<double>>(ham_par.get_h(), ham_par.get_g(), container, diagonal_values);
+    this->EvaluateOperator<SquareMatrix<double>>(ham_par.core(), ham_par.twoElectron(), container, diagonal_values);
     return container.get_matrix();
 }
 
@@ -388,7 +388,7 @@ Eigen::SparseMatrix<double> SelectedFockSpace::evaluateOperatorSparse(const SQHa
     }
 
     container.reserve(memory);
-    this->EvaluateOperator<Eigen::SparseMatrix<double>>(ham_par.get_h(), ham_par.get_g(), container, diagonal_values);
+    this->EvaluateOperator<Eigen::SparseMatrix<double>>(ham_par.core(), ham_par.twoElectron(), container, diagonal_values);
     container.addToMatrix();
     return container.get_matrix();
 }
@@ -505,7 +505,7 @@ VectorX<double> SelectedFockSpace::evaluateOperatorDiagonal(const ScalarSQTwoEle
  *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the Fock space
  */
 VectorX<double> SelectedFockSpace::evaluateOperatorDiagonal(const SQHamiltonian<double>& ham_par) const {
-    return this->evaluateOperatorDiagonal(ham_par.get_h()) + this->evaluateOperatorDiagonal(ham_par.get_g());
+    return this->evaluateOperatorDiagonal(ham_par.core()) + this->evaluateOperatorDiagonal(ham_par.twoElectron());
 };
 
 

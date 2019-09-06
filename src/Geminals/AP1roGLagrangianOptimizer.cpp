@@ -29,7 +29,7 @@ namespace GQCP {
 void AP1roGLagrangianOptimizer::solve() {
 
     const auto K = this->ham_par.get_K();
-    const auto& g = this->ham_par.get_g().parameters();
+    const auto& g = this->ham_par.twoElectron().parameters();
 
 
     // Solve the PSEs and set part of the solutions

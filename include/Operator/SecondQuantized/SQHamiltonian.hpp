@@ -391,13 +391,34 @@ public:
      */
 
     const ScalarSQOneElectronOperator<Scalar>& get_S() const { return this->S; }
-    const ScalarSQOneElectronOperator<Scalar>& get_h() const { return this->h; }
-    const ScalarSQTwoElectronOperator<Scalar>& get_g() const { return this->g; }
     const TransformationMatrix<Scalar>& get_T_total() const { return this->T_total; }
-    size_t get_K() const { return this->K; }
 
+
+
+    /**
+     *  @return the dimension of the Hamiltonian, i.e. the number of spinors in which it is expressed
+     */
+    size_t get_K() const { return this->dimension(); }
+
+
+    /*
+     *  PUBLIC METHODS
+     */
+
+    /**
+     *  @return the dimension of the Hamiltonian, i.e. the number of spinors in which it is expressed
+     */
     size_t dimension() const { return this->K; }
 
+    /**
+     *  @return the 'core' Hamiltonian, i.e. the total of the one-electron contributions to the Hamiltonian
+     */
+    const ScalarSQOneElectronOperator<Scalar>& core() const { return this->h; }
+
+    /**
+     *  @return the total of the two-electron contributions to the Hamiltonian
+     */
+    const ScalarSQTwoElectronOperator<Scalar>& twoElectron() const { return this->g; }
 
     /*
      *  PUBLIC METHODS - RELATED TO TRANSFORMATIONS

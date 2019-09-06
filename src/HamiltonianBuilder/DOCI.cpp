@@ -46,7 +46,7 @@ DOCI::DOCI(const FockSpace& fock_space) :
  */
 SquareMatrix<double> DOCI::constructHamiltonian(const SQHamiltonian<double>& hamiltonian_parameters) const {
 
-    const auto K = hamiltonian_parameters.get_h().get_dim();
+    const auto K = hamiltonian_parameters.core().get_dim();
     if (K != this->fock_space.get_K()) {
         throw std::invalid_argument("DOCI::constructHamiltonian(SQHamiltonian<double>): The number of orbitals for the Fock space and Hamiltonian parameters are incompatible.");
     }
@@ -55,7 +55,7 @@ SquareMatrix<double> DOCI::constructHamiltonian(const SQHamiltonian<double>& ham
     SquareMatrix<double> result_matrix = SquareMatrix<double>::Zero(dim, dim);
     const size_t N = this->fock_space.get_N();
 
-    const auto& g = hamiltonian_parameters.get_g().parameters();
+    const auto& g = hamiltonian_parameters.twoElectron().parameters();
 
 
     // Create the first spin string. Since in DOCI, alpha == beta, we can just treat them as one and multiply all contributions by 2
@@ -117,14 +117,14 @@ SquareMatrix<double> DOCI::constructHamiltonian(const SQHamiltonian<double>& ham
  */
 VectorX<double> DOCI::matrixVectorProduct(const SQHamiltonian<double>& hamiltonian_parameters, const VectorX<double>& x, const VectorX<double>& diagonal) const {
 
-    const auto K = hamiltonian_parameters.get_h().get_dim();
+    const auto K = hamiltonian_parameters.core().get_dim();
     if (K != this->fock_space.get_K()) {
         throw std::invalid_argument("DOCI::matrixVectorProduct(SQHamiltonian<double>, VectorX<double>, VectorX<double>): The number of orbitals for the Fock space and Hamiltonian parameters are incompatible.");
     }
 
     const size_t N = this->fock_space.get_N();
     const size_t dim = this->fock_space.get_dimension();
-    const auto& g = hamiltonian_parameters.get_g().parameters();
+    const auto& g = hamiltonian_parameters.twoElectron().parameters();
 
 
     // Create the first spin string. Since in DOCI, alpha == beta, we can just treat them as one and multiply all contributions by 2
@@ -188,14 +188,14 @@ VectorX<double> DOCI::matrixVectorProduct(const SQHamiltonian<double>& hamiltoni
  */
 VectorX<double> DOCI::calculateDiagonal(const SQHamiltonian<double>& hamiltonian_parameters) const {
 
-    const auto K = hamiltonian_parameters.get_h().get_dim();
+    const auto K = hamiltonian_parameters.core().get_dim();
     if (K != this->fock_space.get_K()) {
         throw std::invalid_argument("DOCI::calculateDiagonal(SQHamiltonian<double>): Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
     }
 
     const size_t dim = this->fock_space.get_dimension();
-    const auto& h = hamiltonian_parameters.get_h().parameters();
-    const auto& g = hamiltonian_parameters.get_g().parameters();
+    const auto& h = hamiltonian_parameters.core().parameters();
+    const auto& g = hamiltonian_parameters.twoElectron().parameters();
 
     VectorX<double> diagonal = VectorX<double>::Zero(dim);
     // Create the first spin string. Since in DOCI, alpha == beta, we can just treat them as one and multiply all contributions by 2

@@ -53,7 +53,7 @@ RHFSCFSolver::RHFSCFSolver(const SQHamiltonian<double>& ham_par, const Molecule&
  */
 void RHFSCFSolver::solve() {
 
-    const auto& H_core = this->ham_par.get_h().parameters();
+    const auto& H_core = this->ham_par.core().parameters();
     const auto& S = this->ham_par.get_S().parameters();
 
 
@@ -72,7 +72,7 @@ void RHFSCFSolver::solve() {
  */
 void RHFSCFSolver::solve(const TransformationMatrix<double>& C_initial) {
 
-    const auto& H_core = this->ham_par.get_h();
+    const auto& H_core = this->ham_par.core();
     const auto& S = this->ham_par.get_S().parameters();
 
     auto C = C_initial;

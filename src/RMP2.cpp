@@ -36,7 +36,7 @@ double calculateRMP2EnergyCorrection(const SQHamiltonian<double>& ham_par, const
     const size_t HOMO_index = RHFHOMOIndex(N);
     const size_t LUMO_index = RHFLUMOIndex(K, N);
 
-    const auto& g = ham_par.get_g().parameters();
+    const auto& g = ham_par.twoElectron().parameters();
 
     double E = 0.0;
     //  loop over all occupied orbitals (0 <= HOMO )

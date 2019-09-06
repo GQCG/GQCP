@@ -262,7 +262,7 @@ SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const SQHamiltonian
     for (size_t p = 0; p<K; p++) {
 
         const auto& alpha_coupling = this->alpha_couplings[p*(K+K+1-p)/2];
-        const auto& P = this->oneElectronPartition(p, p, ham_par.get_g());
+        const auto& P = this->oneElectronPartition(p, p, ham_par.twoElectron());
         const auto& beta_two_electron_intermediate = this->fock_space_beta.evaluateOperatorDense(P, diagonal_values);
 
         for (int i = 0; i < alpha_coupling.outerSize(); ++i) {
@@ -276,7 +276,7 @@ SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const SQHamiltonian
         for (size_t q = p + 1; q<K; q++) {
 
             const auto& alpha_coupling = this->alpha_couplings[p*(K+K+1-p)/2 + q - p];
-            const auto& P = oneElectronPartition(p, q, ham_par.get_g());
+            const auto& P = oneElectronPartition(p, q, ham_par.twoElectron());
             const auto& beta_two_electron_intermediate = fock_space_beta.evaluateOperatorDense(P, true);
 
             for (int i = 0; i < alpha_coupling.outerSize(); ++i){
@@ -446,7 +446,7 @@ VectorX<double> ProductFockSpace::evaluateOperatorDiagonal(const ScalarSQTwoElec
  *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the Fock space
  */
 VectorX<double> ProductFockSpace::evaluateOperatorDiagonal(const SQHamiltonian<double>& ham_par) const {
-    return this->evaluateOperatorDiagonal(ham_par.get_h()) + this->evaluateOperatorDiagonal(ham_par.get_g());
+    return this->evaluateOperatorDiagonal(ham_par.core()) + this->evaluateOperatorDiagonal(ham_par.twoElectron());
 }
 
 

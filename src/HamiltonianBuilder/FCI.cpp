@@ -57,7 +57,7 @@ SquareMatrix<double> FCI::constructHamiltonian(const SQHamiltonian<double>& hami
  *  @return the action of the FCI Hamiltonian on the coefficient vector
  */
 VectorX<double> FCI::matrixVectorProduct(const SQHamiltonian<double>& hamiltonian_parameters, const VectorX<double>& x, const VectorX<double>& diagonal) const {
-    auto K = hamiltonian_parameters.get_h().get_dim();
+    auto K = hamiltonian_parameters.core().get_dim();
     if (K != this->fock_space.get_K()) {
         throw std::invalid_argument("FCI::matrixVectorProduct(SQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
     }
@@ -77,14 +77,14 @@ VectorX<double> FCI::matrixVectorProduct(const SQHamiltonian<double>& hamiltonia
 
     for (size_t p = 0; p<K; p++) {
 
-        const auto& P = this->fock_space.oneElectronPartition(p, p, hamiltonian_parameters.get_g());
+        const auto& P = this->fock_space.oneElectronPartition(p, p, hamiltonian_parameters.twoElectron());
         const auto& beta_two_electron_intermediate = fock_space_beta.evaluateOperatorDense(P, false);
 
         // sigma(pp) * X * theta(pp)
         matvecmap += beta_two_electron_intermediate * (xmap * alpha_couplings[p*(K+K+1-p)/2]);
         for (size_t q = p + 1; q<K; q++) {
 
-            const auto& P = this->fock_space.oneElectronPartition(p, q, hamiltonian_parameters.get_g());
+            const auto& P = this->fock_space.oneElectronPartition(p, q, hamiltonian_parameters.twoElectron());
             const auto& beta_two_electron_intermediate = fock_space_beta.evaluateOperatorDense(P, true);
 
             // (sigma(pq) + sigma(qp)) * X * theta(pq)
