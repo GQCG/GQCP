@@ -79,7 +79,6 @@
 #include "HamiltonianBuilder/SelectedCI.hpp"
 
 #include "HamiltonianParameters/AtomicDecompositionParameters.hpp"
-#include "HamiltonianParameters/BaseHamiltonianParameters.hpp"
 
 #include "Mathematical/Optimization/BaseEigenproblemSolver.hpp"
 #include "Mathematical/Optimization/BaseHessianModifier.hpp"

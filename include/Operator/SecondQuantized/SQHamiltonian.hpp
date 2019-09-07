@@ -21,7 +21,6 @@
 #include "Basis/ScalarBasis.hpp"
 #include "Basis/SingleParticleBasis.hpp"
 #include "Basis/TransformationMatrix.hpp"
-#include "HamiltonianParameters/BaseHamiltonianParameters.hpp"
 #include "HoppingMatrix.hpp"
 #include "Molecule/Molecule.hpp"
 #include "Operator/FirstQuantized/NuclearRepulsionOperator.hpp"
@@ -44,9 +43,12 @@ namespace GQCP {
  *  @tparam Scalar      the scalar type of the second-quantized parameters (i.e. the integrals)
  */
 template <typename Scalar>
-class SQHamiltonian : public BaseHamiltonianParameters {
+class SQHamiltonian {
 private:
     size_t K;  // the number of spatial orbitals
+
+    std::shared_ptr<ScalarBasis<GTOShell>> ao_basis;  // the initial atomic orbitals
+
 
     ScalarSQOneElectronOperator<Scalar> S;  // overlap
 
@@ -72,7 +74,7 @@ public:
      *  @param C            a transformation matrix between the current molecular orbitals and the atomic orbitals
      */
     SQHamiltonian(std::shared_ptr<ScalarBasis<GTOShell>> ao_basis, const ScalarSQOneElectronOperator<Scalar>& S, const ScalarSQOneElectronOperator<Scalar>& h, const ScalarSQTwoElectronOperator<Scalar>& g, const TransformationMatrix<Scalar>& C) :
-        BaseHamiltonianParameters(std::move(ao_basis)),
+        ao_basis (std::move(ao_basis)),
         K (S.get_dim()),
         S (S),
         h (h),
@@ -354,22 +356,13 @@ public:
         return SQHamiltonian(ao_basis, S, ScalarSQOneElectronOperator<double>({h}), ScalarSQTwoElectronOperator<double>({g}), C);
     }
 
-
-
-    /*
-     *  DESTRUCTOR
-     */
-
-    ~SQHamiltonian() override = default;
-
-
     /*
      *  GETTERS
      */
 
     const ScalarSQOneElectronOperator<Scalar>& get_S() const { return this->S; }
     const TransformationMatrix<Scalar>& get_T_total() const { return this->T_total; }
-
+    const std::shared_ptr<ScalarBasis<GTOShell>>& get_ao_basis() const { return this->ao_basis; }
 
 
     /**
