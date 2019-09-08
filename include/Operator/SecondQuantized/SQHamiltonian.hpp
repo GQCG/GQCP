@@ -67,40 +67,87 @@ public:
      */
     SQHamiltonian() = default;
 
-    
+
+    /**
+     *  @param ao_basis     the initial AO basis
+     *  @param S            the overlap integrals
+     *  @param one_ops      the core (i.e. one-electron) contributions to the Hamiltonian
+     *  @param g            the two-electron contributions to the Hamiltonian
+     *  @param T            the transformation matrix between the current molecular orbitals and the atomic orbitals
+     */
+    SQHamiltonian(std::shared_ptr<ScalarBasis<GTOShell>> ao_basis, const ScalarSQOneElectronOperator<Scalar>& S, const std::vector<ScalarSQOneElectronOperator<Scalar>>& one_ops, const std::vector<ScalarSQTwoElectronOperator<Scalar>>& two_ops, const TransformationMatrix<Scalar>& T) :
+        ao_basis (std::move(ao_basis)),
+        K (S.dimension()),
+        S (S),
+        one_ops (one_ops),
+        two_ops (two_ops),
+        T_total (T)
+    {
+        const std::string function_intro ("SQHamiltonian::SQHamiltonian(std::shared_ptr<ScalarBasis<GTOShell>> ao_basis, const ScalarSQOneElectronOperator<Scalar>& S, const std::vector<ScalarSQOneElectronOperator<Scalar>& one_ops, const std::vector<ScalarSQTwoElectronOperator<Scalar>& two_ops, const TransformationMatrix<Scalar>& T): ");
+
+        // Check if the dimensions are compatible
+        const std::invalid_argument dimension_error (function_intro + "The dimensions of the operators and coefficient matrix are incompatible.");
+
+        if (this->ao_basis) {  // ao_basis is not nullptr
+            if (this->dimension() != this->ao_basis->numberOfBasisFunctions()) {
+                throw dimension_error;
+            }
+        }
+
+        const auto dimension_of_first = one_ops[0].dimension();
+        for (const auto& one_op : this->one_ops) {
+            if (one_op.dimension() != dimension_of_first) {
+                throw dimension_error;
+            }
+        }
+
+        for (const auto& two_op : this->two_ops) {
+            if (two_op.dimension() != dimension_of_first) {
+                throw dimension_error;
+            }
+        }
+
+        if ((T.cols() != this->dimension()) || (T.rows() != this->dimension())) {
+            throw dimension_error;
+        }
+
+
+        // Calculate the total one-electron operator
+        QCMatrix<Scalar> total_one_op_par (this->dimension());
+        total_one_op_par.setZero();
+        for (const auto& one_op : this->one_ops) {
+            total_one_op_par += one_op.parameters();
+        }
+        this->total_one_op = ScalarSQOneElectronOperator<Scalar>({total_one_op_par});
+
+
+        // Calculate the total two-electron operator
+        QCRankFourTensor<Scalar> total_two_op_par (this->dimension());
+        total_two_op_par.setZero();
+        for (const auto& two_op : this->two_ops) {
+            total_two_op_par += two_op.parameters().Eigen();
+        }
+        this->total_two_op = ScalarSQTwoElectronOperator<Scalar>({total_two_op_par});
+
+
+
+        // Check if the underlying overlap matrix is not a zero matrix
+        if (S.parameters().isZero(1.0e-08)) {
+            throw std::invalid_argument(function_intro + "The underlying overlap matrix cannot be a zero matrix.");
+        }
+    }
+
+
     /**
      *  @param ao_basis     the initial AO basis
      *  @param S            the overlap integrals
      *  @param h            the one-electron integrals H_core
      *  @param g            the two-electron integrals
-     *  @param C            a transformation matrix between the current molecular orbitals and the atomic orbitals
+     *  @param T            the transformation matrix between the current molecular orbitals and the atomic orbitals
      */
-    SQHamiltonian(std::shared_ptr<ScalarBasis<GTOShell>> ao_basis, const ScalarSQOneElectronOperator<Scalar>& S, const ScalarSQOneElectronOperator<Scalar>& h, const ScalarSQTwoElectronOperator<Scalar>& g, const TransformationMatrix<Scalar>& C) :
-        ao_basis (std::move(ao_basis)),
-        K (S.get_dim()),
-        S (S),
-        total_one_op (h),
-        total_two_op (g),
-        T_total (C)
-    {
-        // Check if the dimensions of all matrix representations are compatible
-        auto error = std::invalid_argument("SQHamiltonian::SQHamiltonian(std::shared_ptr<ScalarBasis<GTOShell>>, ScalarSQOneElectronOperator<Scalar>, ScalarSQOneElectronOperator<Scalar>, ScalarSQTwoElectronOperator<Scalar>,TransformationMatrix<Scalar>, double): The dimensions of the operators and coefficient matrix are incompatible.");
-
-        if (this->ao_basis) {  // ao_basis is not nullptr
-            if (this->K != this->ao_basis->numberOfBasisFunctions()) {
-                throw error;
-            }
-        }
-
-        if ((h.get_dim() != this->K) || (g.get_dim() != this->K) || (C.cols() != this->K) || (C.rows() != this->K)) {
-            throw error;
-        }
-
-
-        if (S.parameters().isZero(1.0e-08)) {
-            throw std::invalid_argument("SQHamiltonian::SQHamiltonian(std::shared_ptr<ScalarBasis<GTOShell>>, ScalarSQOneElectronOperator<Scalar>, ScalarSQOneElectronOperator<Scalar>, ScalarSQTwoElectronOperator<Scalar>,TransformationMatrix<Scalar>, double): The underlying overlap matrix cannot be a zero matrix.");
-        }
-    }
+    SQHamiltonian(std::shared_ptr<ScalarBasis<GTOShell>> ao_basis, const ScalarSQOneElectronOperator<Scalar>& S, const ScalarSQOneElectronOperator<Scalar>& h, const ScalarSQTwoElectronOperator<Scalar>& g, const TransformationMatrix<Scalar>& T) :
+        SQHamiltonian(ao_basis, S, std::vector<ScalarSQOneElectronOperator<Scalar>>({h}), std::vector<ScalarSQTwoElectronOperator<Scalar>>({g}), T)
+    {}
 
 
     /**
@@ -191,7 +238,6 @@ public:
      */
     template <typename Z = Scalar>
     static enable_if_t<std::is_same<Z, double>::value, SQHamiltonian<double>> Random(size_t K) {
-
 
         ScalarSQOneElectronOperator<double> S ({QCMatrix<double>::Identity(K, K)});  // the underlying orbital basis can be chosen as orthonormal, since the form of the underlying orbitals doesn't really matter
         TransformationMatrix<double> C = TransformationMatrix<double>::Identity(K, K);  // the transformation matrix here doesn't really mean anything, because it doesn't link to any AO basis

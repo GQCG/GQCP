@@ -437,4 +437,3 @@ BOOST_AUTO_TEST_CASE ( dissociatedMoleculeParameters ) {
 
     BOOST_CHECK_NO_THROW(GQCP::SQHamiltonian<double>::Molecular(NO, "STO-3G"));
 }
-
