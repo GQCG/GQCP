@@ -25,18 +25,19 @@
 
 BOOST_AUTO_TEST_CASE ( h2_631gdp ) {
 
-    // Prepare molecular Hamiltonian parameters in the RHF basis
+    // Prepare molecular Hamiltonian in the RHF basis
     auto h2 = GQCP::Molecule::ReadXYZ("data/h2_olsens.xyz");
-    auto ao_mol_ham_par = GQCP::SQHamiltonian<double>::Molecular(h2, "6-31G**");
+    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2, "6-31G**");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2);  // in an AO basis
 
-    GQCP::PlainRHFSCFSolver plain_scf_solver (ao_mol_ham_par, h2);
+    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, h2);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 
-    auto mol_ham_par = GQCP::SQHamiltonian<double>(ao_mol_ham_par, rhf.get_C());
+    sq_hamiltonian.transform(rhf.get_C());
 
 
     // Optimize the AP1roG Lagrangian, using an initial guess of the geminal coefficients of 0
-    GQCP::AP1roGLagrangianOptimizer bivar_solver1 (h2, mol_ham_par);
+    GQCP::AP1roGLagrangianOptimizer bivar_solver1 (h2, sq_hamiltonian);
     bivar_solver1.solve();
 }

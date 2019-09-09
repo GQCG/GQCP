@@ -30,30 +30,31 @@ BOOST_AUTO_TEST_CASE ( test_random_rotation_diagonal_dense_fci ) {
 
     // Check if a random rotation has no effect on the sum of the diagonal elements
 
-    // Create the molecular Hamiltonian parameters in an AO basis
+    // Create the molecular Hamiltonian in an AO basis
     auto h2o = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
-    auto mol_ham_par = GQCP::SQHamiltonian<double>::Molecular(h2o, "STO-3G");
-    auto K = mol_ham_par.get_K();
+    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2o, "STO-3G");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2o);  // in an AO basis
+    auto K = sq_hamiltonian.get_K();
 
     // Create a plain RHF SCF solver and solve the SCF equations
-    GQCP::PlainRHFSCFSolver plain_scf_solver (mol_ham_par, h2o);
+    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, h2o);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 
-    // Transform the ham_par
-    mol_ham_par.transform(rhf.get_C());
+    // Transform the sq_hamiltonian
+    sq_hamiltonian.transform(rhf.get_C());
 
     GQCP::ProductFockSpace fock_space (K, h2o.numberOfElectrons()/2, h2o.numberOfElectrons()/2);  // dim = 2
 
     // Create the FCI module
     GQCP::FCI fci (fock_space);
 
-    GQCP::VectorX<double> diagonal1 = fci.calculateDiagonal(mol_ham_par);
+    GQCP::VectorX<double> diagonal1 = fci.calculateDiagonal(sq_hamiltonian);
 
     // Rotate the hampar using the random unitary matrix
-    mol_ham_par.randomRotate();
+    sq_hamiltonian.randomRotate();
 
-    GQCP::VectorX<double> diagonal2 = fci.calculateDiagonal(mol_ham_par);
+    GQCP::VectorX<double> diagonal2 = fci.calculateDiagonal(sq_hamiltonian);
 
     BOOST_CHECK(std::abs(diagonal1.sum() - diagonal2.sum()) < 1.0e-10);
 }
@@ -64,24 +65,25 @@ BOOST_AUTO_TEST_CASE ( FCI_H2_Cristina_dense ) {
     // Cristina's H2 FCI energy/OO-DOCI energy
     double reference_fci_energy = -1.1651486697;
 
-    // Create the molecular Hamiltonian parameters in an AO basis
+    // Create the molecular Hamiltonian in an AO basis
     auto h2 = GQCP::Molecule::ReadXYZ("data/h2_cristina.xyz");
-    auto mol_ham_par = GQCP::SQHamiltonian<double>::Molecular(h2, "6-31g**");
-    auto K = mol_ham_par.get_K();
+    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2, "6-31G**");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2);  // in an AO basis
+    auto K = sq_hamiltonian.get_K();
 
     // Create a plain RHF SCF solver and solve the SCF equations
-    GQCP::PlainRHFSCFSolver plain_scf_solver (mol_ham_par, h2);
+    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, h2);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 
-    // Transform the ham_par
-    mol_ham_par.transform(rhf.get_C());
+    // Transform the sq_hamiltonian
+    sq_hamiltonian.transform(rhf.get_C());
 
     GQCP::ProductFockSpace fock_space (K, h2.numberOfElectrons()/2, h2.numberOfElectrons()/2);  // dim = 100
 
     // Create the FCI module
     GQCP::FCI fci (fock_space);
-    GQCP::CISolver ci_solver (fci, mol_ham_par);
+    GQCP::CISolver ci_solver (fci, sq_hamiltonian);
 
     // Solve Dense
     GQCP::DenseSolverOptions dense_solver_options;
@@ -103,24 +105,25 @@ BOOST_AUTO_TEST_CASE ( FCI_H2O_Psi4_GAMESS_dense ) {
     // Psi4 and GAMESS' FCI energy
     double reference_fci_energy = -75.0129803939602;
 
-    // Create the molecular Hamiltonian parameters in an AO basis
+    // Create the molecular Hamiltonian in an AO basis
     auto h2o = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
-    auto mol_ham_par = GQCP::SQHamiltonian<double>::Molecular(h2o, "STO-3G");
-    auto K = mol_ham_par.get_K();
+    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2o, "STO-3G");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2o);  // in an AO basis
+    auto K = sq_hamiltonian.get_K();
 
     // Create a plain RHF SCF solver and solve the SCF equations
-    GQCP::PlainRHFSCFSolver plain_scf_solver (mol_ham_par, h2o);
+    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, h2o);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 
-    // Transform the ham_par
-    mol_ham_par.transform(rhf.get_C());
+    // Transform the sq_hamiltonian
+    sq_hamiltonian.transform(rhf.get_C());
 
     GQCP::ProductFockSpace fock_space (K, h2o.numberOfElectrons()/2, h2o.numberOfElectrons()/2);  // dim = 441
 
     // Create the FCI module
     GQCP::FCI fci (fock_space);
-    GQCP::CISolver ci_solver (fci, mol_ham_par);
+    GQCP::CISolver ci_solver (fci, sq_hamiltonian);
 
     // Solve Dense
     GQCP::DenseSolverOptions dense_solver_options;

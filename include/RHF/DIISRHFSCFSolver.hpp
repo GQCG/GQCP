@@ -51,14 +51,14 @@ private:
 public:
     // CONSTRUCTORS
     /**
-     *  @param ham_par                          the Hamiltonian parameters in AO basis
+     *  @param sq_hamiltonian                   the Hamiltonian expressed in an AO basis
      *  @param molecule                         the molecule used for the SCF calculation
      *  @param minimum_subspace_dimension       the minimum number of Fock matrices that have to be in the subspace before enabling DIIS
      *  @param maximum_subspace_dimension       the maximum DIIS subspace dimension before the oldest Fock matrices get discarded (one at a time)
      *  @param threshold                        the convergence treshold on the Frobenius norm on the AO density matrix
      *  @param maximum_number_of_iterations     the maximum number of iterations for the SCF procedure
      */
-    DIISRHFSCFSolver(SQHamiltonian<double> ham_par, Molecule molecule, size_t minimum_subspace_dimension=6, size_t maximum_subspace_dimension=6, double threshold=1.0e-08, size_t maximum_number_of_iterations=128);
+    DIISRHFSCFSolver(SQHamiltonian<double> sq_hamiltonian, Molecule molecule, size_t minimum_subspace_dimension=6, size_t maximum_subspace_dimension=6, double threshold=1.0e-08, size_t maximum_number_of_iterations=128);
 };
 
 

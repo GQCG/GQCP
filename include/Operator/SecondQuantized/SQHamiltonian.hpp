@@ -151,15 +151,15 @@ public:
 
 
     /**
-     *  A constructor that transforms the given Hamiltonian parameters with a transformation matrix
+     *  A constructor that transforms the given Hamiltonian with a transformation matrix
      *
-     *  @param ham_par      the current Hamiltonian parameters
-     *  @param C            the transformation matrix to be applied to the given Hamiltonian parameters
+     *  @param sq_hamiltonian       the current Hamiltonian
+     *  @param C                    the transformation matrix to be applied to the given Hamiltonian
      */
-    SQHamiltonian(const SQHamiltonian<Scalar>& ham_par, const TransformationMatrix<Scalar>& C) :
-        SQHamiltonian<Scalar>(ham_par.ao_basis, ham_par.S, ham_par.core(), ham_par.twoElectron(), ham_par.T_total)
+    SQHamiltonian(const SQHamiltonian<Scalar>& sq_hamiltonian, const TransformationMatrix<Scalar>& C) :
+        SQHamiltonian<Scalar>(sq_hamiltonian.ao_basis, sq_hamiltonian.S, sq_hamiltonian.core(), sq_hamiltonian.twoElectron(), sq_hamiltonian.T_total)
     {
-        // We have now initialized the new Hamiltonian parameters to be a copy of the given Hamiltonian parameters, so now we will transform
+        // We have now initialized the new Hamiltonian to be a copy of the given Hamiltonian, so now we will transform
         this->transform(C);
     }
 
@@ -170,11 +170,11 @@ public:
      */
 
     /**
-     *  Construct the molecular Hamiltonian parameters in an AO basis
+     *  Construct the molecular Hamiltonian in a given single-particle basis
      *
-     *  @param ao_basis     the AO basis in which the Hamiltonian parameters should be expressed
+     *  @param sp_basis     the single-particle basis in which the Hamiltonian should be expressed
      *
-     *  @return Hamiltonian parameters corresponding to the molecular Hamiltonian in an AO basis. The molecular Hamiltonian has
+     *  @return a second-quantized molecular Hamiltonian. The molecular Hamiltonian has
      *      - one-electron contributions:
      *          - kinetic
      *          - nuclear attraction
@@ -184,55 +184,29 @@ public:
      *  Note that this named constructor is only available for real matrix representations
      */
     template <typename Z = Scalar>
-    static enable_if_t<std::is_same<Z, double>::value, SQHamiltonian<double>> Molecular(std::shared_ptr<ScalarBasis<GTOShell>> ao_basis) {
-
-        const SingleParticleBasis<Z, GTOShell> sp_basis (*ao_basis);
-        const NuclearFramework nuclear_framework (ao_basis->shellSet().nuclei());
+    static enable_if_t<std::is_same<Z, double>::value, SQHamiltonian<double>> Molecular(const SingleParticleBasis<Z, GTOShell>& sp_basis, const Molecule& molecule) {
 
         // Calculate the integrals for the molecular Hamiltonian
         const auto S = sp_basis.quantize(Operator::Overlap());
         const auto T = sp_basis.quantize(Operator::Kinetic());
-        const auto V = sp_basis.quantize(Operator::NuclearAttraction(nuclear_framework));
+        const auto V = sp_basis.quantize(Operator::NuclearAttraction(molecule));
         ScalarSQOneElectronOperator<double> H = T + V;
 
         const auto g = sp_basis.quantize(Operator::Coulomb());
 
 
         // Construct the initial transformation matrix: the identity matrix
-        auto nbf = ao_basis->numberOfBasisFunctions();
+        auto nbf = sp_basis.numberOfBasisFunctions();
         TransformationMatrix<double> T_total = TransformationMatrix<double>::Identity(nbf, nbf);
 
-        return SQHamiltonian(ao_basis, S, H, g, T_total);
-    }
-
-
-    /**
-     *  Construct the molecular Hamiltonian parameters in an AO basis
-     *
-     *  @param molecule     the molecule for which the Hamiltonian parameters should be calculated
-     *  @param basisset     the name of the basisset corresponding to the AO basis
-     *
-     *  @return Hamiltonian parameters corresponding to the molecular Hamiltonian in an AO basis. The molecular Hamiltonian has
-     *      - one-electron contributions:
-     *          - kinetic
-     *          - nuclear attraction
-     *      - two-electron contributions:
-     *          - Coulomb repulsion
-     *
-     *  Note that this named constructor is only available for real matrix representations
-     */
-    template<typename Z = Scalar>
-    static enable_if_t<std::is_same<Z, double>::value, SQHamiltonian<double>> Molecular(const Molecule& molecule, const std::string& basisset) {
-
-        auto ao_basis = std::make_shared<ScalarBasis<GTOShell>>(molecule, basisset);
-        return SQHamiltonian::Molecular(ao_basis);
+        return SQHamiltonian(std::make_shared<ScalarBasis<GTOShell>>(sp_basis.scalarBasis()), S, H, g, T_total);
     }
 
 
     /**
      *  @param K        the number of orbitals
      *
-     *  @return a set of random Hamiltonian parameters with values uniformly distributed between [-1,1]
+     *  @return a random Hamiltonian with values uniformly distributed between [-1,1]
      *
      *  Note that this named constructor is only available for real representations
      */
@@ -269,7 +243,7 @@ public:
     /**
      *  @param fcidump_file     the name of the FCIDUMP file
      *
-     *  @return Hamiltonian parameters corresponding to the contents of an FCIDUMP file
+     *  @return the Hamiltonian corresponding to the contents of an FCIDUMP file
      *
      *  Note that this named constructor is only available for real matrix representations
      */
@@ -370,7 +344,7 @@ public:
     /**
      *  @param H      a Hubbard hopping matrix
      *
-     *  @return Hubbard Hamiltonian parameters generated from the Hubbard hopping matrix
+     *  @return a Hubbard Hamiltonian generated from the Hubbard hopping matrix
      *
      *  Note that this named constructor is only available for real matrix representations
      */
@@ -443,7 +417,7 @@ public:
      */
 
     /**
-     *  @return if the underlying spatial orbital basis of the Hamiltonian parameters is orthonormal
+     *  @return if the underlying spatial orbital basis of the Hamiltonian is orthonormal
      */
     bool areOrbitalsOrthonormal() const {
         return this->S.parameters().isApprox(SquareMatrix<Scalar>::Identity(this->K, this->K));
@@ -451,7 +425,7 @@ public:
 
 
     /**
-     *  In-place transform the matrix representations of Hamiltonian parameters
+     *  In-place transform the matrix representations of Hamiltonian
      *
      *  @param T    the transformation matrix between the old and the new orbital basis
      *
@@ -471,7 +445,7 @@ public:
 
 
     /**
-     *  In-place rotate the matrix representations of Hamiltonian parameters
+     *  In-place rotate the matrix representations of Hamiltonian
      *
      *  @param U    the unitary rotation matrix between the old and the new orbital basis
      *
@@ -491,7 +465,7 @@ public:
 
 
     /**
-     *  In-place rotate the matrix representations of the Hamiltonian parameters using a unitary Jacobi rotation matrix constructed from the Jacobi rotation parameters. Note that this function is only available for real (double) matrix representations
+     *  In-place rotate the matrix representations of the Hamiltonian using a unitary Jacobi rotation matrix constructed from the Jacobi rotation parameters. Note that this function is only available for real (double) matrix representations
      *
      *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
      *
@@ -514,7 +488,7 @@ public:
 
 
     /**
-     *  Using a random rotation matrix, transform the matrix representations of the Hamiltonian parameters
+     *  Using a random rotation matrix, transform the matrix representations of the Hamiltonian
      *
      *  Note that this method is only available for real matrix representations
      */
@@ -597,7 +571,7 @@ public:
     enable_if_t<std::is_same<Z, double>::value, ScalarSQOneElectronOperator<double>> calculateMullikenOperator(const Vectoru& ao_list) const {
 
         if (!this->get_ao_basis()) {
-            throw std::invalid_argument("SQHamiltonian::calculateMullikenOperator(Vectoru): The Hamiltonian parameters have no underlying AO basis, Mulliken analysis is not possible.");
+            throw std::invalid_argument("SQHamiltonian::calculateMullikenOperator(Vectoru): The Hamiltonian has no underlying AO basis, Mulliken analysis is not possible.");
         }
 
         if (ao_list.size() > this->K) {
@@ -648,13 +622,13 @@ public:
      */
 
     /**
-     *  Constrain the Hamiltonian parameters according to the convention: - lambda * constraint
+     *  Constrain the Hamiltonian according to the convention: - lambda * constraint
      *
      *  @param one_op   the one-electron operator used as a constraint
      *  @param two_op   the two-electron operator used as a constraint
      *  @param lambda   Lagrangian multiplier for the constraint
      *
-     *  @return a copy of the constrained Hamiltonian parameters
+     *  @return a copy of the constrained Hamiltonian
      *
      *  Note that this method is only available for real matrix representations
      */
@@ -669,12 +643,12 @@ public:
 
 
     /**
-     *  Constrain the Hamiltonian parameters according to the convention: - lambda * constraint
+     *  Constrain the Hamiltonian according to the convention: - lambda * constraint
      *
      *  @param one_op   the one-electron operator used as a constraint
      *  @param lambda   Lagrangian multiplier for the constraint
      *
-     *  @return a copy of the constrained Hamiltonian parameters
+     *  @return a copy of the constrained Hamiltonian
      *
      *  Note that this method is only available for real matrix representations
      */
@@ -688,12 +662,12 @@ public:
 
 
     /**
-     *  Constrain the Hamiltonian parameters according to the convention: - lambda * constraint
+     *  Constrain the Hamiltonian according to the convention: - lambda * constraint
      *
      *  @param two_op   the two-electron operator used as a constraint
      *  @param lambda   Lagrangian multiplier for the constraint
      *
-     *  @return a copy of the constrained Hamiltonian parameters
+     *  @return a copy of the constrained Hamiltonian
      *
      *  Note that this method is only available for real matrix representations
      */

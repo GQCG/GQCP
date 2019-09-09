@@ -39,27 +39,27 @@ FCI::FCI(const ProductFockSpace& fock_space) :
  */
 
 /**
- *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis
+ *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
  *
  *  @return the FCI Hamiltonian matrix
  */
-SquareMatrix<double> FCI::constructHamiltonian(const SQHamiltonian<double>& hamiltonian_parameters) const {
+SquareMatrix<double> FCI::constructHamiltonian(const SQHamiltonian<double>& sq_hamiltonian) const {
 
-    return this->fock_space.evaluateOperatorDense(hamiltonian_parameters, true);
+    return this->fock_space.evaluateOperatorDense(sq_hamiltonian, true);
 }
 
 
 /**
- *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis
+ *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
  *  @param x                            the vector upon which the FCI Hamiltonian acts
  *  @param diagonal                     the diagonal of the FCI Hamiltonian matrix
  *
  *  @return the action of the FCI Hamiltonian on the coefficient vector
  */
-VectorX<double> FCI::matrixVectorProduct(const SQHamiltonian<double>& hamiltonian_parameters, const VectorX<double>& x, const VectorX<double>& diagonal) const {
-    auto K = hamiltonian_parameters.core().get_dim();
+VectorX<double> FCI::matrixVectorProduct(const SQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
+    auto K = sq_hamiltonian.core().get_dim();
     if (K != this->fock_space.get_K()) {
-        throw std::invalid_argument("FCI::matrixVectorProduct(SQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
+        throw std::invalid_argument("FCI::matrixVectorProduct(SQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the Fock space and sq_hamiltonian are incompatible.");
     }
 
     FockSpace fock_space_alpha = fock_space.get_fock_space_alpha();
@@ -77,14 +77,14 @@ VectorX<double> FCI::matrixVectorProduct(const SQHamiltonian<double>& hamiltonia
 
     for (size_t p = 0; p<K; p++) {
 
-        const auto& P = this->fock_space.oneElectronPartition(p, p, hamiltonian_parameters.twoElectron());
+        const auto& P = this->fock_space.oneElectronPartition(p, p, sq_hamiltonian.twoElectron());
         const auto& beta_two_electron_intermediate = fock_space_beta.evaluateOperatorDense(P, false);
 
         // sigma(pp) * X * theta(pp)
         matvecmap += beta_two_electron_intermediate * (xmap * alpha_couplings[p*(K+K+1-p)/2]);
         for (size_t q = p + 1; q<K; q++) {
 
-            const auto& P = this->fock_space.oneElectronPartition(p, q, hamiltonian_parameters.twoElectron());
+            const auto& P = this->fock_space.oneElectronPartition(p, q, sq_hamiltonian.twoElectron());
             const auto& beta_two_electron_intermediate = fock_space_beta.evaluateOperatorDense(P, true);
 
             // (sigma(pq) + sigma(qp)) * X * theta(pq)
@@ -92,8 +92,8 @@ VectorX<double> FCI::matrixVectorProduct(const SQHamiltonian<double>& hamiltonia
         }
     }
 
-    auto beta_hamiltonian = fock_space_beta.evaluateOperatorSparse(hamiltonian_parameters, false);
-    auto alpha_hamiltonian = fock_space_alpha.evaluateOperatorSparse(hamiltonian_parameters, false);
+    auto beta_hamiltonian = fock_space_beta.evaluateOperatorSparse(sq_hamiltonian, false);
+    auto alpha_hamiltonian = fock_space_alpha.evaluateOperatorSparse(sq_hamiltonian, false);
 
     matvecmap += beta_hamiltonian * xmap + xmap * alpha_hamiltonian;
 
@@ -102,13 +102,13 @@ VectorX<double> FCI::matrixVectorProduct(const SQHamiltonian<double>& hamiltonia
 
 
 /**
- *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis
+ *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
  *
  *  @return the diagonal of the matrix representation of the Hamiltonian
  */
-VectorX<double> FCI::calculateDiagonal(const SQHamiltonian<double>& hamiltonian_parameters) const {
+VectorX<double> FCI::calculateDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const {
 
-   return this->fock_space.evaluateOperatorDiagonal(hamiltonian_parameters);
+   return this->fock_space.evaluateOperatorDiagonal(sq_hamiltonian);
 }
 
 

@@ -50,18 +50,19 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h3 ) {
     // Create a molecule
     GQCP::Molecule hchain = GQCP::Molecule::HChain(3, 0.742, -1);
 
-    // Create the molecular Hamiltonian parameters for this molecule and basis
-    auto mol_ham_par = GQCP::SQHamiltonian<double>::Molecular(hchain, "STO-3G");
-    auto K = mol_ham_par.get_K();
+    // Create the molecular Hamiltonian for this molecule and basis
+    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (hchain, "STO-3G");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, hchain);  // in an AO basis
+    auto K = sq_hamiltonian.get_K();
     auto N_P = hchain.numberOfElectrons()/2;
 
-    mol_ham_par.LowdinOrthonormalize();
+    sq_hamiltonian.LowdinOrthonormalize();
     GQCP::ProductFockSpace fock_space (K, N_P, N_P);
     GQCP::FCI fci (fock_space);
 
     GQCP::DenseSolverOptions solver_options;
 
-    GQCP::CISolver ci_solver (fci, mol_ham_par);
+    GQCP::CISolver ci_solver (fci, sq_hamiltonian);
     ci_solver.solve(solver_options);
 
     // Retrieve the wave function and transform it
@@ -71,8 +72,8 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h3 ) {
     wavefunction1.basisTransform(U_random);
 
     // Generate a new wave function by rotating the basis and performing the FCI again.
-    mol_ham_par.rotate(U_random);
-    GQCP::CISolver ci_solver2 (fci, mol_ham_par);
+    sq_hamiltonian.rotate(U_random);
+    GQCP::CISolver ci_solver2 (fci, sq_hamiltonian);
     ci_solver2.solve(solver_options);
 
     auto wavefunction2 = ci_solver2.makeWavefunction(0);
@@ -88,18 +89,19 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h4 ) {
     // Create a molecule
     GQCP::Molecule hchain = GQCP::Molecule::HChain(4, 0.742, 0);
 
-    // Create the molecular Hamiltonian parameters for this molecule and basis
-    auto mol_ham_par = GQCP::SQHamiltonian<double>::Molecular(hchain, "STO-3G");
-    auto K = mol_ham_par.get_K();
+    // Create the molecular Hamiltonian for this molecule and basis
+    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (hchain, "STO-3G");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, hchain);  // in an AO basis
+    auto K = sq_hamiltonian.get_K();
     auto N_P = hchain.numberOfElectrons()/2;
 
-    mol_ham_par.LowdinOrthonormalize();
+    sq_hamiltonian.LowdinOrthonormalize();
     GQCP::ProductFockSpace fock_space (K, N_P, N_P);
     GQCP::FCI fci (fock_space);
 
     GQCP::DenseSolverOptions solver_options;
     solver_options.number_of_requested_eigenpairs = 10;
-    GQCP::CISolver ci_solver (fci, mol_ham_par);
+    GQCP::CISolver ci_solver (fci, sq_hamiltonian);
     ci_solver.solve(solver_options);
 
     // Retrieve the wave function and transform it
@@ -109,8 +111,8 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h4 ) {
     wavefunction1.basisTransform(U_random);
 
     // Generate a new wave function by rotating the basis and performing the FCI again.
-    mol_ham_par.rotate(U_random);
-    GQCP::CISolver ci_solver2 (fci, mol_ham_par);
+    sq_hamiltonian.rotate(U_random);
+    GQCP::CISolver ci_solver2 (fci, sq_hamiltonian);
     ci_solver2.solve(solver_options);
 
     auto wavefunction2 = ci_solver2.makeWavefunction();
@@ -126,20 +128,21 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h5 ) {
     // Create a molecule
     GQCP::Molecule hchain = GQCP::Molecule::HChain(5, 0.742, 0);
 
-    // Create the molecular Hamiltonian parameters for this molecule and basis
-    auto mol_ham_par = GQCP::SQHamiltonian<double>::Molecular(hchain, "STO-3G");
-    auto K = mol_ham_par.get_K();
+    // Create the molecular Hamiltonian for this molecule and basis
+    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (hchain, "STO-3G");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, hchain);  // in an AO basis
+    auto K = sq_hamiltonian.get_K();
     auto N_B = hchain.numberOfElectrons()/2;
     auto N_A = hchain.numberOfElectrons() - N_B;
 
-    mol_ham_par.LowdinOrthonormalize();
+    sq_hamiltonian.LowdinOrthonormalize();
     GQCP::ProductFockSpace fock_space (K, N_A, N_B);
     GQCP::FCI fci (fock_space);
 
     GQCP::DenseSolverOptions solver_options;
     solver_options.number_of_requested_eigenpairs = 10;
 
-    GQCP::CISolver ci_solver (fci, mol_ham_par);
+    GQCP::CISolver ci_solver (fci, sq_hamiltonian);
     ci_solver.solve(solver_options);
 
     // Retrieve the wave function and transform it
@@ -149,8 +152,8 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h5 ) {
     wavefunction1.basisTransform(U_random);
 
     // Generate a new wave function by rotating the basis and performing the FCI again.
-    mol_ham_par.rotate(U_random);
-    GQCP::CISolver ci_solver2 (fci, mol_ham_par);
+    sq_hamiltonian.rotate(U_random);
+    GQCP::CISolver ci_solver2 (fci, sq_hamiltonian);
     ci_solver2.solve(solver_options);
 
     auto wavefunction2 = ci_solver2.makeWavefunction();

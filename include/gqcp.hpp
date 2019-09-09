@@ -25,6 +25,7 @@
 #include "Basis/ShellSet.hpp"
 #include "Basis/SingleParticleBasis.hpp"
 #include "Basis/TransformationMatrix.hpp"
+#include "Basis/transform.hpp"
 
 #include "Basis/Integrals/BaseOneElectronIntegralBuffer.hpp"
 #include "Basis/Integrals/BaseOneElectronIntegralEngine.hpp"

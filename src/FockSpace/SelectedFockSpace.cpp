@@ -346,20 +346,20 @@ Eigen::SparseMatrix<double> SelectedFockSpace::evaluateOperatorSparse(const Scal
 /**
  *  Evaluate the Hamiltonian in a dense matrix
  *
- *  @param ham_par              HamiltonianParameters to be evaluated in the Fock space
- *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+ *  @param sq_hamiltonian               HamiltonianParameters to be evaluated in the Fock space
+ *  @param diagonal_values              bool to indicate if diagonal values will be calculated
  *
  *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the Fock space
  */
-SquareMatrix<double> SelectedFockSpace::evaluateOperatorDense(const SQHamiltonian<double>& ham_par, bool diagonal_values) const {
+SquareMatrix<double> SelectedFockSpace::evaluateOperatorDense(const SQHamiltonian<double>& sq_hamiltonian, bool diagonal_values) const {
 
-    const auto K = ham_par.get_K();
+    const auto K = sq_hamiltonian.get_K();
     if (K != this->K) {
         throw std::invalid_argument("SelectedFockSpace::evaluateOperatorDense(SQHamiltonian<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
     }
 
     EvaluationMatrix<SquareMatrix<double>> container (this->dim);
-    this->EvaluateOperator<SquareMatrix<double>>(ham_par.core(), ham_par.twoElectron(), container, diagonal_values);
+    this->EvaluateOperator<SquareMatrix<double>>(sq_hamiltonian.core(), sq_hamiltonian.twoElectron(), container, diagonal_values);
     return container.get_matrix();
 }
 
@@ -367,14 +367,14 @@ SquareMatrix<double> SelectedFockSpace::evaluateOperatorDense(const SQHamiltonia
 /**
  *  Evaluate the Hamiltonian in a sparse matrix
  *
- *  @param ham_par              HamiltonianParameters to be evaluated in the Fock space
- *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+ *  @param sq_hamiltonian               HamiltonianParameters to be evaluated in the Fock space
+ *  @param diagonal_values              bool to indicate if diagonal values will be calculated
  *
  *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the Fock space
  */
-Eigen::SparseMatrix<double> SelectedFockSpace::evaluateOperatorSparse(const SQHamiltonian<double>& ham_par, bool diagonal_values) const {
+Eigen::SparseMatrix<double> SelectedFockSpace::evaluateOperatorSparse(const SQHamiltonian<double>& sq_hamiltonian, bool diagonal_values) const {
 
-    const auto K = ham_par.get_K();
+    const auto K = sq_hamiltonian.get_K();
     if (K != this->K) {
         throw std::invalid_argument("SelectedFockSpace::evaluateOperatorSparse(SQHamiltonian<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
     }
@@ -388,7 +388,7 @@ Eigen::SparseMatrix<double> SelectedFockSpace::evaluateOperatorSparse(const SQHa
     }
 
     container.reserve(memory);
-    this->EvaluateOperator<Eigen::SparseMatrix<double>>(ham_par.core(), ham_par.twoElectron(), container, diagonal_values);
+    this->EvaluateOperator<Eigen::SparseMatrix<double>>(sq_hamiltonian.core(), sq_hamiltonian.twoElectron(), container, diagonal_values);
     container.addToMatrix();
     return container.get_matrix();
 }
@@ -500,12 +500,12 @@ VectorX<double> SelectedFockSpace::evaluateOperatorDiagonal(const ScalarSQTwoEle
 /**
  *  Evaluate the diagonal of the Hamiltonian in this Fock space
  *
- *  @param ham_par              HamiltonianParameters to be evaluated in the Fock space
+ *  @param sq_hamiltonian           HamiltonianParameters to be evaluated in the Fock space
  *
  *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the Fock space
  */
-VectorX<double> SelectedFockSpace::evaluateOperatorDiagonal(const SQHamiltonian<double>& ham_par) const {
-    return this->evaluateOperatorDiagonal(ham_par.core()) + this->evaluateOperatorDiagonal(ham_par.twoElectron());
+VectorX<double> SelectedFockSpace::evaluateOperatorDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const {
+    return this->evaluateOperatorDiagonal(sq_hamiltonian.core()) + this->evaluateOperatorDiagonal(sq_hamiltonian.twoElectron());
 };
 
 

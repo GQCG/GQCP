@@ -41,12 +41,12 @@ private:
 public:
     // CONSTRUCTORS
     /**
-     *  @param ham_par                          the Hamiltonian parameters in AO basis
+     *  @param sq_hamiltonian                   the Hamiltonian expressed in an AO basis
      *  @param molecule                         the molecule used for the SCF calculation
      *  @param threshold                        the convergence treshold on the Frobenius norm on the AO density matrix
      *  @param maximum_number_of_iterations     the maximum number of iterations for the SCF procedure
      */
-    PlainRHFSCFSolver(const SQHamiltonian<double>& ham_par, const Molecule& molecule, double threshold=1.0e-08, size_t maximum_number_of_iterations=128);
+    PlainRHFSCFSolver(const SQHamiltonian<double>& sq_hamiltonian, const Molecule& molecule, double threshold=1.0e-08, size_t maximum_number_of_iterations=128);
 };
 
 

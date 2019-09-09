@@ -17,6 +17,7 @@
 //
 #include "QCMethod/FCI.hpp"
 
+#include "Basis/SingleParticleBasis.hpp"
 #include "Operator/FirstQuantized/NuclearRepulsionOperator.hpp"
 
 
@@ -52,18 +53,19 @@ FCI::FCI(const std::string& xyz_filename, const std::string& basis_set, const si
  */
 void FCI::solve() {
 
-    // Construct the molecular Hamiltonian parameters
+    // Construct the molecular Hamiltonian
     auto molecule = Molecule::ReadXYZ(this->xyz_filename);
-    auto mol_ham_par = SQHamiltonian<double>::Molecular(molecule, this->basis_set);  // in the AO basis
-    mol_ham_par.LowdinOrthonormalize();  // now in the Löwdin basis
+    SingleParticleBasis<double, GTOShell> sp_basis (molecule, this->basis_set);
+    auto sq_hamiltonian = SQHamiltonian<double>::Molecular(sp_basis, molecule);  // in the AO basis
+    sq_hamiltonian.LowdinOrthonormalize();  // now in the Löwdin basis
 
 
     // Solve the FCI eigenvalue problem using the dense algorithm
-    auto K = mol_ham_par.get_K();
+    auto K = sq_hamiltonian.get_K();
     ProductFockSpace fock_space(K, this->N_alpha, this->N_beta);
     GQCP::FCI fci_builder (fock_space);
 
-    CISolver fci_solver (fci_builder, mol_ham_par);
+    CISolver fci_solver (fci_builder, sq_hamiltonian);
     DenseSolverOptions dense_solver_options;
 
     fci_solver.solve(dense_solver_options);

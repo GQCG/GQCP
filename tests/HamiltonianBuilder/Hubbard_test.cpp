@@ -36,15 +36,15 @@ BOOST_AUTO_TEST_CASE ( Hubbard_constructor ) {
 BOOST_AUTO_TEST_CASE ( Hubbard_public_methods ) {
 
     size_t K = 7;
-    auto random_hamiltonian_parameters = GQCP::SQHamiltonian<double>::Random(K);
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Random(K);
 
 
     // Create a compatible Fock space
     GQCP::ProductFockSpace fock_space (K, 3, 3);
     GQCP::Hubbard random_Hubbard (fock_space);
-    GQCP::VectorX<double> x = random_Hubbard.calculateDiagonal(random_hamiltonian_parameters);
-    BOOST_CHECK_NO_THROW(random_Hubbard.constructHamiltonian(random_hamiltonian_parameters));
-    BOOST_CHECK_NO_THROW(random_Hubbard.matrixVectorProduct(random_hamiltonian_parameters, x, x));
+    GQCP::VectorX<double> x = random_Hubbard.calculateDiagonal(sq_hamiltonian);
+    BOOST_CHECK_NO_THROW(random_Hubbard.constructHamiltonian(sq_hamiltonian));
+    BOOST_CHECK_NO_THROW(random_Hubbard.matrixVectorProduct(sq_hamiltonian, x, x));
 
 
     // Create an incompatible Fock space
@@ -52,18 +52,18 @@ BOOST_AUTO_TEST_CASE ( Hubbard_public_methods ) {
 
     // Create Hubbard module
     GQCP::Hubbard random_Hubbard_invalid (fock_space_invalid);
-    BOOST_CHECK_THROW(random_Hubbard_invalid.constructHamiltonian(random_hamiltonian_parameters), std::invalid_argument);
-    BOOST_CHECK_THROW(random_Hubbard_invalid.matrixVectorProduct(random_hamiltonian_parameters, x, x), std::invalid_argument);
+    BOOST_CHECK_THROW(random_Hubbard_invalid.constructHamiltonian(sq_hamiltonian), std::invalid_argument);
+    BOOST_CHECK_THROW(random_Hubbard_invalid.matrixVectorProduct(sq_hamiltonian, x, x), std::invalid_argument);
 }
 
 
 BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI ) {
 
-    // Create Hubbard Hamiltonian parameters
+    // Create the Hubbard Hamiltonian
     size_t K = 4;
     size_t N = 2;
     auto H = GQCP::HoppingMatrix::Random(K);
-    auto mol_ham_par = GQCP::SQHamiltonian<double>::Hubbard(H);
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Hubbard(H);
 
 
     // Check if the Hamiltonian matrix is equal for FCI and Hubbard
@@ -71,19 +71,19 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI ) {
     GQCP::Hubbard hubbard (fock_space);
     GQCP::FCI fci (fock_space);
 
-    GQCP::SquareMatrix<double> hubbard_ham = hubbard.constructHamiltonian(mol_ham_par);
-    GQCP::SquareMatrix<double> fci_ham = fci.constructHamiltonian(mol_ham_par);
+    GQCP::SquareMatrix<double> hubbard_ham = hubbard.constructHamiltonian(sq_hamiltonian);
+    GQCP::SquareMatrix<double> fci_ham = fci.constructHamiltonian(sq_hamiltonian);
     BOOST_CHECK(hubbard_ham.isApprox(fci_ham));
 }
 
 
 BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_large ) {
 
-    // Create Hubbard Hamiltonian parameters
+    // Create the Hubbard Hamiltonian
     size_t K = 6;
     size_t N = 3;
     auto H = GQCP::HoppingMatrix::Random(K);
-    auto mol_ham_par = GQCP::SQHamiltonian<double>::Hubbard(H);
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Hubbard(H);
 
 
     // Check if the Hamiltonian matrix is equal for FCI and Hubbard
@@ -91,57 +91,57 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_large ) {
     GQCP::Hubbard hubbard (fock_space);
     GQCP::FCI fci (fock_space);
 
-    GQCP::SquareMatrix<double> hubbard_ham = hubbard.constructHamiltonian(mol_ham_par);
-    GQCP::SquareMatrix<double> fci_ham = fci.constructHamiltonian(mol_ham_par);
+    GQCP::SquareMatrix<double> hubbard_ham = hubbard.constructHamiltonian(sq_hamiltonian);
+    GQCP::SquareMatrix<double> fci_ham = fci.constructHamiltonian(sq_hamiltonian);
     BOOST_CHECK(hubbard_ham.isApprox(fci_ham));
 }
 
 
 BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_matvec ) {
 
-    // Create Hubbard Hamiltonian parameters
+    // Create the Hubbard Hamiltonian
     size_t K = 4;
     size_t N = 2;
     auto H = GQCP::HoppingMatrix::Random(K);
-    auto mol_ham_par = GQCP::SQHamiltonian<double>::Hubbard(H);
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Hubbard(H);
 
 
-    // Check if FCI and Hubbard have the same matvec for Hubbard Hamiltonian parameters
+    // Check if FCI and Hubbard have the same matvec for the Hubbard Hamiltonian
     GQCP::ProductFockSpace fock_space (K, N, N);  // dim = 36
 
     GQCP::Hubbard hubbard (fock_space);
     GQCP::FCI fci (fock_space);
 
-    GQCP::VectorX<double> hubbard_diagonal = hubbard.calculateDiagonal(mol_ham_par);
-    GQCP::VectorX<double> fci_diagonal = fci.calculateDiagonal(mol_ham_par);
+    GQCP::VectorX<double> hubbard_diagonal = hubbard.calculateDiagonal(sq_hamiltonian);
+    GQCP::VectorX<double> fci_diagonal = fci.calculateDiagonal(sq_hamiltonian);
     BOOST_CHECK(hubbard_diagonal.isApprox(fci_diagonal));
 
-    GQCP::VectorX<double> hubbard_matvec = hubbard.matrixVectorProduct(mol_ham_par, hubbard_diagonal, hubbard_diagonal);
-    GQCP::VectorX<double> fci_matvec = fci.matrixVectorProduct(mol_ham_par, fci_diagonal, fci_diagonal);
+    GQCP::VectorX<double> hubbard_matvec = hubbard.matrixVectorProduct(sq_hamiltonian, hubbard_diagonal, hubbard_diagonal);
+    GQCP::VectorX<double> fci_matvec = fci.matrixVectorProduct(sq_hamiltonian, fci_diagonal, fci_diagonal);
     BOOST_CHECK(hubbard_matvec.isApprox(fci_matvec));
 }
 
 
 BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_large_matvec ) {
 
-    // Create Hubbard Hamiltonian parameters
+    // Create the Hubbard Hamiltonian
     size_t K = 6;
     size_t N = 3;
     auto H = GQCP::HoppingMatrix::Random(K);
-    auto mol_ham_par = GQCP::SQHamiltonian<double>::Hubbard(H);
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Hubbard(H);
 
 
-    // Check if FCI and Hubbard have the same matvec for Hubbard Hamiltonian parameters
+    // Check if FCI and Hubbard have the same matvec for the Hubbard Hamiltonian
     GQCP::ProductFockSpace fock_space (K, N, N);  // dim = 400
 
     GQCP::Hubbard hubbard (fock_space);
     GQCP::FCI fci (fock_space);
 
-    GQCP::VectorX<double> hubbard_diagonal = hubbard.calculateDiagonal(mol_ham_par);
-    GQCP::VectorX<double> fci_diagonal = fci.calculateDiagonal(mol_ham_par);
+    GQCP::VectorX<double> hubbard_diagonal = hubbard.calculateDiagonal(sq_hamiltonian);
+    GQCP::VectorX<double> fci_diagonal = fci.calculateDiagonal(sq_hamiltonian);
     BOOST_CHECK(hubbard_diagonal.isApprox(fci_diagonal));
 
-    GQCP::VectorX<double> hubbard_matvec = hubbard.matrixVectorProduct(mol_ham_par, hubbard_diagonal, hubbard_diagonal);
-    GQCP::VectorX<double> fci_matvec = fci.matrixVectorProduct(mol_ham_par, fci_diagonal, fci_diagonal);
+    GQCP::VectorX<double> hubbard_matvec = hubbard.matrixVectorProduct(sq_hamiltonian, hubbard_diagonal, hubbard_diagonal);
+    GQCP::VectorX<double> fci_matvec = fci.matrixVectorProduct(sq_hamiltonian, fci_diagonal, fci_diagonal);
     BOOST_CHECK(hubbard_matvec.isApprox(fci_matvec));
 }

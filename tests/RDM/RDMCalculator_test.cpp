@@ -34,8 +34,8 @@ BOOST_AUTO_TEST_CASE ( constructor ) {
 
     // Get the 1-RDM from DOCI
     size_t N = 4;  // 4 electrons
-    auto ham_par = GQCP::SQHamiltonian<double>::ReadFCIDUMP("data/lih_631g_caitlin.FCIDUMP");
-    size_t K = ham_par.get_K();  // 16 SO
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::ReadFCIDUMP("data/lih_631g_caitlin.FCIDUMP");
+    size_t K = sq_hamiltonian.get_K();  // 16 SO
 
     // Abstract pointer to test RDM
     std::shared_ptr<GQCP::BaseFockSpace> fock_space_dy(new GQCP::FockSpace(K, N/2));  // dim = 120
@@ -45,7 +45,7 @@ BOOST_AUTO_TEST_CASE ( constructor ) {
 
     // Specify solver options and solve the eigenvalue problem
     // Solve the dense DOCI eigenvalue problem
-    GQCP::CISolver ci_solver (doci, ham_par);
+    GQCP::CISolver ci_solver (doci, sq_hamiltonian);
     GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 

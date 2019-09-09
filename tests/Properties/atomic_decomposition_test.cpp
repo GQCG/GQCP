@@ -30,30 +30,30 @@
 
 BOOST_AUTO_TEST_CASE ( decomposition_BeH_cation_STO_3G_Nuclear ) {
 
-    // Create the molecular Hamiltonian parameters in an AO basis
+    // Create the molecular Hamiltonian in an AO basis
     GQCP::Nucleus Be(4, 0.0, 0.0, 0.0);
     GQCP::Nucleus H(1, 0.0, 0.0, GQCP::units::angstrom_to_bohr(1.134));  // from CCCBDB, STO-3G geometry
     std::vector<GQCP::Nucleus> nuclei {Be, H};
     GQCP::Molecule BeH (nuclei, +1);
     GQCP::AtomicDecompositionParameters adp = GQCP::AtomicDecompositionParameters::Nuclear(BeH, "STO-3G");
-    auto mol_ham_par = adp.get_molecular_hamiltonian_parameters();
-    auto K = mol_ham_par.get_K();
+    auto sq_hamiltonian = adp.get_molecular_hamiltonian_parameters();
+    auto K = sq_hamiltonian.get_K();
     double repulsion = GQCP::Operator::NuclearRepulsion(BeH).value();
 
     // Create a plain RHF SCF solver and solve the SCF equations
-    GQCP::PlainRHFSCFSolver plain_scf_solver(mol_ham_par, BeH);
+    GQCP::PlainRHFSCFSolver plain_scf_solver(sq_hamiltonian, BeH);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 
     const auto& T = rhf.get_C();
 
-    // Transform the ham_par
-    mol_ham_par.transform(T);
+    // Transform the sq_hamiltonian
+    sq_hamiltonian.transform(T);
 
     // Create the FCI module
     GQCP::ProductFockSpace fock_space (K, BeH.numberOfElectrons() / 2, BeH.numberOfElectrons() / 2);  // dim = 441
     GQCP::FCI fci (fock_space);
-    GQCP::CISolver ci_solver (fci, mol_ham_par);
+    GQCP::CISolver ci_solver (fci, sq_hamiltonian);
 
     // Solve Davidson
     GQCP::DavidsonSolverOptions solver_options (fock_space.HartreeFockExpansion());

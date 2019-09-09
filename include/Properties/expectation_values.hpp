@@ -95,13 +95,13 @@ std::array<double, Components> calculateExpectationValue(const SQTwoElectronOper
  */
 
 /**
- *  @param ham_par      the Hamiltonian parameters containing the scalar interaction term and the one- and two-electron integrals
- *  @param one_rdm      the 1-RDM
- *  @param two_rdm      the 2-RDM
+ *  @param sq_hamiltonian       the Hamiltonian in an orthonormal basis
+ *  @param one_rdm              the 1-RDM
+ *  @param two_rdm              the 2-RDM
  *
- *  @return the expectation value of the 'Hamiltonian' represented by the Hamiltonian parameters
+ *  @return the expectation value of the Hamiltonian
  */
-double calculateExpectationValue(const SQHamiltonian<double>& ham_par, const OneRDM<double>& one_rdm, const TwoRDM<double>& two_rdm);
+double calculateExpectationValue(const SQHamiltonian<double>& sq_hamiltonian, const OneRDM<double>& one_rdm, const TwoRDM<double>& two_rdm);
 
 
 }  // namespace GQCP

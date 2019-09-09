@@ -58,12 +58,12 @@ public:
 
     // NAMED CONSTRUCTORS
     /**
-     *  @param ham_par      the Hamiltonian parameters
-     *  @param N_P          the number of electron pairs (= the number of geminals)
+     *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis
+     *  @param N_P                  the number of electron pairs (= the number of geminals)
      *
      *  @return the AP1roG geminal coefficients in the weak interaction limit
      */
-    static AP1roGGeminalCoefficients WeakInteractionLimit(const SQHamiltonian<double>& ham_par, size_t N_P);
+    static AP1roGGeminalCoefficients WeakInteractionLimit(const SQHamiltonian<double>& sq_hamiltonian, size_t N_P);
 
 
     // DESTRUCTOR

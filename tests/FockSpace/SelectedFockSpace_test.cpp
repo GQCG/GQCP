@@ -126,19 +126,20 @@ BOOST_AUTO_TEST_CASE ( Selected_Evaluation_H2O ) {
     // Psi4 and GAMESS' FCI energy for H2O
     double reference_fci_energy = -75.0129803939602;
 
-    // Create the molecular Hamiltonian parameters in an AO basis
+    // Create the molecular Hamiltonian in an AO basis
     auto h2o = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
-    auto mol_ham_par = GQCP::SQHamiltonian<double>::Molecular(h2o, "STO-3G");
-    auto K = mol_ham_par.get_K();
+    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2o, "STO-3G");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2o);  // in an AO basis
+    auto K = sq_hamiltonian.get_K();
 
-    mol_ham_par.LowdinOrthonormalize();
+    sq_hamiltonian.LowdinOrthonormalize();
 
     GQCP::ProductFockSpace fock_space (K, h2o.numberOfElectrons()/2, h2o.numberOfElectrons()/2);  // dim = 441
     GQCP::SelectedFockSpace selected_fock_space (fock_space);
 
-    GQCP::SquareMatrix<double> hamiltonian = selected_fock_space.evaluateOperatorDense(mol_ham_par, true);
-    GQCP::SquareMatrix<double> hamiltonian_no_diagonal = selected_fock_space.evaluateOperatorDense(mol_ham_par, false);
-    GQCP::VectorX<double> hamiltonian_diagonal = selected_fock_space.evaluateOperatorDiagonal(mol_ham_par);
+    GQCP::SquareMatrix<double> hamiltonian = selected_fock_space.evaluateOperatorDense(sq_hamiltonian, true);
+    GQCP::SquareMatrix<double> hamiltonian_no_diagonal = selected_fock_space.evaluateOperatorDense(sq_hamiltonian, false);
+    GQCP::VectorX<double> hamiltonian_diagonal = selected_fock_space.evaluateOperatorDiagonal(sq_hamiltonian);
 
     // Retrieve lowest eigenvalue (fci solution)
     Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> self_adjoint_eigensolver (hamiltonian);

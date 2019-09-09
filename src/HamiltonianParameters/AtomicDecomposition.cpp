@@ -25,10 +25,10 @@ namespace GQCP {
 
 
 /**
- *  @param molecular_hamiltonian_parameters     the complete molecular Hamiltonian parameters
- *  @param net_atomic_parameters                collection of net atomic Hamiltonian parameters
- *  @param interaction_parameters               collection of atomic interaction Hamiltonian parameters
- *  @param atomic_parameters                    collection of atomic Hamiltonian parameters
+ *  @param molecular_hamiltonian_parameters     the complete molecular Hamiltonian
+ *  @param net_atomic_parameters                collection of the net atomic Hamiltonian
+ *  @param interaction_parameters               collection of the atomic interaction Hamiltonian
+ *  @param atomic_parameters                    collection of the atomic Hamiltonian
  */
 AtomicDecompositionParameters::AtomicDecompositionParameters (const SQHamiltonian<double>& molecular_hamiltonian_parameters, const std::vector<SQHamiltonian<double>>& net_atomic_parameters, const std::vector<SQHamiltonian<double>>& interaction_parameters, const std::vector<SQHamiltonian<double>>& atomic_parameters) :
         molecular_hamiltonian_parameters (molecular_hamiltonian_parameters),
@@ -39,7 +39,7 @@ AtomicDecompositionParameters::AtomicDecompositionParameters (const SQHamiltonia
 
 
 /**
- *  Constructs net atomic, atomic and atomic interaction Hamiltonian parameters in the AO basis for a diatomic molecule AB.
+ *  Constructs net atomic, atomic and atomic interaction Hamiltonian in the AO basis for a diatomic molecule AB.
  *   the term "Nuclear" concerns how the electronic nuclear integrals (potential energy) are decomposed. The potential energy
  *   for basis functions on atom A for the charge on B are included in the interaction energy and not in the net atomic energy.
  *
@@ -47,21 +47,21 @@ AtomicDecompositionParameters::AtomicDecompositionParameters (const SQHamiltonia
  *  @param basisset     the name of the basisset corresponding to the AO basis
  *
  *  @return Atomic decomposed parameters:
- *      - net atomic parameters, HamiltonianParameters with:
+ *      - net atomic, with:
  *          - one-electron nuclear integrals separated by atomic core and the atomic basis functions centered on that atom.
  *          - one-electron kinetic integrals separated per set of atomic basis functions centered on an atom.
  *          - two-electron integrals separated per set of atomic basis functions centered on an atom.
- *      - interaction parameters, HamiltonianParameters with:
- *          - remaining one- and two-electron contributions when deducting the net atomic parameters from the total HamiltonianParameters
+ *      - interaction, with:
+ *          - remaining one- and two-electron contributions when deducting the net atomic Hamiltonian from the total HamiltonianParameters
  *          - scalar : nuclear repulsion
- *      - atomic parameters, HamiltonianParameters with:
+ *      - atomic, with:
  *          - net atomic parameters + interaction parameters/2
  *
- *  Ordering of the atomic Hamiltonian parameters are dependant on the ordering of the atoms in the molecule
+ *  Ordering of the atomic Hamiltonian are dependant on the ordering of the atoms in the molecule
  *   for the molecule AB:
- *      net_atomic_parameters will contains parameters for A then B.
- *      interaction_parameters will contain parameters for the AB interaction.
- *      atomic_parameters will contain parameters for A then B.
+ *      net_atomic_parameters will contain first A, then B.
+ *      interaction_parameters will contain the AB interaction.
+ *      atomic_parameters will contain first A, then B.
  */
 AtomicDecompositionParameters AtomicDecompositionParameters::Nuclear(const Molecule& molecule, const std::string& basisset_name) {
 
@@ -144,7 +144,7 @@ AtomicDecompositionParameters AtomicDecompositionParameters::Nuclear(const Molec
     std::vector<SQHamiltonian<double>> interaction_parameters = {HAB};
     std::vector<SQHamiltonian<double>> atomic_parameters = {HA, HB};
 
-    return AtomicDecompositionParameters(SQHamiltonian<double>::Molecular(molecule, basisset_name), net_atomic_parameters, interaction_parameters, atomic_parameters);
+    return AtomicDecompositionParameters(SQHamiltonian<double>::Molecular(sp_basis, molecule), net_atomic_parameters, interaction_parameters, atomic_parameters);
 }
 
 

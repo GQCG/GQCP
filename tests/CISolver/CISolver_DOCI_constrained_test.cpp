@@ -19,6 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include "Basis/SingleParticleBasis.hpp"
 #include "CISolver/CISolver.hpp"
 #include "HamiltonianBuilder/DOCI.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
@@ -54,19 +55,20 @@ BOOST_AUTO_TEST_CASE ( CO_DOCI_constrained_dense ) {
                  0.900000, 	6.0416010444 , 	-111.162616424,
                  1.000000, 	6.12030270656, 	-111.087663866;
 
-    // Create the molecular Hamiltonian parameters for CO
+    // Create the molecular Hamiltonian for CO
     auto CO = GQCP::Molecule::ReadXYZ("data/CO_mulliken.xyz");
-    auto mol_ham_par = GQCP::HamiltonianParameters::Molecular(CO, "STO-3G");
+    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (CO, "STO-3G");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, CO);  // in an AO basis
 
     // Create a plain RHF SCF solver and solve the SCF equations
-    GQCP::DIISRHFSCFSolver diis_scf_solver (mol_ham_par, CO);
+    GQCP::DIISRHFSCFSolver diis_scf_solver (sq_hamiltonian, CO);
     diis_scf_solver.solve();
     auto rhf = diis_scf_solver.get_solution();
 
-    // Transform the ham_par
-    mol_ham_par.transform(rhf.get_C());
+    // Transform the sq_hamiltonian
+    sq_hamiltonian.transform(rhf.get_C());
 
-    GQCP::FockSpace fock_space (mol_ham_par.get_K(), CO.numberOfElectrons()/2);  // dim = 4
+    GQCP::FockSpace fock_space (sq_hamiltonian.get_K(), CO.numberOfElectrons()/2);  // dim = 4
 
     // Create the DOCI module
     GQCP::DOCI doci (fock_space);
@@ -77,10 +79,10 @@ BOOST_AUTO_TEST_CASE ( CO_DOCI_constrained_dense ) {
 
     for (int i = 0; i < 21; i++) {
         // Calculate the Mulliken operator
-        auto mulliken_operator = mol_ham_par.calculateMullikenOperator(ao_list);
+        auto mulliken_operator = sq_hamiltonian.calculateMullikenOperator(ao_list);
 
         // Contrain the original Hamiltonian parameters
-        auto constrained_ham_par = mol_ham_par.constrain(mulliken_operator, CO_data(i, 0));
+        auto constrained_ham_par = sq_hamiltonian.constrain(mulliken_operator, CO_data(i, 0));
 
         GQCP::CISolver ci_solver(doci, constrained_ham_par);
         // Solve Dense

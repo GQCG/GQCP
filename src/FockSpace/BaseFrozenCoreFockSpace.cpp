@@ -51,7 +51,7 @@ BaseFrozenCoreFockSpace::BaseFrozenCoreFockSpace(std::shared_ptr<GQCP::BaseFockS
  */
 SquareMatrix<double> BaseFrozenCoreFockSpace::evaluateOperatorDense(const ScalarSQOneElectronOperator<double>& one_op, bool diagonal_values) const {
 
-    // Freeze Hamiltonian parameters
+    // Freeze the Hamiltonian
     ScalarSQOneElectronOperator<double> frozen_one_op = BaseFrozenCoreFockSpace::freezeOperator(one_op, this->X);
 
     // Evaluate the frozen operator in the active space
@@ -150,21 +150,21 @@ Eigen::SparseMatrix<double> BaseFrozenCoreFockSpace::evaluateOperatorSparse(cons
 /**
  *  Evaluate the Hamiltonian in a dense matrix
  *
- *  @param ham_par              Hamiltonian parameters in an orthonormal orbital basis to be evaluated in the Fock space
- *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+ *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
+ *  @param diagonal_values              bool to indicate if diagonal values will be calculated
  *
  *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the Fock space
  */
-SquareMatrix<double> BaseFrozenCoreFockSpace::evaluateOperatorDense(const SQHamiltonian<double>& ham_par, bool diagonal_values) const {
+SquareMatrix<double> BaseFrozenCoreFockSpace::evaluateOperatorDense(const SQHamiltonian<double>& sq_hamiltonian, bool diagonal_values) const {
     // Freeze the operators
-    const auto frozen_ham_par = BaseFrozenCoreFockSpace::freezeOperator(ham_par, this->X);
+    const auto frozen_ham_par = BaseFrozenCoreFockSpace::freezeOperator(sq_hamiltonian, this->X);
 
     // Evaluate the frozen operator in the active space
     auto evaluation = this->active_fock_space->evaluateOperatorDense(frozen_ham_par, diagonal_values);
 
     if (diagonal_values) {
         // Diagonal correction
-        const auto frozen_core_diagonal = BaseFrozenCoreFockSpace::frozenCoreDiagonal(ham_par, this->X, this->active_fock_space->get_dimension());
+        const auto frozen_core_diagonal = BaseFrozenCoreFockSpace::frozenCoreDiagonal(sq_hamiltonian, this->X, this->active_fock_space->get_dimension());
         evaluation += frozen_core_diagonal.asDiagonal();
     }
 
@@ -175,22 +175,22 @@ SquareMatrix<double> BaseFrozenCoreFockSpace::evaluateOperatorDense(const SQHami
 /**
  *  Evaluate the Hamiltonian in a sparse matrix
  *
- *  @param ham_par              Hamiltonian parameters in an orthonormal orbital basis to be evaluated in the Fock space
- *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+ *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
+ *  @param diagonal_values              bool to indicate if diagonal values will be calculated
  *
  *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the Fock space
  */
-Eigen::SparseMatrix<double> BaseFrozenCoreFockSpace::evaluateOperatorSparse(const SQHamiltonian<double>& ham_par, bool diagonal_values) const {
+Eigen::SparseMatrix<double> BaseFrozenCoreFockSpace::evaluateOperatorSparse(const SQHamiltonian<double>& sq_hamiltonian, bool diagonal_values) const {
 
     // Freeze the operators
-    const auto frozen_ham_par = BaseFrozenCoreFockSpace::freezeOperator(ham_par, this->X);
+    const auto frozen_ham_par = BaseFrozenCoreFockSpace::freezeOperator(sq_hamiltonian, this->X);
 
     // Evaluate the frozen operator in the active space
     auto evaluation = this->active_fock_space->evaluateOperatorSparse(frozen_ham_par, diagonal_values);
 
     if (diagonal_values) {
         // Diagonal correction
-        const auto frozen_core_diagonal = BaseFrozenCoreFockSpace::frozenCoreDiagonal(ham_par, this->X, this->active_fock_space->get_dimension());
+        const auto frozen_core_diagonal = BaseFrozenCoreFockSpace::frozenCoreDiagonal(sq_hamiltonian, this->X, this->active_fock_space->get_dimension());
         evaluation += frozen_core_diagonal.asDiagonal();
     }
 
@@ -209,7 +209,7 @@ VectorX<double> BaseFrozenCoreFockSpace::evaluateOperatorDiagonal(const ScalarSQ
 
     const auto frozen_op = BaseFrozenCoreFockSpace::freezeOperator(one_op, this->X);
 
-    // Calculate diagonal in the active space with the "frozen" Hamiltonian parameters
+    // Calculate diagonal in the active space with the "frozen" Hamiltonian
     const auto diagonal = this->active_fock_space->evaluateOperatorDiagonal(frozen_op);
 
     // Calculate diagonal for the frozen orbitals
@@ -230,7 +230,7 @@ VectorX<double> BaseFrozenCoreFockSpace::evaluateOperatorDiagonal(const ScalarSQ
 
     const auto frozen_ops = BaseFrozenCoreFockSpace::freezeOperator(two_op, this->X);
 
-    // Calculate diagonal in the active space with the "frozen" Hamiltonian parameters
+    // Calculate diagonal in the active space with the "frozen" Hamiltonian
     auto diagonal = this->active_fock_space->evaluateOperatorDiagonal(frozen_ops.two_op);
     diagonal += this->active_fock_space->evaluateOperatorDiagonal(frozen_ops.one_op);
 
@@ -244,19 +244,19 @@ VectorX<double> BaseFrozenCoreFockSpace::evaluateOperatorDiagonal(const ScalarSQ
 /**
  *  Evaluate the diagonal of the Hamiltonian
  *
- *  @param ham_par              Hamiltonian parameters in an orthonormal orbital basis to be evaluated in the Fock space
+ *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
  *
  *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the Fock space
  */
-VectorX<double> BaseFrozenCoreFockSpace::evaluateOperatorDiagonal(const SQHamiltonian<double>& ham_par) const {
+VectorX<double> BaseFrozenCoreFockSpace::evaluateOperatorDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const {
 
-    const auto frozen_ham_par = BaseFrozenCoreFockSpace::freezeOperator(ham_par, this->X);
+    const auto frozen_ham_par = BaseFrozenCoreFockSpace::freezeOperator(sq_hamiltonian, this->X);
 
-    // Calculate diagonal in the active space with the "frozen" Hamiltonian parameters
+    // Calculate diagonal in the active space with the "frozen" Hamiltonian
     const auto diagonal = this->active_fock_space->evaluateOperatorDiagonal(frozen_ham_par);
 
     // Calculate diagonal for the frozen orbitals
-    const auto frozen_core_diagonal = BaseFrozenCoreFockSpace::frozenCoreDiagonal(ham_par, this->X, this->active_fock_space->get_dimension());
+    const auto frozen_core_diagonal = BaseFrozenCoreFockSpace::frozenCoreDiagonal(sq_hamiltonian, this->X, this->active_fock_space->get_dimension());
 
     return diagonal + frozen_core_diagonal;
 }
@@ -315,23 +315,23 @@ FrozenOperators BaseFrozenCoreFockSpace::freezeOperator(const ScalarSQTwoElectro
  */
 
 /**
- *  @param ham_par      the Hamiltonian parameters in an orthonormal orbital basis
- *  @param X            the number of frozen orbitals
+ *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis
+ *  @param X                    the number of frozen orbitals
  *
- *  @return a set of 'frozen' Hamiltonian parameters which cover two-electron integral evaluations from the active and inactive orbitals
+ *  @return a 'frozen' Hamiltonian which cover two-electron integral evaluations from the active and inactive orbitals
  *  (see https://drive.google.com/file/d/1Fnhv2XyNO9Xw9YDoJOXU21_6_x2llntI/view?usp=sharing)
  */
-SQHamiltonian<double> BaseFrozenCoreFockSpace::freezeOperator(const SQHamiltonian<double>& ham_par, size_t X) {
+SQHamiltonian<double> BaseFrozenCoreFockSpace::freezeOperator(const SQHamiltonian<double>& sq_hamiltonian, size_t X) {
 
-    size_t K_active = ham_par.get_K() - X;  // number of non-frozen orbitals
+    size_t K_active = sq_hamiltonian.get_K() - X;  // number of non-frozen orbitals
 
-    const auto frozen_components_g = BaseFrozenCoreFockSpace::freezeOperator(ham_par.twoElectron(), X);
-    ScalarSQOneElectronOperator<double> S = BaseFrozenCoreFockSpace::freezeOperator(ham_par.get_S(), X);  // active
-    ScalarSQOneElectronOperator<double> h = BaseFrozenCoreFockSpace::freezeOperator(ham_par.core(), X) + frozen_components_g.one_op;  // active
+    const auto frozen_components_g = BaseFrozenCoreFockSpace::freezeOperator(sq_hamiltonian.twoElectron(), X);
+    ScalarSQOneElectronOperator<double> S = BaseFrozenCoreFockSpace::freezeOperator(sq_hamiltonian.get_S(), X);  // active
+    ScalarSQOneElectronOperator<double> h = BaseFrozenCoreFockSpace::freezeOperator(sq_hamiltonian.core(), X) + frozen_components_g.one_op;  // active
 
     std::shared_ptr<ScalarBasis<GTOShell>> ao_basis;  // nullptr
     ScalarSQTwoElectronOperator<double> g = frozen_components_g.two_op;
-    SquareMatrix<double> T = ham_par.get_T_total().block(X, X, K_active, K_active);
+    SquareMatrix<double> T = sq_hamiltonian.get_T_total().block(X, X, K_active, K_active);
 
     return SQHamiltonian<double>(ao_basis, S, h, g, T);
 }
@@ -382,13 +382,13 @@ VectorX<double> BaseFrozenCoreFockSpace::frozenCoreDiagonal(const ScalarSQTwoEle
 
 
 /**
- *  @param ham_par      the Hamiltonian parameters in an orthonormal orbital basis
- *  @param X            the number of frozen orbitals
+ *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis
+ *  @param X                    the number of frozen orbitals
  *
  *  @return the Hamiltonian diagonal from strictly evaluating the frozen orbitals in the Fock space
  */
-VectorX<double> BaseFrozenCoreFockSpace::frozenCoreDiagonal(const SQHamiltonian<double>& ham_par, size_t X,  size_t dimension) {
-    return BaseFrozenCoreFockSpace::frozenCoreDiagonal(ham_par.core(), X, dimension) + BaseFrozenCoreFockSpace::frozenCoreDiagonal(ham_par.twoElectron(), X, dimension);
+VectorX<double> BaseFrozenCoreFockSpace::frozenCoreDiagonal(const SQHamiltonian<double>& sq_hamiltonian, size_t X,  size_t dimension) {
+    return BaseFrozenCoreFockSpace::frozenCoreDiagonal(sq_hamiltonian.core(), X, dimension) + BaseFrozenCoreFockSpace::frozenCoreDiagonal(sq_hamiltonian.twoElectron(), X, dimension);
 }
 
 

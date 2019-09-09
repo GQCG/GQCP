@@ -47,14 +47,15 @@ BOOST_AUTO_TEST_CASE ( ProductFockSpace_dimension) {
 BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_Dense_diagonal_true ) {
 
     GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
-    auto parameters = GQCP::SQHamiltonian<double>::Molecular(hchain, "STO-3G");
-    parameters.LowdinOrthonormalize();
+    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (hchain, "STO-3G");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, hchain);  // in an AO basis
+    sq_hamiltonian.LowdinOrthonormalize();
 
     GQCP::ProductFockSpace product_fock_space (6, 4, 4);
     GQCP::SelectedFockSpace selected_fock_space (product_fock_space);
 
-    const auto& h = parameters.core();
-    const auto& g = parameters.twoElectron();
+    const auto& h = sq_hamiltonian.core();
+    const auto& g = sq_hamiltonian.twoElectron();
 
     // Test the evaluation of the operators with selected Fock space (the reference) versus that of the product Fock space 
     auto one_electron_evaluation1 = product_fock_space.evaluateOperatorDense(h, true);
@@ -63,8 +64,8 @@ BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_Dense_diagonal_true ) {
     auto two_electron_evaluation1 = product_fock_space.evaluateOperatorDense(g, true);
     auto two_electron_evaluation2 = selected_fock_space.evaluateOperatorDense(g, true);
 
-    auto hamiltonian_evaluation1 = product_fock_space.evaluateOperatorDense(parameters, true);
-    auto hamiltonian_evaluation2 = selected_fock_space.evaluateOperatorDense(parameters, true);
+    auto hamiltonian_evaluation1 = product_fock_space.evaluateOperatorDense(sq_hamiltonian, true);
+    auto hamiltonian_evaluation2 = selected_fock_space.evaluateOperatorDense(sq_hamiltonian, true);
 
     BOOST_CHECK(one_electron_evaluation1.isApprox(one_electron_evaluation2));
     BOOST_CHECK(two_electron_evaluation1.isApprox(two_electron_evaluation2));
@@ -75,14 +76,15 @@ BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_Dense_diagonal_true ) {
 BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_Dense_diagonal_false ) {
 
     GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
-    auto parameters = GQCP::SQHamiltonian<double>::Molecular(hchain, "STO-3G");
-    parameters.LowdinOrthonormalize();
+    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (hchain, "STO-3G");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, hchain);  // in an AO basis
+    sq_hamiltonian.LowdinOrthonormalize();
 
     GQCP::ProductFockSpace product_fock_space (6, 4, 4);
     GQCP::SelectedFockSpace selected_fock_space (product_fock_space);
 
-    const auto& h = parameters.core();
-    const auto& g = parameters.twoElectron();
+    const auto& h = sq_hamiltonian.core();
+    const auto& g = sq_hamiltonian.twoElectron();
 
     // Test the evaluation of the operators with selected Fock space (the reference) versus that of the product Fock space 
     auto one_electron_evaluation1 = product_fock_space.evaluateOperatorDense(h, false);
@@ -91,8 +93,8 @@ BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_Dense_diagonal_false ) {
     auto two_electron_evaluation1 = product_fock_space.evaluateOperatorDense(g, false);
     auto two_electron_evaluation2 = selected_fock_space.evaluateOperatorDense(g, false);
 
-    auto hamiltonian_evaluation1 = product_fock_space.evaluateOperatorDense(parameters, false);
-    auto hamiltonian_evaluation2 = selected_fock_space.evaluateOperatorDense(parameters, false);
+    auto hamiltonian_evaluation1 = product_fock_space.evaluateOperatorDense(sq_hamiltonian, false);
+    auto hamiltonian_evaluation2 = selected_fock_space.evaluateOperatorDense(sq_hamiltonian, false);
 
     BOOST_CHECK(one_electron_evaluation1.isApprox(one_electron_evaluation2));
     BOOST_CHECK(two_electron_evaluation1.isApprox(two_electron_evaluation2));
@@ -103,14 +105,15 @@ BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_Dense_diagonal_false ) {
 BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_diagonal ) {
 
     GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
-    auto parameters = GQCP::SQHamiltonian<double>::Molecular(hchain, "STO-3G");
-    parameters.LowdinOrthonormalize();
+    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (hchain, "STO-3G");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, hchain);  // in an AO basis
+    sq_hamiltonian.LowdinOrthonormalize();
 
     GQCP::ProductFockSpace product_fock_space (6, 4, 4);
     GQCP::SelectedFockSpace selected_fock_space (product_fock_space);
 
-    const auto& h = parameters.core();
-    const auto& g = parameters.twoElectron();
+    const auto& h = sq_hamiltonian.core();
+    const auto& g = sq_hamiltonian.twoElectron();
 
     // Test the evaluation of the operators with selected Fock space (the reference) versus that of the product Fock space 
     auto one_electron_evaluation1 = product_fock_space.evaluateOperatorDiagonal(h);
@@ -119,8 +122,8 @@ BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_diagonal ) {
     auto two_electron_evaluation1 = product_fock_space.evaluateOperatorDiagonal(g);
     auto two_electron_evaluation2 = selected_fock_space.evaluateOperatorDiagonal(g);
 
-    auto hamiltonian_evaluation1 = product_fock_space.evaluateOperatorDiagonal(parameters);
-    auto hamiltonian_evaluation2 = selected_fock_space.evaluateOperatorDiagonal(parameters);
+    auto hamiltonian_evaluation1 = product_fock_space.evaluateOperatorDiagonal(sq_hamiltonian);
+    auto hamiltonian_evaluation2 = selected_fock_space.evaluateOperatorDiagonal(sq_hamiltonian);
 
     BOOST_CHECK(one_electron_evaluation1.isApprox(one_electron_evaluation2));
     BOOST_CHECK(two_electron_evaluation1.isApprox(two_electron_evaluation2));
@@ -131,14 +134,15 @@ BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_diagonal ) {
 BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_diagonal_vs_no_diagonal) {
 
     GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
-    auto parameters = GQCP::SQHamiltonian<double>::Molecular(hchain, "STO-3G");
-    parameters.LowdinOrthonormalize();
+    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (hchain, "STO-3G");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, hchain);  // in an AO basis
+    sq_hamiltonian.LowdinOrthonormalize();
 
     GQCP::ProductFockSpace product_fock_space (6, 4, 4);
 
-    GQCP::SquareMatrix<double> hamiltonian = product_fock_space.evaluateOperatorDense(parameters, true);
-    GQCP::SquareMatrix<double> hamiltonian_no_diagonal = product_fock_space.evaluateOperatorDense(parameters, false);
-    GQCP::VectorX<double> hamiltonian_diagonal = product_fock_space.evaluateOperatorDiagonal(parameters);
+    GQCP::SquareMatrix<double> hamiltonian = product_fock_space.evaluateOperatorDense(sq_hamiltonian, true);
+    GQCP::SquareMatrix<double> hamiltonian_no_diagonal = product_fock_space.evaluateOperatorDense(sq_hamiltonian, false);
+    GQCP::VectorX<double> hamiltonian_diagonal = product_fock_space.evaluateOperatorDiagonal(sq_hamiltonian);
 
     // Test if non-diagonal evaluation and diagonal evaluations are correct
     BOOST_CHECK(hamiltonian.isApprox(hamiltonian_no_diagonal + GQCP::SquareMatrix<double>(hamiltonian_diagonal.asDiagonal())));

@@ -39,22 +39,22 @@ BOOST_AUTO_TEST_CASE ( SelectedCI_public_methods ) {
 
     // Create random HamiltonianParameters to check compatibility of the arguments
     size_t K = 5;
-    auto random_hamiltonian_parameters = GQCP::SQHamiltonian<double>::Random(K);
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Random(K);
 
     // Create a compatible Fock space
     GQCP::ProductFockSpace product_fock_space (K, 3, 3);
     GQCP::SelectedFockSpace fock_space (product_fock_space);
     GQCP::SelectedCI random_selected_ci (fock_space);
-    GQCP::VectorX<double> x = random_selected_ci.calculateDiagonal(random_hamiltonian_parameters);
-    BOOST_CHECK_NO_THROW(random_selected_ci.constructHamiltonian(random_hamiltonian_parameters));
-    BOOST_CHECK_NO_THROW(random_selected_ci.matrixVectorProduct(random_hamiltonian_parameters, x, x));
+    GQCP::VectorX<double> x = random_selected_ci.calculateDiagonal(sq_hamiltonian);
+    BOOST_CHECK_NO_THROW(random_selected_ci.constructHamiltonian(sq_hamiltonian));
+    BOOST_CHECK_NO_THROW(random_selected_ci.matrixVectorProduct(sq_hamiltonian, x, x));
 
     // Create an incompatible Fock space
     GQCP::ProductFockSpace product_fock_space_invalid (K+1, 3, 3);
     GQCP::SelectedFockSpace fock_space_invalid (product_fock_space_invalid);
     GQCP::SelectedCI random_selected_ci_invalid (fock_space_invalid);
-    BOOST_CHECK_THROW(random_selected_ci_invalid.constructHamiltonian(random_hamiltonian_parameters), std::invalid_argument);
-    BOOST_CHECK_THROW(random_selected_ci_invalid.matrixVectorProduct(random_hamiltonian_parameters, x, x), std::invalid_argument);
+    BOOST_CHECK_THROW(random_selected_ci_invalid.constructHamiltonian(sq_hamiltonian), std::invalid_argument);
+    BOOST_CHECK_THROW(random_selected_ci_invalid.matrixVectorProduct(sq_hamiltonian, x, x), std::invalid_argument);
 }
 
 
@@ -63,7 +63,8 @@ BOOST_AUTO_TEST_CASE ( SelectedCI_vs_FCI ) {
     // Create H-chain HamiltonianParameters to test results from FCI and selected CI
     size_t K = 4;
     GQCP::Molecule H4 = GQCP::Molecule::HChain(K, 1.1);
-    auto hamiltonian_parameters = GQCP::SQHamiltonian<double>::Molecular(H4, "STO-3G");
+    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (H4, "STO-3G");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, H4);  // in an AO basis
 
     // Create compatible Fock spaces
     GQCP::ProductFockSpace product_fock_space (K, 2, 2);
@@ -73,14 +74,14 @@ BOOST_AUTO_TEST_CASE ( SelectedCI_vs_FCI ) {
     GQCP::SelectedCI selected_ci (fock_space);
     GQCP::FCI fci (product_fock_space);
 
-    GQCP::VectorX<double> selected_ci_diagonal = selected_ci.calculateDiagonal(hamiltonian_parameters);
-    GQCP::VectorX<double> fci_diagonal = fci.calculateDiagonal(hamiltonian_parameters);
+    GQCP::VectorX<double> selected_ci_diagonal = selected_ci.calculateDiagonal(sq_hamiltonian);
+    GQCP::VectorX<double> fci_diagonal = fci.calculateDiagonal(sq_hamiltonian);
 
-    GQCP::VectorX<double> selected_ci_matvec = selected_ci.matrixVectorProduct(hamiltonian_parameters, selected_ci_diagonal, selected_ci_diagonal);
-    GQCP::VectorX<double> fci_matvec = fci.matrixVectorProduct(hamiltonian_parameters, fci_diagonal, fci_diagonal);
+    GQCP::VectorX<double> selected_ci_matvec = selected_ci.matrixVectorProduct(sq_hamiltonian, selected_ci_diagonal, selected_ci_diagonal);
+    GQCP::VectorX<double> fci_matvec = fci.matrixVectorProduct(sq_hamiltonian, fci_diagonal, fci_diagonal);
 
-    GQCP::SquareMatrix<double> selected_ci_hamiltonian = selected_ci.constructHamiltonian(hamiltonian_parameters);
-    GQCP::SquareMatrix<double> fci_hamiltonian = fci.constructHamiltonian(hamiltonian_parameters);
+    GQCP::SquareMatrix<double> selected_ci_hamiltonian = selected_ci.constructHamiltonian(sq_hamiltonian);
+    GQCP::SquareMatrix<double> fci_hamiltonian = fci.constructHamiltonian(sq_hamiltonian);
 
     BOOST_CHECK(selected_ci_diagonal.isApprox(fci_diagonal));
     BOOST_CHECK(selected_ci_matvec.isApprox(fci_matvec));
@@ -92,7 +93,8 @@ BOOST_AUTO_TEST_CASE ( SelectedCI_vs_DOCI ) {
     // Create H-chain HamiltonianParameters to test results from DOCI and selected CI
     size_t K = 4;
     GQCP::Molecule H4 = GQCP::Molecule::HChain(K, 1.1);
-    auto hamiltonian_parameters = GQCP::SQHamiltonian<double>::Molecular(H4, "STO-3G");
+    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (H4, "STO-3G");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, H4);  // in an AO basis
 
     // Create compatible Fock spaces
     GQCP::FockSpace do_fock_space (K, 2);
@@ -103,14 +105,14 @@ BOOST_AUTO_TEST_CASE ( SelectedCI_vs_DOCI ) {
     GQCP::SelectedCI selected_ci (fock_space);
     GQCP::DOCI doci (do_fock_space);
 
-    GQCP::VectorX<double> selected_ci_diagonal = selected_ci.calculateDiagonal(hamiltonian_parameters);
-    GQCP::VectorX<double> doci_diagonal = doci.calculateDiagonal(hamiltonian_parameters);
+    GQCP::VectorX<double> selected_ci_diagonal = selected_ci.calculateDiagonal(sq_hamiltonian);
+    GQCP::VectorX<double> doci_diagonal = doci.calculateDiagonal(sq_hamiltonian);
 
-    GQCP::VectorX<double> selected_ci_matvec = selected_ci.matrixVectorProduct(hamiltonian_parameters, selected_ci_diagonal, selected_ci_diagonal);
-    GQCP::VectorX<double> doci_matvec = doci.matrixVectorProduct(hamiltonian_parameters, doci_diagonal, doci_diagonal);
+    GQCP::VectorX<double> selected_ci_matvec = selected_ci.matrixVectorProduct(sq_hamiltonian, selected_ci_diagonal, selected_ci_diagonal);
+    GQCP::VectorX<double> doci_matvec = doci.matrixVectorProduct(sq_hamiltonian, doci_diagonal, doci_diagonal);
 
-    GQCP::SquareMatrix<double> selected_ci_hamiltonian = selected_ci.constructHamiltonian(hamiltonian_parameters);
-    GQCP::SquareMatrix<double> doci_hamiltonian = doci.constructHamiltonian(hamiltonian_parameters);
+    GQCP::SquareMatrix<double> selected_ci_hamiltonian = selected_ci.constructHamiltonian(sq_hamiltonian);
+    GQCP::SquareMatrix<double> doci_hamiltonian = doci.constructHamiltonian(sq_hamiltonian);
 
     BOOST_CHECK(selected_ci_diagonal.isApprox(doci_diagonal));
     BOOST_CHECK(selected_ci_matvec.isApprox(doci_matvec));

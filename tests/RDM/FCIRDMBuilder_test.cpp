@@ -35,17 +35,18 @@ BOOST_AUTO_TEST_CASE ( H2O_1RDM_spin_trace_FCI ) {
     size_t N_a = 5;
     size_t N_b = 5;
 
-    // Create the molecular Hamiltonian parameters in the AO basis
+    // Create the molecular Hamiltonian in the AO basis
     auto h2o = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
-    auto ham_par = GQCP::SQHamiltonian<double>::Molecular(h2o, "STO-3G");
-    size_t K = ham_par.get_K();  // SO 7
+    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2o, "STO-3G");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2o);  // in an AO basis
+    size_t K = sq_hamiltonian.get_K();  // SO 7
 
     GQCP::ProductFockSpace fock_space (K, N_a, N_b);  // dim = 441
     GQCP::FCI fci (fock_space);
 
     // Specify solver options and solve the eigenvalue problem
     // Solve the dense FCI eigenvalue problem
-    GQCP::CISolver ci_solver (fci, ham_par);
+    GQCP::CISolver ci_solver (fci, sq_hamiltonian);
     GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
@@ -69,17 +70,18 @@ BOOST_AUTO_TEST_CASE ( H2O_2RDM_spin_trace_FCI ) {
     size_t N_a = 5;
     size_t N_b = 5;
 
-    // Create the molecular Hamiltonian parameters in the AO basis
+    // Create the molecular Hamiltonian in the AO basis
     auto h2o = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
-    auto ham_par = GQCP::SQHamiltonian<double>::Molecular(h2o, "STO-3G");
-    size_t K = ham_par.get_K();  // SO 7
+    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2o, "STO-3G");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2o);  // in an AO basis
+    size_t K = sq_hamiltonian.get_K();  // SO 7
 
     GQCP::ProductFockSpace fock_space (K, N_a, N_b);  // dim = 441
     GQCP::FCI fci (fock_space);
 
     // Specify solver options and solve the eigenvalue problem
     // Solve the dense FCI eigenvalue problem
-    GQCP::CISolver ci_solver (fci, ham_par);
+    GQCP::CISolver ci_solver (fci, sq_hamiltonian);
     GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
@@ -105,17 +107,18 @@ BOOST_AUTO_TEST_CASE ( H2O_1RDM_2RDM_trace_FCI ) {
     size_t N_b = 5;
     size_t N = N_a + N_b;
 
-    // Create the molecular Hamiltonian parameters in the AO basis
+    // Create the molecular Hamiltonian in the AO basis
     auto h2o = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
-    auto ham_par = GQCP::SQHamiltonian<double>::Molecular(h2o, "STO-3G");
-    size_t K = ham_par.get_K();  // SO 7
+    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2o, "STO-3G");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2o);  // in an AO basis
+    size_t K = sq_hamiltonian.get_K();  // SO 7
 
     GQCP::ProductFockSpace fock_space (K, N_a, N_b);  // dim = 441
     GQCP::FCI fci (fock_space);
 
     // Specify solver options and solve the eigenvalue problem
     // Solve the dense FCI eigenvalue problem
-    GQCP::CISolver ci_solver (fci, ham_par);
+    GQCP::CISolver ci_solver (fci, sq_hamiltonian);
     GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
@@ -139,17 +142,18 @@ BOOST_AUTO_TEST_CASE ( H2O_energy_RDM_contraction_FCI ) {
     size_t N_a = 5;
     size_t N_b = 5;
 
-    // Create the molecular Hamiltonian parameters in the AO basis
+    // Create the molecular Hamiltonian in the AO basis
     auto h2o = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
-    auto ham_par = GQCP::SQHamiltonian<double>::Molecular(h2o, "STO-3G");
-    size_t K = ham_par.get_K();  // SO 7
+    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2o, "STO-3G");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2o);  // in an AO basis
+    size_t K = sq_hamiltonian.get_K();  // SO 7
 
     GQCP::ProductFockSpace fock_space (K, N_a, N_b);  // dim = 441
     GQCP::FCI fci (fock_space);
 
     // Specify solver options and solve the eigenvalue problem
     // Solve the dense FCI eigenvalue problem
-    GQCP::CISolver ci_solver (fci, ham_par);
+    GQCP::CISolver ci_solver (fci, sq_hamiltonian);
     GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
@@ -161,7 +165,7 @@ BOOST_AUTO_TEST_CASE ( H2O_energy_RDM_contraction_FCI ) {
     GQCP::TwoRDMs<double> two_rdms = fci_rdm.calculate2RDMs(coef);
     GQCP::OneRDMs<double> one_rdms = fci_rdm.calculate1RDMs(coef);
 
-    double energy_by_contraction = GQCP::calculateExpectationValue(ham_par, one_rdms.one_rdm, two_rdms.two_rdm);
+    double energy_by_contraction = GQCP::calculateExpectationValue(sq_hamiltonian, one_rdms.one_rdm, two_rdms.two_rdm);
 
     BOOST_CHECK(std::abs(energy_by_eigenvalue - energy_by_contraction) < 1.0e-12);
 }
@@ -174,17 +178,18 @@ BOOST_AUTO_TEST_CASE ( H2O_energy_RDM_contraction_FCI_wavefunction ) {
     size_t N_a = 5;
     size_t N_b = 5;
 
-    // Create the molecular Hamiltonian parameters in the AO basis
+    // Create the molecular Hamiltonian in the AO basis
     auto h2o = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
-    auto ham_par = GQCP::SQHamiltonian<double>::Molecular(h2o, "STO-3G");
-    size_t K = ham_par.get_K();  // SO 7
+    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2o, "STO-3G");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2o);  // in an AO basis
+    size_t K = sq_hamiltonian.get_K();  // SO 7
 
     GQCP::ProductFockSpace fock_space (K, N_a, N_b);  // dim = 441
     GQCP::FCI fci (fock_space);
 
     // Specify solver options and solve the eigenvalue problem
     // Solve the dense FCI eigenvalue problem
-    GQCP::CISolver ci_solver (fci, ham_par);
+    GQCP::CISolver ci_solver (fci, sq_hamiltonian);
     GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
@@ -196,7 +201,7 @@ BOOST_AUTO_TEST_CASE ( H2O_energy_RDM_contraction_FCI_wavefunction ) {
     GQCP::TwoRDMs<double> two_rdms = fci_rdm.calculate2RDMs();
     GQCP::OneRDMs<double> one_rdms = fci_rdm.calculate1RDMs();
 
-    double energy_by_contraction = GQCP::calculateExpectationValue(ham_par, one_rdms.one_rdm, two_rdms.two_rdm);
+    double energy_by_contraction = GQCP::calculateExpectationValue(sq_hamiltonian, one_rdms.one_rdm, two_rdms.two_rdm);
 
     BOOST_CHECK(std::abs(energy_by_eigenvalue - energy_by_contraction) < 1.0e-12);
 }

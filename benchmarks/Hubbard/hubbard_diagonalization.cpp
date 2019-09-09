@@ -11,18 +11,19 @@
 
 
 static void constructHamiltonian(benchmark::State& state) {
-    // Prepare parameters
+
+    // Prepare the Hamiltonian
     size_t K = state.range(0);
     size_t N = state.range(1);
     GQCP::ProductFockSpace fock_space (K, N, N);
     GQCP::Hubbard hubbard (fock_space);
 
-    GQCP::SQHamiltonian<double> ham_par = GQCP::SQHamiltonian<double>::Random(K);
+    GQCP::SQHamiltonian<double> sq_hamiltonian = GQCP::SQHamiltonian<double>::Random(K);
     GQCP::DenseSolverOptions solver_options;
 
     // Code inside this loop is measured repeatedly
     for (auto _ : state) {
-        GQCP::CISolver ci_solver (hubbard, ham_par);
+        GQCP::CISolver ci_solver (hubbard, sq_hamiltonian);
         ci_solver.solve(solver_options);
 
         benchmark::DoNotOptimize(ci_solver);  // make sure the variable is not optimized away by compiler

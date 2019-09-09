@@ -35,20 +35,20 @@ BOOST_AUTO_TEST_CASE ( FCI_public_methods ) {
 
     // Create random HamiltonianParameters to check compatibility
     size_t K = 5;
-    auto random_hamiltonian_parameters = GQCP::SQHamiltonian<double>::Random(K);
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Random(K);
 
 
     // Create a compatible Fock space
     GQCP::ProductFockSpace fock_space (K, 3, 3);
     GQCP::FCI random_fci (fock_space);
-    GQCP::VectorX<double> x = random_fci.calculateDiagonal(random_hamiltonian_parameters);
-    BOOST_CHECK_NO_THROW(random_fci.constructHamiltonian(random_hamiltonian_parameters));
-    BOOST_CHECK_NO_THROW(random_fci.matrixVectorProduct(random_hamiltonian_parameters, x, x));
+    GQCP::VectorX<double> x = random_fci.calculateDiagonal(sq_hamiltonian);
+    BOOST_CHECK_NO_THROW(random_fci.constructHamiltonian(sq_hamiltonian));
+    BOOST_CHECK_NO_THROW(random_fci.matrixVectorProduct(sq_hamiltonian, x, x));
 
 
     // Create an incompatible Fock space
     GQCP::ProductFockSpace fock_space_invalid (K+1, 3, 3);
     GQCP::FCI random_fci_invalid (fock_space_invalid);
-    BOOST_CHECK_THROW(random_fci_invalid.constructHamiltonian(random_hamiltonian_parameters), std::invalid_argument);
-    BOOST_CHECK_THROW(random_fci_invalid.matrixVectorProduct(random_hamiltonian_parameters, x, x), std::invalid_argument);
+    BOOST_CHECK_THROW(random_fci_invalid.constructHamiltonian(sq_hamiltonian), std::invalid_argument);
+    BOOST_CHECK_THROW(random_fci_invalid.matrixVectorProduct(sq_hamiltonian, x, x), std::invalid_argument);
 }

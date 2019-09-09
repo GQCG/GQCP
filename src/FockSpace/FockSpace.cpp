@@ -358,20 +358,20 @@ Eigen::SparseMatrix<double> FockSpace::evaluateOperatorSparse(const ScalarSQTwoE
 /**
  *  Evaluate the Hamiltonian in a dense matrix
  *
- *  @param ham_par              the Hamiltonian parameters in an orthonormal orbital basis to be evaluated in the Fock space
- *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+ *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
+ *  @param diagonal_values              bool to indicate if diagonal values will be calculated
  *
  *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the Fock space
  */
-SquareMatrix<double> FockSpace::evaluateOperatorDense(const SQHamiltonian<double>& ham_par, bool diagonal_values) const {
+SquareMatrix<double> FockSpace::evaluateOperatorDense(const SQHamiltonian<double>& sq_hamiltonian, bool diagonal_values) const {
 
-    auto K = ham_par.dimension();
+    auto K = sq_hamiltonian.dimension();
     if (K != this->K) {
         throw std::invalid_argument("FockSpace::evaluateOperatorDense(SQHamiltonian<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
     }
 
     EvaluationMatrix<SquareMatrix<double>> container (this->dim);
-    this->EvaluateOperator<SquareMatrix<double>>(ham_par.core(), ham_par.twoElectron(), container, diagonal_values);
+    this->EvaluateOperator<SquareMatrix<double>>(sq_hamiltonian.core(), sq_hamiltonian.twoElectron(), container, diagonal_values);
     return container.get_matrix();
 }
 
@@ -379,14 +379,14 @@ SquareMatrix<double> FockSpace::evaluateOperatorDense(const SQHamiltonian<double
 /**
  *  Evaluate the Hamiltonian in a sparse matrix
  *
- *  @param ham_par              the Hamiltonian parameters in an orthonormal orbital basis to be evaluated in the Fock space
- *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+ *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
+ *  @param diagonal_values              bool to indicate if diagonal values will be calculated
  *
  *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the Fock space
  */
-Eigen::SparseMatrix<double> FockSpace::evaluateOperatorSparse(const SQHamiltonian<double>& ham_par, bool diagonal_values) const {
+Eigen::SparseMatrix<double> FockSpace::evaluateOperatorSparse(const SQHamiltonian<double>& sq_hamiltonian, bool diagonal_values) const {
 
-    auto K = ham_par.dimension();
+    auto K = sq_hamiltonian.dimension();
     if (K != this->K) {
         throw std::invalid_argument("FockSpace::evaluateOperatorSparse(SQHamiltonian<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
     }
@@ -399,7 +399,7 @@ Eigen::SparseMatrix<double> FockSpace::evaluateOperatorSparse(const SQHamiltonia
     }
 
     container.reserve(memory);
-    this->EvaluateOperator<Eigen::SparseMatrix<double>>(ham_par.core(), ham_par.twoElectron(), container, diagonal_values);
+    this->EvaluateOperator<Eigen::SparseMatrix<double>>(sq_hamiltonian.core(), sq_hamiltonian.twoElectron(), container, diagonal_values);
     container.addToMatrix();
     return container.get_matrix();
 }
@@ -568,18 +568,18 @@ VectorX<double> FockSpace::evaluateOperatorDiagonal(const ScalarSQTwoElectronOpe
 /**
  *  Evaluate the diagonal of the Hamiltonian
  *
- *  @param ham_par              the Hamiltonian parameters in an orthonormal orbital basis to be evaluated in the Fock space
+ *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
  *
  *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the Fock space
  */
-VectorX<double> FockSpace::evaluateOperatorDiagonal(const SQHamiltonian<double>& ham_par) const {
+VectorX<double> FockSpace::evaluateOperatorDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const {
 
-    auto K = ham_par.dimension();
+    auto K = sq_hamiltonian.dimension();
     if (K != this->K) {
         throw std::invalid_argument("FockSpace::evaluateOperatorDiagonal(SQHamiltonian<double>): Basis functions of the Fock space and the operator are incompatible.");
     }
 
-    return this->evaluateOperatorDiagonal(ham_par.core()) + this->evaluateOperatorDiagonal(ham_par.twoElectron());
+    return this->evaluateOperatorDiagonal(sq_hamiltonian.core()) + this->evaluateOperatorDiagonal(sq_hamiltonian.twoElectron());
 };
 
 

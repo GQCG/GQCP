@@ -34,7 +34,7 @@ namespace GQCP {
 class CISolver {
 private:
     const HamiltonianBuilder* hamiltonian_builder;
-    SQHamiltonian<double> hamiltonian_parameters;
+    SQHamiltonian<double> sq_hamiltonian;
 
     std::vector<Eigenpair> eigenpairs;  // eigenvalues and -vectors
 
@@ -42,9 +42,9 @@ public:
     // CONSTRUCTORS
     /**
      *  @param hamiltonian_builder      the HamiltonianBuilder for which the CI eigenvalue problem should be solved
-     *  @param hamiltonian_parameters   the Hamiltonian parameters in an orthonormal basis
+     *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
      */
-    CISolver(const HamiltonianBuilder& hamiltonian_builder, const SQHamiltonian<double>& hamiltonian_parameters);
+    CISolver(const HamiltonianBuilder& hamiltonian_builder, const SQHamiltonian<double>& sq_hamiltonian);
 
 
     // GETTERS

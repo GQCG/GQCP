@@ -29,12 +29,12 @@
 
 BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_dense ) {
 
-    // Check if FCI and Hubbard produce the same results for Hubbard Hamiltonian parameters
+    // Check if FCI and Hubbard produce the same results for Hubbard Hamiltonian
 
-    // Create the Hamiltonian parameters for a random Hubbard hopping matrix
+    // Create the Hamiltonian for a random Hubbard hopping matrix
     size_t K = 4;
     auto H = GQCP::HoppingMatrix::Random(K);
-    auto mol_ham_par = GQCP::SQHamiltonian<double>::Hubbard(H);
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Hubbard(H);
 
 
     // Create the Hubbard and FCI modules
@@ -45,8 +45,8 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_dense ) {
 
 
     // Solve via dense
-    GQCP::CISolver hubbard_solver (hubbard, mol_ham_par);
-    GQCP::CISolver fci_solver (fci, mol_ham_par);
+    GQCP::CISolver hubbard_solver (hubbard, sq_hamiltonian);
+    GQCP::CISolver fci_solver (fci, sq_hamiltonian);
 
     GQCP::DenseSolverOptions dense_solver_options;
     hubbard_solver.solve(dense_solver_options);
@@ -61,12 +61,12 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_dense ) {
 
 BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_dense_large ) {
 
-    // Check if FCI and Hubbard produce the same results for Hubbard Hamiltonian parameters
+    // Check if FCI and Hubbard produce the same results for Hubbard Hamiltonian
 
-    // Create the Hamiltonian parameters for a random Hubbard hopping matrix
+    // Create the Hamiltonian for a random Hubbard hopping matrix
     size_t K = 6;
     auto H = GQCP::HoppingMatrix::Random(K);
-    auto mol_ham_par = GQCP::SQHamiltonian<double>::Hubbard(H);
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Hubbard(H);
 
 
     // Create the Hubbard and FCI modules
@@ -75,8 +75,8 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_dense_large ) {
     GQCP::Hubbard hubbard (fock_space);
     GQCP::FCI fci (fock_space);
 
-    GQCP::CISolver solver1 (hubbard, mol_ham_par);
-    GQCP::CISolver solver2 (fci, mol_ham_par);
+    GQCP::CISolver solver1 (hubbard, sq_hamiltonian);
+    GQCP::CISolver solver2 (fci, sq_hamiltonian);
 
     GQCP::DenseSolverOptions dense_solver_options;
     solver1.solve(dense_solver_options);
@@ -110,14 +110,14 @@ BOOST_AUTO_TEST_CASE ( four_site_chain_ward ) {
     GQCP::ProductFockSpace fock_space (K, N, N);
     for (size_t i = 0; i < 7; i++) {
 
-        // Create the Hamiltonian parameters for the Hubbard model
+        // Create the Hamiltonian for the Hubbard model
         GQCP::HoppingMatrix H (A, t, U_list[i]);
-        auto ham_par = GQCP::SQHamiltonian<double>::Hubbard(H);
+        auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Hubbard(H);
 
 
         // Solve the dense eigenvalue problem
         GQCP::Hubbard hubbard (fock_space);
-        GQCP::CISolver solver (hubbard, ham_par);
+        GQCP::CISolver solver (hubbard, sq_hamiltonian);
         GQCP::DenseSolverOptions dense_solver_options;
         solver.solve(dense_solver_options);
 
@@ -150,14 +150,14 @@ BOOST_AUTO_TEST_CASE ( six_site_ring_ward ) {
     GQCP::ProductFockSpace fock_space (K, N, N);
     for (size_t i = 0; i < 7; i++) {
 
-        // Create the Hamiltonian parameters for the Hubbard model
+        // Create the Hamiltonian for the Hubbard model
         GQCP::HoppingMatrix H (A, t, U_list[i]);
-        auto ham_par = GQCP::SQHamiltonian<double>::Hubbard(H);
+        auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Hubbard(H);
 
 
         // Solve the dense eigenvalue problem
         GQCP::Hubbard hubbard (fock_space);
-        GQCP::CISolver solver (hubbard, ham_par);
+        GQCP::CISolver solver (hubbard, sq_hamiltonian);
         GQCP::DenseSolverOptions dense_solver_options;
         solver.solve(dense_solver_options);
 

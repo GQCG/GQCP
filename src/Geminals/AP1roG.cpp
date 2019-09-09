@@ -22,15 +22,15 @@ namespace GQCP {
 
 
 /**
- *  @param G            the converged AP1roG geminal coefficients
- *  @param ham_par      Hamiltonian parameters in an orthonormal spatial orbital basis
+ *  @param G                    the converged AP1roG geminal coefficients
+ *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis
  *
  *  @return the AP1roG electronic energy
  */
-double calculateAP1roGEnergy(const AP1roGGeminalCoefficients& G, const SQHamiltonian<double>& ham_par) {
+double calculateAP1roGEnergy(const AP1roGGeminalCoefficients& G, const SQHamiltonian<double>& sq_hamiltonian) {
 
-    const auto& h = ham_par.core().parameters();
-    const auto& g = ham_par.twoElectron().parameters();
+    const auto& h = sq_hamiltonian.core().parameters();
+    const auto& g = sq_hamiltonian.twoElectron().parameters();
 
 
     // KISS implementation of the AP1roG energy

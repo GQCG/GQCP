@@ -19,23 +19,24 @@ Follow along the following documented example that calculates the FCI energy:
 #include <gqcp.hpp>
 
 
-// Create the molecular Hamiltonian parameters in an AO basis
-auto h2o = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
-auto mol_ham_par = GQCP::SQHamiltonian<double>::Molecular(h2o, "STO-3G");
+// Create the second-quantized Hamiltonian
+const auto h2o = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
+GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2o, "STO-3G");
+auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2o);  // in an AO basis
 
 
 // Create a plain RHF SCF solver and solve the SCF equations
-GQCP::PlainRHFSCFSolver plain_scf_solver (mol_ham_par, h2o);
+GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, h2o);
 plain_scf_solver.solve();
 auto rhf = plain_scf_solver.get_solution();
 
 
-// Transform the Hamiltonian parameters to the RHF basis
-mol_ham_par.transform(rhf.get_C());
+// Transform the Hamiltonian to the RHF basis
+GQCP::basisTransform(sp_basis, sq_hamiltonian, rhf.get_C());
 
 
 // Set up the FCI Fock space
-auto K = mol_ham_par.get_K();  // number of spatial orbitials
+auto K = sq_hamiltonian.get_K();  // number of spatial orbitials
 auto N_alpha = h2o.numberOfElectrons()/2;
 auto N_beta = h2o.numberOfElectrons()/2;
 GQCP::ProductFockSpace fock_space (K, N_alpha, N_beta);
@@ -47,7 +48,7 @@ GQCP::FCI fci (fock_space);  // has implemented the FCI matrix-vector product
 auto initial_guess = fock_space.HartreeFockExpansion();
 GQCP::DavidsonSolverOptions davidson_solver_options (initial_guess);  // number of requested eigenpairs defaults to 1
 
-GQCP::CISolver ci_solver (fci, mol_ham_par);
+GQCP::CISolver ci_solver (fci, sq_hamiltonian);
 ci_solver.solve(davidson_solver_options);
 
 

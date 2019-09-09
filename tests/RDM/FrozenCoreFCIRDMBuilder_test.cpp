@@ -34,7 +34,8 @@ BOOST_AUTO_TEST_CASE ( FrozenCoreFCI_one_rdms ) {
 
     size_t K = 5;
     GQCP::Molecule H5 = GQCP::Molecule::HChain(K, 1.1);
-    auto ham_par = GQCP::SQHamiltonian<double>::Molecular(H5, "STO-3G");
+    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (H5, "STO-3G");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, H5);  // in an AO basis
 
     GQCP::FrozenProductFockSpace fock_space (K, 3, 3, 2);
     GQCP::SelectedFockSpace selected_fock_space (fock_space);
@@ -42,7 +43,7 @@ BOOST_AUTO_TEST_CASE ( FrozenCoreFCI_one_rdms ) {
 
     // Specify solver options and solve the eigenvalue problem
     // Solve the dense FCI eigenvalue problem
-    GQCP::CISolver ci_solver (fci, ham_par);
+    GQCP::CISolver ci_solver (fci, sq_hamiltonian);
     GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
@@ -65,7 +66,8 @@ BOOST_AUTO_TEST_CASE ( FrozenCoreFCI_two_rdms ) {
 
     size_t K = 4;
     GQCP::Molecule H5 = GQCP::Molecule::HChain(K, 1.1);
-    auto ham_par = GQCP::SQHamiltonian<double>::Molecular(H5, "STO-3G");
+    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (H5, "STO-3G");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, H5);  // in an AO basis
 
     GQCP::FrozenProductFockSpace fock_space (K, 3, 3, 2);
     GQCP::SelectedFockSpace selected_fock_space (fock_space);
@@ -73,7 +75,7 @@ BOOST_AUTO_TEST_CASE ( FrozenCoreFCI_two_rdms ) {
 
     // Specify solver options and solve the eigenvalue problem
     // Solve the dense FCI eigenvalue problem
-    GQCP::CISolver ci_solver (fci, ham_par);
+    GQCP::CISolver ci_solver (fci, sq_hamiltonian);
     GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 

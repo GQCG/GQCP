@@ -29,24 +29,25 @@ BOOST_AUTO_TEST_CASE ( FCI_h2_sto3g_dense_vs_Davidson ) {
 
     // Check if the dense FCI energy is equal to the Davidson (with matvec) FCI energy
 
-    // Create the molecular Hamiltonian parameters in an AO basis
+    // Create the molecular Hamiltonian in an AO basis
     auto h2 = GQCP::Molecule::ReadXYZ("data/h2_cristina.xyz");
-    auto mol_ham_par = GQCP::SQHamiltonian<double>::Molecular(h2, "STO-3G");
-    auto K = mol_ham_par.get_K();
+    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2, "STO-3G");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2);  // in an AO basis
+    auto K = sq_hamiltonian.get_K();
 
     // Create a plain RHF SCF solver and solve the SCF equations
-    GQCP::PlainRHFSCFSolver plain_scf_solver (mol_ham_par, h2);
+    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, h2);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 
-    // Transform the ham_par
-    mol_ham_par.transform(rhf.get_C());
+    // Transform the sq_hamiltonian
+    sq_hamiltonian.transform(rhf.get_C());
 
     GQCP::ProductFockSpace fock_space (K, h2.numberOfElectrons()/2, h2.numberOfElectrons()/2);  // dim = 2
 
     // Create the FCI module
     GQCP::FCI fci (fock_space);
-    GQCP::CISolver ci_solver (fci, mol_ham_par);
+    GQCP::CISolver ci_solver (fci, sq_hamiltonian);
 
     // Solve Davidson
     GQCP::VectorX<double> initial_g = fock_space.HartreeFockExpansion();
@@ -71,24 +72,25 @@ BOOST_AUTO_TEST_CASE ( FCI_H2_6_31Gxx_dense_vs_Davidson ) {
 
     // Check if the dense FCI energy is equal to the Davidson (with matvec) FCI energy
 
-    // Create the molecular Hamiltonian parameters in an AO basis
+    // Create the molecular Hamiltonian in an AO basis
     auto h2 = GQCP::Molecule::ReadXYZ("data/h2_cristina.xyz");
-    auto mol_ham_par = GQCP::SQHamiltonian<double>::Molecular(h2, "6-31G**");
-    auto K = mol_ham_par.get_K();
+    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2, "6-31G**");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2);  // in an AO basis
+    auto K = sq_hamiltonian.get_K();
 
     // Create a plain RHF SCF solver and solve the SCF equations
-    GQCP::PlainRHFSCFSolver plain_scf_solver (mol_ham_par, h2);
+    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, h2);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 
-    // Transform the ham_par
-    mol_ham_par.transform(rhf.get_C());
+    // Transform the sq_hamiltonian
+    sq_hamiltonian.transform(rhf.get_C());
 
     GQCP::ProductFockSpace fock_space (K, h2.numberOfElectrons()/2, h2.numberOfElectrons()/2);  // dim = 100
 
     // Create the FCI module
     GQCP::FCI fci (fock_space);
-    GQCP::CISolver ci_solver (fci, mol_ham_par);
+    GQCP::CISolver ci_solver (fci, sq_hamiltonian);
 
     // Solve Davidson
     GQCP::VectorX<double> initial_g = fock_space.HartreeFockExpansion();
@@ -113,24 +115,25 @@ BOOST_AUTO_TEST_CASE ( FCI_H2O_STO_3G_dense_vs_Davidson ) {
 
     // Check if the dense FCI energy is equal to the Davidson (with matvec) FCI energy
 
-    // Create the molecular Hamiltonian parameters in an AO basis
+    // Create the molecular Hamiltonian in an AO basis
     auto h2o = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
-    auto mol_ham_par = GQCP::SQHamiltonian<double>::Molecular(h2o, "STO-3G");
-    auto K = mol_ham_par.get_K();
+    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2o, "STO-3G");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2o);  // in an AO basis
+    auto K = sq_hamiltonian.get_K();
 
     // Create a plain RHF SCF solver and solve the SCF equations
-    GQCP::PlainRHFSCFSolver plain_scf_solver (mol_ham_par, h2o);
+    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, h2o);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 
-    // Transform the ham_par
-    mol_ham_par.transform(rhf.get_C());
+    // Transform the sq_hamiltonian
+    sq_hamiltonian.transform(rhf.get_C());
 
     GQCP::ProductFockSpace fock_space (K, h2o.numberOfElectrons()/2, h2o.numberOfElectrons()/2);  // dim = 441
 
     // Create the FCI module
     GQCP::FCI fci (fock_space);
-    GQCP::CISolver ci_solver (fci, mol_ham_par);
+    GQCP::CISolver ci_solver (fci, sq_hamiltonian);
 
     // Solve Davidson
     GQCP::VectorX<double> initial_g = fock_space.HartreeFockExpansion();
@@ -154,24 +157,25 @@ BOOST_AUTO_TEST_CASE ( FCI_H6_STO_3G_dense_vs_Davidson ) {
 
     // Check if the dense FCI energy is equal to the Davidson (with matvec) FCI energy
 
-    // Create the molecular Hamiltonian parameters in an AO basis
+    // Create the molecular Hamiltonian in an AO basis
     size_t K = 6;
     GQCP::Molecule H6 = GQCP::Molecule::HChain(K, 1.1);
-    auto mol_ham_par = GQCP::SQHamiltonian<double>::Molecular(H6, "STO-3G");
+    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (H6, "STO-3G");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, H6);  // in an AO basis
 
     // Create a plain RHF SCF solver and solve the SCF equations
-    GQCP::PlainRHFSCFSolver plain_scf_solver (mol_ham_par, H6);
+    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, H6);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 
-    // Transform the ham_par
-    mol_ham_par.transform(rhf.get_C());
+    // Transform the sq_hamiltonian
+    sq_hamiltonian.transform(rhf.get_C());
 
     GQCP::ProductFockSpace fock_space (K, 3, 2);  // dim = 300
 
     // Create the FCI module
     GQCP::FCI fci (fock_space);
-    GQCP::CISolver ci_solver (fci, mol_ham_par);
+    GQCP::CISolver ci_solver (fci, sq_hamiltonian);
 
     // Solve Davidson
     GQCP::VectorX<double> initial_g = fock_space.HartreeFockExpansion();

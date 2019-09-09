@@ -17,6 +17,7 @@
 //
 #include "QCMethod/DOCINewtonOrbitalOptimizer.hpp"
 
+#include "Basis/SingleParticleBasis.hpp"
 #include "CISolver/CISolver.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Mathematical/Optimization/IterativeIdentitiesHessianModifier.hpp"
@@ -58,39 +59,38 @@ DOCINewtonOrbitalOptimizer::DOCINewtonOrbitalOptimizer(const std::string& xyz_fi
  */
 void DOCINewtonOrbitalOptimizer::solve() {
 
-    // Construct the molecular Hamiltonian parameters
+    // Construct the molecular Hamiltonian in the RHF basis
     auto molecule = Molecule::ReadXYZ(this->xyz_filename);
-    auto N_P = molecule.numberOfElectrons()/2;
-    auto ao_mol_ham_par = GQCP::SQHamiltonian<double>::Molecular(molecule, basis_set);
-    size_t K = ao_mol_ham_par.get_K();
+    SingleParticleBasis<double, GTOShell> sp_basis (molecule, this->basis_set);
+    const auto N_P = molecule.numberOfElectrons()/2;
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, molecule);  // in AO basis
+    const size_t K = sq_hamiltonian.get_K();
 
-
-    GQCP::DIISRHFSCFSolver diis_scf_solver (ao_mol_ham_par, molecule);
+    GQCP::DIISRHFSCFSolver diis_scf_solver (sq_hamiltonian, molecule);
     diis_scf_solver.solve();
     auto rhf = diis_scf_solver.get_solution();
-
-    auto mol_ham_par = GQCP::SQHamiltonian<double>(ao_mol_ham_par, rhf.get_C());
+    sq_hamiltonian.transform(rhf.get_C());
 
     auto hessian_modifier = std::make_shared<GQCP::IterativeIdentitiesHessianModifier>();
     if (localize) {
 
         // Newton to get to the first local minimum
         GQCP::ERNewtonLocalizer first_newton_localizer (N_P, hessian_modifier);
-        first_newton_localizer.optimize(mol_ham_par);
+        first_newton_localizer.optimize(sq_hamiltonian);
 
 
         // Check if Jacobi finds another minimum
         GQCP::ERJacobiLocalizer jacobi_localizer (N_P);
-        auto optimal_jacobi_with_scalar = jacobi_localizer.calculateOptimalJacobiParameters(mol_ham_par);
+        auto optimal_jacobi_with_scalar = jacobi_localizer.calculateOptimalJacobiParameters(sq_hamiltonian);
         if (optimal_jacobi_with_scalar.second > 0) {  // if a Jacobi rotation can find an increase, do it
-            const auto U = GQCP::TransformationMatrix<double>::FromJacobi(optimal_jacobi_with_scalar.first, mol_ham_par.get_K());
-            mol_ham_par.rotate(U);
+            const auto U = GQCP::TransformationMatrix<double>::FromJacobi(optimal_jacobi_with_scalar.first, sq_hamiltonian.get_K());
+            sq_hamiltonian.rotate(U);
         }
 
 
         // Newton to get to the next local minimum
         GQCP::ERNewtonLocalizer second_newton_localizer (N_P, hessian_modifier);
-        first_newton_localizer.optimize(mol_ham_par);
+        first_newton_localizer.optimize(sq_hamiltonian);
     }
 
      // Do the DOCI orbital optimization
@@ -105,13 +105,13 @@ void DOCINewtonOrbitalOptimizer::solve() {
     }
 
     GQCP::DOCINewtonOrbitalOptimizer orbital_optimizer (doci, *solver_options, hessian_modifier);
-    orbital_optimizer.optimize(mol_ham_par);
+    orbital_optimizer.optimize(sq_hamiltonian);
     double OO_DOCI_electronic_energy = orbital_optimizer.get_eigenpair().get_eigenvalue();
 
     this->is_solved = true;
     double internuclear_repulsion_energy = Operator::NuclearRepulsion(molecule).value();
     this->energy_solution = OO_DOCI_electronic_energy + internuclear_repulsion_energy;
-    this->T_total = mol_ham_par.get_T_total();  
+    this->T_total = sq_hamiltonian.get_T_total();  
 }
 
 

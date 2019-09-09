@@ -41,21 +41,21 @@ BaseOrbitalOptimizer::BaseOrbitalOptimizer(const double convergence_threshold, c
  */
 
 /**
- *  Optimize the Hamiltonian parameters by subsequently
+ *  Optimize the Hamiltonian by subsequently
  *      - checking for convergence (see checkForConvergence())
- *      - rotating the Hamiltonian parameters with a newly found rotation matrix (see calculateNewRotationMatrix())
+ *      - rotating the Hamiltonian with a newly found rotation matrix (see calculateNewRotationMatrix())
  * 
- *  @param ham_par      the initial (guess for the) Hamiltonian parameters
+ *  @param sq_hamiltonian           the initial (guess for the) Hamiltonian
  */
-void BaseOrbitalOptimizer::optimize(SQHamiltonian<double>& ham_par) {
+void BaseOrbitalOptimizer::optimize(SQHamiltonian<double>& sq_hamiltonian) {
 
-    if (!ham_par.areOrbitalsOrthonormal()) {
-        throw std::invalid_argument("BaseOrbitalOptimizer::optimize(SQHamiltonian<double>&): The given Hamiltonian parameters do not belong to an orthonormal basis.");
+    if (!sq_hamiltonian.areOrbitalsOrthonormal()) {
+        throw std::invalid_argument("BaseOrbitalOptimizer::optimize(SQHamiltonian<double>&): The given Hamiltonian does not belong to an orthonormal basis.");
     }
 
-    while (this->prepareConvergenceChecking(ham_par), !this->checkForConvergence(ham_par)) {  // result of the comma operator is the second operand, so this expression effectively means "if not converged"
-        const auto U = this->calculateNewRotationMatrix(ham_par);
-        ham_par.rotate(U);
+    while (this->prepareConvergenceChecking(sq_hamiltonian), !this->checkForConvergence(sq_hamiltonian)) {  // result of the comma operator is the second operand, so this expression effectively means "if not converged"
+        const auto U = this->calculateNewRotationMatrix(sq_hamiltonian);
+        sq_hamiltonian.rotate(U);
 
         this->number_of_iterations++;
         if (this->number_of_iterations > this->maximum_number_of_iterations) {

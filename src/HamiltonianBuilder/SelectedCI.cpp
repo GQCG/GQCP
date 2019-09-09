@@ -25,13 +25,13 @@ namespace GQCP {
  *  PRIVATE METHODS
  */
 
-void SelectedCI::evaluateHamiltonianElements(const SQHamiltonian<double>& hamiltonian_parameters, const PassToMethod& method) const {
+void SelectedCI::evaluateHamiltonianElements(const SQHamiltonian<double>& sq_hamiltonian, const PassToMethod& method) const {
 
     const size_t dim = fock_space.get_dimension();
     const size_t K = fock_space.get_K();
 
-    const auto& h = hamiltonian_parameters.core().parameters();
-    const auto& g = hamiltonian_parameters.twoElectron().parameters();
+    const auto& h = sq_hamiltonian.core().parameters();
+    const auto& g = sq_hamiltonian.twoElectron().parameters();
 
     for (size_t I = 0; I < dim; I++) {  // loop over all addresses (1)
         Configuration configuration_I = this->fock_space.get_configuration(I);
@@ -198,41 +198,41 @@ SelectedCI::SelectedCI(const SelectedFockSpace& fock_space) :
  */
 
 /**
- *  @param hamiltonian_parameters       the SelectedCI Hamiltonian parameters in an orthonormal orbital basis
+ *  @param sq_hamiltonian           the SelectedCI Hamiltonian parameters in an orthonormal orbital basis
  *
  *  @return the SelectedCI Hamiltonian matrix
  */
-SquareMatrix<double> SelectedCI::constructHamiltonian(const SQHamiltonian<double>& hamiltonian_parameters) const {
-    auto K = hamiltonian_parameters.core().get_dim();
+SquareMatrix<double> SelectedCI::constructHamiltonian(const SQHamiltonian<double>& sq_hamiltonian) const {
+    auto K = sq_hamiltonian.core().get_dim();
     if (K != this->fock_space.get_K()) {
-        throw std::invalid_argument("SelectedCI::constructHamiltonian(SQHamiltonian<double>): Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
+        throw std::invalid_argument("SelectedCI::constructHamiltonian(SQHamiltonian<double>): Basis functions of the Fock space and sq_hamiltonian are incompatible.");
     }
 
     auto dim = fock_space.get_dimension();
 
     SquareMatrix<double> result_matrix = SquareMatrix<double>::Zero(dim, dim);
-    result_matrix += this->calculateDiagonal(hamiltonian_parameters).asDiagonal();
+    result_matrix += this->calculateDiagonal(sq_hamiltonian).asDiagonal();
 
     // We should put the calculated elements inside the result matrix
     PassToMethod addToMatrix = [&result_matrix](size_t I, size_t J, double value) { result_matrix(I, J) += value; };
 
-    this->evaluateHamiltonianElements(hamiltonian_parameters, addToMatrix);
+    this->evaluateHamiltonianElements(sq_hamiltonian, addToMatrix);
     return result_matrix;
 }
 
 
 /**
- *  @param hamiltonian_parameters       the SelectedCI Hamiltonian parameters in an orthonormal orbital basis
+ *  @param sq_hamiltonian               the SelectedCI Hamiltonian parameters in an orthonormal orbital basis
  *  @param x                            the vector upon which the SelectedCI Hamiltonian acts
  *  @param diagonal                     the diagonal of the SelectedCI Hamiltonian matrix
  *
  *  @return the action of the SelectedCI Hamiltonian on the coefficient vector
  */
-VectorX<double> SelectedCI::matrixVectorProduct(const SQHamiltonian<double>& hamiltonian_parameters, const VectorX<double>& x, const VectorX<double>& diagonal) const {
+VectorX<double> SelectedCI::matrixVectorProduct(const SQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
 
-    auto K = hamiltonian_parameters.core().get_dim();
+    auto K = sq_hamiltonian.core().get_dim();
     if (K != this->fock_space.get_K()) {
-        throw std::invalid_argument("SelectedCI::matrixVectorProduct(SQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
+        throw std::invalid_argument("SelectedCI::matrixVectorProduct(SQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the Fock space and sq_hamiltonian are incompatible.");
     }
 
     VectorX<double> matvec = diagonal.cwiseProduct(x);
@@ -240,19 +240,19 @@ VectorX<double> SelectedCI::matrixVectorProduct(const SQHamiltonian<double>& ham
     // We should pass the calculated elements to the resulting vector and perform the product
     PassToMethod addToMatvec = [&matvec, &x](size_t I, size_t J, double value) { matvec(I) += value * x(J); };
 
-    this->evaluateHamiltonianElements(hamiltonian_parameters, addToMatvec);
+    this->evaluateHamiltonianElements(sq_hamiltonian, addToMatvec);
 
     return matvec;
 }
 
 
 /**
- *  @param hamiltonian_parameters       the SelectedCI Hamiltonian parameters in an orthonormal orbital basis
+ *  @param sq_hamiltonian               the SelectedCI Hamiltonian parameters in an orthonormal orbital basis
  *
  *  @return the diagonal of the matrix representation of the SelectedCI Hamiltonian
  */
-VectorX<double> SelectedCI::calculateDiagonal(const SQHamiltonian<double>& hamiltonian_parameters) const {
-    return this->fock_space.evaluateOperatorDiagonal(hamiltonian_parameters);
+VectorX<double> SelectedCI::calculateDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const {
+    return this->fock_space.evaluateOperatorDiagonal(sq_hamiltonian);
 }
 
 

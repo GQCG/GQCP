@@ -31,8 +31,8 @@ namespace GQCP {
  */
 
 /**
- *  @param doci                     the DOCI HamiltonianBuilder
- *  @param ci_solver_options        the options for the CI solver (i.e. diagonalization of the Hamiltonian)
+ *  @param doci                             the DOCI HamiltonianBuilder
+ *  @param ci_solver_options                the options for the CI solver (i.e. diagonalization of the Hamiltonian)
  *  @param hessian_modifier                 the modifier functor that should be used when an indefinite Hessian is encountered
  *  @param convergence_threshold            the threshold used to check for convergence
  *  @param maximum_number_of_iterations     the maximum number of iterations that may be used to achieve convergence
@@ -77,10 +77,10 @@ const Eigenpair& DOCINewtonOrbitalOptimizer::get_eigenpair(size_t index) const {
  * 
  *  In the case of this uncoupled DOCI orbital optimizer, the DOCI eigenvalue problem is re-solved in every iteration using the current orbitals
  */
-void DOCINewtonOrbitalOptimizer::prepareDMCalculation(const SQHamiltonian<double>& ham_par) {
+void DOCINewtonOrbitalOptimizer::prepareDMCalculation(const SQHamiltonian<double>& sq_hamiltonian) {
 
     // Solve the DOCI eigenvalue problem to obtain DMs from which we can calculate the gradient and the Hessian
-    CISolver doci_solver (this->doci, ham_par);
+    CISolver doci_solver (this->doci, sq_hamiltonian);
     doci_solver.solve(this->ci_solver_options);
     this->eigenpairs = doci_solver.get_eigenpairs();
 
@@ -119,12 +119,12 @@ TwoRDM<double> DOCINewtonOrbitalOptimizer::calculate2RDM() const {
 /**
  *  Use gradient and Hessian information to determine a new direction for the 'full' orbital rotation generators kappa. Note that a distinction is made between 'free' generators, i.e. those that are calculated from the gradient and Hessian information and the 'full' generators, which also include the redundant parameters (that can be set to zero). The 'full' generators are used to calculate the total rotation matrix using the matrix exponential
  * 
- *  @param ham_par      the current Hamiltonian parameters
+ *  @param sq_hamiltonian           the current Hamiltonian
  * 
  *  @return the new full set orbital generators, including the redundant parameters
  */
-OrbitalRotationGenerators DOCINewtonOrbitalOptimizer::calculateNewFullOrbitalGenerators(const SQHamiltonian<double>& ham_par) const {
-    return this->calculateNewFreeOrbitalGenerators(ham_par);  // no extra step necessary
+OrbitalRotationGenerators DOCINewtonOrbitalOptimizer::calculateNewFullOrbitalGenerators(const SQHamiltonian<double>& sq_hamiltonian) const {
+    return this->calculateNewFreeOrbitalGenerators(sq_hamiltonian);  // no extra step necessary
 }
 
 

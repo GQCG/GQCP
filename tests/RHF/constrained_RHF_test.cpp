@@ -30,9 +30,10 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test ) {
 
     // Create a Molecule and the corresponding HamiltonianParameters
     auto CO = GQCP::Molecule::ReadXYZ("data/CO_mulliken.xyz");
-    auto ao_ham_par = GQCP::SQHamiltonian<double>::Molecular(CO, "STO-3G");
+    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (CO, "STO-3G");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, CO);  // in an AO basis
 
-    size_t K = ao_ham_par.get_K();
+    size_t K = sq_hamiltonian.get_K();
     size_t N = CO.numberOfElectrons();
 
     GQCP::OneRDM<double> one_rdm = GQCP::calculateRHF1RDM(K, N);
@@ -73,10 +74,10 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test ) {
     size_t index = 0;
     for (double i = -1.0; i < 1.01; i += 0.1) {
         // Calculate the Mulliken operator
-        auto mulliken_operator = ao_ham_par.calculateMullikenOperator(gto_list);
+        auto mulliken_operator = sq_hamiltonian.calculateMullikenOperator(gto_list);
 
-        // Constrain the original Hamiltonian parameters
-        auto constrained_ham_par = ao_ham_par.constrain(mulliken_operator, i);
+        // Constrain the original Hamiltonian
+        auto constrained_ham_par = sq_hamiltonian.constrain(mulliken_operator, i);
 
         // Create a DIIS RHF SCF solver and solve the SCF equations
         GQCP::DIISRHFSCFSolver diis_scf_solver (constrained_ham_par, CO);
@@ -115,9 +116,10 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test_random_transformation) {
 
     // Create a Molecule and the corresponding HamiltonianParameters
     auto CO = GQCP::Molecule::ReadXYZ("data/CO_mulliken.xyz");
-    auto ao_ham_par = GQCP::SQHamiltonian<double>::Molecular(CO, "STO-3G");
+    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (CO, "STO-3G");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, CO);  // in an AO basis
 
-    size_t K = ao_ham_par.get_K();
+    size_t K = sq_hamiltonian.get_K();
     size_t N = CO.numberOfElectrons();
 
     GQCP::TransformationMatrix<double> T = GQCP::TransformationMatrix<double>::Random(K, K);
@@ -126,7 +128,7 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test_random_transformation) {
         T(i,i) = 1;
     }
 
-    ao_ham_par.transform(T);
+    sq_hamiltonian.transform(T);
 
     GQCP::OneRDM<double> one_rdm = GQCP::calculateRHF1RDM(K, N);
 
@@ -166,10 +168,10 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test_random_transformation) {
     size_t index = 0;
     for (double i = -1; i<1.01; i += 0.1) {
         // Calculate the Mulliken operator
-        auto mulliken_operator = ao_ham_par.calculateMullikenOperator(gto_list);
+        auto mulliken_operator = sq_hamiltonian.calculateMullikenOperator(gto_list);
 
-        // Contrain the original Hamiltonian parameters
-        auto constrained_ham_par = ao_ham_par.constrain(mulliken_operator, i);
+        // Contrain the original Hamiltonian
+        auto constrained_ham_par = sq_hamiltonian.constrain(mulliken_operator, i);
 
         // Create a DIIS RHF SCF solver and solve the SCF equations
         GQCP::DIISRHFSCFSolver diis_scf_solver (constrained_ham_par, CO);

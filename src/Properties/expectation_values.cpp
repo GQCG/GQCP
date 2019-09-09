@@ -26,15 +26,15 @@ namespace GQCP {
  */
 
 /**
- *  @param ham_par      the electronic Hamiltonian containing one- and two-electron operators
- *  @param one_rdm      the 1-RDM
- *  @param two_rdm      the 2-RDM
+ *  @param sq_hamiltonian       the electronic Hamiltonian containing one- and two-electron operators
+ *  @param one_rdm              the 1-RDM
+ *  @param two_rdm              the 2-RDM
  *
  *  @return the expectation value of the given electronic Hamiltonian
  */
-double calculateExpectationValue(const SQHamiltonian<double>& ham_par, const OneRDM<double>& one_rdm, const TwoRDM<double>& two_rdm) {
+double calculateExpectationValue(const SQHamiltonian<double>& sq_hamiltonian, const OneRDM<double>& one_rdm, const TwoRDM<double>& two_rdm) {
 
-    return calculateExpectationValue(ham_par.core(), one_rdm)[0] + calculateExpectationValue(ham_par.twoElectron(), two_rdm)[0];  // SQHamiltonian contains ScalarSQOperators, so we access with [0]
+    return calculateExpectationValue(sq_hamiltonian.core(), one_rdm)[0] + calculateExpectationValue(sq_hamiltonian.twoElectron(), two_rdm)[0];  // SQHamiltonian contains ScalarSQOperators, so we access with [0]
 }
 
 

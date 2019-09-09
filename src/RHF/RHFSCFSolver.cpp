@@ -25,13 +25,13 @@ namespace GQCP {
  *  CONSTRUCTORS
  */
 /**
- *  @param ham_par                          the Hamiltonian parameters in AO basis
+ *  @param sq_hamiltonian                   the Hamiltonian parameters in AO basis
  *  @param molecule                         the molecule used for the SCF calculation
  *  @param threshold                        the convergence treshold on the Frobenius norm on the AO density matrix
  *  @param maximum_number_of_iterations     the maximum number of iterations for the SCF procedure
  */
-RHFSCFSolver::RHFSCFSolver(const SQHamiltonian<double>& ham_par, const Molecule& molecule, double threshold, size_t maximum_number_of_iterations) :
-    ham_par (ham_par),
+RHFSCFSolver::RHFSCFSolver(const SQHamiltonian<double>& sq_hamiltonian, const Molecule& molecule, double threshold, size_t maximum_number_of_iterations) :
+    sq_hamiltonian (sq_hamiltonian),
     molecule (molecule),
     maximum_number_of_iterations (maximum_number_of_iterations),
     threshold (threshold)
@@ -53,8 +53,8 @@ RHFSCFSolver::RHFSCFSolver(const SQHamiltonian<double>& ham_par, const Molecule&
  */
 void RHFSCFSolver::solve() {
 
-    const auto& H_core = this->ham_par.core().parameters();
-    const auto& S = this->ham_par.get_S().parameters();
+    const auto& H_core = this->sq_hamiltonian.core().parameters();
+    const auto& S = this->sq_hamiltonian.get_S().parameters();
 
 
     // Obtain an initial guess for the AO density matrix by solving the generalized eigenvalue problem for H_core
@@ -72,8 +72,8 @@ void RHFSCFSolver::solve() {
  */
 void RHFSCFSolver::solve(const TransformationMatrix<double>& C_initial) {
 
-    const auto& H_core = this->ham_par.core();
-    const auto& S = this->ham_par.get_S().parameters();
+    const auto& H_core = this->sq_hamiltonian.core();
+    const auto& S = this->sq_hamiltonian.get_S().parameters();
 
     auto C = C_initial;
     auto D_AO = calculateRHFAO1RDM(C, this->molecule.numberOfElectrons());
