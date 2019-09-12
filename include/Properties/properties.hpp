@@ -20,7 +20,7 @@
 
 #include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
 #include "RDM/OneRDM.hpp"
-
+#include "WaveFunction/WaveFunction.hpp"
 
 namespace GQCP {
 
@@ -33,6 +33,12 @@ namespace GQCP {
  */
 Vector<double, 3> calculateElectronicDipoleMoment(const VectorSQOneElectronOperator<double>& dipole_operator, const OneRDM<double>& one_rdm);
 
-
+/**
+ *  @param wavefunction1        a wave function in a product Fock space  
+ *  @param wavefunction2        a wave function in a product Fock space containing one fewer electron and the same amount of orbitals that is expressed in the same basis
+ *  
+ *  @return a vector with the coefficients of the Dyson orbital derived from the difference between the two wavefunctions
+ */
+VectorX<double> calculateDysonOrbital(const WaveFunction& wavefunction1, const WaveFunction& wavefunction2);
 
 }  // namespace GQCP

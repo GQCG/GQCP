@@ -24,6 +24,8 @@
 #include "Properties/properties.hpp"
 #include "RHF/DIISRHFSCFSolver.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
+#include "HamiltonianBuilder/FCI.hpp"
+#include "CISolver/CISolver.hpp"
 #include "units.hpp"
 
 
@@ -100,4 +102,52 @@ BOOST_AUTO_TEST_CASE ( dipole_N2_STO_3G ) {
 
     GQCP::Vector<double, 3> total_dipole_moment = GQCP::Operator::NuclearDipole(N2).value() + GQCP::calculateElectronicDipoleMoment(dipole_op, D);
     BOOST_CHECK(std::abs(total_dipole_moment.norm() - (0.0)) < 1.0e-08);
+}
+
+
+BOOST_AUTO_TEST_CASE ( dyson_N2_STO_3G ) {
+
+
+    GQCP::Nucleus N_1 (7, 0.0, 0.0, 0.0);
+    GQCP::Nucleus N_2 (7, 0.0, 0.0, GQCP::units::angstrom_to_bohr(1.134));  // from CCCBDB, STO-3G geometry
+    std::vector<GQCP::Nucleus> nuclei {N_1, N_2};
+    GQCP::Molecule N2 (nuclei);
+
+    auto ao_basis = std::make_shared<GQCP::ScalarBasis<GQCP::GTOShell>>(N2, "STO-3G");
+    auto mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(ao_basis);
+
+    size_t K = ao_basis->numberOfBasisFunctions();
+    size_t N = N2.numberOfElectrons();
+
+    // Solve the SCF equations
+    GQCP::PlainRHFSCFSolver plain_scf_solver (mol_ham_par, N2);  // The DIIS SCF solver seems to find a wrong minimum, so use a plain solver instead
+    plain_scf_solver.solve();
+    auto rhf = plain_scf_solver.get_solution();
+
+    mol_ham_par.transform(rhf.get_C());
+
+    GQCP::ProductFockSpace fock_space1 (K, N/2, N/2);
+    GQCP::ProductFockSpace fock_space2 (K, N/2, N/2-1);
+    
+    GQCP::FCI fci1 (fock_space1);
+    GQCP::FCI fci2 (fock_space2);
+
+    GQCP::CISolver ci_solver1(fci1, mol_ham_par);
+    GQCP::CISolver ci_solver2(fci2, mol_ham_par);
+
+    // Solve Davidson
+    GQCP::VectorX<double> initial_g1 = fock_space1.HartreeFockExpansion();
+    GQCP::VectorX<double> initial_g2 = fock_space2.HartreeFockExpansion();
+    GQCP::DavidsonSolverOptions davidson_solver_options1 (initial_g1);
+    GQCP::DavidsonSolverOptions davidson_solver_options2 (initial_g2);
+    ci_solver1.solve(davidson_solver_options1);
+    ci_solver2.solve(davidson_solver_options2);
+
+    const auto wavefunction1 = ci_solver1.makeWavefunction();
+    const auto wavefunction2 = ci_solver2.makeWavefunction();
+
+    const auto dyson_coefficients = GQCP::calculateDysonOrbital(wavefunction1, wavefunction2);
+
+    std::cout<<dyson_coefficients;
+
 }
