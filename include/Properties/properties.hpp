@@ -37,8 +37,8 @@ Vector<double, 3> calculateElectronicDipoleMoment(const VectorSQOneElectronOpera
  *  @param wavefunction1        a wave function in a product Fock space  
  *  @param wavefunction2        a wave function in a product Fock space containing one fewer electron and the same amount of orbitals that is expressed in the same basis
  *  
- *  @return a vector with the coefficients of the Dyson orbital derived from the difference between the two wavefunctions
+ *  @return a vector with the coefficients of a Dyson orbital derived from the difference between the two wave functions expressed in the basis of the wave functions
  */
-VectorX<double> calculateDysonOrbital(const WaveFunction& wavefunction1, const WaveFunction& wavefunction2);
+VectorX<double> calculateDysonAmplitudes(const WaveFunction& wavefunction1, const WaveFunction& wavefunction2);
 
 }  // namespace GQCP

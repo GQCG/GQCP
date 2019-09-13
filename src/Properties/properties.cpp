@@ -43,9 +43,9 @@ Vector<double, 3> calculateElectronicDipoleMoment(const VectorSQOneElectronOpera
  *  @param wavefunction1        a wave function in a product Fock space  
  *  @param wavefunction2        a wave function in a product Fock space containing one fewer electron and the same amount of orbitals that is expressed in the same basis
  *  
- *  @return a vector with the coefficients of the Dyson orbital derived from the difference between the two wavefunctions
+ *  @return a vector with the coefficients of a Dyson orbital derived from the difference between the two wave functions expressed in the basis of the wave functions
  */
-VectorX<double> calculateDysonOrbital(const WaveFunction& wavefunction1, const WaveFunction& wavefunction2) {
+VectorX<double> calculateDysonAmplitudes(const WaveFunction& wavefunction1, const WaveFunction& wavefunction2) {
 
     if (wavefunction1.get_fock_space().get_type() != FockSpaceType::ProductFockSpace) {
         throw std::runtime_error("properties::calculateDysonOrbital(WaveFunction, WaveFunction): wavefunction1 is not in the product Fock space");
@@ -84,13 +84,13 @@ VectorX<double> calculateDysonOrbital(const WaveFunction& wavefunction1, const W
         ONV onv_beta = fock_space_beta1.makeONV(0);
 
         for (size_t Ib = 0; Ib < dim_beta; Ib++) {  // Ib loops over addresses of beta spin strings
-
+            int sign = -1;
             for (size_t e_b = 0; e_b < fock_space_beta1.get_N(); e_b++) {  // loop over beta electrons
-
+                sign *= -1;
                 size_t p = onv_beta.get_occupation_index(e_b);
 
                 onv_beta.annihilate(p);
-            
+
                 size_t address = fock_space_beta2.getAddress(onv_beta.get_unsigned_representation());
 
                 onv_beta.create(p);
@@ -98,7 +98,7 @@ VectorX<double> calculateDysonOrbital(const WaveFunction& wavefunction1, const W
                 double coeff = 0;
 
                 for (size_t Ia = 0; Ia < dim_alpha; Ia++) {  // alpha Fock space is identical
-                    coeff += ci_coeff1(Ia * dim_beta + Ib) * ci_coeff2(address * dim_beta + Ib);
+                    coeff += sign * ci_coeff1(Ia * dim_beta + Ib) * ci_coeff2(address * dim_beta + Ib);
                 }
 
                 dyson_coeff(p) += coeff;

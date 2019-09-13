@@ -26,6 +26,7 @@
 #include "RHF/PlainRHFSCFSolver.hpp"
 #include "HamiltonianBuilder/FCI.hpp"
 #include "CISolver/CISolver.hpp"
+#include "RDM/RDMCalculator.hpp"
 #include "units.hpp"
 
 
@@ -146,8 +147,24 @@ BOOST_AUTO_TEST_CASE ( dyson_N2_STO_3G ) {
     const auto wavefunction1 = ci_solver1.makeWavefunction();
     const auto wavefunction2 = ci_solver2.makeWavefunction();
 
-    const auto dyson_coefficients = GQCP::calculateDysonOrbital(wavefunction1, wavefunction2);
+    const auto dyson_coefficients = GQCP::calculateDysonAmplitudes(wavefunction1, wavefunction2);
 
     std::cout<<dyson_coefficients;
+
+    GQCP::RDMCalculator rdm_calculator1 (fock_space1);
+
+    rdm_calculator1.set_coefficients(wavefunction1.get_coefficients());
+
+    GQCP::RDMCalculator rdm_calculator2 (fock_space2);
+
+    rdm_calculator2.set_coefficients(wavefunction2.get_coefficients());
+
+    const auto onerdm1 = rdm_calculator1.calculate1RDMs().one_rdm_bb;
+    const auto onerdm2 = rdm_calculator2.calculate1RDMs().one_rdm_bb;
+
+    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes1 (onerdm1 - onerdm2);
+   
+    std::cout<<std::endl<<"these are the vals : "<< std::endl << saes1.eigenvalues();
+    std::cout<<std::endl<<"these are the vectors : "<< std::endl << saes1.eigenvectors().col(K-1);
 
 }
