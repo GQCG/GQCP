@@ -405,29 +405,6 @@ BOOST_AUTO_TEST_CASE ( calculateEdmistonRuedenbergLocalizationIndex ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( areOrbitalsOrthonormal ) {
-
-    // We assume that the orbitals in an FCIDUMP file are orthonormal
-    auto ham_par_fcidump = GQCP::SQHamiltonian<double>::ReadFCIDUMP("data/h2_psi4_horton.FCIDUMP");
-    BOOST_CHECK(ham_par_fcidump.areOrbitalsOrthonormal());
-
-
-    // The orbitals in an AO basis are not orthonormal
-    auto h2o = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
-    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2o, "STO-3G");
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2o);  // in an AO basis
-    BOOST_CHECK(!sq_hamiltonian.areOrbitalsOrthonormal());
-
-
-    // The orbitals in the RHF basis are orthonormal
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, h2o);
-    plain_scf_solver.solve();
-    auto rhf = plain_scf_solver.get_solution();
-    sq_hamiltonian.transform(rhf.get_C());
-    BOOST_CHECK(sq_hamiltonian.areOrbitalsOrthonormal());
-}
-
-
 BOOST_AUTO_TEST_CASE ( dissociatedMoleculeParameters ) {
 
     // Test if we can succesfully initialize NO+ at long intra molecular distance

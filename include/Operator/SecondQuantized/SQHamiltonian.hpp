@@ -417,14 +417,6 @@ public:
      */
 
     /**
-     *  @return if the underlying spatial orbital basis of the Hamiltonian is orthonormal
-     */
-    bool areOrbitalsOrthonormal() const {
-        return this->S.parameters().isApprox(SquareMatrix<Scalar>::Identity(this->K, this->K));
-    }
-
-
-    /**
      *  In-place transform the matrix representations of Hamiltonian
      *
      *  @param T    the transformation matrix between the old and the new orbital basis

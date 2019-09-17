@@ -43,14 +43,15 @@ BaseOrbitalOptimizer::BaseOrbitalOptimizer(const double convergence_threshold, c
 /**
  *  Optimize the Hamiltonian by subsequently
  *      - checking for convergence (see checkForConvergence())
- *      - rotating the Hamiltonian with a newly found rotation matrix (see calculateNewRotationMatrix())
+ *      - rotating the Hamiltonian (and single-particle basis) with a newly found rotation matrix (see calculateNewRotationMatrix())
  * 
- *  @param sq_hamiltonian           the initial (guess for the) Hamiltonian
+ *  @param sp_basis             the initial single-particle basis that contains the spinors to be optimized
+ *  @param sq_hamiltonian       the initial (guess for the) Hamiltonian
  */
-void BaseOrbitalOptimizer::optimize(SQHamiltonian<double>& sq_hamiltonian) {
+void BaseOrbitalOptimizer::optimize(SingleParticleBasis<double, GTOShell>& sp_basis, SQHamiltonian<double>& sq_hamiltonian) {
 
-    if (!sq_hamiltonian.areOrbitalsOrthonormal()) {
-        throw std::invalid_argument("BaseOrbitalOptimizer::optimize(SQHamiltonian<double>&): The given Hamiltonian does not belong to an orthonormal basis.");
+    if (!sp_basis.isOrthonormal()) {
+        throw std::invalid_argument("BaseOrbitalOptimizer::optimize(SQHamiltonian<double>&): The given spinor basis is not orthonormal.");
     }
 
     while (this->prepareConvergenceChecking(sq_hamiltonian), !this->checkForConvergence(sq_hamiltonian)) {  // result of the comma operator is the second operand, so this expression effectively means "if not converged"
