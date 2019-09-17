@@ -74,7 +74,6 @@ void MullikenConstrainedFCI::parseSolution(const std::vector<Eigenpair>& eigenpa
         WaveFunction wavefunction (fock_space, fci_coefficients);
 
         this->energy[i] = pair.get_eigenvalue() + internuclear_repulsion_energy + multiplier * population;
-        std::cout << this->energy[i] << std::endl;
         this->population[i] = population;
         this->lambda[i] = multiplier;
         this->entropy[i] = wavefunction.calculateShannonEntropy();
@@ -136,8 +135,6 @@ MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const s
         basis_set (basis_set)
 {
 
-    std::cout << "Initial core Hamiltonian (AO basis): " << std::endl << this->sq_hamiltonian.core().parameters() << std::endl << std::endl;
-
     if ((molecule.numberOfElectrons() % 2) > 0) {
         throw std::runtime_error("MullikenConstrainedFCI::MullikenConstrainedFCI(): This module is not available for an odd number of electrons");
     }
@@ -154,9 +151,6 @@ MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const s
         basisTransform(this->sp_basis, this->sq_hamiltonian, rhf_solution.get_C());
 
     } catch (const std::exception& e) {
-
-
-        std::cout << "standard DIIS failed" << std::endl;
 
         // If the DIIS does not converge, attempt to solve the RHF for the individuals atoms (if diatomic) and recombine the solutions to create a total canonical matrix
         // Starting from this new basis we re-attempt the regular DIIS
@@ -202,15 +196,12 @@ MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const s
 
 
                 } catch (const std::exception& e) {
-
-                    std::cout << "fragment DIIS failed" << std::endl;
                     const auto T = sp_basis.lowdinOrthonormalizationMatrix();
                     basisTransform(this->sp_basis, this->sq_hamiltonian, T);
                 }
 
-            } catch (const std::exception& e) {
 
-                std::cout << "DIIS on fragments failed" << std::endl;
+            } catch (const std::exception& e) {
                 const auto T = sp_basis.lowdinOrthonormalizationMatrix();
                 basisTransform(this->sp_basis, this->sq_hamiltonian, T);
             }
@@ -223,7 +214,6 @@ MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const s
     }
 
     if (this->sp_basis.transformationMatrix().isApprox(this->sq_hamiltonian.get_T_total(), 1.0e-08)) {
-        std::cout << "Transformation matrices are equal!" << std::endl;
     }
 
 
@@ -231,8 +221,6 @@ MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const s
     this->fci = FrozenCoreFCI(fock_space);
     this->mulliken_operator = this->sp_basis.calculateMullikenOperator(basis_targets);
 
-
-    std::cout << "Mulliken operator: " << std::endl << this->mulliken_operator.parameters() << std::endl << std::endl;
 
     // Atomic Decomposition is only available for diatomic molecules
     if (molecule.numberOfAtoms() == 2) {

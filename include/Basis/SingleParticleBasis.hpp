@@ -205,12 +205,13 @@ public:
 
 
     /**
-     *  @return transformation matrix to the Löwdin basis: T = S^{-1/2}
+     *  @return the transformation matrix to the Löwdin basis: T = S_current^{-1/2}
      */
     TransformationMatrix<double> lowdinOrthonormalizationMatrix() const {
 
-        // The transformation matrix to the Löwdin basis is T = S^{-1/2}
+        // The transformation matrix to the Löwdin basis is T = S_current^{-1/2}
         auto S = this->scalar_basis.calculateLibintIntegrals(Operator::Overlap());  // in the underlying (possibly orthonormal) scalar basis
+        S.basisTransformInPlace(this->transformationMatrix());  // now S is expressed in the current orbital basis
         Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes (S);
 
         return TransformationMatrix<double>(saes.operatorInverseSqrt());
