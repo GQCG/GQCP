@@ -46,6 +46,24 @@ void basisTransform(SingleParticleBasis<TransformationScalar, ShellType>& sp_bas
 
 
 /**
+ *  Transform both the single-particle basis and the one-electron operator to another basis using the given transformation matrix
+ * 
+ *  @tparam ShellType                   the type of shell that the scalar basis contains
+ *  @tparam TransformationScalar        the scalar type of the transformation matrix
+ * 
+ *  @param sp_basis                     the single-particle basis
+ *  @param one_op                       the one-electron operator
+ *  @param T                            the transformation matrix
+ */
+template <typename TransformationScalar, typename ShellType, size_t Components>
+void basisTransform(SingleParticleBasis<TransformationScalar, ShellType>& sp_basis, SQOneElectronOperator<TransformationScalar, Components>& one_op, const TransformationMatrix<TransformationScalar>& T) {
+
+    sp_basis.transform(T);
+    one_op.transform(T);
+}
+
+
+/**
  *  Rotate both the single-particle basis and the Hamiltonian to another basis using the given unitary transformation matrix
  * 
  *  @tparam ShellType                   the type of shell that the scalar basis contains

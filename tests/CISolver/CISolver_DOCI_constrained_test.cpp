@@ -79,7 +79,7 @@ BOOST_AUTO_TEST_CASE ( CO_DOCI_constrained_dense ) {
 
     for (int i = 0; i < 21; i++) {
         // Calculate the Mulliken operator
-        auto mulliken_operator = sq_hamiltonian.calculateMullikenOperator(ao_list);
+        auto mulliken_operator = sp_basis.calculateMullikenOperator(ao_list);
 
         // Contrain the original Hamiltonian parameters
         auto constrained_ham_par = sq_hamiltonian.constrain(mulliken_operator, CO_data(i, 0));

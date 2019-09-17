@@ -74,7 +74,7 @@ BOOST_AUTO_TEST_CASE ( mulliken_N2_STO_3G ) {
         gto_list[i] = i;
     }
 
-    GQCP::ScalarSQOneElectronOperator<double> mulliken = sq_hamiltonian.calculateMullikenOperator(gto_list);
+    GQCP::ScalarSQOneElectronOperator<double> mulliken = sp_basis.calculateMullikenOperator(gto_list);
 
     size_t N = N2.numberOfElectrons();
 

@@ -72,6 +72,7 @@ void MullikenConstrainedFCI::parseSolution(const std::vector<Eigenpair>& eigenpa
         WaveFunction wavefunction (fock_space, fci_coefficients);
 
         this->energy[i] = pair.get_eigenvalue() + internuclear_repulsion_energy + multiplier * population;
+        std::cout << this->energy[i] << std::endl;
         this->population[i] = population;
         this->lambda[i] = multiplier;
         this->entropy[i] = wavefunction.calculateShannonEntropy();
@@ -129,9 +130,11 @@ MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const s
         basis_targets (basis_targets),
         molecule (molecule),
         sp_basis (SingleParticleBasis<double, GTOShell>(molecule, basis_set)),
-        sq_hamiltonian (SQHamiltonian<double>::Molecular(this->sp_basis, molecule)),
         basis_set (basis_set)
 {
+
+    this->sq_hamiltonian = SQHamiltonian<double>::Molecular(this->sp_basis, molecule);
+
     if ((molecule.numberOfElectrons() % 2) > 0) {
         throw std::runtime_error("MullikenConstrainedFCI::MullikenConstrainedFCI(): This module is not available for an odd number of electrons");
     }
@@ -181,7 +184,7 @@ MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const s
                 GQCP::TransformationMatrix<double> T = Eigen::MatrixXd::Zero(K, K);
                 T.topLeftCorner(K1, K1) += rhf1.get_C();
                 T.bottomRightCorner(K2, K2) += rhf2.get_C();
-                basisTransform(this->sp_basis, sq_hamiltonian, T);
+                basisTransform(this->sp_basis, this->sq_hamiltonian, T);
 
 
                 // Attempt the DIIS for this basis
@@ -189,7 +192,7 @@ MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const s
                     GQCP::DIISRHFSCFSolver diis_scf_solver (this->sq_hamiltonian, molecule, 6, 6, 1e-12, 500);
                     diis_scf_solver.solve();
                     auto rhf = diis_scf_solver.get_solution();
-                    basisTransform(this->sp_basis, sq_hamiltonian, rhf.get_C());
+                    basisTransform(this->sp_basis, this->sq_hamiltonian, rhf.get_C());
 
 
                 } catch (const std::exception& e) {
@@ -208,9 +211,10 @@ MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const s
         }
 
     }
+
     this->fock_space = FrozenProductFockSpace(K, N_P, N_P, frozencores);
     this->fci = FrozenCoreFCI(fock_space);
-    this->mulliken_operator = sq_hamiltonian.calculateMullikenOperator(basis_targets);
+    this->mulliken_operator = this->sp_basis.calculateMullikenOperator(basis_targets);
 
     // Atomic Decomposition is only available for diatomic molecules
     if (molecule.numberOfAtoms() == 2) {

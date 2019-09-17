@@ -553,37 +553,6 @@ public:
 
 
     /**
-     *  @param ao_list     indices of the AOs used for the Mulliken populations
-     *
-     *  @return the Mulliken operator for a set of AOs
-     *
-     *  Note that this method is only available for real matrix representations
-     */
-    template<typename Z = Scalar>
-    enable_if_t<std::is_same<Z, double>::value, ScalarSQOneElectronOperator<double>> calculateMullikenOperator(const Vectoru& ao_list) const {
-
-        if (!this->get_ao_basis()) {
-            throw std::invalid_argument("SQHamiltonian::calculateMullikenOperator(Vectoru): The Hamiltonian has no underlying AO basis, Mulliken analysis is not possible.");
-        }
-
-        if (ao_list.size() > this->K) {
-            throw std::invalid_argument("SQHamiltonian::calculateMullikenOperator(Vectoru): Too many AOs are selected");
-        }
-
-        // Create the partitioning matrix
-        SquareMatrix<double> p_a = SquareMatrix<double>::PartitionMatrix(ao_list, this->K);
-
-        ScalarSQOneElectronOperator<Scalar> S_AO = this->S;
-        TransformationMatrix<double> T_inverse = T_total.inverse();
-        S_AO.transform(T_inverse);
-
-        ScalarSQOneElectronOperator<double> mulliken_matrix ({ (T_total.adjoint() * p_a * S_AO.parameters() * T_total + T_total.adjoint() * S_AO.parameters() * p_a * T_total)/2 });
-
-        return mulliken_matrix;
-    }
-
-
-    /**
      *  @return the effective one-electron integrals
      */
     ScalarSQOneElectronOperator<Scalar> calculateEffectiveOneElectronIntegrals() const {
