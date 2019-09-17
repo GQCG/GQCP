@@ -19,6 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include "Basis/transform.hpp"
 #include "CISolver/CISolver.hpp"
 #include "HamiltonianBuilder/FCI.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
@@ -44,7 +45,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_sto_3g ) {
     GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, h2);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
-    sq_hamiltonian.transform(rhf.get_C());
+    basisTransform(sp_basis, sq_hamiltonian, rhf.get_C());
 
 
     // Do the DOCI orbital optimization using specified solver options
@@ -53,7 +54,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_sto_3g ) {
     GQCP::DenseSolverOptions ci_solver_options;
     auto hessian_modifier = std::make_shared<GQCP::IterativeIdentitiesHessianModifier>();
     GQCP::DOCINewtonOrbitalOptimizer orbital_optimizer (doci, ci_solver_options, hessian_modifier);
-    orbital_optimizer.optimize(sq_hamiltonian);
+    orbital_optimizer.optimize(sp_basis, sq_hamiltonian);
 
 
     // Check if the OO-DOCI energy is equal to the FCI energy
@@ -80,7 +81,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31g ) {
     GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, h2);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
-    sq_hamiltonian.transform(rhf.get_C());
+    basisTransform(sp_basis, sq_hamiltonian, rhf.get_C());
 
 
     // Transform the molecular Hamiltonian to the FCI natural basis
@@ -99,7 +100,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31g ) {
     Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes (one_rdm);
     GQCP::TransformationMatrix<double> U = saes.eigenvectors();
 
-    sq_hamiltonian.rotate(U);
+    basisRotate(sp_basis, sq_hamiltonian, U);
 
 
     // Do the DOCI orbital optimization, using the FCI natural orbitals
@@ -107,7 +108,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31g ) {
     GQCP::DOCI doci (doci_fock_space);
     auto hessian_modifier = std::make_shared<GQCP::IterativeIdentitiesHessianModifier>();
     GQCP::DOCINewtonOrbitalOptimizer orbital_optimizer (doci, ci_solver_options, hessian_modifier);
-    orbital_optimizer.optimize(sq_hamiltonian);
+    orbital_optimizer.optimize(sp_basis, sq_hamiltonian);
 
 
     // Check if the OO-DOCI energy is equal to the FCI energy
@@ -133,7 +134,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx ) {
     GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, h2);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
-    sq_hamiltonian.transform(rhf.get_C());
+    basisTransform(sp_basis, sq_hamiltonian, rhf.get_C());
 
 
     // Transform the molecular Hamiltonian to the FCI natural basis
@@ -152,7 +153,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx ) {
     Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes (one_rdm);
     GQCP::TransformationMatrix<double> U = saes.eigenvectors();
 
-    sq_hamiltonian.rotate(U);
+    basisRotate(sp_basis, sq_hamiltonian, U);
 
 
     // Do the DOCI orbital optimization, using the FCI natural orbitals
@@ -160,7 +161,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx ) {
     GQCP::DOCI doci (doci_fock_space);
     auto hessian_modifier = std::make_shared<GQCP::IterativeIdentitiesHessianModifier>();
     GQCP::DOCINewtonOrbitalOptimizer orbital_optimizer (doci, ci_solver_options, hessian_modifier);
-    orbital_optimizer.optimize(sq_hamiltonian);
+    orbital_optimizer.optimize(sp_basis, sq_hamiltonian);
 
 
     // Check if the OO-DOCI energy is equal to the FCI energy
@@ -186,7 +187,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx_Davidson ) {
     GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, h2);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
-    sq_hamiltonian.transform(rhf.get_C());
+    basisTransform(sp_basis, sq_hamiltonian, rhf.get_C());
 
 
     // Transform the molecular Hamiltonian to the FCI natural basis
@@ -205,7 +206,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx_Davidson ) {
     Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes (one_rdm);
     GQCP::TransformationMatrix<double> U = saes.eigenvectors();
 
-    sq_hamiltonian.rotate(U);
+    basisRotate(sp_basis, sq_hamiltonian, U);
 
 
     // Do the DOCI orbital optimization, using the FCI natural orbitals
@@ -215,7 +216,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx_Davidson ) {
     GQCP::DavidsonSolverOptions davidson_solver_options (initial_g);
     auto hessian_modifier = std::make_shared<GQCP::IterativeIdentitiesHessianModifier>();
     GQCP::DOCINewtonOrbitalOptimizer orbital_optimizer (doci, ci_solver_options, hessian_modifier);
-    orbital_optimizer.optimize(sq_hamiltonian);
+    orbital_optimizer.optimize(sp_basis, sq_hamiltonian);
 
 
     // Check if the OO-DOCI energy is equal to the FCI energy

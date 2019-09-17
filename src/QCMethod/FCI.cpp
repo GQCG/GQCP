@@ -57,7 +57,7 @@ void FCI::solve() {
     auto molecule = Molecule::ReadXYZ(this->xyz_filename);
     SingleParticleBasis<double, GTOShell> sp_basis (molecule, this->basis_set);
     auto sq_hamiltonian = SQHamiltonian<double>::Molecular(sp_basis, molecule);  // in the AO basis
-    sq_hamiltonian.LowdinOrthonormalize();  // now in the Löwdin basis
+    sq_hamiltonian.lowdinOrthonormalize();  // now in the Löwdin basis
 
 
     // Solve the FCI eigenvalue problem using the dense algorithm

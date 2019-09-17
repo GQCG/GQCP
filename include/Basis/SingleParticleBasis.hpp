@@ -197,16 +197,23 @@ public:
 
     /**
      *  Transform the single-particle basis to the Löwdin basis, which is the orthonormal basis that we transform to with T = S^{-1/2}, where S is the overlap matrix in the underlying scalar orbital basis
-     * 
+     */
+    void lowdinOrthonormalize() {
+
+        this->T_total = this->lowdinOrthonormalizationMatrix();
+    }
+
+
+    /**
      *  @return transformation matrix to the Löwdin basis: T = S^{-1/2}
      */
-    void LowdinOrthonormalize() {
+    TransformationMatrix<double> lowdinOrthonormalizationMatrix() const {
 
         // The transformation matrix to the Löwdin basis is T = S^{-1/2}
         auto S = this->scalar_basis.calculateLibintIntegrals(Operator::Overlap());  // in the underlying (possibly orthonormal) scalar basis
         Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes (S);
 
-        this->T_total = TransformationMatrix<double>(saes.operatorInverseSqrt());
+        return TransformationMatrix<double>(saes.operatorInverseSqrt());
     }
 
 

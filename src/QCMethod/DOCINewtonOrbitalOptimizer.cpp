@@ -17,6 +17,7 @@
 //
 #include "QCMethod/DOCINewtonOrbitalOptimizer.hpp"
 
+#include "Basis/transform.hpp"
 #include "Basis/SingleParticleBasis.hpp"
 #include "CISolver/CISolver.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
@@ -63,49 +64,49 @@ void DOCINewtonOrbitalOptimizer::solve() {
     auto molecule = Molecule::ReadXYZ(this->xyz_filename);
     SingleParticleBasis<double, GTOShell> sp_basis (molecule, this->basis_set);
     const auto N_P = molecule.numberOfElectrons()/2;
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, molecule);  // in AO basis
+    auto sq_hamiltonian = SQHamiltonian<double>::Molecular(sp_basis, molecule);  // in AO basis
     const size_t K = sq_hamiltonian.get_K();
 
-    GQCP::DIISRHFSCFSolver diis_scf_solver (sq_hamiltonian, molecule);
+    DIISRHFSCFSolver diis_scf_solver (sq_hamiltonian, molecule);
     diis_scf_solver.solve();
     auto rhf = diis_scf_solver.get_solution();
-    sq_hamiltonian.transform(rhf.get_C());
+    basisTransform(sp_basis, sq_hamiltonian, rhf.get_C());
 
-    auto hessian_modifier = std::make_shared<GQCP::IterativeIdentitiesHessianModifier>();
+    auto hessian_modifier = std::make_shared<IterativeIdentitiesHessianModifier>();
     if (localize) {
 
         // Newton to get to the first local minimum
-        GQCP::ERNewtonLocalizer first_newton_localizer (N_P, hessian_modifier);
-        first_newton_localizer.optimize(sq_hamiltonian);
+        ERNewtonLocalizer first_newton_localizer (N_P, hessian_modifier);
+        first_newton_localizer.optimize(sp_basis, sq_hamiltonian);
 
 
         // Check if Jacobi finds another minimum
-        GQCP::ERJacobiLocalizer jacobi_localizer (N_P);
+        ERJacobiLocalizer jacobi_localizer (N_P);
         auto optimal_jacobi_with_scalar = jacobi_localizer.calculateOptimalJacobiParameters(sq_hamiltonian);
         if (optimal_jacobi_with_scalar.second > 0) {  // if a Jacobi rotation can find an increase, do it
-            const auto U = GQCP::TransformationMatrix<double>::FromJacobi(optimal_jacobi_with_scalar.first, sq_hamiltonian.get_K());
-            sq_hamiltonian.rotate(U);
+            const TransformationMatrix<double> U = TransformationMatrix<double>::FromJacobi(optimal_jacobi_with_scalar.first, sq_hamiltonian.get_K());
+            basisRotate(sp_basis, sq_hamiltonian, U);
         }
 
 
         // Newton to get to the next local minimum
-        GQCP::ERNewtonLocalizer second_newton_localizer (N_P, hessian_modifier);
-        first_newton_localizer.optimize(sq_hamiltonian);
+        ERNewtonLocalizer second_newton_localizer (N_P, hessian_modifier);
+        first_newton_localizer.optimize(sp_basis, sq_hamiltonian);
     }
 
      // Do the DOCI orbital optimization
-    GQCP::FockSpace fock_space (K, N_P);
-    GQCP::DOCI doci (fock_space);
+    FockSpace fock_space (K, N_P);
+    DOCI doci (fock_space);
 
-    std::shared_ptr<GQCP::BaseSolverOptions> solver_options;
+    std::shared_ptr<BaseSolverOptions> solver_options;
     if (use_davidson) {
-        solver_options = std::make_shared<GQCP::DavidsonSolverOptions>(fock_space.HartreeFockExpansion());
+        solver_options = std::make_shared<DavidsonSolverOptions>(fock_space.HartreeFockExpansion());
     } else {
-        solver_options = std::make_shared<GQCP::DenseSolverOptions>();
+        solver_options = std::make_shared<DenseSolverOptions>();
     }
 
     GQCP::DOCINewtonOrbitalOptimizer orbital_optimizer (doci, *solver_options, hessian_modifier);
-    orbital_optimizer.optimize(sq_hamiltonian);
+    orbital_optimizer.optimize(sp_basis, sq_hamiltonian);
     double OO_DOCI_electronic_energy = orbital_optimizer.get_eigenpair().get_eigenvalue();
 
     this->is_solved = true;
@@ -131,7 +132,7 @@ double DOCINewtonOrbitalOptimizer::energy() const {
 /**
  *  @return the total transformation matrix to the OO-DOCI orbitals
  */
-const GQCP::TransformationMatrix<double>& DOCINewtonOrbitalOptimizer::transformationMatrix() const {
+const TransformationMatrix<double>& DOCINewtonOrbitalOptimizer::transformationMatrix() const {
 
     if (this->is_solved) {
         return this->T_total;

@@ -38,7 +38,7 @@ BOOST_AUTO_TEST_CASE ( Lowdin_orthonormal ) {
 
 
     // Löwdin-orthonormalize and check the result
-    sp_basis.LowdinOrthonormalize();
+    sp_basis.lowdinOrthonormalize();
     BOOST_CHECK(sp_basis.isOrthonormal());
 }
 

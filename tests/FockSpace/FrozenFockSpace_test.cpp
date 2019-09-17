@@ -125,7 +125,7 @@ BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_diagonal_vs_no_diagonal) {
     GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
     GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (hchain, "STO-3G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, hchain);  // in an AO basis
-    sq_hamiltonian.LowdinOrthonormalize();
+    sq_hamiltonian.lowdinOrthonormalize();
 
     GQCP::FrozenFockSpace fock_space (6, 4, 2);
 

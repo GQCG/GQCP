@@ -19,6 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include "Basis/transform.hpp"
 #include "Geminals/AP1roG.hpp"
 #include "Geminals/AP1roGPSESolver.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
@@ -39,7 +40,7 @@ BOOST_AUTO_TEST_CASE ( lih_6_31G_calculateEnergyAfterRotation ) {
     GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, lih);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
-    sq_hamiltonian.transform(rhf.get_C());
+    basisTransform(sp_basis, sq_hamiltonian, rhf.get_C());
 
 
     // Loop over all possible Jacobi pairs for a given (random) angle and check if the analytical result matches the numerical result
@@ -50,8 +51,6 @@ BOOST_AUTO_TEST_CASE ( lih_6_31G_calculateEnergyAfterRotation ) {
         for (size_t p = q + 1; p < K; p++) {  // p > q
             GQCP::JacobiRotationParameters jacobi_rot_par {p, q, theta};
 
-            // Construct a new AP1roG instance, since AP1roG.calculateEnergyAfterRotation overwrites this->so_basis
-            // AP1roG.calculateEnergyAfterRotation is a function that is only used in testing
             GQCP::AP1roGPSESolver pse_solver (lih, sq_hamiltonian);
             pse_solver.solve();
             auto G = pse_solver.get_geminal_coefficients();
@@ -65,9 +64,9 @@ BOOST_AUTO_TEST_CASE ( lih_6_31G_calculateEnergyAfterRotation ) {
 
             // Calculate the energy after a numerical rotation (using a Jacobi rotation matrix)
             double E_before = GQCP::calculateAP1roGEnergy(G, sq_hamiltonian);
-            auto mol_ham_par_copy = sq_hamiltonian;
-            mol_ham_par_copy.rotate(jacobi_rot_par);
-            double E_after = GQCP::calculateAP1roGEnergy(G, mol_ham_par_copy);
+            auto sq_ham_copy = sq_hamiltonian;
+            sq_ham_copy.rotate(jacobi_rot_par);
+            double E_after = GQCP::calculateAP1roGEnergy(G, sq_ham_copy);
             double E_correction_numerical = E_after - E_before;
 
 
@@ -87,7 +86,7 @@ BOOST_AUTO_TEST_CASE ( lih_6_31G_orbitalOptimize ) {
     GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, lih);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
-    sq_hamiltonian.transform(rhf.get_C());
+    basisTransform(sp_basis, sq_hamiltonian, rhf.get_C());
 
 
     // Get the initial AP1roG energy
@@ -99,7 +98,7 @@ BOOST_AUTO_TEST_CASE ( lih_6_31G_orbitalOptimize ) {
 
     // Do an AP1roG orbital optimization using Jacobi rotations
     GQCP::AP1roGJacobiOrbitalOptimizer orbital_optimizer (initial_G, 1.0e-04);
-    orbital_optimizer.optimize(sq_hamiltonian);
+    orbital_optimizer.optimize(sp_basis, sq_hamiltonian);
     double optimized_energy = orbital_optimizer.get_electronic_energy();
 
 

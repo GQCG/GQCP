@@ -17,6 +17,8 @@
 // 
 #include "OrbitalOptimization/BaseOrbitalOptimizer.hpp"
 
+#include "Basis/transform.hpp"
+
 
 namespace GQCP {
 
@@ -56,7 +58,7 @@ void BaseOrbitalOptimizer::optimize(SingleParticleBasis<double, GTOShell>& sp_ba
 
     while (this->prepareConvergenceChecking(sq_hamiltonian), !this->checkForConvergence(sq_hamiltonian)) {  // result of the comma operator is the second operand, so this expression effectively means "if not converged"
         const auto U = this->calculateNewRotationMatrix(sq_hamiltonian);
-        sq_hamiltonian.rotate(U);
+        basisRotate(sp_basis, sq_hamiltonian, U);
 
         this->number_of_iterations++;
         if (this->number_of_iterations > this->maximum_number_of_iterations) {

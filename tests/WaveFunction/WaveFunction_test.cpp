@@ -56,7 +56,7 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h3 ) {
     auto K = sq_hamiltonian.get_K();
     auto N_P = hchain.numberOfElectrons()/2;
 
-    sq_hamiltonian.LowdinOrthonormalize();
+    sq_hamiltonian.lowdinOrthonormalize();
     GQCP::ProductFockSpace fock_space (K, N_P, N_P);
     GQCP::FCI fci (fock_space);
 
@@ -95,7 +95,7 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h4 ) {
     auto K = sq_hamiltonian.get_K();
     auto N_P = hchain.numberOfElectrons()/2;
 
-    sq_hamiltonian.LowdinOrthonormalize();
+    sq_hamiltonian.lowdinOrthonormalize();
     GQCP::ProductFockSpace fock_space (K, N_P, N_P);
     GQCP::FCI fci (fock_space);
 
@@ -135,7 +135,7 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h5 ) {
     auto N_B = hchain.numberOfElectrons()/2;
     auto N_A = hchain.numberOfElectrons() - N_B;
 
-    sq_hamiltonian.LowdinOrthonormalize();
+    sq_hamiltonian.lowdinOrthonormalize();
     GQCP::ProductFockSpace fock_space (K, N_A, N_B);
     GQCP::FCI fci (fock_space);
 

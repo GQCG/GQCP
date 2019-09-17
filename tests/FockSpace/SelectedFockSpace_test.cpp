@@ -132,7 +132,7 @@ BOOST_AUTO_TEST_CASE ( Selected_Evaluation_H2O ) {
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2o);  // in an AO basis
     auto K = sq_hamiltonian.get_K();
 
-    sq_hamiltonian.LowdinOrthonormalize();
+    sq_hamiltonian.lowdinOrthonormalize();
 
     GQCP::ProductFockSpace fock_space (K, h2o.numberOfElectrons()/2, h2o.numberOfElectrons()/2);  // dim = 441
     GQCP::SelectedFockSpace selected_fock_space (fock_space);

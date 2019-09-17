@@ -43,7 +43,7 @@ private:
     bool localize = false;
 
     double energy_solution;
-    GQCP::TransformationMatrix<double> T_total;  // total transformation from atomic orbital basis to the OO-DOCI orbitals
+    TransformationMatrix<double> T_total;  // total transformation from atomic orbital basis to the OO-DOCI orbitals
 
 public:
     // CONSTRUCTORS
@@ -72,7 +72,7 @@ public:
     /**
      *  @return the total transformation matrix to the OO-DOCI orbitals
      */
-    const GQCP::TransformationMatrix<double>& transformationMatrix() const;
+    const TransformationMatrix<double>& transformationMatrix() const;
 };
 
 

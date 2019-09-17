@@ -500,7 +500,7 @@ public:
     /**
      *  Transform the SQHamiltonian to the Löwdin basis (i.e. T = S^{-1/2})
      */
-    void LowdinOrthonormalize() {
+    void lowdinOrthonormalize() {
 
         // The transformation matrix to the Löwdin basis is T = S^{-1/2}
         Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes (this->S.parameters());

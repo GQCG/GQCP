@@ -29,14 +29,14 @@ BOOST_AUTO_TEST_CASE ( localization_index_raises ) {
     size_t N_P = h2o.numberOfElectrons()/2;
 
     GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2o, "STO-3G");
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2o);  // in an AO basis
-    sq_hamiltonian.LowdinOrthonormalize();  // in the Löwdin basis
+    sp_basis.lowdinOrthonormalize();
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2o);  // in the Löwdin basis
 
 
     double D_before = sq_hamiltonian.calculateEdmistonRuedenbergLocalizationIndex(N_P);
 
     GQCP::ERJacobiLocalizer localizer (N_P, 1.0e-04);
-    localizer.optimize(sq_hamiltonian);  // now the Hamiltonian is in the localized basis
+    localizer.optimize(sp_basis, sq_hamiltonian);  // now the Hamiltonian is in the localized basis
 
     double D_after = sq_hamiltonian.calculateEdmistonRuedenbergLocalizationIndex(N_P);
 
