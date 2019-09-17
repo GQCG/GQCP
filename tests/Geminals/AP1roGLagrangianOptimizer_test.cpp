@@ -19,6 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include "Basis/transform.hpp"
 #include "Geminals/AP1roGLagrangianOptimizer.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
 
@@ -34,7 +35,8 @@ BOOST_AUTO_TEST_CASE ( h2_631gdp ) {
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 
-    sq_hamiltonian.transform(rhf.get_C());
+    // Transform the Hamiltonian to the RHF orbital basis
+    GQCP::basisTransform(sp_basis, sq_hamiltonian, rhf.get_C());
 
 
     // Optimize the AP1roG Lagrangian, using an initial guess of the geminal coefficients of 0

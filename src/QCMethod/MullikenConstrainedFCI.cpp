@@ -154,7 +154,7 @@ MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const s
         basisTransform(this->sp_basis, this->sq_hamiltonian, rhf_solution.get_C());
 
     } catch (const std::exception& e) {
-        
+
 
         std::cout << "standard DIIS failed" << std::endl;
 

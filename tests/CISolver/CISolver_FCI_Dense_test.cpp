@@ -19,6 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include "Basis/transform.hpp"
 #include "CISolver/CISolver.hpp"
 #include "FockSpace/ProductFockSpace.hpp"
 #include "HamiltonianBuilder/FCI.hpp"
@@ -41,8 +42,8 @@ BOOST_AUTO_TEST_CASE ( test_random_rotation_diagonal_dense_fci ) {
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 
-    // Transform the sq_hamiltonian
-    sq_hamiltonian.transform(rhf.get_C());
+    // Transform the Hamiltonian to the RHF orbital basis
+    GQCP::basisTransform(sp_basis, sq_hamiltonian, rhf.get_C());
 
     GQCP::ProductFockSpace fock_space (K, h2o.numberOfElectrons()/2, h2o.numberOfElectrons()/2);  // dim = 2
 
@@ -76,8 +77,8 @@ BOOST_AUTO_TEST_CASE ( FCI_H2_Cristina_dense ) {
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 
-    // Transform the sq_hamiltonian
-    sq_hamiltonian.transform(rhf.get_C());
+    // Transform the Hamiltonian to the RHF orbital basis
+    GQCP::basisTransform(sp_basis, sq_hamiltonian, rhf.get_C());
 
     GQCP::ProductFockSpace fock_space (K, h2.numberOfElectrons()/2, h2.numberOfElectrons()/2);  // dim = 100
 
@@ -116,8 +117,8 @@ BOOST_AUTO_TEST_CASE ( FCI_H2O_Psi4_GAMESS_dense ) {
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 
-    // Transform the sq_hamiltonian
-    sq_hamiltonian.transform(rhf.get_C());
+    // Transform the Hamiltonian to the RHF orbital basis
+    GQCP::basisTransform(sp_basis, sq_hamiltonian, rhf.get_C());
 
     GQCP::ProductFockSpace fock_space (K, h2o.numberOfElectrons()/2, h2o.numberOfElectrons()/2);  // dim = 441
 

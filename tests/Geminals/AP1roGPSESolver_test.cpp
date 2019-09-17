@@ -19,6 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include "Basis/transform.hpp"
 #include "Geminals/AP1roGPSESolver.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
@@ -69,7 +70,7 @@ BOOST_AUTO_TEST_CASE ( h2_631gdp ) {
     GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, h2);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
-    sq_hamiltonian.transform(rhf.get_C());
+    GQCP::basisTransform(sp_basis, sq_hamiltonian, rhf.get_C());
 
 
     // Solve the AP1roG pSE equations with the initial guess being 0
@@ -108,7 +109,7 @@ BOOST_AUTO_TEST_CASE ( h2_631gdp_weak_interaction_limit ) {
     GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, h2);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
-    sq_hamiltonian.transform(rhf.get_C());
+    GQCP::basisTransform(sp_basis, sq_hamiltonian, rhf.get_C());
 
 
     // Solve the AP1roG pSE equations, with the initial guess being the weak interaction limit coefficients

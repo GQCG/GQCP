@@ -19,6 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include "Basis/transform.hpp"
 #include "CISolver/CISolver.hpp"
 #include "FockSpace/FockSpace.hpp"
 #include "HamiltonianBuilder/FCI.hpp"
@@ -71,12 +72,12 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h3 ) {
 
     wavefunction1.basisTransform(U_random);
 
-    // Generate a new wave function by rotating the basis and performing the FCI again.
-    sq_hamiltonian.rotate(U_random);
+    // Generate a new wave function by rotating the basis and performing the FCI again
+    GQCP::basisRotate(sp_basis, sq_hamiltonian, U_random);
     GQCP::CISolver ci_solver2 (fci, sq_hamiltonian);
     ci_solver2.solve(solver_options);
 
-    auto wavefunction2 = ci_solver2.makeWavefunction(0);
+    auto wavefunction2 = ci_solver2.makeWavefunction();
 
     // Check if they deviate
     BOOST_CHECK(wavefunction2.isApprox(wavefunction1));
@@ -111,13 +112,13 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h4 ) {
     wavefunction1.basisTransform(U_random);
 
     // Generate a new wave function by rotating the basis and performing the FCI again.
-    sq_hamiltonian.rotate(U_random);
+    GQCP::basisRotate(sp_basis, sq_hamiltonian, U_random);
     GQCP::CISolver ci_solver2 (fci, sq_hamiltonian);
     ci_solver2.solve(solver_options);
 
     auto wavefunction2 = ci_solver2.makeWavefunction();
 
-    // Check if they deviate    
+    // Check if they deviate
     BOOST_CHECK(wavefunction2.isApprox(wavefunction1));
 }
 
@@ -152,7 +153,7 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h5 ) {
     wavefunction1.basisTransform(U_random);
 
     // Generate a new wave function by rotating the basis and performing the FCI again.
-    sq_hamiltonian.rotate(U_random);
+    GQCP::basisRotate(sp_basis, sq_hamiltonian, U_random);
     GQCP::CISolver ci_solver2 (fci, sq_hamiltonian);
     ci_solver2.solve(solver_options);
 

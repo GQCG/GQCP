@@ -19,6 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include "Basis/transform.hpp"
 #include "Basis/SingleParticleBasis.hpp"
 #include "CISolver/CISolver.hpp"
 #include "HamiltonianBuilder/DOCI.hpp"
@@ -65,8 +66,8 @@ BOOST_AUTO_TEST_CASE ( CO_DOCI_constrained_dense ) {
     diis_scf_solver.solve();
     auto rhf = diis_scf_solver.get_solution();
 
-    // Transform the sq_hamiltonian
-    sq_hamiltonian.transform(rhf.get_C());
+    // Transform the Hamiltonian to the RHF orbital basis
+    basisTransform(sp_basis, sq_hamiltonian, rhf.get_C());
 
     GQCP::FockSpace fock_space (sq_hamiltonian.get_K(), CO.numberOfElectrons()/2);  // dim = 4
 

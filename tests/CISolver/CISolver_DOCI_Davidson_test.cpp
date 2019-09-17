@@ -19,11 +19,11 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include "Basis/transform.hpp"
 #include "CISolver/CISolver.hpp"
 #include "HamiltonianBuilder/DOCI.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
-
 
 
 BOOST_AUTO_TEST_CASE ( DOCI_h2o_sto3g_klaas_Davidson ) {
@@ -71,8 +71,8 @@ BOOST_AUTO_TEST_CASE ( DOCI_h2_sto3g_dense_vs_Davidson ) {
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 
-    // Transform the sq_hamiltonian
-    sq_hamiltonian.transform(rhf.get_C());
+    // Transform the Hamiltonian to the RHF orbital basis
+    GQCP::basisTransform(sp_basis, sq_hamiltonian, rhf.get_C());
 
     GQCP::FockSpace fock_space (sq_hamiltonian.get_K(), h2.numberOfElectrons()/2);  // dim = 2
 
@@ -111,8 +111,8 @@ BOOST_AUTO_TEST_CASE ( DOCI_h2_631g_dense_vs_Davidson ) {
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 
-    // Transform the sq_hamiltonian
-    sq_hamiltonian.transform(rhf.get_C());
+    // Transform the Hamiltonian to the RHF orbital basis
+    GQCP::basisTransform(sp_basis, sq_hamiltonian, rhf.get_C());
 
     GQCP::FockSpace fock_space (sq_hamiltonian.get_K(), h2.numberOfElectrons()/2);  // dim = 4
 
