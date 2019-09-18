@@ -64,7 +64,7 @@ void DOCINewtonOrbitalOptimizer::solve() {
     auto molecule = Molecule::ReadXYZ(this->xyz_filename);
     SingleParticleBasis<double, GTOShell> sp_basis (molecule, this->basis_set);
     const auto N_P = molecule.numberOfElectrons()/2;
-    auto sq_hamiltonian = SQHamiltonian<double>::Molecular(sp_basis, molecule);  // in AO basis
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, molecule);  // in AO basis
     const size_t K = sq_hamiltonian.get_K();
 
     DIISRHFSCFSolver diis_scf_solver (sq_hamiltonian, molecule);
@@ -112,7 +112,7 @@ void DOCINewtonOrbitalOptimizer::solve() {
     this->is_solved = true;
     double internuclear_repulsion_energy = Operator::NuclearRepulsion(molecule).value();
     this->energy_solution = OO_DOCI_electronic_energy + internuclear_repulsion_energy;
-    this->T_total = sq_hamiltonian.get_T_total();  
+    this->T_total = sp_basis.transformationMatrix();
 }
 
 

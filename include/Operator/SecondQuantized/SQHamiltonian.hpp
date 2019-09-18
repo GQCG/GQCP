@@ -384,7 +384,6 @@ public:
 
     const ScalarSQOneElectronOperator<Scalar>& get_S() const { return this->S; }
     const TransformationMatrix<Scalar>& get_T_total() const { return this->T_total; }
-    const std::shared_ptr<ScalarBasis<GTOShell>>& get_ao_basis() const { return this->ao_basis; }
 
 
     /**
@@ -412,9 +411,6 @@ public:
      */
     const ScalarSQTwoElectronOperator<Scalar>& twoElectron() const { return this->total_two_op; }
 
-    /*
-     *  PUBLIC METHODS - RELATED TO TRANSFORMATIONS
-     */
 
     /**
      *  In-place transform the matrix representations of Hamiltonian
@@ -498,22 +494,6 @@ public:
 
 
     /**
-     *  Transform the SQHamiltonian to the Löwdin basis (i.e. T = S^{-1/2})
-     */
-    void lowdinOrthonormalize() {
-
-        // The transformation matrix to the Löwdin basis is T = S^{-1/2}
-        Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes (this->S.parameters());
-        this->transform(TransformationMatrix<double>(saes.operatorInverseSqrt()));
-    }
-
-
-
-    /*
-     *  PUBLIC METHODS - CALCULATIONS OF VALUES
-     */
-
-    /**
      *  @param N_P      the number of electron pairs
      *
      *  @return the Edmiston-Ruedenberg localization index g(i,i,i,i)
@@ -534,11 +514,6 @@ public:
         return localization_index;
     }
 
-
-
-    /*
-     *  PUBLIC METHODS - CALCULATIONS OF ONE-ELECTRON OPERATORS
-     */
 
     /**
      *  @param D      the 1-DM (or the response 1-DM for made-variational wave function models)
@@ -561,11 +536,6 @@ public:
     }
 
 
-
-    /*
-     *  PUBLIC METHODS - CALCULATIONS OF TWO-ELECTRON OPERATORS
-     */
-
     /**
      *  @param D      the 1-DM (or the response 1-DM for made-variational wave function models)
      *  @param d      the 2-DM (or the response 2-DM for made-variational wave function models)
@@ -576,11 +546,6 @@ public:
 
         return this->core().calculateSuperFockianMatrix(D, d)[0].Eigen() + this->twoElectron().calculateSuperFockianMatrix(D, d)[0].Eigen();  // SQHamiltonian are ScalarSQOperators
     }
-
-
-    /*
-     *  PUBLIC METHODS - CONSTRAINTS
-     */
 
     /**
      *  Constrain the Hamiltonian according to the convention: - lambda * constraint

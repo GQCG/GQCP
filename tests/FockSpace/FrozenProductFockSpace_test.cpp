@@ -60,8 +60,8 @@ BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_diagonal_vs_no_diagonal) {
 
     GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
     GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (hchain, "STO-3G");
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, hchain);  // in an AO basis
-    sq_hamiltonian.lowdinOrthonormalize();
+    sp_basis.lowdinOrthonormalize();
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, hchain);  // in the Löwdin basis
 
     GQCP::FrozenProductFockSpace fock_space (6, 4, 4, 2);
 
@@ -78,8 +78,8 @@ BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_Dense_diagonal_true ) {
 
     GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
     GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (hchain, "STO-3G");
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, hchain);  // in an AO basis
-    sq_hamiltonian.lowdinOrthonormalize();
+    sp_basis.lowdinOrthonormalize();
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, hchain);  // in the Löwdin basis
 
     GQCP::FrozenProductFockSpace product_fock_space(6, 4, 4, 2);
     GQCP::SelectedFockSpace selected_fock_space(product_fock_space);
@@ -107,8 +107,8 @@ BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_Dense_diagonal_false ) {
 
     GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
     GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (hchain, "STO-3G");
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, hchain);  // in an AO basis
-    sq_hamiltonian.lowdinOrthonormalize();
+    sp_basis.lowdinOrthonormalize();
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, hchain);  // in the Löwdin basis
 
     GQCP::FrozenProductFockSpace product_fock_space(6, 4, 4, 2);
     GQCP::SelectedFockSpace selected_fock_space(product_fock_space);
@@ -135,8 +135,8 @@ BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_diagonal ) {
 
     GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
     GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (hchain, "STO-3G");
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, hchain);  // in an AO basis
-    sq_hamiltonian.lowdinOrthonormalize();
+    sp_basis.lowdinOrthonormalize();
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, hchain);  // in the Löwdin basis
 
     GQCP::FrozenProductFockSpace product_fock_space(6, 4, 4, 2);
     GQCP::SelectedFockSpace selected_fock_space(product_fock_space);

@@ -53,11 +53,11 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h3 ) {
 
     // Create the molecular Hamiltonian for this molecule and basis
     GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (hchain, "STO-3G");
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, hchain);  // in an AO basis
+    sp_basis.lowdinOrthonormalize();
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, hchain);  // in the Löwdin basis
     auto K = sq_hamiltonian.get_K();
     auto N_P = hchain.numberOfElectrons()/2;
 
-    sq_hamiltonian.lowdinOrthonormalize();
     GQCP::ProductFockSpace fock_space (K, N_P, N_P);
     GQCP::FCI fci (fock_space);
 
@@ -92,11 +92,11 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h4 ) {
 
     // Create the molecular Hamiltonian for this molecule and basis
     GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (hchain, "STO-3G");
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, hchain);  // in an AO basis
+    sp_basis.lowdinOrthonormalize();
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, hchain);  // in the Löwdin basis
     auto K = sq_hamiltonian.get_K();
     auto N_P = hchain.numberOfElectrons()/2;
 
-    sq_hamiltonian.lowdinOrthonormalize();
     GQCP::ProductFockSpace fock_space (K, N_P, N_P);
     GQCP::FCI fci (fock_space);
 
@@ -131,12 +131,12 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h5 ) {
 
     // Create the molecular Hamiltonian for this molecule and basis
     GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (hchain, "STO-3G");
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, hchain);  // in an AO basis
+    sp_basis.lowdinOrthonormalize();
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, hchain);  // in the Löwdin basis
     auto K = sq_hamiltonian.get_K();
     auto N_B = hchain.numberOfElectrons()/2;
     auto N_A = hchain.numberOfElectrons() - N_B;
 
-    sq_hamiltonian.lowdinOrthonormalize();
     GQCP::ProductFockSpace fock_space (K, N_A, N_B);
     GQCP::FCI fci (fock_space);
 

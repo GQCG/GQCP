@@ -56,8 +56,8 @@ void FCI::solve() {
     // Construct the molecular Hamiltonian
     auto molecule = Molecule::ReadXYZ(this->xyz_filename);
     SingleParticleBasis<double, GTOShell> sp_basis (molecule, this->basis_set);
-    auto sq_hamiltonian = SQHamiltonian<double>::Molecular(sp_basis, molecule);  // in the AO basis
-    sq_hamiltonian.lowdinOrthonormalize();  // now in the Löwdin basis
+    sp_basis.lowdinOrthonormalize();
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, molecule);  // in the Löwdin basis
 
 
     // Solve the FCI eigenvalue problem using the dense algorithm

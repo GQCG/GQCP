@@ -59,7 +59,7 @@ void MullikenConstrainedFCI::parseSolution(const std::vector<Eigenpair>& eigenpa
     }
 
     // Fill in the results
-    double internuclear_repulsion_energy = GQCP::Operator::NuclearRepulsion(this->molecule).value();
+    double internuclear_repulsion_energy = Operator::NuclearRepulsion(this->molecule).value();
 
     for (size_t i = 0; i < eigenpairs.size(); i++) {
 
@@ -145,7 +145,7 @@ MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const s
 
     try {
         // Try the foward approach of solving the RHF equations
-        GQCP::DIISRHFSCFSolver diis_scf_solver (this->sq_hamiltonian, molecule, 6, 6, 1e-12, 500);
+        DIISRHFSCFSolver diis_scf_solver (this->sq_hamiltonian, molecule, 6, 6, 1e-12, 500);
         diis_scf_solver.solve();
         auto rhf_solution = diis_scf_solver.get_solution();
         basisTransform(this->sp_basis, this->sq_hamiltonian, rhf_solution.get_C());
@@ -159,18 +159,18 @@ MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const s
             try {
                 const std::vector<Nucleus>& atoms = molecule.nuclearFramework().nucleiAsVector();
                 int charge = - molecule.numberOfElectrons() + molecule.nuclearFramework().totalNucleicCharge();
-                GQCP::Molecule mol_fraction1(std::vector<GQCP::Nucleus>{atoms[0]}, charge);
-                GQCP::Molecule mol_fraction2(std::vector<GQCP::Nucleus>{atoms[1]}, 0);
+                Molecule mol_fraction1(std::vector<Nucleus>{atoms[0]}, charge);
+                Molecule mol_fraction2(std::vector<Nucleus>{atoms[1]}, 0);
 
                 SingleParticleBasis<double, GTOShell> sp_basis1 (mol_fraction1, basis_set);
                 SingleParticleBasis<double, GTOShell> sp_basis2 (mol_fraction2, basis_set);
 
-                auto ham_par1 = GQCP::SQHamiltonian<double>::Molecular(sp_basis1, mol_fraction1);  // in AO basis
-                auto ham_par2 = GQCP::SQHamiltonian<double>::Molecular(sp_basis2, mol_fraction2);  // in AO basis
+                auto ham_par1 = SQHamiltonian<double>::Molecular(sp_basis1, mol_fraction1);  // in AO basis
+                auto ham_par2 = SQHamiltonian<double>::Molecular(sp_basis2, mol_fraction2);  // in AO basis
 
                 // Perform DIIS RHF for individual fractions
-                GQCP::DIISRHFSCFSolver diis_scf_solver1 (ham_par1, mol_fraction1, 6, 6, 1e-12, 500);
-                GQCP::DIISRHFSCFSolver diis_scf_solver2 (ham_par2, mol_fraction2, 6, 6, 1e-12, 500);
+                DIISRHFSCFSolver diis_scf_solver1 (ham_par1, mol_fraction1, 6, 6, 1e-12, 500);
+                DIISRHFSCFSolver diis_scf_solver2 (ham_par2, mol_fraction2, 6, 6, 1e-12, 500);
                 diis_scf_solver1.solve();
                 diis_scf_solver2.solve();
                 auto rhf1 = diis_scf_solver1.get_solution();
@@ -181,7 +181,7 @@ MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const s
                 size_t K2 = ham_par2.get_K();
 
                 // Recombine canonical matrices
-                GQCP::TransformationMatrix<double> T = Eigen::MatrixXd::Zero(K, K);
+                TransformationMatrix<double> T = Eigen::MatrixXd::Zero(K, K);
                 T.topLeftCorner(K1, K1) += rhf1.get_C();
                 T.bottomRightCorner(K2, K2) += rhf2.get_C();
                 basisTransform(this->sp_basis, this->sq_hamiltonian, T);
@@ -189,7 +189,7 @@ MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const s
 
                 // Attempt the DIIS for this basis
                 try {
-                    GQCP::DIISRHFSCFSolver diis_scf_solver (this->sq_hamiltonian, molecule, 6, 6, 1e-12, 500);
+                    DIISRHFSCFSolver diis_scf_solver (this->sq_hamiltonian, molecule, 6, 6, 1e-12, 500);
                     diis_scf_solver.solve();
                     auto rhf = diis_scf_solver.get_solution();
                     basisTransform(this->sp_basis, this->sq_hamiltonian, rhf.get_C());
@@ -210,10 +210,6 @@ MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const s
             const auto T = sp_basis.lowdinOrthonormalizationMatrix();
             basisTransform(this->sp_basis, this->sq_hamiltonian, T);
         }
-
-    }
-
-    if (this->sp_basis.transformationMatrix().isApprox(this->sq_hamiltonian.get_T_total(), 1.0e-08)) {
     }
 
 
