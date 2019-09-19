@@ -323,7 +323,7 @@ FrozenOperators BaseFrozenCoreFockSpace::freezeOperator(const ScalarSQTwoElectro
  */
 SQHamiltonian<double> BaseFrozenCoreFockSpace::freezeOperator(const SQHamiltonian<double>& sq_hamiltonian, size_t X) {
 
-    size_t K_active = sq_hamiltonian.get_K() - X;  // number of non-frozen orbitals
+    size_t K_active = sq_hamiltonian.dimension() - X;  // number of non-frozen orbitals
 
     const auto frozen_components_g = BaseFrozenCoreFockSpace::freezeOperator(sq_hamiltonian.twoElectron(), X);
     ScalarSQOneElectronOperator<double> S = BaseFrozenCoreFockSpace::freezeOperator(sq_hamiltonian.get_S(), X);  // active

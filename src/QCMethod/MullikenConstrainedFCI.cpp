@@ -177,8 +177,8 @@ MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const s
                 auto rhf2 = diis_scf_solver2.get_solution();
 
                 // Retrieve transformation from the solutions and transform the Hamiltonian
-                size_t K1 = ham_par1.get_K();
-                size_t K2 = ham_par2.get_K();
+                size_t K1 = ham_par1.dimension();
+                size_t K2 = ham_par2.dimension();
 
                 // Recombine canonical matrices
                 TransformationMatrix<double> T = Eigen::MatrixXd::Zero(K, K);

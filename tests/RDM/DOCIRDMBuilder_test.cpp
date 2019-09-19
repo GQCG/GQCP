@@ -34,7 +34,7 @@ BOOST_AUTO_TEST_CASE ( lih_1RDM_trace ) {
     // Get the 1-RDM from DOCI
     size_t N = 4;  // 4 electrons
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::ReadFCIDUMP("data/lih_631g_caitlin.FCIDUMP");
-    size_t K = sq_hamiltonian.get_K();  // 16 SO
+    size_t K = sq_hamiltonian.dimension();  // 16 SO
 
     GQCP::FockSpace fock_space (K, N/2);  // dim = 120
     GQCP::DOCI doci (fock_space);
@@ -64,7 +64,7 @@ BOOST_AUTO_TEST_CASE ( lih_2RDM_trace ) {
     // Get the 1-RDM from DOCI
     size_t N = 4;  // 4 electrons
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::ReadFCIDUMP("data/lih_631g_caitlin.FCIDUMP");
-    size_t K = sq_hamiltonian.get_K();  // 16 SO
+    size_t K = sq_hamiltonian.dimension();  // 16 SO
 
     GQCP::FockSpace fock_space (K, N/2);  // dim = 120
     GQCP::DOCI doci (fock_space);
@@ -94,7 +94,7 @@ BOOST_AUTO_TEST_CASE ( lih_1RDM_2RDM_trace_DOCI ) {
     // Get the 1-RDM from DOCI
     size_t N = 4;  // 4 electrons
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::ReadFCIDUMP("data/lih_631g_caitlin.FCIDUMP");
-    size_t K = sq_hamiltonian.get_K();  // 16 SO
+    size_t K = sq_hamiltonian.dimension();  // 16 SO
 
     GQCP::FockSpace fock_space (K, N/2);  // dim = 120
     GQCP::DOCI doci (fock_space);
@@ -125,7 +125,7 @@ BOOST_AUTO_TEST_CASE ( lih_energy_RDM_contraction_DOCI ) {
     // Get the 1-RDM from DOCI
     size_t N = 4;  // 4 electrons
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::ReadFCIDUMP("data/lih_631g_caitlin.FCIDUMP");
-    size_t K = sq_hamiltonian.get_K();  // 16 SO
+    size_t K = sq_hamiltonian.dimension();  // 16 SO
 
     GQCP::FockSpace fock_space (K, N/2);  // dim = 120
     GQCP::DOCI doci (fock_space);
@@ -157,7 +157,7 @@ BOOST_AUTO_TEST_CASE ( lih_1RDM_2RDM_trace_DOCI_wavefunction ) {
     // Get the 1-RDM from DOCI
     size_t N = 4;  // 4 electrons
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::ReadFCIDUMP("data/lih_631g_caitlin.FCIDUMP");
-    size_t K = sq_hamiltonian.get_K();  // 16 SO
+    size_t K = sq_hamiltonian.dimension();  // 16 SO
 
     GQCP::FockSpace fock_space (K, N/2);  // dim = 120
     GQCP::DOCI doci (fock_space);

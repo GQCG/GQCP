@@ -28,7 +28,7 @@ namespace GQCP {
  */
 void AP1roGLagrangianOptimizer::solve() {
 
-    const auto K = this->sq_hamiltonian.get_K();
+    const auto K = this->sq_hamiltonian.dimension();
     const auto& g = this->sq_hamiltonian.twoElectron().parameters();
 
 

@@ -55,7 +55,7 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h3 ) {
     GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (hchain, "STO-3G");
     sp_basis.lowdinOrthonormalize();
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, hchain);  // in the Löwdin basis
-    auto K = sq_hamiltonian.get_K();
+    auto K = sq_hamiltonian.dimension();
     auto N_P = hchain.numberOfElectrons()/2;
 
     GQCP::ProductFockSpace fock_space (K, N_P, N_P);
@@ -94,7 +94,7 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h4 ) {
     GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (hchain, "STO-3G");
     sp_basis.lowdinOrthonormalize();
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, hchain);  // in the Löwdin basis
-    auto K = sq_hamiltonian.get_K();
+    auto K = sq_hamiltonian.dimension();
     auto N_P = hchain.numberOfElectrons()/2;
 
     GQCP::ProductFockSpace fock_space (K, N_P, N_P);
@@ -133,7 +133,7 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h5 ) {
     GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (hchain, "STO-3G");
     sp_basis.lowdinOrthonormalize();
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, hchain);  // in the Löwdin basis
-    auto K = sq_hamiltonian.get_K();
+    auto K = sq_hamiltonian.dimension();
     auto N_B = hchain.numberOfElectrons()/2;
     auto N_A = hchain.numberOfElectrons() - N_B;
 

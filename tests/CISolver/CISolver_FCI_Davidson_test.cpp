@@ -34,7 +34,7 @@ BOOST_AUTO_TEST_CASE ( FCI_h2_sto3g_dense_vs_Davidson ) {
     auto h2 = GQCP::Molecule::ReadXYZ("data/h2_cristina.xyz");
     GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2, "STO-3G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2);  // in an AO basis
-    auto K = sq_hamiltonian.get_K();
+    auto K = sq_hamiltonian.dimension();
 
     // Create a plain RHF SCF solver and solve the SCF equations
     GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, h2);
@@ -77,7 +77,7 @@ BOOST_AUTO_TEST_CASE ( FCI_H2_6_31Gxx_dense_vs_Davidson ) {
     auto h2 = GQCP::Molecule::ReadXYZ("data/h2_cristina.xyz");
     GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2, "6-31G**");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2);  // in an AO basis
-    auto K = sq_hamiltonian.get_K();
+    auto K = sq_hamiltonian.dimension();
 
     // Create a plain RHF SCF solver and solve the SCF equations
     GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, h2);
@@ -120,7 +120,7 @@ BOOST_AUTO_TEST_CASE ( FCI_H2O_STO_3G_dense_vs_Davidson ) {
     auto h2o = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
     GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2o, "STO-3G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2o);  // in an AO basis
-    auto K = sq_hamiltonian.get_K();
+    auto K = sq_hamiltonian.dimension();
 
     // Create a plain RHF SCF solver and solve the SCF equations
     GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, h2o);

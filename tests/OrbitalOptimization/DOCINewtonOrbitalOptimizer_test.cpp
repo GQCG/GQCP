@@ -40,7 +40,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_sto_3g ) {
     double internuclear_repulsion_energy = GQCP::Operator::NuclearRepulsion(h2).value();  // 0.713176780299327
     GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2, "STO-3G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2);  // in an AO basis
-    auto K = sq_hamiltonian.get_K();
+    auto K = sq_hamiltonian.dimension();
 
     GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, h2);
     plain_scf_solver.solve();
@@ -76,7 +76,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31g ) {
     double internuclear_repulsion_energy = GQCP::Operator::NuclearRepulsion(h2).value();  // 0.713176780299327
     GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2, "6-31G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2);  // in an AO basis
-    auto K = sq_hamiltonian.get_K();
+    auto K = sq_hamiltonian.dimension();
 
     GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, h2);
     plain_scf_solver.solve();
@@ -128,7 +128,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx ) {
     double internuclear_repulsion_energy = GQCP::Operator::NuclearRepulsion(h2).value();  // 0.713176780299327
     GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2, "6-31G**");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2);  // in an AO basis
-    auto K = sq_hamiltonian.get_K();
+    auto K = sq_hamiltonian.dimension();
 
 
     GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, h2);
@@ -181,7 +181,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx_Davidson ) {
     double internuclear_repulsion_energy = GQCP::Operator::NuclearRepulsion(h2).value();  // 0.713176780299327
     GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2, "6-31G**");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2);  // in an AO basis
-    auto K = sq_hamiltonian.get_K();
+    auto K = sq_hamiltonian.dimension();
 
 
     GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, h2);

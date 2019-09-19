@@ -39,7 +39,7 @@ BOOST_AUTO_TEST_CASE ( H2O_1RDM_spin_trace_FCI ) {
     auto h2o = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
     GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2o, "STO-3G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2o);  // in an AO basis
-    size_t K = sq_hamiltonian.get_K();  // SO 7
+    size_t K = sq_hamiltonian.dimension();  // SO 7
 
     GQCP::ProductFockSpace fock_space (K, N_a, N_b);  // dim = 441
     GQCP::FCI fci (fock_space);
@@ -74,7 +74,7 @@ BOOST_AUTO_TEST_CASE ( H2O_2RDM_spin_trace_FCI ) {
     auto h2o = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
     GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2o, "STO-3G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2o);  // in an AO basis
-    size_t K = sq_hamiltonian.get_K();  // SO 7
+    size_t K = sq_hamiltonian.dimension();  // SO 7
 
     GQCP::ProductFockSpace fock_space (K, N_a, N_b);  // dim = 441
     GQCP::FCI fci (fock_space);
@@ -111,7 +111,7 @@ BOOST_AUTO_TEST_CASE ( H2O_1RDM_2RDM_trace_FCI ) {
     auto h2o = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
     GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2o, "STO-3G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2o);  // in an AO basis
-    size_t K = sq_hamiltonian.get_K();  // SO 7
+    size_t K = sq_hamiltonian.dimension();  // SO 7
 
     GQCP::ProductFockSpace fock_space (K, N_a, N_b);  // dim = 441
     GQCP::FCI fci (fock_space);
@@ -146,7 +146,7 @@ BOOST_AUTO_TEST_CASE ( H2O_energy_RDM_contraction_FCI ) {
     auto h2o = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
     GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2o, "STO-3G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2o);  // in an AO basis
-    size_t K = sq_hamiltonian.get_K();  // SO 7
+    size_t K = sq_hamiltonian.dimension();  // SO 7
 
     GQCP::ProductFockSpace fock_space (K, N_a, N_b);  // dim = 441
     GQCP::FCI fci (fock_space);
@@ -182,7 +182,7 @@ BOOST_AUTO_TEST_CASE ( H2O_energy_RDM_contraction_FCI_wavefunction ) {
     auto h2o = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
     GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2o, "STO-3G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2o);  // in an AO basis
-    size_t K = sq_hamiltonian.get_K();  // SO 7
+    size_t K = sq_hamiltonian.dimension();  // SO 7
 
     GQCP::ProductFockSpace fock_space (K, N_a, N_b);  // dim = 441
     GQCP::FCI fci (fock_space);

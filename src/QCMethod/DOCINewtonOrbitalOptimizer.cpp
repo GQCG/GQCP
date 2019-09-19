@@ -65,7 +65,7 @@ void DOCINewtonOrbitalOptimizer::solve() {
     SingleParticleBasis<double, GTOShell> sp_basis (molecule, this->basis_set);
     const auto N_P = molecule.numberOfElectrons()/2;
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, molecule);  // in AO basis
-    const size_t K = sq_hamiltonian.get_K();
+    const size_t K = sq_hamiltonian.dimension();
 
     DIISRHFSCFSolver diis_scf_solver (sq_hamiltonian, molecule);
     diis_scf_solver.solve();
@@ -84,7 +84,7 @@ void DOCINewtonOrbitalOptimizer::solve() {
         ERJacobiLocalizer jacobi_localizer (N_P);
         auto optimal_jacobi_with_scalar = jacobi_localizer.calculateOptimalJacobiParameters(sq_hamiltonian);
         if (optimal_jacobi_with_scalar.second > 0) {  // if a Jacobi rotation can find an increase, do it
-            const TransformationMatrix<double> U = TransformationMatrix<double>::FromJacobi(optimal_jacobi_with_scalar.first, sq_hamiltonian.get_K());
+            const TransformationMatrix<double> U = TransformationMatrix<double>::FromJacobi(optimal_jacobi_with_scalar.first, sq_hamiltonian.dimension());
             basisRotate(sp_basis, sq_hamiltonian, U);
         }
 

@@ -71,7 +71,7 @@ AP1roGGeminalCoefficients::AP1roGGeminalCoefficients(size_t N_P, size_t K) :
  */
 AP1roGGeminalCoefficients AP1roGGeminalCoefficients::WeakInteractionLimit(const SQHamiltonian<double>& sq_hamiltonian, size_t N_P) {
 
-    const auto K = sq_hamiltonian.get_K();
+    const auto K = sq_hamiltonian.dimension();
     const auto number_of_geminal_coefficients = AP1roGGeminalCoefficients::numberOfGeminalCoefficients(N_P, K);
     const auto& h = sq_hamiltonian.core().parameters();  // core Hamiltonian integrals
     const auto& g = sq_hamiltonian.twoElectron().parameters();  // two-electron integrals

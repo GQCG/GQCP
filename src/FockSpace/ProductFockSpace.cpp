@@ -315,7 +315,7 @@ Eigen::SparseMatrix<double> ProductFockSpace::evaluateOperatorSparse(const SQHam
  */
 VectorX<double> ProductFockSpace::evaluateOperatorDiagonal(const ScalarSQOneElectronOperator<double>& one_op) const {
 
-    const auto K = one_op.get_K();
+    const auto K = one_op.dimension();
     if (K != this->K) {
         throw std::invalid_argument("ProductFockSpace::evaluateOperatorDiagonal(ScalarSQOneElectronOperator<double>): Basis functions of the Fock space and the operator are incompatible.");
     }
@@ -370,7 +370,7 @@ VectorX<double> ProductFockSpace::evaluateOperatorDiagonal(const ScalarSQOneElec
  */
 VectorX<double> ProductFockSpace::evaluateOperatorDiagonal(const ScalarSQTwoElectronOperator<double>& two_op) const {
 
-    const auto K = two_op.get_K();
+    const auto K = two_op.dimension();
     if (K != this->K) {
         throw std::invalid_argument("ProductFockSpace::evaluateOperatorDiagonal(ScalarSQTwoElectronOperator<double>): Basis functions of the Fock space and the operator are incompatible.");
     }

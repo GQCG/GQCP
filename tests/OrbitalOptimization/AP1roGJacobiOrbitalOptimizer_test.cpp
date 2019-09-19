@@ -45,7 +45,7 @@ BOOST_AUTO_TEST_CASE ( lih_6_31G_calculateEnergyAfterRotation ) {
 
     // Loop over all possible Jacobi pairs for a given (random) angle and check if the analytical result matches the numerical result
     double theta = 56.71;
-    size_t K = sq_hamiltonian.get_K();
+    size_t K = sq_hamiltonian.dimension();
 
     for (size_t q = 0; q < K; q++) {  // p and q loop over spatial orbitals
         for (size_t p = q + 1; p < K; p++) {  // p > q

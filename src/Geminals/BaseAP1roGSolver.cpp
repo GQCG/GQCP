@@ -33,7 +33,7 @@ namespace GQCP {
  *  @param maximum_number_of_iterations         the maximum number of Newton steps that may be used to achieve convergence of the PSEs
  */
 BaseAP1roGSolver::BaseAP1roGSolver(size_t N_P, const SQHamiltonian<double>& sq_hamiltonian, const AP1roGGeminalCoefficients& G, const double convergence_threshold, const size_t maximum_number_of_iterations) :
-    K (sq_hamiltonian.get_K()),
+    K (sq_hamiltonian.dimension()),
     N_P (N_P),
     convergence_threshold (convergence_threshold),
     maximum_number_of_iterations (maximum_number_of_iterations),
@@ -51,7 +51,7 @@ BaseAP1roGSolver::BaseAP1roGSolver(size_t N_P, const SQHamiltonian<double>& sq_h
  *  The initial guess for the geminal coefficients is zero
  */
 BaseAP1roGSolver::BaseAP1roGSolver(size_t N_P, const SQHamiltonian<double>& sq_hamiltonian, const double convergence_threshold, const size_t maximum_number_of_iterations) :
-    BaseAP1roGSolver(N_P, sq_hamiltonian, AP1roGGeminalCoefficients(N_P, sq_hamiltonian.get_K()), convergence_threshold, maximum_number_of_iterations)
+    BaseAP1roGSolver(N_P, sq_hamiltonian, AP1roGGeminalCoefficients(N_P, sq_hamiltonian.dimension()), convergence_threshold, maximum_number_of_iterations)
 {}
 
 
@@ -81,7 +81,7 @@ BaseAP1roGSolver::BaseAP1roGSolver(const Molecule& molecule, const SQHamiltonian
  *  The initial guess for the geminal coefficients is zero
  */
 BaseAP1roGSolver::BaseAP1roGSolver(const Molecule& molecule, const SQHamiltonian<double>& sq_hamiltonian, const double convergence_threshold, const size_t maximum_number_of_iterations) :
-    BaseAP1roGSolver(molecule, sq_hamiltonian, AP1roGGeminalCoefficients(molecule.numberOfElectrons()/2, sq_hamiltonian.get_K()), convergence_threshold, maximum_number_of_iterations)
+    BaseAP1roGSolver(molecule, sq_hamiltonian, AP1roGGeminalCoefficients(molecule.numberOfElectrons()/2, sq_hamiltonian.dimension()), convergence_threshold, maximum_number_of_iterations)
 {}
 
 

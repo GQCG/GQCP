@@ -60,7 +60,7 @@ SquareMatrix<double> QCMethodNewtonOrbitalOptimizer::calculateGradientMatrix(con
  */
 SquareRankFourTensor<double> QCMethodNewtonOrbitalOptimizer::calculateHessianTensor(const SQHamiltonian<double>& sq_hamiltonian) const {
 
-    const auto K = sq_hamiltonian.get_K();
+    const auto K = sq_hamiltonian.dimension();
 
     // Calculate the Hessian from the super Fockian matrix
     const auto G = sq_hamiltonian.calculateSuperFockianMatrix(this->D, this->d);

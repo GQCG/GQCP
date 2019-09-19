@@ -45,8 +45,6 @@ namespace GQCP {
 template <typename Scalar>
 class SQHamiltonian {
 private:
-    size_t K;  // the number of spatial orbitals
-
     std::shared_ptr<ScalarBasis<GTOShell>> ao_basis;  // the initial atomic orbitals
     TransformationMatrix<Scalar> T_total;  // total transformation matrix between the current (restricted) molecular orbitals and the atomic orbitals
     ScalarSQOneElectronOperator<Scalar> S;  // overlap
@@ -77,7 +75,6 @@ public:
      */
     SQHamiltonian(std::shared_ptr<ScalarBasis<GTOShell>> ao_basis, const ScalarSQOneElectronOperator<Scalar>& S, const std::vector<ScalarSQOneElectronOperator<Scalar>>& one_ops, const std::vector<ScalarSQTwoElectronOperator<Scalar>>& two_ops, const TransformationMatrix<Scalar>& T) :
         ao_basis (std::move(ao_basis)),
-        K (S.dimension()),
         S (S),
         one_ops (one_ops),
         two_ops (two_ops),
@@ -88,32 +85,38 @@ public:
         // Check if the dimensions are compatible
         const std::invalid_argument dimension_error (function_intro + "The dimensions of the operators and coefficient matrix are incompatible.");
 
+        const auto dim = one_ops[0].dimension();
+
+
         if (this->ao_basis) {  // ao_basis is not nullptr
-            if (this->dimension() != this->ao_basis->numberOfBasisFunctions()) {
+            if (dim != this->ao_basis->numberOfBasisFunctions()) {
                 throw dimension_error;
             }
         }
 
-        const auto dimension_of_first = one_ops[0].dimension();
+        if (S.dimension() != dim) {
+            throw dimension_error;
+        }
+
         for (const auto& one_op : this->one_ops) {
-            if (one_op.dimension() != dimension_of_first) {
+            if (one_op.dimension() != dim) {
                 throw dimension_error;
             }
         }
 
         for (const auto& two_op : this->two_ops) {
-            if (two_op.dimension() != dimension_of_first) {
+            if (two_op.dimension() != dim) {
                 throw dimension_error;
             }
         }
 
-        if ((T.cols() != this->dimension()) || (T.rows() != this->dimension())) {
+        if ((T.cols() != dim) || (T.rows() != dim)) {
             throw dimension_error;
         }
 
 
         // Calculate the total one-electron operator
-        QCMatrix<Scalar> total_one_op_par (this->dimension());
+        QCMatrix<Scalar> total_one_op_par (dim);
         total_one_op_par.setZero();
         for (const auto& one_op : this->one_ops) {
             total_one_op_par += one_op.parameters();
@@ -122,7 +125,7 @@ public:
 
 
         // Calculate the total two-electron operator
-        QCRankFourTensor<Scalar> total_two_op_par (this->dimension());
+        QCRankFourTensor<Scalar> total_two_op_par (dim);
         total_two_op_par.setZero();
         for (const auto& two_op : this->two_ops) {
             total_two_op_par += two_op.parameters().Eigen();
@@ -386,12 +389,6 @@ public:
     const TransformationMatrix<Scalar>& get_T_total() const { return this->T_total; }
 
 
-    /**
-     *  @return the dimension of the Hamiltonian, i.e. the number of spinors in which it is expressed
-     */
-    size_t get_K() const { return this->dimension(); }
-
-
     /*
      *  PUBLIC METHODS
      */
@@ -399,7 +396,7 @@ public:
     /**
      *  @return the dimension of the Hamiltonian, i.e. the number of spinors in which it is expressed
      */
-    size_t dimension() const { return this->K; }
+    size_t dimension() const { return this->core().dimension(); }
 
     /**
      *  @return the 'core' Hamiltonian, i.e. the total of the one-electron contributions to the Hamiltonian
@@ -484,7 +481,8 @@ public:
     enable_if_t<std::is_same<Z, double>::value> randomRotate() {
 
         // Get a random unitary matrix by diagonalizing a random symmetric matrix
-        TransformationMatrix<double> A_random = TransformationMatrix<double>::Random(this->K, this->K);
+        const auto K = this->dimension();
+        TransformationMatrix<double> A_random = TransformationMatrix<double>::Random(K, K);
         TransformationMatrix<double> A_symmetric = A_random + A_random.transpose();
         Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> unitary_solver (A_symmetric);
         TransformationMatrix<double> U_random = unitary_solver.eigenvectors();

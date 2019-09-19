@@ -69,7 +69,7 @@ BOOST_AUTO_TEST_CASE ( CO_DOCI_constrained_dense ) {
     // Transform the Hamiltonian to the RHF orbital basis
     basisTransform(sp_basis, sq_hamiltonian, rhf.get_C());
 
-    GQCP::FockSpace fock_space (sq_hamiltonian.get_K(), CO.numberOfElectrons()/2);  // dim = 4
+    GQCP::FockSpace fock_space (sq_hamiltonian.dimension(), CO.numberOfElectrons()/2);  // dim = 4
 
     // Create the DOCI module
     GQCP::DOCI doci (fock_space);

@@ -46,7 +46,7 @@ Hubbard::Hubbard(const ProductFockSpace& fock_space) :
  */
 SquareMatrix<double> Hubbard::constructHamiltonian(const SQHamiltonian<double>& sq_hamiltonian) const {
     
-    auto K = sq_hamiltonian.get_K();
+    auto K = sq_hamiltonian.dimension();
     if (K != this->fock_space.get_K()) {
         throw std::invalid_argument("Hubbard::constructHamiltonian(SQHamiltonian<double>): Basis functions of the Fock space and sq_hamiltonian are incompatible.");
     }
@@ -64,7 +64,7 @@ SquareMatrix<double> Hubbard::constructHamiltonian(const SQHamiltonian<double>& 
  */
 VectorX<double> Hubbard::matrixVectorProduct(const SQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
 
-    auto K = sq_hamiltonian.get_K();
+    auto K = sq_hamiltonian.dimension();
     if (K != this->fock_space.get_K()) {
         throw std::invalid_argument("Hubbard::matrixVectorProduct(SQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the Fock space and sq_hamiltonian are incompatible.");
     }
@@ -96,7 +96,7 @@ VectorX<double> Hubbard::matrixVectorProduct(const SQHamiltonian<double>& sq_ham
  */
 VectorX<double> Hubbard::calculateDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const {
 
-    const auto K = sq_hamiltonian.get_K();
+    const auto K = sq_hamiltonian.dimension();
     if (K != this->fock_space.get_K()) {
         throw std::invalid_argument("Hubbard::calculateDiagonal(SQHamiltonian<double>): Basis functions of the Fock space and sq_hamiltonian are incompatible.");
     }

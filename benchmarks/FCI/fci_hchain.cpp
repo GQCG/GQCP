@@ -30,7 +30,7 @@ static void fci_davidson_hchain(benchmark::State& state) {
 
 
     // Solve the RHF SCF equations
-    const auto K = sq_hamiltonian.get_K();
+    const auto K = sq_hamiltonian.dimension();
     const auto N_P = hchain.numberOfElectrons()/2;
     GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, hchain);
     plain_scf_solver.solve();
@@ -73,7 +73,7 @@ static void fci_dense_hchain(benchmark::State& state) {
     const auto hchain = GQCP::Molecule::HChain(number_of_H_atoms, 0.742, charge);
     GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (hchain, "STO-3G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, hchain);
-    auto K = sq_hamiltonian.get_K();
+    auto K = sq_hamiltonian.dimension();
     auto N_P = hchain.numberOfElectrons()/2;
 
     // Create a plain RHF SCF solver and solve the SCF equations

@@ -251,7 +251,7 @@ void SelectedFockSpace::addConfiguration(const std::vector<std::string>& onv1s, 
  */
 SquareMatrix<double> SelectedFockSpace::evaluateOperatorDense(const ScalarSQOneElectronOperator<double>& one_op, bool diagonal_values) const {
 
-    const auto K = one_op.get_K();
+    const auto K = one_op.dimension();
     if (K != this->K) {
         throw std::invalid_argument("SelectedFockSpace::evaluateOperatorDense(ScalarSQOneElectronOperator<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
     }
@@ -272,7 +272,7 @@ SquareMatrix<double> SelectedFockSpace::evaluateOperatorDense(const ScalarSQOneE
  */
 Eigen::SparseMatrix<double> SelectedFockSpace::evaluateOperatorSparse(const ScalarSQOneElectronOperator<double>& one_op, bool diagonal_values) const {
 
-    const auto K = one_op.get_K();
+    const auto K = one_op.dimension();
     if (K != this->K) {
         throw std::invalid_argument("SelectedFockSpace::evaluateOperatorSparse(ScalarSQOneElectronOperator<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
     }
@@ -302,7 +302,7 @@ Eigen::SparseMatrix<double> SelectedFockSpace::evaluateOperatorSparse(const Scal
  */
 SquareMatrix<double> SelectedFockSpace::evaluateOperatorDense(const ScalarSQTwoElectronOperator<double>& two_op, bool diagonal_values) const {
 
-    const auto K = two_op.get_K();
+    const auto K = two_op.dimension();
     if (K != this->K) {
         throw std::invalid_argument("SelectedFockSpace::evaluateOperatorDense(ScalarSQTwoElectronOperator<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
     }
@@ -323,7 +323,7 @@ SquareMatrix<double> SelectedFockSpace::evaluateOperatorDense(const ScalarSQTwoE
  */
 Eigen::SparseMatrix<double> SelectedFockSpace::evaluateOperatorSparse(const ScalarSQTwoElectronOperator<double>& two_op, bool diagonal_values) const {
 
-    const auto K = two_op.get_K();
+    const auto K = two_op.dimension();
     if (K != this->K) {
         throw std::invalid_argument("SelectedFockSpace::evaluateOperatorSparse(ScalarSQTwoElectronOperator<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
     }
@@ -353,7 +353,7 @@ Eigen::SparseMatrix<double> SelectedFockSpace::evaluateOperatorSparse(const Scal
  */
 SquareMatrix<double> SelectedFockSpace::evaluateOperatorDense(const SQHamiltonian<double>& sq_hamiltonian, bool diagonal_values) const {
 
-    const auto K = sq_hamiltonian.get_K();
+    const auto K = sq_hamiltonian.dimension();
     if (K != this->K) {
         throw std::invalid_argument("SelectedFockSpace::evaluateOperatorDense(SQHamiltonian<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
     }
@@ -374,7 +374,7 @@ SquareMatrix<double> SelectedFockSpace::evaluateOperatorDense(const SQHamiltonia
  */
 Eigen::SparseMatrix<double> SelectedFockSpace::evaluateOperatorSparse(const SQHamiltonian<double>& sq_hamiltonian, bool diagonal_values) const {
 
-    const auto K = sq_hamiltonian.get_K();
+    const auto K = sq_hamiltonian.dimension();
     if (K != this->K) {
         throw std::invalid_argument("SelectedFockSpace::evaluateOperatorSparse(SQHamiltonian<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
     }
@@ -403,7 +403,7 @@ Eigen::SparseMatrix<double> SelectedFockSpace::evaluateOperatorSparse(const SQHa
  */
 VectorX<double> SelectedFockSpace::evaluateOperatorDiagonal(const ScalarSQOneElectronOperator<double>& one_op) const {
 
-    const auto K = one_op.get_K();
+    const auto K = one_op.dimension();
     if (K != this->K) {
         throw std::invalid_argument("SelectedFockSpace::evaluateOperatorDiagonal(ScalarSQTwoElectronOperator<double>): Basis functions of the Fock space and the operator are incompatible.");
     }
@@ -442,7 +442,7 @@ VectorX<double> SelectedFockSpace::evaluateOperatorDiagonal(const ScalarSQOneEle
  */
 VectorX<double> SelectedFockSpace::evaluateOperatorDiagonal(const ScalarSQTwoElectronOperator<double>& two_op) const {
 
-    const auto K = two_op.get_K();
+    const auto K = two_op.dimension();
     if (K != this->K) {
         throw std::invalid_argument("SelectedFockSpace::evaluateOperatorDiagonal(ScalarSQTwoElectronOperator<double>): Basis functions of the Fock space and the operator are incompatible.");
     }

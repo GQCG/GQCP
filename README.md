@@ -36,7 +36,7 @@ GQCP::basisTransform(sp_basis, sq_hamiltonian, rhf.get_C());
 
 
 // Set up the FCI Fock space
-auto K = sq_hamiltonian.get_K();  // number of spatial orbitials
+auto K = sq_hamiltonian.dimension();  // number of spatial orbitials
 auto N_alpha = h2o.numberOfElectrons()/2;
 auto N_beta = h2o.numberOfElectrons()/2;
 GQCP::ProductFockSpace fock_space (K, N_alpha, N_beta);

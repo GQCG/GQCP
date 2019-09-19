@@ -78,7 +78,7 @@ bool JacobiOrbitalOptimizer::checkForConvergence(const SQHamiltonian<double>& sq
  *  @return a unitary matrix that will be used to rotate the current Hamiltonian into the next iteration
  */
 TransformationMatrix<double> JacobiOrbitalOptimizer::calculateNewRotationMatrix(const SQHamiltonian<double>& sq_hamiltonian) const {
-    return TransformationMatrix<double>::FromJacobi(this->optimal_jacobi_with_scalar.first, sq_hamiltonian.get_K());
+    return TransformationMatrix<double>::FromJacobi(this->optimal_jacobi_with_scalar.first, sq_hamiltonian.dimension());
 }
 
 

@@ -34,7 +34,7 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test ) {
     GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (CO, "STO-3G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, CO);  // in an AO basis
 
-    size_t K = sq_hamiltonian.get_K();
+    size_t K = sq_hamiltonian.dimension();
     size_t N = CO.numberOfElectrons();
 
     GQCP::OneRDM<double> one_rdm = GQCP::calculateRHF1RDM(K, N);
@@ -121,7 +121,7 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test_random_transformation) {
     GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (CO, "STO-3G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, CO);  // in an AO basis
 
-    size_t K = sq_hamiltonian.get_K();
+    size_t K = sq_hamiltonian.dimension();
     size_t N = CO.numberOfElectrons();
 
     GQCP::TransformationMatrix<double> T = GQCP::TransformationMatrix<double>::Random(K, K);
