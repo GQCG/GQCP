@@ -45,17 +45,11 @@ namespace GQCP {
 template <typename Scalar>
 class SQHamiltonian {
 private:
-    std::shared_ptr<ScalarBasis<GTOShell>> ao_basis;  // the initial atomic orbitals
-    TransformationMatrix<Scalar> T_total;  // total transformation matrix between the current (restricted) molecular orbitals and the atomic orbitals
-    ScalarSQOneElectronOperator<Scalar> S;  // overlap
-
     ScalarSQOneElectronOperator<Scalar> total_one_op;  // one-electron interactions (i.e. the core Hamiltonian)
     ScalarSQTwoElectronOperator<Scalar> total_two_op;  // two-electron interactions
 
-
     std::vector<ScalarSQOneElectronOperator<Scalar>> one_ops;  // the core (i.e. one-electron) contributions to the Hamiltonian
     std::vector<ScalarSQTwoElectronOperator<Scalar>> two_ops;  // the two-electron contributions to the Hamiltonian
-
 
 
 public:
@@ -65,39 +59,19 @@ public:
      */
     SQHamiltonian() = default;
 
-
     /**
-     *  @param ao_basis     the initial AO basis
-     *  @param S            the overlap integrals
      *  @param one_ops      the core (i.e. one-electron) contributions to the Hamiltonian
-     *  @param g            the two-electron contributions to the Hamiltonian
-     *  @param T            the transformation matrix between the current molecular orbitals and the atomic orbitals
+     *  @param two_ops      the two-electron contributions to the Hamiltonian
      */
-    SQHamiltonian(std::shared_ptr<ScalarBasis<GTOShell>> ao_basis, const ScalarSQOneElectronOperator<Scalar>& S, const std::vector<ScalarSQOneElectronOperator<Scalar>>& one_ops, const std::vector<ScalarSQTwoElectronOperator<Scalar>>& two_ops, const TransformationMatrix<Scalar>& T) :
-        ao_basis (std::move(ao_basis)),
-        S (S),
+    SQHamiltonian(const std::vector<ScalarSQOneElectronOperator<Scalar>>& one_ops, const std::vector<ScalarSQTwoElectronOperator<Scalar>>& two_ops) :
         one_ops (one_ops),
-        two_ops (two_ops),
-        T_total (T)
+        two_ops (two_ops)
     {
-        const std::string function_intro ("SQHamiltonian::SQHamiltonian(std::shared_ptr<ScalarBasis<GTOShell>> ao_basis, const ScalarSQOneElectronOperator<Scalar>& S, const std::vector<ScalarSQOneElectronOperator<Scalar>& one_ops, const std::vector<ScalarSQTwoElectronOperator<Scalar>& two_ops, const TransformationMatrix<Scalar>& T): ");
 
         // Check if the dimensions are compatible
-        const std::invalid_argument dimension_error (function_intro + "The dimensions of the operators and coefficient matrix are incompatible.");
+        const std::invalid_argument dimension_error ("SQHamiltonian::SQHamiltonian(const std::vector<ScalarSQOneElectronOperator<Scalar>& one_ops, const std::vector<ScalarSQTwoElectronOperator<Scalar>& two_ops: The dimensions of the operators and coefficients matrix are incompatible");
 
         const auto dim = one_ops[0].dimension();
-
-
-        if (this->ao_basis) {  // ao_basis is not nullptr
-            if (dim != this->ao_basis->numberOfBasisFunctions()) {
-                throw dimension_error;
-            }
-        }
-
-        if (S.dimension() != dim) {
-            throw dimension_error;
-        }
-
         for (const auto& one_op : this->one_ops) {
             if (one_op.dimension() != dim) {
                 throw dimension_error;
@@ -108,10 +82,6 @@ public:
             if (two_op.dimension() != dim) {
                 throw dimension_error;
             }
-        }
-
-        if ((T.cols() != dim) || (T.rows() != dim)) {
-            throw dimension_error;
         }
 
 
@@ -131,40 +101,16 @@ public:
             total_two_op_par += two_op.parameters().Eigen();
         }
         this->total_two_op = ScalarSQTwoElectronOperator<Scalar>({total_two_op_par});
-
-
-
-        // Check if the underlying overlap matrix is not a zero matrix
-        if (S.parameters().isZero(1.0e-08)) {
-            throw std::invalid_argument(function_intro + "The underlying overlap matrix cannot be a zero matrix.");
-        }
     }
 
 
     /**
-     *  @param ao_basis     the initial AO basis
-     *  @param S            the overlap integrals
-     *  @param h            the one-electron integrals H_core
-     *  @param g            the two-electron integrals
-     *  @param T            the transformation matrix between the current molecular orbitals and the atomic orbitals
+     *  @param h            the (total) one-electron (i.e. core) integrals
+     *  @param g            the (total) two-electron integrals
      */
-    SQHamiltonian(std::shared_ptr<ScalarBasis<GTOShell>> ao_basis, const ScalarSQOneElectronOperator<Scalar>& S, const ScalarSQOneElectronOperator<Scalar>& h, const ScalarSQTwoElectronOperator<Scalar>& g, const TransformationMatrix<Scalar>& T) :
-        SQHamiltonian(ao_basis, S, std::vector<ScalarSQOneElectronOperator<Scalar>>({h}), std::vector<ScalarSQTwoElectronOperator<Scalar>>({g}), T)
+    SQHamiltonian(const ScalarSQOneElectronOperator<Scalar>& h, const ScalarSQTwoElectronOperator<Scalar>& g) :
+        SQHamiltonian(std::vector<ScalarSQOneElectronOperator<Scalar>>({h}), std::vector<ScalarSQTwoElectronOperator<Scalar>>({g}))
     {}
-
-
-    /**
-     *  A constructor that transforms the given Hamiltonian with a transformation matrix
-     *
-     *  @param sq_hamiltonian       the current Hamiltonian
-     *  @param C                    the transformation matrix to be applied to the given Hamiltonian
-     */
-    SQHamiltonian(const SQHamiltonian<Scalar>& sq_hamiltonian, const TransformationMatrix<Scalar>& C) :
-        SQHamiltonian<Scalar>(sq_hamiltonian.ao_basis, sq_hamiltonian.S, sq_hamiltonian.core(), sq_hamiltonian.twoElectron(), sq_hamiltonian.T_total)
-    {
-        // We have now initialized the new Hamiltonian to be a copy of the given Hamiltonian, so now we will transform
-        this->transform(C);
-    }
 
 
 
@@ -190,19 +136,13 @@ public:
     static enable_if_t<std::is_same<Z, double>::value, SQHamiltonian<double>> Molecular(const SingleParticleBasis<Z, GTOShell>& sp_basis, const Molecule& molecule) {
 
         // Calculate the integrals for the molecular Hamiltonian
-        const auto S = sp_basis.quantize(Operator::Overlap());
         const auto T = sp_basis.quantize(Operator::Kinetic());
         const auto V = sp_basis.quantize(Operator::NuclearAttraction(molecule));
         ScalarSQOneElectronOperator<double> H = T + V;
 
         const auto g = sp_basis.quantize(Operator::Coulomb());
 
-
-        // Construct the initial transformation matrix: the identity matrix
-        auto nbf = sp_basis.numberOfBasisFunctions();
-        TransformationMatrix<double> T_total = TransformationMatrix<double>::Identity(nbf, nbf);
-
-        return SQHamiltonian(std::make_shared<ScalarBasis<GTOShell>>(sp_basis.scalarBasis()), S, H, g, T_total);
+        return SQHamiltonian(H, g);
     }
 
 
@@ -215,9 +155,6 @@ public:
      */
     template <typename Z = Scalar>
     static enable_if_t<std::is_same<Z, double>::value, SQHamiltonian<double>> Random(size_t K) {
-
-        ScalarSQOneElectronOperator<double> S ({QCMatrix<double>::Identity(K, K)});  // the underlying orbital basis can be chosen as orthonormal, since the form of the underlying orbitals doesn't really matter
-        TransformationMatrix<double> C = TransformationMatrix<double>::Identity(K, K);  // the transformation matrix here doesn't really mean anything, because it doesn't link to any AO basis
 
         ScalarSQOneElectronOperator<double> H ({QCMatrix<double>::Random(K, K)});  // uniformly distributed between [-1,1]
 
@@ -237,9 +174,7 @@ public:
             }
         }
 
-        std::shared_ptr<ScalarBasis<GTOShell>> ao_basis;  // nullptr because it doesn't make sense to set a scalar basis
-
-        return SQHamiltonian<double>(ao_basis, S, H, ScalarSQTwoElectronOperator<double>({g}), C);
+        return SQHamiltonian<double>(H, ScalarSQTwoElectronOperator<double>({g}));
     }
 
 
@@ -335,12 +270,7 @@ public:
         }  // while loop
 
 
-        // Make the ingredients to construct SQHamiltonian
-        std::shared_ptr<ScalarBasis<GTOShell>> ao_basis;  // nullptr
-        ScalarSQOneElectronOperator<Scalar> S ({QCMatrix<double>::Identity(K, K)});
-        TransformationMatrix<double> C = TransformationMatrix<double>::Identity(K, K);
-
-        return SQHamiltonian(ao_basis, S, ScalarSQOneElectronOperator<Scalar>({h_core}), ScalarSQTwoElectronOperator<Scalar>({g}), C);
+        return SQHamiltonian(ScalarSQOneElectronOperator<Scalar>({h_core}), ScalarSQTwoElectronOperator<Scalar>({g}));
     }
 
 
@@ -372,13 +302,7 @@ public:
             }
         }
 
-
-        // Make the ingredients to construct SQHamiltonian
-        std::shared_ptr<ScalarBasis<GTOShell>> ao_basis;  // nullptr
-        ScalarSQOneElectronOperator<double> S ({QCMatrix<double>::Identity(K, K)});
-        TransformationMatrix<double> C = TransformationMatrix<double>::Identity(K, K);
-
-        return SQHamiltonian(ao_basis, S, ScalarSQOneElectronOperator<double>({h}), ScalarSQTwoElectronOperator<double>({g}), C);
+        return SQHamiltonian(ScalarSQOneElectronOperator<double>({h}), ScalarSQTwoElectronOperator<double>({g}));
     }
 
 
@@ -413,12 +337,8 @@ public:
      */
     void transform(const TransformationMatrix<Scalar>& T) {
 
-        this->S.transform(T);
-
         this->total_one_op.transform(T);
         this->total_two_op.transform(T);
-
-        this->T_total.transform(T);
     }
 
 
@@ -433,12 +353,8 @@ public:
      */
     void rotate(const TransformationMatrix<Scalar>& U) {
 
-        this->S.rotate(U);
-
         this->total_one_op.rotate(U);
         this->total_two_op.rotate(U);
-
-        this->T_total.transform(U);
     }
 
 
@@ -454,14 +370,8 @@ public:
     template<typename Z = Scalar>
     enable_if_t<std::is_same<Z, double>::value> rotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
 
-        this->S.rotate(jacobi_rotation_parameters);
         this->total_one_op.rotate(jacobi_rotation_parameters);
         this->total_two_op.rotate(jacobi_rotation_parameters);
-
-        // Create a Jacobi rotation matrix to transform the coefficient matrix with
-        size_t K = this->dimension();  // number of spatial orbitals
-        auto J = TransformationMatrix<double>::FromJacobi(jacobi_rotation_parameters, K);
-        this->T_total.transform(J);
     }
 
 
@@ -535,7 +445,7 @@ public:
      */
     SquareRankFourTensor<Scalar> calculateSuperFockianMatrix(const OneRDM<double>& D, const TwoRDM<double>& d) const {
 
-        return this->core().calculateSuperFockianMatrix(D, d)[0].Eigen() + this->twoElectron().calculateSuperFockianMatrix(D, d)[0].Eigen();  // SQHamiltonian are ScalarSQOperators
+        return this->core().calculateSuperFockianMatrix(D, d)[0].Eigen() + this->twoElectron().calculateSuperFockianMatrix(D, d)[0].Eigen();  // SQHamiltonian contains ScalarSQOperators
     }
 
     /**
@@ -555,7 +465,7 @@ public:
         ScalarSQOneElectronOperator<double> h_constrained (this->core() - lambda*one_op);
         ScalarSQTwoElectronOperator<double> g_constrained (this->twoElectron() - lambda*two_op);
 
-        return SQHamiltonian(this->ao_basis, this->S, h_constrained, g_constrained, this->T_total);
+        return SQHamiltonian(h_constrained, g_constrained);
     }
 
 
@@ -574,7 +484,7 @@ public:
 
         ScalarSQOneElectronOperator<double> h_constrained (this->core() - lambda*one_op);
 
-        return SQHamiltonian(this->ao_basis, this->S, h_constrained, this->twoElectron(), this->T_total);
+        return SQHamiltonian(h_constrained, this->twoElectron());
     }
 
 
@@ -593,7 +503,7 @@ public:
 
         ScalarSQTwoElectronOperator<double> g_constrained (this->twoElectron() - lambda*two_op);
 
-        return SQHamiltonian(this->ao_basis, this->S, this->core(), g_constrained, this->T_total);
+        return SQHamiltonian(this->core(), g_constrained);
     }
 };
 

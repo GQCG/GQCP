@@ -31,10 +31,10 @@ namespace GQCP {
  *  @param atomic_parameters                    collection of the atomic Hamiltonian
  */
 AtomicDecompositionParameters::AtomicDecompositionParameters (const SQHamiltonian<double>& molecular_hamiltonian_parameters, const std::vector<SQHamiltonian<double>>& net_atomic_parameters, const std::vector<SQHamiltonian<double>>& interaction_parameters, const std::vector<SQHamiltonian<double>>& atomic_parameters) :
-        molecular_hamiltonian_parameters (molecular_hamiltonian_parameters),
-        net_atomic_parameters (net_atomic_parameters),
-        interaction_parameters (interaction_parameters),
-        atomic_parameters (atomic_parameters)
+    molecular_hamiltonian_parameters (molecular_hamiltonian_parameters),
+    net_atomic_parameters (net_atomic_parameters),
+    interaction_parameters (interaction_parameters),
+    atomic_parameters (atomic_parameters)
 {}
 
 
@@ -70,11 +70,8 @@ AtomicDecompositionParameters AtomicDecompositionParameters::Nuclear(const Molec
         throw std::invalid_argument("AtomicDecompositionParameters::Nuclear(Molecule, std::string): Only available for diatomic molecules");
     }
 
-    const auto ao_basis = std::make_shared<ScalarBasis<GTOShell>>(molecule, basisset_name);
-    const auto K = ao_basis->numberOfBasisFunctions();
-    TransformationMatrix<double> T_total = TransformationMatrix<double>::Identity(K, K);
-
-    const SingleParticleBasis<double, GTOShell> sp_basis (*ao_basis);
+    const SingleParticleBasis<double, GTOShell> sp_basis (molecule, basisset_name);
+    const auto K = sp_basis.numberOfBasisFunctions();
 
 
     // Retrieve an AO basis for the individual atoms so that we can retrieve net atomic nuclear integrals
@@ -134,11 +131,11 @@ AtomicDecompositionParameters AtomicDecompositionParameters::Nuclear(const Molec
 
     QCRankFourTensor<double> g_abba = g_ab.Eigen() + g_ba.Eigen();
 
-    SQHamiltonian<double> HAA (ao_basis, ScalarSQOneElectronOperator<double>({S}), ScalarSQOneElectronOperator<double>({h_a}), ScalarSQTwoElectronOperator<double>({g_a}), T_total);
-    SQHamiltonian<double> HBB (ao_basis, ScalarSQOneElectronOperator<double>({S}), ScalarSQOneElectronOperator<double>({h_b}), ScalarSQTwoElectronOperator<double>({g_b}), T_total);
-    SQHamiltonian<double> HAB (ao_basis, ScalarSQOneElectronOperator<double>({S}), ScalarSQOneElectronOperator<double>({h_ab}), ScalarSQTwoElectronOperator<double>({g_abba}), T_total);
-    SQHamiltonian<double> HA (ao_basis, ScalarSQOneElectronOperator<double>({S}), ScalarSQOneElectronOperator<double>({h_a + h_ab/2}), ScalarSQTwoElectronOperator<double>({g_a.Eigen() + (0.5)*g_abba.Eigen()}), T_total);
-    SQHamiltonian<double> HB (ao_basis, ScalarSQOneElectronOperator<double>({S}), ScalarSQOneElectronOperator<double>({h_b + h_ab/2}), ScalarSQTwoElectronOperator<double>({g_b.Eigen() + (0.5)*g_abba.Eigen()}), T_total);
+    SQHamiltonian<double> HAA (ScalarSQOneElectronOperator<double>({h_a}), ScalarSQTwoElectronOperator<double>({g_a}));
+    SQHamiltonian<double> HBB (ScalarSQOneElectronOperator<double>({h_b}), ScalarSQTwoElectronOperator<double>({g_b}));
+    SQHamiltonian<double> HAB (ScalarSQOneElectronOperator<double>({h_ab}), ScalarSQTwoElectronOperator<double>({g_abba}));
+    SQHamiltonian<double> HA (ScalarSQOneElectronOperator<double>({h_a + h_ab/2}), ScalarSQTwoElectronOperator<double>({g_a.Eigen() + (0.5)*g_abba.Eigen()}));
+    SQHamiltonian<double> HB (ScalarSQOneElectronOperator<double>({h_b + h_ab/2}), ScalarSQTwoElectronOperator<double>({g_b.Eigen() + (0.5)*g_abba.Eigen()}));
 
     std::vector<SQHamiltonian<double>> net_atomic_parameters = {HAA, HBB};
     std::vector<SQHamiltonian<double>> interaction_parameters = {HAB};

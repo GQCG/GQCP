@@ -327,18 +327,11 @@ SQHamiltonian<double> BaseFrozenCoreFockSpace::freezeOperator(const SQHamiltonia
     size_t K_active = sq_hamiltonian.dimension() - X;  // number of non-frozen orbitals
 
     const auto frozen_components_g = BaseFrozenCoreFockSpace::freezeOperator(sq_hamiltonian.twoElectron(), X);
-    // ScalarSQOneElectronOperator<double> S = BaseFrozenCoreFockSpace::freezeOperator(sp_basis.overlap(), X);  // active
+
     ScalarSQOneElectronOperator<double> h = BaseFrozenCoreFockSpace::freezeOperator(sq_hamiltonian.core(), X) + frozen_components_g.one_op;  // active
-
-    std::shared_ptr<ScalarBasis<GTOShell>> ao_basis;  // nullptr
     ScalarSQTwoElectronOperator<double> g = frozen_components_g.two_op;
-    // TransformationMatrix<double> T = sp_basis.transformationMatrix().block(X, X, K_active, K_active);
 
-
-    const ScalarSQOneElectronOperator<double> S ({QCMatrix<double>::Identity(K_active, K_active)});
-    const TransformationMatrix<double> T = TransformationMatrix<double>::Identity(K_active, K_active);
-
-    return SQHamiltonian<double>(ao_basis, S, h, g, T);
+    return SQHamiltonian<double>(h, g);
 }
 
 
