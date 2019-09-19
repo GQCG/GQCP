@@ -53,7 +53,7 @@ FrozenCoreCI::FrozenCoreCI(std::shared_ptr<GQCP::HamiltonianBuilder> hamiltonian
 SquareMatrix<double> FrozenCoreCI::constructHamiltonian(const SQHamiltonian<double>& sq_hamiltonian) const {
 
     // Freeze the Hamiltonian
-    SQHamiltonian<double> frozen_ham_par =  BaseFrozenCoreFockSpace::freezeOperator(sq_hamiltonian, X);
+    SQHamiltonian<double> frozen_ham_par = BaseFrozenCoreFockSpace::freezeOperator(sq_hamiltonian, X);
 
     // calculate Hamiltonian matrix through conventional CI
     SquareMatrix<double> total_hamiltonian = this->active_hamiltonian_builder->constructHamiltonian(frozen_ham_par);
@@ -76,7 +76,7 @@ SquareMatrix<double> FrozenCoreCI::constructHamiltonian(const SQHamiltonian<doub
  */
 VectorX<double> FrozenCoreCI::matrixVectorProduct(const SQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
 
-    SQHamiltonian<double> frozen_ham_par =  BaseFrozenCoreFockSpace::freezeOperator(sq_hamiltonian, X);
+    SQHamiltonian<double> frozen_ham_par = BaseFrozenCoreFockSpace::freezeOperator(sq_hamiltonian, X);
 
     // Perform the matvec in the active space with the "frozen"
     return this->active_hamiltonian_builder->matrixVectorProduct(frozen_ham_par, x, diagonal);
@@ -90,7 +90,7 @@ VectorX<double> FrozenCoreCI::matrixVectorProduct(const SQHamiltonian<double>& s
  */
 VectorX<double> FrozenCoreCI::calculateDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const {
 
-    SQHamiltonian<double> frozen_ham_par =  BaseFrozenCoreFockSpace::freezeOperator(sq_hamiltonian, this->X);
+    SQHamiltonian<double> frozen_ham_par = BaseFrozenCoreFockSpace::freezeOperator(sq_hamiltonian, this->X);
 
     // Calculate the diagonal in the active space with the "frozen" Hamiltonian
     VectorX<double> diagonal = this->active_hamiltonian_builder->calculateDiagonal(frozen_ham_par);

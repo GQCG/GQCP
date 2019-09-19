@@ -381,11 +381,6 @@ public:
         return SQHamiltonian(ao_basis, S, ScalarSQOneElectronOperator<double>({h}), ScalarSQTwoElectronOperator<double>({g}), C);
     }
 
-    /*
-     *  GETTERS
-     */
-    const TransformationMatrix<Scalar>& get_T_total() const { return this->T_total; }
-
 
     /*
      *  PUBLIC METHODS

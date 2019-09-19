@@ -316,6 +316,7 @@ FrozenOperators BaseFrozenCoreFockSpace::freezeOperator(const ScalarSQTwoElectro
 
 /**
  *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis
+ *  @param sp_basis             the single-particle basis
  *  @param X                    the number of frozen orbitals
  *
  *  @return a 'frozen' Hamiltonian which cover two-electron integral evaluations from the active and inactive orbitals
@@ -326,12 +327,16 @@ SQHamiltonian<double> BaseFrozenCoreFockSpace::freezeOperator(const SQHamiltonia
     size_t K_active = sq_hamiltonian.dimension() - X;  // number of non-frozen orbitals
 
     const auto frozen_components_g = BaseFrozenCoreFockSpace::freezeOperator(sq_hamiltonian.twoElectron(), X);
-    ScalarSQOneElectronOperator<double> S = BaseFrozenCoreFockSpace::freezeOperator(sq_hamiltonian.get_S(), X);  // active
+    // ScalarSQOneElectronOperator<double> S = BaseFrozenCoreFockSpace::freezeOperator(sp_basis.overlap(), X);  // active
     ScalarSQOneElectronOperator<double> h = BaseFrozenCoreFockSpace::freezeOperator(sq_hamiltonian.core(), X) + frozen_components_g.one_op;  // active
 
     std::shared_ptr<ScalarBasis<GTOShell>> ao_basis;  // nullptr
     ScalarSQTwoElectronOperator<double> g = frozen_components_g.two_op;
-    SquareMatrix<double> T = sq_hamiltonian.get_T_total().block(X, X, K_active, K_active);
+    // TransformationMatrix<double> T = sp_basis.transformationMatrix().block(X, X, K_active, K_active);
+
+
+    const ScalarSQOneElectronOperator<double> S ({QCMatrix<double>::Identity(K_active, K_active)});
+    const TransformationMatrix<double> T = TransformationMatrix<double>::Identity(K_active, K_active);
 
     return SQHamiltonian<double>(ao_basis, S, h, g, T);
 }
