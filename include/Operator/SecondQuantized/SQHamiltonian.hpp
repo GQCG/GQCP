@@ -384,8 +384,6 @@ public:
     /*
      *  GETTERS
      */
-
-    const ScalarSQOneElectronOperator<Scalar>& get_S() const { return this->S; }
     const TransformationMatrix<Scalar>& get_T_total() const { return this->T_total; }
 
 

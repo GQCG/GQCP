@@ -37,7 +37,7 @@ BOOST_AUTO_TEST_CASE ( lih_6_31G_calculateEnergyAfterRotation ) {
     GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (lih, "6-31G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, lih);  // in an AO basis
 
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, lih);
+    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, sp_basis, lih);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
     basisTransform(sp_basis, sq_hamiltonian, rhf.get_C());
@@ -83,7 +83,7 @@ BOOST_AUTO_TEST_CASE ( lih_6_31G_orbitalOptimize ) {
     GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (lih, "6-31G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, lih);  // in an AO basis
 
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, lih);
+    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, sp_basis, lih);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
     basisTransform(sp_basis, sq_hamiltonian, rhf.get_C());

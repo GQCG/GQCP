@@ -26,7 +26,7 @@ auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2o);  //
 
 
 // Create a plain RHF SCF solver and solve the SCF equations
-GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, h2o);
+GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, sp_basis, h2o);
 plain_scf_solver.solve();
 auto rhf = plain_scf_solver.get_solution();
 

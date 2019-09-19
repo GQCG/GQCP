@@ -90,7 +90,7 @@ BOOST_AUTO_TEST_CASE ( mulliken_N2_STO_3G ) {
     // Repeat this for a DOCI-RDM
 
     // Solve the SCF equations
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, N2);  // the DIIS SCF solver seems to find a wrong minimum, so use a plain solver instead
+    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, sp_basis, N2);  // the DIIS SCF solver seems to find a wrong minimum, so use a plain solver instead
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 

@@ -67,7 +67,7 @@ void DOCINewtonOrbitalOptimizer::solve() {
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, molecule);  // in AO basis
     const size_t K = sq_hamiltonian.dimension();
 
-    DIISRHFSCFSolver diis_scf_solver (sq_hamiltonian, molecule);
+    DIISRHFSCFSolver diis_scf_solver (sq_hamiltonian, sp_basis, molecule);
     diis_scf_solver.solve();
     auto rhf = diis_scf_solver.get_solution();
     basisTransform(sp_basis, sq_hamiltonian, rhf.get_C());

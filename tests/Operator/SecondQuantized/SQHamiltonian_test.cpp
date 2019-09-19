@@ -149,42 +149,6 @@ BOOST_AUTO_TEST_CASE ( rotate_argument ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( rotate_overlap_matrix ) {
-
-    // Check if a rotation that interchanges two orbitals changes the non-identity overlap matrix
-    GQCP::JacobiRotationParameters jacobi_rotation_parameters {1, 0, boost::math::constants::half_pi<double>()};  // interchanges two orbitals
-
-    size_t K = 3;
-    GQCP::QCMatrix<double> S_op (K);
-    S_op << 1.0, 0.5, 0.0,
-            0.5, 2.0, 0.0,
-            0.0, 0.0, 1.0;
-
-    GQCP::QCMatrix<double> S_rotated_ref (K);  // manual calculation
-    S_rotated_ref <<  2.0, -0.5, 0.0,
-                     -0.5,  1.0, 0.0,
-                      0.0,  0.0, 1.0;
-
-    GQCP::QCMatrix<double> H_op = GQCP::QCMatrix<double>::Random(K, K);
-
-    GQCP::QCRankFourTensor<double> g_op (K);
-    g_op.setRandom();
-
-
-    // Check the Jacobi rotation
-    GQCP::SQHamiltonian<double> ham_par_jacobi (nullptr, GQCP::ScalarSQOneElectronOperator<double>({S_op}), GQCP::ScalarSQOneElectronOperator<double>({H_op}), GQCP::ScalarSQTwoElectronOperator<double>({g_op}), GQCP::TransformationMatrix<double>::Random(K, K));
-    ham_par_jacobi.rotate(jacobi_rotation_parameters);
-    BOOST_CHECK(ham_par_jacobi.get_S().parameters().isApprox(S_rotated_ref, 1.0e-08));
-
-
-    // Check for a unitary transformation
-    GQCP::SQHamiltonian<double> sq_hamiltonian (nullptr, GQCP::ScalarSQOneElectronOperator<double>({S_op}), GQCP::ScalarSQOneElectronOperator<double>({H_op}), GQCP::ScalarSQTwoElectronOperator<double>({g_op}), GQCP::TransformationMatrix<double>::Random(K, K));
-    auto J = GQCP::TransformationMatrix<double>::FromJacobi(jacobi_rotation_parameters, K);
-    sq_hamiltonian.rotate(GQCP::TransformationMatrix<double>(J));
-    BOOST_CHECK(sq_hamiltonian.get_S().parameters().isApprox(S_rotated_ref, 1.0e-08));
-}
-
-
 BOOST_AUTO_TEST_CASE ( constructor_C ) {
 
     // Create a dummy Hamiltonian
@@ -232,7 +196,7 @@ BOOST_AUTO_TEST_CASE ( constructMolecularHamiltonianParameters ) {
                   -0.9584, -1.1204;
 
 
-    BOOST_CHECK(sq_hamiltonian.get_S().parameters().isApprox(ref_S, 1.0e-04));
+    BOOST_CHECK(sp_basis.overlapMatrix().isApprox(ref_S, 1.0e-04));
     BOOST_CHECK(sq_hamiltonian.core().parameters().isApprox(ref_H_core, 1.0e-04));
 
     BOOST_CHECK(std::abs(g(0,0,0,0) - 0.7746) < 1.0e-04);

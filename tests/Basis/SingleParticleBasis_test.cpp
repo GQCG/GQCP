@@ -75,7 +75,7 @@ BOOST_AUTO_TEST_CASE ( isOrthonormal ) {
 
     // The orbitals in the RHF basis should be orthonormal
     const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2o);  // in the AO basis
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, h2o);
+    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, sp_basis, h2o);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
     sp_basis.transform(rhf.get_C());

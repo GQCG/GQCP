@@ -20,7 +20,7 @@
 
 #include "Basis/ScalarBasis.hpp"
 #include "Basis/TransformationMatrix.hpp"
-#include "Mathematical/Representation/SquareMatrix.hpp"
+#include "Mathematical/Representation/QCMatrix.hpp"
 #include "Molecule/Molecule.hpp"
 #include "Molecule/NuclearFramework.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
@@ -219,14 +219,26 @@ public:
 
 
     /**
+     *  @return the overlap (one-electron) operator of this single-particle basis
+     */
+    ScalarSQOneElectronOperator<TransformationScalar> overlap() const {
+
+        return ScalarSQOneElectronOperator<TransformationScalar>({this->overlapMatrix()});
+    }
+
+
+
+    /**
      *  @return the current overlap matrix of this single-particle basis
      */
-    SquareMatrix<TransformationScalar> overlapMatrix() const {
+    QCMatrix<TransformationScalar> overlapMatrix() const {
 
         auto S = this->scalar_basis.calculateLibintIntegrals(Operator::Overlap());  // in the underlying scalar basis
         S.basisTransformInPlace(this->T_total);  // in this single-particle basis
-        return S;
+        return QCMatrix<TransformationScalar>(S);
     }
+
+
 
     /**
      *  @return the underlying scalar basis

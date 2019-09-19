@@ -30,11 +30,11 @@ BOOST_AUTO_TEST_CASE ( constructor ) {
     auto h2 = GQCP::Molecule::ReadXYZ("data/h2_szabo.xyz");
     GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2, "STO-3G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2);  // in an AO basis
-    GQCP::DIISRHFSCFSolver diis_solver (sq_hamiltonian, h2);
+    GQCP::DIISRHFSCFSolver diis_solver (sq_hamiltonian, sp_basis, h2);
 
     // Check if a faulty constructor with an odd number of electron throws
     auto h2_ion = GQCP::Molecule::ReadXYZ("data/h2_szabo.xyz", +1);
-    BOOST_CHECK_THROW(GQCP::DIISRHFSCFSolver (sq_hamiltonian, h2_ion), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::DIISRHFSCFSolver (sq_hamiltonian, sp_basis, h2_ion), std::invalid_argument);
 }
 
 
@@ -51,7 +51,7 @@ BOOST_AUTO_TEST_CASE ( h2_sto3g_szabo_DIIS ) {
 
 
     // Create a plain RHF SCF solver and solve the SCF equations
-    GQCP::DIISRHFSCFSolver diis_scf_solver (sq_hamiltonian, h2);
+    GQCP::DIISRHFSCFSolver diis_scf_solver (sq_hamiltonian, sp_basis, h2);
     diis_scf_solver.solve();
     auto rhf = diis_scf_solver.get_solution();
 
@@ -85,7 +85,7 @@ BOOST_AUTO_TEST_CASE ( h2o_sto3g_horton_DIIS ) {
     GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (water, "STO-3G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, water);  // in an AO basis
 
-    GQCP::DIISRHFSCFSolver diis_scf_solver (sq_hamiltonian, water);
+    GQCP::DIISRHFSCFSolver diis_scf_solver (sq_hamiltonian, sp_basis, water);
     diis_scf_solver.solve();
     auto rhf = diis_scf_solver.get_solution();
 
@@ -114,7 +114,7 @@ BOOST_AUTO_TEST_CASE ( crawdad_h2o_sto3g_DIIS ) {
     GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (water, "STO-3G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, water);  // in an AO basis
 
-    GQCP::DIISRHFSCFSolver diis_scf_solver (sq_hamiltonian, water);
+    GQCP::DIISRHFSCFSolver diis_scf_solver (sq_hamiltonian, sp_basis, water);
     diis_scf_solver.solve();
     auto rhf = diis_scf_solver.get_solution();
 
@@ -138,7 +138,7 @@ BOOST_AUTO_TEST_CASE ( crawdad_ch4_sto3g_DIIS ) {
     GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (methane, "STO-3G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, methane);  // in an AO basis
 
-    GQCP::DIISRHFSCFSolver diis_scf_solver (sq_hamiltonian, methane);
+    GQCP::DIISRHFSCFSolver diis_scf_solver (sq_hamiltonian, sp_basis, methane);
     diis_scf_solver.solve();
     auto rhf = diis_scf_solver.get_solution();
 
@@ -158,7 +158,7 @@ BOOST_AUTO_TEST_CASE ( h2_631gdp_DIIS ) {
     GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2, "6-31G**");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2);  // in an AO basis
 
-    GQCP::DIISRHFSCFSolver diis_scf_solver (sq_hamiltonian, h2);
+    GQCP::DIISRHFSCFSolver diis_scf_solver (sq_hamiltonian, sp_basis, h2);
     diis_scf_solver.solve();
     auto rhf = diis_scf_solver.get_solution();
 

@@ -42,7 +42,7 @@ BOOST_AUTO_TEST_CASE ( dipole_CO_STO_3G ) {
     size_t N = CO.numberOfElectrons();
 
     // Solve the SCF equations
-    GQCP::DIISRHFSCFSolver diis_scf_solver (sq_hamiltonian, CO);
+    GQCP::DIISRHFSCFSolver diis_scf_solver (sq_hamiltonian, sp_basis, CO);
     diis_scf_solver.solve();
     auto rhf = diis_scf_solver.get_solution();
 
@@ -80,7 +80,7 @@ BOOST_AUTO_TEST_CASE ( dipole_N2_STO_3G ) {
     size_t N = N2.numberOfElectrons();
 
     // Solve the SCF equations
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, N2);  // The DIIS SCF solver seems to find a wrong minimum, so use a plain solver instead
+    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, sp_basis, N2);  // The DIIS SCF solver seems to find a wrong minimum, so use a plain solver instead
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 

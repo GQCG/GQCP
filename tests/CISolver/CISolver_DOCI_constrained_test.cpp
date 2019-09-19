@@ -62,7 +62,7 @@ BOOST_AUTO_TEST_CASE ( CO_DOCI_constrained_dense ) {
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, CO);  // in an AO basis
 
     // Create a plain RHF SCF solver and solve the SCF equations
-    GQCP::DIISRHFSCFSolver diis_scf_solver (sq_hamiltonian, CO);
+    GQCP::DIISRHFSCFSolver diis_scf_solver (sq_hamiltonian, sp_basis, CO);
     diis_scf_solver.solve();
     auto rhf = diis_scf_solver.get_solution();
 

@@ -82,7 +82,7 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test ) {
         auto constrained_sq_hamiltonian = sq_hamiltonian.constrain(mulliken_operator, i);  // in AO basis
 
         // Create a DIIS RHF SCF solver and solve the SCF equations
-        GQCP::DIISRHFSCFSolver diis_scf_solver (constrained_sq_hamiltonian, CO);
+        GQCP::DIISRHFSCFSolver diis_scf_solver (constrained_sq_hamiltonian, sp_basis, CO);
         diis_scf_solver.solve();
         auto rhf = diis_scf_solver.get_solution();
 
@@ -177,7 +177,7 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test_random_transformation) {
         auto constrained_ham_par = sq_hamiltonian.constrain(mulliken_operator, i);
 
         // Create a DIIS RHF SCF solver and solve the SCF equations
-        GQCP::DIISRHFSCFSolver diis_scf_solver (constrained_ham_par, CO);
+        GQCP::DIISRHFSCFSolver diis_scf_solver (constrained_ham_par, sp_basis, CO);
         diis_scf_solver.solve();
         auto rhf = diis_scf_solver.get_solution();
 

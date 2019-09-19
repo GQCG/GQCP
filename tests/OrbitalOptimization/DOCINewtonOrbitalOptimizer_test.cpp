@@ -42,7 +42,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_sto_3g ) {
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2);  // in an AO basis
     auto K = sq_hamiltonian.dimension();
 
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, h2);
+    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, sp_basis, h2);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
     basisTransform(sp_basis, sq_hamiltonian, rhf.get_C());
@@ -78,7 +78,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31g ) {
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2);  // in an AO basis
     auto K = sq_hamiltonian.dimension();
 
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, h2);
+    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, sp_basis, h2);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
     basisTransform(sp_basis, sq_hamiltonian, rhf.get_C());
@@ -131,7 +131,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx ) {
     auto K = sq_hamiltonian.dimension();
 
 
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, h2);
+    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, sp_basis, h2);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
     basisTransform(sp_basis, sq_hamiltonian, rhf.get_C());
@@ -184,7 +184,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx_Davidson ) {
     auto K = sq_hamiltonian.dimension();
 
 
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, h2);
+    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, sp_basis, h2);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
     basisTransform(sp_basis, sq_hamiltonian, rhf.get_C());

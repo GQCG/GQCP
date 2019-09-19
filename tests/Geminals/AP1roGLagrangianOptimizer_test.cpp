@@ -31,7 +31,7 @@ BOOST_AUTO_TEST_CASE ( h2_631gdp ) {
     GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2, "6-31G**");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2);  // in an AO basis
 
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, h2);
+    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, sp_basis, h2);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 
