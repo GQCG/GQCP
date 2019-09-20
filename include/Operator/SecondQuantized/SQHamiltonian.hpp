@@ -321,10 +321,19 @@ public:
     const ScalarSQOneElectronOperator<Scalar>& core() const { return this->total_one_op; }
 
     /**
+     *  @return the contributions to the 'core' Hamiltonian
+     */
+    const std::vector<ScalarSQOneElectronOperator<Scalar>>& coreContributions() const { return this->one_ops; }
+
+    /**
      *  @return the total of the two-electron contributions to the Hamiltonian
      */
     const ScalarSQTwoElectronOperator<Scalar>& twoElectron() const { return this->total_two_op; }
 
+    /**
+     *  @return the contributions to the two-electron part of the Hamiltonian
+     */
+    const std::vector<ScalarSQTwoElectronOperator<Scalar>>& twoElectronContributions() const { return this->two_ops; }
 
     /**
      *  In-place transform the matrix representations of Hamiltonian
@@ -337,6 +346,17 @@ public:
      */
     void transform(const TransformationMatrix<Scalar>& T) {
 
+        // Transform the one-electron contributions
+        for (auto& one_op : this->one_ops) {
+            one_op.transform(T);
+        }
+
+        // Transform the two-electron contributions
+        for (auto& two_op : this->two_ops) {
+            two_op.transform(T);
+        }
+
+        // Transform the totals
         this->total_one_op.transform(T);
         this->total_two_op.transform(T);
     }
@@ -353,6 +373,17 @@ public:
      */
     void rotate(const TransformationMatrix<Scalar>& U) {
 
+        // Rotate the one-electron contributions
+        for (auto& one_op : this->one_ops) {
+            one_op.rotate(U);
+        }
+
+        // Rotate the two-electron contributions
+        for (auto& two_op : this->two_ops) {
+            two_op.rotate(U);
+        }
+
+        // Rotate the totals
         this->total_one_op.rotate(U);
         this->total_two_op.rotate(U);
     }
@@ -370,6 +401,17 @@ public:
     template<typename Z = Scalar>
     enable_if_t<std::is_same<Z, double>::value> rotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
 
+        // Transform the one-electron contributions
+        for (auto& one_op : this->one_ops) {
+            one_op.rotate(jacobi_rotation_parameters);
+        }
+
+        // Transform the two-electron contributions
+        for (auto& two_op : this->two_ops) {
+            two_op.rotate(jacobi_rotation_parameters);
+        }
+
+        // Transform the totals
         this->total_one_op.rotate(jacobi_rotation_parameters);
         this->total_two_op.rotate(jacobi_rotation_parameters);
     }
@@ -448,6 +490,7 @@ public:
         return this->core().calculateSuperFockianMatrix(D, d)[0].Eigen() + this->twoElectron().calculateSuperFockianMatrix(D, d)[0].Eigen();  // SQHamiltonian contains ScalarSQOperators
     }
 
+
     /**
      *  Constrain the Hamiltonian according to the convention: - lambda * constraint
      *
@@ -462,10 +505,16 @@ public:
     template<typename Z = Scalar>
     enable_if_t<std::is_same<Z, double>::value, SQHamiltonian<double>> constrain(const ScalarSQOneElectronOperator<double>& one_op, const ScalarSQTwoElectronOperator<double>& two_op, double lambda) const {
 
-        ScalarSQOneElectronOperator<double> h_constrained (this->core() - lambda*one_op);
-        ScalarSQTwoElectronOperator<double> g_constrained (this->twoElectron() - lambda*two_op);
+        // Make copies in order to create a new Hamiltonian
+        auto one_ops = this->coreContributions();
+        auto two_ops = this->twoElectronContributions();
 
-        return SQHamiltonian(h_constrained, g_constrained);
+
+        // Constrain, i.e. add 'constrained' contributions
+        one_ops.push_back(-lambda*one_op);  // minus sign is a convention
+        two_ops.push_back(-lambda*two_op);  // minus sign is a convention
+
+        return SQHamiltonian(one_ops, two_ops);
     }
 
 
@@ -482,9 +531,13 @@ public:
     template<typename Z = Scalar>
     enable_if_t<std::is_same<Z, double>::value, SQHamiltonian<double>> constrain(const ScalarSQOneElectronOperator<double>& one_op, double lambda) const {
 
-        ScalarSQOneElectronOperator<double> h_constrained (this->core() - lambda*one_op);
+        // Make a copy of the one-electron part in order to create a new Hamiltonian
+        auto one_ops = this->coreContributions();
 
-        return SQHamiltonian(h_constrained, this->twoElectron());
+        // Constrain, i.e. add 'constrained' contributions
+        one_ops.push_back(-lambda*one_op);  // minus sign is a convention
+
+        return SQHamiltonian(one_ops, this->twoElectronContributions());
     }
 
 
@@ -501,9 +554,13 @@ public:
     template<typename Z = Scalar>
     enable_if_t<std::is_same<Z, double>::value, SQHamiltonian<double>> constrain(const ScalarSQTwoElectronOperator<double>& two_op, double lambda) const {
 
-        ScalarSQTwoElectronOperator<double> g_constrained (this->twoElectron() - lambda*two_op);
+        // Make a copy of the two-electron part in order to create a new Hamiltonian
+        auto two_ops = this->twoElectronContributions();
 
-        return SQHamiltonian(this->core(), g_constrained);
+        // Constrain, i.e. add 'constrained' contributions
+        two_ops.push_back(-lambda*two_op);  // minus sign is a convention
+
+        return SQHamiltonian(this->coreContributions(), two_ops);
     }
 };
 
