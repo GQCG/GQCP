@@ -106,65 +106,26 @@ BOOST_AUTO_TEST_CASE ( dipole_N2_STO_3G ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( dyson_N2_STO_3G ) {
+/**
+ *  Test the dyson amplitude algorithm against manually calculated amplitudes for two (normalized) toy vectors
+ */
+BOOST_AUTO_TEST_CASE ( dyson_amplitudes) {
 
+    GQCP::VectorX<double> reference_amplitudes = GQCP::VectorX<double>::Zero(2); reference_amplitudes << 0.46752445464799997, 0.8415438533449999;
 
-    GQCP::Nucleus N_1 (7, 0.0, 0.0, 0.0);
-    GQCP::Nucleus N_2 (7, 0.0, 0.0, GQCP::units::angstrom_to_bohr(1.134));  // from CCCBDB, STO-3G geometry
-    std::vector<GQCP::Nucleus> nuclei {N_1, N_2};
-    GQCP::Molecule N2 (nuclei);
-
-    auto ao_basis = std::make_shared<GQCP::ScalarBasis<GQCP::GTOShell>>(N2, "STO-3G");
-    auto mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(ao_basis);
-
-    size_t K = ao_basis->numberOfBasisFunctions();
-    size_t N = N2.numberOfElectrons();
-
-    // Solve the SCF equations
-    GQCP::PlainRHFSCFSolver plain_scf_solver (mol_ham_par, N2);  // The DIIS SCF solver seems to find a wrong minimum, so use a plain solver instead
-    plain_scf_solver.solve();
-    auto rhf = plain_scf_solver.get_solution();
-
-    mol_ham_par.transform(rhf.get_C());
-
+    size_t K = 2;
+    size_t N = 2;
+ 
     GQCP::ProductFockSpace fock_space1 (K, N/2, N/2);
     GQCP::ProductFockSpace fock_space2 (K, N/2, N/2-1);
+  
+    GQCP::VectorX<double> vec1 = GQCP::VectorX<double>::Zero(4); vec1 << 0.182574, 0.365148, 0.547723, 0.730297;
+    GQCP::VectorX<double> vec2 = GQCP::VectorX<double>::Zero(2); vec2 << 0.640184, 0.768221;
     
-    GQCP::FCI fci1 (fock_space1);
-    GQCP::FCI fci2 (fock_space2);
-
-    GQCP::CISolver ci_solver1(fci1, mol_ham_par);
-    GQCP::CISolver ci_solver2(fci2, mol_ham_par);
-
-    // Solve Davidson
-    GQCP::VectorX<double> initial_g1 = fock_space1.HartreeFockExpansion();
-    GQCP::VectorX<double> initial_g2 = fock_space2.HartreeFockExpansion();
-    GQCP::DavidsonSolverOptions davidson_solver_options1 (initial_g1);
-    GQCP::DavidsonSolverOptions davidson_solver_options2 (initial_g2);
-    ci_solver1.solve(davidson_solver_options1);
-    ci_solver2.solve(davidson_solver_options2);
-
-    const auto wavefunction1 = ci_solver1.makeWavefunction();
-    const auto wavefunction2 = ci_solver2.makeWavefunction();
+    const auto wavefunction1 = GQCP::WaveFunction(fock_space1, vec1);
+    const auto wavefunction2 = GQCP::WaveFunction(fock_space2, vec2);
 
     const auto dyson_coefficients = GQCP::calculateDysonAmplitudes(wavefunction1, wavefunction2);
 
-    std::cout<<dyson_coefficients;
-
-    GQCP::RDMCalculator rdm_calculator1 (fock_space1);
-
-    rdm_calculator1.set_coefficients(wavefunction1.get_coefficients());
-
-    GQCP::RDMCalculator rdm_calculator2 (fock_space2);
-
-    rdm_calculator2.set_coefficients(wavefunction2.get_coefficients());
-
-    const auto onerdm1 = rdm_calculator1.calculate1RDMs().one_rdm_bb;
-    const auto onerdm2 = rdm_calculator2.calculate1RDMs().one_rdm_bb;
-
-    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes1 (onerdm1 - onerdm2);
-   
-    std::cout<<std::endl<<"these are the vals : "<< std::endl << saes1.eigenvalues();
-    std::cout<<std::endl<<"these are the vectors : "<< std::endl << saes1.eigenvectors().col(K-1);
-
+    BOOST_CHECK(dyson_coefficients.isApprox(reference_amplitudes, 10e-6));
 }
