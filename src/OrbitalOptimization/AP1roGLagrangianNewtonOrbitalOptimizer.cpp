@@ -71,10 +71,10 @@ AP1roGLagrangianNewtonOrbitalOptimizer::AP1roGLagrangianNewtonOrbitalOptimizer(c
  * 
  *  In the case of this uncoupled AP1roG Lagrangian orbital optimizer, the PSEs are re-solved in every iteration using the current orbitals
  */
-void AP1roGLagrangianNewtonOrbitalOptimizer::prepareDMCalculation(const HamiltonianParameters<double>& ham_par) {
+void AP1roGLagrangianNewtonOrbitalOptimizer::prepareDMCalculation(const SQHamiltonian<double>& sq_hamiltonian) {
 
     // Solve the AP1roG PSEs and determine the Lagrangian multipliers
-    AP1roGLagrangianOptimizer lagrangian_optimizer (this->N_P, ham_par, this->G, this->pse_convergence_threshold, this->pse_maximum_number_of_iterations);
+    AP1roGLagrangianOptimizer lagrangian_optimizer (this->N_P, sq_hamiltonian, this->G, this->pse_convergence_threshold, this->pse_maximum_number_of_iterations);
     lagrangian_optimizer.solve();
     this->E = lagrangian_optimizer.get_electronic_energy();
     this->G = lagrangian_optimizer.get_geminal_coefficients();
@@ -101,12 +101,12 @@ TwoRDM<double> AP1roGLagrangianNewtonOrbitalOptimizer::calculate2RDM() const {
 /**
  *  Use gradient and Hessian information to determine a new direction for the 'full' orbital rotation generators kappa. Note that a distinction is made between 'free' generators, i.e. those that are calculated from the gradient and Hessian information and the 'full' generators, which also include the redundant parameters (that can be set to zero). The 'full' generators are used to calculate the total rotation matrix using the matrix exponential
  * 
- *  @param ham_par      the current Hamiltonian parameters
+ *  @param sq_hamiltonian           the current Hamiltonian
  * 
  *  @return the new full set orbital generators, including the redundant parameters
  */
-OrbitalRotationGenerators AP1roGLagrangianNewtonOrbitalOptimizer::calculateNewFullOrbitalGenerators(const HamiltonianParameters<double>& ham_par) const {
-    return this->calculateNewFreeOrbitalGenerators(ham_par);  // no extra step necessary
+OrbitalRotationGenerators AP1roGLagrangianNewtonOrbitalOptimizer::calculateNewFullOrbitalGenerators(const SQHamiltonian<double>& sq_hamiltonian) const {
+    return this->calculateNewFreeOrbitalGenerators(sq_hamiltonian);  // no extra step necessary
 }
 
 

@@ -19,7 +19,7 @@
 
 
 #include "Geminals/AP1roGGeminalCoefficients.hpp"
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "RDM/OneRDM.hpp"
 #include "RDM/TwoRDM.hpp"
 
@@ -28,12 +28,12 @@ namespace GQCP {
 
 
 /**
- *  @param G            the converged AP1roG geminal coefficients
- *  @param ham_par      Hamiltonian parameters in an orthonormal spatial orbital basis
+ *  @param G                    the converged AP1roG geminal coefficients
+ *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis
  *
  *  @return the AP1roG electronic energy
  */
-double calculateAP1roGEnergy(const AP1roGGeminalCoefficients& G, const HamiltonianParameters<double>& ham_par);
+double calculateAP1roGEnergy(const AP1roGGeminalCoefficients& G, const SQHamiltonian<double>& sq_hamiltonian);
 
 /**
  *  @param G                the AP1roG geminal coefficients

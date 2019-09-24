@@ -40,26 +40,26 @@ DOCI::DOCI(const FockSpace& fock_space) :
  */
 
 /**
- *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis
+ *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
  *
  *  @return the DOCI Hamiltonian matrix
  */
-SquareMatrix<double> DOCI::constructHamiltonian(const HamiltonianParameters<double>& hamiltonian_parameters) const {
+SquareMatrix<double> DOCI::constructHamiltonian(const SQHamiltonian<double>& sq_hamiltonian) const {
 
-    const auto K = hamiltonian_parameters.get_h().get_dim();
+    const auto K = sq_hamiltonian.core().get_dim();
     if (K != this->fock_space.get_K()) {
-        throw std::invalid_argument("DOCI::constructHamiltonian(HamiltonianParameters<double>): The number of orbitals for the Fock space and Hamiltonian parameters are incompatible.");
+        throw std::invalid_argument("DOCI::constructHamiltonian(SQHamiltonian<double>): The number of orbitals for the Fock space and Hamiltonian are incompatible.");
     }
 
     const size_t dim = this->fock_space.get_dimension();
     SquareMatrix<double> result_matrix = SquareMatrix<double>::Zero(dim, dim);
     const size_t N = this->fock_space.get_N();
 
-    const auto& g = hamiltonian_parameters.get_g().parameters();
+    const auto& g = sq_hamiltonian.twoElectron().parameters();
 
 
     // Create the first spin string. Since in DOCI, alpha == beta, we can just treat them as one and multiply all contributions by 2
-    VectorX<double> diagonal = calculateDiagonal(hamiltonian_parameters);
+    VectorX<double> diagonal = calculateDiagonal(sq_hamiltonian);
     ONV onv = this->fock_space.makeONV(0);  // spin string with address 0
 
     for (size_t I = 0; I < dim; I++) {  // I loops over all the addresses of the onv
@@ -109,22 +109,22 @@ SquareMatrix<double> DOCI::constructHamiltonian(const HamiltonianParameters<doub
 
 
 /**
- *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis
+ *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
  *  @param x                            the vector upon which the DOCI Hamiltonian acts
  *  @param diagonal                     the diagonal of the DOCI Hamiltonian matrix
  *
  *  @return the action of the DOCI Hamiltonian on the coefficient vector
  */
-VectorX<double> DOCI::matrixVectorProduct(const HamiltonianParameters<double>& hamiltonian_parameters, const VectorX<double>& x, const VectorX<double>& diagonal) const {
+VectorX<double> DOCI::matrixVectorProduct(const SQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
 
-    const auto K = hamiltonian_parameters.get_h().get_dim();
+    const auto K = sq_hamiltonian.core().get_dim();
     if (K != this->fock_space.get_K()) {
-        throw std::invalid_argument("DOCI::matrixVectorProduct(HamiltonianParameters<double>, VectorX<double>, VectorX<double>): The number of orbitals for the Fock space and Hamiltonian parameters are incompatible.");
+        throw std::invalid_argument("DOCI::matrixVectorProduct(SQHamiltonian<double>, VectorX<double>, VectorX<double>): The number of orbitals for the Fock space and Hamiltonians are incompatible.");
     }
 
     const size_t N = this->fock_space.get_N();
     const size_t dim = this->fock_space.get_dimension();
-    const auto& g = hamiltonian_parameters.get_g().parameters();
+    const auto& g = sq_hamiltonian.twoElectron().parameters();
 
 
     // Create the first spin string. Since in DOCI, alpha == beta, we can just treat them as one and multiply all contributions by 2
@@ -182,20 +182,20 @@ VectorX<double> DOCI::matrixVectorProduct(const HamiltonianParameters<double>& h
 
 
 /**
- *  @param hamiltonian_parameters       the Hamiltonian parameters in an orthonormal orbital basis
+ *  @param sq_hamiltonian               the Hamiltonian parameters in an orthonormal orbital basis
  *
  *  @return the diagonal of the matrix representation of the DOCI Hamiltonian
  */
-VectorX<double> DOCI::calculateDiagonal(const HamiltonianParameters<double>& hamiltonian_parameters) const {
+VectorX<double> DOCI::calculateDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const {
 
-    const auto K = hamiltonian_parameters.get_h().get_dim();
+    const auto K = sq_hamiltonian.core().get_dim();
     if (K != this->fock_space.get_K()) {
-        throw std::invalid_argument("DOCI::calculateDiagonal(HamiltonianParameters<double>): Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
+        throw std::invalid_argument("DOCI::calculateDiagonal(SQHamiltonian<double>): Basis functions of the Fock space and sq_hamiltonian are incompatible.");
     }
 
     const size_t dim = this->fock_space.get_dimension();
-    const auto& h = hamiltonian_parameters.get_h().parameters();
-    const auto& g = hamiltonian_parameters.get_g().parameters();
+    const auto& h = sq_hamiltonian.core().parameters();
+    const auto& g = sq_hamiltonian.twoElectron().parameters();
 
     VectorX<double> diagonal = VectorX<double>::Zero(dim);
     // Create the first spin string. Since in DOCI, alpha == beta, we can just treat them as one and multiply all contributions by 2

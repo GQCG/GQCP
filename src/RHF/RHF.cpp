@@ -96,12 +96,12 @@ OneRDM<double> calculateRHFAO1RDM(const TransformationMatrix<double>& C, size_t 
 /**
  *  Calculate the RHF Fock matrix F = H_core + G, in which G is a contraction of the density matrix and the two-electron integrals
  *
- *  @param D_AO     the RHF density matrix in AO basis
- *  @param ham_par  The Hamiltonian parameters in AO basis
+ *  @param D_AO             the RHF density matrix in AO basis
+ *  @param sq_hamiltonian   the Hamiltonian in an AO basis
  *
  *  @return the RHF Fock matrix expressed in the AO basis
  */
-ScalarSQOneElectronOperator<double> calculateRHFAOFockMatrix(const OneRDM<double>& D_AO, const HamiltonianParameters<double>& ham_par) {
+ScalarSQOneElectronOperator<double> calculateRHFAOFockMatrix(const OneRDM<double>& D_AO, const SQHamiltonian<double>& sq_hamiltonian) {
 
     // To perform the contraction, we will first have to convert the MatrixX<double> D_AO to an Eigen::Tensor<const double, 2> D_AO_tensor, as contractions are only implemented for Eigen::Tensors
     Eigen::TensorMap<Eigen::Tensor<const double, 2>> D_AO_tensor (D_AO.data(), D_AO.rows(), D_AO.cols());
@@ -114,7 +114,7 @@ ScalarSQOneElectronOperator<double> calculateRHFAOFockMatrix(const OneRDM<double
     Eigen::array<Eigen::IndexPair<int>, 2> exchange_contraction_pair = {Eigen::IndexPair<int>(1, 0), Eigen::IndexPair<int>(2, 1)};
 
     // Calculate both contractions (and incorporate prefactors)
-    const auto& g = ham_par.get_g().parameters();
+    const auto& g = sq_hamiltonian.twoElectron().parameters();
     Tensor<double, 2> direct_contraction = g.contract(D_AO_tensor, direct_contraction_pair);
     Tensor<double, 2> exchange_contraction = -0.5 * g.contract(D_AO_tensor, exchange_contraction_pair);
 
@@ -123,13 +123,13 @@ ScalarSQOneElectronOperator<double> calculateRHFAOFockMatrix(const OneRDM<double
     Eigen::Map<Eigen::MatrixXd> G2 (exchange_contraction.data(), exchange_contraction.dimension(0), exchange_contraction.dimension(1));
 
 
-    return ScalarSQOneElectronOperator<double>({ham_par.get_h().parameters() + G1 + G2});
+    return ScalarSQOneElectronOperator<double>({sq_hamiltonian.core().parameters() + G1 + G2});
 }
 
 
 /**
  *  @param D_AO         the RHF density matrix in AO basis
- *  @param H_core_AO    the core Hamiltonian parameters in AO basis
+ *  @param H_core_AO    the core Hamiltonian in an AO basis
  *  @param F_AO         the Fock matrix in AO basis
  *
  *  @return the RHF electronic energy

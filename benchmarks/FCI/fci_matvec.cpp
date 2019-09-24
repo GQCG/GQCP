@@ -4,24 +4,25 @@
 
 #include <benchmark/benchmark.h>
 
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "HamiltonianBuilder/FCI.hpp"
 
 
 static void matvec(benchmark::State& state) {
-    // Prepare parameters
+
+    // Prepare the Hamiltonian
     size_t K = state.range(0);
     size_t N = state.range(1);
     GQCP::ProductFockSpace fock_space (K, N, N);
     GQCP::FCI fci (fock_space);
 
-    GQCP::HamiltonianParameters<double> ham_par = GQCP::HamiltonianParameters<double>::Random(K);
-    GQCP::VectorX<double> diagonal = fci.calculateDiagonal(ham_par);
+    GQCP::SQHamiltonian<double> sq_hamiltonian = GQCP::SQHamiltonian<double>::Random(K);
+    GQCP::VectorX<double> diagonal = fci.calculateDiagonal(sq_hamiltonian);
     GQCP::VectorX<double> x = fock_space.randomExpansion();
 
     // Code inside this loop is measured repeatedly
     for (auto _ : state) {
-        GQCP::VectorX<double> matvec = fci.matrixVectorProduct(ham_par, x, diagonal);
+        GQCP::VectorX<double> matvec = fci.matrixVectorProduct(sq_hamiltonian, x, diagonal);
 
         benchmark::DoNotOptimize(matvec);  // make sure the variable is not optimized away by compiler
     }

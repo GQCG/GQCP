@@ -19,6 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include "Basis/transform.hpp"
 #include "Geminals/AP1roG.hpp"
 #include "Geminals/AP1roGLagrangianOptimizer.hpp"
 #include "Properties/expectation_values.hpp"
@@ -28,17 +29,19 @@
 BOOST_AUTO_TEST_CASE ( energy_as_contraction ) {
 
     auto h2 = GQCP::Molecule::ReadXYZ("data/h2_olsens.xyz");
-    auto ao_mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2, "6-31G**");
+    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2, "6-31G**");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2);  // in an AO basis
 
-    GQCP::PlainRHFSCFSolver plain_scf_solver (ao_mol_ham_par, h2);
+    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, sp_basis, h2);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 
-    auto mol_ham_par = GQCP::HamiltonianParameters<double>(ao_mol_ham_par, rhf.get_C());
+    // Transform the Hamiltonian to the RHF orbital basis
+    GQCP::basisTransform(sp_basis, sq_hamiltonian, rhf.get_C());
 
 
     // Optimize the AP1roG PSE Lagrangian with the initial guess of the geminal coefficients being 0
-    GQCP::AP1roGLagrangianOptimizer lagrangian_optimizer (h2, mol_ham_par);
+    GQCP::AP1roGLagrangianOptimizer lagrangian_optimizer (h2, sq_hamiltonian);
     lagrangian_optimizer.solve();
     double electronic_energy = lagrangian_optimizer.get_electronic_energy();
     auto G = lagrangian_optimizer.get_geminal_coefficients();
@@ -49,6 +52,6 @@ BOOST_AUTO_TEST_CASE ( energy_as_contraction ) {
     auto D = GQCP::calculate1RDM(G, multipliers);
     auto d = GQCP::calculate2RDM(G, multipliers);
 
-    double electronic_energy_by_contraction = GQCP::calculateExpectationValue(mol_ham_par, D, d) - mol_ham_par.get_scalar();  // only the electronic energy
+    double electronic_energy_by_contraction = GQCP::calculateExpectationValue(sq_hamiltonian, D, d);
     BOOST_CHECK(std::abs(electronic_energy_by_contraction - electronic_energy) < 1.0e-09);
 }

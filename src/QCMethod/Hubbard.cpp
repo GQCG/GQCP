@@ -19,7 +19,7 @@
 
 #include "CISolver/CISolver.hpp"
 #include "HamiltonianBuilder/Hubbard.hpp"
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "RDM/RDMCalculator.hpp"
 
 #include <boost/algorithm/string.hpp>
@@ -63,16 +63,16 @@ Hubbard::Hubbard(const std::string& csline, const size_t num_states, const size_
  */
 void Hubbard::solve() {
 
-    // Build up the Hubbard hopping matrix and the corresponding Hamiltonian parameters
+    // Build up the Hubbard hopping matrix and the corresponding Hamiltonian
     const GQCP::HoppingMatrix H = GQCP::HoppingMatrix::FromCSLine(csline);
-    const auto ham_par = GQCP::HamiltonianParameters<double>::Hubbard(H);
-    const auto K = ham_par.get_K();
+    const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Hubbard(H);
+    const auto K = sq_hamiltonian.dimension();
 
 
     // Initialize and solve the Hubbard eigenvalue problem
     ProductFockSpace fock_space (K, this->N_alpha, this->N_beta);
     GQCP::Hubbard hubbard_builder (fock_space);
-    CISolver ci_solver (hubbard_builder, ham_par);
+    CISolver ci_solver (hubbard_builder, sq_hamiltonian);
 
     DenseSolverOptions ci_solver_options;
     ci_solver_options.number_of_requested_eigenpairs = this->num_states;

@@ -42,7 +42,7 @@ public:
     /**
      *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence
      */
-    void prepareJacobiSpecificConvergenceChecking(const HamiltonianParameters<double>& ham_par) override {}
+    void prepareJacobiSpecificConvergenceChecking(const SQHamiltonian<double>& sq_hamiltonian) override {}
 
     /**
      *  Calculate the trigoniometric polynomial coefficients for the given Jacobi rotation indices
@@ -50,24 +50,24 @@ public:
      *  @param i            the index of spatial orbital 1
      *  @param j            the index of spatial orbital 2
      */
-    void calculateJacobiCoefficients(const HamiltonianParameters<double>& ham_par, const size_t i, const size_t j) override;
+    void calculateJacobiCoefficients(const SQHamiltonian<double>& sq_hamiltonian, const size_t i, const size_t j) override;
 
     /**
-     *  @param ham_par      the current Hamiltonian parameters
-     *  @param i            the index of spatial orbital 1
-     *  @param j            the index of spatial orbital 2
+     *  @param sq_hamiltonian       the current Hamiltonian
+     *  @param i                    the index of spatial orbital 1
+     *  @param j                    the index of spatial orbital 2
      *
      *  @return the angle for which the derivative of the scalar function after the Jacobi rotation is zero (and the second derivative is positive), using the current trigoniometric polynomial coefficients
      */
-    double calculateOptimalRotationAngle(const HamiltonianParameters<double>& ham_par, const size_t i, const size_t j) const override;
+    double calculateOptimalRotationAngle(const SQHamiltonian<double>& sq_hamiltonian, const size_t i, const size_t j) const override;
 
     /**
-     *  @param ham_par              the current Hamiltonian parameters
-     *  @param jacobi_rot_par       the Jacobi rotation parameters
+     *  @param sq_hamiltonian           the current Hamiltonian
+     *  @param jacobi_rot_par           the Jacobi rotation parameters
      * 
-     *  @return the change in the value of the scalar function (i.e. minus the ER localization index) if the given Jacobi rotation parameters would be used to rotate the given Hamiltonian parameters
+     *  @return the change in the value of the scalar function (i.e. minus the ER localization index) if the given Jacobi rotation parameters would be used to rotate the given Hamiltonian
      */
-    double calculateScalarFunctionChange(const HamiltonianParameters<double>& ham_par, const JacobiRotationParameters& jacobi_rot_par) const override;
+    double calculateScalarFunctionChange(const SQHamiltonian<double>& sq_hamiltonian, const JacobiRotationParameters& jacobi_rot_par) const override;
 };
 
 

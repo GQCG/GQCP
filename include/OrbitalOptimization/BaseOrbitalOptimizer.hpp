@@ -19,7 +19,8 @@
 
 
 #include "Basis/TransformationMatrix.hpp"
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "Basis/SingleParticleBasis.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 
 
 namespace GQCP {
@@ -59,33 +60,34 @@ public:
     /**
      *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence
      */
-    virtual void prepareConvergenceChecking(const HamiltonianParameters<double>& ham_par) = 0;
+    virtual void prepareConvergenceChecking(const SQHamiltonian<double>& sq_hamiltonian) = 0;
 
     /**
-     *  @param ham_par      the current Hamiltonian parameters
+     *  @param sq_hamiltonian      the current Hamiltonian
      * 
      *  @return if the algorithm is considered to be converged
      */
-    virtual bool checkForConvergence(const HamiltonianParameters<double>& ham_par) const = 0;
+    virtual bool checkForConvergence(const SQHamiltonian<double>& sq_hamiltonian) const = 0;
 
     /**
-     *  @param ham_par      the current Hamiltonian parameters
+     *  @param sq_hamiltonian      the current Hamiltonian
      * 
-     *  @return a unitary matrix that will be used to rotate the current Hamiltonian parameters into the next iteration
+     *  @return a unitary matrix that will be used to rotate the current Hamiltonian into the next iteration
      */
-    virtual TransformationMatrix<double> calculateNewRotationMatrix(const HamiltonianParameters<double>& ham_par) const = 0;
+    virtual TransformationMatrix<double> calculateNewRotationMatrix(const SQHamiltonian<double>& sq_hamiltonian) const = 0;
 
 
     // PUBLIC METHODS
 
     /**
-     *  Optimize the Hamiltonian parameters by subsequently
+     *  Optimize the Hamiltonian by subsequently
      *      - checking for convergence (see checkForConvergence())
-     *      - rotating the Hamiltonian parameters with a newly found rotation matrix (see calculateNewRotationMatrix())
+     *      - rotating the Hamiltonian (and single-particle basis) with a newly found rotation matrix (see calculateNewRotationMatrix())
      * 
-     *  @param ham_par      the initial (guess for the) Hamiltonian parameters
+     *  @param sp_basis             the initial single-particle basis that contains the spinors to be optimized
+     *  @param sq_hamiltonian       the initial (guess for the) Hamiltonian
      */
-    void optimize(HamiltonianParameters<double>& ham_par);
+    void optimize(SingleParticleBasis<double, GTOShell>& sp_basis, SQHamiltonian<double>& sq_hamiltonian);
 };
 
 

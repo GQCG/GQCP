@@ -28,12 +28,12 @@ namespace GQCP {
  */
 void AP1roGLagrangianOptimizer::solve() {
 
-    const auto K = this->ham_par.get_K();
-    const auto& g = this->ham_par.get_g().parameters();
+    const auto K = this->sq_hamiltonian.dimension();
+    const auto& g = this->sq_hamiltonian.twoElectron().parameters();
 
 
     // Solve the PSEs and set part of the solutions
-    AP1roGPSESolver pse_solver (this->N_P, this->ham_par, this->geminal_coefficients, this->convergence_threshold, this->maximum_number_of_iterations);
+    AP1roGPSESolver pse_solver (this->N_P, this->sq_hamiltonian, this->geminal_coefficients, this->convergence_threshold, this->maximum_number_of_iterations);
     pse_solver.solve();
 
     this->geminal_coefficients = pse_solver.get_geminal_coefficients();

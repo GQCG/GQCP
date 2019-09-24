@@ -17,6 +17,8 @@
 //
 #include "QCMethod/MullikenConstrainedFCI.hpp"
 
+#include "Basis/transform.hpp"
+#include "Basis/SingleParticleBasis.hpp"
 #include "Properties/expectation_values.hpp"
 #include "RHF/DIISRHFSCFSolver.hpp"
 
@@ -37,8 +39,9 @@ namespace QCMethod {
  *  @param eigenpairs           the eigenpairs from the CI solver
  */ 
 void MullikenConstrainedFCI::parseSolution(const std::vector<Eigenpair>& eigenpairs, const double multiplier) {
-    if (this->energy.size() != eigenpairs.size()) {
 
+    // Initialize the result vectors to zero
+    if (this->energy.size() != eigenpairs.size()) {
         this->energy = std::vector<double>(eigenpairs.size());
         this->population = std::vector<double>(eigenpairs.size());
         this->lambda = std::vector<double>(eigenpairs.size());
@@ -55,7 +58,8 @@ void MullikenConstrainedFCI::parseSolution(const std::vector<Eigenpair>& eigenpa
         this->eigenvector = std::vector<VectorX<double>>(eigenpairs.size());
     }
 
-    double internuclear_repulsion_energy = GQCP::Operator::NuclearRepulsion(this->molecule).value();
+    // Fill in the results
+    double internuclear_repulsion_energy = Operator::NuclearRepulsion(this->molecule).value();
 
     for (size_t i = 0; i < eigenpairs.size(); i++) {
 
@@ -76,14 +80,14 @@ void MullikenConstrainedFCI::parseSolution(const std::vector<Eigenpair>& eigenpa
 
         if (molecule.numberOfAtoms() == 2) {
             // Transform the RDMs to the atomic orbital basis
-            D.basisTransformInPlace(ham_par.get_T_total().adjoint());
-            d.basisTransformInPlace(ham_par.get_T_total().adjoint());
+            D.basisTransformInPlace(this->sp_basis.transformationMatrix().adjoint());
+            d.basisTransformInPlace(this->sp_basis.transformationMatrix().adjoint());
 
-            this->A_fragment_energy[i] = calculateExpectationValue(adp.get_atomic_parameters()[0], D, d);
+            this->A_fragment_energy[i] = calculateExpectationValue(adp.get_atomic_parameters()[0], D, d) + internuclear_repulsion_energy/2;
             this->A_fragment_self_energy[i] = calculateExpectationValue(adp.get_net_atomic_parameters()[0], D, d);
-            this->B_fragment_energy[i] = calculateExpectationValue(adp.get_atomic_parameters()[1], D, d);
+            this->B_fragment_energy[i] = calculateExpectationValue(adp.get_atomic_parameters()[1], D, d) + internuclear_repulsion_energy/2;
             this->B_fragment_self_energy[i] = calculateExpectationValue(adp.get_net_atomic_parameters()[1], D, d);
-            this->interaction_energy[i] = calculateExpectationValue(adp.get_interaction_parameters()[0], D, d);
+            this->interaction_energy[i] = calculateExpectationValue(adp.get_interaction_parameters()[0], D, d) + internuclear_repulsion_energy;
         }
 
         this->eigenvector[i] = fci_coefficients;
@@ -126,26 +130,28 @@ void MullikenConstrainedFCI::checkDiatomicMolecule(const std::string& function_n
 MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const std::string& basis_set, const std::vector<size_t>& basis_targets, const size_t frozencores) : 
         basis_targets (basis_targets),
         molecule (molecule),
-        ham_par (HamiltonianParameters<double>::Molecular(molecule, basis_set)),
+        sp_basis (SingleParticleBasis<double, GTOShell>(molecule, basis_set)),
+        sq_hamiltonian (SQHamiltonian<double>::Molecular(this->sp_basis, molecule)),  // in AO basis
         basis_set (basis_set)
 {
+
     if ((molecule.numberOfElectrons() % 2) > 0) {
         throw std::runtime_error("MullikenConstrainedFCI::MullikenConstrainedFCI(): This module is not available for an odd number of electrons");
     }
 
-    
-    auto K = this->ham_par.get_K();
+
+    auto K = this->sp_basis.numberOfBasisFunctions();
     auto N_P = this->molecule.numberOfElectrons()/2;
 
     try {
         // Try the foward approach of solving the RHF equations
-        GQCP::DIISRHFSCFSolver diis_scf_solver (this->ham_par, molecule, 6, 6, 1e-12, 500);
+        DIISRHFSCFSolver diis_scf_solver (this->sq_hamiltonian, this->sp_basis, molecule, 6, 6, 1e-12, 500);
         diis_scf_solver.solve();
         auto rhf_solution = diis_scf_solver.get_solution();
-        this->ham_par.transform(rhf_solution.get_C());
+        basisTransform(this->sp_basis, this->sq_hamiltonian, rhf_solution.get_C());
 
     } catch (const std::exception& e) {
-        
+
         // If the DIIS does not converge, attempt to solve the RHF for the individuals atoms (if diatomic) and recombine the solutions to create a total canonical matrix
         // Starting from this new basis we re-attempt the regular DIIS
         // If all else fails perform Lowdin orthonormalization
@@ -153,53 +159,64 @@ MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const s
             try {
                 const std::vector<Nucleus>& atoms = molecule.nuclearFramework().nucleiAsVector();
                 int charge = - molecule.numberOfElectrons() + molecule.nuclearFramework().totalNucleicCharge();
-                GQCP::Molecule mol_fraction1(std::vector<GQCP::Nucleus>{atoms[0]}, charge);
-                GQCP::Molecule mol_fraction2(std::vector<GQCP::Nucleus>{atoms[1]}, 0);
+                Molecule mol_fraction1(std::vector<Nucleus>{atoms[0]}, charge);
+                Molecule mol_fraction2(std::vector<Nucleus>{atoms[1]}, 0);
 
-                auto ham_par1 = GQCP::HamiltonianParameters<double>::Molecular(mol_fraction1, basis_set);
-                auto ham_par2 = GQCP::HamiltonianParameters<double>::Molecular(mol_fraction2, basis_set);
+                SingleParticleBasis<double, GTOShell> sp_basis1 (mol_fraction1, basis_set);
+                SingleParticleBasis<double, GTOShell> sp_basis2 (mol_fraction2, basis_set);
+
+                auto ham_par1 = SQHamiltonian<double>::Molecular(sp_basis1, mol_fraction1);  // in AO basis
+                auto ham_par2 = SQHamiltonian<double>::Molecular(sp_basis2, mol_fraction2);  // in AO basis
 
                 // Perform DIIS RHF for individual fractions
-                GQCP::DIISRHFSCFSolver diis_scf_solver1 (ham_par1, mol_fraction1, 6, 6, 1e-12, 500);
-                GQCP::DIISRHFSCFSolver diis_scf_solver2 (ham_par2, mol_fraction2, 6, 6, 1e-12, 500);
+                DIISRHFSCFSolver diis_scf_solver1 (ham_par1, sp_basis1, mol_fraction1, 6, 6, 1e-12, 500);
+                DIISRHFSCFSolver diis_scf_solver2 (ham_par2, sp_basis2, mol_fraction2, 6, 6, 1e-12, 500);
                 diis_scf_solver1.solve();
                 diis_scf_solver2.solve();
                 auto rhf1 = diis_scf_solver1.get_solution();
                 auto rhf2 = diis_scf_solver2.get_solution();
 
-                // Retrieve transformation from the solutions and transform the Hamiltonian parameters
-                size_t K1 = ham_par1.get_K();
-                size_t K2 = ham_par2.get_K();
+                // Retrieve transformation from the solutions and transform the Hamiltonian
+                size_t K1 = ham_par1.dimension();
+                size_t K2 = ham_par2.dimension();
 
                 // Recombine canonical matrices
-                GQCP::TransformationMatrix<double> T = Eigen::MatrixXd::Zero(K, K);
+                TransformationMatrix<double> T = Eigen::MatrixXd::Zero(K, K);
                 T.topLeftCorner(K1, K1) += rhf1.get_C();
                 T.bottomRightCorner(K2, K2) += rhf2.get_C();
-                this->ham_par.transform(T);
+                basisTransform(this->sp_basis, this->sq_hamiltonian, T);
+
 
                 // Attempt the DIIS for this basis
                 try {
-                    GQCP::DIISRHFSCFSolver diis_scf_solver (this->ham_par, molecule, 6, 6, 1e-12, 500);
+                    DIISRHFSCFSolver diis_scf_solver (this->sq_hamiltonian, this->sp_basis, molecule, 6, 6, 1e-12, 500);
                     diis_scf_solver.solve();
                     auto rhf = diis_scf_solver.get_solution();
-                    this->ham_par.transform(rhf.get_C());
+                    basisTransform(this->sp_basis, this->sq_hamiltonian, rhf.get_C());
+
 
                 } catch (const std::exception& e) {
-                    this->ham_par.LowdinOrthonormalize();
+                    const auto T = sp_basis.lowdinOrthonormalizationMatrix();
+                    basisTransform(this->sp_basis, this->sq_hamiltonian, T);
                 }
 
-            } catch (const std::exception& e) {    
-                this->ham_par.LowdinOrthonormalize();
+
+            } catch (const std::exception& e) {
+                const auto T = sp_basis.lowdinOrthonormalizationMatrix();
+                basisTransform(this->sp_basis, this->sq_hamiltonian, T);
             }
 
         } else {
-            this->ham_par.LowdinOrthonormalize();
+            const auto T = sp_basis.lowdinOrthonormalizationMatrix();
+            basisTransform(this->sp_basis, this->sq_hamiltonian, T);
         }
-
     }
+
+
     this->fock_space = FrozenProductFockSpace(K, N_P, N_P, frozencores);
     this->fci = FrozenCoreFCI(fock_space);
-    this->mulliken_operator = ham_par.calculateMullikenOperator(basis_targets);
+    this->mulliken_operator = this->sp_basis.calculateMullikenOperator(basis_targets);
+
 
     // Atomic Decomposition is only available for diatomic molecules
     if (molecule.numberOfAtoms() == 2) {
@@ -217,14 +234,14 @@ MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const s
 /**
  *  Solve the eigenvalue problem for a multiplier with the davidson algorithm
  *  
- *  @param multiplier           a given multiplier    
- *  @param guess                supply a davidson guess         
+ *  @param multiplier           a given multiplier
+ *  @param guess                supply a davidson guess
  */
 void MullikenConstrainedFCI::solveMullikenDavidson(const double multiplier, const VectorX<double>& guess) {
 
     auto start_time = std::chrono::high_resolution_clock::now();
 
-    const auto constrained_ham_par = this->ham_par.constrain(mulliken_operator, multiplier);
+    const auto constrained_ham_par = this->sq_hamiltonian.constrain(this->mulliken_operator, multiplier);
     CISolver ci_solver (fci, constrained_ham_par);
     DavidsonSolverOptions solver_options (fock_space.HartreeFockExpansion());
     try {
@@ -246,7 +263,7 @@ void MullikenConstrainedFCI::solveMullikenDavidson(const double multiplier, cons
 /**
  *  Solve the eigenvalue problem for a multiplier with the davidson algorithm, davidson guess will be the previously stored solution
  *  
- *  @param multiplier           a given multiplier          
+ *  @param multiplier           a given multiplier
  */
 void MullikenConstrainedFCI::solveMullikenDavidson(const double multiplier) {
 
@@ -260,7 +277,7 @@ void MullikenConstrainedFCI::solveMullikenDavidson(const double multiplier) {
 /**
  *  Solve the eigenvalue problem for a the next multiplier dense
  * 
- *  @param multiplier     
+ *  @param multiplier           a given multiplier
  *  @param nos                  the number of eigenpairs or "states" that should be stored for each multiplier
  */
 void MullikenConstrainedFCI::solveMullikenDense(const double multiplier, const size_t nos = 1) {
@@ -270,7 +287,7 @@ void MullikenConstrainedFCI::solveMullikenDense(const double multiplier, const s
 
     auto start_time = std::chrono::high_resolution_clock::now();
 
-    const auto constrained_ham_par = this->ham_par.constrain(mulliken_operator, multiplier);
+    const auto constrained_ham_par = this->sq_hamiltonian.constrain(mulliken_operator, multiplier);
     CISolver ci_solver (this->fci, constrained_ham_par);
     DenseSolverOptions solver_options;
     solver_options.number_of_requested_eigenpairs = nos;

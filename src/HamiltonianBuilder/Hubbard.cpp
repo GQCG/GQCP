@@ -40,33 +40,33 @@ Hubbard::Hubbard(const ProductFockSpace& fock_space) :
  */
 
 /**
- *  @param hamiltonian_parameters       the Hubbard Hamiltonian parameters in an orthonormal orbital basis
+ *  @param sq_hamiltonian       the Hubbard Hamiltonian expressed in an orthonormal basis
  *
  *  @return the Hubbard Hamiltonian matrix
  */
-SquareMatrix<double> Hubbard::constructHamiltonian(const HamiltonianParameters<double>& hamiltonian_parameters) const {
+SquareMatrix<double> Hubbard::constructHamiltonian(const SQHamiltonian<double>& sq_hamiltonian) const {
     
-    auto K = hamiltonian_parameters.get_K();
+    auto K = sq_hamiltonian.dimension();
     if (K != this->fock_space.get_K()) {
-        throw std::invalid_argument("Hubbard::constructHamiltonian(HamiltonianParameters<double>): Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
+        throw std::invalid_argument("Hubbard::constructHamiltonian(SQHamiltonian<double>): Basis functions of the Fock space and sq_hamiltonian are incompatible.");
     }
 
-    return this->fock_space.evaluateOperatorDense(hamiltonian_parameters.get_h(), false) + SquareMatrix<double>(this->calculateDiagonal(hamiltonian_parameters).asDiagonal());
+    return this->fock_space.evaluateOperatorDense(sq_hamiltonian.core(), false) + SquareMatrix<double>(this->calculateDiagonal(sq_hamiltonian).asDiagonal());
 }
 
 
 /**
- *  @param hamiltonian_parameters       the Hubbard Hamiltonian parameters in an orthonormal orbital basis
+ *  @param sq_hamiltonian               the Hubbard Hamiltonian expressed in an orthonormal basis
  *  @param x                            the vector upon which the Hubbard Hamiltonian acts
  *  @param diagonal                     the diagonal of the Hubbard Hamiltonian matrix
  *
  *  @return the action of the Hubbard Hamiltonian on the coefficient vector
  */
-VectorX<double> Hubbard::matrixVectorProduct(const HamiltonianParameters<double>& hamiltonian_parameters, const VectorX<double>& x, const VectorX<double>& diagonal) const {
+VectorX<double> Hubbard::matrixVectorProduct(const SQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
 
-    auto K = hamiltonian_parameters.get_K();
+    auto K = sq_hamiltonian.dimension();
     if (K != this->fock_space.get_K()) {
-        throw std::invalid_argument("Hubbard::matrixVectorProduct(HamiltonianParameters<double>, VectorX<double>, VectorX<double>): Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
+        throw std::invalid_argument("Hubbard::matrixVectorProduct(SQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the Fock space and sq_hamiltonian are incompatible.");
     }
 
     FockSpace fock_space_alpha = fock_space.get_fock_space_alpha();
@@ -80,8 +80,8 @@ VectorX<double> Hubbard::matrixVectorProduct(const HamiltonianParameters<double>
     Eigen::Map<Eigen::MatrixXd> matvecmap(matvec.data(), dim_beta, dim_alpha);
     Eigen::Map<const Eigen::MatrixXd> xmap(x.data(), dim_beta, dim_alpha);
 
-    auto beta_hamiltonian = fock_space_beta.evaluateOperatorSparse(hamiltonian_parameters.get_h(), false);
-    auto alpha_hamiltonian = fock_space_alpha.evaluateOperatorSparse(hamiltonian_parameters.get_h(), false);
+    auto beta_hamiltonian = fock_space_beta.evaluateOperatorSparse(sq_hamiltonian.core(), false);
+    auto alpha_hamiltonian = fock_space_alpha.evaluateOperatorSparse(sq_hamiltonian.core(), false);
 
     matvecmap += xmap * alpha_hamiltonian + beta_hamiltonian * xmap;
 
@@ -90,15 +90,15 @@ VectorX<double> Hubbard::matrixVectorProduct(const HamiltonianParameters<double>
 
 
 /**
- *  @param hamiltonian_parameters       the Hubbard Hamiltonian parameters in an orthonormal orbital basis
+ *  @param sq_hamiltonian       the Hubbard Hamiltonian expressed in an orthonormal basis
  *
  *  @return the diagonal of the matrix representation of the Hubbard Hamiltonian
  */
-VectorX<double> Hubbard::calculateDiagonal(const HamiltonianParameters<double>& hamiltonian_parameters) const {
+VectorX<double> Hubbard::calculateDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const {
 
-    const auto K = hamiltonian_parameters.get_K();
+    const auto K = sq_hamiltonian.dimension();
     if (K != this->fock_space.get_K()) {
-        throw std::invalid_argument("Hubbard::calculateDiagonal(HamiltonianParameters<double>): Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
+        throw std::invalid_argument("Hubbard::calculateDiagonal(SQHamiltonian<double>): Basis functions of the Fock space and sq_hamiltonian are incompatible.");
     }
 
     FockSpace fock_space_alpha = fock_space.get_fock_space_alpha();
@@ -107,7 +107,7 @@ VectorX<double> Hubbard::calculateDiagonal(const HamiltonianParameters<double>& 
     const auto dim_alpha = fock_space_alpha.get_dimension();
     const auto dim_beta = fock_space_beta.get_dimension();
     const auto dim = fock_space.get_dimension();
-    const auto& g = hamiltonian_parameters.get_g().parameters();
+    const auto& g = sq_hamiltonian.twoElectron().parameters();
 
     // Diagonal contributions
     VectorX<double> diagonal = VectorX<double>::Zero(dim);

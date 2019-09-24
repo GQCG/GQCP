@@ -30,9 +30,9 @@ namespace GQCP {
  * 
  *  In the case of this uncoupled DOCI orbital optimizer, the DOCI eigenvalue problem is re-solved in every iteration using the current orbitals
  */
-void QCMethodNewtonOrbitalOptimizer::prepareOrbitalDerivativesCalculation(const HamiltonianParameters<double>& ham_par) {
+void QCMethodNewtonOrbitalOptimizer::prepareOrbitalDerivativesCalculation(const SQHamiltonian<double>& sq_hamiltonian) {
 
-    this->prepareDMCalculation(ham_par);  // this should prepare the calculation of the 1- and 2-DMs
+    this->prepareDMCalculation(sq_hamiltonian);  // this should prepare the calculation of the 1- and 2-DMs
 
     this->D = this->calculate1RDM();
     this->d = this->calculate2RDM();
@@ -41,29 +41,29 @@ void QCMethodNewtonOrbitalOptimizer::prepareOrbitalDerivativesCalculation(const 
 
 
 /**
- *  @param ham_par      the current Hamiltonian parameters
+ *  @param sq_hamiltonian           the current Hamiltonian
  * 
  *  @return the current orbital gradient as a matrix
  */
-SquareMatrix<double> QCMethodNewtonOrbitalOptimizer::calculateGradientMatrix(const HamiltonianParameters<double>& ham_par) const {
+SquareMatrix<double> QCMethodNewtonOrbitalOptimizer::calculateGradientMatrix(const SQHamiltonian<double>& sq_hamiltonian) const {
 
     // Calculate the gradient from the Fockian matrix
-    const auto F = ham_par.calculateFockianMatrix(this->D, this->d);
+    const auto F = sq_hamiltonian.calculateFockianMatrix(this->D, this->d);
     return 2 * (F - F.transpose());
 }
 
 
 /**
- *  @param ham_par      the current Hamiltonian parameters
+ *  @param sq_hamiltonian           the current Hamiltonian
  * 
  *  @return the current orbital Hessian as a tensor
  */
-SquareRankFourTensor<double> QCMethodNewtonOrbitalOptimizer::calculateHessianTensor(const HamiltonianParameters<double>& ham_par) const {
+SquareRankFourTensor<double> QCMethodNewtonOrbitalOptimizer::calculateHessianTensor(const SQHamiltonian<double>& sq_hamiltonian) const {
 
-    const auto K = ham_par.get_K();
+    const auto K = sq_hamiltonian.dimension();
 
     // Calculate the Hessian from the super Fockian matrix
-    const auto G = ham_par.calculateSuperFockianMatrix(this->D, this->d);
+    const auto G = sq_hamiltonian.calculateSuperFockianMatrix(this->D, this->d);
 
 
     SquareRankFourTensor<double> hessian_tensor (K);

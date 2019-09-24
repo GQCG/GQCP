@@ -21,7 +21,7 @@
 #include "CISolver/CISolver.hpp"
 #include "FockSpace/ProductFockSpace.hpp"
 #include "HamiltonianBuilder/FCI.hpp"
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "RDM/RDMCalculator.hpp"
 
 

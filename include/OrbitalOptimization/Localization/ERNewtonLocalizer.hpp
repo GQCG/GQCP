@@ -49,53 +49,53 @@ public:
     /**
      *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence
      */
-    void prepareOrbitalDerivativesCalculation(const HamiltonianParameters<double>& ham_par) override {}
+    void prepareOrbitalDerivativesCalculation(const SQHamiltonian<double>& sq_hamiltonian) override {}
 
     /**
-     *  @param ham_par      the current Hamiltonian parameters
+     *  @param sq_hamiltonian      the current Hamiltonian
      *
      *  @return the current orbital gradient of the Edmiston-Ruedenberg localization index as a matrix
      */
-    SquareMatrix<double> calculateGradientMatrix(const HamiltonianParameters<double>& ham_par) const override;
+    SquareMatrix<double> calculateGradientMatrix(const SQHamiltonian<double>& sq_hamiltonian) const override;
 
     /**
-     *  @param ham_par      the current Hamiltonian parameters
+     *  @param sq_hamiltonian      the current Hamiltonian
      *
      *  @return the current orbital Hessian of the Edmiston-Ruedenberg localization index as a tensor
      */
-    SquareRankFourTensor<double> calculateHessianTensor(const HamiltonianParameters<double>& ham_par) const override;
+    SquareRankFourTensor<double> calculateHessianTensor(const SQHamiltonian<double>& sq_hamiltonian) const override;
 
     /**
      *  Use gradient and Hessian information to determine a new direction for the 'full' orbital rotation generators kappa. Note that a distinction is made between 'free' generators, i.e. those that are calculated from the gradient and Hessian information and the 'full' generators, which also include the redundant parameters (that can be set to zero). The 'full' generators are used to calculate the total rotation matrix using the matrix exponential
      * 
-     *  @param ham_par      the current Hamiltonian parameters
+     *  @param sq_hamiltonian      the current Hamiltonian
      * 
      *  @return the new full set orbital generators, including the redundant parameters
      */
-    OrbitalRotationGenerators calculateNewFullOrbitalGenerators(const HamiltonianParameters<double>& ham_par) const override;
+    OrbitalRotationGenerators calculateNewFullOrbitalGenerators(const SQHamiltonian<double>& sq_hamiltonian) const override;
 
 
     // PUBLIC METHODS
 
     /**
-     *  @param ham_par      the current Hamiltonian parameters
-     *  @param i            the row of the gradient 'matrix'
-     *  @param j            the column of the gradient 'matrix'
+     *  @param sq_hamiltonian       the current Hamiltonian
+     *  @param i                    the row of the gradient 'matrix'
+     *  @param j                    the column of the gradient 'matrix'
      *
      *  @return the element (i,j) of the Edmiston-Ruedenberg localization index gradient
      */
-    double calculateGradientMatrixElement(const HamiltonianParameters<double>& ham_par, size_t i, size_t j) const;
+    double calculateGradientMatrixElement(const SQHamiltonian<double>& sq_hamiltonian, size_t i, size_t j) const;
 
     /**
-     *  @param ham_par      the current Hamiltonian parameters
-     *  @param i            the first index of the Hessian 'tensor'
-     *  @param j            the second index of the Hessian 'tensor'
-     *  @param k            the third index of the Hessian 'tensor'
-     *  @param l            the fourth index of the Hessian 'tensor'
+     *  @param sq_hamiltonian       the current Hamiltonian
+     *  @param i                    the first index of the Hessian 'tensor'
+     *  @param j                    the second index of the Hessian 'tensor'
+     *  @param k                    the third index of the Hessian 'tensor'
+     *  @param l                    the fourth index of the Hessian 'tensor'
      *
      *  @return the element (i,j,k,l) of the Edmiston-Ruedenberg localization index Hessian
      */
-    double calculateHessianTensorElement(const HamiltonianParameters<double>& ham_par, size_t i, size_t j, size_t k, size_t l) const;
+    double calculateHessianTensorElement(const SQHamiltonian<double>& sq_hamiltonian, size_t i, size_t j, size_t k, size_t l) const;
 };
 
 

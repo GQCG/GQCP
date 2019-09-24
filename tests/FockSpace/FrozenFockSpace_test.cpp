@@ -123,14 +123,15 @@ BOOST_AUTO_TEST_CASE ( address_setNext_frozen_space ) {
 BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_diagonal_vs_no_diagonal) {
 
     GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
-    auto parameters = GQCP::HamiltonianParameters<double>::Molecular(hchain, "STO-3G");
-    parameters.LowdinOrthonormalize();
+    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (hchain, "STO-3G");
+    sp_basis.lowdinOrthonormalize();
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, hchain);  // in the Löwdin basis
 
     GQCP::FrozenFockSpace fock_space (6, 4, 2);
 
-    GQCP::SquareMatrix<double> hamiltonian = fock_space.evaluateOperatorDense(parameters, true);
-    GQCP::SquareMatrix<double> hamiltonian_no_diagonal = fock_space.evaluateOperatorDense(parameters, false);
-    GQCP::VectorX<double> hamiltonian_diagonal = fock_space.evaluateOperatorDiagonal(parameters);
+    GQCP::SquareMatrix<double> hamiltonian = fock_space.evaluateOperatorDense(sq_hamiltonian, true);
+    GQCP::SquareMatrix<double> hamiltonian_no_diagonal = fock_space.evaluateOperatorDense(sq_hamiltonian, false);
+    GQCP::VectorX<double> hamiltonian_diagonal = fock_space.evaluateOperatorDiagonal(sq_hamiltonian);
 
     // Test if non-diagonal evaluation and diagonal evaluations are correct
     BOOST_CHECK(hamiltonian.isApprox(hamiltonian_no_diagonal + GQCP::SquareMatrix<double>(hamiltonian_diagonal.asDiagonal())));

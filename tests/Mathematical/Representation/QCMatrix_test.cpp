@@ -115,3 +115,62 @@ BOOST_AUTO_TEST_CASE ( SQOneElectronOperator_rotate_JacobiRotationParameters ) {
 
     BOOST_CHECK(M1.isApprox(M2, 1.0e-12));
 }
+
+
+/**
+ *  Check if a unitary transformation (i.e. a rotation) leaves the overlap matrix invariant
+ */
+BOOST_AUTO_TEST_CASE ( rotate_overlap_invariant ) {
+
+    // Initialize the overlap matrix
+    const size_t K = 3;
+    GQCP::QCMatrix<double> S (K);
+    S << 1.0, 0.5, 0.0,
+         0.5, 2.0, 0.0,
+         0.0, 0.0, 1.0;
+
+
+    // Initialize the reference
+    GQCP::QCMatrix<double> S_rotated_ref (K);
+    S_rotated_ref <<  1.0, 0.0, -0.5,
+                      0.0, 1.0,  0.0,
+                     -0.5, 0.0,  2.0;
+
+
+    // Rotate the overlap matrix and check the result
+    GQCP::TransformationMatrix<double> U (K);
+    U << 1.0,  0.0,  0.0,
+         0.0,  0.0, -1.0,
+         0.0, -1.0,  0.0;
+
+    auto S_copy = S;
+    S_copy.basisRotateInPlace(U);
+    BOOST_CHECK(S_copy.isApprox(S_rotated_ref, 1.0e-08));
+}
+
+
+/**
+ *  Check a rotation through Jacobi rotation parameters through a manual calculation
+ */
+BOOST_AUTO_TEST_CASE ( rotate_Jacobi_manual ) {
+
+    // Initialize the test overlap matrix and rotation parameters
+    const size_t K = 3;
+    GQCP::QCMatrix<double> S (K);
+    S << 1.0, 0.5, 0.0,
+         0.5, 2.0, 0.0,
+         0.0, 0.0, 1.0;
+
+    const GQCP::JacobiRotationParameters jacobi_rotation_parameters {1, 0, boost::math::constants::half_pi<double>()};  // interchanges two orbitals
+
+
+    // Initialize the reference, rotate the overlap matrix and check the result
+    GQCP::QCMatrix<double> S_rotated_ref (K);  // manual calculation
+    S_rotated_ref <<  2.0, -0.5, 0.0,
+                     -0.5,  1.0, 0.0,
+                      0.0,  0.0, 1.0;
+
+
+    S.basisRotateInPlace(jacobi_rotation_parameters);
+    BOOST_CHECK(S.isApprox(S_rotated_ref, 1.0e-08));
+}

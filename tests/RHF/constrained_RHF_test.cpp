@@ -19,7 +19,8 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "Basis/transform.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Properties/expectation_values.hpp"
 #include "RHF/DIISRHFSCFSolver.hpp"
 
@@ -30,9 +31,10 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test ) {
 
     // Create a Molecule and the corresponding HamiltonianParameters
     auto CO = GQCP::Molecule::ReadXYZ("data/CO_mulliken.xyz");
-    auto ao_ham_par = GQCP::HamiltonianParameters<double>::Molecular(CO, "STO-3G");
+    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (CO, "STO-3G");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, CO);  // in an AO basis
 
-    size_t K = ao_ham_par.get_K();
+    size_t K = sq_hamiltonian.dimension();
     size_t N = CO.numberOfElectrons();
 
     GQCP::OneRDM<double> one_rdm = GQCP::calculateRHF1RDM(K, N);
@@ -72,18 +74,19 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test ) {
     // Iterate over multipliers
     size_t index = 0;
     for (double i = -1.0; i < 1.01; i += 0.1) {
-        // Calculate the Mulliken operator
-        auto mulliken_operator = ao_ham_par.calculateMullikenOperator(gto_list);
 
-        // Constrain the original Hamiltonian parameters
-        auto constrained_ham_par = ao_ham_par.constrain(mulliken_operator, i);
+        // Calculate the Mulliken operator
+        auto mulliken_operator = sp_basis.calculateMullikenOperator(gto_list);  // in AO basis
+
+        // Constrain the original Hamiltonian
+        auto constrained_sq_hamiltonian = sq_hamiltonian.constrain(mulliken_operator, i);  // in AO basis
 
         // Create a DIIS RHF SCF solver and solve the SCF equations
-        GQCP::DIISRHFSCFSolver diis_scf_solver (constrained_ham_par, CO);
+        GQCP::DIISRHFSCFSolver diis_scf_solver (constrained_sq_hamiltonian, sp_basis, CO);
         diis_scf_solver.solve();
         auto rhf = diis_scf_solver.get_solution();
 
-        // Transform the mulliken operator to the basis in which the RHF energies are calculated
+        // Transform only the mulliken operator to the basis in which the RHF energies are calculated
         mulliken_operator.transform(rhf.get_C());
 
         // Retrieve the RHF "energy"
@@ -115,9 +118,10 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test_random_transformation) {
 
     // Create a Molecule and the corresponding HamiltonianParameters
     auto CO = GQCP::Molecule::ReadXYZ("data/CO_mulliken.xyz");
-    auto ao_ham_par = GQCP::HamiltonianParameters<double>::Molecular(CO, "STO-3G");
+    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (CO, "STO-3G");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, CO);  // in an AO basis
 
-    size_t K = ao_ham_par.get_K();
+    size_t K = sq_hamiltonian.dimension();
     size_t N = CO.numberOfElectrons();
 
     GQCP::TransformationMatrix<double> T = GQCP::TransformationMatrix<double>::Random(K, K);
@@ -126,7 +130,7 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test_random_transformation) {
         T(i,i) = 1;
     }
 
-    ao_ham_par.transform(T);
+    basisTransform(sp_basis, sq_hamiltonian, T);
 
     GQCP::OneRDM<double> one_rdm = GQCP::calculateRHF1RDM(K, N);
 
@@ -165,18 +169,19 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test_random_transformation) {
     // Iterate over multipliers
     size_t index = 0;
     for (double i = -1; i<1.01; i += 0.1) {
-        // Calculate the Mulliken operator
-        auto mulliken_operator = ao_ham_par.calculateMullikenOperator(gto_list);
 
-        // Contrain the original Hamiltonian parameters
-        auto constrained_ham_par = ao_ham_par.constrain(mulliken_operator, i);
+        // Calculate the Mulliken operator
+        auto mulliken_operator = sp_basis.calculateMullikenOperator(gto_list);
+
+        // Contrain the original Hamiltonian
+        auto constrained_ham_par = sq_hamiltonian.constrain(mulliken_operator, i);
 
         // Create a DIIS RHF SCF solver and solve the SCF equations
-        GQCP::DIISRHFSCFSolver diis_scf_solver (constrained_ham_par, CO);
+        GQCP::DIISRHFSCFSolver diis_scf_solver (constrained_ham_par, sp_basis, CO);
         diis_scf_solver.solve();
         auto rhf = diis_scf_solver.get_solution();
 
-        // Transform the mulliken operator to the basis in which the RHF energies are calculated
+        // Transform only the mulliken operator to the basis in which the RHF energies are calculated
         mulliken_operator.transform(rhf.get_C());
 
         // Retrieve the RHF "energy"

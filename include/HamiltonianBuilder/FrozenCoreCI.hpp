@@ -19,7 +19,7 @@
 
 
 #include "HamiltonianBuilder/HamiltonianBuilder.hpp"
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 
 
 namespace GQCP {
@@ -31,7 +31,7 @@ namespace GQCP {
 class FrozenCoreCI : public HamiltonianBuilder {
 protected:
     size_t X;  // number of frozen orbitals/electrons
-    std::shared_ptr<HamiltonianBuilder> active_hamiltonian_builder;  // non-frozen core Hamiltonian builder performing the HamiltonianBuilder interface in the active space with the frozen Hamiltonian parameters
+    std::shared_ptr<HamiltonianBuilder> active_hamiltonian_builder;  // non-frozen core Hamiltonian builder performing the HamiltonianBuilder interface in the active space with the frozen Hamiltonian
 
 public:
     // CONSTRUCTORS
@@ -44,27 +44,27 @@ public:
 
     // OVERRIDDEN PUBLIC METHODS
     /**
-     *  @param ham_par      the Hamiltonian parameters in an orthonormal orbital basis
+     *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
      *
      *  @return the frozen core Hamiltonian matrix
      */
-    SquareMatrix<double> constructHamiltonian(const HamiltonianParameters<double>& ham_par) const override;
+    SquareMatrix<double> constructHamiltonian(const SQHamiltonian<double>& sq_hamiltonian) const override;
 
     /**
-     *  @param ham_par      the Hamiltonian parameters in an orthonormal orbital basis
-     *  @param x            the vector upon which the Hamiltonian acts
-     *  @param diagonal     the diagonal of the Hamiltonian matrix
+     *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis
+     *  @param x                    the vector upon which the Hamiltonian acts
+     *  @param diagonal             the diagonal of the Hamiltonian matrix
      *
      *  @return the action of the frozen core Hamiltonian on the coefficient vector
      */
-    VectorX<double> matrixVectorProduct(const HamiltonianParameters<double>& ham_par, const VectorX<double>& x, const VectorX<double>& diagonal) const override;
+    VectorX<double> matrixVectorProduct(const SQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const override;
 
     /**
-     *  @param ham_par      the Hamiltonian parameters in an orthonormal orbital basis
+     *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis
      *
      *  @return the diagonal of the matrix representation of the frozen core Hamiltonian
      */
-    VectorX<double> calculateDiagonal(const HamiltonianParameters<double>& ham_par) const override;
+    VectorX<double> calculateDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const override;
 };
 
 

@@ -22,18 +22,18 @@
 #include "CISolver/CISolver.hpp"
 #include "HamiltonianBuilder/FCI.hpp"
 #include "HamiltonianBuilder/Hubbard.hpp"
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_davidson ) {
 
-    // Check if FCI and Hubbard produce the same results for Hubbard Hamiltonian parameters
+    // Check if FCI and Hubbard produce the same results for Hubbard Hamiltonian
 
-    // Create the Hamiltonian parameters for a random Hubbard hopping matrix
+    // Create the Hamiltonian for a random Hubbard hopping matrix
     size_t K = 4;
     auto H = GQCP::HoppingMatrix::Random(K);
-    auto mol_ham_par = GQCP::HamiltonianParameters<double>::Hubbard(H);
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Hubbard(H);
 
 
     // Create the Hubbard and FCI modules
@@ -42,8 +42,8 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_davidson ) {
     GQCP::Hubbard hubbard (fock_space);
     GQCP::FCI fci (fock_space);
 
-    GQCP::CISolver hubbard_solver (hubbard, mol_ham_par);
-    GQCP::CISolver fci_solver (fci, mol_ham_par);
+    GQCP::CISolver hubbard_solver (hubbard, sq_hamiltonian);
+    GQCP::CISolver fci_solver (fci, sq_hamiltonian);
 
 
     // Solve with Davidson
@@ -61,12 +61,12 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_davidson ) {
 
 BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_davidson_large ) {
 
-    // Check if FCI and Hubbard produce the same results for Hubbard Hamiltonian parameters
+    // Check if FCI and Hubbard produce the same results for Hubbard Hamiltonian
 
-    // Create the Hamiltonian parameters for a random Hubbard hopping matrix
+    // Create the Hamiltonian for a random Hubbard hopping matrix
     size_t K = 6;
     auto H = GQCP::HoppingMatrix::Random(K);
-    auto mol_ham_par = GQCP::HamiltonianParameters<double>::Hubbard(H);
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Hubbard(H);
 
 
     // Create the Hubbard and FCI modules
@@ -75,8 +75,8 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_davidson_large ) {
     GQCP::Hubbard hubbard (fock_space);
     GQCP::FCI fci (fock_space);
 
-    GQCP::CISolver hubbard_solver (hubbard, mol_ham_par);
-    GQCP::CISolver fci_solver (fci, mol_ham_par);
+    GQCP::CISolver hubbard_solver (hubbard, sq_hamiltonian);
+    GQCP::CISolver fci_solver (fci, sq_hamiltonian);
 
 
     // Solve with Davidson

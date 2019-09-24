@@ -18,12 +18,13 @@
 #pragma once
 
 
+#include "Basis/SingleParticleBasis.hpp"
 #include "CISolver/CISolver.hpp"
 #include "FockSpace/ProductFockSpace.hpp"
 #include "HamiltonianBuilder/FCI.hpp"
 #include "HamiltonianBuilder/FrozenCoreFCI.hpp"
 #include "HamiltonianParameters/AtomicDecompositionParameters.hpp"
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "RDM/RDMCalculator.hpp"
 
 
@@ -39,7 +40,8 @@ private:
     double solve_time;
     std::vector<size_t> basis_targets;
     Molecule molecule;
-    HamiltonianParameters<double> ham_par;
+    SingleParticleBasis<double, GTOShell> sp_basis;
+    SQHamiltonian<double> sq_hamiltonian;
     std::string basis_set;  // the basisset that should be used
     FrozenProductFockSpace fock_space = FrozenProductFockSpace(0, 0, 0, 0); // Default
     FrozenCoreFCI fci = FrozenCoreFCI(FrozenProductFockSpace(0, 0, 0, 0)); 
@@ -104,8 +106,8 @@ public:
     /**
      *  Solve the eigenvalue problem for a multiplier with the davidson algorithm
      *  
-     *  @param multiplier           a given multiplier    
-     *  @param guess                supply a davidson guess         
+     *  @param multiplier           a given multiplier
+     *  @param guess                supply a davidson guess
      */
     void solveMullikenDavidson(const double multiplier, const VectorX<double>& guess);
 
@@ -113,14 +115,14 @@ public:
      *  Solve the eigenvalue problem for a multiplier with the davidson algorithm, davidson guess will be the previously stored solution
      *  if none is available the Hartree Fock expansion will be used instead
      *  
-     *  @param multiplier           a given multiplier          
+     *  @param multiplier           a given multiplier
      */
     void solveMullikenDavidson(const double multiplier);
 
     /**
      *  Solve the eigenvalue problem for a the next multiplier dense
      * 
-     *  @param multiplier           a given multiplier       
+     *  @param multiplier           a given multiplier
      *  @param nos                  the number of eigenpairs or "states" that should be stored for each multiplier
      */
     void solveMullikenDense(const double multiplier, const size_t nos);

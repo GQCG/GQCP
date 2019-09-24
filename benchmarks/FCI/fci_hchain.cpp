@@ -4,10 +4,11 @@
 
 #include <benchmark/benchmark.h>
 
+#include "Basis/transform.hpp"
 #include "CISolver/CISolver.hpp"
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
 #include "HamiltonianBuilder/FCI.hpp"
 #include "Molecule/Molecule.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
 
 
@@ -17,31 +18,37 @@
  */
 static void fci_davidson_hchain(benchmark::State& state) {
 
-    int64_t number_of_H_atoms = state.range(0);
-    int64_t number_of_electrons = state.range(1);
-    auto charge = static_cast<int>(number_of_H_atoms - number_of_electrons);
+    const auto number_of_H_atoms = state.range(0);
+    const auto number_of_electrons = state.range(1);
+    const auto charge = static_cast<int>(number_of_H_atoms - number_of_electrons);
 
-    GQCP::Molecule hchain = GQCP::Molecule::HChain(number_of_H_atoms, 0.742, charge);
 
-    // Create the molecular Hamiltonian parameters for this molecule and basis
-    auto mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(hchain, "STO-3G");
-    auto K = mol_ham_par.get_K();
-    auto N_P = hchain.numberOfElectrons()/2;
-    // Create a plain RHF SCF solver and solve the SCF equations
-    GQCP::PlainRHFSCFSolver plain_scf_solver (mol_ham_par, hchain);
+    // Create the molecular Hamiltonian for this molecule and basis
+    const auto hchain = GQCP::Molecule::HChain(number_of_H_atoms, 0.742, charge);
+    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (hchain, "STO-3G");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, hchain);  // in AO basis
+
+
+    // Solve the RHF SCF equations
+    const auto K = sq_hamiltonian.dimension();
+    const auto N_P = hchain.numberOfElectrons()/2;
+    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, sp_basis, hchain);
     plain_scf_solver.solve();
-    auto rhf = plain_scf_solver.get_solution();
+    const auto rhf = plain_scf_solver.get_solution();
 
-    mol_ham_par.transform(rhf.get_C());
+
+    // Diagonalize the FCI Hamiltonian in the RHF basis
+    GQCP::basisTransform(sp_basis, sq_hamiltonian, rhf.get_C());
     GQCP::ProductFockSpace fock_space (K, N_P, N_P);
     GQCP::FCI fci (fock_space);
 
     GQCP::VectorX<double> initial_guess = fock_space.HartreeFockExpansion();
     GQCP::DavidsonSolverOptions solver_options (initial_guess);
 
+
     // Code inside this loop is measured repeatedly
     for (auto _ : state) {
-        GQCP::CISolver ci_solver (fci, mol_ham_par);
+        GQCP::CISolver ci_solver (fci, sq_hamiltonian);
         ci_solver.solve(solver_options);
 
         benchmark::DoNotOptimize(ci_solver);  // make sure the variable is not optimized away by compiler
@@ -57,22 +64,24 @@ static void fci_davidson_hchain(benchmark::State& state) {
  */
 static void fci_dense_hchain(benchmark::State& state) {
 
-    int64_t number_of_H_atoms = state.range(0);
-    int64_t number_of_electrons = state.range(1);
-    auto charge = static_cast<int>(number_of_H_atoms - number_of_electrons);
+    const auto number_of_H_atoms = state.range(0);
+    const auto number_of_electrons = state.range(1);
+    const auto charge = static_cast<int>(number_of_H_atoms - number_of_electrons);
 
-    GQCP::Molecule hchain = GQCP::Molecule::HChain(number_of_H_atoms, 0.742, charge);
 
-    // Create the molecular Hamiltonian parameters for this molecule and basis
-    auto mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(hchain, "STO-3G");
-    auto K = mol_ham_par.get_K();
+    // Create the molecular Hamiltonian for this molecule and basis
+    const auto hchain = GQCP::Molecule::HChain(number_of_H_atoms, 0.742, charge);
+    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (hchain, "STO-3G");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, hchain);
+    auto K = sq_hamiltonian.dimension();
     auto N_P = hchain.numberOfElectrons()/2;
+
     // Create a plain RHF SCF solver and solve the SCF equations
-    GQCP::PlainRHFSCFSolver plain_scf_solver (mol_ham_par, hchain);
+    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, sp_basis, hchain);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 
-    mol_ham_par.transform(rhf.get_C());
+    GQCP::basisTransform(sp_basis, sq_hamiltonian, rhf.get_C());
     GQCP::ProductFockSpace fock_space (K, N_P, N_P);
     GQCP::FCI fci (fock_space);
 
@@ -80,7 +89,7 @@ static void fci_dense_hchain(benchmark::State& state) {
 
     // Code inside this loop is measured repeatedly
     for (auto _ : state) {
-        GQCP::CISolver ci_solver (fci, mol_ham_par);
+        GQCP::CISolver ci_solver (fci, sq_hamiltonian);
         ci_solver.solve(solver_options);
 
         benchmark::DoNotOptimize(ci_solver);  // make sure the variable is not optimized away by compiler

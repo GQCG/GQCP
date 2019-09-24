@@ -230,20 +230,20 @@ Eigen::SparseMatrix<double> ProductFockSpace::evaluateOperatorSparse(const Scala
 /**
  *  Evaluate the Hamiltonian in a dense matrix
  *
- *  @param ham_par              Hamiltonian parameters in an orthonormal orbital basis to be evaluated in the Fock space
- *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+ *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
+ *  @param diagonal_values              bool to indicate if diagonal values will be calculated
  *
  *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the Fock space
  */
-SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const HamiltonianParameters<double>& ham_par, bool diagonal_values) const {
+SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const SQHamiltonian<double>& sq_hamiltonian, bool diagonal_values) const {
 
     SquareMatrix<double> total_evaluation = SquareMatrix<double>::Zero(this->get_dimension(), this->get_dimension());
 
     auto dim_alpha = fock_space_alpha.get_dimension();
     auto dim_beta = fock_space_beta.get_dimension();
 
-    auto beta_evaluation = fock_space_beta.evaluateOperatorDense(ham_par, diagonal_values);
-    auto alpha_evaluation = fock_space_alpha.evaluateOperatorDense(ham_par, diagonal_values);
+    auto beta_evaluation = fock_space_beta.evaluateOperatorDense(sq_hamiltonian, diagonal_values);
+    auto alpha_evaluation = fock_space_alpha.evaluateOperatorDense(sq_hamiltonian, diagonal_values);
 
     // BETA separated evaluations
     for (size_t i = 0; i < dim_alpha; i++) {
@@ -262,7 +262,7 @@ SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const HamiltonianPa
     for (size_t p = 0; p<K; p++) {
 
         const auto& alpha_coupling = this->alpha_couplings[p*(K+K+1-p)/2];
-        const auto& P = this->oneElectronPartition(p, p, ham_par.get_g());
+        const auto& P = this->oneElectronPartition(p, p, sq_hamiltonian.twoElectron());
         const auto& beta_two_electron_intermediate = this->fock_space_beta.evaluateOperatorDense(P, diagonal_values);
 
         for (int i = 0; i < alpha_coupling.outerSize(); ++i) {
@@ -276,7 +276,7 @@ SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const HamiltonianPa
         for (size_t q = p + 1; q<K; q++) {
 
             const auto& alpha_coupling = this->alpha_couplings[p*(K+K+1-p)/2 + q - p];
-            const auto& P = oneElectronPartition(p, q, ham_par.get_g());
+            const auto& P = oneElectronPartition(p, q, sq_hamiltonian.twoElectron());
             const auto& beta_two_electron_intermediate = fock_space_beta.evaluateOperatorDense(P, true);
 
             for (int i = 0; i < alpha_coupling.outerSize(); ++i){
@@ -295,14 +295,14 @@ SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const HamiltonianPa
 /**
  *  Evaluate the Hamiltonian in a sparse matrix
  *
- *  @param ham_par              Hamiltonian parameters in an orthonormal orbital basis to be evaluated in the Fock space
- *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+ *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
+ *  @param diagonal_values              bool to indicate if diagonal values will be calculated
  *
  *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the Fock space
  */
-Eigen::SparseMatrix<double> ProductFockSpace::evaluateOperatorSparse(const HamiltonianParameters<double>& ham_par, bool diagonal_values) const {
+Eigen::SparseMatrix<double> ProductFockSpace::evaluateOperatorSparse(const SQHamiltonian<double>& sq_hamiltonian, bool diagonal_values) const {
 
-    throw std::invalid_argument("ProductFockSpace::evaluateOperatorSparse(HamiltonianParameters<double>, bool): Not implemented.");
+    throw std::invalid_argument("ProductFockSpace::evaluateOperatorSparse(SQHamiltonian<double>, bool): Not implemented.");
 }
 
 
@@ -315,7 +315,7 @@ Eigen::SparseMatrix<double> ProductFockSpace::evaluateOperatorSparse(const Hamil
  */
 VectorX<double> ProductFockSpace::evaluateOperatorDiagonal(const ScalarSQOneElectronOperator<double>& one_op) const {
 
-    const auto K = one_op.get_K();
+    const auto K = one_op.dimension();
     if (K != this->K) {
         throw std::invalid_argument("ProductFockSpace::evaluateOperatorDiagonal(ScalarSQOneElectronOperator<double>): Basis functions of the Fock space and the operator are incompatible.");
     }
@@ -370,7 +370,7 @@ VectorX<double> ProductFockSpace::evaluateOperatorDiagonal(const ScalarSQOneElec
  */
 VectorX<double> ProductFockSpace::evaluateOperatorDiagonal(const ScalarSQTwoElectronOperator<double>& two_op) const {
 
-    const auto K = two_op.get_K();
+    const auto K = two_op.dimension();
     if (K != this->K) {
         throw std::invalid_argument("ProductFockSpace::evaluateOperatorDiagonal(ScalarSQTwoElectronOperator<double>): Basis functions of the Fock space and the operator are incompatible.");
     }
@@ -441,12 +441,12 @@ VectorX<double> ProductFockSpace::evaluateOperatorDiagonal(const ScalarSQTwoElec
 /**
  *  Evaluate the diagonal of the Hamiltonian in this Fock space
  *
- *  @param ham_par              Hamiltonian parameters in an orthonormal orbital basis to be evaluated in the Fock space
+ *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
  *
  *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the Fock space
  */
-VectorX<double> ProductFockSpace::evaluateOperatorDiagonal(const HamiltonianParameters<double>& ham_par) const {
-    return this->evaluateOperatorDiagonal(ham_par.get_h()) + this->evaluateOperatorDiagonal(ham_par.get_g());
+VectorX<double> ProductFockSpace::evaluateOperatorDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const {
+    return this->evaluateOperatorDiagonal(sq_hamiltonian.core()) + this->evaluateOperatorDiagonal(sq_hamiltonian.twoElectron());
 }
 
 

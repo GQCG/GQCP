@@ -78,7 +78,7 @@ public:
      * 
      *  In the case of this uncoupled AP1roG Lagrangian orbital optimizer, the PSEs are re-solved in every iteration using the current orbitals
      */
-    void prepareDMCalculation(const HamiltonianParameters<double>& ham_par) override;
+    void prepareDMCalculation(const SQHamiltonian<double>& sq_hamiltonian) override;
 
     /**
      *  @return the current 1-DM
@@ -93,11 +93,11 @@ public:
     /**
      *  Use gradient and Hessian information to determine a new direction for the 'full' orbital rotation generators kappa. Note that a distinction is made between 'free' generators, i.e. those that are calculated from the gradient and Hessian information and the 'full' generators, which also include the redundant parameters (that can be set to zero). The 'full' generators are used to calculate the total rotation matrix using the matrix exponential
      * 
-     *  @param ham_par      the current Hamiltonian parameters
+     *  @param sq_hamiltonian      the current Hamiltonian
      * 
      *  @return the new full set orbital generators, including the redundant parameters
      */
-    OrbitalRotationGenerators calculateNewFullOrbitalGenerators(const HamiltonianParameters<double>& ham_par) const override;
+    OrbitalRotationGenerators calculateNewFullOrbitalGenerators(const SQHamiltonian<double>& sq_hamiltonian) const override;
 };
 
 

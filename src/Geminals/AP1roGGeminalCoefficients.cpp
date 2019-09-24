@@ -64,17 +64,17 @@ AP1roGGeminalCoefficients::AP1roGGeminalCoefficients(size_t N_P, size_t K) :
  */
 
 /**
- *  @param ham_par      the Hamiltonian parameters
- *  @param N_P          the number of orbitals
+ *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis
+ *  @param N_P                  the number of orbitals
  *
  *  @return the AP1roG geminal coefficients in the weak interaction limit
  */
-AP1roGGeminalCoefficients AP1roGGeminalCoefficients::WeakInteractionLimit(const HamiltonianParameters<double>& ham_par, size_t N_P) {
+AP1roGGeminalCoefficients AP1roGGeminalCoefficients::WeakInteractionLimit(const SQHamiltonian<double>& sq_hamiltonian, size_t N_P) {
 
-    const auto K = ham_par.get_K();
+    const auto K = sq_hamiltonian.dimension();
     const auto number_of_geminal_coefficients = AP1roGGeminalCoefficients::numberOfGeminalCoefficients(N_P, K);
-    const auto& h = ham_par.get_h().parameters();  // core Hamiltonian integrals
-    const auto& g = ham_par.get_g().parameters();  // two-electron integrals
+    const auto& h = sq_hamiltonian.core().parameters();  // core Hamiltonian integrals
+    const auto& g = sq_hamiltonian.twoElectron().parameters();  // two-electron integrals
 
     // Provide the weak interaction limit values for the geminal coefficients
     VectorX<double> g_vector = VectorX<double>::Zero(number_of_geminal_coefficients);

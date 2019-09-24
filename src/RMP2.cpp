@@ -22,21 +22,21 @@ namespace GQCP {
 
 
 /**
- *  @param ham_par      Hamiltonian parameters in an orthornomal orbital basis
- *  @param molecule     the molecule for which the energy correction should be calculated
- *  @param rhf          the converged solution to the RHF SCF equations
+ *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis
+ *  @param molecule             the molecule for which the energy correction should be calculated
+ *  @param rhf                  the converged solution to the RHF SCF equations
  *
  *  @return the RMP2 energy correction
  */
-double calculateRMP2EnergyCorrection(const HamiltonianParameters<double>& ham_par, const Molecule& molecule, const RHF& rhf) {
+double calculateRMP2EnergyCorrection(const SQHamiltonian<double>& sq_hamiltonian, const Molecule& molecule, const RHF& rhf) {
 
     const size_t N = molecule.numberOfElectrons();
-    const size_t K = ham_par.get_K();
+    const size_t K = sq_hamiltonian.dimension();
 
     const size_t HOMO_index = RHFHOMOIndex(N);
     const size_t LUMO_index = RHFLUMOIndex(K, N);
 
-    const auto& g = ham_par.get_g().parameters();
+    const auto& g = sq_hamiltonian.twoElectron().parameters();
 
     double E = 0.0;
     //  loop over all occupied orbitals (0 <= HOMO )

@@ -62,30 +62,30 @@ public:
     /**
      *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to calculate the first and second orbital derivatives, i.e. the orbital gradient and Hessian
      */
-    virtual void prepareOrbitalDerivativesCalculation(const HamiltonianParameters<double>& ham_par) = 0;
+    virtual void prepareOrbitalDerivativesCalculation(const SQHamiltonian<double>& sq_hamiltonian) = 0;
 
     /**
-     *  @param ham_par      the current Hamiltonian parameters
+     *  @param sq_hamiltonian       the current Hamiltonian
      * 
      *  @return the current orbital gradient as a matrix
      */
-    virtual SquareMatrix<double> calculateGradientMatrix(const HamiltonianParameters<double>& ham_par) const = 0;
+    virtual SquareMatrix<double> calculateGradientMatrix(const SQHamiltonian<double>& sq_hamiltonian) const = 0;
 
     /**
-     *  @param ham_par      the current Hamiltonian parameters
+     *  @param sq_hamiltonian       the current Hamiltonian
      * 
      *  @return the current orbital Hessian as a tensor
      */
-    virtual SquareRankFourTensor<double> calculateHessianTensor(const HamiltonianParameters<double>& ham_par) const = 0;
+    virtual SquareRankFourTensor<double> calculateHessianTensor(const SQHamiltonian<double>& sq_hamiltonian) const = 0;
 
     /**
      *  Use gradient and Hessian information to determine a new direction for the 'full' orbital rotation generators kappa. Note that a distinction is made between 'free' generators, i.e. those that are calculated from the gradient and Hessian information and the 'full' generators, which also include the redundant parameters (that can be set to zero). The 'full' generators are used to calculate the total rotation matrix using the matrix exponential
      * 
-     *  @param ham_par      the current Hamiltonian parameters
+     *  @param sq_hamiltonian       the current Hamiltonian
      * 
      *  @return the new full set orbital generators, including the redundant parameters
      */
-    virtual OrbitalRotationGenerators calculateNewFullOrbitalGenerators(const HamiltonianParameters<double>& ham_par) const = 0;
+    virtual OrbitalRotationGenerators calculateNewFullOrbitalGenerators(const SQHamiltonian<double>& sq_hamiltonian) const = 0;
 
 
     // PUBLIC OVERRIDDEN METHODS
@@ -93,7 +93,7 @@ public:
     /**
      *  Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence
      */
-    virtual void prepareConvergenceChecking(const HamiltonianParameters<double>& ham_par) override;
+    virtual void prepareConvergenceChecking(const SQHamiltonian<double>& sq_hamiltonian) override;
 
     /**
      *  Determine if the algorithm has converged or not
@@ -101,39 +101,39 @@ public:
      *      - computes the gradient and checks its norm for convergence
      *      - if the gradient is zero, the Hessian is calculated and positive definiteness is checked
      * 
-     *  @param ham_par      the current Hamiltonian parameters
+     *  @param sq_hamiltonian      the current Hamiltonian
      * 
      *  @return if the algorithm is considered to be converged
      */
-    bool checkForConvergence(const HamiltonianParameters<double>& ham_par) const override;
+    bool checkForConvergence(const SQHamiltonian<double>& sq_hamiltonian) const override;
 
     /**
      *  Produce a new rotation matrix by either
      *      - continuing in the direction of the i.e. the smallest (negative) eigenvalue
      *      - using the Newton step if it is well-defined
      * 
-     *  @param ham_par      the current Hamiltonian parameters
+     *  @param sq_hamiltonian       the current Hamiltonian
      * 
-     *  @return a unitary matrix that will be used to rotate the current Hamiltonian parameters into the next iteration
+     *  @return a unitary matrix that will be used to rotate the current Hamiltonian into the next iteration
      */
-    TransformationMatrix<double> calculateNewRotationMatrix(const HamiltonianParameters<double>& ham_par) const override;
+    TransformationMatrix<double> calculateNewRotationMatrix(const SQHamiltonian<double>& sq_hamiltonian) const override;
 
 
     // PUBLIC METHODS
 
     /**
-     *  @param ham_par      the current Hamiltonian parameters
+     *  @param sq_hamiltonian       the current Hamiltonian
      * 
      *  @return the current orbital gradient as a vector. Matrix indices are converted to vector indices in the convention that p>q
      */
-    VectorX<double> calculateGradientVector(const HamiltonianParameters<double>& ham_par) const;
+    VectorX<double> calculateGradientVector(const SQHamiltonian<double>& sq_hamiltonian) const;
 
     /**
-     *  @param ham_par      the current Hamiltonian parameters
+     *  @param sq_hamiltonian       the current Hamiltonian
      * 
      *  @return the current orbital Hessian as a matrix
      */
-    SquareMatrix<double> calculateHessianMatrix(const HamiltonianParameters<double>& ham_par) const;
+    SquareMatrix<double> calculateHessianMatrix(const SQHamiltonian<double>& sq_hamiltonian) const;
 
     /**
      *  @return if a Newton step would be well-defined, i.e. the Hessian is positive definite
@@ -150,11 +150,11 @@ public:
     /**
      *  Use gradient and Hessian information to determine a new direction for the 'free' orbital rotation generators kappa. Note that a distinction is made between 'free' generators, i.e. those that are calculated from the gradient and Hessian information and the 'full' generators, which also include the redundant parameters (that can be set to zero). The 'full' generators are used to calculate the total rotation matrix using the matrix exponential
      * 
-     *  @param ham_par      the current Hamiltonian parameters
+     *  @param sq_hamiltonian      the current Hamiltonian
      * 
      *  @return the new free orbital generators
      */
-    OrbitalRotationGenerators calculateNewFreeOrbitalGenerators(const HamiltonianParameters<double>& ham_par)const;
+    OrbitalRotationGenerators calculateNewFreeOrbitalGenerators(const SQHamiltonian<double>& sq_hamiltonian)const;
 };
 
 

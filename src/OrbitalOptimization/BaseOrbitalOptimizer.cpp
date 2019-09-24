@@ -17,6 +17,8 @@
 // 
 #include "OrbitalOptimization/BaseOrbitalOptimizer.hpp"
 
+#include "Basis/transform.hpp"
+
 
 namespace GQCP {
 
@@ -41,25 +43,26 @@ BaseOrbitalOptimizer::BaseOrbitalOptimizer(const double convergence_threshold, c
  */
 
 /**
- *  Optimize the Hamiltonian parameters by subsequently
+ *  Optimize the Hamiltonian by subsequently
  *      - checking for convergence (see checkForConvergence())
- *      - rotating the Hamiltonian parameters with a newly found rotation matrix (see calculateNewRotationMatrix())
+ *      - rotating the Hamiltonian (and single-particle basis) with a newly found rotation matrix (see calculateNewRotationMatrix())
  * 
- *  @param ham_par      the initial (guess for the) Hamiltonian parameters
+ *  @param sp_basis             the initial single-particle basis that contains the spinors to be optimized
+ *  @param sq_hamiltonian       the initial (guess for the) Hamiltonian
  */
-void BaseOrbitalOptimizer::optimize(HamiltonianParameters<double>& ham_par) {
+void BaseOrbitalOptimizer::optimize(SingleParticleBasis<double, GTOShell>& sp_basis, SQHamiltonian<double>& sq_hamiltonian) {
 
-    if (!ham_par.areOrbitalsOrthonormal()) {
-        throw std::invalid_argument("BaseOrbitalOptimizer::optimize(HamiltonianParameters<double>&): The given Hamiltonian parameters do not belong to an orthonormal basis.");
+    if (!sp_basis.isOrthonormal()) {
+        throw std::invalid_argument("BaseOrbitalOptimizer::optimize(SQHamiltonian<double>&): The given spinor basis is not orthonormal.");
     }
 
-    while (this->prepareConvergenceChecking(ham_par), !this->checkForConvergence(ham_par)) {  // result of the comma operator is the second operand, so this expression effectively means "if not converged"
-        const auto U = this->calculateNewRotationMatrix(ham_par);
-        ham_par.rotate(U);
+    while (this->prepareConvergenceChecking(sq_hamiltonian), !this->checkForConvergence(sq_hamiltonian)) {  // result of the comma operator is the second operand, so this expression effectively means "if not converged"
+        const auto U = this->calculateNewRotationMatrix(sq_hamiltonian);
+        basisRotate(sp_basis, sq_hamiltonian, U);
 
         this->number_of_iterations++;
         if (this->number_of_iterations > this->maximum_number_of_iterations) {
-            throw std::runtime_error("BaseOrbitalOptimizer::optimize(HamiltonianParameters<double>&): The orbital optimization procedure did not converge in the given amount of iterations.");
+            throw std::runtime_error("BaseOrbitalOptimizer::optimize(SQHamiltonian<double>&): The orbital optimization procedure did not converge in the given amount of iterations.");
         }
     }
 

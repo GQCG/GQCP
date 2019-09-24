@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Molecule/Molecule.hpp"
 
 
@@ -26,15 +26,15 @@ namespace GQCP {
 
 
 /**
- *  A class that holds the collection of HamiltonianParameters that represent different molecular decompositions.
+ *  A class that holds the collection of Hamiltonians that represent different molecular decompositions
  */
 class AtomicDecompositionParameters {
 private:
-    HamiltonianParameters<double> molecular_hamiltonian_parameters;  // the HamiltonianParameters of the complete molecule
+    SQHamiltonian<double> molecular_hamiltonian_parameters;  // the Hamiltonian of the complete molecule
 
-    std::vector<HamiltonianParameters<double>> net_atomic_parameters;  // vector of net atomic Hamiltonian parameters
-    std::vector<HamiltonianParameters<double>> interaction_parameters;  // vector of interaction Hamiltonian parameters
-    std::vector<HamiltonianParameters<double>> atomic_parameters;  // vector of the total atomic contributions
+    std::vector<SQHamiltonian<double>> net_atomic_parameters;  // vector of net atomic Hamiltonians
+    std::vector<SQHamiltonian<double>> interaction_parameters;  // vector of interaction Hamiltonians
+    std::vector<SQHamiltonian<double>> atomic_parameters;  // vector of the total atomic contributions
 
 
 public:
@@ -46,13 +46,12 @@ public:
     
 
     /**
-     *  @param molecular_hamiltonian_parameters     the complete molecular Hamiltonian parameters
-     *  @param net_atomic_parameters                collection of net atomic Hamiltonian parameters
-     *  @param interaction_parameters               collection of atomic interaction Hamiltonian parameters
-     *  @param atomic_parameters                    collection of atomic Hamiltonian parameters
+     *  @param molecular_hamiltonian_parameters     the complete molecular Hamiltonian
+     *  @param net_atomic_parameters                collection of net atomic Hamiltonians
+     *  @param interaction_parameters               collection of atomic interaction Hamiltonians
+     *  @param atomic_parameters                    collection of atomic Hamiltonians
      */
-    AtomicDecompositionParameters (const HamiltonianParameters<double>& molecular_hamiltonian_parameters, const std::vector<HamiltonianParameters<double>>& net_atomic_parameters,
-            const std::vector<HamiltonianParameters<double>>& interaction_parameters, const std::vector<HamiltonianParameters<double>>& atomic_parameters);
+    AtomicDecompositionParameters (const SQHamiltonian<double>& molecular_hamiltonian_parameters, const std::vector<SQHamiltonian<double>>& net_atomic_parameters, const std::vector<SQHamiltonian<double>>& interaction_parameters, const std::vector<SQHamiltonian<double>>& atomic_parameters);
 
 
 
@@ -61,7 +60,7 @@ public:
      */
 
     /**
-     *  Constructs net atomic, atomic and atomic interaction Hamiltonian parameters in the AO basis for a diatomic molecule AB.
+     *  Constructs net atomic, atomic and atomic interaction Hamiltonians in the AO basis for a diatomic molecule AB.
      *   the term "Nuclear" concerns how the electronic nuclear integrals (potential energy) are decomposed. The potential energy
      *   for basis functions on atom A for the charge on B are included in the interaction energy and not in the net atomic energy.
      *
@@ -69,17 +68,17 @@ public:
      *  @param basisset     the name of the basisset corresponding to the AO basis
      *
      *  @return Atomic decomposed parameters:
-     *      - net atomic parameters, HamiltonianParameters with:
+     *      - net atomic parameters with:
      *          - one-electron nuclear integrals separated by atomic core and the atomic basis functions centered on that atom.
      *          - one-electron kinetic integrals separated per set of atomic basis functions centered on an atom.
      *          - two-electron integrals separated per set of atomic basis functions centered on an atom.
-     *      - interaction parameters, HamiltonianParameters with:
-     *          - remaining one- and two-electron contributions when deducting the net atomic parameters from the total HamiltonianParameters
+     *      - interaction parameters with:
+     *          - remaining one- and two-electron contributions when deducting the net atomic parameters from the total Hamiltonian
      *          - scalar : nuclear repulsion
      *      - atomic parameters, HamiltonianParameters with:
      *          - net atomic parameters + interaction parameters/2
      *
-     *  Ordering of the atomic Hamiltonian parameters are dependant on the ordering of the atoms in the molecule
+     *  Ordering of the atomic Hamiltonians are dependant on the ordering of the atoms in the molecule
      *   for the molecule AB:
      *      net_atomic_parameters will contains parameters for A then B.
      *      interaction_parameters will contain parameters for the AB interaction.
@@ -92,10 +91,10 @@ public:
     /*
      *  GETTERS
      */
-    const HamiltonianParameters<double>& get_molecular_hamiltonian_parameters() const { return this->molecular_hamiltonian_parameters; }
-    const std::vector<HamiltonianParameters<double>>& get_net_atomic_parameters() const { return this->net_atomic_parameters; }
-    const std::vector<HamiltonianParameters<double>>& get_interaction_parameters() const { return this->interaction_parameters; }
-    const std::vector<HamiltonianParameters<double>>& get_atomic_parameters() const { return this->atomic_parameters; }
+    const SQHamiltonian<double>& get_molecular_hamiltonian_parameters() const { return this->molecular_hamiltonian_parameters; }
+    const std::vector<SQHamiltonian<double>>& get_net_atomic_parameters() const { return this->net_atomic_parameters; }
+    const std::vector<SQHamiltonian<double>>& get_interaction_parameters() const { return this->interaction_parameters; }
+    const std::vector<SQHamiltonian<double>>& get_atomic_parameters() const { return this->atomic_parameters; }
 };
 
 

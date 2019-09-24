@@ -21,7 +21,7 @@
 
 #include "CISolver/CISolver.hpp"
 #include "HamiltonianBuilder/DOCI.hpp"
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 
 
 
@@ -29,15 +29,15 @@ BOOST_AUTO_TEST_CASE ( Solver_constructor ) {
 
     // Create random HamiltonianParameters
     size_t K = 7;
-    auto random_hamiltonian_parameters = GQCP::HamiltonianParameters<double>::Random(K);
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Random(K);
 
     // Create a compatible Fock space
     GQCP::FockSpace fock_space (K, 3);
     GQCP::DOCI random_doci (fock_space);
-    BOOST_CHECK_NO_THROW(GQCP::CISolver ci_solver (random_doci, random_hamiltonian_parameters));
+    BOOST_CHECK_NO_THROW(GQCP::CISolver ci_solver (random_doci, sq_hamiltonian));
 
     // Create an incompatible Fock space
     GQCP::FockSpace fock_space_invalid (K+1, 3);
     GQCP::DOCI random_doci_invalid (fock_space_invalid);
-    BOOST_CHECK_THROW(GQCP::CISolver ci_solver (random_doci_invalid, random_hamiltonian_parameters), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::CISolver ci_solver (random_doci_invalid, sq_hamiltonian), std::invalid_argument);
 }

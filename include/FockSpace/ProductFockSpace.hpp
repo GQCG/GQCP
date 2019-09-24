@@ -127,22 +127,22 @@ public:
     /**
      *  Evaluate the Hamiltonian in a dense matrix
      *
-     *  @param ham_par              Hamiltonian parameters in an orthonormal orbital basis to be evaluated in the Fock space
-     *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+     *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
+     *  @param diagonal_values          bool to indicate if diagonal values will be calculated
      *
      *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the Fock space
      */
-    SquareMatrix<double> evaluateOperatorDense(const HamiltonianParameters<double>& ham_par, bool diagonal_values) const override;
+    SquareMatrix<double> evaluateOperatorDense(const SQHamiltonian<double>& sq_hamiltonian, bool diagonal_values) const override;
 
     /**
      *  Evaluate the Hamiltonian in a sparse matrix
      *
-     *  @param ham_par              Hamiltonian parameters in an orthonormal orbital basis to be evaluated in the Fock space
-     *  @param diagonal_values      bool to indicate if diagonal values will be calculated
+     *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
+     *  @param diagonal_values          bool to indicate if diagonal values will be calculated
      *
      *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the Fock space
      */
-    Eigen::SparseMatrix<double> evaluateOperatorSparse(const HamiltonianParameters<double>& ham_par, bool diagonal_values) const override;
+    Eigen::SparseMatrix<double> evaluateOperatorSparse(const SQHamiltonian<double>& sq_hamiltonian, bool diagonal_values) const override;
 
     /**
      *  Evaluate the diagonal of the operator
@@ -165,11 +165,11 @@ public:
     /**
      *  Evaluate the diagonal of the Hamiltonian
      *
-     *  @param ham_par              Hamiltonian parameters in an orthonormal orbital basis to be evaluated in the Fock space
+     *  @param sq_hamiltonian              the Hamiltonian expressed in an orthonormal basis
      *
      *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the Fock space
      */
-    VectorX<double> evaluateOperatorDiagonal(const HamiltonianParameters<double>& ham_par) const override;
+    VectorX<double> evaluateOperatorDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const override;
 
 };
 

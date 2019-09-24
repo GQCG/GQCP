@@ -19,6 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include "Basis/transform.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
 #include "Geminals/AP1roGLagrangianOptimizer.hpp"
 #include "Mathematical/Optimization/IterativeIdentitiesHessianModifier.hpp"
@@ -27,17 +28,18 @@
 
 BOOST_AUTO_TEST_CASE ( lih_6_31G_orbital_optimize ) {
 
-    // Construct the molecular Hamiltonian parameters in the RHF basis
+    // Construct the molecular Hamiltonian in the RHF basis
     auto lih = GQCP::Molecule::ReadXYZ("data/lih_olsens.xyz");
-    auto ao_mol_ham_par =  GQCP::HamiltonianParameters<double>::Molecular(lih, "6-31G");
+    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (lih, "6-31G");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, lih);  // in an AO basis
 
-    GQCP::PlainRHFSCFSolver plain_scf_solver (ao_mol_ham_par, lih);
+    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, sp_basis, lih);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
-    auto mol_ham_par = GQCP::HamiltonianParameters<double>(ao_mol_ham_par, rhf.get_C());
+    basisTransform(sp_basis, sq_hamiltonian, rhf.get_C());
 
     // Get the initial AP1roG energy
-    GQCP::AP1roGLagrangianOptimizer lagrangian_solver (lih, mol_ham_par);
+    GQCP::AP1roGLagrangianOptimizer lagrangian_solver (lih, sq_hamiltonian);
     lagrangian_solver.solve();
     double initial_energy = lagrangian_solver.get_electronic_energy();
     auto initial_G = lagrangian_solver.get_geminal_coefficients();
@@ -45,7 +47,7 @@ BOOST_AUTO_TEST_CASE ( lih_6_31G_orbital_optimize ) {
     // Do an AP1roG orbital optimization using Jacobi rotations
     auto hessian_modifier = std::make_shared<GQCP::IterativeIdentitiesHessianModifier>();
     GQCP::AP1roGLagrangianNewtonOrbitalOptimizer orbital_optimizer (initial_G, hessian_modifier, 1.0e-04);
-    orbital_optimizer.optimize(mol_ham_par);
+    orbital_optimizer.optimize(sp_basis, sq_hamiltonian);
 
     double optimized_energy = orbital_optimizer.get_electronic_energy();
 

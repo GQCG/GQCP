@@ -21,7 +21,7 @@
 
 #include "CISolver/CISolver.hpp"
 #include "HamiltonianBuilder/DOCI.hpp"
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Properties/expectation_values.hpp"
 #include "RDM/DOCIRDMBuilder.hpp"
 #include "RDM/RDMCalculator.hpp"
@@ -33,15 +33,15 @@ BOOST_AUTO_TEST_CASE ( lih_1RDM_trace ) {
 
     // Get the 1-RDM from DOCI
     size_t N = 4;  // 4 electrons
-    auto ham_par = GQCP::HamiltonianParameters<double>::ReadFCIDUMP("data/lih_631g_caitlin.FCIDUMP");
-    size_t K = ham_par.get_K();  // 16 SO
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::ReadFCIDUMP("data/lih_631g_caitlin.FCIDUMP");
+    size_t K = sq_hamiltonian.dimension();  // 16 SO
 
     GQCP::FockSpace fock_space (K, N/2);  // dim = 120
     GQCP::DOCI doci (fock_space);
 
     // Specify solver options and solve the eigenvalue problem
     // Solve the dense DOCI eigenvalue problem
-    GQCP::CISolver ci_solver (doci, ham_par);
+    GQCP::CISolver ci_solver (doci, sq_hamiltonian);
     GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
@@ -63,15 +63,15 @@ BOOST_AUTO_TEST_CASE ( lih_2RDM_trace ) {
 
     // Get the 1-RDM from DOCI
     size_t N = 4;  // 4 electrons
-    auto ham_par = GQCP::HamiltonianParameters<double>::ReadFCIDUMP("data/lih_631g_caitlin.FCIDUMP");
-    size_t K = ham_par.get_K();  // 16 SO
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::ReadFCIDUMP("data/lih_631g_caitlin.FCIDUMP");
+    size_t K = sq_hamiltonian.dimension();  // 16 SO
 
     GQCP::FockSpace fock_space (K, N/2);  // dim = 120
     GQCP::DOCI doci (fock_space);
 
     // Specify solver options and solve the eigenvalue problem
     // Solve the dense DOCI eigenvalue problem
-    GQCP::CISolver ci_solver (doci, ham_par);
+    GQCP::CISolver ci_solver (doci, sq_hamiltonian);
     GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
@@ -93,15 +93,15 @@ BOOST_AUTO_TEST_CASE ( lih_1RDM_2RDM_trace_DOCI ) {
 
     // Get the 1-RDM from DOCI
     size_t N = 4;  // 4 electrons
-    auto ham_par = GQCP::HamiltonianParameters<double>::ReadFCIDUMP("data/lih_631g_caitlin.FCIDUMP");
-    size_t K = ham_par.get_K();  // 16 SO
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::ReadFCIDUMP("data/lih_631g_caitlin.FCIDUMP");
+    size_t K = sq_hamiltonian.dimension();  // 16 SO
 
     GQCP::FockSpace fock_space (K, N/2);  // dim = 120
     GQCP::DOCI doci (fock_space);
 
     // Specify solver options and solve the eigenvalue problem
     // Solve the dense DOCI eigenvalue problem
-    GQCP::CISolver ci_solver (doci, ham_par);
+    GQCP::CISolver ci_solver (doci, sq_hamiltonian);
     GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
@@ -124,15 +124,15 @@ BOOST_AUTO_TEST_CASE ( lih_energy_RDM_contraction_DOCI ) {
 
     // Get the 1-RDM from DOCI
     size_t N = 4;  // 4 electrons
-    auto ham_par = GQCP::HamiltonianParameters<double>::ReadFCIDUMP("data/lih_631g_caitlin.FCIDUMP");
-    size_t K = ham_par.get_K();  // 16 SO
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::ReadFCIDUMP("data/lih_631g_caitlin.FCIDUMP");
+    size_t K = sq_hamiltonian.dimension();  // 16 SO
 
     GQCP::FockSpace fock_space (K, N/2);  // dim = 120
     GQCP::DOCI doci (fock_space);
 
     // Specify solver options and solve the eigenvalue problem
     // Solve the dense DOCI eigenvalue problem
-    GQCP::CISolver ci_solver (doci, ham_par);
+    GQCP::CISolver ci_solver (doci, sq_hamiltonian);
     GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
@@ -145,8 +145,7 @@ BOOST_AUTO_TEST_CASE ( lih_energy_RDM_contraction_DOCI ) {
     GQCP::OneRDMs<double> one_rdms = doci_rdm.calculate1RDMs(coef);
 
 
-    double energy_by_contraction = GQCP::calculateExpectationValue(ham_par, one_rdms.one_rdm, two_rdms.two_rdm);
-    energy_by_contraction -= ham_par.get_scalar();  // if we read in an FCIDUMP file, the internuclear repulsion is added as a scalar parameter: subtract it to get the electronic energy
+    double energy_by_contraction = GQCP::calculateExpectationValue(sq_hamiltonian, one_rdms.one_rdm, two_rdms.two_rdm);
 
     BOOST_CHECK(std::abs(energy_by_eigenvalue - energy_by_contraction) < 1.0e-12);
 }
@@ -157,15 +156,15 @@ BOOST_AUTO_TEST_CASE ( lih_1RDM_2RDM_trace_DOCI_wavefunction ) {
 
     // Get the 1-RDM from DOCI
     size_t N = 4;  // 4 electrons
-    auto ham_par = GQCP::HamiltonianParameters<double>::ReadFCIDUMP("data/lih_631g_caitlin.FCIDUMP");
-    size_t K = ham_par.get_K();  // 16 SO
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::ReadFCIDUMP("data/lih_631g_caitlin.FCIDUMP");
+    size_t K = sq_hamiltonian.dimension();  // 16 SO
 
     GQCP::FockSpace fock_space (K, N/2);  // dim = 120
     GQCP::DOCI doci (fock_space);
 
     // Specify solver options and solve the eigenvalue problem
     // Solve the dense DOCI eigenvalue problem
-    GQCP::CISolver ci_solver (doci, ham_par);
+    GQCP::CISolver ci_solver (doci, sq_hamiltonian);
     GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 

@@ -24,7 +24,7 @@
 #include "Basis/Integrals/Interfaces/LibintInterfacer.hpp"
 #include "CISolver/CISolver.hpp"
 #include "HamiltonianBuilder/DOCI.hpp"
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "RDM/RDMCalculator.hpp"
 #include "RHF/DIISRHFSCFSolver.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
@@ -58,14 +58,17 @@ BOOST_AUTO_TEST_CASE ( mulliken_N2_STO_3G ) {
 
     // Check that the mulliken population of N2 is 14 (N)
 
-    // Initialize the molecule and molecular Hamiltonian parameters for N2
+    // Initialize the molecule and the molecular Hamiltonian for N2
     GQCP::Nucleus N_1 (7, 0.0, 0.0, 0.0);
     GQCP::Nucleus N_2 (7, 0.0, 0.0, GQCP::units::angstrom_to_bohr(1.134));  // from CCCBDB, STO-3G geometry
     std::vector<GQCP::Nucleus> nuclei {N_1, N_2};
     GQCP::Molecule N2 (nuclei);
 
-    auto ham_par = GQCP::HamiltonianParameters<double>::Molecular(N2, "STO-3G");
-    size_t K = ham_par.get_K();
+    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (N2, "STO-3G");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, N2);  // in an AO basis
+    size_t K = sq_hamiltonian.dimension();
+
+    std::cout << "K: " << std::endl << K << std::endl << std::endl;;
 
     // We include all basis functions
     GQCP::Vectoru gto_list (K);
@@ -73,7 +76,7 @@ BOOST_AUTO_TEST_CASE ( mulliken_N2_STO_3G ) {
         gto_list[i] = i;
     }
 
-    GQCP::ScalarSQOneElectronOperator<double> mulliken = ham_par.calculateMullikenOperator(gto_list);
+    GQCP::ScalarSQOneElectronOperator<double> mulliken = sp_basis.calculateMullikenOperator(gto_list);
 
     size_t N = N2.numberOfElectrons();
 
@@ -87,16 +90,16 @@ BOOST_AUTO_TEST_CASE ( mulliken_N2_STO_3G ) {
     // Repeat this for a DOCI-RDM
 
     // Solve the SCF equations
-    GQCP::PlainRHFSCFSolver plain_scf_solver (ham_par, N2);  // the DIIS SCF solver seems to find a wrong minimum, so use a plain solver instead
+    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, sp_basis, N2);  // the DIIS SCF solver seems to find a wrong minimum, so use a plain solver instead
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 
-    ham_par.transform(rhf.get_C());
+    sq_hamiltonian.transform(rhf.get_C());
 
     GQCP::FockSpace fock_space (K, N/2);
     GQCP::DOCI doci (fock_space);
 
-    GQCP::CISolver ci_solver (doci, ham_par);
+    GQCP::CISolver ci_solver (doci, sq_hamiltonian);
 
     GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);

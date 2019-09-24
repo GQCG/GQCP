@@ -20,7 +20,7 @@
 
 #include "Basis/ScalarBasis.hpp"
 #include "Basis/TransformationMatrix.hpp"
-#include "Mathematical/Representation/SquareMatrix.hpp"
+#include "Mathematical/Representation/QCMatrix.hpp"
 #include "Molecule/Molecule.hpp"
 #include "Molecule/NuclearFramework.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
@@ -197,28 +197,48 @@ public:
 
     /**
      *  Transform the single-particle basis to the Löwdin basis, which is the orthonormal basis that we transform to with T = S^{-1/2}, where S is the overlap matrix in the underlying scalar orbital basis
-     * 
-     *  @return transformation matrix to the Löwdin basis: T = S^{-1/2}
      */
-    void LowdinOrthonormalize() {
+    void lowdinOrthonormalize() {
 
-        // The transformation matrix to the Löwdin basis is T = S^{-1/2}
+        this->T_total = this->lowdinOrthonormalizationMatrix();
+    }
+
+
+    /**
+     *  @return the transformation matrix to the Löwdin basis: T = S_current^{-1/2}
+     */
+    TransformationMatrix<double> lowdinOrthonormalizationMatrix() const {
+
+        // The transformation matrix to the Löwdin basis is T = S_current^{-1/2}
         auto S = this->scalar_basis.calculateLibintIntegrals(Operator::Overlap());  // in the underlying (possibly orthonormal) scalar basis
+        S.basisTransformInPlace(this->transformationMatrix());  // now S is expressed in the current orbital basis
         Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes (S);
 
-        this->T_total = TransformationMatrix<double>(saes.operatorInverseSqrt());
+        return TransformationMatrix<double>(saes.operatorInverseSqrt());
     }
+
+
+    /**
+     *  @return the overlap (one-electron) operator of this single-particle basis
+     */
+    ScalarSQOneElectronOperator<TransformationScalar> overlap() const {
+
+        return ScalarSQOneElectronOperator<TransformationScalar>({this->overlapMatrix()});
+    }
+
 
 
     /**
      *  @return the current overlap matrix of this single-particle basis
      */
-    SquareMatrix<TransformationScalar> overlapMatrix() const {
+    QCMatrix<TransformationScalar> overlapMatrix() const {
 
         auto S = this->scalar_basis.calculateLibintIntegrals(Operator::Overlap());  // in the underlying scalar basis
         S.basisTransformInPlace(this->T_total);  // in this single-particle basis
-        return S;
+        return QCMatrix<TransformationScalar>(S);
     }
+
+
 
     /**
      *  @return the underlying scalar basis
@@ -302,6 +322,34 @@ public:
         ResultOperator op ({this->scalarBasis().calculateLibintIntegrals(fq_op)});  // op for 'operator'
         op.transform(this->transformationMatrix());
         return op;
+    }
+
+
+    /**
+     *  @param ao_list     indices of the AOs used for the Mulliken populations
+     *
+     *  @return the Mulliken operator for a set of AOs
+     *
+     *  Note that this method is only available for real matrix representations
+     */
+    template<typename Z = TransformationScalar>
+    enable_if_t<std::is_same<Z, double>::value, ScalarSQOneElectronOperator<double>> calculateMullikenOperator(const Vectoru& ao_list) const {
+
+        const auto K = this->numberOfBasisFunctions();
+        if (ao_list.size() > K) {
+            throw std::invalid_argument("SingleParticleBasis::calculateMullikenOperator(Vectoru): Too many AOs are selected");
+        }
+
+        // Create the partitioning matrix
+        SquareMatrix<double> p_a = SquareMatrix<double>::PartitionMatrix(ao_list, K);
+
+        ScalarSQOneElectronOperator<double> S_AO ({this->overlapMatrix()});
+        TransformationMatrix<double> T_inverse = this->transformationMatrix().inverse();
+        S_AO.transform(T_inverse);
+
+        ScalarSQOneElectronOperator<double> mulliken_matrix ({ (T_total.adjoint() * p_a * S_AO.parameters() * T_total + T_total.adjoint() * S_AO.parameters() * p_a * T_total)/2 });
+
+        return mulliken_matrix;
     }
 };
 

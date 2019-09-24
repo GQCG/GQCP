@@ -19,6 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include "Basis/SingleParticleBasis.hpp"
 #include "CISolver/CISolver.hpp"
 #include "HamiltonianBuilder/FCI.hpp"
 #include "HamiltonianParameters/AtomicDecompositionParameters.hpp"
@@ -30,30 +31,32 @@
 
 BOOST_AUTO_TEST_CASE ( decomposition_BeH_cation_STO_3G_Nuclear ) {
 
-    // Create the molecular Hamiltonian parameters in an AO basis
+    // Create the molecular Hamiltonian in an AO basis
     GQCP::Nucleus Be(4, 0.0, 0.0, 0.0);
     GQCP::Nucleus H(1, 0.0, 0.0, GQCP::units::angstrom_to_bohr(1.134));  // from CCCBDB, STO-3G geometry
     std::vector<GQCP::Nucleus> nuclei {Be, H};
     GQCP::Molecule BeH (nuclei, +1);
     GQCP::AtomicDecompositionParameters adp = GQCP::AtomicDecompositionParameters::Nuclear(BeH, "STO-3G");
-    auto mol_ham_par = adp.get_molecular_hamiltonian_parameters();
-    auto K = mol_ham_par.get_K();
+    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (BeH, "STO-3G");
+
+    auto sq_hamiltonian = adp.get_molecular_hamiltonian_parameters();
+    auto K = sq_hamiltonian.dimension();
     double repulsion = GQCP::Operator::NuclearRepulsion(BeH).value();
 
     // Create a plain RHF SCF solver and solve the SCF equations
-    GQCP::PlainRHFSCFSolver plain_scf_solver(mol_ham_par, BeH);
+    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, sp_basis, BeH);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 
     const auto& T = rhf.get_C();
 
-    // Transform the ham_par
-    mol_ham_par.transform(T);
+    // Transform the sq_hamiltonian
+    sq_hamiltonian.transform(T);
 
     // Create the FCI module
     GQCP::ProductFockSpace fock_space (K, BeH.numberOfElectrons() / 2, BeH.numberOfElectrons() / 2);  // dim = 441
     GQCP::FCI fci (fock_space);
-    GQCP::CISolver ci_solver (fci, mol_ham_par);
+    GQCP::CISolver ci_solver (fci, sq_hamiltonian);
 
     // Solve Davidson
     GQCP::DavidsonSolverOptions solver_options (fock_space.HartreeFockExpansion());
@@ -79,9 +82,9 @@ BOOST_AUTO_TEST_CASE ( decomposition_BeH_cation_STO_3G_Nuclear ) {
 
     double self_energy_a = GQCP::calculateExpectationValue(adp.get_net_atomic_parameters()[0], ao_one_rdm, ao_two_rdm);
     double self_energy_b = GQCP::calculateExpectationValue(adp.get_net_atomic_parameters()[1], ao_one_rdm, ao_two_rdm);
-    double interaction_energy_ab = GQCP::calculateExpectationValue(adp.get_interaction_parameters()[0], ao_one_rdm, ao_two_rdm);
-    double total_energy_a = GQCP::calculateExpectationValue(adp.get_atomic_parameters()[0], ao_one_rdm, ao_two_rdm);
-    double total_energy_b = GQCP::calculateExpectationValue(adp.get_atomic_parameters()[1], ao_one_rdm, ao_two_rdm);
+    double interaction_energy_ab = GQCP::calculateExpectationValue(adp.get_interaction_parameters()[0], ao_one_rdm, ao_two_rdm) + repulsion;
+    double total_energy_a = GQCP::calculateExpectationValue(adp.get_atomic_parameters()[0], ao_one_rdm, ao_two_rdm) + repulsion/2;
+    double total_energy_b = GQCP::calculateExpectationValue(adp.get_atomic_parameters()[1], ao_one_rdm, ao_two_rdm) + repulsion/2;
 
     BOOST_CHECK(std::abs(total_energy_a + total_energy_b - fci_energy - repulsion) < 1.0e-10);
     BOOST_CHECK(std::abs(self_energy_a + self_energy_b + interaction_energy_ab - fci_energy - repulsion) < 1.0e-10);

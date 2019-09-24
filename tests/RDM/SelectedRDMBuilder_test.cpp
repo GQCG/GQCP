@@ -22,7 +22,7 @@
 #include "CISolver/CISolver.hpp"
 #include "HamiltonianBuilder/DOCI.hpp"
 #include "HamiltonianBuilder/FCI.hpp"
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "RDM/DOCIRDMBuilder.hpp"
 #include "RDM/FCIRDMBuilder.hpp"
 #include "RDM/RDMCalculator.hpp"
@@ -37,17 +37,18 @@ BOOST_AUTO_TEST_CASE ( one_rdms_fci_H2_6_31G ) {
     size_t N_a = 1;
     size_t N_b = 1;
 
-    // Create the molecular Hamiltonian parameters in the AO basis
+    // Create the molecular Hamiltonian in the AO basis
     auto h2 = GQCP::Molecule::ReadXYZ("data/h2.xyz");
-    auto ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2, "6-31G");
-    size_t K = ham_par.get_K();  // 4
+    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2, "6-31G");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2);  // in an AO basis
+    size_t K = sq_hamiltonian.dimension();  // 4
 
     GQCP::ProductFockSpace fock_space (K, N_a, N_b);  // dim = 16
     GQCP::FCI fci (fock_space);
 
     // Specify solver options and solve the eigenvalue problem
     // Solve the dense FCI eigenvalue problem
-    GQCP::CISolver ci_solver (fci, ham_par);
+    GQCP::CISolver ci_solver (fci, sq_hamiltonian);
     GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
@@ -79,17 +80,18 @@ BOOST_AUTO_TEST_CASE ( two_rdms_fci_H2_6_31G ) {
     size_t N_a = 1;
     size_t N_b = 1;
 
-    // Create the molecular Hamiltonian parameters in the AO basis
+    // Create the molecular Hamiltonian in the AO basis
     auto h2 = GQCP::Molecule::ReadXYZ("data/h2.xyz");
-    auto ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2, "6-31G");
-    size_t K = ham_par.get_K();  // 4
+    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2, "6-31G");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2);  // in an AO basis
+    size_t K = sq_hamiltonian.dimension();  // 4
 
     GQCP::ProductFockSpace fock_space (K, N_a, N_b);  // dim = 16
     GQCP::FCI fci (fock_space);
 
     // Specify solver options and solve the eigenvalue problem
     // Solve the dense FCI eigenvalue problem
-    GQCP::CISolver ci_solver (fci, ham_par);
+    GQCP::CISolver ci_solver (fci, sq_hamiltonian);
     GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
@@ -121,17 +123,18 @@ BOOST_AUTO_TEST_CASE ( one_rdms_doci_H2_6_31G ) {
     // test if 1-RDM SelectedRDM and dociRDM are equal
     size_t N = 1;
 
-    // Create the molecular Hamiltonian parameters in the AO basis
+    // Create the molecular Hamiltonian in the AO basis
     auto h2 = GQCP::Molecule::ReadXYZ("data/h2.xyz");
-    auto ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2, "6-31G");
-    size_t K = ham_par.get_K();  // 4
+    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2, "6-31G");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2);  // in an AO basis
+    size_t K = sq_hamiltonian.dimension();  // 4
 
     GQCP::FockSpace fock_space (K, N);  // dim = 4
     GQCP::DOCI doci (fock_space);
 
     // Specify solver options and solve the eigenvalue problem
     // Solve the dense doci eigenvalue problem
-    GQCP::CISolver ci_solver (doci, ham_par);
+    GQCP::CISolver ci_solver (doci, sq_hamiltonian);
     GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
@@ -161,17 +164,18 @@ BOOST_AUTO_TEST_CASE ( two_rdms_doci_H2_6_31G ) {
     // test if 2-RDM SelectedRDM and dociRDM are equal
     size_t N = 1;
 
-    // Create the molecular Hamiltonian parameters in the AO basis
+    // Create the molecular Hamiltonian in the AO basis
     auto h2 = GQCP::Molecule::ReadXYZ("data/h2.xyz");
-    auto ham_par = GQCP::HamiltonianParameters<double>::Molecular(h2, "6-31G");
-    size_t K = ham_par.get_K();  // 4
+    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2, "6-31G");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2);  // in an AO basis
+    size_t K = sq_hamiltonian.dimension();  // 4
 
     GQCP::FockSpace fock_space (K, N);  // dim = 4
     GQCP::DOCI doci (fock_space);
 
     // Specify solver options and solve the eigenvalue problem
     // Solve the dense doci eigenvalue problem
-    GQCP::CISolver ci_solver (doci, ham_par);
+    GQCP::CISolver ci_solver (doci, sq_hamiltonian);
     GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 

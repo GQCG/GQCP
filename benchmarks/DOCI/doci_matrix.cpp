@@ -4,23 +4,24 @@
 
 #include <benchmark/benchmark.h>
 
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "HamiltonianBuilder/DOCI.hpp"
 
 
 static void constructHamiltonian(benchmark::State& state) {
-    // Prepare parameters
+
+    // Prepare the Hamiltonian
     size_t K = state.range(0);
     size_t N = state.range(1);
     GQCP::FockSpace fock_space (K, N);
     GQCP::DOCI doci (fock_space);
-    auto ham_par = GQCP::HamiltonianParameters<double>::Random(K);
+    auto hamiltonian = GQCP::SQHamiltonian<double>::Random(K);
 
     // Code inside this loop is measured repeatedly
     for (auto _ : state) {
-        GQCP::SquareMatrix<double> hamiltonian = doci.constructHamiltonian(ham_par);
+        GQCP::SquareMatrix<double> H = doci.constructHamiltonian(hamiltonian);
 
-        benchmark::DoNotOptimize(hamiltonian);  // make sure the variable is not optimized away by compiler
+        benchmark::DoNotOptimize(H);  // make sure the variable is not optimized away by compiler
     }
 
     state.counters["Orbitals"] = K;

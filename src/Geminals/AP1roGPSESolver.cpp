@@ -39,8 +39,8 @@ namespace GQCP {
  */
 double AP1roGPSESolver::calculateJacobianElement(const AP1roGGeminalCoefficients& G, const size_t j, const size_t b, const size_t i, const size_t a) const {
 
-    const auto& h = this->ham_par.get_h().parameters();
-    const auto& g = this->ham_par.get_g().parameters();
+    const auto& h = this->sq_hamiltonian.core().parameters();
+    const auto& g = this->sq_hamiltonian.twoElectron().parameters();
 
     double j_el = 0.0;
 
@@ -141,8 +141,8 @@ SquareMatrix<double> AP1roGPSESolver::calculateJacobian(const AP1roGGeminalCoeff
  */
 double AP1roGPSESolver::calculateCoordinateFunction(const AP1roGGeminalCoefficients& G, const size_t i, const size_t a) const {
 
-    const auto& h = this->ham_par.get_h().parameters();
-    const auto& g = this->ham_par.get_g().parameters();
+    const auto& h = this->sq_hamiltonian.core().parameters();
+    const auto& g = this->sq_hamiltonian.twoElectron().parameters();
 
     double f = 0.0;
 
@@ -235,7 +235,7 @@ void AP1roGPSESolver::solve() {
 
     // Set the solution
     this->geminal_coefficients = AP1roGGeminalCoefficients(syseq_solver.get_solution(), this->N_P, this->K);
-    this->electronic_energy = calculateAP1roGEnergy(this->geminal_coefficients, this->ham_par);
+    this->electronic_energy = calculateAP1roGEnergy(this->geminal_coefficients, this->sq_hamiltonian);
 }
 
 

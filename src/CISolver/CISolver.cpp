@@ -31,15 +31,15 @@ namespace GQCP {
 
 /**
  *  @param hamiltonian_builder      the HamiltonianBuilder for which the CI eigenvalue problem should be solved
- *  @param hamiltonian_parameters   the Hamiltonian parameters in an orthonormal basis
+ *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
  */
-CISolver::CISolver(const HamiltonianBuilder& hamiltonian_builder, const HamiltonianParameters<double>& hamiltonian_parameters) :
+CISolver::CISolver(const HamiltonianBuilder& hamiltonian_builder, const SQHamiltonian<double>& sq_hamiltonian) :
     hamiltonian_builder (&hamiltonian_builder),
-    hamiltonian_parameters (hamiltonian_parameters)
+    sq_hamiltonian (sq_hamiltonian)
 {
-    const auto K = hamiltonian_parameters.get_h().get_dim();
+    const auto K = sq_hamiltonian.core().get_dim();
     if (K != this->hamiltonian_builder->get_fock_space()->get_K()) {
-        throw std::invalid_argument("CISolver::CISolver(HamiltonianBuilder, HamiltonianParameters<double>): Basis functions of the Fock space and hamiltonian_parameters are incompatible.");
+        throw std::invalid_argument("CISolver::CISolver(HamiltonianBuilder, SQHamiltonian<double>): Basis functions of the Fock space and sq_hamiltonian are incompatible.");
     }
 }
 
@@ -60,7 +60,7 @@ void CISolver::solve(const BaseSolverOptions& solver_options) {
 
         case SolverType::DENSE: {
 
-            auto matrix = this->hamiltonian_builder->constructHamiltonian(this->hamiltonian_parameters);
+            auto matrix = this->hamiltonian_builder->constructHamiltonian(this->sq_hamiltonian);
 
             DenseSolver solver (matrix, dynamic_cast<const DenseSolverOptions&>(solver_options));
 
@@ -72,8 +72,8 @@ void CISolver::solve(const BaseSolverOptions& solver_options) {
 
         case SolverType::DAVIDSON: {
 
-            auto diagonal = this->hamiltonian_builder->calculateDiagonal(this->hamiltonian_parameters);
-            VectorFunction matrixVectorProduct = [this, &diagonal](const VectorX<double>& x) { return hamiltonian_builder->matrixVectorProduct(hamiltonian_parameters, x, diagonal); };
+            auto diagonal = this->hamiltonian_builder->calculateDiagonal(this->sq_hamiltonian);
+            VectorFunction matrixVectorProduct = [this, &diagonal](const VectorX<double>& x) { return hamiltonian_builder->matrixVectorProduct(sq_hamiltonian, x, diagonal); };
 
             DavidsonSolver solver (matrixVectorProduct, diagonal, dynamic_cast<const DavidsonSolverOptions&>(solver_options));
 
