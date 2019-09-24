@@ -48,11 +48,11 @@ Vector<double, 3> calculateElectronicDipoleMoment(const VectorSQOneElectronOpera
 VectorX<double> calculateDysonAmplitudes(const WaveFunction& wavefunction1, const WaveFunction& wavefunction2) {
 
     if (wavefunction1.get_fock_space().get_type() != FockSpaceType::ProductFockSpace) {
-        throw std::runtime_error("properties::calculateDysonOrbital(WaveFunction, WaveFunction): wavefunction1 is not in the product Fock space");
+        throw std::runtime_error("properties::calculateDysonOrbital(WaveFunction, WaveFunction): wavefunction1 is not in a product Fock space");
     }
 
     if (wavefunction2.get_fock_space().get_type() != FockSpaceType::ProductFockSpace) {
-        throw std::runtime_error("properties::calculateDysonOrbital(WaveFunction, WaveFunction): wavefunction2 is not in the product Fock space");
+        throw std::runtime_error("properties::calculateDysonOrbital(WaveFunction, WaveFunction): wavefunction2 is not in a product Fock space");
     }
 
     const auto fock_space1 = static_cast<const ProductFockSpace&>(wavefunction1.get_fock_space());
@@ -60,7 +60,7 @@ VectorX<double> calculateDysonAmplitudes(const WaveFunction& wavefunction1, cons
 
     if (!((fock_space1.get_N_alpha() - fock_space2.get_N_alpha() == 0) && (fock_space1.get_N_beta() - fock_space2.get_N_beta() == 1))) {
         if (!((fock_space1.get_N_alpha() - fock_space2.get_N_alpha() == 1) && (fock_space1.get_N_beta() - fock_space2.get_N_beta() == 0))) {
-            throw std::runtime_error("properties::calculateDysonOrbital(WaveFunction, WaveFunction): wavefunction2 is not expressed in a Fock space with one fewer electron than wavefunction1");
+            throw std::runtime_error("properties::calculateDysonOrbital(WaveFunction, WaveFunction): wavefunction2 is not expressed in a product Fock space with one fewer electron than wavefunction1");
         }
     } 
 
@@ -76,7 +76,7 @@ VectorX<double> calculateDysonAmplitudes(const WaveFunction& wavefunction1, cons
     size_t dim_alpha = fock_space_alpha1.get_dimension();
     size_t dim_beta = fock_space_beta1.get_dimension();
 
-    // Given the one electron difference requirement, one of the spin Fock spaces will be identical for both wave functions, identifying that Fock space allows for a simple algorithm
+    // Given the one electron difference requirement, one of the spin Fock spaces will be identical for both wave functions, identifying that spin Fock space allows for a simple algorithm
 
     // Beta electron differs by one
     if ((fock_space1.get_N_alpha() - fock_space2.get_N_alpha() == 0) && (fock_space1.get_N_beta() - fock_space2.get_N_beta() == 1)) {
