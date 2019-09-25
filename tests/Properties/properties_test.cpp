@@ -119,6 +119,7 @@ BOOST_AUTO_TEST_CASE ( dyson_amplitudes) {
  
     const GQCP::ProductFockSpace fock_space1 (K, N/2, N/2);
     const GQCP::ProductFockSpace fock_space2 (K, N/2, N/2-1);
+    const GQCP::ProductFockSpace fock_space3 (K, N/2-1, N/2);
   
     GQCP::VectorX<double> vec1 = GQCP::VectorX<double>::Zero(4); 
     vec1 << 0.182574, 0.365148, 0.547723, 0.730297;
@@ -127,8 +128,11 @@ BOOST_AUTO_TEST_CASE ( dyson_amplitudes) {
     
     const auto wavefunction1 = GQCP::WaveFunction(fock_space1, vec1);
     const auto wavefunction2 = GQCP::WaveFunction(fock_space2, vec2);
+    const auto wavefunction3 = GQCP::WaveFunction(fock_space3, vec2);
 
-    const auto dyson_coefficients = GQCP::calculateDysonAmplitudes(wavefunction1, wavefunction2);
+    const auto dyson_coefficients_beta = GQCP::calculateDysonAmplitudes(wavefunction1, wavefunction2);  // coefficients with a difference in beta occupance
+    const auto dyson_coefficients_alpha = GQCP::calculateDysonAmplitudes(wavefunction1, wavefunction3);  // coefficients with a difference in alpha occupance
 
-    BOOST_CHECK(dyson_coefficients.isApprox(reference_amplitudes, 1.0e-6));
+    BOOST_CHECK(dyson_coefficients_beta.isApprox(reference_amplitudes, 1.0e-6));
+    BOOST_CHECK(dyson_coefficients_alpha.isApprox(reference_amplitudes, 1.0e-6));
 }
