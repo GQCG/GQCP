@@ -92,10 +92,6 @@ VectorX<double> calculateDysonAmplitudes(const WaveFunction& wavefunction1, cons
         target_mod = passive_fock_space1.get_dimension();
     }
 
-    std::cout<<std::endl<<"MOD1:"<<passive_mod1<<std::endl;
-    std::cout<<std::endl<<"MOD2:"<<passive_mod2<<std::endl;
-    std::cout<<std::endl<<"t1:"<<target_mod<<std::endl;
-
     const auto& ci_coeffs1 = wavefunction1.get_coefficients();
     const auto& ci_coeffs2 = wavefunction2.get_coefficients();
 
@@ -120,7 +116,6 @@ VectorX<double> calculateDysonAmplitudes(const WaveFunction& wavefunction1, cons
 
             // retrieve the address of the new onv
             size_t address = target_fock_space2.getAddress(onv.get_unsigned_representation());
-            std::cout<<std::endl<<"address:"<<address<<std::endl;
 
             double coeff = 0;
             for (size_t Ip = 0; Ip < passive_fock_space1.get_dimension(); Ip++) {  // passive Fock space is identical and allows for repeat updates
