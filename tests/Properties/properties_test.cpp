@@ -115,7 +115,7 @@ BOOST_AUTO_TEST_CASE ( dyson_amplitudes) {
     reference_amplitudes_beta << 0.537653264399, 0.794791398869;
 
     GQCP::VectorX<double> reference_amplitudes_alpha = GQCP::VectorX<double>::Zero(2); 
-    reference_amplitudes_alpha << 0.537653264399, 0.794791398869;
+    reference_amplitudes_alpha << 0.39739531532399996, 0.9116729926689999;
 
     const size_t K = 2;
     const size_t N = 2;
