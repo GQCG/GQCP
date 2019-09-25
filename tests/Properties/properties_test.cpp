@@ -20,12 +20,12 @@
 #include <boost/test/unit_test.hpp>
 
 #include "Basis/Integrals/Interfaces/LibintInterfacer.hpp"
+#include "CISolver/CISolver.hpp"
+#include "HamiltonianBuilder/FCI.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
 #include "Properties/properties.hpp"
 #include "RHF/DIISRHFSCFSolver.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
-#include "HamiltonianBuilder/FCI.hpp"
-#include "CISolver/CISolver.hpp"
 #include "RDM/RDMCalculator.hpp"
 #include "units.hpp"
 
@@ -107,25 +107,28 @@ BOOST_AUTO_TEST_CASE ( dipole_N2_STO_3G ) {
 
 
 /**
- *  Test the dyson amplitude algorithm against manually calculated amplitudes for two (normalized) toy vectors
+ *  Test the Dyson amplitude algorithm against manually calculated amplitudes for two (normalized) toy wave functions
  */
 BOOST_AUTO_TEST_CASE ( dyson_amplitudes) {
 
-    GQCP::VectorX<double> reference_amplitudes = GQCP::VectorX<double>::Zero(2); reference_amplitudes << 0.46752445464799997, 0.8415438533449999;
+    GQCP::VectorX<double> reference_amplitudes = GQCP::VectorX<double>::Zero(2); 
+    reference_amplitudes << 0.46752445464799997, 0.8415438533449999;
 
-    size_t K = 2;
-    size_t N = 2;
+    const size_t K = 2;
+    const size_t N = 2;
  
-    GQCP::ProductFockSpace fock_space1 (K, N/2, N/2);
-    GQCP::ProductFockSpace fock_space2 (K, N/2, N/2-1);
+    const GQCP::ProductFockSpace fock_space1 (K, N/2, N/2);
+    const GQCP::ProductFockSpace fock_space2 (K, N/2, N/2-1);
   
-    GQCP::VectorX<double> vec1 = GQCP::VectorX<double>::Zero(4); vec1 << 0.182574, 0.365148, 0.547723, 0.730297;
-    GQCP::VectorX<double> vec2 = GQCP::VectorX<double>::Zero(2); vec2 << 0.640184, 0.768221;
+    GQCP::VectorX<double> vec1 = GQCP::VectorX<double>::Zero(4); 
+    vec1 << 0.182574, 0.365148, 0.547723, 0.730297;
+    GQCP::VectorX<double> vec2 = GQCP::VectorX<double>::Zero(2); 
+    vec2 << 0.640184, 0.768221;
     
     const auto wavefunction1 = GQCP::WaveFunction(fock_space1, vec1);
     const auto wavefunction2 = GQCP::WaveFunction(fock_space2, vec2);
 
     const auto dyson_coefficients = GQCP::calculateDysonAmplitudes(wavefunction1, wavefunction2);
 
-    BOOST_CHECK(dyson_coefficients.isApprox(reference_amplitudes, 10e-6));
+    BOOST_CHECK(dyson_coefficients.isApprox(reference_amplitudes, 1.0e-6));
 }
