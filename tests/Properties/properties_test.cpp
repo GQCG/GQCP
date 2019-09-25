@@ -133,8 +133,8 @@ BOOST_AUTO_TEST_CASE ( dyson_amplitudes) {
     const auto wavefunction2 = GQCP::WaveFunction(fock_space2, vec2);
     const auto wavefunction3 = GQCP::WaveFunction(fock_space3, vec2);
 
-    const auto dyson_coefficients_beta = GQCP::calculateDysonAmplitudes(wavefunction1, wavefunction2);  // coefficients with a difference in beta occupance
-    const auto dyson_coefficients_alpha = GQCP::calculateDysonAmplitudes(wavefunction1, wavefunction3);  // coefficients with a difference in alpha occupance
+    const auto dyson_coefficients_beta = GQCP::calculateDysonAmplitudes(wavefunction1, wavefunction2);  // coefficients with a difference in beta occupation
+    const auto dyson_coefficients_alpha = GQCP::calculateDysonAmplitudes(wavefunction1, wavefunction3);  // coefficients with a difference in alpha occupation
 
     std::cout<<std::endl<<dyson_coefficients_beta;
     std::cout<<std::endl<<std::endl<<dyson_coefficients_alpha;

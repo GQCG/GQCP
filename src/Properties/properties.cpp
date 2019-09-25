@@ -98,7 +98,7 @@ VectorX<double> calculateDysonAmplitudes(const WaveFunction& wavefunction1, cons
     VectorX<double> dyson_coeff = VectorX<double>::Zero(fock_space1.get_K());
 
     // Dyson algorithm
-    //  perform a CI iteration over the more occupied Fock space 
+    //  perform a CI iteration over the spin Fock space with a higher electron occupation
     //  for each ONV perform the operation to transform it to a valid ONV for that of the lesser occupied Fock space
     //  based on the address match the correct coefficients
     //  the coefficients products are summed according to the index of the operation on the initial ONV
