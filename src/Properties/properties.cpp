@@ -67,89 +67,69 @@ VectorX<double> calculateDysonAmplitudes(const WaveFunction& wavefunction1, cons
         }
     } 
 
-    // Environment variables
-    const auto& fock_space_alpha1 = fock_space1.get_fock_space_alpha();
-    const auto& fock_space_alpha2 = fock_space2.get_fock_space_alpha();
-    const auto& fock_space_beta1 = fock_space1.get_fock_space_beta();
-    const auto& fock_space_beta2 = fock_space2.get_fock_space_beta();
+    // Initialize environment variables
+
+    // the passive spin Fock spaces are the Fock spaces that are equal for both wave functions, target Fock spaces have an electron difference of one
+    //  we initialize the environments for the case in which they differ one beta electron
+    auto passive_fock_space1 = fock_space1.get_fock_space_alpha();
+    auto passive_fock_space2 = fock_space2.get_fock_space_alpha();
+    auto target_fock_space1 = fock_space1.get_fock_space_beta();
+    auto target_fock_space2 = fock_space2.get_fock_space_beta();
+
+    size_t passive_mod = 1;
+    size_t target_mod = target_fock_space1.get_dimension();
+
+    // If instead the Fock spaces differ by one alpha electron we re-assign the variables to match the algorithm
+    if ((fock_space1.get_N_alpha() - fock_space2.get_N_alpha() == 1) && (fock_space1.get_N_beta() - fock_space2.get_N_beta() == 0)) {
+        passive_fock_space1 = target_fock_space1;
+        passive_fock_space2 = target_fock_space2;
+        target_fock_space1 = fock_space1.get_fock_space_alpha();
+        target_fock_space2 = fock_space2.get_fock_space_alpha();
+        
+        passive_mod = target_fock_space1.get_dimension();
+        target_mod = 1;
+    }
 
     const auto& ci_coeffs1 = wavefunction1.get_coefficients();
     const auto& ci_coeffs2 = wavefunction2.get_coefficients();
 
     VectorX<double> dyson_coeff = VectorX<double>::Zero(fock_space1.get_K());
-    size_t dim_alpha = fock_space_alpha1.get_dimension();
-    size_t dim_beta = fock_space_beta1.get_dimension();
 
     // Dyson algorithm
-    // Given the one electron difference requirement, one of the spin Fock spaces will be identical for both wave functions, identifying that spin Fock space allows for a simple algorithm
+    //  perform a CI iteration over the more occupied Fock space 
+    //  for each ONV perform the operation to transform it to a valid ONV for that of the lesser occupied Fock space
+    //  based on the address match the correct coefficients
+    //  the coefficients products are summed according to the index of the operation on the initial ONV
+    ONV onv = target_fock_space1.makeONV(0);
 
-    // Beta electron differs by one
-    if ((fock_space1.get_N_alpha() - fock_space2.get_N_alpha() == 0) && (fock_space1.get_N_beta() - fock_space2.get_N_beta() == 1)) {
-
-        ONV onv_beta = fock_space_beta1.makeONV(0);
-
-        for (size_t Ib = 0; Ib < dim_beta; Ib++) {  // Ib loops over addresses of beta spin strings
-            int sign = -1;
-            for (size_t e_b = 0; e_b < fock_space_beta1.get_N(); e_b++) {  // loop over beta electrons
-                
-                // 
-                sign *= -1;
-                size_t p = onv_beta.get_occupation_index(e_b);
-
-                onv_beta.annihilate(p);
-
-                size_t address = fock_space_beta2.getAddress(onv_beta.get_unsigned_representation());
-
-                onv_beta.create(p);
-
-                double coeff = 0;
-
-                for (size_t Ia = 0; Ia < dim_alpha; Ia++) {  // alpha Fock space is identical and allow for repeat updates
-                    coeff += sign * ci_coeffs1(Ia * dim_beta + Ib) * ci_coeffs2(address * dim_beta + Ib);
-                }
-
-                dyson_coeff(p) += coeff;
-            }
-
-            if (Ib < dim_beta - 1) {  // prevent last permutation to occur
-                fock_space_beta1.setNextONV(onv_beta);
-            }
-        }  // beta address (Ib) loop
-    }
-
-    // Alpha electrons differs by one
-    if ((fock_space1.get_N_alpha() - fock_space2.get_N_alpha() == 1) && (fock_space1.get_N_beta() - fock_space2.get_N_beta() == 0)) {
-
-        ONV onv_alpha = fock_space_alpha1.makeONV(0);
-
-        for (size_t Ia = 0; Ia < dim_alpha; Ia++) {  // Ia loops over addresses of alpha spin strings
-            int sign = -1;
-            for (size_t e_a = 0; e_a < fock_space_alpha1.get_N(); e_a++) {  // loop over alpha electrons
-                sign *= -1;
-                size_t p = onv_alpha.get_occupation_index(e_a);
-
-                onv_alpha.annihilate(p);
+    for (size_t It = 0; It < target_fock_space1.get_dimension(); It++) {  // It loops over addresses of the target Fock space
+        int sign = -1;  // operator sign
+        for (size_t e = 0; e < target_fock_space1.get_N(); e++) {  // loop over electrons in the onv
             
-                size_t address = fock_space_alpha2.getAddress(onv_alpha.get_unsigned_representation());
+            sign *= -1; 
+            size_t p = onv.get_occupation_index(e);
 
-                onv_alpha.create(p);
+            // annihilation results in valid onv (N-1) in the target Fock space of wavefunction2
+            onv.annihilate(p);
 
-                double coeff = 0;
+            // retrieve the address of the new onv
+            size_t address = target_fock_space2.getAddress(onv.get_unsigned_representation());
 
-                for (size_t Ib = 0; Ib < dim_beta; Ib++) {  // beta Fock space is identical and allows for repeat updates
-                    coeff += sign * ci_coeffs1(Ia * dim_beta + Ib) * ci_coeffs2(address * dim_beta + Ib);
-                }
-
-                dyson_coeff(p) += coeff;
+            double coeff = 0;
+            for (size_t Ip = 0; Ip < passive_fock_space1.get_dimension(); Ip++) {  // passive Fock space is identical and allows for repeat updates
+                coeff += sign * ci_coeffs1(It * target_mod + Ip * passive_mod) * ci_coeffs2(address * target_mod + Ip * passive_mod);
             }
+            dyson_coeff(p) += coeff;
 
-            if (Ia < dim_alpha - 1) {  // prevent last permutation to occur
-                fock_space_alpha1.setNextONV(onv_alpha);
-            }
-        }  // alpha address (Ia) loop
+            // restore the onv to allow iteration
+            onv.create(p);
+        }
 
-    }
-
+        if (It < target_fock_space1.get_dimension() - 1) {  // prevent last permutation to occur
+            target_fock_space1.setNextONV(onv);
+        }
+    }  // target address (It) loop
+    
     return dyson_coeff;
 }
 
