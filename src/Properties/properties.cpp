@@ -76,8 +76,9 @@ VectorX<double> calculateDysonAmplitudes(const WaveFunction& wavefunction1, cons
     auto target_fock_space1 = fock_space1.get_fock_space_beta();
     auto target_fock_space2 = fock_space2.get_fock_space_beta();
 
-    size_t passive_mod = 1;
-    size_t target_mod = target_fock_space1.get_dimension();
+    size_t passive_mod1 = target_fock_space1.get_dimension();
+    size_t passive_mod2 = target_fock_space2.get_dimension();
+    size_t target_mod = 1;
 
     // If instead the Fock spaces differ by one alpha electron we re-assign the variables to match the algorithm
     if ((fock_space1.get_N_alpha() - fock_space2.get_N_alpha() == 1) && (fock_space1.get_N_beta() - fock_space2.get_N_beta() == 0)) {
@@ -86,9 +87,14 @@ VectorX<double> calculateDysonAmplitudes(const WaveFunction& wavefunction1, cons
         target_fock_space1 = fock_space1.get_fock_space_alpha();
         target_fock_space2 = fock_space2.get_fock_space_alpha();
         
-        passive_mod = target_fock_space1.get_dimension();
-        target_mod = 1;
+        passive_mod1 = 1;
+        passive_mod2 = 1;
+        target_mod = passive_fock_space1.get_dimension();
     }
+
+    std::cout<<std::endl<<"MOD1:"<<passive_mod1<<std::endl;
+    std::cout<<std::endl<<"MOD2:"<<passive_mod2<<std::endl;
+    std::cout<<std::endl<<"t1:"<<target_mod<<std::endl;
 
     const auto& ci_coeffs1 = wavefunction1.get_coefficients();
     const auto& ci_coeffs2 = wavefunction2.get_coefficients();
@@ -114,10 +120,11 @@ VectorX<double> calculateDysonAmplitudes(const WaveFunction& wavefunction1, cons
 
             // retrieve the address of the new onv
             size_t address = target_fock_space2.getAddress(onv.get_unsigned_representation());
+            std::cout<<std::endl<<"address:"<<address<<std::endl;
 
             double coeff = 0;
             for (size_t Ip = 0; Ip < passive_fock_space1.get_dimension(); Ip++) {  // passive Fock space is identical and allows for repeat updates
-                coeff += sign * ci_coeffs1(It * target_mod + Ip * passive_mod) * ci_coeffs2(address * target_mod + Ip * passive_mod);
+                coeff += sign * ci_coeffs1(It * target_mod + Ip * passive_mod1) * ci_coeffs2(address * target_mod + Ip * passive_mod2);
             }
             dyson_coeff(p) += coeff;
 

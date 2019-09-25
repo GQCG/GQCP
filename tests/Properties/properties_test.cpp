@@ -111,8 +111,11 @@ BOOST_AUTO_TEST_CASE ( dipole_N2_STO_3G ) {
  */
 BOOST_AUTO_TEST_CASE ( dyson_amplitudes) {
 
-    GQCP::VectorX<double> reference_amplitudes = GQCP::VectorX<double>::Zero(2); 
-    reference_amplitudes << 0.46752445464799997, 0.8415438533449999;
+    GQCP::VectorX<double> reference_amplitudes_beta = GQCP::VectorX<double>::Zero(2); 
+    reference_amplitudes_beta << 0.537653264399, 0.794791398869;
+
+    GQCP::VectorX<double> reference_amplitudes_alpha = GQCP::VectorX<double>::Zero(2); 
+    reference_amplitudes_alpha << 0.537653264399, 0.794791398869;
 
     const size_t K = 2;
     const size_t N = 2;
@@ -133,6 +136,8 @@ BOOST_AUTO_TEST_CASE ( dyson_amplitudes) {
     const auto dyson_coefficients_beta = GQCP::calculateDysonAmplitudes(wavefunction1, wavefunction2);  // coefficients with a difference in beta occupance
     const auto dyson_coefficients_alpha = GQCP::calculateDysonAmplitudes(wavefunction1, wavefunction3);  // coefficients with a difference in alpha occupance
 
-    BOOST_CHECK(dyson_coefficients_beta.isApprox(reference_amplitudes, 1.0e-6));
-    BOOST_CHECK(dyson_coefficients_alpha.isApprox(reference_amplitudes, 1.0e-6));
+    std::cout<<std::endl<<dyson_coefficients_beta;
+    std::cout<<std::endl<<std::endl<<dyson_coefficients_alpha;
+    BOOST_CHECK(dyson_coefficients_beta.isApprox(reference_amplitudes_beta, 1.0e-6));
+    BOOST_CHECK(dyson_coefficients_alpha.isApprox(reference_amplitudes_alpha, 1.0e-6));
 }
