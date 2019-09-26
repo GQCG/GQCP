@@ -17,8 +17,8 @@
 // 
 #include "Properties/properties.hpp"
 
-#include "Properties/expectation_values.hpp"
 #include "FockSpace/ProductFockSpace.hpp"
+#include "Properties/expectation_values.hpp"
 
 
 namespace GQCP {
@@ -47,7 +47,7 @@ Vector<double, 3> calculateElectronicDipoleMoment(const VectorSQOneElectronOpera
  *
  *  @return a vector with the Dyson orbital amplitudes  
  */
-VectorX<double> calculateDysonAmplitudes(const WaveFunction& wavefunction1, const WaveFunction& wavefunction2) {
+VectorX<double> calculateDysonOrbitalCoefficients(const WaveFunction& wavefunction1, const WaveFunction& wavefunction2) {
 
     // Check the arguments
     if (wavefunction1.get_fock_space().get_type() != FockSpaceType::ProductFockSpace) {
@@ -69,13 +69,15 @@ VectorX<double> calculateDysonAmplitudes(const WaveFunction& wavefunction1, cons
 
     // Initialize environment variables
 
-    // the passive spin Fock spaces are the Fock spaces that are equal for both wave functions, target Fock spaces have an electron difference of one
-    //  we initialize the environments for the case in which they differ one beta electron
+    // The 'passive' spin Fock spaces are the Fock spaces that are equal for both wave functions
+    // The 'target' spin Fock spaces have an electron difference of one
+    // We initialize the variables for the case in which they differ in one beta electron, if this isn't the case, we will update it later    auto passive_fock_space1 = fock_space1.get_fock_space_alpha();
     auto passive_fock_space1 = fock_space1.get_fock_space_alpha();
     auto passive_fock_space2 = fock_space2.get_fock_space_alpha();
     auto target_fock_space1 = fock_space1.get_fock_space_beta();
     auto target_fock_space2 = fock_space2.get_fock_space_beta();
 
+    // Mod variables relate to the modification of the address jump in coefficient index according to the ordering of the spin ONVs 
     size_t passive_mod1 = target_fock_space1.get_dimension();
     size_t passive_mod2 = target_fock_space2.get_dimension();
     size_t target_mod = 1;
@@ -95,36 +97,34 @@ VectorX<double> calculateDysonAmplitudes(const WaveFunction& wavefunction1, cons
     const auto& ci_coeffs1 = wavefunction1.get_coefficients();
     const auto& ci_coeffs2 = wavefunction2.get_coefficients();
 
-    VectorX<double> dyson_coeff = VectorX<double>::Zero(fock_space1.get_K());
+    VectorX<double> dyson_coeffs = VectorX<double>::Zero(fock_space1.get_K());
 
-    // Dyson algorithm
-    //  perform a CI iteration over the spin Fock space with a higher electron occupation
-    //  for each ONV perform the operation to transform it to a valid ONV for that of the lesser occupied Fock space
-    //  based on the address match the correct coefficients
-    //  the coefficients products are summed according to the index of the operation on the initial ONV
+    // The actual algorithm to determine the Dyson amplitudes
+    // Since we want to calculate the overlap between two wave functions, the ONVs should have an equal number of electrons
+    // We therefore iterate over the ONVs of the 'target' Fock space, which all have an electron more, and annihilate in one of the orbitals (let the index of that orbital be called 'p')
+    // By calculating the overlap in the (N-1)-Fock space, we can calculate the contributions to the  'p'-th coefficient (i.e. the Dyson amplitude) of the Dyson orbital
     ONV onv = target_fock_space1.makeONV(0);
 
     for (size_t It = 0; It < target_fock_space1.get_dimension(); It++) {  // It loops over addresses of the target Fock space
-        int sign = -1;  // operator sign
-        for (size_t e = 0; e < target_fock_space1.get_N(); e++) {  // loop over electrons in the onv
+        int sign = -1;  // total phase factor of all the annihilations that have occurred
+        for (size_t e = 0; e < target_fock_space1.get_N(); e++) {  // loop over electrons in the ONV
             
             sign *= -1; 
             size_t p = onv.get_occupation_index(e);
 
-            // annihilation results in valid onv (N-1) in the target Fock space of wavefunction2
+            // Annihilate on the corresponding orbital, to make sure we can calculate overlaps in the (N-1)-'target' Fock space
             onv.annihilate(p);
 
-            // retrieve the address of the new onv
+            // Now, we calculate the overlap in the (N-1)-'target' Fock space
+            // In order to access the correct coefficients for the, we need the address of the resulting (annihilated) ONV inside the 'target' Fock space
             size_t address = target_fock_space2.getAddress(onv.get_unsigned_representation());
 
             double coeff = 0;
-            for (size_t Ip = 0; Ip < passive_fock_space1.get_dimension(); Ip++) {  // passive Fock space is identical and allows for repeat updates
-                coeff += sign * ci_coeffs1(It * target_mod + Ip * passive_mod1) * ci_coeffs2(address * target_mod + Ip * passive_mod2);
+            for (size_t Ip = 0; Ip < passive_fock_space1.get_dimension(); Ip++) {  // Ip loops over the addresses of the passive Fock space
+                coeff += sign * ci_coeffs1(It * target_mod + Ip * passive_mod1) * ci_coeffs2(address * target_mod + Ip * passive_mod2);  // access the indices of the coefficient vectors
             }
-            dyson_coeff(p) += coeff;
-
-            // restore the onv to allow iteration
-            onv.create(p);
+            dyson_coeffs(p) += coeff;
+            onv.create(p);  // allow the iteration to continue with the original ONV
         }
 
         if (It < target_fock_space1.get_dimension() - 1) {  // prevent last permutation to occur
@@ -132,7 +132,7 @@ VectorX<double> calculateDysonAmplitudes(const WaveFunction& wavefunction1, cons
         }
     }  // target address (It) loop
     
-    return dyson_coeff;
+    return dyson_coeffs;
 }
 
 

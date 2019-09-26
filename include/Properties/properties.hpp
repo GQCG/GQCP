@@ -42,7 +42,7 @@ Vector<double, 3> calculateElectronicDipoleMoment(const VectorSQOneElectronOpera
  *
  *  @return a vector with the Dyson orbital amplitudes  
  */
-VectorX<double> calculateDysonAmplitudes(const WaveFunction& wavefunction1, const WaveFunction& wavefunction2);
+VectorX<double> calculateDysonOrbitalCoefficients(const WaveFunction& wavefunction1, const WaveFunction& wavefunction2);
 
 
 }  // namespace GQCP
