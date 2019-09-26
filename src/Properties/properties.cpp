@@ -71,7 +71,7 @@ VectorX<double> calculateDysonOrbitalCoefficients(const WaveFunction& wavefuncti
 
     // The 'passive' spin Fock spaces are the Fock spaces that are equal for both wave functions
     // The 'target' spin Fock spaces have an electron difference of one
-    // We initialize the variables for the case in which they differ in one beta electron, if this isn't the case, we will update it later    auto passive_fock_space1 = fock_space1.get_fock_space_alpha();
+    // We initialize the variables for the case in which they differ in one beta electron, if this isn't the case, we will update it later 
     auto passive_fock_space1 = fock_space1.get_fock_space_alpha();
     auto passive_fock_space2 = fock_space2.get_fock_space_alpha();
     auto target_fock_space1 = fock_space1.get_fock_space_beta();
