@@ -20,8 +20,11 @@
 #include <boost/test/unit_test.hpp>
 
 #include "Basis/Integrals/Interfaces/LibintInterfacer.hpp"
+#include "CISolver/CISolver.hpp"
+#include "HamiltonianBuilder/FCI.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
 #include "Properties/properties.hpp"
+#include "RDM/RDMCalculator.hpp"
 #include "RHF/DIISRHFSCFSolver.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
 #include "units.hpp"
@@ -98,4 +101,42 @@ BOOST_AUTO_TEST_CASE ( dipole_N2_STO_3G ) {
 
     GQCP::Vector<double, 3> total_dipole_moment = GQCP::Operator::NuclearDipole(N2).value() + GQCP::calculateElectronicDipoleMoment(dipole_op, D);
     BOOST_CHECK(std::abs(total_dipole_moment.norm() - (0.0)) < 1.0e-08);
+}
+
+
+/**
+ *  Test the Dyson algorithm against manually calculated coefficients for two (normalized) toy wave functions
+ */
+BOOST_AUTO_TEST_CASE ( dyson_coefficients ) {
+
+    // Set up the manually calculated references
+    GQCP::VectorX<double> reference_amplitudes_beta = GQCP::VectorX<double>::Zero(2); 
+    reference_amplitudes_beta << 0.537653264399, 0.794791398869;
+
+    GQCP::VectorX<double> reference_amplitudes_alpha = GQCP::VectorX<double>::Zero(2); 
+    reference_amplitudes_alpha << 0.39739531532399996, 0.9116729926689999;
+
+    // Set up the toy wave functions
+    const size_t K = 2;
+    const size_t N = 2;
+ 
+    const GQCP::ProductFockSpace fock_space1 (K, N/2, N/2);
+    const GQCP::ProductFockSpace fock_space2 (K, N/2, N/2-1);
+    const GQCP::ProductFockSpace fock_space3 (K, N/2-1, N/2);
+  
+    GQCP::VectorX<double> coeffs1 = GQCP::VectorX<double>::Zero(4); 
+    coeffs1 << 0.182574, 0.365148, 0.547723, 0.730297;
+    GQCP::VectorX<double> coeffs2 = GQCP::VectorX<double>::Zero(2); 
+    coeffs2 << 0.640184, 0.768221;
+    
+    const auto wavefunction1 = GQCP::WaveFunction(fock_space1, coeffs1);
+    const auto wavefunction2 = GQCP::WaveFunction(fock_space2, coeffs2);
+    const auto wavefunction3 = GQCP::WaveFunction(fock_space3, coeffs2);
+
+    // Calculate the coefficients of the Dyson orbitals and check with the reference
+    const auto dyson_coefficients_beta = GQCP::calculateDysonOrbitalCoefficients(wavefunction1, wavefunction2);  // coefficients with a difference in beta occupation
+    const auto dyson_coefficients_alpha = GQCP::calculateDysonOrbitalCoefficients(wavefunction1, wavefunction3);  // coefficients with a difference in alpha occupation
+
+    BOOST_CHECK(dyson_coefficients_beta.isApprox(reference_amplitudes_beta, 1.0e-6));
+    BOOST_CHECK(dyson_coefficients_alpha.isApprox(reference_amplitudes_alpha, 1.0e-6));
 }
