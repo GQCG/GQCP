@@ -107,7 +107,7 @@ BOOST_AUTO_TEST_CASE ( dipole_N2_STO_3G ) {
 
 
 /**
- *  Test the Dyson amplitude algorithm against manually calculated amplitudes for two (normalized) toy wave functions
+ *  Test the Dyson algorithm against manually calculated coefficients for two (normalized) toy wave functions
  */
 BOOST_AUTO_TEST_CASE ( dyson_coefficients ) {
 

@@ -108,11 +108,10 @@ VectorX<double> calculateDysonOrbitalCoefficients(const WaveFunction& wavefuncti
     for (size_t It = 0; It < target_fock_space1.get_dimension(); It++) {  // It loops over addresses of the target Fock space
         int sign = -1;  // total phase factor of all the annihilations that have occurred
         for (size_t e = 0; e < target_fock_space1.get_N(); e++) {  // loop over electrons in the ONV
-            
+        
+            // Annihilate on the corresponding orbital, to make sure we can calculate overlaps in the (N-1)-'target' Fock space
             sign *= -1; 
             size_t p = onv.get_occupation_index(e);
-
-            // Annihilate on the corresponding orbital, to make sure we can calculate overlaps in the (N-1)-'target' Fock space
             onv.annihilate(p);
 
             // Now, we calculate the overlap in the (N-1)-'target' Fock space
