@@ -104,7 +104,7 @@ double AP1roGPSESolver::calculateJacobianElement(const AP1roGGeminalCoefficients
 /**
  *  @param G        the AP1roG geminal coefficients
  *
- *  @return the Jacobian at the given geminal coefficients
+ *  @return the Jacobian (in a row-major representation) at the given geminal coefficients
  */
 SquareMatrix<double> AP1roGPSESolver::calculateJacobian(const AP1roGGeminalCoefficients& G) const {
 
@@ -190,7 +190,7 @@ double AP1roGPSESolver::calculateCoordinateFunction(const AP1roGGeminalCoefficie
 /**
  *  @param G        the AP1roG geminal coefficients
  *
- *  @return the vector of coordinate functions at the given geminal coefficients
+ *  @return a row-major vector of coordinate functions at the given geminal coefficients
  */
 VectorX<double> AP1roGPSESolver::calculateCoordinateFunctions(const AP1roGGeminalCoefficients& G) const {
 
@@ -218,23 +218,24 @@ void AP1roGPSESolver::solve() {
 
     // Solve the AP1roG equations using a Newton-based algorithm
 
-    VectorFunction f = [this](const VectorX<double>& x) { 
-        AP1roGGeminalCoefficients G (x, this->N_P, this->K);
-        return this->calculateCoordinateFunctions(G); 
+    VectorFunction f = [this](const VectorX<double>& x) {  // requires a row-major vector as input
+        const auto G = AP1roGGeminalCoefficients::FromRowMajor(x, this->N_P, this->K);
+        return this->calculateCoordinateFunctions(G);  // returns a row-major vector
     };
-    MatrixFunction J = [this](const VectorX<double>& x) { 
-        AP1roGGeminalCoefficients G (x, this->N_P, this->K);
-        return this->calculateJacobian(G); 
+    MatrixFunction J = [this](const VectorX<double>& x) {  // requires a row-major vector as input
+        const auto G = AP1roGGeminalCoefficients::FromRowMajor(x, this->N_P, this->K);
+        return this->calculateJacobian(G);  // returns a 'row-major' matrix
     };
 
 
-    VectorX<double> x0 = this->geminal_coefficients.asVector();
+    VectorX<double> x0 = this->geminal_coefficients.asVector();  // a row-major vector
     NewtonSystemOfEquationsSolver syseq_solver (x0, f, J, this->convergence_threshold, this->maximum_number_of_iterations);
     syseq_solver.solve();
+    const auto& solution = syseq_solver.get_solution();  // a row-major vector
 
 
     // Set the solution
-    this->geminal_coefficients = AP1roGGeminalCoefficients(syseq_solver.get_solution(), this->N_P, this->K);
+    this->geminal_coefficients = AP1roGGeminalCoefficients::FromRowMajor(solution, this->N_P, this->K);
     this->electronic_energy = calculateAP1roGEnergy(this->geminal_coefficients, this->sq_hamiltonian);
 }
 

@@ -22,15 +22,20 @@
 #include "Geminals/AP1roGGeminalCoefficients.hpp"
 
 
+/**
+ *  Check if the number of geminal coefficients is correctly implemented
+ */
 BOOST_AUTO_TEST_CASE ( numberOfGeminalCoefficients ) {
 
     BOOST_CHECK_EQUAL(GQCP::AP1roGGeminalCoefficients::numberOfGeminalCoefficients(2, 5), 6);
-
     BOOST_CHECK_THROW(GQCP::AP1roGGeminalCoefficients::numberOfGeminalCoefficients(4, 4), std::invalid_argument);
 }
 
 
-BOOST_AUTO_TEST_CASE ( asMatrix ) {
+/**
+ *  Check if the construction of AP1roG geminal coefficients from a row-major vector represention is correct
+ */
+BOOST_AUTO_TEST_CASE ( FromRowMajor ) {
 
     // For N_P=2 and K=5, we have an AP1roG geminal coefficient matrix that looks like the following matrix:
     GQCP::MatrixX<double> G (2, 5);
@@ -42,60 +47,104 @@ BOOST_AUTO_TEST_CASE ( asMatrix ) {
     g << 1, 2, 3, 4, 5, 6;
 
 
-    GQCP::AP1roGGeminalCoefficients gem_coeff (g, 2, 5);
+    const auto gem_coeff = GQCP::AP1roGGeminalCoefficients::FromRowMajor(g, 2, 5);
     BOOST_CHECK(gem_coeff.asMatrix().isApprox(G));
 }
 
 
+/**
+ *  Check if the construction of AP1roG geminal coefficients from a column-major vector represention is correct
+ */
+BOOST_AUTO_TEST_CASE ( FromColumnMajor ) {
+
+    // For N_P=2 and K=5, we have an AP1roG geminal coefficient matrix that looks like the following matrix:
+    GQCP::MatrixX<double> G (2, 5);
+    G << 1, 0,  1, 2, 3,
+         0, 1,  4, 5, 6;
+
+
+    // Test that we get the previous representation if we use the following vector that uses column-major indexing
+    GQCP::VectorX<double> g (6);
+    g << 1, 4, 2, 5, 3, 6;
+
+    const auto gem_coeff = GQCP::AP1roGGeminalCoefficients::FromColumnMajor(g, 2, 5);
+    BOOST_CHECK(gem_coeff.asMatrix().isApprox(G));
+}
+
+
+/**
+ *  Test if the conversion from AP1roG geminal coefficients to a wave function is correct (example 1)
+ */
 BOOST_AUTO_TEST_CASE ( toWaveFunction_example1 ) {
 
-    size_t K = 3;
-    size_t N_P = 1;
-
-    GQCP::VectorX<double> g (2);
-    g << 2, 3;
-    GQCP::AP1roGGeminalCoefficients gem_coeff (g, N_P, K);
-
+    // Set up the normalized reference coefficients
     GQCP::VectorX<double> ref_coefficients (3);
     ref_coefficients << 1, 2, 3;
     ref_coefficients.normalize();
 
+
+    // Construct the toy geminal coefficients
+    const size_t K = 3;
+    const size_t N_P = 1;
+
+    GQCP::VectorX<double> g (2);
+    g << 2, 3;
+    const auto gem_coeff = GQCP::AP1roGGeminalCoefficients::FromRowMajor(g, N_P, K);
+
+
+    // Calculate the conversion from geminal coefficients to a wave function and check the result
     GQCP::FockSpace fock_space (K, N_P);
     BOOST_CHECK(ref_coefficients.isApprox(gem_coeff.toWaveFunction(fock_space).get_coefficients()));
 }
 
 
+/**
+ *  Test if the conversion from AP1roG geminal coefficients to a wave function is correct (example 2)
+ */
 BOOST_AUTO_TEST_CASE ( toWaveFunction_example2 ) {
 
-    size_t K = 3;
-    size_t N_P = 2;
-
-    GQCP::VectorX<double> g (2);
-    g << 2, 3;
-    GQCP::AP1roGGeminalCoefficients gem_coeff (g, N_P, K);
-
+    // Set up the normalized reference coefficients
     GQCP::VectorX<double> ref_coefficients (3);
     ref_coefficients << 1, 3, 2;
     ref_coefficients.normalize();
 
+
+    // Construct the toy geminal coefficients
+    const size_t K = 3;
+    const size_t N_P = 2;
+
+    GQCP::VectorX<double> g (2);
+    g << 2, 3;
+    const auto gem_coeff = GQCP::AP1roGGeminalCoefficients::FromRowMajor(g, N_P, K);
+
+
+    // Calculate the conversion from geminal coefficients to a wave function and check the result
     GQCP::FockSpace fock_space (K, N_P);
     BOOST_CHECK(ref_coefficients.isApprox(gem_coeff.toWaveFunction(fock_space).get_coefficients()));
 }
 
 
+/**
+ *  Test if the conversion from AP1roG geminal coefficients to a wave function is correct (example 3)
+ */
 BOOST_AUTO_TEST_CASE ( toWaveFunction_example3 ) {
 
-    size_t K = 5;
-    size_t N_P = 2;
-
-    GQCP::VectorX<double> g (6);
-    g << 2, 3, 4, 5, 6, 7;
-    GQCP::AP1roGGeminalCoefficients gem_coeff (g, N_P, K);
-
+    // Set up the normalized reference coefficients
     GQCP::VectorX<double> ref_coefficients (10);
     ref_coefficients << 1, 5, 2, 6, 3, 27, 7, 4, 34, 45;
     ref_coefficients.normalize();
 
+
+    // Construct the toy geminal coefficients
+    const size_t K = 5;
+    const size_t N_P = 2;
+
+    GQCP::VectorX<double> g (6);
+    g << 2, 3, 4, 5, 6, 7;
+    const auto gem_coeff = GQCP::AP1roGGeminalCoefficients::FromRowMajor(g, N_P, K);
+
+
+    // Calculate the conversion from geminal coefficients to a wave function and check the result
     GQCP::FockSpace fock_space (K, N_P);
     BOOST_CHECK(ref_coefficients.isApprox(gem_coeff.toWaveFunction(fock_space).get_coefficients()));
 }

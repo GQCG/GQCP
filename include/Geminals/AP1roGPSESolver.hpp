@@ -48,7 +48,7 @@ public:
     /**
      *  @param G        the AP1roG geminal coefficients
      *
-     *  @return the Jacobian at the given geminal coefficients
+     *  @return the Jacobian (in a row-major representation) at the given geminal coefficients
      */
     SquareMatrix<double> calculateJacobian(const AP1roGGeminalCoefficients& G) const;
 
@@ -64,7 +64,7 @@ public:
     /**
      *  @param G        the AP1roG geminal coefficients
      *
-     *  @return the vector of coordinate functions at the given geminal coefficients
+     *  @return a row-major vector of coordinate functions at the given geminal coefficients
      */
     VectorX<double> calculateCoordinateFunctions(const AP1roGGeminalCoefficients& G) const;
 

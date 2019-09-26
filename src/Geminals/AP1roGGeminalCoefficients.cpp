@@ -36,6 +36,7 @@ AP1roGGeminalCoefficients::AP1roGGeminalCoefficients() :
     AP1roGVariables()
 {}
 
+
 /**
  *  @param g        the geminal coefficients in a vector representation that is in row-major storage
  *
@@ -77,7 +78,7 @@ AP1roGGeminalCoefficients AP1roGGeminalCoefficients::WeakInteractionLimit(const 
     const auto& g = sq_hamiltonian.twoElectron().parameters();  // two-electron integrals
 
     // Provide the weak interaction limit values for the geminal coefficients
-    VectorX<double> g_vector = VectorX<double>::Zero(number_of_geminal_coefficients);
+    VectorX<double> g_vector = VectorX<double>::Zero(number_of_geminal_coefficients);  // in row-major representation
     for (size_t mu = 0; mu < number_of_geminal_coefficients; mu++) {
         size_t i = GQCP::matrixIndexMajor(mu, K, N_P);
         size_t a = GQCP::matrixIndexMinor(mu, K, N_P);
@@ -86,7 +87,43 @@ AP1roGGeminalCoefficients AP1roGGeminalCoefficients::WeakInteractionLimit(const 
     }
 
 
-    return AP1roGGeminalCoefficients(g_vector, N_P, K);
+    return AP1roGGeminalCoefficients::FromRowMajor(g_vector, N_P, K);
+}
+
+
+/**
+ *  @param g        the geminal coefficients in a vector representation that is in column-major storage
+ *
+ *  @param N_P      the number of electron pairs (= the number of geminals)
+ *  @param K        the number of spatial orbitals
+ */
+AP1roGGeminalCoefficients AP1roGGeminalCoefficients::FromColumnMajor(const VectorX<double>& g, size_t N_P, size_t K) {
+
+    // Loop over the row indices and column indices to place the given column-major elements into a row-major vector
+    const auto number_of_geminal_coefficients = AP1roGGeminalCoefficients::numberOfGeminalCoefficients(N_P, K);
+    VectorX<double> g_row_major = VectorX<double>::Zero(number_of_geminal_coefficients);
+    for (size_t i = 0; i < N_P; i++) {  // i labels rows
+        for (size_t j = 0; j < K-N_P; j++) {  // j labels columns
+            size_t row_major_index = i * (K-N_P) + j;
+            size_t column_major_index = j * N_P + i;
+
+            g_row_major(row_major_index) = g(column_major_index);  // access the column-major vector and place them in the row-major vector
+        }
+    }
+
+    return AP1roGGeminalCoefficients::FromRowMajor(g_row_major, N_P, K);
+}
+
+
+/**
+ *  @param g        the geminal coefficients in a vector representation that is in row-major storage
+ *
+ *  @param N_P      the number of electron pairs (= the number of geminals)
+ *  @param K        the number of spatial orbitals
+ */
+AP1roGGeminalCoefficients AP1roGGeminalCoefficients::FromRowMajor(const VectorX<double>& g, const size_t N_P, const size_t K) {
+
+    return AP1roGGeminalCoefficients(g, N_P, K);
 }
 
 
@@ -94,6 +131,7 @@ AP1roGGeminalCoefficients AP1roGGeminalCoefficients::WeakInteractionLimit(const 
 /*
  *  DESTRUCTOR
  */
+
 AP1roGGeminalCoefficients::~AP1roGGeminalCoefficients() {}
 
 

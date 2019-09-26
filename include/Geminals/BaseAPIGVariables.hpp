@@ -45,7 +45,7 @@ public:
      *  @param N_P      the number of electron pairs (= the number of geminals)
      *  @param K        the number of spatial orbitals
      */
-    BaseAPIGVariables(const VectorX<double>& x, size_t N_P, size_t K);
+    BaseAPIGVariables(const VectorX<double>& x, const size_t N_P, const size_t K);
 
     /**
      *  Default constructor setting everything to zero
@@ -64,7 +64,7 @@ public:
      *
      *  @return the variable x_mu
      */
-    double operator()(size_t mu) const { return this->x(mu); }
+    double operator()(const size_t mu) const { return this->x(mu); }
 
     /**
      *  @param i        the major (geminal, subscript, non-contiguous) index
@@ -72,7 +72,7 @@ public:
      *
      *  @return the variable X_i^p
      */
-    double operator()(size_t i, size_t p) const;
+    double operator()(const size_t i, const size_t p) const;
 
 
     // GETTERS
@@ -98,14 +98,14 @@ public:
      *
      *  @return the major (geminal, subscript, non-contiguous) index i in the matrix of the variables
      */
-    virtual size_t matrixIndexMajor(size_t vector_index) const = 0;
+    virtual size_t matrixIndexMajor(const size_t vector_index) const = 0;
 
     /**
      *  @param vector_index     the vector index of the variable
      *
      *  @return the minor (orbital, superscript, contiguous) index p in the matrix of the variables
      */
-    virtual size_t matrixIndexMinor(size_t vector_index) const = 0;
+    virtual size_t matrixIndexMinor(const size_t vector_index) const = 0;
 
     /**
      *  @param i        the major (geminal, subscript, non-contiguous) index
@@ -113,7 +113,7 @@ public:
      *
      *  @return the vector index of the variable X_i^p
      */
-    virtual size_t vectorIndex(size_t i, size_t p) const = 0;
+    virtual size_t vectorIndex(const size_t i, const size_t p) const = 0;
 };
 
 

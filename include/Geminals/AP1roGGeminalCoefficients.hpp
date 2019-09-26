@@ -34,6 +34,7 @@ namespace GQCP {
 class AP1roGGeminalCoefficients : public AP1roGVariables, public GeminalCoefficientsInterface {
 public:
     // CONSTRUCTORS
+
     /**
      *  Default constructor setting everything to zero
      */
@@ -45,7 +46,7 @@ public:
      *  @param N_P      the number of electron pairs (= the number of geminals)
      *  @param K        the number of spatial orbitals
      */
-    AP1roGGeminalCoefficients(const VectorX<double>& g, size_t N_P, size_t K);
+    AP1roGGeminalCoefficients(const VectorX<double>& g, const size_t N_P, const size_t K);
 
     /**
      *  Constructor that sets the geminal coefficients to zero
@@ -53,10 +54,27 @@ public:
      *  @param N_P      the number of electron pairs (= the number of geminals)
      *  @param K        the number of spatial orbitals
      */
-    AP1roGGeminalCoefficients(size_t N_P, size_t K);
+    AP1roGGeminalCoefficients(const size_t N_P, const size_t K);
 
 
     // NAMED CONSTRUCTORS
+
+    /**
+     *  @param g        the geminal coefficients in a vector representation that is in row-major storage
+     *
+     *  @param N_P      the number of electron pairs (= the number of geminals)
+     *  @param K        the number of spatial orbitals
+     */
+    static AP1roGGeminalCoefficients FromColumnMajor(const VectorX<double>& g, const size_t N_P, const size_t K);
+
+    /**
+     *  @param g        the geminal coefficients in a vector representation that is in row-major storage
+     *
+     *  @param N_P      the number of electron pairs (= the number of geminals)
+     *  @param K        the number of spatial orbitals
+     */
+    static AP1roGGeminalCoefficients FromRowMajor(const VectorX<double>& g, const size_t N_P, const size_t K);
+
     /**
      *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis
      *  @param N_P                  the number of electron pairs (= the number of geminals)
@@ -71,16 +89,18 @@ public:
 
 
     // STATIC PUBLIC METHODS
+
     /**
      *  @param N_P      the number of electron pairs (= the number of geminals)
      *  @param K        the number of spatial orbitals
      *
      *  @return the number of 'free' geminal coefficients
      */
-    static size_t numberOfGeminalCoefficients(size_t N_P, size_t K);
+    static size_t numberOfGeminalCoefficients(const size_t N_P, const size_t K);
 
 
     // PUBLIC METHODS
+
     /**
      *  @return the geminal coefficients in matrix form
      */
