@@ -48,7 +48,7 @@ FukuiDysonAnalysis::FukuiDysonAnalysis(const Molecule& molecule, const std::stri
     auto restricted_molecule = this->molecule; 
     const bool open_shell_entry = (N_P*2 != this->molecule.numberOfElectrons());
     if (open_shell_entry) {
-        restricted_molecule = Molecule(this->molecule.nuclearFramework(), this->molecule.totalNucleicCharge() - this->molecule.numberOfAtoms.numberOfElectrons() +1);
+        restricted_molecule = Molecule(this->molecule.nuclearFramework(), this->molecule.totalNucleicCharge() - this->molecule.numberOfElectrons() +1);
     }
 
     if (use_diis) {
