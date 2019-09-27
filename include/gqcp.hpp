@@ -148,6 +148,7 @@
 
 #include "QCMethod/DOCINewtonOrbitalOptimizer.hpp"
 #include "QCMethod/FCI.hpp"
+#include "QCMethod/FukuiDysonAnalysis.hpp"
 #include "QCMethod/Hubbard.hpp"
 #include "QCMethod/MullikenConstrainedFCI.hpp"
 

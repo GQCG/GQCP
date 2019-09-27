@@ -28,7 +28,7 @@ namespace py = pybind11;
 namespace gqcpy {
 
 
-void bindFukuiDysonAnalysis(py::module& module) {
+void bindQCMethodFukuiDysonAnalysis(py::module& module) {
     py::class_<GQCP::QCMethod::FukuiDysonAnalysis>(module, "FukuiDysonAnalysis", "A class that solves the FCI Hamiltonian for a given molecule and performs Fukui and Dyson analysis")
         .def(py::init<const GQCP::Molecule& , const std::string&, const bool>(), py::arg("molecule"), py::arg("basis_set"), py::arg("use_diis"))
         .def("get_dyson_coefficients", &GQCP::QCMethod::FukuiDysonAnalysis::get_dyson_coefficients)
