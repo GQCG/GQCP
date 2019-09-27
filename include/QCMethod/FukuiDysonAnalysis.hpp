@@ -21,7 +21,7 @@
 #include "CISolver/CISolver.hpp"
 #include "FockSpace/ProductFockSpace.hpp"
 #include "HamiltonianBuilder/FCI.hpp"
-#include "HamiltonianParameters/HamiltonianParameters.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "RDM/RDMCalculator.hpp"
 
 
@@ -40,8 +40,8 @@ private:
     SingleParticleBasis<double, GTOShell> sp_basis;
     SQHamiltonian<double> sq_hamiltonian;
     std::string basis_set;  // the basisset that should be used
-    ProductFockSpace fock_space1 = ProductFockSpace(0, 0, 0, 0); // Default
-    ProductFockSpace fock_space2 = ProductFockSpace(0, 0, 0, 0); // Default
+    ProductFockSpace fock_space1 = ProductFockSpace(0, 0, 0); // Default
+    ProductFockSpace fock_space2 = ProductFockSpace(0, 0, 0); // Default
 
     VectorX<double> dyson_coefficients;
     OneRDM<double> fukui_matrix;
@@ -60,11 +60,11 @@ public:
 
 
     // GETTERS
-    VectorX<double> get_dyson_coefficients(const size_t index = 0) const { this->dyson_coefficients; };
-    OneRDM<double> get_fukui_matrix(const size_t index = 0) const { this->fukui_matrix; };
-    OneRDM<double> get_fukui_naturals(const size_t index = 0) const { this->fukui_naturals; };
-    SquareMatrix<double> get_fukui_vectors(const size_t index = 0) const { this->fukui_vectors; };
-    SquareMatrix<double> get_canonical_matrix(const size_t index = 0) const { this->sp_basis.transformationMatrix(); };
+    VectorX<double> get_dyson_coefficients() const { return this->dyson_coefficients; };
+    OneRDM<double> get_fukui_matrix() const { return this->fukui_matrix; };
+    OneRDM<double> get_fukui_naturals() const { return this->fukui_naturals; };
+    SquareMatrix<double> get_fukui_vectors() const { return this->fukui_vectors; };
+    SquareMatrix<double> get_canonical_matrix() const { return this->sp_basis.transformationMatrix(); };
 };
 
 

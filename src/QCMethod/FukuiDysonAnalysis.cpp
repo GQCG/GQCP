@@ -18,6 +18,7 @@
 #include "QCMethod/FukuiDysonAnalysis.hpp"
 
 #include "Basis/transform.hpp"
+#include "Properties/properties.hpp"
 #include "RHF/DIISRHFSCFSolver.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
 
@@ -51,12 +52,12 @@ FukuiDysonAnalysis::FukuiDysonAnalysis(const Molecule& molecule, const std::stri
     }
 
     if (use_diis) {
-        DIISRHFSCFSolver diis_scf_solver (this->sq_hamiltonian, this->sp_basis, restricted_molecule, 6, 6, 1e-12, 500);
+        DIISRHFSCFSolver diis_scf_solver (this->sq_hamiltonian, this->sp_basis, restricted_molecule);
         diis_scf_solver.solve();
         auto rhf_solution = diis_scf_solver.get_solution();
         basisTransform(this->sp_basis, this->sq_hamiltonian, rhf_solution.get_C());
     } else {
-        PlainRHFSCFSolver plain_scf_solver (this->sq_hamiltonian, this->sp_basis, restricted_molecule, 6, 6, 1e-12, 500);
+        PlainRHFSCFSolver plain_scf_solver (this->sq_hamiltonian, this->sp_basis, restricted_molecule);
         plain_scf_solver.solve();
         auto rhf_solution = plain_scf_solver.get_solution();
         basisTransform(this->sp_basis, this->sq_hamiltonian, rhf_solution.get_C());
@@ -87,7 +88,7 @@ FukuiDysonAnalysis::FukuiDysonAnalysis(const Molecule& molecule, const std::stri
     const auto wavefunction1 = ci_solver1.makeWavefunction();
     const auto wavefunction2 = ci_solver2.makeWavefunction();
 
-    this->dyson_coefficients = GQCP::calculateDysonAmplitudes(wavefunction1, wavefunction2);
+    this->dyson_coefficients = calculateDysonOrbitalCoefficients(wavefunction1, wavefunction2);
     
     RDMCalculator rdm_calculator1 (fock_space1);
 
