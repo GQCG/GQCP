@@ -28,7 +28,7 @@ class FukuiDysonAnalysisQCM(unittest.TestCase):
                                         [-3.44064e-17,     0.967513,    -0.252821, -3.44971e-12,   2.9481e-17,  2.72965e-11,  1.81566e-11, -4.41986e-12,  9.74385e-17,  8.53365e-10],
                                         [-0.859249,   2.1864e-16,  7.69967e-16, -1.13947e-14,   -0.0186227,  1.93388e-13,  4.58609e-10,  1.03042e-09,    -0.511218,    -3.61499e-14]] )
 
-        self.fukui_eigenvalues = [-0.0225715, -0.00228606, -0.00228606, -8.02061e-07, 1.2942e-05, 0.000146312, 0.00812185, 0.00812185, 0.0746261, 0.936115]
+        self.fukui_eigenvalues = np.array([-0.0225715, -0.00228606, -0.00228606, -8.02061e-07, 1.2942e-05, 0.000146312, 0.00812185, 0.00812185, 0.0746261, 0.936115])
 
         self.fukui_naturals = np.diagflat(self.fukui_eigenvalues)
         
@@ -43,17 +43,17 @@ class FukuiDysonAnalysisQCM(unittest.TestCase):
                                         [-6.24056e-14,  6.73197e-20,  4.30038e-11,  7.45734e-18, -1.66776e-14,  1.93775e-13, -7.99644e-10, -4.46618e-17,  -0.00228606, -4.30413e-18],
                                         [-5.59942e-15,  0.000599824,  -9.9457e-15,   -0.0426986,  7.48924e-11,  2.03984e-11,  5.87618e-14, -7.59975e-18, -4.30413e-18,   0.00283837]] )
 
-        self.dyson_coefficients = [ 9.71966e-05,  9.52394e-16,   -0.0516701,  6.91108e-13, -1.49184e-14,  1.57069e-15,    0.964144,  3.62447e-09, -8.23077e-10,  -4.4647e-14]                                
+        self.dyson_coefficients = np.array([ 9.71966e-05,  9.52394e-16,   -0.0516701,  6.91108e-13, -1.49184e-14,  1.57069e-15,    0.964144,  3.62447e-09, -8.23077e-10,  -4.4647e-14])                                
 
     def tearDown(self):
         pass
 
     def test_analysis(self):
         """ Compare the various analysis parameters with a reference value """
-        self.assertAlmostEqual(self.fukui_dyson_module.get_fukui_naturals(),  self.fukui_naturals)
-        self.assertAlmostEqual(self.fukui_dyson_module.get_fukui_matrix(),  self.fukui_matrix)
-        self.assertAlmostEqual(self.fukui_dyson_module.get_dyson_coefficients(),  self.dyson_coefficients)
-        self.assertAlmostEqual(self.fukui_dyson_module.get_fukui_vectors(),  self.fukui_vectors)
+        self.assertTrue(np.allclose(self.fukui_dyson_module.get_fukui_naturals(),  self.fukui_naturals))
+        self.assertTrue(np.allclose(self.fukui_dyson_module.get_fukui_matrix(),  self.fukui_matrix))
+        self.assertTrue(np.allclose(self.fukui_dyson_module.get_dyson_coefficients(),  self.dyson_coefficients))
+        self.assertTrue(np.allclose(self.fukui_dyson_module.get_fukui_vectors(),  self.fukui_vectors))
 
     
 if __name__ == '__main__':
