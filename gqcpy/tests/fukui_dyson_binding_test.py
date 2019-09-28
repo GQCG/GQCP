@@ -28,9 +28,7 @@ class FukuiDysonAnalysisQCM(unittest.TestCase):
                                         [-3.44064e-17,     0.967513,    -0.252821, -3.44971e-12,   2.9481e-17,  2.72965e-11,  1.81566e-11, -4.41986e-12,  9.74385e-17,  8.53365e-10],
                                         [-0.859249,   2.1864e-16,  7.69967e-16, -1.13947e-14,   -0.0186227,  1.93388e-13,  4.58609e-10,  1.03042e-09,    -0.511218,    -3.61499e-14]] )
 
-        self.fukui_eigenvalues = np.array([-0.0225715, -0.00228606, -0.00228606, -8.02061e-07, 1.2942e-05, 0.000146312, 0.00812185, 0.00812185, 0.0746261, 0.936115])
-
-        self.fukui_naturals = np.diagflat(self.fukui_eigenvalues)
+        self.fukui_naturals = np.array([-0.0225715, -0.00228606, -0.00228606, -8.02061e-07, 1.2942e-05, 0.000146312, 0.00812185, 0.00812185, 0.0746261, 0.936115])
         
         self.fukui_matrix = np.array(  [[7.21279e-07, -1.22858e-18,  1.10019e-05, -4.49902e-16, -7.18738e-19,  2.31245e-19,  7.23604e-05,  2.74003e-13, -6.24056e-14, -5.59942e-15],
                                         [-1.22858e-18,  1.10586e-06,  7.01173e-17,  4.33624e-05, -6.63581e-13, -1.80578e-13,  6.33228e-16,  -1.1625e-19,  6.73197e-20,  0.000599824],
@@ -50,6 +48,7 @@ class FukuiDysonAnalysisQCM(unittest.TestCase):
 
     def test_analysis(self):
         """ Compare the various analysis parameters with a reference value """
+
         self.assertTrue(np.allclose(self.fukui_dyson_module.get_fukui_naturals(),  self.fukui_naturals))
         self.assertTrue(np.allclose(self.fukui_dyson_module.get_fukui_matrix(),  self.fukui_matrix))
         self.assertTrue(np.allclose(self.fukui_dyson_module.get_dyson_coefficients(),  self.dyson_coefficients))

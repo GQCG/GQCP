@@ -105,7 +105,7 @@ FukuiDysonAnalysis::FukuiDysonAnalysis(const Molecule& molecule, const std::stri
 
     Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes1 (this->fukui_matrix);
 
-    this->fukui_naturals = OneRDM<double>(saes1.eigenvalues().asDiagonal());
+    this->fukui_naturals = VectorX<double>(saes1.eigenvalues());
     this->fukui_vectors = OneRDM<double>(saes1.eigenvectors());
 }
 
