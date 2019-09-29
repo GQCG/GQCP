@@ -45,7 +45,7 @@ private:
 
     VectorX<double> dyson_coefficients;
     OneRDM<double> fukui_matrix;
-    OneRDM<double> fukui_naturals;
+    VectorX<double> fukui_naturals;
     SquareMatrix<double> fukui_vectors;
 
 public:
@@ -62,7 +62,7 @@ public:
     // GETTERS
     VectorX<double> get_dyson_coefficients() const { return this->dyson_coefficients; };
     OneRDM<double> get_fukui_matrix() const { return this->fukui_matrix; };
-    VectorX<double>get_fukui_naturals() const { return this->fukui_naturals; };
+    VectorX<double> get_fukui_naturals() const { return this->fukui_naturals; };
     SquareMatrix<double> get_fukui_vectors() const { return this->fukui_vectors; };
     SquareMatrix<double> get_canonical_matrix() const { return this->sp_basis.transformationMatrix(); };
 };
