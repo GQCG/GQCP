@@ -14,7 +14,7 @@ class FukuiDysonAnalysisQCM(unittest.TestCase):
         O = gqcpy.Nucleus(8, 0.0,  -0.07579 , 0.0)
         H1 = gqcpy.Nucleus(1, 0.86681, 0.60144 , 0.0);  
         H2 = gqcpy.Nucleus(1, -0.86681, 0.60144 , 0.0);  
-        water = gqcpy.Molecule([0,H1,H2]) # The N2 molecule with an intramolecular distance of 2.0 bohr
+        water = gqcpy.Molecule([O,H1,H2]) 
 
         self.fukui_dyson_module = gqcpy.FukuiDysonAnalysis(water, "STO-3G", True)
 
