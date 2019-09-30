@@ -52,6 +52,19 @@ class FukuiDysonAnalysisQCM(unittest.TestCase):
 
     def test_analysis(self):
         """ Compare the various analysis parameters with a reference value """
+                print(self.fukui_dyson_module.get_fukui_naturals())
+        print( )
+        print(self.fukui_dyson_module.get_fukui_matrix())
+        print( )
+
+        print(self.fukui_dyson_module.get_dyson_coefficients())
+        print( )
+
+        print(self.fukui_dyson_module.get_fukui_vectors())
+        print( )
+
+        print(self.fukui_dyson_module.get_canonical_matrix())
+        print( )
         self.assertTrue(np.allclose(self.fukui_dyson_module.get_fukui_naturals(),  self.fukui_naturals))
         self.assertTrue(np.allclose(self.fukui_dyson_module.get_fukui_matrix(),  self.fukui_matrix))
         self.assertTrue(np.allclose(self.fukui_dyson_module.get_dyson_coefficients(),  self.dyson_coefficients))
