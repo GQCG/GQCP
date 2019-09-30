@@ -18,7 +18,7 @@
 #include "Geminals/AP1roGPSESolver.hpp"
 
 #include "Geminals/AP1roG.hpp"
-#include "Mathematical/Optimization/NewtonSystemOfEquationsSolver.hpp"
+#include "Mathematical/Optimization/NewtonNLSystemOfEquationsSolver.hpp"
 
 
 namespace GQCP {
@@ -228,14 +228,13 @@ void AP1roGPSESolver::solve() {
     };
 
 
-    VectorX<double> x0 = this->geminal_coefficients.asVector();  // a row-major vector
-    NewtonSystemOfEquationsSolver syseq_solver (x0, f, J, this->convergence_threshold, this->maximum_number_of_iterations);
-    syseq_solver.solve();
-    const auto& solution = syseq_solver.get_solution();  // a row-major vector
+    VectorX<double> x = this->geminal_coefficients.asVector();  // the initial guess and the solution if it is found; a row-major vector
+    NewtonNLSystemOfEquationsSolver syseq_solver (f, J, this->convergence_threshold, this->maximum_number_of_iterations);
+    syseq_solver.solve(x);  
 
 
     // Set the solution
-    this->geminal_coefficients = AP1roGGeminalCoefficients::FromRowMajor(solution, this->N_P, this->K);
+    this->geminal_coefficients = AP1roGGeminalCoefficients::FromRowMajor(x, this->N_P, this->K);
     this->electronic_energy = calculateAP1roGEnergy(this->geminal_coefficients, this->sq_hamiltonian);
 }
 

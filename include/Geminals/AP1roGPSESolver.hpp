@@ -25,7 +25,7 @@ namespace GQCP {
 
 
 /**
- *  A class that is able to solve the AP1roG PSE equations
+ *  A class that is able to solve the AP1roG projected Schrödinger equations (PSEs)
  */
 class AP1roGPSESolver : public BaseAP1roGSolver {
 public:

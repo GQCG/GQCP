@@ -78,7 +78,7 @@ BOOST_AUTO_TEST_CASE ( norm_squared_function_minimization ) {
     GQCP::VectorX<double> x0 (2);
     x0 << 4, 2;
 
-    GQCP::NewtonMinimizer newton_minimizer (x0, grad, H);  // apparently, the compiler can convert to numopt::VectorFunction and numopt::JacobianFunction
+    GQCP::NewtonMinimizer newton_minimizer (x0, grad, H);
     newton_minimizer.solve();
     GQCP::VectorX<double> solution = newton_minimizer.get_solution();
 

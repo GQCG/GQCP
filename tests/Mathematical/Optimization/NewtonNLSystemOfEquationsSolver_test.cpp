@@ -19,7 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "Mathematical/Optimization/NewtonSystemOfEquationsSolver.hpp"
+#include "Mathematical/Optimization/NewtonNLSystemOfEquationsSolver.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 
 
@@ -78,12 +78,10 @@ BOOST_AUTO_TEST_CASE ( norm_squared_function_syseq ) {
 
 
     // Do the numerical optimization
-    GQCP::VectorX<double> x0 (2);
-    x0 << 3, 2;
-    GQCP::NewtonSystemOfEquationsSolver newton_vector_opt (x0, f, J);  // apparently, the compiler can convert to GQCP::VectorFunction and GQCP::JacobianFunction
-    newton_vector_opt.solve();
-    GQCP::VectorX<double> solution = newton_vector_opt.get_solution();
+    GQCP::VectorX<double> x (2);
+    x << 3, 2;
+    GQCP::NewtonNLSystemOfEquationsSolver newton_vector_opt (f, J);
+    newton_vector_opt.solve(x);
 
-
-    BOOST_CHECK(solution.isZero(1.0e-08));  // the analytical solution of f(x) = (0,0) is x=(0,0)
+    BOOST_CHECK(x.isZero(1.0e-08));  // the analytical solution of f(x) = (0,0) is x=(0,0)
 }

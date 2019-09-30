@@ -37,10 +37,9 @@ protected:
     double convergence_threshold;  // the threshold used to check for convergence on the geminal coefficients
     size_t maximum_number_of_iterations;  // maximum number of Newton steps that may be used to achieve convergence of the PSEs
 
+    // Solutions
     double electronic_energy;  // the converged electronic energy
-
     AP1roGGeminalCoefficients geminal_coefficients;  // the converged geminal coefficients
-
     SQHamiltonian<double> sq_hamiltonian;
 
 
