@@ -45,12 +45,14 @@ FukuiDysonAnalysis::FukuiDysonAnalysis(const Molecule& molecule, const std::stri
     const auto K = this->sp_basis.numberOfBasisFunctions();
     const auto N_P = this->molecule.numberOfElectrons()/2;
 
+    // Define a molecule on which an RHF calculation is allowed
     auto restricted_molecule = this->molecule; 
-    const bool open_shell_entry = (N_P*2 != this->molecule.numberOfElectrons());
+    const bool open_shell_entry = (N_P*2 != this->molecule.numberOfElectrons());  // If the entry is open shell, we require to create a closed shell molecule to allow RHF
     if (open_shell_entry) {
         restricted_molecule = Molecule(this->molecule.nuclearFramework(), this->molecule.totalNucleicCharge() - this->molecule.numberOfElectrons() +1);
     }
 
+    // Perform DIIS or Plain RHF given the flag in the constructor
     if (use_diis) {
         DIISRHFSCFSolver diis_scf_solver (this->sq_hamiltonian, this->sp_basis, restricted_molecule);
         diis_scf_solver.solve();
@@ -63,6 +65,7 @@ FukuiDysonAnalysis::FukuiDysonAnalysis(const Molecule& molecule, const std::stri
         basisTransform(this->sp_basis, this->sq_hamiltonian, rhf_solution.get_C());
     }
 
+    // Depending on wether the initial molecule was open shell we chose different Fock spaces as fock_space1 should always have the highest occupation to fit the algorithm
     if (open_shell_entry) {
         this->fock_space1 = ProductFockSpace(K, N_P + 1, N_P);
         this->fock_space2 = ProductFockSpace(K, N_P, N_P);
@@ -71,13 +74,14 @@ FukuiDysonAnalysis::FukuiDysonAnalysis(const Molecule& molecule, const std::stri
         this->fock_space2 = ProductFockSpace(K, N_P, N_P - 1); 
     }
 
+    // Solve in the FCI space
     FCI fci1 = FCI(fock_space1);
     FCI fci2 = FCI(fock_space2);
     
     CISolver ci_solver1(fci1, sq_hamiltonian);
     CISolver ci_solver2(fci2, sq_hamiltonian);
 
-    // Solve Davidson
+    // Solve with Davidson
     VectorX<double> initial_g1 = fock_space1.HartreeFockExpansion();
     VectorX<double> initial_g2 = fock_space2.HartreeFockExpansion();
     DavidsonSolverOptions davidson_solver_options1 (initial_g1);
@@ -85,11 +89,14 @@ FukuiDysonAnalysis::FukuiDysonAnalysis(const Molecule& molecule, const std::stri
     ci_solver1.solve(davidson_solver_options1);
     ci_solver2.solve(davidson_solver_options2);
 
+    // Retrieve the wavefunctions
     const auto wavefunction1 = ci_solver1.makeWavefunction();
     const auto wavefunction2 = ci_solver2.makeWavefunction();
 
+    // Extract dyson coefficients
     this->dyson_coefficients = calculateDysonOrbitalCoefficients(wavefunction1, wavefunction2);
     
+    // Set up calculations for Fukui analysis by calculating the 1RDMs
     RDMCalculator rdm_calculator1 (fock_space1);
 
     rdm_calculator1.set_coefficients(wavefunction1.get_coefficients());
@@ -101,8 +108,10 @@ FukuiDysonAnalysis::FukuiDysonAnalysis(const Molecule& molecule, const std::stri
     const auto onerdm1 = rdm_calculator1.calculate1RDMs().one_rdm;
     const auto onerdm2 = rdm_calculator2.calculate1RDMs().one_rdm;
 
+    // The Fukui 1RDM
     this->fukui_matrix = onerdm1 - onerdm2;
 
+    // Diagonalize the fukui_matrix to retrieve Fukui naturals
     Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes1 (this->fukui_matrix);
 
     this->fukui_naturals = VectorX<double>(saes1.eigenvalues());

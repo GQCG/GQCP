@@ -13,7 +13,7 @@ class FukuiDysonAnalysisQCM(unittest.TestCase):
         """ Iniates variables to be used by tests """
         C = gqcpy.Nucleus(6, 0, 0, 0)
         O = gqcpy.Nucleus(8, 0, 0, 2.0)
-        CO = gqcpy.Molecule([C,O]) # The N2 molecule with an intramolecular distance of 2.0 bohr
+        CO = gqcpy.Molecule([C,O]) # The CO molecule with an intramolecular distance of 2.0 bohr
 
         self.fukui_dyson_module = gqcpy.FukuiDysonAnalysis(CO, "STO-3G", True)
 
