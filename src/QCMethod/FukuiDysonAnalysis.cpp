@@ -116,11 +116,8 @@ FukuiDysonAnalysis::FukuiDysonAnalysis(const Molecule& molecule, const std::stri
 
     this->fukui_naturals = VectorX<double>(saes1.eigenvalues());
     this->fukui_vectors = OneRDM<double>(saes1.eigenvectors());
-    
 }
 
 
 }  // namespace QCMethod
 }  // namespace GQCP
-
-
