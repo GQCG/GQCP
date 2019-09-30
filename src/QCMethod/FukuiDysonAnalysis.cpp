@@ -109,7 +109,7 @@ FukuiDysonAnalysis::FukuiDysonAnalysis(const Molecule& molecule, const std::stri
     const auto onerdm2 = rdm_calculator2.calculate1RDMs().one_rdm;
 
     // The Fukui 1RDM
-    this->fukui_matrix = onerdm1 - onerdm2;
+    this->fukui_matrix = OneRDM<double>(onerdm1 - onerdm2);
 
     // Diagonalize the fukui_matrix to retrieve Fukui naturals
     Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes1 (this->fukui_matrix);
