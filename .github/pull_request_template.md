@@ -7,4 +7,6 @@ The open (and possibly closed) issues that are related to this PR.
 **Additional context**
 Add any other context about the problem here.
 
-**Don't forget:** if new files are created: update the Doxygen file, the collective gqcp.hpp header and the CMake files
+**Don't forget:** 
+- [ ] if new files are created: update the Doxygen file, the collective gqcp.hpp header and the CMake files
+- [ ] update the documentation on [our website](https://github.com/GQCG/gqcg.github.io) and check if new Python bindings should be added
