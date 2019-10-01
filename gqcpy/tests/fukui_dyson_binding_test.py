@@ -52,24 +52,11 @@ class FukuiDysonAnalysisQCM(unittest.TestCase):
 
     def test_analysis(self):
         """ Compare the various analysis parameters with a reference value """
-        print(self.fukui_dyson_module.get_fukui_naturals())
-        print( )
-        print(self.fukui_dyson_module.get_fukui_matrix())
-        print( )
-
-        print(self.fukui_dyson_module.get_dyson_coefficients())
-        print( )
-
-        print(self.fukui_dyson_module.get_fukui_vectors())
-        print( )
-
-        print(self.fukui_dyson_module.get_canonical_matrix())
-        print( )
-        self.assertTrue(np.allclose(self.fukui_dyson_module.get_fukui_naturals(),  self.fukui_naturals))
-        self.assertTrue(np.allclose(self.fukui_dyson_module.get_fukui_matrix(),  self.fukui_matrix))
-        self.assertTrue(np.allclose(self.fukui_dyson_module.get_dyson_coefficients(),  self.dyson_coefficients))
-        self.assertTrue(np.allclose(self.fukui_dyson_module.get_fukui_vectors(),  self.fukui_vectors))
-        self.assertTrue(np.allclose(self.fukui_dyson_module.get_canonical_matrix(),  self.canonical_matrix))
+        self.assertTrue(np.allclose(self.fukui_dyson_module.get_fukui_naturals(),  self.fukui_naturals, rtol=1e-03, atol=1e-06))
+        self.assertTrue(np.allclose(self.fukui_dyson_module.get_fukui_matrix(),  self.fukui_matrix, rtol=1e-03, atol=1e-06))
+        self.assertTrue(np.allclose(self.fukui_dyson_module.get_dyson_coefficients(),  self.dyson_coefficients, rtol=1e-03, atol=1e-06))
+        self.assertTrue(np.allclose(self.fukui_dyson_module.get_fukui_vectors(),  self.fukui_vectors, rtol=1e-03, atol=1e-06))
+        self.assertTrue(np.allclose(self.fukui_dyson_module.get_canonical_matrix(),  self.canonical_matrix, rtol=1e-03, atol=1e-06))
 
     
 if __name__ == '__main__':
