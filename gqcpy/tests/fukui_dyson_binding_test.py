@@ -12,8 +12,8 @@ class FukuiDysonAnalysisQCM(unittest.TestCase):
     def setUp(self):
         """ Iniates variables to be used by tests """
         O = gqcpy.Nucleus(8, 0.0,  -0.07579 , 0.0)
-        H1 = gqcpy.Nucleus(1, 0.86681, 0.60144 , 0.0);  
-        H2 = gqcpy.Nucleus(1, -0.86681, 0.60144 , 0.0);  
+        H1 = gqcpy.Nucleus(1, 0.86681, 0.60144 , 0.0)
+        H2 = gqcpy.Nucleus(1, -0.86681, 0.60144 , 0.0)
         water = gqcpy.Molecule([O,H1,H2]) 
 
         self.fukui_dyson_module = gqcpy.FukuiDysonAnalysis(water, "STO-3G", True)
@@ -52,11 +52,11 @@ class FukuiDysonAnalysisQCM(unittest.TestCase):
 
     def test_analysis(self):
         """ Compare the various analysis parameters with a reference value """
-        self.assertTrue(np.allclose(np.absolute(self.fukui_dyson_module.get_fukui_naturals()),  np.absolute(self.fukui_naturals), rtol=1e-03, atol=1e-06))
-        self.assertTrue(np.allclose(np.absolute(self.fukui_dyson_module.get_fukui_matrix()),  np.absolute(self.fukui_matrix), rtol=1e-03, atol=1e-06))
-        self.assertTrue(np.allclose(np.absolute(self.fukui_dyson_module.get_dyson_coefficients()),  np.absolute(self.dyson_coefficients), rtol=1e-03, atol=1e-06))
-        self.assertTrue(np.allclose(np.absolute(self.fukui_dyson_module.get_fukui_vectors()),  np.absolute(self.fukui_vectors), rtol=1e-03, atol=1e-06))
-        self.assertTrue(np.allclose(np.absolute(self.fukui_dyson_module.get_canonical_matrix()),  np.absolute(self.canonical_matrix), rtol=1e-03, atol=1e-06))
+        self.assertTrue(np.allclose(np.absolute(self.fukui_dyson_module.get_fukui_naturals()),  np.absolute(self.fukui_naturals), rtol=1e-05, atol=1e-06))
+        self.assertTrue(np.allclose(np.absolute(self.fukui_dyson_module.get_fukui_matrix()),  np.absolute(self.fukui_matrix), rtol=1e-05, atol=1e-06))
+        self.assertTrue(np.allclose(np.absolute(self.fukui_dyson_module.get_dyson_coefficients()),  np.absolute(self.dyson_coefficients), rtol=1e-05, atol=1e-06))
+        self.assertTrue(np.allclose(np.absolute(self.fukui_dyson_module.get_fukui_vectors()),  np.absolute(self.fukui_vectors), rtol=1e-05, atol=1e-06))
+        self.assertTrue(np.allclose(np.absolute(self.fukui_dyson_module.get_canonical_matrix()),  np.absolute(self.canonical_matrix), rtol=1e-05, atol=1e-06))
 
     
 if __name__ == '__main__':
