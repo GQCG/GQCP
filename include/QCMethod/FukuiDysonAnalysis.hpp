@@ -30,9 +30,11 @@ namespace QCMethod {
 
 
 /**
- *  A class that solves the FCI Hamiltonian for a given molecule and performs Fukui and Dyson analysis
- *  restricted Hartree-Fock is initially performed for the singlet, 
- *  after which we solve in the FCI space and solve in the FCI space again after removing an electron
+ *  A class that diagonalizes the FCI Hamiltonian for a given molecule and performs Fukui and Dyson analysis.
+ *  Fukui analysis revolves around the response of the 1RDM with respect to a change of N the number of electrons.
+ *  Dyson analysis produces a Dyson orbital which is the overlap between the N-electron and N-1 electron wavefunction.
+ *  The same orthonormal basis is used for both species (N and N-1 number of electrons): 
+ *  RHF is used to determine an orthonormal basis for the species with an even number of electrons 
  */
 class FukuiDysonAnalysis {
 private:
@@ -40,8 +42,8 @@ private:
     SingleParticleBasis<double, GTOShell> sp_basis;
     SQHamiltonian<double> sq_hamiltonian;
     std::string basis_set;  // the basisset that should be used
-    ProductFockSpace fock_space1 = ProductFockSpace(0, 0, 0); // Default
-    ProductFockSpace fock_space2 = ProductFockSpace(0, 0, 0); // Default
+    ProductFockSpace fock_space1 = ProductFockSpace(0, 0, 0);  // default
+    ProductFockSpace fock_space2 = ProductFockSpace(0, 0, 0);  // default
 
     VectorX<double> dyson_coefficients;
     OneRDM<double> fukui_matrix;

@@ -141,3 +141,4 @@ BOOST_AUTO_TEST_CASE ( dyson_coefficients ) {
     BOOST_CHECK(dyson_coefficients_beta.isApprox(reference_amplitudes_beta, 1.0e-6));
     BOOST_CHECK(dyson_coefficients_alpha.isApprox(reference_amplitudes_alpha, 1.0e-6));
 }
+    
