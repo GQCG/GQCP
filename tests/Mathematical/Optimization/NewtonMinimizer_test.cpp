@@ -56,7 +56,11 @@ GQCP::SquareMatrix<double> H(const GQCP::VectorX<double>& x) {
  *  BOOST UNIT TESTS
  */
 
-BOOST_AUTO_TEST_CASE ( norm_squared_function_minimization ) {
+
+/**
+ *  Check the minimzation of the function f(x) = x.x
+ */
+BOOST_AUTO_TEST_CASE ( minimization_example ) {
 
     // Test that the previous implementations actually work by checking the values at x=(1,1)
     GQCP::VectorX<double> x_test (2);
@@ -74,14 +78,13 @@ BOOST_AUTO_TEST_CASE ( norm_squared_function_minimization ) {
     BOOST_REQUIRE(H_test.isApprox(H(x_test), 1.0e-8));
 
 
-    // Do the numerical optimization
+    // Do the numerical optimization and check the result
     GQCP::VectorX<double> x0 (2);
     x0 << 4, 2;
 
     GQCP::NewtonMinimizer newton_minimizer (x0, grad, H);
     newton_minimizer.solve();
     GQCP::VectorX<double> solution = newton_minimizer.get_solution();
-
 
     BOOST_CHECK(solution.isZero(1.0e-08));  // the analytical minimizer of f(x) is x=(0,0)
 }
