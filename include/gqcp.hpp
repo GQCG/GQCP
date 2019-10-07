@@ -63,6 +63,7 @@
 #include "Geminals/AP1roG.hpp"
 #include "Geminals/AP1roGGeminalCoefficients.hpp"
 #include "Geminals/AP1roGLagrangianOptimizer.hpp"
+#include "Geminals/AP1roGPSEs.hpp"
 #include "Geminals/AP1roGPSESolver.hpp"
 #include "Geminals/AP1roGVariables.hpp"
 #include "Geminals/APIGGeminalCoefficients.hpp"

@@ -18,6 +18,7 @@
 #include "Geminals/AP1roGLagrangianOptimizer.hpp"
 
 #include "Geminals/AP1roGPSESolver.hpp"
+#include "Geminals/AP1roG.hpp"
 
 
 namespace GQCP {
@@ -33,17 +34,16 @@ void AP1roGLagrangianOptimizer::solve() {
 
 
     // Solve the PSEs and set part of the solutions
-    AP1roGPSESolver pse_solver (this->N_P, this->sq_hamiltonian, this->geminal_coefficients, this->convergence_threshold, this->maximum_number_of_iterations);
-    pse_solver.solve();
-
-    this->geminal_coefficients = pse_solver.get_geminal_coefficients();
-    this->electronic_energy = pse_solver.get_electronic_energy();
+    const AP1roGPSEs pses (this->sq_hamiltonian, this->N_P);
+    AP1roGPSESolver pse_solver (pses, this->convergence_threshold, this->maximum_number_of_iterations);
+    pse_solver.solve(this->geminal_coefficients);
+    this->electronic_energy = calculateAP1roGEnergy(this->geminal_coefficients, this->sq_hamiltonian);
 
 
     // Initialize and solve the linear system Jx=b (x are the Lagrange multipliers)
     size_t dim = this->geminal_coefficients.numberOfGeminalCoefficients(this->N_P, K);
 
-    auto J = pse_solver.calculateJacobian(this->geminal_coefficients);
+    auto J = pses.calculateJacobian(this->geminal_coefficients);
 
     VectorX<double> b = VectorX<double>::Zero(dim);  // dE/dG_i^a
     for (size_t i = 0; i < this->N_P; i++) {

@@ -21,6 +21,7 @@
 
 #include "Basis/transform.hpp"
 #include "Geminals/AP1roG.hpp"
+#include "Geminals/AP1roGPSEs.hpp"
 #include "Geminals/AP1roGPSESolver.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
 #include "OrbitalOptimization/AP1roGJacobiOrbitalOptimizer.hpp"
@@ -34,6 +35,7 @@ BOOST_AUTO_TEST_CASE ( lih_6_31G_calculateEnergyAfterRotation ) {
 
     // Construct the molecular Hamiltonian in the RHF basis
     auto lih = GQCP::Molecule::ReadXYZ("data/lih_olsens.xyz");
+    const auto N_P = lih.numberOfElectrons()/2;
     GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (lih, "6-31G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, lih);  // in an AO basis
 
@@ -51,9 +53,9 @@ BOOST_AUTO_TEST_CASE ( lih_6_31G_calculateEnergyAfterRotation ) {
         for (size_t p = q + 1; p < K; p++) {  // p > q
             GQCP::JacobiRotationParameters jacobi_rot_par {p, q, theta};
 
-            GQCP::AP1roGPSESolver pse_solver (lih, sq_hamiltonian);
-            pse_solver.solve();
-            auto G = pse_solver.get_geminal_coefficients();
+            GQCP::AP1roGPSEs pses (sq_hamiltonian, N_P);
+            GQCP::AP1roGPSESolver pse_solver (pses);
+            auto G = pse_solver.solve();  // zero initial guess
 
 
             // Calculate the analytical energy after rotation
@@ -80,6 +82,7 @@ BOOST_AUTO_TEST_CASE ( lih_6_31G_orbitalOptimize ) {
 
     // Construct the molecular Hamiltonian in the RHF basis
     auto lih = GQCP::Molecule::ReadXYZ("data/lih_olsens.xyz");
+    const auto N_P = lih.numberOfElectrons()/2;
     GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (lih, "6-31G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, lih);  // in an AO basis
 
@@ -90,10 +93,10 @@ BOOST_AUTO_TEST_CASE ( lih_6_31G_orbitalOptimize ) {
 
 
     // Get the initial AP1roG energy
-    GQCP::AP1roGPSESolver pse_solver (lih, sq_hamiltonian);
-    pse_solver.solve();
-    double initial_energy = pse_solver.get_electronic_energy();
-    const auto initial_G = pse_solver.get_geminal_coefficients();
+    GQCP::AP1roGPSEs pses (sq_hamiltonian, N_P);
+    GQCP::AP1roGPSESolver pse_solver (pses);
+    const auto initial_G = pse_solver.solve();  // zero initial guess
+    double initial_energy = GQCP::calculateAP1roGEnergy(initial_G, sq_hamiltonian);
 
 
     // Do an AP1roG orbital optimization using Jacobi rotations

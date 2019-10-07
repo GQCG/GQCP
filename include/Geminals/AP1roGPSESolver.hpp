@@ -20,6 +20,8 @@
 
 #include "Geminals/BaseAP1roGSolver.hpp"
 
+#include "Geminals/AP1roGPSEs.hpp"
+
 
 namespace GQCP {
 
@@ -27,51 +29,35 @@ namespace GQCP {
 /**
  *  A class that is able to solve the AP1roG projected Schrödinger equations (PSEs)
  */
-class AP1roGPSESolver : public BaseAP1roGSolver {
+class AP1roGPSESolver {
+    double convergence_threshold;
+    size_t maximum_number_of_iterations;
+
+    AP1roGPSEs pses;  // the AP1roG PSEs
+
+
 public:
     // CONSTRUCTORS
-    using BaseAP1roGSolver::BaseAP1roGSolver;  // inherit base constructors
+
+    /**
+     *  @param pses         the AP1roG PSEs
+     */
+    AP1roGPSESolver(const AP1roGPSEs& pses, const double convergence_threshold = 1.0e-08, const size_t maximum_number_of_iterations = 128);
 
 
     // PUBLIC METHODS
-    /**
-     *  @param G        the AP1roG geminal coefficients
-     *  @param i        the subscript for the coordinate function
-     *  @param a        the superscript for the coordinate function
-     *  @param k        the subscript for the geminal coefficient
-     *  @param c        the superscript for the geminal coefficient
-     *
-     *  @return the Jacobian element with compound indices (i,a) and (k,c) at the given geminal coefficients
-     */
-    double calculateJacobianElement(const AP1roGGeminalCoefficients& G, const size_t i, const size_t a, const size_t k, const size_t c) const;
 
     /**
-     *  @param G        the AP1roG geminal coefficients
-     *
-     *  @return the Jacobian (in a row-major representation) at the given geminal coefficients
+     *  Solve the projected Schrödinger equations for AP1roG
+     * 
+     *  @param G            the initial geminal coefficients, that are updated in every iteration to the converged geminal coefficients
      */
-    SquareMatrix<double> calculateJacobian(const AP1roGGeminalCoefficients& G) const;
+    void solve(AP1roGGeminalCoefficients& G) const;
 
     /**
-     *  @param G        the AP1roG geminal coefficients
-     *  @param i        the subscript for the coordinate function
-     *  @param a        the superscript for the coordinate function
-     *
-     *  @return the coordinate function with given indices (i,a) at the given geminal coefficients
+     *  Solve the projected Schrödinger equations for AP1roG, using a zero initial guess
      */
-    double calculateCoordinateFunction(const AP1roGGeminalCoefficients& G, const size_t i, const size_t a) const;
-
-    /**
-     *  @param G        the AP1roG geminal coefficients
-     *
-     *  @return a row-major vector of coordinate functions at the given geminal coefficients
-     */
-    VectorX<double> calculateCoordinateFunctions(const AP1roGGeminalCoefficients& G) const;
-
-    /**
-     *  Set up and solve the projected Schrödinger equations for AP1roG
-     */
-    void solve() override;
+    AP1roGGeminalCoefficients solve() const;
 };
 
 

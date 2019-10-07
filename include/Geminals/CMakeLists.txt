@@ -3,6 +3,7 @@ target_sources(gqcp
             AP1roG.hpp
             AP1roGGeminalCoefficients.hpp
             AP1roGLagrangianOptimizer.hpp
+            AP1roGPSEs.hpp
             AP1roGPSESolver.hpp
             AP1roGVariables.hpp
             APIGGeminalCoefficients.hpp
