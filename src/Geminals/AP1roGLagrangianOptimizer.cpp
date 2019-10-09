@@ -52,37 +52,35 @@ AP1roGVariables AP1roGLagrangianOptimizer::solve() {
     const auto N_P = this->G.numberOfElectronPairs();
 
 
-    // Initialize and solve the linear system Jx=-b in order to determine the Lagrange multipliers x
+    // Initialize and solve the linear system (k_lambda lambda=-b) in order to determine the Lagrange multipliers lambda
 
-    // Calculate the Jacobian J
+    // Calculate the matrix k_lambda
     const AP1roGPSEs pses (this->sq_hamiltonian, N_P);
-    const auto J = pses.calculateJacobian(this->G);
+    const MatrixX<double> k_lambda = pses.calculateJacobian(this->G).asMatrix().transpose();
 
 
-    // Calculate the right-hand side vector b
+    // Calculate the right-hand side vector b_i^a = dE/DG_i^a
     const size_t dim = this->G.numberOfGeminalCoefficients(N_P, K);
     const auto& g = this->sq_hamiltonian.twoElectron().parameters();
 
-    VectorX<double> b = VectorX<double>::Zero(dim);  // dE/dG_i^a
+    BlockMatrix<double> b (0, N_P, N_P, K);
     for (size_t i = 0; i < N_P; i++) {
         for (size_t a = N_P; a < K; a++) {
-            const size_t row_vector_index = this->G.vectorIndex(i, a);
-
-            b(row_vector_index) = g(i,a,i,a);
+            b(i,a) = g(i,a,i,a);
         }
     }
 
 
-    // Solve the linear system Jx=-b
-    Eigen::HouseholderQR<Eigen::MatrixXd> linear_solver (J);
-    VectorX<double> x = linear_solver.solve(-b);
+    // Solve the linear system (k_lambda lambda=-b)
+    Eigen::HouseholderQR<Eigen::MatrixXd> linear_solver (k_lambda);
+    VectorX<double> lambda = linear_solver.solve(-b.asVector());  // b is row major, so lambda is also row major
 
-    if (std::abs((J * x + b).norm()) > 1.0e-12) {
+    if (std::abs((k_lambda * lambda + b.asVector()).norm()) > 1.0e-12) {
         throw std::runtime_error("void AP1roGLagrangianOptimizer::solve(): The Householder QR decomposition failed.");
     }
 
 
-    return AP1roGVariables(x, N_P, K);  // specify: column major or row major
+    return AP1roGVariables(lambda, N_P, K);  // constructor uses row major representation
 }
 
 

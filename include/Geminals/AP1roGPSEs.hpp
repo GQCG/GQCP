@@ -19,7 +19,10 @@
 
 
 #include "Geminals/AP1roGGeminalCoefficients.hpp"
+#include "Mathematical/Representation/BlockMatrix.hpp"
+#include "Mathematical/Representation/BlockRankFourTensor.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
+#include "typedefs.hpp"
 
 
 namespace GQCP {
@@ -70,12 +73,12 @@ public:
     /**
      *  @param G        the AP1roG geminal coefficients
      *
-     *  @return a row-major vector of coordinate functions at the given geminal coefficients
+     *  @return the PSEs, evaluated at the given geminal coefficients
      */
-    VectorX<double> calculateCoordinateFunctions(const AP1roGGeminalCoefficients& G) const;
+    BlockMatrix<double> calculateCoordinateFunctions(const AP1roGGeminalCoefficients& G) const;
 
     /**
-     *  @return a callable (i.e. with operator()) expression for the coordinate functions
+     *  @return a callable (i.e. with operator()) expression for the coordinate functions: the accepted VectorX<double> argument should contain the geminal coefficients in a column-major representation
      */
     VectorFunction callableCoordinateFunctions() const;
 
@@ -83,22 +86,22 @@ public:
      *  @param G        the AP1roG geminal coefficients
      *  @param i        the subscript for the coordinate function
      *  @param a        the superscript for the coordinate function
-     *  @param k        the subscript for the geminal coefficient
-     *  @param c        the superscript for the geminal coefficient
+     *  @param j        the subscript for the geminal coefficient
+     *  @param b        the superscript for the geminal coefficient
      *
-     *  @return the Jacobian element with compound indices (i,a) and (k,c) at the given geminal coefficients
+     *  @return the Jacobian element with compound indices (i,a) and (j,b) at the given geminal coefficients
      */
-    double calculateJacobianElement(const AP1roGGeminalCoefficients& G, const size_t i, const size_t a, const size_t k, const size_t c) const;
+    double calculateJacobianElement(const AP1roGGeminalCoefficients& G, const size_t i, const size_t a, const size_t j, const size_t b) const;
 
     /**
      *  @param G        the AP1roG geminal coefficients
      *
-     *  @return the Jacobian (in a row-major representation) at the given geminal coefficients
+     *  @return the Jacobian J_{ia,jb} of the PSEs, i.e. df_i^a/dG_j^b, evaluated at the given geminal coefficients
      */
-    SquareMatrix<double> calculateJacobian(const AP1roGGeminalCoefficients& G) const;
+    BlockRankFourTensor<double> calculateJacobian(const AP1roGGeminalCoefficients& G) const;
 
     /**
-     *  @return a callable expression for the Jacobian
+     *  @return a callable (i.e. with operator()) expression for the Jacobian: the accepted VectorX<double> argument should contain the geminal coefficients in a column-major representation
      */
     MatrixFunction callableJacobian() const;
 };

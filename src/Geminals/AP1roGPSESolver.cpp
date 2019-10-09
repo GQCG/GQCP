@@ -54,11 +54,11 @@ void AP1roGPSESolver::solve(AP1roGGeminalCoefficients& G) const {
     const auto J = this->pses.callableJacobian();
 
     // Solve the AP1roG equations using a Newton-based algorithm
-    VectorX<double> x = G.asVector();  // the initial guess and the solution if it is found; a row-major vector
+    VectorX<double> x = G.asVector();  // the initial guess and the solution if it is found; a column-major vector
     NewtonNLSystemOfEquationsSolver syseq_solver (f, J, this->convergence_threshold, this->maximum_number_of_iterations);
 
     syseq_solver.solve(x);
-    G = AP1roGGeminalCoefficients::FromRowMajor(x, this->pses.numberOfElectronPairs(), this->pses.numberOfSpatialOrbitals());
+    G = AP1roGGeminalCoefficients::FromColumnMajor(x, this->pses.numberOfElectronPairs(), this->pses.numberOfSpatialOrbitals());
 }
 
 
