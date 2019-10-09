@@ -17,51 +17,72 @@
 // 
 #include "Geminals/AP1roGLagrangianOptimizer.hpp"
 
-#include "Geminals/AP1roGPSESolver.hpp"
-#include "Geminals/AP1roG.hpp"
+#include "Geminals/AP1roGPSEs.hpp"
 
 
 namespace GQCP {
 
 
 /*
+ *  CONSTRUCTORS
+ */
+
+/**
+ *  @param G                    the converged geminal coefficients that are a solution to the AP1roG PSEs
+ *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal orbital basis
+ */
+AP1roGLagrangianOptimizer::AP1roGLagrangianOptimizer(const AP1roGGeminalCoefficients& G, const SQHamiltonian<double>& sq_hamiltonian) :
+    G (G),
+    sq_hamiltonian (sq_hamiltonian)
+{}
+
+
+
+/*
  *  PUBLIC METHODS
  */
-void AP1roGLagrangianOptimizer::solve() {
 
-    const auto K = this->sq_hamiltonian.dimension();
+/**
+ *  @return the Lagrange multipliers for the AP1roG PSE Lagrangian
+ */
+AP1roGVariables AP1roGLagrangianOptimizer::solve() {
+
+    // Initialize some variables that are needed in the solution algorithm
+    const auto K = this->G.numberOfSpatialOrbitals();
+    const auto N_P = this->G.numberOfElectronPairs();
+
+
+    // Initialize and solve the linear system Jx=-b in order to determine the Lagrange multipliers x
+
+    // Calculate the Jacobian J
+    const AP1roGPSEs pses (this->sq_hamiltonian, N_P);
+    const auto J = pses.calculateJacobian(this->G);
+
+
+    // Calculate the right-hand side vector b
+    const size_t dim = this->G.numberOfGeminalCoefficients(N_P, K);
     const auto& g = this->sq_hamiltonian.twoElectron().parameters();
 
-
-    // Solve the PSEs and set part of the solutions
-    const AP1roGPSEs pses (this->sq_hamiltonian, this->N_P);
-    AP1roGPSESolver pse_solver (pses, this->convergence_threshold, this->maximum_number_of_iterations);
-    pse_solver.solve(this->geminal_coefficients);
-    this->electronic_energy = calculateAP1roGEnergy(this->geminal_coefficients, this->sq_hamiltonian);
-
-
-    // Initialize and solve the linear system Jx=b (x are the Lagrange multipliers)
-    size_t dim = this->geminal_coefficients.numberOfGeminalCoefficients(this->N_P, K);
-
-    auto J = pses.calculateJacobian(this->geminal_coefficients);
-
     VectorX<double> b = VectorX<double>::Zero(dim);  // dE/dG_i^a
-    for (size_t i = 0; i < this->N_P; i++) {
-        for (size_t a = this->N_P; a < this->K; a++) {
-            size_t row_vector_index = this->geminal_coefficients.vectorIndex(i, a);
+    for (size_t i = 0; i < N_P; i++) {
+        for (size_t a = N_P; a < K; a++) {
+            const size_t row_vector_index = this->G.vectorIndex(i, a);
 
-            b(row_vector_index) = -g(i,a,i,a);
+            b(row_vector_index) = g(i,a,i,a);
         }
     }
 
-    Eigen::HouseholderQR<Eigen::MatrixXd> linear_solver (J);
-    VectorX<double> x = linear_solver.solve(b);
 
-    if (std::abs((J * x - b).norm()) > 1.0e-12) {
+    // Solve the linear system Jx=-b
+    Eigen::HouseholderQR<Eigen::MatrixXd> linear_solver (J);
+    VectorX<double> x = linear_solver.solve(-b);
+
+    if (std::abs((J * x + b).norm()) > 1.0e-12) {
         throw std::runtime_error("void AP1roGLagrangianOptimizer::solve(): The Householder QR decomposition failed.");
     }
 
-    this->multipliers = AP1roGVariables(x, this->N_P, K);
+
+    return AP1roGVariables(x, N_P, K);  // specify: column major or row major
 }
 
 

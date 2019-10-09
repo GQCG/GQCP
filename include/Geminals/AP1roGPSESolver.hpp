@@ -18,8 +18,6 @@
 #pragma once
 
 
-#include "Geminals/BaseAP1roGSolver.hpp"
-
 #include "Geminals/AP1roGPSEs.hpp"
 
 

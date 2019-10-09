@@ -77,11 +77,21 @@ public:
 
     // GETTERS
 
-    size_t get_N_P() const { return this->N_P; }
-    size_t get_K() const { return this->K; }
+    size_t get_N_P() const { return this->numberOfElectronPairs(); }
+    size_t get_K() const { return this->numberOfSpatialOrbitals(); }
 
 
     // PUBLIC METHODS
+
+    /**
+     *  @return the number of electron pairs these geminal variables represent
+     */
+    size_t numberOfElectronPairs() const { return this->N_P; }
+
+    /**
+     *  @return the number of spatial orbitals these geminal variables represent
+     */
+    size_t numberOfSpatialOrbitals() const { return this->K; }
 
     /**
      *  @return the variables in row-major vector form
