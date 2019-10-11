@@ -32,44 +32,44 @@ BOOST_AUTO_TEST_CASE ( numberOfGeminalCoefficients ) {
 }
 
 
-/**
- *  Check if the construction of AP1roG geminal coefficients from a row-major vector represention is correct
- */
-BOOST_AUTO_TEST_CASE ( FromRowMajor ) {
+// /**
+//  *  Check if the construction of AP1roG geminal coefficients from a row-major vector represention is correct
+//  */
+// BOOST_AUTO_TEST_CASE ( FromRowMajor ) {
 
-    // For N_P=2 and K=5, we have an AP1roG geminal coefficient matrix that looks like the following matrix:
-    GQCP::MatrixX<double> G (2, 5);
-    G << 1, 0,  1, 2, 3,
-         0, 1,  4, 5, 6;
+//     // For N_P=2 and K=5, we have an AP1roG geminal coefficient matrix that looks like the following matrix:
+//     GQCP::MatrixX<double> G (2, 5);
+//     G << 1, 0,  1, 2, 3,
+//          0, 1,  4, 5, 6;
 
-    // The geminal coefficients, arranged in a vector are then represented by the following vector:
-    GQCP::VectorX<double> g (6);
-    g << 1, 2, 3, 4, 5, 6;
-
-
-    const auto gem_coeff = GQCP::AP1roGGeminalCoefficients::FromRowMajor(g, 2, 5);
-    BOOST_CHECK(gem_coeff.asMatrix().isApprox(G));
-}
+//     // The geminal coefficients, arranged in a vector are then represented by the following vector:
+//     GQCP::VectorX<double> g (6);
+//     g << 1, 2, 3, 4, 5, 6;
 
 
-/**
- *  Check if the construction of AP1roG geminal coefficients from a column-major vector represention is correct
- */
-BOOST_AUTO_TEST_CASE ( FromColumnMajor ) {
-
-    // For N_P=2 and K=5, we have an AP1roG geminal coefficient matrix that looks like the following matrix:
-    GQCP::MatrixX<double> G (2, 5);
-    G << 1, 0,  1, 2, 3,
-         0, 1,  4, 5, 6;
+//     const auto gem_coeff = GQCP::AP1roGGeminalCoefficients::FromRowMajor(g, 2, 5);
+//     BOOST_CHECK(gem_coeff.asMatrix().isApprox(G));
+// }
 
 
-    // Test that we get the previous representation if we use the following vector that uses column-major indexing
-    GQCP::VectorX<double> g (6);
-    g << 1, 4, 2, 5, 3, 6;
+// /**
+//  *  Check if the construction of AP1roG geminal coefficients from a column-major vector represention is correct
+//  */
+// BOOST_AUTO_TEST_CASE ( FromColumnMajor ) {
 
-    const auto gem_coeff = GQCP::AP1roGGeminalCoefficients::FromColumnMajor(g, 2, 5);
-    BOOST_CHECK(gem_coeff.asMatrix().isApprox(G));
-}
+//     // For N_P=2 and K=5, we have an AP1roG geminal coefficient matrix that looks like the following matrix:
+//     GQCP::MatrixX<double> G (2, 5);
+//     G << 1, 0,  1, 2, 3,
+//          0, 1,  4, 5, 6;
+
+
+//     // Test that we get the previous representation if we use the following vector that uses column-major indexing
+//     GQCP::VectorX<double> g (6);
+//     g << 1, 4, 2, 5, 3, 6;
+
+//     const auto gem_coeff = GQCP::AP1roGGeminalCoefficients::FromColumnMajor(g, 2, 5);
+//     BOOST_CHECK(gem_coeff.asMatrix().isApprox(G));
+// }
 
 
 /**

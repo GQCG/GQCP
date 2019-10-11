@@ -156,3 +156,45 @@ BOOST_AUTO_TEST_CASE ( pairWiseReduce ) {
 
     BOOST_CHECK(v_ref_2.isApprox(M.pairWiseReduce(1, 1), 1.0e-12));
 }
+
+
+/**
+ *  Check the construction of a MatrixX from a given column-major vector
+ */
+BOOST_AUTO_TEST_CASE ( FromColumnMajorVector ) {
+
+    // Construct a vector that is supposed to be in column-major ordering
+    GQCP::VectorX<double> a (6);
+    a << 1, 4, 2, 5, 3, 6;
+
+
+    // Initialize the reference matrix and check the result
+    GQCP::MatrixX<double> A_ref (2, 3);
+    A_ref << 1, 2, 3,
+             4, 5, 6;
+
+
+    GQCP::MatrixX<double> A = GQCP::MatrixX<double>::FromColumnMajorVector(a, 2, 3);
+    BOOST_CHECK(A.isApprox(A_ref, 1.0e-08));
+}
+
+
+/**
+ *  Check the construction of a MatrixX from a given row-major vector
+ */
+BOOST_AUTO_TEST_CASE ( FromRowMajorVector ) {
+
+    // Construct a vector that is supposed to be in column-major ordering
+    GQCP::VectorX<double> a (6);
+    a << 1, 2, 3, 4, 5, 6;
+
+
+    // Initialize the reference matrix and check the result
+    GQCP::MatrixX<double> A_ref (2, 3);
+    A_ref << 1, 2, 3,
+             4, 5, 6;
+
+
+    GQCP::MatrixX<double> A = GQCP::MatrixX<double>::FromRowMajorVector(a, 2, 3);
+    BOOST_CHECK(A.isApprox(A_ref, 1.0e-08));
+}
