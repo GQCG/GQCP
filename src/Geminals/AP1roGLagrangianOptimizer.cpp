@@ -45,11 +45,12 @@ AP1roGLagrangianOptimizer::AP1roGLagrangianOptimizer(const AP1roGGeminalCoeffici
 /**
  *  @return the Lagrange multipliers for the AP1roG PSE Lagrangian
  */
-AP1roGVariables AP1roGLagrangianOptimizer::solve() {
+BlockMatrix<double> AP1roGLagrangianOptimizer::solve() {
 
     // Initialize some variables that are needed in the solution algorithm
     const auto K = this->G.numberOfSpatialOrbitals();
     const auto N_P = this->G.numberOfElectronPairs();
+    const auto& g = this->sq_hamiltonian.twoElectron().parameters();
 
 
     // Initialize and solve the linear system (k_lambda lambda=-b) in order to determine the Lagrange multipliers lambda
@@ -60,9 +61,6 @@ AP1roGVariables AP1roGLagrangianOptimizer::solve() {
 
 
     // Calculate the right-hand side vector b_i^a = dE/DG_i^a
-    const size_t dim = this->G.numberOfGeminalCoefficients(N_P, K);
-    const auto& g = this->sq_hamiltonian.twoElectron().parameters();
-
     BlockMatrix<double> b (0, N_P, N_P, K);
     for (size_t i = 0; i < N_P; i++) {
         for (size_t a = N_P; a < K; a++) {
@@ -73,14 +71,17 @@ AP1roGVariables AP1roGLagrangianOptimizer::solve() {
 
     // Solve the linear system (k_lambda lambda=-b)
     Eigen::HouseholderQR<Eigen::MatrixXd> linear_solver (k_lambda);
-    VectorX<double> lambda = linear_solver.solve(-b.asVector());  // b is row major, so lambda is also row major
+    VectorX<double> lambda = linear_solver.solve(-b.asVector());  // b is column major, so lambda is also column major
+
 
     if (std::abs((k_lambda * lambda + b.asVector()).norm()) > 1.0e-12) {
         throw std::runtime_error("void AP1roGLagrangianOptimizer::solve(): The Householder QR decomposition failed.");
     }
 
-
-    return AP1roGVariables(lambda, N_P, K);  // constructor uses row major representation
+    const size_t rows = N_P;  // the number of rows in the multiplier matrix
+    const size_t cols = K - N_P;  // the number of columns in the multiplier matrix
+    const MatrixX<double> M = MatrixX<double>::FromColumnMajorVector(lambda, rows, cols);  // the actual Lagrange multipliers, reshaped into a matrix
+    return BlockMatrix<double>(0, N_P, N_P, K, M);  // an encapsulating object that implements operator() intuitively
 }
 
 

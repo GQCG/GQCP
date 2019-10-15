@@ -55,6 +55,10 @@ void NewtonNLSystemOfEquationsSolver::solve(VectorX<double>& x) {
     bool is_solved = false;
     while (!is_solved) {
 
+
+        std::cout << "x: " << std::endl << x << std::endl << std::endl;
+
+
         // Calculate the Newton step and update the current variables
         const VectorX<double> dx = newtonStep(x, this->f, this->J);
         x += dx;

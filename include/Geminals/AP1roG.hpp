@@ -41,7 +41,7 @@ double calculateAP1roGEnergy(const AP1roGGeminalCoefficients& G, const SQHamilto
  *
  *  @return the AP1roG 1-DM
  */
-OneRDM<double> calculate1RDM(const AP1roGGeminalCoefficients& G, const AP1roGVariables& multipliers);
+OneRDM<double> calculate1RDM(const AP1roGGeminalCoefficients& G, const BlockMatrix<double>& multipliers);
 
 /**
  *  @param G                the AP1roG geminal coefficients
@@ -49,7 +49,7 @@ OneRDM<double> calculate1RDM(const AP1roGGeminalCoefficients& G, const AP1roGVar
  *
  *  @return the AP1roG number 2-RDM (the Delta-matrix in the notes)
  */
-SquareMatrix<double> calculateNumber2RDM(const AP1roGGeminalCoefficients& G, const AP1roGVariables& multipliers);
+SquareMatrix<double> calculateNumber2RDM(const AP1roGGeminalCoefficients& G, const BlockMatrix<double>& multipliers);
 
 /**
  *  @param G                the AP1roG geminal coefficients
@@ -57,7 +57,7 @@ SquareMatrix<double> calculateNumber2RDM(const AP1roGGeminalCoefficients& G, con
  *
  *  @return the AP1roG pair 2-RDM (the Pi-matrix in the notes)
  */
-SquareMatrix<double> calculatePair2RDM(const AP1roGGeminalCoefficients& G, const AP1roGVariables& multipliers);
+SquareMatrix<double> calculatePair2RDM(const AP1roGGeminalCoefficients& G, const BlockMatrix<double>& multipliers);
 
 /**
  *  @param G                the AP1roG geminal coefficients
@@ -65,7 +65,7 @@ SquareMatrix<double> calculatePair2RDM(const AP1roGGeminalCoefficients& G, const
  *
  *  @return the AP1roG 2-DM
  */
-TwoRDM<double> calculate2RDM(const AP1roGGeminalCoefficients& G, const AP1roGVariables& multipliers);
+TwoRDM<double> calculate2RDM(const AP1roGGeminalCoefficients& G, const BlockMatrix<double>& multipliers);
 
 
 }  // namespace GQCP

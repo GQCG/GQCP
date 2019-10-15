@@ -46,6 +46,7 @@ private:
 
 
 public:
+
     /*
      *  CONSTRUCTORS
      */
@@ -88,6 +89,14 @@ public:
     {}
 
 
+    /**
+     *  Default constructor is needed: sets everything to zero(s)
+     */
+    BlockMatrix() : 
+        BlockMatrix(0, 0, 0, 0)
+    {}
+
+
 
     /*
      *  OPERATORS
@@ -120,12 +129,6 @@ public:
 
         return this->M(row_block, col_block);
     }
-
-
-    /*
-     *  NAMED CONSTRUCTORS
-     */
-    
 
 
 

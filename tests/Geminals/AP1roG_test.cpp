@@ -48,23 +48,19 @@ BOOST_AUTO_TEST_CASE ( energy_as_contraction ) {
     GQCP::AP1roGPSEs pses (sq_hamiltonian, N_P);
     const GQCP::AP1roGPSESolver pse_solver (pses);
     const auto G = pse_solver.solve();  // initial guess is zero
-    std::cout << "G: " << std::endl << G.asMatrix() << std::endl << std::endl;
 
 
     // Determine the Lagrangian multipliers in order to calculate the DMs
     GQCP::AP1roGLagrangianOptimizer lagrangian_optimizer (G, sq_hamiltonian);
     const auto multipliers = lagrangian_optimizer.solve();
-    std::cout << "lambda: " << std::endl << multipliers.asMatrix() << std::endl << std::endl;
 
 
     // Calculate the DMs and check the trace with the one- and two-electron integrals
     const double electronic_energy = GQCP::calculateAP1roGEnergy(G, sq_hamiltonian);
-    std::cout << "E: " << std::endl << electronic_energy << std::endl << std::endl;
 
     const auto D = GQCP::calculate1RDM(G, multipliers);
     const auto d = GQCP::calculate2RDM(G, multipliers);
     const double electronic_energy_by_contraction = GQCP::calculateExpectationValue(sq_hamiltonian, D, d);
-    std::cout << "E_contr: " << std::endl << electronic_energy_by_contraction << std::endl << std::endl;
 
     BOOST_CHECK(std::abs(electronic_energy_by_contraction - electronic_energy) < 1.0e-09);
 }

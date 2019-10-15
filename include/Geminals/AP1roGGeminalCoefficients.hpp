@@ -18,10 +18,9 @@
 #pragma once
 
 
-#include "Geminals/AP1roGVariables.hpp"
 #include "Geminals/GeminalCoefficientsInterface.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "Mathematical/Representation/Matrix.hpp"
+#include "Mathematical/Representation/BlockMatrix.hpp"
 #include "WaveFunction/WaveFunction.hpp"
 
 
@@ -31,22 +30,25 @@ namespace GQCP {
 /**
  *  A class that represents geminal coefficients for an AP1roG wave function
  */
-class AP1roGGeminalCoefficients : public AP1roGVariables, public GeminalCoefficientsInterface {
+class AP1roGGeminalCoefficients : public GeminalCoefficientsInterface {
+private:
+    size_t K;  // the number of spatial orbitals corresponding to these geminal coefficients
+    size_t N_P;  // the number of electron pairs (i.e. the number of geminals) corresponding to these geminal coefficients
+    BlockMatrix<double> G;  // the AP1roG geminal coefficients (not including the identity matrix on the left), as a block matrix, so it implements easy operator(i,a) calls
+
+
 public:
     // CONSTRUCTORS
 
     /**
-     *  Default constructor setting everything to zero
+     *  @param G            the AP1roG geminal coefficients (not including the identity matrix on the left), as a block matrix
      */
-    AP1roGGeminalCoefficients();  // default constructor needed
+    AP1roGGeminalCoefficients(const BlockMatrix<double>& G, const size_t N_P, const size_t K);
 
     /**
-     *  @param g        the geminal coefficients in a vector representation that is in row-major storage
-     *
-     *  @param N_P      the number of electron pairs (= the number of geminals)
-     *  @param K        the number of spatial orbitals
+     *  @param G            the AP1roG geminal coefficients (not including the identity matrix on the left)
      */
-    AP1roGGeminalCoefficients(const VectorX<double>& g, const size_t N_P, const size_t K);
+    AP1roGGeminalCoefficients(const MatrixX<double>& G);
 
     /**
      *  Constructor that sets the geminal coefficients to zero
@@ -55,6 +57,23 @@ public:
      *  @param K        the number of spatial orbitals
      */
     AP1roGGeminalCoefficients(const size_t N_P, const size_t K);
+
+
+    // /**
+    //  *  Default constructor setting everything to zero
+    //  */
+    // AP1roGGeminalCoefficients();  // default constructor needed
+
+
+    // OPERATORS
+
+    /**
+     *  @param i            the zero-based index of the geminal, i.e. subscript of the geminal coefficient: i is in [0, N_P[ with N_P the number of electron pairs
+     *  @param a            the zero-based index of the occupied orbital, i.e. superscript of the geminal coefficient: a is in [N_P, K[ with K the number of spatial orbitals
+     * 
+     *  @return an element of the AP1roG geminal coefficient matrix G_i^a
+     */
+    double operator()(const size_t i, const size_t a) const;
 
 
     // NAMED CONSTRUCTORS
@@ -81,7 +100,7 @@ public:
      *
      *  @return the AP1roG geminal coefficients in the weak interaction limit
      */
-    static AP1roGGeminalCoefficients WeakInteractionLimit(const SQHamiltonian<double>& sq_hamiltonian, size_t N_P);
+    static AP1roGGeminalCoefficients WeakInteractionLimit(const SQHamiltonian<double>& sq_hamiltonian, const size_t N_P);
 
 
     // DESTRUCTOR
@@ -102,9 +121,34 @@ public:
     // PUBLIC METHODS
 
     /**
-     *  @return the geminal coefficients in matrix form
+     *  @return the number of electron pairs that these geminal coefficients describe
      */
-    MatrixX<double> asMatrix() const override;
+    size_t numberOfElectronPairs() const { return this->N_P; }
+
+    /**
+     *  @return the number of spatial orbitals each geminal is expanded in
+     */
+    size_t numberOfSpatialOrbitals() const { return this->K; }
+
+    /**
+     *  @return the number of electron pairs that these geminal coefficients describe
+     */
+    size_t get_N_P() const { return this->numberOfElectronPairs(); }
+
+    /**
+     *  @return the number of spatial orbitals each geminal is expanded in
+     */
+    size_t get_K() const { return this->numberOfSpatialOrbitals(); }
+
+    /**
+     *  @return the total geminal coefficient matrix, including the identity matrix block
+     */
+    MatrixX<double> asMatrix() const;
+
+    /**
+     *  @return the geminal coefficients as a column-major vector, excluding the identity block
+     */
+    VectorX<double> asVector() const;
 
     /**
      *  @param onv      the ONV that is being projected on

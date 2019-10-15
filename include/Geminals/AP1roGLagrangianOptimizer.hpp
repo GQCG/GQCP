@@ -21,6 +21,7 @@
 #include "Geminals/AP1roGGeminalCoefficients.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 
+
 namespace GQCP {
 
 
@@ -49,7 +50,7 @@ public:
     /**
      *  @return the Lagrange multipliers for the AP1roG PSE Lagrangian
      */
-    AP1roGVariables solve();
+    BlockMatrix<double> solve();
 };
 
 

@@ -5,7 +5,6 @@ target_sources(gqcp
             AP1roGLagrangianOptimizer.cpp
             AP1roGPSESolver.cpp
             AP1roGPSEs.cpp
-            AP1roGVariables.cpp
             APIGGeminalCoefficients.cpp
             BaseAPIGVariables.cpp
             GeminalCoefficientsInterface.cpp
