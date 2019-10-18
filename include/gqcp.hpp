@@ -143,8 +143,10 @@
 #include "OrbitalOptimization/OrbitalRotationGenerators.hpp"
 #include "OrbitalOptimization/QCMethodNewtonOrbitalOptimizer.hpp"
 
+#include "Properties/BaseElectricalResponseSolver.hpp"
 #include "Properties/expectation_values.hpp"
 #include "Properties/properties.hpp"
+#include "Properties/RHFElectricalResponseSolver.hpp"
 
 #include "QCMethod/DOCINewtonOrbitalOptimizer.hpp"
 #include "QCMethod/FCI.hpp"

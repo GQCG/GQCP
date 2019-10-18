@@ -105,6 +105,49 @@ BOOST_AUTO_TEST_CASE ( dipole_N2_STO_3G ) {
 }
 
 
+BOOST_AUTO_TEST_CASE ( h2_polarizability_RHF ) {
+
+    double ref_alpha_zz = 1.08428;  // from Psi4-numpy, with a fix for the Fockian matrix
+
+
+    // Prepare an AO basis
+    GQCP::Atom H1 (1, 0.0, 0.0,  0.0);
+    GQCP::Atom H2 (1, 0.0, 0.0,  0.5);  // from CCCBDB, STO-3G geometry
+    GQCP::Molecule h2 ({H1, H2}, 0);
+
+    auto ao_basis = std::make_shared<GQCP::AOBasis>(h2, "STO-3G");
+    auto ao_mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(ao_basis);
+
+
+    // Prepare the RHF basis
+    GQCP::PlainRHFSCFSolver plain_scf_solver (ao_mol_ham_par, h2);
+    plain_scf_solver.solve();
+    auto rhf = plain_scf_solver.get_solution();
+    const auto mol_ham_par = GQCP::HamiltonianParameters<double>(ao_mol_ham_par, rhf.get_C());
+
+
+    // Prepare the dipole integrals in the RHF basis
+    auto dipole_components = ao_basis->calculateLibintDipoleIntegrals();
+    for (auto& dipole_component : dipole_components) {
+        dipole_component.basisTransform(rhf.get_C());
+    }
+
+
+    // Find the RHF wave function response
+    GQCP::RHFElectricalResponseSolver cphf_solver (h2.get_N()/2);
+    const auto x = cphf_solver.calculateWaveFunctionResponse(mol_ham_par, dipole_components);
+
+
+    // Calculate the RHF polarizability
+    const auto F_p = cphf_solver.calculateParameterResponseForce(dipole_components);
+    const auto alpha = GQCP::calculateElectricPolarizability(F_p, x);
+    const auto alpha_zz = alpha(2,2);
+
+
+    BOOST_CHECK(std::abs(alpha_zz - ref_alpha_zz) < 1.0e-05);
+}
+
+
 /**
  *  Test the Dyson algorithm against manually calculated coefficients for two (normalized) toy wave functions
  */

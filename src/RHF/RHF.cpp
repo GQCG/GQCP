@@ -187,4 +187,68 @@ size_t RHFLUMOIndex(size_t K, size_t N) {
 }
 
 
+
+/**
+ *  Specialize the orbital Hessian for RHF
+ * 
+ *  @param sq_hamiltonian       the Hamiltonian parameters
+ *  @param N_P                  the number of electron pairs
+ * 
+ *  @return the RHF orbital Hessian as a tensor
+ */
+Tensor<double, 4> calculateRHFOrbitalHessianTensor(const SQHamiltonian<double>& sq_hamiltonian, const size_t N_P) {
+
+    const auto K = ham_par.get_K();
+    Tensor<double, 4> hessian (K, N_P, K, N_P);
+    hessian.setZero();
+
+    for (size_t a = N_P; a < K; a++) {
+        for (size_t i = 0; i < N_P; i++) {
+            
+            for (size_t b = N_P; b < K; b++) {
+                for (size_t j = 0; j < N_P; j++) {
+                    hessian(a,i,b,j) = calculateRHFOrbitalHessianElement(ham_par, N_P, a, i, b, j);
+                }
+            }
+        }
+    }
+
+    return hessian;
+}
+
+
+/**
+ *  @param sq_hamiltonian       the Hamiltonian parameters
+ *  @param N_P                  the number of electron pairs
+ *  @param a                    the first virtual orbital index
+ *  @param i                    the first occupied orbital index
+ *  @param b                    the second virtual orbital index
+ *  @param j                    the second occupied orbital index
+ * 
+ *  @return an element of the RHF orbital Hessian
+ */
+double calculateRHFOrbitalHessianElement(const SQHamiltonian<double>& sq_hamiltonian, const size_t N_P, const size_t a, const size_t i, const size_t b, const size_t j) {
+
+    const auto& g = ham_par.get_g();
+    double value {0.0};
+
+
+    // Inactive Fock matrix part
+    const auto F = ham_par.calculateInactiveFockian(N_P);
+    if (i == j) {
+        value += F(a,b);
+    }
+
+    if (a == b) {
+        value -= F(i,j);
+    }
+
+
+    // Two-electron part
+    value += 4 * g(a,i,b,j) - g(a,b,i,j) - g(a,j,b,i);
+
+    return 4 * value;
+}
+
+
 }  // namespace GQCP
