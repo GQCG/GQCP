@@ -55,7 +55,6 @@ void AP1roGPSESolver::solve(AP1roGGeminalCoefficients& G) const {
 
     // Solve the AP1roG equations using a Newton-based algorithm
     VectorX<double> x = G.asVector();  // the initial guess and the solution if it is found; a column-major vector
-    std::cout << "x_initial: " << std::endl << x << std::endl << std::endl;
     NewtonNLSystemOfEquationsSolver syseq_solver (f, J, this->convergence_threshold, this->maximum_number_of_iterations);
 
     syseq_solver.solve(x);

@@ -50,14 +50,6 @@ APIGGeminalCoefficients::APIGGeminalCoefficients(const size_t N_P, const size_t 
 {}
 
 
-// /**
-//  *  Default constructor setting everything to zero
-//  */
-// APIGGeminalCoefficients::APIGGeminalCoefficients() :
-//     BaseAPIGVariables()
-// {}
-
-
 
 /*
  *  DESTRUCTOR

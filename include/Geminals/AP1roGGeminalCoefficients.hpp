@@ -59,11 +59,6 @@ public:
     AP1roGGeminalCoefficients(const size_t N_P, const size_t K);
 
 
-    // /**
-    //  *  Default constructor setting everything to zero
-    //  */
-    // AP1roGGeminalCoefficients();  // default constructor needed
-
     // DESTRUCTOR
     ~AP1roGGeminalCoefficients() override;
 
@@ -104,9 +99,6 @@ public:
      *  @return the AP1roG geminal coefficients in the weak interaction limit
      */
     static AP1roGGeminalCoefficients WeakInteractionLimit(const SQHamiltonian<double>& sq_hamiltonian, const size_t N_P);
-
-
-
 
 
     // STATIC PUBLIC METHODS

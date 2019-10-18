@@ -130,20 +130,6 @@ AP1roGGeminalCoefficients AP1roGGeminalCoefficients::FromColumnMajor(const Vecto
     const MatrixX<double> M = MatrixX<double>::FromColumnMajorVector(g, rows, cols);  // the block of the actual entries of the geminal coefficient matrix
 
     return AP1roGGeminalCoefficients(BlockMatrix<double>(0, N_P, N_P, K, M), N_P, K);  // an encapsulating object that implements operator() in an intuitive way
-
-    // // Loop over the row indices and column indices to place the given column-major elements into a row-major vector
-    // const auto number_of_geminal_coefficients = AP1roGGeminalCoefficients::numberOfGeminalCoefficients(N_P, K);
-    // VectorX<double> g_row_major = VectorX<double>::Zero(number_of_geminal_coefficients);
-    // for (size_t i = 0; i < N_P; i++) {  // i labels rows
-    //     for (size_t j = 0; j < K-N_P; j++) {  // j labels columns
-    //         size_t row_major_index = i * (K-N_P) + j;
-    //         size_t column_major_index = j * N_P + i;
-
-    //         g_row_major(row_major_index) = g(column_major_index);  // access the column-major vector and place them in the row-major vector
-    //     }
-    // }
-
-    // return AP1roGGeminalCoefficients::FromRowMajor(g_row_major, N_P, K);
 }
 
 
@@ -160,12 +146,7 @@ AP1roGGeminalCoefficients AP1roGGeminalCoefficients::FromRowMajor(const VectorX<
 
     const MatrixX<double> M = MatrixX<double>::FromRowMajorVector(g, rows, cols);  // the block of the actual entries of the geminal coefficient matrix
 
-    std::cout << "M: " << std::endl << M << std::endl << std::endl;
-
     return AP1roGGeminalCoefficients(BlockMatrix<double>(0, N_P, N_P, K, M), N_P, K);  // an encapsulating object that implements operator() in an intuitive way
-
-
-    // return AP1roGGeminalCoefficients(g, N_P, K);
 }
 
 
@@ -208,9 +189,6 @@ MatrixX<double> AP1roGGeminalCoefficients::asMatrix() const {
     G_total.topLeftCorner(this->N_P, this->N_P) = MatrixX<double>::Identity(this->N_P, this->N_P);
 
     // Set the right AP1roG coefficient block
-    // using RowMajorMatrixXd = Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor>;
-    // Eigen::RowVectorXd x_row = this->x;
-    // RowMajorMatrixXd B = Eigen::Map<RowMajorMatrixXd, Eigen::RowMajor>(x_row.data(), this->N_P, this->K-this->N_P);
     G_total.topRightCorner(this->N_P, this->K-this->N_P) = this->G.asMatrix();
 
     return G_total;
