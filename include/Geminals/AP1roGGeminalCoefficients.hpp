@@ -64,6 +64,9 @@ public:
     //  */
     // AP1roGGeminalCoefficients();  // default constructor needed
 
+    // DESTRUCTOR
+    ~AP1roGGeminalCoefficients() override;
+
 
     // OPERATORS
 
@@ -103,8 +106,7 @@ public:
     static AP1roGGeminalCoefficients WeakInteractionLimit(const SQHamiltonian<double>& sq_hamiltonian, const size_t N_P);
 
 
-    // DESTRUCTOR
-    ~AP1roGGeminalCoefficients() override;
+
 
 
     // STATIC PUBLIC METHODS

@@ -66,7 +66,6 @@
 #include "Geminals/AP1roGPSEs.hpp"
 #include "Geminals/AP1roGPSESolver.hpp"
 #include "Geminals/APIGGeminalCoefficients.hpp"
-#include "Geminals/BaseAPIGVariables.hpp"
 #include "Geminals/GeminalCoefficientsInterface.hpp"
 
 #include "HamiltonianBuilder/DOCI.hpp"

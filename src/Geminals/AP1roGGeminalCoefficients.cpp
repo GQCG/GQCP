@@ -63,6 +63,14 @@ AP1roGGeminalCoefficients::AP1roGGeminalCoefficients(const size_t N_P, const siz
 
 
 /*
+ *  DESTRUCTOR
+ */
+
+AP1roGGeminalCoefficients::~AP1roGGeminalCoefficients() {}
+
+
+
+/*
  *  OPERATORS
  */
 
@@ -76,8 +84,6 @@ double AP1roGGeminalCoefficients::operator()(const size_t i, const size_t a) con
 
     return this->G(i,a);  // BlockMatrix implements operator() as we would expect
 }
-
-
 
 
 
@@ -161,14 +167,6 @@ AP1roGGeminalCoefficients AP1roGGeminalCoefficients::FromRowMajor(const VectorX<
 
     // return AP1roGGeminalCoefficients(g, N_P, K);
 }
-
-
-
-/*
- *  DESTRUCTOR
- */
-
-AP1roGGeminalCoefficients::~AP1roGGeminalCoefficients() {}
 
 
 

@@ -18,7 +18,6 @@
 #pragma once
 
 
-#include "Geminals/BaseAPIGVariables.hpp"
 #include "Geminals/GeminalCoefficientsInterface.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
 #include "WaveFunction/WaveFunction.hpp"
@@ -31,21 +30,20 @@ namespace GQCP {
 /**
  *  A class that represents geminal coefficients for an APIG wave function
  */
-class APIGGeminalCoefficients : public BaseAPIGVariables, public GeminalCoefficientsInterface {
+class APIGGeminalCoefficients : public GeminalCoefficientsInterface {
+private:
+    size_t K;  // the number of spatial orbitals corresponding to these geminal coefficients
+    size_t N_P;  // the number of electron pairs (i.e. the number of geminals) corresponding to these geminal coefficients
+    MatrixX<double> G;  // the APIG geminal coefficients
+
+
 public:
     // CONSTRUCTORS
-    /**
-     *  Default constructor setting everything to zero
-     */
-    APIGGeminalCoefficients();  // default constructor needed
 
     /**
-     *  @param g        the geminal coefficients in a vector representation that is in row-major storage
-     *
-     *  @param N_P      the number of electron pairs (= the number of geminals)
-     *  @param K        the number of spatial orbitals
+     *  @param G                the APIG geminal coefficients in their matrix representation
      */
-    APIGGeminalCoefficients(const VectorX<double>& g, size_t N_P, size_t K);
+    APIGGeminalCoefficients(const MatrixX<double>& G);
 
     /**
      *  Constructor that sets the geminal coefficients to zero
@@ -53,19 +51,48 @@ public:
      *  @param N_P      the number of electron pairs (= the number of geminals)
      *  @param K        the number of spatial orbitals
      */
-    APIGGeminalCoefficients(size_t N_P, size_t K);
+    APIGGeminalCoefficients(const size_t N_P, const size_t K);
 
-    /**
-     *  @param G        the geminal coefficients in a matrix representation
-     */
-    APIGGeminalCoefficients(const MatrixX<double>& G);
+    // /**
+    //  *  Default constructor setting everything to zero
+    //  */
+    // APIGGeminalCoefficients();  // default constructor needed
 
 
     // DESTRUCTOR
     ~APIGGeminalCoefficients() override;
 
 
+    // OPERATORS
+
+    /**
+     *  @param i            the zero-based index of the geminal, i.e. subscript of the geminal coefficient: i is in [0, N_P[ with N_P the number of electron pairs
+     *  @param p            the zero-based index of the orbital, i.e. superscript of the geminal coefficient
+     * 
+     *  @return an element of the AP1roG geminal coefficient matrix G_i^a
+     */
+    double operator()(const size_t i, const size_t p) const;
+
+
+    // NAMED CONSTRUCTORS
+
+    /**
+     *  @param g        the geminal coefficients in a vector representation that is in column-major storage
+     *  @param N_P      the number of electron pairs (= the number of geminals)
+     *  @param K        the number of spatial orbitals
+     */
+    static APIGGeminalCoefficients FromColumnMajor(const VectorX<double>& g, const size_t N_P, const size_t K);
+
+    /**
+     *  @param g        the geminal coefficients in a vector representation that is in row-major storage
+     *  @param N_P      the number of electron pairs (= the number of geminals)
+     *  @param K        the number of spatial orbitals
+     */
+    static APIGGeminalCoefficients FromRowMajor(const VectorX<double>& g, const size_t N_P, const size_t K);
+
+
     // STATIC PUBLIC METHODS
+
     /**
      *  @param N_P      the number of electron pairs (= the number of geminals)
      *  @param K        the number of spatial orbitals
@@ -76,32 +103,11 @@ public:
 
 
     // PUBLIC METHODS
+
     /**
      *  @return the geminal coefficients in matrix form
      */
-    MatrixX<double> asMatrix() const override;
-
-    /**
-     *  @param vector_index     the vector index of the geminal coefficient
-     *
-     *  @return the major (geminal, subscript, non-contiguous) index i in the matrix of the geminal coefficients
-     */
-    size_t matrixIndexMajor(size_t vector_index) const override;
-
-    /**
-     *  @param vector_index     the vector index of the geminal coefficient
-     *
-     *  @return the minor (orbital, superscript, contiguous) index p in the matrix of the geminal coefficients
-     */
-    size_t matrixIndexMinor(size_t vector_index) const override;
-
-    /**
-     *  @param i        the major (geminal, subscript, non-contiguous) index
-     *  @param p        the minor (orbital, superscript, contiguous) index
-     *
-     *  @return the vector index of the geminal coefficient G_i^p
-     */
-    size_t vectorIndex(size_t i, size_t p) const override;
+    const MatrixX<double>& asMatrix() const { return this->G; };
 
     /**
      *  @param onv      the ONV that is being projected on

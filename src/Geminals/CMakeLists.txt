@@ -6,6 +6,5 @@ target_sources(gqcp
             AP1roGPSESolver.cpp
             AP1roGPSEs.cpp
             APIGGeminalCoefficients.cpp
-            BaseAPIGVariables.cpp
             GeminalCoefficientsInterface.cpp
         )

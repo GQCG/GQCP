@@ -30,26 +30,13 @@ namespace GQCP {
  */
 
 /**
- *  Default constructor setting everything to zero
+ *  @param G                the APIG geminal coefficients
  */
-APIGGeminalCoefficients::APIGGeminalCoefficients() :
-    BaseAPIGVariables()
+APIGGeminalCoefficients::APIGGeminalCoefficients(const MatrixX<double>& G) :
+    K (G.cols()),
+    N_P (G.rows()),
+    G (G)
 {}
-
-
-/**
- *  @param g        the geminal coefficients in a vector representation that is in row-major storage
- *
- *  @param N_P      the number of electron pairs (= the number of geminals)
- *  @param K        the number of spatial orbitals
- */
-APIGGeminalCoefficients::APIGGeminalCoefficients(const VectorX<double>& g, size_t N_P, size_t K) :
-    BaseAPIGVariables(g, N_P, K)
-{
-    if (APIGGeminalCoefficients::numberOfGeminalCoefficients(N_P, K) != g.size()) {
-        throw std::invalid_argument("APIGGeminalCoefficients::APIGGeminalCoefficients(VectorX<double>, size_t, size_t): The specified N_P and K are not compatible with the given vector of geminal coefficients.");
-    }
-}
 
 
 /**
@@ -58,31 +45,69 @@ APIGGeminalCoefficients::APIGGeminalCoefficients(const VectorX<double>& g, size_
  *  @param N_P      the number of electron pairs (= the number of geminals)
  *  @param K        the number of spatial orbitals
  */
-APIGGeminalCoefficients::APIGGeminalCoefficients(size_t N_P, size_t K) :
-    APIGGeminalCoefficients(VectorX<double>::Zero(APIGGeminalCoefficients::numberOfGeminalCoefficients(N_P, K)), N_P, K)
+APIGGeminalCoefficients::APIGGeminalCoefficients(const size_t N_P, const size_t K) :
+    APIGGeminalCoefficients(MatrixX<double>::Zero(N_P, K))
 {}
 
 
-/**
- *  @param G        the geminal coefficients in a matrix representation
- */
-APIGGeminalCoefficients::APIGGeminalCoefficients(const MatrixX<double>& G) :
-    BaseAPIGVariables()
-{
-
-    MatrixX<double> G_transpose = G.transpose();
-
-    this->x = Eigen::Map<const Eigen::VectorXd>(G_transpose.data(), G_transpose.cols()*G_transpose.rows());
-    this->K = G.cols();
-    this->N_P = G.rows();
-}
+// /**
+//  *  Default constructor setting everything to zero
+//  */
+// APIGGeminalCoefficients::APIGGeminalCoefficients() :
+//     BaseAPIGVariables()
+// {}
 
 
 
 /*
  *  DESTRUCTOR
  */
+
 APIGGeminalCoefficients::~APIGGeminalCoefficients() {}
+
+
+
+/*
+ *  OPERATORS
+ */
+
+/**
+ *  @param i            the zero-based index of the geminal, i.e. subscript of the geminal coefficient: i is in [0, N_P[ with N_P the number of electron pairs
+ *  @param p            the zero-based index of the orbital, i.e. superscript of the geminal coefficient
+ * 
+ *  @return an element of the AP1roG geminal coefficient matrix G_i^a
+ */
+double APIGGeminalCoefficients::operator()(const size_t i, const size_t p) const {
+
+    return this->G(i,p);
+}
+
+
+
+/*
+ *  NAMED CONSTRUCTORS
+ */
+
+/**
+ *  @param g        the geminal coefficients in a vector representation that is in column-major storage
+ *  @param N_P      the number of electron pairs (= the number of geminals)
+ *  @param K        the number of spatial orbitals
+ */
+APIGGeminalCoefficients APIGGeminalCoefficients::FromColumnMajor(const VectorX<double>& g, const size_t N_P, const size_t K) {
+
+    return APIGGeminalCoefficients(MatrixX<double>::FromColumnMajorVector(g, N_P, K));
+}
+
+
+/**
+ *  @param g        the geminal coefficients in a vector representation that is in row-major storage
+ *  @param N_P      the number of electron pairs (= the number of geminals)
+ *  @param K        the number of spatial orbitals
+ */
+APIGGeminalCoefficients APIGGeminalCoefficients::FromRowMajor(const VectorX<double>& g, const size_t N_P, const size_t K) {
+
+    return APIGGeminalCoefficients(MatrixX<double>::FromRowMajorVector(g, N_P, K));
+}
 
 
 
@@ -111,56 +136,6 @@ size_t APIGGeminalCoefficients::numberOfGeminalCoefficients(size_t N_P, size_t K
 /*
  *  PUBLIC METHODS
  */
-
-/**
- *  @return the geminal coefficients in matrix form
- */
-MatrixX<double> APIGGeminalCoefficients::asMatrix() const {
-
-    using RowMajorMatrixXd = Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor>;
-    Eigen::RowVectorXd x_row = this->x;
-
-    return Eigen::Map<RowMajorMatrixXd, Eigen::RowMajor>(x_row.data(), this->N_P, this->K);
-}
-
-
-/**
- *  @param vector_index     the vector index of the geminal coefficient
- *
- *  @return the major (geminal, subscript, non-contiguous) index i in the matrix of the geminal coefficients
- */
-size_t APIGGeminalCoefficients::matrixIndexMajor(size_t vector_index) const {
-
-    return GQCP::matrixIndexMajor(vector_index, this->K);
-}
-
-
-/**
- *  @param vector_index     the vector index of the geminal coefficient
- *
- *  @return the minor (orbital, superscript, contiguous) index p in the matrix of the geminal coefficients
- */
-size_t APIGGeminalCoefficients::matrixIndexMinor(size_t vector_index) const {
-
-    return GQCP::matrixIndexMinor(vector_index, this->K);
-}
-
-
-/**
- *  @param i        the major (geminal, subscript, non-contiguous) index
- *  @param p        the minor (orbital, superscript, contiguous) index
- *
- *  @return the vector index of the geminal coefficient G_i^p
- */
-size_t APIGGeminalCoefficients::vectorIndex(size_t i, size_t p) const {
-
-    if (i >= N_P) {
-        throw std::invalid_argument("APIGGeminalCoefficients::vectorIndex(size_t, size_t): The major index i (subscript) must be smaller than N_P.");
-    }
-
-    return GQCP::vectorIndex(i, p, this->K);
-}
-
 
 /**
  *  @param onv      the ONV that is being projected on
