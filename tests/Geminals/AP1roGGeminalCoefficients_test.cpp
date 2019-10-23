@@ -73,6 +73,28 @@ BOOST_AUTO_TEST_CASE ( FromColumnMajor ) {
 
 
 /**
+ *  Check if the constructor using a given number of electron pairs (N_P) and spatial orbitals (K) behaves as expected
+ */
+BOOST_AUTO_TEST_CASE ( constructor_N_P_K ) {
+
+    // Provide reference values
+    const size_t N_P = 1;
+    const size_t K = 9;
+
+    GQCP::MatrixX<double> G_total_ref (1, 9);
+    G_total_ref << 1, 0, 0, 0, 0, 0, 0, 0, 0;  // 'free' geminal coefficients are zero, left 'block' is the identity matrix
+
+
+    // Construct the geminal coefficients object and check the result
+    const GQCP::AP1roGGeminalCoefficients G (N_P, K);
+    const auto G_as_matrix = G.asMatrix();
+    BOOST_CHECK(G_as_matrix.isApprox(G_total_ref));
+    BOOST_CHECK_EQUAL(G_as_matrix.rows(), 1);
+    BOOST_CHECK_EQUAL(G_as_matrix.cols(), 9);
+}
+
+
+/**
  *  Test if the conversion from AP1roG geminal coefficients to a wave function is correct (example 1)
  */
 BOOST_AUTO_TEST_CASE ( toWaveFunction_example1 ) {

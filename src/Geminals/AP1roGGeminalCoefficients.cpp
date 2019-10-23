@@ -57,7 +57,7 @@ AP1roGGeminalCoefficients::AP1roGGeminalCoefficients(const MatrixX<double>& G) :
  *  @param K        the number of spatial orbitals
  */
 AP1roGGeminalCoefficients::AP1roGGeminalCoefficients(const size_t N_P, const size_t K) :
-    AP1roGGeminalCoefficients(MatrixX<double>::Zero(N_P, K))
+    AP1roGGeminalCoefficients(MatrixX<double>::Zero(N_P, K-N_P))
 {}
 
 
