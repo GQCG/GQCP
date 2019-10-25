@@ -46,6 +46,7 @@ private:
 
 
 public:
+
     /*
      *  CONSTRUCTORS
      */
@@ -85,6 +86,14 @@ public:
      */
     BlockMatrix(const size_t row_start, const size_t row_end, const size_t col_start, const size_t col_end) :
         BlockMatrix(row_start, row_end, col_start, col_end, MatrixX<Scalar>::Zero(row_end-row_start, col_end-col_start))
+    {}
+
+
+    /**
+     *  Default constructor is needed: sets everything to zero(s)
+     */
+    BlockMatrix() : 
+        BlockMatrix(0, 0, 0, 0)
     {}
 
 

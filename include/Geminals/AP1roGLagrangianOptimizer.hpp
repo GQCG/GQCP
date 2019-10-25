@@ -17,32 +17,40 @@
 // 
 #pragma once
 
-#include "Geminals/BaseAP1roGSolver.hpp"
 
-#include "Geminals/AP1roGVariables.hpp"
+#include "Geminals/AP1roGGeminalCoefficients.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 
 
 namespace GQCP {
 
 
 /**
- *  A class that is able to optimize the AP1roG PSE Lagrangian
+ *  A class that is able to determine the Lagrange multipliers for the AP1roG PSE Lagrangian, given a solution for the geminal coefficients
  */
-class AP1roGLagrangianOptimizer : public BaseAP1roGSolver {
+class AP1roGLagrangianOptimizer {
 private:
-    AP1roGVariables multipliers;  // the Lagrangian multipliers
+    AP1roGGeminalCoefficients G;  // the converged geminal coefficients that are a solution to the AP1roG PSEs
+    SQHamiltonian<double> sq_hamiltonian;  // the Hamiltonian expressed in an orthonormal orbital basis
+
 
 public:
+
     // CONSTRUCTORS
-    using BaseAP1roGSolver::BaseAP1roGSolver;  // inherit base constructors
 
-
-    // GETTERS
-    const AP1roGVariables& get_multipliers() const { return this->multipliers; }
+    /**
+     *  @param G                    the converged geminal coefficients that are a solution to the AP1roG PSEs
+     *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal orbital basis
+     */
+    AP1roGLagrangianOptimizer(const AP1roGGeminalCoefficients& G, const SQHamiltonian<double>& sq_hamiltonian);
 
 
     // PUBLIC METHODS
-    void solve() override;
+
+    /**
+     *  @return the Lagrange multipliers for the AP1roG PSE Lagrangian
+     */
+    BlockMatrix<double> solve();
 };
 
 

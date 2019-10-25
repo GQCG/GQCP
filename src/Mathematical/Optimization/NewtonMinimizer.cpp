@@ -17,7 +17,7 @@
 // 
 #include "Mathematical/Optimization/NewtonMinimizer.hpp"
 
-#include "Mathematical/Optimization/NewtonSystemOfEquationsSolver.hpp"
+#include "Mathematical/Optimization/NewtonNLSystemOfEquationsSolver.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 #include "typedefs.hpp"
 
@@ -57,11 +57,9 @@ NewtonMinimizer::NewtonMinimizer(const VectorX<double>& x0, const VectorFunction
  */
 void NewtonMinimizer::solve() {
 
-    // Requiring the gradient to vanish, and then calculating the corresponding Newton step, is equivalent to solving
-    // the system of equations grad(f(x)) = 0 using a Newton step
+    // Requiring the gradient to vanish, and then calculating the corresponding Newton step, is equivalent to solving the system of equations grad(f(x)) = 0 using a Newton step
 
-    // For mathematical correctness, the Jacobian of the gradient is the transpose of the Hessian of the scalar function
-    // behind it
+    // For mathematical correctness, the Jacobian of the gradient is the transpose of the Hessian of the scalar function behind it
     MatrixFunction H_t = [this](const VectorX<double>& x) {
         SquareMatrix<double> H = this->H(x);
         H.transposeInPlace();
@@ -69,16 +67,13 @@ void NewtonMinimizer::solve() {
     };
 
 
-    // For previously established reasons, we can use the NewtonSystemOfEquationsSolver as an implementation of this
-    // minimization problem
-    NewtonSystemOfEquationsSolver newton_syseq_solver (this->x, this->grad, H_t, this->convergence_threshold);
-    newton_syseq_solver.solve();
+    // For previously established reasons, we can use the NewtonNLSystemOfEquationsSolver as an implementation of this minimization problem
+    NewtonNLSystemOfEquationsSolver newton_syseq_solver (this->grad, H_t, this->convergence_threshold);
+    newton_syseq_solver.solve(this->x);
 
 
-    // If we haven't found a solution, the error is raised inside the NewtonSystemOfEquationsSolver, so we are free to
-    // assert that if the data flow gets to here, a solution is found
+    // If we haven't found a solution, the error is raised inside the NewtonNLSystemOfEquationsSolver, so we are free to assert that if the data flow gets to here, a solution is found
     this->is_solved = true;
-    this->x = newton_syseq_solver.get_solution();
 }
 
 

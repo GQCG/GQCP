@@ -17,51 +17,71 @@
 // 
 #include "Geminals/AP1roGLagrangianOptimizer.hpp"
 
-#include "Geminals/AP1roGPSESolver.hpp"
+#include "Geminals/AP1roGPSEs.hpp"
 
 
 namespace GQCP {
 
 
 /*
+ *  CONSTRUCTORS
+ */
+
+/**
+ *  @param G                    the converged geminal coefficients that are a solution to the AP1roG PSEs
+ *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal orbital basis
+ */
+AP1roGLagrangianOptimizer::AP1roGLagrangianOptimizer(const AP1roGGeminalCoefficients& G, const SQHamiltonian<double>& sq_hamiltonian) :
+    G (G),
+    sq_hamiltonian (sq_hamiltonian)
+{}
+
+
+
+/*
  *  PUBLIC METHODS
  */
-void AP1roGLagrangianOptimizer::solve() {
 
-    const auto K = this->sq_hamiltonian.dimension();
+/**
+ *  @return the Lagrange multipliers for the AP1roG PSE Lagrangian
+ */
+BlockMatrix<double> AP1roGLagrangianOptimizer::solve() {
+
+    // Initialize some variables that are needed in the solution algorithm
+    const auto K = this->G.numberOfSpatialOrbitals();
+    const auto N_P = this->G.numberOfElectronPairs();
     const auto& g = this->sq_hamiltonian.twoElectron().parameters();
 
 
-    // Solve the PSEs and set part of the solutions
-    AP1roGPSESolver pse_solver (this->N_P, this->sq_hamiltonian, this->geminal_coefficients, this->convergence_threshold, this->maximum_number_of_iterations);
-    pse_solver.solve();
+    // Initialize and solve the linear system (k_lambda lambda=-b) in order to determine the Lagrange multipliers lambda
 
-    this->geminal_coefficients = pse_solver.get_geminal_coefficients();
-    this->electronic_energy = pse_solver.get_electronic_energy();
+    // Calculate the matrix k_lambda
+    const AP1roGPSEs pses (this->sq_hamiltonian, N_P);
+    const MatrixX<double> k_lambda = pses.calculateJacobian(this->G).asMatrix().transpose();
 
 
-    // Initialize and solve the linear system Jx=b (x are the Lagrange multipliers)
-    size_t dim = this->geminal_coefficients.numberOfGeminalCoefficients(this->N_P, K);
-
-    auto J = pse_solver.calculateJacobian(this->geminal_coefficients);
-
-    VectorX<double> b = VectorX<double>::Zero(dim);  // dE/dG_i^a
-    for (size_t i = 0; i < this->N_P; i++) {
-        for (size_t a = this->N_P; a < this->K; a++) {
-            size_t row_vector_index = this->geminal_coefficients.vectorIndex(i, a);
-
-            b(row_vector_index) = -g(i,a,i,a);
+    // Calculate the right-hand side vector b_i^a = dE/DG_i^a
+    BlockMatrix<double> b (0, N_P, N_P, K);
+    for (size_t i = 0; i < N_P; i++) {
+        for (size_t a = N_P; a < K; a++) {
+            b(i,a) = g(i,a,i,a);
         }
     }
 
-    Eigen::HouseholderQR<Eigen::MatrixXd> linear_solver (J);
-    VectorX<double> x = linear_solver.solve(b);
 
-    if (std::abs((J * x - b).norm()) > 1.0e-12) {
+    // Solve the linear system (k_lambda lambda=-b)
+    Eigen::HouseholderQR<Eigen::MatrixXd> linear_solver (k_lambda);
+    VectorX<double> lambda = linear_solver.solve(-b.asVector());  // b is column major, so lambda is also column major
+
+
+    if (std::abs((k_lambda * lambda + b.asVector()).norm()) > 1.0e-12) {
         throw std::runtime_error("void AP1roGLagrangianOptimizer::solve(): The Householder QR decomposition failed.");
     }
 
-    this->multipliers = AP1roGVariables(x, this->N_P, K);
+    const size_t rows = N_P;  // the number of rows in the multiplier matrix
+    const size_t cols = K - N_P;  // the number of columns in the multiplier matrix
+    const MatrixX<double> M = MatrixX<double>::FromColumnMajorVector(lambda, rows, cols);  // the actual Lagrange multipliers, reshaped into a matrix
+    return BlockMatrix<double>(0, N_P, N_P, K, M);  // an encapsulating object that implements operator() intuitively
 }
 
 

@@ -155,6 +155,45 @@ public:
     }
 
 
+    /**
+     *  Convert a given column-major vector to a matrix with the given number of rows
+     * 
+     *  @param v            a vector that is supposed to be in a column-major ordering
+     *  @param rows         the number of rows the resulting matrix should have
+     *  @param cols         the number of columns the resulting matrix should have
+     */
+    template <typename Z = Self>
+    static enable_if_t<(Cols == Dynamic) && (Rows == Dynamic), Z> FromColumnMajorVector(const Matrix<Scalar, Dynamic, 1>& v, const size_t rows, const size_t cols) {
+
+        return Self(Eigen::Map<const Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>>(v.data(), rows, cols));
+    }
+
+
+    /**
+     *  Convert a given row-major vector to a matrix with the given number of rows
+     * 
+     *  @param v            a vector that is supposed to be in a column-major ordering
+     *  @param rows         the number of rows the resulting matrix should have
+     *  @param cols         the number of columns the resulting matrix should have
+     */
+    template <typename Z = Self>
+    static enable_if_t<(Cols == Dynamic) && (Rows == Dynamic), Z> FromRowMajorVector(const Matrix<Scalar, Dynamic, 1>& v, const size_t rows, const size_t cols) {
+
+        // Change the given vector's elements to a column-major representation
+        Matrix<Scalar, Dynamic, 1> v_column_major = Matrix<Scalar, Dynamic, 1>::Zero(rows * cols);
+        for (size_t i = 0; i < rows; i++) {
+            for (size_t j = 0; j < cols; j++) {
+                size_t row_major_index = i * cols + j;
+                size_t column_major_index = j * rows + i;
+
+                v_column_major(column_major_index) = v(row_major_index);
+            }
+        }
+
+        return Self::FromColumnMajorVector(v_column_major, rows, cols);
+    }
+
+
 
     /*
      *  OPERATORS

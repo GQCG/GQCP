@@ -19,6 +19,7 @@
 
 
 #include "Geminals/AP1roGGeminalCoefficients.hpp"
+#include "Mathematical/Representation/BlockMatrix.hpp"
 #include "OrbitalOptimization/QCMethodNewtonOrbitalOptimizer.hpp"
 
 
@@ -34,7 +35,7 @@ private:
 
     double E;  // the electronic energy
     AP1roGGeminalCoefficients G;  // the current geminal coefficients
-    AP1roGVariables multipliers;  // the current Lagrangian multipliers
+    BlockMatrix<double> multipliers;  // the current Lagrangian multipliers
 
 
 public:
@@ -68,7 +69,7 @@ public:
 
     double get_electronic_energy() const { return this->E; }
     const AP1roGGeminalCoefficients& get_geminal_coefficients() const { return this->G; }
-    const AP1roGVariables& get_multipliers() const { return this->multipliers; }
+    const BlockMatrix<double>& get_multipliers() const { return this->multipliers; }
 
 
     // OVERRIDDEN PUBLIC METHODS
