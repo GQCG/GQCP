@@ -17,6 +17,7 @@
 // 
 #include "Properties/RHFElectricalResponseSolver.hpp"
 
+#include "Mathematical/Representation/BlockMatrix.hpp"
 #include "RHF/RHF.hpp"
 
 
@@ -48,12 +49,9 @@ RHFElectricalResponseSolver::RHFElectricalResponseSolver(const size_t N_P) :
 SquareMatrix<double> RHFElectricalResponseSolver::calculateParameterResponseConstant(const SQHamiltonian<double>& sq_hamiltonian) const {
 
     // k_p for RHF is the RHF orbital Hessian
-    const auto RHF_orbital_hessian_tensor = calculateRHFOrbitalHessianTensor(ham_par, this->N_P);
+    const auto RHF_orbital_hessian_tensor = calculateRHFOrbitalHessianTensor(sq_hamiltonian, this->N_P);
 
-    // We have now calculated the full KxKxKxK tensor (K: number of spatial orbitals)
-    // We should reduce the tensor dimension to only include the non-redundant rotations (ignore zero elements) and transform to a Hessian matrix
-
-    return RHF_orbital_hessian_tensor.pairWiseReduce(this->N_P, 0, this->N_P, 0);  // compound both indices (ai, bj) into (m, n), knowing that virtual indices start at N_P
+    return SquareMatrix<double>(RHF_orbital_hessian_tensor.asMatrix());  // give the column-major representation of the tensor as a matrix
 }
 
 
@@ -64,31 +62,26 @@ SquareMatrix<double> RHFElectricalResponseSolver::calculateParameterResponseCons
  */
 Matrix<double, Dynamic, 3> RHFElectricalResponseSolver::calculateParameterResponseForce(const VectorSQOneElectronOperator<double> dipole_op) const {
 
-    const auto K = dipole_integrals[0].get_K();
-
+    const auto K = dipole_op.dimension();  // number of spatial orbitals
 
     const auto dim = this->N_P * (K - this->N_P);  // number of non-redundant orbital rotation generators
     Matrix<double, Dynamic, 3> F_p = Matrix<double, Dynamic, 3>::Zero(dim, 3);
 
 
-    for (size_t m = 0; m < 3; m++) {  // m loops over the components of the electrical dipole
+    // Loop over the components of the electrical dipole to calculate the response force for every component
+    for (size_t m = 0; m < 3; m++) {
+        BlockMatrix<double> F_p_m (N_P, K, 0, N_P);  // zero-initialize an object suitable for the representation of virtual-occupied (a,i) quantities
 
-        // Get only the virtual-occupied dipole integrals
-        // FIXME: this code should be gone after the representation refactor
-        Matrix<double> mu_m (K, this->N_P);
-        mu_m.setZero();
         for (size_t i = 0; i < this->N_P; i++) {
             for (size_t a = this->N_P; a < K; a++) {
-                mu_m(a,i) = dipole_integrals[m](a,i);
+                F_p_m(a,i) = 4 * dipole_op.parameters(m)(a,i);  // RHF formula for the parameter (i.e. orbital) response force
             }
         }
 
-        // mu_m is a KxK matrix representation of the m-th component of the electrical electron dipole moment
-        // Put the virtual-occupied mu_m(a,i) elements into the response force vector
-        F_p.col(m) = mu_m.pairWiseReduce(this->N_P, 0);
+        F_p.col(m) = F_p_m.asVector();  // reduce a matrix representation to a column-major vector
     }
 
-    return 4 * F_p;
+    return F_p;
 }
 
 

@@ -19,6 +19,7 @@
 
 
 #include "Basis/TransformationMatrix.hpp"
+#include "Mathematical/Representation/BlockRankFourTensor.hpp"
 #include "Mathematical/Representation/Tensor.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "RDM/OneRDM.hpp"
@@ -119,15 +120,15 @@ size_t RHFLUMOIndex(size_t K, size_t N);
 /**
  *  Specialize the orbital Hessian for RHF
  * 
- *  @param sq_hamiltonian       the Hamiltonian parameters
+ *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis
  *  @param N_P                  the number of electron pairs
  * 
- *  @return the RHF orbital Hessian as a tensor
+ *  @return the RHF orbital Hessian as a BlockRankFourTensor, i.e. an object with a suitable operator() implemented
  */
-Tensor<double, 4> calculateRHFOrbitalHessianTensor(const SQHamiltonian<double>& sq_hamiltonian, const size_t N_P);
+BlockRankFourTensor<double> calculateRHFOrbitalHessianTensor(const SQHamiltonian<double>& sq_hamiltonian, const size_t N_P);
 
 /**
- *  @param sq_hamiltonian       the Hamiltonian parameters
+ *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis
  *  @param N_P                  the number of electron pairs
  *  @param a                    the first virtual orbital index
  *  @param i                    the first occupied orbital index

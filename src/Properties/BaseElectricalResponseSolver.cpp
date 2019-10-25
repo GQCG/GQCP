@@ -38,8 +38,8 @@ namespace GQCP {
  */
 Matrix<double, Dynamic, 3> BaseElectricalResponseSolver::calculateWaveFunctionResponse(const SQHamiltonian<double>& sq_hamiltonian, const VectorSQOneElectronOperator<double> dipole_op) const {
 
-    const auto k_p = this->calculateParameterResponseConstant(ham_par);  // p for parameter
-    const auto F_p = this->calculateParameterResponseForce(dipole_integrals);  // has 3 columns
+    const auto k_p = this->calculateParameterResponseConstant(sq_hamiltonian);  // p for parameter
+    const auto F_p = this->calculateParameterResponseForce(dipole_op);  // has 3 columns
 
 
     // This function is basically a wrapper around solving k_p x = -F_p

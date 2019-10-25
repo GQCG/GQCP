@@ -25,6 +25,7 @@
 #include "HamiltonianBuilder/FCI.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
 #include "Properties/properties.hpp"
+#include "Properties/RHFElectricalResponseSolver.hpp"
 #include "RDM/RDMCalculator.hpp"
 #include "RHF/DIISRHFSCFSolver.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
@@ -74,8 +75,7 @@ BOOST_AUTO_TEST_CASE ( dipole_N2_STO_3G ) {
     // Initialize the molecule and the molecular Hamiltonian for N2
     GQCP::Nucleus N_1 (7, 0.0, 0.0, 0.0);
     GQCP::Nucleus N_2 (7, 0.0, 0.0, GQCP::units::angstrom_to_bohr(1.134));  // from CCCBDB, STO-3G geometry
-    std::vector<GQCP::Nucleus> nuclei {N_1, N_2};
-    GQCP::Molecule N2 (nuclei);
+    GQCP::Molecule N2 ({N_1, N_2});
 
     GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (N2, "STO-3G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, N2);  // in an AO basis
@@ -105,41 +105,44 @@ BOOST_AUTO_TEST_CASE ( dipole_N2_STO_3G ) {
 }
 
 
+/**
+ *  Check the calculation of the zz-component of the polarizability for H2 with a reference value from Psi4-numpy
+ * 
+ *  Note that the reference value is generated from Psi4-numpy, with a fix for the Fockian matrix
+ */
 BOOST_AUTO_TEST_CASE ( h2_polarizability_RHF ) {
 
-    double ref_alpha_zz = 1.08428;  // from Psi4-numpy, with a fix for the Fockian matrix
+    // Initialize the reference value
+    const double ref_alpha_zz = 1.08428;
 
 
-    // Prepare an AO basis
-    GQCP::Atom H1 (1, 0.0, 0.0,  0.0);
-    GQCP::Atom H2 (1, 0.0, 0.0,  0.5);  // from CCCBDB, STO-3G geometry
+    // Initialize the molecule and the Hamiltonian in the AO basis
+    GQCP::Nucleus H1 (1, 0.0, 0.0,  0.0);
+    GQCP::Nucleus H2 (1, 0.0, 0.0,  0.5);
     GQCP::Molecule h2 ({H1, H2}, 0);
 
-    auto ao_basis = std::make_shared<GQCP::AOBasis>(h2, "STO-3G");
-    auto ao_mol_ham_par = GQCP::HamiltonianParameters<double>::Molecular(ao_basis);
+    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2, "STO-3G");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2);  // in the AO basis
 
 
-    // Prepare the RHF basis
-    GQCP::PlainRHFSCFSolver plain_scf_solver (ao_mol_ham_par, h2);
+    // Do the RHF calculation to get the canonical RHF orbitals
+    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, sp_basis, h2);
     plain_scf_solver.solve();
-    auto rhf = plain_scf_solver.get_solution();
-    const auto mol_ham_par = GQCP::HamiltonianParameters<double>(ao_mol_ham_par, rhf.get_C());
+    const auto rhf = plain_scf_solver.get_solution();
 
 
-    // Prepare the dipole integrals in the RHF basis
-    auto dipole_components = ao_basis->calculateLibintDipoleIntegrals();
-    for (auto& dipole_component : dipole_components) {
-        dipole_component.basisTransform(rhf.get_C());
-    }
+    // Transform the orbitals to the RHF basis and prepare the dipole integrals in the RHF basis
+    GQCP::basisTransform(sp_basis, sq_hamiltonian, rhf.get_C());
+    const auto dipole_op = sp_basis.quantize(GQCP::Operator::ElectronicDipole());
 
 
     // Find the RHF wave function response
-    GQCP::RHFElectricalResponseSolver cphf_solver (h2.get_N()/2);
-    const auto x = cphf_solver.calculateWaveFunctionResponse(mol_ham_par, dipole_components);
+    GQCP::RHFElectricalResponseSolver cphf_solver (h2.numberOfElectrons()/2);
+    const auto x = cphf_solver.calculateWaveFunctionResponse(sq_hamiltonian, dipole_op);
 
 
     // Calculate the RHF polarizability
-    const auto F_p = cphf_solver.calculateParameterResponseForce(dipole_components);
+    const auto F_p = cphf_solver.calculateParameterResponseForce(dipole_op);
     const auto alpha = GQCP::calculateElectricPolarizability(F_p, x);
     const auto alpha_zz = alpha(2,2);
 

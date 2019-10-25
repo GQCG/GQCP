@@ -482,11 +482,11 @@ public:
 
 
         // A KISS implementation of the calculation of the inactive Fockian matrix
-        const auto F_par = h_par;  // one-electron part
+        auto F_par = h_par;  // one-electron part
 
         // Two-electron part
-        for (size_t p = 0; p < this->numberOfSpatialOrbitals(); p++) {
-            for (size_t q = 0; q < this->numberOfSpatialOrbitals(); q++) {
+        for (size_t p = 0; p < this->dimension(); p++) {
+            for (size_t q = 0; q < this->dimension(); q++) {
 
                 for (size_t i = 0; i < N_P; i++) {
                     F_par(p,q) += 2*g_par(p,q,i,i) - g_par(p,i,i,q);
@@ -495,7 +495,7 @@ public:
             }
         }  // F elements loop
 
-        return ScalarSQOneElectronOperator<Scalar>(F_par);
+        return ScalarSQOneElectronOperator<Scalar>({F_par});
     }
 
 

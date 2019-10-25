@@ -191,23 +191,24 @@ size_t RHFLUMOIndex(size_t K, size_t N) {
 /**
  *  Specialize the orbital Hessian for RHF
  * 
- *  @param sq_hamiltonian       the Hamiltonian parameters
+ *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis
  *  @param N_P                  the number of electron pairs
  * 
- *  @return the RHF orbital Hessian as a tensor
+ *  @return the RHF orbital Hessian as a BlockRankFourTensor, i.e. an object with a suitable operator() implemented
  */
-Tensor<double, 4> calculateRHFOrbitalHessianTensor(const SQHamiltonian<double>& sq_hamiltonian, const size_t N_P) {
+BlockRankFourTensor<double> calculateRHFOrbitalHessianTensor(const SQHamiltonian<double>& sq_hamiltonian, const size_t N_P) {
 
-    const auto K = ham_par.get_K();
-    Tensor<double, 4> hessian (K, N_P, K, N_P);
-    hessian.setZero();
+    const auto K = sq_hamiltonian.dimension();
 
+    BlockRankFourTensor<double> hessian (N_P,K, 0,N_P, N_P,K, 0,N_P);  // zero-initialize an object suitable for the representation of a virtual-occupied,virtual-occupied object (ai,bj)
+
+    // Loop over all indices (ai,bj) to construct the orbital hessian
     for (size_t a = N_P; a < K; a++) {
         for (size_t i = 0; i < N_P; i++) {
             
             for (size_t b = N_P; b < K; b++) {
                 for (size_t j = 0; j < N_P; j++) {
-                    hessian(a,i,b,j) = calculateRHFOrbitalHessianElement(ham_par, N_P, a, i, b, j);
+                    hessian(a,i,b,j) = calculateRHFOrbitalHessianElement(sq_hamiltonian, N_P, a, i, b, j);
                 }
             }
         }
@@ -218,7 +219,7 @@ Tensor<double, 4> calculateRHFOrbitalHessianTensor(const SQHamiltonian<double>& 
 
 
 /**
- *  @param sq_hamiltonian       the Hamiltonian parameters
+ *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis
  *  @param N_P                  the number of electron pairs
  *  @param a                    the first virtual orbital index
  *  @param i                    the first occupied orbital index
@@ -229,12 +230,12 @@ Tensor<double, 4> calculateRHFOrbitalHessianTensor(const SQHamiltonian<double>& 
  */
 double calculateRHFOrbitalHessianElement(const SQHamiltonian<double>& sq_hamiltonian, const size_t N_P, const size_t a, const size_t i, const size_t b, const size_t j) {
 
-    const auto& g = ham_par.get_g();
+    const auto& g = sq_hamiltonian.twoElectron().parameters();
     double value {0.0};
 
 
     // Inactive Fock matrix part
-    const auto F = ham_par.calculateInactiveFockian(N_P);
+    const auto F = sq_hamiltonian.calculateInactiveFockian(N_P).parameters();
     if (i == j) {
         value += F(a,b);
     }
