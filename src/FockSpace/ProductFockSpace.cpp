@@ -457,27 +457,24 @@ VectorX<double> ProductFockSpace::evaluateOperatorDiagonal(const SQHamiltonian<d
 /**
  *  Evaluate the Hamiltonian in a dense matrix
  *
- *  @param sq_hamiltonian_alpha           the Hamiltonian expressed in an orthonormal basis 
- *  @param sq_hamiltonian_beta            the Hamiltonian expressed in an orthonormal basis
+ *  @param usq_hamiltonian                the Hamiltonian expressed in an unrestricted orthonormal basis 
  *  @param diagonal_values                bool to indicate if diagonal values will be calculated
  *
  *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the Fock space
  */
-SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const SQHamiltonian<double>& sq_hamiltonian_alpha, const SQHamiltonian<double>& sq_hamiltonian_beta, bool diagonal_values) const {
+SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const USQHamiltonian<double>& usq_hamiltonian, bool diagonal_values) const {
     
     SquareMatrix<double> total_evaluation = SquareMatrix<double>::Zero(this->get_dimension(), this->get_dimension());
+
+    auto const& sq_hamiltonian_alpha = usq_hamiltonian.alphaHamiltonian();
+    auto const& sq_hamiltonian_beta = usq_hamiltonian.betaHamiltonian();
+    auto const& mixed_two_electron_operator = usq_hamiltonian.twoElectronMixed();
 
     auto dim_alpha = fock_space_alpha.get_dimension();
     auto dim_beta = fock_space_beta.get_dimension();
 
     auto beta_evaluation = fock_space_beta.evaluateOperatorDense(sq_hamiltonian_beta, diagonal_values);
     auto alpha_evaluation = fock_space_alpha.evaluateOperatorDense(sq_hamiltonian_alpha, diagonal_values);
-
-    auto mixed_two_eletron_integrals = sq_hamiltonian_alpha.twoElectron();  // two electron integrals for the unrestricted basis
-    auto U_ab = sq_hamiltonian_alpha.T_total();  // the unitary matrix transformation required to transform alpha basis to beta
-    U_ab *= sq_hamiltonian_beta.T_total().inverse();  // this matrix is calculated as T_alpha * T_beta.inverse()
-
-    mixed_two_eletron_integrals.matrixContraction<double>(U_ab, 2);  // transform the two electron integrals "g_aaaa" to "g_aabb"
 
     // BETA separated evaluations
     for (size_t i = 0; i < dim_alpha; i++) {
@@ -496,7 +493,7 @@ SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const SQHamiltonian
     for (size_t p = 0; p<K; p++) {
 
         const auto& alpha_coupling = this->alpha_couplings[p*(K+K+1-p)/2];
-        const auto& P = this->oneElectronPartition(p, p, mixed_two_eletron_integrals);
+        const auto& P = this->oneElectronPartition(p, p, mixed_two_electron_operator);
         const auto& beta_two_electron_intermediate = this->fock_space_beta.evaluateOperatorDense(P, diagonal_values);
 
         for (int i = 0; i < alpha_coupling.outerSize(); ++i) {
@@ -510,7 +507,7 @@ SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const SQHamiltonian
         for (size_t q = p + 1; q<K; q++) {
 
             const auto& alpha_coupling = this->alpha_couplings[p*(K+K+1-p)/2 + q - p];
-            const auto& P = oneElectronPartition(p, q, mixed_two_eletron_integrals);
+            const auto& P = oneElectronPartition(p, q, mixed_two_electron_operator);
             const auto& beta_two_electron_intermediate = fock_space_beta.evaluateOperatorDense(P, true);
 
             for (int i = 0; i < alpha_coupling.outerSize(); ++i){
@@ -528,34 +525,32 @@ SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const SQHamiltonian
 /**
  *  Evaluate the diagonal of the Hamiltonian
  *
- *  @param sq_hamiltonian_alpha              the Hamiltonian expressed in an orthonormal basis
- *  @param sq_hamiltonian_beta               the Hamiltonian expressed in an orthonormal basis
+ *  @param usq_hamiltonian                the Hamiltonian expressed in an unrestricted orthonormal basis 
  *
  *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the Fock space
  */
-VectorX<double> ProductFockSpace::evaluateOperatorDiagonal(const SQHamiltonian<double>& sq_hamiltonian_alpha, const SQHamiltonian<double>& sq_hamiltonian_beta) const {
+VectorX<double> ProductFockSpace::evaluateOperatorDiagonal(const USQHamiltonian<double>& usq_hamiltonian) const {
 
-    const auto K = sq_hamiltonian_alpha.dimension();
+    const auto K = usq_hamiltonian.dimension();
     if (K != this->K) {
         throw std::invalid_argument("ProductFockSpace::evaluateOperatorDiagonal(SQHamiltonian<double>,  SQHamiltonian<double>): Basis functions of the Fock space and the operator are incompatible.");
     }
 
+    auto const& sq_hamiltonian_alpha = usq_hamiltonian.alphaHamiltonian();
+    auto const& sq_hamiltonian_beta = usq_hamiltonian.betaHamiltonian();
+    auto const& mixed_two_electron_operator = usq_hamiltonian.twoElectronMixed();
+
     const auto dim_alpha = fock_space_alpha.get_dimension();
     const auto dim_beta = fock_space_beta.get_dimension();
-    const auto& k_alpha = sq_hamiltonian_alpha.oneElectron.parameters();
-    const auto& k_beta = sq_hamiltonian_beta.oneElectron.parameters();
-    const auto& two_op_par_alpha = sq_hamiltonian_alpha.twoElectron.parameters();
-    const auto& two_op_par_beta = sq_hamiltonian_beta.twoElectron.parameters();
+    auto k_alpha = sq_hamiltonian_alpha.core().parameters();
+    auto k_beta = sq_hamiltonian_beta.core().parameters();
+    const auto& two_op_par_alpha = sq_hamiltonian_alpha.twoElectron().parameters();
+    const auto& two_op_par_beta = sq_hamiltonian_beta.twoElectron().parameters();
 
-    k_alpha += two_op.effectiveOneElectronPartition().parameters();
-    k_beta += two_op.effectiveOneElectronPartition().parameters();
+    k_alpha = k_alpha + sq_hamiltonian_alpha.twoElectron().effectiveOneElectronPartition().parameters();
+    k_beta = k_beta + sq_hamiltonian_beta.twoElectron().effectiveOneElectronPartition().parameters();
 
-    auto mixed_two_eletron_integrals = sq_hamiltonian_alpha.twoElectron();  // two electron integrals for the unrestricted basis
-    auto U_ab = sq_hamiltonian_alpha.T_total();  // the unitary matrix transformation required to transform alpha basis to beta
-    U_ab *= sq_hamiltonian_beta.T_total().inverse();  // this matrix is calculated as T_alpha * T_beta.inverse()
-
-    mixed_two_eletron_integrals.matrixContraction<double>(U_ab, 2);  // transform the two electron integrals "g_aaaa" to "g_aabb"
-    const auto& two_op_par_mixed = mixed_two_eletron_integrals.parameters();
+    const auto& two_op_par_mixed = mixed_two_electron_operator.parameters();
 
     VectorX<double> diagonal = VectorX<double>::Zero(this->dim);
 
@@ -570,63 +565,17 @@ VectorX<double> ProductFockSpace::evaluateOperatorDiagonal(const SQHamiltonian<d
             for (size_t e_a = 0; e_a < fock_space_alpha.get_N(); e_a++) {  // loop over alpha electrons
 
                 size_t p = onv_alpha.get_occupation_index(e_a);
-                diagonal(Ia * dim_beta + Ib) += one_op_par(p, p);
-
-            }  // e_a loop
-
-            for (size_t e_b = 0; e_b < fock_space_beta.get_N(); e_b++) {  // loop over beta electrons
-
-                size_t p = onv_beta.get_occupation_index(e_b);
-                diagonal(Ia * dim_beta + Ib) += one_op_par(p, p);
-            }
-
-            if (Ib < dim_beta - 1) {  // prevent last permutation to occur
-                fock_space_beta.setNextONV(onv_beta);
-            }
-        }  // beta address (Ib) loop
-
-        if (Ia < dim_alpha - 1) {  // prevent last permutation to occur
-            fock_space_alpha.setNextONV(onv_alpha);
-        }
-    }  // alpha address (Ia) loop
-
-    return diagonal;
-
-    const auto K = two_op.dimension();
-    if (K != this->K) {
-        throw std::invalid_argument("ProductFockSpace::evaluateOperatorDiagonal(ScalarSQTwoElectronOperator<double>): Basis functions of the Fock space and the operator are incompatible.");
-    }
-
-    const auto dim_alpha = fock_space_alpha.get_dimension();
-    const auto dim_beta = fock_space_beta.get_dimension();
-    const auto& two_op_par = two_op.parameters();
-    const auto k = two_op.effectiveOneElectronPartition().parameters();
-
-    // Diagonal contributions
-    VectorX<double> diagonal = VectorX<double>::Zero(this->dim);
-
-    ONV onv_alpha = fock_space_alpha.makeONV(0);
-    ONV onv_beta = fock_space_beta.makeONV(0);
-    for (size_t Ia = 0; Ia < dim_alpha; Ia++) {  // Ia loops over addresses of alpha spin strings
-
-        fock_space_beta.transformONV(onv_beta, 0);
-
-        for (size_t Ib = 0; Ib < dim_beta; Ib++) {  // Ib loops over addresses of beta spin strings
-
-            for (size_t e_a = 0; e_a < fock_space_alpha.get_N(); e_a++) {  // loop over alpha electrons
-
-                size_t p = onv_alpha.get_occupation_index(e_a);
-                diagonal(Ia * dim_beta + Ib) += k(p, p);
+                diagonal(Ia * dim_beta + Ib) += k_alpha(p, p);
 
                 for (size_t q = 0; q < K; q++) {  // q loops over SOs
                     if (onv_alpha.isOccupied(q)) {  // q is in Ia
-                        diagonal(Ia * dim_beta + Ib) += 0.5 * two_op_par(p, p, q, q);
+                        diagonal(Ia * dim_beta + Ib) += 0.5 * two_op_par_alpha(p, p, q, q);
                     } else {  // q is not in I_alpha
-                        diagonal(Ia * dim_beta + Ib) += 0.5 * two_op_par(p, q, q, p);
+                        diagonal(Ia * dim_beta + Ib) += 0.5 * two_op_par_alpha(p, q, q, p);
                     }
 
                     if (onv_beta.isOccupied(q)) {  // q is in Ib
-                        diagonal(Ia * dim_beta + Ib) += two_op_par(p, p, q, q);
+                        diagonal(Ia * dim_beta + Ib) += two_op_par_mixed(p, p, q, q);
                     }
                 }  // q loop
             }  // e_a loop
@@ -634,14 +583,14 @@ VectorX<double> ProductFockSpace::evaluateOperatorDiagonal(const SQHamiltonian<d
             for (size_t e_b = 0; e_b < fock_space_beta.get_N(); e_b++) {  // loop over beta electrons
 
                 size_t p = onv_beta.get_occupation_index(e_b);
-                diagonal(Ia * dim_beta + Ib) += k(p, p);
+                diagonal(Ia * dim_beta + Ib) += k_beta(p, p);
 
                 for (size_t q = 0; q < K; q++) {  // q loops over SOs
                     if (onv_beta.isOccupied(q)) {  // q is in Ib
-                        diagonal(Ia * dim_beta + Ib) += 0.5 * two_op_par(p, p, q, q);
+                        diagonal(Ia * dim_beta + Ib) += 0.5 * two_op_par_beta(p, p, q, q);
 
                     } else {  // q is not in I_beta
-                        diagonal(Ia * dim_beta + Ib) += 0.5 * two_op_par(p, q, q, p);
+                        diagonal(Ia * dim_beta + Ib) += 0.5 * two_op_par_beta(p, q, q, p);
                     }
                 }  // q loop
             }  // e_b loop

@@ -21,6 +21,7 @@
 
 #include "FockSpace/ProductFockSpace.hpp"
 #include "FockSpace/SelectedFockSpace.hpp"
+#include "Operator/SecondQuantized/USQHamiltonian.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( ProductFockSpace_constructor ) {
@@ -146,4 +147,27 @@ BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_diagonal_vs_no_diagonal) {
 
     // Test if non-diagonal evaluation and diagonal evaluations are correct
     BOOST_CHECK(hamiltonian.isApprox(hamiltonian_no_diagonal + GQCP::SquareMatrix<double>(hamiltonian_diagonal.asDiagonal())));
+}
+
+BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_diagonal_unrestricted ) {
+
+    // This test the results from the restricted framework to that of the unrestricted framework in a restricted basis (the alpha and beta coefficients and parameters are identical)
+    GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
+    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis_alpha (hchain, "STO-3G");
+    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis_beta (hchain, "STO-3G");
+    sp_basis_alpha.lowdinOrthonormalize();
+    sp_basis_beta.lowdinOrthonormalize();
+    auto usq_hamiltonian = GQCP::USQHamiltonian<double>::Molecular(sp_basis_alpha, sp_basis_beta, hchain);  // unresticted Hamiltonian in the Löwdin basis
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis_alpha, hchain);  // restricted Hamiltonian in the Löwdin basis
+
+    GQCP::ProductFockSpace product_fock_space (6, 4, 4);
+
+    auto hamiltonian_diagonal_evaluation1 = product_fock_space.evaluateOperatorDiagonal(sq_hamiltonian);
+    auto hamiltonian_diagonal_evaluation2 = product_fock_space.evaluateOperatorDiagonal(usq_hamiltonian);
+
+    auto hamiltonian_evaluation1 = product_fock_space.evaluateOperatorDense(sq_hamiltonian, false);
+    auto hamiltonian_evaluation2 = product_fock_space.evaluateOperatorDense(usq_hamiltonian, false);
+
+    BOOST_CHECK(hamiltonian_diagonal_evaluation1.isApprox(hamiltonian_diagonal_evaluation2));
+    BOOST_CHECK(hamiltonian_evaluation1.isApprox(hamiltonian_evaluation2));
 }
