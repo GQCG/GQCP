@@ -450,5 +450,89 @@ VectorX<double> ProductFockSpace::evaluateOperatorDiagonal(const SQHamiltonian<d
 }
 
 
+/*
+ * UNRESTRICTED
+ */
+
+/**
+ *  Evaluate the Hamiltonian in a dense matrix
+ *
+ *  @param sq_hamiltonian_alpha           the Hamiltonian expressed in an orthonormal basis 
+ *  @param sq_hamiltonian_beta            the Hamiltonian expressed in an orthonormal basis
+ *  @param diagonal_values                bool to indicate if diagonal values will be calculated
+ *
+ *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the Fock space
+ */
+SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const SQHamiltonian<double>& sq_hamiltonian_alpha, const SQHamiltonian<double>& sq_hamiltonian_beta, bool diagonal_values) const {
+    
+    SquareMatrix<double> total_evaluation = SquareMatrix<double>::Zero(this->get_dimension(), this->get_dimension());
+
+    auto dim_alpha = fock_space_alpha.get_dimension();
+    auto dim_beta = fock_space_beta.get_dimension();
+
+    auto beta_evaluation = fock_space_beta.evaluateOperatorDense(sq_hamiltonian_beta, diagonal_values);
+    auto alpha_evaluation = fock_space_alpha.evaluateOperatorDense(sq_hamiltonian_alpha, diagonal_values);
+
+    
+
+
+    // BETA separated evaluations
+    for (size_t i = 0; i < dim_alpha; i++) {
+        total_evaluation.block(i * dim_beta, i * dim_beta, dim_beta, dim_beta) += beta_evaluation;
+    }
+
+    // ALPHA separated evaluations
+    const SquareMatrix<double> ones = SquareMatrix<double>::Identity(dim_beta, dim_beta);
+    for (int i = 0; i < alpha_evaluation.cols(); i++){
+        for (int j = 0; j < alpha_evaluation.cols(); j++) {
+            total_evaluation.block(i * dim_beta, j * dim_beta, dim_beta, dim_beta) += alpha_evaluation(i,j)*ones;
+        }
+    }
+
+    // MIXED evaluations
+    for (size_t p = 0; p<K; p++) {
+
+        const auto& alpha_coupling = this->alpha_couplings[p*(K+K+1-p)/2];
+        const auto& P = this->oneElectronPartition(p, p, sq_hamiltonian_alpha.twoElectron());
+        const auto& beta_two_electron_intermediate = this->fock_space_beta.evaluateOperatorDense(P, diagonal_values);
+
+        for (int i = 0; i < alpha_coupling.outerSize(); ++i) {
+            for (Eigen::SparseMatrix<double>::InnerIterator it(alpha_coupling, i); it; ++it) {
+                // it.value sigma(pp) element multiplied with the sparse matrix theta(pp) : beta_two_electron_intermediate
+                total_evaluation.block(it.row() * dim_beta, it.col() * dim_beta, dim_beta, dim_beta) += it.value()*beta_two_electron_intermediate;
+
+            }
+        }
+
+        for (size_t q = p + 1; q<K; q++) {
+
+            const auto& alpha_coupling = this->alpha_couplings[p*(K+K+1-p)/2 + q - p];
+            const auto& P = oneElectronPartition(p, q, sq_hamiltonian.twoElectron());
+            const auto& beta_two_electron_intermediate = fock_space_beta.evaluateOperatorDense(P, true);
+
+            for (int i = 0; i < alpha_coupling.outerSize(); ++i){
+                for (Eigen::SparseMatrix<double>::InnerIterator it(alpha_coupling, i); it; ++it) {
+                    // it.value (sigma(pq) + sigma(qp)) element multiplied with the sparse matrix theta(pq) : beta_two_electron_intermediate
+                    total_evaluation.block(it.row() * dim_beta, it.col() * dim_beta, dim_beta, dim_beta) += it.value()*beta_two_electron_intermediate;
+                }
+            }
+        }
+    }
+
+    return total_evaluation;
+}
+ 
+/**
+ *  Evaluate the diagonal of the Hamiltonian
+ *
+ *  @param sq_hamiltonian_alpha              the Hamiltonian expressed in an orthonormal basis
+ *  @param sq_hamiltonian_beta               the Hamiltonian expressed in an orthonormal basis
+ *
+ *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the Fock space
+ */
+VectorX<double> ProductFockSpace::evaluateOperatorDiagonal(const SQHamiltonian<double>& sq_hamiltonian_alpha, const SQHamiltonian<double>& sq_hamiltonian_beta) const {
+
+}
+
 
 }  // namespace GQCP

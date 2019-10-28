@@ -171,6 +171,29 @@ public:
      */
     VectorX<double> evaluateOperatorDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const override;
 
+
+
+    // UNRESTRICTED
+    /**
+     *  Evaluate the Hamiltonian in a dense matrix
+     *
+     *  @param sq_hamiltonian_alpha           the Hamiltonian expressed in an orthonormal basis 
+     *  @param sq_hamiltonian_beta            the Hamiltonian expressed in an orthonormal basis
+     *  @param diagonal_values                bool to indicate if diagonal values will be calculated
+     *
+     *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the Fock space
+     */
+    SquareMatrix<double> evaluateOperatorDense(const SQHamiltonian<double>& sq_hamiltonian_alpha, const SQHamiltonian<double>& sq_hamiltonian_beta, bool diagonal_values) const;
+
+    /**
+     *  Evaluate the diagonal of the Hamiltonian
+     *
+     *  @param sq_hamiltonian_alpha              the Hamiltonian expressed in an orthonormal basis
+     *  @param sq_hamiltonian_beta               the Hamiltonian expressed in an orthonormal basis
+     *
+     *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the Fock space
+     */
+    VectorX<double> evaluateOperatorDiagonal(const SQHamiltonian<double>& sq_hamiltonian_alpha, const SQHamiltonian<double>& sq_hamiltonian_beta) const;
 };
 
 
