@@ -18,7 +18,7 @@
 #include "QCMethod/MullikenConstrainedFCI.hpp"
 
 #include "Basis/transform.hpp"
-#include "Basis/SingleParticleBasis.hpp"
+#include "Basis/RSpinorBasis.hpp"
 #include "Properties/expectation_values.hpp"
 #include "RHF/DIISRHFSCFSolver.hpp"
 
@@ -130,7 +130,7 @@ void MullikenConstrainedFCI::checkDiatomicMolecule(const std::string& function_n
 MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const std::string& basis_set, const std::vector<size_t>& basis_targets, const size_t frozencores) : 
         basis_targets (basis_targets),
         molecule (molecule),
-        sp_basis (SingleParticleBasis<double, GTOShell>(molecule, basis_set)),
+        sp_basis (RSpinorBasis<double, GTOShell>(molecule, basis_set)),
         sq_hamiltonian (SQHamiltonian<double>::Molecular(this->sp_basis, molecule)),  // in AO basis
         basis_set (basis_set)
 {
@@ -162,8 +162,8 @@ MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const s
                 Molecule mol_fraction1(std::vector<Nucleus>{atoms[0]}, charge);
                 Molecule mol_fraction2(std::vector<Nucleus>{atoms[1]}, 0);
 
-                SingleParticleBasis<double, GTOShell> sp_basis1 (mol_fraction1, basis_set);
-                SingleParticleBasis<double, GTOShell> sp_basis2 (mol_fraction2, basis_set);
+                RSpinorBasis<double, GTOShell> sp_basis1 (mol_fraction1, basis_set);
+                RSpinorBasis<double, GTOShell> sp_basis2 (mol_fraction2, basis_set);
 
                 auto ham_par1 = SQHamiltonian<double>::Molecular(sp_basis1, mol_fraction1);  // in AO basis
                 auto ham_par2 = SQHamiltonian<double>::Molecular(sp_basis2, mol_fraction2);  // in AO basis

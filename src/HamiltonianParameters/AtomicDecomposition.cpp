@@ -17,7 +17,7 @@
 // 
 #include "HamiltonianParameters/AtomicDecompositionParameters.hpp"
 
-#include "Basis/SingleParticleBasis.hpp"
+#include "Basis/RSpinorBasis.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
 
 
@@ -70,7 +70,7 @@ AtomicDecompositionParameters AtomicDecompositionParameters::Nuclear(const Molec
         throw std::invalid_argument("AtomicDecompositionParameters::Nuclear(Molecule, std::string): Only available for diatomic molecules");
     }
 
-    const SingleParticleBasis<double, GTOShell> sp_basis (molecule, basisset_name);
+    const RSpinorBasis<double, GTOShell> sp_basis (molecule, basisset_name);
     const auto K = sp_basis.numberOfBasisFunctions();
 
 
@@ -78,8 +78,8 @@ AtomicDecompositionParameters AtomicDecompositionParameters::Nuclear(const Molec
     const NuclearFramework nuclear_framework_a ({atoms[0]});
     const NuclearFramework nuclear_framework_b ({atoms[1]});
 
-    SingleParticleBasis<double, GTOShell> sp_basis_a (nuclear_framework_a, basisset_name);  // in non-orthogonal AO basis
-    SingleParticleBasis<double, GTOShell> sp_basis_b (nuclear_framework_b, basisset_name);  // in non-orthogonal AO basis
+    RSpinorBasis<double, GTOShell> sp_basis_a (nuclear_framework_a, basisset_name);  // in non-orthogonal AO basis
+    RSpinorBasis<double, GTOShell> sp_basis_b (nuclear_framework_b, basisset_name);  // in non-orthogonal AO basis
 
     const auto K_a = sp_basis_a.numberOfBasisFunctions();
     const auto K_b = sp_basis_b.numberOfBasisFunctions();

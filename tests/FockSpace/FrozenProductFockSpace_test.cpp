@@ -59,7 +59,7 @@ BOOST_AUTO_TEST_CASE ( FrozenProductFockSpace_member_test ) {
 BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_diagonal_vs_no_diagonal) {
 
     GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
-    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (hchain, "STO-3G");
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> sp_basis (hchain, "STO-3G");
     sp_basis.lowdinOrthonormalize();
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, hchain);  // in the Löwdin basis
 
@@ -77,7 +77,7 @@ BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_diagonal_vs_no_diagonal) {
 BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_Dense_diagonal_true ) {
 
     GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
-    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (hchain, "STO-3G");
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> sp_basis (hchain, "STO-3G");
     sp_basis.lowdinOrthonormalize();
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, hchain);  // in the Löwdin basis
 
@@ -106,7 +106,7 @@ BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_Dense_diagonal_true ) {
 BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_Dense_diagonal_false ) {
 
     GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
-    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (hchain, "STO-3G");
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> sp_basis (hchain, "STO-3G");
     sp_basis.lowdinOrthonormalize();
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, hchain);  // in the Löwdin basis
 
@@ -134,7 +134,7 @@ BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_Dense_diagonal_false ) {
 BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_diagonal ) {
 
     GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
-    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (hchain, "STO-3G");
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> sp_basis (hchain, "STO-3G");
     sp_basis.lowdinOrthonormalize();
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, hchain);  // in the Löwdin basis
 

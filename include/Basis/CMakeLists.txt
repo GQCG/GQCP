@@ -4,9 +4,9 @@ target_sources(gqcp
             CartesianGTO.hpp
             GTOBasisSet.hpp
             GTOShell.hpp
+            RSpinorBasis.hpp
             ScalarBasis.hpp
             ShellSet.hpp
-            SingleParticleBasis.hpp
             TransformationMatrix.hpp
             transform.hpp
         )

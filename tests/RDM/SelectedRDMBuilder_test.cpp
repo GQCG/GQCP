@@ -39,7 +39,7 @@ BOOST_AUTO_TEST_CASE ( one_rdms_fci_H2_6_31G ) {
 
     // Create the molecular Hamiltonian in the AO basis
     auto h2 = GQCP::Molecule::ReadXYZ("data/h2.xyz");
-    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2, "6-31G");
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> sp_basis (h2, "6-31G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2);  // in an AO basis
     size_t K = sq_hamiltonian.dimension();  // 4
 
@@ -82,7 +82,7 @@ BOOST_AUTO_TEST_CASE ( two_rdms_fci_H2_6_31G ) {
 
     // Create the molecular Hamiltonian in the AO basis
     auto h2 = GQCP::Molecule::ReadXYZ("data/h2.xyz");
-    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2, "6-31G");
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> sp_basis (h2, "6-31G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2);  // in an AO basis
     size_t K = sq_hamiltonian.dimension();  // 4
 
@@ -125,7 +125,7 @@ BOOST_AUTO_TEST_CASE ( one_rdms_doci_H2_6_31G ) {
 
     // Create the molecular Hamiltonian in the AO basis
     auto h2 = GQCP::Molecule::ReadXYZ("data/h2.xyz");
-    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2, "6-31G");
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> sp_basis (h2, "6-31G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2);  // in an AO basis
     size_t K = sq_hamiltonian.dimension();  // 4
 
@@ -166,7 +166,7 @@ BOOST_AUTO_TEST_CASE ( two_rdms_doci_H2_6_31G ) {
 
     // Create the molecular Hamiltonian in the AO basis
     auto h2 = GQCP::Molecule::ReadXYZ("data/h2.xyz");
-    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2, "6-31G");
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> sp_basis (h2, "6-31G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2);  // in an AO basis
     size_t K = sq_hamiltonian.dimension();  // 4
 

@@ -52,7 +52,7 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h3 ) {
     GQCP::Molecule hchain = GQCP::Molecule::HChain(3, 0.742, -1);
 
     // Create the molecular Hamiltonian for this molecule and basis
-    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (hchain, "STO-3G");
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> sp_basis (hchain, "STO-3G");
     sp_basis.lowdinOrthonormalize();
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, hchain);  // in the Löwdin basis
     auto K = sq_hamiltonian.dimension();
@@ -91,7 +91,7 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h4 ) {
     GQCP::Molecule hchain = GQCP::Molecule::HChain(4, 0.742, 0);
 
     // Create the molecular Hamiltonian for this molecule and basis
-    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (hchain, "STO-3G");
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> sp_basis (hchain, "STO-3G");
     sp_basis.lowdinOrthonormalize();
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, hchain);  // in the Löwdin basis
     auto K = sq_hamiltonian.dimension();
@@ -130,7 +130,7 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h5 ) {
     GQCP::Molecule hchain = GQCP::Molecule::HChain(5, 0.742, 0);
 
     // Create the molecular Hamiltonian for this molecule and basis
-    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (hchain, "STO-3G");
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> sp_basis (hchain, "STO-3G");
     sp_basis.lowdinOrthonormalize();
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, hchain);  // in the Löwdin basis
     auto K = sq_hamiltonian.dimension();

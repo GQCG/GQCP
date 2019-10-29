@@ -18,7 +18,7 @@
 #include "QCMethod/DOCINewtonOrbitalOptimizer.hpp"
 
 #include "Basis/transform.hpp"
-#include "Basis/SingleParticleBasis.hpp"
+#include "Basis/RSpinorBasis.hpp"
 #include "CISolver/CISolver.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Mathematical/Optimization/IterativeIdentitiesHessianModifier.hpp"
@@ -62,7 +62,7 @@ void DOCINewtonOrbitalOptimizer::solve() {
 
     // Construct the molecular Hamiltonian in the RHF basis
     auto molecule = Molecule::ReadXYZ(this->xyz_filename);
-    SingleParticleBasis<double, GTOShell> sp_basis (molecule, this->basis_set);
+    RSpinorBasis<double, GTOShell> sp_basis (molecule, this->basis_set);
     const auto N_P = molecule.numberOfElectrons()/2;
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, molecule);  // in AO basis
     const size_t K = sq_hamiltonian.dimension();

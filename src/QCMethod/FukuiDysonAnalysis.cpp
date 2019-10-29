@@ -38,7 +38,7 @@ namespace QCMethod {
  */
 FukuiDysonAnalysis::FukuiDysonAnalysis(const Molecule& molecule, const std::string& basis_set, const bool use_diis) : 
         molecule (molecule),
-        sp_basis (SingleParticleBasis<double, GTOShell>(molecule, basis_set)),
+        sp_basis (RSpinorBasis<double, GTOShell>(molecule, basis_set)),
         sq_hamiltonian (SQHamiltonian<double>::Molecular(this->sp_basis, molecule)),  // in AO basis
         basis_set (basis_set)
 {

@@ -63,7 +63,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_h2_sto3g_dense_vs_Davidson ) {
 
     // Create the molecular Hamiltonian in an AO basis
     auto h2 = GQCP::Molecule::ReadXYZ("data/h2.xyz");
-    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2, "STO-3G");
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> sp_basis (h2, "STO-3G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2);  // in an AO basis
 
     // Create a plain RHF SCF solver and solve the SCF equations
@@ -103,7 +103,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_h2_631g_dense_vs_Davidson ) {
 
     // Create the molecular Hamiltonian in an AO basis
     auto h2 = GQCP::Molecule::ReadXYZ("data/h2.xyz");
-    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2, "6-31G");
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> sp_basis (h2, "6-31G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2);  // in an AO basis
 
     // Create a plain RHF SCF solver and solve the SCF equations

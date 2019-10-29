@@ -17,7 +17,7 @@
 //
 #pragma once
 
-#include "Basis/SingleParticleBasis.hpp"
+#include "Basis/RSpinorBasis.hpp"
 #include "CISolver/CISolver.hpp"
 #include "FockSpace/ProductFockSpace.hpp"
 #include "HamiltonianBuilder/FCI.hpp"
@@ -39,7 +39,7 @@ namespace QCMethod {
 class FukuiDysonAnalysis {
 private:
     Molecule molecule;
-    SingleParticleBasis<double, GTOShell> sp_basis;
+    RSpinorBasis<double, GTOShell> sp_basis;
     SQHamiltonian<double> sq_hamiltonian;
     std::string basis_set;  // the basisset that should be used
     ProductFockSpace fock_space1 = ProductFockSpace(0, 0, 0);  // default

@@ -21,9 +21,9 @@
 #include "Basis/CartesianGTO.hpp"
 #include "Basis/GTOBasisSet.hpp"
 #include "Basis/GTOShell.hpp"
+#include "Basis/RSpinorBasis.hpp"
 #include "Basis/ScalarBasis.hpp"
 #include "Basis/ShellSet.hpp"
-#include "Basis/SingleParticleBasis.hpp"
 #include "Basis/TransformationMatrix.hpp"
 #include "Basis/transform.hpp"
 

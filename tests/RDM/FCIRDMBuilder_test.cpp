@@ -37,7 +37,7 @@ BOOST_AUTO_TEST_CASE ( H2O_1RDM_spin_trace_FCI ) {
 
     // Create the molecular Hamiltonian in the AO basis
     auto h2o = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
-    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2o, "STO-3G");
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> sp_basis (h2o, "STO-3G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2o);  // in an AO basis
     size_t K = sq_hamiltonian.dimension();  // SO 7
 
@@ -72,7 +72,7 @@ BOOST_AUTO_TEST_CASE ( H2O_2RDM_spin_trace_FCI ) {
 
     // Create the molecular Hamiltonian in the AO basis
     auto h2o = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
-    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2o, "STO-3G");
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> sp_basis (h2o, "STO-3G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2o);  // in an AO basis
     size_t K = sq_hamiltonian.dimension();  // SO 7
 
@@ -109,7 +109,7 @@ BOOST_AUTO_TEST_CASE ( H2O_1RDM_2RDM_trace_FCI ) {
 
     // Create the molecular Hamiltonian in the AO basis
     auto h2o = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
-    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2o, "STO-3G");
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> sp_basis (h2o, "STO-3G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2o);  // in an AO basis
     size_t K = sq_hamiltonian.dimension();  // SO 7
 
@@ -144,7 +144,7 @@ BOOST_AUTO_TEST_CASE ( H2O_energy_RDM_contraction_FCI ) {
 
     // Create the molecular Hamiltonian in the AO basis
     auto h2o = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
-    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2o, "STO-3G");
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> sp_basis (h2o, "STO-3G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2o);  // in an AO basis
     size_t K = sq_hamiltonian.dimension();  // SO 7
 
@@ -180,7 +180,7 @@ BOOST_AUTO_TEST_CASE ( H2O_energy_RDM_contraction_FCI_wavefunction ) {
 
     // Create the molecular Hamiltonian in the AO basis
     auto h2o = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
-    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2o, "STO-3G");
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> sp_basis (h2o, "STO-3G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2o);  // in an AO basis
     size_t K = sq_hamiltonian.dimension();  // SO 7
 

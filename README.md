@@ -21,7 +21,7 @@ Follow along the following documented example that calculates the FCI energy:
 
 // Create the second-quantized Hamiltonian
 const auto h2o = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
-GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2o, "STO-3G");
+GQCP::RSpinorBasis<double, GQCP::GTOShell> sp_basis (h2o, "STO-3G");
 auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2o);  // in an AO basis
 
 

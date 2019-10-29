@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Basis/SingleParticleBasis.hpp"
+#include "Basis/RSpinorBasis.hpp"
 #include "FockSpace/BaseFockSpace.hpp"
 
 

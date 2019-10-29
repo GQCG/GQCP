@@ -107,7 +107,7 @@ ScalarSQOneElectronOperator<double> DIISRHFSCFSolver::calculateNewFockMatrix(con
  *  @param threshold                        the convergence treshold on the Frobenius norm on the AO density matrix
  *  @param maximum_number_of_iterations     the maximum number of iterations for the SCF procedure
  */
-DIISRHFSCFSolver::DIISRHFSCFSolver(SQHamiltonian<double> sq_hamiltonian, const SingleParticleBasis<double, GTOShell>& sp_basis, Molecule molecule, size_t minimum_subspace_dimension, size_t maximum_subspace_dimension, double threshold, size_t maximum_number_of_iterations) :
+DIISRHFSCFSolver::DIISRHFSCFSolver(SQHamiltonian<double> sq_hamiltonian, const RSpinorBasis<double, GTOShell>& sp_basis, Molecule molecule, size_t minimum_subspace_dimension, size_t maximum_subspace_dimension, double threshold, size_t maximum_number_of_iterations) :
     RHFSCFSolver(sq_hamiltonian, sp_basis, molecule, threshold, maximum_number_of_iterations),
     minimum_subspace_dimension (minimum_subspace_dimension),
     maximum_subspace_dimension (maximum_subspace_dimension)

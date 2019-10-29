@@ -61,7 +61,7 @@ BOOST_AUTO_TEST_CASE ( SelectedCI_vs_FrozenCoreDOCI ) {
     // Create H-chain HamiltonianParameters to test results
     size_t K = 5;
     GQCP::Molecule H5 = GQCP::Molecule::HChain(K, 1.1);
-    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (H5, "STO-3G");
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> sp_basis (H5, "STO-3G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, H5);  // in an AO basis
 
     // Create compatible Fock spaces

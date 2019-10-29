@@ -31,7 +31,7 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test ) {
 
     // Create a Molecule and the corresponding HamiltonianParameters
     auto CO = GQCP::Molecule::ReadXYZ("data/CO_mulliken.xyz");
-    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (CO, "STO-3G");
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> sp_basis (CO, "STO-3G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, CO);  // in an AO basis
 
     size_t K = sq_hamiltonian.dimension();
@@ -118,7 +118,7 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test_random_transformation) {
 
     // Create a Molecule and the corresponding HamiltonianParameters
     auto CO = GQCP::Molecule::ReadXYZ("data/CO_mulliken.xyz");
-    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (CO, "STO-3G");
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> sp_basis (CO, "STO-3G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, CO);  // in an AO basis
 
     size_t K = sq_hamiltonian.dimension();

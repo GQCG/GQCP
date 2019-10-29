@@ -28,7 +28,7 @@ BOOST_AUTO_TEST_CASE ( h2_631gdp ) {
 
     // Prepare molecular Hamiltonian in the RHF basis
     auto h2 = GQCP::Molecule::ReadXYZ("data/h2_olsens.xyz");
-    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2, "6-31G**");
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> sp_basis (h2, "6-31G**");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2);  // in an AO basis
 
     GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, sp_basis, h2);

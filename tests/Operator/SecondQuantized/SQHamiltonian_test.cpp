@@ -91,7 +91,7 @@ BOOST_AUTO_TEST_CASE ( HamiltonianParameters_constructor ) {
 
     // Create single-particle basis
     auto water = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
-    const GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (water, "STO-3G");
+    const GQCP::RSpinorBasis<double, GQCP::GTOShell> sp_basis (water, "STO-3G");
 
 
     // Create One- and SQTwoElectronOperators (and a transformation matrix) with compatible dimensions
@@ -147,7 +147,7 @@ BOOST_AUTO_TEST_CASE ( constructMolecularHamiltonianParameters ) {
 
 
     // Check if we can construct the molecular Hamiltonian
-    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2, "STO-3G");
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> sp_basis (h2, "STO-3G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2);  // in an AO basis
     auto g = sq_hamiltonian.twoElectron().parameters();
 
@@ -337,6 +337,6 @@ BOOST_AUTO_TEST_CASE ( dissociatedMoleculeParameters ) {
     std::vector<GQCP::Nucleus> nuclei {N,O};
     auto NO = GQCP::Molecule(nuclei, +1);
 
-    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (NO, "STO-3G");
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> sp_basis (NO, "STO-3G");
     BOOST_CHECK_NO_THROW(GQCP::SQHamiltonian<double>::Molecular(sp_basis, NO));
 }

@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Basis/SingleParticleBasis.hpp"
+#include "Basis/RSpinorBasis.hpp"
 #include "Basis/TransformationMatrix.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 
@@ -38,7 +38,7 @@ namespace GQCP {
  *  @param T                            the transformation matrix
  */
 template <typename TransformationScalar, typename ShellType>
-void basisTransform(SingleParticleBasis<TransformationScalar, ShellType>& sp_basis, SQHamiltonian<TransformationScalar>& sq_hamiltonian, const TransformationMatrix<TransformationScalar>& T) {
+void basisTransform(RSpinorBasis<TransformationScalar, ShellType>& sp_basis, SQHamiltonian<TransformationScalar>& sq_hamiltonian, const TransformationMatrix<TransformationScalar>& T) {
 
     sp_basis.transform(T);
     sq_hamiltonian.transform(T);
@@ -56,7 +56,7 @@ void basisTransform(SingleParticleBasis<TransformationScalar, ShellType>& sp_bas
  *  @param T                            the transformation matrix
  */
 template <typename TransformationScalar, typename ShellType, size_t Components>
-void basisTransform(SingleParticleBasis<TransformationScalar, ShellType>& sp_basis, SQOneElectronOperator<TransformationScalar, Components>& one_op, const TransformationMatrix<TransformationScalar>& T) {
+void basisTransform(RSpinorBasis<TransformationScalar, ShellType>& sp_basis, SQOneElectronOperator<TransformationScalar, Components>& one_op, const TransformationMatrix<TransformationScalar>& T) {
 
     sp_basis.transform(T);
     one_op.transform(T);
@@ -74,7 +74,7 @@ void basisTransform(SingleParticleBasis<TransformationScalar, ShellType>& sp_bas
  *  @param U                            the unitary transformation matrix
  */
 template <typename TransformationScalar, typename ShellType>
-void basisRotate(SingleParticleBasis<TransformationScalar, ShellType>& sp_basis, SQHamiltonian<TransformationScalar>& sq_hamiltonian, const TransformationMatrix<TransformationScalar>& U) {
+void basisRotate(RSpinorBasis<TransformationScalar, ShellType>& sp_basis, SQHamiltonian<TransformationScalar>& sq_hamiltonian, const TransformationMatrix<TransformationScalar>& U) {
 
     sp_basis.rotate(U);
     sq_hamiltonian.rotate(U);
@@ -91,7 +91,7 @@ void basisRotate(SingleParticleBasis<TransformationScalar, ShellType>& sp_basis,
  *  @param jacobi_rotation_parameters       the Jacobi-rotation parameters
  */
 template <typename ShellType>
-void basisRotate(SingleParticleBasis<double, ShellType>& sp_basis, SQHamiltonian<double>& sq_hamiltonian, const JacobiRotationParameters& jacobi_rotation_parameters) {
+void basisRotate(RSpinorBasis<double, ShellType>& sp_basis, SQHamiltonian<double>& sq_hamiltonian, const JacobiRotationParameters& jacobi_rotation_parameters) {
 
     sp_basis.rotate(jacobi_rotation_parameters);
     sq_hamiltonian.rotate(jacobi_rotation_parameters);

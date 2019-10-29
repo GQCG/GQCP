@@ -31,7 +31,7 @@ BOOST_AUTO_TEST_CASE ( constructor ) {
     auto h2 = GQCP::Molecule::ReadXYZ("data/h2_szabo.xyz");
     size_t N = 2;  // number of electrons for H2
     size_t N_P = N/2;  // number of electron pairs for H2
-    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2, "STO-3G");
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> sp_basis (h2, "STO-3G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2);  // in an AO basis
     GQCP::AP1roGPSESolver ap1rog_pse_solver (N_P, sq_hamiltonian);
 }
@@ -42,7 +42,7 @@ BOOST_AUTO_TEST_CASE ( constructor_molecule ) {
     // Test a correct constructor
     // Check if we can also pass a molecule object to the constructor
     auto h2 = GQCP::Molecule::ReadXYZ("data/h2_szabo.xyz");
-    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2, "STO-3G");
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> sp_basis (h2, "STO-3G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2);  // in an AO basis
 
     // Test a faulty constructor
@@ -64,7 +64,7 @@ BOOST_AUTO_TEST_CASE ( h2_631gdp ) {
 
     // Prepare molecular Hamiltonian in the RHF basis
     auto h2 = GQCP::Molecule::ReadXYZ("data/h2_olsens.xyz");
-    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2, "6-31G**");
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> sp_basis (h2, "6-31G**");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2);  // in an AO basis
 
     GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, sp_basis, h2);
@@ -103,7 +103,7 @@ BOOST_AUTO_TEST_CASE ( h2_631gdp_weak_interaction_limit ) {
     // Prepare molecular Hamiltonian in the RHF basis
     auto h2 = GQCP::Molecule::ReadXYZ("data/h2_olsens.xyz");
     size_t N_P = h2.numberOfElectrons() / 2;
-    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2, "6-31G**");
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> sp_basis (h2, "6-31G**");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2);  // in an AO basis
 
     GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, sp_basis, h2);

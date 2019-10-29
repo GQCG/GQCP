@@ -18,8 +18,8 @@
 #pragma once
 
 
+#include "Basis/RSpinorBasis.hpp"
 #include "Basis/ScalarBasis.hpp"
-#include "Basis/SingleParticleBasis.hpp"
 #include "Basis/TransformationMatrix.hpp"
 #include "HoppingMatrix.hpp"
 #include "Molecule/Molecule.hpp"
@@ -133,7 +133,7 @@ public:
      *  Note that this named constructor is only available for real matrix representations
      */
     template <typename Z = Scalar>
-    static enable_if_t<std::is_same<Z, double>::value, SQHamiltonian<double>> Molecular(const SingleParticleBasis<Z, GTOShell>& sp_basis, const Molecule& molecule) {
+    static enable_if_t<std::is_same<Z, double>::value, SQHamiltonian<double>> Molecular(const RSpinorBasis<Z, GTOShell>& sp_basis, const Molecule& molecule) {
 
         // Calculate the integrals for the molecular Hamiltonian
         const auto T = sp_basis.quantize(Operator::Kinetic());

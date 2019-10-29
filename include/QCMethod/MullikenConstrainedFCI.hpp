@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Basis/SingleParticleBasis.hpp"
+#include "Basis/RSpinorBasis.hpp"
 #include "CISolver/CISolver.hpp"
 #include "FockSpace/ProductFockSpace.hpp"
 #include "HamiltonianBuilder/FCI.hpp"
@@ -40,7 +40,7 @@ private:
     double solve_time;
     std::vector<size_t> basis_targets;
     Molecule molecule;
-    SingleParticleBasis<double, GTOShell> sp_basis;
+    RSpinorBasis<double, GTOShell> sp_basis;
     SQHamiltonian<double> sq_hamiltonian;
     std::string basis_set;  // the basisset that should be used
     FrozenProductFockSpace fock_space = FrozenProductFockSpace(0, 0, 0, 0); // Default

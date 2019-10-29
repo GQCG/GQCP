@@ -18,8 +18,8 @@
 #pragma once
 
 
+#include "Basis/RSpinorBasis.hpp"
 #include "Basis/TransformationMatrix.hpp"
-#include "Basis/SingleParticleBasis.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 
 
@@ -87,7 +87,7 @@ public:
      *  @param sp_basis             the initial single-particle basis that contains the spinors to be optimized
      *  @param sq_hamiltonian       the initial (guess for the) Hamiltonian
      */
-    void optimize(SingleParticleBasis<double, GTOShell>& sp_basis, SQHamiltonian<double>& sq_hamiltonian);
+    void optimize(RSpinorBasis<double, GTOShell>& sp_basis, SQHamiltonian<double>& sq_hamiltonian);
 };
 
 

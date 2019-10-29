@@ -64,7 +64,7 @@ BOOST_AUTO_TEST_CASE ( mulliken_N2_STO_3G ) {
     std::vector<GQCP::Nucleus> nuclei {N_1, N_2};
     GQCP::Molecule N2 (nuclei);
 
-    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (N2, "STO-3G");
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> sp_basis (N2, "STO-3G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, N2);  // in an AO basis
     size_t K = sq_hamiltonian.dimension();
 

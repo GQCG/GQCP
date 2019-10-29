@@ -17,7 +17,7 @@
 //
 #include "QCMethod/FCI.hpp"
 
-#include "Basis/SingleParticleBasis.hpp"
+#include "Basis/RSpinorBasis.hpp"
 #include "Operator/FirstQuantized/NuclearRepulsionOperator.hpp"
 
 
@@ -55,7 +55,7 @@ void FCI::solve() {
 
     // Construct the molecular Hamiltonian
     auto molecule = Molecule::ReadXYZ(this->xyz_filename);
-    SingleParticleBasis<double, GTOShell> sp_basis (molecule, this->basis_set);
+    RSpinorBasis<double, GTOShell> sp_basis (molecule, this->basis_set);
     sp_basis.lowdinOrthonormalize();
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, molecule);  // in the Löwdin basis
 

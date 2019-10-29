@@ -25,7 +25,7 @@ static void fci_davidson_hchain(benchmark::State& state) {
 
     // Create the molecular Hamiltonian for this molecule and basis
     const auto hchain = GQCP::Molecule::HChain(number_of_H_atoms, 0.742, charge);
-    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (hchain, "STO-3G");
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> sp_basis (hchain, "STO-3G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, hchain);  // in AO basis
 
 
@@ -71,7 +71,7 @@ static void fci_dense_hchain(benchmark::State& state) {
 
     // Create the molecular Hamiltonian for this molecule and basis
     const auto hchain = GQCP::Molecule::HChain(number_of_H_atoms, 0.742, charge);
-    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (hchain, "STO-3G");
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> sp_basis (hchain, "STO-3G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, hchain);
     auto K = sq_hamiltonian.dimension();
     auto N_P = hchain.numberOfElectrons()/2;

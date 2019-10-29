@@ -20,7 +20,7 @@
 #include <boost/test/unit_test.hpp>
 
 #include "Basis/transform.hpp"
-#include "Basis/SingleParticleBasis.hpp"
+#include "Basis/RSpinorBasis.hpp"
 #include "CISolver/CISolver.hpp"
 #include "HamiltonianBuilder/DOCI.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
@@ -58,7 +58,7 @@ BOOST_AUTO_TEST_CASE ( CO_DOCI_constrained_dense ) {
 
     // Create the molecular Hamiltonian for CO
     auto CO = GQCP::Molecule::ReadXYZ("data/CO_mulliken.xyz");
-    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (CO, "STO-3G");
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> sp_basis (CO, "STO-3G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, CO);  // in an AO basis
 
     // Create a plain RHF SCF solver and solve the SCF equations

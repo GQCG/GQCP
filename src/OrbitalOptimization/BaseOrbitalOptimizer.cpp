@@ -50,7 +50,7 @@ BaseOrbitalOptimizer::BaseOrbitalOptimizer(const double convergence_threshold, c
  *  @param sp_basis             the initial single-particle basis that contains the spinors to be optimized
  *  @param sq_hamiltonian       the initial (guess for the) Hamiltonian
  */
-void BaseOrbitalOptimizer::optimize(SingleParticleBasis<double, GTOShell>& sp_basis, SQHamiltonian<double>& sq_hamiltonian) {
+void BaseOrbitalOptimizer::optimize(RSpinorBasis<double, GTOShell>& sp_basis, SQHamiltonian<double>& sq_hamiltonian) {
 
     if (!sp_basis.isOrthonormal()) {
         throw std::invalid_argument("BaseOrbitalOptimizer::optimize(SQHamiltonian<double>&): The given spinor basis is not orthonormal.");
