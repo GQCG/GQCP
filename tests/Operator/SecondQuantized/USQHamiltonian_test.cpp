@@ -28,10 +28,40 @@
 
 
 
+BOOST_AUTO_TEST_CASE ( USQHamiltonian_constructor ) {
+
+    // Create single-particle basis
+    auto water = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
+    const GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (water, "STO-3G");
+
+
+    // Create One- and SQTwoElectronOperators (and a transformation matrix) with compatible dimensions
+    size_t K = sp_basis.numberOfBasisFunctions();
+    GQCP::QCMatrix<double> H_core = GQCP::QCMatrix<double>::Random(K, K);
+
+    GQCP::QCRankFourTensor<double> g (K);
+    g.setRandom();
+
+   // Create SQ operators with greater dimensions
+    GQCP::QCMatrix<double> H_core_faulty = GQCP::QCMatrix<double>::Random(K+1, K+1);
+    GQCP::QCRankFourTensor<double> g_faulty (K+1);
+
+    // Create SQHamilonians with different dimensions
+    GQCP::SQHamiltonian<double> sq_hamiltonian_a (GQCP::ScalarSQOneElectronOperator<double>({H_core}), GQCP::ScalarSQTwoElectronOperator<double>({g}));
+    GQCP::SQHamiltonian<double> sq_hamiltonian_b (GQCP::ScalarSQOneElectronOperator<double>({H_core}), GQCP::ScalarSQTwoElectronOperator<double>({g}));
+    GQCP::SQHamiltonian<double> sq_hamiltonian_b_faulty (GQCP::ScalarSQOneElectronOperator<double>({H_core_faulty}), GQCP::ScalarSQTwoElectronOperator<double>({g_faulty}));
+
+    // Check if a correct constructor works with compatible elements
+    BOOST_CHECK_NO_THROW(GQCP::USQHamiltonian<double> (sq_hamiltonian_a, sq_hamiltonian_b, GQCP::ScalarSQTwoElectronOperator<double>({g}));
+    // Check if a constructor throws an error with incompatible elements
+    BOOST_CHECK_THROW(GQCP::USQHamiltonian<double> (sq_hamiltonian_a, sq_hamiltonian_b_faulty, GQCP::ScalarSQTwoElectronOperator<double>({g}), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::USQHamiltonian<double> (Gsq_hamiltonian_a, sq_hamiltonian_b, GQCP::ScalarSQTwoElectronOperator<double>({g_faulty}), std::invalid_argument);
+}
+
 
 BOOST_AUTO_TEST_CASE ( USQHamiltonian_transform ) {
 
-    // This test will test if a total transform or two individual transformations for the individual components of the unrestricted SQHamiltonian amount to the same result
+    // This test will test if a total transformation or two individual transformations for the individual components of the USQHamiltonian amount to the same result
     // Create single-particle basis for alpha and beta
     auto water = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
     const GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis_a (water, "STO-3G");
@@ -51,6 +81,5 @@ BOOST_AUTO_TEST_CASE ( USQHamiltonian_transform ) {
     BOOST_CHECK(GQCP::SQHamiltonian<double> (usq_hamiltonian1.twoElectronMixed().parameters().isApprox(usq_hamiltonian2.twoElectronMixed().parameters()));
     BOOST_CHECK(GQCP::SQHamiltonian<double> (usq_hamiltonian1.alphaHamiltonian().core().parameters().isApprox(usq_hamiltonian2.alphaHamiltonian().core().parameters()));
     BOOST_CHECK(GQCP::SQHamiltonian<double> (usq_hamiltonian1.betaHamiltonian().core().parameters().isApprox(usq_hamiltonian2.betaHamiltonian().core().parameters()));
-
 }
 

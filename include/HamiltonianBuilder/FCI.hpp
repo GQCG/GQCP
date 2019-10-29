@@ -72,6 +72,32 @@ public:
      *  @return the diagonal of the matrix representation of the Hamiltonian
      */
     VectorX<double> calculateDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const override;
+
+
+    // PUBLIC METHODS UNRESTRICTED METHODS
+    /**
+     *
+     *  @param usq_hamiltonian                the Hamiltonian expressed in an unrestricted orthonormal basis 
+     *
+     *  @return the FCI Hamiltonian matrix
+     */
+    SquareMatrix<double> constructHamiltonian(const USQHamiltonian<double>& usq_hamiltonian) const;
+
+    /**
+     *  @param usq_hamiltonian              the Hamiltonian expressed in an unrestricted orthonormal basis 
+     *  @param x                            the vector upon which the FCI Hamiltonian acts
+     *  @param diagonal                     the diagonal of the FCI Hamiltonian matrix
+     *
+     *  @return the action of the FCI Hamiltonian on the coefficient vector
+     */
+    VectorX<double> matrixVectorProduct(const USQHamiltonian<double>& usq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const;
+
+    /**
+     *  @param usq_hamiltonian                the Hamiltonian expressed in an unrestricted orthonormal basis 
+     *
+     *  @return the diagonal of the matrix representation of the Hamiltonian
+     */
+    VectorX<double> calculateDiagonal(const USQHamiltonian<double>& usq_hamiltonian) const;
 };
 
 

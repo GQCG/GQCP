@@ -65,7 +65,19 @@ public:
         sq_hamiltonian_alpha (sq_hamiltonian_alpha),
         sq_hamiltonian_beta (sq_hamiltonian_beta),
         two_op_mixed (two_op_mixed)
-    {}
+    {
+
+        const auto dim = sq_hamiltonian_alpha.dimension();
+
+        if (sq_hamiltonian_beta.dimension() != dim) {
+            throw std::invalid_argument("USQHamiltonian::USQHamiltonian(const SQHamiltonian<Scalar>& sq_hamiltonian_alpha, const SQHamiltonian<Scalar>& sq_hamiltonian_beta, const ScalarSQTwoElectronOperator<Scalar>& two_op_mixed): The dimensions of the alpha and beta Hamiltonian are incompatible");
+        }
+        
+        if (two_op_mixed.dimension() != dim) {
+            throw std::invalid_argument("USQHamiltonian::USQHamiltonian(const SQHamiltonian<Scalar>& sq_hamiltonian_alpha, const SQHamiltonian<Scalar>& sq_hamiltonian_beta, const ScalarSQTwoElectronOperator<Scalar>& two_op_mixed): The dimensions of the mixed two electron operator are incompatible with the Hamiltonian");
+        }
+
+    }
 
     /*
      *  NAMED CONSTRUCTORS

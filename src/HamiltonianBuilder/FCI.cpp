@@ -112,5 +112,79 @@ VectorX<double> FCI::calculateDiagonal(const SQHamiltonian<double>& sq_hamiltoni
 }
 
 
+/**
+ *  PUBLIC METHODS UNRESTRICTED METHODS
+ */ 
+
+/**
+ *
+ *  @param usq_hamiltonian                the Hamiltonian expressed in an unrestricted orthonormal basis 
+ *
+ *  @return the FCI Hamiltonian matrix
+ */
+SquareMatrix<double> FCI::constructHamiltonian(const USQHamiltonian<double>& usq_hamiltonian) const {
+    return this->fock_space.evaluateOperatorDense(usq_hamiltonian, true);
+}
+
+/**
+ *  @param usq_hamiltonian              the Hamiltonian expressed in an unrestricted orthonormal basis 
+ *  @param x                            the vector upon which the FCI Hamiltonian acts
+ *  @param diagonal                     the diagonal of the FCI Hamiltonian matrix
+ *
+ *  @return the action of the FCI Hamiltonian on the coefficient vector
+ */
+VectorX<double> FCI::matrixVectorProduct(const USQHamiltonian<double>& usq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
+    auto K = usq_hamiltonian.dimension();
+    if (K != this->fock_space.get_K()) {
+        throw std::invalid_argument("FCI::matrixVectorProduct(USQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the Fock space and usq_hamiltonian are incompatible.");
+    }
+
+    FockSpace fock_space_alpha = fock_space.get_fock_space_alpha();
+    FockSpace fock_space_beta = fock_space.get_fock_space_beta();
+
+    const auto& alpha_couplings = this->fock_space.get_alpha_couplings();
+
+    auto dim_alpha = fock_space_alpha.get_dimension();
+    auto dim_beta = fock_space_beta.get_dimension();
+
+    VectorX<double> matvec = diagonal.cwiseProduct(x);
+
+    Eigen::Map<Eigen::MatrixXd> matvecmap(matvec.data(), dim_beta, dim_alpha);
+    Eigen::Map<const Eigen::MatrixXd> xmap(x.data(), dim_beta, dim_alpha);
+
+    for (size_t p = 0; p<K; p++) {
+
+        const auto& P = this->fock_space.oneElectronPartition(p, p, usq_hamiltonian.twoElectronMixed());
+        const auto& beta_two_electron_intermediate = fock_space_beta.evaluateOperatorDense(P, false);
+
+        // sigma(pp) * X * theta(pp)
+        matvecmap += beta_two_electron_intermediate * (xmap * alpha_couplings[p*(K+K+1-p)/2]);
+        for (size_t q = p + 1; q<K; q++) {
+
+            const auto& P = this->fock_space.oneElectronPartition(p, q, usq_hamiltonian.twoElectronMixed());
+            const auto& beta_two_electron_intermediate = fock_space_beta.evaluateOperatorDense(P, true);
+
+            // (sigma(pq) + sigma(qp)) * X * theta(pq)
+            matvecmap += beta_two_electron_intermediate * (xmap * alpha_couplings[p*(K+K+1-p)/2 + q - p]);
+        }
+    }
+
+    auto beta_hamiltonian = fock_space_beta.evaluateOperatorSparse(usq_hamiltonian.alphaHamiltonian(), false);
+    auto alpha_hamiltonian = fock_space_alpha.evaluateOperatorSparse(usq_hamiltonian.betaHamiltonian(), false);
+
+    matvecmap += beta_hamiltonian * xmap + xmap * alpha_hamiltonian;
+
+    return matvec;
+}
+
+/**
+ *  @param usq_hamiltonian                the Hamiltonian expressed in an unrestricted orthonormal basis 
+ *
+ *  @return the diagonal of the matrix representation of the Hamiltonian
+ */
+VectorX<double> FCI::calculateDiagonal(const USQHamiltonian<double>& usq_hamiltonian) const {
+    return this->fock_space.evaluateOperatorDiagonal(usq_hamiltonian);
+}
+
 
 }  // namespace GQCP

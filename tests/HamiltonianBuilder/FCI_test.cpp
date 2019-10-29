@@ -52,3 +52,33 @@ BOOST_AUTO_TEST_CASE ( FCI_public_methods ) {
     BOOST_CHECK_THROW(random_fci_invalid.constructHamiltonian(sq_hamiltonian), std::invalid_argument);
     BOOST_CHECK_THROW(random_fci_invalid.matrixVectorProduct(sq_hamiltonian, x, x), std::invalid_argument);
 }
+
+
+BOOST_AUTO_TEST_CASE ( FCI_public_methods_unrestricted ) {
+
+    // This test the results from the restricted framework to that of the unrestricted framework in a restricted basis (the alpha and beta coefficients and parameters are identical)
+    GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
+    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis_alpha (hchain, "STO-3G");
+    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis_beta (hchain, "STO-3G");
+    sp_basis_alpha.lowdinOrthonormalize();
+    sp_basis_beta.lowdinOrthonormalize();
+    auto usq_hamiltonian = GQCP::USQHamiltonian<double>::Molecular(sp_basis_alpha, sp_basis_beta, hchain);  // unresticted Hamiltonian in the Löwdin basis
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis_alpha, hchain);  // restricted Hamiltonian in the Löwdin basis
+
+    // Create a compatible Fock space
+    GQCP::ProductFockSpace product_fock_space (6, 4, 4);
+    GQCP::FCI fci (product_fock_space);
+
+    const auto ham1 = fci.constructHamiltonian(sq_hamiltonian);
+    const auto ham2 = fci.constructHamiltonian(usq_hamiltonian);
+
+    const auto diag1 = fci.calculateDiagonal(sq_hamiltonian);
+    const auto diag2 = fci.calculateDiagonal(usq_hamiltonian);
+
+    const auto matvec1 = fci.matrixVectorProduct(sq_hamiltonian, diag1, diag1);
+    const auto matvec2 = fci.matrixVectorProduct(usq_hamiltonian, diag2, diag2);
+
+    BOOST_CHECK(ham1.isApprox(ham2));
+    BOOST_CHECK(diag1.isApprox(diag2));
+    BOOST_CHECK(matvec1.isApprox(matvec2));
+}
