@@ -137,7 +137,7 @@ public:
      *
      *  @param T    the transformation matrix between the old and the new orbital basis
      */
-    void transform_alpha(const TransformationMatrix<Scalar>& T) {
+    void transformAlpha(const TransformationMatrix<Scalar>& T) {
 
         this->sq_hamiltonian_alpha.transform(T);
         // Transform the mixed
@@ -153,7 +153,7 @@ public:
      *
      *  @param T    the transformation matrix between the old and the new orbital basis
      */
-    void transform_beta(const TransformationMatrix<Scalar>& T) {
+    void transformBeta(const TransformationMatrix<Scalar>& T) {
 
         this->sq_hamiltonian_beta.transform(T);
         // Transform the mixed
