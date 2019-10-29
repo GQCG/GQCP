@@ -80,8 +80,8 @@ void MullikenConstrainedFCI::parseSolution(const std::vector<Eigenpair>& eigenpa
 
         if (molecule.numberOfAtoms() == 2) {
             // Transform the RDMs to the atomic orbital basis
-            D.basisTransformInPlace(this->sp_basis.transformationMatrix().adjoint());
-            d.basisTransformInPlace(this->sp_basis.transformationMatrix().adjoint());
+            D.basisTransformInPlace(this->sp_basis.coefficientMatrix().adjoint());
+            d.basisTransformInPlace(this->sp_basis.coefficientMatrix().adjoint());
 
             this->A_fragment_energy[i] = calculateExpectationValue(adp.get_atomic_parameters()[0], D, d) + internuclear_repulsion_energy/2;
             this->A_fragment_self_energy[i] = calculateExpectationValue(adp.get_net_atomic_parameters()[0], D, d);
@@ -140,7 +140,7 @@ MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const s
     }
 
 
-    auto K = this->sp_basis.numberOfBasisFunctions();
+    auto K = this->sp_basis.numberOfSpatialOrbitals();
     auto N_P = this->molecule.numberOfElectrons()/2;
 
     try {

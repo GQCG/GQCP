@@ -71,7 +71,7 @@ AtomicDecompositionParameters AtomicDecompositionParameters::Nuclear(const Molec
     }
 
     const RSpinorBasis<double, GTOShell> sp_basis (molecule, basisset_name);
-    const auto K = sp_basis.numberOfBasisFunctions();
+    const auto K = sp_basis.numberOfSpatialOrbitals();
 
 
     // Retrieve an AO basis for the individual atoms so that we can retrieve net atomic nuclear integrals
@@ -81,8 +81,8 @@ AtomicDecompositionParameters AtomicDecompositionParameters::Nuclear(const Molec
     RSpinorBasis<double, GTOShell> sp_basis_a (nuclear_framework_a, basisset_name);  // in non-orthogonal AO basis
     RSpinorBasis<double, GTOShell> sp_basis_b (nuclear_framework_b, basisset_name);  // in non-orthogonal AO basis
 
-    const auto K_a = sp_basis_a.numberOfBasisFunctions();
-    const auto K_b = sp_basis_b.numberOfBasisFunctions();
+    const auto K_a = sp_basis_a.numberOfSpatialOrbitals();
+    const auto K_b = sp_basis_b.numberOfSpatialOrbitals();
 
     QCMatrix<double> V_a = sp_basis_a.quantize(Operator::NuclearAttraction(nuclear_framework_a)).parameters();
     QCMatrix<double> V_b = sp_basis_b.quantize(Operator::NuclearAttraction(nuclear_framework_b)).parameters();

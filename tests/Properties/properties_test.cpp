@@ -42,7 +42,7 @@ BOOST_AUTO_TEST_CASE ( dipole_CO_STO_3G ) {
     GQCP::RSpinorBasis<double, GQCP::GTOShell> sp_basis (CO, "STO-3G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, CO);  // in an AO basis
 
-    size_t K = sp_basis.numberOfBasisFunctions();
+    size_t K = sp_basis.numberOfSpatialOrbitals();
     size_t N = CO.numberOfElectrons();
 
     // Solve the SCF equations
@@ -80,7 +80,7 @@ BOOST_AUTO_TEST_CASE ( dipole_N2_STO_3G ) {
     GQCP::RSpinorBasis<double, GQCP::GTOShell> sp_basis (N2, "STO-3G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, N2);  // in an AO basis
 
-    size_t K = sp_basis.numberOfBasisFunctions();
+    size_t K = sp_basis.numberOfSpatialOrbitals();
     size_t N = N2.numberOfElectrons();
 
     // Solve the SCF equations

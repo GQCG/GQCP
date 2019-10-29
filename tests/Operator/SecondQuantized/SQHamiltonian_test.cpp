@@ -95,7 +95,7 @@ BOOST_AUTO_TEST_CASE ( HamiltonianParameters_constructor ) {
 
 
     // Create One- and SQTwoElectronOperators (and a transformation matrix) with compatible dimensions
-    size_t K = sp_basis.numberOfBasisFunctions();
+    size_t K = sp_basis.numberOfSpatialOrbitals();
     GQCP::QCMatrix<double> H_core = GQCP::QCMatrix<double>::Random(K, K);
 
     GQCP::QCRankFourTensor<double> g (K);

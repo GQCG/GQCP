@@ -36,20 +36,20 @@ namespace GQCP {
 /**
  *  A class that represents a spinor basis in which the expansion of the alpha and beta components in terms of the underlying scalar orbitals are restricted to be equal
  * 
- *  @tparam _Shell                      the type of shell that this scalar basis contains
- *  @tparam _TransformationScalar       the scalar type of the transformation matrix that connects the scalar basis with the current single-particle 'orbitals'
+ *  @tparam _ExpansionScalar        the scalar type of the expansion coefficients
+ *  @tparam _Shell                  the type of shell that the underlying scalar basis contains
  */
-template <typename _TransformationScalar, typename _Shell>
+template <typename _ExpansionScalar, typename _Shell>
 class RSpinorBasis {
 public:
     using Shell = _Shell;
     using BasisFunction = typename Shell::BasisFunction;
-    using TransformationScalar = _TransformationScalar;
+    using ExpansionScalar = _ExpansionScalar;
 
 
 private:
-    ScalarBasis<Shell> scalar_basis;  // the underlying scalar basis
-    TransformationMatrix<TransformationScalar> T_total;  // the transformation matrix between the scalar basis and the current orbitals
+    ScalarBasis<Shell> scalar_basis;  // the underlying scalar basis that is equal for both the alpha- and beta components
+    TransformationMatrix<ExpansionScalar> C;  // the matrix that holds the the expansion coefficients, i.e. that expresses the restricted spinors in terms of the underlying scalar basis
 
 
 public:
@@ -59,19 +59,21 @@ public:
      */
 
     /**
-     *  @param scalar_basis             the underlying scalar basis
-     *  @param T_total                  the transformation matrix between the scalar basis and the current orbitals
+     *  @param scalar_basis         the underlying scalar basis that is equal for both the alpha- and beta components
+     *  @param C                    the matrix that holds the the expansion coefficients, i.e. that expresses the restricted spinors in terms of the underlying scalar basis
      */
-    RSpinorBasis(const ScalarBasis<Shell>& scalar_basis, const TransformationMatrix<TransformationScalar>& T_total) :
+    RSpinorBasis(const ScalarBasis<Shell>& scalar_basis, const TransformationMatrix<ExpansionScalar>& C) :
         scalar_basis (scalar_basis),
-        T_total (T_total)
+        C (C)
     {}
 
 
     /**
-     *  Construct a single-particle basis with an identity transformation matrix
+     *  Construct a restricted spinor basis with an initial coefficient matrix that is the identity
      * 
-     *  @param scalar_basis             the underlying scalar basis
+     *  @param scalar_basis             the underlying scalar basis that is equal for both the alpha- and beta components
+     * 
+     *  @note the resulting restricted spinor basis is (most likely) non-orthogonal
      */
     RSpinorBasis(const ScalarBasis<Shell>& scalar_basis) : 
         RSpinorBasis(scalar_basis, TransformationMatrix<double>::Identity(scalar_basis.numberOfBasisFunctions(), scalar_basis.numberOfBasisFunctions()))
@@ -79,13 +81,13 @@ public:
 
 
     /**
-     *  Construct a single-particle basis by placing shells corresponding to the basisset specification on every nucleus of the nuclear framework
+     *  Construct a restricted spinor basis with an underlying scalar basis (for both the alpha and beta components) by placing shells corresponding to the basisset specification on every nucleus of the nuclear framework
      *
      *  @param nuclear_framework        the nuclear framework containing the nuclei on which the shells should be centered
      *  @param basisset_name            the name of the basisset, e.g. "STO-3G"
      *
      *  @note the normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells
-     *  @note the resulting single-particle basis is (most likeley) non-orthogonal
+     *  @note the resulting restricted spinor basis is (most likely) non-orthogonal
      */
     RSpinorBasis(const NuclearFramework& nuclear_framework, const std::string& basisset_name) :
         RSpinorBasis(ScalarBasis<Shell>(nuclear_framework, basisset_name))
@@ -93,16 +95,16 @@ public:
 
 
     /**
-     *  Construct a single-particle basis by placing shells corresponding to the basisset specification on every nucleus of the molecule
+     *  Construct a restricted spinor basis with an underlying scalar basis (for both the alpha and beta components) by placing shells corresponding to the basisset specification on every nucleus of the molecule
      *
      *  @param molecule             the molecule containing the nuclei on which the shells should be centered
      *  @param basisset_name        the name of the basisset, e.g. "STO-3G"
      *
      *  @note the normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells
-     *  @note the resulting single-particle basis is (most likeley) non-orthogonal
+     *  @note the resulting restricted spinor basis is (most likely) non-orthogonal
      */
     RSpinorBasis(const Molecule& molecule, const std::string& basisset_name) :
-        RSpinorBasis(ScalarBasis<Shell>(molecule, basisset_name))
+        RSpinorBasis(molecule.nuclearFramework(), basisset_name)
     {}
 
 
@@ -111,52 +113,38 @@ public:
      */
 
     /**
-     *  @return the number of orbitals that 'are' in this single-particle basis
+     *  @return the number of different spatial orbitals that are used in this restricted spinor basis
      */
-    size_t numberOfBasisFunctions() const { return this->scalar_basis.numberOfBasisFunctions(); }
+    size_t numberOfSpatialOrbitals() const { return this->scalar_basis.numberOfBasisFunctions(); }
 
     /**
-     *  @return the number of orbitals that 'are' in this single-particle basis
+     *  @return the number of spinors that 'are' in this restricted spinor basis
      */
-    size_t numberOfOrbitals() const { return this->numberOfBasisFunctions(); }
+    size_t numberOfSpinors() const {
+        return 2 * this->numberOfSpatialOrbitals();  // alpha and beta spinors are equal 
+    }
 
     /**
-     *  @return the orbitals that 'are' in this single-particle basis
+     *  Transform the restricted spinor basis another one using the given transformation matrix
+     * 
+     *  @param T            the transformation matrix that transforms both the alpha- and beta components
      */
-    std::vector<LinearCombination<double, BasisFunction>> basisFunctions() const { 
+    void transform(const TransformationMatrix<ExpansionScalar>& T) {
 
-        std::runtime_error("RSpinorBasis::basisFunctions(): This method hasn't been implemented yet");
+        this->C.transform(T);
     }
 
 
     /**
-     *  @param i            the index of the requested orbital
+     *  Rotate the restricted spinor basis to another one using the given unitary transformation matrix
      * 
-     *  @return the orbital with the given index that 'is' in this scalar basis
+     *  @param U            the unitary transformation matrix that transforms both the alpha- and beta components
      */
-    LinearCombination<double, BasisFunction> basisFunction(const size_t i) const { return this->basisFunctions()[i]; }
-
-    /**
-     *  Transform the single-particle basis to another one using the given transformation matrix
-     * 
-     *  @param T            the transformation matrix
-     */
-    void transform(const TransformationMatrix<TransformationScalar>& T) {
-
-        this->T_total.transform(T);
-    }
-
-
-    /**
-     *  Rotate the single-particle basis to another one using the given unitary transformation matrix
-     * 
-     *  @param U            the unitary transformation matrix
-     */
-    void rotate(const TransformationMatrix<TransformationScalar>& U) {
+    void rotate(const TransformationMatrix<ExpansionScalar>& U) {
 
         // Check if the given matrix is actually unitary
         if (!U.isUnitary(1.0e-12)) {
-            throw std::invalid_argument("RSpinorBasis::rotate(const TransformationMatrix<TransformationScalar>&): The given transformation matrix is not unitary.");
+            throw std::invalid_argument("RSpinorBasis::rotate(const TransformationMatrix<ExpansionScalar>&): The given transformation matrix is not unitary.");
         }
 
         this->transform(U);
@@ -164,13 +152,16 @@ public:
 
 
     /**
-     *  Rotate the single-particle basis to another one using the unitary transformation matrix that corresponds to the given Jacobi rotation parameters
+     *  Rotate the restricted spinor basis to another one using the unitary transformation matrix that corresponds to the given Jacobi rotation parameters
      * 
      *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
+     * 
+     *  @note this function is only available for real restricted spinor bases because Jacobi rotation parameters generate real rotations
      */
-    void rotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
+    template<typename Z = ExpansionScalar>
+    enable_if_t<std::is_same<Z, double>::value> rotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
 
-        const auto dim = this->numberOfOrbitals();
+        const auto dim = this->numberOfSpatialOrbitals();
         const auto J = TransformationMatrix<double>::FromJacobi(jacobi_rotation_parameters, dim);
         this->rotate(J);
     }
@@ -179,28 +170,28 @@ public:
     /**
      *  @return the transformation matrix between the scalar basis and the current orbitals
      */
-    TransformationMatrix<TransformationScalar> transformationMatrix() const { return this->T_total; }
+    const TransformationMatrix<ExpansionScalar>& coefficientMatrix() const { return this->C; }
 
     /**
      *  @param precision                the precision used to test orthonormality
      * 
-     *  @return if this single-particle basis is orthonormal within the given precision
+     *  @return if this restricted spinor basis basis is orthonormal within the given precision
      */
     bool isOrthonormal(const double precision = 1.0e-08) const {
 
         const auto S = this->overlapMatrix();
 
-        const auto dim = this->numberOfOrbitals();
-        return S.isApprox(SquareMatrix<TransformationScalar>::Identity(dim, dim), precision);
+        const auto dim = this->numberOfSpatialOrbitals();
+        return S.isApprox(SquareMatrix<ExpansionScalar>::Identity(dim, dim), precision);
     }
 
 
     /**
-     *  Transform the single-particle basis to the Löwdin basis, which is the orthonormal basis that we transform to with T = S^{-1/2}, where S is the overlap matrix in the underlying scalar orbital basis
+     *  Transform the restricted spinor basis to the Löwdin basis, which is the orthonormal basis that we transform to with T = S^{-1/2}, where S is the overlap matrix in the underlying scalar orbital basis
      */
     void lowdinOrthonormalize() {
 
-        this->T_total = this->lowdinOrthonormalizationMatrix();
+        this->C = this->lowdinOrthonormalizationMatrix();
     }
 
 
@@ -209,39 +200,35 @@ public:
      */
     TransformationMatrix<double> lowdinOrthonormalizationMatrix() const {
 
-        // The transformation matrix to the Löwdin basis is T = S_current^{-1/2}
-        auto S = this->scalar_basis.calculateLibintIntegrals(Operator::Overlap());  // in the underlying (possibly orthonormal) scalar basis
-        S.basisTransformInPlace(this->transformationMatrix());  // now S is expressed in the current orbital basis
+        // Calculate S^{-1/2}, where S is epxressed in the current spinor basis
+        const auto S = this->overlapMatrix();
         Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes (S);
-
         return TransformationMatrix<double>(saes.operatorInverseSqrt());
     }
 
 
     /**
-     *  @return the overlap (one-electron) operator of this single-particle basis
+     *  @return the overlap (one-electron) operator of this restricted spinor basis
      */
-    ScalarSQOneElectronOperator<TransformationScalar> overlap() const {
+    ScalarSQOneElectronOperator<ExpansionScalar> overlap() const {
 
-        return ScalarSQOneElectronOperator<TransformationScalar>({this->overlapMatrix()});
+        return ScalarSQOneElectronOperator<ExpansionScalar>({this->overlapMatrix()});
     }
 
 
-
     /**
-     *  @return the current overlap matrix of this single-particle basis
+     *  @return the current overlap matrix of this restricted spinor basis
      */
-    QCMatrix<TransformationScalar> overlapMatrix() const {
+    QCMatrix<ExpansionScalar> overlapMatrix() const {
 
-        auto S = this->scalar_basis.calculateLibintIntegrals(Operator::Overlap());  // in the underlying scalar basis
-        S.basisTransformInPlace(this->T_total);  // in this single-particle basis
-        return QCMatrix<TransformationScalar>(S);
+        auto S = this->scalar_basis.calculateLibintIntegrals(Operator::Overlap());  // the overlap operator expressed in the underlying scalar basis
+        S.basisTransformInPlace(this->C);  // the overlap operator expressed in in this single-particle basis
+        return S;
     }
 
 
-
     /**
-     *  @return the underlying scalar basis
+     *  @return the underlying scalar basis, which is equal for the alpha and beta components
      */
     const ScalarBasis<Shell>& scalarBasis() const { return this->scalar_basis; }
 
@@ -250,13 +237,13 @@ public:
      * 
      *  @return the second-quantized operator corresponding to the given first-quantized operator
      */
-    auto quantize(const OverlapOperator& fq_op) const -> SQOneElectronOperator<product_t<OverlapOperator::Scalar, TransformationScalar>, OverlapOperator::Components> {
+    auto quantize(const OverlapOperator& fq_op) const -> SQOneElectronOperator<product_t<OverlapOperator::Scalar, ExpansionScalar>, OverlapOperator::Components> {
 
-        using ResultScalar = product_t<OverlapOperator::Scalar, TransformationScalar>;
+        using ResultScalar = product_t<OverlapOperator::Scalar, ExpansionScalar>;
         using ResultOperator = SQOneElectronOperator<ResultScalar, OverlapOperator::Components>;
 
         ResultOperator op ({this->scalarBasis().calculateLibintIntegrals(fq_op)});  // op for 'operator'
-        op.transform(this->transformationMatrix());
+        op.transform(this->coefficientMatrix());
         return op;
     }
 
@@ -266,13 +253,13 @@ public:
      * 
      *  @return the second-quantized operator corresponding to the given first-quantized operator
      */
-    auto quantize(const KineticOperator& fq_op) const -> SQOneElectronOperator<product_t<KineticOperator::Scalar, TransformationScalar>, KineticOperator::Components> {
+    auto quantize(const KineticOperator& fq_op) const -> SQOneElectronOperator<product_t<KineticOperator::Scalar, ExpansionScalar>, KineticOperator::Components> {
 
-        using ResultScalar = product_t<KineticOperator::Scalar, TransformationScalar>;
+        using ResultScalar = product_t<KineticOperator::Scalar, ExpansionScalar>;
         using ResultOperator = SQOneElectronOperator<ResultScalar, KineticOperator::Components>;
 
         ResultOperator op ({this->scalarBasis().calculateLibintIntegrals(fq_op)});  // op for 'operator'
-        op.transform(this->transformationMatrix());
+        op.transform(this->coefficientMatrix());
         return op;
     }
 
@@ -282,13 +269,13 @@ public:
      * 
      *  @return the second-quantized operator corresponding to the given first-quantized operator
      */
-    auto quantize(const NuclearAttractionOperator& fq_op) const -> SQOneElectronOperator<product_t<NuclearAttractionOperator::Scalar, TransformationScalar>, NuclearAttractionOperator::Components> {
+    auto quantize(const NuclearAttractionOperator& fq_op) const -> SQOneElectronOperator<product_t<NuclearAttractionOperator::Scalar, ExpansionScalar>, NuclearAttractionOperator::Components> {
 
-        using ResultScalar = product_t<NuclearAttractionOperator::Scalar, TransformationScalar>;
+        using ResultScalar = product_t<NuclearAttractionOperator::Scalar, ExpansionScalar>;
         using ResultOperator = SQOneElectronOperator<ResultScalar, NuclearAttractionOperator::Components>;
 
         ResultOperator op ({this->scalarBasis().calculateLibintIntegrals(fq_op)});  // op for 'operator'
-        op.transform(this->transformationMatrix());
+        op.transform(this->coefficientMatrix());
         return op;
     }
 
@@ -298,13 +285,13 @@ public:
      * 
      *  @return the second-quantized operator corresponding to the given first-quantized operator
      */
-    auto quantize(const ElectronicDipoleOperator& fq_op) const -> SQOneElectronOperator<product_t<ElectronicDipoleOperator::Scalar, TransformationScalar>, ElectronicDipoleOperator::Components> {
+    auto quantize(const ElectronicDipoleOperator& fq_op) const -> SQOneElectronOperator<product_t<ElectronicDipoleOperator::Scalar, ExpansionScalar>, ElectronicDipoleOperator::Components> {
 
-        using ResultScalar = product_t<ElectronicDipoleOperator::Scalar, TransformationScalar>;
+        using ResultScalar = product_t<ElectronicDipoleOperator::Scalar, ExpansionScalar>;
         using ResultOperator = SQOneElectronOperator<ResultScalar, ElectronicDipoleOperator::Components>;
 
         ResultOperator op ({this->scalarBasis().calculateLibintIntegrals(fq_op)});  // op for 'operator'
-        op.transform(this->transformationMatrix());
+        op.transform(this->coefficientMatrix());
         return op;
     }
 
@@ -314,13 +301,13 @@ public:
      * 
      *  @return the second-quantized operator corresponding to the given first-quantized operator
      */
-    auto quantize(const CoulombRepulsionOperator& fq_op) const -> SQTwoElectronOperator<product_t<CoulombRepulsionOperator::Scalar, TransformationScalar>, CoulombRepulsionOperator::Components> {
+    auto quantize(const CoulombRepulsionOperator& fq_op) const -> SQTwoElectronOperator<product_t<CoulombRepulsionOperator::Scalar, ExpansionScalar>, CoulombRepulsionOperator::Components> {
 
-        using ResultScalar = product_t<CoulombRepulsionOperator::Scalar, TransformationScalar>;
+        using ResultScalar = product_t<CoulombRepulsionOperator::Scalar, ExpansionScalar>;
         using ResultOperator = SQTwoElectronOperator<ResultScalar, CoulombRepulsionOperator::Components>;
 
         ResultOperator op ({this->scalarBasis().calculateLibintIntegrals(fq_op)});  // op for 'operator'
-        op.transform(this->transformationMatrix());
+        op.transform(this->coefficientMatrix());
         return op;
     }
 
@@ -330,26 +317,21 @@ public:
      *
      *  @return the Mulliken operator for a set of AOs
      *
-     *  Note that this method is only available for real matrix representations
+     *  @note this method is only available for real matrix representations
      */
-    template<typename Z = TransformationScalar>
+    template<typename Z = ExpansionScalar>
     enable_if_t<std::is_same<Z, double>::value, ScalarSQOneElectronOperator<double>> calculateMullikenOperator(const Vectoru& ao_list) const {
 
-        const auto K = this->numberOfBasisFunctions();
+        const auto K = this->numberOfSpatialOrbitals();
         if (ao_list.size() > K) {
-            throw std::invalid_argument("RSpinorBasis::calculateMullikenOperator(Vectoru): Too many AOs are selected");
+            throw std::invalid_argument("RSpinorBasis::calculateMullikenOperator(Vectoru): Too many AOs are selected in the given ao_list");
         }
 
-        // Create the partitioning matrix
-        SquareMatrix<double> p_a = SquareMatrix<double>::PartitionMatrix(ao_list, K);
+        const SquareMatrix<double> p_a = SquareMatrix<double>::PartitionMatrix(ao_list, K);  // the partitioning matrix
+        const auto S_AO = this->scalar_basis.calculateLibintIntegrals(Operator::Overlap());  // the overlap matrix expressed in the AO basis
 
-        ScalarSQOneElectronOperator<double> S_AO ({this->overlapMatrix()});
-        TransformationMatrix<double> T_inverse = this->transformationMatrix().inverse();
-        S_AO.transform(T_inverse);
-
-        ScalarSQOneElectronOperator<double> mulliken_matrix ({ (T_total.adjoint() * p_a * S_AO.parameters() * T_total + T_total.adjoint() * S_AO.parameters() * p_a * T_total)/2 });
-
-        return mulliken_matrix;
+        ScalarSQOneElectronOperator<double> mulliken_op ({ (this->C.adjoint() * p_a * S_AO * this->C + this->C.adjoint() * S_AO * p_a * this->C)/2 });
+        return mulliken_op;
     }
 };
 

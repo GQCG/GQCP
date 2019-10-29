@@ -19,9 +19,10 @@
 
 
 /**
- *  A class that represents a spinor basis in which the 
+ *  A class that represents a spinor basis without any restrictions on the expansion of the alpha and beta components in terms of the underlying (possibly different) scalar bases
+ * 
+ *  @tparam _Shell                      the type of shell the underlying scalar bases contain
+ *  @tparam _TransformationScalar       the scalar type of the expansion coefficients
  */
-class GSpinorBasis {
-
-
-};
+template <typename _TransformationScalar, typename _Shell>
+class RSpinorBasis {

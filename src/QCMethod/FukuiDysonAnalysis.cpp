@@ -42,7 +42,7 @@ FukuiDysonAnalysis::FukuiDysonAnalysis(const Molecule& molecule, const std::stri
         sq_hamiltonian (SQHamiltonian<double>::Molecular(this->sp_basis, molecule)),  // in AO basis
         basis_set (basis_set)
 {
-    const auto K = this->sp_basis.numberOfBasisFunctions();
+    const auto K = this->sp_basis.numberOfSpatialOrbitals();
     const auto N_P = this->molecule.numberOfElectrons()/2;
 
     // Define a molecule on which an RHF calculation is allowed

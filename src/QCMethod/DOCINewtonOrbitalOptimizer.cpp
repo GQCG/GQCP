@@ -112,7 +112,7 @@ void DOCINewtonOrbitalOptimizer::solve() {
     this->is_solved = true;
     double internuclear_repulsion_energy = Operator::NuclearRepulsion(molecule).value();
     this->energy_solution = OO_DOCI_electronic_energy + internuclear_repulsion_energy;
-    this->T_total = sp_basis.transformationMatrix();
+    this->T_total = sp_basis.coefficientMatrix();
 }
 
 

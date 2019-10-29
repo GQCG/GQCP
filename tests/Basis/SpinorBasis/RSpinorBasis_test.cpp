@@ -33,7 +33,7 @@ BOOST_AUTO_TEST_CASE ( Lowdin_orthonormal ) {
     // Construct the initial single-particle basis (corresponding to the underlying GTOs)
     const auto h2 = GQCP::Molecule::ReadXYZ("data/h2.xyz");
     GQCP::RSpinorBasis<double, GQCP::GTOShell> sp_basis (h2, "STO-3G");
-    BOOST_REQUIRE_EQUAL(sp_basis.numberOfOrbitals(), 2);
+    BOOST_REQUIRE_EQUAL(sp_basis.numberOfSpatialOrbitals(), 2);
 
 
     // Löwdin-orthonormalize and check the result
@@ -54,7 +54,7 @@ BOOST_AUTO_TEST_CASE ( lowdinOrthonormalizatioMatrix ) {
 
 
     // Transform the single-particle basis and re-calculate the Löwdin orthonormalization matrix and check the result
-    const auto K = sp_basis.numberOfBasisFunctions();
+    const auto K = sp_basis.numberOfSpatialOrbitals();
     sp_basis.transform(GQCP::TransformationMatrix<double>::Random(K, K));
     const auto T_lowdin_2 = sp_basis.lowdinOrthonormalizationMatrix();
 
