@@ -222,7 +222,7 @@ public:
     QCMatrix<ExpansionScalar> overlapMatrix() const {
 
         auto S = this->scalar_basis.calculateLibintIntegrals(Operator::Overlap());  // the overlap operator expressed in the underlying scalar basis
-        S.basisTransformInPlace(this->C);  // the overlap operator expressed in in this single-particle basis
+        S.basisTransformInPlace(this->C);  // the overlap operator expressed in this restricted spinor basis
         return S;
     }
 

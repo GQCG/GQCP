@@ -63,8 +63,8 @@ BOOST_AUTO_TEST_CASE ( SelectedCI_vs_FCI ) {
     // Create H-chain HamiltonianParameters to test results from FCI and selected CI
     size_t K = 4;
     GQCP::Molecule H4 = GQCP::Molecule::HChain(K, 1.1);
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> sp_basis (H4, "STO-3G");
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, H4);  // in an AO basis
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (H4, "STO-3G");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, H4);  // in an AO basis
 
     // Create compatible Fock spaces
     GQCP::ProductFockSpace product_fock_space (K, 2, 2);
@@ -93,8 +93,8 @@ BOOST_AUTO_TEST_CASE ( SelectedCI_vs_DOCI ) {
     // Create H-chain HamiltonianParameters to test results from DOCI and selected CI
     size_t K = 4;
     GQCP::Molecule H4 = GQCP::Molecule::HChain(K, 1.1);
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> sp_basis (H4, "STO-3G");
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, H4);  // in an AO basis
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (H4, "STO-3G");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, H4);  // in an AO basis
 
     // Create compatible Fock spaces
     GQCP::FockSpace do_fock_space (K, 2);

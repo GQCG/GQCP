@@ -38,14 +38,14 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_sto_3g ) {
     // Prepare the molecular Hamiltonian in the RHF basis
     auto h2 = GQCP::Molecule::ReadXYZ("data/h2_cristina.xyz");
     double internuclear_repulsion_energy = GQCP::Operator::NuclearRepulsion(h2).value();  // 0.713176780299327
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> sp_basis (h2, "STO-3G");
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2);  // in an AO basis
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (h2, "STO-3G");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2);  // in an AO basis
     auto K = sq_hamiltonian.dimension();
 
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, sp_basis, h2);
+    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, h2);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
-    basisTransform(sp_basis, sq_hamiltonian, rhf.get_C());
+    basisTransform(spinor_basis, sq_hamiltonian, rhf.get_C());
 
 
     // Do the DOCI orbital optimization using specified solver options
@@ -54,7 +54,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_sto_3g ) {
     GQCP::DenseSolverOptions ci_solver_options;
     auto hessian_modifier = std::make_shared<GQCP::IterativeIdentitiesHessianModifier>();
     GQCP::DOCINewtonOrbitalOptimizer orbital_optimizer (doci, ci_solver_options, hessian_modifier);
-    orbital_optimizer.optimize(sp_basis, sq_hamiltonian);
+    orbital_optimizer.optimize(spinor_basis, sq_hamiltonian);
 
 
     // Check if the OO-DOCI energy is equal to the FCI energy
@@ -74,14 +74,14 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31g ) {
     // Prepare the molecular Hamiltonian in the RHF basis
     auto h2 = GQCP::Molecule::ReadXYZ("data/h2_cristina.xyz");
     double internuclear_repulsion_energy = GQCP::Operator::NuclearRepulsion(h2).value();  // 0.713176780299327
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> sp_basis (h2, "6-31G");
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2);  // in an AO basis
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (h2, "6-31G");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2);  // in an AO basis
     auto K = sq_hamiltonian.dimension();
 
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, sp_basis, h2);
+    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, h2);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
-    basisTransform(sp_basis, sq_hamiltonian, rhf.get_C());
+    basisTransform(spinor_basis, sq_hamiltonian, rhf.get_C());
 
 
     // Transform the molecular Hamiltonian to the FCI natural basis
@@ -100,7 +100,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31g ) {
     Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes (one_rdm);
     GQCP::TransformationMatrix<double> U = saes.eigenvectors();
 
-    basisRotate(sp_basis, sq_hamiltonian, U);
+    basisRotate(spinor_basis, sq_hamiltonian, U);
 
 
     // Do the DOCI orbital optimization, using the FCI natural orbitals
@@ -108,7 +108,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31g ) {
     GQCP::DOCI doci (doci_fock_space);
     auto hessian_modifier = std::make_shared<GQCP::IterativeIdentitiesHessianModifier>();
     GQCP::DOCINewtonOrbitalOptimizer orbital_optimizer (doci, ci_solver_options, hessian_modifier);
-    orbital_optimizer.optimize(sp_basis, sq_hamiltonian);
+    orbital_optimizer.optimize(spinor_basis, sq_hamiltonian);
 
 
     // Check if the OO-DOCI energy is equal to the FCI energy
@@ -126,15 +126,15 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx ) {
     // Prepare the molecular Hamiltonian in the RHF basis
     auto h2 = GQCP::Molecule::ReadXYZ("data/h2_cristina.xyz");
     double internuclear_repulsion_energy = GQCP::Operator::NuclearRepulsion(h2).value();  // 0.713176780299327
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> sp_basis (h2, "6-31G**");
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2);  // in an AO basis
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (h2, "6-31G**");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2);  // in an AO basis
     auto K = sq_hamiltonian.dimension();
 
 
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, sp_basis, h2);
+    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, h2);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
-    basisTransform(sp_basis, sq_hamiltonian, rhf.get_C());
+    basisTransform(spinor_basis, sq_hamiltonian, rhf.get_C());
 
 
     // Transform the molecular Hamiltonian to the FCI natural basis
@@ -153,7 +153,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx ) {
     Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes (one_rdm);
     GQCP::TransformationMatrix<double> U = saes.eigenvectors();
 
-    basisRotate(sp_basis, sq_hamiltonian, U);
+    basisRotate(spinor_basis, sq_hamiltonian, U);
 
 
     // Do the DOCI orbital optimization, using the FCI natural orbitals
@@ -161,7 +161,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx ) {
     GQCP::DOCI doci (doci_fock_space);
     auto hessian_modifier = std::make_shared<GQCP::IterativeIdentitiesHessianModifier>();
     GQCP::DOCINewtonOrbitalOptimizer orbital_optimizer (doci, ci_solver_options, hessian_modifier);
-    orbital_optimizer.optimize(sp_basis, sq_hamiltonian);
+    orbital_optimizer.optimize(spinor_basis, sq_hamiltonian);
 
 
     // Check if the OO-DOCI energy is equal to the FCI energy
@@ -179,15 +179,15 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx_Davidson ) {
     // Prepare the molecular Hamiltonianin the RHF basis
     auto h2 = GQCP::Molecule::ReadXYZ("data/h2_cristina.xyz");
     double internuclear_repulsion_energy = GQCP::Operator::NuclearRepulsion(h2).value();  // 0.713176780299327
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> sp_basis (h2, "6-31G**");
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2);  // in an AO basis
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (h2, "6-31G**");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2);  // in an AO basis
     auto K = sq_hamiltonian.dimension();
 
 
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, sp_basis, h2);
+    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, h2);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
-    basisTransform(sp_basis, sq_hamiltonian, rhf.get_C());
+    basisTransform(spinor_basis, sq_hamiltonian, rhf.get_C());
 
 
     // Transform the molecular Hamiltonian to the FCI natural basis
@@ -206,7 +206,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx_Davidson ) {
     Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes (one_rdm);
     GQCP::TransformationMatrix<double> U = saes.eigenvectors();
 
-    basisRotate(sp_basis, sq_hamiltonian, U);
+    basisRotate(spinor_basis, sq_hamiltonian, U);
 
 
     // Do the DOCI orbital optimization, using the FCI natural orbitals
@@ -216,7 +216,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx_Davidson ) {
     GQCP::DavidsonSolverOptions davidson_solver_options (initial_g);
     auto hessian_modifier = std::make_shared<GQCP::IterativeIdentitiesHessianModifier>();
     GQCP::DOCINewtonOrbitalOptimizer orbital_optimizer (doci, ci_solver_options, hessian_modifier);
-    orbital_optimizer.optimize(sp_basis, sq_hamiltonian);
+    orbital_optimizer.optimize(spinor_basis, sq_hamiltonian);
 
 
     // Check if the OO-DOCI energy is equal to the FCI energy

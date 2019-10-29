@@ -34,13 +34,13 @@ BOOST_AUTO_TEST_CASE ( lih_6_31G_calculateEnergyAfterRotation ) {
 
     // Construct the molecular Hamiltonian in the RHF basis
     auto lih = GQCP::Molecule::ReadXYZ("data/lih_olsens.xyz");
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> sp_basis (lih, "6-31G");
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, lih);  // in an AO basis
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (lih, "6-31G");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, lih);  // in an AO basis
 
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, sp_basis, lih);
+    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, lih);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
-    basisTransform(sp_basis, sq_hamiltonian, rhf.get_C());
+    basisTransform(spinor_basis, sq_hamiltonian, rhf.get_C());
 
 
     // Loop over all possible Jacobi pairs for a given (random) angle and check if the analytical result matches the numerical result
@@ -80,13 +80,13 @@ BOOST_AUTO_TEST_CASE ( lih_6_31G_orbitalOptimize ) {
 
     // Construct the molecular Hamiltonian in the RHF basis
     auto lih = GQCP::Molecule::ReadXYZ("data/lih_olsens.xyz");
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> sp_basis (lih, "6-31G");
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, lih);  // in an AO basis
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (lih, "6-31G");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, lih);  // in an AO basis
 
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, sp_basis, lih);
+    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, lih);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
-    basisTransform(sp_basis, sq_hamiltonian, rhf.get_C());
+    basisTransform(spinor_basis, sq_hamiltonian, rhf.get_C());
 
 
     // Get the initial AP1roG energy
@@ -98,7 +98,7 @@ BOOST_AUTO_TEST_CASE ( lih_6_31G_orbitalOptimize ) {
 
     // Do an AP1roG orbital optimization using Jacobi rotations
     GQCP::AP1roGJacobiOrbitalOptimizer orbital_optimizer (initial_G, 1.0e-04);
-    orbital_optimizer.optimize(sp_basis, sq_hamiltonian);
+    orbital_optimizer.optimize(spinor_basis, sq_hamiltonian);
     double optimized_energy = orbital_optimizer.get_electronic_energy();
 
 

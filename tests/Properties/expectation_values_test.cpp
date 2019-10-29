@@ -64,8 +64,8 @@ BOOST_AUTO_TEST_CASE ( mulliken_N2_STO_3G ) {
     std::vector<GQCP::Nucleus> nuclei {N_1, N_2};
     GQCP::Molecule N2 (nuclei);
 
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> sp_basis (N2, "STO-3G");
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, N2);  // in an AO basis
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (N2, "STO-3G");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, N2);  // in an AO basis
     size_t K = sq_hamiltonian.dimension();
 
     std::cout << "K: " << std::endl << K << std::endl << std::endl;;
@@ -76,7 +76,7 @@ BOOST_AUTO_TEST_CASE ( mulliken_N2_STO_3G ) {
         gto_list[i] = i;
     }
 
-    GQCP::ScalarSQOneElectronOperator<double> mulliken = sp_basis.calculateMullikenOperator(gto_list);
+    GQCP::ScalarSQOneElectronOperator<double> mulliken = spinor_basis.calculateMullikenOperator(gto_list);
 
     size_t N = N2.numberOfElectrons();
 
@@ -90,7 +90,7 @@ BOOST_AUTO_TEST_CASE ( mulliken_N2_STO_3G ) {
     // Repeat this for a DOCI-RDM
 
     // Solve the SCF equations
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, sp_basis, N2);  // the DIIS SCF solver seems to find a wrong minimum, so use a plain solver instead
+    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, N2);  // the DIIS SCF solver seems to find a wrong minimum, so use a plain solver instead
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 

@@ -80,8 +80,8 @@ void MullikenConstrainedFCI::parseSolution(const std::vector<Eigenpair>& eigenpa
 
         if (molecule.numberOfAtoms() == 2) {
             // Transform the RDMs to the atomic orbital basis
-            D.basisTransformInPlace(this->sp_basis.coefficientMatrix().adjoint());
-            d.basisTransformInPlace(this->sp_basis.coefficientMatrix().adjoint());
+            D.basisTransformInPlace(this->spinor_basis.coefficientMatrix().adjoint());
+            d.basisTransformInPlace(this->spinor_basis.coefficientMatrix().adjoint());
 
             this->A_fragment_energy[i] = calculateExpectationValue(adp.get_atomic_parameters()[0], D, d) + internuclear_repulsion_energy/2;
             this->A_fragment_self_energy[i] = calculateExpectationValue(adp.get_net_atomic_parameters()[0], D, d);
@@ -130,8 +130,8 @@ void MullikenConstrainedFCI::checkDiatomicMolecule(const std::string& function_n
 MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const std::string& basis_set, const std::vector<size_t>& basis_targets, const size_t frozencores) : 
         basis_targets (basis_targets),
         molecule (molecule),
-        sp_basis (RSpinorBasis<double, GTOShell>(molecule, basis_set)),
-        sq_hamiltonian (SQHamiltonian<double>::Molecular(this->sp_basis, molecule)),  // in AO basis
+        spinor_basis (RSpinorBasis<double, GTOShell>(molecule, basis_set)),
+        sq_hamiltonian (SQHamiltonian<double>::Molecular(this->spinor_basis, molecule)),  // in AO basis
         basis_set (basis_set)
 {
 
@@ -140,15 +140,15 @@ MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const s
     }
 
 
-    auto K = this->sp_basis.numberOfSpatialOrbitals();
+    auto K = this->spinor_basis.numberOfSpatialOrbitals();
     auto N_P = this->molecule.numberOfElectrons()/2;
 
     try {
         // Try the foward approach of solving the RHF equations
-        DIISRHFSCFSolver diis_scf_solver (this->sq_hamiltonian, this->sp_basis, molecule, 6, 6, 1e-12, 500);
+        DIISRHFSCFSolver diis_scf_solver (this->sq_hamiltonian, this->spinor_basis, molecule, 6, 6, 1e-12, 500);
         diis_scf_solver.solve();
         auto rhf_solution = diis_scf_solver.get_solution();
-        basisTransform(this->sp_basis, this->sq_hamiltonian, rhf_solution.get_C());
+        basisTransform(this->spinor_basis, this->sq_hamiltonian, rhf_solution.get_C());
 
     } catch (const std::exception& e) {
 
@@ -162,15 +162,15 @@ MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const s
                 Molecule mol_fraction1(std::vector<Nucleus>{atoms[0]}, charge);
                 Molecule mol_fraction2(std::vector<Nucleus>{atoms[1]}, 0);
 
-                RSpinorBasis<double, GTOShell> sp_basis1 (mol_fraction1, basis_set);
-                RSpinorBasis<double, GTOShell> sp_basis2 (mol_fraction2, basis_set);
+                RSpinorBasis<double, GTOShell> spinor_basis1 (mol_fraction1, basis_set);
+                RSpinorBasis<double, GTOShell> spinor_basis2 (mol_fraction2, basis_set);
 
-                auto ham_par1 = SQHamiltonian<double>::Molecular(sp_basis1, mol_fraction1);  // in AO basis
-                auto ham_par2 = SQHamiltonian<double>::Molecular(sp_basis2, mol_fraction2);  // in AO basis
+                auto ham_par1 = SQHamiltonian<double>::Molecular(spinor_basis1, mol_fraction1);  // in AO basis
+                auto ham_par2 = SQHamiltonian<double>::Molecular(spinor_basis2, mol_fraction2);  // in AO basis
 
                 // Perform DIIS RHF for individual fractions
-                DIISRHFSCFSolver diis_scf_solver1 (ham_par1, sp_basis1, mol_fraction1, 6, 6, 1e-12, 500);
-                DIISRHFSCFSolver diis_scf_solver2 (ham_par2, sp_basis2, mol_fraction2, 6, 6, 1e-12, 500);
+                DIISRHFSCFSolver diis_scf_solver1 (ham_par1, spinor_basis1, mol_fraction1, 6, 6, 1e-12, 500);
+                DIISRHFSCFSolver diis_scf_solver2 (ham_par2, spinor_basis2, mol_fraction2, 6, 6, 1e-12, 500);
                 diis_scf_solver1.solve();
                 diis_scf_solver2.solve();
                 auto rhf1 = diis_scf_solver1.get_solution();
@@ -184,38 +184,38 @@ MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const s
                 TransformationMatrix<double> T = Eigen::MatrixXd::Zero(K, K);
                 T.topLeftCorner(K1, K1) += rhf1.get_C();
                 T.bottomRightCorner(K2, K2) += rhf2.get_C();
-                basisTransform(this->sp_basis, this->sq_hamiltonian, T);
+                basisTransform(this->spinor_basis, this->sq_hamiltonian, T);
 
 
                 // Attempt the DIIS for this basis
                 try {
-                    DIISRHFSCFSolver diis_scf_solver (this->sq_hamiltonian, this->sp_basis, molecule, 6, 6, 1e-12, 500);
+                    DIISRHFSCFSolver diis_scf_solver (this->sq_hamiltonian, this->spinor_basis, molecule, 6, 6, 1e-12, 500);
                     diis_scf_solver.solve();
                     auto rhf = diis_scf_solver.get_solution();
-                    basisTransform(this->sp_basis, this->sq_hamiltonian, rhf.get_C());
+                    basisTransform(this->spinor_basis, this->sq_hamiltonian, rhf.get_C());
 
 
                 } catch (const std::exception& e) {
-                    const auto T = sp_basis.lowdinOrthonormalizationMatrix();
-                    basisTransform(this->sp_basis, this->sq_hamiltonian, T);
+                    const auto T = spinor_basis.lowdinOrthonormalizationMatrix();
+                    basisTransform(this->spinor_basis, this->sq_hamiltonian, T);
                 }
 
 
             } catch (const std::exception& e) {
-                const auto T = sp_basis.lowdinOrthonormalizationMatrix();
-                basisTransform(this->sp_basis, this->sq_hamiltonian, T);
+                const auto T = spinor_basis.lowdinOrthonormalizationMatrix();
+                basisTransform(this->spinor_basis, this->sq_hamiltonian, T);
             }
 
         } else {
-            const auto T = sp_basis.lowdinOrthonormalizationMatrix();
-            basisTransform(this->sp_basis, this->sq_hamiltonian, T);
+            const auto T = spinor_basis.lowdinOrthonormalizationMatrix();
+            basisTransform(this->spinor_basis, this->sq_hamiltonian, T);
         }
     }
 
 
     this->fock_space = FrozenProductFockSpace(K, N_P, N_P, frozencores);
     this->fci = FrozenCoreFCI(fock_space);
-    this->mulliken_operator = this->sp_basis.calculateMullikenOperator(basis_targets);
+    this->mulliken_operator = this->spinor_basis.calculateMullikenOperator(basis_targets);
 
 
     // Atomic Decomposition is only available for diatomic molecules

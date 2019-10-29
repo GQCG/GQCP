@@ -34,7 +34,7 @@ namespace GQCP {
  */
 ScalarSQOneElectronOperator<double> DIISRHFSCFSolver::calculateNewFockMatrix(const OneRDM<double>& D_AO) {
 
-    const auto S = this->sp_basis.overlapMatrix();
+    const auto S = this->spinor_basis.overlapMatrix();
 
 
     // Calculate the Fock matrix based off the density matrix
@@ -100,15 +100,15 @@ ScalarSQOneElectronOperator<double> DIISRHFSCFSolver::calculateNewFockMatrix(con
 /**
 
  *  @param sq_hamiltonian                   the Hamiltonian in an AO basis
- *  @param sp_basis                         the single-particle basis
+ *  @param spinor_basis                     the spinor basis
  *  @param molecule                         the molecule used for the SCF calculation
  *  @param minimum_subspace_dimension       the minimum number of Fock matrices that have to be in the subspace before enabling DIIS
  *  @param maximum_subspace_dimension       the maximum DIIS subspace dimension before the oldest Fock matrices get discarded (one at a time)
  *  @param threshold                        the convergence treshold on the Frobenius norm on the AO density matrix
  *  @param maximum_number_of_iterations     the maximum number of iterations for the SCF procedure
  */
-DIISRHFSCFSolver::DIISRHFSCFSolver(SQHamiltonian<double> sq_hamiltonian, const RSpinorBasis<double, GTOShell>& sp_basis, Molecule molecule, size_t minimum_subspace_dimension, size_t maximum_subspace_dimension, double threshold, size_t maximum_number_of_iterations) :
-    RHFSCFSolver(sq_hamiltonian, sp_basis, molecule, threshold, maximum_number_of_iterations),
+DIISRHFSCFSolver::DIISRHFSCFSolver(SQHamiltonian<double> sq_hamiltonian, const RSpinorBasis<double, GTOShell>& spinor_basis, Molecule molecule, size_t minimum_subspace_dimension, size_t maximum_subspace_dimension, double threshold, size_t maximum_number_of_iterations) :
+    RHFSCFSolver(sq_hamiltonian, spinor_basis, molecule, threshold, maximum_number_of_iterations),
     minimum_subspace_dimension (minimum_subspace_dimension),
     maximum_subspace_dimension (maximum_subspace_dimension)
 {}

@@ -28,15 +28,15 @@ BOOST_AUTO_TEST_CASE ( h2_631gdp ) {
 
     // Prepare molecular Hamiltonian in the RHF basis
     auto h2 = GQCP::Molecule::ReadXYZ("data/h2_olsens.xyz");
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> sp_basis (h2, "6-31G**");
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2);  // in an AO basis
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (h2, "6-31G**");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2);  // in an AO basis
 
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, sp_basis, h2);
+    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, h2);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 
     // Transform the Hamiltonian to the RHF orbital basis
-    GQCP::basisTransform(sp_basis, sq_hamiltonian, rhf.get_C());
+    GQCP::basisTransform(spinor_basis, sq_hamiltonian, rhf.get_C());
 
 
     // Optimize the AP1roG Lagrangian, using an initial guess of the geminal coefficients of 0

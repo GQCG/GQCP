@@ -28,72 +28,72 @@ namespace GQCP {
 
 
 /**
- *  Transform both the single-particle basis and the Hamiltonian to another basis using the given transformation matrix
+ *  Transform both the spinor basis and the Hamiltonian to another basis using the given transformation matrix
  * 
  *  @tparam Shell                       the type of shell that the scalar basis contains
  *  @tparam TransformationScalar        the scalar type of the transformation matrix
  * 
- *  @param sp_basis                     the single-particle basis
+ *  @param spinor_basis                 the spinor basis
  *  @param sq_hamiltonian               the Hamiltonian
  *  @param T                            the transformation matrix
  */
 template <typename TransformationScalar, typename Shell>
-void basisTransform(RSpinorBasis<TransformationScalar, Shell>& sp_basis, SQHamiltonian<TransformationScalar>& sq_hamiltonian, const TransformationMatrix<TransformationScalar>& T) {
+void basisTransform(RSpinorBasis<TransformationScalar, Shell>& spinor_basis, SQHamiltonian<TransformationScalar>& sq_hamiltonian, const TransformationMatrix<TransformationScalar>& T) {
 
-    sp_basis.transform(T);
+    spinor_basis.transform(T);
     sq_hamiltonian.transform(T);
 }
 
 
 /**
- *  Transform both the single-particle basis and the one-electron operator to another basis using the given transformation matrix
+ *  Transform both the spinor basis and the one-electron operator to another basis using the given transformation matrix
  * 
  *  @tparam Shell                       the type of shell that the scalar basis contains
  *  @tparam TransformationScalar        the scalar type of the transformation matrix
  * 
- *  @param sp_basis                     the single-particle basis
+ *  @param spinor_basis                 the spinor basis
  *  @param one_op                       the one-electron operator
  *  @param T                            the transformation matrix
  */
 template <typename TransformationScalar, typename Shell, size_t Components>
-void basisTransform(RSpinorBasis<TransformationScalar, Shell>& sp_basis, SQOneElectronOperator<TransformationScalar, Components>& one_op, const TransformationMatrix<TransformationScalar>& T) {
+void basisTransform(RSpinorBasis<TransformationScalar, Shell>& spinor_basis, SQOneElectronOperator<TransformationScalar, Components>& one_op, const TransformationMatrix<TransformationScalar>& T) {
 
-    sp_basis.transform(T);
+    spinor_basis.transform(T);
     one_op.transform(T);
 }
 
 
 /**
- *  Rotate both the single-particle basis and the Hamiltonian to another basis using the given unitary transformation matrix
+ *  Rotate both the spinor basis and the Hamiltonian to another basis using the given unitary transformation matrix
  * 
  *  @tparam Shell                       the type of shell that the scalar basis contains
  *  @tparam TransformationScalar        the scalar type of the transformation matrix
  * 
- *  @param sp_basis                     the single-particle basis
+ *  @param spinor_basis                 the spinor basis
  *  @param sq_hamiltonian               the Hamiltonian
  *  @param U                            the unitary transformation matrix
  */
 template <typename TransformationScalar, typename Shell>
-void basisRotate(RSpinorBasis<TransformationScalar, Shell>& sp_basis, SQHamiltonian<TransformationScalar>& sq_hamiltonian, const TransformationMatrix<TransformationScalar>& U) {
+void basisRotate(RSpinorBasis<TransformationScalar, Shell>& spinor_basis, SQHamiltonian<TransformationScalar>& sq_hamiltonian, const TransformationMatrix<TransformationScalar>& U) {
 
-    sp_basis.rotate(U);
+    spinor_basis.rotate(U);
     sq_hamiltonian.rotate(U);
 }
 
 
 /**
- *  Rotate both the single-particle basis and the Hamiltonian to another basis using the given Jacobi-rotation parameters
+ *  Rotate both the spinor basis and the Hamiltonian to another basis using the given Jacobi-rotation parameters
  * 
  *  @tparam Shell                           the type of shell that the scalar basis contains
  * 
- *  @param sp_basis                         the single-particle basis
+ *  @param spinor_basis                     the spinor basis
  *  @param sq_hamiltonian                   the Hamiltonian
  *  @param jacobi_rotation_parameters       the Jacobi-rotation parameters
  */
 template <typename Shell>
-void basisRotate(RSpinorBasis<double, Shell>& sp_basis, SQHamiltonian<double>& sq_hamiltonian, const JacobiRotationParameters& jacobi_rotation_parameters) {
+void basisRotate(RSpinorBasis<double, Shell>& spinor_basis, SQHamiltonian<double>& sq_hamiltonian, const JacobiRotationParameters& jacobi_rotation_parameters) {
 
-    sp_basis.rotate(jacobi_rotation_parameters);
+    spinor_basis.rotate(jacobi_rotation_parameters);
     sq_hamiltonian.rotate(jacobi_rotation_parameters);
 }
 

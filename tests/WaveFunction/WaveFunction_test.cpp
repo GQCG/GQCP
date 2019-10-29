@@ -52,9 +52,9 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h3 ) {
     GQCP::Molecule hchain = GQCP::Molecule::HChain(3, 0.742, -1);
 
     // Create the molecular Hamiltonian for this molecule and basis
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> sp_basis (hchain, "STO-3G");
-    sp_basis.lowdinOrthonormalize();
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, hchain);  // in the Löwdin basis
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (hchain, "STO-3G");
+    spinor_basis.lowdinOrthonormalize();
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
     auto K = sq_hamiltonian.dimension();
     auto N_P = hchain.numberOfElectrons()/2;
 
@@ -73,7 +73,7 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h3 ) {
     wavefunction1.basisTransform(U_random);
 
     // Generate a new wave function by rotating the basis and performing the FCI again
-    GQCP::basisRotate(sp_basis, sq_hamiltonian, U_random);
+    GQCP::basisRotate(spinor_basis, sq_hamiltonian, U_random);
     GQCP::CISolver ci_solver2 (fci, sq_hamiltonian);
     ci_solver2.solve(solver_options);
 
@@ -91,9 +91,9 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h4 ) {
     GQCP::Molecule hchain = GQCP::Molecule::HChain(4, 0.742, 0);
 
     // Create the molecular Hamiltonian for this molecule and basis
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> sp_basis (hchain, "STO-3G");
-    sp_basis.lowdinOrthonormalize();
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, hchain);  // in the Löwdin basis
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (hchain, "STO-3G");
+    spinor_basis.lowdinOrthonormalize();
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
     auto K = sq_hamiltonian.dimension();
     auto N_P = hchain.numberOfElectrons()/2;
 
@@ -112,7 +112,7 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h4 ) {
     wavefunction1.basisTransform(U_random);
 
     // Generate a new wave function by rotating the basis and performing the FCI again.
-    GQCP::basisRotate(sp_basis, sq_hamiltonian, U_random);
+    GQCP::basisRotate(spinor_basis, sq_hamiltonian, U_random);
     GQCP::CISolver ci_solver2 (fci, sq_hamiltonian);
     ci_solver2.solve(solver_options);
 
@@ -130,9 +130,9 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h5 ) {
     GQCP::Molecule hchain = GQCP::Molecule::HChain(5, 0.742, 0);
 
     // Create the molecular Hamiltonian for this molecule and basis
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> sp_basis (hchain, "STO-3G");
-    sp_basis.lowdinOrthonormalize();
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, hchain);  // in the Löwdin basis
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (hchain, "STO-3G");
+    spinor_basis.lowdinOrthonormalize();
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
     auto K = sq_hamiltonian.dimension();
     auto N_B = hchain.numberOfElectrons()/2;
     auto N_A = hchain.numberOfElectrons() - N_B;
@@ -153,7 +153,7 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h5 ) {
     wavefunction1.basisTransform(U_random);
 
     // Generate a new wave function by rotating the basis and performing the FCI again.
-    GQCP::basisRotate(sp_basis, sq_hamiltonian, U_random);
+    GQCP::basisRotate(spinor_basis, sq_hamiltonian, U_random);
     GQCP::CISolver ci_solver2 (fci, sq_hamiltonian);
     ci_solver2.solve(solver_options);
 

@@ -62,22 +62,22 @@ void DOCINewtonOrbitalOptimizer::solve() {
 
     // Construct the molecular Hamiltonian in the RHF basis
     auto molecule = Molecule::ReadXYZ(this->xyz_filename);
-    RSpinorBasis<double, GTOShell> sp_basis (molecule, this->basis_set);
+    RSpinorBasis<double, GTOShell> spinor_basis (molecule, this->basis_set);
     const auto N_P = molecule.numberOfElectrons()/2;
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, molecule);  // in AO basis
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in AO basis
     const size_t K = sq_hamiltonian.dimension();
 
-    DIISRHFSCFSolver diis_scf_solver (sq_hamiltonian, sp_basis, molecule);
+    DIISRHFSCFSolver diis_scf_solver (sq_hamiltonian, spinor_basis, molecule);
     diis_scf_solver.solve();
     auto rhf = diis_scf_solver.get_solution();
-    basisTransform(sp_basis, sq_hamiltonian, rhf.get_C());
+    basisTransform(spinor_basis, sq_hamiltonian, rhf.get_C());
 
     auto hessian_modifier = std::make_shared<IterativeIdentitiesHessianModifier>();
     if (localize) {
 
         // Newton to get to the first local minimum
         ERNewtonLocalizer first_newton_localizer (N_P, hessian_modifier);
-        first_newton_localizer.optimize(sp_basis, sq_hamiltonian);
+        first_newton_localizer.optimize(spinor_basis, sq_hamiltonian);
 
 
         // Check if Jacobi finds another minimum
@@ -85,13 +85,13 @@ void DOCINewtonOrbitalOptimizer::solve() {
         auto optimal_jacobi_with_scalar = jacobi_localizer.calculateOptimalJacobiParameters(sq_hamiltonian);
         if (optimal_jacobi_with_scalar.second > 0) {  // if a Jacobi rotation can find an increase, do it
             const TransformationMatrix<double> U = TransformationMatrix<double>::FromJacobi(optimal_jacobi_with_scalar.first, sq_hamiltonian.dimension());
-            basisRotate(sp_basis, sq_hamiltonian, U);
+            basisRotate(spinor_basis, sq_hamiltonian, U);
         }
 
 
         // Newton to get to the next local minimum
         ERNewtonLocalizer second_newton_localizer (N_P, hessian_modifier);
-        first_newton_localizer.optimize(sp_basis, sq_hamiltonian);
+        first_newton_localizer.optimize(spinor_basis, sq_hamiltonian);
     }
 
      // Do the DOCI orbital optimization
@@ -106,13 +106,13 @@ void DOCINewtonOrbitalOptimizer::solve() {
     }
 
     GQCP::DOCINewtonOrbitalOptimizer orbital_optimizer (doci, *solver_options, hessian_modifier);
-    orbital_optimizer.optimize(sp_basis, sq_hamiltonian);
+    orbital_optimizer.optimize(spinor_basis, sq_hamiltonian);
     double OO_DOCI_electronic_energy = orbital_optimizer.get_eigenpair().get_eigenvalue();
 
     this->is_solved = true;
     double internuclear_repulsion_energy = Operator::NuclearRepulsion(molecule).value();
     this->energy_solution = OO_DOCI_electronic_energy + internuclear_repulsion_energy;
-    this->T_total = sp_basis.coefficientMatrix();
+    this->T_total = spinor_basis.coefficientMatrix();
 }
 
 

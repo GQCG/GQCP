@@ -89,13 +89,13 @@ GQCP::ScalarSQTwoElectronOperator<double> calculateToyTwoElectronIntegrals() {
 
 BOOST_AUTO_TEST_CASE ( HamiltonianParameters_constructor ) {
 
-    // Create single-particle basis
+    // Create the spinor basis basis
     auto water = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
-    const GQCP::RSpinorBasis<double, GQCP::GTOShell> sp_basis (water, "STO-3G");
+    const GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (water, "STO-3G");
 
 
-    // Create One- and SQTwoElectronOperators (and a transformation matrix) with compatible dimensions
-    size_t K = sp_basis.numberOfSpatialOrbitals();
+    // Create one- and two-electron operators and a transformation matrix with compatible dimensions
+    size_t K = spinor_basis.numberOfSpatialOrbitals();
     GQCP::QCMatrix<double> H_core = GQCP::QCMatrix<double>::Random(K, K);
 
     GQCP::QCRankFourTensor<double> g (K);
@@ -147,8 +147,8 @@ BOOST_AUTO_TEST_CASE ( constructMolecularHamiltonianParameters ) {
 
 
     // Check if we can construct the molecular Hamiltonian
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> sp_basis (h2, "STO-3G");
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2);  // in an AO basis
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (h2, "STO-3G");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2);  // in an AO basis
     auto g = sq_hamiltonian.twoElectron().parameters();
 
 
@@ -162,7 +162,7 @@ BOOST_AUTO_TEST_CASE ( constructMolecularHamiltonianParameters ) {
                   -0.9584, -1.1204;
 
 
-    BOOST_CHECK(sp_basis.overlapMatrix().isApprox(ref_S, 1.0e-04));
+    BOOST_CHECK(spinor_basis.overlapMatrix().isApprox(ref_S, 1.0e-04));
     BOOST_CHECK(sq_hamiltonian.core().parameters().isApprox(ref_H_core, 1.0e-04));
 
     BOOST_CHECK(std::abs(g(0,0,0,0) - 0.7746) < 1.0e-04);
@@ -337,6 +337,6 @@ BOOST_AUTO_TEST_CASE ( dissociatedMoleculeParameters ) {
     std::vector<GQCP::Nucleus> nuclei {N,O};
     auto NO = GQCP::Molecule(nuclei, +1);
 
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> sp_basis (NO, "STO-3G");
-    BOOST_CHECK_NO_THROW(GQCP::SQHamiltonian<double>::Molecular(sp_basis, NO));
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (NO, "STO-3G");
+    BOOST_CHECK_NO_THROW(GQCP::SQHamiltonian<double>::Molecular(spinor_basis, NO));
 }

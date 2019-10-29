@@ -39,14 +39,14 @@ BOOST_AUTO_TEST_CASE ( dipole_CO_STO_3G ) {
     std::vector<GQCP::Nucleus> nuclei {C, O};
     GQCP::Molecule CO (nuclei);
 
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> sp_basis (CO, "STO-3G");
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, CO);  // in an AO basis
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (CO, "STO-3G");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, CO);  // in an AO basis
 
-    size_t K = sp_basis.numberOfSpatialOrbitals();
+    size_t K = spinor_basis.numberOfSpatialOrbitals();
     size_t N = CO.numberOfElectrons();
 
     // Solve the SCF equations
-    GQCP::DIISRHFSCFSolver diis_scf_solver (sq_hamiltonian, sp_basis, CO);
+    GQCP::DIISRHFSCFSolver diis_scf_solver (sq_hamiltonian, spinor_basis, CO);
     diis_scf_solver.solve();
     auto rhf = diis_scf_solver.get_solution();
 
@@ -59,7 +59,7 @@ BOOST_AUTO_TEST_CASE ( dipole_CO_STO_3G ) {
     auto D_AO = GQCP::calculateRHFAO1RDM(rhf.get_C(), N);
 
     // Calculate the dipole integrals, and transform them to the MO basis
-    auto dipole_op = sp_basis.quantize(GQCP::Operator::ElectronicDipole());
+    auto dipole_op = spinor_basis.quantize(GQCP::Operator::ElectronicDipole());
     dipole_op.transform(rhf.get_C());
 
     GQCP::Vector<double, 3> total_dipole_moment = GQCP::Operator::NuclearDipole(CO).value() + GQCP::calculateElectronicDipoleMoment(dipole_op, D);
@@ -77,14 +77,14 @@ BOOST_AUTO_TEST_CASE ( dipole_N2_STO_3G ) {
     std::vector<GQCP::Nucleus> nuclei {N_1, N_2};
     GQCP::Molecule N2 (nuclei);
 
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> sp_basis (N2, "STO-3G");
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, N2);  // in an AO basis
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (N2, "STO-3G");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, N2);  // in an AO basis
 
-    size_t K = sp_basis.numberOfSpatialOrbitals();
+    size_t K = spinor_basis.numberOfSpatialOrbitals();
     size_t N = N2.numberOfElectrons();
 
     // Solve the SCF equations
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, sp_basis, N2);  // The DIIS SCF solver seems to find a wrong minimum, so use a plain solver instead
+    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, N2);  // The DIIS SCF solver seems to find a wrong minimum, so use a plain solver instead
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 
@@ -97,7 +97,7 @@ BOOST_AUTO_TEST_CASE ( dipole_N2_STO_3G ) {
     auto D_AO = GQCP::calculateRHFAO1RDM(rhf.get_C(), N);
 
     // Calculate the dipole integrals, and transform them to the MO basis
-    auto dipole_op = sp_basis.quantize(GQCP::Operator::ElectronicDipole());
+    auto dipole_op = spinor_basis.quantize(GQCP::Operator::ElectronicDipole());
     dipole_op.transform(rhf.get_C());
 
     GQCP::Vector<double, 3> total_dipole_moment = GQCP::Operator::NuclearDipole(N2).value() + GQCP::calculateElectronicDipoleMoment(dipole_op, D);
