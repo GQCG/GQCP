@@ -29,16 +29,16 @@ namespace GQCP {
 /**
  *  A base class to implement one-electron integral engines. Integral engines are used calculate integrals of operators over shells, see also the calculate() call
  * 
- *  @tparam _ShellType              the type of shell the integral engine is able to handle
+ *  @tparam _Shell                  the type of shell the integral engine is able to handle
  *  @tparam _N                      the number of components the operator has
  *  @tparam _IntegralScalar         the scalar representation of an integral
  * 
- *  _ShellType is a template parameter because that enables compile-time checking of correct arguments
+ *  _Shell is a template parameter because that enables compile-time checking of correct arguments
  */
-template <typename _ShellType, size_t _N, typename _IntegralScalar>
+template <typename _Shell, size_t _N, typename _IntegralScalar>
 class BaseOneElectronIntegralEngine {
 public:
-    using ShellType = _ShellType;  // the type of shell the integral engine is able to handle
+    using Shell = _Shell;  // the type of shell the integral engine is able to handle
     using IntegralScalar = _IntegralScalar;  // the scalar representation of an integral
     static constexpr auto N = _N;  // the number of components the operator has
 
@@ -59,7 +59,7 @@ public:
      * 
      *  @return a buffer containing the calculated integrals
      */
-    virtual std::shared_ptr<BaseOneElectronIntegralBuffer<IntegralScalar, N>> calculate(const ShellType& shell1, const ShellType& shell2) = 0;
+    virtual std::shared_ptr<BaseOneElectronIntegralBuffer<IntegralScalar, N>> calculate(const Shell& shell1, const Shell& shell2) = 0;
 };
 
 

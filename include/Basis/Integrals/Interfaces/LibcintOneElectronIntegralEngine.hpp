@@ -32,18 +32,18 @@ namespace GQCP {
 /**
  *  An one-electron integral engine that uses libcint as its backend
  * 
- *  @tparam _ShellType                  the type of shell the integral engine is able to handle
+ *  @tparam _Shell                      the type of shell the integral engine is able to handle
  *  @tparam _N                          the number of components the operator has
  *  @tparam _IntegralScalar             the scalar representation of an integral
  * 
- *  @note _ShellType is a template parameter because that enables compile-time checking of correct arguments.
+ *  @note _Shell is a template parameter because that enables compile-time checking of correct arguments.
  *  Libcint1eFunction and Libcint2eFunction need the full libcint data (that we store in a RawContainer), because the electron electrical dipole function needs to access the 'common origin' and the nuclear attraction function needs to know all the nuclei that should be taken into account. We therefore keep the full RawContainer as a member.
  *  In the overridden calculate(const GTOShell&, const GTOShell&) method, the shell indices that correspond to the RawContainer should also be known, which is why we also keep the ShellSet as a member, for easy retrieval of the shell indices.
  */
-template <typename _ShellType, size_t _N, typename _IntegralScalar>
-class LibcintOneElectronIntegralEngine : public BaseOneElectronIntegralEngine<_ShellType, _N, _IntegralScalar> {
+template <typename _Shell, size_t _N, typename _IntegralScalar>
+class LibcintOneElectronIntegralEngine : public BaseOneElectronIntegralEngine<_Shell, _N, _IntegralScalar> {
 public:
-    using ShellType = _ShellType;  // the type of shell the integral engine is able to handle
+    using Shell = _Shell;  // the type of shell the integral engine is able to handle
     using IntegralScalar = _IntegralScalar;  // the scalar representation of an integral
     static constexpr auto N = _N;  // the number of components the operator has
 
@@ -53,7 +53,7 @@ private:
 
     // Data that has to be kept as a member (see the class note)
     libcint::RawContainer libcint_raw_container;  // the raw libcint data
-    ShellSet<ShellType> shell_set;  // the corresponding shell set
+    ShellSet<Shell> shell_set;  // the corresponding shell set
 
     // Parameters to pass to the buffer
     double scaling_factor = 1.0;  // a factor that is multiplied to all of the calculated integrals
@@ -68,7 +68,7 @@ public:
     /**
      *  @param op               the overlap operator
      *  @param shell_set        the ShellSet whose information should be converted to a RawContainer, which will serve as some kind of 'global' data for the libcint engine to use in all its calculate() calls     */
-    LibcintOneElectronIntegralEngine(const OverlapOperator& op, const ShellSet<ShellType>& shell_set) :
+    LibcintOneElectronIntegralEngine(const OverlapOperator& op, const ShellSet<Shell>& shell_set) :
         libcint_function (LibcintInterfacer().oneElectronFunction(op)),
         libcint_raw_container (LibcintInterfacer().convert(shell_set)),
         shell_set (shell_set)
@@ -79,7 +79,7 @@ public:
      *  @param op               the kinetic operator
      *  @param shell_set        the ShellSet whose information should be converted to a RawContainer, which will serve as some kind of 'global' data for the libcint engine to use in all its calculate() calls
      */
-    LibcintOneElectronIntegralEngine(const KineticOperator& op, const ShellSet<ShellType>& shell_set) :
+    LibcintOneElectronIntegralEngine(const KineticOperator& op, const ShellSet<Shell>& shell_set) :
         libcint_function (LibcintInterfacer().oneElectronFunction(op)),
         libcint_raw_container (LibcintInterfacer().convert(shell_set)),
         shell_set (shell_set)
@@ -90,7 +90,7 @@ public:
      *  @param op               the nuclear attraction operator
      *  @param shell_set        the ShellSet whose information should be converted to a RawContainer, which will serve as some kind of 'global' data for the libcint engine to use in all its calculate() calls
      */
-    LibcintOneElectronIntegralEngine(const NuclearAttractionOperator& op, const ShellSet<ShellType>& shell_set) :
+    LibcintOneElectronIntegralEngine(const NuclearAttractionOperator& op, const ShellSet<Shell>& shell_set) :
         libcint_function (LibcintInterfacer().oneElectronFunction(op)),
         libcint_raw_container (LibcintInterfacer().convert(shell_set)),
         shell_set (shell_set)
@@ -101,7 +101,7 @@ public:
      *  @param op               the electronic electric dipole operator
      *  @param shell_set        the ShellSet whose information should be converted to a RawContainer, which will serve as some kind of 'global' data for the libcint engine to use in all its calculate() calls
      */
-    LibcintOneElectronIntegralEngine(const ElectronicDipoleOperator& op, const ShellSet<ShellType>& shell_set) :
+    LibcintOneElectronIntegralEngine(const ElectronicDipoleOperator& op, const ShellSet<Shell>& shell_set) :
         libcint_function (LibcintInterfacer().oneElectronFunction(op)),
         libcint_raw_container (LibcintInterfacer().convert(shell_set)),
         shell_set (shell_set),

@@ -30,15 +30,15 @@ namespace GQCP {
 /**
  *  Transform both the single-particle basis and the Hamiltonian to another basis using the given transformation matrix
  * 
- *  @tparam ShellType                   the type of shell that the scalar basis contains
+ *  @tparam Shell                       the type of shell that the scalar basis contains
  *  @tparam TransformationScalar        the scalar type of the transformation matrix
  * 
  *  @param sp_basis                     the single-particle basis
  *  @param sq_hamiltonian               the Hamiltonian
  *  @param T                            the transformation matrix
  */
-template <typename TransformationScalar, typename ShellType>
-void basisTransform(RSpinorBasis<TransformationScalar, ShellType>& sp_basis, SQHamiltonian<TransformationScalar>& sq_hamiltonian, const TransformationMatrix<TransformationScalar>& T) {
+template <typename TransformationScalar, typename Shell>
+void basisTransform(RSpinorBasis<TransformationScalar, Shell>& sp_basis, SQHamiltonian<TransformationScalar>& sq_hamiltonian, const TransformationMatrix<TransformationScalar>& T) {
 
     sp_basis.transform(T);
     sq_hamiltonian.transform(T);
@@ -48,15 +48,15 @@ void basisTransform(RSpinorBasis<TransformationScalar, ShellType>& sp_basis, SQH
 /**
  *  Transform both the single-particle basis and the one-electron operator to another basis using the given transformation matrix
  * 
- *  @tparam ShellType                   the type of shell that the scalar basis contains
+ *  @tparam Shell                       the type of shell that the scalar basis contains
  *  @tparam TransformationScalar        the scalar type of the transformation matrix
  * 
  *  @param sp_basis                     the single-particle basis
  *  @param one_op                       the one-electron operator
  *  @param T                            the transformation matrix
  */
-template <typename TransformationScalar, typename ShellType, size_t Components>
-void basisTransform(RSpinorBasis<TransformationScalar, ShellType>& sp_basis, SQOneElectronOperator<TransformationScalar, Components>& one_op, const TransformationMatrix<TransformationScalar>& T) {
+template <typename TransformationScalar, typename Shell, size_t Components>
+void basisTransform(RSpinorBasis<TransformationScalar, Shell>& sp_basis, SQOneElectronOperator<TransformationScalar, Components>& one_op, const TransformationMatrix<TransformationScalar>& T) {
 
     sp_basis.transform(T);
     one_op.transform(T);
@@ -66,15 +66,15 @@ void basisTransform(RSpinorBasis<TransformationScalar, ShellType>& sp_basis, SQO
 /**
  *  Rotate both the single-particle basis and the Hamiltonian to another basis using the given unitary transformation matrix
  * 
- *  @tparam ShellType                   the type of shell that the scalar basis contains
+ *  @tparam Shell                       the type of shell that the scalar basis contains
  *  @tparam TransformationScalar        the scalar type of the transformation matrix
  * 
  *  @param sp_basis                     the single-particle basis
  *  @param sq_hamiltonian               the Hamiltonian
  *  @param U                            the unitary transformation matrix
  */
-template <typename TransformationScalar, typename ShellType>
-void basisRotate(RSpinorBasis<TransformationScalar, ShellType>& sp_basis, SQHamiltonian<TransformationScalar>& sq_hamiltonian, const TransformationMatrix<TransformationScalar>& U) {
+template <typename TransformationScalar, typename Shell>
+void basisRotate(RSpinorBasis<TransformationScalar, Shell>& sp_basis, SQHamiltonian<TransformationScalar>& sq_hamiltonian, const TransformationMatrix<TransformationScalar>& U) {
 
     sp_basis.rotate(U);
     sq_hamiltonian.rotate(U);
@@ -84,14 +84,14 @@ void basisRotate(RSpinorBasis<TransformationScalar, ShellType>& sp_basis, SQHami
 /**
  *  Rotate both the single-particle basis and the Hamiltonian to another basis using the given Jacobi-rotation parameters
  * 
- *  @tparam ShellType                       the type of shell that the scalar basis contains
+ *  @tparam Shell                           the type of shell that the scalar basis contains
  * 
  *  @param sp_basis                         the single-particle basis
  *  @param sq_hamiltonian                   the Hamiltonian
  *  @param jacobi_rotation_parameters       the Jacobi-rotation parameters
  */
-template <typename ShellType>
-void basisRotate(RSpinorBasis<double, ShellType>& sp_basis, SQHamiltonian<double>& sq_hamiltonian, const JacobiRotationParameters& jacobi_rotation_parameters) {
+template <typename Shell>
+void basisRotate(RSpinorBasis<double, Shell>& sp_basis, SQHamiltonian<double>& sq_hamiltonian, const JacobiRotationParameters& jacobi_rotation_parameters) {
 
     sp_basis.rotate(jacobi_rotation_parameters);
     sq_hamiltonian.rotate(jacobi_rotation_parameters);

@@ -32,17 +32,17 @@ namespace GQCP {
 /**
  *  A class that represents a set of shells
  * 
- *  @tparam _ShellType          the type of shell that is contained in this set
+ *  @tparam _Shell          the type of shell that is contained in this set
  */
-template <typename _ShellType>
+template <typename _Shell>
 class ShellSet {
 public:
-    using ShellType = _ShellType;  // the type of shell that is contained in this set
-    using BasisFunction = typename ShellType::BasisFunction;  // the type of basis function that the shell can produce
+    using Shell = _Shell;  // the type of shell that is contained in this set
+    using BasisFunction = typename Shell::BasisFunction;  // the type of basis function that the shell can produce
 
 
 private:
-    std::vector<ShellType> shells;  // all the shells represented by a vector
+    std::vector<Shell> shells;  // all the shells represented by a vector
 
 
 public:
@@ -54,7 +54,7 @@ public:
     /**
      * @param shells            all the shells represented by a vector
      */
-    ShellSet(const std::vector<ShellType>& shells) : 
+    ShellSet(const std::vector<Shell>& shells) : 
         shells (shells)
     {}
 
@@ -75,7 +75,7 @@ public:
     /**
      *  @return a vector of the underlying shells that this shellset describes
      */
-    const std::vector<ShellType>& asVector() const { return this->shells; }
+    const std::vector<Shell>& asVector() const { return this->shells; }
 
     /**
      *  @return the maximum angular momentum of the shells

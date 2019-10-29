@@ -36,19 +36,19 @@ namespace GQCP {
 /**
  *  A class that represents a spinor basis in which the expansion of the alpha and beta components in terms of the underlying scalar orbitals are restricted to be equal
  * 
- *  @tparam _ShellType                  the type of shell that this scalar basis contains
+ *  @tparam _Shell                      the type of shell that this scalar basis contains
  *  @tparam _TransformationScalar       the scalar type of the transformation matrix that connects the scalar basis with the current single-particle 'orbitals'
  */
-template <typename _TransformationScalar, typename _ShellType>
+template <typename _TransformationScalar, typename _Shell>
 class RSpinorBasis {
 public:
-    using ShellType = _ShellType;
-    using BasisFunction = typename ShellType::BasisFunction;
+    using Shell = _Shell;
+    using BasisFunction = typename Shell::BasisFunction;
     using TransformationScalar = _TransformationScalar;
 
 
 private:
-    ScalarBasis<ShellType> scalar_basis;  // the underlying scalar basis
+    ScalarBasis<Shell> scalar_basis;  // the underlying scalar basis
     TransformationMatrix<TransformationScalar> T_total;  // the transformation matrix between the scalar basis and the current orbitals
 
 
@@ -62,7 +62,7 @@ public:
      *  @param scalar_basis             the underlying scalar basis
      *  @param T_total                  the transformation matrix between the scalar basis and the current orbitals
      */
-    RSpinorBasis(const ScalarBasis<ShellType>& scalar_basis, const TransformationMatrix<TransformationScalar>& T_total) :
+    RSpinorBasis(const ScalarBasis<Shell>& scalar_basis, const TransformationMatrix<TransformationScalar>& T_total) :
         scalar_basis (scalar_basis),
         T_total (T_total)
     {}
@@ -73,7 +73,7 @@ public:
      * 
      *  @param scalar_basis             the underlying scalar basis
      */
-    RSpinorBasis(const ScalarBasis<ShellType>& scalar_basis) : 
+    RSpinorBasis(const ScalarBasis<Shell>& scalar_basis) : 
         RSpinorBasis(scalar_basis, TransformationMatrix<double>::Identity(scalar_basis.numberOfBasisFunctions(), scalar_basis.numberOfBasisFunctions()))
     {}
 
@@ -88,7 +88,7 @@ public:
      *  @note the resulting single-particle basis is (most likeley) non-orthogonal
      */
     RSpinorBasis(const NuclearFramework& nuclear_framework, const std::string& basisset_name) :
-        RSpinorBasis(ScalarBasis<ShellType>(nuclear_framework, basisset_name))
+        RSpinorBasis(ScalarBasis<Shell>(nuclear_framework, basisset_name))
     {}
 
 
@@ -102,7 +102,7 @@ public:
      *  @note the resulting single-particle basis is (most likeley) non-orthogonal
      */
     RSpinorBasis(const Molecule& molecule, const std::string& basisset_name) :
-        RSpinorBasis(ScalarBasis<ShellType>(molecule, basisset_name))
+        RSpinorBasis(ScalarBasis<Shell>(molecule, basisset_name))
     {}
 
 
@@ -243,7 +243,7 @@ public:
     /**
      *  @return the underlying scalar basis
      */
-    const ScalarBasis<ShellType>& scalarBasis() const { return this->scalar_basis; }
+    const ScalarBasis<Shell>& scalarBasis() const { return this->scalar_basis; }
 
     /**
      *  @param fq_op        the first-quantized operator
