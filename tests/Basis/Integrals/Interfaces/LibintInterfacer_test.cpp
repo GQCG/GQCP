@@ -19,8 +19,8 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "Basis/GTOShell.hpp"
 #include "Basis/Integrals/Interfaces/LibintInterfacer.hpp"
+#include "Basis/ScalarBasis/GTOShell.hpp"
 #include "Utilities/linalg.hpp"
 
 

@@ -18,13 +18,13 @@
 #pragma once
 
 
-#include "Basis/GTOBasisSet.hpp"
-#include "Basis/GTOShell.hpp"
-#include "Basis/ShellSet.hpp"
 #include "Basis/Integrals/Interfaces/LibintInterfacer.hpp"
 #include "Basis/Integrals/Interfaces/LibcintInterfacer.hpp"
 #include "Basis/Integrals/IntegralCalculator.hpp"
 #include "Basis/Integrals/IntegralEngine.hpp"
+#include "Basis/ScalarBasis/GTOBasisSet.hpp"
+#include "Basis/ScalarBasis/GTOShell.hpp"
+#include "Basis/ScalarBasis/ShellSet.hpp"
 #include "Mathematical/LinearCombination.hpp"
 #include "Mathematical/Representation/QCMatrix.hpp"
 #include "Mathematical/Representation/QCRankFourTensor.hpp"

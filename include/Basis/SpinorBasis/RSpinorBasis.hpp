@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Basis/ScalarBasis.hpp"
+#include "Basis/ScalarBasis/ScalarBasis.hpp"
 #include "Basis/TransformationMatrix.hpp"
 #include "Mathematical/Representation/QCMatrix.hpp"
 #include "Molecule/Molecule.hpp"
@@ -34,7 +34,7 @@ namespace GQCP {
 
 
 /**
- *  A class that represents a spinor basis in which the alpha and beta components are restricted to be equal
+ *  A class that represents a spinor basis in which the expansion of the alpha and beta components in terms of the underlying scalar orbitals are restricted to be equal
  * 
  *  @tparam _ShellType                  the type of shell that this scalar basis contains
  *  @tparam _TransformationScalar       the scalar type of the transformation matrix that connects the scalar basis with the current single-particle 'orbitals'

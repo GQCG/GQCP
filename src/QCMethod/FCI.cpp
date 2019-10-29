@@ -17,7 +17,7 @@
 //
 #include "QCMethod/FCI.hpp"
 
-#include "Basis/RSpinorBasis.hpp"
+#include "Basis/SpinorBasis/RSpinorBasis.hpp"
 #include "Operator/FirstQuantized/NuclearRepulsionOperator.hpp"
 
 

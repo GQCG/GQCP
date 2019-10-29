@@ -17,13 +17,13 @@
 // 
 #pragma once
 
-#include "Basis/CartesianExponents.hpp"
-#include "Basis/CartesianGTO.hpp"
-#include "Basis/GTOBasisSet.hpp"
-#include "Basis/GTOShell.hpp"
-#include "Basis/RSpinorBasis.hpp"
-#include "Basis/ScalarBasis.hpp"
-#include "Basis/ShellSet.hpp"
+#include "Basis/ScalarBasis/CartesianExponents.hpp"
+#include "Basis/ScalarBasis/CartesianGTO.hpp"
+#include "Basis/ScalarBasis/GTOBasisSet.hpp"
+#include "Basis/ScalarBasis/GTOShell.hpp"
+#include "Basis/ScalarBasis/ShellSet.hpp"
+#include "Basis/ScalarBasis/ScalarBasis.hpp"
+#include "Basis/SpinorBasis/RSpinorBasis.hpp"
 #include "Basis/TransformationMatrix.hpp"
 #include "Basis/transform.hpp"
 

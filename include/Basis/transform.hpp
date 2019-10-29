@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Basis/RSpinorBasis.hpp"
+#include "Basis/SpinorBasis/RSpinorBasis.hpp"
 #include "Basis/TransformationMatrix.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 

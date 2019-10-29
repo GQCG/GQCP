@@ -19,9 +19,9 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "Basis/GTOShell.hpp"
-#include "Basis/ShellSet.hpp"
-#include "Basis/GTOBasisSet.hpp"
+#include "Basis/ScalarBasis/GTOShell.hpp"
+#include "Basis/ScalarBasis/GTOBasisSet.hpp"
+#include "Basis/ScalarBasis/ShellSet.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( constructor_basisset ) {

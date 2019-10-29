@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Basis/GTOShell.hpp"
+#include "Basis/ScalarBasis/GTOShell.hpp"
 #include "Molecule/Molecule.hpp"
 
 #include <algorithm>

@@ -18,7 +18,7 @@
 #include "QCMethod/DOCINewtonOrbitalOptimizer.hpp"
 
 #include "Basis/transform.hpp"
-#include "Basis/RSpinorBasis.hpp"
+#include "Basis/SpinorBasis/RSpinorBasis.hpp"
 #include "CISolver/CISolver.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Mathematical/Optimization/IterativeIdentitiesHessianModifier.hpp"

@@ -18,7 +18,7 @@
 #include "QCMethod/MullikenConstrainedFCI.hpp"
 
 #include "Basis/transform.hpp"
-#include "Basis/RSpinorBasis.hpp"
+#include "Basis/SpinorBasis/RSpinorBasis.hpp"
 #include "Properties/expectation_values.hpp"
 #include "RHF/DIISRHFSCFSolver.hpp"
 

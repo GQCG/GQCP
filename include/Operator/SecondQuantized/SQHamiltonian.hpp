@@ -18,8 +18,8 @@
 #pragma once
 
 
-#include "Basis/RSpinorBasis.hpp"
-#include "Basis/ScalarBasis.hpp"
+#include "Basis/ScalarBasis/ScalarBasis.hpp"
+#include "Basis/SpinorBasis/RSpinorBasis.hpp"
 #include "Basis/TransformationMatrix.hpp"
 #include "HoppingMatrix.hpp"
 #include "Molecule/Molecule.hpp"

@@ -20,8 +20,8 @@
 
 #include "Basis/Integrals/BaseTwoElectronIntegralEngine.hpp"
 
-#include "Basis/GTOShell.hpp"
 #include "Basis/Integrals/Interfaces/LibintTwoElectronIntegralBuffer.hpp"
+#include "Basis/ScalarBasis/GTOShell.hpp"
 
 
 namespace GQCP {

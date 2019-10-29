@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Basis/CartesianGTO.hpp"
+#include "Basis/ScalarBasis/CartesianGTO.hpp"
 #include "Molecule/Nucleus.hpp"
 
 

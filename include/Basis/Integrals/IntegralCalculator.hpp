@@ -18,9 +18,10 @@
 #pragma once
 
 
-#include "Basis/ShellSet.hpp"
 #include "Basis/Integrals/BaseOneElectronIntegralEngine.hpp"
 #include "Basis/Integrals/BaseTwoElectronIntegralEngine.hpp"
+#include "Basis/ScalarBasis/ShellSet.hpp"
+
 
 #include <array>
 #include <memory>
