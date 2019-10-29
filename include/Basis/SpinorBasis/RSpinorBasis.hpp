@@ -75,7 +75,7 @@ public:
      * 
      *  @note the resulting restricted spinor basis is (most likely) non-orthogonal
      */
-    RSpinorBasis(const ScalarBasis<Shell>& scalar_basis) : 
+    RSpinorBasis(const ScalarBasis<Shell>& scalar_basis) :
         RSpinorBasis(scalar_basis, TransformationMatrix<double>::Identity(scalar_basis.numberOfBasisFunctions(), scalar_basis.numberOfBasisFunctions()))
     {}
 

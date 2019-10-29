@@ -233,13 +233,20 @@ public:
      *  GETTERS
      */
 
-    size_t get_dim() const { return this->cols(); }  // equals this->rows()
-
+    size_t get_dim() const { return this->dimension(); }
 
 
     /*
      *  PUBLIC METHODS
      */
+
+    /**
+     *  @return the dimension of this square matrix, i.e. the number of rows or columns
+     */
+    size_t dimension() const { 
+
+        return this->cols(); // equals this->rows()
+    }
 
     /**
      *  @return a pair-wise strict reduced form of this square matrix. The elements of the matrix are put into the vector such that

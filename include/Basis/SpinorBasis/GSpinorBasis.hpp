@@ -18,11 +18,197 @@
 #pragma once
 
 
+#include "Basis/ScalarBasis/ScalarBasis.hpp"
+#include "Basis/TransformationMatrix.hpp"
+
+
+namespace GQCP {
+
+
 /**
- *  A class that represents a spinor basis without any restrictions on the expansion of the alpha and beta components in terms of the underlying (possibly different) scalar bases
+ *  A class that represents a spinor basis without any restrictions (G for generalized) on the expansion of the alpha and beta components in terms of the underlying (possibly different) scalar bases
  * 
- *  @tparam _Shell                      the type of shell the underlying scalar bases contain
- *  @tparam _TransformationScalar       the scalar type of the expansion coefficients
+ *  @tparam _ExpansionScalar        the scalar type of the expansion coefficients
+ *  @tparam _Shell                  the type of shell the underlying scalar bases contain
  */
-template <typename _TransformationScalar, typename _Shell>
-class RSpinorBasis {
+template <typename _ExpansionScalar, typename _Shell>
+class GSpinorBasis {
+public:
+    using ExpansionScalar = _ExpansionScalar;
+    using Shell = _Shell;
+
+
+private:
+    ScalarBasis<Shell> alpha_scalar_basis;  // the scalar basis in which the alpha components are expanded
+    ScalarBasis<Shell> beta_scalar_basis;  // the scalar basis in which the beta components are expanded
+
+    TransformationMatrix<ExpansionScalar> C;  // the coefficient matrix, i.e. the matrix of the expansion coefficients of the spinors in terms of the underlying scalar basis
+
+
+public:
+
+    /*
+     *  CONSTRUCTORS
+     */
+
+    /**
+     *  @param alpha_scalar_basis           the scalar basis in which the alpha components are expanded
+     *  @param beta_scalar_basis            the scalar basis in which the beta components are expanded
+     *  @param C                            the coefficient matrix, i.e. the matrix of the expansion coefficients of the spinors in terms of the underlying scalar basis
+     */
+    GSpinorBasis(const ScalarBasis<Shell>& alpha_scalar_basis, const ScalarBasis<Shell>& beta_scalar_basis, const TransformationMatrix<ExpansionScalar>& C) :
+        alpha_scalar_basis (alpha_scalar_basis),
+        beta_scalar_basis (beta_scalar_basis),
+        C (C)
+    {
+        // Check if the dimensions of the given objects are compatible
+        const auto K_alpha = alpha_scalar_basis.numberOfBasisFunctions();
+        const auto K_beta = beta_scalar_basis.numberOfBasisFunctions();
+
+        if (C.dimension() != K_alpha + K_beta) {
+            throw std::invalid_argument("GSpinorBasis(const ScalarBasis<Shell>&, const ScalarBasis<Shell>&, const TransformationMatrix<ExpansionScalar>&): The given dimensions of the scalar bases and coefficient matrix are incompatible.");
+        }
+    }
+
+
+    /**
+     *  Construct a generalized spinor basis in which both underlying scalar bases are equal
+     * 
+     *  @param scalar_basis         the scalar basis in which both the alpha and beta components are expanded
+     *  @param C                    the coefficient matrix, i.e. the matrix of the expansion coefficients of the spinors in terms of the underlying scalar basis
+     */
+    GSpinorBasis(const ScalarBasis<Shell>& scalar_basis, const TransformationMatrix<ExpansionScalar>& C) :
+        GSpinorBasis(scalar_basis, scalar_basis, C)
+    {}
+
+
+    /**
+     *  Construct a generalized spinor basis with two different underlying scalar basis, and a coefficient matrix being the identity
+     */
+    GSpinorBasis(const ScalarBasis<Shell>& alpha_scalar_basis, const ScalarBasis<Shell>& beta_scalar_basis) : 
+        GSpinorBasis(alpha_scalar_basis, beta_scalar_basis, TransformationMatrix<ExpansionScalar>::Identity(alpha_scalar_basis.numberOfBasisFunctions() + beta_scalar_basis.numberOfBasisFunctions(), alpha_scalar_basis.numberOfBasisFunctions() + beta_scalar_basis.numberOfBasisFunctions()))
+    {}
+
+
+    /**
+     *  Construct a generalized spinor basis in which both underlying scalar bases are equal, and a coefficient matrix being the identity
+     * 
+     *  @param scalar_basis         the scalar basis in which both the alpha and beta components are expanded
+     */
+    GSpinorBasis(const ScalarBasis<Shell>& scalar_basis) :
+        GSpinorBasis(scalar_basis, scalar_basis)
+    {}
+
+
+    /**
+     *  Construct a generalized spinor basis with an underlying scalar basis (equal for both the alpha and beta components) that is made by placing shells corresponding to the basisset specification on every nucleus of the nuclear framework
+     *
+     *  @param nuclear_framework        the nuclear framework containing the nuclei on which the shells should be centered
+     *  @param basisset_name            the name of the basisset, e.g. "STO-3G"
+     *
+     *  @note the normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells
+     *  @note the resulting generalized spinor basis is (most likely) non-orthogonal
+     */
+    GSpinorBasis(const NuclearFramework& nuclear_framework, const std::string& basisset_name) :
+        GSpinorBasis(ScalarBasis<Shell>(nuclear_framework, basisset_name))
+    {}
+
+
+    /**
+     *  Construct a generalized spinor basis with an underlying scalar basis (equal for both the alpha and beta components) that is made by placing shells corresponding to the basisset specification on every nucleus of the molecule
+     *
+     *  @param molecule                 the molecule containing the nuclei on which the shells should be centered
+     *  @param basisset_name            the name of the basisset, e.g. "STO-3G"
+     *
+     *  @note the normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells
+     *  @note the resulting generalized spinor basis is (most likely) non-orthogonal
+     */
+    GSpinorBasis(const Molecule& molecule, const std::string& basisset_name) :
+        GSpinorBasis(ScalarBasis<Shell>(molecule.nuclearFramework(), basisset_name))
+    {}
+
+
+    /**
+     *  Construct a generalized spinor basis with a underlying scalar bases made by placing shells corresponding to the basisset specifications on every nucleus of the nuclear framework
+     *
+     *  @param nuclear_framework            the nuclear framework containing the nuclei on which the shells should be centered
+     *  @param basisset_name_alpha          the name of the basisset, e.g. "STO-3G", used for the expansion of the alpha component
+     *  @param basisset_name_beta           the name of the basisset, e.g. "STO-3G", used for the expansion of the beta component
+     *
+     *  @note the normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells
+     *  @note the resulting generalized spinor basis is (most likely) non-orthogonal
+     */
+    GSpinorBasis(const NuclearFramework& nuclear_framework, const std::string& basisset_name_alpha, const std::string& basisset_name_beta) :
+        GSpinorBasis(ScalarBasis<Shell>(nuclear_framework, basisset_name_alpha), ScalarBasis<Shell>(nuclear_framework, basisset_name_beta))
+    {}
+
+
+    /**
+     *  Construct a generalized spinor basis with a underlying scalar bases made by placing shells corresponding to the basisset specifications on every nucleus of the molecule
+     *
+     *  @param molecule                 the molecule containing the nuclei on which the shells should be centered
+     *  @param basisset_name_alpha          the name of the basisset, e.g. "STO-3G", used for the expansion of the alpha component
+     *  @param basisset_name_beta           the name of the basisset, e.g. "STO-3G", used for the expansion of the beta component
+     *
+     *  @note the normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells
+     *  @note the resulting generalized spinor basis is (most likely) non-orthogonal
+     */
+    GSpinorBasis(const Molecule& molecule, const std::string& basisset_name_alpha, const std::string& basisset_name_beta) :
+        GSpinorBasis(ScalarBasis<Shell>(molecule.nuclearFramework(), basisset_name_alpha), ScalarBasis<Shell>(molecule.nuclearFramework(), basisset_name_beta))
+    {}
+
+
+
+    /*
+     *  PUBLIC METHODS
+     */
+
+    /**
+     *  @return the alpha coefficient matrix, i.e. the matrix of the expansion coefficients of the alpha-components of the spinors in terms of the underlying alpha-scalar basis
+     */
+    MatrixX<ExpansionScalar> alphaCoefficientMatrix() const { return this->C.topRows(this->numberOfAlphaCoefficients()); }
+
+    /**
+     *  @return the scalar basis in which the alpha components are expanded
+     */
+    const ScalarBasis<Shell>& alphaScalarBasis() const { return this->alpha_scalar_basis; }
+
+    /**
+     *  @return the scalar basis in which the beta components are expanded
+     */
+    const ScalarBasis<Shell>& betaScalarBasis() const { return this->beta_scalar_basis; }
+
+    /**
+     *  @return the alpha coefficient matrix, i.e. the matrix of the expansion coefficients of the alpha-components of the spinors in terms of the underlying alpha-scalar basis
+     */
+    MatrixX<ExpansionScalar> betaCoefficientMatrix() const { return this->C.bottomRows(this->numberOfBetaCoefficients()); }
+
+    /**
+     *  @return the coefficient matrix, i.e. the matrix of the expansion coefficients of the spinors in terms of the underlying scalar bases
+     */
+    const TransformationMatrix<ExpansionScalar>& coefficientMatrix() const { return this->C; }
+
+    /**
+     *  @return the number of coefficients that are used for the expansion of the alpha-component of a spinor
+     */
+    size_t numberOfAlphaCoefficients() const { return this->alphaScalarBasis().numberOfBasisFunctions(); }
+
+    /**
+     *  @return the number of coefficients that are used for the expansion of the beta-component of a spinor
+     */
+    size_t numberOfBetaCoefficients() const { return this->betaScalarBasis().numberOfBasisFunctions(); }
+
+    /**
+     *  @return the number of spinors that 'are' in this generalized spinor basis
+     */
+    size_t numberOfSpinors() const { 
+        
+        const auto K_alpha = this->numberOfAlphaCoefficients();
+        const auto K_beta = this->numberOfBetaCoefficients();
+
+        return K_alpha + K_beta;
+    }
+};
+
+
+}  // namespace GQCP
