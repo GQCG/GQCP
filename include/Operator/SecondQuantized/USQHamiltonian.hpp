@@ -18,20 +18,7 @@
 #pragma once
 
 
-#include "Basis/ScalarBasis.hpp"
-#include "Basis/SingleParticleBasis.hpp"
-#include "Basis/TransformationMatrix.hpp"
-#include "HoppingMatrix.hpp"
-#include "Molecule/Molecule.hpp"
-#include "Operator/FirstQuantized/NuclearRepulsionOperator.hpp"
-#include "Operator/FirstQuantized/OverlapOperator.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
-#include "Operator/SecondQuantized/SQTwoElectronOperator.hpp"
-#include "RDM/OneRDM.hpp"
-#include "RDM/TwoRDM.hpp"
-#include "typedefs.hpp"
-#include "Utilities/miscellaneous.hpp"
 
 
 namespace GQCP {
