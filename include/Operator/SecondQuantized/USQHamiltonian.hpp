@@ -25,6 +25,7 @@
 #include "Molecule/Molecule.hpp"
 #include "Operator/FirstQuantized/NuclearRepulsionOperator.hpp"
 #include "Operator/FirstQuantized/OverlapOperator.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/SQTwoElectronOperator.hpp"
 #include "RDM/OneRDM.hpp"
@@ -60,7 +61,7 @@ public:
     /**
      *  @param sq_hamiltonian_alpha      alpha hamiltonian
      *  @param sq_hamiltonian_beta       beta hamiltonian
-     *  @param two_op_mixed              alpha & beta mixed operator
+     *  @param two_op_mixed              alpha & beta mixed operators
      */
     USQHamiltonian(const SQHamiltonian<Scalar>& sq_hamiltonian_alpha, const SQHamiltonian<Scalar>& sq_hamiltonian_beta, const std::vector<ScalarSQTwoElectronOperator<Scalar>>& two_op_mixed) :
         sq_hamiltonian_alpha (sq_hamiltonian_alpha),
@@ -89,6 +90,16 @@ public:
         this->total_two_op_mixed = ScalarSQTwoElectronOperator<Scalar>({total_two_op_par});
 
     }
+
+    /**
+     *  @param sq_hamiltonian_alpha      alpha hamiltonian
+     *  @param sq_hamiltonian_beta       beta hamiltonian
+     *  @param two_op_mixed              alpha & beta mixed operator
+     */
+    USQHamiltonian(const SQHamiltonian<Scalar>& sq_hamiltonian_alpha, const SQHamiltonian<Scalar>& sq_hamiltonian_beta, const ScalarSQTwoElectronOperator<Scalar>& two_op_mixed) :
+        USQHamiltonian(sq_hamiltonian_alpha, sq_hamiltonian_beta, std::vector<ScalarSQTwoElectronOperator<Scalar>>({two_op_mixed}))
+    {}
+
 
     /*
      *  NAMED CONSTRUCTORS
@@ -173,19 +184,20 @@ public:
 
         this->sq_hamiltonian_alpha.transform(T);
         // Transform the mixed
-        auto new_two_electron_parameters = this->total_two_op_mixed.twoElectron().parameters();
+        auto new_two_electron_parameters = this->total_two_op_mixed.parameters();
         // transform the two electron parameters "g_aabb" to "g_a'a'bb"
         new_two_electron_parameters.template matrixContraction<Scalar>(T, 0);
         new_two_electron_parameters.template matrixContraction<Scalar>(T, 1);
         this->total_two_op_mixed = ScalarSQTwoElectronOperator<Scalar> ({new_two_electron_parameters});
-
-        for (auto& two_op : this->two_op_mixed) {
-            auto new_two_electron_parameters = this->two_op.twoElectron().parameters();
+        /*
+        for(size_t i = 0; i != this->two_op_mixed.size(); i++) {
+            auto new_two_electron_parameters =  this->two_op_mixed[i].parameters();
             // transform the two electron parameters "g_aabb" to "g_a'a'bb"
             new_two_electron_parameters.template matrixContraction<Scalar>(T, 0);
             new_two_electron_parameters.template matrixContraction<Scalar>(T, 1);
-            this->two_op = ScalarSQTwoElectronOperator<Scalar> ({new_two_electron_parameters});
+            this->two_op_mixed[i] = ScalarSQTwoElectronOperator<Scalar> ({new_two_electron_parameters});
         }
+        */
     }
 
 
@@ -198,19 +210,20 @@ public:
 
         this->sq_hamiltonian_beta.transform(T);
         // Transform the mixed
-        auto new_two_electron_parameters = this->total_two_op_mixed.twoElectron().parameters();
+        auto new_two_electron_parameters = this->total_two_op_mixed.parameters();
         // transform the two electron parameters "g_aabb" to "g_aab'b'"
         new_two_electron_parameters.template matrixContraction<Scalar>(T, 2);
         new_two_electron_parameters.template matrixContraction<Scalar>(T, 3);
         this->total_two_op_mixed = ScalarSQTwoElectronOperator<Scalar> ({new_two_electron_parameters});
-
-        for (auto& two_op : this->two_op_mixed) {
-            auto new_two_electron_parameters = this->two_op.twoElectron().parameters();
+        /*
+        for(size_t i = 0; i != this->two_op_mixed.size(); i++) {
+            auto new_two_electron_parameters =  this->two_op_mixed[i].parameters();
             // transform the two electron parameters "g_aabb" to "g_aab'b'"
             new_two_electron_parameters.template matrixContraction<Scalar>(T, 2);
             new_two_electron_parameters.template matrixContraction<Scalar>(T, 3);
-            this->two_op = ScalarSQTwoElectronOperator<Scalar> ({new_two_electron_parameters});
+            this->two_op_mixed[i] = ScalarSQTwoElectronOperator<Scalar> ({new_two_electron_parameters});
         }
+        */
     }
 
 
@@ -225,7 +238,7 @@ public:
      *  Note that this method is only available for real matrix representations
      */
     template<typename Z = Scalar>
-    enable_if_t<std::is_same<Z, double>::value, SQHamiltonian<double>> constrainAlpha(const ScalarSQOneElectronOperator<double>& one_op, double lambda) const {
+    enable_if_t<std::is_same<Z, double>::value, USQHamiltonian<double>> constrainAlpha(const ScalarSQOneElectronOperator<double>& one_op, double lambda) const {
 
         return USQHamiltonian(this->sq_hamiltonian_alpha.constrain(one_op, lambda), this->sq_hamiltonian_beta, this->two_op_mixed);
     }
@@ -241,7 +254,7 @@ public:
      *  Note that this method is only available for real matrix representations
      */
     template<typename Z = Scalar>
-    enable_if_t<std::is_same<Z, double>::value, SQHamiltonian<double>> constrainBeta(const ScalarSQOneElectronOperator<double>& one_op, double lambda) const {
+    enable_if_t<std::is_same<Z, double>::value, USQHamiltonian<double>> constrainBeta(const ScalarSQOneElectronOperator<double>& one_op, double lambda) const {
 
         return USQHamiltonian(this->sq_hamiltonian_alpha, this->sq_hamiltonian_beta.constrain(one_op, lambda), this->two_op_mixed);
     }

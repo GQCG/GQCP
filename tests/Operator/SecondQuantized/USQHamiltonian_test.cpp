@@ -52,10 +52,10 @@ BOOST_AUTO_TEST_CASE ( USQHamiltonian_constructor ) {
     GQCP::SQHamiltonian<double> sq_hamiltonian_b_faulty (GQCP::ScalarSQOneElectronOperator<double>({H_core_faulty}), GQCP::ScalarSQTwoElectronOperator<double>({g_faulty}));
 
     // Check if a correct constructor works with compatible elements
-    BOOST_CHECK_NO_THROW(GQCP::USQHamiltonian<double> (sq_hamiltonian_a, sq_hamiltonian_b, GQCP::ScalarSQTwoElectronOperator<double>({g}));
+    BOOST_CHECK_NO_THROW(GQCP::USQHamiltonian<double> (sq_hamiltonian_a, sq_hamiltonian_b, GQCP::ScalarSQTwoElectronOperator<double>({g})));
     // Check if a constructor throws an error with incompatible elements
-    BOOST_CHECK_THROW(GQCP::USQHamiltonian<double> (sq_hamiltonian_a, sq_hamiltonian_b_faulty, GQCP::ScalarSQTwoElectronOperator<double>({g}), std::invalid_argument);
-    BOOST_CHECK_THROW(GQCP::USQHamiltonian<double> (Gsq_hamiltonian_a, sq_hamiltonian_b, GQCP::ScalarSQTwoElectronOperator<double>({g_faulty}), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::USQHamiltonian<double> (sq_hamiltonian_a, sq_hamiltonian_b_faulty, GQCP::ScalarSQTwoElectronOperator<double>({g})), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::USQHamiltonian<double> (sq_hamiltonian_a, sq_hamiltonian_b, GQCP::ScalarSQTwoElectronOperator<double>({g_faulty})), std::invalid_argument);
 }
 
 
@@ -78,8 +78,8 @@ BOOST_AUTO_TEST_CASE ( USQHamiltonian_transform ) {
     usq_hamiltonian2.transformAlpha(U);
     usq_hamiltonian2.transformBeta(U);
 
-    BOOST_CHECK(GQCP::SQHamiltonian<double> (usq_hamiltonian1.twoElectronMixed().parameters().isApprox(usq_hamiltonian2.twoElectronMixed().parameters()));
-    BOOST_CHECK(GQCP::SQHamiltonian<double> (usq_hamiltonian1.alphaHamiltonian().core().parameters().isApprox(usq_hamiltonian2.alphaHamiltonian().core().parameters()));
-    BOOST_CHECK(GQCP::SQHamiltonian<double> (usq_hamiltonian1.betaHamiltonian().core().parameters().isApprox(usq_hamiltonian2.betaHamiltonian().core().parameters()));
+    BOOST_CHECK(usq_hamiltonian1.twoElectronMixed().parameters().isApprox(usq_hamiltonian2.twoElectronMixed().parameters()));
+    BOOST_CHECK(usq_hamiltonian1.alphaHamiltonian().core().parameters().isApprox(usq_hamiltonian2.alphaHamiltonian().core().parameters()));
+    BOOST_CHECK(usq_hamiltonian1.betaHamiltonian().core().parameters().isApprox(usq_hamiltonian2.betaHamiltonian().core().parameters()));
 }
 
