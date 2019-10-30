@@ -189,15 +189,14 @@ public:
         new_two_electron_parameters.template matrixContraction<Scalar>(T, 0);
         new_two_electron_parameters.template matrixContraction<Scalar>(T, 1);
         this->total_two_op_mixed = ScalarSQTwoElectronOperator<Scalar> ({new_two_electron_parameters});
-        /*
-        for(size_t i = 0; i != this->two_op_mixed.size(); i++) {
-            auto new_two_electron_parameters =  this->two_op_mixed[i].parameters();
+
+        for (auto& two_op : this->two_op_mixed) {
+            auto new_two_electron_parameters = two_op.parameters();
             // transform the two electron parameters "g_aabb" to "g_a'a'bb"
             new_two_electron_parameters.template matrixContraction<Scalar>(T, 0);
             new_two_electron_parameters.template matrixContraction<Scalar>(T, 1);
-            this->two_op_mixed[i] = ScalarSQTwoElectronOperator<Scalar> ({new_two_electron_parameters});
+            two_op = ScalarSQTwoElectronOperator<Scalar> ({new_two_electron_parameters});
         }
-        */
     }
 
 
@@ -215,15 +214,14 @@ public:
         new_two_electron_parameters.template matrixContraction<Scalar>(T, 2);
         new_two_electron_parameters.template matrixContraction<Scalar>(T, 3);
         this->total_two_op_mixed = ScalarSQTwoElectronOperator<Scalar> ({new_two_electron_parameters});
-        /*
-        for(size_t i = 0; i != this->two_op_mixed.size(); i++) {
-            auto new_two_electron_parameters =  this->two_op_mixed[i].parameters();
+
+        for (auto& two_op : this->two_op_mixed) {
+            auto new_two_electron_parameters = two_op.parameters();
             // transform the two electron parameters "g_aabb" to "g_aab'b'"
             new_two_electron_parameters.template matrixContraction<Scalar>(T, 2);
             new_two_electron_parameters.template matrixContraction<Scalar>(T, 3);
-            this->two_op_mixed[i] = ScalarSQTwoElectronOperator<Scalar> ({new_two_electron_parameters});
+            two_op = ScalarSQTwoElectronOperator<Scalar> ({new_two_electron_parameters});
         }
-        */
     }
 
 
