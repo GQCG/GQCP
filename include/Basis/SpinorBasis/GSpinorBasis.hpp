@@ -19,7 +19,7 @@
 
 
 #include "Basis/ScalarBasis/ScalarBasis.hpp"
-#include "Basis/TransformationMatrix.hpp"
+#include "Basis/SpinorBasis/SimpleSpinorBasis.hpp"
 
 
 namespace GQCP {
@@ -32,7 +32,7 @@ namespace GQCP {
  *  @tparam _Shell                  the type of shell the underlying scalar bases contain
  */
 template <typename _ExpansionScalar, typename _Shell>
-class GSpinorBasis {
+class GSpinorBasis : public SimpleSpinorBasis<_ExpansionScalar> {
 public:
     using ExpansionScalar = _ExpansionScalar;
     using Shell = _Shell;
@@ -41,8 +41,6 @@ public:
 private:
     ScalarBasis<Shell> alpha_scalar_basis;  // the scalar basis in which the alpha components are expanded
     ScalarBasis<Shell> beta_scalar_basis;  // the scalar basis in which the beta components are expanded
-
-    TransformationMatrix<ExpansionScalar> C;  // the coefficient matrix, i.e. the matrix of the expansion coefficients of the spinors in terms of the underlying scalar basis
 
 
 public:
@@ -57,9 +55,9 @@ public:
      *  @param C                            the coefficient matrix, i.e. the matrix of the expansion coefficients of the spinors in terms of the underlying scalar basis
      */
     GSpinorBasis(const ScalarBasis<Shell>& alpha_scalar_basis, const ScalarBasis<Shell>& beta_scalar_basis, const TransformationMatrix<ExpansionScalar>& C) :
+        SimpleSpinorBasis<ExpansionScalar>(C),
         alpha_scalar_basis (alpha_scalar_basis),
-        beta_scalar_basis (beta_scalar_basis),
-        C (C)
+        beta_scalar_basis (beta_scalar_basis)
     {
         // Check if the dimensions of the given objects are compatible
         const auto K_alpha = alpha_scalar_basis.numberOfBasisFunctions();
@@ -182,11 +180,6 @@ public:
      *  @return the alpha coefficient matrix, i.e. the matrix of the expansion coefficients of the alpha-components of the spinors in terms of the underlying alpha-scalar basis
      */
     MatrixX<ExpansionScalar> betaCoefficientMatrix() const { return this->C.bottomRows(this->numberOfBetaCoefficients()); }
-
-    /**
-     *  @return the coefficient matrix, i.e. the matrix of the expansion coefficients of the spinors in terms of the underlying scalar bases
-     */
-    const TransformationMatrix<ExpansionScalar>& coefficientMatrix() const { return this->C; }
 
     /**
      *  @return the number of coefficients that are used for the expansion of the alpha-component of a spinor

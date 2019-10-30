@@ -19,7 +19,7 @@
 
 
 #include "Basis/ScalarBasis/ScalarBasis.hpp"
-#include "Basis/TransformationMatrix.hpp"
+#include "Basis/SpinorBasis/SimpleSpinorBasis.hpp"
 #include "Mathematical/Representation/QCMatrix.hpp"
 #include "Molecule/Molecule.hpp"
 #include "Molecule/NuclearFramework.hpp"
@@ -40,7 +40,7 @@ namespace GQCP {
  *  @tparam _Shell                  the type of shell that the underlying scalar basis contains
  */
 template <typename _ExpansionScalar, typename _Shell>
-class RSpinorBasis {
+class RSpinorBasis : public SimpleSpinorBasis<_ExpansionScalar> {
 public:
     using Shell = _Shell;
     using BasisFunction = typename Shell::BasisFunction;
@@ -49,7 +49,6 @@ public:
 
 private:
     ScalarBasis<Shell> scalar_basis;  // the underlying scalar basis that is equal for both the alpha- and beta components
-    TransformationMatrix<ExpansionScalar> C;  // the matrix that holds the the expansion coefficients, i.e. that expresses the restricted spinors in terms of the underlying scalar basis
 
 
 public:
@@ -63,8 +62,8 @@ public:
      *  @param C                    the matrix that holds the the expansion coefficients, i.e. that expresses the restricted spinors in terms of the underlying scalar basis
      */
     RSpinorBasis(const ScalarBasis<Shell>& scalar_basis, const TransformationMatrix<ExpansionScalar>& C) :
-        scalar_basis (scalar_basis),
-        C (C)
+        SimpleSpinorBasis<ExpansionScalar>(C),
+        scalar_basis (scalar_basis)
     {}
 
 
@@ -123,54 +122,6 @@ public:
     size_t numberOfSpinors() const {
         return 2 * this->numberOfSpatialOrbitals();  // alpha and beta spinors are equal 
     }
-
-    /**
-     *  Transform the restricted spinor basis another one using the given transformation matrix
-     * 
-     *  @param T            the transformation matrix that transforms both the alpha- and beta components
-     */
-    void transform(const TransformationMatrix<ExpansionScalar>& T) {
-
-        this->C.transform(T);
-    }
-
-
-    /**
-     *  Rotate the restricted spinor basis to another one using the given unitary transformation matrix
-     * 
-     *  @param U            the unitary transformation matrix that transforms both the alpha- and beta components
-     */
-    void rotate(const TransformationMatrix<ExpansionScalar>& U) {
-
-        // Check if the given matrix is actually unitary
-        if (!U.isUnitary(1.0e-12)) {
-            throw std::invalid_argument("RSpinorBasis::rotate(const TransformationMatrix<ExpansionScalar>&): The given transformation matrix is not unitary.");
-        }
-
-        this->transform(U);
-    }
-
-
-    /**
-     *  Rotate the restricted spinor basis to another one using the unitary transformation matrix that corresponds to the given Jacobi rotation parameters
-     * 
-     *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
-     * 
-     *  @note this function is only available for real restricted spinor bases because Jacobi rotation parameters generate real rotations
-     */
-    template<typename Z = ExpansionScalar>
-    enable_if_t<std::is_same<Z, double>::value> rotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
-
-        const auto dim = this->numberOfSpatialOrbitals();
-        const auto J = TransformationMatrix<double>::FromJacobi(jacobi_rotation_parameters, dim);
-        this->rotate(J);
-    }
-
-
-    /**
-     *  @return the transformation matrix between the scalar basis and the current orbitals
-     */
-    const TransformationMatrix<ExpansionScalar>& coefficientMatrix() const { return this->C; }
 
     /**
      *  @param precision                the precision used to test orthonormality
