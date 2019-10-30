@@ -47,7 +47,8 @@ private:
     SQHamiltonian<Scalar> sq_hamiltonian_alpha;  // alpha hamiltonian
     SQHamiltonian<Scalar> sq_hamiltonian_beta;  // beta hamiltonian
 
-    ScalarSQTwoElectronOperator<Scalar> two_op_mixed;  // alpha & beta mixed operator represented as g_aabb
+    std::vector<ScalarSQTwoElectronOperator<Scalar>> two_op_mixed;  // alpha & beta mixed operators represented as g_aabb
+    ScalarSQTwoElectronOperator<Scalar> total_two_op_mixed;  // the total alpha & beta mixed operator represented as g_aabb
 
 public:
 
@@ -61,7 +62,7 @@ public:
      *  @param sq_hamiltonian_beta       beta hamiltonian
      *  @param two_op_mixed              alpha & beta mixed operator
      */
-    USQHamiltonian(const SQHamiltonian<Scalar>& sq_hamiltonian_alpha, const SQHamiltonian<Scalar>& sq_hamiltonian_beta, const ScalarSQTwoElectronOperator<Scalar>& two_op_mixed) :
+    USQHamiltonian(const SQHamiltonian<Scalar>& sq_hamiltonian_alpha, const SQHamiltonian<Scalar>& sq_hamiltonian_beta, const std::vector<ScalarSQTwoElectronOperator<Scalar>>& two_op_mixed) :
         sq_hamiltonian_alpha (sq_hamiltonian_alpha),
         sq_hamiltonian_beta (sq_hamiltonian_beta),
         two_op_mixed (two_op_mixed)
@@ -73,9 +74,19 @@ public:
             throw std::invalid_argument("USQHamiltonian::USQHamiltonian(const SQHamiltonian<Scalar>& sq_hamiltonian_alpha, const SQHamiltonian<Scalar>& sq_hamiltonian_beta, const ScalarSQTwoElectronOperator<Scalar>& two_op_mixed): The dimensions of the alpha and beta Hamiltonian are incompatible");
         }
         
-        if (two_op_mixed.dimension() != dim) {
-            throw std::invalid_argument("USQHamiltonian::USQHamiltonian(const SQHamiltonian<Scalar>& sq_hamiltonian_alpha, const SQHamiltonian<Scalar>& sq_hamiltonian_beta, const ScalarSQTwoElectronOperator<Scalar>& two_op_mixed): The dimensions of the mixed two electron operator are incompatible with the Hamiltonian");
+        for (const auto& two_op : this->two_op_mixed) {
+            if (two_op.dimension() != dim) {
+                throw std::invalid_argument("USQHamiltonian::USQHamiltonian(const SQHamiltonian<Scalar>& sq_hamiltonian_alpha, const SQHamiltonian<Scalar>& sq_hamiltonian_beta, const ScalarSQTwoElectronOperator<Scalar>& two_op_mixed): The dimensions of the mixed two electron operator are incompatible with the Hamiltonian");
+            }
         }
+        
+        // Calculate the total two-electron operator
+        QCRankFourTensor<Scalar> total_two_op_par (dim);
+        total_two_op_par.setZero();
+        for (const auto& two_op : this->two_op_mixed) {
+            total_two_op_par += two_op.parameters().Eigen();
+        }
+        this->total_two_op_mixed = ScalarSQTwoElectronOperator<Scalar>({total_two_op_par});
 
     }
 
@@ -127,9 +138,14 @@ public:
     const SQHamiltonian<Scalar>& betaHamiltonian() const { return this->sq_hamiltonian_beta; }
 
     /**
-     *  @return the contributions to the mixed alpha & beta two-electron part of the unrestricted Hamiltonian
+     *  @return the total contributions to the mixed alpha & beta two-electron part of the unrestricted Hamiltonian
      */
-    const ScalarSQTwoElectronOperator<Scalar>& twoElectronMixed() const { return this->two_op_mixed; }
+    const ScalarSQTwoElectronOperator<Scalar>& twoElectronMixed() const { return this->total_two_op_mixed; }
+
+    /**
+     *  @return the total contributions to the mixed alpha & beta two-electron part of the unrestricted Hamiltonian
+     */
+    const std::vector<ScalarSQTwoElectronOperator<Scalar>>& twoElectronContributionsMixed() const { return this->two_op_mixed; }
 
     /**
      *  In-place transform the matrix representations of Hamiltonian
@@ -140,8 +156,12 @@ public:
 
         this->sq_hamiltonian_alpha.transform(T);
         this->sq_hamiltonian_beta.transform(T);
+
         // Transform the mixed
-        this->two_op_mixed.transform(T);
+        this->total_two_op_mixed.transform(T);
+        for (auto& two_op : this->two_op_mixed) {
+            two_op.transform(T);
+        }
     }
 
     /**
@@ -153,12 +173,21 @@ public:
 
         this->sq_hamiltonian_alpha.transform(T);
         // Transform the mixed
-        auto new_two_electron_parameters = this->two_op_mixed.twoElectron().parameters();
+        auto new_two_electron_parameters = this->total_two_op_mixed.twoElectron().parameters();
         // transform the two electron parameters "g_aabb" to "g_a'a'bb"
         new_two_electron_parameters.template matrixContraction<Scalar>(T, 0);
         new_two_electron_parameters.template matrixContraction<Scalar>(T, 1);
-        this->two_op_mixed = ScalarSQTwoElectronOperator<Scalar> ({new_two_electron_parameters});
+        this->total_two_op_mixed = ScalarSQTwoElectronOperator<Scalar> ({new_two_electron_parameters});
+
+        for (auto& two_op : this->two_op_mixed) {
+            auto new_two_electron_parameters = this->two_op.twoElectron().parameters();
+            // transform the two electron parameters "g_aabb" to "g_a'a'bb"
+            new_two_electron_parameters.template matrixContraction<Scalar>(T, 0);
+            new_two_electron_parameters.template matrixContraction<Scalar>(T, 1);
+            this->two_op = ScalarSQTwoElectronOperator<Scalar> ({new_two_electron_parameters});
+        }
     }
+
 
     /**
      *  In-place transform the matrix representations of the beta components of the unrestricted Hamiltonian
@@ -169,11 +198,52 @@ public:
 
         this->sq_hamiltonian_beta.transform(T);
         // Transform the mixed
-        auto new_two_electron_parameters = this->two_op_mixed.twoElectron().parameters();
-         // transform the two electron parameters "g_aabb" to "g_aab'b'"
+        auto new_two_electron_parameters = this->total_two_op_mixed.twoElectron().parameters();
+        // transform the two electron parameters "g_aabb" to "g_aab'b'"
         new_two_electron_parameters.template matrixContraction<Scalar>(T, 2);
         new_two_electron_parameters.template matrixContraction<Scalar>(T, 3);
-        this->two_op_mixed = ScalarSQTwoElectronOperator<Scalar> ({new_two_electron_parameters});
+        this->total_two_op_mixed = ScalarSQTwoElectronOperator<Scalar> ({new_two_electron_parameters});
+
+        for (auto& two_op : this->two_op_mixed) {
+            auto new_two_electron_parameters = this->two_op.twoElectron().parameters();
+            // transform the two electron parameters "g_aabb" to "g_aab'b'"
+            new_two_electron_parameters.template matrixContraction<Scalar>(T, 2);
+            new_two_electron_parameters.template matrixContraction<Scalar>(T, 3);
+            this->two_op = ScalarSQTwoElectronOperator<Scalar> ({new_two_electron_parameters});
+        }
+    }
+
+
+    /**
+     *  Constrain the Hamiltonian according to the convention: - lambda * constraint
+     *
+     *  @param one_op   the one-electron operator used as a constraint
+     *  @param lambda   Lagrangian multiplier for the constraint
+     *
+     *  @return a copy of the constrained Hamiltonian
+     *
+     *  Note that this method is only available for real matrix representations
+     */
+    template<typename Z = Scalar>
+    enable_if_t<std::is_same<Z, double>::value, SQHamiltonian<double>> constrainAlpha(const ScalarSQOneElectronOperator<double>& one_op, double lambda) const {
+
+        return USQHamiltonian(this->sq_hamiltonian_alpha.constrain(one_op, lambda), this->sq_hamiltonian_beta, this->two_op_mixed);
+    }
+
+    /**
+     *  Constrain the Hamiltonian according to the convention: - lambda * constraint
+     *
+     *  @param one_op   the one-electron operator used as a constraint
+     *  @param lambda   Lagrangian multiplier for the constraint
+     *
+     *  @return a copy of the constrained Hamiltonian
+     *
+     *  Note that this method is only available for real matrix representations
+     */
+    template<typename Z = Scalar>
+    enable_if_t<std::is_same<Z, double>::value, SQHamiltonian<double>> constrainBeta(const ScalarSQOneElectronOperator<double>& one_op, double lambda) const {
+
+        return USQHamiltonian(this->sq_hamiltonian_alpha, this->sq_hamiltonian_beta.constrain(one_op, lambda), this->two_op_mixed);
     }
 };
 

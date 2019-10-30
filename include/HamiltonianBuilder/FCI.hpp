@@ -76,7 +76,6 @@ public:
 
     // PUBLIC METHODS UNRESTRICTED METHODS
     /**
-     *
      *  @param usq_hamiltonian                the Hamiltonian expressed in an unrestricted orthonormal basis 
      *
      *  @return the FCI Hamiltonian matrix
