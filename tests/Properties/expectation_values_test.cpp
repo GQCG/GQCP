@@ -23,8 +23,10 @@
 
 #include "Basis/Integrals/Interfaces/LibintInterfacer.hpp"
 #include "CISolver/CISolver.hpp"
+#include "Mathematical/Optimization/DavidsonSolver.hpp"
+#include "HamiltonianBuilder/FCI.hpp"
 #include "HamiltonianBuilder/DOCI.hpp"
-#include "Operator/SecondQuantized/SQHamiltonian.hpp"
+#include "Operator/SecondQuantized/USQHamiltonian.hpp"
 #include "RDM/RDMCalculator.hpp"
 #include "RHF/DIISRHFSCFSolver.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
@@ -68,7 +70,6 @@ BOOST_AUTO_TEST_CASE ( mulliken_N2_STO_3G ) {
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, N2);  // in an AO basis
     size_t K = sq_hamiltonian.dimension();
 
-    std::cout << "K: " << std::endl << K << std::endl << std::endl;;
 
     // We include all basis functions
     GQCP::Vectoru gto_list (K);
@@ -110,4 +111,77 @@ BOOST_AUTO_TEST_CASE ( mulliken_N2_STO_3G ) {
 
     double mulliken_population_2 = GQCP::calculateExpectationValue(mulliken, one_rdms.one_rdm)[0];
     BOOST_CHECK(std::abs(mulliken_population_2 - (N)) < 1.0e-06);
+}
+
+
+BOOST_AUTO_TEST_CASE ( S_z_N2_STO_3G ) {
+
+    // Check that the mulliken population of N2 is 14 (N)
+    // Initialize the molecule and the molecular Hamiltonian for N2
+    GQCP::Nucleus N (7, 0.0, 0.0, 0.0);
+    GQCP::Nucleus O (8, 0.0, 0.0, 2);  // from CCCBDB, STO-3G geometry
+    std::vector<GQCP::Nucleus> nuclei {N, O};
+    GQCP::Molecule NOplus (nuclei, +1);
+
+    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (NOplus, "STO-3G");
+    auto sq_hamiltonian = GQCP::USQHamiltonian<double>::Molecular(sp_basis, sp_basis, NOplus);  // in an AO basis
+    auto sq_hamiltonian2 = GQCP::SQHamiltonian<double>::Molecular(sp_basis, NOplus);  // in an AO basis
+    size_t K = sq_hamiltonian.dimension();
+
+    
+    // We include all basis functions
+    GQCP::Vectoru gto_list (K);
+    for(size_t i = K/2; i<K; i++){
+        gto_list[i] = i;
+    }
+
+    GQCP::Vectoru gto_list2 (K/2);
+    for(size_t i = 0; i<K/2; i++){
+        gto_list2[i] = i;
+    }
+
+    GQCP::ScalarSQOneElectronOperator<double> mulliken = sp_basis.calculateMullikenOperator(gto_list);
+    GQCP::ScalarSQOneElectronOperator<double> mulliken2 = sp_basis.calculateMullikenOperator(gto_list2);
+    
+    size_t Ne = NOplus.numberOfElectrons();
+    
+    // Solve the SCF equations
+    GQCP::DIISRHFSCFSolver diis_scf_solver (sq_hamiltonian2, sp_basis, NOplus);  // the DIIS SCF solver seems to find a wrong minimum, so use a plain solver instead
+    diis_scf_solver.solve();
+    auto rhf = diis_scf_solver.get_solution();
+
+    sq_hamiltonian.transform(rhf.get_C());
+
+    auto constrained = sq_hamiltonian.constrainAlpha(mulliken2, 1);
+    constrained = constrained.constrainBeta(-mulliken2, 1);
+
+    GQCP::ProductFockSpace fock_space (K, Ne/2, Ne/2);
+    GQCP::FCI fci (fock_space);
+    
+    GQCP::DavidsonSolverOptions solver_options(fock_space.HartreeFockExpansion());
+    GQCP::VectorX<double> dia = fci.calculateDiagonal(constrained);
+    GQCP::VectorFunction matrixVectorProduct = [&fci, &dia, &constrained](const GQCP::VectorX<double>& x) { return fci.matrixVectorProduct(constrained, x, dia); };
+    GQCP::DavidsonSolver ds_solver (matrixVectorProduct, dia, solver_options);
+
+    ds_solver.solve();
+
+    GQCP::RDMCalculator rdm_calc(fock_space);
+    rdm_calc.set_coefficients(ds_solver.get_eigenpair().get_eigenvector());
+
+    auto one_rdms = rdm_calc.calculate1RDMs();
+    GQCP::OneRDM<double> spin_d = GQCP::OneRDM<double> (one_rdms.one_rdm_aa - one_rdms.one_rdm_bb);
+    std::cout<<spin_d;
+
+    double s_z_A = GQCP::calculateExpectationValue(mulliken2, spin_d)[0];
+    double s_z_A2 = GQCP::calculateExpectationValue(mulliken, spin_d)[0];
+
+    std::cout<<std::endl;
+    std::cout<<std::endl;
+    std::cout<<s_z_A;
+    std::cout<<std::endl;
+    std::cout<<s_z_A2;
+    std::cout<<std::endl;
+    
+    BOOST_CHECK(std::abs(s_z_A - (Ne)) < 1.0e-06);
+    
 }
