@@ -390,4 +390,101 @@ VectorX<double> BaseFrozenCoreFockSpace::frozenCoreDiagonal(const SQHamiltonian<
 }
 
 
+/*
+ *  UNRESTRICTED
+ */ 
+
+/**
+ *  Evaluate the Hamiltonian in a dense matrix
+ *
+ *  @param usq_hamiltonian                the Hamiltonian expressed in an unrestricted orthonormal basis 
+ *  @param diagonal_values                bool to indicate if diagonal values will be calculated
+ *
+ *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the Fock space
+ */
+SquareMatrix<double> BaseFrozenCoreFockSpace::evaluateOperatorDense(const USQHamiltonian<double>& usq_hamiltonian, bool diagonal_values) const {
+        // Freeze the operators
+    const auto frozen_ham_par = BaseFrozenCoreFockSpace::freezeOperator(usq_hamiltonian, this->X);
+
+    // Evaluate the frozen operator in the active space
+    auto evaluation = this->active_fock_space->evaluateOperatorDense(frozen_ham_par, diagonal_values);
+
+    if (diagonal_values) {
+        // Diagonal correction
+        const auto frozen_core_diagonal = BaseFrozenCoreFockSpace::frozenCoreDiagonal(usq_hamiltonian, this->X, this->active_fock_space->get_dimension());
+        evaluation += frozen_core_diagonal.asDiagonal();
+    }
+
+    return evaluation;
+}
+
+
+/**
+ *  Evaluate the diagonal of the Hamiltonian
+ *
+ *  @param usq_hamiltonian_alpha          the Hamiltonian expressed in an unrestricted orthonormal basis 
+ *
+ *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the Fock space
+ */
+VectorX<double> BaseFrozenCoreFockSpace::evaluateOperatorDiagonal(const USQHamiltonian<double>& usq_hamiltonian) const {
+
+}
+
+/*
+ *  STATIC UNRESTRICTED
+ */ 
+
+/**
+ *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis
+ *  @param X                    the number of frozen orbitals
+ *  @param dimension            the dimension of the diagonal
+ *
+ *  @return the Hamiltonian diagonal from strictly evaluating the frozen orbitals in a (any) Fock space
+ */
+VectorX<double> BaseFrozenCoreFockSpace::frozenCoreDiagonal(const USQHamiltonian<double>& usq_hamiltonian, size_t X, size_t dimension) {
+
+    const auto& one_op_par = QCMatrix<double>(usq_hamiltonian.alphaHamiltonian().core().parameters() + usq_hamiltonian.betaHamiltonian().core().parameters());
+
+    // The diagonal value for the frozen orbitals is the same for each ONV
+    double value = 0;
+    for (size_t i = 0; i < X; i++) {
+        value += one_op_par(i,i);
+    }
+
+    const auto& two_op_par_mixed = usq_hamiltonian.twoElectronMixed().parameters();
+    const auto& two_op_par = QCRankFourTensor<double>(usq_hamiltonian.alphaHamiltonian().twoElectron().parameters() + usq_hamiltonian.betaHamiltonian().twoElectron().parameters());
+
+    for (size_t i = 0; i < X; i++) {
+        value += two_op_par_mixed(i,i,i,i);
+
+        for (size_t j = i+1; j < X; j++) {
+            value += two_op_par_mixed(i,i,j,j) + two_op_par_mixed(j,j,i,i) + two_op_par(i,i,j,j) + two_op_par(j,j,i,i) - two_op_par(j,i,i,j)/2 - two_op_par(i,j,j,i)/2 ;
+        }
+    }
+
+    return VectorX<double>::Constant(dimension, value);
+}
+
+
+/**
+ *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis
+ *  @param X                    the number of frozen orbitals
+ *
+ *  @return a 'frozen' Hamiltonian which cover two-electron integral evaluations from the active and inactive orbitals
+ *  (see https://drive.google.com/file/d/1Fnhv2XyNO9Xw9YDoJOXU21_6_x2llntI/view?usp=sharing)
+ */
+USQHamiltonian<double> BaseFrozenCoreFockSpace::freezeOperator(const USQHamiltonian<double>& usq_hamiltonian, size_t X) {
+    
+    size_t K_active = sq_hamiltonian.dimension() - X;  // number of non-frozen orbitals
+
+    const auto frozen_components_g = BaseFrozenCoreFockSpace::freezeOperator(sq_hamiltonian.twoElectron(), X);
+
+    ScalarSQOneElectronOperator<double> h = BaseFrozenCoreFockSpace::freezeOperator(sq_hamiltonian.core(), X) + frozen_components_g.one_op;  // active
+    ScalarSQTwoElectronOperator<double> g = frozen_components_g.two_op;
+
+    return SQHamiltonian<double>(h, g);
+
+}
+
+
 }  // namespace GQCP

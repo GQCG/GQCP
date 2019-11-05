@@ -56,6 +56,8 @@ private:
     std::vector<double> population; 
     std::vector<double> lambda;
     std::vector<double> entropy;
+    std::vector<double> s_z;
+
 
     // Decomposed solutions
     std::vector<double> A_fragment_energy;

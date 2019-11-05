@@ -187,6 +187,47 @@ public:
      *  @return the Hamiltonian diagonal from strictly evaluating the frozen orbitals in a (any) Fock space
      */
     static VectorX<double> frozenCoreDiagonal(const SQHamiltonian<double>& sq_hamiltonian, size_t X, size_t dimension);
+
+
+    // UNRESTRICTED
+    /**
+     *  Evaluate the Hamiltonian in a dense matrix
+     *
+     *  @param usq_hamiltonian                the Hamiltonian expressed in an unrestricted orthonormal basis 
+     *  @param diagonal_values                bool to indicate if diagonal values will be calculated
+     *
+     *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the Fock space
+     */
+    SquareMatrix<double> evaluateOperatorDense(const USQHamiltonian<double>& usq_hamiltonian, bool diagonal_values) const;
+
+    /**
+     *  Evaluate the diagonal of the Hamiltonian
+     *
+     *  @param usq_hamiltonian_alpha          the Hamiltonian expressed in an unrestricted orthonormal basis 
+     *
+     *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the Fock space
+     */
+    VectorX<double> evaluateOperatorDiagonal(const USQHamiltonian<double>& usq_hamiltonian) const;
+
+
+    // STATIC UNRESTRICTED
+    /**
+     *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis
+     *  @param X                    the number of frozen orbitals
+     *  @param dimension            the dimension of the diagonal
+     *
+     *  @return the Hamiltonian diagonal from strictly evaluating the frozen orbitals in a (any) Fock space
+     */
+    static VectorX<double> frozenCoreDiagonal(const USQHamiltonian<double>& usq_hamiltonian, size_t X, size_t dimension);
+
+    /**
+     *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis
+     *  @param X                    the number of frozen orbitals
+     *
+     *  @return a 'frozen' Hamiltonian which cover two-electron integral evaluations from the active and inactive orbitals
+     *  (see https://drive.google.com/file/d/1Fnhv2XyNO9Xw9YDoJOXU21_6_x2llntI/view?usp=sharing)
+     */
+    static USQHamiltonian<double> freezeOperator(const USQHamiltonian<double>& usq_hamiltonian, size_t X);
 };
 
 

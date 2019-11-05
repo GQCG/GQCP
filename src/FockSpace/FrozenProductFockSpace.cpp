@@ -48,4 +48,30 @@ FrozenProductFockSpace::FrozenProductFockSpace(const ProductFockSpace& fock_spac
     FrozenProductFockSpace(fock_space.get_K(), fock_space.get_N_alpha(), fock_space.get_N_beta(), X)
 {}
 
+
+// UNRESTRICTED
+/**
+ *  Evaluate the Hamiltonian in a dense matrix
+ *
+ *  @param usq_hamiltonian                the Hamiltonian expressed in an unrestricted orthonormal basis 
+ *  @param diagonal_values                bool to indicate if diagonal values will be calculated
+ *
+ *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the Fock space
+ */
+SquareMatrix<double> FrozenProductFockSpace::evaluateOperatorDense(const USQHamiltonian<double>& usq_hamiltonian, bool diagonal_values) const {
+    
+}
+
+/**
+ *  Evaluate the diagonal of the Hamiltonian
+ *
+ *  @param usq_hamiltonian_alpha          the Hamiltonian expressed in an unrestricted orthonormal basis 
+ *
+ *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the Fock space
+ */
+VectorX<double> FrozenProductFockSpace::evaluateOperatorDiagonal(const USQHamiltonian<double>& usq_hamiltonian) const {
+
+}
+
+
 }  // namespace GQCP

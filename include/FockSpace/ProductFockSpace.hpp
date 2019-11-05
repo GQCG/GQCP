@@ -173,7 +173,6 @@ public:
     VectorX<double> evaluateOperatorDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const override;
 
 
-
     // UNRESTRICTED
     /**
      *  Evaluate the Hamiltonian in a dense matrix
