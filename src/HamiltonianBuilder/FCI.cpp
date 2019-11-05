@@ -169,8 +169,8 @@ VectorX<double> FCI::matrixVectorProduct(const USQHamiltonian<double>& usq_hamil
         }
     }
 
-    auto beta_hamiltonian = fock_space_beta.evaluateOperatorSparse(usq_hamiltonian.alphaHamiltonian(), false);
-    auto alpha_hamiltonian = fock_space_alpha.evaluateOperatorSparse(usq_hamiltonian.betaHamiltonian(), false);
+    auto beta_hamiltonian = fock_space_beta.evaluateOperatorSparse(usq_hamiltonian.betaHamiltonian(), false);
+    auto alpha_hamiltonian = fock_space_alpha.evaluateOperatorSparse(usq_hamiltonian.alphaHamiltonian(), false);
 
     matvecmap += beta_hamiltonian * xmap + xmap * alpha_hamiltonian;
 

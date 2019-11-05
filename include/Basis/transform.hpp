@@ -117,7 +117,7 @@ template <typename TransformationScalar, typename ShellType>
 void basisTransformAlpha(SingleParticleBasis<TransformationScalar, ShellType>& sp_basis, USQHamiltonian<TransformationScalar>& usq_hamiltonian, const TransformationMatrix<TransformationScalar>& T) {
 
     sp_basis.transform(T);
-    usq_hamiltonian.transform_alpha(T);
+    usq_hamiltonian.transformAlpha(T);
 }
 
 /**
@@ -134,7 +134,7 @@ template <typename TransformationScalar, typename ShellType>
 void basisTransformBeta(SingleParticleBasis<TransformationScalar, ShellType>& sp_basis, USQHamiltonian<TransformationScalar>& usq_hamiltonian, const TransformationMatrix<TransformationScalar>& T) {
 
     sp_basis.transform(T);
-    usq_hamiltonian.transform_beta(T);
+    usq_hamiltonian.transformBeta(T);
 }
 
 /**
@@ -149,7 +149,7 @@ void basisTransformBeta(SingleParticleBasis<TransformationScalar, ShellType>& sp
  *  @param T                            the transformation matrix
  */
 template <typename TransformationScalar, typename ShellType>
-void basisTransformBeta(SingleParticleBasis<TransformationScalar, ShellType>& sp_basis_alpha, SingleParticleBasis<TransformationScalar, ShellType>& sp_basis_beta, USQHamiltonian<TransformationScalar>& usq_hamiltonian, const TransformationMatrix<TransformationScalar>& T) {
+void basisTransform(SingleParticleBasis<TransformationScalar, ShellType>& sp_basis_alpha, SingleParticleBasis<TransformationScalar, ShellType>& sp_basis_beta, USQHamiltonian<TransformationScalar>& usq_hamiltonian, const TransformationMatrix<TransformationScalar>& T) {
 
     sp_basis_alpha.transform(T);
     sp_basis_beta.transform(T);

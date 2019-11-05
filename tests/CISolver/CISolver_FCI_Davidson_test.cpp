@@ -19,10 +19,13 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include <iomanip>      // std::setprecision
+
 #include "Basis/transform.hpp"
 #include "CISolver/CISolver.hpp"
 #include "HamiltonianBuilder/FCI.hpp"
-#include "Operator/SecondQuantized/SQHamiltonian.hpp"
+#include "Mathematical/Optimization/DavidsonSolver.hpp"
+#include "Operator/SecondQuantized/USQHamiltonian.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
 
 
@@ -196,3 +199,55 @@ BOOST_AUTO_TEST_CASE ( FCI_H6_STO_3G_dense_vs_Davidson ) {
     BOOST_CHECK(std::abs(fci_dense_eigenvalue - fci_davidson_eigenvalue) < 1.0e-08);
 }
 
+
+BOOST_AUTO_TEST_CASE ( FCI_H2O_Unrestricted_Davidson ) {
+
+    // Test if a transformation to an unrestricted basis results in identical energies for FCI
+
+    // Psi4 and GAMESS' FCI energy (restricted)
+    double reference_fci_energy = -75.0129803939602;
+
+    // Create the molecular Hamiltonian in an AO basis
+    auto h2o = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
+    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis_alpha (h2o, "STO-3G");
+    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis_beta (h2o, "STO-3G");
+    auto usq_hamiltonian = GQCP::USQHamiltonian<double>::Molecular(sp_basis_alpha, sp_basis_beta, h2o);  // in an AO basis
+    // Create restricted SQHamiltonian to perform RHF
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis_alpha, h2o);  // in an AO basis
+    auto K = usq_hamiltonian.dimension();
+
+    // Create a plain RHF SCF solver and solve the SCF equations
+    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, sp_basis_alpha, h2o);
+    plain_scf_solver.solve();
+    auto rhf = plain_scf_solver.get_solution();
+
+    // Transform the Hamiltonian to an orthonormal basis
+    GQCP::basisTransform(sp_basis_alpha, sp_basis_beta, usq_hamiltonian, rhf.get_C());
+
+    // Transform the beta component
+    // Create stable unitairy matrix
+    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes (usq_hamiltonian.alphaHamiltonian().core().parameters());
+    GQCP::basisTransformBeta(sp_basis_beta, usq_hamiltonian, GQCP::TransformationMatrix<double>(saes.eigenvectors()));
+
+
+    GQCP::ProductFockSpace fock_space (K, h2o.numberOfElectrons()/2, h2o.numberOfElectrons()/2);  // dim = 441
+
+    // Create the FCI module
+    GQCP::FCI fci (fock_space);
+
+    // Davidson solver
+    GQCP::DavidsonSolverOptions solver_options(fock_space.HartreeFockExpansion());
+    GQCP::VectorX<double> dia = fci.calculateDiagonal(usq_hamiltonian);
+    GQCP::VectorFunction matrixVectorProduct = [&fci, &dia, &usq_hamiltonian](const GQCP::VectorX<double>& x) { return fci.matrixVectorProduct(usq_hamiltonian, x, dia); };
+    GQCP::DavidsonSolver solver (matrixVectorProduct, dia, solver_options);
+
+    solver.solve();
+
+    // Retrieve the eigenvalues
+    auto fci_energy = solver.get_eigenpair().get_eigenvalue();
+
+    // Calculate the total FCI energy
+    double internuclear_repulsion_energy = GQCP::Operator::NuclearRepulsion(h2o).value();
+    double test_fci_energy = fci_energy + internuclear_repulsion_energy;
+    BOOST_CHECK(std::abs(test_fci_energy - (reference_fci_energy)) < 1.0e-06);
+}
