@@ -19,7 +19,11 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include "Basis/transform.hpp"
 #include "FockSpace/SelectedFockSpace.hpp"
+#include "HamiltonianBuilder/SelectedCI.hpp"
+#include "Mathematical/Optimization/DenseSolver.hpp"
+#include "Operator/SecondQuantized/USQHamiltonian.hpp"
 #include "WaveFunction/WaveFunctionReader.hpp"
 
 
@@ -121,7 +125,7 @@ BOOST_AUTO_TEST_CASE ( reader_test ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( Selected_Evaluation_H2O ) {
+BOOST_AUTO_TEST_CASE ( Selected_H2O_evaluation ) {
 
     // Psi4 and GAMESS' FCI energy for H2O
     double reference_fci_energy = -75.0129803939602;
@@ -152,4 +156,49 @@ BOOST_AUTO_TEST_CASE ( Selected_Evaluation_H2O ) {
 
     // Test if non-diagonal evaluation and diagonal evaluations are correct
     BOOST_CHECK(hamiltonian.isApprox(hamiltonian_no_diagonal + GQCP::SquareMatrix<double>(hamiltonian_diagonal.asDiagonal())));
+}
+
+
+BOOST_AUTO_TEST_CASE ( Selected_H2O_Unrestricted ) {
+
+    // Test if a transformation to an unrestricted basis results in identical energies for FCI using the SelectedCI module
+
+    // Psi4 and GAMESS' FCI energy (restricted)
+    double reference_fci_energy = -75.0129803939602;
+
+    // Create the molecular Hamiltonian in an AO basis
+    auto h2o = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
+    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis_alpha (h2o, "STO-3G");
+    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis_beta (h2o, "STO-3G");
+    auto usq_hamiltonian = GQCP::USQHamiltonian<double>::Molecular(sp_basis_alpha, sp_basis_beta, h2o);  // in an AO basis
+    auto K = usq_hamiltonian.dimension();
+
+    // Transform the Hamiltonian to an orthonormal basis
+    GQCP::basisTransform(sp_basis_alpha, sp_basis_beta, usq_hamiltonian, sp_basis_alpha.lowdinOrthonormalizationMatrix());
+
+    // Transform the beta component
+    // Create stable unitairy matrix
+    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes (usq_hamiltonian.alphaHamiltonian().core().parameters());
+    GQCP::basisTransformBeta(sp_basis_beta, usq_hamiltonian, GQCP::TransformationMatrix<double>(saes.eigenvectors()));
+
+
+    GQCP::ProductFockSpace fock_space (K, h2o.numberOfElectrons()/2, h2o.numberOfElectrons()/2);  // dim = 441
+    GQCP::SelectedFockSpace selected_fock_space (fock_space);
+
+    // Create the SelectedCI module
+    GQCP::SelectedCI selected_ci (selected_fock_space);
+
+    // Solve Dense
+    GQCP::DenseSolverOptions dense_solver_options;
+    GQCP::DenseSolver solver (selected_ci.constructHamiltonian(usq_hamiltonian), dense_solver_options);
+    solver.solve();
+
+    // Retrieve the eigenvalues
+    auto ci_energy = solver.get_eigenpair().get_eigenvalue();
+
+    // Calculate the total FCI energy
+    double internuclear_repulsion_energy = GQCP::Operator::NuclearRepulsion(h2o).value();
+    double test_ci_energy = ci_energy + internuclear_repulsion_energy;
+
+    BOOST_CHECK(std::abs(test_ci_energy - (reference_fci_energy)) < 1.0e-06);
 }

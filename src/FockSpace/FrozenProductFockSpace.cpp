@@ -67,7 +67,7 @@ SquareMatrix<double> FrozenProductFockSpace::evaluateOperatorDense(const USQHami
 
     if (diagonal_values) {
         // Diagonal correction
-        const auto frozen_core_diagonal = BaseFrozenCoreFockSpace::frozenCoreDiagonal(frozen_usq_hamiltonian, this->X, this->active_product_fock_space.get_dimension());
+        const auto frozen_core_diagonal = BaseFrozenCoreFockSpace::frozenCoreDiagonal(usq_hamiltonian, this->X, this->active_product_fock_space.get_dimension());
         evaluation += frozen_core_diagonal.asDiagonal();
     }
 
@@ -88,7 +88,7 @@ VectorX<double> FrozenProductFockSpace::evaluateOperatorDiagonal(const USQHamilt
     const auto diagonal = this->active_product_fock_space.evaluateOperatorDiagonal(frozen_usq_hamiltonian);
 
     // Calculate diagonal for the frozen orbitals
-    const auto frozen_core_diagonal = BaseFrozenCoreFockSpace::frozenCoreDiagonal(frozen_usq_hamiltonian, this->X, this->active_product_fock_space.get_dimension());
+    const auto frozen_core_diagonal = BaseFrozenCoreFockSpace::frozenCoreDiagonal(usq_hamiltonian, this->X, this->active_product_fock_space.get_dimension());
 
     return diagonal + frozen_core_diagonal;
 

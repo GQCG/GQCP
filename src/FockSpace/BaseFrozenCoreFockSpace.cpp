@@ -403,22 +403,25 @@ VectorX<double> BaseFrozenCoreFockSpace::frozenCoreDiagonal(const SQHamiltonian<
  */
 VectorX<double> BaseFrozenCoreFockSpace::frozenCoreDiagonal(const USQHamiltonian<double>& usq_hamiltonian, size_t X, size_t dimension) {
 
-    const auto& one_op_par = QCMatrix<double>(usq_hamiltonian.alphaHamiltonian().core().parameters() + usq_hamiltonian.betaHamiltonian().core().parameters());
+    QCMatrix<double> one_op_par_alpha = usq_hamiltonian.alphaHamiltonian().core().parameters();
+    QCMatrix<double> one_op_par_beta = usq_hamiltonian.betaHamiltonian().core().parameters();
+
 
     // The diagonal value for the frozen orbitals is the same for each ONV
     double value = 0;
     for (size_t i = 0; i < X; i++) {
-        value += one_op_par(i,i);
+        value += one_op_par_alpha(i,i) + one_op_par_beta(i,i);
     }
 
     const auto& two_op_par_mixed = usq_hamiltonian.twoElectronMixed().parameters();
-    const auto& two_op_par = QCRankFourTensor<double>(usq_hamiltonian.alphaHamiltonian().twoElectron().parameters().Eigen() + usq_hamiltonian.betaHamiltonian().twoElectron().parameters().Eigen());
+    const auto& two_op_par_a = usq_hamiltonian.alphaHamiltonian().twoElectron().parameters();
+    const auto& two_op_par_b = usq_hamiltonian.betaHamiltonian().twoElectron().parameters();
 
     for (size_t i = 0; i < X; i++) {
         value += two_op_par_mixed(i,i,i,i);
 
         for (size_t j = i+1; j < X; j++) {
-            value += two_op_par_mixed(i,i,j,j) + two_op_par_mixed(j,j,i,i) + two_op_par(i,i,j,j) + two_op_par(j,j,i,i) - two_op_par(j,i,i,j)/2 - two_op_par(i,j,j,i)/2 ;
+            value += two_op_par_mixed(i,i,j,j) + two_op_par_mixed(j,j,i,i) + two_op_par_a(i,i,j,j)/2 + two_op_par_a(j,j,i,i)/2 - two_op_par_a(j,i,i,j)/2 - two_op_par_a(i,j,j,i)/2  + two_op_par_b(i,i,j,j)/2 + two_op_par_b(j,j,i,i)/2 - two_op_par_b(j,i,i,j)/2 - two_op_par_b(i,j,j,i)/2;
         }
     }
 
@@ -438,7 +441,7 @@ USQHamiltonian<double> BaseFrozenCoreFockSpace::freezeOperator(const USQHamilton
     size_t K_active = usq_hamiltonian.dimension() - X;  // number of non-frozen orbitals
 
     QCMatrix<double> frozen_one_op_par_alpha = usq_hamiltonian.alphaHamiltonian().core().parameters().block(X, X, K_active, K_active);
-    QCMatrix<double> frozen_one_op_par_beta = usq_hamiltonian.alphaHamiltonian().core().parameters().block(X, X, K_active, K_active);
+    QCMatrix<double> frozen_one_op_par_beta = usq_hamiltonian.betaHamiltonian().core().parameters().block(X, X, K_active, K_active);
 
     const auto& two_op_par_alpha = usq_hamiltonian.alphaHamiltonian().twoElectron().parameters();
     const auto& two_op_par_beta = usq_hamiltonian.betaHamiltonian().twoElectron().parameters();
@@ -453,26 +456,25 @@ USQHamiltonian<double> BaseFrozenCoreFockSpace::freezeOperator(const USQHamilton
         size_t q = i + X;  // map active orbitals indexes to total orbital indexes (those including the frozen orbitals)
 
         for (size_t l = 0; l < X; l++) {  // iterate over the frozen orbitals
-            frozen_one_op_par_alpha(i,i) += two_op_par_mixed(q,q,l,l) + frozen_two_op_par_alpha(l,l,q,q) - frozen_two_op_par_alpha(q,l,l,q)/2 - frozen_two_op_par_alpha(l,q,q,l)/2;
+            frozen_one_op_par_alpha(i,i) += two_op_par_mixed(q,q,l,l) + two_op_par_alpha(l,l,q,q) - two_op_par_alpha(q,l,l,q)/2 - two_op_par_alpha(l,q,q,l)/2;
             // There's a small catch here, the variable 'two_op_par_mixed' is represented as g_aabb, the formulas dictate we need g_bbaa for the beta component, hence we switched the indices
-            frozen_one_op_par_beta(i,i) += two_op_par_mixed(l,l,q,q) + frozen_two_op_par_beta(l,l,q,q) - frozen_two_op_par_beta(q,l,l,q)/2 - frozen_two_op_par_beta(l,q,q,l)/2;
+            frozen_one_op_par_beta(i,i) += two_op_par_mixed(l,l,q,q) + two_op_par_beta(l,l,q,q) - two_op_par_beta(q,l,l,q)/2 - two_op_par_beta(l,q,q,l)/2;
         }
 
         for (size_t j = i+1; j < K_active; j++) {  // iterate over the active orbitals
             size_t p = j + X;  // map active orbitals indexes to total orbital indexes (those including the frozen orbitals)
 
             for (size_t l = 0; l < X; l++) {  // iterate over the frozen orbitals
-                frozen_one_op_par_alpha(i,j) += two_op_par_mixed(q,p,l,l) + frozen_two_op_par_alpha(l,l,q,p) - frozen_two_op_par_alpha(q,l,l,p)/2 - frozen_two_op_par_alpha(l,p,q,l)/2;
-                frozen_one_op_par_beta(i,j) += two_op_par_mixed(l,l,q,p) + frozen_two_op_par_beta(l,l,q,p) - frozen_two_op_par_beta(q,l,l,p)/2 - frozen_two_op_par_beta(l,p,q,l)/2;
+                frozen_one_op_par_alpha(i,j) += two_op_par_mixed(q,p,l,l) + two_op_par_alpha(l,l,q,p) - two_op_par_alpha(q,l,l,p)/2 - two_op_par_alpha(l,p,q,l)/2;
+                frozen_one_op_par_beta(i,j) += two_op_par_mixed(l,l,q,p) + two_op_par_beta(l,l,q,p) - two_op_par_beta(q,l,l,p)/2 - two_op_par_beta(l,p,q,l)/2;
 
-                frozen_one_op_par_alpha(j,i) += two_op_par_mixed(p,q,l,l) + frozen_two_op_par_alpha(l,l,p,q) - frozen_two_op_par_alpha(p,l,l,q)/2 - frozen_two_op_par_alpha(l,q,p,l)/2;
-                frozen_one_op_par_beta(j,i) += two_op_par_mixed(l,l,p,q) + frozen_two_op_par_beta(l,l,p,q) - frozen_two_op_par_beta(p,l,l,q)/2 - frozen_two_op_par_beta(l,q,p,l)/2;
+                frozen_one_op_par_alpha(j,i) += two_op_par_mixed(p,q,l,l) + two_op_par_alpha(l,l,p,q) - two_op_par_alpha(p,l,l,q)/2 - two_op_par_alpha(l,q,p,l)/2;
+                frozen_one_op_par_beta(j,i) += two_op_par_mixed(l,l,p,q) + two_op_par_beta(l,l,p,q) - two_op_par_beta(p,l,l,q)/2 - two_op_par_beta(l,q,p,l)/2;
             }
         }
     }
 
     return USQHamiltonian<double>(SQHamiltonian<double>(ScalarSQOneElectronOperator<double>({frozen_one_op_par_alpha}), ScalarSQTwoElectronOperator<double>({frozen_two_op_par_alpha})), SQHamiltonian<double>(ScalarSQOneElectronOperator<double>({frozen_one_op_par_beta}), ScalarSQTwoElectronOperator<double>({frozen_two_op_par_beta})), ScalarSQTwoElectronOperator<double>({frozen_two_op_par_mixed}));
-
 }
 
 
