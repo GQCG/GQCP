@@ -20,6 +20,7 @@
 
 #include "FockSpace/SelectedFockSpace.hpp"
 #include "HamiltonianBuilder/HamiltonianBuilder.hpp"
+#include "Operator/SecondQuantized/USQHamiltonian.hpp"
 
 
 namespace GQCP {
@@ -50,7 +51,7 @@ private:
      *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
      *  @param method                   the method depending to how you wish to construct the Hamiltonian
      */
-    void evaluateHamiltonianElements(const SQHamiltonian<double>& sq_hamiltonian, const PassToMethod& method) const;
+    void evaluateHamiltonianElements(const USQHamiltonian<double>& sq_hamiltonian, const PassToMethod& method) const;
 public:
 
     // CONSTRUCTORS
@@ -91,6 +92,30 @@ public:
      *  @return the diagonal of the matrix representation of the SelectedCI Hamiltonian
      */
     VectorX<double> calculateDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const override;
+
+    // UNRESTRICTED PUBLIC METHODS
+    /**
+     *  @param sq_hamiltonian               the Hamiltonian expressed in an unrestricted orthonormal basis
+     *
+     *  @return the SelectedCI Hamiltonian matrix
+     */
+    SquareMatrix<double> constructHamiltonian(const USQHamiltonian<double>& sq_hamiltonian) const;
+
+    /**
+     *  @param sq_hamiltonian               the Hamiltonian expressed in an unrestricted orthonormal basis
+     *  @param x                            the vector upon which the SelectedCI Hamiltonian acts
+     *  @param diagonal                     the diagonal of the SelectedCI Hamiltonian matrix
+     *
+     *  @return the action of the SelectedCI Hamiltonian on the coefficient vector
+     */
+    VectorX<double> matrixVectorProduct(const USQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const;
+
+    /**
+     *  @param sq_hamiltonian               the Hamiltonian expressed in an unrestricted orthonormal basis
+     *
+     *  @return the diagonal of the matrix representation of the SelectedCI Hamiltonian
+     */
+    VectorX<double> calculateDiagonal(const USQHamiltonian<double>& sq_hamiltonian) const;
 };
 
 

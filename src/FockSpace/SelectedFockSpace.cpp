@@ -508,6 +508,83 @@ VectorX<double> SelectedFockSpace::evaluateOperatorDiagonal(const SQHamiltonian<
     return this->evaluateOperatorDiagonal(sq_hamiltonian.core()) + this->evaluateOperatorDiagonal(sq_hamiltonian.twoElectron());
 };
 
+/*
+ *  UNRESTRICTED
+ */ 
+
+/**
+ *  Evaluate the diagonal of the Hamiltonian
+ *
+ *  @param sq_hamiltonian              the Hamiltonian expressed in an unrestricted orthonormal basis
+ *
+ *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the Fock space
+ */
+VectorX<double> SelectedFockSpace::evaluateOperatorDiagonal(const USQHamiltonian<double>& sq_hamiltonian) const {
+
+     const auto K = sq_hamiltonian.dimension();
+    if (K != this->K) {
+        throw std::invalid_argument("SelectedFockSpace::evaluateOperatorDiagonal(USQHamiltonian<double>): Basis functions of the Fock space and the operator are incompatible.");
+    }
+
+    
+    const auto& h_a = sq_hamiltonian.alphaHamiltonian().core().parameters();
+    const auto& g_a = sq_hamiltonian.alphaHamiltonian().twoElectron().parameters();
+    const auto& h_b = sq_hamiltonian.betaHamiltonian().core().parameters();
+    const auto& g_b = sq_hamiltonian.betaHamiltonian().twoElectron().parameters();
+    const auto& g_ab = sq_hamiltonian.twoElectronMixed().parameters();
+
+    // Diagonal contributions
+    VectorX<double> diagonal = VectorX<double>::Zero(dim);
+
+    for (size_t I = 0; I < dim; I++) {  // Ia loops over addresses of alpha onvs
+        Configuration configuration_I = this->get_configuration(I);
+        ONV alpha_I = configuration_I.onv_alpha;
+        ONV beta_I = configuration_I.onv_beta;
+
+        for (size_t p = 0; p < K; p++) {
+            if (alpha_I.isOccupied(p)) {
+
+                diagonal(I) += h_a(p,p);
+
+                for (size_t q = 0; q < K; q++) {
+
+                    if (p != q) {  // can't create/annihilate the same orbital twice
+                        if (alpha_I.isOccupied(q)) {
+                            diagonal(I) += 0.5 * g_a(p,p,q,q);
+                            diagonal(I) -= 0.5 * g_a(p,q,q,p);
+                        }
+                    }
+
+                    if (beta_I.isOccupied(q)) {
+                        diagonal(I) += 0.5 * g_ab(p,p,q,q);
+                    }
+                }  // loop over q
+            }
+
+            if (beta_I.isOccupied(p)) {
+    
+                diagonal(I) += h_b(p,p);
+
+                for (size_t q = 0; q < K; q++) {
+
+                    if (p != q) {  // can't create/annihilate the same orbital twice
+                        if (beta_I.isOccupied(q)) {
+                            diagonal(I) += 0.5 * g_b(p,p,q,q);
+                            diagonal(I) -= 0.5 * g_b(p,q,q,p);
+                        }
+                    }
+
+                    if (alpha_I.isOccupied(q)) {
+                        diagonal(I) += 0.5 * g_ab(q,q,p,p);
+                    }
+                }  // loop over q
+            }
+        }  // loop over q
+
+    }  // alpha address (Ia) loop
+
+    return diagonal;
+}
 
 
 }  // namespace GQCP

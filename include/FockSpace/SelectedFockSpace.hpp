@@ -201,6 +201,17 @@ public:
     VectorX<double> evaluateOperatorDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const override;
 
 
+    // UNRESTRICTED
+    /**
+     *  Evaluate the diagonal of the Hamiltonian
+     *
+     *  @param sq_hamiltonian              the Hamiltonian expressed in an unrestricted orthonormal basis
+     *
+     *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the Fock space
+     */
+    VectorX<double> evaluateOperatorDiagonal(const USQHamiltonian<double>& sq_hamiltonian) const;
+
+
     // PUBLIC TEMPLATED METHODS
     /**
      *  Evaluate the operator in a given matrix wrapper in the Fock space

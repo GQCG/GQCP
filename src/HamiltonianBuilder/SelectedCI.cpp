@@ -25,13 +25,16 @@ namespace GQCP {
  *  PRIVATE METHODS
  */
 
-void SelectedCI::evaluateHamiltonianElements(const SQHamiltonian<double>& sq_hamiltonian, const PassToMethod& method) const {
+void SelectedCI::evaluateHamiltonianElements(const USQHamiltonian<double>& sq_hamiltonian, const PassToMethod& method) const {
 
     const size_t dim = fock_space.get_dimension();
     const size_t K = fock_space.get_K();
 
-    const auto& h = sq_hamiltonian.core().parameters();
-    const auto& g = sq_hamiltonian.twoElectron().parameters();
+    const auto& h_a = sq_hamiltonian.alphaHamiltonian().core().parameters();
+    const auto& g_a = sq_hamiltonian.alphaHamiltonian().twoElectron().parameters();
+    const auto& h_b = sq_hamiltonian.betaHamiltonian().core().parameters();
+    const auto& g_b = sq_hamiltonian.betaHamiltonian().twoElectron().parameters();
+    const auto& g_ab = sq_hamiltonian.twoElectronMixed().parameters();
 
     for (size_t I = 0; I < dim; I++) {  // loop over all addresses (1)
         Configuration configuration_I = this->fock_space.get_configuration(I);
@@ -54,7 +57,7 @@ void SelectedCI::evaluateHamiltonianElements(const SQHamiltonian<double>& sq_ham
                 // Calculate the total sign
                 int sign = alpha_I.operatorPhaseFactor(p) * alpha_J.operatorPhaseFactor(q);
 
-                double value = h(p,q);
+                double value = h_a(p,q);
 
                 method(I, J, sign*value);
                 method(J, I, sign*value);
@@ -64,7 +67,7 @@ void SelectedCI::evaluateHamiltonianElements(const SQHamiltonian<double>& sq_ham
                     if (alpha_I.isOccupied(r) && alpha_J.isOccupied(r)) {  // r must be occupied on the left and on the right
                         if ((p != r) && (q != r)) {  // can't create or annihilate the same orbital
 
-                            double value = 0.5 * (g(p,q,r,r) - g(r,q,p,r) - g(p,r,r,q) + g(r,r,p,q));
+                            double value = 0.5 * (g_a(p,q,r,r) - g_a(r,q,p,r) - g_a(p,r,r,q) + g_a(r,r,p,q));
 
                             method(I, J, sign*value);
                             method(J, I, sign*value);
@@ -73,7 +76,7 @@ void SelectedCI::evaluateHamiltonianElements(const SQHamiltonian<double>& sq_ham
 
                     if (beta_I.isOccupied(r)) {  // beta_I == beta_J from the previous if-branch
 
-                        double value = 0.5 * (g(p,q,r,r) + g(r,r,p,q));
+                        double value = 0.5 * (2 * g_ab(p,q,r,r));  // g_ab(pqrr) = g_ba(rrpq)
 
                         method(I, J, sign*value);
                         method(J, I, sign*value);
@@ -92,7 +95,7 @@ void SelectedCI::evaluateHamiltonianElements(const SQHamiltonian<double>& sq_ham
                 // Calculate the total sign
                 int sign = beta_I.operatorPhaseFactor(p) * beta_J.operatorPhaseFactor(q);
 
-                double value = h(p,q);
+                double value = h_b(p,q);
 
                 method(I, J, sign*value);
                 method(J, I, sign*value);
@@ -101,7 +104,7 @@ void SelectedCI::evaluateHamiltonianElements(const SQHamiltonian<double>& sq_ham
 
                     if (beta_I.isOccupied(r) && beta_J.isOccupied(r)) {  // r must be occupied on the left and on the right
                         if ((p != r) && (q != r)) {  // can't create or annihilate the same orbital
-                            double value = 0.5 * (g(p,q,r,r) - g(r,q,p,r) - g(p,r,r,q) + g(r,r,p,q));
+                            double value = 0.5 * (g_b(p,q,r,r) - g_b(r,q,p,r) - g_b(p,r,r,q) + g_b(r,r,p,q));
 
                             method(I, J, sign*value);
                             method(J, I, sign*value);
@@ -110,7 +113,7 @@ void SelectedCI::evaluateHamiltonianElements(const SQHamiltonian<double>& sq_ham
 
                     if (alpha_I.isOccupied(r)) {  // alpha_I == alpha_J from the previous if-branch
 
-                        double value =  0.5 * (g(p,q,r,r) + g(r,r,p,q));
+                        double value =  0.5 * (2 * g_ab(r,r,p,q));  // g_ab(rrpq) = g_ba(pqrr)
 
                         method(I, J, sign*value);
                         method(J, I, sign*value);
@@ -129,7 +132,7 @@ void SelectedCI::evaluateHamiltonianElements(const SQHamiltonian<double>& sq_ham
                 size_t s = beta_J.findDifferentOccupations(beta_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
 
                 int sign = alpha_I.operatorPhaseFactor(p) * alpha_J.operatorPhaseFactor(q) * beta_I.operatorPhaseFactor(r) * beta_J.operatorPhaseFactor(s);
-                double value = 0.5 * (g(p,q,r,s) + g(r,s,p,q));
+                double value = 0.5 * (2 * g_ab(p,q,r,s));  // g_ab(pqrs) = g_ba(rspq)
 
                 method(I, J, sign*value);
                 method(J, I, sign*value);
@@ -149,7 +152,7 @@ void SelectedCI::evaluateHamiltonianElements(const SQHamiltonian<double>& sq_ham
 
                 int sign = alpha_I.operatorPhaseFactor(p) * alpha_I.operatorPhaseFactor(r) * alpha_J.operatorPhaseFactor(q) * alpha_J.operatorPhaseFactor(s);
 
-                double value = 0.5 * (g(p,q,r,s) - g(p,s,r,q) - g(r,q,p,s) + g(r,s,p,q));
+                double value = 0.5 * (g_a(p,q,r,s) - g_a(p,s,r,q) - g_a(r,q,p,s) + g_a(r,s,p,q));
 
                 method(I, J, sign*value);
                 method(J, I, sign*value);
@@ -169,7 +172,7 @@ void SelectedCI::evaluateHamiltonianElements(const SQHamiltonian<double>& sq_ham
 
                 int sign = beta_I.operatorPhaseFactor(p) * beta_I.operatorPhaseFactor(r) * beta_J.operatorPhaseFactor(q) * beta_J.operatorPhaseFactor(s);
 
-                double value = 0.5 * (g(p,q,r,s) - g(p,s,r,q) - g(r,q,p,s) + g(r,s,p,q));
+                double value = 0.5 * (g_b(p,q,r,s) - g_b(p,s,r,q) - g_b(r,q,p,s) + g_b(r,s,p,q));
 
                 method(I, J, sign*value);
                 method(J, I, sign*value);
@@ -203,21 +206,7 @@ SelectedCI::SelectedCI(const SelectedFockSpace& fock_space) :
  *  @return the SelectedCI Hamiltonian matrix
  */
 SquareMatrix<double> SelectedCI::constructHamiltonian(const SQHamiltonian<double>& sq_hamiltonian) const {
-    auto K = sq_hamiltonian.core().get_dim();
-    if (K != this->fock_space.get_K()) {
-        throw std::invalid_argument("SelectedCI::constructHamiltonian(SQHamiltonian<double>): Basis functions of the Fock space and sq_hamiltonian are incompatible.");
-    }
-
-    auto dim = fock_space.get_dimension();
-
-    SquareMatrix<double> result_matrix = SquareMatrix<double>::Zero(dim, dim);
-    result_matrix += this->calculateDiagonal(sq_hamiltonian).asDiagonal();
-
-    // We should put the calculated elements inside the result matrix
-    PassToMethod addToMatrix = [&result_matrix](size_t I, size_t J, double value) { result_matrix(I, J) += value; };
-
-    this->evaluateHamiltonianElements(sq_hamiltonian, addToMatrix);
-    return result_matrix;
+    return this->constructHamiltonian(USQHamiltonian<double>(sq_hamiltonian, sq_hamiltonian, sq_hamiltonian.twoElectron()));
 }
 
 
@@ -229,8 +218,57 @@ SquareMatrix<double> SelectedCI::constructHamiltonian(const SQHamiltonian<double
  *  @return the action of the SelectedCI Hamiltonian on the coefficient vector
  */
 VectorX<double> SelectedCI::matrixVectorProduct(const SQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
+    return this->matrixVectorProduct(USQHamiltonian<double>(sq_hamiltonian, sq_hamiltonian, sq_hamiltonian.twoElectron()), x, diagonal);
+}
 
-    auto K = sq_hamiltonian.core().get_dim();
+
+/**
+ *  @param sq_hamiltonian               the SelectedCI Hamiltonian parameters in an orthonormal orbital basis
+ *
+ *  @return the diagonal of the matrix representation of the SelectedCI Hamiltonian
+ */
+VectorX<double> SelectedCI::calculateDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const {
+    return this->fock_space.evaluateOperatorDiagonal(sq_hamiltonian);
+}
+
+/*
+ *  UNRESTRICTED
+ */
+
+/**
+ *  @param sq_hamiltonian           the SelectedCI Hamiltonian parameters in an unrestricted orthonormal orbital basis
+ *
+ *  @return the SelectedCI Hamiltonian matrix
+ */
+SquareMatrix<double> SelectedCI::constructHamiltonian(const USQHamiltonian<double>& sq_hamiltonian) const {
+    auto K = sq_hamiltonian.dimension();
+    if (K != this->fock_space.get_K()) {
+        throw std::invalid_argument("SelectedCI::constructHamiltonian(SQHamiltonian<double>): Basis functions of the Fock space and sq_hamiltonian are incompatible.");
+    }
+
+    auto dim = fock_space.get_dimension();
+
+    SquareMatrix<double> result_matrix = SquareMatrix<double>::Zero(dim, dim);
+    result_matrix += this->calculateDiagonal(sq_hamiltonian).asDiagonal();
+
+    // We should put the calculated elements inside the result matrix
+    PassToMethod addToMatrix = [&result_matrix](size_t I, size_t J, double value) { result_matrix(I, J) += value; };
+    
+    this->evaluateHamiltonianElements(sq_hamiltonian, addToMatrix);
+    return result_matrix;
+}
+
+
+/**
+ *  @param sq_hamiltonian               the SelectedCI Hamiltonian parameters in an unrestricted orthonormal orbital basis
+ *  @param x                            the vector upon which the SelectedCI Hamiltonian acts
+ *  @param diagonal                     the diagonal of the SelectedCI Hamiltonian matrix
+ *
+ *  @return the action of the SelectedCI Hamiltonian on the coefficient vector
+ */
+VectorX<double> SelectedCI::matrixVectorProduct(const USQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
+
+    auto K = sq_hamiltonian.dimension();
     if (K != this->fock_space.get_K()) {
         throw std::invalid_argument("SelectedCI::matrixVectorProduct(SQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the Fock space and sq_hamiltonian are incompatible.");
     }
@@ -247,14 +285,13 @@ VectorX<double> SelectedCI::matrixVectorProduct(const SQHamiltonian<double>& sq_
 
 
 /**
- *  @param sq_hamiltonian               the SelectedCI Hamiltonian parameters in an orthonormal orbital basis
+ *  @param sq_hamiltonian               the SelectedCI Hamiltonian parameters in an unrestricted orthonormal orbital basis
  *
  *  @return the diagonal of the matrix representation of the SelectedCI Hamiltonian
  */
-VectorX<double> SelectedCI::calculateDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const {
+VectorX<double> SelectedCI::calculateDiagonal(const USQHamiltonian<double>& sq_hamiltonian) const {
     return this->fock_space.evaluateOperatorDiagonal(sq_hamiltonian);
 }
-
 
 
 }  // namespace GQCP
