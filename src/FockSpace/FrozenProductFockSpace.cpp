@@ -59,7 +59,19 @@ FrozenProductFockSpace::FrozenProductFockSpace(const ProductFockSpace& fock_spac
  *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the Fock space
  */
 SquareMatrix<double> FrozenProductFockSpace::evaluateOperatorDense(const USQHamiltonian<double>& usq_hamiltonian, bool diagonal_values) const {
-    
+        // Freeze the operators
+    const auto frozen_usq_hamiltonian = BaseFrozenCoreFockSpace::freezeOperator(usq_hamiltonian, this->X);
+
+    // Evaluate the frozen operator in the active space
+    auto evaluation = this->active_product_fock_space.evaluateOperatorDense(frozen_usq_hamiltonian, diagonal_values);
+
+    if (diagonal_values) {
+        // Diagonal correction
+        const auto frozen_core_diagonal = BaseFrozenCoreFockSpace::frozenCoreDiagonal(frozen_usq_hamiltonian, this->X, this->active_product_fock_space.get_dimension());
+        evaluation += frozen_core_diagonal.asDiagonal();
+    }
+
+    return evaluation;
 }
 
 /**
@@ -70,6 +82,15 @@ SquareMatrix<double> FrozenProductFockSpace::evaluateOperatorDense(const USQHami
  *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the Fock space
  */
 VectorX<double> FrozenProductFockSpace::evaluateOperatorDiagonal(const USQHamiltonian<double>& usq_hamiltonian) const {
+    const auto frozen_usq_hamiltonian = BaseFrozenCoreFockSpace::freezeOperator(usq_hamiltonian, this->X);
+
+    // Calculate diagonal in the active space with the "frozen" Hamiltonian
+    const auto diagonal = this->active_product_fock_space.evaluateOperatorDiagonal(frozen_usq_hamiltonian);
+
+    // Calculate diagonal for the frozen orbitals
+    const auto frozen_core_diagonal = BaseFrozenCoreFockSpace::frozenCoreDiagonal(frozen_usq_hamiltonian, this->X, this->active_product_fock_space.get_dimension());
+
+    return diagonal + frozen_core_diagonal;
 
 }
 

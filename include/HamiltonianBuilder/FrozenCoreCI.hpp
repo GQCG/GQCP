@@ -20,6 +20,7 @@
 
 #include "HamiltonianBuilder/HamiltonianBuilder.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
+#include "Operator/SecondQuantized/USQHamiltonian.hpp"
 
 
 namespace GQCP {

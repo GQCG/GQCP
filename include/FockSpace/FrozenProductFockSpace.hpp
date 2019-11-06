@@ -65,6 +65,29 @@ public:
 
     const ProductFockSpace& get_active_product_fock_space() const { return this->active_product_fock_space; }
     FockSpaceType get_type() const override { return FockSpaceType::FrozenProductFockSpace; }
+
+    using BaseFrozenCoreFockSpace::evaluateOperatorDense;
+    using BaseFrozenCoreFockSpace::evaluateOperatorDiagonal;
+
+    // UNRESTRICTED
+    /**
+     *  Evaluate the Hamiltonian in a dense matrix
+     *
+     *  @param usq_hamiltonian                the Hamiltonian expressed in an unrestricted orthonormal basis 
+     *  @param diagonal_values                bool to indicate if diagonal values will be calculated
+     *
+     *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the Fock space
+     */
+    SquareMatrix<double> evaluateOperatorDense(const USQHamiltonian<double>& usq_hamiltonian, bool diagonal_values) const;
+
+    /**
+     *  Evaluate the diagonal of the Hamiltonian
+     *
+     *  @param usq_hamiltonian_alpha          the Hamiltonian expressed in an unrestricted orthonormal basis 
+     *
+     *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the Fock space
+     */
+    VectorX<double> evaluateOperatorDiagonal(const USQHamiltonian<double>& usq_hamiltonian) const;
 };
 
 

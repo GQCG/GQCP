@@ -391,46 +391,6 @@ VectorX<double> BaseFrozenCoreFockSpace::frozenCoreDiagonal(const SQHamiltonian<
 
 
 /*
- *  UNRESTRICTED
- */ 
-
-/**
- *  Evaluate the Hamiltonian in a dense matrix
- *
- *  @param usq_hamiltonian                the Hamiltonian expressed in an unrestricted orthonormal basis 
- *  @param diagonal_values                bool to indicate if diagonal values will be calculated
- *
- *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the Fock space
- */
-SquareMatrix<double> BaseFrozenCoreFockSpace::evaluateOperatorDense(const USQHamiltonian<double>& usq_hamiltonian, bool diagonal_values) const {
-        // Freeze the operators
-    const auto frozen_ham_par = BaseFrozenCoreFockSpace::freezeOperator(usq_hamiltonian, this->X);
-
-    // Evaluate the frozen operator in the active space
-    auto evaluation = this->active_fock_space->evaluateOperatorDense(frozen_ham_par, diagonal_values);
-
-    if (diagonal_values) {
-        // Diagonal correction
-        const auto frozen_core_diagonal = BaseFrozenCoreFockSpace::frozenCoreDiagonal(usq_hamiltonian, this->X, this->active_fock_space->get_dimension());
-        evaluation += frozen_core_diagonal.asDiagonal();
-    }
-
-    return evaluation;
-}
-
-
-/**
- *  Evaluate the diagonal of the Hamiltonian
- *
- *  @param usq_hamiltonian_alpha          the Hamiltonian expressed in an unrestricted orthonormal basis 
- *
- *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the Fock space
- */
-VectorX<double> BaseFrozenCoreFockSpace::evaluateOperatorDiagonal(const USQHamiltonian<double>& usq_hamiltonian) const {
-
-}
-
-/*
  *  STATIC UNRESTRICTED
  */ 
 
@@ -452,7 +412,7 @@ VectorX<double> BaseFrozenCoreFockSpace::frozenCoreDiagonal(const USQHamiltonian
     }
 
     const auto& two_op_par_mixed = usq_hamiltonian.twoElectronMixed().parameters();
-    const auto& two_op_par = QCRankFourTensor<double>(usq_hamiltonian.alphaHamiltonian().twoElectron().parameters() + usq_hamiltonian.betaHamiltonian().twoElectron().parameters());
+    const auto& two_op_par = QCRankFourTensor<double>(usq_hamiltonian.alphaHamiltonian().twoElectron().parameters().Eigen() + usq_hamiltonian.betaHamiltonian().twoElectron().parameters().Eigen());
 
     for (size_t i = 0; i < X; i++) {
         value += two_op_par_mixed(i,i,i,i);
@@ -475,14 +435,43 @@ VectorX<double> BaseFrozenCoreFockSpace::frozenCoreDiagonal(const USQHamiltonian
  */
 USQHamiltonian<double> BaseFrozenCoreFockSpace::freezeOperator(const USQHamiltonian<double>& usq_hamiltonian, size_t X) {
     
-    size_t K_active = sq_hamiltonian.dimension() - X;  // number of non-frozen orbitals
+    size_t K_active = usq_hamiltonian.dimension() - X;  // number of non-frozen orbitals
 
-    const auto frozen_components_g = BaseFrozenCoreFockSpace::freezeOperator(sq_hamiltonian.twoElectron(), X);
+    QCMatrix<double> frozen_one_op_par_alpha = usq_hamiltonian.alphaHamiltonian().core().parameters().block(X, X, K_active, K_active);
+    QCMatrix<double> frozen_one_op_par_beta = usq_hamiltonian.alphaHamiltonian().core().parameters().block(X, X, K_active, K_active);
 
-    ScalarSQOneElectronOperator<double> h = BaseFrozenCoreFockSpace::freezeOperator(sq_hamiltonian.core(), X) + frozen_components_g.one_op;  // active
-    ScalarSQTwoElectronOperator<double> g = frozen_components_g.two_op;
+    const auto& two_op_par_alpha = usq_hamiltonian.alphaHamiltonian().twoElectron().parameters();
+    const auto& two_op_par_beta = usq_hamiltonian.betaHamiltonian().twoElectron().parameters();
+    const auto& two_op_par_mixed = usq_hamiltonian.twoElectronMixed().parameters();
 
-    return SQHamiltonian<double>(h, g);
+    QCRankFourTensor<double> frozen_two_op_par_alpha = QCRankFourTensor<double>::FromBlock(usq_hamiltonian.alphaHamiltonian().twoElectron().parameters(), X, X, X, X);
+    const auto frozen_two_op_par_beta = QCRankFourTensor<double>::FromBlock(usq_hamiltonian.betaHamiltonian().twoElectron().parameters(), X, X, X, X);
+    const auto frozen_two_op_par_mixed = QCRankFourTensor<double>::FromBlock(usq_hamiltonian.twoElectronMixed().parameters(), X, X, X, X);
+
+    // Frozen two-electron integrals can be rewritten partially as one electron integrals.
+    for (size_t i = 0; i < K_active; i++) {  // iterate over the active orbitals
+        size_t q = i + X;  // map active orbitals indexes to total orbital indexes (those including the frozen orbitals)
+
+        for (size_t l = 0; l < X; l++) {  // iterate over the frozen orbitals
+            frozen_one_op_par_alpha(i,i) += two_op_par_mixed(q,q,l,l) + frozen_two_op_par_alpha(l,l,q,q) - frozen_two_op_par_alpha(q,l,l,q)/2 - frozen_two_op_par_alpha(l,q,q,l)/2;
+            // There's a small catch here, the variable 'two_op_par_mixed' is represented as g_aabb, the formulas dictate we need g_bbaa for the beta component, hence we switched the indices
+            frozen_one_op_par_beta(i,i) += two_op_par_mixed(l,l,q,q) + frozen_two_op_par_beta(l,l,q,q) - frozen_two_op_par_beta(q,l,l,q)/2 - frozen_two_op_par_beta(l,q,q,l)/2;
+        }
+
+        for (size_t j = i+1; j < K_active; j++) {  // iterate over the active orbitals
+            size_t p = j + X;  // map active orbitals indexes to total orbital indexes (those including the frozen orbitals)
+
+            for (size_t l = 0; l < X; l++) {  // iterate over the frozen orbitals
+                frozen_one_op_par_alpha(i,j) += two_op_par_mixed(q,p,l,l) + frozen_two_op_par_alpha(l,l,q,p) - frozen_two_op_par_alpha(q,l,l,p)/2 - frozen_two_op_par_alpha(l,p,q,l)/2;
+                frozen_one_op_par_beta(i,j) += two_op_par_mixed(l,l,q,p) + frozen_two_op_par_beta(l,l,q,p) - frozen_two_op_par_beta(q,l,l,p)/2 - frozen_two_op_par_beta(l,p,q,l)/2;
+
+                frozen_one_op_par_alpha(j,i) += two_op_par_mixed(p,q,l,l) + frozen_two_op_par_alpha(l,l,p,q) - frozen_two_op_par_alpha(p,l,l,q)/2 - frozen_two_op_par_alpha(l,q,p,l)/2;
+                frozen_one_op_par_beta(j,i) += two_op_par_mixed(l,l,p,q) + frozen_two_op_par_beta(l,l,p,q) - frozen_two_op_par_beta(p,l,l,q)/2 - frozen_two_op_par_beta(l,q,p,l)/2;
+            }
+        }
+    }
+
+    return USQHamiltonian<double>(SQHamiltonian<double>(ScalarSQOneElectronOperator<double>({frozen_one_op_par_alpha}), ScalarSQTwoElectronOperator<double>({frozen_two_op_par_alpha})), SQHamiltonian<double>(ScalarSQOneElectronOperator<double>({frozen_one_op_par_beta}), ScalarSQTwoElectronOperator<double>({frozen_two_op_par_beta})), ScalarSQTwoElectronOperator<double>({frozen_two_op_par_mixed}));
 
 }
 

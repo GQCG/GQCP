@@ -35,6 +35,69 @@ FrozenCoreFCI::FrozenCoreFCI(const FrozenProductFockSpace& fock_space) :
     fock_space (fock_space)
 {}
 
+/*
+ *  PUBLIC METHODS UNRESTRICTED METHODS
+ */
+
+/**
+ *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
+ *
+ *  @return the frozen core Hamiltonian matrix
+ */
+SquareMatrix<double> FrozenCoreFCI::constructHamiltonian(const USQHamiltonian<double>& sq_hamiltonian) const {
+
+    // Freeze the Hamiltonian
+    const auto frozen_ham_par = BaseFrozenCoreFockSpace::freezeOperator(sq_hamiltonian, X);
+    const auto& fci = static_cast<const FCI&>(*this->active_hamiltonian_builder);
+
+    // calculate Hamiltonian matrix through conventional CI
+    SquareMatrix<double> total_hamiltonian = fci.constructHamiltonian(frozen_ham_par);
+
+    // diagonal correction
+    VectorX<double> diagonal = VectorX<double>::Ones(this->fock_space.get_dimension());
+    auto frozen_core_diagonal = BaseFrozenCoreFockSpace::frozenCoreDiagonal(sq_hamiltonian, this->X, fci.get_fock_space()->get_dimension());
+    total_hamiltonian += frozen_core_diagonal.asDiagonal();
+
+    return total_hamiltonian;
+}
+
+
+/**
+ *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis
+ *  @param x                    the vector upon which the Hamiltonian acts
+ *  @param diagonal             the diagonal of the Hamiltonian matrix
+ *
+ *  @return the action of the frozen core Hamiltonian on the coefficient vector
+ */
+VectorX<double> FrozenCoreFCI::matrixVectorProduct(const USQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
+
+    const auto frozen_ham_par = BaseFrozenCoreFockSpace::freezeOperator(sq_hamiltonian, X);
+    const auto& fci = static_cast<const FCI&>(*this->active_hamiltonian_builder);
+
+
+    // Perform the matvec in the active space with the "frozen"
+    return fci.matrixVectorProduct(frozen_ham_par, x, diagonal);
+}
+
+
+/**
+ *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
+ *
+ *  @return the diagonal of the matrix representation of the frozen core Hamiltonian
+ */
+VectorX<double> FrozenCoreFCI::calculateDiagonal(const USQHamiltonian<double>& sq_hamiltonian) const {
+
+    const auto frozen_ham_par = BaseFrozenCoreFockSpace::freezeOperator(sq_hamiltonian, this->X);
+    const auto& fci = static_cast<const FCI&>(*this->active_hamiltonian_builder);
+
+    // Calculate the diagonal in the active space with the "frozen" Hamiltonian
+    VectorX<double> diagonal = fci.calculateDiagonal(frozen_ham_par);
+
+    // Calculate the diagonal for the frozen orbitals
+    auto frozen_core_diagonal = BaseFrozenCoreFockSpace::frozenCoreDiagonal(sq_hamiltonian, this->X, fci.get_fock_space()->get_dimension());
+
+    return diagonal + frozen_core_diagonal;
+}
 
 
 }  // namespace GQCP
