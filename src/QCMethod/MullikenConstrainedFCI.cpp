@@ -46,6 +46,7 @@ void MullikenConstrainedFCI::parseSolution(const std::vector<Eigenpair>& eigenpa
         this->population = std::vector<double>(eigenpairs.size());
         this->lambda = std::vector<double>(eigenpairs.size());
         this->entropy = std::vector<double>(eigenpairs.size());
+        this->sz = std::vector<double>(eigenpairs.size());
 
         if (molecule.numberOfAtoms() == 2) {
             this->A_fragment_energy = std::vector<double>(eigenpairs.size());
@@ -139,7 +140,6 @@ MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const s
         throw std::runtime_error("MullikenConstrainedFCI::MullikenConstrainedFCI(): This module is not available for an odd number of electrons");
     }
 
-
     auto K = this->sp_basis.numberOfBasisFunctions();
     auto N_P = this->molecule.numberOfElectrons()/2;
 
@@ -212,10 +212,12 @@ MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const s
         }
     }
 
+    this->usq_hamiltonian = USQHamiltonian(this->sq_hamiltonian, this->sq_hamiltonian, this->sq_hamiltonian.twoElectron());
 
     this->fock_space = FrozenProductFockSpace(K, N_P, N_P, frozencores);
     this->fci = FrozenCoreFCI(fock_space);
     this->mulliken_operator = this->sp_basis.calculateMullikenOperator(basis_targets);
+    this->sq_sz_operator = this->sp_basis.calculateAtomicSzOperator(basis_targets);
 
 
     // Atomic Decomposition is only available for diatomic molecules
@@ -244,6 +246,7 @@ void MullikenConstrainedFCI::solveMullikenDavidson(const double multiplier, cons
     const auto constrained_ham_par = this->sq_hamiltonian.constrain(this->mulliken_operator, multiplier);
     CISolver ci_solver (fci, constrained_ham_par);
     DavidsonSolverOptions solver_options (fock_space.HartreeFockExpansion());
+    
     try {
         ci_solver.solve(solver_options);
     } catch (const std::exception& e) {
@@ -256,7 +259,7 @@ void MullikenConstrainedFCI::solveMullikenDavidson(const double multiplier, cons
 
     auto stop_time = std::chrono::high_resolution_clock::now();
 
-    auto elapsed_time = stop_time- start_time;  // in nanoseconds
+    auto elapsed_time = stop_time - start_time;  // in nanoseconds
     this->solve_time = static_cast<double>(elapsed_time.count() / 1e9);  // in seconds
 }
 
@@ -304,7 +307,7 @@ void MullikenConstrainedFCI::solveMullikenDense(const double multiplier, const s
 
     auto stop_time = std::chrono::high_resolution_clock::now();
 
-    auto elapsed_time = stop_time- start_time;  // in nanoseconds
+    auto elapsed_time = stop_time - start_time;  // in nanoseconds
     this->solve_time = static_cast<double>(elapsed_time.count() / 1e9);  // in seconds
 }
 

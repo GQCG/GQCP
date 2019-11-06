@@ -69,6 +69,7 @@ public:
     using BaseFrozenCoreFockSpace::evaluateOperatorDense;
     using BaseFrozenCoreFockSpace::evaluateOperatorDiagonal;
 
+
     // UNRESTRICTED
     /**
      *  Evaluate the Hamiltonian in a dense matrix
