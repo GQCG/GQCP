@@ -411,6 +411,7 @@ VectorX<double> BaseFrozenCoreFockSpace::frozenCoreDiagonal(const USQHamiltonian
     const auto& two_op_par_b = usq_hamiltonian.betaHamiltonian().twoElectron().parameters();
     
     // The diagonal value for the frozen orbitals is the same for each ONV
+    double value = 0;
     for (size_t i = 0; i < X; i++) {
         value += two_op_par_mixed(i,i,i,i);
         value += one_op_par_alpha(i,i) + one_op_par_beta(i,i);

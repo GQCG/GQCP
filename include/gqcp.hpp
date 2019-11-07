@@ -126,6 +126,7 @@
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/SQTwoElectronOperator.hpp"
+#include "Operator/SecondQuantized/USQHamiltonian.hpp"
 
 #include "OrbitalOptimization/Localization/ERJacobiLocalizer.hpp"
 #include "OrbitalOptimization/Localization/ERNewtonLocalizer.hpp"
