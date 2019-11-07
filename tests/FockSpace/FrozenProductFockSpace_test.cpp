@@ -165,7 +165,7 @@ BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_diagonal ) {
 
 BOOST_AUTO_TEST_CASE ( FrozenProductFockSpace_evaluateOperator_diagonal_unrestricted_vs_selected ) {
 
-    // This test the results from the restricted framework to that of the unrestricted framework in an unrestricted basis versus the evaluation of selected
+    // This test the evaluations in an unrestricted basis for the FrozenProductFockSpace versus the evaluation of the selected module
     GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
     GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis_alpha (hchain, "STO-3G");
     GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis_beta (hchain, "STO-3G");

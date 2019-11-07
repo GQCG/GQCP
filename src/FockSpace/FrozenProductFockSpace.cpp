@@ -49,7 +49,10 @@ FrozenProductFockSpace::FrozenProductFockSpace(const ProductFockSpace& fock_spac
 {}
 
 
-// UNRESTRICTED
+/*
+ *  UNRESTRICTED
+ */
+
 /**
  *  Evaluate the Hamiltonian in a dense matrix
  *
@@ -59,7 +62,7 @@ FrozenProductFockSpace::FrozenProductFockSpace(const ProductFockSpace& fock_spac
  *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the Fock space
  */
 SquareMatrix<double> FrozenProductFockSpace::evaluateOperatorDense(const USQHamiltonian<double>& usq_hamiltonian, bool diagonal_values) const {
-        // Freeze the operators
+    // Freeze the operators
     const auto frozen_usq_hamiltonian = BaseFrozenCoreFockSpace::freezeOperator(usq_hamiltonian, this->X);
 
     // Evaluate the frozen operator in the active space

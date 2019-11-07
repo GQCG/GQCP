@@ -145,7 +145,7 @@ BOOST_AUTO_TEST_CASE ( FCI_H2O_Psi4_GAMESS_dense ) {
 
 BOOST_AUTO_TEST_CASE ( FCI_H2O_Unrestricted ) {
 
-    // Test if a transformation to an unrestricted basis results in identical energies for FCI
+    // Test if a transformation of a single compoenent for an unrestricted basis results in identical energies for FCI
 
     // Psi4 and GAMESS' FCI energy (restricted)
     double reference_fci_energy = -75.0129803939602;
@@ -164,7 +164,6 @@ BOOST_AUTO_TEST_CASE ( FCI_H2O_Unrestricted ) {
     // Create stable unitairy matrix
     Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes (usq_hamiltonian.alphaHamiltonian().core().parameters());
     GQCP::basisTransformBeta(sp_basis_beta, usq_hamiltonian, GQCP::TransformationMatrix<double>(saes.eigenvectors()));
-
 
     GQCP::ProductFockSpace fock_space (K, h2o.numberOfElectrons()/2, h2o.numberOfElectrons()/2);  // dim = 441
 

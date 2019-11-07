@@ -526,7 +526,6 @@ VectorX<double> SelectedFockSpace::evaluateOperatorDiagonal(const USQHamiltonian
         throw std::invalid_argument("SelectedFockSpace::evaluateOperatorDiagonal(USQHamiltonian<double>): Basis functions of the Fock space and the operator are incompatible.");
     }
 
-    
     const auto& h_a = sq_hamiltonian.alphaHamiltonian().core().parameters();
     const auto& g_a = sq_hamiltonian.alphaHamiltonian().twoElectron().parameters();
     const auto& h_b = sq_hamiltonian.betaHamiltonian().core().parameters();
@@ -535,7 +534,6 @@ VectorX<double> SelectedFockSpace::evaluateOperatorDiagonal(const USQHamiltonian
 
     // Diagonal contributions
     VectorX<double> diagonal = VectorX<double>::Zero(dim);
-
     for (size_t I = 0; I < dim; I++) {  // Ia loops over addresses of alpha onvs
         Configuration configuration_I = this->get_configuration(I);
         ONV alpha_I = configuration_I.onv_alpha;

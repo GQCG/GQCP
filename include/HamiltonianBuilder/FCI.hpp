@@ -74,7 +74,7 @@ public:
     VectorX<double> calculateDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const override;
 
 
-    // PUBLIC METHODS UNRESTRICTED METHODS
+    // UNRESTRICTED METHODS
     /**
      *  @param usq_hamiltonian                the Hamiltonian expressed in an unrestricted orthonormal basis 
      *

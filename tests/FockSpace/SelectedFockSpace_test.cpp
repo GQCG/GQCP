@@ -161,8 +161,7 @@ BOOST_AUTO_TEST_CASE ( Selected_H2O_evaluation ) {
 
 BOOST_AUTO_TEST_CASE ( Selected_H2O_Unrestricted ) {
 
-    // Test if a transformation to an unrestricted basis results in identical energies for FCI using the SelectedCI module
-
+    // Test if a transformation of a single component for an unrestricted basis results in identical energies for FCI using the SelectedCI module
     // Psi4 and GAMESS' FCI energy (restricted)
     double reference_fci_energy = -75.0129803939602;
 

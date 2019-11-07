@@ -395,7 +395,7 @@ VectorX<double> BaseFrozenCoreFockSpace::frozenCoreDiagonal(const SQHamiltonian<
  */ 
 
 /**
- *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis
+ *  @param usq_hamiltonian      the Hamiltonian expressed in an unrestricted orthonormal basis
  *  @param X                    the number of frozen orbitals
  *  @param dimension            the dimension of the diagonal
  *
@@ -406,20 +406,14 @@ VectorX<double> BaseFrozenCoreFockSpace::frozenCoreDiagonal(const USQHamiltonian
     QCMatrix<double> one_op_par_alpha = usq_hamiltonian.alphaHamiltonian().core().parameters();
     QCMatrix<double> one_op_par_beta = usq_hamiltonian.betaHamiltonian().core().parameters();
 
-
-    // The diagonal value for the frozen orbitals is the same for each ONV
-    double value = 0;
-    for (size_t i = 0; i < X; i++) {
-        value += one_op_par_alpha(i,i) + one_op_par_beta(i,i);
-    }
-
     const auto& two_op_par_mixed = usq_hamiltonian.twoElectronMixed().parameters();
     const auto& two_op_par_a = usq_hamiltonian.alphaHamiltonian().twoElectron().parameters();
     const auto& two_op_par_b = usq_hamiltonian.betaHamiltonian().twoElectron().parameters();
-
+    
+    // The diagonal value for the frozen orbitals is the same for each ONV
     for (size_t i = 0; i < X; i++) {
         value += two_op_par_mixed(i,i,i,i);
-
+        value += one_op_par_alpha(i,i) + one_op_par_beta(i,i);
         for (size_t j = i+1; j < X; j++) {
             value += two_op_par_mixed(i,i,j,j) + two_op_par_mixed(j,j,i,i) + two_op_par_a(i,i,j,j)/2 + two_op_par_a(j,j,i,i)/2 - two_op_par_a(j,i,i,j)/2 - two_op_par_a(i,j,j,i)/2  + two_op_par_b(i,i,j,j)/2 + two_op_par_b(j,j,i,i)/2 - two_op_par_b(j,i,i,j)/2 - two_op_par_b(i,j,j,i)/2;
         }
@@ -430,7 +424,7 @@ VectorX<double> BaseFrozenCoreFockSpace::frozenCoreDiagonal(const USQHamiltonian
 
 
 /**
- *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis
+ *  @param usq_hamiltonian      the Hamiltonian expressed in an unrestricted orthonormal basis
  *  @param X                    the number of frozen orbitals
  *
  *  @return a 'frozen' Hamiltonian which cover two-electron integral evaluations from the active and inactive orbitals

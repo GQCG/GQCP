@@ -109,7 +109,7 @@ void basisRotate(SingleParticleBasis<double, ShellType>& sp_basis, SQHamiltonian
  *  @tparam ShellType                   the type of shell that the scalar basis contains
  *  @tparam TransformationScalar        the scalar type of the transformation matrix
  * 
- *  @param sp_basis                     the single-particle basis
+ *  @param sp_basis                     the single-particle basis for the alpha component
  *  @param usq_hamiltonian              the Hamiltonian
  *  @param T                            the transformation matrix
  */
@@ -126,7 +126,7 @@ void basisTransformAlpha(SingleParticleBasis<TransformationScalar, ShellType>& s
  *  @tparam ShellType                   the type of shell that the scalar basis contains
  *  @tparam TransformationScalar        the scalar type of the transformation matrix
  * 
- *  @param sp_basis                     the single-particle basis
+ *  @param sp_basis                     the single-particle basis for the beta component
  *  @param usq_hamiltonian              the Hamiltonian
  *  @param T                            the transformation matrix
  */
@@ -143,8 +143,8 @@ void basisTransformBeta(SingleParticleBasis<TransformationScalar, ShellType>& sp
  *  @tparam ShellType                   the type of shell that the scalar basis contains
  *  @tparam TransformationScalar        the scalar type of the transformation matrix
  * 
- *  @param sp_basis_alpha               the single-particle basis
- *  @param sp_basis_beta                the single-particle basis
+ *  @param sp_basis_alpha               the single-particle basis for the alpha component
+ *  @param sp_basis_beta                the single-particle basis for the beta component
  *  @param usq_hamiltonian              the Hamiltonian
  *  @param T                            the transformation matrix
  */

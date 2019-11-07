@@ -202,7 +202,7 @@ BOOST_AUTO_TEST_CASE ( FCI_H6_STO_3G_dense_vs_Davidson ) {
 
 BOOST_AUTO_TEST_CASE ( FCI_H2O_Unrestricted_Davidson ) {
 
-    // Test if a transformation to an unrestricted basis results in identical energies for FCI
+    // Test if a transformation of a single compoenent for an unrestricted basis results in identical energies for FCI
 
     // Psi4 and GAMESS' FCI energy (restricted)
     double reference_fci_energy = -75.0129803939602;

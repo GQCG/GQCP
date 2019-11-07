@@ -25,7 +25,9 @@ namespace GQCP {
 
 
 /**
- *  A class for representing the second-quantized electronic Hamiltonian, it consists of one-electron and two-electron contributions
+ *  A class for representing the unrestricted second-quantized electronic Hamiltonian
+ *  It consists of two restricted Hamiltonians for both the beta and alpha component and a mixed two-electron term
+ * 
  *
  *  @tparam Scalar      the scalar type of the second-quantized parameters (i.e. the integrals)
  */
@@ -75,7 +77,6 @@ public:
             total_two_op_par += two_op.parameters().Eigen();
         }
         this->total_two_op_mixed = ScalarSQTwoElectronOperator<Scalar>({total_two_op_par});
-
     }
 
     /**

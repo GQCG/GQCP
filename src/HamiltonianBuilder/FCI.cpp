@@ -113,7 +113,7 @@ VectorX<double> FCI::calculateDiagonal(const SQHamiltonian<double>& sq_hamiltoni
 
 
 /**
- *  PUBLIC METHODS UNRESTRICTED METHODS
+ *  UNRESTRICTED METHODS
  */ 
 
 /**

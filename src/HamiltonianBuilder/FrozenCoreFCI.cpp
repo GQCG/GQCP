@@ -36,11 +36,11 @@ FrozenCoreFCI::FrozenCoreFCI(const FrozenProductFockSpace& fock_space) :
 {}
 
 /*
- *  PUBLIC METHODS UNRESTRICTED METHODS
+ *  UNRESTRICTED METHODS
  */
 
 /**
- *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
+ *  @param sq_hamiltonian           the Hamiltonian expressed in an unrestricted orthonormal basis
  *
  *  @return the frozen core Hamiltonian matrix
  */
@@ -63,7 +63,7 @@ SquareMatrix<double> FrozenCoreFCI::constructHamiltonian(const USQHamiltonian<do
 
 
 /**
- *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis
+ *  @param sq_hamiltonian       the Hamiltonian expressed in an unrestricted orthonormal basis
  *  @param x                    the vector upon which the Hamiltonian acts
  *  @param diagonal             the diagonal of the Hamiltonian matrix
  *
@@ -81,7 +81,7 @@ VectorX<double> FrozenCoreFCI::matrixVectorProduct(const USQHamiltonian<double>&
 
 
 /**
- *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
+ *  @param sq_hamiltonian           the Hamiltonian expressed in an unrestricted orthonormal basis
  *
  *  @return the diagonal of the matrix representation of the frozen core Hamiltonian
  */

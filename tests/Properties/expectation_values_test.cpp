@@ -120,7 +120,7 @@ BOOST_AUTO_TEST_CASE ( mulliken_N2_STO_3G ) {
 BOOST_AUTO_TEST_CASE ( S_z_constrained_NOplus_STO_3G ) {
 
     // Break the S_z for a single fragment and test that the total S_z is still 0
-    // Initialize the molecule and the molecular Hamiltonian for N2
+    // Initialize the molecule and the molecular Hamiltonian for NO+
     GQCP::Nucleus N (7, 0.0, 0.0, 0.0);
     GQCP::Nucleus O (8, 0.0, 0.0, 2);  
     std::vector<GQCP::Nucleus> nuclei {N, O};
@@ -129,6 +129,7 @@ BOOST_AUTO_TEST_CASE ( S_z_constrained_NOplus_STO_3G ) {
     GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis_alpha (NOplus, "STO-3G");
     GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis_beta (NOplus, "STO-3G");
     auto usq_hamiltonian = GQCP::USQHamiltonian<double>::Molecular(sp_basis_alpha, sp_basis_beta, NOplus);  // in an AO basis
+    
     // Create restricted Hamiltonian to perform RHF
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis_alpha, NOplus);  // in an AO basis
     size_t K = sq_hamiltonian.dimension();

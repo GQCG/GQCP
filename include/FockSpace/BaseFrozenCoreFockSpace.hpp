@@ -192,7 +192,7 @@ public:
 
     // STATIC UNRESTRICTED
     /**
-     *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis
+     *  @param usq_hamiltonian      the Hamiltonian expressed in an unrestricted orthonormal basis
      *  @param X                    the number of frozen orbitals
      *  @param dimension            the dimension of the diagonal
      *
@@ -201,7 +201,7 @@ public:
     static VectorX<double> frozenCoreDiagonal(const USQHamiltonian<double>& usq_hamiltonian, size_t X, size_t dimension);
 
     /**
-     *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis
+     *  @param usq_hamiltonian      the Hamiltonian expressed in an unrestricted orthonormal basis
      *  @param X                    the number of frozen orbitals
      *
      *  @return a 'frozen' Hamiltonian which cover two-electron integral evaluations from the active and inactive orbitals
