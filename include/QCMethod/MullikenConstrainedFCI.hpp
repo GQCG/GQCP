@@ -57,8 +57,9 @@ private:
     std::vector<double> energy;
     std::vector<double> population; 
     std::vector<double> lambda;
+    std::vector<double> lambda_sz;
     std::vector<double> entropy;
-    std::vector<double> s_z;
+    std::vector<double> sz;
 
 
     // Decomposed solutions
@@ -77,8 +78,9 @@ private:
      *  
      *  @param eigenpairs           the eigenpairs from the CI solver
      *  @param multiplier           the Lagrangian multiplier associated with the solution
+     *  @param sz_multiplier        a given multiplier for the atomic Sz constraint
      */ 
-    void parseSolution(const std::vector<Eigenpair>& eigenpairs, const double multiplier);
+    void parseSolution(const std::vector<Eigenpair>& eigenpairs, const double multiplier, const double sz_multiplier = 0);
 
     /**
      *  Throws an error if no solution is available
@@ -132,7 +134,7 @@ public:
      *  @param nos                  the number of eigenpairs or "states" that should be stored for each multiplier``
      *  @param sz_multiplier        a given multiplier for the atomic Sz constraint
      */
-    void solveMullikenDense(const double multiplier, const size_t nos,  const double sz_multiplier = 0);
+    void solveMullikenDense(const double multiplier, const size_t nos, const double sz_multiplier);
 
     /**
      *  @param index                refers to the index of the number of requested states 
@@ -142,6 +144,7 @@ public:
     double get_energy(const size_t index = 0) const { this->checkAvailableSolutions("get_energy"); return this->energy[index]; };
     double get_population(const size_t index = 0) const { this->checkAvailableSolutions("get_population"); return this->population[index]; };
     double get_lambda(const size_t index = 0) const { this->checkAvailableSolutions("get_lambda"); return this->lambda[index]; };
+    double get_lambda_sz(const size_t index = 0) const { this->checkAvailableSolutions("get_lambda_sz"); return this->lambda_sz[index]; };
     double get_entropy(const size_t index = 0) const { this->checkAvailableSolutions("get_entropy"); return this->entropy[index]; };
     double get_sz(const size_t index = 0) const { this->checkAvailableSolutions("get_sz"); return this->sz[index]; };
     double get_A_fragment_energy(const size_t index = 0) const { this->checkAvailableSolutions("get_A_fragment_energy"); this->checkDiatomicMolecule("get_A_fragment_energy"); return this->A_fragment_energy[index]; };

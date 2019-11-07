@@ -179,7 +179,7 @@ BOOST_AUTO_TEST_CASE ( S_z_constrained_NOplus_STO_3G ) {
 
     auto one_rdms = rdm_calc.calculate1RDMs();
     // Calculate spin density
-    GQCP::OneRDM<double> spin_d = GQCP::OneRDM<double> (one_rdms.one_rdm_aa - one_rdms.one_rdm_bb);
+    GQCP::OneRDM<double> spin_d = GQCP::OneRDM<double>(one_rdms.one_rdm_aa - one_rdms.one_rdm_bb);
 
     // Evaluate S_z for O and N
     double N_Sz = GQCP::calculateExpectationValue(sq_N_Sz, spin_d)[0];

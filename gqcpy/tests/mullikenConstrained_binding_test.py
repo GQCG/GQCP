@@ -32,6 +32,12 @@ class MullikenConstrainedQCM(unittest.TestCase):
         self.reference_self_O_fragment_energy = -72.7239794944369
         self.reference_interaction_energy = -0.651220447214087
 
+        O_2b = gqcpy.Nucleus(8, 2, 0, 0)
+        NO_2b = gqcpy.Molecule([N,O_2b], +1) # The NO+ molecule with an intramolecular distance of 2 bohr
+
+        self.constrained_module_spin = gqcpy.MullikenConstrainedFCI(NO_2b, basis_set, basis_targets)
+        self.atomic_sz = 0.938336864443
+
     def tearDown(self):
         pass
 
@@ -46,6 +52,11 @@ class MullikenConstrainedQCM(unittest.TestCase):
         self.assertAlmostEqual(self.constrained_module.get_B_fragment_energy(), self.reference_O_fragment_energy)
         self.assertAlmostEqual(self.constrained_module.get_B_fragment_self_energy(), self.reference_self_O_fragment_energy)
         self.assertAlmostEqual(self.constrained_module.get_interaction_energy(), self.reference_interaction_energy)
+
+    def test_spin(self):
+        """ compare spin with reference """
+        self.constrained_module.solveMullikenDavidson(0, 0.25)
+        self.assertAlmostEqual(self.constrained_module.get_sz(), self.atomic_sz)
 
     
 if __name__ == '__main__':
