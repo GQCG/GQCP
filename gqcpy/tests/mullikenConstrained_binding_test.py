@@ -56,8 +56,8 @@ class MullikenConstrainedQCM(unittest.TestCase):
 
     def test_spinZ(self):
         """ compare spin-z with reference """
-        self.constrained_module.solveMullikenDavidson(0, 0.5)
-        self.assertAlmostEqual(self.constrained_module.get_sz(), self.atomic_sz)
+        self.constrained_module_spin.solveMullikenDavidson(0, 0.5)
+        self.assertAlmostEqual(self.constrained_module_spin.get_sz(), self.atomic_sz)
 
     
 if __name__ == '__main__':
