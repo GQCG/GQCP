@@ -40,6 +40,22 @@ Vector<double, 3> calculateElectronicDipoleMoment(const VectorSQOneElectronOpera
 
 
 /**
+ *  Calculate the electric polarizability from the linear wave function response
+ * 
+ *  @param F_p          the electric response force (d^2E/dFdp)
+ *  @param x            the linear wave function response
+ * 
+ *  @return the components of the electric polarizability
+ */
+Matrix<double, 3, 3> calculateElectricPolarizability(const Matrix<double, Dynamic, 3>& F_p, const Matrix<double, Dynamic, 3>& x) {
+
+    // No explicit second-order partial perturbation derivative for electrical response
+
+    return - (x.transpose() * F_p);  // minus sign because of definition of electric polarizability
+}
+
+
+/**
  *  Calculate the Dyson 'amplitudes' (the coefficients of a Dyson orbital) between two wave function expressed in the same spinor basis 
  * 
  *  @param wavefunction1        a wave function in a product Fock space  

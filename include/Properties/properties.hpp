@@ -35,6 +35,16 @@ namespace GQCP {
 Vector<double, 3> calculateElectronicDipoleMoment(const VectorSQOneElectronOperator<double>& dipole_operator, const OneRDM<double>& one_rdm);
 
 /**
+ *  Calculate the electric polarizability from the linear wave function response
+ * 
+ *  @param F_p          the electric response force (d^2E/dFdp)
+ *  @param response     the linear wave function response
+ * 
+ *  @return the components of the electric polarizability
+ */
+Matrix<double, 3, 3> calculateElectricPolarizability(const Matrix<double, Dynamic, 3>& F_p, const Matrix<double, Dynamic, 3>& response);
+
+/**
  *  Calculate the Dyson 'amplitudes' (the coefficients of a Dyson orbital) between two wave function expressed in the same spinor basis 
  * 
  *  @param wavefunction1        a wave function in a product Fock space  

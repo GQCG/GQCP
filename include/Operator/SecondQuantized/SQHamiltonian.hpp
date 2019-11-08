@@ -471,6 +471,35 @@ public:
 
 
     /**
+     *  @param N_P          the number of electron pairs
+     * 
+     *  @return the inactive Fockian matrix
+     */
+    ScalarSQOneElectronOperator<Scalar> calculateInactiveFockian(const size_t N_P) const {
+
+        const auto& h_par = this->core().parameters();
+        const auto& g_par = this->twoElectron().parameters();
+
+
+        // A KISS implementation of the calculation of the inactive Fockian matrix
+        auto F_par = h_par;  // one-electron part
+
+        // Two-electron part
+        for (size_t p = 0; p < this->dimension(); p++) {
+            for (size_t q = 0; q < this->dimension(); q++) {
+
+                for (size_t i = 0; i < N_P; i++) {
+                    F_par(p,q) += 2*g_par(p,q,i,i) - g_par(p,i,i,q);
+                }
+
+            }
+        }  // F elements loop
+
+        return ScalarSQOneElectronOperator<Scalar>({F_par});
+    }
+
+
+    /**
      *  @return the effective one-electron integrals
      */
     ScalarSQOneElectronOperator<Scalar> calculateEffectiveOneElectronIntegrals() const {
