@@ -106,6 +106,8 @@ public:
 
         const SQHamiltonian<Scalar> sq_hamiltonian_alpha = SQHamiltonian<double>::Molecular(sp_basis, molecule);
         const SQHamiltonian<Scalar> sq_hamiltonian_beta = SQHamiltonian<double>::Molecular(sp_basis, molecule);
+
+        // Initial basis for alpha and beta are identical so the mixed integrals are identical to spin specific components
         const ScalarSQTwoElectronOperator<double> two_op_mixed = sq_hamiltonian_alpha.twoElectron();
 
         return USQHamiltonian(sq_hamiltonian_alpha, sq_hamiltonian_beta, two_op_mixed);
@@ -226,7 +228,7 @@ public:
     template<typename Z = Scalar>
     enable_if_t<std::is_same<Z, double>::value, USQHamiltonian<double>> constrainAlpha(const ScalarSQOneElectronOperator<double>& one_op, double lambda) const {
 
-        auto const constrained_component = this->sq_hamiltonian_alpha.constrain(one_op, lambda)
+        auto const constrained_component = this->sq_hamiltonian_alpha.constrain(one_op, lambda);
 
         return USQHamiltonian(constrained_component, this->sq_hamiltonian_beta, this->two_op_mixed);
     }
@@ -244,7 +246,7 @@ public:
     template<typename Z = Scalar>
     enable_if_t<std::is_same<Z, double>::value, USQHamiltonian<double>> constrainBeta(const ScalarSQOneElectronOperator<double>& one_op, double lambda) const {
 
-        auto const constrained_component = this->sq_hamiltonian_beta.constrain(one_op, lambda)
+        auto const constrained_component = this->sq_hamiltonian_beta.constrain(one_op, lambda);
 
         return USQHamiltonian(this->sq_hamiltonian_alpha, constrained_component, this->two_op_mixed);
     }
