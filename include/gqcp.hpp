@@ -172,6 +172,7 @@
 #include "RHF/RHF.hpp"
 #include "RHF/RHFSCFSolver.hpp"
 
+#include "Utilities/CRTP.hpp"
 #include "Utilities/linalg.hpp"
 #include "Utilities/miscellaneous.hpp"
 
