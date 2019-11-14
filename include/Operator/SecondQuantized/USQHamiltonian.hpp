@@ -69,8 +69,8 @@ public:
         }
         
         // Calculate the total mixed two-electron operator
-        this->total_two_op_mixed (dim);
-        for (const auto& two_op : this->two_op_mixed) {
+        this->total_two_op_mixed ScalarSQTwoElectronOperator(dim);
+        for (const ScalarSQTwoElectronOperator<double>& two_op : this->two_op_mixed) {
             total_two_op_mixed += two_op;
         }
     }
