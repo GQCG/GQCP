@@ -25,20 +25,18 @@ namespace GQCP {
 
 
 /**
- *  A class for representing the unrestricted second-quantized electronic Hamiltonian
- *  It consists of two restricted Hamiltonians for both the beta and alpha component and a mixed two-electron term
+ *  A class for representing the electronic Hamiltonian, expressed in an unrestricted spinor basis.
  * 
- *
  *  @tparam Scalar      the scalar type of the second-quantized parameters (i.e. the integrals)
  */
 template <typename Scalar>
 class USQHamiltonian {
 private:
-    SQHamiltonian<Scalar> sq_hamiltonian_alpha;  // alpha hamiltonian
-    SQHamiltonian<Scalar> sq_hamiltonian_beta;  // beta hamiltonian
+    SQHamiltonian<Scalar> sq_hamiltonian_alpha;  // the alpha Hamiltonian
+    SQHamiltonian<Scalar> sq_hamiltonian_beta;  // the beta Hamiltonian
 
-    std::vector<ScalarSQTwoElectronOperator<Scalar>> two_op_mixed;  // alpha & beta mixed operators represented as g_aabb
-    ScalarSQTwoElectronOperator<Scalar> total_two_op_mixed;  // the total alpha & beta mixed operator represented as g_aabb
+    std::vector<ScalarSQTwoElectronOperator<Scalar>> two_op_mixed;  // the alpha & beta mixed two-electron operators (whose integrals are represented as g_aabb)
+    ScalarSQTwoElectronOperator<Scalar> total_two_op_mixed;  // the total alpha & beta mixed two-electron operator (whose integrals are represented as g_aabb)
 
 public:
 
@@ -48,16 +46,16 @@ public:
     USQHamiltonian() = default;
 
     /**
-     *  @param sq_hamiltonian_alpha      alpha hamiltonian
-     *  @param sq_hamiltonian_beta       beta hamiltonian
-     *  @param two_op_mixed              alpha & beta mixed operators
+     *  @param sq_hamiltonian_alpha      the alpha Hamiltonian
+     *  @param sq_hamiltonian_beta       the beta Hamiltonian
+     *  @param two_op_mixed              the alpha & beta mixed two-electron operators (whose integrals are represented as g_aabb)
      */
     USQHamiltonian(const SQHamiltonian<Scalar>& sq_hamiltonian_alpha, const SQHamiltonian<Scalar>& sq_hamiltonian_beta, const std::vector<ScalarSQTwoElectronOperator<Scalar>>& two_op_mixed) :
         sq_hamiltonian_alpha (sq_hamiltonian_alpha),
         sq_hamiltonian_beta (sq_hamiltonian_beta),
         two_op_mixed (two_op_mixed)
     {
-
+        // Check if the dimensions are compatible
         const auto dim = sq_hamiltonian_alpha.dimension();
 
         if (sq_hamiltonian_beta.dimension() != dim) {
@@ -70,19 +68,17 @@ public:
             }
         }
         
-        // Calculate the total two-electron operator
-        QCRankFourTensor<Scalar> total_two_op_par (dim);
-        total_two_op_par.setZero();
+        // Calculate the total mixed two-electron operator
+        this->total_two_op_mixed (dim);
         for (const auto& two_op : this->two_op_mixed) {
-            total_two_op_par += two_op.parameters().Eigen();
+            total_two_op += two_op;
         }
-        this->total_two_op_mixed = ScalarSQTwoElectronOperator<Scalar>({total_two_op_par});
     }
 
     /**
-     *  @param sq_hamiltonian_alpha      alpha hamiltonian
-     *  @param sq_hamiltonian_beta       beta hamiltonian
-     *  @param two_op_mixed              alpha & beta mixed operator
+     *  @param sq_hamiltonian_alpha      the alpha Hamiltonian
+     *  @param sq_hamiltonian_beta       the beta Hamiltonian
+     *  @param two_op_mixed              the alpha & beta mixed two-electron operators (whose integrals are represented as g_aabb)
      */
     USQHamiltonian(const SQHamiltonian<Scalar>& sq_hamiltonian_alpha, const SQHamiltonian<Scalar>& sq_hamiltonian_beta, const ScalarSQTwoElectronOperator<Scalar>& two_op_mixed) :
         USQHamiltonian(sq_hamiltonian_alpha, sq_hamiltonian_beta, std::vector<ScalarSQTwoElectronOperator<Scalar>>({two_op_mixed}))
@@ -96,19 +92,17 @@ public:
     /**
      *  Construct the molecular Hamiltonian in a given single-particle basis
      *
-     *  @param sp_basis     the single-particle basis in which the Hamiltonian should be expressed
+     *  @param sp_basis           the initial single-particle basis in which both the alpha component and beta component of the Hamiltonian should be expressed
+     *  @param molecule           the molecule on which the single particle is based
      *
-     *  @return a second-quantized molecular Hamiltonian. The molecular Hamiltonian has
-     *      - one-electron contributions:
-     *          - kinetic
-     *          - nuclear attraction
-     *      - two-electron contributions:
-     *          - Coulomb repulsion
+     *  @return a second-quantized molecular unrestricted Hamiltonian. The molecular unrestricted Hamiltonian has:
+     *      - restricted Hamiltonians for the alpha and beta components
+     *      - mixed two-electron contributions
      *
      *  Note that this named constructor is only available for real matrix representations
      */
     template <typename Z = Scalar>
-    static enable_if_t<std::is_same<Z, double>::value, USQHamiltonian<double>> Molecular(const SingleParticleBasis<Z, GTOShell>& sp_basis_alpha, const SingleParticleBasis<Z, GTOShell>& sp_basis_beta, const Molecule& molecule) {
+    static enable_if_t<std::is_same<Z, double>::value, USQHamiltonian<double>> Molecular(const SingleParticleBasis<Z, GTOShell>& sp_basis, const Molecule& molecule) {
 
         const SQHamiltonian<Scalar> sq_hamiltonian_alpha = SQHamiltonian<double>::Molecular(sp_basis_alpha, molecule);
         const SQHamiltonian<Scalar> sq_hamiltonian_beta = SQHamiltonian<double>::Molecular(sp_basis_beta, molecule);
@@ -171,14 +165,17 @@ public:
     void transformAlpha(const TransformationMatrix<Scalar>& T) {
 
         this->sq_hamiltonian_alpha.transform(T);
-        // Transform the mixed
+
+        // Transform the mixed two-electron operators and their total
         auto new_two_electron_parameters = this->total_two_op_mixed.parameters();
+
         // transform the two electron parameters "g_aabb" to "g_a'a'bb"
         new_two_electron_parameters.template matrixContraction<Scalar>(T, 0);
         new_two_electron_parameters.template matrixContraction<Scalar>(T, 1);
         this->total_two_op_mixed = ScalarSQTwoElectronOperator<Scalar> ({new_two_electron_parameters});
 
         for (auto& two_op : this->two_op_mixed) {
+
             auto new_two_electron_parameters = two_op.parameters();
             // transform the two electron parameters "g_aabb" to "g_a'a'bb"
             new_two_electron_parameters.template matrixContraction<Scalar>(T, 0);
@@ -196,14 +193,17 @@ public:
     void transformBeta(const TransformationMatrix<Scalar>& T) {
 
         this->sq_hamiltonian_beta.transform(T);
-        // Transform the mixed
+
+        // Transform the mixed two-electron operators and their total
         auto new_two_electron_parameters = this->total_two_op_mixed.parameters();
+
         // transform the two electron parameters "g_aabb" to "g_aab'b'"
         new_two_electron_parameters.template matrixContraction<Scalar>(T, 2);
         new_two_electron_parameters.template matrixContraction<Scalar>(T, 3);
         this->total_two_op_mixed = ScalarSQTwoElectronOperator<Scalar> ({new_two_electron_parameters});
 
         for (auto& two_op : this->two_op_mixed) {
+
             auto new_two_electron_parameters = two_op.parameters();
             // transform the two electron parameters "g_aabb" to "g_aab'b'"
             new_two_electron_parameters.template matrixContraction<Scalar>(T, 2);
@@ -214,10 +214,10 @@ public:
 
 
     /**
-     *  Constrain the Hamiltonian according to the convention: - lambda * constraint
+     *  Constrain the alpha component Hamiltonian according to the convention: - lambda * constraint
      *
      *  @param one_op   the one-electron operator used as a constraint
-     *  @param lambda   Lagrangian multiplier for the constraint
+     *  @param lambda   the Lagrangian multiplier for the constraint
      *
      *  @return a copy of the constrained Hamiltonian
      *
@@ -226,14 +226,16 @@ public:
     template<typename Z = Scalar>
     enable_if_t<std::is_same<Z, double>::value, USQHamiltonian<double>> constrainAlpha(const ScalarSQOneElectronOperator<double>& one_op, double lambda) const {
 
-        return USQHamiltonian(this->sq_hamiltonian_alpha.constrain(one_op, lambda), this->sq_hamiltonian_beta, this->two_op_mixed);
+        auto const constrained_component = this->sq_hamiltonian_alpha.constrain(one_op, lambda)
+
+        return USQHamiltonian(constrained_component, this->sq_hamiltonian_beta, this->two_op_mixed);
     }
 
     /**
-     *  Constrain the Hamiltonian according to the convention: - lambda * constraint
+     *  Constrain the beta component Hamiltonian according to the convention: - lambda * constraint
      *
      *  @param one_op   the one-electron operator used as a constraint
-     *  @param lambda   Lagrangian multiplier for the constraint
+     *  @param lambda   The Lagrangian multiplier for the constraint
      *
      *  @return a copy of the constrained Hamiltonian
      *
@@ -242,7 +244,9 @@ public:
     template<typename Z = Scalar>
     enable_if_t<std::is_same<Z, double>::value, USQHamiltonian<double>> constrainBeta(const ScalarSQOneElectronOperator<double>& one_op, double lambda) const {
 
-        return USQHamiltonian(this->sq_hamiltonian_alpha, this->sq_hamiltonian_beta.constrain(one_op, lambda), this->two_op_mixed);
+        auto const constrained_component = this->sq_hamiltonian_beta.constrain(one_op, lambda)
+
+        return USQHamiltonian(this->sq_hamiltonian_alpha, constrained_component, this->two_op_mixed);
     }
 };
 

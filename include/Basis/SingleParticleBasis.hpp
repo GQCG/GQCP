@@ -326,11 +326,11 @@ public:
 
 
     /**
-     *  @param ao_list     indices of the AOs used for the Mulliken populations
+     *  @param ao_list     indices of the AOs used in the Mulliken partitioning scheme
      *
-     *  @return the Mulliken operator for a set of AOs
+     *  @return the Mulliken operator partitioned for a set of AOs
      *
-     *  Note that this method is only available for real SQoperators
+     *  Note that this method is only available for real SQOperators
      */
     template<typename Z = TransformationScalar>
     enable_if_t<std::is_same<Z, double>::value, ScalarSQOneElectronOperator<double>> calculateMullikenOperator(const Vectoru& ao_list) const {
@@ -354,16 +354,17 @@ public:
 
 
     /**
-     *  @param ao_list     indices of the AOs used for the atomic spin operator in the z-direction
+     *  @param ao_list     indices of the AOs used in the Mulliken partitioning scheme
      *
-     *  @return the SQ atomic spin operator in the z-direction for a set of AOs
+     *  @return the atomic S_z operator, partitioned according to the Mulliken partitioning scheme
      *
-     *  Note that this method is only available for real SQoperators
+     *  Note that this method is only available for real SQOperators
      */
     template<typename Z = TransformationScalar>
     enable_if_t<std::is_same<Z, double>::value, ScalarSQOneElectronOperator<double>> calculateAtomicSpinZ(const Vectoru& ao_list) const {
-        // The atomic spin operator is defined as the atomic mulliken operator divided by 2
-        return ScalarSQOneElectronOperator<double>({calculateMullikenOperator(ao_list).parameters()/2});
+        // The atomic S_z operator is defined as the atomic Mulliken operator divided by 2
+        const auto& mulliken_parameters = calculateMullikenOperator(ao_list).parameters();
+        return ScalarSQOneElectronOperator<double>({mulliken_parameters/2});
     }
 };
 

@@ -110,7 +110,7 @@ void basisRotate(SingleParticleBasis<double, ShellType>& sp_basis, SQHamiltonian
  *  @tparam TransformationScalar        the scalar type of the transformation matrix
  * 
  *  @param sp_basis                     the single-particle basis for the alpha component
- *  @param usq_hamiltonian              the Hamiltonian
+ *  @param usq_hamiltonian              the Hamiltonian, expressed in an unrestricted spinor basis
  *  @param T                            the transformation matrix
  */
 template <typename TransformationScalar, typename ShellType>
@@ -120,6 +120,7 @@ void basisTransformAlpha(SingleParticleBasis<TransformationScalar, ShellType>& s
     usq_hamiltonian.transformAlpha(T);
 }
 
+
 /**
  *  Transform both the beta single-particle basis and the beta component of the Hamiltonian to another basis using the given transformation matrix
  * 
@@ -127,7 +128,7 @@ void basisTransformAlpha(SingleParticleBasis<TransformationScalar, ShellType>& s
  *  @tparam TransformationScalar        the scalar type of the transformation matrix
  * 
  *  @param sp_basis                     the single-particle basis for the beta component
- *  @param usq_hamiltonian              the Hamiltonian
+ *  @param usq_hamiltonian              the Hamiltonian, expressed in an unrestricted spinor basis
  *  @param T                            the transformation matrix
  */
 template <typename TransformationScalar, typename ShellType>
@@ -137,6 +138,7 @@ void basisTransformBeta(SingleParticleBasis<TransformationScalar, ShellType>& sp
     usq_hamiltonian.transformBeta(T);
 }
 
+
 /**
  *  Transform the beta & alpha single-particle basis and both the components of the Hamiltonian to another basis using the given transformation matrix
  * 
@@ -145,7 +147,7 @@ void basisTransformBeta(SingleParticleBasis<TransformationScalar, ShellType>& sp
  * 
  *  @param sp_basis_alpha               the single-particle basis for the alpha component
  *  @param sp_basis_beta                the single-particle basis for the beta component
- *  @param usq_hamiltonian              the Hamiltonian
+ *  @param usq_hamiltonian              the Hamiltonian, expressed in an unrestricted spinor basis
  *  @param T                            the transformation matrix
  */
 template <typename TransformationScalar, typename ShellType>
@@ -155,5 +157,6 @@ void basisTransform(SingleParticleBasis<TransformationScalar, ShellType>& sp_bas
     sp_basis_beta.transform(T);
     usq_hamiltonian.transform(T);
 }
+
 
 }  // namespace GQCP
