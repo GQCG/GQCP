@@ -70,7 +70,7 @@ BOOST_AUTO_TEST_CASE ( USQHamiltonian_transform ) {
     const auto water = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
     const GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (water, "STO-3G");
 
-    const size_t K = sp_basis_a.numberOfBasisFunctions();
+    const size_t K = sp_basis.numberOfBasisFunctions();
 
     // Create two identical usq Hamiltonians
     GQCP::USQHamiltonian<double> usq_hamiltonian1 = GQCP::USQHamiltonian<double>::Molecular(sp_basis, water);

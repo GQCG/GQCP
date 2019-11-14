@@ -71,7 +71,7 @@ public:
         // Calculate the total mixed two-electron operator
         this->total_two_op_mixed (dim);
         for (const auto& two_op : this->two_op_mixed) {
-            total_two_op += two_op;
+            total_two_op_mixed += two_op;
         }
     }
 
@@ -104,8 +104,8 @@ public:
     template <typename Z = Scalar>
     static enable_if_t<std::is_same<Z, double>::value, USQHamiltonian<double>> Molecular(const SingleParticleBasis<Z, GTOShell>& sp_basis, const Molecule& molecule) {
 
-        const SQHamiltonian<Scalar> sq_hamiltonian_alpha = SQHamiltonian<double>::Molecular(sp_basis_alpha, molecule);
-        const SQHamiltonian<Scalar> sq_hamiltonian_beta = SQHamiltonian<double>::Molecular(sp_basis_beta, molecule);
+        const SQHamiltonian<Scalar> sq_hamiltonian_alpha = SQHamiltonian<double>::Molecular(sp_basis, molecule);
+        const SQHamiltonian<Scalar> sq_hamiltonian_beta = SQHamiltonian<double>::Molecular(sp_basis, molecule);
         const ScalarSQTwoElectronOperator<double> two_op_mixed = sq_hamiltonian_alpha.twoElectron();
 
         return USQHamiltonian(sq_hamiltonian_alpha, sq_hamiltonian_beta, two_op_mixed);
