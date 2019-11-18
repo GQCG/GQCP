@@ -46,6 +46,7 @@ public:
     using Shell = _Shell;
     using BasisFunction = typename Shell::BasisFunction;
     using ExpansionScalar = _ExpansionScalar;
+
     using Base = SimpleSpinorBasis<_ExpansionScalar, RSpinorBasis<_ExpansionScalar, _Shell>>;
 
 
@@ -151,14 +152,15 @@ public:
 
 
     /**
-     *  @param fq_op        the first-quantized operator
+     *  @param fq_op        the first-quantized one-electron operator
      * 
      *  @return the second-quantized operator corresponding to the given first-quantized operator
      */
-    auto quantize(const OverlapOperator& fq_op) const -> SQOneElectronOperator<product_t<OverlapOperator::Scalar, ExpansionScalar>, OverlapOperator::Components> {
+    template <typename FQOneElectronOperator>
+    auto quantize(const FQOneElectronOperator& fq_op) const -> SQOneElectronOperator<product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>, FQOneElectronOperator::Components> {
 
-        using ResultScalar = product_t<OverlapOperator::Scalar, ExpansionScalar>;
-        using ResultOperator = SQOneElectronOperator<ResultScalar, OverlapOperator::Components>;
+        using ResultScalar = product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>;
+        using ResultOperator = SQOneElectronOperator<ResultScalar, FQOneElectronOperator::Components>;
 
         ResultOperator op ({this->scalarBasis().calculateLibintIntegrals(fq_op)});  // op for 'operator'
         op.transform(this->coefficientMatrix());
@@ -167,57 +169,9 @@ public:
 
 
     /**
-     *  @param fq_op        the first-quantized operator
+     *  @param fq_op        the first-quantized Coulomb operator
      * 
-     *  @return the second-quantized operator corresponding to the given first-quantized operator
-     */
-    auto quantize(const KineticOperator& fq_op) const -> SQOneElectronOperator<product_t<KineticOperator::Scalar, ExpansionScalar>, KineticOperator::Components> {
-
-        using ResultScalar = product_t<KineticOperator::Scalar, ExpansionScalar>;
-        using ResultOperator = SQOneElectronOperator<ResultScalar, KineticOperator::Components>;
-
-        ResultOperator op ({this->scalarBasis().calculateLibintIntegrals(fq_op)});  // op for 'operator'
-        op.transform(this->coefficientMatrix());
-        return op;
-    }
-
-
-    /**
-     *  @param fq_op        the first-quantized operator
-     * 
-     *  @return the second-quantized operator corresponding to the given first-quantized operator
-     */
-    auto quantize(const NuclearAttractionOperator& fq_op) const -> SQOneElectronOperator<product_t<NuclearAttractionOperator::Scalar, ExpansionScalar>, NuclearAttractionOperator::Components> {
-
-        using ResultScalar = product_t<NuclearAttractionOperator::Scalar, ExpansionScalar>;
-        using ResultOperator = SQOneElectronOperator<ResultScalar, NuclearAttractionOperator::Components>;
-
-        ResultOperator op ({this->scalarBasis().calculateLibintIntegrals(fq_op)});  // op for 'operator'
-        op.transform(this->coefficientMatrix());
-        return op;
-    }
-
-
-    /**
-     *  @param fq_op        the first-quantized operator
-     * 
-     *  @return the second-quantized operator corresponding to the given first-quantized operator
-     */
-    auto quantize(const ElectronicDipoleOperator& fq_op) const -> SQOneElectronOperator<product_t<ElectronicDipoleOperator::Scalar, ExpansionScalar>, ElectronicDipoleOperator::Components> {
-
-        using ResultScalar = product_t<ElectronicDipoleOperator::Scalar, ExpansionScalar>;
-        using ResultOperator = SQOneElectronOperator<ResultScalar, ElectronicDipoleOperator::Components>;
-
-        ResultOperator op ({this->scalarBasis().calculateLibintIntegrals(fq_op)});  // op for 'operator'
-        op.transform(this->coefficientMatrix());
-        return op;
-    }
-
-
-    /**
-     *  @param fq_op        the first-quantized operator
-     * 
-     *  @return the second-quantized operator corresponding to the given first-quantized operator
+     *  @return the second-quantized operator corresponding to Coulomb operator
      */
     auto quantize(const CoulombRepulsionOperator& fq_op) const -> SQTwoElectronOperator<product_t<CoulombRepulsionOperator::Scalar, ExpansionScalar>, CoulombRepulsionOperator::Components> {
 
