@@ -43,6 +43,8 @@ public:
     using ExpansionScalar = _ExpansionScalar;
     using Shell = _Shell;
 
+    using Base = SimpleSpinorBasis<_ExpansionScalar, GSpinorBasis<_ExpansionScalar, _Shell>>;
+
 
 private:
     ScalarBasis<Shell> alpha_scalar_basis;  // the scalar basis in which the alpha components are expanded
@@ -61,7 +63,7 @@ public:
      *  @param C                            the coefficient matrix, i.e. the matrix of the expansion coefficients of the spinors in terms of the underlying scalar basis
      */
     GSpinorBasis(const ScalarBasis<Shell>& alpha_scalar_basis, const ScalarBasis<Shell>& beta_scalar_basis, const TransformationMatrix<ExpansionScalar>& C) :
-        SimpleSpinorBasis<ExpansionScalar>(C),
+        Base(C),
         alpha_scalar_basis (alpha_scalar_basis),
         beta_scalar_basis (beta_scalar_basis)
     {
@@ -210,28 +212,29 @@ public:
 
 
     /**
-     *  @param fq_op        the first-quantized operator
+     *  @param fq_op        the spin-independent first-quantized operator
      * 
      *  @return the second-quantized operator corresponding to the given first-quantized operator
      */
-    auto quantize(const OverlapOperator& fq_op) const -> SQOneElectronOperator<product_t<OverlapOperator::Scalar, ExpansionScalar>, OverlapOperator::Components> {
+    template <typename FQOneElectronOperator>
+    auto quantize(const FQOneElectronOperator& fq_op) const -> SQOneElectronOperator<product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>, FQOneElectronOperator::Components> {
 
-        using ResultScalar = product_t<OverlapOperator::Scalar, ExpansionScalar>;
-        using ResultOperator = SQOneElectronOperator<ResultScalar, OverlapOperator::Components>;
+        using ResultScalar = product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>;
+        using ResultOperator = SQOneElectronOperator<ResultScalar, FQOneElectronOperator::Components>;
 
 
-        // The strategy for calculating the matrix representation of the operator in this spinor basis is to express the operator in the underlying scalar bases and afterwards transform them using the current coefficient matrix
+        // The strategy for calculating the matrix representation of the one-electron operator in this spinor basis is to express the operator in the underlying scalar bases and afterwards transform them using the current coefficient matrix
         const auto K_alpha = this->numberOfAlphaCoefficients();
         const auto K_beta = this->numberOfBetaCoefficients();
         const auto M = this->numberOfSpinors();
-        QCMatrix<ResultScalar> f = QCMatrix<ResultScalar>::Zero(M, M);
+        QCMatrix<ResultScalar> f = QCMatrix<ResultScalar>::Zero(M, M);  // the total result
 
-        // Express the operator in the underlying bases: the overlap operator only has alpha-alpha and beta-beta blocks
-        const auto S_alpha = this->alphaScalarBasis().calculateLibintIntegrals(fq_op);
-        const auto S_beta = this->betaScalarBasis().calculateLibintIntegrals(fq_op);
+        // Express the operator in the underlying bases: spin-independent operators only have alpha-alpha and beta-beta blocks
+        const auto F_alpha = this->alphaScalarBasis().calculateLibintIntegrals(fq_op);
+        const auto F_beta = this->betaScalarBasis().calculateLibintIntegrals(fq_op);
 
-        f.topLeftCorner(K_alpha, K_alpha) = S_alpha;
-        f.bottomRightCorner(K_beta, K_beta) = S_beta;
+        f.topLeftCorner(K_alpha, K_alpha) = F_alpha;
+        f.bottomRightCorner(K_beta, K_beta) = F_beta;
 
         // Transform using the current coefficient matrix
         ResultOperator op ({f});  // op for 'operator'
