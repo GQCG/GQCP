@@ -57,7 +57,7 @@ RHFSCFSolver::RHFSCFSolver(const SQHamiltonian<double>& sq_hamiltonian, const RS
 void RHFSCFSolver::solve() {
 
     const auto& H_core = this->sq_hamiltonian.core().parameters();
-    const auto S = this->spinor_basis.overlapMatrix();
+    const auto S = this->spinor_basis.overlap().parameters();
 
 
     // Obtain an initial guess for the AO density matrix by solving the generalized eigenvalue problem for H_core
@@ -76,7 +76,7 @@ void RHFSCFSolver::solve() {
 void RHFSCFSolver::solve(const TransformationMatrix<double>& C_initial) {
 
     const auto& H_core = this->sq_hamiltonian.core();
-    const auto S = this->spinor_basis.overlapMatrix();
+    const auto S = this->spinor_basis.overlap().parameters();
 
     auto C = C_initial;
     auto D_AO = calculateRHFAO1RDM(C, this->molecule.numberOfElectrons());

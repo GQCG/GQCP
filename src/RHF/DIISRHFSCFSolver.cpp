@@ -34,7 +34,7 @@ namespace GQCP {
  */
 ScalarSQOneElectronOperator<double> DIISRHFSCFSolver::calculateNewFockMatrix(const OneRDM<double>& D_AO) {
 
-    const auto S = this->spinor_basis.overlapMatrix();
+    const auto S = this->spinor_basis.overlap().parameters();
 
 
     // Calculate the Fock matrix based off the density matrix

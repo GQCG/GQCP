@@ -25,6 +25,7 @@
 #include "Molecule/NuclearFramework.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
 #include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
+#include "Operator/SecondQuantized/SQTwoElectronOperator.hpp"
 #include "OrbitalOptimization/JacobiRotationParameters.hpp"
 
 #include <Eigen/Dense>
@@ -40,11 +41,12 @@ namespace GQCP {
  *  @tparam _Shell                  the type of shell that the underlying scalar basis contains
  */
 template <typename _ExpansionScalar, typename _Shell>
-class RSpinorBasis : public SimpleSpinorBasis<_ExpansionScalar> {
+class RSpinorBasis : public SimpleSpinorBasis<_ExpansionScalar, RSpinorBasis<_ExpansionScalar, _Shell>> {
 public:
     using Shell = _Shell;
     using BasisFunction = typename Shell::BasisFunction;
     using ExpansionScalar = _ExpansionScalar;
+    using Base = SimpleSpinorBasis<_ExpansionScalar, RSpinorBasis<_ExpansionScalar, _Shell>>;
 
 
 private:
@@ -62,7 +64,7 @@ public:
      *  @param C                    the matrix that holds the the expansion coefficients, i.e. that expresses the restricted spinors in terms of the underlying scalar basis
      */
     RSpinorBasis(const ScalarBasis<Shell>& scalar_basis, const TransformationMatrix<ExpansionScalar>& C) :
-        SimpleSpinorBasis<ExpansionScalar>(C),
+        Base(C),
         scalar_basis (scalar_basis)
     {}
 
@@ -112,6 +114,29 @@ public:
      */
 
     /**
+     *  @param ao_list     indices of the AOs used for the Mulliken populations
+     *
+     *  @return the Mulliken operator for a set of AOs
+     *
+     *  @note this method is only available for real matrix representations
+     */
+    template<typename Z = ExpansionScalar>
+    enable_if_t<std::is_same<Z, double>::value, ScalarSQOneElectronOperator<double>> calculateMullikenOperator(const Vectoru& ao_list) const {
+
+        const auto K = this->numberOfSpatialOrbitals();
+        if (ao_list.size() > K) {
+            throw std::invalid_argument("RSpinorBasis::calculateMullikenOperator(Vectoru): Too many AOs are selected in the given ao_list");
+        }
+
+        const SquareMatrix<double> p_a = SquareMatrix<double>::PartitionMatrix(ao_list, K);  // the partitioning matrix
+        const auto S_AO = this->scalar_basis.calculateLibintIntegrals(Operator::Overlap());  // the overlap matrix expressed in the AO basis
+
+        ScalarSQOneElectronOperator<double> mulliken_op ({ (this->C.adjoint() * p_a * S_AO * this->C + this->C.adjoint() * S_AO * p_a * this->C)/2 });
+        return mulliken_op;
+    }
+
+
+    /**
      *  @return the number of different spatial orbitals that are used in this restricted spinor basis
      */
     size_t numberOfSpatialOrbitals() const { return this->scalar_basis.numberOfBasisFunctions(); }
@@ -120,68 +145,10 @@ public:
      *  @return the number of spinors that 'are' in this restricted spinor basis
      */
     size_t numberOfSpinors() const {
+
         return 2 * this->numberOfSpatialOrbitals();  // alpha and beta spinors are equal 
     }
 
-    /**
-     *  @param precision                the precision used to test orthonormality
-     * 
-     *  @return if this restricted spinor basis basis is orthonormal within the given precision
-     */
-    bool isOrthonormal(const double precision = 1.0e-08) const {
-
-        const auto S = this->overlapMatrix();
-
-        const auto dim = this->numberOfSpatialOrbitals();
-        return S.isApprox(SquareMatrix<ExpansionScalar>::Identity(dim, dim), precision);
-    }
-
-
-    /**
-     *  Transform the restricted spinor basis to the Löwdin basis, which is the orthonormal basis that we transform to with T = S^{-1/2}, where S is the overlap matrix in the underlying scalar orbital basis
-     */
-    void lowdinOrthonormalize() {
-
-        this->C = this->lowdinOrthonormalizationMatrix();
-    }
-
-
-    /**
-     *  @return the transformation matrix to the Löwdin basis: T = S_current^{-1/2}
-     */
-    TransformationMatrix<double> lowdinOrthonormalizationMatrix() const {
-
-        // Calculate S^{-1/2}, where S is epxressed in the current spinor basis
-        const auto S = this->overlapMatrix();
-        Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes (S);
-        return TransformationMatrix<double>(saes.operatorInverseSqrt());
-    }
-
-
-    /**
-     *  @return the overlap (one-electron) operator of this restricted spinor basis
-     */
-    ScalarSQOneElectronOperator<ExpansionScalar> overlap() const {
-
-        return ScalarSQOneElectronOperator<ExpansionScalar>({this->overlapMatrix()});
-    }
-
-
-    /**
-     *  @return the current overlap matrix of this restricted spinor basis
-     */
-    QCMatrix<ExpansionScalar> overlapMatrix() const {
-
-        auto S = this->scalar_basis.calculateLibintIntegrals(Operator::Overlap());  // the overlap operator expressed in the underlying scalar basis
-        S.basisTransformInPlace(this->C);  // the overlap operator expressed in this restricted spinor basis
-        return S;
-    }
-
-
-    /**
-     *  @return the underlying scalar basis, which is equal for the alpha and beta components
-     */
-    const ScalarBasis<Shell>& scalarBasis() const { return this->scalar_basis; }
 
     /**
      *  @param fq_op        the first-quantized operator
@@ -264,26 +231,9 @@ public:
 
 
     /**
-     *  @param ao_list     indices of the AOs used for the Mulliken populations
-     *
-     *  @return the Mulliken operator for a set of AOs
-     *
-     *  @note this method is only available for real matrix representations
+     *  @return the underlying scalar basis, which is equal for the alpha and beta components
      */
-    template<typename Z = ExpansionScalar>
-    enable_if_t<std::is_same<Z, double>::value, ScalarSQOneElectronOperator<double>> calculateMullikenOperator(const Vectoru& ao_list) const {
-
-        const auto K = this->numberOfSpatialOrbitals();
-        if (ao_list.size() > K) {
-            throw std::invalid_argument("RSpinorBasis::calculateMullikenOperator(Vectoru): Too many AOs are selected in the given ao_list");
-        }
-
-        const SquareMatrix<double> p_a = SquareMatrix<double>::PartitionMatrix(ao_list, K);  // the partitioning matrix
-        const auto S_AO = this->scalar_basis.calculateLibintIntegrals(Operator::Overlap());  // the overlap matrix expressed in the AO basis
-
-        ScalarSQOneElectronOperator<double> mulliken_op ({ (this->C.adjoint() * p_a * S_AO * this->C + this->C.adjoint() * S_AO * p_a * this->C)/2 });
-        return mulliken_op;
-    }
+    const ScalarBasis<Shell>& scalarBasis() const { return this->scalar_basis; }
 };
 
 

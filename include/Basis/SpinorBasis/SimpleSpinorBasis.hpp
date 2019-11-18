@@ -19,18 +19,21 @@
 
 
 #include "Basis/TransformationMatrix.hpp"
+#include "Utilities/CRTP.hpp"
 
 
 namespace GQCP {
 
 
 /**
- *  A class that represents a spinor basis that has no internal structure (hence 'simple'). It is used as a base class for restricted and generalized spinor bases because they admit some common functionality
+ *  A class that represents a spinor basis that has no internal structure (hence 'simple'). It is used as a CRTP base class for restricted and generalized spinor bases because they admit common functionality.
  * 
- *  @tparam _ExpansionScalar        the scalar type of the expansion coefficients
+ * 
+ *  @tparam _ExpansionScalar            the scalar type of the expansion coefficients
+ *  @tparam _DerivedSpinorBasis         the CRTP template argument of the derived spinor basis
  */
-template <typename _ExpansionScalar>
-class SimpleSpinorBasis {
+template <typename _ExpansionScalar, typename _DerivedSpinorBasis>
+class SimpleSpinorBasis : public CRTP<_DerivedSpinorBasis> {
 public:
     using ExpansionScalar = _ExpansionScalar;
 
@@ -62,6 +65,50 @@ public:
      *  @return the transformation matrix between the scalar basis and the current orbitals
      */
     const TransformationMatrix<ExpansionScalar>& coefficientMatrix() const { return this->C; }
+
+    /**
+     *  @param precision                the precision used to test orthonormality
+     * 
+     *  @return if this restricted spinor basis basis is orthonormal within the given precision
+     */
+    bool isOrthonormal(const double precision = 1.0e-08) const {
+
+        const auto S = this->overlap().parameters();
+
+        const auto dim = this->simpleDimension();
+        return S.isApprox(SquareMatrix<ExpansionScalar>::Identity(dim, dim), precision);
+    }
+
+
+    /**
+     *  @return the transformation matrix to the Löwdin basis: T = S_current^{-1/2}
+     */
+    TransformationMatrix<double> lowdinOrthonormalizationMatrix() const {
+
+        // Calculate S^{-1/2}, where S is epxressed in the current spinor basis
+        const auto S = this->overlap().parameters();
+        Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes (S);
+        return TransformationMatrix<double>(saes.operatorInverseSqrt());
+    }
+
+
+    /**
+     *  Transform the restricted spinor basis to the Löwdin basis, which is the orthonormal basis that we transform to with T = S^{-1/2}, where S is the overlap matrix in the underlying scalar orbital basis
+     */
+    void lowdinOrthonormalize() {
+
+        this->C = this->lowdinOrthonormalizationMatrix();
+    }
+
+
+    /**
+     *  @return the overlap (one-electron) operator of this restricted spinor basis
+     */
+    ScalarSQOneElectronOperator<ExpansionScalar> overlap() const {
+
+        return this->derived().quantize(Operator::Overlap());
+    }
+
 
     /**
      *  Rotate the spinor basis to another one using the given unitary transformation matrix

@@ -162,7 +162,7 @@ BOOST_AUTO_TEST_CASE ( constructMolecularHamiltonianParameters ) {
                   -0.9584, -1.1204;
 
 
-    BOOST_CHECK(spinor_basis.overlapMatrix().isApprox(ref_S, 1.0e-04));
+    BOOST_CHECK(spinor_basis.overlap().parameters().isApprox(ref_S, 1.0e-04));
     BOOST_CHECK(sq_hamiltonian.core().parameters().isApprox(ref_H_core, 1.0e-04));
 
     BOOST_CHECK(std::abs(g(0,0,0,0) - 0.7746) < 1.0e-04);
