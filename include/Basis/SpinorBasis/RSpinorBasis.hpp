@@ -171,7 +171,7 @@ public:
     /**
      *  @param fq_op        the first-quantized Coulomb operator
      * 
-     *  @return the second-quantized operator corresponding to Coulomb operator
+     *  @return the second-quantized operator corresponding to the Coulomb operator
      */
     auto quantize(const CoulombRepulsionOperator& fq_op) const -> SQTwoElectronOperator<product_t<CoulombRepulsionOperator::Scalar, ExpansionScalar>, CoulombRepulsionOperator::Components> {
 

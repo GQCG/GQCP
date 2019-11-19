@@ -172,7 +172,7 @@ public:
     /**
      *  @return the alpha coefficient matrix, i.e. the matrix of the expansion coefficients of the alpha-components of the spinors in terms of the underlying alpha-scalar basis
      */
-    MatrixX<ExpansionScalar> alphaCoefficientMatrix() const { return this->C.topRows(this->numberOfAlphaCoefficients()); }
+    MatrixX<ExpansionScalar> alphaCoefficientMatrix() const { return this->coefficientMatrix().topRows(this->numberOfAlphaCoefficients()); }
 
     /**
      *  @return the scalar basis in which the alpha components are expanded
@@ -187,7 +187,7 @@ public:
     /**
      *  @return the alpha coefficient matrix, i.e. the matrix of the expansion coefficients of the alpha-components of the spinors in terms of the underlying alpha-scalar basis
      */
-    MatrixX<ExpansionScalar> betaCoefficientMatrix() const { return this->C.bottomRows(this->numberOfBetaCoefficients()); }
+    MatrixX<ExpansionScalar> betaCoefficientMatrix() const { return this->coefficientMatrix().bottomRows(this->numberOfBetaCoefficients()); }
 
     /**
      *  @return the number of coefficients that are used for the expansion of the alpha-component of a spinor
