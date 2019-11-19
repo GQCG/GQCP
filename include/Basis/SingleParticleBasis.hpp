@@ -326,11 +326,11 @@ public:
 
 
     /**
-     *  @param ao_list     indices of the AOs used for the Mulliken populations
+     *  @param ao_list     indices of the AOs used in the Mulliken partitioning scheme
      *
-     *  @return the Mulliken operator for a set of AOs
+     *  @return the Mulliken operator partitioned for a set of AOs
      *
-     *  Note that this method is only available for real matrix representations
+     *  Note that this method is only available for real SQOperators
      */
     template<typename Z = TransformationScalar>
     enable_if_t<std::is_same<Z, double>::value, ScalarSQOneElectronOperator<double>> calculateMullikenOperator(const Vectoru& ao_list) const {
@@ -347,9 +347,24 @@ public:
         TransformationMatrix<double> T_inverse = this->transformationMatrix().inverse();
         S_AO.transform(T_inverse);
 
-        ScalarSQOneElectronOperator<double> mulliken_matrix ({ (T_total.adjoint() * p_a * S_AO.parameters() * T_total + T_total.adjoint() * S_AO.parameters() * p_a * T_total)/2 });
+        ScalarSQOneElectronOperator<double> sq_mulliken ({ (T_total.adjoint() * p_a * S_AO.parameters() * T_total + T_total.adjoint() * S_AO.parameters() * p_a * T_total)/2 });
 
-        return mulliken_matrix;
+        return sq_mulliken;
+    }
+
+
+    /**
+     *  @param ao_list     indices of the AOs used in the Mulliken partitioning scheme
+     *
+     *  @return the atomic S_z operator, partitioned according to the Mulliken partitioning scheme
+     *
+     *  Note that this method is only available for real SQOperators
+     */
+    template<typename Z = TransformationScalar>
+    enable_if_t<std::is_same<Z, double>::value, ScalarSQOneElectronOperator<double>> calculateAtomicSpinZ(const Vectoru& ao_list) const {
+        // The atomic S_z operator is defined as the atomic Mulliken operator divided by 2
+        const auto& mulliken_parameters = calculateMullikenOperator(ao_list).parameters();
+        return ScalarSQOneElectronOperator<double>({mulliken_parameters/2});
     }
 };
 

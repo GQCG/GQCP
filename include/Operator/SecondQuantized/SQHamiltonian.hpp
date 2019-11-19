@@ -122,6 +122,7 @@ public:
      *  Construct the molecular Hamiltonian in a given single-particle basis
      *
      *  @param sp_basis     the single-particle basis in which the Hamiltonian should be expressed
+     *  @param molecule     the molecule on which the single particle is based
      *
      *  @return a second-quantized molecular Hamiltonian. The molecular Hamiltonian has
      *      - one-electron contributions:
@@ -339,10 +340,6 @@ public:
      *  In-place transform the matrix representations of Hamiltonian
      *
      *  @param T    the transformation matrix between the old and the new orbital basis
-     *
-     *  Furthermore
-     *      - the overlap matrix S now gives the overlap matrix in the new molecular orbital basis
-     *      - the total transformation matrix T_total is updated to reflect the total transformation between the new molecular orbital basis and the initial atomic orbitals
      */
     void transform(const TransformationMatrix<Scalar>& T) {
 
@@ -366,10 +363,6 @@ public:
      *  In-place rotate the matrix representations of Hamiltonian
      *
      *  @param U    the unitary rotation matrix between the old and the new orbital basis
-     *
-     *  Furthermore
-     *      - the overlap matrix S now gives the overlap matrix in the new molecular orbital basis
-     *      - the total transformation matrix T_total is updated to reflect the total transformation between the new molecular orbital basis and the initial atomic orbitals
      */
     void rotate(const TransformationMatrix<Scalar>& U) {
 
@@ -393,10 +386,6 @@ public:
      *  In-place rotate the matrix representations of the Hamiltonian using a unitary Jacobi rotation matrix constructed from the Jacobi rotation parameters. Note that this function is only available for real (double) matrix representations
      *
      *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
-     *
-     *  Furthermore
-     *      - the overlap matrix S now gives the overlap matrix in the new molecular orbital basis
-     *      - the total transformation matrix T_total is updated to reflect the total transformation between the new molecular orbital basis and the initial atomic orbitals
      */
     template<typename Z = Scalar>
     enable_if_t<std::is_same<Z, double>::value> rotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
