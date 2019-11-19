@@ -20,6 +20,8 @@
 #include <boost/test/unit_test.hpp>
 
 #include "Basis/transform.hpp"
+#include "Geminals/AP1roG.hpp"
+#include "Geminals/AP1roGPSEs.hpp"
 #include "Geminals/AP1roGPSESolver.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
@@ -51,36 +53,40 @@ BOOST_AUTO_TEST_CASE ( constructor_molecule ) {
 }
 
 
+/**
+ *  Check the solution of the AP1roG PSEs (with zero initial guess) with reference data from Ayers' implementation
+ *  The test system is H2 with HF/6-31G** orbitals
+ */
 BOOST_AUTO_TEST_CASE ( h2_631gdp ) {
 
-    // We have some reference data from olsens: H2 with HF/6-31G** orbitals
-    //  AP1roG energy: -1.8696828608304892
-    //  AP1roG coefficients: [-0.05949796, -0.05454253, -0.03709503, -0.02899231, -0.02899231, -0.01317386, -0.00852702, -0.00852702, -0.00517996]
-
-    double ref_ap1rog_energy = -1.8696828608304892;
+    // Input the reference data
+    const double ref_ap1rog_energy = -1.8696828608304892;
     GQCP::VectorX<double> ref_ap1rog_coefficients (9);
     ref_ap1rog_coefficients << -0.05949796, -0.05454253, -0.03709503, -0.02899231, -0.02899231, -0.01317386, -0.00852702, -0.00852702, -0.00517996;
 
 
     // Prepare molecular Hamiltonian in the RHF basis
-    auto h2 = GQCP::Molecule::ReadXYZ("data/h2_olsens.xyz");
+    const auto h2 = GQCP::Molecule::ReadXYZ("data/h2_olsens.xyz");
+    const auto N_P = h2.numberOfElectrons()/2;
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (h2, "6-31G**");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2);  // in an AO basis
 
     GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, h2);
     plain_scf_solver.solve();
-    auto rhf = plain_scf_solver.get_solution();
+    const auto rhf = plain_scf_solver.get_solution();
     GQCP::basisTransform(spinor_basis, sq_hamiltonian, rhf.get_C());
 
 
-    // Solve the AP1roG pSE equations with the initial guess being 0
-    GQCP::AP1roGPSESolver ap1rog_pse_solver (h2, sq_hamiltonian);
-    ap1rog_pse_solver.solve();
+    // Solve the AP1roG PSEs with the initial guess being 0
+    const GQCP::AP1roGPSEs pses (sq_hamiltonian, N_P);
+    const GQCP::AP1roGPSESolver ap1rog_pse_solver (pses);
+    const auto G = ap1rog_pse_solver.solve();  // zero initial guess
 
-    double electronic_energy = ap1rog_pse_solver.get_electronic_energy();
-    GQCP::VectorX<double> ap1rog_coefficients = ap1rog_pse_solver.get_geminal_coefficients().asVector();
+    const double electronic_energy = GQCP::calculateAP1roGEnergy(G, sq_hamiltonian);
+    const GQCP::VectorX<double> ap1rog_coefficients = G.asVector();
 
 
+    // Check the results
     BOOST_CHECK(std::abs(electronic_energy - ref_ap1rog_energy) < 1.0e-05);
 
     for (size_t i = 0; i < 9; i++) {
@@ -89,37 +95,40 @@ BOOST_AUTO_TEST_CASE ( h2_631gdp ) {
 }
 
 
+/**
+ *  Check the solution of the AP1roG PSEs (with the weak interaction limit as initial guess) with reference data from Ayers' implementation
+ *  The test system is H2 with HF/6-31G** orbitals
+ */
 BOOST_AUTO_TEST_CASE ( h2_631gdp_weak_interaction_limit ) {
 
-    // We have some reference data from olsens: H2 with HF/6-31G** orbitals
-    //  AP1roG energy: -1.8696828608304892
-    //  AP1roG coefficients: [-0.05949796, -0.05454253, -0.03709503, -0.02899231, -0.02899231, -0.01317386, -0.00852702, -0.00852702, -0.00517996]
-
-    double ref_ap1rog_energy = -1.8696828608304892;
+    // Input the reference data
+    const double ref_ap1rog_energy = -1.8696828608304892;
     GQCP::VectorX<double> ref_ap1rog_coefficients (9);
     ref_ap1rog_coefficients << -0.05949796, -0.05454253, -0.03709503, -0.02899231, -0.02899231, -0.01317386, -0.00852702, -0.00852702, -0.00517996;
 
 
     // Prepare molecular Hamiltonian in the RHF basis
-    auto h2 = GQCP::Molecule::ReadXYZ("data/h2_olsens.xyz");
-    size_t N_P = h2.numberOfElectrons() / 2;
+    const auto h2 = GQCP::Molecule::ReadXYZ("data/h2_olsens.xyz");
+    const auto N_P = h2.numberOfElectrons() / 2;
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (h2, "6-31G**");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2);  // in an AO basis
 
     GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, h2);
     plain_scf_solver.solve();
-    auto rhf = plain_scf_solver.get_solution();
+    const auto rhf = plain_scf_solver.get_solution();
     GQCP::basisTransform(spinor_basis, sq_hamiltonian, rhf.get_C());
 
 
-    // Solve the AP1roG pSE equations, with the initial guess being the weak interaction limit coefficients
-    GQCP::AP1roGPSESolver ap1rog_pse_solver (h2, sq_hamiltonian, GQCP::AP1roGGeminalCoefficients::WeakInteractionLimit(sq_hamiltonian, N_P));
-    ap1rog_pse_solver.solve();
+    // Solve the AP1roG PSEs, with the initial guess being the weak interaction limit coefficients
+    const GQCP::AP1roGPSEs pses (sq_hamiltonian, N_P);
+    const GQCP::AP1roGPSESolver ap1rog_pse_solver (pses);
+    auto G = GQCP::AP1roGGeminalCoefficients::WeakInteractionLimit(sq_hamiltonian, N_P);
+    ap1rog_pse_solver.solve(G);  // weak interaction limit coefficients are the initial guess
 
-    double electronic_energy = ap1rog_pse_solver.get_electronic_energy();
-    GQCP::VectorX<double> ap1rog_coefficients = ap1rog_pse_solver.get_geminal_coefficients().asVector();
+    const double electronic_energy = GQCP::calculateAP1roGEnergy(G, sq_hamiltonian);
+    const GQCP::VectorX<double> ap1rog_coefficients = G.asVector();
 
-
+    // Check the result
     BOOST_CHECK(std::abs(electronic_energy - ref_ap1rog_energy) < 1.0e-05);
 
     for (size_t i = 0; i < 9; i++) {

@@ -4,7 +4,7 @@ list(APPEND test_target_sources
         ${CMAKE_CURRENT_SOURCE_DIR}/Eigenpair_test.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/IterativeIdentitiesHessianModifier_test.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/NewtonMinimizer_test.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/NewtonSystemOfEquationsSolver_test.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/NewtonNLSystemOfEquationsSolver_test.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/SparseSolver_test.cpp
         )
 

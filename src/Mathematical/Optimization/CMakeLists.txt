@@ -3,13 +3,12 @@ target_sources(gqcp
             BaseEigenproblemSolver.cpp
             BaseMatrixSolver.cpp
             BaseMinimizer.cpp
-            BaseSystemOfEquationsSolver.cpp
             DavidsonSolver.cpp
             DenseSolver.cpp
             Eigenpair.cpp
             IterativeIdentitiesHessianModifier.cpp
             NewtonMinimizer.cpp
-            NewtonSystemOfEquationsSolver.cpp
+            NewtonNLSystemOfEquationsSolver.cpp
             SparseSolver.cpp
             step.cpp
             UnalteringHessianModifier.cpp

@@ -121,7 +121,8 @@ public:
     /**
      *  Construct the molecular Hamiltonian in a given spinor basis
      *
-     *  @param spinor_basis     the spinor basis in which the Hamiltonian should be expressed
+     *  @param sp_basis     the single-particle basis in which the Hamiltonian should be expressed
+     *  @param molecule     the molecule on which the single particle is based
      *
      *  @return a second-quantized molecular Hamiltonian. The molecular Hamiltonian has
      *      - one-electron contributions:
@@ -339,10 +340,6 @@ public:
      *  In-place transform the matrix representations of Hamiltonian
      *
      *  @param T    the transformation matrix between the old and the new orbital basis
-     *
-     *  Furthermore
-     *      - the overlap matrix S now gives the overlap matrix in the new molecular orbital basis
-     *      - the total transformation matrix T_total is updated to reflect the total transformation between the new molecular orbital basis and the initial atomic orbitals
      */
     void transform(const TransformationMatrix<Scalar>& T) {
 
@@ -366,10 +363,6 @@ public:
      *  In-place rotate the matrix representations of Hamiltonian
      *
      *  @param U    the unitary rotation matrix between the old and the new orbital basis
-     *
-     *  Furthermore
-     *      - the overlap matrix S now gives the overlap matrix in the new molecular orbital basis
-     *      - the total transformation matrix T_total is updated to reflect the total transformation between the new molecular orbital basis and the initial atomic orbitals
      */
     void rotate(const TransformationMatrix<Scalar>& U) {
 
@@ -393,10 +386,6 @@ public:
      *  In-place rotate the matrix representations of the Hamiltonian using a unitary Jacobi rotation matrix constructed from the Jacobi rotation parameters. Note that this function is only available for real (double) matrix representations
      *
      *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
-     *
-     *  Furthermore
-     *      - the overlap matrix S now gives the overlap matrix in the new molecular orbital basis
-     *      - the total transformation matrix T_total is updated to reflect the total transformation between the new molecular orbital basis and the initial atomic orbitals
      */
     template<typename Z = Scalar>
     enable_if_t<std::is_same<Z, double>::value> rotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
@@ -467,6 +456,35 @@ public:
     SquareMatrix<Scalar> calculateFockianMatrix(const OneRDM<double>& D, const TwoRDM<double>& d) const {
 
         return this->core().calculateFockianMatrix(D, d)[0] + this->twoElectron().calculateFockianMatrix(D, d)[0];  // SQHamiltonian has one- and two-electron contributions, so access with [0] accordingly
+    }
+
+
+    /**
+     *  @param N_P          the number of electron pairs
+     * 
+     *  @return the inactive Fockian matrix
+     */
+    ScalarSQOneElectronOperator<Scalar> calculateInactiveFockian(const size_t N_P) const {
+
+        const auto& h_par = this->core().parameters();
+        const auto& g_par = this->twoElectron().parameters();
+
+
+        // A KISS implementation of the calculation of the inactive Fockian matrix
+        auto F_par = h_par;  // one-electron part
+
+        // Two-electron part
+        for (size_t p = 0; p < this->dimension(); p++) {
+            for (size_t q = 0; q < this->dimension(); q++) {
+
+                for (size_t i = 0; i < N_P; i++) {
+                    F_par(p,q) += 2*g_par(p,q,i,i) - g_par(p,i,i,q);
+                }
+
+            }
+        }  // F elements loop
+
+        return ScalarSQOneElectronOperator<Scalar>({F_par});
     }
 
 

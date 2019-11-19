@@ -29,21 +29,24 @@ namespace GQCP {
  *  CONSTRUCTORS
  */
 
-/**
- *  Default constructor setting everything to zero
- */
-AP1roGGeminalCoefficients::AP1roGGeminalCoefficients() :
-    AP1roGVariables()
-{}
 
 /**
- *  @param g        the geminal coefficients in a vector representation that is in row-major storage
- *
- *  @param N_P      the number of electron pairs (= the number of geminals)
- *  @param K        the number of spatial orbitals
+ *  @param G            the AP1roG geminal coefficients (not including the identity matrix on the left), as a block matrix
  */
-AP1roGGeminalCoefficients::AP1roGGeminalCoefficients(const VectorX<double>& g, size_t N_P, size_t K) :
-    AP1roGVariables(g, N_P, K)
+AP1roGGeminalCoefficients::AP1roGGeminalCoefficients(const BlockMatrix<double>& G, const size_t N_P, const size_t K) :
+    N_P (N_P),
+    K (K),
+    G (G)
+{}
+
+
+/**
+ *  @param G            the AP1roG geminal coefficients (not including the identity matrix on the left)
+ */
+AP1roGGeminalCoefficients::AP1roGGeminalCoefficients(const MatrixX<double>& G) :
+    N_P (G.rows()),
+    K (G.rows() + G.cols()),
+    G (BlockMatrix<double>(0, this->N_P, this->N_P, this->K, G))
 {}
 
 
@@ -53,9 +56,34 @@ AP1roGGeminalCoefficients::AP1roGGeminalCoefficients(const VectorX<double>& g, s
  *  @param N_P      the number of electron pairs (= the number of geminals)
  *  @param K        the number of spatial orbitals
  */
-AP1roGGeminalCoefficients::AP1roGGeminalCoefficients(size_t N_P, size_t K) :
-    AP1roGVariables(N_P, K)
+AP1roGGeminalCoefficients::AP1roGGeminalCoefficients(const size_t N_P, const size_t K) :
+    AP1roGGeminalCoefficients(MatrixX<double>::Zero(N_P, K-N_P))
 {}
+
+
+
+/*
+ *  DESTRUCTOR
+ */
+
+AP1roGGeminalCoefficients::~AP1roGGeminalCoefficients() {}
+
+
+
+/*
+ *  OPERATORS
+ */
+
+/**
+ *  @param i            the zero-based index of the geminal, i.e. subscript of the geminal coefficient: i is in [0, N_P[ with N_P the number of electron pairs
+ *  @param a            the zero-based index of the occupied orbital, i.e. superscript of the geminal coefficient: a is in [N_P, K[ with K the number of spatial orbitals
+ * 
+ *  @return an element of the AP1roG geminal coefficient matrix G_i^a
+ */
+double AP1roGGeminalCoefficients::operator()(const size_t i, const size_t a) const {
+
+    return this->G(i,a);  // BlockMatrix implements operator() as we would expect
+}
 
 
 
@@ -69,7 +97,7 @@ AP1roGGeminalCoefficients::AP1roGGeminalCoefficients(size_t N_P, size_t K) :
  *
  *  @return the AP1roG geminal coefficients in the weak interaction limit
  */
-AP1roGGeminalCoefficients AP1roGGeminalCoefficients::WeakInteractionLimit(const SQHamiltonian<double>& sq_hamiltonian, size_t N_P) {
+AP1roGGeminalCoefficients AP1roGGeminalCoefficients::WeakInteractionLimit(const SQHamiltonian<double>& sq_hamiltonian, const size_t N_P) {
 
     const auto K = sq_hamiltonian.dimension();
     const auto number_of_geminal_coefficients = AP1roGGeminalCoefficients::numberOfGeminalCoefficients(N_P, K);
@@ -77,24 +105,49 @@ AP1roGGeminalCoefficients AP1roGGeminalCoefficients::WeakInteractionLimit(const 
     const auto& g = sq_hamiltonian.twoElectron().parameters();  // two-electron integrals
 
     // Provide the weak interaction limit values for the geminal coefficients
-    VectorX<double> g_vector = VectorX<double>::Zero(number_of_geminal_coefficients);
-    for (size_t mu = 0; mu < number_of_geminal_coefficients; mu++) {
-        size_t i = GQCP::matrixIndexMajor(mu, K, N_P);
-        size_t a = GQCP::matrixIndexMinor(mu, K, N_P);
-
-        g_vector(mu) = - g(a,i,a,i) / (2 * (h(a,a) - h(i,i)));
+    BlockMatrix<double> G (0, N_P, N_P, K);
+    for (size_t i = 0; i < N_P; i++) {
+        for (size_t a = N_P; a < K; a++) {
+            G(i,a) = - g(a,i,a,i) / (2 * (h(a,a) - h(i,i)));
+        }
     }
 
-
-    return AP1roGGeminalCoefficients(g_vector, N_P, K);
+    return AP1roGGeminalCoefficients(G, N_P, K);
 }
 
 
-
-/*
- *  DESTRUCTOR
+/**
+ *  @param g        the geminal coefficients in a vector representation that is in column-major storage
+ *
+ *  @param N_P      the number of electron pairs (= the number of geminals)
+ *  @param K        the number of spatial orbitals
  */
-AP1roGGeminalCoefficients::~AP1roGGeminalCoefficients() {}
+AP1roGGeminalCoefficients AP1roGGeminalCoefficients::FromColumnMajor(const VectorX<double>& g, size_t N_P, size_t K) {
+
+    const size_t rows = N_P;
+    const size_t cols = K - N_P;  // the total number of columns in the (reduced) AP1roG geminal coefficient matrix
+
+    const MatrixX<double> M = MatrixX<double>::FromColumnMajorVector(g, rows, cols);  // the block of the actual entries of the geminal coefficient matrix
+
+    return AP1roGGeminalCoefficients(BlockMatrix<double>(0, N_P, N_P, K, M), N_P, K);  // an encapsulating object that implements operator() in an intuitive way
+}
+
+
+/**
+ *  @param g        the geminal coefficients in a vector representation that is in row-major storage
+ *
+ *  @param N_P      the number of electron pairs (= the number of geminals)
+ *  @param K        the number of spatial orbitals
+ */
+AP1roGGeminalCoefficients AP1roGGeminalCoefficients::FromRowMajor(const VectorX<double>& g, const size_t N_P, const size_t K) {
+
+    const size_t rows = N_P;
+    const size_t cols = K - N_P;  // the total number of columns in the (reduced) AP1roG geminal coefficient matrix
+
+    const MatrixX<double> M = MatrixX<double>::FromRowMajorVector(g, rows, cols);  // the block of the actual entries of the geminal coefficient matrix
+
+    return AP1roGGeminalCoefficients(BlockMatrix<double>(0, N_P, N_P, K, M), N_P, K);  // an encapsulating object that implements operator() in an intuitive way
+}
 
 
 
@@ -108,9 +161,14 @@ AP1roGGeminalCoefficients::~AP1roGGeminalCoefficients() {}
  *
  *  @return the number of 'free' geminal coefficients
  */
-size_t AP1roGGeminalCoefficients::numberOfGeminalCoefficients(size_t N_P, size_t K) {
+size_t AP1roGGeminalCoefficients::numberOfGeminalCoefficients(const size_t N_P, const size_t K) {
 
-    return AP1roGVariables::numberOfVariables(N_P, K);
+    // Check if we can have N_P geminals in K orbitals
+    if (N_P >= K) {
+        throw std::invalid_argument("AP1roGGeminalCoefficients::numberOfVariables(size_t, size_t): Can't have that many geminals in this few number of orbitals.");
+    }
+
+    return N_P * (K - N_P);
 }
 
 
@@ -120,23 +178,29 @@ size_t AP1roGGeminalCoefficients::numberOfGeminalCoefficients(size_t N_P, size_t
  */
 
 /**
- *  @return the geminal coefficients in matrix form
+ *  @return the total geminal coefficient matrix, including the identity matrix block
  */
 MatrixX<double> AP1roGGeminalCoefficients::asMatrix() const {
 
-    // Initialize the geminal coefficient matrix
-    MatrixX<double> G = MatrixX<double>::Zero(this->N_P, this->K);
+    // Initialize the total geminal coefficient matrix
+    MatrixX<double> G_total = MatrixX<double>::Zero(this->N_P, this->K);
 
     // The AP1roG coefficients are the identity matrix in the leftmost (N_P x N_P)-block
-    G.topLeftCorner(this->N_P, this->N_P) = MatrixX<double>::Identity(this->N_P, this->N_P);
+    G_total.topLeftCorner(this->N_P, this->N_P) = MatrixX<double>::Identity(this->N_P, this->N_P);
 
     // Set the right AP1roG coefficient block
-    using RowMajorMatrixXd = Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor>;
-    Eigen::RowVectorXd x_row = this->x;
-    RowMajorMatrixXd B = Eigen::Map<RowMajorMatrixXd, Eigen::RowMajor>(x_row.data(), this->N_P, this->K-this->N_P);
-    G.topRightCorner(this->N_P, this->K-this->N_P) = B;
+    G_total.topRightCorner(this->N_P, this->K-this->N_P) = this->G.asMatrix();
 
-    return G;
+    return G_total;
+}
+
+
+/**
+ *  @return the geminal coefficients as a row-major vector, excluding the identity block
+ */
+VectorX<double> AP1roGGeminalCoefficients::asVector() const {
+
+    return this->G.asVector();
 }
 
 
@@ -147,8 +211,7 @@ MatrixX<double> AP1roGGeminalCoefficients::asMatrix() const {
  */
 double AP1roGGeminalCoefficients::overlap(const ONV& onv) const {
 
-    // For an AP1roG, we use a simplification for singly and doubly pair-excited ONVs
-
+    // For an AP1roG wave function, we use a simplification for singly and doubly pair-excited ONVs
 
     FockSpace fock_space (this->K, this->N_P);  // the DOCI Fock space
     ONV reference = fock_space.makeONV(0);
@@ -178,7 +241,7 @@ double AP1roGGeminalCoefficients::overlap(const ONV& onv) const {
         return this->operator()(i, a) * this->operator()(j, b) + this->operator()(j, a) * this->operator()(i, b);
     }
 
-    else {
+    else {  // use the general formula if the difference is more than two pair excitations
 
         APIGGeminalCoefficients APIG (this->asMatrix());
         return APIG.overlap(onv);

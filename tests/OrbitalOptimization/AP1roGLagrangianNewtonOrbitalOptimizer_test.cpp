@@ -21,35 +21,42 @@
 
 #include "Basis/transform.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
+#include "Geminals/AP1roG.hpp"
+#include "Geminals/AP1roGPSESolver.hpp"
 #include "Geminals/AP1roGLagrangianOptimizer.hpp"
 #include "Mathematical/Optimization/IterativeIdentitiesHessianModifier.hpp"
 #include "OrbitalOptimization/AP1roGLagrangianNewtonOrbitalOptimizer.hpp"
 
 
+/**
+ *  Since we don't have OO reference data, all we can do is check if the orbital optimization lowers the energy
+ */
 BOOST_AUTO_TEST_CASE ( lih_6_31G_orbital_optimize ) {
 
     // Construct the molecular Hamiltonian in the RHF basis
-    auto lih = GQCP::Molecule::ReadXYZ("data/lih_olsens.xyz");
+    const auto lih = GQCP::Molecule::ReadXYZ("data/lih_olsens.xyz");
+    const auto N_P = lih.numberOfElectrons()/2;
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (lih, "6-31G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, lih);  // in an AO basis
 
     GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, lih);
     plain_scf_solver.solve();
-    auto rhf = plain_scf_solver.get_solution();
+    const auto rhf = plain_scf_solver.get_solution();
     basisTransform(spinor_basis, sq_hamiltonian, rhf.get_C());
 
-    // Get the initial AP1roG energy
-    GQCP::AP1roGLagrangianOptimizer lagrangian_solver (lih, sq_hamiltonian);
-    lagrangian_solver.solve();
-    double initial_energy = lagrangian_solver.get_electronic_energy();
-    auto initial_G = lagrangian_solver.get_geminal_coefficients();
 
-    // Do an AP1roG orbital optimization using Jacobi rotations
+    // Get the initial AP1roG solution
+    GQCP::AP1roGPSEs pses (sq_hamiltonian, N_P);
+    GQCP::AP1roGPSESolver pse_solver (pses);
+    auto G = pse_solver.solve();  // use a zero initial guess for the geminal coefficients
+    const auto initial_energy = GQCP::calculateAP1roGEnergy(G, sq_hamiltonian);
+
+
+    // Do an AP1roG orbital optimization using a Newton-based algorithm
     auto hessian_modifier = std::make_shared<GQCP::IterativeIdentitiesHessianModifier>();
-    GQCP::AP1roGLagrangianNewtonOrbitalOptimizer orbital_optimizer (initial_G, hessian_modifier, 1.0e-04);
+    GQCP::AP1roGLagrangianNewtonOrbitalOptimizer orbital_optimizer (G, hessian_modifier, 1.0e-04);
     orbital_optimizer.optimize(spinor_basis, sq_hamiltonian);
-
-    double optimized_energy = orbital_optimizer.get_electronic_energy();
+    const auto optimized_energy = orbital_optimizer.get_electronic_energy();
 
 
     // We don't have reference data, so all we can do is check if orbital optimization lowers the energy

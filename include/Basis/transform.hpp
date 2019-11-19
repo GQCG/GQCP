@@ -21,6 +21,7 @@
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
 #include "Basis/TransformationMatrix.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
+#include "Operator/SecondQuantized/USQHamiltonian.hpp"
 
 
 
@@ -95,6 +96,66 @@ void basisRotate(RSpinorBasis<double, Shell>& spinor_basis, SQHamiltonian<double
 
     spinor_basis.rotate(jacobi_rotation_parameters);
     sq_hamiltonian.rotate(jacobi_rotation_parameters);
+}
+
+
+/**
+ * Unrestricted
+ */
+
+/**
+ *  Transform both the alpha single-particle basis and the alpha component of the Hamiltonian to another basis using the given transformation matrix
+ * 
+ *  @tparam ShellType                   the type of shell that the scalar basis contains
+ *  @tparam TransformationScalar        the scalar type of the transformation matrix
+ * 
+ *  @param sp_basis                     the single-particle basis for the alpha component
+ *  @param usq_hamiltonian              the Hamiltonian, expressed in an unrestricted spinor basis
+ *  @param T                            the transformation matrix
+ */
+template <typename TransformationScalar, typename ShellType>
+void basisTransformAlpha(SingleParticleBasis<TransformationScalar, ShellType>& sp_basis, USQHamiltonian<TransformationScalar>& usq_hamiltonian, const TransformationMatrix<TransformationScalar>& T) {
+
+    sp_basis.transform(T);
+    usq_hamiltonian.transformAlpha(T);
+}
+
+
+/**
+ *  Transform both the beta single-particle basis and the beta component of the Hamiltonian to another basis using the given transformation matrix
+ * 
+ *  @tparam ShellType                   the type of shell that the scalar basis contains
+ *  @tparam TransformationScalar        the scalar type of the transformation matrix
+ * 
+ *  @param sp_basis                     the single-particle basis for the beta component
+ *  @param usq_hamiltonian              the Hamiltonian, expressed in an unrestricted spinor basis
+ *  @param T                            the transformation matrix
+ */
+template <typename TransformationScalar, typename ShellType>
+void basisTransformBeta(SingleParticleBasis<TransformationScalar, ShellType>& sp_basis, USQHamiltonian<TransformationScalar>& usq_hamiltonian, const TransformationMatrix<TransformationScalar>& T) {
+
+    sp_basis.transform(T);
+    usq_hamiltonian.transformBeta(T);
+}
+
+
+/**
+ *  Transform the beta & alpha single-particle basis and both the components of the Hamiltonian to another basis using the given transformation matrix
+ * 
+ *  @tparam ShellType                   the type of shell that the scalar basis contains
+ *  @tparam TransformationScalar        the scalar type of the transformation matrix
+ * 
+ *  @param sp_basis_alpha               the single-particle basis for the alpha component
+ *  @param sp_basis_beta                the single-particle basis for the beta component
+ *  @param usq_hamiltonian              the Hamiltonian, expressed in an unrestricted spinor basis
+ *  @param T                            the transformation matrix
+ */
+template <typename TransformationScalar, typename ShellType>
+void basisTransform(SingleParticleBasis<TransformationScalar, ShellType>& sp_basis_alpha, SingleParticleBasis<TransformationScalar, ShellType>& sp_basis_beta, USQHamiltonian<TransformationScalar>& usq_hamiltonian, const TransformationMatrix<TransformationScalar>& T) {
+
+    sp_basis_alpha.transform(T);
+    sp_basis_beta.transform(T);
+    usq_hamiltonian.transform(T);
 }
 
 

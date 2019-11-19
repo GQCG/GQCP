@@ -793,7 +793,8 @@ WARN_LOGFILE           =
 
 INPUT      = "@CMAKE_SOURCE_DIR@/include" \
 			 "@CMAKE_SOURCE_DIR@/include/Basis" \
-			 "@CMAKE_SOURCE_DIR@/include/Basis/ScalarBasis" \
+			 "@CMAKE_SOURCE_DIR@/include/Basis/Integrals" \
+			 "@CMAKE_SOURCE_DIR@/include/Basis/Integrals/Interfaces" \
 			 "@CMAKE_SOURCE_DIR@/include/Basis/ScalarBasis" \
 			 "@CMAKE_SOURCE_DIR@/include/Basis/SpinorBasis" \
 			 "@CMAKE_SOURCE_DIR@/include/CISolver" \
@@ -802,9 +803,14 @@ INPUT      = "@CMAKE_SOURCE_DIR@/include" \
 			 "@CMAKE_SOURCE_DIR@/include/HamiltonianBuilder" \
 			 "@CMAKE_SOURCE_DIR@/include/HamiltonianParameters" \
 			 "@CMAKE_SOURCE_DIR@/include/Mathematical" \
+			 "@CMAKE_SOURCE_DIR@/include/Mathematical/Optimization" \
+			 "@CMAKE_SOURCE_DIR@/include/Mathematical/Representation" \
 			 "@CMAKE_SOURCE_DIR@/include/Molecule" \
 			 "@CMAKE_SOURCE_DIR@/include/Operator" \
+			 "@CMAKE_SOURCE_DIR@/include/Operator/FirstQuantized" \
+			 "@CMAKE_SOURCE_DIR@/include/Operator/SecondQuantized" \
 			 "@CMAKE_SOURCE_DIR@/include/OrbitalOptimization" \
+			 "@CMAKE_SOURCE_DIR@/include/OrbitalOptimization/Localization" \
 			 "@CMAKE_SOURCE_DIR@/include/Properties" \
 			 "@CMAKE_SOURCE_DIR@/include/QCMethod" \
 			 "@CMAKE_SOURCE_DIR@/include/RDM" \
@@ -822,9 +828,12 @@ INPUT      = "@CMAKE_SOURCE_DIR@/include" \
 			 "@CMAKE_SOURCE_DIR@/src/HamiltonianBuilder" \
 			 "@CMAKE_SOURCE_DIR@/src/HamiltonianParameters" \
 			 "@CMAKE_SOURCE_DIR@/src/Mathematical" \
+			 "@CMAKE_SOURCE_DIR@/src/Mathematical/Optimization" \
 			 "@CMAKE_SOURCE_DIR@/src/Molecule" \
 			 "@CMAKE_SOURCE_DIR@/src/OrbitalOptimization" \
+			 "@CMAKE_SOURCE_DIR@/src/OrbitalOptimization/Localization" \
 			 "@CMAKE_SOURCE_DIR@/src/Operator" \
+			 "@CMAKE_SOURCE_DIR@/src/Operator/FirstQuantized" \
 			 "@CMAKE_SOURCE_DIR@/src/Properties" \
 			 "@CMAKE_SOURCE_DIR@/src/QCMethod" \
 			 "@CMAKE_SOURCE_DIR@/src/RDM" \

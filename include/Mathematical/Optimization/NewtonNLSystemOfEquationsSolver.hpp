@@ -19,7 +19,6 @@
 
 
 #include "Mathematical/Representation/Matrix.hpp"
-#include "Mathematical/Optimization/BaseSystemOfEquationsSolver.hpp"
 #include "typedefs.hpp"
 
 
@@ -27,35 +26,35 @@ namespace GQCP {
 
 
 /**
- *  A class that solves a system of equations by using a Newton algorithm
+ *  A class that solves a system of non-linear equations by using an exact Newton-step algorithm
  */
-class NewtonSystemOfEquationsSolver : public BaseSystemOfEquationsSolver {
+class NewtonNLSystemOfEquationsSolver {
 private:
-    VectorFunction f;  // function wrapper for the vector 'function'
-    MatrixFunction J;  // function wrapper for the JacobianFunction
+    double convergence_threshold;  // the threshold on the norm of the update that determines convergence
+    size_t maximum_number_of_iterations;
+
+    VectorFunction f;  // a callable vector function that returns the value of each of the equations in a resulting vector, given the current variables
+    MatrixFunction J;  // the corresponding callable Jacobian
 
 
 public:
     // CONSTRUCTORS
+
     /**
-     *  @param x0                               the initial guess
-     *  @param f                                a callable vector function
+     *  @param f                                a callable vector function that returns the value of each of the equations in a resulting vector, given the current variables
      *  @param J                                the corresponding callable Jacobian
-     *  @param convergence_threshold            the threshold used to determine convergence
+     *  @param convergence_threshold            the threshold on the norm of the update that determines convergence
      *  @param maximum_number_of_iterations     the maximum number of iterations in the algorithm
      */
-    NewtonSystemOfEquationsSolver(const VectorX<double>& x0, const VectorFunction& f, const MatrixFunction& J, double convergence_threshold = 1.0e-08, size_t maximum_number_of_iterations = 128);
+    NewtonNLSystemOfEquationsSolver(const VectorFunction& f, const MatrixFunction& J, double convergence_threshold = 1.0e-08, size_t maximum_number_of_iterations = 128);
 
 
-    // OVERRIDDEN PUBLIC METHODS
+    // PUBLIC METHODS
+
     /**
-     *  Find a solution to the problem f(x) = 0
-     *
-     *  If successful, it sets
-     *      - is_solved to true
-     *      - the found solution
+     *  Find a solution to the problem f(x) = 0, where f is a vector function and x is a vector
      */
-    void solve() override;
+    void solve(VectorX<double>& x);
 };
 
 

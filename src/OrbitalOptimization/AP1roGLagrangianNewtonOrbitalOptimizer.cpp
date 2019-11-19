@@ -18,6 +18,7 @@
 #include "OrbitalOptimization/AP1roGLagrangianNewtonOrbitalOptimizer.hpp"
 
 #include "Geminals/AP1roGLagrangianOptimizer.hpp"
+#include "Geminals/AP1roGPSESolver.hpp"
 #include "Geminals/AP1roG.hpp"
 
 
@@ -73,12 +74,16 @@ AP1roGLagrangianNewtonOrbitalOptimizer::AP1roGLagrangianNewtonOrbitalOptimizer(c
  */
 void AP1roGLagrangianNewtonOrbitalOptimizer::prepareDMCalculation(const SQHamiltonian<double>& sq_hamiltonian) {
 
-    // Solve the AP1roG PSEs and determine the Lagrangian multipliers
-    AP1roGLagrangianOptimizer lagrangian_optimizer (this->N_P, sq_hamiltonian, this->G, this->pse_convergence_threshold, this->pse_maximum_number_of_iterations);
-    lagrangian_optimizer.solve();
-    this->E = lagrangian_optimizer.get_electronic_energy();
-    this->G = lagrangian_optimizer.get_geminal_coefficients();
-    this->multipliers = lagrangian_optimizer.get_multipliers();
+    // Solve the AP1roG PSEs for the geminal coefficients
+    const AP1roGPSEs pses (sq_hamiltonian, this->N_P);
+    const AP1roGPSESolver pse_solver (pses, this->pse_convergence_threshold, this->pse_maximum_number_of_iterations);
+    pse_solver.solve(G);
+    this->E = calculateAP1roGEnergy(this->G, sq_hamiltonian);
+
+
+    // Determine the Lagrangian multipliers
+    AP1roGLagrangianOptimizer lagrangian_optimizer (this->G, sq_hamiltonian);
+    this->multipliers = lagrangian_optimizer.solve();
 }
 
 

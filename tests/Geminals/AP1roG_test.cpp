@@ -21,37 +21,47 @@
 
 #include "Basis/transform.hpp"
 #include "Geminals/AP1roG.hpp"
+#include "Geminals/AP1roGPSESolver.hpp"
 #include "Geminals/AP1roGLagrangianOptimizer.hpp"
 #include "Properties/expectation_values.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
 
 
+/**
+ *  Check if the analytical AP1roG energy is equal to the contraction of the 1- and 2-DM with the 1- and 2-electron integrals
+ */
 BOOST_AUTO_TEST_CASE ( energy_as_contraction ) {
 
-    auto h2 = GQCP::Molecule::ReadXYZ("data/h2_olsens.xyz");
+    // Prepare the molecular Hamiltonian in the RHF basis
+    const auto h2 = GQCP::Molecule::ReadXYZ("data/h2_olsens.xyz");
+    const auto N_P = h2.numberOfElectrons()/2;
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (h2, "6-31G**");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2);  // in an AO basis
 
+    // Transform the Hamiltonian to the RHF orbital basis
     GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, h2);
     plain_scf_solver.solve();
-    auto rhf = plain_scf_solver.get_solution();
-
-    // Transform the Hamiltonian to the RHF orbital basis
+    const auto rhf = plain_scf_solver.get_solution();
     GQCP::basisTransform(spinor_basis, sq_hamiltonian, rhf.get_C());
 
 
-    // Optimize the AP1roG PSE Lagrangian with the initial guess of the geminal coefficients being 0
-    GQCP::AP1roGLagrangianOptimizer lagrangian_optimizer (h2, sq_hamiltonian);
-    lagrangian_optimizer.solve();
-    double electronic_energy = lagrangian_optimizer.get_electronic_energy();
-    auto G = lagrangian_optimizer.get_geminal_coefficients();
-    auto multipliers = lagrangian_optimizer.get_multipliers();
+    // Solve the AP1roG PSEs for the geminal coefficients
+    GQCP::AP1roGPSEs pses (sq_hamiltonian, N_P);
+    const GQCP::AP1roGPSESolver pse_solver (pses);
+    const auto G = pse_solver.solve();  // initial guess is zero
 
 
-    // Calculate the 1- and 2-RDM and check the trace with the one- and two-electron integrals
-    auto D = GQCP::calculate1RDM(G, multipliers);
-    auto d = GQCP::calculate2RDM(G, multipliers);
+    // Determine the Lagrangian multipliers in order to calculate the DMs
+    GQCP::AP1roGLagrangianOptimizer lagrangian_optimizer (G, sq_hamiltonian);
+    const auto multipliers = lagrangian_optimizer.solve();
 
-    double electronic_energy_by_contraction = GQCP::calculateExpectationValue(sq_hamiltonian, D, d);
+
+    // Calculate the DMs and check the trace with the one- and two-electron integrals
+    const double electronic_energy = GQCP::calculateAP1roGEnergy(G, sq_hamiltonian);
+
+    const auto D = GQCP::calculate1RDM(G, multipliers);
+    const auto d = GQCP::calculate2RDM(G, multipliers);
+    const double electronic_energy_by_contraction = GQCP::calculateExpectationValue(sq_hamiltonian, D, d);
+
     BOOST_CHECK(std::abs(electronic_energy_by_contraction - electronic_energy) < 1.0e-09);
 }

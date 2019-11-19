@@ -4,14 +4,13 @@ target_sources(gqcp
             BaseHessianModifier.hpp
             BaseMatrixSolver.hpp
             BaseMinimizer.hpp
-            BaseSystemOfEquationsSolver.hpp
             DavidsonSolver.hpp
             DenseSolver.hpp
             Eigenpair.hpp
             EigenproblemSolverOptions.hpp
             IterativeIdentitiesHessianModifier.hpp
             NewtonMinimizer.hpp
-            NewtonSystemOfEquationsSolver.hpp
+            NewtonNLSystemOfEquationsSolver.hpp
             SparseSolver.hpp
             step.hpp
             UnalteringHessianModifier.hpp

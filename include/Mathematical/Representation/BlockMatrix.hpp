@@ -36,16 +36,17 @@ public:
 
 
 private:
-    size_t row_start;  // the 0-based row index of the full matrix at which the block starts
-    size_t row_end;  // the 0-based row index of the full matrix at which the block ends (not included)
+    size_t row_start;  // the 0-based row index of the full matrix at which the block starts, i.e. the start of the range of values that the first argument of operator() should accept
+    size_t row_end;  // the 0-based row index of the full matrix at which the block ends (not included), i.e. the end (not included) of the range of values that the first argument of operator() should accept
 
-    size_t col_start;  // the 0-based column index of the full matrix at which the block starts
-    size_t col_end;  // the 0-based column index of the full matrix at which the block ends (not included)
+    size_t col_start;  // the 0-based column index of the full matrix at which the block starts, i.e. the start of the range of values that the second argument of operator() should accept
+    size_t col_end;  // the 0-based column index of the full matrix at which the block ends (not included), i.e. the end (not included) of the range of values that the second argument of operator() should accept
 
     MatrixX<Scalar> M;  // the matrix representation of the block
 
 
 public:
+
     /*
      *  CONSTRUCTORS
      */
@@ -53,10 +54,10 @@ public:
     /**
      *  Constructor with a given block matrix
      * 
-     *  @param row_start        the 0-based row index of the full matrix at which the block starts
-     *  @param row_end          the 0-based row index of the full matrix at which the block ends (not included)
-     *  @param col_start        the 0-based column index of the full matrix at which the block starts
-     *  @param col_end          the 0-based column index of the full matrix at which the block ends (not included)
+     *  @param row_start        the 0-based row index of the full matrix at which the block starts, i.e. the start of the range of values that the first argument of operator() should accept
+     *  @param row_end          the 0-based row index of the full matrix at which the block ends (not included), i.e. the end (not included) of the range of values that the first argument of operator() should accept
+     *  @param col_start        the 0-based column index of the full matrix at which the block starts, i.e. the start of the range of values that the second argument of operator() should accept
+     *  @param col_end          the 0-based column index of the full matrix at which the block ends (not included), i.e. the end (not included) of the range of values that the second argument of operator() should accept
      *  @param M                the block matrix
      */
     BlockMatrix(const size_t row_start, const size_t row_end, const size_t col_start, const size_t col_end, const MatrixX<Scalar>& M) :
@@ -78,13 +79,21 @@ public:
     /**
      *  Constructor that initializes a zero block matrix
      * 
-     *  @param row_start        the 0-based row index of the full matrix at which the block starts
-     *  @param row_end          the 0-based row index of the full matrix at which the block ends (not included)
-     *  @param col_start        the 0-based column index of the full matrix at which the block starts
-     *  @param col_end          the 0-based column index of the full matrix at which the block ends (not included)
+     *  @param row_start        the 0-based row index of the full matrix at which the block starts, i.e. the start of the range of values that the first argument of operator() should accept
+     *  @param row_end          the 0-based row index of the full matrix at which the block ends (not included), i.e. the end (not included) of the range of values that the first argument of operator() should accept
+     *  @param col_start        the 0-based column index of the full matrix at which the block starts, i.e. the start of the range of values that the second argument of operator() should accept
+     *  @param col_end          the 0-based column index of the full matrix at which the block ends (not included), i.e. the end (not included) of the range of values that the second argument of operator() should accept
      */
     BlockMatrix(const size_t row_start, const size_t row_end, const size_t col_start, const size_t col_end) :
         BlockMatrix(row_start, row_end, col_start, col_end, MatrixX<Scalar>::Zero(row_end-row_start, col_end-col_start))
+    {}
+
+
+    /**
+     *  Default constructor is needed: sets everything to zero(s)
+     */
+    BlockMatrix() : 
+        BlockMatrix(0, 0, 0, 0)
     {}
 
 

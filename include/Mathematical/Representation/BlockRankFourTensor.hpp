@@ -36,17 +36,17 @@ public:
 
 
 private:
-    size_t index1_start;  // the index of the first rank of the full tensor at which the block starts
-    size_t index1_end;  // the index of the first rank of the full tensor at which the block ends (not included)
+    size_t index1_start;  // the index of the first rank of the full tensor at which the block starts, i.e. the start of the range of values that the first argument of operator() should accept
+    size_t index1_end;  // the index of the first rank of the full tensor at which the block ends (not included), i.e. the end (not included) of the range of values that the first argument of operator() should accept
 
-    size_t index2_start;  // the index of the second rank of the full tensor at which the block starts
-    size_t index2_end;  // the index of the second rank of the full tensor at which the block starts (not included)
+    size_t index2_start;  // the index of the second rank of the full tensor at which the block starts, i.e. the start of the range of values that the second argument of operator() should accept
+    size_t index2_end;  // the index of the second rank of the full tensor at which the block starts (not included), i.e. the end (not included) of the range of values that the second argument of operator() should accept
 
-    size_t index3_start;  // the index of the third rank of the full tensor at which the block starts
-    size_t index3_end;  // the index of the third rank of the full tensor at which the block starts (not included)
+    size_t index3_start;  // the index of the third rank of the full tensor at which the block starts, i.e. the start of the range of values that the third argument of operator() should accept
+    size_t index3_end;  // the index of the third rank of the full tensor at which the block starts (not included), i.e. the end (not included) of the range of values that the third argument of operator() should accept
 
-    size_t index4_start;  // the index of the fourth rank of the full tensor at which the block starts
-    size_t index4_end;  // the index of the fourth rank of the full tensor at which the block starts (not included)
+    size_t index4_start;  // the index of the fourth rank of the full tensor at which the block starts, i.e. the start of the range of values that the fourth argument of operator() should accept
+    size_t index4_end;  // the index of the fourth rank of the full tensor at which the block starts (not included), i.e. the end (not included) of the range of values that the fourth argument of operator() should accept
 
     Tensor<Scalar, 4> T;  // the tensor representation of the block
 
@@ -59,17 +59,17 @@ public:
     /**
      *  Constructor that initializes a zero block tensor
      * 
-     *  @param index1_start         the index of the first rank of the full tensor at which the block starts
-     *  @param index1_start         the index of the first rank of the full tensor at which the block ends (not included)
+     *  @param index1_start         the index of the first rank of the full tensor at which the block starts, i.e. the start of the range of values that the first argument of operator() should accept
+     *  @param index1_start         the index of the first rank of the full tensor at which the block ends (not included), i.e. the end (not included) of the range of values that the first argument of operator() should accept
      * 
-     *  @param index2_start         the index of the second rank of the full tensor at which the block starts
-     *  @param index2_start         the index of the second rank of the full tensor at which the block starts (not included)
+     *  @param index2_start         the index of the second rank of the full tensor at which the block starts, i.e. the start of the range of values that the second argument of operator() should accept
+     *  @param index2_start         the index of the second rank of the full tensor at which the block starts (not included), i.e. the end (not included) of the range of values that the second argument of operator() should accept
      * 
-     *  @param index3_start         the index of the third rank of the full tensor at which the block starts
-     *  @param index3_start         the index of the third rank of the full tensor at which the block starts (not included)
+     *  @param index3_start         the index of the third rank of the full tensor at which the block starts, i.e. the start of the range of values that the third argument of operator() should accept
+     *  @param index3_start         the index of the third rank of the full tensor at which the block starts (not included), i.e. the end (not included) of the range of values that the third argument of operator() should accept
      * 
-     *  @param index4_start         the index of the fourth rank of the full tensor at which the block starts
-     *  @param index4_start         the index of the fourth rank of the full tensor at which the block starts (not included)
+     *  @param index4_start         the index of the fourth rank of the full tensor at which the block starts, i.e. the start of the range of values that the fourth argument of operator() should accept
+     *  @param index4_start         the index of the fourth rank of the full tensor at which the block starts (not included), i.e. the end (not included) of the range of values that the fourth argument of operator() should accept
      */
     BlockRankFourTensor(const size_t index1_start, const size_t index1_end, const size_t index2_start, const size_t index2_end, const size_t index3_start, const size_t index3_end, const size_t index4_start, const size_t index4_end) :
         index1_start (index1_start),
