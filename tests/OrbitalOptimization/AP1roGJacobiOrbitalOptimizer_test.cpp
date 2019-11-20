@@ -91,7 +91,7 @@ BOOST_AUTO_TEST_CASE ( orbital_optimize ) {
     const auto lih = GQCP::Molecule::ReadXYZ("data/lih_olsens.xyz");
     const auto N_P = lih.numberOfElectrons()/2;
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (lih, "6-31G");
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, lih);  // in an AO basis
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, lih);  // in an AO basis
 
     GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, lih);
     plain_scf_solver.solve();
@@ -108,7 +108,7 @@ BOOST_AUTO_TEST_CASE ( orbital_optimize ) {
 
     // Do an AP1roG orbital optimization using Jacobi rotations and check if the energy is lower
     GQCP::AP1roGJacobiOrbitalOptimizer orbital_optimizer (initial_G, 1.0e-04);
-    orbital_optimizer.optimize(sp_basis, sq_hamiltonian);
+    orbital_optimizer.optimize(spinor_basis, sq_hamiltonian);
     const double optimized_energy = orbital_optimizer.get_electronic_energy();
 
 

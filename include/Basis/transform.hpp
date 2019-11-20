@@ -109,14 +109,14 @@ void basisRotate(RSpinorBasis<double, Shell>& spinor_basis, SQHamiltonian<double
  *  @tparam ShellType                   the type of shell that the scalar basis contains
  *  @tparam TransformationScalar        the scalar type of the transformation matrix
  * 
- *  @param sp_basis                     the single-particle basis for the alpha component
+ *  @param spinor_basis                 the single-particle basis for the alpha component
  *  @param usq_hamiltonian              the Hamiltonian, expressed in an unrestricted spinor basis
  *  @param T                            the transformation matrix
  */
 template <typename TransformationScalar, typename ShellType>
-void basisTransformAlpha(SingleParticleBasis<TransformationScalar, ShellType>& sp_basis, USQHamiltonian<TransformationScalar>& usq_hamiltonian, const TransformationMatrix<TransformationScalar>& T) {
+void basisTransformAlpha(RSpinorBasis<TransformationScalar, ShellType>& spinor_basis, USQHamiltonian<TransformationScalar>& usq_hamiltonian, const TransformationMatrix<TransformationScalar>& T) {
 
-    sp_basis.transform(T);
+    spinor_basis.transform(T);
     usq_hamiltonian.transformAlpha(T);
 }
 
@@ -127,14 +127,14 @@ void basisTransformAlpha(SingleParticleBasis<TransformationScalar, ShellType>& s
  *  @tparam ShellType                   the type of shell that the scalar basis contains
  *  @tparam TransformationScalar        the scalar type of the transformation matrix
  * 
- *  @param sp_basis                     the single-particle basis for the beta component
+ *  @param spinor_basis                 the single-particle basis for the beta component
  *  @param usq_hamiltonian              the Hamiltonian, expressed in an unrestricted spinor basis
  *  @param T                            the transformation matrix
  */
 template <typename TransformationScalar, typename ShellType>
-void basisTransformBeta(SingleParticleBasis<TransformationScalar, ShellType>& sp_basis, USQHamiltonian<TransformationScalar>& usq_hamiltonian, const TransformationMatrix<TransformationScalar>& T) {
+void basisTransformBeta(RSpinorBasis<TransformationScalar, ShellType>& spinor_basis, USQHamiltonian<TransformationScalar>& usq_hamiltonian, const TransformationMatrix<TransformationScalar>& T) {
 
-    sp_basis.transform(T);
+    spinor_basis.transform(T);
     usq_hamiltonian.transformBeta(T);
 }
 
@@ -151,7 +151,7 @@ void basisTransformBeta(SingleParticleBasis<TransformationScalar, ShellType>& sp
  *  @param T                            the transformation matrix
  */
 template <typename TransformationScalar, typename ShellType>
-void basisTransform(SingleParticleBasis<TransformationScalar, ShellType>& sp_basis_alpha, SingleParticleBasis<TransformationScalar, ShellType>& sp_basis_beta, USQHamiltonian<TransformationScalar>& usq_hamiltonian, const TransformationMatrix<TransformationScalar>& T) {
+void basisTransform(RSpinorBasis<TransformationScalar, ShellType>& sp_basis_alpha, RSpinorBasis<TransformationScalar, ShellType>& sp_basis_beta, USQHamiltonian<TransformationScalar>& usq_hamiltonian, const TransformationMatrix<TransformationScalar>& T) {
 
     sp_basis_alpha.transform(T);
     sp_basis_beta.transform(T);

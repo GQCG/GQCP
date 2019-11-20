@@ -27,32 +27,6 @@
 #include "RHF/PlainRHFSCFSolver.hpp"
 
 
-BOOST_AUTO_TEST_CASE ( constructor ) {
-
-    // Test a correct constructor
-    auto h2 = GQCP::Molecule::ReadXYZ("data/h2_szabo.xyz");
-    size_t N = 2;  // number of electrons for H2
-    size_t N_P = N/2;  // number of electron pairs for H2
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (h2, "STO-3G");
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2);  // in an AO basis
-    GQCP::AP1roGPSESolver ap1rog_pse_solver (N_P, sq_hamiltonian);
-}
-
-
-BOOST_AUTO_TEST_CASE ( constructor_molecule ) {
-
-    // Test a correct constructor
-    // Check if we can also pass a molecule object to the constructor
-    auto h2 = GQCP::Molecule::ReadXYZ("data/h2_szabo.xyz");
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (h2, "STO-3G");
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2);  // in an AO basis
-
-    // Test a faulty constructor
-    auto h2_cation = GQCP::Molecule::ReadXYZ("data/h2_szabo.xyz", +1);
-    BOOST_CHECK_THROW(GQCP::AP1roGPSESolver(h2_cation, sq_hamiltonian), std::invalid_argument);  // we can use the same Hamiltonian for molecule and ion
-}
-
-
 /**
  *  Check the solution of the AP1roG PSEs (with zero initial guess) with reference data from Ayers' implementation
  *  The test system is H2 with HF/6-31G** orbitals

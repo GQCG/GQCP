@@ -35,10 +35,10 @@ BOOST_AUTO_TEST_CASE ( USQHamiltonian_constructor ) {
     
     // Create single-particle basis
     const auto water = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
-    const GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (water, "STO-3G");
+    const GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (water, "STO-3G");
     
     // Create One- and SQTwoElectronOperators (and a transformation matrix) with compatible dimensions
-    const size_t K = sp_basis.numberOfBasisFunctions();
+    const size_t K = spinor_basis.numberOfSpatialOrbitals();
     const GQCP::QCMatrix<double> H_core = GQCP::QCMatrix<double>::Random(K, K);
     GQCP::QCRankFourTensor<double> g (K);
     g.setRandom();
@@ -68,13 +68,13 @@ BOOST_AUTO_TEST_CASE ( USQHamiltonian_transform ) {
     
     // Create single-particle basis for alpha and beta
     const auto water = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
-    const GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (water, "STO-3G");
+    const GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (water, "STO-3G");
 
-    const size_t K = sp_basis.numberOfBasisFunctions();
+    const size_t K = spinor_basis.numberOfSpatialOrbitals();
 
     // Create two identical usq Hamiltonians
-    GQCP::USQHamiltonian<double> usq_hamiltonian1 = GQCP::USQHamiltonian<double>::Molecular(sp_basis, water);
-    GQCP::USQHamiltonian<double> usq_hamiltonian2 = GQCP::USQHamiltonian<double>::Molecular(sp_basis, water);
+    GQCP::USQHamiltonian<double> usq_hamiltonian1 = GQCP::USQHamiltonian<double>::Molecular(spinor_basis, water);
+    GQCP::USQHamiltonian<double> usq_hamiltonian2 = GQCP::USQHamiltonian<double>::Molecular(spinor_basis, water);
 
     const GQCP::SquareMatrix<double> U = GQCP::SquareMatrix<double>::RandomUnitary(K);
 

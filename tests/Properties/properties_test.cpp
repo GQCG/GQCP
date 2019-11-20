@@ -121,19 +121,19 @@ BOOST_AUTO_TEST_CASE ( h2_polarizability_RHF ) {
     GQCP::Nucleus H2 (1, 0.0, 0.0,  0.5);
     GQCP::Molecule h2 ({H1, H2}, 0);
 
-    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2, "STO-3G");
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2);  // in the AO basis
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (h2, "STO-3G");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2);  // in the AO basis
 
 
     // Do the RHF calculation to get the canonical RHF orbitals
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, sp_basis, h2);
+    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, h2);
     plain_scf_solver.solve();
     const auto rhf = plain_scf_solver.get_solution();
 
 
     // Transform the orbitals to the RHF basis and prepare the dipole integrals in the RHF basis
-    GQCP::basisTransform(sp_basis, sq_hamiltonian, rhf.get_C());
-    const auto dipole_op = sp_basis.quantize(GQCP::Operator::ElectronicDipole());
+    GQCP::basisTransform(spinor_basis, sq_hamiltonian, rhf.get_C());
+    const auto dipole_op = spinor_basis.quantize(GQCP::Operator::ElectronicDipole());
 
 
     // Find the RHF wave function response
