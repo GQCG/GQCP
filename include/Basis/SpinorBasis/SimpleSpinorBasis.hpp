@@ -69,7 +69,7 @@ public:
     /**
      *  @param precision                the precision used to test orthonormality
      * 
-     *  @return if this restricted spinor basis basis is orthonormal within the given precision
+     *  @return if this spinor basis is orthonormal within the given precision
      */
     bool isOrthonormal(const double precision = 1.0e-08) const {
 
@@ -93,7 +93,7 @@ public:
 
 
     /**
-     *  Transform the restricted spinor basis to the Löwdin basis, which is the orthonormal basis that we transform to with T = S^{-1/2}, where S is the overlap matrix in the underlying scalar orbital basis
+     *  Transform the spinor basis to the 'Löwdin basis', which is the orthonormal basis that we transform to with T = S^{-1/2}, where S is the current overlap matrix
      */
     void lowdinOrthonormalize() {
 

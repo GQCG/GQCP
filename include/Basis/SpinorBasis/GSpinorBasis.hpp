@@ -152,7 +152,7 @@ public:
     /**
      *  Construct a generalized spinor basis with a underlying scalar bases made by placing shells corresponding to the basisset specifications on every nucleus of the molecule
      *
-     *  @param molecule                 the molecule containing the nuclei on which the shells should be centered
+     *  @param molecule                     the molecule containing the nuclei on which the shells should be centered
      *  @param basisset_name_alpha          the name of the basisset, e.g. "STO-3G", used for the expansion of the alpha component
      *  @param basisset_name_beta           the name of the basisset, e.g. "STO-3G", used for the expansion of the beta component
      *
