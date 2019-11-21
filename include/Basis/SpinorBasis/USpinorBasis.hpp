@@ -18,28 +18,26 @@
 #pragma once
 
 
-#include "Basis/ScalarBasis/ScalarBasis.hpp"
 #include "Basis/SpinorBasis/CompoundSpinorBasis.hpp"
-#include "Basis/SpinorBasis/SimpleSpinorBasis.hpp"
-#include "Molecule/Molecule.hpp"
-#include "Molecule/NuclearFramework.hpp"
-#include "Operator/FirstQuantized/Operator.hpp"
-#include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
-#include "Operator/SecondQuantized/SQTwoElectronOperator.hpp"
-#include "OrbitalOptimization/JacobiRotationParameters.hpp"
+#include "Basis/SpinorBasis/RSpinorBasis.hpp"
+
 
 
 namespace GQCP {
 
 
 /**
- *  A class that represents a spinor basis without any restrictions (G for generalized) on the expansion of the alpha and beta components in terms of the underlying (possibly different) scalar bases
+ *  A class that represents an unrestricted spinor basis (U for unrestricted), the alpha and beta components have an individual (possibly different) expansion in their (possibly different) underlying scalar bases
  * 
  *  @tparam _ExpansionScalar        the scalar type of the expansion coefficients
  *  @tparam _Shell                  the type of shell the underlying scalar bases contain
  */
 template <typename _ExpansionScalar, typename _Shell>
 class USpinorBasis : public CompoundSpinorBasis<_Shell> {
+private:
+    std::array<TransformationMatrix<ExpansionScalar>, 2> C_array;  // array that holds the expansion coefficients for the alpha and beta components
+
+
 public:
     using ExpansionScalar = _ExpansionScalar;
     using Shell = _Shell;
@@ -54,44 +52,48 @@ public:
     /**
      *  @param alpha_scalar_basis           the scalar basis in which the alpha components are expanded
      *  @param beta_scalar_basis            the scalar basis in which the beta components are expanded
-     *  @param C                            the coefficient matrix, i.e. the matrix of the expansion coefficients of the spinors in terms of the underlying scalar basis
+     *  @param C_alpha                      the coefficient matrix, i.e. the matrix of the expansion coefficients of the alpha spinors in terms of the underlying scalar basis
+     *  @param C_beta                       the coefficient matrix, i.e. the matrix of the expansion coefficients of the beta spinors in terms of the underlying scalar basis
      */
-    USpinorBasis(const ScalarBasis<Shell>& alpha_scalar_basis, const ScalarBasis<Shell>& beta_scalar_basis, const TransformationMatrix<ExpansionScalar>& C) :
-        Base(C),
-        alpha_scalar_basis (alpha_scalar_basis),
-        beta_scalar_basis (beta_scalar_basis)
+    USpinorBasis(const ScalarBasis<Shell>& alpha_scalar_basis, const ScalarBasis<Shell>& beta_scalar_basis, const TransformationMatrix<ExpansionScalar>& C_alpha, const TransformationMatrix<ExpansionScalar>& C_beta) :
+        CompoundSpinorBasis(alpha_scalar_basis, beta_scalar_basis),
+        C_array ({C_alpha, C_beta})
     {
         // Check if the dimensions of the given objects are compatible
         const auto K_alpha = alpha_scalar_basis.numberOfBasisFunctions();
         const auto K_beta = beta_scalar_basis.numberOfBasisFunctions();
 
-        if (C.dimension() != K_alpha + K_beta) {
-            throw std::invalid_argument("USpinorBasis(const ScalarBasis<Shell>&, const ScalarBasis<Shell>&, const TransformationMatrix<ExpansionScalar>&): The given dimensions of the scalar bases and coefficient matrix are incompatible.");
+        if (C_alpha.dimension() != K_alpha) {
+            throw std::invalid_argument("USpinorBasis(const ScalarBasis<Shell>&, const ScalarBasis<Shell>&, const TransformationMatrix<ExpansionScalar>&, const TransformationMatrix<ExpansionScalar>): The given dimensions of the scalar basis and coefficient matrix for alpha are incompatible.");
+        }
+
+        if (C_beta.dimension() != K_beta) {
+            throw std::invalid_argument("USpinorBasis(const ScalarBasis<Shell>&, const ScalarBasis<Shell>&, const TransformationMatrix<ExpansionScalar>&, const TransformationMatrix<ExpansionScalar>): The given dimensions of the scalar basis and coefficient matrix for beta are incompatible.");
         }
     }
 
 
     /**
-     *  Construct a generalized spinor basis in which both underlying scalar bases are equal
+     *  Construct a unrestricted spinor basis in which both underlying scalar bases and their expansions are equal
      * 
      *  @param scalar_basis         the scalar basis in which both the alpha and beta components are expanded
      *  @param C                    the coefficient matrix, i.e. the matrix of the expansion coefficients of the spinors in terms of the underlying scalar basis
      */
     USpinorBasis(const ScalarBasis<Shell>& scalar_basis, const TransformationMatrix<ExpansionScalar>& C) :
-        USpinorBasis(scalar_basis, scalar_basis, C)
+        USpinorBasis(scalar_basis, scalar_basis, C, C)
     {}
 
 
     /**
-     *  Construct a generalized spinor basis with two different underlying scalar basis, and a coefficient matrix being the identity
+     *  Construct a unrestricted spinor basis with two different underlying scalar basis, and a coefficient matrix being the identity
      */
     USpinorBasis(const ScalarBasis<Shell>& alpha_scalar_basis, const ScalarBasis<Shell>& beta_scalar_basis) : 
-        USpinorBasis(alpha_scalar_basis, beta_scalar_basis, TransformationMatrix<ExpansionScalar>::Identity(alpha_scalar_basis.numberOfBasisFunctions() + beta_scalar_basis.numberOfBasisFunctions(), alpha_scalar_basis.numberOfBasisFunctions() + beta_scalar_basis.numberOfBasisFunctions()))
+        USpinorBasis(alpha_scalar_basis, beta_scalar_basis, TransformationMatrix<ExpansionScalar>::Identity(alpha_scalar_basis.numberOfBasisFunctions(), alpha_scalar_basis.numberOfBasisFunctions()), TransformationMatrix<ExpansionScalar>::Identity(beta_scalar_basis.numberOfBasisFunctions(), beta_scalar_basis.numberOfBasisFunctions())
     {}
 
 
     /**
-     *  Construct a generalized spinor basis in which both underlying scalar bases are equal, and a coefficient matrix being the identity
+     *  Construct a unrestricted spinor basis in which both underlying scalar bases are equal, and the coefficient matrices are the identity
      * 
      *  @param scalar_basis         the scalar basis in which both the alpha and beta components are expanded
      */
@@ -164,45 +166,12 @@ public:
      */
 
     /**
-     *  @return the alpha coefficient matrix, i.e. the matrix of the expansion coefficients of the alpha-components of the spinors in terms of the underlying alpha-scalar basis
-     */
-    MatrixX<ExpansionScalar> alphaCoefficientMatrix() const { return this->coefficientMatrix().topRows(this->numberOfAlphaCoefficients()); }
-
-    /**
-     *  @return the alpha coefficient matrix, i.e. the matrix of the expansion coefficients of the alpha-components of the spinors in terms of the underlying alpha-scalar basis
-     */
-    MatrixX<ExpansionScalar> betaCoefficientMatrix() const { return this->coefficientMatrix().bottomRows(this->numberOfBetaCoefficients()); }
-
-  
-    /**
-     *  @param fq_op        the spin-independent first-quantized operator
+     *  @param component        the spin component
      * 
-     *  @return the second-quantized operator corresponding to the given first-quantized operator
+     *  @return the coefficient matrix for the requested component, i.e. the matrix of the expansion coefficients of the requested components of the spinors in terms of its underlying scalar basis
      */
-    template <typename FQOneElectronOperator>
-    auto quantize(const FQOneElectronOperator& fq_op) const -> SQOneElectronOperator<product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>, FQOneElectronOperator::Components> {
-
-        using ResultScalar = product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>;
-        using ResultOperator = SQOneElectronOperator<ResultScalar, FQOneElectronOperator::Components>;
-
-
-        // The strategy for calculating the matrix representation of the one-electron operator in this spinor basis is to express the operator in the underlying scalar bases and afterwards transform them using the current coefficient matrix
-        const auto K_alpha = this->numberOfAlphaCoefficients();
-        const auto K_beta = this->numberOfBetaCoefficients();
-        const auto M = this->numberOfSpinors();
-        QCMatrix<ResultScalar> f = QCMatrix<ResultScalar>::Zero(M, M);  // the total result
-
-        // Express the operator in the underlying bases: spin-independent operators only have alpha-alpha and beta-beta blocks
-        const auto F_alpha = this->alphaScalarBasis().calculateLibintIntegrals(fq_op);
-        const auto F_beta = this->betaScalarBasis().calculateLibintIntegrals(fq_op);
-
-        f.topLeftCorner(K_alpha, K_alpha) = F_alpha;
-        f.bottomRightCorner(K_beta, K_beta) = F_beta;
-
-        // Transform using the current coefficient matrix
-        ResultOperator op ({f});  // op for 'operator'
-        op.transform(this->coefficientMatrix());
-        return op;
+    const MatrixX<ExpansionScalar>& coefficientMatrix(SpinComponent component) const { 
+        return C_array[component];
     }
 };
 

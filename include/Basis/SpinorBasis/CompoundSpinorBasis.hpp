@@ -19,6 +19,7 @@
 
 
 #include "Basis/ScalarBasis/ScalarBasis.hpp"
+#include "Basis/SpinorBasis/SpinComponent.hpp"
 
 
 namespace GQCP {
@@ -73,22 +74,22 @@ public:
      * 
      *  @return the scalar basis in which the requested components are expanded
      */
-    const ScalarBasis<Shell>& scalarBasis(const spin& component) const { return this->scalar_bases[component]; }
+    const ScalarBasis<Shell>& scalarBasis(const SpinComponent& component) const { return this->scalar_bases[component]; }
 
     /**
      *  @param component        the spin component
      * 
      *  @return the scalar basis in which the requested components are expanded
      */
-    size_t numberOfCoefficients(const spin& component) const { return this->scalarBasis(component).numberOfBasisFunctions(); }
+    size_t numberOfCoefficients(const SpinComponent& component) const { return this->scalarBasis(component).numberOfBasisFunctions(); }
 
     /**
      *  @return the number of spinors that 'are' in this compound spinor basis
      */
     size_t numberOfSpinors() const { 
         
-        const auto K_alpha = this->numberOfCoefficients(spin::ALPHA);
-        const auto K_beta = this->numberOfCoefficients(spin::BETA);
+        const auto K_alpha = this->numberOfCoefficients(SpinComponent::ALPHA);
+        const auto K_beta = this->numberOfCoefficients(SpinComponent::BETA);
 
         return K_alpha + K_beta;
     }

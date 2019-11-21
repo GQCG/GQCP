@@ -171,10 +171,10 @@ public:
      * 
      *  @return the coefficient matrix for the requested component, i.e. the matrix of the expansion coefficients of the requested components of the spinors in terms of its underlying scalar basis
      */
-    MatrixX<ExpansionScalar> coefficientMatrix(spin component) const { 
+    MatrixX<ExpansionScalar> coefficientMatrix(SpinComponent component) const { 
 
         const size_t K = this->numberOfCoefficients(component);
-        if (component == spin::ALPHA) {
+        if (component == SpinComponent::ALPHA) {
             return this->coefficientMatrix().topRows(K);
         } else {
             return this->coefficientMatrix().bottomRows(K);
@@ -195,14 +195,14 @@ public:
 
 
         // The strategy for calculating the matrix representation of the one-electron operator in this spinor basis is to express the operator in the underlying scalar bases and afterwards transform them using the current coefficient matrix
-        const auto K_alpha = this->numberOfCoefficients(spin::ALPHA);
-        const auto K_beta = this->numberOfCoefficients(spin::BETA);
+        const auto K_alpha = this->numberOfCoefficients(SpinComponent::ALPHA);
+        const auto K_beta = this->numberOfCoefficients(SpinComponent::BETA);
         const auto M = this->numberOfSpinors();
         QCMatrix<ResultScalar> f = QCMatrix<ResultScalar>::Zero(M, M);  // the total result
 
         // Express the operator in the underlying bases: spin-independent operators only have alpha-alpha and beta-beta blocks
-        const auto F_alpha = this->scalarBasis(spin::ALPHA).calculateLibintIntegrals(fq_op);
-        const auto F_beta = this->scalarBasis(spin::BETA).calculateLibintIntegrals(fq_op);
+        const auto F_alpha = this->scalarBasis(SpinComponent::ALPHA).calculateLibintIntegrals(fq_op);
+        const auto F_beta = this->scalarBasis(SpinComponent::BETA).calculateLibintIntegrals(fq_op);
 
         f.topLeftCorner(K_alpha, K_alpha) = F_alpha;
         f.bottomRightCorner(K_beta, K_beta) = F_beta;
