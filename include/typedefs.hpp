@@ -63,5 +63,13 @@ using sum_t = decltype(std::declval<T>() + std::declval<U>());
 template <typename T, typename U>
 using product_t = decltype(std::declval<T>() * std::declval<U>());
 
+/*
+ *  ENUMS
+ */ 
+typedef enum {
+  ALPHA,
+  BETA
+} spin ; 
+
 
 }  // namespace GQCP
