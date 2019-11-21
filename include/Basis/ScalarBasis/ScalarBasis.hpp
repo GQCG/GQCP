@@ -18,13 +18,13 @@
 #pragma once
 
 
-#include "Basis/GTOBasisSet.hpp"
-#include "Basis/GTOShell.hpp"
-#include "Basis/ShellSet.hpp"
 #include "Basis/Integrals/Interfaces/LibintInterfacer.hpp"
 #include "Basis/Integrals/Interfaces/LibcintInterfacer.hpp"
 #include "Basis/Integrals/IntegralCalculator.hpp"
 #include "Basis/Integrals/IntegralEngine.hpp"
+#include "Basis/ScalarBasis/GTOBasisSet.hpp"
+#include "Basis/ScalarBasis/GTOShell.hpp"
+#include "Basis/ScalarBasis/ShellSet.hpp"
 #include "Mathematical/LinearCombination.hpp"
 #include "Mathematical/Representation/QCMatrix.hpp"
 #include "Mathematical/Representation/QCRankFourTensor.hpp"
@@ -41,17 +41,17 @@ namespace GQCP {
 /**
  *  A class that represents a scalar basis: it represents a collection of scalar basis functions. It provides an interface to obtain basis functions and calculate integrals over the shell type
  *
- * @tparam _ShellType       the type of shell that this scalar basis contains
+ * @tparam _Shell       the type of shell that this scalar basis contains
  */
-template <typename _ShellType>
+template <typename _Shell>
 class ScalarBasis {
 public:
-    using ShellType = _ShellType;
-    using BasisFunction = typename ShellType::BasisFunction;
+    using Shell = _Shell;
+    using BasisFunction = typename Shell::BasisFunction;
 
 
 private:
-    ShellSet<ShellType> shell_set;  // a collection of shells that represents this scalar basis
+    ShellSet<Shell> shell_set;  // a collection of shells that represents this scalar basis
 
 
 public:
@@ -63,7 +63,7 @@ public:
     /**
      *  @param shell_set        a collection of shells that represents this scalar basis
      */
-    ScalarBasis(const ShellSet<ShellType>& shell_set): 
+    ScalarBasis(const ShellSet<Shell>& shell_set): 
         shell_set (shell_set)
     {}
 
@@ -112,7 +112,7 @@ public:
     /**
      *  @return the underlying set of shells
      */
-    const ShellSet<ShellType>& shellSet() const { return this->shell_set; }
+    const ShellSet<Shell>& shellSet() const { return this->shell_set; }
 
     /**
      *  @return the number of basis functions that 'are' in this scalar basis
@@ -142,7 +142,7 @@ public:
      *  @return the matrix representation (integrals) of the given first-quantized operator in this scalar basis
      */
     QCMatrix<double> calculateLibintIntegrals(const OverlapOperator& fq_op) const {
-        static_assert(std::is_same<ShellType, GTOShell>::value, "Can only calculate Libint2 integrals over GTOShells");
+        static_assert(std::is_same<Shell, GTOShell>::value, "Can only calculate Libint2 integrals over GTOShells");
 
         // Construct the libint engine
         const auto max_nprim = this->shell_set.maximumNumberOfPrimitives();
@@ -162,7 +162,7 @@ public:
      *  @return the matrix representation (integrals) of the given first-quantized operator in this scalar basis
      */
     QCMatrix<double> calculateLibintIntegrals(const KineticOperator& fq_op) const {
-        static_assert(std::is_same<ShellType, GTOShell>::value, "Can only calculate Libint2 integrals over GTOShells");
+        static_assert(std::is_same<Shell, GTOShell>::value, "Can only calculate Libint2 integrals over GTOShells");
 
         // Construct the libint engine
         const auto max_nprim = this->shell_set.maximumNumberOfPrimitives();
@@ -182,7 +182,7 @@ public:
      *  @return the matrix representation (integrals) of the given first-quantized operator in this scalar basis
      */
     QCMatrix<double> calculateLibintIntegrals(const NuclearAttractionOperator& fq_op) const {
-        static_assert(std::is_same<ShellType, GTOShell>::value, "Can only calculate Libint2 integrals over GTOShells");
+        static_assert(std::is_same<Shell, GTOShell>::value, "Can only calculate Libint2 integrals over GTOShells");
 
         // Construct the libint engine
         const auto max_nprim = this->shell_set.maximumNumberOfPrimitives();
@@ -202,7 +202,7 @@ public:
      *  @return the matrix representation (integrals) of the given first-quantized operator in this scalar basis
      */
     std::array<QCMatrix<double>, 3>  calculateLibintIntegrals(const ElectronicDipoleOperator& fq_op) const {
-        static_assert(std::is_same<ShellType, GTOShell>::value, "Can only calculate Libint2 integrals over GTOShells");
+        static_assert(std::is_same<Shell, GTOShell>::value, "Can only calculate Libint2 integrals over GTOShells");
 
         // Construct the libint engine
         const auto max_nprim = this->shell_set.maximumNumberOfPrimitives();
@@ -222,7 +222,7 @@ public:
      *  @return the matrix representation (integrals) of the given first-quantized operator in this scalar basis
      */
     QCRankFourTensor<double> calculateLibintIntegrals(const CoulombRepulsionOperator& fq_op) const {
-        static_assert(std::is_same<ShellType, GTOShell>::value, "Can only calculate Libint2 integrals over GTOShells");
+        static_assert(std::is_same<Shell, GTOShell>::value, "Can only calculate Libint2 integrals over GTOShells");
 
         // Construct the libint engine
         const auto max_nprim = this->shell_set.maximumNumberOfPrimitives();
@@ -250,7 +250,7 @@ public:
      *  @return the matrix representation of the overlap operator in this AO basis, using the libcint integral engine
      */
     QCMatrix<double> calculateLibcintIntegrals(const OverlapOperator& fq_op) const {
-        static_assert(std::is_same<ShellType, GTOShell>::value, "Can only calculate Libint2 integrals over GTOShells");
+        static_assert(std::is_same<Shell, GTOShell>::value, "Can only calculate Libint2 integrals over GTOShells");
 
         auto engine = IntegralEngine::Libcint(fq_op, this->shell_set);  // cannot be const: Libint2 has a non-const compute() method inside its interface
         const auto integrals = IntegralCalculator::calculate(engine, this->shell_set);
@@ -266,7 +266,7 @@ public:
      *  @return the matrix representation of the kinetic energy operator in this AO basis, using the libcint integral engine
      */
     QCMatrix<double> calculateLibcintIntegrals(const KineticOperator& fq_op) const {
-        static_assert(std::is_same<ShellType, GTOShell>::value, "Can only calculate Libint2 integrals over GTOShells");
+        static_assert(std::is_same<Shell, GTOShell>::value, "Can only calculate Libint2 integrals over GTOShells");
 
         auto engine = IntegralEngine::Libcint(fq_op, this->shell_set);  // cannot be const: Libint2 has a non-const compute() method inside its interface
         const auto integrals = IntegralCalculator::calculate(engine, this->shell_set);
@@ -282,7 +282,7 @@ public:
      *  @return the matrix representation of the nuclear attraction operator in this AO basis, using the libcint integral engine
      */
     QCMatrix<double> calculateLibcintIntegrals(const NuclearAttractionOperator& fq_op) const {
-        static_assert(std::is_same<ShellType, GTOShell>::value, "Can only calculate Libint2 integrals over GTOShells");
+        static_assert(std::is_same<Shell, GTOShell>::value, "Can only calculate Libint2 integrals over GTOShells");
 
         auto engine = IntegralEngine::Libcint(fq_op, this->shell_set);  // cannot be const: Libint2 has a non-const compute() method inside its interface
         const auto integrals = IntegralCalculator::calculate(engine, this->shell_set);
@@ -298,7 +298,7 @@ public:
      *  @return the matrix representation of the Cartesian components of the electrical dipole operator in this AO basis, using the libcint integral engine
      */
     std::array<QCMatrix<double>, 3> calculateLibcintIntegrals(const ElectronicDipoleOperator& fq_op) const {
-        static_assert(std::is_same<ShellType, GTOShell>::value, "Can only calculate Libint2 integrals over GTOShells");
+        static_assert(std::is_same<Shell, GTOShell>::value, "Can only calculate Libint2 integrals over GTOShells");
 
         auto engine = IntegralEngine::Libcint(fq_op, this->shell_set);  // cannot be const: Libint2 has a non-const compute() method inside its interface
         const auto integrals = IntegralCalculator::calculate(engine, this->shell_set);
@@ -313,7 +313,7 @@ public:
      *  @return the matrix representation of the Coulomb repulsion operator in this AO basis, using the libcint integral engine
      */
     QCRankFourTensor<double> calculateLibcintIntegrals(const CoulombRepulsionOperator& fq_op) const {
-        static_assert(std::is_same<ShellType, GTOShell>::value, "Can only calculate Libint2 integrals over GTOShells");
+        static_assert(std::is_same<Shell, GTOShell>::value, "Can only calculate Libint2 integrals over GTOShells");
 
         auto engine = IntegralEngine::Libcint(fq_op, this->shell_set);  // cannot be const: Libint2 has a non-const compute() method inside its interface
         const auto integrals = IntegralCalculator::calculate(engine, this->shell_set);

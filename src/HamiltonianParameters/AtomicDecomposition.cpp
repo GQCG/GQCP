@@ -17,7 +17,7 @@
 // 
 #include "HamiltonianParameters/AtomicDecompositionParameters.hpp"
 
-#include "Basis/SingleParticleBasis.hpp"
+#include "Basis/SpinorBasis/RSpinorBasis.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
 
 
@@ -70,36 +70,36 @@ AtomicDecompositionParameters AtomicDecompositionParameters::Nuclear(const Molec
         throw std::invalid_argument("AtomicDecompositionParameters::Nuclear(Molecule, std::string): Only available for diatomic molecules");
     }
 
-    const SingleParticleBasis<double, GTOShell> sp_basis (molecule, basisset_name);
-    const auto K = sp_basis.numberOfBasisFunctions();
+    const RSpinorBasis<double, GTOShell> spinor_basis (molecule, basisset_name);
+    const auto K = spinor_basis.numberOfSpatialOrbitals();
 
 
     // Retrieve an AO basis for the individual atoms so that we can retrieve net atomic nuclear integrals
     const NuclearFramework nuclear_framework_a ({atoms[0]});
     const NuclearFramework nuclear_framework_b ({atoms[1]});
 
-    SingleParticleBasis<double, GTOShell> sp_basis_a (nuclear_framework_a, basisset_name);  // in non-orthogonal AO basis
-    SingleParticleBasis<double, GTOShell> sp_basis_b (nuclear_framework_b, basisset_name);  // in non-orthogonal AO basis
+    RSpinorBasis<double, GTOShell> spinor_basis_a (nuclear_framework_a, basisset_name);  // in non-orthogonal AO basis
+    RSpinorBasis<double, GTOShell> spinor_basis_b (nuclear_framework_b, basisset_name);  // in non-orthogonal AO basis
 
-    const auto K_a = sp_basis_a.numberOfBasisFunctions();
-    const auto K_b = sp_basis_b.numberOfBasisFunctions();
+    const auto K_a = spinor_basis_a.numberOfSpatialOrbitals();
+    const auto K_b = spinor_basis_b.numberOfSpatialOrbitals();
 
-    QCMatrix<double> V_a = sp_basis_a.quantize(Operator::NuclearAttraction(nuclear_framework_a)).parameters();
-    QCMatrix<double> V_b = sp_basis_b.quantize(Operator::NuclearAttraction(nuclear_framework_b)).parameters();
+    QCMatrix<double> V_a = spinor_basis_a.quantize(Operator::NuclearAttraction(nuclear_framework_a)).parameters();
+    QCMatrix<double> V_b = spinor_basis_b.quantize(Operator::NuclearAttraction(nuclear_framework_b)).parameters();
 
     // T_a and T_b are equal to the corresponding block from the molecular kinetic integrals (T_a = T.block(0,0, K_a, K_a))
-    QCMatrix<double> T_a = sp_basis_a.quantize(Operator::Kinetic()).parameters();
-    QCMatrix<double> T_b = sp_basis_b.quantize(Operator::Kinetic()).parameters();
+    QCMatrix<double> T_a = spinor_basis_a.quantize(Operator::Kinetic()).parameters();
+    QCMatrix<double> T_b = spinor_basis_b.quantize(Operator::Kinetic()).parameters();
 
     // Create partition matrices for both atoms
     const auto p_a = SquareMatrix<double>::PartitionMatrix(0, K_a, K);
     const auto p_b = SquareMatrix<double>::PartitionMatrix(K_a, K_b, K);
 
     // Retrieve the molecular integrals
-    const auto S = sp_basis.quantize(Operator::Overlap()).parameters();
-    const auto T = sp_basis.quantize(Operator::Kinetic()).parameters();
-    const auto V = sp_basis.quantize(Operator::NuclearAttraction(molecule)).parameters();
-    const auto g = sp_basis.quantize(Operator::Coulomb()).parameters();
+    const auto S = spinor_basis.quantize(Operator::Overlap()).parameters();
+    const auto T = spinor_basis.quantize(Operator::Kinetic()).parameters();
+    const auto V = spinor_basis.quantize(Operator::NuclearAttraction(molecule)).parameters();
+    const auto g = spinor_basis.quantize(Operator::Coulomb()).parameters();
 
     QCMatrix<double> H = T + V;
 
@@ -141,7 +141,7 @@ AtomicDecompositionParameters AtomicDecompositionParameters::Nuclear(const Molec
     std::vector<SQHamiltonian<double>> interaction_parameters = {HAB};
     std::vector<SQHamiltonian<double>> atomic_parameters = {HA, HB};
 
-    return AtomicDecompositionParameters(SQHamiltonian<double>::Molecular(sp_basis, molecule), net_atomic_parameters, interaction_parameters, atomic_parameters);
+    return AtomicDecompositionParameters(SQHamiltonian<double>::Molecular(spinor_basis, molecule), net_atomic_parameters, interaction_parameters, atomic_parameters);
 }
 
 

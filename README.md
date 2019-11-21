@@ -21,18 +21,18 @@ Follow along the following documented example that calculates the FCI energy:
 
 // Create the second-quantized Hamiltonian
 const auto h2o = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
-GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (h2o, "STO-3G");
-auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, h2o);  // in an AO basis
+GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (h2o, "STO-3G");
+auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2o);  // in an AO basis
 
 
 // Create a plain RHF SCF solver and solve the SCF equations
-GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, sp_basis, h2o);
+GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, h2o);
 plain_scf_solver.solve();
 auto rhf = plain_scf_solver.get_solution();
 
 
 // Transform the Hamiltonian to the RHF basis
-GQCP::basisTransform(sp_basis, sq_hamiltonian, rhf.get_C());
+GQCP::basisTransform(spinor_basis, sq_hamiltonian, rhf.get_C());
 
 
 // Set up the FCI Fock space

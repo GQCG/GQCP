@@ -33,7 +33,12 @@ class SpinUnresolvedFCIRDMBuilder : public BaseSpinUnresolvedRDMBuilder {
     FockSpace fock_space;  // spin-orbital Fock space
 
 public:
-    // CONSTRUCTORS
+    /*
+     *  CONSTRUCTORS
+     */
+
+    SpinUnresolvedFCIRDMBuilder() = default;
+
     explicit SpinUnresolvedFCIRDMBuilder(const FockSpace& fock_space);
 
 

@@ -19,7 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "Basis/ScalarBasis.hpp"
+#include "Basis/ScalarBasis/ScalarBasis.hpp"
 #include "Molecule/Molecule.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
 
@@ -194,6 +194,3 @@ BOOST_AUTO_TEST_CASE ( dissociatedMoleculeBasis ) {
 
     BOOST_CHECK_NO_THROW(GQCP::ScalarBasis<GQCP::GTOShell> basis (NO, "STO-3G"));
 }
-
-
-

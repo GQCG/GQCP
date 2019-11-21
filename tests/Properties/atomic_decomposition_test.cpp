@@ -19,7 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "Basis/SingleParticleBasis.hpp"
+#include "Basis/SpinorBasis/RSpinorBasis.hpp"
 #include "CISolver/CISolver.hpp"
 #include "HamiltonianBuilder/FCI.hpp"
 #include "HamiltonianParameters/AtomicDecompositionParameters.hpp"
@@ -37,14 +37,14 @@ BOOST_AUTO_TEST_CASE ( decomposition_BeH_cation_STO_3G_Nuclear ) {
     std::vector<GQCP::Nucleus> nuclei {Be, H};
     GQCP::Molecule BeH (nuclei, +1);
     GQCP::AtomicDecompositionParameters adp = GQCP::AtomicDecompositionParameters::Nuclear(BeH, "STO-3G");
-    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (BeH, "STO-3G");
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (BeH, "STO-3G");
 
     auto sq_hamiltonian = adp.get_molecular_hamiltonian_parameters();
     auto K = sq_hamiltonian.dimension();
     double repulsion = GQCP::Operator::NuclearRepulsion(BeH).value();
 
     // Create a plain RHF SCF solver and solve the SCF equations
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, sp_basis, BeH);
+    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, BeH);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 

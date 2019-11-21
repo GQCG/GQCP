@@ -38,11 +38,11 @@ namespace QCMethod {
  */
 FukuiDysonAnalysis::FukuiDysonAnalysis(const Molecule& molecule, const std::string& basis_set, const bool use_diis) : 
         molecule (molecule),
-        sp_basis (SingleParticleBasis<double, GTOShell>(molecule, basis_set)),
-        sq_hamiltonian (SQHamiltonian<double>::Molecular(this->sp_basis, molecule)),  // in AO basis
+        spinor_basis (RSpinorBasis<double, GTOShell>(molecule, basis_set)),
+        sq_hamiltonian (SQHamiltonian<double>::Molecular(this->spinor_basis, molecule)),  // in AO basis
         basis_set (basis_set)
 {
-    const auto K = this->sp_basis.numberOfBasisFunctions();
+    const auto K = this->spinor_basis.numberOfSpatialOrbitals();
     const auto N_P = this->molecule.numberOfElectrons()/2;
 
     // Define a molecule on which an RHF calculation is allowed
@@ -54,15 +54,15 @@ FukuiDysonAnalysis::FukuiDysonAnalysis(const Molecule& molecule, const std::stri
 
     // Perform DIIS or Plain RHF given the flag in the constructor
     if (use_diis) {
-        DIISRHFSCFSolver diis_scf_solver (this->sq_hamiltonian, this->sp_basis, restricted_molecule);
+        DIISRHFSCFSolver diis_scf_solver (this->sq_hamiltonian, this->spinor_basis, restricted_molecule);
         diis_scf_solver.solve();
         auto rhf_solution = diis_scf_solver.get_solution();
-        basisTransform(this->sp_basis, this->sq_hamiltonian, rhf_solution.get_C());
+        basisTransform(this->spinor_basis, this->sq_hamiltonian, rhf_solution.get_C());
     } else {
-        PlainRHFSCFSolver plain_scf_solver (this->sq_hamiltonian, this->sp_basis, restricted_molecule);
+        PlainRHFSCFSolver plain_scf_solver (this->sq_hamiltonian, this->spinor_basis, restricted_molecule);
         plain_scf_solver.solve();
         auto rhf_solution = plain_scf_solver.get_solution();
-        basisTransform(this->sp_basis, this->sq_hamiltonian, rhf_solution.get_C());
+        basisTransform(this->spinor_basis, this->sq_hamiltonian, rhf_solution.get_C());
     }
 
     // In order to supply the correct arguments to the algorithm we choose different Fock spaces as fock_space1 should always have the highest occupation to fit the algorithm

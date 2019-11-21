@@ -18,8 +18,8 @@
 #pragma once
 
 
-#include "Basis/GTOShell.hpp"
-#include "Basis/ShellSet.hpp"
+#include "Basis/ScalarBasis/GTOShell.hpp"
+#include "Basis/ScalarBasis/ShellSet.hpp"
 #include "Molecule/Molecule.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
 #include "Operator/SecondQuantized/SQOneElectronOperator.hpp"

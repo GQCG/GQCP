@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Basis/CartesianExponents.hpp"
+#include "Basis/ScalarBasis/CartesianExponents.hpp"
 #include "Mathematical/LinearCombination.hpp"
 #include "Mathematical/ScalarFunction.hpp"
 

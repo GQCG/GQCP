@@ -41,13 +41,13 @@ ScalarSQOneElectronOperator<double> PlainRHFSCFSolver::calculateNewFockMatrix(co
  */
 /**
  *  @param sq_hamiltonian                   the Hamiltonian in an AO basis
- *  @param sp_basis                         the single-particle basis
+ *  @param spinor_basis                     the spinor basis
  *  @param molecule                         the molecule used for the SCF calculation
  *  @param threshold                        the convergence treshold on the Frobenius norm on the AO density matrix
  *  @param maximum_number_of_iterations     the maximum number of iterations for the SCF procedure
  */
-PlainRHFSCFSolver::PlainRHFSCFSolver(const SQHamiltonian<double>& sq_hamiltonian, const SingleParticleBasis<double, GTOShell>& sp_basis, const Molecule& molecule, double threshold, size_t maximum_number_of_iterations) :
-    RHFSCFSolver(sq_hamiltonian, sp_basis, molecule, threshold, maximum_number_of_iterations)
+PlainRHFSCFSolver::PlainRHFSCFSolver(const SQHamiltonian<double>& sq_hamiltonian, const RSpinorBasis<double, GTOShell>& spinor_basis, const Molecule& molecule, double threshold, size_t maximum_number_of_iterations) :
+    RHFSCFSolver(sq_hamiltonian, spinor_basis, molecule, threshold, maximum_number_of_iterations)
 {}
 
 

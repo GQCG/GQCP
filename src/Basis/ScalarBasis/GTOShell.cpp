@@ -15,9 +15,9 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "Basis/GTOShell.hpp"
+#include "Basis/ScalarBasis/GTOShell.hpp"
 
-#include "Basis/CartesianGTO.hpp"
+#include "Basis/ScalarBasis/CartesianGTO.hpp"
 #include "Utilities/miscellaneous.hpp"
 
 #include <algorithm>

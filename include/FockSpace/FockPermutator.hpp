@@ -46,11 +46,28 @@ protected:
     size_t N;  // number of electrons
 
 public:
-    // CONSTRUCTOR
-    FockPermutator(size_t N) : N (N) {}
+
+    /*
+     *  CONSTRUCTORS
+     */
+
+    /**
+     *  Default constructor setting everything to zero
+     */
+    FockPermutator() :
+        FockPermutator(0)
+    {}
+
+    /**
+     *  @param N            the number of electrons
+     */
+    FockPermutator(const size_t N) :
+        N (N)
+    {}
 
 
     // DESTRUCTOR
+
     virtual ~FockPermutator() = default;
 
 

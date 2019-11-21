@@ -17,7 +17,7 @@
 // 
 #include "Basis/Integrals/Interfaces/LibintInterfacer.hpp"
 
-#include "Basis/CartesianGTO.hpp"
+#include "Basis/ScalarBasis/CartesianGTO.hpp"
 
 #include <boost/math/constants/constants.hpp>
 #include <boost/math/special_functions/factorials.hpp>

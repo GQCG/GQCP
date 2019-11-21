@@ -20,7 +20,7 @@
 #include <boost/test/unit_test.hpp>
 
 #include "Basis/transform.hpp"
-#include "Basis/SingleParticleBasis.hpp"
+#include "Basis/SpinorBasis/RSpinorBasis.hpp"
 #include "CISolver/CISolver.hpp"
 #include "HamiltonianBuilder/DOCI.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
@@ -58,16 +58,16 @@ BOOST_AUTO_TEST_CASE ( CO_DOCI_constrained_dense ) {
 
     // Create the molecular Hamiltonian for CO
     auto CO = GQCP::Molecule::ReadXYZ("data/CO_mulliken.xyz");
-    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (CO, "STO-3G");
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, CO);  // in an AO basis
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (CO, "STO-3G");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, CO);  // in an AO basis
 
     // Create a plain RHF SCF solver and solve the SCF equations
-    GQCP::DIISRHFSCFSolver diis_scf_solver (sq_hamiltonian, sp_basis, CO);
+    GQCP::DIISRHFSCFSolver diis_scf_solver (sq_hamiltonian, spinor_basis, CO);
     diis_scf_solver.solve();
     auto rhf = diis_scf_solver.get_solution();
 
     // Transform the Hamiltonian to the RHF orbital basis
-    basisTransform(sp_basis, sq_hamiltonian, rhf.get_C());
+    basisTransform(spinor_basis, sq_hamiltonian, rhf.get_C());
 
     GQCP::FockSpace fock_space (sq_hamiltonian.dimension(), CO.numberOfElectrons()/2);  // dim = 4
 
@@ -80,7 +80,7 @@ BOOST_AUTO_TEST_CASE ( CO_DOCI_constrained_dense ) {
 
     for (int i = 0; i < 21; i++) {
         // Calculate the Mulliken operator
-        auto mulliken_operator = sp_basis.calculateMullikenOperator(ao_list);
+        auto mulliken_operator = spinor_basis.calculateMullikenOperator(ao_list);
 
         // Contrain the original Hamiltonian parameters
         auto constrained_ham_par = sq_hamiltonian.constrain(mulliken_operator, CO_data(i, 0));

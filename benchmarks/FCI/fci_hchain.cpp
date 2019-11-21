@@ -25,20 +25,20 @@ static void fci_davidson_hchain(benchmark::State& state) {
 
     // Create the molecular Hamiltonian for this molecule and basis
     const auto hchain = GQCP::Molecule::HChain(number_of_H_atoms, 0.742, charge);
-    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (hchain, "STO-3G");
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, hchain);  // in AO basis
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (hchain, "STO-3G");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in AO basis
 
 
     // Solve the RHF SCF equations
     const auto K = sq_hamiltonian.dimension();
     const auto N_P = hchain.numberOfElectrons()/2;
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, sp_basis, hchain);
+    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, hchain);
     plain_scf_solver.solve();
     const auto rhf = plain_scf_solver.get_solution();
 
 
     // Diagonalize the FCI Hamiltonian in the RHF basis
-    GQCP::basisTransform(sp_basis, sq_hamiltonian, rhf.get_C());
+    GQCP::basisTransform(spinor_basis, sq_hamiltonian, rhf.get_C());
     GQCP::ProductFockSpace fock_space (K, N_P, N_P);
     GQCP::FCI fci (fock_space);
 
@@ -71,17 +71,17 @@ static void fci_dense_hchain(benchmark::State& state) {
 
     // Create the molecular Hamiltonian for this molecule and basis
     const auto hchain = GQCP::Molecule::HChain(number_of_H_atoms, 0.742, charge);
-    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis (hchain, "STO-3G");
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(sp_basis, hchain);
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (hchain, "STO-3G");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, hchain);
     auto K = sq_hamiltonian.dimension();
     auto N_P = hchain.numberOfElectrons()/2;
 
     // Create a plain RHF SCF solver and solve the SCF equations
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, sp_basis, hchain);
+    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, hchain);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 
-    GQCP::basisTransform(sp_basis, sq_hamiltonian, rhf.get_C());
+    GQCP::basisTransform(spinor_basis, sq_hamiltonian, rhf.get_C());
     GQCP::ProductFockSpace fock_space (K, N_P, N_P);
     GQCP::FCI fci (fock_space);
 

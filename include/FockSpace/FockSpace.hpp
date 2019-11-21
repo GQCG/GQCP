@@ -38,7 +38,12 @@ private:
 
 
 public:
-    // CONSTRUCTORS
+    
+    /*
+     *  CONSTRUCTORS
+     */
+    FockSpace() = default;
+
     /**
      *  @param K        the number of orbitals
      *  @param N        the number of electrons
@@ -46,7 +51,8 @@ public:
     FockSpace(size_t K, size_t N);
 
 
-    // DESTRUCTORS
+    // DESTRUCTOR
+
     ~FockSpace() override = default;
 
 

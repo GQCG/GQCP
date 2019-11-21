@@ -795,6 +795,8 @@ INPUT      = "@CMAKE_SOURCE_DIR@/include" \
 			 "@CMAKE_SOURCE_DIR@/include/Basis" \
 			 "@CMAKE_SOURCE_DIR@/include/Basis/Integrals" \
 			 "@CMAKE_SOURCE_DIR@/include/Basis/Integrals/Interfaces" \
+			 "@CMAKE_SOURCE_DIR@/include/Basis/ScalarBasis" \
+			 "@CMAKE_SOURCE_DIR@/include/Basis/SpinorBasis" \
 			 "@CMAKE_SOURCE_DIR@/include/CISolver" \
 			 "@CMAKE_SOURCE_DIR@/include/FockSpace" \
 			 "@CMAKE_SOURCE_DIR@/include/Geminals" \
@@ -818,6 +820,8 @@ INPUT      = "@CMAKE_SOURCE_DIR@/include" \
 			 "@CMAKE_SOURCE_DIR@/README.md" \
 			 "@CMAKE_SOURCE_DIR@/src" \
 			 "@CMAKE_SOURCE_DIR@/src/Basis" \
+			 "@CMAKE_SOURCE_DIR@/src/ScalarBasis" \
+			 "@CMAKE_SOURCE_DIR@/src/SpinorBasis" \
 			 "@CMAKE_SOURCE_DIR@/src/CISolver" \
 			 "@CMAKE_SOURCE_DIR@/src/FockSpace" \
 			 "@CMAKE_SOURCE_DIR@/src/Geminals" \

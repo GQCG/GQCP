@@ -18,8 +18,8 @@
 #pragma once
 
 
+#include "Basis/SpinorBasis/RSpinorBasis.hpp"
 #include "Basis/TransformationMatrix.hpp"
-#include "Basis/SingleParticleBasis.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 
 
@@ -82,12 +82,12 @@ public:
     /**
      *  Optimize the Hamiltonian by subsequently
      *      - checking for convergence (see checkForConvergence())
-     *      - rotating the Hamiltonian (and single-particle basis) with a newly found rotation matrix (see calculateNewRotationMatrix())
+     *      - rotating the Hamiltonian (and spinor basis) with a newly found rotation matrix (see calculateNewRotationMatrix())
      * 
-     *  @param sp_basis             the initial single-particle basis that contains the spinors to be optimized
+     *  @param spinor_basis         the initial spinor basis that contains the spinors to be optimized
      *  @param sq_hamiltonian       the initial (guess for the) Hamiltonian
      */
-    void optimize(SingleParticleBasis<double, GTOShell>& sp_basis, SQHamiltonian<double>& sq_hamiltonian);
+    void optimize(RSpinorBasis<double, GTOShell>& spinor_basis, SQHamiltonian<double>& sq_hamiltonian);
 };
 
 

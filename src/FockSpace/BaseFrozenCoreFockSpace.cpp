@@ -316,7 +316,7 @@ FrozenOperators BaseFrozenCoreFockSpace::freezeOperator(const ScalarSQTwoElectro
 
 /**
  *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis
- *  @param sp_basis             the single-particle basis
+ *  @param spinor_basis         the spinor basis
  *  @param X                    the number of frozen orbitals
  *
  *  @return a 'frozen' Hamiltonian which cover two-electron integral evaluations from the active and inactive orbitals

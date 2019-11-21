@@ -20,9 +20,9 @@
 
 #include "Basis/Integrals/BaseOneElectronIntegralEngine.hpp"
 
-#include "Basis/GTOShell.hpp"
 #include "Basis/Integrals/Interfaces/LibintInterfacer.hpp"
 #include "Basis/Integrals/Interfaces/LibintOneElectronIntegralBuffer.hpp"
+#include "Basis/ScalarBasis/GTOShell.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
 
 

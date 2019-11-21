@@ -18,9 +18,10 @@
 #pragma once
 
 
-#include "Basis/ShellSet.hpp"
 #include "Basis/Integrals/BaseOneElectronIntegralEngine.hpp"
 #include "Basis/Integrals/BaseTwoElectronIntegralEngine.hpp"
+#include "Basis/ScalarBasis/ShellSet.hpp"
+
 
 #include <array>
 #include <memory>
@@ -42,15 +43,14 @@ public:
     /**
      *  Calculate all one-electron integrals over the basis functions inside the given ShellSets
      * 
-     *  @param engine                   the engine that can calculate one-electron integrals over shells (not const because we allow for non-const Engine::calculate() calls)
-     *  @param shell_set                the set of shells over which the integrals should be calculated
-     * 
-     *  @tparam ShellType               the type of shell the integral engine is able to handle
+     *  @tparam Shell                   the type of shell the integral engine is able to handle
      *  @tparam N                       the number of components the operator has
      *  @tparam IntegralScalar          the scalar representation of an integral
+     *  @param engine                   the engine that can calculate one-electron integrals over shells (not const because we allow for non-const Engine::calculate() calls)
+     *  @param shell_set                the set of shells over which the integrals should be calculated
      */
-    template <typename ShellType, size_t N, typename IntegralScalar>
-    static auto calculate(BaseOneElectronIntegralEngine<ShellType, N, IntegralScalar>& engine, const ShellSet<ShellType>& shell_set) -> std::array<QCMatrix<IntegralScalar>, N> {
+    template <typename Shell, size_t N, typename IntegralScalar>
+    static auto calculate(BaseOneElectronIntegralEngine<Shell, N, IntegralScalar>& engine, const ShellSet<Shell>& shell_set) -> std::array<QCMatrix<IntegralScalar>, N> {
 
         // Initialize the N components of the matrix representations of the operator
         const auto nbf = shell_set.numberOfBasisFunctions();
@@ -88,15 +88,15 @@ public:
     /**
      *  Calculate all two-electron integrals over the basis functions inside the given ShellSets
      * 
-     *  @param engine                       the engine that can calculate two-electron integrals over shells
-     *  @param shell_set                    the set of shells over which the integrals should be calculated
-     * 
-     *  @tparam ShellType                   the type of shell the integral engine is able to handle
+     *  @tparam Shell                   the type of shell the integral engine is able to handle
      *  @tparam N                           the number of components the operator has
      *  @tparam IntegralScalar              the scalar representation of an integral
+     * 
+     *  @param engine                       the engine that can calculate two-electron integrals over shells
+     *  @param shell_set                    the set of shells over which the integrals should be calculated
      */
-    template <typename ShellType, size_t N, typename IntegralScalar>
-    static auto calculate(BaseTwoElectronIntegralEngine<ShellType, N, IntegralScalar>& engine, const ShellSet<ShellType>& shell_set) -> std::array<QCRankFourTensor<IntegralScalar>, N> {
+    template <typename Shell, size_t N, typename IntegralScalar>
+    static auto calculate(BaseTwoElectronIntegralEngine<Shell, N, IntegralScalar>& engine, const ShellSet<Shell>& shell_set) -> std::array<QCRankFourTensor<IntegralScalar>, N> {
 
         // Initialize the N components of the matrix representations of the operator
         const auto nbf = shell_set.numberOfBasisFunctions();

@@ -19,7 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "Basis/GTOShell.hpp"
+#include "Basis/ScalarBasis/GTOShell.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( Shell_constructor_throws ) {

@@ -1,10 +1,2 @@
-target_sources(gqcp
-        PRIVATE
-            CartesianExponents.cpp
-            CartesianGTO.cpp
-            GTOBasisSet.cpp
-            GTOShell.cpp
-            IntegralEngine.cpp
-            LibcintInterfacer.cpp
-            LibintInterfacer.cpp
-        )
+add_subdirectory(Integrals)
+add_subdirectory(ScalarBasis)

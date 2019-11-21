@@ -17,7 +17,8 @@
 //
 #pragma once
 
-#include "Basis/SingleParticleBasis.hpp"
+
+#include "Basis/SpinorBasis/RSpinorBasis.hpp"
 #include "CISolver/CISolver.hpp"
 #include "FockSpace/ProductFockSpace.hpp"
 #include "HamiltonianBuilder/FCI.hpp"
@@ -39,7 +40,7 @@ namespace QCMethod {
 class FukuiDysonAnalysis {
 private:
     Molecule molecule;
-    SingleParticleBasis<double, GTOShell> sp_basis;
+    RSpinorBasis<double, GTOShell> spinor_basis;
     SQHamiltonian<double> sq_hamiltonian;
     std::string basis_set;  // the basisset that should be used
     ProductFockSpace fock_space1 = ProductFockSpace(0, 0, 0);  // default
@@ -66,7 +67,7 @@ public:
     OneRDM<double> get_fukui_matrix() const { return this->fukui_matrix; };
     VectorX<double> get_fukui_naturals() const { return this->fukui_naturals; };
     SquareMatrix<double> get_fukui_vectors() const { return this->fukui_vectors; };
-    SquareMatrix<double> get_canonical_matrix() const { return this->sp_basis.transformationMatrix(); };
+    SquareMatrix<double> get_canonical_matrix() const { return this->spinor_basis.coefficientMatrix(); };
 };
 
 

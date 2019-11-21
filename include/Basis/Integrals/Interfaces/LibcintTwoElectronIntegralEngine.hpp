@@ -31,18 +31,18 @@ namespace GQCP {
 /**
  *  An two-electron integral engine that uses libcint as its backend
  * 
- *  @tparam _ShellType                  the type of shell the integral engine is able to handle
+ *  @tparam _Shell                      the type of shell the integral engine is able to handle
  *  @tparam _N                          the number of components the operator has
  *  @tparam _IntegralScalar             the scalar representation of an integral
  * 
- *  @note _ShellType is a template parameter because that enables compile-time checking of correct arguments.
+ *  @note _Shell is a template parameter because that enables compile-time checking of correct arguments.
  *  See also the notes in LibcintOneElectronIntegralEngine.
  *  The libcint optimizer struct should also be kept in the engine during the shell-quartet loop, because it should only be initialized once, having access to all the data inside the libcint RawContainer.
  */
-template <typename _ShellType, size_t _N, typename _IntegralScalar>
-class LibcintTwoElectronIntegralEngine : public BaseTwoElectronIntegralEngine<_ShellType, _N, _IntegralScalar> {
+template <typename _Shell, size_t _N, typename _IntegralScalar>
+class LibcintTwoElectronIntegralEngine : public BaseTwoElectronIntegralEngine<_Shell, _N, _IntegralScalar> {
 public:
-    using ShellType = _ShellType;  // the type of shell the integral engine is able to handle
+    using Shell = _Shell;  // the type of shell the integral engine is able to handle
     using IntegralScalar = _IntegralScalar;  // the scalar representation of an integral
     static constexpr auto N = _N;  // the number of components the operator has
 
@@ -53,7 +53,7 @@ private:
 
     // Data that has to be kept as a member (see the class note)
     libcint::RawContainer libcint_raw_container;  // the raw libcint data
-    ShellSet<ShellType> shell_set;  // the corresponding shell set
+    ShellSet<Shell> shell_set;  // the corresponding shell set
 
 
 public:
@@ -66,7 +66,7 @@ public:
      *  @param op               the Coulomb repulsion operator
      *  @param shell_set        the ShellSet whose information should be converted to a RawContainer, which will serve as some kind of 'global' data for the libcint engine to use in all its calculate() calls
      */
-    LibcintTwoElectronIntegralEngine(const CoulombRepulsionOperator& op, const ShellSet<ShellType>& shell_set) :
+    LibcintTwoElectronIntegralEngine(const CoulombRepulsionOperator& op, const ShellSet<Shell>& shell_set) :
         libcint_function (LibcintInterfacer().twoElectronFunction(op)),
         libcint_optimizer_function (LibcintInterfacer().twoElectronOptimizerFunction(op)),
         libcint_raw_container (LibcintInterfacer().convert(shell_set)),
@@ -87,7 +87,7 @@ public:
      * 
      *  This method is not marked const to allow the Engine's internals to be changed
      */
-    std::shared_ptr<BaseTwoElectronIntegralBuffer<IntegralScalar, N>> calculate(const ShellType& shell1, const ShellType& shell2, const ShellType& shell3, const ShellType& shell4) override {
+    std::shared_ptr<BaseTwoElectronIntegralBuffer<IntegralScalar, N>> calculate(const Shell& shell1, const Shell& shell2, const Shell& shell3, const Shell& shell4) override {
 
         // Find to which indices in the RawContainer the given shells correspond
         int shell_indices[4];

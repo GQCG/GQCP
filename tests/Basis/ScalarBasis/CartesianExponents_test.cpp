@@ -19,7 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "Basis/CartesianExponents.hpp"
+#include "Basis/ScalarBasis/CartesianExponents.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( angular_momentum ) {
