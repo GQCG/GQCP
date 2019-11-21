@@ -19,7 +19,6 @@
 
 
 #include "Basis/ScalarBasis/ScalarBasis.hpp"
-#include "Basis/SpinorBasis/CompoundSpinorBasis.hpp"
 #include "Basis/SpinorBasis/SimpleSpinorBasis.hpp"
 #include "Molecule/Molecule.hpp"
 #include "Molecule/NuclearFramework.hpp"
@@ -39,12 +38,16 @@ namespace GQCP {
  *  @tparam _Shell                  the type of shell the underlying scalar bases contain
  */
 template <typename _ExpansionScalar, typename _Shell>
-class GSpinorBasis : public SimpleSpinorBasis<_ExpansionScalar, GSpinorBasis<_ExpansionScalar, _Shell>>, public CompoundSpinorBasis<_Shell> {
+class GSpinorBasis : public SimpleSpinorBasis<_ExpansionScalar, GSpinorBasis<_ExpansionScalar, _Shell>> {
 public:
     using ExpansionScalar = _ExpansionScalar;
     using Shell = _Shell;
 
     using Base = SimpleSpinorBasis<_ExpansionScalar, GSpinorBasis<_ExpansionScalar, _Shell>>;
+
+
+private:
+    std::array<ScalarBasis<Shell>, 2> scalar_bases;  // the scalar bases for the alpha and beta components
 
 
 public:
@@ -60,7 +63,7 @@ public:
      */
     GSpinorBasis(const ScalarBasis<Shell>& alpha_scalar_basis, const ScalarBasis<Shell>& beta_scalar_basis, const TransformationMatrix<ExpansionScalar>& C) :
         Base(C),
-        CompoundSpinorBasis<Shell>(alpha_scalar_basis, beta_scalar_basis)
+        scalar_bases ({alpha_scalar_basis, beta_scalar_basis})
     {
         // Check if the dimensions of the given objects are compatible
         const auto K_alpha = alpha_scalar_basis.numberOfBasisFunctions();
@@ -181,7 +184,31 @@ public:
         }
     }
 
-  
+    /**
+     *  @param component        the spin component
+     * 
+     *  @return the scalar basis in which the requested components are expanded
+     */
+    const ScalarBasis<Shell>& scalarBasis(const SpinComponent& component) const { return this->scalar_bases[component]; }
+
+    /**
+     *  @param component        the spin component
+     * 
+     *  @return the scalar basis in which the requested components are expanded
+     */
+    size_t numberOfCoefficients(const SpinComponent& component) const { return this->scalarBasis(component).numberOfBasisFunctions(); }
+
+    /**
+     *  @return the number of spinors that 'are' in this compound spinor basis
+     */
+    size_t numberOfSpinors() const { 
+        
+        const auto K_alpha = this->numberOfCoefficients(SpinComponent::ALPHA);
+        const auto K_beta = this->numberOfCoefficients(SpinComponent::BETA);
+
+        return K_alpha + K_beta;
+    }
+
     /**
      *  @param fq_op        the spin-independent first-quantized operator
      * 
