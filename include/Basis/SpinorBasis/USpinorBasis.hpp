@@ -18,9 +18,8 @@
 #pragma once
 
 
-#include "Basis/SpinorBasis/CompoundSpinorBasis.hpp"
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
-
+#include "Basis/SpinorBasis/SpinComponent.hpp"
 
 
 namespace GQCP {

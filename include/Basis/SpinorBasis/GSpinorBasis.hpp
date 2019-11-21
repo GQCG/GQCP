@@ -20,6 +20,7 @@
 
 #include "Basis/ScalarBasis/ScalarBasis.hpp"
 #include "Basis/SpinorBasis/SimpleSpinorBasis.hpp"
+#include "Basis/SpinorBasis/SpinComponent.hpp"
 #include "Molecule/Molecule.hpp"
 #include "Molecule/NuclearFramework.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
