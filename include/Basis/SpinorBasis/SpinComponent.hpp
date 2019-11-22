@@ -23,7 +23,7 @@ namespace GQCP {
 /**
  *  An enumeration containing the modes of spin for electrons
  */
-enum class SpinComponent {
+enum SpinComponent {
     ALPHA = 0,
     BETA = 1
 };
