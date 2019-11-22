@@ -198,15 +198,13 @@ public:
     }
 
     /**
-     *  @param component        the spin component
+     *  @param component                the spin component
      *  @param precision                the precision used to test orthonormality
      * 
-     *  @return if this spinor basis is orthonormal within the given precision
+     *  @return if this spinor basis for the requested component is orthonormal within the given precision
      */
     bool isOrthonormal(const SpinComponent& component, const double precision = 1.0e-08) const {
-        const auto S = this->scalarBasis(component).overlap().parameters();
-        const auto dim = this->scalarBasis(component).simpleDimension();
-        return S.isApprox(SquareMatrix<ExpansionScalar>::Identity(dim, dim), precision);
+        return this->spinor_basis[component].isOrthonormal();
     }
 
     /**
@@ -219,13 +217,17 @@ public:
     }
 
     /**
-     *  @return the transformation matrix to the Löwdin basis: T = S_current^{-1/2}
+     *  @param component                the spin component
+     * 
+     *  @return the transformation matrix to the Löwdin basis for the requested component: T = S_current^{-1/2}
      */
     TransformationMatrix<double> lowdinOrthonormalizationMatrix(const SpinComponent& component) const {
         return this->scalarBasis(component).lowdinOrthonormalizationMatrix();
     }
 
     /**
+     *  @param component                the spin component
+     * 
      *  Transform the spinor basis to the 'Löwdin basis', which is the orthonormal basis that we transform to with T = S^{-1/2}, where S is the current overlap matrix
      */
     void lowdinOrthonormalize(const SpinComponent& component) {
@@ -241,7 +243,9 @@ public:
     }
 
     /**
-     *  @return the overlap (one-electron) operator of this restricted spinor basis
+     *  @param component                the spin component
+     * 
+     *  @return the overlap (one-electron) operator of the requested component of this spinor basis
      */
     ScalarSQOneElectronOperator<ExpansionScalar> overlap(const SpinComponent& component) const {
         return this->spinor_basis[component].quantize(Operator::Overlap());
@@ -249,7 +253,9 @@ public:
 
 
     /**
-     *  Rotate the spinor basis to another one using the given unitary transformation matrix
+     *  Rotate the spinor basis of the requested component to another one using the given unitary transformation matrix
+     * 
+     *  @param component                the spin component
      * 
      *  @param U            the unitary transformation matrix that transforms both the alpha- and beta components
      */
@@ -269,7 +275,7 @@ public:
     }
 
     /**
-     *  Rotate the spinor basis to another one using the unitary transformation matrix that corresponds to the given Jacobi rotation parameters
+     *  Rotate the spinor basis of the requested component to another one using the unitary transformation matrix that corresponds to the given Jacobi rotation parameters
      * 
      *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
      * 
@@ -281,7 +287,7 @@ public:
     }
 
     /**
-     *  Rotate the spinor basis to another one using the unitary transformation matrix that corresponds to the given Jacobi rotation parameters
+     *  Rotate the spinor basis for both the alpha- and beta components to another one using the unitary transformation matrix that corresponds to the given Jacobi rotation parameters
      * 
      *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
      * 
@@ -296,7 +302,9 @@ public:
     /**
      *  Transform the spinor basis another one using the given transformation matrix
      * 
-     *  @param T            the transformation matrix that transforms both the alpha- and beta components
+     *  @param component                the spin component
+     * 
+     *  @param T            the transformation matrix that transforms the requested component
      */
     void transform(const TransformationMatrix<ExpansionScalar>& T, const SpinComponent& component) {
          this->spinor_basis[component].transform(T);
@@ -313,9 +321,10 @@ public:
     }
 
     /**
-     *  @param ao_list     indices of the AOs used for the Mulliken populations
+     *  @param ao_list          indices of the AOs used for the Mulliken populations
+     *  @param component        the spin component
      *
-     *  @return the Mulliken operator for a set of AOs
+     *  @return the Mulliken operator for a set of AOs and the requested component
      *
      *  @note this method is only available for real matrix representations
      */
@@ -325,9 +334,10 @@ public:
     }
 
     /**
-     *  @param fq_op        the first-quantized one-electron operator
+     *  @param fq_op            the first-quantized one-electron operator
+     *  @param component        the spin component
      * 
-     *  @return the second-quantized operator corresponding to the given first-quantized operator
+     *  @return the second-quantized operator corresponding to the given first-quantized operator in the spinor basis of the requested component
      */
     template <typename FQOneElectronOperator>
     auto quantize(const FQOneElectronOperator& fq_op, const SpinComponent& component) const -> SQOneElectronOperator<product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>, FQOneElectronOperator::Components> {
@@ -335,9 +345,10 @@ public:
     }
 
     /**
-     *  @param fq_op        the first-quantized Coulomb operator
+     *  @param fq_op            the first-quantized Coulomb operator
+     *  @param component        the spin component
      * 
-     *  @return the second-quantized operator corresponding to the Coulomb operator
+     *  @return the second-quantized operator corresponding to the Coulomb operator in the spinor basis of the requested component
      */
     auto quantize(const CoulombRepulsionOperator& fq_op, const SpinComponent& component) const -> SQTwoElectronOperator<product_t<CoulombRepulsionOperator::Scalar, ExpansionScalar>, CoulombRepulsionOperator::Components> {
         return this->spinor_bases[component].quantize(fq_op);
