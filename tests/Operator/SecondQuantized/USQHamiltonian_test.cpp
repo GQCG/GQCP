@@ -80,12 +80,12 @@ BOOST_AUTO_TEST_CASE ( USQHamiltonian_transform ) {
 
     // Perform a total transform and individual component transfromations
     usq_hamiltonian1.transform(U);
-    usq_hamiltonian2.transformAlpha(U);
-    usq_hamiltonian2.transformBeta(U);
+    usq_hamiltonian2.transform(U, GQCP::SpinComponent::ALPHA);
+    usq_hamiltonian2.transform(U, GQCP::SpinComponent::BETA);
 
     // Test if the transformation results in identical Hamtilonians
     BOOST_CHECK(usq_hamiltonian1.twoElectronMixed().parameters().isApprox(usq_hamiltonian2.twoElectronMixed().parameters()));
-    BOOST_CHECK(usq_hamiltonian1.alphaHamiltonian().core().parameters().isApprox(usq_hamiltonian2.alphaHamiltonian().core().parameters()));
-    BOOST_CHECK(usq_hamiltonian1.betaHamiltonian().core().parameters().isApprox(usq_hamiltonian2.betaHamiltonian().core().parameters()));   
+    BOOST_CHECK(usq_hamiltonian1.spinHamiltonian(GQCP::SpinComponent::ALPHA).core().parameters().isApprox(usq_hamiltonian2.spinHamiltonian(GQCP::SpinComponent::ALPHA).core().parameters()));
+    BOOST_CHECK(usq_hamiltonian1.spinHamiltonian(GQCP::SpinComponent::BETA).core().parameters().isApprox(usq_hamiltonian2.spinHamiltonian(GQCP::SpinComponent::BETA).core().parameters()));   
 }
 

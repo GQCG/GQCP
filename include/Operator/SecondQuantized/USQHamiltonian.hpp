@@ -18,6 +18,7 @@
 #pragma once
 
 
+#include "Basis/SpinorBasis/SpinComponent.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 
 
@@ -32,8 +33,7 @@ namespace GQCP {
 template <typename Scalar>
 class USQHamiltonian {
 private:
-    SQHamiltonian<Scalar> sq_hamiltonian_alpha;  // the alpha Hamiltonian
-    SQHamiltonian<Scalar> sq_hamiltonian_beta;  // the beta Hamiltonian
+    std::array<SQHamiltonian<Scalar>, 2> sq_hamiltonians;   // array that holds the individual SQHamiltonian for the alpha and beta components (in that order)
 
     std::vector<ScalarSQTwoElectronOperator<Scalar>> two_op_mixed;  // the alpha & beta mixed two-electron operators (whose integrals are represented as g_aabb)
     ScalarSQTwoElectronOperator<Scalar> total_two_op_mixed;  // the total alpha & beta mixed two-electron operator (whose integrals are represented as g_aabb)
@@ -51,14 +51,13 @@ public:
      *  @param two_op_mixed              the alpha & beta mixed two-electron operators (whose integrals are represented as g_aabb)
      */
     USQHamiltonian(const SQHamiltonian<Scalar>& sq_hamiltonian_alpha, const SQHamiltonian<Scalar>& sq_hamiltonian_beta, const std::vector<ScalarSQTwoElectronOperator<Scalar>>& two_op_mixed) :
-        sq_hamiltonian_alpha (sq_hamiltonian_alpha),
-        sq_hamiltonian_beta (sq_hamiltonian_beta),
+        sq_hamiltonians ({sq_hamiltonian_alpha, sq_hamiltonian_beta}),
         two_op_mixed (two_op_mixed)
     {
         // Check if the dimensions are compatible
-        const auto dim = sq_hamiltonian_alpha.dimension();
+        const auto dim = sq_hamiltonians[SpinComponent::ALPHA].dimension();
 
-        if (sq_hamiltonian_beta.dimension() != dim) {
+        if (sq_hamiltonians[SpinComponent::BETA].dimension() != dim) {
             throw std::invalid_argument("USQHamiltonian::USQHamiltonian(const SQHamiltonian<Scalar>& sq_hamiltonian_alpha, const SQHamiltonian<Scalar>& sq_hamiltonian_beta, const ScalarSQTwoElectronOperator<Scalar>& two_op_mixed): The dimensions of the alpha and beta Hamiltonian are incompatible");
         }
         
@@ -125,14 +124,11 @@ public:
     size_t dimension() const { return this->sq_hamiltonian_alpha.dimension(); }
 
     /**
-     *  @return the total of the alpha contributions of the unrestricted Hamiltonian
+     *  @param component                    the spin component
+     * 
+     *  @return the contributions of the requested components of the unrestricted Hamiltonian 
      */
-    const SQHamiltonian<Scalar>& alphaHamiltonian() const { return this->sq_hamiltonian_alpha; }
-
-    /**
-     *  @return the total of the beta contributions of the unrestricted Hamiltonian
-     */
-    const SQHamiltonian<Scalar>& betaHamiltonian() const { return this->sq_hamiltonian_beta; }
+    const SQHamiltonian<Scalar>& spinHamiltonian(const SpinComponent& component) const { return this->sq_hamiltonians[component]; }
 
     /**
      *  @return the total contributions to the mixed alpha & beta two-electron part of the unrestricted Hamiltonian
@@ -145,14 +141,14 @@ public:
     const std::vector<ScalarSQTwoElectronOperator<Scalar>>& twoElectronContributionsMixed() const { return this->two_op_mixed; }
 
     /**
-     *  In-place transform the matrix representations of Hamiltonian
+     *  In-place transform the matrix representations of the unrestricted Hamiltonian
      *
      *  @param T    the transformation matrix between the old and the new orbital basis
      */
     void transform(const TransformationMatrix<Scalar>& T) {
 
-        this->sq_hamiltonian_alpha.transform(T);
-        this->sq_hamiltonian_beta.transform(T);
+        this->sq_hamiltonians[SpinComponent::ALPHA].transform(T);
+        this->sq_hamiltonians[SpinComponent::BETA].transform(T);
 
         // Transform the mixed
         this->total_two_op_mixed.transform(T);
@@ -162,95 +158,101 @@ public:
     }
 
     /**
-     *  In-place transform the matrix representations of the alpha components of the unrestricted Hamiltonian
+     *  In-place transform the matrix representations of a single spin component of the unrestricted Hamiltonian
+     * 
+     *  @param component                    the spin component
      *
      *  @param T    the transformation matrix between the old and the new orbital basis
      */
-    void transformAlpha(const TransformationMatrix<Scalar>& T) {
+    void transform(const TransformationMatrix<Scalar>& T, const SpinComponent& component) {
 
-        this->sq_hamiltonian_alpha.transform(T);
+        this->sq_hamiltonians[component].transform(T);
 
         // Transform the mixed two-electron operators and their total
         auto new_two_electron_parameters = this->total_two_op_mixed.parameters();
 
-        // transform the two electron parameters "g_aabb" to "g_a'a'bb"
-        new_two_electron_parameters.template matrixContraction<Scalar>(T, 0);
-        new_two_electron_parameters.template matrixContraction<Scalar>(T, 1);
+        // transform the two electron parameters "g_aabb" to "g_a'a'bb" when alpha is chosen or to "g_aab'b'" for beta.
+        new_two_electron_parameters.template matrixContraction<Scalar>(T, component*2);
+        new_two_electron_parameters.template matrixContraction<Scalar>(T, component*2 + 1);
         this->total_two_op_mixed = ScalarSQTwoElectronOperator<Scalar> ({new_two_electron_parameters});
 
         for (auto& two_op : this->two_op_mixed) {
 
             auto new_two_electron_parameters = two_op.parameters();
             // transform the two electron parameters "g_aabb" to "g_a'a'bb"
-            new_two_electron_parameters.template matrixContraction<Scalar>(T, 0);
-            new_two_electron_parameters.template matrixContraction<Scalar>(T, 1);
+            new_two_electron_parameters.template matrixContraction<Scalar>(T, component*2);
+            new_two_electron_parameters.template matrixContraction<Scalar>(T, component*2 + 1);
             two_op = ScalarSQTwoElectronOperator<Scalar> ({new_two_electron_parameters});
         }
     }
 
 
     /**
-     *  In-place transform the matrix representations of the beta components of the unrestricted Hamiltonian
+     *  In-place rotate the matrix representations of Hamiltonian
      *
-     *  @param T    the transformation matrix between the old and the new orbital basis
+     *  @param U    the unitary rotation matrix between the old and the new orbital basis
      */
-    void transformBeta(const TransformationMatrix<Scalar>& T) {
+    void rotate(const TransformationMatrix<Scalar>& U) {
+        this->sq_hamiltonians[SpinComponent::ALPHA].rotate(U);
+        this->sq_hamiltonians[SpinComponent::BETA].rotate(U);
+    }
 
-        this->sq_hamiltonian_beta.transform(T);
 
-        // Transform the mixed two-electron operators and their total
-        auto new_two_electron_parameters = this->total_two_op_mixed.parameters();
+    /**
+     *  In-place rotate the matrix representations of Hamiltonian
+     *
+     *  @param U    the unitary rotation matrix between the old and the new orbital basis
+     */
+    void rotate(const TransformationMatrix<Scalar>& U, const SpinComponent& component) {
+        this->transform(U, component);
+    }
 
-        // transform the two electron parameters "g_aabb" to "g_aab'b'"
-        new_two_electron_parameters.template matrixContraction<Scalar>(T, 2);
-        new_two_electron_parameters.template matrixContraction<Scalar>(T, 3);
-        this->total_two_op_mixed = ScalarSQTwoElectronOperator<Scalar> ({new_two_electron_parameters});
 
-        for (auto& two_op : this->two_op_mixed) {
+    /**
+     *  In-place rotate the matrix representations of the Hamiltonian using a unitary Jacobi rotation matrix constructed from the Jacobi rotation parameters. Note that this function is only available for real (double) matrix representations
+     *
+     *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
+     */
+    template<typename Z = Scalar>
+    enable_if_t<std::is_same<Z, double>::value> rotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
+        this->sq_hamiltonians[SpinComponent::ALPHA].rotate(jacobi_rotation_parameters);
+        this->sq_hamiltonians[SpinComponent::BETA].rotate(jacobi_rotation_parameters);
+    }
 
-            auto new_two_electron_parameters = two_op.parameters();
-            // transform the two electron parameters "g_aabb" to "g_aab'b'"
-            new_two_electron_parameters.template matrixContraction<Scalar>(T, 2);
-            new_two_electron_parameters.template matrixContraction<Scalar>(T, 3);
-            two_op = ScalarSQTwoElectronOperator<Scalar> ({new_two_electron_parameters});
+
+    /**
+     *  In-place rotate the matrix representations of the Hamiltonian using a unitary Jacobi rotation matrix constructed from the Jacobi rotation parameters. Note that this function is only available for real (double) matrix representations
+     *
+     *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
+     */
+    template<typename Z = Scalar>
+    enable_if_t<std::is_same<Z, double>::value> rotate(const JacobiRotationParameters& jacobi_rotation_parameters, const SpinComponent& component) {
+        this->transform(jacobi_rotation_parameters, component);
+    }
+
+
+    /**
+     *  Constrain a spin component of the unrestricted Hamiltonian according to the convention: - lambda * constraint
+     *
+     *  @param one_op           the one-electron operator used as a constraint
+     *  @param lambda           the Lagrangian multiplier for the constraint
+     *  @param component        the spin component
+     *
+     *  @return a copy of the constrained Hamiltonian
+     *
+     *  Note that this method is only available for real matrix representations
+     */
+    template<typename Z = Scalar>
+    enable_if_t<std::is_same<Z, double>::value, USQHamiltonian<double>> constrain(const ScalarSQOneElectronOperator<double>& one_op, double lambda, const SpinComponent& component) const {
+
+        auto const constrained_component = this->sq_hamiltonians[component].constrain(one_op, lambda);
+
+        if (component == SpinComponent::BETA) {
+            return USQHamiltonian(this->sq_hamiltonians[SpinComponent::ALPHA], constrained_component, this->two_op_mixed);
+        } else {
+            return USQHamiltonian(constrained_component, this->sq_hamiltonians[SpinComponent::BETA], this->two_op_mixed);
+
         }
-    }
-
-
-    /**
-     *  Constrain the alpha component Hamiltonian according to the convention: - lambda * constraint
-     *
-     *  @param one_op   the one-electron operator used as a constraint
-     *  @param lambda   the Lagrangian multiplier for the constraint
-     *
-     *  @return a copy of the constrained Hamiltonian
-     *
-     *  Note that this method is only available for real matrix representations
-     */
-    template<typename Z = Scalar>
-    enable_if_t<std::is_same<Z, double>::value, USQHamiltonian<double>> constrainAlpha(const ScalarSQOneElectronOperator<double>& one_op, double lambda) const {
-
-        auto const constrained_component = this->sq_hamiltonian_alpha.constrain(one_op, lambda);
-
-        return USQHamiltonian(constrained_component, this->sq_hamiltonian_beta, this->two_op_mixed);
-    }
-
-    /**
-     *  Constrain the beta component Hamiltonian according to the convention: - lambda * constraint
-     *
-     *  @param one_op   the one-electron operator used as a constraint
-     *  @param lambda   The Lagrangian multiplier for the constraint
-     *
-     *  @return a copy of the constrained Hamiltonian
-     *
-     *  Note that this method is only available for real matrix representations
-     */
-    template<typename Z = Scalar>
-    enable_if_t<std::is_same<Z, double>::value, USQHamiltonian<double>> constrainBeta(const ScalarSQOneElectronOperator<double>& one_op, double lambda) const {
-
-        auto const constrained_component = this->sq_hamiltonian_beta.constrain(one_op, lambda);
-
-        return USQHamiltonian(this->sq_hamiltonian_alpha, constrained_component, this->two_op_mixed);
     }
 };
 

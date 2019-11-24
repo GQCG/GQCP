@@ -32,14 +32,14 @@ namespace GQCP {
  *  @tparam _Shell                  the type of shell the underlying scalar bases contain
  */
 template <typename _ExpansionScalar, typename _Shell>
-class USpinorBasis : public CompoundSpinorBasis<_Shell> {
+class USpinorBasis {
 public:
     using ExpansionScalar = _ExpansionScalar;
     using Shell = _Shell;
 
 
 private:
-    std::array<RSpinorBasis<ExpansionScalar, Shell>, 2> spinor_bases;  // array that holds the individual spinor basis for the alpha and beta components
+    std::array<RSpinorBasis<ExpansionScalar, Shell>, 2> spinor_bases;  // array that holds the individual spinor basis for the alpha and beta components (in that order)
 
 
 public:
@@ -86,7 +86,7 @@ public:
      *  Construct a unrestricted spinor basis with two different underlying scalar basis, and a coefficient matrix being the identity
      */
     USpinorBasis(const ScalarBasis<Shell>& alpha_scalar_basis, const ScalarBasis<Shell>& beta_scalar_basis) : 
-        USpinorBasis(alpha_scalar_basis, beta_scalar_basis, TransformationMatrix<ExpansionScalar>::Identity(alpha_scalar_basis.numberOfBasisFunctions(), alpha_scalar_basis.numberOfBasisFunctions()), TransformationMatrix<ExpansionScalar>::Identity(beta_scalar_basis.numberOfBasisFunctions(), beta_scalar_basis.numberOfBasisFunctions())
+        USpinorBasis(alpha_scalar_basis, beta_scalar_basis, TransformationMatrix<ExpansionScalar>::Identity(alpha_scalar_basis.numberOfBasisFunctions(), alpha_scalar_basis.numberOfBasisFunctions()), TransformationMatrix<ExpansionScalar>::Identity(beta_scalar_basis.numberOfBasisFunctions(), beta_scalar_basis.numberOfBasisFunctions()))
     {}
 
 
@@ -212,8 +212,8 @@ public:
      * 
      *  @return if this spinor basis is orthonormal within the given precision
      */
-    bool isOrthonormal(const SpinComponent& component, const double precision = 1.0e-08) const {
-        return this->isOrthonormal(SpinComponent::ALPHA, precision) && this->isOrthonormal(SpinComponent::BETA, precision)
+    bool isOrthonormal(const double precision = 1.0e-08) const {
+        return this->isOrthonormal(SpinComponent::ALPHA, precision) && this->isOrthonormal(SpinComponent::BETA, precision);
     }
 
     /**
@@ -295,8 +295,8 @@ public:
      */
     template<typename Z = ExpansionScalar>
     enable_if_t<std::is_same<Z, double>::value> rotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
-        this->rotate(jacobi_rotation_parameters, SpinComponent::ALPHA)
-        this->rotate(jacobi_rotation_parameters, SpinComponent::BETA)
+        this->rotate(jacobi_rotation_parameters, SpinComponent::ALPHA);
+        this->rotate(jacobi_rotation_parameters, SpinComponent::BETA);
     }
 
     /**
@@ -330,7 +330,7 @@ public:
      */
     template<typename Z = ExpansionScalar>
     enable_if_t<std::is_same<Z, double>::value, ScalarSQOneElectronOperator<double>> calculateMullikenOperator(const Vectoru& ao_list, const SpinComponent& component) const {
-        return this->spinor_bases[component].calculateMullikenOperator<ExpansionScalar>(ao_list);
+        return this->spinor_bases[component].template calculateMullikenOperator<ExpansionScalar>(ao_list);
     }
 
     /**
@@ -343,7 +343,7 @@ public:
     auto quantize(const FQOneElectronOperator& fq_op, const SpinComponent& component) const -> SQOneElectronOperator<product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>, FQOneElectronOperator::Components> {
         return this->spinor_bases[component].quantize(fq_op);
     }
-
+        
     /**
      *  @param fq_op            the first-quantized Coulomb operator
      *  @param component        the spin component
