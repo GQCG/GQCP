@@ -31,10 +31,8 @@ namespace GQCP {
  *  A class that represents exponents of the Cartesian functions x, y and z
  */
 struct CartesianExponents {
-public:
-    size_t x;  // the exponent in x
-    size_t y;  // the exponent in y
-    size_t z;  // the exponent in z
+private:
+    std::array<size_t, 3> exponents;  // array containing the x, y, z exponents (in that order)
 
 
 public:

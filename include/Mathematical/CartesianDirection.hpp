@@ -24,7 +24,7 @@ namespace GQCP {
 /**
  *  An enumeration containing the Cartesian directions
  */
-enum class CartesianDirection {
+enum CartesianDirection {
     x = 0,
     y = 1,
     z = 2
