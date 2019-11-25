@@ -19,6 +19,8 @@
 
 
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
+#include "Basis/SpinorBasis/SpinComponent.hpp"
+#include "Basis/SpinorBasis/USpinorBasis.hpp"
 #include "Basis/TransformationMatrix.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Operator/SecondQuantized/USQHamiltonian.hpp"
@@ -100,62 +102,113 @@ void basisRotate(RSpinorBasis<double, Shell>& spinor_basis, SQHamiltonian<double
 
 
 /**
- * Unrestricted
+ *  UNRESTRICTED
  */
 
 /**
- *  Transform both the alpha single-particle basis and the alpha component of the Hamiltonian to another basis using the given transformation matrix
+ *  Transform a single component (alpha or beta) of both the spinor basis and the Hamiltonian to another basis using the given transformation matrix
  * 
  *  @tparam ShellType                   the type of shell that the scalar basis contains
  *  @tparam TransformationScalar        the scalar type of the transformation matrix
  * 
- *  @param spinor_basis                 the single-particle basis for the alpha component
+ *  @param spinor_basis                 the spinor basis
  *  @param usq_hamiltonian              the Hamiltonian, expressed in an unrestricted spinor basis
- *  @param T                            the transformation matrix
+ *  @param T                            the transformation matrix for one of the spin components
+ *  @param component                    the spin component
  */
 template <typename TransformationScalar, typename ShellType>
-void basisTransformAlpha(RSpinorBasis<TransformationScalar, ShellType>& spinor_basis, USQHamiltonian<TransformationScalar>& usq_hamiltonian, const TransformationMatrix<TransformationScalar>& T) {
-
-    spinor_basis.transform(T);
-    usq_hamiltonian.transformAlpha(T);
+void basisTransform(USpinorBasis<TransformationScalar, ShellType>& spinor_basis, USQHamiltonian<TransformationScalar>& usq_hamiltonian, const TransformationMatrix<TransformationScalar>& T, const SpinComponent& component) {
+    spinor_basis.transform(T, component);
+    usq_hamiltonian.transform(T, component);
 }
 
 
 /**
- *  Transform both the beta single-particle basis and the beta component of the Hamiltonian to another basis using the given transformation matrix
+ *  Transform both the spinor basis and the Hamiltonian to another basis using the given transformation matrix
  * 
  *  @tparam ShellType                   the type of shell that the scalar basis contains
  *  @tparam TransformationScalar        the scalar type of the transformation matrix
  * 
- *  @param spinor_basis                 the single-particle basis for the beta component
+ *  @param spinor_basis                 the spinor basis
  *  @param usq_hamiltonian              the Hamiltonian, expressed in an unrestricted spinor basis
- *  @param T                            the transformation matrix
+ *  @param T                            the transformation matrix for both of the spin components
  */
 template <typename TransformationScalar, typename ShellType>
-void basisTransformBeta(RSpinorBasis<TransformationScalar, ShellType>& spinor_basis, USQHamiltonian<TransformationScalar>& usq_hamiltonian, const TransformationMatrix<TransformationScalar>& T) {
-
+void basisTransform(USpinorBasis<TransformationScalar, ShellType>& spinor_basis, USQHamiltonian<TransformationScalar>& usq_hamiltonian, const TransformationMatrix<TransformationScalar>& T) {
     spinor_basis.transform(T);
-    usq_hamiltonian.transformBeta(T);
-}
-
-
-/**
- *  Transform the beta & alpha single-particle basis and both the components of the Hamiltonian to another basis using the given transformation matrix
- * 
- *  @tparam ShellType                   the type of shell that the scalar basis contains
- *  @tparam TransformationScalar        the scalar type of the transformation matrix
- * 
- *  @param sp_basis_alpha               the single-particle basis for the alpha component
- *  @param sp_basis_beta                the single-particle basis for the beta component
- *  @param usq_hamiltonian              the Hamiltonian, expressed in an unrestricted spinor basis
- *  @param T                            the transformation matrix
- */
-template <typename TransformationScalar, typename ShellType>
-void basisTransform(RSpinorBasis<TransformationScalar, ShellType>& sp_basis_alpha, RSpinorBasis<TransformationScalar, ShellType>& sp_basis_beta, USQHamiltonian<TransformationScalar>& usq_hamiltonian, const TransformationMatrix<TransformationScalar>& T) {
-
-    sp_basis_alpha.transform(T);
-    sp_basis_beta.transform(T);
     usq_hamiltonian.transform(T);
+}
+
+
+/**
+ *  Rotate a single component (alpha or beta) of both the spinor basis and the Hamiltonian to another basis using the given unitary transformation matrix
+ *  
+ *  @tparam Shell                       the type of shell that the scalar basis contains
+ *  @tparam TransformationScalar        the scalar type of the transformation matrix
+ * 
+ *  @param spinor_basis                 the spinor basis
+ *  @param usq_hamiltonian              the Hamiltonian, expressed in an unrestricted spinor basis
+ *  @param U                            the unitary transformation matrix for the given spin component
+ *  @param component                    the spin component
+ */
+template <typename TransformationScalar, typename Shell>
+void basisRotate(USpinorBasis<TransformationScalar, Shell>& spinor_basis, USQHamiltonian<TransformationScalar>& sq_hamiltonian, const TransformationMatrix<TransformationScalar>& U, const SpinComponent& component) {
+
+    spinor_basis.rotate(U, component);
+    sq_hamiltonian.rotate(U, component);
+}
+
+
+/**
+ *  Rotate both components of the both the spinor basis and the Hamiltonian to another basis using the given unitary transformation matrix
+ *  
+ *  @tparam Shell                       the type of shell that the scalar basis contains
+ *  @tparam TransformationScalar        the scalar type of the transformation matrix
+ * 
+ *  @param spinor_basis                 the spinor basis
+ *  @param usq_hamiltonian              the Hamiltonian, expressed in an unrestricted spinor basis
+ *  @param U                            the unitary transformation matrix for both of the spin components
+ */
+template <typename TransformationScalar, typename Shell>
+void basisRotate(USpinorBasis<TransformationScalar, Shell>& spinor_basis, SQHamiltonian<TransformationScalar>& sq_hamiltonian, const TransformationMatrix<TransformationScalar>& U) {
+
+    spinor_basis.rotate(U);
+    sq_hamiltonian.rotate(U);
+}
+
+
+/**
+ *  Rotate one spin component of both the spinor basis and the Hamiltonian to another basis using the given Jacobi-rotation parameters
+ *  
+ *  @tparam Shell                           the type of shell that the scalar basis contains
+ * 
+ *  @param spinor_basis                     the spinor basis
+ *  @param usq_hamiltonian                  the Hamiltonian, expressed in an unrestricted spinor basis
+ *  @param jacobi_rotation_parameters       the Jacobi-rotation parameters for one of the spin components
+ *  @param component                        the spin component
+ */
+template <typename Shell>
+void basisRotate(USpinorBasis<double, Shell>& spinor_basis, USQHamiltonian<double>& sq_hamiltonian, const JacobiRotationParameters& jacobi_rotation_parameters, const SpinComponent& component) {
+
+    spinor_basis.rotate(jacobi_rotation_parameters, component);
+    sq_hamiltonian.rotate(jacobi_rotation_parameters, component);
+}
+
+
+/**
+ *  Rotate both components of both the spinor basis and the Hamiltonian to another basis using the given Jacobi-rotation parameters
+ * 
+ *  @tparam Shell                           the type of shell that the scalar basis contains
+ * 
+ *  @param spinor_basis                     the single-particle basis for the beta component
+ *  @param usq_hamiltonian                  the Hamiltonian, expressed in an unrestricted spinor basis
+ *  @param jacobi_rotation_parameters       the Jacobi-rotation parameters
+ */
+template <typename Shell>
+void basisRotate(USpinorBasis<double, Shell>& spinor_basis, USQHamiltonian<double>& sq_hamiltonian, const JacobiRotationParameters& jacobi_rotation_parameters) {
+
+    spinor_basis.rotate(jacobi_rotation_parameters);
+    sq_hamiltonian.rotate(jacobi_rotation_parameters);
 }
 
 

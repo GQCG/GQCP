@@ -32,9 +32,7 @@ namespace GQCP {
  *  @param z        the exponent in z
  */
 CartesianExponents::CartesianExponents(size_t x, size_t y, size_t z) :
-    x (x),
-    y (y),
-    z (z)
+    exponents ({x, y, z})
 {}
 
 
@@ -42,9 +40,7 @@ CartesianExponents::CartesianExponents(size_t x, size_t y, size_t z) :
  *  @param arr      the array containing the x-, y- and z-exponent in that order
  */
 CartesianExponents::CartesianExponents(const std::array<size_t, 3>& arr) :
-    x (arr[0]),
-    y (arr[1]),
-    z (arr[2])
+    exponents (arr)
 {}
 
 
@@ -66,24 +62,14 @@ bool CartesianExponents::operator<(const CartesianExponents& rhs) const {
 
     // Compare angular momenta
     if (this->angularMomentum() < rhs.angularMomentum()) { return true; }
-    else if (this->angularMomentum() > rhs.angularMomentum()) { return false; }
-
+    else if (this->angularMomentum() > rhs.angularMomentum()) { return false; } 
     else {
-        // Compare x-exponents
-        if (this->x > rhs.x) { return true; }
-        else if (this->x < rhs.x) { return false; }
-
-        else {
-            // Compare y-exponents
-            if (this->y > rhs.y) { return true; }
-            else if (this->y < rhs.y) { return false; }
-
-            else {
-                // Compare z-exponents
-                if (this->z >= rhs.z) { return true; }  // if, at the end, the z exponents are equal, then the Cartesian exponents should be considered equal
-                else { return false; }
-            }  // same y
-        }  // same x
+        // Compare all exponents for x -> y -> z, x takes precedence over y, over z
+        for (const auto& direction : {CartesianDirection::x, CartesianDirection::y, CartesianDirection::z}) {
+            if (this->exponents[direction] > rhs.value(direction)) { return true; }
+            if (this->exponents[direction] < rhs.value(direction)) { return false; }
+        }  // if, at the end, all exponents are equal, then the Cartesian exponents should be considered equal
+        return false;
     }  // same angular momentum
 }
 
@@ -94,7 +80,7 @@ bool CartesianExponents::operator<(const CartesianExponents& rhs) const {
  *  @return if the Cartesian exponents are considered equal
  */
 bool CartesianExponents::operator==(const CartesianExponents& rhs) const {
-    return (this->x == rhs.x) && (this->y == rhs.y) && (this->z == rhs.z);
+    return (this->value(CartesianDirection::x) == rhs.value(CartesianDirection::x)) && (this->value(CartesianDirection::y) == rhs.value(CartesianDirection::y)) && (this->value(CartesianDirection::z) == rhs.value(CartesianDirection::z));
 }
 
 
@@ -119,17 +105,7 @@ bool CartesianExponents::operator!=(const CartesianExponents& rhs) const {
  *  @return the exponent in the given direction
  */
 size_t CartesianExponents::value(CartesianDirection direction) const {
-
-    switch (direction) {
-        case CartesianDirection::x:
-            return this->x;
-
-        case CartesianDirection::y:
-            return this->y;
-
-        case CartesianDirection::z:
-            return this->z;
-    }
+    return this->exponents[direction];
 }
 
 
@@ -137,15 +113,19 @@ size_t CartesianExponents::value(CartesianDirection direction) const {
  *  @return the angular momentum corresponding to these exponents
  */
 size_t CartesianExponents::angularMomentum() const {
-    return this->x + this->y + this->z;
+    size_t momentum = 0;
+    for (const auto& direction : {CartesianDirection::x, CartesianDirection::y, CartesianDirection::z}) {
+        momentum += this->exponents[direction];
+    }
+    return momentum;
 }
 
 
 /**
  *  @return the exponents as an array
  */
-std::array<size_t, 3> CartesianExponents::asArray() const {
-    return std::array<size_t, 3> {this->x, this->y, this->z};
+const std::array<size_t, 3>& CartesianExponents::asArray() const {
+    return this->exponents;
 }
 
 

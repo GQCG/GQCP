@@ -121,8 +121,8 @@ public:
     /**
      *  Construct the molecular Hamiltonian in a given spinor basis
      *
-     *  @param sp_basis     the single-particle basis in which the Hamiltonian should be expressed
-     *  @param molecule     the molecule on which the single particle is based
+     *  @param spinor_basis     the spinor basis in which the Hamiltonian should be expressed
+     *  @param molecule         the molecule on which the single particle is based
      *
      *  @return a second-quantized molecular Hamiltonian. The molecular Hamiltonian has
      *      - one-electron contributions:

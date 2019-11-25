@@ -20,6 +20,7 @@
 
 #include "Basis/ScalarBasis/ScalarBasis.hpp"
 #include "Basis/SpinorBasis/SimpleSpinorBasis.hpp"
+#include "Basis/SpinorBasis/SpinComponent.hpp"
 #include "Molecule/Molecule.hpp"
 #include "Molecule/NuclearFramework.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
@@ -47,8 +48,7 @@ public:
 
 
 private:
-    ScalarBasis<Shell> alpha_scalar_basis;  // the scalar basis in which the alpha components are expanded
-    ScalarBasis<Shell> beta_scalar_basis;  // the scalar basis in which the beta components are expanded
+    std::array<ScalarBasis<Shell>, 2> scalar_bases;  // the scalar bases for the alpha and beta components
 
 
 public:
@@ -64,8 +64,7 @@ public:
      */
     GSpinorBasis(const ScalarBasis<Shell>& alpha_scalar_basis, const ScalarBasis<Shell>& beta_scalar_basis, const TransformationMatrix<ExpansionScalar>& C) :
         Base(C),
-        alpha_scalar_basis (alpha_scalar_basis),
-        beta_scalar_basis (beta_scalar_basis)
+        scalar_bases ({alpha_scalar_basis, beta_scalar_basis})
     {
         // Check if the dimensions of the given objects are compatible
         const auto K_alpha = alpha_scalar_basis.numberOfBasisFunctions();
@@ -168,48 +167,48 @@ public:
     /*
      *  PUBLIC METHODS
      */
+    
+    using Base::coefficientMatrix;
 
     /**
-     *  @return the alpha coefficient matrix, i.e. the matrix of the expansion coefficients of the alpha-components of the spinors in terms of the underlying alpha-scalar basis
+     *  @param component        the spin component
+     * 
+     *  @return the coefficient matrix for the requested component, i.e. the matrix of the expansion coefficients of the requested components of the spinors in terms of its underlying scalar basis
      */
-    MatrixX<ExpansionScalar> alphaCoefficientMatrix() const { return this->coefficientMatrix().topRows(this->numberOfAlphaCoefficients()); }
+    MatrixX<ExpansionScalar> coefficientMatrix(SpinComponent component) const { 
+
+        const size_t K = this->numberOfCoefficients(component);
+        if (component == SpinComponent::ALPHA) {
+            return this->coefficientMatrix().topRows(K);
+        } else {
+            return this->coefficientMatrix().bottomRows(K);
+        }
+    }
 
     /**
-     *  @return the scalar basis in which the alpha components are expanded
+     *  @param component        the spin component
+     * 
+     *  @return the scalar basis that is used for the expansion of the given component
      */
-    const ScalarBasis<Shell>& alphaScalarBasis() const { return this->alpha_scalar_basis; }
+    const ScalarBasis<Shell>& scalarBasis(const SpinComponent& component) const { return this->scalar_bases[component]; }
 
     /**
-     *  @return the scalar basis in which the beta components are expanded
+     *  @param component        the spin component
+     * 
+    *  @return the number of coefficients that are used for the expansion of the requested spin-component of a spinor
      */
-    const ScalarBasis<Shell>& betaScalarBasis() const { return this->beta_scalar_basis; }
-
-    /**
-     *  @return the alpha coefficient matrix, i.e. the matrix of the expansion coefficients of the alpha-components of the spinors in terms of the underlying alpha-scalar basis
-     */
-    MatrixX<ExpansionScalar> betaCoefficientMatrix() const { return this->coefficientMatrix().bottomRows(this->numberOfBetaCoefficients()); }
-
-    /**
-     *  @return the number of coefficients that are used for the expansion of the alpha-component of a spinor
-     */
-    size_t numberOfAlphaCoefficients() const { return this->alphaScalarBasis().numberOfBasisFunctions(); }
-
-    /**
-     *  @return the number of coefficients that are used for the expansion of the beta-component of a spinor
-     */
-    size_t numberOfBetaCoefficients() const { return this->betaScalarBasis().numberOfBasisFunctions(); }
+    size_t numberOfCoefficients(const SpinComponent& component) const { return this->scalarBasis(component).numberOfBasisFunctions(); }
 
     /**
      *  @return the number of spinors that 'are' in this generalized spinor basis
      */
     size_t numberOfSpinors() const { 
         
-        const auto K_alpha = this->numberOfAlphaCoefficients();
-        const auto K_beta = this->numberOfBetaCoefficients();
+        const auto K_alpha = this->numberOfCoefficients(SpinComponent::ALPHA);
+        const auto K_beta = this->numberOfCoefficients(SpinComponent::BETA);
 
         return K_alpha + K_beta;
     }
-
 
     /**
      *  @param fq_op        the spin-independent first-quantized operator
@@ -224,14 +223,14 @@ public:
 
 
         // The strategy for calculating the matrix representation of the one-electron operator in this spinor basis is to express the operator in the underlying scalar bases and afterwards transform them using the current coefficient matrix
-        const auto K_alpha = this->numberOfAlphaCoefficients();
-        const auto K_beta = this->numberOfBetaCoefficients();
+        const auto K_alpha = this->numberOfCoefficients(SpinComponent::ALPHA);
+        const auto K_beta = this->numberOfCoefficients(SpinComponent::BETA);
         const auto M = this->numberOfSpinors();
         QCMatrix<ResultScalar> f = QCMatrix<ResultScalar>::Zero(M, M);  // the total result
 
         // Express the operator in the underlying bases: spin-independent operators only have alpha-alpha and beta-beta blocks
-        const auto F_alpha = this->alphaScalarBasis().calculateLibintIntegrals(fq_op);
-        const auto F_beta = this->betaScalarBasis().calculateLibintIntegrals(fq_op);
+        const auto F_alpha = this->scalarBasis(SpinComponent::ALPHA).calculateLibintIntegrals(fq_op);
+        const auto F_beta = this->scalarBasis(SpinComponent::BETA).calculateLibintIntegrals(fq_op);
 
         f.topLeftCorner(K_alpha, K_alpha) = F_alpha;
         f.bottomRightCorner(K_beta, K_beta) = F_beta;

@@ -63,8 +63,8 @@ BOOST_AUTO_TEST_CASE ( basic_functionality ) {
 
 
     // Check some basic functionality
-    BOOST_CHECK(spinor_basis.numberOfAlphaCoefficients() == 2);
-    BOOST_CHECK(spinor_basis.numberOfBetaCoefficients() == 2);
+    BOOST_CHECK(spinor_basis.numberOfCoefficients(GQCP::SpinComponent::ALPHA) == 2);
+    BOOST_CHECK(spinor_basis.numberOfCoefficients(GQCP::SpinComponent::BETA) == 2);
     BOOST_CHECK(spinor_basis.numberOfSpinors() == 4);
 }
 
@@ -77,8 +77,8 @@ BOOST_AUTO_TEST_CASE ( alpha_beta_coefficient_matrix ) {
     // Initialize a spinor basis with a different scalar basis for both the components
     const auto h2 = GQCP::Molecule::ReadXYZ("data/h2.xyz");
     const GQCP::GSpinorBasis<double, GQCP::GTOShell> spinor_basis (h2, "STO-3G", "6-31G");
-    const auto K_alpha = spinor_basis.numberOfAlphaCoefficients();
-    const auto K_beta = spinor_basis.numberOfBetaCoefficients();
+    const auto K_alpha = spinor_basis.numberOfCoefficients(GQCP::SpinComponent::ALPHA);
+    const auto K_beta = spinor_basis.numberOfCoefficients(GQCP::SpinComponent::BETA);
     const auto M = K_alpha + K_beta;  // number of spinors
 
 
@@ -91,7 +91,7 @@ BOOST_AUTO_TEST_CASE ( alpha_beta_coefficient_matrix ) {
 
     GQCP::SquareMatrix<double> C_ref = GQCP::SquareMatrix<double>::Identity(M, M);
 
-    BOOST_CHECK(spinor_basis.alphaCoefficientMatrix().isApprox(C_alpha_ref, 1.0e-08));
-    BOOST_CHECK(spinor_basis.betaCoefficientMatrix().isApprox(C_beta_ref, 1.0e-08));
+    BOOST_CHECK(spinor_basis.coefficientMatrix(GQCP::SpinComponent::ALPHA).isApprox(C_alpha_ref, 1.0e-08));
+    BOOST_CHECK(spinor_basis.coefficientMatrix(GQCP::SpinComponent::BETA).isApprox(C_beta_ref, 1.0e-08));
     BOOST_CHECK(spinor_basis.coefficientMatrix().isApprox(C_ref, 1.0e-08));
 }

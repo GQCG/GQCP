@@ -35,10 +35,10 @@ BOOST_AUTO_TEST_CASE ( USQHamiltonian_constructor ) {
     
     // Create single-particle basis
     const auto water = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
-    const GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (water, "STO-3G");
+    const GQCP::USpinorBasis<double, GQCP::GTOShell> spinor_basis (water, "STO-3G");
     
     // Create One- and SQTwoElectronOperators (and a transformation matrix) with compatible dimensions
-    const size_t K = spinor_basis.numberOfSpatialOrbitals();
+    const size_t K = spinor_basis.numberOfCoefficients(GQCP::SpinComponent::ALPHA);
     const GQCP::QCMatrix<double> H_core = GQCP::QCMatrix<double>::Random(K, K);
     GQCP::QCRankFourTensor<double> g (K);
     g.setRandom();
@@ -68,9 +68,9 @@ BOOST_AUTO_TEST_CASE ( USQHamiltonian_transform ) {
     
     // Create single-particle basis for alpha and beta
     const auto water = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
-    const GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (water, "STO-3G");
+    const GQCP::USpinorBasis<double, GQCP::GTOShell> spinor_basis (water, "STO-3G");
 
-    const size_t K = spinor_basis.numberOfSpatialOrbitals();
+    const size_t K = spinor_basis.numberOfCoefficients(GQCP::SpinComponent::ALPHA);
 
     // Create two identical usq Hamiltonians
     GQCP::USQHamiltonian<double> usq_hamiltonian1 = GQCP::USQHamiltonian<double>::Molecular(spinor_basis, water);
@@ -80,12 +80,12 @@ BOOST_AUTO_TEST_CASE ( USQHamiltonian_transform ) {
 
     // Perform a total transform and individual component transfromations
     usq_hamiltonian1.transform(U);
-    usq_hamiltonian2.transformAlpha(U);
-    usq_hamiltonian2.transformBeta(U);
+    usq_hamiltonian2.transform(U, GQCP::SpinComponent::ALPHA);
+    usq_hamiltonian2.transform(U, GQCP::SpinComponent::BETA);
 
     // Test if the transformation results in identical Hamtilonians
     BOOST_CHECK(usq_hamiltonian1.twoElectronMixed().parameters().isApprox(usq_hamiltonian2.twoElectronMixed().parameters()));
-    BOOST_CHECK(usq_hamiltonian1.alphaHamiltonian().core().parameters().isApprox(usq_hamiltonian2.alphaHamiltonian().core().parameters()));
-    BOOST_CHECK(usq_hamiltonian1.betaHamiltonian().core().parameters().isApprox(usq_hamiltonian2.betaHamiltonian().core().parameters()));   
+    BOOST_CHECK(usq_hamiltonian1.spinHamiltonian(GQCP::SpinComponent::ALPHA).core().parameters().isApprox(usq_hamiltonian2.spinHamiltonian(GQCP::SpinComponent::ALPHA).core().parameters()));
+    BOOST_CHECK(usq_hamiltonian1.spinHamiltonian(GQCP::SpinComponent::BETA).core().parameters().isApprox(usq_hamiltonian2.spinHamiltonian(GQCP::SpinComponent::BETA).core().parameters()));   
 }
 

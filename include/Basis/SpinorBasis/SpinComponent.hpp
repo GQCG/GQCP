@@ -20,14 +20,12 @@
 
 namespace GQCP {
 
-
 /**
- *  An enumeration containing the Cartesian directions
+ *  An enumeration containing the modes of spin for electrons
  */
-enum CartesianDirection {
-    x = 0,
-    y = 1,
-    z = 2
+enum SpinComponent {
+    ALPHA = 0,
+    BETA = 1
 };
 
 
