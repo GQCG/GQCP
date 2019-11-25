@@ -33,7 +33,7 @@ namespace GQCP {
 template <typename Scalar>
 class USQHamiltonian {
 private:
-    std::array<SQHamiltonian<Scalar>, 2> sq_hamiltonians;   // array that holds the individual SQHamiltonian for the alpha and beta components (in that order)
+    std::array<SQHamiltonian<Scalar>, 2> sq_hamiltonians;   // array that holds the individual SQHamiltonian for the pure alpha and beta components (in that order)
 
     std::vector<ScalarSQTwoElectronOperator<Scalar>> two_op_mixed;  // the alpha & beta mixed two-electron operators (whose integrals are represented as g_aabb)
     ScalarSQTwoElectronOperator<Scalar> total_two_op_mixed;  // the total alpha & beta mixed two-electron operator (whose integrals are represented as g_aabb)
@@ -126,7 +126,7 @@ public:
     /**
      *  @param component                    the spin component
      * 
-     *  @return the contributions of the requested components of the unrestricted Hamiltonian 
+     *  @return the pure contributions of the requested component of the unrestricted Hamiltonian 
      */
     const SQHamiltonian<Scalar>& spinHamiltonian(const SpinComponent& component) const { return this->sq_hamiltonians[component]; }
 
@@ -160,9 +160,8 @@ public:
     /**
      *  In-place transform the matrix representations of a single spin component of the unrestricted Hamiltonian
      * 
-     *  @param component                    the spin component
-     *
-     *  @param T    the transformation matrix between the old and the new orbital basis
+     *  @param T                        the transformation matrix between the old and the new orbital basis
+     *  @param component                the spin component
      */
     void transform(const TransformationMatrix<Scalar>& T, const SpinComponent& component) {
 
@@ -172,24 +171,26 @@ public:
         auto new_two_electron_parameters = this->total_two_op_mixed.parameters();
 
         // transform the two electron parameters "g_aabb" to "g_a'a'bb" when alpha is chosen or to "g_aab'b'" for beta.
-        new_two_electron_parameters.template matrixContraction<Scalar>(T, component*2);
-        new_two_electron_parameters.template matrixContraction<Scalar>(T, component*2 + 1);
+        const size_t first_contraction_index = 2 * component;
+        const size_t second_contraction_index = 2 * component + 1;
+        new_two_electron_parameters.template matrixContraction<Scalar>(T, first_contraction_index);
+        new_two_electron_parameters.template matrixContraction<Scalar>(T, second_contraction_index);
         this->total_two_op_mixed = ScalarSQTwoElectronOperator<Scalar> ({new_two_electron_parameters});
 
         for (auto& two_op : this->two_op_mixed) {
 
             auto new_two_electron_parameters = two_op.parameters();
             // transform the two electron parameters "g_aabb" to "g_a'a'bb"
-            new_two_electron_parameters.template matrixContraction<Scalar>(T, component*2);
-            new_two_electron_parameters.template matrixContraction<Scalar>(T, component*2 + 1);
+            new_two_electron_parameters.template matrixContraction<Scalar>(T, first_contraction_index);
+            new_two_electron_parameters.template matrixContraction<Scalar>(T, second_contraction_index);
             two_op = ScalarSQTwoElectronOperator<Scalar> ({new_two_electron_parameters});
         }
     }
 
 
     /**
-     *  In-place rotate the matrix representations of Hamiltonian
-     *
+     *  In-place rotate the matrix representations of the Hamiltonian
+     *      
      *  @param U    the unitary rotation matrix between the old and the new orbital basis
      */
     void rotate(const TransformationMatrix<Scalar>& U) {
@@ -199,9 +200,10 @@ public:
 
 
     /**
-     *  In-place rotate the matrix representations of Hamiltonian
+     *  In-place rotate the matrix representation of one of the spin components of the Hamiltonian
      *
-     *  @param U    the unitary rotation matrix between the old and the new orbital basis
+     *  @param U                    the unitary rotation matrix between the old and the new orbital basis
+     *  @param component            the spin component
      */
     void rotate(const TransformationMatrix<Scalar>& U, const SpinComponent& component) {
         this->transform(U, component);
@@ -221,9 +223,10 @@ public:
 
 
     /**
-     *  In-place rotate the matrix representations of the Hamiltonian using a unitary Jacobi rotation matrix constructed from the Jacobi rotation parameters. Note that this function is only available for real (double) matrix representations
+     *  In-place rotate the matrix representation of one of the spin components of the Hamiltonian using a unitary Jacobi rotation matrix constructed from the Jacobi rotation parameters. Note that this function is only available for real (double) matrix representations
      *
      *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
+     *  @param component                        the spin component
      */
     template<typename Z = Scalar>
     enable_if_t<std::is_same<Z, double>::value> rotate(const JacobiRotationParameters& jacobi_rotation_parameters, const SpinComponent& component) {

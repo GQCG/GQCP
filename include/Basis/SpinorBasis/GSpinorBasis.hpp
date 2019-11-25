@@ -188,19 +188,19 @@ public:
     /**
      *  @param component        the spin component
      * 
-     *  @return the scalar basis in which the requested components are expanded
+     *  @return the scalar basis that is used for the expansion of the given component
      */
     const ScalarBasis<Shell>& scalarBasis(const SpinComponent& component) const { return this->scalar_bases[component]; }
 
     /**
      *  @param component        the spin component
      * 
-     *  @return the scalar basis in which the requested components are expanded
+    *  @return the number of coefficients that are used for the expansion of the requested spin-component of a spinor
      */
     size_t numberOfCoefficients(const SpinComponent& component) const { return this->scalarBasis(component).numberOfBasisFunctions(); }
 
     /**
-     *  @return the number of spinors that 'are' in this compound spinor basis
+     *  @return the number of spinors that 'are' in this generalized spinor basis
      */
     size_t numberOfSpinors() const { 
         

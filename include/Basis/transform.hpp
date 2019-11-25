@@ -102,7 +102,7 @@ void basisRotate(RSpinorBasis<double, Shell>& spinor_basis, SQHamiltonian<double
 
 
 /**
- *  Unrestricted
+ *  UNRESTRICTED
  */
 
 /**
@@ -111,9 +111,9 @@ void basisRotate(RSpinorBasis<double, Shell>& spinor_basis, SQHamiltonian<double
  *  @tparam ShellType                   the type of shell that the scalar basis contains
  *  @tparam TransformationScalar        the scalar type of the transformation matrix
  * 
- *  @param spinor_basis                 the unrestricted single-particle basis
+ *  @param spinor_basis                 the spinor basis
  *  @param usq_hamiltonian              the Hamiltonian, expressed in an unrestricted spinor basis
- *  @param T                            the transformation matrix
+ *  @param T                            the transformation matrix for one of the spin components
  *  @param component                    the spin component
  */
 template <typename TransformationScalar, typename ShellType>
@@ -129,9 +129,9 @@ void basisTransform(USpinorBasis<TransformationScalar, ShellType>& spinor_basis,
  *  @tparam ShellType                   the type of shell that the scalar basis contains
  *  @tparam TransformationScalar        the scalar type of the transformation matrix
  * 
- *  @param spinor_basis                 the single-particle basis for the beta component
+ *  @param spinor_basis                 the spinor basis
  *  @param usq_hamiltonian              the Hamiltonian, expressed in an unrestricted spinor basis
- *  @param T                            the transformation matrix
+ *  @param T                            the transformation matrix for both of the spin components
  */
 template <typename TransformationScalar, typename ShellType>
 void basisTransform(USpinorBasis<TransformationScalar, ShellType>& spinor_basis, USQHamiltonian<TransformationScalar>& usq_hamiltonian, const TransformationMatrix<TransformationScalar>& T) {
@@ -141,14 +141,14 @@ void basisTransform(USpinorBasis<TransformationScalar, ShellType>& spinor_basis,
 
 
 /**
- *  Rotate both the spinor basis and the Hamiltonian to another basis using the given unitary transformation matrix
- * 
+ *  Rotate a single component (alpha or beta) of both the spinor basis and the Hamiltonian to another basis using the given unitary transformation matrix
+ *  
  *  @tparam Shell                       the type of shell that the scalar basis contains
  *  @tparam TransformationScalar        the scalar type of the transformation matrix
  * 
- *  @param spinor_basis                 the single-particle basis for the beta component
+ *  @param spinor_basis                 the spinor basis
  *  @param usq_hamiltonian              the Hamiltonian, expressed in an unrestricted spinor basis
- *  @param U                            the unitary transformation matrix
+ *  @param U                            the unitary transformation matrix for the given spin component
  *  @param component                    the spin component
  */
 template <typename TransformationScalar, typename Shell>
@@ -160,14 +160,14 @@ void basisRotate(USpinorBasis<TransformationScalar, Shell>& spinor_basis, USQHam
 
 
 /**
- *  Rotate both the spinor basis and the Hamiltonian to another basis using the given unitary transformation matrix
- * 
+ *  Rotate both components of the both the spinor basis and the Hamiltonian to another basis using the given unitary transformation matrix
+ *  
  *  @tparam Shell                       the type of shell that the scalar basis contains
  *  @tparam TransformationScalar        the scalar type of the transformation matrix
  * 
- *  @param spinor_basis                 the single-particle basis for the beta component
+ *  @param spinor_basis                 the spinor basis
  *  @param usq_hamiltonian              the Hamiltonian, expressed in an unrestricted spinor basis
- *  @param U                            the unitary transformation matrix
+ *  @param U                            the unitary transformation matrix for both of the spin components
  */
 template <typename TransformationScalar, typename Shell>
 void basisRotate(USpinorBasis<TransformationScalar, Shell>& spinor_basis, SQHamiltonian<TransformationScalar>& sq_hamiltonian, const TransformationMatrix<TransformationScalar>& U) {
@@ -178,13 +178,13 @@ void basisRotate(USpinorBasis<TransformationScalar, Shell>& spinor_basis, SQHami
 
 
 /**
- *  Rotate both the spinor basis and the Hamiltonian to another basis using the given Jacobi-rotation parameters
- * 
+ *  Rotate one spin component of both the spinor basis and the Hamiltonian to another basis using the given Jacobi-rotation parameters
+ *  
  *  @tparam Shell                           the type of shell that the scalar basis contains
  * 
- *  @param spinor_basis                     the single-particle basis for the beta component
+ *  @param spinor_basis                     the spinor basis
  *  @param usq_hamiltonian                  the Hamiltonian, expressed in an unrestricted spinor basis
- *  @param jacobi_rotation_parameters       the Jacobi-rotation parameters
+ *  @param jacobi_rotation_parameters       the Jacobi-rotation parameters for one of the spin components
  *  @param component                        the spin component
  */
 template <typename Shell>
@@ -196,7 +196,7 @@ void basisRotate(USpinorBasis<double, Shell>& spinor_basis, USQHamiltonian<doubl
 
 
 /**
- *  Rotate both the spinor basis and the Hamiltonian to another basis using the given Jacobi-rotation parameters
+ *  Rotate both components of both the spinor basis and the Hamiltonian to another basis using the given Jacobi-rotation parameters
  * 
  *  @tparam Shell                           the type of shell that the scalar basis contains
  * 

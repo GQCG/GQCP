@@ -39,7 +39,7 @@ public:
 
 
 private:
-    std::array<RSpinorBasis<ExpansionScalar, Shell>, 2> spinor_bases;  // array that holds the individual spinor basis for the alpha and beta components (in that order)
+    std::array<RSpinorBasis<ExpansionScalar, Shell>, 2> spinor_bases;  // array that holds the individual spinor bases for the alpha and beta components (in that order)
 
 
 public:
@@ -51,8 +51,8 @@ public:
     /**
      *  @param alpha_scalar_basis           the scalar basis in which the alpha components are expanded
      *  @param beta_scalar_basis            the scalar basis in which the beta components are expanded
-     *  @param C_alpha                      the coefficient matrix, i.e. the matrix of the expansion coefficients of the alpha spinors in terms of the underlying scalar basis
-     *  @param C_beta                       the coefficient matrix, i.e. the matrix of the expansion coefficients of the beta spinors in terms of the underlying scalar basis
+     *  @param C_alpha                      the alpha coefficient matrix, i.e. the matrix of the expansion coefficients of the alpha spinors in terms of the underlying scalar basis
+     *  @param C_beta                       the beta coefficient matrix, i.e. the matrix of the expansion coefficients of the beta spinors in terms of the underlying scalar basis
      */
     USpinorBasis(const ScalarBasis<Shell>& alpha_scalar_basis, const ScalarBasis<Shell>& beta_scalar_basis, const TransformationMatrix<ExpansionScalar>& C_alpha, const TransformationMatrix<ExpansionScalar>& C_beta) :
         spinor_bases ({RSpinorBasis<ExpansionScalar, Shell>(alpha_scalar_basis, C_alpha), RSpinorBasis<ExpansionScalar, Shell>(beta_scalar_basis, C_beta)})
@@ -72,10 +72,10 @@ public:
 
 
     /**
-     *  Construct a unrestricted spinor basis in which both underlying scalar bases and their expansions are equal
+     *  Construct an unrestricted spinor basis in which both underlying scalar bases and their expansions are equal
      * 
      *  @param scalar_basis         the scalar basis in which both the alpha and beta components are expanded
-     *  @param C                    the coefficient matrix, i.e. the matrix of the expansion coefficients of the spinors in terms of the underlying scalar basis
+     *  @param C                    the coefficient matrix, i.e. the matrix of the expansion coefficients of the spinors in terms of the underlying scalar bases
      */
     USpinorBasis(const ScalarBasis<Shell>& scalar_basis, const TransformationMatrix<ExpansionScalar>& C) :
         USpinorBasis(scalar_basis, scalar_basis, C, C)
@@ -83,7 +83,7 @@ public:
 
 
     /**
-     *  Construct a unrestricted spinor basis with two different underlying scalar basis, and a coefficient matrix being the identity
+     *  Construct an unrestricted spinor basis with two different underlying scalar basis, and a coefficient matrix being the identity
      */
     USpinorBasis(const ScalarBasis<Shell>& alpha_scalar_basis, const ScalarBasis<Shell>& beta_scalar_basis) : 
         USpinorBasis(alpha_scalar_basis, beta_scalar_basis, TransformationMatrix<ExpansionScalar>::Identity(alpha_scalar_basis.numberOfBasisFunctions(), alpha_scalar_basis.numberOfBasisFunctions()), TransformationMatrix<ExpansionScalar>::Identity(beta_scalar_basis.numberOfBasisFunctions(), beta_scalar_basis.numberOfBasisFunctions()))
@@ -91,7 +91,7 @@ public:
 
 
     /**
-     *  Construct a unrestricted spinor basis in which both underlying scalar bases are equal, and the coefficient matrices are the identity
+     *  Construct an unrestricted spinor basis in which both underlying scalar bases are equal, and the coefficient matrices are the identity
      * 
      *  @param scalar_basis         the scalar basis in which both the alpha and beta components are expanded
      */
@@ -101,13 +101,14 @@ public:
 
 
     /**
-     *  Construct a generalized spinor basis with an underlying scalar basis (equal for both the alpha and beta components) that is made by placing shells corresponding to the basisset specification on every nucleus of the nuclear framework
-     *
+     *  Construct an unrestricted spinor basis with an underlying scalar basis (equal for both the alpha and beta components) that is made by placing shells corresponding to the basisset specification on every nucleus of the nuclear framework
+     *      
      *  @param nuclear_framework        the nuclear framework containing the nuclei on which the shells should be centered
      *  @param basisset_name            the name of the basisset, e.g. "STO-3G"
      *
      *  @note the normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells
-     *  @note the resulting generalized spinor basis is (most likely) non-orthogonal
+     *  @note the resulting unrestricted spinor basis is (most likely) non-orthogonal
+     * 
      */
     USpinorBasis(const NuclearFramework& nuclear_framework, const std::string& basisset_name) :
         USpinorBasis(ScalarBasis<Shell>(nuclear_framework, basisset_name))
@@ -115,8 +116,8 @@ public:
 
 
     /**
-     *  Construct a generalized spinor basis with an underlying scalar basis (equal for both the alpha and beta components) that is made by placing shells corresponding to the basisset specification on every nucleus of the molecule
-     *
+     *  Construct an unrestricted spinor basis with an underlying scalar basis (equal for both the alpha and beta components) that is made by placing shells corresponding to the basisset specification on every nucleus of the molecule
+     *      
      *  @param molecule                 the molecule containing the nuclei on which the shells should be centered
      *  @param basisset_name            the name of the basisset, e.g. "STO-3G"
      *
@@ -129,14 +130,14 @@ public:
 
 
     /**
-     *  Construct a generalized spinor basis with a underlying scalar bases made by placing shells corresponding to the basisset specifications on every nucleus of the nuclear framework
+     *  Construct an unrestricted spinor basis with a underlying scalar bases made by placing shells corresponding to the basisset specifications on every nucleus of the nuclear framework
      *
      *  @param nuclear_framework            the nuclear framework containing the nuclei on which the shells should be centered
      *  @param basisset_name_alpha          the name of the basisset, e.g. "STO-3G", used for the expansion of the alpha component
      *  @param basisset_name_beta           the name of the basisset, e.g. "STO-3G", used for the expansion of the beta component
      *
      *  @note the normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells
-     *  @note the resulting generalized spinor basis is (most likely) non-orthogonal
+     *  @note the resulting unrestricted spinor basis is (most likely) non-orthogonal
      */
     USpinorBasis(const NuclearFramework& nuclear_framework, const std::string& basisset_name_alpha, const std::string& basisset_name_beta) :
         USpinorBasis(ScalarBasis<Shell>(nuclear_framework, basisset_name_alpha), ScalarBasis<Shell>(nuclear_framework, basisset_name_beta))
@@ -144,14 +145,14 @@ public:
 
 
     /**
-     *  Construct a generalized spinor basis with a underlying scalar bases made by placing shells corresponding to the basisset specifications on every nucleus of the molecule
+     *  Construct an unrestricted spinor basis with a underlying scalar bases made by placing shells corresponding to the basisset specifications on every nucleus of the molecule
      *
      *  @param molecule                     the molecule containing the nuclei on which the shells should be centered
      *  @param basisset_name_alpha          the name of the basisset, e.g. "STO-3G", used for the expansion of the alpha component
      *  @param basisset_name_beta           the name of the basisset, e.g. "STO-3G", used for the expansion of the beta component
      *
      *  @note the normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells
-     *  @note the resulting generalized spinor basis is (most likely) non-orthogonal
+     *  @note the resulting unrestricted spinor basis is (most likely) non-orthogonal
      */
     USpinorBasis(const Molecule& molecule, const std::string& basisset_name_alpha, const std::string& basisset_name_beta) :
         USpinorBasis(ScalarBasis<Shell>(molecule.nuclearFramework(), basisset_name_alpha), ScalarBasis<Shell>(molecule.nuclearFramework(), basisset_name_beta))
@@ -166,7 +167,7 @@ public:
     /**
      *  @param component        the spin component
      * 
-     *  @return the coefficient matrix for the requested component, i.e. the matrix of the expansion coefficients of the requested components of the spinors in terms of its underlying scalar basis
+     *  @return the coefficient matrix for the requested component, i.e. the matrix of the expansion coefficients of the requested component of the spinors in terms of its underlying scalar basis
      */
     const MatrixX<ExpansionScalar>& coefficientMatrix(SpinComponent component) const { 
         return spinor_bases[component].coefficientMatrix();
@@ -175,19 +176,19 @@ public:
     /**
      *  @param component        the spin component
      * 
-     *  @return the scalar basis in which the requested components are expanded
+     *  @return the scalar basis in which the requested component is expanded
      */
     const ScalarBasis<Shell>& scalarBasis(const SpinComponent& component) const { return this->spinor_bases[component].scalarBasis(); }
 
     /**
      *  @param component        the spin component
      * 
-     *  @return the scalar basis in which the requested components are expanded
+     *  @return the scalar basis in which the requested component is expanded
      */
     size_t numberOfCoefficients(const SpinComponent& component) const { return this->scalarBasis(component).numberOfBasisFunctions(); }
 
     /**
-     *  @return the number of spinors that 'are' in this compound spinor basis
+     *  @return the number of spinors that 'are' in this unrestricted spinor basis
      */
     size_t numberOfSpinors() const { 
 
@@ -204,7 +205,7 @@ public:
      *  @return if this spinor basis for the requested component is orthonormal within the given precision
      */
     bool isOrthonormal(const SpinComponent& component, const double precision = 1.0e-08) const {
-        return this->spinor_basis[component].isOrthonormal();
+        return this->spinor_bases[component].isOrthonormal();
     }
 
     /**
@@ -231,15 +232,15 @@ public:
      *  Transform the spinor basis to the 'Löwdin basis', which is the orthonormal basis that we transform to with T = S^{-1/2}, where S is the current overlap matrix
      */
     void lowdinOrthonormalize(const SpinComponent& component) {
-        this->spinor_basis[component].lowdinOrthonormalize();
+        this->spinor_bases[component].lowdinOrthonormalize();
     }
 
     /**
      *  Transform the spinor basis to the 'Löwdin basis', which is the orthonormal basis that we transform to with T = S^{-1/2}, where S is the current overlap matrix
      */
     void lowdinOrthonormalize() {
-        this->spinor_basis[SpinComponent::ALPHA].lowdinOrthonormalize();
-        this->spinor_basis[SpinComponent::BETA].lowdinOrthonormalize();
+        this->spinor_bases[SpinComponent::ALPHA].lowdinOrthonormalize();
+        this->spinor_bases[SpinComponent::BETA].lowdinOrthonormalize();
     }
 
     /**
@@ -248,19 +249,18 @@ public:
      *  @return the overlap (one-electron) operator of the requested component of this spinor basis
      */
     ScalarSQOneElectronOperator<ExpansionScalar> overlap(const SpinComponent& component) const {
-        return this->spinor_basis[component].quantize(Operator::Overlap());
+        return this->spinor_bases[component].quantize(Operator::Overlap());
     }
 
 
     /**
      *  Rotate the spinor basis of the requested component to another one using the given unitary transformation matrix
      * 
+     *  @param U                        the unitary transformation matrix that transforms both the alpha- and beta components
      *  @param component                the spin component
-     * 
-     *  @param U            the unitary transformation matrix that transforms both the alpha- and beta components
      */
     void rotate(const TransformationMatrix<ExpansionScalar>& U, const SpinComponent& component) {
-        this->spinor_basis[component].rotate();
+        this->spinor_bases[component].rotate();
     }
 
 
@@ -274,17 +274,20 @@ public:
         this->rotate(SpinComponent::BETA);
     }
 
+
     /**
      *  Rotate the spinor basis of the requested component to another one using the unitary transformation matrix that corresponds to the given Jacobi rotation parameters
      * 
      *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
+     *  @param component                the spin component
      * 
      *  @note this function is only available for real spinor bases because Jacobi rotation parameters generate real rotations
      */
     template<typename Z = ExpansionScalar>
     enable_if_t<std::is_same<Z, double>::value> rotate(const JacobiRotationParameters& jacobi_rotation_parameters, const SpinComponent& component) {
-        this->spinor_basis[component].rotate(jacobi_rotation_parameters);
+        this->spinor_bases[component].rotate(jacobi_rotation_parameters);
     }
+
 
     /**
      *  Rotate the spinor basis for both the alpha- and beta components to another one using the unitary transformation matrix that corresponds to the given Jacobi rotation parameters
@@ -299,26 +302,28 @@ public:
         this->rotate(jacobi_rotation_parameters, SpinComponent::BETA);
     }
 
-    /**
-     *  Transform the spinor basis another one using the given transformation matrix
-     * 
-     *  @param component                the spin component
-     * 
-     *  @param T            the transformation matrix that transforms the requested component
-     */
-    void transform(const TransformationMatrix<ExpansionScalar>& T, const SpinComponent& component) {
-         this->spinor_basis[component].transform(T);
-    }
 
     /**
-     *  Transform the spinor basis another one using the given transformation matrix
-     * 
+     *  Transform the spinor basis for one component to another one using the given transformation matrix
+     *
+     *  @param T                        the transformation matrix that transforms the requested component
+     *  @param component                the spin component
+     */
+    void transform(const TransformationMatrix<ExpansionScalar>& T, const SpinComponent& component) {
+         this->spinor_bases[component].transform(T);
+    }
+
+
+    /**
+     *  Transform the spinor basis to another one using the given transformation matrix
+     *
      *  @param T            the transformation matrix that transforms both the alpha- and beta components
      */
     void transform(const TransformationMatrix<ExpansionScalar>& T) {
          this->transform(T, SpinComponent::ALPHA);
          this->transform(T, SpinComponent::BETA);
     }
+
 
     /**
      *  @param ao_list          indices of the AOs used for the Mulliken populations
@@ -333,6 +338,7 @@ public:
         return this->spinor_bases[component].template calculateMullikenOperator<ExpansionScalar>(ao_list);
     }
 
+
     /**
      *  @param fq_op            the first-quantized one-electron operator
      *  @param component        the spin component
@@ -344,6 +350,7 @@ public:
         return this->spinor_bases[component].quantize(fq_op);
     }
         
+
     /**
      *  @param fq_op            the first-quantized Coulomb operator
      *  @param component        the spin component

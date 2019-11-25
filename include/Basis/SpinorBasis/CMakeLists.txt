@@ -2,7 +2,7 @@ target_sources(gqcp
         PRIVATE
             GSpinorBasis.hpp
             RSpinorBasis.hpp
-            SpinComponent.hpp
             SimpleSpinorBasis.hpp
+            SpinComponent.hpp
             USpinorBasis.hpp
         )
