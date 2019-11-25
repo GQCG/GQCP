@@ -185,7 +185,7 @@ public:
      * 
      *  @return the underlying spinor basis for a single component
      */
-    const RSpinorBasis<ExpansionScalar, Shell>& spinorBasis(const SpinComponent& component) const { return this->spinor_bases[component]); }
+    const RSpinorBasis<ExpansionScalar, Shell>& spinorBasis(const SpinComponent& component) const { return this->spinor_bases[component]; }
 
     /**
      *  @param component        the spin component
