@@ -122,7 +122,7 @@ public:
      *  @param basisset_name            the name of the basisset, e.g. "STO-3G"
      *
      *  @note the normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells
-     *  @note the resulting generalized spinor basis is (most likely) non-orthogonal
+     *  @note the resulting unrestricted spinor basis is (most likely) non-orthogonal
      */
     USpinorBasis(const Molecule& molecule, const std::string& basisset_name) :
         USpinorBasis(ScalarBasis<Shell>(molecule.nuclearFramework(), basisset_name))
