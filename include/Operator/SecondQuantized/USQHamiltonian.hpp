@@ -19,6 +19,7 @@
 
 
 #include "Basis/SpinorBasis/SpinComponent.hpp"
+#include "Basis/SpinorBasis/USpinorBasis.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 
 
@@ -93,8 +94,8 @@ public:
     /**
      *  Construct the molecular Hamiltonian in a given single-particle basis
      *
-     *  @param spinor_basis         the initial single-particle basis in which both the alpha component and beta component of the Hamiltonian should be expressed
-     *  @param molecule             the molecule on which the single particle is based
+     *  @param spinor_basis         the initial unrestricted spinor basis in which the components of the Hamiltonian should be expressed
+     *  @param molecule             the molecule on which the  spinor basis is based
      *
      *  @return a second-quantized molecular unrestricted Hamiltonian. The molecular unrestricted Hamiltonian has:
      *      - restricted Hamiltonians for the alpha and beta components
@@ -103,10 +104,10 @@ public:
      *  Note that this named constructor is only available for real matrix representations
      */
     template <typename Z = Scalar>
-    static enable_if_t<std::is_same<Z, double>::value, USQHamiltonian<double>> Molecular(const RSpinorBasis<Z, GTOShell>& spinor_basis, const Molecule& molecule) {
+    static enable_if_t<std::is_same<Z, double>::value, USQHamiltonian<double>> Molecular(const USpinorBasis<Z, GTOShell>& spinor_basis, const Molecule& molecule) {
 
-        const SQHamiltonian<Scalar> sq_hamiltonian_alpha = SQHamiltonian<double>::Molecular(spinor_basis, molecule);
-        const SQHamiltonian<Scalar> sq_hamiltonian_beta = SQHamiltonian<double>::Molecular(spinor_basis, molecule);
+        const SQHamiltonian<Scalar> sq_hamiltonian_alpha = SQHamiltonian<double>::Molecular(spinor_basis.spinorBasis(SpinComponent::ALPHA), molecule);
+        const SQHamiltonian<Scalar> sq_hamiltonian_beta = SQHamiltonian<double>::Molecular(spinor_basis.spinorBasis(SpinComponent::BETA), molecule);
 
         // Initial basis for alpha and beta are identical so the mixed integrals are identical to spin specific components
         const ScalarSQTwoElectronOperator<double> two_op_mixed = sq_hamiltonian_alpha.twoElectron();

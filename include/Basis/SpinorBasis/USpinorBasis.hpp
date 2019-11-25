@@ -183,6 +183,13 @@ public:
     /**
      *  @param component        the spin component
      * 
+     *  @return the underlying spinor basis for a single component
+     */
+    const RSpinorBasis<ExpansionScalar, Shell>& spinorBasis(const SpinComponent& component) const { return this->spinor_bases[component]); }
+
+    /**
+     *  @param component        the spin component
+     * 
      *  @return the scalar basis in which the requested component is expanded
      */
     size_t numberOfCoefficients(const SpinComponent& component) const { return this->scalarBasis(component).numberOfBasisFunctions(); }

@@ -35,7 +35,7 @@ BOOST_AUTO_TEST_CASE ( USQHamiltonian_constructor ) {
     
     // Create single-particle basis
     const auto water = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
-    const GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (water, "STO-3G");
+    const GQCP::USpinorBasis<double, GQCP::GTOShell> spinor_basis (water, "STO-3G");
     
     // Create One- and SQTwoElectronOperators (and a transformation matrix) with compatible dimensions
     const size_t K = spinor_basis.numberOfSpatialOrbitals();
@@ -68,7 +68,7 @@ BOOST_AUTO_TEST_CASE ( USQHamiltonian_transform ) {
     
     // Create single-particle basis for alpha and beta
     const auto water = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
-    const GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (water, "STO-3G");
+    const GQCP::USpinorBasis<double, GQCP::GTOShell> spinor_basis (water, "STO-3G");
 
     const size_t K = spinor_basis.numberOfSpatialOrbitals();
 
