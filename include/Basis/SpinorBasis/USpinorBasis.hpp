@@ -275,6 +275,8 @@ public:
      *  Rotate the spinor basis to another one using the given unitary transformation matrix
      * 
      *  @param U            the unitary transformation matrix that transforms both the alpha- and beta components
+     * 
+     *  @note this method is only valid when the beta and alpha component are of the same dimension, and will only accept matrices of the same dimension as the individual component.
      */
     void rotate(const TransformationMatrix<ExpansionScalar>& U) {
         this->rotate(SpinComponent::ALPHA);
@@ -286,7 +288,7 @@ public:
      *  Rotate the spinor basis of the requested component to another one using the unitary transformation matrix that corresponds to the given Jacobi rotation parameters
      * 
      *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
-     *  @param component                the spin component
+     *  @param component                        the spin component
      * 
      *  @note this function is only available for real spinor bases because Jacobi rotation parameters generate real rotations
      */
@@ -302,6 +304,7 @@ public:
      *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
      * 
      *  @note this function is only available for real spinor bases because Jacobi rotation parameters generate real rotations
+     *  @note this method is only valid when the beta and alpha component are of the same dimension, and will only accept parameters of the same dimension as the individual component.
      */
     template<typename Z = ExpansionScalar>
     enable_if_t<std::is_same<Z, double>::value> rotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
@@ -325,6 +328,8 @@ public:
      *  Transform the spinor basis to another one using the given transformation matrix
      *
      *  @param T            the transformation matrix that transforms both the alpha- and beta components
+     * 
+     *  @note this method is only valid when the beta and alpha component are of the same dimension, and will only accept matrices of the same dimension as the individual component.
      */
     void transform(const TransformationMatrix<ExpansionScalar>& T) {
         this->transform(T, SpinComponent::ALPHA);
