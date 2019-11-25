@@ -122,7 +122,7 @@ public:
      *  @param basisset_name            the name of the basisset, e.g. "STO-3G"
      *
      *  @note the normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells
-     *  @note the resulting generalized spinor basis is (most likely) non-orthogonal
+     *  @note the resulting unrestricted spinor basis is (most likely) non-orthogonal
      */
     USpinorBasis(const Molecule& molecule, const std::string& basisset_name) :
         USpinorBasis(ScalarBasis<Shell>(molecule.nuclearFramework(), basisset_name))
@@ -263,7 +263,7 @@ public:
     /**
      *  Rotate the spinor basis of the requested component to another one using the given unitary transformation matrix
      * 
-     *  @param U                        the unitary transformation matrix that transforms both the alpha- and beta components
+     *  @param U                        the unitary transformation matrix that transforms both the alpha or beta component
      *  @param component                the spin component
      */
     void rotate(const TransformationMatrix<ExpansionScalar>& U, const SpinComponent& component) {
@@ -317,7 +317,7 @@ public:
      *  @param component                the spin component
      */
     void transform(const TransformationMatrix<ExpansionScalar>& T, const SpinComponent& component) {
-         this->spinor_bases[component].transform(T);
+        this->spinor_bases[component].transform(T);
     }
 
 
@@ -327,8 +327,8 @@ public:
      *  @param T            the transformation matrix that transforms both the alpha- and beta components
      */
     void transform(const TransformationMatrix<ExpansionScalar>& T) {
-         this->transform(T, SpinComponent::ALPHA);
-         this->transform(T, SpinComponent::BETA);
+        this->transform(T, SpinComponent::ALPHA);
+        this->transform(T, SpinComponent::BETA);
     }
 
 
