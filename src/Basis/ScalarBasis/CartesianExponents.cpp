@@ -65,7 +65,7 @@ bool CartesianExponents::operator<(const CartesianExponents& rhs) const {
     else if (this->angularMomentum() > rhs.angularMomentum()) { return false; } 
     else {
         // Compare all exponents for x -> y -> z, x takes precedence over y, over z
-        for (CartesianDirection direction = CartesianDirection::x; direction =< CartesianDirection::z; direction++) {
+        for (const auto& direction : {CartesianDirection::x, CartesianDirection::y, CartesianDirection::z}) {
             if (this->exponents[direction] > rhs.value(direction)) { return true; }
             if (this->exponents[direction] < rhs.value(direction)) { return false; }
         }  // if, at the end, all exponents are equal, then the Cartesian exponents should be considered equal
@@ -114,8 +114,9 @@ size_t CartesianExponents::value(CartesianDirection direction) const {
  */
 size_t CartesianExponents::angularMomentum() const {
     size_t momentum = 0;
-    for (CartesianDirection direction = CartesianDirection::x; direction =< CartesianDirection::z; direction++) {
+    for (const auto& direction : {CartesianDirection::x, CartesianDirection::y, CartesianDirection::z}) {
         momentum += this->exponents[direction];
+    }
     return momentum;
 }
 

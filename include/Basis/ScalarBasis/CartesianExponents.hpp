@@ -31,7 +31,7 @@ namespace GQCP {
  *  A class that represents exponents of the Cartesian functions x, y and z
  */
 struct CartesianExponents {
-private:
+public:
     std::array<size_t, 3> exponents;  // array containing the x, y, z exponents (in that order)
 
 
@@ -93,7 +93,7 @@ public:
     /**
      *  @return the exponents as an array
      */
-    std::array<size_t, 3> asArray() const;
+    const std::array<size_t, 3>& asArray() const;
 
     /**
      *  @return a sorted list of all permutations (i.e. switching x, y, z) of these Cartesian exponents
