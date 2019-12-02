@@ -30,18 +30,28 @@ namespace QCMethod {
  */
 
 /**
+ *  @param molecule             the molecule that will be solved for
+ *  @param basis_set            the basisset that should be used
+ *  @param num_alpha            the number of alpha electrons
+ *  @param num_beta             the number of beta electrons
+ */
+FCI::FCI(const Molecule& molecule, const std::string& basis_set, const size_t num_alpha, const size_t num_beta) :
+    molecule (molecule),
+    basis_set (basis_set),
+    N_alpha (num_alpha),
+    N_beta (num_beta)
+{}
+
+
+/**
  *  @param xyz_filename         the file that contains the molecule specification (coordinates in angstrom)
  *  @param basis_set            the basisset that should be used
  *  @param num_alpha            the number of alpha electrons
  *  @param num_beta             the number of beta electrons
  */
 FCI::FCI(const std::string& xyz_filename, const std::string& basis_set, const size_t num_alpha, const size_t num_beta) :
-    xyz_filename (xyz_filename),
-    basis_set (basis_set),
-    N_alpha (num_alpha),
-    N_beta (num_beta)
+    FCI (Molecule::ReadXYZ(xyz_filename), basis_set, num_alpha, num_beta)
 {}
-
 
 
 /*
@@ -54,8 +64,7 @@ FCI::FCI(const std::string& xyz_filename, const std::string& basis_set, const si
 void FCI::solve() {
 
     // Construct the molecular Hamiltonian
-    auto molecule = Molecule::ReadXYZ(this->xyz_filename);
-    RSpinorBasis<double, GTOShell> spinor_basis (molecule, this->basis_set);
+    RSpinorBasis<double, GTOShell> spinor_basis (this->molecule, this->basis_set);
     spinor_basis.lowdinOrthonormalize();
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in the Löwdin basis
 

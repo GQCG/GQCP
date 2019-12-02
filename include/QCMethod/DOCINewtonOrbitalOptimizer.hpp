@@ -35,7 +35,7 @@ namespace QCMethod {
  */
 class DOCINewtonOrbitalOptimizer {
 private:
-    std::string xyz_filename;  // the file that contains the molecule specification (coordinates in angstrom)
+    Molecule molecule;  // the molecule that will be solved for
     std::string basis_set;  // the basisset that should be used
 
     bool is_solved = false;
@@ -55,6 +55,15 @@ public:
      *  @param localize             indicate if one wants to localize the orbitals before 
      */
     DOCINewtonOrbitalOptimizer(const std::string& xyz_filename, const std::string& basis_set, const bool use_davidson, const bool localize);
+
+
+    /**
+     *  @param molecule             the molecule that will be solved for
+     *  @param basis_set            the basisset that should be used
+     *  @param use_davidson         indicate if one wants to use davidson to solve the eigenvalue problem (opposed to dense)
+     *  @param localize             indicate if one wants to localize the orbitals before 
+     */
+    DOCINewtonOrbitalOptimizer(const Molecule& molecule, const std::string& basis_set, const bool use_davidson, const bool localize);
 
 
     // PUBLIC METHODS
