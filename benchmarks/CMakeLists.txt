@@ -2,6 +2,7 @@ set(benchmark_target_sources)
 
 add_subdirectory(DOCI)
 add_subdirectory(FCI)
+add_subdirectory(FockSpace)
 add_subdirectory(Hubbard)
 
 foreach(BENCHMARK_SOURCE ${benchmark_target_sources})

@@ -25,6 +25,7 @@
 
 namespace GQCP {
 
+
 /**
  *  A templated private class for Fock spaces (private constructors with Fock spaces friends)
  *  It supports efficient dense or sparse storage for elements evaluated in the Fock space.
@@ -32,15 +33,16 @@ namespace GQCP {
  *  @tparam Matrix              the type of matrix in which the evaluations of the Fock space will be stored
  */
 template<class Matrix>
-class EvaluationMatrix {
-
+class EvaluationIterator {
+    size_t index = 0;
+    size_t end;
     Matrix matrix;  // matrix containing the evaluations
 
     // CONSTRUCTOR
     /**
      * @param dimension         the dimensions of the matrix (equal to that of the fock space)
      */
-    EvaluationMatrix(size_t dimension) :  matrix(Matrix::Zero(dimension, dimension)) {}
+    EvaluationMatrix(size_t dimension) :  matrix(Matrix::Zero(dimension, dimension)), end(dimension) {}
 
 
     // PUBLIC METHODS
@@ -51,8 +53,8 @@ class EvaluationMatrix {
      * @param j         column index of the matrix
      * @param value     the value which is added to a given position in the matrix
      */
-    void add(size_t i, size_t j, double value) {
-        this->matrix(i, j) += value;
+    void add_columnwise(size_t j, double value) {
+        this->matrix(index, j) += value;
     }
 
     /**
@@ -63,18 +65,12 @@ class EvaluationMatrix {
      *  @param j         column index of the matrix
      *  @param value     the value which is added to a given position in the matrix
      */
-    void add_lower(size_t i, size_t j, double value) {
-        this->matrix(i, j) += value;
+    void add_rowwise(size_t j, double value) {
+        this->matrix(j, index) += value;
     }
 
-    /*
-     *  This method does nothing, it exists to a satisfy the API used in the evaluation methods of Fock spaces.  This method exists to support matvec operations
-     */   
-    void flush(size_t index) {}
-
-
     // GETTER
-    const Matrix& get_matrix() const { return this->matrix; }
+    const Matrix& evaluation() const { return this->matrix; }
 
     // Friend Classes
     friend class FockSpace;

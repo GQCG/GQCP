@@ -133,6 +133,8 @@ public:
      *  @return the operator's evaluation in a dense matrix with the dimensions of the Fock space
      */
     SquareMatrix<double> evaluateOperatorDense(const ScalarSQOneElectronOperator<double>& one_op, bool diagonal_values) const override;
+    VectorX<double> evaluateOperatorMatvec(const ScalarSQOneElectronOperator<double>& one_op, const VectorX<double>& x, const VectorX<double>& diagonal) const;
+
 
     /**
      *  Evaluate the operator in a sparse matrix
@@ -347,6 +349,7 @@ public:
 
         ONV onv = this->makeONV(0);  // onv with address 0
         for (size_t I = 0; I < dim; I++) {  // I loops over all the addresses of the onv
+            container.flush(I);
             for (size_t e1 = 0; e1 < N; e1++) {  // e1 (electron 1) loops over the (number of) electrons
                 size_t p = onv.get_occupation_index(e1);  // retrieve the index of a given electron
                 // remove the weight from the initial address I, because we annihilate
@@ -370,7 +373,7 @@ public:
                     size_t J = address + this->get_vertex_weights(q, e2);
                     double value = sign_e2*one_op_par(p, q);
                     container.add(I, J, value);
-                    container.add(J, I, value);
+                    container.add_lower(J, I, value);
 
                     q++; // go to the next orbital
 
@@ -378,10 +381,11 @@ public:
                     this->shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign_e2);
                 }  //  (creation)
             } // e1 loop (annihilation)
-
             // Prevent last permutation
             if (I < dim - 1) {
                 this->setNextONV(onv);
+            } else {
+                container.flush(I);
             }
         }
     }

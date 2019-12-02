@@ -583,5 +583,16 @@ VectorX<double> FockSpace::evaluateOperatorDiagonal(const SQHamiltonian<double>&
 };
 
 
+VectorX<double> FockSpace::evaluateOperatorMatvec(const ScalarSQOneElectronOperator<double>& one_op, const VectorX<double>& x, const VectorX<double>& diagonal) const {
+    auto K = one_op.dimension();
+    if (K != this->K) {
+        throw std::invalid_argument("FockSpace::evaluateOperatorMatvec(ScalarSQOneElectronOperator<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
+    }
+
+    EvaluationMatrix<VectorX<double>> container (x, diagonal);
+    this->EvaluateOperator<VectorX<double>>(one_op, container, false);
+    return container.get_matrix();
+}
+
 
 }  // namespace GQCP
