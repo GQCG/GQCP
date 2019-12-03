@@ -34,8 +34,10 @@ namespace GQCP {
  */
 template<class Matrix>
 class EvaluationIterator {
+public:
     size_t index = 0;
     size_t end;
+
     Matrix matrix;  // matrix containing the evaluations
 
     // CONSTRUCTOR
@@ -47,26 +49,31 @@ class EvaluationIterator {
 
     // PUBLIC METHODS
     /**
-     *  General interface to perform additions of values to elements of the matrix
-     *
-     * @param i         row index of the matrix
-     * @param j         column index of the matrix
-     * @param value     the value which is added to a given position in the matrix
-     */
-    void add_columnwise(size_t j, double value) {
-        this->matrix(index, j) += value;
-    }
-
-    /**
-     *  Method to signify the fact that the value is added to the lower quadrant of the given matrix evaluation.
-     *  It exists to a satisfy the API used in the evaluation methods of Fock spaces.  This method exists to support matvec operations.
-     *
-     *  @param i         row index of the matrix
+     *  Adds a value in which the set index corresponds to the row and a given index corresponds to the column
+     * 
      *  @param j         column index of the matrix
      *  @param value     the value which is added to a given position in the matrix
      */
-    void add_rowwise(size_t j, double value) {
-        this->matrix(j, index) += value;
+    void add_columnwise(size_t j, double value) {
+        this->matrix(this->index, j) += value;
+    }
+
+    /**
+     *  Adds a value in which the set index corresponds to the row and a given index corresponds to the column
+     * 
+     *  @param i         row index of the matrix
+     *  @param value     the value which is added to a given position in the matrix
+     */
+    void add_rowwise(size_t i, double value) {
+        this->matrix(i, this->index) += value;
+    }
+
+    void operator++() {
+        this->index++;
+    }
+
+    bool is_finished() {
+        return index == end;
     }
 
     // GETTER
@@ -87,6 +94,9 @@ class EvaluationIterator {
  */
 template<>
 class EvaluationMatrix<Eigen::SparseMatrix<double>> {
+public:
+    size_t index = 0;
+    size_t end;
 
     Eigen::SparseMatrix<double> matrix;  // matrix containing the evaluations
     std::vector<Eigen::Triplet<double>> triplet_vector;  // vector which temporarily contains the added values
@@ -95,7 +105,7 @@ class EvaluationMatrix<Eigen::SparseMatrix<double>> {
     /**
      * @param dimension         the dimensions of the matrix (equal to that of the fock space)
      */
-    EvaluationMatrix(size_t dimension) : matrix(Eigen::SparseMatrix<double>(dimension, dimension)) {}
+    EvaluationMatrix(size_t dimension) : matrix(Eigen::SparseMatrix<double>(dimension, dimension)), end(dimension) {}
 
 
     // PUBLIC METHODS
@@ -109,30 +119,30 @@ class EvaluationMatrix<Eigen::SparseMatrix<double>> {
         this->matrix.reserve(n);
     }
 
+
     /**
-     *  General interface to perform additions of values to elements of the matrix
+     *  Adds a value in which the set index corresponds to the row and a given index corresponds to the column
      *  This function adds the values to a triplet vector
-     *  to add the values to the matrix, one should call "addToMatrix()"
-     *
-     *  @param i         row index of the matrix
+     *  to add the values to the sparse matrix, one should call "addToMatrix()"
+     * 
      *  @param j         column index of the matrix
      *  @param value     the value which is added to a given position in the matrix
      */
-    void add(size_t i, size_t j, double value) {
-        this->triplet_vector.emplace_back(i, j, value);
+    void add_columnwise(size_t j, double value) {
+        this->triplet_vector.emplace_back(this->index, j, value);
     }
 
 
     /**
-     *  Method to signify the fact that the value is added to the lower quadrant of the given matrix evaluation
-     *  It exists to a satisfy the API used in the evaluation methods of Fock spaces.  This method exists to support matvec operations.
-     *
+     *  Adds a value in which the set index corresponds to the row and a given index corresponds to the column
+     *  This function adds the values to a triplet vector
+     *  to add the values to the sparse matrix, one should call "addToMatrix()"
+     * 
      *  @param i         row index of the matrix
-     *  @param j         column index of the matrix
      *  @param value     the value which is added to a given position in the matrix
      */
-    void add_lower(size_t i, size_t j, double value) {
-        this->triplet_vector.emplace_back(i, j, value);
+    void add_rowwise(size_t i, double value) {
+        this->triplet_vector.emplace_back(i, this->index, value);
     }
 
 
@@ -148,14 +158,16 @@ class EvaluationMatrix<Eigen::SparseMatrix<double>> {
         this->triplet_vector = {};
     }
 
-    /*
-     *  This method does nothing, it exists to a satisfy the API used in the evaluation methods of Fock spaces.  This method exists to support matvec operations
-     */   
-    void flush(size_t index) {}
+    void operator++() {
+        this->index++;
+    }
 
+    bool is_finished() {
+        return index == end;
+    }
 
     // GETTERS
-    const Eigen::SparseMatrix<double>& get_matrix() const { return this->matrix; }
+    const Eigen::SparseMatrix<double>& evaluation() const { return this->matrix; }
     const std::vector<Eigen::Triplet<double>>& get_triplets() const { return triplet_vector; }
 
 
@@ -174,12 +186,12 @@ class EvaluationMatrix<Eigen::SparseMatrix<double>> {
  */
 template<>
 class EvaluationMatrix<VectorX<double>> {
-
+public:
     VectorX<double> matvec;  // matvec containing the evaluations
-    const VectorX<double>& coefficient_vector;  // matvec containing the evaluations
-    double sequential_double = 0;  // double which temporarily contains the added values, which can be flushed
+    const VectorX<double>& coefficient_vector;  // vector with which is multiplied
+    double sequential_double = 0;  // double which temporarily contains the sum of added values, which are added to the matvec upon the next iteration
     double nonsequential_double = 0;  // double gathered from the coefficient for nonsequential matvec additions.
-    size_t index = 0;
+    size_t index = 0;  // current index of the iteration
 
     // CONSTRUCTOR
     /**
@@ -198,43 +210,42 @@ class EvaluationMatrix<VectorX<double>> {
     // PUBLIC METHODS
 
     /**
-     *  General interface to perform additions of values to elements of the matrix
-     *  This function adds the values to a triplet vector
-     *  to add the values to the matrix, one should call "addToMatrix()"
-     *
-     *  @param i         row index of the matrix
+     *  Adds a value in which the set index corresponds to the row and a given index corresponds to the column
+     * 
      *  @param j         column index of the matrix
      *  @param value     the value which is added to a given position in the matrix
      */
-    void add(size_t i, size_t j, double value) {
+    void add_columnwise(size_t j, double value) {
         sequential_double += value * coefficient_vector(j);
     }
 
     /**
-     *  Method to signify the fact that the value is added to the lower quadrant of the given matrix evaluation
-     *  It exists to a satisfy the API used in the evaluation methods of Fock spaces.  This method exists to support matvec operations.
-     *
+     *  Adds a value in which the set index corresponds to the row and a given index corresponds to the column
+     * 
      *  @param i         row index of the matrix
-     *  @param j         column index of the matrix
      *  @param value     the value which is added to a given position in the matrix
      */
-    void add_lower(size_t i, size_t j, double value) {
-        this->matvec(i) += value * nonsequential_double;
+    void add_rowwise(size_t i, double value) {
+        this->matvec(i) += value * this->nonsequential_double;
     }
 
-    /*
-     *  Prepare the matvec variables for the iteration over the given index
-     */  
-    void flush(size_t index) {
+    void operator++() {
         this->matvec(this->index) += sequential_double;
-        this->index = index;
-        sequential_double = 0;
-        nonsequential_double = coefficient_vector(index);
+        this->index++;
     }
 
+    bool is_finished() {
+        if (index == end) {
+            return true;
+        } else {
+            this->sequential_double = 0;
+            this->nonsequential_double = coefficient_vector(this->index);
+            return false;
+        }
+    }
 
     // GETTERS
-    const VectorX<double>& get_matrix() const { return this->matvec; }
+    const VectorX<double>& evaluation() const { return this->matvec; }
 
 
     // Friend Classes
