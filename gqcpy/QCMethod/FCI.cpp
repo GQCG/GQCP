@@ -30,8 +30,8 @@ namespace gqcpy {
 
 void bindQCMethodFCI(py::module& module) {
     py::class_<GQCP::QCMethod::FCI>(module, "FCI", "Construct and solve the FCI Hamiltonian.")
-        .def(py::init<const std::string&, const std::string&, const size_t, const size_t>(), py::arg("xyz_filename"), py::arg("basis_set"), py::arg("num_alpha"), py::arg("num_beta"))
-        .def(py::init<const GQCP::Molecule&, const std::string&, const size_t, const size_t>(), py::arg("molecule"), py::arg("basis_set"), py::arg("num_alpha"), py::arg("num_beta"))
+        .def(py::init<const std::string&, const std::string&, const size_t, const size_t, const bool>(), py::arg("xyz_filename"), py::arg("basis_set"), py::arg("num_alpha"), py::arg("num_beta"), py::arg("use_davidson"))
+        .def(py::init<const GQCP::Molecule&, const std::string&, const size_t, const size_t, const bool>(), py::arg("molecule"), py::arg("basis_set"), py::arg("num_alpha"), py::arg("num_beta"), py::arg("use_davidson"))
         .def("solve", &GQCP::QCMethod::FCI::solve, "Solve the eigenvalue equations such that the lowest energy and corresponding eigenvector become available. ")
         .def("get_energy", &GQCP::QCMethod::FCI::energy, "Get the lowest energy.");
 }

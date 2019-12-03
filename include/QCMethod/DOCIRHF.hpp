@@ -18,9 +18,10 @@
 #pragma once
 
 
+#include "Basis/TransformationMatrix.hpp"
 #include "CISolver/CISolver.hpp"
 #include "FockSpace/ProductFockSpace.hpp"
-#include "HamiltonianBuilder/FCI.hpp"
+#include "HamiltonianBuilder/DOCI.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "RDM/RDMCalculator.hpp"
 
@@ -30,53 +31,58 @@ namespace QCMethod {
 
 
 /**
- *  A class that is a wrapper around solving the dense eigenvalue problem for the molecular Hamiltonian
+ *  A class that is a wrapper around solving the eigenvalue problem for the molecular Hamiltonian using DOCI in the RHF basis
  */
-class FCI {
+class DOCIRHF {
 private:
-    size_t N_alpha;  // the number of alpha electrons
-    size_t N_beta;  // the number of beta electrons
-
     Molecule molecule;  // the molecule that will be solved for
     std::string basis_set;  // the basisset that should be used
 
     bool is_solved = false;
-    bool use_davidson;
-    double energy_solution;
 
+    double energy_solution;
+    double rhf_energy_solution;
+    bool use_davidson;
+    TransformationMatrix<double> T_total;  // total transformation from atomic orbital basis to the RHF orbitals
 
 public:
     // CONSTRUCTORS
 
     /**
-     *  @param molecule             the molecule that will be solved for
+     *  @param xyz_filename         the file that contains the molecule specification (coordinates in angstrom)
      *  @param basis_set            the basisset that should be used
-     *  @param num_alpha            the number of alpha electrons
-     *  @param num_beta             the number of beta electrons
      */
-    FCI(const Molecule& molecule, const std::string& basis_set, const size_t num_alpha, const size_t num_beta, const bool use_davidson);
+    DOCIRHF(const std::string& xyz_filename, const std::string& basis_set, const bool use_davidson);
 
 
     /**
-     *  @param xyz_filename         the file that contains the molecule specification (coordinates in angstrom)
+     *  @param molecule             the molecule that will be solved for
      *  @param basis_set            the basisset that should be used
-     *  @param num_alpha            the number of alpha electrons
-     *  @param num_beta             the number of beta electrons
      */
-    FCI(const std::string& xyz_filename, const std::string& basis_set, const size_t num_alpha, const size_t num_beta, const bool use_davidson);
+    DOCIRHF(const Molecule& molecule, const std::string& basis_set, const bool use_davidson);
 
 
     // PUBLIC METHODS
 
     /**
-     *  Solve the dense eigenvalue problem for the molecular Hamiltonian in the full Fock space
+     *  Solve the eigenvalue problem for the molecular Hamiltonian in the doubly occupied space
      */
     void solve();
 
     /**
-     *  @return the ground state FCI energy
+     *  @return DOCI energy
      */
     double energy() const;
+
+    /**
+     *  @return the RHF energy
+     */
+    double energy_rhf() const;
+
+    /**
+     *  @return the total transformation from atomic orbital basis to the RHF orbitals
+     */
+    const TransformationMatrix<double>& transformationMatrix() const;
 };
 
 

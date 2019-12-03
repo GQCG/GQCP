@@ -1,4 +1,5 @@
 list(APPEND python_test_target_sources
+        ${CMAKE_CURRENT_SOURCE_DIR}/docirhf_binding_test.py  
         ${CMAKE_CURRENT_SOURCE_DIR}/fci_binding_test.py  
         ${CMAKE_CURRENT_SOURCE_DIR}/fukui_dyson_binding_test.py  
         ${CMAKE_CURRENT_SOURCE_DIR}/hubbard_binding_test.py  

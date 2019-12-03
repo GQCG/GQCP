@@ -37,7 +37,7 @@ namespace QCMethod {
  */
 
 /**
- *  @param xyz_filename         the file that contains the molecule specification (coordinates in angstrom)
+ *  @param molecule             the molecule that will be solved for
  *  @param basis_set            the basisset that should be used
  *  @param use_davidson         indicate if one wants to use davidson to solve the eigenvalue problem (opposed to dense)
  *  @param localize             indicate if one wants to localize the orbitals before 

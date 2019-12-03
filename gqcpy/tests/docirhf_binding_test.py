@@ -8,20 +8,20 @@ sys.path.insert(0, '../')
 import gqcpy
 
 
-class OODOCIQCM(unittest.TestCase):
+class DOCIRHFQCM(unittest.TestCase):
 
     def setUp(self):
         """ Iniates variables to be used by tests """
-        self.oo_doci_module = gqcpy.DOCINewtonOrbitalOptimizer("data/h2_cristina.xyz", "STO-3G", False, False)
-        self.ref_energy = -1.13726333769813
-        self.oo_doci_module.solve()
+        self.doci_module = gqcpy.DOCIRHF("data/CO_mulliken.xyz", "STO-3G", False)
+        self.ref_energy = -111.29189323578304
+        self.doci_module.solve()
 
     def tearDown(self):
         pass
 
     def test_energies(self):
         """ Compare the energy with a reference value """
-        self.assertAlmostEqual(self.oo_doci_module.get_energy(), self.ref_energy)
+        self.assertAlmostEqual(self.doci_module.get_energy(), self.ref_energy)
 
     
 if __name__ == '__main__':
