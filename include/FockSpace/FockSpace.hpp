@@ -19,6 +19,7 @@
 
 
 #include "FockSpace/BaseFockSpace.hpp"
+#include "FockSpace/EvaluationIterator.hpp"
 #include "FockSpace/EvaluationMatrix.hpp"
 #include "FockSpace/FockPermutator.hpp"
 
@@ -335,11 +336,11 @@ public:
      *  @tparam Matrix                       the type of matrix used to store the evaluations
      *
      *  @param one_op                        the one-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
-     *  @param container                     matrix wrapper to which the evaluations are added
+     *  @param evaluation_iterator                     matrix wrapper to which the evaluations are added
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
     template<class Matrix>
-    void EvaluateOperator(const ScalarSQOneElectronOperator<double>& one_op, EvaluationMatrix<Matrix>& container, bool diagonal_values) const {
+    void EvaluateOperator(const ScalarSQOneElectronOperator<double>& one_op, EvaluationIterator<Matrix>& evaluation_iterator, bool diagonal_values) const {
 
         const auto& one_op_par = one_op.parameters();
 
@@ -348,15 +349,14 @@ public:
         const size_t dim = this->get_dimension();
 
         ONV onv = this->makeONV(0);  // onv with address 0
-        for (size_t I = 0; I < dim; I++) {  // I loops over all the addresses of the onv
-            container.flush(I);
+        for ( ;!evaluation_iterator.is_finished(); evaluation_iterator.increment()) {  // I loops over all the addresses of the onv
             for (size_t e1 = 0; e1 < N; e1++) {  // e1 (electron 1) loops over the (number of) electrons
                 size_t p = onv.get_occupation_index(e1);  // retrieve the index of a given electron
                 // remove the weight from the initial address I, because we annihilate
-                size_t address = I - this->get_vertex_weights(p, e1 + 1);
+                size_t address = evaluation_iterator.index - this->get_vertex_weights(p, e1 + 1);
 
                 if (diagonal_values) {
-                    container.add(I, I, one_op_par(p, p));
+                    evaluation_iterator.add_rowwise(evaluation_iterator.index, one_op_par(p, p));
                 }
 
                 // The e2 iteration counts the amount of encountered electrons for the creation operator
@@ -372,8 +372,8 @@ public:
                 while (q < K) {
                     size_t J = address + this->get_vertex_weights(q, e2);
                     double value = sign_e2*one_op_par(p, q);
-                    container.add(I, J, value);
-                    container.add_lower(J, I, value);
+                    evaluation_iterator.add_columnwise(J, value);
+                    evaluation_iterator.add_rowwise(J, value);
 
                     q++; // go to the next orbital
 
@@ -382,10 +382,8 @@ public:
                 }  //  (creation)
             } // e1 loop (annihilation)
             // Prevent last permutation
-            if (I < dim - 1) {
+            if (evaluation_iterator.index < dim - 1) {
                 this->setNextONV(onv);
-            } else {
-                container.flush(I);
             }
         }
     }
@@ -396,13 +394,13 @@ public:
      *  @tparam Matrix                       the type of matrix used to store the evaluations
      *
      *  @param two_op                        the two-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
-     *  @param container                     matrix wrapper to which the evaluations are added
+     *  @param evaluation_iterator                     matrix wrapper to which the evaluations are added
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
     template<class Matrix>
-    void EvaluateOperator(const ScalarSQTwoElectronOperator<double>& two_op, EvaluationMatrix<Matrix>& container, bool diagonal_values) const {
+    void EvaluateOperator(const ScalarSQTwoElectronOperator<double>& two_op, EvaluationIterator<Matrix>& evaluation_iterator, bool diagonal_values) const {
         // Calling this combined method for both the one- and two-electron operator does not affect the performance, hence we avoid writing more code by plugging a zero operator in the combined method
-        EvaluateOperator(ScalarSQOneElectronOperator<double>(this->K), two_op, container, diagonal_values);
+        EvaluateOperator(ScalarSQOneElectronOperator<double>(this->K), two_op, evaluation_iterator, diagonal_values);
     }
 
 
@@ -413,11 +411,11 @@ public:
      *
      *  @param one_op                        the one-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
      *  @param two_op                        the two-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
-     *  @param container                     matrix wrapper to which the evaluations are added
+     *  @param evaluation_iterator                     matrix wrapper to which the evaluations are added
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
     template<class Matrix>
-    void EvaluateOperator(const ScalarSQOneElectronOperator<double>& one_op, const ScalarSQTwoElectronOperator<double>& two_op, EvaluationMatrix<Matrix>& container, bool diagonal_values) const {
+    void EvaluateOperator(const ScalarSQOneElectronOperator<double>& one_op, const ScalarSQTwoElectronOperator<double>& two_op, EvaluationIterator<Matrix>& evaluation_iterator, bool diagonal_values) const {
 
         const auto& two_op_par = two_op.parameters();
 
@@ -429,8 +427,8 @@ public:
         const auto& k_par = k.parameters();
 
         ONV onv = this->makeONV(0);  // onv with address 0
-        for (size_t I = 0; I < dim; I++) {  // I loops over all addresses in the Fock space
-            if (I > 0) {
+        for ( ;!evaluation_iterator.is_finished(); evaluation_iterator.increment()) {  // I loops over all addresses in the Fock space
+            if (evaluation_iterator.index  > 0) {
                 this->setNextONV(onv);
             }
             int sign1 = -1;  // start with -1 because we flip at the start of the annihilation (so we start at 1, followed by:  -1, 1, ...)
@@ -438,16 +436,16 @@ public:
 
                 sign1 *= -1;
                 size_t p = onv.get_occupation_index(e1);  // retrieve the index of a given electron
-                size_t address = I - this->get_vertex_weights(p, e1 + 1);
+                size_t address = evaluation_iterator.index  - this->get_vertex_weights(p, e1 + 1);
 
                 // Strictly diagonal values
                 if (diagonal_values) {
-                    container.add(I, I, k_par(p,p));
+                    evaluation_iterator.add_rowwise(evaluation_iterator.index, k_par(p,p));
                     for (size_t q = 0; q < K; q++) {  // q loops over SOs
                         if (onv.isOccupied(q)) {
-                            container.add(I, I, 0.5 * two_op_par(p, p, q, q));
+                            evaluation_iterator.add_rowwise(evaluation_iterator.index, 0.5 * two_op_par(p, p, q, q));
                         } else {
-                            container.add(I, I, 0.5 * two_op_par(p, q, q, p));
+                            evaluation_iterator.add_rowwise(evaluation_iterator.index, 0.5 * two_op_par(p, q, q, p));
                         }
                     }
                 }
@@ -472,7 +470,7 @@ public:
                      */
                     int sign3 = sign1;
                     for (size_t e3 = e1 + 1; e3 < N; e3++) {
-                        sign3 *= -1;  // initial sign3 = sign of the annhilation, with one extra electron(from crea) = *-1
+                        sign3 *= -1;  // initial sign3 = sign of the annihilation, with one extra electron(from crea) = *-1
                         size_t r = onv.get_occupation_index(e3);
                         size_t address3 = address2 - this->get_vertex_weights(r, e3 + 1);
 
@@ -491,8 +489,8 @@ public:
                                                            two_op_par(r, q, p, s));
 
 
-                            container.add(I,J, value);
-                            container.add(J,I, value);
+                            evaluation_iterator.add_columnwise(J, value);
+                            evaluation_iterator.add_rowwise(J, value);
 
                             s++;
                             this->shiftUntilNextUnoccupiedOrbital<1>(onv, address3, s, e4, sign4);
@@ -537,8 +535,8 @@ public:
                                                            two_op_par(r, q, p, s) -
                                                            two_op_par(p, s, r, q));
 
-                            container.add(I,J, value);
-                            container.add(J,I, value);
+                            evaluation_iterator.add_columnwise(J, value);
+                            evaluation_iterator.add_rowwise(J, value);
 
                             s++;  // go to the next orbital
                             this->shiftUntilNextUnoccupiedOrbital<1>(onv, address3, s, e4, sign4);
@@ -573,8 +571,8 @@ public:
                                                            two_op_par(r, q, p, s) -
                                                            two_op_par(p, s, r, q));
 
-                            container.add(I,J, value);
-                            container.add(J,I, value);
+                            evaluation_iterator.add_columnwise(J, value);
+                            evaluation_iterator.add_rowwise(J, value);
 
                             s++;
                             this->shiftUntilNextUnoccupiedOrbital<1>(onv, address2, s, e4, sign4);
@@ -601,8 +599,8 @@ public:
 
                     q++;
 
-                    container.add(I,address1, value_I);
-                    container.add(address1,I, value_I);
+                    evaluation_iterator.add_columnwise(address1, value_I);
+                    evaluation_iterator.add_rowwise(address1, value_I);
 
                     this->shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign2);
                 }

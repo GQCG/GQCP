@@ -44,7 +44,7 @@ public:
     /**
      * @param dimension         the dimensions of the matrix (equal to that of the fock space)
      */
-    EvaluationMatrix(size_t dimension) :  matrix(Matrix::Zero(dimension, dimension)), end(dimension) {}
+    EvaluationIterator(size_t dimension) :  matrix(Matrix::Zero(dimension, dimension)), end(dimension) {}
 
 
     // PUBLIC METHODS
@@ -68,7 +68,7 @@ public:
         this->matrix(i, this->index) += value;
     }
 
-    void operator++() {
+    void increment() {
         this->index++;
     }
 
@@ -93,7 +93,7 @@ public:
  *  Therefore the "add(size_t, size_t, double)" method adds elements to a vector of triplets instead.
  */
 template<>
-class EvaluationMatrix<Eigen::SparseMatrix<double>> {
+class EvaluationIterator<Eigen::SparseMatrix<double>> {
 public:
     size_t index = 0;
     size_t end;
@@ -105,7 +105,7 @@ public:
     /**
      * @param dimension         the dimensions of the matrix (equal to that of the fock space)
      */
-    EvaluationMatrix(size_t dimension) : matrix(Eigen::SparseMatrix<double>(dimension, dimension)), end(dimension) {}
+    EvaluationIterator(size_t dimension) : matrix(Eigen::SparseMatrix<double>(dimension, dimension)), end(dimension) {}
 
 
     // PUBLIC METHODS
@@ -158,7 +158,7 @@ public:
         this->triplet_vector = {};
     }
 
-    void operator++() {
+    void increment() {
         this->index++;
     }
 
@@ -185,24 +185,25 @@ public:
  *  Therefore the "add(size_t, size_t, double)" method adds elements to a vector of triplets instead.
  */
 template<>
-class EvaluationMatrix<VectorX<double>> {
+class EvaluationIterator<VectorX<double>> {
 public:
     VectorX<double> matvec;  // matvec containing the evaluations
     const VectorX<double>& coefficient_vector;  // vector with which is multiplied
     double sequential_double = 0;  // double which temporarily contains the sum of added values, which are added to the matvec upon the next iteration
     double nonsequential_double = 0;  // double gathered from the coefficient for nonsequential matvec additions.
     size_t index = 0;  // current index of the iteration
-
+    size_t end;
     // CONSTRUCTOR
     /**
      * @param dimension         the dimensions of the matrix (equal to that of the fock space)
      */
-    EvaluationMatrix(const VectorX<double>& coefficient_vector, const VectorX<double>& diagonal) : 
+    EvaluationIterator(const VectorX<double>& coefficient_vector, const VectorX<double>& diagonal) : 
+    end (coefficient_vector.rows()),
     coefficient_vector(coefficient_vector), 
     matvec(diagonal.cwiseProduct(coefficient_vector))
     {}
 
-    EvaluationMatrix(const VectorX<double>& coefficient_vector) : 
+    EvaluationIterator(const VectorX<double>& coefficient_vector) : 
     coefficient_vector(coefficient_vector), 
     matvec(VectorX<double>::Zero(coefficient_vector.rows()))
     {}
@@ -229,7 +230,7 @@ public:
         this->matvec(i) += value * this->nonsequential_double;
     }
 
-    void operator++() {
+    void increment() {
         this->matvec(this->index) += sequential_double;
         this->index++;
     }
