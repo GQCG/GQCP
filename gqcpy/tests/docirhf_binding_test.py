@@ -12,8 +12,9 @@ class DOCIRHFQCM(unittest.TestCase):
 
     def setUp(self):
         """ Iniates variables to be used by tests """
-        self.doci_module = gqcpy.DOCIRHF("data/CO_mulliken.xyz", "STO-3G", False)
-        self.ref_energy = -111.29189323578304
+        F = gqcpy.Atom(F, 0, 0, 0)
+        self.doci_module = gqcpy.DOCIRHF([F, +1], "STO-3G", False)
+        self.ref_energy = -98.32891803226985
         self.doci_module.solve()
 
     def tearDown(self):
