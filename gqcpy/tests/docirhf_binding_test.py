@@ -22,7 +22,6 @@ class DOCIRHFQCM(unittest.TestCase):
 
     def test_energies(self):
         """ Compare the energy with a reference value """
-        print(doci_module.get_energy())
         self.assertAlmostEqual(self.doci_module.get_energy(), self.ref_energy)
 
     
