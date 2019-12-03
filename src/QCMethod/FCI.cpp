@@ -81,9 +81,9 @@ void FCI::solve() {
     std::shared_ptr<BaseSolverOptions> solver_options;
     if (use_davidson) {
         std::shared_ptr<DavidsonSolverOptions> pre_solver_options = std::make_shared<DavidsonSolverOptions>(fock_space.HartreeFockExpansion());
-        pre_solver_options->convergence_threshold = 1e-13;
+        pre_solver_options->convergence_threshold = 1e-8;
         pre_solver_options->maximum_subspace_dimension = 15;
-        pre_solver_options->maximum_number_of_iterations = 1000;
+        pre_solver_options->maximum_number_of_iterations = 200;
         DIISRHFSCFSolver diis_scf_solver (sq_hamiltonian, spinor_basis, this->molecule);
         diis_scf_solver.solve();
         auto rhf = diis_scf_solver.get_solution();
