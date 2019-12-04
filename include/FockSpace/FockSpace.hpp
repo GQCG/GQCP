@@ -20,7 +20,6 @@
 
 #include "FockSpace/BaseFockSpace.hpp"
 #include "FockSpace/EvaluationIterator.hpp"
-#include "FockSpace/EvaluationMatrix.hpp"
 #include "FockSpace/FockPermutator.hpp"
 
 
@@ -134,8 +133,6 @@ public:
      *  @return the operator's evaluation in a dense matrix with the dimensions of the Fock space
      */
     SquareMatrix<double> evaluateOperatorDense(const ScalarSQOneElectronOperator<double>& one_op, bool diagonal_values) const override;
-    VectorX<double> evaluateOperatorMatvec(const ScalarSQOneElectronOperator<double>& one_op, const VectorX<double>& x, const VectorX<double>& diagonal) const;
-
 
     /**
      *  Evaluate the operator in a sparse matrix
@@ -222,6 +219,39 @@ public:
      *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the Fock space
      */
     VectorX<double> evaluateOperatorDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const override;
+
+    /**
+     *  Evaluate a one electron operator in a matrix vector product
+     *
+     *  @param one_op                       the one electron operator expressed in an orthonormal basis
+     *  @param x                            the vector upon which the evaluation acts 
+     *  @param diagonal                     the diagonal evaluated in the Fock space
+     *
+     *  @return the one electron operator's matrix vector product in a vector with the dimensions of the Fock space
+     */
+    VectorX<double> evaluateOperatorMatrixVectorProduct(const ScalarSQOneElectronOperator<double>& one_op, const VectorX<double>& x, const VectorX<double>& diagonal) const;
+
+    /**
+     *  Evaluate a two electron operator in a matrix vector product
+     *
+     *  @param two_op                       the two electron operator expressed in an orthonormal basis
+     *  @param x                            the vector upon which the evaluation acts 
+     *  @param diagonal                     the diagonal evaluated in the Fock space
+     *
+     *  @return the two electron operator's matrix vector product in a vector with the dimensions of the Fock space
+     */
+    VectorX<double> evaluateOperatorMatrixVectorProduct(const ScalarSQTwoElectronOperator<double>& two_op, const VectorX<double>& x, const VectorX<double>& diagonal) const;
+
+    /**
+     *  Evaluate the Hamiltonian in a matrix vector product
+     *
+     *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
+     *  @param x                            the vector upon which the evaluation acts 
+     *  @param diagonal                     the diagonal evaluated in the Fock space
+     *
+     *  @return the Hamiltonian's matrix vector product in a vector with the dimensions of the Fock space
+     */
+    VectorX<double> evaluateOperatorMatrixVectorProduct(const SQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const;
 
 
     // PUBLIC METHODS
@@ -336,7 +366,7 @@ public:
      *  @tparam Matrix                       the type of matrix used to store the evaluations
      *
      *  @param one_op                        the one-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
-     *  @param evaluation_iterator                     matrix wrapper to which the evaluations are added
+     *  @param evaluation_iterator            matrix wrapper to which the evaluations are added
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
     template<class Matrix>
@@ -394,7 +424,7 @@ public:
      *  @tparam Matrix                       the type of matrix used to store the evaluations
      *
      *  @param two_op                        the two-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
-     *  @param evaluation_iterator                     matrix wrapper to which the evaluations are added
+     *  @param evaluation_iterator           matrix wrapper to which the evaluations are added
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
     template<class Matrix>
@@ -411,7 +441,7 @@ public:
      *
      *  @param one_op                        the one-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
      *  @param two_op                        the two-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
-     *  @param evaluation_iterator                     matrix wrapper to which the evaluations are added
+     *  @param evaluation_iterator           matrix wrapper to which the evaluations are added
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
     template<class Matrix>
@@ -428,7 +458,7 @@ public:
 
         ONV onv = this->makeONV(0);  // onv with address 0
         for ( ;!evaluation_iterator.is_finished(); evaluation_iterator.increment()) {  // I loops over all addresses in the Fock space
-            if (evaluation_iterator.index  > 0) {
+            if (evaluation_iterator.index > 0) {
                 this->setNextONV(onv);
             }
             int sign1 = -1;  // start with -1 because we flip at the start of the annihilation (so we start at 1, followed by:  -1, 1, ...)

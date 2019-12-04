@@ -171,6 +171,39 @@ public:
      */
     VectorX<double> evaluateOperatorDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const override;
 
+    /**
+     *  Evaluate a one electron operator in a matrix vector product
+     *
+     *  @param one_op                       the one electron operator expressed in an orthonormal basis
+     *  @param x                            the vector upon which the evaluation acts 
+     *  @param diagonal                     the diagonal evaluated in the Fock space
+     *
+     *  @return the one electron operator's matrix vector product in a vector with the dimensions of the Fock space
+     */
+    VectorX<double> evaluateOperatorMatrixVectorProduct(const ScalarSQOneElectronOperator<double>& one_op, const VectorX<double>& x, const VectorX<double>& diagonal) const;
+
+    /**
+     *  Evaluate a two electron operator in a matrix vector product
+     *
+     *  @param two_op                       the two electron operator expressed in an orthonormal basis
+     *  @param x                            the vector upon which the evaluation acts 
+     *  @param diagonal                     the diagonal evaluated in the Fock space
+     *
+     *  @return the two electron operator's matrix vector product in a vector with the dimensions of the Fock space
+     */
+    VectorX<double> evaluateOperatorMatrixVectorProduct(const ScalarSQTwoElectronOperator<double>& two_op, const VectorX<double>& x, const VectorX<double>& diagonal) const;
+
+    /**
+     *  Evaluate the Hamiltonian in a matrix vector product
+     *
+     *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
+     *  @param x                            the vector upon which the evaluation acts 
+     *  @param diagonal                     the diagonal evaluated in the Fock space
+     *
+     *  @return the Hamiltonian's matrix vector product in a vector with the dimensions of the Fock space
+     */
+    VectorX<double> evaluateOperatorMatrixVectorProduct(const SQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const;
+
 };
 
 

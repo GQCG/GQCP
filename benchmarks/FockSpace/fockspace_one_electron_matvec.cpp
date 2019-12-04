@@ -22,7 +22,7 @@ static void matvec(benchmark::State& state) {
 
     // Code inside this loop is measured repeatedly
     for (auto _ : state) {
-        GQCP::VectorX<double> matvec = fock_space.evaluateOperatorMatvec(sq_one_electron, x, diagonal);
+        GQCP::VectorX<double> matvec = fock_space.evaluateOperatorMatrixVectorProduct(sq_one_electron, x, diagonal);
 
         benchmark::DoNotOptimize(matvec);  // make sure the variable is not optimized away by compiler
     }

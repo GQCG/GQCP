@@ -20,7 +20,7 @@
 
 #include "FockSpace/BaseFockSpace.hpp"
 #include "FockSpace/Configuration.hpp"
-#include "FockSpace/EvaluationMatrix.hpp"
+#include "FockSpace/EvaluationIterator.hpp"
 #include "FockSpace/FrozenProductFockSpace.hpp"
 #include "FockSpace/ProductFockSpace.hpp"
 
@@ -200,6 +200,39 @@ public:
      */
     VectorX<double> evaluateOperatorDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const override;
 
+    /**
+     *  Evaluate a one electron operator in a matrix vector product
+     *
+     *  @param one_op                       the one electron operator expressed in an orthonormal basis
+     *  @param x                            the vector upon which the evaluation acts 
+     *  @param diagonal                     the diagonal evaluated in the Fock space
+     *
+     *  @return the one electron operator's matrix vector product in a vector with the dimensions of the Fock space
+     */
+    VectorX<double> evaluateOperatorMatrixVectorProduct(const ScalarSQOneElectronOperator<double>& one_op, const VectorX<double>& x, const VectorX<double>& diagonal) const;
+
+    /**
+     *  Evaluate a two electron operator in a matrix vector product
+     *
+     *  @param two_op                       the two electron operator expressed in an orthonormal basis
+     *  @param x                            the vector upon which the evaluation acts 
+     *  @param diagonal                     the diagonal evaluated in the Fock space
+     *
+     *  @return the two electron operator's matrix vector product in a vector with the dimensions of the Fock space
+     */
+    VectorX<double> evaluateOperatorMatrixVectorProduct(const ScalarSQTwoElectronOperator<double>& two_op, const VectorX<double>& x, const VectorX<double>& diagonal) const;
+
+    /**
+     *  Evaluate the Hamiltonian in a matrix vector product
+     *
+     *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
+     *  @param x                            the vector upon which the evaluation acts 
+     *  @param diagonal                     the diagonal evaluated in the Fock space
+     *
+     *  @return the Hamiltonian's matrix vector product in a vector with the dimensions of the Fock space
+     */
+    VectorX<double> evaluateOperatorMatrixVectorProduct(const SQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const;
+
 
     // PUBLIC TEMPLATED METHODS
     /**
@@ -208,34 +241,34 @@ public:
      *  @tparam Matrix                       the type of matrix used to store the evaluations
      *
      *  @param one_op                        the one-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
-     *  @param container                     matrix wrapper to which the evaluations are added
+     *  @param evaluation_iterator           matrix wrapper to which the evaluations are added
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
     template<class Matrix>
-    void EvaluateOperator(const ScalarSQOneElectronOperator<double>& one_op, EvaluationMatrix<Matrix>& container, bool diagonal_values) const {
+    void EvaluateOperator(const ScalarSQOneElectronOperator<double>& one_op, EvaluationIterator<Matrix>& evaluation_iterator, bool diagonal_values) const {
 
         const size_t dim = this->get_dimension();
         const auto& one_op_par = one_op.parameters();
 
-        for (size_t I = 0; I < dim; I++) {  // loop over all addresses (1)
-            Configuration configuration_I = this->get_configuration(I);
+        for (;!evaluation_iterator.is_finished(); evaluation_iterator.increment()) {  // loop over all addresses (1)
+            Configuration configuration_I = this->get_configuration(evaluation_iterator.index);
             ONV alpha_I = configuration_I.onv_alpha;
             ONV beta_I = configuration_I.onv_beta;
 
             if (diagonal_values) {
                 for (size_t p = 0; p < K; p++) {
                     if (alpha_I.isOccupied(p)) {
-                        container.add(I, I, one_op_par(p, p));
+                        evaluation_iterator.add_rowwise(evaluation_iterator.index, one_op_par(p, p));
                     }
 
                     if (beta_I.isOccupied(p)) {
-                        container.add(I, I, one_op_par(p,p));
+                        evaluation_iterator.add_rowwise(evaluation_iterator.index, one_op_par(p,p));
                     }
                 }  // loop over q
             }
 
             // Calculate the off-diagonal elements, by going over all other ONVs
-            for (size_t J = I+1; J < dim; J++) {
+            for (size_t J = evaluation_iterator.index+1; J < dim; J++) {
 
                 Configuration configuration_J = this->get_configuration(J);
                 ONV alpha_J = configuration_J.onv_alpha;
@@ -254,8 +287,8 @@ public:
 
                     double value = one_op_par(p, q);
 
-                    container.add(I, J, sign * value);
-                    container.add(J, I, sign * value);
+                    evaluation_iterator.add_columnwise(J, sign * value);
+                    evaluation_iterator.add_rowwise(J, sign * value);
                 }
 
                 // 0 electron excitations in alpha, 1 in beta
@@ -271,8 +304,8 @@ public:
 
                     double value = one_op_par(p,q);
 
-                    container.add(I, J, sign*value);
-                    container.add(J, I, sign*value);
+                    evaluation_iterator.add_columnwise(J, sign * value);
+                    evaluation_iterator.add_rowwise(J, sign * value);
                 }
             }  // loop over addresses J > I
         }  // loop over addresses I
@@ -284,13 +317,13 @@ public:
      *  @tparam Matrix                       the type of matrix used to store the evaluations
      *
      *  @param two_op                        the two-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
-     *  @param container                     matrix wrapper to which the evaluations are added
+     *  @param evaluation_iterator                     matrix wrapper to which the evaluations are added
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
     template<class Matrix>
-    void EvaluateOperator(const ScalarSQTwoElectronOperator<double>& two_op, EvaluationMatrix<Matrix>& container, bool diagonal_values) const {
+    void EvaluateOperator(const ScalarSQTwoElectronOperator<double>& two_op, EvaluationIterator<Matrix>& evaluation_iterator, bool diagonal_values) const {
         // Calling this combined method for both the one- and two-electron operator does not affect the performance, hence we avoid writting more code by plugging a zero operator in the combined method.
-        EvaluateOperator(ScalarSQOneElectronOperator<double>(this->K), two_op, container, diagonal_values);
+        EvaluateOperator(ScalarSQOneElectronOperator<double>(this->K), two_op, evaluation_iterator, diagonal_values);
     }
 
     /**
@@ -300,54 +333,54 @@ public:
      *
      *  @param one_op                        the one-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
      *  @param two_op                        the two-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
-     *  @param container                     matrix wrapper to which the evaluations are added
+     *  @param evaluation_iterator                     matrix wrapper to which the evaluations are added
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
     template<class Matrix>
-    void EvaluateOperator(const ScalarSQOneElectronOperator<double>& one_op, const ScalarSQTwoElectronOperator<double>& two_op, EvaluationMatrix<Matrix>& container, bool diagonal_values) const {
+    void EvaluateOperator(const ScalarSQOneElectronOperator<double>& one_op, const ScalarSQTwoElectronOperator<double>& two_op, EvaluationIterator<Matrix>& evaluation_iterator, bool diagonal_values) const {
 
         const size_t dim = this->get_dimension();
         const size_t K = this->get_K();
         const auto& one_op_par = one_op.parameters();
         const auto& two_op_par = two_op.parameters();
 
-        for (size_t I = 0; I < dim; I++) {  // loop over all addresses (1)
-            Configuration configuration_I = this->get_configuration(I);
+        for ( ;!evaluation_iterator.is_finished(); evaluation_iterator.increment()) {  // loop over all addresses (1)
+            Configuration configuration_I = this->get_configuration(evaluation_iterator.index);
             ONV alpha_I = configuration_I.onv_alpha;
             ONV beta_I = configuration_I.onv_beta;
 
             if (diagonal_values) {
                 for (size_t p = 0; p < K; p++) {
                     if (alpha_I.isOccupied(p)) {
-                        container.add(I, I, one_op_par(p,p));
+                        evaluation_iterator.add_rowwise(evaluation_iterator.index, one_op_par(p,p));
                         for (size_t q = 0; q < K; q++) {
 
                             if (p != q) {  // can't create/annihilate the same orbital twice
                                 if (alpha_I.isOccupied(q)) {
-                                    container.add(I, I,  0.5 * two_op_par(p,p,q,q));
-                                    container.add(I, I, -0.5 * two_op_par(p,q,q,p));
+                                    evaluation_iterator.add_rowwise(evaluation_iterator.index,  0.5 * two_op_par(p,p,q,q));
+                                    evaluation_iterator.add_rowwise(evaluation_iterator.index, -0.5 * two_op_par(p,q,q,p));
                                 }
                             }
 
                             if (beta_I.isOccupied(q)) {
-                                container.add(I, I, 0.5 * two_op_par(p,p,q,q));
+                                evaluation_iterator.add_rowwise(evaluation_iterator.index, 0.5 * two_op_par(p,p,q,q));
                             }
                         }  // loop over q
                     }
 
                     if (beta_I.isOccupied(p)) {
-                        container.add(I, I, one_op_par(p,p));
+                        evaluation_iterator.add_rowwise(evaluation_iterator.index, one_op_par(p,p));
                         for (size_t q = 0; q < K; q++) {
 
                             if (p != q) {  // can't create/annihilate the same orbital twice
                                 if (beta_I.isOccupied(q)) {
-                                    container.add(I, I, 0.5 * two_op_par(p,p,q,q));
-                                    container.add(I, I, -0.5 * two_op_par(p,q,q,p));
+                                    evaluation_iterator.add_rowwise(evaluation_iterator.index, 0.5 * two_op_par(p,p,q,q));
+                                    evaluation_iterator.add_rowwise(evaluation_iterator.index, -0.5 * two_op_par(p,q,q,p));
                                 }
                             }
 
                             if (alpha_I.isOccupied(q)) {
-                                container.add(I, I, 0.5 * two_op_par(p,p,q,q));
+                                evaluation_iterator.add_rowwise(evaluation_iterator.index, 0.5 * two_op_par(p,p,q,q));
                             }
                         }  // loop over q
                     }
@@ -355,7 +388,7 @@ public:
             }
 
             // Calculate the off-diagonal elements, by going over all other ONVs
-            for (size_t J = I+1; J < dim; J++) {
+            for (size_t J = evaluation_iterator.index+1; J < dim; J++) {
 
                 Configuration configuration_J = this->get_configuration(J);
                 ONV alpha_J = configuration_J.onv_alpha;
@@ -372,8 +405,8 @@ public:
 
                     double value = one_op_par(p,q);
 
-                    container.add(I, J, sign*value);
-                    container.add(J, I, sign*value);
+                    evaluation_iterator.add_columnwise(J, sign * value);
+                    evaluation_iterator.add_rowwise(J, sign * value);
 
                     for (size_t r = 0; r < K; r++) {  // r loops over spatial orbitals
 
@@ -385,8 +418,8 @@ public:
                                                       - two_op_par(p,r,r,q)
                                                       + two_op_par(r,r,p,q));
 
-                                container.add(I, J, sign*value);
-                                container.add(J, I, sign*value);
+                                evaluation_iterator.add_columnwise(J, sign * value);
+                                evaluation_iterator.add_rowwise(J, sign * value);
                             }
                         }
 
@@ -395,8 +428,8 @@ public:
                             double value = 0.5 * (two_op_par(p,q,r,r)
                                                   + two_op_par(r,r,p,q));
 
-                            container.add(I, J, sign*value);
-                            container.add(J, I, sign*value);
+                            evaluation_iterator.add_columnwise(J, sign * value);
+                            evaluation_iterator.add_rowwise(J, sign * value);
                         }
                     }
                 }
@@ -414,8 +447,8 @@ public:
 
                     double value = one_op_par(p,q);
 
-                    container.add(I, J, sign*value);
-                    container.add(J, I, sign*value);
+                    evaluation_iterator.add_columnwise(J, sign * value);
+                    evaluation_iterator.add_rowwise(J, sign * value);
 
                     for (size_t r = 0; r < K; r++) {  // r loops over spatial orbitals
 
@@ -426,8 +459,8 @@ public:
                                                       - two_op_par(p,r,r,q)
                                                       + two_op_par(r,r,p,q));
 
-                                container.add(I, J, sign*value);
-                                container.add(J, I, sign*value);
+                                evaluation_iterator.add_columnwise(J, sign * value);
+                                evaluation_iterator.add_rowwise(J, sign * value);
                             }
                         }
 
@@ -436,8 +469,8 @@ public:
                             double value = 0.5 * (two_op_par(p,q,r,r)
                                                    + two_op_par(r,r,p,q));
 
-                            container.add(I, J, sign*value);
-                            container.add(J, I, sign*value);
+                            evaluation_iterator.add_columnwise(J, sign * value);
+                            evaluation_iterator.add_rowwise(J, sign * value);
                         }
                     }
                 }
@@ -456,8 +489,8 @@ public:
                     double value = 0.5 * (two_op_par(p,q,r,s)
                                           + two_op_par(r,s,p,q));
 
-                    container.add(I, J, sign*value);
-                    container.add(J, I, sign*value);
+                    evaluation_iterator.add_columnwise(J, sign * value);
+                    evaluation_iterator.add_rowwise(J, sign * value);
                 }
 
                 // 2 electron excitations in alpha, 0 in beta
@@ -479,8 +512,8 @@ public:
                                           - two_op_par(r,q,p,s)
                                           + two_op_par(r,s,p,q));
 
-                    container.add(I, J, sign*value);
-                    container.add(J, I, sign*value);
+                    evaluation_iterator.add_columnwise(J, sign * value);
+                    evaluation_iterator.add_rowwise(J, sign * value);
                 }
 
                 // 0 electron excitations in alpha, 2 in beta
@@ -502,8 +535,8 @@ public:
                                           - two_op_par(r,q,p,s)
                                           + two_op_par(r,s,p,q));
 
-                    container.add(I, J, sign*value);
-                    container.add(J, I, sign*value);
+                    evaluation_iterator.add_columnwise(J, sign * value);
+                    evaluation_iterator.add_rowwise(J, sign * value);
                 }
             }  // loop over addresses J > I
         }  // loop over addresses I

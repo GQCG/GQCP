@@ -53,7 +53,7 @@
 #include "FockSpace/BaseFockSpace.hpp"
 #include "FockSpace/BaseFrozenCoreFockSpace.hpp"
 #include "FockSpace/Configuration.hpp"
-#include "FockSpace/EvaluationMatrix.hpp"
+#include "FockSpace/EvaluationIterator.hpp"
 #include "FockSpace/FockPermutator.hpp"
 #include "FockSpace/FockSpace.hpp"
 #include "FockSpace/FockSpaceType.hpp"

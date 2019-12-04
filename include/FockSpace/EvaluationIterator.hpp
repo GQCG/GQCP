@@ -34,9 +34,8 @@ namespace GQCP {
  */
 template<class Matrix>
 class EvaluationIterator {
-public:
-    size_t index = 0;
-    size_t end;
+    size_t index = 0;  // current position of the iterator in the dimension of the Fock space
+    size_t end;  // total dimension
 
     Matrix matrix;  // matrix containing the evaluations
 
@@ -68,12 +67,25 @@ public:
         this->matrix(i, this->index) += value;
     }
 
+    /**
+     *  Move to the next index in the iteration
+     */
     void increment() {
         this->index++;
     }
 
+    /**
+     *  Tests if the iteration is finished, if true the index is reset to 0 
+     * 
+     *  @return true if the iteration is finished
+     */
     bool is_finished() {
-        return index == end;
+        if (index == end) {
+            this->index = 0;
+            return true;
+        } else {
+            return false;
+        }
     }
 
     // GETTER
@@ -94,9 +106,8 @@ public:
  */
 template<>
 class EvaluationIterator<Eigen::SparseMatrix<double>> {
-public:
-    size_t index = 0;
-    size_t end;
+    size_t index = 0;  // current position of the iterator in the dimension of the Fock space
+    size_t end;  // total dimension
 
     Eigen::SparseMatrix<double> matrix;  // matrix containing the evaluations
     std::vector<Eigen::Triplet<double>> triplet_vector;  // vector which temporarily contains the added values
@@ -158,13 +169,29 @@ public:
         this->triplet_vector = {};
     }
 
+
+    /**
+     *  Move to the next index in the iteration
+     */
     void increment() {
         this->index++;
     }
 
+
+    /**
+     *  Tests if the iteration is finished, if true the index is reset to 0 
+     * 
+     *  @return true if the iteration is finished
+     */
     bool is_finished() {
-        return index == end;
+        if (index == end) {
+            this->index = 0;
+            return true;
+        } else {
+            return false;
+        }
     }
+
 
     // GETTERS
     const Eigen::SparseMatrix<double>& evaluation() const { return this->matrix; }
@@ -180,19 +207,19 @@ public:
 
 
 /**
- *  Vector template specialization is required because matvec additions into an existing sparse matrix are expensive
- *  Elements should only be added to the matrix once all of them are evaluated in a vector of triplets
- *  Therefore the "add(size_t, size_t, double)" method adds elements to a vector of triplets instead.
+ *  Vector template specialization is required because of matvec evaluations are stored in a vector additions
  */
 template<>
 class EvaluationIterator<VectorX<double>> {
-public:
+    size_t index = 0;  // current position of the iterator in the dimension of the Fock space
+    size_t end;  // total dimension
+
     VectorX<double> matvec;  // matvec containing the evaluations
     const VectorX<double>& coefficient_vector;  // vector with which is multiplied
-    double sequential_double = 0;  // double which temporarily contains the sum of added values, which are added to the matvec upon the next iteration
-    double nonsequential_double = 0;  // double gathered from the coefficient for nonsequential matvec additions.
-    size_t index = 0;  // current index of the iteration
-    size_t end;
+    double sequential_double = 0;  // double which temporarily contains the sum of added values, which are added to the matvec upon the next iteration, it corresponds to the value of the current index of the matvec and allows a for a single access each iteration instead of multiple ones
+    double nonsequential_double = 0;  // double gathered from the coefficient for nonsequential matvec additions, this corresponds to the value of the coefficient vector of the current index, it allows for a single read operation each iteration.
+
+
     // CONSTRUCTOR
     /**
      * @param dimension         the dimensions of the matrix (equal to that of the fock space)
@@ -208,8 +235,8 @@ public:
     matvec(VectorX<double>::Zero(coefficient_vector.rows()))
     {}
 
-    // PUBLIC METHODS
 
+    // PUBLIC METHODS
     /**
      *  Adds a value in which the set index corresponds to the row and a given index corresponds to the column
      * 
@@ -230,20 +257,31 @@ public:
         this->matvec(i) += value * this->nonsequential_double;
     }
 
+    /**
+     *  Move to the next index in the iteration, this is accompanied by an addition to the matvec and reset of the sequential double.
+     */
     void increment() {
         this->matvec(this->index) += sequential_double;
+        this->sequential_double = 0;
         this->index++;
     }
 
+    /**
+     *  Tests if the iteration is finished, if true the index is reset to 0 
+     *  If false the nonsequential_double is updated to the value of the current iteration
+     * 
+     *  @return true if the iteration is finished
+     */
     bool is_finished() {
         if (index == end) {
+            this->index = 0;
             return true;
         } else {
-            this->sequential_double = 0;
             this->nonsequential_double = coefficient_vector(this->index);
             return false;
         }
     }
+
 
     // GETTERS
     const VectorX<double>& evaluation() const { return this->matvec; }

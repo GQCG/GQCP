@@ -23,12 +23,18 @@
 #include "FockSpace/SelectedFockSpace.hpp"
 
 
+/**
+ *  Test the Fock space constructor
+ */
 BOOST_AUTO_TEST_CASE ( ProductFockSpace_constructor ) {
 
     BOOST_CHECK_NO_THROW(GQCP::ProductFockSpace (10, 5, 5));
 }
 
 
+/**
+ *  Check if the static Fock space dimension calculation is correct and if it can throw errors
+ */
 BOOST_AUTO_TEST_CASE ( ProductFockSpace_dimension) {
 
     BOOST_CHECK_EQUAL(GQCP::ProductFockSpace::calculateDimension(10, 1, 1), 100);
@@ -44,6 +50,10 @@ BOOST_AUTO_TEST_CASE ( ProductFockSpace_dimension) {
 }
 
 
+/**
+ *  Perform a dense evaluation of a one-, two-electron operator and the Hamiltonian in the Fock space (including the diagonal)
+ *  and compare these to the selected CI solutions.
+ */
 BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_Dense_diagonal_true ) {
 
     GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
@@ -73,6 +83,10 @@ BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_Dense_diagonal_true ) {
 }
 
 
+/**
+ *  Perform a dense evaluation of a one-, two-electron operator and the Hamiltonian in the Fock space (excluding the diagonal)
+ *  and compare these to the selected CI solutions.
+ */
 BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_Dense_diagonal_false ) {
 
     GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
@@ -102,6 +116,10 @@ BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_Dense_diagonal_false ) {
 }
 
 
+/**
+ *  Evaluate the diagonal of a one-, two-electron operator and the Hamiltonian in the Fock space 
+ *  and compare these to the selected CI solutions.
+ */
 BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_diagonal ) {
 
     GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
@@ -131,6 +149,9 @@ BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_diagonal ) {
 }
 
 
+/**
+ *  Check the Dense evaluations with diagonal to that of the Dense with the diagonal excluded + the diagonal individually for the Hamiltonian
+ */
 BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_diagonal_vs_no_diagonal) {
 
     GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
@@ -146,4 +167,41 @@ BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_diagonal_vs_no_diagonal) {
 
     // Test if non-diagonal evaluation and diagonal evaluations are correct
     BOOST_CHECK(hamiltonian.isApprox(hamiltonian_no_diagonal + GQCP::SquareMatrix<double>(hamiltonian_diagonal.asDiagonal())));
+}
+
+
+/**
+ *  Perform a matrix vector product evaluation of a one-, two-electron operator and the Hamiltonian in the Fock space
+ *  and compare these to the matrix vector product of the actual dense evaluations.
+ */
+BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_MatrixVectorProduct ) {
+
+    GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (hchain, "STO-3G");
+    spinor_basis.lowdinOrthonormalize();
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
+
+    GQCP::ProductFockSpace fock_space (6, 4, 4);
+
+    const auto& h = sq_hamiltonian.core();
+    const auto& g = sq_hamiltonian.twoElectron();
+
+    // Generate diagonals for the matvec input
+    auto one_electron_diagonal = fock_space.evaluateOperatorDiagonal(h);
+    auto two_electron_diagonal = fock_space.evaluateOperatorDiagonal(g);
+    auto hamiltonian_diagonal = fock_space.evaluateOperatorDiagonal(sq_hamiltonian);
+
+    // Test the evaluation of the operators with selected Fock space (the reference) versus that of the product Fock space 
+    auto one_electron_evaluation1 = fock_space.evaluateOperatorMatrixVectorProduct(h, one_electron_diagonal, one_electron_diagonal);
+    GQCP::VectorX<double> one_electron_evaluation2 = fock_space.evaluateOperatorDense(h, true) * one_electron_diagonal;
+
+    auto two_electron_evaluation1 = fock_space.evaluateOperatorMatrixVectorProduct(g, two_electron_diagonal, two_electron_diagonal);
+    GQCP::VectorX<double> two_electron_evaluation2 = fock_space.evaluateOperatorDense(g, true) * two_electron_diagonal;
+
+    auto hamiltonian_evaluation1 = fock_space.evaluateOperatorMatrixVectorProduct(sq_hamiltonian, hamiltonian_diagonal, hamiltonian_diagonal);
+    GQCP::VectorX<double> hamiltonian_evaluation2 = fock_space.evaluateOperatorDense(sq_hamiltonian, true) * hamiltonian_diagonal;
+
+    BOOST_CHECK(one_electron_evaluation1.isApprox(one_electron_evaluation2));
+    BOOST_CHECK(two_electron_evaluation1.isApprox(two_electron_evaluation2));
+    BOOST_CHECK(hamiltonian_evaluation1.isApprox(hamiltonian_evaluation2));
 }

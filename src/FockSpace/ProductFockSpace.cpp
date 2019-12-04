@@ -451,4 +451,147 @@ VectorX<double> ProductFockSpace::evaluateOperatorDiagonal(const SQHamiltonian<d
 
 
 
+/**
+ *  Evaluate a one electron operator in a matrix vector product
+ *
+ *  @param one_op                       the one electron operator expressed in an orthonormal basis
+ *  @param x                            the vector upon which the evaluation acts 
+ *  @param diagonal                     the diagonal evaluated in the Fock space
+ *
+ *  @return the one electron operator's matrix vector product in a vector with the dimensions of the Fock space
+ */
+VectorX<double> ProductFockSpace::evaluateOperatorMatrixVectorProduct(const ScalarSQOneElectronOperator<double>& one_op, const VectorX<double>& x, const VectorX<double>& diagonal) const {
+    auto K = one_op.dimension();
+    if (K != this->K) {
+        throw std::invalid_argument("ProductFockSpace::evaluateOperatorMatrixVectorProduct(ScalarSQOneElectronOperator<double>, VectorX<double>, VectorX<double>): Basis functions of the Fock space and the operator are incompatible.");
+    }
+    FockSpace fock_space_alpha = this->get_fock_space_alpha();
+    FockSpace fock_space_beta = this->get_fock_space_beta();
+
+    const auto& alpha_couplings = this->get_alpha_couplings();
+
+    auto dim_alpha = fock_space_alpha.get_dimension();
+    auto dim_beta = fock_space_beta.get_dimension();
+
+    VectorX<double> matvec = diagonal.cwiseProduct(x);
+
+    Eigen::Map<Eigen::MatrixXd> matvecmap(matvec.data(), dim_beta, dim_alpha);
+    Eigen::Map<const Eigen::MatrixXd> xmap(x.data(), dim_beta, dim_alpha);
+
+    auto beta_evaluation = fock_space_beta.evaluateOperatorSparse(one_op, false);
+    auto alpha_evaluation = fock_space_alpha.evaluateOperatorSparse(one_op, false);
+
+    matvecmap += xmap * alpha_evaluation + beta_evaluation * xmap;
+
+    return matvec;
+}
+
+
+/**
+ *  Evaluate a two electron operator in a matrix vector product
+ *
+ *  @param two_op                       the two electron operator expressed in an orthonormal basis
+ *  @param x                            the vector upon which the evaluation acts 
+ *  @param diagonal                     the diagonal evaluated in the Fock space
+ *
+ *  @return the two electron operator's matrix vector product in a vector with the dimensions of the Fock space
+ */
+VectorX<double> ProductFockSpace::evaluateOperatorMatrixVectorProduct(const ScalarSQTwoElectronOperator<double>& two_op, const VectorX<double>& x, const VectorX<double>& diagonal) const {
+    auto K = two_op.dimension();
+    if (K != this->K) {
+        throw std::invalid_argument("ProductFockSpace::evaluateOperatorMatrixVectorProduct(ScalarSQTwoElectronOperator<double>, VectorX<double>, VectorX<double>): Basis functions of the Fock space and the operator are incompatible.");
+    }
+    FockSpace fock_space_alpha = this->get_fock_space_alpha();
+    FockSpace fock_space_beta = this->get_fock_space_beta();
+
+    const auto& alpha_couplings = this->get_alpha_couplings();
+
+    auto dim_alpha = fock_space_alpha.get_dimension();
+    auto dim_beta = fock_space_beta.get_dimension();
+
+    VectorX<double> matvec = diagonal.cwiseProduct(x);
+
+    Eigen::Map<Eigen::MatrixXd> matvecmap(matvec.data(), dim_beta, dim_alpha);
+    Eigen::Map<const Eigen::MatrixXd> xmap(x.data(), dim_beta, dim_alpha);
+
+    for (size_t p = 0; p<K; p++) {
+
+        const auto& P = this->oneElectronPartition(p, p, two_op);
+        const auto& beta_two_electron_intermediate = fock_space_beta.evaluateOperatorSparse(P, false);
+
+        // sigma(pp) * X * theta(pp)
+        matvecmap += beta_two_electron_intermediate * (xmap * alpha_couplings[p*(K+K+1-p)/2]);
+        for (size_t q = p + 1; q<K; q++) {
+
+            const auto& P = this->oneElectronPartition(p, q, two_op);
+            const auto& beta_two_electron_intermediate = fock_space_beta.evaluateOperatorSparse(P, true);
+
+            // (sigma(pq) + sigma(qp)) * X * theta(pq)
+            matvecmap += beta_two_electron_intermediate * (xmap * alpha_couplings[p*(K+K+1-p)/2 + q - p]);
+        }
+    }
+
+    auto beta_evaluation = fock_space_beta.evaluateOperatorSparse(two_op, false);
+    auto alpha_evaluation = fock_space_alpha.evaluateOperatorSparse(two_op, false);
+
+    matvecmap += beta_evaluation * xmap + xmap * alpha_evaluation;
+
+    return matvec;
+}
+
+
+/**
+ *  Evaluate the Hamiltonian in a matrix vector product
+ *
+ *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
+ *  @param x                            the vector upon which the evaluation acts 
+ *  @param diagonal                     the diagonal evaluated in the Fock space
+ *
+ *  @return the Hamiltonian's matrix vector product in a vector with the dimensions of the Fock space
+ */
+VectorX<double> ProductFockSpace::evaluateOperatorMatrixVectorProduct(const SQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
+    auto K = sq_hamiltonian.dimension();
+    if (K != this->K) {
+        throw std::invalid_argument("ProductFockSpace::evaluateOperatorMatrixVectorProduct(SQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the Fock space and the operator are incompatible.");
+    }
+    FockSpace fock_space_alpha = this->get_fock_space_alpha();
+    FockSpace fock_space_beta = this->get_fock_space_beta();
+
+    const auto& alpha_couplings = this->get_alpha_couplings();
+
+    auto dim_alpha = fock_space_alpha.get_dimension();
+    auto dim_beta = fock_space_beta.get_dimension();
+
+    VectorX<double> matvec = diagonal.cwiseProduct(x);
+
+    Eigen::Map<Eigen::MatrixXd> matvecmap(matvec.data(), dim_beta, dim_alpha);
+    Eigen::Map<const Eigen::MatrixXd> xmap(x.data(), dim_beta, dim_alpha);
+
+    for (size_t p = 0; p<K; p++) {
+
+        const auto& P = this->oneElectronPartition(p, p, sq_hamiltonian.twoElectron());
+        const auto& beta_two_electron_intermediate = fock_space_beta.evaluateOperatorSparse(P, false);
+
+        // sigma(pp) * X * theta(pp)
+        matvecmap += beta_two_electron_intermediate * (xmap * alpha_couplings[p*(K+K+1-p)/2]);
+        for (size_t q = p + 1; q<K; q++) {
+
+            const auto& P = this->oneElectronPartition(p, q, sq_hamiltonian.twoElectron());
+            const auto& beta_two_electron_intermediate = fock_space_beta.evaluateOperatorSparse(P, true);
+
+            // (sigma(pq) + sigma(qp)) * X * theta(pq)
+            matvecmap += beta_two_electron_intermediate * (xmap * alpha_couplings[p*(K+K+1-p)/2 + q - p]);
+        }
+    }
+
+    auto beta_hamiltonian = fock_space_beta.evaluateOperatorSparse(sq_hamiltonian, false);
+    auto alpha_hamiltonian = fock_space_alpha.evaluateOperatorSparse(sq_hamiltonian, false);
+
+    matvecmap += beta_hamiltonian * xmap + xmap * alpha_hamiltonian;
+
+    return matvec;
+}
+
+
+
 }  // namespace GQCP
