@@ -3,7 +3,6 @@ target_sources(gqcp
             BaseFockSpace.hpp
             BaseFrozenCoreFockSpace.hpp
             EvaluationIterator.hpp
-            EvaluationMatrix.hpp
             Configuration.hpp
             FockPermutator.hpp
             FockSpace.hpp

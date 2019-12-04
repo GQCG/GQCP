@@ -1,16 +1,16 @@
 /**
- *  A benchmark executable for the DOCI matvec
+ *  A benchmark executable for the one electron matvec performance of FockSpace
  */
 
 #include <benchmark/benchmark.h>
 
-#include "Operator/SecondQuantized/SQHamiltonian.hpp"
+#include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
 #include "FockSpace/FockSpace.hpp"
 
 
 static void matvec(benchmark::State& state) {
 
-    // Prepare the Hamiltonian
+    // Prepare the Fock space
     size_t K = state.range(0);
     size_t N = state.range(1);
     GQCP::FockSpace fock_space (K, N);

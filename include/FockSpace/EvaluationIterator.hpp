@@ -28,7 +28,7 @@ namespace GQCP {
 
 /**
  *  A templated private class for Fock spaces (private constructors with Fock spaces friends)
- *  It supports efficient dense or sparse storage for elements evaluated in the Fock space.
+ *  It supports dense, sparse and matrix vector product storage for elements evaluated in the Fock space.
  *
  *  @tparam Matrix              the type of matrix in which the evaluations of the Fock space will be stored
  */
@@ -58,7 +58,7 @@ class EvaluationIterator {
     }
 
     /**
-     *  Adds a value in which the set index corresponds to the row and a given index corresponds to the column
+     *  Adds a value in which the set index corresponds to the column and a given index corresponds to the row
      * 
      *  @param i         row index of the matrix
      *  @param value     the value which is added to a given position in the matrix
@@ -102,7 +102,6 @@ class EvaluationIterator {
 /**
  *  Sparse template specialization is required because insertions into an existing sparse matrix are expensive
  *  Elements should only be added to the matrix once all of them are evaluated in a vector of triplets
- *  Therefore the "add(size_t, size_t, double)" method adds elements to a vector of triplets instead.
  */
 template<>
 class EvaluationIterator<Eigen::SparseMatrix<double>> {
@@ -145,7 +144,7 @@ class EvaluationIterator<Eigen::SparseMatrix<double>> {
 
 
     /**
-     *  Adds a value in which the set index corresponds to the row and a given index corresponds to the column
+     *  Adds a value in which the set index corresponds to the column and a given index corresponds to the row
      *  This function adds the values to a triplet vector
      *  to add the values to the sparse matrix, one should call "addToMatrix()"
      * 
@@ -216,8 +215,8 @@ class EvaluationIterator<VectorX<double>> {
 
     VectorX<double> matvec;  // matvec containing the evaluations
     const VectorX<double>& coefficient_vector;  // vector with which is multiplied
-    double sequential_double = 0;  // double which temporarily contains the sum of added values, which are added to the matvec upon the next iteration, it corresponds to the value of the current index of the matvec and allows a for a single access each iteration instead of multiple ones
-    double nonsequential_double = 0;  // double gathered from the coefficient for nonsequential matvec additions, this corresponds to the value of the coefficient vector of the current index, it allows for a single read operation each iteration.
+    double sequential_double = 0;  // double which temporarily contains the sum of added values, it corresponds to the value in the matvec of the current index and allows a for a single write access each iteration instead of multiple.
+    double nonsequential_double = 0;  // double gathered from the coefficient for non-sequential matvec additions, this corresponds to the value of the coefficient vector of the current index, it allows for a single read operation each iteration.
 
 
     // CONSTRUCTOR
@@ -248,7 +247,7 @@ class EvaluationIterator<VectorX<double>> {
     }
 
     /**
-     *  Adds a value in which the set index corresponds to the row and a given index corresponds to the column
+     *  Adds a value in which the set index corresponds to the column and a given index corresponds to the row
      * 
      *  @param i         row index of the matrix
      *  @param value     the value which is added to a given position in the matrix
