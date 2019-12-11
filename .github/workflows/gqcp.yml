@@ -1,0 +1,105 @@
+name: GQCP
+on: [push]
+
+jobs:
+# Enable Slack notifications
+  slackNotification:
+    name: Slack Notification
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Slack Notification
+      uses: rtCamp/action-slack-notify@master
+      env:
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}:
+
+
+# BUILD
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: snickerbockers/cmake-configure@prerel1
+    - uses: actions/setup-python@v1
+      with:
+        python-version: '3.7' 
+    - uses: actions/checkout@v1
+
+    - name: Cache Miniconda
+      id: cache-miniconda
+      uses: actions/cache@v1
+      with:
+        path: miniconda
+        key: ${{ runner.os }}-miniconda
+
+    - name: Install Miniconda
+      if: steps.cache-miniconda.outputs.cache-hit != 'true'
+      run: |
+        - rm -rf $HOME/miniconda;
+        - mkdir -p $HOME/download;
+        - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O $HOME/download/miniconda.sh;
+
+
+    - name: Cache Conda
+      id: cache-conda
+      uses: actions/cache@v1
+      with:
+        path: miniconda
+        key: ${{ runner.os }}-conda
+
+
+    - name: Configure Conda
+      if: steps.cache-conda.outputs.cache-hit != 'true'
+      run: |
+        - conda install -c conda-forge cmake=3.13 boost-cpp=1.69.0 eigen blas mkl pybind11 benchmark numpy;
+        - conda install -c gqcg libint spectra;
+        - conda install -c intel mkl-include mkl-static intel-openmp;
+
+    - name: Cache Libcint
+      id: cache-libcint
+      uses: actions/cache@v1
+      with:
+        path: libcint
+        key: ${{ runner.os }}-libcint
+
+    - name: Install Libcint
+      if: steps.cache-libcint.outputs.cache-hit != 'true'
+      run: |
+        - cd /tmp
+        - git clone -b develop https://github.com/GQCG/libcint.git
+        - cd libcint
+        - mkdir build && cd build
+        - cmake .. -DUSE_MKL=TRUE -DCMAKE_INSTALL_PREFIX=~/.local -DCMAKE_PREFIX_PATH=${HOME}/miniconda
+        - make -j3 && sudo make install
+
+
+    - name: Build GQCP
+      run: |
+        - cd $HOME
+        - mkdir build && cd build
+        - cmake .. -DBUILD_TESTS=TRUE -DBUILD_BENCHMARKS=TRUE -DBUILD_PYTHON_BINDINGS=TRUE -DCMAKE_INSTALL_PREFIX=~/.local -DCMAKE_PREFIX_PATH=${HOME}/
+        - make -j10 && sudo make install
+
+    - name: Benchmarks
+	    run: |
+        - cd benchmarks
+        - ./doci_case --benchmark_counters_tabular=true
+        - ./doci_matrix --benchmark_counters_tabular=true
+        - ./doci_matvec --benchmark_counters_tabular=true
+        - ./fci_matrix --benchmark_counters_tabular=true
+        - ./fci_matvec --benchmark_counters_tabular=true
+        - ./hubbard_diagonalization --benchmark_counters_tabular=true
+        - ./hubbard_matrix --benchmark_counters_tabular=true
+        - ./hubbard_matvec --benchmark_counters_tabular=true
+
+# Test if installed library links properly to external driver
+    - name: Link
+      run: |
+        - cd /tmp
+        - git clone https://github.com/GQCG/gqcp-link.git
+        - cd gqcp-link
+        - mkdir build && cd build
+        - cmake .. -DCMAKE_PREFIX_PATH=${HOME}/miniconda -DGQCP_INSTALL_PREFIX=~/.local
+        - make -j3 && ./test_driver
+
+	
