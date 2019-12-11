@@ -73,12 +73,12 @@ jobs:
       run: |
         export PATH=${HOME}/miniconda/bin:${PATH} # Use conda CMake
         export LIBINT_DATA_PATH=${HOME}/miniconda/share/libint/2.3.1/basis
-        cmake --version
+        ${HOME}/miniconda/bin/cmake --version
         cd /tmp
         git clone -b develop https://github.com/GQCG/libcint.git
         cd libcint
         mkdir build && cd build
-        cmake .. -DUSE_MKL=TRUE -DCMAKE_INSTALL_PREFIX=~/.local -DCMAKE_PREFIX_PATH=${HOME}/miniconda
+        ${HOME}/miniconda/bin/cmake .. -DUSE_MKL=TRUE -DCMAKE_INSTALL_PREFIX=~/.local -DCMAKE_PREFIX_PATH=${HOME}/miniconda
         make -j3 && sudo make install
 
 
