@@ -47,10 +47,14 @@ jobs:
         path: miniconda
         key: ${{ runner.os }}-conda
 
-
     - name: Configure Conda
+      run: |   
+        source $HOME/miniconda/bin/activate
+        hash -r
+        conda config --set always_yes yes --set changeps1 no
+    - name: Install Conda Modules
       if: steps.cache-conda.outputs.cache-hit != 'true'
-      run: |
+      run: |   
         conda install -c conda-forge cmake=3.13 boost-cpp=1.69.0 eigen blas mkl pybind11 benchmark numpy;
         conda install -c gqcg libint spectra;
         conda install -c intel mkl-include mkl-static intel-openmp;
