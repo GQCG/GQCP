@@ -35,9 +35,9 @@ jobs:
     - name: Install Miniconda
       if: steps.cache-miniconda.outputs.cache-hit != 'true'
       run: |
-        - rm -rf $HOME/miniconda;
-        - mkdir -p $HOME/download;
-        - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O $HOME/download/miniconda.sh;
+        rm -rf $HOME/miniconda;
+        mkdir -p $HOME/download;
+        wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O $HOME/download/miniconda.sh;
 
 
     - name: Cache Conda
@@ -51,9 +51,9 @@ jobs:
     - name: Configure Conda
       if: steps.cache-conda.outputs.cache-hit != 'true'
       run: |
-        - conda install -c conda-forge cmake=3.13 boost-cpp=1.69.0 eigen blas mkl pybind11 benchmark numpy;
-        - conda install -c gqcg libint spectra;
-        - conda install -c intel mkl-include mkl-static intel-openmp;
+        conda install -c conda-forge cmake=3.13 boost-cpp=1.69.0 eigen blas mkl pybind11 benchmark numpy;
+        conda install -c gqcg libint spectra;
+        conda install -c intel mkl-include mkl-static intel-openmp;
 
     - name: Cache Libcint
       id: cache-libcint
@@ -65,12 +65,12 @@ jobs:
     - name: Install Libcint
       if: steps.cache-libcint.outputs.cache-hit != 'true'
       run: |
-        - cd /tmp
-        - git clone -b develop https://github.com/GQCG/libcint.git
-        - cd libcint
-        - mkdir build && cd build
-        - cmake .. -DUSE_MKL=TRUE -DCMAKE_INSTALL_PREFIX=~/.local -DCMAKE_PREFIX_PATH=${HOME}/miniconda
-        - make -j3 && sudo make install
+        cd /tmp
+        git clone -b develop https://github.com/GQCG/libcint.git
+        cd libcint
+        mkdir build && cd build
+        cmake .. -DUSE_MKL=TRUE -DCMAKE_INSTALL_PREFIX=~/.local -DCMAKE_PREFIX_PATH=${HOME}/miniconda
+        make -j3 && sudo make install
 
 
     - name: Build GQCP
@@ -82,22 +82,22 @@ jobs:
 
     - name: Benchmarks
       run: |
-        - cd benchmarks
-        - ./doci_case --benchmark_counters_tabular=true
-        - ./doci_matrix --benchmark_counters_tabular=true
-        - ./doci_matvec --benchmark_counters_tabular=true
-        - ./fci_matrix --benchmark_counters_tabular=true
-        - ./fci_matvec --benchmark_counters_tabular=true
-        - ./hubbard_diagonalization --benchmark_counters_tabular=true
-        - ./hubbard_matrix --benchmark_counters_tabular=true
-        - ./hubbard_matvec --benchmark_counters_tabular=true
+        cd benchmarks
+        ./doci_case --benchmark_counters_tabular=true
+        ./doci_matrix --benchmark_counters_tabular=true
+        ./doci_matvec --benchmark_counters_tabular=true
+        ./fci_matrix --benchmark_counters_tabular=true
+        ./fci_matvec --benchmark_counters_tabular=true
+        ./hubbard_diagonalization --benchmark_counters_tabular=true
+        ./hubbard_matrix --benchmark_counters_tabular=true
+        ./hubbard_matvec --benchmark_counters_tabular=true
 
 # Test if installed library links properly to external driver
     - name: Link
       run: |
-        - cd /tmp
-        - git clone https://github.com/GQCG/gqcp-link.git
-        - cd gqcp-link
-        - mkdir build && cd build
-        - cmake .. -DCMAKE_PREFIX_PATH=${HOME}/miniconda -DGQCP_INSTALL_PREFIX=~/.local
-        - make -j3 && ./test_driver
+        cd /tmp
+        git clone https://github.com/GQCG/gqcp-link.git
+        cd gqcp-link
+        mkdir build && cd build
+        cmake .. -DCMAKE_PREFIX_PATH=${HOME}/miniconda -DGQCP_INSTALL_PREFIX=~/.local
+        make -j3 && ./test_driver
