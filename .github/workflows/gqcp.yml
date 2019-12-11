@@ -11,7 +11,7 @@ jobs:
     - name: Slack Notification
       uses: rtCamp/action-slack-notify@master
       env:
-        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}:
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
 
 
 # BUILD
@@ -81,7 +81,7 @@ jobs:
         - make -j10 && sudo make install
 
     - name: Benchmarks
-	    run: |
+      run: |
         - cd benchmarks
         - ./doci_case --benchmark_counters_tabular=true
         - ./doci_matrix --benchmark_counters_tabular=true
@@ -101,5 +101,3 @@ jobs:
         - mkdir build && cd build
         - cmake .. -DCMAKE_PREFIX_PATH=${HOME}/miniconda -DGQCP_INSTALL_PREFIX=~/.local
         - make -j3 && ./test_driver
-
-	
