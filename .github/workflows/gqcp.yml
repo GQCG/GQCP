@@ -17,6 +17,8 @@ jobs:
 # BUILD
   build:
     runs-on: ubuntu-latest
+    env:
+      CONDA: /usr/share/miniconda
     
     steps:
     - uses: snickerbockers/cmake-configure@prerel1
@@ -35,10 +37,10 @@ jobs:
     - name: Install Miniconda
       if: steps.cache-miniconda.outputs.cache-hit != 'true'
       run: |
-        rm -rf $HOME/miniconda;
+        rm -rf $CONDA;
         mkdir -p $HOME/download;
         wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O $HOME/download/miniconda.sh;
-        bash $HOME/download/miniconda.sh -b -p ${HOME}/miniconda;
+        bash $HOME/download/miniconda.sh -b -p $CONDA;
 
     - name: Cache Conda
       id: cache-conda
@@ -49,7 +51,7 @@ jobs:
 
     - name: Configure Conda
       run: |   
-        source $HOME/miniconda/bin/activate
+        source $CONDA/bin/activate
         hash -r
         conda config --set always_yes yes --set changeps1 no
     - name: Install Conda Modules
@@ -58,9 +60,7 @@ jobs:
         conda install -c conda-forge cmake=3.13 boost-cpp=1.69.0 eigen blas mkl pybind11 benchmark numpy;
         conda install -c gqcg libint spectra;
         conda install -c intel mkl-include mkl-static intel-openmp;
-        export PATH=/usr/share/miniconda/bin:${PATH} # Use conda CMake
-        cmake --version
-        /usr/share/miniconda/bin/cmake --version
+        export PATH=$CONDA/bin:${PATH} # Use conda CMake
 
     - name: Cache Libcint
       id: cache-libcint
@@ -72,14 +72,13 @@ jobs:
     - name: Install Libcint
       if: steps.cache-libcint.outputs.cache-hit != 'true'
       run: |
-        export PATH=/usr/share/miniconda/bin:${PATH} # Use conda CMake
-        export LIBINT_DATA_PATH=${HOME}/miniconda/share/libint/2.3.1/basis
+        export LIBINT_DATA_PATH=$CONDA/share/libint/2.3.1/basis
         ${HOME}/miniconda/bin/cmake --version
         cd /tmp
         git clone -b develop https://github.com/GQCG/libcint.git
         cd libcint
         mkdir build && cd build
-        ${HOME}/miniconda/bin/cmake .. -DUSE_MKL=TRUE -DCMAKE_INSTALL_PREFIX=~/.local -DCMAKE_PREFIX_PATH=${HOME}/miniconda
+        cmake .. -DUSE_MKL=TRUE -DCMAKE_INSTALL_PREFIX=~/.local -DCMAKE_PREFIX_PATH=$CONDA
         make -j3 && sudo make install
 
 
@@ -109,5 +108,5 @@ jobs:
         git clone https://github.com/GQCG/gqcp-link.git
         cd gqcp-link
         mkdir build && cd build
-        cmake .. -DCMAKE_PREFIX_PATH=${HOME}/miniconda -DGQCP_INSTALL_PREFIX=~/.local
+        cmake .. -DCMAKE_PREFIX_PATH=$CONDA -DGQCP_INSTALL_PREFIX=~/.local
         make -j3 && ./test_driver
