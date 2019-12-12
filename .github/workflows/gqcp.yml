@@ -86,7 +86,7 @@ jobs:
     - name: Build GQCP
       run: |
         mkdir build && cd build
-        $CONDA/bin/cmake .. -DBUILD_TESTS=TRUE -DBUILD_BENCHMARKS=TRUE -DBUILD_PYTHON_BINDINGS=TRUE -Dcint_ROOT_DIR -DCMAKE_INSTALL_PREFIX=~/.local -DCMAKE_PREFIX_PATH=${HOME}/
+        $CONDA/bin/cmake .. -DBUILD_TESTS=TRUE -DBUILD_BENCHMARKS=TRUE -DBUILD_PYTHON_BINDINGS=TRUE -DCMAKE_INSTALL_PREFIX=~/.local -DCMAKE_PREFIX_PATH=${HOME}/
         make -j10 && sudo make install
 
     - name: Benchmarks
