@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       CONDA: /usr/share/miniconda
-    
+      LIBINT_DATA_PATH: $CONDA/share/libint/2.3.1/basis
 
     steps:
     - uses: snickerbockers/cmake-configure@prerel1
@@ -28,27 +28,22 @@ jobs:
         python-version: '3.7' 
     - uses: actions/checkout@v1
 
-    - name: Cache Miniconda
-      id: cache-miniconda
+# Set use cache actions: link a files at a path to a key to be stored
+    - name: Cache Conda
+      id: cache-conda
       uses: actions/cache@v1
+      # Store all files in $CONDA, link with key "Linux-conda"
       with:
         path: $CONDA
-        key: ${{ runner.os }}-miniconda
+        key: ${{ runner.os }}-conda
 
     - name: Install Miniconda
-      if: steps.cache-miniconda.outputs.cache-hit != 'true'
+      if: steps.cache-conda.outputs.cache-hit != 'true'  # If cached skip
       run: |
         rm -rf $CONDA;
         mkdir -p $HOME/download;
         wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O $HOME/download/miniconda.sh;
         bash $HOME/download/miniconda.sh -b -p $CONDA;
-
-    - name: Cache Conda
-      id: cache-conda
-      uses: actions/cache@v1
-      with:
-        path: $Conda
-        key: ${{ runner.os }}-conda
 
     - name: Configure Conda
       run: |   
@@ -57,31 +52,23 @@ jobs:
         conda config --set always_yes yes --set changeps1 no
         
     - name: Install Conda Modules
-      if: steps.cache-conda.outputs.cache-hit != 'true'
+      if: steps.cache-conda.outputs.cache-hit != 'true'  # If cached skip
       run: |   
         conda install -c conda-forge cmake=3.13 boost-cpp=1.69.0 eigen blas mkl pybind11 benchmark numpy;
         conda install -c gqcg libint spectra;
         conda install -c intel mkl-include mkl-static intel-openmp;
         export PATH=$CONDA/bin:${PATH} # Use conda CMake
 
-    - name: Cache Libcint
-      id: cache-libcint
-      uses: actions/cache@v1
-      with:
-        path: $CONDA
-        key: ${{ runner.os }}-libcint
-
     - name: Install Libcint
-      if: steps.cache-libcint.outputs.cache-hit != 'true'
+      if: steps.cache-conda.outputs.cache-hit != 'true'  # If cached skip
+      # Note that we install Libcint in $CONDA
       run: |
-        export LIBINT_DATA_PATH=$CONDA/share/libint/2.3.1/basis
         cd /tmp
         git clone -b develop https://github.com/GQCG/libcint.git
         cd libcint
         mkdir build && cd build
-        $CONDA/bin/cmake .. -DUSE_MKL=TRUE -DCMAKE_INSTALL_PREFIX=~/.local/libcint -DCMAKE_PREFIX_PATH=$CONDA
+        $CONDA/bin/cmake .. -DUSE_MKL=TRUE -DCMAKE_INSTALL_PREFIX=$CONDA -DCMAKE_PREFIX_PATH=$CONDA
         make -j3 && sudo make install
-
     
     - name: Build GQCP
       run: |
