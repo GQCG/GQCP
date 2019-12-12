@@ -97,7 +97,7 @@ jobs:
         echo "::set-env name=slack_color::'#00FF00'"
         
   slackNotification:
-    needs: build
+    if: (success() || failure())
     name: Slack Notification
     runs-on: ubuntu-latest
     steps:
