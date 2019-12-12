@@ -386,7 +386,7 @@ public:
                 size_t address = evaluation_iterator.index - this->get_vertex_weights(p, e1 + 1);
 
                 if (diagonal_values) {
-                    evaluation_iterator.add_rowwise(evaluation_iterator.index, one_op_par(p, p));
+                    evaluation_iterator.addrowwise(evaluation_iterator.index, one_op_par(p, p));
                 }
 
                 // The e2 iteration counts the amount of encountered electrons for the creation operator
@@ -402,8 +402,8 @@ public:
                 while (q < K) {
                     size_t J = address + this->get_vertex_weights(q, e2);
                     double value = sign_e2*one_op_par(p, q);
-                    evaluation_iterator.add_columnwise(J, value);
-                    evaluation_iterator.add_rowwise(J, value);
+                    evaluation_iterator.addcolumnwise(J, value);
+                    evaluation_iterator.addrowwise(J, value);
 
                     q++; // go to the next orbital
 
@@ -470,12 +470,12 @@ public:
 
                 // Strictly diagonal values
                 if (diagonal_values) {
-                    evaluation_iterator.add_rowwise(evaluation_iterator.index, k_par(p,p));
+                    evaluation_iterator.addrowwise(evaluation_iterator.index, k_par(p,p));
                     for (size_t q = 0; q < K; q++) {  // q loops over SOs
                         if (onv.isOccupied(q)) {
-                            evaluation_iterator.add_rowwise(evaluation_iterator.index, 0.5 * two_op_par(p, p, q, q));
+                            evaluation_iterator.addrowwise(evaluation_iterator.index, 0.5 * two_op_par(p, p, q, q));
                         } else {
-                            evaluation_iterator.add_rowwise(evaluation_iterator.index, 0.5 * two_op_par(p, q, q, p));
+                            evaluation_iterator.addrowwise(evaluation_iterator.index, 0.5 * two_op_par(p, q, q, p));
                         }
                     }
                 }
@@ -519,8 +519,8 @@ public:
                                                            two_op_par(r, q, p, s));
 
 
-                            evaluation_iterator.add_columnwise(J, value);
-                            evaluation_iterator.add_rowwise(J, value);
+                            evaluation_iterator.addcolumnwise(J, value);
+                            evaluation_iterator.addrowwise(J, value);
 
                             s++;
                             this->shiftUntilNextUnoccupiedOrbital<1>(onv, address3, s, e4, sign4);
@@ -565,8 +565,8 @@ public:
                                                            two_op_par(r, q, p, s) -
                                                            two_op_par(p, s, r, q));
 
-                            evaluation_iterator.add_columnwise(J, value);
-                            evaluation_iterator.add_rowwise(J, value);
+                            evaluation_iterator.addcolumnwise(J, value);
+                            evaluation_iterator.addrowwise(J, value);
 
                             s++;  // go to the next orbital
                             this->shiftUntilNextUnoccupiedOrbital<1>(onv, address3, s, e4, sign4);
@@ -601,8 +601,8 @@ public:
                                                            two_op_par(r, q, p, s) -
                                                            two_op_par(p, s, r, q));
 
-                            evaluation_iterator.add_columnwise(J, value);
-                            evaluation_iterator.add_rowwise(J, value);
+                            evaluation_iterator.addcolumnwise(J, value);
+                            evaluation_iterator.addrowwise(J, value);
 
                             s++;
                             this->shiftUntilNextUnoccupiedOrbital<1>(onv, address2, s, e4, sign4);
@@ -629,8 +629,8 @@ public:
 
                     q++;
 
-                    evaluation_iterator.add_columnwise(address1, value_I);
-                    evaluation_iterator.add_rowwise(address1, value_I);
+                    evaluation_iterator.addcolumnwise(address1, value_I);
+                    evaluation_iterator.addrowwise(address1, value_I);
 
                     this->shiftUntilNextUnoccupiedOrbital<1>(onv, address, q, e2, sign2);
                 }

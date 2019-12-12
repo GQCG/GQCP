@@ -258,11 +258,11 @@ public:
             if (diagonal_values) {
                 for (size_t p = 0; p < K; p++) {
                     if (alpha_I.isOccupied(p)) {
-                        evaluation_iterator.add_rowwise(evaluation_iterator.index, one_op_par(p, p));
+                        evaluation_iterator.addrowwise(evaluation_iterator.index, one_op_par(p, p));
                     }
 
                     if (beta_I.isOccupied(p)) {
-                        evaluation_iterator.add_rowwise(evaluation_iterator.index, one_op_par(p,p));
+                        evaluation_iterator.addrowwise(evaluation_iterator.index, one_op_par(p,p));
                     }
                 }  // loop over q
             }
@@ -287,8 +287,8 @@ public:
 
                     double value = one_op_par(p, q);
 
-                    evaluation_iterator.add_columnwise(J, sign * value);
-                    evaluation_iterator.add_rowwise(J, sign * value);
+                    evaluation_iterator.addcolumnwise(J, sign * value);
+                    evaluation_iterator.addrowwise(J, sign * value);
                 }
 
                 // 0 electron excitations in alpha, 1 in beta
@@ -304,8 +304,8 @@ public:
 
                     double value = one_op_par(p,q);
 
-                    evaluation_iterator.add_columnwise(J, sign * value);
-                    evaluation_iterator.add_rowwise(J, sign * value);
+                    evaluation_iterator.addcolumnwise(J, sign * value);
+                    evaluation_iterator.addrowwise(J, sign * value);
                 }
             }  // loop over addresses J > I
         }  // loop over addresses I
@@ -352,35 +352,35 @@ public:
             if (diagonal_values) {
                 for (size_t p = 0; p < K; p++) {
                     if (alpha_I.isOccupied(p)) {
-                        evaluation_iterator.add_rowwise(evaluation_iterator.index, one_op_par(p,p));
+                        evaluation_iterator.addrowwise(evaluation_iterator.index, one_op_par(p,p));
                         for (size_t q = 0; q < K; q++) {
 
                             if (p != q) {  // can't create/annihilate the same orbital twice
                                 if (alpha_I.isOccupied(q)) {
-                                    evaluation_iterator.add_rowwise(evaluation_iterator.index,  0.5 * two_op_par(p,p,q,q));
-                                    evaluation_iterator.add_rowwise(evaluation_iterator.index, -0.5 * two_op_par(p,q,q,p));
+                                    evaluation_iterator.addrowwise(evaluation_iterator.index,  0.5 * two_op_par(p,p,q,q));
+                                    evaluation_iterator.addrowwise(evaluation_iterator.index, -0.5 * two_op_par(p,q,q,p));
                                 }
                             }
 
                             if (beta_I.isOccupied(q)) {
-                                evaluation_iterator.add_rowwise(evaluation_iterator.index, 0.5 * two_op_par(p,p,q,q));
+                                evaluation_iterator.addrowwise(evaluation_iterator.index, 0.5 * two_op_par(p,p,q,q));
                             }
                         }  // loop over q
                     }
 
                     if (beta_I.isOccupied(p)) {
-                        evaluation_iterator.add_rowwise(evaluation_iterator.index, one_op_par(p,p));
+                        evaluation_iterator.addrowwise(evaluation_iterator.index, one_op_par(p,p));
                         for (size_t q = 0; q < K; q++) {
 
                             if (p != q) {  // can't create/annihilate the same orbital twice
                                 if (beta_I.isOccupied(q)) {
-                                    evaluation_iterator.add_rowwise(evaluation_iterator.index, 0.5 * two_op_par(p,p,q,q));
-                                    evaluation_iterator.add_rowwise(evaluation_iterator.index, -0.5 * two_op_par(p,q,q,p));
+                                    evaluation_iterator.addrowwise(evaluation_iterator.index, 0.5 * two_op_par(p,p,q,q));
+                                    evaluation_iterator.addrowwise(evaluation_iterator.index, -0.5 * two_op_par(p,q,q,p));
                                 }
                             }
 
                             if (alpha_I.isOccupied(q)) {
-                                evaluation_iterator.add_rowwise(evaluation_iterator.index, 0.5 * two_op_par(p,p,q,q));
+                                evaluation_iterator.addrowwise(evaluation_iterator.index, 0.5 * two_op_par(p,p,q,q));
                             }
                         }  // loop over q
                     }
@@ -405,8 +405,8 @@ public:
 
                     double value = one_op_par(p,q);
 
-                    evaluation_iterator.add_columnwise(J, sign * value);
-                    evaluation_iterator.add_rowwise(J, sign * value);
+                    evaluation_iterator.addcolumnwise(J, sign * value);
+                    evaluation_iterator.addrowwise(J, sign * value);
 
                     for (size_t r = 0; r < K; r++) {  // r loops over spatial orbitals
 
@@ -418,8 +418,8 @@ public:
                                                       - two_op_par(p,r,r,q)
                                                       + two_op_par(r,r,p,q));
 
-                                evaluation_iterator.add_columnwise(J, sign * value);
-                                evaluation_iterator.add_rowwise(J, sign * value);
+                                evaluation_iterator.addcolumnwise(J, sign * value);
+                                evaluation_iterator.addrowwise(J, sign * value);
                             }
                         }
 
@@ -428,8 +428,8 @@ public:
                             double value = 0.5 * (two_op_par(p,q,r,r)
                                                   + two_op_par(r,r,p,q));
 
-                            evaluation_iterator.add_columnwise(J, sign * value);
-                            evaluation_iterator.add_rowwise(J, sign * value);
+                            evaluation_iterator.addcolumnwise(J, sign * value);
+                            evaluation_iterator.addrowwise(J, sign * value);
                         }
                     }
                 }
@@ -447,8 +447,8 @@ public:
 
                     double value = one_op_par(p,q);
 
-                    evaluation_iterator.add_columnwise(J, sign * value);
-                    evaluation_iterator.add_rowwise(J, sign * value);
+                    evaluation_iterator.addcolumnwise(J, sign * value);
+                    evaluation_iterator.addrowwise(J, sign * value);
 
                     for (size_t r = 0; r < K; r++) {  // r loops over spatial orbitals
 
@@ -459,8 +459,8 @@ public:
                                                       - two_op_par(p,r,r,q)
                                                       + two_op_par(r,r,p,q));
 
-                                evaluation_iterator.add_columnwise(J, sign * value);
-                                evaluation_iterator.add_rowwise(J, sign * value);
+                                evaluation_iterator.addcolumnwise(J, sign * value);
+                                evaluation_iterator.addrowwise(J, sign * value);
                             }
                         }
 
@@ -469,8 +469,8 @@ public:
                             double value = 0.5 * (two_op_par(p,q,r,r)
                                                    + two_op_par(r,r,p,q));
 
-                            evaluation_iterator.add_columnwise(J, sign * value);
-                            evaluation_iterator.add_rowwise(J, sign * value);
+                            evaluation_iterator.addcolumnwise(J, sign * value);
+                            evaluation_iterator.addrowwise(J, sign * value);
                         }
                     }
                 }
@@ -489,8 +489,8 @@ public:
                     double value = 0.5 * (two_op_par(p,q,r,s)
                                           + two_op_par(r,s,p,q));
 
-                    evaluation_iterator.add_columnwise(J, sign * value);
-                    evaluation_iterator.add_rowwise(J, sign * value);
+                    evaluation_iterator.addcolumnwise(J, sign * value);
+                    evaluation_iterator.addrowwise(J, sign * value);
                 }
 
                 // 2 electron excitations in alpha, 0 in beta
@@ -512,8 +512,8 @@ public:
                                           - two_op_par(r,q,p,s)
                                           + two_op_par(r,s,p,q));
 
-                    evaluation_iterator.add_columnwise(J, sign * value);
-                    evaluation_iterator.add_rowwise(J, sign * value);
+                    evaluation_iterator.addcolumnwise(J, sign * value);
+                    evaluation_iterator.addrowwise(J, sign * value);
                 }
 
                 // 0 electron excitations in alpha, 2 in beta
@@ -535,8 +535,8 @@ public:
                                           - two_op_par(r,q,p,s)
                                           + two_op_par(r,s,p,q));
 
-                    evaluation_iterator.add_columnwise(J, sign * value);
-                    evaluation_iterator.add_rowwise(J, sign * value);
+                    evaluation_iterator.addcolumnwise(J, sign * value);
+                    evaluation_iterator.addrowwise(J, sign * value);
                 }
             }  // loop over addresses J > I
         }  // loop over addresses I
