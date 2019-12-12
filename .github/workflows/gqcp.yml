@@ -77,7 +77,7 @@ jobs:
         git clone -b develop https://github.com/GQCG/libcint.git
         cd libcint
         mkdir build && cd build
-        cmake .. -DUSE_MKL=TRUE -DCMAKE_INSTALL_PREFIX=~/.local -DCMAKE_PREFIX_PATH=$CONDA
+        $CONDA/bin/cmake .. -DUSE_MKL=TRUE -DCMAKE_INSTALL_PREFIX=~/.local -DCMAKE_PREFIX_PATH=$CONDA
         make -j3 && sudo make install
 
 
@@ -85,7 +85,7 @@ jobs:
       run: |
         cd $HOME
         mkdir build && cd build
-        cmake .. -DBUILD_TESTS=TRUE -DBUILD_BENCHMARKS=TRUE -DBUILD_PYTHON_BINDINGS=TRUE -DCMAKE_INSTALL_PREFIX=~/.local -DCMAKE_PREFIX_PATH=${HOME}/
+        $CONDA/bin/cmake .. -DBUILD_TESTS=TRUE -DBUILD_BENCHMARKS=TRUE -DBUILD_PYTHON_BINDINGS=TRUE -DCMAKE_INSTALL_PREFIX=~/.local -DCMAKE_PREFIX_PATH=${HOME}/
         make -j10 && sudo make install
 
     - name: Benchmarks
@@ -107,5 +107,5 @@ jobs:
         git clone https://github.com/GQCG/gqcp-link.git
         cd gqcp-link
         mkdir build && cd build
-        cmake .. -DCMAKE_PREFIX_PATH=$CONDA -DGQCP_INSTALL_PREFIX=~/.local
+        $CONDA/bin/cmake .. -DCMAKE_PREFIX_PATH=$CONDA -DGQCP_INSTALL_PREFIX=~/.local
         make -j3 && ./test_driver
