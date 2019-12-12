@@ -73,7 +73,6 @@ jobs:
       if: steps.cache-libcint.outputs.cache-hit != 'true'
       run: |
         export LIBINT_DATA_PATH=$CONDA/share/libint/2.3.1/basis
-        ${HOME}/miniconda/bin/cmake --version
         cd /tmp
         git clone -b develop https://github.com/GQCG/libcint.git
         cd libcint
