@@ -58,8 +58,9 @@ jobs:
         conda install -c conda-forge cmake=3.13 boost-cpp=1.69.0 eigen blas mkl pybind11 benchmark numpy;
         conda install -c gqcg libint spectra;
         conda install -c intel mkl-include mkl-static intel-openmp;
-        export PATH=/usr/share/miniconda:${PATH} # Use conda CMake
+        export PATH=/usr/share/miniconda/bin:${PATH} # Use conda CMake
         cmake --version
+        /usr/share/miniconda/bin/cmake --version
 
     - name: Cache Libcint
       id: cache-libcint
