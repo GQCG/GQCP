@@ -93,8 +93,8 @@ jobs:
         mkdir build && cd build
         $CONDA/bin/cmake .. -DCMAKE_PREFIX_PATH=$CONDA -DGQCP_INSTALL_PREFIX=~/.local -Dgqcp_DIR=/home/runner/.local
         make -j3 && ./test_driver
-        export $slack_message='Build successful' 
-        export $slack_color='#00FF00' 
+        echo "::set-env name=slack_message::'Build successful'"
+        echo "::set-env name=slack_color::'#00FF00'"
         
   slackNotification:
     needs: build
