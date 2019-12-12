@@ -157,4 +157,3 @@ BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_diagonal ) {
     BOOST_CHECK(two_electron_evaluation1.isApprox(two_electron_evaluation2));
     BOOST_CHECK(hamiltonian_evaluation1.isApprox(hamiltonian_evaluation2));
 }
-

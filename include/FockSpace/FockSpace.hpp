@@ -228,7 +228,6 @@ public:
      *  @param diagonal                     the diagonal of the matrix representation of the operator inside the Fock space
      *
      *  @return a vector that is equal to the matrix-vector product of the one-electron operator's matrix representation and the given vector
-
      */
     VectorX<double> evaluateOperatorMatrixVectorProduct(const ScalarSQOneElectronOperator<double>& one_op, const VectorX<double>& x, const VectorX<double>& diagonal) const;
 
@@ -239,7 +238,7 @@ public:
      *  @param x                            the vector upon which the evaluation acts 
      *  @param diagonal                     the diagonal evaluated in the Fock space
      *
-     *  @return the two electron operator's matrix vector product in a vector with the dimensions of the Fock space
+     *  @return a vector that is equal to the matrix-vector product of the two-electron operator's matrix representation and the given vector
      */
     VectorX<double> evaluateOperatorMatrixVectorProduct(const ScalarSQTwoElectronOperator<double>& two_op, const VectorX<double>& x, const VectorX<double>& diagonal) const;
 
@@ -250,7 +249,7 @@ public:
      *  @param x                            the vector upon which the evaluation acts 
      *  @param diagonal                     the diagonal evaluated in the Fock space
      *
-     *  @return the Hamiltonian's matrix vector product in a vector with the dimensions of the Fock space
+     *  @return a vector that is equal to the matrix-vector product of the Hamiltonian's matrix representation and the given vector
      */
     VectorX<double> evaluateOperatorMatrixVectorProduct(const SQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const;
 
@@ -362,12 +361,12 @@ public:
     }
 
     /**
-     *  Evaluate the operator in a given matrix wrapper in the Fock space
+     *  Evaluate the operator in a given evaluation iterator in the Fock space
      *
      *  @tparam Matrix                       the type of matrix used to store the evaluations
      *
      *  @param one_op                        the one-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
-     *  @param evaluation_iterator            matrix wrapper to which the evaluations are added
+     *  @param evaluation_iterator           evaluation iterator to which the evaluations are added
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
     template<class Matrix>
@@ -420,12 +419,12 @@ public:
     }
 
     /**
-     *  Evaluate the operator in a given matrix wrapper in the Fock space
+     *  Evaluate the operator in a given evaluation iterator in the Fock space
      *
      *  @tparam Matrix                       the type of matrix used to store the evaluations
      *
      *  @param two_op                        the two-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
-     *  @param evaluation_iterator           matrix wrapper to which the evaluations are added
+     *  @param evaluation_iterator           evaluation iterator to which the evaluations are added
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
     template<class Matrix>
@@ -436,13 +435,13 @@ public:
 
 
     /**
-     *  Evaluate the operators in a given matrix wrapper in the Fock space
+     *  Evaluate the operators in a given evaluation iterator in the Fock space
      *
      *  @tparam Matrix                       the type of matrix used to store the evaluations
      *
      *  @param one_op                        the one-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
      *  @param two_op                        the two-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
-     *  @param evaluation_iterator           matrix wrapper to which the evaluations are added
+     *  @param evaluation_iterator           evaluation iterator to which the evaluations are added
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
     template<class Matrix>

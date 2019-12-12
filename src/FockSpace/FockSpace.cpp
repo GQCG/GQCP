@@ -477,7 +477,6 @@ std::vector<Eigen::SparseMatrix<double>> FockSpace::calculateOneElectronCoupling
 }
 
 
-
 /**
  *  Evaluate the diagonal of the operator
  *

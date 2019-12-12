@@ -236,12 +236,12 @@ public:
 
     // PUBLIC TEMPLATED METHODS
     /**
-     *  Evaluate the operator in a given matrix wrapper in the Fock space
+     *  Evaluate the operator in a given evaluation iterator in the Fock space
      *
      *  @tparam Matrix                       the type of matrix used to store the evaluations
      *
      *  @param one_op                        the one-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
-     *  @param evaluation_iterator           matrix wrapper to which the evaluations are added
+     *  @param evaluation_iterator           evaluation iterator to which the evaluations are added
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
     template<class Matrix>
@@ -312,12 +312,12 @@ public:
     }
 
     /**
-     *  Evaluate the operator in a given matrix wrapper in the Fock space
+     *  Evaluate the operator in a given evaluation iterator in the Fock space
      *
      *  @tparam Matrix                       the type of matrix used to store the evaluations
      *
      *  @param two_op                        the two-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
-     *  @param evaluation_iterator                     matrix wrapper to which the evaluations are added
+     *  @param evaluation_iterator           evaluation iterator to which the evaluations are added
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
     template<class Matrix>
@@ -327,13 +327,13 @@ public:
     }
 
     /**
-     *  Evaluate the operators in a given matrix wrapper in the Fock space
+     *  Evaluate the operators in a given evaluation iterator in the Fock space
      *
      *  @tparam Matrix                       the type of matrix used to store the evaluations
      *
      *  @param one_op                        the one-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
      *  @param two_op                        the two-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
-     *  @param evaluation_iterator                     matrix wrapper to which the evaluations are added
+     *  @param evaluation_iterator           evaluation iterator to which the evaluations are added
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
     template<class Matrix>

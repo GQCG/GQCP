@@ -450,7 +450,6 @@ VectorX<double> ProductFockSpace::evaluateOperatorDiagonal(const SQHamiltonian<d
 }
 
 
-
 /**
  *  Evaluate a one electron operator in a matrix vector product
  *
@@ -465,6 +464,8 @@ VectorX<double> ProductFockSpace::evaluateOperatorMatrixVectorProduct(const Scal
     if (K != this->K) {
         throw std::invalid_argument("ProductFockSpace::evaluateOperatorMatrixVectorProduct(ScalarSQOneElectronOperator<double>, VectorX<double>, VectorX<double>): Basis functions of the Fock space and the operator are incompatible.");
     }
+
+    // Environment for evaluations
     FockSpace fock_space_alpha = this->get_fock_space_alpha();
     FockSpace fock_space_beta = this->get_fock_space_beta();
 
@@ -475,12 +476,15 @@ VectorX<double> ProductFockSpace::evaluateOperatorMatrixVectorProduct(const Scal
 
     VectorX<double> matvec = diagonal.cwiseProduct(x);
 
+    // Map vector to matrix for vectorized multiplications
     Eigen::Map<Eigen::MatrixXd> matvecmap(matvec.data(), dim_beta, dim_alpha);
     Eigen::Map<const Eigen::MatrixXd> xmap(x.data(), dim_beta, dim_alpha);
 
+    // Spin-resolved evaluation
     auto beta_evaluation = fock_space_beta.evaluateOperatorSparse(one_op, false);
     auto alpha_evaluation = fock_space_alpha.evaluateOperatorSparse(one_op, false);
 
+    // Perform the "matvec"
     matvecmap += xmap * alpha_evaluation + beta_evaluation * xmap;
 
     return matvec;
@@ -501,6 +505,8 @@ VectorX<double> ProductFockSpace::evaluateOperatorMatrixVectorProduct(const Scal
     if (K != this->K) {
         throw std::invalid_argument("ProductFockSpace::evaluateOperatorMatrixVectorProduct(ScalarSQTwoElectronOperator<double>, VectorX<double>, VectorX<double>): Basis functions of the Fock space and the operator are incompatible.");
     }
+
+    // Environment for evaluations
     FockSpace fock_space_alpha = this->get_fock_space_alpha();
     FockSpace fock_space_beta = this->get_fock_space_beta();
 
@@ -514,23 +520,25 @@ VectorX<double> ProductFockSpace::evaluateOperatorMatrixVectorProduct(const Scal
     Eigen::Map<Eigen::MatrixXd> matvecmap(matvec.data(), dim_beta, dim_alpha);
     Eigen::Map<const Eigen::MatrixXd> xmap(x.data(), dim_beta, dim_alpha);
 
+    // Mixed-spin evaluation
     for (size_t p = 0; p<K; p++) {
 
         const auto& P = this->oneElectronPartition(p, p, two_op);
         const auto& beta_two_electron_intermediate = fock_space_beta.evaluateOperatorSparse(P, false);
 
-        // sigma(pp) * X * theta(pp)
+        // matvec : sigma(pp) * X * theta(pp)
         matvecmap += beta_two_electron_intermediate * (xmap * alpha_couplings[p*(K+K+1-p)/2]);
         for (size_t q = p + 1; q<K; q++) {
 
             const auto& P = this->oneElectronPartition(p, q, two_op);
             const auto& beta_two_electron_intermediate = fock_space_beta.evaluateOperatorSparse(P, true);
 
-            // (sigma(pq) + sigma(qp)) * X * theta(pq)
+            // matvec : (sigma(pq) + sigma(qp)) * X * theta(pq)
             matvecmap += beta_two_electron_intermediate * (xmap * alpha_couplings[p*(K+K+1-p)/2 + q - p]);
         }
     }
 
+    // Spin-resolved evaluation
     auto beta_evaluation = fock_space_beta.evaluateOperatorSparse(two_op, false);
     auto alpha_evaluation = fock_space_alpha.evaluateOperatorSparse(two_op, false);
 
@@ -554,6 +562,8 @@ VectorX<double> ProductFockSpace::evaluateOperatorMatrixVectorProduct(const SQHa
     if (K != this->K) {
         throw std::invalid_argument("ProductFockSpace::evaluateOperatorMatrixVectorProduct(SQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the Fock space and the operator are incompatible.");
     }
+
+    // Environment for evaluations
     FockSpace fock_space_alpha = this->get_fock_space_alpha();
     FockSpace fock_space_beta = this->get_fock_space_beta();
 
@@ -567,23 +577,25 @@ VectorX<double> ProductFockSpace::evaluateOperatorMatrixVectorProduct(const SQHa
     Eigen::Map<Eigen::MatrixXd> matvecmap(matvec.data(), dim_beta, dim_alpha);
     Eigen::Map<const Eigen::MatrixXd> xmap(x.data(), dim_beta, dim_alpha);
 
+    // Mixed-spin evaluation
     for (size_t p = 0; p<K; p++) {
 
         const auto& P = this->oneElectronPartition(p, p, sq_hamiltonian.twoElectron());
         const auto& beta_two_electron_intermediate = fock_space_beta.evaluateOperatorSparse(P, false);
 
-        // sigma(pp) * X * theta(pp)
+        // matvec : sigma(pp) * X * theta(pp)
         matvecmap += beta_two_electron_intermediate * (xmap * alpha_couplings[p*(K+K+1-p)/2]);
         for (size_t q = p + 1; q<K; q++) {
 
             const auto& P = this->oneElectronPartition(p, q, sq_hamiltonian.twoElectron());
             const auto& beta_two_electron_intermediate = fock_space_beta.evaluateOperatorSparse(P, true);
 
-            // (sigma(pq) + sigma(qp)) * X * theta(pq)
+            // matvec : (sigma(pq) + sigma(qp)) * X * theta(pq)
             matvecmap += beta_two_electron_intermediate * (xmap * alpha_couplings[p*(K+K+1-p)/2 + q - p]);
         }
     }
 
+    // Spin-resolved evaluation
     auto beta_hamiltonian = fock_space_beta.evaluateOperatorSparse(sq_hamiltonian, false);
     auto alpha_hamiltonian = fock_space_alpha.evaluateOperatorSparse(sq_hamiltonian, false);
 
