@@ -83,14 +83,13 @@ jobs:
 
     - name: Build GQCP
       run: |
-        ls
-        cd  ${{ github.repository }}
         mkdir build && cd build
         $CONDA/bin/cmake .. -DBUILD_TESTS=TRUE -DBUILD_BENCHMARKS=TRUE -DBUILD_PYTHON_BINDINGS=TRUE -DCMAKE_INSTALL_PREFIX=~/.local -DCMAKE_PREFIX_PATH=${HOME}/
         make -j10 && sudo make install
 
     - name: Benchmarks
       run: |
+        cd build
         cd benchmarks
         ./doci_case --benchmark_counters_tabular=true
         ./doci_matrix --benchmark_counters_tabular=true
