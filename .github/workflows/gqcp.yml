@@ -20,6 +20,7 @@ jobs:
     env:
       CONDA: /usr/share/miniconda
     
+
     steps:
     - uses: snickerbockers/cmake-configure@prerel1
     - uses: actions/setup-python@v1
@@ -31,7 +32,7 @@ jobs:
       id: cache-miniconda
       uses: actions/cache@v1
       with:
-        path: miniconda
+        path: $CONDA
         key: ${{ runner.os }}-miniconda
 
     - name: Install Miniconda
@@ -46,7 +47,7 @@ jobs:
       id: cache-conda
       uses: actions/cache@v1
       with:
-        path: miniconda
+        path: $Conda
         key: ${{ runner.os }}-conda
 
     - name: Configure Conda
@@ -66,7 +67,7 @@ jobs:
       id: cache-libcint
       uses: actions/cache@v1
       with:
-        path: libcint
+        path: ~/.local/libcint
         key: ${{ runner.os }}-libcint
 
     - name: Install Libcint
@@ -77,10 +78,10 @@ jobs:
         git clone -b develop https://github.com/GQCG/libcint.git
         cd libcint
         mkdir build && cd build
-        $CONDA/bin/cmake .. -DUSE_MKL=TRUE -DCMAKE_INSTALL_PREFIX=~/.local -DCMAKE_PREFIX_PATH=$CONDA
+        $CONDA/bin/cmake .. -DUSE_MKL=TRUE -DCMAKE_INSTALL_PREFIX=~/.local/libcint -DCMAKE_PREFIX_PATH=$CONDA
         make -j3 && sudo make install
 
-
+    
     - name: Build GQCP
       run: |
         mkdir build && cd build
