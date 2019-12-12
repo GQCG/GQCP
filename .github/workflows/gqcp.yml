@@ -3,6 +3,7 @@ on: [push, pull_request]
 env:
   slack_color: '#FF0000'
   slack_message: 'Build failed'
+
 # Jobs are ran in parallel
 jobs:
 
@@ -100,8 +101,8 @@ jobs:
       uses: rtCamp/action-slack-notify@master
       env:
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-        SLACK_COLOR: ${{slack_color}}
+        SLACK_COLOR: $slack_color
         SLACK_ICON: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
-        SLACK_MESSAGE: ${{slack_message}}
-        SLACK_TITLE: ${{GITHUB_REF}}
+        SLACK_MESSAGE: $slack_message
+        SLACK_TITLE: $GITHUB_REF
         SLACK_USERNAME: GitHub
