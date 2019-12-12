@@ -27,43 +27,43 @@ namespace GQCP {
 
 
 /**
- *  A templated private class for Fock spaces (private constructors with Fock spaces friends)
+ *  A templated private class for Fock spaces: its constructors are private, but Fock spaces are its friends
  *  It supports dense, sparse and matrix vector product storage for elements evaluated in the Fock space.
  *
- *  @tparam Matrix              the type of matrix in which the evaluations of the Fock space will be stored
+ *  @tparam _Matrix              the type of matrix in which the evaluations of the Fock space will be stored
  */
-template<class Matrix>
+template <typename Matrix_>
 class EvaluationIterator {
     size_t index = 0;  // current position of the iterator in the dimension of the Fock space
-    size_t end;  // total dimension
+    size_t end;  // the dimension of the Fock space
 
     Matrix matrix;  // matrix containing the evaluations
 
     // CONSTRUCTOR
     /**
-     * @param dimension         the dimensions of the matrix (equal to that of the fock space)
+     * @param dimension         the dimension of the Fock space
      */
-    EvaluationIterator(size_t dimension) :  matrix(Matrix::Zero(dimension, dimension)), end(dimension) {}
+    EvaluationIterator(const size_t dimension) :  matrix(Matrix::Zero(dimension, dimension)), end(dimension) {}
 
 
     // PUBLIC METHODS
     /**
-     *  Adds a value in which the set index corresponds to the row and a given index corresponds to the column
+     *  Add a value to the matrix evaluation in which the current iterator index corresponds to the row and the given index corresponds to the column
      * 
      *  @param j         column index of the matrix
      *  @param value     the value which is added to a given position in the matrix
      */
-    void add_columnwise(size_t j, double value) {
+    void addColumnwise(const size_t column, const double value) {
         this->matrix(this->index, j) += value;
     }
 
     /**
-     *  Adds a value in which the set index corresponds to the column and a given index corresponds to the row
+     *  Add a value to the matrix evaluation in which the current iterator index corresponds to the column and the given index corresponds to the row
      * 
      *  @param i         row index of the matrix
      *  @param value     the value which is added to a given position in the matrix
      */
-    void add_rowwise(size_t i, double value) {
+    void addRowwise(const size_t row, const double value) {
         this->matrix(i, this->index) += value;
     }
 
@@ -88,10 +88,9 @@ class EvaluationIterator {
         }
     }
 
-    // GETTER
     const Matrix& evaluation() const { return this->matrix; }
 
-    // Friend Classes
+    // Friend classes
     friend class FockSpace;
     friend class SelectedFockSpace;
     friend class ProductFockSpace;

@@ -221,13 +221,14 @@ public:
     VectorX<double> evaluateOperatorDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const override;
 
     /**
-     *  Evaluate a one electron operator in a matrix vector product
+     *  Evaluate the matrix-vector product of a one-electron operator
      *
-     *  @param one_op                       the one electron operator expressed in an orthonormal basis
-     *  @param x                            the vector upon which the evaluation acts 
-     *  @param diagonal                     the diagonal evaluated in the Fock space
+     *  @param one_op                       the one-electron operator expressed in an orthonormal basis
+     *  @param x                            the vector of the matrix-vector product
+     *  @param diagonal                     the diagonal of the matrix representation of the operator inside the Fock space
      *
-     *  @return the one electron operator's matrix vector product in a vector with the dimensions of the Fock space
+     *  @return a vector that is equal to the matrix-vector product of the one-electron operator's matrix representation and the given vector
+
      */
     VectorX<double> evaluateOperatorMatrixVectorProduct(const ScalarSQOneElectronOperator<double>& one_op, const VectorX<double>& x, const VectorX<double>& diagonal) const;
 

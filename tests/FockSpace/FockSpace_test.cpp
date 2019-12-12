@@ -531,10 +531,9 @@ BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_diagonal_vs_no_diagonal) {
 }
 
 
-
 /**
- *  Perform a matrix vector product evaluation of a one-, two-electron operator and the Hamiltonian in the Fock space
- *  and compare these to the matrix vector product of the actual dense evaluations.
+ *  Perform a matrix-vector product evaluation of a one-, two-electron operator and the Hamiltonian in the Fock space
+ *  and compare these to the matrix-vector product of the actual dense evaluations
  */
 BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_MatrixVectorProduct ) {
 
