@@ -55,6 +55,7 @@ jobs:
         source $CONDA/bin/activate
         hash -r
         conda config --set always_yes yes --set changeps1 no
+        
     - name: Install Conda Modules
       if: steps.cache-conda.outputs.cache-hit != 'true'
       run: |   
@@ -67,7 +68,7 @@ jobs:
       id: cache-libcint
       uses: actions/cache@v1
       with:
-        path: ~/.local/libcint
+        path: $CONDA
         key: ${{ runner.os }}-libcint
 
     - name: Install Libcint
@@ -85,7 +86,7 @@ jobs:
     - name: Build GQCP
       run: |
         mkdir build && cd build
-        $CONDA/bin/cmake .. -DBUILD_TESTS=TRUE -DBUILD_BENCHMARKS=TRUE -DBUILD_PYTHON_BINDINGS=TRUE -DCMAKE_INSTALL_PREFIX=~/.local -DCMAKE_PREFIX_PATH=${HOME}/
+        $CONDA/bin/cmake .. -DBUILD_TESTS=TRUE -DBUILD_BENCHMARKS=TRUE -DBUILD_PYTHON_BINDINGS=TRUE -Dcint_ROOT_DIR -DCMAKE_INSTALL_PREFIX=~/.local -DCMAKE_PREFIX_PATH=${HOME}/
         make -j10 && sudo make install
 
     - name: Benchmarks
