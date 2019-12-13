@@ -16,13 +16,13 @@ static void matvec(benchmark::State& state) {
     GQCP::FockSpace fock_space (K, N);
 
     GQCP::QCMatrix<double> one_op_par = GQCP::QCMatrix<double>::Random(K, K);
-    GQCP::ScalarSQOneElectronOperator<double> sq_one_op ({one_electron_parameters});
-    GQCP::VectorX<double> diagonal = fock_space.evaluateOperatorDiagonal(sq_one_electron);
+    GQCP::ScalarSQOneElectronOperator<double> sq_one_op ({one_op_par});
+    GQCP::VectorX<double> diagonal = fock_space.evaluateOperatorDiagonal(sq_one_op);
     GQCP::VectorX<double> x = fock_space.randomExpansion();
 
     // Code inside this loop is measured repeatedly
     for (auto _ : state) {
-        GQCP::VectorX<double> matvec = fock_space.evaluateOperatorMatrixVectorProduct(sq_one_electron, x, diagonal);
+        GQCP::VectorX<double> matvec = fock_space.evaluateOperatorMatrixVectorProduct(sq_one_op, x, diagonal);
 
         benchmark::DoNotOptimize(matvec);  // make sure the variable is not optimized away by compiler
     }
