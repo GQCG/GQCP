@@ -64,7 +64,7 @@ private:
      *  @param value     the value which is added to a given position in the matrix
      */
     void addColumnwise(const size_t column, const double value) {
-        this->matrix(this->index, j) += value;
+        this->matrix(this->index, column) += value;
     }
 
     /**
@@ -74,7 +74,7 @@ private:
      *  @param value     the value which is added to a given position in the matrix
      */
     void addRowwise(const size_t row, const double value) {
-        this->matrix(i, this->index) += value;
+        this->matrix(row, this->index) += value;
     }
 
     /**
@@ -157,8 +157,8 @@ class EvaluationIterator<Eigen::SparseMatrix<double>> {
      *  @param j         column index of the matrix
      *  @param value     the value which is added to a given position in the matrix
      */
-    void addColumnwise(const size_t j, const double value) {
-        this->triplet_vector.emplace_back(this->index, j, value);
+    void addColumnwise(const size_t column, const double value) {
+        this->triplet_vector.emplace_back(this->index, column, value);
     }
 
 
@@ -170,8 +170,8 @@ class EvaluationIterator<Eigen::SparseMatrix<double>> {
      *  @param i         row index of the matrix
      *  @param value     the value which is added to a given position in the matrix
      */
-    void addRowwise(const size_t i, const double value) {
-        this->triplet_vector.emplace_back(i, this->index, value);
+    void addRowwise(const size_t row, const double value) {
+        this->triplet_vector.emplace_back(row, this->index, value);
     }
 
 
@@ -269,8 +269,8 @@ class EvaluationIterator<VectorX<double>> {
      *  @param j         column index of the matrix
      *  @param value     the value which is added to a given position in the matrix
      */
-    void addColumnwise(const size_t j, const double value) {
-        sequential_double += value * coefficient_vector(j);
+    void addColumnwise(const size_t column, const double value) {
+        sequential_double += value * coefficient_vector(column);
     }
 
     /**
@@ -279,8 +279,8 @@ class EvaluationIterator<VectorX<double>> {
      *  @param i         row index of the matrix
      *  @param value     the value which is added to a given position in the matrix
      */
-    void addRowwise(const size_t i, const double value) {
-        this->matvec(i) += value * this->nonsequential_double;
+    void addRowwise(const size_t row, const double value) {
+        this->matvec(row) += value * this->nonsequential_double;
     }
 
     /**
