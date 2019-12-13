@@ -102,8 +102,8 @@ jobs:
       uses: rtCamp/action-slack-notify@master
       env:
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-        SLACK_COLOR: ${{"$BUILD_COLOR"}}
+        SLACK_COLOR: ${{ env.BUILD_COLOR}}
         SLACK_ICON: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
-        SLACK_MESSAGE: ${{"$BUILD_MESSAGE"}}
+        SLACK_MESSAGE: ${{ env.BUILD_MESSAGE"}}
         SLACK_TITLE: ${{"$GITHUB_REF"}}
         SLACK_USERNAME: GitHub
