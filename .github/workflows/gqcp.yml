@@ -25,18 +25,17 @@ jobs:
     - uses: actions/checkout@v1
 
 # Set cache actions: links files at a path to a key to be stored
-#    - name: Cache Conda
-#      id: cache-conda  # cache id
-#      uses: actions/cache@v1. # Marketplace script
+    - name: Cache Conda
+      id: cache-conda  # cache id
+      uses: actions/cache@v1. # Marketplace script
       # Store all files in $CONDA, link with key "Linux-conda"
-#      with:
-#        path: $CONDA
-#        key: ${{ runner.os }}-conda
+      with:
+        path: $CONDA
+        key: ${{ runner.os }}-conda
 
     - name: Install Miniconda
 #      if: steps.cache-conda.outputs.cache-hit != 'true'  # If cached skip
       run: |
-        rt/ls/vw/cmake --version
         rm -rf $CONDA;
         mkdir -p $HOME/download;
         wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O $HOME/download/miniconda.sh;
@@ -97,8 +96,10 @@ jobs:
         make -j3 && ./test_driver
         echo "::set-env name=BUILD_MESSAGE::'Build successful'"
         echo "::set-env name=BUILD_COLOR::'#00FF00'"
+        
+# Slack Notifications
     - name: slackNotification
-      if: always()
+      if: always()  # This step will always run, even if a previous step fails
       uses: rtCamp/action-slack-notify@master
       env:
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
