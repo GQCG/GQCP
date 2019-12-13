@@ -1,8 +1,8 @@
 name: GQCP
-on: [push, pull_request]
+on: [pull_request]
 env:
-  slack_color: '#FF0000'
-  slack_message: 'Build failed'
+  BUILD_COLOR: '#FF0000'
+  BUILD_MESSAGE: 'Build failed'
 
 # Jobs are ran in parallel
 jobs:
@@ -95,15 +95,15 @@ jobs:
         mkdir build && cd build
         $CONDA/bin/cmake .. -DCMAKE_PREFIX_PATH=$CONDA -DGQCP_INSTALL_PREFIX=~/.local -Dgqcp_DIR=/home/runner/.local/cmake
         make -j3 && ./test_driver
-        echo "::set-env name=slack_message::'Build successful'"
-        echo "::set-env name=slack_color::'#00FF00'"
+        echo "::set-env name=BUILD_MESSAGE::'Build successful'"
+        echo "::set-env name=BUILD_COLOR::'#00FF00'"
     - name: slackNotification
       if: always()
       uses: rtCamp/action-slack-notify@master
       env:
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-        SLACK_COLOR: "$slack_color"
+        SLACK_COLOR: ${{"$BUILD_COLOR"}}
         SLACK_ICON: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
-        SLACK_MESSAGE: "$slack_message"
-        SLACK_TITLE: "$GITHUB_REF"
+        SLACK_MESSAGE: ${{"$BUILD_MESSAGE"}}
+        SLACK_TITLE: ${{"$GITHUB_REF"}}
         SLACK_USERNAME: GitHub
