@@ -105,5 +105,5 @@ jobs:
         SLACK_COLOR: ${{ env.BUILD_COLOR}}
         SLACK_ICON: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
         SLACK_MESSAGE: ${{ env.BUILD_MESSAGE}}
-        SLACK_TITLE: ${{ GITHUB_REF }}
+        SLACK_TITLE: ${{ env.GITHUB_REF }}
         SLACK_USERNAME: GitHub
