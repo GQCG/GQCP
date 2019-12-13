@@ -32,7 +32,7 @@ namespace GQCP {
  *
  *  @tparam _Matrix              the type of matrix in which the evaluations of the Fock space will be stored
  */
-template <typename Matrix_>
+template <typename _Matrix>
 class EvaluationIterator {
 public:
     using Matrix = _Matrix;
