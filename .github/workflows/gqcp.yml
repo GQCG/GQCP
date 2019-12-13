@@ -36,6 +36,7 @@ jobs:
     - name: Install Miniconda
 #      if: steps.cache-conda.outputs.cache-hit != 'true'  # If cached skip
       run: |
+        rt/ls/vw/cmake --version
         rm -rf $CONDA;
         mkdir -p $HOME/download;
         wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O $HOME/download/miniconda.sh;
