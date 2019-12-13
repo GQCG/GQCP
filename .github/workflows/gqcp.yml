@@ -1,5 +1,8 @@
 name: GQCP
+
 on: [pull_request]
+
+# These variables are for the slack notification, the default is failure, if all build steps are successful they will be updated to green and "Build successful"
 env:
   BUILD_COLOR: '#FF0000'
   BUILD_MESSAGE: 'Build failed'
@@ -86,6 +89,7 @@ jobs:
         ./hubbard_matvec --benchmark_counters_tabular=true
 
 # Test if installed library links properly to external driver
+# This is the final step to verify success, if it does not error it updates the env variables
     - name: Link
       run: |
         cd /tmp
@@ -94,8 +98,8 @@ jobs:
         mkdir build && cd build
         $CONDA/bin/cmake .. -DCMAKE_PREFIX_PATH=$CONDA -DGQCP_INSTALL_PREFIX=~/.local -Dgqcp_DIR=/home/runner/.local/cmake
         make -j3 && ./test_driver
-        echo "::set-env name=BUILD_MESSAGE::'Build successful'"
-        echo "::set-env name=BUILD_COLOR::'#00FF00'"
+        echo "::set-env name=BUILD_MESSAGE::Build successful" 
+        echo "::set-env name=BUILD_COLOR::#00FF00"
         
 # Slack Notifications
     - name: slackNotification
