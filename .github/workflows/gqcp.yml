@@ -4,81 +4,72 @@ on: [pull_request]
 
 # These variables are for the slack notification, the default is failure, if all build steps are successful they will be updated to green and "Build successful"
 env:
-  BUILD_COLOR: '#FF0000'
-  BUILD_MESSAGE: 'Build failed'
+  COLOR_SUCCESSFUL: "#00FF00"  # green
+  COLOR_FAILED: "#FF000"  # red
+  MESSAGE_SUCCESSFUL: = "Build successful"
+  MESSAGE_FAILED: = "Build failed"
+# Defaults are failure
+  SLACK_COLOR: COLOR_FAILED  
+  SLACK_MESSAGE: MESSAGE_FAILED
 
-# Jobs are ran in parallel
 jobs:
-
-# BUILD
   build:
     runs-on: ubuntu-latest
-    # Environment variables
+    # Environment variables for the build environment (build.env)
     env:
-      CONDA: /usr/share/miniconda
-      LIBINT_DATA_PATH: $CONDA/share/libint/2.3.1/basis
+      CONDA_HOME: /usr/share/miniconda
+      LIBINT_DATA_PATH: ${CONDA_HOME}/share/libint/2.3.1/basis
 
-# Various steps to perform the build
     steps:
-    # Cmake & Python scripts
+  
+    # Install CMake and python through GitHub actions
     - uses: snickerbockers/cmake-configure@prerel1
     - uses: actions/setup-python@v1
       with:
         python-version: '3.7' 
     - uses: actions/checkout@v1
 
-# Set cache actions: links files at a path to a key to be stored
-#    - name: Cache Conda
-#      id: cache-conda  # cache id
-#      uses: actions/cache@v1.0.3. # Marketplace script
-      # Store all files in $CONDA, link with key "Linux-conda"
-#      with:
-#        path: $CONDA
-#        key: ${{ runner.os }}-conda
-
     - name: Install Miniconda
- #     if: steps.cache-conda.outputs.cache-hit != 'true'  # If cached skip
       run: |
-        rm -rf $CONDA;
+        rm -rf ${CONDA_HOME};
         mkdir -p $HOME/download;
         wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O $HOME/download/miniconda.sh;
-        bash $HOME/download/miniconda.sh -b -p $CONDA;
+        bash $HOME/download/miniconda.sh -b -p ${CONDA_HOME};
 
     - name: Configure Conda
       run: |   
-        source $CONDA/bin/activate
+        source ${CONDA_HOME}/bin/activate
         hash -r
         conda config --set always_yes yes --set changeps1 no
         
-    - name: Install Conda Modules
-#      if: steps.cache-conda.outputs.cache-hit != 'true'  # If cached skip
+        
+    - name: Install some GQCP dependencies through Conda
       run: |   
         conda install -c conda-forge cmake=3.13 boost-cpp=1.69.0 eigen blas mkl pybind11 benchmark numpy;
         conda install -c gqcg libint spectra;
         conda install -c intel mkl-include mkl-static intel-openmp;
 
     - name: Install Libcint
-#      if: steps.cache-conda.outputs.cache-hit != 'true'  # If cached skip
-      # Note that we install Libcint in $CONDA
+      # Note that we install Libcint in ${CONDA_HOME}
       run: |
         cd /tmp
         git clone -b develop https://github.com/GQCG/libcint.git
         cd libcint
         mkdir build && cd build
-        $CONDA/bin/cmake .. -DUSE_MKL=TRUE -DCMAKE_INSTALL_PREFIX=$CONDA -DCMAKE_PREFIX_PATH=$CONDA
+        ${CONDA_HOME}/bin/cmake .. -DUSE_MKL=TRUE -DCMAKE_INSTALL_PREFIX=${CONDA_HOME} -DCMAKE_PREFIX_PATH=${CONDA_HOME}
         make -j3 && sudo make install
+        
 # Build & test the library 
-    - name: Build GQCP
+    - name: Build GQCP and run tests
       run: |
         mkdir build && cd build
-        $CONDA/bin/cmake .. -DBUILD_TESTS=TRUE -DBUILD_BENCHMARKS=TRUE -DBUILD_PYTHON_BINDINGS=TRUE -DCMAKE_INSTALL_PREFIX=~/.local -DCMAKE_PREFIX_PATH=$CONDA
+        ${CONDA_HOME}/bin/cmake .. -DBUILD_TESTS=TRUE -DBUILD_BENCHMARKS=TRUE -DBUILD_PYTHON_BINDINGS=TRUE -DCMAKE_INSTALL_PREFIX=~/.local -DCMAKE_PREFIX_PATH=${CONDA_HOME}
         make -j10 && sudo make install
         
 # Run the benchmarks
-    - name: Benchmarks
+    - name: Run benchmarks
       run: |
-        cd build
-        cd benchmarks
+        cd build && cd benchmarks
         ./doci_case --benchmark_counters_tabular=true
         ./doci_matrix --benchmark_counters_tabular=true
         ./doci_matvec --benchmark_counters_tabular=true
@@ -88,27 +79,26 @@ jobs:
         ./hubbard_matrix --benchmark_counters_tabular=true
         ./hubbard_matvec --benchmark_counters_tabular=true
 
-# Test if installed library links properly to external driver
-# This is the final step to verify success, if it does not error it updates the env variables
-    - name: Link
+# Test if the installed library links properly to external driver
+# This is the final step to verify a successful build: if it does not error it updates the env variables
+    - name: Check external linking
       run: |
         cd /tmp
         git clone https://github.com/GQCG/gqcp-link.git
         cd gqcp-link
         mkdir build && cd build
-        $CONDA/bin/cmake .. -DCMAKE_PREFIX_PATH=$CONDA -DGQCP_INSTALL_PREFIX=~/.local -Dgqcp_DIR=/home/runner/.local/cmake
+        ${CONDA_HOME}/bin/cmake .. -DCMAKE_PREFIX_PATH=${CONDA_HOME} -DGQCP_INSTALL_PREFIX=~/.local -Dgqcp_DIR=/home/runner/.local/cmake
         make -j3 && ./test_driver
-        echo "::set-env name=BUILD_MESSAGE::Build successful" 
-        echo "::set-env name=BUILD_COLOR::#00FF00"
+        echo "::set-env name=SLACK_MESSAGE::$MESSAGE_SUCCESSFUL" 
+        echo "::set-env name=SLACK_COLOR::$COLOR_SUCCESSFUL"
         
-# Slack Notifications
-    - name: slackNotification
-      if: always()  # This step will always run, even if a previous step fails
+    - name: Slack notification
+      if: always()  # this step will always run, even if a previous step fails
       uses: rtCamp/action-slack-notify@master
       env:
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-        SLACK_COLOR: ${{ env.BUILD_COLOR}}
+        SLACK_COLOR: ${{ env.SLACK_COLOR}}
         SLACK_ICON: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
-        SLACK_MESSAGE: ${{ env.BUILD_MESSAGE}}
+        SLACK_MESSAGE: ${{ env.SLACK_MESSAGE}}
         SLACK_TITLE: ${{ env.GITHUB_REF }}
-        SLACK_USERNAME: GitHub
+        SLACK_USERNAME: GitHub Actions
