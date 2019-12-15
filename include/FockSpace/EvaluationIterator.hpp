@@ -60,7 +60,7 @@ private:
     /**
      *  Add a value to the matrix evaluation in which the current iterator index corresponds to the row and the given index corresponds to the column
      * 
-     *  @param j         column index of the matrix
+     *  @param column    column index of the matrix
      *  @param value     the value which is added to a given position in the matrix
      */
     void addColumnwise(const size_t column, const double value) {
@@ -70,7 +70,7 @@ private:
     /**
      *  Add a value to the matrix evaluation in which the current iterator index corresponds to the column and the given index corresponds to the row
      * 
-     *  @param i         row index of the matrix
+     *  @param row       row index of the matrix
      *  @param value     the value which is added to a given position in the matrix
      */
     void addRowwise(const size_t row, const double value) {
@@ -131,7 +131,9 @@ class EvaluationIterator<Eigen::SparseMatrix<double>> {
     /**
      * @param dimension         the dimensions of the matrix (equal to that of the fock space)
      */
-    EvaluationIterator(const size_t dimension) : matrix(Eigen::SparseMatrix<double>(dimension, dimension)), end(dimension) {}
+    EvaluationIterator(const size_t dimension) : 
+        matrix(Eigen::SparseMatrix<double>(dimension, dimension)), end(dimension) 
+    {}
 
 
     /*
@@ -141,7 +143,7 @@ class EvaluationIterator<Eigen::SparseMatrix<double>> {
     /**
      *  Reserves an amount of memory for the triplet vector
      *
-     *  @param n        amount of memory reserved
+     *  @param n        the amount triplets that should be reserved
      */
     void reserve(const size_t n) {
         this->triplet_vector.reserve(n);
@@ -154,7 +156,7 @@ class EvaluationIterator<Eigen::SparseMatrix<double>> {
      *  This function adds the values to a triplet vector
      *  to add the values to the sparse matrix, one should call "addToMatrix()"
      * 
-     *  @param j         column index of the matrix
+     *  @param column    column index of the matrix
      *  @param value     the value which is added to a given position in the matrix
      */
     void addColumnwise(const size_t column, const double value) {
@@ -167,7 +169,7 @@ class EvaluationIterator<Eigen::SparseMatrix<double>> {
      *  This function adds the values to a triplet vector
      *  to add the values to the sparse matrix, one should call "addToMatrix()"
      * 
-     *  @param i         row index of the matrix
+     *  @param row       row index of the matrix
      *  @param value     the value which is added to a given position in the matrix
      */
     void addRowwise(const size_t row, const double value) {
@@ -178,9 +180,8 @@ class EvaluationIterator<Eigen::SparseMatrix<double>> {
     /**
      *  Fill the sparse matrix with the elements stored in the triplet vector
      *  the more elements that are already present in the matrix, the more expensive this operation becomes
-     *  Therefore, it is ill-advised to call the method more than once
-     *
-     *  After filling, the triplet vector is cleared
+     *  Therefore, it is ill-advised to call the method more than once,
+     *  after filling, the triplet vector is cleared
      */
     void addToMatrix() {
         this->matrix.setFromTriplets(this->triplet_vector.begin(), this->triplet_vector.end());
@@ -188,7 +189,9 @@ class EvaluationIterator<Eigen::SparseMatrix<double>> {
     }
 
     /**
-     *  @return the evaluation that is stored (will not initialized if addToMatrix()) has not been called
+     *  @return the evaluation that is stored
+     * 
+     *  @note the matrix will not be initialized if `addToMatrix()` has not been called
      */ 
     const Eigen::SparseMatrix<double>& evaluation() const { return this->matrix; }
 
@@ -236,8 +239,8 @@ class EvaluationIterator<VectorX<double>> {
 
     VectorX<double> matvec;  // matvec containing the evaluations
     const VectorX<double>& coefficient_vector;  // vector with which is multiplied
-    double sequential_double = 0;  // double which temporarily contains the sum of added values, it corresponds to the value in the matvec of the current index and allows a for a single write access each iteration instead of multiple.
-    double nonsequential_double = 0;  // double gathered from the coefficient for non-sequential matvec additions, this corresponds to the value of the coefficient vector of the current index, it allows for a single read operation each iteration.
+    double sequential_double = 0;  // double which temporarily contains the sum of added values, it corresponds to the value in the matvec of the current index and allows a for a single write access each iteration instead of multiple
+    double nonsequential_double = 0;  // double gathered from the coefficient for non-sequential matvec additions, this corresponds to the value of the coefficient vector of the current index, it allows for a single read operation each iteration
 
 
     /*
@@ -248,14 +251,14 @@ class EvaluationIterator<VectorX<double>> {
      * @param dimension         the dimensions of the matrix (equal to that of the fock space)
      */
     EvaluationIterator(const VectorX<double>& coefficient_vector, const VectorX<double>& diagonal) : 
-    end (coefficient_vector.rows()),
-    coefficient_vector(coefficient_vector), 
-    matvec(diagonal.cwiseProduct(coefficient_vector))
+        end (coefficient_vector.rows()),
+        coefficient_vector(coefficient_vector), 
+        matvec(diagonal.cwiseProduct(coefficient_vector))
     {}
 
     EvaluationIterator(const VectorX<double>& coefficient_vector) : 
-    coefficient_vector(coefficient_vector), 
-    matvec(VectorX<double>::Zero(coefficient_vector.rows()))
+        coefficient_vector(coefficient_vector), 
+        matvec(VectorX<double>::Zero(coefficient_vector.rows()))
     {}
 
 
@@ -266,7 +269,7 @@ class EvaluationIterator<VectorX<double>> {
     /**
      *  Add a value to the matrix evaluation in which the current iterator index corresponds to the row and the given index corresponds to the column
      * 
-     *  @param j         column index of the matrix
+     *  @param column    column index of the matrix
      *  @param value     the value which is added to a given position in the matrix
      */
     void addColumnwise(const size_t column, const double value) {
@@ -276,7 +279,7 @@ class EvaluationIterator<VectorX<double>> {
     /**
      *  Add a value to the matrix evaluation in which the current iterator index corresponds to the column and the given index corresponds to the row
      * 
-     *  @param i         row index of the matrix
+     *  @param row       row index of the matrix
      *  @param value     the value which is added to a given position in the matrix
      */
     void addRowwise(const size_t row, const double value) {
@@ -289,7 +292,7 @@ class EvaluationIterator<VectorX<double>> {
     const VectorX<double>& evaluation() const { return this->matvec; }
 
     /**
-     *  Move to the next index in the iteration, this is accompanied by an addition to the matvec and reset of the sequential double.
+     *  Move to the next index in the iteration, this is accompanied by an addition to the matvec and reset of the sequential double
      */
     void increment() {
         this->matvec(this->index) += sequential_double;

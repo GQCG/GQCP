@@ -244,8 +244,8 @@ public:
      *  @param evaluation_iterator           evaluation iterator to which the evaluations are added
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
-    template<class Matrix>
-    void EvaluateOperator(const ScalarSQOneElectronOperator<double>& one_op, EvaluationIterator<Matrix>& evaluation_iterator, bool diagonal_values) const {
+    template <typename _Matrix>
+    void EvaluateOperator(const ScalarSQOneElectronOperator<double>& one_op, EvaluationIterator<_Matrix>& evaluation_iterator, bool diagonal_values) const {
 
         const size_t dim = this->get_dimension();
         const auto& one_op_par = one_op.parameters();
@@ -320,8 +320,8 @@ public:
      *  @param evaluation_iterator           evaluation iterator to which the evaluations are added
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
-    template<class Matrix>
-    void EvaluateOperator(const ScalarSQTwoElectronOperator<double>& two_op, EvaluationIterator<Matrix>& evaluation_iterator, bool diagonal_values) const {
+   template <typename _Matrix>
+    void EvaluateOperator(const ScalarSQTwoElectronOperator<double>& two_op, EvaluationIterator<_Matrix>& evaluation_iterator, bool diagonal_values) const {
         // Calling this combined method for both the one- and two-electron operator does not affect the performance, hence we avoid writting more code by plugging a zero operator in the combined method.
         EvaluateOperator(ScalarSQOneElectronOperator<double>(this->K), two_op, evaluation_iterator, diagonal_values);
     }
@@ -336,8 +336,8 @@ public:
      *  @param evaluation_iterator           evaluation iterator to which the evaluations are added
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
-    template<class Matrix>
-    void EvaluateOperator(const ScalarSQOneElectronOperator<double>& one_op, const ScalarSQTwoElectronOperator<double>& two_op, EvaluationIterator<Matrix>& evaluation_iterator, bool diagonal_values) const {
+    template <typename _Matrix>
+    void EvaluateOperator(const ScalarSQOneElectronOperator<double>& one_op, const ScalarSQTwoElectronOperator<double>& two_op, EvaluationIterator<_Matrix>& evaluation_iterator, bool diagonal_values) const {
 
         const size_t dim = this->get_dimension();
         const size_t K = this->get_K();
