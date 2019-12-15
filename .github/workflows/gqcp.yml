@@ -6,8 +6,8 @@ on: [pull_request]
 env:
   COLOR_SUCCESSFUL: "#00FF00"  # green
   COLOR_FAILED: "#FF000"  # red
-  MESSAGE_SUCCESSFUL: = "Build successful"
-  MESSAGE_FAILED: = "Build failed"
+  MESSAGE_SUCCESSFUL: Build successful
+  MESSAGE_FAILED: Build failed
 # Defaults are failure
   SLACK_COLOR: COLOR_FAILED  
   SLACK_MESSAGE: MESSAGE_FAILED
