@@ -37,16 +37,27 @@ namespace QCMethod {
  */
 
 /**
+ *  @param molecule             the molecule that will be solved for
+ *  @param basis_set            the basisset that should be used
+ *  @param use_davidson         indicate if one wants to use davidson to solve the eigenvalue problem (opposed to dense)
+ *  @param localize             indicate if one wants to localize the orbitals before 
+ */
+DOCINewtonOrbitalOptimizer::DOCINewtonOrbitalOptimizer(const Molecule& molecule, const std::string& basis_set, const bool use_davidson, const bool localize) :
+    molecule (molecule),
+    basis_set (basis_set),
+    use_davidson (use_davidson),
+    localize (localize)
+{}
+
+
+/**
  *  @param xyz_filename         the file that contains the molecule specification (coordinates in angstrom)
  *  @param basis_set            the basisset that should be used
  *  @param use_davidson         indicate if one wants to use davidson to solve the eigenvalue problem (opposed to dense)
  *  @param localize             indicate if one wants to localize the orbitals before 
  */
 DOCINewtonOrbitalOptimizer::DOCINewtonOrbitalOptimizer(const std::string& xyz_filename, const std::string& basis_set, const bool use_davidson, const bool localize) :
-    xyz_filename (xyz_filename),
-    basis_set (basis_set),
-    use_davidson (use_davidson),
-    localize (localize)
+    DOCINewtonOrbitalOptimizer(Molecule::ReadXYZ(xyz_filename), basis_set, use_davidson, localize)
 {}
 
 
@@ -61,13 +72,12 @@ DOCINewtonOrbitalOptimizer::DOCINewtonOrbitalOptimizer(const std::string& xyz_fi
 void DOCINewtonOrbitalOptimizer::solve() {
 
     // Construct the molecular Hamiltonian in the RHF basis
-    auto molecule = Molecule::ReadXYZ(this->xyz_filename);
-    RSpinorBasis<double, GTOShell> spinor_basis (molecule, this->basis_set);
+    RSpinorBasis<double, GTOShell> spinor_basis (this->molecule, this->basis_set);
     const auto N_P = molecule.numberOfElectrons()/2;
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in AO basis
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, this->molecule);  // in AO basis
     const size_t K = sq_hamiltonian.dimension();
 
-    DIISRHFSCFSolver diis_scf_solver (sq_hamiltonian, spinor_basis, molecule);
+    DIISRHFSCFSolver diis_scf_solver (sq_hamiltonian, spinor_basis, this->molecule);
     diis_scf_solver.solve();
     auto rhf = diis_scf_solver.get_solution();
     basisTransform(spinor_basis, sq_hamiltonian, rhf.get_C());

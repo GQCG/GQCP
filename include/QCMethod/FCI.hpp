@@ -37,10 +37,11 @@ private:
     size_t N_alpha;  // the number of alpha electrons
     size_t N_beta;  // the number of beta electrons
 
-    std::string xyz_filename;  // the file that contains the molecule specification (coordinates in angstrom)
+    Molecule molecule;  // the molecule that will be solved for
     std::string basis_set;  // the basisset that should be used
 
     bool is_solved = false;
+    bool use_davidson;
     double energy_solution;
 
 
@@ -48,12 +49,21 @@ public:
     // CONSTRUCTORS
 
     /**
+     *  @param molecule             the molecule that will be solved for
+     *  @param basis_set            the basisset that should be used
+     *  @param num_alpha            the number of alpha electrons
+     *  @param num_beta             the number of beta electrons
+     */
+    FCI(const Molecule& molecule, const std::string& basis_set, const size_t num_alpha, const size_t num_beta, const bool use_davidson);
+
+
+    /**
      *  @param xyz_filename         the file that contains the molecule specification (coordinates in angstrom)
      *  @param basis_set            the basisset that should be used
      *  @param num_alpha            the number of alpha electrons
      *  @param num_beta             the number of beta electrons
      */
-    FCI(const std::string& xyz_filename, const std::string& basis_set, const size_t num_alpha, const size_t num_beta);
+    FCI(const std::string& xyz_filename, const std::string& basis_set, const size_t num_alpha, const size_t num_beta, const bool use_davidson);
 
 
     // PUBLIC METHODS

@@ -1,6 +1,7 @@
 target_sources(gqcp
         PRIVATE
             DOCINewtonOrbitalOptimizer.cpp
+            DOCIRHF.cpp
             FCI.cpp
             FukuiDysonAnalysis.cpp
             Hubbard.cpp

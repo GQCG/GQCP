@@ -21,7 +21,7 @@
 #include "Basis/TransformationMatrix.hpp"
 #include "CISolver/CISolver.hpp"
 #include "FockSpace/ProductFockSpace.hpp"
-#include "HamiltonianBuilder/FCI.hpp"
+#include "HamiltonianBuilder/DOCI.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "RDM/RDMCalculator.hpp"
 
@@ -31,19 +31,19 @@ namespace QCMethod {
 
 
 /**
- *  A class that is a wrapper around solving the eigenvalue problem for the molecular Hamiltonian while optimizing the orbitals
+ *  A class that is a wrapper around solving the eigenvalue problem for the molecular Hamiltonian using DOCI in the RHF basis
  */
-class DOCINewtonOrbitalOptimizer {
+class DOCIRHF {
 private:
     Molecule molecule;  // the molecule that will be solved for
     std::string basis_set;  // the basisset that should be used
 
     bool is_solved = false;
-    bool use_davidson = false;
-    bool localize = false;
 
     double energy_solution;
-    TransformationMatrix<double> T_total;  // total transformation from atomic orbital basis to the OO-DOCI orbitals
+    double rhf_energy_solution;
+    bool use_davidson;
+    TransformationMatrix<double> T_total;  // total transformation from atomic orbital basis to the RHF orbitals
 
 public:
     // CONSTRUCTORS
@@ -51,19 +51,15 @@ public:
     /**
      *  @param xyz_filename         the file that contains the molecule specification (coordinates in angstrom)
      *  @param basis_set            the basisset that should be used
-     *  @param use_davidson         indicate if one wants to use davidson to solve the eigenvalue problem (opposed to dense)
-     *  @param localize             indicate if one wants to localize the orbitals before 
      */
-    DOCINewtonOrbitalOptimizer(const std::string& xyz_filename, const std::string& basis_set, const bool use_davidson, const bool localize);
+    DOCIRHF(const std::string& xyz_filename, const std::string& basis_set, const bool use_davidson);
 
 
     /**
      *  @param molecule             the molecule that will be solved for
      *  @param basis_set            the basisset that should be used
-     *  @param use_davidson         indicate if one wants to use davidson to solve the eigenvalue problem (opposed to dense)
-     *  @param localize             indicate if one wants to localize the orbitals before 
      */
-    DOCINewtonOrbitalOptimizer(const Molecule& molecule, const std::string& basis_set, const bool use_davidson, const bool localize);
+    DOCIRHF(const Molecule& molecule, const std::string& basis_set, const bool use_davidson);
 
 
     // PUBLIC METHODS
@@ -74,12 +70,17 @@ public:
     void solve();
 
     /**
-     *  @return the newton orbital optimized ground state DOCI energy
+     *  @return DOCI energy
      */
     double energy() const;
 
     /**
-     *  @return the total transformation matrix to the OO-DOCI orbitals
+     *  @return the RHF energy
+     */
+    double energy_rhf() const;
+
+    /**
+     *  @return the total transformation from atomic orbital basis to the RHF orbitals
      */
     const TransformationMatrix<double>& transformationMatrix() const;
 };
