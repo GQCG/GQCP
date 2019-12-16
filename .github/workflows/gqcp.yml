@@ -8,6 +8,7 @@ env:
   COLOR_FAILED: "#FF000"  # red
   MESSAGE_SUCCESSFUL: Build successful
   MESSAGE_FAILED: Build failed
+
 # Defaults are failure
   SLACK_COLOR: COLOR_FAILED  
   SLACK_MESSAGE: MESSAGE_FAILED
@@ -15,6 +16,7 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     # Environment variables for the build environment (build.env)
     env:
       CONDA_HOME: /usr/share/miniconda
@@ -41,7 +43,6 @@ jobs:
         source ${CONDA_HOME}/bin/activate
         hash -r
         conda config --set always_yes yes --set changeps1 no
-        
         
     - name: Install some GQCP dependencies through Conda
       run: |   
@@ -97,8 +98,8 @@ jobs:
       uses: rtCamp/action-slack-notify@master
       env:
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-        SLACK_COLOR: ${{ env.SLACK_COLOR}}
+        SLACK_COLOR: ${{ env.SLACK_COLOR }}
         SLACK_ICON: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
-        SLACK_MESSAGE: ${{ env.SLACK_MESSAGE}}
+        SLACK_MESSAGE: ${{ env.SLACK_MESSAGE }}
         SLACK_TITLE: ${{ env.GITHUB_REF }}
         SLACK_USERNAME: GitHub Actions
