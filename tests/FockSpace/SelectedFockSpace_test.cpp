@@ -140,6 +140,8 @@ BOOST_AUTO_TEST_CASE ( Selected_Evaluation_H2O ) {
     GQCP::SquareMatrix<double> hamiltonian = selected_fock_space.evaluateOperatorDense(sq_hamiltonian, true);
     GQCP::SquareMatrix<double> hamiltonian_no_diagonal = selected_fock_space.evaluateOperatorDense(sq_hamiltonian, false);
     GQCP::VectorX<double> hamiltonian_diagonal = selected_fock_space.evaluateOperatorDiagonal(sq_hamiltonian);
+    GQCP::VectorX<double> matvec_evaluation = selected_fock_space.evaluateOperatorMatrixVectorProduct(sq_hamiltonian, hamiltonian_diagonal, hamiltonian_diagonal);
+    GQCP::VectorX<double> matvec_reference = hamiltonian * hamiltonian_diagonal;
 
     // Retrieve lowest eigenvalue (fci solution)
     Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> self_adjoint_eigensolver (hamiltonian);
@@ -152,4 +154,5 @@ BOOST_AUTO_TEST_CASE ( Selected_Evaluation_H2O ) {
 
     // Test if non-diagonal evaluation and diagonal evaluations are correct
     BOOST_CHECK(hamiltonian.isApprox(hamiltonian_no_diagonal + GQCP::SquareMatrix<double>(hamiltonian_diagonal.asDiagonal())));
+    BOOST_CHECK(matvec_evaluation.isApprox(matvec_reference));
 }

@@ -269,9 +269,9 @@ SquareMatrix<double> FockSpace::evaluateOperatorDense(const ScalarSQOneElectronO
         throw std::invalid_argument("FockSpace::evaluateOperatorDense(ScalarSQOneElectronOperator<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
     }
 
-    EvaluationMatrix<SquareMatrix<double>> container (this->dim);
-    this->EvaluateOperator<SquareMatrix<double>>(one_op, container, diagonal_values);
-    return container.get_matrix();
+    EvaluationIterator<SquareMatrix<double>> evaluation_iterator (this->dim);
+    this->EvaluateOperator<SquareMatrix<double>>(one_op, evaluation_iterator, diagonal_values);
+    return evaluation_iterator.evaluation();
 }
 
 
@@ -290,17 +290,17 @@ Eigen::SparseMatrix<double> FockSpace::evaluateOperatorSparse(const ScalarSQOneE
         throw std::invalid_argument("FockSpace::evaluateOperatorSparse(ScalarSQOneElectronOperator<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
     }
 
-    EvaluationMatrix<Eigen::SparseMatrix<double>> container (this->dim);
+    EvaluationIterator<Eigen::SparseMatrix<double>> evaluation_iterator (this->dim);
 
     size_t memory = this->countTotalOneElectronCouplings();
     if (diagonal_values) {
         memory += this->dim;
     }
 
-    container.reserve(memory);
-    this->EvaluateOperator<Eigen::SparseMatrix<double>>(one_op, container, diagonal_values);
-    container.addToMatrix();
-    return container.get_matrix();
+    evaluation_iterator.reserve(memory);
+    this->EvaluateOperator<Eigen::SparseMatrix<double>>(one_op, evaluation_iterator, diagonal_values);
+    evaluation_iterator.addToMatrix();
+    return evaluation_iterator.evaluation();
 }
 
 
@@ -320,9 +320,9 @@ SquareMatrix<double> FockSpace::evaluateOperatorDense(const ScalarSQTwoElectronO
         throw std::invalid_argument("FockSpace::evaluateOperatorDense(ScalarSQTwoElectronOperator<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
     }
 
-    EvaluationMatrix<SquareMatrix<double>> container (this->dim);
-    this->EvaluateOperator<SquareMatrix<double>>(two_op, container, diagonal_values);
-    return container.get_matrix();
+    EvaluationIterator<SquareMatrix<double>> evaluation_iterator (this->dim);
+    this->EvaluateOperator<SquareMatrix<double>>(two_op, evaluation_iterator, diagonal_values);
+    return evaluation_iterator.evaluation();
 }
 
 
@@ -341,17 +341,17 @@ Eigen::SparseMatrix<double> FockSpace::evaluateOperatorSparse(const ScalarSQTwoE
         throw std::invalid_argument("FockSpace::evaluateOperatorSparse(ScalarSQTwoElectronOperator<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
     }
 
-    EvaluationMatrix<Eigen::SparseMatrix<double>> container (this->dim);
+    EvaluationIterator<Eigen::SparseMatrix<double>> evaluation_iterator (this->dim);
 
     size_t memory = this->countTotalTwoElectronCouplings();
     if (diagonal_values) {
         memory += this->dim;
     }
 
-    container.reserve(memory);
-    this->EvaluateOperator<Eigen::SparseMatrix<double>>(two_op, container, diagonal_values);
-    container.addToMatrix();
-    return container.get_matrix();
+    evaluation_iterator.reserve(memory);
+    this->EvaluateOperator<Eigen::SparseMatrix<double>>(two_op, evaluation_iterator, diagonal_values);
+    evaluation_iterator.addToMatrix();
+    return evaluation_iterator.evaluation();
 }
 
 
@@ -370,9 +370,9 @@ SquareMatrix<double> FockSpace::evaluateOperatorDense(const SQHamiltonian<double
         throw std::invalid_argument("FockSpace::evaluateOperatorDense(SQHamiltonian<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
     }
 
-    EvaluationMatrix<SquareMatrix<double>> container (this->dim);
-    this->EvaluateOperator<SquareMatrix<double>>(sq_hamiltonian.core(), sq_hamiltonian.twoElectron(), container, diagonal_values);
-    return container.get_matrix();
+    EvaluationIterator<SquareMatrix<double>> evaluation_iterator (this->dim);
+    this->EvaluateOperator<SquareMatrix<double>>(sq_hamiltonian.core(), sq_hamiltonian.twoElectron(), evaluation_iterator, diagonal_values);
+    return evaluation_iterator.evaluation();
 }
 
 
@@ -391,17 +391,17 @@ Eigen::SparseMatrix<double> FockSpace::evaluateOperatorSparse(const SQHamiltonia
         throw std::invalid_argument("FockSpace::evaluateOperatorSparse(SQHamiltonian<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
     }
 
-    EvaluationMatrix<Eigen::SparseMatrix<double>> container (this->dim);
+    EvaluationIterator<Eigen::SparseMatrix<double>> evaluation_iterator (this->dim);
 
     size_t memory = this->countTotalTwoElectronCouplings();
     if (diagonal_values) {
         memory += this->dim;
     }
 
-    container.reserve(memory);
-    this->EvaluateOperator<Eigen::SparseMatrix<double>>(sq_hamiltonian.core(), sq_hamiltonian.twoElectron(), container, diagonal_values);
-    container.addToMatrix();
-    return container.get_matrix();
+    evaluation_iterator.reserve(memory);
+    this->EvaluateOperator<Eigen::SparseMatrix<double>>(sq_hamiltonian.core(), sq_hamiltonian.twoElectron(), evaluation_iterator, diagonal_values);
+    evaluation_iterator.addToMatrix();
+    return evaluation_iterator.evaluation();
 }
 
 
@@ -475,7 +475,6 @@ std::vector<Eigen::SparseMatrix<double>> FockSpace::calculateOneElectronCoupling
 
     return sparse_matrices;
 }
-
 
 
 /**
@@ -582,6 +581,68 @@ VectorX<double> FockSpace::evaluateOperatorDiagonal(const SQHamiltonian<double>&
     return this->evaluateOperatorDiagonal(sq_hamiltonian.core()) + this->evaluateOperatorDiagonal(sq_hamiltonian.twoElectron());
 };
 
+
+/**
+ *  Evaluate a one electron operator in a matrix vector product
+ *
+ *  @param one_op                       the one electron operator expressed in an orthonormal basis
+ *  @param x                            the vector upon which the evaluation acts 
+ *  @param diagonal                     the diagonal evaluated in the Fock space
+ *
+ *  @return the one electron operator's matrix vector product in a vector with the dimensions of the Fock space
+ */
+VectorX<double> FockSpace::evaluateOperatorMatrixVectorProduct(const ScalarSQOneElectronOperator<double>& one_op, const VectorX<double>& x, const VectorX<double>& diagonal) const {
+    auto K = one_op.dimension();
+    if (K != this->K) {
+        throw std::invalid_argument("FockSpace::evaluateOperatorMatrixVectorProduct(ScalarSQOneElectronOperator<double>, VectorX<double>, VectorX<double>): Basis functions of the Fock space and the operator are incompatible.");
+    }
+
+    EvaluationIterator<VectorX<double>> evaluation_iterator (x, diagonal);
+    this->EvaluateOperator<VectorX<double>>(one_op, evaluation_iterator, false);
+    return evaluation_iterator.evaluation();
+}
+
+
+/**
+ *  Evaluate a two electron operator in a matrix vector product
+ *
+ *  @param two_op                       the two electron operator expressed in an orthonormal basis
+ *  @param x                            the vector upon which the evaluation acts 
+ *  @param diagonal                     the diagonal evaluated in the Fock space
+ *
+ *  @return the two electron operator's matrix vector product in a vector with the dimensions of the Fock space
+ */
+VectorX<double> FockSpace::evaluateOperatorMatrixVectorProduct(const ScalarSQTwoElectronOperator<double>& two_op, const VectorX<double>& x, const VectorX<double>& diagonal) const {
+    auto K = two_op.dimension();
+    if (K != this->K) {
+        throw std::invalid_argument("FockSpace::evaluateOperatorMatrixVectorProduct(ScalarSQTwoElectronOperator<double>, VectorX<double>, VectorX<double>): Basis functions of the Fock space and the operator are incompatible.");
+    }
+
+    EvaluationIterator<VectorX<double>> evaluation_iterator (x, diagonal);
+    this->EvaluateOperator<VectorX<double>>(two_op, evaluation_iterator, false);
+    return evaluation_iterator.evaluation();
+}
+
+
+/**
+ *  Evaluate the Hamiltonian in a matrix vector product
+ *
+ *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
+ *  @param x                            the vector upon which the evaluation acts 
+ *  @param diagonal                     the diagonal evaluated in the Fock space
+ *
+ *  @return the Hamiltonian's matrix vector product in a vector with the dimensions of the Fock space
+ */
+VectorX<double> FockSpace::evaluateOperatorMatrixVectorProduct(const SQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
+    auto K = sq_hamiltonian.dimension();
+    if (K != this->K) {
+        throw std::invalid_argument("FockSpace::evaluateOperatorMatrixVectorProduct(SQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the Fock space and the operator are incompatible.");
+    }
+
+    EvaluationIterator<VectorX<double>> evaluation_iterator (x, diagonal);
+    this->EvaluateOperator<VectorX<double>>(sq_hamiltonian.core(), sq_hamiltonian.twoElectron(), evaluation_iterator, false);
+    return evaluation_iterator.evaluation();
+}
 
 
 }  // namespace GQCP
