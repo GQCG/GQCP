@@ -60,14 +60,14 @@ jobs:
         ${CONDA_HOME}/bin/cmake .. -DUSE_MKL=TRUE -DCMAKE_INSTALL_PREFIX=${CONDA_HOME} -DCMAKE_PREFIX_PATH=${CONDA_HOME}
         make -j3 && sudo make install
         
-# Build & test the library 
+    # Build & test the library 
     - name: Build GQCP and run tests
       run: |
         mkdir build && cd build
         ${CONDA_HOME}/bin/cmake .. -DBUILD_TESTS=TRUE -DBUILD_BENCHMARKS=TRUE -DBUILD_PYTHON_BINDINGS=TRUE -DCMAKE_INSTALL_PREFIX=~/.local -DCMAKE_PREFIX_PATH=${CONDA_HOME}
         make -j10 && sudo make install
         
-# Run the benchmarks
+    # Run the benchmarks
     - name: Run benchmarks
       run: |
         cd build && cd benchmarks
@@ -80,8 +80,8 @@ jobs:
         ./hubbard_matrix --benchmark_counters_tabular=true
         ./hubbard_matvec --benchmark_counters_tabular=true
 
-# Test if the installed library links properly to external driver
-# This is the final step to verify a successful build: if it does not error it updates the env variables
+    # Test if the installed library links properly to external driver
+    # This is the final step to verify a successful build: if it does not error it updates the env variables
     - name: Check external linking
       run: |
         cd /tmp
