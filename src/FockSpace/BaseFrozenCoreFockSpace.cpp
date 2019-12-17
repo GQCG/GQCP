@@ -404,12 +404,12 @@ VectorX<double> BaseFrozenCoreFockSpace::frozenCoreDiagonal(const SQHamiltonian<
  */
 VectorX<double> BaseFrozenCoreFockSpace::frozenCoreDiagonal(const USQHamiltonian<double>& usq_hamiltonian, size_t X, size_t dimension) {
 
-    QCMatrix<double> one_op_par_alpha = usq_hamiltonian.alphaHamiltonian().core().parameters();
-    QCMatrix<double> one_op_par_beta = usq_hamiltonian.betaHamiltonian().core().parameters();
+    QCMatrix<double> one_op_par_alpha = usq_hamiltonian.spinHamiltonian(SpinComponent::ALPHA).core().parameters();
+    QCMatrix<double> one_op_par_beta = usq_hamiltonian.spinHamiltonian(SpinComponent::BETA).core().parameters();
 
     const auto& two_op_par_mixed = usq_hamiltonian.twoElectronMixed().parameters();
-    const auto& two_op_par_a = usq_hamiltonian.alphaHamiltonian().twoElectron().parameters();
-    const auto& two_op_par_b = usq_hamiltonian.betaHamiltonian().twoElectron().parameters();
+    const auto& two_op_par_a = usq_hamiltonian.spinHamiltonian(SpinComponent::ALPHA).twoElectron().parameters();
+    const auto& two_op_par_b = usq_hamiltonian.spinHamiltonian(SpinComponent::BETA).twoElectron().parameters();
     
     // The diagonal value for the frozen orbitals is the same for each ONV
     double value = 0;
@@ -436,15 +436,15 @@ USQHamiltonian<double> BaseFrozenCoreFockSpace::freezeOperator(const USQHamilton
     
     size_t K_active = usq_hamiltonian.dimension() - X;  // number of non-frozen orbitals
 
-    QCMatrix<double> frozen_one_op_par_alpha = usq_hamiltonian.alphaHamiltonian().core().parameters().block(X, X, K_active, K_active);
-    QCMatrix<double> frozen_one_op_par_beta = usq_hamiltonian.betaHamiltonian().core().parameters().block(X, X, K_active, K_active);
+    QCMatrix<double> frozen_one_op_par_alpha = usq_hamiltonian.spinHamiltonian(SpinComponent::ALPHA).core().parameters().block(X, X, K_active, K_active);
+    QCMatrix<double> frozen_one_op_par_beta = usq_hamiltonian.spinHamiltonian(SpinComponent::BETA).core().parameters().block(X, X, K_active, K_active);
 
-    const auto& two_op_par_alpha = usq_hamiltonian.alphaHamiltonian().twoElectron().parameters();
-    const auto& two_op_par_beta = usq_hamiltonian.betaHamiltonian().twoElectron().parameters();
+    const auto& two_op_par_alpha = usq_hamiltonian.spinHamiltonian(SpinComponent::ALPHA).twoElectron().parameters();
+    const auto& two_op_par_beta = usq_hamiltonian.spinHamiltonian(SpinComponent::BETA).twoElectron().parameters();
     const auto& two_op_par_mixed = usq_hamiltonian.twoElectronMixed().parameters();
 
-    QCRankFourTensor<double> frozen_two_op_par_alpha = QCRankFourTensor<double>::FromBlock(usq_hamiltonian.alphaHamiltonian().twoElectron().parameters(), X, X, X, X);
-    const auto frozen_two_op_par_beta = QCRankFourTensor<double>::FromBlock(usq_hamiltonian.betaHamiltonian().twoElectron().parameters(), X, X, X, X);
+    QCRankFourTensor<double> frozen_two_op_par_alpha = QCRankFourTensor<double>::FromBlock(usq_hamiltonian.spinHamiltonian(SpinComponent::ALPHA).twoElectron().parameters(), X, X, X, X);
+    const auto frozen_two_op_par_beta = QCRankFourTensor<double>::FromBlock(usq_hamiltonian.spinHamiltonian(SpinComponent::BETA).twoElectron().parameters(), X, X, X, X);
     const auto frozen_two_op_par_mixed = QCRankFourTensor<double>::FromBlock(usq_hamiltonian.twoElectronMixed().parameters(), X, X, X, X);
 
     // Frozen two-electron integrals can be rewritten partially as one electron integrals.

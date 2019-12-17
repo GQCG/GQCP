@@ -586,7 +586,7 @@ VectorX<double> SelectedFockSpace::evaluateOperatorMatrixVectorProduct(const SQH
  *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the Fock space
  */
 SquareMatrix<double>  SelectedFockSpace::evaluateOperatorDense(const USQHamiltonian<double>& usq_hamiltonian, bool diagonal_values) const {
-    const auto K = sq_hamiltonian.dimension();
+    const auto K = usq_hamiltonian.dimension();
     if (K != this->K) {
         throw std::invalid_argument("SelectedFockSpace::evaluateOperatorDense(USQHamiltonian<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
     }
@@ -607,16 +607,16 @@ SquareMatrix<double>  SelectedFockSpace::evaluateOperatorDense(const USQHamilton
  */
 VectorX<double> SelectedFockSpace::evaluateOperatorDiagonal(const USQHamiltonian<double>& usq_hamiltonian) const {
 
-     const auto K = sq_hamiltonian.dimension();
+     const auto K = usq_hamiltonian.dimension()/2;
     if (K != this->K) {
         throw std::invalid_argument("SelectedFockSpace::evaluateOperatorDiagonal(USQHamiltonian<double>): Basis functions of the Fock space and the operator are incompatible.");
     }
 
-    const auto& h_a = sq_hamiltonian.spinHamiltonian(SpinComponent::ALPHA).core().parameters();
-    const auto& g_a = sq_hamiltonian.spinHamiltonian(SpinComponent::ALPHA).twoElectron().parameters();
-    const auto& h_b = sq_hamiltonian.spinHamiltonian(SpinComponent::BETA).core().parameters();
-    const auto& g_b = sq_hamiltonian.spinHamiltonian(SpinComponent::BETA).twoElectron().parameters();
-    const auto& g_ab = sq_hamiltonian.twoElectronMixed().parameters();
+    const auto& h_a = usq_hamiltonian.spinHamiltonian(SpinComponent::ALPHA).core().parameters();
+    const auto& g_a = usq_hamiltonian.spinHamiltonian(SpinComponent::ALPHA).twoElectron().parameters();
+    const auto& h_b = usq_hamiltonian.spinHamiltonian(SpinComponent::BETA).core().parameters();
+    const auto& g_b = usq_hamiltonian.spinHamiltonian(SpinComponent::BETA).twoElectron().parameters();
+    const auto& g_ab = usq_hamiltonian.twoElectronMixed().parameters();
 
     // Diagonal contributions
     VectorX<double> diagonal = VectorX<double>::Zero(dim);
@@ -681,7 +681,7 @@ VectorX<double> SelectedFockSpace::evaluateOperatorDiagonal(const USQHamiltonian
  *  @return the Hamiltonian's matrix vector product in a vector with the dimensions of the Fock space
  */
 VectorX<double> SelectedFockSpace::evaluateOperatorMatrixVectorProduct(const USQHamiltonian<double>& usq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
-    auto K = sq_hamiltonian.dimension();
+    auto K = usq_hamiltonian.dimension()/2;
     if (K != this->K) {
         throw std::invalid_argument("SelectedFockSpace::evaluateOperatorMatrixVectorProduct(USQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the Fock space and the operator are incompatible.");
     }
@@ -701,7 +701,7 @@ VectorX<double> SelectedFockSpace::evaluateOperatorMatrixVectorProduct(const USQ
  *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the Fock space
  */
 Eigen::SparseMatrix<double> SelectedFockSpace::evaluateOperatorSparse(const USQHamiltonian<double>& usq_hamiltonian, bool diagonal_values) const {
-    const auto K = two_op.dimension();
+    const auto K = usq_hamiltonian.dimension()/2;
     if (K != this->K) {
         throw std::invalid_argument("SelectedFockSpace::evaluateOperatorSparse(USQHamiltonian<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
     }

@@ -157,3 +157,33 @@ BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_diagonal ) {
     BOOST_CHECK(two_electron_evaluation1.isApprox(two_electron_evaluation2));
     BOOST_CHECK(hamiltonian_evaluation1.isApprox(hamiltonian_evaluation2));
 }
+
+
+BOOST_AUTO_TEST_CASE ( FrozenProductFockSpace_evaluateOperator_diagonal_unrestricted_vs_selected ) {
+
+    // This test the evaluations in an unrestricted basis for the FrozenProductFockSpace versus the evaluation of the selected module
+    GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
+    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis_alpha (hchain, "STO-3G");
+    GQCP::SingleParticleBasis<double, GQCP::GTOShell> sp_basis_beta (hchain, "STO-3G");
+    sp_basis_alpha.lowdinOrthonormalize();
+    sp_basis_beta.lowdinOrthonormalize();
+    auto usq_hamiltonian = GQCP::USQHamiltonian<double>::Molecular(sp_basis_alpha, sp_basis_beta, hchain);  // unresticted Hamiltonian in the Löwdin basis
+
+    // Transform the beta component
+    // Create stable unitairy matrix
+    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes (usq_hamiltonian.alphaHamiltonian().core().parameters());
+    GQCP::basisTransformBeta(sp_basis_beta, usq_hamiltonian, GQCP::TransformationMatrix<double>(saes.eigenvectors()));
+
+    GQCP::FrozenProductFockSpace product_fock_space (6, 4, 4, 2);
+    GQCP::SelectedFockSpace selected_fock_space (product_fock_space);
+    GQCP::SelectedCI selected_ci (selected_fock_space);
+
+    auto hamiltonian_diagonal_evaluation1 = product_fock_space.evaluateOperatorDiagonal(usq_hamiltonian);
+    auto hamiltonian_diagonal_evaluation2 = selected_fock_space.evaluateOperatorDiagonal(usq_hamiltonian);
+
+    auto hamiltonian_evaluation1 = product_fock_space.evaluateOperatorDense(usq_hamiltonian, true);
+    auto hamiltonian_evaluation2 = selected_ci.constructHamiltonian(usq_hamiltonian);
+
+    BOOST_CHECK(hamiltonian_diagonal_evaluation1.isApprox(hamiltonian_diagonal_evaluation2));
+    BOOST_CHECK(hamiltonian_evaluation1.isApprox(hamiltonian_evaluation2));
+}

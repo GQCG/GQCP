@@ -22,6 +22,7 @@
 #include "FockSpace/BaseFrozenCoreFockSpace.hpp"
 #include "FockSpace/FrozenFockSpace.hpp"
 #include "FockSpace/ProductFockSpace.hpp"
+#include "Operator/SecondQuantized/USQHamiltonian.hpp"
 
 
 namespace GQCP {

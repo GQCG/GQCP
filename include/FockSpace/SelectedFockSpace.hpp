@@ -23,6 +23,7 @@
 #include "FockSpace/EvaluationIterator.hpp"
 #include "FockSpace/FrozenProductFockSpace.hpp"
 #include "FockSpace/ProductFockSpace.hpp"
+#include "Operator/SecondQuantized/USQHamiltonian.hpp"
 
 
 namespace GQCP {
@@ -274,7 +275,7 @@ public:
      *
      *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the Fock space
      */
-    Eigen::SparseMatrix<double> evaluateOperatorSparse(const SQHamiltonian<double>& usq_hamiltonian, bool diagonal_values) const;
+    Eigen::SparseMatrix<double> evaluateOperatorSparse(const USQHamiltonian<double>& usq_hamiltonian, bool diagonal_values) const;
 
 
     
@@ -309,7 +310,7 @@ public:
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
     template <typename _Matrix>
-    void EvaluateOperator(cconst USQHamiltonian<double>& usq_hamiltonian, EvaluationIterator<_Matrix>& evaluation_iterator, bool diagonal_values) const {
+    void EvaluateOperator(const USQHamiltonian<double>& usq_hamiltonian, EvaluationIterator<_Matrix>& evaluation_iterator, bool diagonal_values) const {
         EvaluateOperator(usq_hamiltonian.spinHamiltonian(SpinComponent::ALPHA).core(), usq_hamiltonian.spinHamiltonian(SpinComponent::BETA).core(), usq_hamiltonian.spinHamiltonian(SpinComponent::ALPHA).twoElectron(), usq_hamiltonian.spinHamiltonian(SpinComponent::BETA).twoElectron(), usq_hamiltonian.twoElectronMixed(), evaluation_iterator, diagonal_values);
     }
 
@@ -406,6 +407,23 @@ public:
     void EvaluateOperator(const ScalarSQTwoElectronOperator<double>& two_op, EvaluationIterator<_Matrix>& evaluation_iterator, bool diagonal_values) const {
         // Calling this combined method for both the one- and two-electron operator does not affect the performance, hence we avoid writting more code by plugging a zero operator in the combined method.
         EvaluateOperator(ScalarSQOneElectronOperator<double>(this->K), ScalarSQOneElectronOperator<double>(this->K), two_op, two_op, two_op, evaluation_iterator, diagonal_values);
+    }
+
+
+    /**
+     *  Evaluate the operator in a given evaluation iterator in the Fock space
+     *
+     *  @tparam Matrix                       the type of matrix used to store the evaluations
+     *
+     *  @param one_op                        the one-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
+     *  @param two_op                        the two-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
+     *  @param evaluation_iterator           evaluation iterator to which the evaluations are added
+     *  @param diagonal_values               bool to indicate if diagonal values will be calculated
+     */
+   template <typename _Matrix>
+    void EvaluateOperator(const ScalarSQOneElectronOperator<double>& one_op, const ScalarSQTwoElectronOperator<double>& two_op, EvaluationIterator<_Matrix>& evaluation_iterator, bool diagonal_values) const {
+        // Calling this combined method for both the one- and two-electron operator does not affect the performance, hence we avoid writting more code by plugging a zero operator in the combined method.
+        EvaluateOperator(one_op, one_op, two_op, two_op, two_op, evaluation_iterator, diagonal_values);
     }
 
 

@@ -20,6 +20,7 @@
 
 #include "FockSpace/BaseFockSpace.hpp"
 #include "FockSpace/FockSpace.hpp"
+#include "Operator/SecondQuantized/USQHamiltonian.hpp"
 
 
 namespace GQCP {

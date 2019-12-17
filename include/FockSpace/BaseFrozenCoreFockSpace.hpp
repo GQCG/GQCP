@@ -20,6 +20,7 @@
 
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
 #include "FockSpace/BaseFockSpace.hpp"
+#include "Operator/SecondQuantized/USQHamiltonian.hpp"
 
 
 namespace GQCP {

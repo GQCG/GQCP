@@ -382,7 +382,7 @@ public:
      *
      *  Note that this method is only available for real SQoperators
      */
-    template<typename Z = TransformationScalar>
+    template<typename Z = ExpansionScalar>
     enable_if_t<std::is_same<Z, double>::value, ScalarSQOneElectronOperator<double>> calculateAtomicSpinZ(const Vectoru& ao_list, const SpinComponent& component) const {
         int sign = 1 - 2*component;  // 1 for ALPHA, -1 for BETA
         // The atomic spin operator is defined as the atomic Mulliken operator divided by 2

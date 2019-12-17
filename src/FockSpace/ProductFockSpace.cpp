@@ -774,8 +774,8 @@ VectorX<double> ProductFockSpace::evaluateOperatorDiagonal(const USQHamiltonian<
  *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the Fock space
  */
 VectorX<double> ProductFockSpace::evaluateOperatorMatrixVectorProduct(const USQHamiltonian<double>& usq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
-    auto K = usq_hamiltonian.dimension();
-    if (K != this->fock_space.get_K()) {
+    auto K = usq_hamiltonian.dimension()/2;
+    if (K != this->get_K()) {
         throw std::invalid_argument("ProductFockSpace::evaluateOperatorMatrixVectorProduct(USQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the Fock space and usq_hamiltonian are incompatible.");
     }
 
@@ -795,14 +795,14 @@ VectorX<double> ProductFockSpace::evaluateOperatorMatrixVectorProduct(const USQH
 
     for (size_t p = 0; p<K; p++) {
 
-        const auto& P = this->fock_space.oneElectronPartition(p, p, usq_hamiltonian.twoElectronMixed());
+        const auto& P = this->oneElectronPartition(p, p, usq_hamiltonian.twoElectronMixed());
         const auto& beta_two_electron_intermediate = fock_space_beta.evaluateOperatorDense(P, false);
 
         // sigma(pp) * X * theta(pp)
         matvecmap += beta_two_electron_intermediate * (xmap * alpha_couplings[p*(K+K+1-p)/2]);
         for (size_t q = p + 1; q<K; q++) {
 
-            const auto& P = this->fock_space.oneElectronPartition(p, q, usq_hamiltonian.twoElectronMixed());
+            const auto& P = this->oneElectronPartition(p, q, usq_hamiltonian.twoElectronMixed());
             const auto& beta_two_electron_intermediate = fock_space_beta.evaluateOperatorDense(P, true);
 
             // (sigma(pq) + sigma(qp)) * X * theta(pq)
