@@ -586,7 +586,9 @@ VectorX<double> SelectedFockSpace::evaluateOperatorMatrixVectorProduct(const SQH
  *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the Fock space
  */
 SquareMatrix<double>  SelectedFockSpace::evaluateOperatorDense(const USQHamiltonian<double>& usq_hamiltonian, bool diagonal_values) const {
-    const auto K = usq_hamiltonian.dimension();
+   
+    const auto K = usq_hamiltonian.dimension()/2;
+
     if (K != this->K) {
         throw std::invalid_argument("SelectedFockSpace::evaluateOperatorDense(USQHamiltonian<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
     }
@@ -607,7 +609,12 @@ SquareMatrix<double>  SelectedFockSpace::evaluateOperatorDense(const USQHamilton
  */
 VectorX<double> SelectedFockSpace::evaluateOperatorDiagonal(const USQHamiltonian<double>& usq_hamiltonian) const {
 
-     const auto K = usq_hamiltonian.dimension()/2;
+    const auto K = usq_hamiltonian.dimension()/2;
+
+    if (!usq_hamiltonian.areSpinHamiltoniansOfSameDimension()) {
+        throw std::invalid_argument("SelectedFockSpace::evaluateOperatorDiagonal(USQHamiltonian<double>, bool): Different spinor dimensions of spin components are currently not supported.");
+    }
+
     if (K != this->K) {
         throw std::invalid_argument("SelectedFockSpace::evaluateOperatorDiagonal(USQHamiltonian<double>): Basis functions of the Fock space and the operator are incompatible.");
     }
@@ -700,7 +707,7 @@ VectorX<double> SelectedFockSpace::evaluateOperatorMatrixVectorProduct(const USQ
  *
  *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the Fock space
  */
-Eigen::SparseMatrix<double> SelectedFockSpace::evaluateOperatorSparse(const USQHamiltonian<double>& usq_hamiltonian, bool diagonal_values) const {
+Eigen::SparseMatrix<double> SelectedFockSpace::evaluateOperatorSparse(const USQHamiltonian<double>& usq_hamiltonian, bool diagonal_values) const {
     const auto K = usq_hamiltonian.dimension()/2;
     if (K != this->K) {
         throw std::invalid_argument("SelectedFockSpace::evaluateOperatorSparse(USQHamiltonian<double>, bool): Basis functions of the Fock space and the operator are incompatible.");

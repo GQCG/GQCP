@@ -19,6 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include "Basis/transform.hpp"
 #include "FockSpace/ProductFockSpace.hpp"
 #include "FockSpace/SelectedFockSpace.hpp"
 
@@ -203,5 +204,66 @@ BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_MatrixVectorProduct ) {
 
     BOOST_CHECK(one_electron_evaluation1.isApprox(one_electron_evaluation2));
     BOOST_CHECK(two_electron_evaluation1.isApprox(two_electron_evaluation2));
+    BOOST_CHECK(hamiltonian_evaluation1.isApprox(hamiltonian_evaluation2));
+}
+
+
+/**
+ *  This test the results for diagonal and dense evaluations for
+ *  the restricted framework to that of the unrestricted framework in a restricted basis (the alpha and beta coefficients and parameters are identical) 
+ */
+BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_diagonal_unrestricted ) {
+
+    // This test the results from the restricted framework to that of the unrestricted framework in a restricted basis (the alpha and beta coefficients and parameters are identical)
+    GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
+
+    GQCP::USpinorBasis<double, GQCP::GTOShell> uspinor_basis (hchain, "STO-3G");
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> rspinor_basis (hchain, "STO-3G");
+    uspinor_basis.lowdinOrthonormalize();
+    rspinor_basis.lowdinOrthonormalize();
+
+    auto usq_hamiltonian = GQCP::USQHamiltonian<double>::Molecular(uspinor_basis, hchain);  // unrestricted Hamiltonian in the Löwdin basis
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(rspinor_basis, hchain);  // restricted Hamiltonian in the Löwdin basis
+
+    GQCP::ProductFockSpace product_fock_space (6, 4, 4);
+
+    auto hamiltonian_diagonal_evaluation1 = product_fock_space.evaluateOperatorDiagonal(sq_hamiltonian);
+    auto hamiltonian_diagonal_evaluation2 = product_fock_space.evaluateOperatorDiagonal(usq_hamiltonian);
+
+    auto hamiltonian_evaluation1 = product_fock_space.evaluateOperatorDense(sq_hamiltonian, false);
+    auto hamiltonian_evaluation2 = product_fock_space.evaluateOperatorDense(usq_hamiltonian, false);
+
+    BOOST_CHECK(hamiltonian_diagonal_evaluation1.isApprox(hamiltonian_diagonal_evaluation2));
+    BOOST_CHECK(hamiltonian_evaluation1.isApprox(hamiltonian_evaluation2));
+}
+
+
+/**
+ *  Perform a dense and diagonal evaluation for the unrestricted Hamiltonian in the product Fock space
+ *  and compare these to the selected CI solutions.
+ */
+BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_diagonal_unrestricted_vs_selected ) {
+
+    // This test the evaluations in an unrestricted basis for the ProductFockSpace versus the evaluation of the selected module
+    GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
+    GQCP::USpinorBasis<double, GQCP::GTOShell> uspinor_basis (hchain, "STO-3G");
+    uspinor_basis.lowdinOrthonormalize();
+    auto usq_hamiltonian = GQCP::USQHamiltonian<double>::Molecular(uspinor_basis, hchain);  // restricted Hamiltonian in the Löwdin basis
+
+    // Transform the beta component
+    // Create stable unitairy matrix
+    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes (usq_hamiltonian.spinHamiltonian(GQCP::SpinComponent::ALPHA).core().parameters());
+    GQCP::basisTransform(uspinor_basis, usq_hamiltonian, GQCP::TransformationMatrix<double>(saes.eigenvectors()), GQCP::SpinComponent::BETA);
+
+    GQCP::ProductFockSpace product_fock_space (6, 4, 4);
+    GQCP::SelectedFockSpace selected_fock_space (product_fock_space);
+
+    auto hamiltonian_diagonal_evaluation1 = product_fock_space.evaluateOperatorDiagonal(usq_hamiltonian);
+    auto hamiltonian_diagonal_evaluation2 = selected_fock_space.evaluateOperatorDiagonal(usq_hamiltonian);
+
+    auto hamiltonian_evaluation1 = product_fock_space.evaluateOperatorDense(usq_hamiltonian, true);
+    auto hamiltonian_evaluation2 = selected_fock_space.evaluateOperatorDense(usq_hamiltonian, true);
+
+    BOOST_CHECK(hamiltonian_diagonal_evaluation1.isApprox(hamiltonian_diagonal_evaluation2));
     BOOST_CHECK(hamiltonian_evaluation1.isApprox(hamiltonian_evaluation2));
 }

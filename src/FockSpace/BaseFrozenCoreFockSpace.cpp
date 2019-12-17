@@ -434,7 +434,7 @@ VectorX<double> BaseFrozenCoreFockSpace::frozenCoreDiagonal(const USQHamiltonian
  */
 USQHamiltonian<double> BaseFrozenCoreFockSpace::freezeOperator(const USQHamiltonian<double>& usq_hamiltonian, size_t X) {
     
-    size_t K_active = usq_hamiltonian.dimension() - X;  // number of non-frozen orbitals
+    size_t K_active = usq_hamiltonian.dimension()/2 - X;  // number of non-frozen orbitals
 
     QCMatrix<double> frozen_one_op_par_alpha = usq_hamiltonian.spinHamiltonian(SpinComponent::ALPHA).core().parameters().block(X, X, K_active, K_active);
     QCMatrix<double> frozen_one_op_par_beta = usq_hamiltonian.spinHamiltonian(SpinComponent::BETA).core().parameters().block(X, X, K_active, K_active);

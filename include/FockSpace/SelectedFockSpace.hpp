@@ -311,6 +311,11 @@ public:
      */
     template <typename _Matrix>
     void EvaluateOperator(const USQHamiltonian<double>& usq_hamiltonian, EvaluationIterator<_Matrix>& evaluation_iterator, bool diagonal_values) const {
+
+        if (!usq_hamiltonian.areSpinHamiltoniansOfSameDimension()) {
+            throw std::invalid_argument("SelectedFockSpace::EvaluateOperator(USQHamiltonian<double>, EvaluationIterator&, bool): Different spinor dimensions of spin components are currently not supported.");
+        }
+    
         EvaluateOperator(usq_hamiltonian.spinHamiltonian(SpinComponent::ALPHA).core(), usq_hamiltonian.spinHamiltonian(SpinComponent::BETA).core(), usq_hamiltonian.spinHamiltonian(SpinComponent::ALPHA).twoElectron(), usq_hamiltonian.spinHamiltonian(SpinComponent::BETA).twoElectron(), usq_hamiltonian.twoElectronMixed(), evaluation_iterator, diagonal_values);
     }
 
@@ -450,6 +455,8 @@ public:
         const auto& g_a = two_op_alpha.parameters();
         const auto& h_b = one_op_beta.parameters();
         const auto& g_b = two_op_beta.parameters();
+
+        // If the correct integrals are derived from g_ba we simply have to reverse the indices as follows : g_ab(pqrs) = g_ba(rspq)
         const auto& g_ab = two_op_mixed.parameters();
 
         for ( ;!evaluation_iterator.is_finished(); evaluation_iterator.increment()) {  // loop over all addresses (1)
@@ -488,7 +495,7 @@ public:
                             }
 
                             if (alpha_I.isOccupied(q)) {
-                                evaluation_iterator.addRowwise(evaluation_iterator.index, 0.5 * g_ab(p,p,q,q));
+                                evaluation_iterator.addRowwise(evaluation_iterator.index, 0.5 * g_ab(q,q,p,p));  // g_ab(pqrs) = g_ba(rspq)
                             }
                         }  // loop over q
                     }
@@ -533,8 +540,7 @@ public:
 
                         if (beta_I.isOccupied(r)) {  // beta_I == beta_J from the previous if-branch
 
-                            double value = 0.5 * (g_ab(p,q,r,r)
-                                                  + g_ab(r,r,p,q));
+                            double value = 0.5 * 2 * g_ab(p,q,r,r);
 
                             evaluation_iterator.addColumnwise(J, sign * value);
                             evaluation_iterator.addRowwise(J, sign * value);
@@ -574,8 +580,7 @@ public:
 
                         if (alpha_I.isOccupied(r)) {  // alpha_I == alpha_J from the previous if-branch
 
-                            double value = 0.5 * (g_ab(p,q,r,r)
-                                                   + g_ab(r,r,p,q));
+                            double value = 0.5 * 2 * g_ab(r,r,p,q);
 
                             evaluation_iterator.addColumnwise(J, sign * value);
                             evaluation_iterator.addRowwise(J, sign * value);
@@ -594,8 +599,7 @@ public:
                     size_t s = beta_J.findDifferentOccupations(beta_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
 
                     int sign = alpha_I.operatorPhaseFactor(p) * alpha_J.operatorPhaseFactor(q) * beta_I.operatorPhaseFactor(r) * beta_J.operatorPhaseFactor(s);
-                    double value = 0.5 * (g_ab(p,q,r,s)
-                                          + g_ab(r,s,p,q));
+                    double value = 0.5 * 2 * g_ab(p,q,r,s);
 
                     evaluation_iterator.addColumnwise(J, sign * value);
                     evaluation_iterator.addRowwise(J, sign * value);

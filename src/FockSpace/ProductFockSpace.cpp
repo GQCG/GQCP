@@ -687,7 +687,8 @@ SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const USQHamiltonia
  */
 VectorX<double> ProductFockSpace::evaluateOperatorDiagonal(const USQHamiltonian<double>& usq_hamiltonian) const {
 
-    const auto K = usq_hamiltonian.dimension();
+    const auto K = usq_hamiltonian.dimension()/2;
+    
     if (K != this->K) {
         throw std::invalid_argument("ProductFockSpace::evaluateOperatorDiagonal(SQHamiltonian<double>,  SQHamiltonian<double>): Basis functions of the Fock space and the operator are incompatible.");
     }

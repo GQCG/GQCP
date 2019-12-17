@@ -230,7 +230,7 @@ public:
      *  @return the transformation matrix to the Löwdin basis for the requested component: T = S_current^{-1/2}
      */
     TransformationMatrix<double> lowdinOrthonormalizationMatrix(const SpinComponent& component) const {
-        return this->scalarBasis(component).lowdinOrthonormalizationMatrix();
+        return this->spinor_bases[component].lowdinOrthonormalizationMatrix();
     }
 
     /**

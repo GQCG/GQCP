@@ -125,6 +125,11 @@ public:
     size_t dimension() const { return this->sq_hamiltonians[SpinComponent::ALPHA].dimension() + this->sq_hamiltonians[SpinComponent::BETA].dimension(); }
 
     /**
+     *  @return if the alpha and beta components of the unrestricted Hamiltonian are of the same dimension
+     */
+    bool areSpinHamiltoniansOfSameDimension() const { return this->spinHamiltonian(SpinComponent::ALPHA).dimension() == this->spinHamiltonian(SpinComponent::BETA).dimension(); }
+   
+    /**
      *  @param component                    the spin component
      * 
      *  @return the pure contributions of the requested component of the unrestricted Hamiltonian 
