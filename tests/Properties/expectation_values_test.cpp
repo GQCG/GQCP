@@ -22,9 +22,13 @@
 #include "Properties/expectation_values.hpp"
 
 #include "Basis/Integrals/Interfaces/LibintInterfacer.hpp"
+#include "Basis/transform.hpp"
 #include "CISolver/CISolver.hpp"
+#include "Mathematical/Optimization/DavidsonSolver.hpp"
 #include "HamiltonianBuilder/DOCI.hpp"
+#include "HamiltonianBuilder/FCI.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
+#include "Operator/SecondQuantized/USQHamiltonian.hpp"
 #include "RDM/RDMCalculator.hpp"
 #include "RHF/DIISRHFSCFSolver.hpp"
 #include "RHF/PlainRHFSCFSolver.hpp"
@@ -68,8 +72,6 @@ BOOST_AUTO_TEST_CASE ( mulliken_N2_STO_3G ) {
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, N2);  // in an AO basis
     size_t K = sq_hamiltonian.dimension();
 
-    std::cout << "K: " << std::endl << K << std::endl << std::endl;;
-
     // We include all basis functions
     GQCP::Vectoru gto_list (K);
     for(size_t i = 0; i<K; i++){
@@ -110,4 +112,85 @@ BOOST_AUTO_TEST_CASE ( mulliken_N2_STO_3G ) {
 
     double mulliken_population_2 = GQCP::calculateExpectationValue(mulliken, one_rdms.one_rdm)[0];
     BOOST_CHECK(std::abs(mulliken_population_2 - (N)) < 1.0e-06);
+}
+
+
+/*
+ *  
+ */ 
+BOOST_AUTO_TEST_CASE ( S_z_constrained_NOplus_STO_3G ) {
+
+    // Break the S_z for a single fragment and test that the total S_z is still 0
+    // Initialize the molecule and the molecular Hamiltonian for NO+
+    GQCP::Nucleus N (7, 0.0, 0.0, 0.0);
+    GQCP::Nucleus O (8, 0.0, 0.0, 2);  
+    std::vector<GQCP::Nucleus> nuclei {N, O};
+    GQCP::Molecule NOplus (nuclei, +1);
+
+    GQCP::USpinorBasis<double, GQCP::GTOShell> uspinor_basis (NOplus, "STO-3G");
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (NOplus, "STO-3G");
+    auto usq_hamiltonian = GQCP::USQHamiltonian<double>::Molecular(uspinor_basis, NOplus);  // in an AO basis
+    
+    // Create restricted Hamiltonian to perform RHF
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, NOplus);  // in an AO basis
+    size_t K = sq_hamiltonian.dimension();
+
+    // Basis functions for O
+    GQCP::Vectoru gto_O (K/2);
+    for(size_t i = K/2; i<K; i++){
+        gto_O[i-K/2] = i;
+    }
+
+    // Basis functions for N
+    GQCP::Vectoru gto_N (K/2);
+    for(size_t i = 0; i<K/2; i++){
+        gto_N[i] = i;
+    }
+    
+    size_t Ne = NOplus.numberOfElectrons();
+    
+    // Solve the SCF equations
+    GQCP::DIISRHFSCFSolver diis_scf_solver (sq_hamiltonian, spinor_basis, NOplus);  // the DIIS SCF solver seems to find a wrong minimum, so use a plain solver instead
+    diis_scf_solver.solve();
+    auto rhf = diis_scf_solver.get_solution();
+
+    GQCP::basisTransform(uspinor_basis, usq_hamiltonian, rhf.get_C());
+
+    // Calculate the atomic spin-z operator
+    GQCP::ScalarSQOneElectronOperator<double> sq_N_Sz_alpha = uspinor_basis.calculateAtomicSpinZ(gto_N, GQCP::SpinComponent::ALPHA);
+    GQCP::ScalarSQOneElectronOperator<double> sq_N_Sz_beta = uspinor_basis.calculateAtomicSpinZ(gto_N, GQCP::SpinComponent::BETA);
+    GQCP::ScalarSQOneElectronOperator<double> sq_O_Sz_alpha = uspinor_basis.calculateAtomicSpinZ(gto_O, GQCP::SpinComponent::ALPHA);
+    GQCP::ScalarSQOneElectronOperator<double> sq_O_Sz_beta = uspinor_basis.calculateAtomicSpinZ(gto_O, GQCP::SpinComponent::BETA);
+
+    // Create constrain the spin-z on N
+    auto constrained = usq_hamiltonian.constrain(sq_N_Sz_alpha, 0.5, GQCP::SpinComponent::ALPHA);
+    constrained = constrained.constrain(sq_N_Sz_beta, 0.5, GQCP::SpinComponent::BETA);
+
+    // FCI calculation 
+    GQCP::ProductFockSpace fock_space (K, Ne/2, Ne/2);
+    
+    GQCP::DavidsonSolverOptions solver_options(fock_space.HartreeFockExpansion());
+    GQCP::VectorX<double> dia = fock_space.evaluateOperatorDiagonal(constrained);
+    GQCP::VectorFunction matrixVectorProduct = [&fock_space, &dia, &constrained](const GQCP::VectorX<double>& x) { return fock_space.evaluateOperatorMatrixVectorProduct(constrained, x, dia); };
+    GQCP::DavidsonSolver ds_solver (matrixVectorProduct, dia, solver_options);
+
+    ds_solver.solve();
+
+    // RDMs to evaluate expectation values
+    GQCP::RDMCalculator rdm_calc(fock_space);
+    rdm_calc.set_coefficients(ds_solver.get_eigenpair().get_eigenvector());
+
+    auto one_rdms = rdm_calc.calculate1RDMs();
+    // Calculate spin density
+    GQCP::OneRDM<double> spin_d = GQCP::OneRDM<double>(one_rdms.one_rdm_aa - one_rdms.one_rdm_bb);
+
+    // Evaluate S_z for O and N
+    double N_Sz = GQCP::calculateExpectationValue(sq_N_Sz_alpha, spin_d)[0];
+    double O_Sz = GQCP::calculateExpectationValue(sq_O_Sz_alpha, spin_d)[0];
+    
+    // Check that the total Sz (N_Sz + O_Sz) equals 0
+    BOOST_CHECK(std::abs(N_Sz + O_Sz) < 1.0e-06);
+
+    // Check that the Sz for a single fragment has changed
+    BOOST_CHECK(std::abs(N_Sz) > 1.0e-06);
 }
