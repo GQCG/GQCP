@@ -680,7 +680,16 @@ VectorX<double> SelectedFockSpace::evaluateOperatorDiagonal(const USQHamiltonian
  *
  *  @return the Hamiltonian's matrix vector product in a vector with the dimensions of the Fock space
  */
-VectorX<double> SelectedFockSpace::evaluateOperatorMatrixVectorProduct(const USQHamiltonian<double>& usq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const;
+VectorX<double> SelectedFockSpace::evaluateOperatorMatrixVectorProduct(const USQHamiltonian<double>& usq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
+    auto K = sq_hamiltonian.dimension();
+    if (K != this->K) {
+        throw std::invalid_argument("SelectedFockSpace::evaluateOperatorMatrixVectorProduct(USQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the Fock space and the operator are incompatible.");
+    }
+
+    EvaluationIterator<VectorX<double>> evaluation_iterator (x, diagonal);
+    this->EvaluateOperator<VectorX<double>>(usq_hamiltonian, evaluation_iterator, false);
+    return evaluation_iterator.evaluation();
+}
 
 
 /**
@@ -691,7 +700,25 @@ VectorX<double> SelectedFockSpace::evaluateOperatorMatrixVectorProduct(const USQ
  *
  *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the Fock space
  */
-Eigen::SparseMatrix<double> SelectedFockSpace::evaluateOperatorSparse(const SQHamiltonian<double>& usq_hamiltonian, bool diagonal_values) const;
+Eigen::SparseMatrix<double> SelectedFockSpace::evaluateOperatorSparse(const USQHamiltonian<double>& usq_hamiltonian, bool diagonal_values) const {
+    const auto K = two_op.dimension();
+    if (K != this->K) {
+        throw std::invalid_argument("SelectedFockSpace::evaluateOperatorSparse(USQHamiltonian<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
+    }
+
+    EvaluationIterator<Eigen::SparseMatrix<double>> evaluation_iterator (this->dim);
+
+    // Estimate the memory that is needed for the evaluation
+    size_t memory = dim * this->K * this->K * (this->N_alpha + this->N_beta)*(this->N_alpha + this->N_beta);
+    if (diagonal_values) {
+        memory += this->dim;
+    }
+
+    evaluation_iterator.reserve(memory);
+    this->EvaluateOperator<Eigen::SparseMatrix<double>>(usq_hamiltonian, evaluation_iterator, diagonal_values);
+    evaluation_iterator.addToMatrix();
+    return evaluation_iterator.evaluation();
+}
 
 
 }  // namespace GQCP
