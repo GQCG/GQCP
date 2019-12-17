@@ -578,13 +578,34 @@ VectorX<double> SelectedFockSpace::evaluateOperatorMatrixVectorProduct(const SQH
  */ 
 
 /**
+ *  Evaluate the Hamiltonian in a dense matrix
+ *
+ *  @param usq_hamiltonian          the Hamiltonian expressed in an unrestricted orthonormal basis 
+ *  @param diagonal_values          bool to indicate if diagonal values will be calculated
+ *
+ *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the Fock space
+ */
+SquareMatrix<double>  SelectedFockSpace::evaluateOperatorDense(const USQHamiltonian<double>& usq_hamiltonian, bool diagonal_values) const {
+    const auto K = sq_hamiltonian.dimension();
+    if (K != this->K) {
+        throw std::invalid_argument("SelectedFockSpace::evaluateOperatorDense(USQHamiltonian<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
+    }
+
+    EvaluationIterator<SquareMatrix<double>> evaluation_iterator (this->dim);
+    this->EvaluateOperator<SquareMatrix<double>>(usq_hamiltonian, evaluation_iterator, diagonal_values);
+    return evaluation_iterator.evaluation();
+
+}
+
+
+/**
  *  Evaluate the diagonal of the Hamiltonian
  *
- *  @param sq_hamiltonian              the Hamiltonian expressed in an unrestricted orthonormal basis
+ *  @param usq_hamiltonian              the Hamiltonian expressed in an unrestricted orthonormal basis
  *
  *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the Fock space
  */
-VectorX<double> SelectedFockSpace::evaluateOperatorDiagonal(const USQHamiltonian<double>& sq_hamiltonian) const {
+VectorX<double> SelectedFockSpace::evaluateOperatorDiagonal(const USQHamiltonian<double>& usq_hamiltonian) const {
 
      const auto K = sq_hamiltonian.dimension();
     if (K != this->K) {
@@ -648,6 +669,29 @@ VectorX<double> SelectedFockSpace::evaluateOperatorDiagonal(const USQHamiltonian
 
     return diagonal;
 }
+
+
+/**
+ *  Evaluate the Hamiltonian in a matrix vector product
+ *
+ *  @param usq_hamiltonian              the Hamiltonian expressed in an unrestricted orthonormal basis 
+ *  @param x                            the vector upon which the evaluation acts 
+ *  @param diagonal                     the diagonal evaluated in the Fock space
+ *
+ *  @return the Hamiltonian's matrix vector product in a vector with the dimensions of the Fock space
+ */
+VectorX<double> SelectedFockSpace::evaluateOperatorMatrixVectorProduct(const USQHamiltonian<double>& usq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const;
+
+
+/**
+ *  Evaluate the Hamiltonian in a sparse matrix
+ *
+ *  @param usq_hamiltonian          the Hamiltonian expressed in an unrestricted orthonormal basis 
+ *  @param diagonal_values          bool to indicate if diagonal values will be calculated
+ *
+ *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the Fock space
+ */
+Eigen::SparseMatrix<double> SelectedFockSpace::evaluateOperatorSparse(const SQHamiltonian<double>& usq_hamiltonian, bool diagonal_values) const;
 
 
 }  // namespace GQCP
