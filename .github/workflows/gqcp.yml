@@ -79,5 +79,3 @@ jobs:
         mkdir build && cd build
         ${CONDA_HOME}/bin/cmake .. -DCMAKE_PREFIX_PATH=${CONDA_HOME} -DGQCP_INSTALL_PREFIX=~/.local -Dgqcp_DIR=/home/runner/.local/cmake
         make -j3 && ./test_driver
-        echo "::set-env name=SLACK_MESSAGE::$MESSAGE_SUCCESSFUL" 
-        echo "::set-env name=SLACK_COLOR::$COLOR_SUCCESSFUL"
