@@ -97,7 +97,7 @@ jobs:
       if: always()  # this step will always run, even if a previous step fails
       uses: rtCamp/action-slack-notify@master
       env:
-        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        SLACK_WEBHOOK: https://hooks.slack.com/services/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
         SLACK_COLOR: ${{ env.SLACK_COLOR }}
         SLACK_ICON: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
         SLACK_MESSAGE: ${{ env.SLACK_MESSAGE }}
