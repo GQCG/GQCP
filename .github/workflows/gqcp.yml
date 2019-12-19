@@ -2,17 +2,6 @@ name: GQCP
 
 on: [pull_request]
 
-# These variables are for the slack notification, the default is failure, if all build steps are successful they will be updated to green and "Build successful"
-env:
-  COLOR_SUCCESSFUL: "#00FF00"  # green
-  COLOR_FAILED: "#FF000"  # red
-  MESSAGE_SUCCESSFUL: Build successful
-  MESSAGE_FAILED: Build failed
-
-# Defaults are failure
-  SLACK_COLOR: COLOR_FAILED  
-  SLACK_MESSAGE: MESSAGE_FAILED
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -90,16 +79,3 @@ jobs:
         mkdir build && cd build
         ${CONDA_HOME}/bin/cmake .. -DCMAKE_PREFIX_PATH=${CONDA_HOME} -DGQCP_INSTALL_PREFIX=~/.local -Dgqcp_DIR=/home/runner/.local/cmake
         make -j3 && ./test_driver
-        echo "::set-env name=SLACK_MESSAGE::$MESSAGE_SUCCESSFUL" 
-        echo "::set-env name=SLACK_COLOR::$COLOR_SUCCESSFUL"
-        
-    - name: Slack notification
-      if: always()  # this step will always run, even if a previous step fails
-      uses: rtCamp/action-slack-notify@master
-      env:
-        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-        SLACK_COLOR: ${{ env.SLACK_COLOR }}
-        SLACK_ICON: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
-        SLACK_MESSAGE: ${{ env.SLACK_MESSAGE }}
-        SLACK_TITLE: ${{ env.GITHUB_REF }}
-        SLACK_USERNAME: GitHub Actions
