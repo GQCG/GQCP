@@ -623,6 +623,8 @@ VectorX<double> SelectedFockSpace::evaluateOperatorDiagonal(const USQHamiltonian
     const auto& g_a = usq_hamiltonian.spinHamiltonian(SpinComponent::ALPHA).twoElectron().parameters();
     const auto& h_b = usq_hamiltonian.spinHamiltonian(SpinComponent::BETA).core().parameters();
     const auto& g_b = usq_hamiltonian.spinHamiltonian(SpinComponent::BETA).twoElectron().parameters();
+
+    // Only g_ab is stored, for integrals derived from g_ba we reverse the indices as follows : g_ab(pqrs) = g_ba(rspq)
     const auto& g_ab = usq_hamiltonian.twoElectronMixed().parameters();
 
     // Diagonal contributions

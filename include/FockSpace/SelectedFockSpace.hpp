@@ -289,12 +289,12 @@ public:
      *  @tparam Matrix                       the type of matrix used to store the evaluations
      *
      *  @param one_op                        the one-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
-     * 
      *  @param evaluation_iterator           evaluation iterator to which the evaluations are added
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
     template <typename _Matrix>
     void EvaluateOperator(const ScalarSQOneElectronOperator<double>& one_op, EvaluationIterator<_Matrix>& evaluation_iterator, bool diagonal_values) const {
+        // Calling the unrestricted universal method, with identical alpha and beta components does not affect the performance, hence we avoid duplicated code for the restricted part.
         EvaluateOperator(one_op, one_op, evaluation_iterator, diagonal_values);
     }
 
@@ -305,7 +305,6 @@ public:
      *  @tparam Matrix                       the type of matrix used to store the evaluations
      *
      *  @param usq_hamiltonian               the Hamiltonian expressed in an unrestricted orthonormal basis
-     * 
      *  @param evaluation_iterator           evaluation iterator to which the evaluations are added
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
@@ -410,7 +409,7 @@ public:
      */
    template <typename _Matrix>
     void EvaluateOperator(const ScalarSQTwoElectronOperator<double>& two_op, EvaluationIterator<_Matrix>& evaluation_iterator, bool diagonal_values) const {
-        // Calling this combined method for both the one- and two-electron operator does not affect the performance, hence we avoid writting more code by plugging a zero operator in the combined method.
+        // Calling this combined method for both the one- and two-electron operator does not affect the performance, hence we avoid writting more code by plugging a zero one-electron operator in the combined method.
         EvaluateOperator(ScalarSQOneElectronOperator<double>(this->K), ScalarSQOneElectronOperator<double>(this->K), two_op, two_op, two_op, evaluation_iterator, diagonal_values);
     }
 
@@ -427,7 +426,7 @@ public:
      */
    template <typename _Matrix>
     void EvaluateOperator(const ScalarSQOneElectronOperator<double>& one_op, const ScalarSQTwoElectronOperator<double>& two_op, EvaluationIterator<_Matrix>& evaluation_iterator, bool diagonal_values) const {
-        // Calling this combined method for both the one- and two-electron operator does not affect the performance, hence we avoid writting more code by plugging a zero operator in the combined method.
+        // Calling the unrestricted universal method, with identical alpha, beta and mixed components does not affect the performance, hence we avoid duplicated code for the restricted part.
         EvaluateOperator(one_op, one_op, two_op, two_op, two_op, evaluation_iterator, diagonal_values);
     }
 
@@ -456,7 +455,7 @@ public:
         const auto& h_b = one_op_beta.parameters();
         const auto& g_b = two_op_beta.parameters();
 
-        // If the correct integrals are derived from g_ba we simply have to reverse the indices as follows : g_ab(pqrs) = g_ba(rspq)
+        // Only g_ab is stored, for integrals derived from g_ba we reverse the indices as follows : g_ab(pqrs) = g_ba(rspq)
         const auto& g_ab = two_op_mixed.parameters();
 
         for ( ;!evaluation_iterator.is_finished(); evaluation_iterator.increment()) {  // loop over all addresses (1)
@@ -540,7 +539,7 @@ public:
 
                         if (beta_I.isOccupied(r)) {  // beta_I == beta_J from the previous if-branch
 
-                            double value = 0.5 * 2 * g_ab(p,q,r,r);
+                            double value = 0.5 * 2 * g_ab(p,q,r,r);  // g_ab(pqrs) = g_ba(rspq)
 
                             evaluation_iterator.addColumnwise(J, sign * value);
                             evaluation_iterator.addRowwise(J, sign * value);
@@ -580,7 +579,7 @@ public:
 
                         if (alpha_I.isOccupied(r)) {  // alpha_I == alpha_J from the previous if-branch
 
-                            double value = 0.5 * 2 * g_ab(r,r,p,q);
+                            double value = 0.5 * 2 * g_ab(r,r,p,q);  // g_ab(pqrs) = g_ba(rspq)  
 
                             evaluation_iterator.addColumnwise(J, sign * value);
                             evaluation_iterator.addRowwise(J, sign * value);
@@ -599,7 +598,7 @@ public:
                     size_t s = beta_J.findDifferentOccupations(beta_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
 
                     int sign = alpha_I.operatorPhaseFactor(p) * alpha_J.operatorPhaseFactor(q) * beta_I.operatorPhaseFactor(r) * beta_J.operatorPhaseFactor(s);
-                    double value = 0.5 * 2 * g_ab(p,q,r,s);
+                    double value = 0.5 * 2 * g_ab(p,q,r,s);  // g_ab(pqrs) = g_ba(rspq)
 
                     evaluation_iterator.addColumnwise(J, sign * value);
                     evaluation_iterator.addRowwise(J, sign * value);

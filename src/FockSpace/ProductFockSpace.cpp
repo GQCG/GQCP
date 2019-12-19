@@ -693,6 +693,7 @@ VectorX<double> ProductFockSpace::evaluateOperatorDiagonal(const USQHamiltonian<
         throw std::invalid_argument("ProductFockSpace::evaluateOperatorDiagonal(SQHamiltonian<double>,  SQHamiltonian<double>): Basis functions of the Fock space and the operator are incompatible.");
     }
 
+    // Evaluation environment
     auto const& sq_hamiltonian_alpha = usq_hamiltonian.spinHamiltonian(SpinComponent::ALPHA);
     auto const& sq_hamiltonian_beta = usq_hamiltonian.spinHamiltonian(SpinComponent::BETA);
     auto const& mixed_two_electron_operator = usq_hamiltonian.twoElectronMixed();
@@ -707,6 +708,7 @@ VectorX<double> ProductFockSpace::evaluateOperatorDiagonal(const USQHamiltonian<
     k_alpha = k_alpha + sq_hamiltonian_alpha.twoElectron().effectiveOneElectronPartition().parameters();
     k_beta = k_beta + sq_hamiltonian_beta.twoElectron().effectiveOneElectronPartition().parameters();
 
+    // The two_op_par_mixed variable stored as g_aabb, for integrals derived from g_bbaa we reverse the indices as follows : g_aabb(pqrs) = g_bbaa(rspq)
     const auto& two_op_par_mixed = mixed_two_electron_operator.parameters();
 
     VectorX<double> diagonal = VectorX<double>::Zero(this->dim);
