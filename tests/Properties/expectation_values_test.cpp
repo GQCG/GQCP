@@ -116,11 +116,11 @@ BOOST_AUTO_TEST_CASE ( mulliken_N2_STO_3G ) {
 
 
 /*
- *  
+ *  Perturb the S_z for a single atom in the diatomic molecule NO+
+ *  After the perturbation S_z for the diatomic molecule should still be 0 while the fragment S_z should have changed.
  */ 
 BOOST_AUTO_TEST_CASE ( S_z_constrained_NOplus_STO_3G ) {
 
-    // Break the S_z for a single fragment and test that the total S_z is still 0
     // Initialize the molecule and the molecular Hamiltonian for NO+
     GQCP::Nucleus N (7, 0.0, 0.0, 0.0);
     GQCP::Nucleus O (8, 0.0, 0.0, 2);  
