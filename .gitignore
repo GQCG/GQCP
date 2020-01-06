@@ -27,6 +27,7 @@ debug*/
 *backup*/
 *back-up*/
 
+__pycache__
 
 # Output files
 *.output
