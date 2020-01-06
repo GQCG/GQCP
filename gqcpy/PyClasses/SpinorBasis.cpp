@@ -37,28 +37,35 @@ void bindSpinorBasis(py::module& module) {
 
         .def(py::init<const GQCP::Molecule& , const std::string&>(), py::arg("molecule"), py::arg("basisset_name"))
 
-        .def("quantizeOverlapOperator", [] (const GQCP::RSpinorBasis<double, GQCP::GTOShell>& spinor_basis) { 
+        .def("quantizeOverlapOperator", [] (const GQCP::RSpinorBasis<double, GQCP::GTOShell>& spinor_basis) {
                 return spinor_basis.quantize(GQCP::Operator::Overlap());
             },
             "Return the overlap operator expressed in this spinor basis"
         )
 
-        .def("quantizeKineticOperator", [] (const GQCP::RSpinorBasis<double, GQCP::GTOShell>& spinor_basis) { 
+        .def("quantizeKineticOperator", [] (const GQCP::RSpinorBasis<double, GQCP::GTOShell>& spinor_basis) {
                 return spinor_basis.quantize(GQCP::Operator::Kinetic());
             },
             "Return the kinetic energy operator expressed in this spinor basis"
         )
 
-        .def("quantizeNuclearAttractionOperator", [] (const GQCP::RSpinorBasis<double, GQCP::GTOShell>& spinor_basis, const GQCP::Molecule& molecule) { 
+        .def("quantizeNuclearAttractionOperator", [] (const GQCP::RSpinorBasis<double, GQCP::GTOShell>& spinor_basis, const GQCP::Molecule& molecule) {
                 return spinor_basis.quantize(GQCP::Operator::NuclearAttraction(molecule));
             },
             "Return the nuclear attraction operator expressed in this spinor basis"
         )
 
-        .def("quantizeCoulombRepulsionOperator", [] (const GQCP::RSpinorBasis<double, GQCP::GTOShell>& spinor_basis) { 
+        .def("quantizeCoulombRepulsionOperator", [] (const GQCP::RSpinorBasis<double, GQCP::GTOShell>& spinor_basis) {
                 return spinor_basis.quantize(GQCP::Operator::Coulomb());
             },
             "Return the Coulomb repulsion operator expressed in this spinor basis"
+        )
+
+        .def("transform", [] (GQCP::RSpinorBasis<double, GQCP::GTOShell>& spinor_basis, const Eigen::MatrixXd& T_matrix) {
+                const GQCP::TransformationMatrix<double> T (T_matrix);
+                spinor_basis.transform(T);
+            },
+            "Transform the current spinor basis using a given transformation matrix"
         );
 }
 
