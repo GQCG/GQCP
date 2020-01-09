@@ -11,7 +11,7 @@ import gqcpy
 class OODOCIQCM(unittest.TestCase):
 
     def setUp(self):
-        """ Iniates variables to be used by tests """
+        """ Initiates variables to be used by tests """
         self.oo_doci_module = gqcpy.DOCINewtonOrbitalOptimizer("data/h2_cristina.xyz", "STO-3G", False, False)
         self.ref_energy = -1.13726333769813
         self.oo_doci_module.solve()

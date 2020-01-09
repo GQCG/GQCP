@@ -10,7 +10,7 @@ import gqcpy
 class FukuiDysonAnalysisQCM(unittest.TestCase):
 
     def setUp(self):
-        """ Iniates variables to be used by tests """
+        """ Initiates variables to be used by tests """
         O = gqcpy.Nucleus(8, 0.0,  -0.07579 , 0.0)
         H1 = gqcpy.Nucleus(1, 0.86681, 0.60144 , 0.0)
         H2 = gqcpy.Nucleus(1, -0.86681, 0.60144 , 0.0)

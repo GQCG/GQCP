@@ -11,7 +11,7 @@ import gqcpy
 class DOCIRHFQCM(unittest.TestCase):
 
     def setUp(self):
-        """ Iniates variables to be used by tests """
+        """ Initiates variables to be used by tests """
         F = gqcpy.Nucleus(9, 0, 0, 0)
         self.doci_module = gqcpy.DOCIRHF(gqcpy.Molecule([F], +1), "STO-3G", False)
         self.ref_energy = -97.41595197133647

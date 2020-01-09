@@ -11,7 +11,7 @@ import gqcpy
 class HubbardQCM(unittest.TestCase):
 
     def setUp(self):
-        """ Iniates variables to be used by tests """
+        """ Initiates variables to be used by tests """
         self.csline_input = "-0.999984,-0.736924,0.511211,-0.082700,0.065534,-0.562082,-0.905911,0.357729,0.358593,0.869386"
         self.ref_energy1 = -3.49379514792384
         self.ref_energy2 = -3.01890254187003
