@@ -447,7 +447,7 @@ USQHamiltonian<double> BaseFrozenCoreFockSpace::freezeOperator(const USQHamilton
     const auto frozen_two_op_par_beta = QCRankFourTensor<double>::FromBlock(usq_hamiltonian.spinHamiltonian(SpinComponent::BETA).twoElectron().parameters(), X, X, X, X);
     const auto frozen_two_op_par_mixed = QCRankFourTensor<double>::FromBlock(usq_hamiltonian.twoElectronMixed().parameters(), X, X, X, X);
 
-    // Frozen two-electron integrals can be rewritten partially as one electron integrals.
+    // Frozen two-electron integrals can be rewritten partially as one electron integrals
     for (size_t i = 0; i < K_active; i++) {  // iterate over the active orbitals
         size_t q = i + X;  // map active orbitals indexes to total orbital indexes (those including the frozen orbitals)
 

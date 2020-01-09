@@ -58,8 +58,7 @@ BOOST_AUTO_TEST_CASE ( FrozenProductFockSpace_member_test ) {
 
 
 /**
- *  Perform a dense evaluation of a one-, two-electron operator and the Hamiltonian in the frozen product Fock space (excluding the diagonal)
- *  and compare these to the selected CI solutions.
+ *  Perform a dense evaluation of a one-, two-electron operator and the Hamiltonian in the frozen product Fock space (excluding the diagonal) and compare these to the selected CI solutions
  */
 BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_diagonal_vs_no_diagonal) {
 
@@ -80,8 +79,7 @@ BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_diagonal_vs_no_diagonal) {
 
 
 /**
- *  Perform a dense evaluation of a one-, two-electron operator and the Hamiltonian in the frozen product Fock space (including the diagonal)
- *  and compare these to the selected CI solutions.
+ *  Perform a dense evaluation of a one-, two-electron operator and the Hamiltonian in the frozen product Fock space (including the diagonal) and compare these to the selected CI solutions
  */
 BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_Dense_diagonal_true ) {
 
@@ -113,8 +111,7 @@ BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_Dense_diagonal_true ) {
 
 
 /**
- *  Perform a dense evaluation of a one-, two-electron operator and the Hamiltonian in the frozen product Fock space (excluding the diagonal)
- *  and compare these to the selected CI solutions.
+ *  Perform a dense evaluation of a one-, two-electron operator and the Hamiltonian in the frozen product Fock space (excluding the diagonal) and compare these to the selected CI solutions
  */
 BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_Dense_diagonal_false ) {
 
@@ -145,8 +142,7 @@ BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_Dense_diagonal_false ) {
 
 
 /**
- *  Perform a diagonal evaluation of a one-, two-electron operator and the Hamiltonian in the frozen product Fock space
- *  and compare these to the selected CI solutions.
+ *  Perform a diagonal evaluation of a one-, two-electron operator and the Hamiltonian in the frozen product Fock space and compare these to the selected CI solutions
  */
 BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_diagonal ) {
 
@@ -177,12 +173,10 @@ BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_diagonal ) {
 
 
 /**
- *  Perform a dense and diagonal evaluation for the unrestricted Hamiltonian in the frozen product Fock space
- *  and compare these to the selected CI solutions.
+ *  Perform a dense and diagonal evaluation for the unrestricted Hamiltonian in the frozen product Fock space and compare these to the selected CI solutions
  */
 BOOST_AUTO_TEST_CASE ( FrozenProductFockSpace_evaluateOperator_diagonal_unrestricted_vs_selected ) {
 
-    // This test the evaluations in an unrestricted basis for the FrozenProductFockSpace versus the evaluation of the selected module
     GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
 
     GQCP::USpinorBasis<double, GQCP::GTOShell> spinor_basis (hchain, "STO-3G");

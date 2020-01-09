@@ -209,12 +209,10 @@ BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_MatrixVectorProduct ) {
 
 
 /**
- *  This test the results for diagonal and dense evaluations for
- *  the restricted framework to that of the unrestricted framework in a restricted basis (the alpha and beta coefficients and parameters are identical) 
+ *  This tests the results for diagonal and dense evaluations for the restricted framework to that of the unrestricted framework in a restricted basis (the alpha and beta coefficients and parameters are identical) 
  */
 BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_diagonal_unrestricted ) {
 
-    // This test the results from the restricted framework to that of the unrestricted framework in a restricted basis (the alpha and beta coefficients and parameters are identical)
     GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
 
     GQCP::USpinorBasis<double, GQCP::GTOShell> uspinor_basis (hchain, "STO-3G");
@@ -239,12 +237,10 @@ BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_diagonal_unrestricted ) {
 
 
 /**
- *  Perform a dense and diagonal evaluation for the unrestricted Hamiltonian in the product Fock space
- *  and compare these to the selected CI solutions.
+ *  Perform a dense and diagonal evaluation for the unrestricted Hamiltonian in the product Fock space and compare these to the selected CI solutions
  */
 BOOST_AUTO_TEST_CASE ( FockSpace_EvaluateOperator_diagonal_unrestricted_vs_selected ) {
 
-    // This test the evaluations in an unrestricted basis for the ProductFockSpace versus the evaluation of the selected module
     GQCP::Molecule hchain = GQCP::Molecule::HChain(6, 0.742, 2);
     GQCP::USpinorBasis<double, GQCP::GTOShell> uspinor_basis (hchain, "STO-3G");
     uspinor_basis.lowdinOrthonormalize();

@@ -117,7 +117,7 @@ BOOST_AUTO_TEST_CASE ( mulliken_N2_STO_3G ) {
 
 /*
  *  Perturb the S_z for a single atom in the diatomic molecule NO+
- *  After the perturbation S_z for the diatomic molecule should still be 0 while the fragment S_z should have changed.
+ *  After the perturbation, the total S_z for the diatomic molecule should still be 0 while the fragment S_z should have changed
  */ 
 BOOST_AUTO_TEST_CASE ( S_z_constrained_NOplus_STO_3G ) {
 
@@ -162,33 +162,34 @@ BOOST_AUTO_TEST_CASE ( S_z_constrained_NOplus_STO_3G ) {
     GQCP::ScalarSQOneElectronOperator<double> sq_O_Sz_alpha = uspinor_basis.calculateAtomicSpinZ(gto_O, GQCP::SpinComponent::ALPHA);
     GQCP::ScalarSQOneElectronOperator<double> sq_O_Sz_beta = uspinor_basis.calculateAtomicSpinZ(gto_O, GQCP::SpinComponent::BETA);
 
-    // Create constrain the spin-z on N
+    // Create a constraint for the spin-z on N
     auto constrained = usq_hamiltonian.constrain(sq_N_Sz_alpha, 0.5, GQCP::SpinComponent::ALPHA);
     constrained = constrained.constrain(sq_N_Sz_beta, 0.5, GQCP::SpinComponent::BETA);
 
-    // FCI calculation 
+    // Do the FCI calculation 
     GQCP::ProductFockSpace fock_space (K, Ne/2, Ne/2);
     
-    GQCP::DavidsonSolverOptions solver_options(fock_space.HartreeFockExpansion());
+    GQCP::DavidsonSolverOptions solver_options (fock_space.HartreeFockExpansion());
     GQCP::VectorX<double> dia = fock_space.evaluateOperatorDiagonal(constrained);
     GQCP::VectorFunction matrixVectorProduct = [&fock_space, &dia, &constrained](const GQCP::VectorX<double>& x) { return fock_space.evaluateOperatorMatrixVectorProduct(constrained, x, dia); };
     GQCP::DavidsonSolver ds_solver (matrixVectorProduct, dia, solver_options);
 
     ds_solver.solve();
 
-    // RDMs to evaluate expectation values
+    // Calculate the RDMs in order to evaluate expectation values
     GQCP::RDMCalculator rdm_calc(fock_space);
     rdm_calc.set_coefficients(ds_solver.get_eigenpair().get_eigenvector());
 
     auto one_rdms = rdm_calc.calculate1RDMs();
-    // Calculate spin density
+
+    // Calculate the spin density matrix
     GQCP::OneRDM<double> spin_d = GQCP::OneRDM<double>(one_rdms.one_rdm_aa - one_rdms.one_rdm_bb);
 
     // Evaluate S_z for O and N
     double N_Sz = GQCP::calculateExpectationValue(sq_N_Sz_alpha, spin_d)[0];
     double O_Sz = GQCP::calculateExpectationValue(sq_O_Sz_alpha, spin_d)[0];
     
-    // Check that the total Sz (N_Sz + O_Sz) equals 0
+    // Check that the total Sz (N_Sz + O_Sz) still equals 0
     BOOST_CHECK(std::abs(N_Sz + O_Sz) < 1.0e-06);
 
     // Check that the Sz for a single fragment has changed
