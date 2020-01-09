@@ -64,7 +64,6 @@ private:
     std::vector<double> entropy;
     std::vector<double> sz;
 
-
     // Decomposed solutions
     std::vector<double> A_fragment_energy;
     std::vector<double> A_fragment_self_energy;
@@ -177,11 +176,11 @@ public:
     std::vector<double> all_properties(const size_t index = 0) const; 
 
     // SETTERS
-    void set_convergence_threshold(double x) { this->convergence_threshold = x; }  
-    void set_correction_threshold(double x) { this->correction_threshold = x; }  
-    void set_maximum_subspace_dimension(size_t x) { this->maximum_subspace_dimension = x; }
-    void set_collapsed_subspace_dimension(size_t x) { this->collapsed_subspace_dimension = x; }
-    void set_maximum_number_of_iterations(size_t x) { this->maximum_number_of_iterations = x; }
+    void set_convergence_threshold(const double x) { this->convergence_threshold = x; }  
+    void set_correction_threshold(const double x) { this->correction_threshold = x; }  
+    void set_maximum_subspace_dimension(const size_t x) { this->maximum_subspace_dimension = x; }
+    void set_collapsed_subspace_dimension(const size_t x) { this->collapsed_subspace_dimension = x; }
+    void set_maximum_number_of_iterations(const size_t x) { this->maximum_number_of_iterations = x; }
 };
 
 

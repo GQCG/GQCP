@@ -261,6 +261,12 @@ void MullikenConstrainedFCI::solveMullikenDavidson(const double multiplier, cons
 
     // Davidson solver
     DavidsonSolverOptions solver_options(guess);
+    solver_options.convergence_threshold = this->convergence_threshold;
+    solver_options.correction_threshold = this->correction_threshold;
+    solver_options.maximum_subspace_dimension = this->maximum_subspace_dimension;
+    solver_options.collapsed_subspace_dimension = this->collapsed_subspace_dimension;
+    solver_options.maximum_number_of_iterations = this->et_maximum_number_of_iterations;
+
     VectorX<double> dia = this->fock_space.evaluateOperatorDiagonal(constrained_ham_par);
     VectorFunction matrixVectorProduct = [this, &constrained_ham_par, &dia](const GQCP::VectorX<double>& x) { return this->fock_space.evaluateOperatorMatrixVectorProduct(constrained_ham_par, x, dia); };
     DavidsonSolver solver (matrixVectorProduct, dia, solver_options);
