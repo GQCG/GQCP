@@ -384,8 +384,9 @@ public:
      */
     template<typename Z = ExpansionScalar>
     enable_if_t<std::is_same<Z, double>::value, ScalarSQOneElectronOperator<double>> calculateAtomicSpinZ(const Vectoru& ao_list, const SpinComponent& component) const {
+
+        // The atomic spin operator can be calculated as as the atomic Mulliken operator divided by 2, multiplied by the correct sign factor
         int sign = 1 - 2*component;  // 1 for ALPHA, -1 for BETA
-        // The atomic spin operator is defined as the atomic Mulliken operator divided by 2
         return ScalarSQOneElectronOperator<double>({sign * this->spinor_bases[component].calculateMullikenOperator(ao_list).parameters()/2});
     }
 };

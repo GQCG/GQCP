@@ -34,7 +34,7 @@ class MullikenConstrainedQCM(unittest.TestCase):
 
         # Initiate a second set to test spin constraints
         O_2b = gqcpy.Nucleus(8, 2, 0, 0)
-        NO_2b = gqcpy.Molecule([N,O_2b], +1) # The NO+ molecule with an intramolecular distance of 2 bohr
+        NO_2b = gqcpy.Molecule([N,O_2b], +1)  # the NO+ molecule with an intramolecular distance of 2 bohr
 
         self.constrained_module_spin = gqcpy.MullikenConstrainedFCI(NO_2b, basis_set, basis_targets)
         self.atomic_sz = 0.938336864443

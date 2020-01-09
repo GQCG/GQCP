@@ -677,7 +677,8 @@ SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const USQHamiltonia
 
     return total_evaluation;
 }
- 
+
+
 /**
  *  Evaluate the diagonal of the Hamiltonian
  *
@@ -766,6 +767,7 @@ VectorX<double> ProductFockSpace::evaluateOperatorDiagonal(const USQHamiltonian<
 
     return diagonal;
 }
+
 
 /**
  *  Evaluate the unrestricted Hamiltonian in a matrix vector product

@@ -34,8 +34,8 @@ namespace QCMethod {
 
 
 /**
- *  A class that solves the FCI Hamiltonian given a perturbation in the form of a langragian multiplier and the Mulliken operator for a pre-specified set of basis functions
- *  Additionally an atomic Sz perturbation can be applied as wel. 
+ *  A class that solves the FCI Hamiltonian given a perturbation in the form of a Langragian multiplier and the Mulliken operator for a pre-specified set of basis functions
+ *  Additionally, an atomic Sz perturbation can be applied as well
  */
 class MullikenConstrainedFCI {
 private:
