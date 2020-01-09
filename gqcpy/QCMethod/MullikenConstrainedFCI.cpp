@@ -27,6 +27,8 @@ namespace py = pybind11;
 
 namespace gqcpy {
 
+// ALIASES
+using OverloadPointer = void (GQCP::QCMethod::MullikenConstrainedFCI::*)(const double, const GQCP::VectorX<double>&, const double)
 
 void bindMullikenConstrainedFCI(py::module& module) {
     py::class_<GQCP::QCMethod::MullikenConstrainedFCI>(module, "MullikenConstrainedFCI", "A class that solves the FCI Hamiltonian given a perturbation in the form of a langragian multiplier and the Mulliken operator for a pre-specified set of basis functions")
@@ -34,6 +36,7 @@ void bindMullikenConstrainedFCI(py::module& module) {
         .def("solveMullikenDavidson", (void (GQCP::QCMethod::MullikenConstrainedFCI::*)(const double, const GQCP::VectorX<double>&, const double)) &GQCP::QCMethod::MullikenConstrainedFCI::solveMullikenDavidson, py::arg("multiplier"), py::arg("guess"), py::arg("sz_multiplier") = 0, "Solve the eigenvalue problem for a multiplier with the davidson algorithm")
         .def("solveMullikenDavidson", (void (GQCP::QCMethod::MullikenConstrainedFCI::*)(const double, const double)) &GQCP::QCMethod::MullikenConstrainedFCI::solveMullikenDavidson, py::arg("multiplier"), py::arg("sz_multiplier") = 0, "Solve the eigenvalue problem for a multiplier with the davidson algorithm, davidson guess will be the previously stored solution if none is available the Hartree Fock expansion will be used instead")
         .def("solveMullikenDense", &GQCP::QCMethod::MullikenConstrainedFCI::solveMullikenDense, py::arg("multiplier"), py::arg("number_of_states"), py::arg("sz_multiplier") = 0)
+
         .def("get_energy", &GQCP::QCMethod::MullikenConstrainedFCI::get_energy, py::arg("index") = 0)
         .def("get_population", &GQCP::QCMethod::MullikenConstrainedFCI::get_population, py::arg("index") = 0)
         .def("get_sz", &GQCP::QCMethod::MullikenConstrainedFCI::get_sz, py::arg("index") = 0)
@@ -45,7 +48,13 @@ void bindMullikenConstrainedFCI(py::module& module) {
         .def("get_B_fragment_energy", &GQCP::QCMethod::MullikenConstrainedFCI::get_B_fragment_energy, py::arg("index") = 0)
         .def("get_B_fragment_self_energy", &GQCP::QCMethod::MullikenConstrainedFCI::get_B_fragment_self_energy, py::arg("index") = 0)
         .def("get_interaction_energy", &GQCP::QCMethod::MullikenConstrainedFCI::get_interaction_energy, py::arg("index") = 0)
-        .def("all_properties", &GQCP::QCMethod::MullikenConstrainedFCI::all_properties, "Get all properties from the most recent solve.");
+        .def("all_properties", &GQCP::QCMethod::MullikenConstrainedFCI::all_properties, "Get all properties from the most recent solve.")
+
+        .def("set_convergence_threshold", &GQCP::QCMethod::MullikenConstrainedFCI::set_convergence_threshold, py::arg("x"))
+        .def("set_correction_threshold", &GQCP::QCMethod::MullikenConstrainedFCI::set_correction_threshold, py::arg("x"))
+        .def("set_maximum_subspace_dimension", &GQCP::QCMethod::MullikenConstrainedFCI::set_maximum_subspace_dimension, py::arg("x"))
+        .def("set_collapsed_subspace_dimension", &GQCP::QCMethod::MullikenConstrainedFCI::set_collapsed_subspace_dimension, py::arg("x"))
+        .def("set_maximum_number_of_iterations", &GQCP::QCMethod::MullikenConstrainedFCI::set_maximum_number_of_iterations, py::arg("x"));
 }
 
 

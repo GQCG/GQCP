@@ -75,6 +75,13 @@ private:
     // Eigenvectors
     std::vector<VectorX<double>> eigenvector;
 
+    // Davidson parameters
+    double convergence_threshold = 1.0e-08;  // the tolerance on the norm of the residual vector
+    double correction_threshold = 1.0e-12;  // the threshold used in solving the (approximated) residue correction equation
+    size_t maximum_subspace_dimension = 15;
+    size_t collapsed_subspace_dimension = 2;
+    size_t maximum_number_of_iterations = 128;
+
     // PRIVATE METHODS
     /**
      *  Store the solutions from a solve
@@ -168,6 +175,13 @@ public:
      *      if diatomic we additionally find: A_fragment_energy, A_fragment_self_energy, B_fragment_energy, B_fragment_self_energy and interaction_energy in that order.
      */
     std::vector<double> all_properties(const size_t index = 0) const; 
+
+    // SETTERS
+    void set_convergence_threshold(double x) { this->convergence_threshold = x; }  
+    void set_correction_threshold(double x) { this->correction_threshold = x; }  
+    void set_maximum_subspace_dimension(size_t x) { this->maximum_subspace_dimension = x; }
+    void set_collapsed_subspace_dimension(size_t x) { this->collapsed_subspace_dimension = x; }
+    void set_maximum_number_of_iterations(size_t x) { this->maximum_number_of_iterations = x; }
 };
 
 
