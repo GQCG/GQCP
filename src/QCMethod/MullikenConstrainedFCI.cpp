@@ -86,7 +86,7 @@ void MullikenConstrainedFCI::parseSolution(const std::vector<Eigenpair>& eigenpa
         this->population[i] = population;
         this->sz[i] = sz;
         this->lambda[i] = multiplier;
-        this->lambda_sz[i] = multiplier;
+        this->lambda_sz[i] = sz_multiplier;
         this->entropy[i] = wavefunction.calculateShannonEntropy();
 
         if (molecule.numberOfAtoms() == 2) {
@@ -265,7 +265,7 @@ void MullikenConstrainedFCI::solveMullikenDavidson(const double multiplier, cons
     solver_options.correction_threshold = this->correction_threshold;
     solver_options.maximum_subspace_dimension = this->maximum_subspace_dimension;
     solver_options.collapsed_subspace_dimension = this->collapsed_subspace_dimension;
-    solver_options.maximum_number_of_iterations = this->et_maximum_number_of_iterations;
+    solver_options.maximum_number_of_iterations = this->maximum_number_of_iterations;
 
     VectorX<double> dia = this->fock_space.evaluateOperatorDiagonal(constrained_ham_par);
     VectorFunction matrixVectorProduct = [this, &constrained_ham_par, &dia](const GQCP::VectorX<double>& x) { return this->fock_space.evaluateOperatorMatrixVectorProduct(constrained_ham_par, x, dia); };
