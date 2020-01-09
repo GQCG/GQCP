@@ -28,8 +28,8 @@ namespace py = pybind11;
 namespace gqcpy {
 
 // ALIASES
-using OverloadPointerMullikenDavidsonGuess = void (GQCP::QCMethod::MullikenConstrainedFCI::*)(const double, const GQCP::VectorX<double>&, const double)
-using OverloadPointerMullikenDavidson = void (GQCP::QCMethod::MullikenConstrainedFCI::*)(const double, const double)
+using OverloadPointerMullikenDavidsonGuess = void (GQCP::QCMethod::MullikenConstrainedFCI::*)(const double, const GQCP::VectorX<double>&, const double);
+using OverloadPointerMullikenDavidson = void (GQCP::QCMethod::MullikenConstrainedFCI::*)(const double, const double);
 
 void bindMullikenConstrainedFCI(py::module& module) {
     py::class_<GQCP::QCMethod::MullikenConstrainedFCI>(module, "MullikenConstrainedFCI", "A class that solves the FCI Hamiltonian given a perturbation in the form of a langragian multiplier and the Mulliken operator for a pre-specified set of basis functions")
