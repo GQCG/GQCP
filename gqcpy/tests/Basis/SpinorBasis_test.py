@@ -13,8 +13,8 @@ class SpinorBasisTest(unittest.TestCase):
     def setUp(self):
         """Initiate variables to be used by the tests"""
 
-        self.molecule = Molecule.ReadXYZ("/Users/laurentlemmens/Software/GQCG/gqcp/tests/data/h2_szabo.xyz" , 0)  # create a neutral molecule
-        self.spinor_basis = SpinorBasis(self.molecule, "STO-3G")
+        self.molecule = gqcpy.Molecule.ReadXYZ("data/h2_szabo.xyz" , 0)  # create a neutral molecule
+        self.spinor_basis = gqcpy.SpinorBasis(self.molecule, "STO-3G")
 
         self.ref_S = np.array([[1.0,    0.6593],
                                [0.6593, 1.0]])
