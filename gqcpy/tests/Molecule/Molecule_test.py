@@ -8,7 +8,7 @@ sys.path.insert(0, '../')
 import gqcpy
 
 
-class Molecule(unittest.TestCase):
+class MoleculeTest(unittest.TestCase):
 
     def setUp(self):
         pass
@@ -16,11 +16,13 @@ class Molecule(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def test_constructor(self):
-        """ compare properties with reference """
+    def testReadXYZ(self):
+        """Check if the .ReadXYZ method works as expected"""
+
         self.molecule = gqcpy.Molecule.ReadXYZ("data/ch4_crawdad.xyz", 0)
         representation_string = "Number of electrons: 10\nC  (-0, 0, 0)\nH  (1.18377, -1.18377, -1.18377)\nH  (1.18377, 1.18377, 1.18377)\nH  (-1.18377, 1.18377, -1.18377)\nH  (-1.18377, -1.18377, 1.18377)\n"
         self.assertEqual(self.molecule.__repr__(), representation_string)
-    
+
+
 if __name__ == '__main__':
     unittest.main()

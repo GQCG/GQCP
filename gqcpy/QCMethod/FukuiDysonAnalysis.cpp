@@ -30,14 +30,15 @@ namespace gqcpy {
 
 void bindQCMethodFukuiDysonAnalysis(py::module& module) {
     py::class_<GQCP::QCMethod::FukuiDysonAnalysis>(module, "FukuiDysonAnalysis", "A class that solves the FCI Hamiltonian for a given molecule and performs Fukui and Dyson analysis")
+
         .def(py::init<const GQCP::Molecule& , const std::string&, const bool>(), py::arg("molecule"), py::arg("basis_set"), py::arg("use_diis"))
+
         .def("get_dyson_coefficients", &GQCP::QCMethod::FukuiDysonAnalysis::get_dyson_coefficients)
         .def("get_fukui_matrix", &GQCP::QCMethod::FukuiDysonAnalysis::get_fukui_matrix)
         .def("get_fukui_naturals", &GQCP::QCMethod::FukuiDysonAnalysis::get_fukui_naturals)
         .def("get_fukui_vectors", &GQCP::QCMethod::FukuiDysonAnalysis::get_fukui_vectors)
         .def("get_canonical_matrix", &GQCP::QCMethod::FukuiDysonAnalysis::get_canonical_matrix);
 }
-
 
 
 }  // namespace gqcpy

@@ -49,17 +49,21 @@ void bindSQTwoElectronOperator(py::module& module);
  */
 PYBIND11_MODULE (gqcpy, module) {
 
+    gqcpy::bindVersion(module);
+
+    // Bind basic functionality
+    gqcpy::bindMolecule(module);
+    gqcpy::bindNucleus(module);
+    gqcpy::bindSpinorBasis(module);
+    gqcpy::bindSQOneElectronOperator(module);
+    gqcpy::bindSQTwoElectronOperator(module);
+
+
+    // Bind quantum chemical methods
     gqcpy::bindQCMethodDOCINewtonOrbitalOptimizer(module);
     gqcpy::bindQCMethodDOCIRHF(module);
     gqcpy::bindQCMethodHubbard(module);
     gqcpy::bindQCMethodFCI(module);
     gqcpy::bindQCMethodFukuiDysonAnalysis(module);
     gqcpy::bindMullikenConstrainedFCI(module);
-    gqcpy::bindVersion(module);
-
-    gqcpy::bindMolecule(module);
-    gqcpy::bindNucleus(module);
-    gqcpy::bindSpinorBasis(module);
-    gqcpy::bindSQOneElectronOperator(module);
-    gqcpy::bindSQTwoElectronOperator(module);
 }

@@ -8,9 +8,6 @@ import unittest
 import numpy as np
 
 
-###
- #  Test the bindings that correspond to the quantization of one- and two-electron operators
-###
 class SpinorBasisTest(unittest.TestCase):
 
     def setUp(self):
@@ -32,6 +29,7 @@ class SpinorBasisTest(unittest.TestCase):
 
     def test_one_electron_integrals(self):
         """Compare the one-electron integrals with the reference values"""
+
         S = self.spinor_basis.quantizeOverlapOperator().parameters()
         
         T = self.spinor_basis.quantizeKineticOperator().parameters()
