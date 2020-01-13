@@ -1,15 +1,18 @@
+# Add the sources for the Python bindings
 list(APPEND python_bindings_sources
         ${CMAKE_CURRENT_SOURCE_DIR}/bindings.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/version.cpp
     )
 
+add_subdirectory(Basis)
+add_subdirectory(Molecule)
+add_subdirectory(Operator)
 add_subdirectory(QCMethod)
-add_subdirectory(PyClasses)
 
 set(python_bindings_sources ${python_bindings_sources} PARENT_SCOPE)
 
 
-# Configure tests
+# Configure the tests
 set(python_test_target_sources)
 add_subdirectory(tests)
 

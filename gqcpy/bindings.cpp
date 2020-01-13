@@ -33,8 +33,11 @@ void bindQCMethodFukuiDysonAnalysis(py::module& module);
 void bindMullikenConstrainedFCI(py::module& module);
 void bindVersion(py::module& module);
 
-void bindNucleus(py::module& module);
 void bindMolecule(py::module& module);
+void bindNucleus(py::module& module);
+void bindSpinorBasis(py::module& module);
+void bindSQOneElectronOperator(py::module& module);
+void bindSQTwoElectronOperator(py::module& module);
 
 }  // namespace gqcpy
 
@@ -46,14 +49,21 @@ void bindMolecule(py::module& module);
  */
 PYBIND11_MODULE (gqcpy, module) {
 
+    gqcpy::bindVersion(module);
+
+    // Bind basic functionality
+    gqcpy::bindMolecule(module);
+    gqcpy::bindNucleus(module);
+    gqcpy::bindSpinorBasis(module);
+    gqcpy::bindSQOneElectronOperator(module);
+    gqcpy::bindSQTwoElectronOperator(module);
+
+
+    // Bind quantum chemical methods
     gqcpy::bindQCMethodDOCINewtonOrbitalOptimizer(module);
     gqcpy::bindQCMethodDOCIRHF(module);
     gqcpy::bindQCMethodHubbard(module);
     gqcpy::bindQCMethodFCI(module);
     gqcpy::bindQCMethodFukuiDysonAnalysis(module);
     gqcpy::bindMullikenConstrainedFCI(module);
-    gqcpy::bindVersion(module);
-
-    gqcpy::bindNucleus(module);
-    gqcpy::bindMolecule(module);
 }

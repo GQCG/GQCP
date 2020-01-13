@@ -53,7 +53,7 @@ public:
     /**
      *  Default constructor
      */
-    SquareMatrix() : Base() {}    
+    SquareMatrix() : Base() {}
 
 
     /**
