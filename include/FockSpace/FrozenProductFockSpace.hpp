@@ -22,6 +22,7 @@
 #include "FockSpace/BaseFrozenCoreFockSpace.hpp"
 #include "FockSpace/FrozenFockSpace.hpp"
 #include "FockSpace/ProductFockSpace.hpp"
+#include "Operator/SecondQuantized/USQHamiltonian.hpp"
 
 
 namespace GQCP {
@@ -55,6 +56,7 @@ public:
      */
     FrozenProductFockSpace(const ProductFockSpace& fock_space, size_t X);
 
+
     // GETTERS
     size_t get_N_alpha() const { return this->frozen_fock_space_alpha.get_N(); }
     size_t get_N_beta() const { return this->frozen_fock_space_beta.get_N(); }
@@ -65,6 +67,41 @@ public:
 
     const ProductFockSpace& get_active_product_fock_space() const { return this->active_product_fock_space; }
     FockSpaceType get_type() const override { return FockSpaceType::FrozenProductFockSpace; }
+
+    using BaseFrozenCoreFockSpace::evaluateOperatorDense;
+    using BaseFrozenCoreFockSpace::evaluateOperatorDiagonal;
+
+
+    // UNRESTRICTED
+    /**
+     *  Evaluate the Hamiltonian in a dense matrix
+     *
+     *  @param usq_hamiltonian                the Hamiltonian expressed in an unrestricted orthonormal basis 
+     *  @param diagonal_values                bool to indicate if diagonal values will be calculated
+     *
+     *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the Fock space
+     */
+    SquareMatrix<double> evaluateOperatorDense(const USQHamiltonian<double>& usq_hamiltonian, bool diagonal_values) const;
+
+    /**
+     *  Evaluate the diagonal of the Hamiltonian
+     *
+     *  @param usq_hamiltonian          the Hamiltonian expressed in an unrestricted orthonormal basis 
+     *
+     *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the Fock space
+     */
+    VectorX<double> evaluateOperatorDiagonal(const USQHamiltonian<double>& usq_hamiltonian) const;
+
+    /**
+     *  Evaluate the unrestricted Hamiltonian in a matrix vector product
+     *
+     *  @param usq_hamiltonian                the Hamiltonian expressed in an unrestricted orthonormal basis 
+     *  @param x                              the vector upon which the evaluation acts 
+     *  @param diagonal                       the diagonal evaluated in the Fock space
+     *
+     *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the Fock space
+     */
+    VectorX<double> evaluateOperatorMatrixVectorProduct(const USQHamiltonian<double>& usq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const;
 };
 
 

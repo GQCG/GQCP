@@ -19,10 +19,14 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include "Basis/transform.hpp"
 #include "FockSpace/SelectedFockSpace.hpp"
 #include "WaveFunction/WaveFunctionReader.hpp"
 
 
+/**
+ *  Tests the constructors of the SelectedFockSpace
+ */
 BOOST_AUTO_TEST_CASE ( constructor ) {
 
     BOOST_CHECK_NO_THROW(GQCP::SelectedFockSpace (10, 5, 5));
@@ -35,6 +39,9 @@ BOOST_AUTO_TEST_CASE ( constructor ) {
 }
 
 
+/**
+ *  Tests general functionality of the SelectedFockSpace::addConfiguration function, by testing throws and retrieving configurations
+ */
 BOOST_AUTO_TEST_CASE ( addConfiguration ) {
 
     // Create a faulty expansion: one of the orbitals is different
@@ -82,6 +89,9 @@ BOOST_AUTO_TEST_CASE ( addConfiguration ) {
 }
 
 
+/**
+ *  Tests if a basis expansion file is correctly read in
+ */
 BOOST_AUTO_TEST_CASE ( reader_test ) {
 
     // We will test if we can construct a selected fock space and a corresponding coefficients
@@ -117,10 +127,13 @@ BOOST_AUTO_TEST_CASE ( reader_test ) {
     BOOST_CHECK(alpha2_test == alpha2_ref);
     BOOST_CHECK(beta1_test == beta1_ref);
     BOOST_CHECK(beta2_test == beta2_ref);
-
 }
 
 
+/**
+ *  Evaluate the Hamiltonian in a selected Fock space in which all configurations are selected (Full CI)
+ *  Compare the evaluation of a direct matrix vector product to that of the matrix vector product evaluations and test the lowest eigenvalue against of the evaluated Hamiltonian a reference value
+ */
 BOOST_AUTO_TEST_CASE ( Selected_Evaluation_H2O ) {
 
     // Psi4 and GAMESS' FCI energy for H2O
@@ -133,26 +146,93 @@ BOOST_AUTO_TEST_CASE ( Selected_Evaluation_H2O ) {
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2o);  // in the Löwdin basis
     auto K = sq_hamiltonian.dimension();
 
-
     GQCP::ProductFockSpace fock_space (K, h2o.numberOfElectrons()/2, h2o.numberOfElectrons()/2);  // dim = 441
     GQCP::SelectedFockSpace selected_fock_space (fock_space);
 
+
+    // Evaluate the dense Hamiltonian
     GQCP::SquareMatrix<double> hamiltonian = selected_fock_space.evaluateOperatorDense(sq_hamiltonian, true);
     GQCP::SquareMatrix<double> hamiltonian_no_diagonal = selected_fock_space.evaluateOperatorDense(sq_hamiltonian, false);
-    GQCP::VectorX<double> hamiltonian_diagonal = selected_fock_space.evaluateOperatorDiagonal(sq_hamiltonian);
-    GQCP::VectorX<double> matvec_evaluation = selected_fock_space.evaluateOperatorMatrixVectorProduct(sq_hamiltonian, hamiltonian_diagonal, hamiltonian_diagonal);
-    GQCP::VectorX<double> matvec_reference = hamiltonian * hamiltonian_diagonal;
 
-    // Retrieve lowest eigenvalue (fci solution)
+    // Evaluate the diagonal
+    GQCP::VectorX<double> hamiltonian_diagonal = selected_fock_space.evaluateOperatorDiagonal(sq_hamiltonian);
+
+    // Evaluate the matvec
+    GQCP::VectorX<double> matvec_evaluation = selected_fock_space.evaluateOperatorMatrixVectorProduct(sq_hamiltonian, hamiltonian_diagonal, hamiltonian_diagonal);
+
+    // Calculate the explicit matvec with the dense evaluations
+    GQCP::VectorX<double> matvec_reference = hamiltonian * hamiltonian_diagonal;
+   
+    // Retrieve the lowest eigenvalue (FCI solution)
     Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> self_adjoint_eigensolver (hamiltonian);
 
     double internuclear_repulsion_energy = GQCP::Operator::NuclearRepulsion(h2o).value();
     double test_energy = self_adjoint_eigensolver.eigenvalues()(0) + internuclear_repulsion_energy;
 
-
+    // Test the energy with the reference
     BOOST_CHECK(std::abs(test_energy - reference_fci_energy) < 1e-6);
+
+    // Test if the non-diagonal evaluation and diagonal evaluations are correct
+    BOOST_CHECK(hamiltonian.isApprox(hamiltonian_no_diagonal + GQCP::SquareMatrix<double>(hamiltonian_diagonal.asDiagonal())));
+
+    // Test if the matvecs are identical
+    BOOST_CHECK(matvec_evaluation.isApprox(matvec_reference));
+}
+
+
+/**
+ *  Evaluate the an unrestricted Hamiltonian where one component (beta) is rotated to a different basis in a selected Fock space in which all configurations are selected (Full CI)
+ *  Compare the evaluation of a direct matrix vector product to that of the matrix vector product evaluations and test the lowest eigenvalue against of the evaluated Hamiltonian a reference value
+ */
+BOOST_AUTO_TEST_CASE ( Selected_H2O_Unrestricted ) {
+
+    // Psi4 and GAMESS' FCI energy (restricted)
+    double reference_fci_energy = -75.0129803939602;
+
+    // Create the molecular Hamiltonian in an AO basis
+    auto h2o = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
+    GQCP::USpinorBasis<double, GQCP::GTOShell> spinor_basis (h2o, "STO-3G");
+    spinor_basis.lowdinOrthonormalize();
+    auto usq_hamiltonian = GQCP::USQHamiltonian<double>::Molecular(spinor_basis, h2o);  // unrestricted Hamiltonian in the Löwdin basis
+
+    // Transform the Hamiltonian to an orthonormal basis 
+    GQCP::basisTransform(spinor_basis, usq_hamiltonian, spinor_basis.lowdinOrthonormalizationMatrix(GQCP::SpinComponent::ALPHA));
+
+    // Transform the beta component
+    // Create stable unitairy matrix
+    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes (usq_hamiltonian.spinHamiltonian(GQCP::SpinComponent::ALPHA).core().parameters());
+    GQCP::basisTransform(spinor_basis, usq_hamiltonian, GQCP::TransformationMatrix<double>(saes.eigenvectors()), GQCP::SpinComponent::BETA);
+    auto K = usq_hamiltonian.dimension()/2;
+
+    GQCP::ProductFockSpace fock_space (K, h2o.numberOfElectrons()/2, h2o.numberOfElectrons()/2);  // dim = 441
+    GQCP::SelectedFockSpace selected_fock_space (fock_space);
+
+    // Evaluate the dense Hamiltonian
+    GQCP::SquareMatrix<double> hamiltonian = selected_fock_space.evaluateOperatorDense(usq_hamiltonian, true);
+    GQCP::SquareMatrix<double> hamiltonian_no_diagonal = selected_fock_space.evaluateOperatorDense(usq_hamiltonian, false);
+
+    // Evaluate the diagonal
+    GQCP::VectorX<double> hamiltonian_diagonal = selected_fock_space.evaluateOperatorDiagonal(usq_hamiltonian);
+
+    // Evaluate the matvec
+    GQCP::VectorX<double> matvec_evaluation = selected_fock_space.evaluateOperatorMatrixVectorProduct(usq_hamiltonian, hamiltonian_diagonal, hamiltonian_diagonal);
+
+    // Evaluate the explicit matvec with the dense evaluations
+    GQCP::VectorX<double> matvec_reference = hamiltonian * hamiltonian_diagonal;
+
+    // Retrieve the lowest eigenvalue (FCI solution)
+    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> self_adjoint_eigensolver (hamiltonian);
+
+    // Calculate the total FCI energy
+    double internuclear_repulsion_energy = GQCP::Operator::NuclearRepulsion(h2o).value();
+    double test_ci_energy = self_adjoint_eigensolver.eigenvalues()(0) + internuclear_repulsion_energy;
+
+    // Test the energy with the reference
+    BOOST_CHECK(std::abs(test_ci_energy - (reference_fci_energy)) < 1.0e-06);
 
     // Test if non-diagonal evaluation and diagonal evaluations are correct
     BOOST_CHECK(hamiltonian.isApprox(hamiltonian_no_diagonal + GQCP::SquareMatrix<double>(hamiltonian_diagonal.asDiagonal())));
+
+    // Test if the matvecs are identical
     BOOST_CHECK(matvec_evaluation.isApprox(matvec_reference));
 }

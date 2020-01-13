@@ -230,7 +230,7 @@ public:
      *  @return the transformation matrix to the Löwdin basis for the requested component: T = S_current^{-1/2}
      */
     TransformationMatrix<double> lowdinOrthonormalizationMatrix(const SpinComponent& component) const {
-        return this->scalarBasis(component).lowdinOrthonormalizationMatrix();
+        return this->spinor_bases[component].lowdinOrthonormalizationMatrix();
     }
 
     /**
@@ -371,6 +371,23 @@ public:
      */
     auto quantize(const CoulombRepulsionOperator& fq_op, const SpinComponent& component) const -> SQTwoElectronOperator<product_t<CoulombRepulsionOperator::Scalar, ExpansionScalar>, CoulombRepulsionOperator::Components> {
         return this->spinor_bases[component].quantize(fq_op);
+    }
+
+
+    /**
+     *  @param ao_list          indices of the AOs used for the atomic spin operator in the z-direction
+     *  @param component        the spin component
+     *
+     *  @return the SQ atomic spin operator in the z-direction for a set of AOs
+     *
+     *  Note that this method is only available for real SQoperators
+     */
+    template<typename Z = ExpansionScalar>
+    enable_if_t<std::is_same<Z, double>::value, ScalarSQOneElectronOperator<double>> calculateAtomicSpinZ(const Vectoru& ao_list, const SpinComponent& component) const {
+
+        // The atomic spin operator can be calculated as as the atomic Mulliken operator divided by 2, multiplied by the correct sign factor
+        int sign = 1 - 2*component;  // 1 for ALPHA, -1 for BETA
+        return ScalarSQOneElectronOperator<double>({sign * this->spinor_bases[component].calculateMullikenOperator(ao_list).parameters()/2});
     }
 };
 

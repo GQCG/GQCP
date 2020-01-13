@@ -573,4 +573,175 @@ VectorX<double> SelectedFockSpace::evaluateOperatorMatrixVectorProduct(const SQH
 
 
 
+/*
+ *  UNRESTRICTED
+ */ 
+
+/**
+ *  Evaluate the Hamiltonian in a dense matrix
+ *
+ *  @param usq_hamiltonian          the Hamiltonian expressed in an unrestricted orthonormal basis 
+ *  @param diagonal_values          bool to indicate if diagonal values will be calculated
+ *
+ *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the Fock space
+ */
+SquareMatrix<double>  SelectedFockSpace::evaluateOperatorDense(const USQHamiltonian<double>& usq_hamiltonian, bool diagonal_values) const {
+   
+    const auto K = usq_hamiltonian.dimension()/2;
+
+    if (!usq_hamiltonian.areSpinHamiltoniansOfSameDimension()) {
+        throw std::invalid_argument("SelectedFockSpace::evaluateOperatorDense(USQHamiltonian<double>, bool): Underlying spin Hamiltonians are not of the same dimension, and this is currently required for this method");
+    }
+
+    if (K != this->K) {
+        throw std::invalid_argument("SelectedFockSpace::evaluateOperatorDense(USQHamiltonian<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
+    }
+
+    EvaluationIterator<SquareMatrix<double>> evaluation_iterator (this->dim);
+    this->EvaluateOperator<SquareMatrix<double>>(usq_hamiltonian, evaluation_iterator, diagonal_values);
+    return evaluation_iterator.evaluation();
+
+}
+
+
+/**
+ *  Evaluate the diagonal of the Hamiltonian
+ *
+ *  @param usq_hamiltonian              the Hamiltonian expressed in an unrestricted orthonormal basis
+ *
+ *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the Fock space
+ */
+VectorX<double> SelectedFockSpace::evaluateOperatorDiagonal(const USQHamiltonian<double>& usq_hamiltonian) const {
+
+    const auto K = usq_hamiltonian.dimension()/2;
+
+    if (!usq_hamiltonian.areSpinHamiltoniansOfSameDimension()) {
+        throw std::invalid_argument("SelectedFockSpace::evaluateOperatorDiagonal(USQHamiltonian<double>, bool): Different spinor dimensions of spin components are currently not supported.");
+    }
+
+    if (K != this->K) {
+        throw std::invalid_argument("SelectedFockSpace::evaluateOperatorDiagonal(USQHamiltonian<double>): Basis functions of the Fock space and the operator are incompatible.");
+    }
+
+    const auto& h_a = usq_hamiltonian.spinHamiltonian(SpinComponent::ALPHA).core().parameters();
+    const auto& g_a = usq_hamiltonian.spinHamiltonian(SpinComponent::ALPHA).twoElectron().parameters();
+    const auto& h_b = usq_hamiltonian.spinHamiltonian(SpinComponent::BETA).core().parameters();
+    const auto& g_b = usq_hamiltonian.spinHamiltonian(SpinComponent::BETA).twoElectron().parameters();
+
+    // Only g_ab is stored, for integrals derived from g_ba we reverse the indices as follows : g_ab(pqrs) = g_ba(rspq)
+    const auto& g_ab = usq_hamiltonian.twoElectronMixed().parameters();
+
+    // Diagonal contributions
+    VectorX<double> diagonal = VectorX<double>::Zero(dim);
+    for (size_t I = 0; I < dim; I++) {  // Ia loops over addresses of alpha onvs
+        Configuration configuration_I = this->get_configuration(I);
+        ONV alpha_I = configuration_I.onv_alpha;
+        ONV beta_I = configuration_I.onv_beta;
+
+        for (size_t p = 0; p < K; p++) {
+            if (alpha_I.isOccupied(p)) {
+
+                diagonal(I) += h_a(p,p);
+
+                for (size_t q = 0; q < K; q++) {
+
+                    if (p != q) {  // can't create/annihilate the same orbital twice
+                        if (alpha_I.isOccupied(q)) {
+                            diagonal(I) += 0.5 * g_a(p,p,q,q);
+                            diagonal(I) -= 0.5 * g_a(p,q,q,p);
+                        }
+                    }
+
+                    if (beta_I.isOccupied(q)) {
+                        diagonal(I) += 0.5 * g_ab(p,p,q,q);
+                    }
+                }  // loop over q
+            }
+
+            if (beta_I.isOccupied(p)) {
+    
+                diagonal(I) += h_b(p,p);
+
+                for (size_t q = 0; q < K; q++) {
+
+                    if (p != q) {  // can't create/annihilate the same orbital twice
+                        if (beta_I.isOccupied(q)) {
+                            diagonal(I) += 0.5 * g_b(p,p,q,q);
+                            diagonal(I) -= 0.5 * g_b(p,q,q,p);
+                        }
+                    }
+
+                    if (alpha_I.isOccupied(q)) {
+                        diagonal(I) += 0.5 * g_ab(q,q,p,p);
+                    }
+                }  // loop over q
+            }
+        }  // loop over q
+
+    }  // alpha address (Ia) loop
+
+    return diagonal;
+}
+
+
+/**
+ *  Evaluate the Hamiltonian in a matrix vector product
+ *
+ *  @param usq_hamiltonian              the Hamiltonian expressed in an unrestricted orthonormal basis 
+ *  @param x                            the vector upon which the evaluation acts 
+ *  @param diagonal                     the diagonal evaluated in the Fock space
+ *
+ *  @return the Hamiltonian's matrix vector product in a vector with the dimensions of the Fock space
+ */
+VectorX<double> SelectedFockSpace::evaluateOperatorMatrixVectorProduct(const USQHamiltonian<double>& usq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
+    const auto K = usq_hamiltonian.dimension()/2;
+
+    if (!usq_hamiltonian.areSpinHamiltoniansOfSameDimension()) {
+        throw std::invalid_argument("SelectedFockSpace::evaluateOperatorMatrixVectorProduct(USQHamiltonian<double>, VectorX<double>, VectorX<double>): Underlying spin Hamiltonians are not of the same dimension, and this is currently required for this method");
+    }
+
+    if (K != this->K) {
+        throw std::invalid_argument("SelectedFockSpace::evaluateOperatorMatrixVectorProduct(USQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the Fock space and the operator are incompatible.");
+    }
+
+    EvaluationIterator<VectorX<double>> evaluation_iterator (x, diagonal);
+    this->EvaluateOperator<VectorX<double>>(usq_hamiltonian, evaluation_iterator, false);
+    return evaluation_iterator.evaluation();
+}
+
+
+/**
+ *  Evaluate the Hamiltonian in a sparse matrix
+ *
+ *  @param usq_hamiltonian          the Hamiltonian expressed in an unrestricted orthonormal basis 
+ *  @param diagonal_values          bool to indicate if diagonal values will be calculated
+ *
+ *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the Fock space
+ */
+Eigen::SparseMatrix<double> SelectedFockSpace::evaluateOperatorSparse(const USQHamiltonian<double>& usq_hamiltonian, bool diagonal_values) const {
+    const auto K = usq_hamiltonian.dimension()/2;
+
+    if (!usq_hamiltonian.areSpinHamiltoniansOfSameDimension()) {
+        throw std::invalid_argument("SelectedFockSpace::evaluateOperatorSparse(USQHamiltonian<double>, bool): Underlying spin Hamiltonians are not of the same dimension, and this is currently required for this method");
+    }
+
+    if (K != this->K) {
+        throw std::invalid_argument("SelectedFockSpace::evaluateOperatorSparse(USQHamiltonian<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
+    }
+
+    EvaluationIterator<Eigen::SparseMatrix<double>> evaluation_iterator (this->dim);
+
+    // Estimate the memory that is needed for the evaluation
+    size_t memory = dim * this->K * this->K * (this->N_alpha + this->N_beta)*(this->N_alpha + this->N_beta);
+    if (diagonal_values) {
+        memory += this->dim;
+    }
+
+    evaluation_iterator.reserve(memory);
+    this->EvaluateOperator<Eigen::SparseMatrix<double>>(usq_hamiltonian, evaluation_iterator, diagonal_values);
+    evaluation_iterator.addToMatrix();
+    return evaluation_iterator.evaluation();
+}
+
+
 }  // namespace GQCP

@@ -170,7 +170,7 @@ void basisRotate(USpinorBasis<TransformationScalar, Shell>& spinor_basis, USQHam
  *  @param U                            the unitary transformation matrix for both of the spin components
  */
 template <typename TransformationScalar, typename Shell>
-void basisRotate(USpinorBasis<TransformationScalar, Shell>& spinor_basis, SQHamiltonian<TransformationScalar>& sq_hamiltonian, const TransformationMatrix<TransformationScalar>& U) {
+void basisRotate(USpinorBasis<TransformationScalar, Shell>& spinor_basis, USQHamiltonian<TransformationScalar>& sq_hamiltonian, const TransformationMatrix<TransformationScalar>& U) {
 
     spinor_basis.rotate(U);
     sq_hamiltonian.rotate(U);

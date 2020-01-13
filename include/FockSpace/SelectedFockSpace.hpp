@@ -23,6 +23,7 @@
 #include "FockSpace/EvaluationIterator.hpp"
 #include "FockSpace/FrozenProductFockSpace.hpp"
 #include "FockSpace/ProductFockSpace.hpp"
+#include "Operator/SecondQuantized/USQHamiltonian.hpp"
 
 
 namespace GQCP {
@@ -154,6 +155,7 @@ public:
      *  @return the operator's evaluation in a sparse matrix with the dimensions of the Fock space
      */
     Eigen::SparseMatrix<double> evaluateOperatorSparse(const ScalarSQTwoElectronOperator<double>& two_op, bool diagonal_values) const override;
+
     /**
      *  Evaluate the Hamiltonian in a dense matrix
      *
@@ -234,7 +236,53 @@ public:
     VectorX<double> evaluateOperatorMatrixVectorProduct(const SQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const;
 
 
-    // PUBLIC TEMPLATED METHODS
+    // UNRESTRICTED METHODS
+    /**
+     *  Evaluate the Hamiltonian in a dense matrix
+     *
+     *  @param usq_hamiltonian          the Hamiltonian expressed in an unrestricted orthonormal basis 
+     *  @param diagonal_values          bool to indicate if diagonal values will be calculated
+     *
+     *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the Fock space
+     */
+    SquareMatrix<double> evaluateOperatorDense(const USQHamiltonian<double>& usq_hamiltonian, bool diagonal_values) const;
+
+    /**
+     *  Evaluate the diagonal of the Hamiltonian
+     *
+     *  @param usq_hamiltonian              the Hamiltonian expressed in an unrestricted orthonormal basis 
+     *
+     *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the Fock space
+     */
+    VectorX<double> evaluateOperatorDiagonal(const USQHamiltonian<double>& usq_hamiltonian) const;
+
+    /**
+     *  Evaluate the Hamiltonian in a matrix vector product
+     *
+     *  @param usq_hamiltonian              the Hamiltonian expressed in an unrestricted orthonormal basis 
+     *  @param x                            the vector upon which the evaluation acts 
+     *  @param diagonal                     the diagonal evaluated in the Fock space
+     *
+     *  @return the Hamiltonian's matrix vector product in a vector with the dimensions of the Fock space
+     */
+    VectorX<double> evaluateOperatorMatrixVectorProduct(const USQHamiltonian<double>& usq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const;
+
+    /**
+     *  Evaluate the Hamiltonian in a sparse matrix
+     *
+     *  @param usq_hamiltonian          the Hamiltonian expressed in an unrestricted orthonormal basis 
+     *  @param diagonal_values          bool to indicate if diagonal values will be calculated
+     *
+     *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the Fock space
+     */
+    Eigen::SparseMatrix<double> evaluateOperatorSparse(const USQHamiltonian<double>& usq_hamiltonian, bool diagonal_values) const;
+
+
+    
+    /**
+     *  PUBLIC TEMPLATED METHODS
+     */
+
     /**
      *  Evaluate the operator in a given evaluation iterator in the Fock space
      *
@@ -246,9 +294,47 @@ public:
      */
     template <typename _Matrix>
     void EvaluateOperator(const ScalarSQOneElectronOperator<double>& one_op, EvaluationIterator<_Matrix>& evaluation_iterator, bool diagonal_values) const {
+        // Calling the unrestricted universal method, with identical alpha and beta components does not affect the performance, hence we avoid duplicated code for the restricted part.
+        EvaluateOperator(one_op, one_op, evaluation_iterator, diagonal_values);
+    }
+
+
+    /**
+     *  Evaluate the operator in a given evaluation iterator in the Fock space
+     *
+     *  @tparam Matrix                       the type of matrix used to store the evaluations
+     *
+     *  @param usq_hamiltonian               the Hamiltonian expressed in an unrestricted orthonormal basis
+     *  @param evaluation_iterator           evaluation iterator to which the evaluations are added
+     *  @param diagonal_values               bool to indicate if diagonal values will be calculated
+     */
+    template <typename _Matrix>
+    void EvaluateOperator(const USQHamiltonian<double>& usq_hamiltonian, EvaluationIterator<_Matrix>& evaluation_iterator, bool diagonal_values) const {
+
+        if (!usq_hamiltonian.areSpinHamiltoniansOfSameDimension()) {
+            throw std::invalid_argument("SelectedFockSpace::EvaluateOperator(USQHamiltonian<double>, EvaluationIterator&, bool): Different spinor dimensions of spin components are currently not supported.");
+        }
+    
+        EvaluateOperator(usq_hamiltonian.spinHamiltonian(SpinComponent::ALPHA).core(), usq_hamiltonian.spinHamiltonian(SpinComponent::BETA).core(), usq_hamiltonian.spinHamiltonian(SpinComponent::ALPHA).twoElectron(), usq_hamiltonian.spinHamiltonian(SpinComponent::BETA).twoElectron(), usq_hamiltonian.twoElectronMixed(), evaluation_iterator, diagonal_values);
+    }
+
+
+    /**
+     *  Evaluate the operator in a given evaluation iterator in the Fock space
+     *
+     *  @tparam Matrix                       the type of matrix used to store the evaluations
+     *
+     *  @param one_op_alpha                  the alpha component of a one-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
+     *  @param one_op_beta                   the beta component of a one-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
+     *  @param evaluation_iterator           evaluation iterator to which the evaluations are added
+     *  @param diagonal_values               bool to indicate if diagonal values will be calculated
+     */
+    template <typename _Matrix>
+    void EvaluateOperator(const ScalarSQOneElectronOperator<double>& one_op_alpha, const ScalarSQOneElectronOperator<double>& one_op_beta, EvaluationIterator<_Matrix>& evaluation_iterator, bool diagonal_values) const {
 
         const size_t dim = this->get_dimension();
-        const auto& one_op_par = one_op.parameters();
+        const auto& h_a = one_op_alpha.parameters();
+        const auto& h_b = one_op_beta.parameters();
 
         for (;!evaluation_iterator.is_finished(); evaluation_iterator.increment()) {  // loop over all addresses (1)
             Configuration configuration_I = this->get_configuration(evaluation_iterator.index);
@@ -258,11 +344,11 @@ public:
             if (diagonal_values) {
                 for (size_t p = 0; p < K; p++) {
                     if (alpha_I.isOccupied(p)) {
-                        evaluation_iterator.addRowwise(evaluation_iterator.index, one_op_par(p, p));
+                        evaluation_iterator.addRowwise(evaluation_iterator.index, h_a(p, p));
                     }
 
                     if (beta_I.isOccupied(p)) {
-                        evaluation_iterator.addRowwise(evaluation_iterator.index, one_op_par(p,p));
+                        evaluation_iterator.addRowwise(evaluation_iterator.index, h_b(p,p));
                     }
                 }  // loop over q
             }
@@ -285,7 +371,7 @@ public:
                     // Calculate the total sign
                     int sign = alpha_I.operatorPhaseFactor(p) * alpha_J.operatorPhaseFactor(q);
 
-                    double value = one_op_par(p, q);
+                    double value = h_a(p, q);
 
                     evaluation_iterator.addColumnwise(J, sign * value);
                     evaluation_iterator.addRowwise(J, sign * value);
@@ -302,7 +388,7 @@ public:
                     // Calculate the total sign
                     int sign = beta_I.operatorPhaseFactor(p) * beta_J.operatorPhaseFactor(q);
 
-                    double value = one_op_par(p,q);
+                    double value = h_b(p,q);
 
                     evaluation_iterator.addColumnwise(J, sign * value);
                     evaluation_iterator.addRowwise(J, sign * value);
@@ -310,6 +396,7 @@ public:
             }  // loop over addresses J > I
         }  // loop over addresses I
     }
+
 
     /**
      *  Evaluate the operator in a given evaluation iterator in the Fock space
@@ -320,11 +407,12 @@ public:
      *  @param evaluation_iterator           evaluation iterator to which the evaluations are added
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
-   template <typename _Matrix>
+    template <typename _Matrix>
     void EvaluateOperator(const ScalarSQTwoElectronOperator<double>& two_op, EvaluationIterator<_Matrix>& evaluation_iterator, bool diagonal_values) const {
-        // Calling this combined method for both the one- and two-electron operator does not affect the performance, hence we avoid writting more code by plugging a zero operator in the combined method.
-        EvaluateOperator(ScalarSQOneElectronOperator<double>(this->K), two_op, evaluation_iterator, diagonal_values);
+        // Calling this combined method for both the one- and two-electron operator does not affect the performance, hence we avoid writting more code by plugging a zero one-electron operator in the combined method.
+        EvaluateOperator(ScalarSQOneElectronOperator<double>(this->K), ScalarSQOneElectronOperator<double>(this->K), two_op, two_op, two_op, evaluation_iterator, diagonal_values);
     }
+
 
     /**
      *  Evaluate the operators in a given evaluation iterator in the Fock space
@@ -338,11 +426,37 @@ public:
      */
     template <typename _Matrix>
     void EvaluateOperator(const ScalarSQOneElectronOperator<double>& one_op, const ScalarSQTwoElectronOperator<double>& two_op, EvaluationIterator<_Matrix>& evaluation_iterator, bool diagonal_values) const {
+        // Calling the unrestricted universal method, with identical alpha, beta and mixed components does not affect the performance, hence we avoid duplicated code for the restricted part
+        EvaluateOperator(one_op, one_op, two_op, two_op, two_op, evaluation_iterator, diagonal_values);
+    }
+
+
+    /**
+     *  Evaluate the operators in a given evaluation iterator in the Fock space
+     *
+     *  @tparam Matrix                       the type of matrix used to store the evaluations
+     *
+     *  @param one_op_alpha                     the alpha component of a one-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
+     *  @param one_op_beta                      the beta component of a one-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
+     *  @param two_op_alpha                     the alpha component of a two-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
+     *  @param two_op_beta                      the beta component of a two-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
+     *  @param two_op_mixed                     the alpha-beta component of a two-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
+     *  @param evaluation_iterator              evaluation iterator to which the evaluations are added
+     *  @param diagonal_values                  bool to indicate if diagonal values will be calculated
+     */
+    template <typename _Matrix>
+    void EvaluateOperator(const ScalarSQOneElectronOperator<double>& one_op_alpha, const ScalarSQOneElectronOperator<double>& one_op_beta, const ScalarSQTwoElectronOperator<double>& two_op_alpha, const ScalarSQTwoElectronOperator<double>& two_op_beta, const ScalarSQTwoElectronOperator<double>& two_op_mixed, EvaluationIterator<_Matrix>& evaluation_iterator, bool diagonal_values) const {
 
         const size_t dim = this->get_dimension();
         const size_t K = this->get_K();
-        const auto& one_op_par = one_op.parameters();
-        const auto& two_op_par = two_op.parameters();
+
+        const auto& h_a = one_op_alpha.parameters();
+        const auto& g_a = two_op_alpha.parameters();
+        const auto& h_b = one_op_beta.parameters();
+        const auto& g_b = two_op_beta.parameters();
+
+        // Only g_ab is stored, for integrals derived from g_ba we reverse the indices as follows : g_ab(pqrs) = g_ba(rspq)
+        const auto& g_ab = two_op_mixed.parameters();
 
         for ( ;!evaluation_iterator.is_finished(); evaluation_iterator.increment()) {  // loop over all addresses (1)
             Configuration configuration_I = this->get_configuration(evaluation_iterator.index);
@@ -352,35 +466,35 @@ public:
             if (diagonal_values) {
                 for (size_t p = 0; p < K; p++) {
                     if (alpha_I.isOccupied(p)) {
-                        evaluation_iterator.addRowwise(evaluation_iterator.index, one_op_par(p,p));
+                        evaluation_iterator.addRowwise(evaluation_iterator.index, h_a(p,p));
                         for (size_t q = 0; q < K; q++) {
 
                             if (p != q) {  // can't create/annihilate the same orbital twice
                                 if (alpha_I.isOccupied(q)) {
-                                    evaluation_iterator.addRowwise(evaluation_iterator.index,  0.5 * two_op_par(p,p,q,q));
-                                    evaluation_iterator.addRowwise(evaluation_iterator.index, -0.5 * two_op_par(p,q,q,p));
+                                    evaluation_iterator.addRowwise(evaluation_iterator.index,  0.5 * g_a(p,p,q,q));
+                                    evaluation_iterator.addRowwise(evaluation_iterator.index, -0.5 * g_a(p,q,q,p));
                                 }
                             }
 
                             if (beta_I.isOccupied(q)) {
-                                evaluation_iterator.addRowwise(evaluation_iterator.index, 0.5 * two_op_par(p,p,q,q));
+                                evaluation_iterator.addRowwise(evaluation_iterator.index, 0.5 * g_ab(p,p,q,q));
                             }
                         }  // loop over q
                     }
 
                     if (beta_I.isOccupied(p)) {
-                        evaluation_iterator.addRowwise(evaluation_iterator.index, one_op_par(p,p));
+                        evaluation_iterator.addRowwise(evaluation_iterator.index, h_b(p,p));
                         for (size_t q = 0; q < K; q++) {
 
                             if (p != q) {  // can't create/annihilate the same orbital twice
                                 if (beta_I.isOccupied(q)) {
-                                    evaluation_iterator.addRowwise(evaluation_iterator.index, 0.5 * two_op_par(p,p,q,q));
-                                    evaluation_iterator.addRowwise(evaluation_iterator.index, -0.5 * two_op_par(p,q,q,p));
+                                    evaluation_iterator.addRowwise(evaluation_iterator.index, 0.5 * g_b(p,p,q,q));
+                                    evaluation_iterator.addRowwise(evaluation_iterator.index, -0.5 * g_b(p,q,q,p));
                                 }
                             }
 
                             if (alpha_I.isOccupied(q)) {
-                                evaluation_iterator.addRowwise(evaluation_iterator.index, 0.5 * two_op_par(p,p,q,q));
+                                evaluation_iterator.addRowwise(evaluation_iterator.index, 0.5 * g_ab(q,q,p,p));  // g_ab(pqrs) = g_ba(rspq)
                             }
                         }  // loop over q
                     }
@@ -403,7 +517,7 @@ public:
                     // Calculate the total sign
                     int sign = alpha_I.operatorPhaseFactor(p) * alpha_J.operatorPhaseFactor(q);
 
-                    double value = one_op_par(p,q);
+                    double value = h_a(p,q);
 
                     evaluation_iterator.addColumnwise(J, sign * value);
                     evaluation_iterator.addRowwise(J, sign * value);
@@ -413,10 +527,10 @@ public:
                         if (alpha_I.isOccupied(r) && alpha_J.isOccupied(r)) {  // r must be occupied on the left and on the right
                             if ((p != r) && (q != r)) {  // can't create or annihilate the same orbital
 
-                                double value = 0.5 * (two_op_par(p,q,r,r)
-                                                      - two_op_par(r,q,p,r)
-                                                      - two_op_par(p,r,r,q)
-                                                      + two_op_par(r,r,p,q));
+                                double value = 0.5 * (g_a(p,q,r,r)
+                                                      - g_a(r,q,p,r)
+                                                      - g_a(p,r,r,q)
+                                                      + g_a(r,r,p,q));
 
                                 evaluation_iterator.addColumnwise(J, sign * value);
                                 evaluation_iterator.addRowwise(J, sign * value);
@@ -425,8 +539,7 @@ public:
 
                         if (beta_I.isOccupied(r)) {  // beta_I == beta_J from the previous if-branch
 
-                            double value = 0.5 * (two_op_par(p,q,r,r)
-                                                  + two_op_par(r,r,p,q));
+                            double value = 0.5 * 2 * g_ab(p,q,r,r);  // g_ab(pqrs) = g_ba(rspq)
 
                             evaluation_iterator.addColumnwise(J, sign * value);
                             evaluation_iterator.addRowwise(J, sign * value);
@@ -445,7 +558,7 @@ public:
                     // Calculate the total sign
                     int sign = beta_I.operatorPhaseFactor(p) * beta_J.operatorPhaseFactor(q);
 
-                    double value = one_op_par(p,q);
+                    double value = h_b(p,q);
 
                     evaluation_iterator.addColumnwise(J, sign * value);
                     evaluation_iterator.addRowwise(J, sign * value);
@@ -454,10 +567,10 @@ public:
 
                         if (beta_I.isOccupied(r) && beta_J.isOccupied(r)) {  // r must be occupied on the left and on the right
                             if ((p != r) && (q != r)) {  // can't create or annihilate the same orbital
-                                double value = 0.5 * (two_op_par(p,q,r,r)
-                                                      - two_op_par(r,q,p,r)
-                                                      - two_op_par(p,r,r,q)
-                                                      + two_op_par(r,r,p,q));
+                                double value = 0.5 * (g_b(p,q,r,r)
+                                                      - g_b(r,q,p,r)
+                                                      - g_b(p,r,r,q)
+                                                      + g_b(r,r,p,q));
 
                                 evaluation_iterator.addColumnwise(J, sign * value);
                                 evaluation_iterator.addRowwise(J, sign * value);
@@ -466,8 +579,7 @@ public:
 
                         if (alpha_I.isOccupied(r)) {  // alpha_I == alpha_J from the previous if-branch
 
-                            double value = 0.5 * (two_op_par(p,q,r,r)
-                                                   + two_op_par(r,r,p,q));
+                            double value = 0.5 * 2 * g_ab(r,r,p,q);  // g_ab(pqrs) = g_ba(rspq)  
 
                             evaluation_iterator.addColumnwise(J, sign * value);
                             evaluation_iterator.addRowwise(J, sign * value);
@@ -486,8 +598,7 @@ public:
                     size_t s = beta_J.findDifferentOccupations(beta_I)[0];  // we're sure that there is only 1 element in the std::vector<size_t>
 
                     int sign = alpha_I.operatorPhaseFactor(p) * alpha_J.operatorPhaseFactor(q) * beta_I.operatorPhaseFactor(r) * beta_J.operatorPhaseFactor(s);
-                    double value = 0.5 * (two_op_par(p,q,r,s)
-                                          + two_op_par(r,s,p,q));
+                    double value = 0.5 * 2 * g_ab(p,q,r,s);  // g_ab(pqrs) = g_ba(rspq)
 
                     evaluation_iterator.addColumnwise(J, sign * value);
                     evaluation_iterator.addRowwise(J, sign * value);
@@ -507,10 +618,10 @@ public:
 
                     int sign = alpha_I.operatorPhaseFactor(p) * alpha_I.operatorPhaseFactor(r) * alpha_J.operatorPhaseFactor(q) * alpha_J.operatorPhaseFactor(s);
 
-                    double value = 0.5 * (two_op_par(p,q,r,s)
-                                          - two_op_par(p,s,r,q)
-                                          - two_op_par(r,q,p,s)
-                                          + two_op_par(r,s,p,q));
+                    double value = 0.5 * (g_a(p,q,r,s)
+                                          - g_a(p,s,r,q)
+                                          - g_a(r,q,p,s)
+                                          + g_a(r,s,p,q));
 
                     evaluation_iterator.addColumnwise(J, sign * value);
                     evaluation_iterator.addRowwise(J, sign * value);
@@ -530,10 +641,10 @@ public:
 
                     int sign = beta_I.operatorPhaseFactor(p) * beta_I.operatorPhaseFactor(r) * beta_J.operatorPhaseFactor(q) * beta_J.operatorPhaseFactor(s);
 
-                    double value = 0.5 * (two_op_par(p,q,r,s)
-                                          - two_op_par(p,s,r,q)
-                                          - two_op_par(r,q,p,s)
-                                          + two_op_par(r,s,p,q));
+                    double value = 0.5 * (g_b(p,q,r,s)
+                                          - g_b(p,s,r,q)
+                                          - g_b(r,q,p,s)
+                                          + g_b(r,s,p,q));
 
                     evaluation_iterator.addColumnwise(J, sign * value);
                     evaluation_iterator.addRowwise(J, sign * value);

@@ -19,6 +19,8 @@
 
 #include "Basis/transform.hpp"
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
+#include "Mathematical/Optimization/DavidsonSolver.hpp"
+#include "Mathematical/Optimization/DenseSolver.hpp"
 #include "Properties/expectation_values.hpp"
 #include "RHF/DIISRHFSCFSolver.hpp"
 
@@ -37,15 +39,19 @@ namespace QCMethod {
  *  Store the solutions from a solve
  *  
  *  @param eigenpairs           the eigenpairs from the CI solver
+ *  @param multiplier           the Lagrangian multiplier associated with the solution
+ *  @param sz_multiplier        a given multiplier for the atomic Sz constraint
  */ 
-void MullikenConstrainedFCI::parseSolution(const std::vector<Eigenpair>& eigenpairs, const double multiplier) {
+void MullikenConstrainedFCI::parseSolution(const std::vector<Eigenpair>& eigenpairs, const double multiplier, const double sz_multiplier) {
 
     // Initialize the result vectors to zero
     if (this->energy.size() != eigenpairs.size()) {
         this->energy = std::vector<double>(eigenpairs.size());
         this->population = std::vector<double>(eigenpairs.size());
         this->lambda = std::vector<double>(eigenpairs.size());
+        this->lambda_sz = std::vector<double>(eigenpairs.size());
         this->entropy = std::vector<double>(eigenpairs.size());
+        this->sz = std::vector<double>(eigenpairs.size());
 
         if (molecule.numberOfAtoms() == 2) {
             this->A_fragment_energy = std::vector<double>(eigenpairs.size());
@@ -67,15 +73,20 @@ void MullikenConstrainedFCI::parseSolution(const std::vector<Eigenpair>& eigenpa
         const auto& fci_coefficients = pair.get_eigenvector();
         double fci_energy = pair.get_eigenvalue();
         this->rdm_calculator.set_coefficients(fci_coefficients);
-        OneRDM<double> D = this->rdm_calculator.calculate1RDMs().one_rdm;
+        const auto rdms = this->rdm_calculator.calculate1RDMs();
+        OneRDM<double> D = rdms.one_rdm;
+        OneRDM<double> D_s = rdms.one_rdm_aa - rdms.one_rdm_bb;
         TwoRDM<double> d = this->rdm_calculator.calculate2RDMs().two_rdm;
 
         double population = calculateExpectationValue(mulliken_operator, D)[0];
+        double sz = calculateExpectationValue(sq_sz_operator, D_s)[0];
         WaveFunction wavefunction (fock_space, fci_coefficients);
 
-        this->energy[i] = pair.get_eigenvalue() + internuclear_repulsion_energy + multiplier * population;
+        this->energy[i] = pair.get_eigenvalue() + internuclear_repulsion_energy + multiplier * population + sz_multiplier * sz;
         this->population[i] = population;
+        this->sz[i] = sz;
         this->lambda[i] = multiplier;
+        this->lambda_sz[i] = sz_multiplier;
         this->entropy[i] = wavefunction.calculateShannonEntropy();
 
         if (molecule.numberOfAtoms() == 2) {
@@ -125,13 +136,15 @@ void MullikenConstrainedFCI::checkDiatomicMolecule(const std::string& function_n
  *  @param molecule                 the molecule that will be solved for
  *  @param basis_set                the basisset that should be used
  *  @param basis_targets            the targeted basis functions for the constraint
- *  @param multipliers              the set of multipliers for the constraint
+ *  @param frozencores              the amount of frozen cores for the FCI calculation
  */
 MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const std::string& basis_set, const std::vector<size_t>& basis_targets, const size_t frozencores) : 
         basis_targets (basis_targets),
         molecule (molecule),
         spinor_basis (RSpinorBasis<double, GTOShell>(molecule, basis_set)),
+        uspinor_basis (USpinorBasis<double, GTOShell>(molecule, basis_set)),
         sq_hamiltonian (SQHamiltonian<double>::Molecular(this->spinor_basis, molecule)),  // in AO basis
+        usq_hamiltonian (USQHamiltonian<double>::Molecular(this->uspinor_basis, molecule)),  // in AO basis
         basis_set (basis_set)
 {
 
@@ -139,8 +152,7 @@ MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const s
         throw std::runtime_error("MullikenConstrainedFCI::MullikenConstrainedFCI(): This module is not available for an odd number of electrons");
     }
 
-
-    auto K = this->spinor_basis.numberOfSpatialOrbitals();
+    auto K = this->spinor_basis.simpleDimension();
     auto N_P = this->molecule.numberOfElectrons()/2;
 
     try {
@@ -196,26 +208,26 @@ MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const s
 
 
                 } catch (const std::exception& e) {
-                    const auto T = spinor_basis.lowdinOrthonormalizationMatrix();
+                    const auto T = this->spinor_basis.lowdinOrthonormalizationMatrix();
                     basisTransform(this->spinor_basis, this->sq_hamiltonian, T);
                 }
 
 
             } catch (const std::exception& e) {
-                const auto T = spinor_basis.lowdinOrthonormalizationMatrix();
+                const auto T = this->spinor_basis.lowdinOrthonormalizationMatrix();
                 basisTransform(this->spinor_basis, this->sq_hamiltonian, T);
             }
 
         } else {
-            const auto T = spinor_basis.lowdinOrthonormalizationMatrix();
+            const auto T = this->spinor_basis.lowdinOrthonormalizationMatrix();
             basisTransform(this->spinor_basis, this->sq_hamiltonian, T);
         }
     }
-
-
+    
+    basisTransform(this->uspinor_basis, this->usq_hamiltonian, this->spinor_basis.coefficientMatrix());
     this->fock_space = FrozenProductFockSpace(K, N_P, N_P, frozencores);
-    this->fci = FrozenCoreFCI(fock_space);
     this->mulliken_operator = this->spinor_basis.calculateMullikenOperator(basis_targets);
+    this->sq_sz_operator = this->uspinor_basis.calculateAtomicSpinZ(basis_targets, SpinComponent::ALPHA);
 
 
     // Atomic Decomposition is only available for diatomic molecules
@@ -236,27 +248,42 @@ MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const s
  *  
  *  @param multiplier           a given multiplier
  *  @param guess                supply a davidson guess
+ *  @param sz_multiplier        a given multiplier for the atomic Sz constraint
  */
-void MullikenConstrainedFCI::solveMullikenDavidson(const double multiplier, const VectorX<double>& guess) {
+void MullikenConstrainedFCI::solveMullikenDavidson(const double multiplier, const VectorX<double>& guess, const double sz_multiplier) {
 
     auto start_time = std::chrono::high_resolution_clock::now();
 
-    const auto constrained_ham_par = this->sq_hamiltonian.constrain(this->mulliken_operator, multiplier);
-    CISolver ci_solver (fci, constrained_ham_par);
-    DavidsonSolverOptions solver_options (fock_space.HartreeFockExpansion());
+    auto constrained_ham_par = this->usq_hamiltonian.constrain(this->mulliken_operator, multiplier, SpinComponent::ALPHA);
+    constrained_ham_par = constrained_ham_par.constrain(this->mulliken_operator, multiplier, SpinComponent::BETA);
+    constrained_ham_par = constrained_ham_par.constrain(this->sq_sz_operator, sz_multiplier, SpinComponent::ALPHA);
+    constrained_ham_par = constrained_ham_par.constrain(this->sq_sz_operator, -sz_multiplier, SpinComponent::BETA);
+
+    // Davidson solver
+    DavidsonSolverOptions solver_options(guess);
+    solver_options.convergence_threshold = this->convergence_threshold;
+    solver_options.correction_threshold = this->correction_threshold;
+    solver_options.maximum_subspace_dimension = this->maximum_subspace_dimension;
+    solver_options.collapsed_subspace_dimension = this->collapsed_subspace_dimension;
+    solver_options.maximum_number_of_iterations = this->maximum_number_of_iterations;
+
+    VectorX<double> dia = this->fock_space.evaluateOperatorDiagonal(constrained_ham_par);
+    VectorFunction matrixVectorProduct = [this, &constrained_ham_par, &dia](const GQCP::VectorX<double>& x) { return this->fock_space.evaluateOperatorMatrixVectorProduct(constrained_ham_par, x, dia); };
+    DavidsonSolver solver (matrixVectorProduct, dia, solver_options);
+
     try {
-        ci_solver.solve(solver_options);
+        solver.solve();
     } catch (const std::exception& e) {
         std::cout << e.what() << "multiplier: " << multiplier;
         return;
     }
 
-    this->parseSolution(ci_solver.get_eigenpairs(), multiplier);
+    this->parseSolution(solver.get_eigenpairs(), multiplier, sz_multiplier);
     this->are_solutions_available = true;
 
     auto stop_time = std::chrono::high_resolution_clock::now();
 
-    auto elapsed_time = stop_time- start_time;  // in nanoseconds
+    auto elapsed_time = stop_time - start_time;  // in nanoseconds
     this->solve_time = static_cast<double>(elapsed_time.count() / 1e9);  // in seconds
 }
 
@@ -265,46 +292,55 @@ void MullikenConstrainedFCI::solveMullikenDavidson(const double multiplier, cons
  *  
  *  @param multiplier           a given multiplier
  */
-void MullikenConstrainedFCI::solveMullikenDavidson(const double multiplier) {
+void MullikenConstrainedFCI::solveMullikenDavidson(const double multiplier, const double sz_multiplier) {
 
     if (this->are_solutions_available) {
-        this->solveMullikenDavidson(multiplier, eigenvector[0]);
+        this->solveMullikenDavidson(multiplier, eigenvector[0], sz_multiplier);
     } else {
-        this->solveMullikenDavidson(multiplier, this->fock_space.HartreeFockExpansion());
+        this->solveMullikenDavidson(multiplier, this->fock_space.HartreeFockExpansion(), sz_multiplier);
     }
 }
 
+    
 /**
- *  Solve the eigenvalue problem for a the next multiplier dense
+ *  @param index             refers to the index of the number of requested states 
  * 
- *  @param multiplier           a given multiplier
- *  @param nos                  the number of eigenpairs or "states" that should be stored for each multiplier
+ *  @return all properties in vector that contains:
+ *      energy, population (on the selected basis functions), Sz, lambda (or the multiplier for the Mulliken constraint), lambda_sz (for atomic Sz), entropy
+ *      if diatomic we additionally find: A_fragment_energy, A_fragment_self_energy, B_fragment_energy, B_fragment_self_energy and interaction_energy in that order.
  */
-void MullikenConstrainedFCI::solveMullikenDense(const double multiplier, const size_t nos = 1) {
+void MullikenConstrainedFCI::solveMullikenDense(const double multiplier, const size_t nos = 1, const double sz_multiplier) {
     if (nos < 1 || nos >= fock_space.get_dimension()) {
         throw std::runtime_error("MullikenConstrainedFCI::solveMullikenDense(): number of states should be larger than 0 and smaller than the dimension of the Fock space");
     }
 
     auto start_time = std::chrono::high_resolution_clock::now();
 
-    const auto constrained_ham_par = this->sq_hamiltonian.constrain(mulliken_operator, multiplier);
-    CISolver ci_solver (this->fci, constrained_ham_par);
     DenseSolverOptions solver_options;
     solver_options.number_of_requested_eigenpairs = nos;
 
+    auto constrained_ham_par = this->usq_hamiltonian.constrain(this->mulliken_operator, multiplier, SpinComponent::ALPHA);
+    constrained_ham_par = constrained_ham_par.constrain(this->mulliken_operator, multiplier, SpinComponent::BETA);
+    constrained_ham_par = constrained_ham_par.constrain(this->sq_sz_operator, sz_multiplier, SpinComponent::ALPHA);
+    constrained_ham_par = constrained_ham_par.constrain(this->sq_sz_operator, -sz_multiplier, SpinComponent::BETA);
+
+    // Davidson solver
+    DenseSolver solver (this->fock_space.evaluateOperatorDense(constrained_ham_par, true), solver_options);
+    solver.solve();
+
     try {
-        ci_solver.solve(solver_options);
+        solver.solve();
     } catch (const std::exception& e) {
         std::cout << e.what() << "multiplier: " << multiplier;
         return;
     }
 
-    this->parseSolution(ci_solver.get_eigenpairs(), multiplier);
+    this->parseSolution(solver.get_eigenpairs(), multiplier, sz_multiplier);
     this->are_solutions_available = true;
 
     auto stop_time = std::chrono::high_resolution_clock::now();
 
-    auto elapsed_time = stop_time- start_time;  // in nanoseconds
+    auto elapsed_time = stop_time - start_time;  // in nanoseconds
     this->solve_time = static_cast<double>(elapsed_time.count() / 1e9);  // in seconds
 }
 
@@ -312,25 +348,27 @@ void MullikenConstrainedFCI::solveMullikenDense(const double multiplier, const s
 std::vector<double> MullikenConstrainedFCI::all_properties(const size_t index) const {
     this->checkAvailableSolutions("all");
 
-    size_t number_of_properties = 4;
+    size_t number_of_properties = 5;
 
     if (this->molecule.numberOfAtoms() == 2) {
-        number_of_properties += 5;
+        number_of_properties += 6;
     }
 
     std::vector<double> properties(number_of_properties);
 
     properties[0] = this->energy[index];
     properties[1] = this->population[index];
-    properties[2] = this->lambda[index];
-    properties[3] = this->entropy[index];
+    properties[2] = this->sz[index];
+    properties[3] = this->lambda[index];
+    properties[4] = this->lambda_sz[index];
+    properties[5] = this->entropy[index];
 
     if (molecule.numberOfAtoms() == 2) {
-        properties[4] = this->A_fragment_energy[index];
-        properties[5] = this->A_fragment_self_energy[index];
-        properties[6] = this->B_fragment_energy[index];
-        properties[7] = this->B_fragment_self_energy[index];
-        properties[8] = this->interaction_energy[index];
+        properties[6] = this->A_fragment_energy[index];
+        properties[7] = this->A_fragment_self_energy[index];
+        properties[8] = this->B_fragment_energy[index];
+        properties[9] = this->B_fragment_self_energy[index];
+        properties[10] = this->interaction_energy[index];
     }
 
     return properties;

@@ -20,6 +20,7 @@
 
 #include "FockSpace/BaseFockSpace.hpp"
 #include "FockSpace/FockSpace.hpp"
+#include "Operator/SecondQuantized/USQHamiltonian.hpp"
 
 
 namespace GQCP {
@@ -204,6 +205,37 @@ public:
      */
     VectorX<double> evaluateOperatorMatrixVectorProduct(const SQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const;
 
+
+    // UNRESTRICTED
+    /**
+     *  Evaluate the unrestricted Hamiltonian in a dense matrix
+     *
+     *  @param usq_hamiltonian                the Hamiltonian expressed in an unrestricted orthonormal basis 
+     *  @param diagonal_values                bool to indicate if diagonal values will be calculated
+     *
+     *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the Fock space
+     */
+    SquareMatrix<double> evaluateOperatorDense(const USQHamiltonian<double>& usq_hamiltonian, bool diagonal_values) const;
+
+    /**
+     *  Evaluate the diagonal of the unrestricted Hamiltonian
+     *
+     *  @param usq_hamiltonian          the Hamiltonian expressed in an unrestricted orthonormal basis 
+     *
+     *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the Fock space
+     */
+    VectorX<double> evaluateOperatorDiagonal(const USQHamiltonian<double>& usq_hamiltonian) const;
+
+    /**
+     *  Evaluate the unrestricted Hamiltonian in a matrix vector product
+     *
+     *  @param usq_hamiltonian                the Hamiltonian expressed in an unrestricted orthonormal basis 
+     *  @param x                              the vector upon which the evaluation acts 
+     *  @param diagonal                       the diagonal evaluated in the Fock space
+     *
+     *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the Fock space
+     */
+    VectorX<double> evaluateOperatorMatrixVectorProduct(const USQHamiltonian<double>& usq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const;
 };
 
 

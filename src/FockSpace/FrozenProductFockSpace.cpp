@@ -48,4 +48,73 @@ FrozenProductFockSpace::FrozenProductFockSpace(const ProductFockSpace& fock_spac
     FrozenProductFockSpace(fock_space.get_K(), fock_space.get_N_alpha(), fock_space.get_N_beta(), X)
 {}
 
+
+
+/*
+ *  UNRESTRICTED
+ */
+
+/**
+ *  Evaluate the Hamiltonian in a dense matrix
+ *
+ *  @param usq_hamiltonian                the Hamiltonian expressed in an unrestricted orthonormal basis 
+ *  @param diagonal_values                bool to indicate if diagonal values will be calculated
+ *
+ *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the Fock space
+ */
+SquareMatrix<double> FrozenProductFockSpace::evaluateOperatorDense(const USQHamiltonian<double>& usq_hamiltonian, bool diagonal_values) const {
+    // Freeze the operators
+    const auto frozen_usq_hamiltonian = BaseFrozenCoreFockSpace::freezeOperator(usq_hamiltonian, this->X);
+
+    // Evaluate the frozen operator in the active space
+    auto evaluation = this->active_product_fock_space.evaluateOperatorDense(frozen_usq_hamiltonian, diagonal_values);
+
+    if (diagonal_values) {
+        // Diagonal correction
+        const auto frozen_core_diagonal = BaseFrozenCoreFockSpace::frozenCoreDiagonal(usq_hamiltonian, this->X, this->active_product_fock_space.get_dimension());
+        evaluation += frozen_core_diagonal.asDiagonal();
+    }
+
+    return evaluation;
+}
+
+
+/**
+ *  Evaluate the diagonal of the Hamiltonian
+ *
+ *  @param usq_hamiltonian          the Hamiltonian expressed in an unrestricted orthonormal basis 
+ *
+ *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the Fock space
+ */
+VectorX<double> FrozenProductFockSpace::evaluateOperatorDiagonal(const USQHamiltonian<double>& usq_hamiltonian) const {
+    const auto frozen_usq_hamiltonian = BaseFrozenCoreFockSpace::freezeOperator(usq_hamiltonian, this->X);
+
+    // Calculate diagonal in the active space with the "frozen" Hamiltonian
+    const auto diagonal = this->active_product_fock_space.evaluateOperatorDiagonal(frozen_usq_hamiltonian);
+
+    // Calculate diagonal for the frozen orbitals
+    const auto frozen_core_diagonal = BaseFrozenCoreFockSpace::frozenCoreDiagonal(usq_hamiltonian, this->X, this->active_product_fock_space.get_dimension());
+
+    return diagonal + frozen_core_diagonal;
+
+}
+
+
+/**
+ *  Evaluate the unrestricted Hamiltonian in a matrix vector product
+ *
+ *  @param usq_hamiltonian                the Hamiltonian expressed in an unrestricted orthonormal basis 
+ *  @param x                              the vector upon which the evaluation acts 
+ *  @param diagonal                       the diagonal evaluated in the Fock space
+ *
+ *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the Fock space
+ */
+VectorX<double> FrozenProductFockSpace::evaluateOperatorMatrixVectorProduct(const USQHamiltonian<double>& usq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
+    const auto frozen_ham_par = BaseFrozenCoreFockSpace::freezeOperator(usq_hamiltonian, this->X);
+
+    // Perform the matvec in the active space with the "frozen" parameters
+    return this->active_product_fock_space.evaluateOperatorMatrixVectorProduct(frozen_ham_par, x, diagonal);
+}
+
+
 }  // namespace GQCP

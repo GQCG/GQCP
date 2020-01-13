@@ -11,7 +11,7 @@ import gqcpy
 class MullikenConstrainedFCITest(unittest.TestCase):
 
     def setUp(self):
-        """ Iniates variables to be used by tests  """
+        """ Initiates variables to be used by tests  """
         N = gqcpy.Nucleus(7, 0, 0, 0)
         O = gqcpy.Nucleus(8, 7, 0, 0)
         NO = gqcpy.Molecule([N,O], +1) # The NO+ molecule with an intramolecular distance of 7 bohr
@@ -32,20 +32,37 @@ class MullikenConstrainedFCITest(unittest.TestCase):
         self.reference_self_O_fragment_energy = -72.7239794944369
         self.reference_interaction_energy = -0.651220447214087
 
+        # Initiate a second set to test spin constraints
+        O_2b = gqcpy.Nucleus(8, 2, 0, 0)
+        NO_2b = gqcpy.Molecule([N,O_2b], +1)  # the NO+ molecule with an intramolecular distance of 2 bohr
+
+        self.constrained_module_spin = gqcpy.MullikenConstrainedFCI(NO_2b, basis_set, basis_targets)
+        self.atomic_sz = 0.938336864443
+
     def tearDown(self):
         pass
 
     def test_properties(self):
-        """ compare properties with reference """
+        """ Compare properties with a reference """
+        # Solve the constrained module, the second parameter is that of the multiplier with repsect to the spin "constraint", the population multiplier is kept at 0
         self.constrained_module.solveMullikenDavidson(self.lambda_input)
-        # self.assertAlmostEqual(self.constrained_module.get_energy(), self.reference_energy)
-        # self.assertAlmostEqual(self.constrained_module.get_population(), self.reference_population)
-        #self.assertAlmostEqual(self.constrained_module.get_entropy(), self.reference_entropy) entropy is sensitive to degeneracies is disabled
-        self.assertAlmostEqual(self.constrained_module.get_A_fragment_energy(), self.reference_N_fragment_energy)
+
+        # Compare the solutions to refernce values
+        self.assertAlmostEqual(self.constrained_module.get_energy(), self.reference_energy)
+        self.assertAlmostEqual(self.constrained_module.get_population(), self.reference_population)
+        #self.assertAlmostEqual(self.constrained_module.get_entropy(), self.reference_entropy) entropy is sensitive to degeneracies, so we disable this
         self.assertAlmostEqual(self.constrained_module.get_A_fragment_self_energy(), self.reference_self_N_fragment_energy)
         self.assertAlmostEqual(self.constrained_module.get_B_fragment_energy(), self.reference_O_fragment_energy)
         self.assertAlmostEqual(self.constrained_module.get_B_fragment_self_energy(), self.reference_self_O_fragment_energy)
         self.assertAlmostEqual(self.constrained_module.get_interaction_energy(), self.reference_interaction_energy)
+
+    def test_spinZ(self):
+        """ Compare spin-z: "the expectation value of the spin in the z-direction for the targeted basis functions" with a reference """
+        # Solve the constrained module, the second parameter is that of the multiplier with repsect to the spin "constraint", the population multiplier is kept at 0
+        self.constrained_module_spin.solveMullikenDavidson(0, 0.5)
+
+        # Compare the solutions to reference values
+        self.assertAlmostEqual(self.constrained_module_spin.get_sz(), self.atomic_sz)
 
     
 if __name__ == '__main__':
