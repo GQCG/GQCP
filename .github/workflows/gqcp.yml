@@ -9,7 +9,6 @@ jobs:
     # Environment variables for the build environment (build.env)
     env:
       CONDA_HOME: /usr/share/miniconda
-      LIBINT_DATA_PATH: ${CONDA_HOME}/share/libint/2.3.1/basis
 
     steps:
   
