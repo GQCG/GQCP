@@ -620,6 +620,16 @@ VectorX<double> ProductFockSpace::evaluateOperatorMatrixVectorProduct(const SQHa
  */
 SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const USQHamiltonian<double>& usq_hamiltonian, bool diagonal_values) const {
     
+    const auto K = usq_hamiltonian.dimension()/2;
+
+    if (!usq_hamiltonian.areSpinHamiltoniansOfSameDimension()) {
+         throw std::invalid_argument("ProductFockSpace::evaluateOperatorDense(USQHamiltonian<double>, bool): Underlying spin Hamiltonians are not of the same dimension, and this is currently required for this method");
+    }
+
+    if (K != this->K) {
+        throw std::invalid_argument("ProductFockSpace::evaluateOperatorDense(USQHamiltonian<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
+    }
+
     SquareMatrix<double> total_evaluation = SquareMatrix<double>::Zero(this->get_dimension(), this->get_dimension());
 
     auto const& sq_hamiltonian_alpha = usq_hamiltonian.spinHamiltonian(SpinComponent::ALPHA);
@@ -689,9 +699,13 @@ SquareMatrix<double> ProductFockSpace::evaluateOperatorDense(const USQHamiltonia
 VectorX<double> ProductFockSpace::evaluateOperatorDiagonal(const USQHamiltonian<double>& usq_hamiltonian) const {
 
     const auto K = usq_hamiltonian.dimension()/2;
-    
+
+    if (!usq_hamiltonian.areSpinHamiltoniansOfSameDimension()) {
+         throw std::invalid_argument("ProductFockSpace::evaluateOperatorDiagonal(USQHamiltonian<double>): Underlying spin Hamiltonians are not of the same dimension, and this is currently required for this method");
+    }
+
     if (K != this->K) {
-        throw std::invalid_argument("ProductFockSpace::evaluateOperatorDiagonal(SQHamiltonian<double>,  SQHamiltonian<double>): Basis functions of the Fock space and the operator are incompatible.");
+        throw std::invalid_argument("ProductFockSpace::evaluateOperatorDiagonal(USQHamiltonian<double>): Basis functions of the Fock space and the operator are incompatible.");
     }
 
     // Evaluation environment
@@ -780,6 +794,11 @@ VectorX<double> ProductFockSpace::evaluateOperatorDiagonal(const USQHamiltonian<
  */
 VectorX<double> ProductFockSpace::evaluateOperatorMatrixVectorProduct(const USQHamiltonian<double>& usq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
     auto K = usq_hamiltonian.dimension()/2;
+
+    if (!usq_hamiltonian.areSpinHamiltoniansOfSameDimension()) {
+         throw std::invalid_argument("ProductFockSpace::evaluateOperatorMatrixVectorProduct(USQHamiltonian<double>, VectorX<double> , VectorX<double>): Underlying spin Hamiltonians are not of the same dimension, and this is currently required for this method");
+    }
+
     if (K != this->get_K()) {
         throw std::invalid_argument("ProductFockSpace::evaluateOperatorMatrixVectorProduct(USQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the Fock space and usq_hamiltonian are incompatible.");
     }

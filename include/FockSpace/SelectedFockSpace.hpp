@@ -407,7 +407,7 @@ public:
      *  @param evaluation_iterator           evaluation iterator to which the evaluations are added
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
-   template <typename _Matrix>
+    template <typename _Matrix>
     void EvaluateOperator(const ScalarSQTwoElectronOperator<double>& two_op, EvaluationIterator<_Matrix>& evaluation_iterator, bool diagonal_values) const {
         // Calling this combined method for both the one- and two-electron operator does not affect the performance, hence we avoid writting more code by plugging a zero one-electron operator in the combined method.
         EvaluateOperator(ScalarSQOneElectronOperator<double>(this->K), ScalarSQOneElectronOperator<double>(this->K), two_op, two_op, two_op, evaluation_iterator, diagonal_values);
@@ -415,7 +415,7 @@ public:
 
 
     /**
-     *  Evaluate the operator in a given evaluation iterator in the Fock space
+     *  Evaluate the operators in a given evaluation iterator in the Fock space
      *
      *  @tparam Matrix                       the type of matrix used to store the evaluations
      *
@@ -424,9 +424,9 @@ public:
      *  @param evaluation_iterator           evaluation iterator to which the evaluations are added
      *  @param diagonal_values               bool to indicate if diagonal values will be calculated
      */
-   template <typename _Matrix>
+    template <typename _Matrix>
     void EvaluateOperator(const ScalarSQOneElectronOperator<double>& one_op, const ScalarSQTwoElectronOperator<double>& two_op, EvaluationIterator<_Matrix>& evaluation_iterator, bool diagonal_values) const {
-        // Calling the unrestricted universal method, with identical alpha, beta and mixed components does not affect the performance, hence we avoid duplicated code for the restricted part.
+        // Calling the unrestricted universal method, with identical alpha, beta and mixed components does not affect the performance, hence we avoid duplicated code for the restricted part
         EvaluateOperator(one_op, one_op, two_op, two_op, two_op, evaluation_iterator, diagonal_values);
     }
 

@@ -589,6 +589,10 @@ SquareMatrix<double>  SelectedFockSpace::evaluateOperatorDense(const USQHamilton
    
     const auto K = usq_hamiltonian.dimension()/2;
 
+    if (!usq_hamiltonian.areSpinHamiltoniansOfSameDimension()) {
+        throw std::invalid_argument("SelectedFockSpace::evaluateOperatorDense(USQHamiltonian<double>, bool): Underlying spin Hamiltonians are not of the same dimension, and this is currently required for this method");
+    }
+
     if (K != this->K) {
         throw std::invalid_argument("SelectedFockSpace::evaluateOperatorDense(USQHamiltonian<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
     }
@@ -690,7 +694,12 @@ VectorX<double> SelectedFockSpace::evaluateOperatorDiagonal(const USQHamiltonian
  *  @return the Hamiltonian's matrix vector product in a vector with the dimensions of the Fock space
  */
 VectorX<double> SelectedFockSpace::evaluateOperatorMatrixVectorProduct(const USQHamiltonian<double>& usq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
-    auto K = usq_hamiltonian.dimension()/2;
+    const auto K = usq_hamiltonian.dimension()/2;
+
+    if (!usq_hamiltonian.areSpinHamiltoniansOfSameDimension()) {
+        throw std::invalid_argument("SelectedFockSpace::evaluateOperatorMatrixVectorProduct(USQHamiltonian<double>, VectorX<double>, VectorX<double>): Underlying spin Hamiltonians are not of the same dimension, and this is currently required for this method");
+    }
+
     if (K != this->K) {
         throw std::invalid_argument("SelectedFockSpace::evaluateOperatorMatrixVectorProduct(USQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the Fock space and the operator are incompatible.");
     }
@@ -711,6 +720,11 @@ VectorX<double> SelectedFockSpace::evaluateOperatorMatrixVectorProduct(const USQ
  */
 Eigen::SparseMatrix<double> SelectedFockSpace::evaluateOperatorSparse(const USQHamiltonian<double>& usq_hamiltonian, bool diagonal_values) const {
     const auto K = usq_hamiltonian.dimension()/2;
+
+    if (!usq_hamiltonian.areSpinHamiltoniansOfSameDimension()) {
+        throw std::invalid_argument("SelectedFockSpace::evaluateOperatorSparse(USQHamiltonian<double>, bool): Underlying spin Hamiltonians are not of the same dimension, and this is currently required for this method");
+    }
+
     if (K != this->K) {
         throw std::invalid_argument("SelectedFockSpace::evaluateOperatorSparse(USQHamiltonian<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
     }
