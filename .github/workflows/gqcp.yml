@@ -54,7 +54,7 @@ jobs:
       run: |
         mkdir build && cd build
         ${CONDA_HOME}/bin/cmake .. -DBUILD_TESTS=TRUE -DBUILD_BENCHMARKS=TRUE -DBUILD_PYTHON_BINDINGS=TRUE -DCMAKE_INSTALL_PREFIX=~/.local -DCMAKE_PREFIX_PATH=${CONDA_HOME}
-        make -j10 && sudo make install
+        make -j10 && make test && sudo make install
         
     # Run the benchmarks
     - name: Run benchmarks
