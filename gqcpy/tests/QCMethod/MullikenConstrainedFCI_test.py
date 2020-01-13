@@ -8,7 +8,7 @@ sys.path.insert(0, '../')
 import gqcpy
 
 
-class MullikenConstrainedQCM(unittest.TestCase):
+class MullikenConstrainedFCITest(unittest.TestCase):
 
     def setUp(self):
         """ Initiates variables to be used by tests  """

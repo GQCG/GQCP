@@ -30,14 +30,16 @@ namespace gqcpy {
 
 void bindQCMethodDOCIRHF(py::module& module) {
     py::class_<GQCP::QCMethod::DOCIRHF>(module, "DOCIRHF", "Finds the RHF solution and solves the DOCI Hamiltonian in that RHF basis")
+
         .def(py::init<const std::string&, const std::string&, const bool>(), py::arg("xyz_filename"), py::arg("basis_set"), py::arg("use_davidson"))
         .def(py::init<const GQCP::Molecule&, const std::string&, const bool>(), py::arg("molecule"), py::arg("basis_set"), py::arg("use_davidson"))
+
         .def("solve", &GQCP::QCMethod::DOCIRHF::solve, "Solve the eigenvalue equations such that the lowest energy and corresponding eigenvector becomes available. ")
+
         .def("get_energy", &GQCP::QCMethod::DOCIRHF::energy, "Get the lowest energy.")
         .def("get_rhf_energy", &GQCP::QCMethod::DOCIRHF::energy_rhf, "Get the RHF energy.")
         .def("get_transformation_matrix", &GQCP::QCMethod::DOCIRHF::transformationMatrix, "Get the total transformation matrix.");
 }
-
 
 
 }  // namespace gqcpy
