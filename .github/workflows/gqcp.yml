@@ -9,7 +9,6 @@ jobs:
     # Environment variables for the build environment (build.env)
     env:
       CONDA_HOME: /usr/share/miniconda
-      LIBINT_DATA_PATH: ${CONDA_HOME}/share/libint/2.3.1/basis
 
     steps:
   
@@ -52,9 +51,10 @@ jobs:
     # Build & test the library 
     - name: Build GQCP and run tests
       run: |
+        export LIBINT_DATA_PATH=${CONDA_HOME}/share/libint/2.3.1/basis
         mkdir build && cd build
         ${CONDA_HOME}/bin/cmake .. -DBUILD_TESTS=TRUE -DBUILD_BENCHMARKS=TRUE -DBUILD_PYTHON_BINDINGS=TRUE -DCMAKE_INSTALL_PREFIX=~/.local -DCMAKE_PREFIX_PATH=${CONDA_HOME}
-        make -j10 && sudo make install
+        make -j10 && make test && sudo make install
         
     # Run the benchmarks
     - name: Run benchmarks
