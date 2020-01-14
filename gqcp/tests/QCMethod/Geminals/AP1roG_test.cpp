@@ -19,12 +19,13 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include "QCMethod/Geminals/AP1roG.hpp"
+
 #include "Basis/transform.hpp"
-#include "Geminals/AP1roG.hpp"
-#include "Geminals/AP1roGPSESolver.hpp"
-#include "Geminals/AP1roGLagrangianOptimizer.hpp"
-#include "Properties/expectation_values.hpp"
-#include "RHF/PlainRHFSCFSolver.hpp"
+#include "Processing/Properties/expectation_values.hpp"
+#include "QCMethod/Geminals/AP1roGPSESolver.hpp"
+#include "QCMethod/Geminals/AP1roGLagrangianOptimizer.hpp"
+#include "QCMethod/RHF/PlainRHFSCFSolver.hpp"
 
 
 /**

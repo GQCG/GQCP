@@ -15,13 +15,13 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 //
-#include "QCMethod/DOCIRHF.hpp"
+#include "QCMethod/Applications/DOCIRHF.hpp"
 
 #include "Basis/transform.hpp"
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
-#include "CISolver/CISolver.hpp"
+#include "QCMethod/CI/CISolver.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "RHF/DIISRHFSCFSolver.hpp"
+#include "QCMethod/RHF/DIISRHFSCFSolver.hpp"
 
 
 namespace GQCP {

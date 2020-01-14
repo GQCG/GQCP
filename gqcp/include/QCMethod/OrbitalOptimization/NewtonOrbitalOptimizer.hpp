@@ -18,12 +18,12 @@
 #pragma once
 
 
+#include "Basis/SpinorBasis/OrbitalRotationGenerators.hpp"
 #include "Basis/TransformationMatrix.hpp"
-#include "OrbitalOptimization/BaseOrbitalOptimizer.hpp"
-#include "OrbitalOptimization/OrbitalRotationGenerators.hpp"
 #include "Mathematical/Optimization/BaseHessianModifier.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Mathematical/Representation/SquareRankFourTensor.hpp"
+#include "QCMethod/OrbitalOptimization/BaseOrbitalOptimizer.hpp"
 
 #include <utility>
 

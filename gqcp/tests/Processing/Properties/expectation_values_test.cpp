@@ -19,20 +19,20 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "Properties/expectation_values.hpp"
+#include "Processing/Properties/expectation_values.hpp"
 
 #include "Basis/Integrals/Interfaces/LibintInterfacer.hpp"
 #include "Basis/transform.hpp"
-#include "CISolver/CISolver.hpp"
 #include "Mathematical/Optimization/DavidsonSolver.hpp"
-#include "HamiltonianBuilder/DOCI.hpp"
-#include "HamiltonianBuilder/FCI.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Operator/SecondQuantized/USQHamiltonian.hpp"
-#include "RDM/RDMCalculator.hpp"
-#include "RHF/DIISRHFSCFSolver.hpp"
-#include "RHF/PlainRHFSCFSolver.hpp"
-#include "units.hpp"
+#include "Processing/RDM/RDMCalculator.hpp"
+#include "QCMethod/CI/CISolver.hpp"
+#include "QCMethod/CI/HamiltonianBuilder/DOCI.hpp"
+#include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
+#include "QCMethod/RHF/DIISRHFSCFSolver.hpp"
+#include "QCMethod/RHF/PlainRHFSCFSolver.hpp"
+#include "Utilities/units.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( one_electron_throw ) {

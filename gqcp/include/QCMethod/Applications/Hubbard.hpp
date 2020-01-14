@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "RDM/OneRDM.hpp"
+#include "Processing/RDM/OneRDM.hpp"
 
 
 namespace GQCP {

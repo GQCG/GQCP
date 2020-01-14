@@ -19,8 +19,9 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "Basis/ScalarBasis/CartesianGTO.hpp"
 #include "Mathematical/ScalarFunction.hpp"
+
+#include "Basis/ScalarBasis/CartesianGTO.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( ScalarFunctionProduct ) {

@@ -19,11 +19,11 @@
 
 
 #include "Basis/TransformationMatrix.hpp"
-#include "CISolver/CISolver.hpp"
 #include "FockSpace/ProductFockSpace.hpp"
-#include "HamiltonianBuilder/DOCI.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "RDM/RDMCalculator.hpp"
+#include "Processing/RDM/RDMCalculator.hpp"
+#include "QCMethod/CI/CISolver.hpp"
+#include "QCMethod/CI/HamiltonianBuilder/DOCI.hpp"
 
 
 namespace GQCP {

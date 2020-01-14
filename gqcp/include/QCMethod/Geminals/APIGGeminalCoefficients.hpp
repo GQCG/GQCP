@@ -18,9 +18,9 @@
 #pragma once
 
 
-#include "Geminals/GeminalCoefficientsInterface.hpp"
+#include "FockSpace/WaveFunction/WaveFunction.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
-#include "WaveFunction/WaveFunction.hpp"
+#include "QCMethod/Geminals/GeminalCoefficientsInterface.hpp"
 
 
 

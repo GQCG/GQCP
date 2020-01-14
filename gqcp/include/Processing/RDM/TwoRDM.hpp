@@ -19,7 +19,7 @@
 
 
 #include "Mathematical/Representation/QCRankFourTensor.hpp"
-#include "RDM/OneRDM.hpp"
+#include "Processing/RDM/OneRDM.hpp"
 
 
 namespace GQCP {

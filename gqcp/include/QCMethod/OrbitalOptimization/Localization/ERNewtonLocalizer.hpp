@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "OrbitalOptimization/NewtonOrbitalOptimizer.hpp"
+#include "QCMethod/OrbitalOptimization/NewtonOrbitalOptimizer.hpp"
 
 
 namespace GQCP {

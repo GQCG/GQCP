@@ -18,8 +18,8 @@
 #pragma once
 
 
-#include "Operator/FirstQuantized/BaseNuclearOperator.hpp"
 #include "Operator/FirstQuantized/BaseMultipoleOperator.hpp"
+#include "Operator/FirstQuantized/BaseNuclearOperator.hpp"
 
 #include <cstddef>
 

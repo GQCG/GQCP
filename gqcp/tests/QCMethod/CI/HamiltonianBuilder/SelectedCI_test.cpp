@@ -19,11 +19,12 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "HamiltonianBuilder/DOCI.hpp"
-#include "HamiltonianBuilder/FCI.hpp"
-#include "HamiltonianBuilder/SelectedCI.hpp"
-#include "Operator/SecondQuantized/SQHamiltonian.hpp"
+#include "QCMethod/CI/HamiltonianBuilder/SelectedCI.hpp"
+
 #include "Molecule/Molecule.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
+#include "QCMethod/CI/HamiltonianBuilder/DOCI.hpp"
+#include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( SelectedCI_constructor ) {

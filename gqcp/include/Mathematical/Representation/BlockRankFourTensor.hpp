@@ -22,7 +22,6 @@
 #include "Mathematical/Representation/Tensor.hpp"
 
 
-
 namespace GQCP {
 
 

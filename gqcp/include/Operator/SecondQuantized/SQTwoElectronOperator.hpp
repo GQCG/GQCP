@@ -18,12 +18,12 @@
 #pragma once
 
 
+#include "Basis/SpinorBasis/JacobiRotationParameters.hpp"
 #include "Basis/TransformationMatrix.hpp"
 #include "Mathematical/Representation/QCRankFourTensor.hpp"
 #include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
-#include "OrbitalOptimization/JacobiRotationParameters.hpp"
-#include "RDM/OneRDM.hpp"
-#include "RDM/TwoRDM.hpp"
+#include "Processing/RDM/OneRDM.hpp"
+#include "Processing/RDM/TwoRDM.hpp"
 #include "Utilities/miscellaneous.hpp"
 
 #include <array>

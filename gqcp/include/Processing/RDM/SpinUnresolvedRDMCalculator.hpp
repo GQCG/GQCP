@@ -19,9 +19,9 @@
 
 
 #include "FockSpace/FockSpace.hpp"
-#include "RDM/BaseSpinUnresolvedRDMBuilder.hpp"
-#include "RDM/SpinUnresolvedFCIRDMBuilder.hpp"
-#include "WaveFunction/SpinUnresolvedWaveFunction.hpp"
+#include "FockSpace/WaveFunction/SpinUnresolvedWaveFunction.hpp"
+#include "Processing/RDM/BaseSpinUnresolvedRDMBuilder.hpp"
+#include "Processing/RDM/SpinUnresolvedFCIRDMBuilder.hpp"
 
 #include <boost/range/adaptor/sliced.hpp>
 #include <boost/range/adaptor/strided.hpp>

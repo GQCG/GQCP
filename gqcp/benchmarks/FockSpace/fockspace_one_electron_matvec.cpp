@@ -4,8 +4,8 @@
 
 #include <benchmark/benchmark.h>
 
-#include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
 #include "FockSpace/FockSpace.hpp"
+#include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
 
 
 static void matvec(benchmark::State& state) {

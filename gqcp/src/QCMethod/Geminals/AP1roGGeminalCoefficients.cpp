@@ -15,10 +15,10 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "Geminals/AP1roGGeminalCoefficients.hpp"
+#include "QCMethod/Geminals/AP1roGGeminalCoefficients.hpp"
 
 #include "FockSpace/FockSpace.hpp"
-#include "Geminals/APIGGeminalCoefficients.hpp"
+#include "QCMethod/Geminals/APIGGeminalCoefficients.hpp"
 #include "Utilities/miscellaneous.hpp"
 
 

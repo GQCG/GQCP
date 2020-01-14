@@ -20,6 +20,7 @@
 #include <boost/test/unit_test.hpp>
 
 #include "FockSpace/FockSpace.hpp"
+
 #include "FockSpace/ProductFockSpace.hpp"
 #include "FockSpace/SelectedFockSpace.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"

@@ -19,9 +19,10 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include "QCMethod/RMP2/RMP2.hpp"
+
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "RHF/PlainRHFSCFSolver.hpp"
-#include "RMP2.hpp"
+#include "QCMethod/RHF/PlainRHFSCFSolver.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( crawdad_sto3g_water ) {

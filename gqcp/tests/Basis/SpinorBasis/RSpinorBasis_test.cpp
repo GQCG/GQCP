@@ -22,7 +22,7 @@
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
 
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "RHF/PlainRHFSCFSolver.hpp"
+#include "QCMethod/RHF/PlainRHFSCFSolver.hpp"
 
 
 /**

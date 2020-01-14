@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "HamiltonianBuilder/FrozenCoreCI.hpp"
+#include "QCMethod/CI/HamiltonianBuilder/FrozenCoreCI.hpp"
 
 #include "FockSpace/BaseFrozenCoreFockSpace.hpp"
 #include "Utilities/linalg.hpp"

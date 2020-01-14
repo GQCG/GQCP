@@ -20,6 +20,7 @@
 #include <boost/test/unit_test.hpp>
 
 #include "Operator/SecondQuantized/SQTwoElectronOperator.hpp"
+
 #include "Utilities/linalg.hpp"
 #include "Utilities/miscellaneous.hpp"
 

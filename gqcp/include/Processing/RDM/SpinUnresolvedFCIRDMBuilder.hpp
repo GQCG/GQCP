@@ -19,8 +19,8 @@
 
 
 #include "FockSpace/FockSpace.hpp"
-#include "RDM/BaseSpinUnresolvedRDMBuilder.hpp"
-#include "RDM/RDMs.hpp"
+#include "Processing/RDM/BaseSpinUnresolvedRDMBuilder.hpp"
+#include "Processing/RDM/RDMs.hpp"
 
 
 namespace GQCP {

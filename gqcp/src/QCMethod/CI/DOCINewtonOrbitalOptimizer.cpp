@@ -15,11 +15,11 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "OrbitalOptimization/DOCINewtonOrbitalOptimizer.hpp"
+#include "QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp"
 
-#include "CISolver/CISolver.hpp"
 #include "Mathematical/Optimization/step.hpp"
-#include "RDM/RDMCalculator.hpp"
+#include "Processing/RDM/RDMCalculator.hpp"
+#include "QCMethod/CI/CISolver.hpp"
 #include "Utilities/linalg.hpp"
 
 

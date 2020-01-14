@@ -15,10 +15,10 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "Geminals/AP1roGPSESolver.hpp"
+#include "QCMethod/Geminals/AP1roGPSESolver.hpp"
 
-#include "Geminals/AP1roG.hpp"
 #include "Mathematical/Optimization/NewtonNLSystemOfEquationsSolver.hpp"
+#include "QCMethod/Geminals/AP1roG.hpp"
 
 
 namespace GQCP {

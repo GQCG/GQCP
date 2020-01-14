@@ -19,9 +19,10 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "HamiltonianBuilder/FrozenCoreDOCI.hpp"
-#include "HamiltonianBuilder/SelectedCI.hpp"
+#include "QCMethod/CI/HamiltonianBuilder/FrozenCoreDOCI.hpp"
+
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
+#include "QCMethod/CI/HamiltonianBuilder/SelectedCI.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( FrozenCoreDOCI_constructor ) {

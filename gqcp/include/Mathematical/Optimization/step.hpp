@@ -19,7 +19,7 @@
 
 
 #include "Mathematical/Representation/Matrix.hpp"
-#include "typedefs.hpp"
+#include "Utilities/typedefs.hpp"
 
 
 namespace GQCP {

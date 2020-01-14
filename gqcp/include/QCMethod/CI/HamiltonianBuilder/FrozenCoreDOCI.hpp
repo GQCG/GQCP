@@ -19,8 +19,8 @@
 
 
 #include "FockSpace/FrozenFockSpace.hpp"
-#include "HamiltonianBuilder/DOCI.hpp"
-#include "HamiltonianBuilder/FrozenCoreCI.hpp"
+#include "QCMethod/CI/HamiltonianBuilder/DOCI.hpp"
+#include "QCMethod/CI/HamiltonianBuilder/FrozenCoreCI.hpp"
 
 
 namespace GQCP {

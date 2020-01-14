@@ -19,7 +19,7 @@
 
 #include "Mathematical/Optimization/NewtonNLSystemOfEquationsSolver.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
-#include "typedefs.hpp"
+#include "Utilities/typedefs.hpp"
 
 #include <iostream>
 

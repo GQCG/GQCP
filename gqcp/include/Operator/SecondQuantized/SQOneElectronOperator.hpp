@@ -18,13 +18,13 @@
 #pragma once
 
 
+#include "Basis/SpinorBasis/JacobiRotationParameters.hpp"
 #include "Basis/TransformationMatrix.hpp"
 #include "Mathematical/Representation/QCMatrix.hpp"
 #include "Mathematical/ScalarFunction.hpp"
-#include "OrbitalOptimization/JacobiRotationParameters.hpp"
-#include "RDM/OneRDM.hpp"
-#include "RDM/TwoRDM.hpp"
-#include "typedefs.hpp"
+#include "Processing/RDM/OneRDM.hpp"
+#include "Processing/RDM/TwoRDM.hpp"
+#include "Utilities/typedefs.hpp"
 
 #include <array>
 

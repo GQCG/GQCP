@@ -19,9 +19,10 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "CISolver/CISolver.hpp"
-#include "HamiltonianBuilder/DOCI.hpp"
+#include "QCMethod/CI/CISolver.hpp"
+
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
+#include "QCMethod/CI/HamiltonianBuilder/DOCI.hpp"
 
 
 

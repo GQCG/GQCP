@@ -19,7 +19,8 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "HamiltonianBuilder/FCI.hpp"
+#include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
+
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 
 

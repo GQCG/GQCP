@@ -19,13 +19,14 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "CISolver/CISolver.hpp"
+#include "Processing/RDM/RDMCalculator.hpp"
+
 #include "FockSpace/FockSpace.hpp"
 #include "FockSpace/ProductFockSpace.hpp"
-#include "HamiltonianBuilder/DOCI.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "RDM/RDMCalculator.hpp"
-#include "RDM/SpinUnresolvedRDMCalculator.hpp"
+#include "Processing/RDM/SpinUnresolvedRDMCalculator.hpp"
+#include "QCMethod/CI/CISolver.hpp"
+#include "QCMethod/CI/HamiltonianBuilder/DOCI.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( constructor ) {

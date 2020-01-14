@@ -15,17 +15,19 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 //
-#include "QCMethod/DOCINewtonOrbitalOptimizer.hpp"
+#include "QCMethod/Applications/DOCINewtonOrbitalOptimizer.hpp"
 
 #include "Basis/transform.hpp"
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
-#include "CISolver/CISolver.hpp"
-#include "Operator/SecondQuantized/SQHamiltonian.hpp"
+#include "FockSpace/ProductFockSpace.hpp"
 #include "Mathematical/Optimization/IterativeIdentitiesHessianModifier.hpp"
-#include "OrbitalOptimization/DOCINewtonOrbitalOptimizer.hpp"
-#include "OrbitalOptimization/Localization/ERJacobiLocalizer.hpp"
-#include "OrbitalOptimization/Localization/ERNewtonLocalizer.hpp"
-#include "RHF/DIISRHFSCFSolver.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
+#include "Processing/RDM/RDMCalculator.hpp"
+#include "QCMethod/CI/CISolver.hpp"
+#include "QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp"
+#include "QCMethod/OrbitalOptimization/Localization/ERJacobiLocalizer.hpp"
+#include "QCMethod/OrbitalOptimization/Localization/ERNewtonLocalizer.hpp"
+#include "QCMethod/RHF/DIISRHFSCFSolver.hpp"
 
 
 namespace GQCP {

@@ -19,19 +19,19 @@
 
 
 #include "Basis/ScalarBasis/ScalarBasis.hpp"
+#include "Basis/SpinorBasis/JacobiRotationParameters.hpp"
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
 #include "Basis/TransformationMatrix.hpp"
-#include "HoppingMatrix.hpp"
 #include "Molecule/Molecule.hpp"
 #include "Operator/FirstQuantized/NuclearRepulsionOperator.hpp"
 #include "Operator/FirstQuantized/OverlapOperator.hpp"
 #include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/SQTwoElectronOperator.hpp"
-#include "OrbitalOptimization/JacobiRotationParameters.hpp"
-#include "RDM/OneRDM.hpp"
-#include "RDM/TwoRDM.hpp"
-#include "typedefs.hpp"
+#include "Processing/RDM/OneRDM.hpp"
+#include "Processing/RDM/TwoRDM.hpp"
+#include "QCMethod/CI/HamiltonianBuilder/HoppingMatrix.hpp"
 #include "Utilities/miscellaneous.hpp"
+#include "Utilities/typedefs.hpp"
 
 
 namespace GQCP {

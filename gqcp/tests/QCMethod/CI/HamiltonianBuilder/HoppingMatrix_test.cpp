@@ -19,7 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "HoppingMatrix.hpp"
+#include "QCMethod/CI/HamiltonianBuilder/HoppingMatrix.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( constructor_throws ) {

@@ -18,12 +18,13 @@
 #pragma once
 
 
-#include "HamiltonianBuilder/DOCI.hpp"
+#include "FockSpace/WaveFunction/WaveFunction.hpp"
 #include "Mathematical/Optimization/Eigenpair.hpp"
 #include "Mathematical/Optimization/EigenproblemSolverOptions.hpp"
-#include "OrbitalOptimization/QCMethodNewtonOrbitalOptimizer.hpp"
-#include "RDM/RDMCalculator.hpp"
-#include "WaveFunction/WaveFunction.hpp"
+#include "Processing/RDM/RDMCalculator.hpp"
+#include "QCMethod/CI/HamiltonianBuilder/DOCI.hpp"
+#include "QCMethod/OrbitalOptimization/QCMethodNewtonOrbitalOptimizer.hpp"
+
 
 #include <memory>
 

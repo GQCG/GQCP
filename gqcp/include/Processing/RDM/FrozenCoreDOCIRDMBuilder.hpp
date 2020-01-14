@@ -19,8 +19,8 @@
 
 
 #include "FockSpace/FrozenProductFockSpace.hpp"
-#include "RDM/FrozenCoreRDMBuilder.hpp"
-#include "RDM/RDMs.hpp"
+#include "Processing/RDM/FrozenCoreRDMBuilder.hpp"
+#include "Processing/RDM/RDMs.hpp"
 
 
 namespace GQCP {

@@ -18,8 +18,8 @@
 #pragma once
 
 
-#include "Operator/FirstQuantized/BaseMultipoleOperator.hpp"
 #include "Operator/FirstQuantized/BaseFQOneElectronOperator.hpp"
+#include "Operator/FirstQuantized/BaseMultipoleOperator.hpp"
 
 
 namespace GQCP {

@@ -19,8 +19,8 @@
 
 
 #include "FockSpace/ProductFockSpace.hpp"
-#include "RDM/BaseRDMBuilder.hpp"
-#include "RDM/RDMs.hpp"
+#include "Processing/RDM/BaseRDMBuilder.hpp"
+#include "Processing/RDM/RDMs.hpp"
 
 
 namespace GQCP {

@@ -4,8 +4,8 @@
 
 #include <benchmark/benchmark.h>
 
+#include "QCMethod/CI/HamiltonianBuilder/DOCI.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "HamiltonianBuilder/DOCI.hpp"
 
 
 static void constructHamiltonian(benchmark::State& state) {

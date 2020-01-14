@@ -21,13 +21,13 @@
 
 #include "Basis/transform.hpp"
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
-#include "CISolver/CISolver.hpp"
-#include "HamiltonianBuilder/DOCI.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "Properties/expectation_values.hpp"
-#include "RDM/RDMCalculator.hpp"
-#include "RHF/DIISRHFSCFSolver.hpp"
-#include "RHF/PlainRHFSCFSolver.hpp"
+#include "Processing/Properties/expectation_values.hpp"
+#include "Processing/RDM/RDMCalculator.hpp"
+#include "QCMethod/CI/CISolver.hpp"
+#include "QCMethod/CI/HamiltonianBuilder/DOCI.hpp"
+#include "QCMethod/RHF/DIISRHFSCFSolver.hpp"
+#include "QCMethod/RHF/PlainRHFSCFSolver.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( CO_DOCI_constrained_dense ) {

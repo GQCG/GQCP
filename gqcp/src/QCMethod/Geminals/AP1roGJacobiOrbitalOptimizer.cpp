@@ -15,11 +15,11 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "OrbitalOptimization/AP1roGJacobiOrbitalOptimizer.hpp"
+#include "QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.hpp"
 
-#include "Geminals/AP1roG.hpp"
-#include "Geminals/AP1roGPSESolver.hpp"
 #include "Mathematical/Optimization/NewtonMinimizer.hpp"
+#include "QCMethod/Geminals/AP1roG.hpp"
+#include "QCMethod/Geminals/AP1roGPSESolver.hpp"
 
 #include <boost/math/constants/constants.hpp>
 

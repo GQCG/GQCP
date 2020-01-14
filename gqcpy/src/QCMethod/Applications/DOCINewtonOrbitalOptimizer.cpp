@@ -17,7 +17,6 @@
 // 
 #include "QCMethod/DOCINewtonOrbitalOptimizer.hpp"
 
-#include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
 
@@ -29,7 +28,7 @@ namespace gqcpy {
 
 
 void bindQCMethodDOCINewtonOrbitalOptimizer(py::module& module) {
-    py::class_<GQCP::QCMethod::DOCINewtonOrbitalOptimizer>(module, "DOCINewtonOrbitalOptimizer", "Itertively optimize the orbitals with respect to the DOCI energy by constructing and solving the DOCI Hamiltonian")
+    py::class_<GQCP::QCMethod::DOCINewtonOrbitalOptimizer>(module, "DOCINewtonOrbitalOptimizer", "Iteratively optimize the orbitals with respect to the DOCI energy by constructing and solving the DOCI Hamiltonian")
 
         .def(py::init<const std::string&, const std::string&, const bool, const bool>(), py::arg("xyz_filename"), py::arg("basis_set"), py::arg("use_davidson"), py::arg("localize"))
         .def(py::init<const GQCP::Molecule&, const std::string&, const bool, const bool>(), py::arg("molecule"), py::arg("basis_set"), py::arg("use_davidson"), py::arg("localize"))

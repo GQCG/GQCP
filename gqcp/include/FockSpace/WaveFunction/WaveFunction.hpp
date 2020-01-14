@@ -64,7 +64,7 @@ public:
      *  @param T    the transformation matrix between the old and the new orbital basis
      */
      void basisTransform(const TransformationMatrix<double>& T);
-     
+
     /** 
      *  @param other            wave function for the comparison
      *  @param tolerance        tolerance for the comparison of coefficients

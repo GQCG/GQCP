@@ -19,11 +19,12 @@
 
 
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
-#include "CISolver/CISolver.hpp"
 #include "FockSpace/ProductFockSpace.hpp"
-#include "HamiltonianBuilder/FCI.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "RDM/RDMCalculator.hpp"
+#include "Processing/RDM/RDMCalculator.hpp"
+#include "QCMethod/CI/CISolver.hpp"
+#include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
+
 
 
 namespace GQCP {

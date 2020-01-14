@@ -19,7 +19,7 @@
 
 
 #include "FockSpace/ProductFockSpace.hpp"
-#include "HamiltonianBuilder/HamiltonianBuilder.hpp"
+#include "QCMethod/CI/HamiltonianBuilder/HamiltonianBuilder.hpp"
 
 
 namespace GQCP {

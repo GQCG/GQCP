@@ -19,7 +19,7 @@
 
 
 #include "FockSpace/FockSpace.hpp"
-#include "WaveFunction/WaveFunction.hpp"
+#include "FockSpace/WaveFunction/WaveFunction.hpp"
 
 
 namespace GQCP {

@@ -19,7 +19,7 @@
 
 
 #include "Mathematical/Optimization/BaseMinimizer.hpp"
-#include "typedefs.hpp"
+#include "Utilities/typedefs.hpp"
 
 
 namespace GQCP {

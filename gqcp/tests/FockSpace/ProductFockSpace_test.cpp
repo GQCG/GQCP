@@ -19,8 +19,9 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "Basis/transform.hpp"
 #include "FockSpace/ProductFockSpace.hpp"
+
+#include "Basis/transform.hpp"
 #include "FockSpace/SelectedFockSpace.hpp"
 
 

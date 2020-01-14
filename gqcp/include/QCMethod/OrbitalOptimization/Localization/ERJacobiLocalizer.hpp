@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "OrbitalOptimization/JacobiOrbitalOptimizer.hpp"
+#include "QCMethod/OrbitalOptimization/JacobiOrbitalOptimizer.hpp"
 
 
 namespace GQCP {

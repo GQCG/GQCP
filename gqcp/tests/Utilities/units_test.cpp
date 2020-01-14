@@ -19,7 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "units.hpp"
+#include "Utilities/units.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( bohr_angstrom ) {

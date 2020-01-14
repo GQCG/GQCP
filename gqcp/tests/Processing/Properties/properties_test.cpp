@@ -19,17 +19,18 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include "Processing/Properties/properties.hpp"
+
 #include "Basis/Integrals/Interfaces/LibintInterfacer.hpp"
 #include "Basis/transform.hpp"
-#include "CISolver/CISolver.hpp"
-#include "HamiltonianBuilder/FCI.hpp"
 #include "Operator/FirstQuantized/Operator.hpp"
-#include "Properties/properties.hpp"
-#include "Properties/RHFElectricalResponseSolver.hpp"
-#include "RDM/RDMCalculator.hpp"
-#include "RHF/DIISRHFSCFSolver.hpp"
-#include "RHF/PlainRHFSCFSolver.hpp"
-#include "units.hpp"
+#include "Processing/Properties/RHFElectricalResponseSolver.hpp"
+#include "Processing/RDM/RDMCalculator.hpp"
+#include "QCMethod/CI/CISolver.hpp"
+#include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
+#include "QCMethod/RHF/DIISRHFSCFSolver.hpp"
+#include "QCMethod/RHF/PlainRHFSCFSolver.hpp"
+#include "Utilities/units.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( dipole_CO_STO_3G ) {

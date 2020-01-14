@@ -19,7 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "elements.hpp"
+#include "Molecule/elements.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( elementToAtomicNumber ) {

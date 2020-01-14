@@ -18,8 +18,8 @@
 #pragma once
 
 
-#include "OrbitalOptimization/BaseOrbitalOptimizer.hpp"
-#include "OrbitalOptimization/JacobiRotationParameters.hpp"
+#include "Basis/SpinorBasis/JacobiRotationParameters.hpp"
+#include "QCMethod/OrbitalOptimization/BaseOrbitalOptimizer.hpp"
 
 
 namespace GQCP {

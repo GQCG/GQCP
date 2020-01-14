@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Properties/BaseElectricalResponseSolver.hpp"
+#include "Processing/Properties/BaseElectricalResponseSolver.hpp"
 
 
 namespace GQCP {

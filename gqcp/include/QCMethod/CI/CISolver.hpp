@@ -18,11 +18,11 @@
 #pragma once
 
 
-#include "HamiltonianBuilder/HamiltonianBuilder.hpp"
-#include "Operator/SecondQuantized/SQHamiltonian.hpp"
+#include "FockSpace/WaveFunction/WaveFunction.hpp"
 #include "Mathematical/Optimization/Eigenpair.hpp"
 #include "Mathematical/Optimization/EigenproblemSolverOptions.hpp"
-#include "WaveFunction/WaveFunction.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
+#include "QCMethod/CI/HamiltonianBuilder/HamiltonianBuilder.hpp"
 
 
 namespace GQCP {

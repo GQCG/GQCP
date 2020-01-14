@@ -19,9 +19,10 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "HamiltonianBuilder/DOCI.hpp"
+#include "QCMethod/CI/HamiltonianBuilder/DOCI.hpp"
+
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "RHF/PlainRHFSCFSolver.hpp"
+#include "QCMethod/RHF/PlainRHFSCFSolver.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( DOCI_constructor ) {

@@ -19,7 +19,7 @@
 
 
 #include "Mathematical/Representation/Matrix.hpp"
-#include "typedefs.hpp"
+#include "Utilities/typedefs.hpp"
 
 #include <unsupported/Eigen/CXX11/Tensor>
 

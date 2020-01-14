@@ -19,14 +19,15 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include "QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp"
+
 #include "Basis/transform.hpp"
-#include "CISolver/CISolver.hpp"
-#include "HamiltonianBuilder/FCI.hpp"
-#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Mathematical/Optimization/IterativeIdentitiesHessianModifier.hpp"
-#include "RDM/FCIRDMBuilder.hpp"
-#include "RHF/PlainRHFSCFSolver.hpp"
-#include "OrbitalOptimization/DOCINewtonOrbitalOptimizer.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
+#include "Processing/RDM/FCIRDMBuilder.hpp"
+#include "QCMethod/CI/CISolver.hpp"
+#include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
+#include "QCMethod/RHF/PlainRHFSCFSolver.hpp"
 
 
 // dim = 2 for DOCI

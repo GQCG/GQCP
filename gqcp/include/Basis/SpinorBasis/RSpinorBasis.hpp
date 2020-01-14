@@ -19,6 +19,7 @@
 
 
 #include "Basis/ScalarBasis/ScalarBasis.hpp"
+#include "Basis/SpinorBasis/JacobiRotationParameters.hpp"
 #include "Basis/SpinorBasis/SimpleSpinorBasis.hpp"
 #include "Mathematical/Representation/QCMatrix.hpp"
 #include "Molecule/Molecule.hpp"
@@ -26,7 +27,6 @@
 #include "Operator/FirstQuantized/Operator.hpp"
 #include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/SQTwoElectronOperator.hpp"
-#include "OrbitalOptimization/JacobiRotationParameters.hpp"
 
 #include <Eigen/Dense>
 

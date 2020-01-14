@@ -4,9 +4,9 @@
 
 #include <benchmark/benchmark.h>
 
-#include "CISolver/CISolver.hpp"
-#include "HamiltonianBuilder/DOCI.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
+#include "QCMethod/CI/CISolver.hpp"
+#include "QCMethod/CI/HamiltonianBuilder/DOCI.hpp"
 
 
 static void test_case(benchmark::State& state) {

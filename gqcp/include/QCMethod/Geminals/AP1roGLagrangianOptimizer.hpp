@@ -18,8 +18,8 @@
 #pragma once
 
 
-#include "Geminals/AP1roGGeminalCoefficients.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
+#include "QCMethod/Geminals/AP1roGGeminalCoefficients.hpp"
 
 
 namespace GQCP {

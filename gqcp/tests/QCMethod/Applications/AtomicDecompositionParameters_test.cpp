@@ -19,14 +19,15 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include "QCMethod/Applications/AtomicDecompositionParameters.hpp"
+
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
-#include "CISolver/CISolver.hpp"
-#include "HamiltonianBuilder/FCI.hpp"
-#include "HamiltonianParameters/AtomicDecompositionParameters.hpp"
-#include "RDM/RDMCalculator.hpp"
-#include "RHF/PlainRHFSCFSolver.hpp"
-#include "Properties/expectation_values.hpp"
-#include "units.hpp"
+#include "Processing/Properties/expectation_values.hpp"
+#include "Processing/RDM/RDMCalculator.hpp"
+#include "QCMethod/CI/CISolver.hpp"
+#include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
+#include "QCMethod/RHF/PlainRHFSCFSolver.hpp"
+#include "Utilities/units.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( decomposition_BeH_cation_STO_3G_Nuclear ) {

@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "HamiltonianBuilder/HamiltonianBuilder.hpp"
+#include "QCMethod/CI/HamiltonianBuilder/HamiltonianBuilder.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 
 

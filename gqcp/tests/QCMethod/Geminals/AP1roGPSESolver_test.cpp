@@ -19,12 +19,13 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include "QCMethod/Geminals/AP1roGPSESolver.hpp"
+
 #include "Basis/transform.hpp"
-#include "Geminals/AP1roG.hpp"
-#include "Geminals/AP1roGPSEs.hpp"
-#include "Geminals/AP1roGPSESolver.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "RHF/PlainRHFSCFSolver.hpp"
+#include "QCMethod/Geminals/AP1roG.hpp"
+#include "QCMethod/Geminals/AP1roGPSEs.hpp"
+#include "QCMethod/RHF/PlainRHFSCFSolver.hpp"
 
 
 /**

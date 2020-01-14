@@ -15,12 +15,12 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 //
-#include "QCMethod/FukuiDysonAnalysis.hpp"
+#include "QCMethod/Applications/FukuiDysonAnalysis.hpp"
 
 #include "Basis/transform.hpp"
-#include "Properties/properties.hpp"
-#include "RHF/DIISRHFSCFSolver.hpp"
-#include "RHF/PlainRHFSCFSolver.hpp"
+#include "Processing/Properties/properties.hpp"
+#include "QCMethod/RHF/DIISRHFSCFSolver.hpp"
+#include "QCMethod/RHF/PlainRHFSCFSolver.hpp"
 
 
 namespace GQCP {

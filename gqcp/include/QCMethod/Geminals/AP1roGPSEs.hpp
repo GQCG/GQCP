@@ -18,11 +18,11 @@
 #pragma once
 
 
-#include "Geminals/AP1roGGeminalCoefficients.hpp"
 #include "Mathematical/Representation/BlockMatrix.hpp"
 #include "Mathematical/Representation/BlockRankFourTensor.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "typedefs.hpp"
+#include "QCMethod/Geminals/AP1roGGeminalCoefficients.hpp"
+#include "Utilities/typedefs.hpp"
 
 
 namespace GQCP {

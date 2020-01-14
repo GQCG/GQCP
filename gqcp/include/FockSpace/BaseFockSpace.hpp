@@ -19,8 +19,8 @@
 
 
 #include "FockSpace/FockSpaceType.hpp"
-#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 
 #include <Eigen/Sparse>
 

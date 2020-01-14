@@ -18,11 +18,11 @@
 #pragma once
 
 
-#include "RDM/BaseRDMBuilder.hpp"
+#include "Processing/RDM/BaseRDMBuilder.hpp"
 #include "FockSpace/FockSpace.hpp"
 #include "FockSpace/ProductFockSpace.hpp"
 #include "FockSpace/SelectedFockSpace.hpp"
-#include "WaveFunction/WaveFunction.hpp"
+#include "FockSpace/WaveFunction/WaveFunction.hpp"
 
 #include <boost/range/adaptor/sliced.hpp>
 #include <boost/range/adaptor/strided.hpp>

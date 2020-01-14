@@ -15,12 +15,12 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "RDM/SpinUnresolvedRDMCalculator.hpp"
+#include "Processing/RDM/SpinUnresolvedRDMCalculator.hpp"
 
-#include "RDM/FCIRDMBuilder.hpp"
-#include "RDM/DOCIRDMBuilder.hpp"
-#include "RDM/SelectedRDMBuilder.hpp"
-#include "RDM/SpinUnresolvedFCIRDMBuilder.hpp"
+#include "Processing/RDM/FCIRDMBuilder.hpp"
+#include "Processing/RDM/DOCIRDMBuilder.hpp"
+#include "Processing/RDM/SelectedRDMBuilder.hpp"
+#include "Processing/RDM/SpinUnresolvedFCIRDMBuilder.hpp"
 
 
 namespace GQCP {

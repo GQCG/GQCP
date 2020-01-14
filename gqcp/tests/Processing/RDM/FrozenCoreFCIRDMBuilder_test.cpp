@@ -19,14 +19,15 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "CISolver/CISolver.hpp"
-#include "HamiltonianBuilder/FrozenCoreFCI.hpp"
+#include "Processing/RDM/FrozenCoreFCIRDMBuilder.hpp"
+
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "RDM/DOCIRDMBuilder.hpp"
-#include "RDM/FCIRDMBuilder.hpp"
-#include "RDM/FrozenCoreFCIRDMBuilder.hpp"
-#include "RDM/RDMCalculator.hpp"
-#include "RDM/SelectedRDMBuilder.hpp"
+#include "Processing/RDM/DOCIRDMBuilder.hpp"
+#include "Processing/RDM/FCIRDMBuilder.hpp"
+#include "Processing/RDM/RDMCalculator.hpp"
+#include "Processing/RDM/SelectedRDMBuilder.hpp"
+#include "QCMethod/CI/CISolver.hpp"
+#include "QCMethod/CI/HamiltonianBuilder/FrozenCoreFCI.hpp"
 #include "Utilities/linalg.hpp"
 
 

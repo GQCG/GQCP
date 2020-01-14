@@ -19,8 +19,8 @@
 
 
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "RDM/OneRDM.hpp"
-#include "RDM/TwoRDM.hpp"
+#include "Processing/RDM/OneRDM.hpp"
+#include "Processing/RDM/TwoRDM.hpp"
 
 
 namespace GQCP {

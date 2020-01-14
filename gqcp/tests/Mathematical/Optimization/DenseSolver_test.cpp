@@ -20,6 +20,7 @@
 #include <boost/test/unit_test.hpp>
 
 #include "Mathematical/Optimization/DenseSolver.hpp"
+
 #include "Utilities/linalg.hpp"
 
 

@@ -19,7 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "Geminals/AP1roGGeminalCoefficients.hpp"
+#include "QCMethod/Geminals/AP1roGGeminalCoefficients.hpp"
 
 
 /**

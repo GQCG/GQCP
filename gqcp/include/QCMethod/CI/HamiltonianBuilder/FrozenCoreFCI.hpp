@@ -19,8 +19,8 @@
 
 
 #include "FockSpace/FrozenProductFockSpace.hpp"
-#include "HamiltonianBuilder/FCI.hpp"
-#include "HamiltonianBuilder/FrozenCoreCI.hpp"
+#include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
+#include "QCMethod/CI/HamiltonianBuilder/FrozenCoreCI.hpp"
 
 
 namespace GQCP {

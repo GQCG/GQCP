@@ -22,7 +22,6 @@
 #include "Basis/Integrals/BaseTwoElectronIntegralEngine.hpp"
 #include "Basis/ScalarBasis/ShellSet.hpp"
 
-
 #include <array>
 #include <memory>
 

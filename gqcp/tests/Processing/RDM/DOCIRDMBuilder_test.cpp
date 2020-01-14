@@ -19,12 +19,13 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "CISolver/CISolver.hpp"
-#include "HamiltonianBuilder/DOCI.hpp"
+#include "Processing/RDM/DOCIRDMBuilder.hpp"
+
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "Properties/expectation_values.hpp"
-#include "RDM/DOCIRDMBuilder.hpp"
-#include "RDM/RDMCalculator.hpp"
+#include "Processing/Properties/expectation_values.hpp"
+#include "Processing/RDM/RDMCalculator.hpp"
+#include "QCMethod/CI/CISolver.hpp"
+#include "QCMethod/CI/HamiltonianBuilder/DOCI.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( lih_1RDM_trace ) {

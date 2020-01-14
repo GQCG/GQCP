@@ -19,14 +19,14 @@
 
 
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
-#include "CISolver/CISolver.hpp"
 #include "FockSpace/ProductFockSpace.hpp"
-#include "HamiltonianBuilder/FCI.hpp"
-#include "HamiltonianBuilder/FrozenCoreFCI.hpp"
-#include "HamiltonianParameters/AtomicDecompositionParameters.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Operator/SecondQuantized/USQHamiltonian.hpp"
-#include "RDM/RDMCalculator.hpp"
+#include "Processing/RDM/RDMCalculator.hpp"
+#include "QCMethod/Applications/AtomicDecompositionParameters.hpp"
+#include "QCMethod/CI/CISolver.hpp"
+#include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
+#include "QCMethod/CI/HamiltonianBuilder/FrozenCoreFCI.hpp"
 
 
 namespace GQCP {

@@ -15,9 +15,9 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "RDM/FrozenCoreFCIRDMBuilder.hpp"
+#include "Processing/RDM/FrozenCoreFCIRDMBuilder.hpp"
 
-#include "RDM/FCIRDMBuilder.hpp"
+#include "Processing/RDM/FCIRDMBuilder.hpp"
 
 
 namespace GQCP {

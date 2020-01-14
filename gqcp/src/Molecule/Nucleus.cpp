@@ -17,7 +17,7 @@
 // 
 #include "Molecule/Nucleus.hpp"
 
-#include "elements.hpp"
+#include "Molecule/elements.hpp"
 
 #include <cmath>
 #include <iomanip>

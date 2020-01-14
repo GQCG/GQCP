@@ -19,13 +19,14 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include "QCMethod/Geminals/AP1roGLagrangianNewtonOrbitalOptimizer.hpp"
+
 #include "Basis/transform.hpp"
-#include "RHF/PlainRHFSCFSolver.hpp"
-#include "Geminals/AP1roG.hpp"
-#include "Geminals/AP1roGPSESolver.hpp"
-#include "Geminals/AP1roGLagrangianOptimizer.hpp"
 #include "Mathematical/Optimization/IterativeIdentitiesHessianModifier.hpp"
-#include "OrbitalOptimization/AP1roGLagrangianNewtonOrbitalOptimizer.hpp"
+#include "QCMethod/RHF/PlainRHFSCFSolver.hpp"
+#include "QCMethod/Geminals/AP1roG.hpp"
+#include "QCMethod/Geminals/AP1roGPSESolver.hpp"
+#include "QCMethod/Geminals/AP1roGLagrangianOptimizer.hpp"
 
 
 /**

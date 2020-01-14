@@ -15,12 +15,12 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "QCMethod/Hubbard.hpp"
+#include "QCMethod/Applications/Hubbard.hpp"
 
-#include "CISolver/CISolver.hpp"
-#include "HamiltonianBuilder/Hubbard.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "RDM/RDMCalculator.hpp"
+#include "Processing/RDM/RDMCalculator.hpp"
+#include "QCMethod/CI/CISolver.hpp"
+#include "QCMethod/CI/HamiltonianBuilder/Hubbard.hpp"
 
 #include <boost/algorithm/string.hpp>
 

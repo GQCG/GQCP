@@ -20,7 +20,7 @@
 
 #include "Basis/TransformationMatrix.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
-#include "typedefs.hpp"
+#include "Utilities/typedefs.hpp"
 
 
 namespace GQCP {

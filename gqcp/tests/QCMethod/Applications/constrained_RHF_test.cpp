@@ -21,8 +21,8 @@
 
 #include "Basis/transform.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "Properties/expectation_values.hpp"
-#include "RHF/DIISRHFSCFSolver.hpp"
+#include "Processing/Properties/expectation_values.hpp"
+#include "QCMethod/RHF/DIISRHFSCFSolver.hpp"
 
 #include <random>
 

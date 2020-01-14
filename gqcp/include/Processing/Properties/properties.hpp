@@ -18,9 +18,9 @@
 #pragma once
 
 
+#include "FockSpace/WaveFunction/WaveFunction.hpp"
 #include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
-#include "RDM/OneRDM.hpp"
-#include "WaveFunction/WaveFunction.hpp"
+#include "Processing/RDM/OneRDM.hpp"
 
 
 namespace GQCP {

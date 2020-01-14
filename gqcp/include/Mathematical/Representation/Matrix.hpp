@@ -19,7 +19,7 @@
 
 
 #include "Mathematical/CartesianDirection.hpp"
-#include "typedefs.hpp"
+#include "Utilities/typedefs.hpp"
 
 #include <Eigen/Dense>
 

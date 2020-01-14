@@ -19,9 +19,10 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "Operator/SecondQuantized/SQHamiltonian.hpp"
+#include "QCMethod/OrbitalOptimization/Localization/ERNewtonLocalizer.hpp"
+
 #include "Mathematical/Optimization/IterativeIdentitiesHessianModifier.hpp"
-#include "OrbitalOptimization/Localization/ERNewtonLocalizer.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( localization_index_raises ) {

@@ -22,7 +22,7 @@
 #include "Mathematical/Representation/BlockRankFourTensor.hpp"
 #include "Mathematical/Representation/Tensor.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "RDM/OneRDM.hpp"
+#include "Processing/RDM/OneRDM.hpp"
 
 
 namespace GQCP {

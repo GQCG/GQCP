@@ -17,8 +17,8 @@
 // 
 #include "Molecule/NuclearFramework.hpp"
 
-#include "elements.hpp"
-#include "units.hpp"
+#include "Molecule/elements.hpp"
+#include "Utilities/units.hpp"
 #include "Utilities/miscellaneous.hpp"
 
 

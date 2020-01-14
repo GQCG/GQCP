@@ -19,12 +19,13 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include "QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.hpp"
+
 #include "Basis/transform.hpp"
-#include "Geminals/AP1roG.hpp"
-#include "Geminals/AP1roGPSEs.hpp"
-#include "Geminals/AP1roGPSESolver.hpp"
-#include "RHF/PlainRHFSCFSolver.hpp"
-#include "OrbitalOptimization/AP1roGJacobiOrbitalOptimizer.hpp"
+#include "QCMethod/Geminals/AP1roG.hpp"
+#include "QCMethod/Geminals/AP1roGPSEs.hpp"
+#include "QCMethod/Geminals/AP1roGPSESolver.hpp"
+#include "QCMethod/RHF/PlainRHFSCFSolver.hpp"
 
 
 /**

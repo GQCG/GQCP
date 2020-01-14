@@ -19,7 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "Geminals/APIGGeminalCoefficients.hpp"
+#include "QCMethod/Geminals/APIGGeminalCoefficients.hpp"
 
 
 /**

@@ -19,9 +19,9 @@
 
 
 #include "FockSpace/BaseFockSpace.hpp"
-#include "RDM/OneRDM.hpp"
-#include "RDM/RDMs.hpp"
-#include "RDM/TwoRDM.hpp"
+#include "Processing/RDM/OneRDM.hpp"
+#include "Processing/RDM/RDMs.hpp"
+#include "Processing/RDM/TwoRDM.hpp"
 
 
 namespace GQCP {

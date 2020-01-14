@@ -19,8 +19,9 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "Basis/ScalarBasis/CartesianGTO.hpp"
 #include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
+
+#include "Basis/ScalarBasis/CartesianGTO.hpp"
 #include "Utilities/miscellaneous.hpp"
 
 

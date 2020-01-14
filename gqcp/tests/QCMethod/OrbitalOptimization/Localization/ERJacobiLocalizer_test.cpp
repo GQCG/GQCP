@@ -19,7 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "OrbitalOptimization/Localization/ERJacobiLocalizer.hpp"
+#include "QCMethod/OrbitalOptimization/Localization/ERJacobiLocalizer.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( localization_index_raises ) {

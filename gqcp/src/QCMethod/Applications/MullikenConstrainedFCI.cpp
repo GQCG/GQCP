@@ -15,14 +15,14 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 //
-#include "QCMethod/MullikenConstrainedFCI.hpp"
+#include "QCMethod/Applications/MullikenConstrainedFCI.hpp"
 
 #include "Basis/transform.hpp"
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
 #include "Mathematical/Optimization/DavidsonSolver.hpp"
 #include "Mathematical/Optimization/DenseSolver.hpp"
-#include "Properties/expectation_values.hpp"
-#include "RHF/DIISRHFSCFSolver.hpp"
+#include "Processing/Properties/expectation_values.hpp"
+#include "QCMethod/RHF/DIISRHFSCFSolver.hpp"
 
 #include <algorithm>
 #include <chrono>

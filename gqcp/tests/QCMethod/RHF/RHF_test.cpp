@@ -19,7 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "RHF/RHF.hpp"
+#include "QCMethod/RHF/RHF.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( RHF_1RDM_invalid_argument ) {

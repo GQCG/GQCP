@@ -5,11 +5,11 @@
 #include <benchmark/benchmark.h>
 
 #include "Basis/transform.hpp"
-#include "CISolver/CISolver.hpp"
-#include "HamiltonianBuilder/FCI.hpp"
 #include "Molecule/Molecule.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "RHF/PlainRHFSCFSolver.hpp"
+#include "QCMethod/CI/CISolver.hpp"
+#include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
+#include "QCMethod/RHF/PlainRHFSCFSolver.hpp"
 
 
 

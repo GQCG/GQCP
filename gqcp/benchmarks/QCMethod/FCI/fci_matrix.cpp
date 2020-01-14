@@ -5,7 +5,7 @@
 #include <benchmark/benchmark.h>
 
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "HamiltonianBuilder/FCI.hpp"
+#include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
 
 
 static void constructHamiltonian(benchmark::State& state) {

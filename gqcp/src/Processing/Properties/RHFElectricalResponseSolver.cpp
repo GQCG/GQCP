@@ -15,10 +15,10 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "Properties/RHFElectricalResponseSolver.hpp"
+#include "Processing/Properties/RHFElectricalResponseSolver.hpp"
 
 #include "Mathematical/Representation/BlockMatrix.hpp"
-#include "RHF/RHF.hpp"
+#include "QCMethod/RHF/RHF.hpp"
 
 
 namespace GQCP {

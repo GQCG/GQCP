@@ -21,8 +21,8 @@
 
 #include "Basis/SpinorBasis/GSpinorBasis.hpp"
 
-#include "Molecule/Molecule.hpp"
 #include "Basis/ScalarBasis/GTOShell.hpp"
+#include "Molecule/Molecule.hpp"
 
 
 /**

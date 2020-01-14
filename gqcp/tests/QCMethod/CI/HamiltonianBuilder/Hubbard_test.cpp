@@ -17,12 +17,12 @@
 // 
 #define BOOST_TEST_MODULE "Hubbard"
 
-
 #include <boost/test/unit_test.hpp>
 
-#include "HamiltonianBuilder/FCI.hpp"
-#include "HamiltonianBuilder/Hubbard.hpp"
+#include "QCMethod/CI/HamiltonianBuilder/Hubbard.hpp"
+
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
+#include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( Hubbard_constructor ) {

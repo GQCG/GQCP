@@ -19,7 +19,7 @@
 
 
 #include "FockSpace/FockSpace.hpp"
-#include "HamiltonianBuilder/HamiltonianBuilder.hpp"
+#include "QCMethod/CI/HamiltonianBuilder/HamiltonianBuilder.hpp"
 
 #include <memory>
 

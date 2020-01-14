@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "QCMethod/FCI.hpp"
+#include "QCMethod/Applications/FCI.hpp"
 
 #include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>

@@ -18,8 +18,8 @@
 #pragma once
 
 
+#include "Basis/SpinorBasis/JacobiRotationParameters.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
-#include "OrbitalOptimization/JacobiRotationParameters.hpp"
 #include "Utilities/miscellaneous.hpp"
 
 #include <boost/numeric/conversion/converter.hpp>

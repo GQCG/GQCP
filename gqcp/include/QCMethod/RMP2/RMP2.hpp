@@ -18,9 +18,9 @@
 #pragma once
 
 
-#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Molecule/Molecule.hpp"
-#include "RHF/RHF.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
+#include "QCMethod/RHF/RHF.hpp"
 
 
 namespace GQCP {

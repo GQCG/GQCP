@@ -19,7 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "RDM/SpinUnresolvedFCIRDMBuilder.hpp"
+#include "Processing/RDM/SpinUnresolvedFCIRDMBuilder.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( calculateElement_throws ) {

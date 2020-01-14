@@ -18,9 +18,9 @@
 #pragma once
 
 
-#include "Geminals/AP1roGGeminalCoefficients.hpp"
 #include "Mathematical/Representation/BlockMatrix.hpp"
-#include "OrbitalOptimization/QCMethodNewtonOrbitalOptimizer.hpp"
+#include "QCMethod/Geminals/AP1roGGeminalCoefficients.hpp"
+#include "QCMethod/OrbitalOptimization/QCMethodNewtonOrbitalOptimizer.hpp"
 
 
 namespace GQCP {

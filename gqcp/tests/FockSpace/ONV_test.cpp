@@ -19,8 +19,9 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "FockSpace/FockSpace.hpp"
 #include "FockSpace/ONV.hpp"
+
+#include "FockSpace/FockSpace.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( ONV_constructor ) {

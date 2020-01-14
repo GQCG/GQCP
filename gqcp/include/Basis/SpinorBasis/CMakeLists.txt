@@ -1,6 +1,8 @@
 target_sources(gqcp
     PRIVATE
         GSpinorBasis.hpp
+        JacobiRotationParameters.hpp
+        OrbitalRotationGenerators.hpp
         RSpinorBasis.hpp
         SimpleSpinorBasis.hpp
         SpinComponent.hpp
