@@ -4,4 +4,4 @@ target_sources(gqcp
             PlainRHFSCFSolver.hpp
             RHF.hpp
             RHFSCFSolver.hpp
-        )
+)

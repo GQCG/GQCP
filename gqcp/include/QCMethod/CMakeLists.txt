@@ -6,4 +6,6 @@ target_sources(gqcp
             FukuiDysonAnalysis.hpp
             Hubbard.hpp
             MullikenConstrainedFCI.hpp
-        )
+)
+
+add_subdirectory(RHF)
