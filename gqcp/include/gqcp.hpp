@@ -17,25 +17,6 @@
 // 
 #pragma once
 
-#include "Basis/ScalarBasis/CartesianExponents.hpp"
-#include "Basis/ScalarBasis/CartesianGTO.hpp"
-#include "Basis/ScalarBasis/GTOBasisSet.hpp"
-#include "Basis/ScalarBasis/GTOShell.hpp"
-#include "Basis/ScalarBasis/ShellSet.hpp"
-#include "Basis/ScalarBasis/ScalarBasis.hpp"
-#include "Basis/SpinorBasis/GSpinorBasis.hpp"
-#include "Basis/SpinorBasis/RSpinorBasis.hpp"
-#include "Basis/SpinorBasis/SimpleSpinorBasis.hpp"
-#include "Basis/SpinorBasis/USpinorBasis.hpp"
-#include "Basis/TransformationMatrix.hpp"
-#include "Basis/transform.hpp"
-
-#include "Basis/Integrals/BaseOneElectronIntegralBuffer.hpp"
-#include "Basis/Integrals/BaseOneElectronIntegralEngine.hpp"
-#include "Basis/Integrals/BaseTwoElectronIntegralBuffer.hpp"
-#include "Basis/Integrals/BaseTwoElectronIntegralEngine.hpp"
-#include "Basis/Integrals/IntegralCalculator.hpp"
-#include "Basis/Integrals/IntegralEngine.hpp"
 
 #include "Basis/Integrals/Interfaces/LibcintInterfacer.hpp"
 #include "Basis/Integrals/Interfaces/LibcintOneElectronIntegralBuffer.hpp"
@@ -48,7 +29,34 @@
 #include "Basis/Integrals/Interfaces/LibintTwoElectronIntegralBuffer.hpp"
 #include "Basis/Integrals/Interfaces/LibintTwoElectronIntegralEngine.hpp"
 
-#include "QCMethod/CI/CISolver.hpp"
+#include "Basis/Integrals/BaseOneElectronIntegralBuffer.hpp"
+#include "Basis/Integrals/BaseOneElectronIntegralEngine.hpp"
+#include "Basis/Integrals/BaseTwoElectronIntegralBuffer.hpp"
+#include "Basis/Integrals/BaseTwoElectronIntegralEngine.hpp"
+#include "Basis/Integrals/IntegralCalculator.hpp"
+#include "Basis/Integrals/IntegralEngine.hpp"
+
+#include "Basis/ScalarBasis/CartesianExponents.hpp"
+#include "Basis/ScalarBasis/CartesianGTO.hpp"
+#include "Basis/ScalarBasis/GTOBasisSet.hpp"
+#include "Basis/ScalarBasis/GTOShell.hpp"
+#include "Basis/ScalarBasis/ShellSet.hpp"
+#include "Basis/ScalarBasis/ScalarBasis.hpp"
+
+#include "Basis/SpinorBasis/GSpinorBasis.hpp"
+#include "Basis/SpinorBasis/JacobiRotationParameters.hpp"
+#include "Basis/SpinorBasis/OrbitalRotationGenerators.hpp"
+#include "Basis/SpinorBasis/RSpinorBasis.hpp"
+#include "Basis/SpinorBasis/SimpleSpinorBasis.hpp"
+#include "Basis/SpinorBasis/SpinComponent.hpp"
+#include "Basis/SpinorBasis/USpinorBasis.hpp"
+
+#include "Basis/transform.hpp"
+#include "Basis/TransformationMatrix.hpp"
+
+#include "FockSpace/WaveFunction/SpinUnresolvedWaveFunction.hpp"
+#include "FockSpace/WaveFunction/WaveFunction.hpp"
+#include "FockSpace/WaveFunction/WaveFunctionReader.hpp"
 
 #include "FockSpace/BaseFockSpace.hpp"
 #include "FockSpace/BaseFrozenCoreFockSpace.hpp"
@@ -62,25 +70,6 @@
 #include "FockSpace/ONV.hpp"
 #include "FockSpace/ProductFockSpace.hpp"
 #include "FockSpace/SelectedFockSpace.hpp"
-
-#include "QCMethod/Geminals/AP1roG.hpp"
-#include "QCMethod/Geminals/AP1roGGeminalCoefficients.hpp"
-#include "QCMethod/Geminals/AP1roGLagrangianOptimizer.hpp"
-#include "QCMethod/Geminals/AP1roGPSEs.hpp"
-#include "QCMethod/Geminals/AP1roGPSESolver.hpp"
-#include "QCMethod/Geminals/APIGGeminalCoefficients.hpp"
-#include "QCMethod/Geminals/GeminalCoefficientsInterface.hpp"
-
-#include "QCMethod/CI/HamiltonianBuilder/DOCI.hpp"
-#include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
-#include "QCMethod/CI/HamiltonianBuilder/FrozenCoreCI.hpp"
-#include "QCMethod/CI/HamiltonianBuilder/FrozenCoreDOCI.hpp"
-#include "QCMethod/CI/HamiltonianBuilder/FrozenCoreFCI.hpp"
-#include "QCMethod/CI/HamiltonianBuilder/HamiltonianBuilder.hpp"
-#include "QCMethod/CI/HamiltonianBuilder/Hubbard.hpp"
-#include "QCMethod/CI/HamiltonianBuilder/SelectedCI.hpp"
-
-#include "QCMethod/Applications/AtomicDecompositionParameters.hpp"
 
 #include "Mathematical/Optimization/BaseEigenproblemSolver.hpp"
 #include "Mathematical/Optimization/BaseHessianModifier.hpp"
@@ -110,6 +99,7 @@
 #include "Mathematical/LinearCombination.hpp"
 #include "Mathematical/ScalarFunction.hpp"
 
+#include "Molecule/elements.hpp"
 #include "Molecule/Molecule.hpp"
 #include "Molecule/NuclearFramework.hpp"
 #include "Molecule/Nucleus.hpp"
@@ -131,29 +121,10 @@
 #include "Operator/SecondQuantized/SQTwoElectronOperator.hpp"
 #include "Operator/SecondQuantized/USQHamiltonian.hpp"
 
-#include "QCMethod/OrbitalOptimization/Localization/ERJacobiLocalizer.hpp"
-#include "QCMethod/OrbitalOptimization/Localization/ERNewtonLocalizer.hpp"
-
-#include "QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.hpp"
-#include "QCMethod/Geminals/AP1roGLagrangianNewtonOrbitalOptimizer.hpp"
-#include "QCMethod/OrbitalOptimization/BaseOrbitalOptimizer.hpp"
-#include "QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp"
-#include "QCMethod/OrbitalOptimization/JacobiOrbitalOptimizer.hpp"
-#include "Basis/SpinorBasis/JacobiRotationParameters.hpp"
-#include "QCMethod/OrbitalOptimization/NewtonOrbitalOptimizer.hpp"
-#include "Basis/SpinorBasis/OrbitalRotationGenerators.hpp"
-#include "QCMethod/OrbitalOptimization/QCMethodNewtonOrbitalOptimizer.hpp"
-
 #include "Processing/Properties/BaseElectricalResponseSolver.hpp"
 #include "Processing/Properties/expectation_values.hpp"
 #include "Processing/Properties/properties.hpp"
 #include "Processing/Properties/RHFElectricalResponseSolver.hpp"
-
-#include "QCMethod/DOCINewtonOrbitalOptimizer.hpp"
-#include "QCMethod/Applications/FCI.hpp"
-#include "QCMethod/Applications/FukuiDysonAnalysis.hpp"
-#include "QCMethod/Applications/Hubbard.hpp"
-#include "QCMethod/Applications/MullikenConstrainedFCI.hpp"
 
 #include "Processing/RDM/BaseRDMBuilder.hpp"
 #include "Processing/RDM/BaseSpinUnresolvedRDMBuilder.hpp"
@@ -170,24 +141,57 @@
 #include "Processing/RDM/SpinUnresolvedRDMCalculator.hpp"
 #include "Processing/RDM/TwoRDM.hpp"
 
+#include "QCMethod/Applications/AtomicDecompositionParameters.hpp"
+#include "QCMethod/Applications/DOCINewtonOrbitalOptimizer.hpp"
+#include "QCMethod/Applications/DOCIRHF.hpp"
+#include "QCMethod/Applications/FCI.hpp"
+#include "QCMethod/Applications/FukuiDysonAnalysis.hpp"
+#include "QCMethod/Applications/Hubbard.hpp"
+#include "QCMethod/Applications/MullikenConstrainedFCI.hpp"
+
+#include "QCMethod/CI/HamiltonianBuilder/DOCI.hpp"
+#include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
+#include "QCMethod/CI/HamiltonianBuilder/FrozenCoreCI.hpp"
+#include "QCMethod/CI/HamiltonianBuilder/FrozenCoreDOCI.hpp"
+#include "QCMethod/CI/HamiltonianBuilder/FrozenCoreFCI.hpp"
+#include "QCMethod/CI/HamiltonianBuilder/HamiltonianBuilder.hpp"
+#include "QCMethod/CI/HamiltonianBuilder/HoppingMatrix.hpp"
+#include "QCMethod/CI/HamiltonianBuilder/Hubbard.hpp"
+#include "QCMethod/CI/HamiltonianBuilder/SelectedCI.hpp"
+
+#include "QCMethod/CI/CISolver.hpp"
+#include "QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp"
+
+#include "QCMethod/Geminals/AP1roG.hpp"
+#include "QCMethod/Geminals/AP1roGGeminalCoefficients.hpp"
+#include "QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.hpp"
+#include "QCMethod/Geminals/AP1roGLagrangianNewtonOrbitalOptimizer.hpp"
+#include "QCMethod/Geminals/AP1roGLagrangianOptimizer.hpp"
+#include "QCMethod/Geminals/AP1roGPSEs.hpp"
+#include "QCMethod/Geminals/AP1roGPSESolver.hpp"
+#include "QCMethod/Geminals/APIGGeminalCoefficients.hpp"
+#include "QCMethod/Geminals/GeminalCoefficientsInterface.hpp"
+
+#include "QCMethod/OrbitalOptimization/Localization/ERJacobiLocalizer.hpp"
+#include "QCMethod/OrbitalOptimization/Localization/ERNewtonLocalizer.hpp"
+
+#include "QCMethod/OrbitalOptimization/BaseOrbitalOptimizer.hpp"
+#include "QCMethod/OrbitalOptimization/JacobiOrbitalOptimizer.hpp"
+#include "QCMethod/OrbitalOptimization/NewtonOrbitalOptimizer.hpp"
+#include "QCMethod/OrbitalOptimization/QCMethodNewtonOrbitalOptimizer.hpp"
+
 #include "QCMethod/RHF/DIISRHFSCFSolver.hpp"
 #include "QCMethod/RHF/PlainRHFSCFSolver.hpp"
 #include "QCMethod/RHF/RHF.hpp"
 #include "QCMethod/RHF/RHFSCFSolver.hpp"
 
+#include "QCMethod/RMP2/RMP2.hpp"
+
+#include "QCMethod/QCMethodProtocol.hpp"
+
 #include "Utilities/CRTP.hpp"
 #include "Utilities/linalg.hpp"
 #include "Utilities/miscellaneous.hpp"
-
-#include "FockSpace/WaveFunction/SpinUnresolvedWaveFunction.hpp"
-#include "FockSpace/WaveFunction/WaveFunction.hpp"
-#include "FockSpace/WaveFunction/WaveFunctionReader.hpp"
-
-
-// Single files, not in a special include directory
-#include "Molecule/elements.hpp"
-#include "QCMethod/CI/HamiltonianBuilder/HoppingMatrix.hpp"
-#include "RMP2.hpp"
 #include "Utilities/typedefs.hpp"
 #include "Utilities/units.hpp"
 
