@@ -1,28 +1,16 @@
 set(test_target_sources)
 
-list(APPEND test_target_sources
-        elements_test.cpp
-        HoppingMatrix_test.cpp
-        RMP2_test.cpp
-        units_test.cpp
-        )
-
 add_subdirectory(Basis)
-add_subdirectory(CISolver)
 add_subdirectory(FockSpace)
-add_subdirectory(Geminals)
-add_subdirectory(HamiltonianBuilder)
 add_subdirectory(Mathematical)
 add_subdirectory(Molecule)
 add_subdirectory(Operator)
-add_subdirectory(OrbitalOptimization)
-add_subdirectory(Properties)
-add_subdirectory(RDM)
-add_subdirectory(RHF)
+add_subdirectory(Processing)
 add_subdirectory(Utilities)
-add_subdirectory(WaveFunction)
+
 
 file(COPY data DESTINATION ${CMAKE_BINARY_DIR})  # copy the necessary data files to the out-of-source build directory
+
 
 foreach(TEST_SOURCE ${test_target_sources})
     # Extract the filename without extension (NAME_WE) as a name for our executable
@@ -35,8 +23,9 @@ foreach(TEST_SOURCE ${test_target_sources})
     target_include_directories(${TEST_NAME} PUBLIC ${CMAKE_SOURCE_DIR}/include)
     target_link_libraries(${TEST_NAME} PUBLIC gqcp Boost::unit_test_framework)
     target_compile_definitions(${TEST_NAME} PRIVATE BOOST_TEST_DYN_LINK)
-        
-    add_test(NAME ${TEST_NAME} COMMAND ${TEST_NAME}
-            WORKING_DIRECTORY ${CMAKE_BINARY_DIR})  # the working directory is the out-of-source build directory
 
+    add_test(
+        NAME ${TEST_NAME} COMMAND ${TEST_NAME}
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}  # the working directory should be the out-of-source build directory
+    )
 endforeach()

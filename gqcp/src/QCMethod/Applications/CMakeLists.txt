@@ -1,0 +1,10 @@
+target_sources(gqcp
+    PRIVATE
+        AtomicDecompositionParameters.cpp
+        DOCINewtonOrbitalOptimizer.cpp
+        DOCIRHF.cpp
+        FCI.cpp
+        FukuiDysonAnalysis.cpp
+        Hubbard.cpp
+        MullikenConstrainedFCI.cpp
+)

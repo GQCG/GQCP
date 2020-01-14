@@ -1,6 +1,7 @@
 target_sources(gqcp
-        PRIVATE
-            Molecule.hpp
-            Nucleus.hpp
-            NuclearFramework.hpp
-        )
+    PRIVATE
+        elements.hpp
+        Molecule.hpp
+        NuclearFramework.hpp
+        Nucleus.hpp
+)

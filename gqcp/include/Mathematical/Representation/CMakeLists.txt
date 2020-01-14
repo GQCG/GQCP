@@ -1,11 +1,11 @@
 target_sources(gqcp
-        PRIVATE
-            BlockMatrix.hpp
-            BlockRankFourTensor.hpp
-            Matrix.hpp
-            QCMatrix.hpp
-            QCRankFourTensor.hpp
-            SquareMatrix.hpp
-            SquareRankFourTensor.hpp
-            Tensor.hpp
-        )
+    PRIVATE
+        BlockMatrix.hpp
+        BlockRankFourTensor.hpp
+        Matrix.hpp
+        QCMatrix.hpp
+        QCRankFourTensor.hpp
+        SquareMatrix.hpp
+        SquareRankFourTensor.hpp
+        Tensor.hpp
+)

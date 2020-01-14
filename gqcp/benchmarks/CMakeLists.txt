@@ -1,9 +1,11 @@
 set(benchmark_target_sources)
 
-add_subdirectory(DOCI)
-add_subdirectory(FCI)
 add_subdirectory(FockSpace)
-add_subdirectory(Hubbard)
+add_subdirectory(QCMethod)
+
+
+file(COPY data DESTINATION ${CMAKE_BINARY_DIR})  # copy the necessary data files to the out-of-source build directory
+
 
 foreach(BENCHMARK_SOURCE ${benchmark_target_sources})
     # Extract the filename without extension (NAME_WE) as a name for our executable
@@ -15,7 +17,6 @@ foreach(BENCHMARK_SOURCE ${benchmark_target_sources})
     # Configure (include headers and link libraries) the benchmark ...
     target_link_libraries(${BENCHMARK_NAME} PUBLIC gqcp)
     target_link_libraries(${BENCHMARK_NAME} PUBLIC benchmark::benchmark)  # link google benchmarks
-
 endforeach()
 
 # For program arguments, see https://github.com/google/benchmark

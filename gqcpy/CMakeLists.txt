@@ -1,18 +1,28 @@
+# Entry point for the CMake configuration of the gqcpy Python bindings
+
 # Add the sources for the Python bindings
 list(APPEND python_bindings_sources
-        ${CMAKE_CURRENT_SOURCE_DIR}/bindings.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/version.cpp
-    )
+    ${CMAKE_CURRENT_SOURCE_DIR}/gqcpy.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/version.cpp
+)
 
-add_subdirectory(Basis)
-add_subdirectory(Molecule)
-add_subdirectory(Operator)
-add_subdirectory(QCMethod)
-
-set(python_bindings_sources ${python_bindings_sources} PARENT_SCOPE)
+add_subdirectory(src)
 
 
-# Configure the tests
+# Configure the Python bindings
+pybind11_add_module(gqcpy MODULE ${python_bindings_sources})
+
+target_link_libraries(gqcpy PUBLIC gqcp)
+set_target_properties(gqcpy
+    PROPERTIES
+        SUFFIX ".so"
+        LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/gqcpy"
+)
+configure_file(__init__.py.in ${CMAKE_BINARY_DIR}/gqcpy/__init__.py)
+configure_file(setup.py.in ${CMAKE_BINARY_DIR}/gqcpy/setup.py)
+
+
+# Configure the Python tests
 set(python_test_target_sources)
 add_subdirectory(tests)
 
