@@ -1,6 +1,6 @@
 # The entry-point for the CMake configuration of the GQCP project
 # The targets in the GQCP project are:
-#   - the GQCP C++ library
+#   - the gqcp C++ library
 #   - the executables for the unit tests of the C++ library (optional)
 #   - the executables for the benchmarking of the C++ library (optional)
 #   - the Doxygen-generated documentation of the C++ library (optional)
@@ -25,7 +25,6 @@ find_package(Int2 REQUIRED)
 find_package(Spectra REQUIRED)
 find_package(cint REQUIRED)
 find_package(MKL REQUIRED)
-find_package(Python3 COMPONENTS Interpreter)
 
 if (BUILD_TESTS)
     find_package(Boost REQUIRED COMPONENTS program_options unit_test_framework)
@@ -41,10 +40,16 @@ if (BUILD_DOCS)
     find_package(Doxygen REQUIRED dot)
 endif()
 
+# Look for the dependencies: find Python
+# Pybind11 conflicts with the CMake Python detection (https://pybind11.readthedocs.io/en/stable/faq.html#inconsistent-detection-of-python-version-in-cmake-and-pybind11)
+# If the Python bindings are built, use Pybind11 to detect Python, else let standard CMake do it
 if (BUILD_PYTHON_BINDINGS)
-    find_package(PythonInterp 3 REQUIRED)
+    # Passing PYTHON_EXECUTABLE as a variable into CMake helps PythonInterp (which is called through PyBind11) find the correct Python executable and libraries
     find_package(pybind11 REQUIRED)
-    set(python_bindings_sources)
+    set(GQCPYTHON_INTERPRETER ${PYTHON_EXECUTABLE})  # PyBind11 uses find_package(PythonInterp), which sets this variable
+else()
+    find_package(Python3 COMPONENTS Interpreter)
+    set(GQCPYTHON_INTERPRETER ${Python3_EXECUTABLE})
 endif()
 
 
@@ -112,7 +117,7 @@ install(FILES ${CMAKE_BINARY_DIR}/include/version.hpp DESTINATION include/gqcp)
 install(
     EXPORT gqcp-targets
     FILE gqcp-targets.cmake
-    NAMESPACE gqcp::
+    NAMESPACE GQCP::
     DESTINATION cmake
 )
 
