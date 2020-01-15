@@ -4,7 +4,7 @@ add_subdirectory(FockSpace)
 add_subdirectory(QCMethod)
 
 
-file(COPY data DESTINATION ${CMAKE_BINARY_DIR})  # copy the necessary data files to the out-of-source build directory
+file(COPY data DESTINATION ${CMAKE_BINARY_DIR}/gqcp/benchmarks)  # make sure that the paths in the source files point to the correct data files
 
 
 foreach(BENCHMARK_SOURCE ${benchmark_target_sources})
@@ -14,7 +14,7 @@ foreach(BENCHMARK_SOURCE ${benchmark_target_sources})
     # Add an executable based on the source
     add_executable(${BENCHMARK_NAME} ${BENCHMARK_SOURCE})
 
-    # Configure (include headers and link libraries) the benchmark ...
+    # Configure (include headers and link libraries) the benchmark
     target_link_libraries(${BENCHMARK_NAME} PUBLIC gqcp)
     target_link_libraries(${BENCHMARK_NAME} PUBLIC benchmark::benchmark)  # link google benchmarks
 endforeach()

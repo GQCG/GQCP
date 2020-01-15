@@ -28,7 +28,7 @@ configure_file(setup.py.in ${CMAKE_BINARY_DIR}/gqcpy/setup.py)
 set(python_test_target_sources)
 add_subdirectory(tests)
 
-file(COPY tests/data DESTINATION ${CMAKE_BINARY_DIR}/gqcpy/tests)  # copy the necessary data files to the out-of-source build directory
+file(COPY tests/data DESTINATION ${CMAKE_BINARY_DIR}/gqcpy/tests)  # make sure that the paths in the source files point to the correct data files
 
 foreach(TEST_SOURCE ${python_test_target_sources})
     # Extract the filename

@@ -9,7 +9,7 @@ add_subdirectory(Processing)
 add_subdirectory(Utilities)
 
 
-file(COPY data DESTINATION ${CMAKE_BINARY_DIR})  # copy the necessary data files to the out-of-source build directory
+file(COPY data DESTINATION ${CMAKE_BINARY_DIR}/gqcp/tests)  # make sure that the paths in the source files point to the correct data files
 
 
 foreach(TEST_SOURCE ${test_target_sources})
@@ -26,6 +26,6 @@ foreach(TEST_SOURCE ${test_target_sources})
 
     add_test(
         NAME ${TEST_NAME} COMMAND ${TEST_NAME}
-        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}  # the working directory should be the out-of-source build directory
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/gqcp/tests
     )
 endforeach()
