@@ -59,7 +59,7 @@ jobs:
     # Run the benchmarks
     - name: Run benchmarks
       run: |
-        cd build && cd benchmarks
+        cd build/gqcp/benchmarks
         ./doci_case --benchmark_counters_tabular=true
         ./doci_matrix --benchmark_counters_tabular=true
         ./doci_matvec --benchmark_counters_tabular=true
