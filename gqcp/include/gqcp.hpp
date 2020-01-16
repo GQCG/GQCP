@@ -189,6 +189,7 @@
 
 #include "QCMethod/QCMethod.hpp"
 #include "QCMethod/QCObjective.hpp"
+#include "QCMethod/QCStructure.hpp"
 
 #include "QCModel/RHF/RHF.hpp"
 

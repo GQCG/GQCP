@@ -43,10 +43,39 @@ public:
 
 private:
     size_t N_P;  // the number of electron pairs
+
+    VectorX<double> orbital_energies;  // sorted in ascending energies
     TransformationMatrix<ExpansionScalar> C;  // the coefficient matrix that expresses every spatial orbital (as a column) in its underlying scalar basis
 
 
 public:
+
+    /*
+     *  CONSTRUCTORS
+     */
+
+    /**
+     *  The standard member-wise constructor
+     * 
+     *  @param N_P                  the number of electron pairs
+     *  @param C                    the coefficient matrix that expresses every spatial orbital (as a column) in its underlying scalar basis
+     *  @param orbital_energies     the RHF MO energies
+     */
+    RHF(const size_t N_P, const VectorX<double>& orbital_energies, const TransformationMatrix<double>& C) :
+        N_P (N_P),
+        orbital_energies (orbital_energies),
+        C (C)
+    {}
+
+
+    /**
+     *  Default constructor setting everything to zero
+     */
+    RHF() :
+        RHF(0.0, TransformationMatrix<double>::Zero(0, 0), VectorX<double>::Zero(0))
+    {}
+
+
 
     /*
      *  STATIC PUBLIC METHODS

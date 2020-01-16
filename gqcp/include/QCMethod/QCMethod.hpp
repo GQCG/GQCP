@@ -18,7 +18,8 @@
 #pragma once
 
 
-#include <QCMethod/QCObjective.hpp>
+#include "QCMethod/QCObjective.hpp"
+#include "QCMethod/QCStructure.hpp"
 
 
 namespace GQCP {
@@ -27,11 +28,18 @@ namespace GQCP {
 /**
  *  A protocol/virtual base class for quantum chemical methods
  * 
- *  @tparam QCModel             the type of the quantum chemical model this quantum chemical method is trying to solve
+ *  @tparam _QCModel                the type of the quantum chemical model this quantum chemical method is trying to solve
+ *  @tparam _DerivedQCMethod        the type of the class that derives from this base class
  */
-template <typename QCModel>
-class QCMethod {
+template <typename _QCModel, typename _DerivedQCMethod>
+class QCMethod: public CRTP<_DerivedQCMethod> {
 public:
+    using QCModel = _QCModel;
+    using DerivedQCMethod = _DerivedQCMethod;
+
+
+public:
+
     // PUBLIC METHODS
 
     /**
@@ -40,9 +48,7 @@ public:
      *  @tparam QCObjective         the objective that should be fulfilled in order to consider the model's parameters as 'optimal'
      */
     template <QCObjective objective>
-    void optimize() {
-        this->solver.solve();
-    }
+    QCStructure<QCModel> optimize() { return this->derived().optimize(); }
 
     /**
      * 
