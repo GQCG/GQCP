@@ -174,7 +174,7 @@ BOOST_AUTO_TEST_CASE ( H2O_energy_RDM_contraction_FCI ) {
 
 BOOST_AUTO_TEST_CASE ( H2O_energy_RDM_contraction_FCI_wavefunction ) {
 
-    // repeat contraction with wavefunction input (and RDMCalculator API
+    // repeat contraction with wavefunction input (and RDMCalculator API)
 
     size_t N_a = 5;
     size_t N_b = 5;
@@ -222,4 +222,50 @@ BOOST_AUTO_TEST_CASE ( throw_calculate_element ) {
     // not implemented yet and should throw
     GQCP::FCIRDMBuilder fci_rdm (fock_space);
     BOOST_CHECK_THROW(fci_rdm.calculateElement({0,0,1}, {1,0,2}, coeff), std::runtime_error);
+}
+
+
+/*
+ *  Compare RDMs from product Fock space and selected Fock space (expandend in the full product Fock space)
+ */ 
+BOOST_AUTO_TEST_CASE ( H2O_FCI_wavefunction_vs_Selected_CI ) {
+
+    size_t N_a = 4;
+    size_t N_b = 6;
+
+    // Create the molecular Hamiltonian in the AO basis
+    auto h2o = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (h2o, "STO-3G");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2o);  // in an AO basis
+    size_t K = sq_hamiltonian.dimension();  // SO 7
+
+    GQCP::ProductFockSpace fock_space (K, N_a, N_b);  // dim = 441
+    GQCP::SelectedFockSpace selected_fock_space (fock_space);  // dim = 441
+    GQCP::FCI fci (fock_space);
+
+    // Specify solver options and solve the eigenvalue problem
+    // Solve the dense FCI eigenvalue problem
+    GQCP::CISolver ci_solver (fci, sq_hamiltonian);
+    GQCP::DenseSolverOptions solver_options;
+    ci_solver.solve(solver_options);
+
+    GQCP::WaveFunction wavefunction = ci_solver.makeWavefunction();
+    double energy_by_eigenvalue = ci_solver.get_eigenpair().get_eigenvalue();
+
+    GQCP::RDMCalculator fci_rdm (wavefunction);
+    GQCP::RDMCalculator selected_rdm (selected_fock_space);
+    selected_rdm.set_coefficients(wavefunction.get_coefficients());
+    
+    GQCP::TwoRDMs<double> two_rdms = fci_rdm.calculate2RDMs();
+    GQCP::OneRDMs<double> one_rdms = fci_rdm.calculate1RDMs();
+    GQCP::TwoRDMs<double> two_rdms_selected = selected_rdm.calculate2RDMs();
+    GQCP::OneRDMs<double> one_rdms_selected = selected_rdm.calculate1RDMs();
+
+    BOOST_CHECK(two_rdms.two_rdm_aaaa.isApprox(two_rdms_selected.two_rdm_aaaa));
+    BOOST_CHECK(two_rdms.two_rdm_aabb.isApprox(two_rdms_selected.two_rdm_aabb));
+    BOOST_CHECK(two_rdms.two_rdm_bbaa.isApprox(two_rdms_selected.two_rdm_bbaa));
+    BOOST_CHECK(two_rdms.two_rdm_bbbb.isApprox(two_rdms_selected.two_rdm_bbbb));
+
+    BOOST_CHECK(one_rdms.one_rdm_aa.isApprox(one_rdms_selected.one_rdm_aa));
+    BOOST_CHECK(one_rdms.one_rdm_bb.isApprox(one_rdms_selected.one_rdm_bb));
 }

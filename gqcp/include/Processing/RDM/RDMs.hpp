@@ -65,6 +65,10 @@ struct OneRDMs {
         one_rdm_aa (one_rdm_aa),
         one_rdm_bb (one_rdm_bb)
     {}
+
+    OneRDM<Scalar> spinDensityRDM() const {
+        return one_rdm_aa - one_rdm_bb;
+    }
 };
 
 

@@ -19,8 +19,7 @@
 
 
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "Processing/RDM/OneRDM.hpp"
-#include "Processing/RDM/TwoRDM.hpp"
+#include "Processing/RDM/RDMs.hpp"
 
 
 namespace GQCP {
@@ -88,6 +87,46 @@ std::array<double, Components> calculateExpectationValue(const SQTwoElectronOper
     return expectation_values;
 }
 
+
+/**
+ *  Calculate the expectation value for spin squared
+ * 
+ *  @tparam Scalar      the scalar type
+ * 
+ *  @param one_rdms        all the one electron density matrices
+ *  @param two_rdms        all the two electron density matrices
+ *
+ *  @return expectation value of spin squared
+ */
+template <typename Scalar>
+double calculateSpinSquared(const OneRDMs<Scalar>& one_rdms, const TwoRDMs<Scalar>& two_rdms) {
+    double sz = calculateSpinZ(one_rdms);
+    double s_squared = -sz;
+    size_t K = one_rdms.one_rdm.dimension();
+    for (size_t p = 0; p < K; p++) {
+        s_squared += one_rdms.one_rdm_aa(p, p) + (one_rdms.one_rdm_aa(p, p) +  one_rdms.one_rdm_bb(p, p))/4;
+        for (size_t q = 0; q < K; q++) {
+            s_squared += -two_rdms.two_rdm_aabb(p,q,q,p);
+            s_squared += (two_rdms.two_rdm_aaaa(p,p,q,q) + two_rdms.two_rdm_bbbb(p,p,q,q) - two_rdms.two_rdm_aabb(p,p,q,q) - two_rdms.two_rdm_bbaa(p,p,q,q))/4;
+        }
+    }
+    return s_squared;
+}
+
+
+/**
+ *  Calculate the expectation value for spin in the z direction
+ * 
+ *  @tparam Scalar      the scalar type
+ * 
+ *  @param one_rdms        all the one electron density matrices
+ *
+ *  @return expectation value of spin in the z direction
+ */
+template <typename Scalar>
+double calculateSpinZ(const OneRDMs<Scalar>& one_rdms) {
+    return one_rdms.spinDensityRDM().trace()/2;
+}
 
 
 /*

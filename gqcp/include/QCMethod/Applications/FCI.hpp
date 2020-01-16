@@ -77,6 +77,11 @@ public:
      *  @return the ground state FCI energy
      */
     double energy() const;
+
+    /**
+     *  @return the spin squared expectation value of the ground state
+     */
+    double spinSquared() const;
 };
 
 
