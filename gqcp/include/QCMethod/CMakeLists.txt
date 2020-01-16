@@ -1,6 +1,7 @@
 target_sources(gqcp
     PRIVATE
-        QCMethodProtocol.hpp
+        QCMethod.hpp
+        QCObjective.hpp
 )
 
 add_subdirectory(Applications)

@@ -18,17 +18,36 @@
 #pragma once
 
 
+#include <QCMethod/QCObjective.hpp>
+
+
 namespace GQCP {
 
 
 /**
- *  A protocol (virtual base class) for quantum chemical methods
+ *  A protocol/virtual base class for quantum chemical methods
  * 
- *  @tparam InitialGuess            the type of the initial guess that is supplied to the solution algorithm
- *  @tparam Solution                the type of the solution that is returned by the solution algorithm
+ *  @tparam QCModel             the type of the quantum chemical model this quantum chemical method is trying to solve
  */
-template <typename InitialGuess, typename Solution>
-class QCMethodProtocol {
+template <typename QCModel>
+class QCMethod {
+public:
+    // PUBLIC METHODS
+
+    /**
+     *  Optimize the electronic structure model: find the parameters that are the solutions to the quantum chemical method's objective
+     * 
+     *  @tparam QCObjective         the objective that should be fulfilled in order to consider the model's parameters as 'optimal'
+     */
+    template <QCObjective objective>
+    void optimize() {
+        this->solver.solve();
+    }
+
+    /**
+     * 
+     */
+    Solution solution()
 
     /**
      *  Determine the optimal wave function parameters for the quantum chemical method

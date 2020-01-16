@@ -187,7 +187,8 @@
 
 #include "QCMethod/RMP2/RMP2.hpp"
 
-#include "QCMethod/QCMethodProtocol.hpp"
+#include "QCMethod/QCMethod.hpp"
+#include "QCMethod/QCObjective.hpp"
 
 #include "Utilities/CRTP.hpp"
 #include "Utilities/linalg.hpp"
