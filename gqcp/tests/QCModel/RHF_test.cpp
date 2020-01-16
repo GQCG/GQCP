@@ -19,7 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "QCModel/RHF.hpp"
+#include "QCModel/RHF/RHF.hpp"
 
 
 /**
@@ -51,4 +51,21 @@ BOOST_AUTO_TEST_CASE ( RHF_1RDM_matrix ) {
              0, 0, 0, 0, 0;
 
     BOOST_CHECK(GQCP::QCModel::RHF<double>::calculateOrthonormalBasis1RDM(K, N).isApprox(D_ref));
+}
+
+
+/**
+ *  Check if the RHF HOMO and LUMO indices are correctly implemented
+ */
+BOOST_AUTO_TEST_CASE ( HOMO_LUMO_index ) {
+
+    // For K=7 and N=10, the index of the HOMO should be 4
+    const size_t K = 7;  // number of spatial orbitals
+    const size_t N = 10;  // number of electrons
+
+    BOOST_CHECK_EQUAL(GQCP::QCModel::RHF<double>::HOMOIndex(N), 4);
+    BOOST_CHECK_EQUAL(GQCP::QCModel::RHF<double>::LUMOIndex(K, N), 5);
+
+    BOOST_CHECK_THROW(GQCP::QCModel::RHF<double>::HOMOIndex(N+1), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::QCModel::RHF<double>::LUMOIndex(K, N+1), std::invalid_argument);
 }

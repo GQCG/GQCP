@@ -17,6 +17,8 @@
 // 
 #include "QCMethod/RHF/PlainRHFSCFSolver.hpp"
 
+#include "QCModel/RHF/RHF.hpp"
+
 
 namespace GQCP {
 
@@ -31,7 +33,7 @@ namespace GQCP {
  *  @return the new Fock matrix (expressed in AO basis)
  */
 ScalarSQOneElectronOperator<double> PlainRHFSCFSolver::calculateNewFockMatrix(const OneRDM<double>& D_AO) {
-    return calculateRHFAOFockMatrix(D_AO, this->sq_hamiltonian);
+    return QCModel::RHF<double>::calculateScalarBasisFockMatrix(D_AO, this->sq_hamiltonian);
 }
 
 

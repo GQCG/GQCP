@@ -17,6 +17,8 @@
 // 
 #include "QCMethod/RMP2/RMP2.hpp"
 
+#include "QCModel/RHF/RHF.hpp"
+
 
 namespace GQCP {
 
@@ -33,8 +35,8 @@ double calculateRMP2EnergyCorrection(const SQHamiltonian<double>& sq_hamiltonian
     const size_t N = molecule.numberOfElectrons();
     const size_t K = sq_hamiltonian.dimension();
 
-    const size_t HOMO_index = RHFHOMOIndex(N);
-    const size_t LUMO_index = RHFLUMOIndex(K, N);
+    const size_t HOMO_index = QCModel::RHF<double>::HOMOIndex(N);
+    const size_t LUMO_index = QCModel::RHF<double>::LUMOIndex(K, N);
 
     const auto& g = sq_hamiltonian.twoElectron().parameters();
 

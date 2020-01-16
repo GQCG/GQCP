@@ -190,6 +190,8 @@
 #include "QCMethod/QCMethod.hpp"
 #include "QCMethod/QCObjective.hpp"
 
+#include "QCModel/RHF/RHF.hpp"
+
 #include "Utilities/CRTP.hpp"
 #include "Utilities/linalg.hpp"
 #include "Utilities/miscellaneous.hpp"

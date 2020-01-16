@@ -32,7 +32,7 @@
 #include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
 #include "QCMethod/RHF/DIISRHFSCFSolver.hpp"
 #include "QCMethod/RHF/PlainRHFSCFSolver.hpp"
-#include "QCModel/RHF.hpp"
+#include "QCModel/RHF/RHF.hpp"
 #include "Utilities/units.hpp"
 
 

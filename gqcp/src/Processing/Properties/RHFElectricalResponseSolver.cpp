@@ -19,6 +19,7 @@
 
 #include "Mathematical/Representation/BlockMatrix.hpp"
 #include "QCMethod/RHF/RHF.hpp"
+#include "QCModel/RHF/RHF.hpp"
 
 
 namespace GQCP {
@@ -49,7 +50,7 @@ RHFElectricalResponseSolver::RHFElectricalResponseSolver(const size_t N_P) :
 SquareMatrix<double> RHFElectricalResponseSolver::calculateParameterResponseConstant(const SQHamiltonian<double>& sq_hamiltonian) const {
 
     // k_p for RHF is the RHF orbital Hessian
-    const auto RHF_orbital_hessian_tensor = calculateRHFOrbitalHessianTensor(sq_hamiltonian, this->N_P);
+    const auto RHF_orbital_hessian_tensor = QCModel::RHF<double>::calculateOrbitalHessianTensor(sq_hamiltonian, this->N_P);
 
     return SquareMatrix<double>(RHF_orbital_hessian_tensor.asMatrix());  // give the column-major representation of the tensor as a matrix
 }

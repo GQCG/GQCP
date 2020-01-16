@@ -23,7 +23,7 @@
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Processing/Properties/expectation_values.hpp"
 #include "QCMethod/RHF/DIISRHFSCFSolver.hpp"
-#include "QCModel/RHF.hpp"
+#include "QCModel/RHF/RHF.hpp"
 
 #include <random>
 

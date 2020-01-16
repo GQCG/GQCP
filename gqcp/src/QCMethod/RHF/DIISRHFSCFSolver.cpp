@@ -17,6 +17,8 @@
 // 
 #include "QCMethod/RHF/DIISRHFSCFSolver.hpp"
 
+#include "QCModel/RHF/RHF.hpp"
+
 
 namespace GQCP {
 
@@ -38,7 +40,7 @@ ScalarSQOneElectronOperator<double> DIISRHFSCFSolver::calculateNewFockMatrix(con
 
 
     // Calculate the Fock matrix based off the density matrix
-    auto f_AO = calculateRHFAOFockMatrix(D_AO, this->sq_hamiltonian);
+    auto f_AO = QCModel::RHF<double>::calculateScalarBasisFockMatrix(D_AO, this->sq_hamiltonian);
 
 
     // Update deques for the DIIS procedure

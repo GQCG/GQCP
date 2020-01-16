@@ -1,4 +1,1 @@
-target_sources(gqcp
-    PRIVATE
-        RHF.hpp
-)
+add_subdirectory(RHF)
