@@ -43,6 +43,7 @@ private:
     bool is_solved = false;
     bool use_davidson;
     double energy_solution;
+    double s_squared;
 
 
 public:

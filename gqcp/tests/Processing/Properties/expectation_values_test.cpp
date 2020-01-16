@@ -232,11 +232,11 @@ BOOST_AUTO_TEST_CASE ( spin_O2 ) {
     GQCP::OneRDMs<double> one_rdms = rdm_calculator.calculate1RDMs();
     GQCP::TwoRDMs<double> two_rdms = rdm_calculator.calculate2RDMs();
     
-    s_squared = GQCP::calculateSpinSquared<double>(one_rdms, two_rdms);
-    s_z = QCP::calculateSpinZ<double>(one_rdms);
+    double s_squared = GQCP::calculateSpinSquared<double>(one_rdms, two_rdms);
+    double s_z = GQCP::calculateSpinZ<double>(one_rdms);
 
     // Spin squared should be 2 (S=1)
     BOOST_CHECK(std::abs(s_squared - 2) < 1.0e-06);
     // We've applied have alpha = beta, hence spin in the z direction is 0
-    BOOST_CHECK(std::abs(s_z - 0)) < 1.0e-06);
+    BOOST_CHECK(std::abs(s_z - 0) < 1.0e-06);
 }
