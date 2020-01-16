@@ -30,6 +30,7 @@
 #include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
 #include "QCMethod/RHF/DIISRHFSCFSolver.hpp"
 #include "QCMethod/RHF/PlainRHFSCFSolver.hpp"
+#include "QCModel/RHF.hpp"
 #include "Utilities/units.hpp"
 
 
@@ -57,8 +58,8 @@ BOOST_AUTO_TEST_CASE ( dipole_CO_STO_3G ) {
 
 
     // Calculate the RHF 1-RDM in MO basis
-    auto D = GQCP::calculateRHF1RDM(K, N);
-    auto D_AO = GQCP::calculateRHFAO1RDM(rhf.get_C(), N);
+    auto D = GQCP::QCModel::RHF<double>::calculateOrthonormalBasis1RDM(K, N);
+    auto D_AO = GQCP::QCModel::RHF<double>::calculateScalarBasis1RDM(rhf.get_C(), N);
 
     // Calculate the dipole integrals, and transform them to the MO basis
     auto dipole_op = spinor_basis.quantize(GQCP::Operator::ElectronicDipole());
@@ -94,8 +95,8 @@ BOOST_AUTO_TEST_CASE ( dipole_N2_STO_3G ) {
 
 
     // Calculate the RHF 1-RDM in MO basis
-    auto D = GQCP::calculateRHF1RDM(K, N);
-    auto D_AO = GQCP::calculateRHFAO1RDM(rhf.get_C(), N);
+    auto D = GQCP::QCModel::RHF<double>::calculateOrthonormalBasis1RDM(K, N);
+    auto D_AO = GQCP::QCModel::RHF<double>::calculateScalarBasis1RDM(rhf.get_C(), N);
 
     // Calculate the dipole integrals, and transform them to the MO basis
     auto dipole_op = spinor_basis.quantize(GQCP::Operator::ElectronicDipole());
@@ -188,4 +189,3 @@ BOOST_AUTO_TEST_CASE ( dyson_coefficients ) {
     BOOST_CHECK(dyson_coefficients_beta.isApprox(reference_amplitudes_beta, 1.0e-6));
     BOOST_CHECK(dyson_coefficients_alpha.isApprox(reference_amplitudes_alpha, 1.0e-6));
 }
-    

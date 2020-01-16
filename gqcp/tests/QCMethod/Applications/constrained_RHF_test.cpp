@@ -23,6 +23,7 @@
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Processing/Properties/expectation_values.hpp"
 #include "QCMethod/RHF/DIISRHFSCFSolver.hpp"
+#include "QCModel/RHF.hpp"
 
 #include <random>
 
@@ -37,7 +38,7 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test ) {
     size_t K = sq_hamiltonian.dimension();
     size_t N = CO.numberOfElectrons();
 
-    GQCP::OneRDM<double> one_rdm = GQCP::calculateRHF1RDM(K, N);
+    GQCP::OneRDM<double> one_rdm = GQCP::QCModel::RHF<double>::calculateOrthonormalBasis1RDM(K, N);
 
     // Initialize the ref data form:
     // "Self-consistent methods constrained to a fixed number of particles in a given fragment
@@ -132,7 +133,7 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test_random_transformation) {
 
     basisTransform(spinor_basis, sq_hamiltonian, T);
 
-    GQCP::OneRDM<double> one_rdm = GQCP::calculateRHF1RDM(K, N);
+    GQCP::OneRDM<double> one_rdm = GQCP::QCModel::RHF<double>::calculateOrthonormalBasis1RDM(K, N);
 
     // Initialize the ref data form:
     // Self-consistent methods constrained to a fixed number of particles in a given fragment

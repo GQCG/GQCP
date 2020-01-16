@@ -32,6 +32,7 @@
 #include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
 #include "QCMethod/RHF/DIISRHFSCFSolver.hpp"
 #include "QCMethod/RHF/PlainRHFSCFSolver.hpp"
+#include "QCModel/RHF.hpp"
 #include "Utilities/units.hpp"
 
 
@@ -83,7 +84,7 @@ BOOST_AUTO_TEST_CASE ( mulliken_N2_STO_3G ) {
     size_t N = N2.numberOfElectrons();
 
     // Create a 1-RDM for N2
-    GQCP::OneRDM<double> one_rdm = GQCP::calculateRHF1RDM(K, N);
+    GQCP::OneRDM<double> one_rdm = GQCP::QCModel::RHF<double>::calculateOrthonormalBasis1RDM(K, N);
 
     double mulliken_population = GQCP::calculateExpectationValue(mulliken, one_rdm)[0];
     BOOST_CHECK(std::abs(mulliken_population - (N)) < 1.0e-06);

@@ -17,6 +17,8 @@
 // 
 #include "QCMethod/RHF/RHFSCFSolver.hpp"
 
+#include "QCModel/RHF.hpp"
+
 
 namespace GQCP {
 
@@ -79,7 +81,7 @@ void RHFSCFSolver::solve(const TransformationMatrix<double>& C_initial) {
     const auto S = this->spinor_basis.overlap().parameters();
 
     auto C = C_initial;
-    auto D_AO = calculateRHFAO1RDM(C, this->molecule.numberOfElectrons());
+    auto D_AO = QCModel::RHF<double>::calculateScalarBasis1RDM(C, this->molecule.numberOfElectrons());
 
 
     size_t iteration_counter = 0;
@@ -91,7 +93,7 @@ void RHFSCFSolver::solve(const TransformationMatrix<double>& C_initial) {
         C = generalized_eigensolver.eigenvectors();
 
         OneRDM<double> D_AO_previous = D_AO;  // store the previous density matrix to be able to check on convergence
-        D_AO = calculateRHFAO1RDM(C, this->molecule.numberOfElectrons());
+        D_AO = QCModel::RHF<double>::calculateScalarBasis1RDM(C, this->molecule.numberOfElectrons());
 
 
         // Check for convergence on the AO density matrix

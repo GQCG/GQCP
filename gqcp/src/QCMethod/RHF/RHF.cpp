@@ -51,46 +51,6 @@ RHF::RHF(double electronic_energy, const TransformationMatrix<double>& C, const 
 /*
  *  HELPER METHODS
  */
-/**
- *  @param K    the number of spatial orbitals
- *  @param N    the number of electrons
- *
- *  @return the RHF 1-RDM expressed in an orthonormal basis
- */
-OneRDM<double> calculateRHF1RDM(size_t K, size_t N) {
-
-    if (N % 2 != 0) {
-        throw std::invalid_argument("calculateRHF1RDM(size_t, size_t): The number of given electrons cannot be odd for RHF.");
-    }
-
-    // The 1-RDM for RHF looks like (for K=5, N=6)
-    //    2  0  0  0  0
-    //    0  2  0  0  0
-    //    0  0  2  0  0
-    //    0  0  0  0  0
-    //    0  0  0  0  0
-
-    OneRDM<double> D_MO = OneRDM<double>::Zero(K, K);
-    D_MO.topLeftCorner(N/2, N/2) = 2 * SquareMatrix<double>::Identity(N/2, N/2);
-
-    return D_MO;
-}
-
-
-/**
- *  @param C    the coefficient matrix, specifying the transformation to the AO basis
- *  @param N    the number of electrons
- *
- *  @return the RHF 1-RDM expressed in the AO basis
- */
-OneRDM<double> calculateRHFAO1RDM(const TransformationMatrix<double>& C, size_t N) {
-
-    size_t K = C.rows();
-    auto D_MO = calculateRHF1RDM(K, N);
-
-    // Transform the MO 1-RDM to an AO basis
-    return C.conjugate() * D_MO * C.transpose();
-}
 
 
 /**

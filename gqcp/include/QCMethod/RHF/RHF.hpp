@@ -68,22 +68,6 @@ public:
  */
 
 /**
- *  @param K    the number of spatial orbitals
- *  @param N    the number of electrons
- *
- *  @return the RHF 1-RDM expressed in an orthonormal basis
- */
-OneRDM<double> calculateRHF1RDM(size_t K, size_t N);
-
-/**
- *  @param C    the coefficient matrix, specifying the transformation to the AO basis
- *  @param N    the number of electrons
- *
- *  @return the RHF 1-RDM expressed in the AO basis
- */
-OneRDM<double> calculateRHFAO1RDM(const TransformationMatrix<double>& C, size_t N);
-
-/**
  *  Calculate the RHF Fock matrix F = H_core + G, in which G is a contraction of the density matrix and the two-electron integrals
  *
  *  @param D_AO                 the RHF density matrix in AO basis
