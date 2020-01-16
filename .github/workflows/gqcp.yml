@@ -11,7 +11,7 @@ jobs:
       CONDA_HOME: /usr/share/miniconda
 
     steps:
-  
+
     # Install CMake and python through GitHub actions
     - uses: snickerbockers/cmake-configure@prerel1
     - uses: actions/setup-python@v1
@@ -27,13 +27,13 @@ jobs:
         bash $HOME/download/miniconda.sh -b -p ${CONDA_HOME};
 
     - name: Configure Conda
-      run: |   
+      run: |
         source ${CONDA_HOME}/bin/activate
         hash -r
         conda config --set always_yes yes --set changeps1 no
-        
+
     - name: Install some GQCP dependencies through Conda
-      run: |   
+      run: |
         conda install -c conda-forge cmake=3.13 boost-cpp=1.69.0 eigen blas mkl pybind11 benchmark numpy;
         conda install -c gqcg libint spectra;
         conda install -c intel mkl-include mkl-static intel-openmp;
@@ -47,7 +47,7 @@ jobs:
         mkdir build && cd build
         ${CONDA_HOME}/bin/cmake .. -DUSE_MKL=TRUE -DCMAKE_INSTALL_PREFIX=${CONDA_HOME} -DCMAKE_PREFIX_PATH=${CONDA_HOME}
         make -j3 && sudo make install
-        
+
     # Build & test the library 
     - name: Build GQCP and run tests
       run: |
@@ -55,11 +55,11 @@ jobs:
         mkdir build && cd build
         ${CONDA_HOME}/bin/cmake .. -DBUILD_TESTS=TRUE -DBUILD_BENCHMARKS=TRUE -DBUILD_PYTHON_BINDINGS=TRUE -DCMAKE_INSTALL_PREFIX=~/.local -DCMAKE_PREFIX_PATH=${CONDA_HOME}
         make -j10 && make test && sudo make install
-        
+
     # Run the benchmarks
     - name: Run benchmarks
       run: |
-        cd build && cd benchmarks
+        cd build/gqcp/benchmarks
         ./doci_case --benchmark_counters_tabular=true
         ./doci_matrix --benchmark_counters_tabular=true
         ./doci_matvec --benchmark_counters_tabular=true

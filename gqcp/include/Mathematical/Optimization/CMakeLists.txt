@@ -1,0 +1,17 @@
+target_sources(gqcp
+    PRIVATE
+        BaseEigenproblemSolver.hpp
+        BaseHessianModifier.hpp
+        BaseMatrixSolver.hpp
+        BaseMinimizer.hpp
+        DavidsonSolver.hpp
+        DenseSolver.hpp
+        Eigenpair.hpp
+        EigenproblemSolverOptions.hpp
+        IterativeIdentitiesHessianModifier.hpp
+        NewtonMinimizer.hpp
+        NewtonNLSystemOfEquationsSolver.hpp
+        SparseSolver.hpp
+        step.hpp
+        UnalteringHessianModifier.hpp
+)
