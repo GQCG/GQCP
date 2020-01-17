@@ -15,31 +15,24 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "Mathematical/Optimization/step.hpp"
-
-#include "Mathematical/Representation/SquareMatrix.hpp"
+#include "Mathematical/Optimization/Eigenproblem/BaseMatrixSolver.hpp"
 
 
 namespace GQCP {
 
 
-/**
- *  @param x        the current point
- *  @param f        a callable vector function
- *  @param J        the corresponding Jacobian function
- *
- *  @return the Newton step
- *      J(x) p = - f
+/*
+ *  CONSTRUCTORS
  */
-VectorX<double> newtonStep(const VectorX<double>& x, const VectorFunction& f, const MatrixFunction& J) {
 
-    // Calculate f(x) and J(x), i.e. the values of the vector field and its Jacobian at the given x
-    VectorX<double> f_vector = f(x);
-    SquareMatrix<double> J_matrix = J(x);
+/**
+ *  @param dim                                  the dimension of the eigenvalue problem
+ *  @param number_of_requested_eigenpairs       the number of eigenpairs the solver should find
+ */
+BaseMatrixSolver::BaseMatrixSolver(size_t dim, size_t number_of_requested_eigenpairs) :
+    BaseEigenproblemSolver(dim, number_of_requested_eigenpairs)
+{}
 
-    // Return the actual Newton step
-    return J_matrix.colPivHouseholderQr().solve(-f_vector);
-}
 
 
 }  // namespace GQCP

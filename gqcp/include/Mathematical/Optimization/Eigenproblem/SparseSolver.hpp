@@ -18,64 +18,53 @@
 #pragma once
 
 
-#include "Mathematical/Optimization/BaseMatrixSolver.hpp"
-#include "Mathematical/Optimization/EigenproblemSolverOptions.hpp"
-#include "Mathematical/Representation/SquareMatrix.hpp"
+#include "Mathematical/Optimization/Eigenproblem/BaseMatrixSolver.hpp"
+#include "Mathematical/Optimization/Eigenproblem/EigenproblemSolverOptions.hpp"
+
+#include <Eigen/Sparse>
 
 
 namespace GQCP {
 
 
 /**
- *  An eigenproblem solver that stores a dense representation of the matrix
+ *  An eigenproblem solver that stores a sparse representation of the matrix
  */
-class DenseSolver : public BaseMatrixSolver {
+class SparseSolver : public BaseMatrixSolver {
 private:
-    SquareMatrix<double> matrix;
+    Eigen::SparseMatrix<double> matrix;
 
 
 public:
     // CONSTRUCTORS
     /**
-     *  @param matrix                               the full dense representation of the matrix
-     *  @param number_of_requested_eigenpairs       the number of eigenpairs the eigensolver should find
-     */
-    DenseSolver(const SquareMatrix<double>& matrix, size_t number_of_requested_eigenpairs = 1);
-
-    /**
-     *  Constructor that sets a zero matrix
+     *  Constructor that sets the sparse matrix to zeros
      *
      *  @param dim                                  the dimension of the matrix
      *  @param number_of_requested_eigenpairs       the number of eigenpairs the eigensolver should find
      */
-    DenseSolver(size_t dim, size_t number_of_requested_eigenpairs = 1);
+    SparseSolver(size_t dim, size_t number_of_requested_eigenpairs = 1);
 
     /**
-     *  @param matrix                   the full dense representation of the matrix
-     *  @param dense_solver_options     the options to be used for the dense eigenproblem algorithm
-     */
-    DenseSolver(const SquareMatrix<double>& matrix, const DenseSolverOptions& dense_solver_options);
-
-    /**
-     *  Constructor that sets a zero matrix
+     *  Constructor that sets the sparse matrix to zeros
      *
      *  @param dim                      the dimension of the matrix
-     *  @param dense_solver_options     the options to be used for the dense eigenproblem algorithm
+     *  @param sparse_solver_options    the options to be used for the sparse eigenproblem algorithm
      */
-    DenseSolver(size_t dim, const DenseSolverOptions& dense_solver_options);
+    SparseSolver(size_t dim, const SparseSolverOptions& sparse_solver_options);
 
 
     // DESTRUCTOR
-    ~DenseSolver() override = default;
+    ~SparseSolver() override = default;
 
 
     // GETTERS
-    const SquareMatrix<double>& get_matrix() const { return this->matrix; };
+    const Eigen::SparseMatrix<double>& get_matrix() const { return this->matrix; }
 
 
     // PUBLIC OVERRIDDEN METHODS
     /**
-     *  Solve the full dense eigenvalue problem
+     *  Solve the sparse eigenvalue problem
      *
      *  If successful, it sets
      *      - _is_solved to true
@@ -92,7 +81,6 @@ public:
      */
     void addToMatrix(double value, size_t index1, size_t index2) override;
 };
-
 
 
 }  // namespace GQCP

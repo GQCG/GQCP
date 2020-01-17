@@ -1,0 +1,9 @@
+target_sources(gqcp
+    PRIVATE
+        BaseEigenproblemSolver.cpp
+        BaseMatrixSolver.cpp
+        DavidsonSolver.cpp
+        DenseSolver.cpp
+        Eigenpair.cpp
+        SparseSolver.cpp
+)

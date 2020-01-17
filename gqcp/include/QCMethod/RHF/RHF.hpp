@@ -18,49 +18,47 @@
 #pragma once
 
 
-#include "Basis/TransformationMatrix.hpp"
-#include "Mathematical/Representation/BlockRankFourTensor.hpp"
-#include "Mathematical/Representation/Tensor.hpp"
-#include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "Processing/RDM/OneRDM.hpp"
+#include "QCMethod/QCMethodProtocol.hpp"
+#include "QCMethod/QCObjective.hpp"
+#include "QCModel/RHF/RHF.hpp"
 
 
 namespace GQCP {
+namespace QCMethod {
 
 
-/**
- *  A class that represents a converged solution to the RHF SCF equations
- */
-class RHF {
-private:
-    double electronic_energy;
-    TransformationMatrix<double> C;  // transformation matrix from the AO basis to the RHF MO basis
-    VectorX<double> orbital_energies;  // sorted in ascending energies
+// /**
+//  *  The restricted Hartree-Fock quantum chemical method
+//  * 
+//  *  @tparam _ExpansionScalar_       the type of scalar that is used for the expansion of the spatial orbitals in their underlying scalar basis
+//  */
+// template <typename _ExpansionScalar>
+// class RHF: public GQCP::QCMethodProtocol<QCModel::RHF<_ExpansionScalar>, QCMethod::RHF<_ExpansionScalar>> {
+// public:
+//     using ExpansionScalar = _ExpansionScalar;
+
+// public:
+
+//     /*
+//      *  PUBLIC METHODS
+//      */
+
+//     /**
+//      *  Optimize the electronic structure model: find the parameters that are the solutions to the quantum chemical method's objective
+//      * 
+//      *  @tparam QCObjective         the type of the objective
+//      *  @tparam Solver              the type of the solver
+//      * 
+//      *  @param objective            the objective that should be fulfilled in order to consider the model's parameters as 'optimal'
+//      *  @param solver               the solver that will try to optimize the parameters
+//      */
+//     template <typename QCObjective, typename Solver>
+//     QCStructure<QCModel::RHF<ExpansionScalar>> optimize(const QCObjective& objective, Solver& solver) {
+//         solver.solve();
+//         return QCStructure<QCModel::RHF<ExpansionScalar>>(solver.solution());
+//     }
+// };
 
 
-public:
-    // CONSTRUCTORS
-    /**
-     *  Default constructor setting everything to zero
-     */
-    RHF();  // need default constructor
-
-    /**
-     *  Constructor based on given converged solutions of the RHF SCF equations
-     *
-     *  @param electronic_energy    the converged RHF electronic energy
-     *  @param C                    the coefficient matrix, i.e. the transformation matrix from the AO basis to the RHF MO basis
-     *  @param orbital_energies     the RHF MO energies
-     */
-    RHF(double electronic_energy, const TransformationMatrix<double>& C, const VectorX<double>& orbital_energies);
-
-
-    // GETTERS
-    double get_electronic_energy() const { return this->electronic_energy; }
-    const TransformationMatrix<double>& get_C() const { return this->C; }
-    const VectorX<double>& get_orbital_energies() const { return this->orbital_energies; }
-    double get_orbital_energies(size_t index) const { return this->orbital_energies(index); }
-};
-
-
+}  // namespace QCMethod
 }  // namespace GQCP

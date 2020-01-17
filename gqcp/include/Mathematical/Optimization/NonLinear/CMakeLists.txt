@@ -1,13 +1,6 @@
 target_sources(gqcp
     PRIVATE
-        BaseEigenproblemSolver.hpp
         BaseHessianModifier.hpp
-        BaseMatrixSolver.hpp
-        BaseMinimizer.hpp
-        DavidsonSolver.hpp
-        DenseSolver.hpp
-        Eigenpair.hpp
-        EigenproblemSolverOptions.hpp
         IterativeIdentitiesHessianModifier.hpp
         NewtonMinimizer.hpp
         NewtonNLSystemOfEquationsSolver.hpp
@@ -15,6 +8,3 @@ target_sources(gqcp
         step.hpp
         UnalteringHessianModifier.hpp
 )
-
-add_subdirectory(NonLinear)
-add_subdirectory(Eigenproblem)

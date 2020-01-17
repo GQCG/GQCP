@@ -18,8 +18,8 @@
 #pragma once
 
 
-#include "Mathematical/Optimization/BaseEigenproblemSolver.hpp"
-#include "Mathematical/Optimization/EigenproblemSolverOptions.hpp"
+#include "Mathematical/Optimization/Eigenproblem/BaseEigenproblemSolver.hpp"
+#include "Mathematical/Optimization/Eigenproblem/EigenproblemSolverOptions.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Utilities/typedefs.hpp"
 

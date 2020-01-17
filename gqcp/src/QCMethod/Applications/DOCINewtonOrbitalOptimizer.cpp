@@ -20,13 +20,15 @@
 #include "Basis/transform.hpp"
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
 #include "FockSpace/ProductFockSpace.hpp"
-#include "Mathematical/Optimization/IterativeIdentitiesHessianModifier.hpp"
+#include "Mathematical/Optimization/NonLinear/IterativeIdentitiesHessianModifier.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Processing/RDM/RDMCalculator.hpp"
 #include "QCMethod/CI/CISolver.hpp"
 #include "QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp"
 #include "QCMethod/OrbitalOptimization/Localization/ERJacobiLocalizer.hpp"
 #include "QCMethod/OrbitalOptimization/Localization/ERNewtonLocalizer.hpp"
+#include "QCMethod/QCMethod.hpp"
+#include "QCMethod/RHF/DiagonalFockMatrix.hpp"
 #include "QCMethod/RHF/DIISRHFSCFSolver.hpp"
 
 
@@ -82,6 +84,8 @@ void DOCINewtonOrbitalOptimizer::solve() {
     DIISRHFSCFSolver diis_scf_solver (sq_hamiltonian, spinor_basis, this->molecule);
     diis_scf_solver.solve();
     auto rhf = diis_scf_solver.get_solution();
+    QCMethod<QCModel::RHF<double>>().optimize(DiagonalFockMatrix(), diis_scf_solver);
+
     basisTransform(spinor_basis, sq_hamiltonian, rhf.get_C());
 
     auto hessian_modifier = std::make_shared<IterativeIdentitiesHessianModifier>();

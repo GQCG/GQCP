@@ -45,22 +45,17 @@ public:
     /**
      *  Optimize the electronic structure model: find the parameters that are the solutions to the quantum chemical method's objective
      * 
-     *  @tparam QCObjective         the objective that should be fulfilled in order to consider the model's parameters as 'optimal'
-     */
-    template <QCObjective objective>
-    QCStructure<QCModel> optimize() { return this->derived().optimize(); }
-
-    /**
+     *  @tparam QCObjective         the type of the objective
+     *  @tparam Solver              the type of the solver
      * 
+     *  @param objective            the objective that should be fulfilled in order to consider the model's parameters as 'optimal'
+     *  @param solver               the solver that will try to optimize the parameters
      */
-    Solution solution()
-
-    /**
-     *  Determine the optimal wave function parameters for the quantum chemical method
-     * 
-     *  @return the optimal wave function parameters. This is often encapsulated with other information, like the energy
-     */
-    virtual Solution solve(const InitialGuess& initial_guess) = 0;
+    template <typename QCObjective, typename Solver>
+    QCStructure<QCModel> optimize(const QCObjective& objective, Solver& solver) {
+        solver.solve();
+        return QCStructure<QCModel::RHF<ExpansionScalar>>(solver.solution());
+    }
 };
 
 

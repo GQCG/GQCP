@@ -19,7 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "Mathematical/Optimization/DavidsonSolver.hpp"
+#include "Mathematical/Optimization/Eigenproblem/DavidsonSolver.hpp"
 
 #include "Utilities/linalg.hpp"
 

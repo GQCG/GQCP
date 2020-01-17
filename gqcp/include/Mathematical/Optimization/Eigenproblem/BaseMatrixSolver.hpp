@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Mathematical/Optimization/BaseEigenproblemSolver.hpp"
+#include "Mathematical/Optimization/Eigenproblem/BaseEigenproblemSolver.hpp"
 
 
 namespace GQCP {

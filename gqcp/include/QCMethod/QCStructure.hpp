@@ -35,7 +35,8 @@ public:
 
 private:
     std::vector<double> energies;  // the ground (and possibly excited) state energies
-    std::vector<QCModel> parameters;  // the ground (and possibly excited) state model parameters
+    std::vector<QCModel> model_parameters;  // the ground (and possibly excited) state model parameters
+
 
 public:
 
@@ -44,24 +45,23 @@ public:
      */ 
 
     /**
-     *  @param energies         the ground (and possibly excited) state energies
-     *  @param parameters       the ground (and possibly excited) state model parameters
+     *  @param energies                 the ground (and possibly excited) state energies
+     *  @param model_parameters         the ground (and possibly excited) state model parameters
      */
-    QCStructure(const std::vector<double>& energies, const std::vector<QCModel>& parameters) :
+    QCStructure(const std::vector<double>& energies, const std::vector<QCModel>& model_parameters) :
         energies (energies),
-        parameters (parameters)
+        model_parameters (model_parameters)
     {
         const auto n = energies.size();
 
         if (n < 1) {
-            throw std::invalid_argument("QCStructure(const std::vector<double>&, const std::vector<QCModel>&): You have given an empty number of energies.")
+            throw std::invalid_argument("QCStructure(const std::vector<double>&, const std::vector<QCModel>&): You have given an empty number of energies.");
         }
 
-        if (n != parameters.size()) {
-            throw std::invalid_argument("QCStructure(const std::vector<double>&, const std::vector<QCModel>&): The number of energies and sets of parameters do not match.")
+        if (n != model_parameters.size()) {
+            throw std::invalid_argument("QCStructure(const std::vector<double>&, const std::vector<QCModel>&): The number of energies and sets of parameters do not match.");
         }
     }
-
 
 
     /*
@@ -90,7 +90,7 @@ public:
      * 
      *  @return the parameters corresponding to the i-th excited state
      */
-    const QCModel& parameters(const size_t i = 0) const { return this->parameters[i]; }
+    const QCModel& parameters(const size_t i = 0) const { return this->model_parameters[i]; }
 };
 
 

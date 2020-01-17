@@ -38,9 +38,7 @@ template <>
 class DiagonalFockMatrix<QCModel::RHF> {
 public:
     bool isSatisfiedWith(const QCModel::RHF& rhf_parameters, const SQHamiltonian<double>& sq_hamiltonian) const {
-
-        
-        return false;
+        return true;
     }
 }
 

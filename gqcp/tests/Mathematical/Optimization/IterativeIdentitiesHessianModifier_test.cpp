@@ -19,7 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "Mathematical/Optimization/IterativeIdentitiesHessianModifier.hpp"
+#include "Mathematical/Optimization/NonLinear/IterativeIdentitiesHessianModifier.hpp"
 
 #include <Eigen/Dense>
 

@@ -22,7 +22,7 @@
 #include "QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp"
 
 #include "Basis/transform.hpp"
-#include "Mathematical/Optimization/IterativeIdentitiesHessianModifier.hpp"
+#include "Mathematical/Optimization/NonLinear/IterativeIdentitiesHessianModifier.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Processing/RDM/FCIRDMBuilder.hpp"
 #include "QCMethod/CI/CISolver.hpp"

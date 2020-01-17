@@ -17,7 +17,7 @@
 // 
 #include "QCMethod/Geminals/AP1roGPSESolver.hpp"
 
-#include "Mathematical/Optimization/NewtonNLSystemOfEquationsSolver.hpp"
+#include "Mathematical/Optimization/NonLinear/NewtonNLSystemOfEquationsSolver.hpp"
 #include "QCMethod/Geminals/AP1roG.hpp"
 
 

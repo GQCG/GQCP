@@ -1,6 +1,6 @@
 target_sources(gqcp
     PRIVATE
-        QCMethod.hpp
+        QCMethodProtocol.hpp
         QCObjective.hpp
         QCStructure.hpp
 )

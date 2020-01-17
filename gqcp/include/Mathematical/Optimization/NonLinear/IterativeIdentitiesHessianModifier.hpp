@@ -18,24 +18,41 @@
 #pragma once
 
 
-#include "Mathematical/Optimization/BaseHessianModifier.hpp"
+#include "Mathematical/Optimization/NonLinear/BaseHessianModifier.hpp"
+
 
 
 namespace GQCP {
 
 
-class UnalteringHessianModifier : public BaseHessianModifier {
+/**
+ *  A Hessian modifier functor that uses multiples of the identity matrix to try to obtain a positive/negative definite Hessian
+ * 
+ *  This implements Algorithm 3.3 in Nocedal and Wright
+ */
+class IterativeIdentitiesHessianModifier : public BaseHessianModifier {
+private:
+    double alpha;  // the scaling factor used to obtain the next scaler tau
+    double beta;  // the heuristic increment
+    double tau;  // the scaling scalar (the 'scaler')
+
+
 public:
     // CONSTRUCTORS
-    using BaseHessianModifier::BaseHessianModifier;  // inherit base constructors
+
+    /**
+     *  @param alpha                the increment factor used to obtain the next scaler tau
+     *  @param beta                 the heuristic increment
+     */
+    IterativeIdentitiesHessianModifier(const double alpha = 2.0, const double beta = 1.0e-03);
 
 
     // PUBLIC OVERRIDDEN METHODS
 
     /**
-     *  @param hessian      the current indefinite Hessian
+     *  @param hessian          the current indefinite Hessian
      * 
-     *  @return the given Hessian, i.e. do not alter the current hessian
+     *  @return a modified Hessian that is made positive (for minimizers) or negative (for maximizers) definite
      */
     SquareMatrix<double> operator()(const SquareMatrix<double>& hessian) override;
 };

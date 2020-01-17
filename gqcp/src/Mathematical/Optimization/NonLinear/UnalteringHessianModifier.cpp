@@ -15,36 +15,20 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "QCMethod/RHF/RHF.hpp"
+#include "Mathematical/Optimization/NonLinear/UnalteringHessianModifier.hpp"
 
 
 namespace GQCP {
 
 
-/*
- * CONSTRUCTORS
- */
-
 /**
- *  Default constructor setting everything to zero
+ *  @param hessian      the current indefinite Hessian
+ * 
+ *  @return the given Hessian, i.e. do not alter the current hessian
  */
-RHF::RHF() :
-    RHF(0.0, TransformationMatrix<double>::Zero(0, 0), VectorX<double>::Zero(0))
-{}
-
-
-/**
- *  Constructor based on given converged solutions of the RHF SCF equations
- *
- *  @param electronic_energy    the converged RHF electronic energy
- *  @param C                    the coefficient matrix, i.e. the transformation matrix from the AO basis to the RHF MO basis
- *  @param orbital_energies     the RHF MO energies
- */
-RHF::RHF(double electronic_energy, const TransformationMatrix<double>& C, const VectorX<double>& orbital_energies) :
-    electronic_energy (electronic_energy),
-    C (C),
-    orbital_energies (orbital_energies)
-{}
+SquareMatrix<double> UnalteringHessianModifier::operator()(const SquareMatrix<double>& hessian) {
+    return hessian;
+}
 
 
 }  // namespace GQCP

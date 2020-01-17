@@ -19,7 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "Mathematical/Optimization/SparseSolver.hpp"
+#include "Mathematical/Optimization/Eigenproblem/SparseSolver.hpp"
 
 #include "Utilities/linalg.hpp"
 

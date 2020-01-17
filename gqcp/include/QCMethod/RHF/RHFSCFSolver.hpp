@@ -22,7 +22,6 @@
 #include "Basis/TransformationMatrix.hpp"
 #include "Molecule/Molecule.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "QCMethod/RHF/RHF.hpp"
 
 
 namespace GQCP {
@@ -42,8 +41,6 @@ protected:
     RSpinorBasis<double, GTOShell> spinor_basis;  // the spinor basis (AOs)
     SQHamiltonian<double> sq_hamiltonian;  // the Hamiltonian expressed in an AO basis
     Molecule molecule;
-
-    RHF solution;
 
 
     // PROTECTED METHODS
@@ -73,10 +70,6 @@ public:
 
     // DESTRUCTOR
     virtual ~RHFSCFSolver() = default;
-
-
-    // GETTERS
-    const RHF& get_solution() const { return this->solution; }
 
 
     // PUBLIC METHODS

@@ -19,7 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "Mathematical/Optimization/Eigenpair.hpp"
+#include "Mathematical/Optimization/Eigenproblem/Eigenpair.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( isEqual ) {

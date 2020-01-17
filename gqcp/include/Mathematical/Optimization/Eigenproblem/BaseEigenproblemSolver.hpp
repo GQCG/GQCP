@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Mathematical/Optimization/Eigenpair.hpp"
+#include "Mathematical/Optimization/Eigenproblem/Eigenpair.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
 
 #include <cstddef>
