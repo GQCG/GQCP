@@ -52,10 +52,7 @@ public:
      *  @param solver               the solver that will try to optimize the parameters
      */
     template <typename QCObjective, typename Solver>
-    QCStructure<QCModel> optimize(const QCObjective& objective, Solver& solver) {
-        solver.solve();
-        return QCStructure<QCModel::RHF<ExpansionScalar>>(solver.solution());
-    }
+    QCStructure<QCModel> optimize(const QCObjective& objective, Solver& solver);
 };
 
 

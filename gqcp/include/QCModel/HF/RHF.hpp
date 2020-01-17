@@ -286,14 +286,14 @@ public:
     const TransformationMatrix<ExpansionScalar>& coefficientMatrix() const { return this->C; }
 
     /**
-     *  @return an objective that can check if the RHF Fock matrix is diagonal
+     *  @return the number of electron pairs that these RHF model parameters describe
      */
-    static QCObjective<RHF> DiagonalFockMatrix();
+    size_t numberOfElectronPairs() const { return this->N_P; }
 
     /**
      *  @return the number of spatial orbitals that these RHF model parameters describe
      */
-    size_t numberOfSpatialOrbitals() const { this->coefficientMatrix.dimension(); }
+    size_t numberOfSpatialOrbitals() const { return this->coefficientMatrix.dimension(); }
 };
 
 

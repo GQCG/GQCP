@@ -100,6 +100,9 @@ public:
                 throw std::runtime_error("IterativeSolver::solve(): The iterative solver did not converge in the given maximum number of iterations.");
             }
         }
+
+        // If the algorithm has converged, we are safe to return the final iterate
+        return this->iterate;
     }
 };
 

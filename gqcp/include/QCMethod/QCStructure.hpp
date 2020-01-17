@@ -34,7 +34,7 @@ public:
 
 
 private:
-    std::vector<double> energies;  // the ground (and possibly excited) state energies
+    std::vector<double> energies;  // the ground (and possibly excited) state electronic energies
     std::vector<QCModel> model_parameters;  // the ground (and possibly excited) state model parameters
 
 
@@ -45,7 +45,7 @@ public:
      */ 
 
     /**
-     *  @param energies                 the ground (and possibly excited) state energies
+     *  @param energies                 the ground (and possibly excited) state electronic energies
      *  @param model_parameters         the ground (and possibly excited) state model parameters
      */
     QCStructure(const std::vector<double>& energies, const std::vector<QCModel>& model_parameters) :
@@ -71,12 +71,12 @@ public:
     /**
      *  @param i            the index of the i-th excited state
      * 
-     *  @return the energy correspondin to the i-th excited state
+     *  @return the electronic energy correspondin to the i-th excited state
      */
     double energy(const size_t i = 0) const { return this->energies[i]; }
 
     /**
-     *  @return the ground state energy for this quantum chemical structure
+     *  @return the ground state electronic energy for this quantum chemical structure
      */
     double groundStateEnergy() const { return this->energy(); }
 

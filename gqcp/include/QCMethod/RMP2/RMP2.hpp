@@ -20,7 +20,7 @@
 
 #include "Molecule/Molecule.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "QCMethod/HF/RHF.hpp"
+#include "QCMethod/HF/RHFOld.hpp"
 
 
 namespace GQCP {
@@ -33,7 +33,7 @@ namespace GQCP {
  *
  *  @return the RMP2 energy correction
  */
-double calculateRMP2EnergyCorrection(const SQHamiltonian<double>& sq_hamiltonian, const Molecule& molecule, const RHF& rhf);
+double calculateRMP2EnergyCorrection(const SQHamiltonian<double>& sq_hamiltonian, const Molecule& molecule, const RHFOld& rhf);
 
 
 }  // namespace GQCP

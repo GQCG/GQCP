@@ -27,8 +27,6 @@
 #include "QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp"
 #include "QCMethod/OrbitalOptimization/Localization/ERJacobiLocalizer.hpp"
 #include "QCMethod/OrbitalOptimization/Localization/ERNewtonLocalizer.hpp"
-#include "QCMethod/QCMethod.hpp"
-#include "QCMethod/HF/DiagonalFockMatrix.hpp"
 #include "QCMethod/HF/DIISRHFSCFSolver.hpp"
 
 
@@ -84,7 +82,6 @@ void DOCINewtonOrbitalOptimizer::solve() {
     DIISRHFSCFSolver diis_scf_solver (sq_hamiltonian, spinor_basis, this->molecule);
     diis_scf_solver.solve();
     auto rhf = diis_scf_solver.get_solution();
-    QCMethod<QCModel::RHF<double>>().optimize(DiagonalFockMatrix(), diis_scf_solver);
 
     basisTransform(spinor_basis, sq_hamiltonian, rhf.get_C());
 

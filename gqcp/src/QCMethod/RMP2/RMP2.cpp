@@ -30,7 +30,7 @@ namespace GQCP {
  *
  *  @return the RMP2 energy correction
  */
-double calculateRMP2EnergyCorrection(const SQHamiltonian<double>& sq_hamiltonian, const Molecule& molecule, const RHF& rhf) {
+double calculateRMP2EnergyCorrection(const SQHamiltonian<double>& sq_hamiltonian, const Molecule& molecule, const RHFOld& rhf) {
 
     const size_t N = molecule.numberOfElectrons();
     const size_t K = sq_hamiltonian.dimension();

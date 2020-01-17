@@ -22,6 +22,7 @@
 #include "Basis/TransformationMatrix.hpp"
 #include "Molecule/Molecule.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
+#include "QCMethod/HF/RHFOld.hpp"
 
 
 namespace GQCP {
@@ -42,6 +43,7 @@ protected:
     SQHamiltonian<double> sq_hamiltonian;  // the Hamiltonian expressed in an AO basis
     Molecule molecule;
 
+    RHFOld solution;
 
     // PROTECTED METHODS
 
@@ -71,6 +73,8 @@ public:
     // DESTRUCTOR
     virtual ~BaseRHFSCFSolver() = default;
 
+    // GETTERS
+    const RHFOld& get_solution() const { return this->solution; }
 
     // PUBLIC METHODS
 

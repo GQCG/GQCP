@@ -39,10 +39,10 @@ namespace GQCP {
  *  @tparam _ExpansionScalar        the type of scalar that is used to describe the expansion coefficients
  */
 template <typename _ExpansionScalar>
-class PlainRHFSCFSolver : public IterativeSolver<TransformationMatrix<_ExpansionScalar>, SimpleSCFSolver<_ExpansionScalar>> {
+class PlainRHFSCFSolver : public IterativeSolver<TransformationMatrix<_ExpansionScalar>, PlainRHFSCFSolver<_ExpansionScalar>> {
 public:
     using ExpansionScalar = _ExpansionScalar;
-
+    using Base = IterativeSolver<TransformationMatrix<_ExpansionScalar>, PlainRHFSCFSolver<_ExpansionScalar>>;
 
 private:
     size_t N;  // the total number of electrons
@@ -51,7 +51,7 @@ private:
 
     OneRDM<ExpansionScalar> D_previous;  // expressed in the scalar orbital basis
     OneRDM<ExpansionScalar> D_current;  // expressed in the scalar orbital basis
-
+    SQHamiltonian<ExpansionScalar> sq_hamiltonian;  // expressed in the scalar orbital basis
 
 public:
 
@@ -65,18 +65,20 @@ public:
      *  @param C_initial                            the initial guess for the coefficient matrix
      *  @param N                                    the total number of electrons
      *  @param S                                    the overlap matrix of the spinor basis
+     *  @param sq_hamiltonian                       the Hamiltonian expressed in that spinor basis
      *  @param threshold                            the convergence threshold on the norm of the difference of consecutive density matrices
      *  @param maximum_number_of_iterations         the maximum number of iterations the solver may perform
      */
-    PlainRHFSCFSolver(const TransformationMatrix<ExpansionScalar>& C_initial, const size_t N, const SquareMatrix<ExpansionScalar>& S, const double threshold=1.0e-08, const size_t maximum_number_of_iterations=128) :
-        IterativeSolver(C_initial, maximum_number_of_iterations),
+    PlainRHFSCFSolver(const TransformationMatrix<ExpansionScalar>& C_initial, const size_t N, const SquareMatrix<ExpansionScalar>& S, const SQHamiltonian<ExpansionScalar>& sq_hamiltonian, const double threshold=1.0e-08, const size_t maximum_number_of_iterations=128) :
+        Base(C_initial, maximum_number_of_iterations),
         threshold (threshold),
         N (N),
-        S (S)
+        S (S),
+        sq_hamiltonian (sq_hamiltonian)
     {
-        // Given the intitial coefficient matrix, we can calculate the initial density matrix
-        this->D_initial = QCModel::RHF<ExpansionScalar>::calculateScalarBasis1RDM(this->iterate, this->N);
-        this->D_current = this->D_initial;  // at the start of the algorithm, they are equal
+        // Given the initial coefficient matrix, we can calculate the initial density matrix
+        this->D_previous = QCModel::RHF<ExpansionScalar>::calculateScalarBasis1RDM(this->iterate, this->N);
+        this->D_current = this->D_previous;  // at the start of the algorithm, they are equal
     }
 
 
@@ -95,21 +97,33 @@ public:
      */
     static PlainRHFSCFSolver<ExpansionScalar> WithCoreGuess(const RSpinorBasis<ExpansionScalar, GTOShell>& spinor_basis, const SQHamiltonian<ExpansionScalar>& sq_hamiltonian, const size_t N, const double threshold=1.0e-08, const size_t maximum_number_of_iterations = 128) {
 
-        const auto& H_core = this->sq_hamiltonian.core().parameters();
-        const auto S = this->spinor_basis.overlap().parameters();
+        const auto& H_core = sq_hamiltonian.core().parameters();
+        const auto S = spinor_basis.overlap().parameters();
 
         // Obtain an initial guess for the density matrix in the scalar orbital basis by solving the generalized eigenvalue problem for H_core
         using MatrixType = Eigen::Matrix<ExpansionScalar, Eigen::Dynamic, Eigen::Dynamic>;
         Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver (H_core, S);
         TransformationMatrix<ExpansionScalar> C_initial = generalized_eigensolver.eigenvectors();
 
-        return PlainRHFSCFSolver<ExpansionScalar>(C_initial, N, S, threshold, maximum_number_of_iterations);
+        return PlainRHFSCFSolver<ExpansionScalar>(C_initial, N, S, sq_hamiltonian, threshold, maximum_number_of_iterations);
     }
 
 
     /*
      *  PUBLIC ('OVERRIDDEN') METHODS
      */
+
+    /**
+     *  @return the converged Fock matrix (expressed in the scalar basis), i.e. calculated with converged density matrix, which is in turn calculated by the the coefficient matrix that is considered to be the solution
+     */
+    ScalarSQOneElectronOperator<ExpansionScalar> convergedFockMatrix() const {
+        if (this->numberOfIterations() == 0) {
+            throw std::runtime_error("PlainRHFSCFSolver::convergedFockMatrix(): You are trying to get the converged Fock matrix, but no iterations have been performed.");
+        }
+
+        return QCModel::RHF<ExpansionScalar>::calculateScalarBasisFockMatrix(this->D_current, this->sq_hamiltonian);
+    }
+
 
     /**
      *  @return if the algorithm is considered to be converged
@@ -128,15 +142,18 @@ public:
      *  @return the next iterate
      */
     TransformationMatrix<ExpansionScalar> updateIterate() {
-        const auto F = this->calculateNewFockMatrix(D_current);  // the Fock matrix constructed from the current coefficient matrix
+        const auto F = QCModel::RHF<ExpansionScalar>::calculateScalarBasisFockMatrix(this->D_current, this->sq_hamiltonian);  // the Fock matrix constructed from the current coefficient matrix
 
         // Solve the generalized eigenvalue problem for the Fock matrix to get a new iteration of the coefficient matrix
         using MatrixType = Eigen::Matrix<ExpansionScalar, Eigen::Dynamic, Eigen::Dynamic>;
         Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver (F.parameters(), this->S);
         const auto& C = generalized_eigensolver.eigenvectors();
 
-        D_previous = D_current;
-        D_current = QCModel::RHF<double>::calculateScalarBasis1RDM(C, this->molecule.numberOfElectrons())
+        // Update the previous and current density matrices
+        this->D_previous = this->D_current;
+        this->D_current = QCModel::RHF<ExpansionScalar>::calculateScalarBasis1RDM(C, this->N);
+
+        return C;
     }
 };
 

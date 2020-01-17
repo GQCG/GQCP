@@ -109,7 +109,7 @@ void BaseRHFSCFSolver::solve(const TransformationMatrix<double>& C_initial) {
 
             // Set the converged solution
             auto electronic_energy = QCModel::RHF<double>::calculateElectronicEnergy(D_AO, H_core, F_AO);
-            this->solution = RHF(electronic_energy, TransformationMatrix<double>(C), generalized_eigensolver.eigenvalues());
+            this->solution = RHFOld(electronic_energy, TransformationMatrix<double>(C), generalized_eigensolver.eigenvalues());
 
         } else {  // not converged yet
             iteration_counter++;
