@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "QCMethod/HF/RHFSCFSolver.hpp"
+#include "QCMethod/HF/BaseRHFSCFSolver.hpp"
 
 
 namespace GQCP {
@@ -27,7 +27,7 @@ namespace GQCP {
 /**
  *  A class that implements a plain RHF SCF algorithm
  */
-class PlainRHFSCFSolver : public RHFSCFSolver {
+class PlainRHFSCFSolver : public BaseRHFSCFSolver {
 private:
     /**
      *  Update the Fock matrix, i.e. calculate the Fock matrix to be used in the next iteration of the SCF procedure: the 'new' Fock matrix is just F = H_core + G

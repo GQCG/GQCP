@@ -27,10 +27,14 @@ namespace GQCP {
 
 
 /**
- *  An iterative solver: at every step, the iterate is updated
+ *  An base class for iterative solvers: at every step, the iterate is updated.
  * 
  *  @tparam Iterate             the type of the iterate
  *  @tparam _DerivedSolver      the type of the derived solver (cfr. CRTP)
+ * 
+ *  Derived classes should implement:
+ *      - isConverged(), to check if the algorithm is considered to be converged
+ *      - updateIterate(), to produce a new iterate to be used in the next iteration
  */
 template <typename _Iterate, typename _DerivedSolver>
 class IterativeSolver : public CRTP<_DerivedSolver> {
@@ -42,6 +46,9 @@ public:
 private:
     size_t maximum_number_of_iterations;
     size_t iteration = 0;  // the current iteration counter
+
+
+protected:
     Iterate iterate;  // the iterate, which is continuously updated in every iteration step
 
 

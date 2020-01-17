@@ -32,7 +32,7 @@ namespace GQCP {
  *
  *  Derived classes should implement the pure virtual function calculateNewFockMatrix().
  */
-class RHFSCFSolver {
+class BaseRHFSCFSolver {
 protected:
     size_t maximum_number_of_iterations;
     double threshold;
@@ -65,11 +65,11 @@ public:
      *  @param threshold                        the convergence treshold on the Frobenius norm on the AO density matrix
      *  @param maximum_number_of_iterations     the maximum number of iterations for the SCF procedure
      */
-    RHFSCFSolver(const SQHamiltonian<double>& sq_hamiltonian, const RSpinorBasis<double, GTOShell>& spinor_basis, const Molecule& molecule, double threshold=1.0e-08, size_t maximum_number_of_iterations=128);
+    BaseRHFSCFSolver(const SQHamiltonian<double>& sq_hamiltonian, const RSpinorBasis<double, GTOShell>& spinor_basis, const Molecule& molecule, double threshold=1.0e-08, size_t maximum_number_of_iterations=128);
 
 
     // DESTRUCTOR
-    virtual ~RHFSCFSolver() = default;
+    virtual ~BaseRHFSCFSolver() = default;
 
 
     // PUBLIC METHODS
