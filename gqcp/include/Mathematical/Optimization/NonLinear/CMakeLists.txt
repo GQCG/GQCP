@@ -4,7 +4,6 @@ target_sources(gqcp
         IterativeIdentitiesHessianModifier.hpp
         NewtonMinimizer.hpp
         NewtonNLSystemOfEquationsSolver.hpp
-        SparseSolver.hpp
         step.hpp
         UnalteringHessianModifier.hpp
 )

@@ -32,7 +32,7 @@ namespace GQCP {
  *  @tparam _DerivedQCMethod        the type of the class that derives from this base class
  */
 template <typename _QCModel, typename _DerivedQCMethod>
-class QCMethod: public CRTP<_DerivedQCMethod> {
+class QCMethodProtocol: public CRTP<_DerivedQCMethod> {
 public:
     using QCModel = _QCModel;
     using DerivedQCMethod = _DerivedQCMethod;

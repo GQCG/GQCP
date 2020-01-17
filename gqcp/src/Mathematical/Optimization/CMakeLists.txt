@@ -1,18 +1,2 @@
-target_sources(gqcp
-    PRIVATE
-        BaseEigenproblemSolver.cpp
-        BaseMatrixSolver.cpp
-        BaseMinimizer.cpp
-        DavidsonSolver.cpp
-        DenseSolver.cpp
-        Eigenpair.cpp
-        IterativeIdentitiesHessianModifier.cpp
-        NewtonMinimizer.cpp
-        NewtonNLSystemOfEquationsSolver.cpp
-        SparseSolver.cpp
-        step.cpp
-        UnalteringHessianModifier.cpp
-)
-
 add_subdirectory(Eigenproblem)
 add_subdirectory(NonLinear)
