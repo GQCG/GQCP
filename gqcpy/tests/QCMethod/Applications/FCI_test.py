@@ -24,7 +24,7 @@ class FCITest(unittest.TestCase):
 
 
     def test_solution(self):
-        """Compare the energy and spin squared with a reference value"""
+        """Compare the energy and <S^2> with a reference value"""
         self.assertAlmostEqual(self.fci_module.get_energy(), self.ref_energy)
         self.assertAlmostEqual(self.fci_module.get_spin_squared(), 0)
 

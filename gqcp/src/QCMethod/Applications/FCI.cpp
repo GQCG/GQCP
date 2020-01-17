@@ -108,7 +108,7 @@ void FCI::solve() {
 
     this->energy_solution = fci_energy + internuclear_repulsion_energy;
 
-    RDMCalculator rdm_calculator(fci_solver.makeWavefunction());
+    RDMCalculator rdm_calculator (fci_solver.makeWavefunction());
      
     OneRDMs<double> one_rdms = rdm_calculator.calculate1RDMs();
     TwoRDMs<double> two_rdms = rdm_calculator.calculate2RDMs();
@@ -131,14 +131,14 @@ double FCI::energy() const {
 
 
 /**
- *  @return the spin squared expectation value of the ground state
+ *  @return the expectation value of the square of the spin angular momentum operator of the ground state
  */
 double FCI::spinSquared() const {
 
     if (this->is_solved) {
         return this->s_squared;
     } else {
-        throw std::runtime_error("FCI::spinSquared(): You are trying to get spin squared but the method hasn't been solved yet.");
+        throw std::runtime_error("FCI::spinSquared(): You are trying to get the expectation value of S^2 of the ground state but the method hasn't been solved yet.");
     }
 }
 

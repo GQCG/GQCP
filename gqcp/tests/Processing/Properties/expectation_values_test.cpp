@@ -196,8 +196,9 @@ BOOST_AUTO_TEST_CASE ( S_z_constrained_NOplus_STO_3G ) {
     BOOST_CHECK(std::abs(N_Sz) > 1.0e-06);
 }
 
+
 /*
- *  Calculate the Sz and S-squared values for oxygen gas
+ *  Calculate Sz and S^2 values for O2 in a restricted Fock space (alpha == beta)
  */ 
 BOOST_AUTO_TEST_CASE ( spin_O2 ) {
 
@@ -235,8 +236,9 @@ BOOST_AUTO_TEST_CASE ( spin_O2 ) {
     double s_squared = GQCP::calculateSpinSquared<double>(one_rdms, two_rdms);
     double s_z = GQCP::calculateSpinZ<double>(one_rdms);
 
-    // Spin squared should be 2 (S=1)
+    // <S^2> should be 2 (S=1)
     BOOST_CHECK(std::abs(s_squared - 2) < 1.0e-06);
-    // We've applied have alpha = beta, hence spin in the z direction is 0
+
+    // In the restricted Fock space, alpha = beta, hence the expectation value of the z-component of the spin operator should be zero
     BOOST_CHECK(std::abs(s_z - 0) < 1.0e-06);
 }

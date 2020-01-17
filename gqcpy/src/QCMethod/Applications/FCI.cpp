@@ -38,7 +38,7 @@ void bindQCMethodFCI(py::module& module) {
 
         .def("get_energy", &GQCP::QCMethod::FCI::energy, "Get the lowest energy.")
 
-        .def("get_spin_squared", &GQCP::QCMethod::FCI::spinSquared, "Get spin squared of the groundstate.");
+        .def("get_spin_squared", &GQCP::QCMethod::FCI::spinSquared, "Get <S^2> of the groundstate.");
 }
 
 

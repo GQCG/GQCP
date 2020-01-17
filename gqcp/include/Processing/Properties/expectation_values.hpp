@@ -89,20 +89,20 @@ std::array<double, Components> calculateExpectationValue(const SQTwoElectronOper
 
 
 /**
- *  Calculate the expectation value for spin squared
+ *  Calculate the expectation value of the square of the spin angular momentum operator
  * 
- *  @tparam Scalar      the scalar type
+ *  @tparam Scalar      the scalar type of the density matrices
  * 
- *  @param one_rdms        all the one electron density matrices
- *  @param two_rdms        all the two electron density matrices
+ *  @param one_rdms        all the one-electron density matrices
+ *  @param two_rdms        all the two-electron density matrices
  *
- *  @return expectation value of spin squared
+ *  @return the expectation value of the square of the spin angular momentum operator
  */
 template <typename Scalar>
 double calculateSpinSquared(const OneRDMs<Scalar>& one_rdms, const TwoRDMs<Scalar>& two_rdms) {
     double sz = calculateSpinZ(one_rdms);
     double s_squared = -sz;
-    size_t K = one_rdms.one_rdm.dimension();
+    const size_t K = one_rdms.one_rdm.dimension();
     for (size_t p = 0; p < K; p++) {
         s_squared += one_rdms.one_rdm_aa(p, p) + (one_rdms.one_rdm_aa(p, p) +  one_rdms.one_rdm_bb(p, p))/4;
         for (size_t q = 0; q < K; q++) {
@@ -115,11 +115,11 @@ double calculateSpinSquared(const OneRDMs<Scalar>& one_rdms, const TwoRDMs<Scala
 
 
 /**
- *  Calculate the expectation value for spin in the z direction
+ *  Calculate the expectation value of the z-component of the spin angular momentum operator
  * 
  *  @tparam Scalar      the scalar type
  * 
- *  @param one_rdms        all the one electron density matrices
+ *  @param one_rdms        all the one-electron density matrices
  *
  *  @return expectation value of spin in the z direction
  */

@@ -80,7 +80,7 @@ public:
     double energy() const;
 
     /**
-     *  @return the spin squared expectation value of the ground state
+     *  @return the expectation value of the square of the spin angular momentum operator of the ground state
      */
     double spinSquared() const;
 };
