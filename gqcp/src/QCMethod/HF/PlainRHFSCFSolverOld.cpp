@@ -15,9 +15,9 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "QCMethod/HF/PlainRHFSCFSolver.hpp"
+#include "QCMethod/HF/PlainRHFSCFSolverOld.hpp"
 
-#include "QCModel/RHF/RHF.hpp"
+#include "QCModel/HF/RHF.hpp"
 
 
 namespace GQCP {
@@ -32,7 +32,7 @@ namespace GQCP {
  *
  *  @return the new Fock matrix (expressed in AO basis)
  */
-ScalarSQOneElectronOperator<double> PlainRHFSCFSolver::calculateNewFockMatrix(const OneRDM<double>& D_AO) {
+ScalarSQOneElectronOperator<double> PlainRHFSCFSolverOld::calculateNewFockMatrix(const OneRDM<double>& D_AO) {
     return QCModel::RHF<double>::calculateScalarBasisFockMatrix(D_AO, this->sq_hamiltonian);
 }
 
@@ -48,7 +48,7 @@ ScalarSQOneElectronOperator<double> PlainRHFSCFSolver::calculateNewFockMatrix(co
  *  @param threshold                        the convergence treshold on the Frobenius norm on the AO density matrix
  *  @param maximum_number_of_iterations     the maximum number of iterations for the SCF procedure
  */
-PlainRHFSCFSolver::PlainRHFSCFSolver(const SQHamiltonian<double>& sq_hamiltonian, const RSpinorBasis<double, GTOShell>& spinor_basis, const Molecule& molecule, double threshold, size_t maximum_number_of_iterations) :
+PlainRHFSCFSolverOld::PlainRHFSCFSolverOld(const SQHamiltonian<double>& sq_hamiltonian, const RSpinorBasis<double, GTOShell>& spinor_basis, const Molecule& molecule, double threshold, size_t maximum_number_of_iterations) :
     BaseRHFSCFSolver(sq_hamiltonian, spinor_basis, molecule, threshold, maximum_number_of_iterations)
 {}
 

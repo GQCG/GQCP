@@ -26,7 +26,7 @@
 #include "Processing/RDM/RDMCalculator.hpp"
 #include "QCMethod/CI/CISolver.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
-#include "QCMethod/HF/PlainRHFSCFSolver.hpp"
+#include "QCMethod/HF/PlainRHFSCFSolverOld.hpp"
 #include "Utilities/units.hpp"
 
 
@@ -45,7 +45,7 @@ BOOST_AUTO_TEST_CASE ( decomposition_BeH_cation_STO_3G_Nuclear ) {
     double repulsion = GQCP::Operator::NuclearRepulsion(BeH).value();
 
     // Create a plain RHF SCF solver and solve the SCF equations
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, BeH);
+    GQCP::PlainRHFSCFSolverOld plain_scf_solver (sq_hamiltonian, spinor_basis, BeH);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 

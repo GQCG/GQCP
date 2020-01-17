@@ -19,7 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "QCModel/RHF/RHF.hpp"
+#include "QCModel/HF/RHF.hpp"
 
 
 /**

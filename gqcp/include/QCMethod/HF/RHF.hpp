@@ -20,7 +20,7 @@
 
 #include "QCMethod/QCMethodProtocol.hpp"
 #include "QCMethod/QCObjective.hpp"
-#include "QCModel/RHF/RHF.hpp"
+#include "QCModel/HF/RHF.hpp"
 
 
 namespace GQCP {

@@ -19,7 +19,7 @@
 
 #include "Mathematical/Representation/BlockMatrix.hpp"
 #include "QCMethod/HF/RHF.hpp"
-#include "QCModel/RHF/RHF.hpp"
+#include "QCModel/HF/RHF.hpp"
 
 
 namespace GQCP {

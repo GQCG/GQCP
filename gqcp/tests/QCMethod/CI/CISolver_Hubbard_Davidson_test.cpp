@@ -23,7 +23,7 @@
 #include "QCMethod/CI/CISolver.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/Hubbard.hpp"
-#include "QCMethod/HF/PlainRHFSCFSolver.hpp"
+#include "QCMethod/HF/PlainRHFSCFSolverOld.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_davidson ) {

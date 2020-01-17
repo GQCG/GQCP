@@ -24,7 +24,7 @@
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/CI/CISolver.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
-#include "QCMethod/HF/PlainRHFSCFSolver.hpp"
+#include "QCMethod/HF/PlainRHFSCFSolverOld.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( test_random_rotation_diagonal_dense_fci ) {
@@ -38,7 +38,7 @@ BOOST_AUTO_TEST_CASE ( test_random_rotation_diagonal_dense_fci ) {
     auto K = sq_hamiltonian.dimension();
 
     // Create a plain RHF SCF solver and solve the SCF equations
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, h2o);
+    GQCP::PlainRHFSCFSolverOld plain_scf_solver (sq_hamiltonian, spinor_basis, h2o);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 
@@ -73,7 +73,7 @@ BOOST_AUTO_TEST_CASE ( FCI_H2_Cristina_dense ) {
     auto K = sq_hamiltonian.dimension();
 
     // Create a plain RHF SCF solver and solve the SCF equations
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, h2);
+    GQCP::PlainRHFSCFSolverOld plain_scf_solver (sq_hamiltonian, spinor_basis, h2);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 
@@ -113,7 +113,7 @@ BOOST_AUTO_TEST_CASE ( FCI_H2O_Psi4_GAMESS_dense ) {
     auto K = sq_hamiltonian.dimension();
 
     // Create a plain RHF SCF solver and solve the SCF equations
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, h2o);
+    GQCP::PlainRHFSCFSolverOld plain_scf_solver (sq_hamiltonian, spinor_basis, h2o);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 

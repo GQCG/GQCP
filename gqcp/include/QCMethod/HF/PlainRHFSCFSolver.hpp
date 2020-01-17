@@ -18,36 +18,126 @@
 #pragma once
 
 
-#include "QCMethod/HF/BaseRHFSCFSolver.hpp"
+#include "Basis/SpinorBasis/RSpinorBasis.hpp"
+#include "Basis/ScalarBasis/GTOShell.hpp"
+#include "Basis/TransformationMatrix.hpp"
+#include "Mathematical/Optimization/IterativeSolver.hpp"
+#include "Mathematical/Representation/SquareMatrix.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
+#include "Processing/RDM/OneRDM.hpp"
+#include "QCModel/HF/RHF.hpp"
+
+#include <Eigen/Dense>
 
 
 namespace GQCP {
 
 
 /**
- *  A class that implements a plain RHF SCF algorithm
+ *  A restricted Hartree-Fock self-consistent field (RHF SCF) solver.
+ * 
+ *  @tparam _ExpansionScalar        the type of scalar that is used to describe the expansion coefficients
  */
-class PlainRHFSCFSolver : public BaseRHFSCFSolver {
+template <typename _ExpansionScalar>
+class PlainRHFSCFSolver : public IterativeSolver<TransformationMatrix<_ExpansionScalar>, SimpleSCFSolver<_ExpansionScalar>> {
+public:
+    using ExpansionScalar = _ExpansionScalar;
+
+
 private:
-    /**
-     *  Update the Fock matrix, i.e. calculate the Fock matrix to be used in the next iteration of the SCF procedure: the 'new' Fock matrix is just F = H_core + G
-     *
-     *  @param D_AO     the RHF density matrix in AO basis
-     *
-     *  @return the new Fock matrix (expressed in AO basis)
-     */
-    ScalarSQOneElectronOperator<double> calculateNewFockMatrix(const OneRDM<double>& D_AO) override;
+    size_t N;  // the total number of electrons
+    double threshold;  // the convergence threshold on the norm of the difference of consecutive density matrices
+    SquareMatrix<ExpansionScalar> S;  // the overlap matrix of the spinor basis
+
+    OneRDM<ExpansionScalar> D_previous;  // expressed in the scalar orbital basis
+    OneRDM<ExpansionScalar> D_current;  // expressed in the scalar orbital basis
+
 
 public:
-    // CONSTRUCTORS
-    /**
-     *  @param sq_hamiltonian                   the Hamiltonian expressed in an AO basis
-     *  @param spinor_basis                     the spinor basis
-     *  @param molecule                         the molecule used for the SCF calculation
-     *  @param threshold                        the convergence treshold on the Frobenius norm on the AO density matrix
-     *  @param maximum_number_of_iterations     the maximum number of iterations for the SCF procedure
+
+    /*
+     *  CONSTRUCTORS
      */
-    PlainRHFSCFSolver(const SQHamiltonian<double>& sq_hamiltonian, const RSpinorBasis<double, GTOShell>& spinor_basis, const Molecule& molecule, double threshold=1.0e-08, size_t maximum_number_of_iterations=128);
+
+    /**
+     *  A general constructor from the properties
+     * 
+     *  @param C_initial                            the initial guess for the coefficient matrix
+     *  @param N                                    the total number of electrons
+     *  @param S                                    the overlap matrix of the spinor basis
+     *  @param threshold                            the convergence threshold on the norm of the difference of consecutive density matrices
+     *  @param maximum_number_of_iterations         the maximum number of iterations the solver may perform
+     */
+    PlainRHFSCFSolver(const TransformationMatrix<ExpansionScalar>& C_initial, const size_t N, const SquareMatrix<ExpansionScalar>& S, const double threshold=1.0e-08, const size_t maximum_number_of_iterations=128) :
+        IterativeSolver(C_initial, maximum_number_of_iterations),
+        threshold (threshold),
+        N (N),
+        S (S)
+    {
+        // Given the intitial coefficient matrix, we can calculate the initial density matrix
+        this->D_initial = QCModel::RHF<ExpansionScalar>::calculateScalarBasis1RDM(this->iterate, this->N);
+        this->D_current = this->D_initial;  // at the start of the algorithm, they are equal
+    }
+
+
+    /*
+     *  NAMED CONSTRUCTORS
+     */
+
+    /**
+     *  @param spinor_basis                         the spinor basis, containing the (non-orthogonal) underlying scalar orbitals
+     *  @param sq_hamiltonian                       the Hamiltonian expressed in that spinor basis
+     *  @param N                                    the total number of electrons
+     *  @param threshold                            the convergence threshold on the norm of the difference of consecutive density matrices
+     *  @param maximum_number_of_iterations         the maximum number of iterations the solver may perform
+     * 
+     *  @return an solver instance whose initial guess is obtained by diagonalizing the core Hamiltonian
+     */
+    static PlainRHFSCFSolver<ExpansionScalar> WithCoreGuess(const RSpinorBasis<ExpansionScalar, GTOShell>& spinor_basis, const SQHamiltonian<ExpansionScalar>& sq_hamiltonian, const size_t N, const double threshold=1.0e-08, const size_t maximum_number_of_iterations = 128) {
+
+        const auto& H_core = this->sq_hamiltonian.core().parameters();
+        const auto S = this->spinor_basis.overlap().parameters();
+
+        // Obtain an initial guess for the density matrix in the scalar orbital basis by solving the generalized eigenvalue problem for H_core
+        using MatrixType = Eigen::Matrix<ExpansionScalar, Eigen::Dynamic, Eigen::Dynamic>;
+        Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver (H_core, S);
+        TransformationMatrix<ExpansionScalar> C_initial = generalized_eigensolver.eigenvectors();
+
+        return PlainRHFSCFSolver<ExpansionScalar>(C_initial, N, S, threshold, maximum_number_of_iterations);
+    }
+
+
+    /*
+     *  PUBLIC ('OVERRIDDEN') METHODS
+     */
+
+    /**
+     *  @return if the algorithm is considered to be converged
+     */
+    bool isConverged() {
+        if (this->numberOfIterations() == 0) {
+            return false;
+        } else {
+            return ((this->D_current - this->D_previous).norm() < this->threshold);
+        } 
+    }
+
+    /**
+     *  Diagonalize the Fock matrix (constructed from the current coefficient matrix) to find a next iteration of the coefficient matrix
+     * 
+     *  @return the next iterate
+     */
+    TransformationMatrix<ExpansionScalar> updateIterate() {
+        const auto F = this->calculateNewFockMatrix(D_current);  // the Fock matrix constructed from the current coefficient matrix
+
+        // Solve the generalized eigenvalue problem for the Fock matrix to get a new iteration of the coefficient matrix
+        using MatrixType = Eigen::Matrix<ExpansionScalar, Eigen::Dynamic, Eigen::Dynamic>;
+        Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver (F.parameters(), this->S);
+        const auto& C = generalized_eigensolver.eigenvectors();
+
+        D_previous = D_current;
+        D_current = QCModel::RHF<double>::calculateScalarBasis1RDM(C, this->molecule.numberOfElectrons())
+    }
 };
 
 

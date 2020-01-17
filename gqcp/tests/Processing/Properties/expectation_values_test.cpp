@@ -31,8 +31,8 @@
 #include "QCMethod/CI/HamiltonianBuilder/DOCI.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
 #include "QCMethod/HF/DIISRHFSCFSolver.hpp"
-#include "QCMethod/HF/PlainRHFSCFSolver.hpp"
-#include "QCModel/RHF/RHF.hpp"
+#include "QCMethod/HF/PlainRHFSCFSolverOld.hpp"
+#include "QCModel/HF/RHF.hpp"
 #include "Utilities/units.hpp"
 
 
@@ -93,7 +93,7 @@ BOOST_AUTO_TEST_CASE ( mulliken_N2_STO_3G ) {
     // Repeat this for a DOCI-RDM
 
     // Solve the SCF equations
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, N2);  // the DIIS SCF solver seems to find a wrong minimum, so use a plain solver instead
+    GQCP::PlainRHFSCFSolverOld plain_scf_solver (sq_hamiltonian, spinor_basis, N2);  // the DIIS SCF solver seems to find a wrong minimum, so use a plain solver instead
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 

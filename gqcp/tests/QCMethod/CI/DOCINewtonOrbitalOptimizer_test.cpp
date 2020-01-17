@@ -27,7 +27,7 @@
 #include "Processing/RDM/FCIRDMBuilder.hpp"
 #include "QCMethod/CI/CISolver.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
-#include "QCMethod/HF/PlainRHFSCFSolver.hpp"
+#include "QCMethod/HF/PlainRHFSCFSolverOld.hpp"
 
 
 // dim = 2 for DOCI
@@ -43,7 +43,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_sto_3g ) {
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2);  // in an AO basis
     auto K = sq_hamiltonian.dimension();
 
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, h2);
+    GQCP::PlainRHFSCFSolverOld plain_scf_solver (sq_hamiltonian, spinor_basis, h2);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
     basisTransform(spinor_basis, sq_hamiltonian, rhf.get_C());
@@ -79,7 +79,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31g ) {
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2);  // in an AO basis
     auto K = sq_hamiltonian.dimension();
 
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, h2);
+    GQCP::PlainRHFSCFSolverOld plain_scf_solver (sq_hamiltonian, spinor_basis, h2);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
     basisTransform(spinor_basis, sq_hamiltonian, rhf.get_C());
@@ -132,7 +132,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx ) {
     auto K = sq_hamiltonian.dimension();
 
 
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, h2);
+    GQCP::PlainRHFSCFSolverOld plain_scf_solver (sq_hamiltonian, spinor_basis, h2);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
     basisTransform(spinor_basis, sq_hamiltonian, rhf.get_C());
@@ -185,7 +185,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx_Davidson ) {
     auto K = sq_hamiltonian.dimension();
 
 
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, h2);
+    GQCP::PlainRHFSCFSolverOld plain_scf_solver (sq_hamiltonian, spinor_basis, h2);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
     basisTransform(spinor_basis, sq_hamiltonian, rhf.get_C());

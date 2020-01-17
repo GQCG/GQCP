@@ -25,7 +25,7 @@
 #include "Processing/Properties/expectation_values.hpp"
 #include "QCMethod/Geminals/AP1roGPSESolver.hpp"
 #include "QCMethod/Geminals/AP1roGLagrangianOptimizer.hpp"
-#include "QCMethod/HF/PlainRHFSCFSolver.hpp"
+#include "QCMethod/HF/PlainRHFSCFSolverOld.hpp"
 
 
 /**
@@ -40,7 +40,7 @@ BOOST_AUTO_TEST_CASE ( energy_as_contraction ) {
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2);  // in an AO basis
 
     // Transform the Hamiltonian to the RHF orbital basis
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, h2);
+    GQCP::PlainRHFSCFSolverOld plain_scf_solver (sq_hamiltonian, spinor_basis, h2);
     plain_scf_solver.solve();
     const auto rhf = plain_scf_solver.get_solution();
     GQCP::basisTransform(spinor_basis, sq_hamiltonian, rhf.get_C());

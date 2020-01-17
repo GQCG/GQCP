@@ -15,11 +15,11 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#define BOOST_TEST_MODULE "PlainRHFSCFSolver"
+#define BOOST_TEST_MODULE "PlainRHFSCFSolverOld"
 
 #include <boost/test/unit_test.hpp>
 
-#include "QCMethod/HF/PlainRHFSCFSolver.hpp"
+#include "QCMethod/HF/PlainRHFSCFSolverOld.hpp"
 
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Utilities/linalg.hpp"
@@ -31,12 +31,12 @@ BOOST_AUTO_TEST_CASE ( constructor ) {
     auto h2 = GQCP::Molecule::ReadXYZ("data/h2_szabo.xyz");
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (h2, "STO-3G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2);  // in an AO basis
-    GQCP::PlainRHFSCFSolver plain_solver (sq_hamiltonian, spinor_basis, h2);
+    GQCP::PlainRHFSCFSolverOld plain_solver (sq_hamiltonian, spinor_basis, h2);
     
 
     // Check if a faulty constructor with an odd number of electron throws
     auto h2_ion = GQCP::Molecule::ReadXYZ("data/h2_szabo.xyz", +1);
-    BOOST_CHECK_THROW(GQCP::PlainRHFSCFSolver (sq_hamiltonian, spinor_basis, h2_ion), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::PlainRHFSCFSolverOld (sq_hamiltonian, spinor_basis, h2_ion), std::invalid_argument);
 }
 
 
@@ -53,7 +53,7 @@ BOOST_AUTO_TEST_CASE ( h2_sto3g_szabo_plain ) {
 
 
     // Create a plain RHF SCF solver and solve the SCF equations
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, h2);
+    GQCP::PlainRHFSCFSolverOld plain_scf_solver (sq_hamiltonian, spinor_basis, h2);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 
@@ -87,7 +87,7 @@ BOOST_AUTO_TEST_CASE ( h2o_sto3g_horton_plain ) {
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (water, "STO-3G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, water);  // in an AO basis
 
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, water);
+    GQCP::PlainRHFSCFSolverOld plain_scf_solver (sq_hamiltonian, spinor_basis, water);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 
@@ -116,7 +116,7 @@ BOOST_AUTO_TEST_CASE ( crawdad_h2o_sto3g_plain ) {
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (water, "STO-3G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, water);  // in an AO basis
 
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, water);
+    GQCP::PlainRHFSCFSolverOld plain_scf_solver (sq_hamiltonian, spinor_basis, water);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 
@@ -140,7 +140,7 @@ BOOST_AUTO_TEST_CASE ( crawdad_ch4_sto3g_plain ) {
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (methane, "STO-3G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, methane);  // in an AO basis
 
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, methane);
+    GQCP::PlainRHFSCFSolverOld plain_scf_solver (sq_hamiltonian, spinor_basis, methane);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 
@@ -161,7 +161,7 @@ BOOST_AUTO_TEST_CASE ( h2_631gdp_plain ) {
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (h2, "6-31G**");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2);  // in an AO basis
 
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, h2);
+    GQCP::PlainRHFSCFSolverOld plain_scf_solver (sq_hamiltonian, spinor_basis, h2);
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 

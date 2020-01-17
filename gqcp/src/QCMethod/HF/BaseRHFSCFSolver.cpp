@@ -17,7 +17,7 @@
 // 
 #include "QCMethod/HF/BaseRHFSCFSolver.hpp"
 
-#include "QCModel/RHF/RHF.hpp"
+#include "QCModel/HF/RHF.hpp"
 
 
 namespace GQCP {

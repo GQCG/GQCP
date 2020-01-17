@@ -74,7 +74,7 @@ public:
     /*
      *  PUBLIC METHODS
      */
-    
+
     /**
      *  @return the maximum number of iterations this solver is allowed to perform
      */

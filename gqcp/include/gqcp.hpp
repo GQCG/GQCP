@@ -181,7 +181,7 @@
 #include "QCMethod/OrbitalOptimization/QCMethodNewtonOrbitalOptimizer.hpp"
 
 #include "QCMethod/HF/DIISRHFSCFSolver.hpp"
-#include "QCMethod/HF/PlainRHFSCFSolver.hpp"
+#include "QCMethod/HF/PlainRHFSCFSolverOld.hpp"
 #include "QCMethod/HF/RHF.hpp"
 #include "QCMethod/HF/BaseRHFSCFSolver.hpp"
 
@@ -191,7 +191,7 @@
 #include "QCMethod/QCObjective.hpp"
 #include "QCMethod/QCStructure.hpp"
 
-#include "QCModel/RHF/RHF.hpp"
+#include "QCModel/HF/RHF.hpp"
 
 #include "Utilities/CRTP.hpp"
 #include "Utilities/linalg.hpp"

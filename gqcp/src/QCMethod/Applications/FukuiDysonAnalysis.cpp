@@ -20,7 +20,7 @@
 #include "Basis/transform.hpp"
 #include "Processing/Properties/properties.hpp"
 #include "QCMethod/HF/DIISRHFSCFSolver.hpp"
-#include "QCMethod/HF/PlainRHFSCFSolver.hpp"
+#include "QCMethod/HF/PlainRHFSCFSolverOld.hpp"
 
 
 namespace GQCP {
@@ -59,7 +59,7 @@ FukuiDysonAnalysis::FukuiDysonAnalysis(const Molecule& molecule, const std::stri
         auto rhf_solution = diis_scf_solver.get_solution();
         basisTransform(this->spinor_basis, this->sq_hamiltonian, rhf_solution.get_C());
     } else {
-        PlainRHFSCFSolver plain_scf_solver (this->sq_hamiltonian, this->spinor_basis, restricted_molecule);
+        PlainRHFSCFSolverOld plain_scf_solver (this->sq_hamiltonian, this->spinor_basis, restricted_molecule);
         plain_scf_solver.solve();
         auto rhf_solution = plain_scf_solver.get_solution();
         basisTransform(this->spinor_basis, this->sq_hamiltonian, rhf_solution.get_C());

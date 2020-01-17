@@ -25,7 +25,7 @@
 #include "QCMethod/Geminals/AP1roG.hpp"
 #include "QCMethod/Geminals/AP1roGPSEs.hpp"
 #include "QCMethod/Geminals/AP1roGPSESolver.hpp"
-#include "QCMethod/HF/PlainRHFSCFSolver.hpp"
+#include "QCMethod/HF/PlainRHFSCFSolverOld.hpp"
 
 
 /**
@@ -40,7 +40,7 @@ BOOST_AUTO_TEST_CASE ( analytical_rotation_energy_AP1roG ) {
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (lih, "6-31G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, lih);  // in an AO basis
 
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, lih);
+    GQCP::PlainRHFSCFSolverOld plain_scf_solver (sq_hamiltonian, spinor_basis, lih);
     plain_scf_solver.solve();
     const auto rhf = plain_scf_solver.get_solution();
     basisTransform(spinor_basis, sq_hamiltonian, rhf.get_C());
@@ -94,7 +94,7 @@ BOOST_AUTO_TEST_CASE ( orbital_optimize ) {
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (lih, "6-31G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, lih);  // in an AO basis
 
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, lih);
+    GQCP::PlainRHFSCFSolverOld plain_scf_solver (sq_hamiltonian, spinor_basis, lih);
     plain_scf_solver.solve();
     const auto rhf = plain_scf_solver.get_solution();
     basisTransform(spinor_basis, sq_hamiltonian, rhf.get_C());

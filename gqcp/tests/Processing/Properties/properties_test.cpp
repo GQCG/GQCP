@@ -29,8 +29,8 @@
 #include "QCMethod/CI/CISolver.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
 #include "QCMethod/HF/DIISRHFSCFSolver.hpp"
-#include "QCMethod/HF/PlainRHFSCFSolver.hpp"
-#include "QCModel/RHF/RHF.hpp"
+#include "QCMethod/HF/PlainRHFSCFSolverOld.hpp"
+#include "QCModel/HF/RHF.hpp"
 #include "Utilities/units.hpp"
 
 
@@ -86,7 +86,7 @@ BOOST_AUTO_TEST_CASE ( dipole_N2_STO_3G ) {
     size_t N = N2.numberOfElectrons();
 
     // Solve the SCF equations
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, N2);  // The DIIS SCF solver seems to find a wrong minimum, so use a plain solver instead
+    GQCP::PlainRHFSCFSolverOld plain_scf_solver (sq_hamiltonian, spinor_basis, N2);  // The DIIS SCF solver seems to find a wrong minimum, so use a plain solver instead
     plain_scf_solver.solve();
     auto rhf = plain_scf_solver.get_solution();
 
@@ -128,7 +128,7 @@ BOOST_AUTO_TEST_CASE ( h2_polarizability_RHF ) {
 
 
     // Do the RHF calculation to get the canonical RHF orbitals
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, h2);
+    GQCP::PlainRHFSCFSolverOld plain_scf_solver (sq_hamiltonian, spinor_basis, h2);
     plain_scf_solver.solve();
     const auto rhf = plain_scf_solver.get_solution();
 

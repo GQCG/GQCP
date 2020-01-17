@@ -17,7 +17,7 @@
 // 
 #include "QCMethod/RMP2/RMP2.hpp"
 
-#include "QCModel/RHF/RHF.hpp"
+#include "QCModel/HF/RHF.hpp"
 
 
 namespace GQCP {
