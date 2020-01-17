@@ -30,8 +30,8 @@
 #include "QCMethod/CI/CISolver.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/DOCI.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
-#include "QCMethod/RHF/DIISRHFSCFSolver.hpp"
-#include "QCMethod/RHF/PlainRHFSCFSolver.hpp"
+#include "QCMethod/HF/DIISRHFSCFSolver.hpp"
+#include "QCMethod/HF/PlainRHFSCFSolver.hpp"
 #include "QCModel/RHF/RHF.hpp"
 #include "Utilities/units.hpp"
 

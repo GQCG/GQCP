@@ -22,7 +22,7 @@
 #include "Mathematical/Optimization/Eigenproblem/DavidsonSolver.hpp"
 #include "Mathematical/Optimization/Eigenproblem/DenseSolver.hpp"
 #include "Processing/Properties/expectation_values.hpp"
-#include "QCMethod/RHF/DIISRHFSCFSolver.hpp"
+#include "QCMethod/HF/DIISRHFSCFSolver.hpp"
 
 #include <algorithm>
 #include <chrono>

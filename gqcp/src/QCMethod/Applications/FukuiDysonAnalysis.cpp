@@ -19,8 +19,8 @@
 
 #include "Basis/transform.hpp"
 #include "Processing/Properties/properties.hpp"
-#include "QCMethod/RHF/DIISRHFSCFSolver.hpp"
-#include "QCMethod/RHF/PlainRHFSCFSolver.hpp"
+#include "QCMethod/HF/DIISRHFSCFSolver.hpp"
+#include "QCMethod/HF/PlainRHFSCFSolver.hpp"
 
 
 namespace GQCP {

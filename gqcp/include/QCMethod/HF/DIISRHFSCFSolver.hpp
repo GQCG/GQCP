@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "QCMethod/RHF/RHFSCFSolver.hpp"
+#include "QCMethod/HF/RHFSCFSolver.hpp"
 
 #include <deque>
 

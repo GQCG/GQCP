@@ -22,7 +22,7 @@
 #include "QCMethod/RMP2/RMP2.hpp"
 
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "QCMethod/RHF/PlainRHFSCFSolver.hpp"
+#include "QCMethod/HF/PlainRHFSCFSolver.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( crawdad_sto3g_water ) {

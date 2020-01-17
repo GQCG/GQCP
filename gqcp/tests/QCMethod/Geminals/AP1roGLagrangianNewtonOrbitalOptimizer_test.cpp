@@ -23,7 +23,7 @@
 
 #include "Basis/transform.hpp"
 #include "Mathematical/Optimization/NonLinear/IterativeIdentitiesHessianModifier.hpp"
-#include "QCMethod/RHF/PlainRHFSCFSolver.hpp"
+#include "QCMethod/HF/PlainRHFSCFSolver.hpp"
 #include "QCMethod/Geminals/AP1roG.hpp"
 #include "QCMethod/Geminals/AP1roGPSESolver.hpp"
 #include "QCMethod/Geminals/AP1roGLagrangianOptimizer.hpp"

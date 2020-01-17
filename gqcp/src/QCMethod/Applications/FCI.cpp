@@ -20,7 +20,7 @@
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
 #include "Basis/transform.hpp"
 #include "Operator/FirstQuantized/NuclearRepulsionOperator.hpp"
-#include "QCMethod/RHF/DIISRHFSCFSolver.hpp"
+#include "QCMethod/HF/DIISRHFSCFSolver.hpp"
 
 
 namespace GQCP {

@@ -15,11 +15,11 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#define BOOST_TEST_MODULE "PlainRHFSCFSolver"
+#define BOOST_TEST_MODULE "DIISRHFSCFSolver"
 
 #include <boost/test/unit_test.hpp>
 
-#include "QCMethod/RHF/PlainRHFSCFSolver.hpp"
+#include "QCMethod/HF/DIISRHFSCFSolver.hpp"
 
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Utilities/linalg.hpp"
@@ -31,16 +31,15 @@ BOOST_AUTO_TEST_CASE ( constructor ) {
     auto h2 = GQCP::Molecule::ReadXYZ("data/h2_szabo.xyz");
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (h2, "STO-3G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2);  // in an AO basis
-    GQCP::PlainRHFSCFSolver plain_solver (sq_hamiltonian, spinor_basis, h2);
-    
+    GQCP::DIISRHFSCFSolver diis_solver (sq_hamiltonian, spinor_basis, h2);
 
     // Check if a faulty constructor with an odd number of electron throws
     auto h2_ion = GQCP::Molecule::ReadXYZ("data/h2_szabo.xyz", +1);
-    BOOST_CHECK_THROW(GQCP::PlainRHFSCFSolver (sq_hamiltonian, spinor_basis, h2_ion), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::DIISRHFSCFSolver (sq_hamiltonian, spinor_basis, h2_ion), std::invalid_argument);
 }
 
 
-BOOST_AUTO_TEST_CASE ( h2_sto3g_szabo_plain ) {
+BOOST_AUTO_TEST_CASE ( h2_sto3g_szabo_DIIS ) {
 
     // In this test case, we will follow section 3.5.2 in Szabo.
     double ref_total_energy = -1.1167;
@@ -53,9 +52,9 @@ BOOST_AUTO_TEST_CASE ( h2_sto3g_szabo_plain ) {
 
 
     // Create a plain RHF SCF solver and solve the SCF equations
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, h2);
-    plain_scf_solver.solve();
-    auto rhf = plain_scf_solver.get_solution();
+    GQCP::DIISRHFSCFSolver diis_scf_solver (sq_hamiltonian, spinor_basis, h2);
+    diis_scf_solver.solve();
+    auto rhf = diis_scf_solver.get_solution();
 
 
     // Check the total energy
@@ -64,7 +63,7 @@ BOOST_AUTO_TEST_CASE ( h2_sto3g_szabo_plain ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( h2o_sto3g_horton_plain ) {
+BOOST_AUTO_TEST_CASE ( h2o_sto3g_horton_DIIS ) {
 
     // We have some reference data from horton
     double ref_total_energy = -74.942080055631;
@@ -83,13 +82,13 @@ BOOST_AUTO_TEST_CASE ( h2o_sto3g_horton_plain ) {
 
 
     // Do our own RHF calculation
-    auto water = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
+    auto water = GQCP::Molecule::ReadXYZ("data/h2o_crawdad.xyz");
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (water, "STO-3G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, water);  // in an AO basis
 
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, water);
-    plain_scf_solver.solve();
-    auto rhf = plain_scf_solver.get_solution();
+    GQCP::DIISRHFSCFSolver diis_scf_solver (sq_hamiltonian, spinor_basis, water);
+    diis_scf_solver.solve();
+    auto rhf = diis_scf_solver.get_solution();
 
     // Check the total energy
     double total_energy = rhf.get_electronic_energy() + GQCP::Operator::NuclearRepulsion(water).value();
@@ -102,7 +101,7 @@ BOOST_AUTO_TEST_CASE ( h2o_sto3g_horton_plain ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( crawdad_h2o_sto3g_plain ) {
+BOOST_AUTO_TEST_CASE ( crawdad_h2o_sto3g_DIIS ) {
 
     // This example is taken from (http://sirius.chem.vt.edu/wiki/doku.php?id=crawdad:programming:project3), but the input .xyz-file was converted to Angstrom.
     double ref_total_energy = -74.9420799281920;
@@ -116,9 +115,9 @@ BOOST_AUTO_TEST_CASE ( crawdad_h2o_sto3g_plain ) {
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (water, "STO-3G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, water);  // in an AO basis
 
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, water);
-    plain_scf_solver.solve();
-    auto rhf = plain_scf_solver.get_solution();
+    GQCP::DIISRHFSCFSolver diis_scf_solver (sq_hamiltonian, spinor_basis, water);
+    diis_scf_solver.solve();
+    auto rhf = diis_scf_solver.get_solution();
 
 
     // Check the total energy
@@ -127,7 +126,7 @@ BOOST_AUTO_TEST_CASE ( crawdad_h2o_sto3g_plain ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( crawdad_ch4_sto3g_plain ) {
+BOOST_AUTO_TEST_CASE ( crawdad_ch4_sto3g_DIIS ) {
 
     // This example is taken from (http://sirius.chem.vt.edu/wiki/doku.php?id=crawdad:programming:project3), but the input .xyz-file was converted to Angstrom.
     double ref_total_energy = -39.726850324347;
@@ -140,9 +139,9 @@ BOOST_AUTO_TEST_CASE ( crawdad_ch4_sto3g_plain ) {
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (methane, "STO-3G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, methane);  // in an AO basis
 
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, methane);
-    plain_scf_solver.solve();
-    auto rhf = plain_scf_solver.get_solution();
+    GQCP::DIISRHFSCFSolver diis_scf_solver (sq_hamiltonian, spinor_basis, methane);
+    diis_scf_solver.solve();
+    auto rhf = diis_scf_solver.get_solution();
 
     // Check the total energy
     double total_energy = rhf.get_electronic_energy() + GQCP::Operator::NuclearRepulsion(methane).value();
@@ -150,20 +149,19 @@ BOOST_AUTO_TEST_CASE ( crawdad_ch4_sto3g_plain ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( h2_631gdp_plain ) {
+BOOST_AUTO_TEST_CASE ( h2_631gdp_DIIS ) {
 
     // We have some reference data from olsens: H2@RHF//6-31G** orbitals
     double ref_electronic_energy = -1.84444667247;
-
 
     // Do our own RHF calculation
     auto h2 = GQCP::Molecule::ReadXYZ("data/h2_olsens.xyz");
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (h2, "6-31G**");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2);  // in an AO basis
 
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, h2);
-    plain_scf_solver.solve();
-    auto rhf = plain_scf_solver.get_solution();
+    GQCP::DIISRHFSCFSolver diis_scf_solver (sq_hamiltonian, spinor_basis, h2);
+    diis_scf_solver.solve();
+    auto rhf = diis_scf_solver.get_solution();
 
     // Check the electronic energy
     BOOST_CHECK(std::abs(rhf.get_electronic_energy() - ref_electronic_energy) < 1.0e-06);

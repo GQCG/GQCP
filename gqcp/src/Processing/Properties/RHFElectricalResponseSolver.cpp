@@ -18,7 +18,7 @@
 #include "Processing/Properties/RHFElectricalResponseSolver.hpp"
 
 #include "Mathematical/Representation/BlockMatrix.hpp"
-#include "QCMethod/RHF/RHF.hpp"
+#include "QCMethod/HF/RHF.hpp"
 #include "QCModel/RHF/RHF.hpp"
 
 

@@ -28,8 +28,8 @@
 #include "QCMethod/OrbitalOptimization/Localization/ERJacobiLocalizer.hpp"
 #include "QCMethod/OrbitalOptimization/Localization/ERNewtonLocalizer.hpp"
 #include "QCMethod/QCMethod.hpp"
-#include "QCMethod/RHF/DiagonalFockMatrix.hpp"
-#include "QCMethod/RHF/DIISRHFSCFSolver.hpp"
+#include "QCMethod/HF/DiagonalFockMatrix.hpp"
+#include "QCMethod/HF/DIISRHFSCFSolver.hpp"
 
 
 namespace GQCP {
