@@ -293,7 +293,7 @@ public:
     /**
      *  @return the number of spatial orbitals that these RHF model parameters describe
      */
-    size_t numberOfSpatialOrbitals() const { return this->coefficientMatrix.dimension(); }
+    size_t numberOfSpatialOrbitals() const { return this->coefficientMatrix().dimension(); }
 };
 
 

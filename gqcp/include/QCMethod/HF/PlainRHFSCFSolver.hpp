@@ -39,10 +39,10 @@ namespace GQCP {
  *  @tparam _ExpansionScalar        the type of scalar that is used to describe the expansion coefficients
  */
 template <typename _ExpansionScalar>
-class PlainRHFSCFSolver : public IterativeSolver<TransformationMatrix<_ExpansionScalar>, PlainRHFSCFSolver<_ExpansionScalar>> {
+class PlainRHFSCFSolver : public IterativeSolver<TransformationMatrix<_ExpansionScalar>> {
 public:
     using ExpansionScalar = _ExpansionScalar;
-    using Base = IterativeSolver<TransformationMatrix<_ExpansionScalar>, PlainRHFSCFSolver<_ExpansionScalar>>;
+    using Base = IterativeSolver<TransformationMatrix<_ExpansionScalar>>;
 
 private:
     size_t N;  // the total number of electrons
@@ -110,38 +110,27 @@ public:
 
 
     /*
-     *  PUBLIC ('OVERRIDDEN') METHODS
+     *  PUBLIC OVERRIDDEN METHODS
      */
-
-    /**
-     *  @return the converged Fock matrix (expressed in the scalar basis), i.e. calculated with converged density matrix, which is in turn calculated by the the coefficient matrix that is considered to be the solution
-     */
-    ScalarSQOneElectronOperator<ExpansionScalar> convergedFockMatrix() const {
-        if (this->numberOfIterations() == 0) {
-            throw std::runtime_error("PlainRHFSCFSolver::convergedFockMatrix(): You are trying to get the converged Fock matrix, but no iterations have been performed.");
-        }
-
-        return QCModel::RHF<ExpansionScalar>::calculateScalarBasisFockMatrix(this->D_current, this->sq_hamiltonian);
-    }
-
 
     /**
      *  @return if the algorithm is considered to be converged
      */
-    bool isConverged() {
+    bool isConverged() override {
         if (this->numberOfIterations() == 0) {
             return false;
         } else {
             return ((this->D_current - this->D_previous).norm() < this->threshold);
-        } 
+        }
     }
+
 
     /**
      *  Diagonalize the Fock matrix (constructed from the current coefficient matrix) to find a next iteration of the coefficient matrix
      * 
      *  @return the next iterate
      */
-    TransformationMatrix<ExpansionScalar> updateIterate() {
+    TransformationMatrix<ExpansionScalar> updateIterate() override {
         const auto F = QCModel::RHF<ExpansionScalar>::calculateScalarBasisFockMatrix(this->D_current, this->sq_hamiltonian);  // the Fock matrix constructed from the current coefficient matrix
 
         // Solve the generalized eigenvalue problem for the Fock matrix to get a new iteration of the coefficient matrix
@@ -154,6 +143,22 @@ public:
         this->D_current = QCModel::RHF<ExpansionScalar>::calculateScalarBasis1RDM(C, this->N);
 
         return C;
+    }
+
+
+    /*
+     *  PUBLIC METHODS
+     */
+
+    /**
+     *  @return the converged Fock matrix (expressed in the scalar basis), i.e. calculated with converged density matrix, which is in turn calculated by the the coefficient matrix that is considered to be the solution
+     */
+    ScalarSQOneElectronOperator<ExpansionScalar> convergedFockMatrix() const {
+        if (this->numberOfIterations() == 0) {
+            throw std::runtime_error("PlainRHFSCFSolver::convergedFockMatrix(): You are trying to get the converged Fock matrix, but no iterations have been performed.");
+        }
+
+        return QCModel::RHF<ExpansionScalar>::calculateScalarBasisFockMatrix(this->D_current, this->sq_hamiltonian);
     }
 };
 

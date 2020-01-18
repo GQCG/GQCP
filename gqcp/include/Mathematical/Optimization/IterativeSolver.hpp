@@ -18,8 +18,6 @@
 #pragma once
 
 
-#include "Utilities/CRTP.hpp"
-
 #include <cstddef>
 
 
@@ -27,20 +25,14 @@ namespace GQCP {
 
 
 /**
- *  An base class for iterative solvers: at every step, the iterate is updated.
+ *  A base class for iterative solvers: at every step, the iterate is updated.
  * 
- *  @tparam Iterate             the type of the iterate
- *  @tparam _DerivedSolver      the type of the derived solver (cfr. CRTP)
- * 
- *  Derived classes should implement:
- *      - isConverged(), to check if the algorithm is considered to be converged
- *      - updateIterate(), to produce a new iterate to be used in the next iteration
+ *  @tparam _Iterate            the type of the iterate
  */
-template <typename _Iterate, typename _DerivedSolver>
-class IterativeSolver : public CRTP<_DerivedSolver> {
+template <typename _Iterate>
+class IterativeSolver {
 public:
     using Iterate = _Iterate;
-    using DerivedSolver = _DerivedSolver;
 
 
 private:
@@ -70,6 +62,21 @@ public:
     {}
 
 
+    /*
+     *  PUBLIC PURE VIRTUAL METHODS
+     */
+
+    /**
+     *  @return if the algorithm is considered to be converged
+     */
+    virtual bool isConverged() = 0;
+
+    /**
+     *  @return a new iterate to be used in the next iteration
+     */
+    virtual Iterate updateIterate() = 0;
+
+
 
     /*
      *  PUBLIC METHODS
@@ -92,8 +99,8 @@ public:
      */
     Iterate solve() {
 
-        while (!this->derived().isConverged()) {
-            this->iterate = this->derived().updateIterate();
+        while (!this->isConverged()) {
+            this->iterate = this->updateIterate();
 
             this->iteration++;
             if (this->iteration >= this->maximum_number_of_iterations) {
