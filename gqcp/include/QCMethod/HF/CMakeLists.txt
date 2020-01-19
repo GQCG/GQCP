@@ -1,7 +1,9 @@
 target_sources(gqcp
     PRIVATE
         BaseRHFSCFSolverOld.hpp
-        # DiagonalFockMatrix.hpp
+        BaseRHFSCFSolver.hpp
+        DiagonalFockMatrix.hpp
+        DIISRHFSCFSolver.hpp
         DIISRHFSCFSolverOld.hpp
         PlainRHFSCFSolver.hpp
         PlainRHFSCFSolverOld.hpp

@@ -25,6 +25,7 @@
 #include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Processing/RDM/OneRDM.hpp"
+#include "QCMethod/HF/BaseRHFSCFSolver.hpp"
 #include "QCModel/HF/RHF.hpp"
 
 #include <Eigen/Dense>
@@ -39,19 +40,21 @@ namespace GQCP {
  *  @tparam _ExpansionScalar        the type of scalar that is used to describe the expansion coefficients
  */
 template <typename _ExpansionScalar>
-class PlainRHFSCFSolver : public IterativeSolver<TransformationMatrix<_ExpansionScalar>> {
+class PlainRHFSCFSolver :
+    public IterativeSolver<TransformationMatrix<_ExpansionScalar>>,
+    public BaseRHFSCFSolver<_ExpansionScalar> {
+
 public:
     using ExpansionScalar = _ExpansionScalar;
-    using Base = IterativeSolver<TransformationMatrix<_ExpansionScalar>>;
+    using BaseIterativeSolver = IterativeSolver<TransformationMatrix<ExpansionScalar>>;
+    using BaseRHFSCFSolver = BaseRHFSCFSolver<ExpansionScalar>;
 
 private:
-    size_t N;  // the total number of electrons
     double threshold;  // the convergence threshold on the norm of the difference of consecutive density matrices
-    SquareMatrix<ExpansionScalar> S;  // the overlap matrix of the spinor basis
 
     OneRDM<ExpansionScalar> D_previous;  // expressed in the scalar orbital basis
     OneRDM<ExpansionScalar> D_current;  // expressed in the scalar orbital basis
-    SQHamiltonian<ExpansionScalar> sq_hamiltonian;  // expressed in the scalar orbital basis
+
 
 public:
 
@@ -70,11 +73,9 @@ public:
      *  @param maximum_number_of_iterations         the maximum number of iterations the solver may perform
      */
     PlainRHFSCFSolver(const TransformationMatrix<ExpansionScalar>& C_initial, const size_t N, const SquareMatrix<ExpansionScalar>& S, const SQHamiltonian<ExpansionScalar>& sq_hamiltonian, const double threshold=1.0e-08, const size_t maximum_number_of_iterations=128) :
-        Base(C_initial, maximum_number_of_iterations),
-        threshold (threshold),
-        N (N),
-        S (S),
-        sq_hamiltonian (sq_hamiltonian)
+        BaseIterativeSolver(C_initial, maximum_number_of_iterations),
+        BaseRHFSCFSolver(N, S, sq_hamiltonian),
+        threshold (threshold)
     {
         // Given the initial coefficient matrix, we can calculate the initial density matrix
         this->D_previous = QCModel::RHF<ExpansionScalar>::calculateScalarBasis1RDM(this->iterate, this->N);
@@ -93,20 +94,16 @@ public:
      *  @param threshold                            the convergence threshold on the norm of the difference of consecutive density matrices
      *  @param maximum_number_of_iterations         the maximum number of iterations the solver may perform
      * 
-     *  @return an solver instance whose initial guess is obtained by diagonalizing the core Hamiltonian
+     *  @return a solver instance whose initial guess is obtained by diagonalizing the core Hamiltonian
      */
     static PlainRHFSCFSolver<ExpansionScalar> WithCoreGuess(const RSpinorBasis<ExpansionScalar, GTOShell>& spinor_basis, const SQHamiltonian<ExpansionScalar>& sq_hamiltonian, const size_t N, const double threshold=1.0e-08, const size_t maximum_number_of_iterations = 128) {
 
-        const auto& H_core = sq_hamiltonian.core().parameters();
-        const auto S = spinor_basis.overlap().parameters();
+        const auto S_op = spinor_basis.overlap();
+        const auto C_initial = BaseRHFSCFSolver::calculateCoreGuess(sq_hamiltonian.core(), S_op);  // BaseRHFSCFSolver is an alias for BaseRHFSCFSolver<ExpansionScalar> in this class
 
-        // Obtain an initial guess for the density matrix in the scalar orbital basis by solving the generalized eigenvalue problem for H_core
-        using MatrixType = Eigen::Matrix<ExpansionScalar, Eigen::Dynamic, Eigen::Dynamic>;
-        Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver (H_core, S);
-        TransformationMatrix<ExpansionScalar> C_initial = generalized_eigensolver.eigenvectors();
-
-        return PlainRHFSCFSolver<ExpansionScalar>(C_initial, N, S, sq_hamiltonian, threshold, maximum_number_of_iterations);
+        return PlainRHFSCFSolver<ExpansionScalar>(C_initial, N, S_op.parameters(), sq_hamiltonian, threshold, maximum_number_of_iterations);
     }
+
 
 
     /*
