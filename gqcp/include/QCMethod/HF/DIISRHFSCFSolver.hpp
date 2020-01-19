@@ -151,7 +151,7 @@ public:
     /**
      *  @return a new iterate according to the DIIS algorithm
      */
-    Iterate updateIterate() override {
+    Iterate calculateNextIterate() override {
 
         // Start by creating a regular new iterate and calculating the associated error
         const auto F = QCModel::RHF<ExpansionScalar>::calculateScalarBasisFockMatrix(this->D_current, this->sq_hamiltonian);  // the Fock matrix constructed from the current coefficient matrix

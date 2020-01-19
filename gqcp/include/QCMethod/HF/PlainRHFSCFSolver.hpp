@@ -127,7 +127,7 @@ public:
      * 
      *  @return the next iterate
      */
-    TransformationMatrix<ExpansionScalar> updateIterate() override {
+    TransformationMatrix<ExpansionScalar> calculateNextIterate() override {
         const auto F = QCModel::RHF<ExpansionScalar>::calculateScalarBasisFockMatrix(this->D_current, this->sq_hamiltonian);  // the Fock matrix constructed from the current coefficient matrix
 
         // Solve the generalized eigenvalue problem for the Fock matrix to get a new iteration of the coefficient matrix

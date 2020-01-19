@@ -74,7 +74,7 @@ public:
     /**
      *  @return a new iterate to be used in the next iteration
      */
-    virtual Iterate updateIterate() = 0;
+    virtual Iterate calculateNextIterate() = 0;
 
 
 
@@ -93,14 +93,14 @@ public:
     size_t numberOfIterations() const { return this->iteration; }
 
     /**
-     *  Iterate until the algorithm has converged, i.e. the actual solution step
+     *  Iterate until the algorithm has converged, i.e. the actual solving step
      * 
      *  @return the solution of the algorithm
      */
     Iterate solve() {
 
         while (!this->isConverged()) {
-            this->iterate = this->updateIterate();
+            this->iterate = this->calculateNextIterate();
 
             this->iteration++;
             if (this->iteration >= this->maximum_number_of_iterations) {

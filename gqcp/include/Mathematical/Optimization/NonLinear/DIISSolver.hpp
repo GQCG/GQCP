@@ -101,7 +101,7 @@ public:
     /**
      *  @return a new iterate according to the DIIS algorithm
      */
-    virtual Iterate updateIterate() override {
+    virtual Iterate calculateNextIterate() override {
 
         // Start by creating a regular new iterate and calculating the associated error
         Iterate iterate = this->regularNewIterate();
