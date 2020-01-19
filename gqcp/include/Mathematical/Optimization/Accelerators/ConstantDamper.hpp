@@ -27,6 +27,8 @@ namespace GQCP {
 
 /**
  *  An accelerator that produces its accelerated subject by a linear combination of the two previous subjects.
+ * 
+ *  @tparam _Subject         the type whose instances should be accelerated
  */
 template <typename _Subject>
 class ConstantDamper {
@@ -37,7 +39,7 @@ public:
 private:
     double alpha;  // the damping factor
 
-    std::deque<Subject> subjects;
+    std::deque<Subject> subjects;  // a deque that acts as a subspace of the available subjects
 
 
 public:
@@ -63,7 +65,11 @@ public:
      */
 
     /**
-     *  Add a subject to the subspace of subjects
+     *  Calculate an accelerated subject.
+     * 
+     *  @param subject              the subject
+     * 
+     *  @return an accelerated subject
      */
     Subject accelerate(const Subject& subject) {
 
@@ -71,7 +77,7 @@ public:
         this->add_subject(subject);
 
         if (this->canAccelerate()) {
-            Subject accelerated_subject = this->subjects.at(1) * this->factor() - this->subjects.at(0) * (1 - this->factor());
+            Subject accelerated_subject = this->subjects.at(1) * this->factor() - this->subjects.at(0) * (1 - this->factor());  // .at(1) is the most recent subject, .at(0) is the oldest subject
             return accelerated_subject;
         }
 
@@ -81,6 +87,11 @@ public:
     }
 
 
+    /**
+     *  Add a subject to the subspace of subjects and subsequently manage the current subspace if it becomes too large.
+     * 
+     *  @param subject              the subject
+     */
     void add(const Subject& subject) {
         this->subjects.emplace(subject);
 
