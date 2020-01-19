@@ -18,8 +18,7 @@
 #pragma once
 
 
-#include "Mathematical/Optimization/IterativeSolver.hpp"
-
+#include "Mathematical/Optimization/BaseAcceleratedIterativeSolver.hpp"
 
 #include <type_traits>
 
@@ -35,17 +34,13 @@ namespace GQCP {
  */
 template <typename _Iterate, typename _Accelerator>
 class AcceleratedIterativeSolver :
-    public IterativeSolver<_Iterate> {
+    public BaseAcceleratedIterativeSolver<_Iterate> {
 static_assert(std::is_same<_Iterate, typename _Accelerator::Subject>);
 
 public:
     using Iterate = _Iterate;
     using Accelerator = _Accelerator;
-    using BaseSolver = IterativeSolver<_Iterate>;
-
-
-protected:
-    Accelerator accelerator;  // the accelerator used for the acceleration of the iterates
+    using Base = BaseAcceleratedIterativeSolver<Iterate>;
 
 
 public:
@@ -54,30 +49,7 @@ public:
      *  CONSTRUCTORS
      */
 
-    /**
-     *  Initialize the solver with an initial guess and an accelerator
-     * 
-     *  @param initial_guess                        the initial guess to the solver
-     *  @param accelerator                          the accelerator used for the acceleration of the iterates
-     *  @param maximum_number_of_iterations         the maximum number of iterations the solver may perform
-     */
-    ProxyAcceleratedIterativeSolver(const Iterate& initial_guess, const Accelerator& accelerator, const size_t maximum_number_of_iterations = 128) :
-        BaseSolver(initial_guess, maximum_number_of_iterations),
-        accelerator (accelerator)
-    {}
-
-
-    /*
-     *  PURE VIRTUAL PUBLIC METHODS
-     */
-
-    /**
-     *  Calculate the next iterate as if there was no acceleration on it
-     * 
-     *  @return the 'regular' iterate
-     */
-    virtual Iterate calculateRegularIterate() = 0;
-
+    using BaseAcceleratedIterativeSolver<Iterate>::BaseAcceleratedIterativeSolver;  // inherit base constructors
 
 
     /*

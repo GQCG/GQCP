@@ -18,7 +18,8 @@
 #pragma once
 
 
-#include "Mathematical/Optimization/BaseAcceleratedIterativeSolver.hpp"
+#include "Mathematical/Optimization/IterativeSolver.hpp"
+
 
 #include <type_traits>
 
@@ -27,23 +28,23 @@ namespace GQCP {
 
 
 /**
- *  An iterative solver that uses an accelerator on proxies of the iterates to help convergence. It partially implements calculateNextIterate(), but requires derived classes to implement:
- *      - calculateRegularIterate();
- *      - calculateAcceleratorSubject();
- *      - calculateIterateFromProxy();
+ *  A base class for iterative solvers that use an accelerator to help convergence.
  * 
  *  @tparam _Iterate            the type of the iterate
  *  @tparam _Accelerator        the type of the accelerator that is used
  */
 template <typename _Iterate, typename _Accelerator>
-class AcceleratedIterativeSolver :
-    public BaseAcceleratedIterativeSolver<_Iterate> {
+class BaseAcceleratedIterativeSolver :
+    public IterativeSolver<_Iterate> {
 
 public:
     using Iterate = _Iterate;
     using Accelerator = _Accelerator;
-    using Proxy = typename Accelerator::Subject;
-    using Base = BaseAcceleratedIterativeSolver<Iterate>;
+    using BaseSolver = IterativeSolver<_Iterate>;
+
+
+protected:
+    Accelerator accelerator;  // the accelerator used for the acceleration
 
 
 public:
@@ -52,7 +53,17 @@ public:
      *  CONSTRUCTORS
      */
 
-    using BaseAcceleratedIterativeSolver<Iterate>::BaseAcceleratedIterativeSolver;  // inherit base constructors
+    /**
+     *  Initialize the solver with an initial guess and an accelerator
+     * 
+     *  @param initial_guess                        the initial guess to the solver
+     *  @param accelerator                          the accelerator used for the acceleration of the iterates
+     *  @param maximum_number_of_iterations         the maximum number of iterations the solver may perform
+     */
+    BaseAcceleratedIterativeSolver(const Iterate& initial_guess, const Accelerator& accelerator, const size_t maximum_number_of_iterations = 128) :
+        BaseSolver(initial_guess, maximum_number_of_iterations),
+        accelerator (accelerator)
+    {}
 
 
     /*
@@ -60,18 +71,11 @@ public:
      */
 
     /**
-     *  Calculate the proxy that corresponds to the iterate, which can be used by the accelerator
+     *  Calculate the next iterate as if there was no acceleration on it
      * 
-     *  @return the proxy that corresponds to the iterate
+     *  @return the 'regular' iterate
      */
-    virtual Proxy calculateAcceleratorSubject(const Iterate& iterate) = 0;
-
-    /**
-     *  Calculate a next iterate from its proxy
-     * 
-     * @return the next iterated, calculated from its proxy
-     */
-    virtual Iterate calculateIterateFromProxy(const Proxy& proxy) = 0;
+    virtual Iterate calculateRegularIterate() = 0;
 
 
     /*
@@ -82,13 +86,8 @@ public:
      *  @return a new iterate to be used in the next iteration
      */
     Iterate calculateNextIterate() {
-
-        // Calculate a next iterate through accelerating its proxy
         const auto iterate = this->calculateRegularIterate();
-        const auto accelerator_subject = this->calculateAcceleratorSubject(iterate);
-        const auto accelerated_subject = this->accelerator.accelerate(accelerator_subject);
-
-        return this->calculateIterateFromProxy(accelerated_subject);
+        return this->accelerator.accelerate(iterate);
     }
 };
 
