@@ -20,7 +20,7 @@
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
 #include "Basis/transform.hpp"
 #include "Operator/FirstQuantized/NuclearRepulsionOperator.hpp"
-#include "QCMethod/HF/DIISRHFSCFSolver.hpp"
+#include "QCMethod/HF/DIISRHFSCFSolverOld.hpp"
 
 
 namespace GQCP {
@@ -84,7 +84,7 @@ void FCI::solve() {
         pre_solver_options->convergence_threshold = 1e-8;
         pre_solver_options->maximum_subspace_dimension = 15;
         pre_solver_options->maximum_number_of_iterations = 200;
-        DIISRHFSCFSolver diis_scf_solver (sq_hamiltonian, spinor_basis, this->molecule);
+        DIISRHFSCFSolverOld diis_scf_solver (sq_hamiltonian, spinor_basis, this->molecule);
         diis_scf_solver.solve();
         auto rhf = diis_scf_solver.get_solution();
         basisTransform(spinor_basis, sq_hamiltonian, rhf.get_C());

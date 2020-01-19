@@ -28,7 +28,7 @@
 #include "Processing/RDM/RDMCalculator.hpp"
 #include "QCMethod/CI/CISolver.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
-#include "QCMethod/HF/DIISRHFSCFSolver.hpp"
+#include "QCMethod/HF/DIISRHFSCFSolverOld.hpp"
 #include "QCMethod/HF/PlainRHFSCFSolverOld.hpp"
 #include "QCModel/HF/RHF.hpp"
 #include "Utilities/units.hpp"
@@ -49,7 +49,7 @@ BOOST_AUTO_TEST_CASE ( dipole_CO_STO_3G ) {
     size_t N = CO.numberOfElectrons();
 
     // Solve the SCF equations
-    GQCP::DIISRHFSCFSolver diis_scf_solver (sq_hamiltonian, spinor_basis, CO);
+    GQCP::DIISRHFSCFSolverOld diis_scf_solver (sq_hamiltonian, spinor_basis, CO);
     diis_scf_solver.solve();
     auto rhf = diis_scf_solver.get_solution();
 

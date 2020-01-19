@@ -20,17 +20,27 @@
 
 #include "QCMethod/HF/BaseRHFSCFSolverOld.hpp"
 
-
-namespace GQCP {
+#include <deque>
 
 
 /**
- *  A class that implements a plain RHF SCF algorithm
+ *  A class that implements the RHF DIIS SCF algorithm
  */
-class PlainRHFSCFSolverOld : public BaseRHFSCFSolverOld {
+namespace GQCP {
+
+
+class DIISRHFSCFSolverOld : public BaseRHFSCFSolverOld {
 private:
+    size_t minimum_subspace_dimension;  // the minimum number of Fock matrices that have to be in the subspace before enabling DIIS
+    size_t maximum_subspace_dimension;  // the maximum DIIS subspace dimension before the oldest Fock matrices get discarded (one at a time)
+
+    std::deque<ScalarSQOneElectronOperator<double>> fock_matrix_deque = {};  // deque of Fock matrices used in the DIIS algorithm
+    std::deque<ScalarSQOneElectronOperator<double>> error_matrix_deque = {};  // deque of error matrices used in the DIIS algorithm
+
+
+    // PRIVATE METHODS
     /**
-     *  Update the Fock matrix, i.e. calculate the Fock matrix to be used in the next iteration of the SCF procedure: the 'new' Fock matrix is just F = H_core + G
+     *  Update the Fock matrix, i.e. calculate the Fock matrix to be used in the next iteration of the SCF procedure, according to the DIIS step
      *
      *  @param D_AO     the RHF density matrix in AO basis
      *
@@ -44,10 +54,12 @@ public:
      *  @param sq_hamiltonian                   the Hamiltonian expressed in an AO basis
      *  @param spinor_basis                     the spinor basis
      *  @param molecule                         the molecule used for the SCF calculation
+     *  @param minimum_subspace_dimension       the minimum number of Fock matrices that have to be in the subspace before enabling DIIS
+     *  @param maximum_subspace_dimension       the maximum DIIS subspace dimension before the oldest Fock matrices get discarded (one at a time)
      *  @param threshold                        the convergence treshold on the Frobenius norm on the AO density matrix
      *  @param maximum_number_of_iterations     the maximum number of iterations for the SCF procedure
      */
-    PlainRHFSCFSolverOld(const SQHamiltonian<double>& sq_hamiltonian, const RSpinorBasis<double, GTOShell>& spinor_basis, const Molecule& molecule, double threshold=1.0e-08, size_t maximum_number_of_iterations=128);
+    DIISRHFSCFSolverOld(SQHamiltonian<double> sq_hamiltonian, const RSpinorBasis<double, GTOShell>& spinor_basis, Molecule molecule, size_t minimum_subspace_dimension=6, size_t maximum_subspace_dimension=6, double threshold=1.0e-08, size_t maximum_number_of_iterations=128);
 };
 
 

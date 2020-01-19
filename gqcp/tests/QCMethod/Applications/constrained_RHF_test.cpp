@@ -22,7 +22,7 @@
 #include "Basis/transform.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Processing/Properties/expectation_values.hpp"
-#include "QCMethod/HF/DIISRHFSCFSolver.hpp"
+#include "QCMethod/HF/DIISRHFSCFSolverOld.hpp"
 #include "QCModel/HF/RHF.hpp"
 
 #include <random>
@@ -83,7 +83,7 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test ) {
         auto constrained_sq_hamiltonian = sq_hamiltonian.constrain(mulliken_operator, i);  // in AO basis
 
         // Create a DIIS RHF SCF solver and solve the SCF equations
-        GQCP::DIISRHFSCFSolver diis_scf_solver (constrained_sq_hamiltonian, spinor_basis, CO);
+        GQCP::DIISRHFSCFSolverOld diis_scf_solver (constrained_sq_hamiltonian, spinor_basis, CO);
         diis_scf_solver.solve();
         auto rhf = diis_scf_solver.get_solution();
 
@@ -178,7 +178,7 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test_random_transformation) {
         auto constrained_ham_par = sq_hamiltonian.constrain(mulliken_operator, i);
 
         // Create a DIIS RHF SCF solver and solve the SCF equations
-        GQCP::DIISRHFSCFSolver diis_scf_solver (constrained_ham_par, spinor_basis, CO);
+        GQCP::DIISRHFSCFSolverOld diis_scf_solver (constrained_ham_par, spinor_basis, CO);
         diis_scf_solver.solve();
         auto rhf = diis_scf_solver.get_solution();
 

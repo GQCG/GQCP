@@ -42,7 +42,7 @@ public:
     using Base = IterativeSolver<_Iterate>;
 
 
-private:
+protected:
     size_t minimum_subspace_dimension;  // the minimum number of iterates that have to be in the subspace before enabling the DIIS acceleration
     size_t maximum_subspace_dimension;  // the maximum DIIS subspace dimension before the oldest Fock matrices get discarded (one at a time)
 
@@ -57,7 +57,6 @@ public:
      */
 
     /**
-     * 
      *  @param initial_guess                        the initial guess to the solver
      *  @param maximum_number_of_iterations         the maximum number of iterations the solver may perform   
      *  @param minimum_subspace_dimension       the minimum number of iterates that have to be in the subspace before enabling the DIIS acceleration
@@ -102,7 +101,7 @@ public:
     /**
      *  @return a new iterate according to the DIIS algorithm
      */
-    Iterate updateIterate() override {
+    virtual Iterate updateIterate() override {
 
         // Start by creating a regular new iterate and calculating the associated error
         Iterate iterate = this->regularNewIterate();

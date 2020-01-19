@@ -27,7 +27,7 @@
 #include "QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp"
 #include "QCMethod/OrbitalOptimization/Localization/ERJacobiLocalizer.hpp"
 #include "QCMethod/OrbitalOptimization/Localization/ERNewtonLocalizer.hpp"
-#include "QCMethod/HF/DIISRHFSCFSolver.hpp"
+#include "QCMethod/HF/DIISRHFSCFSolverOld.hpp"
 
 
 namespace GQCP {
@@ -79,7 +79,7 @@ void DOCINewtonOrbitalOptimizer::solve() {
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, this->molecule);  // in AO basis
     const size_t K = sq_hamiltonian.dimension();
 
-    DIISRHFSCFSolver diis_scf_solver (sq_hamiltonian, spinor_basis, this->molecule);
+    DIISRHFSCFSolverOld diis_scf_solver (sq_hamiltonian, spinor_basis, this->molecule);
     diis_scf_solver.solve();
     auto rhf = diis_scf_solver.get_solution();
 

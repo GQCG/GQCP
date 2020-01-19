@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "QCMethod/HF/DIISRHFSCFSolver.hpp"
+#include "QCMethod/HF/DIISRHFSCFSolverOld.hpp"
 
 #include "QCModel/HF/RHF.hpp"
 
@@ -34,7 +34,7 @@ namespace GQCP {
  *
  *  @return the new Fock matrix (expressed in AO basis)
  */
-ScalarSQOneElectronOperator<double> DIISRHFSCFSolver::calculateNewFockMatrix(const OneRDM<double>& D_AO) {
+ScalarSQOneElectronOperator<double> DIISRHFSCFSolverOld::calculateNewFockMatrix(const OneRDM<double>& D_AO) {
 
     const auto S = this->spinor_basis.overlap().parameters();
 
@@ -109,8 +109,8 @@ ScalarSQOneElectronOperator<double> DIISRHFSCFSolver::calculateNewFockMatrix(con
  *  @param threshold                        the convergence treshold on the Frobenius norm on the AO density matrix
  *  @param maximum_number_of_iterations     the maximum number of iterations for the SCF procedure
  */
-DIISRHFSCFSolver::DIISRHFSCFSolver(SQHamiltonian<double> sq_hamiltonian, const RSpinorBasis<double, GTOShell>& spinor_basis, Molecule molecule, size_t minimum_subspace_dimension, size_t maximum_subspace_dimension, double threshold, size_t maximum_number_of_iterations) :
-    BaseRHFSCFSolver(sq_hamiltonian, spinor_basis, molecule, threshold, maximum_number_of_iterations),
+DIISRHFSCFSolverOld::DIISRHFSCFSolverOld(SQHamiltonian<double> sq_hamiltonian, const RSpinorBasis<double, GTOShell>& spinor_basis, Molecule molecule, size_t minimum_subspace_dimension, size_t maximum_subspace_dimension, double threshold, size_t maximum_number_of_iterations) :
+    BaseRHFSCFSolverOld(sq_hamiltonian, spinor_basis, molecule, threshold, maximum_number_of_iterations),
     minimum_subspace_dimension (minimum_subspace_dimension),
     maximum_subspace_dimension (maximum_subspace_dimension)
 {}

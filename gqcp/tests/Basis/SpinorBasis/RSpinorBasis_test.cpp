@@ -48,6 +48,5 @@ BOOST_AUTO_TEST_CASE ( RHF_orbitals_are_orthonormal ) {
     const auto rhf_parameters = rhf_method.optimize(objective, plain_rhf_scf_solver).groundStateParameters();
 
     spinor_basis.transform(rhf_parameters.coefficientMatrix());
-
     BOOST_CHECK(spinor_basis.isOrthonormal());
 }

@@ -180,10 +180,10 @@
 #include "QCMethod/OrbitalOptimization/NewtonOrbitalOptimizer.hpp"
 #include "QCMethod/OrbitalOptimization/QCMethodNewtonOrbitalOptimizer.hpp"
 
-#include "QCMethod/HF/DIISRHFSCFSolver.hpp"
+#include "QCMethod/HF/DIISRHFSCFSolverOld.hpp"
 #include "QCMethod/HF/PlainRHFSCFSolverOld.hpp"
 #include "QCMethod/HF/RHF.hpp"
-#include "QCMethod/HF/BaseRHFSCFSolver.hpp"
+#include "QCMethod/HF/BaseRHFSCFSolverOld.hpp"
 
 #include "QCMethod/RMP2/RMP2.hpp"
 

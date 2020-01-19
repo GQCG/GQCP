@@ -27,7 +27,7 @@
 #include "Processing/RDM/RDMCalculator.hpp"
 #include "QCMethod/CI/CISolver.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/DOCI.hpp"
-#include "QCMethod/HF/DIISRHFSCFSolver.hpp"
+#include "QCMethod/HF/DIISRHFSCFSolverOld.hpp"
 #include "QCMethod/HF/PlainRHFSCFSolverOld.hpp"
 
 
@@ -65,7 +65,7 @@ BOOST_AUTO_TEST_CASE ( CO_DOCI_constrained_dense ) {
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, CO);  // in an AO basis
 
     // Create a plain RHF SCF solver and solve the SCF equations
-    GQCP::DIISRHFSCFSolver diis_scf_solver (sq_hamiltonian, spinor_basis, CO);
+    GQCP::DIISRHFSCFSolverOld diis_scf_solver (sq_hamiltonian, spinor_basis, CO);
     diis_scf_solver.solve();
     auto rhf = diis_scf_solver.get_solution();
 

@@ -30,7 +30,7 @@
 #include "QCMethod/CI/CISolver.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/DOCI.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
-#include "QCMethod/HF/DIISRHFSCFSolver.hpp"
+#include "QCMethod/HF/DIISRHFSCFSolverOld.hpp"
 #include "QCMethod/HF/PlainRHFSCFSolverOld.hpp"
 #include "QCModel/HF/RHF.hpp"
 #include "Utilities/units.hpp"
@@ -151,7 +151,7 @@ BOOST_AUTO_TEST_CASE ( S_z_constrained_NOplus_STO_3G ) {
     size_t Ne = NOplus.numberOfElectrons();
     
     // Solve the SCF equations
-    GQCP::DIISRHFSCFSolver diis_scf_solver (sq_hamiltonian, spinor_basis, NOplus);  // the DIIS SCF solver seems to find a wrong minimum, so use a plain solver instead
+    GQCP::DIISRHFSCFSolverOld diis_scf_solver (sq_hamiltonian, spinor_basis, NOplus);  // the DIIS SCF solver seems to find a wrong minimum, so use a plain solver instead
     diis_scf_solver.solve();
     auto rhf = diis_scf_solver.get_solution();
 

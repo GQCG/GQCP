@@ -22,7 +22,7 @@
 #include "Mathematical/Optimization/Eigenproblem/DavidsonSolver.hpp"
 #include "Mathematical/Optimization/Eigenproblem/DenseSolver.hpp"
 #include "Processing/Properties/expectation_values.hpp"
-#include "QCMethod/HF/DIISRHFSCFSolver.hpp"
+#include "QCMethod/HF/DIISRHFSCFSolverOld.hpp"
 
 #include <algorithm>
 #include <chrono>
@@ -157,7 +157,7 @@ MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const s
 
     try {
         // Try the foward approach of solving the RHF equations
-        DIISRHFSCFSolver diis_scf_solver (this->sq_hamiltonian, this->spinor_basis, molecule, 6, 6, 1e-12, 500);
+        DIISRHFSCFSolverOld diis_scf_solver (this->sq_hamiltonian, this->spinor_basis, molecule, 6, 6, 1e-12, 500);
         diis_scf_solver.solve();
         auto rhf_solution = diis_scf_solver.get_solution();
         basisTransform(this->spinor_basis, this->sq_hamiltonian, rhf_solution.get_C());
@@ -181,8 +181,8 @@ MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const s
                 auto ham_par2 = SQHamiltonian<double>::Molecular(spinor_basis2, mol_fraction2);  // in AO basis
 
                 // Perform DIIS RHF for individual fractions
-                DIISRHFSCFSolver diis_scf_solver1 (ham_par1, spinor_basis1, mol_fraction1, 6, 6, 1e-12, 500);
-                DIISRHFSCFSolver diis_scf_solver2 (ham_par2, spinor_basis2, mol_fraction2, 6, 6, 1e-12, 500);
+                DIISRHFSCFSolverOld diis_scf_solver1 (ham_par1, spinor_basis1, mol_fraction1, 6, 6, 1e-12, 500);
+                DIISRHFSCFSolverOld diis_scf_solver2 (ham_par2, spinor_basis2, mol_fraction2, 6, 6, 1e-12, 500);
                 diis_scf_solver1.solve();
                 diis_scf_solver2.solve();
                 auto rhf1 = diis_scf_solver1.get_solution();
@@ -201,7 +201,7 @@ MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const s
 
                 // Attempt the DIIS for this basis
                 try {
-                    DIISRHFSCFSolver diis_scf_solver (this->sq_hamiltonian, this->spinor_basis, molecule, 6, 6, 1e-12, 500);
+                    DIISRHFSCFSolverOld diis_scf_solver (this->sq_hamiltonian, this->spinor_basis, molecule, 6, 6, 1e-12, 500);
                     diis_scf_solver.solve();
                     auto rhf = diis_scf_solver.get_solution();
                     basisTransform(this->spinor_basis, this->sq_hamiltonian, rhf.get_C());

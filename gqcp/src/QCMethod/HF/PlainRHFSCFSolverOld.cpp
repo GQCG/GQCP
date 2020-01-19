@@ -49,7 +49,7 @@ ScalarSQOneElectronOperator<double> PlainRHFSCFSolverOld::calculateNewFockMatrix
  *  @param maximum_number_of_iterations     the maximum number of iterations for the SCF procedure
  */
 PlainRHFSCFSolverOld::PlainRHFSCFSolverOld(const SQHamiltonian<double>& sq_hamiltonian, const RSpinorBasis<double, GTOShell>& spinor_basis, const Molecule& molecule, double threshold, size_t maximum_number_of_iterations) :
-    BaseRHFSCFSolver(sq_hamiltonian, spinor_basis, molecule, threshold, maximum_number_of_iterations)
+    BaseRHFSCFSolverOld(sq_hamiltonian, spinor_basis, molecule, threshold, maximum_number_of_iterations)
 {}
 
 
