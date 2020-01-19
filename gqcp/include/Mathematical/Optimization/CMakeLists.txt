@@ -3,5 +3,6 @@ target_sources(gqcp
         IterativeSolver.hpp
 )
 
+add_subdirectory(Accelerators)
 add_subdirectory(NonLinear)
 add_subdirectory(Eigenproblem)
