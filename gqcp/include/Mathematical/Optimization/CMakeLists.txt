@@ -1,6 +1,8 @@
 target_sources(gqcp
     PRIVATE
+        AcceleratedIterativeSolver.hpp
         IterativeSolver.hpp
+        ProxyAcceleratedIterativeSolver.hpp
 )
 
 add_subdirectory(Accelerators)
