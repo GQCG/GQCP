@@ -57,7 +57,7 @@ public:
      *  @return the modified iteration cycle, in order to allow chaining.
      */
     template <typename Z = IterationStep<Environment>>
-    std::enable_if_t<std::is_same<Environment, typename Z::Environment>::value, IterationCycle<Environment>&> add(const Z& step) {
+    enable_if_t<std::is_same<Environment, typename Z::Environment>::value, IterationCycle<Environment>&> add(const Z& step) {
         this->steps.append(std::make_unique(step));
         return *this;
     }
