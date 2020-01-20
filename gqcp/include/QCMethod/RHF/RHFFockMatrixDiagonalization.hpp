@@ -57,7 +57,7 @@ public:
 
         using MatrixType = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
         Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver (F, environment.S);
-        const auto& C = generalized_eigensolver.eigenvectors();
+        const TransformationMatrix<Scalar>& C = generalized_eigensolver.eigenvectors();
 
         environment.coefficient_matrices.push_back(C);
     }
