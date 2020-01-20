@@ -23,6 +23,8 @@
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Processing/RDM/OneRDM.hpp"
 
+#include <Eigen/Dense>
+
 
 namespace GQCP {
 
@@ -71,6 +73,29 @@ public:
         sq_hamiltonian (sq_hamiltonian),
         coefficient_matrices(1, C_initial)
     {}
+
+
+    /*
+     *  NAMED CONSTRUCTORS
+     */
+
+    /**
+     *  Initialize an RHF SCF environment with an initial coefficient matrix that is obtained by diagonalizing the core Hamiltonian matrix.
+     * 
+     *  @param N                    the total number of electrons
+     *  @param sq_hamiltonian       the Hamiltonian expressed in the scalar (AO) basis
+     *  @param S                    the overlap matrix (of the scalar (AO) basis)
+     */
+    RHFSCFEnvironment<Scalar> WithCoreGuess(const size_t N, const SQHamiltonian<Scalar>& sq_hamiltonian, const QCMatrix<Scalar>& S) {
+
+        const auto& H_core = sq_hamiltonian.core().parameters();
+
+        using MatrixType = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
+        Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver (H_core, S);
+        const TransformationMatrix<Scalar> C_initial = generalized_eigensolver.eigenvectors();
+
+        return RHFSCFEnvironment<Scalar>(N, sq_hamiltonian, S, C_initial);
+    }
 };
 
 
