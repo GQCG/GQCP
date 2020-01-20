@@ -35,6 +35,13 @@ public:
 public:
 
     /*
+     *  DESTRUCTOR
+     */
+
+    virtual ~ConvergenceCriterion() = default;
+
+
+    /*
      *  PUBLIC METHODS
      */
 

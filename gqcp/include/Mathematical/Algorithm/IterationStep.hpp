@@ -38,6 +38,13 @@ public:
 public:
 
     /*
+     *  DESTRUCTOR
+     */
+
+    virtual ~IterationStep() = default;
+
+
+    /*
      *  PUBLIC METHODS
      */
 
