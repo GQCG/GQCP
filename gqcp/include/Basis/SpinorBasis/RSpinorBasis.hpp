@@ -27,6 +27,8 @@
 #include "Operator/FirstQuantized/Operator.hpp"
 #include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/SQTwoElectronOperator.hpp"
+#include "Utilities/type_traits.hpp"
+#include "Utilities/typedefs.hpp"
 
 #include <Eigen/Dense>
 

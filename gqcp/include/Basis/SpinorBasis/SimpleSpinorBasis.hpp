@@ -20,6 +20,7 @@
 
 #include "Basis/TransformationMatrix.hpp"
 #include "Utilities/CRTP.hpp"
+#include "Utilities/type_traits.hpp"
 
 
 namespace GQCP {

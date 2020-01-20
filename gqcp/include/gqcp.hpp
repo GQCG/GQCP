@@ -191,7 +191,9 @@
 
 #include "Utilities/CRTP.hpp"
 #include "Utilities/linalg.hpp"
+#include "Utilities/memory.hpp"
 #include "Utilities/miscellaneous.hpp"
+#include "Utilities/type_traits.hpp"
 #include "Utilities/typedefs.hpp"
 #include "Utilities/units.hpp"
 
