@@ -62,10 +62,10 @@ public:
      *  @param convergence_criterion                the convergence criterion that must be fulfilled in order for the algorithm to have converged
      *  @param maximum_number_of_iterations         the maximum number of iterations the algorithm may perform
      */
-    IterativeSolver(const IterationCycle<Environment>& iteration_cycle, const ConvergenceCriterion<Environment>& convergence_criterion, const size_t maximum_number_of_iterations = 128) :
+    IterativeAlgorithm(const IterationCycle<Environment>& iteration_cycle, const ConvergenceCriterion<Environment>& convergence_criterion, const size_t maximum_number_of_iterations = 128) :
         maximum_number_of_iterations (maximum_number_of_iterations),
         iteration_cycle (iteration_cycle),
-        convergence_criterion (make_unique(convergence_criterion))
+        convergence_criterion(make_unique(convergence_criterion))
     {}
 
 

@@ -63,7 +63,7 @@ typename _Unique_if<T>::_Single_object make_unique(Args&&... args) {
 
 template <class T>
 typename _Unique_if<T>::_Unknown_bound make_unique(size_t n) {
-    using U = typename remove_extent<T>::type;
+    using U = typename std::remove_extent<T>::type;
     return std::unique_ptr<T>(new U[n]());
 }
 

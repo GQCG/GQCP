@@ -48,26 +48,20 @@ private:
 public:
 
     /*
-     *  CONSTRUCTORS
+     *  PUBLIC METHODS
      */
-    IterationCycle() : {}
-
 
     /**
      *  Add a new step to the iteration cycle.
      * 
      *  @return the modified iteration cycle, in order to allow chaining.
      */
-    template <typename Z = IterationStep>
-    std::enable_if_t<std::is_same<Environment, typename Z::Environment>, IterationCycle&> add(const Z<Environment>& step) {
+    template <typename Z = IterationStep<Environment>>
+    std::enable_if_t<std::is_same<Environment, typename Z::Environment>::value, IterationCycle<Environment>&> add(const Z& step) {
         this->steps.append(std::make_unique(step));
         return *this;
     }
 
-
-    /*
-     *  PUBLIC METHODS
-     */
 
     /**
      *  Execute all the steps of this iteration cycle.
