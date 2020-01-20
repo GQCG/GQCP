@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "QCMethod/RHF/RHFSCFSolver.hpp"
+#include "QCMethod/RHF/RHFSCFSolverOld.hpp"
 
 
 namespace GQCP {
@@ -32,7 +32,7 @@ namespace GQCP {
  *  @param threshold                        the convergence treshold on the Frobenius norm on the AO density matrix
  *  @param maximum_number_of_iterations     the maximum number of iterations for the SCF procedure
  */
-RHFSCFSolver::RHFSCFSolver(const SQHamiltonian<double>& sq_hamiltonian, const RSpinorBasis<double, GTOShell>& spinor_basis, const Molecule& molecule, double threshold, size_t maximum_number_of_iterations) :
+RHFSCFSolverOld::RHFSCFSolverOld(const SQHamiltonian<double>& sq_hamiltonian, const RSpinorBasis<double, GTOShell>& spinor_basis, const Molecule& molecule, double threshold, size_t maximum_number_of_iterations) :
     sq_hamiltonian (sq_hamiltonian),
     spinor_basis (spinor_basis),
     molecule (molecule),
@@ -41,7 +41,7 @@ RHFSCFSolver::RHFSCFSolver(const SQHamiltonian<double>& sq_hamiltonian, const RS
 {
     // Check if the given molecule has an even number of electrons
     if ((molecule.numberOfElectrons() % 2) != 0) {
-        throw std::invalid_argument("RHFSCFSolver::RHFSCFSolver(): The given molecule has an odd number of electrons.");
+        throw std::invalid_argument("RHFSCFSolverOld::RHFSCFSolverOld(): The given molecule has an odd number of electrons.");
     }
 }
 
@@ -54,7 +54,7 @@ RHFSCFSolver::RHFSCFSolver(const SQHamiltonian<double>& sq_hamiltonian, const RS
 /**
  *  Solve the RHF SCF equations
  */
-void RHFSCFSolver::solve() {
+void RHFSCFSolverOld::solve() {
 
     const auto& H_core = this->sq_hamiltonian.core().parameters();
     const auto S = this->spinor_basis.overlap().parameters();
@@ -73,7 +73,7 @@ void RHFSCFSolver::solve() {
  * 
  *  @param C        the initial guess for the canonical RHF coefficient matrix
  */
-void RHFSCFSolver::solve(const TransformationMatrix<double>& C_initial) {
+void RHFSCFSolverOld::solve(const TransformationMatrix<double>& C_initial) {
 
     const auto& H_core = this->sq_hamiltonian.core();
     const auto S = this->spinor_basis.overlap().parameters();
@@ -102,7 +102,7 @@ void RHFSCFSolver::solve(const TransformationMatrix<double>& C_initial) {
             ScalarSQOneElectronOperator<double> F = F_AO;
             F.transform(C);  // transform F to the MO basis with C
             if (!(F.parameters().isDiagonal())) {
-                throw std::runtime_error("RHFSCFSolver::solve(): The RHF SCF procedure is converged but the MO Fock matrix is not diagonal.");
+                throw std::runtime_error("RHFSCFSolverOld::solve(): The RHF SCF procedure is converged but the MO Fock matrix is not diagonal.");
             }
 
             // Set the converged solution
@@ -114,7 +114,7 @@ void RHFSCFSolver::solve(const TransformationMatrix<double>& C_initial) {
 
             // If we reach more than this->maximum_number_of_iterations, the system is considered not to be converging
             if (iteration_counter >= this->maximum_number_of_iterations) {
-                throw std::runtime_error("RHFSCFSolver::solve(): The SCF procedure did not converge.");
+                throw std::runtime_error("RHFSCFSolverOld::solve(): The SCF procedure did not converge.");
             }
         }
     }  // while not converged

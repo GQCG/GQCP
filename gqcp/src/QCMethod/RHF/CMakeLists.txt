@@ -3,5 +3,5 @@ target_sources(gqcp
         DIISRHFSCFSolver.cpp
         PlainRHFSCFSolver.cpp
         RHF.cpp
-        RHFSCFSolver.cpp
+        RHFSCFSolverOld.cpp
 )

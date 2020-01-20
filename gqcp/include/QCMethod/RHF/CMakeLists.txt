@@ -8,5 +8,5 @@ target_sources(gqcp
         RHFFockMatrixCalculation.hpp
         RHFFockMatrixDiagonalization.hpp
         RHFSCFEnvironment.hpp
-        RHFSCFSolver.hpp
+        RHFSCFSolverOld.hpp
 )

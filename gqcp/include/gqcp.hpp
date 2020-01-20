@@ -189,7 +189,7 @@
 #include "QCMethod/RHF/DIISRHFSCFSolver.hpp"
 #include "QCMethod/RHF/PlainRHFSCFSolver.hpp"
 #include "QCMethod/RHF/RHF.hpp"
-#include "QCMethod/RHF/RHFSCFSolver.hpp"
+#include "QCMethod/RHF/RHFSCFSolverOld.hpp"
 
 #include "QCMethod/RMP2/RMP2.hpp"
 
