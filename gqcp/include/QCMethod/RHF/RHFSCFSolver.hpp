@@ -18,81 +18,51 @@
 #pragma once
 
 
-#include "Basis/SpinorBasis/RSpinorBasis.hpp"
-#include "Basis/TransformationMatrix.hpp"
 #include "Mathematical/Algorithm/IterativeAlgorithm.hpp"
-#include "Molecule/Molecule.hpp"
-#include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "QCMethod/RHF/RHF.hpp"
+#include "QCMethod/RHF/RHFSCFEnvironment.hpp"
+#include "QCMethod/RHF/RHFDensityMatrixCalculation.hpp"
+#include "QCMethod/RHF/RHFDensityMatrixConvergenceCriterion.hpp"
+#include "QCMethod/RHF/RHFFockMatrixCalculation.hpp"
+#include "QCMethod/RHF/RHFFockMatrixDiagonalization.hpp"
 
 
 namespace GQCP {
 
 
 /**
- *  Base class for RHF SCF solvers. This class contains the solve()-method, which does the RHF SCF procedure.
- *
- *  Derived classes should implement the pure virtual function calculateNewFockMatrix().
+ *  A factory class that can construct RHF SCF solvers in an easy way.
+ * 
+ *  @tparam _Scalar             the scalar type that is used for the coefficient matrix/expansion coefficients
  */
+template <typename _Scalar>
 class RHFSCFSolver {
-protected:
-    size_t maximum_number_of_iterations;
-    double threshold;
-    bool is_converged = false;
-
-    RSpinorBasis<double, GTOShell> spinor_basis;  // the spinor basis (AOs)
-    SQHamiltonian<double> sq_hamiltonian;  // the Hamiltonian expressed in an AO basis
-    Molecule molecule;
-
-    RHF solution;
-
-
-    // PROTECTED METHODS
-
-    /**
-     *  Update the Fock matrix, i.e. calculate the Fock matrix to be used in the next iteration of the SCF procedure
-     *
-     *  @param D_AO     the RHF density matrix in AO basis
-     *
-     *  @return the new Fock matrix (expressed in AO basis)
-     */
-    virtual ScalarSQOneElectronOperator<double> calculateNewFockMatrix(const OneRDM<double>& D_AO) = 0;
+public:
+    using Scalar = _Scalar;
+    using Environment = RHFSCFEnvironment<Scalar>;
 
 
 public:
-    // CONSTRUCTORS
 
-    /**
-     *  @param sq_hamiltonian                   the Hamiltonian expressed in an AO basis
-     *  @param spinor_basis                     the spinor basis
-     *  @param molecule                         the molecule used for the SCF calculation
-     *  @param threshold                        the convergence treshold on the Frobenius norm on the AO density matrix
-     *  @param maximum_number_of_iterations     the maximum number of iterations for the SCF procedure
+    /*
+     *  PUBLIC STATIC METHODS
      */
-    RHFSCFSolver(const SQHamiltonian<double>& sq_hamiltonian, const RSpinorBasis<double, GTOShell>& spinor_basis, const Molecule& molecule, double threshold=1.0e-08, size_t maximum_number_of_iterations=128);
-
-
-    // DESTRUCTOR
-    virtual ~RHFSCFSolver() = default;
-
-
-    // GETTERS
-    const RHF& get_solution() const { return this->solution; }
-
-
-    // PUBLIC METHODS
 
     /**
-     *  Solve the RHF SCF equations, obtaining an initial guess by solving the generalized eigenvalue problem for H_core
-     */
-    void solve();
-
-    /**
-     *  Solve the RHF SCF equations using an initial guess
+     *  @param threshold                            the threshold that is used in comparing the density matrices
+     *  @param maximum_number_of_iterations         the maximum number of iterations the algorithm may perform
      * 
-     *  @param C_initial            the initial guess for the canonical RHF coefficient matrix
+     *  @return a plain RHF SCF solver that uses the norm of the difference of two consecutive density matrices as a convergence criterion.
      */
-    void solve(const TransformationMatrix<double>& C_initial);
+    IterativeAlgorithm<Environment> Plain(const double threshold = 1.0e-08, const size_t maximum_number_of_iterations = 128) {
+
+        // Create the iteration cycle that effectively 'defines' a plain RHF SCF solver
+        IterationCycle<Environment> plain_rhf_scf_cycle {};
+        plain_rhf_scf_cycle.add(RHFDensityMatrixCalculation<Scalar>())
+                           .add(RHFFockMatrixCalculation<Scalar>())
+                           .add(RHFFockMatrixDiagonalization<Scalar>());
+
+        return IterativeAlgorithm<Environment>(plain_rhf_scf_cycle, RHFDensityMatrixConvergenceCriterion<Scalar>(threshold), maximum_number_of_iterations);
+    }
 };
 
 
