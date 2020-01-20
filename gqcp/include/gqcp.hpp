@@ -71,6 +71,11 @@
 #include "FockSpace/ProductFockSpace.hpp"
 #include "FockSpace/SelectedFockSpace.hpp"
 
+#include "Mathematical/Algorithm/ConvergenceCriterion.hpp"
+#include "Mathematical/Algorithm/IterationCycle.hpp"
+#include "Mathematical/Algorithm/IterationStep.hpp"
+#include "Mathematical/Algorithm/IterativeAlgorithm.hpp"
+
 #include "Mathematical/Optimization/BaseEigenproblemSolver.hpp"
 #include "Mathematical/Optimization/BaseHessianModifier.hpp"
 #include "Mathematical/Optimization/BaseMatrixSolver.hpp"
