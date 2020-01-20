@@ -18,14 +18,8 @@
 #pragma once
 
 
-#include "Basis/SpinorBasis/RSpinorBasis.hpp"
-#include "Basis/ScalarBasis/GTOShell.hpp"
-#include "Basis/TransformationMatrix.hpp"
-#include "Mathematical/Optimization/IterativeSolver.hpp"
-#include "Mathematical/Representation/SquareMatrix.hpp"
-#include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "Processing/RDM/OneRDM.hpp"
-#include "QCModel/HF/RHF.hpp"
+#include "Mathematical/Optimization/Accelerators/DIIS.hpp"
+#include "Mathematical/Optimization/ProxyAcceleratedIterativeSolver.hpp"
 #include "QCMethod/HF/BaseRHFSCFSolver.hpp"
 
 #include <Eigen/Dense>
@@ -33,21 +27,20 @@
 
 namespace GQCP {
 
+
 /**
- *  A restricted Hartree-Fock self-consistent field (RHF SCF) solver that uses a DIIS accelerator on the Fock matrix.
- * 
- *  This is not a regular DIIS solver, as it does not construct a linear combination of the iterates (i.e. the coefficient matrices): it uses a linear combination of previous Fock matrices, from which the next iterate is calculated.
+ *  A restricted Hartree-Fock self-consistent field (RHF SCF) solver that uses a DIIS accelerator on the Fock matrix to help convergence.
  * 
  *  @tparam _ExpansionScalar        the type of scalar that is used to describe the expansion coefficients
  */
 template <typename _ExpansionScalar>
 class DIISRHFSCFSolver :
-    public DIISSolver<TransformationMatrix<_ExpansionScalar>, SquareMatrix<_ExpansionScalar>, _ExpansionScalar>,
+    public ProxyAcceleratedIterativeSolver<TransformationMatrix<_ExpansionScalar>, DIIS<ScalarSQOneElectronOperator<_ExpansionScalar>, ScalarSQOneElectronOperator<_ExpansionScalar>, ExpansionScalar>>,
     public BaseRHFSCFSolver<_ExpansionScalar> {
 
 public:
     using ExpansionScalar = _ExpansionScalar;
-    using BaseDIISSolver = DIISSolver<TransformationMatrix<ExpansionScalar>, SquareMatrix<ExpansionScalar>, ExpansionScalar>;
+    using BaseIterativeSolver = ProxyAcceleratedIterativeSolver<TransformationMatrix<_ExpansionScalar>>;
     using BaseRHFSCFSolver = BaseRHFSCFSolver<ExpansionScalar>;
 
 
@@ -56,8 +49,6 @@ private:
 
     OneRDM<ExpansionScalar> D_previous;  // expressed in the scalar orbital basis
     OneRDM<ExpansionScalar> D_current;  // expressed in the scalar orbital basis
-
-    std::deque<ScalarSQOneElectronOperator<ExpansionScalar>> fock_deque;  // expressed in the scalar orbital basis
 
 
 public:
@@ -79,7 +70,7 @@ public:
      *  @param maximum_number_of_iterations         the maximum number of iterations the solver may perform
      */
     DIISRHFSCFSolver(const TransformationMatrix<ExpansionScalar>& C_initial, const size_t N, const SquareMatrix<ExpansionScalar>& S, const SQHamiltonian<ExpansionScalar>& sq_hamiltonian, const size_t minimum_subspace_dimension = 6, const size_t maximum_subspace_dimension = 6, const double threshold = 1.0e-08, const size_t maximum_number_of_iterations = 128) :
-        BaseDIISSolver(C_initial, maximum_number_of_iterations, minimum_subspace_dimension, maximum_subspace_dimension),
+        BaseIterativeSolver(C_initial, maximum_number_of_iterations, minimum_subspace_dimension, maximum_subspace_dimension),
         BaseRHFSCFSolver(N, S, sq_hamiltonian),
         threshold (threshold)
     {

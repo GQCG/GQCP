@@ -92,8 +92,7 @@ public:
      * 
      *  @param subject              the subject
      */
-    void add(const Subject& subject) {
-        this->subjects.emplace(subject);
+    void feed(const Subject& subject) {
 
         // Remove the oldest subject if there are enough subjects in the subspace
         if (this->subjects.size() >= 2) {

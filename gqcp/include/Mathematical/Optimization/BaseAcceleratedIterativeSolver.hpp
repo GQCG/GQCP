@@ -76,19 +76,6 @@ public:
      *  @return the 'regular' iterate
      */
     virtual Iterate calculateRegularIterate() = 0;
-
-
-    /*
-     *  OVERRIDDEN PUBLIC METHODS
-     */
-
-    /**
-     *  @return a new iterate to be used in the next iteration
-     */
-    Iterate calculateNextIterate() {
-        const auto iterate = this->calculateRegularIterate();
-        return this->accelerator.accelerate(iterate);
-    }
 };
 
 

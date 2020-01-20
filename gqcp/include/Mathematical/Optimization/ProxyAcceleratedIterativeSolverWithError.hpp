@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Mathematical/Optimization/BaseAcceleratedIterativeSolver.hpp"
+#include "Mathematical/Optimization/ProxyAcceleratedIterativeSolver.hpp"
 
 
 namespace GQCP {
@@ -37,9 +37,11 @@ template <typename _Iterate, typename _Accelerator>
 class ProxyAcceleratedIterativeSolver :
     public BaseAcceleratedIterativeSolver<_Iterate> {
 
+
 public:
     using Iterate = _Iterate;
     using Accelerator = _Accelerator;
+    using Error = typename Accelerator::Error;
     using Proxy = typename Accelerator::Subject;
     using Base = BaseAcceleratedIterativeSolver<Iterate>;
 
@@ -72,6 +74,12 @@ public:
     virtual Iterate calculateIterateFromProxy(const Proxy& proxy) = 0;
 
 
+    /**
+     *  @return the error measure of the current iteration
+     */
+    virtual Error calculateError() = 0;
+
+
     /*
      *  OVERRIDDEN PUBLIC METHODS
      */
@@ -79,12 +87,14 @@ public:
     /**
      *  @return a new iterate to be used in the next iteration
      */
-    virtual Iterate calculateNextIterate() {
+    Iterate calculateNextIterate() {
 
-        // Calculate a next iterate through accelerating its proxy
+        // Calculate a next iterate through accelerating its proxy and corresponding error
         const auto iterate = this->calculateRegularIterate();
         const auto accelerator_subject = this->calculateAcceleratorSubject(iterate);
-        const auto accelerated_subject = this->accelerator.accelerate(accelerator_subject);
+        const auto error = this->calculateError();
+        this->accelerator.feed(accelerator_subject, error);
+        const auto accelerated_subject = this->accelerator.accelerate();
 
         return this->calculateIterateFromProxy(accelerated_subject);
     }

@@ -59,8 +59,10 @@ public:
     /**
      *  @return a new iterate to be used in the next iteration
      */
-    Iterate calculateNextIterate() {
+    virtual Iterate calculateNextIterate() {
+
         const auto iterate = this->calculateRegularIterate();
+        this->accelerator.feed(iterate);
         return this->accelerator.accelerate(iterate);
     }
 };

@@ -18,47 +18,24 @@
 #pragma once
 
 
-#include <complex>
-#include <cstdlib>
+/**
+ *  Extensions of the <type_traits> header that haven't been included in C++11
+ */
+
+
 #include <type_traits>
-#include <vector>
 
 
 
 /**
- *  A header that contains general typedefs inside the GQCP namespace
+ *  An implementation of std::enable_if_t.
  */
 
-
-namespace GQCP {
-
-
-/*
- *  SCALARS
- */
-using cd = std::complex<double>;
+namespace std {
 
 
-/*
- *  VECTORS
- */
-using Vectoru = std::vector<size_t>;
+template <bool B, typename T = void>
+using enable_if_t = typename std::enable_if<B, T>::type;  // only in C++14
 
 
-/*
- *  MATRICES
- */
-using Matrixu = std::vector<Vectoru>;
-
-
-/*
- *  TEMPLATE ALIASES
- */
-template <typename T, typename U>
-using sum_t = decltype(std::declval<T>() + std::declval<U>());
-
-template <typename T, typename U>
-using product_t = decltype(std::declval<T>() * std::declval<U>());
-
-
-}  // namespace GQCP
+}  // namespace std

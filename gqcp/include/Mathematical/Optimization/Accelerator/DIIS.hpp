@@ -69,13 +69,6 @@ public:
      */
 
     /**
-     *  @param subject              the subject
-     * 
-     *  @return the error associated to the given subject
-     */
-    virtual Error calculateError(const Subject& subject) = 0;
-
-    /**
      *  @param e1                   the first error
      *  @param e2                   the second error
      * 
@@ -95,11 +88,9 @@ public:
      * 
      *  @return an accelerated subject
      */
-    Subject accelerate(const Subject& subject) {
+    Subject accelerate() {
 
-        // Add the new subject to the subject subspace and perform an acceleration step if possible
-        this->add_subject(subject);
-
+        // Perform an acceleration step if possible
         if (this->canAccelerate()) {
             const auto diis_coefficients = this->calculateDIISCoefficients();
             const auto accelerated_subject = this->calculateAcceleratedSubject(diis_coefficients);
@@ -107,21 +98,22 @@ public:
         }
 
         else {  // no acceleration is possible
-            return subject;
+            const auto last_index = this->subjects.size() - 1;
+            return this->subjects.at(last_index);
         }
     }
 
 
     /**
-     *  Add a subject to the subspace of subjects. Furthermore, calculate its associated error and manage the subspace of subjects if it becomes too large.
+     *  Feed a subject and its associate error to the respective subspace. Furthermore, manage the subspaces if they become too large.
      * 
      *  @param subject              the subject
+     *  @param error                the associated error
      */
-    void add(const Subject& subject) {
+    void feed(const Subject& subject, const Error& error) {
 
         // Add the subject and its associated error to the subspace
         this->subjects.emplace(subject);
-        const auto error = this->calculateError(subject);
         this->errors.emplace(error);
 
         // Remove the oldest subject and error if the subspace is large enough
