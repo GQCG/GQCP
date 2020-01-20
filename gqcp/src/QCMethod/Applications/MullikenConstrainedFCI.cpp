@@ -19,8 +19,8 @@
 
 #include "Basis/transform.hpp"
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
-#include "Mathematical/Optimization/DavidsonSolver.hpp"
-#include "Mathematical/Optimization/DenseSolver.hpp"
+#include "Mathematical/Optimization/Eigenproblem/DavidsonSolver.hpp"
+#include "Mathematical/Optimization/Eigenproblem/DenseSolver.hpp"
 #include "Processing/Properties/expectation_values.hpp"
 #include "QCMethod/RHF/DIISRHFSCFSolver.hpp"
 

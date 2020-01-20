@@ -20,7 +20,7 @@
 
 #include "Basis/SpinorBasis/OrbitalRotationGenerators.hpp"
 #include "Basis/TransformationMatrix.hpp"
-#include "Mathematical/Optimization/BaseHessianModifier.hpp"
+#include "Mathematical/Optimization/NonLinear/BaseHessianModifier.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Mathematical/Representation/SquareRankFourTensor.hpp"
 #include "QCMethod/OrbitalOptimization/BaseOrbitalOptimizer.hpp"

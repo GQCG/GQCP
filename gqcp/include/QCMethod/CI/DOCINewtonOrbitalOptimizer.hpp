@@ -19,8 +19,8 @@
 
 
 #include "FockSpace/WaveFunction/WaveFunction.hpp"
-#include "Mathematical/Optimization/Eigenpair.hpp"
-#include "Mathematical/Optimization/EigenproblemSolverOptions.hpp"
+#include "Mathematical/Optimization/Eigenproblem/Eigenpair.hpp"
+#include "Mathematical/Optimization/Eigenproblem/EigenproblemSolverOptions.hpp"
 #include "Processing/RDM/RDMCalculator.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/DOCI.hpp"
 #include "QCMethod/OrbitalOptimization/QCMethodNewtonOrbitalOptimizer.hpp"

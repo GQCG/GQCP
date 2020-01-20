@@ -19,8 +19,8 @@
 
 
 #include "FockSpace/WaveFunction/WaveFunction.hpp"
-#include "Mathematical/Optimization/Eigenpair.hpp"
-#include "Mathematical/Optimization/EigenproblemSolverOptions.hpp"
+#include "Mathematical/Optimization/Eigenproblem/Eigenpair.hpp"
+#include "Mathematical/Optimization/Eigenproblem/EigenproblemSolverOptions.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/HamiltonianBuilder.hpp"
 
