@@ -29,7 +29,7 @@ namespace GQCP {
 /**
  *  A convergence criterion on the norm of subsequent RHF density matrices.
  * 
- *  @param _Scalar              the scalar type used to represent the expansion coefficient/elements of the transformation matrix
+ *  @tparam _Scalar              the scalar type used to represent the expansion coefficient/elements of the transformation matrix
  */
 template <typename _Scalar>
 class RHFDensityMatrixConvergenceCriterion :

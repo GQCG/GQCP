@@ -29,7 +29,7 @@ namespace GQCP {
 /**
  *  An iteration step that calculates the current Fock matrix (expressed in the scalar/AO basis) from the current density matrix.
  * 
- *  @param _Scalar              the scalar type used to represent the expansion coefficient/elements of the transformation matrix
+ *  @tparam _Scalar              the scalar type used to represent the expansion coefficient/elements of the transformation matrix
  */
 template <typename _Scalar>
 class RHFFockMatrixCalculation :
