@@ -191,7 +191,7 @@
 #include "QCMethod/RHF/RHFDensityMatrixCalculation.hpp"
 #include "QCMethod/RHF/RHFDensityMatrixConvergenceCriterion.hpp"
 #include "QCMethod/RHF/RHFElectronicEnergyCalculation.hpp"
-#include "QCMethod/RHF/RHFFockaMatrixCalculation.hpp"
+#include "QCMethod/RHF/RHFFockMatrixCalculation.hpp"
 #include "QCMethod/RHF/RHFFockMatrixDiagonalization.hpp"
 #include "QCMethod/RHF/RHFSCFEnvironment.hpp"
 #include "QCMethod/RHF/RHFSCFSolver.hpp"
