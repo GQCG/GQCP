@@ -104,7 +104,7 @@ double calculateSpinSquared(const OneRDMs<Scalar>& one_rdms, const TwoRDMs<Scala
     double s_squared = -sz;
     const size_t K = one_rdms.dimension();
     for (size_t p = 0; p < K; p++) {
-        s_squared += one_rdms.one_rdm_aa(p, p)  // One-electron partition of S+S_
+        s_squared += one_rdms.one_rdm_aa(p, p);  // One-electron partition of S+S_
         s_squared += (one_rdms.one_rdm_aa(p, p) +  one_rdms.one_rdm_bb(p, p))/4;  // One-electron partition of S^2
         for (size_t q = 0; q < K; q++) {
             s_squared += -two_rdms.two_rdm_aabb(p,q,q,p);  // Two-electron partition  S+S_
