@@ -22,16 +22,9 @@ namespace GQCP {
 
 
 /**
- *  An accelerator that produces its accelerated subject by a linear combination of the two previous subjects.
- * 
- *  @tparam _Subject         the type whose instances should be accelerated
+ *  An accelerator that produces its accelerated subject by a damped linear combination of the two previous subjects.
  */
-template <typename _Subject>
 class ConstantDamper {
-public:
-    using Subject = _Subject;
-
-
 private:
     double alpha;  // the damping factor
 
@@ -61,11 +54,14 @@ public:
     /**
      *  Calculate an accelerated subject using a constant damping step.
      * 
+     *  @tparam Subject                 the type of subject that should be accelerated
+     * 
      *  @param last                     the most recent subject
      *  @param next_to_last             the second most recent subject
      * 
      *  @return an accelerated subject
      */
+    template <typename Subject>
     Subject accelerate(const Subject& last, const Subject& next_to_last) {
 
         Subject accelerated_subject = last * this->alpha + next_to_last * (1 - this->alpha);
