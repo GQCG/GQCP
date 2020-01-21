@@ -37,6 +37,7 @@ BOOST_AUTO_TEST_CASE ( constructor ) {
 
     BOOST_CHECK_NO_THROW(const GQCP::RHFSCFEnvironment<double> rhf_environment (h2.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters(), GQCP::TransformationMatrix<double>::Random(K, K)));
 
+
     // Check if a faulty constructor with an odd number of electron throws
     auto h2_ion = GQCP::Molecule::ReadXYZ("data/h2_szabo.xyz", +1);
     BOOST_CHECK_THROW(const GQCP::RHFSCFEnvironment<double> rhf_environment (h2_ion.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters(), GQCP::TransformationMatrix<double>::Random(K, K)), std::invalid_argument);
