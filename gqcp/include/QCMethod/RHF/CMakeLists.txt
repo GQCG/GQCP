@@ -1,7 +1,6 @@
 target_sources(gqcp
     PRIVATE
         DIISRHFSCFSolver.hpp
-        PlainRHFSCFSolver.hpp
         RHF.hpp
         RHFDensityMatrixCalculation.hpp
         RHFDensityMatrixConvergenceCriterion.hpp
