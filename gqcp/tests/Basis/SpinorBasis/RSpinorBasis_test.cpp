@@ -22,7 +22,7 @@
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
 
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "QCMethod/RHF/PlainRHFSCFSolver.hpp"
+#include "QCMethod/RHF/RHFSCFSolver.hpp"
 
 
 /**
@@ -37,10 +37,13 @@ BOOST_AUTO_TEST_CASE ( RHF_orbitals_are_orthonormal ) {
 
 
     // The orbitals in the RHF basis should be orthonormal
-    const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2o);  // in the AO basis
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, h2o);
-    plain_scf_solver.solve();
-    auto rhf = plain_scf_solver.get_solution();
+    const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2o);  // in the scalar/AO basis
+
+    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(h2o.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
+    auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
+    plain_rhf_scf_solver.iterate(rhf_environment);
+    const auto rhf = rhf_environment.solution();
+
     spinor_basis.transform(rhf.get_C());
 
     BOOST_CHECK(spinor_basis.isOrthonormal());

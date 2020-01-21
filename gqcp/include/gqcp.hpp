@@ -187,8 +187,14 @@
 #include "QCMethod/OrbitalOptimization/QCMethodNewtonOrbitalOptimizer.hpp"
 
 #include "QCMethod/RHF/DIISRHFSCFSolver.hpp"
-#include "QCMethod/RHF/PlainRHFSCFSolver.hpp"
 #include "QCMethod/RHF/RHF.hpp"
+#include "QCMethod/RHF/RHFDensityMatrixCalculation.hpp"
+#include "QCMethod/RHF/RHFDensityMatrixConvergenceCriterion.hpp"
+#include "QCMethod/RHF/RHFElectronicEnergyCalculation.hpp"
+#include "QCMethod/RHF/RHFFockaMatrixCalculation.hpp"
+#include "QCMethod/RHF/RHFFockMatrixDiagonalization.hpp"
+#include "QCMethod/RHF/RHFSCFEnvironment.hpp"
+#include "QCMethod/RHF/RHFSCFSolver.hpp"
 #include "QCMethod/RHF/RHFSCFSolverOld.hpp"
 
 #include "QCMethod/RMP2/RMP2.hpp"

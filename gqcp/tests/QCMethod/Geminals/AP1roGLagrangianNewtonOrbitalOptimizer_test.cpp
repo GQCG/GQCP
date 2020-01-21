@@ -23,10 +23,10 @@
 
 #include "Basis/transform.hpp"
 #include "Mathematical/Optimization/NonLinear/IterativeIdentitiesHessianModifier.hpp"
-#include "QCMethod/RHF/PlainRHFSCFSolver.hpp"
 #include "QCMethod/Geminals/AP1roG.hpp"
 #include "QCMethod/Geminals/AP1roGPSESolver.hpp"
 #include "QCMethod/Geminals/AP1roGLagrangianOptimizer.hpp"
+#include "QCMethod/RHF/RHFSCFSolver.hpp"
 
 
 /**
@@ -40,9 +40,10 @@ BOOST_AUTO_TEST_CASE ( lih_6_31G_orbital_optimize ) {
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (lih, "6-31G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, lih);  // in an AO basis
 
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, lih);
-    plain_scf_solver.solve();
-    const auto rhf = plain_scf_solver.get_solution();
+    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(lih.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
+    auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
+    plain_rhf_scf_solver.iterate(rhf_environment);
+    const auto rhf = rhf_environment.solution();
     basisTransform(spinor_basis, sq_hamiltonian, rhf.get_C());
 
 

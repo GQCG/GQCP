@@ -23,7 +23,7 @@
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/CI/CISolver.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
-#include "QCMethod/RHF/PlainRHFSCFSolver.hpp"
+#include "QCMethod/RHF/RHFSCFSolver.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( FCI_h2_sto3g_dense_vs_Davidson ) {
@@ -37,9 +37,10 @@ BOOST_AUTO_TEST_CASE ( FCI_h2_sto3g_dense_vs_Davidson ) {
     auto K = sq_hamiltonian.dimension();
 
     // Create a plain RHF SCF solver and solve the SCF equations
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, h2);
-    plain_scf_solver.solve();
-    auto rhf = plain_scf_solver.get_solution();
+    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(h2.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
+    auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
+    plain_rhf_scf_solver.iterate(rhf_environment);
+    const auto rhf = rhf_environment.solution();
 
     // Transform the Hamiltonian to the RHF orbital basis
     GQCP::basisTransform(spinor_basis, sq_hamiltonian, rhf.get_C());
@@ -80,9 +81,10 @@ BOOST_AUTO_TEST_CASE ( FCI_H2_6_31Gxx_dense_vs_Davidson ) {
     auto K = sq_hamiltonian.dimension();
 
     // Create a plain RHF SCF solver and solve the SCF equations
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, h2);
-    plain_scf_solver.solve();
-    auto rhf = plain_scf_solver.get_solution();
+    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(h2.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
+    auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
+    plain_rhf_scf_solver.iterate(rhf_environment);
+    const auto rhf = rhf_environment.solution();
 
     // Transform the Hamiltonian to the RHF orbital basis
     GQCP::basisTransform(spinor_basis, sq_hamiltonian, rhf.get_C());
@@ -123,9 +125,10 @@ BOOST_AUTO_TEST_CASE ( FCI_H2O_STO_3G_dense_vs_Davidson ) {
     auto K = sq_hamiltonian.dimension();
 
     // Create a plain RHF SCF solver and solve the SCF equations
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, h2o);
-    plain_scf_solver.solve();
-    auto rhf = plain_scf_solver.get_solution();
+    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(h2o.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
+    auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
+    plain_rhf_scf_solver.iterate(rhf_environment);
+    const auto rhf = rhf_environment.solution();
 
     // Transform the Hamiltonian to the RHF orbital basis
     GQCP::basisTransform(spinor_basis, sq_hamiltonian, rhf.get_C());
@@ -165,9 +168,10 @@ BOOST_AUTO_TEST_CASE ( FCI_H6_STO_3G_dense_vs_Davidson ) {
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, H6);  // in an AO basis
 
     // Create a plain RHF SCF solver and solve the SCF equations
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, H6);
-    plain_scf_solver.solve();
-    auto rhf = plain_scf_solver.get_solution();
+    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(H6.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
+    auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
+    plain_rhf_scf_solver.iterate(rhf_environment);
+    const auto rhf = rhf_environment.solution();
 
     // Transform the Hamiltonian to the RHF orbital basis
     GQCP::basisTransform(spinor_basis, sq_hamiltonian, rhf.get_C());

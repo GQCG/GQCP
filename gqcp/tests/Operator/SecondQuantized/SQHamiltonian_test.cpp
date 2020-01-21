@@ -21,7 +21,6 @@
 
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 
-#include "QCMethod/RHF/PlainRHFSCFSolver.hpp"
 #include "Utilities/miscellaneous.hpp"
 #include "Utilities/linalg.hpp"
 

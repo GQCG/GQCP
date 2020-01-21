@@ -29,7 +29,7 @@
 #include "QCMethod/CI/CISolver.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
 #include "QCMethod/RHF/DIISRHFSCFSolver.hpp"
-#include "QCMethod/RHF/PlainRHFSCFSolver.hpp"
+#include "QCMethod/RHF/RHFSCFSolver.hpp"
 #include "Utilities/units.hpp"
 
 
@@ -85,9 +85,10 @@ BOOST_AUTO_TEST_CASE ( dipole_N2_STO_3G ) {
     size_t N = N2.numberOfElectrons();
 
     // Solve the SCF equations
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, N2);  // The DIIS SCF solver seems to find a wrong minimum, so use a plain solver instead
-    plain_scf_solver.solve();
-    auto rhf = plain_scf_solver.get_solution();
+    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(N2.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
+    auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
+    plain_rhf_scf_solver.iterate(rhf_environment);
+    const auto rhf = rhf_environment.solution();
 
     double total_energy = rhf.get_electronic_energy() + GQCP::Operator::NuclearRepulsion(N2).value();
     BOOST_REQUIRE(std::abs(total_energy - (-107.500654)) < 1.0e-05);  // from CCCBDB, require a correct RHF solution to be found
@@ -127,9 +128,10 @@ BOOST_AUTO_TEST_CASE ( h2_polarizability_RHF ) {
 
 
     // Do the RHF calculation to get the canonical RHF orbitals
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, h2);
-    plain_scf_solver.solve();
-    const auto rhf = plain_scf_solver.get_solution();
+    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(h2.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
+    auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
+    plain_rhf_scf_solver.iterate(rhf_environment);
+    const auto rhf = rhf_environment.solution();
 
 
     // Transform the orbitals to the RHF basis and prepare the dipole integrals in the RHF basis
