@@ -21,7 +21,7 @@
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
 #include "QCMethod/CI/CISolver.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "QCMethod/RHF/DIISRHFSCFSolver.hpp"
+#include "QCMethod/RHF/RHFSCFSolver.hpp"
 
 
 namespace GQCP {
@@ -70,9 +70,10 @@ void DOCIRHF::solve() {
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, this->molecule);  // in AO basis
     const size_t K = sq_hamiltonian.dimension();
 
-    DIISRHFSCFSolver diis_scf_solver (sq_hamiltonian, spinor_basis, this->molecule);
-    diis_scf_solver.solve();
-    auto rhf = diis_scf_solver.get_solution();
+    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(this->molecule.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
+    auto diis_rhf_scf_solver = GQCP::RHFSCFSolver<double>::DIIS();
+    diis_rhf_scf_solver.iterate(rhf_environment);
+    const auto rhf = rhf_environment.solution();
     basisTransform(spinor_basis, sq_hamiltonian, rhf.get_C());
 
     // Set up DOCI

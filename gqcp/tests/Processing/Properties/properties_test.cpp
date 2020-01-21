@@ -28,7 +28,6 @@
 #include "Processing/RDM/RDMCalculator.hpp"
 #include "QCMethod/CI/CISolver.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
-#include "QCMethod/RHF/DIISRHFSCFSolver.hpp"
 #include "QCMethod/RHF/RHFSCFSolver.hpp"
 #include "Utilities/units.hpp"
 
@@ -48,9 +47,10 @@ BOOST_AUTO_TEST_CASE ( dipole_CO_STO_3G ) {
     size_t N = CO.numberOfElectrons();
 
     // Solve the SCF equations
-    GQCP::DIISRHFSCFSolver diis_scf_solver (sq_hamiltonian, spinor_basis, CO);
-    diis_scf_solver.solve();
-    auto rhf = diis_scf_solver.get_solution();
+    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(CO.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
+    auto diis_rhf_scf_solver = GQCP::RHFSCFSolver<double>::DIIS();
+    diis_rhf_scf_solver.iterate(rhf_environment);
+    const auto rhf = rhf_environment.solution();
 
     double total_energy = rhf.get_electronic_energy() + GQCP::Operator::NuclearRepulsion(CO).value();
     BOOST_REQUIRE(std::abs(total_energy - (-111.225)) < 1.0e-02);  // from CCCBDB, require a correct RHF solution to be found

@@ -33,6 +33,8 @@ namespace GQCP {
 /**
  *  An algorithm environment that can be used with standard RHF SCF solvers.
  * 
+ *  We can basically view it as a compile-time type-safe std::map with all possible information that can be encountered in an RHF SCF algorithm.
+ * 
  *  @tparam _Scalar             the scalar type that is used for the coefficient matrix/expansion coefficients
  */
 template <typename _Scalar>
@@ -53,6 +55,7 @@ public:
     std::deque<TransformationMatrix<Scalar>> coefficient_matrices;
     std::deque<OneRDM<Scalar>> density_matrices;  // expressed in the scalar (AO) basis
     std::deque<QCMatrix<Scalar>> fock_matrices;  // expressed in the scalar (AO) basis
+    std::deque<VectorX<Scalar>> error_vectors;  // expressed in the scalar (AO) basis, used when doing DIIS calculations: the real error matrices should be converted to column-major error vectors for the DIIS algorithm to be used correctly
 
     SQHamiltonian<Scalar> sq_hamiltonian;  // the Hamiltonian expressed in the scalar (AO) basis
 

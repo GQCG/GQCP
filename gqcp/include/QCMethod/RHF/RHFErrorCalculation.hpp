@@ -19,21 +19,23 @@
 
 
 #include "Mathematical/Algorithm/IterationStep.hpp"
+#include "Mathematical/Optimization/Accelerator/DIIS.hpp"
 #include "QCMethod/RHF/RHFSCFEnvironment.hpp"
+#include "QCMethod/RHF/RHF.hpp"
 
-#include <Eigen/Dense>
+#include <algorithm>
 
 
 namespace GQCP {
 
 
 /**
- *  An iteration step that solves the generalized eigenvalue problem for the current scalar/AO basis Fock matrix for the coefficient matrix.
+ *  An iteration step that calculates the error matrix from the Fock and density matrices (expressed in the scalar/AO basis).
  * 
  *  @tparam _Scalar              the scalar type used to represent the expansion coefficient/elements of the transformation matrix
  */
 template <typename _Scalar>
-class RHFFockMatrixDiagonalization :
+class RHFErrorCalculation :
     public IterationStep<RHFSCFEnvironment<_Scalar>> {
 
 public:
@@ -48,21 +50,20 @@ public:
      */
 
     /**
-     *  Solve the generalized eigenvalue problem for the most recent scalar/AO Fock matrix. Add the associated coefficient matrix and orbital energies to the environment.
+     *  Replace the most recent Fock matrix with an accelerated one.
      * 
      *  @param environment              the environment that acts as a sort of calculation space
      */
     void execute(Environment& environment) override {
 
-        const auto& F = environment.fock_matrices.back();  // the most recent scalar/AO basis Fock matrix
+        // Read F, D and S from the environment
+        const auto& D = environment.density_matrices.back();
+        const auto& S = environment.S;
+        const auto& F = environment.fock_matrices.back();
 
-        using MatrixType = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
-        Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver (F, environment.S);
-        const TransformationMatrix<Scalar>& C = generalized_eigensolver.eigenvectors();
-        const auto& orbital_energies = generalized_eigensolver.eigenvalues();
-
-        environment.coefficient_matrices.push_back(C);
-        environment.orbital_energies.push_back(orbital_energies);
+        // Calculate the error and write it to the environment (as a vector)
+        const auto error_matrix = calculateRHFError(F, D, S);
+        environment.error_vectors.push_back(error_matrix.pairWiseReduce());
     }
 };
 

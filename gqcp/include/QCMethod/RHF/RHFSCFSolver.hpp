@@ -23,9 +23,11 @@
 #include "QCMethod/RHF/RHFDensityMatrixCalculation.hpp"
 #include "QCMethod/RHF/RHFDensityMatrixConvergenceCriterion.hpp"
 #include "QCMethod/RHF/RHFDensityMatrixDamper.hpp"
+#include "QCMethod/RHF/RHFErrorCalculation.hpp"
 #include "QCMethod/RHF/RHFElectronicEnergyCalculation.hpp"
 #include "QCMethod/RHF/RHFFockMatrixCalculation.hpp"
 #include "QCMethod/RHF/RHFFockMatrixDiagonalization.hpp"
+#include "QCMethod/RHF/RHFFockMatrixDIIS.hpp"
 
 
 namespace GQCP {
@@ -86,6 +88,26 @@ public:
 
         return IterativeAlgorithm<RHFSCFEnvironment<Scalar>>(damped_rhf_scf_cycle, RHFDensityMatrixConvergenceCriterion<Scalar>(threshold), maximum_number_of_iterations);
     }
+
+
+    /**
+     *  @param threshold                            the threshold that is used in comparing the density matrices
+     *  @param maximum_number_of_iterations         the maximum number of iterations the algorithm may perform
+     * 
+     *  @return a DIIS RHF SCF solver that uses the norm of the difference of two consecutive density matrices as a convergence criterion.
+     */
+    static IterativeAlgorithm<RHFSCFEnvironment<Scalar>> DIIS(const size_t minimum_subspace_dimension = 6, const size_t maximum_subspace_dimension = 6, const double threshold = 1.0e-08, const size_t maximum_number_of_iterations = 128) {
+
+        // Create the iteration cycle that effectively 'defines' a DIIS RHF SCF solver
+        IterationCycle<RHFSCFEnvironment<Scalar>> diis_rhf_scf_cycle {};
+        diis_rhf_scf_cycle.add(RHFDensityMatrixCalculation<Scalar>())
+                          .add(RHFFockMatrixCalculation<Scalar>())
+                          .add(RHFErrorCalculation<Scalar>())
+                          .add(RHFFockMatrixDIIS<Scalar>(minimum_subspace_dimension, maximum_subspace_dimension))  // this also calculates the next coefficient matrix
+                          .add(RHFElectronicEnergyCalculation<Scalar>());
+
+        return IterativeAlgorithm<RHFSCFEnvironment<Scalar>>(diis_rhf_scf_cycle, RHFDensityMatrixConvergenceCriterion<Scalar>(threshold), maximum_number_of_iterations);
+    } 
 };
 
 

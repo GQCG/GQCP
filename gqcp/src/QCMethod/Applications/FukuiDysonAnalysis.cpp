@@ -19,7 +19,6 @@
 
 #include "Basis/transform.hpp"
 #include "Processing/Properties/properties.hpp"
-#include "QCMethod/RHF/DIISRHFSCFSolver.hpp"
 #include "QCMethod/RHF/RHFSCFSolver.hpp"
 
 
@@ -55,9 +54,10 @@ FukuiDysonAnalysis::FukuiDysonAnalysis(const Molecule& molecule, const std::stri
 
     // Perform DIIS or Plain RHF given the flag in the constructor
     if (use_diis) {
-        DIISRHFSCFSolver diis_scf_solver (this->sq_hamiltonian, this->spinor_basis, restricted_molecule);
-        diis_scf_solver.solve();
-        auto rhf_solution = diis_scf_solver.get_solution();
+        auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(restricted_molecule.numberOfElectrons(), this->sq_hamiltonian, this->spinor_basis.overlap().parameters());
+        auto diis_rhf_scf_solver = GQCP::RHFSCFSolver<double>::DIIS();
+        diis_rhf_scf_solver.iterate(rhf_environment);
+        const auto rhf_solution = rhf_environment.solution();
         basisTransform(this->spinor_basis, this->sq_hamiltonian, rhf_solution.get_C());
     } else {
         auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), this->sq_hamiltonian, this->spinor_basis.overlap().parameters());
