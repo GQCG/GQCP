@@ -38,7 +38,4 @@ template <bool B, typename T = void>
 using enable_if_t = typename std::enable_if<B, T>::type;  // only in C++14
 
 
-template <class T, class U>
-constexpr bool is_same_v = std::is_same<T, U>::value;  // only in C++17
-
 }  // namespace GQCP
