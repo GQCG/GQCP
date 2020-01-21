@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#pragma once 
+#pragma once
 
 
 #include "Mathematical/Algorithm/IterationStep.hpp"
@@ -54,7 +54,7 @@ public:
     void execute(Environment& environment) override {
         const auto& D = environment.density_matrices.back();  // the most recent density matrix
         const auto F = calculateRHFAOFockMatrix(D, environment.sq_hamiltonian);
-        environment.fock_matrices.push_back(F);
+        environment.fock_matrices.push_back(F.parameters());
     }
 };
 

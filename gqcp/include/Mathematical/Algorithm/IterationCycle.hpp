@@ -42,7 +42,7 @@ public:
 
 
 private:
-    std::vector<std::unique_ptr<IterationStep<Environment>>> steps;  // the consecutive steps that this iteration cycle consists of
+    std::vector<std::shared_ptr<IterationStep<Environment>>> steps;  // the consecutive steps that this iteration cycle consists of
 
 
 public:
@@ -58,7 +58,7 @@ public:
      */
     template <typename Z = IterationStep<Environment>>
     enable_if_t<std::is_same<Environment, typename Z::Environment>::value, IterationCycle<Environment>&> add(const Z& step) {
-        this->steps.append(std::make_unique(step));
+        this->steps.push_back(std::make_shared<Z>(step));
         return *this;
     }
 

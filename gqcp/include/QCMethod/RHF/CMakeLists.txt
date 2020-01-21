@@ -5,8 +5,10 @@ target_sources(gqcp
         RHF.hpp
         RHFDensityMatrixCalculation.hpp
         RHFDensityMatrixConvergenceCriterion.hpp
+        RHFElectronicEnergyCalculation.hpp
         RHFFockMatrixCalculation.hpp
         RHFFockMatrixDiagonalization.hpp
         RHFSCFEnvironment.hpp
+        RHFSCFSolver.hpp
         RHFSCFSolverOld.hpp
 )

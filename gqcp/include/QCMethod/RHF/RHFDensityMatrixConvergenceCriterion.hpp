@@ -74,11 +74,11 @@ public:
         }
 
         // Get the two most recent density matrices and compare the norm of their difference
-        const auto second_to_last_it = environment.density_matrices.end() - 1;
+        const auto second_to_last_it = environment.density_matrices.end() - 2;
         const auto& D_previous = *second_to_last_it;  // dereference the iterator
         const auto D_current = environment.density_matrices.back();
 
-        return (std::abs((D_current - D_previous).norm()) < this->threshold);
+        return ((D_current - D_previous).norm() <= this->threshold);
     }
 };
 

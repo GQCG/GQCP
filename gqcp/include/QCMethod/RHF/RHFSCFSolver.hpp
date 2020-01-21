@@ -22,6 +22,7 @@
 #include "QCMethod/RHF/RHFSCFEnvironment.hpp"
 #include "QCMethod/RHF/RHFDensityMatrixCalculation.hpp"
 #include "QCMethod/RHF/RHFDensityMatrixConvergenceCriterion.hpp"
+#include "QCMethod/RHF/RHFElectronicEnergyCalculation.hpp"
 #include "QCMethod/RHF/RHFFockMatrixCalculation.hpp"
 #include "QCMethod/RHF/RHFFockMatrixDiagonalization.hpp"
 
@@ -53,13 +54,14 @@ public:
      * 
      *  @return a plain RHF SCF solver that uses the norm of the difference of two consecutive density matrices as a convergence criterion.
      */
-    IterativeAlgorithm<Environment> Plain(const double threshold = 1.0e-08, const size_t maximum_number_of_iterations = 128) {
+    static IterativeAlgorithm<Environment> Plain(const double threshold = 1.0e-08, const size_t maximum_number_of_iterations = 128) {
 
         // Create the iteration cycle that effectively 'defines' a plain RHF SCF solver
         IterationCycle<Environment> plain_rhf_scf_cycle {};
         plain_rhf_scf_cycle.add(RHFDensityMatrixCalculation<Scalar>())
                            .add(RHFFockMatrixCalculation<Scalar>())
-                           .add(RHFFockMatrixDiagonalization<Scalar>());
+                           .add(RHFFockMatrixDiagonalization<Scalar>())
+                           .add(RHFElectronicEnergyCalculation<Scalar>());
 
         return IterativeAlgorithm<Environment>(plain_rhf_scf_cycle, RHFDensityMatrixConvergenceCriterion<Scalar>(threshold), maximum_number_of_iterations);
     }

@@ -15,25 +15,24 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#pragma once 
+#pragma once
 
 
 #include "Mathematical/Algorithm/IterationStep.hpp"
 #include "QCMethod/RHF/RHFSCFEnvironment.hpp"
-
-#include <Eigen/Dense>
+#include "QCMethod/RHF/RHF.hpp"
 
 
 namespace GQCP {
 
 
 /**
- *  An iteration step that solves the generalized eigenvalue problem for the current scalar/AO basis Fock matrix for the coefficient matrix.
+ *  An iteration step that calculates the current electronic RHF energy.
  * 
  *  @tparam _Scalar              the scalar type used to represent the expansion coefficient/elements of the transformation matrix
  */
 template <typename _Scalar>
-class RHFFockMatrixDiagonalization :
+class RHFElectronicEnergyCalculation : 
     public IterationStep<RHFSCFEnvironment<_Scalar>> {
 
 public:
@@ -48,20 +47,18 @@ public:
      */
 
     /**
-     *  Calculate the current RHF transformation matrix by solving the generalized eigenvalue problem for the scalar/AO Fock matrix.
+     *  Calculate the current electronic RHF energy and place it in the environment
      * 
      *  @param environment              the environment that acts as a sort of calculation space
      */
     void execute(Environment& environment) override {
-        const auto& F = environment.fock_matrices.back();  // the most recent scalar/AO basis Fock matrix
 
-        using MatrixType = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
-        Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver (F, environment.S);
-        const TransformationMatrix<Scalar>& C = generalized_eigensolver.eigenvectors();
-        const auto& orbital_energies = generalized_eigensolver.eigenvalues();
+        const auto& D = environment.density_matrices.back();  // the most recent density matrix
+        const ScalarSQOneElectronOperator<Scalar> F ({environment.fock_matrices.back()});  // the most recent Fock matrix
+        const auto& H_core = environment.sq_hamiltonian.core();  // the core Hamiltonian matrix
 
-        environment.coefficient_matrices.push_back(C);
-        environment.orbital_energies.push_back(orbital_energies);
+        const auto E_electronic = calculateRHFElectronicEnergy(D, H_core, F);
+        environment.electronic_energies.push_back(E_electronic);
     }
 };
 

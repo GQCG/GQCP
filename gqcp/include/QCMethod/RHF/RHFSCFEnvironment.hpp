@@ -22,6 +22,7 @@
 #include "Mathematical/Representation/QCMatrix.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Processing/RDM/OneRDM.hpp"
+#include "QCMethod/RHF/RHF.hpp"
 
 #include <Eigen/Dense>
 
@@ -45,7 +46,10 @@ public:
 
     std::deque<double> electronic_energies;
 
+    std::deque<VectorX<double>> orbital_energies;
+
     QCMatrix<Scalar> S;  // the overlap matrix (of the scalar (AO) basis)
+
     std::deque<TransformationMatrix<Scalar>> coefficient_matrices;
     std::deque<OneRDM<Scalar>> density_matrices;  // expressed in the scalar (AO) basis
     std::deque<QCMatrix<Scalar>> fock_matrices;  // expressed in the scalar (AO) basis
@@ -86,7 +90,7 @@ public:
      *  @param sq_hamiltonian       the Hamiltonian expressed in the scalar (AO) basis
      *  @param S                    the overlap matrix (of the scalar (AO) basis)
      */
-    RHFSCFEnvironment<Scalar> WithCoreGuess(const size_t N, const SQHamiltonian<Scalar>& sq_hamiltonian, const QCMatrix<Scalar>& S) {
+    static RHFSCFEnvironment<Scalar> WithCoreGuess(const size_t N, const SQHamiltonian<Scalar>& sq_hamiltonian, const QCMatrix<Scalar>& S) {
 
         const auto& H_core = sq_hamiltonian.core().parameters();
 
@@ -95,6 +99,14 @@ public:
         const TransformationMatrix<Scalar> C_initial = generalized_eigensolver.eigenvectors();
 
         return RHFSCFEnvironment<Scalar>(N, sq_hamiltonian, S, C_initial);
+    }
+
+
+    /**
+     *  @return an RHF-type solution. This method will be removed after the QCMethod/QCModel refactor.
+     */
+    RHF solution() const {
+        return RHF(this->electronic_energies.back(), this->coefficient_matrices.back(), this->orbital_energies.back());
     }
 };
 
