@@ -1,2 +1,3 @@
+add_subdirectory(Accelerator)
 add_subdirectory(Eigenproblem)
 add_subdirectory(NonLinear)

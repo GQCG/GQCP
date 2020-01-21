@@ -41,7 +41,7 @@ public:
 
 private:
     size_t maximum_number_of_iterations;
-    size_t iteration = 0;  // the current iteration counter
+    size_t iteration = 0;  // the number of iterations that have been performed
 
     IterationCycle<Environment> iteration_cycle;
     std::shared_ptr<ConvergenceCriterion<Environment>> convergence_criterion;
@@ -71,6 +71,10 @@ public:
     {}
 
 
+    /*
+     *  PUBLIC METHODS
+     */
+
     /**
      *  Perform the iteration steps until convergence is achieved
      * 
@@ -78,7 +82,7 @@ public:
      */
     void iterate(Environment& environment) {
 
-        for (this->iteration = 1; this->iteration <= this->maximum_number_of_iterations; this->iteration++) {  // do at maximum the maximum allowed number of iterations
+        for (this->iteration = 0; this->iteration < this->maximum_number_of_iterations; this->iteration++) {  // do at maximum the maximum allowed number of iterations
 
             // Every iteration consists of two parts:
             //      - the convergence check, which checks if the iterations may stop
@@ -90,6 +94,12 @@ public:
             this->iteration_cycle.execute(environment);
         }
     }
+
+
+    /**
+     *  @return the number of iterations that have been performed
+     */
+    size_t numberOfIterations() const { return this->iteration; }
 };
 
 

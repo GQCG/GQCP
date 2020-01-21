@@ -15,10 +15,11 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#pragma once
+#pragma once 
 
 
-#include "Mathematical/Algorithm/ConvergenceCriterion.hpp"
+#include "Mathematical/Algorithm/IterationStep.hpp"
+#include "Mathematical/Optimization/Accelerator/ConstantDamper.hpp"
 #include "QCMethod/RHF/RHFSCFEnvironment.hpp"
 #include "QCMethod/RHF/RHF.hpp"
 
@@ -27,13 +28,13 @@ namespace GQCP {
 
 
 /**
- *  A convergence criterion on the norm of subsequent RHF density matrices.
+ *  An iteration step that accelerates the density matrix (expressed in the scalar/AO basis) based on a constant dampening accelerator.
  * 
  *  @tparam _Scalar              the scalar type used to represent the expansion coefficient/elements of the transformation matrix
  */
 template <typename _Scalar>
-class RHFDensityMatrixConvergenceCriterion :
-    public ConvergenceCriterion<RHFSCFEnvironment<_Scalar>> {
+class RHFDensityMatrixDamper :
+    public IterationStep<RHFSCFEnvironment<_Scalar>> {
 
 public:
     using Scalar = _Scalar;
@@ -41,20 +42,20 @@ public:
 
 
 private:
-    double threshold;  // the threshold that is used in comparing the density matrices
+    ConstantDamper<OneRDM<Scalar>> damper;  // the dampening accelerator
 
 
 public:
 
     /*
-     *  CONSTRUCTORS
+     *  CONSTRUCTORS 
      */
 
     /**
-     *  @param threshold                    the threshold that is used in comparing the density matrices
+     *  @param alpha            the damping factor
      */
-    RHFDensityMatrixConvergenceCriterion(const double threshold = 1.0e-08) :
-        threshold (threshold)
+    RHFDensityMatrixDamper(const double alpha) : 
+        damper (alpha)
     {}
 
 
@@ -63,22 +64,24 @@ public:
      */
 
     /**
-     *  @param environment              the environment that acts as a sort of calculation space
+     *  Replace the most recent density matrix with an accelerated one.
      * 
-     *  @return if the difference of the two most recent density matrices has a zero norm, within the tolerance
+     *  @param environment              the environment that acts as a sort of calculation space
      */
-    bool isFulfilled(Environment& environment) override {
+    void execute(Environment& environment) override {
 
         if (environment.density_matrices.size() < 2) {
-            return false;  // we can't calculate convergence
+            return;  // no acceleration is possible
         }
 
-        // Get the two most recent density matrices and compare the norm of their difference
+        // Get the two most recent density matrices and produce an accelerated density matrix
         const auto second_to_last_it = environment.density_matrices.end() - 2;
         const auto& D_previous = *second_to_last_it;  // dereference the iterator
         const auto D_current = environment.density_matrices.back();
 
-        return ((D_current - D_previous).norm() <= this->threshold);
+        const auto D_accelerated = this->damper.accelerate(D_current, D_previous);
+        environment.density_matrices.pop_back();  // we will replace the most recent density matrix with the accelerated one, so remove the most recent one
+        environment.density_matrices.push_back(D_accelerated);
     }
 };
 
