@@ -43,6 +43,7 @@ private:
     bool is_solved = false;
     bool use_davidson;
     double energy_solution;
+    double s_squared;
 
 
 public:
@@ -77,6 +78,11 @@ public:
      *  @return the ground state FCI energy
      */
     double energy() const;
+
+    /**
+     *  @return the expectation value of the square of the spin angular momentum operator of the ground state
+     */
+    double spinSquared() const;
 };
 
 

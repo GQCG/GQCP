@@ -331,7 +331,7 @@ TwoRDMs<double> FCIRDMBuilder::calculate2RDMs(const VectorX<double>& x) const {
                                         size_t J_beta = fock_space_beta.getAddress(spin_string_beta_bbbb);  // address of the coupling string
 
                                         double contribution = 0.0;
-                                        for (size_t I_alpha = 0; I_alpha < dim_beta; I_alpha++) {
+                                        for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {
                                             double c_I_alpha_I_beta = x(I_alpha*dim_beta + I_beta);  // alpha addresses are 'major'
                                             double c_I_alpha_J_beta = x(I_alpha*dim_beta + J_beta);
                                             contribution += c_I_alpha_I_beta * c_I_alpha_J_beta;

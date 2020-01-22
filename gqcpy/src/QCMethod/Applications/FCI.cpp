@@ -36,7 +36,9 @@ void bindQCMethodFCI(py::module& module) {
 
         .def("solve", &GQCP::QCMethod::FCI::solve, "Solve the eigenvalue equations such that the lowest energy and corresponding eigenvector become available. ")
 
-        .def("get_energy", &GQCP::QCMethod::FCI::energy, "Get the lowest energy.");
+        .def("get_energy", &GQCP::QCMethod::FCI::energy, "Get the lowest energy.")
+
+        .def("get_spin_squared", &GQCP::QCMethod::FCI::spinSquared, "Get <S^2> of the groundstate.");
 }
 
 

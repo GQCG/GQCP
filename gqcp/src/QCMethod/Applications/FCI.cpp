@@ -20,7 +20,10 @@
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
 #include "Basis/transform.hpp"
 #include "Operator/FirstQuantized/NuclearRepulsionOperator.hpp"
+#include "Processing/Properties/expectation_values.hpp"
+#include "Processing/RDM/RDMCalculator.hpp"
 #include "QCMethod/RHF/DIISRHFSCFSolver.hpp"
+
 
 
 namespace GQCP {
@@ -104,6 +107,13 @@ void FCI::solve() {
     double internuclear_repulsion_energy = Operator::NuclearRepulsion(molecule).value();
 
     this->energy_solution = fci_energy + internuclear_repulsion_energy;
+
+    RDMCalculator rdm_calculator (fci_solver.makeWavefunction());
+     
+    OneRDMs<double> one_rdms = rdm_calculator.calculate1RDMs();
+    TwoRDMs<double> two_rdms = rdm_calculator.calculate2RDMs();
+
+    this->s_squared = calculateSpinSquared<double>(one_rdms, two_rdms);
 }
 
 
@@ -116,6 +126,19 @@ double FCI::energy() const {
         return this->energy_solution;
     } else {
         throw std::runtime_error("FCI::energy(): You are trying to get energy but the method hasn't been solved yet.");
+    }
+}
+
+
+/**
+ *  @return the expectation value of the square of the spin angular momentum operator of the ground state
+ */
+double FCI::spinSquared() const {
+
+    if (this->is_solved) {
+        return this->s_squared;
+    } else {
+        throw std::runtime_error("FCI::spinSquared(): You are trying to get the expectation value of S^2 of the ground state but the method hasn't been solved yet.");
     }
 }
 
