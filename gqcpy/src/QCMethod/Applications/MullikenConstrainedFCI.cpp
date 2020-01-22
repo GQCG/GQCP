@@ -33,10 +33,18 @@ using OverloadPointerMullikenDavidson = void (GQCP::QCMethod::MullikenConstraine
 
 void bindMullikenConstrainedFCI(py::module& module) {
     py::class_<GQCP::QCMethod::MullikenConstrainedFCI>(module, "MullikenConstrainedFCI", "A class that solves the FCI Hamiltonian given a perturbation in the form of a langragian multiplier and the Mulliken operator for a pre-specified set of basis functions")
-        .def(py::init<const GQCP::Molecule& , const std::string&, const std::vector<size_t>&, size_t>(), py::arg("molecule"), py::arg("basis_set"),  py::arg("basis_targets"), py::arg("frozencores") = 0)
-        .def("solveMullikenDavidson", (OverloadPointerMullikenDavidsonGuess) &GQCP::QCMethod::MullikenConstrainedFCI::solveMullikenDavidson, py::arg("multiplier"), py::arg("guess"), py::arg("sz_multiplier") = 0, "Solve the eigenvalue problem for a multiplier with the davidson algorithm")
-        .def("solveMullikenDavidson", (OverloadPointerMullikenDavidson) &GQCP::QCMethod::MullikenConstrainedFCI::solveMullikenDavidson, py::arg("multiplier"), py::arg("sz_multiplier") = 0, "Solve the eigenvalue problem for a multiplier with the davidson algorithm, davidson guess will be the previously stored solution if none is available the Hartree Fock expansion will be used instead")
-        .def("solveMullikenDense", &GQCP::QCMethod::MullikenConstrainedFCI::solveMullikenDense, py::arg("multiplier"), py::arg("number_of_states"), py::arg("sz_multiplier") = 0)
+
+        .def(py::init<const GQCP::Molecule& , const std::string&, const std::vector<size_t>&, size_t>(),
+             py::arg("molecule"), py::arg("basis_set"), py::arg("basis_targets"), py::arg("frozencores") = 0)
+
+        .def("solveMullikenDavidson", (OverloadPointerMullikenDavidsonGuess) &GQCP::QCMethod::MullikenConstrainedFCI::solveMullikenDavidson,
+             py::arg("mulliken_multiplier"), py::arg("guess"), py::arg("sz_multiplier") = 0,
+             "Solve the constrained CI eigenvalue problem for given multipliers using the Davidson algorithm.")
+        .def("solveMullikenDavidson", (OverloadPointerMullikenDavidson) &GQCP::QCMethod::MullikenConstrainedFCI::solveMullikenDavidson,
+             py::arg("mulliken_multiplier"), py::arg("sz_multiplier") = 0,
+             "Solve the constrained CI eigenvalue problem for the given multipliers with the Davidson algorithm. If no CI vectors are available, the initial guess in chosen to be the HF CI expansion.")
+        .def("solveMullikenDense", &GQCP::QCMethod::MullikenConstrainedFCI::solveMullikenDense,
+             py::arg("multiplier"), py::arg("number_of_states"), py::arg("sz_multiplier") = 0)
 
         .def("get_energy", &GQCP::QCMethod::MullikenConstrainedFCI::get_energy, py::arg("index") = 0)
         .def("get_population", &GQCP::QCMethod::MullikenConstrainedFCI::get_population, py::arg("index") = 0)
