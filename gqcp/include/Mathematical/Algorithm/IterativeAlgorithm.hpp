@@ -18,8 +18,8 @@
 #pragma once
 
 
-#include "Mathematical/Algorithm/IterationCycle.hpp"
 #include "Mathematical/Algorithm/ConvergenceCriterion.hpp"
+#include "Mathematical/Algorithm/IterationCycle.hpp"
 
 #include <cstddef>
 

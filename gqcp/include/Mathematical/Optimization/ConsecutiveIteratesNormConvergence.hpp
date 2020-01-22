@@ -48,7 +48,7 @@ public:
 private:
     double threshold;  // the threshold that is used in comparing the iterates
 
-    std::function<std::deque<Iterate>(const Environment&)> extractor;  // a function that can extract the correct iterates from the environment, as it's not mandatory to check convergence on the variables, but any iterate can be used
+    std::function<std::deque<Iterate>(const Environment&)> extractor;  // a function that can extract the correct iterates from the environment, as it's not mandatory to check convergence on the variables, but any iterate (whose .norm() can be calculated) can in principle be used
 
 
 public:

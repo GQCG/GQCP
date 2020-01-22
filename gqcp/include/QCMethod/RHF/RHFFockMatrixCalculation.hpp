@@ -19,8 +19,8 @@
 
 
 #include "Mathematical/Algorithm/IterationStep.hpp"
-#include "QCMethod/RHF/RHFSCFEnvironment.hpp"
 #include "QCMethod/RHF/RHF.hpp"
+#include "QCMethod/RHF/RHFSCFEnvironment.hpp"
 
 
 namespace GQCP {

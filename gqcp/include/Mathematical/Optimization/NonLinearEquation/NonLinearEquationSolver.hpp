@@ -19,10 +19,10 @@
 
 
 #include "Mathematical/Algorithm/IterativeAlgorithm.hpp"
-#include "Mathematical/Optimization/OptimizationEnvironment.hpp"
 #include "Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp"
-#include "Mathematical/Optimization/NonLinearEquation/NonLinearEquationEnvironment.hpp"
+#include "Mathematical/Optimization/OptimizationEnvironment.hpp"
 #include "Mathematical/Optimization/NonLinearEquation/NewtonStepUpdate.hpp"
+#include "Mathematical/Optimization/NonLinearEquation/NonLinearEquationEnvironment.hpp"
 
 
 namespace GQCP {

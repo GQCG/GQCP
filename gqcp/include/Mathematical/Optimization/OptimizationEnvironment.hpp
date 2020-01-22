@@ -37,7 +37,7 @@ public:
 
 
 public:
-    std::deque<_Iterate> variables;
+    std::deque<_Iterate> variables;  // a collection of variables that iteratively grows through an optimization algorithm; for example all iterates x when solving f(x) = 0 iteratively
 
 
 public:
