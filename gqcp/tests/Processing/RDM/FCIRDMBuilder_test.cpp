@@ -174,7 +174,7 @@ BOOST_AUTO_TEST_CASE ( H2O_energy_RDM_contraction_FCI ) {
 
 BOOST_AUTO_TEST_CASE ( H2O_energy_RDM_contraction_FCI_wavefunction ) {
 
-    // repeat contraction with wavefunction input (and RDMCalculator API)
+    // Repeat the contraction with an FCI wave function as input and the RDMCalculator API.
 
     size_t N_a = 5;
     size_t N_b = 5;

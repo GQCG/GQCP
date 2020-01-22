@@ -236,7 +236,7 @@ BOOST_AUTO_TEST_CASE ( spin_O2 ) {
     double s_squared = GQCP::calculateSpinSquared<double>(one_rdms, two_rdms);
     double s_z = GQCP::calculateSpinZ<double>(one_rdms);
 
-    // <S^2> should be 2 (S=1)
+    // <S^2> should be 2 (S=1) because the ground state for O2 is a biradical triplet.
     BOOST_CHECK(std::abs(s_squared - 2) < 1.0e-06);
 
     // In the restricted Fock space, alpha = beta, hence the expectation value of the z-component of the spin operator should be zero
