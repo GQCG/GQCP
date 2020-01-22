@@ -26,6 +26,8 @@
 
 #include <Eigen/Dense>
 
+#include <deque>
+
 
 namespace GQCP {
 

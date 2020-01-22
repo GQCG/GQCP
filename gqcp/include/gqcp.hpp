@@ -93,6 +93,9 @@
 #include "Mathematical/Optimization/NonLinearEquation/NewtonNLSystemOfEquationsSolver.hpp"
 #include "Mathematical/Optimization/NonLinearEquation/step.hpp"
 
+#include "Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp"
+#include "Mathematical/Optimization/OptimizationEnvironment.hpp"
+
 #include "Mathematical/Representation/BlockMatrix.hpp"
 #include "Mathematical/Representation/BlockRankFourTensor.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
@@ -189,7 +192,6 @@
 
 #include "QCMethod/RHF/RHF.hpp"
 #include "QCMethod/RHF/RHFDensityMatrixCalculation.hpp"
-#include "QCMethod/RHF/RHFDensityMatrixConvergenceCriterion.hpp"
 #include "QCMethod/RHF/RHFErrorCalculation.hpp"
 #include "QCMethod/RHF/RHFElectronicEnergyCalculation.hpp"
 #include "QCMethod/RHF/RHFFockMatrixCalculation.hpp"

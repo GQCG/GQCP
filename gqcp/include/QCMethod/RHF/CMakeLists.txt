@@ -2,7 +2,6 @@ target_sources(gqcp
     PRIVATE
         RHF.hpp
         RHFDensityMatrixCalculation.hpp
-        RHFDensityMatrixConvergenceCriterion.hpp
         RHFDensityMatrixDamper.hpp
         RHFErrorCalculation.hpp
         RHFElectronicEnergyCalculation.hpp
