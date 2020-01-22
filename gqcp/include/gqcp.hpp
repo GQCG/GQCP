@@ -76,6 +76,9 @@
 #include "Mathematical/Algorithm/IterationStep.hpp"
 #include "Mathematical/Algorithm/IterativeAlgorithm.hpp"
 
+#include "Mathematical/Optimization/Accelerator/ConstantDamper.hpp"
+#include "Mathematical/Optimization/Accelerator/DIIS.hpp"
+
 #include "Mathematical/Optimization/Eigenproblem/BaseEigenproblemSolver.hpp"
 #include "Mathematical/Optimization/Eigenproblem/BaseMatrixSolver.hpp"
 #include "Mathematical/Optimization/Eigenproblem/DavidsonSolver.hpp"
@@ -91,6 +94,9 @@
 #include "Mathematical/Optimization/Minimization/UnalteringHessianModifier.hpp"
 
 #include "Mathematical/Optimization/NonLinearEquation/NewtonNLSystemOfEquationsSolver.hpp"
+#include "Mathematical/Optimization/NonLinearEquation/NewtonStepUpdate.hpp"
+#include "Mathematical/Optimization/NonLinearEquation/NonLinearEquationEnvironment.hpp"
+#include "Mathematical/Optimization/NonLinearEquation/NonLinearEquationSolver.hpp"
 #include "Mathematical/Optimization/NonLinearEquation/step.hpp"
 
 #include "Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp"

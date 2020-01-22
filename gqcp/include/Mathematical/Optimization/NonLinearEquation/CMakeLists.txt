@@ -1,5 +1,6 @@
 target_sources(gqcp
     PRIVATE
-        NewtonNLSystemOfEquationsSolver.hpp
-        step.hpp
+        NewtonStepUpdate.hpp
+        NonLinearEquationEnvironment.hpp
+        NonLinearEquationSolver.hpp
 )
