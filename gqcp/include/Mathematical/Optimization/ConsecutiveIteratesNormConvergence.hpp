@@ -22,6 +22,7 @@
 
 #include <deque>
 #include <functional>
+#include <type_traits>
 
 
 namespace GQCP {
@@ -41,6 +42,7 @@ public:
     using Iterate = _Iterate;
     using Scalar = typename Iterate::Scalar;
     using Environment = _Environment;
+    static_assert(std::is_same<Scalar, typename Environment::Scalar>::value, "The scalar types of the iterate and environment must match.");
 
 
 private:

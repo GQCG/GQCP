@@ -36,7 +36,7 @@ public:
     using Scalar = typename Iterate::Scalar;
 
 
-protected:
+public:
     std::deque<_Iterate> variables;
 
 
@@ -48,6 +48,8 @@ public:
 
     /**
      *  Initialize the optimization environment with an initial guess
+     * 
+     *  @param initial_guess                the initial guess for the variables
      */
     OptimizationEnvironment(const Iterate& initial_guess) : 
         variables(1, initial_guess)

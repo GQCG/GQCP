@@ -15,15 +15,12 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#pragma once 
+#pragma once
 
 
 #include "Mathematical/Algorithm/IterationStep.hpp"
-#include "Mathematical/Optimization/Accelerator/DIIS.hpp"
 #include "QCMethod/RHF/RHFSCFEnvironment.hpp"
 #include "QCMethod/RHF/RHF.hpp"
-
-#include <algorithm>
 
 
 namespace GQCP {
@@ -50,7 +47,7 @@ public:
      */
 
     /**
-     *  Replace the most recent Fock matrix with an accelerated one.
+     *  Calculate the current error vector and add it to the environment.
      * 
      *  @param environment              the environment that acts as a sort of calculation space
      */

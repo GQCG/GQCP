@@ -54,7 +54,7 @@ public:
      *  @param threshold                            the threshold that is used in comparing the density matrices
      *  @param maximum_number_of_iterations         the maximum number of iterations the algorithm may perform
      * 
-     *  @return a plain RHF SCF solver that uses the norm of the difference of two consecutive density matrices as a convergence criterion.
+     *  @return a plain RHF SCF solver that uses the norm of the difference of two consecutive density matrices as a convergence criterion
      */
     static IterativeAlgorithm<RHFSCFEnvironment<Scalar>> Plain(const double threshold = 1.0e-08, const size_t maximum_number_of_iterations = 128) {
 
@@ -78,7 +78,7 @@ public:
      *  @param threshold                            the threshold that is used in comparing the density matrices
      *  @param maximum_number_of_iterations         the maximum number of iterations the algorithm may perform
      * 
-     *  @return a density-damped RHF SCF solver that uses the norm of the difference of two consecutive density matrices as a convergence criterion.
+     *  @return a density-damped RHF SCF solver that uses the norm of the difference of two consecutive density matrices as a convergence criterion
      */
     static IterativeAlgorithm<RHFSCFEnvironment<Scalar>> DensityDamped(const double alpha, const double threshold = 1.0e-08, const size_t maximum_number_of_iterations = 128) {
 
@@ -94,7 +94,7 @@ public:
         const std::function<std::deque<OneRDM<Scalar>>(const RHFSCFEnvironment<Scalar>&)> density_matrix_extractor = [] (const RHFSCFEnvironment<Scalar>& environment) { return environment.density_matrices; };
         const ConsecutiveIteratesNormConvergence<OneRDM<Scalar>, RHFSCFEnvironment<Scalar>> convergence_criterion (threshold, density_matrix_extractor);
 
-        return IterativeAlgorithm<RHFSCFEnvironment<Scalar>>(damped_rhf_scf_cycle, convergence_criterion, maximum_number_of_iterations);    
+        return IterativeAlgorithm<RHFSCFEnvironment<Scalar>>(damped_rhf_scf_cycle, convergence_criterion, maximum_number_of_iterations);
     }
 
 
@@ -102,7 +102,7 @@ public:
      *  @param threshold                            the threshold that is used in comparing the density matrices
      *  @param maximum_number_of_iterations         the maximum number of iterations the algorithm may perform
      * 
-     *  @return a DIIS RHF SCF solver that uses the norm of the difference of two consecutive density matrices as a convergence criterion.
+     *  @return a DIIS RHF SCF solver that uses the norm of the difference of two consecutive density matrices as a convergence criterion
      */
     static IterativeAlgorithm<RHFSCFEnvironment<Scalar>> DIIS(const size_t minimum_subspace_dimension = 6, const size_t maximum_subspace_dimension = 6, const double threshold = 1.0e-08, const size_t maximum_number_of_iterations = 128) {
 
