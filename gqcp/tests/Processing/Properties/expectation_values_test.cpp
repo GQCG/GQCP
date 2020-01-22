@@ -215,9 +215,10 @@ BOOST_AUTO_TEST_CASE ( spin_O2 ) {
     size_t N = O2.numberOfElectrons();
 
     // Solve the SCF equations
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, O2);  // the DIIS SCF solver seems to find a wrong minimum, so use a plain solver instead
-    plain_scf_solver.solve();
-    auto rhf = plain_scf_solver.get_solution();
+    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(O2.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
+    auto diis_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();  // the DIIS SCF solver seems to find a wrong minimum, so use a plain solver instead
+    diis_rhf_scf_solver.iterate(rhf_environment);
+    const auto rhf = rhf_environment.solution();
 
     sq_hamiltonian.transform(rhf.get_C());
 
