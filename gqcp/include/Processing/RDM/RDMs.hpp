@@ -75,6 +75,9 @@ struct OneRDMs {
     }
 
     
+    /**
+     *  @return the dimension of the matrix representation of the 1-RDMs, i.e. the number of orbitals/sites
+     */
     size_t dimension() const { return one_rdm.dimension(); }
 };
 
@@ -114,7 +117,10 @@ struct TwoRDMs {
         two_rdm_bbbb (two_rdm_bbbb)
     {}
 
-
+    
+    /**
+     *  @return the dimension of the matrix representation of the 2-RDMs, i.e. the number of orbitals/sites
+     */
     size_t dimension() const { return two_rdm.dimension(); }
 };
 
