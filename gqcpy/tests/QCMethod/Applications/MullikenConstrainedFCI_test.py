@@ -51,19 +51,19 @@ class MullikenConstrainedFCITest(unittest.TestCase):
         self.constrained_module_mulliken.solveMullikenDavidson(mulliken_multiplier = self.lambda_input)  # lambda is the Mulliken-constraint multiplier
 
         # Compare the solutions to reference values
-        self.assertAlmostEqual(self.constrained_module_mulliken.get_energy(), self.reference_energy, places=6)
-        self.assertAlmostEqual(self.constrained_module_mulliken.get_population(), self.reference_population, places=6)
-        self.assertAlmostEqual(self.constrained_module_mulliken.get_A_fragment_self_energy(), self.reference_self_N_fragment_energy, places=6)
-        self.assertAlmostEqual(self.constrained_module_mulliken.get_B_fragment_energy(), self.reference_O_fragment_energy, places=6)
-        self.assertAlmostEqual(self.constrained_module_mulliken.get_B_fragment_self_energy(), self.reference_self_O_fragment_energy, places=6)
-        self.assertAlmostEqual(self.constrained_module_mulliken.get_interaction_energy(), self.reference_interaction_energy)
+        self.assertAlmostEqual(self.constrained_module_mulliken.get_energy(), self.reference_energy, places=4)
+        self.assertAlmostEqual(self.constrained_module_mulliken.get_population(), self.reference_population, places=4)
+        self.assertAlmostEqual(self.constrained_module_mulliken.get_A_fragment_self_energy(), self.reference_self_N_fragment_energy, places=4)
+        self.assertAlmostEqual(self.constrained_module_mulliken.get_B_fragment_energy(), self.reference_O_fragment_energy, places=4)
+        self.assertAlmostEqual(self.constrained_module_mulliken.get_B_fragment_self_energy(), self.reference_self_O_fragment_energy, places=4)
+        self.assertAlmostEqual(self.constrained_module_mulliken.get_interaction_energy(), self.reference_interaction_energy, places=4)
 
 
     def test_spinZ(self):
         """Compare the expectation value of the atomic S_z operator with values previously calculated with GQCP."""
 
         self.constrained_module_spin.solveMullikenDavidson(mulliken_multiplier = 0, sz_multiplier = 0.5)
-        self.assertAlmostEqual(self.constrained_module_spin.get_sz(), self.atomic_sz)
+        self.assertAlmostEqual(self.constrained_module_spin.get_sz(), self.atomic_sz, places=4)
 
 
 if __name__ == '__main__':
