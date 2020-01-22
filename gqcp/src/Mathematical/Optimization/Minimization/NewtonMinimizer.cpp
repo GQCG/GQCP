@@ -18,7 +18,7 @@
 #include "Mathematical/Optimization/Minimization/NewtonMinimizer.hpp"
 
 
-#include "Mathematical/Optimization/NonLinearEquation/NewtonNLSystemOfEquationsSolver.hpp"
+#include "Mathematical/Optimization/NonLinearEquation/NonLinearEquationSolver.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Utilities/typedefs.hpp"
 
@@ -68,12 +68,13 @@ void NewtonMinimizer::solve() {
     };
 
 
-    // For previously established reasons, we can use the NewtonNLSystemOfEquationsSolver as an implementation of this minimization problem
-    NewtonNLSystemOfEquationsSolver newton_syseq_solver (this->grad, H_t, this->convergence_threshold);
-    newton_syseq_solver.solve(this->x);
+    // For previously established reasons, we can use the a Newton-based system of equations solver for this minimization problem
+    NonLinearEquationEnvironment<double> non_linear_environment (this->x, this->grad, H_t);
+    auto non_linear_solver = NonLinearEquationSolver<double>::Newton(this->convergence_threshold, this->maximum_number_of_iterations);
+    non_linear_solver.iterate(non_linear_environment);
+    this->x = non_linear_environment.variables.back();
 
-
-    // If we haven't found a solution, the error is raised inside the NewtonNLSystemOfEquationsSolver, so we are free to assert that if the data flow gets to here, a solution is found
+    // If we haven't found a solution, the error is raised inside the iterative algorithm, so we are free to assert that if the data flow gets to here, a solution is found
     this->is_solved = true;
 }
 

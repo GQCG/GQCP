@@ -93,11 +93,9 @@
 #include "Mathematical/Optimization/Minimization/NewtonMinimizer.hpp"
 #include "Mathematical/Optimization/Minimization/UnalteringHessianModifier.hpp"
 
-#include "Mathematical/Optimization/NonLinearEquation/NewtonNLSystemOfEquationsSolver.hpp"
 #include "Mathematical/Optimization/NonLinearEquation/NewtonStepUpdate.hpp"
 #include "Mathematical/Optimization/NonLinearEquation/NonLinearEquationEnvironment.hpp"
 #include "Mathematical/Optimization/NonLinearEquation/NonLinearEquationSolver.hpp"
-#include "Mathematical/Optimization/NonLinearEquation/step.hpp"
 
 #include "Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp"
 #include "Mathematical/Optimization/OptimizationEnvironment.hpp"

@@ -89,3 +89,4 @@ BOOST_AUTO_TEST_CASE ( minimization_example ) {
 
     BOOST_CHECK(solution.isZero(1.0e-08));  // the analytical minimizer of f(x) is x=(0,0)
 }
+
