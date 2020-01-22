@@ -82,17 +82,20 @@ public:
      */
     void iterate(Environment& environment) {
 
-        for (this->iteration = 0; this->iteration < this->maximum_number_of_iterations; this->iteration++) {  // do at maximum the maximum allowed number of iterations
+        for (this->iteration = 0; this->iteration <= this->maximum_number_of_iterations; this->iteration++) {  // do at maximum the maximum allowed number of iterations
 
             // Every iteration consists of two parts:
             //      - the convergence check, which checks if the iterations may stop
             //      - the iteration cycle, i.e. what happens in-between the convergence checks
             if (this->convergence_criterion->isFulfilled(environment)) {
-                break;
+                return;  // exit the loop and function early
             }
 
             this->iteration_cycle.execute(environment);
         }
+
+        // Since we will exit the function early if convergence is achieved, the algorithm is considered non-converging if the loop is done.
+        throw std::runtime_error("IterativeAlgorithm<Environment>::iterate(Environment&): The algorithm didn't find a solution within the maximum number of iterations.");
     }
 
 
