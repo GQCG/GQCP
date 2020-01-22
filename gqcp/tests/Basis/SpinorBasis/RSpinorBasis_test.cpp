@@ -15,13 +15,15 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#define BOOST_TEST_MODULE "SimpleSpinorBasis_test"
+#define BOOST_TEST_MODULE "RSpinorBasis_test"
 
 #include <boost/test/unit_test.hpp>
 
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
 
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
+#include "QCMethod/HF/DiagonalRHFFockMatrix.hpp"
+#include "QCMethod/HF/RHF.hpp"
 #include "QCMethod/HF/RHFSCFSolver.hpp"
 
 
@@ -41,10 +43,10 @@ BOOST_AUTO_TEST_CASE ( RHF_orbitals_are_orthonormal ) {
 
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(h2o.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
-    plain_rhf_scf_solver.iterate(rhf_environment);
-    const auto rhf = rhf_environment.solution();
+    const GQCP::DiagonalRHFFockMatrix<double> objective (sq_hamiltonian);
+    const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
 
-    spinor_basis.transform(rhf.get_C());
+    spinor_basis.transform(rhf_parameters.coefficientMatrix());
 
     BOOST_CHECK(spinor_basis.isOrthonormal());
 }

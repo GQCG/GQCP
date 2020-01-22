@@ -19,8 +19,9 @@
 
 
 #include "Mathematical/Algorithm/IterationStep.hpp"
-#include "QCMethod/HF/RHF.hpp"
 #include "QCMethod/HF/RHFSCFEnvironment.hpp"
+#include "QCModel/HF/RHF.hpp"
+
 
 
 namespace GQCP {
@@ -53,7 +54,7 @@ public:
      */
     void execute(Environment& environment) override {
         const auto& D = environment.density_matrices.back();  // the most recent density matrix
-        const auto F = calculateRHFAOFockMatrix(D, environment.sq_hamiltonian);
+        const auto F = QCModel::RHF<double>::calculateScalarBasisFockMatrix(D, environment.sq_hamiltonian);
         environment.fock_matrices.push_back(F.parameters());
     }
 };

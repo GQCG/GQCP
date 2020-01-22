@@ -53,7 +53,7 @@ public:
      */
     void execute(Environment& environment) override {
         const auto& C = environment.coefficient_matrices.back();  // the most recent coefficient matrix
-        const auto D = calculateRHFAO1RDM(C, environment.N);
+        const auto D = QCModel::RHF<double>::calculateScalarBasis1RDM(C, environment.N);
         environment.density_matrices.push_back(D);
     }
 };

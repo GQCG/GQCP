@@ -25,6 +25,8 @@
 #include "Processing/Properties/expectation_values.hpp"
 #include "QCMethod/Geminals/AP1roGPSESolver.hpp"
 #include "QCMethod/Geminals/AP1roGLagrangianOptimizer.hpp"
+#include "QCMethod/HF/DiagonalRHFFockMatrix.hpp"
+#include "QCMethod/HF/RHF.hpp"
 #include "QCMethod/HF/RHFSCFSolver.hpp"
 
 
@@ -42,9 +44,9 @@ BOOST_AUTO_TEST_CASE ( energy_as_contraction ) {
     // Transform the Hamiltonian to the RHF orbital basis
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(h2.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
-    plain_rhf_scf_solver.iterate(rhf_environment);
-    const auto rhf = rhf_environment.solution();
-    GQCP::basisTransform(spinor_basis, sq_hamiltonian, rhf.get_C());
+    const GQCP::DiagonalRHFFockMatrix<double> objective (sq_hamiltonian);
+    const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
+    GQCP::basisTransform(spinor_basis, sq_hamiltonian, rhf_parameters.coefficientMatrix());
 
 
     // Solve the AP1roG PSEs for the geminal coefficients

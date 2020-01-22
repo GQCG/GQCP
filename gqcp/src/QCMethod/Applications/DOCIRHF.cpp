@@ -21,6 +21,8 @@
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/CI/CISolver.hpp"
+#include "QCMethod/HF/DiagonalRHFFockMatrix.hpp"
+#include "QCMethod/HF/RHF.hpp"
 #include "QCMethod/HF/RHFSCFSolver.hpp"
 
 
@@ -72,9 +74,10 @@ void DOCIRHF::solve() {
 
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(this->molecule.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
     auto diis_rhf_scf_solver = GQCP::RHFSCFSolver<double>::DIIS();
-    diis_rhf_scf_solver.iterate(rhf_environment);
-    const auto rhf = rhf_environment.solution();
-    basisTransform(spinor_basis, sq_hamiltonian, rhf.get_C());
+    const GQCP::DiagonalRHFFockMatrix<double> objective (sq_hamiltonian);
+    const auto rhf_qc_structure = GQCP::QCMethod::RHF<double>().optimize(objective, diis_rhf_scf_solver, rhf_environment);
+    const auto rhf_parameters = rhf_qc_structure.groundStateParameters();
+    basisTransform(spinor_basis, sq_hamiltonian, rhf_parameters.coefficientMatrix());
 
     // Set up DOCI
     FockSpace fock_space (K, N_P);
@@ -95,7 +98,7 @@ void DOCIRHF::solve() {
     this->is_solved = true;
     double internuclear_repulsion_energy = Operator::NuclearRepulsion(this->molecule).value();
     this->energy_solution = doci_energy + internuclear_repulsion_energy;
-    this->rhf_energy_solution = rhf.get_electronic_energy() + internuclear_repulsion_energy;
+    this->rhf_energy_solution = rhf_qc_structure.groundStateEnergy() + internuclear_repulsion_energy;
     this->T_total = spinor_basis.coefficientMatrix();
 }
 

@@ -20,7 +20,7 @@
 
 #include "Mathematical/Algorithm/IterationStep.hpp"
 #include "QCMethod/HF/RHFSCFEnvironment.hpp"
-#include "QCMethod/HF/RHF.hpp"
+#include "QCModel/HF/RHF.hpp"
 
 
 namespace GQCP {
@@ -59,7 +59,7 @@ public:
         const auto& F = environment.fock_matrices.back();
 
         // Calculate the error and write it to the environment (as a vector)
-        const auto error_matrix = calculateRHFError(F, D, S);
+        const auto error_matrix = QCModel::RHF<Scalar>::calculateError(F, D, S);
         environment.error_vectors.push_back(error_matrix.pairWiseReduce());
     }
 };

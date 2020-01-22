@@ -19,6 +19,8 @@
 
 #include "Basis/transform.hpp"
 #include "Processing/Properties/properties.hpp"
+#include "QCMethod/HF/DiagonalRHFFockMatrix.hpp"
+#include "QCMethod/HF/RHF.hpp"
 #include "QCMethod/HF/RHFSCFSolver.hpp"
 
 
@@ -52,19 +54,21 @@ FukuiDysonAnalysis::FukuiDysonAnalysis(const Molecule& molecule, const std::stri
         restricted_molecule = Molecule(this->molecule.nuclearFramework(), this->molecule.totalNucleicCharge() - this->molecule.numberOfElectrons() +1);
     }
 
-    // Perform DIIS or Plain RHF given the flag in the constructor
+    // Perform DIIS or plain RHF given the flag in the constructor
     if (use_diis) {
         auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(restricted_molecule.numberOfElectrons(), this->sq_hamiltonian, this->spinor_basis.overlap().parameters());
         auto diis_rhf_scf_solver = GQCP::RHFSCFSolver<double>::DIIS();
-        diis_rhf_scf_solver.iterate(rhf_environment);
-        const auto rhf_solution = rhf_environment.solution();
-        basisTransform(this->spinor_basis, this->sq_hamiltonian, rhf_solution.get_C());
+        const GQCP::DiagonalRHFFockMatrix<double> objective (sq_hamiltonian);
+        const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, diis_rhf_scf_solver, rhf_environment).groundStateParameters();
+
+        basisTransform(this->spinor_basis, this->sq_hamiltonian, rhf_parameters.coefficientMatrix());
     } else {
         auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), this->sq_hamiltonian, this->spinor_basis.overlap().parameters());
         auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
-        plain_rhf_scf_solver.iterate(rhf_environment);
-        const auto rhf_solution = rhf_environment.solution();
-        basisTransform(this->spinor_basis, this->sq_hamiltonian, rhf_solution.get_C());
+        const GQCP::DiagonalRHFFockMatrix<double> objective (sq_hamiltonian);
+        const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
+
+        basisTransform(this->spinor_basis, this->sq_hamiltonian, rhf_parameters.coefficientMatrix());
     }
 
     // In order to supply the correct arguments to the algorithm we choose different Fock spaces as fock_space1 should always have the highest occupation to fit the algorithm

@@ -22,7 +22,6 @@
 #include "Mathematical/Representation/QCMatrix.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Processing/RDM/OneRDM.hpp"
-#include "QCMethod/HF/RHF.hpp"
 
 #include <Eigen/Dense>
 
@@ -108,14 +107,6 @@ public:
         const TransformationMatrix<Scalar> C_initial = generalized_eigensolver.eigenvectors();
 
         return RHFSCFEnvironment<Scalar>(N, sq_hamiltonian, S, C_initial);
-    }
-
-
-    /**
-     *  @return an RHF-type solution. This method will be removed after the QCMethod/QCModel refactor.
-     */
-    RHF solution() const {
-        return RHF(this->electronic_energies.back(), this->coefficient_matrices.back(), this->orbital_energies.back());
     }
 };
 

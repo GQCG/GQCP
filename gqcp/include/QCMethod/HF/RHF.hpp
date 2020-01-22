@@ -18,139 +18,71 @@
 #pragma once
 
 
-#include "Basis/TransformationMatrix.hpp"
-#include "Mathematical/Representation/BlockRankFourTensor.hpp"
-#include "Mathematical/Representation/Tensor.hpp"
+#include "Mathematical/Algorithm/IterativeAlgorithm.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "Processing/RDM/OneRDM.hpp"
+#include "QCMethod/QCMethodProtocol.hpp"
+#include "QCMethod/QCObjective.hpp"
+#include "QCMethod/HF/RHFSCFEnvironment.hpp"
+#include "QCModel/HF/RHF.hpp"
+
+#include <type_traits>
 
 
 namespace GQCP {
+namespace QCMethod {
 
 
 /**
- *  A class that represents a converged solution to the RHF SCF equations
+ *  The restricted Hartree-Fock quantum chemical method
+ * 
+ *  @tparam _Scalar             the type of scalar that is used for the expansion of the spatial orbitals in their underlying scalar basis
  */
-class RHF {
-private:
-    double electronic_energy;
-    TransformationMatrix<double> C;  // transformation matrix from the AO basis to the RHF MO basis
-    VectorX<double> orbital_energies;  // sorted in ascending energies
+template <typename _Scalar>
+class RHF:
+    public GQCP::QCMethodProtocol<QCModel::RHF<_Scalar>, QCMethod::RHF<_Scalar>> {
+
+public:
+    using Scalar = _Scalar;
 
 
 public:
-    // CONSTRUCTORS
-    /**
-     *  Default constructor setting everything to zero
+
+    /*
+     *  PUBLIC METHODS
      */
-    RHF();  // need default constructor
 
     /**
-     *  Constructor based on given converged solutions of the RHF SCF equations
-     *
-     *  @param electronic_energy    the converged RHF electronic energy
-     *  @param C                    the coefficient matrix, i.e. the transformation matrix from the AO basis to the RHF MO basis
-     *  @param orbital_energies     the RHF MO energies
+     *  Optimize the electronic structure model: find the parameters that are the solutions to the quantum chemical method's objective
+     * 
+     *  @tparam QCObjective         the type of the objective
+     *  @tparam Solver              the type of the solver
+     * 
+     *  @param objective            the objective that should be fulfilled in order to consider the model's parameters as 'optimal'
+     *  @param solver               the solver that will try to optimize the parameters
      */
-    RHF(double electronic_energy, const TransformationMatrix<double>& C, const VectorX<double>& orbital_energies);
+    template <typename QCObjective, typename Solver>
+    QCStructure<QCModel::RHF<Scalar>> optimize(const QCObjective& objective, Solver& solver, RHFSCFEnvironment<Scalar>& environment) {
 
+        // The RHF method's responsibility is to try to optimize the parameters of its method, given a solver and associated environment.
+        solver.iterate(environment);
 
-    // GETTERS
-    double get_electronic_energy() const { return this->electronic_energy; }
-    const TransformationMatrix<double>& get_C() const { return this->C; }
-    const VectorX<double>& get_orbital_energies() const { return this->orbital_energies; }
-    double get_orbital_energies(size_t index) const { return this->orbital_energies(index); }
+        // To make a QCStructure<QCModel::RHF<Scalar>>, we need the electronic energy, coefficient matrix, orbital energies and the number of electrons.
+        // Furthermore, the current RHF SCF solvers only find the ground state wave function parameters, so the QCStructure only needs to contain the parameters for one state
+        const auto& E_electronic = environment.electronic_energies.back();
+        const auto& C = environment.coefficient_matrices.back();
+        const auto& orbital_energies = environment.orbital_energies.back();
+        const auto& N_P = environment.N / 2;
+
+        const QCModel::RHF<Scalar> rhf_parameters (N_P, orbital_energies, C);
+
+        // Now that we have constructed an instance of the QCModel, we should check if the objective is fulfilled
+        if (!objective.isSatisfiedWith(rhf_parameters)) {
+            throw std::runtime_error("QCModel::RHF::optimize(const QCObjective&, Solver&): The solver did not produce a solution that fulfills the objective.");
+        }
+        return QCStructure<QCModel::RHF<Scalar>>({E_electronic}, {rhf_parameters});
+    }
 };
 
 
-/*
- *  HELPER METHODS
- */
-
-/**
- *  @param K    the number of spatial orbitals
- *  @param N    the number of electrons
- *
- *  @return the RHF 1-RDM expressed in an orthonormal basis
- */
-OneRDM<double> calculateRHF1RDM(size_t K, size_t N);
-
-/**
- *  @param C    the coefficient matrix, specifying the transformation to the AO basis
- *  @param N    the number of electrons
- *
- *  @return the RHF 1-RDM expressed in the AO basis
- */
-OneRDM<double> calculateRHFAO1RDM(const TransformationMatrix<double>& C, size_t N);
-
-/**
- *  Calculate the RHF Fock matrix F = H_core + G, in which G is a contraction of the density matrix and the two-electron integrals
- *
- *  @param D_AO                 the RHF density matrix in AO basis
- *  @param sq_hamiltonian       the Hamiltonian expressed in an AO basis
- *
- *  @return the RHF Fock matrix expressed in the AO basis
- */
-ScalarSQOneElectronOperator<double> calculateRHFAOFockMatrix(const OneRDM<double>& D_AO, const SQHamiltonian<double>& sq_hamiltonian);
-
-/**
- *  @param D_AO         the RHF density matrix in AO basis
- *  @param H_core_AO    the core Hamiltonian expressed in an AO basis
- *  @param F_AO         the Fock matrix in AO basis
- *
- *  @return the RHF electronic energy
- */
-double calculateRHFElectronicEnergy(const OneRDM<double>& D_AO, const ScalarSQOneElectronOperator<double>& H_core_AO, const ScalarSQOneElectronOperator<double>& F_AO);
-
-/**
- *  @param N    the number of electrons
- *
- *  @return the RHF HOMO index
- */
-size_t RHFHOMOIndex(size_t N);
-
-/**
- *  @param K    the number of spatial orbitals
- *  @param N    the number of electrons
- *
- *  @return the RHF LUMO index
- */
-size_t RHFLUMOIndex(size_t K, size_t N);
-
-/**
- *  Specialize the orbital Hessian for RHF
- * 
- *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis
- *  @param N_P                  the number of electron pairs
- * 
- *  @return the RHF orbital Hessian as a BlockRankFourTensor, i.e. an object with a suitable operator() implemented
- */
-BlockRankFourTensor<double> calculateRHFOrbitalHessianTensor(const SQHamiltonian<double>& sq_hamiltonian, const size_t N_P);
-
-/**
- *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis
- *  @param N_P                  the number of electron pairs
- *  @param a                    the first virtual orbital index
- *  @param i                    the first occupied orbital index
- *  @param b                    the second virtual orbital index
- *  @param j                    the second occupied orbital index
- * 
- *  @return an element of the RHF orbital Hessian
- */
-double calculateRHFOrbitalHessianElement(const SQHamiltonian<double>& sq_hamiltonian, const size_t N_P, const size_t a, const size_t i, const size_t b, const size_t j);
-
-
-/**
- *  @param F                    the Fock matrix (expressed in a scalar/AO basis)
- *  @param D                    the density matrix (expressed in a scalar/AO basis)
- *  @param S                    the overlap matrix (expressed in a scalar/AO basis)
- * 
- *  @tparam Scalar              the type of the elements of the matrices
- */
-template <typename Scalar>
-SquareMatrix<Scalar> calculateRHFError(const QCMatrix<Scalar>& F, const OneRDM<Scalar>& D, const QCMatrix<Scalar>& S) {
-    return F * D * S - S * D * F;
-}
-
-
+}  // namespace QCMethod
 }  // namespace GQCP

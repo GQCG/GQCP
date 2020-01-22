@@ -22,6 +22,8 @@
 #include "Basis/transform.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Processing/Properties/expectation_values.hpp"
+#include "QCMethod/HF/DiagonalRHFFockMatrix.hpp"
+#include "QCMethod/HF/RHF.hpp"
 #include "QCMethod/HF/RHFSCFSolver.hpp"
 
 #include <random>
@@ -37,7 +39,7 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test ) {
     size_t K = sq_hamiltonian.dimension();
     size_t N = CO.numberOfElectrons();
 
-    GQCP::OneRDM<double> one_rdm = GQCP::calculateRHF1RDM(K, N);
+    GQCP::OneRDM<double> one_rdm = GQCP::QCModel::RHF<double>::calculateOrthonormalBasis1RDM(K, N);
 
     // Initialize the ref data form:
     // "Self-consistent methods constrained to a fixed number of particles in a given fragment
@@ -84,14 +86,15 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test ) {
         // Create a DIIS RHF SCF solver and solve the SCF equations
         auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(CO.numberOfElectrons(), constrained_sq_hamiltonian, spinor_basis.overlap().parameters());
         auto diis_rhf_scf_solver = GQCP::RHFSCFSolver<double>::DIIS();
-        diis_rhf_scf_solver.iterate(rhf_environment);
-        const auto rhf = rhf_environment.solution();
+        const GQCP::DiagonalRHFFockMatrix<double> objective (constrained_sq_hamiltonian);
+        const auto rhf_qc_structure = GQCP::QCMethod::RHF<double>().optimize(objective, diis_rhf_scf_solver, rhf_environment);
+        const auto rhf_parameters = rhf_qc_structure.groundStateParameters();
 
         // Transform only the mulliken operator to the basis in which the RHF energies are calculated
-        mulliken_operator.transform(rhf.get_C());
+        mulliken_operator.transform(rhf_parameters.coefficientMatrix());
 
         // Retrieve the RHF "energy"
-        double expectation_value = rhf.get_electronic_energy();
+        double expectation_value = rhf_qc_structure.groundStateEnergy();
 
         // Retrieve the expectation value of the Mulliken operator (aka the population)
         double mulliken_population = GQCP::calculateExpectationValue(mulliken_operator, one_rdm)[0];
@@ -133,7 +136,7 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test_random_transformation) {
 
     basisTransform(spinor_basis, sq_hamiltonian, T);
 
-    GQCP::OneRDM<double> one_rdm = GQCP::calculateRHF1RDM(K, N);
+    GQCP::OneRDM<double> one_rdm = GQCP::QCModel::RHF<double>::calculateOrthonormalBasis1RDM(K, N);
 
     // Initialize the ref data form:
     // Self-consistent methods constrained to a fixed number of particles in a given fragment
@@ -180,14 +183,15 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test_random_transformation) {
         // Create a DIIS RHF SCF solver and solve the SCF equations
         auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(CO.numberOfElectrons(), sq_hamiltonian_constrained, spinor_basis.overlap().parameters());
         auto diis_rhf_scf_solver = GQCP::RHFSCFSolver<double>::DIIS();
-        diis_rhf_scf_solver.iterate(rhf_environment);
-        const auto rhf = rhf_environment.solution();
+        const GQCP::DiagonalRHFFockMatrix<double> objective (sq_hamiltonian_constrained);
+        const auto rhf_qc_structure = GQCP::QCMethod::RHF<double>().optimize(objective, diis_rhf_scf_solver, rhf_environment);
+        const auto rhf_parameters = rhf_qc_structure.groundStateParameters();
 
-        // Transform only the mulliken operator to the basis in which the RHF energies are calculated
-        mulliken_operator.transform(rhf.get_C());
+        // Transform only the Mulliken operator to the basis in which the RHF energies are calculated
+        mulliken_operator.transform(rhf_parameters.coefficientMatrix());
 
         // Retrieve the RHF "energy"
-        double expectation_value = rhf.get_electronic_energy();
+        double expectation_value = rhf_qc_structure.groundStateEnergy();
 
         // Retrieve the expectation value of the Mulliken operator (aka the population)
         double mulliken_population = GQCP::calculateExpectationValue(mulliken_operator, one_rdm)[0];

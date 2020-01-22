@@ -1,10 +1,11 @@
 target_sources(gqcp
     PRIVATE
+        DiagonalRHFFockMatrix.hpp
         RHF.hpp
         RHFDensityMatrixCalculation.hpp
         RHFDensityMatrixDamper.hpp
-        RHFErrorCalculation.hpp
         RHFElectronicEnergyCalculation.hpp
+        RHFErrorCalculation.hpp
         RHFFockMatrixCalculation.hpp
         RHFFockMatrixDiagonalization.hpp
         RHFFockMatrixDIIS.hpp
