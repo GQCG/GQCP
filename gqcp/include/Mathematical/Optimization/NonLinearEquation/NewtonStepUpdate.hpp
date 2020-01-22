@@ -19,7 +19,8 @@
 
 
 #include "Mathematical/Algorithm/IterationStep.hpp"
-#include "Mathematical/NonLinearEquation/NonLinearEquationEnvironment.hpp"
+#include "Mathematical/Optimization/NonLinearEquation/NonLinearEquationEnvironment.hpp"
+#include "Mathematical/Representation/SquareMatrix.hpp"
 
 #include <type_traits>
 
@@ -64,7 +65,7 @@ public:
         // Calculate f(x) and J(x), i.e. the values of the vector field and its Jacobian at the given x
         VectorX<Scalar> f_vector = f(x);
         SquareMatrix<Scalar> J_matrix = J(x);
-        const auto dx = J_matrix.colPivHouseholderQr().solve(-f_vector);  // the actual Newton step
+        const VectorX<Scalar> dx = J_matrix.colPivHouseholderQr().solve(-f_vector);  // the actual Newton step
 
         environment.variables.push_back(x + dx);
     }

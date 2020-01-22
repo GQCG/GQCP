@@ -56,7 +56,7 @@ public:
      *  @param f                            a callable function that produces a vector function that represents the system of equations at the given variables
      *  @param J                            a callable function that produces a matrix that represents the Jacobian of the system of equations at the given variables
      */
-    OptimizationEnvironment(const Iterate& initial_guess, const VectorFunction<Scalar>& f, const MatrixFunction<Scalar>& J) :
+    NonLinearEquationEnvironment(const VectorX<_Scalar>& initial_guess, const VectorFunction<Scalar>& f, const MatrixFunction<Scalar>& J) :
         OptimizationEnvironment<VectorX<_Scalar>>(initial_guess),
         f (f),
         J (J)

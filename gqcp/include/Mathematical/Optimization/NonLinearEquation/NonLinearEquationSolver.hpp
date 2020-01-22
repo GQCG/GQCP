@@ -18,7 +18,9 @@
 #pragma once
 
 
+#include "Mathematical/Algorithm/IterativeAlgorithm.hpp"
 #include "Mathematical/Optimization/OptimizationEnvironment.hpp"
+#include "Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp"
 #include "Mathematical/Optimization/NonLinearEquation/NonLinearEquationEnvironment.hpp"
 #include "Mathematical/Optimization/NonLinearEquation/NewtonStepUpdate.hpp"
 
@@ -34,7 +36,7 @@ namespace GQCP {
 template <typename _Scalar>
 class NonLinearEquationSolver {
 public:
-    using _Scalar = Scalar;
+    using Scalar = _Scalar;
 
 
 public:
@@ -53,7 +55,7 @@ public:
 
         // Create the iteration cycle that effectively 'defines' a Newton-based system of equations solver: it uses a Newton-step based update of the variables
         IterationCycle<NonLinearEquationEnvironment<Scalar>> newton_cycle {};
-        newton_cycle.add(NewtonStepUpdate<Scalar>());
+        newton_cycle.add(NewtonStepUpdate<Scalar, NonLinearEquationEnvironment<Scalar>>());
 
         // Create a convergence criterion on the norm of subsequent iterations of variables
         const ConsecutiveIteratesNormConvergence<VectorX<Scalar>, NonLinearEquationEnvironment<Scalar>> convergence_criterion (threshold);
