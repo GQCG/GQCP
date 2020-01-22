@@ -15,11 +15,11 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#define BOOST_TEST_MODULE "NewtonSystemOfEquations"
+#define BOOST_TEST_MODULE "NonLinearEquationSolver"
 
 #include <boost/test/unit_test.hpp>
 
-#include "Mathematical/Optimization/NonLinearEquation/NewtonNLSystemOfEquationsSolver.hpp"
+#include "Mathematical/Optimization/NonLinearEquation/NonLinearEquationSolver.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 
 
@@ -83,8 +83,11 @@ BOOST_AUTO_TEST_CASE ( nl_syseq_example ) {
     // Do the numerical optimization and check the result
     GQCP::VectorX<double> x (2);
     x << 3, 2;
-    GQCP::NewtonNLSystemOfEquationsSolver newton_vector_opt (f, J);
-    newton_vector_opt.solve(x);
 
-    BOOST_CHECK(x.isZero(1.0e-08));  // the analytical solution of f(x) = (0,0) is x=(0,0)
+    GQCP::NonLinearEquationEnvironment<double> non_linear_environment (x, f, J);
+    auto non_linear_solver = GQCP::NonLinearEquationSolver<double>::Newton();
+    non_linear_solver.iterate(non_linear_environment);
+    const auto& solution = non_linear_environment.variables.back();
+
+    BOOST_CHECK(solution.isZero(1.0e-08));  // the analytical solution of f(x) = (0,0) is x=(0,0)
 }

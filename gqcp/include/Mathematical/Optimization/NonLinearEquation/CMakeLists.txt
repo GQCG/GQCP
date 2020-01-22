@@ -3,4 +3,5 @@ target_sources(gqcp
         NewtonStepUpdate.hpp
         NonLinearEquationEnvironment.hpp
         NonLinearEquationSolver.hpp
+        step.hpp
 )
