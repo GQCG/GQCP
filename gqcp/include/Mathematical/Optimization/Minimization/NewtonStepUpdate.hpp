@@ -19,6 +19,8 @@
 
 
 #include "Mathematical/Algorithm/IterationStep.hpp"
+#include "Mathematical/Optimization/Minimization/MinimizationEnvironment.hpp"
+#include "Mathematical/Optimization/NonLinearEquation/NewtonStepUpdate.hpp"
 #include "Mathematical/Optimization/NonLinearEquation/NonLinearEquationEnvironment.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 
@@ -26,7 +28,7 @@
 
 
 namespace GQCP {
-namespace NonLinearEquation {
+namespace Minimization {
 
 
 /**
@@ -43,7 +45,7 @@ public:
     using Scalar = _Scalar;
     using Environment = _Environment;
     static_assert(std::is_same<Scalar, typename Environment::Scalar>::value, "The scalar type must match that of the environment");
-    static_assert(std::is_base_of<NonLinearEquationEnvironment<Scalar>, Environment>::value, "The environment type must derive from NonLinearEquationEnvironment.");
+    static_assert(std::is_base_of<MinimizationEnvironment<Scalar>, Environment>::value, "The environment type must derive from MinimizationEnvironment.");
 
 
 public:
@@ -59,19 +61,19 @@ public:
      */
     void execute(Environment& environment) override {
 
-        const auto& x = environment.variables.back();
-        const auto& f = environment.f;
-        const auto& J = environment.J;
+        // Use the non-linear equation Newton step as an implementation
+        const auto& variables = environment.variables.back();
+        const auto& f = environment.gradient_function;
+        const auto& J = environment.hessian_function;
 
-        // Calculate f(x) and J(x), i.e. the values of the vector field and its Jacobian at the given x
-        VectorX<Scalar> f_vector = f(x);
-        SquareMatrix<Scalar> J_matrix = J(x);
-        const VectorX<Scalar> dx = J_matrix.colPivHouseholderQr().solve(-f_vector);  // the actual Newton step
+        GQCP::NonLinearEquationEnvironment<Scalar> non_linear_environment (variables, f, J);
+        GQCP::NonLinearEquation::NewtonStepUpdate<Scalar, NonLinearEquationEnvironment<Scalar>>().execute(non_linear_environment);  // this adds the Newton-step updated variables to the non-linear environment
 
-        environment.variables.push_back(x + dx);
+        const auto& new_variables = non_linear_environment.variables.back();
+        environment.variables.push_back(new_variables);
     }
 };
 
 
-}  // namespace NonLinearEquation
+}  // namespace Minimization
 }  // namespace GQCP

@@ -17,8 +17,8 @@
 // 
 #include "QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.hpp"
 
-#include "Mathematical/Optimization/Minimization/NewtonMinimizer.hpp"
-
+#include "Mathematical/Optimization/Minimization/MinimizationEnvironment.hpp"
+#include "Mathematical/Optimization/Minimization/Minimizer.hpp"
 #include "QCMethod/Geminals/AP1roG.hpp"
 #include "QCMethod/Geminals/AP1roGPSESolver.hpp"
 
@@ -212,9 +212,10 @@ double AP1roGJacobiOrbitalOptimizer::calculateOptimalRotationAngle(const SQHamil
             VectorX<double> theta_vec (1);  // we can't implicitly convert a float to an VectorX<double> so we make it ourselves
             theta_vec << theta;
 
-            NewtonMinimizer minimizer (theta_vec, gradient_function, hessian_function);
-            minimizer.solve();
-            const double theta_min = minimizer.get_solution()(0);  // get inside the VectorX<double>
+            MinimizationEnvironment<double> minimization_environment (theta_vec, gradient_function, hessian_function);
+            auto minimizer = GQCP::Minimizer<double>::Newton();
+            minimizer.iterate(minimization_environment);
+            const auto& theta_min = minimization_environment.variables.back()(0);  // get inside the VectorX<double>
             JacobiRotationParameters jacobi_rot_par {p, q, theta_min};
 
             const double E_change = this->calculateScalarFunctionChange(sq_hamiltonian, jacobi_rot_par);

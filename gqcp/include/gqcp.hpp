@@ -88,9 +88,7 @@
 #include "Mathematical/Optimization/Eigenproblem/SparseSolver.hpp"
 
 #include "Mathematical/Optimization/Minimization/BaseHessianModifier.hpp"
-#include "Mathematical/Optimization/Minimization/BaseMinimizer.hpp"
 #include "Mathematical/Optimization/Minimization/IterativeIdentitiesHessianModifier.hpp"
-#include "Mathematical/Optimization/Minimization/NewtonMinimizer.hpp"
 #include "Mathematical/Optimization/Minimization/UnalteringHessianModifier.hpp"
 
 #include "Mathematical/Optimization/NonLinearEquation/NewtonStepUpdate.hpp"

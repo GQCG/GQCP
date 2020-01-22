@@ -15,11 +15,11 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#define BOOST_TEST_MODULE "NewtonMinimizer"
+#define BOOST_TEST_MODULE "Minimizer"
 
 #include <boost/test/unit_test.hpp>
 
-#include "Mathematical/Optimization/Minimization/NewtonMinimizer.hpp"
+#include "Mathematical/Optimization/Minimization/Minimizer.hpp"
 
 #include "Mathematical/Representation/SquareMatrix.hpp"
 
@@ -83,9 +83,10 @@ BOOST_AUTO_TEST_CASE ( minimization_example ) {
     GQCP::VectorX<double> x0 (2);
     x0 << 4, 2;
 
-    GQCP::NewtonMinimizer newton_minimizer (x0, grad, H);
-    newton_minimizer.solve();
-    GQCP::VectorX<double> solution = newton_minimizer.get_solution();
+    GQCP::MinimizationEnvironment<double> minimization_environment (x0, grad, H);
+    auto minimizer = GQCP::Minimizer<double>::Newton();
+    minimizer.iterate(minimization_environment);
+    const auto& solution = minimization_environment.variables.back();
 
     BOOST_CHECK(solution.isZero(1.0e-08));  // the analytical minimizer of f(x) is x=(0,0)
 }
