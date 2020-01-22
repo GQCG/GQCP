@@ -31,7 +31,7 @@
 #include "Processing/RDM/TwoRDM.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/HoppingMatrix.hpp"
 #include "Utilities/miscellaneous.hpp"
-#include "Utilities/typedefs.hpp"
+#include "Utilities/type_traits.hpp"
 
 
 namespace GQCP {

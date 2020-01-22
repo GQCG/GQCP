@@ -17,7 +17,7 @@
 // 
 #include "QCMethod/OrbitalOptimization/NewtonOrbitalOptimizer.hpp"
 
-#include "Mathematical/Optimization/step.hpp"
+#include "Mathematical/Optimization/NonLinearEquation/step.hpp"
 
 #include <Eigen/Dense>
 #include <unsupported/Eigen/MatrixFunctions>
@@ -175,13 +175,13 @@ OrbitalRotationGenerators NewtonOrbitalOptimizer::calculateNewFreeOrbitalGenerat
     if (this->gradient.norm() > this->convergence_threshold) {
 
         const size_t dim = this->gradient.size();
-        const VectorFunction gradient_function = [this] (const VectorX<double>& x) { return this->gradient; };
+        const VectorFunction<double> gradient_function = [this] (const VectorX<double>& x) { return this->gradient; };
 
         auto modified_hessian = this->hessian;
         if (!this->newtonStepIsWellDefined()) {
             modified_hessian = this->hessian_modifier->operator()(this->hessian);
         }
-        const MatrixFunction hessian_function = [&modified_hessian] (const VectorX<double>& x) { return modified_hessian; };
+        const MatrixFunction<double> hessian_function = [&modified_hessian] (const VectorX<double>& x) { return modified_hessian; };
 
         return OrbitalRotationGenerators(newtonStep(VectorX<double>::Zero(dim), gradient_function, hessian_function));  // with only the free parameters
     }

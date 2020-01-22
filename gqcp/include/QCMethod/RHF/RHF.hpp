@@ -140,4 +140,17 @@ BlockRankFourTensor<double> calculateRHFOrbitalHessianTensor(const SQHamiltonian
 double calculateRHFOrbitalHessianElement(const SQHamiltonian<double>& sq_hamiltonian, const size_t N_P, const size_t a, const size_t i, const size_t b, const size_t j);
 
 
+/**
+ *  @param F                    the Fock matrix (expressed in a scalar/AO basis)
+ *  @param D                    the density matrix (expressed in a scalar/AO basis)
+ *  @param S                    the overlap matrix (expressed in a scalar/AO basis)
+ * 
+ *  @tparam Scalar              the type of the elements of the matrices
+ */
+template <typename Scalar>
+SquareMatrix<Scalar> calculateRHFError(const QCMatrix<Scalar>& F, const OneRDM<Scalar>& D, const QCMatrix<Scalar>& S) {
+    return F * D * S - S * D * F;
+}
+
+
 }  // namespace GQCP

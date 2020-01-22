@@ -22,8 +22,7 @@
 #include "Operator/FirstQuantized/NuclearRepulsionOperator.hpp"
 #include "Processing/Properties/expectation_values.hpp"
 #include "Processing/RDM/RDMCalculator.hpp"
-#include "QCMethod/RHF/DIISRHFSCFSolver.hpp"
-
+#include "QCMethod/RHF/RHFSCFSolver.hpp"
 
 
 namespace GQCP {
@@ -87,9 +86,10 @@ void FCI::solve() {
         pre_solver_options->convergence_threshold = 1e-8;
         pre_solver_options->maximum_subspace_dimension = 15;
         pre_solver_options->maximum_number_of_iterations = 200;
-        DIISRHFSCFSolver diis_scf_solver (sq_hamiltonian, spinor_basis, this->molecule);
-        diis_scf_solver.solve();
-        auto rhf = diis_scf_solver.get_solution();
+        auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(this->molecule.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
+        auto diis_rhf_scf_solver = GQCP::RHFSCFSolver<double>::DIIS();
+        diis_rhf_scf_solver.iterate(rhf_environment);
+        const auto rhf = rhf_environment.solution();
         basisTransform(spinor_basis, sq_hamiltonian, rhf.get_C());
         solver_options = pre_solver_options;
     } else {

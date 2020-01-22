@@ -1,7 +1,13 @@
 target_sources(gqcp
     PRIVATE
-        DIISRHFSCFSolver.hpp
-        PlainRHFSCFSolver.hpp
         RHF.hpp
+        RHFDensityMatrixCalculation.hpp
+        RHFDensityMatrixDamper.hpp
+        RHFErrorCalculation.hpp
+        RHFElectronicEnergyCalculation.hpp
+        RHFFockMatrixCalculation.hpp
+        RHFFockMatrixDiagonalization.hpp
+        RHFFockMatrixDIIS.hpp
+        RHFSCFEnvironment.hpp
         RHFSCFSolver.hpp
 )

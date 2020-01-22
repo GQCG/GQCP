@@ -22,7 +22,7 @@
 #include "QCMethod/RMP2/RMP2.hpp"
 
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "QCMethod/RHF/PlainRHFSCFSolver.hpp"
+#include "QCMethod/RHF/RHFSCFSolver.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( crawdad_sto3g_water ) {
@@ -36,9 +36,10 @@ BOOST_AUTO_TEST_CASE ( crawdad_sto3g_water ) {
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (water, "STO-3G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, water);  // in an AO basis
 
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, water);
-    plain_scf_solver.solve();
-    auto rhf = plain_scf_solver.get_solution();
+    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(water.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
+    auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
+    plain_rhf_scf_solver.iterate(rhf_environment);
+    const auto rhf = rhf_environment.solution();
     sq_hamiltonian.transform(rhf.get_C());
 
 
@@ -58,9 +59,10 @@ BOOST_AUTO_TEST_CASE ( crawdad_sto3g_methane ) {
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (methane, "STO-3G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, methane);  // in an AO basis
 
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, methane);
-    plain_scf_solver.solve();
-    auto rhf = plain_scf_solver.get_solution();
+    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(methane.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
+    auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
+    plain_rhf_scf_solver.iterate(rhf_environment);
+    const auto rhf = rhf_environment.solution();
     sq_hamiltonian.transform(rhf.get_C());
 
 

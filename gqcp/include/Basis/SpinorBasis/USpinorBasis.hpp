@@ -20,6 +20,7 @@
 
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
 #include "Basis/SpinorBasis/SpinComponent.hpp"
+#include "Utilities/type_traits.hpp"
 
 
 namespace GQCP {

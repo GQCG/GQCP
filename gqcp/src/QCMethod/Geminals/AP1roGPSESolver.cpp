@@ -17,7 +17,7 @@
 // 
 #include "QCMethod/Geminals/AP1roGPSESolver.hpp"
 
-#include "Mathematical/Optimization/NewtonNLSystemOfEquationsSolver.hpp"
+#include "Mathematical/Optimization/NonLinearEquation/NonLinearEquationSolver.hpp"
 #include "QCMethod/Geminals/AP1roG.hpp"
 
 
@@ -54,10 +54,12 @@ void AP1roGPSESolver::solve(AP1roGGeminalCoefficients& G) const {
     const auto J = this->pses.callableJacobian();
 
     // Solve the AP1roG equations using a Newton-based algorithm
-    VectorX<double> x = G.asVector();  // the initial guess and the solution if it is found; a column-major vector
-    NewtonNLSystemOfEquationsSolver syseq_solver (f, J, this->convergence_threshold, this->maximum_number_of_iterations);
+    VectorX<double> x = G.asVector();  // the initial guess: a column-major vector
+    NonLinearEquationEnvironment<double> non_linear_environment (x, f, J);
+    auto non_linear_solver = NonLinearEquationSolver<double>::Newton(this->convergence_threshold, this->maximum_number_of_iterations);
+    non_linear_solver.iterate(non_linear_environment);
+    x = non_linear_environment.variables.back();
 
-    syseq_solver.solve(x);
     G = AP1roGGeminalCoefficients::FromColumnMajor(x, this->pses.numberOfElectronPairs(), this->pses.numberOfSpatialOrbitals());
 }
 

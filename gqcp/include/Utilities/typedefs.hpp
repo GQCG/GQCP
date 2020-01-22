@@ -54,9 +54,6 @@ using Matrixu = std::vector<Vectoru>;
 /*
  *  TEMPLATE ALIASES
  */
-template <bool B, typename T = void>
-using enable_if_t = typename std::enable_if<B, T>::type;  // only in C++14
-
 template <typename T, typename U>
 using sum_t = decltype(std::declval<T>() + std::declval<U>());
 

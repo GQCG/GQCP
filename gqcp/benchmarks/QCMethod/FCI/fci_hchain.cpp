@@ -9,7 +9,7 @@
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/CI/CISolver.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
-#include "QCMethod/RHF/PlainRHFSCFSolver.hpp"
+#include "QCMethod/RHF/RHFSCFSolver.hpp"
 
 
 
@@ -29,12 +29,14 @@ static void fci_davidson_hchain(benchmark::State& state) {
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in AO basis
 
 
-    // Solve the RHF SCF equations
+    // Do an RHF SCF procedure
     const auto K = sq_hamiltonian.dimension();
     const auto N_P = hchain.numberOfElectrons()/2;
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, hchain);
-    plain_scf_solver.solve();
-    const auto rhf = plain_scf_solver.get_solution();
+
+    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(hchain.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
+    auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
+    plain_rhf_scf_solver.iterate(rhf_environment);
+    const auto rhf = rhf_environment.solution();
 
 
     // Diagonalize the FCI Hamiltonian in the RHF basis
@@ -59,6 +61,7 @@ static void fci_davidson_hchain(benchmark::State& state) {
     state.counters["Dimension"] = fock_space.get_dimension();
 }
 
+
 /**
  *  DENSE
  */
@@ -77,9 +80,10 @@ static void fci_dense_hchain(benchmark::State& state) {
     auto N_P = hchain.numberOfElectrons()/2;
 
     // Create a plain RHF SCF solver and solve the SCF equations
-    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, hchain);
-    plain_scf_solver.solve();
-    auto rhf = plain_scf_solver.get_solution();
+    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(hchain.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
+    auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
+    plain_rhf_scf_solver.iterate(rhf_environment);
+    const auto rhf = rhf_environment.solution();
 
     GQCP::basisTransform(spinor_basis, sq_hamiltonian, rhf.get_C());
     GQCP::ProductFockSpace fock_space (K, N_P, N_P);
@@ -99,6 +103,7 @@ static void fci_dense_hchain(benchmark::State& state) {
     state.counters["Electrons"] = 2*N_P;
     state.counters["Dimension"] = fock_space.get_dimension();
 }
+
 
 static void CustomArguments(benchmark::internal::Benchmark* b) {
     for (int i = 4; i < 11; i++) {  // need int instead of size_t

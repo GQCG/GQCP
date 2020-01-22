@@ -21,6 +21,7 @@
 #include "Basis/SpinorBasis/SpinComponent.hpp"
 #include "Basis/SpinorBasis/USpinorBasis.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
+#include "Utilities/type_traits.hpp"
 
 
 namespace GQCP {

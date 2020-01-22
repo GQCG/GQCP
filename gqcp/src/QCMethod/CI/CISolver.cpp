@@ -17,9 +17,9 @@
 // 
 #include "QCMethod/CI/CISolver.hpp"
 
-#include "Mathematical/Optimization/DavidsonSolver.hpp"
-#include "Mathematical/Optimization/DenseSolver.hpp"
-#include "Mathematical/Optimization/SparseSolver.hpp"
+#include "Mathematical/Optimization/Eigenproblem/DavidsonSolver.hpp"
+#include "Mathematical/Optimization/Eigenproblem/DenseSolver.hpp"
+#include "Mathematical/Optimization/Eigenproblem/SparseSolver.hpp"
 
 
 namespace GQCP {
@@ -73,7 +73,7 @@ void CISolver::solve(const BaseSolverOptions& solver_options) {
         case SolverType::DAVIDSON: {
 
             auto diagonal = this->hamiltonian_builder->calculateDiagonal(this->sq_hamiltonian);
-            VectorFunction matrixVectorProduct = [this, &diagonal](const VectorX<double>& x) { return hamiltonian_builder->matrixVectorProduct(sq_hamiltonian, x, diagonal); };
+            VectorFunction<double> matrixVectorProduct = [this, &diagonal](const VectorX<double>& x) { return hamiltonian_builder->matrixVectorProduct(sq_hamiltonian, x, diagonal); };
 
             DavidsonSolver solver (matrixVectorProduct, diagonal, dynamic_cast<const DavidsonSolverOptions&>(solver_options));
 

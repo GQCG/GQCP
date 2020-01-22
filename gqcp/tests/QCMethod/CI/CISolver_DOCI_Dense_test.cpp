@@ -22,7 +22,6 @@
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/CI/CISolver.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/DOCI.hpp"
-#include "QCMethod/RHF/PlainRHFSCFSolver.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( DOCI_beh_cation_klaas_dense ) {

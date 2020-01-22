@@ -19,10 +19,10 @@
 
 #include "Basis/transform.hpp"
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
-#include "Mathematical/Optimization/DavidsonSolver.hpp"
-#include "Mathematical/Optimization/DenseSolver.hpp"
+#include "Mathematical/Optimization/Eigenproblem/DavidsonSolver.hpp"
+#include "Mathematical/Optimization/Eigenproblem/DenseSolver.hpp"
 #include "Processing/Properties/expectation_values.hpp"
-#include "QCMethod/RHF/DIISRHFSCFSolver.hpp"
+#include "QCMethod/RHF/RHFSCFSolver.hpp"
 
 #include <algorithm>
 #include <chrono>
@@ -157,9 +157,11 @@ MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const s
 
     try {
         // Try the foward approach of solving the RHF equations
-        DIISRHFSCFSolver diis_scf_solver (this->sq_hamiltonian, this->spinor_basis, molecule, 6, 6, 1e-12, 500);
-        diis_scf_solver.solve();
-        auto rhf_solution = diis_scf_solver.get_solution();
+        auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), this->sq_hamiltonian, this->spinor_basis.overlap().parameters());
+        auto diis_rhf_scf_solver = GQCP::RHFSCFSolver<double>::DIIS(6, 6, 1.0e-12, 500);
+        diis_rhf_scf_solver.iterate(rhf_environment);
+        const auto rhf_solution = rhf_environment.solution();
+
         basisTransform(this->spinor_basis, this->sq_hamiltonian, rhf_solution.get_C());
 
     } catch (const std::exception& e) {
@@ -181,12 +183,15 @@ MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const s
                 auto ham_par2 = SQHamiltonian<double>::Molecular(spinor_basis2, mol_fraction2);  // in AO basis
 
                 // Perform DIIS RHF for individual fractions
-                DIISRHFSCFSolver diis_scf_solver1 (ham_par1, spinor_basis1, mol_fraction1, 6, 6, 1e-12, 500);
-                DIISRHFSCFSolver diis_scf_solver2 (ham_par2, spinor_basis2, mol_fraction2, 6, 6, 1e-12, 500);
-                diis_scf_solver1.solve();
-                diis_scf_solver2.solve();
-                auto rhf1 = diis_scf_solver1.get_solution();
-                auto rhf2 = diis_scf_solver2.get_solution();
+                auto rhf_environment1 = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(mol_fraction1.numberOfElectrons(), ham_par1, spinor_basis1.overlap().parameters());
+                auto diis_rhf_scf_solver1 = GQCP::RHFSCFSolver<double>::DIIS(6, 6, 1.0e-12, 500);
+                diis_rhf_scf_solver1.iterate(rhf_environment1);
+                const auto rhf1 = rhf_environment1.solution();
+
+                auto rhf_environment2 = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(mol_fraction2.numberOfElectrons(), ham_par2, spinor_basis2.overlap().parameters());
+                auto diis_rhf_scf_solver2 = GQCP::RHFSCFSolver<double>::DIIS(6, 6, 1.0e-12, 500);
+                diis_rhf_scf_solver2.iterate(rhf_environment2);
+                const auto rhf2 = rhf_environment2.solution();
 
                 // Retrieve transformation from the solutions and transform the Hamiltonian
                 size_t K1 = ham_par1.dimension();
@@ -201,9 +206,11 @@ MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const s
 
                 // Attempt the DIIS for this basis
                 try {
-                    DIISRHFSCFSolver diis_scf_solver (this->sq_hamiltonian, this->spinor_basis, molecule, 6, 6, 1e-12, 500);
-                    diis_scf_solver.solve();
-                    auto rhf = diis_scf_solver.get_solution();
+                    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), this->sq_hamiltonian, this->spinor_basis.overlap().parameters());
+                    auto diis_rhf_scf_solver = GQCP::RHFSCFSolver<double>::DIIS(6, 6, 1.0e-12, 500);
+                    diis_rhf_scf_solver.iterate(rhf_environment);
+                    const auto rhf = rhf_environment.solution();
+
                     basisTransform(this->spinor_basis, this->sq_hamiltonian, rhf.get_C());
 
 
@@ -268,7 +275,7 @@ void MullikenConstrainedFCI::solveMullikenDavidson(const double multiplier, cons
     solver_options.maximum_number_of_iterations = this->maximum_number_of_iterations;
 
     VectorX<double> dia = this->fock_space.evaluateOperatorDiagonal(constrained_ham_par);
-    VectorFunction matrixVectorProduct = [this, &constrained_ham_par, &dia](const GQCP::VectorX<double>& x) { return this->fock_space.evaluateOperatorMatrixVectorProduct(constrained_ham_par, x, dia); };
+    VectorFunction<double> matrixVectorProduct = [this, &constrained_ham_par, &dia](const GQCP::VectorX<double>& x) { return this->fock_space.evaluateOperatorMatrixVectorProduct(constrained_ham_par, x, dia); };
     DavidsonSolver solver (matrixVectorProduct, dia, solver_options);
 
     try {

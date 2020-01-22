@@ -19,6 +19,7 @@
 
 
 #include "Mathematical/CartesianDirection.hpp"
+#include "Utilities/type_traits.hpp"
 #include "Utilities/typedefs.hpp"
 
 #include <Eigen/Dense>
@@ -349,9 +350,11 @@ using VectorX = Vector<Scalar, Dynamic>;
 
 using VectorXs = VectorX<size_t>;
 
+template <typename Scalar>
+using VectorFunction = std::function<VectorX<Scalar> (const VectorX<Scalar>&)>;
 
-using VectorFunction = std::function<VectorX<double> (const VectorX<double>&)>;
-using MatrixFunction = std::function<MatrixX<double> (const VectorX<double>&)>;
+template <typename Scalar>
+using MatrixFunction = std::function<MatrixX<Scalar> (const VectorX<Scalar>&)>;
 
 
 }  // namespace GQCP

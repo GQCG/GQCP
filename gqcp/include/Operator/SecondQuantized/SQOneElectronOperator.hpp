@@ -24,7 +24,7 @@
 #include "Mathematical/ScalarFunction.hpp"
 #include "Processing/RDM/OneRDM.hpp"
 #include "Processing/RDM/TwoRDM.hpp"
-#include "Utilities/typedefs.hpp"
+#include "Utilities/type_traits.hpp"
 
 #include <array>
 

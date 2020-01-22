@@ -71,20 +71,32 @@
 #include "FockSpace/ProductFockSpace.hpp"
 #include "FockSpace/SelectedFockSpace.hpp"
 
-#include "Mathematical/Optimization/BaseEigenproblemSolver.hpp"
-#include "Mathematical/Optimization/BaseHessianModifier.hpp"
-#include "Mathematical/Optimization/BaseMatrixSolver.hpp"
-#include "Mathematical/Optimization/BaseMinimizer.hpp"
-#include "Mathematical/Optimization/DavidsonSolver.hpp"
-#include "Mathematical/Optimization/DenseSolver.hpp"
-#include "Mathematical/Optimization/Eigenpair.hpp"
-#include "Mathematical/Optimization/EigenproblemSolverOptions.hpp"
-#include "Mathematical/Optimization/IterativeIdentitiesHessianModifier.hpp"
-#include "Mathematical/Optimization/NewtonMinimizer.hpp"
-#include "Mathematical/Optimization/NewtonNLSystemOfEquationsSolver.hpp"
-#include "Mathematical/Optimization/SparseSolver.hpp"
-#include "Mathematical/Optimization/step.hpp"
-#include "Mathematical/Optimization/UnalteringHessianModifier.hpp"
+#include "Mathematical/Algorithm/ConvergenceCriterion.hpp"
+#include "Mathematical/Algorithm/IterationCycle.hpp"
+#include "Mathematical/Algorithm/IterationStep.hpp"
+#include "Mathematical/Algorithm/IterativeAlgorithm.hpp"
+
+#include "Mathematical/Optimization/Accelerator/ConstantDamper.hpp"
+#include "Mathematical/Optimization/Accelerator/DIIS.hpp"
+
+#include "Mathematical/Optimization/Eigenproblem/BaseEigenproblemSolver.hpp"
+#include "Mathematical/Optimization/Eigenproblem/BaseMatrixSolver.hpp"
+#include "Mathematical/Optimization/Eigenproblem/DavidsonSolver.hpp"
+#include "Mathematical/Optimization/Eigenproblem/DenseSolver.hpp"
+#include "Mathematical/Optimization/Eigenproblem/Eigenpair.hpp"
+#include "Mathematical/Optimization/Eigenproblem/EigenproblemSolverOptions.hpp"
+#include "Mathematical/Optimization/Eigenproblem/SparseSolver.hpp"
+
+#include "Mathematical/Optimization/Minimization/BaseHessianModifier.hpp"
+#include "Mathematical/Optimization/Minimization/IterativeIdentitiesHessianModifier.hpp"
+#include "Mathematical/Optimization/Minimization/UnalteringHessianModifier.hpp"
+
+#include "Mathematical/Optimization/NonLinearEquation/NewtonStepUpdate.hpp"
+#include "Mathematical/Optimization/NonLinearEquation/NonLinearEquationEnvironment.hpp"
+#include "Mathematical/Optimization/NonLinearEquation/NonLinearEquationSolver.hpp"
+
+#include "Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp"
+#include "Mathematical/Optimization/OptimizationEnvironment.hpp"
 
 #include "Mathematical/Representation/BlockMatrix.hpp"
 #include "Mathematical/Representation/BlockRankFourTensor.hpp"
@@ -180,9 +192,14 @@
 #include "QCMethod/OrbitalOptimization/NewtonOrbitalOptimizer.hpp"
 #include "QCMethod/OrbitalOptimization/QCMethodNewtonOrbitalOptimizer.hpp"
 
-#include "QCMethod/RHF/DIISRHFSCFSolver.hpp"
-#include "QCMethod/RHF/PlainRHFSCFSolver.hpp"
 #include "QCMethod/RHF/RHF.hpp"
+#include "QCMethod/RHF/RHFDensityMatrixCalculation.hpp"
+#include "QCMethod/RHF/RHFErrorCalculation.hpp"
+#include "QCMethod/RHF/RHFElectronicEnergyCalculation.hpp"
+#include "QCMethod/RHF/RHFFockMatrixCalculation.hpp"
+#include "QCMethod/RHF/RHFFockMatrixDiagonalization.hpp"
+#include "QCMethod/RHF/RHFFockMatrixDIIS.hpp"
+#include "QCMethod/RHF/RHFSCFEnvironment.hpp"
 #include "QCMethod/RHF/RHFSCFSolver.hpp"
 
 #include "QCMethod/RMP2/RMP2.hpp"
@@ -191,7 +208,9 @@
 
 #include "Utilities/CRTP.hpp"
 #include "Utilities/linalg.hpp"
+#include "Utilities/memory.hpp"
 #include "Utilities/miscellaneous.hpp"
+#include "Utilities/type_traits.hpp"
 #include "Utilities/typedefs.hpp"
 #include "Utilities/units.hpp"
 

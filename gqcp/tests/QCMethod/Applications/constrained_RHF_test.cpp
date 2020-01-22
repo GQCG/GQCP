@@ -22,7 +22,7 @@
 #include "Basis/transform.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Processing/Properties/expectation_values.hpp"
-#include "QCMethod/RHF/DIISRHFSCFSolver.hpp"
+#include "QCMethod/RHF/RHFSCFSolver.hpp"
 
 #include <random>
 
@@ -82,9 +82,10 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test ) {
         auto constrained_sq_hamiltonian = sq_hamiltonian.constrain(mulliken_operator, i);  // in AO basis
 
         // Create a DIIS RHF SCF solver and solve the SCF equations
-        GQCP::DIISRHFSCFSolver diis_scf_solver (constrained_sq_hamiltonian, spinor_basis, CO);
-        diis_scf_solver.solve();
-        auto rhf = diis_scf_solver.get_solution();
+        auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(CO.numberOfElectrons(), constrained_sq_hamiltonian, spinor_basis.overlap().parameters());
+        auto diis_rhf_scf_solver = GQCP::RHFSCFSolver<double>::DIIS();
+        diis_rhf_scf_solver.iterate(rhf_environment);
+        const auto rhf = rhf_environment.solution();
 
         // Transform only the mulliken operator to the basis in which the RHF energies are calculated
         mulliken_operator.transform(rhf.get_C());
@@ -174,12 +175,13 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test_random_transformation) {
         auto mulliken_operator = spinor_basis.calculateMullikenOperator(gto_list);
 
         // Contrain the original Hamiltonian
-        auto constrained_ham_par = sq_hamiltonian.constrain(mulliken_operator, i);
+        auto sq_hamiltonian_constrained = sq_hamiltonian.constrain(mulliken_operator, i);
 
         // Create a DIIS RHF SCF solver and solve the SCF equations
-        GQCP::DIISRHFSCFSolver diis_scf_solver (constrained_ham_par, spinor_basis, CO);
-        diis_scf_solver.solve();
-        auto rhf = diis_scf_solver.get_solution();
+        auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(CO.numberOfElectrons(), sq_hamiltonian_constrained, spinor_basis.overlap().parameters());
+        auto diis_rhf_scf_solver = GQCP::RHFSCFSolver<double>::DIIS();
+        diis_rhf_scf_solver.iterate(rhf_environment);
+        const auto rhf = rhf_environment.solution();
 
         // Transform only the mulliken operator to the basis in which the RHF energies are calculated
         mulliken_operator.transform(rhf.get_C());

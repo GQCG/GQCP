@@ -19,8 +19,8 @@
 
 #include "Basis/transform.hpp"
 #include "Processing/Properties/properties.hpp"
-#include "QCMethod/RHF/DIISRHFSCFSolver.hpp"
-#include "QCMethod/RHF/PlainRHFSCFSolver.hpp"
+#include "QCMethod/RHF/RHFSCFSolver.hpp"
+
 
 
 namespace GQCP {
@@ -54,14 +54,16 @@ FukuiDysonAnalysis::FukuiDysonAnalysis(const Molecule& molecule, const std::stri
 
     // Perform DIIS or Plain RHF given the flag in the constructor
     if (use_diis) {
-        DIISRHFSCFSolver diis_scf_solver (this->sq_hamiltonian, this->spinor_basis, restricted_molecule);
-        diis_scf_solver.solve();
-        auto rhf_solution = diis_scf_solver.get_solution();
+        auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(restricted_molecule.numberOfElectrons(), this->sq_hamiltonian, this->spinor_basis.overlap().parameters());
+        auto diis_rhf_scf_solver = GQCP::RHFSCFSolver<double>::DIIS();
+        diis_rhf_scf_solver.iterate(rhf_environment);
+        const auto rhf_solution = rhf_environment.solution();
         basisTransform(this->spinor_basis, this->sq_hamiltonian, rhf_solution.get_C());
     } else {
-        PlainRHFSCFSolver plain_scf_solver (this->sq_hamiltonian, this->spinor_basis, restricted_molecule);
-        plain_scf_solver.solve();
-        auto rhf_solution = plain_scf_solver.get_solution();
+        auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), this->sq_hamiltonian, this->spinor_basis.overlap().parameters());
+        auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
+        plain_rhf_scf_solver.iterate(rhf_environment);
+        const auto rhf_solution = rhf_environment.solution();
         basisTransform(this->spinor_basis, this->sq_hamiltonian, rhf_solution.get_C());
     }
 
@@ -78,8 +80,8 @@ FukuiDysonAnalysis::FukuiDysonAnalysis(const Molecule& molecule, const std::stri
     FCI fci1 = FCI(fock_space1);
     FCI fci2 = FCI(fock_space2);
     
-    CISolver ci_solver1(fci1, sq_hamiltonian);
-    CISolver ci_solver2(fci2, sq_hamiltonian);
+    CISolver ci_solver1 (fci1, sq_hamiltonian);
+    CISolver ci_solver2 (fci2, sq_hamiltonian);
 
     VectorX<double> initial_g1 = fock_space1.HartreeFockExpansion();
     VectorX<double> initial_g2 = fock_space2.HartreeFockExpansion();
