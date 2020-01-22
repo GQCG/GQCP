@@ -275,7 +275,7 @@ void MullikenConstrainedFCI::solveMullikenDavidson(const double multiplier, cons
     solver_options.maximum_number_of_iterations = this->maximum_number_of_iterations;
 
     VectorX<double> dia = this->fock_space.evaluateOperatorDiagonal(constrained_ham_par);
-    VectorFunction matrixVectorProduct = [this, &constrained_ham_par, &dia](const GQCP::VectorX<double>& x) { return this->fock_space.evaluateOperatorMatrixVectorProduct(constrained_ham_par, x, dia); };
+    VectorFunction<double> matrixVectorProduct = [this, &constrained_ham_par, &dia](const GQCP::VectorX<double>& x) { return this->fock_space.evaluateOperatorMatrixVectorProduct(constrained_ham_par, x, dia); };
     DavidsonSolver solver (matrixVectorProduct, dia, solver_options);
 
     try {

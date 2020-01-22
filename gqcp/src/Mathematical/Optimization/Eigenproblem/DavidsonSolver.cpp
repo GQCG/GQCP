@@ -39,7 +39,7 @@ namespace GQCP {
  *  @param collapsed_subspace_dimension         the dimension of the subspace after collapse
  *  @param maximum_number_of_iterations         the maximum number of Davidson iterations
  */
-DavidsonSolver::DavidsonSolver(const VectorFunction& matrixVectorProduct, const VectorX<double>& diagonal, const MatrixX<double>& V_0, size_t number_of_requested_eigenpairs, double convergence_threshold, double correction_threshold, size_t maximum_subspace_dimension, size_t collapsed_subspace_dimension, size_t maximum_number_of_iterations) :
+DavidsonSolver::DavidsonSolver(const VectorFunction<double>& matrixVectorProduct, const VectorX<double>& diagonal, const MatrixX<double>& V_0, size_t number_of_requested_eigenpairs, double convergence_threshold, double correction_threshold, size_t maximum_subspace_dimension, size_t collapsed_subspace_dimension, size_t maximum_number_of_iterations) :
     BaseEigenproblemSolver(static_cast<size_t>(V_0.rows()), number_of_requested_eigenpairs),
     matrixVectorProduct (matrixVectorProduct),
     diagonal (diagonal),
@@ -51,15 +51,15 @@ DavidsonSolver::DavidsonSolver(const VectorFunction& matrixVectorProduct, const 
     maximum_number_of_iterations (maximum_number_of_iterations)
 {
     if (V_0.cols() < this->number_of_requested_eigenpairs) {
-        throw std::invalid_argument("DavidsonSolver::DavidsonSolver(VectorFunction, VectorX<double>, MatrixX<double>, size_t, double, double, size_t, size_t, size_t): You have to specify at least as many initial guesses as number of requested eigenpairs.");
+        throw std::invalid_argument("DavidsonSolver::DavidsonSolver(VectorFunction<double>, VectorX<double>, MatrixX<double>, size_t, double, double, size_t, size_t, size_t): You have to specify at least as many initial guesses as number of requested eigenpairs.");
     }
 
     if (this->collapsed_subspace_dimension < this->number_of_requested_eigenpairs) {
-        throw std::invalid_argument("DavidsonSolver::DavidsonSolver(VectorFunction, VectorX<double>, MatrixX<double>, size_t, double, double, size_t, size_t, size_t): The collapsed subspace dimension must be at least the number of requested eigenpairs.");
+        throw std::invalid_argument("DavidsonSolver::DavidsonSolver(VectorFunction<double>, VectorX<double>, MatrixX<double>, size_t, double, double, size_t, size_t, size_t): The collapsed subspace dimension must be at least the number of requested eigenpairs.");
     }
 
     if (this->collapsed_subspace_dimension >= this->maximum_subspace_dimension) {
-        throw std::invalid_argument("DavidsonSolver::DavidsonSolver(VectorFunction, VectorX<double>, MatrixX<double>, size_t, double, double, size_t, size_t, size_t): The collapsed subspace dimension must be smaller than the maximum subspace dimension.");
+        throw std::invalid_argument("DavidsonSolver::DavidsonSolver(VectorFunction<double>, VectorX<double>, MatrixX<double>, size_t, double, double, size_t, size_t, size_t): The collapsed subspace dimension must be smaller than the maximum subspace dimension.");
     }
 }
 
@@ -85,7 +85,7 @@ DavidsonSolver::DavidsonSolver(const SquareMatrix<double>& A, const MatrixX<doub
  *  @param diagonal                     the diagonal of the matrix
  *  @param davidson_solver_options      the options specified for solving the Davidson eigenvalue problem
  */
-DavidsonSolver::DavidsonSolver(const VectorFunction& matrixVectorProduct, const VectorX<double>& diagonal,
+DavidsonSolver::DavidsonSolver(const VectorFunction<double>& matrixVectorProduct, const VectorX<double>& diagonal,
                                const DavidsonSolverOptions& davidson_solver_options) :
    DavidsonSolver(matrixVectorProduct, diagonal, davidson_solver_options.X_0, davidson_solver_options.number_of_requested_eigenpairs, davidson_solver_options.convergence_threshold, davidson_solver_options.correction_threshold, davidson_solver_options.maximum_subspace_dimension, davidson_solver_options.collapsed_subspace_dimension, davidson_solver_options.maximum_number_of_iterations)
 {}

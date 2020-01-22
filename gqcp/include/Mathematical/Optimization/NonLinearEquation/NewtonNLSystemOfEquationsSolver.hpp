@@ -33,8 +33,8 @@ private:
     double convergence_threshold;  // the threshold on the norm of the update that determines convergence
     size_t maximum_number_of_iterations;
 
-    VectorFunction f;  // a callable vector function that returns the value of each of the equations in a resulting vector, given the current variables
-    MatrixFunction J;  // the corresponding callable Jacobian
+    VectorFunction<double> f;  // a callable vector function that returns the value of each of the equations in a resulting vector, given the current variables
+    MatrixFunction<double> J;  // the corresponding callable Jacobian
 
 
 public:
@@ -46,7 +46,7 @@ public:
      *  @param convergence_threshold            the threshold on the norm of the update that determines convergence
      *  @param maximum_number_of_iterations     the maximum number of iterations in the algorithm
      */
-    NewtonNLSystemOfEquationsSolver(const VectorFunction& f, const MatrixFunction& J, double convergence_threshold = 1.0e-08, size_t maximum_number_of_iterations = 128);
+    NewtonNLSystemOfEquationsSolver(const VectorFunction<double>& f, const MatrixFunction<double>& J, double convergence_threshold = 1.0e-08, size_t maximum_number_of_iterations = 128);
 
 
     // PUBLIC METHODS

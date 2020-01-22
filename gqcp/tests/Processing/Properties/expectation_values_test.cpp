@@ -172,7 +172,7 @@ BOOST_AUTO_TEST_CASE ( S_z_constrained_NOplus_STO_3G ) {
     
     GQCP::DavidsonSolverOptions solver_options (fock_space.HartreeFockExpansion());
     GQCP::VectorX<double> dia = fock_space.evaluateOperatorDiagonal(constrained);
-    GQCP::VectorFunction matrixVectorProduct = [&fock_space, &dia, &constrained](const GQCP::VectorX<double>& x) { return fock_space.evaluateOperatorMatrixVectorProduct(constrained, x, dia); };
+    GQCP::VectorFunction<double> matrixVectorProduct = [&fock_space, &dia, &constrained](const GQCP::VectorX<double>& x) { return fock_space.evaluateOperatorMatrixVectorProduct(constrained, x, dia); };
     GQCP::DavidsonSolver ds_solver (matrixVectorProduct, dia, solver_options);
 
     ds_solver.solve();

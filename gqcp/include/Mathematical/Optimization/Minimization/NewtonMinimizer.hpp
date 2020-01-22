@@ -30,8 +30,8 @@ namespace GQCP {
  */
 class NewtonMinimizer : public BaseMinimizer {
 private:
-    VectorFunction grad;
-    MatrixFunction H;
+    VectorFunction<double> grad;
+    MatrixFunction<double> H;
 
 
 public:
@@ -43,7 +43,7 @@ public:
      *  @param convergence_threshold            the threshold used for establishing convergence
      *  @param maximum_number_of_iterations     the maximum number of iterations in the algorithm
      */
-    NewtonMinimizer(const VectorX<double>& x0, const VectorFunction& grad, const MatrixFunction& H, double convergence_threshold = 1.0e-08, size_t maximum_number_of_iterations = 128);
+    NewtonMinimizer(const VectorX<double>& x0, const VectorFunction<double>& grad, const MatrixFunction<double>& H, double convergence_threshold = 1.0e-08, size_t maximum_number_of_iterations = 128);
 
 
     // DESTRUCTOR

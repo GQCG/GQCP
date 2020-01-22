@@ -118,9 +118,9 @@ BlockMatrix<double> AP1roGPSEs::calculateCoordinateFunctions(const AP1roGGeminal
 /**
  *  @return a callable (i.e. with operator()) expression for the coordinate functions: the accepted VectorX<double> argument should contain the geminal coefficients in a column-major representation
  */
-VectorFunction AP1roGPSEs::callableCoordinateFunctions() const {
+VectorFunction<double> AP1roGPSEs::callableCoordinateFunctions() const {
 
-    VectorFunction callable = [this] (const VectorX<double>& x) {
+    VectorFunction<double> callable = [this] (const VectorX<double>& x) {
         auto G = AP1roGGeminalCoefficients::FromColumnMajor(x, this->N_P, this->K);
         return this->calculateCoordinateFunctions(G).asVector(); 
     };
@@ -219,9 +219,9 @@ BlockRankFourTensor<double> AP1roGPSEs::calculateJacobian(const AP1roGGeminalCoe
 /**
  *  @return a callable (i.e. with operator()) expression for the Jacobian: the accepted VectorX<double> argument should contain the geminal coefficients in a column-major representation
  */
-MatrixFunction AP1roGPSEs::callableJacobian() const {
+MatrixFunction<double> AP1roGPSEs::callableJacobian() const {
 
-    MatrixFunction callable = [this] (const VectorX<double>& x) { 
+    MatrixFunction<double> callable = [this] (const VectorX<double>& x) { 
         auto G = AP1roGGeminalCoefficients::FromColumnMajor(x, this->N_P, this->K);
         return this->calculateJacobian(G).asMatrix();
     };

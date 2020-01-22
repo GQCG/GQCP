@@ -190,14 +190,14 @@ double AP1roGJacobiOrbitalOptimizer::calculateOptimalRotationAngle(const SQHamil
         std::priority_queue<pair_type, std::vector<pair_type>, decltype(cmp)> queue (cmp);
 
         // Construct a lambda gradient function
-        VectorFunction gradient_function = [this] (const VectorX<double>& x) {
+        VectorFunction<double> gradient_function = [this] (const VectorX<double>& x) {
             VectorX<double> gradient_vec (1);
             gradient_vec << (-2*this->B2 * std::sin(2*x(0)) + 2*this->C2 * std::cos(2*x(0)) - 4*this->D2 * std::sin(4*x(0)) + 4*this->E2 * std::cos(4*x(0)));
             return gradient_vec;
         };
 
         // Construct a lambda Hessian function
-        MatrixFunction hessian_function = [this] (const VectorX<double>& x) {
+        MatrixFunction<double> hessian_function = [this] (const VectorX<double>& x) {
             SquareMatrix<double> hessian_matrix (1);
             hessian_matrix << (-4*this->B2 * std::cos(2*x(0)) - 2*this->C2 * std::sin(2*x(0)) - 16*this->D2 * std::cos(4*x(0)) - 16*this->E2 * std::sin(4*x(0)));
             return hessian_matrix;

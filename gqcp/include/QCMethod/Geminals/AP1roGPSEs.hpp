@@ -80,7 +80,7 @@ public:
     /**
      *  @return a callable (i.e. with operator()) expression for the coordinate functions: the accepted VectorX<double> argument should contain the geminal coefficients in a column-major representation
      */
-    VectorFunction callableCoordinateFunctions() const;
+    VectorFunction<double> callableCoordinateFunctions() const;
 
     /**
      *  @param G        the AP1roG geminal coefficients
@@ -103,7 +103,7 @@ public:
     /**
      *  @return a callable (i.e. with operator()) expression for the Jacobian: the accepted VectorX<double> argument should contain the geminal coefficients in a column-major representation
      */
-    MatrixFunction callableJacobian() const;
+    MatrixFunction<double> callableJacobian() const;
 };
 
 

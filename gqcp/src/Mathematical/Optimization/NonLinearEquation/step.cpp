@@ -31,7 +31,7 @@ namespace GQCP {
  *  @return the Newton step
  *      J(x) p = - f
  */
-VectorX<double> newtonStep(const VectorX<double>& x, const VectorFunction& f, const MatrixFunction& J) {
+VectorX<double> newtonStep(const VectorX<double>& x, const VectorFunction<double>& f, const MatrixFunction<double>& J) {
 
     // Calculate f(x) and J(x), i.e. the values of the vector field and its Jacobian at the given x
     VectorX<double> f_vector = f(x);
