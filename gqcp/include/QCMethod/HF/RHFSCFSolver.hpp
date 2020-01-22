@@ -20,14 +20,14 @@
 
 #include "Mathematical/Algorithm/IterativeAlgorithm.hpp"
 #include "Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp"
-#include "QCMethod/RHF/RHFSCFEnvironment.hpp"
-#include "QCMethod/RHF/RHFDensityMatrixCalculation.hpp"
-#include "QCMethod/RHF/RHFDensityMatrixDamper.hpp"
-#include "QCMethod/RHF/RHFErrorCalculation.hpp"
-#include "QCMethod/RHF/RHFElectronicEnergyCalculation.hpp"
-#include "QCMethod/RHF/RHFFockMatrixCalculation.hpp"
-#include "QCMethod/RHF/RHFFockMatrixDiagonalization.hpp"
-#include "QCMethod/RHF/RHFFockMatrixDIIS.hpp"
+#include "QCMethod/HF/RHFSCFEnvironment.hpp"
+#include "QCMethod/HF/RHFDensityMatrixCalculation.hpp"
+#include "QCMethod/HF/RHFDensityMatrixDamper.hpp"
+#include "QCMethod/HF/RHFErrorCalculation.hpp"
+#include "QCMethod/HF/RHFElectronicEnergyCalculation.hpp"
+#include "QCMethod/HF/RHFFockMatrixCalculation.hpp"
+#include "QCMethod/HF/RHFFockMatrixDiagonalization.hpp"
+#include "QCMethod/HF/RHFFockMatrixDIIS.hpp"
 
 
 namespace GQCP {

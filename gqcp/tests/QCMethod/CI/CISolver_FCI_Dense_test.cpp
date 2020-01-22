@@ -24,7 +24,7 @@
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/CI/CISolver.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
-#include "QCMethod/RHF/RHFSCFSolver.hpp"
+#include "QCMethod/HF/RHFSCFSolver.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( test_random_rotation_diagonal_dense_fci ) {

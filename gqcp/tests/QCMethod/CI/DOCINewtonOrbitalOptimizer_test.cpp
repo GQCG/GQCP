@@ -27,7 +27,7 @@
 #include "Processing/RDM/FCIRDMBuilder.hpp"
 #include "QCMethod/CI/CISolver.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
-#include "QCMethod/RHF/RHFSCFSolver.hpp"
+#include "QCMethod/HF/RHFSCFSolver.hpp"
 
 
 // dim = 2 for DOCI

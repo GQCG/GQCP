@@ -22,7 +22,7 @@
 #include "Operator/FirstQuantized/NuclearRepulsionOperator.hpp"
 #include "Processing/Properties/expectation_values.hpp"
 #include "Processing/RDM/RDMCalculator.hpp"
-#include "QCMethod/RHF/RHFSCFSolver.hpp"
+#include "QCMethod/HF/RHFSCFSolver.hpp"
 
 
 namespace GQCP {

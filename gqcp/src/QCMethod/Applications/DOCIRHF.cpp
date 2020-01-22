@@ -19,9 +19,9 @@
 
 #include "Basis/transform.hpp"
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
-#include "QCMethod/CI/CISolver.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "QCMethod/RHF/RHFSCFSolver.hpp"
+#include "QCMethod/CI/CISolver.hpp"
+#include "QCMethod/HF/RHFSCFSolver.hpp"
 
 
 namespace GQCP {

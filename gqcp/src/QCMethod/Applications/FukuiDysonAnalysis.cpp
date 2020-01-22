@@ -19,7 +19,7 @@
 
 #include "Basis/transform.hpp"
 #include "Processing/Properties/properties.hpp"
-#include "QCMethod/RHF/RHFSCFSolver.hpp"
+#include "QCMethod/HF/RHFSCFSolver.hpp"
 
 
 

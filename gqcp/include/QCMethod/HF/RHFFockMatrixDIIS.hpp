@@ -20,9 +20,9 @@
 
 #include "Mathematical/Algorithm/IterationStep.hpp"
 #include "Mathematical/Optimization/Accelerator/DIIS.hpp"
-#include "QCMethod/RHF/RHF.hpp"
-#include "QCMethod/RHF/RHFFockMatrixDiagonalization.hpp"
-#include "QCMethod/RHF/RHFSCFEnvironment.hpp"
+#include "QCMethod/HF/RHF.hpp"
+#include "QCMethod/HF/RHFFockMatrixDiagonalization.hpp"
+#include "QCMethod/HF/RHFSCFEnvironment.hpp"
 
 #include <algorithm>
 

@@ -22,7 +22,7 @@
 #include "Mathematical/Representation/QCMatrix.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Processing/RDM/OneRDM.hpp"
-#include "QCMethod/RHF/RHF.hpp"
+#include "QCMethod/HF/RHF.hpp"
 
 #include <Eigen/Dense>
 

@@ -19,7 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "QCMethod/RHF/RHFSCFSolver.hpp"
+#include "QCMethod/HF/RHFSCFSolver.hpp"
 
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Utilities/linalg.hpp"

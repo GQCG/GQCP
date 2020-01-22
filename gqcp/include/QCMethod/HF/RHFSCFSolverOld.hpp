@@ -23,7 +23,7 @@
 #include "Mathematical/Algorithm/IterativeAlgorithm.hpp"
 #include "Molecule/Molecule.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "QCMethod/RHF/RHF.hpp"
+#include "QCMethod/HF/RHF.hpp"
 
 
 namespace GQCP {

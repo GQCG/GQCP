@@ -19,7 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "QCMethod/RHF/RHFSCFEnvironment.hpp"
+#include "QCMethod/HF/RHFSCFEnvironment.hpp"
 
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 

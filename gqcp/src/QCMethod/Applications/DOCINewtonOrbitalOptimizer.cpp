@@ -25,9 +25,9 @@
 #include "Processing/RDM/RDMCalculator.hpp"
 #include "QCMethod/CI/CISolver.hpp"
 #include "QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp"
+#include "QCMethod/HF/RHFSCFSolver.hpp"
 #include "QCMethod/OrbitalOptimization/Localization/ERJacobiLocalizer.hpp"
 #include "QCMethod/OrbitalOptimization/Localization/ERNewtonLocalizer.hpp"
-#include "QCMethod/RHF/RHFSCFSolver.hpp"
 
 
 namespace GQCP {

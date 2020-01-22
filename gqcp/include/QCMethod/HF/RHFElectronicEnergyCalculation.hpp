@@ -19,20 +19,20 @@
 
 
 #include "Mathematical/Algorithm/IterationStep.hpp"
-#include "QCMethod/RHF/RHFSCFEnvironment.hpp"
-#include "QCMethod/RHF/RHF.hpp"
+#include "QCMethod/HF/RHFSCFEnvironment.hpp"
+#include "QCMethod/HF/RHF.hpp"
 
 
 namespace GQCP {
 
 
 /**
- *  An iteration step that calculates the error matrix from the Fock and density matrices (expressed in the scalar/AO basis).
+ *  An iteration step that calculates the current electronic RHF energy.
  * 
  *  @tparam _Scalar              the scalar type used to represent the expansion coefficient/elements of the transformation matrix
  */
 template <typename _Scalar>
-class RHFErrorCalculation :
+class RHFElectronicEnergyCalculation : 
     public IterationStep<RHFSCFEnvironment<_Scalar>> {
 
 public:
@@ -47,20 +47,18 @@ public:
      */
 
     /**
-     *  Calculate the current error vector and add it to the environment.
+     *  Calculate the current electronic RHF energy and place it in the environment
      * 
      *  @param environment              the environment that acts as a sort of calculation space
      */
     void execute(Environment& environment) override {
 
-        // Read F, D and S from the environment
-        const auto& D = environment.density_matrices.back();
-        const auto& S = environment.S;
-        const auto& F = environment.fock_matrices.back();
+        const auto& D = environment.density_matrices.back();  // the most recent density matrix
+        const ScalarSQOneElectronOperator<Scalar> F ({environment.fock_matrices.back()});  // the most recent Fock matrix
+        const auto& H_core = environment.sq_hamiltonian.core();  // the core Hamiltonian matrix
 
-        // Calculate the error and write it to the environment (as a vector)
-        const auto error_matrix = calculateRHFError(F, D, S);
-        environment.error_vectors.push_back(error_matrix.pairWiseReduce());
+        const auto E_electronic = calculateRHFElectronicEnergy(D, H_core, F);
+        environment.electronic_energies.push_back(E_electronic);
     }
 };
 
