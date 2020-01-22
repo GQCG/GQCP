@@ -19,7 +19,8 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "Mathematical/Optimization/NonLinear/NewtonMinimizer.hpp"
+#include "Mathematical/Optimization/Minimization/NewtonMinimizer.hpp"
+
 #include "Mathematical/Representation/SquareMatrix.hpp"
 
 

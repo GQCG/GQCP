@@ -17,7 +17,7 @@
 // 
 #include "QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp"
 
-#include "Mathematical/Optimization/NonLinear/step.hpp"
+#include "Mathematical/Optimization/NonLinearEquation/step.hpp"
 #include "Processing/RDM/RDMCalculator.hpp"
 #include "QCMethod/CI/CISolver.hpp"
 #include "Utilities/linalg.hpp"

@@ -17,7 +17,7 @@
 // 
 #include "QCMethod/OrbitalOptimization/NewtonOrbitalOptimizer.hpp"
 
-#include "Mathematical/Optimization/NonLinear/step.hpp"
+#include "Mathematical/Optimization/NonLinearEquation/step.hpp"
 
 #include <Eigen/Dense>
 #include <unsupported/Eigen/MatrixFunctions>

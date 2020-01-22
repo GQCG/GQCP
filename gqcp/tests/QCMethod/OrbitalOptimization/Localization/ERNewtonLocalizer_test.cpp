@@ -21,7 +21,7 @@
 
 #include "QCMethod/OrbitalOptimization/Localization/ERNewtonLocalizer.hpp"
 
-#include "Mathematical/Optimization/NonLinear/IterativeIdentitiesHessianModifier.hpp"
+#include "Mathematical/Optimization/Minimization/IterativeIdentitiesHessianModifier.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 
 

@@ -17,7 +17,8 @@
 // 
 #include "QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.hpp"
 
-#include "Mathematical/Optimization/NonLinear/NewtonMinimizer.hpp"
+#include "Mathematical/Optimization/Minimization/NewtonMinimizer.hpp"
+
 #include "QCMethod/Geminals/AP1roG.hpp"
 #include "QCMethod/Geminals/AP1roGPSESolver.hpp"
 

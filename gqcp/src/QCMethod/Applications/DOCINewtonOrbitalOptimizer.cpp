@@ -20,7 +20,7 @@
 #include "Basis/transform.hpp"
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
 #include "FockSpace/ProductFockSpace.hpp"
-#include "Mathematical/Optimization/NonLinear/IterativeIdentitiesHessianModifier.hpp"
+#include "Mathematical/Optimization/Minimization/IterativeIdentitiesHessianModifier.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Processing/RDM/RDMCalculator.hpp"
 #include "QCMethod/CI/CISolver.hpp"

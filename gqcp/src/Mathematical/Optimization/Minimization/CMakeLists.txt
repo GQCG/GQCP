@@ -3,7 +3,5 @@ target_sources(gqcp
         BaseMinimizer.cpp
         IterativeIdentitiesHessianModifier.cpp
         NewtonMinimizer.cpp
-        NewtonNLSystemOfEquationsSolver.cpp
-        step.cpp
         UnalteringHessianModifier.cpp
 )

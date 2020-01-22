@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Mathematical/Optimization/NonLinear/BaseHessianModifier.hpp"
+#include "Mathematical/Optimization/Minimization/BaseHessianModifier.hpp"
 
 
 

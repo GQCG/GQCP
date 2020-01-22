@@ -15,30 +15,20 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#pragma once
-
-
-#include "Mathematical/Optimization/NonLinear/BaseHessianModifier.hpp"
+#include "Mathematical/Optimization/Minimization/UnalteringHessianModifier.hpp"
 
 
 namespace GQCP {
 
 
-class UnalteringHessianModifier : public BaseHessianModifier {
-public:
-    // CONSTRUCTORS
-    using BaseHessianModifier::BaseHessianModifier;  // inherit base constructors
-
-
-    // PUBLIC OVERRIDDEN METHODS
-
-    /**
-     *  @param hessian      the current indefinite Hessian
-     * 
-     *  @return the given Hessian, i.e. do not alter the current hessian
-     */
-    SquareMatrix<double> operator()(const SquareMatrix<double>& hessian) override;
-};
+/**
+ *  @param hessian      the current indefinite Hessian
+ * 
+ *  @return the given Hessian, i.e. do not alter the current hessian
+ */
+SquareMatrix<double> UnalteringHessianModifier::operator()(const SquareMatrix<double>& hessian) {
+    return hessian;
+}
 
 
 }  // namespace GQCP

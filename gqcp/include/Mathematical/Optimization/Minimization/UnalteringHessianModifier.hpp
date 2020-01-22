@@ -15,25 +15,30 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#define BOOST_TEST_MODULE "IterativeIdentitiesHessianModifier_test"
-
-#include <boost/test/unit_test.hpp>
-
-#include "Mathematical/Optimization/NonLinear/IterativeIdentitiesHessianModifier.hpp"
-
-#include <Eigen/Dense>
+#pragma once
 
 
-BOOST_AUTO_TEST_CASE ( becomes_positive_definite ) {
-
-    GQCP::SquareMatrix<double> A (2);  // is an indefinite matrix: eigenvalues are approx. -1.7 and 4.7
-    A << -1.0, -2.0,
-         -2.0,  4.0;
+#include "Mathematical/Optimization/Minimization/BaseHessianModifier.hpp"
 
 
-    GQCP::IterativeIdentitiesHessianModifier hessian_modifier {};  // default values for the parameters
-    auto modified_hessian = hessian_modifier(A);
+namespace GQCP {
 
-    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> solver (modified_hessian);
-    BOOST_CHECK(solver.eigenvalues().minCoeff() > 0);  // all eigenvalues should be positive!
-}
+
+class UnalteringHessianModifier : public BaseHessianModifier {
+public:
+    // CONSTRUCTORS
+    using BaseHessianModifier::BaseHessianModifier;  // inherit base constructors
+
+
+    // PUBLIC OVERRIDDEN METHODS
+
+    /**
+     *  @param hessian      the current indefinite Hessian
+     * 
+     *  @return the given Hessian, i.e. do not alter the current hessian
+     */
+    SquareMatrix<double> operator()(const SquareMatrix<double>& hessian) override;
+};
+
+
+}  // namespace GQCP

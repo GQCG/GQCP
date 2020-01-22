@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Mathematical/Optimization/NonLinear/BaseMinimizer.hpp"
+#include "Mathematical/Optimization/Minimization/BaseMinimizer.hpp"
 #include "Utilities/typedefs.hpp"
 
 

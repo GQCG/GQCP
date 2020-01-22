@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "Mathematical/Optimization/NonLinear/step.hpp"
+#include "Mathematical/Optimization/NonLinearEquation/step.hpp"
 
 #include "Mathematical/Representation/SquareMatrix.hpp"
 

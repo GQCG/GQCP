@@ -84,13 +84,14 @@
 #include "Mathematical/Optimization/Eigenproblem/EigenproblemSolverOptions.hpp"
 #include "Mathematical/Optimization/Eigenproblem/SparseSolver.hpp"
 
-#include "Mathematical/Optimization/NonLinear/BaseHessianModifier.hpp"
-#include "Mathematical/Optimization/NonLinear/BaseMinimizer.hpp"
-#include "Mathematical/Optimization/NonLinear/IterativeIdentitiesHessianModifier.hpp"
-#include "Mathematical/Optimization/NonLinear/NewtonMinimizer.hpp"
-#include "Mathematical/Optimization/NonLinear/NewtonNLSystemOfEquationsSolver.hpp"
-#include "Mathematical/Optimization/NonLinear/step.hpp"
-#include "Mathematical/Optimization/NonLinear/UnalteringHessianModifier.hpp"
+#include "Mathematical/Optimization/Minimization/BaseHessianModifier.hpp"
+#include "Mathematical/Optimization/Minimization/BaseMinimizer.hpp"
+#include "Mathematical/Optimization/Minimization/IterativeIdentitiesHessianModifier.hpp"
+#include "Mathematical/Optimization/Minimization/NewtonMinimizer.hpp"
+#include "Mathematical/Optimization/Minimization/UnalteringHessianModifier.hpp"
+
+#include "Mathematical/Optimization/NonLinearEquation/NewtonNLSystemOfEquationsSolver.hpp"
+#include "Mathematical/Optimization/NonLinearEquation/step.hpp"
 
 #include "Mathematical/Representation/BlockMatrix.hpp"
 #include "Mathematical/Representation/BlockRankFourTensor.hpp"

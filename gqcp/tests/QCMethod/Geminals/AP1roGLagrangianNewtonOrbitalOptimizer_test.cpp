@@ -22,7 +22,7 @@
 #include "QCMethod/Geminals/AP1roGLagrangianNewtonOrbitalOptimizer.hpp"
 
 #include "Basis/transform.hpp"
-#include "Mathematical/Optimization/NonLinear/IterativeIdentitiesHessianModifier.hpp"
+#include "Mathematical/Optimization/Minimization/IterativeIdentitiesHessianModifier.hpp"
 #include "QCMethod/Geminals/AP1roG.hpp"
 #include "QCMethod/Geminals/AP1roGPSESolver.hpp"
 #include "QCMethod/Geminals/AP1roGLagrangianOptimizer.hpp"
