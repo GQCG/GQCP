@@ -65,6 +65,20 @@ struct OneRDMs {
         one_rdm_aa (one_rdm_aa),
         one_rdm_bb (one_rdm_bb)
     {}
+
+
+    /**
+     *  @return the difference between the alpha and beta 1-RDM
+     */ 
+    OneRDM<Scalar> spinDensityRDM() const {
+        return one_rdm_aa - one_rdm_bb;
+    }
+
+    
+    /**
+     *  @return the dimension of the matrix representation of the 1-RDMs, i.e. the number of orbitals/sites
+     */
+    size_t dimension() const { return one_rdm.dimension(); }
 };
 
 
@@ -102,6 +116,12 @@ struct TwoRDMs {
         two_rdm_bbaa (two_rdm_bbaa),
         two_rdm_bbbb (two_rdm_bbbb)
     {}
+
+    
+    /**
+     *  @return the dimension of the matrix representation of the 2-RDMs, i.e. the number of orbitals/sites
+     */
+    size_t dimension() const { return two_rdm.dimension(); }
 };
 
 

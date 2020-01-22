@@ -184,7 +184,7 @@ BOOST_AUTO_TEST_CASE ( S_z_constrained_NOplus_STO_3G ) {
     auto one_rdms = rdm_calc.calculate1RDMs();
 
     // Calculate the spin density matrix
-    GQCP::OneRDM<double> spin_d = GQCP::OneRDM<double>(one_rdms.one_rdm_aa - one_rdms.one_rdm_bb);
+    GQCP::OneRDM<double> spin_d = one_rdms.spinDensityRDM();
 
     // Evaluate S_z for O and N
     double N_Sz = GQCP::calculateExpectationValue(sq_N_Sz_alpha, spin_d)[0];
@@ -195,4 +195,51 @@ BOOST_AUTO_TEST_CASE ( S_z_constrained_NOplus_STO_3G ) {
 
     // Check that the Sz for a single fragment has changed
     BOOST_CHECK(std::abs(N_Sz) > 1.0e-06);
+}
+
+
+/*
+ *  Calculate Sz and S^2 values for O2 in a restricted Fock space (alpha == beta)
+ */ 
+BOOST_AUTO_TEST_CASE ( spin_O2 ) {
+
+    // Initialize the molecule and the molecular Hamiltonian for O2
+    GQCP::Nucleus O_1 (8, 0.0, 0.0, 0.0);
+    GQCP::Nucleus O_2 (8, 0.0, 0.0, 2);
+    std::vector<GQCP::Nucleus> nuclei {O_1, O_2};
+    GQCP::Molecule O2 (nuclei);
+
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (O2, "STO-3G");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, O2);  // in an AO basis
+    size_t K = sq_hamiltonian.dimension();
+    size_t N = O2.numberOfElectrons();
+
+    // Solve the SCF equations
+    GQCP::PlainRHFSCFSolver plain_scf_solver (sq_hamiltonian, spinor_basis, O2);  // the DIIS SCF solver seems to find a wrong minimum, so use a plain solver instead
+    plain_scf_solver.solve();
+    auto rhf = plain_scf_solver.get_solution();
+
+    sq_hamiltonian.transform(rhf.get_C());
+
+    GQCP::ProductFockSpace fock_space (K, N/2, N/2);
+    GQCP::FCI fci (fock_space);
+ 
+    GQCP::CISolver ci_solver (fci, sq_hamiltonian);
+
+    GQCP::DenseSolverOptions solver_options; // Dense is required, Davidson will not converge to the lowest eigenstate
+    ci_solver.solve(solver_options);
+    
+    GQCP::RDMCalculator rdm_calculator (ci_solver.makeWavefunction());
+    
+    GQCP::OneRDMs<double> one_rdms = rdm_calculator.calculate1RDMs();
+    GQCP::TwoRDMs<double> two_rdms = rdm_calculator.calculate2RDMs();
+    
+    double s_squared = GQCP::calculateSpinSquared<double>(one_rdms, two_rdms);
+    double s_z = GQCP::calculateSpinZ<double>(one_rdms);
+
+    // <S^2> should be 2 (S=1) because the ground state for O2 is a biradical triplet.
+    BOOST_CHECK(std::abs(s_squared - 2) < 1.0e-06);
+
+    // In the restricted Fock space, alpha = beta, hence the expectation value of the z-component of the spin operator should be zero
+    BOOST_CHECK(std::abs(s_z - 0) < 1.0e-06);
 }
