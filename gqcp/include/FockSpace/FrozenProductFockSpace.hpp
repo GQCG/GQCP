@@ -57,6 +57,15 @@ public:
     FrozenProductFockSpace(const ProductFockSpace& fock_space, size_t X);
 
 
+    // PUBLIC OVERIDDEN METHODS
+    /**
+     *  @param address              address of the requested configuration in this Fock space
+     * 
+     *  @return the configuration requested from the Fock space
+     */ 
+    Configuration configuration(size_t address) const override;
+
+
     // GETTERS
     size_t get_N_alpha() const { return this->frozen_fock_space_alpha.get_N(); }
     size_t get_N_beta() const { return this->frozen_fock_space_beta.get_N(); }

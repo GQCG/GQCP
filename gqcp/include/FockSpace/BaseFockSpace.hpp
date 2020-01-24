@@ -18,6 +18,7 @@
 #pragma once
 
 
+#include "FockSpace/Configuration.hpp"
 #include "FockSpace/FockSpaceType.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
@@ -42,6 +43,7 @@ protected:
 
     // PROTECTED CONSTRUCTORS
     BaseFockSpace() = default;
+    
     /**
      *  @param K        the number of orbitals
      *  @param dim      the dimension of the Fock space
@@ -73,6 +75,12 @@ public:
 
 
     // PUBLIC METHODS
+    /**
+     *  @param address              address of the requested configuration in this Fock space
+     * 
+     *  @return the configuration requested from the Fock space
+     */ 
+    virtual Configuration configuration(size_t address) const = 0;
 
     /**
      *  @return the coefficient vector for the Hartree-Fock wave function (i.e. the 'first' ONV/Slater determinant)

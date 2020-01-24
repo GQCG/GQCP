@@ -56,6 +56,7 @@ public:
     ~FockSpace() override = default;
 
 
+
     // GETTERS
     size_t get_vertex_weights(size_t p, size_t m) const { return this->vertex_weights[p][m]; }
     const Matrixu& get_vertex_weights() const { return this->vertex_weights; }
@@ -73,6 +74,13 @@ public:
 
 
     // PUBLIC OVERRIDEN METHODS
+    /**
+     *  @param address              address of the requested configuration in this Fock space
+     * 
+     *  @return the configuration requested from the Fock space
+     */ 
+    Configuration configuration(size_t address) const override;
+
     /**
      *  @param representation       a representation of an ONV
      *

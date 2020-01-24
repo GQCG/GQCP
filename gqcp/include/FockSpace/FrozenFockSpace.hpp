@@ -55,6 +55,7 @@ public:
     ~FrozenFockSpace() override = default;
 
 
+
     // GETTERS
     size_t get_number_of_frozen_orbitals() const { return this->X; }
     const FockSpace& get_active_fock_space() const { return this->active_fock_space; }
@@ -62,6 +63,13 @@ public:
 
 
     // OVERRIDEN PUBLIC METHODS
+    /**
+     *  @param address              address of the requested configuration in this Fock space
+     * 
+     *  @return the configuration requested from the Fock space
+     */ 
+    Configuration configuration(size_t address) const override;
+
     /**
      *  @param representation       a representation of an ONV
      *

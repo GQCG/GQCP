@@ -73,6 +73,13 @@ public:
 
     // PUBLIC METHODS
     /**
+     *  @param address              address of the requested configuration in this Fock space
+     * 
+     *  @return the configuration requested from the Fock space
+     */ 
+    Configuration configuration(size_t address) const override;
+    
+    /**
      *  Auxiliary method in order to calculate "theta(pq)",
      *  it returns a partition of a two-electron operator as one-electron operator
      *  where A (i,j) = T (p, q, i, j).
