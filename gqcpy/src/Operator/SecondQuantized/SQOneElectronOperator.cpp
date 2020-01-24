@@ -19,6 +19,7 @@
 
 #include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
+#include <pybind11/stl.h>
 
 
 namespace py = pybind11;
@@ -27,12 +28,26 @@ namespace gqcpy {
 
 
 void bindSQOneElectronOperator(py::module& module) {
-    py::class_<GQCP::SQOneElectronOperator<double, 1>>(module, "SQOneElectronOperator", "A class that represents a real, second-quantized one-electron operator")
+
+    // Create a Python binding for the ScalarSQOneElectronOperator
+    py::class_<GQCP::SQOneElectronOperator<double, 1>>(module, "ScalarSQOneElectronOperator", "A class that represents a real, second-quantized one-electron operator")
 
         .def("parameters", [] (const GQCP::SQOneElectronOperator<double, 1>& op) {
                 return op.parameters().Eigen();
             },
-            "Return the integrals encapsulated by the second-quantized one-electron operator"
+            "Return the integrals encapsulated by the second-quantized one-electron operator."
+        );
+
+
+    // Create a Python binding for the VectorSQOneElectronOperator
+    py::class_<GQCP::VectorSQOneElectronOperator<double>>(module, "VectorSQOneElectronOperator", "A class that represents a real, second-quantized one-electron operator with three components.")
+
+        .def("allParameters", [] (const GQCP::VectorSQOneElectronOperator<double>& op) {
+                const auto all_parameters = op.allParameters();  // std::array<QCMatrix<double>>
+                
+                return ;
+            },
+            "Return the integrals encapsulated by the second-quantized one-electron operator."
         );
 }
 

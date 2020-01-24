@@ -37,35 +37,42 @@ void bindSpinorBasis(py::module& module) {
 
         .def(py::init<const GQCP::Molecule& , const std::string&>(), py::arg("molecule"), py::arg("basisset_name"))
 
-        .def("quantizeOverlapOperator", [] (const GQCP::RSpinorBasis<double, GQCP::GTOShell>& spinor_basis) {
-                return spinor_basis.quantize(GQCP::Operator::Overlap());
+        .def("quantizeCoulombRepulsionOperator", [] (const GQCP::RSpinorBasis<double, GQCP::GTOShell>& spinor_basis) {
+                return spinor_basis.quantize(GQCP::Operator::Coulomb());
             },
-            "Return the overlap operator expressed in this spinor basis"
+            "Return the Coulomb repulsion operator expressed in this spinor basis."
+        )
+
+        .def("quantizeDipoleOperator", [] (const GQCP::RSpinorBasis<double, GQCP::GTOShell>& spinor_basis, const GQCP::Vector<double, 3>& origin) {
+                return spinor_basis.quantize(GQCP::Operator::ElectronicDipole(origin));
+            },
+            py::arg("origin") = GQCP::Vector<double, 3>::Zero(),
+            "Return the electronic dipole operator expressed in this spinor basis."
         )
 
         .def("quantizeKineticOperator", [] (const GQCP::RSpinorBasis<double, GQCP::GTOShell>& spinor_basis) {
                 return spinor_basis.quantize(GQCP::Operator::Kinetic());
             },
-            "Return the kinetic energy operator expressed in this spinor basis"
+            "Return the kinetic energy operator expressed in this spinor basis."
         )
 
         .def("quantizeNuclearAttractionOperator", [] (const GQCP::RSpinorBasis<double, GQCP::GTOShell>& spinor_basis, const GQCP::Molecule& molecule) {
                 return spinor_basis.quantize(GQCP::Operator::NuclearAttraction(molecule));
             },
-            "Return the nuclear attraction operator expressed in this spinor basis"
+            "Return the nuclear attraction operator expressed in this spinor basis."
         )
 
-        .def("quantizeCoulombRepulsionOperator", [] (const GQCP::RSpinorBasis<double, GQCP::GTOShell>& spinor_basis) {
-                return spinor_basis.quantize(GQCP::Operator::Coulomb());
+        .def("quantizeOverlapOperator", [] (const GQCP::RSpinorBasis<double, GQCP::GTOShell>& spinor_basis) {
+                return spinor_basis.quantize(GQCP::Operator::Overlap());
             },
-            "Return the Coulomb repulsion operator expressed in this spinor basis"
+            "Return the overlap operator expressed in this spinor basis."
         )
 
         .def("transform", [] (GQCP::RSpinorBasis<double, GQCP::GTOShell>& spinor_basis, const Eigen::MatrixXd& T_matrix) {
                 const GQCP::TransformationMatrix<double> T (T_matrix);
                 spinor_basis.transform(T);
             },
-            "Transform the current spinor basis using a given transformation matrix"
+            "Transform the current spinor basis using a given transformation matrix."
         );
 }
 
