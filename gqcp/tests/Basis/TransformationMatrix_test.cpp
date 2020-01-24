@@ -45,3 +45,30 @@ BOOST_AUTO_TEST_CASE ( transform ) {
     T1.transform(T2);  // first do T1, then T2
     BOOST_CHECK(T1.isApprox(T_total, 1.0e-08));
 }
+
+
+/**
+ *  Check if the Transformation matrix can correctly express it self in the GAMESS-US $VEC group notation 
+ */
+BOOST_AUTO_TEST_CASE ( gamessUS ) {
+
+	std::string reference_T1 = "$VEC\n1  1 1.00000000E+00 1.00000000E+00\n2  1 0.00000000E+00 3.00000000E+00\n$END\n";
+	std::string reference_T2 = "$VEC\n1  1-1.00000000E+00 1.00000000E+00 0.00000000E+00 1.00000000E+00 0.00000000E+00\n1  2 1.00000000E+00\n2  1 0.00000000E+00 3.00000000E+00 0.00000000E+00 9.00000000E+00 0.00000000E+00\n2  2-7.00000000E+00\n3  1-4.00000000E+00-4.00000000E+00-4.00000000E+00-4.00000000E+00-4.00000000E+00\n3  2-4.00000000E+00\n4  1 5.00000000E+00 5.00000000E+00 5.00000000E+00 5.00000000E+00 5.00000000E+00\n4  2 5.00000000E+00\n5  1-7.00000000E+00-7.00000000E+00-7.00000000E+00-7.00000000E+00-7.00000000E+00\n5  2-7.00000000E+00\n6  1 8.00000000E+00 8.00000000E+00 8.00000000E+00 8.00000000E+00 8.00000000E+00\n6  2 8.00000000E+00\n$END\n";
+
+    // Create transformation matrices
+    GQCP::TransformationMatrix<double> T1 (2);
+    T1 << 1.0, 0.0,
+          1.0, 3.0;
+
+    GQCP::TransformationMatrix<double> T2 (6);
+	T2 <<-1.0, 0.0,-4.0, 5.0,-7.0, 8.0,
+		  1.0, 3.0,-4.0, 5.0,-7.0, 8.0,
+		  0.0, 0.0,-4.0, 5.0,-7.0, 8.0,
+		  1.0, 9.0,-4.0, 5.0,-7.0, 8.0,
+		  0.0, 0.0,-4.0, 5.0,-7.0, 8.0,
+		  1.0,-7.0,-4.0, 5.0,-7.0, 8.0;
+		
+	// test them agaist a reference representation
+    BOOST_CHECK(reference_T1.compare(T1.asGamessUsVecGroup()) == 0);
+    BOOST_CHECK(reference_T2.compare(T2.asGamessUsVecGroup()) == 0);
+}

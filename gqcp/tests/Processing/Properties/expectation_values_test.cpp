@@ -235,7 +235,7 @@ BOOST_AUTO_TEST_CASE ( spin_O2 ) {
     GQCP::OneRDMs<double> one_rdms = rdm_calculator.calculate1RDMs();
     GQCP::TwoRDMs<double> two_rdms = rdm_calculator.calculate2RDMs();
     
-    double s_squared = GQCP::calculateSpinSquared<double>(one_rdms, two_rdms);
+r    double s_squared = GQCP::calculateSpinSquared<double>(one_rdms, two_rdms);
     double s_z = GQCP::calculateSpinZ<double>(one_rdms);
 
     // <S^2> should be 2 (S=1) because the ground state for O2 is a biradical triplet.
