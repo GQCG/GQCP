@@ -11,7 +11,7 @@
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
-// 
+//  
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
@@ -37,7 +37,7 @@ struct Configuration {
      *  @return a compact representation of the configuration as string:
      *   e.g: 1100 | 1010 => 2110
      */
-    std::string asCompactString(const std::string& delimiter = "") const;
+    std::string spinSummedRepresentation(const std::string& delimiter = "") const;
 };
 
 

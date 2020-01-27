@@ -33,8 +33,8 @@ BOOST_AUTO_TEST_CASE ( CompactConfigurationString ) {
 
     GQCP::Configuration configuration {onv1, onv2};
 
-    std::string compact_str = configuration.asCompactString();
-    std::string compact_str_delimiter = configuration.asCompactString(" ");
+    std::string compact_str = configuration.spinSummedRepresentation();
+    std::string compact_str_delimiter = configuration.spinSummedRepresentation(" ");
 
     BOOST_CHECK(compact_str.compare(compact_reference) == 0);
     BOOST_CHECK(compact_str_delimiter.compare(compact_reference_delimiter) == 0);

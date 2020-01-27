@@ -106,7 +106,7 @@ WaveFunctionSelection::WaveFunctionSelection(const WaveFunction& wave_function, 
  */
 void WaveFunctionSelection::printGamessExpansion(std::ostream& output_stream) const {
     for (size_t i = 0; i < configurations.size(); i++) {
-        output_stream << configurations[i].asCompactString(" ") << " | " << this->coefficients(i) << "\n";
+        output_stream << configurations[i].spinSummedRepresentation(" ") << " | " << this->coefficients(i) << "\n";
     }
 }
 

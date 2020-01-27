@@ -29,7 +29,7 @@ namespace GQCP {
 
 
 /**
- *  A class that represents a selected wave function: (potentially non normalized) expansion coefficients in a Fock space
+ *  A class that represents a selection of a wave function
  */
 class WaveFunctionSelection {
 private:
