@@ -33,7 +33,7 @@ namespace GQCP {
  */
 class WaveFunctionSelection {
 private:
-    std::vector<Configurations> configurations;
+    std::vector<Configuration> configurations;
     VectorX<double> coefficients;  // the coefficients for the ONV configurations
 
 public:
@@ -69,6 +69,7 @@ public:
 
     // GETTERS
     const VectorX<double>& get_coefficients() const { return coefficients; }
+    const std::vector<Configuration>& get_configurations() const { return configurations; }
 };
 
 

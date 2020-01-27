@@ -51,7 +51,7 @@ BOOST_AUTO_TEST_CASE ( constructor ) {
 
     // Create selected wavefunction with 2 of the largest coefficients (configuration 2 and 3)
     GQCP::WaveFunctionSelection wf2 (wf, 2);
-    const auto& configurations = wf2.fockSpace().get_configurations();
+    const auto& configurations = wf2.get_configurations();
     const auto& coefficients = wf2.get_coefficients();
     
     // Given the extraction method the smallest coefficient will come first this is configuration 3: 010 | 001

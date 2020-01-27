@@ -94,7 +94,7 @@ WaveFunctionSelection::WaveFunctionSelection(const WaveFunction& wave_function, 
         i++;
     }   
     
-    this->configurations(configurations);
+    this->configurations = configurations;
 }
 
 
@@ -105,7 +105,6 @@ WaveFunctionSelection::WaveFunctionSelection(const WaveFunction& wave_function, 
  *  @param output_stream        the stream used for outputting
  */
 void WaveFunctionSelection::printGamessExpansion(std::ostream& output_stream) const {
-    const auto& configurations = this->fock_space.get_configurations();
     for (size_t i = 0; i < configurations.size(); i++) {
         output_stream << configurations[i].asCompactString(" ") << " | " << this->coefficients(i) << "\n";
     }
