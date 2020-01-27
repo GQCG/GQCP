@@ -61,7 +61,6 @@ public:
      *  @param iteration_cycle                      the collection of algorithm steps that is performed in-between convergence checks
      *  @param convergence_criterion                the convergence criterion that must be fulfilled in order for the algorithm to have converged
      *  @param maximum_number_of_iterations         the maximum number of iterations the algorithm may perform
-     * 
      */
     template <typename Criterion>
     IterativeAlgorithm(const StepCollection<Environment>& iteration_cycle, const Criterion& convergence_criterion, const size_t maximum_number_of_iterations = 128) :
