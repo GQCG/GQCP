@@ -54,7 +54,7 @@ public:
     static IterativeAlgorithm<MinimizationEnvironment<Scalar>> Newton(const double threshold = 1.0e-08, const size_t maximum_number_of_iterations = 128) {
 
         // Create the iteration cycle that effectively 'defines' a Newton-step minimizer
-        IterationCycle<MinimizationEnvironment<Scalar>> newton_cycle {};
+        StepCollection<MinimizationEnvironment<Scalar>> newton_cycle {};
         newton_cycle.add(GQCP::Minimization::NewtonStepUpdate<Scalar, MinimizationEnvironment<Scalar>>());
 
         // Create a convergence criterion on the norm of subsequent iterations of variables

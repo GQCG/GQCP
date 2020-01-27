@@ -59,7 +59,7 @@ public:
     static IterativeAlgorithm<RHFSCFEnvironment<Scalar>> Plain(const double threshold = 1.0e-08, const size_t maximum_number_of_iterations = 128) {
 
         // Create the iteration cycle that effectively 'defines' a plain RHF SCF solver
-        IterationCycle<RHFSCFEnvironment<Scalar>> plain_rhf_scf_cycle {};
+        StepCollection<RHFSCFEnvironment<Scalar>> plain_rhf_scf_cycle {};
         plain_rhf_scf_cycle.add(RHFDensityMatrixCalculation<Scalar>())
                            .add(RHFFockMatrixCalculation<Scalar>())
                            .add(RHFFockMatrixDiagonalization<Scalar>())
@@ -83,7 +83,7 @@ public:
     static IterativeAlgorithm<RHFSCFEnvironment<Scalar>> DensityDamped(const double alpha, const double threshold = 1.0e-08, const size_t maximum_number_of_iterations = 128) {
 
         // Create the iteration cycle that effectively 'defines' a damped RHF SCF solver
-        IterationCycle<RHFSCFEnvironment<Scalar>> damped_rhf_scf_cycle {};
+        StepCollection<RHFSCFEnvironment<Scalar>> damped_rhf_scf_cycle {};
         damped_rhf_scf_cycle.add(RHFDensityMatrixCalculation<Scalar>())
                             .add(RHFDensityMatrixDamper<Scalar>(alpha))
                             .add(RHFFockMatrixCalculation<Scalar>())
@@ -107,7 +107,7 @@ public:
     static IterativeAlgorithm<RHFSCFEnvironment<Scalar>> DIIS(const size_t minimum_subspace_dimension = 6, const size_t maximum_subspace_dimension = 6, const double threshold = 1.0e-08, const size_t maximum_number_of_iterations = 128) {
 
         // Create the iteration cycle that effectively 'defines' a DIIS RHF SCF solver
-        IterationCycle<RHFSCFEnvironment<Scalar>> diis_rhf_scf_cycle {};
+        StepCollection<RHFSCFEnvironment<Scalar>> diis_rhf_scf_cycle {};
         diis_rhf_scf_cycle.add(RHFDensityMatrixCalculation<Scalar>())
                           .add(RHFFockMatrixCalculation<Scalar>())
                           .add(RHFErrorCalculation<Scalar>())

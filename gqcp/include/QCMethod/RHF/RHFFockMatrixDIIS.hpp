@@ -18,7 +18,7 @@
 #pragma once 
 
 
-#include "Mathematical/Algorithm/IterationStep.hpp"
+#include "Mathematical/Algorithm/Step.hpp"
 #include "Mathematical/Optimization/Accelerator/DIIS.hpp"
 #include "QCMethod/RHF/RHF.hpp"
 #include "QCMethod/RHF/RHFFockMatrixDiagonalization.hpp"
@@ -37,7 +37,7 @@ namespace GQCP {
  */
 template <typename _Scalar>
 class RHFFockMatrixDIIS :
-    public IterationStep<RHFSCFEnvironment<_Scalar>> {
+    public Step<RHFSCFEnvironment<_Scalar>> {
 
 public:
     using Scalar = _Scalar;

@@ -22,15 +22,15 @@ namespace GQCP {
 
 
 /**
- *  An elementary calculation that is regarded as one step in an iteration cycle.
+ *  An elementary calculation that is regarded as one step in an algorithm.
  * 
  *  Derived classes should implement:
  *      - execute()
  * 
- *  @param _Environment             the type of the environment that this iteration step can read from and write to
+ *  @param _Environment             the type of the environment that this step can read from and write to
  */
 template <typename _Environment>
-class IterationStep {
+class Step {
 public:
     using Environment = _Environment;
 
@@ -41,7 +41,7 @@ public:
      *  DESTRUCTOR
      */
 
-    virtual ~IterationStep() = default;
+    virtual ~Step() = default;
 
 
     /*
@@ -49,9 +49,9 @@ public:
      */
 
     /**
-     *  Execute this iteration step.
+     *  Execute/perform this algorithm step.
      * 
-     *  @param environment              the environment that this iteration step can read from and write to
+     *  @param environment              the environment that this step can read from and write to
      */
     virtual void execute(Environment& environment) = 0;
 };

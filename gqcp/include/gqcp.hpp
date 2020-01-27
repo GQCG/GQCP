@@ -72,9 +72,9 @@
 #include "FockSpace/SelectedFockSpace.hpp"
 
 #include "Mathematical/Algorithm/ConvergenceCriterion.hpp"
-#include "Mathematical/Algorithm/IterationCycle.hpp"
-#include "Mathematical/Algorithm/IterationStep.hpp"
 #include "Mathematical/Algorithm/IterativeAlgorithm.hpp"
+#include "Mathematical/Algorithm/Step.hpp"
+#include "Mathematical/Algorithm/StepCollection.hpp"
 
 #include "Mathematical/Optimization/Accelerator/ConstantDamper.hpp"
 #include "Mathematical/Optimization/Accelerator/DIIS.hpp"

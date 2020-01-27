@@ -18,7 +18,7 @@
 #pragma once 
 
 
-#include "Mathematical/Algorithm/IterationStep.hpp"
+#include "Mathematical/Algorithm/Step.hpp"
 #include "Mathematical/Optimization/Accelerator/ConstantDamper.hpp"
 #include "QCMethod/RHF/RHFSCFEnvironment.hpp"
 #include "QCMethod/RHF/RHF.hpp"
@@ -34,7 +34,7 @@ namespace GQCP {
  */
 template <typename _Scalar>
 class RHFDensityMatrixDamper :
-    public IterationStep<RHFSCFEnvironment<_Scalar>> {
+    public Step<RHFSCFEnvironment<_Scalar>> {
 
 public:
     using Scalar = _Scalar;

@@ -54,7 +54,7 @@ public:
     static IterativeAlgorithm<NonLinearEquationEnvironment<Scalar>> Newton(const double threshold = 1.0e-08, const size_t maximum_number_of_iterations = 128) {
 
         // Create the iteration cycle that effectively 'defines' a Newton-based system of equations solver: it uses a Newton-step based update of the variables
-        IterationCycle<NonLinearEquationEnvironment<Scalar>> newton_cycle {};
+        StepCollection<NonLinearEquationEnvironment<Scalar>> newton_cycle {};
         newton_cycle.add(GQCP::NonLinearEquation::NewtonStepUpdate<Scalar, NonLinearEquationEnvironment<Scalar>>());
 
         // Create a convergence criterion on the norm of subsequent iterations of variables
