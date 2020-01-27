@@ -131,17 +131,17 @@ AtomicDecompositionParameters AtomicDecompositionParameters::Nuclear(const Molec
 
     QCRankFourTensor<double> g_abba = g_ab.Eigen() + g_ba.Eigen();
 
-    SQHamiltonian<double> HAA (ScalarSQOneElectronOperator<double>({h_a}), ScalarSQTwoElectronOperator<double>({g_a}));
-    SQHamiltonian<double> HBB (ScalarSQOneElectronOperator<double>({h_b}), ScalarSQTwoElectronOperator<double>({g_b}));
-    SQHamiltonian<double> HAB (ScalarSQOneElectronOperator<double>({h_ab}), ScalarSQTwoElectronOperator<double>({g_abba}));
-    SQHamiltonian<double> HA (ScalarSQOneElectronOperator<double>({h_a + h_ab/2}), ScalarSQTwoElectronOperator<double>({g_a.Eigen() + (0.5)*g_abba.Eigen()}));
-    SQHamiltonian<double> HB (ScalarSQOneElectronOperator<double>({h_b + h_ab/2}), ScalarSQTwoElectronOperator<double>({g_b.Eigen() + (0.5)*g_abba.Eigen()}));
+    SQHamiltonian<double> HAA {ScalarSQOneElectronOperator<double>{h_a}, ScalarSQTwoElectronOperator<double>{g_a}};
+    SQHamiltonian<double> HBB {ScalarSQOneElectronOperator<double>{h_b}, ScalarSQTwoElectronOperator<double>{g_b}};
+    SQHamiltonian<double> HAB {ScalarSQOneElectronOperator<double>{h_ab}, ScalarSQTwoElectronOperator<double>{g_abba}};
+    SQHamiltonian<double> HA {ScalarSQOneElectronOperator<double>{h_a + h_ab/2}, ScalarSQTwoElectronOperator<double>{g_a.Eigen() + 0.5*g_abba.Eigen()}};
+    SQHamiltonian<double> HB {ScalarSQOneElectronOperator<double>{h_b + h_ab/2}, ScalarSQTwoElectronOperator<double>{g_b.Eigen() + 0.5*g_abba.Eigen()}};
 
     std::vector<SQHamiltonian<double>> net_atomic_parameters = {HAA, HBB};
     std::vector<SQHamiltonian<double>> interaction_parameters = {HAB};
     std::vector<SQHamiltonian<double>> atomic_parameters = {HA, HB};
 
-    return AtomicDecompositionParameters(SQHamiltonian<double>::Molecular(spinor_basis, molecule), net_atomic_parameters, interaction_parameters, atomic_parameters);
+    return AtomicDecompositionParameters{SQHamiltonian<double>::Molecular(spinor_basis, molecule), net_atomic_parameters, interaction_parameters, atomic_parameters};
 }
 
 

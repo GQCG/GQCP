@@ -38,7 +38,7 @@
 
 BOOST_AUTO_TEST_CASE ( one_electron_throw ) {
 
-    GQCP::ScalarSQOneElectronOperator<double> h ({GQCP::QCMatrix<double>::Zero(2, 2)});
+    GQCP::ScalarSQOneElectronOperator<double> h {GQCP::QCMatrix<double>::Zero(2, 2)};
     GQCP::OneRDM<double> D_valid = GQCP::OneRDM<double>::Zero(2, 2);
     GQCP::OneRDM<double> D_invalid = GQCP::OneRDM<double>::Zero(3, 3);
 
@@ -49,7 +49,7 @@ BOOST_AUTO_TEST_CASE ( one_electron_throw ) {
 
 BOOST_AUTO_TEST_CASE ( two_electron_throw ) {
 
-    GQCP::ScalarSQTwoElectronOperator<double> g (2);
+    GQCP::ScalarSQTwoElectronOperator<double> g {2};
 
     GQCP::TwoRDM<double> d_valid (2);
     GQCP::TwoRDM<double> d_invalid (3);

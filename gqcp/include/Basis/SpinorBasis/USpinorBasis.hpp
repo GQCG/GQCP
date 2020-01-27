@@ -388,7 +388,8 @@ public:
 
         // The atomic spin operator can be calculated as as the atomic Mulliken operator divided by 2, multiplied by the correct sign factor
         int sign = 1 - 2*component;  // 1 for ALPHA, -1 for BETA
-        return ScalarSQOneElectronOperator<double>({sign * this->spinor_bases[component].calculateMullikenOperator(ao_list).parameters()/2});
+        const auto spin_z_par = 0.5 * sign * this->spinor_bases[component].calculateMullikenOperator(ao_list).parameters();
+        return ScalarSQOneElectronOperator<double>{spin_z_par};
     }
 };
 

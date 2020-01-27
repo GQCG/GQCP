@@ -169,7 +169,7 @@ public:
         Eigen::Map<Eigen::MatrixXd> G1 (direct_contraction.data(), direct_contraction.dimension(0), direct_contraction.dimension(1));
         Eigen::Map<Eigen::MatrixXd> G2 (exchange_contraction.data(), exchange_contraction.dimension(0), exchange_contraction.dimension(1));
 
-        return ScalarSQOneElectronOperator<Scalar>({sq_hamiltonian.core().parameters() + G1 + G2});
+        return ScalarSQOneElectronOperator<Scalar>{sq_hamiltonian.core().parameters() + G1 + G2};
     }
 
 
