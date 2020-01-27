@@ -29,7 +29,7 @@
 
 
 /*
- *  Tests the non-trivial constructor of the SelectedWaveFunction by selecting the 2 largest coefficients
+ *  Tests the non-trivial constructor of the WaveFunctionSelection by selecting the 2 largest coefficients
  */ 
 BOOST_AUTO_TEST_CASE ( constructor ) {
 
