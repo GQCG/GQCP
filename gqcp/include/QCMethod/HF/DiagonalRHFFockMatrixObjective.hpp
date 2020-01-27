@@ -32,7 +32,7 @@ namespace GQCP {
  *  @tparam _Scalar                 the type of scalar used for the expansion coefficients
  */
 template <typename _Scalar>
-class DiagonalRHFFockMatrix {
+class DiagonalRHFFockMatrixObjective {
 public:
     using Scalar = _Scalar;
 
@@ -51,7 +51,7 @@ public:
     /**
      *  @param sq_hamiltonian       the Hamiltonian expressed in a scalar basis
      */
-    DiagonalRHFFockMatrix(const SQHamiltonian<Scalar>& sq_hamiltonian, const double precision=1.0e-08) :
+    DiagonalRHFFockMatrixObjective(const SQHamiltonian<Scalar>& sq_hamiltonian, const double precision=1.0e-08) :
         precision (precision),
         sq_hamiltonian (sq_hamiltonian)
     {}

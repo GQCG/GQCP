@@ -22,7 +22,7 @@
 #include "Basis/transform.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Processing/Properties/expectation_values.hpp"
-#include "QCMethod/HF/DiagonalRHFFockMatrix.hpp"
+#include "QCMethod/HF/DiagonalRHFFockMatrixObjective.hpp"
 #include "QCMethod/HF/RHF.hpp"
 #include "QCMethod/HF/RHFSCFSolver.hpp"
 
@@ -86,7 +86,7 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test ) {
         // Create a DIIS RHF SCF solver and solve the SCF equations
         auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(CO.numberOfElectrons(), constrained_sq_hamiltonian, spinor_basis.overlap().parameters());
         auto diis_rhf_scf_solver = GQCP::RHFSCFSolver<double>::DIIS();
-        const GQCP::DiagonalRHFFockMatrix<double> objective (constrained_sq_hamiltonian);
+        const GQCP::DiagonalRHFFockMatrixObjective<double> objective (constrained_sq_hamiltonian);
         const auto rhf_qc_structure = GQCP::QCMethod::RHF<double>().optimize(objective, diis_rhf_scf_solver, rhf_environment);
         const auto rhf_parameters = rhf_qc_structure.groundStateParameters();
 
@@ -183,7 +183,7 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test_random_transformation) {
         // Create a DIIS RHF SCF solver and solve the SCF equations
         auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(CO.numberOfElectrons(), sq_hamiltonian_constrained, spinor_basis.overlap().parameters());
         auto diis_rhf_scf_solver = GQCP::RHFSCFSolver<double>::DIIS();
-        const GQCP::DiagonalRHFFockMatrix<double> objective (sq_hamiltonian_constrained);
+        const GQCP::DiagonalRHFFockMatrixObjective<double> objective (sq_hamiltonian_constrained);
         const auto rhf_qc_structure = GQCP::QCMethod::RHF<double>().optimize(objective, diis_rhf_scf_solver, rhf_environment);
         const auto rhf_parameters = rhf_qc_structure.groundStateParameters();
 

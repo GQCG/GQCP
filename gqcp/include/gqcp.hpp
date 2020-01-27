@@ -184,7 +184,7 @@
 #include "QCMethod/Geminals/APIGGeminalCoefficients.hpp"
 #include "QCMethod/Geminals/GeminalCoefficientsInterface.hpp"
 
-#include "QCMethod/HF/DiagonalRHFFockMatrix.hpp"
+#include "QCMethod/HF/DiagonalRHFFockMatrixObjective.hpp"
 #include "QCMethod/HF/RHF.hpp"
 #include "QCMethod/HF/RHFDensityMatrixCalculation.hpp"
 #include "QCMethod/HF/RHFDensityMatrixDamper.hpp"

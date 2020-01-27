@@ -22,7 +22,7 @@
 #include "Mathematical/Optimization/Eigenproblem/DavidsonSolver.hpp"
 #include "Mathematical/Optimization/Eigenproblem/DenseSolver.hpp"
 #include "Processing/Properties/expectation_values.hpp"
-#include "QCMethod/HF/DiagonalRHFFockMatrix.hpp"
+#include "QCMethod/HF/DiagonalRHFFockMatrixObjective.hpp"
 #include "QCMethod/HF/RHF.hpp"
 #include "QCMethod/HF/RHFSCFSolver.hpp"
 
@@ -161,7 +161,7 @@ MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const s
         // Try the foward approach of solving the RHF equations
         auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), this->sq_hamiltonian, this->spinor_basis.overlap().parameters());
         auto diis_rhf_scf_solver = GQCP::RHFSCFSolver<double>::DIIS(6, 6, 1.0e-12, 500);
-        const GQCP::DiagonalRHFFockMatrix<double> objective (this->sq_hamiltonian);
+        const GQCP::DiagonalRHFFockMatrixObjective<double> objective (this->sq_hamiltonian);
         const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, diis_rhf_scf_solver, rhf_environment).groundStateParameters();
 
         basisTransform(this->spinor_basis, this->sq_hamiltonian, rhf_parameters.coefficientMatrix());
@@ -187,12 +187,12 @@ MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const s
                 // Perform DIIS RHF for individual fractions
                 auto rhf_environment1 = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(mol_fraction1.numberOfElectrons(), ham_par1, spinor_basis1.overlap().parameters());
                 auto diis_rhf_scf_solver1 = GQCP::RHFSCFSolver<double>::DIIS(6, 6, 1.0e-12, 500);
-                const GQCP::DiagonalRHFFockMatrix<double> objective1 (ham_par1);
+                const GQCP::DiagonalRHFFockMatrixObjective<double> objective1 (ham_par1);
                 const auto rhf_parameters1 = GQCP::QCMethod::RHF<double>().optimize(objective1, diis_rhf_scf_solver1, rhf_environment1).groundStateParameters();
 
                 auto rhf_environment2 = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(mol_fraction2.numberOfElectrons(), ham_par2, spinor_basis2.overlap().parameters());
                 auto diis_rhf_scf_solver2 = GQCP::RHFSCFSolver<double>::DIIS(6, 6, 1.0e-12, 500);
-                const GQCP::DiagonalRHFFockMatrix<double> objective2 (ham_par2);
+                const GQCP::DiagonalRHFFockMatrixObjective<double> objective2 (ham_par2);
                 const auto rhf_parameters2 = GQCP::QCMethod::RHF<double>().optimize(objective2, diis_rhf_scf_solver2, rhf_environment2).groundStateParameters();
 
                 // Retrieve transformation from the solutions and transform the Hamiltonian
@@ -210,7 +210,7 @@ MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const s
                 try {
                     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), this->sq_hamiltonian, this->spinor_basis.overlap().parameters());
                     auto diis_rhf_scf_solver = GQCP::RHFSCFSolver<double>::DIIS(6, 6, 1.0e-12, 500);
-                    const GQCP::DiagonalRHFFockMatrix<double> objective (this->sq_hamiltonian);
+                    const GQCP::DiagonalRHFFockMatrixObjective<double> objective (this->sq_hamiltonian);
                     const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, diis_rhf_scf_solver, rhf_environment).groundStateParameters();
 
                     basisTransform(this->spinor_basis, this->sq_hamiltonian, rhf_parameters.coefficientMatrix());

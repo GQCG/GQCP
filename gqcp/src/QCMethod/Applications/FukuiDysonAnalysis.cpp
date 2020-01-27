@@ -19,7 +19,7 @@
 
 #include "Basis/transform.hpp"
 #include "Processing/Properties/properties.hpp"
-#include "QCMethod/HF/DiagonalRHFFockMatrix.hpp"
+#include "QCMethod/HF/DiagonalRHFFockMatrixObjective.hpp"
 #include "QCMethod/HF/RHF.hpp"
 #include "QCMethod/HF/RHFSCFSolver.hpp"
 
@@ -58,14 +58,14 @@ FukuiDysonAnalysis::FukuiDysonAnalysis(const Molecule& molecule, const std::stri
     if (use_diis) {
         auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(restricted_molecule.numberOfElectrons(), this->sq_hamiltonian, this->spinor_basis.overlap().parameters());
         auto diis_rhf_scf_solver = GQCP::RHFSCFSolver<double>::DIIS();
-        const GQCP::DiagonalRHFFockMatrix<double> objective (sq_hamiltonian);
+        const GQCP::DiagonalRHFFockMatrixObjective<double> objective (sq_hamiltonian);
         const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, diis_rhf_scf_solver, rhf_environment).groundStateParameters();
 
         basisTransform(this->spinor_basis, this->sq_hamiltonian, rhf_parameters.coefficientMatrix());
     } else {
         auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), this->sq_hamiltonian, this->spinor_basis.overlap().parameters());
         auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
-        const GQCP::DiagonalRHFFockMatrix<double> objective (sq_hamiltonian);
+        const GQCP::DiagonalRHFFockMatrixObjective<double> objective (sq_hamiltonian);
         const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
 
         basisTransform(this->spinor_basis, this->sq_hamiltonian, rhf_parameters.coefficientMatrix());

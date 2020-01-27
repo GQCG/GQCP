@@ -28,7 +28,7 @@
 #include "Processing/RDM/RDMCalculator.hpp"
 #include "QCMethod/CI/CISolver.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
-#include "QCMethod/HF/DiagonalRHFFockMatrix.hpp"
+#include "QCMethod/HF/DiagonalRHFFockMatrixObjective.hpp"
 #include "QCMethod/HF/RHF.hpp"
 #include "QCMethod/HF/RHFSCFSolver.hpp"
 #include "Utilities/units.hpp"
@@ -51,7 +51,7 @@ BOOST_AUTO_TEST_CASE ( dipole_CO_STO_3G ) {
     // Solve the SCF equations
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(CO.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
     auto diis_rhf_scf_solver = GQCP::RHFSCFSolver<double>::DIIS();
-    const GQCP::DiagonalRHFFockMatrix<double> objective (sq_hamiltonian);
+    const GQCP::DiagonalRHFFockMatrixObjective<double> objective (sq_hamiltonian);
     const auto rhf_qc_structure = GQCP::QCMethod::RHF<double>().optimize(objective, diis_rhf_scf_solver, rhf_environment);
     const auto rhf_parameters = rhf_qc_structure.groundStateParameters();
 
@@ -90,7 +90,7 @@ BOOST_AUTO_TEST_CASE ( dipole_N2_STO_3G ) {
     // Solve the SCF equations
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(N2.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
-    const GQCP::DiagonalRHFFockMatrix<double> objective (sq_hamiltonian);
+    const GQCP::DiagonalRHFFockMatrixObjective<double> objective (sq_hamiltonian);
     const auto rhf_qc_structure = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment);
     const auto rhf_parameters = rhf_qc_structure.groundStateParameters();
 
@@ -134,7 +134,7 @@ BOOST_AUTO_TEST_CASE ( h2_polarizability_RHF ) {
     // Do the RHF calculation to get the canonical RHF orbitals
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(h2.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
-    const GQCP::DiagonalRHFFockMatrix<double> objective (sq_hamiltonian);
+    const GQCP::DiagonalRHFFockMatrixObjective<double> objective (sq_hamiltonian);
     const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
 
 

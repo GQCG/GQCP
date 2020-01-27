@@ -1,6 +1,6 @@
 target_sources(gqcp
     PRIVATE
-        DiagonalRHFFockMatrix.hpp
+        DiagonalRHFFockMatrixObjective.hpp
         RHF.hpp
         RHFDensityMatrixCalculation.hpp
         RHFDensityMatrixDamper.hpp

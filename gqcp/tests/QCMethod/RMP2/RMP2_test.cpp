@@ -22,7 +22,7 @@
 #include "QCMethod/RMP2/RMP2.hpp"
 
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "QCMethod/HF/DiagonalRHFFockMatrix.hpp"
+#include "QCMethod/HF/DiagonalRHFFockMatrixObjective.hpp"
 #include "QCMethod/HF/RHF.hpp"
 #include "QCMethod/HF/RHFSCFSolver.hpp"
 
@@ -40,7 +40,7 @@ BOOST_AUTO_TEST_CASE ( crawdad_sto3g_water ) {
 
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(water.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
-    const GQCP::DiagonalRHFFockMatrix<double> objective (sq_hamiltonian);
+    const GQCP::DiagonalRHFFockMatrixObjective<double> objective (sq_hamiltonian);
     const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
 
     sq_hamiltonian.transform(rhf_parameters.coefficientMatrix());
@@ -64,7 +64,7 @@ BOOST_AUTO_TEST_CASE ( crawdad_sto3g_methane ) {
 
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(methane.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
-    const GQCP::DiagonalRHFFockMatrix<double> objective (sq_hamiltonian);
+    const GQCP::DiagonalRHFFockMatrixObjective<double> objective (sq_hamiltonian);
     const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
 
     sq_hamiltonian.transform(rhf_parameters.coefficientMatrix());

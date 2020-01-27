@@ -22,7 +22,7 @@
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
 
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "QCMethod/HF/DiagonalRHFFockMatrix.hpp"
+#include "QCMethod/HF/DiagonalRHFFockMatrixObjective.hpp"
 #include "QCMethod/HF/RHF.hpp"
 #include "QCMethod/HF/RHFSCFSolver.hpp"
 
@@ -43,7 +43,7 @@ BOOST_AUTO_TEST_CASE ( RHF_orbitals_are_orthonormal ) {
 
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(h2o.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
-    const GQCP::DiagonalRHFFockMatrix<double> objective (sq_hamiltonian);
+    const GQCP::DiagonalRHFFockMatrixObjective<double> objective (sq_hamiltonian);
     const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
 
     spinor_basis.transform(rhf_parameters.coefficientMatrix());

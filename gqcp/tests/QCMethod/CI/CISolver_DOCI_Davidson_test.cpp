@@ -23,7 +23,7 @@
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/CI/CISolver.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/DOCI.hpp"
-#include "QCMethod/HF/DiagonalRHFFockMatrix.hpp"
+#include "QCMethod/HF/DiagonalRHFFockMatrixObjective.hpp"
 #include "QCMethod/HF/RHF.hpp"
 #include "QCMethod/HF/RHFSCFSolver.hpp"
 
@@ -71,7 +71,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_h2_sto3g_dense_vs_Davidson ) {
     // Create a plain RHF SCF solver and solve the SCF equations
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(h2.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
-    const GQCP::DiagonalRHFFockMatrix<double> objective (sq_hamiltonian);
+    const GQCP::DiagonalRHFFockMatrixObjective<double> objective (sq_hamiltonian);
     const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
 
     // Transform the Hamiltonian to the RHF orbital basis
@@ -112,7 +112,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_h2_631g_dense_vs_Davidson ) {
     // Create a plain RHF SCF solver and solve the SCF equations
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(h2.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
-    const GQCP::DiagonalRHFFockMatrix<double> objective (sq_hamiltonian);
+    const GQCP::DiagonalRHFFockMatrixObjective<double> objective (sq_hamiltonian);
     const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
 
     // Transform the Hamiltonian to the RHF orbital basis

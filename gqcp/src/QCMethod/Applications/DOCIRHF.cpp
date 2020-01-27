@@ -21,7 +21,7 @@
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/CI/CISolver.hpp"
-#include "QCMethod/HF/DiagonalRHFFockMatrix.hpp"
+#include "QCMethod/HF/DiagonalRHFFockMatrixObjective.hpp"
 #include "QCMethod/HF/RHF.hpp"
 #include "QCMethod/HF/RHFSCFSolver.hpp"
 
@@ -74,7 +74,7 @@ void DOCIRHF::solve() {
 
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(this->molecule.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
     auto diis_rhf_scf_solver = GQCP::RHFSCFSolver<double>::DIIS();
-    const GQCP::DiagonalRHFFockMatrix<double> objective (sq_hamiltonian);
+    const GQCP::DiagonalRHFFockMatrixObjective<double> objective (sq_hamiltonian);
     const auto rhf_qc_structure = GQCP::QCMethod::RHF<double>().optimize(objective, diis_rhf_scf_solver, rhf_environment);
     const auto rhf_parameters = rhf_qc_structure.groundStateParameters();
     basisTransform(spinor_basis, sq_hamiltonian, rhf_parameters.coefficientMatrix());
