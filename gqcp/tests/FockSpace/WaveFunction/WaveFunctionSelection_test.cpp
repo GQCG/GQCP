@@ -19,7 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "FockSpace/WaveFunction/SelectedWaveFunction.hpp"
+#include "FockSpace/WaveFunction/WaveFunctionSelection.hpp"
 
 #include "Basis/transform.hpp"
 #include "FockSpace/FockSpace.hpp"
@@ -50,7 +50,7 @@ BOOST_AUTO_TEST_CASE ( constructor ) {
     GQCP::WaveFunction wf (selected_fock_space, test_coefficients);
 
     // Create selected wavefunction with 2 of the largest coefficients (configuration 2 and 3)
-    GQCP::SelectedWaveFunction wf2 (wf, 2);
+    GQCP::WaveFunctionSelection wf2 (wf, 2);
     const auto& configurations = wf2.fockSpace().get_configurations();
     const auto& coefficients = wf2.get_coefficients();
     

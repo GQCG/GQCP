@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "FockSpace/WaveFunction/SelectedWaveFunction.hpp"
+#include "FockSpace/WaveFunction/WaveFunctionSelection.hpp"
 
 #include <queue>
 
@@ -33,8 +33,8 @@ namespace GQCP {
  *  @param fock_space           the selected Fock space in which the wave function 'lives'
  *  @param coefficients         the expansion coefficients
  */
-SelectedWaveFunction::SelectedWaveFunction(const SelectedFockSpace& fock_space, const VectorX<double>& coefficients) :
-    fock_space (fock_space),
+WaveFunctionSelection::WaveFunctionSelection(const SelectedFockSpace& fock_space, const VectorX<double>& coefficients) :
+    configurations (fock_space.get_configurations()),
     coefficients (coefficients)
 {
 }
@@ -47,7 +47,7 @@ SelectedWaveFunction::SelectedWaveFunction(const SelectedFockSpace& fock_space, 
  *  @param wave_function                           the wave function to be selected from
  *  @param number_of_highest_contributions         the amount of selections made
  */
-SelectedWaveFunction::SelectedWaveFunction(const WaveFunction& wave_function, size_t number_of_largest_contributions) {
+WaveFunctionSelection::WaveFunctionSelection(const WaveFunction& wave_function, size_t number_of_largest_contributions) {
 
     // A struct containing a coefficient with its address in a Fock space
     struct AddressCoefficientPair 
@@ -84,8 +84,8 @@ SelectedWaveFunction::SelectedWaveFunction(const WaveFunction& wave_function, si
 
     // Generate the selection from the stored addresses
     const BaseFockSpace& fock_space = wave_function.get_fock_space();
-    size_t i = 0;
 
+    size_t i = 0;
     while (!min_heap.empty()) {
         const AddressCoefficientPair& x = min_heap.top();
         this->coefficients (i) = x.coeff;
@@ -93,9 +93,8 @@ SelectedWaveFunction::SelectedWaveFunction(const WaveFunction& wave_function, si
         min_heap.pop();
         i++;
     }   
-
-    this->fock_space = SelectedFockSpace(fock_space.get_K(), __builtin_popcountl(configurations[0].onv_alpha.get_unsigned_representation()), __builtin_popcountl(configurations[0].onv_beta.get_unsigned_representation()));
-    this->fock_space.set_configurations(configurations);
+    
+    this->configurations(configurations);
 }
 
 
@@ -105,7 +104,7 @@ SelectedWaveFunction::SelectedWaveFunction(const WaveFunction& wave_function, si
  *
  *  @param output_stream        the stream used for outputting
  */
-void SelectedWaveFunction::printGamessExpansion(std::ostream& output_stream) const {
+void WaveFunctionSelection::printGamessExpansion(std::ostream& output_stream) const {
     const auto& configurations = this->fock_space.get_configurations();
     for (size_t i = 0; i < configurations.size(); i++) {
         output_stream << configurations[i].asCompactString(" ") << " | " << this->coefficients(i) << "\n";

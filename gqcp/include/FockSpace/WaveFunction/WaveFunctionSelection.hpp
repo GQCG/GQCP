@@ -31,14 +31,14 @@ namespace GQCP {
 /**
  *  A class that represents a selected wave function: (potentially non normalized) expansion coefficients in a Fock space
  */
-class SelectedWaveFunction {
+class WaveFunctionSelection {
 private:
-    SelectedFockSpace fock_space;
-    VectorX<double> coefficients;  // the expansion coefficients for the selection in a Fock space
+    std::vector<Configurations> configurations;
+    VectorX<double> coefficients;  // the coefficients for the ONV configurations
 
 public:
     // CONSTRUCTORS
-    SelectedWaveFunction() = default;
+    WaveFunctionSelection() = default;
 
     /**
      *  Construct a selected wave function
@@ -46,7 +46,7 @@ public:
      *  @param fock_space           the selected Fock space in which the wave function 'lives'
      *  @param coefficients         the expansion coefficients
      */
-    SelectedWaveFunction(const SelectedFockSpace& fock_space, const VectorX<double>& coefficients);
+    WaveFunctionSelection(const SelectedFockSpace& fock_space, const VectorX<double>& coefficients);
 
 
     /**
@@ -55,7 +55,7 @@ public:
      *  @param wave_function                           the wave_function to be selected from
      *  @param number_of_largest_contributions         the amount of selections made
      */
-    SelectedWaveFunction(const WaveFunction& wave_function, size_t number_of_largest_contributions);
+    WaveFunctionSelection(const WaveFunction& wave_function, size_t number_of_largest_contributions);
 
 
     // PUBLIC METHODS
@@ -69,9 +69,6 @@ public:
 
     // GETTERS
     const VectorX<double>& get_coefficients() const { return coefficients; }
-    const SelectedFockSpace& fockSpace() const { return fock_space; }
-
-
 };
 
 
