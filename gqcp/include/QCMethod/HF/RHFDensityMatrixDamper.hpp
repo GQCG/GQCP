@@ -19,20 +19,21 @@
 
 
 #include "Mathematical/Algorithm/IterationStep.hpp"
-#include "QCMethod/RHF/RHFSCFEnvironment.hpp"
-#include "QCMethod/RHF/RHF.hpp"
+#include "Mathematical/Optimization/Accelerator/ConstantDamper.hpp"
+#include "QCMethod/HF/RHFSCFEnvironment.hpp"
+#include "QCMethod/HF/RHF.hpp"
 
 
 namespace GQCP {
 
 
 /**
- *  An iteration step that calculates the current density matrix (expressed in the scalar/AO basis) from the current coefficient matrix.
+ *  An iteration step that accelerates the density matrix (expressed in the scalar/AO basis) based on a constant damping accelerator.
  * 
  *  @tparam _Scalar              the scalar type used to represent the expansion coefficient/elements of the transformation matrix
  */
 template <typename _Scalar>
-class RHFDensityMatrixCalculation :
+class RHFDensityMatrixDamper :
     public IterationStep<RHFSCFEnvironment<_Scalar>> {
 
 public:
@@ -40,21 +41,47 @@ public:
     using Environment = RHFSCFEnvironment<Scalar>;
 
 
+private:
+    ConstantDamper damper;  // the damping accelerator
+
+
 public:
+
+    /*
+     *  CONSTRUCTORS 
+     */
+
+    /**
+     *  @param alpha            the damping factor
+     */
+    RHFDensityMatrixDamper(const double alpha) : 
+        damper (alpha)
+    {}
+
 
     /*
      *  OVERRIDDEN PUBLIC METHODS
      */
 
     /**
-     *  Calculate the current RHF density matrix and place it in the environment
+     *  Replace the most recent density matrix with an accelerated one.
      * 
      *  @param environment              the environment that acts as a sort of calculation space
      */
     void execute(Environment& environment) override {
-        const auto& C = environment.coefficient_matrices.back();  // the most recent coefficient matrix
-        const auto D = calculateRHFAO1RDM(C, environment.N);
-        environment.density_matrices.push_back(D);
+
+        if (environment.density_matrices.size() < 2) {
+            return;  // no acceleration is possible
+        }
+
+        // Get the two most recent density matrices and produce an accelerated density matrix
+        const auto second_to_last_it = environment.density_matrices.end() - 2;
+        const auto& D_previous = *second_to_last_it;  // dereference the iterator
+        const auto D_current = environment.density_matrices.back();
+
+        const auto D_accelerated = this->damper.accelerate(D_current, D_previous);
+        environment.density_matrices.pop_back();  // we will replace the most recent density matrix with the accelerated one, so remove the most recent one
+        environment.density_matrices.push_back(D_accelerated);
     }
 };
 

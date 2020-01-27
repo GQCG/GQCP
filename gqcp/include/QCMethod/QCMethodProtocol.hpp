@@ -18,24 +18,49 @@
 #pragma once
 
 
+#include "QCMethod/QCObjective.hpp"
+#include "QCMethod/QCStructure.hpp"
+
+
 namespace GQCP {
 
 
 /**
- *  A protocol (virtual base class) for quantum chemical methods
+ *  A protocol/virtual base class for quantum chemical methods
  * 
- *  @tparam InitialGuess            the type of the initial guess that is supplied to the solution algorithm
- *  @tparam Solution                the type of the solution that is returned by the solution algorithm
+ *  @tparam _QCModel                the type of the quantum chemical model this quantum chemical method is trying to solve
+ *  @tparam _DerivedQCMethod        the type of the class that derives from this base class
  */
-template <typename InitialGuess, typename Solution>
-class QCMethodProtocol {
+template <typename _QCModel, typename _DerivedQCMethod>
+class QCMethodProtocol:
+    public CRTP<_DerivedQCMethod> {
+
+public:
+    using QCModel = _QCModel;
+    using DerivedQCMethod = _DerivedQCMethod;
+
+
+public:
+
+    /*
+     *  PUBLIC METHODS
+     */
 
     /**
-     *  Determine the optimal wave function parameters for the quantum chemical method
+     *  Optimize the electronic structure model: find the parameters that are the solutions to the quantum chemical method's objective
      * 
-     *  @return the optimal wave function parameters. This is often encapsulated with other information, like the energy
+     *  @tparam QCObjective             the type of the objective
+     *  @tparam Solver                  the type of the solver
+     *  @tparam Environment             the type of the solver environment
+     * 
+     *  @param objective                the objective that should be fulfilled in order to consider the model's parameters as 'optimal'
+     *  @param solver                   the solver that will try to optimize the parameters
+     *  @param environment              the environment that acts as a sort of calculation space
      */
-    virtual Solution solve(const InitialGuess& initial_guess) = 0;
+    template <typename QCObjective, typename Solver, typename Environment>
+    QCStructure<QCModel> optimize(const QCObjective& objective, Solver& solver, Environment& environment) {
+        return this->derived().optimize(objective, solver, environment);
+    }
 };
 
 

@@ -15,24 +15,25 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#pragma once
+#pragma once 
 
 
 #include "Mathematical/Algorithm/IterationStep.hpp"
-#include "QCMethod/RHF/RHFSCFEnvironment.hpp"
-#include "QCMethod/RHF/RHF.hpp"
+#include "QCMethod/HF/RHFSCFEnvironment.hpp"
+
+#include <Eigen/Dense>
 
 
 namespace GQCP {
 
 
 /**
- *  An iteration step that calculates the current electronic RHF energy.
+ *  An iteration step that solves the generalized eigenvalue problem for the current scalar/AO basis Fock matrix for the coefficient matrix.
  * 
  *  @tparam _Scalar              the scalar type used to represent the expansion coefficient/elements of the transformation matrix
  */
 template <typename _Scalar>
-class RHFElectronicEnergyCalculation : 
+class RHFFockMatrixDiagonalization :
     public IterationStep<RHFSCFEnvironment<_Scalar>> {
 
 public:
@@ -47,18 +48,21 @@ public:
      */
 
     /**
-     *  Calculate the current electronic RHF energy and place it in the environment
+     *  Solve the generalized eigenvalue problem for the most recent scalar/AO Fock matrix. Add the associated coefficient matrix and orbital energies to the environment.
      * 
      *  @param environment              the environment that acts as a sort of calculation space
      */
     void execute(Environment& environment) override {
 
-        const auto& D = environment.density_matrices.back();  // the most recent density matrix
-        const ScalarSQOneElectronOperator<Scalar> F ({environment.fock_matrices.back()});  // the most recent Fock matrix
-        const auto& H_core = environment.sq_hamiltonian.core();  // the core Hamiltonian matrix
+        const auto& F = environment.fock_matrices.back();  // the most recent scalar/AO basis Fock matrix
 
-        const auto E_electronic = calculateRHFElectronicEnergy(D, H_core, F);
-        environment.electronic_energies.push_back(E_electronic);
+        using MatrixType = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
+        Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver (F, environment.S);
+        const TransformationMatrix<Scalar>& C = generalized_eigensolver.eigenvectors();
+        const auto& orbital_energies = generalized_eigensolver.eigenvalues();
+
+        environment.coefficient_matrices.push_back(C);
+        environment.orbital_energies.push_back(orbital_energies);
     }
 };
 

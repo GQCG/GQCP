@@ -25,9 +25,11 @@
 #include "Processing/RDM/RDMCalculator.hpp"
 #include "QCMethod/CI/CISolver.hpp"
 #include "QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp"
+#include "QCMethod/HF/DiagonalRHFFockMatrixObjective.hpp"
+#include "QCMethod/HF/RHF.hpp"
+#include "QCMethod/HF/RHFSCFSolver.hpp"
 #include "QCMethod/OrbitalOptimization/Localization/ERJacobiLocalizer.hpp"
 #include "QCMethod/OrbitalOptimization/Localization/ERNewtonLocalizer.hpp"
-#include "QCMethod/RHF/RHFSCFSolver.hpp"
 
 
 namespace GQCP {
@@ -79,11 +81,13 @@ void DOCINewtonOrbitalOptimizer::solve() {
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, this->molecule);  // in AO basis
     const size_t K = sq_hamiltonian.dimension();
 
+    // Do an RHF calculation and transform the spinor basis to the RHF basis
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(this->molecule.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
-    auto diis_rhf_scf_solver = GQCP::RHFSCFSolver<double>::DIIS();
-    diis_rhf_scf_solver.iterate(rhf_environment);
-    const auto rhf = rhf_environment.solution();
-    basisTransform(spinor_basis, sq_hamiltonian, rhf.get_C());
+    auto rhf_scf_solver = GQCP::RHFSCFSolver<double>::DIIS();
+    const GQCP::DiagonalRHFFockMatrixObjective<double> objective (sq_hamiltonian);
+    const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, rhf_scf_solver, rhf_environment).groundStateParameters();
+
+    basisTransform(spinor_basis, sq_hamiltonian, rhf_parameters.coefficientMatrix());
 
     auto hessian_modifier = std::make_shared<IterativeIdentitiesHessianModifier>();
     if (localize) {

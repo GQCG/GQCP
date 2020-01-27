@@ -20,20 +20,20 @@
 
 #include "Molecule/Molecule.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "QCMethod/RHF/RHF.hpp"
+#include "QCModel/HF/RHF.hpp"
 
 
 namespace GQCP {
 
 
 /**
- *  @param sq_hamiltonian       the Hamiltonian expressed in an orthornomal basis
- *  @param molecule             the molecule for which the energy correction should be calculated
- *  @param rhf                  the converged solution to the RHF SCF equations
+ *  @param sq_hamiltonian           the Hamiltonian expressed in an orthornomal basis
+ *  @param molecule                 the molecule for which the energy correction should be calculated
+ *  @param rhf_parameters           the converged solution to the RHF SCF equations
  *
  *  @return the RMP2 energy correction
  */
-double calculateRMP2EnergyCorrection(const SQHamiltonian<double>& sq_hamiltonian, const Molecule& molecule, const RHF& rhf);
+double calculateRMP2EnergyCorrection(const SQHamiltonian<double>& sq_hamiltonian, const Molecule& molecule, const QCModel::RHF<double>& rhf_parameters);
 
 
 }  // namespace GQCP

@@ -22,7 +22,9 @@
 #include "QCMethod/RMP2/RMP2.hpp"
 
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "QCMethod/RHF/RHFSCFSolver.hpp"
+#include "QCMethod/HF/DiagonalRHFFockMatrixObjective.hpp"
+#include "QCMethod/HF/RHF.hpp"
+#include "QCMethod/HF/RHFSCFSolver.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( crawdad_sto3g_water ) {
@@ -38,13 +40,14 @@ BOOST_AUTO_TEST_CASE ( crawdad_sto3g_water ) {
 
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(water.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
-    plain_rhf_scf_solver.iterate(rhf_environment);
-    const auto rhf = rhf_environment.solution();
-    sq_hamiltonian.transform(rhf.get_C());
+    const GQCP::DiagonalRHFFockMatrixObjective<double> objective (sq_hamiltonian);
+    const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
+
+    sq_hamiltonian.transform(rhf_parameters.coefficientMatrix());
 
 
     // Check if the RMP2 correction is correct
-    double energy_correction = GQCP::calculateRMP2EnergyCorrection(sq_hamiltonian, water, rhf);
+    double energy_correction = GQCP::calculateRMP2EnergyCorrection(sq_hamiltonian, water, rhf_parameters);
     BOOST_CHECK(std::abs(energy_correction - ref_energy_correction) < 1.0e-08);
 }
 
@@ -61,12 +64,13 @@ BOOST_AUTO_TEST_CASE ( crawdad_sto3g_methane ) {
 
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(methane.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
-    plain_rhf_scf_solver.iterate(rhf_environment);
-    const auto rhf = rhf_environment.solution();
-    sq_hamiltonian.transform(rhf.get_C());
+    const GQCP::DiagonalRHFFockMatrixObjective<double> objective (sq_hamiltonian);
+    const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
+
+    sq_hamiltonian.transform(rhf_parameters.coefficientMatrix());
 
 
     // Check if the RMP2 correction is correct
-    double energy_correction = GQCP::calculateRMP2EnergyCorrection(sq_hamiltonian, methane, rhf);
+    double energy_correction = GQCP::calculateRMP2EnergyCorrection(sq_hamiltonian, methane, rhf_parameters);
     BOOST_CHECK(std::abs(energy_correction - ref_energy_correction) < 1.0e-08);
 }
