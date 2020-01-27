@@ -64,13 +64,6 @@ public:
 
     // OVERRIDEN PUBLIC METHODS
     /**
-     *  @param address              address of the requested configuration in this Fock space
-     * 
-     *  @return the configuration requested from the Fock space
-     */ 
-    Configuration configuration(size_t address) const override;
-
-    /**
      *  @param representation       a representation of an ONV
      *
      *  @return the next bitstring permutation in the frozen Fock space

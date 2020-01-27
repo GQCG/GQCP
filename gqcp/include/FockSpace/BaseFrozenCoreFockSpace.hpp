@@ -50,8 +50,17 @@ public:
      */
     BaseFrozenCoreFockSpace(std::shared_ptr<BaseFockSpace> fock_space, size_t X);
 
+    // DESTRUCTOR
+    virtual ~BaseFrozenCoreFockSpace() = default;
 
     // PUBLIC OVERRIDEN METHODS
+    /**
+     *  @param address              address of the requested configuration in this Fock space
+     * 
+     *  @return the configuration requested from the Fock space
+     */ 
+    Configuration configuration(size_t address) const override;
+
     /**
      *  Evaluate the operator in a dense matrix
      *

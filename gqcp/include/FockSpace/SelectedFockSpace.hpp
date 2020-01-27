@@ -93,14 +93,25 @@ public:
     explicit SelectedFockSpace(const FrozenFockSpace& fock_space);
 
 
-    // GETTERS
+    // GETTERS & SETTERS
     size_t get_N_alpha() const { return this->N_alpha; }
     size_t get_N_beta() const { return this->N_beta; }
     const Configuration& get_configuration(size_t index) const { return this->configurations[index]; }
+    const std::vector<Configuration>& get_configurations() const { return this->configurations; }
     FockSpaceType get_type() const override { return FockSpaceType::SelectedFockSpace; }
 
+    void set_configurations(const std::vector<Configuration>& configurations) { this->configurations = configurations;
+                                                                                this->dim = configurations.size(); }
 
     // PUBLIC METHODS
+
+    /**
+     *  @param address              address of the requested configuration in this Fock space
+     * 
+     *  @return the configuration requested from the Fock space
+     */ 
+    Configuration configuration(size_t address) const override;
+
     /**
      *  Make a configuration (see makeConfiguration()) and add it to this Fock space
      *

@@ -113,6 +113,17 @@ size_t FockSpace::calculateDimension(size_t K, size_t N) {
  */
 
 /**
+ *  @param address              address of the requested configuration in this Fock space
+ * 
+ *  @return the configuration requested from the Fock space
+ */ 
+Configuration FockSpace::configuration(size_t address) const {
+    const ONV alpha = this->makeONV(address);
+    return Configuration{alpha, alpha};
+}
+
+
+/**
  *  @param representation       a representation of an ONV
  *
  *  @return the next bitstring permutation

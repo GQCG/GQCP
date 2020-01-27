@@ -72,6 +72,19 @@ size_t ProductFockSpace::calculateDimension(size_t K, size_t N_alpha, size_t N_b
  */
 
 /**
+ *  @param address              address of the requested configuration in this Fock space
+ * 
+ *  @return the configuration requested from the Fock space
+ */ 
+Configuration ProductFockSpace::configuration(size_t address) const {
+    size_t alpha_index = address/this->fock_space_alpha.get_dimension();
+    size_t beta_index = address - alpha_index * this->fock_space_alpha.get_dimension();
+    const GQCP::ONV alpha = fock_space_alpha.makeONV(alpha_index);
+    const GQCP::ONV beta = fock_space_alpha.makeONV(beta_index);
+    return Configuration{alpha, beta};
+}
+
+/**
  *  Auxiliary method in order to calculate "theta(pq)",
  *  it returns a partition of a two-electron operator as one-electron operator
  *  where A (i,j) = T (p, q, i, j).

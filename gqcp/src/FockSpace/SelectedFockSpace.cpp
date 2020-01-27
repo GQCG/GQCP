@@ -208,6 +208,15 @@ SelectedFockSpace::SelectedFockSpace(const FrozenFockSpace& fock_space) :
  */
 
 /**
+ *  @param address              address of the requested configuration in this Fock space
+ * 
+ *  @return the configuration requested from the Fock space
+ */ 
+Configuration SelectedFockSpace::configuration(size_t address) const {
+    return this->configurations[address];
+}
+
+/**
  *  Make a configuration (see makeConfiguration()) and add it to this Fock space
  *
  *  @param onv1     the alpha ONV as a string representation read from right to left

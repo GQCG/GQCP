@@ -19,7 +19,7 @@
 
 
 #include "Basis/TransformationMatrix.hpp"
-#include "FockSpace/BaseFockSpace.hpp"
+#include "FockSpace/SelectedFockSpace.hpp"
 #include "FockSpace/WaveFunction/WaveFunction.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
 
@@ -29,12 +29,12 @@ namespace GQCP {
 
 
 /**
- *  A class that represents a wave function: expansion coefficients in a Fock space
+ *  A class that represents a selected wave function: (potentially non normalized) expansion coefficients in a Fock space
  */
 class SelectedWaveFunction {
 private:
     SelectedFockSpace fock_space;
-    VectorX<double> coefficients;  // the expansion coefficients in the Fock space
+    VectorX<double> coefficients;  // the expansion coefficients for the selection in a Fock space
 
 public:
     // CONSTRUCTORS
@@ -53,9 +53,9 @@ public:
      *  Construct a selected wave function by selecting the configurations with the highest contribution from a different wave function
      *
      *  @param wave_function                           the wave_function to be selected from
-     *  @param number_of_highest_contributions         the amount of selections made
+     *  @param number_of_largest_contributions         the amount of selections made
      */
-    SelectedWaveFunction(const WaveFunction& wave_function, size_t number_of_highest_contributions);
+    SelectedWaveFunction(const WaveFunction& wave_function, size_t number_of_largest_contributions);
 
 
     // PUBLIC METHODS
@@ -68,7 +68,7 @@ public:
 
 
     // GETTERS
-    const VectorX<double>& coefficients() const { return coefficients; }
+    const VectorX<double>& get_coefficients() const { return coefficients; }
     const SelectedFockSpace& fockSpace() const { return fock_space; }
 
 

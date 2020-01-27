@@ -15,7 +15,6 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#pragma once
 
 
 #include "FockSpace/Configuration.hpp"
@@ -26,7 +25,6 @@ namespace GQCP {
 
 /**
  *  @param delimiter        the delimiter between bits
- *  @param reserve          indicates if you reverse the normal ordering of the bits
  * 
  *  @return a compact representation of the configuration as string:
  *   e.g: 1100 | 1010 => 2110
