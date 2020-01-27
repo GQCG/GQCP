@@ -5,6 +5,8 @@ target_sources(gqcp
         DavidsonSolver.hpp
         DenseSolver.hpp
         Eigenpair.hpp
+        EigenproblemEnvironment.hpp
+        EigenproblemSolver.hpp
         EigenproblemSolverOptions.hpp
         SparseSolver.hpp
 )
