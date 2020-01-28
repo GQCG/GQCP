@@ -37,7 +37,7 @@ jobs:
     # Build & test the library 
     - name: Build GQCP and run tests
       run: |
-        export LIBINT_DATA_PATH=${CONDA_HOME}/share/libint/2.3.1/basis
+        export LIBINT_DATA_PATH=$HOME/miniconda/share/libint/2.3.1/basis
         mkdir build && cd build
         cmake .. -DBUILD_TESTS=TRUE -DBUILD_BENCHMARKS=TRUE -DBUILD_PYTHON_BINDINGS=TRUE -DCMAKE_INSTALL_PREFIX=~/.local -DCMAKE_PREFIX_PATH=${CONDA_HOME}
         make -j2 && env CTEST_OUTPUT_ON_FAILURE=1 make test && sudo make install
