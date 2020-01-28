@@ -134,7 +134,7 @@ public:
         const SquareMatrix<double> p_a = SquareMatrix<double>::PartitionMatrix(ao_list, K);  // the partitioning matrix
         const auto S_AO = this->scalar_basis.calculateLibintIntegrals(Operator::Overlap());  // the overlap matrix expressed in the AO basis
 
-        ScalarSQOneElectronOperator<double> mulliken_op ({ (this->C.adjoint() * p_a * S_AO * this->C + this->C.adjoint() * S_AO * p_a * this->C)/2 });
+        ScalarSQOneElectronOperator<double> mulliken_op { 0.5 * (this->C.adjoint() * p_a * S_AO * this->C + this->C.adjoint() * S_AO * p_a * this->C) };
         return mulliken_op;
     }
 

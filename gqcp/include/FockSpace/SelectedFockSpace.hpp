@@ -410,7 +410,7 @@ public:
     template <typename _Matrix>
     void EvaluateOperator(const ScalarSQTwoElectronOperator<double>& two_op, EvaluationIterator<_Matrix>& evaluation_iterator, bool diagonal_values) const {
         // Calling this combined method for both the one- and two-electron operator does not affect the performance, hence we avoid writting more code by plugging a zero one-electron operator in the combined method.
-        EvaluateOperator(ScalarSQOneElectronOperator<double>(this->K), ScalarSQOneElectronOperator<double>(this->K), two_op, two_op, two_op, evaluation_iterator, diagonal_values);
+        EvaluateOperator(ScalarSQOneElectronOperator<double>{this->K}, ScalarSQOneElectronOperator<double>{this->K}, two_op, two_op, two_op, evaluation_iterator, diagonal_values);
     }
 
 

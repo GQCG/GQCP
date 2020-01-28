@@ -75,6 +75,19 @@ public:
 
 
     /**
+     *  A constructor for ScalarSQOneElectronOperators that doesn't require the argument to be a vector of just one element.
+     * 
+     *  @param f            the matrix representation of the integrals of this scalar second-quantized operator
+     * 
+     *  @note This constructor is only available for ScalarSQOneElectronOperators (for the std::enable_if, see https://stackoverflow.com/a/17842695/7930415)
+     */
+    template <size_t Z = Components>
+    SQOneElectronOperator(const QCMatrix<Scalar>& f, typename std::enable_if<Z == 1>::type* = 0) :
+        SQOneElectronOperator(std::array<QCMatrix<Scalar>, 1>{f})
+    {}
+
+
+    /**
      *  Construct a one-electron operator with parameters that are zero
      * 
      *  @param dim          the dimension of the matrix representation of the parameters, i.e. the number of orbitals/sites

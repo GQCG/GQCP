@@ -32,12 +32,12 @@ BOOST_AUTO_TEST_CASE ( SQOneElectronOperator_constructor ) {
 
     // Check a correct constructor
     const auto square_matrix = GQCP::SquareMatrix<double>::Zero(4, 4);
-    GQCP::ScalarSQOneElectronOperator<double> O ({square_matrix});
+    GQCP::ScalarSQOneElectronOperator<double> O {square_matrix};
 
 
     // Check a faulty constructor
     GQCP::MatrixX<double> matrix = GQCP::MatrixX<double>::Zero(3, 4);
-    BOOST_CHECK_THROW(GQCP::ScalarSQOneElectronOperator<double> O2 ({matrix}), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::ScalarSQOneElectronOperator<double> O2 {matrix}, std::invalid_argument);
 }
 
 
@@ -47,7 +47,7 @@ BOOST_AUTO_TEST_CASE ( SQOneElectronOperator_constructor ) {
 BOOST_AUTO_TEST_CASE ( SQOneElectronOperator_zero_constructor ) {
 
     const size_t dim = 2;
-    const GQCP::ScalarSQOneElectronOperator<double> one_op (2);  // should initialize to zeros
+    const GQCP::ScalarSQOneElectronOperator<double> one_op {2};  // should initialize to zeros
 
     BOOST_CHECK_EQUAL(one_op.dimension(), dim);
     BOOST_CHECK(one_op.parameters().isZero(1.0e-08));
@@ -65,12 +65,12 @@ BOOST_AUTO_TEST_CASE ( SQOneElectronOperator_addition ) {
     GQCP::QCMatrix<double> M1 (dim);
     M1 << 1.0, 2.0,
           3.0, 4.0;
-    const GQCP::ScalarSQOneElectronOperator<double> op1 ({M1});
+    const GQCP::ScalarSQOneElectronOperator<double> op1 {M1};
 
     GQCP::QCMatrix<double> M2 (dim);
     M2 << 5.0, 6.0,
           7.0, 8.0;
-    const GQCP::ScalarSQOneElectronOperator<double> op2 ({M2});
+    const GQCP::ScalarSQOneElectronOperator<double> op2 {M2};
 
 
     // Initialize the reference and check the result
@@ -203,7 +203,7 @@ BOOST_AUTO_TEST_CASE ( SQOneElectronOperator_of_GTOs_evaluate ) {
          1.0, 0.0;
 
     Eigen::Matrix<GQCP::LinearCombination<double, GQCP::CartesianGTO>, 2, 2> rho_transformed_par = T.adjoint() * rho_par * T;
-    GQCP::ScalarSQOneElectronOperator<GQCP::LinearCombination<double, GQCP::CartesianGTO>> rho ({rho_transformed_par});
+    GQCP::ScalarSQOneElectronOperator<GQCP::LinearCombination<double, GQCP::CartesianGTO>> rho {rho_transformed_par};
 
 
     // Evaluate the operator of GTOs at the given point r

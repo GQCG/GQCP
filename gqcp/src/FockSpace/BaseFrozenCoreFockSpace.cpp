@@ -271,7 +271,7 @@ VectorX<double> BaseFrozenCoreFockSpace::evaluateOperatorDiagonal(const SQHamilt
 ScalarSQOneElectronOperator<double> BaseFrozenCoreFockSpace::freezeOperator(const ScalarSQOneElectronOperator<double>& one_op, size_t X) {
 
     size_t K_active = one_op.dimension() - X;
-    return ScalarSQOneElectronOperator<double>({one_op.parameters().block(X, X, K_active, K_active)});
+    return ScalarSQOneElectronOperator<double>{one_op.parameters().block(X, X, K_active, K_active)};
 }
 
 
@@ -306,7 +306,7 @@ FrozenOperators BaseFrozenCoreFockSpace::freezeOperator(const ScalarSQTwoElectro
         }
     }
 
-    return {ScalarSQOneElectronOperator<double>({frozen_one_op_par}), ScalarSQTwoElectronOperator<double>({frozen_two_op_par})};
+    return {ScalarSQOneElectronOperator<double>{frozen_one_op_par}, ScalarSQTwoElectronOperator<double>{frozen_two_op_par}};
 }
 
 
@@ -470,7 +470,11 @@ USQHamiltonian<double> BaseFrozenCoreFockSpace::freezeOperator(const USQHamilton
         }
     }
 
-    return USQHamiltonian<double>(SQHamiltonian<double>(ScalarSQOneElectronOperator<double>({frozen_one_op_par_alpha}), ScalarSQTwoElectronOperator<double>({frozen_two_op_par_alpha})), SQHamiltonian<double>(ScalarSQOneElectronOperator<double>({frozen_one_op_par_beta}), ScalarSQTwoElectronOperator<double>({frozen_two_op_par_beta})), ScalarSQTwoElectronOperator<double>({frozen_two_op_par_mixed}));
+    return USQHamiltonian<double> {
+            SQHamiltonian<double>{ScalarSQOneElectronOperator<double>{frozen_one_op_par_alpha}, ScalarSQTwoElectronOperator<double>{frozen_two_op_par_alpha}},
+            SQHamiltonian<double>{ScalarSQOneElectronOperator<double>{frozen_one_op_par_beta}, ScalarSQTwoElectronOperator<double>{frozen_two_op_par_beta}},
+            ScalarSQTwoElectronOperator<double>{frozen_two_op_par_mixed}
+    };
 }
 
 

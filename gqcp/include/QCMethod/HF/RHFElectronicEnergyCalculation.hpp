@@ -54,7 +54,7 @@ public:
     void execute(Environment& environment) override {
 
         const auto& D = environment.density_matrices.back();  // the most recent density matrix
-        const ScalarSQOneElectronOperator<Scalar> F ({environment.fock_matrices.back()});  // the most recent Fock matrix
+        const ScalarSQOneElectronOperator<Scalar> F {environment.fock_matrices.back()};  // the most recent Fock matrix
         const auto& H_core = environment.sq_hamiltonian.core();  // the core Hamiltonian matrix
 
         const auto E_electronic = QCModel::RHF<double>::calculateElectronicEnergy(D, H_core, F);

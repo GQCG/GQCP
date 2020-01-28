@@ -32,12 +32,12 @@ BOOST_AUTO_TEST_CASE ( SQTwoElectronOperator_constructor ) {
 
     // Check a correct constructor
     const GQCP::QCRankFourTensor<double> tensor (3);
-    GQCP::ScalarSQTwoElectronOperator<double> O ({tensor});
+    GQCP::ScalarSQTwoElectronOperator<double> O {tensor};
 
 
     // Check a faulty constructor
     GQCP::Tensor<double, 4> tensor2 (3, 3, 3, 2);
-    BOOST_CHECK_THROW(GQCP::ScalarSQTwoElectronOperator<double> O2 ({tensor2}), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::ScalarSQTwoElectronOperator<double> O2 {tensor2}, std::invalid_argument);
 }
 
 
@@ -47,7 +47,7 @@ BOOST_AUTO_TEST_CASE ( SQTwoElectronOperator_constructor ) {
 BOOST_AUTO_TEST_CASE ( SQTwoElectronOperator_zero_constructor ) {
 
     const size_t dim = 2;
-    GQCP::ScalarSQOneElectronOperator<double> op (dim);
+    GQCP::ScalarSQOneElectronOperator<double> op {dim};
 
     BOOST_CHECK_EQUAL(op.dimension(), dim);
     BOOST_CHECK(op.parameters().isZero(1.0e-08));
@@ -76,7 +76,7 @@ BOOST_AUTO_TEST_CASE ( SQTwoElectronOperator_effectiveOneElectronPartition ) {
         }
     }
 
-    GQCP::ScalarSQTwoElectronOperator<double> g ({g_par});
+    GQCP::ScalarSQTwoElectronOperator<double> g {g_par};
 
 
     // Set up the reference effective one-electron integrals by manual calculation

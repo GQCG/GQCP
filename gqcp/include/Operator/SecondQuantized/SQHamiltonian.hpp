@@ -91,7 +91,7 @@ public:
         for (const auto& one_op : this->one_ops) {
             total_one_op_par += one_op.parameters();
         }
-        this->total_one_op = ScalarSQOneElectronOperator<Scalar>({total_one_op_par});
+        this->total_one_op = ScalarSQOneElectronOperator<Scalar>{total_one_op_par};
 
 
         // Calculate the total two-electron operator
@@ -100,7 +100,7 @@ public:
         for (const auto& two_op : this->two_ops) {
             total_two_op_par += two_op.parameters().Eigen();
         }
-        this->total_two_op = ScalarSQTwoElectronOperator<Scalar>({total_two_op_par});
+        this->total_two_op = ScalarSQTwoElectronOperator<Scalar>{total_two_op_par};
     }
 
 
@@ -109,7 +109,7 @@ public:
      *  @param g            the (total) two-electron integrals
      */
     SQHamiltonian(const ScalarSQOneElectronOperator<Scalar>& h, const ScalarSQTwoElectronOperator<Scalar>& g) :
-        SQHamiltonian(std::vector<ScalarSQOneElectronOperator<Scalar>>({h}), std::vector<ScalarSQTwoElectronOperator<Scalar>>({g}))
+        SQHamiltonian(std::vector<ScalarSQOneElectronOperator<Scalar>>{h}, std::vector<ScalarSQTwoElectronOperator<Scalar>>{g})
     {}
 
 
@@ -157,7 +157,7 @@ public:
     template <typename Z = Scalar>
     static enable_if_t<std::is_same<Z, double>::value, SQHamiltonian<double>> Random(size_t K) {
 
-        ScalarSQOneElectronOperator<double> H ({QCMatrix<double>::Random(K, K)});  // uniformly distributed between [-1,1]
+        ScalarSQOneElectronOperator<double> H {QCMatrix<double>::Random(K, K)};  // uniformly distributed between [-1,1]
 
 
         // Unfortunately, the Tensor module provides uniform random distributions between [0, 1]
@@ -175,7 +175,7 @@ public:
             }
         }
 
-        return SQHamiltonian<double>(H, ScalarSQTwoElectronOperator<double>({g}));
+        return SQHamiltonian<double>{H, ScalarSQTwoElectronOperator<double>{g}};
     }
 
 
@@ -271,7 +271,7 @@ public:
         }  // while loop
 
 
-        return SQHamiltonian(ScalarSQOneElectronOperator<Scalar>({h_core}), ScalarSQTwoElectronOperator<Scalar>({g}));
+        return SQHamiltonian{ScalarSQOneElectronOperator<Scalar>{h_core}, ScalarSQTwoElectronOperator<Scalar>{g}};
     }
 
 
@@ -303,7 +303,7 @@ public:
             }
         }
 
-        return SQHamiltonian(ScalarSQOneElectronOperator<double>({h}), ScalarSQTwoElectronOperator<double>({g}));
+        return SQHamiltonian{ScalarSQOneElectronOperator<double>{h}, ScalarSQTwoElectronOperator<double>{g}};
     }
 
 
@@ -484,7 +484,7 @@ public:
             }
         }  // F elements loop
 
-        return ScalarSQOneElectronOperator<Scalar>({F_par});
+        return ScalarSQOneElectronOperator<Scalar>{F_par};
     }
 
 
@@ -532,7 +532,7 @@ public:
         one_ops.push_back(-lambda*one_op);  // minus sign is a convention
         two_ops.push_back(-lambda*two_op);  // minus sign is a convention
 
-        return SQHamiltonian(one_ops, two_ops);
+        return SQHamiltonian{one_ops, two_ops};
     }
 
 
