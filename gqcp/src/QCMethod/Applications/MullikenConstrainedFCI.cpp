@@ -20,7 +20,7 @@
 #include "Basis/transform.hpp"
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
 #include "Mathematical/Optimization/Eigenproblem/DavidsonSolver.hpp"
-#include "Mathematical/Optimization/Eigenproblem/DenseSolver.hpp"
+#include "Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp"
 #include "Processing/Properties/expectation_values.hpp"
 #include "QCMethod/RHF/RHFSCFSolver.hpp"
 
@@ -323,26 +323,24 @@ void MullikenConstrainedFCI::solveMullikenDense(const double multiplier, const s
 
     auto start_time = std::chrono::high_resolution_clock::now();
 
-    DenseSolverOptions solver_options;
-    solver_options.number_of_requested_eigenpairs = nos;
-
     auto constrained_ham_par = this->usq_hamiltonian.constrain(this->mulliken_operator, multiplier, SpinComponent::ALPHA);
     constrained_ham_par = constrained_ham_par.constrain(this->mulliken_operator, multiplier, SpinComponent::BETA);
     constrained_ham_par = constrained_ham_par.constrain(this->sq_sz_operator, sz_multiplier, SpinComponent::ALPHA);
     constrained_ham_par = constrained_ham_par.constrain(this->sq_sz_operator, -sz_multiplier, SpinComponent::BETA);
 
-    // Davidson solver
-    DenseSolver solver (this->fock_space.evaluateOperatorDense(constrained_ham_par, true), solver_options);
-    solver.solve();
+    // Dense solver
+    const MatrixX<double> H = this->fock_space.evaluateOperatorDense(constrained_ham_par, true);  // the Hamiltonian matrix
+    auto dense_environment = GQCP::EigenproblemEnvironment::Dense(H);
+    auto dense_diagonalizer = GQCP::EigenproblemSolver::Dense(nos);  // number of requested eigenpairs
 
     try {
-        solver.solve();
+        dense_diagonalizer.perform(dense_environment);
     } catch (const std::exception& e) {
         std::cout << e.what() << "multiplier: " << multiplier;
         return;
     }
 
-    this->parseSolution(solver.get_eigenpairs(), multiplier, sz_multiplier);
+    this->parseSolution(dense_environment.eigenpairs(), multiplier, sz_multiplier);
     this->are_solutions_available = true;
 
     auto stop_time = std::chrono::high_resolution_clock::now();

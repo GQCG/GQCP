@@ -62,15 +62,7 @@ public:
         const auto& A = environment.A;  // a self-adjoint matrix
         Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> eigensolver (A);  // this solves the eigenvalue problem
 
-        // Write the eigenpairs back to the environment
-        environment.eigenpairs.reserve(this->number_of_requested_eigenpairs);
-        for (size_t i = 0; i < this->number_of_requested_eigenpairs; i++) {
-            const auto& eigenvalue = eigensolver.eigenvalues()(i);
-            const auto& eigenvector = eigensolver.eigenvectors().col(i);
-
-            environment.eigenpairs.emplace_back(eigenvalue, eigenvector);
-        }
-
+        // Write the eigenvalues and eigenvectors to the environment
         environment.eigenvalues = eigensolver.eigenvalues();
         environment.eigenvectors = eigensolver.eigenvectors();
     }

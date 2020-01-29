@@ -81,7 +81,6 @@ public:
             );
             environment.Delta.col(column_index).normalize();
         }
-        std::cout << "Delta: " << std::endl << environment.Delta << std::endl << std::endl;
     }
 };
 

@@ -49,8 +49,6 @@ public:
         const auto& V = environment.V;   // the subspace of guess vectors
         assert((V.transpose() * V).isApprox(MatrixX<double>::Identity(V.cols(), V.cols()), 1.0e-08));  // make sure that the subspace vectors are orthonormal
 
-        std::cout << "V: " << std::endl << V << std::endl << std::endl;
-
 
         auto& VA = environment.VA;  // VA = A * V (implicitly calculated through the matrix-vector product)
         const auto& matvec = environment.matrix_vector_product_function;

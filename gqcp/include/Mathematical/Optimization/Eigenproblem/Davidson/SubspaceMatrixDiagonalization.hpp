@@ -85,11 +85,9 @@ public:
         auto dense_diagonalizer = EigenproblemSolver::Dense(S.dimension());  // request all eigenpairs
         dense_diagonalizer.perform(dense_environment);
 
-        std::cout << "Subspace matrix eigenvalues: " << std::endl << dense_environment.eigenvalues << std::endl << std::endl;
 
         environment.Lambda = dense_environment.eigenvalues.head(this->number_of_requested_eigenpairs);  // the (requested number of) eigenvalues of the subspace matrix S
         environment.eigenvalues = environment.Lambda;
-        std::cout << "Lambda: " << std::endl << environment.Lambda << std::endl << std::endl;
 
         environment.Z = dense_environment.eigenvectors.topLeftCorner(S.cols(), this->number_of_requested_eigenpairs);  // the (requested number of) eigenvectors of the subspace matrix S
     }

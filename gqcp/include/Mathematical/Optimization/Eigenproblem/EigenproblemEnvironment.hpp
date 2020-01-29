@@ -39,7 +39,6 @@ public:
 
     VectorX<double> eigenvalues;  // the eigenvalues of the matrix A
     MatrixX<double> eigenvectors;  // the eigenvectors of the matrix A
-    std::vector<Eigenpair> eigenpairs;
 
 
     SquareMatrix<double> S;  // the "subspace matrix": the projection of the matrix A onto the subspace spanned by the vectors in V
@@ -115,6 +114,31 @@ public:
 
         const auto matrix_vector_product_function = [A](const VectorX<double>& x) { return A * x; };
         return EigenproblemEnvironment::Iterative(matrix_vector_product_function, A.diagonal(), V);  
+    }
+
+
+    /*
+     *  PUBLIC METHODS
+     */
+
+    /**
+     *  @param number_of_requested_eigenpairs               the number of eigenpairs you would like to retrieve
+     * 
+     *  @return the eigenvalues and eigenvectors as a vector of eigenpairs
+     */
+    std::vector<Eigenpair> eigenpairs(const size_t number_of_requested_eigenpairs) const {
+
+        std::vector<Eigenpair> eigenpairs {};
+        eigenpairs.reserve(number_of_requested_eigenpairs);
+
+        for (size_t i = 0; i < number_of_requested_eigenpairs; i++) {
+            const auto& eigenvalue = this->eigenvalues(i);
+            const auto& eigenvector = this->eigenvectors.col(i);
+
+            eigenpairs.emplace_back(eigenvalue, eigenvector);
+        }
+
+        return eigenpairs;
     }
 };
 

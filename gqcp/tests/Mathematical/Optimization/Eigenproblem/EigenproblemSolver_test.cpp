@@ -62,7 +62,7 @@ BOOST_AUTO_TEST_CASE ( dense ) {
     auto dense_diagonalizer = GQCP::EigenproblemSolver::Dense(number_of_requested_eigenpairs);
     dense_diagonalizer.perform(dense_environment);
 
-    const auto& eigenpairs = dense_environment.eigenpairs;
+    const auto eigenpairs = dense_environment.eigenpairs(number_of_requested_eigenpairs);
 
 
     // Check if the results are equal

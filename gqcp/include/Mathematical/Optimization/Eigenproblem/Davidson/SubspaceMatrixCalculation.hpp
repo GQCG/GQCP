@@ -49,10 +49,7 @@ public:
         const auto& V = environment.V;   // the subspace of guess vectors
         const auto& VA = environment.VA;   // VA = A * V (implicitly calculated through the matrix-vector product)
 
-        std::cout << "VA: " << std::endl << VA << std::endl << std::endl;
-
         environment.S = V.transpose() * VA;  // the "subspace matrix": the projection of the matrix A onto the subspace spanned by the vectors in V
-        std::cout << "S: " << std::endl << environment.S << std::endl << std::endl;
     }
 };
 

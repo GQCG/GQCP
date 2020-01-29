@@ -62,7 +62,6 @@ public:
         for (size_t column_index = 0; column_index < this->number_of_requested_eigenpairs; column_index++) {
             environment.R.col(column_index) = VA * Z.col(column_index) - Lambda(column_index) * X.col(column_index);
         }
-        std::cout << "residuals R: " << std::endl << environment.R << std::endl << std::endl;
     }
 };
 
