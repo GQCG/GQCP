@@ -18,10 +18,9 @@
 #pragma once
 
 
-// #include "Mathematical/Algorithm/Algorithm.hpp"
 #include "Mathematical/Algorithm/Step.hpp"
 #include "Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp"
-
+#include "Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp"
 
 #include <type_traits>
 
