@@ -57,7 +57,7 @@ IterativeAlgorithm<EigenproblemEnvironment> Davidson(const size_t number_of_requ
                   .add(CorrectionVectorCalculation(number_of_requested_eigenpairs, correction_threshold))  // this solves the residual equations
                   .add(SubspaceUpdate(maximum_subspace_dimension, inclusion_threshold));
 
-    // Create a convergence criterion on the norm of subsequent iterations of variables
+    // Create a convergence criterion on the norm of the residual vectors
     const ResidualVectorConvergence<EigenproblemEnvironment> convergence_criterion (threshold);
 
     return IterativeAlgorithm<EigenproblemEnvironment>(davidson_cycle, convergence_criterion, maximum_number_of_iterations);

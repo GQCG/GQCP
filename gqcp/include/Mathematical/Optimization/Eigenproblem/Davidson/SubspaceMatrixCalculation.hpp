@@ -28,7 +28,7 @@ namespace GQCP {
 
 
 /**
- *  An iteration step that calculates the subspace matrix.
+ *  An iteration step that calculates the subspace matrix, i.e. the projection of the matrix A onto the subspace spanned by the vectors in V.
  */
 class SubspaceMatrixCalculation :
     public Step<EigenproblemEnvironment> {

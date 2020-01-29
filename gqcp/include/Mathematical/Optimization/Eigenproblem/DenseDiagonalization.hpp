@@ -28,7 +28,7 @@ namespace GQCP {
 
 
 /**
- * 
+ *  A step that performs a dense diagonalization.
  */
 class DenseDiagonalization :
     public Step<EigenproblemEnvironment> {
@@ -38,15 +38,6 @@ private:
 
 
 public:
-
-    /*
-     *  CONSTRUCTORS
-     */
-
-    DenseDiagonalization(const size_t number_of_requested_eigenpairs = 1) :
-        number_of_requested_eigenpairs (number_of_requested_eigenpairs)
-    {}
-
 
     /*
      *  OVERRIDDEN PUBLIC METHODS

@@ -30,19 +30,6 @@ namespace GQCP {
 
 
 
-// Forward declaration of EigenproblemEnvironment and EigenproblemSolver.
-// This is needed because this step also requires the inclusion of EigenproblemSolver and EigenproblemEnvironment.
-
-// class EigenproblemEnvironment {};
-// class EigenproblemSolver {
-// public:
-//     static Algorithm<EigenproblemEnvironment> EigenproblemSolver::Dense(const size_t);
-// };
-// Algorithm<EigenproblemEnvironment> EigenproblemSolver::Dense(const size_t)
-
-
-
-
 /**
  *  An iteration step that diagonalizes the subspace matrix, i.e. the projection of the matrix A onto the subspace spanned by the vectors in V.
  */
@@ -59,6 +46,9 @@ public:
      *  CONSTRUCTORS
      */
 
+    /**
+     *  @param number_of_requested_eigenpairs       the number of solutions the Davidson solver should find
+     */
     SubspaceMatrixDiagonalization(const size_t number_of_requested_eigenpairs = 1) :
         number_of_requested_eigenpairs (number_of_requested_eigenpairs)
     {}
@@ -79,7 +69,7 @@ public:
         // Lambda contains the requested number of eigenvalues, Z contains the corresponding eigenvectors
         // Z is a (subspace_dimension x number_of_requested_eigenpairs)- matrix
 
-        // Use our dense diagonalization algorithm to find the number of requested eigenpairs
+        // Use our own dense diagonalization algorithm to find the number of requested eigenpairs
         const auto& S = environment.S;
         auto dense_environment = EigenproblemEnvironment::Dense(S);
         auto dense_diagonalizer = EigenproblemSolver::Dense(S.dimension());  // request all eigenpairs

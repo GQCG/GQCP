@@ -25,7 +25,10 @@
 namespace GQCP {
 
 
-class ResidualVectorCalculation : 
+/**
+ *  A step that calculates the residual vectors from the new guesses for the eigenvectors.
+ */
+class ResidualVectorCalculation :
     public Step<EigenproblemEnvironment> {
 
 private:
@@ -38,13 +41,16 @@ public:
      *  CONSTRUCTORS
      */
 
+    /**
+     *  @param number_of_requested_eigenpairs       the number of solutions the Davidson solver should find
+     */
     ResidualVectorCalculation(const size_t number_of_requested_eigenpairs = 1) :
         number_of_requested_eigenpairs (number_of_requested_eigenpairs)
     {}
 
 
     /**
-     *  Calculate the residual vectors.
+     *  Calculate the residual vectors from the new guesses for the eigenvectors.
      * 
      *  @param environment              the environment that acts as a sort of calculation space
      */

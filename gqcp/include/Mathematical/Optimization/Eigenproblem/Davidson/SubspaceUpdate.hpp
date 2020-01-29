@@ -25,7 +25,11 @@
 namespace GQCP {
 
 
-class SubspaceUpdate : 
+/**
+ *  A step that adds projected correction vectors to the subspace (if their norm is large enough) and collapses the subspace if it becomes too large.
+
+ */
+class SubspaceUpdate :
     public Step<EigenproblemEnvironment> {
 
 
@@ -71,8 +75,9 @@ public:
         }
 
         // Update the current subspace V with new vectors: add the normalized orthogonal projection of the correction vectors if their norm is large enough.
+        // Note that we can't add more than one vector simultaneously, as the inclusion of one vector changes the subspace, which in turn changes its orthogonal complement.
         for (size_t column_index = 0; column_index < Delta.cols(); column_index++) {
-            VectorX<double> v = Delta.col(column_index) - V * (V.transpose() * Delta.col(column_index));
+            VectorX<double> v = Delta.col(column_index) - V * (V.transpose() * Delta.col(column_index));  // project the correction vector on the orthogonal complement of V
             const double norm = v.norm();
             v.normalize();
 

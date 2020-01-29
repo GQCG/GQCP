@@ -26,14 +26,13 @@
 namespace GQCP {
 
 
-
 /**
  *  An environment used to solve eigenvalue problems for self-adjoint matrices.
  */
 class EigenproblemEnvironment {
 public:
     VectorFunction<double> matrix_vector_product_function;  // a vector function that returns the matrix-vector product (i.e. the matrix-vector product representation of the matrix)
-    SquareMatrix<double> A;  // the matrix whose eigenvalue problem should be solved
+    SquareMatrix<double> A;  // the self-adjoint matrix whose eigenvalue problem should be solved
     VectorX<double> diagonal;  // the diagonal of the matrix
     size_t dimension;  // the dimension of the diagonalization problem (the dimension of one eigenvector)
 
@@ -126,7 +125,11 @@ public:
      * 
      *  @return the eigenvalues and eigenvectors as a vector of eigenpairs
      */
-    std::vector<Eigenpair> eigenpairs(const size_t number_of_requested_eigenpairs) const {
+    std::vector<Eigenpair> eigenpairs(const size_t number_of_requested_eigenpairs = 1) const {
+
+        if (number_of_requested_eigenpairs > eigenvectors.cols()) {
+            throw std::invalid_argument("EigenproblemEnvironment::eigenpairs(const size_t): You cannot retrieve that many eigenpairs.");
+        }
 
         std::vector<Eigenpair> eigenpairs {};
         eigenpairs.reserve(number_of_requested_eigenpairs);

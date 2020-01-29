@@ -29,7 +29,7 @@ namespace GQCP {
 
 
 /**
- *  An algorithm that performs iterations. In every iteration, convergence is checked and a set of iteration steps is performed. Therefore, an iteration is defined as the part of an iterative algorithm that happens between convergence checks.
+ *  An algorithm that performs iterations. In every iteration, convergence is checked and a set of iteration steps is performed.
  * 
  *  @param _Environment             the type of environment that this algorithm is associated to
  */
@@ -43,7 +43,7 @@ private:
     size_t maximum_number_of_iterations;
     size_t iteration = 0;  // the number of iterations that have been performed
 
-    StepCollection<Environment> iteration_cycle;
+    StepCollection<Environment> steps;  // the collection of algorithm steps that is performed in-between convergence checks
     std::shared_ptr<ConvergenceCriterion<Environment>> convergence_criterion;
 
 
@@ -58,14 +58,14 @@ public:
      * 
      *  @tparam Criterion                           the type of the convergence criterion that is used
      * 
-     *  @param iteration_cycle                      the collection of algorithm steps that is performed in-between convergence checks
+     *  @param steps                                the collection of algorithm steps that is performed in-between convergence checks
      *  @param convergence_criterion                the convergence criterion that must be fulfilled in order for the algorithm to have converged
      *  @param maximum_number_of_iterations         the maximum number of iterations the algorithm may perform
      */
     template <typename Criterion>
-    IterativeAlgorithm(const StepCollection<Environment>& iteration_cycle, const Criterion& convergence_criterion, const size_t maximum_number_of_iterations = 128) :
+    IterativeAlgorithm(const StepCollection<Environment>& steps, const Criterion& convergence_criterion, const size_t maximum_number_of_iterations = 128) :
         maximum_number_of_iterations (maximum_number_of_iterations),
-        iteration_cycle (iteration_cycle),
+        steps (steps),
         convergence_criterion (std::make_shared<Criterion>(convergence_criterion))
     {}
 
@@ -90,7 +90,7 @@ public:
                 return;  // exit the loop and function early
             }
 
-            this->iteration_cycle.execute(environment);
+            this->steps.execute(environment);
         }
 
         // Since we will exit the function early if convergence is achieved, the algorithm is considered non-converging if the loop is done.

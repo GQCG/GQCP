@@ -25,7 +25,10 @@
 namespace GQCP {
 
 
-class CorrectionVectorCalculation : 
+/**
+ *  A step that calculates correction vectors by solving the residual equations.
+ */
+class CorrectionVectorCalculation :
     public Step<EigenproblemEnvironment> {
 
 private:
@@ -76,7 +79,7 @@ public:
             // If the denominator is large enough, the correction vector is the residual vector dividided by the denominator.
             // If it isn't, the correction vector is the residual vector divided by the threshold.
             environment.Delta.col(column_index) = (denominator.array().abs() > this->correction_threshold).select( 
-                R.col(column_index).array() / denominator.array().abs(), 
+                R.col(column_index).array() / denominator.array().abs(),
                 R.col(column_index) / this->correction_threshold
             );
             environment.Delta.col(column_index).normalize();

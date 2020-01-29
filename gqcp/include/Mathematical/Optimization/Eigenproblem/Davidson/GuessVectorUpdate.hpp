@@ -25,6 +25,9 @@
 namespace GQCP {
 
 
+/**
+ *  A step that calculates new guesses for the eigenvectors from the diagonalized subspace matrix.
+ */
 class GuessVectorUpdate :
     public Step<EigenproblemEnvironment> {
 
@@ -35,7 +38,7 @@ public:
      */
 
     /**
-     *  Calculate new guesses for the eigenvectors from the diagonalized subspace matrix
+     *  Calculate new guesses for the eigenvectors from the diagonalized subspace matrix.
      * 
      *  @param environment              the environment that acts as a sort of calculation space
      */

@@ -38,6 +38,8 @@ Algorithm<EigenproblemEnvironment> Dense(const size_t number_of_requested_eigenp
     return Algorithm<EigenproblemEnvironment>(steps);
 }
 
+// We should note that we cannot add the analogous Davidson solver here, because that would cause a cyclic dependence (one of the Davidson steps requires a dense diagonalization).
+
 
 }  // namespace EigenproblemSolver
 }  // namespace GQCP
