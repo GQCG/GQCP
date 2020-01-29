@@ -151,6 +151,10 @@ void DavidsonSolver::solve() {
         VectorX<double> Lambda = eigensolver.eigenvalues().head(this->number_of_requested_eigenpairs);
         MatrixX<double> Z = eigensolver.eigenvectors().topLeftCorner(S.cols(), this->number_of_requested_eigenpairs);
 
+        std::cout << "OLD: V" << std::endl << V << std::endl << std::endl;
+        std::cout << "OLD: subspace eigenvalues" << std::endl << eigensolver.eigenvalues() << std::endl << std::endl;
+        std::cout << "OLD: Lambda" << std::endl << Lambda << std::endl << std::endl;
+
 
         // Calculate new guesses for the eigenvectors
         // X is a (dim x number_of_requested_eigenpairs)-matrix
@@ -174,6 +178,7 @@ void DavidsonSolver::solve() {
                                                                                                       R.col(column_index) / this->correction_threshold);
             Delta.col(column_index).normalize();
         }
+        std::cout << "OLD: Delta: " << std::endl << Delta << std::endl << std::endl;
 
 
         // Check for convergence on each of the residual vectors

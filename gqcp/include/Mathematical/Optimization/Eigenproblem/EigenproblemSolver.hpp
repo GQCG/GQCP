@@ -19,36 +19,25 @@
 
 
 #include "Mathematical/Algorithm/Algorithm.hpp"
-#include "Mathematical/Algorithm/StepCollection.hpp"
-#include "Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp"
 #include "Mathematical/Optimization/Eigenproblem/DenseDiagonalization.hpp"
 
 
 namespace GQCP {
+namespace EigenproblemSolver {
 
 
 /**
- *  A factory that allows for the easy creation of eigenvalue problem solvers.
+ *  @return an algorithm that can diagonalize a dense matrix
  */
-class EigenproblemSolver {
-public:
+Algorithm<EigenproblemEnvironment> Dense(const size_t number_of_requested_eigenpairs = 1) {
 
-    /*
-     *  STATIC PUBLIC METHODS
-     */
+    // Our dense eigenproblem solver is just a wrapper around Eigen's routines.
+    StepCollection<EigenproblemEnvironment> steps {};
+    steps.add(DenseDiagonalization(number_of_requested_eigenpairs));
 
-    /**
-     *  @param 
-     */
-    static Algorithm<EigenproblemEnvironment> Dense(const size_t number_of_requested_eigenpairs = 1) {
-
-        // Our dense eigenproblem solver is just a wrapper around Eigen's routines.
-        StepCollection<EigenproblemEnvironment> steps {};
-        steps.add(DenseDiagonalization(number_of_requested_eigenpairs));
-
-        return Algorithm<EigenproblemEnvironment>(steps);
-    }
-};
+    return Algorithm<EigenproblemEnvironment>(steps);
+}
 
 
+}  // namespace EigenproblemSolver
 }  // namespace GQCP

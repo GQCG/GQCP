@@ -59,7 +59,7 @@ public:
 
     /**
      *  @param threshold                    the threshold that is used in comparing the iterates
-     *  @param extractor                    a function that can extract the correct iterates from the environment
+     *  @param extractor                    a function that can extract the correct iterates from the environment. The default is to check the environment on a property called 'variables'
      */
     ConsecutiveIteratesNormConvergence(const double threshold = 1.0e-08, const std::function<std::deque<Iterate>(const Environment&)> extractor = [] (const Environment& environment) { return environment.variables; } ) :
         threshold (threshold),

@@ -3,6 +3,7 @@ target_sources(gqcp
         BaseEigenproblemSolver.hpp
         BaseMatrixSolver.hpp
         DavidsonSolver.hpp
+        DenseDiagonalization.hpp
         DenseSolver.hpp
         Eigenpair.hpp
         EigenproblemEnvironment.hpp
@@ -10,3 +11,5 @@ target_sources(gqcp
         EigenproblemSolverOptions.hpp
         SparseSolver.hpp
 )
+
+add_subdirectory(Davidson)

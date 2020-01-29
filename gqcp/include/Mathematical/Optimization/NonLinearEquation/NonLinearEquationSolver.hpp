@@ -46,7 +46,7 @@ public:
      */
 
     /**
-     *  @param threshold                            the threshold that is used in comparing the density matrices
+     *  @param threshold                            the threshold that is used in comparing the iterates
      *  @param maximum_number_of_iterations         the maximum number of iterations the algorithm may perform
      * 
      *  @return a Newton-step based non-linear system of equations solver that uses the norm of the difference of two consecutive iterations of variables as a convergence criterion

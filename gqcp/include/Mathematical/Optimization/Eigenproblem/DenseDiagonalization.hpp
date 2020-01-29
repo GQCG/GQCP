@@ -70,6 +70,9 @@ public:
 
             environment.eigenpairs.emplace_back(eigenvalue, eigenvector);
         }
+
+        environment.eigenvalues = eigensolver.eigenvalues();
+        environment.eigenvectors = eigensolver.eigenvectors();
     }
 };
 
