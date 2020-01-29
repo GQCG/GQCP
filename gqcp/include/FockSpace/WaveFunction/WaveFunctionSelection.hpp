@@ -47,13 +47,14 @@ public:
      */
     WaveFunctionSelection(const std::vector<Configuration>& configurations, const VectorX<double>& coefficients);
 
+
     // PUBLIC METHODS
     /**
      *  Print this wave function to an output in the GAMESS-US Expansion format
      *
      *  @param output_stream        the stream used for outputting
      */
-    void printGamessExpansion(std::ostream& output_stream = std::cout) const;
+    void printGAMESSUSExpansion(std::ostream& output_stream = std::cout) const;
 
 
     // GETTERS

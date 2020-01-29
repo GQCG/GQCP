@@ -168,7 +168,7 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h5 ) {
 /*
  *  Tests the select method creating a WaveFunctionSelection with the 2 largest coefficients
  */ 
-BOOST_AUTO_TEST_CASE ( constructor ) {
+BOOST_AUTO_TEST_CASE ( WaveFunctionSelection ) {
 
     GQCP::ONV onv1 = GQCP::ONV(3, 1, 1);  // 001
     GQCP::ONV onv2 = GQCP::ONV(3, 1, 2);  // 010

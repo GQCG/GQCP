@@ -43,7 +43,7 @@ WaveFunctionSelection::WaveFunctionSelection(const std::vector<Configuration>& c
  *
  *  @param output_stream        the stream used for outputting
  */
-void WaveFunctionSelection::printGamessExpansion(std::ostream& output_stream) const {
+void WaveFunctionSelection::printGAMESSUSExpansion(std::ostream& output_stream) const {
     for (size_t i = 0; i < configurations.size(); i++) {
         output_stream << configurations[i].spinSummedRepresentation(" ") << " | " << this->coefficients(i) << "\n";
     }
