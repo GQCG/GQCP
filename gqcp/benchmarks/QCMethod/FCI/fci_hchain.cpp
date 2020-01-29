@@ -9,7 +9,9 @@
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/CI/CISolver.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
-#include "QCMethod/RHF/RHFSCFSolver.hpp"
+#include "QCMethod/HF/DiagonalRHFFockMatrixObjective.hpp"
+#include "QCMethod/HF/RHF.hpp"
+#include "QCMethod/HF/RHFSCFSolver.hpp"
 
 
 
@@ -35,12 +37,12 @@ static void fci_davidson_hchain(benchmark::State& state) {
 
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(hchain.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
-    plain_rhf_scf_solver.iterate(rhf_environment);
-    const auto rhf = rhf_environment.solution();
+    const GQCP::DiagonalRHFFockMatrixObjective<double> objective (sq_hamiltonian);
+    const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
 
 
     // Diagonalize the FCI Hamiltonian in the RHF basis
-    GQCP::basisTransform(spinor_basis, sq_hamiltonian, rhf.get_C());
+    GQCP::basisTransform(spinor_basis, sq_hamiltonian, rhf_parameters.coefficientMatrix());
     GQCP::ProductFockSpace fock_space (K, N_P, N_P);
     GQCP::FCI fci (fock_space);
 
@@ -82,10 +84,10 @@ static void fci_dense_hchain(benchmark::State& state) {
     // Create a plain RHF SCF solver and solve the SCF equations
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(hchain.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
-    plain_rhf_scf_solver.iterate(rhf_environment);
-    const auto rhf = rhf_environment.solution();
+    const GQCP::DiagonalRHFFockMatrixObjective<double> objective (sq_hamiltonian);
+    const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
 
-    GQCP::basisTransform(spinor_basis, sq_hamiltonian, rhf.get_C());
+    GQCP::basisTransform(spinor_basis, sq_hamiltonian, rhf_parameters.coefficientMatrix());
     GQCP::ProductFockSpace fock_space (K, N_P, N_P);
     GQCP::FCI fci (fock_space);
 

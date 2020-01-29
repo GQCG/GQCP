@@ -75,6 +75,19 @@ public:
 
 
     /**
+     *  A constructor for ScalarSQTwoElectronOperators that doesn't require the argument to be a vector of just one element.
+     * 
+     *  @param g            the matrix representation of the integrals of this scalar second-quantized operator
+     * 
+     *  @note This constructor is only available for ScalarSQTwoElectronOperators (for the std::enable_if, see https://stackoverflow.com/a/17842695/7930415)
+     */
+    template <size_t Z = Components>
+    SQTwoElectronOperator(const QCRankFourTensor<Scalar>& g, typename std::enable_if<Z == 1>::type* = 0) :
+        SQTwoElectronOperator(std::array<QCRankFourTensor<Scalar>, 1>{g})
+    {}
+
+
+    /**
      *  Construct a two-electron operator with zero parameters
      * 
      *  @param dim          the dimension of the matrix representation of the parameters, i.e. the number of orbitals/sites

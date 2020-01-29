@@ -29,11 +29,11 @@ namespace EigenproblemSolver {
 /**
  *  @return an algorithm that can diagonalize a dense matrix
  */
-Algorithm<EigenproblemEnvironment> Dense(const size_t number_of_requested_eigenpairs = 1) {
+Algorithm<EigenproblemEnvironment> Dense() {
 
     // Our dense eigenproblem solver is just a wrapper around Eigen's routines.
     StepCollection<EigenproblemEnvironment> steps {};
-    steps.add(DenseDiagonalization(number_of_requested_eigenpairs));
+    steps.add(DenseDiagonalization());
 
     return Algorithm<EigenproblemEnvironment>(steps);
 }

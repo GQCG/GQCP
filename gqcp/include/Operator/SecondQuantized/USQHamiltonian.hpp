@@ -75,7 +75,7 @@ public:
         for (const auto& two_op : this->two_op_mixed) {
             total_two_op_par += two_op.parameters().Eigen();
         }
-        this->total_two_op_mixed = ScalarSQTwoElectronOperator<Scalar>({total_two_op_par});
+        this->total_two_op_mixed = ScalarSQTwoElectronOperator<Scalar>{total_two_op_par};
     }
 
     /**
@@ -84,7 +84,7 @@ public:
      *  @param two_op_mixed              the alpha & beta mixed two-electron operators (whose integrals are represented as g_aabb)
      */
     USQHamiltonian(const SQHamiltonian<Scalar>& sq_hamiltonian_alpha, const SQHamiltonian<Scalar>& sq_hamiltonian_beta, const ScalarSQTwoElectronOperator<Scalar>& two_op_mixed) :
-        USQHamiltonian(sq_hamiltonian_alpha, sq_hamiltonian_beta, std::vector<ScalarSQTwoElectronOperator<Scalar>>({two_op_mixed}))
+        USQHamiltonian(sq_hamiltonian_alpha, sq_hamiltonian_beta, std::vector<ScalarSQTwoElectronOperator<Scalar>>{two_op_mixed})
     {}
 
 
@@ -113,7 +113,7 @@ public:
         // Initial basis for alpha and beta are identical so the mixed integrals are identical to spin specific components
         const ScalarSQTwoElectronOperator<double> two_op_mixed = sq_hamiltonian_alpha.twoElectron();
 
-        return USQHamiltonian(sq_hamiltonian_alpha, sq_hamiltonian_beta, two_op_mixed);
+        return USQHamiltonian{sq_hamiltonian_alpha, sq_hamiltonian_beta, two_op_mixed};
     }
 
     /*
@@ -182,7 +182,7 @@ public:
         const size_t second_contraction_index = 2 * component + 1;
         new_two_electron_parameters.template matrixContraction<Scalar>(T, first_contraction_index);
         new_two_electron_parameters.template matrixContraction<Scalar>(T, second_contraction_index);
-        this->total_two_op_mixed = ScalarSQTwoElectronOperator<Scalar> ({new_two_electron_parameters});
+        this->total_two_op_mixed = ScalarSQTwoElectronOperator<Scalar>{new_two_electron_parameters};
 
         for (auto& two_op : this->two_op_mixed) {
 
@@ -190,7 +190,7 @@ public:
             // transform the two electron parameters "g_aabb" to "g_a'a'bb"
             new_two_electron_parameters.template matrixContraction<Scalar>(T, first_contraction_index);
             new_two_electron_parameters.template matrixContraction<Scalar>(T, second_contraction_index);
-            two_op = ScalarSQTwoElectronOperator<Scalar> ({new_two_electron_parameters});
+            two_op = ScalarSQTwoElectronOperator<Scalar>{new_two_electron_parameters};
         }
     }
 

@@ -26,7 +26,9 @@
 #include "Processing/RDM/RDMCalculator.hpp"
 #include "QCMethod/CI/CISolver.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
-#include "QCMethod/RHF/RHFSCFSolver.hpp"
+#include "QCMethod/HF/DiagonalRHFFockMatrixObjective.hpp"
+#include "QCMethod/HF/RHF.hpp"
+#include "QCMethod/HF/RHFSCFSolver.hpp"
 #include "Utilities/units.hpp"
 
 
@@ -47,10 +49,10 @@ BOOST_AUTO_TEST_CASE ( decomposition_BeH_cation_STO_3G_Nuclear ) {
     // Create a plain RHF SCF solver and solve the SCF equations
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(BeH.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
-    plain_rhf_scf_solver.iterate(rhf_environment);
-    const auto rhf = rhf_environment.solution();
+    const GQCP::DiagonalRHFFockMatrixObjective<double> objective (sq_hamiltonian);
+    const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
 
-    const auto& T = rhf.get_C();
+    const auto& T = rhf_parameters.coefficientMatrix();
 
     // Transform the sq_hamiltonian
     sq_hamiltonian.transform(T);

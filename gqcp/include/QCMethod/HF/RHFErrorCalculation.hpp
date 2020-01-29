@@ -15,24 +15,24 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#pragma once 
+#pragma once
 
 
 #include "Mathematical/Algorithm/Step.hpp"
-#include "QCMethod/RHF/RHFSCFEnvironment.hpp"
-#include "QCMethod/RHF/RHF.hpp"
+#include "QCMethod/HF/RHFSCFEnvironment.hpp"
+#include "QCMethod/HF/RHF.hpp"
 
 
 namespace GQCP {
 
 
 /**
- *  An iteration step that calculates the current density matrix (expressed in the scalar/AO basis) from the current coefficient matrix.
+ *  An iteration step that calculates the error matrix from the Fock and density matrices (expressed in the scalar/AO basis).
  * 
  *  @tparam _Scalar              the scalar type used to represent the expansion coefficient/elements of the transformation matrix
  */
 template <typename _Scalar>
-class RHFDensityMatrixCalculation :
+class RHFErrorCalculation :
     public Step<RHFSCFEnvironment<_Scalar>> {
 
 public:
@@ -47,14 +47,20 @@ public:
      */
 
     /**
-     *  Calculate the current RHF density matrix and place it in the environment
+     *  Calculate the current error vector and add it to the environment.
      * 
      *  @param environment              the environment that acts as a sort of calculation space
      */
     void execute(Environment& environment) override {
-        const auto& C = environment.coefficient_matrices.back();  // the most recent coefficient matrix
-        const auto D = calculateRHFAO1RDM(C, environment.N);
-        environment.density_matrices.push_back(D);
+
+        // Read F, D and S from the environment
+        const auto& D = environment.density_matrices.back();
+        const auto& S = environment.S;
+        const auto& F = environment.fock_matrices.back();
+
+        // Calculate the error and write it to the environment (as a vector)
+        const auto error_matrix = QCModel::RHF<Scalar>::calculateError(F, D, S);
+        environment.error_vectors.push_back(error_matrix.pairWiseReduce());
     }
 };
 

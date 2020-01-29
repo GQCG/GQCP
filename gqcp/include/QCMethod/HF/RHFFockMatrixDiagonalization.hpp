@@ -19,21 +19,21 @@
 
 
 #include "Mathematical/Algorithm/Step.hpp"
-#include "Mathematical/Optimization/Accelerator/ConstantDamper.hpp"
-#include "QCMethod/RHF/RHFSCFEnvironment.hpp"
-#include "QCMethod/RHF/RHF.hpp"
+#include "QCMethod/HF/RHFSCFEnvironment.hpp"
+
+#include <Eigen/Dense>
 
 
 namespace GQCP {
 
 
 /**
- *  An iteration step that accelerates the density matrix (expressed in the scalar/AO basis) based on a constant damping accelerator.
+ *  An iteration step that solves the generalized eigenvalue problem for the current scalar/AO basis Fock matrix for the coefficient matrix.
  * 
  *  @tparam _Scalar              the scalar type used to represent the expansion coefficient/elements of the transformation matrix
  */
 template <typename _Scalar>
-class RHFDensityMatrixDamper :
+class RHFFockMatrixDiagonalization :
     public Step<RHFSCFEnvironment<_Scalar>> {
 
 public:
@@ -41,47 +41,28 @@ public:
     using Environment = RHFSCFEnvironment<Scalar>;
 
 
-private:
-    ConstantDamper damper;  // the damping accelerator
-
-
 public:
-
-    /*
-     *  CONSTRUCTORS 
-     */
-
-    /**
-     *  @param alpha            the damping factor
-     */
-    RHFDensityMatrixDamper(const double alpha) : 
-        damper (alpha)
-    {}
-
 
     /*
      *  OVERRIDDEN PUBLIC METHODS
      */
 
     /**
-     *  Replace the most recent density matrix with an accelerated one.
+     *  Solve the generalized eigenvalue problem for the most recent scalar/AO Fock matrix. Add the associated coefficient matrix and orbital energies to the environment.
      * 
      *  @param environment              the environment that acts as a sort of calculation space
      */
     void execute(Environment& environment) override {
 
-        if (environment.density_matrices.size() < 2) {
-            return;  // no acceleration is possible
-        }
+        const auto& F = environment.fock_matrices.back();  // the most recent scalar/AO basis Fock matrix
 
-        // Get the two most recent density matrices and produce an accelerated density matrix
-        const auto second_to_last_it = environment.density_matrices.end() - 2;
-        const auto& D_previous = *second_to_last_it;  // dereference the iterator
-        const auto D_current = environment.density_matrices.back();
+        using MatrixType = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
+        Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType> generalized_eigensolver (F, environment.S);
+        const TransformationMatrix<Scalar>& C = generalized_eigensolver.eigenvectors();
+        const auto& orbital_energies = generalized_eigensolver.eigenvalues();
 
-        const auto D_accelerated = this->damper.accelerate(D_current, D_previous);
-        environment.density_matrices.pop_back();  // we will replace the most recent density matrix with the accelerated one, so remove the most recent one
-        environment.density_matrices.push_back(D_accelerated);
+        environment.coefficient_matrices.push_back(C);
+        environment.orbital_energies.push_back(orbital_energies);
     }
 };
 

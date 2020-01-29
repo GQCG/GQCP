@@ -95,7 +95,7 @@ ScalarSQOneElectronOperator<double> ProductFockSpace::oneElectronPartition(size_
         }
     }
 
-    return ScalarSQOneElectronOperator<double>({k_par});
+    return ScalarSQOneElectronOperator<double>{k_par};
 }
 
 

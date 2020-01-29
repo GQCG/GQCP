@@ -72,7 +72,7 @@ public:
         // Use our own dense diagonalization algorithm to find the number of requested eigenpairs
         const auto& S = environment.S;
         auto dense_environment = EigenproblemEnvironment::Dense(S);
-        auto dense_diagonalizer = EigenproblemSolver::Dense(S.dimension());  // request all eigenpairs
+        auto dense_diagonalizer = EigenproblemSolver::Dense();
         dense_diagonalizer.perform(dense_environment);
 
 

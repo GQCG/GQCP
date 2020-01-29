@@ -197,6 +197,18 @@
 #include "QCMethod/Geminals/APIGGeminalCoefficients.hpp"
 #include "QCMethod/Geminals/GeminalCoefficientsInterface.hpp"
 
+#include "QCMethod/HF/DiagonalRHFFockMatrixObjective.hpp"
+#include "QCMethod/HF/RHF.hpp"
+#include "QCMethod/HF/RHFDensityMatrixCalculation.hpp"
+#include "QCMethod/HF/RHFDensityMatrixDamper.hpp"
+#include "QCMethod/HF/RHFElectronicEnergyCalculation.hpp"
+#include "QCMethod/HF/RHFErrorCalculation.hpp"
+#include "QCMethod/HF/RHFFockMatrixCalculation.hpp"
+#include "QCMethod/HF/RHFFockMatrixDiagonalization.hpp"
+#include "QCMethod/HF/RHFFockMatrixDIIS.hpp"
+#include "QCMethod/HF/RHFSCFEnvironment.hpp"
+#include "QCMethod/HF/RHFSCFSolver.hpp"
+
 #include "QCMethod/OrbitalOptimization/Localization/ERJacobiLocalizer.hpp"
 #include "QCMethod/OrbitalOptimization/Localization/ERNewtonLocalizer.hpp"
 
@@ -205,19 +217,13 @@
 #include "QCMethod/OrbitalOptimization/NewtonOrbitalOptimizer.hpp"
 #include "QCMethod/OrbitalOptimization/QCMethodNewtonOrbitalOptimizer.hpp"
 
-#include "QCMethod/RHF/RHF.hpp"
-#include "QCMethod/RHF/RHFDensityMatrixCalculation.hpp"
-#include "QCMethod/RHF/RHFErrorCalculation.hpp"
-#include "QCMethod/RHF/RHFElectronicEnergyCalculation.hpp"
-#include "QCMethod/RHF/RHFFockMatrixCalculation.hpp"
-#include "QCMethod/RHF/RHFFockMatrixDiagonalization.hpp"
-#include "QCMethod/RHF/RHFFockMatrixDIIS.hpp"
-#include "QCMethod/RHF/RHFSCFEnvironment.hpp"
-#include "QCMethod/RHF/RHFSCFSolver.hpp"
-
 #include "QCMethod/RMP2/RMP2.hpp"
 
 #include "QCMethod/QCMethodProtocol.hpp"
+#include "QCMethod/QCObjective.hpp"
+#include "QCMethod/QCStructure.hpp"
+
+#include "QCModel/HF/RHF.hpp"
 
 #include "Utilities/CRTP.hpp"
 #include "Utilities/linalg.hpp"

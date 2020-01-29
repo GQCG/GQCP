@@ -78,7 +78,7 @@ GQCP::ScalarSQTwoElectronOperator<double> calculateToyTwoElectronIntegrals() {
         }
     }
 
-    return GQCP::ScalarSQTwoElectronOperator<double>({g});
+    return GQCP::ScalarSQTwoElectronOperator<double>{g};
 };
 
 
@@ -103,7 +103,7 @@ BOOST_AUTO_TEST_CASE ( HamiltonianParameters_constructor ) {
 
 
     // Check if a correct constructor works
-    GQCP::SQHamiltonian<double> sq_hamiltonian (GQCP::ScalarSQOneElectronOperator<double>({H_core}), GQCP::ScalarSQTwoElectronOperator<double>({g}));
+    GQCP::SQHamiltonian<double> sq_hamiltonian {GQCP::ScalarSQOneElectronOperator<double>{H_core}, GQCP::ScalarSQTwoElectronOperator<double>{g}};
 
 
     // Check if wrong arguments result in a throw
@@ -111,8 +111,8 @@ BOOST_AUTO_TEST_CASE ( HamiltonianParameters_constructor ) {
     GQCP::QCRankFourTensor<double> g_faulty (K+1);
 
 
-    BOOST_CHECK_THROW(GQCP::SQHamiltonian<double> (GQCP::ScalarSQOneElectronOperator<double>({H_core_faulty}), GQCP::ScalarSQTwoElectronOperator<double>({g})), std::invalid_argument);
-    BOOST_CHECK_THROW(GQCP::SQHamiltonian<double> (GQCP::ScalarSQOneElectronOperator<double>({H_core}), GQCP::ScalarSQTwoElectronOperator<double>({g_faulty})), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::SQHamiltonian<double> sq_hamiltonian (GQCP::ScalarSQOneElectronOperator<double>{H_core_faulty}, GQCP::ScalarSQTwoElectronOperator<double>{g}), std::invalid_argument);
+    BOOST_CHECK_THROW(GQCP::SQHamiltonian<double> sq_hamiltonian (GQCP::ScalarSQOneElectronOperator<double>{H_core}, GQCP::ScalarSQTwoElectronOperator<double>{g_faulty}), std::invalid_argument);
 }
 
 
@@ -124,7 +124,7 @@ BOOST_AUTO_TEST_CASE ( rotate_argument ) {
     GQCP::QCRankFourTensor<double> g_op (K);
     g_op.setRandom();
 
-    GQCP::SQHamiltonian<double> sq_hamiltonian (GQCP::ScalarSQOneElectronOperator<double>({H_op}), GQCP::ScalarSQTwoElectronOperator<double>({g_op}));
+    GQCP::SQHamiltonian<double> sq_hamiltonian {GQCP::ScalarSQOneElectronOperator<double>{H_op}, GQCP::ScalarSQTwoElectronOperator<double>{g_op}};
 
 
     // Check if we can't rotate with a non-unitary matrix
@@ -229,7 +229,7 @@ BOOST_AUTO_TEST_CASE ( calculate_generalized_Fock_matrix_and_super_invalid_argum
     // Initialize toy HamiltonianParameters
     GQCP::QCMatrix<double> h = GQCP::QCMatrix<double>::Zero(2, 2);
     GQCP::QCRankFourTensor<double> g (2);
-    GQCP::SQHamiltonian<double> sq_hamiltonian (GQCP::ScalarSQOneElectronOperator<double>({h}), GQCP::ScalarSQTwoElectronOperator<double>({g}));
+    GQCP::SQHamiltonian<double> sq_hamiltonian {GQCP::ScalarSQOneElectronOperator<double>{h}, GQCP::ScalarSQTwoElectronOperator<double>{g}};
 
 
     // Create valid and invalid density matrices (with respect to the dimensions of the SOBasis)
@@ -270,7 +270,7 @@ BOOST_AUTO_TEST_CASE ( calculate_Fockian_and_super ) {
          0, 1;
 
     auto g = calculateToyTwoElectronIntegrals();
-    GQCP::SQHamiltonian<double> sq_hamiltonian (GQCP::ScalarSQOneElectronOperator<double>({h}), g);
+    GQCP::SQHamiltonian<double> sq_hamiltonian {GQCP::ScalarSQOneElectronOperator<double>{h}, g};
 
 
     // Construct the reference Fockian matrix
@@ -321,7 +321,7 @@ BOOST_AUTO_TEST_CASE ( calculateEdmistonRuedenbergLocalizationIndex ) {
         g_op(i,i,i,i) = 2*static_cast<float>(i);
     }
 
-    GQCP::SQHamiltonian<double> sq_hamiltonian (GQCP::ScalarSQOneElectronOperator<double>({H_op}), GQCP::ScalarSQTwoElectronOperator<double>({g_op}));
+    GQCP::SQHamiltonian<double> sq_hamiltonian {GQCP::ScalarSQOneElectronOperator<double>{H_op}, GQCP::ScalarSQTwoElectronOperator<double>{g_op}};
 
 
     BOOST_CHECK(std::abs(sq_hamiltonian.calculateEdmistonRuedenbergLocalizationIndex(3) - 6.0) < 1.0e-08);

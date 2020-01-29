@@ -28,7 +28,9 @@
 #include "Processing/RDM/RDMCalculator.hpp"
 #include "QCMethod/CI/CISolver.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
-#include "QCMethod/RHF/RHFSCFSolver.hpp"
+#include "QCMethod/HF/DiagonalRHFFockMatrixObjective.hpp"
+#include "QCMethod/HF/RHF.hpp"
+#include "QCMethod/HF/RHFSCFSolver.hpp"
 #include "Utilities/units.hpp"
 
 
@@ -49,20 +51,21 @@ BOOST_AUTO_TEST_CASE ( dipole_CO_STO_3G ) {
     // Solve the SCF equations
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(CO.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
     auto diis_rhf_scf_solver = GQCP::RHFSCFSolver<double>::DIIS();
-    diis_rhf_scf_solver.iterate(rhf_environment);
-    const auto rhf = rhf_environment.solution();
+    const GQCP::DiagonalRHFFockMatrixObjective<double> objective (sq_hamiltonian);
+    const auto rhf_qc_structure = GQCP::QCMethod::RHF<double>().optimize(objective, diis_rhf_scf_solver, rhf_environment);
+    const auto rhf_parameters = rhf_qc_structure.groundStateParameters();
 
-    double total_energy = rhf.get_electronic_energy() + GQCP::Operator::NuclearRepulsion(CO).value();
+    double total_energy = rhf_qc_structure.groundStateEnergy() + GQCP::Operator::NuclearRepulsion(CO).value();
     BOOST_REQUIRE(std::abs(total_energy - (-111.225)) < 1.0e-02);  // from CCCBDB, require a correct RHF solution to be found
 
 
     // Calculate the RHF 1-RDM in MO basis
-    auto D = GQCP::calculateRHF1RDM(K, N);
-    auto D_AO = GQCP::calculateRHFAO1RDM(rhf.get_C(), N);
+    auto D = GQCP::QCModel::RHF<double>::calculateOrthonormalBasis1RDM(K, N);
+    auto D_AO = GQCP::QCModel::RHF<double>::calculateScalarBasis1RDM(rhf_parameters.coefficientMatrix(), N);
 
     // Calculate the dipole integrals, and transform them to the MO basis
     auto dipole_op = spinor_basis.quantize(GQCP::Operator::ElectronicDipole());
-    dipole_op.transform(rhf.get_C());
+    dipole_op.transform(rhf_parameters.coefficientMatrix());
 
     GQCP::Vector<double, 3> total_dipole_moment = GQCP::Operator::NuclearDipole(CO).value() + GQCP::calculateElectronicDipoleMoment(dipole_op, D);
     BOOST_CHECK(std::abs(total_dipole_moment.norm() - (0.049)) < 1.0e-03);
@@ -87,20 +90,21 @@ BOOST_AUTO_TEST_CASE ( dipole_N2_STO_3G ) {
     // Solve the SCF equations
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(N2.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
-    plain_rhf_scf_solver.iterate(rhf_environment);
-    const auto rhf = rhf_environment.solution();
+    const GQCP::DiagonalRHFFockMatrixObjective<double> objective (sq_hamiltonian);
+    const auto rhf_qc_structure = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment);
+    const auto rhf_parameters = rhf_qc_structure.groundStateParameters();
 
-    double total_energy = rhf.get_electronic_energy() + GQCP::Operator::NuclearRepulsion(N2).value();
+    double total_energy = rhf_qc_structure.groundStateEnergy() + GQCP::Operator::NuclearRepulsion(N2).value();
     BOOST_REQUIRE(std::abs(total_energy - (-107.500654)) < 1.0e-05);  // from CCCBDB, require a correct RHF solution to be found
 
 
     // Calculate the RHF 1-RDM in MO basis
-    auto D = GQCP::calculateRHF1RDM(K, N);
-    auto D_AO = GQCP::calculateRHFAO1RDM(rhf.get_C(), N);
+    auto D = GQCP::QCModel::RHF<double>::calculateOrthonormalBasis1RDM(K, N);
+    auto D_AO = GQCP::QCModel::RHF<double>::calculateScalarBasis1RDM(rhf_parameters.coefficientMatrix(), N);
 
     // Calculate the dipole integrals, and transform them to the MO basis
     auto dipole_op = spinor_basis.quantize(GQCP::Operator::ElectronicDipole());
-    dipole_op.transform(rhf.get_C());
+    dipole_op.transform(rhf_parameters.coefficientMatrix());
 
     GQCP::Vector<double, 3> total_dipole_moment = GQCP::Operator::NuclearDipole(N2).value() + GQCP::calculateElectronicDipoleMoment(dipole_op, D);
     BOOST_CHECK(std::abs(total_dipole_moment.norm() - (0.0)) < 1.0e-08);
@@ -130,12 +134,12 @@ BOOST_AUTO_TEST_CASE ( h2_polarizability_RHF ) {
     // Do the RHF calculation to get the canonical RHF orbitals
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(h2.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
-    plain_rhf_scf_solver.iterate(rhf_environment);
-    const auto rhf = rhf_environment.solution();
+    const GQCP::DiagonalRHFFockMatrixObjective<double> objective (sq_hamiltonian);
+    const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
 
 
     // Transform the orbitals to the RHF basis and prepare the dipole integrals in the RHF basis
-    GQCP::basisTransform(spinor_basis, sq_hamiltonian, rhf.get_C());
+    GQCP::basisTransform(spinor_basis, sq_hamiltonian, rhf_parameters.coefficientMatrix());
     const auto dipole_op = spinor_basis.quantize(GQCP::Operator::ElectronicDipole());
 
 
@@ -190,4 +194,3 @@ BOOST_AUTO_TEST_CASE ( dyson_coefficients ) {
     BOOST_CHECK(dyson_coefficients_beta.isApprox(reference_amplitudes_beta, 1.0e-6));
     BOOST_CHECK(dyson_coefficients_alpha.isApprox(reference_amplitudes_alpha, 1.0e-6));
 }
-    

@@ -59,7 +59,7 @@ BOOST_AUTO_TEST_CASE ( dense ) {
 
     // Use our dense diagonalization algorithm to find the number of requested eigenpairs
     auto dense_environment = GQCP::EigenproblemEnvironment::Dense(B);
-    auto dense_diagonalizer = GQCP::EigenproblemSolver::Dense(number_of_requested_eigenpairs);
+    auto dense_diagonalizer = GQCP::EigenproblemSolver::Dense();
     dense_diagonalizer.perform(dense_environment);
 
     const auto eigenpairs = dense_environment.eigenpairs(number_of_requested_eigenpairs);

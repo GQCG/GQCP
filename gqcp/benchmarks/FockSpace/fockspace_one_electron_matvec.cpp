@@ -16,7 +16,7 @@ static void matvec(benchmark::State& state) {
     GQCP::FockSpace fock_space (K, N);
 
     GQCP::QCMatrix<double> one_op_par = GQCP::QCMatrix<double>::Random(K, K);
-    GQCP::ScalarSQOneElectronOperator<double> sq_one_op ({one_op_par});
+    GQCP::ScalarSQOneElectronOperator<double> sq_one_op {one_op_par};
     GQCP::VectorX<double> diagonal = fock_space.evaluateOperatorDiagonal(sq_one_op);
     GQCP::VectorX<double> x = fock_space.randomExpansion();
 

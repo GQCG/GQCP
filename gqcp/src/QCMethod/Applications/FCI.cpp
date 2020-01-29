@@ -22,7 +22,9 @@
 #include "Operator/FirstQuantized/NuclearRepulsionOperator.hpp"
 #include "Processing/Properties/expectation_values.hpp"
 #include "Processing/RDM/RDMCalculator.hpp"
-#include "QCMethod/RHF/RHFSCFSolver.hpp"
+#include "QCMethod/HF/DiagonalRHFFockMatrixObjective.hpp"
+#include "QCMethod/HF/RHF.hpp"
+#include "QCMethod/HF/RHFSCFSolver.hpp"
 
 
 namespace GQCP {
@@ -88,9 +90,9 @@ void FCI::solve() {
         pre_solver_options->maximum_number_of_iterations = 200;
         auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(this->molecule.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
         auto diis_rhf_scf_solver = GQCP::RHFSCFSolver<double>::DIIS();
-        diis_rhf_scf_solver.iterate(rhf_environment);
-        const auto rhf = rhf_environment.solution();
-        basisTransform(spinor_basis, sq_hamiltonian, rhf.get_C());
+        const GQCP::DiagonalRHFFockMatrixObjective<double> objective (sq_hamiltonian);
+        const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, diis_rhf_scf_solver, rhf_environment).groundStateParameters();
+        basisTransform(spinor_basis, sq_hamiltonian, rhf_parameters.coefficientMatrix());
         solver_options = pre_solver_options;
     } else {
         solver_options = std::make_shared<DenseSolverOptions>();
