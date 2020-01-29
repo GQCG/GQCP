@@ -76,11 +76,11 @@ public:
 
     // PUBLIC METHODS
     /**
-     *  @param address              address of the requested configuration in this Fock space
+     *  @param address              the address of the requested configuration in this Fock space
      * 
-     *  @return the configuration requested from the Fock space
+     *  @return the configuration whose address in the Fock space is given
      */ 
-    virtual Configuration configuration(size_t address) const = 0;
+    virtual Configuration configuration(const size_t address) const = 0;
 
     /**
      *  @return the coefficient vector for the Hartree-Fock wave function (i.e. the 'first' ONV/Slater determinant)

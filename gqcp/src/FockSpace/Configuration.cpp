@@ -26,14 +26,14 @@ namespace GQCP {
 /**
  *  @param delimiter        the delimiter between bits
  * 
- *  @return a compact representation of the configuration as string:
+ *  @return a compact representation of the configuration as a string:
  *   e.g: 1100 | 1010 => 2110
  */
 std::string Configuration::spinSummedRepresentation(const std::string& delimiter) const {
 
     std::string beta = this->onv_beta.asString();
     std::string alpha = this->onv_alpha.asString();
-    std::string result = std::to_string((int)(alpha[0]) + (int)(beta[0]) - 96);  // ASCII Code for 0 is 48, adding two ASCII CODES and substracting 96 will result in character integer as integer value
+    std::string result = std::to_string((int)(alpha[0]) + (int)(beta[0]) - 96);  // ASCII code for 0 is 48: adding two ASCII codes and substracting 96 will result in a character with the corresponding integer value
 
     for (size_t i = 1; i < beta.size(); i++) {
         result += delimiter;

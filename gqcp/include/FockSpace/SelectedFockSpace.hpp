@@ -106,11 +106,11 @@ public:
     // PUBLIC METHODS
 
     /**
-     *  @param address              address of the requested configuration in this Fock space
+     *  @param address              the address of the requested configuration in this Fock space
      * 
-     *  @return the configuration requested from the Fock space
+     *  @return the configuration whose address in the Fock space is given
      */ 
-    Configuration configuration(size_t address) const override;
+    Configuration configuration(const size_t address) const override;
 
     /**
      *  Make a configuration (see makeConfiguration()) and add it to this Fock space

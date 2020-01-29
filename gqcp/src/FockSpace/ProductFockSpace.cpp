@@ -72,11 +72,11 @@ size_t ProductFockSpace::calculateDimension(size_t K, size_t N_alpha, size_t N_b
  */
 
 /**
- *  @param address              address of the requested configuration in this Fock space
+ *  @param address              the address of the requested configuration in this Fock space
  * 
- *  @return the configuration requested from the Fock space
+     *  @return the configuration whose address in the Fock space is given
  */ 
-Configuration ProductFockSpace::configuration(size_t address) const {
+Configuration ProductFockSpace::configuration(const size_t address) const {
     size_t alpha_index = address/this->fock_space_alpha.get_dimension();
     size_t beta_index = address - alpha_index * this->fock_space_alpha.get_dimension();
     const GQCP::ONV alpha = fock_space_alpha.makeONV(alpha_index);

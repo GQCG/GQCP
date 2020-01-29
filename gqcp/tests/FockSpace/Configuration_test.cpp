@@ -24,12 +24,12 @@
 
 BOOST_AUTO_TEST_CASE ( CompactConfigurationString ) {
 
-    // Create ONV : 10 considered bits and 5 set bits with distributed as "0000011111" = 31
+    // Create ONVs: 10 bits with 5 of them set to 1
     GQCP::ONV onv1 (10, 5, 31);  // "0000011111" = 31
     GQCP::ONV onv2 (10, 5, 62);  // "0000111110" = 62
 
     std::string compact_reference = "0000122221";
-    std::string compact_reference_delimiter = "0 0 0 0 1 2 2 2 2 1";
+    std::string compact_reference_with_delimiter = "0 0 0 0 1 2 2 2 2 1";
 
     GQCP::Configuration configuration {onv1, onv2};
 
@@ -39,4 +39,3 @@ BOOST_AUTO_TEST_CASE ( CompactConfigurationString ) {
     BOOST_CHECK(compact_str.compare(compact_reference) == 0);
     BOOST_CHECK(compact_str_delimiter.compare(compact_reference_delimiter) == 0);
 }
-

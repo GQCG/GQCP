@@ -208,11 +208,11 @@ SelectedFockSpace::SelectedFockSpace(const FrozenFockSpace& fock_space) :
  */
 
 /**
- *  @param address              address of the requested configuration in this Fock space
+ *  @param address              the address of the requested configuration in this Fock space
  * 
- *  @return the configuration requested from the Fock space
+     *  @return the configuration whose address in the Fock space is given
  */ 
-Configuration SelectedFockSpace::configuration(size_t address) const {
+Configuration SelectedFockSpace::configuration(const size_t address) const {
     return this->configurations[address];
 }
 

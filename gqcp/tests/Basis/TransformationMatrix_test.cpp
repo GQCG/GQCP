@@ -48,7 +48,7 @@ BOOST_AUTO_TEST_CASE ( transform ) {
 
 
 /**
- *  Check if the Transformation matrix can correctly express it self in the GAMESS-US $VEC group notation 
+ *  Check if TransformationMatrix can correctly express itself in the GAMESS-US $VEC group notation 
  */
 BOOST_AUTO_TEST_CASE ( gamessUS ) {
 
@@ -68,7 +68,7 @@ BOOST_AUTO_TEST_CASE ( gamessUS ) {
 		  0.0, 0.0,-4.0, 5.0,-7.0, 8.0,
 		  1.0,-7.0,-4.0, 5.0,-7.0, 8.0;
 		
-	// test them agaist a reference representation
-    BOOST_CHECK(reference_T1.compare(T1.asGamessUsVecGroup()) == 0);
-    BOOST_CHECK(reference_T2.compare(T2.asGamessUsVecGroup()) == 0);
+	// Test them against a reference representation
+    BOOST_CHECK(reference_T1.compare(T1.asGAMESSUSVECGroup()) == 0);
+    BOOST_CHECK(reference_T2.compare(T2.asGAMESSUSVECGroup()) == 0);
 }

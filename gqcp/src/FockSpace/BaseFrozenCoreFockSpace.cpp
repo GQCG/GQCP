@@ -42,11 +42,11 @@ BaseFrozenCoreFockSpace::BaseFrozenCoreFockSpace(std::shared_ptr<GQCP::BaseFockS
  */
 
 /**
- *  @param address              address of the requested configuration in this Fock space
+ *  @param address              the address of the requested configuration in this Fock space
  * 
- *  @return the configuration requested from the Fock space
+     *  @return the configuration whose address in the Fock space is given
  */ 
-Configuration BaseFrozenCoreFockSpace::configuration(size_t address) const {
+Configuration BaseFrozenCoreFockSpace::configuration(const size_t address) const {
     const auto configuration = this->active_fock_space->configuration(address);
     size_t alpha = configuration.onv_alpha.get_unsigned_representation();
     size_t beta = configuration.onv_beta.get_unsigned_representation();

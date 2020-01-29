@@ -36,7 +36,7 @@ BOOST_AUTO_TEST_CASE ( constructor ) {
     GQCP::ONV onv1 = GQCP::ONV(3, 1, 1);  // 001
     GQCP::ONV onv2 = GQCP::ONV(3, 1, 2);  // 010
 
-    Eigen::Vector4d test_coefficients;
+    GQCP::VectorX<double> test_coefficients (4);
     test_coefficients << 2.0/7, -5.0/7, 4.0/7, 2.0/7;
 
     GQCP::SelectedFockSpace selected_fock_space (3, 1, 1);
@@ -46,20 +46,19 @@ BOOST_AUTO_TEST_CASE ( constructor ) {
     selected_fock_space.addConfiguration(onv2.asString(), onv1.asString());  // 010 | 001
     selected_fock_space.addConfiguration(onv2.asString(), onv2.asString());  // 010 | 010
 
-    // Create wavefunction
     GQCP::WaveFunction wf (selected_fock_space, test_coefficients);
 
-    // Create selected wavefunction with 2 of the largest coefficients (configuration 2 and 3)
+    // Create a WaveFunctionSelection with 2 of the largest coefficients (in this example: configuration 2 and 3)
     GQCP::WaveFunctionSelection wf2 (wf, 2);
     const auto& configurations = wf2.get_configurations();
     const auto& coefficients = wf2.get_coefficients();
     
-    // Given the extraction method the smallest coefficient will come first this is configuration 3: 010 | 001
+    // Given the extraction method, the smallest coefficient will come first this is configuration 3: 010 | 001
     BOOST_CHECK(configurations[0].onv_alpha.asString() == "010");
     BOOST_CHECK(configurations[0].onv_beta.asString() == "001");
     BOOST_CHECK(std::abs(coefficients(0) - (4.0/7)) < 1.0e-9);
 
-    // Followed by configuration 2: 001 | 010
+    // The second largest contribution configuration is number 2: 001 | 010
     BOOST_CHECK(configurations[1].onv_alpha.asString() == "001");
     BOOST_CHECK(configurations[1].onv_beta.asString() == "010");
     BOOST_CHECK(std::abs(coefficients(1) - (-5.0/7)) < 1.0e-9);

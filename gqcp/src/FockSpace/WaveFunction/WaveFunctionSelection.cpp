@@ -56,39 +56,47 @@ WaveFunctionSelection::WaveFunctionSelection(const WaveFunction& wave_function, 
         size_t address;
     };
 
-    // Struct for the priority queue API to compare the coefficients of two AddressCoefficientPairs
+    // A struct for the priority queue API to compare the absolute values of the coefficients of two AddressCoefficientPairs
     struct AddressCoefficientPairComparer 
     { 
-        int operator() (const AddressCoefficientPair& p1, const AddressCoefficientPair& p2) 
+        int operator() (const AddressCoefficientPair& p1, const AddressCoefficientPair& p2) {
         { 
-            return std::abs(p1.coeff) >std::abs(p2.coeff); 
+            return std::abs(p1.coeff) > std::abs(p2.coeff); 
         } 
     }; 
 
-    // Initialize a "min heap" datastructure for which the top value is the lowest value
-    std::priority_queue <AddressCoefficientPair, std::vector<AddressCoefficientPair>, AddressCoefficientPairComparer > min_heap; 
 
-    // Extract the amount of requested largest contributions
-    const auto coefficients = wave_function.get_coefficients();
+    // Initialize a "min heap" datastructure for which the top value is the lowest value
+    std::priority_queue<AddressCoefficientPair, std::vector<AddressCoefficientPair>, AddressCoefficientPairComparer> min_heap; 
+
+    // The algorithm is effectively implemented in two parts:
+    //    1) find address-coefficient pairs whose (absolute value of the) coefficients are the largest
+    //    2) extract a coefficient vector and extract the configurations
+
+    // Extract the amount of requested largest address-coefficient pairs
+    const auto& coefficients = wave_function.get_coefficients();
     for (size_t i = 0; i < wave_function.get_fock_space().get_dimension(); i++) {
-        min_heap.push(AddressCoefficientPair {coefficients(i), i});
-        // When we've reached the requested amount of contributions start to remove the top element from the heap (the one with the smallest contribution)
+        min_heap.emplace(coefficients(i), i);
+
+        // When we've reached the requested amount of contributions, start to remove the top element from the heap (the one with the smallest contribution)
         if (min_heap.size() > number_of_largest_contributions) {
             min_heap.pop();
         }
     }
-
+    // Extract the coefficients as a vector
     this->coefficients = VectorX<double>(number_of_largest_contributions);
+
+
+    // Extract the configurations from the stored addresses
     std::vector<Configuration> configurations;
     configurations.reserve(number_of_largest_contributions);
 
-    // Generate the selection from the stored addresses
     const BaseFockSpace& fock_space = wave_function.get_fock_space();
 
     size_t i = 0;
     while (!min_heap.empty()) {
         const AddressCoefficientPair& x = min_heap.top();
-        this->coefficients (i) = x.coeff;
+        this->coefficients(i) = x.coeff;
         configurations.push_back(fock_space.configuration(x.address));
         min_heap.pop();
         i++;

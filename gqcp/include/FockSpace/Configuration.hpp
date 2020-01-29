@@ -34,7 +34,7 @@ struct Configuration {
     /**
      *  @param delimiter        the delimiter between bits
      * 
-     *  @return a compact representation of the configuration as string:
+     *  @return a compact representation of the configuration as a string:
      *   e.g: 1100 | 1010 => 2110
      */
     std::string spinSummedRepresentation(const std::string& delimiter = "") const;

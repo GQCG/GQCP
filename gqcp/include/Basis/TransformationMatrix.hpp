@@ -60,15 +60,15 @@ public:
     }
 
     /**
-     *  @return returns this transformation as to the $VEC group format of GAMESS-US
+     *  @return this transformation as a '$VEC group format' used by GAMESS-US
      */ 
-    std::string asGamessUsVecGroup() {
+    std::string asGAMESSUSVECGroup() const {
         std::string output = "$VEC";
 
-        std::ostringstream doubleStream;  // Allows conversion of double to the right formatted string
+        std::ostringstream double_stream;  // allows for conversion of a double to the correctly formatted string
         // Format parameters for $VEC group file
-        doubleStream<<std::setprecision(8); 
-        doubleStream<<std::scientific;
+        double_stream << std::setprecision(8); 
+        double_stream << std::scientific;
 
         for (size_t i = 0; i < this->dimension(); i++) {
             for (size_t j = 0; j < this->dimension(); j++) {
@@ -81,17 +81,17 @@ public:
                     output += std::to_string(((j / 5) + 1));
                 }
 
-                double x = this->operator()(j ,i);
+                double x = this->operator()(j,i);
 
                 // If the double is not negative the space between following entries is padded
                 if (x >= 0) {
                     output += " ";
                 }
 
-                doubleStream << x;
-                std::string double_string = doubleStream.str();
+                double_stream << x;
+                std::string double_string = double_stream.str();
 
-                // GAMESS-US example uses E instead of e
+                // GAMESS-US uses a scientific E instead of e
                 double_string[double_string.find('e')] = 'E';
                 output += double_string;
 
