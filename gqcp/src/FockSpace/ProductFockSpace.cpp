@@ -74,7 +74,7 @@ size_t ProductFockSpace::calculateDimension(size_t K, size_t N_alpha, size_t N_b
 /**
  *  @param address              the address of the requested configuration in this Fock space
  * 
-     *  @return the configuration whose address in the Fock space is given
+ *  @return the configuration whose address in the Fock space is given
  */ 
 Configuration ProductFockSpace::configuration(const size_t address) const {
     size_t alpha_index = address/this->fock_space_alpha.get_dimension();

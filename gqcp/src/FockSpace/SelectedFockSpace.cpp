@@ -217,7 +217,7 @@ void SelectedFockSpace::set_configurations(const std::vector<Configuration>& con
 /**
  *  @param address              the address of the requested configuration in this Fock space
  * 
-     *  @return the configuration whose address in the Fock space is given
+ *  @return the configuration whose address in the Fock space is given
  */ 
 Configuration SelectedFockSpace::configuration(const size_t address) const {
     return this->configurations[address];
