@@ -100,8 +100,7 @@ public:
     const std::vector<Configuration>& get_configurations() const { return this->configurations; }
     FockSpaceType get_type() const override { return FockSpaceType::SelectedFockSpace; }
 
-    void set_configurations(const std::vector<Configuration>& configurations) { this->configurations = configurations;
-                                                                                this->dim = configurations.size(); }
+    void set_configurations(const std::vector<Configuration>& configurations);
 
     // PUBLIC METHODS
 

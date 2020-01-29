@@ -203,6 +203,13 @@ SelectedFockSpace::SelectedFockSpace(const FrozenFockSpace& fock_space) :
     this->configurations = configurations;
 }
 
+// SETTER
+void SelectedFockSpace::set_configurations(const std::vector<Configuration>& configurations) {
+    this->configurations = configurations;
+    this->dim = configurations.size(); 
+}
+
+
 /*
  *  PUBLIC METHODS
  */
