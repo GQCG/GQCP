@@ -50,14 +50,19 @@ Configuration BaseFrozenCoreFockSpace::configuration(const size_t address) const
     const auto configuration = this->active_fock_space->configuration(address);
     size_t alpha = configuration.onv_alpha.get_unsigned_representation();
     size_t beta = configuration.onv_beta.get_unsigned_representation();
+
+    // "__builtin_popcountl" to count the amount of bits from the unsigned representations
     size_t N_alpha = __builtin_popcountl(alpha);
     size_t N_beta = __builtin_popcountl(beta);
+
+    // The current representations are those in the active space, shift the frozen core orbitals into the representation
     for (size_t i = 0; i < this->X; i++) {
         alpha <<= 1;
         alpha += 1;
         beta <<= 1;
         beta += 1;
     }
+    
     return Configuration{ONV(this->K, N_alpha+X, alpha), ONV(this->K, N_beta+X, beta)};
 }
 

@@ -96,7 +96,7 @@ public:
                 output += double_string;
 
                 // Clear the string
-                doubleStream.str("");
+                double_stream.str("");
             }
         }
 

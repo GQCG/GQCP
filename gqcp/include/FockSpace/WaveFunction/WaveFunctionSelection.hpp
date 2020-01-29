@@ -20,7 +20,6 @@
 
 #include "Basis/TransformationMatrix.hpp"
 #include "FockSpace/SelectedFockSpace.hpp"
-#include "FockSpace/WaveFunction/WaveFunction.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
 
 
@@ -43,20 +42,10 @@ public:
     /**
      *  Construct a selected wave function
      *
-     *  @param fock_space           the selected Fock space in which the wave function 'lives'
-     *  @param coefficients         the expansion coefficients
+     *  @param configurations           a set of ONV configurations 
+     *  @param coefficients             the expansion coefficients
      */
-    WaveFunctionSelection(const SelectedFockSpace& fock_space, const VectorX<double>& coefficients);
-
-
-    /**
-     *  Construct a selected wave function by selecting the configurations with the highest contribution from a different wave function
-     *
-     *  @param wave_function                           the wave_function to be selected from
-     *  @param number_of_largest_contributions         the amount of selections made
-     */
-    WaveFunctionSelection(const WaveFunction& wave_function, size_t number_of_largest_contributions);
-
+    WaveFunctionSelection(const std::vector<Configuration>& configurations, const VectorX<double>& coefficients);
 
     // PUBLIC METHODS
     /**

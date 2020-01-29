@@ -20,6 +20,7 @@
 
 #include "Basis/TransformationMatrix.hpp"
 #include "FockSpace/BaseFockSpace.hpp"
+#include "FockSpace/WaveFunction/WaveFunctionSelection.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
 
 
@@ -72,6 +73,13 @@ public:
      *  @return if two wave functions are equal within a given tolerance
      */
      bool isApprox(const WaveFunction& other, double tolerance = 1e-10) const;
+
+    /**
+     *  Construct a wave function selection with the configurations with the largest contribution from a different wave function
+     *
+     *  @param num          the amount of selections made with the largest contribution
+     */
+    WaveFunctionSelection select(const size_t num) const;
 };
 
 

@@ -22,7 +22,10 @@
 #include "FockSpace/Configuration.hpp"
 
 
-BOOST_AUTO_TEST_CASE ( CompactConfigurationString ) {
+/*
+ * Test if the spin summed string representation of a configuration is correct
+ */ 
+BOOST_AUTO_TEST_CASE ( spinSummedRepresentation ) {
 
     // Create ONVs: 10 bits with 5 of them set to 1
     GQCP::ONV onv1 (10, 5, 31);  // "0000011111" = 31
@@ -37,5 +40,5 @@ BOOST_AUTO_TEST_CASE ( CompactConfigurationString ) {
     std::string compact_str_delimiter = configuration.spinSummedRepresentation(" ");
 
     BOOST_CHECK(compact_str.compare(compact_reference) == 0);
-    BOOST_CHECK(compact_str_delimiter.compare(compact_reference_delimiter) == 0);
+    BOOST_CHECK(compact_str_delimiter.compare(compact_reference_with_delimiter) == 0);
 }

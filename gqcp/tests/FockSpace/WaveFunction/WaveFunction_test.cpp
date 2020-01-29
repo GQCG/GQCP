@@ -163,3 +163,40 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h5 ) {
     // Check if they deviate
     BOOST_CHECK(wavefunction2.isApprox(wavefunction1));
 }
+
+
+/*
+ *  Tests the select method creating a WaveFunctionSelection with the 2 largest coefficients
+ */ 
+BOOST_AUTO_TEST_CASE ( constructor ) {
+
+    GQCP::ONV onv1 = GQCP::ONV(3, 1, 1);  // 001
+    GQCP::ONV onv2 = GQCP::ONV(3, 1, 2);  // 010
+
+    GQCP::VectorX<double> test_coefficients (4);
+    test_coefficients << 2.0/7, -5.0/7, 4.0/7, 2.0/7;
+
+    GQCP::SelectedFockSpace selected_fock_space (3, 1, 1);
+
+    selected_fock_space.addConfiguration(onv1.asString(), onv1.asString());  // 001 | 001
+    selected_fock_space.addConfiguration(onv1.asString(), onv2.asString());  // 001 | 010
+    selected_fock_space.addConfiguration(onv2.asString(), onv1.asString());  // 010 | 001
+    selected_fock_space.addConfiguration(onv2.asString(), onv2.asString());  // 010 | 010
+
+    GQCP::WaveFunction wf (selected_fock_space, test_coefficients);
+
+    // Create a WaveFunctionSelection with 2 of the largest coefficients (in this example: configuration 2 and 3)
+    GQCP::WaveFunctionSelection selection = wf.select(2);
+    const auto& configurations = selection.get_configurations();
+    const auto& coefficients = selection.get_coefficients();
+    
+    // Given the extraction method, the smallest coefficient will come first this is configuration 3: 010 | 001
+    BOOST_CHECK(configurations[0].onv_alpha.asString() == "010");
+    BOOST_CHECK(configurations[0].onv_beta.asString() == "001");
+    BOOST_CHECK(std::abs(coefficients(0) - (4.0/7)) < 1.0e-9);
+
+    // The second largest contribution configuration is number 2: 001 | 010
+    BOOST_CHECK(configurations[1].onv_alpha.asString() == "001");
+    BOOST_CHECK(configurations[1].onv_beta.asString() == "010");
+    BOOST_CHECK(std::abs(coefficients(1) - (-5.0/7)) < 1.0e-9);
+}
