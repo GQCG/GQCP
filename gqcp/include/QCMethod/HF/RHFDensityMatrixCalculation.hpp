@@ -18,7 +18,7 @@
 #pragma once 
 
 
-#include "Mathematical/Algorithm/IterationStep.hpp"
+#include "Mathematical/Algorithm/Step.hpp"
 #include "QCMethod/HF/RHFSCFEnvironment.hpp"
 #include "QCMethod/HF/RHF.hpp"
 
@@ -33,7 +33,7 @@ namespace GQCP {
  */
 template <typename _Scalar>
 class RHFDensityMatrixCalculation :
-    public IterationStep<RHFSCFEnvironment<_Scalar>> {
+    public Step<RHFSCFEnvironment<_Scalar>> {
 
 public:
     using Scalar = _Scalar;

@@ -18,9 +18,9 @@
 #pragma once
 
 
-#include "Mathematical/Algorithm/IterationStep.hpp"
+#include "Mathematical/Algorithm/Step.hpp"
 #include "QCMethod/HF/RHFSCFEnvironment.hpp"
-#include "QCModel/HF/RHF.hpp"
+#include "QCMethod/HF/RHF.hpp"
 
 
 namespace GQCP {
@@ -33,7 +33,7 @@ namespace GQCP {
  */
 template <typename _Scalar>
 class RHFErrorCalculation :
-    public IterationStep<RHFSCFEnvironment<_Scalar>> {
+    public Step<RHFSCFEnvironment<_Scalar>> {
 
 public:
     using Scalar = _Scalar;

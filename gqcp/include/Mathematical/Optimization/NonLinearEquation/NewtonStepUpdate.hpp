@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Mathematical/Algorithm/IterationStep.hpp"
+#include "Mathematical/Algorithm/Step.hpp"
 #include "Mathematical/Optimization/NonLinearEquation/NonLinearEquationEnvironment.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 
@@ -37,7 +37,7 @@ namespace NonLinearEquation {
  */
 template <typename _Scalar, typename _Environment>
 class NewtonStepUpdate :
-    public IterationStep<_Environment> {
+    public Step<_Environment> {
 
 public:
     using Scalar = _Scalar;

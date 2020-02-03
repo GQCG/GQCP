@@ -804,6 +804,7 @@ INPUT = "@CMAKE_SOURCE_DIR@/gqcp/include" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Mathematical/Optimization" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Mathematical/Optimization/Accelerator" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Mathematical/Optimization/Eigenproblem" \
+        "@CMAKE_SOURCE_DIR@/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Mathematical/Optimization/Minimization" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Mathematical/Optimization/NonLinearEquation" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Mathematical/Representation" \

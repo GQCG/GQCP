@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Mathematical/Algorithm/IterationStep.hpp"
+#include "Mathematical/Algorithm/Step.hpp"
 #include "Utilities/memory.hpp"
 #include "Utilities/type_traits.hpp"
 
@@ -29,20 +29,21 @@ namespace GQCP {
 
 
 /**
- *  A collection of iteration steps that constitutes one iteration. An iteration is defined as the part of an iterative algorithm that happens between convergence checks.
+ *  A collection of steps to be executed in a consecutive order.
  * 
  *  This iteration cycle maintains the ownership of its constituting steps.
  * 
  *  @param _Environment             the type of the environment that this iteration step can read from and write to
  */
 template <typename _Environment>
-class IterationCycle {
+class StepCollection :
+    public Step<_Environment> {
 public:
     using Environment = _Environment;
 
 
 private:
-    std::vector<std::shared_ptr<IterationStep<Environment>>> steps;  // the consecutive steps that this iteration cycle consists of
+    std::vector<std::shared_ptr<Step<Environment>>> steps;  // the consecutive steps that this collection consists of
 
 
 public:
@@ -52,21 +53,21 @@ public:
      */
 
     /**
-     *  Add a new step to the iteration cycle.
+     *  Add a new step to the collection of steps.
      * 
-     *  @return the modified iteration cycle, in order to allow chaining.
+     *  @return the modified collection of steps, in order to allow chaining.
      */
-    template <typename Z = IterationStep<Environment>>
-    enable_if_t<std::is_same<Environment, typename Z::Environment>::value, IterationCycle<Environment>&> add(const Z& step) {
+    template <typename Z = Step<Environment>>
+    enable_if_t<std::is_same<Environment, typename Z::Environment>::value, StepCollection<Environment>&> add(const Z& step) {
         this->steps.push_back(std::make_shared<Z>(step));
         return *this;
     }
 
 
     /**
-     *  Execute all the steps of this iteration cycle.
+     *  Execute all the steps in this collection.
      * 
-     *  @param environment              the environment that this iteration step can read from and write to
+     *  @param environment              the environment that this step can read from and write to
      */
     void execute(Environment& environment) {
         for (const auto& step : this->steps) {

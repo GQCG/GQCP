@@ -19,26 +19,19 @@
 
 
 #include "Mathematical/Algorithm/Step.hpp"
-#include "QCMethod/HF/RHF.hpp"
-#include "QCMethod/HF/RHFSCFEnvironment.hpp"
+#include "Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp"
+
+#include <type_traits>
 
 
 namespace GQCP {
 
 
 /**
- *  An iteration step that calculates the current Fock matrix (expressed in the scalar/AO basis) from the current density matrix.
- * 
- *  @tparam _Scalar              the scalar type used to represent the expansion coefficient/elements of the transformation matrix
+ *  An iteration step that calculates the subspace matrix, i.e. the projection of the matrix A onto the subspace spanned by the vectors in V.
  */
-template <typename _Scalar>
-class RHFFockMatrixCalculation :
-    public Step<RHFSCFEnvironment<_Scalar>> {
-
-public:
-    using Scalar = _Scalar;
-    using Environment = RHFSCFEnvironment<Scalar>;
-
+class SubspaceMatrixCalculation :
+    public Step<EigenproblemEnvironment> {
 
 public:
 
@@ -47,14 +40,16 @@ public:
      */
 
     /**
-     *  Calculate the current RHF density matrix (expressed in the scalar/AO basis) and place it in the environment
+     *  Calculate the subspace matrix, i.e. the projection of the matrix A onto the subspace spanned by the vectors in V.
      * 
      *  @param environment              the environment that acts as a sort of calculation space
      */
-    void execute(Environment& environment) override {
-        const auto& D = environment.density_matrices.back();  // the most recent density matrix
-        const auto F = QCModel::RHF<double>::calculateScalarBasisFockMatrix(D, environment.sq_hamiltonian);
-        environment.fock_matrices.push_back(F.parameters());
+    void execute(EigenproblemEnvironment& environment) override {
+
+        const auto& V = environment.V;   // the subspace of guess vectors
+        const auto& VA = environment.VA;   // VA = A * V (implicitly calculated through the matrix-vector product)
+
+        environment.S = V.transpose() * VA;  // the "subspace matrix": the projection of the matrix A onto the subspace spanned by the vectors in V
     }
 };
 

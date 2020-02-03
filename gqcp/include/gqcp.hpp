@@ -72,18 +72,31 @@
 #include "FockSpace/SelectedFockSpace.hpp"
 
 #include "Mathematical/Algorithm/ConvergenceCriterion.hpp"
-#include "Mathematical/Algorithm/IterationCycle.hpp"
-#include "Mathematical/Algorithm/IterationStep.hpp"
 #include "Mathematical/Algorithm/IterativeAlgorithm.hpp"
+#include "Mathematical/Algorithm/Step.hpp"
+#include "Mathematical/Algorithm/StepCollection.hpp"
 
 #include "Mathematical/Optimization/Accelerator/ConstantDamper.hpp"
 #include "Mathematical/Optimization/Accelerator/DIIS.hpp"
 
+#include "Mathematical/Optimization/Eigenproblem/Davidson/CorrectionVectorCalculation.hpp"
+#include "Mathematical/Optimization/Eigenproblem/Davidson/DavidsonSolver.hpp"
+#include "Mathematical/Optimization/Eigenproblem/Davidson/GuessVectorUpdate.hpp"
+#include "Mathematical/Optimization/Eigenproblem/Davidson/MatrixVectorProductCalculation.hpp"
+#include "Mathematical/Optimization/Eigenproblem/Davidson/ResidualVectorCalculation.hpp"
+#include "Mathematical/Optimization/Eigenproblem/Davidson/ResidualVectorConvergence.hpp"
+#include "Mathematical/Optimization/Eigenproblem/Davidson/SubspaceMatrixCalculation.hpp"
+#include "Mathematical/Optimization/Eigenproblem/Davidson/SubspaceMatrixDiagonalization.hpp"
+#include "Mathematical/Optimization/Eigenproblem/Davidson/SubspaceUpdate.hpp"
+
 #include "Mathematical/Optimization/Eigenproblem/BaseEigenproblemSolver.hpp"
 #include "Mathematical/Optimization/Eigenproblem/BaseMatrixSolver.hpp"
 #include "Mathematical/Optimization/Eigenproblem/DavidsonSolver.hpp"
+#include "Mathematical/Optimization/Eigenproblem/DenseDiagonalization.hpp"
 #include "Mathematical/Optimization/Eigenproblem/DenseSolver.hpp"
 #include "Mathematical/Optimization/Eigenproblem/Eigenpair.hpp"
+#include "Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp"
+#include "Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp"
 #include "Mathematical/Optimization/Eigenproblem/EigenproblemSolverOptions.hpp"
 #include "Mathematical/Optimization/Eigenproblem/SparseSolver.hpp"
 

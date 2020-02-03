@@ -18,30 +18,39 @@
 #pragma once
 
 
+#include "Mathematical/Algorithm/StepCollection.hpp"
+
+
 namespace GQCP {
 
 
 /**
- *  An elementary calculation that is regarded as one step in an iteration cycle.
+ *  An algorithm that only performs one collection of steps.
  * 
- *  Derived classes should implement:
- *      - execute()
- * 
- *  @param _Environment             the type of the environment that this iteration step can read from and write to
+ *  @param _Environment             the type of environment that this algorithm is associated to
  */
 template <typename _Environment>
-class IterationStep {
+class Algorithm {
 public:
     using Environment = _Environment;
+
+
+private:
+    StepCollection<Environment> steps;  // the steps that should be executed when this algorithm is performed
 
 
 public:
 
     /*
-     *  DESTRUCTOR
+     *  CONSTRUCTORS
      */
 
-    virtual ~IterationStep() = default;
+    /**
+     *  @param steps                      the steps that should be executed when this algorithm is performed
+     */
+    Algorithm(const StepCollection<Environment>& steps) :
+        steps (steps)
+    {}
 
 
     /*
@@ -49,11 +58,11 @@ public:
      */
 
     /**
-     *  Execute this iteration step.
-     * 
-     *  @param environment              the environment that this iteration step can read from and write to
+     *  @param environment              the environment that this algorithm is associated to
      */
-    virtual void execute(Environment& environment) = 0;
+    void perform(Environment& environment) {
+        this->steps.execute(environment);
+    }
 };
 
 

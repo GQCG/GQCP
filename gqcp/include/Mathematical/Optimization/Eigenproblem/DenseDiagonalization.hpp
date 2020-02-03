@@ -19,25 +19,22 @@
 
 
 #include "Mathematical/Algorithm/Step.hpp"
-#include "QCMethod/HF/RHF.hpp"
-#include "QCMethod/HF/RHFSCFEnvironment.hpp"
+#include "Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp"
+
+#include <Eigen/Dense>
 
 
 namespace GQCP {
 
 
 /**
- *  An iteration step that calculates the current Fock matrix (expressed in the scalar/AO basis) from the current density matrix.
- * 
- *  @tparam _Scalar              the scalar type used to represent the expansion coefficient/elements of the transformation matrix
+ *  A step that performs a dense diagonalization.
  */
-template <typename _Scalar>
-class RHFFockMatrixCalculation :
-    public Step<RHFSCFEnvironment<_Scalar>> {
+class DenseDiagonalization :
+    public Step<EigenproblemEnvironment> {
 
-public:
-    using Scalar = _Scalar;
-    using Environment = RHFSCFEnvironment<Scalar>;
+private:
+    size_t number_of_requested_eigenpairs;
 
 
 public:
@@ -47,14 +44,18 @@ public:
      */
 
     /**
-     *  Calculate the current RHF density matrix (expressed in the scalar/AO basis) and place it in the environment
+     *  Read the matrix from the environment, diagonalize it and write the number of requested eigenpairs to it
      * 
-     *  @param environment              the environment that acts as a sort of calculation space
+     *  @param environment              the environment that this step can read from and write to
      */
     void execute(Environment& environment) override {
-        const auto& D = environment.density_matrices.back();  // the most recent density matrix
-        const auto F = QCModel::RHF<double>::calculateScalarBasisFockMatrix(D, environment.sq_hamiltonian);
-        environment.fock_matrices.push_back(F.parameters());
+
+        const auto& A = environment.A;  // a self-adjoint matrix
+        Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> eigensolver (A);  // this solves the eigenvalue problem
+
+        // Write the eigenvalues and eigenvectors to the environment
+        environment.eigenvalues = eigensolver.eigenvalues();
+        environment.eigenvectors = eigensolver.eigenvectors();
     }
 };
 

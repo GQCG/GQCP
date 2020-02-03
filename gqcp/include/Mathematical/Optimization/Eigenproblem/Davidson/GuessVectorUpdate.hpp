@@ -19,26 +19,17 @@
 
 
 #include "Mathematical/Algorithm/Step.hpp"
-#include "QCMethod/HF/RHF.hpp"
-#include "QCMethod/HF/RHFSCFEnvironment.hpp"
+#include "Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp"
 
 
 namespace GQCP {
 
 
 /**
- *  An iteration step that calculates the current Fock matrix (expressed in the scalar/AO basis) from the current density matrix.
- * 
- *  @tparam _Scalar              the scalar type used to represent the expansion coefficient/elements of the transformation matrix
+ *  A step that calculates new guesses for the eigenvectors from the diagonalized subspace matrix.
  */
-template <typename _Scalar>
-class RHFFockMatrixCalculation :
-    public Step<RHFSCFEnvironment<_Scalar>> {
-
-public:
-    using Scalar = _Scalar;
-    using Environment = RHFSCFEnvironment<Scalar>;
-
+class GuessVectorUpdate :
+    public Step<EigenproblemEnvironment> {
 
 public:
 
@@ -47,14 +38,15 @@ public:
      */
 
     /**
-     *  Calculate the current RHF density matrix (expressed in the scalar/AO basis) and place it in the environment
+     *  Calculate new guesses for the eigenvectors from the diagonalized subspace matrix.
      * 
      *  @param environment              the environment that acts as a sort of calculation space
      */
-    void execute(Environment& environment) override {
-        const auto& D = environment.density_matrices.back();  // the most recent density matrix
-        const auto F = QCModel::RHF<double>::calculateScalarBasisFockMatrix(D, environment.sq_hamiltonian);
-        environment.fock_matrices.push_back(F.parameters());
+    void execute(EigenproblemEnvironment& environment) override {
+
+        // X contains the new guesses for the eigenvectors, V is the subspace and Z are the eigenvectors of the subspace matrix
+        environment.X = environment.V * environment.Z;  // X is a linear combination of the current subspace vectors
+        environment.eigenvectors = environment.X;
     }
 };
 
