@@ -19,10 +19,10 @@
 
 
 #include "Processing/RDM/BaseRDMBuilder.hpp"
-#include "FockSpace/FockSpace.hpp"
-#include "FockSpace/ProductFockSpace.hpp"
-#include "FockSpace/SelectedFockSpace.hpp"
-#include "FockSpace/WaveFunction/WaveFunction.hpp"
+#include "ONVBasis/ONVBasis.hpp"
+#include "ONVBasis/ProductONVBasis.hpp"
+#include "ONVBasis/SelectedONVBasis.hpp"
+#include "ONVBasis/WaveFunction/WaveFunction.hpp"
 
 #include <boost/range/adaptor/sliced.hpp>
 #include <boost/range/adaptor/strided.hpp>
@@ -51,28 +51,28 @@ public:
      *
      *  @param fock_space       the DOCI Fock space
      */
-    explicit RDMCalculator(const FockSpace& fock_space);
+    explicit RDMCalculator(const ONVBasis& fock_space);
 
     /**
      *  Allocate a FCIRDMBuilder
      *
      *  @param fock_space       the FCI Fock space
      */
-    explicit RDMCalculator(const ProductFockSpace& fock_space);
+    explicit RDMCalculator(const ProductONVBasis& fock_space);
 
     /**
      *  Allocate a SelectedRDMBuilder
      *
      *  @param fock_space       the 'selected' Fock space
      */
-    explicit RDMCalculator(const SelectedFockSpace& fock_space);
+    explicit RDMCalculator(const SelectedONVBasis& fock_space);
 
     /**
      *  A run-time constructor allocating the appropriate derived RDMBuilder
      *
      *  @param fock_space       the Fock space on which the RDMBuilder should be based
      */
-    explicit RDMCalculator(const BaseFockSpace& fock_space);
+    explicit RDMCalculator(const BaseONVBasis& fock_space);
 
     /**
      *  A run-time constructor allocating the appropriate derived RDMBuilder and coefficient vector

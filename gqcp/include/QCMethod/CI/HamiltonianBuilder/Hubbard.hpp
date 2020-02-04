@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "FockSpace/ProductFockSpace.hpp"
+#include "ONVBasis/ProductONVBasis.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/HamiltonianBuilder.hpp"
 
 
@@ -34,7 +34,7 @@ namespace GQCP {
  */
 class Hubbard : public HamiltonianBuilder {
 private:
-    ProductFockSpace fock_space;  // fock space containing the alpha and beta Fock space
+    ProductONVBasis fock_space;  // fock space containing the alpha and beta Fock space
     
 
 public:
@@ -43,7 +43,7 @@ public:
     /**
      *  @param fock_space       the full alpha and beta product Fock space
      */
-    explicit Hubbard(const ProductFockSpace& fock_space);
+    explicit Hubbard(const ProductONVBasis& fock_space);
 
 
     // DESTRUCTOR
@@ -51,7 +51,7 @@ public:
 
 
     // OVERRIDDEN GETTERS
-    const BaseFockSpace* get_fock_space() const override { return &fock_space; }
+    const BaseONVBasis* get_fock_space() const override { return &fock_space; }
 
 
     // OVERRIDDEN PUBLIC METHODS

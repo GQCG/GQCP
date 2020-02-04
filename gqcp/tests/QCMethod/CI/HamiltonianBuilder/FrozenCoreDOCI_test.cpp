@@ -28,8 +28,8 @@
 BOOST_AUTO_TEST_CASE ( FrozenCoreDOCI_constructor ) {
 
     // Check if a correct constructor works
-    GQCP::FockSpace fock_space (15, 3);
-    GQCP::FrozenFockSpace frozen_fock_space (fock_space, 2);
+    GQCP::ONVBasis fock_space (15, 3);
+    GQCP::FrozenONVBasis frozen_fock_space (fock_space, 2);
     BOOST_CHECK_NO_THROW(GQCP::FrozenCoreDOCI doci (frozen_fock_space));
 }
 
@@ -42,7 +42,7 @@ BOOST_AUTO_TEST_CASE ( FrozenCoreDOCI_public_methods ) {
 
 
     // Create a compatible Fock space
-    GQCP::FrozenFockSpace fock_space (K, 3, 1);
+    GQCP::FrozenONVBasis fock_space (K, 3, 1);
     GQCP::FrozenCoreDOCI random_doci (fock_space);
     GQCP::VectorX<double> x = random_doci.calculateDiagonal(sq_hamiltonian);
     BOOST_CHECK_NO_THROW(random_doci.constructHamiltonian(sq_hamiltonian));
@@ -50,7 +50,7 @@ BOOST_AUTO_TEST_CASE ( FrozenCoreDOCI_public_methods ) {
 
 
     // Create an incompatible Fock space
-    GQCP::FrozenFockSpace fock_space_invalid (K+1, 3, 1);
+    GQCP::FrozenONVBasis fock_space_invalid (K+1, 3, 1);
     GQCP::FrozenCoreDOCI random_doci_invalid (fock_space_invalid);
     BOOST_CHECK_THROW(random_doci_invalid.constructHamiltonian(sq_hamiltonian), std::invalid_argument);
     BOOST_CHECK_THROW(random_doci_invalid.matrixVectorProduct(sq_hamiltonian, x, x), std::invalid_argument);
@@ -66,10 +66,10 @@ BOOST_AUTO_TEST_CASE ( SelectedCI_vs_FrozenCoreDOCI ) {
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, H5);  // in an AO basis
 
     // Create compatible Fock spaces
-    GQCP::FrozenFockSpace frozen_fock_space (K, 3, 1);
-    GQCP::SelectedFockSpace fock_space (frozen_fock_space);
+    GQCP::FrozenONVBasis frozen_fock_space (K, 3, 1);
+    GQCP::SelectedONVBasis fock_space (frozen_fock_space);
 
-    // The SelectedFockSpace includes the same configurations as the FrozenFockSpace
+    // The SelectedONVBasis includes the same configurations as the FrozenONVBasis
     // These builder instances should return the same results.
     GQCP::SelectedCI random_sci (fock_space);
     GQCP::FrozenCoreDOCI random_frozen_core_doci (frozen_fock_space);

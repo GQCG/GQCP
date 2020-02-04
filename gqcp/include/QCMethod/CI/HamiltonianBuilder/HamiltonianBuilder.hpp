@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "FockSpace/BaseFockSpace.hpp"
+#include "ONVBasis/BaseONVBasis.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 
 #include <memory>
@@ -43,7 +43,7 @@ public:
 
 
     // PURE VIRTUAL GETTERS
-    virtual const BaseFockSpace* get_fock_space() const = 0;
+    virtual const BaseONVBasis* get_fock_space() const = 0;
 
 
     // PURE VIRTUAL PUBLIC METHODS

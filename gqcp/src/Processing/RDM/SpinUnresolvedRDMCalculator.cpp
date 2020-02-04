@@ -35,7 +35,7 @@ namespace GQCP {
  *
  *  @param fock_space       the Fock space
  */
-SpinUnresolvedRDMCalculator::SpinUnresolvedRDMCalculator(const FockSpace& fock_space) :
+SpinUnresolvedRDMCalculator::SpinUnresolvedRDMCalculator(const ONVBasis& fock_space) :
     rdm_builder(SpinUnresolvedFCIRDMBuilder(fock_space))
 {}
 
@@ -45,7 +45,7 @@ SpinUnresolvedRDMCalculator::SpinUnresolvedRDMCalculator(const FockSpace& fock_s
  *  @param wavefunction       the wave function holding the coefficient vector and a Fock space on which the RDMBuilder should be based
  */
 SpinUnresolvedRDMCalculator::SpinUnresolvedRDMCalculator(const SpinUnresolvedWaveFunction& wavefunction) :
-    SpinUnresolvedRDMCalculator(dynamic_cast<const FockSpace&>(wavefunction.get_fock_space()))
+    SpinUnresolvedRDMCalculator(dynamic_cast<const ONVBasis&>(wavefunction.get_fock_space()))
 {
     this->set_coefficients(wavefunction.get_coefficients());
 }

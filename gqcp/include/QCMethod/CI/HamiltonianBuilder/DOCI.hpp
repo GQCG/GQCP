@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "FockSpace/FockSpace.hpp"
+#include "ONVBasis/ONVBasis.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/HamiltonianBuilder.hpp"
 
 #include <memory>
@@ -32,7 +32,7 @@ namespace GQCP {
  */
 class DOCI : public HamiltonianBuilder {
 private:
-    FockSpace fock_space;  // both the alpha and beta Fock space
+    ONVBasis fock_space;  // both the alpha and beta Fock space
 
 
 public:
@@ -40,7 +40,7 @@ public:
     /**
      *  @param fock_space       the full Fock space, identical for alpha and beta
      */
-    explicit DOCI(const FockSpace& fock_space);
+    explicit DOCI(const ONVBasis& fock_space);
 
 
     // DESTRUCTOR
@@ -48,7 +48,7 @@ public:
 
 
     // OVERRIDDEN GETTERS
-    const BaseFockSpace* get_fock_space() const override { return &fock_space; }
+    const BaseONVBasis* get_fock_space() const override { return &fock_space; }
 
 
     // OVERRIDDEN PUBLIC METHODS

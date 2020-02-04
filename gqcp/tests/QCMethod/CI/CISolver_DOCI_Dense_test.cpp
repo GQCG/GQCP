@@ -33,7 +33,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_beh_cation_klaas_dense ) {
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::ReadFCIDUMP("data/beh_cation_631g_caitlin.FCIDUMP");
 
     // The species contains 4 electrons and 16 basis functions, this requires a single Fock Space of 16 orbitals and 2 electrons
-    GQCP::FockSpace fock_space (16, 2);  // dim = 120
+    GQCP::ONVBasis fock_space (16, 2);  // dim = 120
 
     // Create the DOCI module
     GQCP::DOCI doci (fock_space);
@@ -63,7 +63,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_lih_klaas_dense ) {
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::ReadFCIDUMP("data/lih_631g_caitlin.FCIDUMP");
 
     // The species contains 4 electrons and 16 basis functions, this requires a single Fock Space of 16 orbitals and 2 electrons
-    GQCP::FockSpace fock_space (16, 2);  // dim = 120
+    GQCP::ONVBasis fock_space (16, 2);  // dim = 120
 
     // Create the DOCI module
     GQCP::DOCI doci (fock_space);
@@ -93,7 +93,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_li2_klaas_dense ) {
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::ReadFCIDUMP("data/li2_321g_klaas.FCIDUMP");
 
     // The species contains 4 electrons and 16 basis functions, this requires a single Fock Space of 16 orbitals and 2 electrons
-    GQCP::FockSpace fock_space (18, 3);  // dim = 816
+    GQCP::ONVBasis fock_space (18, 3);  // dim = 816
 
     // Create the DOCI module
     GQCP::DOCI doci (fock_space);

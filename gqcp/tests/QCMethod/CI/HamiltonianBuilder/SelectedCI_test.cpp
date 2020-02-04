@@ -30,8 +30,8 @@
 BOOST_AUTO_TEST_CASE ( SelectedCI_constructor ) {
 
     // Check if a correct constructor works
-    GQCP::ProductFockSpace product_fock_space (5, 3, 3);
-    GQCP::SelectedFockSpace fock_space (product_fock_space);
+    GQCP::ProductONVBasis product_fock_space (5, 3, 3);
+    GQCP::SelectedONVBasis fock_space (product_fock_space);
     BOOST_CHECK_NO_THROW(GQCP::SelectedCI selected_ci (fock_space));
 }
 
@@ -43,16 +43,16 @@ BOOST_AUTO_TEST_CASE ( SelectedCI_public_methods ) {
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Random(K);
 
     // Create a compatible Fock space
-    GQCP::ProductFockSpace product_fock_space (K, 3, 3);
-    GQCP::SelectedFockSpace fock_space (product_fock_space);
+    GQCP::ProductONVBasis product_fock_space (K, 3, 3);
+    GQCP::SelectedONVBasis fock_space (product_fock_space);
     GQCP::SelectedCI random_selected_ci (fock_space);
     GQCP::VectorX<double> x = random_selected_ci.calculateDiagonal(sq_hamiltonian);
     BOOST_CHECK_NO_THROW(random_selected_ci.constructHamiltonian(sq_hamiltonian));
     BOOST_CHECK_NO_THROW(random_selected_ci.matrixVectorProduct(sq_hamiltonian, x, x));
 
     // Create an incompatible Fock space
-    GQCP::ProductFockSpace product_fock_space_invalid (K+1, 3, 3);
-    GQCP::SelectedFockSpace fock_space_invalid (product_fock_space_invalid);
+    GQCP::ProductONVBasis product_fock_space_invalid (K+1, 3, 3);
+    GQCP::SelectedONVBasis fock_space_invalid (product_fock_space_invalid);
     GQCP::SelectedCI random_selected_ci_invalid (fock_space_invalid);
     BOOST_CHECK_THROW(random_selected_ci_invalid.constructHamiltonian(sq_hamiltonian), std::invalid_argument);
     BOOST_CHECK_THROW(random_selected_ci_invalid.matrixVectorProduct(sq_hamiltonian, x, x), std::invalid_argument);
@@ -68,10 +68,10 @@ BOOST_AUTO_TEST_CASE ( SelectedCI_vs_FCI ) {
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, H4);  // in an AO basis
 
     // Create compatible Fock spaces
-    GQCP::ProductFockSpace product_fock_space (K, 2, 2);
-    GQCP::SelectedFockSpace fock_space (product_fock_space);
+    GQCP::ProductONVBasis product_fock_space (K, 2, 2);
+    GQCP::SelectedONVBasis fock_space (product_fock_space);
 
-    // The SelectedFockSpace includes the same configurations as the ProductFockSpace, so the HamiltonianBuilders should return the same results
+    // The SelectedONVBasis includes the same configurations as the ProductONVBasis, so the HamiltonianBuilders should return the same results
     GQCP::SelectedCI selected_ci (fock_space);
     GQCP::FCI fci (product_fock_space);
 
@@ -98,10 +98,10 @@ BOOST_AUTO_TEST_CASE ( SelectedCI_vs_DOCI ) {
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, H4);  // in an AO basis
 
     // Create compatible Fock spaces
-    GQCP::FockSpace do_fock_space (K, 2);
-    GQCP::SelectedFockSpace fock_space (do_fock_space);
+    GQCP::ONVBasis do_fock_space (K, 2);
+    GQCP::SelectedONVBasis fock_space (do_fock_space);
 
-    // The SelectedFockSpace includes the same configurations as the FockSpace
+    // The SelectedONVBasis includes the same configurations as the ONVBasis
     // These builder instances should return the same results.
     GQCP::SelectedCI selected_ci (fock_space);
     GQCP::DOCI doci (do_fock_space);

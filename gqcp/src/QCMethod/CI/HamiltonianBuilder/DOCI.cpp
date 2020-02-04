@@ -28,7 +28,7 @@ namespace GQCP {
 /**
  *  @param fock_space       the full Fock space, identical for alpha and beta
  */
-DOCI::DOCI(const FockSpace& fock_space) :
+DOCI::DOCI(const ONVBasis& fock_space) :
     HamiltonianBuilder(),
     fock_space (fock_space)
 {}

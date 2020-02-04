@@ -73,11 +73,11 @@ FukuiDysonAnalysis::FukuiDysonAnalysis(const Molecule& molecule, const std::stri
 
     // In order to supply the correct arguments to the algorithm we choose different Fock spaces as fock_space1 should always have the highest occupation to fit the algorithm
     if (open_shell_entry) {
-        this->fock_space1 = ProductFockSpace(K, N_P + 1, N_P);
-        this->fock_space2 = ProductFockSpace(K, N_P, N_P);
+        this->fock_space1 = ProductONVBasis(K, N_P + 1, N_P);
+        this->fock_space2 = ProductONVBasis(K, N_P, N_P);
     } else {
-        this->fock_space1 = ProductFockSpace(K, N_P, N_P);
-        this->fock_space2 = ProductFockSpace(K, N_P, N_P - 1); 
+        this->fock_space1 = ProductONVBasis(K, N_P, N_P);
+        this->fock_space2 = ProductONVBasis(K, N_P, N_P - 1); 
     }
 
     // Solve the FCI Hamiltonian eigenvalue problems with a Davidson algorithm

@@ -18,8 +18,8 @@
 #pragma once
 
 
-#include "FockSpace/FockSpace.hpp"
-#include "FockSpace/WaveFunction/SpinUnresolvedWaveFunction.hpp"
+#include "ONVBasis/ONVBasis.hpp"
+#include "ONVBasis/WaveFunction/SpinUnresolvedWaveFunction.hpp"
 #include "Processing/RDM/BaseSpinUnresolvedRDMBuilder.hpp"
 #include "Processing/RDM/SpinUnresolvedFCIRDMBuilder.hpp"
 
@@ -50,7 +50,7 @@ public:
      *
      *  @param fock_space       the Fock space
      */
-    explicit SpinUnresolvedRDMCalculator(const FockSpace& fock_space);
+    explicit SpinUnresolvedRDMCalculator(const ONVBasis& fock_space);
 
     /**
      *  A run-time constructor allocating the appropriate derived RDMBuilder and coefficient vector

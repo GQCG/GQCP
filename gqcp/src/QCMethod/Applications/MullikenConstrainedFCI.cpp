@@ -234,7 +234,7 @@ MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const s
     }
     
     basisTransform(this->uspinor_basis, this->usq_hamiltonian, this->spinor_basis.coefficientMatrix());
-    this->fock_space = FrozenProductFockSpace(K, N_P, N_P, frozencores);
+    this->fock_space = FrozenProductONVBasis(K, N_P, N_P, frozencores);
     this->mulliken_operator = this->spinor_basis.calculateMullikenOperator(basis_targets);
     this->sq_sz_operator = this->uspinor_basis.calculateAtomicSpinZ(basis_targets, SpinComponent::ALPHA);
 

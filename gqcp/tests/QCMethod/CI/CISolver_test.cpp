@@ -33,12 +33,12 @@ BOOST_AUTO_TEST_CASE ( Solver_constructor ) {
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Random(K);
 
     // Create a compatible Fock space
-    GQCP::FockSpace fock_space (K, 3);
+    GQCP::ONVBasis fock_space (K, 3);
     GQCP::DOCI random_doci (fock_space);
     BOOST_CHECK_NO_THROW(GQCP::CISolver ci_solver (random_doci, sq_hamiltonian));
 
     // Create an incompatible Fock space
-    GQCP::FockSpace fock_space_invalid (K+1, 3);
+    GQCP::ONVBasis fock_space_invalid (K+1, 3);
     GQCP::DOCI random_doci_invalid (fock_space_invalid);
     BOOST_CHECK_THROW(GQCP::CISolver ci_solver (random_doci_invalid, sq_hamiltonian), std::invalid_argument);
 }

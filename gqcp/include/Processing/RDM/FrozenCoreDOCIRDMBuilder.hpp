@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "FockSpace/FrozenProductFockSpace.hpp"
+#include "ONVBasis/FrozenProductONVBasis.hpp"
 #include "Processing/RDM/FrozenCoreRDMBuilder.hpp"
 #include "Processing/RDM/RDMs.hpp"
 
@@ -30,17 +30,17 @@ namespace GQCP {
  *  A class capable of calculating 1- and 2-RDMs from wave functions expanded in the frozen DOCI Fock space
  */
 class FrozenCoreDOCIRDMBuilder : public FrozenCoreRDMBuilder {
-    FrozenFockSpace fock_space;  // both the frozen alpha and beta Fock space
+    FrozenONVBasis fock_space;  // both the frozen alpha and beta Fock space
 
 public:
     // CONSTRUCTORS
     /**
      *  @param fock_space       the frozen Fock space
      */
-    explicit FrozenCoreDOCIRDMBuilder(const FrozenFockSpace& fock_space);
+    explicit FrozenCoreDOCIRDMBuilder(const FrozenONVBasis& fock_space);
 
     // OVERRIDDEN GETTERS
-    const BaseFockSpace* get_fock_space() const override { return &fock_space; }
+    const BaseONVBasis* get_fock_space() const override { return &fock_space; }
 };
 
 

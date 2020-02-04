@@ -186,7 +186,7 @@ void SelectedCI::evaluateHamiltonianElements(const SQHamiltonian<double>& sq_ham
 /**
  *  @param fock_space       the full alpha and beta product Fock space
  */
-SelectedCI::SelectedCI(const SelectedFockSpace& fock_space) :
+SelectedCI::SelectedCI(const SelectedONVBasis& fock_space) :
     HamiltonianBuilder(),
     fock_space(fock_space)
 {}

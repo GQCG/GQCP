@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "FockSpace/SelectedFockSpace.hpp"
+#include "ONVBasis/SelectedONVBasis.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/HamiltonianBuilder.hpp"
 
 
@@ -40,7 +40,7 @@ using PassToMethod = std::function<void (size_t I, size_t J, double value)>;
  */
 class SelectedCI : public HamiltonianBuilder {
 private:
-    SelectedFockSpace fock_space;  // contains both the alpha and beta Fock space
+    SelectedONVBasis fock_space;  // contains both the alpha and beta Fock space
     
     // PRIVATE METHODS
     /**
@@ -57,7 +57,7 @@ public:
     /**
      *  @param fock_space               the selected Fock space
      */
-    explicit SelectedCI(const SelectedFockSpace& fock_space);
+    explicit SelectedCI(const SelectedONVBasis& fock_space);
 
 
     // DESTRUCTOR
@@ -65,7 +65,7 @@ public:
 
 
     // OVERRIDDEN GETTERS
-    const BaseFockSpace* get_fock_space() const override { return &fock_space; }
+    const BaseONVBasis* get_fock_space() const override { return &fock_space; }
 
 
     // OVERRIDDEN PUBLIC METHODS

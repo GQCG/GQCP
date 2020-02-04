@@ -79,7 +79,7 @@ void FCI::solve() {
 
     // Solve the FCI eigenvalue problem using the dense algorithm
     auto K = sq_hamiltonian.dimension();
-    ProductFockSpace fock_space(K, this->N_alpha, this->N_beta);
+    ProductONVBasis fock_space(K, this->N_alpha, this->N_beta);
     GQCP::FCI fci_builder (fock_space);
 
     std::shared_ptr<BaseSolverOptions> solver_options;

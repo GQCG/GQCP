@@ -17,7 +17,7 @@
 // 
 #include "QCMethod/Geminals/AP1roGGeminalCoefficients.hpp"
 
-#include "FockSpace/FockSpace.hpp"
+#include "ONVBasis/ONVBasis.hpp"
 #include "QCMethod/Geminals/APIGGeminalCoefficients.hpp"
 #include "Utilities/miscellaneous.hpp"
 
@@ -213,7 +213,7 @@ double AP1roGGeminalCoefficients::overlap(const ONV& onv) const {
 
     // For an AP1roG wave function, we use a simplification for singly and doubly pair-excited ONVs
 
-    FockSpace fock_space (this->K, this->N_P);  // the DOCI Fock space
+    ONVBasis fock_space (this->K, this->N_P);  // the DOCI Fock space
     ONV reference = fock_space.makeONV(0);
 
     if (onv.countNumberOfDifferences(reference) == 0) {  // no excitations

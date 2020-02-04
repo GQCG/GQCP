@@ -19,7 +19,7 @@
 
 #include "Basis/transform.hpp"
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
-#include "FockSpace/ProductFockSpace.hpp"
+#include "ONVBasis/ProductONVBasis.hpp"
 #include "Mathematical/Optimization/Minimization/IterativeIdentitiesHessianModifier.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Processing/RDM/RDMCalculator.hpp"
@@ -112,7 +112,7 @@ void DOCINewtonOrbitalOptimizer::solve() {
     }
 
      // Do the DOCI orbital optimization
-    FockSpace fock_space (K, N_P);
+    ONVBasis fock_space (K, N_P);
     DOCI doci (fock_space);
 
     std::shared_ptr<BaseSolverOptions> solver_options;

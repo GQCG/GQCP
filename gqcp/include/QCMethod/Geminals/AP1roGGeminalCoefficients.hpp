@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "FockSpace/WaveFunction/WaveFunction.hpp"
+#include "ONVBasis/WaveFunction/WaveFunction.hpp"
 #include "Mathematical/Representation/BlockMatrix.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/Geminals/GeminalCoefficientsInterface.hpp"

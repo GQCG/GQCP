@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "FockSpace/SelectedFockSpace.hpp"
+#include "ONVBasis/SelectedONVBasis.hpp"
 #include "Processing/RDM/BaseRDMBuilder.hpp"
 #include "Processing/RDM/RDMs.hpp"
 
@@ -30,12 +30,12 @@ namespace GQCP {
  *  A class capable of calculating 1- and 2-RDMs from wave functions expanded in a selected Fock space
  */
 class SelectedRDMBuilder : public BaseRDMBuilder {
-    SelectedFockSpace fock_space;  // Fock space containing the selected configurations
+    SelectedONVBasis fock_space;  // Fock space containing the selected configurations
 
 
 public:
     // CONSTRUCTORS
-    explicit SelectedRDMBuilder (const SelectedFockSpace& fock_space);
+    explicit SelectedRDMBuilder (const SelectedONVBasis& fock_space);
 
 
     // DESTRUCTOR
@@ -43,7 +43,7 @@ public:
 
 
     // OVERRIDDEN GETTERS
-    const BaseFockSpace* get_fock_space() const override { return &fock_space; }
+    const BaseONVBasis* get_fock_space() const override { return &fock_space; }
 
 
     // OVERRIDDEN PUBLIC METHODS

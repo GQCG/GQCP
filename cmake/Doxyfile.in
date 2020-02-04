@@ -797,8 +797,8 @@ INPUT = "@CMAKE_SOURCE_DIR@/gqcp/include" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Basis/Integrals/Interfaces" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Basis/ScalarBasis" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Basis/SpinorBasis" \
-        "@CMAKE_SOURCE_DIR@/gqcp/include/FockSpace" \
-        "@CMAKE_SOURCE_DIR@/gqcp/include/FockSpace/WaveFunction" \
+        "@CMAKE_SOURCE_DIR@/gqcp/include/ONVBasis" \
+        "@CMAKE_SOURCE_DIR@/gqcp/include/ONVBasis/WaveFunction" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Mathematical" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Mathematical/Algorithm" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Mathematical/Optimization" \
@@ -832,8 +832,8 @@ INPUT = "@CMAKE_SOURCE_DIR@/gqcp/include" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/Basis/Integrals/Interfaces" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/Basis/ScalarBasis" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/Basis/SpinorBasis" \
-        "@CMAKE_SOURCE_DIR@/gqcp/src/FockSpace" \
-        "@CMAKE_SOURCE_DIR@/gqcp/src/FockSpace/WaveFunction" \
+        "@CMAKE_SOURCE_DIR@/gqcp/src/ONVBasis" \
+        "@CMAKE_SOURCE_DIR@/gqcp/src/ONVBasis/WaveFunction" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/Mathematical" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/Mathematical/Optimization" \
         "@CMAKE_SOURCE_DIR@/gqcp/src/Mathematical/Optimization/Eigenproblem" \

@@ -36,7 +36,7 @@ namespace GQCP {
  *
  *  @param fock_space       the DOCI Fock space
  */
-RDMCalculator::RDMCalculator(const FockSpace& fock_space) :
+RDMCalculator::RDMCalculator(const ONVBasis& fock_space) :
     rdm_builder (std::make_shared<DOCIRDMBuilder>(fock_space))
 {}
 
@@ -46,7 +46,7 @@ RDMCalculator::RDMCalculator(const FockSpace& fock_space) :
  *
  *  @param fock_space       the FCI Fock space
  */
-RDMCalculator::RDMCalculator(const ProductFockSpace& fock_space) :
+RDMCalculator::RDMCalculator(const ProductONVBasis& fock_space) :
     rdm_builder (std::make_shared<FCIRDMBuilder>(fock_space))
 {}
 
@@ -56,7 +56,7 @@ RDMCalculator::RDMCalculator(const ProductFockSpace& fock_space) :
  *
  *  @param fock_space       the 'selected' Fock space
  */
-RDMCalculator::RDMCalculator(const SelectedFockSpace& fock_space) :
+RDMCalculator::RDMCalculator(const SelectedONVBasis& fock_space) :
     rdm_builder (std::make_shared<SelectedRDMBuilder>(fock_space))
 {}
 
@@ -66,35 +66,35 @@ RDMCalculator::RDMCalculator(const SelectedFockSpace& fock_space) :
  *
  *  @param fock_space       the Fock space on which the RDMBuilder should be based
  */
-RDMCalculator::RDMCalculator(const BaseFockSpace& fock_space) {
+RDMCalculator::RDMCalculator(const BaseONVBasis& fock_space) {
 
     switch (fock_space.get_type()){
 
-        case FockSpaceType::FockSpace: {
-            this->rdm_builder = std::make_shared<DOCIRDMBuilder>(dynamic_cast<const FockSpace&>(fock_space));
+        case ONVBasisType::ONVBasis: {
+            this->rdm_builder = std::make_shared<DOCIRDMBuilder>(dynamic_cast<const ONVBasis&>(fock_space));
             break;
         }
 
-        case FockSpaceType::ProductFockSpace: {
-            this->rdm_builder = std::make_shared<FCIRDMBuilder>(dynamic_cast<const ProductFockSpace&>(fock_space));
-
-            break;
-        }
-
-        case FockSpaceType::SelectedFockSpace: {
-            this->rdm_builder = std::make_shared<SelectedRDMBuilder>(dynamic_cast<const SelectedFockSpace&>(fock_space));
+        case ONVBasisType::ProductONVBasis: {
+            this->rdm_builder = std::make_shared<FCIRDMBuilder>(dynamic_cast<const ProductONVBasis&>(fock_space));
 
             break;
         }
 
-        case FockSpaceType::FrozenFockSpace: {
-            this->rdm_builder = std::make_shared<FrozenCoreDOCIRDMBuilder>(dynamic_cast<const FrozenFockSpace&>(fock_space));
+        case ONVBasisType::SelectedONVBasis: {
+            this->rdm_builder = std::make_shared<SelectedRDMBuilder>(dynamic_cast<const SelectedONVBasis&>(fock_space));
 
             break;
         }
 
-        case FockSpaceType::FrozenProductFockSpace: {
-            this->rdm_builder = std::make_shared<FrozenCoreFCIRDMBuilder>(dynamic_cast<const FrozenProductFockSpace&>(fock_space));
+        case ONVBasisType::FrozenONVBasis: {
+            this->rdm_builder = std::make_shared<FrozenCoreDOCIRDMBuilder>(dynamic_cast<const FrozenONVBasis&>(fock_space));
+
+            break;
+        }
+
+        case ONVBasisType::FrozenProductONVBasis: {
+            this->rdm_builder = std::make_shared<FrozenCoreFCIRDMBuilder>(dynamic_cast<const FrozenProductONVBasis&>(fock_space));
 
             break;
         }

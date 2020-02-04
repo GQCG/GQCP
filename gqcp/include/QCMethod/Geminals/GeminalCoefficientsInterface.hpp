@@ -18,8 +18,8 @@
 #pragma once
 
 
-#include "FockSpace/FockSpace.hpp"
-#include "FockSpace/WaveFunction/WaveFunction.hpp"
+#include "ONVBasis/ONVBasis.hpp"
+#include "ONVBasis/WaveFunction/WaveFunction.hpp"
 
 
 namespace GQCP {
@@ -44,7 +44,7 @@ public:
      *
      *  @return the wave function expansion corresponding to the geminal coefficients
      */
-    WaveFunction toWaveFunction(const FockSpace& fock_space) const;
+    WaveFunction toWaveFunction(const ONVBasis& fock_space) const;
 };
 
 

@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "FockSpace/WaveFunction/WaveFunction.hpp"
+#include "ONVBasis/WaveFunction/WaveFunction.hpp"
 #include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
 #include "Processing/RDM/OneRDM.hpp"
 

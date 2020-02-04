@@ -100,7 +100,7 @@ BOOST_AUTO_TEST_CASE ( mulliken_N2_STO_3G ) {
 
     sq_hamiltonian.transform(rhf_parameters.coefficientMatrix());
 
-    GQCP::FockSpace fock_space (K, N/2);
+    GQCP::ONVBasis fock_space (K, N/2);
     GQCP::DOCI doci (fock_space);
 
     GQCP::CISolver ci_solver (doci, sq_hamiltonian);
@@ -170,7 +170,7 @@ BOOST_AUTO_TEST_CASE ( S_z_constrained_NOplus_STO_3G ) {
     constrained = constrained.constrain(sq_N_Sz_beta, 0.5, GQCP::SpinComponent::BETA);
 
     // Do the FCI calculation 
-    GQCP::ProductFockSpace fock_space (K, Ne/2, Ne/2);
+    GQCP::ProductONVBasis fock_space (K, Ne/2, Ne/2);
     
     GQCP::DavidsonSolverOptions solver_options (fock_space.HartreeFockExpansion());
     GQCP::VectorX<double> dia = fock_space.evaluateOperatorDiagonal(constrained);
@@ -224,7 +224,7 @@ BOOST_AUTO_TEST_CASE ( spin_O2 ) {
 
     sq_hamiltonian.transform(rhf_parameters.coefficientMatrix());
 
-    GQCP::ProductFockSpace fock_space (K, N/2, N/2);
+    GQCP::ProductONVBasis fock_space (K, N/2, N/2);
     GQCP::FCI fci (fock_space);
  
     GQCP::CISolver ci_solver (fci, sq_hamiltonian);

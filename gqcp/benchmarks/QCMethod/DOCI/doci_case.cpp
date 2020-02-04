@@ -16,7 +16,7 @@ static void test_case(benchmark::State& state) {
     auto hamiltonian = GQCP::SQHamiltonian<double>::ReadFCIDUMP("data/co_631g_klaas.FCIDUMP");
 
     // The species contains 14 electrons and 28 basis functions, this requires a single Fock Space of 28 orbitals and 7 electrons
-    GQCP::FockSpace fock_space (hamiltonian.dimension(), 7);  // dim = 1184040
+    GQCP::ONVBasis fock_space (hamiltonian.dimension(), 7);  // dim = 1184040
 
     // Create the DOCI module
     GQCP::DOCI doci (fock_space);

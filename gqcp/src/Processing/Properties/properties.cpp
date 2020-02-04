@@ -17,7 +17,7 @@
 // 
 #include "Processing/Properties/properties.hpp"
 
-#include "FockSpace/ProductFockSpace.hpp"
+#include "ONVBasis/ProductONVBasis.hpp"
 #include "Processing/Properties/expectation_values.hpp"
 
 
@@ -66,16 +66,16 @@ Matrix<double, 3, 3> calculateElectricPolarizability(const Matrix<double, Dynami
 VectorX<double> calculateDysonOrbitalCoefficients(const WaveFunction& wavefunction1, const WaveFunction& wavefunction2) {
 
     // Check the arguments
-    if (wavefunction1.get_fock_space().get_type() != FockSpaceType::ProductFockSpace) {
+    if (wavefunction1.get_fock_space().get_type() != ONVBasisType::ProductONVBasis) {
         throw std::runtime_error("properties::calculateDysonOrbital(WaveFunction, WaveFunction): wavefunction1 is not in a product Fock space");
     }
 
-    if (wavefunction2.get_fock_space().get_type() != FockSpaceType::ProductFockSpace) {
+    if (wavefunction2.get_fock_space().get_type() != ONVBasisType::ProductONVBasis) {
         throw std::runtime_error("properties::calculateDysonOrbital(WaveFunction, WaveFunction): wavefunction2 is not in a product Fock space");
     }
 
-    const auto& fock_space1 = static_cast<const ProductFockSpace&>(wavefunction1.get_fock_space());
-    const auto& fock_space2 = static_cast<const ProductFockSpace&>(wavefunction2.get_fock_space());
+    const auto& fock_space1 = static_cast<const ProductONVBasis&>(wavefunction1.get_fock_space());
+    const auto& fock_space2 = static_cast<const ProductONVBasis&>(wavefunction2.get_fock_space());
 
     if ((fock_space1.get_N_alpha() - fock_space2.get_N_alpha() != 0) && (fock_space1.get_N_beta() - fock_space2.get_N_beta() != 1)) {
         if ((fock_space1.get_N_alpha() - fock_space2.get_N_alpha() != 1) && (fock_space1.get_N_beta() - fock_space2.get_N_beta() != 0)) {

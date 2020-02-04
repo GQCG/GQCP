@@ -24,7 +24,7 @@ namespace GQCP {
 /*
  *  CONSTRUCTOR
  */
-DOCIRDMBuilder::DOCIRDMBuilder(const FockSpace& fock_space) :
+DOCIRDMBuilder::DOCIRDMBuilder(const ONVBasis& fock_space) :
     fock_space (fock_space)
 {}
 

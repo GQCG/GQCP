@@ -28,7 +28,7 @@ namespace GQCP {
 /**
  *  @param fock_space       the full alpha and beta product Fock space
  */
-Hubbard::Hubbard(const ProductFockSpace& fock_space) :
+Hubbard::Hubbard(const ProductONVBasis& fock_space) :
     HamiltonianBuilder(),
     fock_space(fock_space)
 {}
@@ -69,8 +69,8 @@ VectorX<double> Hubbard::matrixVectorProduct(const SQHamiltonian<double>& sq_ham
         throw std::invalid_argument("Hubbard::matrixVectorProduct(SQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the Fock space and sq_hamiltonian are incompatible.");
     }
 
-    FockSpace fock_space_alpha = fock_space.get_fock_space_alpha();
-    FockSpace fock_space_beta = fock_space.get_fock_space_beta();
+    ONVBasis fock_space_alpha = fock_space.get_fock_space_alpha();
+    ONVBasis fock_space_beta = fock_space.get_fock_space_beta();
 
     auto dim_alpha = fock_space_alpha.get_dimension();
     auto dim_beta = fock_space_beta.get_dimension();
@@ -101,8 +101,8 @@ VectorX<double> Hubbard::calculateDiagonal(const SQHamiltonian<double>& sq_hamil
         throw std::invalid_argument("Hubbard::calculateDiagonal(SQHamiltonian<double>): Basis functions of the Fock space and sq_hamiltonian are incompatible.");
     }
 
-    FockSpace fock_space_alpha = fock_space.get_fock_space_alpha();
-    FockSpace fock_space_beta = fock_space.get_fock_space_beta();
+    ONVBasis fock_space_alpha = fock_space.get_fock_space_alpha();
+    ONVBasis fock_space_beta = fock_space.get_fock_space_beta();
 
     const auto dim_alpha = fock_space_alpha.get_dimension();
     const auto dim_beta = fock_space_beta.get_dimension();

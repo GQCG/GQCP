@@ -21,8 +21,8 @@
 
 #include "Processing/RDM/RDMCalculator.hpp"
 
-#include "FockSpace/FockSpace.hpp"
-#include "FockSpace/ProductFockSpace.hpp"
+#include "ONVBasis/ONVBasis.hpp"
+#include "ONVBasis/ProductONVBasis.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Processing/RDM/SpinUnresolvedRDMCalculator.hpp"
 #include "QCMethod/CI/CISolver.hpp"
@@ -39,8 +39,8 @@ BOOST_AUTO_TEST_CASE ( constructor ) {
     size_t K = sq_hamiltonian.dimension();  // 16 SO
 
     // Abstract pointer to test RDM
-    std::shared_ptr<GQCP::BaseFockSpace> fock_space_dy(new GQCP::FockSpace(K, N/2));  // dim = 120
-    GQCP::FockSpace fock_space (K, N/2);  // dim = 120
+    std::shared_ptr<GQCP::BaseONVBasis> fock_space_dy(new GQCP::ONVBasis(K, N/2));  // dim = 120
+    GQCP::ONVBasis fock_space (K, N/2);  // dim = 120
 
     GQCP::DOCI doci (fock_space);
 
@@ -64,7 +64,7 @@ BOOST_AUTO_TEST_CASE ( no_vector_throws ) {
 
     size_t K = 5;
     size_t N = 4;
-    GQCP::FockSpace fock_space (K, N);
+    GQCP::ONVBasis fock_space (K, N);
 
     GQCP::VectorX<double> coeff (fock_space.get_dimension());
     coeff << 1, 1, -2, 4, -5;
@@ -80,7 +80,7 @@ BOOST_AUTO_TEST_CASE ( operator_call_throw ) {
     // Create a test wave function
     size_t M = 3;
     size_t N = 1;
-    GQCP::FockSpace fock_space (M, N);
+    GQCP::ONVBasis fock_space (M, N);
 
     GQCP::VectorX<double> coeff (fock_space.get_dimension());
     coeff << 1, 2, -3;
@@ -95,7 +95,7 @@ BOOST_AUTO_TEST_CASE ( operator_call ) {
     // Create a test wave function
     size_t M = 3;
     size_t N = 2;
-    GQCP::FockSpace fock_space (M, N);
+    GQCP::ONVBasis fock_space (M, N);
 
     GQCP::VectorX<double> coeff (fock_space.get_dimension());
     coeff << 1, 2, -3;
