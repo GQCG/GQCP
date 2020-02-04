@@ -18,30 +18,20 @@
 #pragma once
 
 
-#include "ONV.hpp"
+#include "ONVBasis/ONV.hpp"
+#include "Utilities/CRTP.hpp"
 
 
 namespace GQCP {
 
 
 /**
- *  An interface for Fock spaces who manipulate (generate, permutate) ONVs and can calculate the address of an ONV given the representation
+ *  An interface for ONVBases that generate, permutate and can calculate the address of an ONV given its unsigned representation.
+ * 
+ *  @tparam _DerivedManipulator             the type of the derived class
  */
-
-/**
- *  This class utilizes the CRTP or curiously recurring template pattern.
- *  This allows compile-time identification of pure virtual functions called within a non virtual base method.
- *  This method requires derived classes to derive from the base with the derived class as template parameter
- *  e.g. "Derived : public Base<Derived>"
- *
- *  Example of why this is required is found in this class:
- *       ulongNextPermutation(size_t representation) is pure virtual
- *       setNextONV(ONV &onv) is implemented in the base and calls "ulongNextPermutation(size_t representation)"
- *       and contains "auto& fock_space = static_cast<const DerivedManipulator&>(*this)" a self-cast to the derived instance
- *       allowing compile-time identification of the called method and thus inlining
- */
-template <typename DerivedManipulator>
-class ONVManipulator {
+template <typename _DerivedManipulator>
+class ONVManipulator : public CRTP<_DerivedManipulator> {
 protected:
     size_t N;  // number of electrons
 
@@ -126,16 +116,6 @@ public:
 
 
     // PUBLIC METHODS
-
-    /**
-     *  @return this as a DerivedManipulator (done at compile-time)
-     */
-    DerivedManipulator& derived() { return static_cast<DerivedManipulator&>(*this); }
-
-    /**
-     *  @return this as a const DerivedManipulator (done at compile-time)
-     */
-    const DerivedManipulator& derived() const { return static_cast<const DerivedManipulator&>(*this); }
 
     /**
      *  @param address      the address (i.e. the ordening number) of the ONV
