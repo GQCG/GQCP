@@ -28,7 +28,7 @@
 BOOST_AUTO_TEST_CASE ( Hubbard_constructor ) {
 
     // Check if a correct constructor works
-    GQCP::ProductFockSpace fock_space (15, 3, 3);
+    GQCP::ProductONVBasis fock_space (15, 3, 3);
     BOOST_CHECK_NO_THROW(GQCP::Hubbard Hubbard (fock_space));
 }
 
@@ -39,16 +39,16 @@ BOOST_AUTO_TEST_CASE ( Hubbard_public_methods ) {
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Random(K);
 
 
-    // Create a compatible Fock space
-    GQCP::ProductFockSpace fock_space (K, 3, 3);
+    // Create a compatible ONV basis
+    GQCP::ProductONVBasis fock_space (K, 3, 3);
     GQCP::Hubbard random_Hubbard (fock_space);
     GQCP::VectorX<double> x = random_Hubbard.calculateDiagonal(sq_hamiltonian);
     BOOST_CHECK_NO_THROW(random_Hubbard.constructHamiltonian(sq_hamiltonian));
     BOOST_CHECK_NO_THROW(random_Hubbard.matrixVectorProduct(sq_hamiltonian, x, x));
 
 
-    // Create an incompatible Fock space
-    GQCP::ProductFockSpace fock_space_invalid (K+1, 3, 3);
+    // Create an incompatible ONV basis
+    GQCP::ProductONVBasis fock_space_invalid (K+1, 3, 3);
 
     // Create Hubbard module
     GQCP::Hubbard random_Hubbard_invalid (fock_space_invalid);
@@ -67,7 +67,7 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI ) {
 
 
     // Check if the Hamiltonian matrix is equal for FCI and Hubbard
-    GQCP::ProductFockSpace fock_space (K, N, N);  // dim = 36
+    GQCP::ProductONVBasis fock_space (K, N, N);  // dim = 36
     GQCP::Hubbard hubbard (fock_space);
     GQCP::FCI fci (fock_space);
 
@@ -87,7 +87,7 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_large ) {
 
 
     // Check if the Hamiltonian matrix is equal for FCI and Hubbard
-    GQCP::ProductFockSpace fock_space (K, N, N);  // dim = 400
+    GQCP::ProductONVBasis fock_space (K, N, N);  // dim = 400
     GQCP::Hubbard hubbard (fock_space);
     GQCP::FCI fci (fock_space);
 
@@ -107,7 +107,7 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_matvec ) {
 
 
     // Check if FCI and Hubbard have the same matvec for the Hubbard Hamiltonian
-    GQCP::ProductFockSpace fock_space (K, N, N);  // dim = 36
+    GQCP::ProductONVBasis fock_space (K, N, N);  // dim = 36
 
     GQCP::Hubbard hubbard (fock_space);
     GQCP::FCI fci (fock_space);
@@ -132,7 +132,7 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_large_matvec ) {
 
 
     // Check if FCI and Hubbard have the same matvec for the Hubbard Hamiltonian
-    GQCP::ProductFockSpace fock_space (K, N, N);  // dim = 400
+    GQCP::ProductONVBasis fock_space (K, N, N);  // dim = 400
 
     GQCP::Hubbard hubbard (fock_space);
     GQCP::FCI fci (fock_space);

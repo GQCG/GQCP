@@ -21,9 +21,10 @@ namespace py = pybind11;
 
 
 /**
- *  As stated in the FAQ (https://pybind11.readthedocs.io/en/stable/faq.html#how-can-i-reduce-the-build-time), it is good practice to split the binding code over multiple files
+ *  As stated in the Pybind11 FAQ (https://pybind11.readthedocs.io/en/stable/faq.html#how-can-i-reduce-the-build-time), it is good practice to split the binding of the code over multiple files.
  */
 namespace gqcpy {
+
 
 void bindQCMethodDOCINewtonOrbitalOptimizer(py::module& module);
 void bindQCMethodDOCIRHF(py::module& module);
@@ -36,8 +37,11 @@ void bindVersion(py::module& module);
 void bindMolecule(py::module& module);
 void bindNucleus(py::module& module);
 void bindSpinorBasis(py::module& module);
+
+void bindSQHamiltonian(py::module& module);
 void bindSQOneElectronOperator(py::module& module);
 void bindSQTwoElectronOperator(py::module& module);
+
 
 }  // namespace gqcpy
 
@@ -51,15 +55,19 @@ PYBIND11_MODULE (gqcpy, module) {
 
     gqcpy::bindVersion(module);
 
-    // Bind basic functionality
+    // Basis
+    gqcpy::bindSpinorBasis(module);
+
+    // Molecule
     gqcpy::bindMolecule(module);
     gqcpy::bindNucleus(module);
-    gqcpy::bindSpinorBasis(module);
+
+    // Operator
+    gqcpy::bindSQHamiltonian(module);
     gqcpy::bindSQOneElectronOperator(module);
     gqcpy::bindSQTwoElectronOperator(module);
 
-
-    // Bind quantum chemical methods
+    // QCMethod - Applications
     gqcpy::bindQCMethodDOCINewtonOrbitalOptimizer(module);
     gqcpy::bindQCMethodDOCIRHF(module);
     gqcpy::bindQCMethodHubbard(module);

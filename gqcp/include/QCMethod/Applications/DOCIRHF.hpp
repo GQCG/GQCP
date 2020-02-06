@@ -19,7 +19,7 @@
 
 
 #include "Basis/TransformationMatrix.hpp"
-#include "FockSpace/ProductFockSpace.hpp"
+#include "ONVBasis/ProductONVBasis.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Processing/RDM/RDMCalculator.hpp"
 #include "QCMethod/CI/CISolver.hpp"

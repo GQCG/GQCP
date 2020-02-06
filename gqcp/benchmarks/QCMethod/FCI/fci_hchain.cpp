@@ -43,7 +43,7 @@ static void fci_davidson_hchain(benchmark::State& state) {
 
     // Diagonalize the FCI Hamiltonian in the RHF basis
     GQCP::basisTransform(spinor_basis, sq_hamiltonian, rhf_parameters.coefficientMatrix());
-    GQCP::ProductFockSpace fock_space (K, N_P, N_P);
+    GQCP::ProductONVBasis fock_space (K, N_P, N_P);
     GQCP::FCI fci (fock_space);
 
     GQCP::VectorX<double> initial_guess = fock_space.HartreeFockExpansion();
@@ -88,7 +88,7 @@ static void fci_dense_hchain(benchmark::State& state) {
     const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
 
     GQCP::basisTransform(spinor_basis, sq_hamiltonian, rhf_parameters.coefficientMatrix());
-    GQCP::ProductFockSpace fock_space (K, N_P, N_P);
+    GQCP::ProductONVBasis fock_space (K, N_P, N_P);
     GQCP::FCI fci (fock_space);
 
     GQCP::DenseSolverOptions solver_options;

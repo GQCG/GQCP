@@ -18,8 +18,8 @@
 #pragma once
 
 
-#include "FockSpace/FockSpace.hpp"
-#include "FockSpace/WaveFunction/WaveFunction.hpp"
+#include "ONVBasis/ONVBasis.hpp"
+#include "ONVBasis/WaveFunction/WaveFunction.hpp"
 
 
 namespace GQCP {
@@ -40,11 +40,11 @@ public:
     virtual double overlap(const ONV& onv) const = 0;
 
     /**
-     *  @param fock_space       the seniority-zero Fock space the wave function should live in
+     *  @param fock_space       the seniority-zero ONV basis the wave function should live in
      *
      *  @return the wave function expansion corresponding to the geminal coefficients
      */
-    WaveFunction toWaveFunction(const FockSpace& fock_space) const;
+    WaveFunction toWaveFunction(const ONVBasis& fock_space) const;
 };
 
 

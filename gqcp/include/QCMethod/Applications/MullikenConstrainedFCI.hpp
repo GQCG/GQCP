@@ -19,7 +19,7 @@
 
 
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
-#include "FockSpace/ProductFockSpace.hpp"
+#include "ONVBasis/ProductONVBasis.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Operator/SecondQuantized/USQHamiltonian.hpp"
 #include "Processing/RDM/RDMCalculator.hpp"
@@ -47,8 +47,8 @@ private:
     SQHamiltonian<double> sq_hamiltonian;
     USQHamiltonian<double> usq_hamiltonian;
     std::string basis_set;  // the basisset that should be used
-    FrozenProductFockSpace fock_space = FrozenProductFockSpace(0, 0, 0, 0); // Default
-    FrozenCoreFCI fci = FrozenCoreFCI(FrozenProductFockSpace(0, 0, 0, 0)); 
+    FrozenProductONVBasis fock_space = FrozenProductONVBasis(0, 0, 0, 0); // Default
+    FrozenCoreFCI fci = FrozenCoreFCI(FrozenProductONVBasis(0, 0, 0, 0)); 
     ScalarSQOneElectronOperator<double> mulliken_operator;
     ScalarSQOneElectronOperator<double> sq_sz_operator;
     AtomicDecompositionParameters adp = AtomicDecompositionParameters();

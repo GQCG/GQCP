@@ -26,7 +26,7 @@ namespace GQCP {
 
 
 /**
- *  A class capable of calculating 1- and 2-RDMs from wave functions expanded in the full CI product Fock space
+ *  A class capable of calculating 1- and 2-RDMs from wave functions expanded in the full CI product ONV basis
  */
 class FrozenCoreRDMBuilder : public BaseRDMBuilder {
     size_t X;  // number of frozen orbitals/electrons

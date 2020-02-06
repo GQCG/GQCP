@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "FockSpace/BaseFockSpace.hpp"
+#include "ONVBasis/BaseONVBasis.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 
 #include <memory>
@@ -29,10 +29,10 @@ namespace GQCP {
 
 
 /**
- *  A base class whose derived classes are able to construct matrix representations of the Hamiltonian in a Fock space
+ *  A base class whose derived classes are able to construct matrix representations of the Hamiltonian in a ONV basis
  *
  *  Derived classes should implement:
- *      - constructHamiltonian() which constructs the full Hamiltonian matrix in the given Fock space
+ *      - constructHamiltonian() which constructs the full Hamiltonian matrix in the given ONV basis
  *      - matrixVectorProduct() which gives the result of the action of the Hamiltonian on a given coefficient vector
  *      - calculateDiagonal() which gives the diagonal of the Hamiltonian matrix
  */
@@ -43,7 +43,7 @@ public:
 
 
     // PURE VIRTUAL GETTERS
-    virtual const BaseFockSpace* get_fock_space() const = 0;
+    virtual const BaseONVBasis* get_fock_space() const = 0;
 
 
     // PURE VIRTUAL PUBLIC METHODS

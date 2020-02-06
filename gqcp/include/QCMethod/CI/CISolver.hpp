@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "FockSpace/WaveFunction/WaveFunction.hpp"
+#include "ONVBasis/WaveFunction/WaveFunction.hpp"
 #include "Mathematical/Optimization/Eigenproblem/Eigenpair.hpp"
 #include "Mathematical/Optimization/Eigenproblem/EigenproblemSolverOptions.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"

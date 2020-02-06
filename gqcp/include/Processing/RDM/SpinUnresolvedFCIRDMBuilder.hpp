@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "FockSpace/FockSpace.hpp"
+#include "ONVBasis/ONVBasis.hpp"
 #include "Processing/RDM/BaseSpinUnresolvedRDMBuilder.hpp"
 #include "Processing/RDM/RDMs.hpp"
 
@@ -27,10 +27,10 @@ namespace GQCP {
 
 
 /**
- *  A class capable of calculating RDMs from wave functions expanded in the full CI (spin-orbital) Fock space
+ *  A class capable of calculating RDMs from wave functions expanded in the full CI (spin-orbital) ONV basis
  */
 class SpinUnresolvedFCIRDMBuilder : public BaseSpinUnresolvedRDMBuilder {
-    FockSpace fock_space;  // spin-orbital Fock space
+    ONVBasis fock_space;  // spin-orbital ONV basis
 
 public:
     /*
@@ -39,7 +39,7 @@ public:
 
     SpinUnresolvedFCIRDMBuilder() = default;
 
-    explicit SpinUnresolvedFCIRDMBuilder(const FockSpace& fock_space);
+    explicit SpinUnresolvedFCIRDMBuilder(const ONVBasis& fock_space);
 
 
     // DESTRUCTOR
@@ -47,7 +47,7 @@ public:
 
 
     // OVERRIDDEN GETTERS
-    const BaseFockSpace* get_fock_space() const override { return &fock_space; }
+    const BaseONVBasis* get_fock_space() const override { return &fock_space; }
 
 
     // OVERRIDDEN PUBLIC METHODS

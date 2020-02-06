@@ -13,7 +13,7 @@ static void matvec(benchmark::State& state) {
     // Prepare the Hamiltonian
     size_t K = state.range(0);
     size_t N = state.range(1);
-    GQCP::ProductFockSpace fock_space (K, N, N);
+    GQCP::ProductONVBasis fock_space (K, N, N);
     GQCP::FCI fci (fock_space);
 
     GQCP::SQHamiltonian<double> sq_hamiltonian = GQCP::SQHamiltonian<double>::Random(K);

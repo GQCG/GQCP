@@ -20,7 +20,7 @@
 #include <boost/test/unit_test.hpp>
 
 #include "Basis/transform.hpp"
-#include "FockSpace/ProductFockSpace.hpp"
+#include "ONVBasis/ProductONVBasis.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/CI/CISolver.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
@@ -48,7 +48,7 @@ BOOST_AUTO_TEST_CASE ( test_random_rotation_diagonal_dense_fci ) {
     // Transform the Hamiltonian to the RHF orbital basis
     GQCP::basisTransform(spinor_basis, sq_hamiltonian, rhf_parameters.coefficientMatrix());
 
-    GQCP::ProductFockSpace fock_space (K, h2o.numberOfElectrons()/2, h2o.numberOfElectrons()/2);  // dim = 2
+    GQCP::ProductONVBasis fock_space (K, h2o.numberOfElectrons()/2, h2o.numberOfElectrons()/2);  // dim = 2
 
     // Create the FCI module
     GQCP::FCI fci (fock_space);
@@ -84,7 +84,7 @@ BOOST_AUTO_TEST_CASE ( FCI_H2_Cristina_dense ) {
     // Transform the Hamiltonian to the RHF orbital basis
     GQCP::basisTransform(spinor_basis, sq_hamiltonian, rhf_parameters.coefficientMatrix());
 
-    GQCP::ProductFockSpace fock_space (K, h2.numberOfElectrons()/2, h2.numberOfElectrons()/2);  // dim = 100
+    GQCP::ProductONVBasis fock_space (K, h2.numberOfElectrons()/2, h2.numberOfElectrons()/2);  // dim = 100
 
     // Create the FCI module
     GQCP::FCI fci (fock_space);
@@ -125,7 +125,7 @@ BOOST_AUTO_TEST_CASE ( FCI_H2O_Psi4_GAMESS_dense ) {
     // Transform the Hamiltonian to the RHF orbital basis
     GQCP::basisTransform(spinor_basis, sq_hamiltonian, rhf_parameters.coefficientMatrix());
 
-    GQCP::ProductFockSpace fock_space (K, h2o.numberOfElectrons()/2, h2o.numberOfElectrons()/2);  // dim = 441
+    GQCP::ProductONVBasis fock_space (K, h2o.numberOfElectrons()/2, h2o.numberOfElectrons()/2);  // dim = 441
 
     // Create the FCI module
     GQCP::FCI fci (fock_space);

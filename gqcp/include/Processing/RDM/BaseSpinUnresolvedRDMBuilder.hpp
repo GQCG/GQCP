@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "FockSpace/BaseFockSpace.hpp"
+#include "ONVBasis/BaseONVBasis.hpp"
 #include "Processing/RDM/OneRDM.hpp"
 #include "Processing/RDM/RDMs.hpp"
 #include "Processing/RDM/TwoRDM.hpp"
@@ -41,7 +41,7 @@ public:
 
 
     // PURE VIRTUAL GETTERS
-    virtual const BaseFockSpace* get_fock_space() const = 0;
+    virtual const BaseONVBasis* get_fock_space() const = 0;
 
 
     // PURE VIRTUAL PUBLIC METHODS

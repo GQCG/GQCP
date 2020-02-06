@@ -24,7 +24,7 @@ namespace GQCP {
 /*
  *  CONSTRUCTOR
  */
-SpinUnresolvedFCIRDMBuilder::SpinUnresolvedFCIRDMBuilder(const FockSpace& fock_space) :
+SpinUnresolvedFCIRDMBuilder::SpinUnresolvedFCIRDMBuilder(const ONVBasis& fock_space) :
     fock_space (fock_space)
 {}
 
@@ -70,7 +70,7 @@ double SpinUnresolvedFCIRDMBuilder::calculateElement(const std::vector<size_t>& 
 
     double value = 0.0;
     int sign = 1;
-    FockSpace fock_space = this->fock_space;  // make a copy because this method is marked const
+    ONVBasis fock_space = this->fock_space;  // make a copy because this method is marked const
     size_t dim = fock_space.get_dimension();
 
 

@@ -68,7 +68,7 @@ FCI::FCI(const std::string& xyz_filename, const std::string& basis_set, const si
  */
 
 /**
- *  Solve the dense eigenvalue problem for the molecular Hamiltonian in the full Fock space
+ *  Solve the dense eigenvalue problem for the molecular Hamiltonian in the full ONV basis
  */
 void FCI::solve() {
 
@@ -79,7 +79,7 @@ void FCI::solve() {
 
     // Solve the FCI eigenvalue problem using the dense algorithm
     auto K = sq_hamiltonian.dimension();
-    ProductFockSpace fock_space(K, this->N_alpha, this->N_beta);
+    ProductONVBasis fock_space(K, this->N_alpha, this->N_beta);
     GQCP::FCI fci_builder (fock_space);
 
     std::shared_ptr<BaseSolverOptions> solver_options;
