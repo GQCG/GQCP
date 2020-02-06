@@ -27,7 +27,7 @@ namespace GQCP {
 
 
 /**
- *  An objective that checks if the RHF Fock matrix is diagonal.
+ *  An objective that checks if the RHF Fock matrix is diagonal, i.e. if the RHF parameters are the canonical RHF coefficients.
  * 
  *  @tparam _Scalar                 the type of scalar used for the expansion coefficients
  */

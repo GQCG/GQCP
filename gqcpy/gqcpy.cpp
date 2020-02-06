@@ -54,8 +54,14 @@ void bindMullikenConstrainedFCI(py::module& module);
 
 
 // QCMethod - HF
+void bindDiagonalRHFFockMatrixObjective(py::module& module);
+void bindQCMethodRHF(py::module& module);
 void bindRHFSCFEnvironment(py::module& module);
 void bindRHFSCFSolver(py::module& module);
+
+
+// QCModel - HF
+void bindQCModelRHF(py::module& module);
 
 
 // Single includes
@@ -63,7 +69,6 @@ void bindVersion(py::module& module);
 
 
 }  // namespace gqcpy
-
 
 
 
@@ -101,8 +106,14 @@ PYBIND11_MODULE (gqcpy, module) {
 
 
     // QCMethod - HF
+    gqcpy::bindDiagonalRHFFockMatrixObjective(module);
+    gqcpy::bindQCMethodRHF(module);
     gqcpy::bindRHFSCFEnvironment(module);
     gqcpy::bindRHFSCFSolver(module);
+
+
+    // QCModel - HF
+    gqcpy::bindQCModelRHF(module);
 
 
     // Single includes
