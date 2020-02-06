@@ -24,7 +24,7 @@ namespace GQCP {
 /*
  *  CONSTRUCTOR
  */
-FCIRDMBuilder::FCIRDMBuilder(const ProductFockSpace& fock_space) :
+FCIRDMBuilder::FCIRDMBuilder(const ProductONVBasis& fock_space) :
     fock_space (fock_space)
 {}
 
@@ -46,8 +46,8 @@ OneRDMs<double> FCIRDMBuilder::calculate1RDMs(const VectorX<double>& x) const {
     OneRDM<double> D_aa = OneRDM<double>::Zero(K, K);
     OneRDM<double> D_bb = OneRDM<double>::Zero(K, K);
 
-    FockSpace fock_space_alpha = fock_space.get_fock_space_alpha();
-    FockSpace fock_space_beta = fock_space.get_fock_space_beta();
+    ONVBasis fock_space_alpha = fock_space.get_fock_space_alpha();
+    ONVBasis fock_space_beta = fock_space.get_fock_space_beta();
 
     auto dim_alpha = fock_space_alpha.get_dimension();
     auto dim_beta = fock_space_beta.get_dimension();
@@ -157,8 +157,8 @@ TwoRDMs<double> FCIRDMBuilder::calculate2RDMs(const VectorX<double>& x) const {
 
     // KISS implementation of the 2-DMs (no symmetry relations are used yet)
 
-    FockSpace fock_space_alpha = fock_space.get_fock_space_alpha();
-    FockSpace fock_space_beta = fock_space.get_fock_space_beta();
+    ONVBasis fock_space_alpha = fock_space.get_fock_space_alpha();
+    ONVBasis fock_space_beta = fock_space.get_fock_space_beta();
 
     auto dim_alpha = fock_space_alpha.get_dimension();
     auto dim_beta = fock_space_beta.get_dimension();

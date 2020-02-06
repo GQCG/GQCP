@@ -24,7 +24,7 @@ namespace GQCP {
 /*
  *  CONSTRUCTOR
  */
-DOCIRDMBuilder::DOCIRDMBuilder(const FockSpace& fock_space) :
+DOCIRDMBuilder::DOCIRDMBuilder(const ONVBasis& fock_space) :
     fock_space (fock_space)
 {}
 
@@ -47,7 +47,7 @@ OneRDMs<double> DOCIRDMBuilder::calculate1RDMs(const VectorX<double>& x) const {
     // For DOCI, one rdm covers both spins
     OneRDM<double> D = OneRDM<double>::Zero(K, K);
 
-    // Create the first ONV (with address 0). In DOCI, the Fock space for alpha and beta is equal so we just use one
+    // Create the first ONV (with address 0). In DOCI, the ONV basis for alpha and beta is equal so we just use one
     ONV onv = this->fock_space.makeONV(0);   
 
 
@@ -88,7 +88,7 @@ TwoRDMs<double> DOCIRDMBuilder::calculate2RDMs(const VectorX<double>& x) const {
     d_aabb.setZero();
 
 
-    // Create the first ONV (with address 0). In DOCI, the Fock space for alpha and beta is equal so we just use one
+    // Create the first ONV (with address 0). In DOCI, the ONV basis for alpha and beta is equal so we just use one
     ONV onv = this->fock_space.makeONV(0);   
 
 

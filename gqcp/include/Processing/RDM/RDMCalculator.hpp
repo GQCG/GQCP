@@ -19,10 +19,10 @@
 
 
 #include "Processing/RDM/BaseRDMBuilder.hpp"
-#include "FockSpace/FockSpace.hpp"
-#include "FockSpace/ProductFockSpace.hpp"
-#include "FockSpace/SelectedFockSpace.hpp"
-#include "FockSpace/WaveFunction/WaveFunction.hpp"
+#include "ONVBasis/ONVBasis.hpp"
+#include "ONVBasis/ProductONVBasis.hpp"
+#include "ONVBasis/SelectedONVBasis.hpp"
+#include "ONVBasis/WaveFunction/WaveFunction.hpp"
 
 #include <boost/range/adaptor/sliced.hpp>
 #include <boost/range/adaptor/strided.hpp>
@@ -35,7 +35,7 @@ namespace GQCP {
 
 
 /**
- *  A wrapper around the derived RDMBuilders that provides the functionality of the appropriate derived RDMBuilder for a given Fock space at compile- or runtime.
+ *  A wrapper around the derived RDMBuilders that provides the functionality of the appropriate derived RDMBuilder for a given ONV basis at compile- or runtime.
  */
 class RDMCalculator {
 private:
@@ -49,35 +49,35 @@ public:
     /**
      *  Allocate a DOCIRDMBuilder
      *
-     *  @param fock_space       the DOCI Fock space
+     *  @param fock_space       the DOCI ONV basis
      */
-    explicit RDMCalculator(const FockSpace& fock_space);
+    explicit RDMCalculator(const ONVBasis& fock_space);
 
     /**
      *  Allocate a FCIRDMBuilder
      *
-     *  @param fock_space       the FCI Fock space
+     *  @param fock_space       the FCI ONV basis
      */
-    explicit RDMCalculator(const ProductFockSpace& fock_space);
+    explicit RDMCalculator(const ProductONVBasis& fock_space);
 
     /**
      *  Allocate a SelectedRDMBuilder
      *
-     *  @param fock_space       the 'selected' Fock space
+     *  @param fock_space       the 'selected' ONV basis
      */
-    explicit RDMCalculator(const SelectedFockSpace& fock_space);
+    explicit RDMCalculator(const SelectedONVBasis& fock_space);
 
     /**
      *  A run-time constructor allocating the appropriate derived RDMBuilder
      *
-     *  @param fock_space       the Fock space on which the RDMBuilder should be based
+     *  @param fock_space       the ONV basis on which the RDMBuilder should be based
      */
-    explicit RDMCalculator(const BaseFockSpace& fock_space);
+    explicit RDMCalculator(const BaseONVBasis& fock_space);
 
     /**
      *  A run-time constructor allocating the appropriate derived RDMBuilder and coefficient vector
      *
-     *  @param wavefunction       the wave function holding the coefficient vector and a Fock space on which the RDMBuilder should be based
+     *  @param wavefunction       the wave function holding the coefficient vector and a ONV basis on which the RDMBuilder should be based
      */
     explicit RDMCalculator(const WaveFunction& wavefunction);
 

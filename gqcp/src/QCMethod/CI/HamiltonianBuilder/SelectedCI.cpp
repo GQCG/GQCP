@@ -184,9 +184,9 @@ void SelectedCI::evaluateHamiltonianElements(const SQHamiltonian<double>& sq_ham
  */
 
 /**
- *  @param fock_space       the full alpha and beta product Fock space
+ *  @param fock_space       the full alpha and beta product ONV basis
  */
-SelectedCI::SelectedCI(const SelectedFockSpace& fock_space) :
+SelectedCI::SelectedCI(const SelectedONVBasis& fock_space) :
     HamiltonianBuilder(),
     fock_space(fock_space)
 {}
@@ -205,7 +205,7 @@ SelectedCI::SelectedCI(const SelectedFockSpace& fock_space) :
 SquareMatrix<double> SelectedCI::constructHamiltonian(const SQHamiltonian<double>& sq_hamiltonian) const {
     auto K = sq_hamiltonian.core().get_dim();
     if (K != this->fock_space.get_K()) {
-        throw std::invalid_argument("SelectedCI::constructHamiltonian(SQHamiltonian<double>): Basis functions of the Fock space and sq_hamiltonian are incompatible.");
+        throw std::invalid_argument("SelectedCI::constructHamiltonian(SQHamiltonian<double>): Basis functions of the ONV basis and sq_hamiltonian are incompatible.");
     }
 
     auto dim = fock_space.get_dimension();
@@ -232,7 +232,7 @@ VectorX<double> SelectedCI::matrixVectorProduct(const SQHamiltonian<double>& sq_
 
     auto K = sq_hamiltonian.core().get_dim();
     if (K != this->fock_space.get_K()) {
-        throw std::invalid_argument("SelectedCI::matrixVectorProduct(SQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the Fock space and sq_hamiltonian are incompatible.");
+        throw std::invalid_argument("SelectedCI::matrixVectorProduct(SQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the ONV basis and sq_hamiltonian are incompatible.");
     }
 
     VectorX<double> matvec = diagonal.cwiseProduct(x);

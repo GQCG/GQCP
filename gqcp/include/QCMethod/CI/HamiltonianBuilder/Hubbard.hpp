@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "FockSpace/ProductFockSpace.hpp"
+#include "ONVBasis/ProductONVBasis.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/HamiltonianBuilder.hpp"
 
 
@@ -26,7 +26,7 @@ namespace GQCP {
 
 
 /**
- *  Hubbard builds a a Hubbard Hamiltonian matrix in the FCI Fock space
+ *  Hubbard builds a a Hubbard Hamiltonian matrix in the FCI ONV basis
  *
  *  Hubbard distinguishes itself from FCI by explicitly implementing simplified a Hamiltonian:
  *      - for the one electron operators only inter-site interactions are considered
@@ -34,16 +34,16 @@ namespace GQCP {
  */
 class Hubbard : public HamiltonianBuilder {
 private:
-    ProductFockSpace fock_space;  // fock space containing the alpha and beta Fock space
+    ProductONVBasis fock_space;  // fock space containing the alpha and beta ONV basis
     
 
 public:
 
     // CONSTRUCTORS
     /**
-     *  @param fock_space       the full alpha and beta product Fock space
+     *  @param fock_space       the full alpha and beta product ONV basis
      */
-    explicit Hubbard(const ProductFockSpace& fock_space);
+    explicit Hubbard(const ProductONVBasis& fock_space);
 
 
     // DESTRUCTOR
@@ -51,7 +51,7 @@ public:
 
 
     // OVERRIDDEN GETTERS
-    const BaseFockSpace* get_fock_space() const override { return &fock_space; }
+    const BaseONVBasis* get_fock_space() const override { return &fock_space; }
 
 
     // OVERRIDDEN PUBLIC METHODS

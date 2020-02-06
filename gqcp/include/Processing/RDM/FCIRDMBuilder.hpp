@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "FockSpace/ProductFockSpace.hpp"
+#include "ONVBasis/ProductONVBasis.hpp"
 #include "Processing/RDM/BaseRDMBuilder.hpp"
 #include "Processing/RDM/RDMs.hpp"
 
@@ -27,15 +27,15 @@ namespace GQCP {
 
 
 /**
- *  A class capable of calculating 1- and 2-RDMs from wave functions expanded in the full CI product Fock space
+ *  A class capable of calculating 1- and 2-RDMs from wave functions expanded in the full CI product ONV basis
  */
 class FCIRDMBuilder : public BaseRDMBuilder {
-    ProductFockSpace fock_space;  // Fock space containing the alpha and beta Fock space
+    ProductONVBasis fock_space;  // ONV basis containing the alpha and beta ONV basis
 
 
 public:
     // CONSTRUCTORS
-    explicit FCIRDMBuilder(const ProductFockSpace& fock_space);
+    explicit FCIRDMBuilder(const ProductONVBasis& fock_space);
 
 
     // DESTRUCTOR
@@ -43,7 +43,7 @@ public:
 
 
     // OVERRIDDEN GETTERS
-    const BaseFockSpace* get_fock_space() const override { return &fock_space; }
+    const BaseONVBasis* get_fock_space() const override { return &fock_space; }
 
 
     // OVERRIDDEN PUBLIC METHODS

@@ -17,7 +17,7 @@
 // 
 #include "Processing/RDM/SelectedRDMBuilder.hpp"
 
-#include "FockSpace/Configuration.hpp"
+#include "ONVBasis/Configuration.hpp"
 
 
 namespace GQCP {
@@ -26,7 +26,7 @@ namespace GQCP {
 /*
  *  CONSTRUCTOR
  */
-SelectedRDMBuilder::SelectedRDMBuilder(const SelectedFockSpace& fock_space) :
+SelectedRDMBuilder::SelectedRDMBuilder(const SelectedONVBasis& fock_space) :
     fock_space (fock_space)
 {}
 

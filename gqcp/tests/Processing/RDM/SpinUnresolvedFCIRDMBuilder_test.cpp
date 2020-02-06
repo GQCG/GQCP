@@ -27,7 +27,7 @@ BOOST_AUTO_TEST_CASE ( calculateElement_throws ) {
     // Create a test wave function
     size_t M = 3;
     size_t N = 1;
-    GQCP::FockSpace fock_space (M, N);
+    GQCP::ONVBasis fock_space (M, N);
 
     GQCP::VectorX<double> coeff (fock_space.get_dimension());
     coeff << 1, 2, -3;
@@ -44,7 +44,7 @@ BOOST_AUTO_TEST_CASE ( calculateElement_1RDM ) {
     // Create a test wave function
     size_t M = 3;
     size_t N = 1;
-    GQCP::FockSpace fock_space (M, N);
+    GQCP::ONVBasis fock_space (M, N);
 
     GQCP::VectorX<double> coeff (fock_space.get_dimension());
     coeff << 1, 2, -3;
@@ -63,7 +63,7 @@ BOOST_AUTO_TEST_CASE ( calculateElement_2RDM ) {
     // Create a test wave function
     size_t M = 3;
     size_t N = 2;
-    GQCP::FockSpace fock_space (M, N);
+    GQCP::ONVBasis fock_space (M, N);
 
     GQCP::VectorX<double> coeff (fock_space.get_dimension());
     coeff << 1, 2, -3;
@@ -83,7 +83,7 @@ BOOST_AUTO_TEST_CASE ( calculateElement_3RDM ) {
     // Create a test wave function
     size_t M = 5;
     size_t N = 4;
-    GQCP::FockSpace fock_space (M, N);
+    GQCP::ONVBasis fock_space (M, N);
 
     GQCP::VectorX<double> coeff (fock_space.get_dimension());
     coeff << 1, 1, -2, 4, -5;
@@ -103,7 +103,7 @@ BOOST_AUTO_TEST_CASE ( throw_1and2_RDMs ) {
     // Create a test wave function
     size_t M = 5;
     size_t N = 4;
-    GQCP::FockSpace fock_space (M, N);
+    GQCP::ONVBasis fock_space (M, N);
 
     GQCP::VectorX<double> coeff (fock_space.get_dimension());
     coeff << 1, 1, -2, 4, -5;

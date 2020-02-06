@@ -28,8 +28,8 @@
 BOOST_AUTO_TEST_CASE ( FrozenCoreFCI_constructor ) {
 
     // Check if a correct constructor works
-    GQCP::ProductFockSpace fock_space (15, 3, 3);
-    GQCP::FrozenProductFockSpace frozen_fock_space (fock_space, 2);
+    GQCP::ProductONVBasis fock_space (15, 3, 3);
+    GQCP::FrozenProductONVBasis frozen_fock_space (fock_space, 2);
     BOOST_CHECK_NO_THROW(GQCP::FrozenCoreFCI fci (frozen_fock_space));
 }
 
@@ -41,16 +41,16 @@ BOOST_AUTO_TEST_CASE ( FrozenCoreFCI_public_methods ) {
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Random(K);
 
 
-    // Create a compatible Fock space
-    GQCP::FrozenProductFockSpace fock_space (K, 3, 3, 1);
+    // Create a compatible ONV basis
+    GQCP::FrozenProductONVBasis fock_space (K, 3, 3, 1);
     GQCP::FrozenCoreFCI random_fci (fock_space);
     GQCP::VectorX<double> x = random_fci.calculateDiagonal(sq_hamiltonian);
     BOOST_CHECK_NO_THROW(random_fci.constructHamiltonian(sq_hamiltonian));
     BOOST_CHECK_NO_THROW(random_fci.matrixVectorProduct(sq_hamiltonian, x, x));
 
 
-    // Create an incompatible Fock space
-    GQCP::FrozenProductFockSpace fock_space_invalid (K+1, 3, 3, 1);
+    // Create an incompatible ONV basis
+    GQCP::FrozenProductONVBasis fock_space_invalid (K+1, 3, 3, 1);
     GQCP::FrozenCoreFCI random_fci_invalid (fock_space_invalid);
     BOOST_CHECK_THROW(random_fci_invalid.constructHamiltonian(sq_hamiltonian), std::invalid_argument);
     BOOST_CHECK_THROW(random_fci_invalid.matrixVectorProduct(sq_hamiltonian, x, x), std::invalid_argument);
@@ -65,11 +65,11 @@ BOOST_AUTO_TEST_CASE ( SelectedCI_vs_FrozenCoreFCI ) {
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (H5, "STO-3G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, H5);  // in an AO basis
 
-    // Create compatible Fock spaces
-    GQCP::FrozenProductFockSpace product_fock_space (K, 3, 3, 1);
-    GQCP::SelectedFockSpace fock_space (product_fock_space);
+    // Create compatible ONV basiss
+    GQCP::FrozenProductONVBasis product_fock_space (K, 3, 3, 1);
+    GQCP::SelectedONVBasis fock_space (product_fock_space);
 
-    // The SelectedFockSpace includes the same configurations as the FrozenProductFockSpace
+    // The SelectedONVBasis includes the same configurations as the FrozenProductONVBasis
     // These builder instances should return the same results.
     GQCP::SelectedCI random_sci (fock_space);
     GQCP::FrozenCoreFCI random_frozen_core_fci (product_fock_space);

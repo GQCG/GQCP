@@ -17,7 +17,7 @@
 // 
 #include "QCMethod/Geminals/APIGGeminalCoefficients.hpp"
 
-#include "FockSpace/FockSpace.hpp"
+#include "ONVBasis/ONVBasis.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Utilities/miscellaneous.hpp"
 

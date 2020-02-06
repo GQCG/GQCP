@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "FockSpace/FockSpace.hpp"
+#include "ONVBasis/ONVBasis.hpp"
 #include "Processing/RDM/BaseRDMBuilder.hpp"
 #include "Processing/RDM/RDMs.hpp"
 
@@ -30,12 +30,12 @@ namespace GQCP {
  *  A class capable of calculating 1- and 2-RDMs from DOCI wave functions
  */
 class DOCIRDMBuilder : public BaseRDMBuilder {
-    FockSpace fock_space;  // both the alpha and beta Fock space
+    ONVBasis fock_space;  // both the alpha and beta ONV basis
 
 
 public:
     // CONSTRUCTORS
-    explicit DOCIRDMBuilder(const FockSpace& fock_space);
+    explicit DOCIRDMBuilder(const ONVBasis& fock_space);
 
 
     // DESTRUCTOR
@@ -43,7 +43,7 @@ public:
 
 
     // OVERRIDDEN GETTERS
-    const BaseFockSpace* get_fock_space() const override { return &fock_space; }
+    const BaseONVBasis* get_fock_space() const override { return &fock_space; }
 
 
     // OVERRIDDEN PUBLIC METHODS

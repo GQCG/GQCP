@@ -39,7 +39,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_h2o_sto3g_klaas_Davidson ) {
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::ReadFCIDUMP("data/h2o_sto3g_klaas.FCIDUMP");
 
     // The species contains 10 electrons and 7 basis functions, this requires a single Fock Space of 7 orbitals and 5 electrons
-    GQCP::FockSpace fock_space (sq_hamiltonian.dimension(), 5);  // dim = 21
+    GQCP::ONVBasis fock_space (sq_hamiltonian.dimension(), 5);  // dim = 21
 
     // Create the DOCI module
     GQCP::DOCI doci (fock_space);
@@ -77,7 +77,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_h2_sto3g_dense_vs_Davidson ) {
     // Transform the Hamiltonian to the RHF orbital basis
     GQCP::basisTransform(spinor_basis, sq_hamiltonian, rhf_parameters.coefficientMatrix());
 
-    GQCP::FockSpace fock_space (sq_hamiltonian.dimension(), h2.numberOfElectrons()/2);  // dim = 2
+    GQCP::ONVBasis fock_space (sq_hamiltonian.dimension(), h2.numberOfElectrons()/2);  // dim = 2
 
     // Create the DOCI module
     GQCP::DOCI doci (fock_space);
@@ -118,7 +118,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_h2_631g_dense_vs_Davidson ) {
     // Transform the Hamiltonian to the RHF orbital basis
     GQCP::basisTransform(spinor_basis, sq_hamiltonian, rhf_parameters.coefficientMatrix());
 
-    GQCP::FockSpace fock_space (sq_hamiltonian.dimension(), h2.numberOfElectrons()/2);  // dim = 4
+    GQCP::ONVBasis fock_space (sq_hamiltonian.dimension(), h2.numberOfElectrons()/2);  // dim = 4
 
     // Create the DOCI module
     GQCP::DOCI doci (fock_space);
@@ -153,7 +153,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_beh_cation_631g_klaas_Davidson ) {
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::ReadFCIDUMP("data/beh_cation_631g_caitlin.FCIDUMP");
 
     // The species contains 4 electrons and 16 basis functions, this requires a single Fock Space of 16 orbitals and 2 electrons
-    GQCP::FockSpace fock_space (sq_hamiltonian.dimension(), 2);  // dim = 120
+    GQCP::ONVBasis fock_space (sq_hamiltonian.dimension(), 2);  // dim = 120
 
     // Create the DOCI module
     GQCP::DOCI doci (fock_space);
@@ -184,7 +184,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_n2_sto3g_klaas_Davidson ) {
     // Do a DOCI calculation based on a given FCIDUMP file
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::ReadFCIDUMP("data/n2_sto-3g_klaas.FCIDUMP");
 
-    GQCP::FockSpace fock_space (sq_hamiltonian.dimension(), 7);  // dim = 120
+    GQCP::ONVBasis fock_space (sq_hamiltonian.dimension(), 7);  // dim = 120
 
     // Create the DOCI module
     GQCP::DOCI doci (fock_space);
@@ -215,7 +215,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_lih_631g_klaas_Davidson ) {
     // Do a DOCI calculation based on a given FCIDUMP file
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::ReadFCIDUMP("data/lih_631g_caitlin.FCIDUMP");
 
-    GQCP::FockSpace fock_space (sq_hamiltonian.dimension(), 2);  // dim = 120
+    GQCP::ONVBasis fock_space (sq_hamiltonian.dimension(), 2);  // dim = 120
 
     // Create the DOCI module
     GQCP::DOCI doci (fock_space);
@@ -246,7 +246,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_li2_321g_klaas_Davidson ) {
     // Do a DOCI calculation based on a given FCIDUMP file
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::ReadFCIDUMP("data/li2_321g_klaas.FCIDUMP");
 
-    GQCP::FockSpace fock_space (sq_hamiltonian.dimension(), 3);  // dim = 816
+    GQCP::ONVBasis fock_space (sq_hamiltonian.dimension(), 3);  // dim = 816
 
     // Create the DOCI module
     GQCP::DOCI doci (fock_space);
@@ -277,7 +277,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_h2o_631g_klaas_Davidson ) {
     // Do a DOCI calculation based on a given FCIDUMP file
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::ReadFCIDUMP("data/h2o_631g_klaas.FCIDUMP");
 
-    GQCP::FockSpace fock_space (sq_hamiltonian.dimension(), 5);  // dim = 1287
+    GQCP::ONVBasis fock_space (sq_hamiltonian.dimension(), 5);  // dim = 1287
 
     // Create the DOCI module
     GQCP::DOCI doci (fock_space);
@@ -309,7 +309,7 @@ BOOST_AUTO_TEST_CASE ( DOCI_lif_631g_klaas_Davidson ) {
     // Create the Hamiltonian Parameters
     auto sq_hamiltonian = GQCP::readFCIDUMPFile("data/lif_631g_klaas.FCIDUMP");
 
-    GQCP::FockSpace fock_space (sq_hamiltonian.dimension(), 6);  // dim = 376740
+    GQCP::ONVBasis fock_space (sq_hamiltonian.dimension(), 6);  // dim = 376740
 
     // Create the DOCI module
     GQCP::DOCI doci (fock_space);

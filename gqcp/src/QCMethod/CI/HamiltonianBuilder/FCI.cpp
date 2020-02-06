@@ -26,9 +26,9 @@ namespace GQCP {
  */
 
 /**
- *  @param fock_space       the full alpha and beta product Fock space
+ *  @param fock_space       the full alpha and beta product ONV basis
  */
-FCI::FCI(const ProductFockSpace& fock_space) :
+FCI::FCI(const ProductONVBasis& fock_space) :
         HamiltonianBuilder(),
         fock_space (fock_space)
 {}
@@ -59,11 +59,11 @@ SquareMatrix<double> FCI::constructHamiltonian(const SQHamiltonian<double>& sq_h
 VectorX<double> FCI::matrixVectorProduct(const SQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
     auto K = sq_hamiltonian.core().get_dim();
     if (K != this->fock_space.get_K()) {
-        throw std::invalid_argument("FCI::matrixVectorProduct(SQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the Fock space and sq_hamiltonian are incompatible.");
+        throw std::invalid_argument("FCI::matrixVectorProduct(SQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the ONV basis and sq_hamiltonian are incompatible.");
     }
 
-    FockSpace fock_space_alpha = fock_space.get_fock_space_alpha();
-    FockSpace fock_space_beta = fock_space.get_fock_space_beta();
+    ONVBasis fock_space_alpha = fock_space.get_fock_space_alpha();
+    ONVBasis fock_space_beta = fock_space.get_fock_space_beta();
 
     const auto& alpha_couplings = this->fock_space.get_alpha_couplings();
 

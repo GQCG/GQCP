@@ -13,7 +13,7 @@ static void constructHamiltonian(benchmark::State& state) {
     // Prepare the Hamiltonian
     size_t K = state.range(0);
     size_t N = state.range(1);
-    GQCP::ProductFockSpace fock_space (K, N, N);
+    GQCP::ProductONVBasis fock_space (K, N, N);
     GQCP::Hubbard hubbard (fock_space);
 
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Random(K);
