@@ -68,7 +68,7 @@ FCI::FCI(const std::string& xyz_filename, const std::string& basis_set, const si
  */
 
 /**
- *  Solve the dense eigenvalue problem for the molecular Hamiltonian in the full Fock space
+ *  Solve the dense eigenvalue problem for the molecular Hamiltonian in the full ONV basis
  */
 void FCI::solve() {
 

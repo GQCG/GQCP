@@ -27,10 +27,10 @@ namespace GQCP {
 
 
 /**
- *  A templated private class for Fock spaces: its constructors are private, but Fock spaces are its friends
- *  It supports dense, sparse and matrix vector product storage for elements evaluated in the Fock space.
+ *  A templated private class for ONV basiss: its constructors are private, but ONV basiss are its friends
+ *  It supports dense, sparse and matrix vector product storage for elements evaluated in the ONV basis.
  *
- *  @tparam _Matrix              the type of matrix in which the evaluations of the Fock space will be stored
+ *  @tparam _Matrix              the type of matrix in which the evaluations of the ONV basis will be stored
  */
 template <typename _Matrix>
 class EvaluationIterator {
@@ -38,8 +38,8 @@ public:
     using Matrix = _Matrix;
 
 private:
-    size_t index = 0;  // current position of the iterator in the dimension of the Fock space
-    size_t end;  // the dimension of the Fock space
+    size_t index = 0;  // current position of the iterator in the dimension of the ONV basis
+    size_t end;  // the dimension of the ONV basis
 
     Matrix matrix;  // matrix containing the evaluations
 
@@ -48,7 +48,7 @@ private:
      */
 
     /**
-     * @param dimension         the dimension of the Fock space
+     * @param dimension         the dimension of the ONV basis
      */
     EvaluationIterator(const size_t dimension) :  matrix(Matrix::Zero(dimension, dimension)), end(dimension) {}
 
@@ -118,7 +118,7 @@ private:
  */
 template<>
 class EvaluationIterator<Eigen::SparseMatrix<double>> {
-    size_t index = 0;  // current position of the iterator in the dimension of the Fock space
+    size_t index = 0;  // current position of the iterator in the dimension of the ONV basis
     size_t end;  // total dimension
 
     Eigen::SparseMatrix<double> matrix;  // matrix containing the evaluations
@@ -234,7 +234,7 @@ class EvaluationIterator<Eigen::SparseMatrix<double>> {
  */
 template<>
 class EvaluationIterator<VectorX<double>> {
-    size_t index = 0;  // current position of the iterator in the dimension of the Fock space
+    size_t index = 0;  // current position of the iterator in the dimension of the ONV basis
     size_t end;  // total dimension
 
     VectorX<double> matvec;  // matvec containing the evaluations

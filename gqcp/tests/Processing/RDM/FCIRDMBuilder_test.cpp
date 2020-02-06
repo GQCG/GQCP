@@ -226,7 +226,7 @@ BOOST_AUTO_TEST_CASE ( throw_calculate_element ) {
 
 
 /*
- *  Compare the RDMs calculated from a product Fock space and an equivalent selected Fock space
+ *  Compare the RDMs calculated from a product ONV basis and an equivalent selected ONV basis
  */ 
 BOOST_AUTO_TEST_CASE ( H2O_FCI_wavefunction_vs_Selected_CI ) {
 

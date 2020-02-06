@@ -95,7 +95,7 @@ ONVBasis::ONVBasis(size_t K, size_t N) :
  *  @param K        the number of orbitals
  *  @param N        the number of electrons
  *
- *  @return the dimension of the Fock space
+ *  @return the dimension of the ONV basis
  */
 size_t ONVBasis::calculateDimension(size_t K, size_t N) {
     auto dim_double = boost::math::binomial_coefficient<double>(static_cast<unsigned>(K), static_cast<unsigned>(N));
@@ -233,7 +233,7 @@ size_t ONVBasis::countTwoElectronCouplings(const ONV& onv) const {
 
 
 /**
- *  @return the amount non-zero couplings of a one electron coupling scheme in the Fock space
+ *  @return the amount non-zero couplings of a one electron coupling scheme in the ONV basis
  */
 size_t ONVBasis::countTotalOneElectronCouplings() const {
     return (K-N)*N*(dim);
@@ -241,7 +241,7 @@ size_t ONVBasis::countTotalOneElectronCouplings() const {
 
 
 /**
- *  @return the amount non-zero couplings of a two electron coupling scheme in the Fock space
+ *  @return the amount non-zero couplings of a two electron coupling scheme in the ONV basis
  */
 size_t ONVBasis::countTotalTwoElectronCouplings() const {
 
@@ -257,16 +257,16 @@ size_t ONVBasis::countTotalTwoElectronCouplings() const {
 /**
  *  Evaluate the operator in a dense matrix
  *
- *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
+ *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
  *  @param diagonal_values      bool to indicate if diagonal values will be calculated
  *
- *  @return the operator's evaluation in a dense matrix with the dimensions of the Fock space
+ *  @return the operator's evaluation in a dense matrix with the dimensions of the ONV basis
  */
 SquareMatrix<double> ONVBasis::evaluateOperatorDense(const ScalarSQOneElectronOperator<double>& one_op, bool diagonal_values) const {
 
     auto K = one_op.dimension();
     if (K != this->K) {
-        throw std::invalid_argument("ONVBasis::evaluateOperatorDense(ScalarSQOneElectronOperator<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
+        throw std::invalid_argument("ONVBasis::evaluateOperatorDense(ScalarSQOneElectronOperator<double>, bool): Basis functions of the ONV basis and the operator are incompatible.");
     }
 
     EvaluationIterator<SquareMatrix<double>> evaluation_iterator (this->dim);
@@ -278,16 +278,16 @@ SquareMatrix<double> ONVBasis::evaluateOperatorDense(const ScalarSQOneElectronOp
 /**
  *  Evaluate the operator in a sparse matrix
  *
- *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
+ *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
  *  @param diagonal_values      bool to indicate if diagonal values will be calculated
  *
- *  @return the operator's evaluation in a sparse matrix with the dimensions of the Fock space
+ *  @return the operator's evaluation in a sparse matrix with the dimensions of the ONV basis
  */
 Eigen::SparseMatrix<double> ONVBasis::evaluateOperatorSparse(const ScalarSQOneElectronOperator<double>& one_op, bool diagonal_values) const {
 
     auto K = one_op.dimension();
     if (K != this->K) {
-        throw std::invalid_argument("ONVBasis::evaluateOperatorSparse(ScalarSQOneElectronOperator<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
+        throw std::invalid_argument("ONVBasis::evaluateOperatorSparse(ScalarSQOneElectronOperator<double>, bool): Basis functions of the ONV basis and the operator are incompatible.");
     }
 
     EvaluationIterator<Eigen::SparseMatrix<double>> evaluation_iterator (this->dim);
@@ -307,17 +307,17 @@ Eigen::SparseMatrix<double> ONVBasis::evaluateOperatorSparse(const ScalarSQOneEl
 /**
  *  Evaluate the operator in a dense matrix
  *
- *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
+ *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
  *  @param diagonal_values      bool to indicate if diagonal values will be calculated
  *
- *  @return the operator's evaluation in a dense matrix with the dimensions of the Fock space
+ *  @return the operator's evaluation in a dense matrix with the dimensions of the ONV basis
  */
 SquareMatrix<double> ONVBasis::evaluateOperatorDense(const ScalarSQTwoElectronOperator<double>& two_op, bool diagonal_values) const {
 
 
     const auto K = two_op.dimension();
     if (K != this->K) {
-        throw std::invalid_argument("ONVBasis::evaluateOperatorDense(ScalarSQTwoElectronOperator<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
+        throw std::invalid_argument("ONVBasis::evaluateOperatorDense(ScalarSQTwoElectronOperator<double>, bool): Basis functions of the ONV basis and the operator are incompatible.");
     }
 
     EvaluationIterator<SquareMatrix<double>> evaluation_iterator (this->dim);
@@ -329,16 +329,16 @@ SquareMatrix<double> ONVBasis::evaluateOperatorDense(const ScalarSQTwoElectronOp
 /**
  *  Evaluate the operator in a sparse matrix
  *
- *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
+ *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
  *  @param diagonal_values      bool to indicate if diagonal values will be calculated
  *
- *  @return the operator's evaluation in a sparse matrix with the dimensions of the Fock space
+ *  @return the operator's evaluation in a sparse matrix with the dimensions of the ONV basis
  */
 Eigen::SparseMatrix<double> ONVBasis::evaluateOperatorSparse(const ScalarSQTwoElectronOperator<double>& two_op, bool diagonal_values) const {
 
     auto K = two_op.dimension();
     if (K != this->K) {
-        throw std::invalid_argument("ONVBasis::evaluateOperatorSparse(ScalarSQTwoElectronOperator<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
+        throw std::invalid_argument("ONVBasis::evaluateOperatorSparse(ScalarSQTwoElectronOperator<double>, bool): Basis functions of the ONV basis and the operator are incompatible.");
     }
 
     EvaluationIterator<Eigen::SparseMatrix<double>> evaluation_iterator (this->dim);
@@ -361,13 +361,13 @@ Eigen::SparseMatrix<double> ONVBasis::evaluateOperatorSparse(const ScalarSQTwoEl
  *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
  *  @param diagonal_values              bool to indicate if diagonal values will be calculated
  *
- *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the Fock space
+ *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the ONV basis
  */
 SquareMatrix<double> ONVBasis::evaluateOperatorDense(const SQHamiltonian<double>& sq_hamiltonian, bool diagonal_values) const {
 
     auto K = sq_hamiltonian.dimension();
     if (K != this->K) {
-        throw std::invalid_argument("ONVBasis::evaluateOperatorDense(SQHamiltonian<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
+        throw std::invalid_argument("ONVBasis::evaluateOperatorDense(SQHamiltonian<double>, bool): Basis functions of the ONV basis and the operator are incompatible.");
     }
 
     EvaluationIterator<SquareMatrix<double>> evaluation_iterator (this->dim);
@@ -382,13 +382,13 @@ SquareMatrix<double> ONVBasis::evaluateOperatorDense(const SQHamiltonian<double>
  *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
  *  @param diagonal_values              bool to indicate if diagonal values will be calculated
  *
- *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the Fock space
+ *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the ONV basis
  */
 Eigen::SparseMatrix<double> ONVBasis::evaluateOperatorSparse(const SQHamiltonian<double>& sq_hamiltonian, bool diagonal_values) const {
 
     auto K = sq_hamiltonian.dimension();
     if (K != this->K) {
-        throw std::invalid_argument("ONVBasis::evaluateOperatorSparse(SQHamiltonian<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
+        throw std::invalid_argument("ONVBasis::evaluateOperatorSparse(SQHamiltonian<double>, bool): Basis functions of the ONV basis and the operator are incompatible.");
     }
 
     EvaluationIterator<Eigen::SparseMatrix<double>> evaluation_iterator (this->dim);
@@ -406,10 +406,10 @@ Eigen::SparseMatrix<double> ONVBasis::evaluateOperatorSparse(const SQHamiltonian
 
 
 /**
- *  Calculates sigma(pq) + sigma(qp)'s: all one-electron couplings for each annihilation-creation pair in the Fock space
+ *  Calculates sigma(pq) + sigma(qp)'s: all one-electron couplings for each annihilation-creation pair in the ONV basis
  *  and stores them in sparse matrices for each pair combination
  *
- *  @return vector of sparse matrices containing the one-electron couplings for the (spin) Fock space
+ *  @return vector of sparse matrices containing the one-electron couplings for the (spin) ONV basis
  *      Ordered as: sigma(00), sigma(01) + sigma(10), sigma(02)+ sigma(20), ...
  */
 std::vector<Eigen::SparseMatrix<double>> ONVBasis::calculateOneElectronCouplings() const {
@@ -480,16 +480,16 @@ std::vector<Eigen::SparseMatrix<double>> ONVBasis::calculateOneElectronCouplings
 /**
  *  Evaluate the diagonal of the operator
  *
- *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
+ *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
  *
- *  @return the operator's diagonal evaluation in a vector with the dimension of the Fock space
+ *  @return the operator's diagonal evaluation in a vector with the dimension of the ONV basis
  */
 VectorX<double> ONVBasis::evaluateOperatorDiagonal(const ScalarSQOneElectronOperator<double>& one_op) const {
 
     const auto K = one_op.dimension();
 
     if (K != this->K) {
-        throw std::invalid_argument("ONVBasis::evaluateOperatorDiagonal(ScalarSQOneElectronOperator<double>): Basis functions of the Fock space and the operator are incompatible.");
+        throw std::invalid_argument("ONVBasis::evaluateOperatorDiagonal(ScalarSQOneElectronOperator<double>): Basis functions of the ONV basis and the operator are incompatible.");
     }
 
     const auto& one_op_par = one_op.parameters();
@@ -500,7 +500,7 @@ VectorX<double> ONVBasis::evaluateOperatorDiagonal(const ScalarSQOneElectronOper
     VectorX<double> diagonal = VectorX<double>::Zero(dim);
 
     ONV onv = this->makeONV(0);  // onv with address 0
-    for (size_t I = 0; I < dim; I++) {  // I loops over all addresses in the Fock space
+    for (size_t I = 0; I < dim; I++) {  // I loops over all addresses in the ONV basis
 
         if (I > 0) {
             this->setNextONV(onv);
@@ -519,15 +519,15 @@ VectorX<double> ONVBasis::evaluateOperatorDiagonal(const ScalarSQOneElectronOper
 /**
  *  Evaluate the diagonal of the operator
  *
- *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
+ *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
  *
- *  @return the operator's diagonal evaluation in a vector with the dimension of the Fock space
+ *  @return the operator's diagonal evaluation in a vector with the dimension of the ONV basis
  */
 VectorX<double> ONVBasis::evaluateOperatorDiagonal(const ScalarSQTwoElectronOperator<double>& two_op) const {
 
     auto K = two_op.dimension();
     if (K != this->K) {
-        throw std::invalid_argument("ONVBasis::evaluateOperatorDiagonal(ScalarSQTwoElectronOperator<double>): Basis functions of the Fock space and the operator are incompatible.");
+        throw std::invalid_argument("ONVBasis::evaluateOperatorDiagonal(ScalarSQTwoElectronOperator<double>): Basis functions of the ONV basis and the operator are incompatible.");
     }
 
     size_t N = this->get_N();
@@ -539,7 +539,7 @@ VectorX<double> ONVBasis::evaluateOperatorDiagonal(const ScalarSQTwoElectronOper
     const auto& two_op_par = two_op.parameters();
 
     ONV onv = this->makeONV(0);  // onv with address 0
-    for (size_t I = 0; I < dim; I++) {  // I loops over all addresses in the Fock space
+    for (size_t I = 0; I < dim; I++) {  // I loops over all addresses in the ONV basis
 
         if (I > 0) {
             this->setNextONV(onv);
@@ -569,13 +569,13 @@ VectorX<double> ONVBasis::evaluateOperatorDiagonal(const ScalarSQTwoElectronOper
  *
  *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
  *
- *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the Fock space
+ *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the ONV basis
  */
 VectorX<double> ONVBasis::evaluateOperatorDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const {
 
     auto K = sq_hamiltonian.dimension();
     if (K != this->K) {
-        throw std::invalid_argument("ONVBasis::evaluateOperatorDiagonal(SQHamiltonian<double>): Basis functions of the Fock space and the operator are incompatible.");
+        throw std::invalid_argument("ONVBasis::evaluateOperatorDiagonal(SQHamiltonian<double>): Basis functions of the ONV basis and the operator are incompatible.");
     }
 
     return this->evaluateOperatorDiagonal(sq_hamiltonian.core()) + this->evaluateOperatorDiagonal(sq_hamiltonian.twoElectron());
@@ -587,14 +587,14 @@ VectorX<double> ONVBasis::evaluateOperatorDiagonal(const SQHamiltonian<double>& 
  *
  *  @param one_op                       the one electron operator expressed in an orthonormal basis
  *  @param x                            the vector upon which the evaluation acts 
- *  @param diagonal                     the diagonal evaluated in the Fock space
+ *  @param diagonal                     the diagonal evaluated in the ONV basis
  *
- *  @return the one electron operator's matrix vector product in a vector with the dimensions of the Fock space
+ *  @return the one electron operator's matrix vector product in a vector with the dimensions of the ONV basis
  */
 VectorX<double> ONVBasis::evaluateOperatorMatrixVectorProduct(const ScalarSQOneElectronOperator<double>& one_op, const VectorX<double>& x, const VectorX<double>& diagonal) const {
     auto K = one_op.dimension();
     if (K != this->K) {
-        throw std::invalid_argument("ONVBasis::evaluateOperatorMatrixVectorProduct(ScalarSQOneElectronOperator<double>, VectorX<double>, VectorX<double>): Basis functions of the Fock space and the operator are incompatible.");
+        throw std::invalid_argument("ONVBasis::evaluateOperatorMatrixVectorProduct(ScalarSQOneElectronOperator<double>, VectorX<double>, VectorX<double>): Basis functions of the ONV basis and the operator are incompatible.");
     }
 
     EvaluationIterator<VectorX<double>> evaluation_iterator (x, diagonal);
@@ -608,14 +608,14 @@ VectorX<double> ONVBasis::evaluateOperatorMatrixVectorProduct(const ScalarSQOneE
  *
  *  @param two_op                       the two electron operator expressed in an orthonormal basis
  *  @param x                            the vector upon which the evaluation acts 
- *  @param diagonal                     the diagonal evaluated in the Fock space
+ *  @param diagonal                     the diagonal evaluated in the ONV basis
  *
- *  @return the two electron operator's matrix vector product in a vector with the dimensions of the Fock space
+ *  @return the two electron operator's matrix vector product in a vector with the dimensions of the ONV basis
  */
 VectorX<double> ONVBasis::evaluateOperatorMatrixVectorProduct(const ScalarSQTwoElectronOperator<double>& two_op, const VectorX<double>& x, const VectorX<double>& diagonal) const {
     auto K = two_op.dimension();
     if (K != this->K) {
-        throw std::invalid_argument("ONVBasis::evaluateOperatorMatrixVectorProduct(ScalarSQTwoElectronOperator<double>, VectorX<double>, VectorX<double>): Basis functions of the Fock space and the operator are incompatible.");
+        throw std::invalid_argument("ONVBasis::evaluateOperatorMatrixVectorProduct(ScalarSQTwoElectronOperator<double>, VectorX<double>, VectorX<double>): Basis functions of the ONV basis and the operator are incompatible.");
     }
 
     EvaluationIterator<VectorX<double>> evaluation_iterator (x, diagonal);
@@ -629,14 +629,14 @@ VectorX<double> ONVBasis::evaluateOperatorMatrixVectorProduct(const ScalarSQTwoE
  *
  *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
  *  @param x                            the vector upon which the evaluation acts 
- *  @param diagonal                     the diagonal evaluated in the Fock space
+ *  @param diagonal                     the diagonal evaluated in the ONV basis
  *
- *  @return the Hamiltonian's matrix vector product in a vector with the dimensions of the Fock space
+ *  @return the Hamiltonian's matrix vector product in a vector with the dimensions of the ONV basis
  */
 VectorX<double> ONVBasis::evaluateOperatorMatrixVectorProduct(const SQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
     auto K = sq_hamiltonian.dimension();
     if (K != this->K) {
-        throw std::invalid_argument("ONVBasis::evaluateOperatorMatrixVectorProduct(SQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the Fock space and the operator are incompatible.");
+        throw std::invalid_argument("ONVBasis::evaluateOperatorMatrixVectorProduct(SQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the ONV basis and the operator are incompatible.");
     }
 
     EvaluationIterator<VectorX<double>> evaluation_iterator (x, diagonal);

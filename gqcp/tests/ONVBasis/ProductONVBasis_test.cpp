@@ -26,7 +26,7 @@
 
 
 /**
- *  Test the Fock space constructor
+ *  Test the ONV basis constructor
  */
 BOOST_AUTO_TEST_CASE ( ProductONVBasis_constructor ) {
 
@@ -35,7 +35,7 @@ BOOST_AUTO_TEST_CASE ( ProductONVBasis_constructor ) {
 
 
 /**
- *  Check if the static Fock space dimension calculation is correct and if it can throw errors
+ *  Check if the static ONV basis dimension calculation is correct and if it can throw errors
  */
 BOOST_AUTO_TEST_CASE ( ProductONVBasis_dimension) {
 
@@ -53,7 +53,7 @@ BOOST_AUTO_TEST_CASE ( ProductONVBasis_dimension) {
 
 
 /**
- *  Perform a dense evaluation of a one-, two-electron operator and the Hamiltonian in the Fock space (including the diagonal)
+ *  Perform a dense evaluation of a one-, two-electron operator and the Hamiltonian in the ONV basis (including the diagonal)
  *  and compare these to the selected CI solutions.
  */
 BOOST_AUTO_TEST_CASE ( ONVBasis_EvaluateOperator_Dense_diagonal_true ) {
@@ -69,7 +69,7 @@ BOOST_AUTO_TEST_CASE ( ONVBasis_EvaluateOperator_Dense_diagonal_true ) {
     const auto& h = sq_hamiltonian.core();
     const auto& g = sq_hamiltonian.twoElectron();
 
-    // Test the evaluation of the operators with selected Fock space (the reference) versus that of the product Fock space 
+    // Test the evaluation of the operators with selected ONV basis (the reference) versus that of the product ONV basis 
     auto one_electron_evaluation1 = product_fock_space.evaluateOperatorDense(h, true);
     auto one_electron_evaluation2 = selected_fock_space.evaluateOperatorDense(h, true);
 
@@ -86,7 +86,7 @@ BOOST_AUTO_TEST_CASE ( ONVBasis_EvaluateOperator_Dense_diagonal_true ) {
 
 
 /**
- *  Perform a dense evaluation of a one-, two-electron operator and the Hamiltonian in the Fock space (excluding the diagonal)
+ *  Perform a dense evaluation of a one-, two-electron operator and the Hamiltonian in the ONV basis (excluding the diagonal)
  *  and compare these to the selected CI solutions.
  */
 BOOST_AUTO_TEST_CASE ( ONVBasis_EvaluateOperator_Dense_diagonal_false ) {
@@ -102,7 +102,7 @@ BOOST_AUTO_TEST_CASE ( ONVBasis_EvaluateOperator_Dense_diagonal_false ) {
     const auto& h = sq_hamiltonian.core();
     const auto& g = sq_hamiltonian.twoElectron();
 
-    // Test the evaluation of the operators with selected Fock space (the reference) versus that of the product Fock space 
+    // Test the evaluation of the operators with selected ONV basis (the reference) versus that of the product ONV basis 
     auto one_electron_evaluation1 = product_fock_space.evaluateOperatorDense(h, false);
     auto one_electron_evaluation2 = selected_fock_space.evaluateOperatorDense(h, false);
 
@@ -119,7 +119,7 @@ BOOST_AUTO_TEST_CASE ( ONVBasis_EvaluateOperator_Dense_diagonal_false ) {
 
 
 /**
- *  Evaluate the diagonal of a one-, two-electron operator and the Hamiltonian in the Fock space 
+ *  Evaluate the diagonal of a one-, two-electron operator and the Hamiltonian in the ONV basis 
  *  and compare these to the selected CI solutions.
  */
 BOOST_AUTO_TEST_CASE ( ONVBasis_EvaluateOperator_diagonal ) {
@@ -135,7 +135,7 @@ BOOST_AUTO_TEST_CASE ( ONVBasis_EvaluateOperator_diagonal ) {
     const auto& h = sq_hamiltonian.core();
     const auto& g = sq_hamiltonian.twoElectron();
 
-    // Test the evaluation of the operators with selected Fock space (the reference) versus that of the product Fock space 
+    // Test the evaluation of the operators with selected ONV basis (the reference) versus that of the product ONV basis 
     auto one_electron_evaluation1 = product_fock_space.evaluateOperatorDiagonal(h);
     auto one_electron_evaluation2 = selected_fock_space.evaluateOperatorDiagonal(h);
 
@@ -173,7 +173,7 @@ BOOST_AUTO_TEST_CASE ( ONVBasis_EvaluateOperator_diagonal_vs_no_diagonal) {
 
 
 /**
- *  Perform a matrix vector product evaluation of a one-, two-electron operator and the Hamiltonian in the Fock space
+ *  Perform a matrix vector product evaluation of a one-, two-electron operator and the Hamiltonian in the ONV basis
  *  and compare these to the matrix vector product of the actual dense evaluations.
  */
 BOOST_AUTO_TEST_CASE ( ONVBasis_EvaluateOperator_MatrixVectorProduct ) {
@@ -193,7 +193,7 @@ BOOST_AUTO_TEST_CASE ( ONVBasis_EvaluateOperator_MatrixVectorProduct ) {
     auto two_electron_diagonal = fock_space.evaluateOperatorDiagonal(g);
     auto hamiltonian_diagonal = fock_space.evaluateOperatorDiagonal(sq_hamiltonian);
 
-    // Test the evaluation of the operators with selected Fock space (the reference) versus that of the product Fock space 
+    // Test the evaluation of the operators with selected ONV basis (the reference) versus that of the product ONV basis 
     auto one_electron_evaluation1 = fock_space.evaluateOperatorMatrixVectorProduct(h, one_electron_diagonal, one_electron_diagonal);
     GQCP::VectorX<double> one_electron_evaluation2 = fock_space.evaluateOperatorDense(h, true) * one_electron_diagonal;
 
@@ -238,7 +238,7 @@ BOOST_AUTO_TEST_CASE ( ONVBasis_EvaluateOperator_diagonal_unrestricted ) {
 
 
 /**
- *  Perform a dense and diagonal evaluation for the unrestricted Hamiltonian in the product Fock space and compare these to the selected CI solutions
+ *  Perform a dense and diagonal evaluation for the unrestricted Hamiltonian in the product ONV basis and compare these to the selected CI solutions
  */
 BOOST_AUTO_TEST_CASE ( ONVBasis_EvaluateOperator_diagonal_unrestricted_vs_selected ) {
 

@@ -40,7 +40,7 @@ public:
     virtual double overlap(const ONV& onv) const = 0;
 
     /**
-     *  @param fock_space       the seniority-zero Fock space the wave function should live in
+     *  @param fock_space       the seniority-zero ONV basis the wave function should live in
      *
      *  @return the wave function expansion corresponding to the geminal coefficients
      */

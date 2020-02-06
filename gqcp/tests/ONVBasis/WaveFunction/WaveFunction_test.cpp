@@ -30,7 +30,7 @@
 
 BOOST_AUTO_TEST_CASE ( shannon_entropy ) {
 
-    // Set up a test Fock space
+    // Set up a test ONV basis
     GQCP::ONVBasis fock_space (8, 3);  // K = 8, N = 3
 
 

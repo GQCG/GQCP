@@ -18,8 +18,8 @@
 #pragma once
 
 
-#include "ONVBasis/ONVBasisType.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
+#include "ONVBasis/ONVBasisType.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 
 #include <Eigen/Sparse>
@@ -32,19 +32,19 @@ namespace GQCP {
 
 
 /**
- *  A base class for the representation of a Fock space
+ *  A base class for the representation of an ONV basis
  */
 class BaseONVBasis {
 protected:
     size_t K;  // number of spatial orbitals
-    size_t dim;  // dimension of the Fock space
+    size_t dim;  // dimension of the ONV basis
 
 
     // PROTECTED CONSTRUCTORS
     BaseONVBasis() = default;
     /**
      *  @param K        the number of orbitals
-     *  @param dim      the dimension of the Fock space
+     *  @param dim      the dimension of the ONV basis
      */
     BaseONVBasis(size_t K, size_t dim);
 
@@ -57,7 +57,7 @@ public:
      *
      *  @param fock_space     reference to a derived BaseONVBasis instance to be cloned.
      *
-     *  @return a shared pointer owning the heap-cloned Fock space
+     *  @return a shared pointer owning the heap-cloned ONV basis
      */
     static std::shared_ptr<BaseONVBasis> CloneToHeap(const BaseONVBasis& fock_space);
 
@@ -95,39 +95,40 @@ public:
     /**
      *  Evaluate the operator in a dense matrix
      *
-     *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
+     *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
      *  @param diagonal_values      bool to indicate if diagonal values will be calculated
      *
-     *  @return the operator's evaluation in a dense matrix with the dimensions of the Fock space
+     *  @return the operator's evaluation in a dense matrix with the dimensions of the ONV basis
      */
     virtual SquareMatrix<double> evaluateOperatorDense(const ScalarSQOneElectronOperator<double>& one_op, bool diagonal_values) const = 0;
 
     /**
      *  Evaluate the operator in a sparse matrix
      *
-     *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
+     *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
      *  @param diagonal_values      bool to indicate if diagonal values will be calculated
      *
-     *  @return the operator's evaluation in a sparse matrix with the dimensions of the Fock space
+     *  @return the operator's evaluation in a sparse matrix with the dimensions of the ONV basis
      */
     virtual Eigen::SparseMatrix<double> evaluateOperatorSparse(const ScalarSQOneElectronOperator<double>& one_op, bool diagonal_values) const = 0;
+
     /**
      *  Evaluate the operator in a dense matrix
      *
-     *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
+     *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
      *  @param diagonal_values      bool to indicate if diagonal values will be calculated
      *
-     *  @return the operator's evaluation in a dense matrix with the dimensions of the Fock space
+     *  @return the operator's evaluation in a dense matrix with the dimensions of the ONV basis
      */
     virtual SquareMatrix<double> evaluateOperatorDense(const ScalarSQTwoElectronOperator<double>& two_op, bool diagonal_values) const = 0;
 
     /**
      *  Evaluate the operator in a sparse matrix
      *
-     *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
+     *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
      *  @param diagonal_values      bool to indicate if diagonal values will be calculated
      *
-     *  @return the operator's evaluation in a sparse matrix with the dimensions of the Fock space
+     *  @return the operator's evaluation in a sparse matrix with the dimensions of the ONV basis
      */
     virtual Eigen::SparseMatrix<double> evaluateOperatorSparse(const ScalarSQTwoElectronOperator<double>& two_op, bool diagonal_values) const = 0;
 
@@ -137,7 +138,7 @@ public:
      *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
      *  @param diagonal_values          bool to indicate if diagonal values will be calculated
      *
-     *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the Fock space
+     *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the ONV basis
      */
     virtual SquareMatrix<double> evaluateOperatorDense(const SQHamiltonian<double>& sq_hamiltonian, bool diagonal_values) const = 0;
 
@@ -147,25 +148,25 @@ public:
      *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
      *  @param diagonal_values              bool to indicate if diagonal values will be calculated
      *
-     *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the Fock space
+     *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the ONV basis
      */
     virtual Eigen::SparseMatrix<double> evaluateOperatorSparse(const SQHamiltonian<double>& sq_hamiltonian, bool diagonal_values) const = 0;
 
     /**
      *  Evaluate the diagonal of the operator
      *
-     *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
+     *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
      *
-     *  @return the operator's diagonal evaluation in a vector with the dimension of the Fock space
+     *  @return the operator's diagonal evaluation in a vector with the dimension of the ONV basis
      */
     virtual VectorX<double> evaluateOperatorDiagonal(const ScalarSQOneElectronOperator<double>& one_op) const = 0;
 
     /**
      *  Evaluate the diagonal of the operator
      *
-     *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
+     *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
      *
-     *  @return the operator's diagonal evaluation in a vector with the dimension of the Fock space
+     *  @return the operator's diagonal evaluation in a vector with the dimension of the ONV basis
      */
     virtual VectorX<double> evaluateOperatorDiagonal(const ScalarSQTwoElectronOperator<double>& two_op) const = 0;
 
@@ -174,7 +175,7 @@ public:
      *
      *  @param sq_hamiltonian              the Hamiltonian expressed in an orthonormal basis
      *
-     *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the Fock space
+     *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the ONV basis
      */
     virtual VectorX<double> evaluateOperatorDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const = 0;
 };

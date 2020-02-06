@@ -29,7 +29,7 @@ BOOST_AUTO_TEST_CASE ( ONV_constructor ) {
     // Create ONV : 10 considered bits and 5 set bits with distributed as "0000011111" = 31
     GQCP::ONV onv1 (10, 5, 31);
 
-    // Create Fock space with 10 orbitals and 5 electrons
+    // Create ONV basis with 10 orbitals and 5 electrons
     GQCP::ONVBasis fock_space (10, 5);
 
     // Ask for the first ONV in reverse lexicographic order : "0000011111" = 31

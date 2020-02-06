@@ -62,7 +62,7 @@ DOCIRHF::DOCIRHF(const std::string& xyz_filename, const std::string& basis_set, 
  */
 
 /**
- *  Solve the dense eigenvalue problem for the molecular Hamiltonian in the doubly occupied Fock space
+ *  Solve the dense eigenvalue problem for the molecular Hamiltonian in the doubly occupied ONV basis
  */
 void DOCIRHF::solve() {
 

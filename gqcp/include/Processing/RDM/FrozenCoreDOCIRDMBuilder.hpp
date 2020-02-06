@@ -27,15 +27,15 @@ namespace GQCP {
 
 
 /**
- *  A class capable of calculating 1- and 2-RDMs from wave functions expanded in the frozen DOCI Fock space
+ *  A class capable of calculating 1- and 2-RDMs from wave functions expanded in the frozen DOCI ONV basis
  */
 class FrozenCoreDOCIRDMBuilder : public FrozenCoreRDMBuilder {
-    FrozenONVBasis fock_space;  // both the frozen alpha and beta Fock space
+    FrozenONVBasis fock_space;  // both the frozen alpha and beta ONV basis
 
 public:
     // CONSTRUCTORS
     /**
-     *  @param fock_space       the frozen Fock space
+     *  @param fock_space       the frozen ONV basis
      */
     explicit FrozenCoreDOCIRDMBuilder(const FrozenONVBasis& fock_space);
 

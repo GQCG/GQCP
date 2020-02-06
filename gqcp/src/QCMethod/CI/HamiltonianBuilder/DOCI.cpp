@@ -26,7 +26,7 @@ namespace GQCP {
  */
 
 /**
- *  @param fock_space       the full Fock space, identical for alpha and beta
+ *  @param fock_space       the full ONV basis, identical for alpha and beta
  */
 DOCI::DOCI(const ONVBasis& fock_space) :
     HamiltonianBuilder(),
@@ -48,7 +48,7 @@ SquareMatrix<double> DOCI::constructHamiltonian(const SQHamiltonian<double>& sq_
 
     const auto K = sq_hamiltonian.core().get_dim();
     if (K != this->fock_space.get_K()) {
-        throw std::invalid_argument("DOCI::constructHamiltonian(SQHamiltonian<double>): The number of orbitals for the Fock space and Hamiltonian are incompatible.");
+        throw std::invalid_argument("DOCI::constructHamiltonian(SQHamiltonian<double>): The number of orbitals for the ONV basis and Hamiltonian are incompatible.");
     }
 
     const size_t dim = this->fock_space.get_dimension();
@@ -119,7 +119,7 @@ VectorX<double> DOCI::matrixVectorProduct(const SQHamiltonian<double>& sq_hamilt
 
     const auto K = sq_hamiltonian.core().get_dim();
     if (K != this->fock_space.get_K()) {
-        throw std::invalid_argument("DOCI::matrixVectorProduct(SQHamiltonian<double>, VectorX<double>, VectorX<double>): The number of orbitals for the Fock space and Hamiltonians are incompatible.");
+        throw std::invalid_argument("DOCI::matrixVectorProduct(SQHamiltonian<double>, VectorX<double>, VectorX<double>): The number of orbitals for the ONV basis and Hamiltonians are incompatible.");
     }
 
     const size_t N = this->fock_space.get_N();
@@ -190,7 +190,7 @@ VectorX<double> DOCI::calculateDiagonal(const SQHamiltonian<double>& sq_hamilton
 
     const auto K = sq_hamiltonian.core().get_dim();
     if (K != this->fock_space.get_K()) {
-        throw std::invalid_argument("DOCI::calculateDiagonal(SQHamiltonian<double>): Basis functions of the Fock space and sq_hamiltonian are incompatible.");
+        throw std::invalid_argument("DOCI::calculateDiagonal(SQHamiltonian<double>): Basis functions of the ONV basis and sq_hamiltonian are incompatible.");
     }
 
     const size_t dim = this->fock_space.get_dimension();

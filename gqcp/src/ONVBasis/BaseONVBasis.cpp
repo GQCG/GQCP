@@ -32,7 +32,7 @@ namespace GQCP {
 
 /**
  *  @param K        the number of orbitals
- *  @param dim      the dimension of the Fock space
+ *  @param dim      the dimension of the ONV basis
  */
 BaseONVBasis::BaseONVBasis(size_t K, size_t dim) :
     K (K),
@@ -50,7 +50,7 @@ BaseONVBasis::BaseONVBasis(size_t K, size_t dim) :
  *
  *  @param fock_space     reference to a derived BaseONVBasis instance to be cloned.
  *
- *  @return a shared pointer owning the heap-cloned Fock space
+ *  @return a shared pointer owning the heap-cloned ONV basis
  */
 std::shared_ptr<BaseONVBasis> BaseONVBasis::CloneToHeap(const BaseONVBasis& fock_space) {
 
@@ -98,7 +98,7 @@ std::shared_ptr<BaseONVBasis> BaseONVBasis::CloneToHeap(const BaseONVBasis& fock
  */
 VectorX<double> BaseONVBasis::HartreeFockExpansion() const {
     VectorX<double> expansion = VectorX<double>::Zero(this->dim);
-    expansion(0) = 1;  // first configuration is position 0 (conventional ordering of the Fock space)
+    expansion(0) = 1;  // first configuration is position 0 (conventional ordering of the ONV basis)
     return expansion;
 }
 

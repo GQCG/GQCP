@@ -27,15 +27,15 @@ namespace GQCP {
 
 
 /**
- *  A class capable of calculating 1- and 2-RDMs from wave functions expanded in the frozen full CI product Fock space
+ *  A class capable of calculating 1- and 2-RDMs from wave functions expanded in the frozen full CI product ONV basis
  */
 class FrozenCoreFCIRDMBuilder : public FrozenCoreRDMBuilder {
-    FrozenProductONVBasis fock_space;  // contains both the frozen alpha and beta Fock space
+    FrozenProductONVBasis fock_space;  // contains both the frozen alpha and beta ONV basis
 
 public:
     // CONSTRUCTORS
     /**
-     *  @param fock_space       the frozen product Fock space
+     *  @param fock_space       the frozen product ONV basis
      */
     explicit FrozenCoreFCIRDMBuilder(const FrozenProductONVBasis& fock_space);
 

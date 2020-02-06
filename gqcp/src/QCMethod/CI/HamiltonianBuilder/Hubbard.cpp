@@ -26,7 +26,7 @@ namespace GQCP {
  */
 
 /**
- *  @param fock_space       the full alpha and beta product Fock space
+ *  @param fock_space       the full alpha and beta product ONV basis
  */
 Hubbard::Hubbard(const ProductONVBasis& fock_space) :
     HamiltonianBuilder(),
@@ -48,7 +48,7 @@ SquareMatrix<double> Hubbard::constructHamiltonian(const SQHamiltonian<double>& 
     
     auto K = sq_hamiltonian.dimension();
     if (K != this->fock_space.get_K()) {
-        throw std::invalid_argument("Hubbard::constructHamiltonian(SQHamiltonian<double>): Basis functions of the Fock space and sq_hamiltonian are incompatible.");
+        throw std::invalid_argument("Hubbard::constructHamiltonian(SQHamiltonian<double>): Basis functions of the ONV basis and sq_hamiltonian are incompatible.");
     }
 
     return this->fock_space.evaluateOperatorDense(sq_hamiltonian.core(), false) + SquareMatrix<double>(this->calculateDiagonal(sq_hamiltonian).asDiagonal());
@@ -66,7 +66,7 @@ VectorX<double> Hubbard::matrixVectorProduct(const SQHamiltonian<double>& sq_ham
 
     auto K = sq_hamiltonian.dimension();
     if (K != this->fock_space.get_K()) {
-        throw std::invalid_argument("Hubbard::matrixVectorProduct(SQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the Fock space and sq_hamiltonian are incompatible.");
+        throw std::invalid_argument("Hubbard::matrixVectorProduct(SQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the ONV basis and sq_hamiltonian are incompatible.");
     }
 
     ONVBasis fock_space_alpha = fock_space.get_fock_space_alpha();
@@ -98,7 +98,7 @@ VectorX<double> Hubbard::calculateDiagonal(const SQHamiltonian<double>& sq_hamil
 
     const auto K = sq_hamiltonian.dimension();
     if (K != this->fock_space.get_K()) {
-        throw std::invalid_argument("Hubbard::calculateDiagonal(SQHamiltonian<double>): Basis functions of the Fock space and sq_hamiltonian are incompatible.");
+        throw std::invalid_argument("Hubbard::calculateDiagonal(SQHamiltonian<double>): Basis functions of the ONV basis and sq_hamiltonian are incompatible.");
     }
 
     ONVBasis fock_space_alpha = fock_space.get_fock_space_alpha();

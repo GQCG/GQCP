@@ -41,7 +41,7 @@ FrozenProductONVBasis::FrozenProductONVBasis(size_t K, size_t N_alpha, size_t N_
 
 
 /**
- *  @param fock_space       (to be frozen) product Fock space
+ *  @param fock_space       (to be frozen) product ONV basis
  *  @param X                the number of frozen orbitals and electrons (equal for alpha and beta)
  */
 FrozenProductONVBasis::FrozenProductONVBasis(const ProductONVBasis& fock_space, size_t X) :
@@ -60,7 +60,7 @@ FrozenProductONVBasis::FrozenProductONVBasis(const ProductONVBasis& fock_space, 
  *  @param usq_hamiltonian                the Hamiltonian expressed in an unrestricted orthonormal basis 
  *  @param diagonal_values                bool to indicate if diagonal values will be calculated
  *
- *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the Fock space
+ *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the ONV basis
  */
 SquareMatrix<double> FrozenProductONVBasis::evaluateOperatorDense(const USQHamiltonian<double>& usq_hamiltonian, bool diagonal_values) const {
     // Freeze the operators
@@ -84,7 +84,7 @@ SquareMatrix<double> FrozenProductONVBasis::evaluateOperatorDense(const USQHamil
  *
  *  @param usq_hamiltonian          the Hamiltonian expressed in an unrestricted orthonormal basis 
  *
- *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the Fock space
+ *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the ONV basis
  */
 VectorX<double> FrozenProductONVBasis::evaluateOperatorDiagonal(const USQHamiltonian<double>& usq_hamiltonian) const {
     const auto frozen_usq_hamiltonian = BaseFrozenCoreONVBasis::freezeOperator(usq_hamiltonian, this->X);
@@ -105,9 +105,9 @@ VectorX<double> FrozenProductONVBasis::evaluateOperatorDiagonal(const USQHamilto
  *
  *  @param usq_hamiltonian                the Hamiltonian expressed in an unrestricted orthonormal basis 
  *  @param x                              the vector upon which the evaluation acts 
- *  @param diagonal                       the diagonal evaluated in the Fock space
+ *  @param diagonal                       the diagonal evaluated in the ONV basis
  *
- *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the Fock space
+ *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the ONV basis
  */
 VectorX<double> FrozenProductONVBasis::evaluateOperatorMatrixVectorProduct(const USQHamiltonian<double>& usq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
     const auto frozen_ham_par = BaseFrozenCoreONVBasis::freezeOperator(usq_hamiltonian, this->X);

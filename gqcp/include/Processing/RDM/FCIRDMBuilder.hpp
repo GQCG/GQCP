@@ -27,10 +27,10 @@ namespace GQCP {
 
 
 /**
- *  A class capable of calculating 1- and 2-RDMs from wave functions expanded in the full CI product Fock space
+ *  A class capable of calculating 1- and 2-RDMs from wave functions expanded in the full CI product ONV basis
  */
 class FCIRDMBuilder : public BaseRDMBuilder {
-    ProductONVBasis fock_space;  // Fock space containing the alpha and beta Fock space
+    ProductONVBasis fock_space;  // ONV basis containing the alpha and beta ONV basis
 
 
 public:

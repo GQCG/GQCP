@@ -31,12 +31,12 @@ namespace GQCP {
  */
 class FrozenCoreDOCI : public FrozenCoreCI {
 private:
-    FrozenONVBasis fock_space;  // both the alpha and beta Fock space
+    FrozenONVBasis fock_space;  // both the alpha and beta ONV basis
 
 public:
     // CONSTRUCTORS
     /**
-     *  @param fock_space       the frozen Fock space (identical for alpha and beta)
+     *  @param fock_space       the frozen ONV basis (identical for alpha and beta)
      */
     explicit FrozenCoreDOCI(const FrozenONVBasis& fock_space);
 

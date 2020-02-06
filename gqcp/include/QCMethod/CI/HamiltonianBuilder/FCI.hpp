@@ -25,18 +25,18 @@
 namespace GQCP {
 
 /**
- *  A HamiltonianBuilder for FCI: it builds the matrix representation of the FCI Hamiltonian in the full alpha and beta product Fock space
+ *  A HamiltonianBuilder for FCI: it builds the matrix representation of the FCI Hamiltonian in the full alpha and beta product ONV basis
  */
 class FCI : public HamiltonianBuilder {
 private:
-    ProductONVBasis fock_space;  // fock space containing the alpha and beta Fock space
+    ProductONVBasis fock_space;  // fock space containing the alpha and beta ONV basis
 
 
 public:
 
     // CONSTRUCTORS
     /**
-     *  @param fock_space       the full alpha and beta product Fock space
+     *  @param fock_space       the full alpha and beta product ONV basis
      */
     explicit FCI(const ProductONVBasis& fock_space);
 

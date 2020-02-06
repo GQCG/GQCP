@@ -26,11 +26,11 @@ namespace GQCP {
 
 
 /**
- *  A class that represents a wave function: expansion coefficients in a (spin-orbital) Fock space
+ *  A class that represents a wave function: expansion coefficients in a (spin-orbital) ONV basis
  */
 class SpinUnresolvedWaveFunction : public WaveFunction {
     /**
-     *  @param fock_space           the Fock space in which the wave function 'lives'
+     *  @param fock_space           the ONV basis in which the wave function 'lives'
      *  @param coefficients         the expansion coefficients
      */
     SpinUnresolvedWaveFunction(const ONVBasis& fock_space, const VectorX<double>& coefficients);

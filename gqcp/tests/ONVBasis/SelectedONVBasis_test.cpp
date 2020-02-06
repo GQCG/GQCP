@@ -132,7 +132,7 @@ BOOST_AUTO_TEST_CASE ( reader_test ) {
 
 
 /**
- *  Evaluate the Hamiltonian in a selected Fock space in which all configurations are selected (Full CI)
+ *  Evaluate the Hamiltonian in a selected ONV basis in which all configurations are selected (Full CI)
  *  Compare the evaluation of a direct matrix vector product to that of the matrix vector product evaluations and test the lowest eigenvalue against of the evaluated Hamiltonian a reference value
  */
 BOOST_AUTO_TEST_CASE ( Selected_Evaluation_H2O ) {
@@ -182,7 +182,7 @@ BOOST_AUTO_TEST_CASE ( Selected_Evaluation_H2O ) {
 
 
 /**
- *  Evaluate the an unrestricted Hamiltonian where one component (beta) is rotated to a different basis in a selected Fock space in which all configurations are selected (Full CI)
+ *  Evaluate the an unrestricted Hamiltonian where one component (beta) is rotated to a different basis in a selected ONV basis in which all configurations are selected (Full CI)
  *  Compare the evaluation of a direct matrix vector product to that of the matrix vector product evaluations and test the lowest eigenvalue against of the evaluated Hamiltonian a reference value
  */
 BOOST_AUTO_TEST_CASE ( Selected_H2O_Unrestricted ) {

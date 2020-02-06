@@ -27,12 +27,12 @@ namespace GQCP {
 
 
 /**
- *  A class that represents a wave function: expansion coefficients in a Fock space
+ *  A class that represents a wave function: expansion coefficients in a ONV basis
  */
 class WaveFunction {
 private:
     std::shared_ptr<BaseONVBasis> fock_space;
-    VectorX<double> coefficients;  // the expansion coefficients in the Fock space
+    VectorX<double> coefficients;  // the expansion coefficients in the ONV basis
 
 public:
     // CONSTRUCTORS
@@ -41,7 +41,7 @@ public:
     /**
      *  Construct a normalized wave function from possibly non-normalized coefficients
      *
-     *  @param base_fock_space      the Fock space in which the wave function 'lives'
+     *  @param base_fock_space      the ONV basis in which the wave function 'lives'
      *  @param coefficients         the expansion coefficients
      */
     WaveFunction(const BaseONVBasis& base_fock_space, const VectorX<double>& coefficients);

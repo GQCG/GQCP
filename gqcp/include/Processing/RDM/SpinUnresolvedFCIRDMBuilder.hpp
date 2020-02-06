@@ -27,10 +27,10 @@ namespace GQCP {
 
 
 /**
- *  A class capable of calculating RDMs from wave functions expanded in the full CI (spin-orbital) Fock space
+ *  A class capable of calculating RDMs from wave functions expanded in the full CI (spin-orbital) ONV basis
  */
 class SpinUnresolvedFCIRDMBuilder : public BaseSpinUnresolvedRDMBuilder {
-    ONVBasis fock_space;  // spin-orbital Fock space
+    ONVBasis fock_space;  // spin-orbital ONV basis
 
 public:
     /*

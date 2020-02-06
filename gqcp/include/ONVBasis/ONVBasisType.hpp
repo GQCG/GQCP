@@ -22,7 +22,7 @@ namespace GQCP {
 
 
 /**
- *  An enum class for the implemented Fock space types
+ *  An enum class for the implemented ONV basis types
  */
 enum class ONVBasisType {
     ONVBasis,

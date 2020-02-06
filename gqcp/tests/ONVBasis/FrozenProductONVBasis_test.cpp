@@ -59,7 +59,7 @@ BOOST_AUTO_TEST_CASE ( FrozenProductONVBasis_member_test ) {
 
 
 /**
- *  Perform a dense evaluation of a one-, two-electron operator and the Hamiltonian in the frozen product Fock space (excluding the diagonal) and compare these to the selected CI solutions
+ *  Perform a dense evaluation of a one-, two-electron operator and the Hamiltonian in the frozen product ONV basis (excluding the diagonal) and compare these to the selected CI solutions
  */
 BOOST_AUTO_TEST_CASE ( ONVBasis_EvaluateOperator_diagonal_vs_no_diagonal) {
 
@@ -80,7 +80,7 @@ BOOST_AUTO_TEST_CASE ( ONVBasis_EvaluateOperator_diagonal_vs_no_diagonal) {
 
 
 /**
- *  Perform a dense evaluation of a one-, two-electron operator and the Hamiltonian in the frozen product Fock space (including the diagonal) and compare these to the selected CI solutions
+ *  Perform a dense evaluation of a one-, two-electron operator and the Hamiltonian in the frozen product ONV basis (including the diagonal) and compare these to the selected CI solutions
  */
 BOOST_AUTO_TEST_CASE ( ONVBasis_EvaluateOperator_Dense_diagonal_true ) {
 
@@ -95,7 +95,7 @@ BOOST_AUTO_TEST_CASE ( ONVBasis_EvaluateOperator_Dense_diagonal_true ) {
     auto& h = sq_hamiltonian.core();
     auto& g = sq_hamiltonian.twoElectron();
 
-    // Test the evaluation of the operators with selected Fock space (the reference) versus the that of the product Fock space 
+    // Test the evaluation of the operators with selected ONV basis (the reference) versus the that of the product ONV basis 
     auto one_electron_evaluation1 = product_fock_space.evaluateOperatorDense(h, true);
     auto one_electron_evaluation2 = selected_fock_space.evaluateOperatorDense(h, true);
 
@@ -112,7 +112,7 @@ BOOST_AUTO_TEST_CASE ( ONVBasis_EvaluateOperator_Dense_diagonal_true ) {
 
 
 /**
- *  Perform a dense evaluation of a one-, two-electron operator and the Hamiltonian in the frozen product Fock space (excluding the diagonal) and compare these to the selected CI solutions
+ *  Perform a dense evaluation of a one-, two-electron operator and the Hamiltonian in the frozen product ONV basis (excluding the diagonal) and compare these to the selected CI solutions
  */
 BOOST_AUTO_TEST_CASE ( ONVBasis_EvaluateOperator_Dense_diagonal_false ) {
 
@@ -143,7 +143,7 @@ BOOST_AUTO_TEST_CASE ( ONVBasis_EvaluateOperator_Dense_diagonal_false ) {
 
 
 /**
- *  Perform a diagonal evaluation of a one-, two-electron operator and the Hamiltonian in the frozen product Fock space and compare these to the selected CI solutions
+ *  Perform a diagonal evaluation of a one-, two-electron operator and the Hamiltonian in the frozen product ONV basis and compare these to the selected CI solutions
  */
 BOOST_AUTO_TEST_CASE ( ONVBasis_EvaluateOperator_diagonal ) {
 
@@ -174,7 +174,7 @@ BOOST_AUTO_TEST_CASE ( ONVBasis_EvaluateOperator_diagonal ) {
 
 
 /**
- *  Perform a dense and diagonal evaluation for the unrestricted Hamiltonian in the frozen product Fock space and compare these to the selected CI solutions
+ *  Perform a dense and diagonal evaluation for the unrestricted Hamiltonian in the frozen product ONV basis and compare these to the selected CI solutions
  */
 BOOST_AUTO_TEST_CASE ( FrozenProductONVBasis_evaluateOperator_diagonal_unrestricted_vs_selected ) {
 

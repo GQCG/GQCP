@@ -39,7 +39,7 @@ CISolver::CISolver(const HamiltonianBuilder& hamiltonian_builder, const SQHamilt
 {
     const auto K = sq_hamiltonian.core().get_dim();
     if (K != this->hamiltonian_builder->get_fock_space()->get_K()) {
-        throw std::invalid_argument("CISolver::CISolver(HamiltonianBuilder, SQHamiltonian<double>): Basis functions of the Fock space and sq_hamiltonian are incompatible.");
+        throw std::invalid_argument("CISolver::CISolver(HamiltonianBuilder, SQHamiltonian<double>): Basis functions of the ONV basis and sq_hamiltonian are incompatible.");
     }
 }
 

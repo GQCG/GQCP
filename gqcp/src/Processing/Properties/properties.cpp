@@ -58,8 +58,8 @@ Matrix<double, 3, 3> calculateElectricPolarizability(const Matrix<double, Dynami
 /**
  *  Calculate the Dyson 'amplitudes' (the coefficients of a Dyson orbital) between two wave function expressed in the same spinor basis 
  * 
- *  @param wavefunction1        a wave function in a product Fock space  
- *  @param wavefunction2        a wave function in a product Fock space containing one fewer electron and the same amount of orbitals that is expressed in the same basis
+ *  @param wavefunction1        a wave function in a product ONV basis  
+ *  @param wavefunction2        a wave function in a product ONV basis containing one fewer electron and the same amount of orbitals that is expressed in the same basis
  *
  *  @return a vector with the Dyson orbital amplitudes  
  */
@@ -67,11 +67,11 @@ VectorX<double> calculateDysonOrbitalCoefficients(const WaveFunction& wavefuncti
 
     // Check the arguments
     if (wavefunction1.get_fock_space().get_type() != ONVBasisType::ProductONVBasis) {
-        throw std::runtime_error("properties::calculateDysonOrbital(WaveFunction, WaveFunction): wavefunction1 is not in a product Fock space");
+        throw std::runtime_error("properties::calculateDysonOrbital(WaveFunction, WaveFunction): wavefunction1 is not in a product ONV basis");
     }
 
     if (wavefunction2.get_fock_space().get_type() != ONVBasisType::ProductONVBasis) {
-        throw std::runtime_error("properties::calculateDysonOrbital(WaveFunction, WaveFunction): wavefunction2 is not in a product Fock space");
+        throw std::runtime_error("properties::calculateDysonOrbital(WaveFunction, WaveFunction): wavefunction2 is not in a product ONV basis");
     }
 
     const auto& fock_space1 = static_cast<const ProductONVBasis&>(wavefunction1.get_fock_space());
@@ -79,14 +79,14 @@ VectorX<double> calculateDysonOrbitalCoefficients(const WaveFunction& wavefuncti
 
     if ((fock_space1.get_N_alpha() - fock_space2.get_N_alpha() != 0) && (fock_space1.get_N_beta() - fock_space2.get_N_beta() != 1)) {
         if ((fock_space1.get_N_alpha() - fock_space2.get_N_alpha() != 1) && (fock_space1.get_N_beta() - fock_space2.get_N_beta() != 0)) {
-            throw std::runtime_error("properties::calculateDysonOrbital(WaveFunction, WaveFunction): wavefunction2 is not expressed in a product Fock space with one fewer electron than wavefunction1");
+            throw std::runtime_error("properties::calculateDysonOrbital(WaveFunction, WaveFunction): wavefunction2 is not expressed in a product ONV basis with one fewer electron than wavefunction1");
         }
     } 
 
     // Initialize environment variables
 
-    // The 'passive' spin Fock spaces are the Fock spaces that are equal for both wave functions
-    // The 'target' spin Fock spaces have an electron difference of one
+    // The 'passive' spin ONV basiss are the ONV basiss that are equal for both wave functions
+    // The 'target' spin ONV basiss have an electron difference of one
     // We initialize the variables for the case in which they differ in one beta electron, if this isn't the case, we will update it later 
     auto passive_fock_space1 = fock_space1.get_fock_space_alpha();
     auto passive_fock_space2 = fock_space2.get_fock_space_alpha();
@@ -98,7 +98,7 @@ VectorX<double> calculateDysonOrbitalCoefficients(const WaveFunction& wavefuncti
     size_t passive_mod2 = target_fock_space2.get_dimension();
     size_t target_mod = 1;
 
-    // If instead the Fock spaces differ by one alpha electron we re-assign the variables to match the algorithm
+    // If instead the ONV basiss differ by one alpha electron we re-assign the variables to match the algorithm
     if ((fock_space1.get_N_alpha() - fock_space2.get_N_alpha() == 1) && (fock_space1.get_N_beta() - fock_space2.get_N_beta() == 0)) {
         passive_fock_space1 = target_fock_space1;
         passive_fock_space2 = target_fock_space2;
@@ -117,25 +117,25 @@ VectorX<double> calculateDysonOrbitalCoefficients(const WaveFunction& wavefuncti
 
     // The actual algorithm to determine the Dyson amplitudes
     // Since we want to calculate the overlap between two wave functions, the ONVs should have an equal number of electrons
-    // We therefore iterate over the ONVs of the 'target' Fock space, which all have an electron more, and annihilate in one of the orbitals (let the index of that orbital be called 'p')
-    // By calculating the overlap in the (N-1)-Fock space, we can calculate the contributions to the  'p'-th coefficient (i.e. the Dyson amplitude) of the Dyson orbital
+    // We therefore iterate over the ONVs of the 'target' ONV basis, which all have an electron more, and annihilate in one of the orbitals (let the index of that orbital be called 'p')
+    // By calculating the overlap in the (N-1)-ONV basis, we can calculate the contributions to the  'p'-th coefficient (i.e. the Dyson amplitude) of the Dyson orbital
     ONV onv = target_fock_space1.makeONV(0);
 
-    for (size_t It = 0; It < target_fock_space1.get_dimension(); It++) {  // It loops over addresses of the target Fock space
+    for (size_t It = 0; It < target_fock_space1.get_dimension(); It++) {  // It loops over addresses of the target ONV basis
         int sign = -1;  // total phase factor of all the annihilations that have occurred
         for (size_t e = 0; e < target_fock_space1.get_N(); e++) {  // loop over electrons in the ONV
         
-            // Annihilate on the corresponding orbital, to make sure we can calculate overlaps in the (N-1)-'target' Fock space
+            // Annihilate on the corresponding orbital, to make sure we can calculate overlaps in the (N-1)-'target' ONV basis
             sign *= -1; 
             size_t p = onv.get_occupation_index(e);
             onv.annihilate(p);
 
-            // Now, we calculate the overlap in the (N-1)-'target' Fock space
-            // In order to access the correct coefficients for the, we need the address of the resulting (annihilated) ONV inside the 'target' Fock space
+            // Now, we calculate the overlap in the (N-1)-'target' ONV basis
+            // In order to access the correct coefficients for the, we need the address of the resulting (annihilated) ONV inside the 'target' ONV basis
             size_t address = target_fock_space2.getAddress(onv.get_unsigned_representation());
 
             double coeff = 0;
-            for (size_t Ip = 0; Ip < passive_fock_space1.get_dimension(); Ip++) {  // Ip loops over the addresses of the passive Fock space
+            for (size_t Ip = 0; Ip < passive_fock_space1.get_dimension(); Ip++) {  // Ip loops over the addresses of the passive ONV basis
                 coeff += sign * ci_coeffs1(It * target_mod + Ip * passive_mod1) * ci_coeffs2(address * target_mod + Ip * passive_mod2);  // access the indices of the coefficient vectors
             }
             dyson_coeffs(p) += coeff;

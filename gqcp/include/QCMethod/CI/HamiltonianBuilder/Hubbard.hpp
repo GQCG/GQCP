@@ -26,7 +26,7 @@ namespace GQCP {
 
 
 /**
- *  Hubbard builds a a Hubbard Hamiltonian matrix in the FCI Fock space
+ *  Hubbard builds a a Hubbard Hamiltonian matrix in the FCI ONV basis
  *
  *  Hubbard distinguishes itself from FCI by explicitly implementing simplified a Hamiltonian:
  *      - for the one electron operators only inter-site interactions are considered
@@ -34,14 +34,14 @@ namespace GQCP {
  */
 class Hubbard : public HamiltonianBuilder {
 private:
-    ProductONVBasis fock_space;  // fock space containing the alpha and beta Fock space
+    ProductONVBasis fock_space;  // fock space containing the alpha and beta ONV basis
     
 
 public:
 
     // CONSTRUCTORS
     /**
-     *  @param fock_space       the full alpha and beta product Fock space
+     *  @param fock_space       the full alpha and beta product ONV basis
      */
     explicit Hubbard(const ProductONVBasis& fock_space);
 

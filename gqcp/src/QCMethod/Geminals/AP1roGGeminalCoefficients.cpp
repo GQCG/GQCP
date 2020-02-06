@@ -213,7 +213,7 @@ double AP1roGGeminalCoefficients::overlap(const ONV& onv) const {
 
     // For an AP1roG wave function, we use a simplification for singly and doubly pair-excited ONVs
 
-    ONVBasis fock_space (this->K, this->N_P);  // the DOCI Fock space
+    ONVBasis fock_space (this->K, this->N_P);  // the DOCI ONV basis
     ONV reference = fock_space.makeONV(0);
 
     if (onv.countNumberOfDifferences(reference) == 0) {  // no excitations

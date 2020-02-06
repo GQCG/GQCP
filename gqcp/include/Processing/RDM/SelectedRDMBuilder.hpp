@@ -27,10 +27,10 @@ namespace GQCP {
 
 
 /**
- *  A class capable of calculating 1- and 2-RDMs from wave functions expanded in a selected Fock space
+ *  A class capable of calculating 1- and 2-RDMs from wave functions expanded in a selected ONV basis
  */
 class SelectedRDMBuilder : public BaseRDMBuilder {
-    SelectedONVBasis fock_space;  // Fock space containing the selected configurations
+    SelectedONVBasis fock_space;  // ONV basis containing the selected configurations
 
 
 public:

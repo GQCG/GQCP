@@ -70,7 +70,7 @@ public:
     /**
      *  @param representation       a representation of an ONV
      *
-     *  @return the next bitstring permutation in the Fock space
+     *  @return the next bitstring permutation in the ONV basis
      */
     virtual size_t ulongNextPermutation(size_t representation) const = 0;
 
@@ -105,12 +105,12 @@ public:
     virtual size_t countTwoElectronCouplings(const ONV& onv) const = 0;
 
     /**
-     *  @return the amount non-zero (non-diagonal) couplings of a one electron coupling scheme in the Fock space
+     *  @return the amount non-zero (non-diagonal) couplings of a one electron coupling scheme in the ONV basis
      */
     virtual size_t countTotalOneElectronCouplings() const = 0;
 
     /**
-     *  @return the amount non-zero (non-diagonal) couplings of a two electron coupling scheme in the Fock space
+     *  @return the amount non-zero (non-diagonal) couplings of a two electron coupling scheme in the ONV basis
      */
     virtual size_t countTotalTwoElectronCouplings() const = 0;
 

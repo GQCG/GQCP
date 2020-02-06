@@ -41,7 +41,7 @@ BOOST_AUTO_TEST_CASE ( FrozenCoreDOCI_public_methods ) {
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Random(K);
 
 
-    // Create a compatible Fock space
+    // Create a compatible ONV basis
     GQCP::FrozenONVBasis fock_space (K, 3, 1);
     GQCP::FrozenCoreDOCI random_doci (fock_space);
     GQCP::VectorX<double> x = random_doci.calculateDiagonal(sq_hamiltonian);
@@ -49,7 +49,7 @@ BOOST_AUTO_TEST_CASE ( FrozenCoreDOCI_public_methods ) {
     BOOST_CHECK_NO_THROW(random_doci.matrixVectorProduct(sq_hamiltonian, x, x));
 
 
-    // Create an incompatible Fock space
+    // Create an incompatible ONV basis
     GQCP::FrozenONVBasis fock_space_invalid (K+1, 3, 1);
     GQCP::FrozenCoreDOCI random_doci_invalid (fock_space_invalid);
     BOOST_CHECK_THROW(random_doci_invalid.constructHamiltonian(sq_hamiltonian), std::invalid_argument);
@@ -65,7 +65,7 @@ BOOST_AUTO_TEST_CASE ( SelectedCI_vs_FrozenCoreDOCI ) {
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (H5, "STO-3G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, H5);  // in an AO basis
 
-    // Create compatible Fock spaces
+    // Create compatible ONV basiss
     GQCP::FrozenONVBasis frozen_fock_space (K, 3, 1);
     GQCP::SelectedONVBasis fock_space (frozen_fock_space);
 

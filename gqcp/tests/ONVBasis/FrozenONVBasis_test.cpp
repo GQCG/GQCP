@@ -50,7 +50,7 @@ BOOST_AUTO_TEST_CASE ( coupling_count ) {
     BOOST_CHECK(fock_space.countTwoElectronCouplings(onv) == 6+3);
 
 
-    // test whether the total count matches that of individual counts of all ONVs in the Fock space.
+    // test whether the total count matches that of individual counts of all ONVs in the ONV basis.
     GQCP::FrozenONVBasis fock_space2 (18, 10, 2);
 
     size_t coupling_count1 = 0;
@@ -93,16 +93,16 @@ BOOST_AUTO_TEST_CASE ( ulongNextPermutation_getAddress_calculateRepresentation )
 
 BOOST_AUTO_TEST_CASE ( address_setNext_frozen_space ) {
 
-    // Here we will test a set of permutations through a frozen Fock space of K = 15, N = 5, X = 2
+    // Here we will test a set of permutations through a frozen ONV basis of K = 15, N = 5, X = 2
     GQCP::FrozenONVBasis fock_space (15, 5, 2);
 
-    // Retrieve the first ONV of the Fock space
+    // Retrieve the first ONV of the ONV basis
     GQCP::ONV onv_test = fock_space.makeONV(0);
 
     const size_t permutations = 285;
     bool is_correct = true;  // variable that is updated to false if an unexpected result occurs
 
-    // Iterate through the Fock space in reverse lexicographical order and test whether address matches
+    // Iterate through the ONV basis in reverse lexicographical order and test whether address matches
     for (size_t i = 0; i < permutations; i++) {
 
         // Tests address
@@ -110,7 +110,7 @@ BOOST_AUTO_TEST_CASE ( address_setNext_frozen_space ) {
             is_correct = false;
         }
 
-        // transforms the given ONV to the next ONV in the Fock space
+        // transforms the given ONV to the next ONV in the ONV basis
         if (i < permutations - 1) {
             fock_space.setNextONV(onv_test);
         }

@@ -26,7 +26,7 @@ namespace GQCP {
  */
 
 /**
- *  @param fock_space           the Fock space in which the wave function 'lives'
+ *  @param fock_space           the ONV basis in which the wave function 'lives'
  *  @param coefficients         the expansion coefficients
  */
 SpinUnresolvedWaveFunction::SpinUnresolvedWaveFunction(const ONVBasis& fock_space, const VectorX<double>& coefficients) :

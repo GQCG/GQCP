@@ -36,11 +36,11 @@ using PassToMethod = std::function<void (size_t I, size_t J, double value)>;
 
 
 /**
- *  SelectedCI builds a Hamiltonian matrix in the Selected Fock space
+ *  SelectedCI builds a Hamiltonian matrix in the Selected ONV basis
  */
 class SelectedCI : public HamiltonianBuilder {
 private:
-    SelectedONVBasis fock_space;  // contains both the alpha and beta Fock space
+    SelectedONVBasis fock_space;  // contains both the alpha and beta ONV basis
     
     // PRIVATE METHODS
     /**
@@ -55,7 +55,7 @@ public:
 
     // CONSTRUCTORS
     /**
-     *  @param fock_space               the selected Fock space
+     *  @param fock_space               the selected ONV basis
      */
     explicit SelectedCI(const SelectedONVBasis& fock_space);
 

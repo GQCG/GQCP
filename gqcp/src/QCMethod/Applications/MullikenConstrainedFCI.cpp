@@ -320,7 +320,7 @@ void MullikenConstrainedFCI::solveMullikenDavidson(const double multiplier, cons
  */
 void MullikenConstrainedFCI::solveMullikenDense(const double multiplier, const size_t nos = 1, const double sz_multiplier) {
     if (nos < 1 || nos >= fock_space.get_dimension()) {
-        throw std::runtime_error("MullikenConstrainedFCI::solveMullikenDense(): number of states should be larger than 0 and smaller than the dimension of the Fock space");
+        throw std::runtime_error("MullikenConstrainedFCI::solveMullikenDense(): number of states should be larger than 0 and smaller than the dimension of the ONV basis");
     }
 
     auto start_time = std::chrono::high_resolution_clock::now();

@@ -70,7 +70,7 @@ public:
     // PUBLIC METHODS
 
     /**
-     *  Solve the dense eigenvalue problem for the molecular Hamiltonian in the full Fock space
+     *  Solve the dense eigenvalue problem for the molecular Hamiltonian in the full ONV basis
      */
     void solve();
 

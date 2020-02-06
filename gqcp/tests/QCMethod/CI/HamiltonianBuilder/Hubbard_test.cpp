@@ -39,7 +39,7 @@ BOOST_AUTO_TEST_CASE ( Hubbard_public_methods ) {
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Random(K);
 
 
-    // Create a compatible Fock space
+    // Create a compatible ONV basis
     GQCP::ProductONVBasis fock_space (K, 3, 3);
     GQCP::Hubbard random_Hubbard (fock_space);
     GQCP::VectorX<double> x = random_Hubbard.calculateDiagonal(sq_hamiltonian);
@@ -47,7 +47,7 @@ BOOST_AUTO_TEST_CASE ( Hubbard_public_methods ) {
     BOOST_CHECK_NO_THROW(random_Hubbard.matrixVectorProduct(sq_hamiltonian, x, x));
 
 
-    // Create an incompatible Fock space
+    // Create an incompatible ONV basis
     GQCP::ProductONVBasis fock_space_invalid (K+1, 3, 3);
 
     // Create Hubbard module

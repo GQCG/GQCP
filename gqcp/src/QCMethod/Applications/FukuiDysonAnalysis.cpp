@@ -71,7 +71,7 @@ FukuiDysonAnalysis::FukuiDysonAnalysis(const Molecule& molecule, const std::stri
         basisTransform(this->spinor_basis, this->sq_hamiltonian, rhf_parameters.coefficientMatrix());
     }
 
-    // In order to supply the correct arguments to the algorithm we choose different Fock spaces as fock_space1 should always have the highest occupation to fit the algorithm
+    // In order to supply the correct arguments to the algorithm we choose different ONV basiss as fock_space1 should always have the highest occupation to fit the algorithm
     if (open_shell_entry) {
         this->fock_space1 = ProductONVBasis(K, N_P + 1, N_P);
         this->fock_space2 = ProductONVBasis(K, N_P, N_P);

@@ -39,7 +39,7 @@ FrozenONVBasis::FrozenONVBasis(size_t K, size_t N, size_t X) :
 {}
 
 /**
- *  @param fock_space       (to be frozen) full Fock space
+ *  @param fock_space       (to be frozen) full ONV basis
  *  @param X                the number of frozen orbitals and electrons
  */
 FrozenONVBasis::FrozenONVBasis(const ONVBasis& fock_space, size_t X) :
@@ -55,7 +55,7 @@ FrozenONVBasis::FrozenONVBasis(const ONVBasis& fock_space, size_t X) :
 /**
  *  @param representation       a representation of an ONV
  *
- *  @return the next bitstring permutation in the frozen Fock space
+ *  @return the next bitstring permutation in the frozen ONV basis
  *
  *      Examples (first orbital is frozen):
  *          0101 -> 1001
@@ -78,7 +78,7 @@ size_t FrozenONVBasis::ulongNextPermutation(size_t representation) const {
  */
 size_t FrozenONVBasis::getAddress(size_t representation) const {
     // transform the representation to the sub space, by bitshifting left X amount of times to remove the frozen orbital indices
-    // address of the total ONV in the frozen Fock space is identical to that of the sub ONV in the sub Fock space.
+    // address of the total ONV in the frozen ONV basis is identical to that of the sub ONV in the sub ONV basis.
     return this->active_fock_space.getAddress(representation >> this->X);
 };
 
@@ -156,7 +156,7 @@ size_t FrozenONVBasis::countTwoElectronCouplings(const ONV& onv) const {
 
 
 /**
- *  @return the amount non-zero couplings of a one electron coupling scheme in the Fock space
+ *  @return the amount non-zero couplings of a one electron coupling scheme in the ONV basis
  */
 size_t FrozenONVBasis::countTotalOneElectronCouplings() const {
     return this->active_fock_space.countTotalOneElectronCouplings();
@@ -164,7 +164,7 @@ size_t FrozenONVBasis::countTotalOneElectronCouplings() const {
 
 
 /**
- *  @return the amount non-zero couplings of a two electron coupling scheme in the Fock space
+ *  @return the amount non-zero couplings of a two electron coupling scheme in the ONV basis
  */
 size_t FrozenONVBasis::countTotalTwoElectronCouplings() const {
     return this->active_fock_space.countTotalTwoElectronCouplings();

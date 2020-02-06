@@ -48,14 +48,14 @@ public:
     /**
      *  Allocate a SpinUnresolvedFCIRDMBuilder
      *
-     *  @param fock_space       the Fock space
+     *  @param fock_space       the ONV basis
      */
     explicit SpinUnresolvedRDMCalculator(const ONVBasis& fock_space);
 
     /**
      *  A run-time constructor allocating the appropriate derived RDMBuilder and coefficient vector
      *
-     *  @param wavefunction       the wave function holding the coefficient vector and a Fock space on which the RDMBuilder should be based
+     *  @param wavefunction       the wave function holding the coefficient vector and a ONV basis on which the RDMBuilder should be based
      */
     explicit SpinUnresolvedRDMCalculator(const SpinUnresolvedWaveFunction& wavefunction);
 

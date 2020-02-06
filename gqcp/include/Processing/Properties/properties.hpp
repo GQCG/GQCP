@@ -47,8 +47,8 @@ Matrix<double, 3, 3> calculateElectricPolarizability(const Matrix<double, Dynami
 /**
  *  Calculate the Dyson 'amplitudes' (the coefficients of a Dyson orbital) between two wave function expressed in the same spinor basis 
  * 
- *  @param wavefunction1        a wave function in a product Fock space  
- *  @param wavefunction2        a wave function in a product Fock space containing one fewer electron and the same amount of orbitals that is expressed in the same basis
+ *  @param wavefunction1        a wave function in a product ONV basis  
+ *  @param wavefunction2        a wave function in a product ONV basis containing one fewer electron and the same amount of orbitals that is expressed in the same basis
  *
  *  @return a vector with the Dyson orbital amplitudes  
  */

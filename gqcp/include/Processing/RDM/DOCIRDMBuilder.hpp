@@ -30,7 +30,7 @@ namespace GQCP {
  *  A class capable of calculating 1- and 2-RDMs from DOCI wave functions
  */
 class DOCIRDMBuilder : public BaseRDMBuilder {
-    ONVBasis fock_space;  // both the alpha and beta Fock space
+    ONVBasis fock_space;  // both the alpha and beta ONV basis
 
 
 public:

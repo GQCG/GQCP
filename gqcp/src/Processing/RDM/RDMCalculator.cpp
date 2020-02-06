@@ -34,7 +34,7 @@ namespace GQCP {
 /**
  *  Allocate a DOCIRDMBuilder
  *
- *  @param fock_space       the DOCI Fock space
+ *  @param fock_space       the DOCI ONV basis
  */
 RDMCalculator::RDMCalculator(const ONVBasis& fock_space) :
     rdm_builder (std::make_shared<DOCIRDMBuilder>(fock_space))
@@ -44,7 +44,7 @@ RDMCalculator::RDMCalculator(const ONVBasis& fock_space) :
 /**
  *  Allocate a FCIRDMBuilder
  *
- *  @param fock_space       the FCI Fock space
+ *  @param fock_space       the FCI ONV basis
  */
 RDMCalculator::RDMCalculator(const ProductONVBasis& fock_space) :
     rdm_builder (std::make_shared<FCIRDMBuilder>(fock_space))
@@ -54,7 +54,7 @@ RDMCalculator::RDMCalculator(const ProductONVBasis& fock_space) :
 /**
  *  Allocate a SelectedRDMBuilder
  *
- *  @param fock_space       the 'selected' Fock space
+ *  @param fock_space       the 'selected' ONV basis
  */
 RDMCalculator::RDMCalculator(const SelectedONVBasis& fock_space) :
     rdm_builder (std::make_shared<SelectedRDMBuilder>(fock_space))
@@ -64,7 +64,7 @@ RDMCalculator::RDMCalculator(const SelectedONVBasis& fock_space) :
 /**
  *  A run-time constructor allocating the appropriate derived RDMBuilder
  *
- *  @param fock_space       the Fock space on which the RDMBuilder should be based
+ *  @param fock_space       the ONV basis on which the RDMBuilder should be based
  */
 RDMCalculator::RDMCalculator(const BaseONVBasis& fock_space) {
 
@@ -105,7 +105,7 @@ RDMCalculator::RDMCalculator(const BaseONVBasis& fock_space) {
 /**
  *  A run-time constructor allocating the appropriate derived RDMBuilder and coefficient vector
  *
- *  @param wavefunction       the wave function holding the coefficient vector and a Fock space on which the RDMBuilder should be based
+ *  @param wavefunction       the wave function holding the coefficient vector and a ONV basis on which the RDMBuilder should be based
  */
 RDMCalculator::RDMCalculator(const WaveFunction& wavefunction) :
         RDMCalculator(wavefunction.get_fock_space())

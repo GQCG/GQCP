@@ -28,7 +28,7 @@ namespace GQCP {
  *  A class that represents an ONV (occupation number vector)
 
  *  An ONV in quantum chemistry is a string of creation operators acting on top of a vacuum state.
- *  An example for 3 alpha electrons in a Fock space spanned by 4 spatial orbitals is
+ *  An example for 3 alpha electrons in a ONV basis spanned by 4 spatial orbitals is
  *      a_1^\dagger a_2^\dagger a_3^\dagger |vac> = |1,1,1,0>
  *
  *  In this code bitstrings are read from right to left. This means that the least significant bit relates to the first orbital.

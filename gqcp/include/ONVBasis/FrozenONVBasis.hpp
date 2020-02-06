@@ -28,12 +28,12 @@ namespace GQCP {
 
 
 /**
- *  A class that represents a frozen Fock space: this is a subspace of the N-electron Fock space in which the first X orbitals are always occupied
+ *  A class that represents a frozen ONV basis: this is a subspace of the N-electron ONV basis in which the first X orbitals are always occupied
  */
 class FrozenONVBasis: public BaseFrozenCoreONVBasis, public ONVManipulator<FrozenONVBasis> {
 protected:
     size_t X;  // number of frozen orbitals/electrons
-    ONVBasis active_fock_space;  // active (non-frozen) Fock space containing only the active electrons (N-X) and orbitals (K-X)
+    ONVBasis active_fock_space;  // active (non-frozen) ONV basis containing only the active electrons (N-X) and orbitals (K-X)
 
 public:
     // CONSTRUCTORS
@@ -45,7 +45,7 @@ public:
     FrozenONVBasis(size_t K, size_t N, size_t X);
 
     /**
-     *  @param fock_space       (to be frozen) full Fock space
+     *  @param fock_space       (to be frozen) full ONV basis
      *  @param X                the number of frozen orbitals and electrons
      */
     FrozenONVBasis(const ONVBasis& fock_space, size_t X);
@@ -65,7 +65,7 @@ public:
     /**
      *  @param representation       a representation of an ONV
      *
-     *  @return the next bitstring permutation in the frozen Fock space
+     *  @return the next bitstring permutation in the frozen ONV basis
      *
      *      Examples (first orbital is frozen):
      *          0101 -> 1001
@@ -104,12 +104,12 @@ public:
     size_t countTwoElectronCouplings(const ONV& onv) const override;
 
     /**
-     *  @return the amount non-zero (non-diagonal) couplings of a one electron coupling scheme in the Fock space
+     *  @return the amount non-zero (non-diagonal) couplings of a one electron coupling scheme in the ONV basis
      */
     size_t countTotalOneElectronCouplings() const override;
 
     /**
-     *  @return the amount non-zero (non-diagonal) couplings of a two electron coupling scheme in the Fock space
+     *  @return the amount non-zero (non-diagonal) couplings of a two electron coupling scheme in the ONV basis
      */
     size_t countTotalTwoElectronCouplings() const override;
 

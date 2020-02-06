@@ -52,7 +52,7 @@ ProductONVBasis::ProductONVBasis(size_t K, size_t N_alpha, size_t N_beta) :
  *  @param N_alpha      the number of alpha electrons
  *  @param N_beta       the number of beta electrons
  *
- *  @return the dimension of the product Fock space
+ *  @return the dimension of the product ONV basis
  */
 size_t ProductONVBasis::calculateDimension(size_t K, size_t N_alpha, size_t N_beta) {
     double alpha_dim = ONVBasis::calculateDimension(K, N_alpha);
@@ -102,10 +102,10 @@ ScalarSQOneElectronOperator<double> ProductONVBasis::oneElectronPartition(size_t
 /**
  *  Evaluate the operator in a dense matrix
  *
- *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
+ *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
  *  @param diagonal_values      bool to indicate if diagonal values will be calculated
  *
- *  @return the operator's evaluation in a dense matrix with the dimensions of the Fock space
+ *  @return the operator's evaluation in a dense matrix with the dimensions of the ONV basis
  */
 SquareMatrix<double> ProductONVBasis::evaluateOperatorDense(const ScalarSQOneElectronOperator<double>& one_op, bool diagonal_values) const {
 
@@ -137,10 +137,10 @@ SquareMatrix<double> ProductONVBasis::evaluateOperatorDense(const ScalarSQOneEle
 /**
  *  Evaluate the operator in a sparse matrix
  *
- *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
+ *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
  *  @param diagonal_values      bool to indicate if diagonal values will be calculated
  *
- *  @return the operator's evaluation in a sparse matrix with the dimensions of the Fock space
+ *  @return the operator's evaluation in a sparse matrix with the dimensions of the ONV basis
  */
 Eigen::SparseMatrix<double> ProductONVBasis::evaluateOperatorSparse(const ScalarSQOneElectronOperator<double>& one_op, bool diagonal_values) const {
 
@@ -151,10 +151,10 @@ Eigen::SparseMatrix<double> ProductONVBasis::evaluateOperatorSparse(const Scalar
 /**
  *  Evaluate the operator in a dense matrix
  *
- *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
+ *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
  *  @param diagonal_values      bool to indicate if diagonal values will be calculated
  *
- *  @return the operator's evaluation in a dense matrix with the dimensions of the Fock space
+ *  @return the operator's evaluation in a dense matrix with the dimensions of the ONV basis
  */
 SquareMatrix<double> ProductONVBasis::evaluateOperatorDense(const ScalarSQTwoElectronOperator<double>& two_op, bool diagonal_values) const {
 
@@ -216,10 +216,10 @@ SquareMatrix<double> ProductONVBasis::evaluateOperatorDense(const ScalarSQTwoEle
 /**
  *  Evaluate the operator in a sparse matrix
  *
- *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
+ *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
  *  @param diagonal_values      bool to indicate if diagonal values will be calculated
  *
- *  @return the operator's evaluation in a sparse matrix with the dimensions of the Fock space
+ *  @return the operator's evaluation in a sparse matrix with the dimensions of the ONV basis
  */
 Eigen::SparseMatrix<double> ProductONVBasis::evaluateOperatorSparse(const ScalarSQTwoElectronOperator<double>& two_op, bool diagonal_values) const {
 
@@ -233,7 +233,7 @@ Eigen::SparseMatrix<double> ProductONVBasis::evaluateOperatorSparse(const Scalar
  *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
  *  @param diagonal_values              bool to indicate if diagonal values will be calculated
  *
- *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the Fock space
+ *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the ONV basis
  */
 SquareMatrix<double> ProductONVBasis::evaluateOperatorDense(const SQHamiltonian<double>& sq_hamiltonian, bool diagonal_values) const {
 
@@ -298,7 +298,7 @@ SquareMatrix<double> ProductONVBasis::evaluateOperatorDense(const SQHamiltonian<
  *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
  *  @param diagonal_values              bool to indicate if diagonal values will be calculated
  *
- *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the Fock space
+ *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the ONV basis
  */
 Eigen::SparseMatrix<double> ProductONVBasis::evaluateOperatorSparse(const SQHamiltonian<double>& sq_hamiltonian, bool diagonal_values) const {
 
@@ -307,17 +307,17 @@ Eigen::SparseMatrix<double> ProductONVBasis::evaluateOperatorSparse(const SQHami
 
 
 /**
- *  Evaluate the diagonal of the operator in this Fock space
+ *  Evaluate the diagonal of the operator in this ONV basis
  *
- *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
+ *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
  *
- *  @return the operator's diagonal evaluation in a vector with the dimension of the Fock space
+ *  @return the operator's diagonal evaluation in a vector with the dimension of the ONV basis
  */
 VectorX<double> ProductONVBasis::evaluateOperatorDiagonal(const ScalarSQOneElectronOperator<double>& one_op) const {
 
     const auto K = one_op.dimension();
     if (K != this->K) {
-        throw std::invalid_argument("ProductONVBasis::evaluateOperatorDiagonal(ScalarSQOneElectronOperator<double>): Basis functions of the Fock space and the operator are incompatible.");
+        throw std::invalid_argument("ProductONVBasis::evaluateOperatorDiagonal(ScalarSQOneElectronOperator<double>): Basis functions of the ONV basis and the operator are incompatible.");
     }
 
     const auto dim_alpha = fock_space_alpha.get_dimension();
@@ -362,17 +362,17 @@ VectorX<double> ProductONVBasis::evaluateOperatorDiagonal(const ScalarSQOneElect
 
 
 /**
- *  Evaluate the diagonal of the operator in this Fock space
+ *  Evaluate the diagonal of the operator in this ONV basis
  *
- *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the Fock space
+ *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
  *
- *  @return the operator's diagonal evaluation in a vector with the dimension of the Fock space
+ *  @return the operator's diagonal evaluation in a vector with the dimension of the ONV basis
  */
 VectorX<double> ProductONVBasis::evaluateOperatorDiagonal(const ScalarSQTwoElectronOperator<double>& two_op) const {
 
     const auto K = two_op.dimension();
     if (K != this->K) {
-        throw std::invalid_argument("ProductONVBasis::evaluateOperatorDiagonal(ScalarSQTwoElectronOperator<double>): Basis functions of the Fock space and the operator are incompatible.");
+        throw std::invalid_argument("ProductONVBasis::evaluateOperatorDiagonal(ScalarSQTwoElectronOperator<double>): Basis functions of the ONV basis and the operator are incompatible.");
     }
 
     const auto dim_alpha = fock_space_alpha.get_dimension();
@@ -439,11 +439,11 @@ VectorX<double> ProductONVBasis::evaluateOperatorDiagonal(const ScalarSQTwoElect
 
 
 /**
- *  Evaluate the diagonal of the Hamiltonian in this Fock space
+ *  Evaluate the diagonal of the Hamiltonian in this ONV basis
  *
  *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
  *
- *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the Fock space
+ *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the ONV basis
  */
 VectorX<double> ProductONVBasis::evaluateOperatorDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const {
     return this->evaluateOperatorDiagonal(sq_hamiltonian.core()) + this->evaluateOperatorDiagonal(sq_hamiltonian.twoElectron());
@@ -455,14 +455,14 @@ VectorX<double> ProductONVBasis::evaluateOperatorDiagonal(const SQHamiltonian<do
  *
  *  @param one_op                       the one electron operator expressed in an orthonormal basis
  *  @param x                            the vector upon which the evaluation acts 
- *  @param diagonal                     the diagonal evaluated in the Fock space
+ *  @param diagonal                     the diagonal evaluated in the ONV basis
  *
- *  @return the one electron operator's matrix vector product in a vector with the dimensions of the Fock space
+ *  @return the one electron operator's matrix vector product in a vector with the dimensions of the ONV basis
  */
 VectorX<double> ProductONVBasis::evaluateOperatorMatrixVectorProduct(const ScalarSQOneElectronOperator<double>& one_op, const VectorX<double>& x, const VectorX<double>& diagonal) const {
     auto K = one_op.dimension();
     if (K != this->K) {
-        throw std::invalid_argument("ProductONVBasis::evaluateOperatorMatrixVectorProduct(ScalarSQOneElectronOperator<double>, VectorX<double>, VectorX<double>): Basis functions of the Fock space and the operator are incompatible.");
+        throw std::invalid_argument("ProductONVBasis::evaluateOperatorMatrixVectorProduct(ScalarSQOneElectronOperator<double>, VectorX<double>, VectorX<double>): Basis functions of the ONV basis and the operator are incompatible.");
     }
 
     // Environment for evaluations
@@ -496,14 +496,14 @@ VectorX<double> ProductONVBasis::evaluateOperatorMatrixVectorProduct(const Scala
  *
  *  @param two_op                       the two electron operator expressed in an orthonormal basis
  *  @param x                            the vector upon which the evaluation acts 
- *  @param diagonal                     the diagonal evaluated in the Fock space
+ *  @param diagonal                     the diagonal evaluated in the ONV basis
  *
- *  @return the two electron operator's matrix vector product in a vector with the dimensions of the Fock space
+ *  @return the two electron operator's matrix vector product in a vector with the dimensions of the ONV basis
  */
 VectorX<double> ProductONVBasis::evaluateOperatorMatrixVectorProduct(const ScalarSQTwoElectronOperator<double>& two_op, const VectorX<double>& x, const VectorX<double>& diagonal) const {
     auto K = two_op.dimension();
     if (K != this->K) {
-        throw std::invalid_argument("ProductONVBasis::evaluateOperatorMatrixVectorProduct(ScalarSQTwoElectronOperator<double>, VectorX<double>, VectorX<double>): Basis functions of the Fock space and the operator are incompatible.");
+        throw std::invalid_argument("ProductONVBasis::evaluateOperatorMatrixVectorProduct(ScalarSQTwoElectronOperator<double>, VectorX<double>, VectorX<double>): Basis functions of the ONV basis and the operator are incompatible.");
     }
 
     // Environment for evaluations
@@ -553,14 +553,14 @@ VectorX<double> ProductONVBasis::evaluateOperatorMatrixVectorProduct(const Scala
  *
  *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
  *  @param x                            the vector upon which the evaluation acts 
- *  @param diagonal                     the diagonal evaluated in the Fock space
+ *  @param diagonal                     the diagonal evaluated in the ONV basis
  *
- *  @return the Hamiltonian's matrix vector product in a vector with the dimensions of the Fock space
+ *  @return the Hamiltonian's matrix vector product in a vector with the dimensions of the ONV basis
  */
 VectorX<double> ProductONVBasis::evaluateOperatorMatrixVectorProduct(const SQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
     auto K = sq_hamiltonian.dimension();
     if (K != this->K) {
-        throw std::invalid_argument("ProductONVBasis::evaluateOperatorMatrixVectorProduct(SQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the Fock space and the operator are incompatible.");
+        throw std::invalid_argument("ProductONVBasis::evaluateOperatorMatrixVectorProduct(SQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the ONV basis and the operator are incompatible.");
     }
 
     // Environment for evaluations
@@ -616,7 +616,7 @@ VectorX<double> ProductONVBasis::evaluateOperatorMatrixVectorProduct(const SQHam
  *  @param usq_hamiltonian                the Hamiltonian expressed in an unrestricted orthonormal basis 
  *  @param diagonal_values                bool to indicate if diagonal values will be calculated
  *
- *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the Fock space
+ *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the ONV basis
  */
 SquareMatrix<double> ProductONVBasis::evaluateOperatorDense(const USQHamiltonian<double>& usq_hamiltonian, bool diagonal_values) const {
     
@@ -627,7 +627,7 @@ SquareMatrix<double> ProductONVBasis::evaluateOperatorDense(const USQHamiltonian
     }
 
     if (K != this->K) {
-        throw std::invalid_argument("ProductONVBasis::evaluateOperatorDense(USQHamiltonian<double>, bool): Basis functions of the Fock space and the operator are incompatible.");
+        throw std::invalid_argument("ProductONVBasis::evaluateOperatorDense(USQHamiltonian<double>, bool): Basis functions of the ONV basis and the operator are incompatible.");
     }
 
     SquareMatrix<double> total_evaluation = SquareMatrix<double>::Zero(this->get_dimension(), this->get_dimension());
@@ -694,7 +694,7 @@ SquareMatrix<double> ProductONVBasis::evaluateOperatorDense(const USQHamiltonian
  *
  *  @param usq_hamiltonian                the Hamiltonian expressed in an unrestricted orthonormal basis 
  *
- *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the Fock space
+ *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the ONV basis
  */
 VectorX<double> ProductONVBasis::evaluateOperatorDiagonal(const USQHamiltonian<double>& usq_hamiltonian) const {
 
@@ -705,7 +705,7 @@ VectorX<double> ProductONVBasis::evaluateOperatorDiagonal(const USQHamiltonian<d
     }
 
     if (K != this->K) {
-        throw std::invalid_argument("ProductONVBasis::evaluateOperatorDiagonal(USQHamiltonian<double>): Basis functions of the Fock space and the operator are incompatible.");
+        throw std::invalid_argument("ProductONVBasis::evaluateOperatorDiagonal(USQHamiltonian<double>): Basis functions of the ONV basis and the operator are incompatible.");
     }
 
     // Evaluation environment
@@ -788,9 +788,9 @@ VectorX<double> ProductONVBasis::evaluateOperatorDiagonal(const USQHamiltonian<d
  *
  *  @param usq_hamiltonian                the Hamiltonian expressed in an unrestricted orthonormal basis 
  *  @param x                              the vector upon which the evaluation acts 
- *  @param diagonal                       the diagonal evaluated in the Fock space
+ *  @param diagonal                       the diagonal evaluated in the ONV basis
  *
- *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the Fock space
+ *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the ONV basis
  */
 VectorX<double> ProductONVBasis::evaluateOperatorMatrixVectorProduct(const USQHamiltonian<double>& usq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
     auto K = usq_hamiltonian.dimension()/2;
@@ -800,7 +800,7 @@ VectorX<double> ProductONVBasis::evaluateOperatorMatrixVectorProduct(const USQHa
     }
 
     if (K != this->get_K()) {
-        throw std::invalid_argument("ProductONVBasis::evaluateOperatorMatrixVectorProduct(USQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the Fock space and usq_hamiltonian are incompatible.");
+        throw std::invalid_argument("ProductONVBasis::evaluateOperatorMatrixVectorProduct(USQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the ONV basis and usq_hamiltonian are incompatible.");
     }
 
     // Environment for evaluations

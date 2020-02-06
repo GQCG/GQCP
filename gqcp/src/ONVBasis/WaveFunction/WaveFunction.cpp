@@ -32,7 +32,7 @@ namespace GQCP {
 /**
  *  Construct a normalized wave function from possibly non-normalized coefficients
  *
- *  @param base_fock_space      the Fock space in which the wave function 'lives'
+ *  @param base_fock_space      the ONV basis in which the wave function 'lives'
  *  @param coefficients         the expansion coefficients
  */
 WaveFunction::WaveFunction(const BaseONVBasis& base_fock_space, const VectorX<double>& coefficients) :
@@ -55,7 +55,7 @@ WaveFunction::WaveFunction(const BaseONVBasis& base_fock_space, const VectorX<do
  */
 double WaveFunction::calculateShannonEntropy() const {
 
-    // Sum over the Fock space dimension, and only include the term if c_k != 0
+    // Sum over the ONV basis dimension, and only include the term if c_k != 0
     // We might as well replace all coeffients that are 0 by 1, since log(1) = 0 so there is no influence on the final entropy value
     Eigen::ArrayXd coefficients_replaced = this->coefficients.unaryExpr([](double c) { return c < 1.0e-18 ? 1 : c;});  // replace 0 by 1
 
@@ -97,7 +97,7 @@ void WaveFunction::basisTransform(const TransformationMatrix<double>& T) {
     // Calculate t (the operator which allows per-orbital transformation of the wave function)
     SquareMatrix<double> t = SquareMatrix<double>::Identity(K, K) - L + U_inv;
 
-    // Set up Fock space variables for the CI iterations
+    // Set up ONV basis variables for the CI iterations
     const auto& product_fock_space = dynamic_cast<const ProductONVBasis&>(*fock_space);
     const ONVBasis& fock_space_alpha = product_fock_space.get_fock_space_alpha();
     const ONVBasis& fock_space_beta = product_fock_space.get_fock_space_beta();
