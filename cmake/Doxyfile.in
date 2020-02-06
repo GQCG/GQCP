@@ -797,8 +797,6 @@ INPUT = "@CMAKE_SOURCE_DIR@/gqcp/include" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Basis/Integrals/Interfaces" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Basis/ScalarBasis" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Basis/SpinorBasis" \
-        "@CMAKE_SOURCE_DIR@/gqcp/include/ONVBasis" \
-        "@CMAKE_SOURCE_DIR@/gqcp/include/ONVBasis/WaveFunction" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Mathematical" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Mathematical/Algorithm" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Mathematical/Optimization" \
@@ -809,6 +807,8 @@ INPUT = "@CMAKE_SOURCE_DIR@/gqcp/include" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Mathematical/Optimization/NonLinearEquation" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Mathematical/Representation" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Molecule" \
+        "@CMAKE_SOURCE_DIR@/gqcp/include/ONVBasis" \
+        "@CMAKE_SOURCE_DIR@/gqcp/include/ONVBasis/WaveFunction" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Operator" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Operator/FirstQuantized" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Operator/SecondQuantized" \
