@@ -36,10 +36,12 @@ void bindMolecule(py::module& module) {
 
         .def("__repr__", [] (const GQCP::Molecule& m) { 
                 std::ostringstream ss;
-                ss<<m;
+                ss << m;
                 return ss.str();
             }
         )
+
+        .def("numberOfElectrons", &GQCP::Molecule::numberOfElectrons, "Return the number of atoms in this molecule")
     ;
 }
 
