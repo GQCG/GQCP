@@ -36,7 +36,7 @@ namespace GQCP {
  * 
  *  @return the wave function response as an (Nx3)-matrix
  */
-Matrix<double, Dynamic, 3> BaseElectricalResponseSolver::calculateWaveFunctionResponse(const SQHamiltonian<double>& sq_hamiltonian, const VectorSQOneElectronOperator<double> dipole_op) const {
+Matrix<double, Dynamic, 3> BaseElectricalResponseSolver::calculateLinearExpansionResponse(const SQHamiltonian<double>& sq_hamiltonian, const VectorSQOneElectronOperator<double> dipole_op) const {
 
     const auto k_p = this->calculateParameterResponseConstant(sq_hamiltonian);  // p for parameter
     const auto F_p = this->calculateParameterResponseForce(dipole_op);  // has 3 columns

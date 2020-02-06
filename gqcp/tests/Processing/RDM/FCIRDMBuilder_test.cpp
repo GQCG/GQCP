@@ -172,7 +172,7 @@ BOOST_AUTO_TEST_CASE ( H2O_energy_RDM_contraction_FCI ) {
 }
 
 
-BOOST_AUTO_TEST_CASE ( H2O_energy_RDM_contraction_FCI_wavefunction ) {
+BOOST_AUTO_TEST_CASE ( H2O_energy_RDM_contraction_FCI_LinearExpansion ) {
 
     // Repeat the contraction with an FCI wave function as input and the RDMCalculator API.
 
@@ -194,11 +194,11 @@ BOOST_AUTO_TEST_CASE ( H2O_energy_RDM_contraction_FCI_wavefunction ) {
     GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
-    GQCP::WaveFunction wavefunction = ci_solver.makeWavefunction();
+    GQCP::LinearExpansion LinearExpansion = ci_solver.makeLinearExpansion();
     double energy_by_eigenvalue = ci_solver.get_eigenpair().get_eigenvalue();
 
     // Check if the contraction energy matches the fci eigenvalue.
-    GQCP::RDMCalculator fci_rdm (wavefunction);
+    GQCP::RDMCalculator fci_rdm (LinearExpansion);
     GQCP::TwoRDMs<double> two_rdms = fci_rdm.calculate2RDMs();
     GQCP::OneRDMs<double> one_rdms = fci_rdm.calculate1RDMs();
 
@@ -228,7 +228,7 @@ BOOST_AUTO_TEST_CASE ( throw_calculate_element ) {
 /*
  *  Compare the RDMs calculated from a product ONV basis and an equivalent selected ONV basis
  */ 
-BOOST_AUTO_TEST_CASE ( H2O_FCI_wavefunction_vs_Selected_CI ) {
+BOOST_AUTO_TEST_CASE ( H2O_FCI_LinearExpansion_vs_Selected_CI ) {
 
     size_t N_a = 4;
     size_t N_b = 6;
@@ -249,12 +249,12 @@ BOOST_AUTO_TEST_CASE ( H2O_FCI_wavefunction_vs_Selected_CI ) {
     GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
-    GQCP::WaveFunction wavefunction = ci_solver.makeWavefunction();
+    GQCP::LinearExpansion LinearExpansion = ci_solver.makeLinearExpansion();
     double energy_by_eigenvalue = ci_solver.get_eigenpair().get_eigenvalue();
 
-    GQCP::RDMCalculator fci_rdm (wavefunction);
+    GQCP::RDMCalculator fci_rdm (LinearExpansion);
     GQCP::RDMCalculator selected_rdm (selected_fock_space);
-    selected_rdm.set_coefficients(wavefunction.get_coefficients());
+    selected_rdm.set_coefficients(LinearExpansion.get_coefficients());
     
     GQCP::TwoRDMs<double> two_rdms = fci_rdm.calculate2RDMs();
     GQCP::OneRDMs<double> one_rdms = fci_rdm.calculate1RDMs();

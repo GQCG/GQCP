@@ -151,9 +151,9 @@ BOOST_AUTO_TEST_CASE ( lih_energy_RDM_contraction_DOCI ) {
     BOOST_CHECK(std::abs(energy_by_eigenvalue - energy_by_contraction) < 1.0e-12);
 }
 
-BOOST_AUTO_TEST_CASE ( lih_1RDM_2RDM_trace_DOCI_wavefunction ) {
+BOOST_AUTO_TEST_CASE ( lih_1RDM_2RDM_trace_DOCI_LinearExpansion ) {
 
-    // Repeat test with wavefunction input
+    // Repeat test with LinearExpansion input
 
     // Get the 1-RDM from DOCI
     size_t N = 4;  // 4 electrons
@@ -169,7 +169,7 @@ BOOST_AUTO_TEST_CASE ( lih_1RDM_2RDM_trace_DOCI_wavefunction ) {
     GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
-    GQCP::WaveFunction wave_function = ci_solver.makeWavefunction();
+    GQCP::LinearExpansion wave_function = ci_solver.makeLinearExpansion();
 
     // Check if the 2-RDM contraction matches the reduction.
     GQCP::RDMCalculator doci_rdm (wave_function);

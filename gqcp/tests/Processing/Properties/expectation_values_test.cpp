@@ -108,7 +108,7 @@ BOOST_AUTO_TEST_CASE ( mulliken_N2_STO_3G ) {
     GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
-    GQCP::RDMCalculator rdm_calculator (ci_solver.makeWavefunction());
+    GQCP::RDMCalculator rdm_calculator (ci_solver.makeLinearExpansion());
 
     GQCP::OneRDMs<double> one_rdms = rdm_calculator.calculate1RDMs();
 
@@ -232,7 +232,7 @@ BOOST_AUTO_TEST_CASE ( spin_O2 ) {
     GQCP::DenseSolverOptions solver_options; // Dense is required, Davidson will not converge to the lowest eigenstate
     ci_solver.solve(solver_options);
     
-    GQCP::RDMCalculator rdm_calculator (ci_solver.makeWavefunction());
+    GQCP::RDMCalculator rdm_calculator (ci_solver.makeLinearExpansion());
     
     GQCP::OneRDMs<double> one_rdms = rdm_calculator.calculate1RDMs();
     GQCP::TwoRDMs<double> two_rdms = rdm_calculator.calculate2RDMs();

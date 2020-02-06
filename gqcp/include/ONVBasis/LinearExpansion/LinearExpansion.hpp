@@ -29,14 +29,14 @@ namespace GQCP {
 /**
  *  A class that represents a wave function: expansion coefficients in a ONV basis
  */
-class WaveFunction {
+class LinearExpansion {
 private:
     std::shared_ptr<BaseONVBasis> fock_space;
     VectorX<double> coefficients;  // the expansion coefficients in the ONV basis
 
 public:
     // CONSTRUCTORS
-    WaveFunction() = default;
+    LinearExpansion() = default;
 
     /**
      *  Construct a normalized wave function from possibly non-normalized coefficients
@@ -44,7 +44,7 @@ public:
      *  @param base_fock_space      the ONV basis in which the wave function 'lives'
      *  @param coefficients         the expansion coefficients
      */
-    WaveFunction(const BaseONVBasis& base_fock_space, const VectorX<double>& coefficients);
+    LinearExpansion(const BaseONVBasis& base_fock_space, const VectorX<double>& coefficients);
 
 
     // GETTERS
@@ -71,7 +71,7 @@ public:
      * 
      *  @return if two wave functions are equal within a given tolerance
      */
-     bool isApprox(const WaveFunction& other, double tolerance = 1e-10) const;
+     bool isApprox(const LinearExpansion& other, double tolerance = 1e-10) const;
 };
 
 

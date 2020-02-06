@@ -19,7 +19,7 @@
 
 
 #include "ONVBasis/ONVBasis.hpp"
-#include "ONVBasis/WaveFunction/WaveFunction.hpp"
+#include "ONVBasis/LinearExpansion/LinearExpansion.hpp"
 
 
 namespace GQCP {
@@ -44,7 +44,7 @@ public:
      *
      *  @return the wave function expansion corresponding to the geminal coefficients
      */
-    WaveFunction toWaveFunction(const ONVBasis& fock_space) const;
+    LinearExpansion toLinearExpansion(const ONVBasis& fock_space) const;
 };
 
 

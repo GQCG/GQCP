@@ -10,4 +10,4 @@ target_sources(gqcp
         SelectedONVBasis.cpp
 )
 
-add_subdirectory(WaveFunction)
+add_subdirectory(LinearExpansion)

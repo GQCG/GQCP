@@ -82,14 +82,14 @@ void MullikenConstrainedFCI::parseSolution(const std::vector<Eigenpair>& eigenpa
 
         double population = calculateExpectationValue(mulliken_operator, D)[0];
         double sz = calculateExpectationValue(sq_sz_operator, D_s)[0];
-        WaveFunction wavefunction (fock_space, fci_coefficients);
+        LinearExpansion LinearExpansion (fock_space, fci_coefficients);
 
         this->energy[i] = pair.get_eigenvalue() + internuclear_repulsion_energy + multiplier * population + sz_multiplier * sz;
         this->population[i] = population;
         this->sz[i] = sz;
         this->lambda[i] = multiplier;
         this->lambda_sz[i] = sz_multiplier;
-        this->entropy[i] = wavefunction.calculateShannonEntropy();
+        this->entropy[i] = LinearExpansion.calculateShannonEntropy();
 
         if (molecule.numberOfAtoms() == 2) {
             // Transform the RDMs to the atomic orbital basis

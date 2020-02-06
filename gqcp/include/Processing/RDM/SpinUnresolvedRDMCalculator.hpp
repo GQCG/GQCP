@@ -19,7 +19,7 @@
 
 
 #include "ONVBasis/ONVBasis.hpp"
-#include "ONVBasis/WaveFunction/SpinUnresolvedWaveFunction.hpp"
+#include "ONVBasis/LinearExpansion/SpinUnresolvedLinearExpansion.hpp"
 #include "Processing/RDM/BaseSpinUnresolvedRDMBuilder.hpp"
 #include "Processing/RDM/SpinUnresolvedFCIRDMBuilder.hpp"
 
@@ -55,9 +55,9 @@ public:
     /**
      *  A run-time constructor allocating the appropriate derived RDMBuilder and coefficient vector
      *
-     *  @param wavefunction       the wave function holding the coefficient vector and a ONV basis on which the RDMBuilder should be based
+     *  @param LinearExpansion       the wave function holding the coefficient vector and a ONV basis on which the RDMBuilder should be based
      */
-    explicit SpinUnresolvedRDMCalculator(const SpinUnresolvedWaveFunction& wavefunction);
+    explicit SpinUnresolvedRDMCalculator(const SpinUnresolvedLinearExpansion& LinearExpansion);
 
 
     // SETTERS

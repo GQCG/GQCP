@@ -110,7 +110,7 @@ void FCI::solve() {
 
     this->energy_solution = fci_energy + internuclear_repulsion_energy;
 
-    RDMCalculator rdm_calculator (fci_solver.makeWavefunction());
+    RDMCalculator rdm_calculator (fci_solver.makeLinearExpansion());
      
     OneRDMs<double> one_rdms = rdm_calculator.calculate1RDMs();
     TwoRDMs<double> two_rdms = rdm_calculator.calculate2RDMs();

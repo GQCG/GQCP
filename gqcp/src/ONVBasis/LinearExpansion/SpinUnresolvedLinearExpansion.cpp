@@ -15,39 +15,23 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#pragma once
-
-
-#include "ONVBasis/SelectedONVBasis.hpp"
-#include "ONVBasis/WaveFunction/WaveFunction.hpp"
+#include "ONVBasis/LinearExpansion/SpinUnresolvedLinearExpansion.hpp"
 
 
 namespace GQCP {
 
 
-/**
- *  A class that reads and stores a 'selected' wave function expansion
+/*
+ * CONSTRUCTORS
  */
-class WaveFunctionReader {
-private:
-    SelectedONVBasis fock_space;
-    VectorX<double> coefficients;
-    WaveFunction wave_function;
 
-
-public:
-    /**
-     *  @param GAMESS_filename      the name of the GAMESS file that contains the 'selected' wave function expansion
-     */
-    explicit WaveFunctionReader(const std::string& GAMESS_filename);
-
-
-    // GETTERS
-    const SelectedONVBasis& get_fock_space() const { return this->fock_space; }
-    const VectorX<double>& get_coefficients() const { return this->coefficients; }
-    const WaveFunction& get_wave_function() const { return this->wave_function; }
-};
-
+/**
+ *  @param fock_space           the ONV basis in which the wave function 'lives'
+ *  @param coefficients         the expansion coefficients
+ */
+SpinUnresolvedLinearExpansion::SpinUnresolvedLinearExpansion(const ONVBasis& fock_space, const VectorX<double>& coefficients) :
+        LinearExpansion(fock_space, coefficients)
+{}
 
 
 }  // namespace GQCP

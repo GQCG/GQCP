@@ -145,7 +145,7 @@ BOOST_AUTO_TEST_CASE ( h2_polarizability_RHF ) {
 
     // Find the RHF wave function response
     GQCP::RHFElectricalResponseSolver cphf_solver (h2.numberOfElectrons()/2);
-    const auto x = cphf_solver.calculateWaveFunctionResponse(sq_hamiltonian, dipole_op);
+    const auto x = cphf_solver.calculateLinearExpansionResponse(sq_hamiltonian, dipole_op);
 
 
     // Calculate the RHF polarizability
@@ -183,13 +183,13 @@ BOOST_AUTO_TEST_CASE ( dyson_coefficients ) {
     GQCP::VectorX<double> coeffs2 = GQCP::VectorX<double>::Zero(2); 
     coeffs2 << 0.640184, 0.768221;
     
-    const auto wavefunction1 = GQCP::WaveFunction(fock_space1, coeffs1);
-    const auto wavefunction2 = GQCP::WaveFunction(fock_space2, coeffs2);
-    const auto wavefunction3 = GQCP::WaveFunction(fock_space3, coeffs2);
+    const auto LinearExpansion1 = GQCP::LinearExpansion(fock_space1, coeffs1);
+    const auto LinearExpansion2 = GQCP::LinearExpansion(fock_space2, coeffs2);
+    const auto LinearExpansion3 = GQCP::LinearExpansion(fock_space3, coeffs2);
 
     // Calculate the coefficients of the Dyson orbitals and check with the reference
-    const auto dyson_coefficients_beta = GQCP::calculateDysonOrbitalCoefficients(wavefunction1, wavefunction2);  // coefficients with a difference in beta occupation
-    const auto dyson_coefficients_alpha = GQCP::calculateDysonOrbitalCoefficients(wavefunction1, wavefunction3);  // coefficients with a difference in alpha occupation
+    const auto dyson_coefficients_beta = GQCP::calculateDysonOrbitalCoefficients(LinearExpansion1, LinearExpansion2);  // coefficients with a difference in beta occupation
+    const auto dyson_coefficients_alpha = GQCP::calculateDysonOrbitalCoefficients(LinearExpansion1, LinearExpansion3);  // coefficients with a difference in alpha occupation
 
     BOOST_CHECK(dyson_coefficients_beta.isApprox(reference_amplitudes_beta, 1.0e-6));
     BOOST_CHECK(dyson_coefficients_alpha.isApprox(reference_amplitudes_alpha, 1.0e-6));

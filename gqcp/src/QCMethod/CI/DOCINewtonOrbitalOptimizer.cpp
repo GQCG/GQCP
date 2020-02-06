@@ -89,7 +89,7 @@ void DOCINewtonOrbitalOptimizer::prepareDMCalculation(const SQHamiltonian<double
         auto davidson_solver_options = dynamic_cast<DavidsonSolverOptions&>(this->ci_solver_options);
 
         for (size_t i = 0; i < davidson_solver_options.number_of_requested_eigenpairs; i++) {
-            davidson_solver_options.X_0.col(i) = doci_solver.makeWavefunction(i).get_coefficients();
+            davidson_solver_options.X_0.col(i) = doci_solver.makeLinearExpansion(i).get_coefficients();
         }
 
         this->ci_solver_options = davidson_solver_options;
@@ -138,13 +138,13 @@ OrbitalRotationGenerators DOCINewtonOrbitalOptimizer::calculateNewFullOrbitalGen
  *
  *  @return the index-th excited state after doing the OO-DOCI calculation
  */
-WaveFunction DOCINewtonOrbitalOptimizer::makeWavefunction(size_t index) const {
+LinearExpansion DOCINewtonOrbitalOptimizer::makeLinearExpansion(size_t index) const {
 
     if (index > this->eigenpairs.size()) {
-        throw std::logic_error("DOCINewtonOrbitalOptimizer::makeWavefunction(size_t): Not enough requested eigenpairs for the given index.");
+        throw std::logic_error("DOCINewtonOrbitalOptimizer::makeLinearExpansion(size_t): Not enough requested eigenpairs for the given index.");
     }
 
-    return WaveFunction(*this->doci.get_fock_space(), this->eigenpairs[index].get_eigenvector());
+    return LinearExpansion(*this->doci.get_fock_space(), this->eigenpairs[index].get_eigenvector());
 }
 
 

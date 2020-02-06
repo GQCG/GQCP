@@ -34,7 +34,7 @@ namespace QCMethod {
 /**
  *  A class that diagonalizes the FCI Hamiltonian for a given molecule and performs Fukui and Dyson analysis.
  *  Fukui analysis revolves around the response of the 1RDM with respect to a change of N the number of electrons.
- *  Dyson analysis produces a Dyson orbital which is the overlap between the N-electron and N-1 electron wavefunction.
+ *  Dyson analysis produces a Dyson orbital which is the overlap between the N-electron and N-1 electron LinearExpansion.
  *  The same orthonormal basis is used for both species (N and N-1 number of electrons): 
  *  RHF is used to determine an orthonormal basis for the species with an even number of electrons 
  */

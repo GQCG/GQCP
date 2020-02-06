@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "ONVBasis/WaveFunction/WaveFunction.hpp"
+#include "ONVBasis/LinearExpansion/LinearExpansion.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
 #include "QCMethod/Geminals/GeminalCoefficientsInterface.hpp"
 

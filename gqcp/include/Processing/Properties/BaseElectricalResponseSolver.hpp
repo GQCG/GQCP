@@ -60,7 +60,7 @@ public:
      * 
      *  @return the wave function response as an (Nx3)-matrix
      */
-    Matrix<double, Dynamic, 3> calculateWaveFunctionResponse(const SQHamiltonian<double>& sq_hamiltonian, const VectorSQOneElectronOperator<double> dipole_op) const;
+    Matrix<double, Dynamic, 3> calculateLinearExpansionResponse(const SQHamiltonian<double>& sq_hamiltonian, const VectorSQOneElectronOperator<double> dipole_op) const;
 };
 
 
