@@ -29,6 +29,10 @@ namespace gqcpy {
 void bindSpinorBasis(py::module& module);
 
 
+// Mathematical - Algorithm
+void bindRHFSCFIterativeAlgorithm(py::module& module);
+
+
 // Molecule
 void bindMolecule(py::module& module);
 void bindNucleus(py::module& module);
@@ -51,6 +55,7 @@ void bindMullikenConstrainedFCI(py::module& module);
 
 // QCMethod - HF
 void bindRHFSCFEnvironment(py::module& module);
+void bindRHFSCFSolver(py::module& module);
 
 
 // Single includes
@@ -69,6 +74,10 @@ PYBIND11_MODULE (gqcpy, module) {
 
     // Basis
     gqcpy::bindSpinorBasis(module);
+
+
+    // Mathematical - Algorithm
+    gqcpy::bindRHFSCFIterativeAlgorithm(module);
 
 
     // Molecule
@@ -90,8 +99,10 @@ PYBIND11_MODULE (gqcpy, module) {
     gqcpy::bindQCMethodFukuiDysonAnalysis(module);
     gqcpy::bindMullikenConstrainedFCI(module);
 
+
     // QCMethod - HF
     gqcpy::bindRHFSCFEnvironment(module);
+    gqcpy::bindRHFSCFSolver(module);
 
 
     // Single includes

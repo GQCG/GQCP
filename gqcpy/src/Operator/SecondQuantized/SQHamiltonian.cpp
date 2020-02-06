@@ -33,7 +33,8 @@ namespace gqcpy {
 void bindSQHamiltonian(py::module& module) {
     py::class_<GQCP::SQHamiltonian<double>>(module, "SQHamiltonian", "A class that represents a real, second-quantized Hamiltonian.")
 
-        .def("Molecular", [] (const GQCP::RSpinorBasis<double, GQCP::GTOShell>& spinor_basis, const GQCP::Molecule& molecule) {
+        .def_static("Molecular", 
+            [] (const GQCP::RSpinorBasis<double, GQCP::GTOShell>& spinor_basis, const GQCP::Molecule& molecule) {
                 return GQCP::SQHamiltonian<double>::Molecular(spinor_basis, molecule);
             },
             "Construct the molecular Hamiltonian in a given spinor basis."
