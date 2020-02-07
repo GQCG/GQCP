@@ -34,7 +34,7 @@ namespace QCModel {
 
 
 /**
- *  The restricted Hartree-Fock wave function model
+ *  The restricted Hartree-Fock wave function model.
  * 
  *  @tparam _Scalar             the type of scalar that is used for the expansion of the spatial orbitals in their underlying scalar basis
  */

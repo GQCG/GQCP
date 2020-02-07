@@ -21,26 +21,54 @@ namespace py = pybind11;
 
 
 /**
- *  As stated in the FAQ (https://pybind11.readthedocs.io/en/stable/faq.html#how-can-i-reduce-the-build-time), it is good practice to split the binding code over multiple files
+ *  As stated in the Pybind11 FAQ (https://pybind11.readthedocs.io/en/stable/faq.html#how-can-i-reduce-the-build-time), it is good practice to split the binding of the code over multiple files.
  */
 namespace gqcpy {
 
+// Basis
+void bindSpinorBasis(py::module& module);
+
+
+// Mathematical - Algorithm
+void bindRHFSCFIterativeAlgorithm(py::module& module);
+
+
+// Molecule
+void bindMolecule(py::module& module);
+void bindNucleus(py::module& module);
+
+
+// Operator
+void bindSQHamiltonian(py::module& module);
+void bindSQOneElectronOperator(py::module& module);
+void bindSQTwoElectronOperator(py::module& module);
+
+
+// QCMethod - Applications
 void bindQCMethodDOCINewtonOrbitalOptimizer(py::module& module);
 void bindQCMethodDOCIRHF(py::module& module);
 void bindQCMethodHubbard(py::module& module);
 void bindQCMethodFCI(py::module& module);
 void bindQCMethodFukuiDysonAnalysis(py::module& module);
 void bindMullikenConstrainedFCI(py::module& module);
+
+
+// QCMethod - HF
+void bindDiagonalRHFFockMatrixObjective(py::module& module);
+void bindQCMethodRHF(py::module& module);
+void bindRHFSCFEnvironment(py::module& module);
+void bindRHFSCFSolver(py::module& module);
+
+
+// QCModel - HF
+void bindQCModelRHF(py::module& module);
+
+
+// Single includes
 void bindVersion(py::module& module);
 
-void bindMolecule(py::module& module);
-void bindNucleus(py::module& module);
-void bindSpinorBasis(py::module& module);
-void bindSQOneElectronOperator(py::module& module);
-void bindSQTwoElectronOperator(py::module& module);
 
 }  // namespace gqcpy
-
 
 
 
@@ -49,21 +77,45 @@ void bindSQTwoElectronOperator(py::module& module);
  */
 PYBIND11_MODULE (gqcpy, module) {
 
-    gqcpy::bindVersion(module);
+    // Basis
+    gqcpy::bindSpinorBasis(module);
 
-    // Bind basic functionality
+
+    // Mathematical - Algorithm
+    gqcpy::bindRHFSCFIterativeAlgorithm(module);
+
+
+    // Molecule
     gqcpy::bindMolecule(module);
     gqcpy::bindNucleus(module);
-    gqcpy::bindSpinorBasis(module);
+
+
+    // Operator
+    gqcpy::bindSQHamiltonian(module);
     gqcpy::bindSQOneElectronOperator(module);
     gqcpy::bindSQTwoElectronOperator(module);
 
 
-    // Bind quantum chemical methods
+    // QCMethod - Applications
     gqcpy::bindQCMethodDOCINewtonOrbitalOptimizer(module);
     gqcpy::bindQCMethodDOCIRHF(module);
     gqcpy::bindQCMethodHubbard(module);
     gqcpy::bindQCMethodFCI(module);
     gqcpy::bindQCMethodFukuiDysonAnalysis(module);
     gqcpy::bindMullikenConstrainedFCI(module);
+
+
+    // QCMethod - HF
+    gqcpy::bindDiagonalRHFFockMatrixObjective(module);
+    gqcpy::bindQCMethodRHF(module);
+    gqcpy::bindRHFSCFEnvironment(module);
+    gqcpy::bindRHFSCFSolver(module);
+
+
+    // QCModel - HF
+    gqcpy::bindQCModelRHF(module);
+
+
+    // Single includes
+    gqcpy::bindVersion(module);
 }

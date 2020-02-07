@@ -15,10 +15,10 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "Molecule/Molecule.hpp"
+#include "Mathematical/Algorithm/IterativeAlgorithm.hpp"
+#include "QCMethod/HF/RHFSCFEnvironment.hpp"
 
 #include <pybind11/pybind11.h>
-#include <pybind11/stl.h>
 
 
 namespace py = pybind11;
@@ -27,24 +27,9 @@ namespace py = pybind11;
 namespace gqcpy {
 
 
-void bindMolecule(py::module& module) {
-    py::class_<GQCP::Molecule>(module, "Molecule", "A class that represents a collection of nuclei with a number of electrons")
-
-        .def(py::init<const std::vector<GQCP::Nucleus>& , const int>(), py::arg("nuclei"), py::arg("charge") = 0)
-
-        .def_static("ReadXYZ", &GQCP::Molecule::ReadXYZ, "Construct a molecule based on the content of a given .xyz-file.")
-
-        .def("__repr__", [] (const GQCP::Molecule& m) { 
-                std::ostringstream ss;
-                ss << m;
-                return ss.str();
-            }
-        )
-
-        .def("numberOfElectrons", &GQCP::Molecule::numberOfElectrons, "Return the number of atoms in this molecule")
-    ;
+void bindRHFSCFIterativeAlgorithm(py::module& module) {
+    py::class_<GQCP::IterativeAlgorithm<GQCP::RHFSCFEnvironment<double>>>(module, "RHFSCFIterativeAlgorithm", "An algorithm that performs iterations using an RHFSCFEnvironment. In every iteration, convergence is checked and a set of iteration steps is performed.");
 }
-
 
 
 }  // namespace gqcpy

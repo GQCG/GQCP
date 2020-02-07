@@ -15,10 +15,14 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "Molecule/Molecule.hpp"
+#include "QCMethod/HF/RHF.hpp"
+
+#include "Mathematical/Algorithm/IterativeAlgorithm.hpp"
+#include "QCMethod/HF/DiagonalRHFFockMatrixObjective.hpp"
+#include "QCMethod/HF/RHFSCFSolver.hpp"
+
 
 #include <pybind11/pybind11.h>
-#include <pybind11/stl.h>
 
 
 namespace py = pybind11;
@@ -27,24 +31,18 @@ namespace py = pybind11;
 namespace gqcpy {
 
 
-void bindMolecule(py::module& module) {
-    py::class_<GQCP::Molecule>(module, "Molecule", "A class that represents a collection of nuclei with a number of electrons")
+void bindQCMethodRHF(py::module& module) {
+    py::class_<GQCP::QCMethod::RHF<double>>(module, "RHF", "The restricted Hartree-Fock quantum chemical method.")
 
-        .def(py::init<const std::vector<GQCP::Nucleus>& , const int>(), py::arg("nuclei"), py::arg("charge") = 0)
-
-        .def_static("ReadXYZ", &GQCP::Molecule::ReadXYZ, "Construct a molecule based on the content of a given .xyz-file.")
-
-        .def("__repr__", [] (const GQCP::Molecule& m) { 
-                std::ostringstream ss;
-                ss << m;
-                return ss.str();
-            }
+        .def_static("optimize",
+            [] (const GQCP::DiagonalRHFFockMatrixObjective<double>& objective, GQCP::IterativeAlgorithm<GQCP::RHFSCFEnvironment<double>>& solver, GQCP::RHFSCFEnvironment<double>& environment) {
+                const auto qc_structure = GQCP::QCMethod::RHF<double>().optimize(objective, solver, environment);
+                return qc_structure.groundStateParameters();
+            },
+            "Optimize the RHF wave function model: find the parameters satisfy the given objective."
         )
-
-        .def("numberOfElectrons", &GQCP::Molecule::numberOfElectrons, "Return the number of atoms in this molecule")
     ;
 }
-
 
 
 }  // namespace gqcpy
