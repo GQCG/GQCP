@@ -39,7 +39,7 @@ void bindQCMethodRHF(py::module& module) {
                 const auto qc_structure = GQCP::QCMethod::RHF<double>().optimize(objective, solver, environment);
                 return qc_structure.groundStateParameters();
             },
-            "Optimize the RHF wave function model: find the parameters that are the solutions to the objective."
+            "Optimize the RHF wave function model: find the parameters satisfy the given objective."
         )
     ;
 }

@@ -27,7 +27,7 @@ namespace gqcpy {
 
 
 void bindDiagonalRHFFockMatrixObjective(py::module& module) {
-    py::class_<GQCP::DiagonalRHFFockMatrixObjective<double>>(module, "DiagonalRHFFockMatrixObjective", "An objective that checks if the RHF Fock matrix is diagonal, i.e. if the RHF parameters are the canonical RHF coefficients.")
+    py::class_<GQCP::DiagonalRHFFockMatrixObjective<double>>(module, "DiagonalRHFFockMatrixObjective", "An objective that checks if the RHF Fock matrix is diagonal, i.e. if the RHF parameters represent the canonical RHF coefficients.")
 
         .def(py::init<const GQCP::SQHamiltonian<double>&, const double>(),
             py::arg("sq_hamiltonian"),

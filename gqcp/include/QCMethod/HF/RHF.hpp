@@ -52,13 +52,14 @@ public:
      */
 
     /**
-     *  Optimize the electronic structure model: find the parameters that are the solutions to the quantum chemical method's objective
+     *  Optimize the RHF wave function model: find the parameters satisfy the given objective.
      * 
      *  @tparam QCObjective         the type of the objective
      *  @tparam Solver              the type of the solver
      * 
      *  @param objective            the objective that should be fulfilled in order to consider the model's parameters as 'optimal'
      *  @param solver               the solver that will try to optimize the parameters
+     *  @param environment          the environment, which acts as a sort of calculation space for the solver
      */
     template <typename QCObjective, typename Solver>
     QCStructure<QCModel::RHF<Scalar>> optimize(const QCObjective& objective, Solver& solver, RHFSCFEnvironment<Scalar>& environment) {
