@@ -97,7 +97,7 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test ) {
         double expectation_value = rhf_qc_structure.groundStateEnergy();
 
         // Retrieve the expectation value of the Mulliken operator (aka the population)
-        double mulliken_population = GQCP::calculateExpectationValue(mulliken_operator, one_rdm)[0];
+        double mulliken_population = mulliken_operator.calculateExpectationValue(one_rdm)(0);
 
         // Retrieve the total energy by adding the lambda times the expectation value of the constraining operator
         const double internuclear_repulsion_energy = GQCP::Operator::NuclearRepulsion(CO).value();
@@ -194,7 +194,7 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test_random_transformation) {
         double expectation_value = rhf_qc_structure.groundStateEnergy();
 
         // Retrieve the expectation value of the Mulliken operator (aka the population)
-        double mulliken_population = GQCP::calculateExpectationValue(mulliken_operator, one_rdm)[0];
+        double mulliken_population = mulliken_operator.calculateExpectationValue(one_rdm)(0);
 
         // Retrieve the total energy by adding the lambda times the expectation value of the constraining operator
         double total_energy = expectation_value + i * mulliken_population + GQCP::Operator::NuclearRepulsion(CO).value();

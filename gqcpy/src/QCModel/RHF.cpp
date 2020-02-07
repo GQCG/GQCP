@@ -30,11 +30,27 @@ namespace gqcpy {
 void bindQCModelRHF(py::module& module) {
     py::class_<GQCP::QCModel::RHF<double>>(module, "RHFModel", "The restricted Hartree-Fock wave function model.")
 
-        .def("coefficientMatrix", &GQCP::QCModel::RHF<double>::coefficientMatrix,
+        .def("calculateOrthonormalBasis1RDM",
+            [ ] (const GQCP::QCModel::RHF<double>& rhf_parameters) {
+                return rhf_parameters.calculateOrthonormalBasis1RDM();
+            },
+            "Return the 1-RDM expressed in an orthonormal spinor basis related to these optimal RHF parameters."
+        )
+
+        .def("calculateScalarBasis1RDM",
+            [ ] (const GQCP::QCModel::RHF<double>& rhf_parameters) {
+                return rhf_parameters.calculateScalarBasis1RDM();
+            },
+            "Return the RHF 1-RDM in the scalar/AO basis related to these optimal RHF parameters"
+        )
+
+        .def("coefficientMatrix",
+            &GQCP::QCModel::RHF<double>::coefficientMatrix,
             "Return the coefficient matrix that expresses every spatial orbital (as a column) in its underlying scalar basis."
         )
 
-        .def("orbitalEnergies", &GQCP::QCModel::RHF<double>::orbitalEnergies,
+        .def("orbitalEnergies",
+            &GQCP::QCModel::RHF<double>::orbitalEnergies,
             "Return the orbital energies."
         )
     ;

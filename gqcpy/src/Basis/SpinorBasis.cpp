@@ -55,6 +55,13 @@ void bindSpinorBasis(py::module& module) {
             "Return the nuclear attraction operator expressed in this spinor basis"
         )
 
+        .def("quantizeDipoleOperator", [] (const GQCP::RSpinorBasis<double, GQCP::GTOShell>& spinor_basis, const GQCP::Vector<double, 3>& origin) {
+                return spinor_basis.quantize(GQCP::Operator::ElectronicDipole(origin));
+            },
+            py::arg("origin") = GQCP::Vector<double, 3>::Zero(),
+            "Return the electronic dipole operator expressed in this spinor basis."
+        )
+
         .def("quantizeCoulombRepulsionOperator", [] (const GQCP::RSpinorBasis<double, GQCP::GTOShell>& spinor_basis) {
                 return spinor_basis.quantize(GQCP::Operator::Coulomb());
             },

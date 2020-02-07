@@ -224,3 +224,17 @@ BOOST_AUTO_TEST_CASE ( SQOneElectronOperator_of_GTOs_evaluate ) {
 
     BOOST_CHECK(ref_rho_evaluated_par.isApprox(rho_evaluated_par, 1.0e-12));
 }
+
+
+/**
+ *  Check if calculateExpectationValue throws when necessary
+ */
+BOOST_AUTO_TEST_CASE ( calculateExpectationValue_throw ) {
+
+    const GQCP::ScalarSQOneElectronOperator<double> h {GQCP::QCMatrix<double>::Zero(2, 2)};
+    const GQCP::OneRDM<double> D_valid = GQCP::OneRDM<double>::Zero(2, 2);
+    const GQCP::OneRDM<double> D_invalid = GQCP::OneRDM<double>::Zero(3, 3);
+
+    BOOST_CHECK_THROW(h.calculateExpectationValue(D_invalid), std::invalid_argument);
+    BOOST_CHECK_NO_THROW(h.calculateExpectationValue(D_valid));
+}

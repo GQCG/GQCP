@@ -80,8 +80,8 @@ void MullikenConstrainedFCI::parseSolution(const std::vector<Eigenpair>& eigenpa
         OneRDM<double> D_s = rdms.one_rdm_aa - rdms.one_rdm_bb;
         TwoRDM<double> d = this->rdm_calculator.calculate2RDMs().two_rdm;
 
-        double population = calculateExpectationValue(mulliken_operator, D)[0];
-        double sz = calculateExpectationValue(sq_sz_operator, D_s)[0];
+        double population = mulliken_operator.calculateExpectationValue(D)(0);
+        double sz = sq_sz_operator.calculateExpectationValue(D_s)(0);
         LinearExpansion linear_expansion (fock_space, fci_coefficients);
 
         this->energy[i] = pair.get_eigenvalue() + internuclear_repulsion_energy + multiplier * population + sz_multiplier * sz;
@@ -96,11 +96,11 @@ void MullikenConstrainedFCI::parseSolution(const std::vector<Eigenpair>& eigenpa
             D.basisTransformInPlace(this->spinor_basis.coefficientMatrix().adjoint());
             d.basisTransformInPlace(this->spinor_basis.coefficientMatrix().adjoint());
 
-            this->A_fragment_energy[i] = calculateExpectationValue(adp.get_atomic_parameters()[0], D, d) + internuclear_repulsion_energy/2;
-            this->A_fragment_self_energy[i] = calculateExpectationValue(adp.get_net_atomic_parameters()[0], D, d);
-            this->B_fragment_energy[i] = calculateExpectationValue(adp.get_atomic_parameters()[1], D, d) + internuclear_repulsion_energy/2;
-            this->B_fragment_self_energy[i] = calculateExpectationValue(adp.get_net_atomic_parameters()[1], D, d);
-            this->interaction_energy[i] = calculateExpectationValue(adp.get_interaction_parameters()[0], D, d) + internuclear_repulsion_energy;
+            this->A_fragment_energy[i] = adp.get_atomic_parameters()[0].calculateExpectationValue(D, d) + internuclear_repulsion_energy / 2;
+            this->A_fragment_self_energy[i] = adp.get_net_atomic_parameters()[0].calculateExpectationValue(D, d);
+            this->B_fragment_energy[i] = adp.get_atomic_parameters()[1].calculateExpectationValue(D, d) + internuclear_repulsion_energy / 2;
+            this->B_fragment_self_energy[i] = adp.get_net_atomic_parameters()[1].calculateExpectationValue(D, d);
+            this->interaction_energy[i] = adp.get_interaction_parameters()[0].calculateExpectationValue(D, d) + internuclear_repulsion_energy;
         }
 
         this->eigenvector[i] = fci_coefficients;

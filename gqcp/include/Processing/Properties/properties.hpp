@@ -27,14 +27,6 @@ namespace GQCP {
 
 
 /**
- *  @param dipole_operator          the three components of the Cartesian dipole integrals in the orthonormal basis in which the 1-RDM is expressed
- *  @param one_rdm                  the 1-RDM
- *
- *  @return the three Cartesian components of the electronic electric dipole moment
- */
-Vector<double, 3> calculateElectronicDipoleMoment(const VectorSQOneElectronOperator<double>& dipole_operator, const OneRDM<double>& one_rdm);
-
-/**
  *  Calculate the electric polarizability from the linear wave function response
  * 
  *  @param F_p          the electric response force (d^2E/dFdp)

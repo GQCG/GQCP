@@ -296,6 +296,27 @@ public:
      */
 
     /**
+     *  @return the 1-RDM expressed in an orthonormal spinor basis related to these optimal RHF parameters
+     */
+    OneRDM<Scalar> calculateOrthonormalBasis1RDM() const { 
+
+        const auto K = this->numberOfSpatialOrbitals();
+        const auto N = 2 * this->numberOfElectronPairs();
+        return RHF<Scalar>::calculateOrthonormalBasis1RDM(K, N);
+    }
+
+
+    /**
+     *  @return the RHF 1-RDM in the scalar/AO basis related to these optimal RHF parameters
+     */
+    OneRDM<Scalar> calculateScalarBasis1RDM() const {
+
+        const auto N = 2 * this->numberOfElectronPairs();
+        return RHF<Scalar>::calculateScalarBasis1RDM(this->coefficientMatrix(), N);
+    }
+
+
+    /**
      *  @return the coefficient matrix that expresses every spatial orbital (as a column) in its underlying scalar basis
      */
     const TransformationMatrix<Scalar>& coefficientMatrix() const { return this->C; }

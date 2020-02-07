@@ -93,3 +93,18 @@ BOOST_AUTO_TEST_CASE ( SQTwoElectronOperator_effectiveOneElectronPartition ) {
 
     BOOST_CHECK(k_par_ref.isApprox(g.effectiveOneElectronPartition().parameters(), 1.0e-08));
 }
+
+
+/**
+ *  Check if calculateExpectationValue throws when necessary
+ */
+BOOST_AUTO_TEST_CASE ( calculateExpectationValue_throw ) {
+
+    const GQCP::ScalarSQTwoElectronOperator<double> g {2};
+
+    const GQCP::TwoRDM<double> d_valid (2);
+    const GQCP::TwoRDM<double> d_invalid (3);
+
+    BOOST_CHECK_THROW(g.calculateExpectationValue(d_invalid), std::invalid_argument);
+    BOOST_CHECK_NO_THROW(g.calculateExpectationValue(d_valid));
+}
