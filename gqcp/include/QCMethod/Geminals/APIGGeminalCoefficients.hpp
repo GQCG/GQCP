@@ -18,10 +18,9 @@
 #pragma once
 
 
-#include "QCModel/CI/LinearExpansion.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
 #include "QCMethod/Geminals/GeminalCoefficientsInterface.hpp"
-
+#include "QCModel/CI/LinearExpansion.hpp"
 
 
 namespace GQCP {

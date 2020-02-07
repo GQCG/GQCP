@@ -77,9 +77,9 @@ public:
     /**
      *  A run-time constructor allocating the appropriate derived RDMBuilder and coefficient vector
      *
-     *  @param LinearExpansion       the wave function holding the coefficient vector and a ONV basis on which the RDMBuilder should be based
+     *  @param linear_expansion       the wave function holding the coefficient vector and a ONV basis on which the RDMBuilder should be based
      */
-    explicit RDMCalculator(const LinearExpansion& LinearExpansion);
+    explicit RDMCalculator(const LinearExpansion& linear_expansion);
 
 
     // SETTERS

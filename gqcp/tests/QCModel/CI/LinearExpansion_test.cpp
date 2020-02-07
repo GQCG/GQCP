@@ -68,20 +68,20 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h3 ) {
     ci_solver.solve(solver_options);
 
     // Retrieve the wave function and transform it
-    auto LinearExpansion1 = ci_solver.makeLinearExpansion();
+    auto linear_expansion1 = ci_solver.makeLinearExpansion();
     GQCP::TransformationMatrix<double> U_random = GQCP::TransformationMatrix<double>::RandomUnitary(K);
 
-    LinearExpansion1.basisTransform(U_random);
+    linear_expansion1.basisTransform(U_random);
 
     // Generate a new wave function by rotating the basis and performing the FCI again
     GQCP::basisRotate(spinor_basis, sq_hamiltonian, U_random);
     GQCP::CISolver ci_solver2 (fci, sq_hamiltonian);
     ci_solver2.solve(solver_options);
 
-    auto LinearExpansion2 = ci_solver2.makeLinearExpansion();
+    auto linear_expansion2 = ci_solver2.makeLinearExpansion();
 
     // Check if they deviate
-    BOOST_CHECK(LinearExpansion2.isApprox(LinearExpansion1));
+    BOOST_CHECK(linear_expansion2.isApprox(linear_expansion1));
 }
 
 
@@ -107,20 +107,20 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h4 ) {
     ci_solver.solve(solver_options);
 
     // Retrieve the wave function and transform it
-    auto LinearExpansion1 = ci_solver.makeLinearExpansion();
+    auto linear_expansion1 = ci_solver.makeLinearExpansion();
     GQCP::TransformationMatrix<double> U_random = GQCP::TransformationMatrix<double>::RandomUnitary(K);
 
-    LinearExpansion1.basisTransform(U_random);
+    linear_expansion1.basisTransform(U_random);
 
     // Generate a new wave function by rotating the basis and performing the FCI again.
     GQCP::basisRotate(spinor_basis, sq_hamiltonian, U_random);
     GQCP::CISolver ci_solver2 (fci, sq_hamiltonian);
     ci_solver2.solve(solver_options);
 
-    auto LinearExpansion2 = ci_solver2.makeLinearExpansion();
+    auto linear_expansion2 = ci_solver2.makeLinearExpansion();
 
     // Check if they deviate
-    BOOST_CHECK(LinearExpansion2.isApprox(LinearExpansion1));
+    BOOST_CHECK(linear_expansion2.isApprox(linear_expansion1));
 }
 
 
@@ -148,18 +148,18 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h5 ) {
     ci_solver.solve(solver_options);
 
     // Retrieve the wave function and transform it
-    auto LinearExpansion1 = ci_solver.makeLinearExpansion();
+    auto linear_expansion1 = ci_solver.makeLinearExpansion();
     GQCP::TransformationMatrix<double> U_random = GQCP::TransformationMatrix<double>::RandomUnitary(K);
 
-    LinearExpansion1.basisTransform(U_random);
+    linear_expansion1.basisTransform(U_random);
 
     // Generate a new wave function by rotating the basis and performing the FCI again.
     GQCP::basisRotate(spinor_basis, sq_hamiltonian, U_random);
     GQCP::CISolver ci_solver2 (fci, sq_hamiltonian);
     ci_solver2.solve(solver_options);
 
-    auto LinearExpansion2 = ci_solver2.makeLinearExpansion();
+    auto linear_expansion2 = ci_solver2.makeLinearExpansion();
 
     // Check if they deviate
-    BOOST_CHECK(LinearExpansion2.isApprox(LinearExpansion1));
+    BOOST_CHECK(linear_expansion2.isApprox(linear_expansion1));
 }

@@ -18,13 +18,12 @@
 #pragma once
 
 
-#include "QCModel/CI/LinearExpansion.hpp"
 #include "Mathematical/Optimization/Eigenproblem/Eigenpair.hpp"
 #include "Mathematical/Optimization/Eigenproblem/EigenproblemSolverOptions.hpp"
 #include "Processing/RDM/RDMCalculator.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/DOCI.hpp"
 #include "QCMethod/OrbitalOptimization/QCMethodNewtonOrbitalOptimizer.hpp"
-
+#include "QCModel/CI/LinearExpansion.hpp"
 
 #include <memory>
 

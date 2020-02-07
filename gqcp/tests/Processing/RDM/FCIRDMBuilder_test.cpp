@@ -194,11 +194,11 @@ BOOST_AUTO_TEST_CASE ( H2O_energy_RDM_contraction_FCI_LinearExpansion ) {
     GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
-    GQCP::LinearExpansion LinearExpansion = ci_solver.makeLinearExpansion();
+    GQCP::LinearExpansion linear_expansion = ci_solver.makeLinearExpansion();
     double energy_by_eigenvalue = ci_solver.get_eigenpair().get_eigenvalue();
 
     // Check if the contraction energy matches the fci eigenvalue.
-    GQCP::RDMCalculator fci_rdm (LinearExpansion);
+    GQCP::RDMCalculator fci_rdm (linear_expansion);
     GQCP::TwoRDMs<double> two_rdms = fci_rdm.calculate2RDMs();
     GQCP::OneRDMs<double> one_rdms = fci_rdm.calculate1RDMs();
 
@@ -249,12 +249,12 @@ BOOST_AUTO_TEST_CASE ( H2O_FCI_LinearExpansion_vs_Selected_CI ) {
     GQCP::DenseSolverOptions solver_options;
     ci_solver.solve(solver_options);
 
-    GQCP::LinearExpansion LinearExpansion = ci_solver.makeLinearExpansion();
+    GQCP::LinearExpansion linear_expansion = ci_solver.makeLinearExpansion();
     double energy_by_eigenvalue = ci_solver.get_eigenpair().get_eigenvalue();
 
-    GQCP::RDMCalculator fci_rdm (LinearExpansion);
+    GQCP::RDMCalculator fci_rdm (linear_expansion);
     GQCP::RDMCalculator selected_rdm (selected_fock_space);
-    selected_rdm.set_coefficients(LinearExpansion.get_coefficients());
+    selected_rdm.set_coefficients(linear_expansion.get_coefficients());
     
     GQCP::TwoRDMs<double> two_rdms = fci_rdm.calculate2RDMs();
     GQCP::OneRDMs<double> one_rdms = fci_rdm.calculate1RDMs();

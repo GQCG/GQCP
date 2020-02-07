@@ -41,19 +41,5 @@ EigenproblemEnvironment Dense(const SQHamiltonian<double>& sq_hamiltonian, const
 }
 
 
-/**
- *  Create an iterative eigenvalue problem environment for spin-resolved FCI calculations.
- */
-// EigenproblemEnvironment Iterative(const SQHamiltonian<double>& sq_hamiltonian, const ProductONVBasis& onv_basis) {
-
-//     const auto diagonal = onv_basis.evaluateOperatorDiagonal(sq_hamiltonian);
-
-
-//     // 
-
-//     return EigenproblemEnvironment::Iterative()
-// }
-
-
 }  // namespace CIEnvironment
 }  // namespace GQCP

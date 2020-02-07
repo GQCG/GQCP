@@ -50,7 +50,7 @@ public:
      */
 
     /**
-     *  @param number_of_states                 the number of states that searched for (incuding the ground state)
+     *  @param number_of_states                 the number of states that searched for (including the ground state)
      */
     CI(const BaseONVBasis& onv_basis, const size_t number_of_states = 1) :
         onv_basis (BaseONVBasis::CloneToHeap(onv_basis)),  // TODO: this feels pretty weird to do
