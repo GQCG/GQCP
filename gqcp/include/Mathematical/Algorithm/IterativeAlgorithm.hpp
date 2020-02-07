@@ -79,7 +79,7 @@ public:
      * 
      *  @param environment                          the environment that this algorithm is associated to
      */
-    void iterate(Environment& environment) {
+    void perform(Environment& environment) {
 
         for (this->iteration = 0; this->iteration <= this->maximum_number_of_iterations; this->iteration++) {  // do at maximum the maximum allowed number of iterations
 
@@ -94,7 +94,7 @@ public:
         }
 
         // Since we will exit the function early if convergence is achieved, the algorithm is considered non-converging if the loop is done.
-        throw std::runtime_error("IterativeAlgorithm<Environment>::iterate(Environment&): The algorithm didn't find a solution within the maximum number of iterations.");
+        throw std::runtime_error("IterativeAlgorithm<Environment>::perform(Environment&): The algorithm didn't find a solution within the maximum number of iterations.");
     }
 
 

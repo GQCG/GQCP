@@ -45,7 +45,7 @@ BOOST_AUTO_TEST_CASE ( h2_sto3g_szabo_plain ) {
     // Create a plain RHF SCF solver and solve the SCF equations
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(h2.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
-    plain_rhf_scf_solver.iterate(rhf_environment);
+    plain_rhf_scf_solver.perform(rhf_environment);
 
 
     // Check the total energy
@@ -82,7 +82,7 @@ BOOST_AUTO_TEST_CASE ( h2o_sto3g_horton_plain ) {
 
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(water.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
-    plain_rhf_scf_solver.iterate(rhf_environment);
+    plain_rhf_scf_solver.perform(rhf_environment);
 
 
     // Check the calculated results with the reference
@@ -111,7 +111,7 @@ BOOST_AUTO_TEST_CASE ( crawdad_h2o_sto3g_plain ) {
 
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(water.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
-    plain_rhf_scf_solver.iterate(rhf_environment);
+    plain_rhf_scf_solver.perform(rhf_environment);
 
 
     // Check the total energy
@@ -138,7 +138,7 @@ BOOST_AUTO_TEST_CASE ( crawdad_ch4_sto3g_plain ) {
 
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(methane.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
-    plain_rhf_scf_solver.iterate(rhf_environment);
+    plain_rhf_scf_solver.perform(rhf_environment);
 
 
     // Check the total energy
@@ -161,7 +161,7 @@ BOOST_AUTO_TEST_CASE ( h2_631gdp_plain ) {
 
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(h2.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
-    plain_rhf_scf_solver.iterate(rhf_environment);
+    plain_rhf_scf_solver.perform(rhf_environment);
 
     // Check the electronic energy
     BOOST_CHECK(std::abs(rhf_environment.electronic_energies.back() - ref_electronic_energy) < 1.0e-06);
@@ -196,7 +196,7 @@ BOOST_AUTO_TEST_CASE ( h2o_sto3g_horton_damped ) {
 
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(water.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
     auto damped_rhf_scf_solver = GQCP::RHFSCFSolver<double>::DensityDamped(0.95);
-    damped_rhf_scf_solver.iterate(rhf_environment);
+    damped_rhf_scf_solver.perform(rhf_environment);
 
 
     // Check the calculated results with the reference
@@ -222,7 +222,7 @@ BOOST_AUTO_TEST_CASE ( h2_sto3g_szabo_diis ) {
     // Create a DIIS RHF SCF solver and solve the SCF equations
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(h2.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
     auto diis_rhf_scf_solver = GQCP::RHFSCFSolver<double>::DIIS();
-    diis_rhf_scf_solver.iterate(rhf_environment);
+    diis_rhf_scf_solver.perform(rhf_environment);
 
 
     // Check the total energy
@@ -259,7 +259,7 @@ BOOST_AUTO_TEST_CASE ( h2o_sto3g_horton_diis ) {
 
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(water.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
     auto diis_rhf_scf_solver = GQCP::RHFSCFSolver<double>::DIIS();
-    diis_rhf_scf_solver.iterate(rhf_environment);
+    diis_rhf_scf_solver.perform(rhf_environment);
 
 
     // Check the calculated results with the reference
@@ -288,7 +288,7 @@ BOOST_AUTO_TEST_CASE ( crawdad_h2o_sto3g_diis ) {
 
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(water.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
     auto diis_rhf_scf_solver = GQCP::RHFSCFSolver<double>::DIIS();
-    diis_rhf_scf_solver.iterate(rhf_environment);
+    diis_rhf_scf_solver.perform(rhf_environment);
 
 
     // Check the total energy
@@ -315,7 +315,7 @@ BOOST_AUTO_TEST_CASE ( crawdad_ch4_sto3g_diis ) {
 
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(methane.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
     auto diis_rhf_scf_solver = GQCP::RHFSCFSolver<double>::DIIS();
-    diis_rhf_scf_solver.iterate(rhf_environment);
+    diis_rhf_scf_solver.perform(rhf_environment);
 
 
     // Check the total energy
@@ -338,7 +338,7 @@ BOOST_AUTO_TEST_CASE ( h2_631gdp_diis ) {
 
     auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(h2.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
     auto diis_rhf_scf_solver = GQCP::RHFSCFSolver<double>::DIIS();
-    diis_rhf_scf_solver.iterate(rhf_environment);
+    diis_rhf_scf_solver.perform(rhf_environment);
 
 
     // Check the electronic energy

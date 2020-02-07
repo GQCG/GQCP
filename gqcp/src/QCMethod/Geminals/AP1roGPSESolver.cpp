@@ -57,7 +57,7 @@ void AP1roGPSESolver::solve(AP1roGGeminalCoefficients& G) const {
     VectorX<double> x = G.asVector();  // the initial guess: a column-major vector
     NonLinearEquationEnvironment<double> non_linear_environment (x, f, J);
     auto non_linear_solver = NonLinearEquationSolver<double>::Newton(this->convergence_threshold, this->maximum_number_of_iterations);
-    non_linear_solver.iterate(non_linear_environment);
+    non_linear_solver.perform(non_linear_environment);
     x = non_linear_environment.variables.back();
 
     G = AP1roGGeminalCoefficients::FromColumnMajor(x, this->pses.numberOfElectronPairs(), this->pses.numberOfSpatialOrbitals());

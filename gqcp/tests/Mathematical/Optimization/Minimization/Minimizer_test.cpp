@@ -85,7 +85,7 @@ BOOST_AUTO_TEST_CASE ( minimization_example ) {
 
     GQCP::MinimizationEnvironment<double> minimization_environment (x0, grad, H);
     auto minimizer = GQCP::Minimizer<double>::Newton();
-    minimizer.iterate(minimization_environment);
+    minimizer.perform(minimization_environment);
     const auto& solution = minimization_environment.variables.back();
 
     BOOST_CHECK(solution.isZero(1.0e-08));  // the analytical minimizer of f(x) is x=(0,0)
