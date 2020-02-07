@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "ONVBasis/LinearExpansion/LinearExpansion.hpp"
+#include "QCModel/CI/LinearExpansion.hpp"
 #include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
 #include "Processing/RDM/OneRDM.hpp"
 

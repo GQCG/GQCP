@@ -22,7 +22,7 @@
 #include "ONVBasis/SelectedONVBasis.hpp"
 
 #include "Basis/transform.hpp"
-#include "ONVBasis/LinearExpansion/LinearExpansionReader.hpp"
+#include "QCModel/CI/LinearExpansionReader.hpp"
 
 
 /**

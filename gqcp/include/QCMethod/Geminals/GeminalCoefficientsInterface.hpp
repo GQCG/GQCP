@@ -19,7 +19,7 @@
 
 
 #include "ONVBasis/ONVBasis.hpp"
-#include "ONVBasis/LinearExpansion/LinearExpansion.hpp"
+#include "QCModel/CI/LinearExpansion.hpp"
 
 
 namespace GQCP {

@@ -22,7 +22,7 @@
 #include "ONVBasis/ONVBasis.hpp"
 #include "ONVBasis/ProductONVBasis.hpp"
 #include "ONVBasis/SelectedONVBasis.hpp"
-#include "ONVBasis/LinearExpansion/LinearExpansion.hpp"
+#include "QCModel/CI/LinearExpansion.hpp"
 
 #include <boost/range/adaptor/sliced.hpp>
 #include <boost/range/adaptor/strided.hpp>

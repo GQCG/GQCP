@@ -19,7 +19,7 @@
 
 
 #include "ONVBasis/ONVBasis.hpp"
-#include "ONVBasis/LinearExpansion/SpinUnresolvedLinearExpansion.hpp"
+#include "QCModel/CI/SpinUnresolvedLinearExpansion.hpp"
 #include "Processing/RDM/BaseSpinUnresolvedRDMBuilder.hpp"
 #include "Processing/RDM/SpinUnresolvedFCIRDMBuilder.hpp"
 

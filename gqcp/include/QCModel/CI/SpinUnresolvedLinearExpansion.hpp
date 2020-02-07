@@ -18,36 +18,23 @@
 #pragma once
 
 
-#include "ONVBasis/SelectedONVBasis.hpp"
-#include "ONVBasis/LinearExpansion/LinearExpansion.hpp"
+#include "ONVBasis/ONVBasis.hpp"
+#include "QCModel/CI/LinearExpansion.hpp"
 
 
 namespace GQCP {
 
 
 /**
- *  A class that reads and stores a 'selected' wave function expansion
+ *  A class that represents a wave function: expansion coefficients in a (spin-orbital) ONV basis
  */
-class LinearExpansionReader {
-private:
-    SelectedONVBasis fock_space;
-    VectorX<double> coefficients;
-    LinearExpansion wave_function;
-
-
-public:
+class SpinUnresolvedLinearExpansion : public LinearExpansion {
     /**
-     *  @param GAMESS_filename      the name of the GAMESS file that contains the 'selected' wave function expansion
+     *  @param fock_space           the ONV basis in which the wave function 'lives'
+     *  @param coefficients         the expansion coefficients
      */
-    explicit LinearExpansionReader(const std::string& GAMESS_filename);
-
-
-    // GETTERS
-    const SelectedONVBasis& get_fock_space() const { return this->fock_space; }
-    const VectorX<double>& get_coefficients() const { return this->coefficients; }
-    const LinearExpansion& get_wave_function() const { return this->wave_function; }
+    SpinUnresolvedLinearExpansion(const ONVBasis& fock_space, const VectorX<double>& coefficients);
 };
-
 
 
 }  // namespace GQCP

@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "ONVBasis/LinearExpansion/LinearExpansion.hpp"
+#include "QCModel/CI/LinearExpansion.hpp"
 #include "Mathematical/Optimization/Eigenproblem/Eigenpair.hpp"
 #include "Mathematical/Optimization/Eigenproblem/EigenproblemSolverOptions.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
