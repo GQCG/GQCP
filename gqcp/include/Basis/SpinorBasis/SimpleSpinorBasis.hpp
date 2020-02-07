@@ -34,7 +34,9 @@ namespace GQCP {
  *  @tparam _DerivedSpinorBasis         the CRTP template argument of the derived spinor basis
  */
 template <typename _ExpansionScalar, typename _DerivedSpinorBasis>
-class SimpleSpinorBasis : public CRTP<_DerivedSpinorBasis> {
+class SimpleSpinorBasis:
+    public CRTP<_DerivedSpinorBasis> {
+
 public:
     using ExpansionScalar = _ExpansionScalar;
 
@@ -94,7 +96,7 @@ public:
 
 
     /**
-     *  Transform the spinor basis to the 'Löwdin basis', which is the orthonormal basis that we transform to with T = S^{-1/2}, where S is the current overlap matrix
+     *  Transform the spinor basis to the 'Löwdin basis', which is the orthonormal basis that we transform to with T = S^{-1/2}, where S is the current overlap matrix.
      */
     void lowdinOrthonormalize() {
 
