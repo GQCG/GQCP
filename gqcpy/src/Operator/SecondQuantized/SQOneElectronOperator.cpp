@@ -43,7 +43,7 @@ void bindSQOneElectronOperator(py::module& module) {
     py::class_<GQCP::VectorSQOneElectronOperator<double>>(module, "VectorSQOneElectronOperator", "A class that represents a real, second-quantized one-electron operator with three components.")
 
         .def("allParameters", [] (const GQCP::VectorSQOneElectronOperator<double>& op) {
-                const auto all_parameters = op.allParameters();  // std::array<QCMatrix<double>>
+                const auto all_parameters = op.allParameters();  // returns a std::array<QCMatrix<double>>
                 
                 return all_parameters;
             },
