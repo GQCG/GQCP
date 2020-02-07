@@ -30,7 +30,7 @@ namespace GQCP {
  *
  *  @return the wave function expansion corresponding to the geminal coefficients
  */
-WaveFunction GeminalCoefficientsInterface::toWaveFunction(const ONVBasis& fock_space) const {
+LinearExpansion GeminalCoefficientsInterface::toLinearExpansion(const ONVBasis& fock_space) const {
 
     // The ONVBasis can't be marked const, as makeONV() and setNext() are non-const methods
 
@@ -45,7 +45,7 @@ WaveFunction GeminalCoefficientsInterface::toWaveFunction(const ONVBasis& fock_s
         }
     }
 
-    return WaveFunction(fock_space, coefficients);
+    return LinearExpansion(fock_space, coefficients);
 }
 
 

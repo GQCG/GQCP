@@ -7,6 +7,4 @@ list(APPEND test_target_sources
     ${CMAKE_CURRENT_SOURCE_DIR}/SelectedONVBasis_test.cpp
 )
 
-add_subdirectory(WaveFunction)
-
 set(test_target_sources ${test_target_sources} PARENT_SCOPE)

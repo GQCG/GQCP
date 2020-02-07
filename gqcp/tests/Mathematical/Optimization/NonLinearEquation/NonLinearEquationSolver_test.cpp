@@ -86,7 +86,7 @@ BOOST_AUTO_TEST_CASE ( nl_syseq_example ) {
 
     GQCP::NonLinearEquationEnvironment<double> non_linear_environment (x, f, J);
     auto non_linear_solver = GQCP::NonLinearEquationSolver<double>::Newton();
-    non_linear_solver.iterate(non_linear_environment);
+    non_linear_solver.perform(non_linear_environment);
     const auto& solution = non_linear_environment.variables.back();
 
     BOOST_CHECK(solution.isZero(1.0e-08));  // the analytical solution of f(x) = (0,0) is x=(0,0)

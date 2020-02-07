@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "ONVBasis/WaveFunction/WaveFunction.hpp"
+#include "QCModel/CI/LinearExpansion.hpp"
 
 #include "ONVBasis/ProductONVBasis.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
@@ -35,7 +35,7 @@ namespace GQCP {
  *  @param base_fock_space      the ONV basis in which the wave function 'lives'
  *  @param coefficients         the expansion coefficients
  */
-WaveFunction::WaveFunction(const BaseONVBasis& base_fock_space, const VectorX<double>& coefficients) :
+LinearExpansion::LinearExpansion(const BaseONVBasis& base_fock_space, const VectorX<double>& coefficients) :
     fock_space (BaseONVBasis::CloneToHeap(base_fock_space)),
     coefficients (coefficients)
 {
@@ -53,7 +53,7 @@ WaveFunction::WaveFunction(const BaseONVBasis& base_fock_space, const VectorX<do
 /**
  *  @return the Shannon entropy (or information content) of the wave function
  */
-double WaveFunction::calculateShannonEntropy() const {
+double LinearExpansion::calculateShannonEntropy() const {
 
     // Sum over the ONV basis dimension, and only include the term if c_k != 0
     // We might as well replace all coeffients that are 0 by 1, since log(1) = 0 so there is no influence on the final entropy value
@@ -71,16 +71,16 @@ double WaveFunction::calculateShannonEntropy() const {
  *
  *  @param T    the transformation matrix between the old and the new orbital basis
  */
-void WaveFunction::basisTransform(const TransformationMatrix<double>& T) {
+void LinearExpansion::basisTransform(const TransformationMatrix<double>& T) {
 
     if (fock_space->get_type() != ONVBasisType::ProductONVBasis) {
-        throw std::invalid_argument("WaveFunction::basisTransform(TransformationMatrix<double>): This is not an FCI wave function");
+        throw std::invalid_argument("LinearExpansion::basisTransform(TransformationMatrix<double>): This is not an FCI wave function");
     }
 
     const auto K = fock_space->get_K();
 
     if (K != T.get_dim()) {
-        throw std::invalid_argument("WaveFunction::basisTransform(TransformationMatrix<double>): number of orbitals does not match the dimension of the transformation matrix T");
+        throw std::invalid_argument("LinearExpansion::basisTransform(TransformationMatrix<double>): number of orbitals does not match the dimension of the transformation matrix T");
     }
 
     // Retrieve LU decomposition for T
@@ -258,7 +258,7 @@ void WaveFunction::basisTransform(const TransformationMatrix<double>& T) {
  * 
  *  @return if two wave functions are equal within a given tolerance
  */
-bool WaveFunction::isApprox(const WaveFunction& other, double tolerance) const { 
+bool LinearExpansion::isApprox(const LinearExpansion& other, double tolerance) const { 
 
     if (this->fock_space->get_type() != other.fock_space->get_type() || this->fock_space->get_dimension() != other.fock_space->get_dimension()) {
         return false;

@@ -13,5 +13,3 @@ target_sources(gqcp
         ProductONVBasis.hpp
         SelectedONVBasis.hpp
 )
-
-add_subdirectory(WaveFunction)

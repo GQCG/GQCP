@@ -58,28 +58,28 @@ Matrix<double, 3, 3> calculateElectricPolarizability(const Matrix<double, Dynami
 /**
  *  Calculate the Dyson 'amplitudes' (the coefficients of a Dyson orbital) between two wave function expressed in the same spinor basis 
  * 
- *  @param wavefunction1        a wave function in a product ONV basis  
- *  @param wavefunction2        a wave function in a product ONV basis containing one fewer electron and the same amount of orbitals that is expressed in the same basis
+ *  @param linear_expansion1        a wave function in a product ONV basis  
+ *  @param linear_expansion2        a wave function in a product ONV basis containing one fewer electron and the same amount of orbitals that is expressed in the same basis
  *
  *  @return a vector with the Dyson orbital amplitudes  
  */
-VectorX<double> calculateDysonOrbitalCoefficients(const WaveFunction& wavefunction1, const WaveFunction& wavefunction2) {
+VectorX<double> calculateDysonOrbitalCoefficients(const LinearExpansion& linear_expansion1, const LinearExpansion& linear_expansion2) {
 
     // Check the arguments
-    if (wavefunction1.get_fock_space().get_type() != ONVBasisType::ProductONVBasis) {
-        throw std::runtime_error("properties::calculateDysonOrbital(WaveFunction, WaveFunction): wavefunction1 is not in a product ONV basis");
+    if (linear_expansion1.get_fock_space().get_type() != ONVBasisType::ProductONVBasis) {
+        throw std::runtime_error("properties::calculateDysonOrbital(LinearExpansion, LinearExpansion): linear_expansion1 is not in a product ONV basis");
     }
 
-    if (wavefunction2.get_fock_space().get_type() != ONVBasisType::ProductONVBasis) {
-        throw std::runtime_error("properties::calculateDysonOrbital(WaveFunction, WaveFunction): wavefunction2 is not in a product ONV basis");
+    if (linear_expansion2.get_fock_space().get_type() != ONVBasisType::ProductONVBasis) {
+        throw std::runtime_error("properties::calculateDysonOrbital(LinearExpansion, LinearExpansion): linear_expansion2 is not in a product ONV basis");
     }
 
-    const auto& fock_space1 = static_cast<const ProductONVBasis&>(wavefunction1.get_fock_space());
-    const auto& fock_space2 = static_cast<const ProductONVBasis&>(wavefunction2.get_fock_space());
+    const auto& fock_space1 = static_cast<const ProductONVBasis&>(linear_expansion1.get_fock_space());
+    const auto& fock_space2 = static_cast<const ProductONVBasis&>(linear_expansion2.get_fock_space());
 
     if ((fock_space1.get_N_alpha() - fock_space2.get_N_alpha() != 0) && (fock_space1.get_N_beta() - fock_space2.get_N_beta() != 1)) {
         if ((fock_space1.get_N_alpha() - fock_space2.get_N_alpha() != 1) && (fock_space1.get_N_beta() - fock_space2.get_N_beta() != 0)) {
-            throw std::runtime_error("properties::calculateDysonOrbital(WaveFunction, WaveFunction): wavefunction2 is not expressed in a product ONV basis with one fewer electron than wavefunction1");
+            throw std::runtime_error("properties::calculateDysonOrbital(LinearExpansion, LinearExpansion): linear_expansion2 is not expressed in a product ONV basis with one fewer electron than linear_expansion1");
         }
     } 
 
@@ -110,8 +110,8 @@ VectorX<double> calculateDysonOrbitalCoefficients(const WaveFunction& wavefuncti
         target_mod = passive_fock_space1.get_dimension();
     }
 
-    const auto& ci_coeffs1 = wavefunction1.get_coefficients();
-    const auto& ci_coeffs2 = wavefunction2.get_coefficients();
+    const auto& ci_coeffs1 = linear_expansion1.get_coefficients();
+    const auto& ci_coeffs2 = linear_expansion2.get_coefficients();
 
     VectorX<double> dyson_coeffs = VectorX<double>::Zero(fock_space1.get_K());
 

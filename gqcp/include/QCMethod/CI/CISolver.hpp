@@ -18,11 +18,11 @@
 #pragma once
 
 
-#include "ONVBasis/WaveFunction/WaveFunction.hpp"
 #include "Mathematical/Optimization/Eigenproblem/Eigenpair.hpp"
 #include "Mathematical/Optimization/Eigenproblem/EigenproblemSolverOptions.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/HamiltonianBuilder.hpp"
+#include "QCModel/CI/LinearExpansion.hpp"
 
 
 namespace GQCP {
@@ -65,7 +65,7 @@ public:
      *
      *  @return the index-th excited state after solving the CI eigenvalue problem
      */
-    WaveFunction makeWavefunction(size_t index = 0) const;
+    LinearExpansion makeLinearExpansion(size_t index = 0) const;
 };
 
 

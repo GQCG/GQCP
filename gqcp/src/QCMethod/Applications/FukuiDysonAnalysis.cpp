@@ -94,18 +94,18 @@ FukuiDysonAnalysis::FukuiDysonAnalysis(const Molecule& molecule, const std::stri
     ci_solver1.solve(davidson_solver_options1);
     ci_solver2.solve(davidson_solver_options2);
 
-    // Retrieve the wavefunctions
-    const auto wavefunction1 = ci_solver1.makeWavefunction();
-    const auto wavefunction2 = ci_solver2.makeWavefunction();
+    // Retrieve the linear expansions
+    const auto linear_expansion1 = ci_solver1.makeLinearExpansion();
+    const auto linear_expansion2 = ci_solver2.makeLinearExpansion();
 
     // Extract dyson coefficients
-    this->dyson_coefficients = calculateDysonOrbitalCoefficients(wavefunction1, wavefunction2);
+    this->dyson_coefficients = calculateDysonOrbitalCoefficients(linear_expansion1, linear_expansion2);
     
     // Calculate the Fukui matrix
     RDMCalculator rdm_calculator1 (fock_space1);
-    rdm_calculator1.set_coefficients(wavefunction1.get_coefficients());
+    rdm_calculator1.set_coefficients(linear_expansion1.get_coefficients());
     RDMCalculator rdm_calculator2 (fock_space2);
-    rdm_calculator2.set_coefficients(wavefunction2.get_coefficients());
+    rdm_calculator2.set_coefficients(linear_expansion2.get_coefficients());
 
     const auto onerdm1 = rdm_calculator1.calculate1RDMs().one_rdm;
     const auto onerdm2 = rdm_calculator2.calculate1RDMs().one_rdm;

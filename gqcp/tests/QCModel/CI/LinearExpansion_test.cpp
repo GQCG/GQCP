@@ -15,11 +15,11 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#define BOOST_TEST_MODULE "WaveFunction"
+#define BOOST_TEST_MODULE "LinearExpansion"
 
 #include <boost/test/unit_test.hpp>
 
-#include "ONVBasis/WaveFunction/WaveFunction.hpp"
+#include "QCModel/CI/LinearExpansion.hpp"
 
 #include "Basis/transform.hpp"
 #include "ONVBasis/ONVBasis.hpp"
@@ -35,12 +35,12 @@ BOOST_AUTO_TEST_CASE ( shannon_entropy ) {
 
 
     // Check the entropy of a Hartree-Fock expansion
-    GQCP::WaveFunction hartree_fock_expansion (fock_space, fock_space.HartreeFockExpansion());
+    GQCP::LinearExpansion hartree_fock_expansion (fock_space, fock_space.HartreeFockExpansion());
     BOOST_CHECK(hartree_fock_expansion.calculateShannonEntropy() < 1.0e-12);  // should be 0
 
 
     // Check the maximal entropy (corresponding to a wave function with all equal coefficients different from zero)
-    GQCP::WaveFunction constant_expansion (fock_space, fock_space.constantExpansion());
+    GQCP::LinearExpansion constant_expansion (fock_space, fock_space.constantExpansion());
     double reference_entropy = std::log2(fock_space.get_dimension());  // manual derivation
     BOOST_CHECK(std::abs(constant_expansion.calculateShannonEntropy() - reference_entropy) < 1.0e-12);
 }
@@ -68,20 +68,20 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h3 ) {
     ci_solver.solve(solver_options);
 
     // Retrieve the wave function and transform it
-    auto wavefunction1 = ci_solver.makeWavefunction();
+    auto linear_expansion1 = ci_solver.makeLinearExpansion();
     GQCP::TransformationMatrix<double> U_random = GQCP::TransformationMatrix<double>::RandomUnitary(K);
 
-    wavefunction1.basisTransform(U_random);
+    linear_expansion1.basisTransform(U_random);
 
     // Generate a new wave function by rotating the basis and performing the FCI again
     GQCP::basisRotate(spinor_basis, sq_hamiltonian, U_random);
     GQCP::CISolver ci_solver2 (fci, sq_hamiltonian);
     ci_solver2.solve(solver_options);
 
-    auto wavefunction2 = ci_solver2.makeWavefunction();
+    auto linear_expansion2 = ci_solver2.makeLinearExpansion();
 
     // Check if they deviate
-    BOOST_CHECK(wavefunction2.isApprox(wavefunction1));
+    BOOST_CHECK(linear_expansion2.isApprox(linear_expansion1));
 }
 
 
@@ -107,20 +107,20 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h4 ) {
     ci_solver.solve(solver_options);
 
     // Retrieve the wave function and transform it
-    auto wavefunction1 = ci_solver.makeWavefunction();
+    auto linear_expansion1 = ci_solver.makeLinearExpansion();
     GQCP::TransformationMatrix<double> U_random = GQCP::TransformationMatrix<double>::RandomUnitary(K);
 
-    wavefunction1.basisTransform(U_random);
+    linear_expansion1.basisTransform(U_random);
 
     // Generate a new wave function by rotating the basis and performing the FCI again.
     GQCP::basisRotate(spinor_basis, sq_hamiltonian, U_random);
     GQCP::CISolver ci_solver2 (fci, sq_hamiltonian);
     ci_solver2.solve(solver_options);
 
-    auto wavefunction2 = ci_solver2.makeWavefunction();
+    auto linear_expansion2 = ci_solver2.makeLinearExpansion();
 
     // Check if they deviate
-    BOOST_CHECK(wavefunction2.isApprox(wavefunction1));
+    BOOST_CHECK(linear_expansion2.isApprox(linear_expansion1));
 }
 
 
@@ -148,18 +148,18 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h5 ) {
     ci_solver.solve(solver_options);
 
     // Retrieve the wave function and transform it
-    auto wavefunction1 = ci_solver.makeWavefunction();
+    auto linear_expansion1 = ci_solver.makeLinearExpansion();
     GQCP::TransformationMatrix<double> U_random = GQCP::TransformationMatrix<double>::RandomUnitary(K);
 
-    wavefunction1.basisTransform(U_random);
+    linear_expansion1.basisTransform(U_random);
 
     // Generate a new wave function by rotating the basis and performing the FCI again.
     GQCP::basisRotate(spinor_basis, sq_hamiltonian, U_random);
     GQCP::CISolver ci_solver2 (fci, sq_hamiltonian);
     ci_solver2.solve(solver_options);
 
-    auto wavefunction2 = ci_solver2.makeWavefunction();
+    auto linear_expansion2 = ci_solver2.makeLinearExpansion();
 
     // Check if they deviate
-    BOOST_CHECK(wavefunction2.isApprox(wavefunction1));
+    BOOST_CHECK(linear_expansion2.isApprox(linear_expansion1));
 }

@@ -15,23 +15,26 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "ONVBasis/WaveFunction/SpinUnresolvedWaveFunction.hpp"
+#pragma once
+
+
+#include "ONVBasis/ONVBasis.hpp"
+#include "QCModel/CI/LinearExpansion.hpp"
 
 
 namespace GQCP {
 
 
-/*
- * CONSTRUCTORS
- */
-
 /**
- *  @param fock_space           the ONV basis in which the wave function 'lives'
- *  @param coefficients         the expansion coefficients
+ *  A class that represents a wave function: expansion coefficients in a (spin-orbital) ONV basis
  */
-SpinUnresolvedWaveFunction::SpinUnresolvedWaveFunction(const ONVBasis& fock_space, const VectorX<double>& coefficients) :
-        WaveFunction(fock_space, coefficients)
-{}
+class SpinUnresolvedLinearExpansion : public LinearExpansion {
+    /**
+     *  @param fock_space           the ONV basis in which the wave function 'lives'
+     *  @param coefficients         the expansion coefficients
+     */
+    SpinUnresolvedLinearExpansion(const ONVBasis& fock_space, const VectorX<double>& coefficients);
+};
 
 
 }  // namespace GQCP

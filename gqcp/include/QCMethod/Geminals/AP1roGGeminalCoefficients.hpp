@@ -18,10 +18,10 @@
 #pragma once
 
 
-#include "ONVBasis/WaveFunction/WaveFunction.hpp"
 #include "Mathematical/Representation/BlockMatrix.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/Geminals/GeminalCoefficientsInterface.hpp"
+#include "QCModel/CI/LinearExpansion.hpp"
 
 
 namespace GQCP {

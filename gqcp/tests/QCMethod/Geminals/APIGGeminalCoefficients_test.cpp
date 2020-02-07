@@ -77,7 +77,7 @@ BOOST_AUTO_TEST_CASE ( FromColumnMajor ) {
 /**
  *  Test if the conversion from APIG geminal coefficients to a wave function is correct (example 1)
  */
-BOOST_AUTO_TEST_CASE ( toWaveFunction_example1 ) {
+BOOST_AUTO_TEST_CASE ( toLinearExpansion_example1 ) {
 
     // Set up the normalized reference coefficients
     GQCP::VectorX<double> ref_coefficients (3);
@@ -96,14 +96,14 @@ BOOST_AUTO_TEST_CASE ( toWaveFunction_example1 ) {
 
     // Calculate the conversion from geminal coefficients to a wave function and check the result
     GQCP::ONVBasis fock_space (K, N_P);
-    BOOST_CHECK(ref_coefficients.isApprox(gem_coeff.toWaveFunction(fock_space).get_coefficients()));
+    BOOST_CHECK(ref_coefficients.isApprox(gem_coeff.toLinearExpansion(fock_space).get_coefficients()));
 }
 
 
 /**
  *  Test if the conversion from APIG geminal coefficients to a wave function is correct (example 2)
  */
-BOOST_AUTO_TEST_CASE ( toWaveFunction_example2 ) {
+BOOST_AUTO_TEST_CASE ( toLinearExpansion_example2 ) {
 
     // Set up the normalized reference coefficients
     GQCP::VectorX<double> ref_coefficients (3);
@@ -122,14 +122,14 @@ BOOST_AUTO_TEST_CASE ( toWaveFunction_example2 ) {
 
     // Calculate the conversion from geminal coefficients to a wave function and check the result
     GQCP::ONVBasis fock_space (K, N_P);
-    BOOST_CHECK(ref_coefficients.isApprox(gem_coeff.toWaveFunction(fock_space).get_coefficients()));
+    BOOST_CHECK(ref_coefficients.isApprox(gem_coeff.toLinearExpansion(fock_space).get_coefficients()));
 }
 
 
 /**
  *  Test if the conversion from APIG geminal coefficients to a wave function is correct (example 2)
  */
-BOOST_AUTO_TEST_CASE ( toWaveFunction_example3 ) {
+BOOST_AUTO_TEST_CASE ( toLinearExpansion_example3 ) {
 
     // Set up the normalized reference coefficients
     GQCP::VectorX<double> ref_coefficients (10);
@@ -148,5 +148,5 @@ BOOST_AUTO_TEST_CASE ( toWaveFunction_example3 ) {
 
     // Calculate the conversion from geminal coefficients to a wave function and check the result
     GQCP::ONVBasis fock_space (K, N_P);
-    BOOST_CHECK(ref_coefficients.isApprox(gem_coeff.toWaveFunction(fock_space).get_coefficients()));
+    BOOST_CHECK(ref_coefficients.isApprox(gem_coeff.toLinearExpansion(fock_space).get_coefficients()));
 }

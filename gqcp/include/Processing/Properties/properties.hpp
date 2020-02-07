@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "ONVBasis/WaveFunction/WaveFunction.hpp"
+#include "QCModel/CI/LinearExpansion.hpp"
 #include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
 #include "Processing/RDM/OneRDM.hpp"
 
@@ -47,12 +47,12 @@ Matrix<double, 3, 3> calculateElectricPolarizability(const Matrix<double, Dynami
 /**
  *  Calculate the Dyson 'amplitudes' (the coefficients of a Dyson orbital) between two wave function expressed in the same spinor basis 
  * 
- *  @param wavefunction1        a wave function in a product ONV basis  
- *  @param wavefunction2        a wave function in a product ONV basis containing one fewer electron and the same amount of orbitals that is expressed in the same basis
+ *  @param linear_expansion1        a wave function in a product ONV basis  
+ *  @param linear_expansion2        a wave function in a product ONV basis containing one fewer electron and the same amount of orbitals that is expressed in the same basis
  *
  *  @return a vector with the Dyson orbital amplitudes  
  */
-VectorX<double> calculateDysonOrbitalCoefficients(const WaveFunction& wavefunction1, const WaveFunction& wavefunction2);
+VectorX<double> calculateDysonOrbitalCoefficients(const LinearExpansion& linear_expansion1, const LinearExpansion& linear_expansion2);
 
 
 }  // namespace GQCP

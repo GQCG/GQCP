@@ -18,36 +18,28 @@
 #pragma once
 
 
+#include "Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp"
+#include "ONVBasis/FrozenONVBasis.hpp"
+#include "ONVBasis/FrozenProductONVBasis.hpp"
+#include "ONVBasis/ONVBasis.hpp"
+#include "ONVBasis/ProductONVBasis.hpp"
 #include "ONVBasis/SelectedONVBasis.hpp"
-#include "ONVBasis/WaveFunction/WaveFunction.hpp"
+#include "Operator/SecondQuantized/SQHamiltonian.hpp"
 
 
 namespace GQCP {
+namespace CIEnvironment {
 
 
 /**
- *  A class that reads and stores a 'selected' wave function expansion
+ *  Create an iterative eigenvalue problem environment for spin-resolved FCI calculations.
  */
-class WaveFunctionReader {
-private:
-    SelectedONVBasis fock_space;
-    VectorX<double> coefficients;
-    WaveFunction wave_function;
+EigenproblemEnvironment Dense(const SQHamiltonian<double>& sq_hamiltonian, const ProductONVBasis& onv_basis) {
+
+    const auto H = onv_basis.evaluateOperatorDense(sq_hamiltonian, true);  // 'true': with calculation of the diagonal
+    return EigenproblemEnvironment::Dense(H);
+}
 
 
-public:
-    /**
-     *  @param GAMESS_filename      the name of the GAMESS file that contains the 'selected' wave function expansion
-     */
-    explicit WaveFunctionReader(const std::string& GAMESS_filename);
-
-
-    // GETTERS
-    const SelectedONVBasis& get_fock_space() const { return this->fock_space; }
-    const VectorX<double>& get_coefficients() const { return this->coefficients; }
-    const WaveFunction& get_wave_function() const { return this->wave_function; }
-};
-
-
-
+}  // namespace CIEnvironment
 }  // namespace GQCP

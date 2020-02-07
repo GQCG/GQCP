@@ -100,7 +100,7 @@ BOOST_AUTO_TEST_CASE ( Davidson_ESQC_example_solver ) {
     x_0 << 1, 0, 0, 0, 0;
     auto davidson_environment = GQCP::EigenproblemEnvironment::Iterative(A, x_0);
     auto davidson_solver = GQCP::EigenproblemSolver::Davidson();  // the default is finding only the eigenpair with the lowest eigenvalue
-    davidson_solver.iterate(davidson_environment);
+    davidson_solver.perform(davidson_environment);
 
     const double test_lowest_eigenvalue = davidson_environment.eigenvalues(0);
     const GQCP::VectorX<double> test_lowest_eigenvector = davidson_environment.eigenvectors.col(0);
@@ -141,7 +141,7 @@ BOOST_AUTO_TEST_CASE ( Davidson_Liu_50 ) {
 
     auto davidson_environment = GQCP::EigenproblemEnvironment::Iterative(A, x_0);
     auto davidson_solver = GQCP::EigenproblemSolver::Davidson();  // the default is finding only the eigenpair with the lowest eigenvalue
-    davidson_solver.iterate(davidson_environment);
+    davidson_solver.perform(davidson_environment);
 
     const double test_lowest_eigenvalue = davidson_environment.eigenvalues(0);
     const GQCP::VectorX<double> test_lowest_eigenvector = davidson_environment.eigenvectors.col(0);;
@@ -185,7 +185,7 @@ BOOST_AUTO_TEST_CASE ( Davidson_Liu_50_collapse ) {
 
     auto davidson_environment = GQCP::EigenproblemEnvironment::Iterative(A, x_0);
     auto davidson_solver = GQCP::EigenproblemSolver::Davidson(1, 10);  // number_of_requested_eigenpairs=1, maximum_subspace_dimension=10
-    davidson_solver.iterate(davidson_environment);
+    davidson_solver.perform(davidson_environment);
 
 
     const double test_lowest_eigenvalue = davidson_environment.eigenvalues(0);
@@ -228,7 +228,7 @@ BOOST_AUTO_TEST_CASE ( Davidson_Liu_50_number_of_requested_eigenpairs ) {
 
     auto davidson_environment = GQCP::EigenproblemEnvironment::Iterative(A, X_0);
     auto davidson_solver = GQCP::EigenproblemSolver::Davidson(3);  // number_of_requested_eigenpairs=3, 
-    davidson_solver.iterate(davidson_environment);
+    davidson_solver.perform(davidson_environment);
 
 
     for (size_t i = 0; i < number_of_requested_eigenpairs; i++) {
@@ -267,7 +267,7 @@ BOOST_AUTO_TEST_CASE ( Davidson_Liu_1000 ) {
     x_0(0) = 1;
     auto davidson_environment = GQCP::EigenproblemEnvironment::Iterative(A, x_0);
     auto davidson_solver = GQCP::EigenproblemSolver::Davidson();  // the default is finding only the eigenpair with the lowest eigenvalue
-    davidson_solver.iterate(davidson_environment);
+    davidson_solver.perform(davidson_environment);
 
     const double test_lowest_eigenvalue = davidson_environment.eigenvalues(0);
     const GQCP::VectorX<double> test_lowest_eigenvector = davidson_environment.eigenvectors.col(0);;
@@ -310,7 +310,7 @@ BOOST_AUTO_TEST_CASE ( Davidson_Liu_1000_collapse ) {
 
     auto davidson_environment = GQCP::EigenproblemEnvironment::Iterative(A, x_0);
     auto davidson_solver = GQCP::EigenproblemSolver::Davidson(1, 10);  // number_of_requested_eigenpairs=1, maximum_subspace_dimension=10
-    davidson_solver.iterate(davidson_environment);
+    davidson_solver.perform(davidson_environment);
 
 
     const double test_lowest_eigenvalue = davidson_environment.eigenvalues(0);
@@ -354,7 +354,7 @@ BOOST_AUTO_TEST_CASE ( Davidson_Liu_1000_number_of_requested_eigenpairs ) {
 
     auto davidson_environment = GQCP::EigenproblemEnvironment::Iterative(A, X_0);
     auto davidson_solver = GQCP::EigenproblemSolver::Davidson(3, 10);  // number_of_requested_eigenpairs=3
-    davidson_solver.iterate(davidson_environment);
+    davidson_solver.perform(davidson_environment);
 
 
     for (size_t i = 0; i < number_of_requested_eigenpairs; i++) {

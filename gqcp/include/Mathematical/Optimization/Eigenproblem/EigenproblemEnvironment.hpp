@@ -39,7 +39,6 @@ public:
     VectorX<double> eigenvalues;  // the eigenvalues of the matrix A
     MatrixX<double> eigenvectors;  // the eigenvectors of the matrix A
 
-
     SquareMatrix<double> S;  // the "subspace matrix": the projection of the matrix A onto the subspace spanned by the vectors in V
     VectorX<double> Lambda;  // the (requested number of) eigenvalues of the subspace matrix S
     MatrixX<double> Z;  // the (requested number of) eigenvectors of the subspace matrix S

@@ -214,7 +214,7 @@ double AP1roGJacobiOrbitalOptimizer::calculateOptimalRotationAngle(const SQHamil
 
             MinimizationEnvironment<double> minimization_environment (theta_vec, gradient_function, hessian_function);
             auto minimizer = GQCP::Minimizer<double>::Newton();
-            minimizer.iterate(minimization_environment);
+            minimizer.perform(minimization_environment);
             const auto& theta_min = minimization_environment.variables.back()(0);  // get inside the VectorX<double>
             JacobiRotationParameters jacobi_rot_par {p, q, theta_min};
 

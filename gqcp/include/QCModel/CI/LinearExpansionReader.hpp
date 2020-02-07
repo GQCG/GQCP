@@ -18,28 +18,36 @@
 #pragma once
 
 
-#include "Mathematical/Algorithm/Algorithm.hpp"
-#include "Mathematical/Optimization/Eigenproblem/DenseDiagonalization.hpp"
+#include "ONVBasis/SelectedONVBasis.hpp"
+#include "QCModel/CI/LinearExpansion.hpp"
 
 
 namespace GQCP {
-namespace EigenproblemSolver {
 
 
 /**
- *  @return an algorithm that can diagonalize a dense matrix
+ *  A class that reads and stores a 'selected' wave function expansion
  */
-Algorithm<EigenproblemEnvironment> Dense() {
-
-    // Our dense eigenproblem solver is just a wrapper around Eigen's routines.
-    StepCollection<EigenproblemEnvironment> steps {};
-    steps.add(DenseDiagonalization());
-
-    return Algorithm<EigenproblemEnvironment>(steps);
-}
-
-// We should note that we cannot add the analogous Davidson solver here, because that would cause a cyclic dependence since one of the Davidson steps requires a dense diagonalization.
+class LinearExpansionReader {
+private:
+    SelectedONVBasis fock_space;
+    VectorX<double> coefficients;
+    LinearExpansion wave_function;
 
 
-}  // namespace EigenproblemSolver
+public:
+    /**
+     *  @param GAMESS_filename      the name of the GAMESS file that contains the 'selected' wave function expansion
+     */
+    explicit LinearExpansionReader(const std::string& GAMESS_filename);
+
+
+    // GETTERS
+    const SelectedONVBasis& get_fock_space() const { return this->fock_space; }
+    const VectorX<double>& get_coefficients() const { return this->coefficients; }
+    const LinearExpansion& get_wave_function() const { return this->wave_function; }
+};
+
+
+
 }  // namespace GQCP

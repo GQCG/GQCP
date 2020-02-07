@@ -64,10 +64,10 @@ public:
     QCStructure<QCModel::RHF<Scalar>> optimize(const QCObjective& objective, Solver& solver, RHFSCFEnvironment<Scalar>& environment) {
 
         // The RHF method's responsibility is to try to optimize the parameters of its method, given a solver and associated environment.
-        solver.iterate(environment);
+        solver.perform(environment);
 
         // To make a QCStructure<QCModel::RHF<Scalar>>, we need the electronic energy, coefficient matrix, orbital energies and the number of electrons.
-        // Furthermore, the current RHF SCF solvers only find the ground state wave function parameters, so the QCStructure only needs to contain the parameters for one state
+        // Furthermore, the current RHF SCF solvers only find the ground state wave function parameters, so the QCStructure only needs to contain the parameters for one state.
         const auto& E_electronic = environment.electronic_energies.back();
         const auto& C = environment.coefficient_matrices.back();
         const auto& orbital_energies = environment.orbital_energies.back();
@@ -77,7 +77,7 @@ public:
 
         // Now that we have constructed an instance of the QCModel, we should check if the objective is fulfilled
         if (!objective.isSatisfiedWith(rhf_parameters)) {
-            throw std::runtime_error("QCModel::RHF::optimize(const QCObjective&, Solver&): The solver did not produce a solution that fulfills the objective.");
+            throw std::runtime_error("QCModel::RHF::optimize(const QCObjective&, Solver&, RHFSCFEnvironment<Scalar>&): The solver produced a solution that does not fulfill the objective.");
         }
         return QCStructure<QCModel::RHF<Scalar>>({E_electronic}, {rhf_parameters});
     }

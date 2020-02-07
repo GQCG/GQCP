@@ -22,7 +22,7 @@
 #include "ONVBasis/ONVBasis.hpp"
 #include "ONVBasis/ProductONVBasis.hpp"
 #include "ONVBasis/SelectedONVBasis.hpp"
-#include "ONVBasis/WaveFunction/WaveFunction.hpp"
+#include "QCModel/CI/LinearExpansion.hpp"
 
 #include <boost/range/adaptor/sliced.hpp>
 #include <boost/range/adaptor/strided.hpp>
@@ -77,9 +77,9 @@ public:
     /**
      *  A run-time constructor allocating the appropriate derived RDMBuilder and coefficient vector
      *
-     *  @param wavefunction       the wave function holding the coefficient vector and a ONV basis on which the RDMBuilder should be based
+     *  @param linear_expansion       the wave function holding the coefficient vector and a ONV basis on which the RDMBuilder should be based
      */
-    explicit RDMCalculator(const WaveFunction& wavefunction);
+    explicit RDMCalculator(const LinearExpansion& linear_expansion);
 
 
     // SETTERS

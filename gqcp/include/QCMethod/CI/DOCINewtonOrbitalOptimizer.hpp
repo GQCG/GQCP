@@ -18,13 +18,12 @@
 #pragma once
 
 
-#include "ONVBasis/WaveFunction/WaveFunction.hpp"
 #include "Mathematical/Optimization/Eigenproblem/Eigenpair.hpp"
 #include "Mathematical/Optimization/Eigenproblem/EigenproblemSolverOptions.hpp"
 #include "Processing/RDM/RDMCalculator.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/DOCI.hpp"
 #include "QCMethod/OrbitalOptimization/QCMethodNewtonOrbitalOptimizer.hpp"
-
+#include "QCModel/CI/LinearExpansion.hpp"
 
 #include <memory>
 
@@ -103,7 +102,7 @@ public:
      *
      *  @return the index-th excited state after doing the OO-DOCI calculation
      */
-    WaveFunction makeWavefunction(size_t index = 0) const;
+    LinearExpansion makeLinearExpansion(size_t index = 0) const;
 };
 
 
