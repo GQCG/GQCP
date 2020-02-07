@@ -38,7 +38,7 @@ Algorithm<EigenproblemEnvironment> Dense() {
     return Algorithm<EigenproblemEnvironment>(steps);
 }
 
-// We should note that we cannot add the analogous Davidson solver here, because that would cause a cyclic dependence (one of the Davidson steps requires a dense diagonalization).
+// We should note that we cannot add the analogous Davidson solver here, because that would cause a cyclic dependence since one of the Davidson steps requires a dense diagonalization.
 
 
 }  // namespace EigenproblemSolver

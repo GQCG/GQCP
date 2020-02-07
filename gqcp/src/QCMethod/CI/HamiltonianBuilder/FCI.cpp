@@ -72,8 +72,8 @@ VectorX<double> FCI::matrixVectorProduct(const SQHamiltonian<double>& sq_hamilto
 
     VectorX<double> matvec = diagonal.cwiseProduct(x);
 
-    Eigen::Map<Eigen::MatrixXd> matvecmap(matvec.data(), dim_beta, dim_alpha);
-    Eigen::Map<const Eigen::MatrixXd> xmap(x.data(), dim_beta, dim_alpha);
+    Eigen::Map<Eigen::MatrixXd> matvecmap (matvec.data(), dim_beta, dim_alpha);
+    Eigen::Map<const Eigen::MatrixXd> xmap (x.data(), dim_beta, dim_alpha);
 
     for (size_t p = 0; p<K; p++) {
 
