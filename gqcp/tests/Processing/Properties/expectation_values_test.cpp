@@ -36,29 +36,6 @@
 #include "Utilities/units.hpp"
 
 
-BOOST_AUTO_TEST_CASE ( one_electron_throw ) {
-
-    GQCP::ScalarSQOneElectronOperator<double> h {GQCP::QCMatrix<double>::Zero(2, 2)};
-    GQCP::OneRDM<double> D_valid = GQCP::OneRDM<double>::Zero(2, 2);
-    GQCP::OneRDM<double> D_invalid = GQCP::OneRDM<double>::Zero(3, 3);
-
-    BOOST_CHECK_THROW(GQCP::calculateExpectationValue(h, D_invalid), std::invalid_argument);
-    BOOST_CHECK_NO_THROW(GQCP::calculateExpectationValue(h, D_valid));
-}
-
-
-BOOST_AUTO_TEST_CASE ( two_electron_throw ) {
-
-    GQCP::ScalarSQTwoElectronOperator<double> g {2};
-
-    GQCP::TwoRDM<double> d_valid (2);
-    GQCP::TwoRDM<double> d_invalid (3);
-
-    BOOST_CHECK_THROW(GQCP::calculateExpectationValue(g, d_invalid), std::invalid_argument);
-    BOOST_CHECK_NO_THROW(GQCP::calculateExpectationValue(g, d_valid));
-}
-
-
 BOOST_AUTO_TEST_CASE ( mulliken_N2_STO_3G ) {
 
     // Check that the mulliken population of N2 is 14 (N)
@@ -86,7 +63,7 @@ BOOST_AUTO_TEST_CASE ( mulliken_N2_STO_3G ) {
     // Create a 1-RDM for N2
     GQCP::OneRDM<double> one_rdm = GQCP::QCModel::RHF<double>::calculateOrthonormalBasis1RDM(K, N);
 
-    double mulliken_population = GQCP::calculateExpectationValue(mulliken, one_rdm)[0];
+    double mulliken_population = mulliken.calculateExpectationValue(one_rdm)(0);
     BOOST_CHECK(std::abs(mulliken_population - (N)) < 1.0e-06);
 
 
@@ -112,7 +89,7 @@ BOOST_AUTO_TEST_CASE ( mulliken_N2_STO_3G ) {
 
     GQCP::OneRDMs<double> one_rdms = rdm_calculator.calculate1RDMs();
 
-    double mulliken_population_2 = GQCP::calculateExpectationValue(mulliken, one_rdms.one_rdm)[0];
+    double mulliken_population_2 = mulliken.calculateExpectationValue(one_rdms.one_rdm)(0);
     BOOST_CHECK(std::abs(mulliken_population_2 - (N)) < 1.0e-06);
 }
 
@@ -189,8 +166,8 @@ BOOST_AUTO_TEST_CASE ( S_z_constrained_NOplus_STO_3G ) {
     GQCP::OneRDM<double> spin_d = one_rdms.spinDensityRDM();
 
     // Evaluate S_z for O and N
-    double N_Sz = GQCP::calculateExpectationValue(sq_N_Sz_alpha, spin_d)[0];
-    double O_Sz = GQCP::calculateExpectationValue(sq_O_Sz_alpha, spin_d)[0];
+    double N_Sz = sq_N_Sz_alpha.calculateExpectationValue(spin_d)[0];
+    double O_Sz = sq_O_Sz_alpha.calculateExpectationValue(spin_d)[0];
     
     // Check that the total Sz (N_Sz + O_Sz) still equals 0
     BOOST_CHECK(std::abs(N_Sz + O_Sz) < 1.0e-06);

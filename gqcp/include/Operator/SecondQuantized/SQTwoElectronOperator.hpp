@@ -108,26 +108,17 @@ public:
     {}
 
 
+    /*
+     *  GETTERS
+     */
+
+    size_t get_dim() const { return this->dimension(); }
+    size_t get_K() const { return this->dimension(); }
+
 
     /*
      *  PUBLIC METHODS
      */
-
-    /**
-     *  @return the dimension of the matrix representation of the parameters, i.e. the number of orbitals/sites
-     */
-    size_t dimension() const {
-        return this->gs[0].dimension();  // all dimensions are the same, this is checked in the constructors
-    }
-
-    size_t get_dim() const {
-        return this->dimension();
-    }
-
-    size_t get_K() const {
-        return this->dimension();
-    }
-
 
     /**
      *  @return read-only matrix representations of all the parameters (integrals) of the different components of this second-quantized operator
@@ -146,91 +137,31 @@ public:
 
 
     /**
-     *  @param i            the index of the component
-     * 
-     *  @return a read-only matrix representation of the parameters (integrals) of one of the the different components of this second-quantized operator
+     *  @param d            the 2-RDM that represents the wave function
+     *
+     *  @return the expectation values of all the components of the two-electron operator, with the given 2-RDM: this includes the prefactor 1/2
      */
-    const QCRankFourTensor<Scalar>& parameters(const size_t i = 0) const {
-        return this->gs[i];
-    }
+    Vector<Scalar, Components> calculateExpectationValue(const TwoRDM<Scalar>& d) const {
 
-
-    /**
-     *  @param i            the index of the component
-     * 
-     *  @return a writable the matrix representation of the parameters (integrals) of one of the the different components of this second-quantized operator
-     */
-    QCRankFourTensor<Scalar>& parameters(const size_t i = 0) {
-        return this->gs[i];
-    }
-
-
-    /**
-     *  In-place transform the operator to another basis
-     * 
-     *  @param T                            the transformation matrix
-     */
-    void transform(const TransformationMatrix<Scalar>& T) {
-
-        // Transform the matrix representations of the components
-        for (auto& g : this->allParameters()) {
-            g.basisTransformInPlace(T);
+        if (this->dimension() != d.dimension()) {
+            throw std::invalid_argument("SQTwoElectronOperator::calculateExpectationValue(const TwoRDM<double>&): The given 2-RDM is not compatible with the two-electron operator.");
         }
-    }
 
 
-    /**
-     *  In-place rotate the operator to another basis
-     * 
-     *  @param U                            the (unitary) rotation matrix
-     */
-    void rotate(const TransformationMatrix<Scalar>& U) {
-
-        // Transform the matrix representations of the components
-        for (auto& g : this->allParameters()) {
-            g.basisRotateInPlace(U);
-        }
-    }
-
-
-    /**
-     *  In-place rotate the operator using a unitary Jacobi rotation matrix constructed from the Jacobi rotation parameters
-     * 
-     *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
-     */
-    void rotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
-
-        // Transform the matrix representations of the components
-        for (auto& g : this->allParameters()) {
-            g.basisRotateInPlace(jacobi_rotation_parameters);
-        }
-    }
-
-
-    /**
-     *  @return the one-electron operator that is the difference between a two-electron operator (e_pqrs) and a product of one-electron operators (E_pq E_rs)
-     */
-    SQOneElectronOperator<Scalar, Components> effectiveOneElectronPartition() const {
-
-        // Initialize a zero operator
-        const auto K = this->dimension();  // number of orbitals
-        SQOneElectronOperator<Scalar, Components> F (K);
-
-
-        // Use a formula to set the parameters
+        std::array<Scalar, Components> expectation_values {};  // zero initialization
         for (size_t i = 0; i < Components; i++) {
 
-            for (size_t p = 0; p < K; p++) {
-                for (size_t q = 0; q < K; q++) {
-                    for (size_t r = 0; r < K; r++) {
-                        F.parameters(i)(p,q) -= 0.5 * this->parameters(i)(p,r,r,q);
-                    }
-                }
-            }
+            // Specify the contractions for the relevant contraction of the two-electron integrals and the 2-RDM
+            //      0.5 g(p q r s) d(p q r s)
+            Eigen::array<Eigen::IndexPair<int>, 4> contractions = {Eigen::IndexPair<int>(0,0), Eigen::IndexPair<int>(1,1), Eigen::IndexPair<int>(2,2), Eigen::IndexPair<int>(3,3)};
+            //      Perform the contraction
+            Eigen::Tensor<Scalar, 0> contraction = 0.5 * this->parameters(i).contract(d.Eigen(), contractions);
 
-        }  // loop over components
+            // As the contraction is a scalar (a tensor of rank 0), we should access by (0).
+            expectation_values[i] = contraction(0);
+        }
 
-        return F;
+        return Eigen::Map<Eigen::Matrix<Scalar, Components, 1>>(expectation_values.data());  // convert std::array to Vector
     }
 
 
@@ -332,6 +263,103 @@ public:
         }
 
         return Gs;
+    }
+
+
+    /**
+     *  @return the dimension of the matrix representation of the parameters, i.e. the number of orbitals/sites
+     */
+    size_t dimension() const {
+        return this->gs[0].dimension();  // all dimensions are the same, this is checked in the constructors
+    }
+
+
+    /**
+     *  @return the one-electron operator that is the difference between a two-electron operator (e_pqrs) and a product of one-electron operators (E_pq E_rs)
+     */
+    SQOneElectronOperator<Scalar, Components> effectiveOneElectronPartition() const {
+
+        // Initialize a zero operator
+        const auto K = this->dimension();  // number of orbitals
+        SQOneElectronOperator<Scalar, Components> F (K);
+
+
+        // Use a formula to set the parameters
+        for (size_t i = 0; i < Components; i++) {
+
+            for (size_t p = 0; p < K; p++) {
+                for (size_t q = 0; q < K; q++) {
+                    for (size_t r = 0; r < K; r++) {
+                        F.parameters(i)(p,q) -= 0.5 * this->parameters(i)(p,r,r,q);
+                    }
+                }
+            }
+
+        }  // loop over components
+
+        return F;
+    }
+
+
+    /**
+     *  @param i            the index of the component
+     * 
+     *  @return a read-only matrix representation of the parameters (integrals) of one of the the different components of this second-quantized operator
+     */
+    const QCRankFourTensor<Scalar>& parameters(const size_t i = 0) const {
+        return this->gs[i];
+    }
+
+
+    /**
+     *  @param i            the index of the component
+     * 
+     *  @return a writable the matrix representation of the parameters (integrals) of one of the the different components of this second-quantized operator
+     */
+    QCRankFourTensor<Scalar>& parameters(const size_t i = 0) {
+        return this->gs[i];
+    }
+
+
+    /**
+     *  In-place rotate the operator to another basis
+     * 
+     *  @param U                            the (unitary) rotation matrix
+     */
+    void rotate(const TransformationMatrix<Scalar>& U) {
+
+        // Transform the matrix representations of the components
+        for (auto& g : this->allParameters()) {
+            g.basisRotateInPlace(U);
+        }
+    }
+
+
+    /**
+     *  In-place rotate the operator using a unitary Jacobi rotation matrix constructed from the Jacobi rotation parameters
+     * 
+     *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
+     */
+    void rotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
+
+        // Transform the matrix representations of the components
+        for (auto& g : this->allParameters()) {
+            g.basisRotateInPlace(jacobi_rotation_parameters);
+        }
+    }
+
+
+    /**
+     *  In-place transform the operator to another basis
+     * 
+     *  @param T                            the transformation matrix
+     */
+    void transform(const TransformationMatrix<Scalar>& T) {
+
+        // Transform the matrix representations of the components
+        for (auto& g : this->allParameters()) {
+            g.basisTransformInPlace(T);
+        }
     }
 };
 

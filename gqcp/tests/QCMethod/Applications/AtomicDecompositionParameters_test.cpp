@@ -84,11 +84,11 @@ BOOST_AUTO_TEST_CASE ( decomposition_BeH_cation_STO_3G_Nuclear ) {
     ao_one_rdm.basisTransformInPlace(T.adjoint());
     ao_two_rdm.basisTransformInPlace(T.adjoint());
 
-    double self_energy_a = GQCP::calculateExpectationValue(adp.get_net_atomic_parameters()[0], ao_one_rdm, ao_two_rdm);
-    double self_energy_b = GQCP::calculateExpectationValue(adp.get_net_atomic_parameters()[1], ao_one_rdm, ao_two_rdm);
-    double interaction_energy_ab = GQCP::calculateExpectationValue(adp.get_interaction_parameters()[0], ao_one_rdm, ao_two_rdm) + repulsion;
-    double total_energy_a = GQCP::calculateExpectationValue(adp.get_atomic_parameters()[0], ao_one_rdm, ao_two_rdm) + repulsion/2;
-    double total_energy_b = GQCP::calculateExpectationValue(adp.get_atomic_parameters()[1], ao_one_rdm, ao_two_rdm) + repulsion/2;
+    double self_energy_a = adp.get_net_atomic_parameters()[0].calculateExpectationValue(ao_one_rdm, ao_two_rdm);
+    double self_energy_b = adp.get_net_atomic_parameters()[1].calculateExpectationValue(ao_one_rdm, ao_two_rdm);
+    double interaction_energy_ab = adp.get_interaction_parameters()[0].calculateExpectationValue(ao_one_rdm, ao_two_rdm) + repulsion;
+    double total_energy_a = adp.get_atomic_parameters()[0].calculateExpectationValue(ao_one_rdm, ao_two_rdm) + repulsion / 2;
+    double total_energy_b = adp.get_atomic_parameters()[1].calculateExpectationValue(ao_one_rdm, ao_two_rdm) + repulsion / 2;
 
     BOOST_CHECK(std::abs(total_energy_a + total_energy_b - fci_energy - repulsion) < 1.0e-10);
     BOOST_CHECK(std::abs(self_energy_a + self_energy_b + interaction_energy_ab - fci_energy - repulsion) < 1.0e-10);

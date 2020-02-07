@@ -32,23 +32,42 @@ void bindSQOneElectronOperator(py::module& module) {
     // Create a Python binding for ScalarSQOneElectronOperator
     py::class_<GQCP::SQOneElectronOperator<double, 1>>(module, "ScalarSQOneElectronOperator", "A class that represents a real, second-quantized one-electron operator")
 
-        .def("parameters", [] (const GQCP::SQOneElectronOperator<double, 1>& op) {
+        .def("calculateExpectationValue",
+            [ ] (const GQCP::SQOneElectronOperator<double, 1>& op, const Eigen::MatrixXd& D) {  // use an itermediary Eigen matrix for the Python binding, since Pybind11 doesn't accept our types that are derived from Eigen::Matrix
+                return op.calculateExpectationValue(GQCP::OneRDM<double>{D});
+            },
+            "Return the expectation value of the scalar one-electron operator given a 1-DM."
+        )
+
+        .def("parameters", 
+            [ ] (const GQCP::SQOneElectronOperator<double, 1>& op) {
                 return op.parameters().Eigen();
             },
             "Return the integrals encapsulated by the second-quantized one-electron operator."
-        );
+        )
+    ;
 
 
     // Create a Python binding for VectorSQOneElectronOperator
     py::class_<GQCP::VectorSQOneElectronOperator<double>>(module, "VectorSQOneElectronOperator", "A class that represents a real, second-quantized one-electron operator with three components.")
 
-        .def("allParameters", [] (const GQCP::VectorSQOneElectronOperator<double>& op) {
+        .def("allParameters",
+            [ ] (const GQCP::VectorSQOneElectronOperator<double>& op) {
                 const auto all_parameters = op.allParameters();  // returns a std::array<QCMatrix<double>>
                 
                 return all_parameters;
             },
             "Return the integrals encapsulated by the second-quantized one-electron operator."
-        );
+        )
+
+
+        .def("calculateExpectationValue",
+            [ ] (const GQCP::VectorSQOneElectronOperator<double>& op, const Eigen::MatrixXd& D) {  // use an itermediary Eigen matrix for the Python binding, since Pybind11 doesn't accept our types that are derived from Eigen::Matrix
+                return op.calculateExpectationValue(GQCP::OneRDM<double>{D});
+            },
+            "Return the expectation value of the vector one-electron operator given a 1-DM."
+        )
+    ;
 }
 
 

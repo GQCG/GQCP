@@ -65,7 +65,7 @@ BOOST_AUTO_TEST_CASE ( energy_as_contraction ) {
 
     const auto D = GQCP::calculate1RDM(G, multipliers);
     const auto d = GQCP::calculate2RDM(G, multipliers);
-    const double electronic_energy_by_contraction = GQCP::calculateExpectationValue(sq_hamiltonian, D, d);
+    const double electronic_energy_by_contraction = sq_hamiltonian.calculateExpectationValue(D, d);
 
     BOOST_CHECK(std::abs(electronic_energy_by_contraction - electronic_energy) < 1.0e-09);
 }

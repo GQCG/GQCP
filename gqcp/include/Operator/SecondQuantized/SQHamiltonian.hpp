@@ -119,6 +119,38 @@ public:
      */
 
     /**
+     *  @param H      a Hubbard hopping matrix
+     *
+     *  @return a Hubbard Hamiltonian generated from the Hubbard hopping matrix
+     *
+     *  Note that this named constructor is only available for real matrix representations
+     */
+    template<typename Z = Scalar>
+    static enable_if_t<std::is_same<Z, double>::value, SQHamiltonian<double>> Hubbard(const HoppingMatrix& H) {
+
+        const size_t K = H.numberOfLatticeSites();
+
+        QCMatrix<double> h = QCMatrix<double>::Zero(K, K);
+        QCRankFourTensor<double> g (K);
+        g.setZero();
+
+
+        for (size_t i = 0; i < K; i++) {
+            for (size_t j = i; j < K; j++) {
+                if (i == j) {
+                    g(i,i,i,i) = H(i,i);
+                } else {
+                    h(i,j) = H(i,j);
+                    h(j,i) = H(j,i);
+                }
+            }
+        }
+
+        return SQHamiltonian{ScalarSQOneElectronOperator<double>{h}, ScalarSQTwoElectronOperator<double>{g}};
+    }
+
+
+    /**
      *  Construct the molecular Hamiltonian in a given spinor basis.
      *
      *  @param spinor_basis     the spinor basis in which the Hamiltonian should be expressed
@@ -275,155 +307,9 @@ public:
     }
 
 
-    /**
-     *  @param H      a Hubbard hopping matrix
-     *
-     *  @return a Hubbard Hamiltonian generated from the Hubbard hopping matrix
-     *
-     *  Note that this named constructor is only available for real matrix representations
-     */
-    template<typename Z = Scalar>
-    static enable_if_t<std::is_same<Z, double>::value, SQHamiltonian<double>> Hubbard(const HoppingMatrix& H) {
-
-        const size_t K = H.numberOfLatticeSites();
-
-        QCMatrix<double> h = QCMatrix<double>::Zero(K, K);
-        QCRankFourTensor<double> g (K);
-        g.setZero();
-
-
-        for (size_t i = 0; i < K; i++) {
-            for (size_t j = i; j < K; j++) {
-                if (i == j) {
-                    g(i,i,i,i) = H(i,i);
-                } else {
-                    h(i,j) = H(i,j);
-                    h(j,i) = H(j,i);
-                }
-            }
-        }
-
-        return SQHamiltonian{ScalarSQOneElectronOperator<double>{h}, ScalarSQTwoElectronOperator<double>{g}};
-    }
-
-
     /*
      *  PUBLIC METHODS
      */
-
-    /**
-     *  @return the dimension of the Hamiltonian, i.e. the number of spinors in which it is expressed
-     */
-    size_t dimension() const { return this->core().dimension(); }
-
-    /**
-     *  @return the 'core' Hamiltonian, i.e. the total of the one-electron contributions to the Hamiltonian
-     */
-    const ScalarSQOneElectronOperator<Scalar>& core() const { return this->total_one_op; }
-
-    /**
-     *  @return the contributions to the 'core' Hamiltonian
-     */
-    const std::vector<ScalarSQOneElectronOperator<Scalar>>& coreContributions() const { return this->one_ops; }
-
-    /**
-     *  @return the total of the two-electron contributions to the Hamiltonian
-     */
-    const ScalarSQTwoElectronOperator<Scalar>& twoElectron() const { return this->total_two_op; }
-
-    /**
-     *  @return the contributions to the two-electron part of the Hamiltonian
-     */
-    const std::vector<ScalarSQTwoElectronOperator<Scalar>>& twoElectronContributions() const { return this->two_ops; }
-
-    /**
-     *  In-place transform the matrix representations of Hamiltonian
-     *
-     *  @param T    the transformation matrix between the old and the new orbital basis
-     */
-    void transform(const TransformationMatrix<Scalar>& T) {
-
-        // Transform the one-electron contributions
-        for (auto& one_op : this->one_ops) {
-            one_op.transform(T);
-        }
-
-        // Transform the two-electron contributions
-        for (auto& two_op : this->two_ops) {
-            two_op.transform(T);
-        }
-
-        // Transform the totals
-        this->total_one_op.transform(T);
-        this->total_two_op.transform(T);
-    }
-
-
-    /**
-     *  In-place rotate the matrix representations of Hamiltonian
-     *
-     *  @param U    the unitary rotation matrix between the old and the new orbital basis
-     */
-    void rotate(const TransformationMatrix<Scalar>& U) {
-
-        // Rotate the one-electron contributions
-        for (auto& one_op : this->one_ops) {
-            one_op.rotate(U);
-        }
-
-        // Rotate the two-electron contributions
-        for (auto& two_op : this->two_ops) {
-            two_op.rotate(U);
-        }
-
-        // Rotate the totals
-        this->total_one_op.rotate(U);
-        this->total_two_op.rotate(U);
-    }
-
-
-    /**
-     *  In-place rotate the matrix representations of the Hamiltonian using a unitary Jacobi rotation matrix constructed from the Jacobi rotation parameters. Note that this function is only available for real (double) matrix representations
-     *
-     *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
-     */
-    template<typename Z = Scalar>
-    enable_if_t<std::is_same<Z, double>::value> rotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
-
-        // Transform the one-electron contributions
-        for (auto& one_op : this->one_ops) {
-            one_op.rotate(jacobi_rotation_parameters);
-        }
-
-        // Transform the two-electron contributions
-        for (auto& two_op : this->two_ops) {
-            two_op.rotate(jacobi_rotation_parameters);
-        }
-
-        // Transform the totals
-        this->total_one_op.rotate(jacobi_rotation_parameters);
-        this->total_two_op.rotate(jacobi_rotation_parameters);
-    }
-
-
-    /**
-     *  Using a random rotation matrix, transform the matrix representations of the Hamiltonian
-     *
-     *  Note that this method is only available for real matrix representations
-     */
-    template<typename Z = Scalar>
-    enable_if_t<std::is_same<Z, double>::value> randomRotate() {
-
-        // Get a random unitary matrix by diagonalizing a random symmetric matrix
-        const auto K = this->dimension();
-        TransformationMatrix<double> A_random = TransformationMatrix<double>::Random(K, K);
-        TransformationMatrix<double> A_symmetric = A_random + A_random.transpose();
-        Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> unitary_solver (A_symmetric);
-        TransformationMatrix<double> U_random = unitary_solver.eigenvectors();
-
-        this->rotate(U_random);
-    }
-
 
     /**
      *  @param N_P      the number of electron pairs
@@ -444,6 +330,27 @@ public:
         }
 
         return localization_index;
+    }
+
+
+    /**
+     *  @return the effective one-electron integrals
+     */
+    ScalarSQOneElectronOperator<Scalar> calculateEffectiveOneElectronIntegrals() const {
+
+        return this->core() + this->twoElectron().effectiveOneElectronPartition();
+    }
+
+
+    /**
+     *  @param D            the 1-RDM
+     *  @param d            the 2-RDM
+     *
+     *  @return the expectation value of this Hamiltonian
+     */
+    Scalar calculateExpectationValue(const OneRDM<Scalar>& D, const TwoRDM<Scalar>& d) const {
+
+        return this->core().calculateExpectationValue(D)[0] + this->twoElectron().calculateExpectationValue(d)[0];  // SQHamiltonian contains ScalarSQOperators, so we access with [0]
     }
 
 
@@ -489,15 +396,6 @@ public:
 
 
     /**
-     *  @return the effective one-electron integrals
-     */
-    ScalarSQOneElectronOperator<Scalar> calculateEffectiveOneElectronIntegrals() const {
-
-        return this->core() + this->twoElectron().effectiveOneElectronPartition();
-    }
-
-
-    /**
      *  @param D      the 1-DM (or the response 1-DM for made-variational wave function models)
      *  @param d      the 2-DM (or the response 2-DM for made-variational wave function models)
      *
@@ -506,33 +404,6 @@ public:
     SquareRankFourTensor<Scalar> calculateSuperFockianMatrix(const OneRDM<double>& D, const TwoRDM<double>& d) const {
 
         return this->core().calculateSuperFockianMatrix(D, d)[0].Eigen() + this->twoElectron().calculateSuperFockianMatrix(D, d)[0].Eigen();  // SQHamiltonian contains ScalarSQOperators
-    }
-
-
-    /**
-     *  Constrain the Hamiltonian according to the convention: - lambda * constraint
-     *
-     *  @param one_op   the one-electron operator used as a constraint
-     *  @param two_op   the two-electron operator used as a constraint
-     *  @param lambda   Lagrangian multiplier for the constraint
-     *
-     *  @return a copy of the constrained Hamiltonian
-     *
-     *  Note that this method is only available for real matrix representations
-     */
-    template<typename Z = Scalar>
-    enable_if_t<std::is_same<Z, double>::value, SQHamiltonian<double>> constrain(const ScalarSQOneElectronOperator<double>& one_op, const ScalarSQTwoElectronOperator<double>& two_op, double lambda) const {
-
-        // Make copies in order to create a new Hamiltonian
-        auto one_ops = this->coreContributions();
-        auto two_ops = this->twoElectronContributions();
-
-
-        // Constrain, i.e. add 'constrained' contributions
-        one_ops.push_back(-lambda*one_op);  // minus sign is a convention
-        two_ops.push_back(-lambda*two_op);  // minus sign is a convention
-
-        return SQHamiltonian{one_ops, two_ops};
     }
 
 
@@ -580,6 +451,147 @@ public:
 
         return SQHamiltonian(this->coreContributions(), two_ops);
     }
+
+
+    /**
+     *  Constrain the Hamiltonian according to the convention: - lambda * constraint
+     *
+     *  @param one_op   the one-electron operator used as a constraint
+     *  @param two_op   the two-electron operator used as a constraint
+     *  @param lambda   Lagrangian multiplier for the constraint
+     *
+     *  @return a copy of the constrained Hamiltonian
+     *
+     *  Note that this method is only available for real matrix representations
+     */
+    template<typename Z = Scalar>
+    enable_if_t<std::is_same<Z, double>::value, SQHamiltonian<double>> constrain(const ScalarSQOneElectronOperator<double>& one_op, const ScalarSQTwoElectronOperator<double>& two_op, double lambda) const {
+
+        // Make copies in order to create a new Hamiltonian
+        auto one_ops = this->coreContributions();
+        auto two_ops = this->twoElectronContributions();
+
+
+        // Constrain, i.e. add 'constrained' contributions
+        one_ops.push_back(-lambda*one_op);  // minus sign is a convention
+        two_ops.push_back(-lambda*two_op);  // minus sign is a convention
+
+        return SQHamiltonian{one_ops, two_ops};
+    }
+
+
+    /**
+     *  @return the 'core' Hamiltonian, i.e. the total of the one-electron contributions to the Hamiltonian
+     */
+    const ScalarSQOneElectronOperator<Scalar>& core() const { return this->total_one_op; }
+
+    /**
+     *  @return the contributions to the 'core' Hamiltonian
+     */
+    const std::vector<ScalarSQOneElectronOperator<Scalar>>& coreContributions() const { return this->one_ops; }
+
+    /**
+     *  @return the dimension of the Hamiltonian, i.e. the number of spinors in which it is expressed
+     */
+    size_t dimension() const { return this->core().dimension(); }
+
+    /**
+     *  In-place rotate the matrix representations of Hamiltonian
+     *
+     *  @param U    the unitary rotation matrix between the old and the new orbital basis
+     */
+    void rotate(const TransformationMatrix<Scalar>& U) {
+
+        // Rotate the one-electron contributions
+        for (auto& one_op : this->one_ops) {
+            one_op.rotate(U);
+        }
+
+        // Rotate the two-electron contributions
+        for (auto& two_op : this->two_ops) {
+            two_op.rotate(U);
+        }
+
+        // Rotate the totals
+        this->total_one_op.rotate(U);
+        this->total_two_op.rotate(U);
+    }
+
+
+    /**
+     *  Using a random rotation matrix, transform the matrix representations of the Hamiltonian
+     *
+     *  Note that this method is only available for real matrix representations
+     */
+    template<typename Z = Scalar>
+    enable_if_t<std::is_same<Z, double>::value> randomRotate() {
+
+        // Get a random unitary matrix by diagonalizing a random symmetric matrix
+        const auto K = this->dimension();
+        TransformationMatrix<double> A_random = TransformationMatrix<double>::Random(K, K);
+        TransformationMatrix<double> A_symmetric = A_random + A_random.transpose();
+        Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> unitary_solver (A_symmetric);
+        TransformationMatrix<double> U_random = unitary_solver.eigenvectors();
+
+        this->rotate(U_random);
+    }
+
+
+    /**
+     *  In-place rotate the matrix representations of the Hamiltonian using a unitary Jacobi rotation matrix constructed from the Jacobi rotation parameters. Note that this function is only available for real (double) matrix representations
+     *
+     *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
+     */
+    template<typename Z = Scalar>
+    enable_if_t<std::is_same<Z, double>::value> rotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
+
+        // Transform the one-electron contributions
+        for (auto& one_op : this->one_ops) {
+            one_op.rotate(jacobi_rotation_parameters);
+        }
+
+        // Transform the two-electron contributions
+        for (auto& two_op : this->two_ops) {
+            two_op.rotate(jacobi_rotation_parameters);
+        }
+
+        // Transform the totals
+        this->total_one_op.rotate(jacobi_rotation_parameters);
+        this->total_two_op.rotate(jacobi_rotation_parameters);
+    }
+
+
+    /**
+     *  @return the total of the two-electron contributions to the Hamiltonian
+     */
+    const ScalarSQTwoElectronOperator<Scalar>& twoElectron() const { return this->total_two_op; }
+
+    /**
+     *  In-place transform the matrix representations of Hamiltonian
+     *
+     *  @param T    the transformation matrix between the old and the new orbital basis
+     */
+    void transform(const TransformationMatrix<Scalar>& T) {
+
+        // Transform the one-electron contributions
+        for (auto& one_op : this->one_ops) {
+            one_op.transform(T);
+        }
+
+        // Transform the two-electron contributions
+        for (auto& two_op : this->two_ops) {
+            two_op.transform(T);
+        }
+
+        // Transform the totals
+        this->total_one_op.transform(T);
+        this->total_two_op.transform(T);
+    }
+
+    /**
+     *  @return the contributions to the two-electron part of the Hamiltonian
+     */
+    const std::vector<ScalarSQTwoElectronOperator<Scalar>>& twoElectronContributions() const { return this->two_ops; }
 };
 
 

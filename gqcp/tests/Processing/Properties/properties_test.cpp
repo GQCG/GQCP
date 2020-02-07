@@ -67,7 +67,7 @@ BOOST_AUTO_TEST_CASE ( dipole_CO_STO_3G ) {
     auto dipole_op = spinor_basis.quantize(GQCP::Operator::ElectronicDipole());
     dipole_op.transform(rhf_parameters.coefficientMatrix());
 
-    GQCP::Vector<double, 3> total_dipole_moment = GQCP::Operator::NuclearDipole(CO).value() + GQCP::calculateElectronicDipoleMoment(dipole_op, D);
+    GQCP::Vector<double, 3> total_dipole_moment = GQCP::Operator::NuclearDipole(CO).value() + dipole_op.calculateExpectationValue(D);
     BOOST_CHECK(std::abs(total_dipole_moment.norm() - (0.049)) < 1.0e-03);
 }
 
@@ -106,7 +106,7 @@ BOOST_AUTO_TEST_CASE ( dipole_N2_STO_3G ) {
     auto dipole_op = spinor_basis.quantize(GQCP::Operator::ElectronicDipole());
     dipole_op.transform(rhf_parameters.coefficientMatrix());
 
-    GQCP::Vector<double, 3> total_dipole_moment = GQCP::Operator::NuclearDipole(N2).value() + GQCP::calculateElectronicDipoleMoment(dipole_op, D);
+    GQCP::Vector<double, 3> total_dipole_moment = GQCP::Operator::NuclearDipole(N2).value() + dipole_op.calculateExpectationValue(D);
     BOOST_CHECK(std::abs(total_dipole_moment.norm() - (0.0)) < 1.0e-08);
 }
 

@@ -108,24 +108,15 @@ public:
 
 
     /*
+     *  GETTERS
+     */
+    size_t get_dim() const { return this->dimension(); }
+    size_t get_K() const { return this->dimension(); }
+
+
+    /*
      *  PUBLIC METHODS
      */
-
-    /**
-     *  @return the dimension of the matrix representation of the parameters, i.e. the number of orbitals/sites
-     */
-    size_t dimension() const {
-        return this->fs[0].dimension();  // all the dimensions are the same, this is checked in the constructor
-    }
-
-    size_t get_dim() const {
-        return this->dimension();
-    }
-
-    size_t get_K() const {
-        return this->dimension();
-    }
-
 
     /**
      *  @return read-only matrix representations of all the parameters (integrals) of the different components of this second-quantized operator
@@ -144,95 +135,24 @@ public:
 
 
     /**
-     *  @param i            the index of the component
-     * 
-     *  @return a read-only the matrix representation of the parameters (integrals) of one of the the different components of this second-quantized operator
-     */
-    const QCMatrix<Scalar>& parameters(const size_t i = 0) const {
-        return this->fs[i];
-    }
-
-
-    /**
-     *  @param i            the index of the component
-     * 
-     *  @return a writable matrix representation of the parameters (integrals) of one of the the different components of this second-quantized operator
-     */
-    QCMatrix<Scalar>& parameters(const size_t i = 0) {
-        return this->fs[i];
-    }
-
-
-    /**
-     *  In-place transform the operator to another basis
-     * 
-     *  @param T                            the transformation matrix
-     */
-    void transform(const TransformationMatrix<Scalar>& T) {
-
-        // Transform the matrix representations of the components
-        for (auto& f : this->allParameters()) {
-            f.basisTransformInPlace(T);
-        }
-    }
-
-
-    /**
-     *  In-place rotate the operator to another basis
-     * 
-     *  @param U                            the (unitary) rotation matrix
-     */
-    void rotate(const TransformationMatrix<Scalar>& U) {
-
-        // Transform the matrix representations of the components
-        for (auto& f : this->allParameters()) {
-            f.basisRotateInPlace(U);
-        }
-    }
-
-
-    /**
-     *  In-place rotate the operator using a unitary Jacobi rotation matrix constructed from the Jacobi rotation parameters
-     * 
-     *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
-     */
-    void rotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
-
-        // Transform the matrix representations of the components
-        for (auto& f : this->allParameters()) {
-            f.basisRotateInPlace(jacobi_rotation_parameters);
-        }
-    }
-
-
-    /**
-     *  @param x        the vector/point at which the scalar functions should be evaluated
+     *  @param D                the 1-RDM that represents the wave function
      *
-     *  @return a one-electron operator corresponding to the evaluated scalar functions
-     *
-     *  Note that this function is only available for SQOneElectronOperators whose Scalar is a derived class of ScalarFunction
+     *  @return the expectation values of all components of the one-electron operator
      */
-    template <typename Z = Scalar>
-    enable_if_t<std::is_base_of<ScalarFunction<typename Z::Valued, typename Z::Scalar, Z::Cols>, Z>::value,
-    SQOneElectronOperator<typename Z::Valued, Components>> evaluate(const Vector<typename Z::Scalar, Z::Cols>& x) const {
+    Vector<Scalar, Components> calculateExpectationValue(const OneRDM<Scalar>& D) const {
 
-        // Initialize the results
-        std::array<QCMatrix<typename Z::Valued>, Components> F_evaluated;  // components are not initialized here
+        if (this->dimension() != D.dimension()) {
+            throw std::invalid_argument("SQOneElectronOperator::calculateExpectationValue(const OneRDM<double>&): The given 1-RDM is not compatible with the one-electron operator.");
+        }
 
-        // Evaluate all components at the given x
+        std::array<Scalar, Components> expectation_values {};  // zero initialization
         for (size_t i = 0; i < Components; i++) {
-            F_evaluated[i] = QCMatrix<typename Z::Valued>::Zero(this->dimension(), this->dimension());  // initialize to zero
-
-            for (size_t m = 0; m < this->dimension(); m++) {
-                for (size_t n = 0; n < this->dimension(); n++) {
-                    const auto F_i_mn = this->parameters(i)(m,n);  // (m,n)-th element of the i-th component
-                    F_evaluated[i](m,n) = F_i_mn.operator()(x);  // evaluate the ScalarFunction
-                }
-            }
+            expectation_values[i] = (this->parameters(i) * D).trace();
         }
 
-        return SQOneElectronOperator<typename Z::Valued, Components>(F_evaluated);
+        return Eigen::Map<Eigen::Matrix<Scalar, Components, 1>>(expectation_values.data());  // convert std::array to Vector
     }
+
 
     /**
      *  @param D      the 1-DM (or the response 1-DM for made-variational wave function models)
@@ -315,7 +235,6 @@ public:
                             }
 
                             G_i(p,q,r,s) -= f_i(s,p) * (D(r,q) + D(q,r));
-
                         }
                     }
                 }
@@ -324,6 +243,106 @@ public:
         }
 
         return Gs;
+    }
+
+
+    /**
+     *  @return the dimension of the matrix representation of the parameters, i.e. the number of orbitals/sites
+     */
+    size_t dimension() const {
+        return this->fs[0].dimension();  // all the dimensions are the same, this is checked in the constructor
+    }
+
+
+    /**
+     *  @param x        the vector/point at which the scalar functions should be evaluated
+     *
+     *  @return a one-electron operator corresponding to the evaluated scalar functions
+     *
+     *  Note that this function is only available for SQOneElectronOperators whose Scalar is a derived class of ScalarFunction
+     */
+    template <typename Z = Scalar>
+    enable_if_t<std::is_base_of<ScalarFunction<typename Z::Valued, typename Z::Scalar, Z::Cols>, Z>::value,
+    SQOneElectronOperator<typename Z::Valued, Components>> evaluate(const Vector<typename Z::Scalar, Z::Cols>& x) const {
+
+        // Initialize the results
+        std::array<QCMatrix<typename Z::Valued>, Components> F_evaluated;  // components are not initialized here
+
+        // Evaluate all components at the given x
+        for (size_t i = 0; i < Components; i++) {
+            F_evaluated[i] = QCMatrix<typename Z::Valued>::Zero(this->dimension(), this->dimension());  // initialize to zero
+
+            for (size_t m = 0; m < this->dimension(); m++) {
+                for (size_t n = 0; n < this->dimension(); n++) {
+                    const auto F_i_mn = this->parameters(i)(m,n);  // (m,n)-th element of the i-th component
+                    F_evaluated[i](m,n) = F_i_mn.operator()(x);  // evaluate the ScalarFunction
+                }
+            }
+        }
+
+        return SQOneElectronOperator<typename Z::Valued, Components>(F_evaluated);
+    }
+
+
+    /**
+     *  @param i            the index of the component
+     * 
+     *  @return a read-only the matrix representation of the parameters (integrals) of one of the the different components of this second-quantized operator
+     */
+    const QCMatrix<Scalar>& parameters(const size_t i = 0) const {
+        return this->fs[i];
+    }
+
+
+    /**
+     *  @param i            the index of the component
+     * 
+     *  @return a writable matrix representation of the parameters (integrals) of one of the the different components of this second-quantized operator
+     */
+    QCMatrix<Scalar>& parameters(const size_t i = 0) {
+        return this->fs[i];
+    }
+
+
+    /**
+     *  In-place rotate the operator to another basis
+     * 
+     *  @param U                            the (unitary) rotation matrix
+     */
+    void rotate(const TransformationMatrix<Scalar>& U) {
+
+        // Transform the matrix representations of the components
+        for (auto& f : this->allParameters()) {
+            f.basisRotateInPlace(U);
+        }
+    }
+
+
+    /**
+     *  In-place rotate the operator using a unitary Jacobi rotation matrix constructed from the Jacobi rotation parameters
+     * 
+     *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
+     */
+    void rotate(const JacobiRotationParameters& jacobi_rotation_parameters) {
+
+        // Transform the matrix representations of the components
+        for (auto& f : this->allParameters()) {
+            f.basisRotateInPlace(jacobi_rotation_parameters);
+        }
+    }
+
+
+    /**
+     *  In-place transform the operator to another basis
+     * 
+     *  @param T                            the transformation matrix
+     */
+    void transform(const TransformationMatrix<Scalar>& T) {
+
+        // Transform the matrix representations of the components
+        for (auto& f : this->allParameters()) {
+            f.basisTransformInPlace(T);
+        }
     }
 };
 
