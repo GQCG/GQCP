@@ -30,7 +30,13 @@ void bindSpinorBasis(py::module& module);
 
 
 // Mathematical - Algorithm
-void bindRHFSCFIterativeAlgorithm(py::module& module);
+void bindAlgorithm(py::module& module);
+void bindIterativeAlgorithm(py::module& module);
+
+
+// Mathematical - Optimization - Eigenproblem
+void bindEigenproblemEnvironment(py::module& module);
+void bindEigenproblemSolver(py::module& module);
 
 
 // Molecule
@@ -57,11 +63,20 @@ void bindQCMethodFukuiDysonAnalysis(py::module& module);
 void bindMullikenConstrainedFCI(py::module& module);
 
 
+// QCMethod - CI
+void bindCIEnvironment(py::module& module);
+void bindQCMethodCI(py::module& module);
+
+
 // QCMethod - HF
 void bindDiagonalRHFFockMatrixObjective(py::module& module);
 void bindQCMethodRHF(py::module& module);
 void bindRHFSCFEnvironment(py::module& module);
 void bindRHFSCFSolver(py::module& module);
+
+
+// QCModel - CI
+void bindLinearExpansion(py::module& module);
 
 
 // QCModel - HF
@@ -86,7 +101,13 @@ PYBIND11_MODULE (gqcpy, module) {
 
 
     // Mathematical - Algorithm
-    gqcpy::bindRHFSCFIterativeAlgorithm(module);
+    gqcpy::bindAlgorithm(module);
+    gqcpy::bindIterativeAlgorithm(module);
+
+
+    // Mathematical - Optimization - Eigenproblem
+    gqcpy::bindEigenproblemEnvironment(module);
+    gqcpy::bindEigenproblemSolver(module);
 
 
     // Molecule
@@ -113,11 +134,20 @@ PYBIND11_MODULE (gqcpy, module) {
     gqcpy::bindMullikenConstrainedFCI(module);
 
 
+    // QCMethod - CI
+    gqcpy::bindCIEnvironment(module);
+    gqcpy::bindQCMethodCI(module);
+
+
     // QCMethod - HF
     gqcpy::bindDiagonalRHFFockMatrixObjective(module);
     gqcpy::bindQCMethodRHF(module);
     gqcpy::bindRHFSCFEnvironment(module);
     gqcpy::bindRHFSCFSolver(module);
+
+
+    // QCModel - CI
+    gqcpy::bindLinearExpansion(module);
 
 
     // QCModel - HF

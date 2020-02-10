@@ -15,8 +15,12 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
+#include "QCMethod/CI/CI.hpp"
+
 #include "Mathematical/Algorithm/IterativeAlgorithm.hpp"
-#include "QCMethod/HF/RHFSCFEnvironment.hpp"
+#include "ONVBasis/SpinResolvedONVBasis.hpp"
+#include "QCMethod/CI/CIEnvironment.hpp"
+
 
 #include <pybind11/pybind11.h>
 
@@ -27,12 +31,22 @@ namespace py = pybind11;
 namespace gqcpy {
 
 
-void bindIterativeAlgorithm(py::module& module) {
+void bindQCMethodCI(py::module& module) {
+    py::class_<GQCP::QCMethod::CI>(module, "CI", "The configuration interaction quantum chemical method.")
 
-    py::class_<GQCP::IterativeAlgorithm<GQCP::RHFSCFEnvironment<double>>>(module, 
-        "RHFSCFIterativeAlgorithm",
-        "An algorithm that performs iterations using an RHFSCFEnvironment. In every iteration, convergence is checked and a set of iteration steps is performed."
-    );
+        .def(py::init<const GQCP::SpinResolvedONVBasis, const size_t>(),
+            py::arg("onv_basis"),
+            py::arg("number_of_states") = 1
+        )
+
+        .def("optimize",
+            [] (const GQCP::QCMethod::CI& qc_method, GQCP::Algorithm<GQCP::EigenproblemEnvironment>& solver, GQCP::EigenproblemEnvironment& environment) {
+                const auto qc_structure = qc_method.optimize(solver, environment);
+                return qc_structure.groundStateParameters();
+            },
+            "Optimize the CI wave function model: find the linear expansion coefficients."
+        )
+    ;
 }
 
 

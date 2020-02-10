@@ -48,7 +48,11 @@ public:
 
 
     // GETTERS
+    /**
+     *  @return the expansion coefficients of this linear expansion wave function model
+     */
     const VectorX<double>& get_coefficients() const { return coefficients; }
+    
     const BaseONVBasis& get_fock_space() const { return *onv_basis; }
 
 

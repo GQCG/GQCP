@@ -34,7 +34,8 @@ namespace CIEnvironment {
 /**
  *  @return an environment suitable for solving spin-resolved FCI eigenvalue problems.
  */
-EigenproblemEnvironment Dense(const SQHamiltonian<double>& sq_hamiltonian, const SpinResolvedONVBasis& onv_basis) {
+template <typename Scalar>
+EigenproblemEnvironment Dense(const SQHamiltonian<Scalar>& sq_hamiltonian, const SpinResolvedONVBasis& onv_basis) {
 
     const auto H = onv_basis.evaluateOperatorDense(sq_hamiltonian, true);  // 'true': with calculation of the diagonal
     return EigenproblemEnvironment::Dense(H);

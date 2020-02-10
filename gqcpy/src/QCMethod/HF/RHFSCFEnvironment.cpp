@@ -15,10 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "QCMethod/HF/RHF.hpp"
-
-#include "Mathematical/Representation/QCMatrix.hpp"
-#include "Operator/SecondQuantized/SQHamiltonian.hpp"
+#include "QCMethod/HF/RHFSCFEnvironment.hpp"
 
 #include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>

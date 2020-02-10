@@ -15,8 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "Mathematical/Algorithm/IterativeAlgorithm.hpp"
-#include "QCMethod/HF/RHFSCFEnvironment.hpp"
+#include "Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp"
 
 #include <pybind11/pybind11.h>
 
@@ -27,12 +26,9 @@ namespace py = pybind11;
 namespace gqcpy {
 
 
-void bindIterativeAlgorithm(py::module& module) {
+void bindEigenproblemEnvironment(py::module& module) {
 
-    py::class_<GQCP::IterativeAlgorithm<GQCP::RHFSCFEnvironment<double>>>(module, 
-        "RHFSCFIterativeAlgorithm",
-        "An algorithm that performs iterations using an RHFSCFEnvironment. In every iteration, convergence is checked and a set of iteration steps is performed."
-    );
+    py::class_<GQCP::EigenproblemEnvironment>(module, "EigenproblemEnvironment", "An environment used to solve eigenvalue problems for self-adjoint matrices.");
 }
 
 
