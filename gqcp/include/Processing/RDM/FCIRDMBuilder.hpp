@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "ONVBasis/ProductONVBasis.hpp"
+#include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "Processing/RDM/BaseRDMBuilder.hpp"
 #include "Processing/RDM/RDMs.hpp"
 
@@ -27,15 +27,15 @@ namespace GQCP {
 
 
 /**
- *  A class capable of calculating 1- and 2-RDMs from wave functions expanded in the full CI product ONV basis
+ *  A class capable of calculating 1- and 2-RDMs from wave functions expanded in the full spin-unresolved ONV basis
  */
 class FCIRDMBuilder : public BaseRDMBuilder {
-    ProductONVBasis fock_space;  // ONV basis containing the alpha and beta ONV basis
+    SpinResolvedONVBasis fock_space;
 
 
 public:
     // CONSTRUCTORS
-    explicit FCIRDMBuilder(const ProductONVBasis& fock_space);
+    explicit FCIRDMBuilder(const SpinResolvedONVBasis& fock_space);
 
 
     // DESTRUCTOR

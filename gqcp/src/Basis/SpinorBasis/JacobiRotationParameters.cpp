@@ -56,7 +56,7 @@ JacobiRotationParameters::JacobiRotationParameters(size_t p, size_t q, double an
  *  OPERATORS
  */
 /**
- *  @param os                               the output stream which the ONV should be concatenated to
+ *  @param os                               the output stream which the jacobi rotation parameters should be concatenated to
  *  @param jacobi_rotation_parameters       the parameters that should be concatenated to the output stream
  *
  *  @return the updated output stream

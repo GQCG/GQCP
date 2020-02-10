@@ -44,7 +44,7 @@ BOOST_AUTO_TEST_CASE ( one_rdms_fci_H2_6_31G ) {
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2);  // in an AO basis
     size_t K = sq_hamiltonian.dimension();  // 4
 
-    GQCP::ProductONVBasis fock_space (K, N_a, N_b);  // dim = 16
+    GQCP::SpinResolvedONVBasis fock_space (K, N_a, N_b);  // dim = 16
     GQCP::FCI fci (fock_space);
 
     // Specify solver options and solve the eigenvalue problem
@@ -60,7 +60,7 @@ BOOST_AUTO_TEST_CASE ( one_rdms_fci_H2_6_31G ) {
     GQCP::OneRDMs<double> one_rdms = fci_rdm.calculate1RDMs(coef);
 
 
-    GQCP::SelectedONVBasis selected_fock_space (fock_space);
+    GQCP::SpinResolvedSelectedONVBasis selected_fock_space (fock_space);
 
     // Get the 1-RDM from SelectedCI
     GQCP::SelectedRDMBuilder selected_rdm (selected_fock_space);
@@ -87,7 +87,7 @@ BOOST_AUTO_TEST_CASE ( two_rdms_fci_H2_6_31G ) {
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2);  // in an AO basis
     size_t K = sq_hamiltonian.dimension();  // 4
 
-    GQCP::ProductONVBasis fock_space (K, N_a, N_b);  // dim = 16
+    GQCP::SpinResolvedONVBasis fock_space (K, N_a, N_b);  // dim = 16
     GQCP::FCI fci (fock_space);
 
     // Specify solver options and solve the eigenvalue problem
@@ -103,7 +103,7 @@ BOOST_AUTO_TEST_CASE ( two_rdms_fci_H2_6_31G ) {
     GQCP::TwoRDMs<double> two_rdms = fci_rdm.calculate2RDMs(coef);
 
 
-    GQCP::SelectedONVBasis selected_fock_space (fock_space);
+    GQCP::SpinResolvedSelectedONVBasis selected_fock_space (fock_space);
 
     // Get the 1-RDM from SelectedCI
     GQCP::SelectedRDMBuilder selected_rdm (selected_fock_space);
@@ -130,7 +130,7 @@ BOOST_AUTO_TEST_CASE ( one_rdms_doci_H2_6_31G ) {
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2);  // in an AO basis
     size_t K = sq_hamiltonian.dimension();  // 4
 
-    GQCP::ONVBasis fock_space (K, N);  // dim = 4
+    GQCP::SpinUnresolvedONVBasis fock_space (K, N);  // dim = 4
     GQCP::DOCI doci (fock_space);
 
     // Specify solver options and solve the eigenvalue problem
@@ -146,7 +146,7 @@ BOOST_AUTO_TEST_CASE ( one_rdms_doci_H2_6_31G ) {
     GQCP::OneRDMs<double> one_rdms = doci_rdm.calculate1RDMs(coef);
 
 
-    GQCP::SelectedONVBasis selected_fock_space (fock_space);
+    GQCP::SpinResolvedSelectedONVBasis selected_fock_space (fock_space);
 
     // Get the 1-RDM from SelectedCI
     GQCP::SelectedRDMBuilder selected_rdm (selected_fock_space);
@@ -171,7 +171,7 @@ BOOST_AUTO_TEST_CASE ( two_rdms_doci_H2_6_31G ) {
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2);  // in an AO basis
     size_t K = sq_hamiltonian.dimension();  // 4
 
-    GQCP::ONVBasis fock_space (K, N);  // dim = 4
+    GQCP::SpinUnresolvedONVBasis fock_space (K, N);  // dim = 4
     GQCP::DOCI doci (fock_space);
 
     // Specify solver options and solve the eigenvalue problem
@@ -187,7 +187,7 @@ BOOST_AUTO_TEST_CASE ( two_rdms_doci_H2_6_31G ) {
     GQCP::TwoRDMs<double> two_rdms = doci_rdm.calculate2RDMs(coef);
 
 
-    GQCP::SelectedONVBasis selected_fock_space (fock_space);
+    GQCP::SpinResolvedSelectedONVBasis selected_fock_space (fock_space);
 
     // Get the 1-RDM from SelectedCI
     GQCP::SelectedRDMBuilder selected_rdm (selected_fock_space);
@@ -207,8 +207,8 @@ BOOST_AUTO_TEST_CASE ( throw_calculate_element ) {
     // Create a test wave function
     size_t K = 5;
     size_t N = 4;
-    GQCP::ONVBasis fock_space (K, N);
-    GQCP::SelectedONVBasis selected_fock_space (fock_space);
+    GQCP::SpinUnresolvedONVBasis fock_space (K, N);
+    GQCP::SpinResolvedSelectedONVBasis selected_fock_space (fock_space);
     GQCP::VectorX<double> coeff (fock_space.get_dimension());
     coeff << 1, 1, -2, 4, -5;
 

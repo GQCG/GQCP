@@ -70,7 +70,7 @@ void Hubbard::solve() {
 
 
     // Initialize and solve the Hubbard eigenvalue problem
-    ProductONVBasis fock_space (K, this->N_alpha, this->N_beta);
+    SpinResolvedONVBasis fock_space (K, this->N_alpha, this->N_beta);
     GQCP::Hubbard hubbard_builder (fock_space);
     CISolver ci_solver (hubbard_builder, sq_hamiltonian);
 

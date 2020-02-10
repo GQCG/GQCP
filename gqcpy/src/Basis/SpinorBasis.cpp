@@ -92,5 +92,4 @@ void bindSpinorBasis(py::module& module) {
 }
 
 
-
 }  // namespace gqcpy

@@ -109,11 +109,11 @@ public:
     const MatrixX<double>& asMatrix() const { return this->G; };
 
     /**
-     *  @param onv      the ONV that is being projected on
+     *  @param onv      the doubly-occupied (spin-resolved) ONV that is being projected on
      *
-     *  @return the overlap of the APIG wave function with the given on, i.e. the projection of the APIG wave function onto that ONV
+     *  @return the overlap of the APIG wave function with the given ONV, i.e. the projection of the APIG wave function onto that ONV
      */
-    double overlap(const ONV& onv) const override;
+    double overlap(const SpinUnresolvedONV& onv) const override;
 };
 
 

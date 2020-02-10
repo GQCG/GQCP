@@ -15,40 +15,40 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#define BOOST_TEST_MODULE "FrozenProductONVBasis"
+#define BOOST_TEST_MODULE "SpinResolvedFrozenONVBasis"
 
 #include <boost/test/unit_test.hpp>
 
-#include "ONVBasis/FrozenProductONVBasis.hpp"
+#include "ONVBasis/SpinResolvedFrozenONVBasis.hpp"
 
 #include "Basis/transform.hpp"
-#include "ONVBasis/SelectedONVBasis.hpp"
+#include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( FrozenProductONVBasis_constructor ) {
 
-    BOOST_CHECK_NO_THROW(GQCP::FrozenProductONVBasis (10, 5, 5, 1));
-    BOOST_CHECK_NO_THROW(GQCP::FrozenProductONVBasis (10, 5, 5, 2));
-    BOOST_CHECK_NO_THROW(GQCP::FrozenProductONVBasis (10, 5, 5, 3));
-    BOOST_CHECK_NO_THROW(GQCP::FrozenProductONVBasis (10, 5, 5, 4));
-    BOOST_CHECK_NO_THROW(GQCP::FrozenProductONVBasis (10, 5, 5, 5));
+    BOOST_CHECK_NO_THROW(GQCP::SpinResolvedFrozenONVBasis (10, 5, 5, 1));
+    BOOST_CHECK_NO_THROW(GQCP::SpinResolvedFrozenONVBasis (10, 5, 5, 2));
+    BOOST_CHECK_NO_THROW(GQCP::SpinResolvedFrozenONVBasis (10, 5, 5, 3));
+    BOOST_CHECK_NO_THROW(GQCP::SpinResolvedFrozenONVBasis (10, 5, 5, 4));
+    BOOST_CHECK_NO_THROW(GQCP::SpinResolvedFrozenONVBasis (10, 5, 5, 5));
 
-    GQCP::ProductONVBasis product_fock_space (10, 5, 5);
+    GQCP::SpinResolvedONVBasis product_fock_space (10, 5, 5);
 
-    BOOST_CHECK_NO_THROW(GQCP::FrozenProductONVBasis (product_fock_space, 1));
-    BOOST_CHECK_NO_THROW(GQCP::FrozenProductONVBasis (product_fock_space, 2));
-    BOOST_CHECK_NO_THROW(GQCP::FrozenProductONVBasis (product_fock_space, 3));
-    BOOST_CHECK_NO_THROW(GQCP::FrozenProductONVBasis (product_fock_space, 4));
-    BOOST_CHECK_NO_THROW(GQCP::FrozenProductONVBasis (product_fock_space, 5));
+    BOOST_CHECK_NO_THROW(GQCP::SpinResolvedFrozenONVBasis (product_fock_space, 1));
+    BOOST_CHECK_NO_THROW(GQCP::SpinResolvedFrozenONVBasis (product_fock_space, 2));
+    BOOST_CHECK_NO_THROW(GQCP::SpinResolvedFrozenONVBasis (product_fock_space, 3));
+    BOOST_CHECK_NO_THROW(GQCP::SpinResolvedFrozenONVBasis (product_fock_space, 4));
+    BOOST_CHECK_NO_THROW(GQCP::SpinResolvedFrozenONVBasis (product_fock_space, 5));
 }
 
 
 BOOST_AUTO_TEST_CASE ( FrozenProductONVBasis_member_test ) {
 
-    GQCP::FrozenProductONVBasis frozen_space (10, 5, 5, 2);
+    GQCP::SpinResolvedFrozenONVBasis frozen_space (10, 5, 5, 2);
 
-    const GQCP::FrozenONVBasis& alpha_member = frozen_space.get_frozen_fock_space_alpha();
-    const GQCP::FrozenONVBasis& beta_member = frozen_space.get_frozen_fock_space_beta();
+    const GQCP::SpinUnresolvedFrozenONVBasis& alpha_member = frozen_space.get_frozen_fock_space_alpha();
+    const GQCP::SpinUnresolvedFrozenONVBasis& beta_member = frozen_space.get_frozen_fock_space_beta();
 
     BOOST_CHECK(alpha_member.get_N() == 5);
     BOOST_CHECK(beta_member.get_N() == 5);
@@ -59,7 +59,7 @@ BOOST_AUTO_TEST_CASE ( FrozenProductONVBasis_member_test ) {
 
 
 /**
- *  Perform a dense evaluation of a one-, two-electron operator and the Hamiltonian in the frozen product ONV basis (excluding the diagonal) and compare these to the selected CI solutions
+ *  Perform a dense evaluation of a one-, two-electron operator and the Hamiltonian in the spin-resolved frozen ONV basis (excluding the diagonal) and compare these to the selected CI solutions
  */
 BOOST_AUTO_TEST_CASE ( ONVBasis_EvaluateOperator_diagonal_vs_no_diagonal) {
 
@@ -68,7 +68,7 @@ BOOST_AUTO_TEST_CASE ( ONVBasis_EvaluateOperator_diagonal_vs_no_diagonal) {
     spinor_basis.lowdinOrthonormalize();
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
 
-    GQCP::FrozenProductONVBasis fock_space (6, 4, 4, 2);
+    GQCP::SpinResolvedFrozenONVBasis fock_space (6, 4, 4, 2);
 
     GQCP::SquareMatrix<double> hamiltonian = fock_space.evaluateOperatorDense(sq_hamiltonian, true);
     GQCP::SquareMatrix<double> hamiltonian_no_diagonal = fock_space.evaluateOperatorDense(sq_hamiltonian, false);
@@ -80,7 +80,7 @@ BOOST_AUTO_TEST_CASE ( ONVBasis_EvaluateOperator_diagonal_vs_no_diagonal) {
 
 
 /**
- *  Perform a dense evaluation of a one-, two-electron operator and the Hamiltonian in the frozen product ONV basis (including the diagonal) and compare these to the selected CI solutions
+ *  Perform a dense evaluation of a one-, two-electron operator and the Hamiltonian in the spin-resolved frozen ONV Basis (including the diagonal) and compare these to the selected CI solutions
  */
 BOOST_AUTO_TEST_CASE ( ONVBasis_EvaluateOperator_Dense_diagonal_true ) {
 
@@ -89,13 +89,13 @@ BOOST_AUTO_TEST_CASE ( ONVBasis_EvaluateOperator_Dense_diagonal_true ) {
     spinor_basis.lowdinOrthonormalize();
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
 
-    GQCP::FrozenProductONVBasis product_fock_space(6, 4, 4, 2);
-    GQCP::SelectedONVBasis selected_fock_space(product_fock_space);
+    GQCP::SpinResolvedFrozenONVBasis product_fock_space (6, 4, 4, 2);
+    GQCP::SpinResolvedSelectedONVBasis selected_fock_space (product_fock_space);
 
     auto& h = sq_hamiltonian.core();
     auto& g = sq_hamiltonian.twoElectron();
 
-    // Test the evaluation of the operators with selected ONV basis (the reference) versus the that of the product ONV basis 
+    // Test the evaluation of the operators with selected SpinUnresolvedONV basis (the reference) versus the that of the spin-resolved ONV basis
     auto one_electron_evaluation1 = product_fock_space.evaluateOperatorDense(h, true);
     auto one_electron_evaluation2 = selected_fock_space.evaluateOperatorDense(h, true);
 
@@ -112,7 +112,7 @@ BOOST_AUTO_TEST_CASE ( ONVBasis_EvaluateOperator_Dense_diagonal_true ) {
 
 
 /**
- *  Perform a dense evaluation of a one-, two-electron operator and the Hamiltonian in the frozen product ONV basis (excluding the diagonal) and compare these to the selected CI solutions
+ *  Perform a dense evaluation of a one-, two-electron operator and the Hamiltonian in the spin-resolved frozen ONV Basis (excluding the diagonal) and compare these to the selected CI solutions
  */
 BOOST_AUTO_TEST_CASE ( ONVBasis_EvaluateOperator_Dense_diagonal_false ) {
 
@@ -121,8 +121,8 @@ BOOST_AUTO_TEST_CASE ( ONVBasis_EvaluateOperator_Dense_diagonal_false ) {
     spinor_basis.lowdinOrthonormalize();
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
 
-    GQCP::FrozenProductONVBasis product_fock_space(6, 4, 4, 2);
-    GQCP::SelectedONVBasis selected_fock_space(product_fock_space);
+    GQCP::SpinResolvedFrozenONVBasis product_fock_space(6, 4, 4, 2);
+    GQCP::SpinResolvedSelectedONVBasis selected_fock_space(product_fock_space);
 
     auto& h = sq_hamiltonian.core();
     auto& g = sq_hamiltonian.twoElectron();
@@ -143,7 +143,7 @@ BOOST_AUTO_TEST_CASE ( ONVBasis_EvaluateOperator_Dense_diagonal_false ) {
 
 
 /**
- *  Perform a diagonal evaluation of a one-, two-electron operator and the Hamiltonian in the frozen product ONV basis and compare these to the selected CI solutions
+ *  Perform a diagonal evaluation of a one-, two-electron operator and the Hamiltonian in the spin-resolved frozen ONV Basis and compare these to the selected CI solutions
  */
 BOOST_AUTO_TEST_CASE ( ONVBasis_EvaluateOperator_diagonal ) {
 
@@ -152,8 +152,8 @@ BOOST_AUTO_TEST_CASE ( ONVBasis_EvaluateOperator_diagonal ) {
     spinor_basis.lowdinOrthonormalize();
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
 
-    GQCP::FrozenProductONVBasis product_fock_space(6, 4, 4, 2);
-    GQCP::SelectedONVBasis selected_fock_space(product_fock_space);
+    GQCP::SpinResolvedFrozenONVBasis product_fock_space(6, 4, 4, 2);
+    GQCP::SpinResolvedSelectedONVBasis selected_fock_space(product_fock_space);
 
     auto& h = sq_hamiltonian.core();
     auto& g = sq_hamiltonian.twoElectron();
@@ -174,7 +174,7 @@ BOOST_AUTO_TEST_CASE ( ONVBasis_EvaluateOperator_diagonal ) {
 
 
 /**
- *  Perform a dense and diagonal evaluation for the unrestricted Hamiltonian in the frozen product ONV basis and compare these to the selected CI solutions
+ *  Perform a dense and diagonal evaluation for the unrestricted Hamiltonian in the spin-resolved frozen ONV Basis and compare these to the selected CI solutions
  */
 BOOST_AUTO_TEST_CASE ( FrozenProductONVBasis_evaluateOperator_diagonal_unrestricted_vs_selected ) {
 
@@ -190,8 +190,8 @@ BOOST_AUTO_TEST_CASE ( FrozenProductONVBasis_evaluateOperator_diagonal_unrestric
     Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes (usq_hamiltonian.spinHamiltonian(GQCP::SpinComponent::ALPHA).core().parameters());
     GQCP::basisTransform(spinor_basis, usq_hamiltonian, GQCP::TransformationMatrix<double>(saes.eigenvectors()), GQCP::SpinComponent::BETA);
 
-    GQCP::FrozenProductONVBasis product_fock_space (6, 4, 4, 2);
-    GQCP::SelectedONVBasis selected_fock_space (product_fock_space);
+    GQCP::SpinResolvedFrozenONVBasis product_fock_space (6, 4, 4, 2);
+    GQCP::SpinResolvedSelectedONVBasis selected_fock_space (product_fock_space);
 
     auto hamiltonian_diagonal_evaluation1 = product_fock_space.evaluateOperatorDiagonal(usq_hamiltonian);
     auto hamiltonian_diagonal_evaluation2 = selected_fock_space.evaluateOperatorDiagonal(usq_hamiltonian);

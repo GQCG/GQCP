@@ -18,9 +18,9 @@
 // 
 #include "ONVBasis/BaseONVBasis.hpp"
 
-#include "ONVBasis/ONVBasis.hpp"
-#include "ONVBasis/ProductONVBasis.hpp"
-#include "ONVBasis/SelectedONVBasis.hpp"
+#include "ONVBasis/SpinResolvedONVBasis.hpp"
+#include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
+#include "ONVBasis/SpinUnresolvedONVBasis.hpp"
 
 
 namespace GQCP {
@@ -58,28 +58,28 @@ std::shared_ptr<BaseONVBasis> BaseONVBasis::CloneToHeap(const BaseONVBasis& fock
 
     switch (fock_space.get_type()) {
 
-        case ONVBasisType::ONVBasis: {
-            fock_space_ptr = std::make_shared<ONVBasis>(ONVBasis(dynamic_cast<const ONVBasis&>(fock_space)));
+        case ONVBasisType::SpinUnresolvedONVBasis: {
+            fock_space_ptr = std::make_shared<SpinUnresolvedONVBasis>(SpinUnresolvedONVBasis(dynamic_cast<const SpinUnresolvedONVBasis&>(fock_space)));
             break;
         }
 
-        case ONVBasisType::ProductONVBasis: {
-            fock_space_ptr = std::make_shared<ProductONVBasis>(ProductONVBasis(dynamic_cast<const ProductONVBasis&>(fock_space)));
+        case ONVBasisType::SpinResolvedONVBasis: {
+            fock_space_ptr = std::make_shared<SpinResolvedONVBasis>(SpinResolvedONVBasis(dynamic_cast<const SpinResolvedONVBasis&>(fock_space)));
             break;
         }
 
-        case ONVBasisType::SelectedONVBasis: {
-            fock_space_ptr = std::make_shared<SelectedONVBasis>(SelectedONVBasis(dynamic_cast<const SelectedONVBasis&>(fock_space)));
+        case ONVBasisType::SpinResolvedSelectedONVBasis: {
+            fock_space_ptr = std::make_shared<SpinResolvedSelectedONVBasis>(SpinResolvedSelectedONVBasis(dynamic_cast<const SpinResolvedSelectedONVBasis&>(fock_space)));
             break;
         }
 
-        case ONVBasisType::FrozenONVBasis: {
-            fock_space_ptr = std::make_shared<FrozenONVBasis>(FrozenONVBasis(dynamic_cast<const FrozenONVBasis&>(fock_space)));
+        case ONVBasisType::SpinUnresolvedFrozenONVBasis: {
+            fock_space_ptr = std::make_shared<SpinUnresolvedFrozenONVBasis>(SpinUnresolvedFrozenONVBasis(dynamic_cast<const SpinUnresolvedFrozenONVBasis&>(fock_space)));
             break;
         }
 
-        case ONVBasisType::FrozenProductONVBasis: {
-            fock_space_ptr = std::make_shared<FrozenProductONVBasis>(FrozenProductONVBasis(dynamic_cast<const FrozenProductONVBasis&>(fock_space)));
+        case ONVBasisType::SpinResolvedFrozenONVBasis: {
+            fock_space_ptr = std::make_shared<SpinResolvedFrozenONVBasis>(SpinResolvedFrozenONVBasis(dynamic_cast<const SpinResolvedFrozenONVBasis&>(fock_space)));
             break;
         }
     }

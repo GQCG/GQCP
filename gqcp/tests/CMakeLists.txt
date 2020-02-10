@@ -1,9 +1,9 @@
 set(test_target_sources)
 
 add_subdirectory(Basis)
-add_subdirectory(ONVBasis)
 add_subdirectory(Mathematical)
 add_subdirectory(Molecule)
+add_subdirectory(ONVBasis)
 add_subdirectory(Operator)
 add_subdirectory(Processing)
 add_subdirectory(QCMethod)

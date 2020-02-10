@@ -19,7 +19,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "ONVBasis/ProductONVBasis.hpp"
+#include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/CI/CISolver.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
@@ -38,7 +38,7 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_dense ) {
 
     // Create the Hubbard and FCI modules
     size_t N = 2;
-    GQCP::ProductONVBasis fock_space (K, N, N);  // dim = 36
+    GQCP::SpinResolvedONVBasis fock_space (K, N, N);  // dim = 36
     GQCP::Hubbard hubbard (fock_space);
     GQCP::FCI fci (fock_space);
 
@@ -70,7 +70,7 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_dense_large ) {
 
     // Create the Hubbard and FCI modules
     size_t N = 3;
-    GQCP::ProductONVBasis fock_space (K, N, N);  // dim = 36
+    GQCP::SpinResolvedONVBasis fock_space (K, N, N);  // dim = 36
     GQCP::Hubbard hubbard (fock_space);
     GQCP::FCI fci (fock_space);
 
@@ -106,7 +106,7 @@ BOOST_AUTO_TEST_CASE ( four_site_chain_ward ) {
     double tol = 1.0e-08;
 
 
-    GQCP::ProductONVBasis fock_space (K, N, N);
+    GQCP::SpinResolvedONVBasis fock_space (K, N, N);
     for (size_t i = 0; i < 7; i++) {
 
         // Create the Hamiltonian for the Hubbard model
@@ -146,7 +146,7 @@ BOOST_AUTO_TEST_CASE ( six_site_ring_ward ) {
     double tol = 1.0e-08;
 
 
-    GQCP::ProductONVBasis fock_space (K, N, N);
+    GQCP::SpinResolvedONVBasis fock_space (K, N, N);
     for (size_t i = 0; i < 7; i++) {
 
         // Create the Hamiltonian for the Hubbard model

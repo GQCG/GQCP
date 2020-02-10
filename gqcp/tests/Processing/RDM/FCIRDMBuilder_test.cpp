@@ -42,7 +42,7 @@ BOOST_AUTO_TEST_CASE ( H2O_1RDM_spin_trace_FCI ) {
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2o);  // in an AO basis
     size_t K = sq_hamiltonian.dimension();  // SO 7
 
-    GQCP::ProductONVBasis fock_space (K, N_a, N_b);  // dim = 441
+    GQCP::SpinResolvedONVBasis fock_space (K, N_a, N_b);  // dim = 441
     GQCP::FCI fci (fock_space);
 
     // Specify solver options and solve the eigenvalue problem
@@ -77,7 +77,7 @@ BOOST_AUTO_TEST_CASE ( H2O_2RDM_spin_trace_FCI ) {
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2o);  // in an AO basis
     size_t K = sq_hamiltonian.dimension();  // SO 7
 
-    GQCP::ProductONVBasis fock_space (K, N_a, N_b);  // dim = 441
+    GQCP::SpinResolvedONVBasis fock_space (K, N_a, N_b);  // dim = 441
     GQCP::FCI fci (fock_space);
 
     // Specify solver options and solve the eigenvalue problem
@@ -114,7 +114,7 @@ BOOST_AUTO_TEST_CASE ( H2O_1RDM_2RDM_trace_FCI ) {
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2o);  // in an AO basis
     size_t K = sq_hamiltonian.dimension();  // SO 7
 
-    GQCP::ProductONVBasis fock_space (K, N_a, N_b);  // dim = 441
+    GQCP::SpinResolvedONVBasis fock_space (K, N_a, N_b);  // dim = 441
     GQCP::FCI fci (fock_space);
 
     // Specify solver options and solve the eigenvalue problem
@@ -149,7 +149,7 @@ BOOST_AUTO_TEST_CASE ( H2O_energy_RDM_contraction_FCI ) {
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2o);  // in an AO basis
     size_t K = sq_hamiltonian.dimension();  // SO 7
 
-    GQCP::ProductONVBasis fock_space (K, N_a, N_b);  // dim = 441
+    GQCP::SpinResolvedONVBasis fock_space (K, N_a, N_b);  // dim = 441
     GQCP::FCI fci (fock_space);
 
     // Specify solver options and solve the eigenvalue problem
@@ -185,7 +185,7 @@ BOOST_AUTO_TEST_CASE ( H2O_energy_RDM_contraction_FCI_LinearExpansion ) {
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2o);  // in an AO basis
     size_t K = sq_hamiltonian.dimension();  // SO 7
 
-    GQCP::ProductONVBasis fock_space (K, N_a, N_b);  // dim = 441
+    GQCP::SpinResolvedONVBasis fock_space (K, N_a, N_b);  // dim = 441
     GQCP::FCI fci (fock_space);
 
     // Specify solver options and solve the eigenvalue problem
@@ -214,7 +214,7 @@ BOOST_AUTO_TEST_CASE ( throw_calculate_element ) {
 
     size_t K = 3;
     size_t N = 2;
-    GQCP::ProductONVBasis fock_space (K, N, N);
+    GQCP::SpinResolvedONVBasis fock_space (K, N, N);
 
     GQCP::VectorX<double> coeff (fock_space.get_dimension());
     coeff << 1, 1, -2, 4, -5, -6, 7, 9, 8;
@@ -239,8 +239,8 @@ BOOST_AUTO_TEST_CASE ( H2O_FCI_LinearExpansion_vs_Selected_CI ) {
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2o);  // in an AO basis
     size_t K = sq_hamiltonian.dimension();  // SO 7
 
-    GQCP::ProductONVBasis fock_space (K, N_a, N_b);  // dim = 441
-    GQCP::SelectedONVBasis selected_fock_space (fock_space);  // dim = 441
+    GQCP::SpinResolvedONVBasis fock_space (K, N_a, N_b);  // dim = 441
+    GQCP::SpinResolvedSelectedONVBasis selected_fock_space (fock_space);  // dim = 441
     GQCP::FCI fci (fock_space);
 
     // Specify solver options and solve the eigenvalue problem

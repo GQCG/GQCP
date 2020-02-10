@@ -27,23 +27,23 @@ namespace GQCP {
 
 void SelectedCI::evaluateHamiltonianElements(const SQHamiltonian<double>& sq_hamiltonian, const PassToMethod& method) const {
 
-    const size_t dim = fock_space.get_dimension();
-    const size_t K = fock_space.get_K();
+    const size_t dim = onv_basis.get_dimension();
+    const size_t K = onv_basis.get_K();
 
     const auto& h = sq_hamiltonian.core().parameters();
     const auto& g = sq_hamiltonian.twoElectron().parameters();
 
     for (size_t I = 0; I < dim; I++) {  // loop over all addresses (1)
-        Configuration configuration_I = this->fock_space.get_configuration(I);
-        ONV alpha_I = configuration_I.onv_alpha;
-        ONV beta_I = configuration_I.onv_beta;
+        SpinResolvedONV configuration_I = this->onv_basis.get_configuration(I);
+        SpinUnresolvedONV alpha_I = configuration_I.onv_alpha;
+        SpinUnresolvedONV beta_I = configuration_I.onv_beta;
 
         // Calculate the off-diagonal elements, by going over all other ONVs
         for (size_t J = I+1; J < dim; J++) {
 
-            Configuration configuration_J = this->fock_space.get_configuration(J);
-            ONV alpha_J = configuration_J.onv_alpha;
-            ONV beta_J = configuration_J.onv_beta;
+            SpinResolvedONV configuration_J = this->onv_basis.get_configuration(J);
+            SpinUnresolvedONV alpha_J = configuration_J.onv_alpha;
+            SpinUnresolvedONV beta_J = configuration_J.onv_beta;
 
             if ((alpha_I.countNumberOfDifferences(alpha_J) == 2) && (beta_I.countNumberOfDifferences(beta_J) == 0)) {
 
@@ -184,11 +184,11 @@ void SelectedCI::evaluateHamiltonianElements(const SQHamiltonian<double>& sq_ham
  */
 
 /**
- *  @param fock_space       the full alpha and beta product ONV basis
+ *  @param onv_basis       the full spin-resolved ONV basis
  */
-SelectedCI::SelectedCI(const SelectedONVBasis& fock_space) :
+SelectedCI::SelectedCI(const SpinResolvedSelectedONVBasis& onv_basis) :
     HamiltonianBuilder(),
-    fock_space(fock_space)
+    onv_basis(onv_basis)
 {}
 
 
@@ -204,11 +204,11 @@ SelectedCI::SelectedCI(const SelectedONVBasis& fock_space) :
  */
 SquareMatrix<double> SelectedCI::constructHamiltonian(const SQHamiltonian<double>& sq_hamiltonian) const {
     auto K = sq_hamiltonian.core().get_dim();
-    if (K != this->fock_space.get_K()) {
+    if (K != this->onv_basis.get_K()) {
         throw std::invalid_argument("SelectedCI::constructHamiltonian(SQHamiltonian<double>): Basis functions of the ONV basis and sq_hamiltonian are incompatible.");
     }
 
-    auto dim = fock_space.get_dimension();
+    auto dim = onv_basis.get_dimension();
 
     SquareMatrix<double> result_matrix = SquareMatrix<double>::Zero(dim, dim);
     result_matrix += this->calculateDiagonal(sq_hamiltonian).asDiagonal();
@@ -231,7 +231,7 @@ SquareMatrix<double> SelectedCI::constructHamiltonian(const SQHamiltonian<double
 VectorX<double> SelectedCI::matrixVectorProduct(const SQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
 
     auto K = sq_hamiltonian.core().get_dim();
-    if (K != this->fock_space.get_K()) {
+    if (K != this->onv_basis.get_K()) {
         throw std::invalid_argument("SelectedCI::matrixVectorProduct(SQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the ONV basis and sq_hamiltonian are incompatible.");
     }
 
@@ -252,7 +252,7 @@ VectorX<double> SelectedCI::matrixVectorProduct(const SQHamiltonian<double>& sq_
  *  @return the diagonal of the matrix representation of the SelectedCI Hamiltonian
  */
 VectorX<double> SelectedCI::calculateDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const {
-    return this->fock_space.evaluateOperatorDiagonal(sq_hamiltonian);
+    return this->onv_basis.evaluateOperatorDiagonal(sq_hamiltonian);
 }
 
 

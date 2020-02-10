@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "ONVBasis/ProductONVBasis.hpp"
+#include "ONVBasis/SpinResolvedONVBasis.hpp"
 
 #include <boost/math/special_functions.hpp>
 #include <boost/numeric/conversion/converter.hpp>
@@ -33,10 +33,10 @@ namespace GQCP {
  *  @param N_alpha      the number of alpha electrons
  *  @param N_beta       the number of beta electrons
  */
-ProductONVBasis::ProductONVBasis(size_t K, size_t N_alpha, size_t N_beta) :
-        BaseONVBasis(K, ProductONVBasis::calculateDimension(K, N_alpha, N_beta)),
-        fock_space_alpha (ONVBasis(K, N_alpha)),
-        fock_space_beta (ONVBasis(K, N_beta))
+SpinResolvedONVBasis::SpinResolvedONVBasis(size_t K, size_t N_alpha, size_t N_beta) :
+    BaseONVBasis(K, SpinResolvedONVBasis::calculateDimension(K, N_alpha, N_beta)),
+    fock_space_alpha (SpinUnresolvedONVBasis(K, N_alpha)),
+    fock_space_beta (SpinUnresolvedONVBasis(K, N_beta))
 {
     this->alpha_couplings = this->fock_space_alpha.calculateOneElectronCouplings();
 }
@@ -52,15 +52,15 @@ ProductONVBasis::ProductONVBasis(size_t K, size_t N_alpha, size_t N_beta) :
  *  @param N_alpha      the number of alpha electrons
  *  @param N_beta       the number of beta electrons
  *
- *  @return the dimension of the product ONV basis
+ *  @return the dimension of the spin-resolved ONV basis
  */
-size_t ProductONVBasis::calculateDimension(size_t K, size_t N_alpha, size_t N_beta) {
-    double alpha_dim = ONVBasis::calculateDimension(K, N_alpha);
-    double beta_dim = ONVBasis::calculateDimension(K, N_beta);
+size_t SpinResolvedONVBasis::calculateDimension(size_t K, size_t N_alpha, size_t N_beta) {
+    double alpha_dim = SpinUnresolvedONVBasis::calculateDimension(K, N_alpha);
+    double beta_dim = SpinUnresolvedONVBasis::calculateDimension(K, N_beta);
     try {
         return boost::numeric::converter<size_t, double>::convert(alpha_dim * beta_dim);
     } catch (boost::numeric::bad_numeric_cast& e) {
-        throw std::overflow_error("ProductONVBasis::calculateDimension(size_t, size_t, size_t): "+ std::string(e.what()));
+        throw std::overflow_error("SpinResolvedONVBasis::calculateDimension(size_t, size_t, size_t): "+ std::string(e.what()));
 
     }
 }
@@ -82,7 +82,7 @@ size_t ProductONVBasis::calculateDimension(size_t K, size_t N_alpha, size_t N_be
  *
  *  @return a one-electron operator containing a partition of the two-electron operator
  */
-ScalarSQOneElectronOperator<double> ProductONVBasis::oneElectronPartition(size_t p, size_t q, const ScalarSQTwoElectronOperator<double>& two_op) const {
+ScalarSQOneElectronOperator<double> SpinResolvedONVBasis::oneElectronPartition(size_t p, size_t q, const ScalarSQTwoElectronOperator<double>& two_op) const {
 
     const auto& two_op_par = two_op.parameters();
 
@@ -102,12 +102,12 @@ ScalarSQOneElectronOperator<double> ProductONVBasis::oneElectronPartition(size_t
 /**
  *  Evaluate the operator in a dense matrix
  *
- *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
+ *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the spin-resolved ONV basis
  *  @param diagonal_values      bool to indicate if diagonal values will be calculated
  *
- *  @return the operator's evaluation in a dense matrix with the dimensions of the ONV basis
+ *  @return the operator's evaluation in a dense matrix with the dimensions of the spin-resolved ONV basis
  */
-SquareMatrix<double> ProductONVBasis::evaluateOperatorDense(const ScalarSQOneElectronOperator<double>& one_op, bool diagonal_values) const {
+SquareMatrix<double> SpinResolvedONVBasis::evaluateOperatorDense(const ScalarSQOneElectronOperator<double>& one_op, bool diagonal_values) const {
 
     SquareMatrix<double> total_evaluation = SquareMatrix<double>::Zero(this->get_dimension(), this->get_dimension());
 
@@ -137,26 +137,26 @@ SquareMatrix<double> ProductONVBasis::evaluateOperatorDense(const ScalarSQOneEle
 /**
  *  Evaluate the operator in a sparse matrix
  *
- *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
+ *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the spin-resolved ONV basis
  *  @param diagonal_values      bool to indicate if diagonal values will be calculated
  *
- *  @return the operator's evaluation in a sparse matrix with the dimensions of the ONV basis
+ *  @return the operator's evaluation in a sparse matrix with the dimensions of the spin-resolved ONV basis
  */
-Eigen::SparseMatrix<double> ProductONVBasis::evaluateOperatorSparse(const ScalarSQOneElectronOperator<double>& one_op, bool diagonal_values) const {
+Eigen::SparseMatrix<double> SpinResolvedONVBasis::evaluateOperatorSparse(const ScalarSQOneElectronOperator<double>& one_op, bool diagonal_values) const {
 
-    throw std::invalid_argument("ProductONVBasis::evaluateOperatorSparse(ScalarSQOneElectronOperator<double>, bool): Not implemented.");
+    throw std::invalid_argument("SpinResolvedONVBasis::evaluateOperatorSparse(ScalarSQOneElectronOperator<double>, bool): Not implemented.");
 }
 
 
 /**
  *  Evaluate the operator in a dense matrix
  *
- *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
+ *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the spin-resolved ONV basis
  *  @param diagonal_values      bool to indicate if diagonal values will be calculated
  *
- *  @return the operator's evaluation in a dense matrix with the dimensions of the ONV basis
+ *  @return the operator's evaluation in a dense matrix with the dimensions of the spin-resolved ONV basis
  */
-SquareMatrix<double> ProductONVBasis::evaluateOperatorDense(const ScalarSQTwoElectronOperator<double>& two_op, bool diagonal_values) const {
+SquareMatrix<double> SpinResolvedONVBasis::evaluateOperatorDense(const ScalarSQTwoElectronOperator<double>& two_op, bool diagonal_values) const {
 
     SquareMatrix<double> total_evaluation = SquareMatrix<double>::Zero(this->get_dimension(), this->get_dimension());
 
@@ -216,14 +216,14 @@ SquareMatrix<double> ProductONVBasis::evaluateOperatorDense(const ScalarSQTwoEle
 /**
  *  Evaluate the operator in a sparse matrix
  *
- *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
+ *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the spin-resolved ONV basis
  *  @param diagonal_values      bool to indicate if diagonal values will be calculated
  *
- *  @return the operator's evaluation in a sparse matrix with the dimensions of the ONV basis
+ *  @return the operator's evaluation in a sparse matrix with the dimensions of the spin-resolved ONV basis
  */
-Eigen::SparseMatrix<double> ProductONVBasis::evaluateOperatorSparse(const ScalarSQTwoElectronOperator<double>& two_op, bool diagonal_values) const {
+Eigen::SparseMatrix<double> SpinResolvedONVBasis::evaluateOperatorSparse(const ScalarSQTwoElectronOperator<double>& two_op, bool diagonal_values) const {
 
-    throw std::invalid_argument("ProductONVBasis::evaluateOperatorSparse(ScalarSQTwoElectronOperator<double>, bool): Not implemented.");
+    throw std::invalid_argument("SpinResolvedONVBasis::evaluateOperatorSparse(ScalarSQTwoElectronOperator<double>, bool): Not implemented.");
 }
 
 
@@ -233,9 +233,9 @@ Eigen::SparseMatrix<double> ProductONVBasis::evaluateOperatorSparse(const Scalar
  *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
  *  @param diagonal_values              bool to indicate if diagonal values will be calculated
  *
- *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the ONV basis
+ *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the spin-resolved ONV basis
  */
-SquareMatrix<double> ProductONVBasis::evaluateOperatorDense(const SQHamiltonian<double>& sq_hamiltonian, bool diagonal_values) const {
+SquareMatrix<double> SpinResolvedONVBasis::evaluateOperatorDense(const SQHamiltonian<double>& sq_hamiltonian, bool diagonal_values) const {
 
     SquareMatrix<double> total_evaluation = SquareMatrix<double>::Zero(this->get_dimension(), this->get_dimension());
 
@@ -298,26 +298,26 @@ SquareMatrix<double> ProductONVBasis::evaluateOperatorDense(const SQHamiltonian<
  *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
  *  @param diagonal_values              bool to indicate if diagonal values will be calculated
  *
- *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the ONV basis
+ *  @return the Hamiltonian's evaluation in a sparse matrix with the dimensions of the spin-resolved ONV basis
  */
-Eigen::SparseMatrix<double> ProductONVBasis::evaluateOperatorSparse(const SQHamiltonian<double>& sq_hamiltonian, bool diagonal_values) const {
+Eigen::SparseMatrix<double> SpinResolvedONVBasis::evaluateOperatorSparse(const SQHamiltonian<double>& sq_hamiltonian, bool diagonal_values) const {
 
-    throw std::invalid_argument("ProductONVBasis::evaluateOperatorSparse(SQHamiltonian<double>, bool): Not implemented.");
+    throw std::invalid_argument("SpinResolvedONVBasis::evaluateOperatorSparse(SQHamiltonian<double>, bool): Not implemented.");
 }
 
 
 /**
- *  Evaluate the diagonal of the operator in this ONV basis
+ *  Evaluate the diagonal of the operator in this spin-resolved ONV basis
  *
- *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
+ *  @param one_op               the one-electron operator in an orthonormal orbital basis to be evaluated in the spin-resolved ONV basis
  *
- *  @return the operator's diagonal evaluation in a vector with the dimension of the ONV basis
+ *  @return the operator's diagonal evaluation in a vector with the dimension of the spin-resolved ONV basis
  */
-VectorX<double> ProductONVBasis::evaluateOperatorDiagonal(const ScalarSQOneElectronOperator<double>& one_op) const {
+VectorX<double> SpinResolvedONVBasis::evaluateOperatorDiagonal(const ScalarSQOneElectronOperator<double>& one_op) const {
 
     const auto K = one_op.dimension();
     if (K != this->K) {
-        throw std::invalid_argument("ProductONVBasis::evaluateOperatorDiagonal(ScalarSQOneElectronOperator<double>): Basis functions of the ONV basis and the operator are incompatible.");
+        throw std::invalid_argument("SpinResolvedONVBasis::evaluateOperatorDiagonal(ScalarSQOneElectronOperator<double>): Basis functions of the spin-resolved ONV basis and the operator are incompatible.");
     }
 
     const auto dim_alpha = fock_space_alpha.get_dimension();
@@ -326,8 +326,8 @@ VectorX<double> ProductONVBasis::evaluateOperatorDiagonal(const ScalarSQOneElect
 
     VectorX<double> diagonal = VectorX<double>::Zero(this->dim);
 
-    ONV onv_alpha = fock_space_alpha.makeONV(0);
-    ONV onv_beta = fock_space_beta.makeONV(0);
+    SpinUnresolvedONV onv_alpha = fock_space_alpha.makeONV(0);
+    SpinUnresolvedONV onv_beta = fock_space_beta.makeONV(0);
     for (size_t Ia = 0; Ia < dim_alpha; Ia++) {  // Ia loops over addresses of alpha spin strings
 
         fock_space_beta.transformONV(onv_beta, 0);
@@ -362,17 +362,17 @@ VectorX<double> ProductONVBasis::evaluateOperatorDiagonal(const ScalarSQOneElect
 
 
 /**
- *  Evaluate the diagonal of the operator in this ONV basis
+ *  Evaluate the diagonal of the operator in this spin-resolved ONV basis
  *
- *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the ONV basis
+ *  @param two_op               the two-electron operator in an orthonormal orbital basis to be evaluated in the spin-resolved ONV basis
  *
- *  @return the operator's diagonal evaluation in a vector with the dimension of the ONV basis
+ *  @return the operator's diagonal evaluation in a vector with the dimension of the spin-resolved ONV basis
  */
-VectorX<double> ProductONVBasis::evaluateOperatorDiagonal(const ScalarSQTwoElectronOperator<double>& two_op) const {
+VectorX<double> SpinResolvedONVBasis::evaluateOperatorDiagonal(const ScalarSQTwoElectronOperator<double>& two_op) const {
 
     const auto K = two_op.dimension();
     if (K != this->K) {
-        throw std::invalid_argument("ProductONVBasis::evaluateOperatorDiagonal(ScalarSQTwoElectronOperator<double>): Basis functions of the ONV basis and the operator are incompatible.");
+        throw std::invalid_argument("SpinResolvedONVBasis::evaluateOperatorDiagonal(ScalarSQTwoElectronOperator<double>): Basis functions of the SpinUnresolvedONV basis and the operator are incompatible.");
     }
 
     const auto dim_alpha = fock_space_alpha.get_dimension();
@@ -383,8 +383,8 @@ VectorX<double> ProductONVBasis::evaluateOperatorDiagonal(const ScalarSQTwoElect
     // Diagonal contributions
     VectorX<double> diagonal = VectorX<double>::Zero(this->dim);
 
-    ONV onv_alpha = fock_space_alpha.makeONV(0);
-    ONV onv_beta = fock_space_beta.makeONV(0);
+    SpinUnresolvedONV onv_alpha = fock_space_alpha.makeONV(0);
+    SpinUnresolvedONV onv_beta = fock_space_beta.makeONV(0);
     for (size_t Ia = 0; Ia < dim_alpha; Ia++) {  // Ia loops over addresses of alpha spin strings
 
         fock_space_beta.transformONV(onv_beta, 0);
@@ -439,13 +439,13 @@ VectorX<double> ProductONVBasis::evaluateOperatorDiagonal(const ScalarSQTwoElect
 
 
 /**
- *  Evaluate the diagonal of the Hamiltonian in this ONV basis
+ *  Evaluate the diagonal of the Hamiltonian in this spin-resolved ONV basis
  *
  *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
  *
- *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the ONV basis
+ *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the spin-resolved ONV basis
  */
-VectorX<double> ProductONVBasis::evaluateOperatorDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const {
+VectorX<double> SpinResolvedONVBasis::evaluateOperatorDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const {
     return this->evaluateOperatorDiagonal(sq_hamiltonian.core()) + this->evaluateOperatorDiagonal(sq_hamiltonian.twoElectron());
 }
 
@@ -455,19 +455,19 @@ VectorX<double> ProductONVBasis::evaluateOperatorDiagonal(const SQHamiltonian<do
  *
  *  @param one_op                       the one electron operator expressed in an orthonormal basis
  *  @param x                            the vector upon which the evaluation acts 
- *  @param diagonal                     the diagonal evaluated in the ONV basis
+ *  @param diagonal                     the diagonal evaluated in the spin-resolved ONV basis
  *
- *  @return the one electron operator's matrix vector product in a vector with the dimensions of the ONV basis
+ *  @return the one electron operator's matrix vector product in a vector with the dimensions of the spin-resolved ONV basis
  */
-VectorX<double> ProductONVBasis::evaluateOperatorMatrixVectorProduct(const ScalarSQOneElectronOperator<double>& one_op, const VectorX<double>& x, const VectorX<double>& diagonal) const {
+VectorX<double> SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(const ScalarSQOneElectronOperator<double>& one_op, const VectorX<double>& x, const VectorX<double>& diagonal) const {
     auto K = one_op.dimension();
     if (K != this->K) {
-        throw std::invalid_argument("ProductONVBasis::evaluateOperatorMatrixVectorProduct(ScalarSQOneElectronOperator<double>, VectorX<double>, VectorX<double>): Basis functions of the ONV basis and the operator are incompatible.");
+        throw std::invalid_argument("SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(ScalarSQOneElectronOperator<double>, VectorX<double>, VectorX<double>): Basis functions of the spin-resolved ONV basis and the operator are incompatible.");
     }
 
     // Environment for evaluations
-    ONVBasis fock_space_alpha = this->get_fock_space_alpha();
-    ONVBasis fock_space_beta = this->get_fock_space_beta();
+    SpinUnresolvedONVBasis fock_space_alpha = this->get_fock_space_alpha();
+    SpinUnresolvedONVBasis fock_space_beta = this->get_fock_space_beta();
 
     const auto& alpha_couplings = this->get_alpha_couplings();
 
@@ -496,19 +496,19 @@ VectorX<double> ProductONVBasis::evaluateOperatorMatrixVectorProduct(const Scala
  *
  *  @param two_op                       the two electron operator expressed in an orthonormal basis
  *  @param x                            the vector upon which the evaluation acts 
- *  @param diagonal                     the diagonal evaluated in the ONV basis
+ *  @param diagonal                     the diagonal evaluated in the spin-resolved ONV basis
  *
- *  @return the two electron operator's matrix vector product in a vector with the dimensions of the ONV basis
+ *  @return the two electron operator's matrix vector product in a vector with the dimensions of the spin-resolved ONV basis
  */
-VectorX<double> ProductONVBasis::evaluateOperatorMatrixVectorProduct(const ScalarSQTwoElectronOperator<double>& two_op, const VectorX<double>& x, const VectorX<double>& diagonal) const {
+VectorX<double> SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(const ScalarSQTwoElectronOperator<double>& two_op, const VectorX<double>& x, const VectorX<double>& diagonal) const {
     auto K = two_op.dimension();
     if (K != this->K) {
-        throw std::invalid_argument("ProductONVBasis::evaluateOperatorMatrixVectorProduct(ScalarSQTwoElectronOperator<double>, VectorX<double>, VectorX<double>): Basis functions of the ONV basis and the operator are incompatible.");
+        throw std::invalid_argument("SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(ScalarSQTwoElectronOperator<double>, VectorX<double>, VectorX<double>): Basis functions of the spin-resolved ONV basis and the operator are incompatible.");
     }
 
     // Environment for evaluations
-    ONVBasis fock_space_alpha = this->get_fock_space_alpha();
-    ONVBasis fock_space_beta = this->get_fock_space_beta();
+    SpinUnresolvedONVBasis fock_space_alpha = this->get_fock_space_alpha();
+    SpinUnresolvedONVBasis fock_space_beta = this->get_fock_space_beta();
 
     const auto& alpha_couplings = this->get_alpha_couplings();
 
@@ -553,19 +553,19 @@ VectorX<double> ProductONVBasis::evaluateOperatorMatrixVectorProduct(const Scala
  *
  *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
  *  @param x                            the vector upon which the evaluation acts 
- *  @param diagonal                     the diagonal evaluated in the ONV basis
+ *  @param diagonal                     the diagonal evaluated in the spin-resolved ONV basis
  *
- *  @return the Hamiltonian's matrix vector product in a vector with the dimensions of the ONV basis
+ *  @return the Hamiltonian's matrix vector product in a vector with the dimensions of the spin-resolved ONV basis
  */
-VectorX<double> ProductONVBasis::evaluateOperatorMatrixVectorProduct(const SQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
+VectorX<double> SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(const SQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
     auto K = sq_hamiltonian.dimension();
     if (K != this->K) {
-        throw std::invalid_argument("ProductONVBasis::evaluateOperatorMatrixVectorProduct(SQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the ONV basis and the operator are incompatible.");
+        throw std::invalid_argument("SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(SQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the spin-resolved ONV basis and the operator are incompatible.");
     }
 
     // Environment for evaluations
-    const ONVBasis& fock_space_alpha = this->get_fock_space_alpha();
-    const ONVBasis& fock_space_beta = this->get_fock_space_beta();
+    const SpinUnresolvedONVBasis& fock_space_alpha = this->get_fock_space_alpha();
+    const SpinUnresolvedONVBasis& fock_space_beta = this->get_fock_space_beta();
 
     const auto& alpha_couplings = this->get_alpha_couplings();
 
@@ -616,18 +616,18 @@ VectorX<double> ProductONVBasis::evaluateOperatorMatrixVectorProduct(const SQHam
  *  @param usq_hamiltonian                the Hamiltonian expressed in an unrestricted orthonormal basis 
  *  @param diagonal_values                bool to indicate if diagonal values will be calculated
  *
- *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the ONV basis
+ *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the spin-resolved ONV basis
  */
-SquareMatrix<double> ProductONVBasis::evaluateOperatorDense(const USQHamiltonian<double>& usq_hamiltonian, bool diagonal_values) const {
+SquareMatrix<double> SpinResolvedONVBasis::evaluateOperatorDense(const USQHamiltonian<double>& usq_hamiltonian, bool diagonal_values) const {
     
     const auto K = usq_hamiltonian.dimension()/2;
 
     if (!usq_hamiltonian.areSpinHamiltoniansOfSameDimension()) {
-         throw std::invalid_argument("ProductONVBasis::evaluateOperatorDense(USQHamiltonian<double>, bool): Underlying spin Hamiltonians are not of the same dimension, and this is currently required for this method");
+         throw std::invalid_argument("SpinResolvedONVBasis::evaluateOperatorDense(USQHamiltonian<double>, bool): Underlying spin Hamiltonians are not of the same dimension, and this is currently required for this method");
     }
 
     if (K != this->K) {
-        throw std::invalid_argument("ProductONVBasis::evaluateOperatorDense(USQHamiltonian<double>, bool): Basis functions of the ONV basis and the operator are incompatible.");
+        throw std::invalid_argument("SpinResolvedONVBasis::evaluateOperatorDense(USQHamiltonian<double>, bool): Basis functions of the spin-resolved ONV basis and the operator are incompatible.");
     }
 
     SquareMatrix<double> total_evaluation = SquareMatrix<double>::Zero(this->get_dimension(), this->get_dimension());
@@ -694,18 +694,18 @@ SquareMatrix<double> ProductONVBasis::evaluateOperatorDense(const USQHamiltonian
  *
  *  @param usq_hamiltonian                the Hamiltonian expressed in an unrestricted orthonormal basis 
  *
- *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the ONV basis
+ *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the spin-resolved ONV basis
  */
-VectorX<double> ProductONVBasis::evaluateOperatorDiagonal(const USQHamiltonian<double>& usq_hamiltonian) const {
+VectorX<double> SpinResolvedONVBasis::evaluateOperatorDiagonal(const USQHamiltonian<double>& usq_hamiltonian) const {
 
     const auto K = usq_hamiltonian.dimension()/2;
 
     if (!usq_hamiltonian.areSpinHamiltoniansOfSameDimension()) {
-         throw std::invalid_argument("ProductONVBasis::evaluateOperatorDiagonal(USQHamiltonian<double>): Underlying spin Hamiltonians are not of the same dimension, and this is currently required for this method");
+         throw std::invalid_argument("SpinResolvedONVBasis::evaluateOperatorDiagonal(USQHamiltonian<double>): Underlying spin Hamiltonians are not of the same dimension, and this is currently required for this method");
     }
 
     if (K != this->K) {
-        throw std::invalid_argument("ProductONVBasis::evaluateOperatorDiagonal(USQHamiltonian<double>): Basis functions of the ONV basis and the operator are incompatible.");
+        throw std::invalid_argument("SpinResolvedONVBasis::evaluateOperatorDiagonal(USQHamiltonian<double>): Basis functions of the spin-resolved ONV basis and the operator are incompatible.");
     }
 
     // Evaluation environment
@@ -728,8 +728,8 @@ VectorX<double> ProductONVBasis::evaluateOperatorDiagonal(const USQHamiltonian<d
 
     VectorX<double> diagonal = VectorX<double>::Zero(this->dim);
 
-    ONV onv_alpha = fock_space_alpha.makeONV(0);
-    ONV onv_beta = fock_space_beta.makeONV(0);
+    SpinUnresolvedONV onv_alpha = fock_space_alpha.makeONV(0);
+    SpinUnresolvedONV onv_beta = fock_space_beta.makeONV(0);
     for (size_t Ia = 0; Ia < dim_alpha; Ia++) {  // Ia loops over addresses of alpha spin strings
 
         fock_space_beta.transformONV(onv_beta, 0);
@@ -788,24 +788,24 @@ VectorX<double> ProductONVBasis::evaluateOperatorDiagonal(const USQHamiltonian<d
  *
  *  @param usq_hamiltonian                the Hamiltonian expressed in an unrestricted orthonormal basis 
  *  @param x                              the vector upon which the evaluation acts 
- *  @param diagonal                       the diagonal evaluated in the ONV basis
+ *  @param diagonal                       the diagonal evaluated in the spin-resolved ONV basis
  *
- *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the ONV basis
+ *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the spin-resolved ONV basis
  */
-VectorX<double> ProductONVBasis::evaluateOperatorMatrixVectorProduct(const USQHamiltonian<double>& usq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
+VectorX<double> SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(const USQHamiltonian<double>& usq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
     auto K = usq_hamiltonian.dimension()/2;
 
     if (!usq_hamiltonian.areSpinHamiltoniansOfSameDimension()) {
-         throw std::invalid_argument("ProductONVBasis::evaluateOperatorMatrixVectorProduct(USQHamiltonian<double>, VectorX<double> , VectorX<double>): Underlying spin Hamiltonians are not of the same dimension, and this is currently required for this method");
+         throw std::invalid_argument("SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(USQHamiltonian<double>, VectorX<double> , VectorX<double>): Underlying spin Hamiltonians are not of the same dimension, and this is currently required for this method");
     }
 
     if (K != this->get_K()) {
-        throw std::invalid_argument("ProductONVBasis::evaluateOperatorMatrixVectorProduct(USQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the ONV basis and usq_hamiltonian are incompatible.");
+        throw std::invalid_argument("SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(USQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the spin-resolved ONV basis and usq_hamiltonian are incompatible.");
     }
 
     // Environment for evaluations
-    const ONVBasis& fock_space_alpha = this->get_fock_space_alpha();
-    const ONVBasis& fock_space_beta = this->get_fock_space_beta();
+    const SpinUnresolvedONVBasis& fock_space_alpha = this->get_fock_space_alpha();
+    const SpinUnresolvedONVBasis& fock_space_beta = this->get_fock_space_beta();
 
     const auto& alpha_couplings = this->get_alpha_couplings();
 

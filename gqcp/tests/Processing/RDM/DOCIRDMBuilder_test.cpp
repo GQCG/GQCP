@@ -37,7 +37,7 @@ BOOST_AUTO_TEST_CASE ( lih_1RDM_trace ) {
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::ReadFCIDUMP("data/lih_631g_caitlin.FCIDUMP");
     size_t K = sq_hamiltonian.dimension();  // 16 SO
 
-    GQCP::ONVBasis fock_space (K, N/2);  // dim = 120
+    GQCP::SpinUnresolvedONVBasis fock_space (K, N/2);  // dim = 120
     GQCP::DOCI doci (fock_space);
 
     // Specify solver options and solve the eigenvalue problem
@@ -67,7 +67,7 @@ BOOST_AUTO_TEST_CASE ( lih_2RDM_trace ) {
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::ReadFCIDUMP("data/lih_631g_caitlin.FCIDUMP");
     size_t K = sq_hamiltonian.dimension();  // 16 SO
 
-    GQCP::ONVBasis fock_space (K, N/2);  // dim = 120
+    GQCP::SpinUnresolvedONVBasis fock_space (K, N/2);  // dim = 120
     GQCP::DOCI doci (fock_space);
 
     // Specify solver options and solve the eigenvalue problem
@@ -97,7 +97,7 @@ BOOST_AUTO_TEST_CASE ( lih_1RDM_2RDM_trace_DOCI ) {
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::ReadFCIDUMP("data/lih_631g_caitlin.FCIDUMP");
     size_t K = sq_hamiltonian.dimension();  // 16 SO
 
-    GQCP::ONVBasis fock_space (K, N/2);  // dim = 120
+    GQCP::SpinUnresolvedONVBasis fock_space (K, N/2);  // dim = 120
     GQCP::DOCI doci (fock_space);
 
     // Specify solver options and solve the eigenvalue problem
@@ -128,7 +128,7 @@ BOOST_AUTO_TEST_CASE ( lih_energy_RDM_contraction_DOCI ) {
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::ReadFCIDUMP("data/lih_631g_caitlin.FCIDUMP");
     size_t K = sq_hamiltonian.dimension();  // 16 SO
 
-    GQCP::ONVBasis fock_space (K, N/2);  // dim = 120
+    GQCP::SpinUnresolvedONVBasis fock_space (K, N/2);  // dim = 120
     GQCP::DOCI doci (fock_space);
 
     // Specify solver options and solve the eigenvalue problem
@@ -160,7 +160,7 @@ BOOST_AUTO_TEST_CASE ( lih_1RDM_2RDM_trace_DOCI_LinearExpansion ) {
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::ReadFCIDUMP("data/lih_631g_caitlin.FCIDUMP");
     size_t K = sq_hamiltonian.dimension();  // 16 SO
 
-    GQCP::ONVBasis fock_space (K, N/2);  // dim = 120
+    GQCP::SpinUnresolvedONVBasis fock_space (K, N/2);  // dim = 120
     GQCP::DOCI doci (fock_space);
 
     // Specify solver options and solve the eigenvalue problem
@@ -185,7 +185,7 @@ BOOST_AUTO_TEST_CASE ( throw_calculate_element ) {
     // Create a test wave function
     size_t K = 5;
     size_t N = 4;
-    GQCP::ONVBasis fock_space (K, N);
+    GQCP::SpinUnresolvedONVBasis fock_space (K, N);
 
     GQCP::VectorX<double> coeff (fock_space.get_dimension());
     coeff << 1, 1, -2, 4, -5;

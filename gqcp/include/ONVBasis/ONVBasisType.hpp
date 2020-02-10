@@ -25,11 +25,11 @@ namespace GQCP {
  *  An enum class for the implemented ONV basis types
  */
 enum class ONVBasisType {
-    ONVBasis,
-    FrozenONVBasis,
-    FrozenProductONVBasis,
-    ProductONVBasis,
-    SelectedONVBasis
+    SpinResolvedFrozenONVBasis,
+    SpinResolvedONVBasis,
+    SpinResolvedSelectedONVBasis,
+    SpinUnresolvedFrozenONVBasis,
+    SpinUnresolvedONVBasis
 };
 
 

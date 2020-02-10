@@ -32,7 +32,7 @@ namespace GQCP {
  */
 
 /**
- *  @param GAMESS_filename      the name of the GAMESS file that contains the 'selected' wave function expansion
+ *  @param GAMESS_filename      the name of the GAMESS file that contains the spin-resolved selected wave function expansion
  */
 LinearExpansionReader::LinearExpansionReader(const std::string& GAMESS_filename)
 {
@@ -79,11 +79,11 @@ LinearExpansionReader::LinearExpansionReader(const std::string& GAMESS_filename)
     boost::split(splitted_line, line, boost::is_any_of("|"));  // split on '|'
 
 
-    // Create an alpha ONV for the first field
+    // Create an alpha SpinUnresolvedONV for the first field
     std::string trimmed_alpha = boost::algorithm::trim_copy(splitted_line[0]);
     std::string reversed_alpha (trimmed_alpha.rbegin(), trimmed_alpha.rend());
 
-    // Create a beta ONV for the second field
+    // Create a beta SpinUnresolvedONV for the second field
     std::string trimmed_beta = boost::algorithm::trim_copy(splitted_line[1]);
     std::string reversed_beta (trimmed_beta.rbegin(), trimmed_beta.rend());
 
@@ -101,9 +101,9 @@ LinearExpansionReader::LinearExpansionReader(const std::string& GAMESS_filename)
     size_t N_alpha = alpha_transfer.count();
     size_t N_beta = beta_transfer.count();
 
-    this->fock_space = SelectedONVBasis(K, N_alpha, N_beta);
+    this->onv_basis = SpinResolvedSelectedONVBasis(K, N_alpha, N_beta);
 
-    this->fock_space.addConfiguration(reversed_alpha, reversed_beta);
+    this->onv_basis.addConfiguration(reversed_alpha, reversed_beta);
 
 
     // Read in the ONVs and the coefficients by splitting the line on '|', and then trimming whitespace
@@ -114,14 +114,14 @@ LinearExpansionReader::LinearExpansionReader(const std::string& GAMESS_filename)
         boost::split(splitted_line, line, boost::is_any_of("|"));  // split on '|'
 
 
-        // Create an alpha ONV for the first field
+        // Create an alpha SpinUnresolvedONV for the first field
         trimmed_alpha = boost::algorithm::trim_copy(splitted_line[0]);
         if (trimmed_alpha.length() != K) {
             throw std::invalid_argument("LinearExpansionReader(std::string): One of the provided alpha ONVs does not have the correct number of orbitals.");
         }
         reversed_alpha = std::string(trimmed_alpha.rbegin(), trimmed_alpha.rend());
 
-        // Create a beta ONV for the second field
+        // Create a beta SpinUnresolvedONV for the second field
         trimmed_beta = boost::algorithm::trim_copy(splitted_line[1]);
         if (trimmed_beta.length() != K) {
             throw std::invalid_argument("LinearExpansionReader(std::string): One of the provided beta ONVs does not have the correct number of orbitals.");
@@ -131,11 +131,11 @@ LinearExpansionReader::LinearExpansionReader(const std::string& GAMESS_filename)
 
         // Create a double for the third field
         this->coefficients(index_count) = std::stod(splitted_line[2]);
-        this->fock_space.addConfiguration(reversed_alpha, reversed_beta);
+        this->onv_basis.addConfiguration(reversed_alpha, reversed_beta);
 
     }  // while getline
 
-    this->wave_function = LinearExpansion(this->fock_space, this->coefficients);
+    this->wave_function = LinearExpansion(this->onv_basis, this->coefficients);
 }
 
 

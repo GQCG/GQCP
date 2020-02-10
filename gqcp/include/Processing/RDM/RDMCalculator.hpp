@@ -19,9 +19,9 @@
 
 
 #include "Processing/RDM/BaseRDMBuilder.hpp"
-#include "ONVBasis/ONVBasis.hpp"
-#include "ONVBasis/ProductONVBasis.hpp"
-#include "ONVBasis/SelectedONVBasis.hpp"
+#include "ONVBasis/SpinResolvedONVBasis.hpp"
+#include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
+#include "ONVBasis/SpinUnresolvedONVBasis.hpp"
 #include "QCModel/CI/LinearExpansion.hpp"
 
 #include <boost/range/adaptor/sliced.hpp>
@@ -51,21 +51,21 @@ public:
      *
      *  @param fock_space       the DOCI ONV basis
      */
-    explicit RDMCalculator(const ONVBasis& fock_space);
+    explicit RDMCalculator(const SpinUnresolvedONVBasis& fock_space);
 
     /**
      *  Allocate a FCIRDMBuilder
      *
      *  @param fock_space       the FCI ONV basis
      */
-    explicit RDMCalculator(const ProductONVBasis& fock_space);
+    explicit RDMCalculator(const SpinResolvedONVBasis& fock_space);
 
     /**
      *  Allocate a SelectedRDMBuilder
      *
      *  @param fock_space       the 'selected' ONV basis
      */
-    explicit RDMCalculator(const SelectedONVBasis& fock_space);
+    explicit RDMCalculator(const SpinResolvedSelectedONVBasis& fock_space);
 
     /**
      *  A run-time constructor allocating the appropriate derived RDMBuilder
@@ -77,7 +77,7 @@ public:
     /**
      *  A run-time constructor allocating the appropriate derived RDMBuilder and coefficient vector
      *
-     *  @param linear_expansion       the wave function holding the coefficient vector and a ONV basis on which the RDMBuilder should be based
+     *  @param linear_expansion       the linear expansion in a certain ONV basis
      */
     explicit RDMCalculator(const LinearExpansion& linear_expansion);
 

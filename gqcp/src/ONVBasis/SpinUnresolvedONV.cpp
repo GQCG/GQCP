@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "ONVBasis/ONV.hpp"
+#include "ONVBasis/SpinUnresolvedONV.hpp"
 
 #include <boost/dynamic_bitset.hpp>
 
@@ -30,10 +30,10 @@ namespace GQCP {
 /**
  *  @param K                        the number of orbitals
  *  @param N                        the number of electrons
- *  @param unsigned_representation  the representation for the ONV as an unsigned integer
+ *  @param unsigned_representation  the representation for the SpinUnresolvedONV as an unsigned integer
  */
-ONV::ONV(size_t K, size_t N, size_t unsigned_representation) :
-    ONV(K, N)
+SpinUnresolvedONV::SpinUnresolvedONV(size_t K, size_t N, size_t unsigned_representation) :
+    SpinUnresolvedONV(K, N)
 {
     this->unsigned_representation = unsigned_representation;
     this->updateOccupationIndices();  // throws error if the representation and N are not compatible
@@ -41,12 +41,12 @@ ONV::ONV(size_t K, size_t N, size_t unsigned_representation) :
 
 
 /**
- *  Constructs a default ONV without a representation
+ *  Constructs a default SpinUnresolvedONV without a representation
  *
  *  @param K                        the number of orbitals
  *  @param N                        the number of electrons
  */
-ONV::ONV(size_t K, size_t N) :
+SpinUnresolvedONV::SpinUnresolvedONV(size_t K, size_t N) :
     K (K),
     N (N),
     occupation_indices (VectorXs::Zero(N))
@@ -66,7 +66,7 @@ ONV::ONV(size_t K, size_t N) :
  *
  *  @return the updated output stream
  */
-std::ostream& operator<<(std::ostream& os, const ONV& onv) {
+std::ostream& operator<<(std::ostream& os, const SpinUnresolvedONV& onv) {
     return os<< onv.asString();
 }
 
@@ -76,7 +76,7 @@ std::ostream& operator<<(std::ostream& os, const ONV& onv) {
  *
  *  @return if this ONV is the same as the other ONV
  */
-bool ONV::operator==(ONV& other) const {
+bool SpinUnresolvedONV::operator==(SpinUnresolvedONV& other) const {
     return this->unsigned_representation == other.unsigned_representation && this->K == other.K;  // this ensures that N, K and representation are equal
 }
 
@@ -86,7 +86,7 @@ bool ONV::operator==(ONV& other) const {
  *
  *  @return if this ONV is not the same as the other ONV
  */
-bool ONV::operator!=(ONV& other) const {
+bool SpinUnresolvedONV::operator!=(SpinUnresolvedONV& other) const {
     return !(this->operator==(other));
 }
 
@@ -101,7 +101,7 @@ bool ONV::operator!=(ONV& other) const {
  *
  *  Set the representation of an ONV to a new representation and call update the occupation indices accordingly
  */
-void ONV::set_representation(size_t unsigned_representation) {
+void SpinUnresolvedONV::set_representation(size_t unsigned_representation) {
     this->unsigned_representation = unsigned_representation;
     this->updateOccupationIndices();
 }
@@ -115,7 +115,7 @@ void ONV::set_representation(size_t unsigned_representation) {
 /**
  *  Extracts the positions of the set bits from the this->unsigned_representation and places them in the this->occupation_indices
  */
-void ONV::updateOccupationIndices() {
+void SpinUnresolvedONV::updateOccupationIndices() {
     size_t l = this->unsigned_representation;
     int representation_electron = 0;
     while (l != 0) {
@@ -124,7 +124,7 @@ void ONV::updateOccupationIndices() {
         l ^= (l & -l);  // flip the least significant bit
     }
     if (representation_electron != this->N) {
-        throw std::invalid_argument("ONV::updateOccupationIndices(): The current representation and electron count are not compatible");
+        throw std::invalid_argument("SpinUnresolvedONV::updateOccupationIndices(): The current representation and electron count are not compatible");
     }
 }
 
@@ -134,10 +134,10 @@ void ONV::updateOccupationIndices() {
  *
  *  @return if the p-th spatial orbital is occupied
  */
-bool ONV::isOccupied(size_t p) const {
+bool SpinUnresolvedONV::isOccupied(size_t p) const {
 
     if (p > this->K - 1) {
-        throw std::invalid_argument("ONV::isOccupied(size_t): The index is out of the bitset bounds");
+        throw std::invalid_argument("SpinUnresolvedONV::isOccupied(size_t): The index is out of the bitset bounds");
     }
 
     size_t operator_string = 1U << p;
@@ -150,7 +150,7 @@ bool ONV::isOccupied(size_t p) const {
  *
  *  @return if all given indices are occupied
  */
-bool ONV::areOccupied(const std::vector<size_t>& indices) const {
+bool SpinUnresolvedONV::areOccupied(const std::vector<size_t>& indices) const {
 
     for (const auto& index : indices) {
         if (!this->isOccupied(index)) {
@@ -168,7 +168,7 @@ bool ONV::areOccupied(const std::vector<size_t>& indices) const {
  *
  *  @return if the p-th spatial orbital is not occupied
  */
-bool ONV::isUnoccupied(size_t p) const {
+bool SpinUnresolvedONV::isUnoccupied(size_t p) const {
     return !this->isOccupied(p);
 }
 
@@ -178,7 +178,7 @@ bool ONV::isUnoccupied(size_t p) const {
  *
  *  @return if all the given indices are unoccupied
  */
-bool ONV::areUnoccupied(const std::vector<size_t>& indices) const {
+bool SpinUnresolvedONV::areUnoccupied(const std::vector<size_t>& indices) const {
 
     for (const auto& index : indices) {
         if (this->isOccupied(index)) {
@@ -200,15 +200,15 @@ bool ONV::areUnoccupied(const std::vector<size_t>& indices) const {
  *      Example:
  *          "010011".slice(1, 4) => "01[001]1" -> "001"
  */
-size_t ONV::slice(size_t index_start, size_t index_end) const {
+size_t SpinUnresolvedONV::slice(size_t index_start, size_t index_end) const {
 
     // First, do some checks
     if (index_end <= index_start) {
-        throw std::invalid_argument("ONV::slice(size_t, size_t): index_end should be larger than index_start.");
+        throw std::invalid_argument("SpinUnresolvedONV::slice(size_t, size_t): index_end should be larger than index_start.");
     }
 
     if (index_end > this->K + 1) {
-        throw std::invalid_argument("ONV::slice(size_t, size_t): The last slicing index index_end cannot be greater than the number of spatial orbitals K.");
+        throw std::invalid_argument("SpinUnresolvedONV::slice(size_t, size_t): The last slicing index index_end cannot be greater than the number of spatial orbitals K.");
     }
 
     // The union of these conditions also include the case that index_start > this->K
@@ -235,7 +235,7 @@ size_t ONV::slice(size_t index_start, size_t index_end) const {
  *
  *  Let's say that there are m electrons in the orbitals up to p (not included). If m is even, the phase factor is (+1) and if m is odd, the phase factor is (-1), since electrons are fermions.
  */
-int ONV::operatorPhaseFactor(size_t p) const {
+int SpinUnresolvedONV::operatorPhaseFactor(size_t p) const {
 
     if (p == 0) {  // we can't give this to this->slice(0, 0)
         return 1;
@@ -257,7 +257,7 @@ int ONV::operatorPhaseFactor(size_t p) const {
  *
  *  IMPORTANT: does not update the occupation indices for performance reasons, if required call updateOccupationIndices()!
  */
-bool ONV::annihilate(size_t p) {
+bool SpinUnresolvedONV::annihilate(size_t p) {
 
     if (this->isOccupied(p)) {
         size_t operator_string = 1U << p;
@@ -276,7 +276,7 @@ bool ONV::annihilate(size_t p) {
  *
  *  IMPORTANT: does not update the occupation indices for performance reasons, if required call updateOccupationIndices()!
  */
-bool ONV::annihilateAll(const std::vector<size_t>& indices) {
+bool SpinUnresolvedONV::annihilateAll(const std::vector<size_t>& indices) {
 
     if (this->areOccupied(indices)) {  // only if all indices are occupied, we will annihilate
         for (const auto& index : indices) {
@@ -297,7 +297,7 @@ bool ONV::annihilateAll(const std::vector<size_t>& indices) {
  *
  *  IMPORTANT: does not update the occupation indices for performance reasons, if required call updateOccupationIndices()!
  */
-bool ONV::annihilate(size_t p, int& sign) {
+bool SpinUnresolvedONV::annihilate(size_t p, int& sign) {
 
     if (this->annihilate(p)) {  // we have to first check if we can annihilate before applying the phase factor
         sign *= this->operatorPhaseFactor(p);
@@ -316,7 +316,7 @@ bool ONV::annihilate(size_t p, int& sign) {
  *
  *  IMPORTANT: does not update the occupation indices for performance reasons, if required call updateOccupationIndices()!
  */
-bool ONV::annihilateAll(const std::vector<size_t>& indices, int& sign) {
+bool SpinUnresolvedONV::annihilateAll(const std::vector<size_t>& indices, int& sign) {
 
     if (this->areOccupied(indices)) {  // only if all indices are occupied, we will annihilate
         for (const auto& index : indices) {
@@ -335,7 +335,7 @@ bool ONV::annihilateAll(const std::vector<size_t>& indices, int& sign) {
  *
  *  IMPORTANT: does not update the occupation indices for performance reasons, if required call updateOccupationIndices()!
  */
-bool ONV::create(size_t p) {
+bool SpinUnresolvedONV::create(size_t p) {
 
     if (!this->isOccupied(p)) {
         size_t operator_string = 1U << p;
@@ -355,7 +355,7 @@ bool ONV::create(size_t p) {
  *
  *  IMPORTANT: does not update the occupation indices for performance reasons, if required call updateOccupationIndices()!
  */
-bool ONV::create(size_t p, int& sign) {
+bool SpinUnresolvedONV::create(size_t p, int& sign) {
 
     if (this->create(p)) {  // we have to first check if we can create before applying the phase factor
         sign *= this->operatorPhaseFactor(p);
@@ -371,7 +371,7 @@ bool ONV::create(size_t p, int& sign) {
  *
  *  @return if we can apply all creation operators (i.e. 0->1) on the given indices. Subsequently perform in-place creations on the given indices
  */
-bool ONV::createAll(const std::vector<size_t>& indices) {
+bool SpinUnresolvedONV::createAll(const std::vector<size_t>& indices) {
 
     if (this->areUnoccupied(indices)) {
         for (const auto& index : indices) {
@@ -392,7 +392,7 @@ bool ONV::createAll(const std::vector<size_t>& indices) {
  *
  *  IMPORTANT: does not update the occupation indices for performance reasons, if required call updateOccupationIndices()!
  */
-bool ONV::createAll(const std::vector<size_t>& indices, int& sign) {
+bool SpinUnresolvedONV::createAll(const std::vector<size_t>& indices, int& sign) {
 
     if (this->areUnoccupied(indices)) {
         for (const auto& index : indices) {
@@ -410,7 +410,7 @@ bool ONV::createAll(const std::vector<size_t>& indices, int& sign) {
  *
  *  @return the number of different occupations between this ONV and the other, i.e. two times the number of electron excitations
  */
-size_t ONV::countNumberOfDifferences(const ONV& other) const {
+size_t SpinUnresolvedONV::countNumberOfDifferences(const SpinUnresolvedONV& other) const {
     return __builtin_popcountl(this->unsigned_representation ^ other.unsigned_representation);
 }
 
@@ -420,7 +420,7 @@ size_t ONV::countNumberOfDifferences(const ONV& other) const {
  *
  *  @return the indices of the orbitals (from right to left) that are occupied in this ONV, but unoccupied in the other
  */
-std::vector<size_t> ONV::findDifferentOccupations(const ONV &other) const {
+std::vector<size_t> SpinUnresolvedONV::findDifferentOccupations(const SpinUnresolvedONV &other) const {
 
     size_t differences = this->unsigned_representation ^ other.unsigned_representation;
     size_t occupied_differences = differences & this->unsigned_representation;  // this holds all indices occupied in this, but unoccupied in other
@@ -446,7 +446,7 @@ std::vector<size_t> ONV::findDifferentOccupations(const ONV &other) const {
  *
  *  @return the indices of the orbitals (from right to left) that are occupied both this ONV and the other
  */
-std::vector<size_t> ONV::findMatchingOccupations(const ONV& other) const {
+std::vector<size_t> SpinUnresolvedONV::findMatchingOccupations(const SpinUnresolvedONV& other) const {
 
     size_t matches = this->unsigned_representation & other.unsigned_representation;
     size_t number_of_occupied_matches = __builtin_popcountl(matches);
@@ -468,7 +468,7 @@ std::vector<size_t> ONV::findMatchingOccupations(const ONV& other) const {
 /**
  *  @return a string representation of the ONV
  */
-std::string ONV::asString() const {
+std::string SpinUnresolvedONV::asString() const {
     boost::dynamic_bitset<> transfer_set (this->K, this->unsigned_representation);
     std::string buffer;
     boost::to_string(transfer_set, buffer);

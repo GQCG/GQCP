@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "ONVBasis/FrozenProductONVBasis.hpp"
+#include "ONVBasis/SpinResolvedFrozenONVBasis.hpp"
 #include "Processing/RDM/FrozenCoreRDMBuilder.hpp"
 #include "Processing/RDM/RDMs.hpp"
 
@@ -30,14 +30,14 @@ namespace GQCP {
  *  A class capable of calculating 1- and 2-RDMs from wave functions expanded in the frozen DOCI ONV basis
  */
 class FrozenCoreDOCIRDMBuilder : public FrozenCoreRDMBuilder {
-    FrozenONVBasis fock_space;  // both the frozen alpha and beta ONV basis
+    SpinUnresolvedFrozenONVBasis fock_space;  // both the frozen alpha and beta spin-unresolved ONV basis
 
 public:
     // CONSTRUCTORS
     /**
-     *  @param fock_space       the frozen ONV basis
+     *  @param fock_space       both the frozen alpha and beta spin-unresolved ONV basis
      */
-    explicit FrozenCoreDOCIRDMBuilder(const FrozenONVBasis& fock_space);
+    explicit FrozenCoreDOCIRDMBuilder(const SpinUnresolvedFrozenONVBasis& fock_space);
 
     // OVERRIDDEN GETTERS
     const BaseONVBasis* get_fock_space() const override { return &fock_space; }

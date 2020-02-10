@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "ONVBasis/ProductONVBasis.hpp"
+#include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Processing/RDM/RDMCalculator.hpp"
 #include "QCMethod/CI/CISolver.hpp"
@@ -70,7 +70,7 @@ public:
     // PUBLIC METHODS
 
     /**
-     *  Solve the dense eigenvalue problem for the molecular Hamiltonian in the full ONV basis
+     *  Solve the dense eigenvalue problem for the molecular Hamiltonian in the full spin-resolved ONV basis
      */
     void solve();
 

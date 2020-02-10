@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "ONVBasis/ONVBasis.hpp"
+#include "ONVBasis/SpinUnresolvedONVBasis.hpp"
 #include "QCModel/CI/LinearExpansion.hpp"
 
 
@@ -33,18 +33,18 @@ public:
 
     // PUBLIC METHODS
     /**
-     *  @param onv      the ONV that is being projected on
+     *  @param onv      the doubly-occupied (spin-resolved) ONV that is being projected on
      *
-     *  @return the overlap of the APIG-like wave function with the given on, i.e. the projection of the APIG wave function onto that ONV
+     *  @return the overlap of the APIG-like wave function with the given ONV, i.e. the projection of the APIG wave function onto that ONV
      */
-    virtual double overlap(const ONV& onv) const = 0;
+    virtual double overlap(const SpinUnresolvedONV& onv) const = 0;
 
     /**
-     *  @param fock_space       the seniority-zero ONV basis the wave function should live in
+     *  @param onv_basis       the seniority-zero spin-resolved ONV basis the wave function should live in
      *
      *  @return the wave function expansion corresponding to the geminal coefficients
      */
-    LinearExpansion toLinearExpansion(const ONVBasis& fock_space) const;
+    LinearExpansion toLinearExpansion(const SpinUnresolvedONVBasis& onv_basis) const;
 };
 
 

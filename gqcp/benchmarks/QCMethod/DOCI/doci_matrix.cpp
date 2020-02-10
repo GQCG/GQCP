@@ -1,12 +1,13 @@
+/**
+ *  A benchmark for the construction of a random DOCI Hamiltonian matrix in a doubly-occupied spin-unresolved basis of 16 spatial orbitals and 5-8 electron pairs.
+ */
+
 #include <benchmark/benchmark.h>
 
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/DOCI.hpp"
 
 
-/**
- *  Benchmark the construction of a random DOCI Hamiltonian matrix for a doubly-occupied ONV basis of 16 spatial orbitals and 5-8 electron pairs.
- */
 static void CustomArguments(benchmark::internal::Benchmark* b) {
     for (int i = 5; i < 9; ++i) {
         b->Args({16, i});  // spatial orbitals, electron pairs
@@ -16,12 +17,12 @@ static void CustomArguments(benchmark::internal::Benchmark* b) {
 
 static void constructHamiltonian(benchmark::State& state) {
 
-    // Set up a random SQHamiltonian and a doubly occupied ONV basis
+    // Set up a random SQHamiltonian and a doubly occupied SpinUnresolvedONV basis
     const size_t K = state.range(0);  // number of spatial orbitals
     const size_t N_P = state.range(1);  // number of electron pairs
 
     const auto hamiltonian = GQCP::SQHamiltonian<double>::Random(K);
-    GQCP::ONVBasis doubly_occupied_onv_basis (K, N_P);
+    GQCP::SpinUnresolvedONVBasis doubly_occupied_onv_basis (K, N_P);
 
     GQCP::DOCI doci (doubly_occupied_onv_basis);
 
@@ -40,6 +41,5 @@ static void constructHamiltonian(benchmark::State& state) {
 }
 
 
-// Perform the benchmarks
 BENCHMARK(constructHamiltonian)->Unit(benchmark::kMillisecond)->Apply(CustomArguments);
 BENCHMARK_MAIN();

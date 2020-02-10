@@ -37,8 +37,8 @@ BOOST_AUTO_TEST_CASE ( FrozenCoreDOCI_one_rdms ) {
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (H5, "STO-3G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, H5);  // in an AO basis
 
-    GQCP::FrozenONVBasis fock_space (K, 3, 2);
-    GQCP::SelectedONVBasis selected_fock_space (fock_space);
+    GQCP::SpinUnresolvedFrozenONVBasis fock_space (K, 3, 2);
+    GQCP::SpinResolvedSelectedONVBasis selected_fock_space (fock_space);
     GQCP::FrozenCoreDOCI doci (fock_space);
 
     // Specify solver options and solve the eigenvalue problem
@@ -68,8 +68,8 @@ BOOST_AUTO_TEST_CASE ( FrozenCoreDOCI_two_rdms ) {
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (H5, "STO-3G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, H5);  // in an AO basis
 
-    GQCP::FrozenONVBasis fock_space (K, 3, 2);
-    GQCP::SelectedONVBasis selected_fock_space (fock_space);
+    GQCP::SpinUnresolvedFrozenONVBasis fock_space (K, 3, 2);
+    GQCP::SpinResolvedSelectedONVBasis selected_fock_space (fock_space);
     GQCP::FrozenCoreDOCI doci (fock_space);
 
     // Specify solver options and solve the eigenvalue problem

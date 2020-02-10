@@ -18,18 +18,19 @@
 #pragma once
 
 
-#include "ONV.hpp"
+#include "ONVBasis/SpinUnresolvedONV.hpp"
 
 
 namespace GQCP {
 
 
 /**
- *  A struct that represents the combination of an alpha and beta ONV
+ *  A spin-resolved ONV.
  */
-struct Configuration {
-    ONV onv_alpha;
-    ONV onv_beta;
+class SpinResolvedONV {
+public:
+    SpinUnresolvedONV onv_alpha;
+    SpinUnresolvedONV onv_beta;
 };
 
 

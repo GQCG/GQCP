@@ -77,8 +77,8 @@ BOOST_AUTO_TEST_CASE ( mulliken_N2_STO_3G ) {
 
     sq_hamiltonian.transform(rhf_parameters.coefficientMatrix());
 
-    GQCP::ONVBasis fock_space (K, N/2);
-    GQCP::DOCI doci (fock_space);
+    GQCP::SpinUnresolvedONVBasis onv_basis (K, N/2);
+    GQCP::DOCI doci (onv_basis);
 
     GQCP::CISolver ci_solver (doci, sq_hamiltonian);
 
@@ -147,17 +147,17 @@ BOOST_AUTO_TEST_CASE ( S_z_constrained_NOplus_STO_3G ) {
     constrained = constrained.constrain(sq_N_Sz_beta, 0.5, GQCP::SpinComponent::BETA);
 
     // Do the FCI calculation 
-    GQCP::ProductONVBasis fock_space (K, Ne/2, Ne/2);
+    GQCP::SpinResolvedONVBasis onv_basis (K, Ne/2, Ne/2);
     
-    GQCP::DavidsonSolverOptions solver_options (fock_space.HartreeFockExpansion());
-    GQCP::VectorX<double> dia = fock_space.evaluateOperatorDiagonal(constrained);
-    GQCP::VectorFunction<double> matrixVectorProduct = [&fock_space, &dia, &constrained](const GQCP::VectorX<double>& x) { return fock_space.evaluateOperatorMatrixVectorProduct(constrained, x, dia); };
+    GQCP::DavidsonSolverOptions solver_options (onv_basis.HartreeFockExpansion());
+    GQCP::VectorX<double> dia = onv_basis.evaluateOperatorDiagonal(constrained);
+    GQCP::VectorFunction<double> matrixVectorProduct = [&onv_basis, &dia, &constrained](const GQCP::VectorX<double>& x) { return onv_basis.evaluateOperatorMatrixVectorProduct(constrained, x, dia); };
     GQCP::DavidsonSolver ds_solver (matrixVectorProduct, dia, solver_options);
 
     ds_solver.solve();
 
     // Calculate the RDMs in order to evaluate expectation values
-    GQCP::RDMCalculator rdm_calc(fock_space);
+    GQCP::RDMCalculator rdm_calc(onv_basis);
     rdm_calc.set_coefficients(ds_solver.get_eigenpair().get_eigenvector());
 
     auto one_rdms = rdm_calc.calculate1RDMs();
@@ -178,7 +178,7 @@ BOOST_AUTO_TEST_CASE ( S_z_constrained_NOplus_STO_3G ) {
 
 
 /*
- *  Calculate Sz and S^2 values for O2 in a restricted ONV basis (alpha == beta)
+ *  Calculate Sz and S^2 values for O2 in a restricted SpinUnresolvedONV basis (alpha == beta)
  */ 
 BOOST_AUTO_TEST_CASE ( spin_O2 ) {
 
@@ -201,8 +201,8 @@ BOOST_AUTO_TEST_CASE ( spin_O2 ) {
 
     sq_hamiltonian.transform(rhf_parameters.coefficientMatrix());
 
-    GQCP::ProductONVBasis fock_space (K, N/2, N/2);
-    GQCP::FCI fci (fock_space);
+    GQCP::SpinResolvedONVBasis onv_basis (K, N/2, N/2);
+    GQCP::FCI fci (onv_basis);
  
     GQCP::CISolver ci_solver (fci, sq_hamiltonian);
 
@@ -220,6 +220,6 @@ BOOST_AUTO_TEST_CASE ( spin_O2 ) {
     // <S^2> should be 2 (S=1) because the ground state for O2 is a biradical triplet.
     BOOST_CHECK(std::abs(s_squared - 2) < 1.0e-06);
 
-    // In the restricted ONV basis, alpha = beta, hence the expectation value of the z-component of the spin operator should be zero
+    // In the restricted SpinUnresolvedONV basis, alpha = beta, hence the expectation value of the z-component of the spin operator should be zero
     BOOST_CHECK(std::abs(s_z - 0) < 1.0e-06);
 }

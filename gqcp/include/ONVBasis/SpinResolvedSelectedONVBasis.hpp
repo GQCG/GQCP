@@ -19,10 +19,11 @@
 
 
 #include "ONVBasis/BaseONVBasis.hpp"
-#include "ONVBasis/Configuration.hpp"
 #include "ONVBasis/EvaluationIterator.hpp"
-#include "ONVBasis/FrozenProductONVBasis.hpp"
-#include "ONVBasis/ProductONVBasis.hpp"
+#include "ONVBasis/SpinResolvedONV.hpp"
+#include "ONVBasis/SpinResolvedFrozenONVBasis.hpp"
+#include "ONVBasis/SpinResolvedONVBasis.hpp"
+#include "ONVBasis/SpinUnresolvedONVBasis.hpp"
 #include "Operator/SecondQuantized/USQHamiltonian.hpp"
 
 
@@ -30,16 +31,14 @@ namespace GQCP {
 
 
 /**
- *  A class that represents a ONV basis that is flexible in the number of states that span it
- *
- *  Configurations are represented as a Configuration: a combination of an alpha and a beta ONV
+ *  A spin-resolved basis that is flexible in its compromising (spin-resolved) ONVs.
  */
-class SelectedONVBasis : public BaseONVBasis {
+class SpinResolvedSelectedONVBasis : public BaseONVBasis {
 private:
     size_t N_alpha;  // number of alpha electrons
     size_t N_beta;  // number of beta electrons
 
-    std::vector<Configuration> configurations;
+    std::vector<SpinResolvedONV> onvs;  // the 'selected' ONVs
 
     /**
      *  @param onv1     the alpha ONV as a string representation read from right to left
@@ -49,11 +48,12 @@ private:
      *
      *  IMPORTANT: only works for up to 64 bits!
      */
-    Configuration makeConfiguration(const std::string& onv1, const std::string& onv2) const;
+    SpinResolvedONV makeConfiguration(const std::string& onv1, const std::string& onv2) const;
+
 
 public:
     // CONSTRUCTORS
-    SelectedONVBasis() = default;  // need a default constructor
+    SpinResolvedSelectedONVBasis() = default;  // need a default constructor
 
     /**
      *  A constructor with initial ONV basis dimension of 0
@@ -62,42 +62,42 @@ public:
      *  @param N_alpha      the number of alpha electrons
      *  @param N_beta       the number of beta electrons
      */
-    SelectedONVBasis(size_t K, size_t N_alpha, size_t N_beta);
+    SpinResolvedSelectedONVBasis(size_t K, size_t N_alpha, size_t N_beta);
 
     /**
-     *  A constructor that generates the configurations based on the given ProductONVBasis.
+     *  A constructor that generates the onvs based on the given SpinResolvedONVBasis.
      *
-     *  @param fock_space       the product ONV basis from which the configurations should be generated
+     *  @param fock_space       the product ONV basis from which the onvs should be generated
      */
-    explicit SelectedONVBasis(const ProductONVBasis& fock_space);
+    explicit SpinResolvedSelectedONVBasis(const SpinResolvedONVBasis& fock_space);
 
     /**
-     *  A constructor that generates the configurations based on the given ONVBasis.
+     *  A constructor that generates the onvs based on the given ONVBasis.
      *
-     *  @param fock_space       the ONV basis from which the configurations should be generated
+     *  @param fock_space       the ONV basis from which the onvs should be generated
      */
-    explicit SelectedONVBasis(const ONVBasis& fock_space);
+    explicit SpinResolvedSelectedONVBasis(const SpinUnresolvedONVBasis& fock_space);
 
     /**
-     *  A constructor that generates the configurations based on the given frozen product ONV basis.
+     *  A constructor that generates the onvs based on the given frozen product ONV basis.
      *
-     *  @param fock_space       the frozen product ONV basis from which the configurations should be generated
+     *  @param fock_space       the frozen product ONV basis from which the onvs should be generated
      */
-    explicit SelectedONVBasis(const FrozenProductONVBasis& fock_space);
+    explicit SpinResolvedSelectedONVBasis(const SpinResolvedFrozenONVBasis& fock_space);
 
     /**
-     *  A constructor that generates the configurations based on the given frozen ONV basis.
+     *  A constructor that generates the onvs based on the given frozen ONV basis.
      *
-     *  @param fock_space       the frozen ONV basis from which the configurations should be generated
+     *  @param fock_space       the frozen ONV basis from which the onvs should be generated
      */
-    explicit SelectedONVBasis(const FrozenONVBasis& fock_space);
+    explicit SpinResolvedSelectedONVBasis(const SpinUnresolvedFrozenONVBasis& fock_space);
 
 
     // GETTERS
     size_t get_N_alpha() const { return this->N_alpha; }
     size_t get_N_beta() const { return this->N_beta; }
-    const Configuration& get_configuration(size_t index) const { return this->configurations[index]; }
-    ONVBasisType get_type() const override { return ONVBasisType::SelectedONVBasis; }
+    const SpinResolvedONV& get_configuration(size_t index) const { return this->onvs[index]; }
+    ONVBasisType get_type() const override { return ONVBasisType::SpinResolvedSelectedONVBasis; }
 
 
     // PUBLIC METHODS
@@ -110,7 +110,7 @@ public:
     void addConfiguration(const std::string& onv1, const std::string& onv2);
 
     /**
-     *  Make configurations (see makeConfiguration()) and add them to the ONV basis
+     *  Make onvs (see makeConfiguration()) and add them to the ONV basis
      *
      *  @param onv1s     the alpha ONVs as string representations read from right to left
      *  @param onv2s     the beta ONVs as string representations read from right to left
@@ -312,7 +312,7 @@ public:
     void EvaluateOperator(const USQHamiltonian<double>& usq_hamiltonian, EvaluationIterator<_Matrix>& evaluation_iterator, bool diagonal_values) const {
 
         if (!usq_hamiltonian.areSpinHamiltoniansOfSameDimension()) {
-            throw std::invalid_argument("SelectedONVBasis::EvaluateOperator(USQHamiltonian<double>, EvaluationIterator&, bool): Different spinor dimensions of spin components are currently not supported.");
+            throw std::invalid_argument("SpinResolvedSelectedONVBasis::EvaluateOperator(USQHamiltonian<double>, EvaluationIterator&, bool): Different spinor dimensions of spin components are currently not supported.");
         }
     
         EvaluateOperator(usq_hamiltonian.spinHamiltonian(SpinComponent::ALPHA).core(), usq_hamiltonian.spinHamiltonian(SpinComponent::BETA).core(), usq_hamiltonian.spinHamiltonian(SpinComponent::ALPHA).twoElectron(), usq_hamiltonian.spinHamiltonian(SpinComponent::BETA).twoElectron(), usq_hamiltonian.twoElectronMixed(), evaluation_iterator, diagonal_values);
@@ -337,9 +337,9 @@ public:
         const auto& h_b = one_op_beta.parameters();
 
         for (;!evaluation_iterator.is_finished(); evaluation_iterator.increment()) {  // loop over all addresses (1)
-            Configuration configuration_I = this->get_configuration(evaluation_iterator.index);
-            ONV alpha_I = configuration_I.onv_alpha;
-            ONV beta_I = configuration_I.onv_beta;
+            SpinResolvedONV configuration_I = this->get_configuration(evaluation_iterator.index);
+            SpinUnresolvedONV alpha_I = configuration_I.onv_alpha;
+            SpinUnresolvedONV beta_I = configuration_I.onv_beta;
 
             if (diagonal_values) {
                 for (size_t p = 0; p < K; p++) {
@@ -356,9 +356,9 @@ public:
             // Calculate the off-diagonal elements, by going over all other ONVs
             for (size_t J = evaluation_iterator.index+1; J < dim; J++) {
 
-                Configuration configuration_J = this->get_configuration(J);
-                ONV alpha_J = configuration_J.onv_alpha;
-                ONV beta_J = configuration_J.onv_beta;
+                SpinResolvedONV configuration_J = this->get_configuration(J);
+                SpinUnresolvedONV alpha_J = configuration_J.onv_alpha;
+                SpinUnresolvedONV beta_J = configuration_J.onv_beta;
 
                 if ((alpha_I.countNumberOfDifferences(alpha_J) == 2) && (beta_I.countNumberOfDifferences(beta_J) == 0)) {
 
@@ -459,9 +459,9 @@ public:
         const auto& g_ab = two_op_mixed.parameters();
 
         for ( ;!evaluation_iterator.is_finished(); evaluation_iterator.increment()) {  // loop over all addresses (1)
-            Configuration configuration_I = this->get_configuration(evaluation_iterator.index);
-            ONV alpha_I = configuration_I.onv_alpha;
-            ONV beta_I = configuration_I.onv_beta;
+            SpinResolvedONV configuration_I = this->get_configuration(evaluation_iterator.index);
+            SpinUnresolvedONV alpha_I = configuration_I.onv_alpha;
+            SpinUnresolvedONV beta_I = configuration_I.onv_beta;
 
             if (diagonal_values) {
                 for (size_t p = 0; p < K; p++) {
@@ -504,9 +504,9 @@ public:
             // Calculate the off-diagonal elements, by going over all other ONVs
             for (size_t J = evaluation_iterator.index+1; J < dim; J++) {
 
-                Configuration configuration_J = this->get_configuration(J);
-                ONV alpha_J = configuration_J.onv_alpha;
-                ONV beta_J = configuration_J.onv_beta;
+                SpinResolvedONV configuration_J = this->get_configuration(J);
+                SpinUnresolvedONV alpha_J = configuration_J.onv_alpha;
+                SpinUnresolvedONV beta_J = configuration_J.onv_beta;
 
                 if ((alpha_I.countNumberOfDifferences(alpha_J) == 2) && (beta_I.countNumberOfDifferences(beta_J) == 0)) {
 

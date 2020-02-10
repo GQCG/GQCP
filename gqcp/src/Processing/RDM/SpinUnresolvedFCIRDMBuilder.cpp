@@ -24,7 +24,7 @@ namespace GQCP {
 /*
  *  CONSTRUCTOR
  */
-SpinUnresolvedFCIRDMBuilder::SpinUnresolvedFCIRDMBuilder(const ONVBasis& fock_space) :
+SpinUnresolvedFCIRDMBuilder::SpinUnresolvedFCIRDMBuilder(const SpinUnresolvedONVBasis& fock_space) :
     fock_space (fock_space)
 {}
 
@@ -70,11 +70,11 @@ double SpinUnresolvedFCIRDMBuilder::calculateElement(const std::vector<size_t>& 
 
     double value = 0.0;
     int sign = 1;
-    ONVBasis fock_space = this->fock_space;  // make a copy because this method is marked const
+    SpinUnresolvedONVBasis fock_space = this->fock_space;  // make a copy because this method is marked const
     size_t dim = fock_space.get_dimension();
 
 
-    ONV bra = fock_space.makeONV(0);
+    SpinUnresolvedONV bra = fock_space.makeONV(0);
     size_t I = 0;
     while (I < dim) {  // loop over all bra addresses
 
@@ -93,7 +93,7 @@ double SpinUnresolvedFCIRDMBuilder::calculateElement(const std::vector<size_t>& 
         }
 
 
-        ONV ket = fock_space.makeONV(0);
+        SpinUnresolvedONV ket = fock_space.makeONV(0);
         size_t J = 0;
         while (J < dim) {  // loop over all ket indices
 

@@ -174,9 +174,9 @@ BOOST_AUTO_TEST_CASE ( dyson_coefficients ) {
     const size_t K = 2;
     const size_t N = 2;
  
-    const GQCP::ProductONVBasis fock_space1 (K, N/2, N/2);
-    const GQCP::ProductONVBasis fock_space2 (K, N/2, N/2-1);
-    const GQCP::ProductONVBasis fock_space3 (K, N/2-1, N/2);
+    const GQCP::SpinResolvedONVBasis fock_space1 (K, N/2, N/2);
+    const GQCP::SpinResolvedONVBasis fock_space2 (K, N/2, N/2-1);
+    const GQCP::SpinResolvedONVBasis fock_space3 (K, N/2-1, N/2);
   
     GQCP::VectorX<double> coeffs1 = GQCP::VectorX<double>::Zero(4); 
     coeffs1 << 0.182574, 0.365148, 0.547723, 0.730297;

@@ -28,7 +28,7 @@ namespace GQCP {
 /**
  *  @param fock_space       the full ONV basis, identical for alpha and beta
  */
-DOCI::DOCI(const ONVBasis& fock_space) :
+DOCI::DOCI(const SpinUnresolvedONVBasis& fock_space) :
     HamiltonianBuilder(),
     fock_space (fock_space)
 {}
@@ -60,7 +60,7 @@ SquareMatrix<double> DOCI::constructHamiltonian(const SQHamiltonian<double>& sq_
 
     // Create the first spin string. Since in DOCI, alpha == beta, we can just treat them as one and multiply all contributions by 2
     VectorX<double> diagonal = calculateDiagonal(sq_hamiltonian);
-    ONV onv = this->fock_space.makeONV(0);  // spin string with address 0
+    SpinUnresolvedONV onv = this->fock_space.makeONV(0);  // spin string with address 0
 
     for (size_t I = 0; I < dim; I++) {  // I loops over all the addresses of the onv
 
@@ -128,7 +128,7 @@ VectorX<double> DOCI::matrixVectorProduct(const SQHamiltonian<double>& sq_hamilt
 
 
     // Create the first spin string. Since in DOCI, alpha == beta, we can just treat them as one and multiply all contributions by 2
-    ONV onv = this->fock_space.makeONV(0);  // spin string with address
+    SpinUnresolvedONV onv = this->fock_space.makeONV(0);  // spin string with address
 
     // Diagonal contributions
     VectorX<double> matvec = diagonal.cwiseProduct(x);
@@ -199,7 +199,7 @@ VectorX<double> DOCI::calculateDiagonal(const SQHamiltonian<double>& sq_hamilton
 
     VectorX<double> diagonal = VectorX<double>::Zero(dim);
     // Create the first spin string. Since in DOCI, alpha == beta, we can just treat them as one and multiply all contributions by 2
-    ONV onv = this->fock_space.makeONV(0);  // onv with address 0
+    SpinUnresolvedONV onv = this->fock_space.makeONV(0);  // onv with address 0
 
     for (size_t I = 0; I < dim; I++) {  // I loops over addresses of spin strings
         double double_I = 0;

@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "ONVBasis/FrozenONVBasis.hpp"
+#include "ONVBasis/SpinUnresolvedFrozenONVBasis.hpp"
 
 
 namespace GQCP {
@@ -31,19 +31,19 @@ namespace GQCP {
  *  @param N        the total number of electrons
  *  @param X        the number of frozen orbitals and electrons
  */
-FrozenONVBasis::FrozenONVBasis(size_t K, size_t N, size_t X) :
-        BaseFrozenCoreONVBasis(std::make_shared<ONVBasis>(ONVBasis(K-X, N-X)), X),
+SpinUnresolvedFrozenONVBasis::SpinUnresolvedFrozenONVBasis(size_t K, size_t N, size_t X) :
+        BaseFrozenCoreONVBasis(std::make_shared<SpinUnresolvedONVBasis>(SpinUnresolvedONVBasis(K-X, N-X)), X),
         ONVManipulator(N),
-        active_fock_space (K-X, N-X),
+        active_onv_basis (K-X, N-X),
         X (X)
 {}
 
 /**
- *  @param fock_space       (to be frozen) full ONV basis
+ *  @param fock_space       (to be frozen) full spin-unresolved basis
  *  @param X                the number of frozen orbitals and electrons
  */
-FrozenONVBasis::FrozenONVBasis(const ONVBasis& fock_space, size_t X) :
-    FrozenONVBasis(fock_space.get_K(), fock_space.get_N(), X)
+SpinUnresolvedFrozenONVBasis::SpinUnresolvedFrozenONVBasis(const SpinUnresolvedONVBasis& fock_space, size_t X) :
+    SpinUnresolvedFrozenONVBasis(fock_space.get_K(), fock_space.get_N(), X)
 {}
 
 
@@ -55,15 +55,15 @@ FrozenONVBasis::FrozenONVBasis(const ONVBasis& fock_space, size_t X) :
 /**
  *  @param representation       a representation of an ONV
  *
- *  @return the next bitstring permutation in the frozen ONV basis
+ *  @return the next bitstring permutation in this ONV basis
  *
  *      Examples (first orbital is frozen):
  *          0101 -> 1001
  *         01101 -> 10011
  */
-size_t FrozenONVBasis::ulongNextPermutation(size_t representation) const {
+size_t SpinUnresolvedFrozenONVBasis::ulongNextPermutation(size_t representation) const {
     // generate the permutation from the active space, bitshift left X amount of times to remove the frozen orbital indices before passing it to the active space
-    size_t sub_permutation = this->active_fock_space.ulongNextPermutation(representation >> this->X);
+    size_t sub_permutation = this->active_onv_basis.ulongNextPermutation(representation >> this->X);
     // transform the permutation to the frozen core space, by bitshifting right X amount of times and filling the new 0 bits with 1's (by adding 2^X - 1)
     sub_permutation <<= X;
     sub_permutation += static_cast<size_t>(pow(2,X)-1);
@@ -76,10 +76,10 @@ size_t FrozenONVBasis::ulongNextPermutation(size_t representation) const {
  *
  *  @return the address (i.e. the ordering number) of the given ONV
  */
-size_t FrozenONVBasis::getAddress(size_t representation) const {
+size_t SpinUnresolvedFrozenONVBasis::getAddress(size_t representation) const {
     // transform the representation to the sub space, by bitshifting left X amount of times to remove the frozen orbital indices
-    // address of the total ONV in the frozen ONV basis is identical to that of the sub ONV in the sub ONV basis.
-    return this->active_fock_space.getAddress(representation >> this->X);
+    // address of the total ONV in this frozen ONV basis is identical to that of the sub ONV in the sub ONV basis.
+    return this->active_onv_basis.getAddress(representation >> this->X);
 };
 
 
@@ -90,9 +90,9 @@ size_t FrozenONVBasis::getAddress(size_t representation) const {
   *
   *  @return unsigned representation of the address
   */
-size_t FrozenONVBasis::calculateRepresentation(size_t address) const {
+size_t SpinUnresolvedFrozenONVBasis::calculateRepresentation(size_t address) const {
     // generate the representation in the active space
-    size_t representation = this->active_fock_space.calculateRepresentation(address);
+    size_t representation = this->active_onv_basis.calculateRepresentation(address);
 
     // transform the permutation to the frozen core space, by bitshifting right X amount of times and filling the new 0 bits with 1's (by adding 2^X - 1)
     representation <<= X;
@@ -109,9 +109,9 @@ size_t FrozenONVBasis::calculateRepresentation(size_t address) const {
 /**
  *  @param onv       the ONV
  *
- *  @return the amount of ONVs (with a larger address) this ONV would couple with given a one electron operator
+ *  @return the amount of ONVs (with a larger address) the given ONV would couple with given a one electron operator
  */
-size_t FrozenONVBasis::countOneElectronCouplings(const ONV& onv) const {
+size_t SpinUnresolvedFrozenONVBasis::countOneElectronCouplings(const SpinUnresolvedONV& onv) const {
     size_t V = K-N;  // amount of virtual orbitals
     size_t coupling_count = 0;
 
@@ -127,9 +127,9 @@ size_t FrozenONVBasis::countOneElectronCouplings(const ONV& onv) const {
 /**
  *  @param onv       the ONV
  *
- *  @return the amount of ONVs (with a larger address) this ONV would couple with given a two electron operator
+ *  @return the amount of ONVs (with a larger address) the given ONV would couple with given a two electron operator
  */
-size_t FrozenONVBasis::countTwoElectronCouplings(const ONV& onv) const {
+size_t SpinUnresolvedFrozenONVBasis::countTwoElectronCouplings(const SpinUnresolvedONV& onv) const {
 
     size_t V = K-N; // amount of virtual orbitals
     size_t coupling_count = 0;
@@ -146,7 +146,7 @@ size_t FrozenONVBasis::countTwoElectronCouplings(const ONV& onv) const {
             coupling_count += (V-coupling_count2)*coupling_count2;
 
             if(coupling_count2 > 1 ){
-                coupling_count += ONVBasis::calculateDimension(coupling_count2, 2);
+                coupling_count += SpinUnresolvedONVBasis::calculateDimension(coupling_count2, 2);
             }
         }
     }
@@ -156,18 +156,18 @@ size_t FrozenONVBasis::countTwoElectronCouplings(const ONV& onv) const {
 
 
 /**
- *  @return the amount non-zero couplings of a one electron coupling scheme in the ONV basis
+ *  @return the amount non-zero couplings of a one electron coupling scheme in this ONV basis
  */
-size_t FrozenONVBasis::countTotalOneElectronCouplings() const {
-    return this->active_fock_space.countTotalOneElectronCouplings();
+size_t SpinUnresolvedFrozenONVBasis::countTotalOneElectronCouplings() const {
+    return this->active_onv_basis.countTotalOneElectronCouplings();
 }
 
 
 /**
- *  @return the amount non-zero couplings of a two electron coupling scheme in the ONV basis
+ *  @return the amount non-zero couplings of a two electron coupling scheme in this ONV basis
  */
-size_t FrozenONVBasis::countTotalTwoElectronCouplings() const {
-    return this->active_fock_space.countTotalTwoElectronCouplings();
+size_t SpinUnresolvedFrozenONVBasis::countTotalTwoElectronCouplings() const {
+    return this->active_onv_basis.countTotalTwoElectronCouplings();
 }
 
 

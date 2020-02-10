@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "ONVBasis/ONVBasis.hpp"
+#include "ONVBasis/SpinUnresolvedONVBasis.hpp"
 #include "QCModel/CI/LinearExpansion.hpp"
 
 
@@ -26,14 +26,15 @@ namespace GQCP {
 
 
 /**
- *  A class that represents a wave function: expansion coefficients in a (spin-orbital) ONV basis
+ *  A class that represents a wave function: expansion coefficients in a spin-unresolved ONV basis
  */
 class SpinUnresolvedLinearExpansion : public LinearExpansion {
+
     /**
-     *  @param fock_space           the ONV basis in which the wave function 'lives'
+     *  @param onv_basis            the spin-unresolved ONV basis in which the wave function 'lives'
      *  @param coefficients         the expansion coefficients
      */
-    SpinUnresolvedLinearExpansion(const ONVBasis& fock_space, const VectorX<double>& coefficients);
+    SpinUnresolvedLinearExpansion(const SpinUnresolvedONVBasis& onv_basis, const VectorX<double>& coefficients);
 };
 
 

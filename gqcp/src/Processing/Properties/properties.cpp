@@ -17,7 +17,7 @@
 // 
 #include "Processing/Properties/properties.hpp"
 
-#include "ONVBasis/ProductONVBasis.hpp"
+#include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "Processing/Properties/expectation_values.hpp"
 
 
@@ -43,35 +43,35 @@ Matrix<double, 3, 3> calculateElectricPolarizability(const Matrix<double, Dynami
 /**
  *  Calculate the Dyson 'amplitudes' (the coefficients of a Dyson orbital) between two wave function expressed in the same spinor basis 
  * 
- *  @param linear_expansion1        a wave function in a product ONV basis  
- *  @param linear_expansion2        a wave function in a product ONV basis containing one fewer electron and the same amount of orbitals that is expressed in the same basis
+ *  @param linear_expansion1        a wave function in a spin-resolved ONV basis
+ *  @param linear_expansion2        a wave function in a spin-resolved ONV basis containing one fewer electron and the same amount of orbitals that is expressed in the same basis
  *
  *  @return a vector with the Dyson orbital amplitudes  
  */
 VectorX<double> calculateDysonOrbitalCoefficients(const LinearExpansion& linear_expansion1, const LinearExpansion& linear_expansion2) {
 
     // Check the arguments
-    if (linear_expansion1.get_fock_space().get_type() != ONVBasisType::ProductONVBasis) {
-        throw std::runtime_error("properties::calculateDysonOrbital(LinearExpansion, LinearExpansion): linear_expansion1 is not in a product ONV basis");
+    if (linear_expansion1.get_fock_space().get_type() != ONVBasisType::SpinResolvedONVBasis) {
+        throw std::runtime_error("properties::calculateDysonOrbital(LinearExpansion, LinearExpansion): linear_expansion1 is not in a spin-resolved ONV basis");
     }
 
-    if (linear_expansion2.get_fock_space().get_type() != ONVBasisType::ProductONVBasis) {
-        throw std::runtime_error("properties::calculateDysonOrbital(LinearExpansion, LinearExpansion): linear_expansion2 is not in a product ONV basis");
+    if (linear_expansion2.get_fock_space().get_type() != ONVBasisType::SpinResolvedONVBasis) {
+        throw std::runtime_error("properties::calculateDysonOrbital(LinearExpansion, LinearExpansion): linear_expansion2 is not in a spin-resolved ONV basis");
     }
 
-    const auto& fock_space1 = static_cast<const ProductONVBasis&>(linear_expansion1.get_fock_space());
-    const auto& fock_space2 = static_cast<const ProductONVBasis&>(linear_expansion2.get_fock_space());
+    const auto& fock_space1 = static_cast<const SpinResolvedONVBasis&>(linear_expansion1.get_fock_space());
+    const auto& fock_space2 = static_cast<const SpinResolvedONVBasis&>(linear_expansion2.get_fock_space());
 
     if ((fock_space1.get_N_alpha() - fock_space2.get_N_alpha() != 0) && (fock_space1.get_N_beta() - fock_space2.get_N_beta() != 1)) {
         if ((fock_space1.get_N_alpha() - fock_space2.get_N_alpha() != 1) && (fock_space1.get_N_beta() - fock_space2.get_N_beta() != 0)) {
-            throw std::runtime_error("properties::calculateDysonOrbital(LinearExpansion, LinearExpansion): linear_expansion2 is not expressed in a product ONV basis with one fewer electron than linear_expansion1");
+            throw std::runtime_error("properties::calculateDysonOrbital(LinearExpansion, LinearExpansion): linear_expansion2 is not expressed in a spin-resolved ONV basis with one fewer electron than linear_expansion1");
         }
     } 
 
     // Initialize environment variables
 
-    // The 'passive' spin ONV basiss are the ONV basiss that are equal for both wave functions
-    // The 'target' spin ONV basiss have an electron difference of one
+    // The 'passive' ONV basis is the ONV basis that is equal for both wave functions
+    // The 'target' ONV basis has an electron difference of one
     // We initialize the variables for the case in which they differ in one beta electron, if this isn't the case, we will update it later 
     auto passive_fock_space1 = fock_space1.get_fock_space_alpha();
     auto passive_fock_space2 = fock_space2.get_fock_space_alpha();
@@ -83,7 +83,7 @@ VectorX<double> calculateDysonOrbitalCoefficients(const LinearExpansion& linear_
     size_t passive_mod2 = target_fock_space2.get_dimension();
     size_t target_mod = 1;
 
-    // If instead the ONV basiss differ by one alpha electron we re-assign the variables to match the algorithm
+    // If instead the ONV bases differ by one alpha electron we re-assign the variables to match the algorithm
     if ((fock_space1.get_N_alpha() - fock_space2.get_N_alpha() == 1) && (fock_space1.get_N_beta() - fock_space2.get_N_beta() == 0)) {
         passive_fock_space1 = target_fock_space1;
         passive_fock_space2 = target_fock_space2;
@@ -104,7 +104,7 @@ VectorX<double> calculateDysonOrbitalCoefficients(const LinearExpansion& linear_
     // Since we want to calculate the overlap between two wave functions, the ONVs should have an equal number of electrons
     // We therefore iterate over the ONVs of the 'target' ONV basis, which all have an electron more, and annihilate in one of the orbitals (let the index of that orbital be called 'p')
     // By calculating the overlap in the (N-1)-ONV basis, we can calculate the contributions to the  'p'-th coefficient (i.e. the Dyson amplitude) of the Dyson orbital
-    ONV onv = target_fock_space1.makeONV(0);
+    SpinUnresolvedONV onv = target_fock_space1.makeONV(0);
 
     for (size_t It = 0; It < target_fock_space1.get_dimension(); It++) {  // It loops over addresses of the target ONV basis
         int sign = -1;  // total phase factor of all the annihilations that have occurred

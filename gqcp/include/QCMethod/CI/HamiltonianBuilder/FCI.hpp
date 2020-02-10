@@ -18,27 +18,28 @@
 #pragma once
 
 
-#include "ONVBasis/ProductONVBasis.hpp"
+#include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/HamiltonianBuilder.hpp"
 
 
 namespace GQCP {
 
+
 /**
- *  A HamiltonianBuilder for FCI: it builds the matrix representation of the FCI Hamiltonian in the full alpha and beta product ONV basis
+ *  A HamiltonianBuilder for FCI: it builds the matrix representation of the FCI Hamiltonian in the full spin-resolved ONV basis
  */
 class FCI : public HamiltonianBuilder {
 private:
-    ProductONVBasis fock_space;  // fock space containing the alpha and beta ONV basis
+    SpinResolvedONVBasis onv_basis;  // the full spin-resolved ONV basis
 
 
 public:
 
     // CONSTRUCTORS
     /**
-     *  @param fock_space       the full alpha and beta product ONV basis
+     *  @param onv_basis       // the full spin-resolved ONV basis
      */
-    explicit FCI(const ProductONVBasis& fock_space);
+    explicit FCI(const SpinResolvedONVBasis& onv_basis);
 
 
     // DESTRUCTOR
@@ -46,7 +47,7 @@ public:
 
 
     // OVERRIDDEN GETTERS
-    const BaseONVBasis* get_fock_space() const override { return &fock_space; }
+    const BaseONVBasis* get_fock_space() const override { return &onv_basis; }
 
 
     // OVERRIDDEN PUBLIC METHODS

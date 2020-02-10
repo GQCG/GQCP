@@ -17,7 +17,7 @@
 // 
 #include "QCModel/CI/LinearExpansion.hpp"
 
-#include "ONVBasis/ProductONVBasis.hpp"
+#include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Utilities/linalg.hpp"
 
@@ -36,7 +36,7 @@ namespace GQCP {
  *  @param coefficients         the expansion coefficients
  */
 LinearExpansion::LinearExpansion(const BaseONVBasis& base_fock_space, const VectorX<double>& coefficients) :
-    fock_space (BaseONVBasis::CloneToHeap(base_fock_space)),
+    onv_basis (BaseONVBasis::CloneToHeap(base_fock_space)),
     coefficients (coefficients)
 {
     if (std::abs(this->coefficients.norm() - 1.0) > 1.0e-12) {  // normalize the coefficients if they aren't
@@ -67,17 +67,17 @@ double LinearExpansion::calculateShannonEntropy() const {
 
 
 /**
- *  Transform the underlying ONV basis of the wave function (only for FCI [ProductONVBasis]) and recalculate the ONV expansion coefficients
+ *  Transform the underlying ONV basis of the wave function (only for FCI [SpinResolvedONVBasis]) and recalculate the ONV expansion coefficients
  *
  *  @param T    the transformation matrix between the old and the new orbital basis
  */
 void LinearExpansion::basisTransform(const TransformationMatrix<double>& T) {
 
-    if (fock_space->get_type() != ONVBasisType::ProductONVBasis) {
+    if (onv_basis->get_type() != ONVBasisType::SpinResolvedONVBasis) {
         throw std::invalid_argument("LinearExpansion::basisTransform(TransformationMatrix<double>): This is not an FCI wave function");
     }
 
-    const auto K = fock_space->get_K();
+    const auto K = onv_basis->get_K();
 
     if (K != T.get_dim()) {
         throw std::invalid_argument("LinearExpansion::basisTransform(TransformationMatrix<double>): number of orbitals does not match the dimension of the transformation matrix T");
@@ -97,10 +97,10 @@ void LinearExpansion::basisTransform(const TransformationMatrix<double>& T) {
     // Calculate t (the operator which allows per-orbital transformation of the wave function)
     SquareMatrix<double> t = SquareMatrix<double>::Identity(K, K) - L + U_inv;
 
-    // Set up ONV basis variables for the CI iterations
-    const auto& product_fock_space = dynamic_cast<const ProductONVBasis&>(*fock_space);
-    const ONVBasis& fock_space_alpha = product_fock_space.get_fock_space_alpha();
-    const ONVBasis& fock_space_beta = product_fock_space.get_fock_space_beta();
+    // Set up spin-unresolved ONV basis variables for the CI iterations
+    const auto& product_fock_space = dynamic_cast<const SpinResolvedONVBasis&>(*onv_basis);
+    const SpinUnresolvedONVBasis& fock_space_alpha = product_fock_space.get_fock_space_alpha();
+    const SpinUnresolvedONVBasis& fock_space_beta = product_fock_space.get_fock_space_beta();
 
     auto dim_alpha = fock_space_alpha.get_dimension();
     auto dim_beta = fock_space_beta.get_dimension();
@@ -120,7 +120,7 @@ void LinearExpansion::basisTransform(const TransformationMatrix<double>& T) {
 
         // Perform alpha and beta CI iterations
         // Alpha-branch
-        ONV alpha = fock_space_alpha.makeONV(0);
+        SpinUnresolvedONV alpha = fock_space_alpha.makeONV(0);
         for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {
             if (!alpha.isOccupied(m)) {
                 for (size_t e1 = 0; e1 < N_alpha; e1++) {  // e1 (electron 1) loops over the (number of) electrons
@@ -184,7 +184,7 @@ void LinearExpansion::basisTransform(const TransformationMatrix<double>& T) {
         correction_coefficients.setZero();
 
         // Beta-branch
-        ONV beta = fock_space_beta.makeONV(0);
+        SpinUnresolvedONV beta = fock_space_beta.makeONV(0);
 
         for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {
             if (!beta.isOccupied(m)) {
@@ -260,7 +260,7 @@ void LinearExpansion::basisTransform(const TransformationMatrix<double>& T) {
  */
 bool LinearExpansion::isApprox(const LinearExpansion& other, double tolerance) const { 
 
-    if (this->fock_space->get_type() != other.fock_space->get_type() || this->fock_space->get_dimension() != other.fock_space->get_dimension()) {
+    if (this->onv_basis->get_type() != other.onv_basis->get_type() || this->onv_basis->get_dimension() != other.onv_basis->get_dimension()) {
         return false;
     }
 

@@ -22,7 +22,7 @@
 #include "QCModel/CI/LinearExpansion.hpp"
 
 #include "Basis/transform.hpp"
-#include "ONVBasis/ONVBasis.hpp"
+#include "ONVBasis/SpinUnresolvedONVBasis.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/CI/CISolver.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
@@ -31,7 +31,7 @@
 BOOST_AUTO_TEST_CASE ( shannon_entropy ) {
 
     // Set up a test ONV basis
-    GQCP::ONVBasis fock_space (8, 3);  // K = 8, N = 3
+    GQCP::SpinUnresolvedONVBasis fock_space (8, 3);  // K = 8, N = 3
 
 
     // Check the entropy of a Hartree-Fock expansion
@@ -59,7 +59,7 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h3 ) {
     auto K = sq_hamiltonian.dimension();
     auto N_P = hchain.numberOfElectrons()/2;
 
-    GQCP::ProductONVBasis fock_space (K, N_P, N_P);
+    GQCP::SpinResolvedONVBasis fock_space (K, N_P, N_P);
     GQCP::FCI fci (fock_space);
 
     GQCP::DenseSolverOptions solver_options;
@@ -98,7 +98,7 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h4 ) {
     auto K = sq_hamiltonian.dimension();
     auto N_P = hchain.numberOfElectrons()/2;
 
-    GQCP::ProductONVBasis fock_space (K, N_P, N_P);
+    GQCP::SpinResolvedONVBasis fock_space (K, N_P, N_P);
     GQCP::FCI fci (fock_space);
 
     GQCP::DenseSolverOptions solver_options;
@@ -138,7 +138,7 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h5 ) {
     auto N_B = hchain.numberOfElectrons()/2;
     auto N_A = hchain.numberOfElectrons() - N_B;
 
-    GQCP::ProductONVBasis fock_space (K, N_A, N_B);
+    GQCP::SpinResolvedONVBasis fock_space (K, N_A, N_B);
     GQCP::FCI fci (fock_space);
 
     GQCP::DenseSolverOptions solver_options;

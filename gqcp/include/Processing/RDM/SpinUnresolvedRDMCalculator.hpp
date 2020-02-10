@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "ONVBasis/ONVBasis.hpp"
+#include "ONVBasis/SpinUnresolvedONVBasis.hpp"
 #include "Processing/RDM/BaseSpinUnresolvedRDMBuilder.hpp"
 #include "Processing/RDM/SpinUnresolvedFCIRDMBuilder.hpp"
 #include "QCModel/CI/SpinUnresolvedLinearExpansion.hpp"
@@ -48,14 +48,14 @@ public:
     /**
      *  Allocate a SpinUnresolvedFCIRDMBuilder
      *
-     *  @param fock_space       the ONV basis
+     *  @param fock_space       the spin-unresolved ONV basis
      */
-    explicit SpinUnresolvedRDMCalculator(const ONVBasis& fock_space);
+    explicit SpinUnresolvedRDMCalculator(const SpinUnresolvedONVBasis& fock_space);
 
     /**
      *  A run-time constructor allocating the appropriate derived RDMBuilder and coefficient vector
      *
-     *  @param linear_expansion         the wave function holding the coefficient vector and a ONV basis on which the RDMBuilder should be based
+     *  @param linear_expansion         the linear expansion inside a certain ONV basis
      */
     explicit SpinUnresolvedRDMCalculator(const SpinUnresolvedLinearExpansion& linear_expansion);
 

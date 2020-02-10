@@ -17,7 +17,7 @@
 // 
 #include "QCMethod/Geminals/APIGGeminalCoefficients.hpp"
 
-#include "ONVBasis/ONVBasis.hpp"
+#include "ONVBasis/SpinUnresolvedONVBasis.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Utilities/miscellaneous.hpp"
 
@@ -130,16 +130,16 @@ size_t APIGGeminalCoefficients::numberOfGeminalCoefficients(size_t N_P, size_t K
  */
 
 /**
- *  @param onv      the ONV that is being projected on
+ *  @param onv      the doubly-occupied (spin-resolved) ONV that is being projected on
  *
- *  @return the overlap of the APIG wave function with the given on, i.e. the projection of the APIG wave function onto that ONV
+ *  @return the overlap of the APIG wave function with the given ONV, i.e. the projection of the APIG wave function onto that ONV
  */
-double APIGGeminalCoefficients::overlap(const ONV& onv) const {
+double APIGGeminalCoefficients::overlap(const SpinUnresolvedONV& onv) const {
 
     // For a pure APIG, the formula has to be the most general one
 
 
-    // Construct the matrix G(m) which only has the occupied columns of G in the given ONV m
+    // Construct the matrix G(m) which only has the occupied columns of G in the given doubly-occupied (spin-resolved) ONV 'm'
     MatrixX<double> G = this->asMatrix();  // geminal coefficients as a matrix
     SquareMatrix<double> Gm = SquareMatrix<double>::Zero(this->N_P, this->N_P);
 

@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "ONVBasis/ONVBasis.hpp"
+#include "ONVBasis/SpinUnresolvedONVBasis.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/HamiltonianBuilder.hpp"
 
 #include <memory>
@@ -32,7 +32,7 @@ namespace GQCP {
  */
 class DOCI : public HamiltonianBuilder {
 private:
-    ONVBasis fock_space;  // both the alpha and beta ONV basis
+    SpinUnresolvedONVBasis fock_space;  // both the alpha and beta ONV basis
 
 
 public:
@@ -40,7 +40,7 @@ public:
     /**
      *  @param fock_space       the full ONV basis, identical for alpha and beta
      */
-    explicit DOCI(const ONVBasis& fock_space);
+    explicit DOCI(const SpinUnresolvedONVBasis& fock_space);
 
 
     // DESTRUCTOR

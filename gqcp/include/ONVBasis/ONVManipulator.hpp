@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "ONVBasis/ONV.hpp"
+#include "ONVBasis/SpinUnresolvedONV.hpp"
 #include "Utilities/CRTP.hpp"
 
 
@@ -26,12 +26,14 @@ namespace GQCP {
 
 
 /**
- *  An interface for ONVBases that generate, permutate and can calculate the address of an ONV given its unsigned representation.
+ *  An interface for ONV bases that generate, permutate and can calculate the address of a spin-unresolved ONV given its unsigned representation.
  * 
  *  @tparam _DerivedManipulator             the type of the derived class
  */
 template <typename _DerivedManipulator>
-class ONVManipulator : public CRTP<_DerivedManipulator> {
+class ONVManipulator:
+    public CRTP<_DerivedManipulator> {
+
 protected:
     size_t N;  // number of electrons
 
@@ -68,16 +70,16 @@ public:
     // VIRTUAL PUBLIC METHODS
 
     /**
-     *  @param representation       a representation of an ONV
+     *  @param representation           a representation of a spin-unresolved ONV
      *
-     *  @return the next bitstring permutation in the ONV basis
+     *  @return the next bitstring permutation in the spin-unresolved ONV basis
      */
     virtual size_t ulongNextPermutation(size_t representation) const = 0;
 
     /**
-     *  @param representation      a representation of an ONV
+     *  @param representation           a representation of a spin-unresolved ONV
      *
-     *  @return the address (i.e. the ordering number) of the given ONV
+     *  @return the address (i.e. the ordering number) of the given spin-unresolved ONV's representation
      */
     virtual size_t getAddress(size_t representation) const = 0;
 
@@ -91,26 +93,26 @@ public:
     virtual size_t calculateRepresentation(size_t address) const = 0;
 
     /**
-     *  @param onv       the ONV
+     *  @param onv              the spin-unresolved ONV
      *
-     *  @return the amount of ONVs (with a larger address) this ONV would couple with given a one electron operator
+     *  @return the number of ONVs (with a larger address) the given spin-unresolved ONV would couple with when evaluating a one electron operator
      */
-    virtual size_t countOneElectronCouplings(const ONV& onv) const = 0;
+    virtual size_t countOneElectronCouplings(const SpinUnresolvedONV& onv) const = 0;
 
     /**
-     *  @param onv       the ONV
+     *  @param onv       the spin-resolved ONV
      *
-     *  @return the amount of ONVs (with a larger address) this ONV would couple with given a two electron operator
+     *  @return the number of ONVs (with a larger address) the given spin-resolved ONV would couple with when evaluating a two electron operator
      */
-    virtual size_t countTwoElectronCouplings(const ONV& onv) const = 0;
+    virtual size_t countTwoElectronCouplings(const SpinUnresolvedONV& onv) const = 0;
 
     /**
-     *  @return the amount non-zero (non-diagonal) couplings of a one electron coupling scheme in the ONV basis
+     *  @return the number non-zero (non-diagonal) couplings of a one electron coupling scheme
      */
     virtual size_t countTotalOneElectronCouplings() const = 0;
 
     /**
-     *  @return the amount non-zero (non-diagonal) couplings of a two electron coupling scheme in the ONV basis
+     *  @return the number non-zero (non-diagonal) couplings of a two electron coupling scheme
      */
     virtual size_t countTotalTwoElectronCouplings() const = 0;
 
@@ -118,48 +120,48 @@ public:
     // PUBLIC METHODS
 
     /**
-     *  @param address      the address (i.e. the ordening number) of the ONV
+     *  @param address          the address (i.e. the ordening number) of a spin-unresolved ONV
      *
-     *  @return the ONV with the corresponding address
+     *  @return the spin-unresolved ONV with the corresponding address
      */
-    ONV makeONV(size_t address) const {
+    SpinUnresolvedONV makeONV(size_t address) const {
 
         const auto& fock_space = this->derived();
 
-        ONV onv (fock_space.get_K(), this->N);
+        SpinUnresolvedONV onv (fock_space.get_K(), this->N);
         fock_space.transformONV(onv, address);
         return onv;
     }
 
     /**
-     *  Set the current ONV to the next ONV: performs ulongNextPermutation() and updates the corresponding occupation indices of the ONV occupation array
+     *  Set the current SpinUnresolvedONV to the next SpinUnresolvedONV: performs ulongNextPermutation() and updates the corresponding occupation indices of the SpinUnresolvedONV occupation array
      *
-     *  @param onv      the current ONV
+     *  @param onv      the current SpinUnresolvedONV
      */
-    void setNextONV(ONV &onv) const {
+    void setNextONV(SpinUnresolvedONV& onv) const {
 
         const auto& fock_space = this->derived();
         onv.set_representation(fock_space.ulongNextPermutation(onv.get_unsigned_representation()));
     }
 
     /**
-     *  @param onv      the ONV
+     *  @param onv      the spin-unresolved ONV
      *
-     *  @return the address (i.e. the ordering number) of the given ONV
+     *  @return the address (i.e. the ordering number) of the given spin-unresolved ONV
      */
-    size_t getAddress(const ONV &onv) const {
+    size_t getAddress(const SpinUnresolvedONV& onv) const {
 
         const auto& fock_space = this->derived();
         return fock_space.getAddress(onv.get_unsigned_representation());
     };
 
     /**
-     *  Transform an ONV to one corresponding to the given address
+     *  Transform a spin-unresolved ONV to one corresponding to the given address
      *
-     *  @param onv          the ONV
-     *  @param address      the address to which the ONV will be set
+     *  @param onv          the spin-unresolved ONV
+     *  @param address      the address to which the spin-unresolved ONV will be set
      */
-    void transformONV(ONV &onv, size_t address) const {
+    void transformONV(SpinUnresolvedONV& onv, size_t address) const {
 
         const auto& fock_space = this->derived();
         onv.set_representation((fock_space.calculateRepresentation(address)));

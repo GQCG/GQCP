@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "ONVBasis/FrozenProductONVBasis.hpp"
+#include "ONVBasis/SpinResolvedFrozenONVBasis.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/FrozenCoreCI.hpp"
 
@@ -31,18 +31,18 @@ namespace GQCP {
  */
 class FrozenCoreFCI : public FrozenCoreCI {
 private:
-    FrozenProductONVBasis fock_space;  // contains both the frozen alpha and beta ONV basis
+    SpinResolvedFrozenONVBasis onv_basis;  // the frozen spin-resolved ONV
 
 public:
     // CONSTRUCTORS
     /**
-     *  @param fock_space       the frozen product ONV basis
+     *  @param onv_basis       the frozen spin-resolved ONV
      */
-    explicit FrozenCoreFCI(const FrozenProductONVBasis& fock_space);
+    explicit FrozenCoreFCI(const SpinResolvedFrozenONVBasis& onv_basis);
 
 
     // OVERRIDDEN GETTERS
-    const BaseONVBasis* get_fock_space() const override { return &fock_space; }
+    const BaseONVBasis* get_fock_space() const override { return &onv_basis; }
 };
 
 

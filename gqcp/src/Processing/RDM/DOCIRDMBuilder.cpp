@@ -24,7 +24,7 @@ namespace GQCP {
 /*
  *  CONSTRUCTOR
  */
-DOCIRDMBuilder::DOCIRDMBuilder(const ONVBasis& fock_space) :
+DOCIRDMBuilder::DOCIRDMBuilder(const SpinUnresolvedONVBasis& fock_space) :
     fock_space (fock_space)
 {}
 
@@ -48,7 +48,7 @@ OneRDMs<double> DOCIRDMBuilder::calculate1RDMs(const VectorX<double>& x) const {
     OneRDM<double> D = OneRDM<double>::Zero(K, K);
 
     // Create the first ONV (with address 0). In DOCI, the ONV basis for alpha and beta is equal so we just use one
-    ONV onv = this->fock_space.makeONV(0);   
+    SpinUnresolvedONV onv = this->fock_space.makeONV(0);   
 
 
     for (size_t I = 0; I < dim; I++) {  // I loops over all the addresses of the spin strings
@@ -89,7 +89,7 @@ TwoRDMs<double> DOCIRDMBuilder::calculate2RDMs(const VectorX<double>& x) const {
 
 
     // Create the first ONV (with address 0). In DOCI, the ONV basis for alpha and beta is equal so we just use one
-    ONV onv = this->fock_space.makeONV(0);   
+    SpinUnresolvedONV onv = this->fock_space.makeONV(0);
 
 
     for (size_t I = 0; I < dim; I++) {  // I loops over all the addresses of the spin strings

@@ -115,7 +115,7 @@ BOOST_AUTO_TEST_CASE ( toLinearExpansion_example1 ) {
 
 
     // Calculate the conversion from geminal coefficients to a wave function and check the result
-    GQCP::ONVBasis fock_space (K, N_P);
+    GQCP::SpinUnresolvedONVBasis fock_space (K, N_P);
     BOOST_CHECK(ref_coefficients.isApprox(gem_coeff.toLinearExpansion(fock_space).get_coefficients()));
 }
 
@@ -141,7 +141,7 @@ BOOST_AUTO_TEST_CASE ( toLinearExpansion_example2 ) {
 
 
     // Calculate the conversion from geminal coefficients to a wave function and check the result
-    GQCP::ONVBasis fock_space (K, N_P);
+    GQCP::SpinUnresolvedONVBasis fock_space (K, N_P);
     BOOST_CHECK(ref_coefficients.isApprox(gem_coeff.toLinearExpansion(fock_space).get_coefficients()));
 }
 
@@ -167,6 +167,6 @@ BOOST_AUTO_TEST_CASE ( toLinearExpansion_example3 ) {
 
 
     // Calculate the conversion from geminal coefficients to a wave function and check the result
-    GQCP::ONVBasis fock_space (K, N_P);
+    GQCP::SpinUnresolvedONVBasis fock_space (K, N_P);
     BOOST_CHECK(ref_coefficients.isApprox(gem_coeff.toLinearExpansion(fock_space).get_coefficients()));
 }

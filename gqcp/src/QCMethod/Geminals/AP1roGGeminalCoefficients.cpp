@@ -17,7 +17,7 @@
 // 
 #include "QCMethod/Geminals/AP1roGGeminalCoefficients.hpp"
 
-#include "ONVBasis/ONVBasis.hpp"
+#include "ONVBasis/SpinUnresolvedONVBasis.hpp"
 #include "QCMethod/Geminals/APIGGeminalCoefficients.hpp"
 #include "Utilities/miscellaneous.hpp"
 
@@ -205,16 +205,16 @@ VectorX<double> AP1roGGeminalCoefficients::asVector() const {
 
 
 /**
- *  @param onv      the ONV that is being projected on
+ *  @param onv      the doubly-occupied (spin-resolved) ONV that is being projected on
  *
- *  @return the overlap of the AP1roG wave function with the given on, i.e. the projection of the APIG wave function onto that ONV
+ *  @return the overlap of the AP1roG wave function with the given ONV, i.e. the projection of the APIG wave function onto that ONV
  */
-double AP1roGGeminalCoefficients::overlap(const ONV& onv) const {
+double AP1roGGeminalCoefficients::overlap(const SpinUnresolvedONV& onv) const {
 
     // For an AP1roG wave function, we use a simplification for singly and doubly pair-excited ONVs
 
-    ONVBasis fock_space (this->K, this->N_P);  // the DOCI ONV basis
-    ONV reference = fock_space.makeONV(0);
+    SpinUnresolvedONVBasis onv_basis (this->K, this->N_P);  // the doubly-occupied spin-resolved ONV basis
+    SpinUnresolvedONV reference = onv_basis.makeONV(0);
 
     if (onv.countNumberOfDifferences(reference) == 0) {  // no excitations
         return 1.0;
