@@ -29,7 +29,7 @@ namespace GQCP {
 
 
 /**
- *  A base class whose derived classes are able to construct matrix representations of the Hamiltonian in a ONV basis
+ *  A base class whose derived classes are able to construct matrix representations of the Hamiltonian in an ONV basis
  *
  *  Derived classes should implement:
  *      - constructHamiltonian() which constructs the full Hamiltonian matrix in the given ONV basis

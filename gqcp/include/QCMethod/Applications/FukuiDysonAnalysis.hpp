@@ -19,7 +19,7 @@
 
 
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
-#include "ONVBasis/ProductONVBasis.hpp"
+#include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Processing/RDM/RDMCalculator.hpp"
 #include "QCMethod/CI/CISolver.hpp"
@@ -44,8 +44,8 @@ private:
     RSpinorBasis<double, GTOShell> spinor_basis;
     SQHamiltonian<double> sq_hamiltonian;
     std::string basis_set;  // the basisset that should be used
-    ProductONVBasis fock_space1 = ProductONVBasis(0, 0, 0);  // default
-    ProductONVBasis fock_space2 = ProductONVBasis(0, 0, 0);  // default
+    SpinResolvedONVBasis fock_space1 = SpinResolvedONVBasis(0, 0, 0);  // default
+    SpinResolvedONVBasis fock_space2 = SpinResolvedONVBasis(0, 0, 0);  // default
 
     VectorX<double> dyson_coefficients;
     OneRDM<double> fukui_matrix;

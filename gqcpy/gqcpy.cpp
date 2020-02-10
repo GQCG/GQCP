@@ -38,6 +38,10 @@ void bindMolecule(py::module& module);
 void bindNucleus(py::module& module);
 
 
+// ONVBasis
+void bindSpinResolvedONVBasis(py::module& module);
+
+
 // Operator
 void bindSQHamiltonian(py::module& module);
 void bindSQOneElectronOperator(py::module& module);
@@ -88,6 +92,10 @@ PYBIND11_MODULE (gqcpy, module) {
     // Molecule
     gqcpy::bindMolecule(module);
     gqcpy::bindNucleus(module);
+
+
+    // ONVBasis
+    gqcpy::bindSpinResolvedONVBasis(module);
 
 
     // Operator

@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "ONVBasis/FrozenONVBasis.hpp"
+#include "ONVBasis/SpinUnresolvedFrozenONVBasis.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/DOCI.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/FrozenCoreCI.hpp"
 
@@ -31,18 +31,18 @@ namespace GQCP {
  */
 class FrozenCoreDOCI : public FrozenCoreCI {
 private:
-    FrozenONVBasis fock_space;  // both the alpha and beta ONV basis
+    SpinUnresolvedFrozenONVBasis onv_basis;  // both the alpha and beta frozen ONV basis
 
 public:
     // CONSTRUCTORS
     /**
-     *  @param fock_space       the frozen ONV basis (identical for alpha and beta)
+     *  @param onv_basis       the frozen ONV basis (identical for alpha and beta)
      */
-    explicit FrozenCoreDOCI(const FrozenONVBasis& fock_space);
+    explicit FrozenCoreDOCI(const SpinUnresolvedFrozenONVBasis& onv_basis);
 
 
     // OVERRIDDEN GETTERS
-    const BaseONVBasis* get_fock_space() const override { return &fock_space; }
+    const BaseONVBasis* get_fock_space() const override { return &onv_basis; }
 };
 
 

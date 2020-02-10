@@ -43,7 +43,9 @@ namespace GQCP {
  *  @tparam _Shell                  the type of shell that the underlying scalar basis contains
  */
 template <typename _ExpansionScalar, typename _Shell>
-class RSpinorBasis : public SimpleSpinorBasis<_ExpansionScalar, RSpinorBasis<_ExpansionScalar, _Shell>> {
+class RSpinorBasis :
+    public SimpleSpinorBasis<_ExpansionScalar, RSpinorBasis<_ExpansionScalar, _Shell>> {
+
 public:
     using Shell = _Shell;
     using BasisFunction = typename Shell::BasisFunction;

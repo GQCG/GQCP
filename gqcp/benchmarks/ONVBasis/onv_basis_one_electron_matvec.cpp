@@ -1,36 +1,11 @@
 /**
- *  A benchmark executable for the one electron matvec performance of ONVBasis
+ *  A benchmark executable that tests the one-electron matrix-vector product for a full spin-unresolved ONV basis. The number of spinors is 28, the number of electrons varies from 5 to 9.
  */
 
 #include <benchmark/benchmark.h>
 
-#include "ONVBasis/ONVBasis.hpp"
+#include "ONVBasis/SpinUnresolvedONVBasis.hpp"
 #include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
-
-
-static void matvec(benchmark::State& state) {
-
-    // Prepare a full ONV basis
-    const size_t M = state.range(0);  // the number of spinors
-    const size_t N = state.range(1);  // the number of electrons
-    GQCP::ONVBasis full_onv_basis (M, N);
-
-    GQCP::QCMatrix<double> one_op_par = GQCP::QCMatrix<double>::Random(M, M);
-    GQCP::ScalarSQOneElectronOperator<double> sq_one_op {one_op_par};
-    GQCP::VectorX<double> diagonal = full_onv_basis.evaluateOperatorDiagonal(sq_one_op);
-    GQCP::VectorX<double> x = full_onv_basis.randomExpansion();
-
-    // Code inside this loop is measured repeatedly
-    for (auto _ : state) {
-        GQCP::VectorX<double> matvec = full_onv_basis.evaluateOperatorMatrixVectorProduct(sq_one_op, x, diagonal);
-
-        benchmark::DoNotOptimize(matvec);  // make sure the variable is not optimized away by compiler
-    }
-
-    state.counters["Spinors"] = M;
-    state.counters["Electrons"] = N;
-    state.counters["Dimension"] = full_onv_basis.get_dimension();
-}
 
 
 static void CustomArguments(benchmark::internal::Benchmark* b) {
@@ -40,6 +15,32 @@ static void CustomArguments(benchmark::internal::Benchmark* b) {
 }
 
 
-// Perform the benchmarks
+static void matvec(benchmark::State& state) {
+
+    // Prepare a full spin-unresolved ONV basis
+    const size_t M = state.range(0);  // number of spinors
+    const size_t N = state.range(1);  // number of electrons
+    GQCP::SpinUnresolvedONVBasis onv_basis (M, N);
+
+    // Create a random one-electron operator
+    const auto one_op_par = GQCP::QCMatrix<double>::Random(M, M);
+    GQCP::ScalarSQOneElectronOperator<double> sq_one_op {one_op_par};
+
+    const auto diagonal = onv_basis.evaluateOperatorDiagonal(sq_one_op);
+    const auto x = onv_basis.randomExpansion();
+
+    // Code inside this loop is measured repeatedly
+    for (auto _ : state) {
+        GQCP::VectorX<double> matvec = onv_basis.evaluateOperatorMatrixVectorProduct(sq_one_op, x, diagonal);
+
+        benchmark::DoNotOptimize(matvec);  // make sure the variable is not optimized away by compiler
+    }
+
+    state.counters["Spinors"] = M;
+    state.counters["Electrons"] = N;
+    state.counters["Dimension"] = onv_basis.get_dimension();
+}
+
+
 BENCHMARK(matvec)->Unit(benchmark::kMillisecond)->Apply(CustomArguments);
 BENCHMARK_MAIN();

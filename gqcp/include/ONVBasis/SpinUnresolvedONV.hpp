@@ -25,17 +25,17 @@ namespace GQCP {
 
 
 /**
- *  A class that represents an ONV (occupation number vector)
+ *  A class that represents an spin-unresolved ONV (occupation number vector)
 
- *  An ONV in quantum chemistry is a string of creation operators acting on top of a vacuum state.
- *  An example for 3 alpha electrons in a ONV basis spanned by 4 spatial orbitals is
+ *  An spin-unresolved ONV in quantum chemistry is a string of creation operators acting on top of a vacuum state.
+ *  An example for 3 alpha electrons in a spin-unresolved ONV basis spanned by 4 spatial orbitals is
  *      a_1^\dagger a_2^\dagger a_3^\dagger |vac> = |1,1,1,0>
  *
  *  In this code bitstrings are read from right to left. This means that the least significant bit relates to the first orbital.
  *  Using this notation is how normally bits are read, leading to more efficient code.
  *  As is also usual, the least significant bit has index 0. The previous example is then represented by the bit string "0111" (7).
  */
-class ONV {
+class SpinUnresolvedONV {
 private:
     size_t K;  // number of spatial orbitals
     size_t N;  // number of electrons
@@ -47,52 +47,51 @@ private:
 
 public:
     // CONSTRUCTORS
-//    ONV() = default;
     /**
      *  @param K                        the number of orbitals
      *  @param N                        the number of electrons
-     *  @param unsigned_representation  the representation for the ONV as an unsigned integer
+     *  @param unsigned_representation  the representation for the spin-unresolved ONV as an unsigned integer
      */
-    ONV(size_t K, size_t N, size_t unsigned_representation);
+    SpinUnresolvedONV(size_t K, size_t N, size_t unsigned_representation);
 
     /**
-     *  Constructs a default ONV without a representation
+     *  Constructs a default spin-unresolved ONV without a representation
      *
      *  @param K                        the number of orbitals
      *  @param N                        the number of electrons
      */
-    ONV(size_t K, size_t N);
+    SpinUnresolvedONV(size_t K, size_t N);
 
 
     // OPERATORS
     /**
-     *  @param os       the output stream which the ONV should be concatenated to
-     *  @param onv      the ONV that should be concatenated to the output stream
+     *  @param os       the output stream which the spin-unresolved ONV should be concatenated to
+     *  @param onv      the spin-unresolved ONV that should be concatenated to the output stream
      *
      *  @return the updated output stream
      */
-    friend std::ostream& operator<<(std::ostream& os, const ONV& onv);
+    friend std::ostream& operator<<(std::ostream& os, const SpinUnresolvedONV& onv);
 
     /**
-     *  @param other    the other ONV
+     *  @param other    the other spin-unresolved ONV
      *
-     *  @return if this ONV is the same as the other ONV
+     *  @return if this spin-unresolved ONV is the same as the other spin-unresolved ONV
      */
-    bool operator==(ONV& other) const;
+    bool operator==(SpinUnresolvedONV& other) const;
 
     /**
-     *  @param other    the other ONV
+     *  @param other    the other spin-unresolved ONV
      *
-     *  @return if this ONV is not the same as the other ONV
+     *  @return if this spin-unresolved ONV is not the same as the other spin-unresolved ONV
      */
-    bool operator!=(ONV& other) const;
+    bool operator!=(SpinUnresolvedONV& other) const;
 
 
     // SETTERS
     /**
      *  @param unsigned_representation      the new representation as an unsigned integer
      *
-     *  Set the representation of an ONV to a new representation and call update the occupation indices accordingly
+     *  Set the representation of an spin-unresolved ONV to a new representation and call update the occupation indices accordingly
      */
     void set_representation(size_t unsigned_representation);
 
@@ -239,28 +238,28 @@ public:
     bool createAll(const std::vector<size_t>& indices, int& sign);
 
     /**
-     *  @param other        the other ONV
+     *  @param other        the other spin-unresolved ONV
      *
-     *  @return the number of different occupations between this ONV and the other, i.e. two times the number of electron excitations
+     *  @return the number of different occupations between this spin-unresolved ONV and the other, i.e. two times the number of electron excitations
      */
-    size_t countNumberOfDifferences(const ONV& other) const;
+    size_t countNumberOfDifferences(const SpinUnresolvedONV& other) const;
 
     /**
-     *  @param other        the other ONV
+     *  @param other        the other spin-unresolved ONV
      *
-     *  @return the indices of the orbitals (from right to left) that are occupied in this ONV, but unoccupied in the other
+     *  @return the indices of the orbitals (from right to left) that are occupied in this spin-unresolved ONV, but unoccupied in the other
      */
-    std::vector<size_t> findDifferentOccupations(const ONV &other) const;
+    std::vector<size_t> findDifferentOccupations(const SpinUnresolvedONV &other) const;
 
     /**
-     *  @param other        the other ONV
+     *  @param other        the other spin-unresolved ONV
      *
-     *  @return the indices of the orbitals (from right to left) that are occupied both this ONV and the other
+     *  @return the indices of the orbitals (from right to left) that are occupied both this spin-unresolved ONV and the other
      */
-    std::vector<size_t> findMatchingOccupations(const ONV& other) const;
+    std::vector<size_t> findMatchingOccupations(const SpinUnresolvedONV& other) const;
 
     /**
-     *  @return a string representation of the ONV
+     *  @return a string representation of the spin-unresolved ONV
      */
     std::string asString() const;
 };

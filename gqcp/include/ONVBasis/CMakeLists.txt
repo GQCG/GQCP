@@ -1,15 +1,15 @@
 target_sources(gqcp
     PRIVATE
-        BaseONVBasis.hpp
         BaseFrozenCoreONVBasis.hpp
-        Configuration.hpp
+        BaseONVBasis.hpp
         EvaluationIterator.hpp
-        ONVManipulator.hpp
-        ONVBasis.hpp
         ONVBasisType.hpp
-        FrozenONVBasis.hpp
-        FrozenProductONVBasis.hpp
-        ONV.hpp
-        ProductONVBasis.hpp
-        SelectedONVBasis.hpp
+        ONVManipulator.hpp
+        SpinResolvedFrozenONVBasis.hpp
+        SpinResolvedONV.hpp
+        SpinResolvedONVBasis.hpp
+        SpinResolvedSelectedONVBasis.hpp
+        SpinUnresolvedFrozenONVBasis.hpp
+        SpinUnresolvedONV.hpp
+        SpinUnresolvedONVBasis.hpp
 )

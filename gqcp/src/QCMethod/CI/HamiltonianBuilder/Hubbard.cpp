@@ -26,11 +26,11 @@ namespace GQCP {
  */
 
 /**
- *  @param fock_space       the full alpha and beta product ONV basis
+ *  @param onv_basis       the full spin-resolved ONV basis
  */
-Hubbard::Hubbard(const ProductONVBasis& fock_space) :
+Hubbard::Hubbard(const SpinResolvedONVBasis& onv_basis) :
     HamiltonianBuilder(),
-    fock_space(fock_space)
+    onv_basis(onv_basis)
 {}
 
 
@@ -47,11 +47,11 @@ Hubbard::Hubbard(const ProductONVBasis& fock_space) :
 SquareMatrix<double> Hubbard::constructHamiltonian(const SQHamiltonian<double>& sq_hamiltonian) const {
     
     auto K = sq_hamiltonian.dimension();
-    if (K != this->fock_space.get_K()) {
-        throw std::invalid_argument("Hubbard::constructHamiltonian(SQHamiltonian<double>): Basis functions of the ONV basis and sq_hamiltonian are incompatible.");
+    if (K != this->onv_basis.get_K()) {
+        throw std::invalid_argument("Hubbard::constructHamiltonian(SQHamiltonian<double>): Basis functions of this ONV basis and sq_hamiltonian are incompatible.");
     }
 
-    return this->fock_space.evaluateOperatorDense(sq_hamiltonian.core(), false) + SquareMatrix<double>(this->calculateDiagonal(sq_hamiltonian).asDiagonal());
+    return this->onv_basis.evaluateOperatorDense(sq_hamiltonian.core(), false) + SquareMatrix<double>(this->calculateDiagonal(sq_hamiltonian).asDiagonal());
 }
 
 
@@ -65,12 +65,12 @@ SquareMatrix<double> Hubbard::constructHamiltonian(const SQHamiltonian<double>& 
 VectorX<double> Hubbard::matrixVectorProduct(const SQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
 
     auto K = sq_hamiltonian.dimension();
-    if (K != this->fock_space.get_K()) {
-        throw std::invalid_argument("Hubbard::matrixVectorProduct(SQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the ONV basis and sq_hamiltonian are incompatible.");
+    if (K != this->onv_basis.get_K()) {
+        throw std::invalid_argument("Hubbard::matrixVectorProduct(SQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of this ONV basis and sq_hamiltonian are incompatible.");
     }
 
-    ONVBasis fock_space_alpha = fock_space.get_fock_space_alpha();
-    ONVBasis fock_space_beta = fock_space.get_fock_space_beta();
+    SpinUnresolvedONVBasis fock_space_alpha = onv_basis.get_fock_space_alpha();
+    SpinUnresolvedONVBasis fock_space_beta = onv_basis.get_fock_space_beta();
 
     auto dim_alpha = fock_space_alpha.get_dimension();
     auto dim_beta = fock_space_beta.get_dimension();
@@ -97,23 +97,23 @@ VectorX<double> Hubbard::matrixVectorProduct(const SQHamiltonian<double>& sq_ham
 VectorX<double> Hubbard::calculateDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const {
 
     const auto K = sq_hamiltonian.dimension();
-    if (K != this->fock_space.get_K()) {
-        throw std::invalid_argument("Hubbard::calculateDiagonal(SQHamiltonian<double>): Basis functions of the ONV basis and sq_hamiltonian are incompatible.");
+    if (K != this->onv_basis.get_K()) {
+        throw std::invalid_argument("Hubbard::calculateDiagonal(SQHamiltonian<double>): Basis functions of this ONV basis and sq_hamiltonian are incompatible.");
     }
 
-    ONVBasis fock_space_alpha = fock_space.get_fock_space_alpha();
-    ONVBasis fock_space_beta = fock_space.get_fock_space_beta();
+    SpinUnresolvedONVBasis fock_space_alpha = onv_basis.get_fock_space_alpha();
+    SpinUnresolvedONVBasis fock_space_beta = onv_basis.get_fock_space_beta();
 
     const auto dim_alpha = fock_space_alpha.get_dimension();
     const auto dim_beta = fock_space_beta.get_dimension();
-    const auto dim = fock_space.get_dimension();
+    const auto dim = onv_basis.get_dimension();
     const auto& g = sq_hamiltonian.twoElectron().parameters();
 
     // Diagonal contributions
     VectorX<double> diagonal = VectorX<double>::Zero(dim);
 
-    ONV onv_alpha = fock_space_alpha.makeONV(0);
-    ONV onv_beta = fock_space_beta.makeONV(0);
+    SpinUnresolvedONV onv_alpha = fock_space_alpha.makeONV(0);
+    SpinUnresolvedONV onv_beta = fock_space_beta.makeONV(0);
     for (size_t Ia = 0; Ia < dim_alpha; Ia++) {  // Ia loops over addresses of alpha onvs
         fock_space_beta.transformONV(onv_beta, 0);
 

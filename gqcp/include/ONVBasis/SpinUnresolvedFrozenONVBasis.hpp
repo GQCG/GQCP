@@ -21,19 +21,20 @@
 #include "ONVBasis/BaseONVBasis.hpp"
 #include "ONVBasis/BaseFrozenCoreONVBasis.hpp"
 #include "ONVBasis/ONVManipulator.hpp"
-#include "ONVBasis/ONVBasis.hpp"
+#include "ONVBasis/SpinUnresolvedONVBasis.hpp"
 
 
 namespace GQCP {
 
 
 /**
- *  A class that represents a frozen ONV basis: this is a subspace of the N-electron ONV basis in which the first X orbitals are always occupied
+ *  A spin-unresolved frozen ONV basis: this is a subset of the N-electron spin-unresolved ONV basis in which the first X orbitals are always occupied.
  */
-class FrozenONVBasis: public BaseFrozenCoreONVBasis, public ONVManipulator<FrozenONVBasis> {
+class SpinUnresolvedFrozenONVBasis: public BaseFrozenCoreONVBasis, public ONVManipulator<SpinUnresolvedFrozenONVBasis> {
 protected:
     size_t X;  // number of frozen orbitals/electrons
-    ONVBasis active_fock_space;  // active (non-frozen) ONV basis containing only the active electrons (N-X) and orbitals (K-X)
+    SpinUnresolvedONVBasis active_onv_basis;  // active (non-frozen) spin-unresolved ONV basis containing only the active electrons (N-X) and orbitals (K-X)
+
 
 public:
     // CONSTRUCTORS
@@ -42,30 +43,30 @@ public:
      *  @param N        the total number of electrons
      *  @param X        the number of frozen orbitals and electrons
      */
-    FrozenONVBasis(size_t K, size_t N, size_t X);
+    SpinUnresolvedFrozenONVBasis(size_t K, size_t N, size_t X);
 
     /**
-     *  @param fock_space       (to be frozen) full ONV basis
+     *  @param onv_basis        (to be frozen) full spin-resolved ONV basis
      *  @param X                the number of frozen orbitals and electrons
      */
-    FrozenONVBasis(const ONVBasis& fock_space, size_t X);
+    SpinUnresolvedFrozenONVBasis(const SpinUnresolvedONVBasis& onv_basis, size_t X);
 
 
     // DESTRUCTOR
-    ~FrozenONVBasis() override = default;
+    ~SpinUnresolvedFrozenONVBasis() override = default;
 
 
     // GETTERS
     size_t get_number_of_frozen_orbitals() const { return this->X; }
-    const ONVBasis& get_active_fock_space() const { return this->active_fock_space; }
-    ONVBasisType get_type() const override { return ONVBasisType::FrozenONVBasis; }
+    const SpinUnresolvedONVBasis& get_active_fock_space() const { return this->active_onv_basis; }
+    ONVBasisType get_type() const override { return ONVBasisType::SpinUnresolvedFrozenONVBasis; }
 
 
     // OVERRIDEN PUBLIC METHODS
     /**
-     *  @param representation       a representation of an ONV
+     *  @param representation       a representation of a spin-resolved ONV
      *
-     *  @return the next bitstring permutation in the frozen ONV basis
+     *  @return the next bitstring permutation in the frozen spin-resolved ONV basis
      *
      *      Examples (first orbital is frozen):
      *          0101 -> 1001
@@ -74,9 +75,9 @@ public:
     size_t ulongNextPermutation(size_t representation) const override;
 
     /**
-     *  @param representation      a representation of an ONV
+     *  @param representation      a representation of a spin-resolved ONV
      *
-     *  @return the address (i.e. the ordering number) of the given ONV
+     *  @return the address (i.e. the ordering number) of the given spin-resolved ONV
      */
     size_t getAddress(size_t representation) const override;
 
@@ -90,26 +91,26 @@ public:
     size_t calculateRepresentation(size_t address) const override;
 
     /**
-     *  @param onv       the ONV
+     *  @param onv       the spin-resolved ONV
      *
-     *  @return the amount of ONVs (with a larger address) this ONV would couple with given a one electron operator
+     *  @return the amount of ONVs (with a larger address) this spin-resolved ONV would couple with given a one electron operator
      */
-    size_t countOneElectronCouplings(const ONV& onv) const override;
+    size_t countOneElectronCouplings(const SpinUnresolvedONV& onv) const override;
 
     /**
-     *  @param onv       the ONV
+     *  @param onv       the spin-resolved ONV
      *
-     *  @return the amount of ONVs (with a larger address) this ONV would couple with given a two electron operator
+     *  @return the amount of ONVs (with a larger address) this spin-resolved ONV would couple with given a two electron operator
      */
-    size_t countTwoElectronCouplings(const ONV& onv) const override;
+    size_t countTwoElectronCouplings(const SpinUnresolvedONV& onv) const override;
 
     /**
-     *  @return the amount non-zero (non-diagonal) couplings of a one electron coupling scheme in the ONV basis
+     *  @return the amount non-zero (non-diagonal) couplings of a one electron coupling scheme in the spin-resolved ONV basis
      */
     size_t countTotalOneElectronCouplings() const override;
 
     /**
-     *  @return the amount non-zero (non-diagonal) couplings of a two electron coupling scheme in the ONV basis
+     *  @return the amount non-zero (non-diagonal) couplings of a two electron coupling scheme in the spin-resolved ONV basis
      */
     size_t countTotalTwoElectronCouplings() const override;
 
@@ -117,14 +118,14 @@ public:
     // PUBLIC METHODS
     /**
      *  If we have
-     *      FrozenONVBasis fock_space;
+     *      SpinUnresolvedFrozenONVBasis onv_basis;
      *
      *  This makes sure that we can call
-     *      fock_space.getAddress(onv);
+     *      onv_basis.getAddress(onv);
      *  instead of the syntax
-     *      fock_space.ONVManipulator<FrozenONVBasis>::getAddress(onv);
+     *      onv_basis.ONVManipulator<SpinUnresolvedFrozenONVBasis>::getAddress(onv);
      */
-    using ONVManipulator<FrozenONVBasis>::getAddress;
+    using ONVManipulator<SpinUnresolvedFrozenONVBasis>::getAddress;
 };
 
 

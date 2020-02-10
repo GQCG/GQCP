@@ -17,7 +17,7 @@
 // 
 #include "Processing/RDM/SelectedRDMBuilder.hpp"
 
-#include "ONVBasis/Configuration.hpp"
+#include "ONVBasis/SpinResolvedONV.hpp"
 
 
 namespace GQCP {
@@ -26,7 +26,7 @@ namespace GQCP {
 /*
  *  CONSTRUCTOR
  */
-SelectedRDMBuilder::SelectedRDMBuilder(const SelectedONVBasis& fock_space) :
+SelectedRDMBuilder::SelectedRDMBuilder(const SpinResolvedSelectedONVBasis& fock_space) :
     fock_space (fock_space)
 {}
 
@@ -50,9 +50,9 @@ OneRDMs<double> SelectedRDMBuilder::calculate1RDMs(const VectorX<double>& x) con
 
 
     for (size_t I = 0; I < dim; I++) {  // loop over all addresses (1)
-        Configuration configuration_I = this->fock_space.get_configuration(I);
-        ONV alpha_I = configuration_I.onv_alpha;
-        ONV beta_I = configuration_I.onv_beta;
+        SpinResolvedONV configuration_I = this->fock_space.get_configuration(I);
+        SpinUnresolvedONV alpha_I = configuration_I.onv_alpha;
+        SpinUnresolvedONV beta_I = configuration_I.onv_beta;
         
         double c_I = x(I);
 
@@ -73,9 +73,9 @@ OneRDMs<double> SelectedRDMBuilder::calculate1RDMs(const VectorX<double>& x) con
         // Calculate the off-diagonal elements, by going over all other ONVs
         for (size_t J = I+1; J < dim; J++) {
 
-            Configuration configuration_J = this->fock_space.get_configuration(J);
-            ONV alpha_J = configuration_J.onv_alpha;
-            ONV beta_J = configuration_J.onv_beta;
+            SpinResolvedONV configuration_J = this->fock_space.get_configuration(J);
+            SpinUnresolvedONV alpha_J = configuration_J.onv_alpha;
+            SpinUnresolvedONV beta_J = configuration_J.onv_beta;
 
             double c_J = x(J);
 
@@ -141,9 +141,9 @@ TwoRDMs<double> SelectedRDMBuilder::calculate2RDMs(const VectorX<double>& x) con
 
     for (size_t I = 0; I < dim; I++) {  // loop over all addresses I
 
-        Configuration configuration_I = this->fock_space.get_configuration(I);
-        ONV alpha_I = configuration_I.onv_alpha;
-        ONV beta_I = configuration_I.onv_beta;
+        SpinResolvedONV configuration_I = this->fock_space.get_configuration(I);
+        SpinUnresolvedONV alpha_I = configuration_I.onv_alpha;
+        SpinUnresolvedONV beta_I = configuration_I.onv_beta;
 
         double c_I = x(I);
         
@@ -186,9 +186,9 @@ TwoRDMs<double> SelectedRDMBuilder::calculate2RDMs(const VectorX<double>& x) con
 
         for (size_t J = I+1; J < dim; J++) {
 
-            Configuration configuration_J = this->fock_space.get_configuration(J);
-            ONV alpha_J = configuration_J.onv_alpha;
-            ONV beta_J = configuration_J.onv_beta;
+            SpinResolvedONV configuration_J = this->fock_space.get_configuration(J);
+            SpinUnresolvedONV alpha_J = configuration_J.onv_alpha;
+            SpinUnresolvedONV beta_J = configuration_J.onv_beta;
 
             double c_J = x(J);
 

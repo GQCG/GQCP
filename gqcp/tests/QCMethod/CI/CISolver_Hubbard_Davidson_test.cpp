@@ -37,7 +37,7 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_davidson ) {
 
     // Create the Hubbard and FCI modules
     size_t N = 2;
-    GQCP::ProductONVBasis fock_space (K, N, N);  // dim = 36
+    GQCP::SpinResolvedONVBasis fock_space (K, N, N);  // dim = 36
     GQCP::Hubbard hubbard (fock_space);
     GQCP::FCI fci (fock_space);
 
@@ -70,7 +70,7 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_davidson_large ) {
 
     // Create the Hubbard and FCI modules
     size_t N = 3;
-    GQCP::ProductONVBasis fock_space (K, N, N);  // dim = 400
+    GQCP::SpinResolvedONVBasis fock_space (K, N, N);  // dim = 400
     GQCP::Hubbard hubbard (fock_space);
     GQCP::FCI fci (fock_space);
 

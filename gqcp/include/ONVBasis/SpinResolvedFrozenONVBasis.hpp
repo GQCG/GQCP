@@ -20,8 +20,8 @@
 
 #include "ONVBasis/BaseONVBasis.hpp"
 #include "ONVBasis/BaseFrozenCoreONVBasis.hpp"
-#include "ONVBasis/FrozenONVBasis.hpp"
-#include "ONVBasis/ProductONVBasis.hpp"
+#include "ONVBasis/SpinUnresolvedFrozenONVBasis.hpp"
+#include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "Operator/SecondQuantized/USQHamiltonian.hpp"
 
 
@@ -29,16 +29,17 @@ namespace GQCP {
 
 
 /**
- *  A class that represents the product of two frozen ONV basiss (alpha and beta).
+ *  A frozen spin-resolved ONV basis.
  */
-class FrozenProductONVBasis: public BaseFrozenCoreONVBasis {
+class SpinResolvedFrozenONVBasis: public BaseFrozenCoreONVBasis {
 private:
     size_t X;  // number of frozen orbitals/electrons
 
-    FrozenONVBasis frozen_fock_space_alpha;
-    FrozenONVBasis frozen_fock_space_beta;
+    SpinUnresolvedFrozenONVBasis frozen_fock_space_alpha;
+    SpinUnresolvedFrozenONVBasis frozen_fock_space_beta;
 
-    ProductONVBasis active_product_fock_space;  // active (non-frozen) product ONV basis containing only the active electrons (N_alpha-X, N_beta-X) and orbitals (K-X)
+    SpinResolvedONVBasis active_onv_basis;  // active (non-frozen) spin-resolved ONV basis containing only the active electrons (N_alpha-X, N_beta-X) and orbitals (K-X)
+
 
 public:
     // CONSTRUCTORS
@@ -48,13 +49,13 @@ public:
      *  @param N_beta       the total number of beta electrons
      *  @param X            the number of frozen orbitals and electrons (equal for alpha and beta)
      */
-    FrozenProductONVBasis(size_t K, size_t N_alpha, size_t N_beta, size_t X);
+    SpinResolvedFrozenONVBasis(size_t K, size_t N_alpha, size_t N_beta, size_t X);
 
     /**
-     *  @param fock_space       (to be frozen) full product ONV basis
+     *  @param fock_space       (to be frozen) full product spin-resolved ONV basis
      *  @param X                the number of frozen orbitals and electrons (equal for alpha and beta)
      */
-    FrozenProductONVBasis(const ProductONVBasis& fock_space, size_t X);
+    SpinResolvedFrozenONVBasis(const SpinResolvedONVBasis& fock_space, size_t X);
 
 
     // GETTERS
@@ -62,11 +63,11 @@ public:
     size_t get_N_beta() const { return this->frozen_fock_space_beta.get_N(); }
     size_t get_number_of_frozen_orbitals() const { return this->X;}
 
-    const FrozenONVBasis& get_frozen_fock_space_alpha() const { return this->frozen_fock_space_alpha; }
-    const FrozenONVBasis& get_frozen_fock_space_beta() const { return this->frozen_fock_space_beta; }
+    const SpinUnresolvedFrozenONVBasis& get_frozen_fock_space_alpha() const { return this->frozen_fock_space_alpha; }
+    const SpinUnresolvedFrozenONVBasis& get_frozen_fock_space_beta() const { return this->frozen_fock_space_beta; }
 
-    const ProductONVBasis& get_active_product_fock_space() const { return this->active_product_fock_space; }
-    ONVBasisType get_type() const override { return ONVBasisType::FrozenProductONVBasis; }
+    const SpinResolvedONVBasis& get_active_product_fock_space() const { return this->active_onv_basis; }
+    ONVBasisType get_type() const override { return ONVBasisType::SpinResolvedFrozenONVBasis; }
 
     using BaseFrozenCoreONVBasis::evaluateOperatorDense;
     using BaseFrozenCoreONVBasis::evaluateOperatorDiagonal;
@@ -79,7 +80,7 @@ public:
      *  @param usq_hamiltonian                the Hamiltonian expressed in an unrestricted orthonormal basis 
      *  @param diagonal_values                bool to indicate if diagonal values will be calculated
      *
-     *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the ONV basis
+     *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of this spin-resolved ONV basis
      */
     SquareMatrix<double> evaluateOperatorDense(const USQHamiltonian<double>& usq_hamiltonian, bool diagonal_values) const;
 
@@ -88,7 +89,7 @@ public:
      *
      *  @param usq_hamiltonian          the Hamiltonian expressed in an unrestricted orthonormal basis 
      *
-     *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the ONV basis
+     *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of this spin-resolved basis
      */
     VectorX<double> evaluateOperatorDiagonal(const USQHamiltonian<double>& usq_hamiltonian) const;
 
@@ -97,9 +98,9 @@ public:
      *
      *  @param usq_hamiltonian                the Hamiltonian expressed in an unrestricted orthonormal basis 
      *  @param x                              the vector upon which the evaluation acts 
-     *  @param diagonal                       the diagonal evaluated in the ONV basis
+     *  @param diagonal                       the diagonal evaluated in this spin-resolved basis
      *
-     *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the ONV basis
+     *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of this spin-resolved basis
      */
     VectorX<double> evaluateOperatorMatrixVectorProduct(const USQHamiltonian<double>& usq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const;
 };

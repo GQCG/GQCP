@@ -15,34 +15,28 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#pragma once
+#include "ONVBasis/SpinResolvedONVBasis.hpp"
+
+#include <pybind11/eigen.h>
+#include <pybind11/pybind11.h>
 
 
-#include "ONVBasis/SpinResolvedFrozenONVBasis.hpp"
-#include "Processing/RDM/FrozenCoreRDMBuilder.hpp"
-#include "Processing/RDM/RDMs.hpp"
+namespace py = pybind11;
 
 
-namespace GQCP {
+namespace gqcpy {
 
 
-/**
- *  A class capable of calculating 1- and 2-RDMs from wave functions expanded in the full frozen full spin-unresolved ONV basis
- */
-class FrozenCoreFCIRDMBuilder : public FrozenCoreRDMBuilder {
-    SpinResolvedFrozenONVBasis fock_space;
+void bindSpinResolvedONVBasis(py::module& module) {
+    py::class_<GQCP::SpinResolvedONVBasis>(module, "SpinResolvedONVBasis", "A full spin-resolved ONV basis.")
+
+        .def(py::init<const size_t, const size_t, const size_t>(),
+            py::arg("K"),
+            py::arg("N_alpha"),
+            py::arg("N_beta")
+        )
+    ;
+}
 
 
-public:
-    // CONSTRUCTORS
-    /**
-     *  @param fock_space       the frozen spin-resolved ONV basis
-     */
-    explicit FrozenCoreFCIRDMBuilder(const SpinResolvedFrozenONVBasis& fock_space);
-
-    // OVERRIDDEN GETTERS
-    const BaseONVBasis* get_fock_space() const override { return &fock_space; }
-};
-
-
-}  // namespace GQCP
+}  // namespace gqcpy

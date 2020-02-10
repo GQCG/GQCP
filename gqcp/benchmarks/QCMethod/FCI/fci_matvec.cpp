@@ -1,5 +1,5 @@
 /**
- *  A benchmark executable for the FCI matvec
+ *  A benchmark executable that times the performance of one FCI matrix-vector product in a full spin-resolved ONV basis with 10 orbitals and 2 to 5 electron pairs.
  */
 
 #include <benchmark/benchmark.h>
@@ -8,38 +8,40 @@
 #include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
 
 
+static void CustomArguments(benchmark::internal::Benchmark* b) {
+    for (int i = 2; i < 6; ++i) {  // need int instead of size_t
+        b->Args({10, i});  // spatial orbitals, electron pairs
+    }
+}
+
+
 static void matvec(benchmark::State& state) {
 
-    // Prepare the Hamiltonian
-    size_t K = state.range(0);
-    size_t N = state.range(1);
-    GQCP::ProductONVBasis fock_space (K, N, N);
-    GQCP::FCI fci (fock_space);
+    const auto K = state.range(0);  // number of spatial orbitals
+    const auto N_P = state.range(1);  // number of electron pairs
 
-    GQCP::SQHamiltonian<double> sq_hamiltonian = GQCP::SQHamiltonian<double>::Random(K);
-    GQCP::VectorX<double> diagonal = fci.calculateDiagonal(sq_hamiltonian);
-    GQCP::VectorX<double> x = fock_space.randomExpansion();
+
+    // Set up a second-quantized Hamiltonian and a full spin-resolved ONV basis
+    const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Random(K);
+    GQCP::SpinResolvedONVBasis onv_basis (K, N_P, N_P);
+
+
+    GQCP::FCI fci (onv_basis);
+    const auto diagonal = fci.calculateDiagonal(sq_hamiltonian);
+    const auto x = onv_basis.randomExpansion();
 
     // Code inside this loop is measured repeatedly
     for (auto _ : state) {
-        GQCP::VectorX<double> matvec = fci.matrixVectorProduct(sq_hamiltonian, x, diagonal);
+        const auto matvec = fci.matrixVectorProduct(sq_hamiltonian, x, diagonal);
 
         benchmark::DoNotOptimize(matvec);  // make sure the variable is not optimized away by compiler
     }
 
-    state.counters["Orbitals"] = K;
-    state.counters["Electron pairs"] = N;
-    state.counters["Dimension"] = fock_space.get_dimension();
+    state.counters["Spatial orbitals"] = K;
+    state.counters["Electron pairs"] = N_P;
+    state.counters["Dimension"] = onv_basis.get_dimension();
 }
 
 
-static void CustomArguments(benchmark::internal::Benchmark* b) {
-    for (int i = 2; i < 6; ++i) {  // need int instead of size_t
-        b->Args({10, i});  // orbitals, electron pairs
-    }
-}
-
-
-// Perform the benchmarks
 BENCHMARK(matvec)->Unit(benchmark::kMillisecond)->Apply(CustomArguments);
 BENCHMARK_MAIN();

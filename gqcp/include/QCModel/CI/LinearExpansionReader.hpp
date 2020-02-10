@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "ONVBasis/SelectedONVBasis.hpp"
+#include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
 #include "QCModel/CI/LinearExpansion.hpp"
 
 
@@ -26,28 +26,27 @@ namespace GQCP {
 
 
 /**
- *  A class that reads and stores a 'selected' wave function expansion
+ *  A class that reads and stores a spin-resolved selected wave function expansion
  */
 class LinearExpansionReader {
 private:
-    SelectedONVBasis fock_space;
+    SpinResolvedSelectedONVBasis onv_basis;
     VectorX<double> coefficients;
     LinearExpansion wave_function;
 
 
 public:
     /**
-     *  @param GAMESS_filename      the name of the GAMESS file that contains the 'selected' wave function expansion
+     *  @param GAMESS_filename      the name of the GAMESS file that contains the spin-resolved selected wave function expansion
      */
     explicit LinearExpansionReader(const std::string& GAMESS_filename);
 
 
     // GETTERS
-    const SelectedONVBasis& get_fock_space() const { return this->fock_space; }
+    const SpinResolvedSelectedONVBasis& get_fock_space() const { return this->onv_basis; }
     const VectorX<double>& get_coefficients() const { return this->coefficients; }
     const LinearExpansion& get_wave_function() const { return this->wave_function; }
 };
-
 
 
 }  // namespace GQCP

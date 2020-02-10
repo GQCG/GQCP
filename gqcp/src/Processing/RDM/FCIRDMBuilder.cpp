@@ -24,7 +24,7 @@ namespace GQCP {
 /*
  *  CONSTRUCTOR
  */
-FCIRDMBuilder::FCIRDMBuilder(const ProductONVBasis& fock_space) :
+FCIRDMBuilder::FCIRDMBuilder(const SpinResolvedONVBasis& fock_space) :
     fock_space (fock_space)
 {}
 
@@ -46,14 +46,14 @@ OneRDMs<double> FCIRDMBuilder::calculate1RDMs(const VectorX<double>& x) const {
     OneRDM<double> D_aa = OneRDM<double>::Zero(K, K);
     OneRDM<double> D_bb = OneRDM<double>::Zero(K, K);
 
-    ONVBasis fock_space_alpha = fock_space.get_fock_space_alpha();
-    ONVBasis fock_space_beta = fock_space.get_fock_space_beta();
+    SpinUnresolvedONVBasis fock_space_alpha = fock_space.get_fock_space_alpha();
+    SpinUnresolvedONVBasis fock_space_beta = fock_space.get_fock_space_beta();
 
     auto dim_alpha = fock_space_alpha.get_dimension();
     auto dim_beta = fock_space_beta.get_dimension();
     
     // ALPHA
-    ONV spin_string_alpha = fock_space_alpha.makeONV(0);  // alpha spin string with address 0
+    SpinUnresolvedONV spin_string_alpha = fock_space_alpha.makeONV(0);  // alpha spin string with address 0
     for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {  // I_alpha loops over all the addresses of the alpha spin strings
         for (size_t p = 0; p < K; p++) {  // p loops over SOs
             int sign_p = 1;
@@ -99,7 +99,7 @@ OneRDMs<double> FCIRDMBuilder::calculate1RDMs(const VectorX<double>& x) const {
 
 
     // BETA
-    ONV spin_string_beta = fock_space_beta.makeONV(0);  // spin string with address 0
+    SpinUnresolvedONV spin_string_beta = fock_space_beta.makeONV(0);  // spin string with address 0
     for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {  // I_beta loops over all the addresses of the spin strings
         for (size_t p = 0; p < K; p++) {  // p loops over SOs
             int sign_p = 1;
@@ -157,8 +157,8 @@ TwoRDMs<double> FCIRDMBuilder::calculate2RDMs(const VectorX<double>& x) const {
 
     // KISS implementation of the 2-DMs (no symmetry relations are used yet)
 
-    ONVBasis fock_space_alpha = fock_space.get_fock_space_alpha();
-    ONVBasis fock_space_beta = fock_space.get_fock_space_beta();
+    SpinUnresolvedONVBasis fock_space_alpha = fock_space.get_fock_space_alpha();
+    SpinUnresolvedONVBasis fock_space_beta = fock_space.get_fock_space_beta();
 
     auto dim_alpha = fock_space_alpha.get_dimension();
     auto dim_beta = fock_space_beta.get_dimension();
@@ -177,7 +177,7 @@ TwoRDMs<double> FCIRDMBuilder::calculate2RDMs(const VectorX<double>& x) const {
 
 
     // ALPHA-ALPHA-ALPHA-ALPHA
-    ONV spin_string_alpha_aaaa = fock_space_alpha.makeONV(0);  // spin string with address 0
+    SpinUnresolvedONV spin_string_alpha_aaaa = fock_space_alpha.makeONV(0);  // spin string with address 0
     for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {  // I_alpha loops over all the addresses of the alpha spin strings
 
         for (size_t p = 0; p < K; p++) {  // p loops over SOs
@@ -235,7 +235,7 @@ TwoRDMs<double> FCIRDMBuilder::calculate2RDMs(const VectorX<double>& x) const {
 
 
     // ALPHA-ALPHA-BETA-BETA
-    ONV spin_string_alpha_aabb = fock_space_alpha.makeONV(0);  // spin string with address 0
+    SpinUnresolvedONV spin_string_alpha_aabb = fock_space_alpha.makeONV(0);  // spin string with address 0
     for (size_t I_alpha = 0; I_alpha < dim_alpha; I_alpha++) {  // I_alpha loops over all the addresses of the alpha spin strings
 
         for (size_t p = 0; p < K; p++) {  // p loops over SOs
@@ -250,7 +250,7 @@ TwoRDMs<double> FCIRDMBuilder::calculate2RDMs(const VectorX<double>& x) const {
                         size_t J_alpha = fock_space_alpha.getAddress(spin_string_alpha_aabb);  // the string that couples to I_alpha
 
 
-                        ONV spin_string_beta_aabb = fock_space_beta.makeONV(0);  // spin string with address 0
+                        SpinUnresolvedONV spin_string_beta_aabb = fock_space_beta.makeONV(0);  // spin string with address 0
                         for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {  // I_beta loops over all addresses of beta spin strings
 
                             for (size_t r = 0; r < K; r++) {  // r loops over all SOs
@@ -306,7 +306,7 @@ TwoRDMs<double> FCIRDMBuilder::calculate2RDMs(const VectorX<double>& x) const {
 
 
     // BETA-BETA-BETA-BETA
-    ONV spin_string_beta_bbbb = fock_space_beta.makeONV(0);  // spin string with address 0
+    SpinUnresolvedONV spin_string_beta_bbbb = fock_space_beta.makeONV(0);  // spin string with address 0
     for (size_t I_beta = 0; I_beta < dim_beta; I_beta++) {  // I_beta loops over all the addresses of the beta spin strings
 
         for (size_t p = 0; p < K; p++) {  // p loops over SOs

@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "ONVBasis/ONVBasis.hpp"
+#include "ONVBasis/SpinUnresolvedONVBasis.hpp"
 #include "Processing/RDM/BaseRDMBuilder.hpp"
 #include "Processing/RDM/RDMs.hpp"
 
@@ -30,12 +30,12 @@ namespace GQCP {
  *  A class capable of calculating 1- and 2-RDMs from DOCI wave functions
  */
 class DOCIRDMBuilder : public BaseRDMBuilder {
-    ONVBasis fock_space;  // both the alpha and beta ONV basis
+    SpinUnresolvedONVBasis fock_space;
 
 
 public:
     // CONSTRUCTORS
-    explicit DOCIRDMBuilder(const ONVBasis& fock_space);
+    explicit DOCIRDMBuilder(const SpinUnresolvedONVBasis& fock_space);
 
 
     // DESTRUCTOR

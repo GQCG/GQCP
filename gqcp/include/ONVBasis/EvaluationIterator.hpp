@@ -27,7 +27,7 @@ namespace GQCP {
 
 
 /**
- *  A templated private class for ONV basiss: its constructors are private, but ONV basiss are its friends
+ *  A templated private class for ONV bases: its constructors are private, but ONV bases are its friends.
  *  It supports dense, sparse and matrix vector product storage for elements evaluated in the ONV basis.
  *
  *  @tparam _Matrix              the type of matrix in which the evaluations of the ONV basis will be stored
@@ -105,9 +105,9 @@ private:
 
 
     // Friend classes
-    friend class ONVBasis;
-    friend class SelectedONVBasis;
-    friend class ProductONVBasis;
+    friend class SpinUnresolvedONVBasis;
+    friend class SpinResolvedSelectedONVBasis;
+    friend class SpinResolvedONVBasis;
 };
 
 
@@ -222,9 +222,9 @@ class EvaluationIterator<Eigen::SparseMatrix<double>> {
     const std::vector<Eigen::Triplet<double>>& triplets() const { return triplet_vector; }
 
     // Friend classes
-    friend class ONVBasis;
-    friend class SelectedONVBasis;
-    friend class ProductONVBasis;
+    friend class SpinUnresolvedONVBasis;
+    friend class SpinResolvedSelectedONVBasis;
+    friend class SpinResolvedONVBasis;
 };
 
 
@@ -318,9 +318,9 @@ class EvaluationIterator<VectorX<double>> {
 
 
     // Friend classes
-    friend class ONVBasis;
-    friend class SelectedONVBasis;
-    friend class ProductONVBasis;
+    friend class SpinUnresolvedONVBasis;
+    friend class SpinResolvedSelectedONVBasis;
+    friend class SpinResolvedONVBasis;
 };
 
 }  // namespace GQCP

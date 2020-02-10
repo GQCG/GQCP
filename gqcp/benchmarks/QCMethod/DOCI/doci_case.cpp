@@ -1,5 +1,5 @@
 /**
- *  A benchmark executable for DOCI calculations on CO
+ *  A benchmark executable for DOCI calculations on CO in a 6-31G basisset.
  */
 
 #include <benchmark/benchmark.h>
@@ -9,22 +9,19 @@
 #include "QCMethod/CI/HamiltonianBuilder/DOCI.hpp"
 
 
-/**
- *  Benchmark a DOCI calculation based on a given FCIDUMP file for CO in a 6-31G basisset.
- */
 static void test_case(benchmark::State& state) {
 
     const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::ReadFCIDUMP("data/co_631g_klaas.FCIDUMP");
 
-    // The system contains 14 electrons and requires 28 basis functions. For DOCI, we can use an ONV basis for 14 spatial orbitals and 7 electrons to represent this situation.
+    // The system contains 14 electrons and requires 28 basis functions. For DOCI, we can use a SpinUnresolvedONV basis for 14 spatial orbitals and 7 electrons to represent this situation.  TODO: this should change: SpinUnresolvedONVBasis shouldn't be used for DOCI.
     const auto K = sq_hamiltonian.dimension();
     const auto N_P = 7;
-    const GQCP::ONVBasis doci_onv_basis (K, N_P);  // dim = 1184040
+    const GQCP::SpinUnresolvedONVBasis onv_basis (K, N_P);  // dim = 1184040
 
 
     // Solve the DOCI eigenvalue problem with a Davidson solver
-    const GQCP::DOCI doci (doci_onv_basis);
-    const GQCP::VectorX<double> initial_guess = doci_onv_basis.HartreeFockExpansion();
+    const GQCP::DOCI doci (onv_basis);
+    const GQCP::VectorX<double> initial_guess = onv_basis.HartreeFockExpansion();
     GQCP::DavidsonSolverOptions solver_options (initial_guess);
 
     // Code inside this loop is measured repeatedly
@@ -37,10 +34,9 @@ static void test_case(benchmark::State& state) {
 
     state.counters["Spatial orbitals"] = K;
     state.counters["Electron pairs"] = N_P;
-    state.counters["Dimension"] = doci_onv_basis.get_dimension();  // dim = 1184040
+    state.counters["Dimension"] = onv_basis.get_dimension();  // dim = 1184040
 }
 
 
-// Perform the benchmarks
 BENCHMARK(test_case)->Unit(benchmark::kMillisecond);
 BENCHMARK_MAIN();

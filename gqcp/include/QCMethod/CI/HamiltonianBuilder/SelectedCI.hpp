@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "ONVBasis/SelectedONVBasis.hpp"
+#include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/HamiltonianBuilder.hpp"
 
 
@@ -28,20 +28,22 @@ namespace GQCP {
 /**
  *  Typedef for a type of function that handles where to 'put' a calculated value (e.g. matrix or vector).
  *
- *  @param I        index or address of an ONV
- *  @param J        index or address of ONV that couples with ONV I
+ *  @param I        index or address of an SpinUnresolvedONV
+ *  @param J        index or address of SpinUnresolvedONV that couples with SpinUnresolvedONV I
  *  @param value    value related to the coupling
  */
 using PassToMethod = std::function<void (size_t I, size_t J, double value)>;
 
 
 /**
- *  SelectedCI builds a Hamiltonian matrix in the Selected ONV basis
+ *  SelectedCI builds a Hamiltonian matrix in a spin-resolved selected ONV basis
  */
 class SelectedCI : public HamiltonianBuilder {
 private:
-    SelectedONVBasis fock_space;  // contains both the alpha and beta ONV basis
-    
+    SpinResolvedSelectedONVBasis onv_basis;  // the spin-resolved selected ONV basis
+
+
+private:
     // PRIVATE METHODS
     /**
      *  Evaluate all Hamiltonian elements, putting the results in the Hamiltonian matrix or matvec through the `method` function
@@ -51,13 +53,15 @@ private:
      *  @param method                   the method depending to how you wish to construct the Hamiltonian
      */
     void evaluateHamiltonianElements(const SQHamiltonian<double>& sq_hamiltonian, const PassToMethod& method) const;
+
+
 public:
 
     // CONSTRUCTORS
     /**
-     *  @param fock_space               the selected ONV basis
+     *  @param onv_basis               the spin-resolved selected ONV basis
      */
-    explicit SelectedCI(const SelectedONVBasis& fock_space);
+    explicit SelectedCI(const SpinResolvedSelectedONVBasis& onv_basis);
 
 
     // DESTRUCTOR
@@ -65,7 +69,7 @@ public:
 
 
     // OVERRIDDEN GETTERS
-    const BaseONVBasis* get_fock_space() const override { return &fock_space; }
+    const BaseONVBasis* get_fock_space() const override { return &onv_basis; }
 
 
     // OVERRIDDEN PUBLIC METHODS

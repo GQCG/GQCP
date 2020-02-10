@@ -15,45 +15,45 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#define BOOST_TEST_MODULE "ProductONVBasis"
+#define BOOST_TEST_MODULE "SpinResolvedONVBasis"
 
 #include <boost/test/unit_test.hpp>
 
-#include "ONVBasis/ProductONVBasis.hpp"
+#include "ONVBasis/SpinResolvedONVBasis.hpp"
 
 #include "Basis/transform.hpp"
-#include "ONVBasis/SelectedONVBasis.hpp"
+#include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
 
 
 /**
- *  Test the ONV basis constructor
+ *  Test the SpinResolvedONVBasis constructor
  */
 BOOST_AUTO_TEST_CASE ( ProductONVBasis_constructor ) {
 
-    BOOST_CHECK_NO_THROW(GQCP::ProductONVBasis (10, 5, 5));
+    BOOST_CHECK_NO_THROW(GQCP::SpinResolvedONVBasis (10, 5, 5));
 }
 
 
 /**
- *  Check if the static ONV basis dimension calculation is correct and if it can throw errors
+ *  Check if the static SpinResolvedONVBasis basis dimension calculation is correct and if it can throw errors
  */
 BOOST_AUTO_TEST_CASE ( ProductONVBasis_dimension) {
 
-    BOOST_CHECK_EQUAL(GQCP::ProductONVBasis::calculateDimension(10, 1, 1), 100);
-    BOOST_CHECK_EQUAL(GQCP::ProductONVBasis::calculateDimension(6, 2, 2), 225);
-    BOOST_CHECK_EQUAL(GQCP::ProductONVBasis::calculateDimension(8, 3, 3), 3136);
+    BOOST_CHECK_EQUAL(GQCP::SpinResolvedONVBasis::calculateDimension(10, 1, 1), 100);
+    BOOST_CHECK_EQUAL(GQCP::SpinResolvedONVBasis::calculateDimension(6, 2, 2), 225);
+    BOOST_CHECK_EQUAL(GQCP::SpinResolvedONVBasis::calculateDimension(8, 3, 3), 3136);
 
-    BOOST_CHECK_EQUAL(GQCP::ProductONVBasis::calculateDimension(10, 2, 0), 45);
-    BOOST_CHECK_EQUAL(GQCP::ProductONVBasis::calculateDimension(6, 3, 1), 120);
-    BOOST_CHECK_EQUAL(GQCP::ProductONVBasis::calculateDimension(8, 4, 2), 1960);
+    BOOST_CHECK_EQUAL(GQCP::SpinResolvedONVBasis::calculateDimension(10, 2, 0), 45);
+    BOOST_CHECK_EQUAL(GQCP::SpinResolvedONVBasis::calculateDimension(6, 3, 1), 120);
+    BOOST_CHECK_EQUAL(GQCP::SpinResolvedONVBasis::calculateDimension(8, 4, 2), 1960);
 
-    BOOST_CHECK_THROW(GQCP::ProductONVBasis::calculateDimension(60, 25, 25), std::overflow_error);
+    BOOST_CHECK_THROW(GQCP::SpinResolvedONVBasis::calculateDimension(60, 25, 25), std::overflow_error);
 
 }
 
 
 /**
- *  Perform a dense evaluation of a one-, two-electron operator and the Hamiltonian in the ONV basis (including the diagonal)
+ *  Perform a dense evaluation of a one-, two-electron operator and the Hamiltonian in the SpinResolvedONVBasis basis (including the diagonal)
  *  and compare these to the selected CI solutions.
  */
 BOOST_AUTO_TEST_CASE ( ONVBasis_EvaluateOperator_Dense_diagonal_true ) {
@@ -63,13 +63,13 @@ BOOST_AUTO_TEST_CASE ( ONVBasis_EvaluateOperator_Dense_diagonal_true ) {
     spinor_basis.lowdinOrthonormalize();
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
 
-    GQCP::ProductONVBasis product_fock_space (6, 4, 4);
-    GQCP::SelectedONVBasis selected_fock_space (product_fock_space);
+    GQCP::SpinResolvedONVBasis product_fock_space (6, 4, 4);
+    GQCP::SpinResolvedSelectedONVBasis selected_fock_space (product_fock_space);
 
     const auto& h = sq_hamiltonian.core();
     const auto& g = sq_hamiltonian.twoElectron();
 
-    // Test the evaluation of the operators with selected ONV basis (the reference) versus that of the product ONV basis 
+    // Test the evaluation of the operators with selected ONV basis (the reference) versus that of thhe specialized ONV basis
     auto one_electron_evaluation1 = product_fock_space.evaluateOperatorDense(h, true);
     auto one_electron_evaluation2 = selected_fock_space.evaluateOperatorDense(h, true);
 
@@ -96,8 +96,8 @@ BOOST_AUTO_TEST_CASE ( ONVBasis_EvaluateOperator_Dense_diagonal_false ) {
     spinor_basis.lowdinOrthonormalize();
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
 
-    GQCP::ProductONVBasis product_fock_space (6, 4, 4);
-    GQCP::SelectedONVBasis selected_fock_space (product_fock_space);
+    GQCP::SpinResolvedONVBasis product_fock_space (6, 4, 4);
+    GQCP::SpinResolvedSelectedONVBasis selected_fock_space (product_fock_space);
 
     const auto& h = sq_hamiltonian.core();
     const auto& g = sq_hamiltonian.twoElectron();
@@ -129,8 +129,8 @@ BOOST_AUTO_TEST_CASE ( ONVBasis_EvaluateOperator_diagonal ) {
     spinor_basis.lowdinOrthonormalize();
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
 
-    GQCP::ProductONVBasis product_fock_space (6, 4, 4);
-    GQCP::SelectedONVBasis selected_fock_space (product_fock_space);
+    GQCP::SpinResolvedONVBasis product_fock_space (6, 4, 4);
+    GQCP::SpinResolvedSelectedONVBasis selected_fock_space (product_fock_space);
 
     const auto& h = sq_hamiltonian.core();
     const auto& g = sq_hamiltonian.twoElectron();
@@ -161,7 +161,7 @@ BOOST_AUTO_TEST_CASE ( ONVBasis_EvaluateOperator_diagonal_vs_no_diagonal) {
     spinor_basis.lowdinOrthonormalize();
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
 
-    GQCP::ProductONVBasis product_fock_space (6, 4, 4);
+    GQCP::SpinResolvedONVBasis product_fock_space (6, 4, 4);
 
     GQCP::SquareMatrix<double> hamiltonian = product_fock_space.evaluateOperatorDense(sq_hamiltonian, true);
     GQCP::SquareMatrix<double> hamiltonian_no_diagonal = product_fock_space.evaluateOperatorDense(sq_hamiltonian, false);
@@ -183,7 +183,7 @@ BOOST_AUTO_TEST_CASE ( ONVBasis_EvaluateOperator_MatrixVectorProduct ) {
     spinor_basis.lowdinOrthonormalize();
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
 
-    GQCP::ProductONVBasis fock_space (6, 4, 4);
+    GQCP::SpinResolvedONVBasis fock_space (6, 4, 4);
 
     const auto& h = sq_hamiltonian.core();
     const auto& g = sq_hamiltonian.twoElectron();
@@ -224,7 +224,7 @@ BOOST_AUTO_TEST_CASE ( ONVBasis_EvaluateOperator_diagonal_unrestricted ) {
     auto usq_hamiltonian = GQCP::USQHamiltonian<double>::Molecular(uspinor_basis, hchain);  // unrestricted Hamiltonian in the Löwdin basis
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(rspinor_basis, hchain);  // restricted Hamiltonian in the Löwdin basis
 
-    GQCP::ProductONVBasis product_fock_space (6, 4, 4);
+    GQCP::SpinResolvedONVBasis product_fock_space (6, 4, 4);
 
     auto hamiltonian_diagonal_evaluation1 = product_fock_space.evaluateOperatorDiagonal(sq_hamiltonian);
     auto hamiltonian_diagonal_evaluation2 = product_fock_space.evaluateOperatorDiagonal(usq_hamiltonian);
@@ -252,8 +252,8 @@ BOOST_AUTO_TEST_CASE ( ONVBasis_EvaluateOperator_diagonal_unrestricted_vs_select
     Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes (usq_hamiltonian.spinHamiltonian(GQCP::SpinComponent::ALPHA).core().parameters());
     GQCP::basisTransform(uspinor_basis, usq_hamiltonian, GQCP::TransformationMatrix<double>(saes.eigenvectors()), GQCP::SpinComponent::BETA);
 
-    GQCP::ProductONVBasis product_fock_space (6, 4, 4);
-    GQCP::SelectedONVBasis selected_fock_space (product_fock_space);
+    GQCP::SpinResolvedONVBasis product_fock_space (6, 4, 4);
+    GQCP::SpinResolvedSelectedONVBasis selected_fock_space (product_fock_space);
 
     auto hamiltonian_diagonal_evaluation1 = product_fock_space.evaluateOperatorDiagonal(usq_hamiltonian);
     auto hamiltonian_diagonal_evaluation2 = selected_fock_space.evaluateOperatorDiagonal(usq_hamiltonian);

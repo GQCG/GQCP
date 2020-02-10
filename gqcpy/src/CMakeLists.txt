@@ -1,6 +1,7 @@
 add_subdirectory(Basis)
 add_subdirectory(Mathematical)
 add_subdirectory(Molecule)
+add_subdirectory(ONVBasis)
 add_subdirectory(Operator)
 add_subdirectory(QCMethod)
 add_subdirectory(QCModel)

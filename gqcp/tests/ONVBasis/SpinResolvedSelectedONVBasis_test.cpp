@@ -15,38 +15,38 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#define BOOST_TEST_MODULE "SelectedONVBasis"
+#define BOOST_TEST_MODULE "SpinResolvedSelectedONVBasis"
 
 #include <boost/test/unit_test.hpp>
 
-#include "ONVBasis/SelectedONVBasis.hpp"
+#include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
 
 #include "Basis/transform.hpp"
 #include "QCModel/CI/LinearExpansionReader.hpp"
 
 
 /**
- *  Tests the constructors of the SelectedONVBasis
+ *  Tests the constructors of the SpinResolvedSelectedONVBasis
  */
 BOOST_AUTO_TEST_CASE ( constructor ) {
 
-    BOOST_CHECK_NO_THROW(GQCP::SelectedONVBasis (10, 5, 5));
+    BOOST_CHECK_NO_THROW(GQCP::SpinResolvedSelectedONVBasis (10, 5, 5));
 
-    GQCP::ProductONVBasis fock_space_product (10, 5, 5);
-    GQCP::ONVBasis fock_space (10, 5);
+    GQCP::SpinResolvedONVBasis fock_space_product (10, 5, 5);
+    GQCP::SpinUnresolvedONVBasis fock_space (10, 5);
 
-    BOOST_CHECK_NO_THROW(GQCP::SelectedONVBasis fock (fock_space_product));
-    BOOST_CHECK_NO_THROW(GQCP::SelectedONVBasis fock (fock_space));
+    BOOST_CHECK_NO_THROW(GQCP::SpinResolvedSelectedONVBasis fock (fock_space_product));
+    BOOST_CHECK_NO_THROW(GQCP::SpinResolvedSelectedONVBasis fock (fock_space));
 }
 
 
 /**
- *  Tests general functionality of the SelectedONVBasis::addConfiguration function, by testing throws and retrieving configurations
+ *  Tests general functionality of the SpinResolvedSelectedONVBasis::addConfiguration function, by testing throws and retrieving configurations
  */
 BOOST_AUTO_TEST_CASE ( addConfiguration ) {
 
     // Create a faulty expansion: one of the orbitals is different
-    GQCP::SelectedONVBasis fock_space (3, 1, 1);
+    GQCP::SpinResolvedSelectedONVBasis fock_space (3, 1, 1);
 
     std::vector<std::string> alpha_set = {"001", "010"};
     std::vector<std::string> beta_set = {"001", "010"};
@@ -74,8 +74,8 @@ BOOST_AUTO_TEST_CASE ( addConfiguration ) {
     std::string beta2_ref = "010";
 
     // Retrieve the added results
-    GQCP::Configuration configuration1 = fock_space.get_configuration(0);
-    GQCP::Configuration configuration2 = fock_space.get_configuration(1);
+    GQCP::SpinResolvedONV configuration1 = fock_space.get_configuration(0);
+    GQCP::SpinResolvedONV configuration2 = fock_space.get_configuration(1);
 
     // Retrieve the string representation of the ONVs
     std::string alpha1_test = configuration1.onv_alpha.asString();
@@ -115,8 +115,8 @@ BOOST_AUTO_TEST_CASE ( reader_test ) {
     std::string beta2_ref = "0000000000000000000000000000000000000000000010";
 
     // Retrieve the read results
-    GQCP::Configuration configuration1 = test_reader.get_fock_space().get_configuration(0);
-    GQCP::Configuration configuration2 = test_reader.get_fock_space().get_configuration(1);
+    GQCP::SpinResolvedONV configuration1 = test_reader.get_fock_space().get_configuration(0);
+    GQCP::SpinResolvedONV configuration2 = test_reader.get_fock_space().get_configuration(1);
 
     // Retrieve the string representation of the ONVs
     std::string alpha1_test = configuration1.onv_alpha.asString();
@@ -147,8 +147,8 @@ BOOST_AUTO_TEST_CASE ( Selected_Evaluation_H2O ) {
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2o);  // in the Löwdin basis
     auto K = sq_hamiltonian.dimension();
 
-    GQCP::ProductONVBasis fock_space (K, h2o.numberOfElectrons()/2, h2o.numberOfElectrons()/2);  // dim = 441
-    GQCP::SelectedONVBasis selected_fock_space (fock_space);
+    GQCP::SpinResolvedONVBasis fock_space (K, h2o.numberOfElectrons()/2, h2o.numberOfElectrons()/2);  // dim = 441
+    GQCP::SpinResolvedSelectedONVBasis selected_fock_space (fock_space);
 
 
     // Evaluate the dense Hamiltonian
@@ -205,8 +205,8 @@ BOOST_AUTO_TEST_CASE ( Selected_H2O_Unrestricted ) {
     GQCP::basisTransform(spinor_basis, usq_hamiltonian, GQCP::TransformationMatrix<double>(saes.eigenvectors()), GQCP::SpinComponent::BETA);
     auto K = usq_hamiltonian.dimension()/2;
 
-    GQCP::ProductONVBasis fock_space (K, h2o.numberOfElectrons()/2, h2o.numberOfElectrons()/2);  // dim = 441
-    GQCP::SelectedONVBasis selected_fock_space (fock_space);
+    GQCP::SpinResolvedONVBasis fock_space (K, h2o.numberOfElectrons()/2, h2o.numberOfElectrons()/2);  // dim = 441
+    GQCP::SpinResolvedSelectedONVBasis selected_fock_space (fock_space);
 
     // Evaluate the dense Hamiltonian
     GQCP::SquareMatrix<double> hamiltonian = selected_fock_space.evaluateOperatorDense(usq_hamiltonian, true);

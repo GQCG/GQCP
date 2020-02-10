@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "ONVBasis/SelectedONVBasis.hpp"
+#include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
 #include "Processing/RDM/BaseRDMBuilder.hpp"
 #include "Processing/RDM/RDMs.hpp"
 
@@ -27,15 +27,15 @@ namespace GQCP {
 
 
 /**
- *  A class capable of calculating 1- and 2-RDMs from wave functions expanded in a selected ONV basis
+ *  A class capable of calculating 1- and 2-RDMs from wave functions expanded in a selected spin-resolved basis
  */
 class SelectedRDMBuilder : public BaseRDMBuilder {
-    SelectedONVBasis fock_space;  // ONV basis containing the selected configurations
+    SpinResolvedSelectedONVBasis fock_space;  // spin-resolved ONV basis containing the selected configurations
 
 
 public:
     // CONSTRUCTORS
-    explicit SelectedRDMBuilder (const SelectedONVBasis& fock_space);
+    explicit SelectedRDMBuilder (const SpinResolvedSelectedONVBasis& fock_space);
 
 
     // DESTRUCTOR

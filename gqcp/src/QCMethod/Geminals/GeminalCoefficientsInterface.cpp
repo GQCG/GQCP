@@ -30,12 +30,12 @@ namespace GQCP {
  *
  *  @return the wave function expansion corresponding to the geminal coefficients
  */
-LinearExpansion GeminalCoefficientsInterface::toLinearExpansion(const ONVBasis& fock_space) const {
+LinearExpansion GeminalCoefficientsInterface::toLinearExpansion(const SpinUnresolvedONVBasis& fock_space) const {
 
-    // The ONVBasis can't be marked const, as makeONV() and setNext() are non-const methods
+    // The ONV can't be marked const, as makeONV() and setNext() are non-const methods
 
     VectorX<double> coefficients = VectorX<double>::Zero(fock_space.get_dimension());  // coefficient vector
-    ONV onv = fock_space.makeONV(0);  // start with address 0
+    SpinUnresolvedONV onv = fock_space.makeONV(0);  // start with address 0
     for (size_t I = 0; I < fock_space.get_dimension(); I++) {
 
         coefficients(I) = this->overlap(onv);

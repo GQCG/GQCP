@@ -1,5 +1,5 @@
 /**
- *  A benchmark executable for the construction of the FCI Hamiltonian
+ *  A benchmark executable for the construction of the FCI Hamiltonian, which is constructed for full spin-resolved SpinUnresolvedONV bases for 8 orbitals and 2 to 6 electron pairs.
  */
 
 #include <benchmark/benchmark.h>
@@ -8,36 +8,38 @@
 #include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
 
 
+
+static void CustomArguments(benchmark::internal::Benchmark* b) {
+    for (int i = 2; i < 6; ++i) {  // need int instead of size_t
+        b->Args({8, i});  // number of spatial orbitals, number of electron pairs
+    }
+}
+
+
 static void constructHamiltonian(benchmark::State& state) {
 
-    // Prepare the Hamiltonian
-    size_t K = state.range(0);
-    size_t N = state.range(1);
-    GQCP::ProductONVBasis fock_space (K, N, N);
-    GQCP::FCI fci (fock_space);
+    const auto K = state.range(0);  // number of spatial orbitals
+    const auto N_P = state.range(1);  // number of electron pairs
 
-    GQCP::SQHamiltonian<double> sq_hamiltonian = GQCP::SQHamiltonian<double>::Random(K);
+
+    // Prepare the second-quantized Hamiltonian and set up a full spin-resolved ONV basis
+    const GQCP::SQHamiltonian<double> sq_hamiltonian = GQCP::SQHamiltonian<double>::Random(K);
+    const GQCP::SpinResolvedONVBasis onv_basis (K, N_P, N_P);
+    const GQCP::FCI fci (onv_basis);
+
 
     // Code inside this loop is measured repeatedly
     for (auto _ : state) {
-        GQCP::SquareMatrix<double> hamiltonian = fci.constructHamiltonian(sq_hamiltonian);
+        const auto hamiltonian = fci.constructHamiltonian(sq_hamiltonian);
 
         benchmark::DoNotOptimize(hamiltonian);  // make sure the variable is not optimized away by compiler
     }
 
-    state.counters["Orbitals"] = K;
-    state.counters["Electron pairs"] = N;
-    state.counters["Dimension"] = fock_space.get_dimension();
+    state.counters["Spatial orbitals"] = K;
+    state.counters["Electron pairs"] = N_P;
+    state.counters["Dimension"] = onv_basis.get_dimension();
 }
 
 
-static void CustomArguments(benchmark::internal::Benchmark* b) {
-    for (int i = 2; i < 6; ++i) {  // need int instead of size_t
-        b->Args({8, i});  // orbitals, electron pairs
-    }
-}
-
-
-// Perform the benchmarks
 BENCHMARK(constructHamiltonian)->Unit(benchmark::kMillisecond)->Apply(CustomArguments);
 BENCHMARK_MAIN();

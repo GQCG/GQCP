@@ -27,12 +27,12 @@ namespace GQCP {
 
 
 /**
- *  A class that represents a wave function: expansion coefficients in a ONV basis
+ *  A class that represents a wave function: expansion coefficients in an ONV basis
  */
 class LinearExpansion {
 private:
-    std::shared_ptr<BaseONVBasis> fock_space;
-    VectorX<double> coefficients;  // the expansion coefficients in the ONV basis
+    std::shared_ptr<BaseONVBasis> onv_basis;
+    VectorX<double> coefficients;  // the expansion coefficients
 
 public:
     // CONSTRUCTORS
@@ -41,15 +41,15 @@ public:
     /**
      *  Construct a normalized wave function from possibly non-normalized coefficients
      *
-     *  @param base_fock_space      the ONV basis in which the wave function 'lives'
+     *  @param onv_basis            the ONV basis in which the wave function 'lives'
      *  @param coefficients         the expansion coefficients
      */
-    LinearExpansion(const BaseONVBasis& base_fock_space, const VectorX<double>& coefficients);
+    LinearExpansion(const BaseONVBasis& onv_basis, const VectorX<double>& coefficients);
 
 
     // GETTERS
     const VectorX<double>& get_coefficients() const { return coefficients; }
-    const BaseONVBasis& get_fock_space() const { return *fock_space; }
+    const BaseONVBasis& get_fock_space() const { return *onv_basis; }
 
 
     // PUBLIC METHODS
@@ -59,7 +59,7 @@ public:
     double calculateShannonEntropy() const;
 
     /**
-     *  Transform the underlying ONV basis of the wave function (only for FCI [ProductONVBasis]) and recalculate the ONV expansion coefficients
+     *  Transform the underlying ONV basis of the wave function (only for FCI [SpinResolvedONVBasis]) and recalculate the expansion coefficients
      *
      *  @param T    the transformation matrix between the old and the new orbital basis
      */

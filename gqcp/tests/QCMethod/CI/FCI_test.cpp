@@ -21,7 +21,7 @@
 
 #include "Basis/transform.hpp"
 #include "Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp"
-#include "ONVBasis/ProductONVBasis.hpp"
+#include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/CI/CI.hpp"
 #include "QCMethod/CI/CIEnvironment.hpp"
@@ -57,7 +57,7 @@ BOOST_AUTO_TEST_CASE ( FCI_H2_dense ) {
 
 
     // Set up the full spin-resolved ONV basis (with addressing scheme).
-    const GQCP::ProductONVBasis onv_basis (K, N_P, N_P);  // dimension = 100
+    const GQCP::SpinResolvedONVBasis onv_basis (K, N_P, N_P);  // dimension = 100
 
 
     // Create a dense solver and corresponding environment and put them together in the QCMethod
@@ -97,7 +97,7 @@ BOOST_AUTO_TEST_CASE ( FCI_rotated_diagonal_sum ) {
 
 
     // Set up the full spin-resolved ONV basis (with addressing scheme).
-    const GQCP::ProductONVBasis onv_basis (K, N_P, N_P);  // dimension = 100
+    const GQCP::SpinResolvedONVBasis onv_basis (K, N_P, N_P);  // dimension = 100
 
 
     // Evaluate the diagonal of the FCI Hamiltonian matrix.
@@ -138,7 +138,7 @@ BOOST_AUTO_TEST_CASE ( FCI_H2O_dense ) {
 
 
     // Set up the full spin-resolved ONV basis (with addressing scheme).
-    const GQCP::ProductONVBasis onv_basis (K, N_P, N_P);  // dimension = 100
+    const GQCP::SpinResolvedONVBasis onv_basis (K, N_P, N_P);  // dimension = 100
 
 
     // Create a dense solver and corresponding environment and put them together in the QCMethod

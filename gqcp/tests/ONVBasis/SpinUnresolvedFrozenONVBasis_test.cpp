@@ -15,29 +15,29 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#define BOOST_TEST_MODULE "FrozenONVBasis"
+#define BOOST_TEST_MODULE "SpinUnresolvedFrozenONVBasis"
 
 #include <boost/test/unit_test.hpp>
 
-#include "ONVBasis/FrozenONVBasis.hpp"
+#include "ONVBasis/SpinUnresolvedFrozenONVBasis.hpp"
 
-#include "ONVBasis/FrozenProductONVBasis.hpp"
+#include "ONVBasis/SpinResolvedFrozenONVBasis.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( FrozenONVBasis_constructor ) {
 
-    BOOST_CHECK_NO_THROW(GQCP::FrozenONVBasis (10, 5, 1));
-    BOOST_CHECK_NO_THROW(GQCP::FrozenONVBasis (10, 5, 2));
-    BOOST_CHECK_NO_THROW(GQCP::FrozenONVBasis (10, 5, 3));
-    BOOST_CHECK_NO_THROW(GQCP::FrozenONVBasis (10, 5, 4));
-    BOOST_CHECK_NO_THROW(GQCP::FrozenONVBasis (10, 5, 5));
+    BOOST_CHECK_NO_THROW(GQCP::SpinUnresolvedFrozenONVBasis (10, 5, 1));
+    BOOST_CHECK_NO_THROW(GQCP::SpinUnresolvedFrozenONVBasis (10, 5, 2));
+    BOOST_CHECK_NO_THROW(GQCP::SpinUnresolvedFrozenONVBasis (10, 5, 3));
+    BOOST_CHECK_NO_THROW(GQCP::SpinUnresolvedFrozenONVBasis (10, 5, 4));
+    BOOST_CHECK_NO_THROW(GQCP::SpinUnresolvedFrozenONVBasis (10, 5, 5));
 }
 
 
 BOOST_AUTO_TEST_CASE ( coupling_count ) {
 
-    GQCP::FrozenONVBasis fock_space (7, 5, 2);
-    GQCP::ONV onv = fock_space.makeONV(3);
+    GQCP::SpinUnresolvedFrozenONVBasis fock_space (7, 5, 2);
+    GQCP::SpinUnresolvedONV onv = fock_space.makeONV(3);
 
     // We only count couplings with larger addresses
 
@@ -50,8 +50,8 @@ BOOST_AUTO_TEST_CASE ( coupling_count ) {
     BOOST_CHECK(fock_space.countTwoElectronCouplings(onv) == 6+3);
 
 
-    // test whether the total count matches that of individual counts of all ONVs in the ONV basis.
-    GQCP::FrozenONVBasis fock_space2 (18, 10, 2);
+    // Test whether the total count matches that of individual counts of all ONVs in the ONV basis
+    GQCP::SpinUnresolvedFrozenONVBasis fock_space2 (18, 10, 2);
 
     size_t coupling_count1 = 0;
     size_t coupling_count2 = 0;
@@ -75,7 +75,7 @@ BOOST_AUTO_TEST_CASE ( ulongNextPermutation_getAddress_calculateRepresentation )
     size_t N = 3;
     size_t X = 1;  // number of frozen orbitals/electrons
 
-    GQCP::FrozenONVBasis frozen_fock_space(K, N, X);
+    GQCP::SpinUnresolvedFrozenONVBasis frozen_fock_space(K, N, X);
 
     // "00111", "01011", "01101", "10011", "10101", "11001"
     size_t bit_frozen_fock_space[6] = {7, 11, 13, 19, 21, 25};
@@ -94,10 +94,10 @@ BOOST_AUTO_TEST_CASE ( ulongNextPermutation_getAddress_calculateRepresentation )
 BOOST_AUTO_TEST_CASE ( address_setNext_frozen_space ) {
 
     // Here we will test a set of permutations through a frozen ONV basis of K = 15, N = 5, X = 2
-    GQCP::FrozenONVBasis fock_space (15, 5, 2);
+    GQCP::SpinUnresolvedFrozenONVBasis fock_space (15, 5, 2);
 
     // Retrieve the first ONV of the ONV basis
-    GQCP::ONV onv_test = fock_space.makeONV(0);
+    GQCP::SpinUnresolvedONV onv_test = fock_space.makeONV(0);
 
     const size_t permutations = 285;
     bool is_correct = true;  // variable that is updated to false if an unexpected result occurs
@@ -128,7 +128,7 @@ BOOST_AUTO_TEST_CASE ( ONVBasis_EvaluateOperator_diagonal_vs_no_diagonal) {
     spinor_basis.lowdinOrthonormalize();
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
 
-    GQCP::FrozenONVBasis fock_space (6, 4, 2);
+    GQCP::SpinUnresolvedFrozenONVBasis fock_space (6, 4, 2);
 
     GQCP::SquareMatrix<double> hamiltonian = fock_space.evaluateOperatorDense(sq_hamiltonian, true);
     GQCP::SquareMatrix<double> hamiltonian_no_diagonal = fock_space.evaluateOperatorDense(sq_hamiltonian, false);

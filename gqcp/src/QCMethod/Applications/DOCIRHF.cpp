@@ -80,7 +80,7 @@ void DOCIRHF::solve() {
     basisTransform(spinor_basis, sq_hamiltonian, rhf_parameters.coefficientMatrix());
 
     // Set up DOCI
-    ONVBasis fock_space (K, N_P);
+    SpinUnresolvedONVBasis fock_space (K, N_P);
 
     std::shared_ptr<BaseSolverOptions> solver_options;
     if (use_davidson) {

@@ -27,7 +27,7 @@ namespace GQCP {
 
 
 /**
- *  A small struct to accommodate the return type of "freezeOperator(const ScalarSQTwoElectronOperator<double>&)", as it should both return a one- and two-electron operator
+ *  A small struct to accommodate the return type of "freezeOperator(const ScalarSQTwoElectronOperator<double>&)", as it should return both a one- and two-electron operator.
  */
 struct FrozenOperators {
     ScalarSQOneElectronOperator<double> one_op;

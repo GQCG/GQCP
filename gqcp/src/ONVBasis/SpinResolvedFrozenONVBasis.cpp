@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "ONVBasis/FrozenProductONVBasis.hpp"
+#include "ONVBasis/SpinResolvedFrozenONVBasis.hpp"
 
 
 namespace GQCP {
@@ -31,12 +31,12 @@ namespace GQCP {
  *  @param N_beta       the total number of beta electrons
  *  @param X            the number of frozen orbitals and electrons (equal for alpha and beta)
  */
-FrozenProductONVBasis::FrozenProductONVBasis(size_t K, size_t N_alpha, size_t N_beta, size_t X) :
-        BaseFrozenCoreONVBasis(std::make_shared<ProductONVBasis>(ProductONVBasis(K-X, N_alpha-X, N_beta-X)), X),
-        frozen_fock_space_alpha (FrozenONVBasis(K, N_alpha, X)),
-        frozen_fock_space_beta (FrozenONVBasis(K, N_beta, X)),
-        active_product_fock_space (ProductONVBasis(K-X, N_alpha-X, N_beta-X)),
-        X (X)
+SpinResolvedFrozenONVBasis::SpinResolvedFrozenONVBasis(size_t K, size_t N_alpha, size_t N_beta, size_t X) :
+    BaseFrozenCoreONVBasis(std::make_shared<SpinResolvedONVBasis>(SpinResolvedONVBasis(K-X, N_alpha-X, N_beta-X)), X),
+    frozen_fock_space_alpha (SpinUnresolvedFrozenONVBasis(K, N_alpha, X)),
+    frozen_fock_space_beta (SpinUnresolvedFrozenONVBasis(K, N_beta, X)),
+    active_onv_basis (SpinResolvedONVBasis(K-X, N_alpha-X, N_beta-X)),
+    X (X)
 {}
 
 
@@ -44,8 +44,8 @@ FrozenProductONVBasis::FrozenProductONVBasis(size_t K, size_t N_alpha, size_t N_
  *  @param fock_space       (to be frozen) product ONV basis
  *  @param X                the number of frozen orbitals and electrons (equal for alpha and beta)
  */
-FrozenProductONVBasis::FrozenProductONVBasis(const ProductONVBasis& fock_space, size_t X) :
-    FrozenProductONVBasis(fock_space.get_K(), fock_space.get_N_alpha(), fock_space.get_N_beta(), X)
+SpinResolvedFrozenONVBasis::SpinResolvedFrozenONVBasis(const SpinResolvedONVBasis& fock_space, size_t X) :
+    SpinResolvedFrozenONVBasis(fock_space.get_K(), fock_space.get_N_alpha(), fock_space.get_N_beta(), X)
 {}
 
 
@@ -62,16 +62,16 @@ FrozenProductONVBasis::FrozenProductONVBasis(const ProductONVBasis& fock_space, 
  *
  *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the ONV basis
  */
-SquareMatrix<double> FrozenProductONVBasis::evaluateOperatorDense(const USQHamiltonian<double>& usq_hamiltonian, bool diagonal_values) const {
+SquareMatrix<double> SpinResolvedFrozenONVBasis::evaluateOperatorDense(const USQHamiltonian<double>& usq_hamiltonian, bool diagonal_values) const {
     // Freeze the operators
     const auto frozen_usq_hamiltonian = BaseFrozenCoreONVBasis::freezeOperator(usq_hamiltonian, this->X);
 
     // Evaluate the frozen operator in the active space
-    auto evaluation = this->active_product_fock_space.evaluateOperatorDense(frozen_usq_hamiltonian, diagonal_values);
+    auto evaluation = this->active_onv_basis.evaluateOperatorDense(frozen_usq_hamiltonian, diagonal_values);
 
     if (diagonal_values) {
         // Diagonal correction
-        const auto frozen_core_diagonal = BaseFrozenCoreONVBasis::frozenCoreDiagonal(usq_hamiltonian, this->X, this->active_product_fock_space.get_dimension());
+        const auto frozen_core_diagonal = BaseFrozenCoreONVBasis::frozenCoreDiagonal(usq_hamiltonian, this->X, this->active_onv_basis.get_dimension());
         evaluation += frozen_core_diagonal.asDiagonal();
     }
 
@@ -86,14 +86,14 @@ SquareMatrix<double> FrozenProductONVBasis::evaluateOperatorDense(const USQHamil
  *
  *  @return the Hamiltonian's diagonal evaluation in a vector with the dimension of the ONV basis
  */
-VectorX<double> FrozenProductONVBasis::evaluateOperatorDiagonal(const USQHamiltonian<double>& usq_hamiltonian) const {
+VectorX<double> SpinResolvedFrozenONVBasis::evaluateOperatorDiagonal(const USQHamiltonian<double>& usq_hamiltonian) const {
     const auto frozen_usq_hamiltonian = BaseFrozenCoreONVBasis::freezeOperator(usq_hamiltonian, this->X);
 
     // Calculate diagonal in the active space with the "frozen" Hamiltonian
-    const auto diagonal = this->active_product_fock_space.evaluateOperatorDiagonal(frozen_usq_hamiltonian);
+    const auto diagonal = this->active_onv_basis.evaluateOperatorDiagonal(frozen_usq_hamiltonian);
 
     // Calculate diagonal for the frozen orbitals
-    const auto frozen_core_diagonal = BaseFrozenCoreONVBasis::frozenCoreDiagonal(usq_hamiltonian, this->X, this->active_product_fock_space.get_dimension());
+    const auto frozen_core_diagonal = BaseFrozenCoreONVBasis::frozenCoreDiagonal(usq_hamiltonian, this->X, this->active_onv_basis.get_dimension());
 
     return diagonal + frozen_core_diagonal;
 
@@ -109,11 +109,11 @@ VectorX<double> FrozenProductONVBasis::evaluateOperatorDiagonal(const USQHamilto
  *
  *  @return the Hamiltonian's evaluation in a dense matrix with the dimensions of the ONV basis
  */
-VectorX<double> FrozenProductONVBasis::evaluateOperatorMatrixVectorProduct(const USQHamiltonian<double>& usq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
+VectorX<double> SpinResolvedFrozenONVBasis::evaluateOperatorMatrixVectorProduct(const USQHamiltonian<double>& usq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
     const auto frozen_ham_par = BaseFrozenCoreONVBasis::freezeOperator(usq_hamiltonian, this->X);
 
     // Perform the matvec in the active space with the "frozen" parameters
-    return this->active_product_fock_space.evaluateOperatorMatrixVectorProduct(frozen_ham_par, x, diagonal);
+    return this->active_onv_basis.evaluateOperatorMatrixVectorProduct(frozen_ham_par, x, diagonal);
 }
 
 

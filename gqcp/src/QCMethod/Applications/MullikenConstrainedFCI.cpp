@@ -232,9 +232,9 @@ MullikenConstrainedFCI::MullikenConstrainedFCI(const Molecule& molecule, const s
             basisTransform(this->spinor_basis, this->sq_hamiltonian, T);
         }
     }
-    
+
     basisTransform(this->uspinor_basis, this->usq_hamiltonian, this->spinor_basis.coefficientMatrix());
-    this->fock_space = FrozenProductONVBasis(K, N_P, N_P, frozencores);
+    this->fock_space = SpinResolvedFrozenONVBasis(K, N_P, N_P, frozencores);
     this->mulliken_operator = this->spinor_basis.calculateMullikenOperator(basis_targets);
     this->sq_sz_operator = this->uspinor_basis.calculateAtomicSpinZ(basis_targets, SpinComponent::ALPHA);
 
@@ -320,7 +320,7 @@ void MullikenConstrainedFCI::solveMullikenDavidson(const double multiplier, cons
  */
 void MullikenConstrainedFCI::solveMullikenDense(const double multiplier, const size_t nos = 1, const double sz_multiplier) {
     if (nos < 1 || nos >= fock_space.get_dimension()) {
-        throw std::runtime_error("MullikenConstrainedFCI::solveMullikenDense(): number of states should be larger than 0 and smaller than the dimension of the ONV basis");
+        throw std::runtime_error("MullikenConstrainedFCI::solveMullikenDense(): number of states should be larger than 0 and smaller than the dimension of the ONV basis.");
     }
 
     auto start_time = std::chrono::high_resolution_clock::now();
