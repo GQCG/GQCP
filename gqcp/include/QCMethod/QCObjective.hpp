@@ -49,7 +49,7 @@ public:
      */
     template <typename QCModel>
     bool isSatisfiedWith(const QCModel& model_parameters) const {
-        this->derived().isSatisfiedWith(model_parameters);
+        return this->derived().isSatisfiedWith(model_parameters);
     }
 };
 
