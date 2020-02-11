@@ -15,12 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "QCMethod/CI/CI.hpp"
-
-#include "Mathematical/Algorithm/IterativeAlgorithm.hpp"
-#include "ONVBasis/SpinResolvedONVBasis.hpp"
-#include "QCMethod/CI/CIEnvironment.hpp"
-
+#include "Operator/FirstQuantized/Operator.hpp"
 
 #include <pybind11/pybind11.h>
 
@@ -31,19 +26,22 @@ namespace py = pybind11;
 namespace gqcpy {
 
 
-void bindQCMethodCI(py::module& module) {
-    py::class_<GQCP::QCMethod::CI>(module, "CI", "The configuration interaction quantum chemical method.")
+void bindOperator(py::module& module) {
 
-        .def(py::init<const GQCP::SpinResolvedONVBasis, const size_t>(),
-            py::arg("onv_basis"),
-            py::arg("number_of_states") = 1
+    py::class_<GQCP::NuclearRepulsionOperator>(module, "NuclearRepulsionOperator", "The nuclear repulsion operator.")
+
+        .def("value",
+            &GQCP::NuclearRepulsionOperator::value,
+            "Return the scalar value of this nuclear repulsion operator."
         )
+    ;
 
-        .def("optimize",
-            [] (const GQCP::QCMethod::CI& qc_method, GQCP::Algorithm<GQCP::EigenproblemEnvironment>& solver, GQCP::EigenproblemEnvironment& environment) {
-                return qc_method.optimize(solver, environment);
-            },
-            "Optimize the CI wave function model: find the linear expansion coefficients."
+
+    py::class_<GQCP::Operator>(module, "Operator", "A class that is used to construct operators using static methods, much like a factory class.")
+
+        .def_static("NuclearRepulsion",
+            &GQCP::Operator::NuclearRepulsion,
+            "Return a NuclearRepulsionOperator"
         )
     ;
 }

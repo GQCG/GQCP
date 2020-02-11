@@ -48,7 +48,11 @@ void bindNucleus(py::module& module);
 void bindSpinResolvedONVBasis(py::module& module);
 
 
-// Operator
+// Operator - FirstQuantized
+void bindOperator(py::module& module);
+
+
+// Operator - SecondQuantized
 void bindSQHamiltonian(py::module& module);
 void bindSQOneElectronOperator(py::module& module);
 void bindSQTwoElectronOperator(py::module& module);
@@ -73,6 +77,10 @@ void bindDiagonalRHFFockMatrixObjective(py::module& module);
 void bindQCMethodRHF(py::module& module);
 void bindRHFSCFEnvironment(py::module& module);
 void bindRHFSCFSolver(py::module& module);
+
+
+// QCMethod
+void bindQCStructures(py::module& module);
 
 
 // QCModel - CI
@@ -119,7 +127,11 @@ PYBIND11_MODULE (gqcpy, module) {
     gqcpy::bindSpinResolvedONVBasis(module);
 
 
-    // Operator
+    // Operator - FirstQuantized
+    gqcpy::bindOperator(module);
+
+
+    // Operator - SecondQuantized
     gqcpy::bindSQHamiltonian(module);
     gqcpy::bindSQOneElectronOperator(module);
     gqcpy::bindSQTwoElectronOperator(module);
@@ -144,6 +156,10 @@ PYBIND11_MODULE (gqcpy, module) {
     gqcpy::bindQCMethodRHF(module);
     gqcpy::bindRHFSCFEnvironment(module);
     gqcpy::bindRHFSCFSolver(module);
+
+
+    // QCMethod
+    gqcpy::bindQCStructures(module);
 
 
     // QCModel - CI

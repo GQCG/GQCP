@@ -71,7 +71,7 @@ public:
     /**
      *  @param i            the index of the i-th excited state
      * 
-     *  @return the electronic energy correspondin to the i-th excited state
+     *  @return the electronic energy corresponding to the i-th excited state
      */
     double energy(const size_t i = 0) const { return this->energies[i]; }
 

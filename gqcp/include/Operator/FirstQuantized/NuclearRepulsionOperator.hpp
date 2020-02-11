@@ -25,7 +25,7 @@ namespace GQCP {
 
 
 /**
- *  A class that represents the nuclear repulsion operator
+ *  The nuclear repulsion operator.
  */
 class NuclearRepulsionOperator: public BaseNuclearOperator {
 public:
