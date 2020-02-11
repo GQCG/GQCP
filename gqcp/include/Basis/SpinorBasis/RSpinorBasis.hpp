@@ -121,16 +121,16 @@ public:
     /**
      *  @param ao_list     indices of the AOs used for the Mulliken populations
      *
-     *  @return the Mulliken operator for a set of AOs
+     *  @return the Mulliken operator for a set of given AO indices
      *
      *  @note this method is only available for real matrix representations
      */
     template<typename Z = ExpansionScalar>
-    enable_if_t<std::is_same<Z, double>::value, ScalarSQOneElectronOperator<double>> calculateMullikenOperator(const Vectoru& ao_list) const {
+    enable_if_t<std::is_same<Z, double>::value, ScalarSQOneElectronOperator<double>> calculateMullikenOperator(const std::vector<size_t>& ao_list) const {
 
         const auto K = this->numberOfSpatialOrbitals();
         if (ao_list.size() > K) {
-            throw std::invalid_argument("RSpinorBasis::calculateMullikenOperator(Vectoru): Too many AOs are selected in the given ao_list");
+            throw std::invalid_argument("RSpinorBasis::calculateMullikenOperator(std::vector<size_t>): Too many AOs are selected in the given ao_list");
         }
 
         const SquareMatrix<double> p_a = SquareMatrix<double>::PartitionMatrix(ao_list, K);  // the partitioning matrix

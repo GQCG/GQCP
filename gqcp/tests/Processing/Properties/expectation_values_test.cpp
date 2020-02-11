@@ -51,7 +51,7 @@ BOOST_AUTO_TEST_CASE ( mulliken_N2_STO_3G ) {
     size_t K = sq_hamiltonian.dimension();
 
     // We include all basis functions
-    GQCP::Vectoru gto_list (K);
+    std::vector<size_t> gto_list (K);
     for(size_t i = 0; i<K; i++){
         gto_list[i] = i;
     }
@@ -115,13 +115,13 @@ BOOST_AUTO_TEST_CASE ( S_z_constrained_NOplus_STO_3G ) {
     size_t K = sq_hamiltonian.dimension();
 
     // Basis functions for O
-    GQCP::Vectoru gto_O (K/2);
+    std::vector<size_t> gto_O (K/2);
     for(size_t i = K/2; i<K; i++){
         gto_O[i-K/2] = i;
     }
 
     // Basis functions for N
-    GQCP::Vectoru gto_N (K/2);
+    std::vector<size_t> gto_N (K/2);
     for(size_t i = 0; i<K/2; i++){
         gto_N[i] = i;
     }

@@ -253,9 +253,9 @@ public:
      *  Note that this method is only available for real matrix representations
      */
     template<typename Z = Scalar>
-    enable_if_t<std::is_same<Z, double>::value, USQHamiltonian<double>> constrain(const ScalarSQOneElectronOperator<double>& one_op, double lambda, const SpinComponent& component) const {
+    enable_if_t<std::is_same<Z, double>::value, USQHamiltonian<double>> constrain(const ScalarSQOneElectronOperator<double>& one_op, const double lambda, const SpinComponent& component) const {
 
-        auto const constrained_component = this->sq_hamiltonians[component].constrain(one_op, lambda);
+        auto const constrained_component = this->sq_hamiltonians[component] - lambda * one_op;
 
         if (component == SpinComponent::BETA) {
             return USQHamiltonian(this->sq_hamiltonians[SpinComponent::ALPHA], constrained_component, this->two_op_mixed);

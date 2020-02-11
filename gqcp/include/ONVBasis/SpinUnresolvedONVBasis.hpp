@@ -34,7 +34,7 @@ namespace GQCP {
  */
 class SpinUnresolvedONVBasis: public BaseONVBasis, public ONVManipulator<SpinUnresolvedONVBasis> {
 private:
-    Matrixu vertex_weights;  // vertex_weights of the addressing scheme
+    std::vector<std::vector<size_t>> vertex_weights;  // vertex_weights of the addressing scheme
 
 
 public:
@@ -58,7 +58,7 @@ public:
 
     // GETTERS
     size_t get_vertex_weights(size_t p, size_t m) const { return this->vertex_weights[p][m]; }
-    const Matrixu& get_vertex_weights() const { return this->vertex_weights; }
+    const std::vector<std::vector<size_t>>& get_vertex_weights() const { return this->vertex_weights; }
     ONVBasisType get_type() const override { return ONVBasisType::SpinUnresolvedONVBasis; }
 
 

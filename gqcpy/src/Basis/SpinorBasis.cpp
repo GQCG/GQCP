@@ -40,6 +40,13 @@ void bindSpinorBasis(py::module& module) {
             py::arg("basisset_name")
         )
 
+        .def("calculateMullikenOperator",
+            [ ] (GQCP::RSpinorBasis<double, GQCP::GTOShell>& spinor_basis, const std::vector<size_t>& ao_list) {
+                return spinor_basis.calculateMullikenOperator(ao_list);
+            },
+            "Return the Mulliken operator for a set of given AO indices."
+        )
+
         .def("lowdinOrthonormalize",
             [ ] (GQCP::RSpinorBasis<double, GQCP::GTOShell>& spinor_basis) {
                 spinor_basis.lowdinOrthonormalize();

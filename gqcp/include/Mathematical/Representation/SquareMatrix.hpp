@@ -175,18 +175,18 @@ public:
 
 
     /**
-     *  @param index_list       diagonal indexes which will be set to 1 (others are 0)
+     *  @param indices          the indices of the diagonal which will be set to 1
      *  @param M                the dimension of the resulting matrix
      *
-     * @return the corresponding diagonal partition matrix
+     * @return a 'partition' matrix, which is a diagonal matrix, whose diagonal elements are either 0 or 1, as specified by the given indices
      */
-    static Self PartitionMatrix(const Vectoru& index_list, size_t M) {
+    static Self PartitionMatrix(const std::vector<size_t>& indices, size_t M) {
 
         Self A = Self::Zero(M, M);
 
-        for (size_t index : index_list) {
+        for (const auto& index : indices) {
             if (index >= M) {
-                throw std::invalid_argument("SquareMatrix::PartitionMatrix(Vectoru, size_t): index is larger than matrix dimension");
+                throw std::invalid_argument("SquareMatrix::PartitionMatrix(std::vector<size_t>, size_t): index is larger than matrix dimension");
             }
 
             A(index, index) = 1;

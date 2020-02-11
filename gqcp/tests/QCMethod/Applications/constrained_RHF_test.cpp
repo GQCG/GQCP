@@ -41,10 +41,9 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test ) {
 
     GQCP::OneRDM<double> one_rdm = GQCP::QCModel::RHF<double>::calculateOrthonormalBasis1RDM(K, N);
 
-    // Initialize the ref data form:
-    // "Self-consistent methods constrained to a fixed number of particles in a given fragment
-    // and its relation to the electronegativity equalization method"
-    // Andrés Cedillo • Dimitri Van Neck • Patrick Bultinck
+    // Initialize the reference data from:
+    // "Self-consistent methods constrained to a fixed number of particles in a given fragment and its relation to the electronegativity equalization method"
+    // Authors: Andrés Cedillo, Dimitri Van Neck, Patrick Bultinck
     // DOI 10.1007/s00214-012-1227-6
     Eigen::Matrix<double, 21, 3> CO_data;
     //          lambda  charge  energy
@@ -71,17 +70,17 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test ) {
                  1.0, -1.77, -110.242423;
 
     // Pick a set of AO's (GTOs of the carbon atom)
-    GQCP::Vectoru gto_list = {0,1,2,3,4};
+    std::vector<size_t> gto_list = {0,1,2,3,4};
 
     // Iterate over multipliers
     size_t index = 0;
-    for (double i = -1.0; i < 1.01; i += 0.1) {
+    for (double lambda = -1.0; lambda < 1.01; lambda += 0.1) {
 
         // Calculate the Mulliken operator
         auto mulliken_operator = spinor_basis.calculateMullikenOperator(gto_list);  // in AO basis
 
         // Constrain the original Hamiltonian
-        auto constrained_sq_hamiltonian = sq_hamiltonian.constrain(mulliken_operator, i);  // in AO basis
+        auto constrained_sq_hamiltonian = sq_hamiltonian - lambda * mulliken_operator;  // in AO basis
 
         // Create a DIIS RHF SCF solver and solve the SCF equations
         auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(CO.numberOfElectrons(), constrained_sq_hamiltonian, spinor_basis.overlap().parameters());
@@ -101,7 +100,7 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test ) {
 
         // Retrieve the total energy by adding the lambda times the expectation value of the constraining operator
         const double internuclear_repulsion_energy = GQCP::Operator::NuclearRepulsion(CO).value();
-        double total_energy = expectation_value + i * mulliken_population + internuclear_repulsion_energy;
+        double total_energy = expectation_value + lambda * mulliken_population + internuclear_repulsion_energy;
 
         // Mulliken charge on the carbon atom
         double C_charge = 6 - mulliken_population;
@@ -138,10 +137,9 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test_random_transformation) {
 
     GQCP::OneRDM<double> one_rdm = GQCP::QCModel::RHF<double>::calculateOrthonormalBasis1RDM(K, N);
 
-    // Initialize the ref data form:
-    // Self-consistent methods constrained to a fixed number of particles in a given fragment
-    // and its relation to the electronegativity equalization method
-    // Andrés Cedillo • Dimitri Van Neck • Patrick Bultinck
+    // Initialize the reference data from:
+    // "Self-consistent methods constrained to a fixed number of particles in a given fragment and its relation to the electronegativity equalization method"
+    // Authors: Andrés Cedillo, Dimitri Van Neck, Patrick Bultinck
     // DOI 10.1007/s00214-012-1227-6
     Eigen::Matrix<double, 21, 3> CO_data;
     //          lambda  charge  energy
@@ -168,17 +166,17 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test_random_transformation) {
                  1.0, -1.77, -110.242423;
 
     // Pick a set of AO's (GTOs of the carbon atom)
-    GQCP::Vectoru gto_list = {0,1,2,3,4};
+    std::vector<size_t> gto_list = {0,1,2,3,4};
 
     // Iterate over multipliers
     size_t index = 0;
-    for (double i = -1; i<1.01; i += 0.1) {
+    for (double lambda = -1; lambda < 1.01; lambda += 0.1) {
 
         // Calculate the Mulliken operator
         auto mulliken_operator = spinor_basis.calculateMullikenOperator(gto_list);
 
         // Contrain the original Hamiltonian
-        auto sq_hamiltonian_constrained = sq_hamiltonian.constrain(mulliken_operator, i);
+        auto sq_hamiltonian_constrained = sq_hamiltonian - lambda * mulliken_operator;
 
         // Create a DIIS RHF SCF solver and solve the SCF equations
         auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(CO.numberOfElectrons(), sq_hamiltonian_constrained, spinor_basis.overlap().parameters());
@@ -197,7 +195,7 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test_random_transformation) {
         double mulliken_population = mulliken_operator.calculateExpectationValue(one_rdm)(0);
 
         // Retrieve the total energy by adding the lambda times the expectation value of the constraining operator
-        double total_energy = expectation_value + i * mulliken_population + GQCP::Operator::NuclearRepulsion(CO).value();
+        double total_energy = expectation_value + lambda * mulliken_population + GQCP::Operator::NuclearRepulsion(CO).value();
 
         // Mulliken charge on the carbon atom
         double C_charge = 6 - mulliken_population;
