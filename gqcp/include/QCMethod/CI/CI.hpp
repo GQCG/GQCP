@@ -70,7 +70,7 @@ public:
      *  @param solver               the solver that will try to optimize the parameters
      */
     template <typename Solver>
-    QCStructure<LinearExpansion> optimize(Solver& solver, EigenproblemEnvironment& environment) {
+    QCStructure<LinearExpansion> optimize(Solver& solver, EigenproblemEnvironment& environment) const {
 
         // The CI method's responsibility is to try to optimize the parameters of its method, given a solver and associated environment.
         solver.perform(environment);

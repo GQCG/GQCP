@@ -18,6 +18,7 @@
 #pragma once
 
 
+#include "Molecule/Molecule.hpp"
 #include "Operator/FirstQuantized/CoulombRepulsionOperator.hpp"
 #include "Operator/FirstQuantized/ElectronicDipoleOperator.hpp"
 #include "Operator/FirstQuantized/KineticOperator.hpp"
@@ -26,14 +27,12 @@
 #include "Operator/FirstQuantized/NuclearRepulsionOperator.hpp"
 #include "Operator/FirstQuantized/OverlapOperator.hpp"
 
-#include "Molecule/Molecule.hpp"
-
 
 namespace GQCP {
 
 
 /**
- *  A class that is used to construct operators using static methods, much like a factory class does
+ *  A class that is used to construct operators using static methods, much like a factory class.
  */
 class Operator {
 public:

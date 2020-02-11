@@ -72,6 +72,18 @@ size_t SpinResolvedONVBasis::calculateDimension(size_t K, size_t N_alpha, size_t
  */
 
 /**
+ *  @return the dimension of this ONV basis
+ */
+size_t SpinResolvedONVBasis::dimension() const {
+
+    const auto N_alpha = this->fock_space_alpha.get_N();
+    const auto N_beta = this->fock_space_beta.get_N();
+
+    return SpinResolvedONVBasis::calculateDimension(this->K, N_alpha, N_beta);
+}
+
+
+/**
  *  Auxiliary method in order to calculate "theta(pq)",
  *  it returns a partition of a two-electron operator as one-electron operator
  *  where A (i,j) = T (p, q, i, j).

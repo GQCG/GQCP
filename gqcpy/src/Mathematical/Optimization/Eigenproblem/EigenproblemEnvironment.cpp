@@ -15,31 +15,21 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#pragma once
+#include "Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp"
+
+#include <pybind11/pybind11.h>
 
 
-#include "Operator/FirstQuantized/BaseNuclearOperator.hpp"
+namespace py = pybind11;
 
 
-namespace GQCP {
+namespace gqcpy {
 
 
-/**
- *  The nuclear repulsion operator.
- */
-class NuclearRepulsionOperator: public BaseNuclearOperator {
-public:
-    // CONSTRUCTORS
-    using BaseNuclearOperator::BaseNuclearOperator;  // inherit base constructors
+void bindEigenproblemEnvironment(py::module& module) {
+
+    py::class_<GQCP::EigenproblemEnvironment>(module, "EigenproblemEnvironment", "An environment used to solve eigenvalue problems for self-adjoint matrices.");
+}
 
 
-    // PUBLIC METHODS
-
-    /**
-     *  @return the scalar value of this nuclear repulsion operator
-     */
-    double value() const;
-};
-
-
-}  // namespace GQCP
+}  // namespace gqcpy

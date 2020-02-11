@@ -57,6 +57,7 @@ SquareMatrix<double> FCI::constructHamiltonian(const SQHamiltonian<double>& sq_h
  *  @return the action of the FCI Hamiltonian on the coefficient vector
  */
 VectorX<double> FCI::matrixVectorProduct(const SQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const {
+
     auto K = sq_hamiltonian.core().get_dim();
     if (K != this->onv_basis.get_K()) {
         throw std::invalid_argument("FCI::matrixVectorProduct(SQHamiltonian<double>, VectorX<double>, VectorX<double>): Basis functions of the ONV basis and sq_hamiltonian are incompatible.");

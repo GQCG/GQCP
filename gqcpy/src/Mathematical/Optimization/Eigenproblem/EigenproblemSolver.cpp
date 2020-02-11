@@ -15,9 +15,9 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "QCMethod/HF/RHFSCFEnvironment.hpp"
+#include "Mathematical/Optimization/Eigenproblem/Davidson/DavidsonSolver.hpp"
+#include "Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp"
 
-#include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
 
 
@@ -27,16 +27,24 @@ namespace py = pybind11;
 namespace gqcpy {
 
 
-void bindRHFSCFEnvironment(py::module& module) {
-    py::class_<GQCP::RHFSCFEnvironment<double>>(module, "RHFSCFEnvironment", "An algorithm environment that can be used with standard RHF SCF solvers.")
+void bindEigenproblemSolver(py::module& module) {
 
-        .def_static("WithCoreGuess", 
-            [ ] (const size_t N, const GQCP::SQHamiltonian<double>& sq_hamiltonian, const Eigen::MatrixXd& S) {  // use an itermediary Eigen matrix for the Python binding, since Pybind11 doesn't accept our types that are derived from Eigen::Matrix
-                return GQCP::RHFSCFEnvironment<double>::WithCoreGuess(N, sq_hamiltonian, GQCP::QCMatrix<double>{S});
-            },
-            "Initialize an RHF SCF environment with an initial coefficient matrix that is obtained by diagonalizing the core Hamiltonian matrix."
-        )
-    ;
+    auto module_eigenproblem_solver = module.def_submodule("EigenproblemSolver");
+
+    module_eigenproblem_solver.def("Dense",
+        &GQCP::EigenproblemSolver::Dense,
+        "Return an algorithm that can diagonalize a dense matrix."
+    );
+
+    module_eigenproblem_solver.def("Davidson",
+        &GQCP::EigenproblemSolver::Davidson,
+        py::arg("number_of_requested_eigenpairs") = 1,
+        py::arg("maximum_subspace_dimension") = 15,
+        py::arg("convergence_threshold") = 1.0e-08,
+        py::arg("correction_threshold") = 1.0e-12,
+        py::arg("maximum_number_of_iterations") = 128,
+        py::arg("inclusion_threshold") = 1.0e-03
+    );
 }
 
 

@@ -40,6 +40,20 @@ void bindSpinorBasis(py::module& module) {
             py::arg("basisset_name")
         )
 
+        .def("lowdinOrthonormalize",
+            [ ] (GQCP::RSpinorBasis<double, GQCP::GTOShell>& spinor_basis) {
+                spinor_basis.lowdinOrthonormalize();
+            },
+            "Transform the spinor basis to the 'Löwdin basis', which is the orthonormal basis that we transform to with T = S^{-1/2}, where S is the current overlap matrix."
+        )
+
+        .def("numberOfSpatialOrbitals",
+            [ ] (GQCP::RSpinorBasis<double, GQCP::GTOShell>& spinor_basis) {
+                return spinor_basis.numberOfSpatialOrbitals();
+            },
+            "Return the number of different spatial orbitals that are used in this spinor basis"
+        )
+
         .def("quantizeCoulombRepulsionOperator",
             [ ] (const GQCP::RSpinorBasis<double, GQCP::GTOShell>& spinor_basis) {
                 return spinor_basis.quantize(GQCP::Operator::Coulomb());
@@ -76,12 +90,7 @@ void bindSpinorBasis(py::module& module) {
             "Return the overlap operator expressed in this spinor basis"
         )
 
-        .def("lowdinOrthonormalize",
-            [ ] (GQCP::RSpinorBasis<double, GQCP::GTOShell>& spinor_basis) {
-                spinor_basis.lowdinOrthonormalize();
-            },
-            "Transform the spinor basis to the 'Löwdin basis', which is the orthonormal basis that we transform to with T = S^{-1/2}, where S is the current overlap matrix."
-        )
+
 
         .def("transform", [] (GQCP::RSpinorBasis<double, GQCP::GTOShell>& spinor_basis, const Eigen::MatrixXd& T_matrix) {
                 const GQCP::TransformationMatrix<double> T (T_matrix);

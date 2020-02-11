@@ -15,31 +15,28 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#pragma once
+#include "QCModel/CI/LinearExpansion.hpp"
+
+#include <pybind11/eigen.h>
+#include <pybind11/pybind11.h>
 
 
-#include "Operator/FirstQuantized/BaseNuclearOperator.hpp"
+namespace py = pybind11;
 
 
-namespace GQCP {
+namespace gqcpy {
 
 
-/**
- *  The nuclear repulsion operator.
- */
-class NuclearRepulsionOperator: public BaseNuclearOperator {
-public:
-    // CONSTRUCTORS
-    using BaseNuclearOperator::BaseNuclearOperator;  // inherit base constructors
+void bindLinearExpansion(py::module& module) {
+    py::class_<GQCP::LinearExpansion>(module, "LinearExpansion", "The linear expansion (configuration interaction) wave function model.")
+
+        .def("coefficients",
+            &GQCP::LinearExpansion::get_coefficients,
+            "Return the expansion coefficients of this linear expansion wave function model."
+        )
+    ;
+}
 
 
-    // PUBLIC METHODS
 
-    /**
-     *  @return the scalar value of this nuclear repulsion operator
-     */
-    double value() const;
-};
-
-
-}  // namespace GQCP
+}  // namespace gqcpy

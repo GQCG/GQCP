@@ -62,7 +62,7 @@ public:
      *  @param environment          the environment, which acts as a sort of calculation space for the solver
      */
     template <typename QCObjective, typename Solver>
-    QCStructure<QCModel::RHF<Scalar>> optimize(const QCObjective& objective, Solver& solver, RHFSCFEnvironment<Scalar>& environment) {
+    QCStructure<QCModel::RHF<Scalar>> optimize(const QCObjective& objective, Solver& solver, RHFSCFEnvironment<Scalar>& environment) const {
 
         // The RHF method's responsibility is to try to optimize the parameters of its method, given a solver and associated environment.
         solver.perform(environment);

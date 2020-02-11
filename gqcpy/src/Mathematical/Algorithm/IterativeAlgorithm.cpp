@@ -16,6 +16,7 @@
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
 #include "Mathematical/Algorithm/IterativeAlgorithm.hpp"
+#include "Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp"
 #include "QCMethod/HF/RHFSCFEnvironment.hpp"
 
 #include <pybind11/pybind11.h>
@@ -27,8 +28,33 @@ namespace py = pybind11;
 namespace gqcpy {
 
 
-void bindRHFSCFIterativeAlgorithm(py::module& module) {
-    py::class_<GQCP::IterativeAlgorithm<GQCP::RHFSCFEnvironment<double>>>(module, "RHFSCFIterativeAlgorithm", "An algorithm that performs iterations using an RHFSCFEnvironment. In every iteration, convergence is checked and a set of iteration steps is performed.");
+/**
+ *  Since IterativeAlgorithm is a class template, we must provide bindings for each of its associated types. In order to avoid duplicating code, we use a templated binding approach.
+ */
+
+/**
+ *  Bind an iterative algorithm to the given module.
+ * 
+ *  @tparam Environment         the type of the environment
+ * 
+ *  @param module               the Pybind11 module
+ *  @param suffix               the suffix that the Python class should receive, i.e. "IterativeAlgorithm" + suffix
+ *  @param description          the Python class description
+ */
+template <typename Environment>
+void bindIterativeAlgorithm(py::module& module, const std::string& suffix, const std::string& description) {
+
+    py::class_<GQCP::IterativeAlgorithm<Environment>>(module,
+        ("IterativeAlgorithm" + suffix).c_str(),
+        description.c_str()
+    );
+}
+
+
+void bindIterativeAlgorithms(py::module& module) {
+
+    bindIterativeAlgorithm<GQCP::EigenproblemEnvironment>(module, "EigenproblemEnvironment", "An algorithm that performs iterations using an EigenproblemEnvironment.");
+    bindIterativeAlgorithm<GQCP::RHFSCFEnvironment<double>>(module, "RHFSCFEnvironment", "An algorithm that performs iterations using an RHFSCFEnvironment.");
 }
 
 

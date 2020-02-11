@@ -15,31 +15,32 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#pragma once
+#include "QCMethod/CI/CIEnvironment.hpp"
+
+#include <pybind11/eigen.h>
+#include <pybind11/pybind11.h>
 
 
-#include "Operator/FirstQuantized/BaseNuclearOperator.hpp"
+namespace py = pybind11;
 
 
-namespace GQCP {
+namespace gqcpy {
 
 
-/**
- *  The nuclear repulsion operator.
- */
-class NuclearRepulsionOperator: public BaseNuclearOperator {
-public:
-    // CONSTRUCTORS
-    using BaseNuclearOperator::BaseNuclearOperator;  // inherit base constructors
+void bindCIEnvironment(py::module& module) {
+
+    auto module_ci_environment = module.def_submodule("CIEnvironment");
+
+    module_ci_environment.def("Dense",
+        &GQCP::CIEnvironment::Dense<double>,
+        "Return an environment suitable for solving spin-resolved FCI eigenvalue problems."
+    );
+
+    module_ci_environment.def("Iterative",
+        &GQCP::CIEnvironment::Iterative<double>,
+        "Return an environment suitable for solving spin-resolved FCI eigenvalue problems."
+    );
+}
 
 
-    // PUBLIC METHODS
-
-    /**
-     *  @return the scalar value of this nuclear repulsion operator
-     */
-    double value() const;
-};
-
-
-}  // namespace GQCP
+}  // namespace gqcpy

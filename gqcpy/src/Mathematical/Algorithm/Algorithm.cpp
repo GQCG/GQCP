@@ -15,31 +15,25 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#pragma once
+#include "Mathematical/Algorithm/Algorithm.hpp"
+#include "Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp"
+
+#include <pybind11/pybind11.h>
 
 
-#include "Operator/FirstQuantized/BaseNuclearOperator.hpp"
+namespace py = pybind11;
 
 
-namespace GQCP {
+namespace gqcpy {
 
 
-/**
- *  The nuclear repulsion operator.
- */
-class NuclearRepulsionOperator: public BaseNuclearOperator {
-public:
-    // CONSTRUCTORS
-    using BaseNuclearOperator::BaseNuclearOperator;  // inherit base constructors
+void bindAlgorithm(py::module& module) {
+
+    py::class_<GQCP::Algorithm<GQCP::EigenproblemEnvironment>>(module, 
+        "EigenproblemAlgorithm",
+        "An algorithm that only performs one collection of steps using an EigenproblemEnvironment."
+    );
+}
 
 
-    // PUBLIC METHODS
-
-    /**
-     *  @return the scalar value of this nuclear repulsion operator
-     */
-    double value() const;
-};
-
-
-}  // namespace GQCP
+}  // namespace gqcpy

@@ -36,8 +36,7 @@ void bindQCMethodRHF(py::module& module) {
 
         .def_static("optimize",
             [] (const GQCP::DiagonalRHFFockMatrixObjective<double>& objective, GQCP::IterativeAlgorithm<GQCP::RHFSCFEnvironment<double>>& solver, GQCP::RHFSCFEnvironment<double>& environment) {
-                const auto qc_structure = GQCP::QCMethod::RHF<double>().optimize(objective, solver, environment);
-                return qc_structure.groundStateParameters();
+                return GQCP::QCMethod::RHF<double>().optimize(objective, solver, environment);
             },
             "Optimize the RHF wave function model: find the parameters satisfy the given objective."
         )

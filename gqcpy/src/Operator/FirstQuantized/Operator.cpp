@@ -15,9 +15,8 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "QCMethod/HF/RHFSCFEnvironment.hpp"
+#include "Operator/FirstQuantized/Operator.hpp"
 
-#include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
 
 
@@ -27,14 +26,22 @@ namespace py = pybind11;
 namespace gqcpy {
 
 
-void bindRHFSCFEnvironment(py::module& module) {
-    py::class_<GQCP::RHFSCFEnvironment<double>>(module, "RHFSCFEnvironment", "An algorithm environment that can be used with standard RHF SCF solvers.")
+void bindOperator(py::module& module) {
 
-        .def_static("WithCoreGuess", 
-            [ ] (const size_t N, const GQCP::SQHamiltonian<double>& sq_hamiltonian, const Eigen::MatrixXd& S) {  // use an itermediary Eigen matrix for the Python binding, since Pybind11 doesn't accept our types that are derived from Eigen::Matrix
-                return GQCP::RHFSCFEnvironment<double>::WithCoreGuess(N, sq_hamiltonian, GQCP::QCMatrix<double>{S});
-            },
-            "Initialize an RHF SCF environment with an initial coefficient matrix that is obtained by diagonalizing the core Hamiltonian matrix."
+    py::class_<GQCP::NuclearRepulsionOperator>(module, "NuclearRepulsionOperator", "The nuclear repulsion operator.")
+
+        .def("value",
+            &GQCP::NuclearRepulsionOperator::value,
+            "Return the scalar value of this nuclear repulsion operator."
+        )
+    ;
+
+
+    py::class_<GQCP::Operator>(module, "Operator", "A class that is used to construct operators using static methods, much like a factory class.")
+
+        .def_static("NuclearRepulsion",
+            &GQCP::Operator::NuclearRepulsion,
+            "Return a NuclearRepulsionOperator"
         )
     ;
 }
