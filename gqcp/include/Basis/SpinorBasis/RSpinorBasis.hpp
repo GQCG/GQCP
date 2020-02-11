@@ -121,7 +121,7 @@ public:
     /**
      *  @param ao_list     indices of the AOs used for the Mulliken populations
      *
-     *  @return the Mulliken operator for a set of AOs
+     *  @return the Mulliken operator for a set of given AO indices
      *
      *  @note this method is only available for real matrix representations
      */
