@@ -115,6 +115,25 @@ public:
 
 
     /*
+     *  OPERATORS
+     */
+
+    /**
+     *  @param i            the index
+     * 
+     *  @return the i-th component of this operator
+     */
+    SQOneElectronOperator<Scalar, 1> operator[](const size_t i) const {
+
+        if (i >= Components) {
+            throw std::invalid_argument("SQOneElectronOperator::operator[](const size_t): The given index is out of bounds.");
+        }
+
+        return SQOneElectronOperator<Scalar, 1> {this->fs[i]};
+    }
+
+
+    /*
      *  PUBLIC METHODS
      */
 
@@ -251,6 +270,25 @@ public:
      */
     size_t dimension() const {
         return this->fs[0].dimension();  // all the dimensions are the same, this is checked in the constructor
+    }
+
+
+    /**
+     *  @param a        the vector
+     * 
+     *  @return the dot product of this second-quantized one-electron operator with the given vector
+     */
+    SQOneElectronOperator<Scalar> dot(const Vector<Scalar, Components>& a) const {
+
+        const auto dim = this->dimension();
+        ScalarSQOneElectronOperator<ResultScalar> result {dim};
+
+        // Calculate the inner product
+        for (size_t i = 0; i < Components; i++) {
+            result += a(i) * this->operator[](i);
+        }
+
+        return result;
     }
 
 
