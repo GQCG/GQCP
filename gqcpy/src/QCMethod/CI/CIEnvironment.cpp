@@ -35,6 +35,11 @@ void bindCIEnvironment(py::module& module) {
         &GQCP::CIEnvironment::Dense<double>,
         "Return an environment suitable for solving spin-resolved FCI eigenvalue problems."
     );
+
+    module_ci_environment.def("Iterative",
+        &GQCP::CIEnvironment::Iterative<double>,
+        "Return an environment suitable for solving spin-resolved FCI eigenvalue problems."
+    );
 }
 
 

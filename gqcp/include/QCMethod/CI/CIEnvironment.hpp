@@ -25,6 +25,7 @@
 #include "ONVBasis/SpinUnresolvedFrozenONVBasis.hpp"
 #include "ONVBasis/SpinUnresolvedONVBasis.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
+#include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
 
 
 namespace GQCP {
@@ -32,13 +33,36 @@ namespace CIEnvironment {
 
 
 /**
+ *  @param sq_hamiltonian               the general, second-quantized representation of the Hamiltonian
+ *  @param onv_basis                    the full, spin-resolved ONV basis
+ * 
  *  @return an environment suitable for solving spin-resolved FCI eigenvalue problems.
  */
 template <typename Scalar>
 EigenproblemEnvironment Dense(const SQHamiltonian<Scalar>& sq_hamiltonian, const SpinResolvedONVBasis& onv_basis) {
 
-    const auto H = onv_basis.evaluateOperatorDense(sq_hamiltonian, true);  // 'true': with calculation of the diagonal
+    const FCI fci_builder (onv_basis);  // the 'HamiltonianBuilder'
+    const auto H = fci_builder.constructHamiltonian(sq_hamiltonian);
     return EigenproblemEnvironment::Dense(H);
+}
+
+
+/**
+ *  @param sq_hamiltonian               the general, second-quantized representation of the Hamiltonian
+ *  @param onv_basis                    the full, spin-resolved ONV basis
+ *  @param V                            a matrix of initial guess vectors (each column of the matrix is an initial guess vector)
+ * 
+ *  @return an environment suitable for solving spin-resolved FCI eigenvalue problems.
+ */
+template <typename Scalar>
+EigenproblemEnvironment Iterative(const SQHamiltonian<Scalar>& sq_hamiltonian, const SpinResolvedONVBasis& onv_basis, const MatrixX<double>& V) {
+
+    const FCI fci_builder (onv_basis);  // the 'HamiltonianBuilder'
+
+    const auto diagonal = fci_builder.calculateDiagonal(sq_hamiltonian);
+    const auto matvec_function = [diagonal, fci_builder, sq_hamiltonian] (const VectorX<double>& x) { return fci_builder.matrixVectorProduct(sq_hamiltonian, x, diagonal); };
+
+    return EigenproblemEnvironment::Iterative(matvec_function, diagonal, V);
 }
 
 

@@ -15,6 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
+#include "Mathematical/Optimization/Eigenproblem/Davidson/DavidsonSolver.hpp"
 #include "Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp"
 
 #include <pybind11/pybind11.h>
@@ -33,6 +34,16 @@ void bindEigenproblemSolver(py::module& module) {
     module_eigenproblem_solver.def("Dense",
         &GQCP::EigenproblemSolver::Dense,
         "Return an algorithm that can diagonalize a dense matrix."
+    );
+
+    module_eigenproblem_solver.def("Davidson",
+        &GQCP::EigenproblemSolver::Davidson,
+        py::arg("number_of_requested_eigenpairs") = 1,
+        py::arg("maximum_subspace_dimension") = 15,
+        py::arg("convergence_threshold") = 1.0e-08,
+        py::arg("correction_threshold") = 1.0e-12,
+        py::arg("maximum_number_of_iterations") = 128,
+        py::arg("inclusion_threshold") = 1.0e-03
     );
 }
 

@@ -72,6 +72,13 @@ public:
 
 
     // PUBLIC METHODS
+
+    /**
+     *  @return the dimension of this ONV basis
+     */
+    size_t dimension() const;
+
+
     /**
      *  Auxiliary method in order to calculate "theta(pq)",
      *  it returns a partition of a two-electron operator as one-electron operator

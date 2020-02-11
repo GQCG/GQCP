@@ -45,7 +45,11 @@ namespace gqcpy {
  */
 template <typename QCModel>
 void bindQCStructure(py::module& module, const std::string& suffix, const std::string& description) {
-    py::class_<GQCP::QCStructure<QCModel>>(module, ("QCStructure" + suffix).c_str(), description.c_str())
+
+    py::class_<GQCP::QCStructure<QCModel>>(module,
+        ("QCStructure" + suffix).c_str(),
+        description.c_str()
+    )
 
         .def("energy",
             [ ] (const GQCP::QCStructure<QCModel>& qc_structure, const size_t i) {

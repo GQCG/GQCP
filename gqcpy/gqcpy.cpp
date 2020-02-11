@@ -25,13 +25,14 @@ namespace py = pybind11;
  */
 namespace gqcpy {
 
+
 // Basis
 void bindSpinorBasis(py::module& module);
 
 
 // Mathematical - Algorithm
 void bindAlgorithm(py::module& module);
-void bindIterativeAlgorithm(py::module& module);
+void bindIterativeAlgorithms(py::module& module);
 
 
 // Mathematical - Optimization - Eigenproblem
@@ -110,7 +111,7 @@ PYBIND11_MODULE (gqcpy, module) {
 
     // Mathematical - Algorithm
     gqcpy::bindAlgorithm(module);
-    gqcpy::bindIterativeAlgorithm(module);
+    gqcpy::bindIterativeAlgorithms(module);
 
 
     // Mathematical - Optimization - Eigenproblem

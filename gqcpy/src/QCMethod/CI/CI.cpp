@@ -45,6 +45,13 @@ void bindQCMethodCI(py::module& module) {
             },
             "Optimize the CI wave function model: find the linear expansion coefficients."
         )
+
+        .def("optimize",
+            [] (const GQCP::QCMethod::CI& qc_method, GQCP::IterativeAlgorithm<GQCP::EigenproblemEnvironment>& solver, GQCP::EigenproblemEnvironment& environment) {
+                return qc_method.optimize(solver, environment);
+            },
+            "Optimize the CI wave function model: find the linear expansion coefficients."
+        )
     ;
 }
 

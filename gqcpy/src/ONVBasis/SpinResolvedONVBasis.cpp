@@ -35,6 +35,10 @@ void bindSpinResolvedONVBasis(py::module& module) {
             py::arg("N_alpha"),
             py::arg("N_beta")
         )
+
+        .def("dimension",
+            &GQCP::SpinResolvedONVBasis::dimension
+        )
     ;
 }
 

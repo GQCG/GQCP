@@ -38,14 +38,14 @@ namespace EigenproblemSolver {
 /**
  *  @param number_of_requested_eigenpairs       the number of solutions the Davidson solver should find
  *  @param maximum_subspace_dimension           the maximum dimension of the subspace before collapsing
- *  @param threshold                            the threshold that is used in determining the norm on the residuals, which determines convergence
+ *  @param convergence_threshold                the threshold that is used in determining the norm on the residuals, which determines convergence
  *  @param correction_threshold                 the threshold used in solving the (approximated) residue correction equation
  *  @param maximum_number_of_iterations         the maximum number of iterations the algorithm may perform
  *  @param inclusion_threshold                  the threshold on the norm used for determining if a new projected correction vector should be added to the subspace
  * 
  *  @return an iterative algorithm that can find the lowest n eigenvectors of a matrix using Davidson's algorithm
  */
-IterativeAlgorithm<EigenproblemEnvironment> Davidson(const size_t number_of_requested_eigenpairs = 1, const size_t maximum_subspace_dimension = 15, const double threshold = 1.0e-08, double correction_threshold = 1.0e-12, const size_t maximum_number_of_iterations = 128, const double inclusion_threshold = 1.0e-03) {
+IterativeAlgorithm<EigenproblemEnvironment> Davidson(const size_t number_of_requested_eigenpairs = 1, const size_t maximum_subspace_dimension = 15, const double convergence_threshold = 1.0e-08, double correction_threshold = 1.0e-12, const size_t maximum_number_of_iterations = 128, const double inclusion_threshold = 1.0e-03) {
 
     // Create the iteration cycle that effectively 'defines' our Davidson solver
     StepCollection<EigenproblemEnvironment> davidson_cycle {};
@@ -58,7 +58,7 @@ IterativeAlgorithm<EigenproblemEnvironment> Davidson(const size_t number_of_requ
                   .add(SubspaceUpdate(maximum_subspace_dimension, inclusion_threshold));
 
     // Create a convergence criterion on the norm of the residual vectors
-    const ResidualVectorConvergence<EigenproblemEnvironment> convergence_criterion (threshold);
+    const ResidualVectorConvergence<EigenproblemEnvironment> convergence_criterion (convergence_threshold);
 
     return IterativeAlgorithm<EigenproblemEnvironment>(davidson_cycle, convergence_criterion, maximum_number_of_iterations);
 }
