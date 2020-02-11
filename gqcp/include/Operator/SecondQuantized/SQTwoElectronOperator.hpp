@@ -371,9 +371,6 @@ public:
 template <typename Scalar>
 using ScalarSQTwoElectronOperator = SQTwoElectronOperator<Scalar, 1>;
 
-template <typename Scalar>
-using VectorSQTwoElectronOperator = SQTwoElectronOperator<Scalar, 3>;
-
 
 /*
  *  OPERATORS

@@ -408,79 +408,6 @@ public:
 
 
     /**
-     *  Constrain the Hamiltonian according to the convention: - lambda * constraint
-     *
-     *  @param one_op   the one-electron operator used as a constraint
-     *  @param lambda   Lagrangian multiplier for the constraint
-     *
-     *  @return a copy of the constrained Hamiltonian
-     *
-     *  Note that this method is only available for real matrix representations
-     */
-    template<typename Z = Scalar>
-    enable_if_t<std::is_same<Z, double>::value, SQHamiltonian<double>> constrain(const ScalarSQOneElectronOperator<double>& one_op, double lambda) const {
-
-        // Make a copy of the one-electron part in order to create a new Hamiltonian
-        auto one_ops = this->coreContributions();
-
-        // Constrain, i.e. add 'constrained' contributions
-        one_ops.push_back(-lambda*one_op);  // minus sign is a convention
-
-        return SQHamiltonian(one_ops, this->twoElectronContributions());
-    }
-
-
-    /**
-     *  Constrain the Hamiltonian according to the convention: - lambda * constraint
-     *
-     *  @param two_op   the two-electron operator used as a constraint
-     *  @param lambda   Lagrangian multiplier for the constraint
-     *
-     *  @return a copy of the constrained Hamiltonian
-     *
-     *  Note that this method is only available for real matrix representations
-     */
-    template<typename Z = Scalar>
-    enable_if_t<std::is_same<Z, double>::value, SQHamiltonian<double>> constrain(const ScalarSQTwoElectronOperator<double>& two_op, double lambda) const {
-
-        // Make a copy of the two-electron part in order to create a new Hamiltonian
-        auto two_ops = this->twoElectronContributions();
-
-        // Constrain, i.e. add 'constrained' contributions
-        two_ops.push_back(-lambda*two_op);  // minus sign is a convention
-
-        return SQHamiltonian(this->coreContributions(), two_ops);
-    }
-
-
-    /**
-     *  Constrain the Hamiltonian according to the convention: - lambda * constraint
-     *
-     *  @param one_op   the one-electron operator used as a constraint
-     *  @param two_op   the two-electron operator used as a constraint
-     *  @param lambda   Lagrangian multiplier for the constraint
-     *
-     *  @return a copy of the constrained Hamiltonian
-     *
-     *  Note that this method is only available for real matrix representations
-     */
-    template<typename Z = Scalar>
-    enable_if_t<std::is_same<Z, double>::value, SQHamiltonian<double>> constrain(const ScalarSQOneElectronOperator<double>& one_op, const ScalarSQTwoElectronOperator<double>& two_op, double lambda) const {
-
-        // Make copies in order to create a new Hamiltonian
-        auto one_ops = this->coreContributions();
-        auto two_ops = this->twoElectronContributions();
-
-
-        // Constrain, i.e. add 'constrained' contributions
-        one_ops.push_back(-lambda*one_op);  // minus sign is a convention
-        two_ops.push_back(-lambda*two_op);  // minus sign is a convention
-
-        return SQHamiltonian{one_ops, two_ops};
-    }
-
-
-    /**
      *  @return the 'core' Hamiltonian, i.e. the total of the one-electron contributions to the Hamiltonian
      */
     const ScalarSQOneElectronOperator<Scalar>& core() const { return this->total_one_op; }
@@ -593,6 +520,91 @@ public:
      */
     const std::vector<ScalarSQTwoElectronOperator<Scalar>>& twoElectronContributions() const { return this->two_ops; }
 };
+
+
+
+/*
+ *  OPERATORS
+ */
+
+/**
+ *  Add the second-quantized forms of a (scalar) one-electron operator to that of a Hamiltonian.
+ * 
+ *  @tparam Scalar              the type that is used to represent elements of the (scalar) one-electron operator and the Hamiltonian
+ * 
+ *  @param sq_hamiltonian       the second-quantized Hamiltonian
+ *  @param sq_one_op            the (scalar) second-quantized one-electron operator
+ * 
+ *  @return a new second-quantized Hamiltonian
+ */
+template <typename Scalar>
+SQHamiltonian<Scalar> operator+(const SQHamiltonian<Scalar>& sq_hamiltonian, const ScalarSQOneElectronOperator<Scalar>& sq_one_op) {
+
+    // Make a copy of the one-electron part in order to create a new Hamiltonian
+    auto sq_one_ops = sq_hamiltonian.coreContributions();
+
+    // 'Add' the one-electron operator
+    sq_one_ops.push_back(sq_one_op);
+
+    return SQHamiltonian<Scalar>{sq_one_ops, sq_hamiltonian.twoElectronContributions()};
+}
+
+
+/**
+ *  Subtract a (scalar) second-quantized one-electron operator from a second-quantized Hamiltonian.
+ * 
+ *  @tparam Scalar              the type that is used to represent elements of the (scalar) one-electron operator and the Hamiltonian
+ * 
+ *  @param sq_hamiltonian       the second-quantized Hamiltonian
+ *  @param sq_one_op            the (scalar) second-quantized one-electron operator
+ * 
+ *  @return a new second-quantized Hamiltonian
+ */
+template <typename Scalar>
+SQHamiltonian<Scalar> operator-(const SQHamiltonian<Scalar>& sq_hamiltonian, const ScalarSQOneElectronOperator<Scalar>& sq_one_op) {
+
+    return sq_hamiltonian + (-sq_one_op);
+}
+
+
+/**
+ *  Add the second-quantized forms of a (scalar) two-electron operator to that of a Hamiltonian.
+ * 
+ *  @tparam Scalar              the type that is used to represent elements of the (scalar) two-electron operator and the Hamiltonian
+ * 
+ *  @param sq_hamiltonian       the second-quantized Hamiltonian
+ *  @param sq_two_op            the (scalar) second-quantized two-electron operator
+ * 
+ *  @return a new second-quantized Hamiltonian
+ */
+template <typename Scalar>
+SQHamiltonian<Scalar> operator+(const SQHamiltonian<Scalar>& sq_hamiltonian, const ScalarSQTwoElectronOperator<Scalar>& sq_two_op) {
+
+    // Make a copy of the two-electron part in order to create a new Hamiltonian
+    auto sq_two_ops = sq_hamiltonian.twoElectronContributions();
+
+    // 'Add' the two-electron operator
+    sq_two_ops.push_back(sq_two_ops);
+
+    return SQHamiltonian<Scalar>{sq_hamiltonian.coreContributions(), sq_two_ops};
+}
+
+
+/**
+ *  Subtract a (scalar) second-quantized two-electron operator from a second-quantized Hamiltonian.
+ * 
+ *  @tparam Scalar              the type that is used to represent elements of the (scalar) two-electron operator and the Hamiltonian
+ * 
+ *  @param sq_hamiltonian       the second-quantized Hamiltonian
+ *  @param sq_two_op            the (scalar) second-quantized two-electron operator
+ * 
+ *  @return a new second-quantized Hamiltonian
+ */
+template <typename Scalar>
+SQHamiltonian<Scalar> operator-(const SQHamiltonian<Scalar>& sq_hamiltonian, const ScalarSQTwoElectronOperator<Scalar>& sq_two_op) {
+
+    return sq_hamiltonian + (-sq_two_op);
+}
 
 
 }  // namespace GQCP
