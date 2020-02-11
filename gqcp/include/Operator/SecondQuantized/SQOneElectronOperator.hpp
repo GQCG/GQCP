@@ -278,10 +278,10 @@ public:
      * 
      *  @return the dot product of this second-quantized one-electron operator with the given vector
      */
-    SQOneElectronOperator<Scalar> dot(const Vector<Scalar, Components>& a) const {
+    SQOneElectronOperator<Scalar, Components> dot(const Vector<Scalar, Components>& a) const {
 
         const auto dim = this->dimension();
-        ScalarSQOneElectronOperator<ResultScalar> result {dim};
+        SQOneElectronOperator<Scalar, Components> result {dim};
 
         // Calculate the inner product
         for (size_t i = 0; i < Components; i++) {

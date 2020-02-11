@@ -37,7 +37,7 @@ SpinUnresolvedONVBasis::SpinUnresolvedONVBasis(size_t K, size_t N) :
         ONVManipulator (N)
 {
     // Create a zero matrix of dimensions (K+1)x(N+1)
-    this->vertex_weights = Matrixu(this->K + 1, Vectoru(this->N + 1, 0));
+    this->vertex_weights = std::vector<std::vector<size_t>>(this->K + 1, std::vector<size_t>(this->N + 1, 0));
 
     // K=5   N=2
     // [ 0 0 0 ]

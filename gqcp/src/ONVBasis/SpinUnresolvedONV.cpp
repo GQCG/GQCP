@@ -450,7 +450,7 @@ std::vector<size_t> SpinUnresolvedONV::findMatchingOccupations(const SpinUnresol
 
     size_t matches = this->unsigned_representation & other.unsigned_representation;
     size_t number_of_occupied_matches = __builtin_popcountl(matches);
-    Vectoru positions (number_of_occupied_matches);
+    std::vector<size_t> positions (number_of_occupied_matches);
 
 
     // Find the positions of the set bits in occupied_differences

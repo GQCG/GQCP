@@ -347,7 +347,7 @@ public:
      *  @note this method is only available for real matrix representations
      */
     template<typename Z = ExpansionScalar>
-    enable_if_t<std::is_same<Z, double>::value, ScalarSQOneElectronOperator<double>> calculateMullikenOperator(const Vectoru& ao_list, const SpinComponent& component) const {
+    enable_if_t<std::is_same<Z, double>::value, ScalarSQOneElectronOperator<double>> calculateMullikenOperator(const std::vector<size_t>& ao_list, const SpinComponent& component) const {
         return this->spinor_bases[component].template calculateMullikenOperator<ExpansionScalar>(ao_list);
     }
 
@@ -384,7 +384,7 @@ public:
      *  Note that this method is only available for real SQoperators
      */
     template<typename Z = ExpansionScalar>
-    enable_if_t<std::is_same<Z, double>::value, ScalarSQOneElectronOperator<double>> calculateAtomicSpinZ(const Vectoru& ao_list, const SpinComponent& component) const {
+    enable_if_t<std::is_same<Z, double>::value, ScalarSQOneElectronOperator<double>> calculateAtomicSpinZ(const std::vector<size_t>& ao_list, const SpinComponent& component) const {
 
         // The atomic spin operator can be calculated as as the atomic Mulliken operator divided by 2, multiplied by the correct sign factor
         int sign = 1 - 2*component;  // 1 for ALPHA, -1 for BETA

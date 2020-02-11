@@ -120,7 +120,7 @@ VectorX<double> Hubbard::calculateDiagonal(const SQHamiltonian<double>& sq_hamil
         for (size_t Ib = 0; Ib < dim_beta; Ib++) {  // Ib loops over addresses of beta onvs
             size_t address = Ia * dim_beta + Ib;
             // find all double occupations
-            Vectoru occupations = onv_alpha.findMatchingOccupations(onv_beta);
+            std::vector<size_t> occupations = onv_alpha.findMatchingOccupations(onv_beta);
             for (size_t p : occupations) {
                 diagonal(address) += g(p,p,p,p);
             }

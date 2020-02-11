@@ -40,18 +40,6 @@ using cd = std::complex<double>;
 
 
 /*
- *  VECTORS
- */
-using Vectoru = std::vector<size_t>;
-
-
-/*
- *  MATRICES
- */
-using Matrixu = std::vector<Vectoru>;
-
-
-/*
  *  TEMPLATE ALIASES
  */
 template <typename T, typename U>

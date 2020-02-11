@@ -70,7 +70,7 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test ) {
                  1.0, -1.77, -110.242423;
 
     // Pick a set of AO's (GTOs of the carbon atom)
-    GQCP::Vectoru gto_list = {0,1,2,3,4};
+    std::vector<size_t> gto_list = {0,1,2,3,4};
 
     // Iterate over multipliers
     size_t index = 0;
@@ -166,7 +166,7 @@ BOOST_AUTO_TEST_CASE ( constrained_CO_test_random_transformation) {
                  1.0, -1.77, -110.242423;
 
     // Pick a set of AO's (GTOs of the carbon atom)
-    GQCP::Vectoru gto_list = {0,1,2,3,4};
+    std::vector<size_t> gto_list = {0,1,2,3,4};
 
     // Iterate over multipliers
     size_t index = 0;
