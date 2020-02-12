@@ -17,6 +17,7 @@
 // 
 #include "QCMethod/Applications/Hubbard.hpp"
 
+#include "Operator/SecondQuantized/ModelHamiltonian/HubbardHamiltonian.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Processing/RDM/RDMCalculator.hpp"
 #include "QCMethod/CI/CISolver.hpp"
@@ -65,7 +66,8 @@ void Hubbard::solve() {
 
     // Build up the Hubbard hopping matrix and the corresponding Hamiltonian
     const auto H = GQCP::HoppingMatrix<double>::FromCSLine(csline);
-    const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Hubbard(H);
+    const GQCP::HubbardHamiltonian<double> hubbard_hamiltonian (H);
+    const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::FromHubbard(hubbard_hamiltonian);
     const auto K = sq_hamiltonian.dimension();
 
 

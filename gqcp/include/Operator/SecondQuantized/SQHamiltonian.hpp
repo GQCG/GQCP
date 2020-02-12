@@ -25,7 +25,7 @@
 #include "Molecule/Molecule.hpp"
 #include "Operator/FirstQuantized/NuclearRepulsionOperator.hpp"
 #include "Operator/FirstQuantized/OverlapOperator.hpp"
-#include "Operator/SecondQuantized/ModelHamiltonian/HoppingMatrix.hpp"
+#include "Operator/SecondQuantized/ModelHamiltonian/HubbardHamiltonian.hpp"
 #include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/SQTwoElectronOperator.hpp"
 #include "Processing/RDM/OneRDM.hpp"
@@ -119,34 +119,19 @@ public:
      */
 
     /**
-     *  @param H      a Hubbard hopping matrix
+     *  @param hubbard_hamiltonian              a Hubbard model Hamiltonian
      *
-     *  @return a Hubbard Hamiltonian generated from the Hubbard hopping matrix
+     *  @return a full SQHamiltonian generated from the given Hubbard model Hamiltonian
      *
-     *  Note that this named constructor is only available for real matrix representations
+     *  @note This named constructor is only available for real matrix representations.
      */
     template<typename Z = Scalar>
-    static enable_if_t<std::is_same<Z, double>::value, SQHamiltonian<double>> Hubbard(const HoppingMatrix<double>& H) {
+    static enable_if_t<std::is_same<Z, double>::value, SQHamiltonian<double>> FromHubbard(const GQCP::HubbardHamiltonian<double>& hubbard_hamiltonian) {
 
-        const size_t K = H.numberOfLatticeSites();
+        const auto h = hubbard_hamiltonian.core();
+        const auto g = hubbard_hamiltonian.twoElectron();
 
-        QCMatrix<double> h = QCMatrix<double>::Zero(K, K);
-        QCRankFourTensor<double> g (K);
-        g.setZero();
-
-
-        for (size_t i = 0; i < K; i++) {
-            for (size_t j = i; j < K; j++) {
-                if (i == j) {
-                    g(i,i,i,i) = H(i,i);
-                } else {
-                    h(i,j) = H(i,j);
-                    h(j,i) = H(j,i);
-                }
-            }
-        }
-
-        return SQHamiltonian{ScalarSQOneElectronOperator<double>{h}, ScalarSQTwoElectronOperator<double>{g}};
+        return SQHamiltonian{h, g};
     }
 
 

@@ -63,7 +63,8 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI ) {
     size_t K = 4;
     size_t N = 2;
     const auto H = GQCP::HoppingMatrix<double>::Random(K);
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Hubbard(H);
+    const GQCP::HubbardHamiltonian<double> hubbard_hamiltonian (H);
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::FromHubbard(hubbard_hamiltonian);
 
 
     // Check if the Hamiltonian matrix is equal for FCI and Hubbard
@@ -83,7 +84,8 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_large ) {
     size_t K = 6;
     size_t N = 3;
     const auto H = GQCP::HoppingMatrix<double>::Random(K);
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Hubbard(H);
+    const GQCP::HubbardHamiltonian<double> hubbard_hamiltonian (H);
+    const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::FromHubbard(hubbard_hamiltonian);
 
 
     // Check if the Hamiltonian matrix is equal for FCI and Hubbard
@@ -103,7 +105,8 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_matvec ) {
     size_t K = 4;
     size_t N = 2;
     const auto H = GQCP::HoppingMatrix<double>::Random(K);
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Hubbard(H);
+    const GQCP::HubbardHamiltonian<double> hubbard_hamiltonian (H);
+    const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::FromHubbard(hubbard_hamiltonian);
 
 
     // Check if FCI and Hubbard have the same matvec for the Hubbard Hamiltonian
@@ -128,7 +131,8 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_large_matvec ) {
     size_t K = 6;
     size_t N = 3;
     const auto H = GQCP::HoppingMatrix<double>::Random(K);
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Hubbard(H);
+    const GQCP::HubbardHamiltonian<double> hubbard_hamiltonian (H);
+    const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::FromHubbard(hubbard_hamiltonian);
 
 
     // Check if FCI and Hubbard have the same matvec for the Hubbard Hamiltonian

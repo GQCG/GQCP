@@ -35,7 +35,7 @@ void bindHoppingMatrix(py::module& module) {
          */
         .def_static("FromAdjacencyMatrix",
             [ ] (const Eigen::MatrixXd& A, const double t, const double U) {
-                
+
                 return GQCP::HoppingMatrix<double>{GQCP::SquareMatrix<double>{A}, t, U};
             },
             py::arg("A"),

@@ -31,8 +31,8 @@ void bindMolecule(py::module& module) {
     py::class_<GQCP::Molecule>(module, "Molecule", "A class that represents a collection of nuclei with a number of electrons")
 
         .def(py::init<const std::vector<GQCP::Nucleus>& , const int>(),
-            py::arg("nuclei"),
-            py::arg("charge") = 0
+             py::arg("nuclei"),
+             py::arg("charge") = 0
         )
 
         .def_static("ReadXYZ", &GQCP::Molecule::ReadXYZ, "Construct a molecule based on the content of a given .xyz-file.")

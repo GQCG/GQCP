@@ -107,7 +107,7 @@ public:
      *
      *  @return a random hopping matrix with elements distributed uniformly in [-1.0, 1.0]
      * 
-     *  @note This constructor is only available in the real case
+     *  @note This method is only available for real scalars.
      */
     template <typename Z = Scalar>
     static enable_if_t<std::is_same<Z, double>::value, HoppingMatrix<double>> Random(const size_t K) {

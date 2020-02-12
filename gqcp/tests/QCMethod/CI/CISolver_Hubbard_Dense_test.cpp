@@ -20,6 +20,7 @@
 #include <boost/test/unit_test.hpp>
 
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
+#include "Operator/SecondQuantized/ModelHamiltonian/HubbardHamiltonian.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/CI/CISolver.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
@@ -33,7 +34,8 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_dense ) {
     // Create the Hamiltonian for a random Hubbard hopping matrix
     size_t K = 4;
     const auto H = GQCP::HoppingMatrix<double>::Random(K);
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Hubbard(H);
+    const GQCP::HubbardHamiltonian<double> hubbard_hamiltonian (H);
+    const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::FromHubbard(hubbard_hamiltonian);
 
 
     // Create the Hubbard and FCI modules
@@ -65,7 +67,8 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_dense_large ) {
     // Create the Hamiltonian for a random Hubbard hopping matrix
     size_t K = 6;
     const auto H = GQCP::HoppingMatrix<double>::Random(K);
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Hubbard(H);
+    const GQCP::HubbardHamiltonian<double> hubbard_hamiltonian (H);
+    const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::FromHubbard(hubbard_hamiltonian);
 
 
     // Create the Hubbard and FCI modules
@@ -111,7 +114,8 @@ BOOST_AUTO_TEST_CASE ( four_site_chain_ward ) {
 
         // Create the Hamiltonian for the Hubbard model
         const GQCP::HoppingMatrix<double> H (A, t, U_list[i]);
-        auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Hubbard(H);
+        const GQCP::HubbardHamiltonian<double> hubbard_hamiltonian (H);
+        const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::FromHubbard(hubbard_hamiltonian);
 
 
         // Solve the dense eigenvalue problem
@@ -151,7 +155,8 @@ BOOST_AUTO_TEST_CASE ( six_site_ring_ward ) {
 
         // Create the Hamiltonian for the Hubbard model
         const GQCP::HoppingMatrix<double> H (A, t, U_list[i]);
-        auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Hubbard(H);
+        const GQCP::HubbardHamiltonian<double> hubbard_hamiltonian (H);
+        const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::FromHubbard(hubbard_hamiltonian);
 
 
         // Solve the dense eigenvalue problem
