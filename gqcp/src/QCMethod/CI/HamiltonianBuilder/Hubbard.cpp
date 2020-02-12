@@ -118,7 +118,7 @@ VectorX<double> Hubbard::calculateDiagonal(const HubbardHamiltonian<double>& hub
     // Calculate the diagonal contributions resulting from the two-electron on-site interactions by iterating over all ONVs.
     VectorX<double> diagonal = VectorX<double>::Zero(dim);
 
-    const auto& g = hubbard_hamiltonian.twoElectron().parameters();
+    const auto& H = hubbard_hamiltonian.hoppingMatrix();
 
 
     SpinUnresolvedONV onv_alpha = onv_basis_alpha.makeONV(0);
@@ -132,7 +132,7 @@ VectorX<double> Hubbard::calculateDiagonal(const HubbardHamiltonian<double>& hub
             // There is a contribution for all orbital indices p that are occupied both in the alpha- and beta ONV.
             std::vector<size_t> occupations = onv_alpha.findMatchingOccupations(onv_beta);
             for (const auto& p : occupations) {
-                diagonal(address) += g(p,p,p,p);
+                diagonal(address) += H(p,p);  // the two-electron (on-site repulsion) contributions are on the diagonal of the hopping matrix
             }
 
             if (Ib < dim_beta - 1) {  // prevent the last permutation from occurring
