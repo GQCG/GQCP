@@ -44,9 +44,23 @@ public:
      */
 
     /**
+     *  A default constructor.
+     */
+    HoppingMatrix() : SquareMatrix<Scalar>() {}
+
+
+    /**
+     *  A constructor required for compatibility with Pybind11. In its 'Eigen' bindings (eigen.h), it makes a call "Type(fits.rows, fits.cols)". This constructor should be called there.
+     */
+    HoppingMatrix(const size_t cols, const size_t rows) :
+        SquareMatrix<Scalar>(MatrixX<Scalar>(cols, rows))
+    {}
+
+
+    /**
      *  @param H        the Hubbard hopping matrix
      */
-    HoppingMatrix(const SquareMatrix<Scalar>& H) : 
+    HoppingMatrix(const SquareMatrix<Scalar>& H) :
         SquareMatrix<Scalar>(H)
     {
         if (!H.adjoint().isApprox(H)) {

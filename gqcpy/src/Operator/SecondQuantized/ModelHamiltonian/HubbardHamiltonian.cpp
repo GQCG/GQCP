@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "ONVBasis/SpinResolvedONVBasis.hpp"
+#include "Operator/SecondQuantized/ModelHamiltonian/HubbardHamiltonian.hpp"
 
 #include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
@@ -27,29 +27,11 @@ namespace py = pybind11;
 namespace gqcpy {
 
 
-void bindSpinResolvedONVBasis(py::module& module) {
-    py::class_<GQCP::SpinResolvedONVBasis>(module, "SpinResolvedONVBasis", "A full spin-resolved ONV basis.")
+void bindHubbardHamiltonian(py::module& module) {
+    py::class_<GQCP::HubbardHamiltonian<double>>(module, "HubbardHamiltonian", "The Hubbard model Hamiltonian.")
 
-        .def(py::init<const size_t, const size_t, const size_t>(),
-            py::arg("K"),
-            py::arg("N_alpha"),
-            py::arg("N_beta")
-        )
-
-        .def("dimension",
-            &GQCP::SpinResolvedONVBasis::dimension
-        )
-
-        .def("hartreeFockExpansion",
-            [ ] (const GQCP::SpinResolvedONVBasis& onv_basis) {
-                return onv_basis.hartreeFockExpansion();
-            }
-        )
-
-        .def("randomExpansion",
-            [ ] (const GQCP::SpinResolvedONVBasis& onv_basis) {
-                return onv_basis.randomExpansion();
-            }
+        .def(py::init<const GQCP::HoppingMatrix<double>&>(),
+            py::arg("H")
         )
     ;
 }

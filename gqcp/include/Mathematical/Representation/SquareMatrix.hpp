@@ -51,7 +51,7 @@ public:
      */
 
     /**
-     *  Default constructor
+     *  A default constructor.
      */
     SquareMatrix() : Base() {}
 
