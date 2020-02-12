@@ -141,6 +141,9 @@
 #include "Operator/FirstQuantized/Operator.hpp"
 #include "Operator/FirstQuantized/OverlapOperator.hpp"
 
+#include "Operator/SecondQuantized/ModelHamiltonian/HoppingMatrix.hpp"
+#include "Operator/SecondQuantized/ModelHamiltonian/HubbardHamiltonian.hpp"
+
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/SQTwoElectronOperator.hpp"
@@ -180,7 +183,6 @@
 #include "QCMethod/CI/HamiltonianBuilder/FrozenCoreDOCI.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/FrozenCoreFCI.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/HamiltonianBuilder.hpp"
-#include "QCMethod/CI/HamiltonianBuilder/HoppingMatrix.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/Hubbard.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/SelectedCI.hpp"
 

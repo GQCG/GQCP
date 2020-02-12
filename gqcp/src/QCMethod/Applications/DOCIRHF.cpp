@@ -84,7 +84,7 @@ void DOCIRHF::solve() {
 
     std::shared_ptr<BaseSolverOptions> solver_options;
     if (use_davidson) {
-        solver_options = std::make_shared<DavidsonSolverOptions>(fock_space.HartreeFockExpansion());
+        solver_options = std::make_shared<DavidsonSolverOptions>(fock_space.hartreeFockExpansion());
     } else {
         solver_options = std::make_shared<DenseSolverOptions>();
     }

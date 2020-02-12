@@ -35,7 +35,7 @@ BOOST_AUTO_TEST_CASE ( shannon_entropy ) {
 
 
     // Check the entropy of a Hartree-Fock expansion
-    GQCP::LinearExpansion hartree_fock_expansion (fock_space, fock_space.HartreeFockExpansion());
+    GQCP::LinearExpansion hartree_fock_expansion (fock_space, fock_space.hartreeFockExpansion());
     BOOST_CHECK(hartree_fock_expansion.calculateShannonEntropy() < 1.0e-12);  // should be 0
 
 

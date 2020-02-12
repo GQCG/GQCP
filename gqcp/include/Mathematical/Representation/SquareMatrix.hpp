@@ -51,7 +51,7 @@ public:
      */
 
     /**
-     *  Default constructor
+     *  A default constructor.
      */
     SquareMatrix() : Base() {}
 
@@ -130,7 +130,7 @@ public:
      *
      *  @return the full, symmetric matrix corresponding to the given upper triangle
      */
-    static Self FullFromTriangle(const VectorX<Scalar>& v) {
+    static Self SymmetricFromUpperTriangle(const VectorX<Scalar>& v) {
 
         size_t dim = triangularRoot(v.size());
 

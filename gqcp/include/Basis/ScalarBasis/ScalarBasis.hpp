@@ -95,7 +95,7 @@ public:
      *
      *  Note that the normalization factors of the spherical (or axis-aligned Cartesian) GTO primitives are embedded in the contraction coefficients of the underlying shells
      * 
-     *  @note This constructor is only available for GTOShells (for the std::enable_if, see https://stackoverflow.com/a/17842695/7930415)
+     *  @note This constructor is only available for GTOShells (for the std::enable_if, see https://stackoverflow.com/a/17842695/7930415).
      */
     template <typename Z = GTOShell>
     ScalarBasis(const Molecule& molecule, const std::string& basisset_name,

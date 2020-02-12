@@ -63,7 +63,7 @@ BOOST_AUTO_TEST_CASE ( decomposition_BeH_cation_STO_3G_Nuclear ) {
     GQCP::CISolver ci_solver (fci, sq_hamiltonian);
 
     // Solve Davidson
-    GQCP::DavidsonSolverOptions solver_options (fock_space.HartreeFockExpansion());
+    GQCP::DavidsonSolverOptions solver_options (fock_space.hartreeFockExpansion());
     ci_solver.solve(solver_options);
 
     // Retrieve the eigenpair

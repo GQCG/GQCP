@@ -306,7 +306,7 @@ void MullikenConstrainedFCI::solveMullikenDavidson(const double multiplier, cons
     if (this->are_solutions_available) {
         this->solveMullikenDavidson(multiplier, eigenvector[0], sz_multiplier);
     } else {
-        this->solveMullikenDavidson(multiplier, this->fock_space.HartreeFockExpansion(), sz_multiplier);
+        this->solveMullikenDavidson(multiplier, this->fock_space.hartreeFockExpansion(), sz_multiplier);
     }
 }
 

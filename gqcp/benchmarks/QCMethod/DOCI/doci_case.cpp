@@ -21,7 +21,7 @@ static void test_case(benchmark::State& state) {
 
     // Solve the DOCI eigenvalue problem with a Davidson solver
     const GQCP::DOCI doci (onv_basis);
-    const GQCP::VectorX<double> initial_guess = onv_basis.HartreeFockExpansion();
+    const GQCP::VectorX<double> initial_guess = onv_basis.hartreeFockExpansion();
     GQCP::DavidsonSolverOptions solver_options (initial_guess);
 
     // Code inside this loop is measured repeatedly

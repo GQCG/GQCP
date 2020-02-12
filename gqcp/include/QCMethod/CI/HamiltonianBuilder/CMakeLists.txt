@@ -6,7 +6,6 @@ target_sources(gqcp
         FrozenCoreDOCI.hpp
         FrozenCoreFCI.hpp
         HamiltonianBuilder.hpp
-        HoppingMatrix.hpp
         Hubbard.hpp
         SelectedCI.hpp
 )

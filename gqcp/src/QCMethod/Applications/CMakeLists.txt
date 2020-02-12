@@ -3,8 +3,6 @@ target_sources(gqcp
         AtomicDecompositionParameters.cpp
         DOCINewtonOrbitalOptimizer.cpp
         DOCIRHF.cpp
-        FCI.cpp
         FukuiDysonAnalysis.cpp
-        Hubbard.cpp
         MullikenConstrainedFCI.cpp
 )

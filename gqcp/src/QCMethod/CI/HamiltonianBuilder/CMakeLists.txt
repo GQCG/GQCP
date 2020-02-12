@@ -5,7 +5,6 @@ target_sources(gqcp
         FrozenCoreCI.cpp
         FrozenCoreDOCI.cpp
         FrozenCoreFCI.cpp
-        HoppingMatrix.cpp
         Hubbard.cpp
         SelectedCI.cpp
 )

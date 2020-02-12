@@ -43,7 +43,7 @@ BOOST_AUTO_TEST_CASE ( expansions ) {
     // Check the BaseONVBasis expansion functions
     GQCP::SpinUnresolvedONVBasis fock_space (8, 3);
 
-    GQCP::VectorX<double> hartree_fock_expansion = fock_space.HartreeFockExpansion();
+    GQCP::VectorX<double> hartree_fock_expansion = fock_space.hartreeFockExpansion();
     BOOST_CHECK(std::abs(hartree_fock_expansion.norm() - 1.0) < 1.0e-12);  // check if normalized
     BOOST_CHECK(std::abs(hartree_fock_expansion(0) - 1.0) < 1.0e-12);  // the Hartree-Fock determinant should be the first one
 

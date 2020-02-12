@@ -96,7 +96,7 @@ std::shared_ptr<BaseONVBasis> BaseONVBasis::CloneToHeap(const BaseONVBasis& fock
 /**
  *  @return the coefficient vector for the Hartree-Fock wave function (i.e. the 'first' ONV/Slater determinant)
  */
-VectorX<double> BaseONVBasis::HartreeFockExpansion() const {
+VectorX<double> BaseONVBasis::hartreeFockExpansion() const {
     VectorX<double> expansion = VectorX<double>::Zero(this->dim);
     expansion(0) = 1;  // first configuration is position 0 (conventional ordering of the ONV basis)
     return expansion;

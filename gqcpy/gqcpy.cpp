@@ -53,6 +53,10 @@ void bindSpinResolvedONVBasis(py::module& module);
 void bindOperator(py::module& module);
 
 
+// Operator - SecondQuantized - ModelHamiltonian
+void bindHoppingMatrix(py::module& module);
+void bindHubbardHamiltonian(py::module& module);
+
 // Operator - SecondQuantized
 void bindSQHamiltonian(py::module& module);
 void bindSQOneElectronOperator(py::module& module);
@@ -62,8 +66,6 @@ void bindSQTwoElectronOperator(py::module& module);
 // QCMethod - Applications
 void bindQCMethodDOCINewtonOrbitalOptimizer(py::module& module);
 void bindQCMethodDOCIRHF(py::module& module);
-void bindQCMethodHubbard(py::module& module);
-void bindQCMethodFCI(py::module& module);
 void bindQCMethodFukuiDysonAnalysis(py::module& module);
 void bindMullikenConstrainedFCI(py::module& module);
 
@@ -132,6 +134,11 @@ PYBIND11_MODULE (gqcpy, module) {
     gqcpy::bindOperator(module);
 
 
+    // Operator - SecondQuantized - ModelHamiltonian
+    gqcpy::bindHoppingMatrix(module);
+    gqcpy::bindHubbardHamiltonian(module);
+
+
     // Operator - SecondQuantized
     gqcpy::bindSQHamiltonian(module);
     gqcpy::bindSQOneElectronOperator(module);
@@ -141,8 +148,6 @@ PYBIND11_MODULE (gqcpy, module) {
     // QCMethod - Applications
     gqcpy::bindQCMethodDOCINewtonOrbitalOptimizer(module);
     gqcpy::bindQCMethodDOCIRHF(module);
-    gqcpy::bindQCMethodHubbard(module);
-    gqcpy::bindQCMethodFCI(module);
     gqcpy::bindQCMethodFukuiDysonAnalysis(module);
     gqcpy::bindMullikenConstrainedFCI(module);
 
