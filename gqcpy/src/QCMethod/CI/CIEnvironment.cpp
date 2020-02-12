@@ -32,12 +32,21 @@ void bindCIEnvironment(py::module& module) {
     auto module_ci_environment = module.def_submodule("CIEnvironment");
 
     module_ci_environment.def("Dense",
-        &GQCP::CIEnvironment::Dense<double>,
+        [ ] (const GQCP::SQHamiltonian<double>& sq_hamiltonian, const GQCP::SpinResolvedONVBasis& onv_basis) {
+            return GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
+        },
+        py::arg("sq_hamiltonian"),
+        py::arg("onv_basis"),
         "Return an environment suitable for solving spin-resolved FCI eigenvalue problems."
     );
 
     module_ci_environment.def("Iterative",
-        &GQCP::CIEnvironment::Iterative<double>,
+        [ ] (const GQCP::SQHamiltonian<double>& sq_hamiltonian, const GQCP::SpinResolvedONVBasis& onv_basis, const GQCP::MatrixX<double>& V) {
+            return GQCP::CIEnvironment::Iterative(sq_hamiltonian, onv_basis, V);
+        },
+        py::arg("sq_hamiltonian"),
+        py::arg("onv_basis"),
+        py::arg("V"),
         "Return an environment suitable for solving spin-resolved FCI eigenvalue problems."
     );
 }

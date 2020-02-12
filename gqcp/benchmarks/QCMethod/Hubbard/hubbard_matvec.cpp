@@ -4,7 +4,7 @@
 
 #include <benchmark/benchmark.h>
 
-#include "Operator/SecondQuantized/SQHamiltonian.hpp"
+#include "Operator/SecondQuantized/ModelHamiltonian/HubbardHamiltonian.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/Hubbard.hpp"
 
 
@@ -17,22 +17,23 @@ static void CustomArguments(benchmark::internal::Benchmark* b) {
 
 static void matvec(benchmark::State& state) {
 
-    // Prepare a random Hamiltonian, but use the Hubbard matrix construction method. TODO: this has to be changed in a model Hamiltonian refactor
+    // Prepare a random Hubbard model Hamiltonian.
     const auto K = state.range(0);  // number of sites
     const auto N_P = state.range(1);  // number of electron pairs
-    const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Random(K);
+    const auto H = GQCP::HoppingMatrix<double>::Random(K);
+    const GQCP::HubbardHamiltonian<double> hubbard_hamiltonian {H};
 
 
-    // Set up the full spin-resolved ONV basis
-    GQCP::SpinResolvedONVBasis onv_basis (K, N_P, N_P);
-    GQCP::Hubbard hubbard (onv_basis);
-    const auto diagonal = hubbard.calculateDiagonal(sq_hamiltonian);
+    // Set up the full spin-resolved ONV basis.
+    const GQCP::SpinResolvedONVBasis onv_basis (K, N_P, N_P);
+    const GQCP::Hubbard hubbard_builder (onv_basis);
+    const auto diagonal = hubbard_builder.calculateDiagonal(hubbard_hamiltonian);
     const auto x = onv_basis.randomExpansion();
 
 
     // Code inside this loop is measured repeatedly
     for (auto _ : state) {
-        GQCP::VectorX<double> matvec = hubbard.matrixVectorProduct(sq_hamiltonian, x, diagonal);
+        const auto matvec = hubbard_builder.matrixVectorProduct(hubbard_hamiltonian, x, diagonal);
 
         benchmark::DoNotOptimize(matvec);  // make sure the variable is not optimized away by compiler
     }

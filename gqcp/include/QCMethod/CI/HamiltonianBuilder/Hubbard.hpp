@@ -19,7 +19,7 @@
 
 
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
-#include "QCMethod/CI/HamiltonianBuilder/HamiltonianBuilder.hpp"
+#include "Operator/SecondQuantized/ModelHamiltonian/HubbardHamiltonian.hpp"
 
 
 namespace GQCP {
@@ -28,11 +28,9 @@ namespace GQCP {
 /**
  *  Hubbard builds a Hubbard Hamiltonian matrix in the full spin-resolved ONV basis
  *
- *  Hubbard distinguishes itself from FCI by explicitly implementing simplified a Hamiltonian:
- *      - for the one electron operators only inter-site interactions are considered
- *      - for the two electron operators only on-site (doubly occupied in-place) interactions are considered
+ *  Hubbard distinguishes itself from FCI by explicitly implementing simplified matrix construction and matrix-vector implementations.
  */
-class Hubbard : public HamiltonianBuilder {
+class Hubbard {
 private:
     SpinResolvedONVBasis onv_basis;  // the full spin-resolved ONV basis
 
@@ -50,33 +48,29 @@ public:
     ~Hubbard() = default;
 
 
-    // OVERRIDDEN GETTERS
-    const BaseONVBasis* get_fock_space() const override { return &onv_basis; }
-
-
-    // OVERRIDDEN PUBLIC METHODS
+    // PUBLIC METHODS
     /**
-     *  @param sq_hamiltonian               the Hubbard Hamiltonian expressed in an orthonormal basis
+     *  @param hubbard_hamiltonian              the Hubbard model Hamiltonian
      *
      *  @return the Hubbard Hamiltonian matrix
      */
-    SquareMatrix<double> constructHamiltonian(const SQHamiltonian<double>& sq_hamiltonian) const override;
+    SquareMatrix<double> constructHamiltonian(const HubbardHamiltonian<double>& hubbard_hamiltonian) const;
 
     /**
-     *  @param sq_hamiltonian               the Hubbard Hamiltonian expressed in an orthonormal basis
-     *  @param x                            the vector upon which the Hubbard Hamiltonian acts
-     *  @param diagonal                     the diagonal of the Hubbard Hamiltonian matrix
+     *  @param hubbard_hamiltonian              the Hubbard model Hamiltonian
+     *  @param x                                the vector upon which the Hubbard Hamiltonian acts
+     *  @param diagonal                         the diagonal of the Hubbard Hamiltonian matrix
      *
-     *  @return the action of the Hubbard Hamiltonian on the coefficient vector
+     *  @return the action of the Hubbard model Hamiltonian on the coefficient vector
      */
-    VectorX<double> matrixVectorProduct(const SQHamiltonian<double>& sq_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const override;
+    VectorX<double> matrixVectorProduct(const HubbardHamiltonian<double>& hubbard_hamiltonian, const VectorX<double>& x, const VectorX<double>& diagonal) const;
 
     /**
-     *  @param sq_hamiltonian               the Hubbard Hamiltonian expressed in an orthonormal basis
+     *  @param hubbard_hamiltonian              the Hubbard model Hamiltonian
      *
-     *  @return the diagonal of the matrix representation of the Hubbard Hamiltonian
+     *  @return the diagonal of the matrix representation of the Hubbard model Hamiltonian
      */
-    VectorX<double> calculateDiagonal(const SQHamiltonian<double>& sq_hamiltonian) const override;
+    VectorX<double> calculateDiagonal(const HubbardHamiltonian<double>& hubbard_hamiltonian) const;
 };
 
 
