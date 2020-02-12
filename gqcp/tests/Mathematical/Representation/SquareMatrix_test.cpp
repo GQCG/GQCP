@@ -94,7 +94,7 @@ BOOST_AUTO_TEST_CASE ( FromTriangle ) {
              2, 4, 5,
              3, 5, 6;
 
-    BOOST_CHECK(H_ref.isApprox(GQCP::SquareMatrix<double>::FullFromTriangle(upper_triangle)));
+    BOOST_CHECK(H_ref.isApprox(GQCP::SquareMatrix<double>::SymmetricFromUpperTriangle(upper_triangle)));
 }
 
 /**

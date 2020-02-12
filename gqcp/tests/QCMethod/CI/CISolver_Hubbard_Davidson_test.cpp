@@ -31,7 +31,7 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_davidson ) {
 
     // Create the Hamiltonian for a random Hubbard hopping matrix
     size_t K = 4;
-    auto H = GQCP::HoppingMatrix::Random(K);
+    const auto H = GQCP::HoppingMatrix<double>::Random(K);
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Hubbard(H);
 
 
@@ -64,7 +64,7 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_davidson_large ) {
 
     // Create the Hamiltonian for a random Hubbard hopping matrix
     size_t K = 6;
-    auto H = GQCP::HoppingMatrix::Random(K);
+    const auto H = GQCP::HoppingMatrix<double>::Random(K);
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Hubbard(H);
 
 

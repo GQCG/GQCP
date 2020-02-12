@@ -25,11 +25,11 @@
 #include "Molecule/Molecule.hpp"
 #include "Operator/FirstQuantized/NuclearRepulsionOperator.hpp"
 #include "Operator/FirstQuantized/OverlapOperator.hpp"
+#include "Operator/SecondQuantized/ModelHamiltonian/HoppingMatrix.hpp"
 #include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/SQTwoElectronOperator.hpp"
 #include "Processing/RDM/OneRDM.hpp"
 #include "Processing/RDM/TwoRDM.hpp"
-#include "QCMethod/CI/HamiltonianBuilder/HoppingMatrix.hpp"
 #include "Utilities/miscellaneous.hpp"
 #include "Utilities/type_traits.hpp"
 
@@ -126,7 +126,7 @@ public:
      *  Note that this named constructor is only available for real matrix representations
      */
     template<typename Z = Scalar>
-    static enable_if_t<std::is_same<Z, double>::value, SQHamiltonian<double>> Hubbard(const HoppingMatrix& H) {
+    static enable_if_t<std::is_same<Z, double>::value, SQHamiltonian<double>> Hubbard(const HoppingMatrix<double>& H) {
 
         const size_t K = H.numberOfLatticeSites();
 

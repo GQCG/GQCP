@@ -32,7 +32,7 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_dense ) {
 
     // Create the Hamiltonian for a random Hubbard hopping matrix
     size_t K = 4;
-    auto H = GQCP::HoppingMatrix::Random(K);
+    const auto H = GQCP::HoppingMatrix<double>::Random(K);
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Hubbard(H);
 
 
@@ -64,7 +64,7 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_dense_large ) {
 
     // Create the Hamiltonian for a random Hubbard hopping matrix
     size_t K = 6;
-    auto H = GQCP::HoppingMatrix::Random(K);
+    const auto H = GQCP::HoppingMatrix<double>::Random(K);
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Hubbard(H);
 
 
@@ -110,7 +110,7 @@ BOOST_AUTO_TEST_CASE ( four_site_chain_ward ) {
     for (size_t i = 0; i < 7; i++) {
 
         // Create the Hamiltonian for the Hubbard model
-        GQCP::HoppingMatrix H (A, t, U_list[i]);
+        const GQCP::HoppingMatrix<double> H (A, t, U_list[i]);
         auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Hubbard(H);
 
 
@@ -150,7 +150,7 @@ BOOST_AUTO_TEST_CASE ( six_site_ring_ward ) {
     for (size_t i = 0; i < 7; i++) {
 
         // Create the Hamiltonian for the Hubbard model
-        GQCP::HoppingMatrix H (A, t, U_list[i]);
+        const GQCP::HoppingMatrix<double> H (A, t, U_list[i]);
         auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Hubbard(H);
 
 

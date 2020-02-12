@@ -53,6 +53,10 @@ void bindSpinResolvedONVBasis(py::module& module);
 void bindOperator(py::module& module);
 
 
+// Operator - SecondQuantized - ModelHamiltonian
+void bindHoppingMatrix(py::module& module);
+
+
 // Operator - SecondQuantized
 void bindSQHamiltonian(py::module& module);
 void bindSQOneElectronOperator(py::module& module);
@@ -130,6 +134,10 @@ PYBIND11_MODULE (gqcpy, module) {
 
     // Operator - FirstQuantized
     gqcpy::bindOperator(module);
+
+
+    // Operator - SecondQuantized - ModelHamiltonian
+    gqcpy::bindHoppingMatrix(module);
 
 
     // Operator - SecondQuantized

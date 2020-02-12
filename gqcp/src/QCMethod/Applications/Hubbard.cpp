@@ -64,7 +64,7 @@ Hubbard::Hubbard(const std::string& csline, const size_t num_states, const size_
 void Hubbard::solve() {
 
     // Build up the Hubbard hopping matrix and the corresponding Hamiltonian
-    const GQCP::HoppingMatrix H = GQCP::HoppingMatrix::FromCSLine(csline);
+    const auto H = GQCP::HoppingMatrix<double>::FromCSLine(csline);
     const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Hubbard(H);
     const auto K = sq_hamiltonian.dimension();
 

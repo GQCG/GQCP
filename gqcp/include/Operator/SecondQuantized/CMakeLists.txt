@@ -5,3 +5,5 @@ target_sources(gqcp
         SQTwoElectronOperator.hpp
         USQHamiltonian.hpp
 )
+
+add_subdirectory(ModelHamiltonian)

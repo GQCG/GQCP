@@ -62,7 +62,7 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI ) {
     // Create the Hubbard Hamiltonian
     size_t K = 4;
     size_t N = 2;
-    auto H = GQCP::HoppingMatrix::Random(K);
+    const auto H = GQCP::HoppingMatrix<double>::Random(K);
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Hubbard(H);
 
 
@@ -82,7 +82,7 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_large ) {
     // Create the Hubbard Hamiltonian
     size_t K = 6;
     size_t N = 3;
-    auto H = GQCP::HoppingMatrix::Random(K);
+    const auto H = GQCP::HoppingMatrix<double>::Random(K);
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Hubbard(H);
 
 
@@ -102,7 +102,7 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_matvec ) {
     // Create the Hubbard Hamiltonian
     size_t K = 4;
     size_t N = 2;
-    auto H = GQCP::HoppingMatrix::Random(K);
+    const auto H = GQCP::HoppingMatrix<double>::Random(K);
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Hubbard(H);
 
 
@@ -127,7 +127,7 @@ BOOST_AUTO_TEST_CASE ( test_Hubbard_vs_FCI_large_matvec ) {
     // Create the Hubbard Hamiltonian
     size_t K = 6;
     size_t N = 3;
-    auto H = GQCP::HoppingMatrix::Random(K);
+    const auto H = GQCP::HoppingMatrix<double>::Random(K);
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Hubbard(H);
 
 
