@@ -223,7 +223,7 @@ BOOST_AUTO_TEST_CASE ( OO_DOCI_h2_6_31gxx_Davidson ) {
     // Do the DOCI orbital optimization, using the FCI natural orbitals
     GQCP::SpinUnresolvedONVBasis doci_fock_space (K, h2.numberOfElectrons()/2);  // dim = 120
     GQCP::DOCI doci (doci_fock_space);
-    GQCP::VectorX<double> initial_g = doci_fock_space.HartreeFockExpansion();
+    GQCP::VectorX<double> initial_g = doci_fock_space.hartreeFockExpansion();
     GQCP::DavidsonSolverOptions davidson_solver_options (initial_g);
     auto hessian_modifier = std::make_shared<GQCP::IterativeIdentitiesHessianModifier>();
     GQCP::DOCINewtonOrbitalOptimizer orbital_optimizer (doci, ci_solver_options, hessian_modifier);

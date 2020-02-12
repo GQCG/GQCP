@@ -149,7 +149,7 @@ BOOST_AUTO_TEST_CASE ( S_z_constrained_NOplus_STO_3G ) {
     // Do the FCI calculation 
     GQCP::SpinResolvedONVBasis onv_basis (K, Ne/2, Ne/2);
     
-    GQCP::DavidsonSolverOptions solver_options (onv_basis.HartreeFockExpansion());
+    GQCP::DavidsonSolverOptions solver_options (onv_basis.hartreeFockExpansion());
     GQCP::VectorX<double> dia = onv_basis.evaluateOperatorDiagonal(constrained);
     GQCP::VectorFunction<double> matrixVectorProduct = [&onv_basis, &dia, &constrained](const GQCP::VectorX<double>& x) { return onv_basis.evaluateOperatorMatrixVectorProduct(constrained, x, dia); };
     GQCP::DavidsonSolver ds_solver (matrixVectorProduct, dia, solver_options);

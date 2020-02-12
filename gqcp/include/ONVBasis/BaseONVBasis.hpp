@@ -77,7 +77,7 @@ public:
     /**
      *  @return the coefficient vector for the Hartree-Fock wave function (i.e. the 'first' ONV/Slater determinant)
      */
-    VectorX<double> HartreeFockExpansion() const;
+    VectorX<double> hartreeFockExpansion() const;
 
     /**
      *  @return a random normalized coefficient vector, with coefficients uniformly distributed in [-1, 1]

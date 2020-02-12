@@ -87,8 +87,8 @@ FukuiDysonAnalysis::FukuiDysonAnalysis(const Molecule& molecule, const std::stri
     CISolver ci_solver1 (fci1, sq_hamiltonian);
     CISolver ci_solver2 (fci2, sq_hamiltonian);
 
-    VectorX<double> initial_g1 = fock_space1.HartreeFockExpansion();
-    VectorX<double> initial_g2 = fock_space2.HartreeFockExpansion();
+    VectorX<double> initial_g1 = fock_space1.hartreeFockExpansion();
+    VectorX<double> initial_g2 = fock_space2.hartreeFockExpansion();
     DavidsonSolverOptions davidson_solver_options1 (initial_g1);
     DavidsonSolverOptions davidson_solver_options2 (initial_g2);
     ci_solver1.solve(davidson_solver_options1);

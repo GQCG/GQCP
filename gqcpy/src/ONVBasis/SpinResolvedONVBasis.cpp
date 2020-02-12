@@ -39,6 +39,12 @@ void bindSpinResolvedONVBasis(py::module& module) {
         .def("dimension",
             &GQCP::SpinResolvedONVBasis::dimension
         )
+
+        .def("hartreeFockExpansion",
+            [ ] (const GQCP::SpinResolvedONVBasis& onv_basis) {
+                return onv_basis.hartreeFockExpansion();
+            }
+        )
     ;
 }
 

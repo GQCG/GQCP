@@ -108,7 +108,7 @@ static void fci_davidson_molecule(benchmark::State& state) {
     GQCP::SpinResolvedONVBasis onv_basis (K, N_P, N_P);
     GQCP::FCI fci (onv_basis);
 
-    GQCP::VectorX<double> initial_guess = onv_basis.HartreeFockExpansion();
+    GQCP::VectorX<double> initial_guess = onv_basis.hartreeFockExpansion();
     GQCP::DavidsonSolverOptions solver_options (initial_guess);
 
 
