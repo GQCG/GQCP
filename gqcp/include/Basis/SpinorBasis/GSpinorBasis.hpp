@@ -222,24 +222,46 @@ public:
         using ResultOperator = SQOneElectronOperator<ResultScalar, FQOneElectronOperator::Components>;
 
 
-        // The strategy for calculating the matrix representation of the one-electron operator in this spinor basis is to express the operator in the underlying scalar bases and afterwards transform them using the current coefficient matrix
+        // The strategy for calculating the matrix representation of the one-electron operator in this spinor basis is to:
+        //      1. express the operator in the underlying scalar bases; and
+        //      2. afterwards transform them using the current coefficient matrix.
         const auto K_alpha = this->numberOfCoefficients(SpinComponent::ALPHA);
         const auto K_beta = this->numberOfCoefficients(SpinComponent::BETA);
         const auto M = this->numberOfSpinors();
         QCMatrix<ResultScalar> f = QCMatrix<ResultScalar>::Zero(M, M);  // the total result
 
-        // Express the operator in the underlying bases: spin-independent operators only have alpha-alpha and beta-beta blocks
+        // 1. Express the operator in the underlying scalar bases: spin-independent operators only have alpha-alpha and beta-beta blocks.
         const auto F_alpha = this->scalarBasis(SpinComponent::ALPHA).calculateLibintIntegrals(fq_op);
         const auto F_beta = this->scalarBasis(SpinComponent::BETA).calculateLibintIntegrals(fq_op);
 
         f.topLeftCorner(K_alpha, K_alpha) = F_alpha;
         f.bottomRightCorner(K_beta, K_beta) = F_beta;
 
-        // Transform using the current coefficient matrix
+        // 2. Transform using the current coefficient matrix.
         ResultOperator op ({f});  // op for 'operator'
         op.transform(this->coefficientMatrix());
         return op;
     }
+
+
+    // /**
+    //  *  @param fq_op        the first-quantized Coulomb operator
+    //  * 
+    //  *  @return the second-quantized operator corresponding to the Coulomb operator
+    //  */
+    // auto quantize(const CoulombRepulsionOperator& fq_op) const -> SQTwoElectronOperator<product_t<CoulombRepulsionOperator::Scalar, ExpansionScalar>, CoulombRepulsionOperator::Components> {
+
+    //     using ResultScalar = product_t<CoulombRepulsionOperator::Scalar, ExpansionScalar>;
+    //     using ResultOperator = SQTwoElectronOperator<ResultScalar, CoulombRepulsionOperator::Components>;
+
+    //     // The strategy for calculating the matrix representation of the two-electron operator in this spinor basis is to:
+    //     //      1. express the operator in the underlying scalar bases; and
+    //     //      2. afterwards transform them using the current coefficient matrix.
+
+    //     // 1. Express the operator in the underlying scalar bases: spin-independent operators only have alpha-alpha and beta-beta blocks
+
+    //     // 2. Transform using the current coefficient matrix
+    // }
 };
 
 

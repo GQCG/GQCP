@@ -156,17 +156,19 @@ public:
 
 
     /**
-     *  @param fq_op        the first-quantized one-electron operator
+     *  @param fq_one_op                            the first-quantized one-electron operator
+     * 
+     *  @tparam FQOneElectronOperator               the type of the first-quantized one-electron operator
      * 
      *  @return the second-quantized operator corresponding to the given first-quantized operator
      */
     template <typename FQOneElectronOperator>
-    auto quantize(const FQOneElectronOperator& fq_op) const -> SQOneElectronOperator<product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>, FQOneElectronOperator::Components> {
+    auto quantize(const FQOneElectronOperator& fq_one_op) const -> SQOneElectronOperator<product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>, FQOneElectronOperator::Components> {
 
         using ResultScalar = product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>;
         using ResultOperator = SQOneElectronOperator<ResultScalar, FQOneElectronOperator::Components>;
 
-        ResultOperator op ({this->scalarBasis().calculateLibintIntegrals(fq_op)});  // op for 'operator'
+        ResultOperator op ({this->scalarBasis().calculateLibintIntegrals(fq_one_op)});  // op for 'operator'
         op.transform(this->coefficientMatrix());
         return op;
     }

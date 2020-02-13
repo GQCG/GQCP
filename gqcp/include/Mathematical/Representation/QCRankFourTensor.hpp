@@ -66,19 +66,17 @@ public:
 
 
     /**
-     *  In-place transform this chemical rank-4 tensor according to a given basis transformation
+     *  In-place transform this quantum chemical rank-4 tensor according to a given basis transformation.
      *
      *  @param T    the transformation matrix between the old and the new orbital basis
      */
     void basisTransformInPlace(const TransformationMatrix<Scalar>& T) {
 
-        // Since we're only getting T as a matrix, we should make the appropriate tensor to perform contractions
-        // For the const argument, we need the const in the template
-        //      For more info, see: https://stackoverflow.com/questions/45283468/eigen-const-tensormap
-        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> T_tensor (T.data(), T.rows(), T.cols());
+        // Since we're only getting T as a matrix, we should convert it to an appropriate tensor to perform contractions.
+        Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> T_tensor (T.data(), T.rows(), T.cols());  // since T is const, we need const in the template (https://stackoverflow.com/questions/45283468/eigen-const-tensormap)
 
 
-        // We will have to do four single contractions, so we specify the contraction indices
+        // We will have to do four single contractions, so we'll have to specify the contraction indices.
         // Eigen3 does not document its tensor contraction clearly, so see the accepted answer on stackoverflow (https://stackoverflow.com/a/47558349/7930415):
         //      Eigen3 does not accept a way to specify the output axes: instead, it retains the order from left to right of the axes that survive the contraction.
         //      This means that, in order to get the right ordering of the axes, we will have to swap axes
@@ -98,18 +96,24 @@ public:
         Eigen::array<Eigen::IndexPair<int>, 1> contraction_pair4 = {Eigen::IndexPair<int>(0, 0)};
 
 
-        // Calculate the contractions. We write this as one large contraction to
-        //  1) avoid storing intermediate contractions
-        //  2) let Eigen figure out some optimizations
-        Self g_transformed = T_tensor.conjugate().contract(T_tensor.contract(this->contract(T_tensor.conjugate(), contraction_pair1).shuffle(shuffle_1).contract(T_tensor, contraction_pair2), contraction_pair3).shuffle(shuffle_3), contraction_pair4);
+        // Calculate the contractions. We write this as one chain of contractions to
+        //      1) avoid storing intermediate contractions;
+        //      2) let Eigen figure out some optimizations.
+        Self g_transformed = T_tensor.conjugate().contract(
+                T_tensor.contract(
+                    this->contract(T_tensor.conjugate(), contraction_pair1).shuffle(shuffle_1)  // the 'inner' contraction, the first one
+                    .contract(T_tensor, contraction_pair2),
+                contraction_pair3).shuffle(shuffle_3),
+            contraction_pair4
+        );
         (*this) = g_transformed;
     }
 
 
     /**
-     *  In-place rotate this chemical rank-4 tensor using a unitary transformation matrix
+     *  In-place rotate this quantum chemical rank-4 tensor using a unitary transformation matrix.
      * 
-     *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
+     *  @param U            the unitary transformation matrix
      */
     void basisRotateInPlace(const TransformationMatrix<double>& U) {
 
@@ -123,7 +127,7 @@ public:
 
 
     /**
-     *  In-place rotate this chemical rank-4 tensor using Jacobi rotation parameters
+     *  In-place rotate this chemical rank-4 tensor using Jacobi rotation parameters.
      * 
      *  @param jacobi_rotation_parameters       the Jacobi rotation parameters (p, q, angle) that are used to specify a Jacobi rotation: we use the (cos, sin, -sin, cos) definition for the Jacobi rotation matrix
      */
