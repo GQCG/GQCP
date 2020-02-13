@@ -18,6 +18,7 @@
 #pragma once
 
 
+#include "Basis/Integrals/IntegralCalculator.hpp"
 #include "Basis/ScalarBasis/ScalarBasis.hpp"
 #include "Basis/SpinorBasis/JacobiRotationParameters.hpp"
 #include "Basis/SpinorBasis/SimpleSpinorBasis.hpp"
@@ -231,8 +232,8 @@ public:
         QCMatrix<ResultScalar> f = QCMatrix<ResultScalar>::Zero(M, M);  // the total result
 
         // 1. Express the operator in the underlying scalar bases: spin-independent operators only have alpha-alpha and beta-beta blocks.
-        const auto F_alpha = this->scalarBasis(SpinComponent::ALPHA).calculateLibintIntegrals(fq_op);
-        const auto F_beta = this->scalarBasis(SpinComponent::BETA).calculateLibintIntegrals(fq_op);
+        const auto F_alpha = IntegralCalculator::calculateLibintIntegrals(fq_op, this->scalarBasis(SpinComponent::ALPHA));
+        const auto F_beta = IntegralCalculator::calculateLibintIntegrals(fq_op, this->scalarBasis(SpinComponent::BETA));
 
         f.topLeftCorner(K_alpha, K_alpha) = F_alpha;
         f.bottomRightCorner(K_beta, K_beta) = F_beta;

@@ -18,6 +18,7 @@
 #pragma once
 
 
+#include "Basis/Integrals/IntegralCalculator.hpp"
 #include "Basis/ScalarBasis/ScalarBasis.hpp"
 #include "Basis/SpinorBasis/JacobiRotationParameters.hpp"
 #include "Basis/SpinorBasis/SimpleSpinorBasis.hpp"
@@ -134,7 +135,7 @@ public:
         }
 
         const SquareMatrix<double> p_a = SquareMatrix<double>::PartitionMatrix(ao_list, K);  // the partitioning matrix
-        const auto S_AO = this->scalar_basis.calculateLibintIntegrals(Operator::Overlap());  // the overlap matrix expressed in the AO basis
+        const auto S_AO = IntegralCalculator::calculateLibintIntegrals(Operator::Overlap(), this->scalar_basis);  // the overlap matrix expressed in the AO basis
 
         ScalarSQOneElectronOperator<double> mulliken_op { 0.5 * (this->C.adjoint() * p_a * S_AO * this->C + this->C.adjoint() * S_AO * p_a * this->C) };
         return mulliken_op;
@@ -168,7 +169,8 @@ public:
         using ResultScalar = product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>;
         using ResultOperator = SQOneElectronOperator<ResultScalar, FQOneElectronOperator::Components>;
 
-        ResultOperator op ({this->scalarBasis().calculateLibintIntegrals(fq_one_op)});  // op for 'operator'
+        const auto one_op_par = IntegralCalculator::calculateLibintIntegrals(fq_one_op, this->scalarBasis());
+        ResultOperator op {one_op_par};  // op for 'operator'
         op.transform(this->coefficientMatrix());
         return op;
     }
@@ -184,7 +186,8 @@ public:
         using ResultScalar = product_t<CoulombRepulsionOperator::Scalar, ExpansionScalar>;
         using ResultOperator = SQTwoElectronOperator<ResultScalar, CoulombRepulsionOperator::Components>;
 
-        ResultOperator op ({this->scalarBasis().calculateLibintIntegrals(fq_op)});  // op for 'operator'
+        const auto one_op_par = IntegralCalculator::calculateLibintIntegrals(fq_op, this->scalarBasis());
+        ResultOperator op {one_op_par};  // op for 'operator'
         op.transform(this->coefficientMatrix());
         return op;
     }

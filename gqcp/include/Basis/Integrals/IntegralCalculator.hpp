@@ -18,9 +18,17 @@
 #pragma once
 
 
+#include "Basis/Integrals/Interfaces/LibintInterfacer.hpp"
+#include "Basis/Integrals/Interfaces/LibcintInterfacer.hpp"
+#include "Basis/Integrals/IntegralEngine.hpp"
 #include "Basis/Integrals/BaseOneElectronIntegralEngine.hpp"
 #include "Basis/Integrals/BaseTwoElectronIntegralEngine.hpp"
+#include "Basis/ScalarBasis/ScalarBasis.hpp"
 #include "Basis/ScalarBasis/ShellSet.hpp"
+#include "Mathematical/Representation/QCMatrix.hpp"
+#include "Mathematical/Representation/QCRankFourTensor.hpp"
+#include "Operator/FirstQuantized/Operator.hpp"
+
 
 #include <array>
 #include <memory>
@@ -138,6 +146,146 @@ public:
         }  // sh1_index
 
         return components;
+    }
+
+
+    /*
+     *  PUBLIC METHODS - LIBINT2 INTEGRALS
+     */
+
+    /**
+     *  @param fq_one_op                            the first-quantized one-electron operator
+     *  @param scalar_basis                         the scalar basis that contains the shell sets over which the integrals should be calculated
+     * 
+     *  @tparam FQOneElectronOperator               the type of the first-quantized one-electron operator
+     * 
+     *  @return the matrix representation (integrals) of the given first-quantized operator in this scalar basis
+     */
+    template <typename FQOneElectronOperator>
+    static QCMatrix<double> calculateLibintIntegrals(const FQOneElectronOperator& fq_one_op, const ScalarBasis<GTOShell>& scalar_basis) {
+
+        const auto shell_set = scalar_basis.shellSet();
+
+        // Construct the libint engine
+        const auto max_nprim = shell_set.maximumNumberOfPrimitives();
+        const auto max_l = shell_set.maximumAngularMomentum();
+        auto engine = IntegralEngine::Libint(fq_one_op, max_nprim, max_l);
+
+
+        // Calculate the integrals using the engine
+        const auto integrals = IntegralCalculator::calculate(engine, shell_set);
+        return integrals[0];
+    }
+
+
+    /**
+     *  @param fq_op            the first-quantized operator
+     * 
+     *  @param scalar_basis                         the scalar basis that contains the shell sets over which the integrals should be calculated
+     * 
+     *  @return the matrix representation (integrals) of the given first-quantized operator in this scalar basis
+     */
+    static std::array<QCMatrix<double>, 3> calculateLibintIntegrals(const ElectronicDipoleOperator& fq_op, const ScalarBasis<GTOShell>& scalar_basis) {
+
+        const auto shell_set = scalar_basis.shellSet();
+
+        // Construct the libint engine
+        const auto max_nprim = shell_set.maximumNumberOfPrimitives();
+        const auto max_l = shell_set.maximumAngularMomentum();
+        auto engine = IntegralEngine::Libint(fq_op, max_nprim, max_l);
+
+
+        // Calculate the integrals using the engine
+        const auto integrals = IntegralCalculator::calculate(engine, shell_set);
+        return {integrals[0], integrals[1], integrals[2]};
+    }
+
+
+    /**
+     *  @param fq_op            the first-quantized operator
+     * 
+     *  @param scalar_basis                         the scalar basis that contains the shell sets over which the integrals should be calculated
+     * 
+     *  @return the matrix representation (integrals) of the given first-quantized operator in this scalar basis
+     */
+    static QCRankFourTensor<double> calculateLibintIntegrals(const CoulombRepulsionOperator& fq_op, const ScalarBasis<GTOShell>& scalar_basis) {
+
+        const auto shell_set = scalar_basis.shellSet();
+
+        // Construct the libint engine
+        const auto max_nprim = shell_set.maximumNumberOfPrimitives();
+        const auto max_l = shell_set.maximumAngularMomentum();
+        auto engine = IntegralEngine::Libint(fq_op, max_nprim, max_l);
+
+
+        // Calculate the integrals using the engine
+        const auto integrals = IntegralCalculator::calculate(engine, shell_set);
+        return integrals[0];
+    }
+
+
+    /*
+     *  PUBLIC METHODS - LIBCINT INTEGRALS
+     *  Note that the Libcint integrals should only be used for Cartesian ShellSets
+     */
+
+    /**
+     *  Calculate the integrals over a first-quantized one-electron operator using Libcint: only use this for all-Cartesian ShellSets.
+     *
+     *  @param fq_one_op                            the first-quantized one-electron operator
+     * 
+     *  @param scalar_basis                         the scalar basis that contains the shell sets over which the integrals should be calculated
+     * 
+     *  @tparam FQOneElectronOperator               the type of the first-quantized one-electron operator
+     * 
+     *  @return the matrix representation of the overlap operator in this AO basis, using the libcint integral engine
+     */
+    template <typename FQOneElectronOperator>
+    static QCMatrix<double> calculateLibcintIntegrals(const FQOneElectronOperator& fq_one_op, const ScalarBasis<GTOShell>& scalar_basis) {
+
+        const auto shell_set = scalar_basis.shellSet();
+
+        auto engine = IntegralEngine::Libcint(fq_one_op, shell_set);
+        const auto integrals = IntegralCalculator::calculate(engine, shell_set);
+        return integrals[0];
+    }
+
+
+    /**
+     *  Calculate the electrical dipole integrals using Libcint: only use this for all-Cartesian ShellSets
+     *
+     *  @param fq_op            the first-quantized operator
+     * 
+     *  @param scalar_basis                         the scalar basis that contains the shell sets over which the integrals should be calculated
+     *
+     *  @return the matrix representation of the Cartesian components of the electrical dipole operator in this AO basis, using the libcint integral engine
+     */
+    static std::array<QCMatrix<double>, 3> calculateLibcintIntegrals(const ElectronicDipoleOperator& fq_op, const ScalarBasis<GTOShell>& scalar_basis) {
+
+        const auto shell_set = scalar_basis.shellSet();
+
+        auto engine = IntegralEngine::Libcint(fq_op, shell_set);
+        const auto integrals = IntegralCalculator::calculate(engine, shell_set);
+        return {integrals[0], integrals[1], integrals[2]};
+    }
+
+
+    /**
+     *  Calculate the Coulomb repulsion energy integrals using Libcint: only use this for all-Cartesian ShellSets
+     *
+     *  @param fq_op            the first-quantized operator
+     * 
+     *  @param scalar_basis                         the scalar basis that contains the shell sets over which the integrals should be calculated
+     * 
+     *  @return the matrix representation of the Coulomb repulsion operator in this AO basis, using the libcint integral engine
+     */
+    static QCRankFourTensor<double> calculateLibcintIntegrals(const CoulombRepulsionOperator& fq_op, const ScalarBasis<GTOShell>& scalar_basis) {
+
+        const auto shell_set = scalar_basis.shellSet();
+
+        auto engine = IntegralEngine::Libcint(fq_op, shell_set);
+        const auto integrals = IntegralCalculator::calculate(engine, shell_set);
+        return integrals[0];
     }
 };
 
