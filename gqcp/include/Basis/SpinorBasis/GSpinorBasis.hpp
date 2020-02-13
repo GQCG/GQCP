@@ -167,7 +167,7 @@ public:
     /*
      *  PUBLIC METHODS
      */
-    
+
     using Base::coefficientMatrix;
 
     /**
@@ -202,8 +202,8 @@ public:
     /**
      *  @return the number of spinors that 'are' in this generalized spinor basis
      */
-    size_t numberOfSpinors() const { 
-        
+    size_t numberOfSpinors() const {
+
         const auto K_alpha = this->numberOfCoefficients(SpinComponent::ALPHA);
         const auto K_beta = this->numberOfCoefficients(SpinComponent::BETA);
 
