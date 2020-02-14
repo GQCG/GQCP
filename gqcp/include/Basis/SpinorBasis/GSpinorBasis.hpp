@@ -28,6 +28,7 @@
 #include "Operator/FirstQuantized/Operator.hpp"
 #include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/SQTwoElectronOperator.hpp"
+#include "Utilities/typedefs.hpp"
 
 
 namespace GQCP {
@@ -212,28 +213,28 @@ public:
     }
 
     /**
-     *  @param fq_op        the spin-independent first-quantized operator
+     *  @param fq_one_op        the spin-independent first-quantized operator
      * 
      *  @return the second-quantized operator corresponding to the given first-quantized operator
      */
     template <typename FQOneElectronOperator>
-    auto quantize(const FQOneElectronOperator& fq_op) const -> SQOneElectronOperator<product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>, FQOneElectronOperator::Components> {
+    auto quantize(const FQOneElectronOperator& fq_one_op) const -> SQOneElectronOperator<product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>, FQOneElectronOperator::Components> {
 
         using ResultScalar = product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>;
         using ResultOperator = SQOneElectronOperator<ResultScalar, FQOneElectronOperator::Components>;
 
 
         // The strategy for calculating the matrix representation of the one-electron operator in this spinor basis is to:
-        //      1. express the operator in the underlying scalar bases; and
-        //      2. afterwards transform them using the current coefficient matrix.
+        //  1. express the operator in the underlying scalar bases; and
+        //  2. afterwards transform them using the current coefficient matrix.
         const auto K_alpha = this->numberOfCoefficients(SpinComponent::ALPHA);
         const auto K_beta = this->numberOfCoefficients(SpinComponent::BETA);
         const auto M = this->numberOfSpinors();
         QCMatrix<ResultScalar> f = QCMatrix<ResultScalar>::Zero(M, M);  // the total result
 
         // 1. Express the operator in the underlying scalar bases: spin-independent operators only have alpha-alpha and beta-beta blocks.
-        const auto F_alpha = IntegralCalculator::calculateLibintIntegrals(fq_op, this->scalarBasis(SpinComponent::ALPHA));
-        const auto F_beta = IntegralCalculator::calculateLibintIntegrals(fq_op, this->scalarBasis(SpinComponent::BETA));
+        const auto F_alpha = IntegralCalculator::calculateLibintIntegrals(fq_one_op, this->scalarBasis(SpinComponent::ALPHA));
+        const auto F_beta = IntegralCalculator::calculateLibintIntegrals(fq_one_op, this->scalarBasis(SpinComponent::BETA));
 
         f.topLeftCorner(K_alpha, K_alpha) = F_alpha;
         f.bottomRightCorner(K_beta, K_beta) = F_beta;
@@ -245,12 +246,62 @@ public:
     }
 
 
+    /**
+     *  @param fq_one_op        the (first-quantized) electronic spin operator
+     * 
+     *  @return the electronic spin operator expressed in this spinor basis
+     */
+    auto quantize(const ElectronicSpinOperator& fq_one_op) const -> SQOneElectronOperator<product_t<ElectronicSpinOperator::Scalar, ExpansionScalar>, ElectronicSpinOperator::Components> {
+
+        using ResultScalar = product_t<ElectronicSpinOperator::Scalar, ExpansionScalar>;
+        using ResultOperator = SQOneElectronOperator<ResultScalar, ElectronicSpinOperator::Components>;
+
+        const auto K_alpha = this->numberOfCoefficients(SpinComponent::ALPHA);
+        const auto K_beta = this->numberOfCoefficients(SpinComponent::BETA);
+        const auto M = this->numberOfSpinors();
+
+        // The strategy to quantize the spin operator is as follows.
+        //  1. First, calculate the necessary overlap integrals over the scalar bases.
+        //  2. Then, construct the scalar basis representations of the components of the spin operator by placing the overlaps into the correct blocks.
+        //  3. Transform the components (in scalar basis) with the current coefficient matrix to yield the components in spinor basis.
+
+        QCMatrix<ResultScalar> S_x = QCMatrix<ResultScalar>::Zero(M, M);
+        QCMatrix<ResultScalar> S_y = QCMatrix<ResultScalar>::Zero(M, M);
+        QCMatrix<ResultScalar> S_z = QCMatrix<ResultScalar>::Zero(M, M);
+
+
+        // 1. Calculate the necessary overlap integrals over the scalar bases.
+        const auto S_aa = IntegralCalculator::calculateLibintIntegrals(Operator::Overlap(), this->scalarBasis(SpinComponent::ALPHA));
+        const auto S_ab = IntegralCalculator::calculateLibintIntegrals(Operator::Overlap(), this->scalarBasis(SpinComponent::ALPHA), this->scalarBasis(SpinComponent::BETA));
+        const auto S_ba = IntegralCalculator::calculateLibintIntegrals(Operator::Overlap(), this->scalarBasis(SpinComponent::BETA), this->scalarBasis(SpinComponent::ALPHA));
+        const auto S_bb = IntegralCalculator::calculateLibintIntegrals(Operator::Overlap(), this->scalarBasis(SpinComponent::BETA));
+
+
+        // 2. Place the overlaps into the correct blocks.
+        S_x.block(0,K_alpha, K_alpha,K_beta) = 0.5 * S_ab;
+        S_x.block(K_alpha,0, K_beta,K_alpha) = 0.5 * S_ba;
+
+        const cd ii (0.0, 1.0);  // 'cd' is a typedef for 'std::complex<double>', so 'ii' is the imaginary unit
+        S_y.block(0,K_alpha, K_alpha,K_beta) = -0.5 * ii * S_ab;
+        S_y.block(K_alpha,0, K_beta,K_alpha) = 0.5 * ii * S_ba;
+
+        S_z.topLeftCorner(K_alpha, K_alpha) = 0.5 * S_aa;
+        S_z.bottomRightCorner(K_beta, K_beta) = -0.5 * S_bb;
+
+
+        // 3. Transform using the coefficient matrix
+        ResultOperator spin_op {std::array<QCMatrix<ResultScalar>, 3>{S_x, S_y, S_z}};  // 'op' for operator
+        spin_op.transform(this->coefficientMatrix());
+        return spin_op;
+    }
+
+
     // /**
-    //  *  @param fq_op        the first-quantized Coulomb operator
+    //  *  @param fq_one_op        the first-quantized Coulomb operator
     //  * 
     //  *  @return the second-quantized operator corresponding to the Coulomb operator
     //  */
-    // auto quantize(const CoulombRepulsionOperator& fq_op) const -> SQTwoElectronOperator<product_t<CoulombRepulsionOperator::Scalar, ExpansionScalar>, CoulombRepulsionOperator::Components> {
+    // auto quantize(const CoulombRepulsionOperator& fq_one_op) const -> SQTwoElectronOperator<product_t<CoulombRepulsionOperator::Scalar, ExpansionScalar>, CoulombRepulsionOperator::Components> {
 
     //     using ResultScalar = product_t<CoulombRepulsionOperator::Scalar, ExpansionScalar>;
     //     using ResultOperator = SQTwoElectronOperator<ResultScalar, CoulombRepulsionOperator::Components>;

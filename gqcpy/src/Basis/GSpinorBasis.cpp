@@ -72,7 +72,14 @@ void bindGSpinorBasis(py::module& module) {
             [ ] (const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis) {
                 return spinor_basis.quantize(GQCP::Operator::Overlap());
             },
-            "Return the overlap operator expressed in this spinor basis"
+            "Return the overlap operator expressed in this spinor basis."
+        )
+
+        .def("quantizeSpinOperator",
+            [ ] (const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis) {
+                return spinor_basis.quantize(GQCP::Operator::ElectronicSpin());
+            },
+            "Return the electronic spin operator expressed in this spinor basis."
         )
 
         .def("transform", [] (GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis, const Eigen::MatrixXd& T_matrix) {

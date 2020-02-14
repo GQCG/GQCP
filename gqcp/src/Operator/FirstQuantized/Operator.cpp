@@ -26,11 +26,31 @@ namespace GQCP {
  */
 
 /**
- *  @return an OverlapOperator
+ *  @return a CoulombRepulsionOperator
  */
-OverlapOperator Operator::Overlap() {
+CoulombRepulsionOperator Operator::Coulomb() {
 
-    return OverlapOperator();
+    return CoulombRepulsionOperator();
+}
+
+
+/**
+ *  @param origin               the origin of the dipole operator
+ * 
+ *  @return an ElectronicDipoleOperator
+ */
+ElectronicDipoleOperator Operator::ElectronicDipole(const Vector<double, 3>& o) {
+
+    return ElectronicDipoleOperator(o);
+}
+
+
+/**
+ *  @return an ElectronicSpinOperator
+ */
+ElectronicSpinOperator Operator::ElectronicSpin() {
+
+    return ElectronicSpinOperator();
 }
 
 
@@ -66,22 +86,14 @@ NuclearAttractionOperator Operator::NuclearAttraction(const Molecule& mol) {
 
 
 /**
+ *  @param mol                  the molecule that contains the nuclear framework
  *  @param origin               the origin of the dipole operator
  * 
- *  @return an ElectronicDipoleOperator
+ *  @return a NuclearD
  */
-ElectronicDipoleOperator Operator::ElectronicDipole(const Vector<double, 3>& o) {
+NuclearDipoleOperator Operator::NuclearDipole(const Molecule& mol, const Vector<double, 3>& o) {
 
-    return ElectronicDipoleOperator(o);
-}
-
-
-/**
- *  @return a CoulombRepulsionOperator
- */
-CoulombRepulsionOperator Operator::Coulomb() {
-
-    return CoulombRepulsionOperator();
+    return NuclearDipoleOperator(mol.nuclearFramework(), o);
 }
 
 
@@ -97,16 +109,10 @@ NuclearRepulsionOperator Operator::NuclearRepulsion(const Molecule& mol) {
 
 
 /**
- *  @param mol                  the molecule that contains the nuclear framework
- *  @param origin               the origin of the dipole operator
- * 
- *  @return a NuclearD
+ *  @return an OverlapOperator
  */
-NuclearDipoleOperator Operator::NuclearDipole(const Molecule& mol, const Vector<double, 3>& o) {
+OverlapOperator Operator::Overlap() {
 
-    return NuclearDipoleOperator(mol.nuclearFramework(), o);
+    return OverlapOperator();
 }
-
-
-
 }  // namespace GQCP

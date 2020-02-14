@@ -16,6 +16,7 @@
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
 #include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
+#include "Utilities/typedefs.hpp"
 
 #include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
@@ -64,6 +65,27 @@ void bindSQOneElectronOperator(py::module& module) {
         .def("calculateExpectationValue",
             [ ] (const GQCP::VectorSQOneElectronOperator<double>& op, const Eigen::MatrixXd& D) {  // use an itermediary Eigen matrix for the Python binding, since Pybind11 doesn't accept our types that are derived from Eigen::Matrix
                 return op.calculateExpectationValue(GQCP::OneRDM<double>{D});
+            },
+            "Return the expectation value of the vector one-electron operator given a 1-DM."
+        )
+    ;
+
+
+    py::class_<GQCP::VectorSQOneElectronOperator<GQCP::cd>>(module, "VectorSQOneElectronOperator_cd", "A class that represents a complex, second-quantized one-electron operator with three components.")
+
+        .def("allParameters",
+            [ ] (const GQCP::VectorSQOneElectronOperator<GQCP::cd>& op) {
+                const auto all_parameters = op.allParameters();  // returns a std::array<QCMatrix<GQCP::cd>>
+                
+                return all_parameters;
+            },
+            "Return the integrals encapsulated by the second-quantized one-electron operator."
+        )
+
+
+        .def("calculateExpectationValue",
+            [ ] (const GQCP::VectorSQOneElectronOperator<GQCP::cd>& op, const Eigen::MatrixXcd& D) {  // use an itermediary Eigen matrix for the Python binding, since Pybind11 doesn't accept our types that are derived from Eigen::Matrix
+                return op.calculateExpectationValue(GQCP::OneRDM<GQCP::cd>{D});
             },
             "Return the expectation value of the vector one-electron operator given a 1-DM."
         )
