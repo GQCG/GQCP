@@ -19,6 +19,7 @@
 #include "Utilities/typedefs.hpp"
 
 #include <pybind11/eigen.h>
+#include <pybind11/operators.h>
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
 
@@ -48,6 +49,8 @@ void bindSQOneElectronOperator(py::module& module, const std::string& suffix) {
         ("ScalarSQOneElectronOperator_" + suffix).c_str(), 
         "A class that represents a second-quantized one-electron operator"
     )
+
+        .def(double() * py::self)
 
         .def("calculateExpectationValue",
             [ ] (const GQCP::SQOneElectronOperator<Scalar, 1>& op, const Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>& D) {  // use an itermediary Eigen matrix for the Python binding, since Pybind11 doesn't accept our types that are derived from Eigen::Matrix

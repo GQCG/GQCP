@@ -40,6 +40,18 @@ void bindSQHamiltonian(py::module& module) {
             "Construct the molecular Hamiltonian in a given spinor basis."
         )
 
+        .def("__add__",
+            [ ] (const GQCP::SQHamiltonian<double>& sq_hamiltonian, const GQCP::SQOneElectronOperator<double, 1>& sq_op) {
+                return sq_hamiltonian + sq_op;
+            }
+        )
+
+        .def("__sub__",
+            [ ] (const GQCP::SQHamiltonian<double>& sq_hamiltonian, const GQCP::SQOneElectronOperator<double, 1>& sq_op) {
+                return sq_hamiltonian - sq_op;
+            }
+        )
+
         .def("core", &GQCP::SQHamiltonian<double>::core, "Return the 'core' Hamiltonian, i.e. the total of the one-electron contributions to the Hamiltonian")
 
         .def("twoElectron", &GQCP::SQHamiltonian<double>::twoElectron, "Return the total of the two-electron contributions to the Hamiltonian")
