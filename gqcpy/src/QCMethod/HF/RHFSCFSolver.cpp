@@ -49,9 +49,11 @@ void bindRHFSCFSolver(py::module& module) {
         )
 
         .def_static("DIIS",
-            [ ] (const double threshold, const size_t maximum_number_of_iterations) {
-                return GQCP::RHFSCFSolver<double>::DIIS(threshold, maximum_number_of_iterations);
+            [ ] (const size_t minimum_subspace_dimension, const size_t maximum_subspace_dimension, const double threshold, const size_t maximum_number_of_iterations) {
+                return GQCP::RHFSCFSolver<double>::DIIS(minimum_subspace_dimension, maximum_subspace_dimension, threshold, maximum_number_of_iterations);
             },
+            py::arg("minimum_subspace_dimension") = 6,
+            py::arg("maximum_subspace_dimension") = 6,
             py::arg("threshold") = 1.0e-08,
             py::arg("maximum_number_of_iterations") = 128
         )
