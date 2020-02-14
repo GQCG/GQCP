@@ -18,6 +18,7 @@
 #pragma once
 
 
+#include "Basis/Integrals/IntegralCalculator.hpp"
 #include "Basis/ScalarBasis/ScalarBasis.hpp"
 #include "Basis/SpinorBasis/JacobiRotationParameters.hpp"
 #include "Basis/SpinorBasis/SimpleSpinorBasis.hpp"
@@ -27,6 +28,7 @@
 #include "Operator/FirstQuantized/Operator.hpp"
 #include "Operator/SecondQuantized/SQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/SQTwoElectronOperator.hpp"
+#include "Utilities/typedefs.hpp"
 
 
 namespace GQCP {
@@ -167,7 +169,7 @@ public:
     /*
      *  PUBLIC METHODS
      */
-    
+
     using Base::coefficientMatrix;
 
     /**
@@ -202,8 +204,8 @@ public:
     /**
      *  @return the number of spinors that 'are' in this generalized spinor basis
      */
-    size_t numberOfSpinors() const { 
-        
+    size_t numberOfSpinors() const {
+
         const auto K_alpha = this->numberOfCoefficients(SpinComponent::ALPHA);
         const auto K_beta = this->numberOfCoefficients(SpinComponent::BETA);
 
@@ -211,34 +213,151 @@ public:
     }
 
     /**
-     *  @param fq_op        the spin-independent first-quantized operator
+     *  @param fq_one_op        a spin-independent first-quantized operator (i.e. whose two-component matrix operator form contains the same scalar operator in the upper-left and lower-right corners)
      * 
-     *  @return the second-quantized operator corresponding to the given first-quantized operator
+     *  @return the second-quantized operator corresponding to the given spin-independent first-quantized operator
      */
     template <typename FQOneElectronOperator>
-    auto quantize(const FQOneElectronOperator& fq_op) const -> SQOneElectronOperator<product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>, FQOneElectronOperator::Components> {
+    auto quantize(const FQOneElectronOperator& fq_one_op) const -> SQOneElectronOperator<product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>, FQOneElectronOperator::Components> {
 
         using ResultScalar = product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>;
         using ResultOperator = SQOneElectronOperator<ResultScalar, FQOneElectronOperator::Components>;
 
 
-        // The strategy for calculating the matrix representation of the one-electron operator in this spinor basis is to express the operator in the underlying scalar bases and afterwards transform them using the current coefficient matrix
+        // The strategy for calculating the matrix representation of the one-electron operator in this spinor basis is to:
+        //  1. Express the operator in the underlying scalar bases; and
+        //  2. Afterwards transform them using the current coefficient matrix.
         const auto K_alpha = this->numberOfCoefficients(SpinComponent::ALPHA);
         const auto K_beta = this->numberOfCoefficients(SpinComponent::BETA);
         const auto M = this->numberOfSpinors();
         QCMatrix<ResultScalar> f = QCMatrix<ResultScalar>::Zero(M, M);  // the total result
 
-        // Express the operator in the underlying bases: spin-independent operators only have alpha-alpha and beta-beta blocks
-        const auto F_alpha = this->scalarBasis(SpinComponent::ALPHA).calculateLibintIntegrals(fq_op);
-        const auto F_beta = this->scalarBasis(SpinComponent::BETA).calculateLibintIntegrals(fq_op);
+        // 1. Express the operator in the underlying scalar bases: spin-independent operators only have alpha-alpha and beta-beta blocks.
+        const auto F_alpha = IntegralCalculator::calculateLibintIntegrals(fq_one_op, this->scalarBasis(SpinComponent::ALPHA));
+        const auto F_beta = IntegralCalculator::calculateLibintIntegrals(fq_one_op, this->scalarBasis(SpinComponent::BETA));
 
         f.topLeftCorner(K_alpha, K_alpha) = F_alpha;
         f.bottomRightCorner(K_beta, K_beta) = F_beta;
 
-        // Transform using the current coefficient matrix
+        // 2. Transform using the current coefficient matrix.
         ResultOperator op ({f});  // op for 'operator'
         op.transform(this->coefficientMatrix());
         return op;
+    }
+
+
+    /**
+     *  @param fq_one_op        the (first-quantized) electronic spin operator
+     * 
+     *  @return the electronic spin operator expressed in this spinor basis
+     */
+    auto quantize(const ElectronicSpinOperator& fq_one_op) const -> SQOneElectronOperator<product_t<ElectronicSpinOperator::Scalar, ExpansionScalar>, ElectronicSpinOperator::Components> {
+
+        using ResultScalar = product_t<ElectronicSpinOperator::Scalar, ExpansionScalar>;
+        using ResultOperator = SQOneElectronOperator<ResultScalar, ElectronicSpinOperator::Components>;
+
+        const auto K_alpha = this->numberOfCoefficients(SpinComponent::ALPHA);
+        const auto K_beta = this->numberOfCoefficients(SpinComponent::BETA);
+        const auto M = this->numberOfSpinors();
+
+        // The strategy to quantize the spin operator is as follows.
+        //  1. First, calculate the necessary overlap integrals over the scalar bases.
+        //  2. Then, construct the scalar basis representations of the components of the spin operator by placing the overlaps into the correct blocks.
+        //  3. Transform the components (in scalar basis) with the current coefficient matrix to yield the components in spinor basis.
+
+        QCMatrix<ResultScalar> S_x = QCMatrix<ResultScalar>::Zero(M, M);
+        QCMatrix<ResultScalar> S_y = QCMatrix<ResultScalar>::Zero(M, M);
+        QCMatrix<ResultScalar> S_z = QCMatrix<ResultScalar>::Zero(M, M);
+
+
+        // 1. Calculate the necessary overlap integrals over the scalar bases.
+        const auto S_aa = IntegralCalculator::calculateLibintIntegrals(Operator::Overlap(), this->scalarBasis(SpinComponent::ALPHA));
+        const auto S_ab = IntegralCalculator::calculateLibintIntegrals(Operator::Overlap(), this->scalarBasis(SpinComponent::ALPHA), this->scalarBasis(SpinComponent::BETA));
+        const auto S_ba = IntegralCalculator::calculateLibintIntegrals(Operator::Overlap(), this->scalarBasis(SpinComponent::BETA), this->scalarBasis(SpinComponent::ALPHA));
+        const auto S_bb = IntegralCalculator::calculateLibintIntegrals(Operator::Overlap(), this->scalarBasis(SpinComponent::BETA));
+
+
+        // 2. Place the overlaps into the correct blocks.
+        S_x.block(0,K_alpha, K_alpha,K_beta) = 0.5 * S_ab;
+        S_x.block(K_alpha,0, K_beta,K_alpha) = 0.5 * S_ba;
+
+        const cd ii (0.0, 1.0);  // 'cd' is a typedef for 'std::complex<double>', so 'ii' is the imaginary unit
+        S_y.block(0,K_alpha, K_alpha,K_beta) = -0.5 * ii * S_ab;
+        S_y.block(K_alpha,0, K_beta,K_alpha) = 0.5 * ii * S_ba;
+
+        S_z.topLeftCorner(K_alpha, K_alpha) = 0.5 * S_aa;
+        S_z.bottomRightCorner(K_beta, K_beta) = -0.5 * S_bb;
+
+
+        // 3. Transform using the coefficient matrix
+        ResultOperator spin_op {std::array<QCMatrix<ResultScalar>, 3>{S_x, S_y, S_z}};  // 'op' for operator
+        spin_op.transform(this->coefficientMatrix());
+        return spin_op;
+    }
+
+
+    /**
+     *  @param fq_two_op        the first-quantized Coulomb operator
+     * 
+     *  @return the second-quantized operator corresponding to the Coulomb operator
+     */
+    auto quantize(const CoulombRepulsionOperator& fq_two_op) const -> SQTwoElectronOperator<product_t<CoulombRepulsionOperator::Scalar, ExpansionScalar>, CoulombRepulsionOperator::Components> {
+
+        using ResultScalar = product_t<CoulombRepulsionOperator::Scalar, ExpansionScalar>;
+        using ResultOperator = SQTwoElectronOperator<ResultScalar, CoulombRepulsionOperator::Components>;
+
+        // The strategy for calculating the matrix representation of the two-electron operator in this spinor basis is to:
+        //  1. Calculate the Coulomb integrals in the underlying scalar bases;
+        //  2. Place the calculated integrals as 'blocks' in the larger representation, so that we can;
+        //  3. Transform the operator using the current coefficient matrix.
+
+        // 1. Calculate the Coulomb integrals in the underlying scalar bases.
+        const auto g_aaaa = IntegralCalculator::calculateLibintIntegrals(Operator::Coulomb(), this->scalarBasis(SpinComponent::ALPHA));
+        const auto g_aabb = IntegralCalculator::calculateLibintIntegrals(Operator::Coulomb(), this->scalarBasis(SpinComponent::ALPHA), this->scalarBasis(SpinComponent::BETA));
+        const auto g_bbaa = IntegralCalculator::calculateLibintIntegrals(Operator::Coulomb(), this->scalarBasis(SpinComponent::BETA), this->scalarBasis(SpinComponent::ALPHA));
+        const auto g_bbbb = IntegralCalculator::calculateLibintIntegrals(Operator::Coulomb(), this->scalarBasis(SpinComponent::BETA));
+
+
+        // 2. Place the calculated integrals as 'blocks' in the larger representation
+        const auto K_alpha = this->numberOfCoefficients(SpinComponent::ALPHA);
+        const auto K_beta = this->numberOfCoefficients(SpinComponent::BETA);
+
+        const auto M = this->numberOfSpinors();
+        QCRankFourTensor<ResultScalar> g_par (M);  // 'par' for 'parameters'
+        g_par.setZero();
+
+        // Primed indices are indices in the larger representation, normal ones are those in the smaller tensors.
+        for (size_t mu_ = 0; mu_ < M; mu_++) {  // mu 'prime'
+            const size_t mu = mu_ % K_alpha;
+
+            for (size_t nu_ = 0; nu_ < M; nu_++) {  // nu 'prime'
+                const size_t nu = nu_ % K_alpha;
+
+                for (size_t rho_ = 0; rho_ < M; rho_++) {  // rho 'prime'
+                    const size_t rho = rho_ % K_alpha;
+
+                    for (size_t lambda_ = 0; lambda_ < M; lambda_++) {  // lambda 'prime'
+                        const size_t lambda = lambda_ % K_alpha;
+
+                        if ((mu_ < K_alpha) && (nu_ < K_alpha) && (rho_ < K_alpha) && (lambda_ < K_alpha)) {
+                            g_par(mu_, nu_, rho_, lambda_) = g_aaaa(mu, nu, rho, lambda);
+                        } else if ((mu_ < K_alpha) && (nu_ < K_alpha) && (rho_ >= K_alpha) && (lambda_ >+ K_alpha)) {
+                            g_par(mu_, nu_, rho_, lambda_) = g_aabb(mu, nu, rho, lambda);
+                        } else if ((mu_ >= K_alpha) && (nu_ >= K_alpha) && (rho_ < K_alpha) && (lambda_ < K_alpha)) {
+                            g_par(mu_, nu_, rho_, lambda_) = g_bbaa(mu, nu, rho, lambda);
+                        } else {
+                            g_par(mu_, nu_, rho_, lambda_) = g_bbbb(mu, nu, rho, lambda);
+                        }
+                    }
+                }
+            }
+        }
+
+
+        // 3. Transform the operator using the current coefficient matrix.
+        ResultOperator g_op {g_par};  // 'op' for 'operator'
+        g_op.transform(this->coefficientMatrix());
+        return g_op;
     }
 };
 

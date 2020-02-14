@@ -178,7 +178,7 @@ public:
      *  @param start_i      the index at which the first rank should start
      *  @param start_j      the index at which the second rank should start
      *  @param start_k      the index at which the third rank should start
-     *  @param start_l      the index at which the fourth rank should start     * 
+     *  @param start_l      the index at which the fourth rank should start
      * 
      *  @return a pair-wise reduced form of this rank-4 tensor. The elements of the tensor are put into the matrix such that
      *      M(m,n) = T(i,j,k,l)

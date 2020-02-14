@@ -21,6 +21,7 @@
 #include "Molecule/Molecule.hpp"
 #include "Operator/FirstQuantized/CoulombRepulsionOperator.hpp"
 #include "Operator/FirstQuantized/ElectronicDipoleOperator.hpp"
+#include "Operator/FirstQuantized/ElectronicSpinOperator.hpp"
 #include "Operator/FirstQuantized/KineticOperator.hpp"
 #include "Operator/FirstQuantized/NuclearAttractionOperator.hpp"
 #include "Operator/FirstQuantized/NuclearDipoleOperator.hpp"
@@ -40,9 +41,21 @@ public:
     // PUBLIC STATIC METHODS
 
     /**
-     *  @return an OverlapOperator
+     *  @return a CoulombRepulsionOperator
      */
-    static OverlapOperator Overlap();
+    static CoulombRepulsionOperator Coulomb();
+
+    /**
+     *  @param origin               the origin of the dipole operator
+     * 
+     *  @return an ElectronicDipoleOperator
+     */
+    static ElectronicDipoleOperator ElectronicDipole(const Vector<double, 3>& o=Vector<double, 3>::Zero());
+
+    /**
+     *  @return an ElectronicSpinOperator
+     */
+    static ElectronicSpinOperator ElectronicSpin();
 
     /**
      *  @return a KineticOperator
@@ -64,16 +77,12 @@ public:
     static NuclearAttractionOperator NuclearAttraction(const Molecule& mol);
 
     /**
+     *  @param mol                  the molecule that contains the nuclear framework
      *  @param origin               the origin of the dipole operator
      * 
-     *  @return an ElectronicDipoleOperator
+     *  @return a NuclearDipoleOperator
      */
-    static ElectronicDipoleOperator ElectronicDipole(const Vector<double, 3>& o=Vector<double, 3>::Zero());
-
-    /**
-     *  @return a CoulombRepulsionOperator
-     */
-    static CoulombRepulsionOperator Coulomb();
+    static NuclearDipoleOperator NuclearDipole(const Molecule& mol, const Vector<double, 3>& o=Vector<double, 3>::Zero());
 
     /**
      *  @param mol              the molecule that contains the nuclear framework
@@ -83,12 +92,9 @@ public:
     static NuclearRepulsionOperator NuclearRepulsion(const Molecule& mol);
 
     /**
-     *  @param mol                  the molecule that contains the nuclear framework
-     *  @param origin               the origin of the dipole operator
-     * 
-     *  @return a NuclearDipoleOperator
+     *  @return an OverlapOperator
      */
-    static NuclearDipoleOperator NuclearDipole(const Molecule& mol, const Vector<double, 3>& o=Vector<double, 3>::Zero());
+    static OverlapOperator Overlap();
 };
 
 

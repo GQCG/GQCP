@@ -18,9 +18,12 @@
 #pragma once
 
 
+#include "Basis/Integrals/IntegralCalculator.hpp"
 #include "Basis/ScalarBasis/ScalarBasis.hpp"
+#include "Basis/SpinorBasis/GSpinorBasis.hpp"
 #include "Basis/SpinorBasis/JacobiRotationParameters.hpp"
 #include "Basis/SpinorBasis/SimpleSpinorBasis.hpp"
+#include "Basis/SpinorBasis/GSpinorBasis.hpp"
 #include "Mathematical/Representation/QCMatrix.hpp"
 #include "Molecule/Molecule.hpp"
 #include "Molecule/NuclearFramework.hpp"
@@ -134,10 +137,27 @@ public:
         }
 
         const SquareMatrix<double> p_a = SquareMatrix<double>::PartitionMatrix(ao_list, K);  // the partitioning matrix
-        const auto S_AO = this->scalar_basis.calculateLibintIntegrals(Operator::Overlap());  // the overlap matrix expressed in the AO basis
+        const auto S_AO = IntegralCalculator::calculateLibintIntegrals(Operator::Overlap(), this->scalar_basis);  // the overlap matrix expressed in the AO basis
 
         ScalarSQOneElectronOperator<double> mulliken_op { 0.5 * (this->C.adjoint() * p_a * S_AO * this->C + this->C.adjoint() * S_AO * p_a * this->C) };
         return mulliken_op;
+    }
+
+
+    /**
+     *  @return this restricted spinor basis as a general one
+     */
+    GSpinorBasis<ExpansionScalar, Shell> generalized() const {
+
+        // Build up the 'general' coefficient matrix.
+        const auto K = this->numberOfSpatialOrbitals();
+        const auto M = this->numberOfSpinors();
+        TransformationMatrix<ExpansionScalar> C_general = TransformationMatrix<ExpansionScalar>::Zero(M, M);
+
+        C_general.topLeftCorner(K, K) = this->coefficientMatrix();
+        C_general.bottomRightCorner(K, K) = this->coefficientMatrix();
+
+        return GSpinorBasis<ExpansionScalar, Shell>{this->scalarBasis(), C_general};  // the alpha- and beta- scalar bases are equal
     }
 
 
@@ -156,17 +176,20 @@ public:
 
 
     /**
-     *  @param fq_op        the first-quantized one-electron operator
+     *  @param fq_one_op                            the first-quantized one-electron operator
+     * 
+     *  @tparam FQOneElectronOperator               the type of the first-quantized one-electron operator
      * 
      *  @return the second-quantized operator corresponding to the given first-quantized operator
      */
     template <typename FQOneElectronOperator>
-    auto quantize(const FQOneElectronOperator& fq_op) const -> SQOneElectronOperator<product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>, FQOneElectronOperator::Components> {
+    auto quantize(const FQOneElectronOperator& fq_one_op) const -> SQOneElectronOperator<product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>, FQOneElectronOperator::Components> {
 
         using ResultScalar = product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>;
         using ResultOperator = SQOneElectronOperator<ResultScalar, FQOneElectronOperator::Components>;
 
-        ResultOperator op ({this->scalarBasis().calculateLibintIntegrals(fq_op)});  // op for 'operator'
+        const auto one_op_par = IntegralCalculator::calculateLibintIntegrals(fq_one_op, this->scalarBasis());
+        ResultOperator op {one_op_par};  // op for 'operator'
         op.transform(this->coefficientMatrix());
         return op;
     }
@@ -182,7 +205,8 @@ public:
         using ResultScalar = product_t<CoulombRepulsionOperator::Scalar, ExpansionScalar>;
         using ResultOperator = SQTwoElectronOperator<ResultScalar, CoulombRepulsionOperator::Components>;
 
-        ResultOperator op ({this->scalarBasis().calculateLibintIntegrals(fq_op)});  // op for 'operator'
+        const auto one_op_par = IntegralCalculator::calculateLibintIntegrals(fq_op, this->scalarBasis());
+        ResultOperator op {one_op_par};  // op for 'operator'
         op.transform(this->coefficientMatrix());
         return op;
     }
