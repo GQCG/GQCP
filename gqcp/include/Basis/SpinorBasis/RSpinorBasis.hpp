@@ -157,7 +157,7 @@ public:
         C_general.topLeftCorner(K, K) = this->coefficientMatrix();
         C_general.bottomRightCorner(K, K) = this->coefficientMatrix();
 
-        return GSpinorBasis<ExpansionScalar, Shell>{this->scalarBasis(), C_general};
+        return GSpinorBasis<ExpansionScalar, Shell>{this->scalarBasis(), C_general};  // the alpha- and beta- scalar bases are equal
     }
 
 

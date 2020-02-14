@@ -61,7 +61,7 @@ void bindHubbardHamiltonian(py::module& module);
 
 // Operator - SecondQuantized
 void bindSQHamiltonian(py::module& module);
-void bindSQOneElectronOperator(py::module& module);
+void bindSQOneElectronOperators(py::module& module);
 void bindSQTwoElectronOperator(py::module& module);
 
 
@@ -144,7 +144,7 @@ PYBIND11_MODULE (gqcpy, module) {
 
     // Operator - SecondQuantized
     gqcpy::bindSQHamiltonian(module);
-    gqcpy::bindSQOneElectronOperator(module);
+    gqcpy::bindSQOneElectronOperators(module);
     gqcpy::bindSQTwoElectronOperator(module);
 
 

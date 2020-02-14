@@ -51,8 +51,8 @@ public:
      *  Calculate all one-electron integrals over the basis functions inside the given shell sets.
      * 
      *  @param engine                   the engine that can calculate one-electron integrals over shells (not const because we allow for non-const Engine::calculate() calls)
-     *  @param left_shell_set           the set of shells (to the left of the operator) over which the integrals should be calculated
-     *  @param right_shell_set          the set of shells (to the right of the operator) over which the integrals should be calculated
+     *  @param left_shell_set           the set of shells that should appear on the left of the operator
+     *  @param right_shell_set          the set of shells that should appear on the right of the operator
      * 
      *  @tparam Shell                   the type of shell the integral engine is able to handle
      *  @tparam N                       the number of components the operator has
@@ -71,7 +71,7 @@ public:
         }
 
 
-        // Loop over all left and right shells and let the engine calculate the integrals over the two shells.
+        // Loop over all left and right shells and let the engine calculate the integrals over the pairs of shells.
         const auto nsh_left = left_shell_set.numberOfShells();
         const auto left_shells = left_shell_set.asVector();
         const auto nsh_right = right_shell_set.numberOfShells();
@@ -87,7 +87,7 @@ public:
 
                 const auto buffer = engine.calculate(left_shell, right_shell);
 
-                // Only if the integrals are not all zero, place them inside the full matrices
+                // Only if the integrals are not all zero, place them inside the full matrices.
                 if (buffer->areIntegralsAllZero()) {
                     continue;
                 }
@@ -103,8 +103,8 @@ public:
      *  Calculate all two-electron integrals over the basis functions inside the given shell sets.
      * 
      *  @param engine                       the engine that can calculate two-electron integrals over shells
-     *  @param left_shell_set               the set of shells (to the left of the operator) over which the integrals should be calculated
-     *  @param right_shell_set              the set of shells (to the right of the operator) over which the integrals should be calculated
+     *  @param left_shell_set               the set of shells that should appear on the left of the operator
+     *  @param right_shell_set              the set of shells that should appear on the right of the operator
      * 
      *  @tparam Shell                       the type of shell the integral engine is able to handle
      *  @tparam N                           the number of components the operator has
@@ -124,7 +124,7 @@ public:
         }
 
 
-        // Loop over all left and right shells and let the engine calculate the integrals over the four shells.
+        // Loop over all left and right shells and let the engine calculate the integrals over the 4-tuple of shells.
         const auto nsh_left = left_shell_set.numberOfShells();
         const auto left_shells = left_shell_set.asVector();
         const auto nsh_right = right_shell_set.numberOfShells();
@@ -170,7 +170,7 @@ public:
      *  Calculate the integrals over the given (first-quantized) one-electron operator, over a left and right scalar basis, using Libint2.
      * 
      *  @param fq_one_op                            the first-quantized one-electron operator
-     *  @param left_scalar_basis                    the scalar basis that contains the shell sets that appear to the left of the operator over which the integrals should be calculated
+     *  @param left_scalar_basis                    the scalar basis that contains the shells that appear to the left of the operator
      *  @param right_scalar_basis                   the scalar basis that contains the shell sets that appear to the right of the operator over which the integrals should be calculated
      * 
      *  @tparam FQOneElectronOperator               the type of the first-quantized one-electron operator
@@ -199,7 +199,7 @@ public:
      *  Calculate the integrals over the given (first-quantized) one-electron operator, within a given scalar basis, using Libint2.
      * 
      *  @param fq_one_op                            the first-quantized one-electron operator
-     *  @param scalar_basis                         the scalar basis that contains the shell sets over which the integrals should be calculated
+     *  @param scalar_basis                         the scalar basis that contains the shells over which the integrals should be calculated
      * 
      *  @tparam FQOneElectronOperator               the type of the first-quantized one-electron operator
      * 
@@ -216,8 +216,8 @@ public:
      *  Calculate the integrals over the given (first-quantized) one-electron operator, over a left and right scalar basis, using Libint2.
      * 
      *  @param fq_one_op                            the first-quantized one-electron operator
-     *  @param left_scalar_basis                    the scalar basis that contains the shell sets that appear to the left of the operator over which the integrals should be calculated
-     *  @param right_scalar_basis                   the scalar basis that contains the shell sets that appear to the right of the operator over which the integrals should be calculated
+     *  @param left_scalar_basis                    the scalar basis that contains the shells that should appear to the left of the operator
+     *  @param right_scalar_basis                   the scalar basis that contains the shells that should appear to the right of the operator
      * 
      *  @return the matrix representation (integrals) of the given first-quantized operator in this scalar basis
      */
@@ -242,7 +242,7 @@ public:
      *  Calculate the integrals over the given (first-quantized) one-electron operator, within a given scalar basis, using Libint2.
      * 
      *  @param fq_one_op                            the first-quantized one-electron operator
-     *  @param scalar_basis                         the scalar basis that contains the shell sets over which the integrals should be calculated
+     *  @param scalar_basis                         the scalar basis that contains the shells over which the integrals should be calculated
      * 
      *  @return the matrix representation (integrals) of the given first-quantized operator in this scalar basis
      */
@@ -263,7 +263,7 @@ public:
      *  Calculate the integrals over the given (first-quantized) two-electron operator, within a given scalar basis, using Libint2.
      * 
      *  @param fq_two_op                    the first-quantized operator
-     *  @param scalar_basis                 the scalar basis that contains the shell sets over which the integrals should be calculated
+     *  @param scalar_basis                 the scalar basis that contains the shells over which the integrals should be calculated
      * 
      *  @return the matrix representation (integrals) of the given first-quantized operator in this scalar basis
      */
@@ -277,8 +277,8 @@ public:
      *  Calculate the integrals over the given (first-quantized) two-electron operator, over a left and right scalar basis, using Libint2.
      * 
      *  @param fq_two_op                            the first-quantized operator
-     *  @param left_scalar_basis                    the scalar basis that contains the shell sets that appear to the left of the operator over which the integrals should be calculated
-     *  @param right_scalar_basis                   the scalar basis that contains the shell sets that appear to the right of the operator over which the integrals should be calculated
+     *  @param left_scalar_basis                    the scalar basis that contains the shells that should appear to the left of the operator
+     *  @param right_scalar_basis                   the scalar basis that contains the shells that should appear to the right of the operator
      * 
      *  @return the matrix representation (integrals) of the given first-quantized operator in this scalar basis
      */
@@ -309,7 +309,7 @@ public:
      *  Calculate the integrals over the given (first-quantized) one-electron operator, within a given scalar basis, using libcint.
      *
      *  @param fq_one_op                            the first-quantized one-electron operator
-     *  @param scalar_basis                         the scalar basis that contains the shell sets over which the integrals should be calculated
+     *  @param scalar_basis                         the scalar basis that contains the shells over which the integrals should be calculated
      * 
      *  @tparam FQOneElectronOperator               the type of the first-quantized one-electron operator
      * 
@@ -332,7 +332,7 @@ public:
      *  Calculate the integrals over the given (first-quantized) one-electron operator, within a given scalar basis, using libcint.
      *
      *  @param fq_one_op                            the first-quantized operator
-     *  @param scalar_basis                         the scalar basis that contains the shell sets over which the integrals should be calculated
+     *  @param scalar_basis                         the scalar basis that contains the shells over which the integrals should be calculated
      *
      *  @note Only use this function for all-Cartesian ShellSets.
      * 
@@ -352,7 +352,7 @@ public:
      *  Calculate the Coulomb repulsion energy integrals, within a given scalar basis, using Libcint.
      *
      *  @param fq_op                                the first-quantized operator
-     *  @param scalar_basis                         the scalar basis that contains the shell sets over which the integrals should be calculated
+     *  @param scalar_basis                         the scalar basis that contains the shells over which the integrals should be calculated
      * 
      *  @note Only use this function for all-Cartesian ShellSets.
      * 

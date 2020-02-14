@@ -44,7 +44,7 @@ void bindGSpinorBasis(py::module& module) {
             [ ] (GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis) {
                 spinor_basis.lowdinOrthonormalize();
             },
-            "Transform the spinor basis to the 'Löwdin basis', which is the orthonormal basis that we transform to with T = S^{-1/2}, where S is the current overlap matrix."
+            "Transform the spinor basis to the 'Löwdin basis', which is the orthonormal basis that we transform to with T = S^{-1/2}, where S is the current spinor overlap matrix."
         )
 
         .def("numberOfSpinors",

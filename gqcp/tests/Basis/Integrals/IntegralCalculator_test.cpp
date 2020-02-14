@@ -160,6 +160,3 @@ BOOST_AUTO_TEST_CASE ( libcint_vs_libint2_dipole_origin ) {
         BOOST_CHECK(dipole_libcint[i].isApprox(dipole_libint2[i], 1.0e-08));
     }
 }
-
-
-

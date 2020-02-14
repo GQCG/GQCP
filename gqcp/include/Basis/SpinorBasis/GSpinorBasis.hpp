@@ -213,9 +213,9 @@ public:
     }
 
     /**
-     *  @param fq_one_op        the spin-independent first-quantized operator
+     *  @param fq_one_op        a spin-independent first-quantized operator (i.e. whose two-component matrix operator form contains the same scalar operator in the upper-left and lower-right corners)
      * 
-     *  @return the second-quantized operator corresponding to the given first-quantized operator
+     *  @return the second-quantized operator corresponding to the given spin-independent first-quantized operator
      */
     template <typename FQOneElectronOperator>
     auto quantize(const FQOneElectronOperator& fq_one_op) const -> SQOneElectronOperator<product_t<typename FQOneElectronOperator::Scalar, ExpansionScalar>, FQOneElectronOperator::Components> {
@@ -225,8 +225,8 @@ public:
 
 
         // The strategy for calculating the matrix representation of the one-electron operator in this spinor basis is to:
-        //  1. express the operator in the underlying scalar bases; and
-        //  2. afterwards transform them using the current coefficient matrix.
+        //  1. Express the operator in the underlying scalar bases; and
+        //  2. Afterwards transform them using the current coefficient matrix.
         const auto K_alpha = this->numberOfCoefficients(SpinComponent::ALPHA);
         const auto K_beta = this->numberOfCoefficients(SpinComponent::BETA);
         const auto M = this->numberOfSpinors();
@@ -327,37 +327,17 @@ public:
         g_par.setZero();
 
         // Primed indices are indices in the larger representation, normal ones are those in the smaller tensors.
-        size_t mu = 0;
-        size_t nu = 0;
-        size_t rho = 0;
-        size_t lambda = 0;
         for (size_t mu_ = 0; mu_ < M; mu_++) {  // mu 'prime'
-            if (mu_ < K_alpha) {
-                mu = mu_;
-            } else {
-                mu = mu_ - K_alpha;
-            }
+            const size_t mu = mu_ % K_alpha;
 
             for (size_t nu_ = 0; nu_ < M; nu_++) {  // nu 'prime'
-                if (nu_ < K_alpha) {
-                    nu = nu_;
-                } else {
-                    nu = nu_ - K_alpha;
-                }
+                const size_t nu = nu_ % K_alpha;
 
                 for (size_t rho_ = 0; rho_ < M; rho_++) {  // rho 'prime'
-                    if (rho_ < K_alpha) {
-                        rho = rho_;
-                    } else {
-                        rho = rho_ - K_alpha;
-                    }
+                    const size_t rho = rho_ % K_alpha;
 
                     for (size_t lambda_ = 0; lambda_ < M; lambda_++) {  // lambda 'prime'
-                        if (lambda_ < K_alpha) {
-                            lambda = lambda_;
-                        } else {
-                            lambda = lambda_ - K_alpha;
-                        }
+                        const size_t lambda = lambda_ % K_alpha;
 
                         if ((mu_ < K_alpha) && (nu_ < K_alpha) && (rho_ < K_alpha) && (lambda_ < K_alpha)) {
                             g_par(mu_, nu_, rho_, lambda_) = g_aaaa(mu, nu, rho, lambda);
