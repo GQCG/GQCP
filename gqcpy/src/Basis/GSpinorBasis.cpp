@@ -48,24 +48,31 @@ void bindGSpinorBasis(py::module& module) {
         )
 
         .def("numberOfSpinors",
-            [ ] (GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis) {
+            [ ] (const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis) {
                 return spinor_basis.numberOfSpinors();
             },
             "Return the number of spinors that 'are' in this generalized spinor basis."
+        )
+
+        .def("quantizeCoulombRepulsionOperator",
+            [ ] (const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis) {
+                return spinor_basis.quantize(GQCP::Operator::Coulomb());
+            },
+            "Return the Coulomb operator expressed in this spinor basis."
         )
 
         .def("quantizeKineticOperator",
             [ ] (const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis) {
                 return spinor_basis.quantize(GQCP::Operator::Kinetic());
             },
-            "Return the kinetic energy operator expressed in this spinor basis"
+            "Return the kinetic energy operator expressed in this spinor basis."
         )
 
         .def("quantizeNuclearAttractionOperator",
             [ ] (const GQCP::GSpinorBasis<double, GQCP::GTOShell>& spinor_basis, const GQCP::Molecule& molecule) {
                 return spinor_basis.quantize(GQCP::Operator::NuclearAttraction(molecule));
             },
-            "Return the nuclear attraction operator expressed in this spinor basis"
+            "Return the nuclear attraction operator expressed in this spinor basis."
         )
 
         .def("quantizeOverlapOperator",
@@ -86,8 +93,9 @@ void bindGSpinorBasis(py::module& module) {
                 const GQCP::TransformationMatrix<double> T (T_matrix);
                 spinor_basis.transform(T);
             },
-            "Transform the current spinor basis using a given transformation matrix"
-        );
+            "Transform the current spinor basis using a given transformation matrix."
+        )
+    ;
 }
 
 

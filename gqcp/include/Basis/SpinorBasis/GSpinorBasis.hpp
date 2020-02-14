@@ -296,24 +296,89 @@ public:
     }
 
 
-    // /**
-    //  *  @param fq_one_op        the first-quantized Coulomb operator
-    //  * 
-    //  *  @return the second-quantized operator corresponding to the Coulomb operator
-    //  */
-    // auto quantize(const CoulombRepulsionOperator& fq_one_op) const -> SQTwoElectronOperator<product_t<CoulombRepulsionOperator::Scalar, ExpansionScalar>, CoulombRepulsionOperator::Components> {
+    /**
+     *  @param fq_two_op        the first-quantized Coulomb operator
+     * 
+     *  @return the second-quantized operator corresponding to the Coulomb operator
+     */
+    auto quantize(const CoulombRepulsionOperator& fq_two_op) const -> SQTwoElectronOperator<product_t<CoulombRepulsionOperator::Scalar, ExpansionScalar>, CoulombRepulsionOperator::Components> {
 
-    //     using ResultScalar = product_t<CoulombRepulsionOperator::Scalar, ExpansionScalar>;
-    //     using ResultOperator = SQTwoElectronOperator<ResultScalar, CoulombRepulsionOperator::Components>;
+        using ResultScalar = product_t<CoulombRepulsionOperator::Scalar, ExpansionScalar>;
+        using ResultOperator = SQTwoElectronOperator<ResultScalar, CoulombRepulsionOperator::Components>;
 
-    //     // The strategy for calculating the matrix representation of the two-electron operator in this spinor basis is to:
-    //     //      1. express the operator in the underlying scalar bases; and
-    //     //      2. afterwards transform them using the current coefficient matrix.
+        // The strategy for calculating the matrix representation of the two-electron operator in this spinor basis is to:
+        //  1. Calculate the Coulomb integrals in the underlying scalar bases;
+        //  2. Place the calculated integrals as 'blocks' in the larger representation, so that we can;
+        //  3. Transform the operator using the current coefficient matrix.
 
-    //     // 1. Express the operator in the underlying scalar bases: spin-independent operators only have alpha-alpha and beta-beta blocks
+        // 1. Calculate the Coulomb integrals in the underlying scalar bases.
+        const auto g_aaaa = IntegralCalculator::calculateLibintIntegrals(Operator::Coulomb(), this->scalarBasis(SpinComponent::ALPHA));
+        const auto g_aabb = IntegralCalculator::calculateLibintIntegrals(Operator::Coulomb(), this->scalarBasis(SpinComponent::ALPHA), this->scalarBasis(SpinComponent::BETA));
+        const auto g_bbaa = IntegralCalculator::calculateLibintIntegrals(Operator::Coulomb(), this->scalarBasis(SpinComponent::BETA), this->scalarBasis(SpinComponent::ALPHA));
+        const auto g_bbbb = IntegralCalculator::calculateLibintIntegrals(Operator::Coulomb(), this->scalarBasis(SpinComponent::BETA));
 
-    //     // 2. Transform using the current coefficient matrix
-    // }
+
+        // 2. Place the calculated integrals as 'blocks' in the larger representation
+        const auto K_alpha = this->numberOfCoefficients(SpinComponent::ALPHA);
+        const auto K_beta = this->numberOfCoefficients(SpinComponent::BETA);
+
+        const auto M = this->numberOfSpinors();
+        QCRankFourTensor<ResultScalar> g_par (M);  // 'par' for 'parameters'
+        g_par.setZero();
+
+        // Primed indices are indices in the larger representation, normal ones are those in the smaller tensors.
+        size_t mu = 0;
+        size_t nu = 0;
+        size_t rho = 0;
+        size_t lambda = 0;
+        for (size_t mu_ = 0; mu_ < M; mu_++) {  // mu 'prime'
+            if (mu_ < K_alpha) {
+                mu = mu_;
+            } else {
+                mu = mu_ - K_alpha;
+            }
+
+            for (size_t nu_ = 0; nu_ < M; nu_++) {  // nu 'prime'
+                if (nu_ < K_alpha) {
+                    nu = nu_;
+                } else {
+                    nu = nu_ - K_alpha;
+                }
+
+                for (size_t rho_ = 0; rho_ < M; rho_++) {  // rho 'prime'
+                    if (rho_ < K_alpha) {
+                        rho = rho_;
+                    } else {
+                        rho = rho_ - K_alpha;
+                    }
+
+                    for (size_t lambda_ = 0; lambda_ < M; lambda_++) {  // lambda 'prime'
+                        if (lambda_ < K_alpha) {
+                            lambda = lambda_;
+                        } else {
+                            lambda = lambda_ - K_alpha;
+                        }
+
+                        if ((mu_ < K_alpha) && (nu_ < K_alpha) && (rho_ < K_alpha) && (lambda_ < K_alpha)) {
+                            g_par(mu_, nu_, rho_, lambda_) = g_aaaa(mu, nu, rho, lambda);
+                        } else if ((mu_ < K_alpha) && (nu_ < K_alpha) && (rho_ >= K_alpha) && (lambda_ >+ K_alpha)) {
+                            g_par(mu_, nu_, rho_, lambda_) = g_aabb(mu, nu, rho, lambda);
+                        } else if ((mu_ >= K_alpha) && (nu_ >= K_alpha) && (rho_ < K_alpha) && (lambda_ < K_alpha)) {
+                            g_par(mu_, nu_, rho_, lambda_) = g_bbaa(mu, nu, rho, lambda);
+                        } else {
+                            g_par(mu_, nu_, rho_, lambda_) = g_bbbb(mu, nu, rho, lambda);
+                        }
+                    }
+                }
+            }
+        }
+
+
+        // 3. Transform the operator using the current coefficient matrix.
+        ResultOperator g_op {g_par};  // 'op' for 'operator'
+        g_op.transform(this->coefficientMatrix());
+        return g_op;
+    }
 };
 
 
