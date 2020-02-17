@@ -39,16 +39,6 @@ SpinUnresolvedRDMCalculator::SpinUnresolvedRDMCalculator(const SpinUnresolvedONV
     rdm_builder(SpinUnresolvedFCIRDMBuilder(onv_basis))
 {}
 
-/**
- *  A run-time constructor allocating the appropriate derived RDMBuilder and coefficient vector
- *
- *  @param linear_expansion             the wave function holding the coefficient vector and a SpinUnresolvedONV basis on which the RDMBuilder should be based
- */
-SpinUnresolvedRDMCalculator::SpinUnresolvedRDMCalculator(const SpinUnresolvedLinearExpansion& linear_expansion) :
-    SpinUnresolvedRDMCalculator(dynamic_cast<const SpinUnresolvedONVBasis&>(linear_expansion.get_fock_space()))
-{
-    this->set_coefficients(linear_expansion.get_coefficients());
-}
 
 /*
  *  PUBLIC METHODS
