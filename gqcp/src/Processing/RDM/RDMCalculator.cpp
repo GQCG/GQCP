@@ -102,17 +102,6 @@ RDMCalculator::RDMCalculator(const BaseONVBasis& fock_space) {
 }
 
 
-/**
- *  A run-time constructor allocating the appropriate derived RDMBuilder and coefficient vector
- *
- *  @param linear_expansion       the wave function holding the coefficient vector and an ONV basis on which the RDMBuilder should be based
- */
-RDMCalculator::RDMCalculator(const LinearExpansion& linear_expansion) :
-        RDMCalculator(linear_expansion.get_fock_space())
-{
-    this->set_coefficients(linear_expansion.get_coefficients());
-}
-
 /*
  *  PUBLIC METHODS
  */

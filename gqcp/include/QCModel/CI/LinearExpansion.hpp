@@ -24,6 +24,10 @@
 #include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
 #include "Utilities/typedefs.hpp"
 
+#include <boost/algorithm/string.hpp>
+#include <boost/dynamic_bitset.hpp>
+#include <boost/range/adaptors.hpp>
+
 #include <type_traits>
 
 
@@ -59,7 +63,7 @@ public:
      *  @param onv_basis            the ONV basis in which the wave function 'lives'
      *  @param coeffs               the expansion coefficients
      */
-    LinearExpansion::LinearExpansion(const BaseONVBasis& onv_basis, const VectorX<double>& coeffs) :
+    LinearExpansion(const BaseONVBasis& onv_basis, const VectorX<double>& coeffs) :
         onv_basis (onv_basis),
         coeffs (coeffs)
     {
@@ -73,19 +77,6 @@ public:
      *  NAMED CONSTRUCTORS
      */
 
-    /**
-     *  A named constructor which eliminates the need to specify the template argument, since GQCP is written for C++11.
-     *
-     *  @param onv_basis            the ONV basis in which the wave function 'lives'
-     *  @param coeffs               the expansion coefficients
-     * 
-     *  @return a linear expansion
-     */
-    static LinearExpansion<ONVBasis> FromONVBasis(const ONVBasis& onv_basis, const VectorX<double>& coeffs) {
-
-        return LinearExpansion<ONVBasis>{onv_basis, coeffs};
-    }
-
 
     /**
      *  @param GAMESSUS_filename      the name of the GAMESS-US file that contains the spin-resolved selected wave function expansion
@@ -93,7 +84,7 @@ public:
      *  @return the corresponding linear expansion from a given GAMESS-US file
      */
     template <typename Z>
-    enable_if_t<std::is_same<Z, SpinResolvedSelectedONVBasis>, LinearExpansion<SpinResolvedSelectedONVBasis>> FromGAMESSUS(const std::string& GAMESSUS_filename) {
+    enable_if_t<std::is_same<Z, SpinResolvedSelectedONVBasis>::value, LinearExpansion<Z>> FromGAMESSUS(const std::string& GAMESSUS_filename) {
 
         // If the filename isn't properly converted into an input file stream, we assume the user supplied a wrong file.
         std::ifstream input_file_stream (GAMESSUS_filename);
@@ -162,7 +153,7 @@ public:
         size_t N_alpha = alpha_transfer.count();
         size_t N_beta = beta_transfer.count();
 
-        const SpinResolvedSelectedONVBasis onv_basis {K, N_alpha, N_beta};
+        SpinResolvedSelectedONVBasis onv_basis {K, N_alpha, N_beta};
         onv_basis.addConfiguration(reversed_alpha, reversed_beta);
 
 
@@ -199,7 +190,18 @@ public:
     }
 
 
+    /**
+     *  A named constructor which eliminates the need to specify the template argument, since GQCP is written for C++11.
+     *
+     *  @param onv_basis            the ONV basis in which the wave function 'lives'
+     *  @param coeffs               the expansion coefficients
+     * 
+     *  @return a linear expansion
+     */
+    static LinearExpansion<ONVBasis> FromONVBasis(const ONVBasis& onv_basis, const VectorX<double>& coeffs) {
 
+        return LinearExpansion<ONVBasis>{onv_basis, coeffs};
+    }
 
     /*
      *  PUBLIC METHODS
@@ -230,7 +232,7 @@ public:
      *  @note This algorithm was implemented from a description in Helgaker2000.
      */
     template <typename Z>
-    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>> basisTransformInPlace(const TransformationMatrix<double>& T) {
+    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value> basisTransformInPlace(const TransformationMatrix<double>& T) {
 
         const auto K = onv_basis.numberOfSpatialOrbitals();
         if (K != T.dimension()) {

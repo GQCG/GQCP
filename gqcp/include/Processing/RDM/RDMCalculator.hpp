@@ -79,7 +79,12 @@ public:
      *
      *  @param linear_expansion       the linear expansion in a certain ONV basis
      */
-    explicit RDMCalculator(const LinearExpansion& linear_expansion);
+    template <typename ONVBasis>
+    explicit RDMCalculator(const LinearExpansion<ONVBasis>& linear_expansion) :
+        RDMCalculator(linear_expansion.onvBasis())
+    {
+        this->set_coefficients(linear_expansion.coefficients());
+    }
 
 
     // SETTERS
