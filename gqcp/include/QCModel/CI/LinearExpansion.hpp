@@ -63,7 +63,7 @@ public:
      *  @param onv_basis            the ONV basis in which the wave function 'lives'
      *  @param coeffs               the expansion coefficients
      */
-    LinearExpansion(const BaseONVBasis& onv_basis, const VectorX<double>& coeffs) :
+    LinearExpansion(const ONVBasis& onv_basis, const VectorX<double>& coeffs) :
         onv_basis (onv_basis),
         coeffs (coeffs)
     {
@@ -186,22 +186,9 @@ public:
 
         }  // while getline
 
-        return LinearExpansion::FromONVBasis(onv_basis, coeffs);
+        return LinearExpansion<SpinResolvedSelectedONVBasis>(onv_basis, coeffs);
     }
 
-
-    /**
-     *  A named constructor which eliminates the need to specify the template argument, since GQCP is written for C++11.
-     *
-     *  @param onv_basis            the ONV basis in which the wave function 'lives'
-     *  @param coeffs               the expansion coefficients
-     * 
-     *  @return a linear expansion
-     */
-    static LinearExpansion<ONVBasis> FromONVBasis(const ONVBasis& onv_basis, const VectorX<double>& coeffs) {
-
-        return LinearExpansion<ONVBasis>{onv_basis, coeffs};
-    }
 
     /*
      *  PUBLIC METHODS

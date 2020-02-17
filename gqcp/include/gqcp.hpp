@@ -184,7 +184,6 @@
 #include "QCMethod/CI/HamiltonianBuilder/Hubbard.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/SelectedCI.hpp"
 
-#include "QCMethod/CI/CISolver.hpp"
 #include "QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp"
 
 #include "QCMethod/Geminals/AP1roG.hpp"

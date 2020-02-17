@@ -1,4 +1,3 @@
-add_subdirectory(Applications)
 add_subdirectory(CI)
 add_subdirectory(HF)
 

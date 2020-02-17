@@ -27,7 +27,6 @@
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Operator/SecondQuantized/USQHamiltonian.hpp"
 #include "Processing/RDM/RDMCalculator.hpp"
-#include "QCMethod/CI/CISolver.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/DOCI.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
 #include "QCMethod/HF/DiagonalRHFFockMatrixObjective.hpp"

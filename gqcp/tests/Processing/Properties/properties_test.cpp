@@ -26,7 +26,6 @@
 #include "Operator/FirstQuantized/Operator.hpp"
 #include "Processing/Properties/RHFElectricalResponseSolver.hpp"
 #include "Processing/RDM/RDMCalculator.hpp"
-#include "QCMethod/CI/CISolver.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
 #include "QCMethod/HF/DiagonalRHFFockMatrixObjective.hpp"
 #include "QCMethod/HF/RHF.hpp"

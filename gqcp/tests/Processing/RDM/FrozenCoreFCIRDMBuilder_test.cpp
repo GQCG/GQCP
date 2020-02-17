@@ -26,7 +26,6 @@
 #include "Processing/RDM/FCIRDMBuilder.hpp"
 #include "Processing/RDM/RDMCalculator.hpp"
 #include "Processing/RDM/SelectedRDMBuilder.hpp"
-#include "QCMethod/CI/CISolver.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/FrozenCoreFCI.hpp"
 #include "Utilities/linalg.hpp"
 

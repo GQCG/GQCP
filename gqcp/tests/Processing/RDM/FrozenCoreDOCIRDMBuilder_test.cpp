@@ -25,7 +25,6 @@
 #include "Processing/RDM/DOCIRDMBuilder.hpp"
 #include "Processing/RDM/RDMCalculator.hpp"
 #include "Processing/RDM/SelectedRDMBuilder.hpp"
-#include "QCMethod/CI/CISolver.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/FrozenCoreDOCI.hpp"
 #include "Utilities/linalg.hpp"
 

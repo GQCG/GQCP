@@ -39,7 +39,7 @@ namespace QCMethod {
  */
 template <typename _ONVBasis>
 class CI:
-    public GQCP::QCMethodProtocol<LinearExpansion, QCMethod::CI<_ONVBasis>> {
+    public GQCP::QCMethodProtocol<LinearExpansion<_ONVBasis>, QCMethod::CI<_ONVBasis>> {
 
 public:
     using ONVBasis = _ONVBasis;
@@ -67,25 +67,6 @@ public:
 
 
     /*
-     *  NAMED CONSTRUCTORS
-     */
-
-    /**
-     *  A named constructor which eliminates the need to specify the template argument, since GQCP is written for C++11.
-     * 
-     *  @param onv_basis                        the ONV basis with respect to which the configuration interaction is expressed
-     *  @param number_of_states                 the number of states that searched for (including the ground state)
-     * 
-     *  @return a CI method
-     */
-    static CI<ONVBasis> FromONVBasis(const ONVBasis& onv_basis, const size_t number_of_states = 1) {
-
-        return CI<ONVBasis>{onv_basis, number_of_states};
-    }
-
-
-
-    /*
      *  PUBLIC METHODS
      */
 
@@ -97,7 +78,7 @@ public:
      *  @param solver               the solver that will try to optimize the parameters
      */
     template <typename Solver>
-    QCStructure<LinearExpansion> optimize(Solver& solver, EigenproblemEnvironment& environment) const {
+    QCStructure<LinearExpansion<ONVBasis>> optimize(Solver& solver, EigenproblemEnvironment& environment) const {
 
         // The CI method's responsibility is to try to optimize the parameters of its method, given a solver and associated environment.
         solver.perform(environment);
@@ -106,7 +87,7 @@ public:
         // Extract the requested number of eigenpairs from the environment and place them into the LinearExpansion wave function model. Consequently, check if the LinearExpansion fulfills the objective.
         const auto eigenpairs = environment.eigenpairs(this->number_of_states);
 
-        std::vector<LinearExpansion> linear_expansions {};
+        std::vector<LinearExpansion<ONVBasis>> linear_expansions {};
         linear_expansions.reserve(number_of_states);
 
         std::vector<double> energies {};
@@ -123,7 +104,7 @@ public:
 
         // Wrap all the requested number of states into a QCStructure.
         // Since we have already created a list of LinearExpansions, we only have to create a list of the corresponding energies.
-        return QCStructure<LinearExpansion>{{energies}, {linear_expansions}};
+        return QCStructure<LinearExpansion<ONVBasis>>{{energies}, {linear_expansions}};
     }
 };
 
