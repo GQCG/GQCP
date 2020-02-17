@@ -61,6 +61,11 @@ public:
     // PUBLIC METHODS
 
     /**
+     *  @return the dimension of this ONV basis
+     */
+    size_t dimension() const { return this->dim; }
+
+    /**
      *  @return a coefficient vector that describes the expansion coefficients of the Hartree-Fock wave function (i.e. the single Slater determinant with the lowest energy)
      */
     VectorX<double> hartreeFockExpansion() const;
