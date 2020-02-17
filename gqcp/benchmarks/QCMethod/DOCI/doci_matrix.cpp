@@ -31,7 +31,7 @@ static void constructHamiltonian(benchmark::State& state) {
     for (auto _ : state) {
         const auto H = doci.constructHamiltonian(hamiltonian);
 
-        benchmark::DoNotOptimize(H);  // make sure the variable is not optimized away by compiler
+        benchmark::DoNotOptimize(H);  // make sure that the variable is not optimized away by compiler
     }
 
 

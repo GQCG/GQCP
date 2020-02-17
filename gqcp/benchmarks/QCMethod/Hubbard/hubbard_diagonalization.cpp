@@ -38,7 +38,7 @@ static void diagonalizeHubbardMatrix(benchmark::State& state) {
 
         const auto electronic_energy = GQCP::QCMethod::CI(onv_basis).optimize(solver, environment).groundStateEnergy();
 
-        benchmark::DoNotOptimize(electronic_energy);  // make sure the variable is not optimized away by compiler
+        benchmark::DoNotOptimize(electronic_energy);  // make sure that the variable is not optimized away by compiler
     }
 
     state.counters["Sites"] = K;

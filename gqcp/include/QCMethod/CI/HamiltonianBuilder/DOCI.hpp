@@ -18,10 +18,7 @@
 #pragma once
 
 
-#include "ONVBasis/SpinUnresolvedONVBasis.hpp"
-#include "QCMethod/CI/HamiltonianBuilder/HamiltonianBuilder.hpp"
-
-#include <memory>
+#include "ONVBasis/SeniorityZeroONVBasis.hpp"
 
 
 namespace GQCP {
@@ -30,28 +27,23 @@ namespace GQCP {
 /**
  *  A HamiltonianBuilder for DOCI: it builds the matrix representation of the DOCI Hamiltonian, in a ONV basis where orbitals are either doubly occupied or unoccupied.
  */
-class DOCI : public HamiltonianBuilder {
+class DOCI {
 private:
-    SpinUnresolvedONVBasis fock_space;  // both the alpha and beta ONV basis
+    SeniorityZeroONVBasis onv_basis;
 
 
 public:
+
     // CONSTRUCTORS
+
     /**
-     *  @param fock_space       the full ONV basis, identical for alpha and beta
+     *  @param onv_basis       the full seniority-zero ONV basis
      */
-    explicit DOCI(const SpinUnresolvedONVBasis& fock_space);
+    explicit DOCI(const SeniorityZeroONVBasis& onv_basis);
 
 
-    // DESTRUCTOR
-    ~DOCI() = default;
+    // PUBLIC METHODS
 
-
-    // OVERRIDDEN GETTERS
-    const BaseONVBasis* get_fock_space() const override { return &fock_space; }
-
-
-    // OVERRIDDEN PUBLIC METHODS
     /**
      *  @param sq_hamiltonian               the Hamiltonian expressed in an orthonormal basis
      *

@@ -32,7 +32,7 @@ static void constructHamiltonian(benchmark::State& state) {
     for (auto _ : state) {
         const auto hamiltonian = fci.constructHamiltonian(sq_hamiltonian);
 
-        benchmark::DoNotOptimize(hamiltonian);  // make sure the variable is not optimized away by compiler
+        benchmark::DoNotOptimize(hamiltonian);  // make sure that the variable is not optimized away by compiler
     }
 
     state.counters["Spatial orbitals"] = K;

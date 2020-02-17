@@ -5,6 +5,7 @@ target_sources(gqcp
         EvaluationIterator.hpp
         ONVBasisType.hpp
         ONVManipulator.hpp
+        SeniorityZeroONVBasis.hpp
         SpinResolvedFrozenONVBasis.hpp
         SpinResolvedONV.hpp
         SpinResolvedONVBasis.hpp

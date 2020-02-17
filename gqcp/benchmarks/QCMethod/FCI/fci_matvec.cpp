@@ -34,7 +34,7 @@ static void matvec(benchmark::State& state) {
     for (auto _ : state) {
         const auto matvec = fci.matrixVectorProduct(sq_hamiltonian, x, diagonal);
 
-        benchmark::DoNotOptimize(matvec);  // make sure the variable is not optimized away by compiler
+        benchmark::DoNotOptimize(matvec);  // make sure that the variable is not optimized away by compiler
     }
 
     state.counters["Spatial orbitals"] = K;

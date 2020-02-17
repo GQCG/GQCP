@@ -65,7 +65,7 @@ static void fci_dense_molecule(benchmark::State& state) {
     for (auto _ : state) {
         const auto electronic_energy = GQCP::QCMethod::CI(onv_basis).optimize(solver, environment).groundStateEnergy();
 
-        benchmark::DoNotOptimize(electronic_energy);  // make sure the variable is not optimized away by compiler
+        benchmark::DoNotOptimize(electronic_energy);  // make sure that the variable is not optimized away by compiler
     }
 
     state.counters["Hydrogen nuclei"] = number_of_H_atoms;
@@ -117,7 +117,7 @@ static void fci_davidson_molecule(benchmark::State& state) {
         GQCP::CISolver ci_solver (fci, sq_hamiltonian);
         ci_solver.solve(solver_options);
 
-        benchmark::DoNotOptimize(ci_solver);  // make sure the variable is not optimized away by compiler
+        benchmark::DoNotOptimize(ci_solver);  // make sure that the variable is not optimized away by compiler
     }
 
     state.counters["Hydrogen nuclei"] = K;
