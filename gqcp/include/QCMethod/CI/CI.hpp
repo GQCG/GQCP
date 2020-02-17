@@ -34,13 +34,20 @@ namespace QCMethod {
 
 /**
  *  The configuration interaction quantum chemical method.
+ * 
+ *  @tparam _ONVBasis           the type of ONV basis
  */
+template <typename _ONVBasis>
 class CI:
-    public GQCP::QCMethodProtocol<LinearExpansion, QCMethod::CI> {
+    public GQCP::QCMethodProtocol<LinearExpansion, QCMethod::CI<_ONVBasis>> {
+
+public:
+    using ONVBasis = _ONVBasis;
+
 
 private:
     size_t number_of_states;  // the number of states that searched for (incuding the ground state)
-    std::shared_ptr<BaseONVBasis> onv_basis;
+    ONVBasis onv_basis;
 
 
 public:
@@ -50,12 +57,32 @@ public:
      */
 
     /**
+     *  @param onv_basis                        the ONV basis with respect to which the configuration interaction is expressed
      *  @param number_of_states                 the number of states that searched for (including the ground state)
      */
-    CI(const BaseONVBasis& onv_basis, const size_t number_of_states = 1) :
-        onv_basis (BaseONVBasis::CloneToHeap(onv_basis)),  // TODO: this feels pretty weird to do
+    CI(const ONVBasis& onv_basis, const size_t number_of_states = 1) :
+        onv_basis (onv_basis),
         number_of_states (number_of_states)
     {}
+
+
+    /*
+     *  NAMED CONSTRUCTORS
+     */
+
+    /**
+     *  A named constructor which eliminates the need to specify the template argument, since GQCP is written for C++11.
+     * 
+     *  @param onv_basis                        the ONV basis with respect to which the configuration interaction is expressed
+     *  @param number_of_states                 the number of states that searched for (including the ground state)
+     * 
+     *  @return a CI method
+     */
+    static CI<ONVBasis> FromONVBasis(const ONVBasis& onv_basis, const size_t number_of_states = 1) {
+
+        return CI<ONVBasis>{onv_basis, number_of_states};
+    }
+
 
 
     /*
@@ -86,7 +113,7 @@ public:
         energies.reserve(this->number_of_states);
 
         for (const auto& eigenpair : eigenpairs) {
-            linear_expansions.emplace_back(*(this->onv_basis), eigenpair.get_eigenvector());
+            linear_expansions.emplace_back(onv_basis, eigenpair.get_eigenvector());
 
             // TODO: We can't check for a 'NormedHamiltonianEigenvectorObjective' to be fulfilled, because there is no uniform way to let an SQHamiltonian act on a LinearExpansion.
 

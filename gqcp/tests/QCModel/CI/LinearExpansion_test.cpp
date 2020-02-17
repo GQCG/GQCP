@@ -28,6 +28,42 @@
 #include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
 
 
+/**
+ *  Test if a GAMESS-US expansion file is correctly read in.
+ */
+BOOST_AUTO_TEST_CASE ( reader_test ) {
+
+    // Provide the reference values.
+    const VectorX<double> ref_coefficients = VectorX<double>::Unit(2, 0);  // (size, position)
+    const std::string alpha1_ref = "0000000000000000000000000000000000000000000001";
+    const std::string alpha2_ref = "0000000000000000000000000000000000000000000001";
+    const std::string beta1_ref = "0000000000000000000000000000000000000000000001";
+    const std::string beta2_ref = "0000000000000000000000000000000000000000000010";
+
+
+    // Read in the GAMESS-US file and check the results.
+    const auto linear_expansion = LinearExpansion<SpinResolvedSelectedONVBasis>::FromGAMESSUS("data/test_GAMESS_expansion");
+
+    // Check if the expansion coefficients are correct.
+    BOOST_CHECK(linear_expansion.coefficients().isApprox(ref_coefficients, 1.0e-08));
+
+    // Check if the parsed ONVs are correct.
+    const auto onv1 = linear_expansion.onvBasis().get_configuration(0);
+    const auto onv1_alpha = onv1.onv_alpha.asString();
+    const auto onv1_beta = onv1.onv_beta.asString();
+
+    BOOST_CHECK(onv1_alpha == alpha1_ref);
+    BOOST_CHECK(onv1_beta == beta1_ref);
+
+    const auto onv2 = linear_expansion.onvBasis().get_configuration(1);
+    const auto onv2_alpha = onv2.onv_alpha.asString();
+    const auto onv2_beta = onv2.onv_beta.asString();
+
+    BOOST_CHECK(onv2_alpha == alpha2_ref);
+    BOOST_CHECK(onv2_beta == beta2_ref);
+}
+
+
 BOOST_AUTO_TEST_CASE ( shannon_entropy ) {
 
     // Set up a test ONV basis

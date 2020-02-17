@@ -113,8 +113,6 @@
 #include "Molecule/Nucleus.hpp"
 
 #include "QCModel/CI/LinearExpansion.hpp"
-#include "QCModel/CI/LinearExpansionReader.hpp"
-#include "QCModel/CI/SpinUnresolvedLinearExpansion.hpp"
 
 #include "ONVBasis/BaseFrozenCoreONVBasis.hpp"
 #include "ONVBasis/BaseONVBasis.hpp"
