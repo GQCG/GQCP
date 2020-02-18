@@ -19,12 +19,12 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "QCMethod/CI/HamiltonianBuilder/SelectedCI.hpp"
-
 #include "Molecule/Molecule.hpp"
+#include "ONVBasis/SeniorityZeroONVBasis.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/DOCI.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
+#include "QCMethod/CI/HamiltonianBuilder/SelectedCI.hpp"
 
 
 BOOST_AUTO_TEST_CASE ( SelectedCI_constructor ) {
@@ -63,11 +63,11 @@ BOOST_AUTO_TEST_CASE ( SelectedCI_vs_FCI ) {
 
     // Create H-chain HamiltonianParameters to test results from FCI and selected CI
     size_t K = 4;
-    GQCP::Molecule H4 = GQCP::Molecule::HChain(K, 1.1);
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (H4, "STO-3G");
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, H4);  // in an AO basis
+    GQCP::Molecule molecule = GQCP::Molecule::HChain(K, 1.1);
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (molecule, "STO-3G");
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, molecule);  // in an AO basis
 
-    // Create compatible ONV basiss
+    // Create compatible ONV bases
     GQCP::SpinResolvedONVBasis product_fock_space (K, 2, 2);
     GQCP::SpinResolvedSelectedONVBasis fock_space (product_fock_space);
 
@@ -89,33 +89,46 @@ BOOST_AUTO_TEST_CASE ( SelectedCI_vs_FCI ) {
     BOOST_CHECK(selected_ci_hamiltonian.isApprox(fci_hamiltonian));
 }
 
-BOOST_AUTO_TEST_CASE ( SelectedCI_vs_DOCI ) {
+/**
+ *  Check if DOCI yields the same diagonal, matrix-vector product and Hamiltonian matrix representation as an equivalent selected CI.
+ */
+BOOST_AUTO_TEST_CASE ( DOCI_vs_selected_CI ) {
 
-    // Create H-chain HamiltonianParameters to test results from DOCI and selected CI
-    size_t K = 4;
-    GQCP::Molecule H4 = GQCP::Molecule::HChain(K, 1.1);
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (H4, "STO-3G");
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, H4);  // in an AO basis
+    // Set up a Hamiltonian in an orthonormal spinor basis for a linear chain of 4 hydrogens, 1.1 bohr apart.
+    const auto molecule = GQCP::Molecule::HChain(4, 1.1);
 
-    // Create compatible ONV basiss
-    GQCP::SpinUnresolvedONVBasis do_fock_space (K, 2);
-    GQCP::SpinResolvedSelectedONVBasis fock_space (do_fock_space);
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (molecule, "STO-3G");
+    const auto K = spinor_basis.numberOfSpatialOrbitals();
+    spinor_basis.lowdinOrthonormalize();
 
-    // The SpinResolvedSelectedONVBasis includes the same configurations as the SpinUnresolvedONVBasis
-    // These builder instances should return the same results.
-    GQCP::SelectedCI selected_ci (fock_space);
-    GQCP::DOCI doci (do_fock_space);
+    const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, molecule);
 
-    GQCP::VectorX<double> selected_ci_diagonal = selected_ci.calculateDiagonal(sq_hamiltonian);
-    GQCP::VectorX<double> doci_diagonal = doci.calculateDiagonal(sq_hamiltonian);
 
-    GQCP::VectorX<double> selected_ci_matvec = selected_ci.matrixVectorProduct(sq_hamiltonian, selected_ci_diagonal, selected_ci_diagonal);
-    GQCP::VectorX<double> doci_matvec = doci.matrixVectorProduct(sq_hamiltonian, doci_diagonal, doci_diagonal);
+    // Create 'equivalent' ONV bases and 'builders' that 'know' how to generate matrix representations.
+    const GQCP::SeniorityZeroONVBasis sz_onv_basis (K, 2);
+    const GQCP::SpinResolvedSelectedONVBasis selected_onv_basis (sz_onv_basis);
 
-    GQCP::SquareMatrix<double> selected_ci_hamiltonian = selected_ci.constructHamiltonian(sq_hamiltonian);
-    GQCP::SquareMatrix<double> doci_hamiltonian = doci.constructHamiltonian(sq_hamiltonian);
+    const GQCP::DOCI doci_builder (sz_onv_basis);
+    const GQCP::SelectedCI selected_ci_builder (selected_onv_basis);
 
-    BOOST_CHECK(selected_ci_diagonal.isApprox(doci_diagonal));
-    BOOST_CHECK(selected_ci_matvec.isApprox(doci_matvec));
-    BOOST_CHECK(selected_ci_hamiltonian.isApprox(doci_hamiltonian));
+
+    // Check if the calculated diagonals are equal.
+    const auto doci_diagonal = doci_builder.calculateDiagonal(sq_hamiltonian);
+    const auto selected_ci_diagonal = selected_ci_builder.calculateDiagonal(sq_hamiltonian);
+
+    BOOST_CHECK(doci_diagonal.isApprox(selected_ci_diagonal, 1.0e-12));
+
+
+    // Check if the matrix-vector products are equal.
+    const auto doci_matvec = doci_builder.matrixVectorProduct(sq_hamiltonian, doci_diagonal, doci_diagonal);
+    const auto selected_ci_matvec = selected_ci_builder.matrixVectorProduct(sq_hamiltonian, selected_ci_diagonal, selected_ci_diagonal);
+
+    BOOST_CHECK(doci_matvec.isApprox(selected_ci_matvec, 1.0e-12));
+
+
+    // Check if the matrix representations of the Hamiltonian are equal.
+    const auto doci_hamiltonian_matrix = doci_builder.constructHamiltonian(sq_hamiltonian);
+    const auto selected_ci_hamiltonian_matrix = selected_ci_builder.constructHamiltonian(sq_hamiltonian);
+
+    BOOST_CHECK(doci_hamiltonian_matrix.isApprox(selected_ci_hamiltonian_matrix, 1.0e-12));
 }

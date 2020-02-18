@@ -103,11 +103,11 @@ SpinResolvedSelectedONVBasis::SpinResolvedSelectedONVBasis(const SpinResolvedONV
 
             onvs.push_back(SpinResolvedONV {alpha, beta});
 
-            if (I_beta < dim_beta - 1) {  // prevent the last permutation to occur
+            if (I_beta < dim_beta - 1) {  // prevent the last permutation from occurring
                 fock_space_beta.setNextONV(beta);
             }
         }
-        if (I_alpha < dim_alpha - 1) {  // prevent the last permutation to occur
+        if (I_alpha < dim_alpha - 1) {  // prevent the last permutation from occurring
             fock_space_alpha.setNextONV(alpha);
         }
     }
@@ -117,29 +117,31 @@ SpinResolvedSelectedONVBasis::SpinResolvedSelectedONVBasis(const SpinResolvedONV
 
 
 /**
- *  A constructor that generates doubly-occupied onvs based off the given ONV basis.
+ *  A constructor that generates 'selected ONVs' based on the given ONVBasis.
  *
- *  @param fock_space       the spin-unresolved from which the onvs should be generated
+ *  @param onv_basis        the seniority-zero ONV basis from which the 'selected ONVs' should be generated
  */
-SpinResolvedSelectedONVBasis::SpinResolvedSelectedONVBasis(const SpinUnresolvedONVBasis& fock_space) :
-        SpinResolvedSelectedONVBasis (fock_space.get_K(), fock_space.get_N(), fock_space.get_N())
+SpinResolvedSelectedONVBasis::SpinResolvedSelectedONVBasis(const SeniorityZeroONVBasis& onv_basis) :
+    SpinResolvedSelectedONVBasis (onv_basis.numberOfSpatialOrbitals(), onv_basis.numberOfElectronPairs(), onv_basis.numberOfElectronPairs())
 {
+
+    // Prepare some variables.
+    const auto dimension = onv_basis.dimension();
+    const auto proxy_onv_basis = onv_basis.proxy();
+
+    // Iterate over the seniority-zero ONV basis and add all ONVs as doubly-occupied ONVs.
     std::vector<SpinResolvedONV> onvs;
+    SpinUnresolvedONV onv = proxy_onv_basis.makeONV(0);
+    for (size_t I = 0; I < dimension; I++) {  // I iterates over all addresses of the doubly-occupied ONVs
 
-    auto dim = fock_space.get_dimension();
+        onvs.emplace_back(onv, onv);
 
-    // Iterate over the spin-resolved ONV basis and add all onvs as doubly occupied onvs
-    SpinUnresolvedONV onv = fock_space.makeONV(0);
-    for (size_t I = 0; I < dim; I++) {
-
-        onvs.push_back(SpinResolvedONV {onv, onv});
-
-        if (I < dim - 1) {  // prevent the last permutation to occur
-            fock_space.setNextONV(onv);
+        if (I < dimension - 1) {  // prevent the last permutation from occurring
+            proxy_onv_basis.setNextONV(onv);
         }
     }
 
-    this->dim = dim;
+    this->dim = dimension;
     this->onvs = onvs;
 }
 
@@ -168,11 +170,11 @@ SpinResolvedSelectedONVBasis::SpinResolvedSelectedONVBasis(const SpinResolvedFro
 
             onvs.push_back(SpinResolvedONV {alpha, beta});
 
-            if (I_beta < dim_beta - 1) {  // prevent the last permutation to occur
+            if (I_beta < dim_beta - 1) {  // prevent the last permutation from occurring
                 frozen_fock_space_beta.setNextONV(beta);
             }
         }
-        if (I_alpha < dim_alpha - 1) {  // prevent the last permutation to occur
+        if (I_alpha < dim_alpha - 1) {  // prevent the last permutation from occurring
             frozen_fock_space_alpha.setNextONV(alpha);
         }
     }
@@ -194,7 +196,7 @@ SpinResolvedSelectedONVBasis::SpinResolvedSelectedONVBasis(const SpinUnresolvedF
 
         onvs.push_back(SpinResolvedONV {onv, onv});
 
-        if (I < dim - 1) {  // prevent the last permutation to occur
+        if (I < dim - 1) {  // prevent the last permutation from occurring
             fock_space.setNextONV(onv);
         }
     }
@@ -415,8 +417,8 @@ VectorX<double> SpinResolvedSelectedONVBasis::evaluateOperatorDiagonal(const Sca
 
     for (size_t I = 0; I < dim; I++) {  // Ia loops over addresses of alpha onvs
         SpinResolvedONV configuration_I = this->get_configuration(I);
-        SpinUnresolvedONV alpha_I = configuration_I.onv_alpha;
-        SpinUnresolvedONV beta_I = configuration_I.onv_beta;
+        SpinUnresolvedONV alpha_I = configuration_I.alphaONV();
+        SpinUnresolvedONV beta_I = configuration_I.betaONV();
 
         for (size_t p = 0; p < K; p++) {
             if (alpha_I.isOccupied(p)) {
@@ -454,8 +456,8 @@ VectorX<double> SpinResolvedSelectedONVBasis::evaluateOperatorDiagonal(const Sca
 
     for (size_t I = 0; I < dim; I++) {  // Ia loops over addresses of alpha onvs
         SpinResolvedONV configuration_I = this->get_configuration(I);
-        SpinUnresolvedONV alpha_I = configuration_I.onv_alpha;
-        SpinUnresolvedONV beta_I = configuration_I.onv_beta;
+        SpinUnresolvedONV alpha_I = configuration_I.alphaONV();
+        SpinUnresolvedONV beta_I = configuration_I.betaONV();
 
         for (size_t p = 0; p < K; p++) {
             if (alpha_I.isOccupied(p)) {
@@ -635,8 +637,8 @@ VectorX<double> SpinResolvedSelectedONVBasis::evaluateOperatorDiagonal(const USQ
     VectorX<double> diagonal = VectorX<double>::Zero(dim);
     for (size_t I = 0; I < dim; I++) {  // Ia loops over addresses of alpha onvs
         SpinResolvedONV configuration_I = this->get_configuration(I);
-        SpinUnresolvedONV alpha_I = configuration_I.onv_alpha;
-        SpinUnresolvedONV beta_I = configuration_I.onv_beta;
+        SpinUnresolvedONV alpha_I = configuration_I.alphaONV();
+        SpinUnresolvedONV beta_I = configuration_I.betaONV();
 
         for (size_t p = 0; p < K; p++) {
             if (alpha_I.isOccupied(p)) {

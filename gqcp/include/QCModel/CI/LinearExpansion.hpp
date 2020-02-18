@@ -316,7 +316,7 @@ public:
                 }
 
 
-                if (I_alpha < dim_alpha - 1) {  // prevent the last permutation to occur
+                if (I_alpha < dim_alpha - 1) {  // prevent the last permutation from occurring
                     alpha_onv_basis.setNextONV(alpha);
                 }
             }
@@ -378,7 +378,7 @@ public:
                     }
                 }
 
-                if (I_beta < dim_beta - 1) {  // prevent the last permutation to occur
+                if (I_beta < dim_beta - 1) {  // prevent the last permutation from occurring
                     beta_onv_basis.setNextONV(beta);
                 }
             }

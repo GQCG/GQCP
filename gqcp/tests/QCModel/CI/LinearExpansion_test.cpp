@@ -48,15 +48,15 @@ BOOST_AUTO_TEST_CASE ( reader_test ) {
 
     // Check if the parsed ONVs are correct.
     const auto onv1 = linear_expansion.onvBasis().get_configuration(0);
-    const auto onv1_alpha = onv1.onv_alpha.asString();
-    const auto onv1_beta = onv1.onv_beta.asString();
+    const auto onv1_alpha = onv1.alphaONV().asString();
+    const auto onv1_beta = onv1.betaONV().asString();
 
     BOOST_CHECK(onv1_alpha == alpha1_ref);
     BOOST_CHECK(onv1_beta == beta1_ref);
 
     const auto onv2 = linear_expansion.onvBasis().get_configuration(1);
-    const auto onv2_alpha = onv2.onv_alpha.asString();
-    const auto onv2_beta = onv2.onv_beta.asString();
+    const auto onv2_alpha = onv2.alphaONV().asString();
+    const auto onv2_beta = onv2.betaONV().asString();
 
     BOOST_CHECK(onv2_alpha == alpha2_ref);
     BOOST_CHECK(onv2_beta == beta2_ref);
