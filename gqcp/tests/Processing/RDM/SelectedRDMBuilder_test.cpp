@@ -19,199 +19,117 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "Processing/RDM/SelectedRDMBuilder.hpp"
-
-#include "QCMethod/CI/HamiltonianBuilder/DOCI.hpp"
-#include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
+#include "Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp"
+#include "ONVBasis/SeniorityZeroONVBasis.hpp"
+#include "ONVBasis/SpinResolvedONVBasis.hpp"
+#include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Processing/RDM/DOCIRDMBuilder.hpp"
 #include "Processing/RDM/FCIRDMBuilder.hpp"
 #include "Processing/RDM/RDMCalculator.hpp"
+#include "Processing/RDM/SelectedRDMBuilder.hpp"
+#include "QCMethod/CI/CI.hpp"
+#include "QCMethod/CI/CIEnvironment.hpp"
 #include "Utilities/linalg.hpp"
 
 
-BOOST_AUTO_TEST_CASE ( one_rdms_fci_H2_6_31G ) {
+/**
+ *  Check if the 1- and 2-DMs for a full spin-resolved ONV basis are equal to the 'selected' case.
+ *  The system of interest is H2//6-31G, whose associated spin-resolved Fock space is of dimension 16.
+ */
+BOOST_AUTO_TEST_CASE ( spin_resolved_vs_selected_DMs ) {
 
-    // Do an H2@FCI//6-31G calculation
-    // test if 1-RDM SelectedRDM and FCIRDM are equal
-    size_t N_a = 1;
-    size_t N_b = 1;
+    // Set up the molecular Hamiltonian for H2//6-31G in the Löwdin basis.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2.xyz");
+    const auto N_P = molecule.numberOfElectrons() / 2;  // the number of electron pairs
 
-    // Create the molecular Hamiltonian in the AO basis
-    auto h2 = GQCP::Molecule::ReadXYZ("data/h2.xyz");
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (h2, "6-31G");
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2);  // in an AO basis
-    size_t K = sq_hamiltonian.dimension();  // 4
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (molecule, "6-31G");
+    const auto K = spinor_basis.numberOfSpatialOrbitals();  // 4
 
-    GQCP::SpinResolvedONVBasis fock_space (K, N_a, N_b);  // dim = 16
-    GQCP::FCI fci (fock_space);
-
-    // Specify solver options and solve the eigenvalue problem
-    // Solve the dense FCI eigenvalue problem
-    GQCP::CISolver ci_solver (fci, sq_hamiltonian);
-    GQCP::DenseSolverOptions solver_options;
-    ci_solver.solve(solver_options);
-
-    GQCP::VectorX<double> coef = ci_solver.get_eigenpair().get_eigenvector();
-
-    // Get the 1-RDM from FCI
-    GQCP::FCIRDMBuilder fci_rdm(fock_space);
-    GQCP::OneRDMs<double> one_rdms = fci_rdm.calculate1RDMs(coef);
+    spinor_basis.lowdinOrthonormalize();
+    const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, molecule);
 
 
-    GQCP::SpinResolvedSelectedONVBasis selected_fock_space (fock_space);
+    // Do a dense FCI calculation.
+    const GQCP::SpinResolvedONVBasis onv_basis (K, N_P, N_P);
 
-    // Get the 1-RDM from SelectedCI
-    GQCP::SelectedRDMBuilder selected_rdm (selected_fock_space);
-    GQCP::OneRDMs<double> one_rdms_s = selected_rdm.calculate1RDMs(coef);
+    auto environment = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
+    auto solver = GQCP::EigenproblemSolver::Dense();
+
+    const auto linear_expansion = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateParameters();
 
 
-    BOOST_CHECK(one_rdms_s.one_rdm.isApprox(one_rdms.one_rdm));
-    BOOST_CHECK(one_rdms_s.one_rdm_aa.isApprox(one_rdms.one_rdm_aa));
-    BOOST_CHECK(one_rdms_s.one_rdm_bb.isApprox(one_rdms.one_rdm_bb));
+    // Calculate the 1-DMs using specialized spin-resolved and 'selected' routines, and check if they are equal.
+    const GQCP::FCIRDMBuilder spin_resolved_rdm_builder {onv_basis};
+    const auto one_rdms_specialized = spin_resolved_rdm_builder.calculate1RDMs(linear_expansion.coefficients());
+
+    const GQCP::SpinResolvedSelectedONVBasis selected_onv_basis {onv_basis};
+    const GQCP::SelectedRDMBuilder selected_rdm_builder (selected_onv_basis);
+    const auto one_rdms_selected = selected_rdm_builder.calculate1RDMs(linear_expansion.coefficients());
+
+    BOOST_CHECK(one_rdms_specialized.one_rdm.isApprox(one_rdms_selected.one_rdm, 1.0e-12));
+    BOOST_CHECK(one_rdms_specialized.one_rdm_aa.isApprox(one_rdms_selected.one_rdm_aa, 1.0e-12));
+    BOOST_CHECK(one_rdms_specialized.one_rdm_bb.isApprox(one_rdms_selected.one_rdm_bb, 1.0e-12));
+
+
+    // Calculate the 2-DMs using specialized spin-resolved and 'selected' routines, and check if they are equal.
+    const auto two_rdms_specialized = spin_resolved_rdm_builder.calculate2RDMs(linear_expansion.coefficients());
+    const auto two_rdms_selected = selected_rdm_builder.calculate2RDMs(linear_expansion.coefficients());
+
+    BOOST_CHECK(two_rdms_specialized.two_rdm_aaaa.isApprox(two_rdms_selected.two_rdm_aaaa, 1.0e-12));
+    BOOST_CHECK(two_rdms_specialized.two_rdm_aabb.isApprox(two_rdms_selected.two_rdm_aabb, 1.0e-12));
+    BOOST_CHECK(two_rdms_specialized.two_rdm_bbaa.isApprox(two_rdms_selected.two_rdm_bbaa, 1.0e-12));
+    BOOST_CHECK(two_rdms_specialized.two_rdm_bbbb.isApprox(two_rdms_selected.two_rdm_bbbb, 1.0e-12));
+    BOOST_CHECK(two_rdms_specialized.two_rdm.isApprox(two_rdms_selected.two_rdm, 1.0e-12));
 }
 
 
+/**
+ *  Check if the 1- and 2-DMs for a full seniority-zero ONV basis are equal to the 'selected' case.
+ *  The system of interest is H2//6-31G, whose associated doubly-occupied Fock space is of dimension 4.
+ */
+BOOST_AUTO_TEST_CASE ( seniority_zero_vs_selected_DMs ) {
 
-BOOST_AUTO_TEST_CASE ( two_rdms_fci_H2_6_31G ) {
+    // Set up the molecular Hamiltonian for H2//6-31G in the Löwdin basis.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2.xyz");
+    const auto N_P = molecule.numberOfElectrons() / 2;  // the number of electron pairs
 
-    // Do an H2@FCI//6-31G calculation
-    // test if 2-RDM SelectedRDM and FCIRDM are equal
-    size_t N_a = 1;
-    size_t N_b = 1;
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (molecule, "6-31G");
+    const auto K = spinor_basis.numberOfSpatialOrbitals();  // 4
 
-    // Create the molecular Hamiltonian in the AO basis
-    auto h2 = GQCP::Molecule::ReadXYZ("data/h2.xyz");
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (h2, "6-31G");
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2);  // in an AO basis
-    size_t K = sq_hamiltonian.dimension();  // 4
-
-    GQCP::SpinResolvedONVBasis fock_space (K, N_a, N_b);  // dim = 16
-    GQCP::FCI fci (fock_space);
-
-    // Specify solver options and solve the eigenvalue problem
-    // Solve the dense FCI eigenvalue problem
-    GQCP::CISolver ci_solver (fci, sq_hamiltonian);
-    GQCP::DenseSolverOptions solver_options;
-    ci_solver.solve(solver_options);
-
-    GQCP::VectorX<double> coef = ci_solver.get_eigenpair().get_eigenvector();
-
-    // Get the 1-RDM from FCI
-    GQCP::FCIRDMBuilder fci_rdm(fock_space);
-    GQCP::TwoRDMs<double> two_rdms = fci_rdm.calculate2RDMs(coef);
+    spinor_basis.lowdinOrthonormalize();
+    const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, molecule);
 
 
-    GQCP::SpinResolvedSelectedONVBasis selected_fock_space (fock_space);
+    // Do a dense DOCI calculation.
+    const GQCP::SeniorityZeroONVBasis onv_basis (K, N_P);
 
-    // Get the 1-RDM from SelectedCI
-    GQCP::SelectedRDMBuilder selected_rdm (selected_fock_space);
-    GQCP::TwoRDMs<double> two_rdms_s = selected_rdm.calculate2RDMs(coef);
+    auto environment = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
+    auto solver = GQCP::EigenproblemSolver::Dense();
 
-
-    BOOST_CHECK(two_rdms_s.two_rdm_aaaa.isApprox(two_rdms.two_rdm_aaaa, 1.0e-06));
-    BOOST_CHECK(two_rdms_s.two_rdm_aabb.isApprox(two_rdms.two_rdm_aabb, 1.0e-06));
-    BOOST_CHECK(two_rdms_s.two_rdm_bbaa.isApprox(two_rdms.two_rdm_bbaa, 1.0e-06));
-    BOOST_CHECK(two_rdms_s.two_rdm_bbbb.isApprox(two_rdms.two_rdm_bbbb, 1.0e-06));
-    BOOST_CHECK(two_rdms_s.two_rdm.isApprox(two_rdms.two_rdm, 1.0e-06));
-}
+    const auto linear_expansion = GQCP::QCMethod::CI<GQCP::SeniorityZeroONVBasis>(onv_basis).optimize(solver, environment).groundStateParameters();
 
 
-BOOST_AUTO_TEST_CASE ( one_rdms_doci_H2_6_31G ) {
+    // Calculate the 1-DMs using specialized spin-resolved and 'selected' routines, and check if they are equal.
+    const GQCP::DOCIRDMBuilder seniority_zero_rdm_builder {onv_basis};
+    const auto one_rdms_specialized = seniority_zero_rdm_builder.calculate1RDMs(linear_expansion.coefficients());
 
-    // Do an H2@doci//6-31G calculation
-    // test if 1-RDM SelectedRDM and dociRDM are equal
-    size_t N = 1;
+    const GQCP::SpinResolvedSelectedONVBasis selected_onv_basis {onv_basis};
+    const GQCP::SelectedRDMBuilder selected_rdm_builder (selected_onv_basis);
+    const auto one_rdms_selected = selected_rdm_builder.calculate1RDMs(linear_expansion.coefficients());
 
-    // Create the molecular Hamiltonian in the AO basis
-    auto h2 = GQCP::Molecule::ReadXYZ("data/h2.xyz");
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (h2, "6-31G");
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2);  // in an AO basis
-    size_t K = sq_hamiltonian.dimension();  // 4
-
-    GQCP::SpinUnresolvedONVBasis fock_space (K, N);  // dim = 4
-    GQCP::DOCI doci (fock_space);
-
-    // Specify solver options and solve the eigenvalue problem
-    // Solve the dense doci eigenvalue problem
-    GQCP::CISolver ci_solver (doci, sq_hamiltonian);
-    GQCP::DenseSolverOptions solver_options;
-    ci_solver.solve(solver_options);
-
-    GQCP::VectorX<double> coef = ci_solver.get_eigenpair().get_eigenvector();
-
-    // Get the 1-RDM from doci
-    GQCP::DOCIRDMBuilder doci_rdm(fock_space);
-    GQCP::OneRDMs<double> one_rdms = doci_rdm.calculate1RDMs(coef);
+    BOOST_CHECK(one_rdms_specialized.one_rdm.isApprox(one_rdms_selected.one_rdm, 1.0e-12));
+    BOOST_CHECK(one_rdms_specialized.one_rdm_aa.isApprox(one_rdms_selected.one_rdm_aa, 1.0e-12));
+    BOOST_CHECK(one_rdms_specialized.one_rdm_bb.isApprox(one_rdms_selected.one_rdm_bb, 1.0e-12));
 
 
-    GQCP::SpinResolvedSelectedONVBasis selected_fock_space (fock_space);
+    // Calculate the 2-DMs using specialized spin-resolved and 'selected' routines, and check if they are equal.
+    const auto two_rdms_specialized = seniority_zero_rdm_builder.calculate2RDMs(linear_expansion.coefficients());
+    const auto two_rdms_selected = selected_rdm_builder.calculate2RDMs(linear_expansion.coefficients());
 
-    // Get the 1-RDM from SelectedCI
-    GQCP::SelectedRDMBuilder selected_rdm (selected_fock_space);
-    GQCP::OneRDMs<double> one_rdms_s = selected_rdm.calculate1RDMs(coef);
-
-
-    BOOST_CHECK(one_rdms_s.one_rdm.isApprox(one_rdms.one_rdm));
-    BOOST_CHECK(one_rdms_s.one_rdm_aa.isApprox(one_rdms.one_rdm_aa));
-    BOOST_CHECK(one_rdms_s.one_rdm_bb.isApprox(one_rdms.one_rdm_bb));
-}
-
-
-BOOST_AUTO_TEST_CASE ( two_rdms_doci_H2_6_31G ) {
-
-    // Do an H2@doci//6-31G calculation
-    // test if 2-RDM SelectedRDM and dociRDM are equal
-    size_t N = 1;
-
-    // Create the molecular Hamiltonian in the AO basis
-    auto h2 = GQCP::Molecule::ReadXYZ("data/h2.xyz");
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (h2, "6-31G");
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, h2);  // in an AO basis
-    size_t K = sq_hamiltonian.dimension();  // 4
-
-    GQCP::SpinUnresolvedONVBasis fock_space (K, N);  // dim = 4
-    GQCP::DOCI doci (fock_space);
-
-    // Specify solver options and solve the eigenvalue problem
-    // Solve the dense doci eigenvalue problem
-    GQCP::CISolver ci_solver (doci, sq_hamiltonian);
-    GQCP::DenseSolverOptions solver_options;
-    ci_solver.solve(solver_options);
-
-    GQCP::VectorX<double> coef = ci_solver.get_eigenpair().get_eigenvector();
-
-    // Get the 1-RDM from doci
-    GQCP::DOCIRDMBuilder doci_rdm(fock_space);
-    GQCP::TwoRDMs<double> two_rdms = doci_rdm.calculate2RDMs(coef);
-
-
-    GQCP::SpinResolvedSelectedONVBasis selected_fock_space (fock_space);
-
-    // Get the 1-RDM from SelectedCI
-    GQCP::SelectedRDMBuilder selected_rdm (selected_fock_space);
-    GQCP::TwoRDMs<double> two_rdms_s = selected_rdm.calculate2RDMs(coef);
-
-
-    BOOST_CHECK(two_rdms_s.two_rdm_aaaa.isApprox(two_rdms.two_rdm_aaaa, 1.0e-06));
-    BOOST_CHECK(two_rdms_s.two_rdm_aabb.isApprox(two_rdms.two_rdm_aabb, 1.0e-06));
-    BOOST_CHECK(two_rdms_s.two_rdm_bbaa.isApprox(two_rdms.two_rdm_bbaa, 1.0e-06));
-    BOOST_CHECK(two_rdms_s.two_rdm_bbbb.isApprox(two_rdms.two_rdm_bbbb, 1.0e-06));
-    BOOST_CHECK(two_rdms_s.two_rdm.isApprox(two_rdms.two_rdm, 1.0e-06));
-}
-
-
-BOOST_AUTO_TEST_CASE ( throw_calculate_element ) {
-
-    // Create a test wave function
-    size_t K = 5;
-    size_t N = 4;
-    GQCP::SpinUnresolvedONVBasis fock_space (K, N);
-    GQCP::SpinResolvedSelectedONVBasis selected_fock_space (fock_space);
-    GQCP::VectorX<double> coeff (fock_space.get_dimension());
-    coeff << 1, 1, -2, 4, -5;
-
-    // not implemented yet and should throw
-    GQCP::SelectedRDMBuilder selected_rdm (selected_fock_space);
-    BOOST_CHECK_THROW(selected_rdm.calculateElement({0,0,1}, {1,0,2}, coeff), std::runtime_error);
+    BOOST_CHECK(two_rdms_specialized.two_rdm_aaaa.isApprox(two_rdms_selected.two_rdm_aaaa, 1.0e-12));
+    BOOST_CHECK(two_rdms_specialized.two_rdm_aabb.isApprox(two_rdms_selected.two_rdm_aabb, 1.0e-12));
+    BOOST_CHECK(two_rdms_specialized.two_rdm_bbaa.isApprox(two_rdms_selected.two_rdm_bbaa, 1.0e-12));
+    BOOST_CHECK(two_rdms_specialized.two_rdm_bbbb.isApprox(two_rdms_selected.two_rdm_bbbb, 1.0e-12));
+    BOOST_CHECK(two_rdms_specialized.two_rdm.isApprox(two_rdms_selected.two_rdm, 1.0e-12));
 }
