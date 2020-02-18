@@ -62,13 +62,13 @@ BOOST_AUTO_TEST_CASE ( FCI_H2_dense ) {
     const GQCP::SpinResolvedONVBasis onv_basis (K, N_P, N_P);  // dimension = 100
 
 
-    // Create a dense solver and corresponding environment and put them together in the QCMethod
+    // Create a dense solver and corresponding environment and put them together in the QCMethod.
     auto environment = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
     auto solver = GQCP::EigenproblemSolver::Dense();
     const auto electronic_energy = GQCP::QCMethod::CI(onv_basis).optimize(solver, environment).groundStateEnergy();
 
 
-    // Check our result with the reference
+    // Check our result with the reference.
     const auto energy = electronic_energy + GQCP::Operator::NuclearRepulsion(molecule).value();
     BOOST_CHECK(std::abs(energy - (reference_energy)) < 1.0e-06);
 }

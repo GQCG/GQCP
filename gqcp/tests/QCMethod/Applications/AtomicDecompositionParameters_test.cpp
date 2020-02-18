@@ -22,75 +22,80 @@
 #include "QCMethod/Applications/AtomicDecompositionParameters.hpp"
 
 #include "Basis/SpinorBasis/RSpinorBasis.hpp"
-#include "Processing/Properties/expectation_values.hpp"
+#include "Mathematical/Optimization/Eigenproblem/Davidson/DavidsonSolver.hpp"
+#include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "Processing/RDM/RDMCalculator.hpp"
-#include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
+#include "QCMethod/CI/CI.hpp"
+#include "QCMethod/CI/CIEnvironment.hpp"
 #include "QCMethod/HF/DiagonalRHFFockMatrixObjective.hpp"
 #include "QCMethod/HF/RHF.hpp"
 #include "QCMethod/HF/RHFSCFSolver.hpp"
 #include "Utilities/units.hpp"
 
 
+/**
+ *  Check if the decomposition of the molecular Hamiltonian for BeH+//STO-3G into atomic contributions works as expected. The dimension of the full spin-resolved Fock space is 441.
+ */
 BOOST_AUTO_TEST_CASE ( decomposition_BeH_cation_STO_3G_Nuclear ) {
 
-    // Create the molecular Hamiltonian in an AO basis
-    GQCP::Nucleus Be(4, 0.0, 0.0, 0.0);
-    GQCP::Nucleus H(1, 0.0, 0.0, GQCP::units::angstrom_to_bohr(1.134));  // from CCCBDB, STO-3G geometry
-    std::vector<GQCP::Nucleus> nuclei {Be, H};
-    GQCP::Molecule BeH (nuclei, +1);
-    GQCP::AtomicDecompositionParameters adp = GQCP::AtomicDecompositionParameters::Nuclear(BeH, "STO-3G");
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (BeH, "STO-3G");
+    // Create the molecular Hamiltonian in an AO basis.
+    const GQCP::Nucleus Be {4, 0.0, 0.0, 0.0};
+    const GQCP::Nucleus H {1, 0.0, 0.0, GQCP::units::angstrom_to_bohr(1.134)};  // from CCCBDB, STO-3G geometry
+    const std::vector<GQCP::Nucleus> nuclei {Be, H};
+    const GQCP::Molecule molecule (nuclei, +1);
+    const auto N_P = molecule.numberOfElectrons() / 2;
+
+    const GQCP::AtomicDecompositionParameters adp = GQCP::AtomicDecompositionParameters::Nuclear(molecule, "STO-3G");  // the molecular Hamiltonian in its atomic contributions
+    const GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (molecule, "STO-3G");
 
     auto sq_hamiltonian = adp.get_molecular_hamiltonian_parameters();
-    auto K = sq_hamiltonian.dimension();
-    double repulsion = GQCP::Operator::NuclearRepulsion(BeH).value();
+    const auto K = sq_hamiltonian.dimension();  // number of 
 
-    // Create a plain RHF SCF solver and solve the SCF equations
-    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(BeH.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
+
+    // Transform the molecular Hamiltonian to the canonical RHF basis.
+    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap().parameters());
     auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
     const GQCP::DiagonalRHFFockMatrixObjective<double> objective (sq_hamiltonian);
     const auto rhf_parameters = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment).groundStateParameters();
 
     const auto& T = rhf_parameters.coefficientMatrix();
-
-    // Transform the sq_hamiltonian
     sq_hamiltonian.transform(T);
 
-    // Create the FCI module
-    GQCP::SpinResolvedONVBasis fock_space (K, BeH.numberOfElectrons() / 2, BeH.numberOfElectrons() / 2);  // dim = 441
-    GQCP::FCI fci (fock_space);
-    GQCP::CISolver ci_solver (fci, sq_hamiltonian);
 
-    // Solve Davidson
-    GQCP::DavidsonSolverOptions solver_options (fock_space.hartreeFockExpansion());
-    ci_solver.solve(solver_options);
+    // Create the appropriate ONV basis for FCI, specify dense solver and corresponding environment and put them together in the QCMethod to do a FCI calculation.
+    const GQCP::SpinResolvedONVBasis onv_basis (K, N_P, N_P);
 
-    // Retrieve the eigenpair
-    auto fci_coeff = ci_solver.get_eigenpair().get_eigenvector();
-    auto fci_energy = ci_solver.get_eigenpair().get_eigenvalue();
+    const auto initial_guess = onv_basis.hartreeFockExpansion();
+    auto environment = GQCP::CIEnvironment::Iterative(sq_hamiltonian, onv_basis, initial_guess);
+    auto solver = GQCP::EigenproblemSolver::Davidson();
+    const auto qc_structure = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment);
 
-    // Decomposition calculations require RDM-tracing
-    GQCP::RDMCalculator rdm_calc(fock_space);
-    rdm_calc.set_coefficients(fci_coeff);
+    const auto electronic_energy = qc_structure.groundStateEnergy();
+    const auto& linear_expansion = qc_structure.groundStateParameters();
 
-    auto one_rdm = rdm_calc.calculate1RDMs().one_rdm;
-    auto two_rdm = rdm_calc.calculate2RDMs().two_rdm;
 
-    // Transform rdms to the AObasis
-    GQCP::OneRDM<double> ao_one_rdm = one_rdm;
-    GQCP::TwoRDM<double> ao_two_rdm = two_rdm;
+    // Calculate the RDMs (in the AO basis in which the molecular decomposition parameters are defined) in order to calculate expectation values.
+    GQCP::RDMCalculator rdm_calculator {onv_basis};
+    rdm_calculator.set_coefficients(linear_expansion.coefficients());
 
-    ao_one_rdm.basisTransformInPlace(T.adjoint());
-    ao_two_rdm.basisTransformInPlace(T.adjoint());
+    auto D = rdm_calculator.calculate1RDMs().one_rdm;
+    D.basisTransformInPlace(T.adjoint());  // T.adjoint() to transform BACK to AO basis
 
-    double self_energy_a = adp.get_net_atomic_parameters()[0].calculateExpectationValue(ao_one_rdm, ao_two_rdm);
-    double self_energy_b = adp.get_net_atomic_parameters()[1].calculateExpectationValue(ao_one_rdm, ao_two_rdm);
-    double interaction_energy_ab = adp.get_interaction_parameters()[0].calculateExpectationValue(ao_one_rdm, ao_two_rdm) + repulsion;
-    double total_energy_a = adp.get_atomic_parameters()[0].calculateExpectationValue(ao_one_rdm, ao_two_rdm) + repulsion / 2;
-    double total_energy_b = adp.get_atomic_parameters()[1].calculateExpectationValue(ao_one_rdm, ao_two_rdm) + repulsion / 2;
+    auto d = rdm_calculator.calculate2RDMs().two_rdm;
+    d.basisTransformInPlace(T.adjoint());  // T.adjoint() to transform BACK to AO basis
 
-    BOOST_CHECK(std::abs(total_energy_a + total_energy_b - fci_energy - repulsion) < 1.0e-10);
-    BOOST_CHECK(std::abs(self_energy_a + self_energy_b + interaction_energy_ab - fci_energy - repulsion) < 1.0e-10);
+
+    // Check the decomposed energy values.
+    const double repulsion = GQCP::Operator::NuclearRepulsion(molecule).value();
+
+    const double self_energy_a = adp.get_net_atomic_parameters()[0].calculateExpectationValue(D, d);
+    const double self_energy_b = adp.get_net_atomic_parameters()[1].calculateExpectationValue(D, d);
+    const double interaction_energy_ab = adp.get_interaction_parameters()[0].calculateExpectationValue(D, d) + repulsion;
+    const double total_energy_a = adp.get_atomic_parameters()[0].calculateExpectationValue(D, d) + repulsion / 2;
+    const double total_energy_b = adp.get_atomic_parameters()[1].calculateExpectationValue(D, d) + repulsion / 2;
+
+    BOOST_CHECK(std::abs(total_energy_a + total_energy_b - electronic_energy - repulsion) < 1.0e-10);
+    BOOST_CHECK(std::abs(self_energy_a + self_energy_b + interaction_energy_ab - electronic_energy - repulsion) < 1.0e-10);
     BOOST_CHECK(std::abs(self_energy_a + interaction_energy_ab / 2 - total_energy_a) < 1.0e-10);
     BOOST_CHECK(std::abs(self_energy_b + interaction_energy_ab / 2 - total_energy_b) < 1.0e-10);
 }
