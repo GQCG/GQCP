@@ -9,14 +9,14 @@ Before installing GQCP, please make sure the following dependencies are availabl
 [![libint2 Dependency](https://img.shields.io/badge/libint-2.3.1+-000000.svg)](https://github.com/evaleev/libint)
 [![libcint Dependency](https://img.shields.io/badge/gqcg_libcint-develop-000000.svg)](https://github.com/GQCG/libcint/tree/develop)
 
-Note that we offer Conda packages for these installation requirements (currently MacOS only). As such, in a virtual environment of your choosing, run the following commands
+Note that we offer Conda packages for these installation requirements:
+
 ```bash
-        conda install -c conda-forge cmake=3.13 boost-cpp=1.69.0 eigen blas mkl pybind11 benchmark numpy
-        conda install -c gqcg libint spectra cint
-        conda install -c intel mkl-include mkl-static intel-openmp
+    conda env create -f environment.yml
+    conda activate gqcg_dev
 ```
 
-If you use an own installation of libint, please set the `LIBINT_DATA_PATH` environment variable to the folder that contains these bases. In a default installation (of e.g. version v2.3.1), the data path is given by:
+If you use your own installation of libint, please set the `LIBINT_DATA_PATH` environment variable to the folder that contains these bases. In a default installation (of e.g. version v2.3.1), the data path is given by:
 
 ```bash
    export LIBINT_DATA_PATH=/usr/local/libint/2.3.1/share/libint/2.3.1/basis
@@ -28,14 +28,18 @@ For a default CMake build, the steps are the following:
 
 1. clone the develop branch, which contains the latest release
 
-    https://github.com/GQCG/GQCP.git --branch develop --single-branch --recurse-submodules
-    cd GQCP
+    ```bash
+        git clone https://github.com/GQCG/GQCP.git --branch develop --single-branch --recurse-submodules
+        cd GQCP
+    ```
 
 2. perform an out-of-source build:
 
-    mkdir build && cd build
-    cmake .. (CMake options)
-    make && make test && sudo make install
+    ```bash
+        mkdir build && cd build
+        cmake .. (CMake options)
+        make && make test && sudo make install
+    ```
 
 The possible CMake options are listed below.
 
