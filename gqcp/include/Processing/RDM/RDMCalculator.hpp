@@ -46,12 +46,12 @@ public:
     // CONSTRUCTOR
     RDMCalculator() = default;
 
-    /**
-     *  Allocate a DOCIRDMBuilder
-     *
-     *  @param fock_space       the DOCI ONV basis
-     */
-    explicit RDMCalculator(const SpinUnresolvedONVBasis& fock_space);
+    // /**
+    //  *  Allocate a DOCIRDMBuilder
+    //  *
+    //  *  @param fock_space       the DOCI ONV basis
+    //  */
+    // explicit RDMCalculator(const SpinUnresolvedONVBasis& fock_space);
 
     /**
      *  Allocate a FCIRDMBuilder
