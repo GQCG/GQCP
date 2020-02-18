@@ -2,7 +2,6 @@
 ![GQCP](media/logo.jpg)
 
 [![Build Status](https://travis-ci.org/GQCG/GQCP.svg?branch=master)](https://travis-ci.org/GQCG/GQCP)
-[![HPC](https://img.shields.io/badge/UGentHPC-delcatty-green.svg)](https://www.ugent.be/hpc/en)
 [![HPC](https://img.shields.io/badge/UGentHPC-phanpy-green.svg)](https://www.ugent.be/hpc/en)
 [![HPC](https://img.shields.io/badge/UGentHPC-golett-green.svg)](https://www.ugent.be/hpc/en)
 [![HPC](https://img.shields.io/badge/UGentHPC-swalot-green.svg)](https://www.ugent.be/hpc/en)
