@@ -39,7 +39,7 @@ requirements:
 test:
   commands:
     - test -f ${PREFIX}/lib/libgqcp$SHLIB_EXT
-    - test -f ${PREFIX}/include/gqcp.hpp
+    - test -f ${PREFIX}/include/gqcp/gqcp.hpp
 about:
     home: https://github.com/GQCG/GQCP.git
     license: GNU Lesser General Public License v3.0
