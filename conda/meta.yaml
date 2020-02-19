@@ -1,0 +1,42 @@
+{% set version = "0.2.0" %}
+
+package:
+    name: gqcp
+    version: {{ version }}
+source:
+    git_url: https://github.com/GQCG/GQCP.git
+    git_tag: develop
+requirements:
+    build:
+      - git
+      - make
+      - cmake {{ cmake }}
+      - {{ compiler('c') }}
+      - {{ compiler('cxx') }}
+      - llvm-openmp               # [osx]
+      - intel-openmp
+    host:
+      - eigen {{ eigen }}
+      - boost-cpp {{ boost_cpp }}
+      - blas
+      - mkl
+      - python
+      - pybind11
+      - benchmark
+      - numpy
+      - libint
+      - spectra
+      - cint
+      - mkl_include
+      - mkl_static
+    run:
+      - {{ pin_compatible('boost-cpp', min_pin='x.x', max_pin='x.x') }}
+      - {{ pin_compatible('eigen', min_pin='x.x', max_pin='x.x') }}
+test:
+  commands:
+    - test -f ${PREFIX}/include/Spectra/GenEigsBase.h
+about:
+    home: https://github.com/GQCG/spectra
+    license: Mozilla Public License 2.0 (MPL 2.0)
+    license_file: LICENSE
+    summary: 'A header-only C++ library for large scale eigenvalue problems.'
