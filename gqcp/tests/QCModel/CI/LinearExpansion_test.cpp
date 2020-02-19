@@ -178,7 +178,7 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h5 ) {
     // Create the molecular Hamiltonian in the Löwdin basis.
     const auto molecule = GQCP::Molecule::HChain(5, 0.742);
     const auto N_alpha = 3;
-    const auto N_beta = 2
+    const auto N_beta = 2;
 
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (molecule, "STO-3G");
     const auto K = spinor_basis.numberOfSpatialOrbitals();
