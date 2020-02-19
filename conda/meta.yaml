@@ -29,13 +29,18 @@ requirements:
       - cint
       - mkl-include {{ mkl_include }}
       - mkl-static {{ mkl_static }}
-
     run:
       - {{ pin_compatible('python', min_pin='x.x', max_pin='x.x') }}
       - {{ pin_compatible('mkl-include', min_pin='x.x', max_pin='x.x') }}
       - {{ pin_compatible('mkl-static', min_pin='x.x', max_pin='x.x') }}
       - {{ pin_compatible('boost-cpp', min_pin='x.x', max_pin='x.x') }}
       - {{ pin_compatible('eigen', min_pin='x.x', max_pin='x.x') }}
+      - blas
+      - mkl
+      - numpy
+      - libint
+      - spectra
+      - cint
 test:
   commands:
     - test -f ${PREFIX}/lib/libgqcp$SHLIB_EXT
