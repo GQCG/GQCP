@@ -53,7 +53,7 @@ BOOST_AUTO_TEST_CASE ( FrozenCoreFCI_one_rdms ) {
 
     const auto linear_expansion = GQCP::QCMethod::CI<GQCP::SpinResolvedFrozenONVBasis>(onv_basis).optimize(solver, environment).groundStateParameters();
 
-    
+
     // Calculate the 1-DMs using specialized spin-resolved and 'selected' routines, and check if they are equal.
     const GQCP::FrozenCoreFCIRDMBuilder spin_resolved_rdm_builder {onv_basis};
     const auto one_rdms_specialized = spin_resolved_rdm_builder.calculate1RDMs(linear_expansion.coefficients());
