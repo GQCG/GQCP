@@ -1,6 +1,15 @@
 # Installation
 
-## Prerequisites
+## Clone the repo
+
+Clone the develop branch, which contains the latest release
+
+```bash
+    git clone https://github.com/GQCG/GQCP.git --branch develop --single-branch --recurse-submodules
+    cd GQCP
+```
+
+## Install GQCG development environment
 
 Before installing GQCP, please make sure the following dependencies are available on your system:
 
@@ -24,26 +33,28 @@ If you use your own installation of libint, please set the `LIBINT_DATA_PATH` en
 
 ## CMake out-of-source build
 
-For a default CMake build, the steps are the following:
+Perform an out-of-source build:
 
-1. clone the develop branch, which contains the latest release
+```bash
+    mkdir build && cd build
+    cmake .. (CMake options)
+    make && make test && sudo make install
+```
 
-    ```bash
-        git clone https://github.com/GQCG/GQCP.git --branch develop --single-branch --recurse-submodules
-        cd GQCP
-    ```
+The possible CMake options are listed below. As such, for the provided GQCG environment this reduces to
 
-2. perform an out-of-source build:
+```bash
+    mkdir build && cd build
+    cmake .. -DCMAKE_PREFIX_PATH=${conda_install_dir}/envs/gqcg_dev \
+             -DCMAKE_INSTALL_PREFIX=~/.local \
+             -DBUILD_TESTS=TRUE \ 
+             -DBUILD_PYTHON_BINDINGS=TRUE \
+             -DPYTHON_EXECUTABLE=${conda_install_dir}/envs/gqcg_dev/bin/python \ 
+             -DPYTHON_LIBRARY=${conda_install_dir}/envs/gqcg_dev/lib/libpython3.8.a
+    make -j{CPU} && make test && (sudo) make install
+```
 
-    ```bash
-        mkdir build && cd build
-        cmake .. (CMake options)
-        make && make test && sudo make install
-    ```
-
-The possible CMake options are listed below.
-
-## CMake options
+### CMake options
 
 In general, please set and pass the following options to the `cmake ..` command:
 
@@ -76,3 +87,5 @@ For this library, there are several extra options and configuration arguments yo
 * `-DBUILD_PYTHON_BINDINGS=TRUE` makes sure that selected pieces of the GQCP library can be called from Python. This uses [PyBind11](https://github.com/pybind/pybind11), so make sure you have this installed if you wish to use GQCPY on your system.
 
 * `-DPYTHON_EXECUTABLE=python_executable` with `python_executable` the path to your preferred Python executable.
+
+* `-DPYTHON_LIBRARY=python_library` with `python_library` the path to the libraries that support your preferred Python executable.
