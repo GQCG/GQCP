@@ -22,16 +22,8 @@ jobs:
     - name: Install some GQCP dependencies through Conda
       run: |
         conda install -c conda-forge cmake=3.13 boost-cpp=1.69.0 eigen blas mkl pybind11 benchmark numpy;
+        conda install -c gqcg libint cint;
         conda install -c intel mkl-include mkl-static intel-openmp;
-
-    - name: Install Libcint
-      run: |
-        cd /tmp
-        git clone -b develop https://github.com/GQCG/libcint.git
-        cd libcint
-        mkdir build && cd build
-        cmake .. -DUSE_MKL=TRUE -DCMAKE_INSTALL_PREFIX=$HOME/miniconda -DCMAKE_PREFIX_PATH=$HOME/miniconda
-        make -j2 && sudo make install
 
     # Build & test the library 
     - name: Build GQCP and run tests
