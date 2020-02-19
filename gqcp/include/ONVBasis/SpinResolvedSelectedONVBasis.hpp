@@ -21,10 +21,9 @@
 #include "ONVBasis/BaseONVBasis.hpp"
 #include "ONVBasis/EvaluationIterator.hpp"
 #include "ONVBasis/SeniorityZeroONVBasis.hpp"
-#include "ONVBasis/SpinResolvedONV.hpp"
 #include "ONVBasis/SpinResolvedFrozenONVBasis.hpp"
+#include "ONVBasis/SpinResolvedONV.hpp"
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
-#include "ONVBasis/SeniorityZeroONVBasis.hpp"
 #include "Operator/SecondQuantized/USQHamiltonian.hpp"
 
 
@@ -66,13 +65,6 @@ public:
     SpinResolvedSelectedONVBasis(size_t K, size_t N_alpha, size_t N_beta);
 
     /**
-     *  A constructor that generates the onvs based on the given SpinResolvedONVBasis.
-     *
-     *  @param fock_space       the product ONV basis from which the onvs should be generated
-     */
-    explicit SpinResolvedSelectedONVBasis(const SpinResolvedONVBasis& fock_space);
-
-    /**
      *  A constructor that generates 'selected ONVs' based on the given ONVBasis.
      *
      *  @param onv_basis        the seniority-zero ONV basis from which the 'selected ONVs' should be generated
@@ -87,11 +79,18 @@ public:
     explicit SpinResolvedSelectedONVBasis(const SpinResolvedFrozenONVBasis& fock_space);
 
     /**
-     *  A constructor that generates the onvs based on the given frozen ONV basis.
+     *  A constructor that generates the onvs based on the given SpinResolvedONVBasis.
      *
-     *  @param fock_space       the frozen ONV basis from which the onvs should be generated
+     *  @param fock_space       the product ONV basis from which the onvs should be generated
      */
-    explicit SpinResolvedSelectedONVBasis(const SpinUnresolvedFrozenONVBasis& fock_space);
+    explicit SpinResolvedSelectedONVBasis(const SpinResolvedONVBasis& fock_space);
+
+    // /**
+    //  *  A constructor that generates the onvs based on the given frozen ONV basis.
+    //  *
+    //  *  @param fock_space       the frozen ONV basis from which the onvs should be generated
+    //  */
+    // explicit SpinResolvedSelectedONVBasis(const SpinUnresolvedFrozenONVBasis& fock_space);
 
 
     // GETTERS

@@ -92,7 +92,7 @@ BOOST_AUTO_TEST_CASE ( shannon_entropy ) {
 BOOST_AUTO_TEST_CASE ( transform_wave_function_h3 ) {
 
     // Create the molecular Hamiltonian in the Löwdin basis.
-    const auto molecule = GQCP::Molecule::HChain(3, 0.742, -1);
+    const auto molecule = GQCP::Molecule::HChain(3, 0.742, -1);  // charge -1
     const auto N_P = molecule.numberOfElectrons() / 2;
 
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (molecule, "STO-3G");
@@ -127,81 +127,86 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h3 ) {
 }
 
 
-// BOOST_AUTO_TEST_CASE ( transform_wave_function_h4 ) {
+/**
+ *  Check if the basis transformation of a linear expansion inside the full spin-resolved ONV basis is correctly implemented: we compare the direct transformation of the expansion coefficients with another FCI calculation using the transformed spinor basis.
+ *  The test system is a linear H chain H4//STO-3G, with an internuclear charge 0.742 bohr.
+ */
+BOOST_AUTO_TEST_CASE ( transform_wave_function_h4 ) {
 
-//     // Produce a wave function, transform it then pair it, against second produced wave function from a transformed basis
-//     // Create a molecule
-//     GQCP::Molecule hchain = GQCP::Molecule::HChain(4, 0.742, 0);
+    // Create the molecular Hamiltonian in the Löwdin basis.
+    const auto molecule = GQCP::Molecule::HChain(4, 0.742);
+    const auto N_P = molecule.numberOfElectrons() / 2;
 
-//     // Create the molecular Hamiltonian for this molecule and basis
-//     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (hchain, "STO-3G");
-//     spinor_basis.lowdinOrthonormalize();
-//     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
-//     auto K = sq_hamiltonian.dimension();
-//     auto N_P = hchain.numberOfElectrons()/2;
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (molecule, "STO-3G");
+    const auto K = spinor_basis.numberOfSpatialOrbitals();
 
-//     GQCP::SpinResolvedONVBasis onv_basis (K, N_P, N_P);
-//     GQCP::FCI fci (onv_basis);
-
-//     GQCP::DenseSolverOptions solver_options;
-//     solver_options.number_of_requested_eigenpairs = 10;
-//     GQCP::CISolver ci_solver (fci, sq_hamiltonian);
-//     ci_solver.solve(solver_options);
-
-//     // Retrieve the wave function and transform it
-//     auto linear_expansion1 = ci_solver.makeLinearExpansion();
-//     GQCP::TransformationMatrix<double> U_random = GQCP::TransformationMatrix<double>::RandomUnitary(K);
-
-//     linear_expansion1.basisTransform(U_random);
-
-//     // Generate a new wave function by rotating the basis and performing the FCI again.
-//     GQCP::basisRotate(spinor_basis, sq_hamiltonian, U_random);
-//     GQCP::CISolver ci_solver2 (fci, sq_hamiltonian);
-//     ci_solver2.solve(solver_options);
-
-//     auto linear_expansion2 = ci_solver2.makeLinearExpansion();
-
-//     // Check if they deviate
-//     BOOST_CHECK(linear_expansion2.isApprox(linear_expansion1));
-// }
+    spinor_basis.lowdinOrthonormalize();
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, molecule);
 
 
-// BOOST_AUTO_TEST_CASE ( transform_wave_function_h5 ) {
+    // Do a dense FCI calculation.
+    const GQCP::SpinResolvedONVBasis onv_basis (K, N_P, N_P);
 
-//     // Produce a wave function, transform it then pair it, against second produced wave function from a transformed basis
-//     // Create a molecule
-//     GQCP::Molecule hchain = GQCP::Molecule::HChain(5, 0.742, 0);
+    auto environment_direct = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
+    auto solver_direct = GQCP::EigenproblemSolver::Dense();
 
-//     // Create the molecular Hamiltonian for this molecule and basis
-//     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (hchain, "STO-3G");
-//     spinor_basis.lowdinOrthonormalize();
-//     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, hchain);  // in the Löwdin basis
-//     auto K = sq_hamiltonian.dimension();
-//     auto N_B = hchain.numberOfElectrons()/2;
-//     auto N_A = hchain.numberOfElectrons() - N_B;
+    auto linear_expansion_direct = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver_direct, environment_direct).groundStateParameters();
 
-//     GQCP::SpinResolvedONVBasis onv_basis (K, N_A, N_B);
-//     GQCP::FCI fci (onv_basis);
 
-//     GQCP::DenseSolverOptions solver_options;
-//     solver_options.number_of_requested_eigenpairs = 10;
+    // Generate a random rotation matrix and calculate the transformation of the linear expansion coefficients.
+    const GQCP::TransformationMatrix<double> U_random = GQCP::TransformationMatrix<double>::RandomUnitary(K);
+    linear_expansion_direct.basisTransformInPlace(U_random);
 
-//     GQCP::CISolver ci_solver (fci, sq_hamiltonian);
-//     ci_solver.solve(solver_options);
 
-//     // Retrieve the wave function and transform it
-//     auto linear_expansion1 = ci_solver.makeLinearExpansion();
-//     GQCP::TransformationMatrix<double> U_random = GQCP::TransformationMatrix<double>::RandomUnitary(K);
+    // Calculate a new linear expansion by rotation the underlying spinor basis and doing another dense calculation, and check if they deviate.
+    GQCP::basisRotate(spinor_basis, sq_hamiltonian, U_random);
 
-//     linear_expansion1.basisTransform(U_random);
+    auto environment_indirect = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
+    auto solver_indirect = GQCP::EigenproblemSolver::Dense();
 
-//     // Generate a new wave function by rotating the basis and performing the FCI again.
-//     GQCP::basisRotate(spinor_basis, sq_hamiltonian, U_random);
-//     GQCP::CISolver ci_solver2 (fci, sq_hamiltonian);
-//     ci_solver2.solve(solver_options);
+    const auto linear_expansion_indirect = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver_indirect, environment_indirect).groundStateParameters();
+    BOOST_CHECK(linear_expansion_direct.isApprox(linear_expansion_indirect, 1.0e-12));
+}
 
-//     auto linear_expansion2 = ci_solver2.makeLinearExpansion();
 
-//     // Check if they deviate
-//     BOOST_CHECK(linear_expansion2.isApprox(linear_expansion1));
-// }
+/**
+ *  Check if the basis transformation of a linear expansion inside the full spin-resolved ONV basis is correctly implemented: we compare the direct transformation of the expansion coefficients with another FCI calculation using the transformed spinor basis.
+ *  The test system is a linear H chain H5//STO-3G, with an internuclear charge 0.742 bohr.
+ */
+BOOST_AUTO_TEST_CASE ( transform_wave_function_h4 ) {
+
+    // Create the molecular Hamiltonian in the Löwdin basis.
+    const auto molecule = GQCP::Molecule::HChain(5, 0.742);
+    const auto N_alpha = 3;
+    const auto N_beta = 2
+
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (molecule, "STO-3G");
+    const auto K = spinor_basis.numberOfSpatialOrbitals();
+
+    spinor_basis.lowdinOrthonormalize();
+    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, molecule);
+
+
+    // Do a dense FCI calculation.
+    const GQCP::SpinResolvedONVBasis onv_basis (K, N_alpha, N_beta);
+
+    auto environment_direct = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
+    auto solver_direct = GQCP::EigenproblemSolver::Dense();
+
+    auto linear_expansion_direct = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver_direct, environment_direct).groundStateParameters();
+
+
+    // Generate a random rotation matrix and calculate the transformation of the linear expansion coefficients.
+    const GQCP::TransformationMatrix<double> U_random = GQCP::TransformationMatrix<double>::RandomUnitary(K);
+    linear_expansion_direct.basisTransformInPlace(U_random);
+
+
+    // Calculate a new linear expansion by rotation the underlying spinor basis and doing another dense calculation, and check if they deviate.
+    GQCP::basisRotate(spinor_basis, sq_hamiltonian, U_random);
+
+    auto environment_indirect = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
+    auto solver_indirect = GQCP::EigenproblemSolver::Dense();
+
+    const auto linear_expansion_indirect = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver_indirect, environment_indirect).groundStateParameters();
+    BOOST_CHECK(linear_expansion_direct.isApprox(linear_expansion_indirect, 1.0e-12));
+}
