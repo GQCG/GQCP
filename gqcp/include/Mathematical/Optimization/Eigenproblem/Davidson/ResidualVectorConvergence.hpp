@@ -67,7 +67,7 @@ public:
      */
     bool isFulfilled(Environment& environment) override {
 
-        const auto R = environment.R;  // the residual vectors
+        const auto& R = environment.R;  // the residual vectors
 
         if (R.cols() > 0) {  // if there are residual vectors available
             const auto are_any_values_larger = (R.colwise().norm().array() > this->threshold).any();
