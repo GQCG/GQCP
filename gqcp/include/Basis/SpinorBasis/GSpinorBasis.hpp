@@ -341,11 +341,11 @@ public:
 
                         if ((mu_ < K_alpha) && (nu_ < K_alpha) && (rho_ < K_alpha) && (lambda_ < K_alpha)) {
                             g_par(mu_, nu_, rho_, lambda_) = g_aaaa(mu, nu, rho, lambda);
-                        } else if ((mu_ < K_alpha) && (nu_ < K_alpha) && (rho_ >= K_alpha) && (lambda_ >+ K_alpha)) {
+                        } else if ((mu_ < K_alpha) && (nu_ < K_alpha) && (rho_ >= K_alpha) && (lambda_ >= K_alpha)) {
                             g_par(mu_, nu_, rho_, lambda_) = g_aabb(mu, nu, rho, lambda);
                         } else if ((mu_ >= K_alpha) && (nu_ >= K_alpha) && (rho_ < K_alpha) && (lambda_ < K_alpha)) {
                             g_par(mu_, nu_, rho_, lambda_) = g_bbaa(mu, nu, rho, lambda);
-                        } else {
+                        } else if ((mu_ >= K_alpha) && (nu_ >= K_alpha) && (rho_ >= K_alpha) && (lambda_ >= K_alpha)) {
                             g_par(mu_, nu_, rho_, lambda_) = g_bbbb(mu, nu, rho, lambda);
                         }
                     }

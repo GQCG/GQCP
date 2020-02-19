@@ -1,5 +1,5 @@
 # Specify the virtual environment
-dist: xenial
+dist: bionic
 sudo: true
 
 # Specify the project language and the compiler to test to
@@ -60,20 +60,13 @@ install:
     # Install a recent version of CMake, Boost and eigen if they are not yet already installed.
     - if [ ! -f $HOME/miniconda/bin/cmake ]; then
         conda install -c conda-forge cmake=3.13 boost-cpp=1.69.0 eigen blas mkl pybind11 benchmark numpy;
+        conda install -c gqcg libint cint;
         conda install -c intel mkl-include mkl-static intel-openmp;
       else
         echo "Using already installed packages.";
       fi
     - export PATH=${HOME}/miniconda/bin:${PATH} # Use conda CMake
     - export LIBINT_DATA_PATH=${HOME}/miniconda/share/libint/2.3.1/basis
-
-    # Install the GQCG fork of Libcint
-    - cd /tmp
-    - git clone -b develop https://github.com/GQCG/libcint.git
-    - cd libcint
-    - mkdir build && cd build
-    - cmake .. -DUSE_MKL=TRUE -DCMAKE_INSTALL_PREFIX=~/.local -DCMAKE_PREFIX_PATH=${HOME}/miniconda
-    - make -j3 && sudo make install
 
 # Run the build script
 script:
