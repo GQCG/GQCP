@@ -173,7 +173,7 @@ BOOST_AUTO_TEST_CASE ( transform_wave_function_h4 ) {
  *  Check if the basis transformation of a linear expansion inside the full spin-resolved ONV basis is correctly implemented: we compare the direct transformation of the expansion coefficients with another FCI calculation using the transformed spinor basis.
  *  The test system is a linear H chain H5//STO-3G, with an internuclear charge 0.742 bohr.
  */
-BOOST_AUTO_TEST_CASE ( transform_wave_function_h4 ) {
+BOOST_AUTO_TEST_CASE ( transform_wave_function_h5 ) {
 
     // Create the molecular Hamiltonian in the Löwdin basis.
     const auto molecule = GQCP::Molecule::HChain(5, 0.742);
