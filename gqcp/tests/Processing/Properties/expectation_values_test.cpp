@@ -23,7 +23,6 @@
 
 #include "Basis/Integrals/Interfaces/LibintInterfacer.hpp"
 #include "Basis/transform.hpp"
-#include "Mathematical/Optimization/Eigenproblem/DavidsonSolver.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Operator/SecondQuantized/USQHamiltonian.hpp"
 #include "Processing/RDM/RDMCalculator.hpp"

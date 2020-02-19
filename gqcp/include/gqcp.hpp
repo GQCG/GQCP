@@ -73,16 +73,10 @@
 #include "Mathematical/Optimization/Eigenproblem/Davidson/SubspaceMatrixDiagonalization.hpp"
 #include "Mathematical/Optimization/Eigenproblem/Davidson/SubspaceUpdate.hpp"
 
-#include "Mathematical/Optimization/Eigenproblem/BaseEigenproblemSolver.hpp"
-#include "Mathematical/Optimization/Eigenproblem/BaseMatrixSolver.hpp"
-#include "Mathematical/Optimization/Eigenproblem/DavidsonSolver.hpp"
 #include "Mathematical/Optimization/Eigenproblem/DenseDiagonalization.hpp"
-#include "Mathematical/Optimization/Eigenproblem/DenseSolver.hpp"
 #include "Mathematical/Optimization/Eigenproblem/Eigenpair.hpp"
 #include "Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp"
 #include "Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp"
-#include "Mathematical/Optimization/Eigenproblem/EigenproblemSolverOptions.hpp"
-#include "Mathematical/Optimization/Eigenproblem/SparseSolver.hpp"
 
 #include "Mathematical/Optimization/Minimization/BaseHessianModifier.hpp"
 #include "Mathematical/Optimization/Minimization/IterativeIdentitiesHessianModifier.hpp"

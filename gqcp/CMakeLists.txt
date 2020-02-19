@@ -40,7 +40,6 @@ target_link_libraries(gqcp
         Eigen3::Eigen
         Int2::Int2
         cint::cint
-        Spectra::Spectra
         MKL::MKL
 )
 
