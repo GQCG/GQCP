@@ -19,7 +19,6 @@
 
 #include <boost/test/unit_test.hpp>
 
-
 #include "Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "Processing/RDM/FCIRDMBuilder.hpp"

@@ -23,6 +23,7 @@
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
 #include "Utilities/typedefs.hpp"
+#include "Utilities/linalg.hpp"
 
 #include <boost/algorithm/string.hpp>
 #include <boost/dynamic_bitset.hpp>
@@ -83,8 +84,8 @@ public:
      * 
      *  @return the corresponding linear expansion from a given GAMESS-US file
      */
-    template <typename Z>
-    enable_if_t<std::is_same<Z, SpinResolvedSelectedONVBasis>::value, LinearExpansion<Z>> FromGAMESSUS(const std::string& GAMESSUS_filename) {
+    template <typename Z = ONVBasis>
+    static enable_if_t<std::is_same<Z, SpinResolvedSelectedONVBasis>::value, LinearExpansion<Z>> FromGAMESSUS(const std::string& GAMESSUS_filename) {
 
         // If the filename isn't properly converted into an input file stream, we assume the user supplied a wrong file.
         std::ifstream input_file_stream (GAMESSUS_filename);
@@ -218,10 +219,10 @@ public:
      *  @note This method is only available for the full spin-resolved ONV basis.
      *  @note This algorithm was implemented from a description in Helgaker2000.
      */
-    template <typename Z>
+    template <typename Z = ONVBasis>
     enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value> basisTransformInPlace(const TransformationMatrix<double>& T) {
 
-        const auto K = onv_basis.numberOfSpatialOrbitals();
+        const auto K = onv_basis.get_K();  // number of spatial orbitals
         if (K != T.dimension()) {
             throw std::invalid_argument("LinearExpansion::basisTransformInPlace(const TransformationMatrix<double>&): The number of spatial orbitals does not match the dimension of the transformation matrix.");
         }
@@ -404,11 +405,11 @@ public:
      */
      bool isApprox(const LinearExpansion<ONVBasis>& other, double tolerance = 1e-10) const {
 
-        if (onv_basis->get_type() != other.onv_basis->get_type() || onv_basis->get_dimension() != other.onv_basis->get_dimension()) {
-                return false;
+        if (this->onv_basis.dimension() != other.onv_basis.get_dimension()) {
+            return false;
         }
 
-        return areEqualEigenvectors(coeffs, other.coefficients, tolerance);
+        return areEqualEigenvectors(this->coefficients(), other.coefficients(), tolerance);
     }
 
 
