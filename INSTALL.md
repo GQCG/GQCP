@@ -2,14 +2,14 @@
 
 ## Clone the repo
 
-Clone the develop branch, which contains the latest release
+Clone the develop branch, which contains the latest developments
 
 ```bash
     git clone https://github.com/GQCG/GQCP.git --branch develop --single-branch --recurse-submodules
     cd GQCP
 ```
 
-## Install GQCG development environment
+## Install the GQCG development environment
 
 Before installing GQCP, please make sure the following dependencies are available on your system:
 
@@ -53,6 +53,14 @@ The possible CMake options are listed below. As such, for the provided GQCG envi
              -DPYTHON_LIBRARY=${conda_install_dir}/envs/gqcg_dev/lib/libpython3.8.a
     make -j{CPU} && make test && (sudo) make install
 ```
+
+where `${conda_install_dir}` is the directory where you have installed conda. This directory can be found using
+
+```bash
+   which conda
+```
+
+which should return `${conda_install_dir}/bin/conda`.
 
 ### CMake options
 
