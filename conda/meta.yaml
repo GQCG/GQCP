@@ -27,8 +27,8 @@ requirements:
       - libint
       - spectra
       - cint
-      - mkl_include
-      - mkl_static
+      - mkl-include
+      - mkl-static
     run:
       - {{ pin_compatible('boost-cpp', min_pin='x.x', max_pin='x.x') }}
       - {{ pin_compatible('eigen', min_pin='x.x', max_pin='x.x') }}
