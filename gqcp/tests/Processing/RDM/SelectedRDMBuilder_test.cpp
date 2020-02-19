@@ -64,7 +64,7 @@ BOOST_AUTO_TEST_CASE ( spin_resolved_vs_selected_DMs ) {
     const auto one_rdms_specialized = spin_resolved_rdm_builder.calculate1RDMs(linear_expansion.coefficients());
 
     const GQCP::SpinResolvedSelectedONVBasis selected_onv_basis {onv_basis};
-    const GQCP::SelectedRDMBuilder selected_rdm_builder (selected_onv_basis);
+    const GQCP::SelectedRDMBuilder selected_rdm_builder {selected_onv_basis};
     const auto one_rdms_selected = selected_rdm_builder.calculate1RDMs(linear_expansion.coefficients());
 
     BOOST_CHECK(one_rdms_specialized.one_rdm.isApprox(one_rdms_selected.one_rdm, 1.0e-12));

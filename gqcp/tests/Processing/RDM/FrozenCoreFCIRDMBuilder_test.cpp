@@ -19,78 +19,61 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "Processing/RDM/FrozenCoreFCIRDMBuilder.hpp"
-
+#include "Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "Processing/RDM/DOCIRDMBuilder.hpp"
-#include "Processing/RDM/FCIRDMBuilder.hpp"
-#include "Processing/RDM/RDMCalculator.hpp"
+#include "Processing/RDM/FrozenCoreFCIRDMBuilder.hpp"
 #include "Processing/RDM/SelectedRDMBuilder.hpp"
-#include "QCMethod/CI/HamiltonianBuilder/FrozenCoreFCI.hpp"
-#include "Utilities/linalg.hpp"
+#include "QCMethod/CI/CI.hpp"
+#include "QCMethod/CI/CIEnvironment.hpp"
 
 
+/**
+ *  Check if the 1- and 2-DMs for a frozen core spin-resolved ONV basis are equal to the 'selected' case.
+ *  The system of interest is a linear chain of 5 H atoms, 1.1 bohr apart, using an STO-3G basisset.
+ */
 BOOST_AUTO_TEST_CASE ( FrozenCoreFCI_one_rdms ) {
 
-    size_t K = 5;
-    GQCP::Molecule H5 = GQCP::Molecule::HChain(K, 1.1);
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (H5, "STO-3G");
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, H5);  // in an AO basis
+    // Set up the molecular Hamiltonian for H5//STO-3G in the Löwdin basis.
+    const GQCP::Molecule molecule = GQCP::Molecule::HChain(5, 1.1);
+    const auto N_alpha = 3;
+    const auto N_beta = 2;
 
-    GQCP::SpinResolvedFrozenONVBasis fock_space (K, 3, 3, 2);
-    GQCP::SpinResolvedSelectedONVBasis selected_fock_space (fock_space);
-    GQCP::FrozenCoreFCI fci (fock_space);
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (molecule, "STO-3G");
+    const auto K = spinor_basis.numberOfSpatialOrbitals();
+    spinor_basis.lowdinOrthonormalize();
 
-    // Specify solver options and solve the eigenvalue problem
-    // Solve the dense FCI eigenvalue problem
-    GQCP::CISolver ci_solver (fci, sq_hamiltonian);
-    GQCP::DenseSolverOptions solver_options;
-    ci_solver.solve(solver_options);
+    const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, molecule);
 
-    GQCP::VectorX<double> coef = ci_solver.get_eigenpair().get_eigenvector();
 
-    // Get the frozen core FCI and SelectedCI 1-RDMS
-    GQCP::SelectedRDMBuilder sci_rdm (selected_fock_space);
-    GQCP::FrozenCoreFCIRDMBuilder fci_rdm (fock_space);
-    GQCP::OneRDMs<double> one_rdms_s = sci_rdm.calculate1RDMs(coef);
-    GQCP::OneRDMs<double> one_rdms = fci_rdm.calculate1RDMs(coef);
+    // Do a dense frozen core CI calculation for 2 frozen orbitals.
+    const GQCP::SpinResolvedFrozenONVBasis onv_basis (K, N_alpha, N_beta, 2);
+
+    auto environment = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
+    auto solver = GQCP::EigenproblemSolver::Dense();
+
+    const auto linear_expansion = GQCP::QCMethod::CI<GQCP::SpinResolvedFrozenONVBasis>(onv_basis).optimize(solver, environment).groundStateParameters();
 
     
-    BOOST_CHECK(one_rdms_s.one_rdm.isApprox(one_rdms.one_rdm));
-    BOOST_CHECK(one_rdms_s.one_rdm_aa.isApprox(one_rdms.one_rdm_aa));
-    BOOST_CHECK(one_rdms_s.one_rdm_bb.isApprox(one_rdms.one_rdm_bb));
-}
+    // Calculate the 1-DMs using specialized spin-resolved and 'selected' routines, and check if they are equal.
+    const GQCP::FrozenCoreFCIRDMBuilder spin_resolved_rdm_builder {onv_basis};
+    const auto one_rdms_specialized = spin_resolved_rdm_builder.calculate1RDMs(linear_expansion.coefficients());
+
+    const GQCP::SpinResolvedSelectedONVBasis selected_onv_basis {onv_basis};
+    const GQCP::SelectedRDMBuilder selected_rdm_builder {selected_onv_basis};
+    const auto one_rdms_selected = selected_rdm_builder.calculate1RDMs(linear_expansion.coefficients());
+
+    BOOST_CHECK(one_rdms_specialized.one_rdm.isApprox(one_rdms_selected.one_rdm, 1.0e-12));
+    BOOST_CHECK(one_rdms_specialized.one_rdm_aa.isApprox(one_rdms_selected.one_rdm_aa, 1.0e-12));
+    BOOST_CHECK(one_rdms_specialized.one_rdm_bb.isApprox(one_rdms_selected.one_rdm_bb, 1.0e-12));
 
 
-BOOST_AUTO_TEST_CASE ( FrozenCoreFCI_two_rdms ) {
+    // Calculate the 2-DMs using specialized spin-resolved and 'selected' routines, and check if they are equal.
+    const auto two_rdms_specialized = spin_resolved_rdm_builder.calculate2RDMs(linear_expansion.coefficients());
+    const auto two_rdms_selected = selected_rdm_builder.calculate2RDMs(linear_expansion.coefficients());
 
-    size_t K = 4;
-    GQCP::Molecule H5 = GQCP::Molecule::HChain(K, 1.1);
-    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (H5, "STO-3G");
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, H5);  // in an AO basis
-
-    GQCP::SpinResolvedFrozenONVBasis fock_space (K, 3, 3, 2);
-    GQCP::SpinResolvedSelectedONVBasis selected_fock_space (fock_space);
-    GQCP::FrozenCoreFCI fci (fock_space);
-
-    // Specify solver options and solve the eigenvalue problem
-    // Solve the dense FCI eigenvalue problem
-    GQCP::CISolver ci_solver (fci, sq_hamiltonian);
-    GQCP::DenseSolverOptions solver_options;
-    ci_solver.solve(solver_options);
-
-    GQCP::VectorX<double> coef = ci_solver.get_eigenpair().get_eigenvector();
-
-    // Get the frozen core FCI and SelectedCI 2-RDMS
-    GQCP::SelectedRDMBuilder sci_rdm(selected_fock_space);
-    GQCP::FrozenCoreFCIRDMBuilder fci_rdm(fock_space);
-    GQCP::TwoRDMs<double> two_rdms_s = sci_rdm.calculate2RDMs(coef);
-    GQCP::TwoRDMs<double> two_rdms = fci_rdm.calculate2RDMs(coef);
-
-
-    BOOST_CHECK(two_rdms_s.two_rdm_aaaa.isApprox(two_rdms.two_rdm_aaaa, 1.0e-06));
-    BOOST_CHECK(two_rdms_s.two_rdm_aabb.isApprox(two_rdms.two_rdm_aabb, 1.0e-06));
-    BOOST_CHECK(two_rdms_s.two_rdm_bbaa.isApprox(two_rdms.two_rdm_bbaa, 1.0e-06));
-    BOOST_CHECK(two_rdms_s.two_rdm_bbbb.isApprox(two_rdms.two_rdm_bbbb, 1.0e-06));
-    BOOST_CHECK(two_rdms_s.two_rdm.isApprox(two_rdms.two_rdm, 1.0e-06));
+    BOOST_CHECK(two_rdms_specialized.two_rdm_aaaa.isApprox(two_rdms_selected.two_rdm_aaaa, 1.0e-12));
+    BOOST_CHECK(two_rdms_specialized.two_rdm_aabb.isApprox(two_rdms_selected.two_rdm_aabb, 1.0e-12));
+    BOOST_CHECK(two_rdms_specialized.two_rdm_bbaa.isApprox(two_rdms_selected.two_rdm_bbaa, 1.0e-12));
+    BOOST_CHECK(two_rdms_specialized.two_rdm_bbbb.isApprox(two_rdms_selected.two_rdm_bbbb, 1.0e-12));
+    BOOST_CHECK(two_rdms_specialized.two_rdm.isApprox(two_rdms_selected.two_rdm, 1.0e-12));
 }
