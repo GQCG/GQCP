@@ -26,7 +26,7 @@ static void test_case(benchmark::State& state) {
     // Specify an initial guess for the Davidson solver.
     const auto initial_guess = onv_basis.hartreeFockExpansion();
     auto environment = GQCP::CIEnvironment::Iterative(sq_hamiltonian, onv_basis, initial_guess);
-    auto solver = GQCP::EigenproblemSolver::Dense();
+    auto solver = GQCP::EigenproblemSolver::Davidson();
 
 
     // Code inside this loop is measured repeatedly.
