@@ -34,9 +34,10 @@ requirements:
       - {{ pin_compatible('eigen', min_pin='x.x', max_pin='x.x') }}
 test:
   commands:
-    - test -f ${PREFIX}/include/Spectra/GenEigsBase.h
+    - test -f ${PREFIX}/lib/libgqcp$SHLIB_EXT
+    - test -f ${PREFIX}/include/gqcp.h
 about:
-    home: https://github.com/GQCG/spectra
-    license: Mozilla Public License 2.0 (MPL 2.0)
+    home: https://github.com/GQCG/GQCP.git
+    license: GNU Lesser General Public License v3.0
     license_file: LICENSE
-    summary: 'A header-only C++ library for large scale eigenvalue problems.'
+    summary: 'The Ghent Quantum Chemistry Package for electronic structure calculations.'
