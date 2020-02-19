@@ -20,15 +20,17 @@ blas_impl:
 cmake:
   - 3.14.0
 mkl:
-  - 2019
+  - 2019.0
+mkl_include:
+  - 2019.5
+mkl_static:
+  - 2019.5
 pybind:
-  - 2.3.0
+  - 2.4.3
 python:
-  - 3.8
-  - 3.7
-  - 3.6
+  - 3.8.1
 numpy:
-  - 1.16.4
+  - 1.18.1
 eigen:
   - 3.3.7
 boost_cpp:

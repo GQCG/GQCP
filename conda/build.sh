@@ -13,7 +13,9 @@ if [ `uname` == Darwin ]; then
         -DCMAKE_CXX_FLAGS="${CXXFLAGS} ${OPTS}" \
         -DCMAKE_VERBOSE_MAKEFILE=TRUE \
         -DBUILD_TESTS=TRUE \
-        -DBUILD_PYTHON_BINDINGS=TRUE
+        -DBUILD_PYTHON_BINDINGS=TRUE \
+        -DPYTHON_EXECUTABLE=${PYTHON} \
+        -DPYTHON_LIBRARY=${STDLIB_DIR}/libpython${PY_VER}.a
 fi
 if [ `uname` == Linux ]; then
     ${BUILD_PREFIX}/bin/cmake \
@@ -27,7 +29,9 @@ if [ `uname` == Linux ]; then
         -DCMAKE_VERBOSE_MAKEFILE=TRUE \
         -DBUILD_TESTS=TRUE \
         -DBUILD_TESTS=TRUE \
-        -DBUILD_PYTHON_BINDINGS=TRUE
+        -DBUILD_PYTHON_BINDINGS=TRUE \
+        -DPYTHON_EXECUTABLE=${PYTHON} \
+        -DPYTHON_LIBRARY=${STDLIB_DIR}/libpython${PY_VER}.a
 fi
 
 make -j${CPU_COUNT}

@@ -20,22 +20,26 @@ requirements:
       - boost-cpp {{ boost_cpp }}
       - blas
       - mkl
-      - python
+      - python {{ python }}
       - pybind11
       - benchmark
       - numpy
       - libint
       - spectra
       - cint
-      - mkl-include
-      - mkl-static
+      - mkl-include {{ mkl_include }}
+      - mkl-static {{ mkl_static }}
+
     run:
+      - {{ pin_compatible('python', min_pin='x.x', max_pin='x.x') }}
+      - {{ pin_compatible('mkl-include', min_pin='x.x', max_pin='x.x') }}
+      - {{ pin_compatible('mkl-static', min_pin='x.x', max_pin='x.x') }}
       - {{ pin_compatible('boost-cpp', min_pin='x.x', max_pin='x.x') }}
       - {{ pin_compatible('eigen', min_pin='x.x', max_pin='x.x') }}
 test:
   commands:
     - test -f ${PREFIX}/lib/libgqcp$SHLIB_EXT
-    - test -f ${PREFIX}/include/gqcp.h
+    - test -f ${PREFIX}/include/gqcp.hpp
 about:
     home: https://github.com/GQCG/GQCP.git
     license: GNU Lesser General Public License v3.0
