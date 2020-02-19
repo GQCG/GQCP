@@ -7,6 +7,7 @@
 #include <benchmark/benchmark.h>
 
 #include "Basis/transform.hpp"
+#include "Mathematical/Optimization/Eigenproblem/Davidson/DavidsonSolver.hpp"
 #include "Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp"
 #include "Molecule/Molecule.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
@@ -55,14 +56,14 @@ static void fci_dense_molecule(benchmark::State& state) {
 
 
     // Do the FCI calculation by setting up a full spin-resolved ONV basis, an eigenvalue problem solver and a corresponding environment.
-    GQCP::SpinResolvedONVBasis onv_basis (K, N_P, N_P);
+    const GQCP::SpinResolvedONVBasis onv_basis (K, N_P, N_P);
     auto environment = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
     auto solver = GQCP::EigenproblemSolver::Dense();
 
 
     // Code inside this loop is measured repeatedly
     for (auto _ : state) {
-        const auto electronic_energy = GQCP::QCMethod::CI(onv_basis).optimize(solver, environment).groundStateEnergy();
+        const auto electronic_energy = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
 
         benchmark::DoNotOptimize(electronic_energy);  // make sure that the variable is not optimized away by compiler
     }
@@ -102,21 +103,19 @@ static void fci_davidson_molecule(benchmark::State& state) {
     GQCP::basisTransform(spinor_basis, sq_hamiltonian, rhf_parameters.coefficientMatrix());
 
 
+    // Do the FCI calculation by setting up a full spin-resolved ONV basis, an eigenvalue problem solver and a corresponding environment.
+    const GQCP::SpinResolvedONVBasis onv_basis (K, N_P, N_P);
 
-    // Diagonalize the FCI Hamiltonian in the canonical RHF basis
-    GQCP::SpinResolvedONVBasis onv_basis (K, N_P, N_P);
-    GQCP::FCI fci (onv_basis);
-
-    GQCP::VectorX<double> initial_guess = onv_basis.hartreeFockExpansion();
-    GQCP::DavidsonSolverOptions solver_options (initial_guess);
+    const auto initial_guess = onv_basis.hartreeFockExpansion();
+    auto environment = GQCP::CIEnvironment::Iterative(sq_hamiltonian, onv_basis, initial_guess);
+    auto solver = GQCP::EigenproblemSolver::Davidson();
 
 
     // Code inside this loop is measured repeatedly
     for (auto _ : state) {
-        GQCP::CISolver ci_solver (fci, sq_hamiltonian);
-        ci_solver.solve(solver_options);
+        const auto electronic_energy = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
 
-        benchmark::DoNotOptimize(ci_solver);  // make sure that the variable is not optimized away by compiler
+        benchmark::DoNotOptimize(electronic_energy);  // make sure that the variable is not optimized away by compiler
     }
 
     state.counters["Hydrogen nuclei"] = K;

@@ -65,7 +65,7 @@ BOOST_AUTO_TEST_CASE ( FCI_H2_dense ) {
     // Create a dense solver and corresponding environment and put them together in the QCMethod.
     auto environment = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
     auto solver = GQCP::EigenproblemSolver::Dense();
-    const auto electronic_energy = GQCP::QCMethod::CI(onv_basis).optimize(solver, environment).groundStateEnergy();
+    const auto electronic_energy = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
 
 
     // Check our result with the reference.
@@ -146,7 +146,7 @@ BOOST_AUTO_TEST_CASE ( FCI_H2O_dense ) {
     // Create a dense solver and corresponding environment and put them together in the QCMethod
     auto environment = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
     auto solver = GQCP::EigenproblemSolver::Dense();
-    const auto electronic_energy = GQCP::QCMethod::CI(onv_basis).optimize(solver, environment).groundStateEnergy();
+    const auto electronic_energy = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
 
 
     // Check our result with the reference
@@ -188,7 +188,7 @@ BOOST_AUTO_TEST_CASE ( FCI_H2_Davidson ) {
     const auto x0 = onv_basis.hartreeFockExpansion();  // initial guess
     auto environment = GQCP::CIEnvironment::Iterative(sq_hamiltonian, onv_basis, x0);
     auto solver = GQCP::EigenproblemSolver::Davidson();
-    const auto electronic_energy = GQCP::QCMethod::CI(onv_basis).optimize(solver, environment).groundStateEnergy();
+    const auto electronic_energy = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
 
 
     // Check our result with the reference
@@ -231,7 +231,7 @@ BOOST_AUTO_TEST_CASE ( FCI_H2O_Davidson ) {
     const auto x0 = onv_basis.hartreeFockExpansion();  // initial guess
     auto environment = GQCP::CIEnvironment::Iterative(sq_hamiltonian, onv_basis, x0);
     auto solver = GQCP::EigenproblemSolver::Davidson();
-    const auto electronic_energy = GQCP::QCMethod::CI(onv_basis).optimize(solver, environment).groundStateEnergy();
+    const auto electronic_energy = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
 
 
     // Check our result with the reference
@@ -272,14 +272,14 @@ BOOST_AUTO_TEST_CASE ( FCI_H6_dense_vs_Davidson ) {
     // Create a dense solver and corresponding environment and put them together in the QCMethod
     auto dense_environment = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
     auto dense_solver = GQCP::EigenproblemSolver::Dense();
-    const auto dense_electronic_energy = GQCP::QCMethod::CI(onv_basis).optimize(dense_solver, dense_environment).groundStateEnergy();
+    const auto dense_electronic_energy = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(dense_solver, dense_environment).groundStateEnergy();
 
 
     // Create a Davidson solver and corresponding environment and put them together in the QCMethod
     const auto x0 = onv_basis.hartreeFockExpansion();  // initial guess
     auto davidson_environment = GQCP::CIEnvironment::Iterative(sq_hamiltonian, onv_basis, x0);
     auto davidson_solver = GQCP::EigenproblemSolver::Davidson();
-    const auto davidson_electronic_energy = GQCP::QCMethod::CI(onv_basis).optimize(dense_solver, dense_environment).groundStateEnergy();
+    const auto davidson_electronic_energy = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(dense_solver, dense_environment).groundStateEnergy();
 
 
     // Check if the dense and Davidson energies are equal

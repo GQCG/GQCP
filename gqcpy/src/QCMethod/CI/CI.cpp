@@ -17,10 +17,13 @@
 // 
 #include "QCMethod/CI/CI.hpp"
 
+#include "Mathematical/Algorithm/Algorithm.hpp"
 #include "Mathematical/Algorithm/IterativeAlgorithm.hpp"
+#include "ONVBasis/SeniorityZeroONVBasis.hpp"
+#include "ONVBasis/SpinResolvedFrozenONVBasis.hpp"
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
+#include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
 #include "QCMethod/CI/CIEnvironment.hpp"
-
 
 #include <pybind11/pybind11.h>
 
@@ -31,28 +34,55 @@ namespace py = pybind11;
 namespace gqcpy {
 
 
-void bindQCMethodCI(py::module& module) {
-    py::class_<GQCP::QCMethod::CI>(module, "CI", "The configuration interaction quantum chemical method.")
 
-        .def(py::init<const GQCP::SpinResolvedONVBasis, const size_t>(),
+/**
+ *  Since QCMethod::CI has a template argument for the representation of the ONVBasis, we'll have to bind each of them separately. In order to avoid duplicate code, we use a templated binding approach.
+ */
+
+/**
+ *  Bind a templated CI method.
+ * 
+ *  @tparam ONVBasis            the scalar type of the SQOperator
+ * 
+ *  @param module               the Pybind11 module
+ *  @param suffix               the suffix for the gqcpy class name, i.e. "SQOperator" + suffix
+ *  @param description          the description for the gqcpy class
+ */
+template <typename ONVBasis>
+void bindQCMethodCI(py::module& module, const std::string& suffix, const std::string& description) {
+    py::class_<GQCP::QCMethod::CI<ONVBasis>>(module, 
+        ("CI" + suffix).c_str(),
+        description.c_str()
+    )
+
+        .def(py::init<const ONVBasis, const size_t>(),
             py::arg("onv_basis"),
             py::arg("number_of_states") = 1
         )
 
         .def("optimize",
-            [] (const GQCP::QCMethod::CI& qc_method, GQCP::Algorithm<GQCP::EigenproblemEnvironment>& solver, GQCP::EigenproblemEnvironment& environment) {
+            [] (const GQCP::QCMethod::CI<ONVBasis>& qc_method, GQCP::Algorithm<GQCP::EigenproblemEnvironment>& solver, GQCP::EigenproblemEnvironment& environment) {
                 return qc_method.optimize(solver, environment);
             },
             "Optimize the CI wave function model: find the linear expansion coefficients."
         )
 
         .def("optimize",
-            [] (const GQCP::QCMethod::CI& qc_method, GQCP::IterativeAlgorithm<GQCP::EigenproblemEnvironment>& solver, GQCP::EigenproblemEnvironment& environment) {
+            [] (const GQCP::QCMethod::CI<ONVBasis>& qc_method, GQCP::IterativeAlgorithm<GQCP::EigenproblemEnvironment>& solver, GQCP::EigenproblemEnvironment& environment) {
                 return qc_method.optimize(solver, environment);
             },
             "Optimize the CI wave function model: find the linear expansion coefficients."
         )
     ;
+}
+
+
+void bindQCMethodCIs(py::module& module) {
+
+    bindQCMethodCI<GQCP::SeniorityZeroONVBasis>(module, "SeniorityZero", "Configuration interaction in a seniority-zero ONV basis.");
+    bindQCMethodCI<GQCP::SpinResolvedFrozenONVBasis>(module, "SpinResolvedFrozen", "Configuration interaction in a frozen core spin-resolved ONV basis.");
+    bindQCMethodCI<GQCP::SpinResolvedONVBasis>(module, "SpinResolved", "Configuration interaction in a spin-resolved ONV basis.");
+    bindQCMethodCI<GQCP::SpinResolvedSelectedONVBasis>(module, "SpinResolvedSelected", "Configuration interaction in a spin-resolved selected ONV basis.");
 }
 
 

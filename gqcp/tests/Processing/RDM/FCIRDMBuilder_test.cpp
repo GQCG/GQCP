@@ -160,10 +160,10 @@ BOOST_AUTO_TEST_CASE ( energy_expectation_value_Hamiltonian ) {
 
 
 /**
- *  Check if the 1- and 2-DMs for a frozen core spin-resolved ONV basis are equal to the 'selected' case.
+ *  Check if the 1- and 2-DMs for a full spin-resolved ONV basis are equal to the 'selected' case.
  *  The system of interested is H2O//STO-3G, with 7 spatial orbitals and a Fock space dimension of 441. However, we're choosing a different number of alpha and beta electrons. (N_alpha = 4, N_beta = 6)
  */
-BOOST_AUTO_TEST_CASE ( H2O_FCI_LinearExpansion_vs_Selected_CI ) {
+BOOST_AUTO_TEST_CASE ( specialized_vs_selected_DMs ) {
 
     // Set up the molecular Hamiltonian in a Löwdin-orthonormalized spinor basis.
     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");

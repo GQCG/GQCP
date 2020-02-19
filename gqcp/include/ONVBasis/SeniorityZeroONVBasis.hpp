@@ -84,6 +84,11 @@ public:
      *  @return a spin-unresolved ONV basis that behaves analogously (with respect to a doubly-occupied situation) as this seniority-zero ONV basis
      */
     SpinUnresolvedONVBasis proxy() const { return SpinUnresolvedONVBasis(this->K, this->N_P); }
+
+    /**
+     *  @return a coefficient vector that describes the expansion coefficients of a random, normalized linear expansion
+     */
+    VectorX<double> randomExpansion() const;
 };
 
 

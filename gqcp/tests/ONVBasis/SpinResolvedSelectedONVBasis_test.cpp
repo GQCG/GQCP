@@ -25,21 +25,6 @@
 
 
 /**
- *  Test the constructors of SpinResolvedSelectedONVBasis.
- */
-BOOST_AUTO_TEST_CASE ( constructor ) {
-
-    BOOST_CHECK_NO_THROW(GQCP::SpinResolvedSelectedONVBasis (10, 5, 5));
-
-    GQCP::SpinResolvedONVBasis fock_space_product (10, 5, 5);
-    GQCP::SpinUnresolvedONVBasis fock_space (10, 5);
-
-    BOOST_CHECK_NO_THROW(GQCP::SpinResolvedSelectedONVBasis fock (fock_space_product));
-    BOOST_CHECK_NO_THROW(GQCP::SpinResolvedSelectedONVBasis fock (fock_space));
-}
-
-
-/**
  *  Test the general functionality of the addConfiguration function, by testing throws and retrieving configurations.
  */
 BOOST_AUTO_TEST_CASE ( addConfiguration ) {
@@ -47,8 +32,8 @@ BOOST_AUTO_TEST_CASE ( addConfiguration ) {
     // Create a faulty expansion: one of the orbitals is different
     GQCP::SpinResolvedSelectedONVBasis fock_space (3, 1, 1);
 
-    std::vector<std::string> alpha_set = {"001", "010"};
-    std::vector<std::string> beta_set = {"001", "010"};
+    std::vector<std::string> alpha_set {"001", "010"};
+    std::vector<std::string> beta_set {"001", "010"};
 
     BOOST_CHECK_NO_THROW(fock_space.addConfiguration(alpha_set, beta_set));
 

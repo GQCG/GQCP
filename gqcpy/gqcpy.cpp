@@ -74,7 +74,7 @@ void bindMullikenConstrainedFCI(py::module& module);
 
 // QCMethod - CI
 void bindCIEnvironment(py::module& module);
-void bindQCMethodCI(py::module& module);
+void bindQCMethodCIs(py::module& module);
 
 
 // QCMethod - HF
@@ -89,7 +89,7 @@ void bindQCStructures(py::module& module);
 
 
 // QCModel - CI
-void bindLinearExpansion(py::module& module);
+void bindLinearExpansions(py::module& module);
 
 
 // QCModel - HF
@@ -157,7 +157,7 @@ PYBIND11_MODULE (gqcpy, module) {
 
     // QCMethod - CI
     gqcpy::bindCIEnvironment(module);
-    gqcpy::bindQCMethodCI(module);
+    gqcpy::bindQCMethodCIs(module);
 
 
     // QCMethod - HF
@@ -172,7 +172,7 @@ PYBIND11_MODULE (gqcpy, module) {
 
 
     // QCModel - CI
-    gqcpy::bindLinearExpansion(module);
+    gqcpy::bindLinearExpansions(module);
 
 
     // QCModel - HF
