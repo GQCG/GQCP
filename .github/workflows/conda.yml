@@ -24,8 +24,11 @@ jobs:
         bash $HOME/miniconda.sh -b -u -p $HOME/miniconda
         echo "::add-path::$HOME/miniconda/bin"
 
+    - name: Install conda build
+      run: conda install conda-build
+
     - name: Build conda package
-      run: |
-        conda-build -c gqcg -c conda-forge -c intel conda
+      run: conda-build -c gqcg -c conda-forge -c intel conda
+      
 # Check artifact location
 # Then anaconda upload with secret keys        
