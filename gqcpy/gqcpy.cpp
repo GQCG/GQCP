@@ -26,9 +26,13 @@ namespace py = pybind11;
 namespace gqcpy {
 
 
-// Basis
+// Basis - SpinorBasis
 void bindGSpinorBasis(py::module& module);
 void bindRSpinorBasis(py::module& module);
+
+
+// Basis
+void bindBasisTransform(py::module& module);
 
 
 // Mathematical - Algorithm
@@ -103,9 +107,13 @@ void bindVersion(py::module& module);
  */
 PYBIND11_MODULE (gqcpy, module) {
 
-    // Basis
+    // Basis - SpinorBasis
     gqcpy::bindGSpinorBasis(module);
     gqcpy::bindRSpinorBasis(module);
+
+
+    // Basis
+    gqcpy::bindBasisTransform(module);
 
 
     // Mathematical - Algorithm
