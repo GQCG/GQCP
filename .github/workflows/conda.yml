@@ -29,8 +29,8 @@ jobs:
 
     - name: Build conda package
       run: |
-        export CC=/usr/bin/cc
-        export CXX=/usr/bin/c++
+        export GCC=/usr/bin/cc
+        export GXX=/usr/bin/c++
         conda-build -c gqcg -c conda-forge -c intel conda
 
 # Check artifact location
