@@ -28,7 +28,10 @@ jobs:
       run: conda install conda-build
 
     - name: Build conda package
-      run: conda-build -c gqcg -c conda-forge -c intel conda
-      
+      run: |
+        export CC=/usr/bin/cc
+        export CXX=/usr/bin/c++
+        conda-build -c gqcg -c conda-forge -c intel conda
+
 # Check artifact location
 # Then anaconda upload with secret keys        
