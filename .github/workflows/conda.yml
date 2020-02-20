@@ -1,0 +1,31 @@
+name: GQCP_conda
+
+on: pull_request
+
+  # After testing, this will be enabled to only build on pushes to develop
+  #  push:
+#    branches:
+#      - develop
+
+jobs:
+  linux:
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - uses: actions/setup-python@v1
+      with:
+        python-version: '3.7' 
+    - uses: actions/checkout@v1
+
+    - name: Install Miniconda
+      run: |
+        wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O $HOME/miniconda.sh
+        bash $HOME/miniconda.sh -b -u -p $HOME/miniconda
+        echo "::add-path::$HOME/miniconda/bin"
+
+    - name: Build conda package
+      run: |
+        conda-build -c gqcg -c conda-forge -c intel conda
+# Check artifact location
+# Then anaconda upload with secret keys        
