@@ -91,7 +91,7 @@ OneRDMs<double> FCIRDMBuilder::calculate1RDMs(const VectorX<double>& x) const {
             }  // annihilate on p
         }  // p loop
 
-        if (I_alpha < dim_alpha - 1) {  // prevent the last permutation to occur
+        if (I_alpha < dim_alpha - 1) {  // prevent the last permutation from occurring
             fock_space_alpha.setNextONV(spin_string_alpha);
         }
         
@@ -138,7 +138,7 @@ OneRDMs<double> FCIRDMBuilder::calculate1RDMs(const VectorX<double>& x) const {
             }  // annihilate on p
         }  // loop over p
 
-        if (I_beta < dim_beta - 1) {  // prevent the last permutation to occur
+        if (I_beta < dim_beta - 1) {  // prevent the last permutation from occurring
             fock_space_beta.setNextONV(spin_string_beta);
         }
 
@@ -227,7 +227,7 @@ TwoRDMs<double> FCIRDMBuilder::calculate2RDMs(const VectorX<double>& x) const {
             }
         }  // loop over p
 
-        if (I_alpha < dim_alpha - 1) {  // prevent the last permutation to occur
+        if (I_alpha < dim_alpha - 1) {  // prevent the last permutation from occurring
             fock_space_alpha.setNextONV(spin_string_alpha_aaaa);
         }
 
@@ -278,7 +278,7 @@ TwoRDMs<double> FCIRDMBuilder::calculate2RDMs(const VectorX<double>& x) const {
 
                             }  // loop over r
 
-                            if (I_beta < dim_beta - 1) {  // prevent the last permutation to occur
+                            if (I_beta < dim_beta - 1) {  // prevent the last permutation from occurring
                                 fock_space_beta.setNextONV(spin_string_beta_aabb);
                             }
 
@@ -292,7 +292,7 @@ TwoRDMs<double> FCIRDMBuilder::calculate2RDMs(const VectorX<double>& x) const {
             }
         }  // loop over p
 
-        if (I_alpha < dim_alpha - 1) {  // prevent the last permutation to occur
+        if (I_alpha < dim_alpha - 1) {  // prevent the last permutation from occurring
             fock_space_alpha.setNextONV(spin_string_alpha_aabb);
         }
 
@@ -356,7 +356,7 @@ TwoRDMs<double> FCIRDMBuilder::calculate2RDMs(const VectorX<double>& x) const {
             }
         }  // loop over p
 
-        if (I_beta < dim_beta - 1) {  // prevent the last permutation to occur
+        if (I_beta < dim_beta - 1) {  // prevent the last permutation from occurring
             fock_space_beta.setNextONV(spin_string_beta_bbbb);
         }
 

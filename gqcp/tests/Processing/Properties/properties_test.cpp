@@ -26,7 +26,6 @@
 #include "Operator/FirstQuantized/Operator.hpp"
 #include "Processing/Properties/RHFElectricalResponseSolver.hpp"
 #include "Processing/RDM/RDMCalculator.hpp"
-#include "QCMethod/CI/CISolver.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/FCI.hpp"
 #include "QCMethod/HF/DiagonalRHFFockMatrixObjective.hpp"
 #include "QCMethod/HF/RHF.hpp"
@@ -183,9 +182,9 @@ BOOST_AUTO_TEST_CASE ( dyson_coefficients ) {
     GQCP::VectorX<double> coeffs2 = GQCP::VectorX<double>::Zero(2); 
     coeffs2 << 0.640184, 0.768221;
     
-    const auto linear_expansion1 = GQCP::LinearExpansion(fock_space1, coeffs1);
-    const auto linear_expansion2 = GQCP::LinearExpansion(fock_space2, coeffs2);
-    const auto linear_expansion3 = GQCP::LinearExpansion(fock_space3, coeffs2);
+    const auto linear_expansion1 = GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>(fock_space1, coeffs1);
+    const auto linear_expansion2 = GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>(fock_space2, coeffs2);
+    const auto linear_expansion3 = GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>(fock_space3, coeffs2);
 
     // Calculate the coefficients of the Dyson orbitals and check with the reference
     const auto dyson_coefficients_beta = GQCP::calculateDysonOrbitalCoefficients(linear_expansion1, linear_expansion2);  // coefficients with a difference in beta occupation

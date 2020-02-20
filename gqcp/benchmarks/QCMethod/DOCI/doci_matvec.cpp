@@ -4,8 +4,9 @@
 
 #include <benchmark/benchmark.h>
 
-#include "QCMethod/CI/HamiltonianBuilder/DOCI.hpp"
+#include "ONVBasis/SeniorityZeroONVBasis.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
+#include "QCMethod/CI/HamiltonianBuilder/DOCI.hpp"
 
 
 static void CustomArguments(benchmark::internal::Benchmark* b) {
@@ -17,28 +18,28 @@ static void CustomArguments(benchmark::internal::Benchmark* b) {
 
 static void matvec(benchmark::State& state) {
 
-    // Set up a random second-quantized Hamiltonian and a doubly-occupied ONV basis
+    // Set up a random second-quantized Hamiltonian and a doubly-occupied ONV basis.
     const size_t K = state.range(0);
-    const size_t N_P = state.range(1);
+    const size_t N_P = state.range(1);  // number of electron pairs
 
-    const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Random(K);
-    const GQCP::SpinUnresolvedONVBasis onv_basis (K, N_P);
+    const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Random(K);  // not necessarily in a non-orthonormal basis, but this doesn't matter here
+    const GQCP::SeniorityZeroONVBasis onv_basis (K, N_P);
 
-    GQCP::DOCI doci (onv_basis);
+    GQCP::DOCI doci_builder {onv_basis};  // the DOCI HamiltonianBuilder
 
-    const auto diagonal = doci.calculateDiagonal(sq_hamiltonian);
+    const auto diagonal = doci_builder.calculateDiagonal(sq_hamiltonian);
     const auto x = onv_basis.randomExpansion();
 
-    // Code inside this loop is measured repeatedly
+    // Code inside this loop is measured repeatedly.
     for (auto _ : state) {
-        const auto matvec = doci.matrixVectorProduct(sq_hamiltonian, x, diagonal);
+        const auto matvec = doci_builder.matrixVectorProduct(sq_hamiltonian, x, diagonal);
 
-        benchmark::DoNotOptimize(matvec);  // make sure the variable is not optimized away by compiler
+        benchmark::DoNotOptimize(matvec);  // make sure that the variable is not optimized away by compiler
     }
 
     state.counters["Spatial orbitals"] = K;
     state.counters["Electron pairs"] = N_P;
-    state.counters["Dimension"] = onv_basis.get_dimension();
+    state.counters["Dimension"] = onv_basis.dimension();
 }
 
 

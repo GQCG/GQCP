@@ -18,8 +18,7 @@
 #pragma once
 
 
-#include "ONVBasis/SpinUnresolvedONVBasis.hpp"
-#include "Processing/RDM/BaseRDMBuilder.hpp"
+#include "ONVBasis/SeniorityZeroONVBasis.hpp"
 #include "Processing/RDM/RDMs.hpp"
 
 
@@ -27,50 +26,37 @@ namespace GQCP {
 
 
 /**
- *  A class capable of calculating 1- and 2-RDMs from DOCI wave functions
+ *  A class capable of calculating 1- and 2-DMs from doubly-occupied ONV bases.
  */
-class DOCIRDMBuilder : public BaseRDMBuilder {
-    SpinUnresolvedONVBasis fock_space;
+class DOCIRDMBuilder {
+    SeniorityZeroONVBasis onv_basis;
 
 
 public:
     // CONSTRUCTORS
-    explicit DOCIRDMBuilder(const SpinUnresolvedONVBasis& fock_space);
 
-
-    // DESTRUCTOR
-    ~DOCIRDMBuilder() = default;
-
-
-    // OVERRIDDEN GETTERS
-    const BaseONVBasis* get_fock_space() const override { return &fock_space; }
-
-
-    // OVERRIDDEN PUBLIC METHODS
     /**
-     *  @param x        the coefficient vector representing the DOCI wave function
-     *
-     *  @return all 1-RDMs given a coefficient vector
+     *  @param onv_basis            the seniority-zero ONV basis
      */
-    OneRDMs<double> calculate1RDMs(const VectorX<double>& x) const override;
+    explicit DOCIRDMBuilder(const SeniorityZeroONVBasis& onv_basis);
+
+
+
+    // PUBLIC METHODS
 
     /**
      *  @param x        the coefficient vector representing the DOCI wave function
      *
-     *  @return all 2-RDMs given a coefficient vector
+     *  @return the 1-RDMs given a coefficient vector
      */
-    TwoRDMs<double> calculate2RDMs(const VectorX<double>& x) const override;
+    OneRDMs<double> calculate1RDMs(const VectorX<double>& x) const;
 
     /**
-     *  @param bra_indices      the indices of the orbitals that should be annihilated on the left (on the bra)
-     *  @param ket_indices      the indices of the orbitals that should be annihilated on the right (on the ket)
-     *  @param x                the coefficient vector representing the DOCI wave function
+     *  @param x        the coefficient vector representing the DOCI wave function
      *
-     *  @return an element of the spin-summed (total) N-RDM, as specified by the given bra and ket indices
-     *
-     *      calculateElement({0, 1}, {2, 1}) would calculate d^{(2)} (0, 1, 1, 2): the operator string would be a^\dagger_0 a^\dagger_1 a_2 a_1
+     *  @return the 2-RDMs given a coefficient vector
      */
-    double calculateElement(const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices, const VectorX<double>& x) const override;
+    TwoRDMs<double> calculate2RDMs(const VectorX<double>& x) const;
 };
 
 

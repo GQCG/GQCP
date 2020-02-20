@@ -3,7 +3,7 @@ target_sources(gqcp
         DOCI.hpp
         FCI.hpp
         FrozenCoreCI.hpp
-        FrozenCoreDOCI.hpp
+        # FrozenCoreDOCI.hpp
         FrozenCoreFCI.hpp
         HamiltonianBuilder.hpp
         Hubbard.hpp

@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "ONVBasis/SpinUnresolvedONVBasis.hpp"
+#include "ONVBasis/SeniorityZeroONVBasis.hpp"
 #include "QCModel/CI/LinearExpansion.hpp"
 
 
@@ -44,7 +44,7 @@ public:
      *
      *  @return the wave function expansion corresponding to the geminal coefficients
      */
-    LinearExpansion toLinearExpansion(const SpinUnresolvedONVBasis& onv_basis) const;
+    LinearExpansion<SeniorityZeroONVBasis> toLinearExpansion(const SeniorityZeroONVBasis& onv_basis) const;
 };
 
 

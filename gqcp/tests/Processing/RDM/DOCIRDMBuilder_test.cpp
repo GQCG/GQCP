@@ -19,178 +19,61 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "Processing/RDM/DOCIRDMBuilder.hpp"
-
+#include "Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp"
+#include "ONVBasis/SeniorityZeroONVBasis.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "Processing/Properties/expectation_values.hpp"
-#include "Processing/RDM/RDMCalculator.hpp"
-#include "QCMethod/CI/CISolver.hpp"
-#include "QCMethod/CI/HamiltonianBuilder/DOCI.hpp"
+#include "Processing/RDM/DOCIRDMBuilder.hpp"
+#include "Processing/RDM/SelectedRDMBuilder.hpp"
+#include "QCMethod/CI/CI.hpp"
+#include "QCMethod/CI/CIEnvironment.hpp"
 
 
-BOOST_AUTO_TEST_CASE ( lih_1RDM_trace ) {
+/**
+ *  Check if the 1- and 2-DMs for a seniority-zero ONV basis are equal to the 'selected' case.
+ *  The system of interested is H2O//STO-3G, with 7 spatial orbitals and a Fock space dimension of 441.
+ */
+BOOST_AUTO_TEST_CASE ( specialized_vs_selected_DMs ) {
 
-    // Test if the trace of the 1-RDM gives N
+    // Set up the molecular Hamiltonian in a Löwdin-orthonormalized spinor basis.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o_Psi4_GAMESS.xyz");
+    const auto N_P = molecule.numberOfElectrons() / 2;  // number of electron pairs
 
-    // Get the 1-RDM from DOCI
-    size_t N = 4;  // 4 electrons
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::ReadFCIDUMP("data/lih_631g_caitlin.FCIDUMP");
-    size_t K = sq_hamiltonian.dimension();  // 16 SO
+    GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (molecule, "STO-3G");
+    const auto K = spinor_basis.numberOfSpatialOrbitals();
+    spinor_basis.lowdinOrthonormalize();
 
-    GQCP::SpinUnresolvedONVBasis fock_space (K, N/2);  // dim = 120
-    GQCP::DOCI doci (fock_space);
-
-    // Specify solver options and solve the eigenvalue problem
-    // Solve the dense DOCI eigenvalue problem
-    GQCP::CISolver ci_solver (doci, sq_hamiltonian);
-    GQCP::DenseSolverOptions solver_options;
-    ci_solver.solve(solver_options);
-
-    GQCP::VectorX<double> coef = ci_solver.get_eigenpair().get_eigenvector();
-
-    // Check if the DOCI 1-RDM has the proper trace.
-    GQCP::DOCIRDMBuilder doci_rdm (fock_space);
-    GQCP::OneRDMs<double> one_rdms = doci_rdm.calculate1RDMs(coef);
+    const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, molecule);
 
 
-    BOOST_CHECK(std::abs(one_rdms.one_rdm.trace() - N) < 1.0e-12);
-}
+    // Do a dense DOCI calculation.
+    const GQCP::SeniorityZeroONVBasis onv_basis {K, N_P};
+
+    auto environment = GQCP::CIEnvironment::Dense(sq_hamiltonian, onv_basis);
+    auto solver = GQCP::EigenproblemSolver::Dense();
+
+    const auto linear_expansion = GQCP::QCMethod::CI<GQCP::SeniorityZeroONVBasis>(onv_basis).optimize(solver, environment).groundStateParameters();
 
 
-BOOST_AUTO_TEST_CASE ( lih_2RDM_trace ) {
+    // Calculate the 1-DMs using specialized spin-resolved and 'selected' routines, and check if they are equal.
+    const GQCP::DOCIRDMBuilder seniority_zero_rdm_builder {onv_basis};
+    const auto one_rdms_specialized = seniority_zero_rdm_builder.calculate1RDMs(linear_expansion.coefficients());
 
-    // Test if the trace of the 2-RDM (d_ppqq) gives N(N-1)
+    const GQCP::SpinResolvedSelectedONVBasis selected_onv_basis {onv_basis};
+    const GQCP::SelectedRDMBuilder selected_rdm_builder {selected_onv_basis};
+    const auto one_rdms_selected = selected_rdm_builder.calculate1RDMs(linear_expansion.coefficients());
 
-
-    // Get the 1-RDM from DOCI
-    size_t N = 4;  // 4 electrons
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::ReadFCIDUMP("data/lih_631g_caitlin.FCIDUMP");
-    size_t K = sq_hamiltonian.dimension();  // 16 SO
-
-    GQCP::SpinUnresolvedONVBasis fock_space (K, N/2);  // dim = 120
-    GQCP::DOCI doci (fock_space);
-
-    // Specify solver options and solve the eigenvalue problem
-    // Solve the dense DOCI eigenvalue problem
-    GQCP::CISolver ci_solver (doci, sq_hamiltonian);
-    GQCP::DenseSolverOptions solver_options;
-    ci_solver.solve(solver_options);
-
-    GQCP::VectorX<double> coef = ci_solver.get_eigenpair().get_eigenvector();
-
-    // Check if the 2-RDM has the proper trace.
-    GQCP::DOCIRDMBuilder doci_rdm (fock_space);
-    GQCP::TwoRDMs<double> two_rdms = doci_rdm.calculate2RDMs(coef);
+    BOOST_CHECK(one_rdms_specialized.one_rdm.isApprox(one_rdms_selected.one_rdm, 1.0e-12));
+    BOOST_CHECK(one_rdms_specialized.one_rdm_aa.isApprox(one_rdms_selected.one_rdm_aa, 1.0e-12));
+    BOOST_CHECK(one_rdms_specialized.one_rdm_bb.isApprox(one_rdms_selected.one_rdm_bb, 1.0e-12));
 
 
-    BOOST_CHECK(std::abs(two_rdms.two_rdm.trace() - N*(N-1)) < 1.0e-12);
-}
+    // Calculate the 2-DMs using specialized spin-resolved and 'selected' routines, and check if they are equal.
+    const auto two_rdms_specialized = seniority_zero_rdm_builder.calculate2RDMs(linear_expansion.coefficients());
+    const auto two_rdms_selected = selected_rdm_builder.calculate2RDMs(linear_expansion.coefficients());
 
-
-BOOST_AUTO_TEST_CASE ( lih_1RDM_2RDM_trace_DOCI ) {
-
-    // Test if the relevant 2-RDM trace gives the 1-RDM for DOCI
-
-
-    // Get the 1-RDM from DOCI
-    size_t N = 4;  // 4 electrons
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::ReadFCIDUMP("data/lih_631g_caitlin.FCIDUMP");
-    size_t K = sq_hamiltonian.dimension();  // 16 SO
-
-    GQCP::SpinUnresolvedONVBasis fock_space (K, N/2);  // dim = 120
-    GQCP::DOCI doci (fock_space);
-
-    // Specify solver options and solve the eigenvalue problem
-    // Solve the dense DOCI eigenvalue problem
-    GQCP::CISolver ci_solver (doci, sq_hamiltonian);
-    GQCP::DenseSolverOptions solver_options;
-    ci_solver.solve(solver_options);
-
-    GQCP::VectorX<double> coef = ci_solver.get_eigenpair().get_eigenvector();
-
-    // Check if the 2-RDM contraction matches the reduction.
-    GQCP::DOCIRDMBuilder doci_rdm (fock_space);
-    GQCP::TwoRDMs<double> two_rdms = doci_rdm.calculate2RDMs(coef);
-    GQCP::OneRDMs<double> one_rdms = doci_rdm.calculate1RDMs(coef);
-
-
-    GQCP::OneRDM<double> D_from_reduction = (1.0/(N-1)) * two_rdms.two_rdm.reduce();
-    BOOST_CHECK(one_rdms.one_rdm.isApprox(D_from_reduction, 1.0e-12));
-}
-
-
-BOOST_AUTO_TEST_CASE ( lih_energy_RDM_contraction_DOCI ) {
-
-    // Test if the contraction of the 1- and 2-RDMs with the one- and two-electron integrals gives the DOCI energy
-
-    // Get the 1-RDM from DOCI
-    size_t N = 4;  // 4 electrons
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::ReadFCIDUMP("data/lih_631g_caitlin.FCIDUMP");
-    size_t K = sq_hamiltonian.dimension();  // 16 SO
-
-    GQCP::SpinUnresolvedONVBasis fock_space (K, N/2);  // dim = 120
-    GQCP::DOCI doci (fock_space);
-
-    // Specify solver options and solve the eigenvalue problem
-    // Solve the dense DOCI eigenvalue problem
-    GQCP::CISolver ci_solver (doci, sq_hamiltonian);
-    GQCP::DenseSolverOptions solver_options;
-    ci_solver.solve(solver_options);
-
-    GQCP::VectorX<double> coef = ci_solver.get_eigenpair().get_eigenvector();
-    double energy_by_eigenvalue = ci_solver.get_eigenpair().get_eigenvalue();
-
-    // Check if the contraction energy matches the doci eigenvalue.
-    GQCP::DOCIRDMBuilder doci_rdm (fock_space);
-    GQCP::TwoRDMs<double> two_rdms = doci_rdm.calculate2RDMs(coef);
-    GQCP::OneRDMs<double> one_rdms = doci_rdm.calculate1RDMs(coef);
-
-
-    double energy_by_contraction = sq_hamiltonian.calculateExpectationValue(one_rdms.one_rdm, two_rdms.two_rdm);
-
-    BOOST_CHECK(std::abs(energy_by_eigenvalue - energy_by_contraction) < 1.0e-12);
-}
-
-BOOST_AUTO_TEST_CASE ( lih_1RDM_2RDM_trace_DOCI_LinearExpansion ) {
-
-    // Repeat test with LinearExpansion input
-
-    // Get the 1-RDM from DOCI
-    size_t N = 4;  // 4 electrons
-    auto sq_hamiltonian = GQCP::SQHamiltonian<double>::ReadFCIDUMP("data/lih_631g_caitlin.FCIDUMP");
-    size_t K = sq_hamiltonian.dimension();  // 16 SO
-
-    GQCP::SpinUnresolvedONVBasis fock_space (K, N/2);  // dim = 120
-    GQCP::DOCI doci (fock_space);
-
-    // Specify solver options and solve the eigenvalue problem
-    // Solve the dense DOCI eigenvalue problem
-    GQCP::CISolver ci_solver (doci, sq_hamiltonian);
-    GQCP::DenseSolverOptions solver_options;
-    ci_solver.solve(solver_options);
-
-    GQCP::LinearExpansion wave_function = ci_solver.makeLinearExpansion();
-
-    // Check if the 2-RDM contraction matches the reduction.
-    GQCP::RDMCalculator doci_rdm (wave_function);
-    GQCP::TwoRDMs<double> two_rdms = doci_rdm.calculate2RDMs();
-    GQCP::OneRDMs<double> one_rdms = doci_rdm.calculate1RDMs();
-
-    GQCP::OneRDM<double> D_from_reduction = (1.0/(N-1)) * two_rdms.two_rdm.reduce();
-    BOOST_CHECK(one_rdms.one_rdm.isApprox(D_from_reduction, 1.0e-12));
-}
-
-BOOST_AUTO_TEST_CASE ( throw_calculate_element ) {
-
-    // Create a test wave function
-    size_t K = 5;
-    size_t N = 4;
-    GQCP::SpinUnresolvedONVBasis fock_space (K, N);
-
-    GQCP::VectorX<double> coeff (fock_space.get_dimension());
-    coeff << 1, 1, -2, 4, -5;
-
-    // not implemented yet and should throw
-    GQCP::DOCIRDMBuilder doci_rdm (fock_space);
-    BOOST_CHECK_THROW(doci_rdm.calculateElement({0,0,1}, {1,0,2}, coeff), std::runtime_error);
+    BOOST_CHECK(two_rdms_specialized.two_rdm_aaaa.isApprox(two_rdms_selected.two_rdm_aaaa, 1.0e-12));
+    BOOST_CHECK(two_rdms_specialized.two_rdm_aabb.isApprox(two_rdms_selected.two_rdm_aabb, 1.0e-12));
+    BOOST_CHECK(two_rdms_specialized.two_rdm_bbaa.isApprox(two_rdms_selected.two_rdm_bbaa, 1.0e-12));
+    BOOST_CHECK(two_rdms_specialized.two_rdm_bbbb.isApprox(two_rdms_selected.two_rdm_bbbb, 1.0e-12));
+    BOOST_CHECK(two_rdms_specialized.two_rdm.isApprox(two_rdms_selected.two_rdm, 1.0e-12));
 }

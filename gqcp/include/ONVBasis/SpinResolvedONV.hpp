@@ -28,9 +28,39 @@ namespace GQCP {
  *  A spin-resolved ONV.
  */
 class SpinResolvedONV {
+private:
+    SpinUnresolvedONV onv_alpha;  // the ONV that descripes the occupations of the alpha spinors
+    SpinUnresolvedONV onv_beta;  // the ONV that descripes the occupations of the beta spinors
+
 public:
-    SpinUnresolvedONV onv_alpha;
-    SpinUnresolvedONV onv_beta;
+
+    /*
+     *  CONSTRUCTORS
+     */
+
+    /**
+     *  @param onv_alpha                the ONV that descripes the occupations of the alpha spinors
+     *  @param onv_beta                 the ONV that descripes the occupations of the beta spinors
+     */
+    SpinResolvedONV(const SpinUnresolvedONV& onv_alpha, const SpinUnresolvedONV& onv_beta) :
+        onv_alpha (onv_alpha),
+        onv_beta (onv_beta)
+    {}
+
+
+    /*
+     *  PUBLIC METHODS
+     */
+
+    /**
+     *  @return the ONV that descripes the occupations of the alpha spinors
+     */
+    const SpinUnresolvedONV& alphaONV() const { return this->onv_alpha; }
+
+    /**
+     *  @return the ONV that descripes the occupations of the beta spinors
+     */
+    const SpinUnresolvedONV& betaONV() const { return this->onv_beta; }
 };
 
 

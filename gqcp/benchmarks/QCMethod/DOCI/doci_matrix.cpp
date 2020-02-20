@@ -4,6 +4,7 @@
 
 #include <benchmark/benchmark.h>
 
+#include "ONVBasis/SeniorityZeroONVBasis.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/CI/HamiltonianBuilder/DOCI.hpp"
 
@@ -17,27 +18,27 @@ static void CustomArguments(benchmark::internal::Benchmark* b) {
 
 static void constructHamiltonian(benchmark::State& state) {
 
-    // Set up a random SQHamiltonian and a doubly occupied SpinUnresolvedONV basis
+    // Set up a random SQHamiltonian and a doubly occupied SpinUnresolvedONV basis.
     const size_t K = state.range(0);  // number of spatial orbitals
     const size_t N_P = state.range(1);  // number of electron pairs
 
-    const auto hamiltonian = GQCP::SQHamiltonian<double>::Random(K);
-    GQCP::SpinUnresolvedONVBasis doubly_occupied_onv_basis (K, N_P);
+    const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Random(K);  // not necessarily in a non-orthonormal basis, but this doesn't matter here
+    GQCP::SeniorityZeroONVBasis onv_basis {K, N_P};
 
-    GQCP::DOCI doci (doubly_occupied_onv_basis);
+    GQCP::DOCI doci {onv_basis};
 
 
-    // Code inside this loop is measured repeatedly
+    // Code inside this loop is measured repeatedly.
     for (auto _ : state) {
-        const auto H = doci.constructHamiltonian(hamiltonian);
+        const auto H = doci.constructHamiltonian(sq_hamiltonian);
 
-        benchmark::DoNotOptimize(H);  // make sure the variable is not optimized away by compiler
+        benchmark::DoNotOptimize(H);  // make sure that the variable is not optimized away by compiler
     }
 
 
     state.counters["Spatial orbitals"] = K;
     state.counters["Electron pairs"] = N_P;
-    state.counters["Dimension"] = doubly_occupied_onv_basis.get_dimension();
+    state.counters["Dimension"] = onv_basis.dimension();
 }
 
 

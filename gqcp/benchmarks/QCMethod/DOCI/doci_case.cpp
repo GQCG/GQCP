@@ -1,40 +1,44 @@
 /**
- *  A benchmark executable for DOCI calculations on CO in a 6-31G basisset.
+ *  A benchmark executable for DOCI calculations on CO in a 6-31G basisset. This system as (K = 28) number of spatial orbitals and (N = 14) electrons and a total seniority-zero dimension of 1184040.
  */
 
 #include <benchmark/benchmark.h>
 
+#include "Mathematical/Optimization/Eigenproblem/Davidson/DavidsonSolver.hpp"
+#include "ONVBasis/SeniorityZeroONVBasis.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "QCMethod/CI/CISolver.hpp"
-#include "QCMethod/CI/HamiltonianBuilder/DOCI.hpp"
+#include "QCMethod/CI/CI.hpp"
+#include "QCMethod/CI/CIEnvironment.hpp"
 
 
 static void test_case(benchmark::State& state) {
 
+    // Read in the molecular Hamiltonian.
     const auto sq_hamiltonian = GQCP::SQHamiltonian<double>::ReadFCIDUMP("data/co_631g_klaas.FCIDUMP");
-
-    // The system contains 14 electrons and requires 28 basis functions. For DOCI, we can use a SpinUnresolvedONV basis for 14 spatial orbitals and 7 electrons to represent this situation.  TODO: this should change: SpinUnresolvedONVBasis shouldn't be used for DOCI.
     const auto K = sq_hamiltonian.dimension();
-    const auto N_P = 7;
-    const GQCP::SpinUnresolvedONVBasis onv_basis (K, N_P);  // dim = 1184040
+    const auto N_P = 7;  // number of electron pairs
 
 
-    // Solve the DOCI eigenvalue problem with a Davidson solver
-    const GQCP::DOCI doci (onv_basis);
-    const GQCP::VectorX<double> initial_guess = onv_basis.hartreeFockExpansion();
-    GQCP::DavidsonSolverOptions solver_options (initial_guess);
+    // Set up a seniority-zero (doubly-occupied) ONV basis.
+    const GQCP::SeniorityZeroONVBasis onv_basis (K, N_P);
 
-    // Code inside this loop is measured repeatedly
+
+    // Specify an initial guess for the Davidson solver.
+    const auto initial_guess = onv_basis.hartreeFockExpansion();
+    auto environment = GQCP::CIEnvironment::Iterative(sq_hamiltonian, onv_basis, initial_guess);
+    auto solver = GQCP::EigenproblemSolver::Davidson();
+
+
+    // Code inside this loop is measured repeatedly.
     for (auto _ : state) {
-        GQCP::CISolver ci_solver (doci, sq_hamiltonian);
-        ci_solver.solve(solver_options);
+        const auto electronic_energy = GQCP::QCMethod::CI<GQCP::SeniorityZeroONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
 
-        benchmark::DoNotOptimize(ci_solver);  // make sure the variable is not optimized away by compiler
+        benchmark::DoNotOptimize(electronic_energy);  // make sure that the variable is not optimized away by compiler
     }
 
     state.counters["Spatial orbitals"] = K;
     state.counters["Electron pairs"] = N_P;
-    state.counters["Dimension"] = onv_basis.get_dimension();  // dim = 1184040
+    state.counters["Dimension"] = onv_basis.dimension();
 }
 
 

@@ -22,34 +22,18 @@
 #include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
 
 #include "Basis/transform.hpp"
-#include "QCModel/CI/LinearExpansionReader.hpp"
 
 
 /**
- *  Tests the constructors of the SpinResolvedSelectedONVBasis
- */
-BOOST_AUTO_TEST_CASE ( constructor ) {
-
-    BOOST_CHECK_NO_THROW(GQCP::SpinResolvedSelectedONVBasis (10, 5, 5));
-
-    GQCP::SpinResolvedONVBasis fock_space_product (10, 5, 5);
-    GQCP::SpinUnresolvedONVBasis fock_space (10, 5);
-
-    BOOST_CHECK_NO_THROW(GQCP::SpinResolvedSelectedONVBasis fock (fock_space_product));
-    BOOST_CHECK_NO_THROW(GQCP::SpinResolvedSelectedONVBasis fock (fock_space));
-}
-
-
-/**
- *  Tests general functionality of the SpinResolvedSelectedONVBasis::addConfiguration function, by testing throws and retrieving configurations
+ *  Test the general functionality of the addConfiguration function, by testing throws and retrieving configurations.
  */
 BOOST_AUTO_TEST_CASE ( addConfiguration ) {
 
     // Create a faulty expansion: one of the orbitals is different
     GQCP::SpinResolvedSelectedONVBasis fock_space (3, 1, 1);
 
-    std::vector<std::string> alpha_set = {"001", "010"};
-    std::vector<std::string> beta_set = {"001", "010"};
+    std::vector<std::string> alpha_set {"001", "010"};
+    std::vector<std::string> beta_set {"001", "010"};
 
     BOOST_CHECK_NO_THROW(fock_space.addConfiguration(alpha_set, beta_set));
 
@@ -78,51 +62,10 @@ BOOST_AUTO_TEST_CASE ( addConfiguration ) {
     GQCP::SpinResolvedONV configuration2 = fock_space.get_configuration(1);
 
     // Retrieve the string representation of the ONVs
-    std::string alpha1_test = configuration1.onv_alpha.asString();
-    std::string alpha2_test = configuration2.onv_alpha.asString();
-    std::string beta1_test = configuration1.onv_beta.asString();
-    std::string beta2_test = configuration2.onv_beta.asString();
-
-    BOOST_CHECK(alpha1_test == alpha1_ref);
-    BOOST_CHECK(alpha2_test == alpha2_ref);
-    BOOST_CHECK(beta1_test == beta1_ref);
-    BOOST_CHECK(beta2_test == beta2_ref);
-}
-
-
-/**
- *  Tests if a basis expansion file is correctly read in
- */
-BOOST_AUTO_TEST_CASE ( reader_test ) {
-
-    // We will test if we can construct a selected fock space and a corresponding coefficients
-    // through an input file
-    GQCP::LinearExpansionReader test_reader ("data/test_GAMESS_expansion");
-
-
-    // Check read vector is correct
-    // Gerenate the expected result
-    Eigen::Vector2d test_vector;
-    test_vector << 1.0000, 0.0000;
-
-    BOOST_CHECK(test_vector.isApprox(test_reader.get_coefficients()));
-
-    // Check if the expansions are equal
-    // Generate the expected results
-    std::string alpha1_ref = "0000000000000000000000000000000000000000000001";
-    std::string alpha2_ref = "0000000000000000000000000000000000000000000001";
-    std::string beta1_ref = "0000000000000000000000000000000000000000000001";
-    std::string beta2_ref = "0000000000000000000000000000000000000000000010";
-
-    // Retrieve the read results
-    GQCP::SpinResolvedONV configuration1 = test_reader.get_fock_space().get_configuration(0);
-    GQCP::SpinResolvedONV configuration2 = test_reader.get_fock_space().get_configuration(1);
-
-    // Retrieve the string representation of the ONVs
-    std::string alpha1_test = configuration1.onv_alpha.asString();
-    std::string alpha2_test = configuration2.onv_alpha.asString();
-    std::string beta1_test = configuration1.onv_beta.asString();
-    std::string beta2_test = configuration2.onv_beta.asString();
+    std::string alpha1_test = configuration1.alphaONV().asString();
+    std::string alpha2_test = configuration2.alphaONV().asString();
+    std::string beta1_test = configuration1.betaONV().asString();
+    std::string beta2_test = configuration2.betaONV().asString();
 
     BOOST_CHECK(alpha1_test == alpha1_ref);
     BOOST_CHECK(alpha2_test == alpha2_ref);

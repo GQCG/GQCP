@@ -36,9 +36,9 @@ static void diagonalizeHubbardMatrix(benchmark::State& state) {
         auto environment = GQCP::CIEnvironment::Dense(hubbard_hamiltonian, onv_basis);
         auto solver = GQCP::EigenproblemSolver::Dense();
 
-        const auto electronic_energy = GQCP::QCMethod::CI(onv_basis).optimize(solver, environment).groundStateEnergy();
+        const auto electronic_energy = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
 
-        benchmark::DoNotOptimize(electronic_energy);  // make sure the variable is not optimized away by compiler
+        benchmark::DoNotOptimize(electronic_energy);  // make sure that the variable is not optimized away by compiler
     }
 
     state.counters["Sites"] = K;

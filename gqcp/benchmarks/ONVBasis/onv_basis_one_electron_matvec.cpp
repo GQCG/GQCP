@@ -33,7 +33,7 @@ static void matvec(benchmark::State& state) {
     for (auto _ : state) {
         GQCP::VectorX<double> matvec = onv_basis.evaluateOperatorMatrixVectorProduct(sq_one_op, x, diagonal);
 
-        benchmark::DoNotOptimize(matvec);  // make sure the variable is not optimized away by compiler
+        benchmark::DoNotOptimize(matvec);  // make sure that the variable is not optimized away by compiler
     }
 
     state.counters["Spinors"] = M;

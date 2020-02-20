@@ -65,16 +65,10 @@ void bindSQOneElectronOperators(py::module& module);
 void bindSQTwoElectronOperator(py::module& module);
 
 
-// QCMethod - Applications
-void bindQCMethodDOCINewtonOrbitalOptimizer(py::module& module);
-void bindQCMethodDOCIRHF(py::module& module);
-void bindQCMethodFukuiDysonAnalysis(py::module& module);
-void bindMullikenConstrainedFCI(py::module& module);
-
-
 // QCMethod - CI
 void bindCIEnvironment(py::module& module);
-void bindQCMethodCI(py::module& module);
+void bindCIFactory(py::module& module);
+void bindQCMethodCIs(py::module& module);
 
 
 // QCMethod - HF
@@ -89,7 +83,7 @@ void bindQCStructures(py::module& module);
 
 
 // QCModel - CI
-void bindLinearExpansion(py::module& module);
+void bindLinearExpansions(py::module& module);
 
 
 // QCModel - HF
@@ -148,16 +142,10 @@ PYBIND11_MODULE (gqcpy, module) {
     gqcpy::bindSQTwoElectronOperator(module);
 
 
-    // QCMethod - Applications
-    gqcpy::bindQCMethodDOCINewtonOrbitalOptimizer(module);
-    gqcpy::bindQCMethodDOCIRHF(module);
-    gqcpy::bindQCMethodFukuiDysonAnalysis(module);
-    gqcpy::bindMullikenConstrainedFCI(module);
-
-
     // QCMethod - CI
     gqcpy::bindCIEnvironment(module);
-    gqcpy::bindQCMethodCI(module);
+    gqcpy::bindCIFactory(module);
+    gqcpy::bindQCMethodCIs(module);
 
 
     // QCMethod - HF
@@ -172,7 +160,7 @@ PYBIND11_MODULE (gqcpy, module) {
 
 
     // QCModel - CI
-    gqcpy::bindLinearExpansion(module);
+    gqcpy::bindLinearExpansions(module);
 
 
     // QCModel - HF

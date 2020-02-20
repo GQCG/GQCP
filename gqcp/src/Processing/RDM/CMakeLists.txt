@@ -2,7 +2,7 @@ target_sources(gqcp
     PRIVATE
         DOCIRDMBuilder.cpp
         FCIRDMBuilder.cpp
-        FrozenCoreDOCIRDMBuilder.cpp
+        # FrozenCoreDOCIRDMBuilder.cpp
         FrozenCoreFCIRDMBuilder.cpp
         FrozenCoreRDMBuilder.cpp
         RDMCalculator.cpp

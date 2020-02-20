@@ -21,7 +21,6 @@
 #include "ONVBasis/SpinUnresolvedONVBasis.hpp"
 #include "Processing/RDM/BaseSpinUnresolvedRDMBuilder.hpp"
 #include "Processing/RDM/SpinUnresolvedFCIRDMBuilder.hpp"
-#include "QCModel/CI/SpinUnresolvedLinearExpansion.hpp"
 
 #include <boost/range/adaptor/sliced.hpp>
 #include <boost/range/adaptor/strided.hpp>
@@ -51,13 +50,6 @@ public:
      *  @param fock_space       the spin-unresolved ONV basis
      */
     explicit SpinUnresolvedRDMCalculator(const SpinUnresolvedONVBasis& fock_space);
-
-    /**
-     *  A run-time constructor allocating the appropriate derived RDMBuilder and coefficient vector
-     *
-     *  @param linear_expansion         the linear expansion inside a certain ONV basis
-     */
-    explicit SpinUnresolvedRDMCalculator(const SpinUnresolvedLinearExpansion& linear_expansion);
 
 
     // SETTERS

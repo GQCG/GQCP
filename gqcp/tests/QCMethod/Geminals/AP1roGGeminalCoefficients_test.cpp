@@ -23,7 +23,7 @@
 
 
 /**
- *  Check if the number of geminal coefficients is correctly implemented
+ *  Check if the number of geminal coefficients is correctly implemented.
  */
 BOOST_AUTO_TEST_CASE ( numberOfGeminalCoefficients ) {
 
@@ -33,7 +33,7 @@ BOOST_AUTO_TEST_CASE ( numberOfGeminalCoefficients ) {
 
 
 /**
- *  Check if the construction of AP1roG geminal coefficients from a row-major vector represention is correct
+ *  Check if the construction of AP1roG geminal coefficients from a row-major vector represention is correct.
  */
 BOOST_AUTO_TEST_CASE ( FromRowMajor ) {
 
@@ -53,7 +53,7 @@ BOOST_AUTO_TEST_CASE ( FromRowMajor ) {
 
 
 /**
- *  Check if the construction of AP1roG geminal coefficients from a column-major vector represention is correct
+ *  Check if the construction of AP1roG geminal coefficients from a column-major vector represention is correct.
  */
 BOOST_AUTO_TEST_CASE ( FromColumnMajor ) {
 
@@ -63,7 +63,7 @@ BOOST_AUTO_TEST_CASE ( FromColumnMajor ) {
          0, 1,  4, 5, 6;
 
 
-    // Test that we get the previous representation if we use the following vector that uses column-major indexing
+    // Test that we get the previous representation if we use the following vector that uses column-major indexing.
     GQCP::VectorX<double> g (6);
     g << 1, 4, 2, 5, 3, 6;
 
@@ -73,7 +73,7 @@ BOOST_AUTO_TEST_CASE ( FromColumnMajor ) {
 
 
 /**
- *  Check if the constructor using a given number of electron pairs (N_P) and spatial orbitals (K) behaves as expected
+ *  Check if the constructor using a given number of electron pairs (N_P) and spatial orbitals (K) behaves as expected.
  */
 BOOST_AUTO_TEST_CASE ( constructor_N_P_K ) {
 
@@ -85,9 +85,10 @@ BOOST_AUTO_TEST_CASE ( constructor_N_P_K ) {
     G_total_ref << 1, 0, 0, 0, 0, 0, 0, 0, 0;  // 'free' geminal coefficients are zero, left 'block' is the identity matrix
 
 
-    // Construct the geminal coefficients object and check the result
+    // Construct the geminal coefficients object and check the result.
     const GQCP::AP1roGGeminalCoefficients G (N_P, K);
     const auto G_as_matrix = G.asMatrix();
+
     BOOST_CHECK(G_as_matrix.isApprox(G_total_ref));
     BOOST_CHECK_EQUAL(G_as_matrix.rows(), 1);
     BOOST_CHECK_EQUAL(G_as_matrix.cols(), 9);
@@ -95,17 +96,17 @@ BOOST_AUTO_TEST_CASE ( constructor_N_P_K ) {
 
 
 /**
- *  Test if the conversion from AP1roG geminal coefficients to a wave function is correct (example 1)
+ *  Test if the conversion from AP1roG geminal coefficients to a wave function is correct (example 1).
  */
 BOOST_AUTO_TEST_CASE ( toLinearExpansion_example1 ) {
 
-    // Set up the normalized reference coefficients
+    // Set up the normalized reference coefficients.
     GQCP::VectorX<double> ref_coefficients (3);
     ref_coefficients << 1, 2, 3;
     ref_coefficients.normalize();
 
 
-    // Construct the toy geminal coefficients
+    // Construct the toy geminal coefficients.
     const size_t K = 3;
     const size_t N_P = 1;
 
@@ -115,13 +116,13 @@ BOOST_AUTO_TEST_CASE ( toLinearExpansion_example1 ) {
 
 
     // Calculate the conversion from geminal coefficients to a wave function and check the result
-    GQCP::SpinUnresolvedONVBasis fock_space (K, N_P);
-    BOOST_CHECK(ref_coefficients.isApprox(gem_coeff.toLinearExpansion(fock_space).get_coefficients()));
+    GQCP::SeniorityZeroONVBasis onv_basis (K, N_P);
+    BOOST_CHECK(ref_coefficients.isApprox(gem_coeff.toLinearExpansion(onv_basis).coefficients()));
 }
 
 
 /**
- *  Test if the conversion from AP1roG geminal coefficients to a wave function is correct (example 2)
+ *  Test if the conversion from AP1roG geminal coefficients to a wave function is correct (example 2).
  */
 BOOST_AUTO_TEST_CASE ( toLinearExpansion_example2 ) {
 
@@ -140,14 +141,14 @@ BOOST_AUTO_TEST_CASE ( toLinearExpansion_example2 ) {
     const auto gem_coeff = GQCP::AP1roGGeminalCoefficients::FromRowMajor(g, N_P, K);
 
 
-    // Calculate the conversion from geminal coefficients to a wave function and check the result
-    GQCP::SpinUnresolvedONVBasis fock_space (K, N_P);
-    BOOST_CHECK(ref_coefficients.isApprox(gem_coeff.toLinearExpansion(fock_space).get_coefficients()));
+    // Calculate the conversion from geminal coefficients to a wave function and check the result.
+    GQCP::SeniorityZeroONVBasis onv_basis (K, N_P);
+    BOOST_CHECK(ref_coefficients.isApprox(gem_coeff.toLinearExpansion(onv_basis).coefficients()));
 }
 
 
 /**
- *  Test if the conversion from AP1roG geminal coefficients to a wave function is correct (example 3)
+ *  Test if the conversion from AP1roG geminal coefficients to a wave function is correct (example 3).
  */
 BOOST_AUTO_TEST_CASE ( toLinearExpansion_example3 ) {
 
@@ -166,7 +167,7 @@ BOOST_AUTO_TEST_CASE ( toLinearExpansion_example3 ) {
     const auto gem_coeff = GQCP::AP1roGGeminalCoefficients::FromRowMajor(g, N_P, K);
 
 
-    // Calculate the conversion from geminal coefficients to a wave function and check the result
-    GQCP::SpinUnresolvedONVBasis fock_space (K, N_P);
-    BOOST_CHECK(ref_coefficients.isApprox(gem_coeff.toLinearExpansion(fock_space).get_coefficients()));
+    // Calculate the conversion from geminal coefficients to a wave function and check the result.
+    GQCP::SeniorityZeroONVBasis onv_basis (K, N_P);
+    BOOST_CHECK(ref_coefficients.isApprox(gem_coeff.toLinearExpansion(onv_basis).coefficients()));
 }

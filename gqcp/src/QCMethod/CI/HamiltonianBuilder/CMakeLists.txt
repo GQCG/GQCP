@@ -3,7 +3,7 @@ target_sources(gqcp
         DOCI.cpp
         FCI.cpp
         FrozenCoreCI.cpp
-        FrozenCoreDOCI.cpp
+        # FrozenCoreDOCI.cpp
         FrozenCoreFCI.cpp
         Hubbard.cpp
         SelectedCI.cpp

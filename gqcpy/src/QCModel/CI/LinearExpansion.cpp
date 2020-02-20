@@ -15,6 +15,10 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
+#include "ONVBasis/SeniorityZeroONVBasis.hpp"
+#include "ONVBasis/SpinResolvedFrozenONVBasis.hpp"
+#include "ONVBasis/SpinResolvedONVBasis.hpp"
+#include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
 #include "QCModel/CI/LinearExpansion.hpp"
 
 #include <pybind11/eigen.h>
@@ -27,14 +31,40 @@ namespace py = pybind11;
 namespace gqcpy {
 
 
-void bindLinearExpansion(py::module& module) {
-    py::class_<GQCP::LinearExpansion>(module, "LinearExpansion", "The linear expansion (configuration interaction) wave function model.")
+/**
+ *  Since LinearExpansion has a template argument for the representation of the ONVBasis, we'll have to bind each of them separately. In order to avoid duplicate code, we use a templated binding approach.
+ */
+
+/**
+ *  Bind a templated CI method.
+ * 
+ *  @tparam ONVBasis            the scalar type of the SQOperator
+ * 
+ *  @param module               the Pybind11 module
+ *  @param suffix               the suffix for the gqcpy class name, i.e. "SQOperator" + suffix
+ *  @param description          the description for the gqcpy class
+ */
+template <typename ONVBasis>
+void bindLinearExpansion(py::module& module, const std::string& suffix, const std::string& description) {
+    py::class_<GQCP::LinearExpansion<ONVBasis>>(module,
+        ("LinearExpansion" + suffix).c_str(),
+        description.c_str()
+    )
 
         .def("coefficients",
-            &GQCP::LinearExpansion::get_coefficients,
+            &GQCP::LinearExpansion<ONVBasis>::coefficients,
             "Return the expansion coefficients of this linear expansion wave function model."
         )
     ;
+}
+
+
+void bindLinearExpansions(py::module& module) {
+
+    bindLinearExpansion<GQCP::SeniorityZeroONVBasis>(module, "SeniorityZero", "The linear expansion (configuration interaction) wave function model in a seniority-zero ONV basis.");
+    bindLinearExpansion<GQCP::SpinResolvedFrozenONVBasis>(module, "SpinResolvedFrozen", "The linear expansion (configuration interaction) wave function model in a frozen core spin-resolved ONV basis.");
+    bindLinearExpansion<GQCP::SpinResolvedONVBasis>(module, "SpinResolved", "The linear expansion (configuration interaction) wave function model in a spin-resolved ONV basis.");
+    bindLinearExpansion<GQCP::SpinResolvedSelectedONVBasis>(module, "SpinResolvedSelected", "The linear expansion (configuration interaction) wave function model in a spin-resolved selected ONV basis.");
 }
 
 

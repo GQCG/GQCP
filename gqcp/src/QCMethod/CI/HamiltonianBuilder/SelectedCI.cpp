@@ -35,15 +35,15 @@ void SelectedCI::evaluateHamiltonianElements(const SQHamiltonian<double>& sq_ham
 
     for (size_t I = 0; I < dim; I++) {  // loop over all addresses (1)
         SpinResolvedONV configuration_I = this->onv_basis.get_configuration(I);
-        SpinUnresolvedONV alpha_I = configuration_I.onv_alpha;
-        SpinUnresolvedONV beta_I = configuration_I.onv_beta;
+        SpinUnresolvedONV alpha_I = configuration_I.alphaONV();
+        SpinUnresolvedONV beta_I = configuration_I.betaONV();
 
         // Calculate the off-diagonal elements, by going over all other ONVs
         for (size_t J = I+1; J < dim; J++) {
 
             SpinResolvedONV configuration_J = this->onv_basis.get_configuration(J);
-            SpinUnresolvedONV alpha_J = configuration_J.onv_alpha;
-            SpinUnresolvedONV beta_J = configuration_J.onv_beta;
+            SpinUnresolvedONV alpha_J = configuration_J.alphaONV();
+            SpinUnresolvedONV beta_J = configuration_J.betaONV();
 
             if ((alpha_I.countNumberOfDifferences(alpha_J) == 2) && (beta_I.countNumberOfDifferences(beta_J) == 0)) {
 

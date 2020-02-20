@@ -26,26 +26,27 @@ namespace GQCP {
  */
 
 /**
- *  @param fock_space       the seniority-zero ONV basis the wave function should live in
+ *  @param onv_basis       the seniority-zero spin-resolved ONV basis the wave function should live in
  *
  *  @return the wave function expansion corresponding to the geminal coefficients
  */
-LinearExpansion GeminalCoefficientsInterface::toLinearExpansion(const SpinUnresolvedONVBasis& fock_space) const {
+LinearExpansion<SeniorityZeroONVBasis> GeminalCoefficientsInterface::toLinearExpansion(const SeniorityZeroONVBasis& onv_basis) const {
 
-    // The ONV can't be marked const, as makeONV() and setNext() are non-const methods
+    const auto dim = onv_basis.dimension();
+    VectorX<double> coefficients = VectorX<double>::Zero(dim);  // the expansion coefficient vector
 
-    VectorX<double> coefficients = VectorX<double>::Zero(fock_space.get_dimension());  // coefficient vector
-    SpinUnresolvedONV onv = fock_space.makeONV(0);  // start with address 0
-    for (size_t I = 0; I < fock_space.get_dimension(); I++) {
+    const auto onv_basis_proxy = onv_basis.proxy();
+    SpinUnresolvedONV onv = onv_basis_proxy.makeONV(0);  // start with address 0
+    for (size_t I = 0; I < dim; I++) {
 
         coefficients(I) = this->overlap(onv);
 
-        if (I < fock_space.get_dimension() - 1) {  // skip the last permutation
-            fock_space.setNextONV(onv);
+        if (I < dim - 1) {  // prevent the last permutation from occurring
+            onv_basis_proxy.setNextONV(onv);
         }
     }
 
-    return LinearExpansion(fock_space, coefficients);
+    return LinearExpansion<SeniorityZeroONVBasis>{onv_basis, coefficients};
 }
 
 

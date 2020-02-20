@@ -22,7 +22,6 @@ option(BUILD_PYTHON_BINDINGS "Build the Python bindings for the C++ library" OFF
 find_package(Git REQUIRED)
 find_package(Eigen3 3.3.4 REQUIRED)
 find_package(Int2 REQUIRED)
-find_package(Spectra REQUIRED)
 find_package(cint REQUIRED)
 find_package(MKL REQUIRED)
 

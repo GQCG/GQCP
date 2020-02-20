@@ -57,8 +57,8 @@ BOOST_AUTO_TEST_CASE ( Hubbard_specialized_vs_unspecialized_dense_diagonalizatio
 
 
     // Optimize the CI model for both environments and check if the energies are equal.
-    const auto specialized_energy = GQCP::QCMethod::CI(onv_basis).optimize(solver, specialized_environment).groundStateEnergy();
-    const auto unspecialized_energy = GQCP::QCMethod::CI(onv_basis).optimize(solver, unspecialized_environment).groundStateEnergy();
+    const auto specialized_energy = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, specialized_environment).groundStateEnergy();
+    const auto unspecialized_energy = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, unspecialized_environment).groundStateEnergy();
     BOOST_CHECK(std::abs(specialized_energy - unspecialized_energy) < 1.0e-06);
 }
 
@@ -90,8 +90,8 @@ BOOST_AUTO_TEST_CASE ( Hubbard_specialized_vs_unspecialized_dense_diagonalizatio
 
 
     // Optimize the CI model for both environments and check if the energies are equal.
-    const auto specialized_energy = GQCP::QCMethod::CI(onv_basis).optimize(solver, specialized_environment).groundStateEnergy();
-    const auto unspecialized_energy = GQCP::QCMethod::CI(onv_basis).optimize(solver, unspecialized_environment).groundStateEnergy();
+    const auto specialized_energy = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, specialized_environment).groundStateEnergy();
+    const auto unspecialized_energy = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, unspecialized_environment).groundStateEnergy();
     BOOST_CHECK(std::abs(specialized_energy - unspecialized_energy) < 1.0e-06);
 }
 
@@ -132,7 +132,7 @@ BOOST_AUTO_TEST_CASE ( four_site_chain ) {
         auto solver = GQCP::EigenproblemSolver::Dense();
         auto environment = GQCP::CIEnvironment::Dense(hubbard_hamiltonian, onv_basis);
 
-        const auto energy = GQCP::QCMethod::CI(onv_basis).optimize(solver, environment).groundStateEnergy();
+        const auto energy = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
         BOOST_CHECK(std::abs(energy - E_list[i]) < 1.0e-08);
     }
 }
@@ -176,7 +176,7 @@ BOOST_AUTO_TEST_CASE ( six_site_ring ) {
         auto solver = GQCP::EigenproblemSolver::Dense();
         auto environment = GQCP::CIEnvironment::Dense(hubbard_hamiltonian, onv_basis);
 
-        const auto energy = GQCP::QCMethod::CI(onv_basis).optimize(solver, environment).groundStateEnergy();
+        const auto energy = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
         BOOST_CHECK(std::abs(energy - E_list[i]) < 1.0e-08);
     }
 }
@@ -210,8 +210,8 @@ BOOST_AUTO_TEST_CASE ( Hubbard_specialized_vs_unspecialized_Davidson_diagonaliza
 
 
     // Optimize the CI model for both environments and check if the energies are equal.
-    const auto specialized_energy = GQCP::QCMethod::CI(onv_basis).optimize(solver, specialized_environment).groundStateEnergy();
-    const auto unspecialized_energy = GQCP::QCMethod::CI(onv_basis).optimize(solver, unspecialized_environment).groundStateEnergy();
+    const auto specialized_energy = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, specialized_environment).groundStateEnergy();
+    const auto unspecialized_energy = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, unspecialized_environment).groundStateEnergy();
     BOOST_CHECK(std::abs(specialized_energy - unspecialized_energy) < 1.0e-06);
 }
 
@@ -244,7 +244,7 @@ BOOST_AUTO_TEST_CASE ( Hubbard_specialized_vs_unspecialized_Davidson_diagonaliza
 
 
     // Optimize the CI model for both environments and check if the energies are equal.
-    const auto specialized_energy = GQCP::QCMethod::CI(onv_basis).optimize(solver, specialized_environment).groundStateEnergy();
-    const auto unspecialized_energy = GQCP::QCMethod::CI(onv_basis).optimize(solver, unspecialized_environment).groundStateEnergy();
+    const auto specialized_energy = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, specialized_environment).groundStateEnergy();
+    const auto unspecialized_energy = GQCP::QCMethod::CI<GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, unspecialized_environment).groundStateEnergy();
     BOOST_CHECK(std::abs(specialized_energy - unspecialized_energy) < 1.0e-06);
 }

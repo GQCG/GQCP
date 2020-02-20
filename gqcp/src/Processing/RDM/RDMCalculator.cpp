@@ -31,14 +31,14 @@ namespace GQCP {
  *  CONSTRUCTOR
  */
 
-/**
- *  Allocate a DOCIRDMBuilder
- *
- *  @param fock_space       the DOCI ONV basis
- */
-RDMCalculator::RDMCalculator(const SpinUnresolvedONVBasis& fock_space) :
-    rdm_builder (std::make_shared<DOCIRDMBuilder>(fock_space))
-{}
+// /**
+//  *  Allocate a DOCIRDMBuilder
+//  *
+//  *  @param fock_space       the DOCI ONV basis
+//  */
+// RDMCalculator::RDMCalculator(const SpinUnresolvedONVBasis& fock_space) :
+//     rdm_builder (std::make_shared<DOCIRDMBuilder>(fock_space))
+// {}
 
 
 /**
@@ -70,10 +70,10 @@ RDMCalculator::RDMCalculator(const BaseONVBasis& fock_space) {
 
     switch (fock_space.get_type()){
 
-        case ONVBasisType::SpinUnresolvedONVBasis: {
-            this->rdm_builder = std::make_shared<DOCIRDMBuilder>(dynamic_cast<const SpinUnresolvedONVBasis&>(fock_space));
-            break;
-        }
+        // case ONVBasisType::SpinUnresolvedONVBasis: {
+        //     this->rdm_builder = std::make_shared<DOCIRDMBuilder>(dynamic_cast<const SpinUnresolvedONVBasis&>(fock_space));
+        //     break;
+        // }
 
         case ONVBasisType::SpinResolvedONVBasis: {
             this->rdm_builder = std::make_shared<FCIRDMBuilder>(dynamic_cast<const SpinResolvedONVBasis&>(fock_space));
@@ -87,31 +87,22 @@ RDMCalculator::RDMCalculator(const BaseONVBasis& fock_space) {
             break;
         }
 
-        case ONVBasisType::SpinUnresolvedFrozenONVBasis: {
-            this->rdm_builder = std::make_shared<FrozenCoreDOCIRDMBuilder>(dynamic_cast<const SpinUnresolvedFrozenONVBasis&>(fock_space));
+        // case ONVBasisType::SpinUnresolvedFrozenONVBasis: {
+        //     this->rdm_builder = std::make_shared<FrozenCoreDOCIRDMBuilder>(dynamic_cast<const SpinUnresolvedFrozenONVBasis&>(fock_space));
 
-            break;
-        }
+        //     break;
+        // }
 
         case ONVBasisType::SpinResolvedFrozenONVBasis: {
             this->rdm_builder = std::make_shared<FrozenCoreFCIRDMBuilder>(dynamic_cast<const SpinResolvedFrozenONVBasis&>(fock_space));
 
             break;
         }
+
+        default: {break;}
     }
 }
 
-
-/**
- *  A run-time constructor allocating the appropriate derived RDMBuilder and coefficient vector
- *
- *  @param linear_expansion       the wave function holding the coefficient vector and an ONV basis on which the RDMBuilder should be based
- */
-RDMCalculator::RDMCalculator(const LinearExpansion& linear_expansion) :
-        RDMCalculator(linear_expansion.get_fock_space())
-{
-    this->set_coefficients(linear_expansion.get_coefficients());
-}
 
 /*
  *  PUBLIC METHODS

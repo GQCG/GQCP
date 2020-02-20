@@ -4,7 +4,7 @@ target_sources(gqcp
         BaseSpinUnresolvedRDMBuilder.hpp
         DOCIRDMBuilder.hpp
         FCIRDMBuilder.hpp
-        FrozenCoreDOCIRDMBuilder.hpp
+        # FrozenCoreDOCIRDMBuilder.hpp
         FrozenCoreFCIRDMBuilder.hpp
         FrozenCoreRDMBuilder.hpp
         OneRDM.hpp

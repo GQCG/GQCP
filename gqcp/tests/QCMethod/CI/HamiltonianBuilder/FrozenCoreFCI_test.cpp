@@ -65,7 +65,7 @@ BOOST_AUTO_TEST_CASE ( SelectedCI_vs_FrozenCoreFCI ) {
     GQCP::RSpinorBasis<double, GQCP::GTOShell> spinor_basis (H5, "STO-3G");
     auto sq_hamiltonian = GQCP::SQHamiltonian<double>::Molecular(spinor_basis, H5);  // in an AO basis
 
-    // Create compatible ONV basiss
+    // Create compatible ONV bases
     GQCP::SpinResolvedFrozenONVBasis product_fock_space (K, 3, 3, 1);
     GQCP::SpinResolvedSelectedONVBasis fock_space (product_fock_space);
 

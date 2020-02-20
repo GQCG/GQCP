@@ -82,7 +82,7 @@ double SpinUnresolvedFCIRDMBuilder::calculateElement(const std::vector<size_t>& 
         if (!bra.annihilateAll(bra_indices, sign)) {  // if we can't annihilate, the bra doesn't change
 
             // Go to the beginning of the outer while loop with the next bra
-            if (I < dim-1) {  // prevent the last permutation to occur
+            if (I < dim-1) {  // prevent the last permutation from occurring
                 fock_space.setNextONV(bra);
                 I++;
                 sign = 1;
@@ -101,7 +101,7 @@ double SpinUnresolvedFCIRDMBuilder::calculateElement(const std::vector<size_t>& 
             if (!ket.annihilateAll(ket_indices_reversed, sign)) {  // if we can't annihilate, the ket doesn't change
 
                 // Go to the beginning of this (the inner) while loop with the next bra
-                if (J < dim-1) {  // prevent the last permutation to occur
+                if (J < dim-1) {  // prevent the last permutation from occurring
                     fock_space.setNextONV(ket);
                     J++;
                     sign = 1;
@@ -116,7 +116,7 @@ double SpinUnresolvedFCIRDMBuilder::calculateElement(const std::vector<size_t>& 
             }
 
             // Reset the previous ket annihilations and move to the next ket
-            if (J == dim-1) {  // prevent the last permutation to occur
+            if (J == dim-1) {  // prevent the last permutation from occurring
                 break;  // out of the J-loop
             }
             ket.createAll(ket_indices_reversed);
@@ -126,7 +126,7 @@ double SpinUnresolvedFCIRDMBuilder::calculateElement(const std::vector<size_t>& 
         }  // while J loop
 
         // Reset the previous bra annihilations and move to the next bra
-        if (I == dim-1) {  // prevent the last permutation to occur
+        if (I == dim-1) {  // prevent the last permutation from occurring
             break;  // out of the I-loop
         }
         bra.createAll(bra_indices);
