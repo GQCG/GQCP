@@ -19,7 +19,7 @@
 
 #include "QCMethod/Geminals/AP1roGLagrangianOptimizer.hpp"
 #include "QCMethod/Geminals/AP1roGPSESolver.hpp"
-#include "QCMethod/Geminals/AP1roG.hpp"
+#include "QCModel/Geminals/AP1roG.hpp"
 
 
 namespace GQCP {
@@ -78,7 +78,7 @@ void AP1roGLagrangianNewtonOrbitalOptimizer::prepareDMCalculation(const SQHamilt
     const AP1roGPSEs pses (sq_hamiltonian, this->N_P);
     const AP1roGPSESolver pse_solver (pses, this->pse_convergence_threshold, this->pse_maximum_number_of_iterations);
     pse_solver.solve(G);
-    this->E = calculateAP1roGEnergy(this->G, sq_hamiltonian);
+    this->E = AP1roG::calculateEnergy(this->G, sq_hamiltonian);
 
 
     // Determine the Lagrangian multipliers
@@ -91,7 +91,7 @@ void AP1roGLagrangianNewtonOrbitalOptimizer::prepareDMCalculation(const SQHamilt
  *  @return the current 1-DM
  */
 OneRDM<double> AP1roGLagrangianNewtonOrbitalOptimizer::calculate1RDM() const {
-    return GQCP::calculate1RDM(this->G, this->multipliers);
+    return GQCP::AP1roG::calculate1RDM(this->G, this->multipliers);
 }
 
 
@@ -99,7 +99,7 @@ OneRDM<double> AP1roGLagrangianNewtonOrbitalOptimizer::calculate1RDM() const {
  *  @return the current 2-DM
  */
 TwoRDM<double> AP1roGLagrangianNewtonOrbitalOptimizer::calculate2RDM() const {
-    return GQCP::calculate2RDM(this->G, this->multipliers);
+    return GQCP::AP1roG::calculate2RDM(this->G, this->multipliers);
 }
 
 

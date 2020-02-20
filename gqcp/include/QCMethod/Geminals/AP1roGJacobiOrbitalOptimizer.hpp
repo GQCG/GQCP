@@ -18,8 +18,8 @@
 #pragma once
 
 
-#include "QCMethod/Geminals/AP1roGGeminalCoefficients.hpp"
 #include "QCMethod/OrbitalOptimization/JacobiOrbitalOptimizer.hpp"
+#include "QCModel/Geminals/AP1roGGeminalCoefficients.hpp"
 
 
 namespace GQCP {

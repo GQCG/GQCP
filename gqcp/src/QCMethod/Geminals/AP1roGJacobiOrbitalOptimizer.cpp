@@ -19,8 +19,8 @@
 
 #include "Mathematical/Optimization/Minimization/MinimizationEnvironment.hpp"
 #include "Mathematical/Optimization/Minimization/Minimizer.hpp"
-#include "QCMethod/Geminals/AP1roG.hpp"
 #include "QCMethod/Geminals/AP1roGPSESolver.hpp"
+#include "QCModel/Geminals/AP1roG.hpp"
 
 #include <boost/math/constants/constants.hpp>
 
@@ -75,7 +75,7 @@ void AP1roGJacobiOrbitalOptimizer::prepareJacobiSpecificConvergenceChecking(cons
     const AP1roGPSEs pses (sq_hamiltonian, this->N_P);
     AP1roGPSESolver pse_solver (pses, this->convergence_threshold, this->maximum_number_of_iterations);
     pse_solver.solve(this->G);
-    this->E = calculateAP1roGEnergy(this->G, sq_hamiltonian);
+    this->E = AP1roG::calculateEnergy(this->G, sq_hamiltonian);
 }
 
 

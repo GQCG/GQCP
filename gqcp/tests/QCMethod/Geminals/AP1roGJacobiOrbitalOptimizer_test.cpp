@@ -19,15 +19,14 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.hpp"
-
 #include "Basis/transform.hpp"
-#include "QCMethod/Geminals/AP1roG.hpp"
 #include "QCMethod/Geminals/AP1roGPSEs.hpp"
 #include "QCMethod/Geminals/AP1roGPSESolver.hpp"
 #include "QCMethod/HF/DiagonalRHFFockMatrixObjective.hpp"
 #include "QCMethod/HF/RHF.hpp"
 #include "QCMethod/HF/RHFSCFSolver.hpp"
+#include "QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.hpp"
+#include "QCModel/Geminals/AP1roG.hpp"
 
 
 /**
@@ -73,10 +72,10 @@ BOOST_AUTO_TEST_CASE ( analytical_rotation_energy_AP1roG ) {
 
 
             // Calculate the energy after a numerical rotation (using a Jacobi rotation matrix)
-            const double E_before = GQCP::calculateAP1roGEnergy(G, sq_hamiltonian);
+            const double E_before = GQCP::AP1roG::calculateEnergy(G, sq_hamiltonian);
             auto sq_ham_copy = sq_hamiltonian;
             sq_ham_copy.rotate(jacobi_rot_par);
-            const double E_after = GQCP::calculateAP1roGEnergy(G, sq_ham_copy);
+            const double E_after = GQCP::AP1roG::calculateEnergy(G, sq_ham_copy);
             const double E_correction_numerical = E_after - E_before;
 
 
@@ -110,7 +109,7 @@ BOOST_AUTO_TEST_CASE ( orbital_optimize ) {
     const GQCP::AP1roGPSEs pses (sq_hamiltonian, N_P);
     const GQCP::AP1roGPSESolver pse_solver (pses);
     const auto initial_G = pse_solver.solve();  // zero initial guess
-    const double initial_energy = GQCP::calculateAP1roGEnergy(initial_G, sq_hamiltonian);
+    const double initial_energy = GQCP::AP1roG::calculateEnergy(initial_G, sq_hamiltonian);
 
 
     // Do an AP1roG orbital optimization using Jacobi rotations and check if the energy is lower

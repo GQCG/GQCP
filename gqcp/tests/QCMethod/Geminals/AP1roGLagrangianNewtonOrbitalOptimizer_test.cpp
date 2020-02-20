@@ -19,16 +19,15 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "QCMethod/Geminals/AP1roGLagrangianNewtonOrbitalOptimizer.hpp"
-
 #include "Basis/transform.hpp"
 #include "Mathematical/Optimization/Minimization/IterativeIdentitiesHessianModifier.hpp"
-#include "QCMethod/Geminals/AP1roG.hpp"
 #include "QCMethod/Geminals/AP1roGPSESolver.hpp"
 #include "QCMethod/Geminals/AP1roGLagrangianOptimizer.hpp"
+#include "QCMethod/Geminals/AP1roGLagrangianNewtonOrbitalOptimizer.hpp"
 #include "QCMethod/HF/DiagonalRHFFockMatrixObjective.hpp"
 #include "QCMethod/HF/RHF.hpp"
 #include "QCMethod/HF/RHFSCFSolver.hpp"
+#include "QCModel/Geminals/AP1roG.hpp"
 
 
 /**
@@ -53,7 +52,7 @@ BOOST_AUTO_TEST_CASE ( lih_6_31G_orbital_optimize ) {
     GQCP::AP1roGPSEs pses (sq_hamiltonian, N_P);
     GQCP::AP1roGPSESolver pse_solver (pses);
     auto G = pse_solver.solve();  // use a zero initial guess for the geminal coefficients
-    const auto initial_energy = GQCP::calculateAP1roGEnergy(G, sq_hamiltonian);
+    const auto initial_energy = GQCP::AP1roG::calculateEnergy(G, sq_hamiltonian);
 
 
     // Do an AP1roG orbital optimization using a Newton-based algorithm

@@ -18,7 +18,7 @@
 #include "QCMethod/Geminals/AP1roGPSESolver.hpp"
 
 #include "Mathematical/Optimization/NonLinearEquation/NonLinearEquationSolver.hpp"
-#include "QCMethod/Geminals/AP1roG.hpp"
+#include "QCModel/Geminals/AP1roG.hpp"
 
 
 namespace GQCP {

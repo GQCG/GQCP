@@ -23,11 +23,11 @@
 
 #include "Basis/transform.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "QCMethod/Geminals/AP1roG.hpp"
 #include "QCMethod/Geminals/AP1roGPSEs.hpp"
 #include "QCMethod/HF/DiagonalRHFFockMatrixObjective.hpp"
 #include "QCMethod/HF/RHF.hpp"
 #include "QCMethod/HF/RHFSCFSolver.hpp"
+#include "QCModel/Geminals/AP1roG.hpp"
 
 
 /**
@@ -61,7 +61,7 @@ BOOST_AUTO_TEST_CASE ( h2_631gdp ) {
     const GQCP::AP1roGPSESolver ap1rog_pse_solver (pses);
     const auto G = ap1rog_pse_solver.solve();  // zero initial guess
 
-    const double electronic_energy = GQCP::calculateAP1roGEnergy(G, sq_hamiltonian);
+    const double electronic_energy = GQCP::AP1roG::calculateEnergy(G, sq_hamiltonian);
     const GQCP::VectorX<double> ap1rog_coefficients = G.asVector();
 
 
@@ -106,7 +106,7 @@ BOOST_AUTO_TEST_CASE ( h2_631gdp_weak_interaction_limit ) {
     auto G = GQCP::AP1roGGeminalCoefficients::WeakInteractionLimit(sq_hamiltonian, N_P);
     ap1rog_pse_solver.solve(G);  // weak interaction limit coefficients are the initial guess
 
-    const double electronic_energy = GQCP::calculateAP1roGEnergy(G, sq_hamiltonian);
+    const double electronic_energy = GQCP::AP1roG::calculateEnergy(G, sq_hamiltonian);
     const GQCP::VectorX<double> ap1rog_coefficients = G.asVector();
 
     // Check the result

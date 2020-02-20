@@ -15,11 +15,15 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#include "QCMethod/Geminals/AP1roG.hpp"
+#include "QCModel/Geminals/AP1roG.hpp"
 
 
 namespace GQCP {
 
+
+/*
+ *  STATIC PUBLIC METHODS
+ */
 
 /**
  *  @param G                    the converged AP1roG geminal coefficients
@@ -27,8 +31,9 @@ namespace GQCP {
  *
  *  @return the AP1roG electronic energy
  */
-double calculateAP1roGEnergy(const AP1roGGeminalCoefficients& G, const SQHamiltonian<double>& sq_hamiltonian) {
+double AP1roG::calculateEnergy(const AP1roGGeminalCoefficients& G, const SQHamiltonian<double>& sq_hamiltonian) {
 
+    // Prepare some variables
     const auto& h = sq_hamiltonian.core().parameters();
     const auto& g = sq_hamiltonian.twoElectron().parameters();
 
@@ -55,9 +60,9 @@ double calculateAP1roGEnergy(const AP1roGGeminalCoefficients& G, const SQHamilto
  *  @param G                the AP1roG geminal coefficients
  *  @param multipliers      the AP1roG Lagrangian multipliers
  *
- *  @return the AP1roG 1-DM
+ *  @return the AP1roG response 1-DM
  */
-OneRDM<double> calculate1RDM(const AP1roGGeminalCoefficients& G, const BlockMatrix<double>& multipliers) {
+OneRDM<double> AP1roG::calculate1RDM(const AP1roGGeminalCoefficients& G, const BlockMatrix<double>& multipliers) {
 
     OneRDM<double> D = OneRDM<double>::Zero(G.get_K(), G.get_K());
 
@@ -98,9 +103,9 @@ OneRDM<double> calculate1RDM(const AP1roGGeminalCoefficients& G, const BlockMatr
  *  @param G                the AP1roG geminal coefficients
  *  @param multipliers      the AP1roG Lagrangian multipliers
  *
- *  @return the AP1roG number 2-RDM (the Delta-matrix in the notes)
+ *  @return the AP1roG response number 2-RDM (the Delta-matrix in the notes)
  */
-SquareMatrix<double> calculateNumber2RDM(const AP1roGGeminalCoefficients& G, const BlockMatrix<double>& multipliers) {
+SquareMatrix<double> AP1roG::calculateNumber2RDM(const AP1roGGeminalCoefficients& G, const BlockMatrix<double>& multipliers) {
 
     size_t N_P = G.get_N_P();
     size_t K = G.get_K();
@@ -175,9 +180,9 @@ SquareMatrix<double> calculateNumber2RDM(const AP1roGGeminalCoefficients& G, con
  *  @param G                the AP1roG geminal coefficients
  *  @param multipliers      the AP1roG Lagrangian multipliers
  *
- *  @return the AP1roG pair 2-RDM (the Pi-matrix in the notes)
+ *  @return the AP1roG response pair 2-RDM (the Pi-matrix in the notes)
  */
-SquareMatrix<double> calculatePair2RDM(const AP1roGGeminalCoefficients& G, const BlockMatrix<double>& multipliers) {
+SquareMatrix<double> AP1roG::calculatePair2RDM(const AP1roGGeminalCoefficients& G, const BlockMatrix<double>& multipliers) {
 
     size_t N_P = G.get_N_P();
     size_t K = G.get_K();
@@ -264,17 +269,17 @@ SquareMatrix<double> calculatePair2RDM(const AP1roGGeminalCoefficients& G, const
  *  @param G                the AP1roG geminal coefficients
  *  @param multipliers      the AP1roG Lagrangian multipliers
  *
- *  @return the AP1roG 2-DM
+ *  @return the AP1roG response 2-DM
  */
-TwoRDM<double> calculate2RDM(const AP1roGGeminalCoefficients& G, const BlockMatrix<double>& multipliers) {
+TwoRDM<double> AP1roG::calculate2RDM(const AP1roGGeminalCoefficients& G, const BlockMatrix<double>& multipliers) {
 
     size_t K = G.get_K();
     TwoRDM<double> d (K);
     d.setZero();
 
 
-    auto Delta = calculateNumber2RDM(G, multipliers);
-    auto Pi = calculatePair2RDM(G, multipliers);
+    auto Delta = AP1roG::calculateNumber2RDM(G, multipliers);
+    auto Pi = AP1roG::calculatePair2RDM(G, multipliers);
 
     // KISS-implementation
     for (size_t p = 0; p < K; p++) {
@@ -301,6 +306,7 @@ TwoRDM<double> calculate2RDM(const AP1roGGeminalCoefficients& G, const BlockMatr
     }  // spatial orbital loops
 
     return d;
+
 }
 
 

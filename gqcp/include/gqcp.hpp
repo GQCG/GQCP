@@ -176,15 +176,11 @@
 
 // #include "QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp"
 
-#include "QCMethod/Geminals/AP1roG.hpp"
-#include "QCMethod/Geminals/AP1roGGeminalCoefficients.hpp"
 #include "QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.hpp"
 #include "QCMethod/Geminals/AP1roGLagrangianNewtonOrbitalOptimizer.hpp"
 #include "QCMethod/Geminals/AP1roGLagrangianOptimizer.hpp"
 #include "QCMethod/Geminals/AP1roGPSEs.hpp"
 #include "QCMethod/Geminals/AP1roGPSESolver.hpp"
-#include "QCMethod/Geminals/APIGGeminalCoefficients.hpp"
-#include "QCMethod/Geminals/GeminalCoefficientsInterface.hpp"
 
 #include "QCMethod/HF/DiagonalRHFFockMatrixObjective.hpp"
 #include "QCMethod/HF/RHF.hpp"
@@ -211,6 +207,13 @@
 #include "QCMethod/QCMethodProtocol.hpp"
 #include "QCMethod/QCObjective.hpp"
 #include "QCMethod/QCStructure.hpp"
+
+#include "QCModel/CI/LinearExpansion.hpp"
+
+#include "QCModel/Geminals/AP1roG.hpp"
+#include "QCModel/Geminals/AP1roGGeminalCoefficients.hpp"
+#include "QCModel/Geminals/APIGGeminalCoefficients.hpp"
+#include "QCModel/Geminals/GeminalCoefficientsInterface.hpp"
 
 #include "QCModel/HF/RHF.hpp"
 
