@@ -33,7 +33,7 @@ jobs:
         export LIBINT_DATA_PATH=$HOME/miniconda/share/libint/2.3.1/basis
         mkdir build && cd build
         cmake .. -DBUILD_TESTS=TRUE -DBUILD_BENCHMARKS=TRUE -DBUILD_PYTHON_BINDINGS=TRUE -DCMAKE_INSTALL_PREFIX=~/.local -DCMAKE_PREFIX_PATH=$HOME/miniconda
-        make -j2 && env CTEST_OUTPUT_ON_FAILURE=1 make test && sudo make install
+        make -j2 VERBOSE=1 && env CTEST_OUTPUT_ON_FAILURE=1 make test && sudo make install
     - name: Run benchmarks
       run: |
         cd build/gqcp/benchmarks
