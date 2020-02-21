@@ -5,7 +5,7 @@ package:
     version: {{ version }}
 source:
     git_url: https://github.com/GQCG/GQCP.git
-    git_tag: develop
+    git_tag: feature/conda # Change this to develop before merging PR
 requirements:
     build:
       - git
