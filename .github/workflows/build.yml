@@ -28,12 +28,20 @@ jobs:
         conda install -c conda-forge cmake=3.13 boost-cpp=1.69.0 eigen blas mkl pybind11 benchmark numpy;
         conda install -c gqcg libint spectra cint;
         conda install -c intel mkl-include mkl-static intel-openmp;
-    - name: Build, test and install
+    - name: Build, test and install (Linux)
+      if: matrix.os == 'ubuntu-latest'
       run: |
         export LIBINT_DATA_PATH=$HOME/miniconda/share/libint/2.3.1/basis
         mkdir build && cd build
         cmake .. -DBUILD_TESTS=TRUE -DBUILD_BENCHMARKS=TRUE -DBUILD_PYTHON_BINDINGS=TRUE -DCMAKE_INSTALL_PREFIX=~/.local -DCMAKE_PREFIX_PATH=$HOME/miniconda
         make -j2 VERBOSE=1 && env CTEST_OUTPUT_ON_FAILURE=1 make test && sudo make install
+    - name: Build, test and install (macOS)
+      if: matrix.os == 'macos-latest'
+      run: |
+        export LIBINT_DATA_PATH=$HOME/miniconda/share/libint/2.3.1/basis
+        mkdir build && cd build
+        cmake .. -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER=clang -DBUILD_TESTS=TRUE -DBUILD_BENCHMARKS=TRUE -DBUILD_PYTHON_BINDINGS=TRUE -DCMAKE_INSTALL_PREFIX=~/.local -DCMAKE_PREFIX_PATH=$HOME/miniconda
+        make -j2 VERBOSE=1 && env CTEST_OUTPUT_ON_FAILURE=1 make test && sudo make install    
     - name: Run benchmarks
       run: |
         cd build/gqcp/benchmarks
