@@ -1,12 +1,9 @@
 name: GQCP_conda
 
-on: pull_request
-
-  # After testing, this will be enabled to only build on pushes to develop
-#  on:
-#    push:
-#      branches:
-#        - master
+on:
+  push:
+    branches:
+      - develop
 
 jobs:
   build:
