@@ -44,4 +44,9 @@ target_link_libraries(gqcp
         MKL::MKL
 )
 
+# Add rt library on Linux environments
+if (UNIX AND NOT APPLE)
+    target_link_libraries(gqcp PUBLIC rt)
+endif()
+
 target_compile_options(gqcp PUBLIC -DEIGEN_USE_MKL_ALL -DMKL_LP64)
