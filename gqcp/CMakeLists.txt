@@ -45,7 +45,7 @@ target_link_libraries(gqcp
 )
 
 # Add rt library on Linux environments
-if (UNIX AND NOT APPLE)
+if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     target_link_libraries(gqcp PUBLIC rt)
 endif()
 
