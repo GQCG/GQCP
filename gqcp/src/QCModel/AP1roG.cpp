@@ -31,7 +31,7 @@ namespace GQCP {
  *
  *  @return the AP1roG electronic energy
  */
-double AP1roG::calculateEnergy(const AP1roGGeminalCoefficients& G, const SQHamiltonian<double>& sq_hamiltonian) {
+double QCModel::AP1roG::calculateEnergy(const AP1roGGeminalCoefficients& G, const SQHamiltonian<double>& sq_hamiltonian) {
 
     // Prepare some variables
     const auto& h = sq_hamiltonian.core().parameters();
@@ -62,7 +62,7 @@ double AP1roG::calculateEnergy(const AP1roGGeminalCoefficients& G, const SQHamil
  *
  *  @return the AP1roG response 1-DM
  */
-OneRDM<double> AP1roG::calculate1RDM(const AP1roGGeminalCoefficients& G, const BlockMatrix<double>& multipliers) {
+OneRDM<double> QCModel::AP1roG::calculate1RDM(const AP1roGGeminalCoefficients& G, const BlockMatrix<double>& multipliers) {
 
     OneRDM<double> D = OneRDM<double>::Zero(G.get_K(), G.get_K());
 
@@ -105,7 +105,7 @@ OneRDM<double> AP1roG::calculate1RDM(const AP1roGGeminalCoefficients& G, const B
  *
  *  @return the AP1roG response number 2-RDM (the Delta-matrix in the notes)
  */
-SquareMatrix<double> AP1roG::calculateNumber2RDM(const AP1roGGeminalCoefficients& G, const BlockMatrix<double>& multipliers) {
+SquareMatrix<double> QCModel::AP1roG::calculateNumber2RDM(const AP1roGGeminalCoefficients& G, const BlockMatrix<double>& multipliers) {
 
     size_t N_P = G.get_N_P();
     size_t K = G.get_K();
@@ -182,7 +182,7 @@ SquareMatrix<double> AP1roG::calculateNumber2RDM(const AP1roGGeminalCoefficients
  *
  *  @return the AP1roG response pair 2-RDM (the Pi-matrix in the notes)
  */
-SquareMatrix<double> AP1roG::calculatePair2RDM(const AP1roGGeminalCoefficients& G, const BlockMatrix<double>& multipliers) {
+SquareMatrix<double> QCModel::AP1roG::calculatePair2RDM(const AP1roGGeminalCoefficients& G, const BlockMatrix<double>& multipliers) {
 
     size_t N_P = G.get_N_P();
     size_t K = G.get_K();
@@ -271,15 +271,15 @@ SquareMatrix<double> AP1roG::calculatePair2RDM(const AP1roGGeminalCoefficients& 
  *
  *  @return the AP1roG response 2-DM
  */
-TwoRDM<double> AP1roG::calculate2RDM(const AP1roGGeminalCoefficients& G, const BlockMatrix<double>& multipliers) {
+TwoRDM<double> QCModel::AP1roG::calculate2RDM(const AP1roGGeminalCoefficients& G, const BlockMatrix<double>& multipliers) {
 
     size_t K = G.get_K();
     TwoRDM<double> d (K);
     d.setZero();
 
 
-    auto Delta = AP1roG::calculateNumber2RDM(G, multipliers);
-    auto Pi = AP1roG::calculatePair2RDM(G, multipliers);
+    auto Delta = QCModel::AP1roG::calculateNumber2RDM(G, multipliers);
+    auto Pi = QCModel::AP1roG::calculatePair2RDM(G, multipliers);
 
     // KISS-implementation
     for (size_t p = 0; p < K; p++) {

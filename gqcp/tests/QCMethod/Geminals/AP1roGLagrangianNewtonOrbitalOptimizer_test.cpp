@@ -52,7 +52,7 @@ BOOST_AUTO_TEST_CASE ( lih_6_31G_orbital_optimize ) {
     GQCP::AP1roGPSEs pses (sq_hamiltonian, N_P);
     GQCP::AP1roGPSESolver pse_solver (pses);
     auto G = pse_solver.solve();  // use a zero initial guess for the geminal coefficients
-    const auto initial_energy = GQCP::AP1roG::calculateEnergy(G, sq_hamiltonian);
+    const auto initial_energy = GQCP::QCModel::AP1roG::calculateEnergy(G, sq_hamiltonian);
 
 
     // Do an AP1roG orbital optimization using a Newton-based algorithm

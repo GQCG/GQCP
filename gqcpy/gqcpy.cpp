@@ -45,6 +45,11 @@ void bindEigenproblemEnvironment(py::module& module);
 void bindEigenproblemSolver(py::module& module);
 
 
+// Mathematical - Optimization - NonLinearEquation
+void bindNonLinearEquationEnvironment(py::module& module);
+void bindNonLinearEquationSolver(py::module& module);
+
+
 // Molecule
 void bindMolecule(py::module& module);
 void bindNucleus(py::module& module);
@@ -124,6 +129,11 @@ PYBIND11_MODULE (gqcpy, module) {
     // Mathematical - Optimization - Eigenproblem
     gqcpy::bindEigenproblemEnvironment(module);
     gqcpy::bindEigenproblemSolver(module);
+
+
+    // Mathematical - Optimization - NonLinearEquation
+    gqcpy::bindNonLinearEquationEnvironment(module);
+    gqcpy::bindNonLinearEquationSolver(module);
 
 
     // Molecule

@@ -24,6 +24,7 @@
 
 
 namespace GQCP {
+namespace QCModel {
 
 
 /**
@@ -31,7 +32,22 @@ namespace GQCP {
  */
 class AP1roG {
 
+    AP1roGGeminalCoefficients G;
+
+
 public:
+
+    /*
+     *  CONSTRUCTORS
+     */
+
+    /**
+     *  @param G                the optimal geminal coefficients
+     */
+    AP1roG(const AP1roGGeminalCoefficients& G) :
+        G (G)
+    {}
+
 
     /*
      *  STATIC PUBLIC METHODS
@@ -76,8 +92,36 @@ public:
      *  @return the AP1roG response 2-DM
      */
     static TwoRDM<double> calculate2RDM(const AP1roGGeminalCoefficients& G, const BlockMatrix<double>& multipliers);
+
+
+    /*
+     *  PUBLIC METHODS
+     */
+
+    /**
+     *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis
+     * 
+     *  @return the electronic energy for these AP1roG model parameters
+     */
+    double calculateEnergy(const SQHamiltonian<double>& sq_hamiltonian) const { return AP1roG::calculateEnergy(this->G, sq_hamiltonian); }
+
+    /**
+     *  @return the corresponding geminal coefficients of these AP1roG model parameters
+     */
+    const AP1roGGeminalCoefficients& geminalCoefficients() const { return this->G; }
+
+    /**
+     *  @return the number of electron pairs that are described by these AP1roG model parameters
+     */
+    size_t numberOfElectronPairs() const { return this->geminalCoefficients().numberOfElectronPairs(); }
+
+    /**
+     *  @return the number of spatial orbitals that are described by these AP1roG model parameters
+     */
+    size_t numberOfSpatialOrbitals() const { return this->G.numberOfSpatialOrbitals(); }
 };
 
 
 
+}  // namespace QCModel
 }  // namespace GQCP

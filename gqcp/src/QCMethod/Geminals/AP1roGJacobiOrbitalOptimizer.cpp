@@ -75,7 +75,7 @@ void AP1roGJacobiOrbitalOptimizer::prepareJacobiSpecificConvergenceChecking(cons
     const AP1roGPSEs pses (sq_hamiltonian, this->N_P);
     AP1roGPSESolver pse_solver (pses, this->convergence_threshold, this->maximum_number_of_iterations);
     pse_solver.solve(this->G);
-    this->E = AP1roG::calculateEnergy(this->G, sq_hamiltonian);
+    this->E = QCModel::AP1roG::calculateEnergy(this->G, sq_hamiltonian);
 }
 
 
