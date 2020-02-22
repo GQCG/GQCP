@@ -1,0 +1,43 @@
+# Compilers
+
+c_compiler:
+  - clang                         # [osx]
+  - gcc                           # [linux]
+cxx_compiler:
+  - clangxx                       # [osx]
+  - gxx                           # [linux]
+fortran_compiler:
+  - gfortran
+target_platform:
+  - osx-64                        # [osx]
+  - linux-64                      # [linux]
+CONDA_BUILD_SYSROOT:
+  - /opt/MacOSX10.9.sdk           # [osx]
+
+# Packages
+blas_impl:
+  - mkl
+cmake:
+  - 3.14.0
+mkl:
+  - 2019.0
+mkl_include:
+  - 2019.5
+mkl_static:
+  - 2019.5
+pybind:
+  - 2.4.3
+python:
+  - 3.8.1
+numpy:
+  - 1.18.1
+eigen:
+  - 3.3.7
+boost_cpp:
+  - 1.69.0
+
+pin_run_as_build:
+  mkl:
+    max_pin: x.x
+  intel_openmp:
+    max_pin: x.x

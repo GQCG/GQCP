@@ -43,4 +43,10 @@ target_link_libraries(gqcp
         MKL::MKL
 )
 
+# Add rt library on Linux environments
+if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+    find_library(LIB_RT rt)
+    target_link_libraries(gqcp PUBLIC ${LIB_RT})
+endif()
+
 target_compile_options(gqcp PUBLIC -DEIGEN_USE_MKL_ALL -DMKL_LP64)

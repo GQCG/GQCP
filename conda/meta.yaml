@@ -1,0 +1,52 @@
+{% set version = "0.2.0" %}
+
+package:
+    name: gqcp
+    version: {{ version }}
+source:
+    git_url: https://github.com/GQCG/GQCP.git
+    git_tag: develop
+requirements:
+    build:
+      - git
+      - make
+      - cmake {{ cmake }}
+      - {{ compiler('c') }}
+      - {{ compiler('cxx') }}
+      - llvm-openmp               # [osx]
+      - intel-openmp
+    host:
+      - eigen {{ eigen }}
+      - boost-cpp {{ boost_cpp }}
+      - blas
+      - mkl
+      - python {{ python }}
+      - pybind11
+      - benchmark
+      - numpy
+      - libint
+      - spectra
+      - cint
+      - mkl-include {{ mkl_include }}
+      - mkl-static {{ mkl_static }}
+    run:
+      - {{ pin_compatible('python', min_pin='x.x', max_pin='x.x') }}
+      - {{ pin_compatible('mkl-include', min_pin='x.x', max_pin='x.x') }}
+      - {{ pin_compatible('mkl-static', min_pin='x.x', max_pin='x.x') }}
+      - {{ pin_compatible('boost-cpp', min_pin='x.x', max_pin='x.x') }}
+      - {{ pin_compatible('eigen', min_pin='x.x', max_pin='x.x') }}
+      - blas
+      - mkl
+      - numpy
+      - libint
+      - spectra
+      - cint
+test:
+  commands:
+    - test -f ${PREFIX}/lib/libgqcp$SHLIB_EXT
+    - test -f ${PREFIX}/include/gqcp/gqcp.hpp
+about:
+    home: https://github.com/GQCG/GQCP.git
+    license: GNU Lesser General Public License v3.0
+    license_file: LICENSE
+    summary: 'The Ghent Quantum Chemistry Package for electronic structure calculations.'

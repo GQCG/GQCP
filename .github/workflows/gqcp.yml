@@ -1,39 +1,40 @@
-name: GQCP
+name: GQCP_build
 
-on: [pull_request]
+on: pull_request
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        #os: [ubuntu-latest, macos-latest] # Disabled
+        os: [ubuntu-latest]
     steps:
-
     - uses: actions/setup-python@v1
       with:
-        python-version: '3.7' 
+        python-version: '3.8' 
     - uses: actions/checkout@v1
-
-    - name: Install Miniconda
-      run: |
-        wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O $HOME/miniconda.sh
+    - name: Download conda (Linux)
+      if: matrix.os == 'ubuntu-latest'
+      run: wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O $HOME/miniconda.sh
+    - name: Download conda (macOS)
+      if: matrix.os == 'macos-latest'
+      run: wget https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O $HOME/miniconda.sh
+    - name: Install conda   
+      run: |  
         bash $HOME/miniconda.sh -b -u -p $HOME/miniconda
         echo "::add-path::$HOME/miniconda/bin"
-
-    - name: Install some GQCP dependencies through Conda
+    - name: Install conda dependencies 
       run: |
         conda install -c conda-forge cmake=3.13 boost-cpp=1.69.0 eigen blas mkl pybind11 benchmark numpy;
         conda install -c gqcg libint cint;
         conda install -c intel mkl-include mkl-static intel-openmp;
-
-    # Build & test the library 
-    - name: Build GQCP and run tests
+    - name: Build, test and install
       run: |
         export LIBINT_DATA_PATH=$HOME/miniconda/share/libint/2.3.1/basis
         mkdir build && cd build
         cmake .. -DBUILD_TESTS=TRUE -DBUILD_BENCHMARKS=TRUE -DBUILD_PYTHON_BINDINGS=TRUE -DCMAKE_INSTALL_PREFIX=~/.local -DCMAKE_PREFIX_PATH=$HOME/miniconda
-        make -j2 && env CTEST_OUTPUT_ON_FAILURE=1 make test && sudo make install
-
-    # Run the benchmarks
+        make -j2 VERBOSE=1 && env CTEST_OUTPUT_ON_FAILURE=1 make test && sudo make install
     - name: Run benchmarks
       run: |
         cd build/gqcp/benchmarks
@@ -45,9 +46,6 @@ jobs:
         ./hubbard_diagonalization --benchmark_counters_tabular=true
         ./hubbard_matrix --benchmark_counters_tabular=true
         ./hubbard_matvec --benchmark_counters_tabular=true
-
-    # Test if the installed library links properly to external driver
-    # This is the final step to verify a successful build: if it does not error it updates the env variables
     - name: Check external linking
       run: |
         cd /tmp
