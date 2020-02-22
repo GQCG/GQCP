@@ -408,6 +408,25 @@ public:
     size_t dimension() const { return this->core().dimension(); }
 
     /**
+     *  Using a random rotation matrix, transform the matrix representations of the Hamiltonian
+     *
+     *  Note that this method is only available for real matrix representations
+     */
+    template<typename Z = Scalar>
+    enable_if_t<std::is_same<Z, double>::value> randomRotate() {
+
+        // Get a random unitary matrix by diagonalizing a random symmetric matrix
+        const auto K = this->dimension();
+        TransformationMatrix<double> A_random = TransformationMatrix<double>::Random(K, K);
+        TransformationMatrix<double> A_symmetric = A_random + A_random.transpose();
+        Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> unitary_solver (A_symmetric);
+        TransformationMatrix<double> U_random = unitary_solver.eigenvectors();
+
+        this->rotate(U_random);
+    }
+
+
+    /**
      *  In-place rotate the matrix representations of Hamiltonian
      *
      *  @param U    the unitary rotation matrix between the old and the new orbital basis
@@ -427,25 +446,6 @@ public:
         // Rotate the totals
         this->total_one_op.rotate(U);
         this->total_two_op.rotate(U);
-    }
-
-
-    /**
-     *  Using a random rotation matrix, transform the matrix representations of the Hamiltonian
-     *
-     *  Note that this method is only available for real matrix representations
-     */
-    template<typename Z = Scalar>
-    enable_if_t<std::is_same<Z, double>::value> randomRotate() {
-
-        // Get a random unitary matrix by diagonalizing a random symmetric matrix
-        const auto K = this->dimension();
-        TransformationMatrix<double> A_random = TransformationMatrix<double>::Random(K, K);
-        TransformationMatrix<double> A_symmetric = A_random + A_random.transpose();
-        Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> unitary_solver (A_symmetric);
-        TransformationMatrix<double> U_random = unitary_solver.eigenvectors();
-
-        this->rotate(U_random);
     }
 
 
@@ -474,11 +474,6 @@ public:
 
 
     /**
-     *  @return the total of the two-electron contributions to the Hamiltonian
-     */
-    const ScalarSQTwoElectronOperator<Scalar>& twoElectron() const { return this->total_two_op; }
-
-    /**
      *  In-place transform the matrix representations of Hamiltonian
      *
      *  @param T    the transformation matrix between the old and the new orbital basis
@@ -499,6 +494,12 @@ public:
         this->total_one_op.transform(T);
         this->total_two_op.transform(T);
     }
+
+
+    /**
+     *  @return the total of the two-electron contributions to the Hamiltonian
+     */
+    const ScalarSQTwoElectronOperator<Scalar>& twoElectron() const { return this->total_two_op; }
 
     /**
      *  @return the contributions to the two-electron part of the Hamiltonian
