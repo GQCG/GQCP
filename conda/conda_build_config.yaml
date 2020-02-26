@@ -22,10 +22,10 @@ cmake:
 mkl:
   - 2019.0
 mkl_include:
-  - 2019.5
+  - 2019.0
 mkl_static:
-  - 2019.5
-pybind:
+  - 2019.0
+pybind11:
   - 2.4.3
 python:
   - 3.6
@@ -37,9 +37,9 @@ eigen:
   - 3.3.7
 boost_cpp:
   - 1.69.0
-
-pin_run_as_build:
-  mkl:
-    max_pin: x.x
-  intel_openmp:
-    max_pin: x.x
+libint:
+  - 2.4.2
+spectra:
+  - 0.8.1
+cint:
+  - 3.0.17

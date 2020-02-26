@@ -1,11 +1,12 @@
+{% set name = "GQCP"}
 {% set version = "0.2.0" %}
 
 package:
-    name: gqcp
+    name: {{ name|lower }}
     version: {{ version }}
 source:
     git_url: https://github.com/GQCG/GQCP.git
-    git_tag: develop
+    git_tag: devops/conda
 requirements:
     build:
       - git
@@ -14,33 +15,24 @@ requirements:
       - {{ compiler('c') }}
       - {{ compiler('cxx') }}
       - llvm-openmp               # [osx]
-      - intel-openmp
-    host:
+      - intel-openmp      
       - eigen {{ eigen }}
-      - boost-cpp {{ boost_cpp }}
-      - blas
-      - mkl
-      - python {{ python }}
-      - pybind11
-      - benchmark
-      - numpy
-      - libint
-      - spectra
-      - cint
       - mkl-include {{ mkl_include }}
       - mkl-static {{ mkl_static }}
-    run:
-      - {{ pin_compatible('python', min_pin='x.x', max_pin='x.x') }}
-      - {{ pin_compatible('mkl-include', min_pin='x.x', max_pin='x.x') }}
-      - {{ pin_compatible('mkl-static', min_pin='x.x', max_pin='x.x') }}
-      - {{ pin_compatible('boost-cpp', min_pin='x.x', max_pin='x.x') }}
-      - {{ pin_compatible('eigen', min_pin='x.x', max_pin='x.x') }}
+      - pybind11 {{ pybind11 }}
+    host:
+      - boost-cpp {{ boost_cpp }}
       - blas
-      - mkl
-      - numpy
-      - libint
-      - spectra
-      - cint
+      - {{ pin_compatible('mkl') }}
+      - python {{ python }}
+      - benchmark
+      - mkl {{ mkl }}
+      - libint {{ libint }}
+      - spectra {{ spectra }}
+      - cint {{ cint }}
+    run:
+      - {{ pin_compatible('numpy')}}
+      - python {{ python }}
 test:
   commands:
     - test -f ${PREFIX}/lib/libgqcp$SHLIB_EXT
