@@ -1,11 +1,11 @@
 name: GQCP_conda
 
-on: pull_request
+#on: pull_request # for testing purposes
 
-#on:
-#  push:
-#    branches:
-#      - develop
+on:
+  push:
+    branches:
+      - develop
 
 jobs:
   build:
