@@ -1,4 +1,4 @@
-{% set name = "GQCP"}
+{% set name = "GQCP" %}
 {% set version = "0.2.0" %}
 
 package:
