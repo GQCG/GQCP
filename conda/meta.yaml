@@ -15,6 +15,7 @@ requirements:
       - {{ compiler('c') }}
       - {{ compiler('cxx') }}
       - llvm-openmp               # [osx]
+      - openmp                    # [linux]
       - intel-openmp      
       - eigen {{ eigen }}
       - mkl-include {{ mkl_include }}
