@@ -7,6 +7,15 @@ package:
 source:
     git_url: https://github.com/GQCG/GQCP.git
     git_tag: develop
+build:
+  run_exports:
+    - boost-cpp
+    - mkl
+    - libint
+    - spectra
+    - cint
+    - python
+    - numpy
 requirements:
     build:
       - git
@@ -21,19 +30,16 @@ requirements:
       - mkl-include {{ mkl_include }}
       - mkl-static {{ mkl_static }}
       - pybind11 {{ pybind11 }}
+      - benchmark
     host:
       - boost-cpp {{ boost_cpp }}
       - blas
       - {{ pin_compatible('mkl') }}
+      - {{ pin_compatible('numpy') }}
       - python {{ python }}
-      - benchmark
-      - mkl {{ mkl }}
       - libint {{ libint }}
       - spectra {{ spectra }}
       - cint {{ cint }}
-    run:
-      - {{ pin_compatible('numpy') }}
-      - python {{ python }}
 test:
   commands:
     - test -f ${PREFIX}/lib/libgqcp$SHLIB_EXT
