@@ -25,8 +25,8 @@ requirements:
     host:
       - boost-cpp {{ boost_cpp }}
       - blas
+      - numpy {{ numpy }}
       - {{ pin_compatible('mkl') }}
-      - {{ pin_compatible('numpy') }}
       - python {{ python }}
       - libint {{ libint }}
       - spectra {{ spectra }}
@@ -34,7 +34,7 @@ requirements:
     run:
       - boost-cpp {{ boost_cpp }}
       - {{ pin_compatible('mkl') }}
-      - {{ pin_compatible('numpy') }}
+      - numpy {{ numpy }}
       - python {{ python }}
       - libint {{ libint }}
       - spectra {{ spectra }}
