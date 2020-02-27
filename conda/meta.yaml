@@ -9,36 +9,39 @@ source:
     git_tag: develop
 requirements:
     build:
-      - git
-      - make
+      - benchmark
       - cmake {{ cmake }}
       - {{ compiler('c') }}
       - {{ compiler('cxx') }}
-      - llvm-openmp               # [osx]
-      - openmp {{ openmp }}       # [linux]
-      - intel-openmp {{ intel_openmp }}    
       - eigen {{ eigen }}
+      - git
+      - make
       - mkl-include {{ mkl_include }}
       - mkl-static {{ mkl_static }}
-      - pybind11 {{ pybind11 }}
-      - benchmark
+      - spectra {{ spectra }}
     host:
+      - blas {{ blas }}
       - boost-cpp {{ boost_cpp }}
-      - blas
-      - numpy {{ numpy }}      
-      - python {{ python }}
-      - {{ pin_compatible('mkl') }}
-      - libint {{ libint }}
-      - spectra {{ spectra }}
       - cint {{ cint }}
-    run:
-      - boost-cpp {{ boost_cpp }}
-      - {{ pin_compatible('mkl') }}
+      - intel-openmp {{ intel_openmp }}
+      - mkl {{ mkl }}
       - numpy {{ numpy }}
-      - python {{ python }}
       - libint {{ libint }}
-      - spectra {{ spectra }}
+      - llvm-openmp               # [osx]
+      - openmp {{ openmp }}       # [linux]
+      - pybind11 {{ pybind11 }}
+      - python {{ python }}
+    run:
+      - blas {{ blas }}
+      - boost-cpp {{ boost_cpp }}
       - cint {{ cint }}
+      - {{ pin_compatible('intel-openmp') }}
+      - {{ pin_compatible('mkl') }}
+      - libint {{ libint }}
+      - llvm-openmp               # [osx]
+      - numpy {{ numpy }}
+      - openmp {{ openmp }}       # [linux]
+      - python {{ python }}
 test:
   commands:
     - test -f ${PREFIX}/lib/libgqcp$SHLIB_EXT
