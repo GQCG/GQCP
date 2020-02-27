@@ -43,3 +43,7 @@ spectra:
   - 0.8.1
 cint:
   - 3.0.17
+openmp:
+  - 8.0.1
+intel_openmp:
+  - 2019.0

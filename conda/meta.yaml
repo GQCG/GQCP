@@ -15,8 +15,8 @@ requirements:
       - {{ compiler('c') }}
       - {{ compiler('cxx') }}
       - llvm-openmp               # [osx]
-      - openmp                    # [linux]
-      - intel-openmp      
+      - openmp {{ openmp }}       # [linux]
+      - intel-openmp {{ intel_openmp }}    
       - eigen {{ eigen }}
       - mkl-include {{ mkl_include }}
       - mkl-static {{ mkl_static }}
@@ -25,9 +25,9 @@ requirements:
     host:
       - boost-cpp {{ boost_cpp }}
       - blas
-      - numpy {{ numpy }}
-      - {{ pin_compatible('mkl') }}
+      - numpy {{ numpy }}      
       - python {{ python }}
+      - {{ pin_compatible('mkl') }}
       - libint {{ libint }}
       - spectra {{ spectra }}
       - cint {{ cint }}
