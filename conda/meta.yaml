@@ -1,46 +1,47 @@
+{% set name = "GQCP" %}
 {% set version = "0.2.0" %}
 
 package:
-    name: gqcp
+    name: {{ name|lower }}
     version: {{ version }}
 source:
     git_url: https://github.com/GQCG/GQCP.git
     git_tag: develop
 requirements:
     build:
-      - git
-      - make
+      - benchmark
       - cmake {{ cmake }}
       - {{ compiler('c') }}
       - {{ compiler('cxx') }}
-      - llvm-openmp               # [osx]
-      - intel-openmp
-    host:
       - eigen {{ eigen }}
-      - boost-cpp {{ boost_cpp }}
-      - blas
-      - mkl
-      - python {{ python }}
-      - pybind11
-      - benchmark
-      - numpy
-      - libint
-      - spectra
-      - cint
+      - git
+      - make
       - mkl-include {{ mkl_include }}
       - mkl-static {{ mkl_static }}
+      - spectra {{ spectra }}
+    host:
+      - blas {{ blas }}
+      - boost-cpp {{ boost_cpp }}
+      - cint {{ cint }}
+      - intel-openmp {{ intel_openmp }}
+      - mkl {{ mkl }}
+      - numpy {{ numpy }}
+      - libint {{ libint }}
+      - llvm-openmp               # [osx]
+      - openmp {{ openmp }}       # [linux]
+      - pybind11 {{ pybind11 }}
+      - python {{ python }}
     run:
-      - {{ pin_compatible('python', min_pin='x.x', max_pin='x.x') }}
-      - {{ pin_compatible('mkl-include', min_pin='x.x', max_pin='x.x') }}
-      - {{ pin_compatible('mkl-static', min_pin='x.x', max_pin='x.x') }}
-      - {{ pin_compatible('boost-cpp', min_pin='x.x', max_pin='x.x') }}
-      - {{ pin_compatible('eigen', min_pin='x.x', max_pin='x.x') }}
-      - blas
-      - mkl
-      - numpy
-      - libint
-      - spectra
-      - cint
+      - blas {{ blas }}
+      - boost-cpp {{ boost_cpp }}
+      - cint {{ cint }}
+      - {{ pin_compatible('intel-openmp') }}
+      - {{ pin_compatible('mkl') }}
+      - libint {{ libint }}
+      - llvm-openmp               # [osx]
+      - numpy {{ numpy }}
+      - openmp {{ openmp }}       # [linux]
+      - python {{ python }}
 test:
   commands:
     - test -f ${PREFIX}/lib/libgqcp$SHLIB_EXT

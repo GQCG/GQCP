@@ -34,4 +34,4 @@ if [ `uname` == Linux ]; then
         -DPYTHON_LIBRARY=${STDLIB_DIR}/libpython${PY_VER}.a
 fi
 
-make -j${CPU_COUNT} && make test && make install
+make -j${CPU_COUNT} && env CTEST_OUTPUT_ON_FAILURE=1 make test && make install

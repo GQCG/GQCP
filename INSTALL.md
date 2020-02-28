@@ -1,15 +1,31 @@
 # Installation
 
-## Clone the repo
+## User install
+
+The quickest way to install GQCP is through conda:
+
+```bash
+conda install -c gqcg -c intel -c conda-forge gqcp
+```
+
+After installation, set the `LIBINT_DATA_PATH` environment variable to the folder that contains the libint bases. In a default installation (of e.g. version v2.3.1), the data path is given by:
+
+```bash
+export LIBINT_DATA_PATH=${conda_install_dir}/share/libint/2.3.1/basis
+```
+
+## Develop install
+
+###  Clone the repo
 
 Clone the develop branch, which contains the latest developments
 
 ```bash
-    git clone https://github.com/GQCG/GQCP.git --branch develop --single-branch --recurse-submodules
-    cd GQCP
+git clone https://github.com/GQCG/GQCP.git --branch develop --single-branch --recurse-submodules
+cd GQCP
 ```
 
-## Install the GQCG development environment
+### Install the GQCG development environment
 
 Before installing GQCP, please make sure the following dependencies are available on your system:
 
@@ -17,52 +33,53 @@ Before installing GQCP, please make sure the following dependencies are availabl
 [![Eigen3 Dependency](https://img.shields.io/badge/Eigen-3.3.4+-000000.svg)](http://eigen.tuxfamily.org/index.php?title=Main_Page)
 [![libint2 Dependency](https://img.shields.io/badge/libint-2.3.1+-000000.svg)](https://github.com/evaleev/libint)
 [![libcint Dependency](https://img.shields.io/badge/gqcg_libcint-develop-000000.svg)](https://github.com/GQCG/libcint/tree/develop)
+[![spectra Dependency](https://img.shields.io/badge/gqcg_spectra-master-000000.svg)](https://github.com/GQCG/spectra/tree/master)
 
 Note that we offer Conda packages for these installation requirements:
 
 ```bash
-    conda env create -f environment.yml
-    conda activate gqcg_dev
+conda env create -f environment.yml
+conda activate gqcg_dev
 ```
 
-If you use your own installation of libint, please set the `LIBINT_DATA_PATH` environment variable to the folder that contains these bases. In a default installation (of e.g. version v2.3.1), the data path is given by:
+Set the `LIBINT_DATA_PATH` environment variable to the folder that contains the libint bases. In a default installation (of e.g. version v2.3.1), the data path is given by:
 
 ```bash
-   export LIBINT_DATA_PATH=/usr/local/libint/2.3.1/share/libint/2.3.1/basis
+export LIBINT_DATA_PATH=${conda_install_dir}/share/libint/2.3.1/basis
 ```
 
-## CMake out-of-source build
+### CMake out-of-source build
 
 Perform an out-of-source build:
 
 ```bash
-    mkdir build && cd build
-    cmake .. (CMake options)
-    make && make test && sudo make install
+mkdir build && cd build
+cmake .. (CMake options)
+make && make test && sudo make install
 ```
 
 The possible CMake options are listed below. As such, for the provided GQCG environment this reduces to
 
 ```bash
-    mkdir build && cd build
-    cmake .. -DCMAKE_PREFIX_PATH=${conda_install_dir}/envs/gqcg_dev \
-             -DCMAKE_INSTALL_PREFIX=~/.local \
-             -DBUILD_TESTS=TRUE \ 
-             -DBUILD_PYTHON_BINDINGS=TRUE \
-             -DPYTHON_EXECUTABLE=${conda_install_dir}/envs/gqcg_dev/bin/python \ 
-             -DPYTHON_LIBRARY=${conda_install_dir}/envs/gqcg_dev/lib/libpython3.8.a
+mkdir build && cd build
+cmake .. -DCMAKE_PREFIX_PATH=${conda_install_dir}/envs/gqcg_dev \
+    -DCMAKE_INSTALL_PREFIX=~/.local \
+    -DBUILD_TESTS=TRUE \ 
+    -DBUILD_PYTHON_BINDINGS=TRUE \
+    -DPYTHON_EXECUTABLE=${conda_install_dir}/envs/gqcg_dev/bin/python \ 
+    -DPYTHON_LIBRARY=${conda_install_dir}/envs/gqcg_dev/lib/libpython3.8.a
     make -j{CPU} && make test && (sudo) make install
 ```
 
 where `${conda_install_dir}` is the directory where you have installed conda. This directory can be found using
 
 ```bash
-   which conda
+which conda
 ```
 
 which should return `${conda_install_dir}/bin/conda`.
 
-### CMake options
+#### CMake options
 
 In general, please set and pass the following options to the `cmake ..` command:
 
