@@ -8,7 +8,7 @@ The quickest way to install GQCP is through conda:
 conda install -c gqcg -c intel -c conda-forge gqcp
 ```
 
-After installation, set the `LIBINT_DATA_PATH` environment variable to the folder that contains these bases. In a default installation (of e.g. version v2.3.1), the data path is given by:
+After installation, set the `LIBINT_DATA_PATH` environment variable to the folder that contains the libint bases. In a default installation (of e.g. version v2.3.1), the data path is given by:
 
 ```bash
 export LIBINT_DATA_PATH=${conda_install_dir}/share/libint/2.3.1/basis
@@ -42,7 +42,7 @@ conda env create -f environment.yml
 conda activate gqcg_dev
 ```
 
-Set the `LIBINT_DATA_PATH` environment variable to the folder that contains these bases. In a default installation (of e.g. version v2.3.1), the data path is given by:
+Set the `LIBINT_DATA_PATH` environment variable to the folder that contains the libint bases. In a default installation (of e.g. version v2.3.1), the data path is given by:
 
 ```bash
 export LIBINT_DATA_PATH=${conda_install_dir}/share/libint/2.3.1/basis
