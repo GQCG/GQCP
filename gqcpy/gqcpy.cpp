@@ -67,7 +67,7 @@ void bindSQTwoElectronOperator(py::module& module);
 
 
 // QCMethod - CI
-void bindCIEnvironment(py::module& module);
+void bindCIEnvironments(py::module& module);
 void bindCIFactory(py::module& module);
 void bindQCMethodCIs(py::module& module);
 
@@ -145,7 +145,7 @@ PYBIND11_MODULE (gqcpy, module) {
 
 
     // QCMethod - CI
-    gqcpy::bindCIEnvironment(module);
+    gqcpy::bindCIEnvironments(module);
     gqcpy::bindCIFactory(module);
     gqcpy::bindQCMethodCIs(module);
 
