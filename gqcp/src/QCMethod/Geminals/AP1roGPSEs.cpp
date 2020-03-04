@@ -33,9 +33,7 @@ AP1roGPSEs::AP1roGPSEs(const SQHamiltonian<double>& sq_hamiltonian, const size_t
     N_P (N_P),
     K (sq_hamiltonian.dimension()),
     sq_hamiltonian (sq_hamiltonian)
-{
-    std::cout << "N_P in constructor" << N_P << ' ' << this->N_P << std::endl;
-}
+{}
 
 
 

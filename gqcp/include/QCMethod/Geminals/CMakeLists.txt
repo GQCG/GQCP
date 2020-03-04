@@ -4,6 +4,5 @@ target_sources(gqcp
         AP1roGLagrangianNewtonOrbitalOptimizer.hpp
         AP1roGLagrangianOptimizer.hpp
         AP1roGPSEs.hpp
-        AP1roGPSESolver.hpp
         PSEnvironment.hpp
 )

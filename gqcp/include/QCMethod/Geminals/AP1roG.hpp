@@ -81,7 +81,6 @@ public:
 
         // To make a QCStructure, we need the electronic energy, geminal coefficients and number of electrons.
         // Furthermore, the solvers only find the ground state wave function parameters, so the QCStructure only needs to contain the parameters for one state.
-        std::cout << "Found a solution." << std::endl;
         const auto G_optimal = AP1roGGeminalCoefficients::FromColumnMajor(environment.variables.back(), this->N_P, this->K);
         const GQCP::QCModel::AP1roG ap1rog_parameters {G_optimal};
 

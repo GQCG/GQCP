@@ -19,7 +19,9 @@
 
 #include "Mathematical/Optimization/Minimization/MinimizationEnvironment.hpp"
 #include "Mathematical/Optimization/Minimization/Minimizer.hpp"
-#include "QCMethod/Geminals/AP1roGPSESolver.hpp"
+#include "Mathematical/Optimization/NonLinearEquation/NonLinearEquationSolver.hpp"
+#include "QCMethod/Geminals/AP1roG.hpp"
+#include "QCMethod/Geminals/PSEnvironment.hpp"
 #include "QCModel/Geminals/AP1roG.hpp"
 
 #include <boost/math/constants/constants.hpp>
@@ -72,10 +74,13 @@ AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer(const AP1roGGeminalCo
  */
 void AP1roGJacobiOrbitalOptimizer::prepareJacobiSpecificConvergenceChecking(const SQHamiltonian<double>& sq_hamiltonian) {
 
-    const AP1roGPSEs pses (sq_hamiltonian, this->N_P);
-    AP1roGPSESolver pse_solver (pses, this->convergence_threshold, this->maximum_number_of_iterations);
-    pse_solver.solve(this->G);
-    this->E = QCModel::AP1roG::calculateEnergy(this->G, sq_hamiltonian);
+    // Optimize the AP1roG wave function model in this basis and update the results.
+    auto solver = GQCP::NonLinearEquationSolver<double>::Newton();
+    auto environment = GQCP::PSEnvironment::AP1roG(sq_hamiltonian, this->G);  // the initial guess are the current geminal coefficients
+    const auto qc_structure = GQCP::QCMethod::AP1roG(sq_hamiltonian, N_P).optimize(solver, environment);
+
+    this->G = qc_structure.groundStateParameters().geminalCoefficients();
+    this->E = qc_structure.groundStateEnergy();
 }
 
 

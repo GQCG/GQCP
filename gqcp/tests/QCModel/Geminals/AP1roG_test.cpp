@@ -20,8 +20,10 @@
 #include <boost/test/unit_test.hpp>
 
 #include "Basis/transform.hpp"
+#include "Mathematical/Optimization/NonLinearEquation/NonLinearEquationSolver.hpp"
 #include "Processing/Properties/expectation_values.hpp"
-#include "QCMethod/Geminals/AP1roGPSESolver.hpp"
+#include "QCMethod/Geminals/AP1roG.hpp"
+#include "QCMethod/Geminals/PSEnvironment.hpp"
 #include "QCMethod/Geminals/AP1roGLagrangianOptimizer.hpp"
 #include "QCMethod/HF/DiagonalRHFFockMatrixObjective.hpp"
 #include "QCMethod/HF/RHF.hpp"
@@ -48,10 +50,13 @@ BOOST_AUTO_TEST_CASE ( energy_as_contraction ) {
     GQCP::basisTransform(spinor_basis, sq_hamiltonian, rhf_parameters.coefficientMatrix());
 
 
-    // Solve the AP1roG PSEs for the geminal coefficients.
-    GQCP::AP1roGPSEs pses (sq_hamiltonian, N_P);
-    const GQCP::AP1roGPSESolver pse_solver (pses);
-    const auto G = pse_solver.solve();  // initial guess is zero
+    // Optimize the AP1roG wave function model for the geminal coefficients.
+    auto solver = GQCP::NonLinearEquationSolver<double>::Newton();
+    auto environment = GQCP::PSEnvironment::AP1roG(sq_hamiltonian, N_P);  // zero initial guess
+    const auto qc_structure = GQCP::QCMethod::AP1roG(sq_hamiltonian, N_P).optimize(solver, environment);
+
+    const auto G = qc_structure.groundStateParameters().geminalCoefficients();
+    const auto electronic_energy = qc_structure.groundStateEnergy();
 
 
     // Determine the Lagrangian multipliers in order to calculate the DMs.
@@ -60,8 +65,6 @@ BOOST_AUTO_TEST_CASE ( energy_as_contraction ) {
 
 
     // Calculate the DMs and check the trace with the one- and two-electron integrals.
-    const double electronic_energy = GQCP::QCModel::AP1roG::calculateEnergy(G, sq_hamiltonian);
-
     const auto D = GQCP::QCModel::AP1roG::calculate1RDM(G, multipliers);
     const auto d = GQCP::QCModel::AP1roG::calculate2RDM(G, multipliers);
     const double electronic_energy_by_contraction = sq_hamiltonian.calculateExpectationValue(D, d);

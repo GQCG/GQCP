@@ -15,11 +15,9 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#define BOOST_TEST_MODULE "AP1roGPSESolver"
+#define BOOST_TEST_MODULE "QCMethod_AP1roG"
 
 #include <boost/test/unit_test.hpp>
-
-#include "QCMethod/Geminals/AP1roGPSESolver.hpp"
 
 #include "Basis/transform.hpp"
 #include "Mathematical/Optimization/NonLinearEquation/NonLinearEquationSolver.hpp"
@@ -105,7 +103,7 @@ BOOST_AUTO_TEST_CASE ( h2_631gdp_weak_interaction_limit ) {
     const auto G_initial = GQCP::AP1roGGeminalCoefficients::WeakInteractionLimit(sq_hamiltonian, N_P);
 
     auto solver = GQCP::NonLinearEquationSolver<double>::Newton();
-    auto environment = GQCP::PSEnvironment::AP1roG(sq_hamiltonian, G);
+    auto environment = GQCP::PSEnvironment::AP1roG(sq_hamiltonian, G_initial);
     const auto qc_structure = GQCP::QCMethod::AP1roG(sq_hamiltonian, N_P).optimize(solver, environment);
 
     const auto electronic_energy = qc_structure.groundStateEnergy();
