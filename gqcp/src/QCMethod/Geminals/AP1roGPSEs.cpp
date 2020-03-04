@@ -33,7 +33,9 @@ AP1roGPSEs::AP1roGPSEs(const SQHamiltonian<double>& sq_hamiltonian, const size_t
     N_P (N_P),
     K (sq_hamiltonian.dimension()),
     sq_hamiltonian (sq_hamiltonian)
-{}
+{
+    std::cout << "N_P in constructor" << N_P << ' ' << this->N_P << std::endl;
+}
 
 
 
@@ -120,9 +122,15 @@ BlockMatrix<double> AP1roGPSEs::calculateCoordinateFunctions(const AP1roGGeminal
  */
 VectorFunction<double> AP1roGPSEs::callableCoordinateFunctions() const {
 
-    VectorFunction<double> callable = [this] (const VectorX<double>& x) {
-        auto G = AP1roGGeminalCoefficients::FromColumnMajor(x, this->N_P, this->K);
-        return this->calculateCoordinateFunctions(G).asVector(); 
+    // Capture a copy of *this by value to make sure that there is no undefined behaviour when 'this' goes out of scope.
+    const auto this_copy = *this;
+
+    VectorFunction<double> callable = [this_copy] (const VectorX<double>& x) {
+        const auto N_P = this_copy.numberOfElectronPairs();
+        const auto K = this_copy.numberOfSpatialOrbitals();
+
+        auto G = AP1roGGeminalCoefficients::FromColumnMajor(x, N_P, K);
+        return this_copy.calculateCoordinateFunctions(G).asVector();
     };
 
     return callable;
@@ -221,9 +229,15 @@ BlockRankFourTensor<double> AP1roGPSEs::calculateJacobian(const AP1roGGeminalCoe
  */
 MatrixFunction<double> AP1roGPSEs::callableJacobian() const {
 
-    MatrixFunction<double> callable = [this] (const VectorX<double>& x) { 
-        auto G = AP1roGGeminalCoefficients::FromColumnMajor(x, this->N_P, this->K);
-        return this->calculateJacobian(G).asMatrix();
+    // Capture a copy of *this by value to make sure that there is no undefined behaviour when 'this' goes out of scope.
+    const auto this_copy = *this;
+
+    MatrixFunction<double> callable = [this_copy] (const VectorX<double>& x) {
+        const auto N_P = this_copy.numberOfElectronPairs();
+        const auto K = this_copy.numberOfSpatialOrbitals();
+
+        auto G = AP1roGGeminalCoefficients::FromColumnMajor(x, N_P, K);
+        return this_copy.calculateJacobian(G).asMatrix();
     };
 
     return callable;
