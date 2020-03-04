@@ -3,5 +3,7 @@ target_sources(gqcp
         BaseHessianModifier.hpp
         IterativeIdentitiesHessianModifier.hpp
         MinimizationEnvironment.hpp
+        Minimizer.hpp
+        NewtonStepUpdate.hpp
         UnalteringHessianModifier.hpp
 )
