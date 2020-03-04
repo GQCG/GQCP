@@ -19,6 +19,8 @@
 
 
 #include "Mathematical/Algorithm/Step.hpp"
+#include "Mathematical/Optimization/LinearEquation/LinearEquationEnvironment.hpp"
+#include "Mathematical/Optimization/LinearEquation/LinearEquationSolver.hpp"
 #include "Mathematical/Optimization/NonLinearEquation/NonLinearEquationEnvironment.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 
@@ -66,8 +68,13 @@ public:
         // Calculate f(x) and J(x), i.e. the values of the vector field and its Jacobian at the given x
         VectorX<Scalar> f_vector = f(x);
         SquareMatrix<Scalar> J_matrix = J(x);
-        const VectorX<Scalar> dx = J_matrix.colPivHouseholderQr().solve(-f_vector);  // the actual Newton step
 
+        // Solve [J dx = -f].
+        auto linear_environment = LinearEquationEnvironment<Scalar>(J_matrix, -f_vector);
+        auto solver = LinearEquationSolver<Scalar>::HouseholderQR();
+        solver.perform(linear_environment);
+
+        const auto dx = linear_environment.x;
         environment.variables.push_back(x + dx);
     }
 };

@@ -17,7 +17,8 @@
 // 
 #include "Processing/Properties/BaseElectricalResponseSolver.hpp"
 
-#include "Eigen/Householder"
+#include "Mathematical/Optimization/LinearEquation/LinearEquationEnvironment.hpp"
+#include "Mathematical/Optimization/LinearEquation/LinearEquationSolver.hpp"
 
 
 namespace GQCP {
@@ -43,9 +44,11 @@ Matrix<double, Dynamic, 3> BaseElectricalResponseSolver::calculateWaveFunctionRe
 
 
     // This function is basically a wrapper around solving k_p x = -F_p
-    Eigen::HouseholderQR<Eigen::MatrixXd> linear_solver (k_p);
-    const Matrix<double, Dynamic, 3> x = linear_solver.solve(-F_p);
+    auto environment = LinearEquationEnvironment<double>(k_p, -F_p);
+    auto solver = LinearEquationSolver<double>::HouseholderQR();
+    solver.perform(environment);
 
+    const Matrix<double, Dynamic, 3> x = environment.x;
     return x;
 }
 

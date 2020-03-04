@@ -6,5 +6,6 @@ target_sources(gqcp
 
 add_subdirectory(Accelerator)
 add_subdirectory(Eigenproblem)
+add_subdirectory(LinearEquation)
 add_subdirectory(Minimization)
 add_subdirectory(NonLinearEquation)

@@ -17,6 +17,8 @@
 // 
 #include "QCMethod/Geminals/AP1roGLagrangianOptimizer.hpp"
 
+#include "Mathematical/Optimization/LinearEquation/LinearEquationEnvironment.hpp"
+#include "Mathematical/Optimization/LinearEquation/LinearEquationSolver.hpp"
 #include "QCMethod/Geminals/AP1roGPSEs.hpp"
 
 
@@ -69,14 +71,12 @@ BlockMatrix<double> AP1roGLagrangianOptimizer::solve() {
     }
 
 
-    // Solve the linear system (k_lambda lambda=-b)
-    Eigen::HouseholderQR<Eigen::MatrixXd> linear_solver (k_lambda);
-    VectorX<double> lambda = linear_solver.solve(-b.asVector());  // b is column major, so lambda is also column major
+    // Solve the linear system [k_lambda lambda=-b]
+    auto environment = LinearEquationEnvironment<double>(k_lambda, -b.asVector());  // b is column major, so lambda must also be column major
+    auto solver = LinearEquationSolver<double>::HouseholderQR();
+    solver.perform(environment);
 
-
-    if (std::abs((k_lambda * lambda + b.asVector()).norm()) > 1.0e-12) {
-        throw std::runtime_error("void AP1roGLagrangianOptimizer::solve(): The Householder QR decomposition failed.");
-    }
+    const VectorX<double> lambda = environment.x;
 
     const size_t rows = N_P;  // the number of rows in the multiplier matrix
     const size_t cols = K - N_P;  // the number of columns in the multiplier matrix
