@@ -116,3 +116,7 @@ For this library, there are several extra options and configuration arguments yo
 * `-DPYTHON_EXECUTABLE=python_executable` with `python_executable` the path to your preferred Python executable.
 
 * `-DPYTHON_LIBRARY=python_library` with `python_library` the path to the libraries that support your preferred Python executable.
+
+### Guidelines
+
+* If you encounter an EMT-instruction failure when using the Intel compilers on the HPC clusters, reduces the number of processors passed to make.
