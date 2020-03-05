@@ -20,11 +20,11 @@
 #include <boost/test/unit_test.hpp>
 
 #include "Basis/transform.hpp"
+#include "Mathematical/Optimization/LinearEquation/LinearEquationSolver.hpp"
 #include "Mathematical/Optimization/NonLinearEquation/NonLinearEquationSolver.hpp"
 #include "Processing/Properties/expectation_values.hpp"
-#include "QCMethod/Geminals/AP1roG.hpp"
 #include "QCMethod/Geminals/PSEnvironment.hpp"
-#include "QCMethod/Geminals/AP1roGLagrangianOptimizer.hpp"
+#include "QCMethod/Geminals/vAP1roG.hpp"
 #include "QCMethod/HF/DiagonalRHFFockMatrixObjective.hpp"
 #include "QCMethod/HF/RHF.hpp"
 #include "QCMethod/HF/RHFSCFSolver.hpp"
@@ -51,17 +51,15 @@ BOOST_AUTO_TEST_CASE ( energy_as_contraction ) {
 
 
     // Optimize the AP1roG wave function model for the geminal coefficients.
-    auto solver = GQCP::NonLinearEquationSolver<double>::Newton();
-    auto environment = GQCP::PSEnvironment::AP1roG(sq_hamiltonian, N_P);  // zero initial guess
-    const auto qc_structure = GQCP::QCMethod::AP1roG(sq_hamiltonian, N_P).optimize(solver, environment);
+    auto non_linear_solver = GQCP::NonLinearEquationSolver<double>::Newton();
+    auto non_linear_environment = GQCP::PSEnvironment::AP1roG(sq_hamiltonian, N_P);  // zero initial guess
+    auto linear_solver = GQCP::LinearEquationSolver<double>::HouseholderQR();
+
+    const auto qc_structure = GQCP::QCMethod::vAP1roG(sq_hamiltonian, N_P).optimize(non_linear_solver, non_linear_environment, linear_solver);
 
     const auto G = qc_structure.groundStateParameters().geminalCoefficients();
+    const auto multipliers = qc_structure.groundStateParameters().lagrangeMultipliers();
     const auto electronic_energy = qc_structure.groundStateEnergy();
-
-
-    // Determine the Lagrangian multipliers in order to calculate the DMs.
-    GQCP::AP1roGLagrangianOptimizer lagrangian_optimizer (G, sq_hamiltonian);
-    const auto multipliers = lagrangian_optimizer.solve();
 
 
     // Calculate the DMs and check the trace with the one- and two-electron integrals.

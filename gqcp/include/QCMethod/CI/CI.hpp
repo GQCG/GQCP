@@ -22,7 +22,6 @@
 #include "Mathematical/Algorithm/IterativeAlgorithm.hpp"
 #include "Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp"
 #include "ONVBasis/BaseONVBasis.hpp"
-#include "QCMethod/QCMethodProtocol.hpp"
 #include "QCModel/CI/LinearExpansion.hpp"
 
 #include <memory>
@@ -38,8 +37,7 @@ namespace QCMethod {
  *  @tparam _ONVBasis           the type of ONV basis
  */
 template <typename _ONVBasis>
-class CI:
-    public GQCP::QCMethodProtocol<LinearExpansion<_ONVBasis>, QCMethod::CI<_ONVBasis>> {
+class CI {
 
 public:
     using ONVBasis = _ONVBasis;

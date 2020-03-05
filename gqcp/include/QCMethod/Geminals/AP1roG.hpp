@@ -18,10 +18,10 @@
 #pragma once
 
 
-#include "QCMethod/QCMethodProtocol.hpp"
-#include "QCModel/Geminals/AP1roG.hpp"
 #include "Mathematical/Optimization/NonLinearEquation/NonLinearEquationEnvironment.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
+#include "QCMethod/QCStructure.hpp"
+#include "QCModel/Geminals/AP1roG.hpp"
 
 
 namespace GQCP {
@@ -31,8 +31,7 @@ namespace QCMethod {
 /**
  *  The AP1roG quantum chemical method.
  */
-class AP1roG:
-    public GQCP::QCMethodProtocol<GQCP::QCModel::AP1roG, QCMethod::AP1roG> {
+class AP1roG {
 
 
 private:
@@ -66,10 +65,8 @@ public:
     /**
      *  Optimize the AP1roG wave function model: find the parameters satisfy the given objective.
      * 
-     *  @tparam QCObjective         the type of the objective
      *  @tparam Solver              the type of the solver
      * 
-     *  @param objective            the objective that should be fulfilled in order to consider the model's parameters as 'optimal'
      *  @param solver               the solver that will try to optimize the parameters
      *  @param environment          the environment, which acts as a sort of calculation space for the solver
      */

@@ -17,6 +17,8 @@
 // 
 #include "QCModel/Geminals/vAP1roG.hpp"
 
+#include "QCMethod/Geminals/AP1roGPSEs.hpp"
+
 
 namespace GQCP {
 
@@ -65,6 +67,44 @@ OneRDM<double> QCModel::vAP1roG::calculate1RDM(const AP1roGGeminalCoefficients& 
     }
 
     return D;
+}
+
+
+/**
+ *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis
+ *  @param N_P                  the number of electron pairs
+ * 
+ *  @return the response force (-F_lambda) that is used to solve the linear equations for the Lagrange multipliers lambda in [k_lambda lambda = -F_lambda]
+ */
+BlockMatrix<double> QCModel::vAP1roG::calculateMultiplierResponseForce(const SQHamiltonian<double>& sq_hamiltonian, const size_t N_P) {
+
+    const auto K = sq_hamiltonian.dimension();  // number of spatial orbitals
+    const auto& g = sq_hamiltonian.twoElectron().parameters();
+
+    BlockMatrix<double> F_lambda (0, N_P, N_P, K);
+    for (size_t i = 0; i < N_P; i++) {
+        for (size_t a = N_P; a < K; a++) {
+            F_lambda(i,a) = -g(i,a,i,a);
+        }
+    }
+
+    return F_lambda;
+}
+
+
+/**
+ *  @param G                    the AP1roG geminal coefficients
+ *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis
+ * 
+ *  @return the response force constant (k_lambda) that is used to solve the linear equations for the Lagrange multipliers lambda in [k_lambda lambda = -F_lambda]
+ */
+MatrixX<double> QCModel::vAP1roG::calculateMultiplierResponseForceConstant(const SQHamiltonian<double>& sq_hamiltonian, const AP1roGGeminalCoefficients& G) {
+
+    const auto N_P = G.numberOfElectronPairs();
+
+    const AP1roGPSEs pses (sq_hamiltonian, N_P);
+    const MatrixX<double> k_lambda = pses.calculateJacobian(G).asMatrix().transpose();
+    return k_lambda;
 }
 
 

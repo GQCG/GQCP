@@ -36,6 +36,7 @@ private:
     AP1roGGeminalCoefficients G;  // the optimized geminal coefficients
     BlockMatrix<double> multipliers;  // the optimized Lagrange multipliers
 
+
 public:
 
     /*
@@ -71,6 +72,22 @@ public:
      *  @return the AP1roG response 1-DM
      */
     static OneRDM<double> calculate1RDM(const AP1roGGeminalCoefficients& G, const BlockMatrix<double>& multipliers);
+
+    /**
+     *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis
+     *  @param N_P                  the number of electron pairs
+     * 
+     *  @return the response force (-F_lambda) that is used to solve the linear equations for the Lagrange multipliers lambda in [k_lambda lambda = -F_lambda]
+     */
+    static BlockMatrix<double> calculateMultiplierResponseForce(const SQHamiltonian<double>& sq_hamiltonian, const size_t N_P);
+
+    /**
+     *  @param G                    the AP1roG geminal coefficients
+     *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis
+     * 
+     *  @return the response force constant (k_lambda) that is used to solve the linear equations for the Lagrange multipliers lambda in [k_lambda lambda = -F_lambda]
+     */
+    static MatrixX<double> calculateMultiplierResponseForceConstant(const SQHamiltonian<double>& sq_hamiltonian, const AP1roGGeminalCoefficients& G);
 
     /**
      *  @param G                the AP1roG geminal coefficients
@@ -112,6 +129,11 @@ public:
      *  @return the corresponding geminal coefficients of these AP1roG model parameters
      */
     const AP1roGGeminalCoefficients& geminalCoefficients() const { return this->G; }
+
+    /**
+     *  @return the Lagrange multipliers
+     */
+    const BlockMatrix<double>& lagrangeMultipliers() const { return this->multipliers; }
 
     /**
      *  @return the number of electron pairs that are described by these AP1roG model parameters

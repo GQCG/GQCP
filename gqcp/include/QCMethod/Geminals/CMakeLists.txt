@@ -5,4 +5,5 @@ target_sources(gqcp
         AP1roGLagrangianOptimizer.hpp
         AP1roGPSEs.hpp
         PSEnvironment.hpp
+        vAP1roG.hpp
 )

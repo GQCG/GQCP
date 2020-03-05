@@ -203,7 +203,6 @@
 
 #include "QCMethod/RMP2/RMP2.hpp"
 
-#include "QCMethod/QCMethodProtocol.hpp"
 #include "QCMethod/QCObjective.hpp"
 #include "QCMethod/QCStructure.hpp"
 
