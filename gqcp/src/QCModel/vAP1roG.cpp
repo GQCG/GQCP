@@ -17,7 +17,7 @@
 // 
 #include "QCModel/Geminals/vAP1roG.hpp"
 
-#include "QCMethod/Geminals/AP1roGPSEs.hpp"
+#include "QCModel/Geminals/AP1roG.hpp"
 
 
 namespace GQCP {
@@ -102,8 +102,7 @@ MatrixX<double> QCModel::vAP1roG::calculateMultiplierResponseForceConstant(const
 
     const auto N_P = G.numberOfElectronPairs();
 
-    const AP1roGPSEs pses (sq_hamiltonian, N_P);
-    const MatrixX<double> k_lambda = pses.calculateJacobian(G).asMatrix().transpose();
+    const MatrixX<double> k_lambda = QCModel::AP1roG::calculateJacobian(sq_hamiltonian, G).asMatrix().transpose();
     return k_lambda;
 }
 

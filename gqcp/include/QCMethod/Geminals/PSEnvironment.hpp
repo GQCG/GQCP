@@ -20,7 +20,7 @@
 
 #include "Mathematical/Optimization/NonLinearEquation/NonLinearEquationEnvironment.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
-#include "QCMethod/Geminals/AP1roGPSEs.hpp"
+#include "QCModel/Geminals/AP1roG.hpp"
 
 
 namespace GQCP {
@@ -40,10 +40,11 @@ NonLinearEquationEnvironment<Scalar> AP1roG(const SQHamiltonian<Scalar>& sq_hami
 
     const auto N_P = G_initial.numberOfElectronPairs();
 
-    const AP1roGPSEs pses (sq_hamiltonian, N_P);
     const auto initial_guess = G_initial.asVector();  // column major
+    const auto f_callable = QCModel::AP1roG::callablePSECoordinateFunctions(sq_hamiltonian, N_P);
+    const auto J_callable = QCModel::AP1roG::callablePSEJacobian(sq_hamiltonian, N_P);
 
-    return GQCP::NonLinearEquationEnvironment<Scalar>{initial_guess, pses.callableCoordinateFunctions(), pses.callableJacobian()};
+    return GQCP::NonLinearEquationEnvironment<Scalar>{initial_guess, f_callable, J_callable};
 }
 
 

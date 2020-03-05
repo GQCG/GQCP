@@ -61,6 +61,60 @@ public:
      */
     static double calculateEnergy(const AP1roGGeminalCoefficients& G, const SQHamiltonian<double>& sq_hamiltonian);
 
+    /**
+     *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
+     *  @param G                        the AP1roG geminal coefficients
+     *  @param i                        the subscript for the coordinate function
+     *  @param a                        the superscript for the coordinate function
+     *
+     *  @return the PSE coordinate function with given indices (i,a) at the given geminal coefficients
+     */
+    static double calculatePSECoordinateFunction(const SQHamiltonian<double>& sq_hamiltonian, const AP1roGGeminalCoefficients& G, const size_t i, const size_t a);
+
+    /**
+     *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
+     *  @param G                        the AP1roG geminal coefficients
+     *
+     *  @return the PSEs, evaluated at the given geminal coefficients
+     */
+    static BlockMatrix<double> calculatePSECoordinateFunctions(const SQHamiltonian<double>& sq_hamiltonian, const AP1roGGeminalCoefficients& G);
+
+    /**
+     *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
+     *  @param N_P                      the number of electron pairs
+     * 
+     *  @return a callable (i.e. with operator()) expression for the coordinate functions: the accepted VectorX<double> argument should contain the geminal coefficients in a column-major representation
+     */
+    static VectorFunction<double> callablePSECoordinateFunctions(const SQHamiltonian<double>& sq_hamiltonian, const size_t N_P);
+
+    /**
+     *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis
+     *  @param G                    the AP1roG geminal coefficients
+     *  @param i                    the subscript for the coordinate function
+     *  @param a                    the superscript for the coordinate function
+     *  @param j                    the subscript for the geminal coefficient
+     *  @param b                    the superscript for the geminal coefficient
+     *
+     *  @return the Jacobian element with compound indices (i,a) and (j,b) at the given geminal coefficients
+     */
+    static double calculatePSEJacobianElement(const SQHamiltonian<double>& sq_hamiltonian, const AP1roGGeminalCoefficients& G, const size_t i, const size_t a, const size_t j, const size_t b);
+
+    /**
+     *  @param sq_hamiltonian       the Hamiltonian expressed in an orthonormal basis
+     *  @param G                    the AP1roG geminal coefficients
+     *
+     *  @return the Jacobian J_{ia,jb} of the PSEs, i.e. df_i^a/dG_j^b, evaluated at the given geminal coefficients
+     */
+    static BlockRankFourTensor<double> calculatePSEJacobian(const SQHamiltonian<double>& sq_hamiltonian, const AP1roGGeminalCoefficients& G);
+
+    /**
+     *  @param sq_hamiltonian           the Hamiltonian expressed in an orthonormal basis
+     *  @param N_P                      the number of electron pairs
+     * 
+     *  @return a callable (i.e. with operator()) expression for the Jacobian: the accepted VectorX<double> argument should contain the geminal coefficients in a column-major representation
+     */
+    static MatrixFunction<double> callablePSEJacobian(const SQHamiltonian<double>& sq_hamiltonian, const size_t N_P);
+
 
     /*
      *  PUBLIC METHODS
