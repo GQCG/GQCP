@@ -81,6 +81,10 @@ cmake .. -DCMAKE_PREFIX_PATH=$CONDA_PREFIX \
 
 In general, please set and pass the following options to the `cmake ..` command:
 
+* `-DCMAKE_C_COMPILER=cc`, with `cc` the C-compiler used. On the HPC clusters, you can use the Intel compiler `icc` after loading the relevant module (e.g. `module load intel/2019b`).
+
+* `-DCMAKE_CXX_COMPILER=cxx`, with `cxx` the C++-compiler used. On the HPC clusters, you can use the Intel compiler `icpc` after loading the relevant module (e.g. `module load intel/2019b`).
+
 * `-DCMAKE_PREFIX_PATH=prefix_path`, with `prefix_path` the path to those libraries and includes that are not in default locations, but are grouped together.
    For instance, setting the prefix_path to `/usr/local` ensures that the folders `cmake`, `lib`, `lib64` and `include` can be found.
    You should set the prefix to libInt2, libCint, Eigen and Intel MKL.
