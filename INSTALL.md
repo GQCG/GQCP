@@ -120,4 +120,5 @@ For this library, there are several extra options and configuration arguments yo
 ### Guidelines
 
 * If you encounter an EMT-instruction failure when using the Intel compilers on the HPC clusters, reduce the number of processors passed to make, e.g. replace `make -j6` by `make -j3`.
+* Store and compile the code on `$VSC_SCRATCH` to achieve optimal performance.
 
