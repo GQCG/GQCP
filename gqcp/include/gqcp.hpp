@@ -178,7 +178,6 @@
 
 #include "QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.hpp"
 #include "QCMethod/Geminals/AP1roGLagrangianNewtonOrbitalOptimizer.hpp"
-#include "QCMethod/Geminals/AP1roGLagrangianOptimizer.hpp"
 #include "QCMethod/Geminals/AP1roGPSEs.hpp"
 
 #include "QCMethod/HF/DiagonalRHFFockMatrixObjective.hpp"

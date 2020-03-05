@@ -24,7 +24,6 @@
 #include "Mathematical/Optimization/NonLinearEquation/NonLinearEquationSolver.hpp"
 #include "QCMethod/Geminals/AP1roG.hpp"
 #include "QCMethod/Geminals/PSEnvironment.hpp"
-#include "QCMethod/Geminals/AP1roGLagrangianOptimizer.hpp"
 #include "QCMethod/Geminals/AP1roGLagrangianNewtonOrbitalOptimizer.hpp"
 #include "QCMethod/HF/DiagonalRHFFockMatrixObjective.hpp"
 #include "QCMethod/HF/RHF.hpp"

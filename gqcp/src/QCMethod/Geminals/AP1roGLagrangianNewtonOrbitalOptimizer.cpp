@@ -18,9 +18,8 @@
 #include "QCMethod/Geminals/AP1roGLagrangianNewtonOrbitalOptimizer.hpp"
 
 #include "Mathematical/Optimization/NonLinearEquation/NonLinearEquationSolver.hpp"
-#include "QCMethod/Geminals/AP1roG.hpp"
-#include "QCMethod/Geminals/AP1roGLagrangianOptimizer.hpp"
 #include "QCMethod/Geminals/PSEnvironment.hpp"
+#include "QCMethod/Geminals/vAP1roG.hpp"
 #include "QCModel/Geminals/vAP1roG.hpp"
 
 
@@ -76,17 +75,16 @@ AP1roGLagrangianNewtonOrbitalOptimizer::AP1roGLagrangianNewtonOrbitalOptimizer(c
  */
 void AP1roGLagrangianNewtonOrbitalOptimizer::prepareDMCalculation(const SQHamiltonian<double>& sq_hamiltonian) {
 
-    // Optimize the AP1roG wave function model in this basis and update the results.
-    auto solver = GQCP::NonLinearEquationSolver<double>::Newton();
-    auto environment = GQCP::PSEnvironment::AP1roG(sq_hamiltonian, this->G);  // the initial guess are the current geminal coefficients
-    const auto qc_structure = GQCP::QCMethod::AP1roG(sq_hamiltonian, N_P).optimize(solver, environment);
+    // Optimize the vAP1roG wave function model in this basis and update the results.
+    auto non_linear_solver = GQCP::NonLinearEquationSolver<double>::Newton();
+    auto non_linear_environment = GQCP::PSEnvironment::AP1roG(sq_hamiltonian, this->G);  // the initial guess are the current geminal coefficients
+    auto linear_solver = GQCP::LinearEquationSolver<double>::HouseholderQR();
+
+    const auto qc_structure = GQCP::QCMethod::vAP1roG(sq_hamiltonian, N_P).optimize(non_linear_solver, non_linear_environment, linear_solver);
 
     this->G = qc_structure.groundStateParameters().geminalCoefficients();
+    this->multipliers = qc_structure.groundStateParameters().lagrangeMultipliers();
     this->E = qc_structure.groundStateEnergy();
-
-    // Determine the Lagrangian multipliers.
-    AP1roGLagrangianOptimizer lagrangian_optimizer (this->G, sq_hamiltonian);
-    this->multipliers = lagrangian_optimizer.solve();
 }
 
 
