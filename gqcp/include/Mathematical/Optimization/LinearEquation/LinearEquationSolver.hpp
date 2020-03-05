@@ -19,6 +19,7 @@
 
 
 #include "Mathematical/Algorithm/Algorithm.hpp"
+#include "Mathematical/Optimization/LinearEquation/ColPivHouseholderQRSolution.hpp"
 #include "Mathematical/Optimization/LinearEquation/HouseholderQRSolution.hpp"
 #include "Mathematical/Optimization/LinearEquation/LinearEquationEnvironment.hpp"
 
@@ -51,6 +52,19 @@ public:
         // Our Householder QR decomposition is just a wrapper around Eigen's.
         StepCollection<LinearEquationEnvironment<Scalar>> householder_steps {};
         householder_steps.add(HouseholderQRSolution<Scalar>());
+
+        return Algorithm<LinearEquationEnvironment<Scalar>>(householder_steps);
+    }
+
+
+    /**
+     *  @return a linear equations solver that uses the Householder QR (with column-pivoting) algorithm
+     */
+    static Algorithm<LinearEquationEnvironment<Scalar>> ColPivHouseholderQR() {
+
+        // Our Householder QR decomposition is just a wrapper around Eigen's.
+        StepCollection<LinearEquationEnvironment<Scalar>> householder_steps {};
+        householder_steps.add(ColPivHouseholderQRSolution<Scalar>());
 
         return Algorithm<LinearEquationEnvironment<Scalar>>(householder_steps);
     }

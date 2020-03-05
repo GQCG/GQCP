@@ -28,12 +28,12 @@ namespace GQCP {
 
 
 /**
- *  A step that calculates the solution vector x (in Ax=b) through a Housholder QR decomposition.
+ *  A step that calculates the solution vector x (in Ax=b) through a Housholder QR (with column-pivoting) decomposition.
  * 
  *  @tparam _Scalar             the scalar type of the elements of the vectors and matrices
  */
 template <typename _Scalar>
-class HouseholderQRSolution :
+class ColPivHouseholderQRSolution :
     public Step<LinearEquationEnvironment<_Scalar>> {
 
 public:
@@ -57,7 +57,7 @@ public:
         const auto& b = environment.b;  // the right-hand side
 
         using MatrixType = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
-        Eigen::HouseholderQR<MatrixType> linear_solver (A);  // this does the Householder QR decomposition
+        Eigen::ColPivHouseholderQR<MatrixType> linear_solver (A);  // this does the Householder QR (with column-pivoting) decomposition
 
         environment.x = linear_solver.solve(b);
     }

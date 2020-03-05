@@ -61,11 +61,11 @@ GQCP::SquareMatrix<double> J(const GQCP::VectorX<double>& x) {
  */
 
 /**
- *  Check the solution of a non-linear system of equations
+ *  Check the solution of a non-linear system of equations.
  */
 BOOST_AUTO_TEST_CASE ( nl_syseq_example ) {
 
-    // Test that the previous implementations actually work by checking the values at x=(1,1)
+    // Test that the implementations of the toy functions actually work by checking the values at x=(1,1)
     GQCP::VectorX<double> f_test (2);
     f_test << 2, 4;
 
@@ -76,8 +76,8 @@ BOOST_AUTO_TEST_CASE ( nl_syseq_example ) {
     GQCP::VectorX<double> x_test (2);
     x_test << 1, 1;
 
-    BOOST_REQUIRE(f_test.isApprox(f(x_test), 1.0e-8));
-    BOOST_REQUIRE(J_test.isApprox(J(x_test), 1.0e-8));
+    BOOST_REQUIRE(f_test.isApprox(f(x_test), 1.0e-08));
+    BOOST_REQUIRE(J_test.isApprox(J(x_test), 1.0e-08));
 
 
     // Do the numerical optimization and check the result

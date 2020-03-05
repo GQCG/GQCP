@@ -31,7 +31,9 @@ void bindNonLinearEquationSolver(py::module& module) {
     auto module_non_linear_equation_solver = module.def_submodule("NonLinearEquationSolver");
 
     module_non_linear_equation_solver.def("Newton",
-        &GQCP::NonLinearEquationSolver<double>::Newton,
+        [ ] (const double threshold = 1.0e-08, const size_t maximum_number_of_iterations = 128) {
+            return GQCP::NonLinearEquationSolver<double>::Newton(threshold, maximum_number_of_iterations);
+        },
         py::arg("threshold") = 1.0e-08,
         py::arg("maximum_number_of_iterations") = 128,
         "Return an iterative algorithm that performs Newton steps to solve a system of equations."
