@@ -21,7 +21,7 @@
 #include "QCMethod/Geminals/AP1roG.hpp"
 #include "QCMethod/Geminals/AP1roGLagrangianOptimizer.hpp"
 #include "QCMethod/Geminals/PSEnvironment.hpp"
-#include "QCModel/Geminals/AP1roG.hpp"
+#include "QCModel/Geminals/vAP1roG.hpp"
 
 
 namespace GQCP {
@@ -94,7 +94,7 @@ void AP1roGLagrangianNewtonOrbitalOptimizer::prepareDMCalculation(const SQHamilt
  *  @return the current 1-DM
  */
 OneRDM<double> AP1roGLagrangianNewtonOrbitalOptimizer::calculate1RDM() const {
-    return GQCP::QCModel::AP1roG::calculate1RDM(this->G, this->multipliers);
+    return GQCP::QCModel::vAP1roG::calculate1RDM(this->G, this->multipliers);
 }
 
 
@@ -102,7 +102,7 @@ OneRDM<double> AP1roGLagrangianNewtonOrbitalOptimizer::calculate1RDM() const {
  *  @return the current 2-DM
  */
 TwoRDM<double> AP1roGLagrangianNewtonOrbitalOptimizer::calculate2RDM() const {
-    return GQCP::QCModel::AP1roG::calculate2RDM(this->G, this->multipliers);
+    return GQCP::QCModel::vAP1roG::calculate2RDM(this->G, this->multipliers);
 }
 
 

@@ -31,7 +31,7 @@ namespace QCModel {
  *  The AP1roG (=pCCD) geminal (coupled-cluster) wave function model.
  */
 class AP1roG {
-
+private:
     AP1roGGeminalCoefficients G;
 
 
@@ -61,38 +61,6 @@ public:
      */
     static double calculateEnergy(const AP1roGGeminalCoefficients& G, const SQHamiltonian<double>& sq_hamiltonian);
 
-    /**
-     *  @param G                the AP1roG geminal coefficients
-     *  @param multipliers      the AP1roG Lagrangian multipliers
-     *
-     *  @return the AP1roG response 1-DM
-     */
-    static OneRDM<double> calculate1RDM(const AP1roGGeminalCoefficients& G, const BlockMatrix<double>& multipliers);
-
-    /**
-     *  @param G                the AP1roG geminal coefficients
-     *  @param multipliers      the AP1roG Lagrangian multipliers
-     *
-     *  @return the AP1roG response number 2-RDM (the Delta-matrix in the notes)
-     */
-    static SquareMatrix<double> calculateNumber2RDM(const AP1roGGeminalCoefficients& G, const BlockMatrix<double>& multipliers);
-
-    /**
-     *  @param G                the AP1roG geminal coefficients
-     *  @param multipliers      the AP1roG Lagrangian multipliers
-     *
-     *  @return the AP1roG response pair 2-RDM (the Pi-matrix in the notes)
-     */
-    static SquareMatrix<double> calculatePair2RDM(const AP1roGGeminalCoefficients& G, const BlockMatrix<double>& multipliers);
-
-    /**
-     *  @param G                the AP1roG geminal coefficients
-     *  @param multipliers      the AP1roG Lagrangian multipliers
-     *
-     *  @return the AP1roG response 2-DM
-     */
-    static TwoRDM<double> calculate2RDM(const AP1roGGeminalCoefficients& G, const BlockMatrix<double>& multipliers);
-
 
     /*
      *  PUBLIC METHODS
@@ -113,7 +81,7 @@ public:
     /**
      *  @return the number of electron pairs that are described by these AP1roG model parameters
      */
-    size_t numberOfElectronPairs() const { return this->geminalCoefficients().numberOfElectronPairs(); }
+    size_t numberOfElectronPairs() const { return this->G.numberOfElectronPairs(); }
 
     /**
      *  @return the number of spatial orbitals that are described by these AP1roG model parameters

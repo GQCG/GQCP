@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-gqcp.  If not, see <http://www.gnu.org/licenses/>.
 // 
-#define BOOST_TEST_MODULE "AP1roG"
+#define BOOST_TEST_MODULE "vAP1roG"
 
 #include <boost/test/unit_test.hpp>
 
@@ -28,7 +28,7 @@
 #include "QCMethod/HF/DiagonalRHFFockMatrixObjective.hpp"
 #include "QCMethod/HF/RHF.hpp"
 #include "QCMethod/HF/RHFSCFSolver.hpp"
-#include "QCModel/Geminals/AP1roG.hpp"
+#include "QCModel/Geminals/vAP1roG.hpp"
 
 
 /**
@@ -65,8 +65,8 @@ BOOST_AUTO_TEST_CASE ( energy_as_contraction ) {
 
 
     // Calculate the DMs and check the trace with the one- and two-electron integrals.
-    const auto D = GQCP::QCModel::AP1roG::calculate1RDM(G, multipliers);
-    const auto d = GQCP::QCModel::AP1roG::calculate2RDM(G, multipliers);
+    const auto D = GQCP::QCModel::vAP1roG::calculate1RDM(G, multipliers);
+    const auto d = GQCP::QCModel::vAP1roG::calculate2RDM(G, multipliers);
     const double electronic_energy_by_contraction = sq_hamiltonian.calculateExpectationValue(D, d);
 
     BOOST_CHECK(std::abs(electronic_energy_by_contraction - electronic_energy) < 1.0e-09);

@@ -4,4 +4,5 @@ target_sources(gqcp
         AP1roGGeminalCoefficients.cpp
         APIGGeminalCoefficients.cpp
         GeminalCoefficientsInterface.cpp
+        vAP1roG.cpp
 )
