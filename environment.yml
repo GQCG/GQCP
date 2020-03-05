@@ -5,51 +5,17 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - benchmark=1.5.0=h4a8c4bd_3
-  - blas=2.15=openblas
-  - boost-cpp=1.69.0=hd59e818_1001
-  - bzip2=1.0.8=h0b31af3_2
-  - ca-certificates=2019.11.28=hecc5488_0
-  - certifi=2019.11.28=py38_0
-  - cint=3.0.17=py38h0ee0bd4_0
-  - cmake=3.13.4=h1e01633_0
-  - curl=7.68.0=h8754def_0
-  - eigen=3.3.7=ha1b3eb9_1001
-  - expat=2.2.9=h4a8c4bd_2
-  - icu=58.2=h0a44026_1000
-  - intel-openmp=2019.0=intel_117
-  - krb5=1.16.4=h1752a42_0
-  - libblas=3.8.0=15_openblas
-  - libcblas=3.8.0=15_openblas
-  - libcurl=7.68.0=h709d2b2_0
-  - libcxx=9.0.1=1
-  - libedit=3.1.20170329=hcfe32e1_1001
-  - libffi=3.2.1=h6de7cb9_1006
-  - libgfortran=4.0.0=2
-  - libint=2.3.1=0
-  - liblapack=3.8.0=15_openblas
-  - liblapacke=3.8.0=15_openblas
-  - libopenblas=0.3.8=h3d69b6c_0
-  - libssh2=1.8.2=hcdc9a53_2
-  - libuv=1.34.0=h0b31af3_0
-  - llvm-openmp=9.0.1=h28b9765_2
-  - mkl=2019.0=intel_117
-  - mkl-include=2019.0=intel_117
-  - mkl-static=2019.0=intel_117
-  - ncurses=6.1=h0a44026_1002
-  - numpy=1.18.1=py38hde6bac1_0
-  - openssl=1.1.1d=h0b31af3_0
-  - pip=20.0.2=py_2
-  - pybind11=2.4.3=py38ha1b3eb9_1
-  - python=3.8.2=hdc38147_3_cpython
-  - readline=8.0=hcfe32e1_0
-  - rhash=1.3.6=h1de35cc_1001
-  - setuptools=45.2.0=py38_0
-  - sqlite=3.30.1=h93121df_0
-  - tbb=2019.9=ha1b3eb9_1
-  - tk=8.6.10=hbbe82c9_0
-  - wheel=0.34.2=py_1
-  - xz=5.2.4=h1de35cc_1001
-  - zlib=1.2.11=h0b31af3_1006
-prefix: /anaconda3/envs/gqcp_dev
-
+  - cmake=3.13 
+  - boost-cpp=1.69.0 
+  - eigen=3.3.7 
+  - blas=2.15 
+  - mkl=2019.0 
+  - pybind11=2.4.3 
+  - benchmark 
+  - numpy=1.18.1
+  - libint=2.3.1 
+  - cint=3.0.17
+  - mkl-include=2019.0 
+  - mkl-static=2019.0 
+  - intel-openmp=2019.0
+  
