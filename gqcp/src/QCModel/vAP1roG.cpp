@@ -102,7 +102,7 @@ MatrixX<double> QCModel::vAP1roG::calculateMultiplierResponseForceConstant(const
 
     const auto N_P = G.numberOfElectronPairs();
 
-    const MatrixX<double> k_lambda = QCModel::AP1roG::calculateJacobian(sq_hamiltonian, G).asMatrix().transpose();
+    const MatrixX<double> k_lambda = QCModel::AP1roG::calculatePSEJacobian(sq_hamiltonian, G).asMatrix().transpose();
     return k_lambda;
 }
 

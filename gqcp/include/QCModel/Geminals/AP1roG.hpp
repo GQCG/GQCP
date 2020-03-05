@@ -19,6 +19,7 @@
 
 
 #include "Mathematical/Representation/BlockMatrix.hpp"
+#include "Mathematical/Representation/BlockRankFourTensor.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCModel/Geminals/AP1roGGeminalCoefficients.hpp"
 
