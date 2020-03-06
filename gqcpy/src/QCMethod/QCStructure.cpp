@@ -21,6 +21,7 @@
 #include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
 #include "QCMethod/QCStructure.hpp"
 #include "QCModel/CI/LinearExpansion.hpp"
+#include "QCModel/Geminals/AP1roG.hpp"
 #include "QCModel/HF/RHF.hpp"
 
 #include <pybind11/eigen.h>
@@ -50,7 +51,7 @@ template <typename QCModel>
 void bindQCStructure(py::module& module, const std::string& suffix, const std::string& description) {
 
     py::class_<GQCP::QCStructure<QCModel>>(module,
-        ("QCStructure" + suffix).c_str(),
+        ("QCStructure_" + suffix).c_str(),
         description.c_str()
     )
 
@@ -93,6 +94,8 @@ void bindQCStructures(py::module& module) {
     bindQCStructure<GQCP::LinearExpansion<GQCP::SpinResolvedFrozenONVBasis>>(module, "LinearExpansionSpinResolvedFrozen", "A quantum chemical structure for linear expansions in a frozen core spin-resolved ONV basis.");
     bindQCStructure<GQCP::LinearExpansion<GQCP::SpinResolvedONVBasis>>(module, "LinearExpansionSpinResolved", "A quantum chemical structure for linear expansions in a spin-resolved ONV basis.");
     bindQCStructure<GQCP::LinearExpansion<GQCP::SpinResolvedSelectedONVBasis>>(module, "LinearExpansionSpinResolvedSelected", "A quantum chemical structure for linear expansions in a spin-resolved selected ONV basis.");
+
+    bindQCStructure<GQCP::QCModel::AP1roG>(module, "AP1roG", "A quantum chemical structure for AP1roG parameters.");
 
     bindQCStructure<GQCP::QCModel::RHF<double>>(module, "RHF", "A quantum chemical structure for RHF parameters.");
 }

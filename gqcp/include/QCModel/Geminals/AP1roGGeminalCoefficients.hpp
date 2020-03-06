@@ -28,7 +28,7 @@ namespace GQCP {
 
 
 /**
- *  A class that represents geminal coefficients for an AP1roG wave function
+ *  Geminal coefficients for an AP1roG wave function.
  */
 class AP1roGGeminalCoefficients : public GeminalCoefficientsInterface {
 private:

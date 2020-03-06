@@ -80,6 +80,11 @@ void bindCIFactory(py::module& module);
 void bindQCMethodCIs(py::module& module);
 
 
+// QCMethod - Geminals
+void bindPSEnvironment(py::module& module);
+void bindQCMethodAP1roG(py::module& module);
+
+
 // QCMethod - HF
 void bindDiagonalRHFFockMatrixObjective(py::module& module);
 void bindQCMethodRHF(py::module& module);
@@ -93,6 +98,11 @@ void bindQCStructures(py::module& module);
 
 // QCModel - CI
 void bindLinearExpansions(py::module& module);
+
+
+// QCModel - Geminals
+void bindAP1roGGeminalCoefficients(py::module& module);
+void bindQCModelAP1roG(py::module& module);
 
 
 // QCModel - HF
@@ -166,6 +176,11 @@ PYBIND11_MODULE (gqcpy, module) {
     gqcpy::bindQCMethodCIs(module);
 
 
+    // QCMethod - Geminals
+    gqcpy::bindPSEnvironment(module);
+    gqcpy::bindQCMethodAP1roG(module);
+
+
     // QCMethod - HF
     gqcpy::bindDiagonalRHFFockMatrixObjective(module);
     gqcpy::bindQCMethodRHF(module);
@@ -179,6 +194,11 @@ PYBIND11_MODULE (gqcpy, module) {
 
     // QCModel - CI
     gqcpy::bindLinearExpansions(module);
+
+
+    // QCModel - Geminals
+    gqcpy::bindAP1roGGeminalCoefficients(module);
+    gqcpy::bindQCModelAP1roG(module);
 
 
     // QCModel - HF

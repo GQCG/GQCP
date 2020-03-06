@@ -50,7 +50,7 @@ namespace gqcpy {
  */
 template <typename ONVBasis>
 void bindQCMethodCI(py::module& module, const std::string& suffix, const std::string& description) {
-    py::class_<GQCP::QCMethod::CI<ONVBasis>>(module, 
+    py::class_<GQCP::QCMethod::CI<ONVBasis>>(module,
         ("CI" + suffix).c_str(),
         description.c_str()
     )
